@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta http-equiv=X-UA-Compatible content=IE=edge,chrome=1>
+<title>Let's Encrypt を支える ACME プロトコル | blog.jxck.io</title>
+<meta name=viewport content=width=device-width>
+<link rel=stylesheet type=text/css href=style.css>
+
+<header>
+  <a class=logo href=/>blog.jxck.io</a>
+</header>
+
+<article>
+  <section>
+    <time datetime=2016-01-01>2016-01-01</time>
+    <h1>Let's Encrypt を支える ACME プロトコル</h1>
+  <section>
+  <section>
+    <h2>Intro</h2>
+    <p>先日 <a href=http://http2study.connpass.com/event/21161/>#http2study</a> で mozilla の Richard Barnes が <a href=https://letsencrypt.org/>Let's Encrypt</a> について話してくれました。
+
+    <img src=1.png alt="Let's Encrypt">
+
+<pre lang=js>
+<span class="synIdentifier">function</span> get(url) <span class="synIdentifier">{</span>
+  <span class="synStatement">return</span> <span class="synStatement">new</span> Promise(<span class="synIdentifier">function</span>(done, fail) <span class="synIdentifier">{</span>
+    <span class="synIdentifier">var</span> xhr = <span class="synStatement">new</span> XMLHttpRequest();
+    xhr.open(<span class="synConstant">'GET'</span>, url);
+    xhr.responseType = <span class="synConstant">'json'</span>;
+    xhr.addEventListener(<span class="synConstant">'load'</span>, <span class="synIdentifier">function</span>() <span class="synIdentifier">{</span>
+      <span class="synStatement">if</span>(xhr.<span class="synStatement">status</span> &gt;= 400) <span class="synIdentifier">{</span>
+        <span class="synStatement">return</span> fail(xhr.response);
+      <span class="synIdentifier">}</span>
+      done(xhr.response);
+    <span class="synIdentifier">}</span>);
+    xhr.addEventListener(<span class="synConstant">'error'</span>, fail);
+    xhr.send();
+  <span class="synIdentifier">}</span>);
+<span class="synIdentifier">}</span>
+</pre>
+
+    <p>資料: <a href=https://bifurcation.github.io/letsencrypt-overview/>Let's Encrypt Overview</a>
+
+    <p>この <a href=https://github.com/Jxck/letsencrypt-overview/blob/translation/index-ja.html>資料の翻訳</a> はしたのですが、いらなくなってしまったので供養もかねてこのプロジェクトのモチベーションと、 Web でおこっている HTTPS 推進のたどる道について、資料を補足しつつ紹介します。
+
+    <p>結論から言うと Let's Encrypt はもちろん <strong>ACME プロトコル</strong> についても是非知っておくと良いと思います。
+  </section>
+
+  <section>
+    <h2>HTTPS の問題</h2>
+    <p>すでにこのブログでも紹介しているように、 Web における HTTPS の重要性は増し、それの普及を後押しする活動が各所で進められています。
+
+    <p><a href=http://jxck.hatenablog.com/entry/web-over-https>HTTPS 化する Web をどう考えるか</a>
+
+    <p>よく言われる盗聴防止を始め、暗号化を行うことで防げる問題は多くあります。ブラウザの API には HTTPS で無いと使えないものも出てき始めています。
+
+    <p>それらを担保するために、 HTTPS 化が有効なわけですが、現時点での進捗は以下だそうです。
+
+    <ul>
+      <li><a href=https://telemetry.mozilla.org/new-pipeline/dist.html#!cumulative=0&end_date=2015-10-29&keys=__none__!__none__!__none__&max_channel_version=release%252F42&measure=HTTP_PAGELOAD_IS_SSL&min_channel_version=null&product=Firefox&sanitize=1&sort_keys=submissions&start_date=2015-10-29&table=0&trim=1&use_submission_date=0>Pageload の 40%</a>
+      <li><a href=https://telemetry.mozilla.org/new-pipeline/dist.html#!cumulative=0&end_date=2015-10-29&keys=__none__!__none__!__none__&max_channel_version=release%252F42&measure=HTTP_TRANSACTION_IS_SSL&min_channel_version=null&product=Firefox&sanitize=1&sort_keys=submissions&start_date=2015-10-29&table=0&trim=1&use_submission_date=0>HTTP Transaction の 65%</a>
+    </ul>
+
+    <p>究極には <strong>全てのトラフィックが HTTPS</strong> になる状況が望ましいとすると、進捗はまだまだと言えます。
+  </section>
+
+  <section>
+    <h2>HTTPS 普及上の問題</h2>
+
+    <p>実際には多くの問題がありますが、一番分かりやすいのは「<strong>証明書</strong>」の問題でしょう。
+
+    <ul>
+      <li>証明書は有料
+      <li>発行機関ごとに申請方法が違う
+      <li>発行プロセスが基本手動
+      <li>追加でサーバの設定
+      <li>etc
+    </ul>
+
+
+    <p>料金の問題は、特に個人のホビー用途での側面が強いでしょう。
+
+    <p>しかし、ビジネスの場面でも、申請フローが自動化できない(しにくい)ことによって、今日のデプロイプロセスに混ぜにくいという問題があります。
+
+    <p>つまり、 <strong>無料</strong> かつ <strong>自動</strong> で発行できると、かなり状況は改善できる可能性があるというのが、 Let's Encrypt のモチベーションになります。
+  </section>
+
+  <section>
+    <h2>Let's Encrypt の発行する証明書</h2>
+
+    <p>CA が発行する証明書にはいくつかの種類があります。
+
+    <dl>
+      <dt>DV(Domain Validation)
+      <dd>ドメインの所有を確認して発行
+      <dt>OV(Organization Validation)
+      <dd>組織の実在の確認をして発行
+      <dt>EV(Extended Validation)
+      <dd>より厳密な実在確認をして発行
+    </dl>
+
+    <p>OV, EV は申請が複雑ですが、 DV は「申請者がそのドメインを持っているかどうか」を確認するだけなので、信頼性は劣りますが発行が短期間で済みます。
+
+    <p>Let's Encrypt が発行できるのは、この DV 証明書だけです。
+
+    <p>また、単体の証明書は例えば <code>mail.example.com</code> と <code>www.example.com</code> は別のものが必用ですが、 <code>*.example.com</code> 全体を一つでカバーできるワイルドカード証明書というものがあります。
+
+    <p>しかし、 Let's Encrypt はワイルドカード証明書は発行できません。無料であるため、サブドメイン毎にガンガン発行することになるようです。
+  </section>
+
+  <section>
+    <h2>Let's Encrypt のクロスルート証明書</h2>
+
+    <p>Let's Encrypt は CA であるため、クライアントから信頼されていなければなりません。これは通常、 Let's Encrypt 自体の CA 証明書が OS やブラウザなどにビルトインされている必用があります。(無い場合は、 HTTPS が成立しない)
+
+    <p>現在 Let's Encrypt 自体の CA 証明書はまだ OS などには入っていません。しかし、 IdenTrust という多くの環境で信用されている別の CA と<a href=https://letsencrypt.org/2015/10/19/lets-encrypt-is-trusted.html>チェーンを結ぶようになりました</a>。
+
+    <p>これにより Let's Encrypt の証明書は「クロスルート証明書」となり、 IdenTrust を信用する環境で信用されるようになりました。 要するに、大抵の環境で Let's Encrypt の証明書はすぐに使えるようになるわけです。
+
+    <p>不安な場合は、対象とするクライアントで以下の URL を開けば、きちんど動作するか確認できます。
+
+    <p><a href=https://helloworld.letsencrypt.org/>https://helloworld.letsencrypt.org/</a>
+  </section>
+
+
+  <section>
+    <h2>DV 証明書発行の自動化</h2>
+
+    <p>DV 証明書に発行に必用なのは以下の確認です。
+
+<blockquote lang=text>
+  example.com の証明書が欲しいと要求してきた人が、本当に example.com の所有者かの確認
+</blockquote>
+
+    <p>この方法はいくつか考えられますが、基本的には「そのドメインを持っている人にしかできない操作をさせて、それを確認する」という発想になります。
+
+    <p>Let's Encrypt が求めるのは以下のような操作です。
+
+    <ol>
+      <li><code>example.com</code> のサーバで TLS を有効にする
+      <li>DNS で <code>_acme-challenge.example.com</code> に対して Let's Encrypt が指定した値を返す TXT レコードを設定する
+      <li>HTTP で <code>http://example.com/.well-known/acme-challenge/</code> に対して Let's Encrypt が指定したテキストを返す設定をする
+    </ol>
+
+    <p>ドメイン所有者はこれを行い、 Let's Encrypt が設定の正しさを外から確認することで、ドメインの所有者を確認し、証明書を発行します。
+
+    <p>Let's Encrypt への依頼は API 経由でできるため、そこで受け取ったトークンを用いて、これらのプロセスさえ自動化できれば、完全自動で証明書が発行できるわけです。
+  </section>
+
+
+  <section>
+    <h2>ACME プロトコル</h2>
+
+    <p>実は、前述のような証明書発行のプロトコルは標準化されています。
+
+    <p>それが <a href=https://github.com/letsencrypt/acme-spec>ACME プロトコル</a> です。
+
+    <p>仕様はまだ策定中ではありますが、 Let's Encrypt はこの ACME を(仕様策定にフィードバックしながら)実装しています。 ACME プロトコルは前述したクライアント(発行依頼側)だけではなく、サーバ(発行側)についてもカバーしています。
+
+    <p>このプロトコル自体が、今後の HTTPS の普及に重要なものだと考えています。
+  </section>
+
+
+
+  <section>
+    <h2>ACME 対応サーバ</h2>
+
+    <p>Let's Encrypt は、証明書の発行を自動化する Python 製の CLI ツールを公開しています。
+
+    <p><a href=https://github.com/letsencrypt/letsencrypt>https://github.com/letsencrypt/letsencrypt</a>
+
+    <p>これはつまり、 ACME クライアントツールということになります。これを用いて CLI ベースで証明書の発行を行うことができます。
+
+    <p>しかし、 ACME および Let's Encrypt の目指す自動化はもう少し先にあります。
+
+    <p>例えば発行した証明書は、最終的には Nginx や Apache などの設定ファイルに記述して有効化する必用があります。
+
+    <p>そこで、「Nginx や Apache などのサーバ自体が ACME プロトコルを話し、勝手に証明書を取得して、勝手に設定する」というところまやると、証明書の知識が少ない初心者にも、 HTTPS を有効化する敷居を下げることができるというモチベーションです。
+
+    <p>すでに Nginx と Apache の Plugin があるようです。
+
+    <ul>
+      <li><a href=https://github.com/letsencrypt/letsencrypt/tree/master/letsencrypt-nginx>https://github.com/letsencrypt/letsencrypt/tree/master/letsencrypt-nginx</a>
+      <li><a href=https://github.com/letsencrypt/letsencrypt/tree/master/letsencrypt-apache>https://github.com/letsencrypt/letsencrypt/tree/master/letsencrypt-apache</a>
+    </ul>
+
+    <p>個人的には、設定ファイルが勝手に書き変わることには多少懐疑的ですが、プロトコル自体があるなら、サーバが直接話さないにしてもデプロイプロセスに取り込むことはできると思います。
+
+    <p>今後 ACME 対応のエコシステムが揃えば、より選択肢が増え、知見が溜まって行くと思います。
+  </section>
+
+
+  <section>
+    <h2>ACME 対応 CA</h2>
+
+    <p>ACME は Let's Encrypt だけのものではありません、 Let's Encrypt 以外の CA も ACME に対応することで、自動化の恩恵を受けることができます。
+
+    <p>言い換えれば Let's Encrypt 自体も ACME 対応サービスの一つです。そしてこれも OSS ベースで公開されています。
+
+    <p><a href=https://github.com/letsencrypt/boulder/>https://github.com/letsencrypt/boulder/</a>
+
+    <p>今後より重要度が増して行く HTTPS において、こうした標準的な発行手段が(例え DV のみでも)普及することは、デプロイのオーバーヘッドを減らして行く意味でも価値があるのではないでしょうか？
+  </section>
+
+
+  <section>
+    <h2>まとめ</h2>
+
+    <ul>
+      <li>ACME という、証明書発行プロトコルが現在策定中
+      <li>Let's Encrypt は ACME のサービス実装の一つ
+      <li>ACME を話せるクライアントがあれば、自動化が可能
+    </ul>
+
+    <p>Let's Encrypt は <strong>無料</strong> だという部分がフィーチャーされてて、それはもちろん凄いんだけど、裏ではこんな動きもありますよという話でした。
+
+    <p>ちなみにこのステッカーが、そのうち沢山貰える予定なので、欲しい人は声かけてください。
+
+    <img src=2.jpg alt="Let's Encrypt sticker">
+  </section>
+
+</article>
+
+<hr>
+<footer>
+  <address class="copyright">Copyright &copy; 2016 <a href="/">Jxck</a>. All Rights Reserved.</address>
+</footer>
