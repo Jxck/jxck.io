@@ -1,26 +1,24 @@
 body {
-  background-color: #fefefe;
-  color: #222;
-  font-family: 'Helvetica Neue', 'Helvetica', serif;
+  width: 100%;
   margin: 0;
   padding: 0;
-  width: 100%;
+  font-family: 'Helvetica Neue', 'Helvetica', serif;
+  color: #222;
+  background-color: #fefefe;
 }
 
 header {
-  display: block;
-  width: 100%;
   margin: 0;
   padding: 0;
   background: #222;
 }
 
 header a.logo {
-  font-size: 1.4em;
   display: block;
   padding: 0.4em;
-  text-decoration: none;
+  font-size: 1.4em;
   color: gray;
+  text-decoration: none;
 }
 
 header a.logo:hover {
@@ -28,20 +26,12 @@ header a.logo:hover {
 }
 
 article {
-  padding: 2em;
   max-width: 60em;
+  padding: 2em;
 }
 
 footer {
   padding: 1em;
-}
-
-a {
-  color: RoyalBlue;
-}
-
-a:visited {
-  color: Brown;
 }
 
 h1::before {
@@ -86,31 +76,32 @@ ul li::before {
 }
 
 ol {
-  counter-reset: section;
+  counter-reset: list;
 }
 
 ol li::before {
-  counter-increment: section;
-  content: counter(section) ". ";
+  counter-increment: list;
+  content: counter(list) ". ";
 }
 
-tr::before {
-  content: "| ";
-}
-
-td::after {
-  content: " | ";
-}
-
-thead td::after {
-  content: " | \A-----| ";
-  white-space: pre;
-}
-
-img {
-  max-width: 50%;
+table {
   margin: 2em 0;
-  border: solid 1px #ccc;
+  border-spacing: 0 0.4em;
+}
+
+th {
+  padding: 0em 1.2em 0.8em;
+  border-left: 0.14em solid #222;
+  border-bottom: 2px dashed #222;
+}
+
+td {
+  padding: 0.4em 1em;
+  border-left: 0.14em solid #222;
+}
+
+th:last-child, td:last-child {
+  border-right: 0.14em solid #222;
 }
 
 ul, ol, dl {
@@ -129,6 +120,21 @@ dl dd {
   margin-top: 0.4em;
   margin-bottom: 0.4em;
 }
+
+img {
+  max-width: 50%;
+  margin: 2em 0;
+  border: solid 1px #ccc;
+}
+
+a {
+  color: RoyalBlue;
+}
+
+a:visited {
+  color: Brown;
+}
+
 
 blockquote {
   display: block;
