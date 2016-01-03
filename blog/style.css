@@ -1,5 +1,4 @@
 body {
-  width: 100%;
   margin: 0;
   padding: 0;
   font-family: 'Helvetica Neue', 'Helvetica', serif;
@@ -8,15 +7,15 @@ body {
 }
 
 header {
+  box-sizing: border-box;
+  background-color: #222;
   margin: 0;
-  padding: 0;
-  background: #222;
+  padding: 0.4em;
 }
 
 header a.logo {
   display: block;
   padding: 0.4em;
-  font-size: 1.4em;
   color: gray;
   text-decoration: none;
 }
@@ -26,13 +25,36 @@ header a.logo:hover {
 }
 
 article {
-  max-width: 60em;
-  padding: 2em;
+  width: 80%;
+  margin: 1em auto;
 }
 
 footer {
   padding: 1em;
 }
+
+img {
+  max-width: 50%;
+  display: block;
+  margin: 1em 0;
+  border: solid 1px #ccc;
+}
+
+@media only screen and (max-device-width : 480px) {
+  img {
+    max-width:100%;
+  }
+}
+
+
+a {
+  word-wrap: break-word;
+}
+
+pre {
+  overflow: scroll;
+}
+
 
 h1::before {
   content: "# ";
@@ -119,12 +141,6 @@ dl dt::after {
 dl dd {
   margin-top: 0.4em;
   margin-bottom: 0.4em;
-}
-
-img {
-  max-width: 50%;
-  margin: 2em 0;
-  border: solid 1px #ccc;
 }
 
 a {
