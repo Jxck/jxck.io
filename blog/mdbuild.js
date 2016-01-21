@@ -17,7 +17,7 @@ boasdf asfdj
 
 asfd
 
-# h1
+## h1
 
 - a
   - aa
@@ -26,11 +26,11 @@ asfd
 - c
 
 `);
-var AST = parse(require('fs').readFileSync('./blog.md').toString())
+//var AST = parse(require('fs').readFileSync('./blog.md').toString())
 
 function sectioning(children, depth) {
   let section = {
-    type: 'Section',
+    type: 'Article',
     children: [],
     depth: depth
   };
@@ -100,7 +100,8 @@ function isInline(node) {
 var indent = `  `
 
 var html = {
-  Document: (node) => {
+  Document: (node) => node.value,
+  Article: (node) => {
     let value = ('\n' + node.value).replace(/\n/gm, `\n${indent}`);
     return `<article>${value}\n</article>`;
   },
