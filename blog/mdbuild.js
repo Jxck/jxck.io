@@ -84,18 +84,28 @@ function isInline(node) {
 
 
 var html = {
-  Document: (node)  => {
+  Document: (node) => {
     let value = ('\n' + node.value).replace(/\n/gm, '\n--');
     return `<article>${value}\n</article>`;
   },
-  Section: (node)   => {
+  Section: (node) => {
     let value = ('\n' + node.value).replace(/\n/gm, '\n--');
     return `<section>${value}\n</section>`
   },
   Paragraph: (node) => `<p>${node.value}</p>`,
-  Str: (node)       => node.value,
-  Header: (node)    => `<h${node.depth}>${node.value}</h${node.depth}>`,
-  Strong: (node)    => `<strong>${node.value}</strong>`,
+  Header:    (node) => `<h${node.depth}>${node.value}</h${node.depth}>`,
+  CodeBlock: (node) => `<pre lang="${node.lang}">${node.value}</pre>`,
+  BlockQuote:(node) => `<blockquote>${node.value}</blockquote>`,
+  List:      (node) => node.ordered ? `<ol>${node.value}</ol>`: `<ul>${node.value}</ul>`,
+  ListItem:  (node) => `<li>${node.value}</li>`,
+  Link:      (node) => `<a href="${node.href}">${node.value}</a>`,
+  Img:       (node) => `<img src="${node.src}" alt="${node.alt}" title="${node.title}" >`,
+  Strong:    (node) => `<strong>${node.value}</strong>`,
+  Emphasis:  (node) => `<em>${node.value}</em>`,
+  Html:      (node) => node.value,
+  Str:       (node) => node.value,
+  Break:     (node) => `<br>`,
+  HorizontalRule:() => `<hr>`,
 }
 
 var stack = [];
