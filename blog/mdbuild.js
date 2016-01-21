@@ -10,6 +10,21 @@ var AST = parse(`
 # h1
 
 aaa **bbb** ccc
+
+## h2
+
+boasdf asfdj
+
+asfd
+
+# h1
+
+- a
+  - aa
+  - bb
+- b
+- c
+
 `);
 // var AST = parse(require('fs').readFileSync('./blog.md').toString())
 
@@ -90,14 +105,17 @@ var html = {
   },
   Section: (node) => {
     let value = ('\n' + node.value).replace(/\n/gm, '\n--');
-    return `<section>${value}\n</section>`
+    return `<section>${value}\n</section>\n`
   },
-  Paragraph: (node) => `<p>${node.value}</p>`,
-  Header:    (node) => `<h${node.depth}>${node.value}</h${node.depth}>`,
+  List:      (node) => {
+    let value = ('\n' + node.value).replace(/\n/gm, '\n--');
+    return node.ordered ? `<ol>${value}\n</ol>\n`: `<ul>${value}\n</ul>\n`;
+  },
+  Paragraph: (node) => `<p>${node.value}</p>\n`,
+  Header:    (node) => `<h${node.depth}>${node.value}</h${node.depth}>\n`,
   CodeBlock: (node) => `<pre lang="${node.lang}">${node.value}</pre>`,
   BlockQuote:(node) => `<blockquote>${node.value}</blockquote>`,
-  List:      (node) => node.ordered ? `<ol>${node.value}</ol>`: `<ul>${node.value}</ul>`,
-  ListItem:  (node) => `<li>${node.value}</li>`,
+  ListItem:  (node) => `<li>${node.value}</li>\n`,
   Link:      (node) => `<a href="${node.href}">${node.value}</a>`,
   Img:       (node) => `<img src="${node.src}" alt="${node.alt}" title="${node.title}" >`,
   Strong:    (node) => `<strong>${node.value}</strong>`,
@@ -128,11 +146,16 @@ traverse(AST, {
       // 完成している兄弟タグを集めてきて配列に並べる
       while(stack[0].tag === 'full') {
         let top = stack.shift();
-        p(top);
-        vals.unshift(top.val);
+        if (top.inline && vals[0] && vals[0].inline) {
+          let val = vals.shift();
+          val.val = top.val + val.val;
+          vals.unshift(val)
+        } else {
+          vals.unshift(top);
+        }
       }
       // 連結する
-      vals = vals.join('\n').trim()
+      vals = vals.map((val) => val.val).join('').trim()
 
       // それを親タグで閉じる
       let top = stack.shift();
