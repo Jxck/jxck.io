@@ -26,7 +26,7 @@ asfd
 - c
 
 `);
-// var AST = parse(require('fs').readFileSync('./blog.md').toString())
+var AST = parse(require('fs').readFileSync('./blog.md').toString())
 
 function sectioning(children, depth) {
   let section = {
@@ -97,30 +97,32 @@ function isInline(node) {
 }
 
 
+var indent = `  `
 
 var html = {
   Document: (node) => {
-    let value = ('\n' + node.value).replace(/\n/gm, '\n--');
+    let value = ('\n' + node.value).replace(/\n/gm, `\n${indent}`);
     return `<article>${value}\n</article>`;
   },
   Section: (node) => {
-    let value = ('\n' + node.value).replace(/\n/gm, '\n--');
+    let value = ('\n' + node.value).replace(/\n/gm, `\n${indent}`);
     return `<section>${value}\n</section>\n`
   },
   List:      (node) => {
-    let value = ('\n' + node.value).replace(/\n/gm, '\n--');
+    let value = ('\n' + node.value).replace(/\n/gm, `\n${indent}`);
     return node.ordered ? `<ol>${value}\n</ol>\n`: `<ul>${value}\n</ul>\n`;
   },
   Paragraph: (node) => `<p>${node.value}</p>\n`,
   Header:    (node) => `<h${node.depth}>${node.value}</h${node.depth}>\n`,
   CodeBlock: (node) => `<pre lang="${node.lang}">${node.value}</pre>`,
+  Code:      (node) => `<code>${node.value}</code>`,
   BlockQuote:(node) => `<blockquote>${node.value}</blockquote>`,
   ListItem:  (node) => `<li>${node.value}</li>\n`,
   Link:      (node) => `<a href="${node.href}">${node.value}</a>`,
   Img:       (node) => `<img src="${node.src}" alt="${node.alt}" title="${node.title}" >`,
   Strong:    (node) => `<strong>${node.value}</strong>`,
   Emphasis:  (node) => `<em>${node.value}</em>`,
-  Html:      (node) => node.value,
+  Html:      (node) => `${node.value}\n`,
   Str:       (node) => node.value,
   Break:     (node) => `<br>`,
   HorizontalRule:() => `<hr>`,
