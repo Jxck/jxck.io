@@ -6,12 +6,9 @@ var traverse = require("txt-ast-traverse").traverse;
 var AST = parse(`
 # a
 
-## 2
+## b
 
-# b
-
-## 3
-
+# c
 `)
 // var AST = parse(require('fs').readFileSync('./blog.md').toString())
 
@@ -25,12 +22,42 @@ function isInline(ast) {
   ].indexOf(ast.type) > -1
 }
 
-var stack = [];
+function sectioning(ast) {
+  delete ast.loc
+  delete ast.range
+  delete ast.raw
 
-traverse(AST, {
+  debugger
+  let sections = [];
+  let section = [];
+  for (let o of ast.children) {
+    delete o.loc
+    delete o.range
+    delete o.raw
+
+    if (o.type === 'Header') {
+      if (section.length > 0) {
+        sections.push(section);
+        section = [];
+      }
+    }
+    section.push(o);
+  }
+  sections.push(section);
+
+  ast.children = sections.map((section) => { return { type: "Section", children: section }});
+
+  p(JSON.stringify(ast, '  ', '  '));
+
+  return ast
+}
+sectioning(AST);
+//p(JSON.stringify(sectioning(AST), ' ', '  '));
+
+var stack = [];
+traverse('', {
   enter(node) {
     console.log("enter", node.type);
-
     stack.unshift({ tag: 'o', val: `<${node.type}>` })
   },
   leave(node) {
@@ -39,7 +66,7 @@ traverse(AST, {
     if (node.value) {
       let top = stack.shift();
       if (top.tag === 'o') {
-        stack.unshift({ tag: 'f', val: `\n${top.val}\n--${node.value}\n</${node.type}>`})
+        stack.unshift({ tag: 'f', val: `\n${top.val}\n--${node.value}\n</${node.type}>` })
       }
     } else {
       let vals = [];
@@ -53,8 +80,7 @@ traverse(AST, {
   }
 });
 
-p('==========')
-p(stack[0].val)
+// p(stack[0].val)
 
 traverse('', {
   enter(node) {
