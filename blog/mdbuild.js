@@ -7,16 +7,21 @@ var parse = require("markdown-to-ast").parse,
 var traverse = require("txt-ast-traverse").traverse;
 
 var AST = parse(`
-# a
+# aaa
 
-## b
+hoge
 
-# c
+## bbb
+
+fuga
+
+# ccc
+
+piyo
 `)
 // var AST = parse(require('fs').readFileSync('./blog.md').toString())
 
 function sectioning(children, depth) {
-  debugger
   let section = {
     type: 'Section',
     children: [],
@@ -74,25 +79,55 @@ function sectioning(children, depth) {
 
 AST.children = sectioning(AST.children, 1)
 
+
+function isInline(type) {
+  return [
+    Syntax.Str,
+    Syntax.Header,
+  ].indexOf(type) > -1;
+}
+
 var stack = [];
 traverse(AST, {
   enter(node) {
-    stack.unshift({ tag: 'o', val: `<${node.type}>` })
+    p("enter", node.type);
+    node.inline = isInline(node.type)
+    stack.unshift(node)
   },
   leave(node) {
-    if (node.value) {
+    p(stack);
+    debugger;
+    p("leave", node.type);
+    if (node.value) { // value があったら
+      // pop して
       let top = stack.shift();
-      if (top.tag === 'o') {
-        stack.unshift({ tag: 'f', val: `\n${top.val}\n--${node.value}\n</${node.type}>` })
+      if (top.type !== node.type) console.error(top, node);
+
+      // 閉じる
+      if (node.inline) {
+        stack.unshift({ tag: 'full', val: `<${node.type}>${node.value}</${node.type}>` })
+      } else {
+        stack.unshift({ tag: 'full', val: `<${node.type}>\n--${node.value}\n</${node.type}>` })
       }
     } else {
       let vals = [];
-      while(stack[0].tag === 'f') {
-        vals.push(stack.shift().val);
+
+      // 完成している兄弟タグを集めてきて配列に並べる
+      // インデントも下げておく
+      while(stack[0].tag === 'full') {
+        vals.unshift(stack.shift().val);
       }
-      vals = vals.reverse().join('').replace(/\n/gm, '\n--')
+      // 連結する
+      vals = vals.join('\n').replace(/\n/gm, '\n--')
+      // それを親タグで閉じる
       let top = stack.shift();
-      stack.unshift({ tag: 'f', val: `\n${top.val}${vals}\n</${node.type}>` })
+      if (top.type !== node.type) console.error(top, node);
+
+      if (node.inline) {
+        stack.unshift({ tag: 'full', val: `<${node.type}>${vals}</${node.type}>` })
+      } else {
+        stack.unshift({ tag: 'full', val: `<${node.type}>\n--${vals}\n</${node.type}>` })
+      }
     }
   }
 });
