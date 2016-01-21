@@ -15,7 +15,6 @@ var AST = parse(`
 `)
 // var AST = parse(require('fs').readFileSync('./blog.md').toString())
 
-
 function sectioning(children, depth) {
   debugger
   let section = {
@@ -26,9 +25,6 @@ function sectioning(children, depth) {
   let sections = [];
   while (true) {
     let child = children.shift();
-    p("今の sections", j(sections));
-    p("今の section", j(section));
-    p("今の child", j(child));
     if (child == undefined) break;
 
     if (child.type === 'Header') {
@@ -76,19 +72,14 @@ function sectioning(children, depth) {
   return sections
 }
 
-
 AST.children = sectioning(AST.children, 1)
-
 
 var stack = [];
 traverse(AST, {
   enter(node) {
-    console.log("enter", node.type);
     stack.unshift({ tag: 'o', val: `<${node.type}>` })
   },
   leave(node) {
-    debugger;
-    console.log("leave", node.type, stack)
     if (node.value) {
       let top = stack.shift();
       if (top.tag === 'o') {
