@@ -1,4 +1,7 @@
 "use strict";
+var p = console.log.bind(console);
+var j = JSON.stringify.bind(JSON);
+
 var parse = require("markdown-to-ast").parse,
     Syntax = require("markdown-to-ast").Syntax;
 var traverse = require("txt-ast-traverse").traverse;
@@ -13,49 +16,72 @@ var AST = parse(`
 // var AST = parse(require('fs').readFileSync('./blog.md').toString())
 
 
-var p = console.log.bind(console);
-
-function isInline(ast) {
-  return [
-    Syntax.Str,
-    Syntax.Header,
-  ].indexOf(ast.type) > -1
-}
-
-function sectioning(ast) {
-  delete ast.loc
-  delete ast.range
-  delete ast.raw
-
+function sectioning(children, depth) {
   debugger
+  let section = {
+    type: 'Section',
+    children: [],
+    depth: depth,
+  }
   let sections = [];
-  let section = [];
-  for (let o of ast.children) {
-    delete o.loc
-    delete o.range
-    delete o.raw
+  while (true) {
+    let child = children.shift();
+    p("今の sections", j(sections));
+    p("今の section", j(section));
+    p("今の child", j(child));
+    if (child == undefined) break;
 
-    if (o.type === 'Header') {
-      if (section.length > 0) {
-        sections.push(section);
-        section = [];
+    if (child.type === 'Header') {
+      if (section.depth < child.depth) {
+        // 次が子
+
+        // その h を一旦戻す
+        children.unshift(child);
+
+        // そこを起点に再起する
+        Array.prototype.push.apply(section.children, sectioning(children, child.depth))
+        continue;
+      }
+      else if (section.depth == child.depth) {
+        // 次が兄弟
+
+        // そこまでの section を一旦終わらせて
+        // 親に追加する
+        if (section.children.length > 0) {
+          sections.push(section);
+          section = {
+            type: 'Section',
+            children: [],
+            depth: child.depth,
+          };
+        }
+      }
+      else if (section.depth > child.depth) {
+        // 次が親
+
+        // その h を一旦戻す
+        children.unshift(child);
+
+        // ループを終わらせ関数を一つ抜ける
+        break;
       }
     }
-    section.push(o);
+    // 今のセクションに追加
+    section.children.push(child);
   }
+
+  // 最後のセクションを追加
   sections.push(section);
 
-  ast.children = sections.map((section) => { return { type: "Section", children: section }});
-
-  p(JSON.stringify(ast, '  ', '  '));
-
-  return ast
+  return sections
 }
-sectioning(AST);
-//p(JSON.stringify(sectioning(AST), ' ', '  '));
+
+
+AST.children = sectioning(AST.children, 1)
+
 
 var stack = [];
-traverse('', {
+traverse(AST, {
   enter(node) {
     console.log("enter", node.type);
     stack.unshift({ tag: 'o', val: `<${node.type}>` })
@@ -80,7 +106,7 @@ traverse('', {
   }
 });
 
-// p(stack[0].val)
+p(stack[0].val)
 
 traverse('', {
   enter(node) {
