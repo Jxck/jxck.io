@@ -11,11 +11,25 @@ var AST = parse(`
 
 aaa **bbb** ccc
 
+bbb *asdf* lkjfsd
+
+
+\`\`\`ruby
+puts hoge
+\`\`\`
+
 ## h2
 
 boasdf asfdj
 
-asfd
+### h3
+
+> fff
+ asdf
+
+### lkasjf
+
+> asfd
 
 ## h1
 
@@ -25,12 +39,15 @@ asfd
 - b
 - c
 
+1. asfd
+2. alksdfj
+
 `);
 //var AST = parse(require('fs').readFileSync('./blog.md').toString())
 
 function sectioning(children, depth) {
   let section = {
-    type: 'Article',
+    type: depth === 1? 'Article': 'Section',
     children: [],
     depth: depth
   };
@@ -74,6 +91,7 @@ function sectioning(children, depth) {
         break;
       }
     }
+
     // 今のセクションに追加
     section.children.push(child);
   }
@@ -115,7 +133,7 @@ var html = {
   },
   Paragraph: (node) => `<p>${node.value}</p>\n`,
   Header:    (node) => `<h${node.depth}>${node.value}</h${node.depth}>\n`,
-  CodeBlock: (node) => `<pre lang="${node.lang}">${node.value}</pre>`,
+  CodeBlock: (node) => `<pre lang="${node.lang}">${node.value}</pre>\n`,
   Code:      (node) => `<code>${node.value}</code>`,
   BlockQuote:(node) => `<blockquote>${node.value}</blockquote>`,
   ListItem:  (node) => `<li>${node.value}</li>\n`,
