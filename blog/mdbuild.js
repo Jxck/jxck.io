@@ -4,10 +4,13 @@ var parse = require("markdown-to-ast").parse,
 var traverse = require("txt-ast-traverse").traverse;
 
 var AST = parse(`
-a
+# a
 
-- 1
-- 2
+## 2
+
+# b
+
+## 3
 
 `)
 // var AST = parse(require('fs').readFileSync('./blog.md').toString())
@@ -27,6 +30,7 @@ var stack = [];
 traverse(AST, {
   enter(node) {
     console.log("enter", node.type);
+
     stack.unshift({ tag: 'o', val: `<${node.type}>` })
   },
   leave(node) {
