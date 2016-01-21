@@ -1,24 +1,24 @@
-"use strict";
+'use strict';
 var p = console.log.bind(console);
 var j = JSON.stringify.bind(JSON);
 
-var parse = require("markdown-to-ast").parse,
-    Syntax = require("markdown-to-ast").Syntax;
-var traverse = require("txt-ast-traverse").traverse;
+var parse = require('markdown-to-ast').parse,
+    Syntax = require('markdown-to-ast').Syntax;
+var traverse = require('txt-ast-traverse').traverse;
 
 var AST = parse(`
 # h1
 
 aaa **bbb** ccc
-`)
+`);
 // var AST = parse(require('fs').readFileSync('./blog.md').toString())
 
 function sectioning(children, depth) {
   let section = {
     type: 'Section',
     children: [],
-    depth: depth,
-  }
+    depth: depth
+  };
   let sections = [];
   while (true) {
     let child = children.shift();
@@ -32,7 +32,7 @@ function sectioning(children, depth) {
         children.unshift(child);
 
         // そこを起点に再起する
-        Array.prototype.push.apply(section.children, sectioning(children, child.depth))
+        Array.prototype.push.apply(section.children, sectioning(children, child.depth));
         continue;
       }
       else if (section.depth == child.depth) {
@@ -45,7 +45,7 @@ function sectioning(children, depth) {
           section = {
             type: 'Section',
             children: [],
-            depth: child.depth,
+            depth: child.depth
           };
         }
       }
@@ -66,10 +66,10 @@ function sectioning(children, depth) {
   // 最後のセクションを追加
   sections.push(section);
 
-  return sections
+  return sections;
 }
 
-AST.children = sectioning(AST.children, 1)
+AST.children = sectioning(AST.children, 1);
 
 
 function isInline(node) {
@@ -86,7 +86,7 @@ function isInline(node) {
 var html = {
   Document: (node)  => {
     let value = ('\n' + node.value).replace(/\n/gm, '\n--');
-    return `<article>${value}\n</article>`
+    return `<article>${value}\n</article>`;
   },
   Section: (node)   => {
     let value = ('\n' + node.value).replace(/\n/gm, '\n--');
@@ -117,7 +117,9 @@ traverse(AST, {
 
       // 完成している兄弟タグを集めてきて配列に並べる
       while(stack[0].tag === 'full') {
-        vals.unshift(stack.shift().val);
+        let top = stack.shift();
+        p(top);
+        vals.unshift(top.val);
       }
       // 連結する
       vals = vals.join('\n').trim()
@@ -132,5 +134,4 @@ traverse(AST, {
   }
 });
 
-p(stack[0].val)
-
+p(stack[0].val);
