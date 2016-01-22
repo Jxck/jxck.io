@@ -131,12 +131,12 @@ var html = {
     let value = ('\n' + node.value).replace(/\n/gm, `\n${indent}`);
     return node.ordered ? `<ol>${value}\n</ol>\n`: `<ul>${value}\n</ul>\n`;
   },
-  Paragraph: (node) => `<p>${node.value}</p>\n`,
+  Paragraph: (node) => `<p>${node.value}\n`,
   Header:    (node) => `<h${node.depth}>${node.value}</h${node.depth}>\n`,
   CodeBlock: (node) => `<pre lang="${node.lang}">${node.value}</pre>\n`,
   Code:      (node) => `<code>${node.value}</code>`,
   BlockQuote:(node) => `<blockquote>${node.value}</blockquote>`,
-  ListItem:  (node) => `<li>${node.value}</li>\n`,
+  ListItem:  (node) => `<li>${node.value}\n`,
   Link:      (node) => `<a href="${node.href}">${node.value}</a>`,
   Img:       (node) => `<img src="${node.src}" alt="${node.alt}" title="${node.title}" >`,
   Strong:    (node) => `<strong>${node.value}</strong>`,
