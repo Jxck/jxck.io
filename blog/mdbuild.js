@@ -157,7 +157,7 @@ traverse(AST, {
     if (node.value) { // value があったら
       // pop して
       let top = stack.shift();
-      if (top.type !== node.type) console.error(top, node);
+      if (top.type !== node.type) console.error('ERROR', top, node);
 
       // 閉じる
       stack.unshift({ tag: 'full', val: html[node.type](node), inline: isInline(node) });
@@ -167,7 +167,9 @@ traverse(AST, {
       // 完成している兄弟タグを集めてきて配列に並べる
       while(stack[0].tag === 'full') {
         let top = stack.shift();
+        // 取得したのが inline ですでに前に inline があったら
         if (top.inline && vals[0] && vals[0].inline) {
+          // inline どうしをくっつける
           let val = vals.shift();
           val.val = top.val + val.val;
           vals.unshift(val)
@@ -180,7 +182,18 @@ traverse(AST, {
 
       // それを親タグで閉じる
       let top = stack.shift();
-      if (top.type !== node.type) console.error(top, node);
+      if (top.type !== node.type) console.error('ERROR', top, node);
+
+      // 今見ているのが Paragraph で
+      if(node.type === 'Paragraph') {
+        // その親が ListItem だったら
+        if (['ListItem', 'BlockQuote'].indexOf(stack[0].type) > -1) {
+          // Paragraph を消すために Str に差し替える
+          node = {
+            type: "Str"
+          }
+        }
+      }
 
       node.value = vals
       stack.unshift({ tag: 'full', val: html[node.type](node), inline: isInline(node) });
