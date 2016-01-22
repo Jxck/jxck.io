@@ -11,7 +11,7 @@ var AST = parse(`
 
 ## fuga
 `);
-//var AST = parse(require('fs').readFileSync('./blog.md').toString())
+var AST = parse(require('fs').readFileSync('./blog.md').toString())
 
 function sectioning(children, depth) {
   let section = {
