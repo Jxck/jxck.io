@@ -7,41 +7,9 @@ var parse = require('markdown-to-ast').parse,
 var traverse = require('txt-ast-traverse').traverse;
 
 var AST = parse(`
-# h1
+# hoge
 
-aaa **bbb** ccc
-
-bbb *asdf* lkjfsd
-
-
-\`\`\`ruby
-puts hoge
-\`\`\`
-
-## h2
-
-boasdf asfdj
-
-### h3
-
-> fff
- asdf
-
-### lkasjf
-
-> asfd
-
-## h1
-
-- a
-  - aa
-  - bb
-- b
-- c
-
-1. asfd
-2. alksdfj
-
+## fuga
 `);
 //var AST = parse(require('fs').readFileSync('./blog.md').toString())
 
@@ -116,6 +84,7 @@ function isInline(node) {
 
 
 var indent = `  `
+var title = "";
 
 var html = {
   Document: (node) => node.value,
@@ -132,13 +101,18 @@ var html = {
     return node.ordered ? `<ol>${value}\n</ol>\n`: `<ul>${value}\n</ul>\n`;
   },
   Paragraph: (node) => `<p>${node.value}\n`,
-  Header:    (node) => `<h${node.depth}>${node.value}</h${node.depth}>\n`,
+  Header:    (node) => {
+    if (node.depth === 1) {
+      title = node.value
+    }
+    return `<h${node.depth}>${node.value}</h${node.depth}>\n`
+  },
   CodeBlock: (node) => `<pre lang="${node.lang}">${node.value}</pre>\n`,
   Code:      (node) => `<code>${node.value}</code>`,
   BlockQuote:(node) => `<blockquote>${node.value}</blockquote>`,
   ListItem:  (node) => `<li>${node.value}\n`,
   Link:      (node) => `<a href="${node.href}">${node.value}</a>`,
-  Img:       (node) => `<img src="${node.src}" alt="${node.alt}" title="${node.title}" >`,
+  Image:     (node) => `<img src="${node.src}" alt="${node.alt}" title="${node.title}" >`,
   Strong:    (node) => `<strong>${node.value}</strong>`,
   Emphasis:  (node) => `<em>${node.value}</em>`,
   Html:      (node) => `${node.value}\n`,
@@ -201,4 +175,26 @@ traverse(AST, {
   }
 });
 
-p(stack[0].val);
+var article = stack[0].val
+
+p(`
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta http-equiv=X-UA-Compatible content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>${title} | blog.jxck.io</title>
+<link rel=stylesheet type=text/css href=style.css>
+
+<header>
+  <a class=logo href=/>blog.jxck.io</a>
+</header>
+
+${article}
+
+<hr>
+
+<footer>
+  <address class="copyright">Copyright &copy; 2016 <a href="/">Jxck</a>. All Rights Reserved.</address>
+</footer>
+`);
