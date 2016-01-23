@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 'use strict';
 var p = console.log.bind(console);
 var j = JSON.stringify.bind(JSON);
