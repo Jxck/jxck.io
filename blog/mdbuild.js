@@ -8,10 +8,10 @@ let parse = require('markdown-to-ast').parse,
     Syntax = require('markdown-to-ast').Syntax;
 let traverse = require('txt-ast-traverse').traverse;
 
-let file = process.argv[2];
-let AST = parse(require('fs').readFileSync(file).toString());
-
 let indent = `  `
+let title = "";
+
+
 
 function isInline(node) {
   return [
@@ -87,6 +87,7 @@ function sectioning(children, depth) {
   return sections;
 }
 
+// tag ごとのビルダ
 let html = {
   Document: (node) => node.value,
   Article: (node) => {
@@ -134,13 +135,8 @@ let html = {
   HorizontalRule:() => `<hr>`,
 }
 
-AST.children = sectioning(AST.children, 1);
-
-let title = "";
-
-let stack = [];
-
 function build(AST) {
+  let stack = [];
   traverse(AST, {
     enter(node) {
       node.inline = isInline(node.type)
@@ -197,6 +193,10 @@ function build(AST) {
   return stack[0].val
 }
 
+let file = process.argv[2];
+let AST = parse(require('fs').readFileSync(file).toString());
+
+AST.children = sectioning(AST.children, 1);
 let article = build(AST)
 
 p(`
