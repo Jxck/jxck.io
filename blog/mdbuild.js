@@ -1,20 +1,38 @@
 #!/usr/bin/env node
 
 'use strict';
-var p = console.log.bind(console);
-var j = JSON.stringify.bind(JSON);
+let p = console.log.bind(console);
+let j = JSON.stringify.bind(JSON);
 
-var parse = require('markdown-to-ast').parse,
+let parse = require('markdown-to-ast').parse,
     Syntax = require('markdown-to-ast').Syntax;
-var traverse = require('txt-ast-traverse').traverse;
+let traverse = require('txt-ast-traverse').traverse;
 
-let file = process.argv[2]
+let file = process.argv[2];
+let AST = parse(require('fs').readFileSync(file).toString());
 
-var AST = parse(require('fs').readFileSync(file).toString())
+let indent = `  `
+
+function isInline(node) {
+  return [
+    Syntax.Str,
+    Syntax.Header,
+    Syntax.Strong,
+    Syntax.Paragraph
+  ].indexOf(node.type) > -1;
+}
+
+function time() {
+  let d = new Date();
+  let yyyy = d.getFullYear();
+  let mm = d.getMonth()+1;
+  let dd = d.getDate();
+  return `${yyyy}-${mm}-${dd}`
+}
 
 function sectioning(children, depth) {
   let section = {
-    type: depth === 1? 'Article': 'Section',
+    type: depth === 1 ? 'Article' : 'Section',
     children: [],
     depth: depth
   };
@@ -69,31 +87,7 @@ function sectioning(children, depth) {
   return sections;
 }
 
-AST.children = sectioning(AST.children, 1);
-
-
-function isInline(node) {
-  return [
-    Syntax.Str,
-    Syntax.Header,
-    Syntax.Strong,
-    Syntax.Paragraph
-  ].indexOf(node.type) > -1;
-}
-
-
-var indent = `  `
-var title = "";
-
-function time() {
-  let d = new Date();
-  let yyyy = d.getFullYear();
-  let mm = d.getMonth()+1;
-  let dd = d.getDate();
-  return `${yyyy}-${mm}-${dd}`
-}
-
-var html = {
+let html = {
   Document: (node) => node.value,
   Article: (node) => {
     let value = ('\n' + node.value).replace(/\n/gm, `\n${indent}`);
@@ -140,61 +134,70 @@ var html = {
   HorizontalRule:() => `<hr>`,
 }
 
-var stack = [];
-traverse(AST, {
-  enter(node) {
-    node.inline = isInline(node.type)
-    stack.unshift(node)
-  },
-  leave(node) {
-    if (node.value) { // value があったら
-      // pop して
-      let top = stack.shift();
-      if (top.type !== node.type) console.error('ERROR', top, node);
+AST.children = sectioning(AST.children, 1);
 
-      // 閉じる
-      stack.unshift({ tag: 'full', val: html[node.type](node), inline: isInline(node) });
-    } else {
-      let vals = [];
+let title = "";
 
-      // 完成している兄弟タグを集めてきて配列に並べる
-      while(stack[0].tag === 'full') {
+let stack = [];
+
+function build(AST) {
+  traverse(AST, {
+    enter(node) {
+      node.inline = isInline(node.type)
+      stack.unshift(node)
+    },
+    leave(node) {
+      if (node.value) { // value があったら
+        // pop して
         let top = stack.shift();
-        // 取得したのが inline ですでに前に inline があったら
-        if (top.inline && vals[0] && vals[0].inline) {
-          // inline どうしをくっつける
-          let val = vals.shift();
-          val.val = top.val + val.val;
-          vals.unshift(val)
-        } else {
-          vals.unshift(top);
-        }
-      }
-      // 連結する
-      vals = vals.map((val) => val.val).join('').trim()
+        if (top.type !== node.type) console.error('ERROR', top, node);
 
-      // それを親タグで閉じる
-      let top = stack.shift();
-      if (top.type !== node.type) console.error('ERROR', top, node);
+        // 閉じる
+        stack.unshift({ tag: 'full', val: html[node.type](node), inline: isInline(node) });
+      } else {
+        let vals = [];
 
-      // 今見ているのが Paragraph で
-      if(node.type === 'Paragraph') {
-        // その親が ListItem だったら
-        if (['ListItem', 'BlockQuote'].indexOf(stack[0].type) > -1) {
-          // Paragraph を消すために Str に差し替える
-          node = {
-            type: "Str"
+        // 完成している兄弟タグを集めてきて配列に並べる
+        while(stack[0].tag === 'full') {
+          let top = stack.shift();
+          // 取得したのが inline ですでに前に inline があったら
+          if (top.inline && vals[0] && vals[0].inline) {
+            // inline どうしをくっつける
+            let val = vals.shift();
+            val.val = top.val + val.val;
+            vals.unshift(val)
+          } else {
+            vals.unshift(top);
           }
         }
+        // 連結する
+        vals = vals.map((val) => val.val).join('').trim()
+
+        // それを親タグで閉じる
+        let top = stack.shift();
+        if (top.type !== node.type) console.error('ERROR', top, node);
+
+        // 今見ているのが Paragraph で
+        if(node.type === 'Paragraph') {
+          // その親が ListItem だったら
+          if (['ListItem', 'BlockQuote'].indexOf(stack[0].type) > -1) {
+            // Paragraph を消すために Str に差し替える
+            node = {
+              type: "Str"
+            }
+          }
+        }
+
+        node.value = vals
+        stack.unshift({ tag: 'full', val: html[node.type](node), inline: isInline(node) });
       }
-
-      node.value = vals
-      stack.unshift({ tag: 'full', val: html[node.type](node), inline: isInline(node) });
     }
-  }
-});
+  });
 
-var article = stack[0].val
+  return stack[0].val
+}
+
+let article = build(AST)
 
 p(`
 <!DOCTYPE html>
