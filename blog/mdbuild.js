@@ -138,15 +138,26 @@ let html = {
   Header:    (node) => {
     let val = ""
     if (node.depth === 1) {
-      let t = node.value.split(' | ')
-      node.value = t[0]
-      title = node.value
+      // h1 には独自ルールでタグを付けている
+      // ex)
+      // # ブログ始めました | blog,web,tech
 
-      if (t[1] === undefined) {
+      // title と tag を分ける
+      let t = node.value.split(' | ')
+      title = t[0]
+      let tags = t[1]
+
+      // 組み立てように title を value に
+      node.value = title
+
+      // tag は必ず書く
+      if (tags === undefined) {
         console.error("\x1b[0;31mThere is No TAGS\x1b[0m")
         process.exit(1)
       }
-      let tags = t[1].split(',').map(tag => `<a href="/tags/${tag}">${tag}</a>`).join('')
+
+      // tags をビルド
+      tags = tags.split(',').map(tag => `<a href="/tags/${tag}">${tag}</a>`).join('')
       val = `<div><time datetime=${time()}>${time()}</time><span class=tags>${tags}</span></div>\n`
     }
     val += `<h${node.depth}>${node.value}</h${node.depth}>\n`
