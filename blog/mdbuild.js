@@ -11,6 +11,7 @@ let traverse = require('txt-ast-traverse').traverse;
 const indent = `  `
 let title = "";
 
+// 改行したく無いタグ
 function isInline(node) {
   return [
     Syntax.Str,
@@ -20,6 +21,7 @@ function isInline(node) {
   ].indexOf(node.type) > -1;
 }
 
+// ブログの日付
 function time() {
   let d = new Date();
   let yyyy = d.getFullYear();
@@ -29,32 +31,51 @@ function time() {
 }
 
 function sectioning(children, depth) {
+  // 最初のセクションは <article> にする
   let section = {
     type: depth === 1 ? 'Article' : 'Section',
     children: [],
     depth: depth,
   };
+
+  // 横に並ぶべき <section> を入れる配列
   let sections = [];
   while (true) {
+    // 横並びになっている子要素を取り出す
     let child = children.shift();
     if (child == undefined) break;
 
+    // H2.. が来たらそこで section を追加する
     if (child.type === 'Header') {
       if (section.depth < child.depth) {
-        // 次が子
+        // 一つレベルが下がる場合
+        // 今の <section> の下に新しい <section> ができる
+        // <section>
+        //  <h2>
+        //  <section>
+        //    <h3> <- これ
 
         // その h を一旦戻す
         children.unshift(child);
 
         // そこを起点に再起する
+        // そこに <section> ができて、
+        // 戻した h を最初にできる
         Array.prototype.push.apply(section.children, sectioning(children, child.depth));
         continue;
       }
       else if (section.depth == child.depth) {
-        // 次が兄弟
+        // 同じレベルの h の場合
+        // 同じレベルで別の <section> を作る必要がある
+        // <section>
+        //  <h2>
+        // </section>
+        // <section>
+        //  <h2> <- これ
 
-        // そこまでの section を一旦終わらせて
-        // 親に追加する
+        // そこまでの sections を一旦終わらせて
+        // 親の child に追加する
+        // そして、同じレベルの新しい <section> を開始
         if (section.children.length > 0) {
           sections.push(section);
           section = {
@@ -63,9 +84,19 @@ function sectioning(children, depth) {
             depth: child.depth
           };
         }
+        // もし今 section に子要素が無ければ
+        // そのまま今の section に追加して良い
       }
       else if (section.depth > child.depth) {
-        // 次が親
+        // レベルが一つ上がる場合
+        // 今は一つ下がったレベルで再帰している最中だったが
+        // それが終わったことを意味する
+        // <section>
+        //   <h2>
+        //   <section>
+        //     <h3>
+        //     <p>
+        //   <h2> <- 今ここ
 
         // その h を一旦戻す
         children.unshift(child);
@@ -75,13 +106,16 @@ function sectioning(children, depth) {
       }
     }
 
-    // 今のセクションに追加
+    // 今の <section> の子要素として追加
     section.children.push(child);
   }
 
   // 最後のセクションを追加
   sections.push(section);
 
+  // そこまでの <section> のツリーを返す
+  // 再帰している場合は、親の <section> の
+  // childrens として使われる
   return sections;
 }
 
@@ -134,37 +168,54 @@ let html = {
 }
 
 function build(AST) {
+  // 結果を入れるスタック
+  // push => unshift()
+  // pop  => shift()
+  // top  => [0]
   let stack = [];
+
+  // トラバース
   traverse(AST, {
+
     enter(node) {
+      // enter では、 inline 属性を追加し
+      // stack に詰むだけ
+      // 実際は、pop 側で整合検証くらいしか使ってない
+
       node.inline = isInline(node.type);
       stack.unshift(node);
     },
     leave(node) {
-      if (node.value) { // value があったら
+      if (node.value) {
+        // value があったら、 Str とか
+
         // pop して
         let top = stack.shift();
+        // 対応を確認
         if (top.type !== node.type) console.error('ERROR', top, node);
 
         // 閉じる
         stack.unshift({ tag: 'full', val: html[node.type](node), inline: isInline(node) });
       } else {
+        // 完成している兄弟タグを集めてきて配列に並べる
         let vals = [];
 
-        // 完成している兄弟タグを集めてきて配列に並べる
         while(stack[0].tag === 'full') {
           let top = stack.shift();
-          // 取得したのが inline ですでに前に inline があったら
+
           if (top.inline && vals[0] && vals[0].inline) {
+            // 取得したのが inline で、一個前も inline だったら
             // inline どうしをくっつける
             let val = vals.shift();
             val.val = top.val + val.val;
             vals.unshift(val)
           } else {
+            // そうで無ければただの兄弟要素
             vals.unshift(top);
           }
         }
-        // 連結する
+
+        // タグを全部連結する
         vals = vals.map((val) => val.val).join('').trim();
 
         // それを親タグで閉じる
@@ -173,9 +224,10 @@ function build(AST) {
 
         // 今見ているのが Paragraph で
         if(node.type === 'Paragraph') {
-          // その親が ListItem だったら
+          // その親が P いらないタグ だったら
           if (['ListItem', 'BlockQuote'].indexOf(stack[0].type) > -1) {
             // Paragraph を消すために Str に差し替える
+            // Str はタグをつけない
             node = { type: "Str" };
           }
         }
@@ -186,6 +238,7 @@ function build(AST) {
     }
   });
 
+  // 結果の <article> 結果
   let article = stack[0].val;
 
   return `
