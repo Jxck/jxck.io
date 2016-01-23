@@ -8,8 +8,6 @@ var traverse = require('txt-ast-traverse').traverse;
 
 var AST = parse(`
 # hoge
-
-## fuga
 `);
 var AST = parse(require('fs').readFileSync('./blog.md').toString())
 
@@ -86,6 +84,14 @@ function isInline(node) {
 var indent = `  `
 var title = "";
 
+function time() {
+  let d = new Date();
+  let yyyy = d.getFullYear();
+  let mm = d.getMonth()+1;
+  let dd = d.getDate();
+  return `${yyyy}-${mm}-${dd}`
+}
+
 var html = {
   Document: (node) => node.value,
   Article: (node) => {
@@ -102,10 +108,22 @@ var html = {
   },
   Paragraph: (node) => `<p>${node.value}\n`,
   Header:    (node) => {
+    let val = ""
     if (node.depth === 1) {
+      let t = node.value.split(' | ')
+      node.value = t[0]
       title = node.value
+
+      if (t[1] === undefined) {
+        console.error("\x1b[0;31mThere is No TAGS\x1b[0m")
+        process.exit(1)
+      }
+      let tags = t[1].split(',').map(tag => `<a href="/tags/${tag}">${tag}</a>`).join('')
+      val = `<div><time datetime=${time()}>${time()}</time><span class=tags>${tags}</span></div>\n`
     }
-    return `<h${node.depth}>${node.value}</h${node.depth}>\n`
+    val += `<h${node.depth}>${node.value}</h${node.depth}>\n`
+
+    return val
   },
   CodeBlock: (node) => `<pre lang="${node.lang}">${node.value}</pre>\n`,
   Code:      (node) => `<code>${node.value}</code>`,
