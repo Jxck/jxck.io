@@ -252,27 +252,20 @@ function build(AST) {
   // 結果の <article> 結果
   let article = stack[0].val;
 
-  return `
-<!DOCTYPE html>
+  return `<!DOCTYPE html>
 <meta charset=utf-8>
 <meta http-equiv=X-UA-Compatible content=IE=edge>
 <meta name=viewport content="width=device-width, initial-scale=1">
-
 <title>${title} | blog.jxck.io</title>
 <link rel=stylesheet type=text/css href=style.css>
-
 <header>
   <a class=logo href=/>blog.jxck.io</a>
 </header>
-
 ${article}
-
 <hr>
-
 <footer>
   <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
-</footer>
-`
+</footer>`;
 }
 
 let file = process.argv[2];
