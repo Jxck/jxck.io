@@ -157,19 +157,19 @@ let html = {
       }
 
       // tags をビルド
-      tags = tags.split(',').map(tag => `<a href="/tags/${tag}">${tag}</a>`).join('')
+      tags = tags.split(',').map(tag => `<a href=/tags/${tag}>${tag}</a>`).join('')
       val = `<div><time datetime=${time()}>${time()}</time><span class=tags>${tags}</span></div>\n`
     }
     val += `<h${node.depth}>${node.value}</h${node.depth}>\n`
 
     return val
   },
-  CodeBlock: (node) => `<pre lang="${node.lang}">${node.value}</pre>\n`,
+  CodeBlock: (node) => `<pre lang=${node.lang}>${node.value}</pre>\n`,
   Code:      (node) => `<code>${node.value}</code>`,
   BlockQuote:(node) => `<blockquote>${node.value}</blockquote>`,
   ListItem:  (node) => `<li>${node.value}\n`,
-  Link:      (node) => `<a href="${node.href}">${node.value}</a>`,
-  Image:     (node) => `<img src="${node.src}" alt="${node.alt}" title="${node.title}" >`,
+  Link:      (node) => `<a href=${node.href}>${node.value}</a>`,
+  Image:     (node) => `<img src=${node.src} alt="${node.alt}" title="${node.title}" >`,
   Strong:    (node) => `<strong>${node.value}</strong>`,
   Emphasis:  (node) => `<em>${node.value}</em>`,
   Html:      (node) => `${node.value}\n`,
@@ -255,8 +255,8 @@ function build(AST) {
   return `
 <!DOCTYPE html>
 <meta charset=utf-8>
-<meta http-equiv=X-UA-Compatible content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv=X-UA-Compatible content=IE=edge>
+<meta name=viewport content="width=device-width, initial-scale=1">
 
 <title>${title} | blog.jxck.io</title>
 <link rel=stylesheet type=text/css href=style.css>
@@ -270,7 +270,7 @@ ${article}
 <hr>
 
 <footer>
-  <address class="copyright">Copyright &copy; 2016 <a href="/">Jxck</a>. All Rights Reserved.</address>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
 </footer>
 `
 }
