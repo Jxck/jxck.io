@@ -8,10 +8,8 @@ let parse = require('markdown-to-ast').parse,
     Syntax = require('markdown-to-ast').Syntax;
 let traverse = require('txt-ast-traverse').traverse;
 
-let indent = `  `
+const indent = `  `
 let title = "";
-
-
 
 function isInline(node) {
   return [
@@ -27,14 +25,14 @@ function time() {
   let yyyy = d.getFullYear();
   let mm = d.getMonth()+1;
   let dd = d.getDate();
-  return `${yyyy}-${mm}-${dd}`
+  return `${yyyy}-${mm}-${dd}`;
 }
 
 function sectioning(children, depth) {
   let section = {
     type: depth === 1 ? 'Article' : 'Section',
     children: [],
-    depth: depth
+    depth: depth,
   };
   let sections = [];
   while (true) {
@@ -139,8 +137,8 @@ function build(AST) {
   let stack = [];
   traverse(AST, {
     enter(node) {
-      node.inline = isInline(node.type)
-      stack.unshift(node)
+      node.inline = isInline(node.type);
+      stack.unshift(node);
     },
     leave(node) {
       if (node.value) { // value があったら
@@ -167,7 +165,7 @@ function build(AST) {
           }
         }
         // 連結する
-        vals = vals.map((val) => val.val).join('').trim()
+        vals = vals.map((val) => val.val).join('').trim();
 
         // それを親タグで閉じる
         let top = stack.shift();
@@ -178,28 +176,19 @@ function build(AST) {
           // その親が ListItem だったら
           if (['ListItem', 'BlockQuote'].indexOf(stack[0].type) > -1) {
             // Paragraph を消すために Str に差し替える
-            node = {
-              type: "Str"
-            }
+            node = { type: "Str" };
           }
         }
 
-        node.value = vals
+        node.value = vals;
         stack.unshift({ tag: 'full', val: html[node.type](node), inline: isInline(node) });
       }
     }
   });
 
-  return stack[0].val
-}
+  let article = stack[0].val;
 
-let file = process.argv[2];
-let AST = parse(require('fs').readFileSync(file).toString());
-
-AST.children = sectioning(AST.children, 1);
-let article = build(AST)
-
-p(`
+  return `
 <!DOCTYPE html>
 <meta charset=utf-8>
 <meta http-equiv=X-UA-Compatible content="IE=edge">
@@ -219,4 +208,13 @@ ${article}
 <footer>
   <address class="copyright">Copyright &copy; 2016 <a href="/">Jxck</a>. All Rights Reserved.</address>
 </footer>
-`);
+`
+}
+
+let file = process.argv[2];
+let AST = parse(require('fs').readFileSync(file).toString());
+
+AST.children = sectioning(AST.children, 1);
+let article = build(AST);
+
+p(article);
