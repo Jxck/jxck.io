@@ -8,10 +8,9 @@ var parse = require('markdown-to-ast').parse,
     Syntax = require('markdown-to-ast').Syntax;
 var traverse = require('txt-ast-traverse').traverse;
 
-var AST = parse(`
-# hoge
-`);
-var AST = parse(require('fs').readFileSync('./blog.md').toString())
+let file = process.argv[2]
+
+var AST = parse(require('fs').readFileSync(file).toString())
 
 function sectioning(children, depth) {
   let section = {
