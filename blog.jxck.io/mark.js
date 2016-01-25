@@ -4,11 +4,12 @@
 let p = console.log.bind(console);
 let j = JSON.stringify.bind(JSON);
 
-let parse = require('markdown-to-ast').parse,
-    Syntax = require('markdown-to-ast').Syntax;
-let traverse = require('txt-ast-traverse').traverse;
+let parse = require('markdown-to-ast').parse
+  , Syntax = require('markdown-to-ast').Syntax
+  , traverse = require('txt-ast-traverse').traverse
+  ;
 
-const indent = `  `
+const indent = `  `;
 
 // 改行したく無いタグ
 function isInline(node) {
@@ -16,7 +17,7 @@ function isInline(node) {
     Syntax.Str,
     Syntax.Header,
     Syntax.Strong,
-    Syntax.Paragraph
+    Syntax.Paragraph,
   ].indexOf(node.type) > -1;
 }
 
@@ -33,7 +34,7 @@ function sectioning(children, depth) {
   while (true) {
     // 横並びになっている子要素を取り出す
     let child = children.shift();
-    if (child == undefined) break;
+    if (child === undefined) break;
 
     // H2.. が来たらそこで section を追加する
     if (child.type === 'Header') {
@@ -54,7 +55,7 @@ function sectioning(children, depth) {
         Array.prototype.push.apply(section.children, sectioning(children, child.depth));
         continue;
       }
-      else if (section.depth == child.depth) {
+      else if (section.depth === child.depth) {
         // 同じレベルの h の場合
         // 同じレベルで別の <section> を作る必要がある
         // <section>
@@ -71,7 +72,7 @@ function sectioning(children, depth) {
           section = {
             type: 'Section',
             children: [],
-            depth: child.depth
+            depth: child.depth,
           };
         }
         // もし今 section に子要素が無ければ
@@ -110,63 +111,63 @@ function sectioning(children, depth) {
 }
 
 function build(AST, date) {
-  let title = ""
+  let title = '';
 
   // tag ごとのビルダ
   let html = {
-    Document: (node) => node.value,
     Article: (node) => {
-      let value = ('\n' + node.value).replace(/\n/gm, `\n${indent}`);
+      let value = `\n${node.value}`.replace(/\n/gm, `\n${indent}`);
       return `<article>${value}\n</article>`;
     },
     Section: (node) => {
-      let value = ('\n' + node.value).replace(/\n/gm, `\n${indent}`);
-      return `<section>${value}\n</section>\n`
+      let value = `\n${node.value}`.replace(/\n/gm, `\n${indent}`);
+      return `<section>${value}\n</section>\n`;
     },
-    List:      (node) => {
-      let value = ('\n' + node.value).replace(/\n/gm, `\n${indent}`);
-      return node.ordered ? `<ol>${value}\n</ol>\n`: `<ul>${value}\n</ul>\n`;
+    List: (node) => {
+      let value = `\n${node.value}`.replace(/\n/gm, `\n${indent}`);
+      return node.ordered ? `<ol>${value}\n</ol>\n` : `<ul>${value}\n</ul>\n`;
     },
-    Paragraph: (node) => `<p>${node.value}\n`,
-    Header:    (node) => {
-      let val = ""
+    Header: (node) => {
+      let val = '';
       if (node.depth === 1) {
         // h1 には独自ルールでタグを付けている
         // ex)
         // # [blog][web] ブログ始めました
-        title = node.value
+        title = node.value;
 
         // tag 取り出す
-        let tag = node.children.shift().raw
-        let tags = tag.substr(1, tag.length-2).split('][')
+        let tag = node.children.shift().raw;
+        let tags = tag.substr(1, tag.length - 2).split('][');
 
         // tag は必ず書く
         if (tags === undefined) {
-          console.error("\x1b[0;31mThere is No TAGS\x1b[0m")
-          process.exit(1)
+          console.error('\x1b[0;31mThere is No TAGS\x1b[0m');
+          process.exit(1);
         }
 
         // tags をビルド
-        tags = tags.map(tag => `<a href="/tags/${tag}">${tag}</a>`).join('')
-        val = `<div><time datetime=${date}>${date}</time><span class=tags>${tags}</span></div>\n`
+        tags = tags.map((tag) => `<a href="/tags/${tag}">${tag}</a>`).join('');
+        val = `<div><time datetime=${date}>${date}</time><span class=tags>${tags}</span></div>\n`;
       }
-      val += `<h${node.depth}>${node.value}</h${node.depth}>\n`
+      val += `<h${node.depth}>${node.value}</h${node.depth}>\n`;
 
-      return val
+      return val;
     },
-    CodeBlock: (node) => `<pre lang=${node.lang}>${node.value}</pre>\n`,
-    Code:      (node) => `<code>${node.value}</code>`,
-    BlockQuote:(node) => `<blockquote>${node.value}</blockquote>`,
-    ListItem:  (node) => `<li>${node.value}\n`,
-    Link:      (node) => `<a href="${node.href}">${node.value}</a>`,
-    Image:     (node) => `<img src=${node.src} alt="${node.alt}" title="${node.title}" >`,
-    Strong:    (node) => `<strong>${node.value}</strong>`,
-    Emphasis:  (node) => `<em>${node.value}</em>`,
-    Html:      (node) => `${node.value}\n`,
-    Str:       (node) => node.value,
-    Break:     (node) => `<br>`,
-    HorizontalRule:() => `<hr>`,
-  }
+    Document:   (node) => node.value,
+    Paragraph:  (node) => `<p>${node.value}\n`,
+    CodeBlock:  (node) => `<pre lang=${node.lang}>${node.value}</pre>\n`,
+    Code:       (node) => `<code>${node.value}</code>`,
+    BlockQuote: (node) => `<blockquote>${node.value}</blockquote>`,
+    ListItem:   (node) => `<li>${node.value}\n`,
+    Link:       (node) => `<a href="${node.href}">${node.value}</a>`,
+    Image:      (node) => `<img src=${node.src} alt="${node.alt}" title="${node.title}" >`,
+    Strong:     (node) => `<strong>${node.value}</strong>`,
+    Emphasis:   (node) => `<em>${node.value}</em>`,
+    Html:       (node) => `${node.value}\n`,
+    Str:        (node) => node.value,
+    Break:          () => `<br>`,
+    HorizontalRule: () => `<hr>`,
+  };
 
   // 結果を入れるスタック
   // push => unshift()
@@ -176,7 +177,6 @@ function build(AST, date) {
 
   // トラバース
   traverse(AST, {
-
     enter(node) {
       // enter では、 inline 属性を追加し
       // stack に詰むだけ
@@ -200,7 +200,7 @@ function build(AST, date) {
         // 完成している兄弟タグを集めてきて配列に並べる
         let vals = [];
 
-        while(stack[0].tag === 'full') {
+        while (stack[0].tag === 'full') {
           let top = stack.shift();
 
           if (top.inline && vals[0] && vals[0].inline) {
@@ -208,7 +208,7 @@ function build(AST, date) {
             // inline どうしをくっつける
             let val = vals.shift();
             val.val = top.val + val.val;
-            vals.unshift(val)
+            vals.unshift(val);
           } else {
             // そうで無ければただの兄弟要素
             vals.unshift(top);
@@ -223,19 +223,19 @@ function build(AST, date) {
         if (top.type !== node.type) console.error('ERROR', top, node);
 
         // 今見ているのが Paragraph で
-        if(node.type === 'Paragraph') {
+        if (node.type === 'Paragraph') {
           // その親が P いらないタグ だったら
           if (['ListItem', 'BlockQuote'].indexOf(stack[0].type) > -1) {
             // Paragraph を消すために Str に差し替える
             // Str はタグをつけない
-            node = { type: "Str" };
+            node = { type: 'Str' };
           }
         }
 
         node.value = vals;
         stack.unshift({ tag: 'full', val: html[node.type](node), inline: isInline(node) });
       }
-    }
+    },
   });
 
   // 結果の <article> 結果
@@ -259,11 +259,11 @@ ${article}
 
 let path = require('path');
 let fs = require('fs');
-let file = path.parse(process.argv[2])
-let splitted = file.name.split('.')
-let date = splitted[0]
-let name = splitted[1]
-let filename = path.format({ dir: file.dir, base: name + '.html' });
+let file = path.parse(process.argv[2]);
+let splitted = file.name.split('.');
+let date = splitted[0];
+let name = splitted[1];
+let filename = path.format({ dir: file.dir, base: `${name}.html` });
 
 let AST = parse(fs.readFileSync(path.format(file)).toString());
 AST.children = sectioning(AST.children, 1);
