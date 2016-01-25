@@ -9,7 +9,6 @@ let parse = require('markdown-to-ast').parse,
 let traverse = require('txt-ast-traverse').traverse;
 
 const indent = `  `
-let title = "";
 
 // 改行したく無いタグ
 function isInline(node) {
@@ -19,15 +18,6 @@ function isInline(node) {
     Syntax.Strong,
     Syntax.Paragraph
   ].indexOf(node.type) > -1;
-}
-
-// ブログの日付
-function time() {
-  let d = new Date();
-  let yyyy = d.getFullYear();
-  let mm = d.getMonth()+1;
-  let dd = d.getDate();
-  return `${yyyy}-${mm}-${dd}`;
 }
 
 function sectioning(children, depth) {
@@ -119,66 +109,68 @@ function sectioning(children, depth) {
   return sections;
 }
 
-// tag ごとのビルダ
-let html = {
-  Document: (node) => node.value,
-  Article: (node) => {
-    let value = ('\n' + node.value).replace(/\n/gm, `\n${indent}`);
-    return `<article>${value}\n</article>`;
-  },
-  Section: (node) => {
-    let value = ('\n' + node.value).replace(/\n/gm, `\n${indent}`);
-    return `<section>${value}\n</section>\n`
-  },
-  List:      (node) => {
-    let value = ('\n' + node.value).replace(/\n/gm, `\n${indent}`);
-    return node.ordered ? `<ol>${value}\n</ol>\n`: `<ul>${value}\n</ul>\n`;
-  },
-  Paragraph: (node) => `<p>${node.value}\n`,
-  Header:    (node) => {
-    let val = ""
-    if (node.depth === 1) {
-      // h1 には独自ルールでタグを付けている
-      // ex)
-      // # ブログ始めました | blog,web,tech
+function build(AST, date) {
+  let title = ""
 
-      // title と tag を分ける
-      let t = node.value.split(' | ')
-      title = t[0]
-      let tags = t[1]
+  // tag ごとのビルダ
+  let html = {
+    Document: (node) => node.value,
+    Article: (node) => {
+      let value = ('\n' + node.value).replace(/\n/gm, `\n${indent}`);
+      return `<article>${value}\n</article>`;
+    },
+    Section: (node) => {
+      let value = ('\n' + node.value).replace(/\n/gm, `\n${indent}`);
+      return `<section>${value}\n</section>\n`
+    },
+    List:      (node) => {
+      let value = ('\n' + node.value).replace(/\n/gm, `\n${indent}`);
+      return node.ordered ? `<ol>${value}\n</ol>\n`: `<ul>${value}\n</ul>\n`;
+    },
+    Paragraph: (node) => `<p>${node.value}\n`,
+    Header:    (node) => {
+      let val = ""
+      if (node.depth === 1) {
+        // h1 には独自ルールでタグを付けている
+        // ex)
+        // # ブログ始めました | blog,web,tech
 
-      // 組み立てように title を value に
-      node.value = title
+        // title と tag を分ける
+        let t = node.value.split(' | ')
+        title = t[0]
+        let tags = t[1]
 
-      // tag は必ず書く
-      if (tags === undefined) {
-        console.error("\x1b[0;31mThere is No TAGS\x1b[0m")
-        process.exit(1)
+        // 組み立てように title を value に
+        node.value = title
+
+        // tag は必ず書く
+        if (tags === undefined) {
+          console.error("\x1b[0;31mThere is No TAGS\x1b[0m")
+          process.exit(1)
+        }
+
+        // tags をビルド
+        tags = tags.split(',').map(tag => `<a href=/tags/${tag}>${tag}</a>`).join('')
+        val = `<div><time datetime=${date}>${date}</time><span class=tags>${tags}</span></div>\n`
       }
+      val += `<h${node.depth}>${node.value}</h${node.depth}>\n`
 
-      // tags をビルド
-      tags = tags.split(',').map(tag => `<a href=/tags/${tag}>${tag}</a>`).join('')
-      val = `<div><time datetime=${time()}>${time()}</time><span class=tags>${tags}</span></div>\n`
-    }
-    val += `<h${node.depth}>${node.value}</h${node.depth}>\n`
+      return val
+    },
+    CodeBlock: (node) => `<pre lang=${node.lang}>${node.value}</pre>\n`,
+    Code:      (node) => `<code>${node.value}</code>`,
+    BlockQuote:(node) => `<blockquote>${node.value}</blockquote>`,
+    ListItem:  (node) => `<li>${node.value}\n`,
+    Link:      (node) => `<a href=${node.href}>${node.value}</a>`,
+    Image:     (node) => `<img src=${node.src} alt="${node.alt}" title="${node.title}" >`,
+    Strong:    (node) => `<strong>${node.value}</strong>`,
+    Emphasis:  (node) => `<em>${node.value}</em>`,
+    Html:      (node) => `${node.value}\n`,
+    Str:       (node) => node.value,
+    Break:     (node) => `<br>`,
+    HorizontalRule:() => `<hr>`,
+  }
 
-    return val
-  },
-  CodeBlock: (node) => `<pre lang=${node.lang}>${node.value}</pre>\n`,
-  Code:      (node) => `<code>${node.value}</code>`,
-  BlockQuote:(node) => `<blockquote>${node.value}</blockquote>`,
-  ListItem:  (node) => `<li>${node.value}\n`,
-  Link:      (node) => `<a href=${node.href}>${node.value}</a>`,
-  Image:     (node) => `<img src=${node.src} alt="${node.alt}" title="${node.title}" >`,
-  Strong:    (node) => `<strong>${node.value}</strong>`,
-  Emphasis:  (node) => `<em>${node.value}</em>`,
-  Html:      (node) => `${node.value}\n`,
-  Str:       (node) => node.value,
-  Break:     (node) => `<br>`,
-  HorizontalRule:() => `<hr>`,
-}
-
-function build(AST) {
   // 結果を入れるスタック
   // push => unshift()
   // pop  => shift()
@@ -257,7 +249,7 @@ function build(AST) {
 <meta http-equiv=X-UA-Compatible content=IE=edge>
 <meta name=viewport content="width=device-width, initial-scale=1">
 <title>${title} | blog.jxck.io</title>
-<link rel=stylesheet type=text/css href=style.css>
+<link rel=stylesheet type=text/css href=/assets/style.css>
 <header>
   <a class=logo href=/>blog.jxck.io</a>
 </header>
@@ -268,10 +260,16 @@ ${article}
 </footer>`;
 }
 
-let file = process.argv[2];
-let AST = parse(require('fs').readFileSync(file).toString());
+let path = require('path');
+let fs = require('fs');
+let file = path.parse(process.argv[2])
+let splitted = file.name.split('.')
+let date = splitted[0]
+let name = splitted[1]
+let filename = path.format({ dir: file.dir, base: name + '.html' });
 
+let AST = parse(fs.readFileSync(path.format(file)).toString());
 AST.children = sectioning(AST.children, 1);
-let article = build(AST);
+let article = build(AST, date);
 
-p(article);
+fs.writeFileSync(filename, article);
