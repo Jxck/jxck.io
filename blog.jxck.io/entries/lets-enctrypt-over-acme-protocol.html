@@ -8,25 +8,25 @@
   <a class=logo href=/>blog.jxck.io</a>
 </header>
 <article>
-  <div><time datetime=2015-11-18>2015-11-18</time><span class=tags><a href=/tags/let's encrypt>let's encrypt</a><a href=/tags/acme>acme</a></span></div>
+  <div><time datetime=2015-11-18>2015-11-18</time><span class=tags><a href="/tags/let's encrypt">let's encrypt</a><a href="/tags/acme">acme</a></span></div>
   <h1>Let's Encrypt を支える ACME プロトコル</h1>
   <section>
     <h2>Intro</h2>
-    <p>先日 <a href=http://http2study.connpass.com/event/21161/>#http2study</a> で mozilla の Richard Barnes が <a href=https://letsencrypt.org/>Let's Encrypt</a> について話してくれました。
-    <p><a href=https://bifurcation.github.io/letsencrypt-overview/><img src=http://f.st-hatena.com/images/fotolife/J/Jxck/20151108/20151108135731.png?1446958884 alt="letsencrypt-overview" title="null" ></a>
-    <p>資料: <a href=https://bifurcation.github.io/letsencrypt-overview/#/>Let's Encrypt Overview</a>
-    <p>この<a href=https://github.com/Jxck/letsencrypt-overview/blob/translation/index-ja.html>資料の翻訳</a> はしたのですが、いらなくなってしまったので供養もかねてこのプロジェクトのモチベーションと、 Web でおこっている HTTPS 推進のたどる道について、資料を補足しつつ紹介します。
+    <p>先日 <a href="http://http2study.connpass.com/event/21161/">#http2study</a> で mozilla の Richard Barnes が <a href="https://letsencrypt.org/">Let's Encrypt</a> について話してくれました。
+    <p><a href="https://bifurcation.github.io/letsencrypt-overview/"><img src=http://f.st-hatena.com/images/fotolife/J/Jxck/20151108/20151108135731.png?1446958884 alt="letsencrypt-overview" title="null" ></a>
+    <p>資料: <a href="https://bifurcation.github.io/letsencrypt-overview/#/">Let's Encrypt Overview</a>
+    <p>この<a href="https://github.com/Jxck/letsencrypt-overview/blob/translation/index-ja.html">資料の翻訳</a> はしたのですが、いらなくなってしまったので供養もかねてこのプロジェクトのモチベーションと、 Web でおこっている HTTPS 推進のたどる道について、資料を補足しつつ紹介します。
     <p>結論から言うと Let's Encrypt はもちろん <strong>ACME プロトコル</strong> についても是非知っておくと良いと思います。
   </section>
   <section>
     <h2>HTTPS の問題</h2>
     <p>すでにこのブログでも紹介しているように、 Web における HTTPS の重要性は増し、それの普及を後押しする活動が各所で進められています。
-    <p><a href=http://jxck.hatenablog.com/entry/web-over-https>HTTPS 化する Web をどう考えるか</a>
+    <p><a href="http://jxck.hatenablog.com/entry/web-over-https">HTTPS 化する Web をどう考えるか</a>
     <p>よく言われる盗聴防止を始め、暗号化を行うことで防げる問題は多くあります。ブラウザの API には HTTPS で無いと使えないものも出てき始めています。
     それらを担保するために、 HTTPS 化が有効なわけですが、現時点での進捗は以下だそうです。
     <ul>
-      <li><a href=https://telemetry.mozilla.org/new-pipeline/dist.html#!cumulative=0&end_date=2015-10-29&keys=__none__!__none__!__none__&max_channel_version=release%252F42&measure=HTTP_PAGELOAD_IS_SSL&min_channel_version=null&product=Firefox&sanitize=1&sort_keys=submissions&start_date=2015-10-29&table=0&trim=1&use_submission_date=0>Pageload の 40%</a>
-      <li><a href=https://telemetry.mozilla.org/new-pipeline/dist.html#!cumulative=0&end_date=2015-10-29&keys=__none__!__none__!__none__&max_channel_version=release%252F42&measure=HTTP_TRANSACTION_IS_SSL&min_channel_version=null&product=Firefox&sanitize=1&sort_keys=submissions&start_date=2015-10-29&table=0&trim=1&use_submission_date=0>HTTP Transaction の 65%</a>
+      <li><a href="https://telemetry.mozilla.org/new-pipeline/dist.html#!cumulative=0&end_date=2015-10-29&keys=__none__!__none__!__none__&max_channel_version=release%252F42&measure=HTTP_PAGELOAD_IS_SSL&min_channel_version=null&product=Firefox&sanitize=1&sort_keys=submissions&start_date=2015-10-29&table=0&trim=1&use_submission_date=0">Pageload の 40%</a>
+      <li><a href="https://telemetry.mozilla.org/new-pipeline/dist.html#!cumulative=0&end_date=2015-10-29&keys=__none__!__none__!__none__&max_channel_version=release%252F42&measure=HTTP_TRANSACTION_IS_SSL&min_channel_version=null&product=Firefox&sanitize=1&sort_keys=submissions&start_date=2015-10-29&table=0&trim=1&use_submission_date=0">HTTP Transaction の 65%</a>
     </ul>
     <p>究極には <strong>全てのトラフィックが HTTPS</strong> になる状況が望ましいとすると、進捗はまだまだと言えます。
   </section>
@@ -65,11 +65,11 @@
     <p>Let's Encrypt は CA であるため、クライアントから信頼されていなければなりません。
     これは通常、 Let's Encrypt 自体の CA 証明書が OS やブラウザなどにビルトインされている必用があります。(無い場合は、 HTTPS が成立しない)
     <p>現在 Let's Encrypt 自体の CA 証明書はまだ OS などには入っていません。
-    しかし、 IdenTrust という多くの環境で信用されている別の CA と<a href=https://letsencrypt.org/2015/10/19/lets-encrypt-is-trusted.html>チェーンを結ぶようになりました</a>。
+    しかし、 IdenTrust という多くの環境で信用されている別の CA と<a href="https://letsencrypt.org/2015/10/19/lets-encrypt-is-trusted.html">チェーンを結ぶようになりました</a>。
     これにより Let's Encrypt の証明書は「クロスルート証明書」となり、 IdenTrust を信用する環境で信用されるようになりました。
     <p>要するに、大抵の環境で Let's Encrypt の証明書はすぐに使えるようになるわけです。
     <p>不安な場合は、対象とするクライアントで以下の URL を開けば、きちんど動作するか確認できます。
-    <p><a href=https://helloworld.letsencrypt>https://helloworld.letsencrypt</a>.org/
+    <p><a href="https://helloworld.letsencrypt">https://helloworld.letsencrypt</a>.org/
   </section>
   <section>
     <h2>DV 証明書発行の自動化</h2>
@@ -88,7 +88,7 @@
   <section>
     <h2>ACME プロトコル</h2>
     <p>実は、前述のような証明書発行のプロトコルは標準化されています。
-    <p>それが <a href=https://github.com/letsencrypt/acme-spec>ACME プロトコル</a> です。
+    <p>それが <a href="https://github.com/letsencrypt/acme-spec">ACME プロトコル</a> です。
     <p>仕様はまだ策定中ではありますが、 Let's Encrypt はこの ACME を(仕様策定にフィードバックしながら)実装しています。
     <p>ACME プロトコルは前述したクライアント(発行依頼側)だけではなく、サーバ(発行側)についてもカバーしています。
     このプロトコル自体が、今後の HTTPS の普及に重要なものだと考えています。
@@ -96,7 +96,7 @@
   <section>
     <h2>ACME 対応サーバ</h2>
     <p>Let's Encrypt は、証明書の発行を自動化する Python 製の CLI ツールを公開しています。
-    <p><a href=https://github.com/letsencrypt/letsencrypt>https://github.com/letsencrypt/letsencrypt</a>
+    <p><a href="https://github.com/letsencrypt/letsencrypt">https://github.com/letsencrypt/letsencrypt</a>
     <p>これはつまり、 ACME クライアントツールということになります。
     これを用いて CLI ベースで証明書の発行を行うことができます。
     <p>しかし、 ACME および Let's Encrypt の目指す自動化はもう少し先にあります。
@@ -104,8 +104,8 @@
     そこで、「Nginx や Apache などのサーバ自体が ACME プロトコルを話し、勝手に証明書を取得して、勝手に設定する」というところまやると、証明書の知識が少ない初心者にも、 HTTPS を有効化する敷居を下げることができるというモチベーションです。
     <p>すでに Nginx と Apache の Plugin があるようです。
     <ul>
-      <li><a href=https://github.com/letsencrypt/letsencrypt/tree/master/letsencrypt-nginx>https://github.com/letsencrypt/letsencrypt/tree/master/letsencrypt-nginx</a>
-      <li><a href=https://github.com/letsencrypt/letsencrypt/tree/master/letsencrypt-apache>https://github.com/letsencrypt/letsencrypt/tree/master/letsencrypt-apache</a>
+      <li><a href="https://github.com/letsencrypt/letsencrypt/tree/master/letsencrypt-nginx">https://github.com/letsencrypt/letsencrypt/tree/master/letsencrypt-nginx</a>
+      <li><a href="https://github.com/letsencrypt/letsencrypt/tree/master/letsencrypt-apache">https://github.com/letsencrypt/letsencrypt/tree/master/letsencrypt-apache</a>
     </ul>
     <p>個人的には、設定ファイルが勝手に書き変わることには多少懐疑的ですが、プロトコル自体があるなら、サーバが直接話さないにしてもデプロイプロセスに取り込むことはできると思います。
     <p>今後 ACME 対応のエコシステムが揃えば、より選択肢が増え、知見が溜まって行くと思います。
@@ -114,7 +114,7 @@
     <h2>ACME 対応 CA</h2>
     <p>ACME は Let's Encrypt だけのものではありません、 Let's Encrypt 以外の CA も ACME に対応することで、自動化の恩恵を受けることができます。
     <p>言い換えれば Let's Encrypt 自体も ACME 対応サービスの一つです。そしてこれも OSS ベースで公開されています。
-    <p><a href=https://github.com/letsencrypt/boulder/>https://github.com/letsencrypt/boulder/</a>
+    <p><a href="https://github.com/letsencrypt/boulder/">https://github.com/letsencrypt/boulder/</a>
     <p>今後より重要度が増して行く HTTPS において、こうした標準的な発行手段が(例え DV のみでも)普及することは、デプロイのオーバーヘッドを減らして行く意味でも価値があるのではないでしょうか？
   </section>
   <section>

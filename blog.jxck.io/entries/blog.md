@@ -1,4 +1,4 @@
-# Let's Encrypt を支える ACME プロトコル | let's encrypt,acme
+# [let's encrypt][acme] Let's Encrypt を支える ACME プロトコル
 
 ## Intro
 

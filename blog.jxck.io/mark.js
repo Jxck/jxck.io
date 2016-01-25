@@ -133,15 +133,12 @@ function build(AST, date) {
       if (node.depth === 1) {
         // h1 には独自ルールでタグを付けている
         // ex)
-        // # ブログ始めました | blog,web,tech
+        // # [blog][web] ブログ始めました
+        title = node.value
 
-        // title と tag を分ける
-        let t = node.value.split(' | ')
-        title = t[0]
-        let tags = t[1]
-
-        // 組み立てように title を value に
-        node.value = title
+        // tag 取り出す
+        let tag = node.children.shift().raw
+        let tags = tag.substr(1, tag.length-2).split('][')
 
         // tag は必ず書く
         if (tags === undefined) {
@@ -150,7 +147,7 @@ function build(AST, date) {
         }
 
         // tags をビルド
-        tags = tags.split(',').map(tag => `<a href=/tags/${tag}>${tag}</a>`).join('')
+        tags = tags.map(tag => `<a href="/tags/${tag}">${tag}</a>`).join('')
         val = `<div><time datetime=${date}>${date}</time><span class=tags>${tags}</span></div>\n`
       }
       val += `<h${node.depth}>${node.value}</h${node.depth}>\n`
@@ -161,7 +158,7 @@ function build(AST, date) {
     Code:      (node) => `<code>${node.value}</code>`,
     BlockQuote:(node) => `<blockquote>${node.value}</blockquote>`,
     ListItem:  (node) => `<li>${node.value}\n`,
-    Link:      (node) => `<a href=${node.href}>${node.value}</a>`,
+    Link:      (node) => `<a href="${node.href}">${node.value}</a>`,
     Image:     (node) => `<img src=${node.src} alt="${node.alt}" title="${node.title}" >`,
     Strong:    (node) => `<strong>${node.value}</strong>`,
     Emphasis:  (node) => `<em>${node.value}</em>`,
