@@ -1,6 +1,81 @@
 #!/usr/bin/env node
 
 'use strict';
+
+// tag ごとのビルダ
+let Template = {
+  HTML: (article) =>
+`<!DOCTYPE html>
+<meta charset=utf-8>
+<meta http-equiv=X-UA-Compatible content=IE=edge>
+<meta name=viewport content="width=device-width, initial-scale=1">
+<title>${Template.title} | blog.jxck.io</title>
+<link rel=stylesheet type=text/css href=/assets/style.css>
+<header>
+  <a class=logo href=/>blog.jxck.io</a>
+</header>
+${article}
+<hr>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
+</footer>`
+  ,
+  indent: `  `,
+  title: '',
+  Article: (node) => {
+    let value = `\n${node.value}`.replace(/\n/gm, `\n${Template.indent}`);
+    return `<article>${value}\n</article>`;
+  },
+  Section: (node) => {
+    let value = `\n${node.value}`.replace(/\n/gm, `\n${Template.indent}`);
+    return `<section>${value}\n</section>\n`;
+  },
+  List: (node) => {
+    let value = `\n${node.value}`.replace(/\n/gm, `\n${Template.indent}`);
+    return node.ordered ? `<ol>${value}\n</ol>\n` : `<ul>${value}\n</ul>\n`;
+  },
+  Header: (node) => {
+    let val = '';
+    if (node.depth === 1) {
+      // h1 には独自ルールでタグを付けている
+      // ex)
+      // # [blog][web] ブログ始めました
+      Template.title = node.value;
+
+      // tag 取り出す
+      let tag = node.children.shift().raw;
+      let tags = tag.substr(1, tag.length - 2).split('][');
+
+      // tag は必ず書く
+      if (tags === undefined) {
+        console.error('\x1b[0;31mThere is No TAGS\x1b[0m');
+        process.exit(1);
+      }
+
+      // tags をビルド
+      tags = tags.map((tag) => `<a href="/tags/${tag}">${tag}</a>`).join('');
+      val = `<div><time datetime=${date}>${date}</time><span class=tags>${tags}</span></div>\n`;
+    }
+    val += `<h${node.depth}>${node.value}</h${node.depth}>\n`;
+
+    return val;
+  },
+  Document:   (node) => node.value,
+  Paragraph:  (node) => `<p>${node.value}\n`,
+  CodeBlock:  (node) => `<pre lang=${node.lang}>${node.value}</pre>\n`,
+  Code:       (node) => `<code>${node.value}</code>`,
+  BlockQuote: (node) => `<blockquote>${node.value}</blockquote>`,
+  ListItem:   (node) => `<li>${node.value}\n`,
+  Link:       (node) => `<a href="${node.href}">${node.value}</a>`,
+  Image:      (node) => `<img src=${node.src} alt="${node.alt}" title="${node.title}" >`,
+  Strong:     (node) => `<strong>${node.value}</strong>`,
+  Emphasis:   (node) => `<em>${node.value}</em>`,
+  Html:       (node) => `${node.value}\n`,
+  Str:        (node) => node.value,
+  Break:          () => `<br>`,
+  HorizontalRule: () => `<hr>`,
+};
+
 let p = console.log.bind(console);
 let j = JSON.stringify.bind(JSON);
 
@@ -8,8 +83,6 @@ let parse = require('markdown-to-ast').parse
   , Syntax = require('markdown-to-ast').Syntax
   , traverse = require('txt-ast-traverse').traverse
   ;
-
-const indent = `  `;
 
 // 改行したく無いタグ
 function isInline(node) {
@@ -111,64 +184,6 @@ function sectioning(children, depth) {
 }
 
 function build(AST, date) {
-  let title = '';
-
-  // tag ごとのビルダ
-  let html = {
-    Article: (node) => {
-      let value = `\n${node.value}`.replace(/\n/gm, `\n${indent}`);
-      return `<article>${value}\n</article>`;
-    },
-    Section: (node) => {
-      let value = `\n${node.value}`.replace(/\n/gm, `\n${indent}`);
-      return `<section>${value}\n</section>\n`;
-    },
-    List: (node) => {
-      let value = `\n${node.value}`.replace(/\n/gm, `\n${indent}`);
-      return node.ordered ? `<ol>${value}\n</ol>\n` : `<ul>${value}\n</ul>\n`;
-    },
-    Header: (node) => {
-      let val = '';
-      if (node.depth === 1) {
-        // h1 には独自ルールでタグを付けている
-        // ex)
-        // # [blog][web] ブログ始めました
-        title = node.value;
-
-        // tag 取り出す
-        let tag = node.children.shift().raw;
-        let tags = tag.substr(1, tag.length - 2).split('][');
-
-        // tag は必ず書く
-        if (tags === undefined) {
-          console.error('\x1b[0;31mThere is No TAGS\x1b[0m');
-          process.exit(1);
-        }
-
-        // tags をビルド
-        tags = tags.map((tag) => `<a href="/tags/${tag}">${tag}</a>`).join('');
-        val = `<div><time datetime=${date}>${date}</time><span class=tags>${tags}</span></div>\n`;
-      }
-      val += `<h${node.depth}>${node.value}</h${node.depth}>\n`;
-
-      return val;
-    },
-    Document:   (node) => node.value,
-    Paragraph:  (node) => `<p>${node.value}\n`,
-    CodeBlock:  (node) => `<pre lang=${node.lang}>${node.value}</pre>\n`,
-    Code:       (node) => `<code>${node.value}</code>`,
-    BlockQuote: (node) => `<blockquote>${node.value}</blockquote>`,
-    ListItem:   (node) => `<li>${node.value}\n`,
-    Link:       (node) => `<a href="${node.href}">${node.value}</a>`,
-    Image:      (node) => `<img src=${node.src} alt="${node.alt}" title="${node.title}" >`,
-    Strong:     (node) => `<strong>${node.value}</strong>`,
-    Emphasis:   (node) => `<em>${node.value}</em>`,
-    Html:       (node) => `${node.value}\n`,
-    Str:        (node) => node.value,
-    Break:          () => `<br>`,
-    HorizontalRule: () => `<hr>`,
-  };
-
   // 結果を入れるスタック
   // push => unshift()
   // pop  => shift()
@@ -195,7 +210,7 @@ function build(AST, date) {
         if (top.type !== node.type) console.error('ERROR', top, node);
 
         // 閉じる
-        stack.unshift({ tag: 'full', val: html[node.type](node), inline: isInline(node) });
+        stack.unshift({ tag: 'full', val: Template[node.type](node), inline: isInline(node) });
       } else {
         // 完成している兄弟タグを集めてきて配列に並べる
         let vals = [];
@@ -233,7 +248,7 @@ function build(AST, date) {
         }
 
         node.value = vals;
-        stack.unshift({ tag: 'full', val: html[node.type](node), inline: isInline(node) });
+        stack.unshift({ tag: 'full', val: Template[node.type](node), inline: isInline(node) });
       }
     },
   });
@@ -241,20 +256,12 @@ function build(AST, date) {
   // 結果の <article> 結果
   let article = stack[0].val;
 
-  return `<!DOCTYPE html>
-<meta charset=utf-8>
-<meta http-equiv=X-UA-Compatible content=IE=edge>
-<meta name=viewport content="width=device-width, initial-scale=1">
-<title>${title} | blog.jxck.io</title>
-<link rel=stylesheet type=text/css href=/assets/style.css>
-<header>
-  <a class=logo href=/>blog.jxck.io</a>
-</header>
-${article}
-<hr>
-<footer>
-  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
-</footer>`;
+  return Template['HTML'](article);
+}
+
+if (process.argv.length < 3) {
+  console.error('no file name');
+  process.exit(1);
 }
 
 let path = require('path');
