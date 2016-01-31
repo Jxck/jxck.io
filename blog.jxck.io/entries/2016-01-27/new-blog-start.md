@@ -57,3 +57,8 @@ function $initHighlight(block, flags) {
 
 export  $initHighlight;
 ```
+
+埋め込み
+
+```js:sample.js
+```

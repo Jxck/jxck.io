@@ -65,6 +65,17 @@ function $initHighlight(block, flags) {
 }
 
 export  $initHighlight;</code></pre>
+    <p>埋め込み
+    <pre lang=js><code>// amp html
+((amp) =&gt; {
+  let ast = parse(fs.readFileSync(path.format(file)).toString());
+  ast.children = sectioning(ast.children, 1);
+  let filename = path.format({ dir: file.dir, base: `${name}.amp.html` });
+  amp.Canonical = path.format({ dir: file.dir, base: `${name}.html` });
+  amp.Style = fs.readFileSync(&quot;assets/style.css&quot;).toString();
+  let article = build(ast, date, amp);
+  fs.writeFileSync(filename, article);
+})(AMP);</code></pre>
   </section>
 </article>
 <hr>

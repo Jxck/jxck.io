@@ -190,7 +190,7 @@ function sectioning(children, depth) {
   return sections;
 }
 
-function build(AST, date, template) {
+function build(AST, dir, date, template) {
   // 結果を入れるスタック
   // push => unshift()
   // pop  => shift()
@@ -211,7 +211,16 @@ function build(AST, date, template) {
     },
     leave(node) {
       if (node.type === 'CodeBlock') {
-        codes.push(node.value);
+        // コードを抜き取り、ここで id に置き換える
+        // インデントを無視するため、全部組み上がったら後で差し込む。
+        let value = node.value;
+        if (value === '') {
+          let tmp = node.lang.split(':');
+          node.lang = tmp[0];
+          let file = path.format({ dir: dir, base: tmp[1] })
+          value = fs.readFileSync(file).toString().trim();
+        }
+        codes.push(value);
         node.value = `// ${codes.length}`;
       }
       if (node.value) {
@@ -271,6 +280,9 @@ function build(AST, date, template) {
 
   let result = template['HTML'](article);
 
+  // indent を無視するため
+  // ここで pre に code を戻す
+  // ついでにエスケープ
   codes.forEach((code, i) => {
     code = code.replace(/&/g, '&amp;')
                .replace(/</g, '&lt;')
@@ -292,15 +304,16 @@ if (process.argv.length < 3) {
 let path = require('path');
 let fs = require('fs');
 let file = path.parse(process.argv[2]);
-let date = file.dir.split('/')[1];
+let dir = file.dir;
 let name = file.name;
+let date = dir.split('/')[1];
 
 // simple html
 ((simple) => {
   let ast = parse(fs.readFileSync(path.format(file)).toString());
   ast.children = sectioning(ast.children, 1);
   let filename = path.format({ dir: file.dir, base: `${name}.html` });
-  let article = build(ast, date, simple);
+  let article = build(ast, dir, date, simple);
   fs.writeFileSync(filename, article);
 })(Simple);
 
@@ -334,9 +347,9 @@ ${article}
 
   let ast = parse(fs.readFileSync(path.format(file)).toString());
   ast.children = sectioning(ast.children, 1);
-  let filename = path.format({ dir: file.dir, base: `${name}.amp.html` });
-  amp.Canonical = path.format({ dir: file.dir, base: `${name}.html` });
+  let filename = path.format({ dir: dir, base: `${name}.amp.html` });
+  amp.Canonical = path.format({ dir: dir, base: `${name}.html` });
   amp.Style = fs.readFileSync("assets/style.css").toString();
-  let article = build(ast, date, amp);
+  let article = build(ast, dir, date, amp);
   fs.writeFileSync(filename, article);
 })(Simple);
