@@ -337,58 +337,6 @@ pre::after {
     <p>むしろ、ドメイン自体は結構前に取っていたので、遅すぎるくらいなのですが、やっと重い腰を上げました。
     <p>まだ作り途中なので、一気に移行は難しい気もしますが、徐々に作りながらやっていこうと思います。
   </section>
-  <section>
-    <h2>sample code</h2>
-    <pre lang=js><code>// Comment
-import {x, y} as p from &#039;point&#039;;
-const ANSWER = 42;
-
-class Car extends Vehicle {
-  constructor(speed, cost) {
-    super(speed);
-
-    var c = Symbol(&#039;cost&#039;);
-    this[c] = cost;
-
-    this.intro = `This is a car runs at
-      ${speed}.`;
-  }
-}
-
-for (let num of [1, 2, 3]) {
-  console.log(num + 0b111110111);
-}
-
-function $initHighlight(block, flags) {
-  try {
-    if (block.className.search(/\bno\-highlight\b/) != -1)
-      return processBlock(block.function, true, 0x0F) + &#039; class=&quot;&quot;&#039;;
-  } catch (e) {
-    /* handle exception */
-    var e4x =
-        &lt;div&gt;Example
-            &lt;p&gt;1234&lt;/p&gt;&lt;/div&gt;;
-  }
-  for (var i = 0 / 2; i &lt; classes.length; i++) { // &quot;0 / 2&quot; should not be parsed as regexp
-    if (checkCondition(classes[i]) === undefined)
-      return /\d+[\s/]/g;
-  }
-  console.log(Array.every(classes, Boolean));
-}
-
-export  $initHighlight;</code></pre>
-    <p>埋め込み
-    <pre lang=js><code>// amp html
-((amp) =&gt; {
-  let ast = parse(fs.readFileSync(path.format(file)).toString());
-  ast.children = sectioning(ast.children, 1);
-  let filename = path.format({ dir: file.dir, base: `${name}.amp.html` });
-  amp.Canonical = path.format({ dir: file.dir, base: `${name}.html` });
-  amp.Style = fs.readFileSync(&quot;assets/style.css&quot;).toString();
-  let article = build(ast, date, amp);
-  fs.writeFileSync(filename, article);
-})(AMP);</code></pre>
-  </section>
 </article>
 <hr>
 <footer>
