@@ -76,6 +76,92 @@ ${article}
   HorizontalRule: () => `<hr>`,
 };
 
+
+// tag ごとのビルダ
+let AMP = {
+  HTML: (article) =>
+`<!DOCTYPE html>
+<html amp>
+<head>
+<meta charset=utf-8>
+<link rel=canonical href=${AMP.Canonical}>
+<meta name=viewport content="width=device-width,minimum-scale=1">
+<style>body {opacity: 0}</style><noscript><style>body {opacity: 1}</style></noscript>
+<title>${AMP.title} | blog.jxck.io</title>
+<script async src=https://cdn.ampproject.org/v0.js></script>
+<style amp-custom>
+${AMP.Style}
+</style>
+</head>
+<body>
+<header>
+  <a class=logo href=/>blog.jxck.io</a>
+</header>
+${article}
+<hr>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
+</footer>
+</body>
+</html>`
+  ,
+  indent: `  `,
+  title: '',
+  Article: (node) => {
+    let value = `\n${node.value}`.replace(/\n/gm, `\n${AMP.indent}`);
+    return `<article>${value}\n</article>`;
+  },
+  Section: (node) => {
+    let value = `\n${node.value}`.replace(/\n/gm, `\n${AMP.indent}`);
+    return `<section>${value}\n</section>\n`;
+  },
+  List: (node) => {
+    let value = `\n${node.value}`.replace(/\n/gm, `\n${AMP.indent}`);
+    return node.ordered ? `<ol>${value}\n</ol>\n` : `<ul>${value}\n</ul>\n`;
+  },
+  Header: (node) => {
+    let val = '';
+    if (node.depth === 1) {
+      // h1 には独自ルールでタグを付けている
+      // ex)
+      // # [blog][web] ブログ始めました
+      AMP.title = node.value;
+
+      // tag 取り出す
+      let tag = node.children.shift().raw;
+      let tags = tag.substr(1, tag.length - 2).split('][');
+
+      // tag は必ず書く
+      if (tags === undefined) {
+        console.error('\x1b[0;31mThere is No TAGS\x1b[0m');
+        process.exit(1);
+      }
+
+      // tags をビルド
+      tags = tags.map((tag) => `<a href="/tags/${tag}">${tag}</a>`).join('');
+      val = `<div><time datetime=${date}>${date}</time><span class=tags>${tags}</span></div>\n`;
+    }
+    val += `<h${node.depth}>${node.value}</h${node.depth}>\n`;
+
+    return val;
+  },
+  Document:   (node) => node.value,
+  Paragraph:  (node) => `<p>${node.value}\n`,
+  CodeBlock:  (node) => `<pre lang=${node.lang}>${node.value}</pre>\n`,
+  Code:       (node) => `<code>${node.value}</code>`,
+  BlockQuote: (node) => `<blockquote>${node.value}</blockquote>`,
+  ListItem:   (node) => `<li>${node.value}\n`,
+  Link:       (node) => `<a href="${node.href}">${node.value}</a>`,
+  Image:      (node) => `<img src=${node.src} alt="${node.alt}" title="${node.title}" >`,
+  Strong:     (node) => `<strong>${node.value}</strong>`,
+  Emphasis:   (node) => `<em>${node.value}</em>`,
+  Html:       (node) => `${node.value}\n`,
+  Str:        (node) => node.value,
+  Break:          () => `<br>`,
+  HorizontalRule: () => `<hr>`,
+};
+
+
 let p = console.log.bind(console);
 let j = JSON.stringify.bind(JSON);
 
@@ -270,10 +356,23 @@ let file = path.parse(process.argv[2]);
 let splitted = file.name.split('.');
 let date = splitted[0];
 let name = splitted[1];
-let filename = path.format({ dir: file.dir, base: `${name}.html` });
 
-let AST = parse(fs.readFileSync(path.format(file)).toString());
-AST.children = sectioning(AST.children, 1);
-let article = build(AST, date, Simple);
+// simple html
+((simple) => {
+  let ast = parse(fs.readFileSync(path.format(file)).toString());
+  ast.children = sectioning(ast.children, 1);
+  let filename = path.format({ dir: file.dir, base: `${name}.html` });
+  let article = build(ast, date, simple);
+  fs.writeFileSync(filename, article);
+})(Simple);
 
-fs.writeFileSync(filename, article);
+// amp html
+((amp) => {
+  let ast = parse(fs.readFileSync(path.format(file)).toString());
+  ast.children = sectioning(ast.children, 1);
+  let filename = path.format({ dir: file.dir, base: `${name}.amp.html` });
+  amp.Canonical = path.format({ dir: file.dir, base: `${name}.html` });
+  amp.Style = fs.readFileSync("assets/style.css").toString();
+  let article = build(ast, date, amp);
+  fs.writeFileSync(filename, article);
+})(AMP);
