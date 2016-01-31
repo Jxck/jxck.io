@@ -355,9 +355,8 @@ if (process.argv.length < 3) {
 let path = require('path');
 let fs = require('fs');
 let file = path.parse(process.argv[2]);
-let splitted = file.name.split('.');
-let date = splitted[0];
-let name = splitted[1];
+let date = file.dir.split('/')[1];
+let name = file.name;
 
 // simple html
 ((simple) => {
