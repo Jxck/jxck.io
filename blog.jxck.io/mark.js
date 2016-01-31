@@ -5,6 +5,20 @@
 
 'use strict';
 
+// html special chars
+function hsp(str) {
+  return str.replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+}
+
+// tagged literal
+function h(tag, val) {
+  return `${tag[0]}${hsp(val)}${tag[1]}`;
+}
+
 // tag ごとのビルダ
 let Simple = {
   HTML: (article) =>
@@ -71,7 +85,7 @@ ${article}
   Document:   (node) => node.value,
   Paragraph:  (node) => `<p>${node.value}\n`,
   CodeBlock:  (node) => `<pre lang=${node.lang}><code>${node.value}</code></pre>\n`,
-  Code:       (node) => `<code>${node.value}</code>`,
+  Code:       (node) => h`<code>${node.value}</code>`,
   BlockQuote: (node) => `<blockquote>${node.value}</blockquote>`,
   ListItem:   (node) => `<li>${node.value}\n`,
   Link:       (node) => `<a href="${node.href}">${node.value}</a>`,
@@ -285,13 +299,7 @@ function build(AST, dir, date, template) {
   // ここで pre に code を戻す
   // ついでにエスケープ
   codes.forEach((code, i) => {
-    code = code.replace(/&/g, '&amp;')
-               .replace(/</g, '&lt;')
-               .replace(/>/g, '&gt;')
-               .replace(/"/g, '&quot;')
-               .replace(/'/g, '&#039;');
-
-    result = result.replace(`// ${i+1}`, code);
+    result = result.replace(`// ${i+1}`, hsp(code));
   });
 
   return result;
