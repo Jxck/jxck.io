@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 // TODO: add id to h1~hn for deep link?
+// TODO: add updated date to html
 
 'use strict';
 
