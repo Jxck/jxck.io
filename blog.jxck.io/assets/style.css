@@ -210,8 +210,11 @@ code::before, code::after {
 }
 
 pre > code {
+  display: block;
+  padding: 0.6em;
+  margin: 0;
   border: none;
-  background-color: inherit;
+  background-color: #efefef;
 }
 
 pre > code::before,
@@ -222,9 +225,7 @@ pre > code::after {
 pre {
   font-size: 1.2em;
   margin: 2em 0;
-  padding: 0.6em;
   border-radius: 4px;
-  background-color: #efefef;
 }
 
 pre::before {
@@ -232,6 +233,8 @@ pre::before {
 }
 
 pre::after {
+  position: relative;
+  top: -1em;
   content:"\A```";
 }
 
