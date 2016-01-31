@@ -3,13 +3,13 @@
 'use strict';
 
 // tag ごとのビルダ
-let Template = {
+let Simple = {
   HTML: (article) =>
 `<!DOCTYPE html>
 <meta charset=utf-8>
 <meta http-equiv=X-UA-Compatible content=IE=edge>
 <meta name=viewport content="width=device-width, initial-scale=1">
-<title>${Template.title} | blog.jxck.io</title>
+<title>${Simple.title} | blog.jxck.io</title>
 <link rel=stylesheet type=text/css href=/assets/style.css>
 <header>
   <a class=logo href=/>blog.jxck.io</a>
@@ -23,15 +23,15 @@ ${article}
   indent: `  `,
   title: '',
   Article: (node) => {
-    let value = `\n${node.value}`.replace(/\n/gm, `\n${Template.indent}`);
+    let value = `\n${node.value}`.replace(/\n/gm, `\n${Simple.indent}`);
     return `<article>${value}\n</article>`;
   },
   Section: (node) => {
-    let value = `\n${node.value}`.replace(/\n/gm, `\n${Template.indent}`);
+    let value = `\n${node.value}`.replace(/\n/gm, `\n${Simple.indent}`);
     return `<section>${value}\n</section>\n`;
   },
   List: (node) => {
-    let value = `\n${node.value}`.replace(/\n/gm, `\n${Template.indent}`);
+    let value = `\n${node.value}`.replace(/\n/gm, `\n${Simple.indent}`);
     return node.ordered ? `<ol>${value}\n</ol>\n` : `<ul>${value}\n</ul>\n`;
   },
   Header: (node) => {
@@ -40,7 +40,7 @@ ${article}
       // h1 には独自ルールでタグを付けている
       // ex)
       // # [blog][web] ブログ始めました
-      Template.title = node.value;
+      Simple.title = node.value;
 
       // tag 取り出す
       let tag = node.children.shift().raw;
@@ -274,6 +274,6 @@ let filename = path.format({ dir: file.dir, base: `${name}.html` });
 
 let AST = parse(fs.readFileSync(path.format(file)).toString());
 AST.children = sectioning(AST.children, 1);
-let article = build(AST, date, Template);
+let article = build(AST, date, Simple);
 
 fs.writeFileSync(filename, article);
