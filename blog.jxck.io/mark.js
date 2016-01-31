@@ -10,6 +10,7 @@ let Simple = {
   HTML: (article) =>
 `<!DOCTYPE html>
 <meta charset=utf-8>
+<link rel=amphtml href=${Simple.Amp}>
 <meta http-equiv=X-UA-Compatible content=IE=edge>
 <meta name=viewport content="width=device-width, initial-scale=1">
 <title>${Simple.title} | blog.jxck.io</title>
@@ -313,6 +314,7 @@ let date = dir.split('/')[1];
   let ast = parse(fs.readFileSync(path.format(file)).toString());
   ast.children = sectioning(ast.children, 1);
   let filename = path.format({ dir: file.dir, base: `${name}.html` });
+  simple.Amp = path.format({ dir: dir, base: `${name}.amp.html` });
   let article = build(ast, dir, date, simple);
   fs.writeFileSync(filename, article);
 })(Simple);
