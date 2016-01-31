@@ -183,7 +183,7 @@ function sectioning(children, depth) {
   return sections;
 }
 
-function build(AST, date) {
+function build(AST, date, template) {
   // 結果を入れるスタック
   // push => unshift()
   // pop  => shift()
@@ -210,7 +210,7 @@ function build(AST, date) {
         if (top.type !== node.type) console.error('ERROR', top, node);
 
         // 閉じる
-        stack.unshift({ tag: 'full', val: Template[node.type](node), inline: isInline(node) });
+        stack.unshift({ tag: 'full', val: template[node.type](node), inline: isInline(node) });
       } else {
         // 完成している兄弟タグを集めてきて配列に並べる
         let vals = [];
@@ -248,7 +248,7 @@ function build(AST, date) {
         }
 
         node.value = vals;
-        stack.unshift({ tag: 'full', val: Template[node.type](node), inline: isInline(node) });
+        stack.unshift({ tag: 'full', val: template[node.type](node), inline: isInline(node) });
       }
     },
   });
@@ -256,7 +256,7 @@ function build(AST, date) {
   // 結果の <article> 結果
   let article = stack[0].val;
 
-  return Template['HTML'](article);
+  return template['HTML'](article);
 }
 
 if (process.argv.length < 3) {
@@ -274,6 +274,6 @@ let filename = path.format({ dir: file.dir, base: `${name}.html` });
 
 let AST = parse(fs.readFileSync(path.format(file)).toString());
 AST.children = sectioning(AST.children, 1);
-let article = build(AST, date);
+let article = build(AST, date, Template);
 
 fs.writeFileSync(filename, article);
