@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html amp>
+<head>
+<meta charset=utf-8>
+<link rel=canonical href=entries/2016-01-28/html-compression.html>
+<meta name=viewport content="width=device-width,minimum-scale=1">
+<style>body {opacity: 0}</style><noscript><style>body {opacity: 1}</style></noscript>
+<title>HTML の省略によるサイズ最適化 | blog.jxck.io</title>
+<script async src=https://cdn.ampproject.org/v0.js></script>
+<style amp-custom>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', 'Helvetica', serif;
+  color: #222;
+  background-color: #fefefe;
+}
+
+header {
+  box-sizing: border-box;
+  background-color: #222;
+  margin: 0;
+  padding: 0.4em;
+}
+
+header a.logo {
+  display: block;
+  padding: 0.4em;
+  color: gray;
+}
+
+header a.logo:hover {
+  color: white;
+}
+
+article {
+  width: 80%;
+  margin: 1em auto;
+}
+
+.archive {
+  width: 80%;
+  margin: 1em auto;
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.archive ul {
+  margin: 0;
+}
+
+time {
+  padding-right: 0.5em;
+}
+
+time::after {
+  content: ":";
+}
+
+.tags {
+  font-size: 0.8em;
+}
+
+.tags a {
+  margin-left: 0.2em;
+  padding: 0.2em 0.4em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #ddd;
+  text-decoration: none;
+}
+
+footer {
+  padding: 1em;
+}
+
+img {
+  max-width: 50%;
+  display: block;
+  margin: 1em 0;
+  border: solid 1px #ccc;
+}
+
+@media only screen and (max-device-width : 480px) {
+  img {
+    max-width:100%;
+  }
+}
+
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+}
+
+pre {
+  overflow: scroll;
+}
+
+
+h1::before {
+  content: "# ";
+}
+
+h2::before {
+  content: "## ";
+}
+
+h3::before {
+  content: "### ";
+}
+
+h4::before {
+  content: "#### ";
+}
+
+h5::before {
+  content: "##### ";
+}
+
+h6::before {
+  content: "###### ";
+}
+
+i::before, i::after {
+  content: "*";
+}
+
+strong::before, strong::after {
+  content: "**";
+}
+
+ol, ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+table {
+  margin: 2em 0;
+  border-spacing: 0 0.4em;
+}
+
+th {
+  padding: 0em 1.2em 0.8em;
+  border-left: 0.14em solid #222;
+  border-bottom: 2px dashed #222;
+}
+
+td {
+  padding: 0.4em 1em;
+  border-left: 0.14em solid #222;
+}
+
+th:last-child, td:last-child {
+  border-right: 0.14em solid #222;
+}
+
+ul, ol, dl {
+  margin: 2em 0;
+}
+
+dl dt {
+  font-weight: bold;
+}
+
+dl dt::after {
+  content: ":";
+}
+
+dl dd {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+a {
+  color: RoyalBlue;
+}
+
+a:visited {
+  color: Brown;
+}
+
+
+blockquote {
+  display: block;
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  padding: 1em;
+  margin: 2em 0;
+}
+
+blockquote::before {
+  content: "> ";
+}
+
+code {
+  border: 1px solid #ddd;
+  background-color: #efefef;
+  border-radius: 4px;
+  padding: 0.1em;
+  margin: 2em 0;
+}
+
+code::before, code::after {
+  /* うざかった */
+  /* content: "`"; */
+}
+
+pre > code {
+  display: block;
+  padding: 0.6em;
+  margin: 0;
+  border: none;
+  background-color: #efefef;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+pre {
+  font-size: 1.2em;
+  margin: 2em 0;
+  border-radius: 4px;
+}
+
+pre::before {
+  content: "```" attr(lang) "\A";
+}
+
+pre::after {
+  position: relative;
+  top: -1em;
+  content:"\A```";
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs,
+.hljs-subst ,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-name ,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition ,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-type,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-section,
+.hljs-meta,
+.hljs-meta-string,
+.hljs-emphasis {
+}
+
+</style>
+</head>
+<body>
+<header>
+  <a class=logo href=/>blog.jxck.io</a>
+</header>
+<article>
+  <div><time datetime=2016-01-28>2016-01-28</time><span class=tags><a href="/tags/TML の省略によるサイズ最適">TML の省略によるサイズ最適</a></span></div>
+  <h1>HTML の省略によるサイズ最適化</h1>
+  <section>
+    <h2>Intro</h2>
+    <p>とりあえず <a href="https://blog.jxck.io">blog.jxck.io</a> 以下については、基本的には静的ファイルを生成するスタイルで作ろうと思っている。
+    <p>手元に書いた Markdown を HTML に変換するスタイルで、これを行うツールは星の数ほどあるが、生成結果を見ながら思うところがあった。
+  </section>
+  <section>
+    <h2>静的コンテンツの最適化</h2>
+    <p>パフォーマンス改善の常套手段として、コンテンツの最適化がある。
+    ただ、ここ最適化と言っているものには大きく二つある。
+    <ul>
+      <li>gzip や png ではなく jpeg を使うなどのアルゴリズムにより経路上で圧縮する
+      <li>js や css から不要なスペースや改行を消すことで、コンテンツサイズを減らす
+    </ul>
+    <p>どちらも今となってはツールなどが充実していて、特に導入は難しく無いと思う。
+    <p>ここで後者の最適化の一環として、 HTML を最適化したことはあるだろうか？
+    あるとしても、それはスペース削除だけじゃ無いだろうか？
+  </section>
+  <section>
+    <h2>HTML の省略記法</h2>
+    <section>
+      <h3>閉じタグ</h3>
+      <p>HTML には閉じタグの省略がゆるされるものがいくつかあり、仕様では以下に定義がある。
+      <p><a href="https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission">https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission</a>
+      <p>例えば、 <code>&lt;/li&gt;</code> は以下の条件なら省略が可能だ。
+      <ul>
+        <li>その次にすぐ次の <code>&lt;li&gt;</code> がくる
+        <li>それ以上親 (<code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>) に子要素が無い
+      </ul>
+      <blockquote>An li element&#039;s end tag may be omitted if the li element is immediately followed by another li element or if there is no more content in the parent element.</blockquote><p>つまりこう書くことができる。
+      <pre lang=html><code>&lt;!-- before --&gt;
+&lt;ul&gt;
+  &lt;li&gt;one&lt;/li&gt;
+  &lt;li&gt;two&lt;/li&gt;
+  &lt;li&gt;three&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- after --&gt;
+&lt;ul&gt;
+  &lt;li&gt;one
+  &lt;li&gt;two
+  &lt;li&gt;three
+&lt;/ul&gt;</code></pre>
+      <p>単純に閉じタグ 5byte x 3 = 15byte 分の容量が減っていることになる。
+    </section>
+    <section>
+      <h3>attibute value の quote</h3>
+      <p>もうひとつ、要素を囲む引用符(<code>&#039;</code>, <code>&quot;</code>) も省略が可能な場合があり、仕様では以下に定義がある。
+      <p><a href="https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html">https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html</a>
+      <blockquote>The attribute value can remain unquoted if it doesn&#039;t contain space characters or any of &quot; &#039; ` = &lt; or &gt;. Otherwise, it has to be quoted using either single or double quotes.</blockquote><p><code>&quot; &#039; ` = &lt; or &gt;</code>
+      <pre lang=html><code>&lt;!-- before --&gt;
+&lt;input name=&quot;address&quot; maxlength=&quot;200&quot;&gt;
+
+&lt;!-- after --&gt;
+&lt;input name=address maxlength=200&gt;</code></pre>
+    </section>
+  </section>
+  <section>
+    <h2>その最適化は現実的か？</h2>
+  </section>
+</article>
+<hr>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
+</footer>
+</body>
+</html>
