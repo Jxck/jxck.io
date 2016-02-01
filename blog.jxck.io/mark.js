@@ -13,6 +13,10 @@ let Simple = {
 <meta http-equiv=X-UA-Compatible content=IE=edge>
 <meta name=viewport content="width=device-width, initial-scale=1">
 <title>${Simple.title} | blog.jxck.io</title>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <link rel=stylesheet type=text/css href=/assets/style.css>
 <header>
   <a class=logo href=/>blog.jxck.io</a>
@@ -65,7 +69,7 @@ ${article}
   },
   Document:   (node) => node.value,
   Paragraph:  (node) => `<p>${node.value}\n`,
-  CodeBlock:  (node) => `<pre lang=${node.lang}>${node.value}</pre>\n`,
+  CodeBlock:  (node) => `<pre lang=${node.lang}><code>${node.value}</code></pre>\n`,
   Code:       (node) => `<code>${node.value}</code>`,
   BlockQuote: (node) => `<blockquote>${node.value}</blockquote>`,
   ListItem:   (node) => `<li>${node.value}\n`,
