@@ -2,6 +2,7 @@
 
 // TODO: add id to h1~hn for deep link?
 // TODO: add updated date to html
+// TODO: marge template
 
 'use strict';
 
@@ -65,7 +66,7 @@ ${article}
   },
   Document:   (node) => node.value,
   Paragraph:  (node) => `<p>${node.value}\n`,
-  CodeBlock:  (node) => `<pre lang=${node.lang}>${node.value}</pre>`,
+  CodeBlock:  (node) => `<pre lang=${node.lang}>${node.value}</pre>\n`,
   Code:       (node) => `<code>${node.value}</code>`,
   BlockQuote: (node) => `<blockquote>${node.value}</blockquote>`,
   ListItem:   (node) => `<li>${node.value}\n`,
