@@ -77,7 +77,8 @@ ${article}
       }
 
       // tags をビルド
-      let taglinks = tags.map((tag) => `<a href="/tags/${tag}">${tag}</a>`).join('');
+      // let taglinks = tags.map((tag) => `<a href="/tags/${tag}">${tag}</a>`).join('');
+      let taglinks = tags.map((tag) => `<a>${tag}</a>`).join('');
       val += `<div><time datetime=${date}>${date}</time><span class=tags>${taglinks}</span></div>\n`;
       val += `<a href="/${Simple.Canonical}"><h${node.depth}>${node.value}</h${node.depth}></a>\n`;
     } else {
