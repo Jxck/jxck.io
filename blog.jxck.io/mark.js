@@ -67,8 +67,8 @@ ${article}
       Simple.title = node.value;
 
       // tag 取り出す
-      let tag = node.children.shift().raw;
-      let tags = tag.substr(1, tag.length - 2).split('][');
+      let raw = node.children.shift().raw;
+      let tags = raw.substr(1, raw.length - 2).split('][');
 
       // tag は必ず書く
       if (tags === undefined) {
@@ -77,8 +77,8 @@ ${article}
       }
 
       // tags をビルド
-      tags = tags.map((tag) => `<a href="/tags/${tag}">${tag}</a>`).join('');
-      val += `<div><time datetime=${date}>${date}</time><span class=tags>${tags}</span></div>\n`;
+      let taglinks = tags.map((tag) => `<a href="/tags/${tag}">${tag}</a>`).join('');
+      val += `<div><time datetime=${date}>${date}</time><span class=tags>${taglinks}</span></div>\n`;
       val += `<a href="/${Simple.Canonical}"><h${node.depth}>${node.value}</h${node.depth}></a>\n`;
     } else {
       val += `<a href="#${unspace(node.value)}"><h${node.depth} id="${unspace(node.value)}">${node.value}</h${node.depth}></a>\n`;
@@ -236,7 +236,7 @@ function build(AST, dir, date, template) {
         if (value === '') {
           let tmp = node.lang.split(':');
           node.lang = tmp[0];
-          let file = path.format({ dir: dir, base: tmp[1] })
+          let file = path.format({ dir: dir, base: tmp[1] });
           value = fs.readFileSync(file).toString().trim();
         }
         codes.push(value);
@@ -297,7 +297,7 @@ function build(AST, dir, date, template) {
   // 結果の <article> 結果
   let article = stack[0].val;
 
-  let result = template['HTML'](article);
+  let result = template.HTML(article);
 
   // indent を無視するため
   // ここで pre に code を戻す
@@ -364,7 +364,7 @@ ${article}
   ast.children = sectioning(ast.children, 1);
   let filename = path.format({ dir: dir, base: `${name}.amp.html` });
   amp.Canonical = path.format({ dir: dir, base: `${name}.html` });
-  amp.Style = fs.readFileSync("assets/style.css").toString();
+  amp.Style = fs.readFileSync('assets/style.css').toString();
   let article = build(ast, dir, date, amp);
   fs.writeFileSync(filename, article);
 })(Simple);
