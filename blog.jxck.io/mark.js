@@ -18,6 +18,10 @@ function h(tag, val) {
   return `${tag[0]}${hsp(val)}${tag[1]}`;
 }
 
+function unspace(str) {
+  return str.replace(/ /g, '+');
+}
+
 // tag ごとのビルダ
 let Simple = {
   HTML: (article) =>
@@ -74,9 +78,11 @@ ${article}
 
       // tags をビルド
       tags = tags.map((tag) => `<a href="/tags/${tag}">${tag}</a>`).join('');
-      val = `<div><time datetime=${date}>${date}</time><span class=tags>${tags}</span></div>\n`;
+      val += `<div><time datetime=${date}>${date}</time><span class=tags>${tags}</span></div>\n`;
+      val += `<a href="/${Simple.Canonical}"><h${node.depth}>${node.value}</h${node.depth}></a>\n`;
+    } else {
+      val += `<a href="#${unspace(node.value)}"><h${node.depth} id="${unspace(node.value)}">${node.value}</h${node.depth}></a>\n`;
     }
-    val += `<a href="#${node.value}"><h${node.depth} id="${node.value}">${node.value}</h${node.depth}></a>\n`;
 
     return val;
   },
