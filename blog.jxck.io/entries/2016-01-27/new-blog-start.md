@@ -14,3 +14,18 @@
 むしろ、ドメイン自体は結構前に取っていたので、遅すぎるくらいなのですが、やっと重い腰を上げました。
 
 まだ作り途中なので、一気に移行は難しい気もしますが、徐々に作りながらやっていこうと思います。
+
+## sample code
+
+```js
+// amp html
+((amp) => {
+  let ast = parse(fs.readFileSync(path.format(file)).toString());
+  ast.children = sectioning(ast.children, 1);
+  let filename = path.format({ dir: file.dir, base: `${name}.amp.html` });
+  amp.Canonical = path.format({ dir: file.dir, base: `${name}.html` });
+  amp.Style = fs.readFileSync("assets/style.css").toString();
+  let article = build(ast, date, amp);
+  fs.writeFileSync(filename, article);
+})(AMP);
+```
