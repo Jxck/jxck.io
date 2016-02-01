@@ -268,6 +268,12 @@ function build(AST, date, template) {
   let result = template['HTML'](article);
 
   codes.forEach((code, i) => {
+    code = code.replace(/&/g, '&amp;')
+               .replace(/</g, '&lt;')
+               .replace(/>/g, '&gt;')
+               .replace(/"/g, '&quot;')
+               .replace(/'/g, '&#039;');
+
     result = result.replace(`// ${i+1}`, code);
   });
 
