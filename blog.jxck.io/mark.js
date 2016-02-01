@@ -29,7 +29,7 @@ let Simple = {
 <meta charset=utf-8>
 <link rel=canonical href=/${Simple.Canonical}>
 <link rel=amphtml href=/${Simple.Amp}>
-<meta name=viewport content="width=device-width, initial-scale=1">
+<meta name=viewport content="width=device-width,initial-scale=1">
 <title>${Simple.title} | blog.jxck.io</title>
 
 <link rel=stylesheet type=text/css href=/assets/style.css>
