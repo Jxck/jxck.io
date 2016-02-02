@@ -65,7 +65,7 @@ ${article}
   },
   Document:   (node) => node.value,
   Paragraph:  (node) => `<p>${node.value}\n`,
-  CodeBlock:  (node) => `<pre lang=${node.lang}>\n${node.value}\n</pre>\n`,
+  CodeBlock:  (node) => `<pre lang=${node.lang}>${node.value}</pre>`,
   Code:       (node) => `<code>${node.value}</code>`,
   BlockQuote: (node) => `<blockquote>${node.value}</blockquote>`,
   ListItem:   (node) => `<li>${node.value}\n`,
@@ -279,6 +279,8 @@ function build(AST, date, template) {
   // top  => [0]
   let stack = [];
 
+  let codes = [];
+
   // トラバース
   traverse(AST, {
     enter(node) {
@@ -290,6 +292,10 @@ function build(AST, date, template) {
       stack.unshift(node);
     },
     leave(node) {
+      if (node.type === 'CodeBlock') {
+        codes.push(node.value);
+        node.value = `// ${codes.length}`;
+      }
       if (node.value) {
         // value があったら、 Str とか
 
@@ -345,7 +351,13 @@ function build(AST, date, template) {
   // 結果の <article> 結果
   let article = stack[0].val;
 
-  return template['HTML'](article);
+  let result = template['HTML'](article);
+
+  codes.forEach((code, i) => {
+    result = result.replace(`// ${i+1}`, code);
+  });
+
+  return result;
 }
 
 if (process.argv.length < 3) {
