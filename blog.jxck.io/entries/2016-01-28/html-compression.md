@@ -30,10 +30,31 @@
 
 ### タグそのもの
 
-`<html>` や `<body>` は、実は書かなくても良い。
+`<html>`、 `<head>`、 `<body>` は、タグ自体を書かなくても良い場合があり、仕様では以下に定義がある。
 
-TODO
+[https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission](https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission)
 
+> An html element's end tag may be omitted if the html element is not immediately followed by a comment.
+
+すぐ次がコメントでないなら、 `<html>` は省略しても良い。 `<head>` や `<body>` も同様だ。
+
+```html
+<!-- before -->
+<!DOCTYPE html>
+  <head>
+    <title>Hello</title>
+  </head>
+  <body>
+    <p>Welcome to this example.</p>
+  </body>
+</html>
+
+<!-- after -->
+<!DOCTYPE html>
+  <title>Hello</title>
+  <p>Welcome to this example.</p>
+</html>
+```
 
 これは、 `<html ng-app>` みたいに、タグの要素によって何かを指定する必要があると消せないため、消せない・消しにくいことは多い。
 
@@ -46,10 +67,10 @@ HTML には閉じタグの省略がゆるされるものがいくつかあり、
 
 例えば、 `</li>` は以下の条件なら省略が可能だ。
 
+> An li element's end tag may be omitted if the li element is immediately followed by another li element or if there is no more content in the parent element.
+
 - その次にすぐ次の `<li>` がくる
 - それ以上親 (`<ul>`, `<ol>`) に子要素が無い
-
-> An li element's end tag may be omitted if the li element is immediately followed by another li element or if there is no more content in the parent element.
 
 
 つまりこう書くことができる。
@@ -108,7 +129,7 @@ HTML には閉じタグの省略がゆるされるものがいくつかあり、
 
 あくまで書いているのは HTML だし、 Markdown からの変換過程で最適化しているので、昨今のフロントのビルドタスクを見れば特段特別なことでもない。
 
-また、生成した結果は TODO: HTML Validator で確認しているが問題は無い。
+また、生成した結果は [HTML Validator](https://validator.w3.org/nu/) で確認しているが問題は無い。
 
 HTML として問題が無いのであれば、 HTML に対応したツールでは使えることになる。使えない場合、少し厳しく言うとそのツールは HTML を正しく扱えてない、つまりバグということになる。
 まあ、そもそも HTML というのは、 XML と全く違い「緩い」部分が多いため、パースするのは非常に難しいので、しかたない。
@@ -129,11 +150,11 @@ HTML として問題が無いのであれば、 HTML に対応したツールで
 
 ### 方法
 
-普通の Web アプリでも、 HAML のように抽象度が高いフォーマットであれば、生成時に同様のオプションがあっても良さそうだが、 HAML ではずっと TODO のままのようだ。
+普通の Web アプリでも、 HAML のように抽象度が高いフォーマットであれば、生成時に同様のオプションがあっても良さそうだが、 HAML ではずっと [TODO](https://github.com/haml/haml/blob/master/TODO#L19) のままのようだ。
 
-Google の PageSpeed は、こうしたことを一部サポートしているようだ。 TODO
+Google の PageSpeed でも、こうした最適化は [サポートされていた](https://developers.google.com/speed/pagespeed/service/OptimizeHtml)。
 
-ただ、一般にあまり普及した方法とはいえない。
+ただ、一般にあまり普及した方法とはいえない気もする。
 
 
 ## 結論
