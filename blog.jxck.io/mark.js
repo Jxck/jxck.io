@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-// TODO: add id to h1~hn for deep link?
 // TODO: add updated date to html
 
 'use strict';
@@ -76,7 +75,7 @@ ${article}
       tags = tags.map((tag) => `<a href="/tags/${tag}">${tag}</a>`).join('');
       val = `<div><time datetime=${date}>${date}</time><span class=tags>${tags}</span></div>\n`;
     }
-    val += `<h${node.depth}>${node.value}</h${node.depth}>\n`;
+    val += `<a href="#${node.value}"><h${node.depth} id="${node.value}">${node.value}</h${node.depth}></a>\n`;
 
     return val;
   },
