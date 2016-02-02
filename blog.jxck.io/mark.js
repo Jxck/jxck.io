@@ -23,7 +23,8 @@ let Simple = {
   HTML: (article) =>
 `<!DOCTYPE html>
 <meta charset=utf-8>
-<link rel=amphtml href=${Simple.Amp}>
+<link rel=canonical href=/${Simple.Canonical}>
+<link rel=amphtml href=/${Simple.Amp}>
 <meta name=viewport content="width=device-width, initial-scale=1">
 <title>${Simple.title} | blog.jxck.io</title>
 
@@ -319,6 +320,7 @@ let date = dir.split('/')[1];
   let ast = parse(fs.readFileSync(path.format(file)).toString());
   ast.children = sectioning(ast.children, 1);
   let filename = path.format({ dir: file.dir, base: `${name}.html` });
+  simple.Canonical = filename;
   simple.Amp = path.format({ dir: dir, base: `${name}.amp.html` });
   let article = build(ast, dir, date, simple);
   fs.writeFileSync(filename, article);
@@ -331,7 +333,7 @@ let date = dir.split('/')[1];
 <html amp>
 <head>
 <meta charset=utf-8>
-<link rel=canonical href=${Simple.Canonical}>
+<link rel=canonical href=/${Simple.Canonical}>
 <meta name=viewport content="width=device-width,minimum-scale=1">
 <style>body {opacity: 0}</style><noscript><style>body {opacity: 1}</style></noscript>
 <title>${Simple.title} | blog.jxck.io</title>
