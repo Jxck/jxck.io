@@ -29,7 +29,7 @@ let Simple = {
 <meta name=viewport content="width=device-width, initial-scale=1">
 <title>${Simple.title} | blog.jxck.io</title>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
+<script src="/assets/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
 <link rel=stylesheet type=text/css href=/assets/style.css>
