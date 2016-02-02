@@ -28,9 +28,6 @@ let Simple = {
 <meta name=viewport content="width=device-width, initial-scale=1">
 <title>${Simple.title} | blog.jxck.io</title>
 
-<script src="/assets/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-
 <link rel=stylesheet type=text/css href=/assets/style.css>
 <header>
   <a class=logo href=/>blog.jxck.io</a>
@@ -39,7 +36,9 @@ ${article}
 <hr>
 <footer>
   <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
-</footer>`
+</footer>
+<script src="/assets/highlight.min.js"></script>
+<script>window.onload = hljs.initHighlighting;</script>`
   ,
   indent: `  `,
   title: '',
