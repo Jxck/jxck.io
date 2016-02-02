@@ -84,7 +84,7 @@ ${article}
   Paragraph:  (node) => `<p>${node.value}\n`,
   CodeBlock:  (node) => `<pre class=${node.lang}><code>${node.value}</code></pre>\n`,
   Code:       (node) => h`<code>${node.value}</code>`,
-  BlockQuote: (node) => h`<blockquote>${node.value}</blockquote>`,
+  BlockQuote: (node) => h`<blockquote>${node.value}</blockquote>\n`,
   ListItem:   (node) => `<li>${node.value}\n`,
   Link:       (node) => `<a href="${node.href}">${node.value}</a>`,
   Image:      (node) => `<img src=${node.src} alt="${node.alt}" title="${node.title}" >`,
