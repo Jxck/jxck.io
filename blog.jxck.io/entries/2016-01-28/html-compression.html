@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
 <link rel=amphtml href=entries/2016-01-28/html-compression.amp.html>
-<meta http-equiv=X-UA-Compatible content=IE=edge>
 <meta name=viewport content="width=device-width, initial-scale=1">
 <title>HTML の省略によるサイズ最適化 | blog.jxck.io</title>
 
@@ -13,7 +12,7 @@
   <a class=logo href=/>blog.jxck.io</a>
 </header>
 <article>
-  <div><time datetime=2016-01-28>2016-01-28</time><span class=tags><a href="/tags/TML の省略によるサイズ最適">TML の省略によるサイズ最適</a></span></div>
+  <div><time datetime=2016-01-28>2016-01-28</time><span class=tags><a href="/tags/html">html</a></span></div>
   <h1>HTML の省略によるサイズ最適化</h1>
   <section>
     <h2>Intro</h2>
@@ -37,6 +36,12 @@
   <section>
     <h2>HTML の省略記法</h2>
     <section>
+      <h3>タグそのもの</h3>
+      <p><code>&lt;html&gt;</code> や <code>&lt;body&gt;</code> は、実は書かなくても良い。
+      <p>TODO
+      <p>これは、 <code>&lt;html ng-app&gt;</code> みたいに、タグの要素によって何かを指定する必要があると消せないため、消せない・消しにくいことは多い。
+    </section>
+    <section>
       <h3>閉じタグ</h3>
       <p>HTML には閉じタグの省略がゆるされるものがいくつかあり、仕様では以下に定義がある。
       <p><a href="https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission">https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission</a>
@@ -46,7 +51,7 @@
         <li>それ以上親 (<code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>) に子要素が無い
       </ul>
       <blockquote>An li element&#039;s end tag may be omitted if the li element is immediately followed by another li element or if there is no more content in the parent element.</blockquote><p>つまりこう書くことができる。
-      <pre lang=html><code>&lt;!-- before --&gt;
+      <pre class=html><code>&lt;!-- before --&gt;
 &lt;ul&gt;
   &lt;li&gt;one&lt;/li&gt;
   &lt;li&gt;two&lt;/li&gt;
@@ -66,7 +71,7 @@
       <p>もうひとつ、要素を囲む引用符(<code>&#039;</code>, <code>&quot;</code>) も省略が可能な場合があり、仕様では以下に定義がある。
       <p><a href="https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html">https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html</a>
       <blockquote>The attribute value can remain unquoted if it doesn&#039;t contain space characters or any of &quot; &#039; ` = &lt; or &gt;. Otherwise, it has to be quoted using either single or double quotes.</blockquote><p>つまり、スペースや <code>&quot; &#039; ` = &lt; or &gt;</code> が無ければ引用符はいらない。
-      <pre lang=html><code>&lt;!-- before --&gt;
+      <pre class=html><code>&lt;!-- before --&gt;
 &lt;input name=&quot;address&quot; maxlength=&quot;200&quot;&gt;
 
 &lt;!-- after --&gt;
