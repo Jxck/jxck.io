@@ -84,7 +84,7 @@ ${article}
   },
   Document:   (node) => node.value,
   Paragraph:  (node) => `<p>${node.value}\n`,
-  CodeBlock:  (node) => `<pre lang=${node.lang}><code>${node.value}</code></pre>\n`,
+  CodeBlock:  (node) => `<pre class=${node.lang}><code>${node.value}</code></pre>\n`,
   Code:       (node) => h`<code>${node.value}</code>`,
   BlockQuote: (node) => h`<blockquote>${node.value}</blockquote>`,
   ListItem:   (node) => `<li>${node.value}\n`,
