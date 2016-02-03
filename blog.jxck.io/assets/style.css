@@ -229,22 +229,6 @@ code::before, code::after {
 
 pre {
   overflow: scroll;
-}
-
-pre > code {
-  display: block;
-  padding: 0.6em;
-  margin: 0;
-  border: none;
-  background-color: #efefef;
-}
-
-pre > code::before,
-pre > code::after {
-  content: none;
-}
-
-pre {
   font-size: 1.2em;
   margin: 2em 0;
   border-radius: 4px;
@@ -258,6 +242,19 @@ pre::after {
   position: relative;
   top: -1em;
   content:"\A```";
+}
+
+pre > code {
+  display: block;
+  padding: 0.6em;
+  margin: 0;
+  border: none;
+  background-color: #efefef;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
 }
 
 .hljs-keyword {
