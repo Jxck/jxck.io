@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 // TODO: add updated date to html
+// TODO: generate atom feed
 
 'use strict';
 
