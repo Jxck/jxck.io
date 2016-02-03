@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-entries = `find ./entries -name *.md`.split("\n").map{|file|
-  `./mark.js #{file.sub("./", "")}`
+entries = `find ./blog.jxck.io/entries -name *.md`.split("\n").map{|file|
+  `./mark.js #{file}`
   head = `head -n 1 #{file}`
 
   title = head.match(/\# \[.*\] (.*)/)[1]
@@ -14,8 +14,9 @@ entries = `find ./entries -name *.md`.split("\n").map{|file|
 
   tagspan = "<span class=tags>#{tags}</span>"
 
-  x, y, date, name = file.split("/")
-  name = name.gsub(".md", ".html")
+  splitted = file.split("/")
+  name = splitted.pop.gsub(".md", ".html")
+  date = splitted.pop
   "<li><time datetime=#{date}>#{date}</time><a href=entries/#{date}/#{name}>#{title}</a>#{tagspan}"
 }
 

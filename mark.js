@@ -317,20 +317,26 @@ if (process.argv.length < 3) {
 
 let path = require('path');
 let fs = require('fs');
-let file = path.parse(process.argv[2]);
-let dir = file.dir;
-let name = file.name;
-let date = dir.split('/')[1];
+let filepath = process.argv[2];
+
+let dir = path.parse(filepath).dir;
+let name = path.parse(filepath).name;
+let date = dir.split('/')[3];
+
+let baseurl = dir.replace('./blog.jxck.io/', '');
 
 // simple html
 ((simple) => {
-  let ast = parse(fs.readFileSync(path.format(file)).toString());
+  let ast = parse(fs.readFileSync(filepath).toString());
   ast.children = sectioning(ast.children, 1);
-  let filename = path.format({ dir: file.dir, base: `${name}.html` });
-  simple.Canonical = filename;
-  simple.Amp = path.format({ dir: dir, base: `${name}.amp.html` });
+
+  simple.Canonical = `${baseurl}/${name}.html`;
+  simple.Amp = `${baseurl}/${name}.amp.html`;
+
   let article = build(ast, dir, date, simple);
-  fs.writeFileSync(filename, article);
+
+  let target = `${dir}/${name}.html`;
+  fs.writeFileSync(target, article);
 })(Simple);
 
 // amp html
@@ -361,11 +367,14 @@ ${article}
 </body>
 </html>`;
 
-  let ast = parse(fs.readFileSync(path.format(file)).toString());
+  let ast = parse(fs.readFileSync(filepath).toString());
   ast.children = sectioning(ast.children, 1);
-  let filename = path.format({ dir: dir, base: `${name}.amp.html` });
-  amp.Canonical = path.format({ dir: dir, base: `${name}.html` });
-  amp.Style = fs.readFileSync('assets/style.css').toString();
+
+  amp.Canonical = `${baseurl}/${name}.html`;
+  amp.Style = fs.readFileSync('blog.jxck.io/assets/style.css').toString();
+
   let article = build(ast, dir, date, amp);
-  fs.writeFileSync(filename, article);
+
+  let target = `${dir}/${name}.amp.html`;
+  fs.writeFileSync(target, article);
 })(Simple);
