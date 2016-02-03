@@ -88,48 +88,65 @@ img {
   }
 }
 
-
 a {
   word-wrap: break-word;
   text-decoration: none;
 }
 
-a > h1,
-a > h2,
-a > h3,
-a > h4,
-a > h5,
-a > h6 {
+a {
+  color: RoyalBlue;
+}
+
+a:visited {
+  color: Brown;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  pointer-events: none;
   color: #222;
 }
 
-pre {
-  overflow: scroll;
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: #222;
 }
 
+h1 > a:hover:before,
+h2 > a:hover:before,
+h3 > a:hover:before,
+h4 > a:hover:before,
+h5 > a:hover:before,
+h6 > a:hover:before {
+  color: Brown;
+}
 
-h1::before {
+h1 > a::before {
   content: "# ";
+  pointer-events: all;
 }
 
-h2::before {
+h2 > a::before {
   content: "## ";
+  pointer-events: all;
 }
 
-h3::before {
+h3 > a::before {
   content: "### ";
+  pointer-events: all;
 }
 
-h4::before {
+h4 > a::before {
   content: "#### ";
-}
-
-h5::before {
-  content: "##### ";
-}
-
-h6::before {
-  content: "###### ";
+  pointer-events: all;
 }
 
 i::before, i::after {
@@ -195,15 +212,6 @@ dl dd {
   margin-bottom: 0.4em;
 }
 
-a {
-  color: RoyalBlue;
-}
-
-a:visited {
-  color: Brown;
-}
-
-
 blockquote {
   display: block;
   border: solid 1px #ddd;
@@ -229,20 +237,8 @@ code::before, code::after {
   /* content: "`"; */
 }
 
-pre > code {
-  display: block;
-  padding: 0.6em;
-  margin: 0;
-  border: none;
-  background-color: #efefef;
-}
-
-pre > code::before,
-pre > code::after {
-  content: none;
-}
-
 pre {
+  overflow: auto;
   font-size: 1.2em;
   margin: 2em 0;
   border-radius: 4px;
@@ -256,6 +252,19 @@ pre::after {
   position: relative;
   top: -1em;
   content:"\A```";
+}
+
+pre > code {
+  display: block;
+  padding: 0.6em;
+  margin: 0;
+  border: none;
+  background-color: #efefef;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
 }
 
 .hljs-keyword {
@@ -338,13 +347,13 @@ pre::after {
 </header>
 <article>
   <div><time datetime=2016-01-27>2016-01-27</time><span class=tags><a>web</a><a>blog</a></span></div>
-  <a href="/entries/2016-01-27/new-blog-start.html"><h1>Blog を移転しました</h1></a>
+  <h1><a href="/entries/2016-01-27/new-blog-start.html">Blog を移転しました</a></h1>
   <section>
-    <a href="#intro"><h2 id="intro">intro</h2></a>
+    <h2 id="intro"><a href="#intro">intro</a></h2>
     <p>長いこと <a href="http://jxck.hatenablog.com/">はてな</a> をメインにし、他にも <a href="http://qiita.com/jxck_">Qiita</a> や <a href="http://jxck.tumblr.com/">Tumblr</a> を使って色々書いて来たけど、そろそろ自分のドメインに全部集約していこうかなと思います。
   </section>
   <section>
-    <a href="#motivation"><h2 id="motivation">motivation</h2></a>
+    <h2 id="motivation"><a href="#motivation">motivation</a></h2>
     <p>最近ではメディア系は独自のサイトを持つよりも、 Medium やらなんやらでツール経由で流入してもらわないと辛いという話を良く聞くので、その意味では完全に逆行しているかもしれません。
     <p>でも、別に PV を稼ぐためにブログを書いているわけでもないので、むしろ技術的にも自分で色々試せる自由な環境で、特定のサービスに依存せずやってみるのも良いかなと。
     <p>むしろ、ドメイン自体は結構前に取っていたので、遅すぎるくらいなのですが、やっと重い腰を上げました。
