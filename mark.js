@@ -80,9 +80,9 @@ ${article}
       // let taglinks = tags.map((tag) => `<a href="/tags/${tag}">${tag}</a>`).join('');
       let taglinks = tags.map((tag) => `<a>${tag}</a>`).join('');
       val += `<div><time datetime=${date}>${date}</time><span class=tags>${taglinks}</span></div>\n`;
-      val += `<a href="/${Simple.Canonical}"><h${node.depth}>${node.value}</h${node.depth}></a>\n`;
+      val += `<h${node.depth}><a href="/${Simple.Canonical}">${node.value}</a></h${node.depth}>\n`;
     } else {
-      val += `<a href="#${unspace(node.value)}"><h${node.depth} id="${unspace(node.value)}">${node.value}</h${node.depth}></a>\n`;
+      val += `<h${node.depth} id="${unspace(node.value)}"><a href="#${unspace(node.value)}">${node.value}</a></h${node.depth}>\n`;
     }
 
     return val;
