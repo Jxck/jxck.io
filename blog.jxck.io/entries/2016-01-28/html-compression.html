@@ -2,7 +2,7 @@
 <meta charset=utf-8>
 <link rel=canonical href=/entries/2016-01-28/html-compression.html>
 <link rel=amphtml href=/entries/2016-01-28/html-compression.amp.html>
-<meta name=viewport content="width=device-width, initial-scale=1">
+<meta name=viewport content="width=device-width,initial-scale=1">
 <title>HTML の省略によるサイズ最適化 | blog.jxck.io</title>
 
 <link rel=stylesheet type=text/css href=/assets/style.css>
@@ -10,14 +10,14 @@
   <a class=logo href=/>blog.jxck.io</a>
 </header>
 <article>
-  <div><time datetime=2016-01-28>2016-01-28</time><span class=tags><a>html</a></span></div>
+  <div><time datetime=2016-01-28>2016-01-28</time><span class=tags><a>performance</a><a>html</a></span></div>
   <a href="/entries/2016-01-28/html-compression.html"><h1>HTML の省略によるサイズ最適化</h1></a>
   <section>
     <a href="#Intro"><h2 id="Intro">Intro</h2></a>
     <p>とりあえず <a href="https://blog.jxck.io">blog.jxck.io</a> 以下については、基本的には静的ファイルを生成するスタイルで作ろうと思っている。
     <p>手元に書いた Markdown を HTML に変換するスタイルで、これを行うツールは星の数ほどあるが、この変換時に前から思っていた HTML の最適化をやってみようと思った。
     <p>結局そういうことができるツールはなさそうなので、 Markdown のパーサだけ借りてきて、 AST から構築する過程で省略を施した。
-    <p>単なる実験としてその結果を書いておく。
+    <p>単なる実験としてその結果を書いておく。(なお、今はまだ CSS も圧縮していない)
   </section>
   <section>
     <a href="#静的コンテンツの最適化"><h2 id="静的コンテンツの最適化">静的コンテンツの最適化</h2></a>
@@ -27,9 +27,9 @@
       <li>gzip や png ではなく jpeg を使うなどのアルゴリズムにより経路上で圧縮する
       <li>js や css から不要なスペースや改行を消すことで、コンテンツサイズを減らす
     </ul>
-    <p>どちらも今となってはツールなどが充実していて、特に導入は難しく無いと思う。
+    <p>どちらも今となってはツールなどが充実していて、特に導入は難しくないと思う。
     <p>ここで後者の最適化の一環として、 HTML を最適化したことはあるだろうか？
-    あるとしても、それはスペース削除だけじゃ無いだろうか？
+    あるとしても、それはスペース削除だけじゃないだろうか？
   </section>
   <section>
     <a href="#HTML+の省略記法"><h2 id="HTML+の省略記法">HTML の省略記法</h2></a>
@@ -144,12 +144,8 @@ jxck$ wc html-no-compression.html
     <a href="#結論"><h2 id="結論">結論</h2></a>
     <p>HTML も省略が可能な部分が有り、省略しても Valid な HTML にすることが可能である。
     また、このエントリにおいては、省略によるパースへの影響は認められなかった。
-    <p>HTML パーサを使わずに、片手間な正規表現でクローラを書いてる人などへの影響
-    <ul>
-      <li>Web アプリでは HTML を省略するテンプレートエンジンなどは一般的ではない
-      HTML を手書きするのではなく、テンプレートなどから生成する場合、もし省略できるのなら、「片手間にスクレイピングしようとしている人にとって面倒」というくらい以外には、特にデメリットは無いように思う。
-    </ul>
-    <p>このサイトは、自分がソースを見た時に見やすいように、インデントと改行は消していないが、とりあえずこのまま行こうと思う。
+    <p>HTML を手書きするのではなく、テンプレートなどから生成する場合、もし省略できるのなら、「片手間にスクレイピングしようとしている人にとって面倒」というくらい以外には、特にデメリットは無いように思う。
+    <p>このサイトは、自分がソースを見た時に見やすいように、インデントと改行は消していないが、とりあえずこのままでいこうと思う。
   </section>
 </article>
 <hr>

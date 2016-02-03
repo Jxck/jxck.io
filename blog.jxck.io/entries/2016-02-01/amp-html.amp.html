@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html amp>
+<head>
+<meta charset=utf-8>
+<link rel=canonical href=/entries/2016-02-01/amp-html.html>
+<meta name=viewport content="width=device-width,minimum-scale=1">
+<style>body {opacity: 0}</style><noscript><style>body {opacity: 1}</style></noscript>
+<title>AMP HTML 対応 | blog.jxck.io</title>
+<script async src=https://cdn.ampproject.org/v0.js></script>
+<style amp-custom>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', 'Helvetica', serif;
+  color: #222;
+  background-color: #fefefe;
+}
+
+header {
+  box-sizing: border-box;
+  background-color: #222;
+  margin: 0;
+  padding: 0.4em;
+}
+
+header a.logo {
+  display: block;
+  padding: 0.4em;
+  color: gray;
+}
+
+header a.logo:hover {
+  color: white;
+}
+
+article {
+  width: 80%;
+  margin: 1em auto;
+}
+
+.archive {
+  width: 80%;
+  margin: 1em auto;
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.archive ul {
+  margin: 0;
+}
+
+time {
+  padding-right: 0.5em;
+}
+
+time::after {
+  content: ":";
+}
+
+.tags {
+  font-size: 0.8em;
+}
+
+.tags a {
+  margin-left: 0.2em;
+  padding: 0.2em 0.4em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #ddd;
+  text-decoration: none;
+}
+
+footer {
+  padding: 1em;
+}
+
+img {
+  max-width: 50%;
+  display: block;
+  margin: 1em 0;
+  border: solid 1px #ccc;
+}
+
+@media only screen and (max-device-width : 480px) {
+  img {
+    max-width:100%;
+  }
+}
+
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+}
+
+a > h1,
+a > h2,
+a > h3,
+a > h4,
+a > h5,
+a > h6 {
+  color: #222;
+}
+
+pre {
+  overflow: scroll;
+}
+
+
+h1::before {
+  content: "# ";
+}
+
+h2::before {
+  content: "## ";
+}
+
+h3::before {
+  content: "### ";
+}
+
+h4::before {
+  content: "#### ";
+}
+
+h5::before {
+  content: "##### ";
+}
+
+h6::before {
+  content: "###### ";
+}
+
+i::before, i::after {
+  content: "*";
+}
+
+strong::before, strong::after {
+  content: "**";
+}
+
+ol, ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+table {
+  margin: 2em 0;
+  border-spacing: 0 0.4em;
+}
+
+th {
+  padding: 0em 1.2em 0.8em;
+  border-left: 0.14em solid #222;
+  border-bottom: 2px dashed #222;
+}
+
+td {
+  padding: 0.4em 1em;
+  border-left: 0.14em solid #222;
+}
+
+th:last-child, td:last-child {
+  border-right: 0.14em solid #222;
+}
+
+ul, ol, dl {
+  margin: 2em 0;
+}
+
+dl dt {
+  font-weight: bold;
+}
+
+dl dt::after {
+  content: ":";
+}
+
+dl dd {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+a {
+  color: RoyalBlue;
+}
+
+a:visited {
+  color: Brown;
+}
+
+
+blockquote {
+  display: block;
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  padding: 1em;
+  margin: 2em 0;
+}
+
+blockquote::before {
+  content: "> ";
+}
+
+code {
+  border: 1px solid #ddd;
+  background-color: #efefef;
+  border-radius: 4px;
+  padding: 0.1em;
+  margin: 2em 0;
+}
+
+code::before, code::after {
+  /* うざかった */
+  /* content: "`"; */
+}
+
+pre > code {
+  display: block;
+  padding: 0.6em;
+  margin: 0;
+  border: none;
+  background-color: #efefef;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+pre {
+  font-size: 1.2em;
+  margin: 2em 0;
+  border-radius: 4px;
+}
+
+pre::before {
+  content: "```" attr(class) "\A";
+}
+
+pre::after {
+  position: relative;
+  top: -1em;
+  content:"\A```";
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs,
+.hljs-subst ,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-name ,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition ,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-type,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-section,
+.hljs-meta,
+.hljs-meta-string,
+.hljs-emphasis {
+}
+
+</style>
+</head>
+<body>
+<header>
+  <a class=logo href=/>blog.jxck.io</a>
+</header>
+<article>
+  <div><time datetime=2016-02-01>2016-02-01</time><span class=tags><a>performance</a><a>amp</a></span></div>
+  <a href="/entries/2016-02-01/amp-html.html"><h1>AMP HTML 対応</h1></a>
+  <section>
+    <a href="#Intro"><h2 id="Intro">Intro</h2></a>
+    <p>Google が推奨する仕様である <a href="https://www.ampproject.org/">AMP HTML</a> に、このブログのエントリページのみ対応してみた。
+    <p><a href="https://www.ampproject.org/">ACCELERATED MOBILE PAGES PROJECT</a>
+    <p>タイトルは識別しやすいよう AMP HTML としたが、実際には AMP という仕様(方針)があり、 HTML 以外にも手を入れている。
+  </section>
+  <section>
+    <a href="#AMP"><h2 id="AMP">AMP</h2></a>
+    <p>AMP は、特にモバイル向けに <strong>静的コンテンツ</strong> を最適化し、高速に表示できるようにすることを目的としている。
+    <p>実際は、高速化するというより、「遅くなる原因を排除する」という制約を課す仕様という作りになっている。
+    <p>AMP は以下の三つの要素からなる。
+    <ul>
+      <li>AMP HTML
+      <li>AMP JS
+      <li>AMP CDN
+    </ul>
+    <p>各要素を細かく説明し、 AMP への対応方法を書いたエントリは他にも多くあるので、対応してみた結果と、この仕様に対する感想を交えて、重要そうなところだけ拾って書く。
+    <section>
+      <a href="#AMP+HTML"><h3 id="AMP+HTML">AMP HTML</h3></a>
+      <p>本サイトの HTML は、 <a href="http://localhost:3000/entries/2016-01-28/html-compression.html">HTML の省略によるサイズ最適化</a> に書いた通り、極力タグを省略した作りにしている。
+      <p>しかし、 AMP の仕様では <code>&lt;head&gt;</code>, <code>&lt;body&gt;</code> などの記述は必須となっているため、追加した。
+    </section>
+    <section>
+      <a href="#discovery+(相互参照)"><h3 id="discovery+(相互参照)">discovery (相互参照)</h3></a>
+      <p>本サイトでは、普通の HTML と AMP 対応の HTML は別にビルドしており、 URL の末尾が <code>.html</code> か <code>.amp.html</code> かで分けている。
+      <p>こうした場合は <code>&lt;link&gt;</code> タグで、クローラなどに相互のページの参照を伝えることができる。
+      <p>このサイトでは <code>.html</code> に AMP 対応があることを伝える以下を追記した。
+      <pre class=html><code>&lt;link rel=amphtml href=${path}.amp.html&gt;</code></pre>
+      <p>一方 <code>.amp.html</code> では、ブックマークなどが統一できるように <code>canonical</code> を追加している。
+      <pre class=html><code>&lt;link rel=canonical href=${path}.html&gt;</code></pre>
+      <p>access_log で UA などを追えば、 apmhtml を見るクローラが追えるかもしれない。
+    </section>
+  </section>
+</article>
+<hr>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
+</footer>
+</body>
+</html>
