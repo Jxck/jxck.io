@@ -26,15 +26,15 @@ puts <<-EOS
 <meta name=viewport content="width=device-width,initial-scale=1">
 
 <title>blog.jxck.io</title>
-<link rel=stylesheet type=text/css href=assets/style.css>
+<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/style.css>
 
 <header>
   <a class=logo href=/>blog.jxck.io</a>
 </header>
 
 <section class=archive>
-  <h1>Archive</h1>
-  <h2>2016</h2>
+  <h1><a href=#archive>Archive</a></h1>
+  <h2><a href=#2016>2016</a></h2>
   <ul>
     #{entries.join("\n    ")}
   </ul>
