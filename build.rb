@@ -10,6 +10,7 @@ entries = `find ./blog.jxck.io/entries -name *.md`.split("\n").map{|file|
     .scan(/\[(.+?)\]/)
     .map{|s| s.pop }
     .map{|tag| "<a>#{tag}</a>" }
+    .reverse
     .join
 
   tagspan = "<span class=tags>#{tags}</span>"
