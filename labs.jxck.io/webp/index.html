@@ -1,118 +1,207 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content=webp>
 
 <title>Webp | labs.xck.io</title>
-<meta name=description content=webp>
+
 <style>
-  body {
-    background-color: #fefefe;
-    color: #222;
-    font-family: 'Helvetica Neue', 'Helvetica', serif;
-    margin:2% 2%;
-  }
-  dl {
-    padding: 0 2%;
-  }
-  table {
-    border: solid 1px #ccc;
-  }
-  th {
-    background-color: #f1f2f3;
-  }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', 'Helvetica', serif;
+  color: #222;
+  background-color: #fefefe;
+}
+
+header {
+  box-sizing: border-box;
+  background-color: #222;
+  margin: 0;
+  padding: 0.4em;
+}
+
+header a.logo {
+  display: block;
+  padding: 0.4em;
+  color: gray;
+}
+
+header a.logo:hover {
+  color: white;
+}
+
+section {
+  margin: 2em;
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+}
+
+a {
+  color: RoyalBlue;
+}
+
+a:visited {
+  color: Brown;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  pointer-events: none;
+  color: #222;
+}
+
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: #222;
+}
+
+h1 > a:hover:before,
+h2 > a:hover:before,
+h3 > a:hover:before,
+h4 > a:hover:before,
+h5 > a:hover:before,
+h6 > a:hover:before {
+  color: Brown;
+}
+
+h1 > a::before {
+  content: "# ";
+  pointer-events: all;
+}
+
+h2 > a::before {
+  content: "## ";
+  pointer-events: all;
+}
+
+h3 > a::before {
+  content: "### ";
+  pointer-events: all;
+}
+
+h4 > a::before {
+  content: "#### ";
+  pointer-events: all;
+}
 </style>
 
-<section>
-  <h1>WebP Labs</h1>
-</section>
+<style>
+table {
+  border: solid 1px #ccc;
+}
+
+th {
+  background-color: #f1f2f3;
+}
+</style>
+
+<header>
+  <a class=logo href=/>labs.jxck.io</a>
+</header>
 
 <section>
-  <h2>Loss Less Sample</h2>
-  <table>
-    <tr>
-      <th>PNG
-      <th>WebP
-    <tr>
-      <td><img src=uikit.lossless.png alt="uikit lossless png">
-      <td><img src=uikit.lossless.webp alt="uikit lossless webp">
-    <tr>
-      <td>74KB
-      <td>62KB
-  </table>
-</section>
+  <h1 id=webp_labs><a href=/webp>WebP Labs</a></h1>
 
-<section>
-  <h2>Lossy Sample</h2>
-  <table>
-    <tr>
-      <th>JPEG
-      <th>WebP
-    <tr>
-      <td><img src=lenna.lossy.jpeg alt="lenna lossy jpeg">
-      <td><img src=lenna.lossy.webp alt="lenna lossy webp">
-    <tr>
-      <td>74KB
-      <td>20KB
-  </table>
-</section>
-
-<section>
-  <h2>Animation</h2>
   <section>
-    <h3>Gopher</h3>
+    <h2 id=loss_less_sample><a href=#loss_less_sample>Loss Less Sample</a></h2>
     <table>
       <tr>
-        <th>GIF
+        <th>PNG
         <th>WebP
       <tr>
-        <td><img src=gopher-animation.gif alt="gopher animation gif">
-        <td><img src=gopher-animation.webp alt="gopher animation webp">
+        <td><img src=uikit.lossless.png alt="uikit lossless png">
+        <td><img src=uikit.lossless.webp alt="uikit lossless webp">
       <tr>
-        <td>38KB
-        <td>12KB
+        <td>74KB
+        <td>62KB
     </table>
   </section>
+
   <section>
-    <h3>Color</h3>
+    <h2 id=lossy_sample><a href=#lossy_sample>Lossy Sample</a></h2>
     <table>
       <tr>
-        <th>GIF
+        <th>JPEG
         <th>WebP
       <tr>
-        <td><img src=animation.gif alt="animation gif">
-        <td><img src=animation.webp alt="animation webp">
+        <td><img src=lenna.lossy.jpeg alt="lenna lossy jpeg">
+        <td><img src=lenna.lossy.webp alt="lenna lossy webp">
       <tr>
-        <td>262KB
-        <td>55KB
+        <td>74KB
+        <td>20KB
     </table>
   </section>
-</section>
 
-<section>
-  <h2>Original</h2>
-  <img src=uikit.lossless.png alt="uikit lossless png">
-  <img src=lenna.lossless.png alt="lenna lossless png">
-</section>
+  <section>
+    <h2 id=animation><a href=#animation>Animation</a></h2>
+    <section>
+      <h3 id=gopher><a href=#gopher>Gopher</a></h3>
+      <table>
+        <tr>
+          <th>GIF
+          <th>WebP
+        <tr>
+          <td><img src=gopher-animation.gif alt="gopher animation gif">
+          <td><img src=gopher-animation.webp alt="gopher animation webp">
+        <tr>
+          <td>38KB
+          <td>12KB
+      </table>
+    </section>
+    <section>
+      <h3 id=color><a href=#color>color</a></h3>
+      <table>
+        <tr>
+          <th>GIF
+          <th>WebP
+        <tr>
+          <td><img src=animation.gif alt="animation gif">
+          <td><img src=animation.webp alt="animation webp">
+        <tr>
+          <td>262KB
+          <td>55KB
+      </table>
+    </section>
+  </section>
 
-<section>
-  <h2>Licenses</h2>
-  <ul>
-    <li>Lenna: http://www.cs.cmu.edu/~chuck/lennapg/lena_std.tif
-    <li>Smooth UI Kit: Creative Commons Attribution 3.0
-    <li>Photo Credit: <a href=http://www.flickr.com/photos/11599314@N00/590975150/>Luz Adriana Villa A.</a> via <a href=http://compfight.com>Compfight</a> <a href=http://creativecommons.org/licenses/by/2.0/>cc</a>
-    <li>Photo Credit: <a href=http://www.flickr.com/photos/46944516@N00/8284187848/>pedrosimoes7</a> via <a href=http://compfight.com>Compfight</a> <a href=http://creativecommons.org/licenses/by/2.0/>cc</a>
-    <li>Photo Credit: <a href=http://www.flickr.com/photos/12836528@N00/3589122012/>kevin dooley</a> via <a href=http://compfight.com>Compfight</a> <a href=http://creativecommons.org/licenses/by/2.0/>cc</a>
-    <li>Photo Credit: <a href=http://www.flickr.com/photos/12836528@N00/4091928427/>kevin dooley</a> via <a href=http://compfight.com>Compfight</a> <a href=http://creativecommons.org/licenses/by/2.0/>cc</a>
-    <li>Photo Credit: <a href=http://www.flickr.com/photos/44345361@N06/6464688535/>VinothChandar</a> via <a href=http://compfight.com>Compfight</a> <a href=http://creativecommons.org/licenses/by/2.0/>cc</a>
-    <li>Photo Credit: <a href=http://www.flickr.com/photos/48973657@N00/2599237728/>See-ming Lee 李思明 SML</a> via <a href=http://compfight.com>Compfight</a> <a href=http://creativecommons.org/licenses/by-sa/2.0/>cc</a>
-    <li>Gopher: <a href=https://code.google.com/p/go/source/browse#hg%2Fdoc%2Fgopher>Golang</a> via <a href=http://golang.org/doc/faq#Whats_the_origin_of_the_mascot>cc</a>
-  </ul>
+  <section>
+    <h2 id=original><a href=#original>original</a></h2>
+    <img src=uikit.lossless.png alt="uikit lossless png">
+    <img src=lenna.lossless.png alt="lenna lossless png">
+  </section>
+
+  <section>
+    <h2 id=license><a href=#license>License</a></h2>
+    <ul>
+      <li>Lenna: http://www.cs.cmu.edu/~chuck/lennapg/lena_std.tif
+      <li>Smooth UI Kit: Creative Commons Attribution 3.0
+      <li>Photo Credit: <a href=http://www.flickr.com/photos/11599314@N00/590975150/>Luz Adriana Villa A.</a> via <a href=http://compfight.com>Compfight</a> <a href=http://creativecommons.org/licenses/by/2.0/>cc</a>
+      <li>Photo Credit: <a href=http://www.flickr.com/photos/46944516@N00/8284187848/>pedrosimoes7</a> via <a href=http://compfight.com>Compfight</a> <a href=http://creativecommons.org/licenses/by/2.0/>cc</a>
+      <li>Photo Credit: <a href=http://www.flickr.com/photos/12836528@N00/3589122012/>kevin dooley</a> via <a href=http://compfight.com>Compfight</a> <a href=http://creativecommons.org/licenses/by/2.0/>cc</a>
+      <li>Photo Credit: <a href=http://www.flickr.com/photos/12836528@N00/4091928427/>kevin dooley</a> via <a href=http://compfight.com>Compfight</a> <a href=http://creativecommons.org/licenses/by/2.0/>cc</a>
+      <li>Photo Credit: <a href=http://www.flickr.com/photos/44345361@N06/6464688535/>VinothChandar</a> via <a href=http://compfight.com>Compfight</a> <a href=http://creativecommons.org/licenses/by/2.0/>cc</a>
+      <li>Photo Credit: <a href=http://www.flickr.com/photos/48973657@N00/2599237728/>See-ming Lee 李思明 SML</a> via <a href=http://compfight.com>Compfight</a> <a href=http://creativecommons.org/licenses/by-sa/2.0/>cc</a>
+      <li>Gopher: <a href=https://code.google.com/p/go/source/browse#hg%2Fdoc%2Fgopher>Golang</a> via <a href=http://golang.org/doc/faq#Whats_the_origin_of_the_mascot>cc</a>
+    </ul>
+  </section>
 </section>
 
 <hr>
 
 <footer>
-  <address class=copyright>Copyright &copy; 2013 <a href=/>Jxck</a>. All Rights Reserved.</address>
+  <address class=copyright>Copyright &copy; 2013 <a href=//jxck.io>Jxck</a>. All Rights Reserved.</address>
 </footer>
 
 <script>
