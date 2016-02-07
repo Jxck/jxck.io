@@ -33,7 +33,7 @@ let Simple = {
 <meta name=viewport content="width=device-width,initial-scale=1">
 <title>${Simple.title} | blog.jxck.io</title>
 
-<link rel=stylesheet type=text/css href=/assets/style.css>
+<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/style.css>
 <header>
   <a class=logo href=/>blog.jxck.io</a>
 </header>
@@ -372,7 +372,7 @@ ${article}
   ast.children = sectioning(ast.children, 1);
 
   amp.Canonical = `${baseurl}/${name}.html`;
-  amp.Style = fs.readFileSync('blog.jxck.io/assets/style.css').toString();
+  amp.Style = fs.readFileSync('www.jxck.io/assets/css/style.css').toString();
 
   let article = build(ast, dir, date, amp);
 
