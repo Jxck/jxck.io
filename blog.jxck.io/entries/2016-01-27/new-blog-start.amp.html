@@ -21,12 +21,16 @@ header {
   background-color: #222;
   margin: 0;
   padding: 0.4em;
+}
 
+header div {
+  margin: 0 auto;
+  width: 80%;
   display: flex;
   flex-direction: row;
 }
 
-header > a.logo {
+header a.logo {
   display: block;
   width: 40px;
   height: 32px;
@@ -34,7 +38,7 @@ header > a.logo {
   padding: 0;
 }
 
-header > a > img {
+header a > img {
   display: block;
   width: 32px;
   height: 32px;
@@ -46,6 +50,7 @@ header a.path {
   display: block;
   padding: 0.4em;
   color: gray;
+  flex-grow: 1;
 }
 
 header a.path:hover {
@@ -364,8 +369,11 @@ pre > code::after {
 </head>
 <body>
 <header>
-  <a class=logo href=//jxck.io><img src=https://jxck.io/assets/img/jxck.png></a>
-  <a class=path href=/>blog.jxck.io</a>
+  <div>
+    <a class=logo href=//jxck.io><img src=//jxck.io/assets/img/jxck.png></a>
+    <a class=path href=/>blog.jxck.io</a>
+    <a class=feed href=/feeds/atom.xml><img src=//jxck.io/assets/img/rss.svg></a>
+  </div>
 </header>
 <article>
   <div><time datetime=2016-01-27>2016-01-27</time><span class=tags><a>web</a><a>blog</a></span></div>

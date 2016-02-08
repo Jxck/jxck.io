@@ -36,8 +36,11 @@ let Simple = {
 <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/style.css>
 
 <header>
-  <a class=logo href=//jxck.io><img src=https://jxck.io/assets/img/jxck.png></a>
-  <a class=path href=/>blog.jxck.io</a>
+  <div>
+    <a class=logo href=//jxck.io><img src=//jxck.io/assets/img/jxck.png></a>
+    <a class=path href=/>blog.jxck.io</a>
+    <a class=feed href=/feeds/atom.xml><img src=//jxck.io/assets/img/rss.svg></a>
+  </div>
 </header>
 ${article}
 <hr>
@@ -360,8 +363,11 @@ ${Simple.Style}
 </head>
 <body>
 <header>
-  <a class=logo href=//jxck.io><img src=https://jxck.io/assets/img/jxck.png></a>
-  <a class=path href=/>blog.jxck.io</a>
+  <div>
+    <a class=logo href=//jxck.io><img src=//jxck.io/assets/img/jxck.png></a>
+    <a class=path href=/>blog.jxck.io</a>
+    <a class=feed href=/feeds/atom.xml><img src=//jxck.io/assets/img/rss.svg></a>
+  </div>
 </header>
 ${article}
 <hr>
