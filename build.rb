@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-entries = `find ./blog.jxck.io/entries -name *.md`.split("\n").map{|file|
+entries = `find ./blog.jxck.io/entries -name *.md | sort -r`.split("\n").map{|file|
   `./mark.js #{file}`
   head = `head -n 1 #{file}`
 
