@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<link rel=canonical href=/entries/2016-02-08/h2o-deploy.html>
+<link rel=amphtml href=/entries/2016-02-08/h2o-deploy.amp.html>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>h2o で https/2 のデプロイと設定 | blog.jxck.io</title>
+
+<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/style.css>
+
+<header>
+  <a class=logo href=//jxck.io><img src=https://jxck.io/assets/img/jxck.png></a>
+  <a class=path href=/>blog.jxck.io</a>
+</header>
+<article>
+  <div><time datetime=2016-02-08>2016-02-08</time><span class=tags><a>http2</a><a>h2o</a></span></div>
+  <h1><a href="/entries/2016-02-08/h2o-deploy.html">h2o で https/2 のデプロイと設定</a></h1>
+  <section>
+    <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+    <p>土台がだいたいできたので、このサイトを h2o にデプロイした話。
+  </section>
+  <section>
+    <h2 id="h2o"><a href="#h2o">h2o</a></h2>
+    <p>以前は nginx を使っていたけど、年末に旧ブログに書いた Cache-Aware Server Push を試したかったから。
+    <p><a href="http://jxck.hatenablog.com/entry/service-worker-casper">HTTP/2 Push を Service Worker + Cache Aware Server Push で効率化したい話</a>
+    <p>これは現在 httpbis にドラフトとして上がっており、議論が進んでいる。
+    <p><a href="https://tools.ietf.org/html/draft-kazuho-h2-cache-digest-00">Cache Digests for HTTP/2</a>
+    <p>まだ Cookie での実装は残っているので、このサイトで対応して行きたい。
+  </section>
+  <section>
+    <h2 id="証明書"><a href="#証明書">証明書</a></h2>
+    <p>実は <strong>*.jxck.io</strong> に対するワイルドカード証明書を買っている。
+    したがって、 Let's Encrypt は使ってない。
+    これは Podcast のドメインのほうでやっていこうと思ってる。
+  </section>
+  <section>
+    <h2 id="ドメイン"><a href="#ドメイン">ドメイン</a></h2>
+    <p>今までは <a href="https://jxck.io">jxck.io</a> だけで使っていたけど、これを複数ドメインにわけて運用する。
+    ワイルドカードがあり、同一 IP でデプロイされていると、 http2 でコネクションを束ねられる。
+  </section>
+  <section>
+    <h2 id="SSL+LAB"><a href="#SSL+LAB">SSL LAB</a></h2>
+    <p>TLS の設定を SSL LABS で調べて A+ を取るのがトレンドみたいになっている。このサイトの結果は A になっている。
+    <p><a href="https://www.ssllabs.com/ssltest/analyze.html?d=jxck.io&latest">SSL Report: jxck.io</a>
+    <p>これは、せっかくなので <strong>TLS1.2</strong> 以下を切ったり、 <strong>暗号スイート</strong> を強めに制限しているため、古い Android への対応できてないからである。
+    <p>積極的に切って行くスタイル。
+  </section>
+  <section>
+    <h2 id="静的ファイルへのマッピング"><a href="#静的ファイルへのマッピング">静的ファイルへのマッピング</a></h2>
+    <p>h2o の設定でちょっとハマったのがパスとファイルの紐付けができないところ。
+    <p>たとえば、 <code>favicon.ico</code> だとか <code>robots.txt</code> は、特定の URL に対して特定のファイルを割り当てる。
+    これがこう書けると嬉しい。
+    <pre class=null><code>paths:
+  &quot;/favicon.ico&quot;:
+     file.dir: /some/path/to/favicon.ico
+  &quot;/&quot;:
+     file.dir: /path/to/doc-root</code></pre>
+    <p>しかし、実際は paths へはディレクトリしか紐づけられない。
+    やるなら mruby.handler を使うしかない。
+    (399 は、 fallthroug の独自ルールになってるらしい)
+    <pre class=null><code>&quot;/&quot;:
+  mruby.handler: |
+    Proc.new do |env|
+      if env[&quot;PATH_INFO&quot;] == &quot;/favicon.ico&quot;
+        [200, {&quot;content-type&quot; =&gt; &quot;image/x-icon&quot;}, File::open(&quot;/path/to/favicon.ico&quot;)]
+      else
+        [399, {}, []]
+      end
+    end
+  file.dir: /path/to/dir</code></pre>
+    <p>しかしこれを毎回書くのはちょっと面倒。
+    kazuho さんとは、ファイルを割り当てられるようにするか、もはや h2o.conf を自動生成するか、 ruby で書けるようにしたらいいか、みたいな話をした。
+  </section>
+  <section>
+    <h2 id="HSTS"><a href="#HSTS">HSTS</a></h2>
+    <p>http -> https へのリダイレクトは入れているが、 HSTS ヘッダはまだ吐いてない。
+    これ吐いてしまうと、ブラウザに忘れさせない限り http では繋がらなくなり、デバッグがちょっと面倒な場合がある。
+    <p>一通り開発が落ち着いたら吐く。
+  </section>
+  <section>
+    <h2 id="Outro"><a href="#Outro">Outro</a></h2>
+    <p>細かい設定が固まったらまた書く。
+  </section>
+</article>
+<hr>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
+</footer>
+<script src="/assets/highlight.min.js"></script>
+<script>window.onload = hljs.initHighlighting;</script>

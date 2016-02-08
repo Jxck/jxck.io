@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html amp>
+<head>
+<meta charset=utf-8>
+<link rel=canonical href=/entries/2016-02-08/h2o-http2-deploy.html>
+<meta name=viewport content="width=device-width,minimum-scale=1">
+<style>body {opacity: 0}</style><noscript><style>body {opacity: 1}</style></noscript>
+<title>h2o で https/2 のデプロイと設定 | blog.jxck.io</title>
+<script async src=https://cdn.ampproject.org/v0.js></script>
+<style amp-custom>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', 'Helvetica', serif;
+  color: #222;
+  background-color: #fefefe;
+}
+
+header {
+  box-sizing: border-box;
+  background-color: #222;
+  margin: 0;
+  padding: 0.4em;
+
+  display: flex;
+  flex-direction: row;
+}
+
+header > a.logo {
+  display: block;
+  width: 40px;
+  height: 32px;
+  margin: 0;
+  padding: 0;
+}
+
+header > a > img {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: 0;
+  padding: 0;
+}
+
+header a.path {
+  display: block;
+  padding: 0.4em;
+  color: gray;
+}
+
+header a.path:hover {
+  color: white;
+}
+
+article {
+  width: 80%;
+  margin: 1em auto;
+}
+
+.archive {
+  width: 80%;
+  margin: 1em auto;
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.archive ul {
+  margin: 0;
+}
+
+time {
+  padding-right: 0.5em;
+}
+
+time::after {
+  content: ":";
+}
+
+.tags {
+  font-size: 0.8em;
+}
+
+.tags a {
+  margin-left: 0.2em;
+  padding: 0.2em 0.4em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #ddd;
+  text-decoration: none;
+}
+
+footer {
+  padding: 1em;
+}
+
+article > img {
+  max-width: 50%;
+  display: block;
+  margin: 1em 0;
+  border: solid 1px #ccc;
+}
+
+@media only screen and (max-device-width : 480px) {
+  article > img {
+    max-width:100%;
+  }
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+}
+
+a {
+  color: RoyalBlue;
+}
+
+a:visited {
+  color: Brown;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  pointer-events: none;
+  color: #222;
+}
+
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: #222;
+}
+
+h1 > a:hover:before,
+h2 > a:hover:before,
+h3 > a:hover:before,
+h4 > a:hover:before,
+h5 > a:hover:before,
+h6 > a:hover:before {
+  color: Brown;
+}
+
+h1 > a::before {
+  content: "# ";
+  pointer-events: all;
+}
+
+h2 > a::before {
+  content: "## ";
+  pointer-events: all;
+}
+
+h3 > a::before {
+  content: "### ";
+  pointer-events: all;
+}
+
+h4 > a::before {
+  content: "#### ";
+  pointer-events: all;
+}
+
+i::before, i::after {
+  content: "*";
+}
+
+strong::before, strong::after {
+  content: "**";
+}
+
+ol, ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+table {
+  margin: 2em 0;
+  border-spacing: 0 0.4em;
+}
+
+th {
+  padding: 0em 1.2em 0.8em;
+  border-left: 0.14em solid #222;
+  border-bottom: 2px dashed #222;
+}
+
+td {
+  padding: 0.4em 1em;
+  border-left: 0.14em solid #222;
+}
+
+th:last-child, td:last-child {
+  border-right: 0.14em solid #222;
+}
+
+ul, ol, dl {
+  margin: 2em 0;
+}
+
+dl dt {
+  font-weight: bold;
+}
+
+dl dt::after {
+  content: ":";
+}
+
+dl dd {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+blockquote {
+  display: block;
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  padding: 1em;
+  margin: 2em 0;
+}
+
+blockquote::before {
+  content: "> ";
+}
+
+code {
+  border: 1px solid #ddd;
+  background-color: #efefef;
+  border-radius: 4px;
+  padding: 0.1em;
+  margin: 2em 0;
+}
+
+code::before, code::after {
+  /* うざかった */
+  /* content: "`"; */
+}
+
+pre {
+  overflow: auto;
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: 1.2em;
+  margin: 2em 0;
+  border-radius: 4px;
+}
+
+pre::before {
+  content: "```" attr(class) "\A";
+}
+
+pre::after {
+  position: relative;
+  top: -1em;
+  content:"\A```";
+}
+
+pre > code {
+  display: block;
+  padding: 0.6em;
+  margin: 0;
+  border: none;
+  background-color: #efefef;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs,
+.hljs-subst ,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-name ,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition ,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-type,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-section,
+.hljs-meta,
+.hljs-meta-string,
+.hljs-emphasis {
+}
+
+</style>
+</head>
+<body>
+<header>
+  <a class=logo href=//jxck.io><img src=https://jxck.io/assets/img/jxck.png></a>
+  <a class=path href=/>blog.jxck.io</a>
+</header>
+<article>
+  <div><time datetime=2016-02-08>2016-02-08</time><span class=tags><a>http2</a><a>h2o</a></span></div>
+  <h1><a href="/entries/2016-02-08/h2o-http2-deploy.html">h2o で https/2 のデプロイと設定</a></h1>
+  <section>
+    <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+    <p>土台がだいたいできたので、このサイトを h2o にデプロイした話。
+  </section>
+  <section>
+    <h2 id="h2o"><a href="#h2o">h2o</a></h2>
+    <p>以前は nginx を使っていたけど、年末に旧ブログに書いた Cache-Aware Server Push を試したかったから。
+    <p><a href="http://jxck.hatenablog.com/entry/service-worker-casper">HTTP/2 Push を Service Worker + Cache Aware Server Push で効率化したい話</a>
+    <p>これは現在 httpbis にドラフトとして上がっており、議論が進んでいる。
+    <p><a href="https://tools.ietf.org/html/draft-kazuho-h2-cache-digest-00">Cache Digests for HTTP/2</a>
+    <p>まだ Cookie での実装は残っているので、このサイトで対応して行きたい。
+  </section>
+  <section>
+    <h2 id="証明書"><a href="#証明書">証明書</a></h2>
+    <p>実は <strong>*.jxck.io</strong> に対するワイルドカード証明書を買っている。
+    したがって、 Let's Encrypt は使ってない。
+    これは Podcast のドメインのほうでやっていこうと思ってる。
+  </section>
+  <section>
+    <h2 id="ドメイン"><a href="#ドメイン">ドメイン</a></h2>
+    <p>今までは <a href="https://jxck.io">jxck.io</a> だけで使っていたけど、これを複数ドメインにわけて運用する。
+    ワイルドカードがあり、同一 IP でデプロイされていると、 http2 でコネクションを束ねられる。
+  </section>
+  <section>
+    <h2 id="SSL+LAB"><a href="#SSL+LAB">SSL LAB</a></h2>
+    <p>TLS の設定を SSL LABS で調べて A+ を取るのがトレンドみたいになっている。このサイトの結果は A になっている。
+    <p><a href="https://www.ssllabs.com/ssltest/analyze.html?d=jxck.io&latest">SSL Report: jxck.io</a>
+    <p>これは、せっかくなので <strong>TLS1.2</strong> 以下を切ったり、 <strong>暗号スイート</strong> を強めに制限しているため、古い Android への対応できてないからである。
+    <p>積極的に切って行くスタイル。
+  </section>
+  <section>
+    <h2 id="静的ファイルへのマッピング"><a href="#静的ファイルへのマッピング">静的ファイルへのマッピング</a></h2>
+    <p>h2o の設定でちょっとハマったのがパスとファイルの紐付けができないところ。
+    <p>たとえば、 <code>favicon.ico</code> だとか <code>robots.txt</code> は、特定の URL に対して特定のファイルを割り当てる。
+    これがこう書けると嬉しい。
+    <pre class=null><code>paths:
+  &quot;/favicon.ico&quot;:
+     file.dir: /some/path/to/favicon.ico
+  &quot;/&quot;:
+     file.dir: /path/to/doc-root</code></pre>
+    <p>しかし、実際は paths へはディレクトリしか紐づけられない。
+    やるなら mruby.handler を使うしかない。
+    (399 は、 fallthroug の独自ルールになってるらしい)
+    <pre class=null><code>&quot;/&quot;:
+  mruby.handler: |
+    Proc.new do |env|
+      if env[&quot;PATH_INFO&quot;] == &quot;/favicon.ico&quot;
+        [200, {&quot;content-type&quot; =&gt; &quot;image/x-icon&quot;}, File::open(&quot;/path/to/favicon.ico&quot;)]
+      else
+        [399, {}, []]
+      end
+    end
+  file.dir: /path/to/dir</code></pre>
+    <p>しかしこれを毎回書くのはちょっと面倒。
+    kazuho さんとは、ファイルを割り当てられるようにするか、もはや h2o.conf を自動生成するか、 ruby で書けるようにしたらいいか、みたいな話をした。
+  </section>
+  <section>
+    <h2 id="HSTS"><a href="#HSTS">HSTS</a></h2>
+    <p>http -> https へのリダイレクトは入れているが、 HSTS ヘッダはまだ吐いてない。
+    これ吐いてしまうと、ブラウザに忘れさせない限り http では繋がらなくなり、デバッグがちょっと面倒な場合がある。
+    <p>一通り開発が落ち着いたら吐く。
+  </section>
+  <section>
+    <h2 id="Outro"><a href="#Outro">Outro</a></h2>
+    <p>細かい設定が固まったらまた書く。
+  </section>
+</article>
+<hr>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
+</footer>
+</body>
+</html>
