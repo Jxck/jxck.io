@@ -32,7 +32,7 @@ header a.logo:hover {
 }
 
 section {
-  margin: 2em;
+  margin: 1em;
 }
 
 a {
@@ -98,13 +98,17 @@ h4 > a::before {
 </style>
 
 <style>
-table {
-  border: solid 1px #ccc;
+li {
+  word-break: break-all;
+  word-wrap: break-word;
 }
 
-th {
-  background-color: #f1f2f3;
+@media screen and (max-width: 400px) {
+  img {
+    width: 80%;
+  }
 }
+
 </style>
 
 <header>
@@ -116,63 +120,43 @@ th {
 
   <section>
     <h2 id=loss_less_sample><a href=#loss_less_sample>Loss Less Sample</a></h2>
-    <table>
-      <tr>
-        <th>PNG
-        <th>WebP
-      <tr>
-        <td><img src=uikit.lossless.png alt="uikit lossless png">
-        <td><img src=uikit.lossless.webp alt="uikit lossless webp">
-      <tr>
-        <td>74KB
-        <td>62KB
-    </table>
+    <dl>
+      <dt>PNG(74KB)
+      <dd><img src=uikit.lossless.png alt="uikit lossless png">
+      <dt>WebP(62KB)
+      <dd><img src=uikit.lossless.webp alt="uikit lossless webp">
+    </dl>
   </section>
 
   <section>
     <h2 id=lossy_sample><a href=#lossy_sample>Lossy Sample</a></h2>
-    <table>
-      <tr>
-        <th>JPEG
-        <th>WebP
-      <tr>
-        <td><img src=lenna.lossy.jpeg alt="lenna lossy jpeg">
-        <td><img src=lenna.lossy.webp alt="lenna lossy webp">
-      <tr>
-        <td>74KB
-        <td>20KB
-    </table>
+    <dl>
+      <dt>JPEG(74KB)
+      <dd><img src=lenna.lossy.jpeg alt="lenna lossy jpeg">
+      <dt>WebP(20KB)
+      <dd><img src=lenna.lossy.webp alt="lenna lossy webp">
+    </dl>
   </section>
 
   <section>
     <h2 id=animation><a href=#animation>Animation</a></h2>
     <section>
       <h3 id=gopher><a href=#gopher>Gopher</a></h3>
-      <table>
-        <tr>
-          <th>GIF
-          <th>WebP
-        <tr>
-          <td><img src=gopher-animation.gif alt="gopher animation gif">
-          <td><img src=gopher-animation.webp alt="gopher animation webp">
-        <tr>
-          <td>38KB
-          <td>12KB
-      </table>
+      <dl>
+        <dt>GIF(38KB)
+        <dd><img src=gopher-animation.gif alt="gopher animation gif">
+        <dt>WebP(12KB)
+        <dd><img src=gopher-animation.webp alt="gopher animation webp">
+      </dl>
     </section>
     <section>
       <h3 id=color><a href=#color>color</a></h3>
-      <table>
-        <tr>
-          <th>GIF
-          <th>WebP
-        <tr>
-          <td><img src=animation.gif alt="animation gif">
-          <td><img src=animation.webp alt="animation webp">
-        <tr>
-          <td>262KB
-          <td>55KB
-      </table>
+      <dl>
+        <dt>GIF(262KB)
+        <dd><img src=animation.gif alt="animation gif">
+        <dt>WebP(55KB)
+        <dd><img src=animation.webp alt="animation webp">
+      </dl>
     </section>
   </section>
 
