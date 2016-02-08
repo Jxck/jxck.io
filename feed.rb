@@ -36,4 +36,4 @@ feed = <<-EOS
 #{entries.join("\n")}
 </feed>
 EOS
-File.write("atom.xml", feed)
+File.write("blog.jxck.io/feeds/atom.xml", feed)
