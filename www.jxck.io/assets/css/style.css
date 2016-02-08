@@ -11,15 +11,34 @@ header {
   background-color: #222;
   margin: 0;
   padding: 0.4em;
+
+  display: flex;
+  flex-direction: row;
 }
 
-header a.logo {
+header > a.logo {
+  display: block;
+  width: 40px;
+  height: 32px;
+  margin: 0;
+  padding: 0;
+}
+
+header > a > img {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: 0;
+  padding: 0;
+}
+
+header a.path {
   display: block;
   padding: 0.4em;
   color: gray;
 }
 
-header a.logo:hover {
+header a.path:hover {
   color: white;
 }
 
@@ -65,7 +84,7 @@ footer {
   padding: 1em;
 }
 
-img {
+article > img {
   max-width: 50%;
   display: block;
   margin: 1em 0;
@@ -73,7 +92,7 @@ img {
 }
 
 @media only screen and (max-device-width : 480px) {
-  img {
+  article > img {
     max-width:100%;
   }
 }

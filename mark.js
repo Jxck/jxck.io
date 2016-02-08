@@ -34,8 +34,10 @@ let Simple = {
 <title>${Simple.title} | blog.jxck.io</title>
 
 <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/style.css>
+
 <header>
-  <a class=logo href=/>blog.jxck.io</a>
+  <a class=logo href=//jxck.io><img src=https://jxck.io/assets/img/jxck.png></a>
+  <a class=path href=/>blog.jxck.io</a>
 </header>
 ${article}
 <hr>
@@ -358,7 +360,8 @@ ${Simple.Style}
 </head>
 <body>
 <header>
-  <a class=logo href=/>blog.jxck.io</a>
+  <a class=logo href=//jxck.io><img src=https://jxck.io/assets/img/jxck.png></a>
+  <a class=path href=/>blog.jxck.io</a>
 </header>
 ${article}
 <hr>

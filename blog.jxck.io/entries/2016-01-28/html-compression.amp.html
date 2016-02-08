@@ -21,15 +21,34 @@ header {
   background-color: #222;
   margin: 0;
   padding: 0.4em;
+
+  display: flex;
+  flex-direction: row;
 }
 
-header a.logo {
+header > a.logo {
+  display: block;
+  width: 40px;
+  height: 32px;
+  margin: 0;
+  padding: 0;
+}
+
+header > a > img {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: 0;
+  padding: 0;
+}
+
+header a.path {
   display: block;
   padding: 0.4em;
   color: gray;
 }
 
-header a.logo:hover {
+header a.path:hover {
   color: white;
 }
 
@@ -75,7 +94,7 @@ footer {
   padding: 1em;
 }
 
-img {
+article > img {
   max-width: 50%;
   display: block;
   margin: 1em 0;
@@ -83,7 +102,7 @@ img {
 }
 
 @media only screen and (max-device-width : 480px) {
-  img {
+  article > img {
     max-width:100%;
   }
 }
@@ -239,6 +258,8 @@ code::before, code::after {
 
 pre {
   overflow: auto;
+  word-break: break-all;
+  word-wrap: break-word;
   font-size: 1.2em;
   margin: 2em 0;
   border-radius: 4px;
@@ -343,7 +364,8 @@ pre > code::after {
 </head>
 <body>
 <header>
-  <a class=logo href=/>blog.jxck.io</a>
+  <a class=logo href=//jxck.io><img src=https://jxck.io/assets/img/jxck.png></a>
+  <a class=path href=/>blog.jxck.io</a>
 </header>
 <article>
   <div><time datetime=2016-01-28>2016-01-28</time><span class=tags><a>performance</a><a>html</a></span></div>
