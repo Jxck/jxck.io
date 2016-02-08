@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-entries = `find ./blog.jxck.io/entries -name *.md`.split("\n").map{|name|
+entries = `find ./blog.jxck.io/entries -name *.md | sort -r`.split("\n").map{|name|
   href = name.gsub("./blog.jxck.io/", "https://blog.jxck.io/").gsub(".md", ".html")
   file = File.open(name)
   text = file.read
