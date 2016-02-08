@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 entries = `find ./blog.jxck.io/entries -name *.md`.split("\n").map{|name|
-  href = name.gsub("./blog.jxck.io/", "")
+  href = name.gsub("./blog.jxck.io/", "https://blog.jxck.io/").gsub(".md", ".html")
   file = File.open(name)
   text = file.read
   title = text.match(/^# \[.*\] (.*)/)[1]
