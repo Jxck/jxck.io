@@ -18,23 +18,25 @@ li {
   word-wrap: break-word;
 }
 
-.row {
+.compare {
   width: 80%;
   display: flex;
   flex-flow: flex-start;
 }
 
-.col {
+figure {
   flex-direction: col;
   margin-left: 1em;
 }
 
-.col h3 {
+figure img {
   display: block;
 }
 
-.col img {
+figcaption {
   display: block;
+  font-weight: bold;
+  margin-bottom: 1em;
 }
 
 @media screen and (max-width: 400px) {
@@ -56,29 +58,29 @@ li {
 
   <section>
     <h2 id=loss_less_sample><a href=#loss_less_sample>Loss Less Sample</a></h2>
-    <div class=row>
-      <div class=col>
-        <h3>PNG(74KB)</h3>
+    <div class=compare>
+      <figure>
+        <figcaption>PNG(74KB)</figcaption>
         <img src=uikit.lossless.png alt="uikit lossless png">
-      </div>
-      <div class=col>
-        <h3>WebP(62KB)</h3>
+      </figure>
+      <figure>
+        <figcaption>WebP(62KB)</figcaption>
         <img src=uikit.lossless.webp alt="uikit lossless webp">
-      </div>
+      </figure>
     </div>
   </section>
 
   <section>
     <h2 id=lossy_sample><a href=#lossy_sample>Lossy Sample</a></h2>
-    <div class=row>
-      <div class=col>
-        <h3>JPEG(74KB)</h3>
+    <div class=compare>
+      <figure>
+        <figcaption>JPEG(74KB)</figcaption>
         <img src=lenna.lossy.jpeg alt="lenna lossy jpeg">
-      </div>
-      <div class=col>
-        <h3>WebP(20KB)</h3>
+      </figure>
+      <figure>
+        <figcaption>WebP(20KB)</figcaption>
         <img src=lenna.lossy.webp alt="lenna lossy webp">
-      </div>
+      </figure>
     </div>
   </section>
 
@@ -86,28 +88,28 @@ li {
     <h2 id=animation><a href=#animation>Animation</a></h2>
     <section>
       <h3 id=gopher><a href=#gopher>Gopher</a></h3>
-      <div class=row>
-        <div class=col>
-          <h3>GIF(38KB)</h3>
+      <div class=compare>
+        <figure>
+          <figcaption>GIF(38KB)</figcaption>
           <img src=gopher-animation.gif alt="gopher animation gif">
-        </div>
-        <div class=col>
-          <h3>WebP(12KB)</h3>
+        </figure>
+        <figure>
+          <figcaption>WebP(12KB)</figcaption>
           <img src=gopher-animation.webp alt="gopher animation webp">
-        </div>
+        </figure>
       </div>
     </section>
     <section>
       <h3 id=color><a href=#color>color</a></h3>
-      <div class=row>
-        <div class=col>
-          <h3>GIF(262KB)</h3>
+      <div class=compare>
+        <figure>
+          <figcaption>GIF(262KB)</figcaption>
           <img src=animation.gif alt="animation gif">
-        </div>
-        <div class=col>
-          <h3>WebP(55KB)</h3>
+        </figure>
+        <figure>
+          <figcaption>WebP(55KB)</figcaption>
           <img src=animation.webp alt="animation webp">
-        </div>
+        </figure>
       </div>
     </section>
   </section>
