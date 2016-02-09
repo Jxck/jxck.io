@@ -1,3 +1,34 @@
+# [atom][rss] Atom の RSS Feed 対応
+
+## Intro
+
+このブログの Atom feed を吐くようにしてみた。
+
+右上の [feed アイコン](//blog.jxck.io/feeds/atom.xml) から登録できる。
+
+
+## RSS のフォーマット
+
+RSS の主な仕様は三つある
+
+- RSS 1.0
+- RSS 2.0
+- Atom
+
+どれも順番に進化したというよりは、混乱する仕様編成を経て出て来たということらしい。
+
+一方で、標準的な RSS(feed)リーダならどのフォーマットも基本的には対応しているとのこと。
+
+中でも Atom は一番シンプルな仕様であるようなので、これで吐くことにした。
+
+
+## Atom
+
+このサイトの、ここまでのエントリのフィードは以下のようになった。
+
+### 完成型
+
+```xml
 <?xml version='1.0' encoding='UTF-8'?>
 <feed xmlns='http://www.w3.org/2005/Atom' xml:lang='ja'>
  <title>blog.jxck.io</title>
@@ -8,16 +39,6 @@
    <name>Jxck</name>
  </author>
  <id>tag:blog.jxck.io,2016:feed</id>
-  <entry>
-   <title>Atom の RSS Feed 対応</title>
-   <link href="https://blog.jxck.io/entries/2016-02-09/atom-feed.html"/>
-   <id>tag:blog.jxck.io,2016:entry://2016-02-09</id>
-   <updated>2016-02-09T00:00:00Z</updated>
-   <summary>このブログの Atom feed を吐くようにしてみた。
-
-右上の [feed アイコン](//blog.jxck.io/feeds/atom.xml) から登録できる。</summary>
-  </entry>
-
   <entry>
    <title>h2o で https/2 のデプロイと設定</title>
    <link href="https://blog.jxck.io/entries/2016-02-08/h2o-http2-deploy.html"/>
@@ -61,3 +82,30 @@
   </entry>
 
 </feed>
+```
+
+必須項目くらいしか書いていない、シンプルな形にしている。
+
+悩んだ項目が ID だった。
+
+
+### id
+
+まず feed 自体の id と、エントリごとの id がある。
+
+feed の id は、 feed を生成し直すたびに振るのかと思ったが、そうではなく、この feed 自体に一度振ったら二度と変えないらしい。
+
+エントリの id は、エントリ自体に振る。エントリを更新しても振りなおしたりはしない。
+
+どちらも URI でいいのでは？という気がするが、例えばエントリの id は、 URI が変わっても変わってはいけないらしい。そのため、エントリの URI を変える可能性を考え、別途振ることが多いらしい。
+
+そこで、 URI の一部や、 UUID などを織り交ぜ、 [The 'tag' URI Scheme](https://www.ietf.org/rfc/rfc4151.txt) というフォーマットを使うことが多い。
+
+ということで、このサイトの feed も、その辺を参考に作ってみた。
+
+
+## Outro
+
+[W3C の Validator](https://validator.w3.org/feed/) を通して、 firefox がデフォルトで持ってる feed reader でチェックしたところ普通に動いた。
+
+追加の属性については、必要に応じて足して行く。
