@@ -4,7 +4,8 @@ Allow: *
 EOS
 
 Proc.new do |env|
-  if env["PATH_INFO"] == "/robots.txt"
+  path = env["PATH_INFO"]
+  if path.match(/.*\/robots.txt/)
     [
       200,
       {"content-type" => "text/plain"},
