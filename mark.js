@@ -39,7 +39,7 @@ let Simple = {
   <div>
     <a class=logo href=//jxck.io><img alt="jxck logo" src=//jxck.io/assets/img/jxck.png></a>
     <a class=path href=/>blog.jxck.io</a>
-    <a class=feed href=/feeds/atom.xml><img src=//jxck.io/assets/img/rss.svg></a>
+    <a class=feed href=/feeds/atom.xml><img alt="rss feed" src=//jxck.io/assets/img/rss.svg></a>
   </div>
 </header>
 ${article}
@@ -366,7 +366,7 @@ ${Simple.Style}
   <div>
     <a class=logo href=//jxck.io><img alt="jxck logo" src=//jxck.io/assets/img/jxck.png></a>
     <a class=path href=/>blog.jxck.io</a>
-    <a class=feed href=/feeds/atom.xml><img src=//jxck.io/assets/img/rss.svg></a>
+    <a class=feed href=/feeds/atom.xml><img alt="rss feed" src=//jxck.io/assets/img/rss.svg></a>
   </div>
 </header>
 ${article}
