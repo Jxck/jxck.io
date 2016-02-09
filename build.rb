@@ -1,6 +1,10 @@
 #!/usr/bin/env ruby
 
-entries = `find ./blog.jxck.io/entries -name *.md | sort -r`.split("\n").map{|file|
+entries = Dir.glob("./blog.jxck.io/entries/**/**")
+  .select{|path| path.match(/.*.md/)}
+  .sort{|a,b| b <=> a }
+  .map{|file|
+
   `./mark.js #{file}`
   head = `head -n 1 #{file}`
 
