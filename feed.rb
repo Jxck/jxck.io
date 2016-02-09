@@ -1,6 +1,10 @@
 #!/usr/bin/env ruby
 
-entries = `find ./blog.jxck.io/entries -name *.md | sort -r`.split("\n").map{|name|
+entries = Dir.glob("./blog.jxck.io/entries/**/**")
+  .select{|path| path.match(/.*.md/)}
+  .sort{|a,b| b <=> a }
+  .map{|name|
+
   href = name.gsub("./blog.jxck.io/", "https://blog.jxck.io/").gsub(".md", ".html")
   file = File.open(name)
   text = file.read
@@ -18,8 +22,7 @@ entries = `find ./blog.jxck.io/entries -name *.md | sort -r`.split("\n").map{|na
    <updated>#{updated}</updated>
    <summary>#{summary}</summary>
   </entry>
-EOS
-
+  EOS
 }
 
 feed = <<-EOS
