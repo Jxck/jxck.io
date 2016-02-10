@@ -46,8 +46,6 @@ Proc.new do |env|
     [200, {"content-type" => "text/html"}, [list(dir, "entries")]]
   elsif path =~ /\/entries\/(\d{4}-\d{2}-\d{2})(\/{0,1})$/
     [200, {"content-type" => "text/html"}, [list(dir, "entries/#{$1}")]]
-  elsif path =~ /.*.md/
-    [200, {"content-type" => "text/plain"}, [File.read(dir + path)]]
   else
     [399, {}, []]
   end
