@@ -9,7 +9,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "build": "./build.rb > blog.jxck.io/index.html"
+    "build": "./build.rb > blog.jxck.io/index.html",
+    "start": "sudo $DOTFILES/local/h2o/bin/h2o -m daemon -c h2o.conf",
+    "stop": "sudo kill -TERM `cat ../logs/pid`"
   },
   "repository": {
     "type": "git",
