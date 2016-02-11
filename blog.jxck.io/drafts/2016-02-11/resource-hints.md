@@ -1,4 +1,4 @@
-# Resource Hints API でリソースの投機的取得
+# [performance][resouce-hints] Resource Hints API でリソースの投機的取得
 
 ## Intro
 
@@ -119,4 +119,4 @@ prefetch 可能なリソースのみからなるページならば、ページ�
 
 どの API を選ぶフローは、接続するドメインが分かっている前提であれば、以下のようになるだろう。
 
-![resouce-hints](resouce-hints.svg, "選択フロー")
+![resouce-hints](resouce-hints.svg "選択フロー")
