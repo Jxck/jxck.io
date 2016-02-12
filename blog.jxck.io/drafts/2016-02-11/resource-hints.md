@@ -119,4 +119,4 @@ prefetch 可能なリソースのみからなるページならば、ページ�
 
 どの API を選ぶフローは、接続するドメインが分かっている前提であれば、以下のようになるだろう。
 
-![resouce-hints](resouce-hints.svg "選択フロー")
+![resource-hints](resource-hints.svg "選択フロー")
