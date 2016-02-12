@@ -1,29 +1,32 @@
 #!/usr/bin/env ruby
 
+top = ""
 entries = Dir.glob("./blog.jxck.io/entries/**/**")
   .select{|path| path.match(/.*.md/)}
   .sort{|a,b| b <=> a }
-  .map{|file|
+  .map.with_index{|file, i|
 
-  `./mark.js #{file}`
-  head = `head -n 1 #{file}`
+    `./mark.js #{file}`
+    head = `head -n 1 #{file}`
 
-  title = head.match(/\# \[.*\] (.*)/)[1]
+    title = head.match(/\# \[.*\] (.*)/)[1]
 
-  tags = head
-    .scan(/\[(.+?)\]/)
-    .map{|s| s.pop }
-    .map{|tag| "<a>#{tag}</a>" }
-    .reverse
-    .join
+    tags = head
+      .scan(/\[(.+?)\]/)
+      .map{|s| s.pop }
+      .map{|tag| "<a>#{tag}</a>" }
+      .reverse
+      .join
 
-  tagspan = "<span class=tags>#{tags}</span>"
+    tagspan = "<span class=tags>#{tags}</span>"
 
-  splitted = file.split("/")
-  name = splitted.pop.gsub(".md", ".html")
-  date = splitted.pop
-  "<li><time datetime=#{date}>#{date}</time><a href=entries/#{date}/#{name}>#{title}</a>#{tagspan}"
-}
+    splitted = file.split("/")
+    name = splitted.pop.gsub(".md", ".html")
+    date = splitted.pop
+    url = "entries/#{date}/#{name}"
+    top = url if i == 0
+    "<li><time datetime=#{date}>#{date}</time><a href=#{url}>#{title}</a>#{tagspan}"
+  }
 
 puts <<-EOS
 <!DOCTYPE html>
@@ -32,6 +35,7 @@ puts <<-EOS
 
 <title>blog.jxck.io</title>
 <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/style.css>
+<link rel=prerender href=#{top}>
 
 <header>
   <div>
