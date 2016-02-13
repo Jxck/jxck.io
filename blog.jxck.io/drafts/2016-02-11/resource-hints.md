@@ -135,3 +135,11 @@ prefetch 可能なリソースのみからなるページならば、ページ�
 
 - jxck.io にアクセスした際に、サブドメインを名前解決だけする
 - blog.jxck.io (エントリ一覧)にアクセスした際に、最新のエントリだけ裏でレンダリングする
+
+
+名前解決の方は、確認が難しいので後者のみ確認結果を載せる。
+
+
+Chrome の場合は Prerender の状況について `chrome://net-internals` から確認できる。
+
+[chrome://net-internals/#prerender](chrome://net-internals/#prerender)
