@@ -1,33 +1,40 @@
+# [http2][css][performance] HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について
 
 
+## Intro
+
+Chrome が予定している `<link rel=stylesheet>` の挙動の変更について、Google Chrome チームの Jake が、興味深いブログを上げている。
+
+[The future of loading CSS](https://jakearchibald.com/2016/link-in-body/)
+
+この内容は、単に Chrome に対する変更ではなく、 HTTP2 によって変化する最適化手法と、それを最も活かすための HTML, CSS の構成についてのヒントがある。
+
+今回は、これを解説し、本サイトに適用していく。
 
 
-https://jakearchibald.com/2016/link-in-body/
+## HTTP/1.1 時代の CSS
 
-現状
+HTML 自体がコンポーネントを意識した作りになっている場合は、自然と CSS も `class` などを使いコンポーネント単位に作ることができるだろう。
+
+しかし、 HTTP/1.1 ではリクエストの数を減らすために、全ての CSS を一つ(もしくは少数個)に結合する最適化が主流だった。
+
 
 ```html
 <head>
-  <link rel="stylesheet" href="all.css">
+  <link rel="stylesheet" href="bundle.css">
 </head>
 <body>
   <!-- content -->
 </body>
 ```
 
-HTML 自体がコンポーネントを意識した作りになっている場合は、自然と CSS も class などを使いコンポーネント単位に作ることができるだろう。
-しかし、 HTTP/1.1 ではリクエストの数を減らすために、全ての CSS を一つ(もしくは少数個)に結合することが多かった。
-
-
-しかし、リクエストの多重化が可能な HTTP/2, SPDY においては、そこを心配する必要がなくなったため、コンポーネントごとに CSS を分割するのは、キャッシュの容易性を考えても良い方法と言える。
+しかし、リクエストの多重化が可能な HTTP/2 においては、そこを心配する必要がなくなったため、コンポーネントごとに CSS を分割するのは、キャッシュの容易性を考えても良い方法と言える。
 
 ```html
 <head>
-  <link rel="stylesheet" href="/site-header.css">
+  <link rel="stylesheet" href="/header.css">
   <link rel="stylesheet" href="/article.css">
-  <link rel="stylesheet" href="/comment.css">
-  <link rel="stylesheet" href="/about-me.css">
-  <link rel="stylesheet" href="/site-footer.css">
+  <link rel="stylesheet" href="/footer.css">
 </head>
 <body>
   <!-- content -->
@@ -37,10 +44,9 @@ HTML 自体がコンポーネントを意識した作りになっている場合
 
 しかし、この場合でも二つの懸念が残る。
 
-> `<head>` を出力する時点で、ページ内に存在する全てのコンポーネントを把握していないといけない
+> <head> を出力する時点で、ページ内に存在する全てのコンポーネントを把握していないといけない
 
-本来 HTML は、ページの先頭から順にデータを送受信できるため、例えば動的に site-header を作りながら送信を初め、その後から site-footer のデータを準備して、送信するということもできる。
-
+HTML を全て生成してから順次送るのであれば問題ないが、本来 HTML は先頭からできた順番に送ることも可能である。
 
 > site-footer.css のローディングが遅い場合、サイト全体をブロックする
 
@@ -53,14 +59,14 @@ site-footer.css が必要なのは、 HTML 中の site-footer をレンダリン
 
 https://github.com/filamentgroup/loadCSS
 
-Style が当たってない状態で表示されてほしくないコンポーネントには、 `display: none` などをつけておき、ロードされてから表示されるようにする。
+Style が当たってない状態で表示されてほしくないコンポーネントには、 `display: none` などをつけておき、ロードされた Style の中で `display:visible` されるようにする。
 
 この方法は、クリティカルレンダリングパスの改善方法の一つとして、多くのパフォーマンスエキスパートから推奨されている。
 
 
-https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery
-https://www.filamentgroup.com/lab/performance-rwd.html
-http://www.lukew.com/ff/entry.asp?1756
+- https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery
+- https://www.filamentgroup.com/lab/performance-rwd.html
+- http://www.lukew.com/ff/entry.asp?1756
 
 
 ただし、この方法には JS のライブラリが必須となる。
