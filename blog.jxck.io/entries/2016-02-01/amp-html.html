@@ -14,43 +14,45 @@
     <a class=feed href=/feeds/atom.xml><img alt="rss feed" src=//jxck.io/assets/img/rss.svg></a>
   </div>
 </header>
-<article>
-  <div><time datetime=2016-02-01>2016-02-01</time><span class=tags><a>performance</a><a>amp</a></span></div>
-  <h1><a href="/entries/2016-02-01/amp-html.html">AMP HTML 対応</a></h1>
-  <section>
-    <h2 id="Intro"><a href="#Intro">Intro</a></h2>
-    <p>Google が推奨する仕様である <a href="https://www.ampproject.org/">AMP HTML</a> に、このブログのエントリページのみ対応してみた。
-    <p><a href="https://www.ampproject.org/">ACCELERATED MOBILE PAGES PROJECT</a>
-    <p>タイトルは識別しやすいよう AMP HTML としたが、実際には AMP という仕様(方針)があり、 HTML 以外にも手を入れている。
-  </section>
-  <section>
-    <h2 id="AMP"><a href="#AMP">AMP</a></h2>
-    <p>AMP は、特にモバイル向けに <strong>静的コンテンツ</strong> を最適化し、高速に表示できるようにすることを目的としている。
-    <p>実際は、高速化するというより、「遅くなる原因を排除する」という制約を課す仕様という作りになっている。
-    <p>AMP は以下の三つの要素からなる。
-    <ul>
-      <li>AMP HTML
-      <li>AMP JS
-      <li>AMP CDN
-    </ul>
-    <p>各要素を細かく説明し、 AMP への対応方法を書いたエントリは他にも多くあるので、対応してみた結果と、この仕様に対する感想を交えて、重要そうなところだけ拾って書く。
+<main>
+  <article>
+    <div><time datetime=2016-02-01>2016-02-01</time><span class=tags><a>performance</a><a>amp</a></span></div>
+    <h1><a href="/entries/2016-02-01/amp-html.html">AMP HTML 対応</a></h1>
     <section>
-      <h3 id="AMP+HTML"><a href="#AMP+HTML">AMP HTML</a></h3>
-      <p>本サイトの HTML は、 <a href="http://localhost:3000/entries/2016-01-28/html-compression.html">HTML の省略によるサイズ最適化</a> に書いた通り、極力タグを省略した作りにしている。
-      <p>しかし、 AMP の仕様では <code>&lt;head&gt;</code>, <code>&lt;body&gt;</code> などの記述は必須となっているため、追加した。
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>Google が推奨する仕様である <a href="https://www.ampproject.org/">AMP HTML</a> に、このブログのエントリページのみ対応してみた。
+      <p><a href="https://www.ampproject.org/">ACCELERATED MOBILE PAGES PROJECT</a>
+      <p>タイトルは識別しやすいよう AMP HTML としたが、実際には AMP という仕様(方針)があり、 HTML 以外にも手を入れている。
     </section>
     <section>
-      <h3 id="discovery+(相互参照)"><a href="#discovery+(相互参照)">discovery (相互参照)</a></h3>
-      <p>本サイトでは、普通の HTML と AMP 対応の HTML は別にビルドしており、 URL の末尾が <code>.html</code> か <code>.amp.html</code> かで分けている。
-      <p>こうした場合は <code>&lt;link&gt;</code> タグで、クローラなどに相互のページの参照を伝えることができる。
-      <p>このサイトでは <code>.html</code> に AMP 対応があることを伝える以下を追記した。
-      <pre class=html><code>&lt;link rel=amphtml href=${path}.amp.html&gt;</code></pre>
-      <p>一方 <code>.amp.html</code> では、ブックマークなどが統一できるように <code>canonical</code> を追加している。
-      <pre class=html><code>&lt;link rel=canonical href=${path}.html&gt;</code></pre>
-      <p>access_log で UA などを追えば、 apmhtml を見るクローラが追えるかもしれない。
+      <h2 id="AMP"><a href="#AMP">AMP</a></h2>
+      <p>AMP は、特にモバイル向けに <strong>静的コンテンツ</strong> を最適化し、高速に表示できるようにすることを目的としている。
+      <p>実際は、高速化するというより、「遅くなる原因を排除する」という制約を課す仕様という作りになっている。
+      <p>AMP は以下の三つの要素からなる。
+      <ul>
+        <li>AMP HTML
+        <li>AMP JS
+        <li>AMP CDN
+      </ul>
+      <p>各要素を細かく説明し、 AMP への対応方法を書いたエントリは他にも多くあるので、対応してみた結果と、この仕様に対する感想を交えて、重要そうなところだけ拾って書く。
+      <section>
+        <h3 id="AMP+HTML"><a href="#AMP+HTML">AMP HTML</a></h3>
+        <p>本サイトの HTML は、 <a href="http://localhost:3000/entries/2016-01-28/html-compression.html">HTML の省略によるサイズ最適化</a> に書いた通り、極力タグを省略した作りにしている。
+        <p>しかし、 AMP の仕様では <code>&lt;head&gt;</code>, <code>&lt;body&gt;</code> などの記述は必須となっているため、追加した。
+      </section>
+      <section>
+        <h3 id="discovery+(相互参照)"><a href="#discovery+(相互参照)">discovery (相互参照)</a></h3>
+        <p>本サイトでは、普通の HTML と AMP 対応の HTML は別にビルドしており、 URL の末尾が <code>.html</code> か <code>.amp.html</code> かで分けている。
+        <p>こうした場合は <code>&lt;link&gt;</code> タグで、クローラなどに相互のページの参照を伝えることができる。
+        <p>このサイトでは <code>.html</code> に AMP 対応があることを伝える以下を追記した。
+        <pre class=html><code>&lt;link rel=amphtml href=${path}.amp.html&gt;</code></pre>
+        <p>一方 <code>.amp.html</code> では、ブックマークなどが統一できるように <code>canonical</code> を追加している。
+        <pre class=html><code>&lt;link rel=canonical href=${path}.html&gt;</code></pre>
+        <p>access_log で UA などを追えば、 apmhtml を見るクローラが追えるかもしれない。
+      </section>
     </section>
-  </section>
-</article>
+  </article>
+</main>
 <hr>
 <footer>
   <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>

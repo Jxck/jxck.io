@@ -14,118 +14,120 @@
     <a class=feed href=/feeds/atom.xml><img alt="rss feed" src=//jxck.io/assets/img/rss.svg></a>
   </div>
 </header>
-<article>
-  <div><time datetime=2016-02-11>2016-02-11</time><span class=tags><a>performance</a><a>resouce-hints</a></span></div>
-  <h1><a href="/entries/2016-02-11/resource-hints.html">Resource Hints API でリソースの投機的取得</a></h1>
-  <section>
-    <h2 id="Intro"><a href="#Intro">Intro</a></h2>
-    <p>Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要になるリソースを教える」ことで、投機的な取得を行う API 郡である。
-    <p><a href="https://w3c.github.io/resource-hints/">https://w3c.github.io/resource-hints/</a>
-    <p>主に以下がある。
-    <ul>
-      <li><a href="https://w3c.github.io/resource-hints/#dfn-dns-prefetch">dns-prefetch</a>
-      <li><a href="https://w3c.github.io/resource-hints/#dfn-preconnect">preconnect</a>
-      <li><a href="https://w3c.github.io/resource-hints/#dfn-prefetch">prefetch</a>
-      <li><a href="https://w3c.github.io/resource-hints/#dfn-prerender">prerender</a>
-    </ul>
-    <p>今回は本サイトでこれを適用した話。
-  </section>
-  <section>
-    <h2 id="投機的なリソース取得"><a href="#投機的なリソース取得">投機的なリソース取得</a></h2>
-    <p>例えば、ログインページの次には、そのサービスのメインページに遷移する頻度が高い。
-    <p>そして、メインページでは、以下のような追加のリソースが必要になるだろう。
-    <ul>
-      <li>追加の JS
-      <li>追加の CSS
-      <li>追加の Image
-      <li>追加の API アクセス
-    </ul>
-    <p>それぞれを DNS 解決 -> TCP 接続 -> リソースのフェッチ、と繰り返していくと、イニシャル表示は必然的に時間がかかる。
-    <p>ところが、この遷移には以下の特徴がある。
-    <ul>
-      <li><strong>ログインページの滞在時間は長い</strong>
-      <li><strong>同一サービス内なので、その次のメインページで必要なリソースは予測可能性が高い</strong>
-    </ul>
-    <p>であれば、ログインページでユーザが操作している間に必要なものを裏で取得しておければ、ログイン後の表示に必要なリソース収集は終わっているので表示が速くなる。
-    <p>投機的な取得の代表シナリオはこんな感じになる。
-  </section>
-  <section>
-    <h2 id="Resource+Hints"><a href="#Resource+Hints">Resource Hints</a></h2>
-    <p>Resource Hints はそうしたリソースの取得のヒントをブラウザに伝える API 郡であり、基本的には前のページ(上記ならログインページ)の中で、次のページ(上記ならメインページ)で使うリソースのヒントを HTML の Link タグで記述する。
-    <p>現在は四種類ある
-    <pre class=html><code>&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//example.com&quot;&gt;
+<main>
+  <article>
+    <div><time datetime=2016-02-11>2016-02-11</time><span class=tags><a>performance</a><a>resouce-hints</a></span></div>
+    <h1><a href="/entries/2016-02-11/resource-hints.html">Resource Hints API でリソースの投機的取得</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要になるリソースを教える」ことで、投機的な取得を行う API 郡である。
+      <p><a href="https://w3c.github.io/resource-hints/">https://w3c.github.io/resource-hints/</a>
+      <p>主に以下がある。
+      <ul>
+        <li><a href="https://w3c.github.io/resource-hints/#dfn-dns-prefetch">dns-prefetch</a>
+        <li><a href="https://w3c.github.io/resource-hints/#dfn-preconnect">preconnect</a>
+        <li><a href="https://w3c.github.io/resource-hints/#dfn-prefetch">prefetch</a>
+        <li><a href="https://w3c.github.io/resource-hints/#dfn-prerender">prerender</a>
+      </ul>
+      <p>今回は本サイトでこれを適用した話。
+    </section>
+    <section>
+      <h2 id="投機的なリソース取得"><a href="#投機的なリソース取得">投機的なリソース取得</a></h2>
+      <p>例えば、ログインページの次には、そのサービスのメインページに遷移する頻度が高い。
+      <p>そして、メインページでは、以下のような追加のリソースが必要になるだろう。
+      <ul>
+        <li>追加の JS
+        <li>追加の CSS
+        <li>追加の Image
+        <li>追加の API アクセス
+      </ul>
+      <p>それぞれを DNS 解決 -> TCP 接続 -> リソースのフェッチ、と繰り返していくと、イニシャル表示は必然的に時間がかかる。
+      <p>ところが、この遷移には以下の特徴がある。
+      <ul>
+        <li><strong>ログインページの滞在時間は長い</strong>
+        <li><strong>同一サービス内なので、その次のメインページで必要なリソースは予測可能性が高い</strong>
+      </ul>
+      <p>であれば、ログインページでユーザが操作している間に必要なものを裏で取得しておければ、ログイン後の表示に必要なリソース収集は終わっているので表示が速くなる。
+      <p>投機的な取得の代表シナリオはこんな感じになる。
+    </section>
+    <section>
+      <h2 id="Resource+Hints"><a href="#Resource+Hints">Resource Hints</a></h2>
+      <p>Resource Hints はそうしたリソースの取得のヒントをブラウザに伝える API 郡であり、基本的には前のページ(上記ならログインページ)の中で、次のページ(上記ならメインページ)で使うリソースのヒントを HTML の Link タグで記述する。
+      <p>現在は四種類ある
+      <pre class=html><code>&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//example.com&quot;&gt;
 &lt;link rel=&quot;preconnect&quot; href=&quot;//example.com&quot;&gt;
 &lt;link rel=&quot;preconnect&quot; href=&quot;//cdn.example.com&quot; crossorigin&gt;
 &lt;link rel=&quot;prefetch&quot; href=&quot;//example.com/next-page.html&quot; as=&quot;html&quot; crossorigin=&quot;use-credentials&quot;&gt;
 &lt;link rel=&quot;prefetch&quot; href=&quot;/library.js&quot; as=&quot;script&quot;&gt;
 &lt;link rel=&quot;prerender&quot; href=&quot;//example.com/next-page.html&quot;&gt;</code></pre>
-    <section>
-      <h3 id="dns-prefetch"><a href="#dns-prefetch">dns-prefetch</a></h3>
-      <p>DNS の問い合わせを事前に行い、キャッシュしておくことで、接続コストを下げる方法である。
-      <pre class=html><code>&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//example.com&quot;&gt;</code></pre>
-      <p>例えば、メインページで接続する API サーバや、 CDN のエッジへの名前解決を行うなどが予想されるだろう。
-      <ul>
-        <li>既に接続先ドメインがわかっている
-        <li>接続する具体的な URI までは定まらない
-      </ul>
-    </section>
-    <section>
-      <h3 id="preconnect"><a href="#preconnect">preconnect</a></h3>
-      <p>DNS の解決に加えて TCP の接続まで確立しておくことで、リクエストをすぐにでも発行できるようにする方法である。
-      <p>仕様では、クロスオリジンも張ることができる。
-      <pre class=html><code>&lt;link rel=&quot;preconnect&quot; href=&quot;//example.com&quot;&gt;
+      <section>
+        <h3 id="dns-prefetch"><a href="#dns-prefetch">dns-prefetch</a></h3>
+        <p>DNS の問い合わせを事前に行い、キャッシュしておくことで、接続コストを下げる方法である。
+        <pre class=html><code>&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//example.com&quot;&gt;</code></pre>
+        <p>例えば、メインページで接続する API サーバや、 CDN のエッジへの名前解決を行うなどが予想されるだろう。
+        <ul>
+          <li>既に接続先ドメインがわかっている
+          <li>接続する具体的な URI までは定まらない
+        </ul>
+      </section>
+      <section>
+        <h3 id="preconnect"><a href="#preconnect">preconnect</a></h3>
+        <p>DNS の解決に加えて TCP の接続まで確立しておくことで、リクエストをすぐにでも発行できるようにする方法である。
+        <p>仕様では、クロスオリジンも張ることができる。
+        <pre class=html><code>&lt;link rel=&quot;preconnect&quot; href=&quot;//example.com&quot;&gt;
 &lt;link rel=&quot;preconnect&quot; href=&quot;//cdn.example.com&quot; crossorigin&gt;</code></pre>
-      <p>これは、例えば API エンドポイントは決まっており、そこに対して連続するリクエストが発生することが分かっているような場合が予想される。
-      <ul>
-        <li>既に接続先ドメインがわかっている
-        <li>URI は分かっているが、レスポンスが動的なため後述する prefetch はできない
-      </ul>
-    </section>
-    <section>
-      <h3 id="prefetch"><a href="#prefetch">prefetch</a></h3>
-      <p>もはや取得するリソースが分かっており、それが投機的に取得しても内容が変わらないもの、要するに静的リソースである場合に、事前に取得してブラウザにキャッシュする方法である。
-      <pre class=html><code>&lt;link rel=&quot;prefetch&quot; href=&quot;/library.js&quot; as=&quot;script&quot;&gt;
+        <p>これは、例えば API エンドポイントは決まっており、そこに対して連続するリクエストが発生することが分かっているような場合が予想される。
+        <ul>
+          <li>既に接続先ドメインがわかっている
+          <li>URI は分かっているが、レスポンスが動的なため後述する prefetch はできない
+        </ul>
+      </section>
+      <section>
+        <h3 id="prefetch"><a href="#prefetch">prefetch</a></h3>
+        <p>もはや取得するリソースが分かっており、それが投機的に取得しても内容が変わらないもの、要するに静的リソースである場合に、事前に取得してブラウザにキャッシュする方法である。
+        <pre class=html><code>&lt;link rel=&quot;prefetch&quot; href=&quot;/library.js&quot; as=&quot;script&quot;&gt;
 &lt;link rel=&quot;prefetch&quot; href=&quot;//example.com/next-page.html&quot; as=&quot;html&quot; crossorigin=&quot;use-credentials&quot;&gt;</code></pre>
-      <ul>
-        <li>既に URI が分かっている
-        <li>静的リソース、もしくは投機的に取得しても内容に問題の無いコンテンツ
-      </ul>
+        <ul>
+          <li>既に URI が分かっている
+          <li>静的リソース、もしくは投機的に取得しても内容に問題の無いコンテンツ
+        </ul>
+      </section>
+      <section>
+        <h3 id="prerender"><a href="#prerender">prerender</a></h3>
+        <p>prefetch 可能なリソースのみからなるページならば、ページ全体を事前に取得することが可能な筈である。
+        <p>そこで、そのページ全体を取得し、バックグラウンドに起こしたタブの中で、描画まで行ってしまうという方法である。
+        <pre class=html><code>&lt;link rel=&quot;prerender&quot; href=&quot;//example.com/next-page.html&quot;&gt;</code></pre>
+        <p>描画が完了しているため、実際の遷移が発生したら、そのタブを切り替えるだけでよくなる。理論上は最速表示となるだろう。
+        <ul>
+          <li>prefetch 可能なリソースのみからなるページ
+        </ul>
+      </section>
     </section>
     <section>
-      <h3 id="prerender"><a href="#prerender">prerender</a></h3>
-      <p>prefetch 可能なリソースのみからなるページならば、ページ全体を事前に取得することが可能な筈である。
-      <p>そこで、そのページ全体を取得し、バックグラウンドに起こしたタブの中で、描画まで行ってしまうという方法である。
-      <pre class=html><code>&lt;link rel=&quot;prerender&quot; href=&quot;//example.com/next-page.html&quot;&gt;</code></pre>
-      <p>描画が完了しているため、実際の遷移が発生したら、そのタブを切り替えるだけでよくなる。理論上は最速表示となるだろう。
-      <ul>
-        <li>prefetch 可能なリソースのみからなるページ
-      </ul>
+      <h2 id="API+選択フロー"><a href="#API+選択フロー">API 選択フロー</a></h2>
+      <p>どの API を選ぶフローは、接続するドメインが分かっている前提であれば、以下のように考えることができる。
+      <p><img src=resource-hints.svg alt="resource-hints" title="選択フロー" >
     </section>
-  </section>
-  <section>
-    <h2 id="API+選択フロー"><a href="#API+選択フロー">API 選択フロー</a></h2>
-    <p>どの API を選ぶフローは、接続するドメインが分かっている前提であれば、以下のように考えることができる。
-    <p><img src=resource-hints.svg alt="resource-hints" title="選択フロー" >
-  </section>
-  <section>
-    <h2 id="サイトへの適用"><a href="#サイトへの適用">サイトへの適用</a></h2>
-    <p>このサイトは現状こうした特徴がある。
-    <ul>
-      <li>ほとんどが静的リソースで成りたっている
-      <li>遷移の導線が少ない
-      <li>外部へのアクセスも基本的には少ない
-    </ul>
-    <p>これを考慮して、以下の二つを実施した。
-    <ul>
-      <li>jxck.io にアクセスした際に、サブドメインを名前解決だけする
-      <li>blog.jxck.io (エントリ一覧)にアクセスした際に、最新のエントリだけ裏でレンダリングする
-    </ul>
-    <p>名前解決の方は、確認が難しいので後者のみ確認結果を載せる。
-    <p>Chrome の場合は Prerender の状況について <code>chrome://net-internals</code> から確認できる。
-    <p><a href="chrome://net-internals/#prerender">chrome://net-internals/#prerender</a>
-    <p><a href="net-internals-prerender.png"><img src=net-internals-prerender.png alt="net-internals-prerender" title="chrome://net-internals#prerender" ></a>
-  </section>
-</article>
+    <section>
+      <h2 id="サイトへの適用"><a href="#サイトへの適用">サイトへの適用</a></h2>
+      <p>このサイトは現状こうした特徴がある。
+      <ul>
+        <li>ほとんどが静的リソースで成りたっている
+        <li>遷移の導線が少ない
+        <li>外部へのアクセスも基本的には少ない
+      </ul>
+      <p>これを考慮して、以下の二つを実施した。
+      <ul>
+        <li>jxck.io にアクセスした際に、サブドメインを名前解決だけする
+        <li>blog.jxck.io (エントリ一覧)にアクセスした際に、最新のエントリだけ裏でレンダリングする
+      </ul>
+      <p>名前解決の方は、確認が難しいので後者のみ確認結果を載せる。
+      <p>Chrome の場合は Prerender の状況について <code>chrome://net-internals</code> から確認できる。
+      <p><a href="chrome://net-internals/#prerender">chrome://net-internals/#prerender</a>
+      <p><a href="net-internals-prerender.png"><img src=net-internals-prerender.png alt="net-internals-prerender" title="chrome://net-internals#prerender" ></a>
+    </section>
+  </article>
+</main>
 <hr>
 <footer>
   <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>

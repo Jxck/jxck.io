@@ -14,32 +14,33 @@
     <a class=feed href=/feeds/atom.xml><img alt="rss feed" src=//jxck.io/assets/img/rss.svg></a>
   </div>
 </header>
-<article>
-  <div><time datetime=2016-02-09>2016-02-09</time><span class=tags><a>atom</a><a>rss</a></span></div>
-  <h1><a href="/entries/2016-02-09/atom-feed.html">Atom の RSS Feed 対応</a></h1>
-  <section>
-    <h2 id="Intro"><a href="#Intro">Intro</a></h2>
-    <p>このブログの Atom feed を吐くようにしてみた。
-    <p>右上の <a href="//blog.jxck.io/feeds/atom.xml">feed アイコン</a> から登録できる。
-  </section>
-  <section>
-    <h2 id="RSS+のフォーマット"><a href="#RSS+のフォーマット">RSS のフォーマット</a></h2>
-    <p>RSS の主な仕様は三つある
-    <ul>
-      <li>RSS 1.0
-      <li>RSS 2.0
-      <li>Atom
-    </ul>
-    <p>どれも順番に進化したというよりは、混乱する仕様編成を経て出て来たということらしい。
-    <p>一方で、標準的な RSS(feed)リーダならどのフォーマットも基本的には対応しているとのこと。
-    <p>中でも Atom は一番シンプルな仕様であるようなので、これで吐くことにした。
-  </section>
-  <section>
-    <h2 id="Atom"><a href="#Atom">Atom</a></h2>
-    <p>このサイトの、ここまでのエントリのフィードは以下のようになった。
+<main>
+  <article>
+    <div><time datetime=2016-02-09>2016-02-09</time><span class=tags><a>atom</a><a>rss</a></span></div>
+    <h1><a href="/entries/2016-02-09/atom-feed.html">Atom の RSS Feed 対応</a></h1>
     <section>
-      <h3 id="完成型"><a href="#完成型">完成型</a></h3>
-      <pre class=xml><code>&lt;?xml version=&#039;1.0&#039; encoding=&#039;UTF-8&#039;?&gt;
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>このブログの Atom feed を吐くようにしてみた。
+      <p>右上の <a href="//blog.jxck.io/feeds/atom.xml">feed アイコン</a> から登録できる。
+    </section>
+    <section>
+      <h2 id="RSS+のフォーマット"><a href="#RSS+のフォーマット">RSS のフォーマット</a></h2>
+      <p>RSS の主な仕様は三つある
+      <ul>
+        <li>RSS 1.0
+        <li>RSS 2.0
+        <li>Atom
+      </ul>
+      <p>どれも順番に進化したというよりは、混乱する仕様編成を経て出て来たということらしい。
+      <p>一方で、標準的な RSS(feed)リーダならどのフォーマットも基本的には対応しているとのこと。
+      <p>中でも Atom は一番シンプルな仕様であるようなので、これで吐くことにした。
+    </section>
+    <section>
+      <h2 id="Atom"><a href="#Atom">Atom</a></h2>
+      <p>このサイトの、ここまでのエントリのフィードは以下のようになった。
+      <section>
+        <h3 id="完成型"><a href="#完成型">完成型</a></h3>
+        <pre class=xml><code>&lt;?xml version=&#039;1.0&#039; encoding=&#039;UTF-8&#039;?&gt;
 &lt;feed xmlns=&#039;http://www.w3.org/2005/Atom&#039; xml:lang=&#039;ja&#039;&gt;
  &lt;title&gt;blog.jxck.io&lt;/title&gt;
  &lt;link href=&quot;https://blog.jxck.io/&quot;/&gt;
@@ -92,25 +93,26 @@
   &lt;/entry&gt;
 
 &lt;/feed&gt;</code></pre>
-      <p>必須項目くらいしか書いていない、シンプルな形にしている。
-      <p>悩んだ項目が ID だった。
+        <p>必須項目くらいしか書いていない、シンプルな形にしている。
+        <p>悩んだ項目が ID だった。
+      </section>
+      <section>
+        <h3 id="id"><a href="#id">id</a></h3>
+        <p>まず feed 自体の id と、エントリごとの id がある。
+        <p>feed の id は、 feed を生成し直すたびに振るのかと思ったが、そうではなく、この feed 自体に一度振ったら二度と変えないらしい。
+        <p>エントリの id は、エントリ自体に振る。エントリを更新しても振りなおしたりはしない。
+        <p>どちらも URI でいいのでは？という気がするが、例えばエントリの id は、 URI が変わっても変わってはいけないらしい。そのため、エントリの URI を変える可能性を考え、別途振ることが多いらしい。
+        <p>そこで、 URI の一部や、 UUID などを織り交ぜ、 <a href="https://www.ietf.org/rfc/rfc4151.txt">The 'tag' URI Scheme</a> というフォーマットを使うことが多い。
+        <p>ということで、このサイトの feed も、その辺を参考に作ってみた。
+      </section>
     </section>
     <section>
-      <h3 id="id"><a href="#id">id</a></h3>
-      <p>まず feed 自体の id と、エントリごとの id がある。
-      <p>feed の id は、 feed を生成し直すたびに振るのかと思ったが、そうではなく、この feed 自体に一度振ったら二度と変えないらしい。
-      <p>エントリの id は、エントリ自体に振る。エントリを更新しても振りなおしたりはしない。
-      <p>どちらも URI でいいのでは？という気がするが、例えばエントリの id は、 URI が変わっても変わってはいけないらしい。そのため、エントリの URI を変える可能性を考え、別途振ることが多いらしい。
-      <p>そこで、 URI の一部や、 UUID などを織り交ぜ、 <a href="https://www.ietf.org/rfc/rfc4151.txt">The 'tag' URI Scheme</a> というフォーマットを使うことが多い。
-      <p>ということで、このサイトの feed も、その辺を参考に作ってみた。
+      <h2 id="Outro"><a href="#Outro">Outro</a></h2>
+      <p><a href="https://validator.w3.org/feed/">W3C の Validator</a> を通して、 firefox がデフォルトで持ってる feed reader でチェックしたところ普通に動いた。
+      <p>追加の属性については、必要に応じて足して行く。
     </section>
-  </section>
-  <section>
-    <h2 id="Outro"><a href="#Outro">Outro</a></h2>
-    <p><a href="https://validator.w3.org/feed/">W3C の Validator</a> を通して、 firefox がデフォルトで持ってる feed reader でチェックしたところ普通に動いた。
-    <p>追加の属性については、必要に応じて足して行く。
-  </section>
-</article>
+  </article>
+</main>
 <hr>
 <footer>
   <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
