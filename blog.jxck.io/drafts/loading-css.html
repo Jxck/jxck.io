@@ -26,21 +26,21 @@
   </section>
   <section>
     <h2 id="HTTP/1.1+時代の+CSS"><a href="#HTTP/1.1+時代の+CSS">HTTP/1.1 時代の CSS</a></h2>
-    <p>HTML 自体がコンポーネントを意識した作りになっている場合は、自然と CSS も class などを使いコンポーネント単位に作ることができるだろう。
+    <p>HTML 自体がコンポーネントを意識した作りになっている場合は、自然と CSS も <code>class</code> などを使いコンポーネント単位に作ることができるだろう。
     <p>しかし、 HTTP/1.1 ではリクエストの数を減らすために、全ての CSS を一つ(もしくは少数個)に結合する最適化が主流だった。
     <pre class=html><code>&lt;head&gt;
-  &lt;link rel=&quot;stylesheet&quot; href=&quot;all.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;bundle.css&quot;&gt;
 &lt;/head&gt;
 &lt;body&gt;
   &lt;!-- content --&gt;
 &lt;/body&gt;</code></pre>
     <p>しかし、リクエストの多重化が可能な HTTP/2 においては、そこを心配する必要がなくなったため、コンポーネントごとに CSS を分割するのは、キャッシュの容易性を考えても良い方法と言える。
     <pre class=html><code>&lt;head&gt;
-  &lt;link rel=&quot;stylesheet&quot; href=&quot;/site-header.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;/header.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;/main.css&quot;&gt;
   &lt;link rel=&quot;stylesheet&quot; href=&quot;/article.css&quot;&gt;
   &lt;link rel=&quot;stylesheet&quot; href=&quot;/comment.css&quot;&gt;
-  &lt;link rel=&quot;stylesheet&quot; href=&quot;/about-me.css&quot;&gt;
-  &lt;link rel=&quot;stylesheet&quot; href=&quot;/site-footer.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;/footer.css&quot;&gt;
 &lt;/head&gt;
 &lt;body&gt;
   &lt;!-- content --&gt;
@@ -48,15 +48,15 @@
     <p>しかし、この場合でも二つの懸念が残る。
     <blockquote>&lt;head&gt;
      を出力する時点で、ページ内に存在する全てのコンポーネントを把握していないといけない</blockquote>
-    <p>本来 HTML は、ページの先頭から順にデータを送受信できるため、例えば動的に site-header を作りながら送信を初め、その後から site-footer のデータを準備して、送信するということもできる。
-    <blockquote>site-footer.css のローディングが遅い場合、サイト全体をブロックする</blockquote>
-    <p>site-footer.css が必要なのは、 HTML 中の site-footer をレンダリングする時であり、そこまでに出てくる site-header などは、先にレンダリングすることも可能だが、実際はそのたった一つの CSS のせいで HTML も CSS も揃っているコンポーネントが真っ白のままになる。
+    <p>HTML を全て生成してから順次送るのであれば問題ないが、本来 HTML は先頭から、準備ができた順にコンポーネントを送信することも可能であるはずが、それができなくなる。
+    <blockquote>footer.css のローディングが遅い場合、サイト全体をブロックする</blockquote>
+    <p>footer.css が必要なのは、 HTML 中の <code>&lt;footer&gt;</code> をレンダリングする時であり、そこまでに出てくる <code>&lt;header&gt;</code> などは、先にレンダリングすることも可能だが、実際はそのたった一つの CSS のせいでそこまでに揃っているコンポーネントもレンダリングされず、真っ白のままになる。
   </section>
   <section>
     <h2 id="CSS+の遅延ロード"><a href="#CSS+の遅延ロード">CSS の遅延ロード</a></h2>
     <p>この問題に対応するために、以下のような JS を用いて CSS を非同期ロードする方法がある。
     <p><a href="https://github.com/filamentgroup/loadCSS">https://github.com/filamentgroup/loadCSS</a>
-    <p>Style が当たってない状態で表示されてほしくないコンポーネントには、 <code>display: none</code> などをつけておき、ロードされた Style の中で <code>display:visible</code> されるようにする。
+    <p>スタイルが当たってない状態で表示されてほしくないコンポーネントには、 <code>display: none</code> などをつけておき、ロードされたスタイルの中で <code>display: visible</code> されるようにする。
     <p>この方法は、クリティカルレンダリングパスの改善方法の一つとして、多くのパフォーマンスエキスパートから推奨されている。
     <ul>
       <li><a href="https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery">https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery</a>
@@ -72,34 +72,34 @@
     <h2 id="二段階のロードという制限"><a href="#二段階のロードという制限">二段階のロードという制限</a></h2>
     <p>前述のパターンでは inline css でスタイルの当たっていない要素を隠し、非同期ロードした CSS でそれを出現させている。
     <p>これは、コンポーネントと対する CSS が複数になり、その複数の CSS が非同期に順不同で取得された場合に、要素がランダムに出現することを意味する。
-    <p>最初の要素が表示され、読んでいるあいだに新しい要素の出現によりレイアウトが代わり、全部表示されるまで落ち着いて読めない。
-    <p>こうした Content Shifting の問題は、公告が後から次々に表示されるページなどで多く発生し、フラストレーションがたまった経験は誰にでもあるだろう。
-    <p><a href="https://www.youtube.com/watch?v=uPnEZd6wCtk">https://www.youtube.com/watch?v=uPnEZd6wCtk</a>
-    <p>本来なら、最初に見える部分="Above the fold" を最適化したいわけだが、それがどの要素かは viewwport に依存する。従って、どのような viewport でも適切に表示できる方法が求められる。
+    <p>最初の要素が表示され、読んでいる間に新しい要素の出現によりレイアウトが変わり、全部表示されるまで落ち着いて読めない。
+    <p>こうした Content-Shifting の問題は、公告が後から次々に表示されるページなどで多く発生し、<a href="https://www.youtube.com/watch?v=uPnEZd6wCtk">フラストレーションがたまった経験</a> は誰にでもあるだろう。
+    <!--iframe width="560" height="315" src="https://www.youtube.com/embed/uPnEZd6wCtk" frameborder="0" allowfullscreen></iframe-->
+    <p>本来なら、最初に見える部分="Above the fold" を最適化したいわけだが、それがどの要素で成り立つかは viewwport に依存する。サイズが分かっていれば、コンテンツを埋める枠のサイズを全て最初に指定することもできるが、以下の方法を使えば、どのような viewport でも適切に表示できることができる。
   </section>
   <section>
     <h2 id="HTTP2+時代の最適化"><a href="#HTTP2+時代の最適化">HTTP2 時代の最適化</a></h2>
     <p>HTTP2 では以下のように書くことが可能になる。
     <pre class=html><code>&lt;head&gt;
+&lt;!-- header には、コンポーネントに依存する CSS は書かない --&gt;
 &lt;/head&gt;
 &lt;body&gt;
-  &lt;!-- HTTP/2 push this resource, or inline it, whichever&#039;s faster --&gt;
-  &lt;link rel=&quot;stylesheet&quot; href=&quot;/site-header.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;/header.css&quot;&gt;
   &lt;header&gt;&lt;/header&gt;
 
-  &lt;link rel=&quot;stylesheet&quot; href=&quot;/article.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;/main.css&quot;&gt;
   &lt;main&gt;&lt;/main&gt;
+
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;/article.css&quot;&gt;
+  &lt;article&gt;&lt;/article&gt;
 
   &lt;link rel=&quot;stylesheet&quot; href=&quot;/comment.css&quot;&gt;
   &lt;section class=&quot;comments&quot;&gt;&lt;/section&gt;
 
-  &lt;link rel=&quot;stylesheet&quot; href=&quot;/about-me.css&quot;&gt;
-  &lt;section class=&quot;about-me&quot;&gt;&lt;/section&gt;
-
-  &lt;link rel=&quot;stylesheet&quot; href=&quot;/site-footer.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;/footer.css&quot;&gt;
   &lt;footer&gt;&lt;/footer&gt;
 &lt;/body&gt;</code></pre>
-    <p>まず、各<code>&lt;link rel=stylesheet&gt;</code> はそれ以降のレンダリングをブロックするが、それ以前のコンテントのレンダリングをブロックしない。
+    <p>まず、各 <code>&lt;link rel=stylesheet&gt;</code> はそれ以降のレンダリングをブロックするが、それ以前のコンテントのレンダリングをブロックしない。
     CSS は並列で読み込まれ、直列に適用される。
     <p>もし、 Header, Article, Footer の CSS が読み込まれていた場合を考えると、以下のような状態になる。
     <ul>

@@ -9,7 +9,7 @@ Chrome が予定している `<link rel=stylesheet>` の挙動の変更につい
 
 この内容は、単に Chrome に対する変更ではなく、 HTTP2 によって変化する最適化手法と、それを最も活かすための HTML, CSS の構成についてのヒントがある。
 
-今回は、これを解説し、本サイトに適用していく。
+今回は、この内容を意訳+補足解説し、本サイトに適用していく。
 
 
 ## HTTP/1.1 時代の CSS
@@ -85,13 +85,12 @@ Chrome は、現在の Stable では Webkit と同じだが、 Canary では Fir
 
 最初の要素が表示され、読んでいる間に新しい要素の出現によりレイアウトが変わり、全部表示されるまで落ち着いて読めない。
 
-こうした Content-Shifting の問題は、公告が後から次々に表示されるページなどで多く発生し、フラストレーションがたまった経験は誰にでもあるだろう。
+こうした Content-Shifting の問題は、公告が後から次々に表示されるページなどで多く発生し、[フラストレーションがたまった経験](https://www.youtube.com/watch?v=uPnEZd6wCtk) は誰にでもあるだろう。
 
-https://www.youtube.com/watch?v=uPnEZd6wCtk
+<!--iframe width="560" height="315" src="https://www.youtube.com/embed/uPnEZd6wCtk" frameborder="0" allowfullscreen></iframe-->
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/uPnEZd6wCtk" frameborder="0" allowfullscreen></iframe>
 
-本来なら、最初に見える部分="Above the fold" を最適化したいわけだが、それがどの要素かは viewwport に依存する。従って、どのような viewport でも適切に表示できる方法が求められる。
+本来なら、最初に見える部分="Above the fold" を最適化したいわけだが、それがどの要素で成り立つかは viewwport に依存する。サイズが分かっていれば、コンテンツを埋める枠のサイズを全て最初に指定することもできるが、以下の方法を使えば、どのような viewport でも適切に表示できることができる。
 
 
 ## HTTP2 時代の最適化
@@ -100,28 +99,28 @@ HTTP2 では以下のように書くことが可能になる。
 
 ```html
 <head>
+<!-- header には、コンポーネントに依存する CSS は書かない -->
 </head>
 <body>
-  <!-- HTTP/2 push this resource, or inline it, whichever's faster -->
-  <link rel="stylesheet" href="/site-header.css">
+  <link rel="stylesheet" href="/header.css">
   <header></header>
 
-  <link rel="stylesheet" href="/article.css">
+  <link rel="stylesheet" href="/main.css">
   <main></main>
+
+  <link rel="stylesheet" href="/article.css">
+  <article></article>
 
   <link rel="stylesheet" href="/comment.css">
   <section class="comments"></section>
 
-  <link rel="stylesheet" href="/about-me.css">
-  <section class="about-me"></section>
-
-  <link rel="stylesheet" href="/site-footer.css">
+  <link rel="stylesheet" href="/footer.css">
   <footer></footer>
 </body>
 ```
 
 
-まず、各`<link rel=stylesheet>` はそれ以降のレンダリングをブロックするが、それ以前のコンテントのレンダリングをブロックしない。
+まず、各 `<link rel=stylesheet>` はそれ以降のレンダリングをブロックするが、それ以前のコンテントのレンダリングをブロックしない。
 CSS は並列で読み込まれ、直列に適用される。
 
 もし、 Header, Article, Footer の CSS が読み込まれていた場合を考えると、以下のような状態になる。
@@ -182,3 +181,14 @@ Firefox では、以下のように `<script>` をはさむことで CSS がロ�
 そして、数ヶ月以内には Chrome は IE/Edge の方式に移るので、問題は解決する。
 
 これにより、 Just in time CSS が可能になり、レンダリングプロセスが最適化可能になる。
+
+
+## 本サイトへの適用
+
+ちょっとすぐにはできなかったので、以下の順で実施していく。
+
+- labs.jxck.io にでもページ作成
+- CSS のコンポーネント単位の分割
+- タイムラプスでの確認
+
+結果が出たら、ここに追記する。
