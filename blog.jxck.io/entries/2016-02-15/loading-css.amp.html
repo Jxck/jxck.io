@@ -2,7 +2,7 @@
 <html amp>
 <head>
 <meta charset=utf-8>
-<link rel=canonical href=/blog.jxck.io/drafts/loading-css.html>
+<link rel=canonical href=/entries/2016-02-15/loading-css.html>
 <meta name=viewport content="width=device-width,minimum-scale=1">
 <style>body {opacity: 0}</style><noscript><style>body {opacity: 1}</style></noscript>
 <title>HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について | blog.jxck.io</title>
@@ -381,14 +381,14 @@ pre > code::after {
   </div>
 </header>
 <article>
-  <div><time datetime=undefined>undefined</time><span class=tags><a>http2</a><a>css</a></span></div>
-  <h1><a href="/blog.jxck.io/drafts/loading-css.html">HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について</a></h1>
+  <div><time datetime=2016-02-15>2016-02-15</time><span class=tags><a>http2</a><a>css</a></span></div>
+  <h1><a href="/entries/2016-02-15/loading-css.html">HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について</a></h1>
   <section>
     <h2 id="Intro"><a href="#Intro">Intro</a></h2>
     <p>Chrome が予定している <code>&lt;link rel=stylesheet&gt;</code> の挙動の変更について、Google Chrome チームの Jake が、興味深いブログを上げている。
     <p><a href="https://jakearchibald.com/2016/link-in-body/">The future of loading CSS</a>
     <p>この内容は、単に Chrome に対する変更ではなく、 HTTP2 によって変化する最適化手法と、それを最も活かすための HTML, CSS の構成についてのヒントがある。
-    <p>今回は、これを解説し、本サイトに適用していく。
+    <p>今回は、この内容を意訳+補足解説し、本サイトに適用していく。
   </section>
   <section>
     <h2 id="HTTP/1.1+時代の+CSS"><a href="#HTTP/1.1+時代の+CSS">HTTP/1.1 時代の CSS</a></h2>
@@ -514,6 +514,16 @@ pre > code::after {
     現状の Chrome & Safari では CSS がロードされるまで White Screen になるが、従来のように全てを <code>&lt;head&gt;</code> に置いていたのと比べれば問題ではない。
     そして、数ヶ月以内には Chrome は IE/Edge の方式に移るので、問題は解決する。
     <p>これにより、 Just in time CSS が可能になり、レンダリングプロセスが最適化可能になる。
+  </section>
+  <section>
+    <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
+    <p>ちょっとすぐにはできなかったので、以下の順で実施していく。
+    <ul>
+      <li>labs.jxck.io にでもページ作成
+      <li>CSS のコンポーネント単位の分割
+      <li>タイムラプスでの確認
+    </ul>
+    <p>結果が出たら、ここに追記する。
   </section>
 </article>
 <hr>
