@@ -1,13 +1,389 @@
 <!DOCTYPE html>
+<html amp>
+<head>
 <meta charset=utf-8>
-<link rel=canonical href=/entries/2016-02-15/loading-css.html>
-<link rel=amphtml href=/entries/2016-02-15/loading-css.amp.html>
-<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=canonical href=/entries/2016-02-15/loading-css-over-http2.html>
+<meta name=viewport content="width=device-width,minimum-scale=1">
+<style>body {opacity: 0}</style><noscript><style>body {opacity: 1}</style></noscript>
 <title>HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について | blog.jxck.io</title>
+<script async src=https://cdn.ampproject.org/v0.js></script>
+<style amp-custom>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', 'Helvetica', serif;
+  color: #222;
+  background-color: #fefefe;
+}
 
-<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/body.css>
+.archive {
+  font-size: 1.2em;
+  line-height: 2em;
+}
 
-<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/header.css>
+.archive ul {
+  margin: 0;
+}
+
+time {
+  padding-right: 0.5em;
+}
+
+time::after {
+  content: ":";
+}
+
+.tags {
+  font-size: 0.8em;
+}
+
+.tags a {
+  margin-left: 0.2em;
+  padding: 0.2em 0.4em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #ddd;
+  text-decoration: none;
+}
+
+@media only screen and (max-device-width : 480px) {
+  article > img {
+    max-width:100%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  img {
+    width: 100%;
+  }
+}
+
+header {
+  box-sizing: border-box;
+  background-color: #222;
+  margin: 0;
+  padding: 0.4em;
+}
+
+header div {
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+}
+
+header a.logo {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: 0 1em 0 0;
+  padding: 0;
+  border: 1px solid #ccc;
+}
+
+header a > img {
+  display: block;
+  width: 31px;
+  height: 31px;
+  margin: 0;
+  padding: 0;
+}
+
+header a.path {
+  display: block;
+  padding: 0.4em;
+  color: gray;
+  flex-grow: 1;
+}
+
+header a.path:hover {
+  color: white;
+}
+
+main {
+  display: block;
+  width: 80%;
+  margin: 1em auto;
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+}
+
+a {
+  color: RoyalBlue;
+}
+
+a:visited {
+  color: Brown;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  pointer-events: none;
+  color: #222;
+}
+
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: #222;
+}
+
+h1 > a:hover:before,
+h2 > a:hover:before,
+h3 > a:hover:before,
+h4 > a:hover:before,
+h5 > a:hover:before,
+h6 > a:hover:before {
+  color: Brown;
+}
+
+h1 > a::before {
+  content: "# ";
+  pointer-events: all;
+}
+
+h2 > a::before {
+  content: "## ";
+  pointer-events: all;
+}
+
+h3 > a::before {
+  content: "### ";
+  pointer-events: all;
+}
+
+h4 > a::before {
+  content: "#### ";
+  pointer-events: all;
+}
+
+i::before, i::after {
+  content: "*";
+}
+
+strong::before, strong::after {
+  content: "**";
+}
+
+ol, ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+li {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+table {
+  margin: 2em 0;
+  border-spacing: 0 0.4em;
+}
+
+th {
+  padding: 0em 1.2em 0.8em;
+  border-left: 0.14em solid #222;
+  border-bottom: 2px dashed #222;
+}
+
+td {
+  padding: 0.4em 1em;
+  border-left: 0.14em solid #222;
+}
+
+th:last-child, td:last-child {
+  border-right: 0.14em solid #222;
+}
+
+ul, ol, dl {
+  margin: 2em 0;
+}
+
+dl dt {
+  font-weight: bold;
+}
+
+dl dt::after {
+  content: ":";
+}
+
+dl dd {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+blockquote {
+  display: block;
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  padding: 1em;
+  margin: 2em 0;
+}
+
+blockquote::before {
+  content: "> ";
+}
+
+code {
+  border: 1px solid #ddd;
+  background-color: #efefef;
+  border-radius: 4px;
+  padding: 0.1em;
+  margin: 2em 0;
+}
+
+code::before, code::after {
+  /* うざかった */
+  /* content: "`"; */
+}
+
+article img {
+  max-width: 80%;
+  display: block;
+  margin: 1em 0;
+  border: solid 1px #ccc;
+}
+
+article img[src$=".svg"] {
+  max-width: 50%;
+}
+
+
+pre {
+  overflow: auto;
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: 1.2em;
+  margin: 2em 0;
+  border-radius: 4px;
+}
+
+pre::before {
+  content: "```" attr(class) "\A";
+}
+
+pre::after {
+  position: relative;
+  top: -1em;
+  content:"\A```";
+}
+
+pre > code {
+  display: block;
+  padding: 0.6em;
+  margin: 0;
+  border: none;
+  background-color: #efefef;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs,
+.hljs-subst ,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-name ,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition ,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-type,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-section,
+.hljs-meta,
+.hljs-meta-string,
+.hljs-emphasis {
+}
+
+footer {
+  padding: 1em;
+}
+
+</style>
+</head>
+<body>
 <header>
   <div>
     <a class=logo href=//jxck.io><img alt="jxck logo" src=//jxck.io/assets/img/jxck.png></a>
@@ -15,12 +391,11 @@
     <a class=feed href=/feeds/atom.xml><img alt="rss feed" src=//jxck.io/assets/img/rss.svg></a>
   </div>
 </header>
-<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/main.css>
 <main>
   <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>
   <article>
     <div><time datetime=2016-02-15>2016-02-15</time><span class=tags><a>http2</a><a>css</a></span></div>
-    <h1><a href="/entries/2016-02-15/loading-css.html">HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について</a></h1>
+    <h1><a href="/entries/2016-02-15/loading-css-over-http2.html">HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について</a></h1>
     <section>
       <h2 id="Intro"><a href="#Intro">Intro</a></h2>
       <p>Chrome が予定している <code>&lt;link rel=stylesheet&gt;</code> の挙動の変更について、Google Chrome チームの Jake が、興味深いブログを上げている。
@@ -159,21 +534,19 @@
     </section>
     <section>
       <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
-      <p>ちょっとすぐにはできなかったので、以下の順で実施していく。
+      <p>以下を実施した
       <ul>
-        <li>labs.jxck.io にでもページ作成
-        <li>CSS のコンポーネント単位の分割
-        <li>タイムラプスでの確認
+        <li>本サイトの CSS は、基本的には一つにまとめていたが、これをコンポーネント単位に分割した
+        <li>記事をビルドする際に、 HTML のコンポーネントの前に <code>&lt;link rel=stylesheet&gt;</code> を追加した
       </ul>
-      <p>結果が出たら、ここに追記する。
+      <p>元のリソースが小さいため、ネットワークをスロットリングしても、大きな変化が確認できなかった。
+      この記事のここのサンプルを、 <code>labs.jxck.io</code> に作成し、個々の CSS はサーバ側で遅延を入れる形で設定する。
     </section>
   </article>
 </main>
 <hr>
-
-<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/footer.css>
 <footer>
   <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
 </footer>
-<script src="/assets/highlight.min.js"></script>
-<script>window.onload = hljs.initHighlighting;</script>
+</body>
+</html>
