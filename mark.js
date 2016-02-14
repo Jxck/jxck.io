@@ -33,8 +33,9 @@ let Simple = {
 <meta name=viewport content="width=device-width,initial-scale=1">
 <title>${Simple.title} | blog.jxck.io</title>
 
-<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/style.css>
+<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/body.css>
 
+<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/header.css>
 <header>
   <div>
     <a class=logo href=//jxck.io><img alt="jxck logo" src=//jxck.io/assets/img/jxck.png></a>
@@ -42,8 +43,11 @@ let Simple = {
     <a class=feed href=/feeds/atom.xml><img alt="rss feed" src=//jxck.io/assets/img/rss.svg></a>
   </div>
 </header>
+<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/main.css>
 ${article}
 <hr>
+
+<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/footer.css>
 <footer>
   <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
 </footer>
@@ -54,7 +58,8 @@ ${article}
   title: '',
   Article: (node) => {
     let value = `\n${node.value}`.replace(/\n/gm, `\n${Simple.indent}`);
-    value = `<article>${value}\n</article>`;
+    value = `<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>
+<article>${value}\n</article>`;
     value = `\n${value}`.replace(/\n/gm, `\n${Simple.indent}`);
     return `<main>${value}\n</main>`;
   },
@@ -97,7 +102,8 @@ ${article}
   },
   Document:   (node) => node.value,
   Paragraph:  (node) => `<p>${node.value}\n`,
-  CodeBlock:  (node) => `<pre class=${node.lang}><code>${node.value}</code></pre>\n`,
+  CodeBlock:  (node) => `<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
+<pre class=${node.lang}><code>${node.value}</code></pre>\n`,
   Code:       (node) => h`<code>${node.value}</code>`,
   BlockQuote: (node) => h`<blockquote>${node.value}</blockquote>\n`,
   ListItem:   (node) => `<li>${node.value}\n`,
@@ -383,7 +389,17 @@ ${article}
   ast.children = sectioning(ast.children, 1);
 
   amp.Canonical = `${baseurl}/${name}.html`;
-  amp.Style = fs.readFileSync('www.jxck.io/assets/css/style.css').toString();
+
+  amp.Style = [
+    'www.jxck.io/assets/css/body.css',
+    'www.jxck.io/assets/css/header.css',
+    'www.jxck.io/assets/css/main.css',
+    'www.jxck.io/assets/css/article.css',
+    'www.jxck.io/assets/css/pre.css',
+    'www.jxck.io/assets/css/footer.css',
+  ].map((file) => {
+    return fs.readFileSync(file).toString();
+  }).join('\n')
 
   let article = build(ast, dir, date, amp);
 

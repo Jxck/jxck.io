@@ -1,0 +1,50 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', 'Helvetica', serif;
+  color: #222;
+  background-color: #fefefe;
+}
+
+.archive {
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.archive ul {
+  margin: 0;
+}
+
+time {
+  padding-right: 0.5em;
+}
+
+time::after {
+  content: ":";
+}
+
+.tags {
+  font-size: 0.8em;
+}
+
+.tags a {
+  margin-left: 0.2em;
+  padding: 0.2em 0.4em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #ddd;
+  text-decoration: none;
+}
+
+@media only screen and (max-device-width : 480px) {
+  article > img {
+    max-width:100%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  img {
+    width: 100%;
+  }
+}
