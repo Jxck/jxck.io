@@ -137,9 +137,7 @@
         <li>IE/Edge: CSS が読み込み終わるまでパーサをブロックする、しかし、 <code>&lt;link&gt;</code> 前のコンテンツはレンダリングする
       </ul>
       <p>Chrome は IE/Ednge の方式に移ることを検討している。これにより Progressive Rendering パターンが可能になる。
-      合わせて <a href="https://github.com/whatwg/html/pull/616"><body>
-      内の<link>
-      を許可する仕様</a> の策定を進めている。
+      合わせて <a href="https://github.com/whatwg/html/pull/616"><code>&lt;body&gt;</code>内の<code>&lt;link&gt;</code>を許可する仕様</a> の策定を進めている。
       <p>この変更は、後方互換であり、必要になるまでレンダリングされないだけである。
     </section>
     <section>
@@ -163,6 +161,8 @@
       <ul>
         <li>本サイトの CSS は、基本的には一つにまとめていたが、これをコンポーネント単位に分割した
         <li>記事をビルドする際に、 HTML のコンポーネントの前に <code>&lt;link rel=stylesheet&gt;</code> を追加した
+        <li>Firefox 用の <code>&lt;script&gt; &lt;/script&gt;</code> はとりあえず無し
+        <li>まだ <code>&lt;body&gt;</code> 内の <code>&lt;link&gt;</code> は仕様上許容されてなので、 <a href="https://validator.w3.org/nu/">w3c validator</a> ではそこがひっかかる
       </ul>
       <p>元のリソースが小さいため、ネットワークをスロットリングしても、大きな変化が確認できなかった。
       この記事のここのサンプルを、 <a href="https://labs.jxck.io">labs.jxck.io</a> に作成し、個々の CSS はサーバ側で遅延を入れる形で設定する。

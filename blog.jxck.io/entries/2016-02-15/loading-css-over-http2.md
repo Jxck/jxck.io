@@ -158,7 +158,7 @@ HTML の仕様には、ページのレンダリングが CSS によりどうブ�
 - IE/Edge: CSS が読み込み終わるまでパーサをブロックする、しかし、 `<link>` 前のコンテンツはレンダリングする
 
 Chrome は IE/Ednge の方式に移ることを検討している。これにより Progressive Rendering パターンが可能になる。
-合わせて [<body>内の<link>を許可する仕様](https://github.com/whatwg/html/pull/616) の策定を進めている。
+合わせて [`<body>`内の`<link>`を許可する仕様](https://github.com/whatwg/html/pull/616) の策定を進めている。
 
 この変更は、後方互換であり、必要になるまでレンダリングされないだけである。
 
@@ -189,6 +189,8 @@ Firefox では、以下のように `<script>` をはさむことで CSS がロ�
 
 - 本サイトの CSS は、基本的には一つにまとめていたが、これをコンポーネント単位に分割した
 - 記事をビルドする際に、 HTML のコンポーネントの前に `<link rel=stylesheet>` を追加した
+- Firefox 用の `<script> </script>` はとりあえず無し
+- まだ `<body>` 内の `<link>` は仕様上許容されてなので、 [w3c validator](https://validator.w3.org/nu/) ではそこがひっかかる
 
 元のリソースが小さいため、ネットワークをスロットリングしても、大きな変化が確認できなかった。
 この記事のここのサンプルを、 [labs.jxck.io](https://labs.jxck.io) に作成し、個々の CSS はサーバ側で遅延を入れる形で設定する。
