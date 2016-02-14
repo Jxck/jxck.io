@@ -54,7 +54,9 @@ ${article}
   title: '',
   Article: (node) => {
     let value = `\n${node.value}`.replace(/\n/gm, `\n${Simple.indent}`);
-    return `<article>${value}\n</article>`;
+    value = `<article>${value}\n</article>`;
+    value = `\n${value}`.replace(/\n/gm, `\n${Simple.indent}`);
+    return `<main>${value}\n</main>`;
   },
   Section: (node) => {
     let value = `\n${node.value}`.replace(/\n/gm, `\n${Simple.indent}`);

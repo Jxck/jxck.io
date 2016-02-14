@@ -48,14 +48,13 @@ header a.path:hover {
   color: white;
 }
 
-article {
+main {
+  display: block;
   width: 80%;
   margin: 1em auto;
 }
 
 .archive {
-  width: 80%;
-  margin: 1em auto;
   font-size: 1.2em;
   line-height: 2em;
 }
@@ -104,6 +103,12 @@ article img[src$=".svg"] {
 @media only screen and (max-device-width : 480px) {
   article > img {
     max-width:100%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  img {
+    width: 100%;
   }
 }
 
@@ -192,6 +197,11 @@ ol {
 ol li::before {
   counter-increment: list;
   content: counter(list) ". ";
+}
+
+li {
+  word-break: break-all;
+  word-wrap: break-word;
 }
 
 table {

@@ -45,13 +45,13 @@ puts <<-EOS
   </div>
 </header>
 
-<section class=archive>
+<main class=archive>
   <h1><a href=#archive>Archive</a></h1>
   <h2><a href=#2016>2016</a></h2>
   <ul>
     #{entries.join("\n    ")}
   </ul>
-</section>
+</main>
 
 <hr>
 
