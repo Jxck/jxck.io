@@ -33,7 +33,9 @@ HTML 自体がコンポーネントを意識した作りになっている場合
 ```html
 <head>
   <link rel="stylesheet" href="/header.css">
+  <link rel="stylesheet" href="/main.css">
   <link rel="stylesheet" href="/article.css">
+  <link rel="stylesheet" href="/comment.css">
   <link rel="stylesheet" href="/footer.css">
 </head>
 <body>
@@ -46,11 +48,11 @@ HTML 自体がコンポーネントを意識した作りになっている場合
 
 > <head> を出力する時点で、ページ内に存在する全てのコンポーネントを把握していないといけない
 
-HTML を全て生成してから順次送るのであれば問題ないが、本来 HTML は先頭からできた順番に送ることも可能である。
+HTML を全て生成してから順次送るのであれば問題ないが、本来 HTML は先頭から、準備ができた順にコンポーネントを送信することも可能であるはずが、それができなくなる。
 
-> site-footer.css のローディングが遅い場合、サイト全体をブロックする
+> footer.css のローディングが遅い場合、サイト全体をブロックする
 
-site-footer.css が必要なのは、 HTML 中の site-footer をレンダリングする時であり、そこまでに出てくる site-header などは、先にレンダリングすることも可能だが、実際はそのたった一つの CSS のせいで HTML も CSS も揃っているコンポーネントが真っ白のままになる。
+footer.css が必要なのは、 HTML 中の `<footer>` をレンダリングする時であり、そこまでに出てくる `<header>` などは、先にレンダリングすることも可能だが、実際はそのたった一つの CSS のせいでそこまでに揃っているコンポーネントもレンダリングされず、真っ白のままになる。
 
 
 ## CSS の遅延ロード
@@ -59,7 +61,7 @@ site-footer.css が必要なのは、 HTML 中の site-footer をレンダリン
 
 https://github.com/filamentgroup/loadCSS
 
-Style が当たってない状態で表示されてほしくないコンポーネントには、 `display: none` などをつけておき、ロードされた Style の中で `display:visible` されるようにする。
+スタイルが当たってない状態で表示されてほしくないコンポーネントには、 `display: none` などをつけておき、ロードされたスタイルの中で `display: visible` されるようにする。
 
 この方法は、クリティカルレンダリングパスの改善方法の一つとして、多くのパフォーマンスエキスパートから推奨されている。
 
@@ -81,11 +83,13 @@ Chrome は、現在の Stable では Webkit と同じだが、 Canary では Fir
 
 これは、コンポーネントと対する CSS が複数になり、その複数の CSS が非同期に順不同で取得された場合に、要素がランダムに出現することを意味する。
 
-最初の要素が表示され、読んでいるあいだに新しい要素の出現によりレイアウトが代わり、全部表示されるまで落ち着いて読めない。
+最初の要素が表示され、読んでいる間に新しい要素の出現によりレイアウトが変わり、全部表示されるまで落ち着いて読めない。
 
-こうした Content Shifting の問題は、公告が後から次々に表示されるページなどで多く発生し、フラストレーションがたまった経験は誰にでもあるだろう。
+こうした Content-Shifting の問題は、公告が後から次々に表示されるページなどで多く発生し、フラストレーションがたまった経験は誰にでもあるだろう。
 
 https://www.youtube.com/watch?v=uPnEZd6wCtk
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uPnEZd6wCtk" frameborder="0" allowfullscreen></iframe>
 
 本来なら、最初に見える部分="Above the fold" を最適化したいわけだが、それがどの要素かは viewwport に依存する。従って、どのような viewport でも適切に表示できる方法が求められる。
 
