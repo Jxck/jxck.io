@@ -16,6 +16,49 @@ body {
   background-color: #fefefe;
 }
 
+.archive {
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.archive ul {
+  margin: 0;
+}
+
+time {
+  padding-right: 0.5em;
+}
+
+time::after {
+  content: ":";
+}
+
+.tags {
+  font-size: 0.8em;
+}
+
+.tags a {
+  margin-left: 0.2em;
+  padding: 0.2em 0.4em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #ddd;
+  text-decoration: none;
+}
+
+@media only screen and (max-device-width : 480px) {
+  article > img {
+    max-width:100%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  img {
+    width: 100%;
+  }
+}
+
 header {
   box-sizing: border-box;
   background-color: #222;
@@ -62,64 +105,6 @@ main {
   display: block;
   width: 80%;
   margin: 1em auto;
-}
-
-.archive {
-  font-size: 1.2em;
-  line-height: 2em;
-}
-
-.archive ul {
-  margin: 0;
-}
-
-time {
-  padding-right: 0.5em;
-}
-
-time::after {
-  content: ":";
-}
-
-.tags {
-  font-size: 0.8em;
-}
-
-.tags a {
-  margin-left: 0.2em;
-  padding: 0.2em 0.4em;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-sizing: border-box;
-  background-color: #ddd;
-  text-decoration: none;
-}
-
-footer {
-  padding: 1em;
-}
-
-article img {
-  max-width: 80%;
-  display: block;
-  margin: 1em 0;
-  border: solid 1px #ccc;
-}
-
-article img[src$=".svg"] {
-  max-width: 50%;
-}
-
-@media only screen and (max-device-width : 480px) {
-  article > img {
-    max-width:100%;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  img {
-    width: 100%;
-  }
 }
 
 a {
@@ -276,6 +261,18 @@ code::before, code::after {
   /* content: "`"; */
 }
 
+article img {
+  max-width: 80%;
+  display: block;
+  margin: 1em 0;
+  border: solid 1px #ccc;
+}
+
+article img[src$=".svg"] {
+  max-width: 50%;
+}
+
+
 pre {
   overflow: auto;
   word-break: break-all;
@@ -380,6 +377,10 @@ pre > code::after {
 .hljs-emphasis {
 }
 
+footer {
+  padding: 1em;
+}
+
 </style>
 </head>
 <body>
@@ -391,6 +392,7 @@ pre > code::after {
   </div>
 </header>
 <main>
+  <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>
   <article>
     <div><time datetime=2016-02-15>2016-02-15</time><span class=tags><a>http2</a><a>css</a></span></div>
     <h1><a href="/entries/2016-02-15/loading-css.html">HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について</a></h1>
@@ -405,6 +407,7 @@ pre > code::after {
       <h2 id="HTTP/1.1+時代の+CSS"><a href="#HTTP/1.1+時代の+CSS">HTTP/1.1 時代の CSS</a></h2>
       <p>HTML 自体がコンポーネントを意識した作りになっている場合は、自然と CSS も <code>class</code> などを使いコンポーネント単位に作ることができるだろう。
       <p>しかし、 HTTP/1.1 ではリクエストの数を減らすために、全ての CSS を一つ(もしくは少数個)に結合する最適化が主流だった。
+      <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
       <pre class=html><code>&lt;head&gt;
   &lt;link rel=&quot;stylesheet&quot; href=&quot;bundle.css&quot;&gt;
 &lt;/head&gt;
@@ -412,6 +415,7 @@ pre > code::after {
   &lt;!-- content --&gt;
 &lt;/body&gt;</code></pre>
       <p>しかし、リクエストの多重化が可能な HTTP/2 においては、そこを心配する必要がなくなったため、コンポーネントごとに CSS を分割するのは、キャッシュの容易性を考えても良い方法と言える。
+      <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
       <pre class=html><code>&lt;head&gt;
   &lt;link rel=&quot;stylesheet&quot; href=&quot;/header.css&quot;&gt;
   &lt;link rel=&quot;stylesheet&quot; href=&quot;/main.css&quot;&gt;
@@ -457,6 +461,7 @@ pre > code::after {
     <section>
       <h2 id="HTTP2+時代の最適化"><a href="#HTTP2+時代の最適化">HTTP2 時代の最適化</a></h2>
       <p>HTTP2 では以下のように書くことが可能になる。
+      <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
       <pre class=html><code>&lt;head&gt;
 &lt;!-- header には、コンポーネントに依存する CSS は書かない --&gt;
 &lt;/head&gt;
@@ -516,6 +521,7 @@ pre > code::after {
       <h2 id="Firefox+での+FOUC+対策"><a href="#Firefox+での+FOUC+対策">Firefox での FOUC 対策</a></h2>
       <p>Firefox では、以下のように <code>&lt;script&gt;</code> をはさむことで CSS がロードされるまでパースをブロックし FOUC を回避できる。
       <code>&lt;script&gt;</code> には中身が必要だが、これはスペース一つで十分である。
+      <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
       <pre class=html><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;/article.css&quot;&gt;&lt;script&gt; &lt;/script&gt;
 &lt;main&gt;&lt;/main&gt;</code></pre>
     </section>

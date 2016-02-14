@@ -5,8 +5,9 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <title>Resource Hints API でリソースの投機的取得 | blog.jxck.io</title>
 
-<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/style.css>
+<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/body.css>
 
+<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/header.css>
 <header>
   <div>
     <a class=logo href=//jxck.io><img alt="jxck logo" src=//jxck.io/assets/img/jxck.png></a>
@@ -14,7 +15,9 @@
     <a class=feed href=/feeds/atom.xml><img alt="rss feed" src=//jxck.io/assets/img/rss.svg></a>
   </div>
 </header>
+<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/main.css>
 <main>
+  <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>
   <article>
     <div><time datetime=2016-02-11>2016-02-11</time><span class=tags><a>performance</a><a>resouce-hints</a></span></div>
     <h1><a href="/entries/2016-02-11/resource-hints.html">Resource Hints API でリソースの投機的取得</a></h1>
@@ -54,6 +57,7 @@
       <h2 id="Resource+Hints"><a href="#Resource+Hints">Resource Hints</a></h2>
       <p>Resource Hints はそうしたリソースの取得のヒントをブラウザに伝える API 郡であり、基本的には前のページ(上記ならログインページ)の中で、次のページ(上記ならメインページ)で使うリソースのヒントを HTML の Link タグで記述する。
       <p>現在は四種類ある
+      <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
       <pre class=html><code>&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//example.com&quot;&gt;
 &lt;link rel=&quot;preconnect&quot; href=&quot;//example.com&quot;&gt;
 &lt;link rel=&quot;preconnect&quot; href=&quot;//cdn.example.com&quot; crossorigin&gt;
@@ -63,6 +67,7 @@
       <section>
         <h3 id="dns-prefetch"><a href="#dns-prefetch">dns-prefetch</a></h3>
         <p>DNS の問い合わせを事前に行い、キャッシュしておくことで、接続コストを下げる方法である。
+        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
         <pre class=html><code>&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//example.com&quot;&gt;</code></pre>
         <p>例えば、メインページで接続する API サーバや、 CDN のエッジへの名前解決を行うなどが予想されるだろう。
         <ul>
@@ -74,6 +79,7 @@
         <h3 id="preconnect"><a href="#preconnect">preconnect</a></h3>
         <p>DNS の解決に加えて TCP の接続まで確立しておくことで、リクエストをすぐにでも発行できるようにする方法である。
         <p>仕様では、クロスオリジンも張ることができる。
+        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
         <pre class=html><code>&lt;link rel=&quot;preconnect&quot; href=&quot;//example.com&quot;&gt;
 &lt;link rel=&quot;preconnect&quot; href=&quot;//cdn.example.com&quot; crossorigin&gt;</code></pre>
         <p>これは、例えば API エンドポイントは決まっており、そこに対して連続するリクエストが発生することが分かっているような場合が予想される。
@@ -85,6 +91,7 @@
       <section>
         <h3 id="prefetch"><a href="#prefetch">prefetch</a></h3>
         <p>もはや取得するリソースが分かっており、それが投機的に取得しても内容が変わらないもの、要するに静的リソースである場合に、事前に取得してブラウザにキャッシュする方法である。
+        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
         <pre class=html><code>&lt;link rel=&quot;prefetch&quot; href=&quot;/library.js&quot; as=&quot;script&quot;&gt;
 &lt;link rel=&quot;prefetch&quot; href=&quot;//example.com/next-page.html&quot; as=&quot;html&quot; crossorigin=&quot;use-credentials&quot;&gt;</code></pre>
         <ul>
@@ -96,6 +103,7 @@
         <h3 id="prerender"><a href="#prerender">prerender</a></h3>
         <p>prefetch 可能なリソースのみからなるページならば、ページ全体を事前に取得することが可能な筈である。
         <p>そこで、そのページ全体を取得し、バックグラウンドに起こしたタブの中で、描画まで行ってしまうという方法である。
+        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
         <pre class=html><code>&lt;link rel=&quot;prerender&quot; href=&quot;//example.com/next-page.html&quot;&gt;</code></pre>
         <p>描画が完了しているため、実際の遷移が発生したら、そのタブを切り替えるだけでよくなる。理論上は最速表示となるだろう。
         <ul>
@@ -129,6 +137,8 @@
   </article>
 </main>
 <hr>
+
+<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/footer.css>
 <footer>
   <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
 </footer>

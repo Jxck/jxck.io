@@ -16,6 +16,49 @@ body {
   background-color: #fefefe;
 }
 
+.archive {
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.archive ul {
+  margin: 0;
+}
+
+time {
+  padding-right: 0.5em;
+}
+
+time::after {
+  content: ":";
+}
+
+.tags {
+  font-size: 0.8em;
+}
+
+.tags a {
+  margin-left: 0.2em;
+  padding: 0.2em 0.4em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #ddd;
+  text-decoration: none;
+}
+
+@media only screen and (max-device-width : 480px) {
+  article > img {
+    max-width:100%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  img {
+    width: 100%;
+  }
+}
+
 header {
   box-sizing: border-box;
   background-color: #222;
@@ -62,64 +105,6 @@ main {
   display: block;
   width: 80%;
   margin: 1em auto;
-}
-
-.archive {
-  font-size: 1.2em;
-  line-height: 2em;
-}
-
-.archive ul {
-  margin: 0;
-}
-
-time {
-  padding-right: 0.5em;
-}
-
-time::after {
-  content: ":";
-}
-
-.tags {
-  font-size: 0.8em;
-}
-
-.tags a {
-  margin-left: 0.2em;
-  padding: 0.2em 0.4em;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-sizing: border-box;
-  background-color: #ddd;
-  text-decoration: none;
-}
-
-footer {
-  padding: 1em;
-}
-
-article img {
-  max-width: 80%;
-  display: block;
-  margin: 1em 0;
-  border: solid 1px #ccc;
-}
-
-article img[src$=".svg"] {
-  max-width: 50%;
-}
-
-@media only screen and (max-device-width : 480px) {
-  article > img {
-    max-width:100%;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  img {
-    width: 100%;
-  }
 }
 
 a {
@@ -276,6 +261,18 @@ code::before, code::after {
   /* content: "`"; */
 }
 
+article img {
+  max-width: 80%;
+  display: block;
+  margin: 1em 0;
+  border: solid 1px #ccc;
+}
+
+article img[src$=".svg"] {
+  max-width: 50%;
+}
+
+
 pre {
   overflow: auto;
   word-break: break-all;
@@ -380,6 +377,10 @@ pre > code::after {
 .hljs-emphasis {
 }
 
+footer {
+  padding: 1em;
+}
+
 </style>
 </head>
 <body>
@@ -391,6 +392,7 @@ pre > code::after {
   </div>
 </header>
 <main>
+  <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>
   <article>
     <div><time datetime=2016-02-11>2016-02-11</time><span class=tags><a>performance</a><a>resouce-hints</a></span></div>
     <h1><a href="/entries/2016-02-11/resource-hints.html">Resource Hints API でリソースの投機的取得</a></h1>
@@ -430,6 +432,7 @@ pre > code::after {
       <h2 id="Resource+Hints"><a href="#Resource+Hints">Resource Hints</a></h2>
       <p>Resource Hints はそうしたリソースの取得のヒントをブラウザに伝える API 郡であり、基本的には前のページ(上記ならログインページ)の中で、次のページ(上記ならメインページ)で使うリソースのヒントを HTML の Link タグで記述する。
       <p>現在は四種類ある
+      <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
       <pre class=html><code>&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//example.com&quot;&gt;
 &lt;link rel=&quot;preconnect&quot; href=&quot;//example.com&quot;&gt;
 &lt;link rel=&quot;preconnect&quot; href=&quot;//cdn.example.com&quot; crossorigin&gt;
@@ -439,6 +442,7 @@ pre > code::after {
       <section>
         <h3 id="dns-prefetch"><a href="#dns-prefetch">dns-prefetch</a></h3>
         <p>DNS の問い合わせを事前に行い、キャッシュしておくことで、接続コストを下げる方法である。
+        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
         <pre class=html><code>&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//example.com&quot;&gt;</code></pre>
         <p>例えば、メインページで接続する API サーバや、 CDN のエッジへの名前解決を行うなどが予想されるだろう。
         <ul>
@@ -450,6 +454,7 @@ pre > code::after {
         <h3 id="preconnect"><a href="#preconnect">preconnect</a></h3>
         <p>DNS の解決に加えて TCP の接続まで確立しておくことで、リクエストをすぐにでも発行できるようにする方法である。
         <p>仕様では、クロスオリジンも張ることができる。
+        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
         <pre class=html><code>&lt;link rel=&quot;preconnect&quot; href=&quot;//example.com&quot;&gt;
 &lt;link rel=&quot;preconnect&quot; href=&quot;//cdn.example.com&quot; crossorigin&gt;</code></pre>
         <p>これは、例えば API エンドポイントは決まっており、そこに対して連続するリクエストが発生することが分かっているような場合が予想される。
@@ -461,6 +466,7 @@ pre > code::after {
       <section>
         <h3 id="prefetch"><a href="#prefetch">prefetch</a></h3>
         <p>もはや取得するリソースが分かっており、それが投機的に取得しても内容が変わらないもの、要するに静的リソースである場合に、事前に取得してブラウザにキャッシュする方法である。
+        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
         <pre class=html><code>&lt;link rel=&quot;prefetch&quot; href=&quot;/library.js&quot; as=&quot;script&quot;&gt;
 &lt;link rel=&quot;prefetch&quot; href=&quot;//example.com/next-page.html&quot; as=&quot;html&quot; crossorigin=&quot;use-credentials&quot;&gt;</code></pre>
         <ul>
@@ -472,6 +478,7 @@ pre > code::after {
         <h3 id="prerender"><a href="#prerender">prerender</a></h3>
         <p>prefetch 可能なリソースのみからなるページならば、ページ全体を事前に取得することが可能な筈である。
         <p>そこで、そのページ全体を取得し、バックグラウンドに起こしたタブの中で、描画まで行ってしまうという方法である。
+        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
         <pre class=html><code>&lt;link rel=&quot;prerender&quot; href=&quot;//example.com/next-page.html&quot;&gt;</code></pre>
         <p>描画が完了しているため、実際の遷移が発生したら、そのタブを切り替えるだけでよくなる。理論上は最速表示となるだろう。
         <ul>

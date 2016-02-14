@@ -16,6 +16,49 @@ body {
   background-color: #fefefe;
 }
 
+.archive {
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.archive ul {
+  margin: 0;
+}
+
+time {
+  padding-right: 0.5em;
+}
+
+time::after {
+  content: ":";
+}
+
+.tags {
+  font-size: 0.8em;
+}
+
+.tags a {
+  margin-left: 0.2em;
+  padding: 0.2em 0.4em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #ddd;
+  text-decoration: none;
+}
+
+@media only screen and (max-device-width : 480px) {
+  article > img {
+    max-width:100%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  img {
+    width: 100%;
+  }
+}
+
 header {
   box-sizing: border-box;
   background-color: #222;
@@ -62,64 +105,6 @@ main {
   display: block;
   width: 80%;
   margin: 1em auto;
-}
-
-.archive {
-  font-size: 1.2em;
-  line-height: 2em;
-}
-
-.archive ul {
-  margin: 0;
-}
-
-time {
-  padding-right: 0.5em;
-}
-
-time::after {
-  content: ":";
-}
-
-.tags {
-  font-size: 0.8em;
-}
-
-.tags a {
-  margin-left: 0.2em;
-  padding: 0.2em 0.4em;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-sizing: border-box;
-  background-color: #ddd;
-  text-decoration: none;
-}
-
-footer {
-  padding: 1em;
-}
-
-article img {
-  max-width: 80%;
-  display: block;
-  margin: 1em 0;
-  border: solid 1px #ccc;
-}
-
-article img[src$=".svg"] {
-  max-width: 50%;
-}
-
-@media only screen and (max-device-width : 480px) {
-  article > img {
-    max-width:100%;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  img {
-    width: 100%;
-  }
 }
 
 a {
@@ -276,6 +261,18 @@ code::before, code::after {
   /* content: "`"; */
 }
 
+article img {
+  max-width: 80%;
+  display: block;
+  margin: 1em 0;
+  border: solid 1px #ccc;
+}
+
+article img[src$=".svg"] {
+  max-width: 50%;
+}
+
+
 pre {
   overflow: auto;
   word-break: break-all;
@@ -380,6 +377,10 @@ pre > code::after {
 .hljs-emphasis {
 }
 
+footer {
+  padding: 1em;
+}
+
 </style>
 </head>
 <body>
@@ -391,6 +392,7 @@ pre > code::after {
   </div>
 </header>
 <main>
+  <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>
   <article>
     <div><time datetime=2016-02-01>2016-02-01</time><span class=tags><a>performance</a><a>amp</a></span></div>
     <h1><a href="/entries/2016-02-01/amp-html.html">AMP HTML 対応</a></h1>
@@ -421,8 +423,10 @@ pre > code::after {
         <p>本サイトでは、普通の HTML と AMP 対応の HTML は別にビルドしており、 URL の末尾が <code>.html</code> か <code>.amp.html</code> かで分けている。
         <p>こうした場合は <code>&lt;link&gt;</code> タグで、クローラなどに相互のページの参照を伝えることができる。
         <p>このサイトでは <code>.html</code> に AMP 対応があることを伝える以下を追記した。
+        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
         <pre class=html><code>&lt;link rel=amphtml href=${path}.amp.html&gt;</code></pre>
         <p>一方 <code>.amp.html</code> では、ブックマークなどが統一できるように <code>canonical</code> を追加している。
+        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
         <pre class=html><code>&lt;link rel=canonical href=${path}.html&gt;</code></pre>
         <p>access_log で UA などを追えば、 apmhtml を見るクローラが追えるかもしれない。
       </section>

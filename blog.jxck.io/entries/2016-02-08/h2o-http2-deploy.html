@@ -5,8 +5,9 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <title>h2o で https/2 のデプロイと設定 | blog.jxck.io</title>
 
-<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/style.css>
+<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/body.css>
 
+<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/header.css>
 <header>
   <div>
     <a class=logo href=//jxck.io><img alt="jxck logo" src=//jxck.io/assets/img/jxck.png></a>
@@ -14,7 +15,9 @@
     <a class=feed href=/feeds/atom.xml><img alt="rss feed" src=//jxck.io/assets/img/rss.svg></a>
   </div>
 </header>
+<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/main.css>
 <main>
+  <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>
   <article>
     <div><time datetime=2016-02-08>2016-02-08</time><span class=tags><a>http2</a><a>h2o</a></span></div>
     <h1><a href="/entries/2016-02-08/h2o-http2-deploy.html">h2o で https/2 のデプロイと設定</a></h1>
@@ -53,6 +56,7 @@
       <p>h2o の設定でちょっとハマったのがパスとファイルの紐付けができないところ。
       <p>たとえば、 <code>favicon.ico</code> だとか <code>robots.txt</code> は、特定の URL に対して特定のファイルを割り当てる。
       これがこう書けると嬉しい。
+      <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
       <pre class=null><code>paths:
   &quot;/favicon.ico&quot;:
      file.dir: /some/path/to/favicon.ico
@@ -61,6 +65,7 @@
       <p>しかし、実際は paths へはディレクトリしか紐づけられない。
       やるなら mruby.handler を使うしかない。
       (399 は、 fallthroug の独自ルールになってるらしい)
+      <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
       <pre class=null><code>&quot;/&quot;:
   mruby.handler: |
     Proc.new do |env|
@@ -87,6 +92,8 @@
   </article>
 </main>
 <hr>
+
+<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/footer.css>
 <footer>
   <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
 </footer>

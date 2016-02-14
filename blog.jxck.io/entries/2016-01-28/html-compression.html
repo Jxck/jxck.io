@@ -5,8 +5,9 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <title>HTML の省略によるサイズ最適化 | blog.jxck.io</title>
 
-<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/style.css>
+<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/body.css>
 
+<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/header.css>
 <header>
   <div>
     <a class=logo href=//jxck.io><img alt="jxck logo" src=//jxck.io/assets/img/jxck.png></a>
@@ -14,7 +15,9 @@
     <a class=feed href=/feeds/atom.xml><img alt="rss feed" src=//jxck.io/assets/img/rss.svg></a>
   </div>
 </header>
+<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/main.css>
 <main>
+  <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>
   <article>
     <div><time datetime=2016-01-28>2016-01-28</time><span class=tags><a>performance</a><a>html</a></span></div>
     <h1><a href="/entries/2016-01-28/html-compression.html">HTML の省略によるサイズ最適化</a></h1>
@@ -45,6 +48,7 @@
         <p><a href="https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission">https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission</a>
         <blockquote>An html element&#039;s end tag may be omitted if the html element is not immediately followed by a comment.</blockquote>
         <p>すぐ次がコメントでないなら、 <code>&lt;html&gt;</code> は省略しても良い。 <code>&lt;head&gt;</code> や <code>&lt;body&gt;</code> も同様だ。
+        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
         <pre class=html><code>&lt;!-- before --&gt;
 &lt;!DOCTYPE html&gt;
   &lt;head&gt;
@@ -73,6 +77,7 @@
           <li>それ以上親 (<code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>) に子要素が無い
         </ul>
         <p>つまりこう書くことができる。
+        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
         <pre class=html><code>&lt;!-- before --&gt;
 &lt;ul&gt;
   &lt;li&gt;one&lt;/li&gt;
@@ -94,6 +99,7 @@
         <p><a href="https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html">https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html</a>
         <blockquote>The attribute value can remain unquoted if it doesn&#039;t contain space characters or any of &quot; &#039; ` = &lt; or &gt;. Otherwise, it has to be quoted using either single or double quotes.</blockquote>
         <p>つまり、スペースや <code>&quot; &#039; ` = &lt; or &gt;</code> が無ければ引用符はいらない。
+        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
         <pre class=html><code>&lt;!-- before --&gt;
 &lt;input name=&quot;address&quot; maxlength=&quot;200&quot;&gt;
 
@@ -122,6 +128,7 @@
         <h3 id="効果"><a href="#効果">効果</a></h3>
         <p>今回はやってみたかったからやっただけで、劇的な効果を期待はしていないが一応測ってみる。
         <p>まず、 <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, <code>&lt;body&gt;</code> そして、閉じたタグを付け、引用符をつけるた場合と比べると 259 byte の削減になっていた。
+        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
         <pre class=sh><code>jxck$ wc html-compression.html
      131     408    9158 html-compression.html
 jxck$ wc html-no-compression.html
@@ -156,6 +163,8 @@ jxck$ wc html-no-compression.html
   </article>
 </main>
 <hr>
+
+<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/footer.css>
 <footer>
   <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
 </footer>

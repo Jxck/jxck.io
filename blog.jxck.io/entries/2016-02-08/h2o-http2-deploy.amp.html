@@ -16,6 +16,49 @@ body {
   background-color: #fefefe;
 }
 
+.archive {
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.archive ul {
+  margin: 0;
+}
+
+time {
+  padding-right: 0.5em;
+}
+
+time::after {
+  content: ":";
+}
+
+.tags {
+  font-size: 0.8em;
+}
+
+.tags a {
+  margin-left: 0.2em;
+  padding: 0.2em 0.4em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #ddd;
+  text-decoration: none;
+}
+
+@media only screen and (max-device-width : 480px) {
+  article > img {
+    max-width:100%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  img {
+    width: 100%;
+  }
+}
+
 header {
   box-sizing: border-box;
   background-color: #222;
@@ -62,64 +105,6 @@ main {
   display: block;
   width: 80%;
   margin: 1em auto;
-}
-
-.archive {
-  font-size: 1.2em;
-  line-height: 2em;
-}
-
-.archive ul {
-  margin: 0;
-}
-
-time {
-  padding-right: 0.5em;
-}
-
-time::after {
-  content: ":";
-}
-
-.tags {
-  font-size: 0.8em;
-}
-
-.tags a {
-  margin-left: 0.2em;
-  padding: 0.2em 0.4em;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-sizing: border-box;
-  background-color: #ddd;
-  text-decoration: none;
-}
-
-footer {
-  padding: 1em;
-}
-
-article img {
-  max-width: 80%;
-  display: block;
-  margin: 1em 0;
-  border: solid 1px #ccc;
-}
-
-article img[src$=".svg"] {
-  max-width: 50%;
-}
-
-@media only screen and (max-device-width : 480px) {
-  article > img {
-    max-width:100%;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  img {
-    width: 100%;
-  }
 }
 
 a {
@@ -276,6 +261,18 @@ code::before, code::after {
   /* content: "`"; */
 }
 
+article img {
+  max-width: 80%;
+  display: block;
+  margin: 1em 0;
+  border: solid 1px #ccc;
+}
+
+article img[src$=".svg"] {
+  max-width: 50%;
+}
+
+
 pre {
   overflow: auto;
   word-break: break-all;
@@ -380,6 +377,10 @@ pre > code::after {
 .hljs-emphasis {
 }
 
+footer {
+  padding: 1em;
+}
+
 </style>
 </head>
 <body>
@@ -391,6 +392,7 @@ pre > code::after {
   </div>
 </header>
 <main>
+  <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>
   <article>
     <div><time datetime=2016-02-08>2016-02-08</time><span class=tags><a>http2</a><a>h2o</a></span></div>
     <h1><a href="/entries/2016-02-08/h2o-http2-deploy.html">h2o で https/2 のデプロイと設定</a></h1>
@@ -429,6 +431,7 @@ pre > code::after {
       <p>h2o の設定でちょっとハマったのがパスとファイルの紐付けができないところ。
       <p>たとえば、 <code>favicon.ico</code> だとか <code>robots.txt</code> は、特定の URL に対して特定のファイルを割り当てる。
       これがこう書けると嬉しい。
+      <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
       <pre class=null><code>paths:
   &quot;/favicon.ico&quot;:
      file.dir: /some/path/to/favicon.ico
@@ -437,6 +440,7 @@ pre > code::after {
       <p>しかし、実際は paths へはディレクトリしか紐づけられない。
       やるなら mruby.handler を使うしかない。
       (399 は、 fallthroug の独自ルールになってるらしい)
+      <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
       <pre class=null><code>&quot;/&quot;:
   mruby.handler: |
     Proc.new do |env|

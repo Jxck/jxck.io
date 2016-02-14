@@ -16,6 +16,49 @@ body {
   background-color: #fefefe;
 }
 
+.archive {
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.archive ul {
+  margin: 0;
+}
+
+time {
+  padding-right: 0.5em;
+}
+
+time::after {
+  content: ":";
+}
+
+.tags {
+  font-size: 0.8em;
+}
+
+.tags a {
+  margin-left: 0.2em;
+  padding: 0.2em 0.4em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #ddd;
+  text-decoration: none;
+}
+
+@media only screen and (max-device-width : 480px) {
+  article > img {
+    max-width:100%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  img {
+    width: 100%;
+  }
+}
+
 header {
   box-sizing: border-box;
   background-color: #222;
@@ -62,64 +105,6 @@ main {
   display: block;
   width: 80%;
   margin: 1em auto;
-}
-
-.archive {
-  font-size: 1.2em;
-  line-height: 2em;
-}
-
-.archive ul {
-  margin: 0;
-}
-
-time {
-  padding-right: 0.5em;
-}
-
-time::after {
-  content: ":";
-}
-
-.tags {
-  font-size: 0.8em;
-}
-
-.tags a {
-  margin-left: 0.2em;
-  padding: 0.2em 0.4em;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-sizing: border-box;
-  background-color: #ddd;
-  text-decoration: none;
-}
-
-footer {
-  padding: 1em;
-}
-
-article img {
-  max-width: 80%;
-  display: block;
-  margin: 1em 0;
-  border: solid 1px #ccc;
-}
-
-article img[src$=".svg"] {
-  max-width: 50%;
-}
-
-@media only screen and (max-device-width : 480px) {
-  article > img {
-    max-width:100%;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  img {
-    width: 100%;
-  }
 }
 
 a {
@@ -276,6 +261,18 @@ code::before, code::after {
   /* content: "`"; */
 }
 
+article img {
+  max-width: 80%;
+  display: block;
+  margin: 1em 0;
+  border: solid 1px #ccc;
+}
+
+article img[src$=".svg"] {
+  max-width: 50%;
+}
+
+
 pre {
   overflow: auto;
   word-break: break-all;
@@ -380,6 +377,10 @@ pre > code::after {
 .hljs-emphasis {
 }
 
+footer {
+  padding: 1em;
+}
+
 </style>
 </head>
 <body>
@@ -391,6 +392,7 @@ pre > code::after {
   </div>
 </header>
 <main>
+  <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>
   <article>
     <div><time datetime=2016-01-27>2016-01-27</time><span class=tags><a>web</a><a>blog</a></span></div>
     <h1><a href="/entries/2016-01-27/new-blog-start.html">Blog を移転しました</a></h1>
