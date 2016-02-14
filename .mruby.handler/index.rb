@@ -1,7 +1,12 @@
 def list(dir, path)
   li = Dir.entries("#{dir}/#{path}")
      .reject{|file| file == "." }
-     .sort()
+     .sort{|a, b|
+       ret = b <=> a
+       ret = -1 if a == ".."
+       ret = 1 if b == ".."
+       ret
+     }
      .map{|file|
        "<li><a href=/#{path}/#{file}>#{file}</a></li>"
      }
