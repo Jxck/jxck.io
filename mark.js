@@ -1,8 +1,5 @@
 #!/usr/bin/env node
 
-// TODO: add updated date to html
-// TODO: generate atom feed
-
 'use strict';
 
 // html special chars
@@ -24,60 +21,40 @@ function unspace(str) {
 }
 
 // tag ごとのビルダ
-let Simple = {
-  HTML: (article) =>
-`<!DOCTYPE html>
-<meta charset=utf-8>
-<link rel=canonical href=/${Simple.Canonical}>
-<link rel=amphtml href=/${Simple.Amp}>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<title>${Simple.title} | blog.jxck.io</title>
-
-<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/body.css>
-
-<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/header.css>
-<header>
-  <div>
-    <a class=logo href=//jxck.io><img alt="jxck logo" src=//jxck.io/assets/img/jxck.png></a>
-    <a class=path href=/>blog.jxck.io</a>
-    <a class=feed href=/feeds/atom.xml><img alt="rss feed" src=//jxck.io/assets/img/rss.svg></a>
-  </div>
-</header>
-<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/main.css>
-${article}
-<hr>
-
-<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/footer.css>
-<footer>
-  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
-</footer>
-<script src="/assets/highlight.min.js"></script>
-<script>window.onload = hljs.initHighlighting;</script>`
-  ,
-  indent: `  `,
-  title: '',
-  Article: (node) => {
-    let value = `\n${node.value}`.replace(/\n/gm, `\n${Simple.indent}`);
-    value = `<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>
-<article>${value}\n</article>`;
-    value = `\n${value}`.replace(/\n/gm, `\n${Simple.indent}`);
+class Simple {
+  constructor(canonical, amp, indent, template, style) {
+    this.canonical = canonical;
+    this.amp = amp;
+    this.indent = indent;
+    this.template = template;
+    this.style = style;
+    this.title = '';
+  }
+  HTML(article) {
+    this.article = article;
+    return eval('`' + this.template + '`');
+  }
+  Article(node) {
+    let value = `\n${node.value}`.replace(/\n/gm, `\n${this.indent}`);
+    value = `<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>\n<article>${value}\n</article>`;
+    value = `\n${value}`.replace(/\n/gm, `\n${this.indent}`);
     return `<main>${value}\n</main>`;
-  },
-  Section: (node) => {
-    let value = `\n${node.value}`.replace(/\n/gm, `\n${Simple.indent}`);
+  }
+  Section(node) {
+    let value = `\n${node.value}`.replace(/\n/gm, `\n${this.indent}`);
     return `<section>${value}\n</section>\n`;
-  },
-  List: (node) => {
-    let value = `\n${node.value}`.replace(/\n/gm, `\n${Simple.indent}`);
+  }
+  List(node) {
+    let value = `\n${node.value}`.replace(/\n/gm, `\n${this.indent}`);
     return node.ordered ? `<ol>${value}\n</ol>\n` : `<ul>${value}\n</ul>\n`;
-  },
-  Header: (node) => {
+  }
+  Header(node) {
     let val = '';
     if (node.depth === 1) {
       // h1 には独自ルールでタグを付けている
       // ex)
       // # [blog][web] ブログ始めました
-      Simple.title = node.value;
+      this.title = node.value;
 
       // tag 取り出す
       let raw = node.children.shift().raw;
@@ -93,28 +70,27 @@ ${article}
       // let taglinks = tags.map((tag) => `<a href="/tags/${tag}">${tag}</a>`).join('');
       let taglinks = tags.map((tag) => `<a>${tag}</a>`).join('');
       val += `<div><time datetime=${date}>${date}</time><span class=tags>${taglinks}</span></div>\n`;
-      val += `<h${node.depth}><a href="/${Simple.Canonical}">${node.value}</a></h${node.depth}>\n`;
+      val += `<h${node.depth}><a href="/${this.canonical}">${node.value}</a></h${node.depth}>\n`;
     } else {
       val += `<h${node.depth} id="${unspace(node.value)}"><a href="#${unspace(node.value)}">${node.value}</a></h${node.depth}>\n`;
     }
 
     return val;
-  },
-  Document:   (node) => node.value,
-  Paragraph:  (node) => `<p>${node.value}\n`,
-  CodeBlock:  (node) => `<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
-<pre class=${node.lang}><code>${node.value}</code></pre>\n`,
-  Code:       (node) => h`<code>${node.value}</code>`,
-  BlockQuote: (node) => h`<blockquote>${node.value}</blockquote>\n`,
-  ListItem:   (node) => `<li>${node.value}\n`,
-  Link:       (node) => `<a href="${node.href}">${node.value}</a>`,
-  Image:      (node) => `<img src=${node.src} alt="${node.alt}" title="${node.title}" >`,
-  Strong:     (node) => `<strong>${node.value}</strong>`,
-  Emphasis:   (node) => `<em>${node.value}</em>`,
-  Html:       (node) => `${node.value}\n`,
-  Str:        (node) => node.value,
-  Break:          () => `<br>`,
-  HorizontalRule: () => `<hr>`,
+  }
+  Document   (node) { return node.value }
+  Paragraph  (node) { return `<p>${node.value}\n` }
+  CodeBlock  (node) { return `<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>\n<pre class=${node.lang}><code>${node.value}</code></pre>\n` }
+  Code       (node) { return h`<code>${node.value}</code>` }
+  BlockQuote (node) { return h`<blockquote>${node.value}</blockquote>\n` }
+  ListItem   (node) { return `<li>${node.value}\n` }
+  Link       (node) { return `<a href="${node.href}">${node.value}</a>` }
+  Image      (node) { return `<img src=${node.src} alt="${node.alt}" title="${node.title}" >` }
+  Strong     (node) { return `<strong>${node.value}</strong>` }
+  Emphasis   (node) { return `<em>${node.value}</em>` }
+  Html       (node) { return `${node.value}\n` }
+  Str        (node) { return node.value }
+  Break          () { return `<br>` }
+  HorizontalRule () { return `<hr>` }
 };
 
 let p = console.log.bind(console);
@@ -266,6 +242,11 @@ function build(AST, dir, date, template) {
         if (top.type !== node.type) console.error('ERROR', top, node);
 
         // 閉じる
+        p('========================', node.type);
+        p(template[node.type]);
+        if (template[node.type] === undefined) {
+          p(template)
+        }
         stack.unshift({ tag: 'full', val: template[node.type](node), inline: isInline(node) });
       } else {
         // 完成している兄弟タグを集めてきて配列に並べる
@@ -340,57 +321,31 @@ let date = dir.split('/')[3];
 let baseurl = dir.replace('./blog.jxck.io/', '');
 
 // simple html
-((simple) => {
+(() => {
   let ast = parse(fs.readFileSync(filepath).toString());
   ast.children = sectioning(ast.children, 1);
 
-  simple.Canonical = `${baseurl}/${name}.html`;
-  simple.Amp = `${baseurl}/${name}.amp.html`;
+  let canonical = `${baseurl}/${name}.html`;
+  let amp = `${baseurl}/${name}.amp.html`;
+  let indent = '  ';
+  let template = fs.readFileSync('./.template/simple.html').toString().trim();
+  let simple = new Simple(canonical, amp, indent, template);
 
   let article = build(ast, dir, date, simple);
 
   let target = `${dir}/${name}.html`;
   fs.writeFileSync(target, article);
-})(Simple);
+})();
 
 // amp html
-((amp) => {
-  amp.HTML = (article) =>
-`<!DOCTYPE html>
-<html amp>
-<head>
-<meta charset=utf-8>
-<link rel=canonical href=/${Simple.Canonical}>
-<meta name=viewport content="width=device-width,minimum-scale=1">
-<style>body {opacity: 0}</style><noscript><style>body {opacity: 1}</style></noscript>
-<title>${Simple.title} | blog.jxck.io</title>
-<script async src=https://cdn.ampproject.org/v0.js></script>
-<style amp-custom>
-${Simple.Style}
-</style>
-</head>
-<body>
-<header>
-  <div>
-    <a class=logo href=//jxck.io><img alt="jxck logo" src=//jxck.io/assets/img/jxck.png></a>
-    <a class=path href=/>blog.jxck.io</a>
-    <a class=feed href=/feeds/atom.xml><img alt="rss feed" src=//jxck.io/assets/img/rss.svg></a>
-  </div>
-</header>
-${article}
-<hr>
-<footer>
-  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
-</footer>
-</body>
-</html>`;
-
+(() => {
   let ast = parse(fs.readFileSync(filepath).toString());
   ast.children = sectioning(ast.children, 1);
 
-  amp.Canonical = `${baseurl}/${name}.html`;
-
-  amp.Style = [
+  let canonical = `${baseurl}/${name}.html`;
+  let indent = '  ';
+  let template = fs.readFileSync('./.template/amp.html').toString().trim();
+  let style = [
     'www.jxck.io/assets/css/body.css',
     'www.jxck.io/assets/css/header.css',
     'www.jxck.io/assets/css/main.css',
@@ -401,8 +356,10 @@ ${article}
     return fs.readFileSync(file).toString();
   }).join('\n')
 
+  let amp = new Simple(canonical, null, indent, template, style);
+
   let article = build(ast, dir, date, amp);
 
   let target = `${dir}/${name}.amp.html`;
   fs.writeFileSync(target, article);
-})(Simple);
+})();
