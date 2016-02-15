@@ -18,8 +18,9 @@ def list(dir, path)
 <meta name=viewport content="width=device-width,initial-scale=1">
 
 <title>blog.jxck.io</title>
-<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/style.css>
+<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/body.css>
 
+<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/header.css>
 <header>
   <div>
     <a class=logo href=//jxck.io><img alt="jxck logo" src=//jxck.io/assets/img/jxck.png></a>
@@ -28,15 +29,17 @@ def list(dir, path)
   </div>
 </header>
 
-<section class=archive>
+<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/main.css>
+<main class=archive>
   <h1><a href=##{path}>#{path}</a></h1>
   <ul>
     #{li}
   </ul>
-</section>
+</main>
 
 <hr>
 
+<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/footer.css>
 <footer>
   <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
 </footer>
