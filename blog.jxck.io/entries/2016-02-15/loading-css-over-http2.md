@@ -7,7 +7,7 @@ Chrome が予定している `<link rel=stylesheet>` の挙動の変更につい
 
 [The future of loading CSS](https://jakearchibald.com/2016/link-in-body/)
 
-この内容は、単に Chrome に対する変更ではなく、 HTTP2 によって変化する最適化手法と、それを最も活かすための HTML, CSS の構成についてのヒントがある。
+この内容は、単に Chrome に対する変更だけではなく、 HTTP2 によって変化する最適化手法と、それを最も活かすための HTML, CSS の構成についてのヒントがある。
 
 今回は、この内容を意訳+補足解説し、本サイトに適用していく。
 
@@ -16,7 +16,7 @@ Chrome が予定している `<link rel=stylesheet>` の挙動の変更につい
 
 HTML 自体がコンポーネントを意識した作りになっている場合は、自然と CSS も `class` などを使いコンポーネント単位に作ることができるだろう。
 
-しかし、 HTTP/1.1 ではリクエストの数を減らすために、全ての CSS を一つ(もしくは少数個)に結合する最適化が主流だった。
+しかし、 HTTP/1.1 ではリクエストの数を減らすために、全ての CSS を1つ(もしくは少数個)に結合する最適化が主流だった。
 
 
 ```html
@@ -28,7 +28,8 @@ HTML 自体がコンポーネントを意識した作りになっている場合
 </body>
 ```
 
-しかし、リクエストの多重化が可能な HTTP/2 においては、そこを心配する必要がなくなったため、コンポーネントごとに CSS を分割するのは、キャッシュの容易性を考えても良い方法と言える。
+ところが、リクエストの多重化が可能な HTTP/2 においては、そこを心配する必要がなくなった。
+このため、コンポーネントごとに CSS を分割するのは、キャッシュの容易性を考えても良い方法と言える。
 
 ```html
 <head>
@@ -44,15 +45,16 @@ HTML 自体がコンポーネントを意識した作りになっている場合
 ```
 
 
-しかし、この場合でも二つの懸念が残る。
+ただし、この場合でも2つの懸念が残る。
 
 > <head> を出力する時点で、ページ内に存在する全てのコンポーネントを把握していないといけない
 
-HTML を全て生成してから順次送るのであれば問題ないが、本来 HTML は先頭から、準備ができた順にコンポーネントを送信することも可能であるはずが、それができなくなる。
+HTML を全て生成してから順次送るのであれば問題ないが、本来 HTML は先頭から、準備ができた順にコンポーネントを送信することも可能であるにもかかわらず、それができなくなる。
 
 > footer.css のローディングが遅い場合、サイト全体をブロックする
 
-footer.css が必要なのは、 HTML 中の `<footer>` をレンダリングする時であり、そこまでに出てくる `<header>` などは、先にレンダリングすることも可能だが、実際はそのたった一つの CSS のせいでそこまでに揃っているコンポーネントもレンダリングされず、真っ白のままになる。
+footer.css が必要なのは、 HTML 中の `<footer>` をレンダリングする時であり、そこまでに出てくる `<header>` などは、先にレンダリングすることも可能だ。
+しかし、実際はそのたった1つの CSS のせいで、そこまでに揃っているコンポーネントもレンダリングされず、真っ白のままになる。
 
 
 ## CSS の遅延ロード
@@ -61,14 +63,14 @@ footer.css が必要なのは、 HTML 中の `<footer>` をレンダリングす
 
 https://github.com/filamentgroup/loadCSS
 
-スタイルが当たってない状態で表示されてほしくないコンポーネントには、 `display: none` などをつけておき、ロードされたスタイルの中で `display: visible` されるようにする。
+スタイルが当たってない状態で表示されてほしくないコンポーネントには、 `display: none` などをつけておき、ロードされたスタイルの中で表示されるようにする。
 
-この方法は、クリティカルレンダリングパスの改善方法の一つとして、多くのパフォーマンスエキスパートから推奨されている。
+この方法は、クリティカルレンダリングパスの改善方法の1つとして、多くのパフォーマンスエキスパートから推奨されている。
 
 
-- https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery
-- https://www.filamentgroup.com/lab/performance-rwd.html
-- http://www.lukew.com/ff/entry.asp?1756
+- [https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery](https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery)
+- [https://www.filamentgroup.com/lab/performance-rwd.html](https://www.filamentgroup.com/lab/performance-rwd.html)
+- [http://www.lukew.com/ff/entry.asp?1756](http://www.lukew.com/ff/entry.asp?1756)
 
 
 ただし、この方法には JS のライブラリが必須となる。
@@ -85,12 +87,14 @@ Chrome は、現在の Stable では Webkit と同じだが、 Canary では Fir
 
 最初の要素が表示され、読んでいる間に新しい要素の出現によりレイアウトが変わり、全部表示されるまで落ち着いて読めない。
 
-こうした Content-Shifting の問題は、公告が後から次々に表示されるページなどで多く発生し、[フラストレーションがたまった経験](https://www.youtube.com/watch?v=uPnEZd6wCtk) は誰にでもあるだろう。
+こうした Content-Shifting の問題は、広告が後から次々に表示されるページなどで多く発生し、[フラストレーションがたまった経験](https://www.youtube.com/watch?v=uPnEZd6wCtk) は誰にでもあるだろう。
 
-<!--iframe width="560" height="315" src="https://www.youtube.com/embed/uPnEZd6wCtk" frameborder="0" allowfullscreen></iframe-->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uPnEZd6wCtk" frameborder="0" allowfullscreen></iframe>
 
 
-本来なら、最初に見える部分="Above the fold" を最適化したいわけだが、それがどの要素で成り立つかは viewwport に依存する。サイズが分かっていれば、コンテンツを埋める枠のサイズを全て最初に指定することもできるが、以下の方法を使えば、どのような viewport でも適切に表示できることができる。
+本来なら、最初に見える部分="Above the fold" を最適化したいわけだが、それがどの要素で成り立つかは viewwport に依存する。
+
+サイズが分かっていれば、コンテンツを埋める枠のサイズを全て最初に指定することもできるが、以下の方法を使えば、どのような viewport でも適切に表示できることができる。
 
 
 ## HTTP2 時代の最適化
@@ -136,7 +140,7 @@ CSS は並列で読み込まれ、直列に適用される。
 
 - 上から順番に表示され "Above the Fold" がどの部分かは気にしないで良い。
 - コンポーネント単位で設計し、そのコンポーネントの直前に `<link>` を書けば良い。
-- ストリームで考えられる(`<link>` の有無を先に考えなくて良いのでサーバは完成した順に HTML を送信できる)
+- ストリームで考えられる(`<link>` の有無を先に考えなくて良いのでサーバは完成した順に HTML を送信できる)。
 
 
 ただし、レイアウトシステムを使う場合は、 Content-Shifting が発生しないように意識する必要がある。
@@ -155,7 +159,7 @@ HTML の仕様には、ページのレンダリングが CSS によりどうブ�
 
 - Chrome, Safari: `<link rel=stylesheet>` があるとロードされるまで、直ちにレンダリングを止める。このため、 `<link>` より **上** の要素も、レンダリング途中で止まる場合がよくある。
 - Firefox: `<head>` に `<link rel=stylesheet>` があるとブロックするが、 `<body>` では `<head>` の CSS がブロックしていない限りはブロックしない。これは FOUC(flash of unstyled content) を引き起こす。
-- IE/Edge: CSS が読み込み終わるまでパーサをブロックする、しかし、 `<link>` 前のコンテンツはレンダリングする
+- IE/Edge: CSS が読み込み終わるまでパーサをブロックする、しかし、 `<link>` 前のコンテンツはレンダリングする。
 
 Chrome は IE/Ednge の方式に移ることを検討している。これにより Progressive Rendering パターンが可能になる。
 合わせて [`<body>`内の`<link>`を許可する仕様](https://github.com/whatwg/html/pull/616) の策定を進めている。
@@ -166,7 +170,7 @@ Chrome は IE/Ednge の方式に移ることを検討している。これによ
 ## Firefox での FOUC 対策
 
 Firefox では、以下のように `<script>` をはさむことで CSS がロードされるまでパースをブロックし FOUC を回避できる。
-`<script>` には中身が必要だが、これはスペース一つで十分である。
+`<script>` には中身が必要だが、スペース1つで十分である。
 
 ```html
 <link rel="stylesheet" href="/article.css"><script> </script>
@@ -178,7 +182,7 @@ Firefox では、以下のように `<script>` をはさむことで CSS がロ�
 
 全てをまとめると、現状の Firefox, IE/Edge では Progressive Rendering が可能になる。
 現状の Chrome & Safari では CSS がロードされるまで White Screen になるが、従来のように全てを `<head>` に置いていたのと比べれば問題ではない。
-そして、数ヶ月以内には Chrome は IE/Edge の方式に移るので、問題は解決する。
+そして、数ヶ月以内に Chrome は IE/Edge の方式に移るので、問題は解決する。
 
 これにより、 Just in time CSS が可能になり、レンダリングプロセスが最適化可能になる。
 
@@ -187,7 +191,7 @@ Firefox では、以下のように `<script>` をはさむことで CSS がロ�
 
 以下を実施した
 
-- 本サイトの CSS は、基本的には一つにまとめていたが、これをコンポーネント単位に分割した
+- 本サイトの CSS は、基本的には1つにまとめていたが、これをコンポーネント単位に分割した
 - 記事をビルドする際に、 HTML のコンポーネントの前に `<link rel=stylesheet>` を追加した
 - Firefox 用の `<script> </script>` はとりあえず無し
 - まだ `<body>` 内の `<link>` は仕様上許容されてなので、 [w3c validator](https://validator.w3.org/nu/) ではそこがひっかかる
