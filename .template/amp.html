@@ -6,6 +6,7 @@
 <meta name=viewport content="width=device-width,minimum-scale=1">
 <style>body {opacity: 0}</style><noscript><style>body {opacity: 1}</style></noscript>
 <title>${this.title} | blog.jxck.io</title>
+<script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
 <script async src=https://cdn.ampproject.org/v0.js></script>
 <style amp-custom>
 ${this.style}
@@ -26,3 +27,18 @@ ${this.article}
 </footer>
 </body>
 </html>
+<amp-analytics type="googleanalytics" id="analytics1">
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
