@@ -50,3 +50,37 @@ AMP は以下の三つの要素からなる。
 ```
 
 access_log で UA などを追えば、 apmhtml を見るクローラが追えるかもしれない。
+
+
+### Google Analytics
+
+AMP での Google Analytics の設定は `<amp-analytics>` カスタムタグで行う。
+
+[Adding Analytics to your AMP pages](https://developers.google.com/analytics/devguides/collection/amp-analytics/)
+
+
+収集したい情報に応じてやり方がいくつか有るようだが、一番スタンダードな Page Tracking だけ設定した。
+
+AMP Analytics のコードの読み込みは、 AMP JS Library よりも前に行う必要があるとドキュメントに書かれているので、このようになった。
+
+
+```html
+<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+<script async src="https://cdn.ampproject.org/v0.js"></script>
+
+<amp-analytics type="googleanalytics" id="analytics1">
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-XXXXX-Y"  // Replace with your property ID.
+  },
+  "triggers": {
+    "trackPageview": {  // Trigger names can be any string. trackPageview is not a required name.
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
+```
