@@ -1,5 +1,14 @@
 #!/usr/bin/env ruby
 
+# html special chars
+def hsp(str)
+  return str.gsub(/&/, '&amp;')
+            .gsub(/</, '&lt;')
+            .gsub(/>/, '&gt;')
+            .gsub(/"/, '&quot;')
+            .gsub(/'/, '&#039;');
+end
+
 entries = Dir.glob("./blog.jxck.io/entries/**/**")
   .select{|path| path.match(/.*.md/)}
   .sort{|a,b| b <=> a }
@@ -9,7 +18,7 @@ entries = Dir.glob("./blog.jxck.io/entries/**/**")
   file = File.open(name)
   text = file.read
   title = text.match(/^# \[.*\] (.*)/)[1]
-  summary = text.match(/## intro(.*?)##/im)[1].strip
+  summary = hsp(text.match(/## intro(.*?)##/im)[1].strip)
   splitted = name.split("/")
   date = splitted[3]
   updated = "#{date}T00:00:00Z"
