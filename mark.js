@@ -20,18 +20,47 @@ function unspace(str) {
   return str.replace(/ /g, '+');
 }
 
+function Description(text) {
+  let intro = text.match(/## Intro(([\n\r]|.)*?)##/m)[1].trim();
+  intro = intro.replace(/(\n|\r)/g, "");
+  intro = intro.substring(0, 140)+"...";
+  intro = hsp(intro);
+  return intro;
+}
+
 // tag ごとのビルダ
 class Simple {
-  constructor(canonical, amp, indent, template, style) {
+  constructor(canonical, amp, indent, template, description, style) {
     this.canonical = canonical;
     this.amp = amp;
     this.indent = indent;
     this.template = template;
+    this.description = description;
     this.style = style;
     this.title = '';
   }
   HTML(article) {
     this.article = article;
+
+    this.meta = `
+    <meta name=author content=Jxck>
+    <meta name=description content=${this.description}>
+    <meta name=keywords content="${this.tags}">
+
+    <meta name=twitter:card        content=summary>
+    <meta name=twitter:site        content=@jxck_>
+    <meta name=twitter:url         content=${this.canonical}>
+    <meta name=twitter:title       content="${this.title} | blog.jxck.io">
+    <meta name=twitter:description content="${this.description}">
+    <meta name=twitter:image       content=https://www.jxck.io/assets/img/jxck.png>
+
+    <meta property=og:type        content="article">
+    <meta property=og:url         content=${this.canonical}>
+    <meta property=og:title       content="${this.title} | blog.jxck.io">
+    <meta property=og:site_name   content=blog.jxck.io>
+    <meta property=og:description content="${this.description}">
+    <meta property=og:image       content=https://www.jxck.io/assets/img/jxck.png>`
+
     return eval('`' + this.template + '`');
   }
   Article(node) {
@@ -65,6 +94,9 @@ class Simple {
         console.error('\x1b[0;31mThere is No TAGS\x1b[0m');
         process.exit(1);
       }
+
+      // meta keyword 用に保存
+      this.tags = tags;
 
       // tags をビルド
       // let taglinks = tags.map((tag) => `<a href="/tags/${tag}">${tag}</a>`).join('');
@@ -242,8 +274,6 @@ function build(AST, dir, date, template) {
         if (top.type !== node.type) console.error('ERROR', top, node);
 
         // 閉じる
-        p('========================', node.type);
-        p(template[node.type]);
         if (template[node.type] === undefined) {
           p(template)
         }
@@ -322,14 +352,16 @@ let baseurl = dir.replace('./blog.jxck.io/', '');
 
 // simple html
 (() => {
-  let ast = parse(fs.readFileSync(filepath).toString());
+  let md = fs.readFileSync(filepath).toString();
+  let description = Description(md);
+  let ast = parse(md);
   ast.children = sectioning(ast.children, 1);
 
   let canonical = `${baseurl}/${name}.html`;
   let amp = `${baseurl}/${name}.amp.html`;
   let indent = '  ';
   let template = fs.readFileSync('./.template/simple.html').toString().trim();
-  let simple = new Simple(canonical, amp, indent, template);
+  let simple = new Simple(canonical, amp, indent, template, description);
 
   let article = build(ast, dir, date, simple);
 
@@ -339,7 +371,9 @@ let baseurl = dir.replace('./blog.jxck.io/', '');
 
 // amp html
 (() => {
-  let ast = parse(fs.readFileSync(filepath).toString());
+  let md = fs.readFileSync(filepath).toString();
+  let description = Description(md);
+  let ast = parse(md);
   ast.children = sectioning(ast.children, 1);
 
   let canonical = `${baseurl}/${name}.html`;
@@ -356,7 +390,7 @@ let baseurl = dir.replace('./blog.jxck.io/', '');
     return fs.readFileSync(file).toString();
   }).join('\n')
 
-  let amp = new Simple(canonical, null, indent, template, style);
+  let amp = new Simple(canonical, null, indent, template, description, style);
 
   let article = build(ast, dir, date, amp);
 
