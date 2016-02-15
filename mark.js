@@ -44,7 +44,7 @@ class Simple {
 
     this.meta = `
     <meta name=author content=Jxck>
-    <meta name=description content=${this.description}>
+    <meta name=description content="${this.description}">
     <meta name=keywords content="${this.tags}">
 
     <meta name=twitter:card        content=summary>
