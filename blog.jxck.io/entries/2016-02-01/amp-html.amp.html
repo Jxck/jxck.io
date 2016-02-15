@@ -4,8 +4,29 @@
 <meta charset=utf-8>
 <link rel=canonical href=/entries/2016-02-01/amp-html.html>
 <meta name=viewport content="width=device-width,minimum-scale=1">
+
+
+    <meta name=author content=Jxck>
+    <meta name=description content=Google が推奨する仕様である [AMP HTML](https://www.ampproject.org/) に、このブログのエントリページのみ対応してみた。[ACCELERATED MOBILE PAGES PROJECT](https://www.ampproject....>
+    <meta name=keywords content="performance,amp">
+
+    <meta name=twitter:card        content=summary>
+    <meta name=twitter:site        content=@jxck_>
+    <meta name=twitter:url         content=entries/2016-02-01/amp-html.html>
+    <meta name=twitter:title       content="AMP HTML 対応 | blog.jxck.io">
+    <meta name=twitter:description content="Google が推奨する仕様である [AMP HTML](https://www.ampproject.org/) に、このブログのエントリページのみ対応してみた。[ACCELERATED MOBILE PAGES PROJECT](https://www.ampproject....">
+    <meta name=twitter:image       content=https://www.jxck.io/assets/img/jxck.png>
+
+    <meta property=og:type        content="article">
+    <meta property=og:url         content=entries/2016-02-01/amp-html.html>
+    <meta property=og:title       content="AMP HTML 対応 | blog.jxck.io">
+    <meta property=og:site_name   content=blog.jxck.io>
+    <meta property=og:description content="Google が推奨する仕様である [AMP HTML](https://www.ampproject.org/) に、このブログのエントリページのみ対応してみた。[ACCELERATED MOBILE PAGES PROJECT](https://www.ampproject....">
+    <meta property=og:image       content=https://www.jxck.io/assets/img/jxck.png>
+
 <style>body {opacity: 0}</style><noscript><style>body {opacity: 1}</style></noscript>
 <title>AMP HTML 対応 | blog.jxck.io</title>
+<script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
 <script async src=https://cdn.ampproject.org/v0.js></script>
 <style amp-custom>
 body {
@@ -14,6 +35,12 @@ body {
   font-family: 'Helvetica Neue', 'Helvetica', serif;
   color: #222;
   background-color: #fefefe;
+}
+
+iframe {
+  display: block;
+  margin: 1em 0;
+  max-width: 100%;
 }
 
 .archive {
@@ -386,9 +413,9 @@ footer {
 <body>
 <header>
   <div>
-    <a class=logo href=//jxck.io><img alt="jxck logo" src=//jxck.io/assets/img/jxck.png></a>
+    <a class=logo href=//www.jxck.io><img alt="jxck logo" src=//www.jxck.io/assets/img/jxck.png></a>
     <a class=path href=/>blog.jxck.io</a>
-    <a class=feed href=/feeds/atom.xml><img alt="rss feed" src=//jxck.io/assets/img/rss.svg></a>
+    <a class=feed href=/feeds/atom.xml><img alt="rss feed" src=//www.jxck.io/assets/img/rss.svg></a>
   </div>
 </header>
 <main>
@@ -430,6 +457,32 @@ footer {
         <pre class=html><code>&lt;link rel=canonical href=${path}.html&gt;</code></pre>
         <p>access_log で UA などを追えば、 apmhtml を見るクローラが追えるかもしれない。
       </section>
+      <section>
+        <h3 id="Google+Analytics"><a href="#Google+Analytics">Google Analytics</a></h3>
+        <p>AMP での Google Analytics の設定は <code>&lt;amp-analytics&gt;</code> カスタムタグで行う。
+        <p><a href="https://developers.google.com/analytics/devguides/collection/amp-analytics/">Adding Analytics to your AMP pages</a>
+        <p>収集したい情報に応じてやり方がいくつか有るようだが、一番スタンダードな Page Tracking だけ設定した。
+        <p>AMP Analytics のコードの読み込みは、 AMP JS Library よりも前に行う必要があるとドキュメントに書かれているので、このようになった。
+        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
+        <pre class=html><code>&lt;script async custom-element=&quot;amp-analytics&quot; src=&quot;https://cdn.ampproject.org/v0/amp-analytics-0.1.js&quot;&gt;&lt;/script&gt;
+&lt;script async src=&quot;https://cdn.ampproject.org/v0.js&quot;&gt;&lt;/script&gt;
+
+&lt;amp-analytics type=&quot;googleanalytics&quot; id=&quot;analytics1&quot;&gt;
+&lt;script type=&quot;application/json&quot;&gt;
+{
+  &quot;vars&quot;: {
+    &quot;account&quot;: &quot;UA-XXXXX-Y&quot;  // Replace with your property ID.
+  },
+  &quot;triggers&quot;: {
+    &quot;trackPageview&quot;: {  // Trigger names can be any string. trackPageview is not a required name.
+      &quot;on&quot;: &quot;visible&quot;,
+      &quot;request&quot;: &quot;pageview&quot;
+    }
+  }
+}
+&lt;/script&gt;
+&lt;/amp-analytics&gt;</code></pre>
+      </section>
     </section>
   </article>
 </main>
@@ -439,3 +492,18 @@ footer {
 </footer>
 </body>
 </html>
+<amp-analytics type="googleanalytics" id="analytics1">
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>

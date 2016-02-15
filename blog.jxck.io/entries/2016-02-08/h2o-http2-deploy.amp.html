@@ -4,8 +4,29 @@
 <meta charset=utf-8>
 <link rel=canonical href=/entries/2016-02-08/h2o-http2-deploy.html>
 <meta name=viewport content="width=device-width,minimum-scale=1">
+
+
+    <meta name=author content=Jxck>
+    <meta name=description content=土台がだいたいできたので、このサイトを h2o にデプロイした話。...>
+    <meta name=keywords content="http2,h2o">
+
+    <meta name=twitter:card        content=summary>
+    <meta name=twitter:site        content=@jxck_>
+    <meta name=twitter:url         content=entries/2016-02-08/h2o-http2-deploy.html>
+    <meta name=twitter:title       content="h2o で https/2 のデプロイと設定 | blog.jxck.io">
+    <meta name=twitter:description content="土台がだいたいできたので、このサイトを h2o にデプロイした話。...">
+    <meta name=twitter:image       content=https://www.jxck.io/assets/img/jxck.png>
+
+    <meta property=og:type        content="article">
+    <meta property=og:url         content=entries/2016-02-08/h2o-http2-deploy.html>
+    <meta property=og:title       content="h2o で https/2 のデプロイと設定 | blog.jxck.io">
+    <meta property=og:site_name   content=blog.jxck.io>
+    <meta property=og:description content="土台がだいたいできたので、このサイトを h2o にデプロイした話。...">
+    <meta property=og:image       content=https://www.jxck.io/assets/img/jxck.png>
+
 <style>body {opacity: 0}</style><noscript><style>body {opacity: 1}</style></noscript>
 <title>h2o で https/2 のデプロイと設定 | blog.jxck.io</title>
+<script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
 <script async src=https://cdn.ampproject.org/v0.js></script>
 <style amp-custom>
 body {
@@ -14,6 +35,12 @@ body {
   font-family: 'Helvetica Neue', 'Helvetica', serif;
   color: #222;
   background-color: #fefefe;
+}
+
+iframe {
+  display: block;
+  margin: 1em 0;
+  max-width: 100%;
 }
 
 .archive {
@@ -386,9 +413,9 @@ footer {
 <body>
 <header>
   <div>
-    <a class=logo href=//jxck.io><img alt="jxck logo" src=//jxck.io/assets/img/jxck.png></a>
+    <a class=logo href=//www.jxck.io><img alt="jxck logo" src=//www.jxck.io/assets/img/jxck.png></a>
     <a class=path href=/>blog.jxck.io</a>
-    <a class=feed href=/feeds/atom.xml><img alt="rss feed" src=//jxck.io/assets/img/rss.svg></a>
+    <a class=feed href=/feeds/atom.xml><img alt="rss feed" src=//www.jxck.io/assets/img/rss.svg></a>
   </div>
 </header>
 <main>
@@ -416,7 +443,7 @@ footer {
     </section>
     <section>
       <h2 id="ドメイン"><a href="#ドメイン">ドメイン</a></h2>
-      <p>今までは <a href="https://jxck.io">jxck.io</a> だけで使っていたけど、これを複数ドメインにわけて運用する。
+      <p>今までは <a href="https://www.jxck.io">jxck.io</a> だけで使っていたけど、これを複数ドメインにわけて運用する。
       ワイルドカードがあり、同一 IP でデプロイされていると、 http2 でコネクションを束ねられる。
     </section>
     <section>
@@ -472,3 +499,18 @@ footer {
 </footer>
 </body>
 </html>
+<amp-analytics type="googleanalytics" id="analytics1">
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
