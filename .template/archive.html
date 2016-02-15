@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
-<link rel=canonical href=/${this.canonical}>
-<link rel=amphtml href=/${this.amp}>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<title>${this.title} | blog.jxck.io</title>
 
+<title>blog.jxck.io</title>
+<link rel=prerender href=#{top}>
 <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/body.css>
 
 <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/header.css>
@@ -17,13 +16,17 @@
 </header>
 
 <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/main.css>
-${this.article}
+<main class=archive>
+  <h1><a href=#archive>Archive</a></h1>
+  <h2><a href=#2016>2016</a></h2>
+  <ul>
+    #{entries}
+  </ul>
+</main>
+
 <hr>
 
 <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/footer.css>
 <footer>
   <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
 </footer>
-
-<script src="/assets/highlight.min.js"></script>
-<script>window.onload = hljs.initHighlighting;</script>
