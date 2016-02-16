@@ -33,6 +33,9 @@ http://json-ld.org/
 http://googlewebmastercentral-ja.blogspot.jp/2015/03/easier-website-development-with-web.html
 https://developers.google.com/structured-data/rich-snippets/articles
 
+http://hublog.biz/bwpb/writing-in-php-of-schema-org-json-ld-for-wordpress-blog/
+
+
 <script type="application/ld+json">
 {
   "@context": "http://schema.org",
