@@ -1,10 +1,16 @@
 #!/usr/bin/env ruby
 
+`find ./* -name *.gz | xargs -L 4 -P 4 rm`
+puts "gz deleted"
+`rm ./blog.jxck.io/entries/**/*.html`
+puts "html deleted"
+
 top = ""
 entries = Dir.glob("./blog.jxck.io/entries/**/**")
-  .select{|path| path.match(/.*.md/)}
+  .select{|path| path.match(/.*.md$/)}
   .sort{|a,b| b <=> a }
   .map.with_index{|file, i|
+    puts "process #{file}"
 
     `./mark.js #{file}`
     head = `head -n 1 #{file}`
@@ -33,4 +39,11 @@ html = File.read(".template/archive.html")
 html = html.gsub('"', '\"')
 html = eval('"' + html + '"')
 
-puts html
+File.write("./blog.jxck.io/index.html", html)
+
+`find ./www.jxck.io/* -type f | xargs -L 1 -P 4 zopfli --i30`
+puts "www.jxck.io compressed"
+`find ./labs.jxck.io/* -type f | xargs -L 1 -P 4 zopfli --i30`
+puts "labs.jxck.io compressed"
+`find ./blog.jxck.io/* -type f | xargs -L 1 -P 4 zopfli --i30`
+puts "blog.jxck.io compressed"
