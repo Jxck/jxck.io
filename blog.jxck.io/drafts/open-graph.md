@@ -42,32 +42,32 @@ http://hublog.biz/bwpb/writing-in-php-of-schema-org-json-ld-for-wordpress-blog/
   "@type": "NewsArticle",
   "mainEntityOfPage":{
     "@type":"WebPage",
-    "@id":"https://google.com/article"
+    "@id":"https://blog.jxck.io"
   },
-  "headline": "Article headline",
+  "headline": "#{this.title}",
   "image": {
     "@type": "ImageObject",
-    "url": "https://google.com/thumbnail1.jpg",
-    "height": 800,
-    "width": 800
+    "url": "https://www.jxck.io/assets/img/logo.png",
+    "height": 257,
+    "width": 257
   },
   "datePublished": "2015-02-05T08:00:00+08:00",
   "dateModified": "2015-02-05T09:20:00+08:00",
   "author": {
     "@type": "Person",
-    "name": "John Doe"
+    "name": "Jxck"
   },
    "publisher": {
-    "@type": "Organization",
+    "@type": "Person",
     "name": "Google",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://google.com/logo.jpg",
-      "width": 600,
-      "height": 60
+      "url": "https://www.jxck.io/assets/img/logo.png",
+      "width": 257,
+      "height": 257
     }
   },
-  "description": "A most wonderful article"
+  "description": "#{this.description}"
 }
 </script>
 
@@ -76,6 +76,18 @@ http://hublog.biz/bwpb/writing-in-php-of-schema-org-json-ld-for-wordpress-blog/
 
 https://developers.google.com/structured-data/testing-tool/
 
+<script type="application/ld+json">
+{
+  "@context":"http://schema.org",
+  "@type":"Person",
+  "name": "Jxck",
+  "url": "https://jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/logo.png"
+  }
+}
+</script>
 
 
 
