@@ -41,9 +41,9 @@ html = eval('"' + html + '"')
 
 File.write("./blog.jxck.io/index.html", html)
 
-`find ./www.jxck.io/* -type f | xargs -L 1 -P 4 zopfli --i30`
+`find ./www.jxck.io/* -type f | egrep -v '.webp|.rb' | xargs -L 1 -P 4 zopfli --i30`
 puts "www.jxck.io compressed"
-`find ./labs.jxck.io/* -type f | xargs -L 1 -P 4 zopfli --i30`
+`find ./labs.jxck.io/* -type f | egrep -v '.webp|.rb' | xargs -L 1 -P 4 zopfli --i30`
 puts "labs.jxck.io compressed"
-`find ./blog.jxck.io/* -type f | xargs -L 1 -P 4 zopfli --i30`
+`find ./blog.jxck.io/* -type f | egrep -v '.webp|.rb' | xargs -L 1 -P 4 zopfli --i30`
 puts "blog.jxck.io compressed"
