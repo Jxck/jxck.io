@@ -542,6 +542,15 @@ jxck.webp.gz 1873</code></pre>
       <p>本サイトで <code>.html</code>, <code>.css</code>, <code>.js</code> で終わるような URL は、 <code>.gz</code> を後ろに付けると zopfli 圧縮版が取得できるので、興味があれば試してみて欲しい。
       <p><a href="https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html.gz">この HTML の zopfli 圧縮版</a>
     </section>
+    <section>
+      <h2 id="brotli"><a href="#brotli">brotli</a></h2>
+      <p>また Google は <a href="https://github.com/google/brotli">brotli</a> という圧縮フォーマットも持っている。
+      こちらは、 gzip などとの互換は無いため、クライアントも対応しないと使うことはできない。
+      新しいフォーマットとして、 <a href="https://tools.ietf.org/html/draft-alakuijala-brotli-08">IETF へのドラフトの提出</a> もなされている。
+      <p>現在は <a href="https://plus.google.com/u/0/+IlyaGrigorik/posts/X9ogn4fLtHL">Chrome が HTTPS のみでサポート</a> している様である。
+      <p>こちらについては、 H2O に brotli への対応を求める issue が上がっているので、対応したらそこでまた検証しようと思う。
+      <p><a href="https://github.com/h2o/h2o/issues/660">Feature request: file.send-brotli #660</a>
+    </section>
   </article>
 </main>
 <hr>

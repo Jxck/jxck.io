@@ -163,3 +163,18 @@ WebP はそもそも圧縮率が高いためか、オーバーヘッドが出て
 本サイトで `.html`, `.css`, `.js` で終わるような URL は、 `.gz` を後ろに付けると zopfli 圧縮版が取得できるので、興味があれば試してみて欲しい。
 
 [この HTML の zopfli 圧縮版](https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html.gz)
+
+
+## brotli
+
+また Google は [brotli](https://github.com/google/brotli) という圧縮フォーマットも持っている。
+こちらは、 gzip などとの互換は無いため、クライアントも対応しないと使うことはできない。
+新しいフォーマットとして、 [IETF へのドラフトの提出](https://tools.ietf.org/html/draft-alakuijala-brotli-08) もなされている。
+
+
+現在は [Chrome が HTTPS のみでサポート](https://plus.google.com/u/0/+IlyaGrigorik/posts/X9ogn4fLtHL) している様である。
+
+
+こちらについては、 H2O に brotli への対応を求める issue が上がっているので、対応したらそこでまた検証しようと思う。
+
+[Feature request: file.send-brotli #660](https://github.com/h2o/h2o/issues/660)
