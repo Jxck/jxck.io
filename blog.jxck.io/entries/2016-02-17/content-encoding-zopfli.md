@@ -1,4 +1,4 @@
-# [zopfli][performance] zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について
+# [zopfli][http][performance] zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について
 
 ## Intro
 
@@ -20,7 +20,7 @@ HTTP には、似た仕組みとして `TE: gzip` と `Transfer-Encoding: gzip` 
 
 これは、前述の `Accept-Encoding` が End-To-End で圧縮したコンテンツを転送するのと違い、 Hop-by-Hop で経路上での圧縮を実施する点で、意味的に差異がある。
 
-例えば HTML で言えば、前者は「コンテンツ自体が gzip された html である」のに対し、後者は「コンテンツはあくまで html だが、経路上では暗号化されている」ということになる。
+例えば HTML で言えば、前者は「コンテンツ自体が gzip された html である」のに対し、後者は「コンテンツはあくまで html だが、経路上では圧縮されている」ということになる。
 
 本サイトは、あくまで HTML を配信したいので、転送量削減のために圧縮を施すのであれば、 `TE: gzip` と `Transfer-Encoding: gzip` を使うのが妥当と言えるだろう。
 
@@ -28,9 +28,9 @@ HTTP には、似た仕組みとして `TE: gzip` と `Transfer-Encoding: gzip` 
 
 そのため、 HTTP/1.1 対応のサーバでも `Transfer-Encoding: gzip` に対応したものは少なく、 h2o も対応していない。(`Transfer-Encoding: chunked` は対応している)
 
-また、このヘッダは **コネクションに対する設定** であるが、 HTTP2 ではこうしたコネクションに対する設定は、代わりに **SETTINGS Frame** を利用することになったため、こうしたヘッダは TODO: `Transfer-Encoding: chunked` を除いて設定不可とされている。
+また、このヘッダは **コネクションに対する設定** であるが、 HTTP2 ではこうしたコネクションに対する設定は、代わりに **SETTINGS Frame** を利用することになったため、こうしたヘッダは設定不可とされている。
 
-TODO: RFC URL
+[8.1.2.2.  Connection-Specific Header Fields](https://tools.ietf.org/html/rfc7540#section-8.1.2.2)
 
 まとめると、以下の理由により、この方法は却下した。
 
@@ -51,7 +51,7 @@ TODO: RFC URL
 gzip: ON
 ```
 
-["gzip"](https://h2o.examp1e.net/configure/file_directives.html#gzip)
+[Configure > Gzip Directives > "gzip"](https://h2o.examp1e.net/configure/gzip_directives.html#gzip)
 
 これにより、あらかじめ圧縮していないコンテンツや、バックエンドのアプリケーションが動的に生成したコンテンツを圧縮転送することができる。
 圧縮時間分のオーバーヘッドは考えられるが、一般的に gzip の処理時間は小さく、転送量の削減によるネットワーク的メリットの方が高いため、この方法が採用されることが多い。
@@ -65,7 +65,7 @@ gzip: ON
 file.send-gzip: ON
 ```
 
-["file.send-gzip"](https://h2o.examp1e.net/configure/file_directives.html#file.send-gzip)
+[Configure > File Directives > "file.send-gzip"](https://h2o.examp1e.net/configure/file_directives.html#file.send-gzip)
 
 
 事前に圧縮するため、レスポンスへのオーバーヘッドは無くなる。
@@ -76,7 +76,7 @@ file.send-gzip: ON
 
 zopfli は Google が開発した圧縮アルゴリズム、およびその実装である。
 
-[zopfli](https://github.com/google/zopfli)
+[https://github.com/google/zopfli](https://github.com/google/zopfli)
 
 
 **圧縮結果が gzip 互換**であるため、方式そのものは実質 gzip である。
@@ -109,48 +109,37 @@ $ time zopfli --i10 -c loading-css-over-http2.html
 最初の段は、元のファイルサイズ、二段目は `gzip` コマンドの結果である。
 
 
-```txt
-| i    | Time    | Byte  |
-| ---- | ------- | ----- |
-| orig | -       | 17497 |
-| gzip | -       | 5348  |
-|  10  | 0:00.10 | 3420  |
-|  20  | 0:00.14 | 3424  |
-|  30  | 0:00.16 | 3480  |
-|  40  | 0:00.20 | 3420  |
-|  50  | 0:00.23 | 3348  |
-|  60  | 0:00.26 | 3440  |
-|  70  | 0:00.29 | 3436  |
-|  80  | 0:00.32 | 3532  |
-|  90  | 0:00.35 | 3560  |
-| 100  | 0:00.38 | 3536  |
 ```
+orig   -      17497
+gzip   0.002   5348
+  10   0.18    5164
+  20   0.22    5159
+  30   0.24    5159
+  40   0.29    5159
+  50   0.39    5159
+  60   0.42    5159
+  70   0.46    5156
+  80   0.50    5156
+  90   0.55    5156
+ 100   0.58    5156
 ```
-0:00.10
-0:00.14
-0:00.16
-0:00.20
-0:00.23
-0:00.26
-0:00.29
-0:00.32
-0:00.35
-0:00.38
 
+この結果だと `-i20` 以上は誤差のようである。
+ただ、開発用の Mac では少し違う結果が出たりもしたため、結果 `i=30` くらいに落ち着いた。
 
-17497
-5348 
-3420 
-3424 
-3480 
-3420 
-3348 
-3440 
-3436 
-3532 
-3560 
-3536 
+また、 [WebP](//www.jxck.io/assets/img/jxck.webp) と [PNG](//www.jxck.io/assets/img/jxck.png) の画像ファイルでも検証したところ、以下のようになった。
+
 ```
+jxck.png     3860
+jxck.png.gz  3399
+jxck.webp    1810
+jxck.webp.gz 1873
+```
+
+WebP はそもそも圧縮率が高いためか、オーバーヘッドが出ている。
+
+画像は、画像サイズ自体の最適化などの問題があるが、とりあえずは WebP 形式のみ除外することにした。除外対象は、定期的にサイズを確認し修正して行く。
+
 
 ## zopfli + send-gzip
 
@@ -158,23 +147,19 @@ $ time zopfli --i10 -c loading-css-over-http2.html
 
 検証の結果、このサイトでは以下の設定を採用した。
 
-- i=30
-- webp, png は対象外
-- send-gzip: ON
+- `i=30`
+- `send-gzip: ON`
+- webp は対象外
 
 
 動作は、 HTTP ヘッダで確認できる。
 
 
-TODO: スクショ
+![Content-Encoding Support Before/After](zopfli.png)
 
 
 また、一部は h2o の mruby-handler で動的な生成をしているが、 `gzip` ディレクティブの効果は未検証なので設定していない。
 
-
-
-
 本サイトで `.html`, `.css`, `.js` で終わるような URL は、 `.gz` を後ろに付けると zopfli 圧縮版が取得できるので、興味があれば試してみて欲しい。
 
-
-[この HTML の zopfli 版](TODO)
+[この HTML の zopfli 圧縮版](https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html.gz)

@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html amp>
+<head>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=/entries/2016-02-17/content-encoding-zopfli.html>
+<meta name=viewport content="width=device-width,minimum-scale=1">
+
+
+    <meta name=author content=Jxck>
+    <meta name=description content="HTTP では `Accept-Encoding` と `Content-Encoding` でのネゴシエーションにより、 gz などで圧縮したコンテンツを転送することができる。本サイトでは zopfli を用いて gzip 形式の配信に対応した。...">
+    <meta name=keywords content="zopfli,http">
+
+    <meta name=twitter:card        content=summary>
+    <meta name=twitter:site        content=@jxck_>
+    <meta name=twitter:url         content=https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html>
+    <meta name=twitter:title       content="zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について | blog.jxck.io">
+    <meta name=twitter:description content="HTTP では `Accept-Encoding` と `Content-Encoding` でのネゴシエーションにより、 gz などで圧縮したコンテンツを転送することができる。本サイトでは zopfli を用いて gzip 形式の配信に対応した。...">
+    <meta name=twitter:image       content=https://www.jxck.io/assets/img/jxck.png>
+
+    <meta property=og:type        content="article">
+    <meta property=og:url         content=https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html>
+    <meta property=og:title       content="zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について | blog.jxck.io">
+    <meta property=og:site_name   content=blog.jxck.io>
+    <meta property=og:description content="HTTP では `Accept-Encoding` と `Content-Encoding` でのネゴシエーションにより、 gz などで圧縮したコンテンツを転送することができる。本サイトでは zopfli を用いて gzip 形式の配信に対応した。...">
+    <meta property=og:image       content=https://www.jxck.io/assets/img/jxck.png>
+
+<style>body {opacity: 0}</style><noscript><style>body {opacity: 1}</style></noscript>
+<title>zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について | blog.jxck.io</title>
+<script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+<script async src=https://cdn.ampproject.org/v0.js></script>
+<style amp-custom>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', 'Helvetica', serif;
+  color: #222;
+  background-color: #fefefe;
+}
+
+iframe {
+  display: block;
+  margin: 1em 0;
+  max-width: 100%;
+}
+
+.archive {
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.archive ul {
+  margin: 0;
+}
+
+time {
+  padding-right: 0.5em;
+}
+
+time::after {
+  content: ":";
+}
+
+.tags {
+  font-size: 0.8em;
+}
+
+.tags a {
+  margin-left: 0.2em;
+  padding: 0.2em 0.4em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #ddd;
+  text-decoration: none;
+}
+
+@media only screen and (max-device-width : 480px) {
+  article > img {
+    max-width:100%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  img {
+    width: 100%;
+  }
+}
+
+header {
+  box-sizing: border-box;
+  background-color: #222;
+  margin: 0;
+  padding: 0.4em;
+}
+
+header div {
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+}
+
+header a.logo {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: 0 1em 0 0;
+  padding: 0;
+  border: 1px solid #ccc;
+}
+
+header a > img {
+  display: block;
+  width: 31px;
+  height: 31px;
+  margin: 0;
+  padding: 0;
+}
+
+header a.path {
+  display: block;
+  padding: 0.4em;
+  color: gray;
+  flex-grow: 1;
+}
+
+header a.path:hover {
+  color: white;
+}
+
+main {
+  display: block;
+  width: 80%;
+  margin: 1em auto;
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+}
+
+a {
+  color: RoyalBlue;
+}
+
+a:visited {
+  color: Brown;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  pointer-events: none;
+  color: #222;
+}
+
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: #222;
+}
+
+h1 > a:hover:before,
+h2 > a:hover:before,
+h3 > a:hover:before,
+h4 > a:hover:before,
+h5 > a:hover:before,
+h6 > a:hover:before {
+  color: Brown;
+}
+
+h1 > a::before {
+  content: "# ";
+  pointer-events: all;
+}
+
+h2 > a::before {
+  content: "## ";
+  pointer-events: all;
+}
+
+h3 > a::before {
+  content: "### ";
+  pointer-events: all;
+}
+
+h4 > a::before {
+  content: "#### ";
+  pointer-events: all;
+}
+
+i::before, i::after {
+  content: "*";
+}
+
+strong::before, strong::after {
+  content: "**";
+}
+
+ol, ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+li {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+table {
+  margin: 2em 0;
+  border-spacing: 0 0.4em;
+}
+
+th {
+  padding: 0em 1.2em 0.8em;
+  border-left: 0.14em solid #222;
+  border-bottom: 2px dashed #222;
+}
+
+td {
+  padding: 0.4em 1em;
+  border-left: 0.14em solid #222;
+}
+
+th:last-child, td:last-child {
+  border-right: 0.14em solid #222;
+}
+
+ul, ol, dl {
+  margin: 2em 0;
+}
+
+dl dt {
+  font-weight: bold;
+}
+
+dl dt::after {
+  content: ":";
+}
+
+dl dd {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+blockquote {
+  display: block;
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  padding: 1em;
+  margin: 2em 0;
+}
+
+blockquote::before {
+  content: "> ";
+}
+
+code {
+  border: 1px solid #ddd;
+  background-color: #efefef;
+  border-radius: 4px;
+  padding: 0.1em;
+  margin: 2em 0;
+}
+
+code::before, code::after {
+  /* うざかった */
+  /* content: "`"; */
+}
+
+article img {
+  max-width: 80%;
+  display: block;
+  margin: 1em 0;
+  border: solid 1px #ccc;
+}
+
+article img[src$=".svg"] {
+  max-width: 50%;
+}
+
+
+pre {
+  overflow: auto;
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: 1.2em;
+  margin: 2em 0;
+  border-radius: 4px;
+}
+
+pre::before {
+  content: "```" attr(class) "\A";
+}
+
+pre::after {
+  position: relative;
+  top: -1em;
+  content:"\A```";
+}
+
+pre > code {
+  display: block;
+  padding: 0.6em;
+  margin: 0;
+  border: none;
+  background-color: #efefef;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs,
+.hljs-subst ,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-name ,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition ,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-type,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-section,
+.hljs-meta,
+.hljs-meta-string,
+.hljs-emphasis {
+}
+
+footer {
+  padding: 1em;
+}
+
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <a class=logo href=//www.jxck.io><img alt="jxck logo" src=//www.jxck.io/assets/img/jxck.png></a>
+    <a class=path href=/>blog.jxck.io</a>
+    <a class=feed href=/feeds/atom.xml><img alt="rss feed" src=//www.jxck.io/assets/img/rss.svg></a>
+  </div>
+</header>
+<main>
+  <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>
+  <article>
+    <div><time datetime=2016-02-17>2016-02-17</time><span class=tags><a>zopfli</a><a>http</a></span></div>
+    <h1><a href="/entries/2016-02-17/content-encoding-zopfli.html">zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>HTTP では <code>Accept-Encoding</code> と <code>Content-Encoding</code> でのネゴシエーションにより、 gz などで圧縮したコンテンツを転送することができる。本サイトでは zopfli を用いて gzip 形式の配信に対応した。
+    </section>
+    <section>
+      <h2 id="Accept-Encoding"><a href="#Accept-Encoding">Accept-Encoding</a></h2>
+      <p>クライアントが <code>Accept-Encoding: gzip</code> を指定して来た場合、サーバは <code>Content-Encoding: gzip</code> を付与し、 URI に指定されたコンテンツを gzip 圧縮して送信することができる。
+      <p>特にテキストベースの HTML, CSS, JavaScript などは、この圧縮の効果が高く、ペイロードが小さくなるためパフォーマンスの向上が期待できる。
+      <p>逆に、 PNG, JPEG など圧縮形式の画像などについては、オーバーヘッドが発生しサイズが増える可能性もあるため、対象フォーマットの選択には注意が必要である。
+    </section>
+    <section>
+      <h2 id="Transfer-Encoding"><a href="#Transfer-Encoding">Transfer-Encoding</a></h2>
+      <p>HTTP には、似た仕組みとして <code>TE: gzip</code> と <code>Transfer-Encoding: gzip</code> による、経路圧縮がある。
+      <p>これは、前述の <code>Accept-Encoding</code> が End-To-End で圧縮したコンテンツを転送するのと違い、 Hop-by-Hop で経路上での圧縮を実施する点で、意味的に差異がある。
+      <p>例えば HTML で言えば、前者は「コンテンツ自体が gzip された html である」のに対し、後者は「コンテンツはあくまで html だが、経路上では圧縮されている」ということになる。
+      <p>本サイトは、あくまで HTML を配信したいので、転送量削減のために圧縮を施すのであれば、 <code>TE: gzip</code> と <code>Transfer-Encoding: gzip</code> を使うのが妥当と言えるだろう。
+      <p>しかし <code>TE</code> はブラウザ実装の問題のためか、歴史的にもあまり使われておらず、送信してくるブラウザもほとんどない。(Opera は送信すると言われているが未確認)。
+      <p>そのため、 HTTP/1.1 対応のサーバでも <code>Transfer-Encoding: gzip</code> に対応したものは少なく、 h2o も対応していない。(<code>Transfer-Encoding: chunked</code> は対応している)
+      <p>また、このヘッダは <strong>コネクションに対する設定</strong> であるが、 HTTP2 ではこうしたコネクションに対する設定は、代わりに <strong>SETTINGS Frame</strong> を利用することになったため、こうしたヘッダは設定不可とされている。
+      <p><a href="https://tools.ietf.org/html/rfc7540#section-8.1.2.2">8.1.2.2.  Connection-Specific Header Fields</a>
+      <p>まとめると、以下の理由により、この方法は却下した。
+      <ul>
+        <li>TE を送るブラウザは少ない
+        <li>h2o も対応していない
+        <li>そもそも http2 では使えない
+      </ul>
+    </section>
+    <section>
+      <h2 id="h2o+の設定"><a href="#h2o+の設定">h2o の設定</a></h2>
+      <p>本サイトをデプロイしている h2o は、 <code>Content-Encoding: gzip</code> による転送を 2 つの方法でサポートしている。
+      <section>
+        <h3 id="gzip+ディレクティブ"><a href="#gzip+ディレクティブ">gzip ディレクティブ</a></h3>
+        <p>以下を設定すると、 h2o はコンテンツを on the fly (リクエストが来てから)圧縮し送信してくれる。
+        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
+        <pre class=null><code>gzip: ON</code></pre>
+        <p><a href="https://h2o.examp1e.net/configure/gzip_directives.html#gzip">Configure > Gzip Directives > "gzip"</a>
+        <p>これにより、あらかじめ圧縮していないコンテンツや、バックエンドのアプリケーションが動的に生成したコンテンツを圧縮転送することができる。
+        圧縮時間分のオーバーヘッドは考えられるが、一般的に gzip の処理時間は小さく、転送量の削減によるネットワーク的メリットの方が高いため、この方法が採用されることが多い。
+      </section>
+      <section>
+        <h3 id="send-gzip+ディレクティブ"><a href="#send-gzip+ディレクティブ">send-gzip ディレクティブ</a></h3>
+        <p>あらかじめコンテンツを gzip 圧縮した状態で <code>ファイル名.gz</code> で配置し、以下を設定すると、 h2o は自動的に圧縮済みファイルを転送してくれる。
+        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
+        <pre class=null><code>file.send-gzip: ON</code></pre>
+        <p><a href="https://h2o.examp1e.net/configure/file_directives.html#file.send-gzip">Configure > File Directives > "file.send-gzip"</a>
+        <p>事前に圧縮するため、レスポンスへのオーバーヘッドは無くなる。
+        しかし、バックエンドが動的に生成するレスポンスには適用できないため、事前に準備可能な静的ファイルへの適用に限定される。
+      </section>
+    </section>
+    <section>
+      <h2 id="zopfli"><a href="#zopfli">zopfli</a></h2>
+      <p>zopfli は Google が開発した圧縮アルゴリズム、およびその実装である。
+      <p><a href="https://github.com/google/zopfli">https://github.com/google/zopfli</a>
+      <p><strong>圧縮結果が gzip 互換</strong>であるため、方式そのものは実質 gzip である。
+      <section>
+        <h3 id="圧縮率の優先"><a href="#圧縮率の優先">圧縮率の優先</a></h3>
+        <p>gzip 圧縮は、ファイル内の一致部分を検出し圧縮するため、この一致部分の探索を入念に行えばより小さく圧縮できることが知られている。しかし、時間とのトレードオフであるため、一般的にはある程度の探索で止めている。
+        <p>zopfli は、この探索を入念に行うことで、時間をかける代わりに、より小さく圧縮するという方針をとる。
+      </section>
+    </section>
+    <section>
+      <h2 id="時間と圧縮率の検証"><a href="#時間と圧縮率の検証">時間と圧縮率の検証</a></h2>
+      <p>本サイトのメインコンテンツはビルドした html である。これを、事前になるべく小さく圧縮しておきたいわけだが、あまり時間がかかるのも困る。
+      <p>zopfli は、探索を繰り返す回数を調節できるため、この回数の増減による、圧縮率と実行時間を検証した。
+      <section>
+        <h3 id="ベンチマーク"><a href="#ベンチマーク">ベンチマーク</a></h3>
+        <p>以下のように、前回の記事に対して zopfli コマンドを実行し、 time コマンドで実行時間を計測した。
+        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
+        <pre class=sh><code>$ time zopfli --i10 -c loading-css-over-http2.html</code></pre>
+        <p><code>--i</code> が探索回数であり、これを増やせばより小さく圧縮できるが、時間がかかる。
+        デフォルトは <code>i = 15</code> であるため、 <code>10..100</code> まで増やしながら実行した。
+        <p>最初の段は、元のファイルサイズ、二段目は <code>gzip</code> コマンドの結果である。
+        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
+        <pre class=null><code>orig   -      17497
+gzip   0.002   5348
+  10   0.18    5164
+  20   0.22    5159
+  30   0.24    5159
+  40   0.29    5159
+  50   0.39    5159
+  60   0.42    5159
+  70   0.46    5156
+  80   0.50    5156
+  90   0.55    5156
+ 100   0.58    5156</code></pre>
+        <p>この結果だと <code>-i20</code> 以上は誤差のようである。
+        ただ、開発用の Mac では少し違う結果が出たりもしたため、結果 <code>i=30</code> くらいに落ち着いた。
+        <p>また、 <a href="//www.jxck.io/assets/img/jxck.webp">WebP</a> と <a href="//www.jxck.io/assets/img/jxck.png">PNG</a> の画像ファイルでも検証したところ、以下のようになった。
+        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
+        <pre class=null><code>jxck.png     3860
+jxck.png.gz  3399
+jxck.webp    1810
+jxck.webp.gz 1873</code></pre>
+        <p>WebP はそもそも圧縮率が高いためか、オーバーヘッドが出ている。
+        <p>画像は、画像サイズ自体の最適化などの問題があるが、とりあえずは WebP 形式のみ除外することにした。除外対象は、定期的にサイズを確認し修正して行く。
+      </section>
+    </section>
+    <section>
+      <h2 id="zopfli+++send-gzip"><a href="#zopfli+++send-gzip">zopfli + send-gzip</a></h2>
+      <p>以上により、本サイトでは全静的コンテンツをデプロイプロセスで zopfli による圧縮を実施し、それを h2o の <code>send-gzip</code> ディレクティブで配信することにした。
+      <p>検証の結果、このサイトでは以下の設定を採用した。
+      <ul>
+        <li><code>i=30</code>
+        <li><code>send-gzip: ON</code>
+        <li>webp は対象外
+      </ul>
+      <p>動作は、 HTTP ヘッダで確認できる。
+      <p><img src=zopfli.png alt="Content-Encoding Support Before/After" title="null" >
+      <p>また、一部は h2o の mruby-handler で動的な生成をしているが、 <code>gzip</code> ディレクティブの効果は未検証なので設定していない。
+      <p>本サイトで <code>.html</code>, <code>.css</code>, <code>.js</code> で終わるような URL は、 <code>.gz</code> を後ろに付けると zopfli 圧縮版が取得できるので、興味があれば試してみて欲しい。
+      <p><a href="https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html.gz">この HTML の zopfli 圧縮版</a>
+    </section>
+  </article>
+</main>
+<hr>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
+</footer>
+</body>
+</html>
+<amp-analytics type="googleanalytics" id="analytics1">
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
