@@ -547,8 +547,9 @@ jxck.webp.gz 1873</code></pre>
       <p>また Google は <a href="https://github.com/google/brotli">brotli</a> という圧縮フォーマットも持っている。
       こちらは、 gzip などとの互換は無いため、クライアントも対応しないと使うことはできない。
       新しいフォーマットとして、 <a href="https://tools.ietf.org/html/draft-alakuijala-brotli-08">IETF へのドラフトの提出</a> もなされている。
-      <p>現在は <a href="https://plus.google.com/u/0/+IlyaGrigorik/posts/X9ogn4fLtHL">Chrome が HTTPS のみでサポート</a> している様である。
-      <p>こちらについては、 H2O に brotli への対応を求める issue が上がっているので、対応したらそこでまた検証しようと思う。
+      <p>現在は <a href="https://plus.google.com/u/0/+IlyaGrigorik/posts/X9ogn4fLtHL">Chrome が HTTPS のみでサポート</a> していおり、 Canary で <a href="chrome://flags#brotli">chrome://flags#brotli</a> を有効にすると、 <code>Accept-Encoding: br</code> が追加されるので、サーバはこれを見て brotli で圧縮したファイルを返すことができる。
+      <p>ほとんどのブラウザが対応している gzip と違い、まだ対応ブラウザも少なく、 H2O も対応していないため <code>Accept-Encoding</code> での判断を自分でハンドラに書く必要がある。
+      <p>H2O には既にbrotli への対応を求める issue が上がっているので、対応したらそこでまた検証しようと思う。
       <p><a href="https://github.com/h2o/h2o/issues/660">Feature request: file.send-brotli #660</a>
     </section>
   </article>
