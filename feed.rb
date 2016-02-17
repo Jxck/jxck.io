@@ -10,7 +10,7 @@ def hsp(str)
 end
 
 entries = Dir.glob("./blog.jxck.io/entries/**/**")
-  .select{|path| path.match(/.*.md/)}
+  .select{|path| path.match(/.*.md\z/) }
   .sort{|a,b| b <=> a }
   .map{|name|
 
