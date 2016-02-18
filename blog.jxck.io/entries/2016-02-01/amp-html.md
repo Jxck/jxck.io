@@ -26,7 +26,7 @@ AMP は以下の三つの要素からなる。
 
 ### AMP HTML
 
-本サイトの HTML は、 [HTML の省略によるサイズ最適化](http://localhost:3000/entries/2016-01-28/html-compression.html) に書いた通り、極力タグを省略した作りにしている。
+本サイトの HTML は、 [HTML の省略によるサイズ最適化](/entries/2016-01-28/html-compression.html) に書いた通り、極力タグを省略した作りにしている。
 
 しかし、 AMP の仕様では `<head>`, `<body>` などの記述は必須となっているため、追加した。
 
