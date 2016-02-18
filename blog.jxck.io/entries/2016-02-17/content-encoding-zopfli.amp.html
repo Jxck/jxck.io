@@ -12,24 +12,23 @@ by Jxck
 <link rel=canonical href=/entries/2016-02-17/content-encoding-zopfli.html>
 <meta name=viewport content="width=device-width,minimum-scale=1">
 
+<meta name=author content=Jxck>
+<meta name=description content="HTTP では `Accept-Encoding` と `Content-Encoding` でのネゴシエーションにより、 gz などで圧縮したコンテンツを転送することができる。本サイトでは zopfli を用いて gzip 形式の配信に対応した。...">
+<meta name=keywords content="zopfli,performance">
 
-    <meta name=author content=Jxck>
-    <meta name=description content="HTTP では `Accept-Encoding` と `Content-Encoding` でのネゴシエーションにより、 gz などで圧縮したコンテンツを転送することができる。本サイトでは zopfli を用いて gzip 形式の配信に対応した。...">
-    <meta name=keywords content="zopfli,performance">
+<meta name=twitter:card        content=summary>
+<meta name=twitter:site        content=@jxck_>
+<meta name=twitter:url         content=https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html>
+<meta name=twitter:title       content="zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について | blog.jxck.io">
+<meta name=twitter:description content="HTTP では `Accept-Encoding` と `Content-Encoding` でのネゴシエーションにより、 gz などで圧縮したコンテンツを転送することができる。本サイトでは zopfli を用いて gzip 形式の配信に対応した。...">
+<meta name=twitter:image       content=https://www.jxck.io/assets/img/jxck.png>
 
-    <meta name=twitter:card        content=summary>
-    <meta name=twitter:site        content=@jxck_>
-    <meta name=twitter:url         content=https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html>
-    <meta name=twitter:title       content="zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について | blog.jxck.io">
-    <meta name=twitter:description content="HTTP では `Accept-Encoding` と `Content-Encoding` でのネゴシエーションにより、 gz などで圧縮したコンテンツを転送することができる。本サイトでは zopfli を用いて gzip 形式の配信に対応した。...">
-    <meta name=twitter:image       content=https://www.jxck.io/assets/img/jxck.png>
-
-    <meta property=og:type        content="article">
-    <meta property=og:url         content=https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html>
-    <meta property=og:title       content="zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について | blog.jxck.io">
-    <meta property=og:site_name   content=blog.jxck.io>
-    <meta property=og:description content="HTTP では `Accept-Encoding` と `Content-Encoding` でのネゴシエーションにより、 gz などで圧縮したコンテンツを転送することができる。本サイトでは zopfli を用いて gzip 形式の配信に対応した。...">
-    <meta property=og:image       content=https://www.jxck.io/assets/img/jxck.png>
+<meta property=og:type        content="article">
+<meta property=og:url         content=https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html>
+<meta property=og:title       content="zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について | blog.jxck.io">
+<meta property=og:site_name   content=blog.jxck.io>
+<meta property=og:description content="HTTP では `Accept-Encoding` と `Content-Encoding` でのネゴシエーションにより、 gz などで圧縮したコンテンツを転送することができる。本サイトでは zopfli を用いて gzip 形式の配信に対応した。...">
+<meta property=og:image       content=https://www.jxck.io/assets/img/jxck.png>
 
 <style>body {opacity: 0}</style><noscript><style>body {opacity: 1}</style></noscript>
 <title>zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について | blog.jxck.io</title>
@@ -420,13 +419,12 @@ footer {
 <body>
 <header>
   <div>
-    <a class=logo href=//www.jxck.io><img alt="jxck logo" src=//www.jxck.io/assets/img/jxck.png></a>
+    <a class=logo href=//www.jxck.io><amp-img alt="jxck logo" src=//www.jxck.io/assets/img/jxck.png></a>
     <a class=path href=/>blog.jxck.io</a>
-    <a class=feed href=/feeds/atom.xml><img alt="rss feed" src=//www.jxck.io/assets/img/rss.svg></a>
+    <a class=feed href=/feeds/atom.xml><amp-img alt="rss feed" src=//www.jxck.io/assets/img/rss.svg></a>
   </div>
 </header>
 <main>
-  <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>
   <article>
     <div><time datetime=2016-02-17>2016-02-17</time><span class=tags><a>zopfli</a><a>performance</a></span></div>
     <h1><a href="/entries/2016-02-17/content-encoding-zopfli.html">zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について</a></h1>
@@ -463,7 +461,6 @@ footer {
       <section>
         <h3 id="gzip+ディレクティブ"><a href="#gzip+ディレクティブ">gzip ディレクティブ</a></h3>
         <p>以下を設定すると、 h2o はコンテンツを on the fly (リクエストが来てから)圧縮し送信してくれる。
-        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
         <pre class=null><code>gzip: ON</code></pre>
         <p><a href="https://h2o.examp1e.net/configure/gzip_directives.html#gzip">Configure > Gzip Directives > "gzip"</a>
         <p>これにより、あらかじめ圧縮していないコンテンツや、バックエンドのアプリケーションが動的に生成したコンテンツを圧縮転送することができる。
@@ -472,7 +469,6 @@ footer {
       <section>
         <h3 id="send-gzip+ディレクティブ"><a href="#send-gzip+ディレクティブ">send-gzip ディレクティブ</a></h3>
         <p>あらかじめコンテンツを gzip 圧縮した状態で <code>ファイル名.gz</code> で配置し、以下を設定すると、 h2o は自動的に圧縮済みファイルを転送してくれる。
-        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
         <pre class=null><code>file.send-gzip: ON</code></pre>
         <p><a href="https://h2o.examp1e.net/configure/file_directives.html#file.send-gzip">Configure > File Directives > "file.send-gzip"</a>
         <p>事前に圧縮するため、レスポンスへのオーバーヘッドは無くなる。
@@ -497,12 +493,10 @@ footer {
       <section>
         <h3 id="ベンチマーク"><a href="#ベンチマーク">ベンチマーク</a></h3>
         <p>以下のように、前回の記事に対して zopfli コマンドを実行し、 time コマンドで実行時間を計測した。
-        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
         <pre class=sh><code>$ time zopfli --i10 -c loading-css-over-http2.html</code></pre>
         <p><code>--i</code> が探索回数であり、これを増やせばより小さく圧縮できるが、時間がかかる。
         デフォルトは <code>i = 15</code> であるため、 <code>10..100</code> まで増やしながら実行した。
         <p>最初の段は、元のファイルサイズ、二段目は <code>gzip</code> コマンドの結果である。
-        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
         <pre class=null><code>orig   -      17497
 gzip   0.002   5348
   10   0.18    5164
@@ -518,7 +512,6 @@ gzip   0.002   5348
         <p>この結果だと <code>-i20</code> 以上は誤差のようである。
         ただ、開発用の Mac では少し違う結果が出たりもしたため、結果 <code>i=30</code> くらいに落ち着いた。
         <p>また、 <a href="//www.jxck.io/assets/img/jxck.webp">WebP</a> と <a href="//www.jxck.io/assets/img/jxck.png">PNG</a> の画像ファイルでも検証したところ、以下のようになった。
-        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
         <pre class=null><code>jxck.png     3860
 jxck.png.gz  3399
 jxck.webp    1810
