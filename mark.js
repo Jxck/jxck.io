@@ -42,30 +42,33 @@ class Simple {
   HTML(article) {
     this.article = article;
 
-    this.meta = `
-    <meta name=author content=Jxck>
-    <meta name=description content="${this.description}">
-    <meta name=keywords content="${this.tags}">
+    this.meta = `<meta name=author content=Jxck>
+<meta name=description content="${this.description}">
+<meta name=keywords content="${this.tags}">
 
-    <meta name=twitter:card        content=summary>
-    <meta name=twitter:site        content=@jxck_>
-    <meta name=twitter:url         content=https://blog.jxck.io/${this.canonical}>
-    <meta name=twitter:title       content="${this.title} | blog.jxck.io">
-    <meta name=twitter:description content="${this.description}">
-    <meta name=twitter:image       content=https://www.jxck.io/assets/img/jxck.png>
+<meta name=twitter:card        content=summary>
+<meta name=twitter:site        content=@jxck_>
+<meta name=twitter:url         content=https://blog.jxck.io/${this.canonical}>
+<meta name=twitter:title       content="${this.title} | blog.jxck.io">
+<meta name=twitter:description content="${this.description}">
+<meta name=twitter:image       content=https://www.jxck.io/assets/img/jxck.png>
 
-    <meta property=og:type        content="article">
-    <meta property=og:url         content=https://blog.jxck.io/${this.canonical}>
-    <meta property=og:title       content="${this.title} | blog.jxck.io">
-    <meta property=og:site_name   content=blog.jxck.io>
-    <meta property=og:description content="${this.description}">
-    <meta property=og:image       content=https://www.jxck.io/assets/img/jxck.png>`
+<meta property=og:type        content="article">
+<meta property=og:url         content=https://blog.jxck.io/${this.canonical}>
+<meta property=og:title       content="${this.title} | blog.jxck.io">
+<meta property=og:site_name   content=blog.jxck.io>
+<meta property=og:description content="${this.description}">
+<meta property=og:image       content=https://www.jxck.io/assets/img/jxck.png>`
 
     return eval('`' + this.template + '`');
   }
   Article(node) {
     let value = `\n${node.value}`.replace(/\n/gm, `\n${this.indent}`);
-    value = `<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>\n<article>${value}\n</article>`;
+    value = `<article>${value}\n</article>`;
+    if (this.amp) {
+      // has amp url so not amp page
+      value = `<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>\n${value}`
+    }
     value = `\n${value}`.replace(/\n/gm, `\n${this.indent}`);
     return `<main>${value}\n</main>`;
   }
@@ -111,7 +114,14 @@ class Simple {
   }
   Document   (node) { return node.value }
   Paragraph  (node) { return `<p>${node.value}\n` }
-  CodeBlock  (node) { return `<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>\n<pre class=${node.lang}><code>${node.value}</code></pre>\n` }
+  CodeBlock  (node) {
+    let value = `<pre class=${node.lang}><code>${node.value}</code></pre>\n`;
+    if (this.amp) {
+      // has amp url so not amp page
+      value = `<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>\n${value}`;
+    }
+    return value;
+  }
   Code       (node) { return h`<code>${node.value}</code>` }
   BlockQuote (node) { return h`<blockquote>${node.value}</blockquote>\n` }
   ListItem   (node) { return `<li>${node.value}\n` }
