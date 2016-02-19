@@ -2,6 +2,10 @@
 
 'use strict';
 
+global.__defineGetter__('__LINE__', function () {
+  return (new Error()).stack.split('\n')[3].split(':').reverse()[1];
+});
+
 // read template and trim
 function read(path) {
   return fs.readFileSync(path).toString().trim();
@@ -127,7 +131,12 @@ class Simple {
   HorizontalRule () { return `<hr>` }
 };
 
-let p = console.log.bind(console);
+let p = function() {
+  let arg = Array.from(arguments);
+  arg.unshift(__LINE__);
+  console.log.apply(this, arg);
+}
+
 let j = JSON.stringify.bind(JSON);
 
 let parse = require('markdown-to-ast').parse
