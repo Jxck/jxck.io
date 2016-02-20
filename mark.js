@@ -48,6 +48,7 @@ class Simple {
     this.title = '';
   }
   wrap(tag, value) {
+    // increase indent
     value = `\n${value}`.replace(/\n/gm, `\n${this.indent}`);
     return `${tag[0]}${value}\n${tag[1]}`;
   }
