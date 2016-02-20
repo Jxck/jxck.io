@@ -2,6 +2,11 @@
 
 'use strict';
 
+// read template and trim
+function read(path) {
+  return fs.readFileSync(path).toString().trim();
+}
+
 // html special chars
 function hsp(str) {
   return str.replace(/&/g, '&amp;')
@@ -256,7 +261,7 @@ function build(AST, dir, date, template) {
           let tmp = node.lang.split(':');
           node.lang = tmp[0];
           let file = path.format({ dir: dir, base: tmp[1] });
-          value = fs.readFileSync(file).toString().trim();
+          value = read(file);
         }
         codes.push(value);
         node.value = `// ${codes.length}`;
@@ -348,7 +353,7 @@ let baseurl = dir.replace('./blog.jxck.io/', '');
 
 // simple html
 (() => {
-  let md = fs.readFileSync(filepath).toString();
+  let md = read(filepath);
   let description = Description(md);
   let ast = parse(md);
   ast.children = sectioning(ast.children, 1);
@@ -356,8 +361,8 @@ let baseurl = dir.replace('./blog.jxck.io/', '');
   let canonical = `${baseurl}/${name}.html`;
   let amp = `${baseurl}/${name}.amp.html`;
   let indent = '  ';
-  let template = fs.readFileSync('./.template/simple.html').toString().trim();
-  let meta = fs.readFileSync('./.template/meta.html').toString().trim();
+  let template = read('./.template/simple.html');
+  let meta = read('./.template/meta.html');
   let simple = new Simple(canonical, amp, indent, template, meta, description);
 
   let article = build(ast, dir, date, simple);
@@ -368,15 +373,15 @@ let baseurl = dir.replace('./blog.jxck.io/', '');
 
 // amp html
 (() => {
-  let md = fs.readFileSync(filepath).toString();
+  let md = read(filepath);
   let description = Description(md);
   let ast = parse(md);
   ast.children = sectioning(ast.children, 1);
 
   let canonical = `${baseurl}/${name}.html`;
   let indent = '  ';
-  let template = fs.readFileSync('./.template/amp.html').toString().trim();
-  let meta = fs.readFileSync('./.template/meta.html').toString().trim();
+  let template = read('./.template/amp.html');
+  let meta = read('./.template/meta.html');
   let style = [
     'www.jxck.io/assets/css/body.css',
     'www.jxck.io/assets/css/header.css',
