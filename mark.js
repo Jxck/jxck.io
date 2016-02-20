@@ -42,29 +42,28 @@ class Simple {
     this.style = style;
     this.title = '';
   }
+  wrap(tag, value) {
+    value = `\n${value}`.replace(/\n/gm, `\n${this.indent}`);
+    return `${tag[0]}${value}\n${tag[1]}`;
+  }
   HTML(article) {
     this.article = article;
     this.meta = eval('`' + this.meta + '`');
-
     return eval('`' + this.template + '`');
   }
   Article(node) {
-    let value = `\n${node.value}`.replace(/\n/gm, `\n${this.indent}`);
-    value = `<article>${value}\n</article>`;
+    let value = this.wrap`<article>${node.value}</article>`;
     if (this.amp) {
       // has amp url so not amp page
       value = `<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>\n${value}`
     }
-    value = `\n${value}`.replace(/\n/gm, `\n${this.indent}`);
-    return `<main>${value}\n</main>`;
+    return this.wrap`<main>${value}</main>`;
   }
   Section(node) {
-    let value = `\n${node.value}`.replace(/\n/gm, `\n${this.indent}`);
-    return `<section>${value}\n</section>\n`;
+    return this.wrap`<section>${node.value}</section>\n`;
   }
   List(node) {
-    let value = `\n${node.value}`.replace(/\n/gm, `\n${this.indent}`);
-    return node.ordered ? `<ol>${value}\n</ol>\n` : `<ul>${value}\n</ul>\n`;
+    return node.ordered ? this.wrap`<ol>${node.value}</ol>\n` : this.wrap`<ul>${node.value}</ul>\n`;
   }
   Header(node) {
     let val = '';
@@ -108,6 +107,7 @@ class Simple {
     }
     return value;
   }
+  // inline
   Code       (node) { return h`<code>${node.value}</code>` }
   BlockQuote (node) { return h`<blockquote>${node.value}</blockquote>\n` }
   ListItem   (node) { return `<li>${node.value}\n` }
