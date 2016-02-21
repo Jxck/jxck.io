@@ -30,6 +30,21 @@ function unspace(str) {
   return str.replace(/ /g, '+');
 }
 
+// tag を抜き出す
+function Tags(text) {
+  let tagtext = text.match(/\# ((\[(.+?)\])+)/)[1];
+  // tag は必ず書く
+  if (tagtext === undefined || tagtext.length === 0) {
+    console.error('\x1b[0;31mThere is No TAGS\x1b[0m');
+    process.exit(1);
+  }
+
+  text = text.replace(' ' + tagtext, '');
+
+  let tags = tagtext.substr(1, tagtext.length - 2).split('][');
+  return { tags: tags, text: text };
+}
+
 // # Intro の中身を取り出す
 function Description(text) {
   let intro = text.match(/## Intro(([\n\r]|.)*?)##/m)[1].trim();
@@ -41,13 +56,14 @@ function Description(text) {
 
 // tag ごとのビルダ
 class Simple {
-  constructor(canonical, amp, indent, template, meta, description, style) {
+  constructor(canonical, amp, indent, template, meta, tags, description, style) {
     this.canonical = canonical;
     this.amp = amp;
     this.indent = indent;
     this.template = template;
     this.meta = meta;
     this.description = description;
+    this.tags = tags;
     this.style = style;
     this.title = '';
   }
@@ -83,22 +99,8 @@ class Simple {
       // # [blog][web] ブログ始めました
       this.title = node.value;
 
-      // tag 取り出す
-      let raw = node.children.shift().raw;
-      let tags = raw.substr(1, raw.length - 2).split('][');
-
-      // tag は必ず書く
-      if (tags === undefined) {
-        console.error('\x1b[0;31mThere is No TAGS\x1b[0m');
-        process.exit(1);
-      }
-
-      // meta keyword 用に保存
-      this.tags = tags;
-
       // tags をビルド
-      // let taglinks = tags.map((tag) => `<a href="/tags/${tag}">${tag}</a>`).join('');
-      let taglinks = tags.map((tag) => `<a>${tag}</a>`).join('');
+      let taglinks = this.tags.map((tag) => `<a>${tag}</a>`).join('');
       val += `<div><time datetime=${date}>${date}</time><span class=tags>${taglinks}</span></div>\n`;
       val += `<h${node.depth}><a href="/${this.canonical}">${node.value}</a></h${node.depth}>\n`;
     } else {
@@ -364,7 +366,15 @@ let baseurl = dir.replace('./blog.jxck.io/', '');
 // simple html
 (() => {
   let md = read(filepath);
+
+  // separate tag
+  let parsed = Tags(md);
+  let tags = parsed.tags;
+  md = parsed.text;
+
+  // take description
   let description = Description(md);
+
   let ast = parse(md);
   ast.children = sectioning(ast.children, 1);
 
@@ -373,7 +383,7 @@ let baseurl = dir.replace('./blog.jxck.io/', '');
   let indent = '  ';
   let template = read('./.template/simple.html');
   let meta = read('./.template/meta.html');
-  let simple = new Simple(canonical, amp, indent, template, meta, description);
+  let simple = new Simple(canonical, amp, indent, template, meta, tags, description);
 
   let article = build(ast, dir, date, simple);
 
@@ -384,7 +394,15 @@ let baseurl = dir.replace('./blog.jxck.io/', '');
 // amp html
 (() => {
   let md = read(filepath);
+
+  // separate tag
+  let parsed = Tags(md);
+  let tags = parsed.tags;
+  md = parsed.text;
+
+  // take description
   let description = Description(md);
+
   let ast = parse(md);
   ast.children = sectioning(ast.children, 1);
 
@@ -403,7 +421,7 @@ let baseurl = dir.replace('./blog.jxck.io/', '');
     return fs.readFileSync(file).toString();
   }).join('\n')
 
-  let amp = new Simple(canonical, null, indent, template, meta, description, style);
+  let amp = new Simple(canonical, null, indent, template, meta, tags, description, style);
 
   let article = build(ast, dir, date, amp);
 
