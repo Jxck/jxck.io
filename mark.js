@@ -385,7 +385,7 @@ let baseurl = dir.replace('./blog.jxck.io/', '');
   // take description
   let description = Description(md);
 
-  let ast = parse(md);
+  let ast = parse(md, { position: false });
   ast.children = sectioning(ast.children, 1);
   p(JSON.stringify(ast, '  ', '  '));
 
