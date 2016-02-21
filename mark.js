@@ -141,8 +141,10 @@ class Simple {
   html       (node) {
     let value = `${node.value}\n`;
     if (!this.amp && value.match(/<iframe.*/)) {
-      // use amp-iframe in amp.html
-      return value.replace(/iframe/g, 'amp-iframe');
+      // TODO: use amp-iframe in amp.html
+      // return value.replace(/iframe/g, 'amp-iframe');
+
+      return ''; // remove iframe in amp.html
     }
     return value;
   }
