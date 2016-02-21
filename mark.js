@@ -129,7 +129,13 @@ class Simple {
   image      (node) { return `<img src=${node.url} alt="${node.alt}" title="${node.title}" >` }
   strong     (node) { return `<strong>${node.value}</strong>` }
   emphasis   (node) { return `<em>${node.value}</em>` }
-  html       (node) { return `${node.value}\n` }
+  html       (node) {
+    if (!this.amp && node.value.match(/<iframe.*/)) {
+      // no iframe in amp.html
+      return '';
+    }
+    return `${node.value}\n`
+  }
   text       (node) { return node.value }
   thematicBreak  () { return `<hr>` }
 };
