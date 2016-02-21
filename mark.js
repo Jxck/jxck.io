@@ -126,7 +126,13 @@ class Simple {
   blockquote (node) { return h`<blockquote>${node.value}</blockquote>\n` }
   listItem   (node) { return `<li>${node.value}\n` }
   link       (node) { return `<a href="${node.url}">${node.value}</a>` }
-  image      (node) { return `<img src=${node.url} alt="${node.alt}" title="${node.title}" >` }
+  image      (node) {
+    if (!this.amp) {
+      // not has amp link means amp template
+      return  `<amp-img layout=responsive src=${node.url} alt="${node.alt}" title="${node.title}" >`
+    }
+    return `<img src=${node.url} alt="${node.alt}" title="${node.title}">`
+  }
   strong     (node) { return `<strong>${node.value}</strong>` }
   emphasis   (node) { return `<em>${node.value}</em>` }
   html       (node) {
