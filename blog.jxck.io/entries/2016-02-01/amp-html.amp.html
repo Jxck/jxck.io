@@ -13,21 +13,21 @@ by Jxck
 <meta name=viewport content="width=device-width,minimum-scale=1">
 
 <meta name=author content=Jxck>
-<meta name=description content="Google が推奨する仕様である [AMP HTML](https://www.ampproject.org/) に、このブログのエントリページのみ対応してみた。[ACCELERATED MOBILE PAGES PROJECT](https://www.ampproject....">
-<meta name=keywords content="performance,amp">
+<meta name=description content="Google が推奨する仕様である [AMP HTML](https://www.ampproject.org/) に、このブログを対応した。非常に難しかったため、その対応方法や感想などを残す。...">
+<meta name=keywords content="performance,amp,html">
 
 <meta name=twitter:card content=summary>
 <meta name=twitter:site content=@jxck_>
 <meta name=twitter:url content=https://blog.jxck.io/entries/2016-02-01/amp-html.html>
 <meta name=twitter:title content="AMP HTML 対応 | blog.jxck.io">
-<meta name=twitter:description content="Google が推奨する仕様である [AMP HTML](https://www.ampproject.org/) に、このブログのエントリページのみ対応してみた。[ACCELERATED MOBILE PAGES PROJECT](https://www.ampproject....">
+<meta name=twitter:description content="Google が推奨する仕様である [AMP HTML](https://www.ampproject.org/) に、このブログを対応した。非常に難しかったため、その対応方法や感想などを残す。...">
 <meta name=twitter:image content=https://www.jxck.io/assets/img/jxck.png>
 
 <meta property=og:type content="article">
 <meta property=og:url content=https://blog.jxck.io/entries/2016-02-01/amp-html.html>
 <meta property=og:title content="AMP HTML 対応 | blog.jxck.io">
 <meta property=og:site_name content=blog.jxck.io>
-<meta property=og:description content="Google が推奨する仕様である [AMP HTML](https://www.ampproject.org/) に、このブログのエントリページのみ対応してみた。[ACCELERATED MOBILE PAGES PROJECT](https://www.ampproject....">
+<meta property=og:description content="Google が推奨する仕様である [AMP HTML](https://www.ampproject.org/) に、このブログを対応した。非常に難しかったため、その対応方法や感想などを残す。...">
 <meta property=og:image content=https://www.jxck.io/assets/img/jxck.png>
 
 <style>body {opacity: 0}</style><noscript><style>body {opacity: 1}</style></noscript>
@@ -426,42 +426,93 @@ footer {
 </header>
 <main>
   <article>
-    <div><time datetime=2016-02-01>2016-02-01</time><span class=tags><a>performance</a><a>amp</a></span></div>
+    <div><time datetime=2016-02-01>2016-02-01</time><span class=tags><a>performance</a><a>amp</a><a>html</a></span></div>
     <h1><a href="/entries/2016-02-01/amp-html.html">AMP HTML 対応</a></h1>
     <section>
       <h2 id="Intro"><a href="#Intro">Intro</a></h2>
-      <p>Google が推奨する仕様である <a href="https://www.ampproject.org/">AMP HTML</a> に、このブログのエントリページのみ対応してみた。
-      <p><a href="https://www.ampproject.org/">ACCELERATED MOBILE PAGES PROJECT</a>
-      <p>タイトルは識別しやすいよう AMP HTML としたが、実際には AMP という仕様(方針)があり、 HTML 以外にも手を入れている。
+      <p>Google が推奨する仕様である <a href="https://www.ampproject.org/">AMP HTML</a> に、このブログを対応した。
+      <p>非常に難しかったため、その対応方法や感想などを残す。
     </section>
     <section>
       <h2 id="AMP"><a href="#AMP">AMP</a></h2>
+      <p><a href="https://www.ampproject.org/">ACCELERATED MOBILE PAGES PROJECT</a>
+      <p>タイトルは識別しやすいよう AMP HTML としたが、実際には AMP という仕様(方針)があり、 HTML 以外にも手を入れている。
       <p>AMP は、特にモバイル向けに <strong>静的コンテンツ</strong> を最適化し、高速に表示できるようにすることを目的としている。
-      <p>実際は、高速化するというより、「遅くなる原因を排除する」という制約を課す仕様という作りになっている。
-      <p>AMP は以下の三つの要素からなる。
-      <ul>
-        <li>AMP HTML
-        <li>AMP JS
-        <li>AMP CDN
-      </ul>
-      <p>各要素を細かく説明し、 AMP への対応方法を書いたエントリは他にも多くあるので、対応してみた結果と、この仕様に対する感想を交えて、重要そうなところだけ拾って書く。
+      <p>実際は、高速化するというより、 <strong>遅くなる原因を排除する</strong> という制約を課す仕様という作りになっている。
+      <section>
+        <h3 id="対応のメリット"><a href="#対応のメリット">対応のメリット</a></h3>
+        <p>AMP に対応することで、レンダリングボトルネックが少ないページを記述可能であるというのもある。
+        <p>しかし、実際はそれ以上に各ベンダのキャッシュの効果が強くあるだろう。
+        <p>AMP に合意したベンダは、サイトをクロールし AMP 対応ページを見つけた際に、それをキャッシュし代わりに配信してくれる。
+        <p>現在 Google, Twitter, Pinterest などが対応しているらしく、対応ベンダが増えれば CDN エッジが増え、より最適なルートから素早くページが配信されるという仕組みになっている。
+        <p><a href="https://www.ampproject.org/docs/support/faqs.html#how-do-accelerated-mobile-pages-work">How do Accelerated Mobile Pages work?</a>
+        <p>クローラに AMP 対応を知らせる方法は後述する。
+      </section>
+      <section>
+        <h3 id="構成要素"><a href="#構成要素">構成要素</a></h3>
+        <p>AMP は以下の三つの要素からなる。
+        <ul>
+          <li>AMP HTML
+          <li>AMP JS
+          <li>AMP CDN
+        </ul>
+        <p>各要素を細かく説明し、 AMP への対応方法を書いたエントリは他にも多くあるので、対応してみた結果と、この仕様に対する感想を交えて、重要そうなところだけ拾って書く。
+      </section>
+    </section>
+    <section>
+      <h2 id="HTML+対応"><a href="#HTML+対応">HTML 対応</a></h2>
       <section>
         <h3 id="AMP+HTML"><a href="#AMP+HTML">AMP HTML</a></h3>
         <p>本サイトの HTML は、 <a href="/entries/2016-01-28/html-compression.html">HTML の省略によるサイズ最適化</a> に書いた通り、極力タグを省略した作りにしている。
         <p>しかし、 AMP の仕様では <code>&lt;head&gt;</code>, <code>&lt;body&gt;</code> などの記述は必須となっているため、追加した。
       </section>
+    </section>
+    <section>
+      <h2 id="discovery+(相互参照)"><a href="#discovery+(相互参照)">discovery (相互参照)</a></h2>
+      <p>本サイトでは、普通の HTML と AMP 対応の HTML は別にビルドしており、 URL の末尾が <code>.html</code> か <code>.amp.html</code> かで分けている。
+      <p>こうした場合は <code>&lt;link&gt;</code> タグで、クローラなどに相互のページの参照を伝えることができる。
+      <p>このサイトでは <code>.html</code> に AMP 対応があることを伝える以下を追記した。
+      <pre class=html><code>&lt;link rel=amphtml href=${path}.amp.html&gt;</code></pre>
+      <p>一方 <code>.amp.html</code> では、ブックマークなどが統一できるように <code>canonical</code> を追加している。
+      <pre class=html><code>&lt;link rel=canonical href=${path}.html&gt;</code></pre>
+      <p>access_log で UA などを追えば、 apmhtml を見るクローラが追えるかもしれない。
       <section>
-        <h3 id="discovery+(相互参照)"><a href="#discovery+(相互参照)">discovery (相互参照)</a></h3>
-        <p>本サイトでは、普通の HTML と AMP 対応の HTML は別にビルドしており、 URL の末尾が <code>.html</code> か <code>.amp.html</code> かで分けている。
-        <p>こうした場合は <code>&lt;link&gt;</code> タグで、クローラなどに相互のページの参照を伝えることができる。
-        <p>このサイトでは <code>.html</code> に AMP 対応があることを伝える以下を追記した。
-        <pre class=html><code>&lt;link rel=amphtml href=${path}.amp.html&gt;</code></pre>
-        <p>一方 <code>.amp.html</code> では、ブックマークなどが統一できるように <code>canonical</code> を追加している。
-        <pre class=html><code>&lt;link rel=canonical href=${path}.html&gt;</code></pre>
-        <p>access_log で UA などを追えば、 apmhtml を見るクローラが追えるかもしれない。
+        <h3 id="JS"><a href="#JS">JS</a></h3>
+        <p>JS は一切許されない。 JS が必要な表現などは AMP のライブラリとして用意されているカスタムエレメントを経由して実現する必要がある。
+        <p>特に JS がレンダリングブロックなど、余計なことをしている場合にパフォーマンスへの影響が大きいための制限だろう。
+        <p>このサイトは現時点では、コードスニペットのシンタックスハイライトと google analytics 以外には JS を使っていない。
+        <p>ハイライト用の JS は、無ければハイライトされないだけなので、とりあえず AMP 対応ページでは JS 自体を読み込まないようにした。
+        <p>google analytics については後述するコンポーネントがあるため、それを使った。
       </section>
       <section>
-        <h3 id="Google+Analytics"><a href="#Google+Analytics">Google Analytics</a></h3>
+        <h3 id="CSS"><a href="#CSS">CSS</a></h3>
+        <p><code>&lt;link&gt;</code> による CSS の読み込みも禁止されている。
+        <p>しかし、 <code>&lt;style&gt;</code> が禁止されているわけではないので、全ての CSS を結合して HTML 内に埋め込むようにした。
+        <p>これは、別途対応した以下のコンポーネント単位の読み込みによる最適化と競合しているが、仕様なのでしかたない。
+        <p><a href="loading-css-over-http2.html">HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について</a>
+      </section>
+      <section>
+        <h3 id="amp+custom+element+対応"><a href="#amp+custom+element+対応">amp custom element 対応</a></h3>
+      </section>
+      <section>
+        <h3 id="amp-img"><a href="#amp-img">amp-img</a></h3>
+        <p>AMP-HTML 内では、 <code>&lt;img&gt;</code> タグを直接書くことは禁止されており、代わりに、 <code>&lt;amp-img&gt;</code> というカスタムタグを使用する。
+        <p><a href="https://www.ampproject.org/docs/reference/extended/amp-img.html">amp-img</a>
+        <p>このタグには <code>width</code> <code>height</code> の記述が必須となっており、 <code>layout=responsive</code> とすることでそのサイズ比を保ったままレスポンシブ表示してくれる。
+        <p>この記事では markdown から生成しているため、この指定はいちいち調べて URL の最後に <code>#widthxheight</code> などとサイズを付与しておいて、 AMP バージョンだけビルド時にそれを読むようにした。全てのイメージにサイズを付けるのは、特に既存のコンテンツがあるとなかなか難しそうな気がする。
+      </section>
+      <section>
+        <h3 id="amp-iframe"><a href="#amp-iframe">amp-iframe</a></h3>
+        <p>AMP-HTML 内では、 <code>&lt;iframe&gt;</code> タグを直接書くことは禁止されており、代わりに、 <code>&lt;amp-iframe&gt;</code> というカスタムタグを使用する。
+        <p><a href="https://www.ampproject.org/docs/reference/extended/amp-iframe.html">amp-iframe</a>
+        <p>ただし、このタグもまた制約が多い。一番大きいのは <strong>位置</strong> に対する制約だ。
+        <blockquote>They must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top</blockquote>
+        <p>要するに above-the-fold に iframe を入れたくないということだろう。これはコンテンツを作る時点で気にしておかないといけないし、自動で変換も難しい。
+        <p>このサイトは markdown からビルドしているため、 <code>&lt;iframe&gt;</code> を埋め込む場合は自分で直接タグを書くことになる。
+        <p>なので、タグを埋め込む際は、その前に何かしらその埋め込むコンテンツへのリンクを貼っておくルールを強制することで、 AMP-HTML 内では <code>&lt;iframe&gt;</code> をまるっと消してしまうことにした。
+      </section>
+      <section>
+        <h3 id="amp-analytics"><a href="#amp-analytics">amp-analytics</a></h3>
         <p>AMP での Google Analytics の設定は <code>&lt;amp-analytics&gt;</code> カスタムタグで行う。
         <p><a href="https://developers.google.com/analytics/devguides/collection/amp-analytics/">Adding Analytics to your AMP pages</a>
         <p>収集したい情報に応じてやり方がいくつか有るようだが、一番スタンダードな Page Tracking だけ設定した。
@@ -485,6 +536,23 @@ footer {
 &lt;/script&gt;
 &lt;/amp-analytics&gt;</code></pre>
       </section>
+    </section>
+    <section>
+      <h2 id="debug"><a href="#debug">debug</a></h2>
+      <p>AMP として正しい HTML かどうかは、 Chrome Developer Tools で調べることができる。
+      <p>単に Tools を開けば、そのページの対応している AMP バージョンを知ることができるが、 URL に <code>#development=1</code> を付与することでより細かくエラーを見ることができる。
+      <p>このページのデバッグフラグ付き AMP 対応ページの URL は以下になる。
+      <p><a href="amp-html.amp.html#development=1">amp-html.amp.html#development=1</a>
+      <p>また、分かりやすいように通常の HTML の右上に ⚡ のようなアイコンを追加し、そこにこのリンクを追加した。
+    </section>
+    <section>
+      <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
+      <p>AMP は、読み込みが遅くなる原因を徹底的に排除するために、対象となるタグや構成などを強く制限している。
+      <p>また、各ベンダの CDN からの代理配信が最適化されれば、メリットは強いかもしれない。
+      <p>本サイトのようにまだ作り途中で変更が効かせやすいサイトであればまだ別だが、既存のコンテンツをそれなりに持っている場合は、なかなか対応は難しいのではないかと感じる。
+      <p>それを踏まえて実施するだけのメリットが明確に見えれば、徐々に広がって行くのではないかと思う。
+      <p>あと、ドキュメントが分かりにくいところがある。
+      <p>仕様のバージョンもまだ少し動いていくようなので、その辺りも含めてもっと知見と安定感が欲しい。
     </section>
   </article>
 </main>

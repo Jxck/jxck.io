@@ -1,4 +1,4 @@
-# [performance][amp] AMP HTML 対応
+# [performance][amp][html] AMP HTML 対応
 
 ## Intro
 
