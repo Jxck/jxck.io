@@ -139,11 +139,12 @@ class Simple {
   strong     (node) { return `<strong>${node.value}</strong>` }
   emphasis   (node) { return `<em>${node.value}</em>` }
   html       (node) {
-    if (!this.amp && node.value.match(/<iframe.*/)) {
-      // no iframe in amp.html
-      return '';
+    let value = `${node.value}\n`;
+    if (!this.amp && value.match(/<iframe.*/)) {
+      // use amp-iframe in amp.html
+      return value.replace(/iframe/g, 'amp-iframe');
     }
-    return `${node.value}\n`
+    return value;
   }
   text       (node) { return node.value }
   thematicBreak  () { return `<hr>` }
