@@ -77,21 +77,24 @@ class Simple {
     this.meta = eval('`' + this.meta + '`');
     return eval('`' + this.template + '`');
   }
-  Article(node) {
+  root(node) {
+    return this.wrap`<main>${node.value}</main>`
+  }
+  article(node) {
     let value = this.wrap`<article>${node.value}</article>`;
     if (this.amp) {
       // has amp url so not amp page
       value = `<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>\n${value}`
     }
-    return this.wrap`<main>${value}</main>`;
+    return value;
   }
-  Section(node) {
+  section(node) {
     return this.wrap`<section>${node.value}</section>\n`;
   }
   List(node) {
     return node.ordered ? this.wrap`<ol>${node.value}</ol>\n` : this.wrap`<ul>${node.value}</ul>\n`;
   }
-  Header(node) {
+  heading(node) {
     let val = '';
     if (node.depth === 1) {
       // h1 には独自ルールでタグを付けている
@@ -109,8 +112,7 @@ class Simple {
 
     return val;
   }
-  Document   (node) { return node.value }
-  Paragraph  (node) { return `<p>${node.value}\n` }
+  paragraph  (node) { return `<p>${node.value}\n` }
   CodeBlock  (node) {
     let value = `<pre class=${node.lang}><code>${node.value}</code></pre>\n`;
     if (this.amp) {
@@ -123,12 +125,12 @@ class Simple {
   Code       (node) { return h`<code>${node.value}</code>` }
   BlockQuote (node) { return h`<blockquote>${node.value}</blockquote>\n` }
   ListItem   (node) { return `<li>${node.value}\n` }
-  Link       (node) { return `<a href="${node.href}">${node.value}</a>` }
+  link       (node) { return `<a href="${node.href}">${node.value}</a>` }
   Image      (node) { return `<img src=${node.src} alt="${node.alt}" title="${node.title}" >` }
   Strong     (node) { return `<strong>${node.value}</strong>` }
   Emphasis   (node) { return `<em>${node.value}</em>` }
   Html       (node) { return `${node.value}\n` }
-  Str        (node) { return node.value }
+  text       (node) { return node.value }
   Break          () { return `<br>` }
   HorizontalRule () { return `<hr>` }
 };
@@ -141,25 +143,23 @@ let p = function() {
 
 let j = JSON.stringify.bind(JSON);
 
-let parse = require('markdown-to-ast').parse
-  , Syntax = require('markdown-to-ast').Syntax
-  , traverse = require('txt-ast-traverse').traverse
-  ;
+let parse = require('remark').parse;
+let traverse = require('estree-walker').walk;
 
 // 改行したく無いタグ
 function isInline(node) {
   return [
-    Syntax.Str,
-    Syntax.Header,
-    Syntax.Strong,
-    Syntax.Paragraph,
+    'str',
+    'header',
+    'strong',
+    'paragraph',
   ].indexOf(node.type) > -1;
 }
 
 function sectioning(children, depth) {
   // 最初のセクションは <article> にする
   let section = {
-    type: depth === 1 ? 'Article' : 'Section',
+    type: depth === 1 ? 'article' : 'section',
     children: [],
     depth: depth,
   };
@@ -172,7 +172,7 @@ function sectioning(children, depth) {
     if (child === undefined) break;
 
     // H2.. が来たらそこで section を追加する
-    if (child.type === 'Header') {
+    if (child.type === 'heading') {
       if (section.depth < child.depth) {
         // 一つレベルが下がる場合
         // 今の <section> の下に新しい <section> ができる
@@ -205,7 +205,7 @@ function sectioning(children, depth) {
         if (section.children.length > 0) {
           sections.push(section);
           section = {
-            type: 'Section',
+            type: 'section',
             children: [],
             depth: child.depth,
           };
@@ -257,6 +257,7 @@ function build(AST, dir, date, template) {
   // トラバース
   traverse(AST, {
     enter(node) {
+p('>', node.type, JSON.stringify(node.value));
       // enter では、 inline 属性を追加し
       // stack に詰むだけ
       // 実際は、pop 側で整合検証くらいしか使ってない
@@ -265,6 +266,8 @@ function build(AST, dir, date, template) {
       stack.unshift(node);
     },
     leave(node) {
+      debugger;
+p('<', node.type, JSON.stringify(node.value));
       if (node.type === 'CodeBlock') {
         // コードを抜き取り、ここで id に置き換える
         // インデントを無視するため、全部組み上がったら後で差し込む。
@@ -279,16 +282,20 @@ function build(AST, dir, date, template) {
         node.value = `// ${codes.length}`;
       }
       if (node.value) {
-        // value があったら、 Str とか
+        // value があったら、 text とか
 
         // pop して
         let top = stack.shift();
         // 対応を確認
-        if (top.type !== node.type) console.error('ERROR', top, node);
+        if (top.type !== node.type) {
+          console.error('ERROR', top, node);
+          process.exit(1);
+        }
 
         // 閉じる
         if (template[node.type] === undefined) {
-          p(template)
+          console.error('ERROR', node.type);
+          process.exit(1);
         }
         stack.unshift({ tag: 'full', val: template[node.type](node), inline: isInline(node) });
       } else {
@@ -315,15 +322,18 @@ function build(AST, dir, date, template) {
 
         // それを親タグで閉じる
         let top = stack.shift();
-        if (top.type !== node.type) console.error('ERROR', top, node);
+        if (top.type !== node.type) {
+          console.error('ERROR', top, node);
+          process.exit(1);
+        }
 
-        // 今見ているのが Paragraph で
-        if (node.type === 'Paragraph') {
+        // 今見ているのが paragraph で
+        if (node.type === 'paragraph') {
           // その親が P いらないタグ だったら
           if (['ListItem', 'BlockQuote'].indexOf(stack[0].type) > -1) {
             // Paragraph を消すために Str に差し替える
             // Str はタグをつけない
-            node = { type: 'Str' };
+            node = { type: 'text' };
           }
         }
 
@@ -377,6 +387,7 @@ let baseurl = dir.replace('./blog.jxck.io/', '');
 
   let ast = parse(md);
   ast.children = sectioning(ast.children, 1);
+  p(JSON.stringify(ast, '  ', '  '));
 
   let canonical = `${baseurl}/${name}.html`;
   let amp = `${baseurl}/${name}.amp.html`;
@@ -427,4 +438,4 @@ let baseurl = dir.replace('./blog.jxck.io/', '');
 
   let target = `${dir}/${name}.amp.html`;
   fs.writeFileSync(target, article);
-})();
+});
