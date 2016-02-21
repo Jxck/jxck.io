@@ -128,8 +128,11 @@ class Simple {
   link       (node) { return `<a href="${node.url}">${node.value}</a>` }
   image      (node) {
     if (!this.amp) {
+      let size = node.url.split('#')[1].split('x');
+      let width = size[0];
+      let height = size[1];
       // not has amp link means amp template
-      return  `<amp-img layout=responsive src=${node.url} alt="${node.alt}" title="${node.title}" >`
+      return  `<amp-img layout=responsive src=${node.url} alt="${node.alt}" title="${node.title}" width=${width} height=${height}>`
     }
     return `<img src=${node.url} alt="${node.alt}" title="${node.title}">`
   }

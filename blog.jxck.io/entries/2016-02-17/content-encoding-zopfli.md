@@ -155,7 +155,7 @@ WebP はそもそも圧縮率が高いためか、オーバーヘッドが出て
 動作は、 HTTP ヘッダで確認できる。
 
 
-![Content-Encoding Support Before/After](zopfli.png "Content-Encoding ヘッダの確認")
+![Content-Encoding Support Before/After](zopfli.png#652x461 "Content-Encoding ヘッダの確認")
 
 
 また、一部は h2o の mruby-handler で動的な生成をしているが、 `gzip` ディレクティブの効果は未検証なので設定していない。

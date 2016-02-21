@@ -119,7 +119,7 @@ prefetch 可能なリソースのみからなるページならば、ページ�
 
 どの API を選ぶフローは、接続するドメインが分かっている前提であれば、以下のように考えることができる。
 
-![resource-hints](resource-hints.svg "選択フロー")
+![resource-hints](resource-hints.svg#546x608 "選択フロー")
 
 
 ## サイトへの適用
@@ -139,4 +139,4 @@ prefetch 可能なリソースのみからなるページならば、ページ�
 
 Chrome の場合は Prerender の状況について `chrome://net-internals` から確認できる。
 
-[![net-internals-prerender](net-internals-prerender.png "chrome://net-internals#prerender")](net-internals-prerender.png)
+[![net-internals-prerender](net-internals-prerender.png#873x248 "chrome://net-internals#prerender")](net-internals-prerender.png)
