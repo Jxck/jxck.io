@@ -91,7 +91,7 @@ class Simple {
   section(node) {
     return this.wrap`<section>${node.value}</section>\n`;
   }
-  List(node) {
+  list(node) {
     return node.ordered ? this.wrap`<ol>${node.value}</ol>\n` : this.wrap`<ul>${node.value}</ul>\n`;
   }
   heading(node) {
@@ -112,8 +112,7 @@ class Simple {
 
     return val;
   }
-  paragraph  (node) { return `<p>${node.value}\n` }
-  CodeBlock  (node) {
+  code       (node) {
     let value = `<pre class=${node.lang}><code>${node.value}</code></pre>\n`;
     if (this.amp) {
       // has amp url so not amp page
@@ -121,18 +120,18 @@ class Simple {
     }
     return value;
   }
+  paragraph  (node) { return `<p>${node.value}\n` }
   // inline
-  Code       (node) { return h`<code>${node.value}</code>` }
-  BlockQuote (node) { return h`<blockquote>${node.value}</blockquote>\n` }
-  ListItem   (node) { return `<li>${node.value}\n` }
-  link       (node) { return `<a href="${node.href}">${node.value}</a>` }
-  Image      (node) { return `<img src=${node.src} alt="${node.alt}" title="${node.title}" >` }
-  Strong     (node) { return `<strong>${node.value}</strong>` }
-  Emphasis   (node) { return `<em>${node.value}</em>` }
-  Html       (node) { return `${node.value}\n` }
+  inlineCode (node) { return h`<code>${node.value}</code>` }
+  blockquote (node) { return h`<blockquote>${node.value}</blockquote>\n` }
+  listItem   (node) { return `<li>${node.value}\n` }
+  link       (node) { return `<a href="${node.url}">${node.value}</a>` }
+  image      (node) { return `<img src=${node.url} alt="${node.alt}" title="${node.title}" >` }
+  strong     (node) { return `<strong>${node.value}</strong>` }
+  emphasis   (node) { return `<em>${node.value}</em>` }
+  html       (node) { return `${node.value}\n` }
   text       (node) { return node.value }
-  Break          () { return `<br>` }
-  HorizontalRule () { return `<hr>` }
+  thematicBreak  () { return `<hr>` }
 };
 
 let p = function() {
@@ -144,7 +143,16 @@ let p = function() {
 let j = JSON.stringify.bind(JSON);
 
 let parse = require('remark').parse;
-let traverse = require('estree-walker').walk;
+
+function traverse(ast, option) {
+  option.enter(ast);
+  if(!ast.children) return option.leave(ast);
+
+  ast.children = ast.children.map((child) => {
+    return traverse(child, option);
+  });
+  return option.leave(ast);
+}
 
 // 改行したく無いタグ
 function isInline(node) {
@@ -257,7 +265,6 @@ function build(AST, dir, date, template) {
   // トラバース
   traverse(AST, {
     enter(node) {
-p('>', node.type, JSON.stringify(node.value));
       // enter では、 inline 属性を追加し
       // stack に詰むだけ
       // 実際は、pop 側で整合検証くらいしか使ってない
@@ -266,9 +273,7 @@ p('>', node.type, JSON.stringify(node.value));
       stack.unshift(node);
     },
     leave(node) {
-      debugger;
-p('<', node.type, JSON.stringify(node.value));
-      if (node.type === 'CodeBlock') {
+      if (node.type === 'code') {
         // コードを抜き取り、ここで id に置き換える
         // インデントを無視するため、全部組み上がったら後で差し込む。
         let value = node.value;
@@ -330,7 +335,7 @@ p('<', node.type, JSON.stringify(node.value));
         // 今見ているのが paragraph で
         if (node.type === 'paragraph') {
           // その親が P いらないタグ だったら
-          if (['ListItem', 'BlockQuote'].indexOf(stack[0].type) > -1) {
+          if (['listItem', 'blockquote'].indexOf(stack[0].type) > -1) {
             // Paragraph を消すために Str に差し替える
             // Str はタグをつけない
             node = { type: 'text' };
@@ -387,7 +392,6 @@ let baseurl = dir.replace('./blog.jxck.io/', '');
 
   let ast = parse(md, { position: false });
   ast.children = sectioning(ast.children, 1);
-  p(JSON.stringify(ast, '  ', '  '));
 
   let canonical = `${baseurl}/${name}.html`;
   let amp = `${baseurl}/${name}.amp.html`;
@@ -438,4 +442,4 @@ let baseurl = dir.replace('./blog.jxck.io/', '');
 
   let target = `${dir}/${name}.amp.html`;
   fs.writeFileSync(target, article);
-});
+})();
