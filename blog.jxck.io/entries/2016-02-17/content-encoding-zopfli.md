@@ -1,4 +1,4 @@
-# [zopfli][performance] zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について
+# [zopfli][http][performance] zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について
 
 ## Intro
 
