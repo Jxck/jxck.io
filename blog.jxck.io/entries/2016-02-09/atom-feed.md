@@ -104,6 +104,22 @@ feed の id は、 feed を生成し直すたびに振るのかと思ったが�
 ということで、このサイトの feed も、その辺を参考に作ってみた。
 
 
+### validate
+
+生成した Atom Feed は w3c のバリデータで確認した。
+
+[Feed Validator](https://validator.w3.org/feed/check.cgi?url=https%3A%2F%2Fblog.jxck.io%2Ffeeds%2Fatom.xml)
+
+
+### meta
+
+サイトの HTML に、 Feed を持つことを `<meta>` タグで記述した。
+
+```html
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml />
+```
+
+
 ## Outro
 
 [W3C の Validator](https://validator.w3.org/feed/) を通して、 firefox がデフォルトで持ってる feed reader でチェックしたところ普通に動いた。
