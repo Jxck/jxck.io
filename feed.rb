@@ -27,7 +27,7 @@ entries = Dir.glob("./blog.jxck.io/entries/**/**")
   <<-EOS
 <entry>
  <title>#{title}</title>
- <link href="#{href}" rel="altenate" />
+ <link href="#{href}" rel="alternate" />
  <id>tag:blog.jxck.io,2016:entry://#{date}</id>
  <updated>#{updated}</updated>
  <summary>#{summary}</summary>
