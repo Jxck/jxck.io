@@ -138,6 +138,17 @@ by Jxck
         <p>そこで、 URI の一部や、 UUID などを織り交ぜ、 <a href="https://www.ietf.org/rfc/rfc4151.txt">The 'tag' URI Scheme</a> というフォーマットを使うことが多い。
         <p>ということで、このサイトの feed も、その辺を参考に作ってみた。
       </section>
+      <section>
+        <h3 id="validate"><a href="#validate">validate</a></h3>
+        <p>生成した Atom Feed は w3c のバリデータで確認した。
+        <p><a href="https://validator.w3.org/feed/check.cgi?url=https%3A%2F%2Fblog.jxck.io%2Ffeeds%2Fatom.xml">Feed Validator</a>
+      </section>
+      <section>
+        <h3 id="meta"><a href="#meta">meta</a></h3>
+        <p>サイトの HTML に、 Feed を持つことを <code>&lt;meta&gt;</code> タグで記述した。
+        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
+        <pre class=html><code>&lt;link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml /&gt;</code></pre>
+      </section>
     </section>
     <section>
       <h2 id="Outro"><a href="#Outro">Outro</a></h2>
