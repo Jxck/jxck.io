@@ -18,7 +18,8 @@ entries = Dir.glob("./blog.jxck.io/entries/**/**")
   file = File.open(name)
   text = file.read
   title = text.match(/^# \[.*\] (.*)/)[1]
-  summary = hsp(text.match(/## intro(.*?)##/im)[1].strip)
+  summary = text.match(/## intro(.*?)##/im)[1].strip
+  summary = hsp(summary)
   splitted = name.split("/")
   date = splitted[3]
   updated = "#{date}T00:00:00Z"
@@ -39,7 +40,7 @@ feed = <<-EOS
 <feed xmlns='http://www.w3.org/2005/Atom' xml:lang='ja'>
  <title>blog.jxck.io</title>
  <link href="https://blog.jxck.io/"/>
- <link rel="self" type="application/atom+xml" href="https://blog.jxck.io/feeds"/>
+ <link rel="self" type="application/atom+xml" href="https://blog.jxck.io/feeds/atom.xml"/>
  <updated>2016-01-28T18:30:02Z</updated>
  <author>
    <name>Jxck</name>
