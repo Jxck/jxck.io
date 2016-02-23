@@ -55,16 +55,16 @@ function Description(text) {
 }
 
 // tag ごとのビルダ
-class Simple {
-  constructor(canonical, amp, indent, template, meta, tags, description, style) {
-    this.canonical = canonical;
-    this.amp = amp;
-    this.indent = indent;
-    this.template = template;
-    this.meta = meta;
-    this.description = description;
-    this.tags = tags;
-    this.style = style;
+class Builder {
+  constructor(option) {
+    this.canonical = option.canonical;
+    this.amp = option.amp;
+    this.indent = option.indent;
+    this.template = option.template;
+    this.meta = option.meta;
+    this.description = option.description;
+    this.tags = option.tags;
+    this.style = option.style;
     this.title = '';
   }
   wrap(tag, value) {
@@ -458,9 +458,19 @@ let baseurl = dir.replace('./blog.jxck.io/', '');
   let indent = '  ';
   let template = read('./.template/simple.html');
   let meta = read('./.template/meta.html');
-  let simple = new Simple(canonical, amp, indent, template, meta, tags, description);
+  let style = null;
+  let builder = new Builder({
+    canonical,
+    amp,
+    indent,
+    template,
+    meta,
+    tags,
+    description,
+    style,
+  });
 
-  let article = build(ast, dir, date, simple);
+  let article = build(ast, dir, date, builder);
 
   let target = `${dir}/${name}.html`;
   fs.writeFileSync(target, article);
@@ -483,6 +493,7 @@ let baseurl = dir.replace('./blog.jxck.io/', '');
   ast.children = sectioning(ast.children, 1);
 
   let canonical = `${baseurl}/${name}.html`;
+  let amp = null;
   let indent = '  ';
   let template = read('./.template/amp.html');
   let meta = read('./.template/meta.html');
@@ -498,9 +509,18 @@ let baseurl = dir.replace('./blog.jxck.io/', '');
     return fs.readFileSync(file).toString();
   }).join('\n')
 
-  let amp = new Simple(canonical, null, indent, template, meta, tags, description, style);
+  let builder = new Builder({
+    canonical,
+    amp,
+    indent,
+    template,
+    meta,
+    tags,
+    description,
+    style,
+  });
 
-  let article = build(ast, dir, date, amp);
+  let article = build(ast, dir, date, builder);
 
   let target = `${dir}/${name}.amp.html`;
   fs.writeFileSync(target, article);
