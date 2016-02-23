@@ -120,12 +120,19 @@ class Simple {
     }
     return value;
   }
-  table      (node) { return this.wrap`<table>${node.value}</table>` }
+  table      (node) {
+    let value = this.wrap`<table>${node.value}</table>`
+    if (this.amp) {
+      // has amp url so not amp page
+      value = `<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/table.css>\n${value}`;
+    }
+    return value;
+  }
   thead      (node) { return this.wrap`<thead>${node.value}</thead>\n` }
   tbody      (node) { return this.wrap`<tbody>${node.value}</tbody>\n` }
   tableRow   (node) { return this.wrap`<tr>${node.value}</tr>\n` }
-  tableHead  (node) { return `<th align=${node.align}>${node.value}</th>\n` }
-  tableData  (node) { return `<td align=${node.align}>${node.value}</td>\n` }
+  tableHead  (node) { return `<th class=align-${node.align}>${node.value}</th>\n` }
+  tableData  (node) { return `<td class=align-${node.align}>${node.value}</td>\n` }
   paragraph  (node) { return `<p>${node.value}\n` }
   // inline
   inlineCode (node) { return h`<code>${node.value}</code>` }
@@ -485,6 +492,7 @@ let baseurl = dir.replace('./blog.jxck.io/', '');
     'www.jxck.io/assets/css/main.css',
     'www.jxck.io/assets/css/article.css',
     'www.jxck.io/assets/css/pre.css',
+    'www.jxck.io/assets/css/table.css',
     'www.jxck.io/assets/css/footer.css',
   ].map((file) => {
     return fs.readFileSync(file).toString();
