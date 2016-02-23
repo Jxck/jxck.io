@@ -75,55 +75,35 @@ by Jxck
         <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
         <pre class=xml><code>&lt;?xml version=&#039;1.0&#039; encoding=&#039;UTF-8&#039;?&gt;
 &lt;feed xmlns=&#039;http://www.w3.org/2005/Atom&#039; xml:lang=&#039;ja&#039;&gt;
- &lt;title&gt;blog.jxck.io&lt;/title&gt;
- &lt;link href=&quot;https://blog.jxck.io/&quot;/&gt;
- &lt;link rel=&quot;self&quot; type=&quot;application/atom+xml&quot; href=&quot;https://blog.jxck.io/feeds&quot;/&gt;
- &lt;updated&gt;2016-01-28T18:30:02Z&lt;/updated&gt;
- &lt;author&gt;
-   &lt;name&gt;Jxck&lt;/name&gt;
- &lt;/author&gt;
- &lt;id&gt;tag:blog.jxck.io,2016:feed&lt;/id&gt;
-  &lt;entry&gt;
-   &lt;title&gt;h2o で https/2 のデプロイと設定&lt;/title&gt;
-   &lt;link href=&quot;https://blog.jxck.io/entries/2016-02-08/h2o-http2-deploy.html&quot;/&gt;
-   &lt;id&gt;tag:blog.jxck.io,2016:entry://2016-02-08&lt;/id&gt;
-   &lt;updated&gt;2016-02-08T00:00:00Z&lt;/updated&gt;
-   &lt;summary&gt;土台がだいたいできたので、このサイトを h2o にデプロイした話。&lt;/summary&gt;
-  &lt;/entry&gt;
+&lt;title&gt;blog.jxck.io&lt;/title&gt;
+&lt;link rel=&quot;alternate&quot; href=&quot;https://blog.jxck.io/&quot;/&gt;
+&lt;link rel=&quot;self&quot; type=&quot;application/atom+xml&quot; href=&quot;https://blog.jxck.io/feeds/atom.xml&quot;/&gt;
+&lt;author&gt;&lt;name&gt;Jxck&lt;/name&gt;&lt;/author&gt;
+&lt;id&gt;tag:blog.jxck.io,2016:feed&lt;/id&gt;
+&lt;updated&gt;2016-01-28T18:30:02Z&lt;/updated&gt;
+&lt;entry&gt;
+ &lt;title&gt;AMP HTML 対応&lt;/title&gt;
+ &lt;link href=&quot;https://blog.jxck.io/entries/2016-02-01/amp-html.html&quot; rel=&quot;alternate&quot; /&gt;
+ &lt;id&gt;tag:blog.jxck.io,2016:entry://2016-02-01&lt;/id&gt;
+ &lt;updated&gt;2016-02-01T00:00:00Z&lt;/updated&gt;
+ &lt;summary&gt;Google が推奨する仕様である [AMP HTML](https://www.ampproject.org/) に、このブログを対応した。言いたいことは色々あるが、とりあえず非常に難しかったため、その対応方法や感想などを残す。&lt;/summary&gt;
+&lt;/entry&gt;
 
-  &lt;entry&gt;
-   &lt;title&gt;AMP HTML 対応&lt;/title&gt;
-   &lt;link href=&quot;https://blog.jxck.io/entries/2016-02-01/amp-html.html&quot;/&gt;
-   &lt;id&gt;tag:blog.jxck.io,2016:entry://2016-02-01&lt;/id&gt;
-   &lt;updated&gt;2016-02-01T00:00:00Z&lt;/updated&gt;
-   &lt;summary&gt;Google が推奨する仕様である [AMP HTML](https://www.ampproject.org/) に、このブログのエントリページのみ対応してみた。
+&lt;entry&gt;
+ &lt;title&gt;HTML の省略によるサイズ最適化&lt;/title&gt;
+ &lt;link href=&quot;https://blog.jxck.io/entries/2016-01-28/html-compression.html&quot; rel=&quot;alternate&quot; /&gt;
+ &lt;id&gt;tag:blog.jxck.io,2016:entry://2016-01-28&lt;/id&gt;
+ &lt;updated&gt;2016-01-28T00:00:00Z&lt;/updated&gt;
+ &lt;summary&gt;とりあえず [blog.jxck.io](https://blog.jxck.io) 以下については、基本的には静的ファイルを生成するスタイルで作ろうと思っている。手元に書いた Markdown を HTML に変換するスタイルで、これを行うツールは星の数ほどあるが、この変換時に前から思っていた HTML の最適化をやってみようと思った。結局そういうことができるツールはなさそうなので、 Markdown のパーサだけ借りてきて、 AST から構築する過程で省略を施した。単なる実験としてその結果を書いておく。(なお、今はまだ CSS も圧縮していない)&lt;/summary&gt;
+&lt;/entry&gt;
 
-[ACCELERATED MOBILE PAGES PROJECT](https://www.ampproject.org/)
-
-タイトルは識別しやすいよう AMP HTML としたが、実際には AMP という仕様(方針)があり、 HTML 以外にも手を入れている。&lt;/summary&gt;
-  &lt;/entry&gt;
-
-  &lt;entry&gt;
-   &lt;title&gt;HTML の省略によるサイズ最適化&lt;/title&gt;
-   &lt;link href=&quot;https://blog.jxck.io/entries/2016-01-28/html-compression.html&quot;/&gt;
-   &lt;id&gt;tag:blog.jxck.io,2016:entry://2016-01-28&lt;/id&gt;
-   &lt;updated&gt;2016-01-28T00:00:00Z&lt;/updated&gt;
-   &lt;summary&gt;とりあえず [blog.jxck.io](https://blog.jxck.io) 以下については、基本的には静的ファイルを生成するスタイルで作ろうと思っている。
-
-手元に書いた Markdown を HTML に変換するスタイルで、これを行うツールは星の数ほどあるが、この変換時に前から思っていた HTML の最適化をやってみようと思った。
-
-結局そういうことができるツールはなさそうなので、 Markdown のパーサだけ借りてきて、 AST から構築する過程で省略を施した。
-
-単なる実験としてその結果を書いておく。(なお、今はまだ CSS も圧縮していない)&lt;/summary&gt;
-  &lt;/entry&gt;
-
-  &lt;entry&gt;
-   &lt;title&gt;Blog を移転しました&lt;/title&gt;
-   &lt;link href=&quot;https://blog.jxck.io/entries/2016-01-27/new-blog-start.html&quot;/&gt;
-   &lt;id&gt;tag:blog.jxck.io,2016:entry://2016-01-27&lt;/id&gt;
-   &lt;updated&gt;2016-01-27T00:00:00Z&lt;/updated&gt;
-   &lt;summary&gt;長いこと [はてな](http://jxck.hatenablog.com/) をメインにし、他にも [Qiita](http://qiita.com/jxck_) や [Tumblr](http://jxck.tumblr.com/) を使って色々書いて来たけど、そろそろ自分のドメインに全部集約していこうかなと思います。&lt;/summary&gt;
-  &lt;/entry&gt;
+&lt;entry&gt;
+ &lt;title&gt;Blog を移転しました&lt;/title&gt;
+ &lt;link href=&quot;https://blog.jxck.io/entries/2016-01-27/new-blog-start.html&quot; rel=&quot;alternate&quot; /&gt;
+ &lt;id&gt;tag:blog.jxck.io,2016:entry://2016-01-27&lt;/id&gt;
+ &lt;updated&gt;2016-01-27T00:00:00Z&lt;/updated&gt;
+ &lt;summary&gt;長いこと [はてな](http://jxck.hatenablog.com/) をメインにし、他にも [Qiita](http://qiita.com/jxck_) や [Tumblr](http://jxck.tumblr.com/) を使って色々書いて来たけど、そろそろ自分のドメインに全部集約していこうかなと思います。&lt;/summary&gt;
+&lt;/entry&gt;
 
 &lt;/feed&gt;</code></pre>
         <p>必須項目くらいしか書いていない、シンプルな形にしている。
@@ -152,7 +132,7 @@ by Jxck
     </section>
     <section>
       <h2 id="Outro"><a href="#Outro">Outro</a></h2>
-      <p><a href="https://validator.w3.org/feed/">W3C の Validator</a> を通して、 firefox がデフォルトで持ってる feed reader でチェックしたところ普通に動いた。
+      <p>firefox がデフォルトで持ってる feed reader や feedly, Live Dowango Reader などででチェックしたところ普通に動いていたよう。
       <p>追加の属性については、必要に応じて足して行く。
     </section>
   </article>
