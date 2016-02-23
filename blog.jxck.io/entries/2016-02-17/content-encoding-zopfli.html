@@ -122,28 +122,105 @@ by Jxck
         <p><code>--i</code> が探索回数であり、これを増やせばより小さく圧縮できるが、時間がかかる。
         デフォルトは <code>i = 15</code> であるため、 <code>10..100</code> まで増やしながら実行した。
         <p>最初の段は、元のファイルサイズ、二段目は <code>gzip</code> コマンドの結果である。
-        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
-        <pre class=null><code>orig   -      17497
-gzip   0.002   5348
-  10   0.18    5164
-  20   0.22    5159
-  30   0.24    5159
-  40   0.29    5159
-  50   0.39    5159
-  60   0.42    5159
-  70   0.46    5156
-  80   0.50    5156
-  90   0.55    5156
- 100   0.58    5156</code></pre>
-        <p>この結果だと <code>-i20</code> 以上は誤差のようである。
+        <table>
+          <thead>
+            <tr>
+              <th align=right></th>
+              <th align=left>ratio</th>
+              <th align=right>size</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td align=right>orig</td>
+              <td align=left>-</td>
+              <td align=right>17497</td>
+            </tr>
+            <tr>
+              <td align=right>gzip</td>
+              <td align=left>0.002</td>
+              <td align=right>5348</td>
+            </tr>
+            <tr>
+              <td align=right>10</td>
+              <td align=left>0.18</td>
+              <td align=right>5164</td>
+            </tr>
+            <tr>
+              <td align=right>20</td>
+              <td align=left>0.22</td>
+              <td align=right>5159</td>
+            </tr>
+            <tr>
+              <td align=right>30</td>
+              <td align=left>0.24</td>
+              <td align=right>5159</td>
+            </tr>
+            <tr>
+              <td align=right>40</td>
+              <td align=left>0.29</td>
+              <td align=right>5159</td>
+            </tr>
+            <tr>
+              <td align=right>50</td>
+              <td align=left>0.39</td>
+              <td align=right>5159</td>
+            </tr>
+            <tr>
+              <td align=right>60</td>
+              <td align=left>0.42</td>
+              <td align=right>5159</td>
+            </tr>
+            <tr>
+              <td align=right>70</td>
+              <td align=left>0.46</td>
+              <td align=right>5156</td>
+            </tr>
+            <tr>
+              <td align=right>80</td>
+              <td align=left>0.50</td>
+              <td align=right>5156</td>
+            </tr>
+            <tr>
+              <td align=right>90</td>
+              <td align=left>0.55</td>
+              <td align=right>5156</td>
+            </tr>
+            <tr>
+              <td align=right>100</td>
+              <td align=left>0.58</td>
+              <td align=right>5156</td>
+            </tr>
+          </tbody>
+        </table><p>この結果だと <code>-i20</code> 以上は誤差のようである。
         ただ、開発用の Mac では少し違う結果が出たりもしたため、結果 <code>i=30</code> くらいに落ち着いた。
         <p>また、 <a href="//www.jxck.io/assets/img/jxck.webp">WebP</a> と <a href="//www.jxck.io/assets/img/jxck.png">PNG</a> の画像ファイルでも検証したところ、以下のようになった。
-        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
-        <pre class=null><code>jxck.png     3860
-jxck.png.gz  3399
-jxck.webp    1810
-jxck.webp.gz 1873</code></pre>
-        <p>WebP はそもそも圧縮率が高いためか、オーバーヘッドが出ている。
+        <table>
+          <thead>
+            <tr>
+              <th align=left>file</th>
+              <th align=right>size</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td align=left>jxck.png</td>
+              <td align=right>3860</td>
+            </tr>
+            <tr>
+              <td align=left>jxck.png.gz</td>
+              <td align=right>3399</td>
+            </tr>
+            <tr>
+              <td align=left>jxck.webp</td>
+              <td align=right>1810</td>
+            </tr>
+            <tr>
+              <td align=left>jxck.webp.gz</td>
+              <td align=right>1873</td>
+            </tr>
+          </tbody>
+        </table><p>WebP はそもそも圧縮率が高いためか、オーバーヘッドが出ている。
         <p>画像は、画像サイズ自体の最適化などの問題があるが、とりあえずは WebP 形式のみ除外することにした。除外対象は、定期的にサイズを確認し修正して行く。
       </section>
     </section>
