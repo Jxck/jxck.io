@@ -120,6 +120,12 @@ class Simple {
     }
     return value;
   }
+  table      (node) { return this.wrap`<table>${node.value}</table>` }
+  thead      (node) { return this.wrap`<thead>${node.value}</thead>\n` }
+  tbody      (node) { return this.wrap`<tbody>${node.value}</tbody>\n` }
+  tableRow   (node) { return this.wrap`<tr>${node.value}</tr>\n` }
+  tableHead  (node) { return `<th align=${node.align}>${node.value}</th>\n` }
+  tableData  (node) { return `<td align=${node.align}>${node.value}</td>\n` }
   paragraph  (node) { return `<p>${node.value}\n` }
   // inline
   inlineCode (node) { return h`<code>${node.value}</code>` }
@@ -180,6 +186,30 @@ function isInline(node) {
     'strong',
     'paragraph',
   ].indexOf(node.type) > -1;
+}
+
+function tabling(ast) {
+  return ast.map((node) => {
+    if(node.type !== 'table') return node;
+
+    let align = node.align;
+    node.children = node.children.map((row, i) => {
+      let type = (i === 0) ? 'tableHead': 'tableData';
+      row.children = row.children.map((cell, i) => {
+        cell.type = type;
+        cell.align = align[i];
+        return cell;
+      });
+      return row;
+    });
+
+    node.children = node.children.reduce((acc, row, i) => {
+      (i === 0) ? acc[0].children.push(row): acc[1].children.push(row);
+      return acc;
+    }, [{type:'thead', children:[]}, {type:'tbody', children:[]}]);
+
+    return node;
+  });
 }
 
 function sectioning(children, depth) {
@@ -361,6 +391,10 @@ function build(AST, dir, date, template) {
         }
 
         node.value = vals;
+
+        if (!template[node.type]) {
+          console.error('unsupported type', node.type);
+        }
         stack.unshift({ tag: 'full', val: template[node.type](node), inline: isInline(node) });
       }
     },
@@ -409,6 +443,7 @@ let baseurl = dir.replace('./blog.jxck.io/', '');
   let description = Description(md);
 
   let ast = parse(md, { position: false });
+  ast.children = tabling(ast.children);
   ast.children = sectioning(ast.children, 1);
 
   let canonical = `${baseurl}/${name}.html`;
