@@ -472,6 +472,7 @@ let baseurl = dir.replace('./blog.jxck.io/', '');
   let description = Description(md);
 
   let ast = parse(md);
+  ast.children = tabling(ast.children);
   ast.children = sectioning(ast.children, 1);
 
   let canonical = `${baseurl}/${name}.html`;
