@@ -18,7 +18,7 @@ entries = Dir.glob("./blog.jxck.io/entries/**/**")
   file = File.open(name)
   text = file.read
   title = text.match(/^# \[.*\] (.*)/)[1]
-  summary = text.match(/## intro(.*?)##/im)[1].strip
+  summary = text.match(/## intro(.*?)##/im)[1].strip.gsub(/\n/, '')
   summary = hsp(summary)
   splitted = name.split("/")
   date = splitted[3]
@@ -27,7 +27,7 @@ entries = Dir.glob("./blog.jxck.io/entries/**/**")
   <<-EOS
 <entry>
  <title>#{title}</title>
- <link href="#{href}" rel="altenate" />
+ <link href="#{href}" rel="alternate" />
  <id>tag:blog.jxck.io,2016:entry://#{date}</id>
  <updated>#{updated}</updated>
  <summary>#{summary}</summary>
