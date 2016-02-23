@@ -42,8 +42,6 @@ feed = <<-EOS
 <link rel="alternate" href="https://blog.jxck.io/"/>
 <link rel="self" type="application/atom+xml" href="https://blog.jxck.io/feeds/atom.xml"/>
 <author><name>Jxck</name></author>
-<icon>https://www.jxck.io/favicon.ico</icon>
-<logo>https://www.jxck.io/assets/img/jxck.png</logo>
 <id>tag:blog.jxck.io,2016:feed</id>
 <updated>2016-01-28T18:30:02Z</updated>
 #{entries.join("\n")}
