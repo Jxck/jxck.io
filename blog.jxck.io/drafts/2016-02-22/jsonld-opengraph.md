@@ -2,7 +2,7 @@
 
 ## Intro
 
-本サイトのセマンティクスメタ情報を整理するため、 HTML のメタタグの整理、 JSON-LD による schema.org 対応、 Facebook, Twitter を主とした OpenGraph 対応を実施した。
+本サイトのセマンティクスメタ情報を整理するため、 HTML のメタタグの整理、 JSON-LD による schema.org 対応、 Facebook, Twitter を主とした Open Graph 対応を実施した。
 
 ## Meta Tag
 
@@ -32,7 +32,10 @@
 
 それぞれのフォーマットの詳細は割愛するが、本サイトでは Microdata と JSON-LD の採用が候補に挙がった。
 
+ TODO:
 Microdata は RDFa
+
+また、本サイトが対応している AMP HTML では JS の利用が禁止される一方 JSON-LD は許可されているため、そちらも考慮し JSON-LD を採用した。
 
 
 <!--
@@ -42,6 +45,8 @@ https://developers.google.com/structured-data/rich-snippets/articles
 
 http://hublog.biz/bwpb/writing-in-php-of-schema-org-json-ld-for-wordpress-blog/
 -->
+
+結果、
 
 
 <script type="application/ld+json">
@@ -81,6 +86,11 @@ http://hublog.biz/bwpb/writing-in-php-of-schema-org-json-ld-for-wordpress-blog/
 </script>
 
 
+Google の Validator では publisher が必須なのだが、 publisher の `@type` は Person だと起こられる。
+
+実際には本サイトは個人運営なのだが、しかたなく Organization を選択した。問題があったり、回避方法がみつかったら修正する。
+
+
 検証ツール
 
 https://developers.google.com/structured-data/testing-tool/
@@ -115,9 +125,18 @@ Twitter と Facebook だけ、以下を参考に対応した。
 ```
 
 
+## JSON-LD と LD-JSON
+
+JSON-LD と紛らわしいものに LD-JSON (Line Delimitered JSON) がある。
+
+それだけなら、実際全く関係ない仕様なのでまあ問題ない。
+
+しかし、 JSON-LD の HTML 内の記述は Script Type が **application/ld+json** なのが微妙に引っかかる。
+
+
 ## まとめ
 
-そもそも schema.org と open graph で内容が重複している部分が多いため、 Twitter, Facebook が schema.org に対応してくれるとそれだけでもペイロードサイズがだいぶ削減されそうである。
+そもそも schema.org と Open Graph で内容が重複している部分が多いため、 Twitter, Facebook が schema.org に対応してくれるとそれだけでもペイロードサイズがだいぶ削減されそうである。
 
 また、 schema.org も JSON-LD で記述することで、重複が発生しサイズが増えてしまう。
 これは Microdata などで行えば、 HTML 内に記述されている内容は、そのタグにプロパティを付けることで表現できるため、重複を避けることができる。
