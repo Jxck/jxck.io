@@ -309,6 +309,10 @@ function sectioning(children, depth) {
 }
 
 function build(AST, dir, date, template) {
+  // pre process
+  AST.children = tabling(AST.children);
+  AST.children = sectioning(AST.children, 1);
+
   // 結果を入れるスタック
   // push => unshift()
   // pop  => shift()
@@ -450,9 +454,6 @@ let baseurl = dir.replace('./blog.jxck.io/', '');
   let description = Description(md);
 
   let ast = parse(md, { position: false });
-  ast.children = tabling(ast.children);
-  ast.children = sectioning(ast.children, 1);
-
   let canonical = `${baseurl}/${name}.html`;
   let amp = `${baseurl}/${name}.amp.html`;
   let indent = '  ';
@@ -489,9 +490,6 @@ let baseurl = dir.replace('./blog.jxck.io/', '');
   let description = Description(md);
 
   let ast = parse(md);
-  ast.children = tabling(ast.children);
-  ast.children = sectioning(ast.children, 1);
-
   let canonical = `${baseurl}/${name}.html`;
   let amp = null;
   let indent = '  ';
