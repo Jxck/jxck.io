@@ -95,26 +95,21 @@ iframe {
   margin: 0;
 }
 
-time {
+.archive time {
   padding-right: 0.5em;
 }
 
-time::after {
+.archive time::after {
   content: ":";
 }
 
-.tags {
+.archive .tags {
   font-size: 0.8em;
+  margin-left: 1em;
 }
 
 .tags a {
-  margin-left: 0.2em;
-  padding: 0.2em 0.4em;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-sizing: border-box;
-  background-color: #ddd;
-  text-decoration: none;
+  margin: 0 0.2em;
 }
 
 @media only screen and (max-device-width : 480px) {
@@ -175,45 +170,17 @@ header a.path:hover {
   margin: 0;
   padding: 0;
   display: flex;
-}
-
-.info ul {
-  justify-content: flex-start;
-  margin: 0;
-  padding: 0;
-  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .info li {
-  justify-content: flex-start;
+  margin-right: 1em;
   list-style-type: none;
-  text-decoration: none;
 }
 
 .info li::before {
   content: none;
-}
-
-time::after {
-  content: none;
-}
-
-.timestamp li time {
-  background-color: #ddd;
-  padding: 0.2em 0.4em;
-  border-radius: 4px;
-}
-
-.timestamp li {
-  margin-right: 1em;
-}
-
-.tags {
-  font-size: 1em;
-}
-
-.tags::before {
-  content: "tags:";
 }
 
 main {
@@ -519,17 +486,11 @@ footer {
   </div>
 </header>
 <main>
-  <div class=info>
-    <ul class=timestamp>
-      <li>created_at: <time class=created_at datetime=2016-02-17>2016-02-17</time>
-      <li>updated_at: <time class=updated_at datetime=2016-02-23>2016-02-23</time>
-    </ul>
-    <ul class=tags>
-      <li><a>zopfli</a>
-      <li><a>http</a>
-      <li><a>performance</a>
-    </ul>
-  </div>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2016-02-17>2016-02-17</time>
+    <li>updated_at: <time class=updated_at datetime=2016-02-23>2016-02-23</time>
+    <li class=tags>tags: [<a>zopfli</a>,<a>http</a>,<a>performance</a>]
+  </ul>
 
 
   <article>
