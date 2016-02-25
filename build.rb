@@ -24,9 +24,9 @@ entries = Dir.glob("./blog.jxck.io/entries/**/**")
       .map{|s| s.pop }
       .map{|tag| "<a>#{tag}</a>" }
       .reverse
-      .join
+      .join(",")
 
-    tagspan = "<span class=tags>#{tags}</span>"
+    tagspan = "<span class=tags>[#{tags}]</span>"
 
     splitted = file.split("/")
     name = splitted.pop.gsub(".md", ".html")

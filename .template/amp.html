@@ -32,15 +32,11 @@ ${this.style}
   </div>
 </header>
 <main>
-  <div class=info>
-    <ul class=timestamp>
-      <li>created_at: <time class=created_at datetime=${this.created_at}>${this.created_at}</time>
-      <li>updated_at: <time class=updated_at datetime=${this.updated_at}>${this.updated_at}</time>
-    </ul>
-    <ul class=tags>
-${this.taglist(7)}
-    </ul>
-  </div>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=${this.created_at}>${this.created_at}</time>
+    <li>updated_at: <time class=updated_at datetime=${this.updated_at}>${this.updated_at}</time>
+    <li class=tags>tags: [${this.taglist()}]
+  </ul>
 
 ${this.article}
 </main>

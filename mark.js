@@ -70,8 +70,8 @@ class Builder {
 
     this.indent = indent;
   }
-  taglist(n) {
-    return this.tags.map((tag) => `${new Array(n).join(' ')}<li><a>${tag}</a>`).join('\n');
+  taglist() {
+    return this.tags.map((tag) => `<a>${tag}</a>`).join(',');
   }
   wrap(tag, value) {
     // increase indent
