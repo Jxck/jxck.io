@@ -56,16 +56,18 @@ function Description(text) {
 
 // tag ごとのビルダ
 class Builder {
-  constructor(option) {
+  constructor(option, indent) {
     this.canonical = option.canonical;
-    this.amp = option.amp;
-    this.indent = option.indent;
+    this.ampurl = option.ampurl;
     this.template = option.template;
     this.meta = option.meta;
     this.description = option.description;
+    this.date = option.date;
     this.tags = option.tags;
     this.style = option.style;
     this.title = '';
+
+    this.indent = indent;
   }
   wrap(tag, value) {
     // increase indent
@@ -82,7 +84,7 @@ class Builder {
   }
   article(node) {
     let value = this.wrap`<article>${node.value}</article>`;
-    if (this.amp) {
+    if (this.ampurl) {
       // has amp url so not amp page
       value = `<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>\n${value}`
     }
@@ -104,7 +106,7 @@ class Builder {
 
       // tags をビルド
       let taglinks = this.tags.map((tag) => `<a>${tag}</a>`).join('');
-      val += `<div><time datetime=${date}>${date}</time><span class=tags>${taglinks}</span></div>\n`;
+      val += `<div><time datetime=${this.date}>${this.date}</time><span class=tags>${taglinks}</span></div>\n`;
       val += `<h${node.depth}><a href="/${this.canonical}">${node.value}</a></h${node.depth}>\n`;
     } else {
       val += `<h${node.depth} id="${unspace(node.value)}"><a href="#${unspace(node.value)}">${node.value}</a></h${node.depth}>\n`;
@@ -114,7 +116,7 @@ class Builder {
   }
   code       (node) {
     let value = `<pre class=${node.lang}><code>${node.value}</code></pre>\n`;
-    if (this.amp) {
+    if (this.ampurl) {
       // has amp url so not amp page
       value = `<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>\n${value}`;
     }
@@ -122,7 +124,7 @@ class Builder {
   }
   table      (node) {
     let value = this.wrap`<table>${node.value}</table>`
-    if (this.amp) {
+    if (this.ampurl) {
       // has amp url so not amp page
       value = `<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/table.css>\n${value}`;
     }
@@ -140,7 +142,7 @@ class Builder {
   listItem   (node) { return `<li>${node.value}\n` }
   link       (node) { return `<a href="${node.url}">${node.value}</a>` }
   image      (node) {
-    if (!this.amp) {
+    if (!this.ampurl) {
       let size = node.url.split('#')[1].split('x');
       let width = size[0];
       let height = size[1];
@@ -153,7 +155,7 @@ class Builder {
   emphasis   (node) { return `<em>${node.value}</em>` }
   html       (node) {
     let value = `${node.value}\n`;
-    if (!this.amp && value.match(/<iframe.*/)) {
+    if (!this.ampurl && value.match(/<iframe.*/)) {
       // TODO: use amp-iframe in amp.html
       // return value.replace(/iframe/g, 'amp-iframe');
 
@@ -308,7 +310,7 @@ function sectioning(children, depth) {
   return sections;
 }
 
-function build(AST, dir, date, template) {
+function build(AST, dir, template) {
   // pre process
   AST.children = tabling(AST.children);
   AST.children = sectioning(AST.children, 1);
@@ -426,6 +428,68 @@ function build(AST, dir, date, template) {
   return result;
 }
 
+function prepare(filepath, option) {
+  let dir = path.parse(filepath).dir;
+  let name = path.parse(filepath).name;
+  let date = dir.split('/')[3];
+  let baseurl = dir.replace('./blog.jxck.io/', '');
+
+  let file = read(filepath);
+
+  // separate tag
+  let parsed = Tags(file);
+  let tags = parsed.tags;
+  let md = parsed.text;
+
+  // take description
+  let description = Description(md);
+
+  // meta
+  let canonical = `${baseurl}/${name}.html`;
+  let ampurl = `${baseurl}/${name}.amp.html`;
+
+  // template
+  let meta = read('./.template/meta.html');
+  let template = read('./.template/simple.html');
+  let style = null;
+
+  let target = `${dir}/${name}.html`;
+
+  if (option.amp) {
+    ampurl = null;
+    template = read('./.template/amp.html');
+    style = [
+      'www.jxck.io/assets/css/body.css',
+      'www.jxck.io/assets/css/header.css',
+      'www.jxck.io/assets/css/main.css',
+      'www.jxck.io/assets/css/article.css',
+      'www.jxck.io/assets/css/pre.css',
+      'www.jxck.io/assets/css/table.css',
+      'www.jxck.io/assets/css/footer.css',
+    ].map((file) => {
+      return fs.readFileSync(file).toString();
+    }).join('\n')
+
+    target = `${dir}/${name}.amp.html`;
+  }
+
+  return {
+    dir,
+    name,
+    date,
+    baseurl,
+    tags,
+    md,
+    description,
+    canonical,
+    ampurl,
+    meta,
+    template,
+    style,
+    target,
+  }
+};
+
 if (process.argv.length < 3) {
   console.error('no file name');
   process.exit(1);
@@ -435,91 +499,30 @@ let path = require('path');
 let fs = require('fs');
 let filepath = process.argv[2];
 
-let dir = path.parse(filepath).dir;
-let name = path.parse(filepath).name;
-let date = dir.split('/')[3];
-
-let baseurl = dir.replace('./blog.jxck.io/', '');
-
 // simple html
 (() => {
-  let md = read(filepath);
+  let info = prepare(filepath, { amp: false });
 
-  // separate tag
-  let parsed = Tags(md);
-  let tags = parsed.tags;
-  md = parsed.text;
+  let ast = parse(info.md, { position: false });
 
-  // take description
-  let description = Description(md);
-
-  let ast = parse(md, { position: false });
-  let canonical = `${baseurl}/${name}.html`;
-  let amp = `${baseurl}/${name}.amp.html`;
   let indent = '  ';
-  let template = read('./.template/simple.html');
-  let meta = read('./.template/meta.html');
-  let style = null;
-  let builder = new Builder({
-    canonical,
-    amp,
-    indent,
-    template,
-    meta,
-    tags,
-    description,
-    style,
-  });
+  let builder = new Builder(info, indent);
 
-  let article = build(ast, dir, date, builder);
+  let article = build(ast, info.dir, builder);
 
-  let target = `${dir}/${name}.html`;
-  fs.writeFileSync(target, article);
+  fs.writeFileSync(info.target, article);
 })();
 
 // amp html
 (() => {
-  let md = read(filepath);
+  let info = prepare(filepath, { amp: true });
 
-  // separate tag
-  let parsed = Tags(md);
-  let tags = parsed.tags;
-  md = parsed.text;
+  let ast = parse(info.md);
 
-  // take description
-  let description = Description(md);
-
-  let ast = parse(md);
-  let canonical = `${baseurl}/${name}.html`;
-  let amp = null;
   let indent = '  ';
-  let template = read('./.template/amp.html');
-  let meta = read('./.template/meta.html');
-  let style = [
-    'www.jxck.io/assets/css/body.css',
-    'www.jxck.io/assets/css/header.css',
-    'www.jxck.io/assets/css/main.css',
-    'www.jxck.io/assets/css/article.css',
-    'www.jxck.io/assets/css/pre.css',
-    'www.jxck.io/assets/css/table.css',
-    'www.jxck.io/assets/css/footer.css',
-  ].map((file) => {
-    return fs.readFileSync(file).toString();
-  }).join('\n')
+  let builder = new Builder(info, indent);
 
-  let builder = new Builder({
-    canonical,
-    amp,
-    indent,
-    template,
-    meta,
-    tags,
-    description,
-    style,
-  });
+  let article = build(ast, info.dir, builder);
 
-  let article = build(ast, dir, date, builder);
-
-  let target = `${dir}/${name}.amp.html`;
-  fs.writeFileSync(target, article);
+  fs.writeFileSync(info.target, article);
 })();
