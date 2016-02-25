@@ -1,0 +1,44 @@
+.info {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.info ul {
+  justify-content: flex-start;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.info li {
+  justify-content: flex-start;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+.info li::before {
+  content: none;
+}
+
+time::after {
+  content: none;
+}
+
+.timestamp li time {
+  background-color: #ddd;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+}
+
+.timestamp li {
+  margin-right: 1em;
+}
+
+.tags {
+  font-size: 1em;
+}
+
+.tags::before {
+  content: "tags:";
+}

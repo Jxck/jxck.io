@@ -10,6 +10,7 @@ by Jxck
 <link rel=canonical href=/drafts/2016-02-22/jsonld-opengraph.html>
 <link rel=amphtml href=/drafts/2016-02-22/jsonld-opengraph.amp.html>
 <meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml />
 
 <meta name=author content=Jxck>
 <meta name=description content="本サイトのセマンティクスメタ情報を整理するため、 HTML のメタタグの整理、 JSON-LD による schema.org 対応、 Facebook, Twitter を主とした OpenGraph 対応を実施した。...">
@@ -45,9 +46,21 @@ by Jxck
 
 <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/main.css>
 <main>
+  <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/info.css>
+  <div class=info>
+    <ul class=timestamp>
+      <li>created_at: <time class=created_at datetime=2016-02-22>2016-02-22</time>
+      <li>updated_at: <time class=updated_at datetime=2016-02-24>2016-02-24</time>
+    </ul>
+    <ul class=tags>
+      <li><a>semantics</a>
+      <li><a>jsonld</a>
+      <li><a>opengraph</a>
+    </ul>
+  </div>
+
   <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>
   <article>
-    <div><time datetime=2016-02-22>2016-02-22</time><span class=tags><a>semantics</a><a>jsonld</a><a>opengraph</a></span></div>
     <h1><a href="/drafts/2016-02-22/jsonld-opengraph.html">JSON-LD と Open Graph で構造化メタデータ対応</a></h1>
     <section>
       <h2 id="Intro"><a href="#Intro">Intro</a></h2>
@@ -146,6 +159,7 @@ by Jxck
       <p>しかし、一方で本サイトが対応している <a href="https://blog.jxck.io/entries/2016-02-01/amp-html.html">AMP HTML</a> は、 JSON-LD は許容しており、通常の HTML と AMP 用 HTML 両方を対応する上でも JSON-LD を使った方が楽だろうと判断し、 JSON-LD での記述とした。
     </section>
   </article>
+
 </main>
 <hr>
 

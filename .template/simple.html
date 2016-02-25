@@ -29,7 +29,20 @@ ${this.meta}
 </header>
 
 <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/main.css>
-${this.article}
+<main>
+  <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/info.css>
+  <div class=info>
+    <ul class=timestamp>
+      <li>created_at: <time class=created_at datetime=${this.created_at}>${this.created_at}</time>
+      <li>updated_at: <time class=updated_at datetime=${this.updated_at}>${this.updated_at}</time>
+    </ul>
+    <ul class=tags>
+${this.taglist(7)}
+    </ul>
+  </div>
+
+  <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>${this.article}
+</main>
 <hr>
 
 <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/footer.css>

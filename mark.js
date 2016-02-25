@@ -62,12 +62,16 @@ class Builder {
     this.template = option.template;
     this.meta = option.meta;
     this.description = option.description;
-    this.date = option.date;
+    this.created_at = option.created_at;
+    this.updated_at = option.updated_at;;
     this.tags = option.tags;
     this.style = option.style;
     this.title = '';
 
     this.indent = indent;
+  }
+  taglist(n) {
+    return this.tags.map((tag) => `${new Array(n).join(' ')}<li><a>${tag}</a>`).join('\n');
   }
   wrap(tag, value) {
     // increase indent
@@ -80,14 +84,10 @@ class Builder {
     return eval('`' + this.template + '`');
   }
   root(node) {
-    return this.wrap`<main>${node.value}</main>`
+    return this.wrap`${node.value}`
   }
   article(node) {
     let value = this.wrap`<article>${node.value}</article>`;
-    if (this.ampurl) {
-      // has amp url so not amp page
-      value = `<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>\n${value}`
-    }
     return value;
   }
   section(node) {
@@ -97,21 +97,16 @@ class Builder {
     return node.ordered ? this.wrap`<ol>${node.value}</ol>\n` : this.wrap`<ul>${node.value}</ul>\n`;
   }
   heading(node) {
-    let val = '';
+    let val;
     if (node.depth === 1) {
-      // h1 には独自ルールでタグを付けている
-      // ex)
-      // # [blog][web] ブログ始めました
+      // h1 の中身はタイトル
       this.title = node.value;
-
-      // tags をビルド
-      let taglinks = this.tags.map((tag) => `<a>${tag}</a>`).join('');
-      val += `<div><time datetime=${this.date}>${this.date}</time><span class=tags>${taglinks}</span></div>\n`;
-      val += `<h${node.depth}><a href="/${this.canonical}">${node.value}</a></h${node.depth}>\n`;
+      // h1 だけは canonical にリンク
+      val = `<h${node.depth}><a href="/${this.canonical}">${this.title}</a></h${node.depth}>\n`;
     } else {
-      val += `<h${node.depth} id="${unspace(node.value)}"><a href="#${unspace(node.value)}">${node.value}</a></h${node.depth}>\n`;
+      // h2 以降は id を振る
+      val = `<h${node.depth} id="${unspace(node.value)}"><a href="#${unspace(node.value)}">${node.value}</a></h${node.depth}>\n`;
     }
-
     return val;
   }
   code       (node) {
@@ -431,7 +426,8 @@ function build(AST, dir, template) {
 function prepare(filepath, option) {
   let dir = path.parse(filepath).dir;
   let name = path.parse(filepath).name;
-  let date = dir.split('/')[3];
+  let created_at = dir.split('/')[3];
+  let updated_at = fs.statSync(filepath).mtime.toISOString().substring(0, 10);
   let baseurl = dir.replace('./blog.jxck.io/', '');
 
   let file = read(filepath);
@@ -461,6 +457,7 @@ function prepare(filepath, option) {
     style = [
       'www.jxck.io/assets/css/body.css',
       'www.jxck.io/assets/css/header.css',
+      'www.jxck.io/assets/css/info.css',
       'www.jxck.io/assets/css/main.css',
       'www.jxck.io/assets/css/article.css',
       'www.jxck.io/assets/css/pre.css',
@@ -476,7 +473,8 @@ function prepare(filepath, option) {
   return {
     dir,
     name,
-    date,
+    created_at,
+    updated_at,
     baseurl,
     tags,
     md,
@@ -517,7 +515,7 @@ let filepath = process.argv[2];
 (() => {
   let info = prepare(filepath, { amp: true });
 
-  let ast = parse(info.md);
+  let ast = parse(info.md, { position: false });
 
   let indent = '  ';
   let builder = new Builder(info, indent);
