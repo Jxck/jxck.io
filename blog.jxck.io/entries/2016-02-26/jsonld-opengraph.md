@@ -1,4 +1,4 @@
-# [semantics][jsonld][opengraph] JSON-LD と Open Graph で構造化メタデータ対応
+# [semantics][jsonld][opengraph][schema.org] JSON-LD と Open Graph で構造化メタデータ対応
 
 ## Intro
 
