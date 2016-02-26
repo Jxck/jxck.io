@@ -4,12 +4,17 @@
 
 本サイトのセマンティクスメタ情報を整理するため、 HTML のメタタグの整理、 JSON-LD による schema.org 対応、 Facebook, Twitter を主とした Open Graph 対応を実施した。
 
+これにより、既にAMP 対応していた本サイトが、 Google のモバイル検索でキャッシュの対象となる(クロール待ち)。
+
+
 ## Meta Tag
 
 まず HTML の仕様に従い、基本的なメタ情報を `<meta>` により定義した。
 
 [https://dev.w3.org/html5/spec-preview/the-meta-element.html](https://dev.w3.org/html5/spec-preview/the-meta-element.html)
 
+
+各要素は、テンプレート生成時に利用した値を埋め込み、 [本サイトの Atom RSS-feed](https://blog.jxck.io/entries/2016-02-09/atom-feed.html) などと同様である。
 
 ```html
 <meta name=author content=Jxck>
@@ -19,36 +24,31 @@
 <title>${this.title} | blog.jxck.io</title>
 ```
 
-なお、これで Google がサポートする `<meta>` タグについてもカバーされている。
+これで Google がサポートする `<meta>` タグについてもカバーされている。
 
 [Google がサポートしているメタタグ](https://support.google.com/webmasters/answer/79812?hl=ja)
 
 
-## JSON-LD (schema.org)
+## schema.org
 
 [schema.org](schema.org) には、メタ情報を表現するボキャブラリが定義されている。
 
-そのボキャブラリを、サイト内にコードで表現する方法として RDFa, Microdata, JSON-LD の三種類がある。
+そのボキャブラリを、サイト内に表現する方法として RDFa, Microdata, JSON-LD の三種類がある。
 
-それぞれのフォーマットの詳細は割愛するが、本サイトでは Microdata と JSON-LD の採用が候補に挙がった。
+それぞれのフォーマットの詳細は割愛するが、基本的には Microdata で HTML の該当タグにボキャブラリを埋め込むか、 JSON-LD を用いて JSON 形式で一箇所に埋め込むかのいずれかが候補に挙がった。
 
- TODO:
-Microdata は RDFa
+結果として、本サイトでは以下を考慮し JSON-LD を採用した。
 
-また、本サイトが対応している AMP HTML では JS の利用が禁止される一方 JSON-LD は許可されているため、そちらも考慮し JSON-LD を採用した。
-
-
-<!--
-- [JSON-LD](http://json-ld.org/)
-http://googlewebmastercentral-ja.blogspot.jp/2015/03/easier-website-development-with-web.html
-https://developers.google.com/structured-data/rich-snippets/articles
-
-http://hublog.biz/bwpb/writing-in-php-of-schema-org-json-ld-for-wordpress-blog/
--->
-
-結果、
+- 本サイトが対応している AMP HTML では JSON-LD が許可(推奨)されている。
+- 単なる JSON にボキャブラリを埋めるだけなので、作成が容易。
+- HTML 自体をいじらないため、修正が容易。
 
 
+### JSON-LD
+
+結果、以下のようなタグを埋め込んでいる。
+
+```html
 <script type="application/ld+json">
 {
   "@context": "http://schema.org",
@@ -57,15 +57,15 @@ http://hublog.biz/bwpb/writing-in-php-of-schema-org-json-ld-for-wordpress-blog/
     "@type":"WebPage",
     "@id":"https://blog.jxck.io"
   },
-  "headline": "JSON-LD と Open Graph で構造化メタデータ対応",
+  "headline": "${this.title} | blog.jxck.io",
   "image": {
     "@type": "ImageObject",
     "url": "https://www.jxck.io/assets/img/jxck.png",
     "height": 700,
     "width": 700
   },
-  "datePublished": "2015-02-22T08:00:00+08:00",
-  "dateModified": "2015-02-22T09:20:00+08:00",
+  "datePublished": "${this.created_at}",
+  "dateModified": "${this.updated_at}",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -81,19 +81,27 @@ http://hublog.biz/bwpb/writing-in-php-of-schema-org-json-ld-for-wordpress-blog/
       "width": 257
     }
   },
-  "description": "本サイトのセマンティクスメタ情報を整理するため、 HTML のメタタグの整理、 JSON-LD による schema.org 対応、 Facebook, Twitter を主とした OpenGraph 対応を実施した。"
+  "description": "${this.description}"
 }
 </script>
+```
+
+フォーマットは Google の検証ツールを用いてチェックしながら作成した。
+
+[Structured Data Testing Tool](https://developers.google.com/structured-data/testing-tool/)
 
 
-Google の Validator では publisher が必須なのだが、 publisher の `@type` は Person だと起こられる。
+悩んだ点として、 Google の Validator では `publisher` が必須なのだが、 `publisher` の `@type` は `Person` だと怒られる。
 
-実際には本サイトは個人運営なのだが、しかたなく Organization を選択した。問題があったり、回避方法がみつかったら修正する。
+実際には本サイトは個人運営なのだが、しかたなく `Organization` を選択した。問題があったり、回避方法がみつかったら修正する。
 
+### JSON-LD と LD-JSON
 
-検証ツール
+JSON-LD と紛らわしいものに [LD-JSON (Line Delimitered JSON)](https://en.wikipedia.org/wiki/Line_Delimited_JSON) がある。
 
-https://developers.google.com/structured-data/testing-tool/
+それだけなら、実際全く関係ない仕様なのでまあ問題ない。
+
+しかし、 JSON-LD の HTML 内の記述は script type が **application/ld+json** なのが微妙に引っかかる。
 
 
 ## Open Graph
@@ -101,7 +109,13 @@ https://developers.google.com/structured-data/testing-tool/
 Twitter と Facebook だけ、以下を参考に対応した。
 内容はほとんど重複なので、 JSON-LD に対応してくれれば、これらは消したいところだ。
 
-[twitter cards](https://dev.twitter.com/ja/cards/types/summary)
+いずれも、仕様と同時にバリデータが提供されているため、それで確認をしている。
+
+### Twitter
+
+- [twitter cards](https://dev.twitter.com/ja/cards/types/summary)
+- [Card validator](https://cards-dev.twitter.com/validator)
+
 
 ```html
 <meta name=twitter:card        content=summary>
@@ -112,8 +126,10 @@ Twitter と Facebook だけ、以下を参考に対応した。
 <meta name=twitter:image       content=https://www.jxck.io/assets/img/jxck.png>
 ```
 
+### Facebook
 
-[facebook open graph](https://developers.facebook.com/docs/sharing/webmasters)
+- [facebook open graph](https://developers.facebook.com/docs/sharing/webmasters)
+- [fecebook URL Debugger](https://developers.facebook.com/tools/debug/)
 
 ```html
 <meta property=og:type        content="article">
@@ -123,15 +139,6 @@ Twitter と Facebook だけ、以下を参考に対応した。
 <meta property=og:description content="${this.description}">
 <meta property=og:image       content=https://www.jxck.io/assets/img/jxck.png> 
 ```
-
-
-## JSON-LD と LD-JSON
-
-JSON-LD と紛らわしいものに LD-JSON (Line Delimitered JSON) がある。
-
-それだけなら、実際全く関係ない仕様なのでまあ問題ない。
-
-しかし、 JSON-LD の HTML 内の記述は Script Type が **application/ld+json** なのが微妙に引っかかる。
 
 
 ## まとめ
