@@ -16,17 +16,89 @@
 <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/main.css>
 <main role=main class=archive>
   <h1 id="blog"><a href="#blog">[wip] Blog</a></h1>
-  <p><a href=//blog.jxck.io>blog.jxck.io</a>で使われている技術要素についてのまとめ</p>
-  <ul>
-    <li><a href=https://blog.jxck.io/entries/2016-01-28/html-compression.html>Compressed HTML</a>
-    <li><a href=https://blog.jxck.io/entries/2016-02-01/amp-html.html>AMP HTML support</a>
-    <li><a href=https://blog.jxck.io/entries/2016-02-08/h2o-http2-deploy.html>h2o</a>
-    <li><a href=https://blog.jxck.io/entries/2016-02-09/atom-feed.html>Atom Feed</a>
-    <li><a href=https://blog.jxck.io/entries/2016-02-11/resource-hints.html>Resource Hints(prerender/dns-preconnect)</a>
-    <li><a href=https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html>Component CSS over HTTP2</a>
-    <li><a href=https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html>Zopfli Compressed Contents</a>
-    <li><a href=https://blog.jxck.io/entries/2016-02-26/jsonld-opengraph.html>schema.org, open-graph</a>
-  </ul>
+  <section>
+    <h2><a href=//blog.jxck.io>blog.jxck.io</a>で使われている技術要素</h2>
+    <ul>
+      <li><a href=https://blog.jxck.io/entries/2016-01-28/html-compression.html>Compressed HTML</a>
+      <li><a href=https://blog.jxck.io/entries/2016-02-01/amp-html.html>AMP HTML support</a>
+      <li><a href=https://blog.jxck.io/entries/2016-02-08/h2o-http2-deploy.html>h2o</a>
+      <li><a href=https://blog.jxck.io/entries/2016-02-09/atom-feed.html>Atom Feed</a>
+      <li><a href=https://blog.jxck.io/entries/2016-02-11/resource-hints.html>Resource Hints(prerender/dns-preconnect)</a>
+      <li><a href=https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html>Component CSS over HTTP2</a>
+      <li><a href=https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html>Zopfli Compressed Contents</a>
+      <li><a href=https://blog.jxck.io/entries/2016-02-26/jsonld-opengraph.html>schema.org, open-graph</a>
+    </ul>
+  </section>
+  <section>
+    <h2>各バリデータへの態度</h2>
+    <p>特に標準フォーマットについては、バリデータなどが提供されており、このサイトもそうしたツールを利用してテストを行っている。
+    <p>本来であれば、そのバリデータにおいてオールグリーンとなるような修正をするところであるが、本サイトでは技術的な理由によって一部のバリデータのエラーを意図的に無視している</p>
+    <p>ここでは、各バリデータとそこで無視しているエラーについて、その理由を記す
+
+    <section>
+      <h3>W3C HTML Validator</h3>
+      <p><a href=https://validator.w3.org/>https://validator.w3.org/</a> において HTML マークアップの妥当性について検証が可能である。
+      <p>本サイトでは以下のエラーを無視している。
+      <dl>
+        <dt>body 内での CSS 読み込みによるエラー
+        <dd><a href=https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html>本サイトが実施している最適化のため</a>、 body 内で意図的に CSS への <em>&gt;link&lt;</em> を入れている。
+      </dl>
+    </section>
+
+    <section>
+      <h3>W3C CSS Validator</h3>
+      <p><a href=https://jigsaw.w3.org/css-validator/>https://jigsaw.w3.org/css-validator/</a> において CSS の妥当性について検証が可能である。
+      <p>本サイトでは以下のエラーを無視している。
+      <dl>
+        <dt>pointer-events 利用によるエラー
+        <dd>本サイトでは、疑似要素のみリンク可能にするスタイルを採用しており、これを実現するために必要なため無視している。
+        <dt>文法解析エラーが発生しました attr(class) "\A";
+        <dd>TODO
+      </dl>
+    </section>
+
+    <section>
+      <h3>AMP Validator</h3>
+      <p>AMP 対応ページにおいて URL 末尾に <em>#development=1</em> を付与することで、 Chrome Dev Tools 上で AMP Format のバリデーションを行うことが可能である。
+      <p>本サイトでは以下のエラーを無視している。
+      <dl>
+        <dt>TODO
+        <dd>TODO
+      </dl>
+    </section>
+
+    <section>
+      <h3>Google Page Speed Insight</h3>
+      <p><a href=https://developers.google.com/speed/pagespeed/insights/?hl=ja>PageSpeed Insights</a> において、サイトのパフォーマンス上のボトルネックを検証することが可能である。
+      <p>本サイトでは以下のエラーを無視している。
+      <dl>
+        <dt>このページには、ブロッキング CSS リソースがあります。
+        <dd><a href=https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html>本サイトが実施している最適化のため</a>、 body 内で意図的に CSS への <em>&gt;link&lt;</em> を入れている。
+        <dt>ブラウザのキャッシュを活用する
+        <dd>本サイトは現在まだ開発途中であるため、キャッシュが残ることでの更新確認が妨げられないように ETag のみを設定しているため、他のキャッシュに関するヘッダはまだ適用していない。
+        <dt>JavaScript コードを縮小すると、データ サイズを大きく削減でき、ダウンロード、解析、実行の速度を向上させることができます。
+        <dd>警告は、サードバーティでしか発生していないため無視する
+        <dt>TODO
+        <dd>TODO
+      </dl>
+    </section>
+
+    <section>
+      <h3>SSL Labs</h3>
+    </section>
+
+    <section>
+      <h3>無視しないバリデータ</h3>
+      <p>以下のバリデータについては、エラーを無視せずオールグリーンの状態を維持する
+      <ul>
+        <li><a href=https://validator.w3.org/feed>https://validator.w3.org/feed</a>
+        <li><a href=https://developers.google.com/structured-data/testing-tool/>Google Structured Data Testing Tool</a>
+        <li><a href=https://cards-dev.twitter.com/validator>Twitter Card Validator
+        <li><a href=https://developers.facebook.com/tools/debug/>Facebook URL Validator</a>
+      </ul>
+    </section>
+
+  </section>
 </main>
 
 <hr>
