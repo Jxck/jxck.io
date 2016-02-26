@@ -7,6 +7,14 @@ Google が推奨する仕様である [AMP HTML](https://www.ampproject.org/) �
 言いたいことは色々あるが、とりあえず非常に難しかったため、その対応方法や感想などを残す。
 
 
+## Update
+
+以下の記事が出たので、古かったフォーマットのアップデートと JSON-LD によるメタデータの提供を対応した。
+
+- [Google モバイル検索が Accelerated Mobile Pages に対応しました](http://googledevjp.blogspot.jp/2016/02/google-accelerated-mobile-pages.html)
+- [AMP対応 2016.02版](http://ymotongpoo.hatenablog.com/entry/2016/02/25/224159)
+
+
 ## AMP
 
 [ACCELERATED MOBILE PAGES PROJECT](https://www.ampproject.org/)
