@@ -64,6 +64,7 @@ class Builder {
     this.description = option.description;
     this.created_at = option.created_at;
     this.updated_at = option.updated_at;;
+    this.dir = option.dir;
     this.tags = option.tags;
     this.style = option.style;
     this.title = '';
@@ -80,6 +81,14 @@ class Builder {
   }
   Style(href) {
     return `<link rel=stylesheet property=stylesheet type=text/css href=${href}>`;
+  }
+  Dir() {
+    let dir = this.dir.split('/').pop();
+    return `
+      <li><a href=/>blog.jxck.io</a>
+      <li><a href=/entries>entries</a>
+      <li><a href=/entries/${dir}>${dir}</a>
+    `
   }
   HTML(article) {
     this.article = article;
