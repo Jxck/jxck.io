@@ -113,7 +113,8 @@ class Builder {
     return val;
   }
   code       (node) {
-    let value = `<pre class=${node.lang}><code>${node.value}</code></pre>\n`;
+    let lang = node.lang || ""
+    let value = `<pre class=${lang}><code>${node.value}</code></pre>\n`;
     if (this.ampurl) {
       // has amp url so not amp page
       value = [this.Style('//www.jxck.io/assets/css/pre.css'), value].join('\n');
