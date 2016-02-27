@@ -142,7 +142,7 @@ header div {
   margin: 0 auto;
 }
 
-header a {
+header > div > a {
   display: block;
   width: 31px;
   height: 31px;
@@ -154,15 +154,25 @@ header a.logo {
   border: 1px solid #ccc;
 }
 
-header a.path {
-  flex-grow: 1;
+header ul.path {
+  flex: 1;
+  display: flex;
+  margin: 0;
   line-height: 31px;
+}
+
+header ul.path a {
+  justify-content: flex-start;
   color: gray;
   border: none;
 }
 
-header a.path:hover {
+header ul a:hover {
   color: white;
+}
+
+header ul a::before {
+  content: "/ ";
 }
 
 .info {
@@ -480,7 +490,11 @@ footer {
 <header>
   <div>
     <a class=logo href=//www.jxck.io><amp-img alt="jxck logo" layout=responsive width=30 height=30 src=//www.jxck.io/assets/img/jxck.svg></a>
-    <a class=path href=/>blog.jxck.io</a>
+    <ul class=path>
+      <li><a href=/>blog.jxck.io</a>
+      <li><a href=/entries>entries</a>
+      <li><a href=/entries/2016-02-09>2016-02-09</a>
+    </ul>
     <a class=feed href=/feeds/atom.xml><amp-img alt="rss feed" layout=responsive width=30 height=30 src=//www.jxck.io/assets/img/rss.svg></a>
   </div>
 </header>
