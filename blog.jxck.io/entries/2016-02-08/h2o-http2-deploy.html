@@ -71,9 +71,9 @@ by Jxck
 
 <title>h2o で https/2 のデプロイと設定 | blog.jxck.io</title>
 
-<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/body.css>
+<link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/body.css>
 
-<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/header.css>
+<link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/header.css>
 <header>
   <div>
     <a class=logo href=//www.jxck.io><img alt="jxck logo" src=//www.jxck.io/assets/img/jxck.png></a>
@@ -83,16 +83,16 @@ by Jxck
   </div>
 </header>
 
-<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/main.css>
+<link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/main.css>
 <main>
-  <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/info.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/info.css>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-02-08>2016-02-08</time>
     <li>updated_at: <time class=updated_at datetime=2016-02-15>2016-02-15</time>
     <li class=tags>tags: [<a>http2</a>,<a>h2o</a>]
   </ul>
 
-  <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>
   <article>
     <h1><a href="/entries/2016-02-08/h2o-http2-deploy.html">h2o で https/2 のデプロイと設定</a></h1>
     <section>
@@ -130,7 +130,7 @@ by Jxck
       <p>h2o の設定でちょっとハマったのがパスとファイルの紐付けができないところ。
       <p>たとえば、 <code>favicon.ico</code> だとか <code>robots.txt</code> は、特定の URL に対して特定のファイルを割り当てる。
       これがこう書けると嬉しい。
-      <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
+      <link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
       <pre class=null><code>paths:
   &quot;/favicon.ico&quot;:
      file.dir: /some/path/to/favicon.ico
@@ -139,7 +139,7 @@ by Jxck
       <p>しかし、実際は paths へはディレクトリしか紐づけられない。
       やるなら mruby.handler を使うしかない。
       (399 は、 fallthroug の独自ルールになってるらしい)
-      <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
+      <link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
       <pre class=null><code>&quot;/&quot;:
   mruby.handler: |
     Proc.new do |env|
@@ -168,7 +168,7 @@ by Jxck
 </main>
 <hr>
 
-<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/footer.css>
+<link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/footer.css>
 <footer>
   <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
 </footer>

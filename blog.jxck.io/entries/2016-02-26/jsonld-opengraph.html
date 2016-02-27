@@ -71,9 +71,9 @@ by Jxck
 
 <title>JSON-LD と Open Graph で構造化メタデータ対応 | blog.jxck.io</title>
 
-<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/body.css>
+<link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/body.css>
 
-<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/header.css>
+<link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/header.css>
 <header>
   <div>
     <a class=logo href=//www.jxck.io><img alt="jxck logo" src=//www.jxck.io/assets/img/jxck.png></a>
@@ -83,16 +83,16 @@ by Jxck
   </div>
 </header>
 
-<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/main.css>
+<link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/main.css>
 <main>
-  <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/info.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/info.css>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-02-26>2016-02-26</time>
     <li>updated_at: <time class=updated_at datetime=2016-02-26>2016-02-26</time>
     <li class=tags>tags: [<a>semantics</a>,<a>jsonld</a>,<a>opengraph</a>,<a>schema.org</a>]
   </ul>
 
-  <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>
   <article>
     <h1><a href="/entries/2016-02-26/jsonld-opengraph.html">JSON-LD と Open Graph で構造化メタデータ対応</a></h1>
     <section>
@@ -105,7 +105,7 @@ by Jxck
       <p>まず HTML の仕様に従い、基本的なメタ情報を <code>&lt;meta&gt;</code> により定義した。
       <p><a href="https://dev.w3.org/html5/spec-preview/the-meta-element.html">https://dev.w3.org/html5/spec-preview/the-meta-element.html</a>
       <p>各要素は、テンプレート生成時に利用した値を埋め込み、 <a href="https://blog.jxck.io/entries/2016-02-09/atom-feed.html">本サイトの Atom RSS-feed</a> などと同様である。
-      <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
+      <link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
       <pre class=html><code>&lt;meta name=author content=Jxck&gt;
 &lt;meta name=description content=${this.description}&gt;
 &lt;meta name=keywords content=&quot;${this.tags}&quot;&gt;
@@ -128,7 +128,7 @@ by Jxck
       <section>
         <h3 id="JSON-LD"><a href="#JSON-LD">JSON-LD</a></h3>
         <p>結果、以下のようなタグを埋め込んでいる。
-        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
+        <link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
         <pre class=html><code>&lt;script type=&quot;application/ld+json&quot;&gt;
 {
   &quot;@context&quot;: &quot;http://schema.org&quot;,
@@ -187,7 +187,7 @@ by Jxck
           <li><a href="https://dev.twitter.com/ja/cards/types/summary">twitter cards</a>
           <li><a href="https://cards-dev.twitter.com/validator">Card validator</a>
         </ul>
-        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
+        <link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
         <pre class=html><code>&lt;meta name=twitter:card        content=summary&gt;
 &lt;meta name=twitter:site        content=@jxck_&gt;
 &lt;meta name=twitter:url         content=${this.canonical}&gt;
@@ -201,7 +201,7 @@ by Jxck
           <li><a href="https://developers.facebook.com/docs/sharing/webmasters">facebook open graph</a>
           <li><a href="https://developers.facebook.com/tools/debug/">fecebook URL Debugger</a>
         </ul>
-        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
+        <link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
         <pre class=html><code>&lt;meta property=og:type        content=&quot;article&quot;&gt;
 &lt;meta property=og:url         content=${this.canonical}&gt;
 &lt;meta property=og:title       content=&quot;${this.title} | blog.jxck.io&quot;&gt;
@@ -222,7 +222,7 @@ by Jxck
 </main>
 <hr>
 
-<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/footer.css>
+<link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/footer.css>
 <footer>
   <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
 </footer>

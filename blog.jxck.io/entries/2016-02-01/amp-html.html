@@ -71,9 +71,9 @@ by Jxck
 
 <title>AMP HTML 対応 | blog.jxck.io</title>
 
-<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/body.css>
+<link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/body.css>
 
-<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/header.css>
+<link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/header.css>
 <header>
   <div>
     <a class=logo href=//www.jxck.io><img alt="jxck logo" src=//www.jxck.io/assets/img/jxck.png></a>
@@ -83,16 +83,16 @@ by Jxck
   </div>
 </header>
 
-<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/main.css>
+<link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/main.css>
 <main>
-  <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/info.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/info.css>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-02-01>2016-02-01</time>
     <li>updated_at: <time class=updated_at datetime=2016-02-26>2016-02-26</time>
     <li class=tags>tags: [<a>performance</a>,<a>amp</a>,<a>html</a>]
   </ul>
 
-  <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>
   <article>
     <h1><a href="/entries/2016-02-01/amp-html.html">AMP HTML 対応</a></h1>
     <section>
@@ -147,10 +147,10 @@ by Jxck
       <p>本サイトでは、普通の HTML と AMP 対応の HTML は別にビルドしており、 URL の末尾が <code>.html</code> か <code>.amp.html</code> かで分けている。
       <p>こうした場合は <code>&lt;link&gt;</code> タグで、クローラなどに相互のページの参照を伝えることができる。
       <p>このサイトでは <code>.html</code> に AMP 対応があることを伝える以下を追記した。
-      <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
+      <link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
       <pre class=html><code>&lt;link rel=amphtml href=${path}.amp.html&gt;</code></pre>
       <p>一方 <code>.amp.html</code> では、ブックマークなどが統一できるように <code>canonical</code> を追加している。
-      <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
+      <link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
       <pre class=html><code>&lt;link rel=canonical href=${path}.html&gt;</code></pre>
       <p>access_log で UA などを追えば、 apmhtml を見るクローラが追えるかもしれない。
       <section>
@@ -194,7 +194,7 @@ by Jxck
         <p><a href="https://developers.google.com/analytics/devguides/collection/amp-analytics/">Adding Analytics to your AMP pages</a>
         <p>収集したい情報に応じてやり方がいくつか有るようだが、一番スタンダードな Page Tracking だけ設定した。
         <p>AMP Analytics のコードの読み込みは、 AMP JS Library よりも前に行う必要があるとドキュメントに書かれているので、このようになった。
-        <link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
+        <link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
         <pre class=html><code>&lt;script async custom-element=&quot;amp-analytics&quot; src=&quot;https://cdn.ampproject.org/v0/amp-analytics-0.1.js&quot;&gt;&lt;/script&gt;
 &lt;script async src=&quot;https://cdn.ampproject.org/v0.js&quot;&gt;&lt;/script&gt;
 
@@ -237,7 +237,7 @@ by Jxck
 </main>
 <hr>
 
-<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/footer.css>
+<link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/footer.css>
 <footer>
   <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
 </footer>
