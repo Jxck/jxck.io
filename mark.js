@@ -78,6 +78,9 @@ class Builder {
     value = `\n${value}`.replace(/\n/gm, `\n${this.indent}`);
     return `${tag[0]}${value}\n${tag[1]}`;
   }
+  Style(href) {
+    return `<link rel=stylesheet type=text/css href=${href}>`;
+  }
   HTML(article) {
     this.article = article;
     this.meta = eval('`' + this.meta + '`');
@@ -113,7 +116,7 @@ class Builder {
     let value = `<pre class=${node.lang}><code>${node.value}</code></pre>\n`;
     if (this.ampurl) {
       // has amp url so not amp page
-      value = `<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>\n${value}`;
+      value = [this.Style('//www.jxck.io/assets/css/pre.css'), value].join('\n');
     }
     return value;
   }
@@ -121,7 +124,7 @@ class Builder {
     let value = this.wrap`<table>${node.value}</table>`
     if (this.ampurl) {
       // has amp url so not amp page
-      value = `<link rel=stylesheet type=text/css href=//www.jxck.io/assets/css/table.css>\n${value}`;
+      value = [this.Style('//www.jxck.io/assets/css/table.css'), value].join('\n');
     }
     return value;
   }
