@@ -79,7 +79,7 @@ class Builder {
     return `${tag[0]}${value}\n${tag[1]}`;
   }
   Style(href) {
-    return `<link rel=stylesheet type=text/css href=${href}>`;
+    return `<link rel=stylesheet property=stylesheet type=text/css href=${href}>`;
   }
   HTML(article) {
     this.article = article;
