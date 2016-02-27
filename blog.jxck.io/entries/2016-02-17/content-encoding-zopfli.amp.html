@@ -86,8 +86,8 @@ body {
 
 iframe {
   display: block;
-  margin: 1em 0;
   max-width: 100%;
+  margin: 1em 0;
 }
 
 .archive {
@@ -130,40 +130,35 @@ iframe {
 
 header {
   box-sizing: border-box;
-  background-color: #222;
   margin: 0;
   padding: 0.4em;
+  background-color: #222;
 }
 
 header div {
-  margin: 0 auto;
-  width: 80%;
   display: flex;
   flex-direction: row;
+  width: 80%;
+  margin: 0 auto;
 }
 
-header a.logo {
-  display: block;
-  width: 32px;
-  height: 32px;
-  margin: 0 1em 0 0;
-  padding: 0;
-  border: 1px solid #ccc;
-}
-
-header a > img {
+header a {
   display: block;
   width: 31px;
   height: 31px;
-  margin: 0;
+  margin: 0 1em 0 0;
   padding: 0;
 }
 
+header a.logo {
+  border: 1px solid #ccc;
+}
+
 header a.path {
-  display: block;
-  padding: 0.4em;
-  color: gray;
   flex-grow: 1;
+  line-height: 31px;
+  color: gray;
+  border: none;
 }
 
 header a.path:hover {
@@ -171,11 +166,11 @@ header a.path:hover {
 }
 
 .info {
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
 }
 
 .info li {
@@ -191,6 +186,10 @@ main {
   display: block;
   width: 80%;
   margin: 1em auto;
+}
+
+main img[src$=".svg"] {
+  max-width: 50%;
 }
 
 a {
@@ -286,7 +285,7 @@ li {
 }
 
 ul, ol, dl {
-  margin: 2em 0;
+  margin: 1.4em 0;
 }
 
 dl dt {
@@ -307,7 +306,7 @@ blockquote {
   border: solid 1px #ddd;
   border-radius: 4px;
   padding: 1em;
-  margin: 2em 0;
+  margin: 1.4em 0;
 }
 
 blockquote::before {
@@ -319,7 +318,7 @@ code {
   background-color: #efefef;
   border-radius: 4px;
   padding: 0.1em;
-  margin: 2em 0;
+  margin: 1.4em 0;
 }
 
 code::before, code::after {
@@ -328,14 +327,10 @@ code::before, code::after {
 }
 
 article img {
-  max-width: 80%;
   display: block;
+  max-width: 80%;
   margin: 1em 0;
   border: solid 1px #ccc;
-}
-
-article img[src$=".svg"] {
-  max-width: 50%;
 }
 
 pre {
@@ -343,7 +338,7 @@ pre {
   word-break: break-all;
   word-wrap: break-word;
   font-size: 1.2em;
-  margin: 2em 0;
+  margin: 1.4em 0 0 0;
   border-radius: 4px;
 }
 
@@ -532,7 +527,7 @@ footer {
       <section>
         <h3 id="gzip+ディレクティブ"><a href="#gzip+ディレクティブ">gzip ディレクティブ</a></h3>
         <p>以下を設定すると、 h2o はコンテンツを on the fly (リクエストが来てから)圧縮し送信してくれる。
-        <pre class=null><code>gzip: ON</code></pre>
+        <pre class=><code>gzip: ON</code></pre>
         <p><a href="https://h2o.examp1e.net/configure/gzip_directives.html#gzip">Configure > Gzip Directives > "gzip"</a>
         <p>これにより、あらかじめ圧縮していないコンテンツや、バックエンドのアプリケーションが動的に生成したコンテンツを圧縮転送することができる。
         圧縮時間分のオーバーヘッドは考えられるが、一般的に gzip の処理時間は小さく、転送量の削減によるネットワーク的メリットの方が高いため、この方法が採用されることが多い。
@@ -540,7 +535,7 @@ footer {
       <section>
         <h3 id="send-gzip+ディレクティブ"><a href="#send-gzip+ディレクティブ">send-gzip ディレクティブ</a></h3>
         <p>あらかじめコンテンツを gzip 圧縮した状態で <code>ファイル名.gz</code> で配置し、以下を設定すると、 h2o は自動的に圧縮済みファイルを転送してくれる。
-        <pre class=null><code>file.send-gzip: ON</code></pre>
+        <pre class=><code>file.send-gzip: ON</code></pre>
         <p><a href="https://h2o.examp1e.net/configure/file_directives.html#file.send-gzip">Configure > File Directives > "file.send-gzip"</a>
         <p>事前に圧縮するため、レスポンスへのオーバーヘッドは無くなる。
         しかし、バックエンドが動的に生成するレスポンスには適用できないため、事前に準備可能な静的ファイルへの適用に限定される。

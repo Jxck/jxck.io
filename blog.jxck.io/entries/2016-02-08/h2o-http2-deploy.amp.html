@@ -86,8 +86,8 @@ body {
 
 iframe {
   display: block;
-  margin: 1em 0;
   max-width: 100%;
+  margin: 1em 0;
 }
 
 .archive {
@@ -130,40 +130,35 @@ iframe {
 
 header {
   box-sizing: border-box;
-  background-color: #222;
   margin: 0;
   padding: 0.4em;
+  background-color: #222;
 }
 
 header div {
-  margin: 0 auto;
-  width: 80%;
   display: flex;
   flex-direction: row;
+  width: 80%;
+  margin: 0 auto;
 }
 
-header a.logo {
-  display: block;
-  width: 32px;
-  height: 32px;
-  margin: 0 1em 0 0;
-  padding: 0;
-  border: 1px solid #ccc;
-}
-
-header a > img {
+header a {
   display: block;
   width: 31px;
   height: 31px;
-  margin: 0;
+  margin: 0 1em 0 0;
   padding: 0;
 }
 
+header a.logo {
+  border: 1px solid #ccc;
+}
+
 header a.path {
-  display: block;
-  padding: 0.4em;
-  color: gray;
   flex-grow: 1;
+  line-height: 31px;
+  color: gray;
+  border: none;
 }
 
 header a.path:hover {
@@ -171,11 +166,11 @@ header a.path:hover {
 }
 
 .info {
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
 }
 
 .info li {
@@ -191,6 +186,10 @@ main {
   display: block;
   width: 80%;
   margin: 1em auto;
+}
+
+main img[src$=".svg"] {
+  max-width: 50%;
 }
 
 a {
@@ -286,7 +285,7 @@ li {
 }
 
 ul, ol, dl {
-  margin: 2em 0;
+  margin: 1.4em 0;
 }
 
 dl dt {
@@ -307,7 +306,7 @@ blockquote {
   border: solid 1px #ddd;
   border-radius: 4px;
   padding: 1em;
-  margin: 2em 0;
+  margin: 1.4em 0;
 }
 
 blockquote::before {
@@ -319,7 +318,7 @@ code {
   background-color: #efefef;
   border-radius: 4px;
   padding: 0.1em;
-  margin: 2em 0;
+  margin: 1.4em 0;
 }
 
 code::before, code::after {
@@ -328,14 +327,10 @@ code::before, code::after {
 }
 
 article img {
-  max-width: 80%;
   display: block;
+  max-width: 80%;
   margin: 1em 0;
   border: solid 1px #ccc;
-}
-
-article img[src$=".svg"] {
-  max-width: 50%;
 }
 
 pre {
@@ -343,7 +338,7 @@ pre {
   word-break: break-all;
   word-wrap: break-word;
   font-size: 1.2em;
-  margin: 2em 0;
+  margin: 1.4em 0 0 0;
   border-radius: 4px;
 }
 
@@ -534,7 +529,7 @@ footer {
       <p>h2o の設定でちょっとハマったのがパスとファイルの紐付けができないところ。
       <p>たとえば、 <code>favicon.ico</code> だとか <code>robots.txt</code> は、特定の URL に対して特定のファイルを割り当てる。
       これがこう書けると嬉しい。
-      <pre class=null><code>paths:
+      <pre class=><code>paths:
   &quot;/favicon.ico&quot;:
      file.dir: /some/path/to/favicon.ico
   &quot;/&quot;:
@@ -542,7 +537,7 @@ footer {
       <p>しかし、実際は paths へはディレクトリしか紐づけられない。
       やるなら mruby.handler を使うしかない。
       (399 は、 fallthroug の独自ルールになってるらしい)
-      <pre class=null><code>&quot;/&quot;:
+      <pre class=><code>&quot;/&quot;:
   mruby.handler: |
     Proc.new do |env|
       if env[&quot;PATH_INFO&quot;] == &quot;/favicon.ico&quot;

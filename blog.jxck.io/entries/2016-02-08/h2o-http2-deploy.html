@@ -131,7 +131,7 @@ by Jxck
       <p>たとえば、 <code>favicon.ico</code> だとか <code>robots.txt</code> は、特定の URL に対して特定のファイルを割り当てる。
       これがこう書けると嬉しい。
       <link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
-      <pre class=null><code>paths:
+      <pre class=><code>paths:
   &quot;/favicon.ico&quot;:
      file.dir: /some/path/to/favicon.ico
   &quot;/&quot;:
@@ -140,7 +140,7 @@ by Jxck
       やるなら mruby.handler を使うしかない。
       (399 は、 fallthroug の独自ルールになってるらしい)
       <link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
-      <pre class=null><code>&quot;/&quot;:
+      <pre class=><code>&quot;/&quot;:
   mruby.handler: |
     Proc.new do |env|
       if env[&quot;PATH_INFO&quot;] == &quot;/favicon.ico&quot;
