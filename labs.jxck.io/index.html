@@ -1,8 +1,22 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
+<meta name=description content="index page of labs.jxck.io">
 <meta name=viewport content="width=device-width,initial-scale=1">
-
 <title>labs.jxck.io</title>
+
+<style>
+.notice {
+  font-size: 0.8em;
+}
+
+.notice p {
+  line-height: 0.8rem;
+}
+.notice ul {
+  line-height: 1.2rem;
+}
+</style>
+
 <link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/body.css>
 
 <link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/header.css>
@@ -17,11 +31,28 @@
 
 <link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/main.css>
 <main role=main class=archive>
-  <h1 id="labs"><a href="#labs">Labs</a></h1>
-  <ul>
-    <li><a href=webp>WebP Garally</a>
-    <li><a href=mixed>Mixed Content DEMO</a>
-  </ul>
+  <h1 id=labs><a href=#labs>Labs</a></h1>
+  <section>
+    <h2 id=contents><a href=#contents>contents</a></h2>
+    <ul>
+      <li><a href=hol>Head Of Line Blocking DEMO</a>
+      <li><a href=mixed>Mixed Content DEMO</a>
+      <li><a href=webp>WebP Garally</a>
+    </ul>
+  </section>
+  <hr>
+  <section class=notice>
+    <h2 id=notice><a href=#notice>notice</a></h2>
+    <p>このドメインは、様々なデモなどを設置するドメインです。
+    <p><code>labs.jxck.io/*</code> 以下のコンテンツには次の設定をしています。
+    <ul>
+      <li><code>*.jxck.io</code> の中で唯一 <code>http/https</code> 両方をサーブする。
+      <li>キャッシュに関するヘッダ(ETag etc)を設定しない。
+      <li>リソースを gzip しない。
+      <li>各コンテンツには、共通 CSS/JS を設定しない。基本必要最低限のものを個々に書く。
+      <li>アナリティクスなど、邪魔なスクリプトも貼らない。
+    </ul>
+  </section>
 </main>
 
 <hr>
