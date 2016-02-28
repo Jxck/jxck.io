@@ -1,17 +1,40 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<title>Head of Line Blocking Test</title>
+<meta charset=utf-8>
+<meta name=description content="demo page of head of line blocking">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Head of Line Blocking Demo | labs.jxck.io</title>
+
+<style>
+#prot {
+  font-size: 2em;
+  color: red;
+}
+
+#total {
+ font-size: 2em;
+ color: blue;
+}
+</style>
+
 <script>
 var start = Date.now();
-window.addEventListener('load', function(event) {
+window.addEventListener('load', (event) => {
   var end = Date.now();
   document.getElementById('total').textContent = end-start;
+
+  var url = new URL(location.href);
+  document.getElementById('prot').textContent = url.protocol;
 });
 </script>
 
-<h2>Head of Line Blocking Test</h2>
-<p>6 large file blocks small files in HTTP</p>
-<p><strong>Load Time: <span id="total" style="font-size: 200%; color: blue;"></span> ms</strong></p>
+<h1>Head of Line Blocking Demo</h1>
+<p>6 large file blocks small files in HTML served via <span id=prot></span></p>
+<p><strong>Load Time: <span id=total></span> ms</strong></p>
+
+<ul>
+  <li><a href=https://labs.jxck.io/hol>https/2 version</a>
+  <li><a href=http://labs.jxck.io/hol>https/1.1 version</a>
+</ul>
 
 <h2>1.2M 640x640 bmp x 6</h2>
 <img src=10.bmp alt=10.bmp width=60 height=60>
@@ -82,8 +105,3 @@ window.addEventListener('load', function(event) {
 <img src=57.png alt=57.png width=60 height=60>
 <img src=58.png alt=58.png width=60 height=60>
 <img src=59.png alt=59.png width=60 height=60>
-
-<ul>
-  <li><a href=https://jxck.io/labs/hol/index.html>https/1.1</a>
-  <li><a href=https://jxck.io:9001>https/2</a>
-</ul>
