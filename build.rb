@@ -47,8 +47,6 @@ if production
   # compression
   `find ./www.jxck.io/* -type f | egrep -v '.webp|.rb' | xargs -L 1 -P 4 zopfli --i30`
   puts "www.jxck.io compressed"
-  `find ./labs.jxck.io/* -type f | egrep -v '.webp|.rb' | xargs -L 1 -P 4 zopfli --i30`
-  puts "labs.jxck.io compressed"
   `find ./blog.jxck.io/* -type f | egrep -v '.webp|.rb|.xml' | xargs -L 1 -P 4 zopfli --i30`
   puts "blog.jxck.io compressed"
 end
