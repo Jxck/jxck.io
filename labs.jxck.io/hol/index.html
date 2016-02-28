@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Head of Line Blocking Test</title>
+<script>
+var start = Date.now();
+window.addEventListener('load', function(event) {
+  var end = Date.now();
+  document.getElementById('total').textContent = end-start;
+});
+</script>
+
+<h2>Head of Line Blocking Test</h2>
+<p>6 large file blocks small files in HTTP</p>
+<p><strong>Load Time: <span id="total" style="font-size: 200%; color: blue;"></span> ms</strong></p>
+
+<h2>1.2M 640x640 bmp x 6</h2>
+<img src=10.bmp alt=10.bmp width=60 height=60>
+<img src=11.bmp alt=11.bmp width=60 height=60>
+<img src=12.bmp alt=12.bmp width=60 height=60>
+<img src=13.bmp alt=13.bmp width=60 height=60>
+<img src=14.bmp alt=14.bmp width=60 height=60>
+<img src=15.bmp alt=15.bmp width=60 height=60>
+
+<h2>294byte 256x256 png x 60</h2>
+<img src=0.png  alt=0.png  width=60 height=60>
+<img src=1.png  alt=1.png  width=60 height=60>
+<img src=2.png  alt=2.png  width=60 height=60>
+<img src=3.png  alt=3.png  width=60 height=60>
+<img src=4.png  alt=4.png  width=60 height=60>
+<img src=5.png  alt=5.png  width=60 height=60>
+<img src=6.png  alt=6.png  width=60 height=60>
+<img src=7.png  alt=7.png  width=60 height=60>
+<img src=8.png  alt=8.png  width=60 height=60>
+<img src=9.png  alt=9.png  width=60 height=60>
+<img src=10.png alt=10.png width=60 height=60>
+<img src=11.png alt=11.png width=60 height=60>
+<img src=12.png alt=12.png width=60 height=60>
+<img src=13.png alt=13.png width=60 height=60>
+<img src=14.png alt=14.png width=60 height=60>
+<img src=15.png alt=15.png width=60 height=60>
+<img src=16.png alt=16.png width=60 height=60>
+<img src=17.png alt=17.png width=60 height=60>
+<img src=18.png alt=18.png width=60 height=60>
+<img src=19.png alt=19.png width=60 height=60>
+<img src=20.png alt=20.png width=60 height=60>
+<img src=21.png alt=21.png width=60 height=60>
+<img src=22.png alt=22.png width=60 height=60>
+<img src=23.png alt=23.png width=60 height=60>
+<img src=24.png alt=24.png width=60 height=60>
+<img src=25.png alt=25.png width=60 height=60>
+<img src=26.png alt=26.png width=60 height=60>
+<img src=27.png alt=27.png width=60 height=60>
+<img src=28.png alt=28.png width=60 height=60>
+<img src=29.png alt=29.png width=60 height=60>
+<img src=30.png alt=30.png width=60 height=60>
+<img src=31.png alt=31.png width=60 height=60>
+<img src=32.png alt=32.png width=60 height=60>
+<img src=33.png alt=33.png width=60 height=60>
+<img src=34.png alt=34.png width=60 height=60>
+<img src=35.png alt=35.png width=60 height=60>
+<img src=36.png alt=36.png width=60 height=60>
+<img src=37.png alt=37.png width=60 height=60>
+<img src=38.png alt=38.png width=60 height=60>
+<img src=39.png alt=39.png width=60 height=60>
+<img src=40.png alt=40.png width=60 height=60>
+<img src=41.png alt=41.png width=60 height=60>
+<img src=42.png alt=42.png width=60 height=60>
+<img src=43.png alt=43.png width=60 height=60>
+<img src=44.png alt=44.png width=60 height=60>
+<img src=45.png alt=45.png width=60 height=60>
+<img src=46.png alt=46.png width=60 height=60>
+<img src=47.png alt=47.png width=60 height=60>
+<img src=48.png alt=48.png width=60 height=60>
+<img src=49.png alt=49.png width=60 height=60>
+<img src=50.png alt=50.png width=60 height=60>
+<img src=51.png alt=51.png width=60 height=60>
+<img src=52.png alt=52.png width=60 height=60>
+<img src=53.png alt=53.png width=60 height=60>
+<img src=54.png alt=54.png width=60 height=60>
+<img src=55.png alt=55.png width=60 height=60>
+<img src=56.png alt=56.png width=60 height=60>
+<img src=57.png alt=57.png width=60 height=60>
+<img src=58.png alt=58.png width=60 height=60>
+<img src=59.png alt=59.png width=60 height=60>
+
+<ul>
+  <li><a href=https://jxck.io/labs/hol/index.html>https/1.1</a>
+  <li><a href=https://jxck.io:9001>https/2</a>
+</ul>
