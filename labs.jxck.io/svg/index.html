@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<title>SVG Demo | labs.jxck.io</title>
+
+<style>
+img {
+  border: solid 1px #000;
+  background: #000;
+}
+pre {
+  background: #fff;
+}
+</style>
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  "use strict";
+  let imgs = document.getElementsByTagName('img');
+  let url = new URL(imgs[0].src);
+  Array.from(imgs).map(img => img.src).forEach((url) => {
+    fetch(url).then((res) => res.text()).then((txt) => {
+      let id = url.split('/').pop();
+      console.log(id);
+      document.getElementById(id).textContent = txt;
+    });
+  });
+});
+</script>
+
+<h1>SVG Gallery</h1>
+
+<h2>Jxck</h2>
+<img width=200 height=200 src=//www.jxck.io/assets/img/jxck.svg>
+<pre id=jxck.svg></pre>
+
+<h2>AMP</h2>
+<img width=200 height=200 src=//www.jxck.io/assets/img/amp.svg>
+<pre id=amp.svg></pre>
+
+<h2>UP</h2>
+<img width=200 height=200 src=//www.jxck.io/assets/img/up.svg>
+<pre id=up.svg></pre>
