@@ -3,10 +3,6 @@
 <meta name=description content="demo page of mixed content">
 <meta name=viewport content="width=device-width,initial-scale=1">
 
-<!-- here -->
-<meta http-equiv=Content-Security-Policy content=upgrade-insecure-requests>
-<!--  is  -->
-
 <style>
 pre {
   font-size: 1em;
@@ -22,7 +18,7 @@ strong {
 
 <h1>Mixed Content</h1>
 
-<h2>Upgrade Insecure Request <strong>ON</strong></h2>
+<h2>Upgrade Insecure Request <strong>OFF</strong></h2>
 <p>このページは HTTPS で配信されていますが、以下の HTTP の mixed content を含みます。</p>
 
 <pre>
@@ -32,20 +28,16 @@ strong {
 &lt;iframe src=http://example.com height=300 width=300&gt;iframe to example.com&lt;/iframe&gt;
 </pre>
 
-しかしこのページは Upgarade Insecure Request が <strong>有効になっています</strong>
-
-<pre>
-  &lt;meta http-equiv=Content-Security-Policy content=upgrade-insecure-requests&gt;
-</pre>
+しかしこのページは Upgarade Insecure Request が <strong>有効になっていません</strong>
 
 したがって読み込まれたコンテンツは以下のように扱われます。
 
 <ul>
-  <li>image, js, css へのリンクが <code>http://</code> を <code>https://</code> に読み替えてが読み込まれる
-  <li>ブザウザのアドレスバーが緑(TLS valid)になる
+  <li>ブロックされた image, js, css, iframe が読み込まれない
+  <li>ブザウザのアドレスバーが緑(TLS valid)にならない
   <li>コンソールに、 Mixed Contents をブロックした旨のエラーが出る
-  <li>ただし <code>&lt;iframe&gt;</code> はブロックされる
 </ul>
+
 
 <a href=upgrade.html>このページに Upgarade Insecure Request を有効にしたバージョンがこちら。</a>
 
@@ -54,7 +46,7 @@ strong {
 <script src=http://code.jquery.com/jquery-2.2.1.min.js></script>
 <link href=http://getbootstrap.com/dist/css/bootstrap.min.css type=text/css  rel=stylesheet>
 <img src=http://upload.wikimedia.org/wikipedia/commons/c/ce/Example_image.png>
-<!--iframe src=http://example.com height=300 width=300>iframe to example.com</iframe-->
+<!-- iframe src=http://example.com height=300 width=300>iframe to example.com</iframe -->
 
 
 <h2>About Mixed Content</h2>
