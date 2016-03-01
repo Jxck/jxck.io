@@ -118,7 +118,7 @@ class Builder {
     let value = `<pre class=${lang}><code>${node.value}</code></pre>\n`;
     if (this.ampurl) {
       // has amp url so not amp page
-      value = [this.Style('//www.jxck.io/assets/css/pre.css'), value].join('\n');
+      value = [this.Style('/assets/css/pre.css'), value].join('\n');
     }
     return value;
   }
@@ -126,7 +126,7 @@ class Builder {
     let value = this.wrap`<table>${node.value}</table>`
     if (this.ampurl) {
       // has amp url so not amp page
-      value = [this.Style('//www.jxck.io/assets/css/table.css'), value].join('\n');
+      value = [this.Style('/assets/css/table.css'), value].join('\n');
     }
     return value;
   }
@@ -460,14 +460,14 @@ function prepare(filepath, option) {
     ampurl = null;
     template = read('./.template/amp.html');
     style = [
-      'www.jxck.io/assets/css/body.css',
-      'www.jxck.io/assets/css/header.css',
-      'www.jxck.io/assets/css/info.css',
-      'www.jxck.io/assets/css/main.css',
-      'www.jxck.io/assets/css/article.css',
-      'www.jxck.io/assets/css/pre.css',
-      'www.jxck.io/assets/css/table.css',
-      'www.jxck.io/assets/css/footer.css',
+      'blog.jxck.io/assets/css/body.css',
+      'blog.jxck.io/assets/css/header.css',
+      'blog.jxck.io/assets/css/info.css',
+      'blog.jxck.io/assets/css/main.css',
+      'blog.jxck.io/assets/css/article.css',
+      'blog.jxck.io/assets/css/pre.css',
+      'blog.jxck.io/assets/css/table.css',
+      'blog.jxck.io/assets/css/footer.css',
     ].map((file) => {
       return fs.readFileSync(file).toString();
     }).join('\n')
