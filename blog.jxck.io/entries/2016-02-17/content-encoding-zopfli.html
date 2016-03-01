@@ -46,7 +46,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-02-17T08:00:00+08:00",
-  "dateModified": "2016-02-25T08:00:00+08:00",
+  "dateModified": "2016-02-23T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -71,28 +71,28 @@ by Jxck
 
 <title>zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について | blog.jxck.io</title>
 
-<link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/body.css>
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
 
-<link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/header.css>
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
 <header>
   <ul>
-    <li><a href=//www.jxck.io><img class=logo alt="jxck logo" width=30 src=//www.jxck.io/assets/img/jxck.svg></a>
-    <li><a href="/entries/2016-02-17/content-encoding-zopfli.amp.html#development=1"><img alt="move to amp version" width=30 src=//www.jxck.io/assets/img/amp.svg></a>
-    <li><a href=.><img alt="move to parent directory" width=30 src=//www.jxck.io/assets/img/up.svg></a>
-    <li><a href=/feeds/atom.xml><img alt="rss feed" width=30 src=//www.jxck.io/assets/img/rss.svg></a>
+    <li><a href=//www.jxck.io><img class=logo alt="jxck logo" width=30 src=/assets/img/jxck.svg></a>
+    <li><a href="/entries/2016-02-17/content-encoding-zopfli.amp.html#development=1"><img alt="move to amp version" width=30 src=/assets/img/amp.svg></a>
+    <li><a href=.><img alt="move to parent directory" width=30 src=/assets/img/up.svg></a>
+    <li><a href=/feeds/atom.xml><img alt="rss feed" width=30 src=/assets/img/rss.svg></a>
   </li>
 </header>
 
-<link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/main.css>
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
 <main>
-  <link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/info.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-02-17>2016-02-17</time>
-    <li>updated_at: <time class=updated_at datetime=2016-02-25>2016-02-25</time>
+    <li>updated_at: <time class=updated_at datetime=2016-02-23>2016-02-23</time>
     <li class=tags>tags: [<a>zopfli</a>,<a>http</a>,<a>performance</a>]
   </ul>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/article.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
   <article>
     <h1><a href="/entries/2016-02-17/content-encoding-zopfli.html">zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について</a></h1>
     <section>
@@ -128,7 +128,7 @@ by Jxck
       <section>
         <h3 id="gzip+ディレクティブ"><a href="#gzip+ディレクティブ">gzip ディレクティブ</a></h3>
         <p>以下を設定すると、 h2o はコンテンツを on the fly (リクエストが来てから)圧縮し送信してくれる。
-        <link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
         <pre class=><code>gzip: ON</code></pre>
         <p><a href="https://h2o.examp1e.net/configure/gzip_directives.html#gzip">Configure > Gzip Directives > "gzip"</a>
         <p>これにより、あらかじめ圧縮していないコンテンツや、バックエンドのアプリケーションが動的に生成したコンテンツを圧縮転送することができる。
@@ -137,7 +137,7 @@ by Jxck
       <section>
         <h3 id="send-gzip+ディレクティブ"><a href="#send-gzip+ディレクティブ">send-gzip ディレクティブ</a></h3>
         <p>あらかじめコンテンツを gzip 圧縮した状態で <code>ファイル名.gz</code> で配置し、以下を設定すると、 h2o は自動的に圧縮済みファイルを転送してくれる。
-        <link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
         <pre class=><code>file.send-gzip: ON</code></pre>
         <p><a href="https://h2o.examp1e.net/configure/file_directives.html#file.send-gzip">Configure > File Directives > "file.send-gzip"</a>
         <p>事前に圧縮するため、レスポンスへのオーバーヘッドは無くなる。
@@ -162,12 +162,12 @@ by Jxck
       <section>
         <h3 id="ベンチマーク"><a href="#ベンチマーク">ベンチマーク</a></h3>
         <p>以下のように、前回の記事に対して zopfli コマンドを実行し、 time コマンドで実行時間を計測した。
-        <link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/pre.css>
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
         <pre class=sh><code>$ time zopfli --i10 -c loading-css-over-http2.html</code></pre>
         <p><code>--i</code> が探索回数であり、これを増やせばより小さく圧縮できるが、時間がかかる。
         デフォルトは <code>i = 15</code> であるため、 <code>10..100</code> まで増やしながら実行した。
         <p>最初の段は、元のファイルサイズ、二段目は <code>gzip</code> コマンドの結果である。
-        <link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/table.css>
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/table.css>
         <table>
           <thead>
             <tr>
@@ -241,7 +241,7 @@ by Jxck
         </table><p>この結果だと <code>-i20</code> 以上は誤差のようである。
         ただ、開発用の Mac では少し違う結果が出たりもしたため、結果 <code>i=30</code> くらいに落ち着いた。
         <p>また、 <a href="//www.jxck.io/assets/img/jxck.webp">WebP</a> と <a href="//www.jxck.io/assets/img/jxck.png">PNG</a> の画像ファイルでも検証したところ、以下のようになった。
-        <link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/table.css>
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/table.css>
         <table>
           <thead>
             <tr>
@@ -301,11 +301,11 @@ by Jxck
 </main>
 <hr>
 
-<link rel=stylesheet property=stylesheet type=text/css href=//www.jxck.io/assets/css/footer.css>
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
 <footer>
   <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
 </footer>
 
-<script src="/assets/highlight.min.js"></script>
+<script src="/assets/js/highlight.min.js"></script>
 <script>window.onload = hljs.initHighlighting;</script>
 <script src=//www.jxck.io/assets/js/ga.js></script>
