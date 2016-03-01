@@ -82,14 +82,6 @@ class Builder {
   Style(href) {
     return `<link rel=stylesheet property=stylesheet type=text/css href=${href}>`;
   }
-  Dir() {
-    let dir = this.dir.split('/').pop();
-    return `
-      <li><a href=/>blog.jxck.io</a>
-      <li><a href=/entries>entries</a>
-      <li><a href=/entries/${dir}>${dir}</a>
-    `
-  }
   HTML(article) {
     this.article = article;
     this.meta = eval('`' + this.meta + '`');

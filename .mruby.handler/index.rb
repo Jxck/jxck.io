@@ -12,17 +12,6 @@ def list(dir, path)
      }
      .join("\n    ")
 
-  pathlink = ""
-  if path != "entries"
-    pathlink = "<li><a href=/entries/#{path.split('/')[1]}>#{path.split('/')[1]}</a>"
-  end
-
-  pathlink = <<EOS
-  <li><a href=/>blog.jxck.io</a>
-  <li><a href=/entries>entries</a>
-  #{pathlink}
-EOS
-
   html = File.read(".template/index.html")
   html = html.gsub('"', '\"')
   html = '"' + html + '"'

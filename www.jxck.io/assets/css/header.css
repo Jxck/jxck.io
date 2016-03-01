@@ -5,42 +5,17 @@ header {
   background-color: #222;
 }
 
-header div {
+header ul {
   display: flex;
   flex-direction: row;
   width: 80%;
   margin: 0 auto;
 }
 
-header > div > a {
-  display: block;
-  width: 31px;
-  height: 31px;
-  margin: 0 1em 0 0;
-  padding: 0;
-}
-
-header a.logo {
-  border: 1px solid #ccc;
-}
-
-header ul.path {
+header ul li:first-child {
   flex: 1;
-  display: flex;
-  margin: 0;
-  line-height: 31px;
 }
 
-header ul.path a {
-  justify-content: flex-start;
-  color: gray;
-  border: none;
-}
-
-header ul a:hover {
-  color: white;
-}
-
-header ul a::before {
-  content: "/ ";
+header .logo {
+  border: 1px solid #ccc;
 }
