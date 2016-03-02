@@ -3,34 +3,18 @@
 https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/
 
 
-Preload: What Is It Good For?
+preload でローディングの制御がより細かくできるようになる
 
-Preload (spec) is a new web standard aimed at improving performance and providing more granular loading control to web developers.
-It gives developers the ability to define custom loading logic without suffering the performance penalty that script-based resource loaders incur.
-
-Further reading on Smashing: Link
-
-- Perceived Performance
-- Perception Management
-- Tolerance Management
-- Getting Ready For HTTP/2
-- Everything You Need To Know About AMP
-- Progressive Enhancement
-- Improving Smashing Magazine's Performance
+JS で行うよりもより効率の良いローディングを実現できる。
 
 A few weeks ago, I shipped preload support in Chrome Canary, and barring unexpected bugs it will hit Chrome stable in mid-April.
 
-preload 出したけど chrome で予期せぬバグがあった。
-
+1 月に Chrome Canary に preload を入れた。
 
 
 Well, <link rel="preload"> is a declarative fetch directive.
 
-In human terms, it's a way to tell a browser to start fetching a certain resource, because we as authors (or as server administrators, or as smart-server developers) know that the browser is going to need that particular resource pretty soon.
-
-ブラウザが必要とするリソースを知っているため、それをフェッチするタイミングをブラウザに伝える
-
-
+ブラウザがこのあと必要とするリソースを知っているため、それをフェッチするタイミングをブラウザに伝える
 
 <link rel="prefetch"> や、 chrome だけなら <link rel="subresource"> もある
 
@@ -62,7 +46,7 @@ Preload は今のページで使う、サブリソースと似てる。しかし
 
 It has an as attribute, which enables the browser to do a number of things that subresource and prefetch did not enable:
 
-アトリビュートを持ち、ブラウザに  TODO
+色々なことを設定できるアトリビュートを持つ。
 
 
 
