@@ -1,9 +1,27 @@
-# Preload
+# [preload][performance] Preload を用いたリソースプリローディングの最適化
 
-https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/
+## Intro
+
+`<link rel=preload>` の仕様が公開されており、現在 Chrome Canary に実装されている。
+
+この仕様のモチベーションについて、 Chrome 開発者の Yoav Weiss 氏のブログも公開された。
+
+今回は、この仕様の特徴と用途を解説し、本サイトへの適用について検討する。
 
 
-preload でローディングの制御がより細かくできるようになる
+- [Preload: What Is It Good For?](https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/])
+- [W3C Preload Spec](https://w3c.github.io/preload/)
+- [Intent to Ship: &lt;link rel=preload&gt;](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_nu6HlbNQfo/XzaLNb1bBgAJ)
+
+
+## Preload
+
+Preload はリソースのローディングを最適化することを目的に策定された仕様である。
+
+link 属性ファミリーで、最適化に用いられる値としては、以前書いた [Resouce Hints 系](https://blog.jxck.io/entries/2016-02-11/resource-hints.html) と近いが、仕様としては別になっている。
+
+
+
 
 JS で行うよりもより効率の良いローディングを実現できる。
 
