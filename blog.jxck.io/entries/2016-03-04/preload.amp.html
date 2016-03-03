@@ -591,7 +591,7 @@ Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin
         <li>Client-Hints や Accept Header を使った最適化もできる。
         <li>Push と違い Preload は 3rb party にも使える。
       </ul>
-      <p>Push が既にブラウザにキャッシュされているリソースを考慮できないという問題は、別途 <a href="TODO">提案</a> があるが、基本的には Push はクライアントの状況を踏まえることが難しい。
+      <p>Push が既にブラウザにキャッシュされているリソースを考慮できないという問題は、別途 <a href="https://tools.ietf.org/html/draft-kazuho-h2-cache-digest">提案</a> があるが、基本的には Push はクライアントの状況を踏まえることが難しい。
       <p>もともと HTTP を基本とする Web がプルベースを前提としているため、 Fetch でリクエストを投げる際にクライアントの情報を載せ、サーバがそれをレスポンスに反映するモデルの方が、細かい調整がしやすいのは自明である。
       <p>したがって、クライアントが置かれた状況を限定的に捉え、より積極的にリソースをキャッシュさせる用途で Push を。
       クライアントの状態を踏まえて、コンテントネゴシエーションを重視する場合に Preload を。
