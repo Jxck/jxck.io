@@ -215,3 +215,31 @@ Push が既にブラウザにキャッシュされているリソースを考慮
 ```
 Link: </app/style.css>; rel=preload; as=style; nopush
 ```
+
+
+## 本サイトへの適用
+
+### 対象リソース
+
+本サイトでは、以下のリソースが Preload の対象として、効果が有りそうであると判断した。
+
+- 本サイトの構成は [コンポーネントベース](https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html) で構築しているため、 CSS が body 中に出現するという特徴を持つ。
+- アナリティクスはベージの最下部に記述している。
+- Higlight に使用する JS も、ベージの最下部に記述している。
+
+これらは共通して「使うことが分かっているが、それぞれの理由によって HTML の途中や下部に記述している」という特徴であるため、取得のみを Preload によって先に行うことは効果が期待できそうである。
+
+
+### 指定方法
+
+本サイトは H2O でサーブしているが、まだ nopush には対応していない。
+そのため HTTP Header で Link rel=preload を指定すれば、必ず HTTP2 Push が発生する。
+
+まず、本サイトはまだ HTTP2 Push を持ちいた最適化は、キャッシュを有効に使えなくなるという理由から行っておらず、 [Cache Digest](https://tools.ietf.org/html/draft-kazuho-h2-cache-digest) を Service Worker で管理する方式を採用する予定なので、そこまでは Link Header を付けるのは避けたい。
+
+そこで、ページで共通するサブリソースについて、 HTML のトップレベルへの `<link>` タグで指定することにした。
+
+
+### 検証
+
+TODO
