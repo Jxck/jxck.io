@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html amp>
+<head>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=/entries/2016-03-04/preload.html>
+<meta name=viewport content="width=device-width,minimum-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+
+<meta name=author content=Jxck>
+<meta name=description content="Preload を指定する `&lt;link rel=preload&gt;` の仕様が公開されており、現在 Chrome Canary に実装されている。この仕様のモチベーションについて、 Chrome 開発者の Yoav Weiss 氏のブログも公開された。今回は、この仕様の特徴と用途...">
+<meta name=keywords content="preload,performance">
+
+<meta name=twitter:card content=summary>
+<meta name=twitter:site content=@jxck_>
+<meta name=twitter:url content=https://blog.jxck.io/entries/2016-03-04/preload.html>
+<meta name=twitter:title content="Preload を用いたリソースプリローディングの最適化 | blog.jxck.io">
+<meta name=twitter:description content="Preload を指定する `&lt;link rel=preload&gt;` の仕様が公開されており、現在 Chrome Canary に実装されている。この仕様のモチベーションについて、 Chrome 開発者の Yoav Weiss 氏のブログも公開された。今回は、この仕様の特徴と用途...">
+<meta name=twitter:image content=https://www.jxck.io/assets/img/jxck.png>
+
+<meta property=og:type content="article">
+<meta property=og:url content=https://blog.jxck.io/entries/2016-03-04/preload.html>
+<meta property=og:title content="Preload を用いたリソースプリローディングの最適化 | blog.jxck.io">
+<meta property=og:site_name content=blog.jxck.io>
+<meta property=og:description content="Preload を指定する `&lt;link rel=preload&gt;` の仕様が公開されており、現在 Chrome Canary に実装されている。この仕様のモチベーションについて、 Chrome 開発者の Yoav Weiss 氏のブログも公開された。今回は、この仕様の特徴と用途...">
+<meta property=og:image content=https://www.jxck.io/assets/img/jxck.png>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "Preload を用いたリソースプリローディングの最適化 | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2016-03-04T08:00:00+08:00",
+  "dateModified": "2016-03-03T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://www.jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "Preload を指定する `&lt;link rel=preload&gt;` の仕様が公開されており、現在 Chrome Canary に実装されている。この仕様のモチベーションについて、 Chrome 開発者の Yoav Weiss 氏のブログも公開された。今回は、この仕様の特徴と用途..."
+}
+</script>
+
+<link rel=icon sizes=192x192 href=//www.jxck.io/assets/img/jxck.png>
+<link rel=apple-touch-icon sizes=128x128 href=//www.jxck.io/assets/img/jxck.png>
+
+<title>Preload を用いたリソースプリローディングの最適化 | blog.jxck.io</title>
+<script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+<script async src=https://cdn.ampproject.org/v0.js></script>
+
+<style amp-custom>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', 'Helvetica', serif;
+  color: #222;
+  background-color: #fefefe;
+}
+
+iframe {
+  display: block;
+  max-width: 100%;
+  margin: 1em 0;
+}
+
+.archive {
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.archive ul {
+  margin: 0;
+}
+
+.archive time {
+  padding-right: 0.5em;
+}
+
+.archive time::after {
+  content: ":";
+}
+
+.archive .tags {
+  font-size: 0.8em;
+  margin-left: 1em;
+}
+
+.tags a {
+  margin: 0 0.2em;
+}
+
+@media only screen and (max-device-width : 480px) {
+  article > img {
+    max-width:100%;
+  }
+}
+
+header {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.4em;
+  background-color: #222;
+}
+
+header ul {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  margin: 0 auto;
+}
+
+header ul li:first-child {
+  flex: 1;
+}
+
+header .logo {
+  border: 1px solid #ccc;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.info li {
+  margin-right: 1em;
+  list-style-type: none;
+}
+
+.info li::before {
+  content: none;
+}
+
+main {
+  display: block;
+  width: 80%;
+  margin: 1em auto;
+}
+
+main img[src$=".svg"] {
+  max-width: 50%;
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+}
+
+a {
+  color: RoyalBlue;
+}
+
+a:visited {
+  color: Brown;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  pointer-events: none;
+  color: #222;
+}
+
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: #222;
+}
+
+h1 > a:hover:before,
+h2 > a:hover:before,
+h3 > a:hover:before,
+h4 > a:hover:before,
+h5 > a:hover:before,
+h6 > a:hover:before {
+  color: Brown;
+}
+
+h1 > a::before {
+  content: "# ";
+  pointer-events: all;
+}
+
+h2 > a::before {
+  content: "## ";
+  pointer-events: all;
+}
+
+h3 > a::before {
+  content: "### ";
+  pointer-events: all;
+}
+
+h4 > a::before {
+  content: "#### ";
+  pointer-events: all;
+}
+
+i::before, i::after {
+  content: "*";
+}
+
+strong::before, strong::after {
+  content: "**";
+}
+
+ol, ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+li {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+ul, ol, dl {
+  margin: 1.4em 0;
+}
+
+dl dt {
+  font-weight: bold;
+}
+
+dl dt::after {
+  content: ":";
+}
+
+dl dd {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+blockquote {
+  display: block;
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  padding: 1em;
+  margin: 1.4em 0;
+}
+
+blockquote::before {
+  content: "> ";
+}
+
+code {
+  border: 1px solid #ddd;
+  background-color: #efefef;
+  border-radius: 4px;
+  padding: 0.1em;
+  margin: 1.4em 0;
+}
+
+code::before, code::after {
+  /* うざかった */
+  /* content: "`"; */
+}
+
+article img {
+  display: block;
+  max-width: 80%;
+  margin: 1em 0;
+  border: solid 1px #ccc;
+}
+
+pre {
+  overflow: auto;
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: 1.2em;
+  margin: 1.4em 0 0 0;
+  border-radius: 4px;
+}
+
+pre::before {
+  content: "```" attr(class) "\A";
+}
+
+pre::after {
+  position: relative;
+  top: -1em;
+  content:"\A```";
+}
+
+pre > code {
+  display: block;
+  padding: 0.6em;
+  margin: 0;
+  border: none;
+  background-color: #efefef;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs,
+.hljs-subst ,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-name ,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition ,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-type,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-section,
+.hljs-meta,
+.hljs-meta-string,
+.hljs-emphasis {
+}
+
+table {
+  font-family: monospace;
+  margin: 2em 0;
+  border-spacing: 0 0.4em;
+}
+
+th {
+  padding: 0em 1.0em 0.6em;
+  border-left: 0.14em solid #222;
+  border-bottom: 2px dashed #222;
+}
+
+td {
+  padding: 0.4em 1.2em;
+  border-left: 0.14em solid #222;
+}
+
+th:last-child, td:last-child {
+  border-right: 0.14em solid #222;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+footer {
+  padding: 1em;
+}
+
+</style>
+</head>
+<body>
+<header>
+  <ul>
+    <li><a href=//www.jxck.io><amp-img class=logo alt="jxck logo" width=30 height=30 src=/assets/img/jxck.svg></a>
+    <li><a href=.><amp-img alt="move to parent directory" width=30 height=30 src=/assets/img/up.svg></a>
+    <li><a href=/feeds/atom.xml><amp-img alt="rss feed" width=30 height=30 src=/assets/img/rss.svg></a>
+  </ul>
+</header>
+<main>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2016-03-04>2016-03-04</time>
+    <li>updated_at: <time class=updated_at datetime=2016-03-03>2016-03-03</time>
+    <li class=tags>tags: [<a>preload</a>,<a>performance</a>]
+  </ul>
+
+
+  <article>
+    <h1><a href="/entries/2016-03-04/preload.html">Preload を用いたリソースプリローディングの最適化</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>Preload を指定する <code>&lt;link rel=preload&gt;</code> の仕様が公開されており、現在 Chrome Canary に実装されている。
+      <p>この仕様のモチベーションについて、 Chrome 開発者の Yoav Weiss 氏のブログも公開された。
+      <p>今回は、この仕様の特徴と用途を解説し、本サイトへの適用について検討する。
+      <ul>
+        <li><a href="https://w3c.github.io/preload/">W3C Preload Spec</a>
+        <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_nu6HlbNQfo/XzaLNb1bBgAJ">Intent to Ship: <code>&lt;link rel=preload&gt;</code></a>
+        <li><a href="https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/">Preload: What Is It Good For?</a>
+      </ul>
+    </section>
+    <section>
+      <h2 id="Preload"><a href="#Preload">Preload</a></h2>
+      <p>Preload はリソースのローディングを最適化することを目的に策定された仕様である。
+      <p>link 属性ファミリーで、最適化に用いられる値としては、以前書いた <a href="https://blog.jxck.io/entries/2016-02-11/resource-hints.html">Resouce Hints 系</a> と近いが、仕様としては別になっている。
+      <p>また、既に HTTP2 においてこの仕様の一部が使われており、最適化の意味合いとしてはかかわり合う部分もある。
+      <p>現在 Chrome Canary にのみ実装されており、 4 月には Chrome Stable にも入る予定である。他のブラウザの実装も進みつつある模様。
+    </section>
+    <section>
+      <h2 id="Preload+の特徴"><a href="#Preload+の特徴">Preload の特徴</a></h2>
+      <p>Resource Hints の例えば Prefetch との違いは、 Prefetch がナビゲーションの前に動作するのに対して、 Prelaod はナビゲーションが行われた後に動作することが上げられる。
+      <p>Prefetch は、画面を遷移する前に、次の遷移先で必要になるリソースについて、投機的な取得を指示していたが、 Preload は現在表示しようとしているページに遷移した後に、そのページ内でのリソース取得を最適化する。(Chrome が独自に実装している Subresouce というのもあった、それに近い)
+      <p>また、 Preload は以下のような特徴を持ち、今までできなかったことができるようになる。
+      <ul>
+        <li>属性の指定によっていくつかのコントロールが可能である。
+        <li>Content-Security-Policy を満たしているかを確認できる。
+        <li>リソースに適した Accept ヘッダ(<code>image/webp</code> etc)を付与できる。
+        <li>Prealod はそれ自体が <code>onload</code> を発火する。
+        <li><code>window.onload</code> をブロックしない
+      </ul>
+    </section>
+    <section>
+      <h2 id="クリティカルリソースの先行取得"><a href="#クリティカルリソースの先行取得">クリティカルリソースの先行取得</a></h2>
+      <p>ナビゲーション終了後、レスポンスを取得したブラウザは、 HTML のパースを開始し、必要なサブリソースの取得( <strong>Preload</strong> )を開始する。
+      <p>しかし、必要なリソースが全て HTML に <code>&lt;img&gt;</code> や <code>&lt;script&gt;</code>, <code>&lt;link&gt;</code> などで書かれているとは限らず、取得した CSS や JS に記述されている場合がある。
+      <p>さらに CSS で指定されていて、 Preloader がそれを見つけていたとしても、実際にそのセレクタが使われるまでは、本当にそのイメージが必要かを判定することはできない。
+      <p>例えば、 Above the Fold に表示される Hero Image が CSS の <code>div.hero { background-image: url(&quot;hero-image.png&quot;) }</code> で指定されていた場合は、実際の取得は HTML で <code>&lt;div class=hero&gt;&lt;/div&gt;</code> が出現してからになる。
+      <p>もっと酷い例として、後から取得された Web Font でテキストが全て置き換わった場合、これをなるべく早く(かつ高い優先度で)取得したいと思うのが自然だろう。
+      <p>重要なリソースがサブリソースに隠されている場合、どうしても取得までにラグが発生してしまい、画像を反映するには再レイアウトが発生し UX を損ねる場合がある。
+      <p><code>&lt;link rel=preload&gt;</code> を記述すれば、こうした「 <strong>後から取得されるが、レイアウト上重要なリソース</strong> 」を Preload 段階で取得するようにブラウザに指示することができる。
+      <pre class=html><code>&lt;link rel=preload as=image href=hero-image.png&gt;</code></pre>
+      <p>Web Font の場合はこうなる。
+      <pre class=html><code>&lt;link rel=preload  as=font type=font/woff2 href=font.woff2 crossorigin&gt;</code></pre>
+      <p>(Chrome は現状フォントの取得は暗黙的に CORS になるらしいため、 Same Origin からの取得でも <code>crossorigin</code> が必要らしい)
+      <p><code>as</code> に指定可能な値は <a href="https://fetch.spec.whatwg.org/#concept-request-destination">fetch spec に一覧がある</a>、省略すると XHR や fetch と同じ挙動になる。
+      <p><code>type</code> を指定すると、ブラウザがそのファイルタイプをサポートしている場合だけ取得するようにできる。
+    </section>
+    <section>
+      <h2 id="遅延実行"><a href="#遅延実行">遅延実行</a></h2>
+      <p>Preload を使うことで、「<strong>取得しておきたいけど実行はしたくない</strong>」というスクリプトの取得ができる。
+      <p>後から <code>&lt;script&gt;</code> を差し込むことで、 JS の「取得と実行」を遅延させることはこれまでもできたが、「取得」だけを先に行うことはできなかった。
+      また、取得を XHR で行い保存しておいたものをあとで <code>eval</code> することもできるが、 Preload を使うことで実行を <code>&lt;script&gt;</code> で行え、ブラウザの Preloader に取得させるために、再利用が効く。
+      <p>まず「取得」を Preload で行う、これは HTML に書いておいても良いし、それ自体も遅延したければ好きなタイミングで以下のようにノードを作れば良い。
+      <pre class=html><code>&lt;link rel=preload as=script href=script.js&gt;</code></pre>
+      <pre class=js><code>var preload = document.createElement(&#039;link&#039;);
+link.rel = &#039;preload&#039;;
+link.as = &#039;script&#039;;
+link.href = &#039;script.js&#039;;
+document.head.appendChild(link);</code></pre>
+      <p>そして、「実行」は任意のタイミングで <code>&lt;script&gt;</code> を生成し行う。
+      <pre class=js><code>var script = document.createElement(&#039;script&#039;);
+script.src = &#039;script.js&#039;;
+document.body.appendChild(script);</code></pre>
+    </section>
+    <section>
+      <h2 id="非同期ローダ"><a href="#非同期ローダ">非同期ローダ</a></h2>
+      <p><code>&lt;link rel=preload&gt;</code> は自身で <code>onload</code> を発火する。
+      これを利用すると、 HTML と少しの JS で <strong>非同期ローダ</strong> を実現することができる。
+      <p>例えば CSS の場合はこうなる。
+      <pre class=html><code>&lt;link rel=preload as=style href=style.css onload=&quot;this.rel=&#039;stylesheet&#039;&quot;&gt;</code></pre>
+      <p>同じことは JS でも応用できる。
+      <p><code>&lt;script async&gt;</code> があるが、これは <code>window.onload</code> をブロックするので、そこで使い分ける。
+      <p>analytics のような場合。とにかく早く取得して、ユーザを取りこぼさず、かつ UX は一切損ないたく無い、特に onload を遅らせたくはない場合などに使える。
+      <pre class=html><code>&lt;link rel=preload as=script href=analytics.js
+      onload=&quot;var script = document.createElement(&#039;script&#039;);
+              script.src = this.href;
+              document.body.appendChild(script);&quot;&gt;</code></pre>
+    </section>
+    <section>
+      <h2 id="Media+Query"><a href="#Media+Query">Media Query</a></h2>
+      <p>Preload はリンクであるため、仕様上 media 属性を持つ。(chrome ではまだ未サポート)
+      つまり Media Query を用いた条件付きローディングができる。
+      <p>例えば <code>&lt;picture&gt;</code> で Image を読み分けている場合、その条件と同じものを <code>&lt;link rel=preload&gt;</code> に指定することで、一致した条件のみの画像を Prelaod できる。
+      <pre class=html><code>&lt;link rel=preload as=image href=large.png media=&quot;(max-width: 600px)&quot;&gt;
+&lt;link rel=preload as=image href=middle.png media=&quot;(max-width: 400px)&quot;&gt;
+&lt;link rel=preload as=image href=small.png media=&quot;(max-width: 300px)&quot;&gt;</code></pre>
+    </section>
+    <section>
+      <h2 id="Header+での指定"><a href="#Header+での指定">Header での指定</a></h2>
+      <p>Preload は、同じセマンティクスを HTTP Header にも適用できる。
+      <p>つまりここまでマークアップで示してきた例は、(onload hack など除き)基本的に全て HTTP Response Header で行うことができる。
+      <pre class=><code>Link: &lt;script.js&gt;;rel=&quot;preload&quot;;as=&quot;script&quot;
+
+Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin</code></pre>
+      <p>HTTP Header にすることによって、マークアップと最適化を分離することができる。
+      <p>既存コンテツをいじらずに最適化を追加したい場合や、コンテンツをスキャンして自動的に最適化を設定するような、外部の <a href="https://www.akamai.com/us/en/resources/front-end-optimization-feo.jsp">最適化エンジン</a> などに委ねる場合などに有用である。
+    </section>
+    <section>
+      <h2 id="Feature+Detection"><a href="#Feature+Detection">Feature Detection</a></h2>
+      <p>Preload をヒントとして使っていれば、サポートされてい無いブラウザにおいては従来通りのタイミングで取得が走るだけになる。
+      しかし、 <code>onload</code> ハックなどを用いたより積極的な活用を行う上では、ブラウザのサポートの有無を知りたい場合もある。
+      <p>そこで、サポートされる <code>rel</code> の値を DOM から取れるような提案がなされている。
+      <pre class=js><code>document.createElement(&quot;link&quot;).relList.supports(&quot;preload&quot;));</code></pre>
+      <p>これを使えば、 Preload が無効な場合に問題があるサイトでは、フォールバックすることも可能になる。
+    </section>
+    <section>
+      <h2 id="HTTP2"><a href="#HTTP2">HTTP2</a></h2>
+      <p>HTTP2 において、 HTTP Link preload ヘッダは Push するリソースを指定する目的で使用している。
+      <p>しかし、実際の動作として、サーバが行う HTTP2 の Push と、ブラウザが行う Preload は補完関係にある。
+      <p>HTTP2 の Push ではリクエストより先にリソースを送ることができ、ブラウザはそれをキャッシュとして保存する。
+      レスポンスの HTML を取得した後、サブリソースを発見して Fetch するタイミングで、そのキャッシュがヒットするという仕組みである。
+      <p>一方で、 Push はブラウザが発呼する Fetch とは方向が逆であるため、ある程度の制限が出る。
+      <ul>
+        <li>Preload は任意のタイミングで発行し、完了を <code>onload</code> で知ることができる。
+        <li>Preload は fetch であるため、コンテントネゴシエーションが実施できる。
+        <li>Client-Hints や Accept Header を使った最適化もできる。
+        <li>Push と違い Preload は 3rb party にも使える。
+      </ul>
+      <p>Push が既にブラウザにキャッシュされているリソースを考慮できないという問題は、別途 <a href="TODO">提案</a> があるが、基本的には Push はクライアントの状況を踏まえることが難しい。
+      <p>もともと HTTP を基本とする Web がプルベースを前提としているため、 Fetch でリクエストを投げる際にクライアントの情報を載せ、サーバがそれをレスポンスに反映するモデルの方が、細かい調整がしやすいのは自明である。
+      <p>したがって、クライアントが置かれた状況を限定的に捉え、より積極的にリソースをキャッシュさせる用途で Push を。
+      クライアントの状態を踏まえて、コンテントネゴシエーションを重視する場合に Preload を。
+      <p>という感じに、組み合わせて使うのが最も理想だと言えるだろう。
+      <p>なお、 HTTP2 の Push はさせずブラウザに Fetch で Preload させたい場合は、 <code>nopush</code> を付けることで Opt-Out することができる。
+      <pre class=><code>Link: &lt;/app/style.css&gt;; rel=preload; as=style; nopush</code></pre>
+    </section>
+    <section>
+      <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
+      <section>
+        <h3 id="対象リソース"><a href="#対象リソース">対象リソース</a></h3>
+        <p>本サイトでは、以下のリソースが Preload の対象として、効果が有りそうであると判断した。
+        <ul>
+          <li>Google アナリティクスをベージの最下部に記述している。
+          <li>Higlight に使用する JS も、ベージの最下部に記述している。
+        </ul>
+        <p>これらは共通して「使うことが分かっているが、それぞれの理由によって HTML の途中や下部に記述している」という特徴であるため、取得のみを Preload によって先に行うことは効果が期待できそうである。
+      </section>
+      <section>
+        <h3 id="指定方法"><a href="#指定方法">指定方法</a></h3>
+        <p>本サイトは H2O でサーブしているが、まだ nopush には対応していない。
+        そのため HTTP Header で Link rel=preload を指定すれば、必ず HTTP2 Push が発生する。
+        <p>まず、本サイトはまだ HTTP2 Push を持ちいた最適化は、キャッシュを有効に使えなくなるという理由から行っておらず、 <a href="https://tools.ietf.org/html/draft-kazuho-h2-cache-digest">Cache Digest</a> を Service Worker で管理する方式を採用する予定なので、そこまでは Link Header を付けるのは避けたい。
+        <p>そこで、ページで共通するサブリソースについて、 HTML のトップレベルへの <code>&lt;link&gt;</code> タグで指定することにした。
+        <pre class=><code>&lt;link rel=preload as=script src=/assets/js/highlight.min.js&gt;
+&lt;link rel=preload as=script src=//www.jxck.io/assets/js/ga.js&gt;</code></pre>
+      </section>
+      <section>
+        <h3 id="検証"><a href="#検証">検証</a></h3>
+        <p>本サイトの平均的な記事を対象として、 <code>&lt;link&gt;</code> の付与前後を Chrome Canary 51.0.2665.0 で検証した。
+        <p>数回実行し、傾向を確認。平均的な結果のスクリーンショットを取得した。
+        <p>before
+        <p><a href="before.png"><amp-img layout=responsive src=before.png#873x492 alt="before" title="result of before adding preload" width=873 height=492></a>
+        <p>after
+        <p><a href="after.png"><amp-img layout=responsive src=before.png#873x492 alt="after" title="result of after adding preload" width=873 height=492></a>
+        <p>このページでは、むしろ遅くなっている。これは、元のコンテンツで特にリソースの読み込みなどに関するオーバーヘッドが少ないためであると考えられる。したがって、処理が入ることによる内部処理のオーバーヘッドが結果に影響していると推測する。
+        <p>同様に、いくつかのページで同様に試したが、もとが速すぎるので、もはや誤差のような結果にしかならなかった。
+        <p>現状 Chrome Canary しか対応していないこと、このブログは作ってまだ間もないので、コンテンツも少ないこともふまえ。今回は導入を見送った。
+        <p>今後コンテンツが増え、ボトルネックが発生した際に再度検証する。
+        <p>効果が体感できるコンテンツが作成できた場合は、デモとして <a href="https://labs.jxck.io">labs.jxck.io</a> に掲載する。
+      </section>
+    </section>
+  </article>
+
+</main>
+<hr>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
+</footer>
+</body>
+</html>
+<amp-analytics type="googleanalytics" id="analytics1">
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
