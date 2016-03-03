@@ -10,7 +10,7 @@ Preload を指定する `<link rel=preload>` の仕様が公開されており�
 
 
 - [W3C Preload Spec](https://w3c.github.io/preload/)
-- [Intent to Ship: &lt;link rel=preload&gt;](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_nu6HlbNQfo/XzaLNb1bBgAJ)
+- [Intent to Ship: `<link rel=preload>`](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_nu6HlbNQfo/XzaLNb1bBgAJ)
 - [Preload: What Is It Good For?](https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/)
 
 
@@ -250,13 +250,13 @@ Link: </app/style.css>; rel=preload; as=style; nopush
 
 数回実行し、傾向を確認。平均的な結果のスクリーンショットを取得した。
 
-### before
+before
 
-[![before](before.png "result of before adding preload")](before.png)
+[![before](before.png#873x492 "result of before adding preload")](before.png)
 
-### after
+after
 
-[![after](before.png "result of after adding preload")](after.png)
+[![after](before.png#873x492 "result of after adding preload")](after.png)
 
 
 このページでは、むしろ遅くなっている。これは、元のコンテンツで特にリソースの読み込みなどに関するオーバーヘッドが少ないためであると考えられる。したがって、処理が入ることによる内部処理のオーバーヘッドが結果に影響していると推測する。
