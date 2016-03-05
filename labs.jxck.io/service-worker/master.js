@@ -1,6 +1,6 @@
 'use strict';
 
-const KEY = "master.js?ver=1";
+const KEY = "master.js?ver=2";
 
 // window
 if (typeof window !== 'undefined') {
@@ -43,19 +43,21 @@ if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalSco
     let req = e.request.clone();
     caches.open(KEY).then((cache) => {
       return cache.match(req).then((res) => {
+        console.log('res', res);
         if (res) {
           console.log('cache hit', res.url);
-          //fetch(req).then((res) => {
-          //  console.log('cache update', res.url);
-          //  cache.put(req, res);
-          //});
+          // fetch(req).then((res) => {
+          //   console.log('cache update', res.url);
+          //   cache.put(req, res);
+          // });
           return res;
+        } else {
+          return fetch(req).then((res) => {
+            console.log('fetch', res.url);
+            cache.put(req, res);
+            return res;
+          });
         }
-        return fetch(req).then((res) => {
-          console.log('fetch', res.url);
-          cache.put(req, res);
-          return res;
-        });
       });
     });
   });
