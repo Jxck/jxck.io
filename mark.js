@@ -32,6 +32,7 @@ function unspace(str) {
 
 // tag を抜き出す
 function Tags(text) {
+  // [foo][bar] の部分
   let tagtext = text.match(/\# ((\[(.+?)\])+)/)[1];
   // tag は必ず書く
   if (tagtext === undefined || tagtext.length === 0) {
@@ -39,10 +40,13 @@ function Tags(text) {
     process.exit(1);
   }
 
+  // tag を本文から消す
   text = text.replace(' ' + tagtext, '');
 
+  // tag をリストに
   let tags = tagtext.substr(1, tagtext.length - 2).split('][');
-  return { tags: tags, text: text };
+
+  return { tags, text };
 }
 
 // # Intro の中身を取り出す
