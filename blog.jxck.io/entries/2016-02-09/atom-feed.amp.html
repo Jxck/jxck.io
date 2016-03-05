@@ -132,16 +132,38 @@ header {
 header ul {
   display: flex;
   flex-direction: row;
+  align-items: stretch;
   width: 80%;
   margin: 0 auto;
+  padding: 4px;
+}
+
+header ul li {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  margin-left: 1em;
+}
+
+header ul li a {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+header ul li::before {
+  content: none;
 }
 
 header ul li:first-child {
-  flex: 1;
+  flex-grow: 1;
+  margin-left: 0;
 }
 
 header .logo {
   border: 1px solid #ccc;
+  box-sizing: border-box;
 }
 
 .info {
@@ -458,9 +480,10 @@ footer {
 <body>
 <header>
   <ul>
-    <li><a href=//www.jxck.io><amp-img class=logo alt="jxck logo" width=30 height=30 src=/assets/img/jxck.svg></a>
+    <li><a href=//blog.jxck.io><amp-img class=logo alt="blog top" width=30 height=30 src=/assets/img/blog.svg></a>
     <li><a href=.><amp-img alt="move to parent directory" width=30 height=30 src=/assets/img/up.svg></a>
     <li><a href=/feeds/atom.xml><amp-img alt="rss feed" width=30 height=30 src=/assets/img/rss.svg></a>
+    <li><a href=//www.jxck.io><amp-img class=logo alt="jxck logo" width=30 height=30 src=/assets/img/jxck.svg></a>
   </ul>
 </header>
 <main>
