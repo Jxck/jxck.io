@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_KEY = "worker.js?ver=6";
+const CACHE_KEY = "worker.js?ver=11";
 
 self.addEventListener('install', (e) => {
   console.log('install', e);
@@ -17,16 +17,16 @@ self.addEventListener('fetch', (e) => {
   caches.open(CACHE_KEY).then((cache) => {
     return cache.match(req).then((res) => {
       if (res) {
-        console.log('cache hit');
-        fetch(req).then((res) => {
-          console.log('cache update');
-          cache.put(req, res);
-        });
+        console.log('cache hit', res.url);
+        //fetch(req).then((res) => {
+        //  console.log('cache update', res.url);
+        //  cache.put(req, res);
+        //});
         return res;
       }
 
       return fetch(req).then((res) => {
-        console.log('fetch');
+        console.log('fetch', res.url);
         cache.put(req, res);
         return res;
       });

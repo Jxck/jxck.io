@@ -1,12 +1,11 @@
 'use strict';
 
-
-navigator.serviceWorker.register('worker.js?ver=6').then((registration) => {
+navigator.serviceWorker.register('worker.js?ver=11').then((registration) => {
   registration.addEventListener('updatefound', (e) => {
     console.log('updatefound', e);
-    console.log('installing', registration.installing);
-    console.log('waiting', registration.waiting);
-    console.log('active', registration.active);
+    console.log('registration.installing', registration.installing);
+    console.log('registration.waiting', registration.waiting);
+    console.log('registration.active', registration.active);
   });
 
   console.log(navigator.serviceWorker.controller);
