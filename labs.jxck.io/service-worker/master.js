@@ -1,17 +1,20 @@
 'use strict';
 
-const KEY = "master.js?ver=2";
+const DEBUG = false;
+const KEY = "master.js?ver=1";
+
+let log = DEBUG ? console.log.bind(console) : ()=>{}
 
 // window
 if (typeof window !== 'undefined') {
   navigator.serviceWorker.register(KEY).then((registration) => {
     registration.addEventListener('updatefound', (e) => {
-      console.log('updatefound', e);
-      console.log('registration.installing', registration.installing);
-      console.log('registration.waiting', registration.waiting);
-      console.log('registration.active', registration.active);
+      log('updatefound', e);
+      log('registration.installing', registration.installing);
+      log('registration.waiting', registration.waiting);
+      log('registration.active', registration.active);
     });
-    console.log(navigator.serviceWorker.controller);
+    log(navigator.serviceWorker.controller);
     return navigator.serviceWorker.ready;
   }).then((registration) => {
     if (navigator.serviceWorker.controller) {
@@ -23,42 +26,34 @@ if (typeof window !== 'undefined') {
       });
     });
   }).then((registration) => {
-    console.log(registration);
+    log(registration);
   }).catch(console.error.bind(console));
 }
 
 // worker
 if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalScope) {
   self.addEventListener('install', (e) => {
-    console.log('install', e);
+    log('install', e);
     e.waitUntil(skipWaiting());
   });
 
   self.addEventListener('activate', (e) => {
-    console.log('activate', e);
+    log('activate', e);
     e.waitUntil(self.clients.claim());
   });
 
   self.addEventListener('fetch', (e) => {
-    let req = e.request.clone();
-    caches.open(KEY).then((cache) => {
-      return cache.match(req).then((res) => {
-        console.log('res', res);
-        if (res) {
-          console.log('cache hit', res.url);
-          // fetch(req).then((res) => {
-          //   console.log('cache update', res.url);
-          //   cache.put(req, res);
-          // });
-          return res;
-        } else {
-          return fetch(req).then((res) => {
-            console.log('fetch', res.url);
-            cache.put(req, res);
+    let req = e.request;
+    e.respondWith(
+      caches.open(KEY).then((cache) => {
+        return cache.match(req).then((res) => {
+          let update = fetch(req).then((res) => {
+            cache.put(req, res.clone());
             return res;
           });
-        }
-      });
-    });
+          return res || update;
+        })
+      })
+    );
   });
 }
