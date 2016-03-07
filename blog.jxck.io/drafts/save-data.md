@@ -1,3 +1,5 @@
+# Save-Data
+
 Delivering Fast and Light Applications with Save-Data
 
 Hundreds of millions of users are relying on proxy browsers and various transcoding services to access the web on a daily basis.
@@ -98,7 +100,7 @@ Secure connections (HTTPS) are routed directly from the client to the destinatio
 On the other hand, transcoding services, such as the "web light" experience offered by Google search, often take a more drastic approach and may reformat the site to make it accessible to users on very slow networks.
 This yields a different set of disadvantages and limitations:
 
-一報で、 Google search の提供する "web light" などは、よりドラスティックにサイトを改変し、低速帯域ユーザに最適化します。
+一方で、 Google search の提供する "web light" などは、よりドラスティックにサイトを改変し、低速帯域ユーザに最適化します。
 しかしこれは、別の欠点と制限を持ちます。
 
     Our applications may look very different because we can't control how the information is presented to the user, and may omit or ignore important site functionality.
