@@ -13,21 +13,21 @@ by Jxck
 <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
 
 <meta name=author content=Jxck>
-<meta name=description content="とりあえず [blog.jxck.io](https://blog.jxck.io) 以下については、基本的には静的ファイルを生成するスタイルで作ろうと思っている。手元に書いた Markdown を HTML に変換するスタイルで、これを行うツールは星の数ほどあるが、この変換時に...">
+<meta name=description content="とりあえず [blog.jxck.io](https://blog.jxck.io) 以下については、基本的には Markdown から静的ファイルを生成するスタイルで作ろうと思っている。これを行うツールは星の数ほどあるが、この変換時に、前から思っていた **HTML の最適化*...">
 <meta name=keywords content="performance,html">
 
 <meta name=twitter:card content=summary>
 <meta name=twitter:site content=@jxck_>
 <meta name=twitter:url content=https://blog.jxck.io/entries/2016-01-28/html-compression.html>
 <meta name=twitter:title content="HTML の省略によるサイズ最適化 | blog.jxck.io">
-<meta name=twitter:description content="とりあえず [blog.jxck.io](https://blog.jxck.io) 以下については、基本的には静的ファイルを生成するスタイルで作ろうと思っている。手元に書いた Markdown を HTML に変換するスタイルで、これを行うツールは星の数ほどあるが、この変換時に...">
+<meta name=twitter:description content="とりあえず [blog.jxck.io](https://blog.jxck.io) 以下については、基本的には Markdown から静的ファイルを生成するスタイルで作ろうと思っている。これを行うツールは星の数ほどあるが、この変換時に、前から思っていた **HTML の最適化*...">
 <meta name=twitter:image content=https://www.jxck.io/assets/img/jxck.png>
 
 <meta property=og:type content="article">
 <meta property=og:url content=https://blog.jxck.io/entries/2016-01-28/html-compression.html>
 <meta property=og:title content="HTML の省略によるサイズ最適化 | blog.jxck.io">
 <meta property=og:site_name content=blog.jxck.io>
-<meta property=og:description content="とりあえず [blog.jxck.io](https://blog.jxck.io) 以下については、基本的には静的ファイルを生成するスタイルで作ろうと思っている。手元に書いた Markdown を HTML に変換するスタイルで、これを行うツールは星の数ほどあるが、この変換時に...">
+<meta property=og:description content="とりあえず [blog.jxck.io](https://blog.jxck.io) 以下については、基本的には Markdown から静的ファイルを生成するスタイルで作ろうと思っている。これを行うツールは星の数ほどあるが、この変換時に、前から思っていた **HTML の最適化*...">
 <meta property=og:image content=https://www.jxck.io/assets/img/jxck.png>
 
 <script type="application/ld+json">
@@ -46,7 +46,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-01-28T08:00:00+08:00",
-  "dateModified": "2016-02-07T08:00:00+08:00",
+  "dateModified": "2016-03-07T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -62,7 +62,7 @@ by Jxck
       "width": 257
     }
   },
-  "description": "とりあえず [blog.jxck.io](https://blog.jxck.io) 以下については、基本的には静的ファイルを生成するスタイルで作ろうと思っている。手元に書いた Markdown を HTML に変換するスタイルで、これを行うツールは星の数ほどあるが、この変換時に..."
+  "description": "とりあえず [blog.jxck.io](https://blog.jxck.io) 以下については、基本的には Markdown から静的ファイルを生成するスタイルで作ろうと思っている。これを行うツールは星の数ほどあるが、この変換時に、前から思っていた **HTML の最適化*..."
 }
 </script>
 
@@ -89,7 +89,7 @@ by Jxck
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-01-28>2016-01-28</time>
-    <li>updated_at: <time class=updated_at datetime=2016-02-07>2016-02-07</time>
+    <li>updated_at: <time class=updated_at datetime=2016-03-07>2016-03-07</time>
     <li class=tags>tags: [<a>performance</a>,<a>html</a>]
   </ul>
 
@@ -98,22 +98,24 @@ by Jxck
     <h1><a href="/entries/2016-01-28/html-compression.html">HTML の省略によるサイズ最適化</a></h1>
     <section>
       <h2 id="Intro"><a href="#Intro">Intro</a></h2>
-      <p>とりあえず <a href="https://blog.jxck.io">blog.jxck.io</a> 以下については、基本的には静的ファイルを生成するスタイルで作ろうと思っている。
-      <p>手元に書いた Markdown を HTML に変換するスタイルで、これを行うツールは星の数ほどあるが、この変換時に前から思っていた HTML の最適化をやってみようと思った。
-      <p>結局そういうことができるツールはなさそうなので、 Markdown のパーサだけ借りてきて、 AST から構築する過程で省略を施した。
-      <p>単なる実験としてその結果を書いておく。(なお、今はまだ CSS も圧縮していない)
+      <p>とりあえず <a href="https://blog.jxck.io">blog.jxck.io</a> 以下については、基本的には Markdown から静的ファイルを生成するスタイルで作ろうと思っている。
+      <p>これを行うツールは星の数ほどあるが、この変換時に、前から思っていた <strong>HTML の最適化</strong> をやってみようと思った。
+      <p>結局そういうことができるツールはなさそうなので、 Markdown のパーサだけ借りてきて、 AST から構築する過程で省略を施すスクリプトを自作した。
+      <p>チューニングというよりは単なる実験である(むしろ、王道であるインデントや改行削除は CSS/JS 含め行っていない)。
+      <p>その結果を書いておく。
     </section>
     <section>
       <h2 id="静的コンテンツの最適化"><a href="#静的コンテンツの最適化">静的コンテンツの最適化</a></h2>
       <p>パフォーマンス改善の常套手段として、コンテンツの最適化がある。
       ただ、ここ最適化と言っているものには大きく二つある。
       <ul>
-        <li>gzip や png ではなく jpeg を使うなどのアルゴリズムにより経路上で圧縮する
+        <li>gzip などのアルゴリズムにより経路上で圧縮する
+        <li>bmp を png, jpeg, webp などのフォーマットに変換し圧縮する
         <li>js や css から不要なスペースや改行を消すことで、コンテンツサイズを減らす
       </ul>
-      <p>どちらも今となってはツールなどが充実していて、特に導入は難しくないと思う。
-      <p>ここで後者の最適化の一環として、 HTML を最適化したことはあるだろうか？
-      あるとしても、それはスペース削除だけじゃないだろうか？
+      <p>いずれも王道であり、ツールなどが充実しているため、特に導入は難しくないと思う。
+      <p>ここで最後の最適化の一環として、 HTML を最適化したことはあるだろうか？
+      <p>あるとしても、それはスペース削除だけではないだろうか？
     </section>
     <section>
       <h2 id="HTML+の省略記法"><a href="#HTML+の省略記法">HTML の省略記法</a></h2>
@@ -143,7 +145,7 @@ by Jxck
       </section>
       <section>
         <h3 id="閉じタグ"><a href="#閉じタグ">閉じタグ</a></h3>
-        <p>HTML には閉じタグの省略がゆるされるものがいくつかあり、仕様では以下に定義がある。
+        <p>HTML には閉じタグの省略が許されているものがいくつかあり、仕様では以下に定義がある。
         <p><a href="https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission">https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission</a>
         <p>例えば、 <code>&lt;/li&gt;</code> は以下の条件なら省略が可能だ。
         <blockquote>An li element&#039;s end tag may be omitted if the li element is immediately followed by another li element or if there is no more content in the parent element.</blockquote>
@@ -166,14 +168,14 @@ by Jxck
   &lt;li&gt;two
   &lt;li&gt;three
 &lt;/ul&gt;</code></pre>
-        <p>単純に閉じタグ 5byte x 3 = 15byte 分の容量が減っていることになる。
+        <p>単純に閉じタグ 5byte x 3 = 15byte 分のサイズが減っていることになる。
       </section>
       <section>
         <h3 id="attibute+value+の+quote"><a href="#attibute+value+の+quote">attibute value の quote</a></h3>
         <p>もうひとつ、要素を囲む引用符(<code>&#039;</code>, <code>&quot;</code>) も省略が可能な場合があり、仕様では以下に定義がある。
         <p><a href="https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html">https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html</a>
         <blockquote>The attribute value can remain unquoted if it doesn&#039;t contain space characters or any of &quot; &#039; ` = &lt; or &gt;. Otherwise, it has to be quoted using either single or double quotes.</blockquote>
-        <p>つまり、スペースや <code>&quot; &#039; ` = &lt; or &gt;</code> が無ければ引用符はいらない。
+        <p>つまり、スペースや <code>&quot; &#039; ` = &lt; &gt;</code> が無ければ引用符はいらない。
         <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
         <pre class=html><code>&lt;!-- before --&gt;
 &lt;input name=&quot;address&quot; maxlength=&quot;200&quot;&gt;
@@ -189,20 +191,21 @@ by Jxck
         <h3 id="好き嫌い"><a href="#好き嫌い">好き嫌い</a></h3>
         <p>まず、こうした省略によって、例えば XML として崩れてるみたいなことを言う人もいる。
         <p>気持ちはわかるが、そもそもこの程度を省略しなかったところで XML などではない。
-        <p>あくまで書いているのは HTML だし、 Markdown からの変換過程で最適化しているので、昨今のフロントのビルドタスクを見れば特段特別なことでもない。
+        <p>あくまで書いているのは HTML であり、 Markdown からの変換過程で最適化しているので、昨今のフロントのビルドタスクを見れば特段特別なことでもない。
       </section>
       <section>
         <h3 id="影響"><a href="#影響">影響</a></h3>
         <p>生成した結果は <a href="https://validator.w3.org/nu/">HTML Validator</a> で確認しているが問題は無い。
-        <p>HTML として問題が無いのであれば、 HTML に対応したツールでは使えることになる。使えない場合、少し厳しく言うとそのツールは HTML を正しく扱えてない、つまりバグということになる。
-        まあ、そもそも HTML というのは、 XML と全く違い「緩い」部分が多いため、パースするのは非常に難しいので、しかたない。
-        <p>特に片手間な正規表現で HTML を処理している場面、(スクレイピング、エディタのシンタックスハイライト etc) の場合には、影響が皆無ともいえない。自分の環境では特に困った場面はいまのところない。
-        <p>それも強気になれば正しく HTML を扱えてないだけと言うこともできなくはないので、結局、 HTML をパースしたければ、正しくパースできるライブラリを使うしかないという話になる。
+        <p>HTML として問題が無いのであれば、 HTML に対応したツールでは扱えることになる。使えない場合、少し厳しく言うとそのツールは HTML を正しく扱えてない、つまりバグということになる。
+        まあ、そもそも HTML というのは、 XML と全く違い「緩い」部分が多いため、パースするのは非常に難しいので、完全に扱いきれないツールがあっても多少は仕方がない。
+        <p>特に片手間な正規表現で HTML を処理している場合(スクレイピング、エディタのシンタックスハイライト etc)は、影響が皆無ともいえない。自分の環境では特に困った場面はいまのところない。
+        <p>それも、強気に言えば「そのライブラリetc が正しく HTML を扱えてないだけだ」と言うこともできなくはないので、結局 HTML をパースしたければ、正しくパースできるライブラリを使うしかないという話になる。
       </section>
       <section>
         <h3 id="効果"><a href="#効果">効果</a></h3>
-        <p>今回はやってみたかったからやっただけで、劇的な効果を期待はしていないが一応測ってみる。
-        <p>まず、 <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, <code>&lt;body&gt;</code> そして、閉じたタグを付け、引用符をつけるた場合と比べると 259 byte の削減になっていた。
+        <p>今回は正直やってみたかったからやっただけで、パフォーマンス的な効果というより、「それによってパースが遅くなったり、他に影響が出たりするのか？」が知りたかったというモチベーションがある。
+        <p>なので、その視点からいくつかの測定を実施する。
+        <p>まず、省略時のサイズであるが、この記事自体を <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, <code>&lt;body&gt;</code> 、閉じたタグ、引用符を全て付けた場合と比べると 259 byte の削減になっていた。
         <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
         <pre class=sh><code>jxck$ wc html-compression.html
      131     408    9158 html-compression.html
@@ -214,26 +217,27 @@ jxck$ wc html-no-compression.html
           <li>省略有: 約80ms
           <li>省略無: 約90ms
         </ul>
-        <p>もはや誤差のような差だし、何回かやると 有 が 100ms を超える場合や 無 が 70ms を切るような場合もあった。
-        <p>ただ、 <em>著しくパースに影響が出ることはない</em> と言うのは分かった。
-        <p>これなら、ペイロードが小さくなるということは、ネットワーク効率としてメリットにふることにリスクはなさそうだ。
+        <p>また、何回かやると 有 が 100ms を超える場合や 無 が 70ms を切るような場合もあった。
+        <p>この程度の速度差であれば体感は難しいので、もはや誤差といえる。
+        しかし、これは逆に、 <em>省略がパースを著しく遅くする、といった影響はない</em> と言えるだろう。
+        <p>これなら、ペイロードが小さくなることによる、ネットワーク効率としてのメリットを重視するリスクはなさそうだ。
         <p>(もちろんサイズが大きくなれば変わるかもしれないが、このエントリはこのサイトの平均的なものなので問題ない)
-        <p>また、同様の検証が他にもあったので貼っておく。結論はほぼ同じだった。
+        <p>同様の検証が他にもあったので貼っておく。結論はほぼ同じだった。
         <p><a href="http://leko.jp/archives/321">「HTMLのタグは一部省略可能」表示速度はどちらが早いのか調べてみた</a>
       </section>
       <section>
         <h3 id="方法"><a href="#方法">方法</a></h3>
-        <p>普通の Web アプリでも、 HAML のように抽象度が高いフォーマットであれば、生成時に同様のオプションがあっても良さそうだが、 HAML ではずっと <a href="https://github.com/haml/haml/blob/master/TODO#L19">TODO</a> のままのようだ。
+        <p>普通の Web アプリでも、 haml のように抽象度が高いフォーマットであれば、生成時に同様のオプションがあっても良さそうだが、 haml ではずっと <a href="https://github.com/haml/haml/blob/master/TODO#L19">TODO</a> のままのようだ。
         <p>Google の PageSpeed でも、こうした最適化は <a href="https://developers.google.com/speed/pagespeed/service/OptimizeHtml">サポートされていた</a>。
-        <p>ただ、一般にあまり普及した方法とはいえない気もする。
+        <p>ただ、一般にあまり普及した方法とはいえない気がする。
       </section>
     </section>
     <section>
       <h2 id="結論"><a href="#結論">結論</a></h2>
       <p>HTML も省略が可能な部分が有り、省略しても Valid な HTML にすることが可能である。
       また、このエントリにおいては、省略によるパースへの影響は認められなかった。
-      <p>HTML を手書きするのではなく、テンプレートなどから生成する場合、もし省略できるのなら、「片手間にスクレイピングしようとしている人にとって面倒」というくらい以外には、特にデメリットは無いように思う。
-      <p>このサイトは、自分がソースを見た時に見やすいように、インデントと改行は消していないが、とりあえずこのままでいこうと思う。
+      <p>HTML を手書きするのではなく、テンプレートなどから生成する場合、もし省略できるのなら、「片手間にスクレイピングしようとしている人にとって面倒」というあたり以外には、特にデメリットは無いように思う。
+      <p>このサイトは、自分がソースを見た時に見やすいように、インデントや改行などの、いわゆる王道な最適化はしていないが、とりあえずこのままでいこうと思う。
     </section>
   </article>
 

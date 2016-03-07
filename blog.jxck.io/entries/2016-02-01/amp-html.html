@@ -46,7 +46,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-02-01T08:00:00+08:00",
-  "dateModified": "2016-02-26T08:00:00+08:00",
+  "dateModified": "2016-03-07T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -89,7 +89,7 @@ by Jxck
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-02-01>2016-02-01</time>
-    <li>updated_at: <time class=updated_at datetime=2016-02-26>2016-02-26</time>
+    <li>updated_at: <time class=updated_at datetime=2016-03-07>2016-03-07</time>
     <li class=tags>tags: [<a>performance</a>,<a>amp</a>,<a>html</a>]
   </ul>
 
@@ -103,7 +103,7 @@ by Jxck
     </section>
     <section>
       <h2 id="Update"><a href="#Update">Update</a></h2>
-      <p>以下の記事が出たので、古かったフォーマットのアップデートと JSON-LD によるメタデータの提供を対応した。
+      <p>以下の記事が出たので、古かったフォーマットのアップデートと <a href="https://blog.jxck.io/entries/2016-02-26/jsonld-opengraph.html">JSON-LD によるメタデータの提供</a> に対応した。
       <ul>
         <li><a href="http://googledevjp.blogspot.jp/2016/02/google-accelerated-mobile-pages.html">Google モバイル検索が Accelerated Mobile Pages に対応しました</a>
         <li><a href="http://ymotongpoo.hatenablog.com/entry/2016/02/25/224159">AMP対応 2016.02版</a>
@@ -117,9 +117,21 @@ by Jxck
       <p>実際は、高速化するというより、 <strong>遅くなる原因を排除する</strong> という制約を課す仕様という作りになっている。
       <section>
         <h3 id="対応のメリット"><a href="#対応のメリット">対応のメリット</a></h3>
-        <p>AMP に対応することで、レンダリングボトルネックが少ないページを記述可能であるというのもある。
-        <p>しかし、実際はそれ以上に各ベンダのキャッシュの効果が強くあるだろう。
+        <p>AMP への対応は、実際には 「遅くなる原因」=「アンチパターン」が Invalid となる仕様を定義し、それを開発者に強制することで、必然的にボトルネックの少ないコンテンツにする仕様と言える。
+        <p>具体的には以下のようなアンチパターンを排除する。
+        <ul>
+          <li>JS の実行: 実際には <code>document.write</code> などによるブロックなどがネックになりやすいが、細かくいうと色々あるので、丸っと一括で禁止するという感じ
+          <li>外部 CSS: 代わりに全部 HTML 内に書かせることで、リレンダリングなどが発生しないようにさせたい
+          <li><code>&lt;img&gt;</code>: 画像の width x height を明示させ、そこに非同期読み込みする <code>&lt;amp-img&gt;</code> を代わりに使わせることで、画像表示を最適化する
+        </ul>
+        <p>まあ、ほとんどが実際は <strong>粗悪なアド</strong> を縛るような仕様になっている。
+        アドの実装は開発者が手を出しにくいところであるため、こうした外部要因による強制力(AMP 対応が一般化したら、対応してないアドにとっては不利になる)があるのは良いだろう。
+        <p>もちろん、アドが貼れない訳ではない。
+        <p>他にも禁止している <code>&lt;iframe&gt;</code> やアナリティクス、その他 JS がないと実現できない UI 効果などは <code>&lt;amp-x&gt;</code> というコンポーネントによって実現できるようになっている。
+        <p>逆を言えばこれらコンポーネントに縛ることで、変な実装が入ることを防いでいる。
+        <p>また、こうした制約を満たしたサイトは、各ベンダがキャッシュしてくれるという効果が強くあるだろう。
         <p>AMP に合意したベンダは、サイトをクロールし AMP 対応ページを見つけた際に、それをキャッシュし代わりに配信してくれる。
+        (AMP に対応していれば、自然とそういうことがしやすいサイトになっている)
         <p>現在 Google, Twitter, Pinterest などが対応しているらしく、対応ベンダが増えれば CDN エッジが増え、より最適なルートから素早くページが配信されるという仕組みになっている。
         <p><a href="https://www.ampproject.org/docs/support/faqs.html#how-do-accelerated-mobile-pages-work">How do Accelerated Mobile Pages work?</a>
         <p>クローラに AMP 対応を知らせる方法は後述する。
@@ -150,7 +162,7 @@ by Jxck
       <p>このサイトでは <code>.html</code> に AMP 対応があることを伝える以下を追記した。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre class=html><code>&lt;link rel=amphtml href=${path}.amp.html&gt;</code></pre>
-      <p>一方 <code>.amp.html</code> では、ブックマークなどが統一できるように <code>canonical</code> を追加している。
+      <p>一方 <code>.amp.html</code> では、オリジナルコンテンツの存在と、ブックマークなどが統一できるように <code>canonical</code> を追加している。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre class=html><code>&lt;link rel=canonical href=${path}.html&gt;</code></pre>
       <p>access_log で UA などを追えば、 apmhtml を見るクローラが追えるかもしれない。
@@ -160,13 +172,13 @@ by Jxck
         <p>特に JS がレンダリングブロックなど、余計なことをしている場合にパフォーマンスへの影響が大きいための制限だろう。
         <p>このサイトは現時点では、コードスニペットのシンタックスハイライトと google analytics 以外には JS を使っていない。
         <p>ハイライト用の JS は、無ければハイライトされないだけなので、とりあえず AMP 対応ページでは JS 自体を読み込まないようにした。
-        <p>google analytics については後述するコンポーネントがあるため、それを使った。
+        <p>google analytics については後述するコンポーネントがあるため、それを適用した。
       </section>
       <section>
         <h3 id="CSS"><a href="#CSS">CSS</a></h3>
         <p><code>&lt;link&gt;</code> による CSS の読み込みも禁止されている。
         <p>しかし、 <code>&lt;style&gt;</code> が禁止されているわけではないので、全ての CSS を結合して HTML 内に埋め込むようにした。
-        <p>これは、別途対応した以下のコンポーネント単位の読み込みによる最適化と競合しているが、仕様なのでしかたない。
+        <p>これは、別途対応した以下のコンポーネント単位の読み込みによる最適化と競合しているが、仕様なのでしかたがない。
         <p><a href="loading-css-over-http2.html">HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について</a>
       </section>
       <section>
@@ -188,12 +200,13 @@ by Jxck
         <p>要するに above-the-fold に iframe を入れたくないということだろう。これはコンテンツを作る時点で気にしておかないといけないし、自動で変換も難しい。
         <p>このサイトは markdown からビルドしているため、 <code>&lt;iframe&gt;</code> を埋め込む場合は自分で直接タグを書くことになる。
         <p>なので、タグを埋め込む際は、その前に何かしらその埋め込むコンテンツへのリンクを貼っておくルールを強制することで、 AMP-HTML 内では <code>&lt;iframe&gt;</code> をまるっと消してしまうことにした。
+        <p>(将来的にはなんとかしたい。。)
       </section>
       <section>
         <h3 id="amp-analytics"><a href="#amp-analytics">amp-analytics</a></h3>
         <p>AMP での Google Analytics の設定は <code>&lt;amp-analytics&gt;</code> カスタムタグで行う。
         <p><a href="https://developers.google.com/analytics/devguides/collection/amp-analytics/">Adding Analytics to your AMP pages</a>
-        <p>収集したい情報に応じてやり方がいくつか有るようだが、一番スタンダードな Page Tracking だけ設定した。
+        <p>収集したい情報に応じてやり方がいくつかあるようだが、一番スタンダードな Page Tracking だけ設定した。
         <p>AMP Analytics のコードの読み込みは、 AMP JS Library よりも前に行う必要があるとドキュメントに書かれているので、このようになった。
         <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
         <pre class=html><code>&lt;script async custom-element=&quot;amp-analytics&quot; src=&quot;https://cdn.ampproject.org/v0/amp-analytics-0.1.js&quot;&gt;&lt;/script&gt;
@@ -222,13 +235,13 @@ by Jxck
       <p>単に Tools を開けば、そのページの対応している AMP バージョンを知ることができるが、 URL に <code>#development=1</code> を付与することでより細かくエラーを見ることができる。
       <p>このページのデバッグフラグ付き AMP 対応ページの URL は以下になる。
       <p><a href="amp-html.amp.html#development=1">amp-html.amp.html#development=1</a>
-      <p>また、分かりやすいように通常の HTML の右上に ⚡ のようなアイコンを追加し、そこにこのリンクを追加した。
+      <p>また、分かりやすいように通常の HTML の右上に AMP のイメージもとである ⚡ を模したアイコンを追加し、そこに AMP 版へのリンクを追加した。
     </section>
     <section>
       <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
       <p>AMP は、読み込みが遅くなる原因を徹底的に排除するために、対象となるタグや構成などを強く制限している。
       <p>また、各ベンダの CDN からの代理配信が最適化されれば、メリットは強いかもしれない。
-      <p>本サイトのようにまだ作り途中で変更が効かせやすいサイトであればまだ別だが、既存のコンテンツをそれなりに持っている場合は、なかなか対応は難しいのではないかと感じる。
+      <p>本サイトのようにまだ作り途中で、変更も効かせやすいサイトであればまだ別だが、既存のコンテンツをそれなりに持っている場合は、なかなか対応は難しいのではないかと感じる。
       <p>それを踏まえて実施するだけのメリットが明確に見えれば、徐々に広がって行くのではないかと思う。
       <p>あと、ドキュメントが分かりにくいところがある。
       <p>仕様のバージョンもまだ少し動いていくようなので、その辺りも含めてもっと知見と安定感が欲しい。
