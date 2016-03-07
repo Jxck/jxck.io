@@ -1,6 +1,6 @@
 'use strict';
 
-const DEBUG = false;
+const DEBUG = true;
 const KEY = "master.js?ver=1";
 
 let log = DEBUG ? console.log.bind(console) : ()=>{}
@@ -48,11 +48,14 @@ if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalSco
       caches.open(KEY).then((cache) => {
         return cache.match(req).then((res) => {
           let update = fetch(req).then((res) => {
+            res.clone().text().then((text) => { log('update', text.substring(0, 20)); });
             cache.put(req, res.clone());
             return res;
           });
           return res || update;
-        })
+        }).catch(() => {
+          return new Response("network offline");
+        });
       })
     );
   });
