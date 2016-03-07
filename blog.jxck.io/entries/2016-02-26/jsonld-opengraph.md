@@ -2,7 +2,7 @@
 
 ## Intro
 
-本サイトのセマンティクスメタ情報を整理するため、 HTML のメタタグの整理、 JSON-LD による schema.org 対応、 Facebook, Twitter を主とした Open Graph 対応を実施した。
+本サイトのメタ情報を整理するため、 HTML のメタタグの整理、 JSON-LD による schema.org 対応、 Facebook, Twitter を主とした Open Graph 対応を実施した。
 
 これにより、既にAMP 対応していた本サイトが、 Google のモバイル検索でキャッシュの対象となる(クロール待ち)。
 
@@ -14,7 +14,7 @@
 [https://dev.w3.org/html5/spec-preview/the-meta-element.html](https://dev.w3.org/html5/spec-preview/the-meta-element.html)
 
 
-各要素は、テンプレート生成時に利用した値を埋め込み、 [本サイトの Atom RSS-feed](https://blog.jxck.io/entries/2016-02-09/atom-feed.html) などと同様である。
+各要素は、テンプレート生成時に利用した値を埋め込んでいるため、 [本サイトの Atom RSS-feed](https://blog.jxck.io/entries/2016-02-09/atom-feed.html) などと同じ値である。
 
 ```html
 <meta name=author content=Jxck>
@@ -24,9 +24,7 @@
 <title>${this.title} | blog.jxck.io</title>
 ```
 
-これで Google がサポートする `<meta>` タグについてもカバーされている。
-
-[Google がサポートしているメタタグ](https://support.google.com/webmasters/answer/79812?hl=ja)
+これで、 [Google がサポートしているメタタグ](https://support.google.com/webmasters/answer/79812?hl=ja) についてもカバーされている。
 
 
 ## schema.org
@@ -41,12 +39,12 @@
 
 - 本サイトが対応している AMP HTML では JSON-LD が許可(推奨)されている。
 - 単なる JSON にボキャブラリを埋めるだけなので、作成が容易。
-- HTML 自体をいじらないため、修正が容易。
+- HTML への修正が少ないため、導入が容易。
 
 
 ### JSON-LD
 
-結果、以下のようなタグを埋め込んでいる。
+結果、以下のような `<script>` を埋め込んでいる。
 
 ```html
 <script type="application/ld+json">
@@ -93,7 +91,8 @@
 
 悩んだ点として、 Google の Validator では `publisher` が必須なのだが、 `publisher` の `@type` は `Person` だと怒られる。
 
-実際には本サイトは個人運営なのだが、しかたなく `Organization` を選択した。問題があったり、回避方法がみつかったら修正する。
+実際には本サイトは個人運営なのだが、しかたなく `Organization` を選択した。問題があったり、回避方法が見つかったら修正する。
+
 
 ### JSON-LD と LD-JSON
 
@@ -111,6 +110,7 @@ Twitter と Facebook だけ、以下を参考に対応した。
 
 いずれも、仕様と同時にバリデータが提供されているため、それで確認をしている。
 
+
 ### Twitter
 
 - [twitter cards](https://dev.twitter.com/ja/cards/types/summary)
@@ -125,6 +125,7 @@ Twitter と Facebook だけ、以下を参考に対応した。
 <meta name=twitter:description content="${this.description}">
 <meta name=twitter:image       content=https://www.jxck.io/assets/img/jxck.png>
 ```
+
 
 ### Facebook
 

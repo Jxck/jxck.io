@@ -1,6 +1,5 @@
 # [http2][css][performance] HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について
 
-
 ## Intro
 
 Chrome が予定している `<link rel=stylesheet>` の挙動の変更について、Google Chrome チームの Jake が、興味深いブログを上げている。
