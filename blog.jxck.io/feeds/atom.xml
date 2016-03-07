@@ -60,7 +60,7 @@
  <link href="https://blog.jxck.io/entries/2016-02-11/resource-hints.html" rel="alternate" />
  <id>tag:blog.jxck.io,2016:entry://2016-02-11</id>
  <updated>2016-02-11T00:00:00Z</updated>
- <summary>Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要になるリソースを教える」ことで、投機的な取得を行う API 郡である。
+ <summary>Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要になるリソースを教える」ことで、投機的な取得を行う API 群である。
 
 [https://w3c.github.io/resource-hints/](https://w3c.github.io/resource-hints/)
 
@@ -79,7 +79,7 @@
  <link href="https://blog.jxck.io/entries/2016-02-09/atom-feed.html" rel="alternate" />
  <id>tag:blog.jxck.io,2016:entry://2016-02-09</id>
  <updated>2016-02-09T00:00:00Z</updated>
- <summary>このブログの Atom feed を吐くようにしてみた。
+ <summary>このブログの Atom feed を吐くようにした。
 
 右上の [feed アイコン](//blog.jxck.io/feeds/atom.xml) から登録できる。</summary>
 </entry>
@@ -107,13 +107,15 @@
  <link href="https://blog.jxck.io/entries/2016-01-28/html-compression.html" rel="alternate" />
  <id>tag:blog.jxck.io,2016:entry://2016-01-28</id>
  <updated>2016-01-28T00:00:00Z</updated>
- <summary>とりあえず [blog.jxck.io](https://blog.jxck.io) 以下については、基本的には静的ファイルを生成するスタイルで作ろうと思っている。
+ <summary>とりあえず [blog.jxck.io](https://blog.jxck.io) 以下については、基本的には Markdown から静的ファイルを生成するスタイルで作ろうと思っている。
 
-手元に書いた Markdown を HTML に変換するスタイルで、これを行うツールは星の数ほどあるが、この変換時に前から思っていた HTML の最適化をやってみようと思った。
+これを行うツールは星の数ほどあるが、この変換時に、前から思っていた **HTML の最適化** をやってみようと思った。
 
-結局そういうことができるツールはなさそうなので、 Markdown のパーサだけ借りてきて、 AST から構築する過程で省略を施した。
+結局そういうことができるツールはなさそうなので、 Markdown のパーサだけ借りてきて、 AST から構築する過程で省略を施すスクリプトを自作した。
 
-単なる実験としてその結果を書いておく。(なお、今はまだ CSS も圧縮していない)</summary>
+チューニングというよりは単なる実験である(むしろ、王道であるインデントや改行削除は CSS/JS 含め行っていない)。
+
+その結果を書いておく。</summary>
 </entry>
 
 <entry>
