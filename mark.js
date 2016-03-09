@@ -2,7 +2,7 @@
 
 'use strict';
 
-global.__defineGetter__('__LINE__', function () {
+global.__defineGetter__('__LINE__', function() {
   return (new Error()).stack.split('\n')[3].split(':').reverse()[1];
 });
 
@@ -52,8 +52,8 @@ function Tags(text) {
 // # Intro の中身を取り出す
 function Description(text) {
   let intro = text.match(/## Intro(([\n\r]|.)*?)##/m)[1].trim();
-  intro = intro.replace(/(\n|\r)/g, "");
-  intro = intro.substring(0, 140)+"...";
+  intro = intro.replace(/(\n|\r)/g, '');
+  intro = intro.substring(0, 140) + '...';
   intro = hsp(intro);
   return intro;
 }
@@ -67,7 +67,7 @@ class Builder {
     this.meta = option.meta;
     this.description = option.description;
     this.created_at = option.created_at;
-    this.updated_at = option.updated_at;;
+    this.updated_at = option.updated_at;
     this.dir = option.dir;
     this.tags = option.tags;
     this.style = option.style;
@@ -92,7 +92,7 @@ class Builder {
     return eval('`' + this.template + '`');
   }
   root(node) {
-    return this.wrap`${node.value}`
+    return this.wrap`${node.value}`;
   }
   article(node) {
     let value = this.wrap`<article>${node.value}</article>`;
@@ -118,7 +118,7 @@ class Builder {
     return val;
   }
   code       (node) {
-    let lang = node.lang || ""
+    let lang = node.lang || '';
     let value = `<pre class=${lang}><code>${node.value}</code></pre>\n`;
     if (this.ampurl) {
       // has amp url so not amp page
@@ -127,36 +127,36 @@ class Builder {
     return value;
   }
   table      (node) {
-    let value = this.wrap`<table>${node.value}</table>`
+    let value = this.wrap`<table>${node.value}</table>`;
     if (this.ampurl) {
       // has amp url so not amp page
       value = [this.Style('/assets/css/table.css'), value].join('\n');
     }
     return value;
   }
-  thead      (node) { return this.wrap`<thead>${node.value}</thead>\n` }
-  tbody      (node) { return this.wrap`<tbody>${node.value}</tbody>\n` }
-  tableRow   (node) { return this.wrap`<tr>${node.value}</tr>\n` }
-  tableHead  (node) { return `<th class=align-${node.align}>${node.value}</th>\n` }
-  tableData  (node) { return `<td class=align-${node.align}>${node.value}</td>\n` }
-  paragraph  (node) { return `<p>${node.value}\n` }
+  thead      (node) { return this.wrap`<thead>${node.value}</thead>\n`; }
+  tbody      (node) { return this.wrap`<tbody>${node.value}</tbody>\n`; }
+  tableRow   (node) { return this.wrap`<tr>${node.value}</tr>\n`; }
+  tableHead  (node) { return `<th class=align-${node.align}>${node.value}</th>\n`; }
+  tableData  (node) { return `<td class=align-${node.align}>${node.value}</td>\n`; }
+  paragraph  (node) { return `<p>${node.value}\n`; }
   // inline
-  inlineCode (node) { return h`<code>${node.value}</code>` }
-  blockquote (node) { return h`<blockquote>${node.value}</blockquote>\n` }
-  listItem   (node) { return `<li>${node.value}\n` }
-  link       (node) { return `<a href="${node.url}">${node.value}</a>` }
+  inlineCode (node) { return h`<code>${node.value}</code>`; }
+  blockquote (node) { return h`<blockquote>${node.value}</blockquote>\n`; }
+  listItem   (node) { return `<li>${node.value}\n`; }
+  link       (node) { return `<a href="${node.url}">${node.value}</a>`; }
   image      (node) {
     if (!this.ampurl) {
       let size = node.url.split('#')[1].split('x');
       let width = size[0];
       let height = size[1];
       // not has amp link means amp template
-      return  `<amp-img layout=responsive src=${node.url} alt="${node.alt}" title="${node.title}" width=${width} height=${height}>`
+      return `<amp-img layout=responsive src=${node.url} alt="${node.alt}" title="${node.title}" width=${width} height=${height}>`;
     }
-    return `<img src=${node.url} alt="${node.alt}" title="${node.title}">`
+    return `<img src=${node.url} alt="${node.alt}" title="${node.title}">`;
   }
-  strong     (node) { return `<strong>${node.value}</strong>` }
-  emphasis   (node) { return `<em>${node.value}</em>` }
+  strong     (node) { return `<strong>${node.value}</strong>`; }
+  emphasis   (node) { return `<em>${node.value}</em>`; }
   html       (node) {
     let value = `${node.value}\n`;
     if (!this.ampurl && value.match(/<iframe.*/)) {
@@ -167,15 +167,15 @@ class Builder {
     }
     return value;
   }
-  text       (node) { return node.value }
-  thematicBreak  () { return `<hr>` }
-};
+  text(node) { return node.value; }
+  thematicBreak() { return '<hr>'; }
+}
 
 let p = function() {
   let arg = Array.from(arguments);
   arg.unshift(__LINE__);
   console.log.apply(this, arg);
-}
+};
 
 let j = JSON.stringify.bind(JSON);
 
@@ -183,7 +183,7 @@ let parse = require('remark').parse;
 
 function traverse(ast, option) {
   option.enter(ast);
-  if(!ast.children) return option.leave(ast);
+  if (!ast.children) return option.leave(ast);
 
   ast.children = ast.children.map((child) => {
     return traverse(child, option);
@@ -203,11 +203,11 @@ function isInline(node) {
 
 function tabling(ast) {
   return ast.map((node) => {
-    if(node.type !== 'table') return node;
+    if (node.type !== 'table') return node;
 
     let align = node.align;
     node.children = node.children.map((row, i) => {
-      let type = (i === 0) ? 'tableHead': 'tableData';
+      let type = (i === 0) ? 'tableHead' : 'tableData';
       row.children = row.children.map((cell, i) => {
         cell.type = type;
         cell.align = align[i];
@@ -217,9 +217,9 @@ function tabling(ast) {
     });
 
     node.children = node.children.reduce((acc, row, i) => {
-      (i === 0) ? acc[0].children.push(row): acc[1].children.push(row);
+      (i === 0) ? acc[0].children.push(row) : acc[1].children.push(row);
       return acc;
-    }, [{type:'thead', children:[]}, {type:'tbody', children:[]}]);
+    }, [{ type: 'thead', children: []}, { type: 'tbody', children: []}]);
 
     return node;
   });
@@ -228,9 +228,9 @@ function tabling(ast) {
 function sectioning(children, depth) {
   // 最初のセクションは <article> にする
   let section = {
-    type: depth === 1 ? 'article' : 'section',
-    children: [],
-    depth: depth,
+    type     : depth === 1 ? 'article' : 'section',
+    children : [],
+    depth    : depth,
   };
 
   // 横に並ぶべき <section> を入れる配列
@@ -274,9 +274,9 @@ function sectioning(children, depth) {
         if (section.children.length > 0) {
           sections.push(section);
           section = {
-            type: 'section',
-            children: [],
-            depth: child.depth,
+            type     : 'section',
+            children : [],
+            depth    : child.depth,
           };
         }
         // もし今 section に子要素が無ければ
@@ -345,7 +345,7 @@ function build(AST, dir, template) {
         if (value === '') {
           let tmp = node.lang.split(':');
           node.lang = tmp[0];
-          let file = path.format({ dir: dir, base: tmp[1] });
+          let file = path.format({ dir: dir, base: tmp[1]});
           value = read(file);
         }
         codes.push(value);
@@ -367,7 +367,11 @@ function build(AST, dir, template) {
           console.error('ERROR', node.type);
           process.exit(1);
         }
-        stack.unshift({ tag: 'full', val: template[node.type](node), inline: isInline(node) });
+        stack.unshift({
+          tag    : 'full',
+          val    : template[node.type](node),
+          inline : isInline(node),
+        });
       } else {
         // 完成している兄弟タグを集めてきて配列に並べる
         let vals = [];
@@ -412,7 +416,11 @@ function build(AST, dir, template) {
         if (!template[node.type]) {
           console.error('unsupported type', node.type);
         }
-        stack.unshift({ tag: 'full', val: template[node.type](node), inline: isInline(node) });
+        stack.unshift({
+          tag    : 'full',
+          val    : template[node.type](node),
+          inline : isInline(node),
+        });
       }
     },
   });
@@ -426,7 +434,7 @@ function build(AST, dir, template) {
   // ここで pre に code を戻す
   // ついでにエスケープ
   codes.forEach((code, i) => {
-    result = result.replace(`// ${i+1}`, hsp(code));
+    result = result.replace(`// ${i + 1}`, hsp(code));
   });
 
   return result;
@@ -472,9 +480,9 @@ function prepare(filepath, option) {
       'blog.jxck.io/assets/css/pre.css',
       'blog.jxck.io/assets/css/table.css',
       'blog.jxck.io/assets/css/footer.css',
-    ].map((file) => {
-      return fs.readFileSync(file).toString();
-    }).join('\n')
+    ].map((f) => {
+      return fs.readFileSync(f).toString();
+    }).join('\n');
 
     target = `${dir}/${name}.amp.html`;
   }
@@ -494,8 +502,8 @@ function prepare(filepath, option) {
     template,
     style,
     target,
-  }
-};
+  };
+}
 
 if (process.argv.length < 3) {
   console.error('no file name');
