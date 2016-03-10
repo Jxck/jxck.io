@@ -215,8 +215,33 @@ http://opentype.jp/woffconv.htm
  }
 ```
 
-http://b.0218.jp/20150620044014.html
 
+TODO: JP or Japanese ?
+```
+@font-face {
+  font-family: 'Noto Sans Japanese';
+  font-style: normal;
+  font-weight: 400;
+  src: local('NotoSansJP-Regular.otf'),
+       url(//fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Regular.woff2) format('woff2'),
+       url(//fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Regular.woff) format('woff'),
+       url(//fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Regular.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'Noto Sans Japanese';
+  font-style: normal;
+  font-weight: 700;
+  src: local('NotoSansJP-Bold.otf'),
+       url(//fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Bold.woff2) format('woff2'),
+       url(//fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Bold.woff) format('woff'),
+       url(//fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Bold.otf) format('opentype');
+}
+```
+
+http://toach.click/2016/01/30/how-to-noto-sans-japanese/
+
+http://b.0218.jp/20150620044014.html
 
 ## キャッシュ設定
 
