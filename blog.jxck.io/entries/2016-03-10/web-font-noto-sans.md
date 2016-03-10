@@ -1,11 +1,53 @@
+# [web font] Noto Sans の Web Font 対応とサブセットによる最適化
 
-https://www.google.com/fonts/earlyaccess#Noto+Sans+Japanese
+TODO: URL にバージョンを入れる
+TODO: アルファベットも入れる
 
-Noto Sans Japanese (Japanese) を落としてくる。
+## Intro
 
-この時点で 31.5MB ある。
+このサイトのフォントに Web Font を適用することにした。
 
-font-weight は以下の種類がある。
+フォントには Google と Adobe が協同で開発した Noto Sans を採用した。
+
+また、このサイトでは使用しないだろう文字を削除したサブセットを作ることで、フォントサイズを最適化した。
+
+
+## フォントサイズの最適化
+
+Noto font は、そもそも豆腐(フォントがなかった場合に代替表示される四角)が出ないように(No-豆腐)することをコンセプトにしているため、フォントの網羅率は非常に高い。
+そのため、基本的には言語毎に提供されるフォントセットの中から、必要なフォントのみを適用することになる。
+
+本サイトでは、 ASCII 、記号、日本語のフォントを用いる。
+
+しかし、特に網羅された漢字の中には、日常では使わない文字が多々ある。
+加えて、このサイトはあくまで **技術ブログ** なので、さらに使用する文字は減る。
+
+元のフォントサイズは大きいが、その大半が使わない文字であれば、配布においては無駄になるだけである。
+そこで、提供されているフォントセットの中から、不要な文字を取り除いたサブセットを作成することで、フォントサイズを最適化が可能である。
+
+Noto Sans はライセンス的に非常に自由度が高く、こうした変更が可能である。 (TODO: licence)
+
+
+## Noto Sans Fonts
+
+まず配布ページから、 Noto Sans Japanese をダウンロードしてくる。
+(あとから気づいたが Noto Sans JP もあった、こちらの方が収録文字が少ない模様。)
+
+
+[Noto Sans Japanese (Japanese)](https://www.google.com/fonts/earlyaccess#Noto+Sans+Japanese)
+
+
+ここに収録されている文字については、サイトに書かれている。
+
+
+> Note: Noto Sans Japanese has been subsetted to 6,934 characters
+  and contains most of the characters defined by JIS X 0208.
+  This includes 6,355 Kanji as well as 579 non Kanji characters.
+
+
+このサブセットが含む JIS X 0208 とは、いわゆる JIS漢字コード のことであり、 7000 字近い漢字がきっちり収録されている。
+
+そして font-weight (太さ) が 100~900 まで 7 段階提供されており、それぞれサイズは以下となっている。(やはり太いとデカい)
 
 - 100 NotoSansJP-Thin.otf       (4.0M)
 - 300 NotoSansJP-Light.otf      (4.2M)
@@ -15,25 +57,28 @@ font-weight は以下の種類がある。
 - 700 NotoSansJP-Bold.otf       (4.4M)
 - 900 NotoSansJP-Black.otf      (4.6M)
 
-本サイトでは Regular と Bold のみ使用する。
+ここまでがデフォルトの状態である。ここから削って行く。
+
+
+## Font Weight
+
+本サイトでは、 Markdown から生成していることもあり、「通常の文字」と「**太文字**」しか基本的に使わない。
+(CSS を別途当てて、調整するといったことをしていない)
+
+従って、 Regular と Bold のみ使用する。
 
 この時点で 8.7MB ある。
-
 
 - 400 NotoSansJP-Regular.otf    (4.3M)
 - 700 NotoSansJP-Bold.otf       (4.4M)
 
 
-ここに収録されている文字がサイトに書かれている。
+ここからさらに絞っていく。
 
 
-> Note: Noto Sans Japanese has been subsetted to 6,934 characters
-  and contains most of the characters defined by JIS X 0208.
-  This includes 6,355 Kanji as well as 579 non Kanji characters.
+## JISX0208 第一水準
 
-Noto font はそもそも豆腐(フォントがなかった場合に代替表示される四角)が出ないように(No-豆腐)することをコンセプトにしているため、フォントの網羅率はバッチリだ。
-このサブセットが含む JIS X 0208 とは、いわゆる JIS漢字コード のことであり、 7000 字近い漢字がきっちり収録されている。
-
+収録されている、 JIS X 0208 は以下のようになっている。
 
 > JIS（日本工業規格）で定められた漢字の規格で、JISX0208に含まれる。日常で使用頻度の高い漢字を集め、コンピューターで利用するためにコード化したもの。JIS第1水準は2965字で、常用漢字1945字とその他の人名用漢字が含まれており、通常の文書であればJIS第1水準の文字だけで記述できるとされている。JIS第2水準は3390字で、DTPで使用するフォントの多くは、JIS第1水準とJIS第2水準を網羅している。JIS第3水準およびJIS第4水準は、業種によって必要になる特殊な記号などを集めたもので、JISX0208を拡張する別の規格である。
 
@@ -41,7 +86,6 @@ http://yougo.ascii.jp/caltar/JIS%E6%BC%A2%E5%AD%97%E6%B0%B4%E6%BA%96
 
 
 しかし、このブログは **技術ブログ** であり、使われる漢字は非常に限定的だ。
-使わない漢字のデータまで、毎回ダウンロードしていては無駄だ。
 
 そこで、必要な漢字のみを収録したサブセットを作成する。
 
@@ -153,12 +197,12 @@ http://opentype.jp/woffconv.htm
 - 357.6K not-jxck-bold.woff
 
 
-http://b.0218.jp/20150620044014.html
+## フォントの設定
 
+使用したフォントを CSS に設定する。
+基本的にはサイト全体に適用するため `body` に指定し、 `pre > code` 内は別にしたいため、そこだけ上書きしている。
 
-
-
-Android Marshmallow では regular のみ入っている。
+また、 Android Marshmallow では Noto Sans の regular のみが全フォント入っているらしいので、その場合はそれをそのまま使いたい。ローカルにフォントがある場合に、そちらを優先するには `local()` を用いる。
 
 
 ```css
@@ -167,11 +211,25 @@ Android Marshmallow では regular のみ入っている。
  font-style: normal;
  font-weight: 400;
  src: local('NotoSansJP-Regular.otf'),
-      url(//fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Regular.woff2) format('woff2'),
       url(//fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Regular.woff) format('woff'),
-      url(//fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Regular.otf) format('opentype');
  }
 ```
+
+http://b.0218.jp/20150620044014.html
+
+
+## キャッシュ設定
+
+フォントは、基本的には変更が非常に少ないファイルであるため、積極的にキャッシュをしていきたい。
+ただし、今回のような作り方の場合には、フォントの追加によるファイルの更新は皆無ではないため、 URL にバージョンを忘れずに入れる。
+
+
+
+
+
+
+
+
 
 
 抽出する文字
