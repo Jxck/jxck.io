@@ -68,7 +68,6 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 - 400 NotoSansJP-Regular.otf    (4.3M)
 - 700 NotoSansJP-Bold.otf       (4.4M)
 
-
 ここからさらに絞っていく。
 
 
@@ -286,6 +285,7 @@ p q r s t u v w x y z { | } ~
 哺 惧 彙 楷 憬 錮
 ```
 
+
 ### 不要な文字
 
 他にも、常用漢字一覧には、まだまだ「 **技術ブログではおおよそ出てこなさそうな漢字** 」がいくつか見られる。
@@ -302,7 +302,6 @@ p q r s t u v w x y z { | } ~
 ```
 畝 租 朕 逓 哺 曹 惧 梗 痘 虞 嗣 塑 彙 楷 窟 嘱 畿 憬 璃 錮 嚇 濯 璽
 ```
-
 
 除いた結果が以下である。
 
@@ -358,8 +357,8 @@ p q r s t u v w x y z { | } ~
 また IE はどうでもいいので、 IE に対応させるための EOT ファイルも作成し無い。
 
 
-- [NotoSansCJKjp-Jxck-Bold.woff]() (379.7K)
-- [NotoSansCJKjp-Jxck-Regular.woff]() (375.8K)
+- [NotoSansCJKjp-Jxck-Bold.woff](/assets/font/NotoSansCJKjp-Jxck-Bold.woff) (379.7K)
+- [NotoSansCJKjp-Jxck-Regular.woff](/assets/font/NotoSansCJKjp-Jxck-Regular.woff) (375.8K)
 
 
 ## 効果
