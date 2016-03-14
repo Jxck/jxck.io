@@ -403,21 +403,21 @@ Android は ["NotoSansJP-Regular.otf" という名前で入っているらしい
 
 ```css
 @font-face {
-  font-family: "NotoSansCJKjp-Jxck"
+  font-family: "NotoSansCJKjp-Jxck";
   font-style: normal;
   font-weight: 400;
-  src: local("NotoSansCJKjp-Regular.otf"),
-       local("NotoSansJP-Regular.otf"),
-       url("/assets/font/NotoSansCJKjp-Jxck.Regular.woff?ver=1") format("woff");
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=20163014") format("woff");
 }
 
 @font-face {
-  font-family: "NotoSansCJKjp-Jxck"
+  font-family: "NotoSansCJKjp-Jxck";
   font-style: normal;
   font-weight: 700;
   src: local("NotoSansCJKjp-Bold.otf"),
        local("NotoSansJP-Bold.otf"),
-       url("/assets/font/NotoSansCJKjp-Jxck.Bold.woff?ver=1") format("woff");
+       url("//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff?ver=201603014") format("woff");
 }
 ```
 
@@ -439,7 +439,6 @@ body {
 }
 ```
 
-
 ## キャッシュ設定
 
 フォントは、基本的には変更が非常に少ないファイルであるため、積極的にキャッシュをしていきたい。
@@ -447,13 +446,24 @@ body {
 
 
 ```
-url("/assets/font/NotoSansCJKjp-Jxck.Bold.woff?ver=1") format("woff");
+url("/assets/font/NotoSansCJKjp-Jxck.Bold.woff?ver=201603014") format("woff");
 ```
 
 ここでは max-age を一年とし、フォントを作り直した場合はバージョンを変える
 
 ```
 Cache-Control: max-age=31536000
+```
+
+
+## Preload
+
+[Preload を用いたリソースプリローディングの最適化](https://blog.jxck.io/entries/2016-03-04/preload.html) で解説した `<link rel=preload>` でフォントを適用した。
+
+ただし、影響が大きい Regular のみにした。
+
+```html
+<link rel=preload as=font type=font/woff2 href=//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
 ```
 
 

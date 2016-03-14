@@ -12,6 +12,7 @@ by Jxck
 <link rel=canonical href=/entries/2016-02-26/jsonld-opengraph.html>
 <meta name=viewport content="width=device-width,minimum-scale=1">
 <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+<link rel=preload as=font type=font/woff2 href=//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
 
 <meta name=author content=Jxck>
 <meta name=description content="本サイトのメタ情報を整理するため、 HTML のメタタグの整理、 JSON-LD による schema.org 対応、 Facebook, Twitter を主とした Open Graph 対応を実施した。これにより、既にAMP 対応していた本サイトが、 Google のモバイル...">
@@ -80,14 +81,18 @@ by Jxck
   font-family: "NotoSansCJKjp-Jxck";
   font-style: normal;
   font-weight: 400;
-  src: url('https://www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=20163014') format("woff");
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=20163014") format("woff");
 }
 
 @font-face {
   font-family: "NotoSansCJKjp-Jxck";
   font-style: normal;
   font-weight: 700;
-  src: url('https://www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff?ver=201603014') format("woff");
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff?ver=201603014") format("woff");
 }
 
 body {

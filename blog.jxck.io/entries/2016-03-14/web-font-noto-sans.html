@@ -11,6 +11,7 @@ by Jxck
 <link rel=amphtml href=/entries/2016-03-14/web-font-noto-sans.amp.html>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+<link rel=preload as=font type=font/woff href=//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
 
 <meta name=author content=Jxck>
 <meta name=description content="このサイトのフォントに Web Font を適用することにした。フォントには Google と Adobe が協同で開発した Noto Sans CJK JP を採用した。また、このサイトでは使用しないだろう文字を削除したサブセットを作ることで、フォントサイズを最適化した。...">
@@ -440,21 +441,21 @@ p q r s t u v w x y z { | } ~</code></pre>
         <p>Android は <a href="http://toach.click/2016/01/30/how-to-noto-sans-japanese#Android_MarshmallowNoto_Sans_Japanese">"NotoSansJP-Regular.otf" という名前で入っているらしい</a> ため、それも含めて以下のように設定する。
         <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
         <pre class=css><code>@font-face {
-  font-family: &quot;NotoSansCJKjp-Jxck&quot;
+  font-family: &quot;NotoSansCJKjp-Jxck&quot;;
   font-style: normal;
   font-weight: 400;
-  src: local(&quot;NotoSansCJKjp-Regular.otf&quot;),
-       local(&quot;NotoSansJP-Regular.otf&quot;),
-       url(&quot;/assets/font/NotoSansCJKjp-Jxck.Regular.woff?ver=1&quot;) format(&quot;woff&quot;);
+  src: local(&quot;NotoSansCJKjp-Bold.otf&quot;),
+       local(&quot;NotoSansJP-Bold.otf&quot;),
+       url(&quot;//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=20163014&quot;) format(&quot;woff&quot;);
 }
 
 @font-face {
-  font-family: &quot;NotoSansCJKjp-Jxck&quot;
+  font-family: &quot;NotoSansCJKjp-Jxck&quot;;
   font-style: normal;
   font-weight: 700;
   src: local(&quot;NotoSansCJKjp-Bold.otf&quot;),
        local(&quot;NotoSansJP-Bold.otf&quot;),
-       url(&quot;/assets/font/NotoSansCJKjp-Jxck.Bold.woff?ver=1&quot;) format(&quot;woff&quot;);
+       url(&quot;//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff?ver=201603014&quot;) format(&quot;woff&quot;);
 }</code></pre>
       </section>
       <section>
@@ -475,10 +476,17 @@ p q r s t u v w x y z { | } ~</code></pre>
       <p>フォントは、基本的には変更が非常に少ないファイルであるため、積極的にキャッシュをしていきたい。
       ただし、今回のような作り方の場合には、フォントの追加によるファイルの更新は皆無ではないため、 URL にバージョンを忘れずに入れる。(font-face の指定参照)
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre class=><code>url(&quot;/assets/font/NotoSansCJKjp-Jxck.Bold.woff?ver=1&quot;) format(&quot;woff&quot;);</code></pre>
+      <pre class=><code>url(&quot;/assets/font/NotoSansCJKjp-Jxck.Bold.woff?ver=201603014&quot;) format(&quot;woff&quot;);</code></pre>
       <p>ここでは max-age を一年とし、フォントを作り直した場合はバージョンを変える
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre class=><code>Cache-Control: max-age=31536000</code></pre>
+    </section>
+    <section>
+      <h2 id="Preload"><a href="#Preload">Preload</a></h2>
+      <p><a href="https://blog.jxck.io/entries/2016-03-04/preload.html">Preload を用いたリソースプリローディングの最適化</a> で解説した <code>&lt;link rel=preload&gt;</code> でフォントを適用した。
+      <p>ただし、影響が大きい Regular のみにした。
+      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+      <pre class=html><code>&lt;link rel=preload as=font type=font/woff2 href=//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin&gt;</code></pre>
     </section>
     <section>
       <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
