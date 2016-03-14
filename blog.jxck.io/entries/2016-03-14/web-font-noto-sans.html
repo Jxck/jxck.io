@@ -182,7 +182,7 @@ p q r s t u v w x y z { | } ~</code></pre>
 【 】 〒 〓 〔 〕 〖 〗 〘 〙 〚 〛 〜 〝 〞 〟
 〠 〡 〢 〣 〤 〥 〦 〧 〨 〩  〪  〫  〬  〭  〮  〯
 〰 〱 〲 〳 〴 〵 〶 〷 〸 〹 〺 〻 〼 〽 〾 〿</code></pre>
-      <p>この中から、使わ無いものを覗き、以下のみを収録。
+      <p>この中から、使わないものを覗き、以下のみを収録。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre class=><code>、 。 々 〆 〇 「 」 『 』 〜</code></pre>
       <p><a href="SymbolsAndPunctuation.txt">SymbolsAndPunctuation.txt</a>
@@ -231,7 +231,7 @@ p q r s t u v w x y z { | } ~</code></pre>
     </section>
     <section>
       <h2 id="半角形と全角形(FF00-FFE0)"><a href="#半角形と全角形(FF00-FFE0)">半角形と全角形(FF00-FFE0)</a></h2>
-      <p>全角の英数や半角カタカナなど。しかし、このブログでは <strong>これらは使わ無い</strong>。
+      <p>全角の英数や半角カタカナなど。しかし、このブログでは <strong>これらは使わない</strong>。
       <p><a href="http://homepage2.nifty.com/k_maeda/code/uni/uni120.html">Unicode 半角形と全角形 - Halfwidth and Fullwidth Forms -</a>
       <p>以下が候補
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
@@ -294,12 +294,12 @@ p q r s t u v w x y z { | } ~</code></pre>
         <p>他にも、常用漢字一覧には、まだまだ「 <strong>技術ブログではおおよそ出てこなさそうな漢字</strong> 」がいくつか見られる。
         <p>もちろん使う場面はあるかもしれないが、書くのは自分なので把握しておけば良い。
         <p>どうしても必要ならフォントセットに追加すれば良いが、その頻度もそう高くはないだろう。
-        <p>よって、いらない漢字を一つ一つ丁寧に手動で取り除いた。
+        <p>よって、いらない漢字を 1 つ 1 つ丁寧に手動で取り除いた。
         <p>先の 6 文字に 17 文字加えて、以下 23 文字が削除対象である。
         <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
         <pre class=><code>畝 租 朕 逓 哺 曹 惧 梗 痘 虞 嗣 塑 彙 楷 窟 嘱 畿 憬 璃 錮 嚇 濯 璽</code></pre>
         <p>除いた結果が以下である。
-        <p><a href="kanji.txt">kanji.txt</a>
+        <p><a href="Kanji.txt">Kanji.txt</a>
       </section>
     </section>
     <section>
@@ -358,8 +358,8 @@ p q r s t u v w x y z { | } ~</code></pre>
         <p>まず、以下のツールを用い、この対象文字だけを抜き出したサブセットを作成する。
         <p><a href="http://opentype.jp/subsetfontmk.htm">サブセットフォントメーカー</a>
         <ul>
-          <li><a href="">NotoSansCJKjp-Jxck-Bold.otf</a> (473.2K)
-          <li><a href="">NotoSansCJKjp-Jxck-Regular.otf</a> (471.2K)
+          <li><a href="//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.otf">NotoSansCJKjp-Jxck-Bold.otf</a> (473.2K)
+          <li><a href="//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.otf">NotoSansCJKjp-Jxck-Regular.otf</a> (471.2K)
         </ul>
       </section>
       <section>
@@ -369,8 +369,8 @@ p q r s t u v w x y z { | } ~</code></pre>
         <p>メタデータは一切付与しない。
         また IE はどうでもいいので、 IE に対応させるための EOT ファイルも作成し無い。
         <ul>
-          <li><a href="/assets/font/NotoSansCJKjp-Jxck-Bold.woff">NotoSansCJKjp-Jxck-Bold.woff</a> (379.7K)
-          <li><a href="/assets/font/NotoSansCJKjp-Jxck-Regular.woff">NotoSansCJKjp-Jxck-Regular.woff</a> (375.8K)
+          <li><a href="//www.jxck.io/assets/font/assets/font/NotoSansCJKjp-Jxck-Bold.woff">NotoSansCJKjp-Jxck-Bold.woff</a> (379.7K)
+          <li><a href="//www.jxck.io/assets/font/assets/font/NotoSansCJKjp-Jxck-Regular.woff">NotoSansCJKjp-Jxck-Regular.woff</a> (375.8K)
         </ul>
       </section>
     </section>
@@ -486,7 +486,7 @@ p q r s t u v w x y z { | } ~</code></pre>
       <p><a href="https://blog.jxck.io/entries/2016-03-04/preload.html">Preload を用いたリソースプリローディングの最適化</a> で解説した <code>&lt;link rel=preload&gt;</code> でフォントを適用した。
       <p>ただし、影響が大きい Regular のみにした。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre class=html><code>&lt;link rel=preload as=font type=font/woff2 href=//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin&gt;</code></pre>
+      <pre class=html><code>&lt;link rel=preload as=font type=font/woff href=//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin&gt;</code></pre>
     </section>
     <section>
       <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>

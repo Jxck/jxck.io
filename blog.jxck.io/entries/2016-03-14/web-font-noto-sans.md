@@ -123,7 +123,7 @@ p q r s t u v w x y z { | } ~
 〰 〱 〲 〳 〴 〵 〶 〷 〸 〹 〺 〻 〼 〽 〾 〿
 ```
 
-この中から、使わ無いものを覗き、以下のみを収録。
+この中から、使わないものを覗き、以下のみを収録。
 
 
 ```
@@ -195,7 +195,7 @@ p q r s t u v w x y z { | } ~
 
 ## 半角形と全角形(FF00-FFE0)
 
-全角の英数や半角カタカナなど。しかし、このブログでは **これらは使わ無い**。
+全角の英数や半角カタカナなど。しかし、このブログでは **これらは使わない**。
 
 [Unicode 半角形と全角形 - Halfwidth and Fullwidth Forms -](http://homepage2.nifty.com/k_maeda/code/uni/uni120.html)
 
@@ -294,7 +294,7 @@ p q r s t u v w x y z { | } ~
 
 どうしても必要ならフォントセットに追加すれば良いが、その頻度もそう高くはないだろう。
 
-よって、いらない漢字を一つ一つ丁寧に手動で取り除いた。
+よって、いらない漢字を 1 つ 1 つ丁寧に手動で取り除いた。
 
 先の 6 文字に 17 文字加えて、以下 23 文字が削除対象である。
 
@@ -305,7 +305,7 @@ p q r s t u v w x y z { | } ~
 
 除いた結果が以下である。
 
-[kanji.txt](kanji.txt)
+[Kanji.txt](Kanji.txt)
 
 
 ## 結果
@@ -342,8 +342,8 @@ p q r s t u v w x y z { | } ~
 [サブセットフォントメーカー](http://opentype.jp/subsetfontmk.htm)
 
 
-- [NotoSansCJKjp-Jxck-Bold.otf]() (473.2K)
-- [NotoSansCJKjp-Jxck-Regular.otf]() (471.2K)
+- [NotoSansCJKjp-Jxck-Bold.otf](//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.otf) (473.2K)
+- [NotoSansCJKjp-Jxck-Regular.otf](//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.otf) (471.2K)
 
 
 ### Woff 変換
@@ -357,8 +357,8 @@ p q r s t u v w x y z { | } ~
 また IE はどうでもいいので、 IE に対応させるための EOT ファイルも作成し無い。
 
 
-- [NotoSansCJKjp-Jxck-Bold.woff](/assets/font/NotoSansCJKjp-Jxck-Bold.woff) (379.7K)
-- [NotoSansCJKjp-Jxck-Regular.woff](/assets/font/NotoSansCJKjp-Jxck-Regular.woff) (375.8K)
+- [NotoSansCJKjp-Jxck-Bold.woff](//www.jxck.io/assets/font/assets/font/NotoSansCJKjp-Jxck-Bold.woff) (379.7K)
+- [NotoSansCJKjp-Jxck-Regular.woff](//www.jxck.io/assets/font/assets/font/NotoSansCJKjp-Jxck-Regular.woff) (375.8K)
 
 
 ## 効果
@@ -463,7 +463,7 @@ Cache-Control: max-age=31536000
 ただし、影響が大きい Regular のみにした。
 
 ```html
-<link rel=preload as=font type=font/woff2 href=//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
+<link rel=preload as=font type=font/woff href=//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
 ```
 
 
