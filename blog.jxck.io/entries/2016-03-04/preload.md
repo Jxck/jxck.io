@@ -256,7 +256,7 @@ before
 
 after
 
-[![after](before.png#873x492 "result of after adding preload")](after.png)
+[![after](after.png#873x492 "result of after adding preload")](after.png)
 
 
 このページでは、むしろ遅くなっている。これは、元のコンテンツで特にリソースの読み込みなどに関するオーバーヘッドが少ないためであると考えられる。したがって、処理が入ることによる内部処理のオーバーヘッドが結果に影響していると推測する。
