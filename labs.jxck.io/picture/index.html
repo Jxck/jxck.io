@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<title>srcset/picture test</title>
+<meta charset=utf-8>
+<meta name=description content="demo page of picture and srcset">
+<meta name=viewport content="width=device-width,initial-scale=1">
+
+<title>Picture Demo | labs.jxck.io</title>
 
 <style>
 pre {
@@ -15,10 +18,10 @@ strong {
 </style>
 <h1>srcset/picture test</h1>
 
-<p>Your Device Pixel Ratio = <strong id=ratio></strong>
+<p>window.devicePixelRatio = <strong id=ratio></strong>
 
-<h2>image tag</h2>
-<div class=demo id=original>
+<h2 id=original><a href=#original>original</a></h2>
+<div class=demo>
 <img src=100x100.png alt=100x100>
 <img src=200x200.png alt=200x200>
 <img src=300x300.png alt=300x300>
@@ -27,8 +30,8 @@ strong {
 
 <hr>
 
-<h2>width 100</h2>
-<div class=demo id=width-100>
+<h2 id=width><a href=#width>width 100</a></h2>
+<div class=demo>
 <img src=100x100.png width=100 alt=100x100>
 <img src=200x200.png width=100 alt=200x200>
 <img src=300x300.png width=100 alt=300x300>
@@ -37,8 +40,8 @@ strong {
 
 <hr>
 
-<h2>srcset sizes=100px</h2>
-<div class=demo id=srcset>
+<h2 id=srcset><a href=#srcset>srcset</a></h2>
+<div class=demo>
 <img src=100x100.png
      srcset="100x100.png 100w, 200x200.png 200w, 300x300.png 300w"
      sizes=100px
@@ -49,9 +52,9 @@ strong {
 
 <hr>
 
-<h2>srcset sizes=100px with webp</h2>
-<p>this seems work but error at console on chrome
-<div class=demo id=srcset-webp>
+<h2 id=srcset-webp><a href=#srcset-webp>srcset with webp</a></h2>
+<div class=demo>
+<p>this seems work but error at console on chrome</p>
 <!--
 <img src=100x100.png
      srcset="100x100.png 100w, 200x200.png 200w, 300x300.png 300w
@@ -65,8 +68,8 @@ strong {
 
 <hr>
 
-<h2>picture</h2>
-<div class=demo id=picture>
+<h2 id=picture><a href=#picture>picture</a></h2>
+<div class=demo>
 <picture>
   <source type=image/webp srcset=100x100.webp>
   <img src=100x100.png alt="select with picture">
@@ -76,8 +79,8 @@ strong {
 
 <hr>
 
-<h2>picture+source</h2>
-<div class=demo id=picture-src>
+<h2 id=picture-srcset><a href=#picture-srcset>picture srcset</a></h2>
+<div class=demo>
 <picture>
   <source type=image/webp
           srcset="100x100.webp 100w, 200x200.webp 200w, 300x300.webp 300w"
@@ -92,8 +95,8 @@ strong {
 
 <hr>
 
-<h2>media query</h2>
-<div class=demo id=media-query>
+<h2 id=media-query><a href=#media-query>media query</a></h2>
+<div class=demo>
 <picture>
   <source type=image/webp srcset=300x300.webp
           media="min-device-pixel-ratio: 2.5">
@@ -130,12 +133,14 @@ function hsc(str) {
 
 document.getElementById('ratio').textContent = window.devicePixelRatio;
 
-var divs = document.getElementsByClassName('demo');
+var h2 = document.getElementsByTagName('h2');
 
-Array.prototype.slice.call(divs).forEach(function (div) {
-  var id = div.id;
+Array.prototype.slice.call(h2).forEach(function (h2) {
+  var id = h2.id;
+  console.log(id);
+  var div = document.querySelector("#" + id + " + div");
   var html = div.innerHTML.trim();
-  var pre =  document.querySelector("#" + id + "+ pre");
+  var pre =  document.querySelector("#" + id + " + div +  pre");
   pre.innerHTML = hsc(html);
 });
 </script>
