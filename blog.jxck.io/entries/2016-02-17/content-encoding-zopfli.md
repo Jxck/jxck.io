@@ -109,7 +109,7 @@ $ time zopfli --i10 -c loading-css-over-http2.html
 最初の段は、元のファイルサイズ、二段目は `gzip` コマンドの結果である。
 
 
-|      | ratio | size  |
+|      | time  | size  |
 |-----:|:------|------:|
 | orig | -     | 17497 |
 | gzip | 0.002 |  5348 |
