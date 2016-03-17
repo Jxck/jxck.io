@@ -11,7 +11,7 @@ img {
   background: #000;
 }
 pre {
-  background: #fff;
+  background: #ccc;
 }
 </style>
 <script>
@@ -23,6 +23,7 @@ window.addEventListener('DOMContentLoaded', () => {
     fetch(url).then((res) => res.text()).then((txt) => {
       let id = url.split('/').pop();
       console.log(id);
+      txt = '// ' + txt.length + 'byte\n' + txt;
       document.getElementById(id).textContent = txt;
     });
   });
@@ -31,17 +32,40 @@ window.addEventListener('DOMContentLoaded', () => {
 
 <h1>SVG Gallery</h1>
 
-<h2>Jxck</h2>
-<img width=200 height=200 src=//www.jxck.io/assets/img/jxck.svg>
+<h2>Jxck(hand write)</h2>
+<img width=200 height=200 src=jxck.svg>
 <pre id=jxck.svg></pre>
 
 <h2>AMP</h2>
-<img width=200 height=200 src=//www.jxck.io/assets/img/amp.svg>
+<img width=200 height=200 src=amp.svg>
 <pre id=amp.svg></pre>
 
 <h2>UP</h2>
-<img width=200 height=200 src=//www.jxck.io/assets/img/up.svg>
+<img width=200 height=200 src=up.svg>
 <pre id=up.svg></pre>
+
+<h2>404</h2>
+<img width=200 height=200 src=404.svg>
+<pre id=404.svg></pre>
+
+<h2>500</h2>
+<img width=200 height=200 src=500.svg>
+<pre id=500.svg></pre>
+
+<h2>503</h2>
+<img width=200 height=200 src=503.svg>
+<pre id=503.svg></pre>
+
+<hr>
+
+<h2>Jxck(cacoo)</h2>
+<img width=200 height=200 src=cacoo.svg>
+<pre id=cacoo.svg></pre>
+
+<h2>Jxck(cacoo -> svggo)</h2>
+<img width=200 height=200 src=svggo.svg>
+<pre id=svggo.svg></pre>
+
 
 <footer>
   <address class=copyright>Copyright &copy; 2013 <a href=//www.jxck.io>Jxck</a>. All Rights Reserved.</address>
