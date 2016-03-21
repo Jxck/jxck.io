@@ -45,7 +45,7 @@ File.write("./blog.jxck.io/index.html", html)
 
 if production
   # compression
-  `find ./www.jxck.io/* -type f | egrep -v '.webp|.rb' | xargs -L 1 -P 4 zopfli --i30`
+  `find ./www.jxck.io/* -type f | egrep -v '.webp|.rb|.otf|.woff' | xargs -L 1 -P 4 zopfli --i30`
   puts "www.jxck.io compressed"
   `find ./blog.jxck.io/* -type f | egrep -v '.webp|.rb|.xml' | xargs -L 1 -P 4 zopfli --i30`
   puts "blog.jxck.io compressed"
