@@ -1,11 +1,9 @@
 #!/usr/bin/env ruby
 
-`find ./* -name *.gz | xargs -L 4 -P 4 rm`
-puts "gz deleted"
+`rm ./blog.jxck.io/**/*.gz`
+puts "blog gz deleted"
 `rm ./blog.jxck.io/entries/**/*.html`
-puts "html deleted"
-
-production = ARGV[0] == "production"
+puts "blog html deleted"
 
 top = ""
 entries = Dir.glob("./blog.jxck.io/entries/**/**")
@@ -43,10 +41,9 @@ html = eval('"' + html + '"')
 
 File.write("./blog.jxck.io/index.html", html)
 
+production = ARGV[0] == "production"
+
 if production
-  # compression
-  `find ./www.jxck.io/* -type f | egrep -v '.webp|.rb|.otf|.woff' | xargs -L 1 -P 4 zopfli --i30`
-  puts "www.jxck.io compressed"
   `find ./blog.jxck.io/* -type f | egrep -v '.webp|.rb|.xml' | xargs -L 1 -P 4 zopfli --i30`
   puts "blog.jxck.io compressed"
 end
