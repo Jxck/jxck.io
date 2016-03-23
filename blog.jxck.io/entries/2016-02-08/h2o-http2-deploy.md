@@ -7,7 +7,7 @@
 
 ## h2o
 
-以前は nginx を使っていたけど、年末に旧ブログに書いた Cache-Aware Server Push を試したかったから。
+以前は nginx を使っていたけど、年末に旧ブログの方に書いた Cache-Aware Server Push を試したかったから。
 
 [HTTP/2 Push を Service Worker + Cache Aware Server Push で効率化したい話](http://jxck.hatenablog.com/entry/service-worker-casper)
 
@@ -84,7 +84,7 @@ kazuho さんとは、ファイルを割り当てられるようにするか、�
 ## HSTS
 
 http -> https へのリダイレクトは入れているが、 HSTS ヘッダはまだ吐いてない。
-これ吐いてしまうと、ブラウザに忘れさせない限り http では繋がらなくなり、デバッグがちょっと面倒な場合がある。
+これ吐いてしまうと、ブラウザに忘れさせない限り http では繋がらなくなり、デバッグがちょっと面倒になる場合がある。
 
 一通り開発が落ち着いたら吐く。
 

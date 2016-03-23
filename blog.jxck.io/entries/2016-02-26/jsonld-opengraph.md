@@ -91,7 +91,7 @@
 
 悩んだ点として、 Google の Validator では `publisher` が必須なのだが、 `publisher` の `@type` は `Person` だと怒られる。
 
-実際には本サイトは個人運営なのだが、しかたなく `Organization` を選択した。問題があったり、回避方法が見つかったら修正する。
+実際には、本サイトは個人運営なのだが、しかたなく `Organization` を選択した。問題があったり、回避方法が見つかったら修正する。
 
 
 ### JSON-LD と LD-JSON
@@ -146,7 +146,7 @@ Twitter と Facebook だけ、以下を参考に対応した。
 
 そもそも schema.org と Open Graph で内容が重複している部分が多いため、 Twitter, Facebook が schema.org に対応してくれるとそれだけでもペイロードサイズがだいぶ削減されそうである。
 
-また、 schema.org も JSON-LD で記述することで、重複が発生しサイズが増えてしまう。
+また、 schema.org も JSON-LD で記述することで、重複が発生し、サイズが増えてしまう。
 これは Microdata などで行えば、 HTML 内に記述されている内容は、そのタグにプロパティを付けることで表現できるため、重複を避けることができる。
 
 しかし、一方で本サイトが対応している [AMP HTML](https://blog.jxck.io/entries/2016-02-01/amp-html.html) は、 JSON-LD は許容しており、通常の HTML と AMP 用 HTML 両方を対応する上でも JSON-LD を使った方が楽だろうと判断し、 JSON-LD での記述とした。

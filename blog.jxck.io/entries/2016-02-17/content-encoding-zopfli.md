@@ -163,7 +163,7 @@ WebP はそもそも圧縮率が高いためか、オーバーヘッドが出て
 
 また、一部は h2o の mruby-handler で動的な生成をしているが、 `gzip` ディレクティブの効果は未検証なので設定していない。
 
-本サイトで `.html`, `.css`, `.js` で終わるような URL は、 `.gz` を後ろに付けると zopfli 圧縮版が取得できるので、興味があれば試してみて欲しい。
+本サイトの中で、 `.html`, `.css`, `.js` で終わるような URL は、 `.gz` を後ろに付けると zopfli 圧縮版が取得できるので、興味があれば試してみて欲しい。
 
 [この HTML の zopfli 圧縮版](https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html.gz)
 
