@@ -48,7 +48,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-03-14T08:00:00+08:00",
-  "dateModified": "2016-03-14T08:00:00+08:00",
+  "dateModified": "2016-03-23T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -508,7 +508,7 @@ footer {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-03-14>2016-03-14</time>
-    <li>updated_at: <time class=updated_at datetime=2016-03-14>2016-03-14</time>
+    <li>updated_at: <time class=updated_at datetime=2016-03-23>2016-03-23</time>
     <li class=tags>tags: [<a>web font</a>,<a>noto sans</a>]
   </ul>
 
@@ -642,7 +642,7 @@ p q r s t u v w x y z { | } ~</code></pre>
     </section>
     <section>
       <h2 id="半角形と全角形(FF00-FFE0)"><a href="#半角形と全角形(FF00-FFE0)">半角形と全角形(FF00-FFE0)</a></h2>
-      <p>全角の英数や半角カタカナなど。しかし、このブログでは <strong>これらは使わない</strong>。
+      <p>全角の英数や半角カタカナなど。しかし、このブログで <strong>これらは使わない</strong>。
       <p><a href="http://homepage2.nifty.com/k_maeda/code/uni/uni120.html">Unicode 半角形と全角形 - Halfwidth and Fullwidth Forms -</a>
       <p>以下が候補
       <pre class=><code>0 1 2 3 4 5 6 7 8 9 A B C D E F
@@ -866,8 +866,8 @@ p q r s t u v w x y z { | } ~</code></pre>
         <p>使用したフォントを CSS に設定する。
         Google はガイドラインを公開している。
         <p><a href="https://www.google.com/get/noto/help/guidelines/">Guidelines for Using Noto</a>
-        <p>システムにある場合は正式名称で、こちらが提供したフォントがダウンロードされた場合は、それが使われるようにする。
-        基本的にはサイト全体に適用するため <code>body</code> に指定し、 <code>pre &gt; code</code> 内は別にしたいため、そこだけ上書きしている。
+        <p>システムにある場合は正式名称で、こちらで提供したフォントがダウンロードされた場合は、それが使われるようにする。
+        基本的には、サイト全体に適用するため <code>body</code> へ指定し、 <code>pre &gt; code</code> 内は別にしたいため、そこだけ上書きしている。
         <pre class=css><code>body {
   font-family: &quot;Noto Sans&quot;, &quot;Noto Sans CJK JP&quot;, &quot;NotoSansCJKjp-Jxck&quot;, sans-serif;
 }</code></pre>
@@ -876,7 +876,7 @@ p q r s t u v w x y z { | } ~</code></pre>
     <section>
       <h2 id="キャッシュ設定"><a href="#キャッシュ設定">キャッシュ設定</a></h2>
       <p>フォントは、基本的には変更が非常に少ないファイルであるため、積極的にキャッシュをしていきたい。
-      ただし、今回のような作り方の場合には、フォントの追加によるファイルの更新は皆無ではないため、 URL にバージョンを忘れずに入れる。(font-face の指定参照)
+      ただし、今回のような作り方の場合には、フォントの追加によるファイルの更新が皆無ではないため、 URL にバージョンを忘れずに入れる。(font-face の指定参照)
       <pre class=><code>url(&quot;/assets/font/NotoSansCJKjp-Jxck.Bold.woff?ver=201603014&quot;) format(&quot;woff&quot;);</code></pre>
       <p>ここでは max-age を一年とし、フォントを作り直した場合はバージョンを変える
       <pre class=><code>Cache-Control: max-age=31536000</code></pre>

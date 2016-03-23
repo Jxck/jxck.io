@@ -15,21 +15,21 @@ by Jxck
 <link rel=preload as=font type=font/woff2 href=//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
 
 <meta name=author content=Jxck>
-<meta name=description content="Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要になるリソースを教える」ことで、投機的な取得を行う API 群である。[https://w3c.github.io/resource-hints/](https://w3c.github...">
+<meta name=description content="Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要となるリソースを教える」ことで、投機的な取得を行う API 群である。[https://w3c.github.io/resource-hints/](https://w3c.github...">
 <meta name=keywords content="performance,resouce-hints">
 
 <meta name=twitter:card content=summary>
 <meta name=twitter:site content=@jxck_>
 <meta name=twitter:url content=https://blog.jxck.io/entries/2016-02-11/resource-hints.html>
 <meta name=twitter:title content="Resource Hints API でリソースの投機的取得 | blog.jxck.io">
-<meta name=twitter:description content="Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要になるリソースを教える」ことで、投機的な取得を行う API 群である。[https://w3c.github.io/resource-hints/](https://w3c.github...">
+<meta name=twitter:description content="Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要となるリソースを教える」ことで、投機的な取得を行う API 群である。[https://w3c.github.io/resource-hints/](https://w3c.github...">
 <meta name=twitter:image content=https://www.jxck.io/assets/img/jxck.png>
 
 <meta property=og:type content="article">
 <meta property=og:url content=https://blog.jxck.io/entries/2016-02-11/resource-hints.html>
 <meta property=og:title content="Resource Hints API でリソースの投機的取得 | blog.jxck.io">
 <meta property=og:site_name content=blog.jxck.io>
-<meta property=og:description content="Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要になるリソースを教える」ことで、投機的な取得を行う API 群である。[https://w3c.github.io/resource-hints/](https://w3c.github...">
+<meta property=og:description content="Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要となるリソースを教える」ことで、投機的な取得を行う API 群である。[https://w3c.github.io/resource-hints/](https://w3c.github...">
 <meta property=og:image content=https://www.jxck.io/assets/img/jxck.png>
 
 <script type="application/ld+json">
@@ -48,7 +48,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-02-11T08:00:00+08:00",
-  "dateModified": "2016-03-07T08:00:00+08:00",
+  "dateModified": "2016-03-23T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -64,7 +64,7 @@ by Jxck
       "width": 257
     }
   },
-  "description": "Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要になるリソースを教える」ことで、投機的な取得を行う API 群である。[https://w3c.github.io/resource-hints/](https://w3c.github..."
+  "description": "Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要となるリソースを教える」ことで、投機的な取得を行う API 群である。[https://w3c.github.io/resource-hints/](https://w3c.github..."
 }
 </script>
 
@@ -508,7 +508,7 @@ footer {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-02-11>2016-02-11</time>
-    <li>updated_at: <time class=updated_at datetime=2016-03-07>2016-03-07</time>
+    <li>updated_at: <time class=updated_at datetime=2016-03-23>2016-03-23</time>
     <li class=tags>tags: [<a>performance</a>,<a>resouce-hints</a>]
   </ul>
 
@@ -517,7 +517,7 @@ footer {
     <h1><a href="/entries/2016-02-11/resource-hints.html">Resource Hints API でリソースの投機的取得</a></h1>
     <section>
       <h2 id="Intro"><a href="#Intro">Intro</a></h2>
-      <p>Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要になるリソースを教える」ことで、投機的な取得を行う API 群である。
+      <p>Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要となるリソースを教える」ことで、投機的な取得を行う API 群である。
       <p><a href="https://w3c.github.io/resource-hints/">https://w3c.github.io/resource-hints/</a>
       <p>主に以下がある。
       <ul>
@@ -574,7 +574,7 @@ footer {
         <p>仕様では、クロスオリジンも張ることができる。
         <pre class=html><code>&lt;link rel=&quot;preconnect&quot; href=&quot;//example.com&quot;&gt;
 &lt;link rel=&quot;preconnect&quot; href=&quot;//cdn.example.com&quot; crossorigin&gt;</code></pre>
-        <p>例えば API エンドポイントは決まっており、そこに対して連続したリクエストが発生することが分かっているような場合が予想される。
+        <p>例えば API エンドポイントは決まっており、そこに対して連続したリクエストが発生すると分かっているような場合が予想される。
         以下のようなケースで使用できる。
         <ul>
           <li>既に接続先ドメインがわかっている
@@ -619,8 +619,8 @@ footer {
       </ul>
       <p>これを考慮して、以下の二つを実施した。
       <ul>
-        <li>jxck.io にアクセスした際に、サブドメインを名前解決だけする
-        <li>blog.jxck.io (エントリ一覧)にアクセスした際に、最新のエントリだけ裏でレンダリングする
+        <li>jxck.io にアクセスした際、サブドメインを名前解決だけする
+        <li>blog.jxck.io (エントリ一覧)にアクセスした際、最新のエントリだけ裏でレンダリングする
       </ul>
       <p>名前解決の方は確認が難しいので、後者のみ確認結果を載せる。
       <p>Chrome の場合は Prerender の状況について <code>chrome://net-internals</code> から確認できる。

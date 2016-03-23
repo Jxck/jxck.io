@@ -48,7 +48,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-02-01T08:00:00+08:00",
-  "dateModified": "2016-03-07T08:00:00+08:00",
+  "dateModified": "2016-03-23T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -508,7 +508,7 @@ footer {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-02-01>2016-02-01</time>
-    <li>updated_at: <time class=updated_at datetime=2016-03-07>2016-03-07</time>
+    <li>updated_at: <time class=updated_at datetime=2016-03-23>2016-03-23</time>
     <li class=tags>tags: [<a>performance</a>,<a>amp</a>,<a>html</a>]
   </ul>
 
@@ -532,7 +532,7 @@ footer {
       <h2 id="AMP"><a href="#AMP">AMP</a></h2>
       <p><a href="https://www.ampproject.org/">ACCELERATED MOBILE PAGES PROJECT</a>
       <p>タイトルは識別しやすいよう AMP HTML としたが、実際には AMP という仕様(方針)があり、 HTML 以外にも手を入れている。
-      <p>AMP は、特にモバイル向けに <strong>静的コンテンツ</strong> を最適化し、高速に表示できるようにすることを目的としている。
+      <p>AMP は、特にモバイル向けに <strong>静的コンテンツ</strong> を最適化し、表示を高速化することを目的としている。
       <p>実際は、高速化するというより、 <strong>遅くなる原因を排除する</strong> という制約を課す仕様という作りになっている。
       <section>
         <h3 id="対応のメリット"><a href="#対応のメリット">対応のメリット</a></h3>
@@ -540,7 +540,7 @@ footer {
         <p>具体的には以下のようなアンチパターンを排除する。
         <ul>
           <li>JS の実行: 実際には <code>document.write</code> などによるブロックなどがネックになりやすいが、細かくいうと色々あるので、丸っと一括で禁止するという感じ
-          <li>外部 CSS: 代わりに全部 HTML 内に書かせることで、リレンダリングなどが発生しないようにさせたい
+          <li>外部 CSS: 全部 HTML 内に書かせることで、 fetch や再描画を防ぐ
           <li><code>&lt;img&gt;</code>: 画像の width x height を明示させ、そこに非同期読み込みする <code>&lt;amp-img&gt;</code> を代わりに使わせることで、画像表示を最適化する
         </ul>
         <p>まあ、ほとんどが実際は <strong>粗悪なアド</strong> を縛るような仕様になっている。
@@ -606,7 +606,8 @@ footer {
         <p>AMP-HTML 内では、 <code>&lt;img&gt;</code> タグを直接書くことは禁止されており、代わりに、 <code>&lt;amp-img&gt;</code> というカスタムタグを使用する。
         <p><a href="https://www.ampproject.org/docs/reference/extended/amp-img.html">amp-img</a>
         <p>このタグには <code>width</code> <code>height</code> の記述が必須となっており、 <code>layout=responsive</code> とすることでそのサイズ比を保ったままレスポンシブ表示してくれる。
-        <p>この記事では markdown から生成しているため、この指定はいちいち調べて URL の最後に <code>#widthxheight</code> などとサイズを付与しておいて、 AMP バージョンだけビルド時にそれを読むようにした。全てのイメージにサイズを付けるのは、特に既存のコンテンツがあるとなかなか難しそうな気がする。
+        <p>この記事では markdown から生成しているため、この指定はいちいち調べて URL の最後に <code>#widthxheight</code> などとサイズを付与しておき、 AMP バージョンだけビルド時にそれを読むようにした。
+        <p>全てのイメージにサイズを付けるのは、特に既存のコンテンツがあるとなかなか難しそうな気がする。
       </section>
       <section>
         <h3 id="amp-iframe"><a href="#amp-iframe">amp-iframe</a></h3>
@@ -657,7 +658,7 @@ footer {
       <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
       <p>AMP は、読み込みが遅くなる原因を徹底的に排除するために、対象となるタグや構成などを強く制限している。
       <p>また、各ベンダの CDN からの代理配信が最適化されれば、メリットは強いかもしれない。
-      <p>本サイトのようにまだ作り途中で、変更も効かせやすいサイトであればまだ別だが、既存のコンテンツをそれなりに持っている場合は、なかなか対応は難しいのではないかと感じる。
+      <p>本サイトのようにまだ作り途中で、変更も効かせやすいサイトであればまだ別だが、既存のコンテンツをそれなりに持っている場合は、なかなか対応が難しいのではないかと感じる。
       <p>それを踏まえて実施するだけのメリットが明確に見えれば、徐々に広がって行くのではないかと思う。
       <p>あと、ドキュメントが分かりにくいところがある。
       <p>仕様のバージョンもまだ少し動いていくようなので、その辺りも含めてもっと知見と安定感が欲しい。
