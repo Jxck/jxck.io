@@ -6,7 +6,7 @@ let image = require('gulp-image');
 const imageOption = {
   pngquant:       true,
   optipng:        true,
-  zopflipng:      true,
+  zopflipng:      false,
   advpng:         true,
   jpegRecompress: true,
   jpegoptim:      true,
