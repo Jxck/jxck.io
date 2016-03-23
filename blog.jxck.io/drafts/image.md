@@ -15,6 +15,8 @@
 
 また、見た目上の劣化が生じなければ減色や、余計なメタ情報の削除なども最適化として考えられる。
 
+(Retina など High DPI 端末に向けた対応は、別エントリで記載する)
+
 
 ## メタ情報削除
 
@@ -86,4 +88,44 @@ http://yuiblog.com/blog/2008/12/05/imageopt-4/
 
 リサイズは別途行い、その結果に対して以下のような gulp タスクを作成した。
 
+```js
+'use strict';
 
+let gulp = require('gulp');
+let image = require('gulp-image');
+
+const imageOption = {
+  pngquant:       true,
+  optipng:        true,
+  zopflipng:      true,
+  advpng:         true,
+  jpegRecompress: true,
+  jpegoptim:      true,
+  mozjpeg:        true,
+  gifsicle:       true,
+  svgo:           true,
+}
+
+gulp.task('image', () => {
+  gulp.src('blog.jxck.io/entries/**/*')
+    .pipe(image(imageOption))
+    .pipe(gulp.dest('blog.jxck.io/entries/'));
+});
+
+gulp.task('default', ['image']);
+```
+
+## 結果
+
+gulp-image の実行結果は以下である。
+
+```
+✔ 2016-02-17/before.png -> before=57.88 KB after=22.07 KB reduced=35.82 KB(61.9%)
+✔ 2016-02-17/after.png -> before=67.92 KB after=25.22 KB reduced=42.7 KB(62.9%)
+✔ 2016-02-11/net-internals-prerender.png -> before=65.7 KB after=26.05 KB reduced=39.65 KB(60.4%)
+✔ 2016-02-17/zopfli.png -> before=77.52 KB after=49.29 KB reduced=28.23 KB(36.4%)
+✔ 2016-03-04/before.png -> before=253.06 KB after=100.73 KB reduced=152.33 KB(60.2%)
+✔ 2016-03-04/after.png -> before=253.31 KB after=99.47 KB reduced=153.84 KB(60.7%)
+```
+
+全体でみると、 775.39KB => 452.57KB (42%) の削減になった。

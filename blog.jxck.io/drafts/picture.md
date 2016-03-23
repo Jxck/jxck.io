@@ -31,14 +31,6 @@ WebP の対応は `<picture>` を用いて行い、ブラウザに判断を委�
 
 ### Picture
 
-`<picture>` には様々な条件を指定することができるが、 `type` を用いることでフォーマットの指定も可能である。
-
-画像の指定を以下のように指定することで、対応ブラウザが自ら WebP をリクエストするようになり、 WebP や `<picture>` に対応していない場合は `<img>` に指定した画像にフォールバックする。
-
-<picture>
-  <source type=image/webp srcset=hero-image.webp>
-  <img src=hero-image.png alt="hero image">
-</picture>
 
 
 ### サイズ最適化
