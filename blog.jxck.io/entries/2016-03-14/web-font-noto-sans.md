@@ -466,6 +466,8 @@ Cache-Control: max-age=31536000
 <link rel=preload as=font type=font/woff href=//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
 ```
 
+また、 AMP 対応ページでは `rel=preload` は許可されてないため指定するとエラーになったため、 AMP の方には指定していない。
+
 
 ## まとめ
 
