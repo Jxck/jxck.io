@@ -1,4 +1,4 @@
-# 画像最適化戦略 &lt;picture&gt; 編
+# [picture][image][performance] 画像最適化戦略 &lt;picture&gt; 編
 
 ## Intro
 
@@ -7,30 +7,26 @@
 
 ## 画像の出し分け
 
-本サイトでは、ここまでに最適化を実施した PNG/JPEG に加えて、対応するブラウザにのみ WebP を提供している。
+本サイトでは、ここまでに最適化を実施した PNG/JPEG に加えて、 WebP 形式を提供している。
 
-WebP の対応は `<picture>` を用いて行い、ブラウザに判断を委ねることで UA や Accept ヘッダによるサーバサイドでの分岐無しに対応を実施した。
+WebP の対応は `<picture>` を用いて行い、ブラウザに判断を委ねることで UA や Accept ヘッダによるサーバサイドでの分岐無しに実施した。
 
 
 一方、それぞれの画像のサイズは、基本的に `<img>` に指定する `width`, `height` 値に会わせてリサイズを実施している。
 
-しかし、例えば Pevice Pixel Ratio が大きい Retina 対応端末などには、 大きいサイズのファイルを提供しなければ、拡大表示による画像の荒れが発生してしまう。
+しかし、例えば Device Pixel Ratio が大きい Retina 対応端末などには、 大きいサイズのファイルを提供しなければ、拡大表示による画像の荒れが発生してしまう。
 
 そこで、同一画像でいくつかのファイルサイズを用意し、同じく `<picture>` を用いて最適なものをブラウザに判断させる形で対応を行った。
 
 
 ## 最適な画像を決定する変数
 
-サイズ・フォーマット的に最適なイメージは、大きく端末とブラウザの組み合わせで変わる。
+サイズ・フォーマット的に最適なイメージは、主に端末とブラウザの組み合わせで変わる。
 具体的には、現状以下の分岐を考慮する必要がある。
 
 - WebP に対応しているか(ブラウザの分岐)
 - ViewPort Size はいくつか(端末サイズの分岐)
-- DPI はいくつか(retina 対応)
-
-
-### Picture
-
+- DPI はいくつか(端末 Retina 対応)
 
 
 ### サイズ最適化
@@ -62,27 +58,91 @@ Retina ディスプレイは、通常のスクリーンよりも、スクリー�
 最適な画像を出し分けるのは、大事な一方、実は非常に複雑なのだ。
 
 
-## 対応方法
+## `<picture>` による対応
 
 今回は、デバイスのサイズや解像度などに応じて、適切なサイズの画像を出し分けられるようにする設定を考える。
+ただし、 Media Query を多用するような、複雑なインタラクションは考慮しない。
 
-特に、複雑なインタラクションは考えない。
+### 現状
+
+すでに WebP を出し分けるために、画像は以下のように `<picture>` を指定している。
+
+```html
+<picture>
+  <source type=image/webp srcset=hero-image.webp>
+  <img src=hero-image.png alt="hero image">
+</picture>
+```
 
 
+ここに対して Hi-DPI 対応の、大きいサイズの画像を指定する。
+
+基本的に Width-Height は変更しない前提であれば、 DPI が x2, x3... と増える場合にサイズが x2, x3... となる画像を提供することになる。
 
 
-加えて、例えばデバイスを横に持ってワイドスクリーンになった場合に、画像を大きくしたいなどとなれば、必要なサイズはまた変わるだろう。
+### Media Query の指定
+
+Media Query を用いて DPR 値で分岐した場合以下のように指定できる。
+
+```html
+<picture>
+  <source type=image/webp srcset=300x300.webp media="min-device-pixel-ratio: 2.5">
+  <source type=image/webp srcset=200x200.webp media="min-device-pixel-ratio: 1.5">
+  <source type=image/webp srcset=100x100.webp>
+
+  <source type=image/png srcset=300x300.png media="min-device-pixel-ratio: 2.5">
+  <source type=image/png srcset=200x200.png media="min-device-pixel-ratio: 1.5">
+  <source type=image/png srcset=100x100.png>
+
+  <img src=100x100.png alt="select with media query">
+</picture>
+```
 
 
+### sizes の指定
+
+sizes を用いて、画像のサイズを明示した場合以下のように指定できる。
+
+```html
+<picture>
+  <source type=image/webp sizes=100px
+          srcset="100x100.webp 100w,
+                  200x200.webp 200w,
+                  300x300.webp 300w">
+
+  <source type=image/png sizes=100px
+          srcset="100x100.png 100w,
+                  200x200.png 200w,
+                  300x300.png 300w">
+
+  <img src=100x100.png alt="select with picture source">
+</picture>
+```
 
 
+### pros/cons
 
+Media Query を用いた指定は、コンテンツ側が「この場合はこれ」とブラウザに指定してることになる。
+ブラウザはそのクエリを評価し、その結果に忠実に画像を選択することになる。
 
+sizes の指定は、コンテンツ側が「こういう選択肢がある」と提示し、ブラウザがそこから選択することになる。
 
+srcset で画像の実際のサイズを `w` で指定し、それを表示したいサイズを `sizes` で指定している。
 
-|    format |   size |
-|:----------|-------:|
-| jxck.png  |   3.8K |
-| jxck.webp |   1.8K |
-| jxck.svg  |   291B |
+ブラウザは
 
+> DPI x2 のディスプレイなので 100px で表示するのに最適なのは 200w の画像だ
+
+といった具合に画像を選択する。
+
+両者の一番の違いは「**ブラウザに考える余地があるかどうか**」である。
+
+もし、将来より大きい DPI や、今とは違う表示サイズや、表示形式から違うディスプレイが出て来た場合、後者はそれを考慮して画像を選べるが、前者はコンテンツに手を入れて対応して行く必要が有る。
+
+また、モバイル端末自身が
+
+> ネットワーク環境が悪いため、 DPI は x3 だがあえて 100w の画像を取得しよう
+
+といったこともできる可能性がある。
+
+本サイトは、こうした選択をブラウザに任せることとし、後者の指定方法を選択することにした。

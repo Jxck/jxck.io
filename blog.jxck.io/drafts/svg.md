@@ -1,4 +1,4 @@
-# [performance][image][svg] 画像最適化戦略 SVG/Font 編
+# [svg][image][performance] 画像最適化戦略 SVG/Font 編
 
 ## Intro
 

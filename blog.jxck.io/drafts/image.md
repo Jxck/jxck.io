@@ -1,4 +1,4 @@
-# [image][png][jpeg][performance] 画像最適化戦略 PNG/JEPG 編
+# [image][performance] 画像最適化戦略 PNG/JEPG 編
 
 ## Intro
 
