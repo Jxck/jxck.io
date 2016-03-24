@@ -1,4 +1,4 @@
-# [http2][css][performance] HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について
+# [css][http2][performance] HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について
 
 ## Intro
 

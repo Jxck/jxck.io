@@ -1,4 +1,4 @@
-# [web font][noto sans] Noto Sans の Web Font 対応とサブセットによる最適化
+# [noto sans][web font][performance] Noto Sans の Web Font 対応とサブセットによる最適化
 
 ## Intro
 

@@ -1,4 +1,4 @@
-# [performance][html] HTML の省略によるサイズ最適化
+# [html][performance] HTML の省略によるサイズ最適化
 
 ## Intro
 

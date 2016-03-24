@@ -1,4 +1,4 @@
-# [http2][h2o] h2o で https/2 のデプロイと設定
+# [h2o][http2] h2o で https/2 のデプロイと設定
 
 ## Intro
 
