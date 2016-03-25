@@ -2,38 +2,37 @@
 
 # html special chars
 def hsp(str)
-  return str.gsub(/&/, '&amp;')
-            .gsub(/</, '&lt;')
-            .gsub(/>/, '&gt;')
-            .gsub(/"/, '&quot;')
-            .gsub(/'/, '&#039;');
+  str.gsub(/&/, "&amp;")
+     .gsub(/</, "&lt;")
+     .gsub(/>/, "&gt;")
+     .gsub(/"/, "&quot;")
+     .gsub(/'/, "&#039;")
 end
 
 entries = Dir.glob("./blog.jxck.io/entries/**/**")
-  .select{|path| path.match(/.*.md\z/) }
-  .sort{|a,b| b <=> a }
-  .map{|name|
+             .select { |path| path.match(/.*.md\z/) }
+             .sort { |a, b| b <=> a }
+             .map { |name|
+               href = name.gsub("./blog.jxck.io/", "https://blog.jxck.io/").gsub(".md", ".html")
+               file = File.open(name)
+               text = file.read
+               title = text.match(/^# \[.*\] (.*)/)[1]
+               summary = text.match(/## intro(.*?)##/im)[1].strip # .gsub(/\n/, "")
+               summary = hsp(summary)
+               splitted = name.split("/")
+               date = splitted[3]
+               updated = "#{date}T00:00:00Z"
 
-  href = name.gsub("./blog.jxck.io/", "https://blog.jxck.io/").gsub(".md", ".html")
-  file = File.open(name)
-  text = file.read
-  title = text.match(/^# \[.*\] (.*)/)[1]
-  summary = text.match(/## intro(.*?)##/im)[1].strip #.gsub(/\n/, '')
-  summary = hsp(summary)
-  splitted = name.split("/")
-  date = splitted[3]
-  updated = "#{date}T00:00:00Z"
-
-  <<-EOS
-<entry>
- <title>#{title}</title>
- <link href="#{href}" rel="alternate" />
- <id>tag:blog.jxck.io,2016:entry://#{date}</id>
- <updated>#{updated}</updated>
- <summary>#{summary}</summary>
-</entry>
-  EOS
-}
+               <<-EOS
+                <entry>
+                 <title>#{title}</title>
+                 <link href="#{href}" rel="alternate" />
+                 <id>tag:blog.jxck.io,2016:entry://#{date}</id>
+                 <updated>#{updated}</updated>
+                 <summary>#{summary}</summary>
+                </entry>
+               EOS
+             }
 
 feed = <<-EOS
 <?xml version='1.0' encoding='UTF-8'?>
