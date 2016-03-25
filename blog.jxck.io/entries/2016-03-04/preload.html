@@ -141,7 +141,6 @@ by Jxck
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre class=html><code>&lt;link rel=preload as=image href=hero-image.png&gt;</code></pre>
       <p>Web Font の場合はこうなる。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre class=html><code>&lt;link rel=preload  as=font type=font/woff2 href=font.woff2 crossorigin&gt;</code></pre>
       <p>(Chrome は現状フォントの取得は暗黙的に CORS になるらしいため、 Same Origin からの取得でも <code>crossorigin</code> が必要らしい)
       <p><code>as</code> に指定可能な値は <a href="https://fetch.spec.whatwg.org/#concept-request-destination">fetch spec に一覧がある</a>、省略すると XHR や fetch と同じ挙動になる。
@@ -153,16 +152,13 @@ by Jxck
       <p>後から <code>&lt;script&gt;</code> を差し込むことで、 JS の「取得と実行」を遅延させることはこれまでもできたが、「取得」だけを先に行うことはできなかった。
       また、取得を XHR で行い保存しておいたものをあとで <code>eval</code> することもできるが、 Preload を使うことで実行を <code>&lt;script&gt;</code> で行え、ブラウザの Preloader に取得させるため、再利用が効く。
       <p>まず「取得」を Preload で行う、これは HTML に書いておいても良いし、それ自体も遅延したければ好きなタイミングで以下のようにノードを作れば良い。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre class=html><code>&lt;link rel=preload as=script href=script.js&gt;</code></pre>
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre class=js><code>var preload = document.createElement(&#039;link&#039;);
 link.rel = &#039;preload&#039;;
 link.as = &#039;script&#039;;
 link.href = &#039;script.js&#039;;
 document.head.appendChild(link);</code></pre>
       <p>そして、「実行」は任意のタイミングで <code>&lt;script&gt;</code> を生成し行う。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre class=js><code>var script = document.createElement(&#039;script&#039;);
 script.src = &#039;script.js&#039;;
 document.body.appendChild(script);</code></pre>
@@ -172,12 +168,10 @@ document.body.appendChild(script);</code></pre>
       <p><code>&lt;link rel=preload&gt;</code> は自身で <code>onload</code> を発火する。
       これを利用すると、 HTML と少しの JS で <strong>非同期ローダ</strong> を実現することができる。
       <p>例えば CSS の場合はこうなる。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre class=html><code>&lt;link rel=preload as=style href=style.css onload=&quot;this.rel=&#039;stylesheet&#039;&quot;&gt;</code></pre>
       <p>同じことは JS でも応用できる。
       <p><code>&lt;script async&gt;</code> があるが、これは <code>window.onload</code> をブロックするので、そこで使い分ける。
       <p>analytics のような場合。とにかく早く取得して、ユーザを取りこぼさず、かつ UX は一切損ないたく無い、特に onload を遅らせたくはない場合などに使える。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre class=html><code>&lt;link rel=preload as=script href=analytics.js
       onload=&quot;var script = document.createElement(&#039;script&#039;);
               script.src = this.href;
@@ -188,7 +182,6 @@ document.body.appendChild(script);</code></pre>
       <p>Preload はリンクであるため、仕様上 media 属性を持つ。(chrome ではまだ未サポート)
       つまり Media Query を用いた条件付きローディングができる。
       <p>例えば <code>&lt;picture&gt;</code> で Image を読み分けている場合、その条件と同じものを <code>&lt;link rel=preload&gt;</code> に指定することで、一致した条件のみの画像を Prelaod できる。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre class=html><code>&lt;link rel=preload as=image href=large.png media=&quot;(max-width: 600px)&quot;&gt;
 &lt;link rel=preload as=image href=middle.png media=&quot;(max-width: 400px)&quot;&gt;
 &lt;link rel=preload as=image href=small.png media=&quot;(max-width: 300px)&quot;&gt;</code></pre>
@@ -197,7 +190,6 @@ document.body.appendChild(script);</code></pre>
       <h2 id="Header+での指定"><a href="#Header+での指定">Header での指定</a></h2>
       <p>Preload は、同じセマンティクスを HTTP Header にも適用できる。
       <p>つまりここまでマークアップで示してきた例は、(onload hack など除き)基本的に全て HTTP Response Header で行うことができる。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre class=><code>Link: &lt;script.js&gt;;rel=&quot;preload&quot;;as=&quot;script&quot;
 
 Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin</code></pre>
@@ -209,7 +201,6 @@ Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin
       <p>Preload をヒントとして使っていれば、サポートされてい無いブラウザにおいては従来通りのタイミングで取得が走るだけになる。
       しかし、 <code>onload</code> ハックなどを用いたより積極的な活用を行う上では、ブラウザのサポートの有無を知りたい場合もある。
       <p>そこで、サポートされる <code>rel</code> の値を DOM から取れるような提案がなされている。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre class=js><code>document.createElement(&quot;link&quot;).relList.supports(&quot;preload&quot;));</code></pre>
       <p>これを使えば、 Preload が無効な場合に問題があるサイトでは、フォールバックすることも可能になる。
     </section>
@@ -232,7 +223,6 @@ Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin
       クライアントの状態を踏まえて、コンテントネゴシエーションを重視する場合に Preload を。
       <p>という感じに、組み合わせて使うのが最も理想だと言えるだろう。
       <p>なお、 HTTP2 の Push はさせずブラウザに Fetch で Preload させたい場合は、 <code>nopush</code> を付けることで Opt-Out することができる。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre class=><code>Link: &lt;/app/style.css&gt;; rel=preload; as=style; nopush</code></pre>
     </section>
     <section>
@@ -252,7 +242,6 @@ Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin
         そのため HTTP Header で Link rel=preload を指定すれば、必ず HTTP2 Push が発生する。
         <p>まず、本サイトはまだ HTTP2 Push を持ちいた最適化は、キャッシュを有効に使えなくなるという理由から行っておらず、 <a href="https://tools.ietf.org/html/draft-kazuho-h2-cache-digest">Cache Digest</a> を Service Worker で管理する方式を採用する予定なので、そこまでは Link Header を付けるのは避けたい。
         <p>そこで、ページで共通するサブリソースについて、 HTML のトップレベルへの <code>&lt;link&gt;</code> タグで指定することにした。
-        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
         <pre class=><code>&lt;link rel=preload as=script src=/assets/js/highlight.min.js&gt;
 &lt;link rel=preload as=script src=//www.jxck.io/assets/js/ga.js&gt;</code></pre>
       </section>
@@ -261,9 +250,9 @@ Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin
         <p>本サイトの平均的な記事を対象として、 <code>&lt;link&gt;</code> の付与前後を Chrome Canary 51.0.2665.0 で検証した。
         <p>数回実行し、傾向を確認。平均的な結果のスクリーンショットを取得した。
         <p>before
-        <p><a href="before.png"><img src=before.png#873x492 alt="before" title="result of before adding preload"></a>
+        <p><a href="before.png"><img src=before.png#873x492 alt="before" title="result of before adding preload" width=873 height=492></a>
         <p>after
-        <p><a href="after.png"><img src=after.png#873x492 alt="after" title="result of after adding preload"></a>
+        <p><a href="after.png"><img src=after.png#873x492 alt="after" title="result of after adding preload" width=873 height=492></a>
         <p>このページでは、むしろ遅くなっている。これは、元のコンテンツで特にリソースの読み込みなどに関するオーバーヘッドが少ないためであると考えられる。したがって、処理が入ることによる内部処理のオーバーヘッドが結果に影響していると推測する。
         <p>同様に、いくつかのページで同様に試したが、もとが速すぎるので、もはや誤差のような結果にしかならなかった。
         <p>現状 Chrome Canary しか対応していないこと、このブログは作ってまだ間もないので、コンテンツも少ないことをふまえ、今回は導入を見送った。

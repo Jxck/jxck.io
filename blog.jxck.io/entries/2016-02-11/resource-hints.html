@@ -143,7 +143,6 @@ by Jxck
       <section>
         <h3 id="dns-prefetch"><a href="#dns-prefetch">dns-prefetch</a></h3>
         <p>DNS の問い合わせを事前に行い、キャッシュしておくことで、名前解決コストを下げる方法である。
-        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
         <pre class=html><code>&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//example.com&quot;&gt;</code></pre>
         <p>例えば、メインページで接続する API サーバや、 CDN のエッジへの名前解決を行うなどが予想されるだろう。
         以下のようなケースで使用できる。
@@ -156,7 +155,6 @@ by Jxck
         <h3 id="preconnect"><a href="#preconnect">preconnect</a></h3>
         <p>DNS の解決に加えて TCP の接続まで確立しておくことで、リクエストをすぐにでも発行できるようにする方法である。
         <p>仕様では、クロスオリジンも張ることができる。
-        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
         <pre class=html><code>&lt;link rel=&quot;preconnect&quot; href=&quot;//example.com&quot;&gt;
 &lt;link rel=&quot;preconnect&quot; href=&quot;//cdn.example.com&quot; crossorigin&gt;</code></pre>
         <p>例えば API エンドポイントは決まっており、そこに対して連続したリクエストが発生すると分かっているような場合が予想される。
@@ -169,7 +167,6 @@ by Jxck
       <section>
         <h3 id="prefetch"><a href="#prefetch">prefetch</a></h3>
         <p>もはや取得するリソースが分かっており、それが投機的に取得しても内容が変わらないもの、要するに静的リソースである場合に、事前に取得してブラウザにキャッシュする方法である。
-        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
         <pre class=html><code>&lt;link rel=&quot;prefetch&quot; href=&quot;/library.js&quot; as=&quot;script&quot;&gt;
 &lt;link rel=&quot;prefetch&quot; href=&quot;//example.com/next-page.html&quot; as=&quot;html&quot; crossorigin=&quot;use-credentials&quot;&gt;</code></pre>
         <p>以下のようなケースで使用できる。
@@ -182,7 +179,6 @@ by Jxck
         <h3 id="prerender"><a href="#prerender">prerender</a></h3>
         <p>prefetch 可能なリソースのみからなるページならば、ページ全体を事前に取得することが可能な筈である。
         <p>そこで、そのページ全体を取得し、バックグラウンドに起こしたタブの中で、描画まで行ってしまうという方法である。
-        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
         <pre class=html><code>&lt;link rel=&quot;prerender&quot; href=&quot;//example.com/next-page.html&quot;&gt;</code></pre>
         <p>描画が完了しているため、実際の遷移が発生したら、そのタブを切り替えるだけでよくなる。理論上は最速表示となるだろう。
         以下のようなケースで使用できる。
@@ -194,7 +190,7 @@ by Jxck
     <section>
       <h2 id="API+選択フロー"><a href="#API+選択フロー">API 選択フロー</a></h2>
       <p>どの API を選ぶフローは、接続するドメインが分かっている前提であれば、以下のように考えることができる。
-      <p><img src=resource-hints.svg#546x608 alt="resource-hints" title="選択フロー">
+      <p><img src=resource-hints.svg#546x608 alt="resource-hints" title="選択フロー" width=546 height=608>
     </section>
     <section>
       <h2 id="サイトへの適用"><a href="#サイトへの適用">サイトへの適用</a></h2>
@@ -211,7 +207,7 @@ by Jxck
       </ul>
       <p>名前解決の方は確認が難しいので、後者のみ確認結果を載せる。
       <p>Chrome の場合は Prerender の状況について <code>chrome://net-internals</code> から確認できる。
-      <p><a href="net-internals-prerender.png"><img src=net-internals-prerender.png#873x248 alt="net-internals-prerender" title="chrome://net-internals#prerender"></a>
+      <p><a href="net-internals-prerender.png"><img src=net-internals-prerender.png#873x248 alt="net-internals-prerender" title="chrome://net-internals#prerender" width=873 height=248></a>
     </section>
   </article>
 

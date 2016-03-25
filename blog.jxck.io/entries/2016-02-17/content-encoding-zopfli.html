@@ -139,7 +139,6 @@ by Jxck
       <section>
         <h3 id="send-gzip+ディレクティブ"><a href="#send-gzip+ディレクティブ">send-gzip ディレクティブ</a></h3>
         <p>あらかじめコンテンツを gzip 圧縮した状態で <code>ファイル名.gz</code> で配置し、以下を設定すると、 h2o は自動的に圧縮済みファイルを転送してくれる。
-        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
         <pre class=><code>file.send-gzip: ON</code></pre>
         <p><a href="https://h2o.examp1e.net/configure/file_directives.html#file.send-gzip">Configure > File Directives > "file.send-gzip"</a>
         <p>事前に圧縮するため、レスポンスへのオーバーヘッドは無くなる。
@@ -164,7 +163,6 @@ by Jxck
       <section>
         <h3 id="ベンチマーク"><a href="#ベンチマーク">ベンチマーク</a></h3>
         <p>以下のように、前回の記事に対して zopfli コマンドを実行し、 time コマンドで実行時間を計測した。
-        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
         <pre class=sh><code>$ time zopfli --i10 -c loading-css-over-http2.html</code></pre>
         <p><code>--i</code> が探索回数であり、これを増やせばより小さく圧縮できるが、時間がかかる。
         デフォルトは <code>i = 15</code> であるため、 <code>10..100</code> まで増やしながら実行した。
@@ -243,7 +241,6 @@ by Jxck
         </table><p>この結果だと <code>-i20</code> 以上は誤差のようである。
         ただ、開発用の Mac では少し違う結果が出たりもしたため、結果 <code>i=30</code> くらいに落ち着いた。
         <p>また、 <a href="//www.jxck.io/assets/img/jxck.webp">WebP</a> と <a href="//www.jxck.io/assets/img/jxck.png">PNG</a> の画像ファイルでも検証したところ、以下のようになった。
-        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/table.css>
         <table>
           <thead>
             <tr>
@@ -283,7 +280,7 @@ by Jxck
         <li>webp は対象外
       </ul>
       <p>動作は、 HTTP ヘッダで確認できる。
-      <p><img src=zopfli.png#652x461 alt="Content-Encoding Support Before/After" title="Content-Encoding ヘッダの確認">
+      <p><img src=zopfli.png#652x461 alt="Content-Encoding Support Before/After" title="Content-Encoding ヘッダの確認" width=652 height=461>
       <p>また、一部は h2o の mruby-handler で動的な生成をしているが、 <code>gzip</code> ディレクティブの効果は未検証なので設定していない。
       <p>本サイトの中で、 <code>.html</code>, <code>.css</code>, <code>.js</code> で終わるような URL は、 <code>.gz</code> を後ろに付けると zopfli 圧縮版が取得できるので、興味があれば試してみて欲しい。
       <p><a href="https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html.gz">この HTML の zopfli 圧縮版</a>

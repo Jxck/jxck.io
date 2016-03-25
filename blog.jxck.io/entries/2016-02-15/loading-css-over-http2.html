@@ -117,7 +117,6 @@ by Jxck
 &lt;/body&gt;</code></pre>
       <p>ところが、リクエストの多重化が可能な HTTP/2 においては、そこを心配する必要がなくなった。
       このため、コンポーネントごとに CSS を分割するのは、キャッシュの容易性を考えても良い方法と言える。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre class=html><code>&lt;head&gt;
   &lt;link rel=&quot;stylesheet&quot; href=&quot;/header.css&quot;&gt;
   &lt;link rel=&quot;stylesheet&quot; href=&quot;/main.css&quot;&gt;
@@ -165,7 +164,6 @@ by Jxck
     <section>
       <h2 id="HTTP2+時代の最適化"><a href="#HTTP2+時代の最適化">HTTP2 時代の最適化</a></h2>
       <p>HTTP2 では以下のように書くことが可能になる。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre class=html><code>&lt;head&gt;
 &lt;!-- header には、コンポーネントに依存する CSS は書かない --&gt;
 &lt;/head&gt;
@@ -223,7 +221,6 @@ by Jxck
       <h2 id="Firefox+での+FOUC+対策"><a href="#Firefox+での+FOUC+対策">Firefox での FOUC 対策</a></h2>
       <p>Firefox では、以下のように <code>&lt;script&gt;</code> をはさむことで CSS がロードされるまでパースをブロックし FOUC を回避できる。
       <code>&lt;script&gt;</code> には中身が必要だが、スペース1つで十分である。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre class=html><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;/article.css&quot;&gt;&lt;script&gt; &lt;/script&gt;
 &lt;main&gt;&lt;/main&gt;</code></pre>
     </section>

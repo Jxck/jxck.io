@@ -134,9 +134,15 @@ iframe {
   margin: 0 0.2em;
 }
 
-@media only screen and (max-device-width : 480px) {
+img {
+  max-width: 100%;
+}
+
+@media only screen and (max-device-width: 480px) {
   article > img {
     max-width:100%;
+    width: 100%;
+    height: auto;
   }
 }
 
@@ -207,8 +213,10 @@ main {
   margin: 1em auto;
 }
 
-main img[src$=".svg"] {
-  max-width: 50%;
+@media screen and (max-device-width: 480px) {
+  main {
+    width: 94%;
+  }
 }
 
 a {
@@ -281,6 +289,7 @@ strong::before, strong::after {
 }
 
 ol, ul {
+  font-family: monospace;
   list-style: none;
   padding-left: 0;
 }
@@ -346,14 +355,12 @@ code::before, code::after {
 }
 
 article img {
-  display: block;
-  max-width: 80%;
   margin: 1em 0;
-  border: solid 1px #ccc;
+  border: 1px solid #ccc;
+  box-sizing: content-box;
 }
 
 pre {
-  overflow: auto;
   word-break: break-all;
   word-wrap: break-word;
   font-size: 1.2em;
@@ -372,6 +379,7 @@ pre::after {
 }
 
 pre > code {
+  overflow: auto;
   display: block;
   padding: 0.6em;
   margin: 0;
