@@ -161,7 +161,10 @@ class Builder {
     }
     if (!this.ampurl) {
       // not has amp link means amp template
-      if (width === '' || height === '') console.log('no widthxheight for img'); process.exit(1);
+      if (width === '' || height === '') {
+        console.log('no widthxheight for img');
+        process.exit(1);
+      }
       return `<amp-img layout=responsive src=${node.url} alt="${node.alt}" title="${node.title}" ${width} ${height}>`;
     }
     return `<img src=${node.url} alt="${node.alt}" title="${node.title}" ${width} ${height}>`;
