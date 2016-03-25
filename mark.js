@@ -2,7 +2,7 @@
 
 'use strict';
 
-global.__defineGetter__('__LINE__', function() {
+global.__defineGetter__('__LINE__', () => {
   return (new Error()).stack.split('\n')[3].split(':').reverse()[1];
 });
 
@@ -117,7 +117,7 @@ class Builder {
     }
     return val;
   }
-  code       (node) {
+  code(node) {
     let lang = node.lang || '';
     let value = `<pre class=${lang}><code>${node.value}</code></pre>\n`;
     if (this.ampurl) {
@@ -126,7 +126,7 @@ class Builder {
     }
     return value;
   }
-  table      (node) {
+  table(node) {
     let value = this.wrap`<table>${node.value}</table>`;
     if (this.ampurl) {
       // has amp url so not amp page
@@ -171,11 +171,11 @@ class Builder {
   thematicBreak() { return '<hr>'; }
 }
 
-let p = function() {
+function p() {
   let arg = Array.from(arguments);
   arg.unshift(__LINE__);
   console.log.apply(this, arg);
-};
+}
 
 let j = JSON.stringify.bind(JSON);
 
@@ -228,9 +228,9 @@ function tabling(ast) {
 function sectioning(children, depth) {
   // 最初のセクションは <article> にする
   let section = {
-    type     : depth === 1 ? 'article' : 'section',
-    children : [],
-    depth    : depth,
+    type:     depth === 1 ? 'article' : 'section',
+    children: [],
+    depth:    depth,
   };
 
   // 横に並ぶべき <section> を入れる配列
@@ -274,9 +274,9 @@ function sectioning(children, depth) {
         if (section.children.length > 0) {
           sections.push(section);
           section = {
-            type     : 'section',
-            children : [],
-            depth    : child.depth,
+            type:     'section',
+            children: [],
+            depth:    child.depth,
           };
         }
         // もし今 section に子要素が無ければ
@@ -368,9 +368,9 @@ function build(AST, dir, template) {
           process.exit(1);
         }
         stack.unshift({
-          tag    : 'full',
-          val    : template[node.type](node),
-          inline : isInline(node),
+          tag:    'full',
+          val:    template[node.type](node),
+          inline: isInline(node),
         });
       } else {
         // 完成している兄弟タグを集めてきて配列に並べる
@@ -417,9 +417,9 @@ function build(AST, dir, template) {
           console.error('unsupported type', node.type);
         }
         stack.unshift({
-          tag    : 'full',
-          val    : template[node.type](node),
-          inline : isInline(node),
+          tag:    'full',
+          val:    template[node.type](node),
+          inline: isInline(node),
         });
       }
     },
