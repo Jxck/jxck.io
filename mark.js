@@ -120,17 +120,19 @@ class Builder {
   code(node) {
     let lang = node.lang || '';
     let value = `<pre class=${lang}><code>${node.value}</code></pre>\n`;
-    if (this.ampurl) {
+    if (this.ampurl && !this.pred) {
       // has amp url so not amp page
       value = [this.Style('/assets/css/pre.css'), value].join('\n');
+      this.pred = true;
     }
     return value;
   }
   table(node) {
     let value = this.wrap`<table>${node.value}</table>`;
-    if (this.ampurl) {
+    if (this.ampurl && !this.tabled) {
       // has amp url so not amp page
       value = [this.Style('/assets/css/table.css'), value].join('\n');
+      this.tabled = true;
     }
     return value;
   }
