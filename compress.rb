@@ -2,7 +2,7 @@
 
 dir = ARGV[0]
 
-rm = "rm -f ./#{dir}/**/*.gz"
+rm = "find ./#{dir}/* -name *.gz | xargs rm"
 puts rm
 puts system(rm)
 
