@@ -92,6 +92,9 @@ PNG の方は拡大すると、特にフォント部分がぼやけるのが分�
 
 SVG は拡大しても問題はない。
 
+TODO
+
+
 ### PNG
 
 ![jxck.png](/assets/img/jxck.png#256x256)
