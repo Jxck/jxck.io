@@ -16,7 +16,7 @@ const imageOption = {
 }
 
 gulp.task('image', () => {
-  gulp.src('blog.jxck.io/entries/**/*')
+  gulp.src('blog.jxck.io/entries/**/*.+(png|jpeg|svg|webp)')
     .pipe(image(imageOption))
     .pipe(gulp.dest('blog.jxck.io/entries/'));
 });

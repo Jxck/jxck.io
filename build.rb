@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-`rm ./blog.jxck.io/**/*.gz`
+`find ./blog.jxck.io/* -name *.gz | xargs rm`
 puts "blog gz deleted"
-`rm ./blog.jxck.io/entries/**/*.html`
+`rm -rf ./blog.jxck.io/entries/**/*.html`
 puts "blog html deleted"
 
 top = ""
@@ -41,8 +41,8 @@ html = eval('"' + html + '"')
 
 File.write("./blog.jxck.io/index.html", html)
 
-production = ARGV[0] == "production"
 
+production = ARGV[0] == "production"
 if production
   `find ./blog.jxck.io/* -type f | egrep -v '.webp|.rb|.xml' | xargs -L 1 -P 4 zopfli --i30`
   puts "blog.jxck.io compressed"
