@@ -148,14 +148,23 @@ class Builder {
   listItem   (node) { return `<li>${node.value}\n`; }
   link       (node) { return `<a href="${node.url}">${node.value}</a>`; }
   image      (node) {
-    if (!this.ampurl) {
-      let size = node.url.split('#')[1].split('x');
-      let width = size[0];
-      let height = size[1];
-      // not has amp link means amp template
-      return `<amp-img layout=responsive src=${node.url} alt="${node.alt}" title="${node.title}" width=${width} height=${height}>`;
+    let width = '';
+    let height = '';
+
+    let size = node.url.split('#')[1];
+    if (size) {
+      size = size.split('x');
+      if (size.length == 2) {
+        width = `width=${size[0]}`;
+        height = `height=${size[1]}`;
+      }
     }
-    return `<img src=${node.url} alt="${node.alt}" title="${node.title}">`;
+    if (!this.ampurl) {
+      // not has amp link means amp template
+      if (width === '' || height === '') console.log('no widthxheight for img'); process.exit(1);
+      return `<amp-img layout=responsive src=${node.url} alt="${node.alt}" title="${node.title}" ${width} ${height}>`;
+    }
+    return `<img src=${node.url} alt="${node.alt}" title="${node.title}" ${width} ${height}>`;
   }
   strong     (node) { return `<strong>${node.value}</strong>`; }
   emphasis   (node) { return `<em>${node.value}</em>`; }
