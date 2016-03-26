@@ -106,7 +106,7 @@ let image = require('gulp-image');
 const imageOption = {
   pngquant:       true,
   optipng:        true,
-  zopflipng:      true,
+  zopflipng:      false, // 別途実施
   advpng:         true,
   jpegRecompress: true,
   jpegoptim:      true,
@@ -116,7 +116,7 @@ const imageOption = {
 }
 
 gulp.task('image', () => {
-  gulp.src('blog.jxck.io/entries/**/*')
+  gulp.src('blog.jxck.io/entries/**/*.+(png|jpeg|svg|webp)')
     .pipe(image(imageOption))
     .pipe(gulp.dest('blog.jxck.io/entries/'));
 });
