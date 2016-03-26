@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=/entries/2016-03-27/svg-font-base-ui.html>
+<link rel=amphtml href=/entries/2016-03-27/svg-font-base-ui.amp.html>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+<link rel=preload as=font type=font/woff href=//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
+
+<meta name=author content=Jxck>
+<meta name=description content="本サイトで使用している UI アイコン系の画像を、ギリギリまで最適化した手書き SVG に置き換えた(ただしソースは **観賞用** なので、インデントは残す)。また、装飾に画像ではなく CSS の contents を利用することで、ローカルフォントデータを利用し、画像転送を減...">
+<meta name=keywords content="svg,image,performance">
+
+<meta name=twitter:card content=summary>
+<meta name=twitter:site content=@jxck_>
+<meta name=twitter:url content=https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html>
+<meta name=twitter:title content="画像最適化戦略 SVG/Font 編 | blog.jxck.io">
+<meta name=twitter:description content="本サイトで使用している UI アイコン系の画像を、ギリギリまで最適化した手書き SVG に置き換えた(ただしソースは **観賞用** なので、インデントは残す)。また、装飾に画像ではなく CSS の contents を利用することで、ローカルフォントデータを利用し、画像転送を減...">
+<meta name=twitter:image content=https://www.jxck.io/assets/img/jxck.png>
+
+<meta property=og:type content="article">
+<meta property=og:url content=https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html>
+<meta property=og:title content="画像最適化戦略 SVG/Font 編 | blog.jxck.io">
+<meta property=og:site_name content=blog.jxck.io>
+<meta property=og:description content="本サイトで使用している UI アイコン系の画像を、ギリギリまで最適化した手書き SVG に置き換えた(ただしソースは **観賞用** なので、インデントは残す)。また、装飾に画像ではなく CSS の contents を利用することで、ローカルフォントデータを利用し、画像転送を減...">
+<meta property=og:image content=https://www.jxck.io/assets/img/jxck.png>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "画像最適化戦略 SVG/Font 編 | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2016-03-27T08:00:00+08:00",
+  "dateModified": "2016-03-26T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://www.jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "本サイトで使用している UI アイコン系の画像を、ギリギリまで最適化した手書き SVG に置き換えた(ただしソースは **観賞用** なので、インデントは残す)。また、装飾に画像ではなく CSS の contents を利用することで、ローカルフォントデータを利用し、画像転送を減..."
+}
+</script>
+
+<link rel=icon sizes=192x192 href=//www.jxck.io/assets/img/jxck.png>
+<link rel=apple-touch-icon sizes=128x128 href=//www.jxck.io/assets/img/jxck.png>
+
+<title>画像最適化戦略 SVG/Font 編 | blog.jxck.io</title>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+<header>
+  <ul>
+    <li><a href=//blog.jxck.io><img class=logo alt="blog top" width=30 src=/assets/img/blog.svg></a>
+    <li><a href="/entries/2016-03-27/svg-font-base-ui.amp.html#development=1"><img alt="move to amp version" width=30 src=/assets/img/amp.svg></a>
+    <li><a href=.><img alt="move to parent directory" width=30 src=/assets/img/up.svg></a>
+    <li><a href=/feeds/atom.xml><img alt="rss feed" width=30 src=/assets/img/rss.svg></a>
+    <li><a href=//www.jxck.io><img class=logo alt="jxck logo" width=30 src=/assets/img/jxck.svg></a>
+  </li>
+</header>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+<main>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2016-03-27>2016-03-27</time>
+    <li>updated_at: <time class=updated_at datetime=2016-03-26>2016-03-26</time>
+    <li class=tags>tags: [<a>svg</a>,<a>image</a>,<a>performance</a>]
+  </ul>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+  <article>
+    <h1><a href="/entries/2016-03-27/svg-font-base-ui.html">画像最適化戦略 SVG/Font 編</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>本サイトで使用している UI アイコン系の画像を、ギリギリまで最適化した手書き SVG に置き換えた(ただしソースは <strong>観賞用</strong> なので、インデントは残す)。
+      <p>また、装飾に画像ではなく CSS の contents を利用することで、ローカルフォントデータを利用し、画像転送を減らす工夫にも言及する。
+      <p>画像最適化シリーズ第 4 回目のエントリである。
+      <ul>
+        <li>1 TODO
+        <li>2 TODO
+        <li>3 TODO
+        <li>4: 本エントリ
+      </ul>
+    </section>
+    <section>
+      <h2 id="ベクタ画像とラスタ画像"><a href="#ベクタ画像とラスタ画像">ベクタ画像とラスタ画像</a></h2>
+      <p>ここまでの画像最適化では、 PNG/JPEG/WebP など <strong>ラスタ形式</strong> の画像について記述した。
+      しかし、 UI アイコンなどについては、 SVG や Font といった <strong>ベクタ形式</strong> を用いる方が、良い場合がある。
+      <p>ラスタ画像はピクセルの色情報を持ち、それを並べて表示するのに対し、ベクタ形式はパスの情報を持ち、それを描画する。
+      <p>写真などはラスタ形式を利用するが、自作の画像やアイコンなどについてはベクタ形式にすることで、サイズを小さくできる場合が多い。
+      <p>またパス情報を元に描画するため、どんなに拡大してもラスタ形式のように画像が荒れることはない。
+      <p>以下は元サイズの 2 倍に拡大した PNG 画像(<strong>左</strong>)と、同じ大きさで表示した SVG 画像(<strong>右</strong>)を比較したスクリーンショットである。 PNG は文字の周囲が荒れているのがわかるだろう。
+      <p><a href="png-svg.png"><img src=png-svg.png#400x82 alt="2 倍に拡大した PNG と同じ大きさの SVG の比較" title="png-svg" width=400 height=82></a>
+      <p>このため、 <a href="">TODO</a> で実施したようなデバイス解像度による複数画像の出し分けなども不要になる。
+      <p>本サイトでは、このメリットを活かし、 UI コンポーネントは基本的にベクタフォーマットである SVG および Font を用いて構築することとした。
+      <p>なお、現時点でほとんどのブラウザが  <a href="http://caniuse.com/#search=svg">SVG に対応</a> している。
+    </section>
+    <section>
+      <h2 id="SVG"><a href="#SVG">SVG</a></h2>
+      <p>本サイトのヘッダ部分に表示されているアイコンなどは、基本的に全て SVG を表示している。
+      <p>また、自分で作る説明用の図なども、基本的には SVG で作るようにしている。
+      <p>SVG を生成するツールは、イラストレーターなどがよく使われるようである。
+      <p>しかし、筆者はイラレを持っておらず、また長いことスライドやブログの画像は全て cacoo で作成してきた。
+      <p>cacoo は、作成した図を SVG 書き出すことが可能であるため、まずはこれを用いて自分のロゴを SVG で出した。
+      <p>ソースは以下である。
+      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+      <pre class=svg><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;svg contentScriptType=&quot;text/ecmascript&quot;
+     xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;
+     zoomAndPan=&quot;magnify&quot;
+     contentStyleType=&quot;text/css&quot;
+     viewBox=&quot;-15.0 -15.0 286.0 286.0&quot;
+     xmlns:cacoo=&quot;http://cacoo.com/&quot;
+     preserveAspectRatio=&quot;xMidYMin meet&quot;
+     xmlns=&quot;http://www.w3.org/2000/svg&quot;
+     version=&quot;1.1&quot;&gt;
+  &lt;g&gt;
+    &lt;g transform=&quot;translate(0.0 0.0)&quot;&gt;
+      &lt;g transform=&quot;translate(0.0 0.0)&quot;&gt;
+        &lt;path fill=&quot;#000000&quot; fill-opacity=&quot;1.0&quot; d=&quot;M256.0 256.0 L0.0 256.0 L0.0 0.0 L256.0 0.0 L256.0 256.0z&quot; stroke=&quot;none&quot;/&gt;
+        &lt;g transform=&quot;translate(1.0 1.0)&quot;&gt;
+          &lt;defs&gt;
+            &lt;clipPath id=&quot;id0&quot;&gt;
+              &lt;path d=&quot;M0 0 L254.0 0 L254.0 254.0 L0 254.0z&quot;/&gt;
+            &lt;/clipPath&gt;
+          &lt;/defs&gt;
+          &lt;text font-size=&quot;90&quot; clip-path=&quot;url(#id0)&quot; text-decoration=&quot;none&quot; fill=&quot;#ffffff&quot; font-family=&quot;Helvetica&quot; font-style=&quot;normal&quot; font-weight=&quot;bold&quot;/&gt;
+        &lt;/g&gt;
+      &lt;/g&gt;
+      &lt;g transform=&quot;translate(39.0 155.0)&quot;&gt;
+        &lt;defs&gt;
+          &lt;clipPath id=&quot;id1&quot;&gt;
+            &lt;path d=&quot;M0 0 L210.0 0 L210.0 95.0 L0 95.0z&quot;/&gt;
+          &lt;/clipPath&gt;
+        &lt;/defs&gt;
+        &lt;text font-size=&quot;90&quot; clip-path=&quot;url(#id1)&quot; text-decoration=&quot;none&quot; fill=&quot;#ffffff&quot; font-family=&quot;Helvetica&quot; font-style=&quot;normal&quot; font-weight=&quot;bold&quot;&gt;
+          &lt;tspan x=&quot;5.0&quot; xml:space=&quot;preserve&quot; y=&quot;78.75&quot; textLength=&quot;200.0&quot;&gt;Jack&lt;/tspan&gt;
+        &lt;/text&gt;
+      &lt;/g&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+&lt;/svg&gt;</code></pre>
+      <p>同じものを 256x256 の PNG と比べてみる。
+      <p>PNG の方は拡大すると、特にフォント部分がぼやけるのが分かるだろう。
+      <p>SVG は拡大しても問題はない。
+      <p>なお、 PNG と cacoo で書き出した時点での SVG のサイズの比較は以下の通りである。
+      <ul>
+        <li>PNG: 3860byte
+        <li>SVG: 1430byte
+      </ul>
+    </section>
+    <section>
+      <h2 id="SVGGo+による最適化"><a href="#SVGGo+による最適化">SVGGo による最適化</a></h2>
+      <p>SVG は XML であるため、メタ情報を付与することができる。
+      cacoo で吐いたままの SVG には、不要なメタ情報などが含まれている。
+      <p>表示上不要なメタ情報は、 PNG/JPEG etc 同様に削除することでサイズ上のメリットが得られる。
+      <p>これを行うツールに SVGGo があるため、これをかけてみた結果が以下である。
+      <pre class=svg><code>&lt;svg contentScriptType=&quot;text/ecmascript&quot;
+     viewBox=&quot;-15.0 -15.0 286.0 286.0&quot;
+     preserveAspectRatio=&quot;xMidYMin meet&quot;
+     xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;
+  &lt;path d=&quot;M256 256H0V0h256v256z&quot;/&gt;
+  &lt;defs transform=&quot;translate(1 1)&quot;&gt;
+    &lt;clipPath id=&quot;a&quot;&gt;
+      &lt;path d=&quot;M0 0h254v254H0z&quot;/&gt;
+    &lt;/clipPath&gt;
+  &lt;/defs&gt;
+  &lt;g transform=&quot;translate(39 155)&quot;&gt;
+    &lt;defs&gt;
+      &lt;clipPath id=&quot;b&quot;&gt;
+        &lt;path d=&quot;M0 0h210v95H0z&quot;/&gt;
+      &lt;/clipPath&gt;
+    &lt;/defs&gt;
+    &lt;text font-size=&quot;90&quot; clip-path=&quot;url(#b)&quot; fill=&quot;#fff&quot; font-family=&quot;Helvetica&quot; font-weight=&quot;bold&quot;&gt;
+      &lt;tspan x=&quot;5&quot; y=&quot;78.75&quot; textLength=&quot;200&quot;&gt;Jack&lt;/tspan&gt;
+    &lt;/text&gt;
+  &lt;/g&gt;
+&lt;/svg&gt;</code></pre>
+      <ul>
+        <li>before: 3860byte
+        <li>after :  638byte
+      </ul>
+    </section>
+    <section>
+      <h2 id="手書き"><a href="#手書き">手書き</a></h2>
+      <p>SVG には、基本的に図形の描画に必要なパス情報が書かれるが、ツールによっては無駄に思えるパスの書き方が行われている場合がある。
+      <p>同じ表示が実現できるのであれば、無駄なパスの書き方は極力避けたい。
+      <p>cacoo の吐く SVG を読んでみると、この部分が気に食わなかったため、しかたなくエディタで手書きすることにした。
+      <p>簡単な画像であれば、自分でゼロから手書きすることで、不要なメタ情報や無駄パスがない SVG を作ることができる。
+      <pre class=svg><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 256 256&quot;&gt;
+  &lt;rect width=&quot;256&quot; height=&quot;256&quot; fill=&quot;#000000&quot; /&gt;
+  &lt;text fill=&quot;#ffffff&quot; font-size=&quot;90&quot; font-weight=&quot;bold&quot; font-family=&quot;Helvetica&quot;&gt;
+    &lt;tspan x=&quot;44&quot; y=&quot;233&quot;&gt;Jack&lt;/tspan&gt;
+  &lt;/text&gt;
+&lt;/svg&gt;</code></pre>
+      <p>SVG が Valid であることは以下で確認している。
+      <p><a href="https://validator.w3.org/dev/tests/">Markup Validation Service</a>
+      <p>手書きと SVGGo で最適化した cacoo の SVG を比較した結果が以下である。
+      <ul>
+        <li>svggo: 638byte
+        <li>vim: 291byte
+      </ul>
+      <p>cacoo が吐いた SVG と比べれば 20% なので、以降基本的に UI アイコンの SVG は最初から手で書くことにした。
+      また、 PNG と比べると実に 93% サイズを削減している。
+    </section>
+    <section>
+      <h2 id="SVG+ギャラリー"><a href="#SVG+ギャラリー">SVG ギャラリー</a></h2>
+      <p>こうして手書きした SVG は以下にソースとともに掲載している。
+      <p>ソースは観賞用であるため、インデントや改行などは削ってない。
+      <p>それ以外で、削れそうな部分があれば今後も削っていく予定である。
+      <p><a href="//labs.jxck.io/svg">labs.jxck.io/svg</a>
+      <p>SVG の弱点として、 HTML に埋め込んだ SVG でないと CSS で色を指定できないという問題がある。
+      本サイトの SVG は、外部リソースとして <code>&lt;img&gt;</code> で読んでいるため、色は SVG 自体に書いて作成している。
+      <p>なお、 404 ページや 500 ページを作る際にデザインを考えてたところ、この SVG にリンク貼って返せばそれで良いんじゃないか?と思い、今は単にステータスコードを書いた SVG を返すようにしている。
+      <p>正しくステータスコードと Contnet-Type が設定してあれば問題ない筈なので、こだわりたい人はここで Animation SVG とかやればいいんじゃないだろうか。
+      <p>サーバの出したステータスコードに応じて SVG を動的に生成し、返すようにする予定である。
+    </section>
+    <section>
+      <h2 id="Font"><a href="#Font">Font</a></h2>
+      <p>フォントもベクタデータである。単色しか塗れないという制限もあるが、 UI アイコンをフォントデータとして生成し、それを指定するなどの方法がある。
+      <p>代表例が <a href="https://fortawesome.github.io/Font-Awesome/">Font-Awesome</a> だが、本サイトでは導入していない。
+      <p>一方、単に CSS の <code>content:</code> 要素に文字を指定するだけでも、 Font を使用することができる。
+      <p>このサイトは見た目が Markdown ライクになるように CSS を作っている。
+      <p>装飾に使用している <code>#</code> や <code>-</code> などの文字は、 <code>before</code>/<code>after</code> 擬似要素への <code>content:</code> に文字を指定することで、フォントデータを使って装飾している。
+      <p>例えば見出し <code>&lt;h1&gt;~&lt;h4&gt;</code> と <code>pre</code> は以下のように指定している。
+      <pre class=css><code>h1::before,
+h2::before,
+h3::before,
+h4::before {
+  content: &quot;# &quot;;
+}
+
+pre::before {
+  content: &quot;```&quot; attr(class) &quot;\A&quot;;
+}
+
+pre::after {
+  position: relative;
+  top: -1em;
+  content:&quot;\A```&quot;;
+}</code></pre>
+      <p>Font は、外部 SVG と違い、単色ではあるが CSS での色指定も可能である。
+      また、 WebFont を利用しない場合は、マシンローカルのベクタデータを流用していることになるため、画像転送のオーバーヘッドも無くなる。
+      <p>最近は絵文字を装飾に使用することも視野に入るかもしれないが、絵文字は端末ごとに表示がかなり異なり、かつ特に使いたいものも無かったため、本サイトでは未使用である。
+    </section>
+  </article>
+
+</main>
+<hr>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
+</footer>
+
+<script src="/assets/js/highlight.min.js"></script>
+<script>window.onload = hljs.initHighlighting;</script>
+<script src=//www.jxck.io/assets/js/ga.js></script>
