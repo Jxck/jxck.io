@@ -6,24 +6,86 @@
 <author><name>Jxck</name></author>
 <id>tag:blog.jxck.io,2016:feed</id>
 <updated>2016-01-28T18:30:02Z</updated>
-<entry>
- <title>Noto Sans の Web Font 対応とサブセットによる最適化</title>
- <link href="https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html" rel="alternate" />
- <id>tag:blog.jxck.io,2016:entry://2016-03-14</id>
- <updated>2016-03-14T00:00:00Z</updated>
- <summary>このサイトのフォントに Web Font を適用することにした。
+                <entry>
+                 <title>画像最適化戦略 SVG/Font 編</title>
+                 <link href="https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html" rel="alternate" />
+                 <id>tag:blog.jxck.io,2016:entry://2016-03-27</id>
+                 <updated>2016-03-27T00:00:00Z</updated>
+                 <summary>本サイトで使用している UI アイコン系の画像を、ギリギリまで最適化した手書き SVG に置き換えた(ただしソースは **観賞用** なので、インデントは残す)。
+
+また、装飾に画像ではなく CSS の contents を利用することで、ローカルフォントデータを利用し、画像転送を減らす工夫にも言及する。
+
+画像最適化シリーズ第 4 回目のエントリである。
+
++ [画像最適化戦略 PNG/JEPG 編](/entries/2016-03-24/optimize-image.html)
++ [画像最適化戦略 Picture 編](/entries/2016-03-25/picture.html)
++ [画像最適化戦略 WebP 編](/entries/2016-03-26/webp.html)
++ [&gt; 画像最適化戦略 SVG/Font 編](/entries/2016-03-27/svg-font-base-ui.html)</summary>
+                </entry>
+
+                <entry>
+                 <title>画像最適化戦略 WebP 編</title>
+                 <link href="https://blog.jxck.io/entries/2016-03-26/webp.html" rel="alternate" />
+                 <id>tag:blog.jxck.io,2016:entry://2016-03-26</id>
+                 <updated>2016-03-26T00:00:00Z</updated>
+                 <summary>本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい WebP で、同様のものを提供し、対応ブラウザに配布するようにした。フォーマットを出し分けるため `&lt;picture&gt;` 要素にて対応した。
+
+画像最適化シリーズ第 3 回目のエントリである。
+
++ [画像最適化戦略 PNG/JEPG 編](/entries/2016-03-24/optimize-image.html)
++ [画像最適化戦略 Picture 編](/entries/2016-03-25/picture.html)
++ [&gt; 画像最適化戦略 WebP 編](/entries/2016-03-26/webp.html)
++ [画像最適化戦略 SVG/Font 編](/entries/2016-03-27/svg-font-base-ui.html)</summary>
+                </entry>
+
+                <entry>
+                 <title>画像最適化戦略 Picture 編</title>
+                 <link href="https://blog.jxck.io/entries/2016-03-25/picture.html" rel="alternate" />
+                 <id>tag:blog.jxck.io,2016:entry://2016-03-25</id>
+                 <updated>2016-03-25T00:00:00Z</updated>
+                 <summary>本サイトで使用している PNG/JPEG 画像を、対応デバイスと、 Device Pixel Ratio に対して最適なサイズで出し分けるために、 `&lt;picture&gt;` 要素を適用した。
+
+画像最適化シリーズ第 2 回目のエントリである。
+
++ [画像最適化戦略 PNG/JEPG 編](/entries/2016-03-24/optimize-image.html)
++ [&gt; 画像最適化戦略 Picture 編](/entries/2016-03-25/picture.html)
++ [画像最適化戦略 WebP 編](/entries/2016-03-26/webp.html)
++ [画像最適化戦略 SVG/Font 編](/entries/2016-03-27/svg-font-base-ui.html)</summary>
+                </entry>
+
+                <entry>
+                 <title>画像最適化戦略 PNG/JEPG 編</title>
+                 <link href="https://blog.jxck.io/entries/2016-03-24/optimize-image.html" rel="alternate" />
+                 <id>tag:blog.jxck.io,2016:entry://2016-03-24</id>
+                 <updated>2016-03-24T00:00:00Z</updated>
+                 <summary>本サイトで使用している PNG/JPEG 画像に対し、メタデータ削除、減色、リサイズなど基本的な最適化処理の適用戦略と、その方法および結果について。
+
+画像最適化シリーズ第 1 回目のエントリである。
+
++ [&gt; 画像最適化戦略 PNG/JEPG 編](/entries/2016-03-24/optimize-image.html)
++ [画像最適化戦略 Picture 編](/entries/2016-03-25/picture.html)
++ [画像最適化戦略 WebP 編](/entries/2016-03-26/webp.html)
++ [画像最適化戦略 SVG/Font 編](/entries/2016-03-27/svg-font-base-ui.html)</summary>
+                </entry>
+
+                <entry>
+                 <title>Noto Sans の Web Font 対応とサブセットによる最適化</title>
+                 <link href="https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html" rel="alternate" />
+                 <id>tag:blog.jxck.io,2016:entry://2016-03-14</id>
+                 <updated>2016-03-14T00:00:00Z</updated>
+                 <summary>このサイトのフォントに Web Font を適用することにした。
 
 フォントには Google と Adobe が協同で開発した Noto Sans CJK JP を採用した。
 
 また、このサイトでは使用しないだろう文字を削除したサブセットを作ることで、フォントサイズを最適化した。</summary>
-</entry>
+                </entry>
 
-<entry>
- <title>Preload を用いたリソースプリローディングの最適化</title>
- <link href="https://blog.jxck.io/entries/2016-03-04/preload.html" rel="alternate" />
- <id>tag:blog.jxck.io,2016:entry://2016-03-04</id>
- <updated>2016-03-04T00:00:00Z</updated>
- <summary>Preload を指定する `&lt;link rel=preload&gt;` の仕様が公開されており、現在 Chrome Canary に実装されている。
+                <entry>
+                 <title>Preload を用いたリソースプリローディングの最適化</title>
+                 <link href="https://blog.jxck.io/entries/2016-03-04/preload.html" rel="alternate" />
+                 <id>tag:blog.jxck.io,2016:entry://2016-03-04</id>
+                 <updated>2016-03-04T00:00:00Z</updated>
+                 <summary>Preload を指定する `&lt;link rel=preload&gt;` の仕様が公開されており、現在 Chrome Canary に実装されている。
 
 この仕様のモチベーションについて、 Chrome 開発者の Yoav Weiss 氏のブログも公開された。
 
@@ -33,46 +95,46 @@
 - [W3C Preload Spec](https://w3c.github.io/preload/)
 - [Intent to Ship: `&lt;link rel=preload&gt;`](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_nu6HlbNQfo/XzaLNb1bBgAJ)
 - [Preload: What Is It Good For?](https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/)</summary>
-</entry>
+                </entry>
 
-<entry>
- <title>JSON-LD と Open Graph で構造化メタデータ対応</title>
- <link href="https://blog.jxck.io/entries/2016-02-26/jsonld-opengraph.html" rel="alternate" />
- <id>tag:blog.jxck.io,2016:entry://2016-02-26</id>
- <updated>2016-02-26T00:00:00Z</updated>
- <summary>本サイトのメタ情報を整理するため、 HTML のメタタグの整理、 JSON-LD による schema.org 対応、 Facebook, Twitter を主とした Open Graph 対応を実施した。
+                <entry>
+                 <title>JSON-LD と Open Graph で構造化メタデータ対応</title>
+                 <link href="https://blog.jxck.io/entries/2016-02-26/jsonld-opengraph.html" rel="alternate" />
+                 <id>tag:blog.jxck.io,2016:entry://2016-02-26</id>
+                 <updated>2016-02-26T00:00:00Z</updated>
+                 <summary>本サイトのメタ情報を整理するため、 HTML のメタタグの整理、 JSON-LD による schema.org 対応、 Facebook, Twitter を主とした Open Graph 対応を実施した。
 
 これにより、既にAMP 対応していた本サイトが、 Google のモバイル検索でキャッシュの対象となる(クロール待ち)。</summary>
-</entry>
+                </entry>
 
-<entry>
- <title>zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について</title>
- <link href="https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html" rel="alternate" />
- <id>tag:blog.jxck.io,2016:entry://2016-02-17</id>
- <updated>2016-02-17T00:00:00Z</updated>
- <summary>HTTP では `Accept-Encoding` と `Content-Encoding` でのネゴシエーションにより、 gz などで圧縮したコンテンツを転送することができる。本サイトでは zopfli を用いて gzip 形式の配信に対応した。</summary>
-</entry>
+                <entry>
+                 <title>zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について</title>
+                 <link href="https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html" rel="alternate" />
+                 <id>tag:blog.jxck.io,2016:entry://2016-02-17</id>
+                 <updated>2016-02-17T00:00:00Z</updated>
+                 <summary>HTTP では `Accept-Encoding` と `Content-Encoding` でのネゴシエーションにより、 gz などで圧縮したコンテンツを転送することができる。本サイトでは zopfli を用いて gzip 形式の配信に対応した。</summary>
+                </entry>
 
-<entry>
- <title>HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について</title>
- <link href="https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html" rel="alternate" />
- <id>tag:blog.jxck.io,2016:entry://2016-02-15</id>
- <updated>2016-02-15T00:00:00Z</updated>
- <summary>Chrome が予定している `&lt;link rel=stylesheet&gt;` の挙動の変更について、Google Chrome チームの Jake が、興味深いブログを上げている。
+                <entry>
+                 <title>HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について</title>
+                 <link href="https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html" rel="alternate" />
+                 <id>tag:blog.jxck.io,2016:entry://2016-02-15</id>
+                 <updated>2016-02-15T00:00:00Z</updated>
+                 <summary>Chrome が予定している `&lt;link rel=stylesheet&gt;` の挙動の変更について、Google Chrome チームの Jake が、興味深いブログを上げている。
 
 [The future of loading CSS](https://jakearchibald.com/2016/link-in-body/)
 
 この内容は、単に Chrome に対する変更だけではなく、 HTTP2 によって変化する最適化手法と、それを最も活かすための HTML, CSS の構成についてのヒントがある。
 
 今回は、この内容を意訳+補足解説し、本サイトに適用していく。</summary>
-</entry>
+                </entry>
 
-<entry>
- <title>Resource Hints API でリソースの投機的取得</title>
- <link href="https://blog.jxck.io/entries/2016-02-11/resource-hints.html" rel="alternate" />
- <id>tag:blog.jxck.io,2016:entry://2016-02-11</id>
- <updated>2016-02-11T00:00:00Z</updated>
- <summary>Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要となるリソースを教える」ことで、投機的な取得を行う API 群である。
+                <entry>
+                 <title>Resource Hints API でリソースの投機的取得</title>
+                 <link href="https://blog.jxck.io/entries/2016-02-11/resource-hints.html" rel="alternate" />
+                 <id>tag:blog.jxck.io,2016:entry://2016-02-11</id>
+                 <updated>2016-02-11T00:00:00Z</updated>
+                 <summary>Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要となるリソースを教える」ことで、投機的な取得を行う API 群である。
 
 [https://w3c.github.io/resource-hints/](https://w3c.github.io/resource-hints/)
 
@@ -84,42 +146,42 @@
 - [prerender](https://w3c.github.io/resource-hints/#dfn-prerender)
 
 今回は本サイトでこれを適用した話。</summary>
-</entry>
+                </entry>
 
-<entry>
- <title>Atom の RSS Feed 対応</title>
- <link href="https://blog.jxck.io/entries/2016-02-09/atom-feed.html" rel="alternate" />
- <id>tag:blog.jxck.io,2016:entry://2016-02-09</id>
- <updated>2016-02-09T00:00:00Z</updated>
- <summary>このブログの Atom feed を吐くようにした。
+                <entry>
+                 <title>Atom の RSS Feed 対応</title>
+                 <link href="https://blog.jxck.io/entries/2016-02-09/atom-feed.html" rel="alternate" />
+                 <id>tag:blog.jxck.io,2016:entry://2016-02-09</id>
+                 <updated>2016-02-09T00:00:00Z</updated>
+                 <summary>このブログの Atom feed を吐くようにした。
 
 右上の [feed アイコン](//blog.jxck.io/feeds/atom.xml) から登録できる。</summary>
-</entry>
+                </entry>
 
-<entry>
- <title>h2o で https/2 のデプロイと設定</title>
- <link href="https://blog.jxck.io/entries/2016-02-08/h2o-http2-deploy.html" rel="alternate" />
- <id>tag:blog.jxck.io,2016:entry://2016-02-08</id>
- <updated>2016-02-08T00:00:00Z</updated>
- <summary>土台がだいたいできたので、このサイトを h2o にデプロイした話。</summary>
-</entry>
+                <entry>
+                 <title>h2o で https/2 のデプロイと設定</title>
+                 <link href="https://blog.jxck.io/entries/2016-02-08/h2o-http2-deploy.html" rel="alternate" />
+                 <id>tag:blog.jxck.io,2016:entry://2016-02-08</id>
+                 <updated>2016-02-08T00:00:00Z</updated>
+                 <summary>土台がだいたいできたので、このサイトを h2o にデプロイした話。</summary>
+                </entry>
 
-<entry>
- <title>AMP HTML 対応</title>
- <link href="https://blog.jxck.io/entries/2016-02-01/amp-html.html" rel="alternate" />
- <id>tag:blog.jxck.io,2016:entry://2016-02-01</id>
- <updated>2016-02-01T00:00:00Z</updated>
- <summary>Google が推奨する仕様である [AMP HTML](https://www.ampproject.org/) に、このブログを対応した。
+                <entry>
+                 <title>AMP HTML 対応</title>
+                 <link href="https://blog.jxck.io/entries/2016-02-01/amp-html.html" rel="alternate" />
+                 <id>tag:blog.jxck.io,2016:entry://2016-02-01</id>
+                 <updated>2016-02-01T00:00:00Z</updated>
+                 <summary>Google が推奨する仕様である [AMP HTML](https://www.ampproject.org/) に、このブログを対応した。
 
 言いたいことは色々あるが、とりあえず非常に難しかったため、その対応方法や感想などを残す。</summary>
-</entry>
+                </entry>
 
-<entry>
- <title>HTML の省略によるサイズ最適化</title>
- <link href="https://blog.jxck.io/entries/2016-01-28/html-compression.html" rel="alternate" />
- <id>tag:blog.jxck.io,2016:entry://2016-01-28</id>
- <updated>2016-01-28T00:00:00Z</updated>
- <summary>本サイト [blog.jxck.io](https://blog.jxck.io) 以下については、 Markdown から静的ファイルを生成するスタイルで作成している。
+                <entry>
+                 <title>HTML の省略によるサイズ最適化</title>
+                 <link href="https://blog.jxck.io/entries/2016-01-28/html-compression.html" rel="alternate" />
+                 <id>tag:blog.jxck.io,2016:entry://2016-01-28</id>
+                 <updated>2016-01-28T00:00:00Z</updated>
+                 <summary>本サイト [blog.jxck.io](https://blog.jxck.io) 以下については、 Markdown から静的ファイルを生成するスタイルで作成している。
 
 この変換時に以前から思っていた **HTML の最適化** を実施することにした。
 
@@ -128,14 +190,14 @@
 ただし、ソースはあくまで観賞用なので、インデントやコメントは残している。
 
 チューニングではなく単なる実験としてサイト全体にこれを適用し、その結果を記す。</summary>
-</entry>
+                </entry>
 
-<entry>
- <title>Blog を移転しました</title>
- <link href="https://blog.jxck.io/entries/2016-01-27/new-blog-start.html" rel="alternate" />
- <id>tag:blog.jxck.io,2016:entry://2016-01-27</id>
- <updated>2016-01-27T00:00:00Z</updated>
- <summary>長いこと [はてな](http://jxck.hatenablog.com/) をメインにし、他にも [Qiita](http://qiita.com/jxck_) や [Tumblr](http://jxck.tumblr.com/) を使って色々書いて来たけど、そろそろ自分のドメインに全部集約していこうかなと思います。</summary>
-</entry>
+                <entry>
+                 <title>Blog を移転しました</title>
+                 <link href="https://blog.jxck.io/entries/2016-01-27/new-blog-start.html" rel="alternate" />
+                 <id>tag:blog.jxck.io,2016:entry://2016-01-27</id>
+                 <updated>2016-01-27T00:00:00Z</updated>
+                 <summary>長いこと [はてな](http://jxck.hatenablog.com/) をメインにし、他にも [Qiita](http://qiita.com/jxck_) や [Tumblr](http://jxck.tumblr.com/) を使って色々書いて来たけど、そろそろ自分のドメインに全部集約していこうかなと思います。</summary>
+                </entry>
 
 </feed>
