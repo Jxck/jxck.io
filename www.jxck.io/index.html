@@ -19,82 +19,74 @@
 
 <style>
   body {
+    width: 100%;
     background-color: #fefefe;
     color: #222;
-    padding: 2%;
     font-family: 'Helvetica Neue', 'Helvetica', serif;
-    margin:4% 4%;
+    margin: 2%;
   }
-  header h2 img {
-    height: 180px;
-    width: 180px;
+  .wrap {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .wrap header, .wrap section {
+    width: 300px;
+  }
+  .wrap img {
+    height: 70%;
+    width: 70%;
   }
   dl {
     padding: 0 2%;
   }
 </style>
 
-<header>
-  <h1><img alt="jxck logo" width=256 src=/assets/img/jxck.svg></h1>
-</header>
+<section class=wrap>
 
 <section id=about>
-  <h2>about</h2>
+  <h2>Jxck</h2>
   <dl>
+    <dt>Twitter
+    <dd><a href=https://twitter.com/jxck_>@jxck_</a>
     <dt>Who
     <dd>Japanese Web Developer
     <dt>Lang
-    <dd>ECMAScript6, Golang, Ruby, etc
+    <dd>JS, Go, Ruby, etc
     <dt>Interest
-    <dd>HTTP2, Extensible Web
+    <dd>Architecture, Performance, Security
   </dl>
 </section>
 
-<section id=site>
-  <h2>sites</h2>
-  <dl>
-    <dt><a href=//blog.jxck.io>blog.jxck.io</a>
-    <dd>main tech blog
-    <dt><a href=//labs.jxck.io>labs.jxck.io</a>
-    <dd>tech lab sandbox
-    <dt><a href=//slide.jxck.io>slide.jxck.io</a>
-    <dd>tech talk slide
-  </dl>
+<section>
+  <h2>jxck.io</h2>
+  <a href=//jxck.io><img src=/assets/img/jxck.svg></a>
 </section>
 
-
-<section id=codes>
-  <h2>codes</h2>
-  <dl>
-    <dt><a href=https://github.com/Jxck>Github</a>
-    <dd>almost of all my code
-    <dt><a href=https://gist.github.com/Jxck>Gist</a>
-    <dd>snippets memo etc
-    <dt><a href=https://bitbucket.org/Jxck>Bitbucket</a>
-    <dd>older or private code
-  </dl>
+<section>
+  <h2>blog.jxck.io</h2>
+  <a href=//blog.jxck.io><img src=/assets/img/blog.svg></a>
 </section>
 
-<section id=podcast>
-  <h2>podcast</h2>
-  <dl>
-    <dt><a href=http://mozaic.fm>mozaic.fm</a>
-    <dd>Next Generation Web Podcast
-  </dl>
+<section>
+  <h2>slide.jxck.io</h2>
+  <a href=//slide.jxck.io><img src=/assets/img/slide.svg></a>
 </section>
 
-<section id=output>
-  <h2>output</h2>
-  <dl>
-    <dt><a href=http://d.hatena.ne.jp/Jxck/>Block Rockin’ Code</a>
-    <dd>old blog (hatena)
-    <dt><a href=http://www.slideshare.net/Jxck/>Slideshare</a>
-    <dd>my slides
-    <dt><a href=http://qiita.com/Jxck_>Qiita</a>
-    <dd>short tips
-    <dt><a href=http://jxck.tumblr.com/>Tumblr</a>
-    <dd>other
-  </dl>
+<section>
+  <h2>labs.jxck.io</h2>
+  <a href=//labs.jxck.io><img src=/assets/img/labs.svg></a>
+</section>
+
+<section>
+  <h2>mozaic.fm</h2>
+  <a href=//mozaic.fm><img src=/assets/img/mozaic.svg></a>
+</section>
+
+<section>
+  <h2>github</h2>
+  <a href=https://github.com/jxck><img src=/assets/img/GitHub-Mark-120px-plus.png></a>
 </section>
 
 <section id=publish>
@@ -109,6 +101,8 @@
     <dt><a href=http://www.amazon.co.jp/dp/4048703676>Node.js Book</a>
     <dd>Server Side JavaScript Node.js intorduction Book(ja)
   </dl>
+</section>
+
 </section>
 
 <hr>
