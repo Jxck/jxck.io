@@ -48,6 +48,31 @@ $ apt-get install webp # linux
 他にも、 gulp などのプラグインや、 GUI ツールなどもある。
 
 
+## cwebp
+
+PNG からの変換は cwebp コマンドで行う。
+
+```sh
+$ cwebp
+Usage:
+
+   cwebp [options] -q quality input.png -o output.webp
+
+   where quality is between 0 (poor) to 100 (very good).
+   Typical value is around 80.
+
+   Try -longhelp for an exhaustive list of advanced options.
+```
+
+基本的には `-q` の調整になるが、これは画像ごとに結果をみながらやるしかない。
+
+まずは、デフォルトの 80 で比較していく。
+
+
+- [jxck.png ](/assets/img/jxck.png) : 4061 byte
+- [jxck.webp](/assets/img/jxck.webp): 1810 byte
+
+
 ## WebP の指定
 
 ブラウザにおける [WebP の対応はまだまだ限定的](http://caniuse.com/#feat=webp) であるため、非対応ブラウザには PNG/JPEG/GIF などを送る必要がある。
@@ -80,10 +105,3 @@ $ apt-get install webp # linux
 この指定は、現在 WebP に対応していないブラウザが将来対応した場合に、サイトに何も手を加える必要がない。
 
 将来、新しい画像フォーマットが出た場合は `<source>` を加えることで、ブラウザに選択肢を増やせば良いため、 UA のメンテナンスと比べても、好ましい方法と言える。
-
-
-|    format |   size |
-|:----------|-------:|
-| jxck.png  |   3.8K |
-| jxck.webp |   1.8K |
-| jxck.svg  |   291B |
