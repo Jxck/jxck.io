@@ -1,4 +1,4 @@
-# [picture][image][performance] 画像最適化戦略 &lt;picture&gt; 編
+# [picture][image][performance] 画像最適化戦略 Picture 編
 
 ## Intro
 
@@ -6,10 +6,10 @@
 
 画像最適化シリーズ第 3 回目のエントリである。
 
-- 1 TODO
-- 2 TODO
-- 3: 本エントリ
-- 4: TODO
+- 1: [画像最適化戦略 PNG/JEPG 編](/entries/2016-03-24/optimize-image.html)
+- 2: [画像最適化戦略 WebP 編](/entries/2016-03-25/webp.html)
+- 3: [> 画像最適化戦略 編](/entries/2016-03-26/picture.html)
+- 4: [画像最適化戦略 SVG/Font 編](/entries/2016-03-27/svg-font-base-ui.html)
 
 ## 画像の出し分け
 
