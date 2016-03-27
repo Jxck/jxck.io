@@ -145,4 +145,4 @@ prefetch 可能なリソースのみからなるページならば、ページ�
 
 Chrome の場合は Prerender の状況について `chrome://net-internals` から確認できる。
 
-[![net-internals-prerender](net-internals-prerender.png#873x248 "chrome://net-internals#prerender")](net-internals-prerender.png)
+[![net-internals-prerender](net-internals-prerender.png#1058x299 "chrome://net-internals#prerender")](net-internals-prerender.png)
