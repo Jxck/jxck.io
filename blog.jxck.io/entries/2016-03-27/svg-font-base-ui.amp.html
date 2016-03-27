@@ -145,12 +145,6 @@ img {
   height: auto;
 }
 
-@media only screen and (max-device-width: 480px) {
-  img {
-    width: 100%;
-  }
-}
-
 footer {
   padding: 1em;
 }
@@ -542,7 +536,7 @@ th:last-child, td:last-child {
       <p>写真などはラスタ形式を利用するが、自作の画像やアイコンなどについてはベクタ形式にすることで、サイズを小さくできる場合が多い。
       <p>またパス情報を元に描画するため、どんなに拡大してもラスタ形式のように画像が荒れることはない。
       <p>以下は元サイズの 2 倍に拡大した PNG 画像(<strong>左</strong>)と、同じ大きさで表示した SVG 画像(<strong>右</strong>)を比較したスクリーンショットである。 PNG は文字の周囲が荒れているのがわかるだろう。
-      <p><a href="png-svg.png"><amp-img layout=responsive src=png-svg.png#400x82 alt="2 倍に拡大した PNG と同じ大きさの SVG の比較" title="png-svg" width=400 height=82></a>
+      <p><a href="png-svg.png"><amp-img layout=responsive src=png-svg.png#1038x212 alt="2 倍に拡大した PNG と同じ大きさの SVG の比較" title="png-svg" width=1038 height=212></a>
       <p>このため、 <a href="/entries/2016-03-26/picture.html">画像最適化戦略 Picture 編</a> で実施したようなデバイス解像度による複数画像の出し分けなども不要になる。
       <p>本サイトでは、このメリットを活かし、 UI コンポーネントは基本的にベクタフォーマットである SVG および Font を用いて構築することとした。
       <p>なお、現時点でほとんどのブラウザが  <a href="http://caniuse.com/#search=svg">SVG に対応</a> している。
