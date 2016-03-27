@@ -280,7 +280,10 @@ by Jxck
         <li>webp は対象外
       </ul>
       <p>動作は、 HTTP ヘッダで確認できる。
-      <p><img src=zopfli.png#656x463 alt="Content-Encoding Support Before/After" title="Content-Encoding ヘッダの確認">
+      <p><picture>
+          <source type=image/webp srcset=zopfli.webp#656x463>
+          <img src=zopfli.png#656x463 alt="Content-Encoding Support Before/After" title="Content-Encoding ヘッダの確認">
+          </picture>
       <p>また、一部は h2o の mruby-handler で動的な生成をしているが、 <code>gzip</code> ディレクティブの効果は未検証なので設定していない。
       <p>本サイトの中で、 <code>.html</code>, <code>.css</code>, <code>.js</code> で終わるような URL は、 <code>.gz</code> を後ろに付けると zopfli 圧縮版が取得できるので、興味があれば試してみて欲しい。
       <p><a href="https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html.gz">この HTML の zopfli 圧縮版</a>

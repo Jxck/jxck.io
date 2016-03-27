@@ -552,6 +552,25 @@ $ apt-get install webp # linux</code></pre>
       <p>他にも、 gulp などのプラグインや、 GUI ツールなどもある。
     </section>
     <section>
+      <h2 id="cwebp"><a href="#cwebp">cwebp</a></h2>
+      <p>PNG からの変換は cwebp コマンドで行う。
+      <pre class=sh><code>$ cwebp
+Usage:
+
+   cwebp [options] -q quality input.png -o output.webp
+
+   where quality is between 0 (poor) to 100 (very good).
+   Typical value is around 80.
+
+   Try -longhelp for an exhaustive list of advanced options.</code></pre>
+      <p>基本的には <code>-q</code> の調整になるが、これは画像ごとに結果をみながらやるしかない。
+      <p>まずは、デフォルトの 80 で比較していく。
+      <ul>
+        <li><a href="/assets/img/jxck.png">jxck.png</a> : 4061 byte
+        <li><a href="/assets/img/jxck.webp">jxck.webp</a>: 1810 byte
+      </ul>
+    </section>
+    <section>
       <h2 id="WebP+の指定"><a href="#WebP+の指定">WebP の指定</a></h2>
       <p>ブラウザにおける <a href="http://caniuse.com/#feat=webp">WebP の対応はまだまだ限定的</a> であるため、非対応ブラウザには PNG/JPEG/GIF などを送る必要がある。
       <p>この方法として、 JS による補完や、 User-Agent を用いたサーバサイドでの分岐などが紹介される場合がある。
@@ -570,28 +589,6 @@ $ apt-get install webp # linux</code></pre>
       <p>従って <code>&lt;picture&gt;</code> に対応していない(= WebP も非対応)ブラウザに向けたフォールバックとして、 <code>&lt;img&gt;</code> には PNG を指定する。
       <p>この指定は、現在 WebP に対応していないブラウザが将来対応した場合に、サイトに何も手を加える必要がない。
       <p>将来、新しい画像フォーマットが出た場合は <code>&lt;source&gt;</code> を加えることで、ブラウザに選択肢を増やせば良いため、 UA のメンテナンスと比べても、好ましい方法と言える。
-      <table>
-        <thead>
-          <tr>
-            <th class=align-left>format</th>
-            <th class=align-right>size</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class=align-left>jxck.png</td>
-            <td class=align-right>3.8K</td>
-          </tr>
-          <tr>
-            <td class=align-left>jxck.webp</td>
-            <td class=align-right>1.8K</td>
-          </tr>
-          <tr>
-            <td class=align-left>jxck.svg</td>
-            <td class=align-right>291B</td>
-          </tr>
-        </tbody>
-      </table>
     </section>
   </article>
 
