@@ -499,15 +499,17 @@ function prepare(filepath, option) {
     ampurl = null;
     template = read('./.template/amp.html');
     style = [
-      'blog.jxck.io/assets/css/body.css',
-      'blog.jxck.io/assets/css/header.css',
-      'blog.jxck.io/assets/css/info.css',
-      'blog.jxck.io/assets/css/main.css',
-      'blog.jxck.io/assets/css/article.css',
-      'blog.jxck.io/assets/css/pre.css',
-      'blog.jxck.io/assets/css/table.css',
-      'blog.jxck.io/assets/css/footer.css',
+      'article.css',
+      'body.css',
+      'footer.css',
+      'header.css',
+      'info.css',
+      'main.css',
+      'pre.css',
+      'table.css',
     ].map((f) => {
+      return `blog.jxck.io/assets/css/${f}`;
+    }).map((f) => {
       return fs.readFileSync(f).toString();
     }).join('\n');
 
