@@ -253,11 +253,11 @@ Link: </app/style.css>; rel=preload; as=style; nopush
 
 before
 
-[![before](before.png#873x492 "result of before adding preload")](before.png)
+[![before](before.png#1366x768 "result of before adding preload")](before.png)
 
 after
 
-[![after](after.png#873x492 "result of after adding preload")](after.png)
+[![after](after.png#1366x768 "result of after adding preload")](after.png)
 
 
 このページでは、むしろ遅くなっている。これは、元のコンテンツで特にリソースの読み込みなどに関するオーバーヘッドが少ないためであると考えられる。したがって、処理が入ることによる内部処理のオーバーヘッドが結果に影響していると推測する。
