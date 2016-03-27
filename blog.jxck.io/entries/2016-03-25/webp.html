@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=/entries/2016-03-25/webp.html>
+<link rel=amphtml href=/entries/2016-03-25/webp.amp.html>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+<link rel=preload as=font type=font/woff href=//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
+
+<meta name=author content=Jxck>
+<meta name=description content="本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい WebP でも同様のものを提供し、対応ブラウザに配布するよう対応した。フォーマットを出し分けるため `&lt;picture&gt;` 要素にて対応した。画像最適化シリーズ第 2 回目のエントリである。...">
+<meta name=keywords content="webp,image,performance">
+
+<meta name=twitter:card content=summary>
+<meta name=twitter:site content=@jxck_>
+<meta name=twitter:url content=https://blog.jxck.io/entries/2016-03-25/webp.html>
+<meta name=twitter:title content="画像最適化戦略 WebP 編 | blog.jxck.io">
+<meta name=twitter:description content="本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい WebP でも同様のものを提供し、対応ブラウザに配布するよう対応した。フォーマットを出し分けるため `&lt;picture&gt;` 要素にて対応した。画像最適化シリーズ第 2 回目のエントリである。...">
+<meta name=twitter:image content=https://www.jxck.io/assets/img/jxck.png>
+
+<meta property=og:type content="article">
+<meta property=og:url content=https://blog.jxck.io/entries/2016-03-25/webp.html>
+<meta property=og:title content="画像最適化戦略 WebP 編 | blog.jxck.io">
+<meta property=og:site_name content=blog.jxck.io>
+<meta property=og:description content="本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい WebP でも同様のものを提供し、対応ブラウザに配布するよう対応した。フォーマットを出し分けるため `&lt;picture&gt;` 要素にて対応した。画像最適化シリーズ第 2 回目のエントリである。...">
+<meta property=og:image content=https://www.jxck.io/assets/img/jxck.png>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "画像最適化戦略 WebP 編 | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2016-03-25T08:00:00+08:00",
+  "dateModified": "2016-03-27T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://www.jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい WebP でも同様のものを提供し、対応ブラウザに配布するよう対応した。フォーマットを出し分けるため `&lt;picture&gt;` 要素にて対応した。画像最適化シリーズ第 2 回目のエントリである。..."
+}
+</script>
+
+<link rel=icon sizes=192x192 href=//www.jxck.io/assets/img/jxck.png>
+<link rel=apple-touch-icon sizes=128x128 href=//www.jxck.io/assets/img/jxck.png>
+
+<title>画像最適化戦略 WebP 編 | blog.jxck.io</title>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+<header>
+  <ul>
+    <li><a href=//blog.jxck.io><img class=logo alt="blog top" width=30 src=/assets/img/blog.svg></a>
+    <li><a href="/entries/2016-03-25/webp.amp.html#development=1"><img alt="move to amp version" width=30 src=/assets/img/amp.svg></a>
+    <li><a href=.><img alt="move to parent directory" width=30 src=/assets/img/up.svg></a>
+    <li><a href=/feeds/atom.xml><img alt="rss feed" width=30 src=/assets/img/rss.svg></a>
+    <li><a href=//www.jxck.io><img class=logo alt="jxck logo" width=30 src=/assets/img/jxck.svg></a>
+  </li>
+</header>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+<main>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2016-03-25>2016-03-25</time>
+    <li>updated_at: <time class=updated_at datetime=2016-03-27>2016-03-27</time>
+    <li class=tags>tags: [<a>webp</a>,<a>image</a>,<a>performance</a>]
+  </ul>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+  <article>
+    <h1><a href="/entries/2016-03-25/webp.html">画像最適化戦略 WebP 編</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい WebP でも同様のものを提供し、対応ブラウザに配布するよう対応した。フォーマットを出し分けるため <code>&lt;picture&gt;</code> 要素にて対応した。
+      <p>画像最適化シリーズ第 2 回目のエントリである。
+      <ul>
+        <li>1: <a href="/entries/2016-03-24/optimize-image.html">画像最適化戦略 PNG/JEPG 編</a>
+        <li>2: <a href="/entries/2016-03-25/webp.html">> 画像最適化戦略 WebP 編</a>
+        <li>3: <a href="/entries/2016-03-26/picture.html">画像最適化戦略 編</a>
+        <li>4: <a href="/entries/2016-03-27/svg-font-base-ui.html">画像最適化戦略 SVG/Font 編</a>
+      </ul>
+    </section>
+    <section>
+      <h2 id="WebP"><a href="#WebP">WebP</a></h2>
+      <p>従来の Web において、画像は用途毎に PNG/JPEG/GIF などを使い分けていた。
+      一般的には以下のような使い分けが行われている。
+      <ul>
+        <li>PNG : 主に UI アイコンなど色変化の少ない画像
+        <li>JEPG: 主に写真など色変化が多い画像
+        <li>GIF : 主に GIF アニメメーション
+      </ul>
+      <p>WebP は Google が開発した画像フォーマットであり、これら三つの用途全てに適した上で、さらに小さいサイズに圧縮できる場合が多い。
+      <p>また、 WebP は動画フォーマットである WebM の 1 フレームに相当するため、 WebP アニメーションは簡易 WebM と言っても良い。
+      GIF アニメよりも、色数が多く綺麗なアニメーションを小さいサイズで作ることができるため、技術ブログで言えばスクリーンデモのキャプチャなどに適しているだろう。
+      <p>現状まだ対応するブラウザは限られているが、対応しているのであれば WebP で配布するのが望ましい場合が多い。
+    </section>
+    <section>
+      <h2 id="WebP+変換"><a href="#WebP+変換">WebP 変換</a></h2>
+      <p>本サイトの画像は、 Mac で取得したスクリーンショットか cacoo で作成した図、その他フリー素材が中心である。
+      cacoo で作成した画像は SVG で書き出すため、主にスクリーンショットかフリー素材 が WebP 変換の対象となる。
+      <p>WebP への変換ツールは、 Google が公式に提供しているバイナリか、 Linux/Mac ならパッケージで提供されているものを使うことができる。
+      <p><a href="https://developers.google.com/speed/webp/download">Downloading and Installing WebP</a>
+      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+      <pre class=sh><code>$ brew install webp    # mac
+$ apt-get install webp # linux</code></pre>
+      <p>他にも、 gulp などのプラグインや、 GUI ツールなどもある。
+    </section>
+    <section>
+      <h2 id="WebP+の指定"><a href="#WebP+の指定">WebP の指定</a></h2>
+      <p>ブラウザにおける <a href="http://caniuse.com/#feat=webp">WebP の対応はまだまだ限定的</a> であるため、非対応ブラウザには PNG/JPEG/GIF などを送る必要がある。
+      <p>この方法として、 JS による補完や、 User-Agent を用いたサーバサイドでの分岐などが紹介される場合がある。
+      しかし、別途 JS を利用する場合はイニシャルレンダリングへの影響を免れず、 User-Agent での分岐は保守性の問題から避けるべきパターンの一つといえる。
+      <p>現時点では、 HTML の <code>&lt;picture&gt;</code> を用いることで、ブラウザ自体にそれを判断させることができるため、本サイトではこの方法を採用することとした。
+    </section>
+    <section>
+      <h2 id="<code>&lt;picture&gt;</code>+での指定"><a href="#<code>&lt;picture&gt;</code>+での指定"><code>&lt;picture&gt;</code> での指定</a></h2>
+      <p><code>&lt;picture&gt;</code> の <code>type</code> を用いることでフォーマットの指定が可能である。
+      <p>画像を以下のように指定することで、対応ブラウザが自ら WebP をリクエストするようになり、 WebP や <code>&lt;picture&gt;</code> に対応していない場合は <code>&lt;img&gt;</code> に指定した画像にフォールバックする。
+      <pre class=html><code>&lt;picture&gt;
+  &lt;source type=image/webp srcset=hero-image.webp&gt;
+  &lt;img src=hero-image.png alt=&quot;hero image&quot;&gt;
+&lt;/picture&gt;</code></pre>
+      <p>この場合、 WebP に対応しているが <code>&lt;picture&gt;</code> に対応していないブラウザが気になるところだが、現状 <a href="http://caniuse.com/#search=picture">picture</a> に対応し <a href="http://caniuse.com/#search=webp">webp</a> に対応していないブラウザは無い。
+      <p>従って <code>&lt;picture&gt;</code> に対応していない(= WebP も非対応)ブラウザに向けたフォールバックとして、 <code>&lt;img&gt;</code> には PNG を指定する。
+      <p>この指定は、現在 WebP に対応していないブラウザが将来対応した場合に、サイトに何も手を加える必要がない。
+      <p>将来、新しい画像フォーマットが出た場合は <code>&lt;source&gt;</code> を加えることで、ブラウザに選択肢を増やせば良いため、 UA のメンテナンスと比べても、好ましい方法と言える。
+      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/table.css>
+      <table>
+        <thead>
+          <tr>
+            <th class=align-left>format</th>
+            <th class=align-right>size</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class=align-left>jxck.png</td>
+            <td class=align-right>3.8K</td>
+          </tr>
+          <tr>
+            <td class=align-left>jxck.webp</td>
+            <td class=align-right>1.8K</td>
+          </tr>
+          <tr>
+            <td class=align-left>jxck.svg</td>
+            <td class=align-right>291B</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </article>
+
+</main>
+<hr>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
+</footer>
+
+<script src="/assets/js/highlight.min.js"></script>
+<script>window.onload = hljs.initHighlighting;</script>
+<script src=//www.jxck.io/assets/js/ga.js></script>
