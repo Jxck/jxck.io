@@ -182,7 +182,10 @@ class Builder {
     }
 
     // No width-height for normal img
-    return `<img src=${node.url} alt="${node.alt}" title="${node.title}">`;
+    return `<picture>
+    <source type=image/webp srcset=${node.url.replace('.png', '.webp')}>
+    <img src=${node.url} alt="${node.alt}" title="${node.title}">
+    </picture>`;
   }
   strong     (node) { return `<strong>${node.value}</strong>`; }
   emphasis   (node) { return `<em>${node.value}</em>`; }
