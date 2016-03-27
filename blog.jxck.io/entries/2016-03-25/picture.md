@@ -2,14 +2,14 @@
 
 ## Intro
 
-本サイトで使用している PNG/JPEG/WebP 画像を、対応デバイスと、 Device Pixel Ratio に対して最適なサイズで出し分けるために、 `<picture>` 要素を適用した。
+本サイトで使用している PNG/JPEG 画像を、対応デバイスと、 Device Pixel Ratio に対して最適なサイズで出し分けるために、 `<picture>` 要素を適用した。
 
-画像最適化シリーズ第 3 回目のエントリである。
+画像最適化シリーズ第 2 回目のエントリである。
 
-- 1: [画像最適化戦略 PNG/JEPG 編](/entries/2016-03-24/optimize-image.html)
-- 2: [画像最適化戦略 WebP 編](/entries/2016-03-25/webp.html)
-- 3: [> 画像最適化戦略 編](/entries/2016-03-26/picture.html)
-- 4: [画像最適化戦略 SVG/Font 編](/entries/2016-03-27/svg-font-base-ui.html)
++ [画像最適化戦略 PNG/JEPG 編](/entries/2016-03-24/optimize-image.html)
++ [> 画像最適化戦略 Picture 編](/entries/2016-03-25/picture.html)
++ [画像最適化戦略 WebP 編](/entries/2016-03-26/webp.html)
++ [画像最適化戦略 SVG/Font 編](/entries/2016-03-27/svg-font-base-ui.html)
 
 ## 画像の出し分け
 
@@ -19,15 +19,12 @@
 
 そこで、同一画像でいくつかのファイルサイズを用意し、ブラウザの DPR などに応じて出し分けるのが望ましい。
 
-本サイトでは、すでに `<picture>` を用いて WebP の出し分けを行っているため、同様に `<picture>` に選択肢を追加することで、 UA 分岐などを避けて対応することにした。
-
 
 ## 最適な画像を決定する変数
 
 サイズ・フォーマット的に最適なイメージは、主に端末とブラウザの組み合わせで変わる。
 具体的には、現状以下の分岐を考慮する必要がある。
 
-- WebP に対応しているか(ブラウザの分岐)
 - ViewPort Size はいくつか(端末サイズの分岐)
 - DPI はいくつか(端末 Retina 対応)
 
@@ -78,22 +75,7 @@ Retina ディスプレイは、通常のスクリーンよりも、スクリー�
 
 今回は、デバイスのサイズや解像度などに応じて、適切なサイズの画像を出し分けられるようにする設定を考える。
 
-ただし、 Media Query を多用するような、複雑なインタラクションは考慮しない。
-
-
-### 現状
-
-すでに WebP を出し分けるために、画像は以下のように `<picture>` を指定している。
-
-```html
-<picture>
-  <source type=image/webp srcset=hero-image.webp>
-  <img src=hero-image.png alt="hero image">
-</picture>
-```
-
-
-ここに対して DPR が大きい端末のための、大きいサイズの画像を指定する。
+そこで `<picture>` の `<srcset>` と `sizes` で DPR が大きい端末のための、大きいサイズの画像を指定することにした。
 
 基本的に Width-Height は変更しない前提であれば、 DPI が x2, x3... と増える場合にサイズが x2, x3... となる画像を提供することになる。
 
@@ -106,10 +88,6 @@ Media Query を用いて DPR 値で分岐した場合以下のように指定で
 
 ```html
 <picture>
-  <source type=image/webp srcset=300x300.webp media="min-device-pixel-ratio: 2.5">
-  <source type=image/webp srcset=200x200.webp media="min-device-pixel-ratio: 1.5">
-  <source type=image/webp srcset=100x100.webp>
-
   <source type=image/png srcset=300x300.png media="min-device-pixel-ratio: 2.5">
   <source type=image/png srcset=200x200.png media="min-device-pixel-ratio: 1.5">
   <source type=image/png srcset=100x100.png>
@@ -125,11 +103,6 @@ sizes を用いて、画像のサイズを明示した場合以下のように�
 
 ```html
 <picture>
-  <source type=image/webp sizes=100px
-          srcset="100x100.webp 100w,
-                  200x200.webp 200w,
-                  300x300.webp 300w">
-
   <source type=image/png sizes=100px
           srcset="100x100.png 100w,
                   200x200.png 200w,
@@ -181,7 +154,7 @@ srcset で画像の実際のサイズを `w` で指定し、それを表示し�
 - スクリーンショット
 
 この中で、最初の画像については、基本的に SVG で出力する。
-二番目の画像については、基本的には小さくするか、 WebP に変換することしかできない。
+二番目の画像については、オリジナルよりも大きい画像を生成するのは難しい。
 
 スクリーンショットを x3 のデバイスで取得できれば良いが、現状筆者はそれを持っていない。
 

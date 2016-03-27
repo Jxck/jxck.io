@@ -4,12 +4,13 @@
 
 本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい WebP で、同様のものを提供し、対応ブラウザに配布するようにした。フォーマットを出し分けるため `<picture>` 要素にて対応した。
 
-画像最適化シリーズ第 2 回目のエントリである。
+画像最適化シリーズ第 3 回目のエントリである。
 
-- 1: [画像最適化戦略 PNG/JEPG 編](/entries/2016-03-24/optimize-image.html)
-- 2: [> 画像最適化戦略 WebP 編](/entries/2016-03-25/webp.html)
-- 3: [画像最適化戦略 編](/entries/2016-03-26/picture.html)
-- 4: [画像最適化戦略 SVG/Font 編](/entries/2016-03-27/svg-font-base-ui.html)
++ [画像最適化戦略 PNG/JEPG 編](/entries/2016-03-24/optimize-image.html)
++ [画像最適化戦略 Picture 編](/entries/2016-03-25/picture.html)
++ [> 画像最適化戦略 WebP 編](/entries/2016-03-26/webp.html)
++ [画像最適化戦略 SVG/Font 編](/entries/2016-03-27/svg-font-base-ui.html)
+
 
 ## WebP
 

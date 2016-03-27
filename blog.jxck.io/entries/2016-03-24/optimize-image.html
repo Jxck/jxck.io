@@ -14,21 +14,21 @@ by Jxck
 <link rel=preload as=font type=font/woff href=//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
 
 <meta name=author content=Jxck>
-<meta name=description content="本サイトで使用している PNG/JPEG 画像に対し、メタデータ削除、減色、リサイズなど基本的な最適化処理の適用戦略と、その方法および結果について。画像最適化シリーズ第 1 回目のエントリである。- 1: [&gt; 画像最適化戦略 PNG/JEPG 編](/entries/2016-...">
+<meta name=description content="本サイトで使用している PNG/JPEG 画像に対し、メタデータ削除、減色、リサイズなど基本的な最適化処理の適用戦略と、その方法および結果について。画像最適化シリーズ第 1 回目のエントリである。+ [&gt; 画像最適化戦略 PNG/JEPG 編](/entries/2016-03-...">
 <meta name=keywords content="image,performance">
 
 <meta name=twitter:card content=summary>
 <meta name=twitter:site content=@jxck_>
 <meta name=twitter:url content=https://blog.jxck.io/entries/2016-03-24/optimize-image.html>
 <meta name=twitter:title content="画像最適化戦略 PNG/JEPG 編 | blog.jxck.io">
-<meta name=twitter:description content="本サイトで使用している PNG/JPEG 画像に対し、メタデータ削除、減色、リサイズなど基本的な最適化処理の適用戦略と、その方法および結果について。画像最適化シリーズ第 1 回目のエントリである。- 1: [&gt; 画像最適化戦略 PNG/JEPG 編](/entries/2016-...">
+<meta name=twitter:description content="本サイトで使用している PNG/JPEG 画像に対し、メタデータ削除、減色、リサイズなど基本的な最適化処理の適用戦略と、その方法および結果について。画像最適化シリーズ第 1 回目のエントリである。+ [&gt; 画像最適化戦略 PNG/JEPG 編](/entries/2016-03-...">
 <meta name=twitter:image content=https://www.jxck.io/assets/img/jxck.png>
 
 <meta property=og:type content="article">
 <meta property=og:url content=https://blog.jxck.io/entries/2016-03-24/optimize-image.html>
 <meta property=og:title content="画像最適化戦略 PNG/JEPG 編 | blog.jxck.io">
 <meta property=og:site_name content=blog.jxck.io>
-<meta property=og:description content="本サイトで使用している PNG/JPEG 画像に対し、メタデータ削除、減色、リサイズなど基本的な最適化処理の適用戦略と、その方法および結果について。画像最適化シリーズ第 1 回目のエントリである。- 1: [&gt; 画像最適化戦略 PNG/JEPG 編](/entries/2016-...">
+<meta property=og:description content="本サイトで使用している PNG/JPEG 画像に対し、メタデータ削除、減色、リサイズなど基本的な最適化処理の適用戦略と、その方法および結果について。画像最適化シリーズ第 1 回目のエントリである。+ [&gt; 画像最適化戦略 PNG/JEPG 編](/entries/2016-03-...">
 <meta property=og:image content=https://www.jxck.io/assets/img/jxck.png>
 
 <script type="application/ld+json">
@@ -63,7 +63,7 @@ by Jxck
       "width": 257
     }
   },
-  "description": "本サイトで使用している PNG/JPEG 画像に対し、メタデータ削除、減色、リサイズなど基本的な最適化処理の適用戦略と、その方法および結果について。画像最適化シリーズ第 1 回目のエントリである。- 1: [&gt; 画像最適化戦略 PNG/JEPG 編](/entries/2016-..."
+  "description": "本サイトで使用している PNG/JPEG 画像に対し、メタデータ削除、減色、リサイズなど基本的な最適化処理の適用戦略と、その方法および結果について。画像最適化シリーズ第 1 回目のエントリである。+ [&gt; 画像最適化戦略 PNG/JEPG 編](/entries/2016-03-..."
 }
 </script>
 
@@ -102,10 +102,10 @@ by Jxck
       <p>本サイトで使用している PNG/JPEG 画像に対し、メタデータ削除、減色、リサイズなど基本的な最適化処理の適用戦略と、その方法および結果について。
       <p>画像最適化シリーズ第 1 回目のエントリである。
       <ul>
-        <li>1: <a href="/entries/2016-03-24/optimize-image.html">> 画像最適化戦略 PNG/JEPG 編</a>
-        <li>2: <a href="/entries/2016-03-25/webp.html">画像最適化戦略 WebP 編</a>
-        <li>3: <a href="/entries/2016-03-26/picture.html">画像最適化戦略 編</a>
-        <li>4: <a href="/entries/2016-03-27/svg-font-base-ui.html">画像最適化戦略 SVG/Font 編</a>
+        <li><a href="/entries/2016-03-24/optimize-image.html">> 画像最適化戦略 PNG/JEPG 編</a>
+        <li><a href="/entries/2016-03-25/picture.html">画像最適化戦略 Picture 編</a>
+        <li><a href="/entries/2016-03-26/webp.html">画像最適化戦略 WebP 編</a>
+        <li><a href="/entries/2016-03-27/svg-font-base-ui.html">画像最適化戦略 SVG/Font 編</a>
       </ul>
     </section>
     <section>
@@ -116,12 +116,9 @@ by Jxck
       <p>従って、表示するサイズぴったりにリサイズすれば、データ量も最適となる。
       <p>また、見た目上の変化/劣化が生じなければ、減色や余計なメタ情報の削除などによて、サイズを削減できる場合がある。
       <p>(Retina など High DPI 端末に向けたサイズの対応は、 <a href="/entries/2016-03-26/picture.html">別エントリ</a> で記載する)
-      <section>
-        <h3 id="リサイズ"><a href="#リサイズ">リサイズ</a></h3>
-        <p>画像を表示する際に <code>&lt;img&gt;</code> や CSS に <code>width</code>, <code>height</code> を指定しなければ、画像本来のサイズで表示される。
-        <p>もしここで、本来のサイズと別のサイズを指定すれば、拡大か縮小が発生する。
-        <p>従って、意図した大きさで収まるようにリサイズをした上で、サイズを指定せず表示する。
-      </section>
+      <p>画像を表示する際に <code>&lt;img&gt;</code> や CSS に <code>width</code>, <code>height</code> を指定しなければ、画像本来のサイズで表示される。
+      <p>もしここで、本来のサイズと別のサイズを指定すれば、拡大か縮小が発生する。
+      <p>従って、意図した大きさで収まるようにリサイズをした上で、サイズを指定せず表示する。
     </section>
     <section>
       <h2 id="メタ情報削除"><a href="#メタ情報削除">メタ情報削除</a></h2>
@@ -159,7 +156,7 @@ by Jxck
       <section>
         <h3 id="方式によるサイズ"><a href="#方式によるサイズ">方式によるサイズ</a></h3>
         <p>まず、前者のサイズについて、少し古いが Steve 先生の調査がある。
-        <p><a href="http://yuiblog.com/blog/2008/12/05/imageopt-4/">http://yuiblog.com/blog/2008/12/05/imageopt-4/</a>
+        <p><a href="http://yuiblog.com/blog/2008/12/05/imageopt-4/">Image Optimization, Part 4: Progressive JPEG...Hot or Not?</a>
         <p>あらゆる画像を二つの形式で保存した場合、サイズがそれぞれどうなるかを検証している。
         結果だけ引用する。
         <blockquote>when your JPEG image is under 10K, it&#039;s better to be saved as baseline JPEG (estimated 75% chance it will be smaller)
