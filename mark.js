@@ -2,6 +2,12 @@
 
 'use strict';
 
+let path = require('path');
+let url = require('url');
+let fs = require('fs');
+let parse = require('remark').parse;
+
+
 global.__defineGetter__('__LINE__', () => {
   return (new Error()).stack.split('\n')[3].split(':').reverse()[1];
 });
@@ -159,6 +165,8 @@ class Builder {
         height = `height=${size[1]}`;
       }
     }
+
+    // AMP should specify width-height
     if (!this.ampurl) {
       // not has amp link means amp template
       if (width === '' || height === '') {
@@ -167,7 +175,14 @@ class Builder {
       }
       return `<amp-img layout=responsive src=${node.url} alt="${node.alt}" title="${node.title}" ${width} ${height}>`;
     }
-    return `<img src=${node.url} alt="${node.alt}" title="${node.title}" ${width} ${height}>`;
+
+    // SVG should specify width-height
+    if (path.parse(url.parse(node.url).path).ext === '.svg') {
+      return `<img src=${node.url} alt="${node.alt}" title="${node.title}" ${width} ${height}>`;
+    }
+
+    // No width-height for normal img
+    return `<img src=${node.url} alt="${node.alt}" title="${node.title}">`;
   }
   strong     (node) { return `<strong>${node.value}</strong>`; }
   emphasis   (node) { return `<em>${node.value}</em>`; }
@@ -192,8 +207,6 @@ function p() {
 }
 
 let j = JSON.stringify.bind(JSON);
-
-let parse = require('remark').parse;
 
 function traverse(ast, option) {
   option.enter(ast);
@@ -524,8 +537,6 @@ if (process.argv.length < 3) {
   process.exit(1);
 }
 
-let path = require('path');
-let fs = require('fs');
 let filepath = process.argv[2];
 
 // simple html
