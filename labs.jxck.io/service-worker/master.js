@@ -43,18 +43,29 @@ if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalSco
   });
 
   self.addEventListener('fetch', (e) => {
-    let req = e.request;
+    console.log(e);
+    let request = e.request;
+
+    let url = new URL(request.url);
+    if (url.pathname === '/master.js') return
+
     e.respondWith(
       caches.open(KEY).then((cache) => {
-        return cache.match(req).then((res) => {
-          let update = fetch(req).then((res) => {
-            res.clone().text().then((text) => { log('update', text.substring(0, 20)); });
-            cache.put(req, res.clone());
-            return res;
+        return cache.match(request).then((response) => {
+          console.log('cache req:res', request, response, response.headers.get('x-seq'));
+
+          let update = fetch(request).then((update) => {
+            let type = update.headers.get('content-type');
+
+            console.log('update', update, update.headers.get('x-seq'));
+
+            cache.put(request, update.clone());
+            return update;
           });
-          return res || update;
-        }).catch(() => {
-          return new Response("network offline");
+          return response || update;
+        }).catch((e) => {
+          console.log(e);
+          return e;
         });
       })
     );
