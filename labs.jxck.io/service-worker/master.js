@@ -3,7 +3,7 @@
 const DEBUG = true;
 const KEY = "master.js?ver=1";
 
-let log = DEBUG ? console.log.bind(console) : ()=>{}
+let log = DEBUG ? console.log.bind(console) : ()=>{};
 
 // window
 if (typeof window !== 'undefined') {
@@ -33,26 +33,38 @@ if (typeof window !== 'undefined') {
 // worker
 if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalScope) {
   self.addEventListener('install', (e) => {
-    log('install', e);
+    log('install > skipWaiting', e);
     e.waitUntil(skipWaiting());
   });
 
   self.addEventListener('activate', (e) => {
-    log('activate', e);
-    e.waitUntil(self.clients.claim());
+    log('activate > claim', e);
+
+    e.waitUntil(
+      caches.keys().then((cacheNames) => {
+        return Promise.all(
+          cacheNames.map((cacheName) => {
+            console.log('remove cache', cacheName);
+            return caches.delete(cacheName);
+          })
+        );
+      }).then(() => self.clients.claim())
+    );
   });
 
   self.addEventListener('fetch', (e) => {
-    console.log(e);
     let request = e.request;
+    console.log(request);
 
     let url = new URL(request.url);
-    if (url.pathname === '/master.js') return
+    if (url.pathname === '/master.js') return;
 
     e.respondWith(
       caches.open(KEY).then((cache) => {
         return cache.match(request).then((response) => {
-          console.log('cache req:res', request, response, response.headers.get('x-seq'));
+          if (response) {
+            console.log('cached res', response, response.headers && response.headers.get('x-seq'));
+          }
 
           let update = fetch(request).then((update) => {
             let type = update.headers.get('content-type');
