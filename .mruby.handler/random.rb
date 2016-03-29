@@ -1,11 +1,23 @@
 Proc.new do |env|
+  @i ||= 0
+  seq = (@i+=1).to_s
   now = Time.now.to_s
-  now << "<br>"
-  html =<<-EOS
-<!DOCTYPE html>
-<meta charset=utf-8>
-<title>random</title>
-#{now*1000}
-  EOS
-  [200, {"content-type" => "text/html"}, [html]]
+  random = (0...8).map{ ('A'..'Z').to_a[rand(26)] }.join
+
+  10000.times.reduce{|pre, curr| pre ** curr }
+
+  header = {
+    "Content-Type" => "text/json",
+    "X-Seq" => seq
+  }
+
+  body = <<-EOS
+{
+  seq: "#{seq}",
+  now: "#{now}",
+  random: "#{random}"
+}
+EOS
+
+  [200, header, [body]]
 end
