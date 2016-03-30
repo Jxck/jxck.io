@@ -73,15 +73,20 @@ if (location.search === '?uir=on') {
 <pre id=active-src></pre>
 
 これらは、ブロックされます。
+(iframe は Upgrade-Insecure-Reuqest が有効でもブロックされます)
 
 <hr>
 
+<h2>Passive Contents</h2>
 <div id=passive>
 <img    src=http://labs.jxck.io/mixed/contents/jxck.png></img>
 <audio controller src=http://labs.jxck.io/mixed/contents/audio.mp3></audio>
 <video controller src=http://labs.jxck.io/mixed/contents/video.mp4></video>
 </div>
 
+<hr>
+
+<h2>Active Contents</h2>
 <div id=active>
 <script src=http://labs.jxck.io/mixed/contents/script.js></script>
 <link   link=http://labs.jxck.io/mixed/contents/style.css></link>
@@ -91,7 +96,7 @@ if (location.search === '?uir=on') {
 var xhr = new XMLHttpRequest();
 xhr.open('GET', 'http://labs.jxck.io');
 xhr.addEventListener('load', () => {
-  console.log(xhr.response);
+  console.log(xhr.status);
 });
 xhr.send();
 </script>
