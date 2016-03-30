@@ -4,10 +4,17 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <title>Upgrade Insecure Requests Demo | labs.jxck.io</title>
 
+<script>
+// enable Upgrade-Insecure-Requests
+if (location.hash === '#on') {
+  document.write('<meta http-equiv="Content-Security-Policy" content="Upgrade-Insecure-Requests">');
+}
+</script>
 <style>
 pre {
   font-size: 1em;
   background-color: #ccc;
+  padding: 1em;
 }
 
 strong {
@@ -17,16 +24,20 @@ strong {
 
 <h1>Mixed Content</h1>
 
-<h2>Upgrade Insecure Request <strong>ON</strong></h2>
-
 <p>このページは HTTPS で配信されていますが、以下の HTTP の Mixed Content を含みます。</p>
 
-<p>しかしこのページは以下のヘッダにより Upgarade Insecure Request が <strong>有効になっています</strong>
-<pre>
-  Content-Security-Policy: Upgrade-Insecure-Requests
-</pre>
+<script>
+if (location.hash === '#on') {
+  document.write('<p>ただし <strong>Upgrade Insecure Request が ON</strong> であるため、 http リクエストは https リクエストに読みかれられます');
+} else {
+  document.write('<p>ただし <strong>Upgrade Insecure Request が OFF</strong> であるため、 Active コンテンツはブロックされ Passive コンテンツは読み込まれますが URL バーとコンソールに警告が出ます');
+}
+</script>
 
-したがって読み込まれたコンテンツは以下のように扱われます。
+<ul>
+<li><a href=index.html#off>Upgarade Insecure Request = OFF</a>
+<li><a href=index.html#on >Upgarade Insecure Request = ON</a>
+</ul>
 
 <h3>Mixed Passive Content</h3>
 パッシブコンテンツは、悪意のあるコンテンツに差し替えられても、表示の変更に止まるなど影響が小さいとされる以下のコンテンツです。
@@ -40,7 +51,7 @@ strong {
 
 このページでは以下が埋め込まれています。
 
-<pre></pre>
+<pre id=passive-src></pre>
 
 これらは、ブロックされません。
 
@@ -59,50 +70,64 @@ strong {
 
 このページでは以下が埋め込まれています。
 
-<pre></pre>
+<pre id=active-src></pre>
 
 これらは、ブロックされます。
-
-<ul>
-  <li>外部リソースへの URL が <code>http://</code> を <code>https://</code> に読み替えてリクエストされる
-  <li>ブザウザのアドレスバーが緑(TLS valid)になる
-  <li>コンソールに、 Mixed Contents を検知した旨のエラーが出る
-  <li>ただし <code>&lt;iframe&gt;</code> はブロックされる
-</ul>
-
-<a href=index.html>このページの Upgarade Insecure Request を無効にしたバージョンがこちら。</a>
 
 <hr>
 
 <div id=passive>
-  <img    src=http://labs.jxck.io/mixed/image.png></img>
-  <audio  src=http://labs.jxck.io/mixed/audio.mp3></audio>
-  <video  src=http://labs.jxck.io/mixed/video.mp4></video>
+<img    src=http://labs.jxck.io/mixed/contents/jxck.png></img>
+<audio controller src=http://labs.jxck.io/mixed/contents/audio.mp3></audio>
+<video controller src=http://labs.jxck.io/mixed/contents/video.mp4></video>
 </div>
 
 <div id=active>
-  <script src=http://labs.jxck.io/mixed/script.js></script>
-  <link   link=http://labs.jxck.io/mixed/style.css></link>
-  <iframe src=http://labs.jxck.io/></iframe>
-  <object data=http://labs.jxck.io/mixed/flash.swf></object>
-  <script>
+<script src=http://labs.jxck.io/mixed/contents/script.js></script>
+<link   link=http://labs.jxck.io/mixed/contents/style.css></link>
+<iframe src=http://labs.jxck.io/></iframe>
+<!-- <object data=http://labs.jxck.io/mixed/contents/flash.flv></object> -->
+<script>
 var xhr = new XMLHttpRequest();
 xhr.open('GET', 'http://labs.jxck.io');
 xhr.addEventListener('load', () => {
   console.log(xhr.response);
 });
 xhr.send();
-  </script>
-  <style>
+</script>
+<style>
 body {
-  background-image: url("http://labs.jxck.io/mixed/background.png");
+  background-image: url("http://labs.jxck.io/mixed/contents/1x1.png");
 }
-  </style>
+</style>
 </div>
 
-<h2>About Mixed Content</h2>
+<script>
+// html special chars
+function hsc(str) {
+  return str.replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+}
+
+['passive', 'active'].forEach(function(id) {
+  var html = document.getElementById(id).innerHTML;
+  document.getElementById(id+'-src').innerHTML = hsc(html.trim());
+});
+</script>
+
+<h2>About Mixed Contents</h2>
 
 <ul>
   <li><a href="https://support.mozilla.org/en-US/kb/how-does-content-isnt-secure-affect-my-safety">How does content that isn't secure affect my safety?</a>
   <li><a href="https://developer.mozilla.org/en-US/docs/Security/MixedContent/How_to_fix_website_with_mixed_content">How to fix a website with blocked mixed content</a>
+</ul>
+
+<h2>Ackknowledge/License for Contents</h2>
+
+<ul>
+  <li>Sample Audio/Video from <a href=http://www.sample-videos.com/>samle-videos.com</a>
+  <li>Sample Image from <a href=https://commons.wikimedia.org/wiki/File:1x1.png>commons.wikimedia.org</a>
 </ul>
