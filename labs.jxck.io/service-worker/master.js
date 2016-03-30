@@ -22,7 +22,7 @@ if (typeof window !== 'undefined') {
     }
     return new Promise((resolve, reject) => {
       navigator.serviceWorker.addEventListener('controllerchange', () => {
-        resolve(registration);
+        return resolve(registration);
       });
     });
   }).then((registration) => {
