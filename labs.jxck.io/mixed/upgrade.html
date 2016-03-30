@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
-<meta name=description content="demo page of mixed content">
+<meta name=description content="demo page of upgrade insecure requests">
 <meta name=viewport content="width=device-width,initial-scale=1">
+<title>Upgrade Insecure Requests Demo | labs.jxck.io</title>
 
 <style>
 pre {
@@ -14,32 +15,58 @@ strong {
 }
 </style>
 
-<title>Upgrade Insecure Requests Demo | labs.jxck.io</title>
-
 <h1>Mixed Content</h1>
 
 <h2>Upgrade Insecure Request <strong>ON</strong></h2>
-<p>このページは HTTPS で配信されていますが、以下の HTTP の mixed content を含みます。</p>
 
-<pre>
-&lt;script src=http://code.jquery.com/jquery-2.2.1.min.js&gt;&lt;/script&gt;
-&lt;link href=http://getbootstrap.com/dist/css/bootstrap.min.css type=text/css  rel=stylesheet&gt;
-&lt;img src=http://upload.wikimedia.org/wikipedia/commons/c/ce/Example_image.png&gt;
-&lt;iframe src=http://example.com height=300 width=300&gt;iframe to example.com&lt;/iframe&gt;
-</pre>
+<p>このページは HTTPS で配信されていますが、以下の HTTP の Mixed Content を含みます。</p>
 
-しかしこのページは Upgarade Insecure Request が <strong>有効になっています</strong>
-
+<p>しかしこのページは以下のヘッダにより Upgarade Insecure Request が <strong>有効になっています</strong>
 <pre>
   Content-Security-Policy: Upgrade-Insecure-Requests
 </pre>
 
 したがって読み込まれたコンテンツは以下のように扱われます。
 
+<h3>Mixed Passive Content</h3>
+パッシブコンテンツは、悪意のあるコンテンツに差し替えられても、表示の変更に止まるなど影響が小さいとされる以下のコンテンツです。
+
 <ul>
-  <li>image, js, css へのリンクが <code>http://</code> を <code>https://</code> に読み替えてが読み込まれる
+  <li>&lt;img src&gt;
+  <li>&lt;audio src&gt;
+  <li>&lt;video src&gt;
+  <li>&lt;object src&gt;
+</ul>
+
+このページでは以下が埋め込まれています。
+
+<pre></pre>
+
+これらは、ブロックされません。
+
+
+<h3>Mixed Active Content</h3>
+アクティブコンテンツは、悪意のあるコンテンツに差し替えられた場合、 DOM へのアクセスなどが可能になり影響が大きいとされる以下のコンテンツです。
+
+<ul>
+  <li>&lt;script src&gt;
+  <li>&lt;link href&gt;
+  <li>&lt;iframe src&gt;
+  <li>&lt;object data&gt;
+  <li>XHR
+  <li>CSS 内の URL (@font-face, background-image etc)
+</ul>
+
+このページでは以下が埋め込まれています。
+
+<pre></pre>
+
+これらは、ブロックされます。
+
+<ul>
+  <li>外部リソースへの URL が <code>http://</code> を <code>https://</code> に読み替えてリクエストされる
   <li>ブザウザのアドレスバーが緑(TLS valid)になる
-  <li>コンソールに、 Mixed Contents をブロックした旨のエラーが出る
+  <li>コンソールに、 Mixed Contents を検知した旨のエラーが出る
   <li>ただし <code>&lt;iframe&gt;</code> はブロックされる
 </ul>
 
@@ -47,11 +74,31 @@ strong {
 
 <hr>
 
-<script src=http://code.jquery.com/jquery-2.2.1.min.js></script>
-<link href=http://getbootstrap.com/dist/css/bootstrap.min.css type=text/css  rel=stylesheet>
-<img src=http://upload.wikimedia.org/wikipedia/commons/c/ce/Example_image.png>
-<!--iframe src=http://example.com height=300 width=300>iframe to example.com</iframe-->
+<div id=passive>
+  <img    src=http://labs.jxck.io/mixed/image.png></img>
+  <audio  src=http://labs.jxck.io/mixed/audio.mp3></audio>
+  <video  src=http://labs.jxck.io/mixed/video.mp4></video>
+</div>
 
+<div id=active>
+  <script src=http://labs.jxck.io/mixed/script.js></script>
+  <link   link=http://labs.jxck.io/mixed/style.css></link>
+  <iframe src=http://labs.jxck.io/></iframe>
+  <object data=http://labs.jxck.io/mixed/flash.swf></object>
+  <script>
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'http://labs.jxck.io');
+xhr.addEventListener('load', () => {
+  console.log(xhr.response);
+});
+xhr.send();
+  </script>
+  <style>
+body {
+  background-image: url("http://labs.jxck.io/mixed/background.png");
+}
+  </style>
+</div>
 
 <h2>About Mixed Content</h2>
 
