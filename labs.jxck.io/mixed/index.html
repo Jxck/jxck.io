@@ -6,7 +6,7 @@
 
 <script>
 // enable Upgrade-Insecure-Requests
-if (location.hash === '#on') {
+if (location.search === '?uir=on') {
   document.write('<meta http-equiv="Content-Security-Policy" content="Upgrade-Insecure-Requests">');
 }
 </script>
@@ -27,7 +27,7 @@ strong {
 <p>このページは HTTPS で配信されていますが、以下の HTTP の Mixed Content を含みます。</p>
 
 <script>
-if (location.hash === '#on') {
+if (location.search === '?uir=on') {
   document.write('<p>ただし <strong>Upgrade Insecure Request が ON</strong> であるため、 http リクエストは https リクエストに読みかれられます');
 } else {
   document.write('<p>ただし <strong>Upgrade Insecure Request が OFF</strong> であるため、 Active コンテンツはブロックされ Passive コンテンツは読み込まれますが URL バーとコンソールに警告が出ます');
@@ -35,8 +35,8 @@ if (location.hash === '#on') {
 </script>
 
 <ul>
-<li><a href=index.html#off>Upgarade Insecure Request = OFF</a>
-<li><a href=index.html#on >Upgarade Insecure Request = ON</a>
+<li><a href=index.html>Upgarade Insecure Request = OFF</a>
+<li><a href=index.html?uir=on>Upgarade Insecure Request = ON</a>
 </ul>
 
 <h3>Mixed Passive Content</h3>
