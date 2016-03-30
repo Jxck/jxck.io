@@ -3,10 +3,6 @@
 <meta name=description content="demo page of mixed content">
 <meta name=viewport content="width=device-width,initial-scale=1">
 
-<!-- here -->
-<meta http-equiv=Content-Security-Policy content=upgrade-insecure-requests>
-<!--  is  -->
-
 <style>
 pre {
   font-size: 1em;
@@ -18,7 +14,7 @@ strong {
 }
 </style>
 
-<title>Mixed Content Demo | labs.jxck.io</title>
+<title>Upgrade Insecure Requests Demo | labs.jxck.io</title>
 
 <h1>Mixed Content</h1>
 
@@ -35,7 +31,7 @@ strong {
 しかしこのページは Upgarade Insecure Request が <strong>有効になっています</strong>
 
 <pre>
-  &lt;meta http-equiv=Content-Security-Policy content=upgrade-insecure-requests&gt;
+  Content-Security-Policy: Upgrade-Insecure-Requests
 </pre>
 
 したがって読み込まれたコンテンツは以下のように扱われます。
@@ -47,7 +43,7 @@ strong {
   <li>ただし <code>&lt;iframe&gt;</code> はブロックされる
 </ul>
 
-<a href=upgrade.html>このページに Upgarade Insecure Request を有効にしたバージョンがこちら。</a>
+<a href=index.html>このページの Upgarade Insecure Request を無効にしたバージョンがこちら。</a>
 
 <hr>
 
