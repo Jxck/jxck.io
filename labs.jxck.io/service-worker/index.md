@@ -60,7 +60,7 @@ navigator.serviceWorker.register('worker.js').then((registration) => {
 ```
 
 
-installing -> active にうつったかどうかは navigator.serviceWorker.ready の resolve() でわかる。
+installing -> active に移ったかどうかは、 navigator.serviceWorker.ready の resolve() でわかる。
 
 ```js
 // master.js
@@ -91,8 +91,7 @@ self.addEventListener('activate', (e) => {
 });
 ```
 
-controller が変化すると controllerchange event が発火する
-これで master 側でそれを捕捉できる。
+controller が変化すると controllerchange event が発火するため、 master 側でそれを捕捉できる。
 
 ```js
 navigator.serviceWorker.addEventListener('controllerchange', (e) => {
@@ -197,7 +196,7 @@ setTimeout(() => {
 }, 3000);
 ```
 
-以前は update を呼べば強制できたが、今はそういうことはできなくなった。
+以前は update を呼べば強制できたが、今はそういうことができなくなった。
 
 一番簡単なのは `?ver=1` などのクエリをつける。
 キャッシュが切れて updatefound される。
@@ -234,7 +233,7 @@ self.addEventListener('fetch', (e) => {
 
 ## Service Worker
 
-Service Worker についてはもう特に解説は必要ないだろう。
+Service Worker については、もう特に解説は必要ないだろう。
 
 今回はこれを登録し、透過プロキシとして動作させる。
 
