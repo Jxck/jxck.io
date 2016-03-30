@@ -28,7 +28,7 @@
   },
   "scripts": {
     "build": "./build.rb production && ./compress.rb blog.jxck.io & gulp",
-    "dev": "./build.rb",
+    "dev": "./build.rb && find ./blog.jxck.io/* -name *.gz | xargs rm",
     "www": "./compress.rb www.jxck.io",
     "blog": "./compress.rb blog.jxck.io",
     "slide": "./compress.rb slide.jxck.io",
