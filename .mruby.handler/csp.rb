@@ -20,7 +20,7 @@ Proc.new do |env|
     # CSP for Normal Page
     csp = [
       "default-src",
-      "self",
+      "'self'",
       "https://*.jxck.io",
       "https://www.google-analytics.com",
       ";",
