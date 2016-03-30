@@ -1,9 +1,9 @@
 'use strict';
 
 const DEBUG = true;
-const KEY = "master.js?ver=2";
+const KEY = 'master.js?ver=2';
 
-let log = DEBUG ? console.log.bind(console) : ()=>{};
+let log = DEBUG ? console.log.bind(console) : () => {};
 
 // window
 if (typeof window !== 'undefined') {
