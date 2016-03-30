@@ -1,16 +1,22 @@
-# [csp][security] Content Security Policy 対応
+# [csp][security] Content Security Policy 対応と report-uri.io でのレポート収集
 
 ## Intro
 
 本サイトにて Content Security Policy を有効化した。
+
 まずは Report Only にて導入し、段階的にポリシーとコンテンツを修正していく方針をとる。
-CSP Report については、 report-uri.io を用いて収集することにした。
+
+CSP Report については、 [report-uri.io](report-uri.io) を用いて収集することにした。
+
 導入に必要な設定や、注意点についてまとめる。
 
 
 ## Content Security Policy
 
 Content Security Policy(CSP) とは、 Web におけるセキュリティを向上させる非常に強力な仕組みである。
+
+[Content Security Policy 1.0](https://www.w3.org/TR/CSP1/)
+
 
 具体的には、コンテンツに対し Content-Security-Policy ヘッダを付加することにより、ブラウザに読み込を許可するコンテンツをホワイトリストにより制限することができる。
 
@@ -160,10 +166,10 @@ CSP の違反レポートは以下のような JSON データである。
 
 ```
 # normal page
-content-security-policy-report-only: default-src self https://*.jxck.io https://www.google-analytics.com ; child-src https://www.youtube.com ; report-uri https://4887c342aec2b444c655987aa8b0d5cb.report-uri.io/r/default/csp/reportOnly
+content-security-policy-report-only: default-src self https://*.jxck.io https://www.google-analytics.com ; child-src https://www.youtube.com ; report-uri https://xxx.report-uri.io/r/default/csp/reportOnly
 
 # amp page
-content-security-policy-report-only:default-src 'self' https://*.jxck.io https://www.google-analytics.com https://cdn.ampproject.org ; style-src 'unsafe-inline' ; report-uri https://4887c342aec2b444c655987aa8b0d5cb.report-uri.io/r/default/csp/reportOnly
+content-security-policy-report-only: default-src 'self' https://*.jxck.io https://www.google-analytics.com https://cdn.ampproject.org ; style-src 'unsafe-inline' ; report-uri https://xxx.report-uri.io/r/default/csp/reportOnly
 ```
 
 今後も収集したポリシーを解析、それを元にコンテンツやポリシーを修正を実施し、ある程度影響が見えてから実際の CSP の適用を再検討したいと考えている。
