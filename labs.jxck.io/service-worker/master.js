@@ -1,7 +1,7 @@
 'use strict';
 
 const DEBUG = true;
-const KEY = "master.js?ver=1";
+const KEY = "master.js?ver=2";
 
 let log = DEBUG ? console.log.bind(console) : ()=>{};
 
@@ -39,17 +39,18 @@ if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalSco
 
   self.addEventListener('activate', (e) => {
     log('activate > claim', e);
+    return self.clients.claim();
 
-    e.waitUntil(
-      caches.keys().then((cacheNames) => {
-        return Promise.all(
-          cacheNames.map((cacheName) => {
-            console.log('remove cache', cacheName);
-            return caches.delete(cacheName);
-          })
-        );
-      }).then(() => self.clients.claim())
-    );
+    //e.waitUntil(
+    //  caches.keys().then((cacheNames) => {
+    //    return Promise.all(
+    //      cacheNames.map((cacheName) => {
+    //        console.log('remove cache', cacheName);
+    //        return caches.delete(cacheName);
+    //      })
+    //    );
+    //  }).then(() => self.clients.claim())
+    //);
   });
 
   self.addEventListener('fetch', (e) => {
