@@ -69,9 +69,32 @@ strong {
 
 <h2 id=picture><a href=#picture>picture</a></h2>
 <div class=demo>
+  <source type=image/png
+          srcset="100x100.png 100w, 200x200.png 200w, 300x300.png 300w"
+          sizes=100px>
+  <img src=100x100.png alt="select with picture source">
+</div>
+<pre></pre>
+
+<hr>
+
+<h2 id=picture-webp><a href=#picture-webp>picture with webp</a></h2>
+<div class=demo>
 <picture>
   <source type=image/webp srcset=100x100.webp>
   <img src=100x100.png alt="select with picture">
+</picture>
+</div>
+<pre></pre>
+
+<hr>
+
+<h2 id=svg><a href=#svg>picture with svg</a></h2>
+<div class=demo>
+<picture>
+  <source type=image/svg+xml srcset=sample.svg>
+  <source type=image/webp srcset=100x100.webp>
+  <img width=100 src=100x100.png alt="select with picture">
 </picture>
 </div>
 <pre></pre>
