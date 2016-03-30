@@ -41,16 +41,16 @@ if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalSco
     log('activate > claim', e);
     return self.clients.claim();
 
-    //e.waitUntil(
-    //  caches.keys().then((cacheNames) => {
-    //    return Promise.all(
-    //      cacheNames.map((cacheName) => {
-    //        console.log('remove cache', cacheName);
-    //        return caches.delete(cacheName);
-    //      })
-    //    );
-    //  }).then(() => self.clients.claim())
-    //);
+    // e.waitUntil(
+    //   caches.keys().then((cacheNames) => {
+    //     return Promise.all(
+    //       cacheNames.map((cacheName) => {
+    //         console.log('remove cache', cacheName);
+    //         return caches.delete(cacheName);
+    //       })
+    //     );
+    //   }).then(() => self.clients.claim())
+    // );
   });
 
   self.addEventListener('fetch', (e) => {
