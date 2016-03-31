@@ -59,3 +59,16 @@ xml = <<-EOS
 </feed>
 EOS
 File.write("blog.jxck.io/feeds/atom.xml", xml)
+
+
+require "json"
+
+json = JSON.pretty_generate({
+  title: "blog.jxck.io",
+  alternate: "https://blog.jxck.io",
+  author: { name: "jxck" },
+  id: "tag:blog.jxck.io,2016:feed",
+  update: "2016-01-28T18:30:02Z",
+  entry: entries
+})
+File.write("blog.jxck.io/feeds/atom.json", json)
