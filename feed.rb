@@ -21,20 +21,32 @@ entries = Dir.glob("./blog.jxck.io/entries/**/**")
                summary = hsp(summary)
                splitted = name.split("/")
                date = splitted[3]
+               id = "tag:blog.jxck.io,2016:entry://#{date}"
                updated = "#{date}T00:00:00Z"
 
-               <<-EOS
-                <entry>
-                 <title>#{title}</title>
-                 <link href="#{href}" rel="alternate" />
-                 <id>tag:blog.jxck.io,2016:entry://#{date}</id>
-                 <updated>#{updated}</updated>
-                 <summary>#{summary}</summary>
-                </entry>
-               EOS
+               {
+                 title: title,
+                 href: href,
+                 id: id,
+                 updated: updated,
+                 summary: summary
+               }
              }
 
-feed = <<-EOS
+
+xmlEntries = entries.map{|e|
+  <<-EOS
+  <entry>
+   <title>#{e[:title]}</title>
+   <link href="#{e[:href]}" rel="alternate" />
+   <id>#{e[:id]}</id>
+   <updated>#{e[:updated]}</updated>
+   <summary>#{e[:summary]}</summary>
+  </entry>
+  EOS
+}.join("\n")
+
+xml = <<-EOS
 <?xml version='1.0' encoding='UTF-8'?>
 <feed xmlns='http://www.w3.org/2005/Atom' xml:lang='ja'>
 <title>blog.jxck.io</title>
@@ -43,7 +55,7 @@ feed = <<-EOS
 <author><name>Jxck</name></author>
 <id>tag:blog.jxck.io,2016:feed</id>
 <updated>2016-01-28T18:30:02Z</updated>
-#{entries.join("\n")}
+#{xmlEntries}
 </feed>
 EOS
-File.write("blog.jxck.io/feeds/atom.xml", feed)
+File.write("blog.jxck.io/feeds/atom.xml", xml)
