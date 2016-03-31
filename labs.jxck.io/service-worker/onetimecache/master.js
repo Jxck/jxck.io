@@ -74,6 +74,8 @@ if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalSco
 
             cache.put(request, update.clone());
             return update;
+          }).catch(()=>{
+            // ignore failed to fetch
           });
           return response || update;
         }).catch((e) => {
