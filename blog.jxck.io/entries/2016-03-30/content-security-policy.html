@@ -116,17 +116,17 @@ by Jxck
       <p>Content Security Policy(CSP) とは、 Web におけるセキュリティを向上させる非常に強力な仕組みである。
       <p><a href="https://www.w3.org/TR/CSP1/">Content Security Policy 1.0</a>
       <p>具体的には、コンテンツに対し Content-Security-Policy ヘッダを付加することにより、ブラウザに読み込を許可するコンテンツをホワイトリストにより制限することができる。
-      <p>これは、コンテンツ作成者が意図しない外部スクリプトや、インラインスクリプトを埋め込むことにより攻撃が実現するタイプの XSS を、ことごとく防ぐことが可能になる。
+      <p>これによって、コンテンツ作成者が意図しない外部スクリプトや、インラインスクリプトを埋め込むことにより攻撃が実現するタイプの XSS を、ことごとく防ぐことが可能になる。
     </section>
     <section>
       <h2 id="CSP+の設定"><a href="#CSP+の設定">CSP の設定</a></h2>
       <p>CSP を有効にするには、 Content-Security-Policy ヘッダを付与し、その引数にポリシーを指定する。
-      <p>ポリシーは、コンテンツが読み込み可能な外部コンテンツについての制限であり、以下のような指定が可能である。
+      <p>ポリシーは、コンテンツが読み込み可能なコンテンツについての制限であり、以下のような指定が可能である。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre class=><code>Content-Security-Policy: default-src &#039;self&#039;</code></pre>
-      <p>ここで使用されるディレクティブについては、以下に詳細がある。
+      <p>ここで使用されるディレクティブについては、以下が参考になる。
       <p><a href="https://developer.mozilla.org/ja/docs/Web/Security/CSP/CSP_policy_directives">CSP におけるポリシーのディレクティブ - Web セキュリティ | MDN</a>
-      <p>基本的には、同一オリジン以外の外部スクリプトや、 <code>&lt;script&gt;</code> 内に直接記述するインラインスクリプトなどを全て除外し、そうしたスクリプトがあった場合も実行を阻止することができる。
+      <p>基本的には、同一オリジン以外の外部スクリプトや、 <code>&lt;script&gt;</code> 内に直接記述するインラインスクリプトなどを全て除外し、そうしたスクリプトがあった場合も実行を阻止する。
       <p>また、ポリシー違反があった事実を JSON 形式のレポートとして生成し、指定 URL に送信することが可能である。
       <p>このレポートを収集解析することで、攻撃の事実などを知ることができ、対策が可能となる。
     </section>
@@ -138,21 +138,22 @@ by Jxck
       よくある例として、 Google Analytics のためページ下部に埋め込んだ <code>&lt;script&gt;</code> が全て動かなくなるため、アナリティクスが動かなくなる。
       <p>他にも、例えば <code>cdn.jquery.com</code> などの Public CDN から取得しているスクリプトも軒並み動かなくなる。
       <p>スクリプトだけでなく、 <code>&lt;img&gt;</code> や <code>&lt;iframe&gt;</code> なども注意が必要だ。
-      <p>特にアド(広告)を貼っている場合は、その広告は表示されなくなる可能性が高い。
-      <p>同じオリジンから配布している JS でも、内部で <code>eval()</code> や、 XHR, WebSocket で別オリジンに接続している箇所は、ポリシー違反になる場合もある。
+      <p>特にアド(広告)を貼っている場合は、そのアドは表示されなくなる可能性が高い。
+      <p>同じオリジンから配布している JS でも、内部で <code>eval()</code> を実行している箇所や、 XHR, WebSocket で別オリジンに接続している箇所は、ポリシー違反になる場合もある。
       <p>とにかく、ある程度外部のリソースへリンクしているコンテンツにとっては、前述の制約はかなり厳しいものである。
       <p>よって、ここに対してホワイトリストで、信頼するドメインの追加や、幾つかの挙動を例外的に許可する設定を足していくことになる。
     </section>
     <section>
       <h2 id="Report+Only"><a href="#Report+Only">Report Only</a></h2>
-      <p>脆弱性がなくても、コンテンツの挙動が少しでもポリシーに触れれば、そのページが正常に動作しなくなる可能性がある。
+      <p>脆弱性がなくても、コンテンツの挙動が少しでもポリシーに触れると、そのページが正常に動作しなくなる可能性がある。
       <p>従って、いきなりポリシーを有効にするのはかなり難しいと思われる。
-      <p>そこで、以降手段として Content-Security-Policy-Report-Only を利用する方法が有る。
+      <p>そこで、移行手段として Content-Security-Policy-Report-Only を利用することができる。
       <p>これは、ポリシー違反があった場合、レポートだけを送信し、コンテンツの挙動を一切ブロックしないというものである。
-      <p>指定は、ヘッダ名を以下のように変更するだけである。
+      <p>以下のように、ポリシーに <code>report-uri</code> ディレクティブでレポート先 uri を指定する。
       <pre class=><code>Content-Security-Policy-Report-Only: default-src &#039;self&#039;; report-uri http://example.com/csp-report</code></pre>
-      <p>サイトへの影響はないため、まずはこの指定でレポートを収集しながら、影響範囲を把握しポリシーとコンテンツを徐々に改善することができる。
-      <p>ポリシーが落ち着いたら Content-Security-Policy に移行するフローが導入しやすいだろう。
+      <p>これによって、ポリシー違反があってもコンテンツをブロックしないため、サイトへの影響はほぼ無くなる。
+      <p>まずはこの指定でレポートを収集しながら、影響範囲を把握しポリシーとコンテンツを徐々に改善することができる。
+      <p>修正が完了し、レポートが落ち着いたら Content-Security-Policy に移行するフローが導入しやすいだろう。
     </section>
     <section>
       <h2 id="report-uri.io"><a href="#report-uri.io">report-uri.io</a></h2>
@@ -182,7 +183,7 @@ by Jxck
       <p>アドや外部タグの導入も多くはないため、あまり問題はないだろうと思われる。
       <p>一番懸念しているのは、例えば本サイト購読者の、ブラウザ拡張やブックマークレットなどへの影響である。
       <p>本サイトは技術ブログであるため、購読者もそうしたツールを利用する技術者である可能性が非常に高く、これが問題になるのかどうかは興味がある。
-      <p>レポートなどを等してそうした事実がわかれば追って報告したい。
+      <p>レポートなどを通してそうした事実がわかれば、追って報告したい。
     </section>
     <section>
       <h2 id="本サイトでの適用"><a href="#本サイトでの適用">本サイトでの適用</a></h2>
@@ -197,15 +198,15 @@ by Jxck
         <li>一部インラインスクリプト、インラインスタイルを使用していた
       </ul>
       <p>基本的には、必要なオリジンをホワイトリストに追加し、インラインスタイル、インラインスクリプトは外部化した。
-      <p>そして、 AMP のカスタムタグがインラインスタイルを使用している部分は、手を入れることができない。
-      <p>かといって、全体として <code>&#039;unsafe-inline&#039;</code> を許容するのもはばかられたため、 AMP ページのみ <code>&#039;unsafe-inline&#039;</code> を許可した。
-      <p>よって、通常のブログと AMP ページでは以下の出し分けをしている。
+      <p>しかし、 AMP のカスタムタグがインラインスタイルを使用している部分は、手を入れることができない。
+      <p>かといって、全体としてスタイルに <code>&#039;unsafe-inline&#039;</code> を許容するのもはばかられたため、 AMP ページのみスタイルの <code>&#039;unsafe-inline&#039;</code> を許可した。
+      <p>よって、通常のページと AMP 対応ページでは以下の出し分けをしている。
       <pre class=><code># normal page
-content-security-policy-report-only: default-src self https://*.jxck.io https://www.google-analytics.com ; child-src https://www.youtube.com ; report-uri https://xxx.report-uri.io/r/default/csp/reportOnly
+content-security-policy-report-only: default-src &#039;self&#039; https://*.jxck.io https://www.google-analytics.com ; child-src https://www.youtube.com ; report-uri https://xxx.report-uri.io/r/default/csp/reportOnly
 
 # amp page
 content-security-policy-report-only: default-src &#039;self&#039; https://*.jxck.io https://www.google-analytics.com https://cdn.ampproject.org ; style-src &#039;unsafe-inline&#039; ; report-uri https://xxx.report-uri.io/r/default/csp/reportOnly</code></pre>
-      <p>今後も収集したポリシーを解析、それを元にコンテンツやポリシーを修正を実施し、ある程度影響が見えてから実際の CSP の適用を再検討したいと考えている。
+      <p>今後も収集したポリシーを解析、それを元にコンテンツやポリシーの修正を実施し、ある程度影響が見えてから実際の CSP の適用を再検討したいと考えている。
     </section>
   </article>
 
