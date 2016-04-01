@@ -26,9 +26,11 @@ if (typeof window !== 'undefined') {
       });
     });
   }).then((registration) => {
-    log(registration);
+    log(registration.sync.register('update-cache'));
   }).catch(console.error.bind(console));
 }
+
+const CACHE = 'cache';
 
 // worker
 if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalScope) {
@@ -42,6 +44,21 @@ if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalSco
     return self.clients.claim();
   });
 
-  self.addEventListener('fetch', (e) => {
+  self.addEventListener('sync', (e) => {
+    console.log('sync', e.tag);
+
+    if (e.tag !== 'update-cache') return;
+
+    caches.open(CACHE).then((cache) => {
+      return fetch('atom.json').then((res) => {
+        return res.json();
+      }).then((json) => {
+        return json.entry.map((e) => e.href);
+      }).then((responses) => {
+        return cache.addAll(responses);
+      }).catch((err) => {
+        console.error(err);
+      });
+    });
   });
 }
