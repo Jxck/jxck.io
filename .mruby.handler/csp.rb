@@ -2,7 +2,7 @@ Proc.new do |env|
   REPORT_URI = "https://4887c342aec2b444c655987aa8b0d5cb.report-uri.io/r/default/csp/reportOnly"
   # No CSP for static text file
   if /(\.md\z|\.txt\z|\.xml\z|\.json\z)/.match(env["PATH_INFO"])
-    return [399, {}, []]
+    next [399, {}, []]
   end
 
   headers = {}
