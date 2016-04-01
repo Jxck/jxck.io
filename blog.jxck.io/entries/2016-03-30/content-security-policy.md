@@ -106,7 +106,7 @@ CSP の違反レポートは以下のような JSON データである。
         "document-uri": "https://www.jxck.io/",
         "violated-directive": "default-src 'self'",
         "effective-directive": "img-src",
-        "original-policy": "default-src 'self';
+        "original-policy": "default-src 'self';",
         "blocked-uri": "https://www.google-analytics.com",
         "status-code": 0
     }
