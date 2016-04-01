@@ -74,10 +74,16 @@ if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalSco
 
             cache.put(request, update.clone());
             return update;
-          }).catch(()=>{
-            // ignore failed to fetch
           });
-          return response || update;
+
+          return Promise.race([
+            new Promise((resolve, reject) => {
+              if(!!response) {
+                resolve(response);
+              }
+            }),
+            update
+          ]);
         }).catch((e) => {
           console.log(e);
           return e;
