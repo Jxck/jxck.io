@@ -24,7 +24,7 @@
 
 また、見た目上の変化/劣化が生じなければ、減色や余計なメタ情報の削除などによて、サイズを削減できる場合がある。
 
-(Retina など High DPI 端末に向けたサイズの対応は、 [別エントリ](/entries/2016-03-26/picture.html) で記載する)
+(Retina など High DPI 端末に向けたサイズの対応は、 [別エントリ](/entries/2016-03-25/picture.html) で記載する)
 
 画像を表示する際に `<img>` や CSS に `width`, `height` を指定しなければ、画像本来のサイズで表示される。
 
@@ -49,7 +49,6 @@
 もちろん、表現できる色の数も減るため、人間が見た目で気になら無い範囲で行うことになる。
 
 - [TinyPNG](https://tinypng.com/) (JPEG も対応している)
-- [ImageAlpha](https://pngmini.com/)
 - [JPEGMini](http://www.jpegmini.com/) (有料)
 - [pngquant](http://pngquant.org/) (CLI)
 
