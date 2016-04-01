@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require "json"
+
 # html special chars
 def hsp(str)
   str.gsub(/&/, "&amp;")
@@ -33,8 +35,7 @@ entries = Dir.glob("./blog.jxck.io/entries/**/**")
                }
              }
 
-
-xmlEntries = entries.map{|e|
+xml_entries = entries.map{|e|
   <<-EOS
   <entry>
    <title>#{e[:title]}</title>
@@ -55,20 +56,17 @@ xml = <<-EOS
 <author><name>Jxck</name></author>
 <id>tag:blog.jxck.io,2016:feed</id>
 <updated>2016-01-28T18:30:02Z</updated>
-#{xmlEntries}
+#{xml_entries}
 </feed>
 EOS
 File.write("blog.jxck.io/feeds/atom.xml", xml)
 
-
-require "json"
-
-json = JSON.pretty_generate({
-  title: "blog.jxck.io",
+json = JSON.pretty_generate(
+  title:     "blog.jxck.io",
   alternate: "https://blog.jxck.io",
-  author: { name: "jxck" },
-  id: "tag:blog.jxck.io,2016:feed",
-  update: "2016-01-28T18:30:02Z",
-  entry: entries
-})
+  author:    { name: "jxck" },
+  id:        "tag:blog.jxck.io,2016:feed",
+  update:    "2016-01-28T18:30:02Z",
+  entry:     entries
+)
 File.write("blog.jxck.io/feeds/atom.json", json)
