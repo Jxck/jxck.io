@@ -1,7 +1,7 @@
 'use strict';
 
 const DEBUG = true;
-const KEY = 'master.js?ver=1';
+const KEY = 'master.js?ver=2';
 
 let log = DEBUG ? console.log.bind(console) : () => {};
 
@@ -49,16 +49,14 @@ if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalSco
 
     if (e.tag !== 'update-cache') return;
 
-    caches.open(CACHE).then((cache) => {
+    e.waitUntil(caches.open(CACHE).then((cache) => {
       return fetch('atom.json').then((res) => {
         return res.json();
       }).then((json) => {
         return json.entry.map((e) => e.href);
       }).then((responses) => {
         return cache.addAll(responses);
-      }).catch((err) => {
-        console.error(err);
       });
-    });
+    }));
   });
 }
