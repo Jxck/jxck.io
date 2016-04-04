@@ -39,18 +39,27 @@ if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalSco
 
   self.addEventListener('activate', (e) => {
     log('activate > claim', e);
-    return self.clients.claim();
 
-    // e.waitUntil(
-    //   caches.keys().then((cacheNames) => {
-    //     return Promise.all(
-    //       cacheNames.map((cacheName) => {
-    //         console.log('remove cache', cacheName);
-    //         return caches.delete(cacheName);
-    //       })
-    //     );
-    //   }).then(() => self.clients.claim())
-    // );
+    e.waitUntil(
+      caches.keys().then((cacheNames) => {
+        return Promise.all(
+          cacheNames.map((cacheName) => {
+            console.log('remove cache', cacheName);
+            return caches.delete(cacheName);
+          })
+        );
+      }).then(() => {
+        return fetch('https://blog.jxck.io/feeds/atom.json');
+      }).then((res) => {
+        return res.json();
+      }).then((json) => {
+        let urls = json.entry.map((e) => e.href);
+        return caches.open(KEY).then((cache) => {
+          console.log('addall', urls, cache);
+          return cache.addAll(urls);
+        });
+      }).then(() => self.clients.claim())
+    );
   });
 
   self.addEventListener('fetch', (e) => {
