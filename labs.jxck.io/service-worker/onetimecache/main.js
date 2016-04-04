@@ -1,7 +1,7 @@
 'use strict';
 
 const DEBUG = true;
-const KEY = 'master.js?ver=2';
+const KEY = 'main.js?ver=1';
 
 let log = DEBUG ? console.log.bind(console) : () => {};
 
