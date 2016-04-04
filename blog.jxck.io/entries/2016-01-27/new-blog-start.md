@@ -2,7 +2,7 @@
 
 ## Intro
 
-長いこと [はてな](http://jxck.hatenablog.com/) をメインにし、他にも [Qiita](http://qiita.com/jxck_) や [Tumblr](http://jxck.tumblr.com/) を使って色々書いて来たけど、そろそろ自分のドメインに全部集約していこうかなと思います。
+長いこと [はてな](http://jxck.hatenablog.com/) をメインにし、他にも [Qiita](http://qiita.com/jxck_) や [Tumblr](http://jxck.tumblr.com/) を使って色々書いて来たが、そろそろ自分のドメインに全部集約していこうかと思う。
 
 
 ## motivation
