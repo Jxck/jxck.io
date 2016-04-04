@@ -7,7 +7,7 @@ Proc.new do |env|
   10000.times.reduce{|pre, curr| pre ** curr }
 
   header = {
-    "Content-Type" => "text/json",
+    "Content-Type" => "text/json; charset=utf-8",
     "X-Seq" => seq
   }
 
