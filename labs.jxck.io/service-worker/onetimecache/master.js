@@ -49,7 +49,7 @@ if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalSco
           })
         );
       }).then(() => {
-        return fetch('https://blog.jxck.io/feeds/atom.json');
+        return fetch('feeds/atom.json');
       }).then((res) => {
         return res.json();
       }).then((json) => {
