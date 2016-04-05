@@ -1,8 +1,6 @@
 (function() {
   'use strict';
 
-  if(location.search !== '?sw') return;
-
   const DEBUG = true;
   const KEY = '/assets/js/master.js?ver=0';
 
@@ -10,6 +8,7 @@
 
   // window
   if (typeof window !== 'undefined') {
+    if(location.search !== '?sw') return;
     navigator.serviceWorker.register(KEY, { scope: '/' }).then((registration) => {
       registration.addEventListener('updatefound', (e) => {
         log('updatefound', e);
