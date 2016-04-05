@@ -1,4 +1,4 @@
-(function() {
+(() => {
   'use strict';
 
   const DEBUG = true;
@@ -55,9 +55,11 @@
         }).then((res) => {
           return res.json();
         }).then((json) => {
-          let urls = json.entry.map((e) => e.href);
+          let urls = json.entry.map((e) => {
+            return new URL(e.href).pathname;
+          });
           return caches.open(KEY).then((cache) => {
-            console.log('addall', urls, cache);
+            console.log('addAll', urls, cache);
             return cache.addAll(urls);
           });
         }).then(() => self.clients.claim())
@@ -66,7 +68,7 @@
 
     self.addEventListener('fetch', (e) => {
       let request = e.request;
-      console.log(request);
+      console.log('%crequest  :', 'color: blue', request.url, request.type);
 
       let url = new URL(request.url);
       if (url.pathname === KEY) return;
@@ -74,15 +76,8 @@
       e.respondWith(
         caches.open(KEY).then((cache) => {
           return cache.match(request).then((response) => {
-            if (response) {
-              console.log('cached res', response, response.headers && response.headers.get('x-seq'));
-            }
-
             let update = fetch(request).then((update) => {
-              let type = update.headers.get('content-type');
-
-              console.log('update', update, update.headers.get('x-seq'));
-
+              console.info('%cupdate   :', 'color: red',  update.url, update.type);
               cache.put(request, update.clone());
               return update;
             });
@@ -90,14 +85,14 @@
             return Promise.race([
               new Promise((resolve, reject) => {
                 if(!!response) {
+                  if (response) {
+                    console.warn('%ccache hit:', 'color: green', response.url, response.type);
+                  }
                   resolve(response);
                 }
               }),
               update
             ]);
-          }).catch((e) => {
-            console.log(e);
-            return e;
           });
         })
       );

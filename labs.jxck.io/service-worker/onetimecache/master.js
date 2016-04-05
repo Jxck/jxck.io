@@ -53,7 +53,7 @@ if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalSco
       }).then((res) => {
         return res.json();
       }).then((json) => {
-        let urls = json.entry.map((e) => e.href);
+        let urls = json.entry.map((e) => new URL(e.href).pathname);
         return caches.open(KEY).then((cache) => {
           console.log('addall', urls, cache);
           return cache.addAll(urls);
