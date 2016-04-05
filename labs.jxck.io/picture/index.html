@@ -9,6 +9,7 @@ pre {
   background: #ccc;
   margin: 1em;
   padding: 1em;
+  overflow: auto;
 }
 
 strong {
@@ -43,7 +44,6 @@ strong {
 <div class=demo>
 <img src=100x100.png
      srcset="100x100.png 100w, 200x200.png 200w, 300x300.png 300w"
-     sizes=100px
      width=100px
      alt="select with srcset" />
 </div>
@@ -58,7 +58,6 @@ strong {
 <img src=100x100.png
      srcset="100x100.png 100w, 200x200.png 200w, 300x300.png 300w
              100x100.webp 100w, 200x200.webp 200w, 300x300.webp 300w"
-     sizes=100px
      width=100px
      alt="select with srcset" />
 -->
@@ -69,10 +68,12 @@ strong {
 
 <h2 id=picture><a href=#picture>picture</a></h2>
 <div class=demo>
-  <source type=image/png
-          srcset="100x100.png 100w, 200x200.png 200w, 300x300.png 300w"
-          sizes=100px>
-  <img src=100x100.png alt="select with picture source">
+  <picture>
+    <source type=image/png
+            srcset="100x100.png 100w, 200x200.png 200w, 300x300.png 300w"
+            sizes="(max-width: 500px) 100vw, 100px">
+    <img src=100x100.png alt="select with picture source">
+  </picture>
 </div>
 <pre></pre>
 
@@ -110,7 +111,7 @@ strong {
   <source type=image/png
           srcset="100x100.png 100w, 200x200.png 200w, 300x300.png 300w"
           sizes=100px>
-  <img src=100x100.png width=100 alt="select with picture source">
+  <img src=100x100.png sizes=100 alt="select with picture source">
 </picture>
 </div>
 <pre></pre>
@@ -132,7 +133,9 @@ strong {
           media="min-device-pixel-ratio: 1.5">
   <source type=image/png srcset=100x100.png>
 
-  <img src=100x100.png width=100 alt="select with media query">
+  <img src=100x100.png
+       width=100px
+       alt="select with media query">
 </picture>
 </div>
 <pre></pre>
