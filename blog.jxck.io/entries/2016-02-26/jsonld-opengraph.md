@@ -29,7 +29,7 @@
 
 ## schema.org
 
-[schema.org](schema.org) には、メタ情報を表現するボキャブラリが定義されている。
+[schema.org](http://schema.org) には、メタ情報を表現するボキャブラリが定義されている。
 
 そのボキャブラリを、サイト内に表現する方法として RDFa, Microdata, JSON-LD の三種類がある。
 

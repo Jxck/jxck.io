@@ -6,7 +6,7 @@
 
 まずは Report Only にて導入し、段階的にポリシーとコンテンツを修正していく方針をとる。
 
-CSP Report については、 [report-uri.io](report-uri.io) を用いて収集することにした。
+CSP Report については、 [report-uri.io](https://report-uri.io) を用いて収集することにした。
 
 導入に必要な設定や、注意点についてまとめる。
 
