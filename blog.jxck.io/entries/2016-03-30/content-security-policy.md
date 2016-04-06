@@ -15,7 +15,8 @@ CSP Report については、 [report-uri.io](https://report-uri.io) を用い�
 
 Content Security Policy(CSP) とは、 Web におけるセキュリティを向上させる非常に強力な仕組みである。
 
-[Content Security Policy 1.0](https://www.w3.org/TR/CSP1/)
+- [Content Security Policy Level 2](https://www.w3.org/TR/CSP/)
+- [draft-gondrom-websec-csp-header-00 - HTTP Header Content Security Policy](https://tools.ietf.org/html/draft-gondrom-websec-csp-header-00)
 
 
 具体的には、コンテンツに対し Content-Security-Policy ヘッダを付加することにより、ブラウザに読み込を許可するコンテンツをホワイトリストにより制限することができる。
