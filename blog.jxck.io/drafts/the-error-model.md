@@ -257,26 +257,38 @@ I call costs like this "peanut butter," because the checks are smeared across th
 In Midori we were able to experiment and measure, and confirm that yes, indeed, the cost here is nontrivial.
 There is also a secondary effect which is, because functions contain more branches, there is more risk of confusing the optimizer.
 
-
+TODO
 
 
 
 This might be surprising to some people, since undoubtedly everyone has heard that "exceptions are slow." It turns out that they don't have to be.
 And, when done right, they get error handling code and data off hot paths which increases I-cache and TLB performance, compared to the overheads above, which obviously decreases them.
 
+TODO
+
+
 Many high performance systems have been built using return codes, so you might think I'm nitpicking.
 As with many things we did, an easy criticism is that we took too extreme an approach.
 But the baggage gets worse.
 
+多くのハイパフォーマンスシステムが return code で作られているので、私が粗探しをしていると思うかもしれない。
+TODO
+手荷物は多くなった
+
+
 ## Forgetting to Check Them
 
 It's easy to forget to check a return code. For example, consider a function:
+
+return code はチェック漏れが起こりやすい
 
 ```
 int foo() { ... }
 ```
 
 Now at the callsite, what if we silently ignore the returned value entirely, and just keep going?
+
+呼び出し側では、返り値を無視するだけ。
 
 ```
 foo();
@@ -288,6 +300,11 @@ This is easily the most vexing and damaging problem with error codes.
 As I will show later, option types help to address this for functional languages.
 But in C-based languages, and even Go with its modern syntax, this is a real issue.
 
+もしかしたら、クリティカルなエラーが起こっているかもしれない。これはとても厄介。
+関数型では、 Option 型がそれを助ける。
+でも C や Go では、未だに問題。
+
+
 This problem isn't theoretical.
 I've encountered numerous bugs caused by ignoring return codes and I'm sure you have too.
 Indeed, in the development of this very Error Model, my team encountered some fascinating ones.
@@ -298,11 +315,23 @@ But then we discovered a silently swallowed HRESULT in the original code.
 Once we got it over to Midori, the bug was thrown into our faces, found, and fixed immediately after porting.
 This experience certainly informed our opinion about error codes.
 
+この問題は理論上のものではない。
+こういうことはよく起こる。
+Speech Server を Midori に移植した時もあった。
+この経験が、 error codes の考え方に影響した。
+
+
 It's surprising to me that Go made unused imports an error, and yet missed this far more critical one.
 So close!
 
+Go の unused imports をエラーにしたのには驚いた。
+
+
 It's true you can add a static analysis checker, or maybe an "unused return value" warning as most commercial C++ compilers do.
 But once you've missed the opportunity to add it to the core of the language, as a requirement, none of those techniques will reach critical mass due to complaints about noisy analysis.
+
+
+
 
 For what it's worth, forgetting to use return values in our language was a compile time error.
 You had to explicitly ignore them; early on we used an API for this, but eventually devised language syntax - the equivalent of >/dev/null:
