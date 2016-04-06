@@ -86,40 +86,56 @@ As we set out on this journey, we called out several requirements of a good Erro
 まず、エラーモデルについての良い要求
 
 
-- Usable. It must be easy for developers to do the "right" thing in the face of error, almost as if by accident. A friend and colleague famously called this falling into the The Pit of Success. The model should not impose excessive ceremony in order to write idiomatic code. Ideally it is cognitively familiar to our target audience.
+- Usable. It must be easy for developers to do the "right" thing in the face of error, almost as if by accident.
+A friend and colleague famously called this falling into the The Pit of Success.
+The model should not impose excessive ceremony in order to write idiomatic code.
+Ideally it is cognitively familiar to our target audience.
 
 - Usable: エラーに遭遇しても正しく処理ができる。特異ななにかがなく、視認しやすい。
 
-- Reliable. The Error Model is the foundation of the entire system's reliability. We were building an operating system, after all, so reliability was paramount. You might even have accused us as obsessively pursuing extreme levels of it. Our mantra guiding much of the programming model development was "correct by construction."
+- Reliable.  The Error Model is the foundation of the entire system's reliability.
+We were building an operating system, after all, so reliability was paramount.
+You might even have accused us as obsessively pursuing extreme levels of it.
+Our mantra guiding much of the programming model development was "correct by construction."
 
 - Reliable: 信頼性に寄与する。
 
-- Performant. The common case needs to be extremely fast. That means as close to zero overhead as possible for success paths. Any added costs for failure paths must be entirely "pay-for-play." And unlike many modern systems that are willing to overly penalize error paths, we had several performance-critical components for which this wasn't acceptable, so errors had to be reasonably fast too.
+- Performant.  The common case needs to be extremely fast.
+That means as close to zero overhead as possible for success paths.
+Any added costs for failure paths must be entirely "pay-for-play." And unlike many modern systems that are willing to overly penalize error paths, we had several performance-critical components for which this wasn't acceptable, so errors had to be reasonably fast too.
 
 - Performant: オーバーヘッドが極力少ない
 
-- Concurrent. Our entire system was distributed and highly concurrent. This raises concerns that are usually afterthoughts in other Error Models. They needed to be front-and-center in ours.
+- Concurrent.  Our entire system was distributed and highly concurrent.
+This raises concerns that are usually afterthoughts in other Error Models.
+They needed to be front-and-center in ours.
 
 - Concurrent: 並行処理可能
 
 - Diagnosable. Debugging failures, either interactively or after-the-fact, needs to be productive and easy.
 
-
-- Composable. At the core, the Error Model is a programming language feature, sitting at the center of a developer's expression of code. As such, it had to provide familiar orthogonality and composability with other features of the system. Integrating separately authored components had to be natural, reliable, and predictable.
+- Composable.  At the core, the Error Model is a programming language feature, sitting at the center of a developer's expression of code.
+As such, it had to provide familiar orthogonality and composability with other features of the system.
+Integrating separately authored components had to be natural, reliable, and predictable.
 
 It's a bold claim, however I do think what we ended up with succeeded across all dimensions.
 
 ### Learnings
 
-Existing Error Models didn't meet the above requirements for us. At least not fully. If one did well on a dimension, it'd do poorly at another. For instance, error codes can have good reliability, but many programmers find them error prone to use; further, it's easy to do the wrong thing - like forget to check one - which clearly violates the "pit of success" requirement.
+Existing Error Models didn't meet the above requirements for us.
+At least not fully.
+If one did well on a dimension, it'd do poorly at another.
+For instance, error codes can have good reliability, but many programmers find them error prone to use; further, it's easy to do the wrong thing - like forget to check one - which clearly violates the "pit of success" requirement.
 
 既存のエラーモデルは上記を満たさなかった。
 
 Given the extreme level of reliability we sought, it's little surprise we were dissatisfied with most models.
 
-If you're optimizing for ease-of-use over reliability, as you might in a scripting language, your conclusions will differ significantly. Languages like Java and C# struggle because they are right at the crossroads of scenarios - sometimes being used for systems, sometimes being used for applications - but overall their Error Models were very unsuitable for our needs.
+If you're optimizing for ease-of-use over reliability, as you might in a scripting language, your conclusions will differ significantly.
+Languages like Java and C# struggle because they are right at the crossroads of scenarios - sometimes being used for systems, sometimes being used for applications - but overall their Error Models were very unsuitable for our needs.
 
-Finally, also recall that this story began in the mid-2000s timeframe, before Go, Rust, and Swift were available for our consideration. These three languages have done some great things with Error Models since then.
+Finally, also recall that this story began in the mid-2000s timeframe, before Go, Rust, and Swift were available for our consideration.
+These three languages have done some great things with Error Models since then.
 
 Java や C# のそれはまだ途上だったし、今では Go, Rust, Swift が割とうまくできてる。
 
