@@ -4,7 +4,8 @@
 
 本サイトにて Public Key Pinning for HTTP を有効化した。
 
-HPKP Report については、 CSP 同様 [report-uri.io](https://report-uri.io) を用いて収集することにした。
+[CSP](https://blog.jxck.io/entries/2016-03-30/content-security-policy.html) 同様、まずは Report-Only を設定し、
+HPKP Report についても、 [report-uri.io](https://report-uri.io) を用いて収集することにした。
 
 導入に必要な設定や、注意点についてまとめる。
 
@@ -80,6 +81,38 @@ Public-Key-Pins: pin-sha256="base64=="; max-age=expireTime [; includeSubdomains]
 
 
 基本的には後述する方法で取得した証明書のハッシュである Subject Public Key Information(SPKI) の Base64 と、ブラウザに保持する期限、検証に失敗した場合のレポート送信先を指定する。
+
+
+## 中間証明書の Pin
+
+Github は現在 HPKP を運用しているため、 Pin の値を調べてみた。
+
+Github では、 Leaf (github.com 自体の証明書) ではなく、そこから Root CA までの証明書チェインに入っている、中間証明書を Pin として設定していた。
+
+OpenSSL の `-showcerts` コマンドを用いて、 Github の証明書を取得し、 Pin を計算してみる。
+(証明書が二つ見えるので、その二つ目がそれにあたる)
+
+```sh
+# github.com pins Intermediate Certificate
+# so add `-showcerts` option for first openssl
+# and extract second CERTIFICATE with ruby
+echo '---- EXPECTED ----'
+openssl s_client -servername github.com -connect github.com:443 -showcerts 2>/dev/null \
+  | ruby -nle 'puts $_.scan(/-----BEGIN CERTIFICATE-----.*?-----END CERTIFICATE-----/m)[1]' \
+  | openssl x509 -pubkey -noout 2>/dev/null \
+  | openssl rsa -pubin -outform der 2>/dev/null \
+  | openssl dgst -sha256 -binary 2>/dev/null \
+  | openssl enc -base64 2>/dev/null
+```
+
+実際に `Public-Key-Pins` ヘッダを見てみる。この中にはバックアップを含めいくつか登録されているが、その中に上で計算したものが入っている。
+
+```sh
+# get the actual Public-Key-Pins headre
+# this will include hash calculated above
+echo '---- ACTUAL ----'
+curl -sI https://github.com | grep Public-Key-Pins | ruby -nle 'puts $_.gsub(";", "\n")'
+```
 
 
 ### Subject Public Key Information (SPKI)
