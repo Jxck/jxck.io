@@ -14,7 +14,7 @@ HPKP Report についても、 [report-uri.io](https://report-uri.io) を用い�
 
 ## Public Key Pinning
 
-### モチベーション
+### 概要
 
 Public Key Pinning for HTTP(HPKP) とは、証明書の信頼性を向上させる仕組みである。
 
@@ -69,6 +69,8 @@ Chrome と Firefox への Preload Pins のリストは以下である。
 
 ## HPKP の設定
 
+### Public-Key-Pins ヘッダ
+
 HPKP を有効にするには、 Public-Key-Pins ヘッダを付与し、その引数にハッシュを指定する。
 
 ```
@@ -81,9 +83,92 @@ Public-Key-Pins: pin-sha256="base64=="; max-age=expireTime [; includeSubdomains]
 
 
 基本的には後述する方法で取得した証明書のハッシュである Subject Public Key Information(SPKI) の Base64 と、ブラウザに保持する期限、検証に失敗した場合のレポート送信先を指定する。
+現時点では sha256 のみがアルゴリズムとして認められているが、これは将来拡張される可能性がある。
+
+Pin を設定する際は、現在有効な Pin 以外に、バックアップの Pin の登録が必須になっている。
+
+これは、有効な Pin を一つしか登録しない場合、証明書の危殆化や期限切れなどで、証明書を新しく更新すると必ず不一致が起こってしまうためである。
 
 
-## 中間証明書の Pin
+### Subject Public Key Information (SPKI)
+
+Pin の値は openssl コマンドを用いれば、公開鍵から SPKI の Base64 エンコードまで一括で行える。
+手元に、 Key, CSR, CRT のいずれかがあればそれを用いることができ、 Web 経由で取得した公開鍵からも生成できる。
+
+管理者がローカルで行うなら、何かあっても一番害のない CSR からの生成がよさそうに考える。
+
+```sh
+$ openssl req -in my-signing-request.csr -pubkey -noout | openssl rsa -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64
+```
+
+
+## report-uri.io
+
+ブラウザは、  Pin に一致しない証明書を検出した場合、違反レポートを生成し `report-uri` に指定した URI に対して自動的に送信する。
+
+HPKP の違反レポートは以下のような JSON データである。
+
+```json
+{
+    "date-time": "2014-04-06T13:00:50Z",
+    "hostname": "www.example.com",
+    "port": 443,
+    "effective-expiration-date": "2014-05-01T12:40:50Z",
+    "include-subdomains": false,
+    "served-certificate-chain": [
+      "-----BEGIN CERTIFICATE-----\n
+      MIIEBDCCAuygAwIBAgIDAjppMA0GCSqGSIb3DQEBBQUAMEIxCzAJBgNVBAYTAlVT\n
+      ...
+      HFa9llF7b1cq26KqltyMdMKVvvBulRP/F/A8rLIQjcxz++iPAsbw+zOzlTvjwsto\n
+      WHPbqCRiOwY1nQ2pM714A5AuTHhdUDqB1O6gyHA43LL5Z/qHQF1hwFGPa4NrzQU6\n
+      yuGnBXj8ytqU0CwIPX4WecigUCAkVDNx\n
+      -----END CERTIFICATE-----",
+      ...
+    ],
+    "validated-certificate-chain": [
+      "-----BEGIN CERTIFICATE-----\n
+      MIIEBDCCAuygAwIBAgIDAjppMA0GCSqGSIb3DQEBBQUAMEIxCzAJBgNVBAYTAlVT\n
+      ...
+      HFa9llF7b1cq26KqltyMdMKVvvBulRP/F/A8rLIQjcxz++iPAsbw+zOzlTvjwsto\n
+      WHPbqCRiOwY1nQ2pM714A5AuTHhdUDqB1O6gyHA43LL5Z/qHQF1hwFGPa4NrzQU6\n
+      yuGnBXj8ytqU0CwIPX4WecigUCAkVDNx\n
+      -----END CERTIFICATE-----",
+      ...
+    ],
+    "known-pins": [
+      "pin-sha256=\"d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM=\"",
+      "pin-sha256=\"E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g=\""
+    ]
+  }
+```
+
+
+## 懸念点
+
+### 証明書更新と Max-Age
+
+HPKP の運用での一番の懸念は、証明書の更新だろう。
+
+例えば今回は、現行の Pin (Pin1 とする)に加えてバックアップ Pin(Pin2 とする) を一つ登録したため、このバックアップ Pin にあたる証明書に更新した場合は問題はないだろう。
+
+しかし、問題はそのあとどうするかである。(その後更新する新しい証明書の Pin を Pin3, 4... とする)
+
+ブラウザが `[Pin1, Pin2]` を保存した状態なら、 Pin2 の証明書に更新されてもバックアップが効いているため問題はない。
+
+次に証明書を Pin3 のものへ更新した時がポイントとなるだろう。
+
+これは `[Pin1, Pin2]` の時に Pin を保存されたまま、その後しばらく訪れないで、 Pin3 の鍵に更新されていたら、持っている Pin とマッチしないため接続できなくなるためである。
+
+つまり、 Pin3 を運用する際には、必ず `[Pin1, Pin2]` の組みの Pin はブラウザから Expire されている必要がある。
+
+しかし、それを恐れて Pin の Expire を短くしすぎると、アクセスするたびに Pin が無効にな状態となり、 TOFU であるこのプロトコルを生かしきれない。
+
+Report-Only でない運用では、接続ができないという状態になるため、サービス運用上大きな問題なる。
+
+それを踏まえてか、以下のような中間証明書を Pin 留めするという運用もあるようなので、紹介する。
+
+
+### 中間証明書の Pin
 
 Github は現在 HPKP を運用しているため、 Pin の値を調べてみた。
 
@@ -114,164 +199,39 @@ echo '---- ACTUAL ----'
 curl -sI https://github.com | grep Public-Key-Pins | ruby -nle 'puts $_.gsub(";", "\n")'
 ```
 
+Leaf の証明書を Pin 留めしてしまうと、証明書の更新で Pin との不整合などが起きてしまった場合に、接続できなくなってしまう。
+このリスクを減らすために、中間証明書を Pin 留めするという運用になっている模様である。
 
-### Subject Public Key Information (SPKI)
-
-openssl コマンドを用いると、公開鍵から SPKI の Base64 エンコードまで一括で行える。
-手元に、 Key, CSR, CRT のいずれかがあればそれを用いることができ、 Web 経由で取得した公開鍵からも生成できる。
-
-管理者がローカルで行うなら、何かあっても一番害のない CSR からの生成がよさそうに考える。
-
-```sh
-$ openssl req -in my-signing-request.csr -pubkey -noout | openssl rsa -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64
-```
-
-また Web 経由で取得できる公開鍵を使うこともできる。
-
-
-```sh
-openssl s_client -servername www.example.com -connect www.example.com:443 | openssl x509 -pubkey -noout | openssl rsa -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64
-```
-
-実際に Github が hpkp に対応しているため、その値を取って比較してみる。
+([@jovi0608](https://twitter.com/jovi0608) さんにアドバイス頂きました、ありがとうございます。)
 
 
 
+## 本サイトでの適用
 
----
+本サイトでは、 2 年ごとに更新するワイルドカード証明書を購入して使用している。
+
+つまり、全サブドメインで証明書は一つであり、期限も長いので、運用はそこまで難しくないだろうと考えている。
+
+一方で今回はあくまで実験であるため、 CSP 同様に Report-Only での運用とする。
+また、 Report-Only を外すことは今のところ予定していない。
+
+
+まず現在の証明書から、現行の Pin を生成しそれを指定する。
+
+バックアップ Pin としては、未来の(次の更新で使用する)証明書用の鍵を先に一つ用意しておき、そこからバックアップ用 Pin を生成することにした。
+
+`max-age` は、まずは 1h (3600s) から始め、そこから 1week くらいまで増やしていく形にする。
+(証明書の更新が 90 日前から可能であるため、何かあっても十分対応可能と判断)
+
+
+`includeSubdomains` を有効にし、 `report-only` には CSP 同様 [report-uri.io](https://report-uri.io) を設定する。
+
+
+今回は CSP と違い、よほどのことがない限りレポートは上がらないはずであると考える。
+もしレポートが上がった場合、必要に応じて追記や報告をしたい。
+
 
 https://projects.dm.id.lv/Public-Key-Pins_test
 https://projects.dm.id.lv/Public-Key-Pins_calculator
 https://jp.globalsign.com/blog/2013/certificate_public_key_pinning.html
 https://developers.google.com/web/updates/2015/09/HPKP-reporting-with-chrome-46
-
-
-## CSP の注意点
-
-もし、先ほど例示した設定をサイト全体に適用した場合、何がおこるかを考えてみる。
-
-```
-Content-Security-Policy: default-src 'self'
-```
-
-まず、この指定により、インラインスクリプトが全て無効になる。
-よくある例として、 Google Analytics のためページ下部に埋め込んだ `<script>` が全て動かなくなるため、アナリティクスが動かなくなる。
-
-他にも、例えば `cdn.jquery.com` などの Public CDN から取得しているスクリプトも軒並み動かなくなる。
-
-スクリプトだけでなく、 `<img>` や `<iframe>` なども注意が必要だ。
-
-特にアド(広告)を貼っている場合は、そのアドは表示されなくなる可能性が高い。
-
-同じオリジンから配布している JS でも、内部で `eval()` を実行している箇所や、 XHR, WebSocket で別オリジンに接続している箇所は、ポリシー違反になる場合もある。
-
-とにかく、ある程度外部のリソースへリンクしているコンテンツにとっては、前述の制約はかなり厳しいものである。
-
-よって、ここに対してホワイトリストで、信頼するドメインの追加や、幾つかの挙動を例外的に許可する設定を足していくことになる。
-
-
-## Report Only
-
-脆弱性がなくても、コンテンツの挙動が少しでもポリシーに触れると、そのページが正常に動作しなくなる可能性がある。
-
-従って、いきなりポリシーを有効にするのはかなり難しいと思われる。
-
-そこで、移行手段として Content-Security-Policy-Report-Only を利用することができる。
-
-これは、ポリシー違反があった場合、レポートだけを送信し、コンテンツの挙動を一切ブロックしないというものである。
-
-以下のように、ポリシーに `report-uri` ディレクティブでレポート先 uri を指定する。
-
-```
-Content-Security-Policy-Report-Only: default-src 'self'; report-uri http://example.com/csp-report
-```
-
-これによって、ポリシー違反があってもコンテンツをブロックしないため、サイトへの影響はほぼ無くなる。
-
-まずはこの指定でレポートを収集しながら、影響範囲を把握しポリシーとコンテンツを徐々に改善することができる。
-
-修正が完了し、レポートが落ち着いたら Content-Security-Policy に移行するフローが導入しやすいだろう。
-
-
-## report-uri.io
-
-ブラウザは、 CSP に違反した実行を検出した場合、違反レポートを生成し `report-uri` に指定した URI に対して自動的に送信する。
-
-CSP の違反レポートは以下のような JSON データである。
-
-
-```json
-{
-    "csp-report": {
-        "document-uri": "https://www.jxck.io/",
-        "violated-directive": "default-src 'self'",
-        "effective-directive": "img-src",
-        "original-policy": "default-src 'self';",
-        "blocked-uri": "https://www.google-analytics.com",
-        "status-code": 0
-    }
-}
-```
-
-このレポートは、 Google Analytics の実行がポリシーのホワイトリストに含まれていないことによって発生している。
-
-こうしたレポートにより、どのページの、どの実行が、どのポリシーに違反したかなどが取得できる。
-
-
-このレポートの収集と解析を行うサービスとして、 report-uri.io というサービスが最近登場した。
-
-[Welcome to report-uri.io](http://report-uri.io/)
-
-
-登録し、発行された URI を `report-uri` に指定するだけなので、導入は非常に楽である。
-
-ダッシュボードでは、レポートの分析や、ポリシーディレクティブの生成のサポートまで行ってくれるようである。
-
-
-## 懸念点
-
-本サイトのコンテンツは、全て筆者の管理下にあるため、影響の把握はそこまで難しくはない。
-
-外部コンテンツの取得についても、取得方法の変更や、本サイトオリジンからの配布に変更するなど、対応は不可能ではないだろう。
-
-アドや外部タグの導入も多くはないため、あまり問題はないだろうと思われる。
-
-
-一番懸念しているのは、例えば本サイト購読者の、ブラウザ拡張やブックマークレットなどへの影響である。
-
-本サイトは技術ブログであるため、購読者もそうしたツールを利用する技術者である可能性が非常に高く、これが問題になるのかどうかは興味がある。
-
-レポートなどを通してそうした事実がわかれば、追って報告したい。
-
-
-## 本サイトでの適用
-
-本サイトでも、まずは Report-Only をサイト全体に適用し、 report-uri.io にてレポートを収集することにした。
-
-一通りエラーを見て回ったところ、以下の点で修正が必要だった。
-
-- *.jxck.io 間でコンテンツをリンクしている
-- AMP のカスタムタグを CDN より読み込んでいる
-- AMP のカスタムタグがインラインスタイルを使用していた
-- YouTube の動画を `<iframe>` で埋め込んでいる
-- Google Analytics を設定している
-- 一部インラインスクリプト、インラインスタイルを使用していた
-
-
-基本的には、必要なオリジンをホワイトリストに追加し、インラインスタイル、インラインスクリプトは外部化した。
-
-しかし、 AMP のカスタムタグがインラインスタイルを使用している部分は、手を入れることができない。
-
-かといって、全体としてスタイルに `'unsafe-inline'` を許容するのもはばかられたため、 AMP ページのみスタイルの `'unsafe-inline'` を許可した。
-
-よって、通常のページと AMP 対応ページでは以下の出し分けをしている。
-
-```
-# normal page
-content-security-policy-report-only: default-src 'self' https://*.jxck.io https://www.google-analytics.com ; child-src https://www.youtube.com ; report-uri https://xxx.report-uri.io/r/default/csp/reportOnly
-
-# amp page
-content-security-policy-report-only: default-src 'self' https://*.jxck.io https://www.google-analytics.com https://cdn.ampproject.org ; style-src 'unsafe-inline' ; report-uri https://xxx.report-uri.io/r/default/csp/reportOnly
-```
-
-今後も収集したポリシーを解析、それを元にコンテンツやポリシーの修正を実施し、ある程度影響が見えてから実際の CSP の適用を再検討したいと考えている。
