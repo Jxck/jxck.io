@@ -93,7 +93,7 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 [Unicode 基本ラテン文字 - Basic Latin -](http://homepage2.nifty.com/k_maeda/code/uni/uni000.html)
 
 
-制御文字などを覗いて、以下の範囲を全て収録。
+制御文字などを除いて、以下の範囲を全て収録。
 
 ```
 ! " # $ % & ' ( ) * + , - . /
@@ -123,7 +123,7 @@ p q r s t u v w x y z { | } ~
 〰 〱 〲 〳 〴 〵 〶 〷 〸 〹 〺 〻 〼 〽 〾 〿
 ```
 
-この中から、使わないものを覗き、以下のみを収録。
+この中から、使わないものを除き、以下のみを収録。
 
 
 ```
