@@ -1,10 +1,40 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
-<title>title</title>
+<title>Public Key Pinngin DEMO | labs.jxck.io</title>
 
-<h1>Test</h1>
+<style>
+pre {
+  background: #ccc;
+  padding: 1em;
+}
+</style>
+<h1>Public-Key-Pins Header</h1>
 
 <pre>
-"/public-key-pinning":
-  header.add: "Public-Key-Pins-Report-Only: max-age=300; pin-sha256=\"7JT7NhX2St/VBBkRi4BO427M7ytLy7p3CRYPtHpSm7c=\"; pin-sha256=\"\"; report-uri=\"https://4887c342aec2b444c655987aa8b0d5cb.report-uri.io/r/default/hpkp/reportOnly\""
+Public-Key-Pins:
+  max-age=3600;
+  pin-sha256="7JT7NhX2St/VBBkRi4BO427M7ytLy7p3CRYPtHpSm7c=";
+  pin-sha256="+WpRHNpAId2FIOvVgwmS3HsG+eJtERKC4/qM1tQaeRk=";
+  report-uri="https://4887c342aec2b444c655987aa8b0d5cb.report-uri.io/r/default/hpkp/reportOnly"
+</pre>
+
+you can check with [chrome://net-internals/#hsts](chrome://net-internals/#hsts) query
+
+<h2>Example Github Pins</h2>
+<pre>
+# github.com pins Intermediate Certificate
+# so add `-showcerts` option for first openssl
+# and extract second CERTIFICATE with ruby
+echo '---- EXPECTED ----'
+openssl s_client -servername github.com -connect github.com:443 -showcerts 2>/dev/null \
+  | ruby -nle 'puts $_.scan(/-----BEGIN CERTIFICATE-----.*?-----END CERTIFICATE-----/m)[1]' \
+  | openssl x509 -pubkey -noout 2>/dev/null \
+  | openssl rsa -pubin -outform der 2>/dev/null \
+  | openssl dgst -sha256 -binary 2>/dev/null \
+  | openssl enc -base64 2>/dev/null
+
+# get the actual Public-Key-Pins headre
+# this will include hash calculated above
+echo '---- ACTUAL ----'
+curl -sI https://github.com | grep Public-Key-Pins | ruby -nle 'puts $_.gsub(";", "\n")'
 </pre>
