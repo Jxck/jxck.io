@@ -7,6 +7,24 @@
 <id>tag:blog.jxck.io,2016:feed</id>
 <updated>2016-01-28T18:30:02Z</updated>
   <entry>
+   <title>Public Key Pinning for HTTP 対応と report-uri.io でのレポート収集</title>
+   <link href="https://blog.jxck.io/entries/2016-04-09/public-key-pinning.html" rel="alternate" />
+   <id>tag:blog.jxck.io,2016:entry://2016-04-09</id>
+   <updated>2016-04-09T00:00:00Z</updated>
+   <summary>本サイトにて Public Key Pinning for HTTP を有効化した。
+
+[CSP](https://blog.jxck.io/entries/2016-03-30/content-security-policy.html) 同様、まずは Report-Only を設定し、
+HPKP Report についても、 [report-uri.io](https://report-uri.io) を用いて収集することにした。
+
+導入に必要な設定や、注意点についてまとめる。
+
+なお、本サイトへの導入はあくまで **実験** である。運用や影響も踏まえると、一般サービスへの安易な導入は推奨しない。
+
+また、本来は HSTS と併用することが推奨されている。(必須ではない)
+そちらも追って対応する予定である。</summary>
+  </entry>
+
+  <entry>
    <title>Content Security Policy 対応と report-uri.io でのレポート収集</title>
    <link href="https://blog.jxck.io/entries/2016-03-30/content-security-policy.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-03-30</id>
@@ -15,7 +33,7 @@
 
 まずは Report Only にて導入し、段階的にポリシーとコンテンツを修正していく方針をとる。
 
-CSP Report については、 [report-uri.io](report-uri.io) を用いて収集することにした。
+CSP Report については、 [report-uri.io](https://report-uri.io) を用いて収集することにした。
 
 導入に必要な設定や、注意点についてまとめる。</summary>
   </entry>
@@ -213,7 +231,7 @@ CSP Report については、 [report-uri.io](report-uri.io) を用いて収集�
    <link href="https://blog.jxck.io/entries/2016-01-27/new-blog-start.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-01-27</id>
    <updated>2016-01-27T00:00:00Z</updated>
-   <summary>長いこと [はてな](http://jxck.hatenablog.com/) をメインにし、他にも [Qiita](http://qiita.com/jxck_) や [Tumblr](http://jxck.tumblr.com/) を使って色々書いて来たけど、そろそろ自分のドメインに全部集約していこうかなと思います。</summary>
+   <summary>長いこと [はてな](http://jxck.hatenablog.com/) をメインにし、他にも [Qiita](http://qiita.com/jxck_) や [Tumblr](http://jxck.tumblr.com/) を使って色々書いて来たが、そろそろ自分のドメインに全部集約していこうかと思う。</summary>
   </entry>
 
 </feed>
