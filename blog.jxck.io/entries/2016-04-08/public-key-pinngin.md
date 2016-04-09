@@ -11,6 +11,9 @@ HPKP Report についても、 [report-uri.io](https://report-uri.io) を用い�
 
 また、本サイトへの導入はあくまで **実験** である。運用や影響も踏まえると、一般サービスへの安易な導入は推奨しない。
 
+また、本来は HSTS と併用することが推奨されている。(必須ではない)
+そちらも追って対応する予定である。
+
 
 ## Public Key Pinning
 
@@ -222,35 +225,55 @@ Leaf の証明書を Pin 留めしてしまうと、前述の通り証明書の�
 
 ## 本サイトでの適用
 
+### Pin
+
+まず現在の証明書から、現行の Pin を生成しそれを指定する。
+
 本サイトでは、 2 年ごとに更新するワイルドカード証明書を購入して使用している。
 
 つまり、全サブドメインで証明書は一つであり、期限も長いので、運用はそこまで難しくないだろうと考えている。
 
-一方で今回はあくまで実験であるため、 CSP 同様に Report-Only での運用とする。
-また、 Report-Only を外すことは今のところ予定していない。
-
-
-まず現在の証明書から、現行の Pin を生成しそれを指定する。
-
 バックアップ Pin としては、未来の(次の更新で使用する)証明書用の鍵を先に一つ用意しておき、そこからバックアップ用 Pin を生成することにした。
 
-`max-age` は、まずは 1h (3600s) から始め、そこから 1week くらいまで増やしていく形にする。
-(証明書の更新が 90 日前から可能であるため、何かあっても十分対応可能と判断)
+`report-uri` には CSP 同様 [report-uri.io](https://report-uri.io) を設定する。
+
+そしてこれを [jxck.io](https://jxck.io) と [blog.jxck.io](https://blog.jxck.io) に設定した。
+
+今回はあくまで実験であるため、 CSP 同様に Report-Only での運用とする。
 
 
-`includeSubdomains` を有効にし、 `report-only` には CSP 同様 [report-uri.io](https://report-uri.io) を設定する。
+デモとして、 Report-Only 無しのヘッダを指定したページを以下に用意した。
 
-結果は以下である。
+[Public Key Pinning DEMO | labs.jxck.io](https://labs.jxck.io/public-key-pinning/)
+
+HPKP が有効になっていることは、 [chrome://net-internals/#hsts](chrome://net-internals/#hsts) で確認できる。しかし Report-Only ではここに上がらないようである。
+
+
+### ヘッダ
+
+生成したヘッダは以下である。
+max-age は、とりあえず 3600s と短い値から始めることにした。
 
 ```
-TDOO
+Public-Key-Pins:
+  max-age=3600;
+  pin-sha256="7JT7NhX2St/VBBkRi4BO427M7ytLy7p3CRYPtHpSm7c=";
+  pin-sha256="+WpRHNpAId2FIOvVgwmS3HsG+eJtERKC4/qM1tQaeRk=";
+  report-uri="https://4887c342aec2b444c655987aa8b0d5cb.report-uri.io/r/default/hpkp/enforce"
 ```
 
-今回は CSP と違い、よほどのことがない限りレポートは上がらないはずであると考える。
-もしレポートが上がった場合、必要に応じて追記や報告をしたい。
+Report-Only は、 `max-age` が不要になる。また report-uri.io では、 Report-Only 用に URI が変わるので、それを設定している。
 
+```
+Public-Key-Pins-Report-Only:
+  pin-sha256="7JT7NhX2St/VBBkRi4BO427M7ytLy7p3CRYPtHpSm7c=";
+  pin-sha256="+WpRHNpAId2FIOvVgwmS3HsG+eJtERKC4/qM1tQaeRk=";
+  report-uri="https://4887c342aec2b444c655987aa8b0d5cb.report-uri.io/r/default/hpkp/reportOnly"
+```
 
-https://projects.dm.id.lv/Public-Key-Pins_test
-https://projects.dm.id.lv/Public-Key-Pins_calculator
-https://jp.globalsign.com/blog/2013/certificate_public_key_pinning.html
-https://developers.google.com/web/updates/2015/09/HPKP-reporting-with-chrome-46
+意図的にレポートを上げて見てみたかったが、単に不正な証明書を用意するだけではだめだった。
+どうやったら、正しく HPKP 違反ができるのか、自前で CA を立てるなどする必要があるのかもしれない。
+
+ということで CSP と違い、よほどのことがない限りレポートは上がらないはずであると考える。
+
+もしレポートが上がった場合、結構な問題が発生している可能性もあるので、必要に応じて追記や報告をしたい。
