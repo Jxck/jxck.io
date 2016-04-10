@@ -13,7 +13,7 @@
 
 本サイト ([blog.jxck.io](https://blog.jxck.io)) では、フル HTTPS 化が完了しており、 HTTP へのリクエストは全て HTTPS へリダイレクトしている。
 
-特に本サイトのタイトル自体が `blog.jxck.io` とドメイン名と同じになっている特性上、これが Twitter 上で `http://blog.jxck.io` へのリンクと解釈される場合が多い。
+特に本サイトのタイトル自体が `blog.jxck.io` であり、ドメイン名と同じになっている特性上、これが Twitter 上で `http://blog.jxck.io` へのリンクと解釈される場合が多い。
 
 そのため、 HTTP へのアクセスも少なくはない。
 
