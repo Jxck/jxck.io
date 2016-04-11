@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<title>Strict Transport Security DEMO | labs.jxck.io</title>
+
+<style>
+pre {
+  background: #ccc;
+  padding: 1em;
+}
+</style>
+<h1>Strict-Transport-Security Header</h1>
+
+<p><strong>hsts header will effect for all labs.jxck.io content, so disable it</strong>
+
+<p>if you access http link after https, hsts header on https response will force you to acess via https
+
+<dl>
+  <dt>HTTP
+  <dd><a href=http://labs.jxck.io/strict-transport-security>http://labs.jxck.io/strict-transport-security</a>
+  <dt>HTTPS
+  <dd><a href=https://labs.jxck.io/strict-transport-security>https://labs.jxck.io/strict-transport-security</a>
+</dl>
+
+<pre>
+Strict-Transport-Security: max-age=31536000
+</pre>
+
+you can check with <a href="chrome://net-internals/#hsts">chrome://net-internals/#hsts</a> query
