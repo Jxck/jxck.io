@@ -12,8 +12,8 @@ if (typeof window !== 'undefined') {
     console.log(':^)', reg);
     reg.pushManager.subscribe({
       userVisibleOnly: true
-    }).then(function(sub) {
-      console.log(JSON.stringify(sub, ' ', ' '));
+    }).then(function(subscription) {
+      console.log(JSON.stringify(subscription, ' ', ' '));
     });
   }).catch(function(err) {
     console.log(':^(', err);
@@ -34,10 +34,10 @@ if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalSco
 
   self.addEventListener('push', function(event) {
     console.log('Push message', event);
-    var title = 'Push message';
+    var message = event.data.text();
     event.waitUntil(
-      self.registration.showNotification(title, {
-        body: 'The Message',
+      self.registration.showNotification('hoge', {
+        body: message,
         icon: '/service-worker/push/jxck.png',
         tag: 'my-tag'
       }));
