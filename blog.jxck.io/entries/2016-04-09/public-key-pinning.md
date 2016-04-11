@@ -1,4 +1,4 @@
-# [hpkp][security] Public Key Pinning for HTTP 対応と report-uri.io でのレポート収集
+# [hpkp][security] Public Key Pinning for HTTP(HPKP) 対応と report-uri.io でのレポート収集
 
 ## Intro
 

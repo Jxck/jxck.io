@@ -1,4 +1,4 @@
-# [csp][security] Content Security Policy 対応と report-uri.io でのレポート収集
+# [csp][security] Content Security Policy(CSP) 対応と report-uri.io でのレポート収集
 
 ## Intro
 
