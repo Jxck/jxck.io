@@ -1,4 +1,4 @@
 curl \
-  --header "Authorization: key=AIzaSyBBh4ddPa96rQQNxqiq_qQj7sq1JdsNQUQ" \
+  --header "Authorization: key=AIzaSyAJs2U3XSP39SjeY5RhGXPqc0P2Xw_2byI" \
   --header Content-Type:"application/json" https://android.googleapis.com/gcm/send \
-  -d "{\"registration_ids\":[\"c6Wbq7isMLU:APA91bFl9FiNmTiylACCZWc_DnpnbYvy-mcSqhN49kcE6AFk36Mm9nQXbf1vaFjYkZDdVRTIo0aIz4yZ2kQSbzxaQCFCKgjGwIccODcIZ37oCYbv074NsMmcF0UM5Xb973DCnbFkExJR\"]}" \
+  -d "{\"registration_ids\":[\"cMNHmkMZ25o:APA91bEAIja3mzirI_e7DBFiebkIT98Qw8zGKvH8Tt8-WuZCdW8FXdS_cJZL4HSkEg7RtS_RoHLOOs8HzrYkFKBb8W7mI67Hmixr2UUwYHGz6OWv5t9LC6EgdPy_Ub37AvUQAbDPudI7\"]}" \

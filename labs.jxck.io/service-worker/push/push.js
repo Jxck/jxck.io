@@ -2,8 +2,10 @@
 
 var https = require('https');
 
-var Key = "key=AIzaSyBBh4ddPa96rQQNxqiq_qQj7sq1JdsNQUQ";
-var IDs = ["c6Wbq7isMLU:APA91bFl9FiNmTiylACCZWc_DnpnbYvy-mcSqhN49kcE6AFk36Mm9nQXbf1vaFjYkZDdVRTIo0aIz4yZ2kQSbzxaQCFCKgjGwIccODcIZ37oCYbv074NsMmcF0UM5Xb973DCnbFkExJR"];
+var Key = "AIzaSyARN6lPU8s_fsPs5gWIrm9E1g3ifjiM-tg";
+var IDs = [
+  "fMg4Z5zSVy4:APA91bFW-VHOqFZz3esGi5jKR7UM3rILHa6nIvx-0ykCSfgE-49Qx9jLDLFUijyOxUyWiMl2ZdhDLv0pa7mzBnEvQHAxozBcDyD152vL9xVmjMzxCHUai8rrPOUVL1SQNojjO-KrNXr4"
+];
 
 function Push(key, ids) {
   'use strict';
@@ -17,7 +19,7 @@ function Push(key, ids) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': key,
+      'Authorization': `key=${Key}`,
       'Content-Length': body.length
     },
   }
