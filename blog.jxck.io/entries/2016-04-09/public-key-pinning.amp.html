@@ -20,13 +20,13 @@ by Jxck
 <meta name=twitter:card content=summary>
 <meta name=twitter:site content=@jxck_>
 <meta name=twitter:url content=https://blog.jxck.io/entries/2016-04-09/public-key-pinning.html>
-<meta name=twitter:title content="Public Key Pinning for HTTP 対応と report-uri.io でのレポート収集 | blog.jxck.io">
+<meta name=twitter:title content="Public Key Pinning for HTTP(HPKP) 対応と report-uri.io でのレポート収集 | blog.jxck.io">
 <meta name=twitter:description content="本サイトにて Public Key Pinning for HTTP を有効化した。[CSP](https://blog.jxck.io/entries/2016-03-30/content-security-policy.html) 同様、まずは Report-Only を設定...">
 <meta name=twitter:image content=https://www.jxck.io/assets/img/jxck.png>
 
 <meta property=og:type content="article">
 <meta property=og:url content=https://blog.jxck.io/entries/2016-04-09/public-key-pinning.html>
-<meta property=og:title content="Public Key Pinning for HTTP 対応と report-uri.io でのレポート収集 | blog.jxck.io">
+<meta property=og:title content="Public Key Pinning for HTTP(HPKP) 対応と report-uri.io でのレポート収集 | blog.jxck.io">
 <meta property=og:site_name content=blog.jxck.io>
 <meta property=og:description content="本サイトにて Public Key Pinning for HTTP を有効化した。[CSP](https://blog.jxck.io/entries/2016-03-30/content-security-policy.html) 同様、まずは Report-Only を設定...">
 <meta property=og:image content=https://www.jxck.io/assets/img/jxck.png>
@@ -39,7 +39,7 @@ by Jxck
     "@type":"WebPage",
     "@id":"https://blog.jxck.io"
   },
-  "headline": "Public Key Pinning for HTTP 対応と report-uri.io でのレポート収集 | blog.jxck.io",
+  "headline": "Public Key Pinning for HTTP(HPKP) 対応と report-uri.io でのレポート収集 | blog.jxck.io",
   "image": {
     "@type": "ImageObject",
     "url": "https://www.jxck.io/assets/img/jxck.png",
@@ -47,7 +47,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-04-09T08:00:00+08:00",
-  "dateModified": "2016-04-09T08:00:00+08:00",
+  "dateModified": "2016-04-11T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -70,7 +70,7 @@ by Jxck
 <link rel=icon sizes=192x192 href=//www.jxck.io/assets/img/jxck.png>
 <link rel=apple-touch-icon sizes=128x128 href=//www.jxck.io/assets/img/jxck.png>
 
-<title>Public Key Pinning for HTTP 対応と report-uri.io でのレポート収集 | blog.jxck.io</title>
+<title>Public Key Pinning for HTTP(HPKP) 対応と report-uri.io でのレポート収集 | blog.jxck.io</title>
 <script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
 <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
 <script async src=https://cdn.ampproject.org/v0.js></script>
@@ -512,13 +512,13 @@ th:last-child, td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-04-09>2016-04-09</time>
-    <li>updated_at: <time class=updated_at datetime=2016-04-09>2016-04-09</time>
+    <li>updated_at: <time class=updated_at datetime=2016-04-11>2016-04-11</time>
     <li class=tags>tags: [<a>hpkp</a>,<a>security</a>]
   </ul>
 
 
   <article>
-    <h1><a href="/entries/2016-04-09/public-key-pinning.html">Public Key Pinning for HTTP 対応と report-uri.io でのレポート収集</a></h1>
+    <h1><a href="/entries/2016-04-09/public-key-pinning.html">Public Key Pinning for HTTP(HPKP) 対応と report-uri.io でのレポート収集</a></h1>
     <section>
       <h2 id="Intro"><a href="#Intro">Intro</a></h2>
       <p>本サイトにて Public Key Pinning for HTTP を有効化した。
@@ -540,7 +540,7 @@ th:last-child, td:last-child {
         <p>本サイトは HTTPS を提供しており、証明書は証明機関(CA)より有料のワイルドカード証明書を購入して設定している。(Let's Encrypt ではない)
         <p>本ドメインの証明書の有効性は、この CA によって担保されており、この CA の信頼性は各デバイスにプリインストールされた CA の証明書(およびそこまでのチェイン)で担保されている。
         <p>この仕組み(PKI) は、デバイスが CA を信用していることが土台となっているため、例えば CA が危殆化するなどのインシデントが発生すると、基盤そのものが揺らぐことを意味する。
-        <p>例えば CA が攻撃され、偽の証明書が発行された場合、ユーザはその証明書が CA から発行された本物にしか見えないため、接続先が偽サイトだとしても信用してしまう。
+        <p>もし CA が攻撃され、偽の証明書が発行された場合、ユーザはその証明書が CA から発行された本物にしか見えないため、接続先が偽サイトだとしても信用してしまう。
         <p>仕組み上 CA の危殆化はあってはならない訳だが、証明書の価値が高まりつつあり、一方で多くの認証局が運用されている今、一部の CA では実際に攻撃による偽の証明書発行が発生している。
         <ul>
           <li><a href="https://jp.globalsign.com/blog/2013/certificate_public_key_pinning.html">Pinning 年表</a> 参照
@@ -550,7 +550,7 @@ th:last-child, td:last-child {
       </section>
       <section>
         <h3 id="Public+Key+Pinning+for+HTTP"><a href="#Public+Key+Pinning+for+HTTP">Public Key Pinning for HTTP</a></h3>
-        <p>例えば本サイト <code>jxck.io</code> の証明書については、管理者である筆者が把握している。
+        <p>本サイト <code>jxck.io</code> の証明書については、管理者である筆者が把握している。
         <p>この証明書のハッシュを HTTP ヘッダに付与することで、ブラウザに保存させる。
         <p>ユーザが HTTPS 接続を確立する際に、取得した証明書のハッシュと、このヘッダのハッシュを比較することで、サーバの提示した証明書が筆者の把握している証明書と同じであることを検査する。
         <p>偽物が検出された際は、不正な証明書が発行されている可能性があるため、ブラウザはアクセスをブロックする。

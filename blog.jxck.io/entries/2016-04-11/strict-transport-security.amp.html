@@ -9,26 +9,26 @@ https://labs.jxck.io/blog
 
 by Jxck
 -->
-<link rel=canonical href=/entries/2016-02-08/h2o-http2-deploy.html>
+<link rel=canonical href=/entries/2016-04-11/strict-transport-security.html>
 <meta name=viewport content="width=device-width,minimum-scale=1">
 <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
 
 <meta name=author content=Jxck>
-<meta name=description content="土台がだいたいできたので、このサイトを h2o にデプロイした話。...">
-<meta name=keywords content="h2o,http2">
+<meta name=description content="本サイトにて HTTP Strict Transport Security (HSTS) を有効化した。`includeSubdomains` を用いた `*.jxck.io` 全体への適用および、ブラウザへの Preload 登録も検討したが、本サイトの特性上それは見送った。導...">
+<meta name=keywords content="hsts,security">
 
 <meta name=twitter:card content=summary>
 <meta name=twitter:site content=@jxck_>
-<meta name=twitter:url content=https://blog.jxck.io/entries/2016-02-08/h2o-http2-deploy.html>
-<meta name=twitter:title content="h2o で https/2 のデプロイと設定 | blog.jxck.io">
-<meta name=twitter:description content="土台がだいたいできたので、このサイトを h2o にデプロイした話。...">
+<meta name=twitter:url content=https://blog.jxck.io/entries/2016-04-11/strict-transport-security.html>
+<meta name=twitter:title content="HTTP Strict Transport Security(HSTS) 対応 | blog.jxck.io">
+<meta name=twitter:description content="本サイトにて HTTP Strict Transport Security (HSTS) を有効化した。`includeSubdomains` を用いた `*.jxck.io` 全体への適用および、ブラウザへの Preload 登録も検討したが、本サイトの特性上それは見送った。導...">
 <meta name=twitter:image content=https://www.jxck.io/assets/img/jxck.png>
 
 <meta property=og:type content="article">
-<meta property=og:url content=https://blog.jxck.io/entries/2016-02-08/h2o-http2-deploy.html>
-<meta property=og:title content="h2o で https/2 のデプロイと設定 | blog.jxck.io">
+<meta property=og:url content=https://blog.jxck.io/entries/2016-04-11/strict-transport-security.html>
+<meta property=og:title content="HTTP Strict Transport Security(HSTS) 対応 | blog.jxck.io">
 <meta property=og:site_name content=blog.jxck.io>
-<meta property=og:description content="土台がだいたいできたので、このサイトを h2o にデプロイした話。...">
+<meta property=og:description content="本サイトにて HTTP Strict Transport Security (HSTS) を有効化した。`includeSubdomains` を用いた `*.jxck.io` 全体への適用および、ブラウザへの Preload 登録も検討したが、本サイトの特性上それは見送った。導...">
 <meta property=og:image content=https://www.jxck.io/assets/img/jxck.png>
 
 <script type="application/ld+json">
@@ -39,14 +39,14 @@ by Jxck
     "@type":"WebPage",
     "@id":"https://blog.jxck.io"
   },
-  "headline": "h2o で https/2 のデプロイと設定 | blog.jxck.io",
+  "headline": "HTTP Strict Transport Security(HSTS) 対応 | blog.jxck.io",
   "image": {
     "@type": "ImageObject",
     "url": "https://www.jxck.io/assets/img/jxck.png",
     "height": 700,
     "width": 700
   },
-  "datePublished": "2016-02-08T08:00:00+08:00",
+  "datePublished": "2016-04-11T08:00:00+08:00",
   "dateModified": "2016-04-11T08:00:00+08:00",
   "author": {
     "@type": "Person",
@@ -63,14 +63,14 @@ by Jxck
       "width": 257
     }
   },
-  "description": "土台がだいたいできたので、このサイトを h2o にデプロイした話。..."
+  "description": "本サイトにて HTTP Strict Transport Security (HSTS) を有効化した。`includeSubdomains` を用いた `*.jxck.io` 全体への適用および、ブラウザへの Preload 登録も検討したが、本サイトの特性上それは見送った。導..."
 }
 </script>
 
 <link rel=icon sizes=192x192 href=//www.jxck.io/assets/img/jxck.png>
 <link rel=apple-touch-icon sizes=128x128 href=//www.jxck.io/assets/img/jxck.png>
 
-<title>h2o で https/2 のデプロイと設定 | blog.jxck.io</title>
+<title>HTTP Strict Transport Security(HSTS) 対応 | blog.jxck.io</title>
 <script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
 <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
 <script async src=https://cdn.ampproject.org/v0.js></script>
@@ -511,79 +511,57 @@ th:last-child, td:last-child {
 </header>
 <main>
   <ul class=info>
-    <li>created_at: <time class=created_at datetime=2016-02-08>2016-02-08</time>
+    <li>created_at: <time class=created_at datetime=2016-04-11>2016-04-11</time>
     <li>updated_at: <time class=updated_at datetime=2016-04-11>2016-04-11</time>
-    <li class=tags>tags: [<a>h2o</a>,<a>http2</a>]
+    <li class=tags>tags: [<a>hsts</a>,<a>security</a>]
   </ul>
 
 
   <article>
-    <h1><a href="/entries/2016-02-08/h2o-http2-deploy.html">h2o で https/2 のデプロイと設定</a></h1>
+    <h1><a href="/entries/2016-04-11/strict-transport-security.html">HTTP Strict Transport Security(HSTS) 対応</a></h1>
     <section>
       <h2 id="Intro"><a href="#Intro">Intro</a></h2>
-      <p>土台がだいたいできたので、このサイトを h2o にデプロイした話。
-    </section>
-    <section>
-      <h2 id="h2o"><a href="#h2o">h2o</a></h2>
-      <p>以前は nginx を使っていたけど、年末に旧ブログの方に書いた Cache-Aware Server Push を試したかったから。
-      <p><a href="http://jxck.hatenablog.com/entry/service-worker-casper">HTTP/2 Push を Service Worker + Cache Aware Server Push で効率化したい話</a>
-      <p>これは現在 httpbis にドラフトとして上がっており、議論が進んでいる。
-      <p><a href="https://tools.ietf.org/html/draft-kazuho-h2-cache-digest-00">Cache Digests for HTTP/2</a>
-      <p>まだ Cookie での実装は残っているので、このサイトで対応して行きたい。
-    </section>
-    <section>
-      <h2 id="証明書"><a href="#証明書">証明書</a></h2>
-      <p>実は <strong>*.jxck.io</strong> に対するワイルドカード証明書を買っている。
-      したがって、 Let's Encrypt は使ってない。
-      これは Podcast のドメインのほうでやっていこうと思ってる。
-    </section>
-    <section>
-      <h2 id="ドメイン"><a href="#ドメイン">ドメイン</a></h2>
-      <p>今までは <a href="https://www.jxck.io">jxck.io</a> だけで使っていたけど、これを複数ドメインにわけて運用する。
-      ワイルドカードがあり、同一 IP でデプロイされていると、 http2 でコネクションを束ねられる。
-    </section>
-    <section>
-      <h2 id="SSL+LAB"><a href="#SSL+LAB">SSL LAB</a></h2>
-      <p>TLS の設定を SSL LABS で調べて A+ を取るのがトレンドみたいになっている。このサイトの結果は A になっている。
-      <p><a href="https://www.ssllabs.com/ssltest/analyze.html?d=jxck.io&latest">SSL Report: jxck.io</a>
-      <p>これは、せっかくなので <strong>TLS1.2</strong> 以下を切ったり、 <strong>暗号スイート</strong> を強めに制限しているため、古い Android への対応できてないからである。
-      <p>積極的に切って行くスタイル。
-    </section>
-    <section>
-      <h2 id="静的ファイルへのマッピング"><a href="#静的ファイルへのマッピング">静的ファイルへのマッピング</a></h2>
-      <p>h2o の設定でちょっとハマったのがパスとファイルの紐付けができないところ。
-      <p>たとえば、 <code>favicon.ico</code> だとか <code>robots.txt</code> は、特定の URL に対して特定のファイルを割り当てる。
-      これがこう書けると嬉しい。
-      <pre class=><code>paths:
-  &quot;/favicon.ico&quot;:
-     file.dir: /some/path/to/favicon.ico
-  &quot;/&quot;:
-     file.dir: /path/to/doc-root</code></pre>
-      <p>しかし、実際は paths へはディレクトリしか紐づけられない。
-      やるなら mruby.handler を使うしかない。
-      (399 は、 fallthroug の独自ルールになってるらしい)
-      <pre class=><code>&quot;/&quot;:
-  mruby.handler: |
-    Proc.new do |env|
-      if env[&quot;PATH_INFO&quot;] == &quot;/favicon.ico&quot;
-        [200, {&quot;content-type&quot; =&gt; &quot;image/x-icon&quot;}, File::open(&quot;/path/to/favicon.ico&quot;)]
-      else
-        [399, {}, []]
-      end
-    end
-  file.dir: /path/to/dir</code></pre>
-      <p>しかしこれを毎回書くのはちょっと面倒。
-      kazuho さんとは、ファイルを割り当てられるようにするか、もはや h2o.conf を自動生成するか、 ruby で書けるようにしたらいいか、みたいな話をした。
+      <p>本サイトにて HTTP Strict Transport Security (HSTS) を有効化した。
+      <p><code>includeSubdomains</code> を用いた <code>*.jxck.io</code> 全体への適用および、ブラウザへの Preload 登録も検討したが、本サイトの特性上それは見送った。
+      <p>導入に必要な設定や、注意点についてまとめる。
     </section>
     <section>
       <h2 id="HSTS"><a href="#HSTS">HSTS</a></h2>
-      <p>http -> https へのリダイレクトは入れているが、 HSTS ヘッダはまだ吐いてない。
-      これ吐いてしまうと、ブラウザに忘れさせない限り http では繋がらなくなり、デバッグがちょっと面倒になる場合がある。
-      <p>一通り開発が落ち着いたら吐く。
+      <p>本サイト (<a href="https://blog.jxck.io">blog.jxck.io</a>) では、フル HTTPS 化が完了しており、 HTTP へのリクエストは全て HTTPS へリダイレクトしている。
+      <p>特に本サイトのタイトル自体が <code>blog.jxck.io</code> であり、ドメイン名と同じになっているため、これが Twitter などで <code>http://blog.jxck.io</code> へのリンクと解釈される場合が多く、そこからの HTTP アクセスも少なくはない。
+      <p>しかし、 MITM の脅威への対策が可能な HTTPS でも、最初のリクエストが HTTP であると、そこに付け入る隙ができてしまう。
+      <p>そこで、 「<code>blog.jxck.io</code> にアクセスするときは必ず HTTPS を用いる」ことをブラウザに覚えさせ、 <code>http://blog.jxck.io</code> のリンクを踏んでも、ブラウザが自動的に <code>https://blog.jxck.io</code> に置き換えてアクセスさせる仕組みが HSTS である。
+      <ul>
+        <li><a href="https://tools.ietf.org/html/rfc6797">RFC 6797 - HTTP Strict Transport Security (HSTS)</a>
+      </ul>
     </section>
     <section>
-      <h2 id="Outro"><a href="#Outro">Outro</a></h2>
-      <p>細かい設定が固まったらまた書く。
+      <h2 id="Strict-Transport-Security+ヘッダ"><a href="#Strict-Transport-Security+ヘッダ">Strict-Transport-Security ヘッダ</a></h2>
+      <p>以下のような HTTP ヘッダを追加することで、 HSTS を有効にすることができる。
+      <pre class=><code>Strict-Transport-Security: max-age=7776000</code></pre>
+      <p>このヘッダは、 HTTP ではなく HTTPS のレスポンスに付与する。
+      <p>このヘッダを受け取ったブラウザは 7776000秒(90日) のあいだは、そのドメインに <code>http://~</code> で始まるリクエストを送信する際に、自動的にこれを <code>https://~</code> に置き換える。
+      <p>これによって、例えば既にどこかのページに張られたリンクが <code>http://~</code> であったとしても、リダイレクトではなく最初から HTTPS を強制することができる。
+    </section>
+    <section>
+      <h2 id="preload"><a href="#preload">preload</a></h2>
+      <p>ただし、 HSTS はレスポンスヘッダで指定された値を、ブラウザが保存したあと有効になる仕組みのため、少なくとも一番最初にアクセスするドメインでは、際は http -> https のリダイレクトを避けられない。
+      <p>この性質は <a href="https://blog.jxck.io/entries/2016-04-09/public-key-pinning.html">HPKP</a> 同様 <strong>TOFU</strong> (Trust of First Use) と呼ばれる。
+      <p>そこで、ブラウザに HSTS 対象ドメインのリストをあらかじめ含んでおくことで、ユーザがまだアクセスしたことがないドメインについても、初回アクセス時から HTTS アクセスを強制する仕組みが HSTS Preload である。
+      <p>Chrome の場合は、以下からドメインを申請すると、審査が実施され、条件を満たすものは Chrome のソースコード中にある preload hsts のリストに追加される。
+      <p><a href="https://hstspreload.appspot.com/">HSTS Preload Submission</a>
+    </section>
+    <section>
+      <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
+      <p>本来はトップドメインに <code>includeSubDomains</code> を付与した指定をすることで <code>*.jxck.io</code> つまりサブドメイン含めた全体に対して、設定を有効にするのが望ましい。
+      <p>しかし、本ドメインには <a href="https://labs.jxck.io">labs.jxck.io</a> という実験用のサブドメインがある。
+      <p>ここでは、平文 HTTP との比較や、 Mixed Contents の挙動のテストなど、様々な実験を行うために、 HTTP もリダイレクトせずサーブしている。
+      <p>ここを HSTS に含んでしてしまうと、実験ができなくなってしまうため、除外する必要がある。
+      <p>結果として、本ドメインでは <strong><code>includeSubDomains</code> の指定はせず</strong>、ドメインごとに個別に指定することとした。
+      <p>また、 Chrome の Preload 登録の条件には、 <code>includeSubDomains</code> の適用が含まれている。
+      <p>従って同様の理由から、止むを得ず <strong>preload 登録は見送る</strong> こととした。
+      <p>結果、現時点では <a href="https://jxck.io">jxck.io</a> 及び <a href="https://blog.jxck.io">blog.jxck.io</a> に対して、以下のヘッダを付与した。
+      <pre class=><code>Strict-Transport-Security: max-age=31536000</code></pre>
     </section>
   </article>
 

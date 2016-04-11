@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=/entries/2016-04-11/strict-transport-security.html>
+<link rel=amphtml href=/entries/2016-04-11/strict-transport-security.amp.html>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+<link rel=preload as=font type=font/woff href=//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
+
+<meta name=author content=Jxck>
+<meta name=description content="本サイトにて HTTP Strict Transport Security (HSTS) を有効化した。`includeSubdomains` を用いた `*.jxck.io` 全体への適用および、ブラウザへの Preload 登録も検討したが、本サイトの特性上それは見送った。導...">
+<meta name=keywords content="hsts,security">
+
+<meta name=twitter:card content=summary>
+<meta name=twitter:site content=@jxck_>
+<meta name=twitter:url content=https://blog.jxck.io/entries/2016-04-11/strict-transport-security.html>
+<meta name=twitter:title content="HTTP Strict Transport Security(HSTS) 対応 | blog.jxck.io">
+<meta name=twitter:description content="本サイトにて HTTP Strict Transport Security (HSTS) を有効化した。`includeSubdomains` を用いた `*.jxck.io` 全体への適用および、ブラウザへの Preload 登録も検討したが、本サイトの特性上それは見送った。導...">
+<meta name=twitter:image content=https://www.jxck.io/assets/img/jxck.png>
+
+<meta property=og:type content="article">
+<meta property=og:url content=https://blog.jxck.io/entries/2016-04-11/strict-transport-security.html>
+<meta property=og:title content="HTTP Strict Transport Security(HSTS) 対応 | blog.jxck.io">
+<meta property=og:site_name content=blog.jxck.io>
+<meta property=og:description content="本サイトにて HTTP Strict Transport Security (HSTS) を有効化した。`includeSubdomains` を用いた `*.jxck.io` 全体への適用および、ブラウザへの Preload 登録も検討したが、本サイトの特性上それは見送った。導...">
+<meta property=og:image content=https://www.jxck.io/assets/img/jxck.png>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "HTTP Strict Transport Security(HSTS) 対応 | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2016-04-11T08:00:00+08:00",
+  "dateModified": "2016-04-11T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://www.jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "本サイトにて HTTP Strict Transport Security (HSTS) を有効化した。`includeSubdomains` を用いた `*.jxck.io` 全体への適用および、ブラウザへの Preload 登録も検討したが、本サイトの特性上それは見送った。導..."
+}
+</script>
+
+<link rel=icon sizes=192x192 href=//www.jxck.io/assets/img/jxck.png>
+<link rel=apple-touch-icon sizes=128x128 href=//www.jxck.io/assets/img/jxck.png>
+
+<title>HTTP Strict Transport Security(HSTS) 対応 | blog.jxck.io</title>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+<header>
+  <ul>
+    <li><a href=//blog.jxck.io><img class=logo alt="blog top" width=30 src=/assets/img/blog.svg></a>
+    <li><a href="/entries/2016-04-11/strict-transport-security.amp.html#development=1"><img alt="move to amp version" width=30 src=/assets/img/amp.svg></a>
+    <li><a href=.><img alt="move to parent directory" width=30 src=/assets/img/up.svg></a>
+    <li><a href=/feeds/atom.xml><img alt="rss feed" width=30 src=/assets/img/rss.svg></a>
+    <li>
+      <a href=//www.jxck.io>
+        <picture>
+          <source type=image/svg+xml srcset=/assets/img/jxck.svg>
+          <img class=logo alt="jxck logo" width=30 src=/assets/img/jxck.png>
+        </picture>
+      </a>
+    </li>
+  </li>
+</header>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+<main>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2016-04-11>2016-04-11</time>
+    <li>updated_at: <time class=updated_at datetime=2016-04-11>2016-04-11</time>
+    <li class=tags>tags: [<a>hsts</a>,<a>security</a>]
+  </ul>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+  <article>
+    <h1><a href="/entries/2016-04-11/strict-transport-security.html">HTTP Strict Transport Security(HSTS) 対応</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>本サイトにて HTTP Strict Transport Security (HSTS) を有効化した。
+      <p><code>includeSubdomains</code> を用いた <code>*.jxck.io</code> 全体への適用および、ブラウザへの Preload 登録も検討したが、本サイトの特性上それは見送った。
+      <p>導入に必要な設定や、注意点についてまとめる。
+    </section>
+    <section>
+      <h2 id="HSTS"><a href="#HSTS">HSTS</a></h2>
+      <p>本サイト (<a href="https://blog.jxck.io">blog.jxck.io</a>) では、フル HTTPS 化が完了しており、 HTTP へのリクエストは全て HTTPS へリダイレクトしている。
+      <p>特に本サイトのタイトル自体が <code>blog.jxck.io</code> であり、ドメイン名と同じになっているため、これが Twitter などで <code>http://blog.jxck.io</code> へのリンクと解釈される場合が多く、そこからの HTTP アクセスも少なくはない。
+      <p>しかし、 MITM の脅威への対策が可能な HTTPS でも、最初のリクエストが HTTP であると、そこに付け入る隙ができてしまう。
+      <p>そこで、 「<code>blog.jxck.io</code> にアクセスするときは必ず HTTPS を用いる」ことをブラウザに覚えさせ、 <code>http://blog.jxck.io</code> のリンクを踏んでも、ブラウザが自動的に <code>https://blog.jxck.io</code> に置き換えてアクセスさせる仕組みが HSTS である。
+      <ul>
+        <li><a href="https://tools.ietf.org/html/rfc6797">RFC 6797 - HTTP Strict Transport Security (HSTS)</a>
+      </ul>
+    </section>
+    <section>
+      <h2 id="Strict-Transport-Security+ヘッダ"><a href="#Strict-Transport-Security+ヘッダ">Strict-Transport-Security ヘッダ</a></h2>
+      <p>以下のような HTTP ヘッダを追加することで、 HSTS を有効にすることができる。
+      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+      <pre class=><code>Strict-Transport-Security: max-age=7776000</code></pre>
+      <p>このヘッダは、 HTTP ではなく HTTPS のレスポンスに付与する。
+      <p>このヘッダを受け取ったブラウザは 7776000秒(90日) のあいだは、そのドメインに <code>http://~</code> で始まるリクエストを送信する際に、自動的にこれを <code>https://~</code> に置き換える。
+      <p>これによって、例えば既にどこかのページに張られたリンクが <code>http://~</code> であったとしても、リダイレクトではなく最初から HTTPS を強制することができる。
+    </section>
+    <section>
+      <h2 id="preload"><a href="#preload">preload</a></h2>
+      <p>ただし、 HSTS はレスポンスヘッダで指定された値を、ブラウザが保存したあと有効になる仕組みのため、少なくとも一番最初にアクセスするドメインでは、際は http -> https のリダイレクトを避けられない。
+      <p>この性質は <a href="https://blog.jxck.io/entries/2016-04-09/public-key-pinning.html">HPKP</a> 同様 <strong>TOFU</strong> (Trust of First Use) と呼ばれる。
+      <p>そこで、ブラウザに HSTS 対象ドメインのリストをあらかじめ含んでおくことで、ユーザがまだアクセスしたことがないドメインについても、初回アクセス時から HTTS アクセスを強制する仕組みが HSTS Preload である。
+      <p>Chrome の場合は、以下からドメインを申請すると、審査が実施され、条件を満たすものは Chrome のソースコード中にある preload hsts のリストに追加される。
+      <p><a href="https://hstspreload.appspot.com/">HSTS Preload Submission</a>
+    </section>
+    <section>
+      <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
+      <p>本来はトップドメインに <code>includeSubDomains</code> を付与した指定をすることで <code>*.jxck.io</code> つまりサブドメイン含めた全体に対して、設定を有効にするのが望ましい。
+      <p>しかし、本ドメインには <a href="https://labs.jxck.io">labs.jxck.io</a> という実験用のサブドメインがある。
+      <p>ここでは、平文 HTTP との比較や、 Mixed Contents の挙動のテストなど、様々な実験を行うために、 HTTP もリダイレクトせずサーブしている。
+      <p>ここを HSTS に含んでしてしまうと、実験ができなくなってしまうため、除外する必要がある。
+      <p>結果として、本ドメインでは <strong><code>includeSubDomains</code> の指定はせず</strong>、ドメインごとに個別に指定することとした。
+      <p>また、 Chrome の Preload 登録の条件には、 <code>includeSubDomains</code> の適用が含まれている。
+      <p>従って同様の理由から、止むを得ず <strong>preload 登録は見送る</strong> こととした。
+      <p>結果、現時点では <a href="https://jxck.io">jxck.io</a> 及び <a href="https://blog.jxck.io">blog.jxck.io</a> に対して、以下のヘッダを付与した。
+      <pre class=><code>Strict-Transport-Security: max-age=31536000</code></pre>
+    </section>
+  </article>
+
+</main>
+<hr>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
+</footer>
+
+<script src="/assets/js/highlight.min.js"></script>
+<script src="/assets/js/master.js"></script>
+<script src="/assets/js/main.js"></script>
+<script src=//www.jxck.io/assets/js/ga.js></script>
