@@ -4,18 +4,15 @@ February 7, 2016
 
 Midori was written in an ahead-of-time compiled, type-safe language based on C#.
 Aside from our microkernel, the whole system was written in it, including drivers, the domain kernel, and all user code.
-I've hinted at a few things along the way and now it's time to address them head-on.
-The entire language is a huge space to cover and will take a series of posts.
-First up? The Error Model.
 
 Midori は、 ahead-of-time コンパイル、型安全な、 C# ベースの言語で書かれています。
 マイクロカーネル以外にも、システム全体のドライバ、ドメインカーネル、およびすべてのユーザーコードが、それで書かれています。
 
-私は道に沿っていくつかのことを示唆してきたし、今では頭にそれらに対処するための時間です。
-全体の言語がカバーする巨大なスペースであり、一連の記事がかかります。
-まずアップ？エラーモデル。
+I've hinted at a few things along the way and now it's time to address them head-on.
+The entire language is a huge space to cover and will take a series of posts.
+First up? The Error Model.
 
-Midori という言語を作った知見を書く。最初はエラーモデルから。
+この言語を作った知見を書く。最初はエラーモデルから。
 
 
 The way errors are communicated and dealt with is fundamental to any language, especially one used to write a reliable operating system.
@@ -24,18 +21,21 @@ I regularly hear from old teammates, however, that this is the thing they miss m
 It's right up there for me too.
 So, without further ado, let's start.
 
-方法エラーが伝えられ、特に、信頼性の高いオペレーティングシステムを記述するために使用される 1 任意の言語の基本であると扱われます。
-私たちは Midori で行った他の多くのものと同様に、「システム全体」アプローチは、数年にわたって数回の反復を取って、右のそれを得るために必要でした。
-私は定期的に、これは彼らが Midori でのプログラミングについての最も逃す事であること、しかし、古いチームメートから話を聞きます。
-それはあまりにも私のためにそこに右のアップです。
-だから、前置き、それでは、始めましょう。
+エラーは、特に、信頼性の高いオペレーティングシステムを記述するために使用される、言語の基本であると扱われます。
+私たちは Midori で行った他の多くのものと同様に、 "while system" アプローチを正しく行うために不可欠で、数年にわたって数回の反復を繰り返してきました。
+
+私は常々、古いチームメイトから聞いていました、しかし、これは Midori でのプログラミングについての最も見落としがちな点です。
+
+それが道を照らしてくれました。
+
+前置きはこのへんにして、始めましょう。
 
 
 ## Introduction
 
 The basic question an Error Model seeks to answer is: how do "errors" get communicated to programmers and users of the system? Pretty simple, no? So it seems.
 
-まず、エラーモデルについての基本の問いとして、「エラーはどうプログラマやユーザとコミュニケーションすべきか」がある。答えはシンプルに No だ。
+まず、エラーモデルについての基本の問いとして、「エラーはどうプログラマやユーザとコミュニケーションすべきか」がある。シンプルだ。違うかい？
 
 One of the biggest challenges in answering this question turns out to be defining what an error actually is.
 Most languages lump bugs and recoverable errors into the same category, and use the same facilities to deal with them.
@@ -43,7 +43,7 @@ A null dereference or out-of-bounds array access is treated the same way as a ne
 This consistency may seem nice at first glance, but it has deep-rooted issues.
 In particular, it is misleading and frequently leads to unreliable code.
 
-この質問に答える中で最大の課題の 1 つは、実際にエラーが何であるかを定義することが判明しました。
+この質問に答える中で最大の課題の 1 つは、そもそもエラーとは何であるかを定義することだ。
 ほとんどの言語は、同じカテゴリにバグや回復可能なエラーをひとまとめにし、それらに対処するために、同じ施設を利用します。
 null の間接参照または範囲外の配列アクセスは、ネットワーク接続の問題や解析エラーと同じように扱われます。
 この一貫性は一見素敵に見えるかもしれませんが、それは根深い問題があります。
