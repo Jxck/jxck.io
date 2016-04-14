@@ -8,8 +8,9 @@ I've hinted at a few things along the way and now it's time to address them head
 The entire language is a huge space to cover and will take a series of posts.
 First up? The Error Model.
 
-みどりは、 C#に基づいて、前方・オブ・タイムコンパイル、タイプセーフな言語で書かれています。
-別に私たちのマイクロカーネルから、システム全体のドライバー、ドメインカーネル、およびすべてのユーザーコードを含め、その中に書かれていました。
+みどりは、 ahead-of-time コンパイル、型安全な、 C# ベースの言語で書かれています。
+マイクロカーネル以外にも、システム全体のドライバ、ドメインカーネル、およびすべてのユーザーコードが、それで書かれています。
+
 私は道に沿っていくつかのことを示唆してきたし、今では頭にそれらに対処するための時間です。
 全体の言語がカバーする巨大なスペースであり、一連の記事がかかります。
 まずアップ？エラーモデル。
