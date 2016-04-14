@@ -8,7 +8,7 @@ I've hinted at a few things along the way and now it's time to address them head
 The entire language is a huge space to cover and will take a series of posts.
 First up? The Error Model.
 
-みどりは、 ahead-of-time コンパイル、型安全な、 C# ベースの言語で書かれています。
+Midori は、 ahead-of-time コンパイル、型安全な、 C# ベースの言語で書かれています。
 マイクロカーネル以外にも、システム全体のドライバ、ドメインカーネル、およびすべてのユーザーコードが、それで書かれています。
 
 私は道に沿っていくつかのことを示唆してきたし、今では頭にそれらに対処するための時間です。
@@ -25,8 +25,8 @@ It's right up there for me too.
 So, without further ado, let's start.
 
 方法エラーが伝えられ、特に、信頼性の高いオペレーティングシステムを記述するために使用される 1 任意の言語の基本であると扱われます。
-私たちはみどりで行った他の多くのものと同様に、「システム全体」アプローチは、数年にわたって数回の反復を取って、右のそれを得るために必要でした。
-私は定期的に、これは彼らがみどりでのプログラミングについての最も逃す事であること、しかし、古いチームメートから話を聞きます。
+私たちは Midori で行った他の多くのものと同様に、「システム全体」アプローチは、数年にわたって数回の反復を取って、右のそれを得るために必要でした。
+私は定期的に、これは彼らが Midori でのプログラミングについての最も逃す事であること、しかし、古いチームメートから話を聞きます。
 それはあまりにも私のためにそこに右のアップです。
 だから、前置き、それでは、始めましょう。
 
@@ -68,7 +68,7 @@ Exceptions, of course, facilitated recovery, but had deep type system support to
 他方で、あなたは静的に回復可能なエラーの例外をチェックしていました。
 2 は、プログラミングモデルとその背後にある力学の両方で、非常に異なっていました。
 放棄は悪びれずにそうしながら、任意のユーザーコードを実行することを拒否し、瞬時にプロセス全体を取り壊し。
-（典型的なみどりのプログラムは多くの小さな、軽量プロセスを持っていたことを覚えておいてください。）
+（典型的な Midori のプログラムは多くの小さな、軽量プロセスを持っていたことを覚えておいてください。）
 
 例外は、当然のことながら、回復を促進しますが、チェックと検証を支援するために深型システムのサポートを持っていました。
 なので結局、二つ別のエラーモデルを定義することにした。
@@ -351,7 +351,7 @@ In Midori we were able to experiment and measure, and confirm that yes, indeed, 
 There is also a secondary effect which is, because functions contain more branches, there is more risk of confusing the optimizer.
 2. どこにでも呼び出し先が失敗することが callsites に注入ブランチがあります。
 チェックは、それが困難に直接影響を測定すること、コード全体に塗りつけているので、私はこの「ピーナッツバター」のようなコストを呼び出します。
-みどりでは、実験や測定、およびはい、確かに、ここでのコストは自明であることを確認することができました。
+Midori では、実験や測定、およびはい、確かに、ここでのコストは自明であることを確認することができました。
 関数が複数のブランチが含まれているため、オプティマイザを混乱のより多くのリスクがある、ある副次的な効果もあります。
 
 
@@ -425,11 +425,11 @@ This experience certainly informed our opinion about error codes.
 この問題は、理論的ではありません。
 私は、リターンコードを無視することによって引き起こされる多数のバグに遭遇していると私はあなたも持っていると確信しています。
 確かに、この非常にエラーモデルの開発に、私のチームはいくつかの魅力的なものに遭遇しました。
-私たちはみどりに Microsoft のスピーチサーバーを移植したときにたとえば、我々は台湾の中国語（ ZH-TW ）の要求の 80 ％が失敗したことがわかりました。
+私たちは Midori に Microsoft のスピーチサーバーを移植したときにたとえば、我々は台湾の中国語（ ZH-TW ）の要求の 80 ％が失敗したことがわかりました。
 しかし、開発者がすぐに見たように失敗したわけではありません。代わりに、クライアントはちんぷんかんぷん応答を取得することになります。
 最初に、我々はそれが私たちのせいだと思いました。
 しかし、その後、私たちは、元のコードで静かに飲み込んだ HRESULT を発見しました。
-私たちはみどりにそれを乗り越えたら、バグは、私たちの顔に投げ発見し、移植直後に修正されました。
+私たちは Midori にそれを乗り越えたら、バグは、私たちの顔に投げ発見し、移植直後に修正されました。
 この経験は確かにエラーコードについての我々の意見を伝えました。
 
 
@@ -646,7 +646,7 @@ I'm convinced both can be used to write reliable code.
 私はこれらの点に反論しません。
 実際に、私は非常に両方のチェック例外とチェック例外の Java の化身の上に行くのモデルを好みます。
 私は最近、囲碁の書かれた多くを持つ、この記事を書いたとしても、私は囲碁のシンプルさと不思議を見て、私たちは、あなたがすぐにわかりますように、すべての試行で行き過ぎと必要としたのですか？よく分かりません。
-囲碁の誤差モデルは、言語の中で最も分裂局面の 1 になる傾向があります。あなたはしかし、プログラマが本当にみどりの中にコードを書いて楽しんでいた、ほとんどの言語のようにエラーが発生したずさんなことはできませんので、それは主に、おそらくです。
+囲碁の誤差モデルは、言語の中で最も分裂局面の 1 になる傾向があります。あなたはしかし、プログラマが本当に Midori の中にコードを書いて楽しんでいた、ほとんどの言語のようにエラーが発生したずさんなことはできませんので、それは主に、おそらくです。
 最後に、それはそれらを比較するのは難しいです。
 私は両方が信頼性の高いコードを書くのに使用することができる確信しています。
 
@@ -956,7 +956,7 @@ But "thankfully" we have checked exceptions from Java to learn and borrow from �
 この混乱は、不良箇所で私たちを置きます。
 特に、多くの言語は、非チェック例外を使用しているため。
 それは彼らが低レベル、信頼性の高いシステムのコードを書くために不向きであることは明らかです。
-（私はそうぶっきらぼうにこのことを言って、いくつかの C ++の敵を作ると確信しています。）年間のみどりのコードを書いた後、それは私が戻って、チェック例外を使用するコードを書くために涙をもたらします。でも、単にコードの見直しは拷問です。
+（私はそうぶっきらぼうにこのことを言って、いくつかの C ++の敵を作ると確信しています。）年間の Midori のコードを書いた後、それは私が戻って、チェック例外を使用するコードを書くために涙をもたらします。でも、単にコードの見直しは拷問です。
 しかし、「ありがたいこと」私たちは右...学び、から借りて Java からチェック例外をしていますか？
 
 ## Checked Exceptions
@@ -1040,7 +1040,7 @@ It doesn't help you to write bulletproof code and it's hard to use.
 You end up writing down a lot of gibberish in your code for little perceived benefit.
 And versioning your interfaces is a pain in the ass.
 As we'll see later, we can do better.
-つまり、最後のものは面白いです、とみどりが取ったアプローチを記述するとき、私は後でそれに返還しなければなりません。
+つまり、最後のものは面白いです、と Midori が取ったアプローチを記述するとき、私は後でそれに返還しなければなりません。
 要約すると、 Java でチェック例外のための人々の嫌悪感は、主に由来する、または少なくとも大幅に他の三つの弾丸上記、によって強化します。
 結果として得られるモデルは、両方の世界の最悪のようです。
 それはあなたが防弾コードを記述する助けにはならない、それが使用するのは難しいです。
@@ -1183,7 +1183,7 @@ C ++は、観客に応じて混合物を使用していますが、通常の物�
 Given that bugs are inherently not recoverable, we made no attempt to try.
 All bugs detected at runtime caused something called abandonment, which was Midori's term for something otherwise known as "fail-fast".
 バグが本質的に回復不可能であることを考えると、我々はしようとする試みがなされていません。
-実行時に検出されたすべてのバグは、そうでなければ、「フェイルファスト」として知られている何かのためのみどりの任期だっ放棄と呼ばれるものを、引き起こしました。
+実行時に検出されたすべてのバグは、そうでなければ、「フェイルファスト」として知られている何かのための Midori の任期だっ放棄と呼ばれるものを、引き起こしました。
 
 Each of the above systems offers abandonment-like mechanisms.
 C# has Environment.FailFast; C++ has std::terminate; Go has panic; Rust has panic!; and so on.
@@ -1287,7 +1287,7 @@ Midori's process model encouraged lightweight fine-grained isolation.
 As a result, programs and what would ordinarily be "threads" in modern operating systems were independent isolated entities.
 Safeguarding against failure of one such connection is far easier than when sharing mutable state in an address space.
 具体的には、アイソレーションが重要です。
-みどりのプロセスモデルは、軽量きめ細かい分離を奨励しました。
+Midori のプロセスモデルは、軽量きめ細かい分離を奨励しました。
 その結果、プログラムと何が通常現代のオペレーティングシステムで「スレッド」は独立した孤立したエンティティであったであろう。
 そのような接続の障害に対して保護するアドレス空間に変更可能な状態を共有する場合よりもはるかに簡単です。
 
@@ -1322,7 +1322,7 @@ It, like Midori, leverages lightweight processes connected by message passing, a
 A common pattern is the "supervisor," where some processes are responsible for watching and, in the event of failure, restarting other processes.
 This article does a terrific job articulating this philosophy - "let it crash" - and recommended techniques for architecting reliable Erlang programs in practice.
 Erlang のは、基本的な方法で言語にこのプロパティを構築するのに非常に成功しています。
-それは、みどりのように、メッセージパッシングによって接続された軽量のプロセスを活用し、フォールトトレラントなアーキテクチャを奨励しています。
+それは、 Midori のように、メッセージパッシングによって接続された軽量のプロセスを活用し、フォールトトレラントなアーキテクチャを奨励しています。
 一般的なパターンは、いくつかのプロセスが見て、障害が発生した場合に、他のプロセスを再起動する責任がある「スーパーバイザー」です。
 「それがクラッシュしましょう " - - この資料では、この理念を明確素晴らしい仕事をしていませんし、実際には信頼性の高い Erlang のプログラムを設計するための技術をお勧めします。
 
@@ -1379,7 +1379,7 @@ Unless some property of your system - isolation in your language, isolation of t
 
 Thanks to the lightweight nature of Midori processes, abandoning a process was more like abandoning a single thread in a classical system than a whole process.
 But our isolation model let us do this reliably.
-みどりプロセスの軽量な性質のおかげで、プロセスを放棄することは、より全体のプロセスよりも、古典的なシステム内の単一のスレッドを放棄するようなものでした。
+Midori プロセスの軽量な性質のおかげで、プロセスを放棄することは、より全体のプロセスよりも、古典的なシステム内の単一のスレッドを放棄するようなものでした。
 しかし、私たちの分離モデルは、私たちは確実にこれを実行しましょう。
 
 I'll admit the scoping topic is a slippery slope.
@@ -1412,7 +1412,7 @@ Bugs in Midori's kernel were handled differently.
 A bug in the microkernel, for instance, is an entirely different beast than a bug in a user-mode process.
 The scope of possible damage was greater, and the safest response was to abandon an entire "domain" (address space).
 Thankfully, most of what you'd think of being classic "kernel" functionality - the scheduler, memory manager, filesystem, networking stack, and even device drivers - was run instead in isolated processes in user-mode where failures could be contained in the usual ways described above.
-みどりのカーネルのバグは別の方法で処理しました。
+Midori のカーネルのバグは別の方法で処理しました。
 マイクロカーネルのバグは、例えば、ユーザーモードプロセスのバグとはまったく異なる獣です。
 損傷の範囲は大きかった、と最も安全な応答は、全体の「ドメイン」（アドレス空間）を放棄することでした。
 ありがたいことに、あなたは古典的な「カーネル」の機能であることを考えるだろう何の最も - スケジューラ、メモリマネージャ、ファイルシステム、ネットワークスタック、さらにはデバイスドライバが - 障害がに含まれていることができ、ユーザーモードでの孤立したプロセスで代わりに実行されました通常の方法は、上述しました。
@@ -1421,7 +1421,7 @@ Thankfully, most of what you'd think of being classic "kernel" functionality - t
 ＃バグ：放棄、アサーション、および契約
 
 A number of kinds of bugs in Midori might trigger abandonment:
-みどりのバグの種類の数は放棄を誘発する可能性があります：
+Midori のバグの種類の数は放棄を誘発する可能性があります：
 
 - An incorrect cast.
 - An attempt to dereference a null pointer.
@@ -1487,7 +1487,7 @@ I encourage you to review the National Vulnerability Database to see the sheer n
 
 In fact, the Windows TrueType Font parser, which we ported to Midori (with gains in performance), has suffered over a dozen of them in the past few years alone.
 (Parsers tend to be farms for security holes like this.)
-実際には、我々は（パフォーマンスの向上に）みどりへの移植の Windows の TrueType フォントパーサーは、単独で、過去数年間でそれらのダースの上に苦しんでいます。
+実際には、我々は（パフォーマンスの向上に） Midori への移植の Windows の TrueType フォントパーサーは、単独で、過去数年間でそれらのダースの上に苦しんでいます。
 （パーサはこのようなセキュリティホールのための農場になる傾向があります。）
 
 This has given rise to packages like SafeInt, which essentially moves you away from your native language's arithmetic operations, in favor of checked library ones.
@@ -1698,7 +1698,7 @@ Eiffel was hugely influential especially as there are many published case studie
 Research efforts like Ada-based SPARK and proposals for realtime and embedded systems too.
 Going deeper into the theoretical rabbit's hole, programming logic like Hoare's axiomatic semantics provide the foundation for all of it.
 For me, however, the most philosophical inspiration came from CLU's, and later Argus's, overall approach to error handling.
-契約は、みどりのバグをキャッチするための中心的なメカニズムでした。
+契約は、 Midori のバグをキャッチするための中心的なメカニズムでした。
 私たちは歌う＃、スペック＃のバリアントを使用する特異点、で始まるにもかかわらず、我々はすぐにバニラの C#に離れて移動し、私たちが望んで再発見しなければなりませんでした。
 我々は最終的に年間のモデルと一緒に生活した後、非常に別の場所で終わりました。
 
@@ -1768,7 +1768,7 @@ int AddOne(int value)
 ```
 
 Of course, pre- and postconditions could be mixed. For example, from our ring buffer in the Midori kernel:
-もちろん、事前条件と事後条件を混在させることができました。例えば、みどりのカーネルにおける当社のリングバッファから：
+もちろん、事前条件と事後条件を混在させることができました。例えば、 Midori のカーネルにおける当社のリングバッファから：
 
 ```
 public bool PublishPosition()
@@ -1870,7 +1870,7 @@ If we use Midori-style contracts, on the other hand, this collapses to:
 その代わりに、彼らは開発中にバグを見つけ、それを修正する必要があります。
 このすべての例外ナンセンスは非常に悪い行動を奨励しています。
 
-私たちはみどりスタイルの契約を使用する場合は、他の一方で、これはに崩壊します：
+私たちは Midori スタイルの契約を使用する場合は、他の一方で、これはに崩壊します：
 
 ```
 /// <summary>
@@ -2383,7 +2383,7 @@ If T and T? have a different physical representation, however, then converting T
 This was a minor blemish, particularly since covariant arrays become far less useful once you plug the safety holes they already have.
 
 Anyway, we eventually burned the ships on .NET Nullable<T> and went with the more composable multi-? design.
-第二に、みどりは、私たちの可変性の注釈のおかげで安全な共変アレイをサポート。
+第二に、 Midori は、私たちの可変性の注釈のおかげで安全な共変アレイをサポート。
 T と T の場合？その後、 T は[] T への変換、しかし、異なる物理的表現がありますか？[]非変換操作です。
 これは、彼らがすでに持っている安全上の穴を塞ぐ一度共変アレイがはるかに役立つようになり、特に以来、マイナーな傷でした。
 
@@ -2443,7 +2443,7 @@ Non-null needs to be the default for this to have the impact we desired.
 我々は固体の設計、およびいくつかのプロトタイプを持っていましたが、オペレーティング・システム全体を横切って、このいずれかを展開することはありません。
 C#の互換性の私達の所望のレベルに縛られた理由。
 公平を期すために、私はかなりこの 1 ビットのワッフル、と私はそれが最終的に私の決断だったとします。
-みどりの初期の頃で、私たちは「認知親しみやすさ」を望んでいましたプロジェクトの数日後に、我々は実際には C#に拡張子「アドオン」としての機能のすべてを行うことができるかどうかを検討しました。
+Midori の初期の頃で、私たちは「認知親しみやすさ」を望んでいましたプロジェクトの数日後に、我々は実際には C#に拡張子「アドオン」としての機能のすべてを行うことができるかどうかを検討しました。
 これは本格的に null 以外の種類をやってから私たちを防ぐこと後で考え方でした。
 この日に私の信念は、添加剤のアノテーションがうまく動作しないことです。スペック＃でこれを試してみました！そして、極性が常に反転感じました。
 null 以外は、これは我々が希望のインパクトを持っているためにデフォルトにする必要があります。
@@ -2601,10 +2601,10 @@ As did the C programmers, thanks to some cues we took from return codes.
 私たちは、回復可能なエラーのための例外を使用していました。
 ていない未チェックの種類ではなく、かなり Java はどちらか、種類を確認しました。
 
-まず最初の最初：みどりの例外を持っていたものの、スローとして注釈されなかったメソッドが 1 を投げることができませんでした。
+まず最初の最初： Midori の例外を持っていたものの、スローとして注釈されなかったメソッドが 1 を投げることができませんでした。
 決して、これまで。
 Java でのような全く卑劣な RuntimeExceptions は、例えば、ありませんでした。
-同じような状況は、 Java ではなく、みどりに放棄を使用していたために実行時例外を使用するので、私たちは、とにかくそれらを必要としませんでした。
+同じような状況は、 Java ではなく、 Midori に放棄を使用していたために実行時例外を使用するので、私たちは、とにかくそれらを必要としませんでした。
 
 これは、結果システムの魔法のプロパティにつながりました。
 我々のシステムで機能の 90 代の％は、例外をスローすることができませんでした！デフォルトでは、実際に、彼らはできませんでした。
@@ -3141,7 +3141,7 @@ Being able to debug the system this way was a big time-saver.
 基本的な問題は、例外が実装されている方法は、単一故障モードで、シングル、シーケンシャルスタックを前提としていることです。
 並行システムでは、あなたは 0 、 1 、または多くが起こる可能性があり、多くのスタックと多くの故障モード、持っている "一度に。」
 
-みどりが作った簡単な改善は、単に複数の内部エラーが発生したすべての例外関連のインフラ扱う例を確保しました。
+Midori が作った簡単な改善は、単に複数の内部エラーが発生したすべての例外関連のインフラ扱う例を確保しました。
 その後、少なくともプログラマはほとんど例外システムは、今日の奨励として、障害情報の離れた 1 / N 番目を投げることを決定することを余儀なくされていませんでした。
 それ以上に、しかし、私たちのスケジューリングおよびスタッククロールインフラは基本的に、サボテンスタイルのスタックについて、当社の非同期モデルのおかげで知っていたし、それらをどうしますか。
 
@@ -3335,7 +3335,7 @@ Accessing files and directories on a file system typically has failure modes suc
 我々のシステムでは、型システムの一部として宣言されなければならなかった、例外とは異なり - キーパーの素敵な側面は、設定された機能として行われたとき、多くの場合、周囲のコードがあっても、彼らが存在を知っている必要がないことです。
 キーパーの別の態様は、それらが簡単で安価であることです。
 
-みどり中のキーパーは、プロンプトの操作のために使用されるが、より頻繁に非同期の境界をスパンすることができました。
+Midori 中のキーパーは、プロンプトの操作のために使用されるが、より頻繁に非同期の境界をスパンすることができました。
 
 キーパーの標準的な例は、ファイルシステム操作を守って 1 です。
 ファイルシステム上のファイルやディレクトリへのアクセス、一般的のような故障モードを持っています。
@@ -3529,9 +3529,9 @@ I hope to see you again soon!
 我々はこれを出荷する機会があったことはありませんが、我々はそれ以来これらのレッスンのいくつかは他の設定に学んで持ってきました。
 
 Internet Explorer での Microsoft エッジブラウザ書き直し時には、例えば、我々はいくつかの領域に放棄を採用しました。
-みどりエンジニアによって適用する鍵 1 は、 OOM ました。
+Midori エンジニアによって適用する鍵 1 は、 OOM ました。
 古いコードは、私が先に説明し、ほとんど常に間違ったことをしたとしてもたつくしようとしていました。
-私の理解では、既存のコードベースを移植する際みどりで定期的に私たちの経験だったとして放棄は、数多く潜んでいるバグを発見したということです。
+私の理解では、既存のコードベースを移植する際 Midori で定期的に私たちの経験だったとして放棄は、数多く潜んでいるバグを発見したということです。
 素晴らしいところは、あまりにも放棄は、プログラミング言語に至るまで、既存のコード-拠点で採用することができる建築の規律のよりであるということです。
 
 きめの細かい分離のアーキテクチャ基盤は、しかし、多くのシステムでは、このアーキテクチャの非公式の概念を持っている、非常に重要です。
@@ -3547,9 +3547,9 @@ C ++に - 契約を含む - 最近では、我々はこの規律のいくつか�
 私は知識の継続的な共有がさらに大規模な採用にこれらのアイデアのいくつかをリードすることを期待しています。
 
 囲碁、 Rust 、および Swift は、その間に世界をいくつかの非常に良いシステム-適切なエラーモデルを与えていることと、もちろん、私が述べました。
-私はここにあるいくつかのマイナーなニットを持っているかもしれないが、現実には、彼らが我々はみどりの旅を始めた時点で、業界にいたものを超えた世界だということです。
+私はここにあるいくつかのマイナーなニットを持っているかもしれないが、現実には、彼らが我々は Midori の旅を始めた時点で、業界にいたものを超えた世界だということです。
 これは、システム・プログラマーであることには良い時間です！
 
 次回は、私は言語について詳しく説明します。
-具体的には、みどりのアーキテクチャ、言語サポート、およびライブラリの魔法の万能薬を使用して、ガベージコレクタを飼いならすことができた方法を見ていきます。
+具体的には、 Midori のアーキテクチャ、言語サポート、およびライブラリの魔法の万能薬を使用して、ガベージコレクタを飼いならすことができた方法を見ていきます。
 私はすぐに再びお会いしたいです！
