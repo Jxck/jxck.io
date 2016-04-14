@@ -110,7 +110,7 @@ HTTP には、 **Conditional GET** (条件付き GET) という仕組みがあ�
 
 したがって「**キャッシュは効かせたいが、更新が多いのでなるべく新鮮なリソースを提供したい。**」などといった要望に対処するのが難しかった。
 
-そこで提案されたのが **Stale-While-Revalidate** である。
+そこで提案されたのが **Stale-While-Revalidate** (SwR)である。
 
 簡単に言えば「**キャッシュから表示するが、裏で非同期にキャッシュを更新しておく**」という仕組みである。
 
@@ -129,7 +129,94 @@ TODO: 図
 Cache-Control: max-age=36000, stale-while-revalidate=3600
 ```
 
+この設定の場合
 
+- 36000s はキャッシュが新鮮と判断し、それをそのまま使用する
+- 36000s 過ぎたらキャッシュは古いと判断するが、次の 3600s の間はそれを返す
+- 3600s の間にキャッシュの更新を試みる
+- 3600s 経過してもキャッシュが更新できなければ、キャッシュが完全に古くなったとみなし捨てる
+
+よって、 SwR の期間に非同期で行われたリクエストへのレスポンスに `Cache-Control` が付いていればまたキャッシュが更新される。
+
+ここでの更新がうまくいけば、ユーザにとっては最初の一回以降は常にキャッシュがヒットしているように見える。
+
+もし、なんらかの事情でキャッシュの更新が裏で行われなかったとしても `max-age + stale-while-revalidate` の時間経てば完全にキャッシュは切れる。
+
+
+## 鮮度重視のキャッシュ
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A response containing
+
+```
+Cache-Control: max-age=600, stale-while-revalidate=30
+```
+
+indicates that it is fresh for 600 seconds, and it may continue to be
+served stale for up to an additional 30 seconds while an asynchronous
+validation is attempted.
+
+If validation is inconclusive, or if there is not traffic that triggers it,
+after 30 seconds the stale-while-revalidate function will cease to operate,
+and the cached response will be "truly" stale
+(i.e., the next request will block and be handled normally).
+
+これは 600s はキャッシュがフレッシュ(新鮮) であり、追加で 30s はステイル(古い)
+キャッシュを、非同期のバリデーションが実行される裏で提供される。
+バリデーションが確定しない、もしくはトラフィックが発生しなかった場合、
+30s 後には stale-while-revalidate は実行を終了し、キャッシュは完全なステイルと判断される。
+(i.e., 次のリクエストは実際にフェッチが走る)
+
+
+Generally, servers will want to set the combination of max-age and stale-while-revalidate to the longest total potential freshness lifetime that they can tolerate.
+For example, with both set to 600, the server must be able to tolerate the response being served from cache for up to 20 minutes.
+
+通常、サーバは max-age と stale-while-revalidate をセットで用いることで、キャッシュのライフタイムを最大化する。
+例えば、両方を 600s にしたら、キャッシュは最大 20min 使われる。
+
+
+Since asynchronous validation will only happen if a request occurs after the response has become stale,
+
+非同期バリデーションのリクエストは、レスポンスがステイルになった後に発生するので、
+
+
+but before the end of the stale-while-revalidate window,
+stale-while-revalidate の期間が切れる前に、期間のサイズと、
+
+the size of that window and the likelihood of a request
+期間の長さとリクエストの可能性
+
+during it determines how likely it is
+どのくらいそうか判明する
+
+that all requests will be served without delay.
+全てのリクエストが遅延なく提供される
+
+
+
+
+If the window is too small, or traffic is too sparse, some requests will fall outside of it, and block until the server can validate the cached response.
+
+window が小さすぎると、トラフィックが貧弱だったり、リクエストの幾つかが落ちたり、サーバがキャッシュしたレスポンスをバリデートできるまでブロックします。
 
 
 
