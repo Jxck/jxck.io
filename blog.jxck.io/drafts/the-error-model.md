@@ -196,11 +196,11 @@ JavaとC＃の闘争のような言語彼らはシナリオの交差点で右に
 
 Finally, also recall that this story began in the mid-2000s timeframe, before Go, Rust, and Swift were available for our consideration.
 These three languages have done some great things with Error Models since then.
-最後に、この物語が進み、錆の前に、2000年代半ばの時間枠に始まり、スウィフトは、私たちの検討のために利用可能であったことを思い出してください。
+最後に、この物語が進み、Rustの前に、2000年代半ばの時間枠に始まり、Swiftは、私たちの検討のために利用可能であったことを思い出してください。
 これらの3つの言語は、それ以来、誤差モデルといくつかの偉大なことを行っています。
 
 Java や C# のそれはまだ途上だったし、今では Go, Rust, Swift が割とうまくできてる。
-ジャワやC＃のそれはまだ途上だったし、今では囲碁、錆、スウィフトが割とうまくできてます。
+ジャワやC＃のそれはまだ途上だったし、今では囲碁、Rust、Swiftが割とうまくできてます。
 
 
 ### Error Codes
@@ -301,8 +301,8 @@ Many functional languages use return codes disguised in monads and named things 
 This approach removes several major drawbacks to return codes that we're about to discuss, especially compared to C.
 Rust has largely adopted this model but has dome some exciting things with it for systems programmers.
 多くの関数型言語は、プログラミングとパターンマッチングのデータフロースタイルと組み合わせると、はるかに自然な感じモナドとOption <T>、たぶん、<T>、またはエラー<T>のような名前のものに偽装したリターンコードを使用します。
-このアプローチは、特にC.に比べて、私たちが議論しようとしているコードを返すために、いくつかの主要な欠点​​を除去します
-錆は、主にこのモデルを採用したが、システム・プログラマのためのそれとドームいくつかのエキサイティングなものを持っていました。
+このアプローチは、特にC.に比べて、私たちが議論しようとしているコードを返すために、いくつかの主要な欠点を除去します
+Rustは、主にこのモデルを採用したが、システム・プログラマのためのそれとドームいくつかのエキサイティングなものを持っていました。
 
 関数型では Option<T>, Maybe<T>, Error<T> などのモナドとデータフロースタイル及びパターンマッチの組み合わせで、 code を返す部分を補っている。
 C と比べて格段によくなっている。
@@ -310,7 +310,7 @@ Rust はより広くこれを取り入れている。
 
 
 Despite their simplicity, return codes do come with some baggage; in summary:
-そのシンプルにもかかわらず、戻りコードは、いくつかの荷物が付属しています。要約すれ​​ば：
+そのシンプルにもかかわらず、戻りコードは、いくつかの荷物が付属しています。要約すれば：
 
 シンプルな代わりに、 return code は多くの荷物が必要になる。
 
@@ -323,7 +323,7 @@ Despite their simplicity, return codes do come with some baggage; in summary:
 
 
 Let's discuss each one, in order, with examples from the languages cited above.
-言語の例としては、先に引用してのは、順番に、それぞれを説明しましょう​​。
+言語の例としては、先に引用してのは、順番に、それぞれを説明しましょう。
 
 
 
@@ -546,7 +546,7 @@ D、C＃の、およびJavaなどの言語では、より直接的に、この�
 これらのすべては、goto文のエラーパターンを根絶するのに役立ちます。
 
 Next, imagine my function wants to return a real value and the possibility of an error? We've burned the return slot already so there are two obvious possibilities:
-次に、私の関数は、実際の値との誤差の可能性を返すように望んでいると想像？我々は2つ​​の明白な可能性があるので、既に返却口を燃やしました：
+次に、私の関数は、実際の値との誤差の可能性を返すように望んでいると想像？我々は2つの明白な可能性があるので、既に返却口を燃やしました：
 
 1.  We can use the return slot for one of the two values (commonly the error), and another slot - like a pointer parameter - for the other of the two (commonly the real value).
 This is the common approach in C.
@@ -612,7 +612,7 @@ func foo() (int, error) {
 
 And callsites are much cleaner as a result.
 Combined with the earlier feature of single-line if checking for errors - a subtle twist, since at first glance the value return wouldn't be in scope, but it is - this gets a touch nicer:
-そしてcallsitesは、​​結果として非常にクリーンです。
+そしてcallsitesは、結果として非常にクリーンです。
 エラーのチェック場合は、単一行の以前の特徴と組み合わせること - 微妙なねじれを、一見値のリターンがスコープ内ではないので、それがある - これは、タッチよりよい取得します。
 
 ```
@@ -678,7 +678,7 @@ The trick here is to support all the familiar throw and catch patterns, but usin
 
 Although Rust also uses error codes it is also in the style of the functional error types.
 For example, imagine we are writing a function named bar in Go: we'd like to call foo, and then simply propagate the error to our caller if it fails:
-錆にもエラーコードを使用していますが、それは機能的なエラータイプのスタイルでもあります。
+Rustにもエラーコードを使用していますが、それは機能的なエラータイプのスタイルでもあります。
 たとえば、私たちはゴーで関数という名前のバーを書いていると想像：それが失敗した場合、私たちがfooを呼び出し、その後、単に私たちの呼び出し側にエラーを伝播したいと思います：
 
 ```
@@ -708,7 +708,7 @@ fn bar() -> Result<(), Error> {
 ```
 
 But it gets better. Rust has a try! macro that reduces boilerplate like the most recent example to a single expression:
-しかし、それは良くなります。錆は、tryを持っています！単一の式に最も最近の例のような決まり文句を低減するマクロ：
+しかし、それは良くなります。Rustは、tryを持っています！単一の式に最も最近の例のような決まり文句を低減するマクロ：
 
 ```
 fn bar() -> Result<(), Error> {
@@ -912,7 +912,7 @@ The article Exception Handling: A False Sense of Security sums this up well.
 関数は、4種類のいずれかに分類されます。ノースローフォワードプログレスが保証されていて、例外が出現しないことを意味しません。強力な安全性は、状態遷移がアトミックに起こると、障害が部分的にコミットされた状態や壊れた不変式を背後に残していないことを意味します。基本的な安全機能は、部分的に状態の変更をコミットするかもしれませんが、不変条件が破壊されず、漏れが防止されている、ことを意味します。そして最後に、何の安全性は、可能なもののことを意味します。
 この分類は非常に有用であると私はどちらか、このアプローチまたは類似のものを使用して、誰もが意図的とエラー動作に関する厳格されることをおすすめします。
 あなたは、エラーコードを使用している場合でも。
-問題は、それが他の機能の小さなと​​簡単に監査可能なセットを呼び出すリーフノードデータ構造を除いて、非チェック例外を使用して、システムにこれらのガイドラインに従うことが、本質的に不可能だ、です。
+問題は、それが他の機能の小さなと簡単に監査可能なセットを呼び出すリーフノードデータ構造を除いて、非チェック例外を使用して、システムにこれらのガイドラインに従うことが、本質的に不可能だ、です。
 ちょうどそれについて考える：あなたが投げるすべての関数呼び出しの可能性を考慮する必要があり、それに応じて周囲のコードを保護するだろう、どこでも強力な安全性を保証します。
 それは幸運取得し、唯一のnoexcept関数を呼び出すか、単に最高のを期待して、（それがコンピュータによって確認されていない）別の関数の文書化された英語の散文を信頼し、守備プログラミングを意味するのいずれか。
 スマートポインタのおかげで、これらの日とかなり共通 - - RAIIのおかげで、基本的な安全の漏れ自由の側面は、達成しやすいですが、でも、壊れた不変量は、防止するのが難しいです。
@@ -1189,9 +1189,9 @@ C# has Environment.FailFast; C++ has std::terminate; Go has panic; Rust has pani
 Each rips down the surrounding context abruptly and promptly.
 The scope of this context depends on the system - for example, C# and C++ terminate the process, Go the current Goroutine, and Rust the current thread, optionally with a panic handler attached to salvage the process.
 上記システムの各々は、放棄のようなメカニズムを提供しています。
-C＃の環境を持っています。フェイルファスト; C ++は、スタンダード::終了を持っています。 Goがパニックを持っています。錆がパニックを持っています！;等々。
+C＃の環境を持っています。フェイルファスト; C ++は、スタンダード::終了を持っています。 Goがパニックを持っています。Rustがパニックを持っています！;等々。
 それぞれが突然かつ迅速に周囲の状況を下にリッピング。
-この文脈の範囲は、システムによって異なります - 例えば、C＃とC ++のプロセスを終了し、現在のゴルーチン、及び錆に現在のスレッドを移動し、必要に応じてプロセスをサルベージするために取り付けられたパニックハンドラで。
+この文脈の範囲は、システムによって異なります - 例えば、C＃とC ++のプロセスを終了し、現在のゴルーチン、及びRustに現在のスレッドを移動し、必要に応じてプロセスをサルベージするために取り付けられたパニックハンドラで。
 
 Although we did use abandonment in a more disciplined and ubiquitous way than is common, we certainly weren't the first to recognize this pattern.
 This Haskell essay, articulates this distinction quite well:
@@ -1323,7 +1323,7 @@ This article does a terrific job articulating this philosophy - "let it crash" -
 Erlangのは、基本的な方法で言語にこのプロパティを構築するのに非常に成功しています。
 それは、みどりのように、メッセージパッシングによって接続された軽量のプロセスを活用し、フォールトトレラントなアーキテクチャを奨励しています。
 一般的なパターンは、いくつかのプロセスが見て、障害が発生した場合に、他のプロセスを再起動する責任がある「スーパーバイザー」です。
-「それがクラッシュしましょう​​ " - - この資料では、この理念を明確素晴らしい仕事をしていませんし、実際には信頼性の高いErlangのプログラムを設計するための技術をお勧めします。
+「それがクラッシュしましょう " - - この資料では、この理念を明確素晴らしい仕事をしていませんし、実際には信頼性の高いErlangのプログラムを設計するための技術をお勧めします。
 
 The key thing, then, is not preventing failure per se, but rather knowing how and when to deal with it.
 重要なのは、それから、それ自体の故障を防止されるのではなく、どのように知り、ときにそれに対処します。
@@ -1379,7 +1379,7 @@ Unless some property of your system - isolation in your language, isolation of t
 Thanks to the lightweight nature of Midori processes, abandoning a process was more like abandoning a single thread in a classical system than a whole process.
 But our isolation model let us do this reliably.
 みどりプロセスの軽量な性質のおかげで、プロセスを放棄することは、より全体のプロセスよりも、古典的なシステム内の単一のスレッドを放棄するようなものでした。
-しかし、私たちの分離モデルは、私たちは確実にこれを実行しましょう​​。
+しかし、私たちの分離モデルは、私たちは確実にこれを実行しましょう。
 
 I'll admit the scoping topic is a slippery slope.
 Maybe all the data in the world has become corrupt, so how do you know that tossing the process is even enough?! There is an important distinction here.
@@ -1446,7 +1446,7 @@ A number of kinds of bugs in Midori might trigger abandonment:
 Our fundamental belief was that each is a condition the program cannot recover from.
 Let's discuss each one.
 私たちの基本的な信念は、各プログラムはから回復することができない状態であるということでした。
-それでは、それぞれを説明しましょう​​。
+それでは、それぞれを説明しましょう。
 
 ## Plain Old Bugs
 
@@ -1547,7 +1547,7 @@ But it has a huge downside: it's error prone and leads to huge amounts of freque
 And when code-paths are untested, they usually don't work.
 これは、1つの微妙な利点を有する：割り当ては、痛みを伴う思考を必要とするため、この技術を使用するプログラムは、多くの場合、より質素、彼らはメモリを使用する方法で意図的です。
 しかし、それは巨大な欠点を持っている：それはエラーが発生しやすいですし、頻繁にテストされていないコードパスの膨大な量につながります。
-コー​​ドパスがテストされていないされている場合、それらは通常は動作しません。
+コードパスがテストされていないされている場合、それらは通常は動作しません。
 
 Developers in general do a terrible job making their software work properly right at the edge of resource exhaustion.
 In my experience with Windows and the .NET Framework, this is where egregious mistakes get made.
@@ -1557,7 +1557,7 @@ Chris Brumme's wondrous Reliability post describes this and related challenges i
 一般的に、開発者は、リソースの枯渇のエッジで適切に右のソフトウェアを機能させるひどい仕事をします。
 とんでもないミスが行われますどこのWindowsと.NET Frameworkとの私の経験では、これがあります。
 そして、それは、.NETのいわゆる制約実行領域のように、途方もなく複雑なプログラミングモデルにつながります。
-沿って足を引きずっプログラムは、メモリのさえ​​小さな量を割り当てることができ、迅速に信頼性の敵になることができます。
+沿って足を引きずっプログラムは、メモリのさえ小さな量を割り当てることができ、迅速に信頼性の敵になることができます。
 クリスBrummeの不思議な信頼性ポストは、そのすべての血みどろの栄光でこれと関連した課題について説明します。
 
 Parts of our system were of course "hardened" in a sense, like the lowest levels of the kernel, where abandonment's scope would be necessarily wider than a single process.
@@ -1590,7 +1590,7 @@ For example:
 しかし、これはそれをサポートするメカニズムがあった、少しも一般的ではありませんでした。
 おそらく最高の動機と例がこれです：想像あなたのプログラムは、サイズが1MBのバッファを割り当てるしたいと考えています。
 この状況は、あなたの普通のありふれサブ1キロバイトのオブジェクトの割り当てとは異なります。
-開発者は、非常によく考え、明示的にサイズが1メガバイトの連続した​​ブロックが利用可能で、それに応じてそれに対処されないかもしれないという事実に対処するために調製することができます。
+開発者は、非常によく考え、明示的にサイズが1メガバイトの連続したブロックが利用可能で、それに応じてそれに対処されないかもしれないという事実に対処するために調製することができます。
 例えば：
 
 ```
@@ -1796,7 +1796,7 @@ This includes eliminating redundant checks: either explicitly encoded in contrac
 And they are trained to perform these analyses in reasonable amounts of time, lest programmers switch to a different, faster compiler.
 The theorem proving techniques simply did not scale for our needs; our core system module took over a day to analyze using the best in breed theorem proving analysis framework!
 これは、我々は他の努力とは異なる領域です。
-契約は最近、高度な証​​明技法で使用するプログラムロジックの表現として人気となっています。
+契約は最近、高度な証明技法で使用するプログラムロジックの表現として人気となっています。
 このようなツールは、多くの場合、世界的な分析を使用して、述べ契約に関する真理やfalsitiesを証明します。
 我々は単純なアプローチを取りました。
 デフォルトでは、契約は、実行時にチェックされます。
@@ -1963,7 +1963,7 @@ For a long time, we had the same three levels for contracts that we did assertio
 
 我々は彼らが署名の一部になりたいのに対し、まず、このように書かれた契約は、APIの実装の一部です。
 これは理論上の懸念のように見えるかもしれませんが、それは理論的には程遠いです。
-私たちは、IDEやデバッガなどのツールがcallsitesで契約を表示することができますので、結果として得られるプログラムが内蔵されたメタデータを含むよ​​うにしたいです。
+私たちは、IDEやデバッガなどのツールがcallsitesで契約を表示することができますので、結果として得られるプログラムが内蔵されたメタデータを含むようにしたいです。
 そして、我々はツールが契約から自動生成ドキュメントへの立場になりたいです。
 あなたが何らかの形で（ハックです）後でそれを展開するための方法を分解しない限り、実装でそれらを埋め込むすることはできません。
 
@@ -2122,7 +2122,7 @@ On the other hand, I was always disappointed by two specific areas of wiggle roo
 型システムでは、型を使用して変数の属性をエンコードすることができます。
 タイプは、変数が保持している可能性のある予想される範囲の値を制限します。
 契約は、同様に、変数が保持する値の範囲をチェックします。
-違い？タイプは通常、関数にローカルチェックして適度に安価であり、厳格かつ構成可能な誘導性規則を通じてコン​​パイル時に証明され、常にではないが、開発者が執筆した注釈によって支援されています。
+違い？タイプは通常、関数にローカルチェックして適度に安価であり、厳格かつ構成可能な誘導性規則を通じてコンパイル時に証明され、常にではないが、開発者が執筆した注釈によって支援されています。
 契約は、結果として、言語自体でエンコードされた任意の論理を使用してはるかに少ない厳しい仕様を可能にすることが可能とそうでない場合は、実行時に、およびコンパイル時に実証されています。
 
 それらはコンパイル時にチェックであることが保証されているので種類は、好ましいです。そして、チェックして高速であることが保証。
@@ -2243,7 +2243,7 @@ Let's now say that the indexer actually returns null to indicate the key was mis
 地図自体がnullではありません。
 その中のint型のキーはNULLにすることはできません。
 その中の顧客値もNULLにすることはできません。
-それでは、インデクサーが実際に欠けていたキーを示すためにnullを返すとしましょう​​：
+それでは、インデクサーが実際に欠けていたキーを示すためにnullを返すとしましょう：
 
 
 ```
@@ -2322,7 +2322,7 @@ There are two camps:
 
 - The .NET camp: a is object; b, c, and d are object?.
 - The functional language camp: a is object; b and c are object?; d is object??.
-- .NETキャンプ：オブジェクトです。 B、​​C、Dは物体であります？
+- .NETキャンプ：オブジェクトです。 B、C、Dは物体であります？
 - 関数型言語のキャンプは：オブジェクトです。 b及びcは、オブジェクトがありますか？; dは??オブジェクトです。
 
 In other words, the .NET camp thinks you should collapse any sequence of 1 or more ?s into a single ?.
@@ -2452,7 +2452,7 @@ We only explored it in earnest once contracts were a known quantity, and we noti
 It would have been complex and expensive, however this would have been a particularly killer combination if we nuked the value type distinction at the same time.
 Live and learn!
 私の最大の後悔の一つは、我々がnull以外の種類に限り待っていたということです。
-契約が既知量であった、そして我々は、xを必要とする何千ものに気づいたら、私たちは本格的にそれを探求しました！=すべての場所で​​ゼロにします。
+契約が既知量であった、そして我々は、xを必要とする何千ものに気づいたら、私たちは本格的にそれを探求しました！=すべての場所でゼロにします。
 我々は同時に値型の区別を被爆場合、それは複雑で高価であったであろう、しかしこれは、特にキラー組み合わせだったでしょう。
 生活し、学びます！
 
@@ -2846,7 +2846,7 @@ This delivered many of the strong benefits of return codes, but without all the 
 (Both Rust and Swift now support a similar syntax.
 I have to admit I'm sad we didn't ship this to the general public years ago.
 Their implementations are very different, however consider this a huge vote of confidence in their syntax.)
-（錆とスウィフトの両方が、今似た構文をサポートしています。
+（RustとSwiftの両方が、今似た構文をサポートしています。
 私は、私たちが一般の人々年前にこれを出荷しませんでした悲しい認めざるを得ません。
 その実装は、しかし、その構文に自信のこの巨大な投票を検討し、非常に異なっています。）
 
@@ -2936,7 +2936,7 @@ Both certainly had their place, although most developers preferred the familiar 
 To illustrate common usage, imagine you want to log all errors that occur, before repropagating the exception.
 Though this is a common pattern, using try/catch blocks feels a little too control flow heavy for my taste:
 また、エラーに対処するためのいくつかの構文糖を提供しました。
-try / catchブロックスコープコンストラクトは、ローカルにできるだけエラ​​ー処理の我々の意図のベストプラクティスに従っている場合は特に、少し冗長です。
+try / catchブロックスコープコンストラクトは、ローカルにできるだけエラー処理の我々の意図のベストプラクティスに従っている場合は特に、少し冗長です。
 また、まだあなたがリターンコードの観点で考えている場合は特に、いくつかのためにその不幸な後藤感のビットを保持します。
 それは単にT値または例外のいずれかであった私たちは結果<T>と呼ばれるタイプ、に道を譲りました。
 
@@ -2985,7 +2985,7 @@ We also supported NaN-style propagation of dataflow errors by lifting access to 
 For example, let's say I have two `Result<int>`s and want to add them together.
 I can do so:
 また、 `結果<T>`のうち、Tsのメンバーへのアクセスを持ち上げて、データフローのエラーのNaNのスタイルの伝播をサポートしていました。
-たとえば、のは、私は2つの `結果<整数>` sのを持っているし、それらを追加したいとしましょう​​。
+たとえば、のは、私は2つの `結果<整数>` sのを持っているし、それらを追加したいとしましょう。
 私はそうすることができます。
 
 ```
@@ -3076,7 +3076,7 @@ In summary, the exceptions approach was 7% smaller and 4% faster as a geomean ac
 これらすべての隠された制御フローエッジ！
 
 いずれにしても、この演習は非常に生き生きとリターンコードの欠点を示しています。
-すべてのその無神経な人 - ほとんど必要ありませんされることになって（もちろん、その障害はまれである、と仮定）は - あなたのプログラムの黄金のパ​​ス性能でいじくる、ホットパス上にあります。
+すべてのその無神経な人 - ほとんど必要ありませんされることになって（もちろん、その障害はまれである、と仮定）は - あなたのプログラムの黄金のパス性能でいじくる、ホットパス上にあります。
 これが私たちの最も重要な原則の一つに違反します。
 
 私は私の最後のポストで私たちのデュアルモード実験の結果を説明しました。
@@ -3142,7 +3142,7 @@ Being able to debug the system this way was a big time-saver.
 
 みどりが作った簡単な改善は、単に複数の内部エラーが発生したすべての例外関連のインフラ扱う例を確保しました。
 その後、少なくともプログラマはほとんど例外システムは、今日の奨励として、障害情報の離れた1 / N番目を投げることを決定することを余儀なくされていませんでした。
-それ以上に、しかし、私たちのスケジューリングおよびスタッククロールインフラは基本的に、サボテン​​スタイルのスタックについて、当社の非同期モデルのおかげで知っていたし、それらをどうしますか。
+それ以上に、しかし、私たちのスケジューリングおよびスタッククロールインフラは基本的に、サボテンスタイルのスタックについて、当社の非同期モデルのおかげで知っていたし、それらをどうしますか。
 
 最初に、我々は非同期の境界を越えて例外をサポートしていませんでした。
 最終的に、しかし、我々は非同期プロセスの境界を越えて、任意の型指定された例外条項とともに、スロー宣言する機能を拡張しました。
@@ -3235,7 +3235,7 @@ Thanks to exceptions being immutable, and the token above being immutable, a com
 For example:
 建設時には、不変のトークンが提供され、ことに注意してください。スローを抑制するために、リセットが呼び出され、マッチングトークンが提供されなければなりません。
 トークンが一致しない場合、放棄が発生します。
-アイデアは、互いにしっかりとトークンを共有することは行うことは容易であるように、通常は同じであるか、または少なくとも互いに​​共謀に投げることとアボートのパーティーを引くことを意図しています。
+アイデアは、互いにしっかりとトークンを共有することは行うことは容易であるように、通常は同じであるか、または少なくとも互いに共謀に投げることとアボートのパーティーを引くことを意図しています。
 これはアクションで偽造不可能な機能などのオブジェクトの良い例です。
 
 そして、はい、スタック上のコードの任意の部分は放棄をトリガすることができますが、そのようなコードはすでに、単にnullを参照解除することによってそれを行うことができます。
@@ -3393,7 +3393,7 @@ Unfortunately, they're done using ambient handlers on the callstack, rather than
 （たぶんプログラムは、ユーザを促し、彼女は書き込みアクセス権を持つアカウントに切り替えました。）パターンのこの部分はオプションでしたが、それは、エラーを処理したくなかった場合に示される各ケースで、キーパーが例外をスローする可能性があります。
 
 最後に、私は（SEH）システムの処理のWindowsの構造化例外は、概念的に、この同じことを達成しようとしている「継続可能」の例外をサポートしていることに注意してください。
-彼らはいくつかのコードは、断層運動計算を再起動する方法を決定しましょう​​。
+彼らはいくつかのコードは、断層運動計算を再起動する方法を決定しましょう。
 有意に多くのエラーが発生しやすい - - キーパーパターンよりも、残念ながら、彼らはむしろ、言語のファーストクラスのオブジェクトよりも、コールスタック上の周囲のハンドラを使用して、これまでにあまりエレガントです完了です。
 
 ## Future Directions: Effect Typing
@@ -3545,7 +3545,7 @@ C ++に - 契約を含む - 最近では、我々はこの規律のいくつか�
 
 私は知識の継続的な共有がさらに大規模な採用にこれらのアイデアのいくつかをリードすることを期待しています。
 
-囲碁、錆、およびスウィフトは、その間に世界をいくつかの非常に良いシステム-適切なエラーモデルを与えていることと、もちろん、私が述べました。
+囲碁、Rust、およびSwiftは、その間に世界をいくつかの非常に良いシステム-適切なエラーモデルを与えていることと、もちろん、私が述べました。
 私はここにあるいくつかのマイナーなニットを持っているかもしれないが、現実には、彼らが我々はみどりの旅を始めた時点で、業界にいたものを超えた世界だということです。
 これは、システム・プログラマーであることには良い時間です！
 
