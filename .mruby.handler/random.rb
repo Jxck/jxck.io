@@ -7,8 +7,8 @@ Proc.new do |env|
   now = Time.now.to_s
   random = (0...8).map{ ('A'..'Z').to_a[rand(26)] }.join
 
-  ext = File.extname(env["PATH_INFO"])
-  ext = ".html" if ext == ""
+  ext = File.extname(env["PATH_INFO"]).gsub('.', '')
+  ext = "html" if ext == ""
 
   header = {
     "Content-Type" => "text/#{ext}; charset=utf-8",
@@ -17,7 +17,7 @@ Proc.new do |env|
 
   body = ""
   case ext
-  when ".json"
+  when "json"
     body = <<-EOS
 {
   seq: "#{seq}",
@@ -25,13 +25,13 @@ Proc.new do |env|
   random: "#{random}"
 }
 EOS
-  when ".html"
+  when "html"
     body =<<-EOS
 <!DOCTYPE html>
 <meta charset=utf-8>
 <title>random</title>
 <h1>Test</h1>
-<a href=/random>/random</a>
+<a href=./random>reload</a>
 <dl>
   <dt>seq</dt><dd>#{seq}</dd>
   <dt>now</dt><dd>#{now}</dd>
