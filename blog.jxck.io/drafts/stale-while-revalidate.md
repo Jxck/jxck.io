@@ -1,12 +1,16 @@
-# Stale-While-Revalidate の Service Worker 実装によるブラウザキャッシュ最適化
+#[SwR][http][cache][performance] Stale-While-Revalidate ヘッダによるブラウザキャッシュの非同期更新
 
 ## Intro
 
-Web においてキャッシュの扱いは常に難しく、パフォーマンスにおいてキャッシュは永遠の課題である。
+システムにおいてキャッシュの設計は永遠の課題であり、 Web のパフォーマンスにおいても非常に重要である。
 
-そこで、新しく提案されている Stale-Whilte-Revalidate ヘッダを解説する。
+<!--Web においてキャッシュの扱いは常に難しく、パフォーマンスにおいてキャッシュは永遠の課題である。-->
 
-また、これを Service-Worker を用いて実装し、対応した経緯について記す。
+Web では、HTTP ヘッダを用いてブラウザやプロキシにキャッシュの制御を指定する。
+
+Stale-Whilte-Revalidate ヘッダは、このキャッシュ制御に選択肢を追加する新しい仕様である。
+
+このヘッダの概要と、本サイトへの適用を解説する。
 
 
 ## Web におけるキャッシュ
@@ -154,6 +158,24 @@ Cache-Control: max-age=3600, stale-if-error=360
 これにより、ブラウザのエラー画面が表示されるのを防ぐことができる。
 
 もちろん、上記二つは組み合わせて使うことができる。
+
+
+## SwR のデモ
+
+執筆時点では、実装ブラウザは Chrome のみであり、フラグを有効にすることで使用できる。
+
+[chrome://flags/#enable-stale-while-revalidate](chrome://flags/#enable-stale-while-revalidate)
+
+以下に用意したデモページは、 SwR ヘッダを有効にしている。
+
+
+https://labs.jxck.io/stale-while-revalidate/
+
+
+```
+Cache-Control: max-age=5, stale-while-revalidate=10, stale-if-error=15
+```
+
 
 
 ## SwR を用いたキャッシュ戦略の考察
