@@ -152,7 +152,13 @@ class Builder {
   inlineCode (node) { return h`<code>${node.value}</code>`; }
   blockquote (node) { return h`<blockquote>${node.value}</blockquote>\n`; }
   listItem   (node) { return `<li>${node.value}\n`; }
-  link       (node) { return `<a href="${node.url}">${node.value}</a>`; }
+  link       (node) {
+    if (!this.ampurl && node.url.match(/^chrome:\/\//)) {
+      // amp page ignores chrome:// url
+      return node.url;
+    }
+    return `<a href="${node.url}">${node.value}</a>`;
+  }
   image      (node) {
     let width = '';
     let height = '';
