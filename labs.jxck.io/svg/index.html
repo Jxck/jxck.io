@@ -9,6 +9,11 @@ img {
   border: solid 1px #000;
   background: #000;
 }
+svg {
+  background-color: black;
+  display: block;
+  fill: white;
+}
 pre {
   background: #ccc;
 }
@@ -90,6 +95,10 @@ window.addEventListener('DOMContentLoaded', () => {
 <h2 id=503>503</h2>
 <img width=200 height=200 src=503.svg>
 <pre id=503.svg></pre>
+
+<svg width=200 height=200>
+  <use width=100% height=100% xlink:href="humans.svg#humans"/>
+</svg>
 
 <footer>
   <address class=copyright>Copyright &copy; 2013 <a href=//www.jxck.io>Jxck</a>. All Rights Reserved.</address>
