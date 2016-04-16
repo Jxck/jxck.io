@@ -6,7 +6,7 @@
 
 Web では、 HTTP ヘッダを用いてブラウザやプロキシにキャッシュの制御を指定する。
 
-Stale-Whilte-Revalidate ヘッダは、このキャッシュ制御に選択肢を追加する新しい仕様である。
+Stale-While-Revalidate ヘッダは、このキャッシュ制御に選択肢を追加する新しい仕様である。
 
 このヘッダの概要と、本サイトへの適用を解説する。
 
@@ -194,21 +194,28 @@ Cache-Control: max-age=3600, stale-if-error=360
 
 [chrome://flags/#enable-stale-while-revalidate](chrome://flags/#enable-stale-while-revalidate)
 
-以下に用意したデモページは、 SwR ヘッダを有効にしている。
+以下に用意したデモページを用意した。
 
 
 https://labs.jxck.io/stale-while-revalidate/
+
+
+サーバは、アクセスの度に異なるシーケンス番号、タイムスタンプ、ランダムな文字列を返すようになっている。
+
+そして、レスポンスに以下のヘッダを追加しているため、アクセスを繰り返せば挙動が確認できるだろう。
+(Chrome はリロードではキャッシュを無視する場合があるため、画面に用意したリンクを踏むこと)
 
 
 ```
 Cache-Control: max-age=5, stale-while-revalidate=10, stale-if-error=15
 ```
 
-以下は Chrome の dev tools とサーバ側のアクセスログを表示している。
+
+以下にデモのキャプチャを用意した。Chrome の dev tools とサーバ側のアクセスログを表示している。
 
 サーバへのアクセスが発生し表示が更新されているが、全てキャッシュがヒットしていることが分かるだろう。
 
-![stale-while-revalidate-demo](stale-while-revalidate-demo.gif 'stale-while-revalidate demo')
+![stale-while-revalidate-demo](stale-while-revalidate-demo.gif#1000x510 'stale-while-revalidate demo')
 
 
 ## SwR を用いたキャッシュ戦略の考察
