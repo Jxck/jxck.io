@@ -1,4 +1,4 @@
-#[SwR][http][cache][performance] Stale-While-Revalidate ヘッダによるブラウザキャッシュの非同期更新
+# [SwR][http][cache][performance] Stale-While-Revalidate ヘッダによるブラウザキャッシュの非同期更新
 
 ## Intro
 
@@ -41,9 +41,9 @@ Web における、キャッシュの指定には大きく二つの方式があ�
 
 `Cache-Control` ヘッダで `max-age` を指定するか、 `Expires` ヘッダで未来の時間を指定した場合、ブラウザはその期間内であればサーバに問い合わせることなくキャッシュを使用する。
 
-つまり、この指定によるキャッシュがヒットする場合、ネットワークへはパケットは一切発生せず、理論上は最速でリソースを取得できる。
+つまり、この指定によるキャッシュがヒットする場合、ネットワークパケットは一切発生せず、理論上は最速でリソースを取得できる。
 
-しかし、これらのヘッダに基づくキャッシュヒットはブラウザ内で完結してしまうため、期限が切れるまでサーバが介入することができない。
+しかし、これらのヘッダに基づくキャッシュヒットはブラウザ内で完結してしまうため、期限が切れるまでサーバは介入することができない。
 
 例えば、長い期間を指定してキャッシュさせた JS にバグがあった場合も、サーバから修正したスクリプトを配信することができなくなる。
 
@@ -145,7 +145,7 @@ Cache-Control: max-age=3600;
 
 ### stale-while-revalidate
 
-Cache-Control に `stale-while-revalidate` を指定する。
+`Cache-Control` に `stale-while-revalidate` を指定する。
 
 ```
 Cache-Control: max-age=3600, stale-while-revalidate=360
@@ -215,7 +215,7 @@ Cache-Control: max-age=5, stale-while-revalidate=10, stale-if-error=15
 Cache-Control: max-age=31536000
 ```
 
-この設定ではキャッシュは 1 年間 **fresh** となる。
+この設定では、キャッシュは 1 年間 **fresh** となる。
 例えば、 `favicon.ico` や `jquery.min.js` などといった更新が少ない、もしくは更新が無い(ある場合はファイル名が変わる) といった場合に設定が可能になる。
 
 キャッシュが途中で消されない理想状態においては、そのブラウザからサーバへのリクエストは 1 年間無いことになる。
@@ -260,7 +260,7 @@ Cache-Control: max-age=15768000, stale-while-revalidate=15768000
 
 ### 現状
 
-本サイトでは、現状 `Cache-Control` は [Web-Font](https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html) 以外にはつけておらず、 ETag による Conditional GET でのキャッシュを利用している。
+本サイトでは、現状 `Cache-Control` は [WebFont](https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html) 以外にはつけておらず、 ETag による Conditional GET でのキャッシュを利用している。
 
 これは、ブログの記事や、 JS/CSS などの **修正がいち早く反映されて欲しい** からである。
 
@@ -271,6 +271,7 @@ Cache-Control: max-age=15768000, stale-while-revalidate=15768000
 従って、現状との飛躍が少ない状態で **リクエストを減らすため** のキャッシュは考慮になく、 **表示の最適化** のためのキャッシュを積極的に行いたい。
 
 毎回キャッシュはヒットするが、極力最新の状態というのが理想である。
+
 
 ### アクセスパターン
 
