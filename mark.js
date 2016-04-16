@@ -183,7 +183,7 @@ class Builder {
 
     // No width-height for normal img
     return `<picture>
-    <source type=image/webp srcset=${node.url.replace('.png', '.webp')}>
+    <source type=image/webp srcset=${node.url.replace(/(.png|.gif)/, '.webp')}>
     <img src=${node.url} alt="${node.alt}" title="${node.title}">
     </picture>`;
   }
