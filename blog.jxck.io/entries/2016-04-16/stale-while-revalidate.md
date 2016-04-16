@@ -51,7 +51,7 @@ Web における、キャッシュの指定には大きく二つの方式があ�
 
 そこで、現実的には期間を長く、推奨される最大値の **1年** などを指定し、更新があったらそのリソースの URL を変更するという運用がよく行われる。
 
-たとえば `production.min.js` があったとする。1 年間キャッシュを指定してブラウザにキャッシュさせる。
+たとえば `production.min.js` を 1 年間ブラウザにキャッシュさせる。
 
 この JS を `index.html` に指定する際は、以下のようにバージョンを含める。
 
@@ -68,9 +68,9 @@ Web における、キャッシュの指定には大きく二つの方式があ�
 
 ブラウザのキャッシュは基本的に URL 単位で行われるため、この URL を毎回変えてやれば、古いキャッシュが使われるのを避けることができる。
 
-URL を変えることが目的なので、バージョンの代わりにタイムスタンプやハッシュを使っても良い。
+あくまで URL を変えることが目的なので、実際にサーバ側でこの値をハンドルする必要は必ずしもない。バージョンの代わりにタイムスタンプやハッシュを使っても良い。
 
-ただし、この `<script>` を含む、 `index.html` 自体が長期にキャッシュされてしまうと、 `production.min.js` の URL も更新できない。
+ただし、この `<script>` を含む、 `index.html` 自体が長期間キャッシュされてしまうと、 `production.min.js` の URL も更新できない。
 
 したがって、 `index.html` 自体は長期間のキャッシュがしにくいという問題は残る。
 
@@ -83,20 +83,23 @@ HTTP には、 **Conditional GET** (条件付き GET) という仕組みがあ�
 
 具体的には、サーバは `ETag`, `Last-Modified` などのヘッダをレスポンスに付与することで、リソースに関する情報をサーバに伝える。
 
-- ETag: そのリソースを一意に特定する値、要するにリソースのハッシュ値
-- Last-Modified: そのリソースが最後に更新されたタイムスタンプ
+<dl>
+  <dt>ETag
+  <dd>そのリソースを一意に特定する値、要するにリソースのハッシュ値
+  <dt>Last-Modified
+  <dd>そのリソースが最後に更新されたタイムスタンプ
+</dl>
 
 
 この値を保存したブラウザは、同じ URL へのリクエストに、キャッシュしたリソースに付与されていた値を設定してサーバに問い合わせる。
+サーバは、リクエストされたリソースについて各値を検証する。
 
-- If-Non-Match: ETag で受け取った値を付与
-- If-Modified-Since: Last-Modified で受け取った値を付与。
-
-
-サーバは、リクエストされたリソースについて以下を検証する。
-
-- If-Non-Match で指定された値と、リソースの ETag(ハッシュ) が同じ
-- If-Modified-Since で指定された日時以降に、リソースが更新されていない
+<dl>
+  <dt>If-Non-Match
+  <dd>ETag で受け取った値を付与、サーバはその値と現在のリソースの値を比較
+  <dt>If-Modified-Since
+  <dd>Last-Modified で受け取った値を付与、サーバはリソースの最終更新日を比較
+</dl>
 
 
 これによって、ブラウザがキャッシュしたリソースが、まだ新鮮であるかどうかをサーバが判断できる。
@@ -140,7 +143,7 @@ Cache-Control: max-age=3600;
 すると、 fetch したレスポンスは 3600s の間は **fresh** とみなされ、その期間はキャッシュヒットする。
 しかし、 3600s をすぎるとキャッシュは **stale** とみなされ破棄し、次のリクエストで fetch が走る。
 
-![max-age](max-age.svg)
+![max-age](max-age.svg#552x352 "max-age header")
 
 
 ### stale-while-revalidate
@@ -151,7 +154,7 @@ Cache-Control: max-age=3600;
 Cache-Control: max-age=3600, stale-while-revalidate=360
 ```
 
-すると、 fetch から 3600s 経過したキャッシュは **stale** となるが、そこから 360s は、その **stale** なキャッシュを引き続き使用して良い。
+すると、 fetch から 3600s 経過したキャッシュは **stale** となるが、そこから 360s は、その **stale** なキャッシュを引き続き使用する。
 
 しかし、一度 **stale** なキャッシュを使用したら、裏で非同期に fetch を行い、サーバにキャッシュの鮮度を問い合わせる(validate)。
 
@@ -163,7 +166,7 @@ Cache-Control: max-age=3600, stale-while-revalidate=360
 
 従って、この設定からであれば、導入はそこまで難しく無いと考えられる。
 
-![stale-while-revalidate](stale-while-revalidate.svg)
+![stale-while-revalidate](stale-while-revalidate.svg#552x352 "stale-while-revalidate header")
 
 
 ### stale-if-error
@@ -182,7 +185,7 @@ Cache-Control: max-age=3600, stale-if-error=360
 
 もちろん、上記二つは組み合わせて使うことができる。
 
-![stale-if-error](stale-if-error.svg)
+![stale-if-error](stale-if-error.svg#552x352 "stale-if-erro header")
 
 
 ## SwR のデモ
@@ -200,6 +203,12 @@ https://labs.jxck.io/stale-while-revalidate/
 ```
 Cache-Control: max-age=5, stale-while-revalidate=10, stale-if-error=15
 ```
+
+以下は Chrome の dev tools とサーバ側のアクセスログを表示している。
+
+サーバへのアクセスが発生し表示が更新されているが、全てキャッシュがヒットしていることが分かるだろう。
+
+![stale-while-revalidate-demo](stale-while-revalidate-demo.gif 'stale-while-revalidate demo')
 
 
 ## SwR を用いたキャッシュ戦略の考察
@@ -307,3 +316,9 @@ Cache-Control: max-age=1, stale-while-revalidate=600, statle-if-error=864000
 一方、長期のキャッシュは、どうしてもアクセスしてない期間に行われた更新を、バックグラウンドで反映したくなる。
 
 そうした場合は、 Service-Worker を使ったキャッシュ機構を適用するため、別途対応する。
+
+
+## link
+
+- [mnot’s blog: Chrome and Stale-While-Revalidate](https://www.mnot.net/blog/2014/06/01/chrome_and_stale-while-revalidate)
+- [[Web facing change PSA] Heads-up: Faster assets with the HTTP caching extension "stale-while-revalidate"](https://groups.google.com/a/chromium.org/forum/#!msg/chromium-dev/zchogDvIYrY/ZqWSdt3LJdMJ)
