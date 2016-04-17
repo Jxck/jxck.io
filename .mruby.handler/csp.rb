@@ -28,8 +28,6 @@ Proc.new do |env|
       "'self'",
       "https://*.jxck.io",
       "https://www.google-analytics.com",
-      ";",
-      "child-src",
       "https://www.youtube.com",
       ";",
       "report-uri #{REPORT_URI}"
