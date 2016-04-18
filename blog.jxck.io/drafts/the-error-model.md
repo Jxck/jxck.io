@@ -245,19 +245,19 @@ No exceptions are to be found in the kernel.
 At least not intentionally.
 
 Windows では、の HRESULT がそれにあたります。
-HRESULT は、値を作成し、チェックするために使用されているだけの整数)"ハンドル"と定数とマクロの束が S_OK 、 E_FAULT ような WINERROR.H であり、及び(SUCCEEDED 、です。
-Windows の中で最も重要なコードは戻りコード規律を使用して書かれています。
-例外は、カーネル内で発見されません。
-少なくともではない意図的に。
+HRESULT は、値を生成したりチェックする単なる整数のハンドラであり、 S_OK, E_FAULT, SUCCEEDED() など、いくつかの定数とマクロが winerror.h に定義されているだけです。
+Windows の中で最も重要なコードはリターンコードの規律を適用して書かれています。
+カーネル内では例外は見当たりません。
+少なくとも意図的でないものは。
 
 
 In environments with manual memory management, deallocating memory on error is uniquely difficult.
 Return codes can make this (more) tolerable.
 C++ has more automatic ways of doing this using RAII, but unless you buy into the C++ model whole hog - which a fair number of systems programmers don't - then there's no good way to incrementally use RAII in your C programs.
 
-手動メモリ管理と環境では、エラー時にメモリの割り当てを解除することは一義的には困難です。
-戻りコードは、これが(もっと)許容することができます。
-C++は、この使用して RAII を行うより自動的な方法がありますが、あなたは C++モデル全体を独り占めに購入しない限り - システムプログラマのかなりの数がありません - その後漸増あなたの C プログラムで RAII を使用するための良い方法はありません。
+手動メモリ管理の環境では、エラー時にメモリの割り当てを解除することは一義的には困難です。
+リターンコードは、これを(より)許容することができます。
+C++ は、この使用して RAII を行うより自動的な方法がありますが、あなたは C++ モデル全体を独り占めに購入しない限り - システムプログラマのかなりの数がありません - その後漸増あなたの C プログラムで RAII を使用するための良い方法はありません。
 
 
 More recently, Go has chosen error codes.
@@ -389,7 +389,7 @@ So close!
 It's true you can add a static analysis checker, or maybe an "unused return value" warning as most commercial C++ compilers do.
 But once you've missed the opportunity to add it to the core of the language, as a requirement, none of those techniques will reach critical mass due to complaints about noisy analysis.
 
-これは、ほとんどの市販の C++コンパイラがそうであるようにあなたが静的解析チェッカ、または多分"未使用の戻り値"警告を追加することができます本当です。
+これは、ほとんどの市販の C++ コンパイラがそうであるようにあなたが静的解析チェッカ、または多分"未使用の戻り値"警告を追加することができます本当です。
 あなたが要件として、言語のコアに追加する機会を逃してきたしかし、一度、これらの技術のいずれも、ノイズの多い分析に関する苦情にクリティカルマスに到達しません。
 
 
@@ -492,7 +492,7 @@ Similarly, Microsoft's proprietary extensions to C++ offer `__finally`, even if 
 And D provides scope and Go offers defer.
 All of these help to eradicate the goto Error pattern.
 D 、 C# の、および Java などの言語では、より直接的に、この"スコープが終了する前に "パターンを符号化するための finally ブロックを持っています。
-同様に、 C++のオファー `__finally`に対する Microsoft の独自の拡張は、あなたが完全に RAII と例外に購入していない場合でも。
+同様に、 C++ のオファー `__finally`に対する Microsoft の独自の拡張は、あなたが完全に RAII と例外に購入していない場合でも。
 そして、 D は範囲を提供し、 Go は延期を提供しています。
 これらのすべては、 goto 文のエラーパターンを根絶するのに役立ちます。
 
@@ -511,7 +511,7 @@ C++ of course adds templates, so in principle it could do this, however because 
 2. 私たちは、その非常に構造体の両方の可能性を運ぶデータ構造を返すことができます。
 私達が見るように、これは関数型言語では一般的です。
 しかし、 C のような言語、あるいは移動中に、それはパラメトリック多型を欠いている、あなたは、返された値に関する入力情報を失うので、これは見ることがあまり一般的です。
-それは、リターンコードの周りの生態系が欠けているの例外を追加しますただしので、原理的には、これを行うことができますので、もちろん C++は、テンプレートを追加します。
+それは、リターンコードの周りの生態系が欠けているの例外を追加しますただしので、原理的には、これを行うことができますので、もちろん C++ は、テンプレートを追加します。
 
 In support of the performance claims above, imagine what both of these do to your program's resulting assembly code.
 上記のパフォーマンスの主張を支持して、これらの両方は、プログラムの結果のアセンブリコードに何をするか想像してみてください。
@@ -620,7 +620,7 @@ Haskell はあってもクーラー何かをしてもエラー値とローカル
 > There is an old dispute between C++ programmers on whether exceptions or error return codes are the right way.
 Niklas Wirth considered exceptions to be the reincarnation of GOTO and thus omitted them in his languages.
 Haskell solves this problem a diplomatic way: Functions return error codes, but the handling of error codes does not uglify the code.
->例外やエラーリターンコードが正しい方法であるかどうかを上の C++プログラマの間の古い論争があります。
+>例外やエラーリターンコードが正しい方法であるかどうかを上の C++ プログラマの間の古い論争があります。
 ニクラスヴィルトは、例外が GOTO の生まれ変わりであると考えられ、したがって、彼の言語でそれらを省略しました。
 Haskell はこの問題を外交的な方法を解決:関数は、エラーコードを返しますが、エラーコードの取り扱いは、コードを醜くするしません。
 
@@ -779,7 +779,7 @@ I wrote about this 10 years ago and the challenges still exist, although the ris
 The new CoreCLR even lacks AppDomains, and the new ASP.NET Core 1.0 stack certainly doesn't use thread aborts like it used to.
 But the APIs are still there.
 .NET はさらに悪化による非同期例外に悪い状況になります。
-C++は、あまりにも、いわゆる"非同期例外"を持っている:これらは、アクセス違反などのハードウェア障害によってトリガされている障害です。
+C++ は、あまりにも、いわゆる"非同期例外"を持っている:これらは、アクセス違反などのハードウェア障害によってトリガされている障害です。
 しかし、.NET で本当に厄介な取得します。
 任意のスレッドは、コード内のほぼすべての点での障害を注入することができます。
 でも RHS と割り当ての LHS 間！その結果、ソースコード内での原子見るものではありません。
@@ -817,7 +817,7 @@ But this sure isn't the way to write operating system code.
 
 C++ at least tried to offer something better than unchecked exceptions with its throw exception specifications.
 Unfortunately, the feature relied on dynamic enforcement which sounded its death knell instantaneously.
-C++、少なくともそのスロー例外仕様にチェック例外よりも優れたものを提供しようとしました。
+C++ 、少なくともそのスロー例外仕様にチェック例外よりも優れたものを提供しようとしました。
 残念ながら、この機能は瞬時にその死を告げる鐘を鳴らしダイナミック執行に依存していました。
 
 If I write a function void f() throw(SomeError), the body of f is still free to invoke functions that throw things other than SomeError.
@@ -833,7 +833,7 @@ A 私はこのデザインを認識するだけの人が間違いだったじゃ
 確かに、 throw は廃止されます。
 
  detailed WG21 paper, Deprecating Exception Specifications, describes how C++ ended up here, and has this to offer in its opening statement:
-詳細 WG21 紙、卑下例外仕様は、 C++はここに終わった方法について説明し、その冒頭陳述に提供するためにこれを持っています:
+詳細 WG21 紙、卑下例外仕様は、 C++ はここに終わった方法について説明し、その冒頭陳述に提供するためにこれを持っています:
 
 > Exception specifications have proven close to worthless in practice, while adding a measurable overhead to programs.
 プログラムに測定可能なオーバーヘッドを加えながら>例外仕様は、実際には無価値に近いことが証明されています。
@@ -858,7 +858,7 @@ Just think about it: to guarantee strong safety everywhere, you would need to co
 That either means programming defensively, trusting another function's documented English prose (that isn't being checked by a computer), getting lucky and only calling noexcept functions, or just hoping for the best.
 Thanks to RAII, the leak-freedom aspect of basic safety is easier to attain - and pretty common these days thanks to smart pointers - but even broken invariants are tricky to prevent.
 The article Exception Handling: A False Sense of Security sums this up well.
-"例外安全性は、"C++コミュニティで一般的に議論の練習です。
+"例外安全性は、"C++ コミュニティで一般的に議論の練習です。
 このアプローチは、きちんと機能が障害、状態遷移、及びメモリ管理に対する発呼者の観点から動作するように意図されている方法を分類します。
 関数は、 4 種類のいずれかに分類されます。ノースローフォワードプログレスが保証されていて、例外が出現しないことを意味しません。強力な安全性は、状態遷移がアトミックに起こると、障害が部分的にコミットされた状態や壊れた不変式を背後に残していないことを意味します。基本的な安全機能は、部分的に状態の変更をコミットするかもしれませんが、不変条件が破壊されず、漏れが防止されている、ことを意味します。そして最後に、何の安全性は、可能なもののことを意味します。
 この分類は非常に有用であると私はどちらか、このアプローチまたは類似のものを使用して、誰もが意図的とエラー動作に関する厳格されることをおすすめします。
@@ -869,15 +869,15 @@ The article Exception Handling: A False Sense of Security sums this up well.
 スマートポインタのおかげで、これらの日とかなり共通 - - RAII のおかげで、基本的な安全の漏れ自由の側面は、達成しやすいですが、でも、壊れた不変量は、防止するのが難しいです。
 記事の例外処理:誤った安心感がよく、これを要約しています。
 
-For C++, the real solution is easy to predict, and rather straightforward: for robust systems programs, don't use exceptions.
-That's the approach Embedded C++ takes, in addition to numerous realtime and mission critical guidelines for C++, including NASA's Jet Propulsion Laboratory's.
+For C++ , the real solution is easy to predict, and rather straightforward: for robust systems programs, don't use exceptions.
+That's the approach Embedded C++ takes, in addition to numerous realtime and mission critical guidelines for C++ , including NASA's Jet Propulsion Laboratory's.
 C++ on Mars sure ain't using exceptions anytime soon.
-C++の場合は、真の解決策は、予測することは容易で、かつかなり簡単です:堅牢なシステムのプログラムのために、例外を使用しないでください。
-それは NASA のジェット推進研究所の含む C++のための多数のリアルタイムおよびミッションクリティカルなガイドラインに加えて、かかる++アプローチ組み込み C です。
-C++は火星に確認してくださいいつでもすぐに例外を使用していません。
+C++ の場合は、真の解決策は、予測することは容易で、かつかなり簡単です:堅牢なシステムのプログラムのために、例外を使用しないでください。
+それは NASA のジェット推進研究所の含む C++ のための多数のリアルタイムおよびミッションクリティカルなガイドラインに加えて、かかる++アプローチ組み込み C です。
+C++ は火星に確認してくださいいつでもすぐに例外を使用していません。
 
-So if you can safely avoid exceptions and stick to C-like return codes in C++, what's the beef?
-あなたが安全に例外を回避し、 C++で C-ようなリターンコードに固執することができそうだとすれば、牛肉は何ですか？
+So if you can safely avoid exceptions and stick to C-like return codes in C++ , what's the beef?
+あなたが安全に例外を回避し、 C++ で C-ようなリターンコードに固執することができそうだとすれば、牛肉は何ですか？
 
 The entire C++ ecosystem uses exceptions.
 To obey the above guidance, you must avoid significant parts of the language and, it turns out, significant chunks of the library ecosystem.
@@ -888,7 +888,7 @@ And so on.
 This even causes insanity like people creating forks of existing libraries that eradicates exceptions.
 The Windows kernel, for instance, has its own fork of the STL that doesn't use exceptions.
 This bifurcation of the ecosystem is neither pleasant nor practical to sustain.
-全体 C++の生態系は、例外を使用しています。
+全体 C++ の生態系は、例外を使用しています。
 上記の指針に従うためには、言語の重要な部分とライブラリの生態系の、結局のところ、かなりのチャンクを避けなければなりません。
 標準テンプレートライブラリを使用してみませんか？残念、それは例外を使用しています。
 ブーストを使用してみませんか？残念、それは例外を使用しています。
@@ -906,7 +906,7 @@ But "thankfully" we have checked exceptions from Java to learn and borrow from �
 この混乱は、不良箇所で私たちを置きます。
 特に、多くの言語は、非チェック例外を使用しているため。
 それは彼らが低レベル、信頼性の高いシステムのコードを書くために不向きであることは明らかです。
-(私はそうぶっきらぼうにこのことを言って、いくつかの C++の敵を作ると確信しています。)年間の Midori のコードを書いた後、それは私が戻って、チェック例外を使用するコードを書くために涙をもたらします。でも、単にコードの見直しは拷問です。
+(私はそうぶっきらぼうにこのことを言って、いくつかの C++ の敵を作ると確信しています。)年間の Midori のコードを書いた後、それは私が戻って、チェック例外を使用するコードを書くために涙をもたらします。でも、単にコードの見直しは拷問です。
 しかし、"ありがたいこと"私たちは右...学び、から借りて Java からチェック例外をしていますか？
 
 ## Checked Exceptions
@@ -1045,10 +1045,10 @@ Although, to really nail the diagnostics requirement above, something needs to b
 実際に上記の診断要件を爪に、けれども、何かがスタックトレースを回復できるようにする必要があります。 printf 関数のデバッグとどのように重要なスタックトレースがそれにしているの力を過小評価することはありません。
 
 Next, exceptions can significantly impair code quality.
-I touched on this topic in my last post, and there are good papers on the topic in the context of C++.
+I touched on this topic in my last post, and there are good papers on the topic in the context of C++ .
 Not having static type system information makes it hard to model control flow in the compiler, which leads to overly conservative optimizers.
 次に、例外が大幅にコードの品質を損なうことができます。
-私は私の最後のポストでこの話題に触れ、および C++の文脈におけるトピックに関する良い論文があります。
+私は私の最後のポストでこの話題に触れ、および C++ の文脈におけるトピックに関する良い論文があります。
 静的型システムの情報がないと、それは難しい過度に保守的オプティマイザにつながるコンパイラで制御フローをモデル化することができます。
 
 Another thing most exception systems get wrong is encouraging too coarse a granularity of handling errors.
@@ -1127,7 +1127,7 @@ C++ uses a mixture depending on the audience, but the usual story is a project p
 You usually don't hear of languages suggesting two different techniques for error handling, however.
 この区別は非常に重要です。
 驚くべきことに、ほとんどのシステムは、少なくともではない原則に基づいた方法で、ものを作ることはありません！我々は上で見たように、 Java や C# の、および動的言語は、ちょうどすべての例外を使用します。 C および Go がリターンコードを使用します。
-C++は、観客に応じて混合物を使用していますが、通常の物語は、プロジェクトが単一のものを選び、どこでもそれを使用しています。
+C++ は、観客に応じて混合物を使用していますが、通常の物語は、プロジェクトが単一のものを選び、どこでもそれを使用しています。
 あなたは通常、しかし、エラー処理のための 2 つの異なる技術を示唆している言語で聞くことができません。
 
 Given that bugs are inherently not recoverable, we made no attempt to try.
@@ -1140,16 +1140,16 @@ Each of the above systems offers abandonment-like mechanisms.
 Each rips down the surrounding context abruptly and promptly.
 The scope of this context depends on the system - for example, C# and C++ terminate the process, Go the current Goroutine, and Rust the current thread, optionally with a panic handler attached to salvage the process.
 上記システムの各々は、中断のようなメカニズムを提供しています。
- C# の環境を持っています。フェイルファスト; C++は、スタンダード::終了を持っています。 Go がパニックを持っています。 Rust がパニックを持っています！;等々。
+ C# の環境を持っています。フェイルファスト; C++ は、スタンダード::終了を持っています。 Go がパニックを持っています。 Rust がパニックを持っています！;等々。
 それぞれが突然かつ迅速に周囲の状況を下にリッピング。
-この文脈の範囲は、システムによって異なります - 例えば、 C# と C++のプロセスを終了し、現在のゴルーチン、及び Rust に現在のスレッドを移動し、必要に応じてプロセスをサルベージするために取り付けられたパニックハンドラで。
+この文脈の範囲は、システムによって異なります - 例えば、 C# と C++ のプロセスを終了し、現在のゴルーチン、及び Rust に現在のスレッドを移動し、必要に応じてプロセスをサルベージするために取り付けられたパニックハンドラで。
 
 Although we did use abandonment in a more disciplined and ubiquitous way than is common, we certainly weren't the first to recognize this pattern.
 This Haskell essay, articulates this distinction quite well:
 私たちが一般的であるよりも多くの規律とユビキタスな方法で中断を使いましたが、我々は確かにこのパターンを認識することが最初ではなかったです。
 この Haskell のエッセイは、非常によくこの区別を明確に表現します:
 
-> I was involved in the development of a library that was written in C++.
+> I was involved in the development of a library that was written in C++ .
 One of the developers told me that the developers are divided into the ones who like exceptions and the other ones who prefer return codes.
 As it seem to me, the friends of return codes won.
 However, I got the impression that they debated the wrong point: Exceptions and return codes are equally expressive, they should however not be used to describe errors.
@@ -1159,7 +1159,7 @@ Even worse, since I cannot make assumptions about the implementation of a functi
 My conclusion is that ARRAY_INDEX_OUT_OF_RANGE is a (programming) error.
 It cannot be handled or fixed at runtime, it can only be fixed by its developer.
 Thus there should be no according return code, but instead there should be asserts.
->私は C++で書かれたライブラリーの開発に携わっていました。
+>私は C++ で書かれたライブラリーの開発に携わっていました。
 開発者の一人は、開発者は例外とリターンコードを好む他のものを好きなものに分けられていることを教えてくれました。
 それは私には見えるように、戻りコードの友達が獲得しました。
 しかし、私は彼らが間違った点を議論していることを印象を受けました:例外と戻りコードも同様に、表現されている、彼らは、しかし、エラーを記述するために使用すべきではありません。
@@ -1462,14 +1462,14 @@ This was similar to compiling C# with the /checked switch, except that our compi
 Also as with C# , the unchecked scoping construct could be used where over/underflow was intended.
 したがって、すべての注釈なしのオーバー/アンダーフローがバグを考慮し、中断につながりました。
 /は、私たちのコンパイラは積極的に離れて冗長チェックを最適化されたことを除いて、スイッチをチェックしてこれは、 C# のコンパイルと同様でした。
-(少数の人々がこれまでに C# でこのスイッチをスローするように思いますので、コードジェネレータは、挿入された小切手を除去する際にほぼ同じ攻撃的な仕事をしません。)この言語およびコンパイラの共同開発のおかげで、その結果は、ほとんどの C++コンパイラは SafeInt 演算の顔に生成されます何よりもはるかに良好でした。
+(少数の人々がこれまでに C# でこのスイッチをスローするように思いますので、コードジェネレータは、挿入された小切手を除去する際にほぼ同じ攻撃的な仕事をしません。)この言語およびコンパイラの共同開発のおかげで、その結果は、ほとんどの C++ コンパイラは SafeInt 演算の顔に生成されます何よりもはるかに良好でした。
 また、 C# の場合と同様にオーバー/アンダーフローが意図されていたところ、未チェックのスコープ構文を使用することができます。
 
 Although the initial reactions from most C# and C++ developers I've spoken to about this idea are negative about it, our experience was that 9 times out of 10, this approach helped to avoid a bug in the program.
 That remaining 1 time was usually an abandonment sometime late in one of our 72 hour stress runs - in which we battered the entire system with browsers and multimedia players and anything else we could do to torture the system - when some harmless counter overflowed.
 I always found it amusing that we spent time fixing these instead of the classical way products mature through the stress program, which is to say deadlocks and race conditions.
 Between you and me, I'll take the overflow abandonments!
-私はこのアイデアについてに話をした初期のほとんどの C# からの反応や C++開発者はそれについて否定的であるが、我々の経験では 10 のうち 9 回は、このアプローチはプログラムのバグを回避するのに役立ったということでした。
+私はこのアイデアについてに話をした初期のほとんどの C# からの反応や C++ 開発者はそれについて否定的であるが、我々の経験では 10 のうち 9 回は、このアプローチはプログラムのバグを回避するのに役立ったということでした。
 その残りの 1 時間は、通常中断したいつか後半私たちの 72 時間のストレスのいずれかで動作します - いくつかの無害なカウンタがオーバーフローしたときに - 私たちはブラウザやマルチメディアプレーヤー、我々はシステムを拷問するために何ができる何か他のもので、システム全体を連打します。
 私はいつもそれが面白い私たちはこれらの代わりの製品がデッドロックや競合状態を言うことですストレスプログラムを通じて、成熟古典的な方法を固定の時間を費やしたことがわかりました。
 あなたと私の間に、私はオーバーフロー中断を取りますよ！
@@ -1606,7 +1606,7 @@ void Foo() {
 }
 ```
 
-We also implemented functionality akin to __FILE__ and __LINE__ macros like in C++, in addition to __EXPR__ for the text of the predicate expression, so that abandonments due to failed assertions contained useful information.
+We also implemented functionality akin to __FILE__ and __LINE__ macros like in C++ , in addition to __EXPR__ for the text of the predicate expression, so that abandonments due to failed assertions contained useful information.
 
 In the early days, we used different "levels" of assertions than these.
 We had three levels, Contract.Strong.Assert, Contract.Assert, and Contract.Weak.Assert.
@@ -1619,7 +1619,7 @@ However, we eventually switched back to using APIs.
 The primary reason was that assertions were not part of an API's signature like contracts are; and given that assertions could easily be implemented as a library, it wasn't clear what we gained from having them in the language.
 Furthermore, policies like "checked in debug" versus "checked in release" simply didn't feel like they belonged in a programming language.
 I'll admit, years later, I'm still on the fence about this.
-失敗によるアサーションの中断は、有用な情報が含まれているように、我々はまた、述語式のテキストの__EXPR__に加えて、 C++のように__FILE__と__LINE__マクロに似た機能を実装しました。
+失敗によるアサーションの中断は、有用な情報が含まれているように、我々はまた、述語式のテキストの__EXPR__に加えて、 C++ のように__FILE__と__LINE__マクロに似た機能を実装しました。
 
 初期の頃で、我々はこれらよりも表明の異なる"レベル"を使用しました。
 我々は契約、 3 レベルを有していました。強い。、契約を主張します。アサート、および契約。弱い。アサート。
@@ -2558,7 +2558,7 @@ Java でのような全く卑劣な RuntimeExceptions は、例えば、あり�
 
 これは、結果システムの魔法のプロパティにつながりました。
 我々のシステムで機能の 90 代の％は、例外をスローすることができませんでした！デフォルトでは、実際に、彼らはできませんでした。
-これは、 noexcept を使用して例外と状態、その事実を控えるためにあなたの道を行かなければならない C++のようなシステムとは対照的でした。
+これは、 noexcept を使用して例外と状態、その事実を控えるためにあなたの道を行かなければならない C++ のようなシステムとは対照的でした。
 API はまだもちろん、中断による失敗する可能性がありますが、発信者は、間違った型の引数を渡すに似述べ契約を満たす失敗したときのみ。
 
 例外の私たちの選択は、冒頭で物議ました。
@@ -2616,7 +2616,7 @@ The basic gist of the final syntax was to simply state a method throws as a sing
 そして、直感的な性質の多くは、この決定から自然に流れました。
 
 まず最初に、リスコフの置換原則です。
-C++はコンパイル時に、静的に起こることがあり、"チェック"すべて、自分自身を中に見つかった混乱を避けるために。
+C++ はコンパイル時に、静的に起こることがあり、"チェック"すべて、自分自身を中に見つかった混乱を避けるために。
 その結果、 WG21 の論文に言及したパフォーマンスの問題のすべては、私たちのために問題はなかったです。
 このタイプのシステムはそれを倒すためにノーバックドアで、しかし、防弾されなければなりません。
 我々は最適化コンパイラに注釈をスローに依存して、これらのパフォーマンスの課題に対処するために必要なので、型の安全性は、このプロパティにヒンジ結合しました。
@@ -3457,7 +3457,7 @@ The architectural foundation of fine-grained isolation is critical, however many
 A reason why OOM abandonment works well in a browser is that most browsers devote separate processes to individual tabs already.
 Browsers mimic operating systems in many ways and here too we see this playing out.
 
-More recently, we've been exploring proposals to bring some of this discipline - including contracts - to C++.
+More recently, we've been exploring proposals to bring some of this discipline - including contracts - to C++ .
 There are also concrete proposals to bring some of these features to C# too.
 We are actively iterating on a proposal that would bring some non-null checking to C# .
 I have to admit, I wish all of those proposals the best, however nothing will be as bulletproof as an entire stack written in the same error discipline.
@@ -3488,7 +3488,7 @@ Midori エンジニアによって適用する鍵 1 は、 OOM ました。
 OOM の中断がブラウザでうまく機能する理由は、ほとんどのブラウザが既に個々のタブに別々のプロセスを捧げることです。
 ブラウザは多くの方法でオペレーティングシステムを模倣し、ここでも我々はこの演奏を参照してください。
 
-C++に - 契約を含む - 最近では、我々はこの規律のいくつかを持って提案を模索してきました。
+C++ に - 契約を含む - 最近では、我々はこの規律のいくつかを持って提案を模索してきました。
 あまりにも C# のにこれらの機能のいくつかを持って具体的な提案もあります。
 我々は積極的に C# にいくつかの非ヌルチェックをもたらす提案に反復されています。
 私は認めざるを得ない、私は最高のそれらの提案のすべてを願って、しかし何も同じエラー規律で書かれたスタック全体のように防弾ません。
