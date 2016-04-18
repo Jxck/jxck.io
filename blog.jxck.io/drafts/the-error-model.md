@@ -236,8 +236,6 @@ Linux が行っているように、数え切れないミッションクリテ�
 だから、彼らは素晴らしいトラックレコードを持っていると言えます。
 
 
-:TODO :HERE
-
 On Windows, HRESULTs are equivalent.
 An HRESULT is just an integer "handle" and there are a bunch of constants and macros in winerror.h like S_OK, E_FAULT, and SUCCEEDED(), that are used to create and check values.
 The most important code in Windows is written using a return code discipline.
@@ -257,49 +255,51 @@ C++ has more automatic ways of doing this using RAII, but unless you buy into th
 
 手動メモリ管理の環境では、エラー時にメモリの割り当てを解除することは一義的には困難です。
 リターンコードは、これを(より)許容することができます。
-C++ は、この使用して RAII を行うより自動的な方法がありますが、あなたは C++ モデル全体を独り占めに購入しない限り - システムプログラマのかなりの数がありません - その後漸増あなたの C プログラムで RAII を使用するための良い方法はありません。
-
+C++ は RAII 用いてこれをより自動的に行う方法があります、しかし -かなりのシステムプログラマが避けている- C++ モデルに完全に浸かる必要が有ります。 そして、 C プログラム内で徐々に RAII を使用するための良い方法はありません。
 
 More recently, Go has chosen error codes.
 Although Go's approach is similar to C's, it has been modernized with much nicer syntax and libraries.
-より最近では、移動は、エラーコードを選択しました。
-囲碁のアプローチは、 C のと同様であるが、それは非常に良く、構文とライブラリで近代化されています。
 
+より最近では、移動はエラーコードを選択しました。
+Go のアプローチは C と近いですが、それは非常に良い構文とライブラリでモダンに設計されています。
 
 Many functional languages use return codes disguised in monads and named things like Option<T>, Maybe<T>, or Error<T>, which, when coupled with a dataflow-style of programming and pattern matching, feel far more natural.
 This approach removes several major drawbacks to return codes that we're about to discuss, especially compared to C.
 Rust has largely adopted this model but has dome some exciting things with it for systems programmers.
-多くの関数型言語は、プログラミングとパターンマッチングのデータフロースタイルと組み合わせると、はるかに自然な感じモナドと Option <T>、たぶん、<T>、またはエラー<T>のような名前のものに偽装したリターンコードを使用します。
-このアプローチは、特に C.に比べて、私たちが議論しようとしているコードを返すために、いくつかの主要な欠点を除去します
-Rust は、主にこのモデルを採用したが、システムプログラマのためのそれとドームいくつかのエキサイティングなものを持っていました。
 
+多くの関数型言語は、リターンコードをモナドや Option<T>, Maybe<T>, Error<T> と名付けられたもので包んで用いており、プログラミングのデータフロースタイルとパターンマッチングと組み合わせると、遥かに自然に感じられます。
+
+このアプローチは、特に C と比べて、私たちが議論しようとしているリターンコードの、いくつかの主要な欠点を除去します
+Rust はこのモデルを広く採用したが、システムプログラマのためのいくつかのエキサイティングなものを持っていました。 TODO: (dome ?)
 
 Despite their simplicity, return codes do come with some baggage; in summary:
-そのシンプルにもかかわらず、戻りコードは、いくつかの荷物が付属しています。要約すれば:
-
-シンプルな代わりに、 return code は多くの荷物が必要になる。
+そのシンプルにもかかわらず、リターンコードは、いくつかの荷物が付属しています。要約すれば:
 
 - Performance can suffer.
 - Programming model usability can be poor.
 - The biggie: You can accidentally forget to check for errors.
+
 - パフォーマンスが低下する可能性があります。
-- プログラミングモデルの使い勝手が悪くなることができます。
-- とても重要:あなたが誤ってエラーをチェックするために忘れることができます。
+- プログラミングモデルの使い勝手が悪くなりえます。
+- とても重要: 誤ってエラーをチェックし忘れることがあります。
 
 
 Let's discuss each one, in order, with examples from the languages cited above.
-言語の例としては、先に引用してのは、順番に、それぞれを説明しましょう。
+それぞれ、順番に、例にを交え、説明しましょう。
 
 
 ## Performance
 
 Error codes fail the test of "zero overhead for common cases; pay for play for uncommon cases":
-エラーコードでは"コモンケースではゼロオーバーヘッド、そうでない場合追加を払う"を実現できない。
+エラーコードでは "コモンケースではゼロオーバーヘッド、そうでない場合追加を払う" を実現できない。
 
 
 1. There is calling convention impact. You now have two values to return (for non-void returning functions): the actual return value and the possible error. This burns more registers and/or stack space, making calls less efficient. Inlining can of course help to recover this for the subset of calls that can be inlined.
 
-1. 呼び出し規約の影響があります。実際の戻り値と可能性のあるエラー:あなたは今(非 void を返す関数のために)戻るには 2 つの値を持っています。これは、コールが少なく効率的に、より多くのレジスタおよび/またはスタックスペースを燃やします。インライン化はもちろんの助けにインライン化できるコールのサブセットのためにこれを回復することができます。
+1. 呼び出し規約の影響があります。(非 void 関数で)実際の値とエラーの、二つの戻り値があるとします。これは、より多くのスタック領域を使用し、呼び出し効率を下げます。インライン化は、呼び出しのサブセットをインライン化するため、これを防ぐ助けになります。
+
+
+:TODO :HERE
 
 2. There are branches injected into callsites anywhere a callee can fail.
 I call costs like this "peanut butter," because the checks are smeared across the code, making it difficult to measure the impact directly.
@@ -312,9 +312,10 @@ Midori では、実験や測定、およびはい、確かに、ここでのコ�
 関数が複数のブランチが含まれているため、オプティマイザを混乱のより多くのリスクがある、ある副次的な効果もあります。
 
 
-
-This might be surprising to some people, since undoubtedly everyone has heard that "exceptions are slow." It turns out that they don't have to be.
-And, when done right, they get error handling code and data off hot paths which increases I-cache and TLB performance, compared to the overheads above, which obviously decreases them.
+This might be surprising to some people, since undoubtedly everyone has heard that "exceptions are slow."
+It turns out that they don't have to be.
+And, when done right, they get error handling code and data off hot paths which increases I-cache and TLB performance,
+compared to the overheads above, which obviously decreases them.
 
 これは間違いなく、誰もがいると聞いているので、一部の人には驚くべきことかもしれません"例外がスローされます。"それは彼らがする必要がないことが判明します。
 右行われたときと、彼らは明らかにそれらを減少させる上記のオーバーヘッドに比べ、 I キャッシュと TLB の性能を向上させ、ホットパスオフエラー処理コードとデータを取得します。
@@ -595,8 +596,8 @@ I'm convinced both can be used to write reliable code.
 あなたは、通常のコードの任意の行を見て、それがに変換するもののマシンコードを推測することができる - 私たちは、 C はとてもエレガントになり何の多くを失っています。
 私はこれらの点に反論しません。
 実際に、私は非常に両方のチェック例外とチェック例外の Java の化身の上に行くのモデルを好みます。
-私は最近、囲碁の書かれた多くを持つ、この記事を書いたとしても、私は囲碁のシンプルさと不思議を見て、私たちは、あなたがすぐにわかりますように、すべての試行で行き過ぎと必要としたのですか？よく分かりません。
-囲碁の誤差モデルは、言語の中で最も分裂局面の 1 になる傾向があります。あなたはしかし、プログラマが本当に Midori の中にコードを書いて楽しんでいた、ほとんどの言語のようにエラーが発生したずさんなことはできませんので、それは主に、おそらくです。
+私は最近、 Go の書かれた多くを持つ、この記事を書いたとしても、私は Go のシンプルさと不思議を見て、私たちは、あなたがすぐにわかりますように、すべての試行で行き過ぎと必要としたのですか？よく分かりません。
+ Go の誤差モデルは、言語の中で最も分裂局面の 1 になる傾向があります。あなたはしかし、プログラマが本当に Midori の中にコードを書いて楽しんでいた、ほとんどの言語のようにエラーが発生したずさんなことはできませんので、それは主に、おそらくです。
 最後に、それはそれらを比較するのは難しいです。
 私は両方が信頼性の高いコードを書くのに使用することができる確信しています。
 
@@ -2849,7 +2850,7 @@ To see what I mean, consider what you'd do in a system with error codes.
 In Go, you might say the following:
 我々は広いの try ブロックをお勧めしますが、これは概念的にエラーコードを伝播するための近道でした。
 私が何を意味するかを確認するには、あなたがエラーコードを持つシステムで実行したいかを考え。
-囲碁では、次のことを言うかもしれません:
+ Go では、次のことを言うかもしれません:
 
 
 ```
@@ -3496,7 +3497,7 @@ C++ に - 契約を含む - 最近では、我々はこの規律のいくつか�
 
 私は知識の継続的な共有がさらに大規模な採用にこれらのアイデアのいくつかをリードすることを期待しています。
 
-囲碁、 Rust 、および Swift は、その間に世界をいくつかの非常に良いシステム-適切なエラーモデルを与えていることと、もちろん、私が述べました。
+ Go 、 Rust 、および Swift は、その間に世界をいくつかの非常に良いシステム-適切なエラーモデルを与えていることと、もちろん、私が述べました。
 私はここにあるいくつかのマイナーなニットを持っているかもしれないが、現実には、彼らが我々は Midori の旅を始めた時点で、業界にいたものを超えた世界だということです。
 これは、システムプログラマーであることには良い時間です！
 
