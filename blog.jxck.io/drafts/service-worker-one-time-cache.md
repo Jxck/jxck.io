@@ -1,38 +1,54 @@
 # Service Worker Bootcamp
 
-## Registration Fetch
+## Registration
 
 登録する。
-一回目は、 fetch できない。
 
 
-master.js
-
-```js
-navigator.serviceWorker.register('worker.js').then((registration) => {
-  console.log(registration);
-
-  fetch('hello.html').then((res) => {
-    res.text().then((text) => {
-      console.log(text);
-    });
-  });
-}).catch(console.error.bind(console));
 ```
-
-worker.js
-
-```js
-self.addEventListener('fetch', (e) => {
-  if (e.request.url === 'http://localhost:3000/hello.html') {
-    e.respondWith(new Response('world'));
-  } else {
-    return
-  }
+navigator.serviceWorker.register('/worker.js', { scope: '/' }).then((registration) => {
+  console.log('master');
 });
 ```
 
-### Registration Events
+```
+console.log('worker');
+
+self.addEventListener('fetch', (e) => {
+  let path = new URL(e.request.url).pathname;
+  if (path === '/test.html') {
+    e.respondWith(new Response('test'));
+  }
+  return;
+});
+```
+
+
+この状態で '/test.html' に移動、してみる。
+
+
+## ボタンから fetch してみる。
+
+
+```html
+<input type=button id=button value=button>
+```
+
+```js
+document.getElementById('button').addEventListener('click', () => {
+  fetch('/test.html').then((e) => {
+    console.log(e);
+  });
+});
+```
+
+一回目は、 fetch できない。
+リロードするとできる。
+
+アクティブだが、コントローラーではないから。
+
+
+## いつコントロールを始めるか
 
 register された worker.js は、 install され active になる。
 
@@ -59,6 +75,7 @@ navigator.serviceWorker.register('worker.js').then((registration) => {
 }).catch(console.error.bind(console));
 ```
 
+worker 側で activate イベントは起こっているけど、 master 側で resolve された時点では installing.
 
 installing -> active に移ったかどうかは、 navigator.serviceWorker.ready の resolve() でわかる。
 
