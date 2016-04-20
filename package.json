@@ -27,8 +27,8 @@
     "textlint-rule-web-plus-db": "^1.1.4"
   },
   "scripts": {
-    "build": "./build.rb production && ./compress.rb blog.jxck.io & gulp",
-    "dev": "./build.rb && find ./blog.jxck.io/* -name *.gz | xargs rm",
+    "build": "./build.rb && ./compress.rb blog.jxck.io & gulp",
+    "dev": "find ./blog.jxck.io/* -name *.gz -delete && ./build.rb",
     "www": "./compress.rb www.jxck.io",
     "blog": "./compress.rb blog.jxck.io",
     "slide": "./compress.rb slide.jxck.io",
