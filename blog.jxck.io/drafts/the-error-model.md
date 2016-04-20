@@ -35,7 +35,7 @@ So, without further ado, let's start.
 
 The basic question an Error Model seeks to answer is: how do "errors" get communicated to programmers and users of the system? Pretty simple, no? So it seems.
 
-まず、エラーモデルについての基本の問いとして、"エラーはどうプログラマやユーザとコミュニケーションすべきか"がある。シンプルだ。違うかい？
+まず、エラーモデルについての基本の問いとして、"エラーはどうプログラマやユーザとコミュニケーションすべきか"がある。シンプルだ。違うかい?
 
 One of the biggest challenges in answering this question turns out to be defining what an error actually is.
 Most languages lump bugs and recoverable errors into the same category, and use the same facilities to deal with them.
@@ -181,7 +181,7 @@ Java と C# の闘争のような言語彼らはシナリオの交差点の過�
 
 Finally, also recall that this story began in the mid-2000s timeframe, before Go, Rust, and Swift were available for our consideration.
 These three languages have done some great things with Error Models since then.
-あと、この話が 2000 年代半ばの時間枠に始まり、Go, Rust, Swift は、私たちの検討のために利用可能になる前であったことを思い出してください。
+あと、この話が 2000 年代半ばの時間枠に始まり、 Go, Rust, Swift は、私たちの検討のために利用可能になる前であったことを思い出してください。
 これらの 3 つの言語は、それまでの、エラーモデルと比べると、いくつかの偉大なことを成し遂げています。
 
 
@@ -298,18 +298,15 @@ Error codes fail the test of "zero overhead for common cases; pay for play for u
 
 1. 呼び出し規約の影響があります。(非 void 関数で)実際の値とエラーの、二つの戻り値があるとします。これは、より多くのスタック領域を使用し、呼び出し効率を下げます。インライン化は、呼び出しのサブセットをインライン化するため、これを防ぐ助けになります。
 
-
-:TODO :HERE
-
 2. There are branches injected into callsites anywhere a callee can fail.
 I call costs like this "peanut butter," because the checks are smeared across the code, making it difficult to measure the impact directly.
 In Midori we were able to experiment and measure, and confirm that yes, indeed, the cost here is nontrivial.
 There is also a secondary effect which is, because functions contain more branches, there is more risk of confusing the optimizer.
 
-2. どこにでも呼び出し先が失敗することが callsites に注入ブランチがあります。
-チェックは、それが困難に直接影響を測定すること、コード全体に塗りつけているので、私はこの"ピーナッツバター"のようなコストを呼び出します。
-Midori では、実験や測定、およびはい、確かに、ここでのコストは自明であることを確認することができました。
-関数が複数のブランチが含まれているため、オプティマイザを混乱のより多くのリスクがある、ある副次的な効果もあります。
+2. どこであれ呼び出しが失敗し得る、コールサイトにインジェクトされたブランチがある
+こうしたコストを "ピーナッツバター" と呼ぶ、なぜなら、コード全体に塗りつけているので、それによる直接影響を測定することが困難だからです。
+Midori では、実験や測定をから、確かにそこでのコストが自明であることを確認することができました。
+関数に複数のブランチが含まれているため、オプティマイザをより混乱させるリスクがあるという、副次的な効果もあります。
 
 
 This might be surprising to some people, since undoubtedly everyone has heard that "exceptions are slow."
@@ -317,22 +314,24 @@ It turns out that they don't have to be.
 And, when done right, they get error handling code and data off hot paths which increases I-cache and TLB performance,
 compared to the overheads above, which obviously decreases them.
 
-これは間違いなく、誰もがいると聞いているので、一部の人には驚くべきことかもしれません"例外がスローされます。"それは彼らがする必要がないことが判明します。
-右行われたときと、彼らは明らかにそれらを減少させる上記のオーバーヘッドに比べ、 I キャッシュと TLB の性能を向上させ、ホットパスオフエラー処理コードとデータを取得します。
+「例外は遅い」と、間違いなくほぼ全ての人が聞いたことがあるということは、一部の人を驚かせるかもしれません。
+それは、使うべきではない、と置き換えられています。
+そして、正しく行った場合、エラーハンドリングコードとデータをホットパスから外し I-cache と TLB パフォーマンスを向上することで、オーバーヘッドを減らします。
 
 Many high performance systems have been built using return codes, so you might think I'm nitpicking.
 As with many things we did, an easy criticism is that we took too extreme an approach.
 But the baggage gets worse.
 
-多くの高性能システムは、リターンコードを使用して構築されているので、あなたは、私はつまらないことにこだわると思うかもしれません。
+多くの高性能システムは、リターンコードを使用して構築されているので、私がつまらないことにこだわると思うかもしれません。
 私たちが行った多くのものと同じように、簡単な批判は、我々はあまりにも極端なアプローチを取ったということです。
 しかし、荷物が悪化します。
+
 
 
 ## Forgetting to Check Them
 
 It's easy to forget to check a return code. For example, consider a function:
-リターンコードはチェックすることを忘れがちです。たとえば、関数を考えてみます。
+リターンコードのチェックは忘れがちです。たとえば、関数を考えてみます。
 
 
 ```
@@ -340,7 +339,7 @@ int foo() { ... }
 ```
 
 Now at the callsite, what if we silently ignore the returned value entirely, and just keep going?
-今呼び出し場所で、私たちは静かに完全に戻り値を無視した場合、ちょうど続けますか？
+今呼び出し場所で、もし完全に戻り値を無視して、そのまま続けたらどうなるか?
 
 
 ```
@@ -353,10 +352,10 @@ This is easily the most vexing and damaging problem with error codes.
 As I will show later, option types help to address this for functional languages.
 But in C-based languages, and even Go with its modern syntax, this is a real issue.
 
-この時点で、あなたはあなたのプログラムに潜在的に重大なエラーがマスクされてきました。
-これは、簡単にエラーコードと最も厄介かつ有害な問題です。
-私は、後に表示されるように、オプションの種類は、関数型言語のためにこれに対処するのに役立ちます。
-しかし、 C ベースの言語で、さらにその現代的な構文で行く、これが本当の問題です。
+この時点で、あなたはプログラムの潜在的に重大なエラーをマスクしました。
+これは、エラーコードの最も厄介かつ有害な問題です。
+後にしめすように、関数型言語では Option Type がこれに対処するのに役立ちます。
+しかし、 C ベースの言語や、さらにその現代的な構文である Go でも、これは本当に問題です。
 
 
 This problem isn't theoretical.
@@ -370,35 +369,34 @@ Once we got it over to Midori, the bug was thrown into our faces, found, and fix
 This experience certainly informed our opinion about error codes.
 
 この問題は、理論的ではありません。
-私は、リターンコードを無視することによって引き起こされる多数のバグに遭遇していると私はあなたも持っていると確信しています。
-確かに、この非常にエラーモデルの開発に、私のチームはいくつかの魅力的なものに遭遇しました。
-私たちは Midori に Microsoft のスピーチサーバーを移植したときにたとえば、我々は台湾の中国語( ZH-TW )の要求の 80 ％が失敗したことがわかりました。
-しかし、開発者がすぐに見たように失敗したわけではありません。代わりに、クライアントはちんぷんかんぷん応答を取得することになります。
-最初に、我々はそれが私たちのせいだと思いました。
-しかし、その後、私たちは、元のコードで静かに飲み込んだ HRESULT を発見しました。
-私たちは Midori にそれを乗り越えたら、バグは、私たちの顔に投げ発見し、移植直後に修正されました。
-この経験は確かにエラーコードについての我々の意見を伝えました。
+私は、リターンコードを無視することによって引き起こされる多数のバグに遭遇しましたし、あなたもそうだと確信しています。
+この非常にエラーモデルの開発に、私のチームはいくつかの本当に魅力的なものに遭遇しました。
+例えば、私たちは Midori に Microsoft のスピーチサーバーを移植したときに、台湾の中国語(ZH-TW)のリクエストの 80 % が失敗したことがわかりました。
+しかし、開発者がすぐわかるように失敗したわけではありません。代わりに、クライアントはちんぷんかんぷんな応答を取得することになります。
+最初に、我々はそれが自分たちのせいだと思いました。
+しかし、その後私たちは、元のコードで静かにもみ消された HRESULT を発見しました。
+私たちは Midori にそれを移植したら、直ちにバグが私たちの目の前に現れ、移植直後に修正されました。
+この経験はエラーコードについての我々の考えをよく表します。
 
 
 It's surprising to me that Go made unused imports an error, and yet missed this far more critical one.
 So close!
 
-これは、 Go は、未使用の輸入にエラーをした、そしてまだこのはるかに重要なものを逃した私には驚きです。
-だから近いです！
-
+Go が、未使用の import をエラーにしたのに、このはるかに重要なものを逃したのに私には驚きました。
+非常に惜しい!
 
 It's true you can add a static analysis checker, or maybe an "unused return value" warning as most commercial C++ compilers do.
 But once you've missed the opportunity to add it to the core of the language, as a requirement, none of those techniques will reach critical mass due to complaints about noisy analysis.
 
-これは、ほとんどの市販の C++ コンパイラがそうであるようにあなたが静的解析チェッカ、または多分"未使用の戻り値"警告を追加することができます本当です。
-あなたが要件として、言語のコアに追加する機会を逃してきたしかし、一度、これらの技術のいずれも、ノイズの多い分析に関する苦情にクリティカルマスに到達しません。
-
+ほとんどの市販の C++ コンパイラがそうであるように、あなたが静的解析チェッカを追加するか、または "未使用の戻り値" 警告を追加することができるのは事実です。
+しかし、言語のコアに要件としてそれを追加する機会を逃してきたことで、これらの技術のいずれも、ノイズの多い解析結果のためクリティカルマスに到達しません。
 
 For what it's worth, forgetting to use return values in our language was a compile time error.
-You had to explicitly ignore them; early on we used an API for this, but eventually devised language syntax - the equivalent of >/dev/null:
+You had to explicitly ignore them; early on we used an API for this, but eventually devised language syntax - the equivalent of `>/dev/null`:
 
-何が価値がある、私たちの言語で戻り値を使用するのを忘れるために、コンパイル時エラーがありました。
-あなたが明示的にそれらを無視しなければなりませんでした。初期の私たちに、このための API を使用したが、最終的に考案された言語の構文 - >を/ dev / null の同等:
+価値がある何かのため、私たちの言語では、戻り値の使用を忘れた場合、コンパイルタイムエラーにしました。
+明示的にそれらを無視しなければなりませんでした、このためのに初期の段階では API を利用しましたが、最終的には言語の構文が考案されました - `>/dev/null` 相当です。
+
 
 ```
 ignore foo();
@@ -409,34 +407,38 @@ How many times have you debugged a problem only to find that the root cause was 
 Letting developers say ignore wasn't bulletproof, of course, as they could still do the wrong thing.
 But it was at least explicit and auditable.
 
-私たちは、しかし、誤って戻り値を無視することができないことは、システム全体の信頼性のために重要であった、エラーコードを使用していませんでした。
-どのように多くの時間があなただけの根本的な原因は、使用するのを忘れて、戻り値であったことを見つけるために問題をデバッグしていますか？でも、これは根本的な原因だったセキュリティ攻撃がありました。
-まかせ開発者は、彼らはまだ間違ったことを行うことができますように、当然のことながら、防弾ではありませんでした無視と言います。
-しかし、それは、少なくとも明示的かつ監査可能でした。
+エラーコードは使いませんでした、しかし、誤って戻り値を無視することができないことは、システム全体の信頼性のために重要でした。
+根本原因としての戻り値の無視を見つけるためにどのくらいの時間をデバッグについやしたでしょうか?これが根本的な原因だったセキュリティ攻撃もありました。
+開発者に戻り値の無視を許可するのは防弾にはなりません、もちろん同じ過ちは依然として発生しえます。
+しかし、それは少なくとも明示的かつ監査可能です。
 
 
 ## Programming Model Usability
 
 In C-based languages with error codes, you end up writing lots of hand-crafted if checks everywhere after function calls.
-This can be especially tedious if many of your functions fail which, in C programs where allocation failures are also communicated with return codes, is frequently the case.
+This can be especially tedious if many of your functions fail which,
+in C programs where allocation failures are also communicated with return codes,
+is frequently the case.
 It's also clumsy to return multiple values.
 
 C ベースの言語のエラーコードは、毎回関数呼び出しの後に自分で沢山の if チェックを書ききる必要が有ります。
-あなたの機能の多くは、割り当て障害はまた、リターンコードに連通している C プログラムでは、頻繁にケースである、失敗した場合、これは特に面倒なことができます。
-これは、複数の値を返すためにも不器用です。
+これは、多くの関数が頻繁に失敗する場合に非常に面倒です。
+C 言語では、メモリ割当の失敗もリターンコードに現れます。
+これは複数の値を返すとしてもあまうまくいきません。
 
 A warning: this complaint is subjective.
 In many ways, the usability of return codes is actually elegant.
 You reuse very simple primitives - integers, returns, and if branches - that are used in myriad other situations.
 In my humble opinion, errors are an important enough aspect of programming that the language should be helping you out.
 
-警告:この苦情は主観的なものです。
+警告: この苦情は主観的なものです。
 多くの点で、リターンコードの使いやすさは、実際にはエレガントです。
-整数、返品、および支店の場合 - - 無数の他の状況で使用されているあなたは非常に単純なプリミティブを再利用します。
-私の愚見では、エラーが言語があなたを助けることがなければならないプログラミングの重要な十分な局面です。
+何回も使う非常にシンプルな原則 - 整数、戻り値、 if 文 - を使い回します。
+私の愚見では、エラーは言語があなたを助ける上で必要十分な要素です。
+
 
 Go has a nice syntactic shortcut to make the standard return code checking slightly more pleasant:
-Go が少しより快適なチェックの標準的なリターンコードを作成するための良い構文のショートカットを持っています。
+Go は少し快適な、標準的なリターンコードをチェックする良いショートカットを持っています。
 
 ```
 if err := foo(); err != nil {
@@ -445,16 +447,18 @@ if err := foo(); err != nil {
 ```
 
 Notice that we've invoked foo and checked whether the error is non-nil in one line. Pretty neat.
-我々が foo を呼び出し、エラーが 1 行で非 nil であるかどうかをチェックしたことに注意してください。かなりきちんと。
+foo を呼び出し、 1 行でエラーが非 nil であるかどうかを、かなりちゃんとチェックしたことに注意してください。
 
 The usability problems don't stop there, however.
-ユーザビリティの問題は、しかし、そこに停止しないでください。
+しかし、ユーザビリティの問題はここでも解決されていません。
 
 It's common that many errors in a given function should share some recovery or remediation logic.
 Many C programmers use labels and gotos to structure such code.
+
+多くの場合関数の多くのエラーは、リカバリや回避のロジックを共有すべきです。
+多くの C プログラマは、このようなコードを構造化するために、ラベルと goto を使用します。
+
 For example:
-これは、与えられた関数には多くの誤りがいくつかの回復または修復ロジックを共有する必要があることが一般的です。
-多くの C プログラマは、このようなコードを構造化するために、ラベルとの goto を使用しています。
 例えば:
 
 ```
@@ -486,36 +490,42 @@ return error;
 ```
 
 Needless to say, this is the kind of code only a mother could love.
-言うまでもなく、これは母親だけが愛することができ、コードの一種です。
+言うまでもなく、これは書いた本人だけが読むことができるコードの一種です。
 
-In languages like D, C# , and Java, you have finally blocks to encode this "before scope exits" pattern more directly.
+
+In languages like D, C#, and Java, you have finally blocks to encode this "before scope exits" pattern more directly.
 Similarly, Microsoft's proprietary extensions to C++ offer `__finally`, even if you're not fully buying into RAII and exceptions.
 And D provides scope and Go offers defer.
 All of these help to eradicate the goto Error pattern.
-D 、 C# の、および Java などの言語では、より直接的に、この"スコープが終了する前に "パターンを符号化するための finally ブロックを持っています。
-同様に、 C++ のオファー `__finally`に対する Microsoft の独自の拡張は、あなたが完全に RAII と例外に購入していない場合でも。
-そして、 D は範囲を提供し、 Go は延期を提供しています。
+
+D, C#,および Java などの言語では、 finally ブロックを用いて、この "スコープが終了する直前" のパターンを表現します。
+同様に、 MS 独自拡張の C++ は `__finally` を持ち、 RAII と例外を完全に使用していなくても、使うことができます。
+そして、 D は scope を提供し、 Go は defer を提供しています。
 これらのすべては、 goto 文のエラーパターンを根絶するのに役立ちます。
 
+
 Next, imagine my function wants to return a real value and the possibility of an error? We've burned the return slot already so there are two obvious possibilities:
-次に、私の関数は、実際の値との誤差の可能性を返すように望んでいると想像？我々は 2 つの明白な可能性があるので、既に返却口を燃やしました:
+次に、関数が実際の値と、エラーが起こる可能性を返したいとした場合はどうでしょう? すでに return はもう使ったので、他に二つの明白な可能性があります:
 
 1. We can use the return slot for one of the two values (commonly the error), and another slot - like a pointer parameter - for the other of the two (commonly the real value).
 This is the common approach in C.
-1. ポインタパラメータのような - - 2 の他のための(一般的に実際の値)私たちは、 2 つの値(一般エラー)の一つであり、他のスロットの戻りスロットを使用することができます。
-これは、 C で一般的なアプローチであります
+
+1. return を二つの値のどちらか(通常はエラー)に使い、他の場所 -例えばポインタパラメータ- をもう一方(通常は値)に使います。それが C の基本的なアプローチです。
 
 2. We can return a data structure that carries the possibility of both in its very structure.
 As we will see, this is common in functional languages.
 But in a language like C, or Go even, that lacks parametric polymorphism, you lose typing information about the returned value, so this is less common to see.
 C++ of course adds templates, so in principle it could do this, however because it adds exceptions, the ecosystem around return codes is lacking.
-2. 私たちは、その非常に構造体の両方の可能性を運ぶデータ構造を返すことができます。
-私達が見るように、これは関数型言語では一般的です。
-しかし、 C のような言語、あるいは移動中に、それはパラメトリック多型を欠いている、あなたは、返された値に関する入力情報を失うので、これは見ることがあまり一般的です。
-それは、リターンコードの周りの生態系が欠けているの例外を追加しますただしので、原理的には、これを行うことができますので、もちろん C++ は、テンプレートを追加します。
+
+2. 両方の値を格納する構造体を用意し、それを返します。後述するように、関数型言語ではこれが基本的なアプローチです。
+しかし、 C や Go のような言語では、パラメータにポリモフィズムが失われます、その型情報が失われてしまうため、あまり使われません。
+
+C++ ではもちろんテンプレートがあるので、それが実現できます。しかし、例外が追加されるため、リターンコードのエコシステムが適用できません。
+
 
 In support of the performance claims above, imagine what both of these do to your program's resulting assembly code.
-上記のパフォーマンスの主張を支持して、これらの両方は、プログラムの結果のアセンブリコードに何をするか想像してみてください。
+上記のパフォーマンスの主張を踏まえて、両方のプログラムの結果がどういうアセンブリコードになるのか想像してみてください。
+
 
 ## Returning Values "On The Side"
 
@@ -534,7 +544,7 @@ int foo(int* out) {
 ```
 
 The real value has to be returned "on the side," making callsites clumsy:
-実際の値は callsites が不器用な作り"、側面に"返却する必要があります。
+実際の値は "on the side" で返されるため、呼び出し側が不格好になります。
 
 ```
 int value;
@@ -548,10 +558,11 @@ else {
 ```
 
 In addition to being clumsy, this pattern perturbs your compiler's definite assignment analysis which impairs your ability to get good warnings about things like using uninitialized values.
-不器用であることに加えて、このパターンは初期化されていない値を使用してのようなものについての良い警告を得るためにあなたの能力を損なうコンパイラの明確な代入分析を混乱させる。
+
+不格好であることに加えて、このパターンはコンパイラの代入の解析について、未初期化の値の仕様などについてのよい警告を得る機会を損ねます。
 
 Go also takes aim at this problem with nicer syntax, thanks to multi-valued returns:
-、またよりよい構文を使用してこの問題を目指す取り多値リターンのおかげで行きます:
+Go はこの問題に対して、多値のリターンというより良いシンタックスを用います。
 
 ```
 func foo() (int, error) {
@@ -564,10 +575,11 @@ func foo() (int, error) {
 
 And callsites are much cleaner as a result.
 Combined with the earlier feature of single-line if checking for errors - a subtle twist, since at first glance the value return wouldn't be in scope, but it is - this gets a touch nicer:
-そして callsites は、結果として非常にクリーンです。
-エラーのチェック場合は、単一行の以前の特徴と組み合わせること - 微妙なねじれを、一見値のリターンがスコープ内ではないので、それがある - これは、タッチよりよい取得します。
+呼び出し側がよりスッキリしました。
+先に述べた、ワンラインのエラーチェックと組み合わせると、 -ぱっと見最初の戻り値がスコープに無いように見えますが、そんなことはありません- より良くなります。
 
-```
+
+```go
 if value, err := foo(); err != nil {
   // Error! Deal with it.
 } else {
@@ -577,61 +589,75 @@ if value, err := foo(); err != nil {
 
 Notice that this also helps to remind you to check the error.
 It's not bulletproof, however, because functions can return an error and nothing else, at which point forgetting to check it is just as easy as it is in C.
-これは、エラーをチェックするためにあなたを思い出させるのに役立つことに注意してください。
-関数は、それが C であると同じくらい簡単であることを確認し忘れ時点でエラーと他には何を返すことができるので、しかし、防弾ではありません
+これは、エラーをチェックを忘れないようにするのに、役立つことに注意してください。
+防弾チョッキとはいきませんが、しかし、関数がエラー以外何も返さないこともできるので、それをチェックするのは C と同じ位簡単です。
 
 As I mentioned above, some would argue against me on the usability point.
 Especially Go's designers, I suspect.
 A big appeal to Go using error codes is as a rebellion against the overly complex languages in today's landscape.
+
+前述したように、ユーザビリティの点で私に反論する人もいるだろう。
+特に Go のデザイナーは、私は疑います。
+Go がエラーコードを使用する大きなアピールは、今日の過度に複雑な言語に対する反旗ようです。
+
 We have lost a lot of what makes C so elegant - that you can usually look at any line of code and guess what machine code it translates into.
 I won't argue against these points.
+
+私たちは、 C をエレガントにしている多くのものを失っています。それは、どの行を見てもコードがどのようにマシン語に変換されるかを予測できることです。
+私はこれらの点に反論しません。
+
 In fact, I vastly prefer Go's model over both unchecked exceptions and Java's incarnation of checked exceptions.
 Even as I write this post, having written lots of Go lately, I look at Go's simplicity and wonder, did we go too far with all the try and requires and so on that you'll see shortly? I'm not sure.
-Go's error model tends to be one of the most divisive aspect of the language; it's probably largely because you can't be sloppy with errors as in most languages, however programmers really did enjoy writing code in Midori's.
+
+実際には、 Java の check/uncheck exception よりも Go のモデルの方が断然好みです。
+この記事を書いてる今も、 Go で多くのコードを書き、そのシンプルさと良さを感じています。この短い間に見た挑戦や要件その他と、遠く離れたものでしょうか?そうは思いません。
+
+Go's error model tends to be one of the most divisive aspect of the language;
+it's probably largely because you can't be sloppy with errors as in most languages, however programmers really did enjoy writing code in Midori's.
 In the end, it's hard to compare them.
 I'm convinced both can be used to write reliable code.
-私は前述したように、いくつかは、ユーザビリティの点で私に対して主張するだろう。
-特に移動のデザイナーは、私は疑います。
-エラーコードを使用して行くための大きな魅力は、今日の風景の中に過度に複雑な言語に対する反乱ようです。
-あなたは、通常のコードの任意の行を見て、それがに変換するもののマシンコードを推測することができる - 私たちは、 C はとてもエレガントになり何の多くを失っています。
-私はこれらの点に反論しません。
-実際に、私は非常に両方のチェック例外とチェック例外の Java の化身の上に行くのモデルを好みます。
-私は最近、 Go の書かれた多くを持つ、この記事を書いたとしても、私は Go のシンプルさと不思議を見て、私たちは、あなたがすぐにわかりますように、すべての試行で行き過ぎと必要としたのですか？よく分かりません。
- Go の誤差モデルは、言語の中で最も分裂局面の 1 になる傾向があります。あなたはしかし、プログラマが本当に Midori の中にコードを書いて楽しんでいた、ほとんどの言語のようにエラーが発生したずさんなことはできませんので、それは主に、おそらくです。
-最後に、それはそれらを比較するのは難しいです。
-私は両方が信頼性の高いコードを書くのに使用することができる確信しています。
+
+Go のエラーモデルは、言語の中で最も意見の別れる部分の一つでしょう。
+多くの言語同様に、エラーを雑に扱うことが出来ないのが大きいとは思いますが、 Midori ではプログラマが楽しんでコードを書いていました。
+最終的に、それらを比較するのは難しいです。
+私は、両方とも信頼性の高いコードを書くのに、使用できると確信しています。
+
 
 ## Return Values in Data Structures
 
 Functional languages address many of the usability challenges by packaging up the possibility of either a value or an error, into a single data structure.
 Because you're forced to pick apart the error from the value if you want to do anything useful with the value at the callsite - which, thanks to a dataflow style of programming, you probably will - it's easy to avoid the killer problem of forgetting to check for errors.
+
 関数型言語は、単一のデータ構造に、値またはエラーのいずれかの可能性をパッケージングすることにより、ユーザビリティの課題の多くに対処します。
-それは忘却のキラー問題を回避するのは簡単です - プログラミングのデータフロースタイル、あなたはおそらく意志に、おかげで - あなたは呼び出し場所での値で有用な何かを行いたい場合は、値からの誤差を離れて選ぶことを余儀なくしているので、エラーをチェックします。
+なぜなら、これにより呼び出し側で値を処理する場合、エラーを分けて処理することを強制され、データフロースタイルのプログラミングにより、エラー処理を忘れることがなくなります。
 
 For an example of a modern take on this, check out Scala's Option type.
 The unfortunate news is that some languages, like those in the ML family and even Scala (thanks to its JVM heritage), mix this elegant model with the world of unchecked exceptions.
 This taints the elegance of the monadic data structure approach.
-この上の近代的なテイクの例については、 Scala のオプションの種類をチェックしてください。
-残念なニュースが(その JVM 遺産のおかげで) ML ファミリーのもの、さらには Scala のようないくつかの言語は、非チェック例外の世界とこのエレガントなモデルを混在させることです。
-これは、モナドデータ構造アプローチのエレガンスは汚染します。
+
+この選択の近代的な例については、 Scala の Option Type があります。
+残念なことにこうした言語、例えば ML ファミリーや(JVM 遺産を持つ) Scala のようないくつかの言語は、このエレガントなモデルを非チェック例外の世界と混在させることです。
+これは、モナディックなデータ構造アプローチのエレガンスさを損ねます。
 
 Haskell does something even cooler and gives the illusion of exception handling while still using error values and local control flow:
-Haskell はあってもクーラー何かをしてもエラー値とローカル制御フローを使用しながら、例外処理の錯覚を与えます:
+Haskell はエラー値のローカル制御フローを使用することで、例外処理を錯覚させるより良い方法を提供します。
 
 > There is an old dispute between C++ programmers on whether exceptions or error return codes are the right way.
 Niklas Wirth considered exceptions to be the reincarnation of GOTO and thus omitted them in his languages.
 Haskell solves this problem a diplomatic way: Functions return error codes, but the handling of error codes does not uglify the code.
->例外やエラーリターンコードが正しい方法であるかどうかを上の C++ プログラマの間の古い論争があります。
-ニクラスヴィルトは、例外が GOTO の生まれ変わりであると考えられ、したがって、彼の言語でそれらを省略しました。
-Haskell はこの問題を外交的な方法を解決:関数は、エラーコードを返しますが、エラーコードの取り扱いは、コードを醜くするしません。
+
+> C++ プログラマの間では、古くから、例外とエラーコードどちらが正しいかの論争があります。
+Niklas Wirth は、例外が GOTO の生まれ変わりであると考え、彼の言語でそれらを除去しました。
+
+Haskell はこの問題を外交的な方法で解決しています: 関数はエラーコードを返しますが、エラーコードの取り扱いはコードを醜くしません。
 
 The trick here is to support all the familiar throw and catch patterns, but using monads rather than control flow.
-ここでのトリックは、すべてのおなじみのスローとキャッチパターンをサポートすることですが、モナドではなく、制御フローを使用して。
+ここでのトリックは、おなじみの throw と catch のパターンを全てサポートしながら、制御フローではなくモナドを使用することです。
 
 Although Rust also uses error codes it is also in the style of the functional error types.
 For example, imagine we are writing a function named bar in Go: we'd like to call foo, and then simply propagate the error to our caller if it fails:
-Rust にもエラーコードを使用していますが、それは機能的なエラータイプのスタイルでもあります。
-たとえば、私たちはゴーで関数という名前のバーを書いていると想像:それが失敗した場合、私たちが foo を呼び出し、その後、単に私たちの呼び出し側にエラーを伝播したいと思います:
+Rust もエラーコードを使用していますが、それは functional error type のスタイルでもあります。
+たとえば、私たちは Go で bar という名前の関数を書いているとします: foo を呼び出し、それが失敗した場合には、単に呼び出し側にエラーを伝播したいと思います:
 
 ```
 func bar() error {
@@ -646,9 +672,10 @@ func bar() error {
 The longhand version in Rust isn't any more concise.
 It might, however, send C programmers reeling with its foreign pattern matching syntax (a real concern but not a dealbreaker).
 Anyone comfortable with functional programming, however, probably won't even blink, and this approach certainly serves as a reminder to deal with your errors:
-Rust の手書きのバージョンは、任意のより簡潔ではありません。
-それは、しかし、その外国のパターンマッチング構文(現実的な懸念ではなく dealbreaker )で動揺 C プログラマを送信することがあります。
-関数型プログラミングで快適誰もが、しかし、おそらく点滅しなくなり、このアプローチは確かにあなたのエラーに対処するためのリマインダとして機能します:
+
+Rust で手書きしたバージョンは、より簡潔ではありません。
+しかし、それは、その慣れないパターンマッチング構文(実際の問題だが、解決策では無い) C プログラマを送信することがあります。
+関数型プログラミングが好きな人なら、おそらく驚かないでしょう、しかし、このアプローチは確かにあなたのエラーに対処するためのリマインダとして機能します:
 
 ```
 fn bar() -> Result<(), Error> {
@@ -660,7 +687,7 @@ fn bar() -> Result<(), Error> {
 ```
 
 But it gets better. Rust has a try! macro that reduces boilerplate like the most recent example to a single expression:
-しかし、それは良くなります。 Rust は、 try を持っています！単一の式に最も最近の例のような決まり文句を低減するマクロ:
+しかし、もっと良くなります。 Rust はここまでの例のような単一行定型文を減らす `try!` マクロをもっています。
 
 ```
 fn bar() -> Result<(), Error> {
@@ -671,12 +698,12 @@ fn bar() -> Result<(), Error> {
 
 This leads us to a beautiful sweet spot.
 It does suffer from the performance problems I mentioned earlier, but does very well on all other dimensions.
-It alone is an incomplete picture - for that, we need to cover fail-fast (a.k.a.
-abandonment) - but as we will see, it's far better than any other exception-based model in widespread use today.
+It alone is an incomplete picture - for that, we need to cover fail-fast (a.k.a. abandonment) - but as we will see, it's far better than any other exception-based model in widespread use today.
+
 これは、美しいスイートスポットに私たちを導きます。
-それは私が前述したパフォーマンスの問題に苦しむんが、他のすべての寸法に非常によくありません。
-それだけでは不完全な絵である - そのために、我々はフェイルファスト(別名カバーする必要があります
-中断) - しかし、私たちが見るように、それが今日広く使用されている他の例外ベースのモデルよりもはるかに良いです。
+それは前述したパフォーマンスの問題はありますが、他のすべての側面を非常によく解決しています。
+それ単体では不完全ですが - そのため fail-fast (abandonment) をカバーします - 後述するように、広く使われている Exception ベースのモデルよりも、数段よいでしょう。
+
 
 ## Exceptions
 
@@ -685,37 +712,42 @@ During this journey I spent countless hours retracing the industry's steps.
 That includes reading some of the original papers - like Goodenough's 1975 classic, Exception Handling: Issues and a Proposed Notation - in addition to looking at the approaches of several languages: Ada, Eiffel, Modula-2 and 3, ML, and, most inspirationally, CLU.
 Many papers do a better job than I can summarizing the long and arduous journey, so I won't do that here.
 Instead, I'll focus on what works and what doesn't work for building reliable systems.
-例外の歴史は魅力的です。
-この旅の間、私は業界のステップを辿り数え切れないほどの時間を過ごしました。
-最も感激させるように、エイダ、エッフェル、の Modula-2 および 3 、 ML 、および: - 加えて、いくつかの言語のアプローチを見に問題と提案表記:グッドイナフの 1975 古典的な例外処理のように - それは、元の論文のいくつかを読ん含み、 CLU 。
-多くの論文は、私は長い骨の折れる旅を要約することができますより良い仕事をするので、私はそれここで行うことはありません。
-代わりに、私はどのような作品に焦点を当てますと信頼性の高いシステムを構築するために何を動作しません。
+
+Exception の歴史は魅力的です。
+この旅の間、私は業界の歴史を辿るため数え切れないほどの時間を費やしました。
+そのなかで、いくつかの原点となる論文も読みました - 例えば Goodenough's 1975 classic, Exception Handling: Issues and a Proposed Notation - 加えて幾つかの言語でのアプローチも研究しました: Ada, Eiffel, Modula-2/3, ML, そしてもっともインスパイアされたのは CLU です。
+多くの論文は、長い骨の折れる旅を要約するより良い仕事をするので、私がそれをここで行うことはしません。
+代わりに私は、信頼性の高いシステムを作るために、何がうまく働き、何がうまく働かないかに注目します。
 
 Reliability is the most important of our requirements above when developing the Error Model.
 If you can't react appropriately to failures, your system, by definition, won't be very reliable.
 Operating systems generally speaking need to be reliable.
 Sadly, the most commonplace model - unchecked exceptions - is the worst you can do in this dimension.
-信頼性は、エラーモデルを開発する際に上記の我々の要求の中で最も重要です。
-あなたが障害に適切に対応できない場合は、お使いのシステムは、定義によって、非常に信頼されません。
-オペレーティングシステムは、一般的に信頼性の必要性を話します。
-悲しいことに、最もありふれたモデル - 未確認の例外は、 - あなたはこの次元で行うことができます最悪です。
+
+信頼性は、エラーモデルを開発する際の我々の要求の中で最も重要でした。
+あなたが障害に適切に対応できない場合は、そのシステムは、定義からしても、信頼性があるとは全く言えません。
+オペレーティングシステムは、一般的に信頼性を必要とします。
+悲しいことに、最もありふれたモデル - unchecked exception - この次元で行うことができます最悪の方法です。
 
 For these reasons, most reliable systems use return codes instead of exceptions.
 They make it possible to locally reason about and decide how best to react to error conditions.
 But I'm getting ahead of myself.
 Let's dig in.
-これらの理由から、最も信頼性の高いシステムではなく、例外のリターンコードを使用します。
-彼らは約局部的な理由にことを可能にするとエラー状態に反応するように最善の方法を決定します。
-しかし、私は先に自分の取得しています。
-それでは、で掘るましょう。
+
+これらの理由から、最も信頼性の高いシステムは、 Exception ではなくリターンコードを使用します。
+これにより、エラーの状態に対してどう対処するのが最善かを、局部的に判断し決定することができます。
+しかし、より進めて考えることができます。さっそく、探ってみましょう。
+
 
 ## Unchecked Exceptions
 
 A quick recap.
 In an unchecked exceptions model, you throw and catch exceptions, without it being part of the type system or a function's signature.
 For example:
-迅速な要約。
-チェック例外モデルでは、あなたはそれが型システムまたは関数のシグネチャの一部であることなく、例外をスローし、キャッチ。
+
+迅速な要約
+upchecked exception model では、型システムと関数定義無しに Exception を throw / catch します。
+
 例えば:
 
 ```
@@ -744,110 +776,135 @@ In this model, any function call - and sometimes any statement - can throw an ex
 Where? Who knows.
 There are no annotations or type system artifacts to guide your analysis.
 As a result, it's difficult for anyone to reason about a program's state at the time of the throw, the state changes that occur while that exception is propagated up the call stack - and possibly across threads in a concurrent program - and the resulting state by the time it gets caught or goes unhandled.
-このモデルでは、任意の関数呼び出し - 時には任意のステートメントは - どこか非局所的に制御を移す、例外をスローすることができます。
-どこで？知るか。
-あなたの分析を導くために何の注釈や型システムのアーティファクトはありません。
-そしておそらく並行プログラム内のスレッド間で - - と結果の状態によって、誰もがその例外がコールスタックに伝播している間に発生する状態変化、スローの時にプログラムの状態を約推論するためにその結果、それは難しいですそれを取得時間はキャッチまたは未処理になりました。
+
+このモデルでは、任意の関数呼び出し - 時には任意のステートメント - は、 Exception を throw することがあり、 local 以外のどこかに制御を移すことができます。
+それがどこなのか、誰も知りません。
+それを分析する、アノテーションや型注釈はありません。
+その結果、 throw した時点で、プログラムの状態を把握すのが難しくなり、 exception がコールスタック - スレッドをまたぐかもしれない - を登っていく中で状態が変化し、場合によって catch されたり、ハンドルされなかったりします。
 
 It's of course possible to try.
 Doing so requires reading API documentation, doing manual audits of the code, leaning heavily on code reviews, and a healthy dose of luck.
 The language isn't helping you out one bit here.
+
 Because failures are rare, this tends not to be as utterly disastrous as it sounds.
-My conclusion is that's why many people in the industry think unchecked exceptions are "good enough." They stay out of your way for the common success paths and, because most people don't write robust error handling code in non-systems programs, throwing an exception usually gets you out of a pickle fast.
+My conclusion is that's why many people in the industry think unchecked exceptions are "good enough."
+They stay out of your way for the common success paths and, because most people don't write robust error handling code in non-systems programs,
+throwing an exception usually gets you out of a pickle fast.
 Catching and then proceeding often works too.
 No harm, no foul.
 Statistically speaking, programs "work."
-これは試してみるもちろん可能です。
-そうすることで、コードレビューに大きく傾いて、コードの手動による監査をやって、 API ドキュメントを読んで必要とし、運の健全な用量。
-言語は、 1 ビット、ここであなたを支援されていません。
-障害はまれであるので、これは思ったほど全く悲惨なことしない傾向にあります。
-私の結論は、業界で多くの人々が非チェック例外があると思う理由だが"十分に良いです。 "ほとんどの人は、例外は通常、高速ピクルスのあなたを取得投げ、非システムのプログラムで強力なエラー処理コードを記述していないので、彼らは、共通の成功パスのあなたの方法の外に滞在し。
-キャッチした後、頻繁に進むことはあまりにも動作します。
-害なし、ファウル。
-統計的に言えば、プログラム "仕事"。
 
-Maybe statistical correctness is okay for scripting languages, but for the lowest levels of an operating system, or any mission critical application or service, this isn't an appropriate solution.
+これを試してみるもちろん可能です。
+それをするには、 API ドキュメントをしっかり読み、コードの手動監査をやって、ヘビーなコードレビューを学んで、あとのコードの健全性は運任せ。
+言語は、一切支援してくれません。
+障害は滅多におきないため、これは思ったほど悲惨なことにならない傾向にあります。
+私の結論は、業界で多くの人々が Unchecked Exception が "十分である" と思う理由は、
+多くの人が、システムプログラムでないプログラムでロバストなエラーハンドリングを書かないため、
+彼らが、共通のサクセスパスの外にいて、Exception を投げるのは、通常 pickle fast から出られる。
+キャッチした後の動作も、多くはうまく動作します。
+害なし、ずるなし。統計的に言えば、プログラムは "動く"。
+
+Maybe statistical correctness is okay for scripting languages, but for the lowest levels of an operating system,
+or any mission critical application or service, this isn't an appropriate solution.
 I hope this isn't controversial.
-多分統計的正しさは、スクリプト言語のために大丈夫ですが、オペレーティングシステム、または任意のミッションクリティカルなアプリケーションやサービスの最低レベルのために、これは適切な解決策ではありません。
-私は、これは論争のではありません願っています。
+
+おそらく、統計的正しさは、スクリプト言語においては問題有りませんが、OS の低レベルな部分、またはミッションクリティカルなアプリケーションやサービスにおいては、適切な解決策ではありません。
+これは、議論を挟む余地は無いと考えています。
 
 .NET makes a bad situation even worse due to asynchronous exceptions.
+
+.NET は、非同期 exception により、さらに状況を悪化させています。
+
 C++ has so-called "asynchronous exceptions" too: these are failures that are triggered by hardware faults, like access violations.
 It gets really nasty in .NET, however.
 An arbitrary thread can inject a failure at nearly any point in your code.
 Even between the RHS and LHS of an assignment! As a result, things that look atomic in source code aren't.
-I wrote about this 10 years ago and the challenges still exist, although the risk has lessened as .NET generally learned that thread aborts are problematic.
+I wrote about this 10 years ago and the challenges still exist,
+although the risk has lessened as .NET generally learned that thread aborts are problematic.
 The new CoreCLR even lacks AppDomains, and the new ASP.NET Core 1.0 stack certainly doesn't use thread aborts like it used to.
 But the APIs are still there.
-.NET はさらに悪化による非同期例外に悪い状況になります。
-C++ は、あまりにも、いわゆる"非同期例外"を持っている:これらは、アクセス違反などのハードウェア障害によってトリガされている障害です。
-しかし、.NET で本当に厄介な取得します。
+
+C++ も、アクセス違反などのハードウェア障害によりで発生する "非同期例外" と呼ばれる機構をもっています、
+しかし、.NET でより厄介なものです。
 任意のスレッドは、コード内のほぼすべての点での障害を注入することができます。
-でも RHS と割り当ての LHS 間！その結果、ソースコード内での原子見るものではありません。
-私はこの 10 年ほど前に書いたと.NET は、一般的にスレッドは問題があるアボートことを学んだようなリスクを緩和しているものの、課題はまだ存在しています。
-新しい CoreCLR もの AppDomain を欠いているし、新しい ASP.NET コア 1.0 スタックは確かにそれが使用されるようにスレッドが中断されます使用していません。
-しかし、 API はまだそこにあります。
+RHS と LHS の間の割当ですら可能です! その結果、ソースコード内でアトミックにみえるものも、実際にはそうではありません。
+私はそれについて 10 年ほど前に書きましたが、未だにチャレンジは続いています。
+スレッドの中断は問題をはらんでいると学ばれたので、一般的に .NET ではリスクは減りました。
+新しい CoreCLR も AppDomain を欠いているし、新しい ASP.NET Core 1.0 スタックは確かにかつてのようにスレッドの中断を使用しません。
+しかし、 API はまだあります。
 
 There's a famous interview with Anders Hejlsberg, C# 's chief designer, called The Trouble with Checked Exceptions.
 From a systems programmer's perspective, much of it leaves you scratching your head.
 No statement affirms that the target customer for C# was the rapid application developer more than this:
-アンダースヘルスバーグ、 C# のチーフデザイナーで有名なインタビューがあり、チェック済み例外のトラブルと呼ばれます。
-システムプログラマーの観点から、それの多くは、あなたの頭を悩まあなたを残します。
-声明は、 C# のためのターゲット顧客は、これよりもより迅速なアプリケーション開発者であったことを肯定していません:
+
+C# のチーフデザイナーである、Anders Hejlsberg の有名なインタビューで、 Checked Exception によるトラブルについて言及しています。
+システムプログラマーの観点から、それの多くは、あなたの頭を悩まし続けます。
+C# のターゲットカスタマーは rapid application 開発者であるとは認めていません。
 
 > Bill Venners: But aren't you breaking their code in that case anyway, even in a language without checked exceptions? If the new version of foo is going to throw a new exception that clients should think about handling, isn't their code broken just by the fact that they didn't expect that exception when they wrote the code?
->ビル Venners の:しかし、あなたがチェック例外なくても言語で、とにかくその場合には、コードを壊していないですか？ foo の新しいバージョンのクライアントが取り扱いについて考えるべき新しい例外をスローしようとしている場合、彼らはコードを書いたとき、彼らはその例外を期待していなかったという事実によってちょうど壊れた自分のコードではありませんか？
+
+> Bill Venners: しかし、チェック例外ない言語だとしても、その場合には、コードは壊してるのではないですか? foo の新しいバージョンのクライアントがクライアントがハンドリングすべき新しい例外を throw しようとしている場合、コードを書いたときには、彼らはその例外を期待していなかったことによって、コードが壊れるのではありませんか?
 
 > Anders Hejlsberg : No, because in a lot of cases, people don't care.
 They're not going to handle any of these exceptions.
 There's a bottom level exception handler around their message loop.
 That handler is just going to bring up a dialog that says what went wrong and continue.
 The programmers protect their code by writing try finally's everywhere, so they'll back out correctly if an exception occurs, but they're not actually interested in handling the exceptions.
->アンダースヘルスバーグ:いいえ、例ロットで、人々は気にしないので。
-彼らは、これらの例外のいずれかを処理するつもりはありません。
-彼らのメッセージループの周りのボトムレベルの例外ハンドラがあります。
-そのハンドラは、ちょうど何が悪かったのかと言うダイアログを開き、続行しようとしています。
-プログラマは、 try 例外が発生した場合、彼らが正常にバックアウトしますので、最終的には、いたるところだが、彼らが実際に例外を処理するには興味がないよを書き込むことによって、自分のコードを保護します。
+
+> Anders Hejlsberg : いいえ、多くのケースで、人々は気にしないので。
+彼らは、これらの例外をどれも処理するつもりはありません。
+ボトムレベルの例外ハンドラがメッセージループの周りにあるだけです。
+そのハンドラは、何が悪かったのかと言うダイアログを開き、続行しようとするだけです。
+プログラマは、 try-finally を至る所に書いてコードを守ります、だから彼らは正しく例外を無視します、しかし例外をハンドリンスすること自体には興味は無いのです。
 
 This reminds me of On Error Resume Next in Visual Basic, and the way Windows Forms automatically caught and swallowed errors thrown by the application, and attempted to proceed.
 I'm not blaming Anders for his viewpoint here; heck, for C# 's wild popularity, I'm convinced it was the right call given the climate at the time.
 But this sure isn't the way to write operating system code.
-これは、 Visual Basic で次の On Error 再開のことを思い出すと、方法 Windows フォームは自動的にキャッチされ、飲み込まアプリケーションによってスローされたエラーをし、続行しようとしました。
-私はここで彼の視点のためのアンダースのせいではありませんよ。一体、 C# の野生の人気のために、私はそれが当時の気候与えられた権利の呼び出しだった確信しています。
+
+これは、 Visual Basic で次の On Error Resume Next を思い出させます、そして Windows Form は、アプリケーションの投げる例外を自動的にキャッチし、飲み込むことで続行しようとしました。
+
+私は Anders のこの視点を避難する積もりはありません。なぜなら、 C# の実際の人気を見れば、当時の潮流にあっていたのだと確信しています。
 しかし、これはオペレーティングシステムのコードを書くための方法ではありません。
 
 C++ at least tried to offer something better than unchecked exceptions with its throw exception specifications.
 Unfortunately, the feature relied on dynamic enforcement which sounded its death knell instantaneously.
-C++ 、少なくともそのスロー例外仕様にチェック例外よりも優れたものを提供しようとしました。
-残念ながら、この機能は瞬時にその死を告げる鐘を鳴らしダイナミック執行に依存していました。
+
+少なくとも C++ もそのスロー例外仕様にチェック例外よりも優れたものを提供しようとしました。
+残念ながら、リアルタイムに死を告げる予兆となる dynamic enforcement に依存した機能でした。
 
 If I write a function void f() throw(SomeError), the body of f is still free to invoke functions that throw things other than SomeError.
 Similarly, if I state that f throws no exceptions, using void f() throw(), it's still possible to invoke things that throw.
 To implement the stated contract, therefore, the compiler and runtime must ensure that, should this happen, std::unexpected is called to rip the process down in response.
-私は、関数ボイド F ()スロー( SomeError )を記述する場合、 F の本体はまだ SomeError 以外のものを投げる関数を呼び出すして自由です。
-私は f は()ボイド F ()スローを使用して、何の例外をスローしていないと述べる場合も、それは投げ物事を起動することは可能です。
-述べ契約を実装するには、そのため、コンパイラとランタイムはそれを確認する必要があり、これが起こる、の std ::予期しないが応じた処理をダウンリッピングするために呼び出される必要があります。
+
+私は、関数 `void f() throw(SomeError)` を記述する場合、関数 f の中ではまだ SomeError 以外のものを投げる関数を呼び出ことは自由です。
+同様に、もし f が例外を投げない `void f() throw()` としても、その中で例外を投げる処理を呼ぶことができます。
+そのため、正しく実装するには、コンパイラとランタイムが、 std:unexpected が呼ばれ、プロセスが落ちることあると確信する必要があります。
 
 I'm not the only person to recognize this design was a mistake.
 Indeed, throw is now deprecated.
-A 私はこのデザインを認識するだけの人が間違いだったじゃありません。
-確かに、 throw は廃止されます。
 
- detailed WG21 paper, Deprecating Exception Specifications, describes how C++ ended up here, and has this to offer in its opening statement:
-詳細 WG21 紙、卑下例外仕様は、 C++ はここに終わった方法について説明し、その冒頭陳述に提供するためにこれを持っています:
+このデザインが間違いであると気づいたのは私だけでは有りません。
+従って、 throw は廃止されました。
+
+:TODO :HERE
+
+detailed WG21 paper, Deprecating Exception Specifications, describes how C++ ended up here, and has this to offer in its opening statement:
+WG21 紙によれば、例外仕様の非推奨化は、 C++ はここに至った経緯について説明し、その冒頭陳述に提供するためにこれを持っています:
 
 > Exception specifications have proven close to worthless in practice, while adding a measurable overhead to programs.
-プログラムに測定可能なオーバーヘッドを加えながら>例外仕様は、実際には無価値に近いことが証明されています。
+> プログラムに測定可能なオーバーヘッドを加えるため Exception 仕様は、実際には無価値に近いことが証明されています。
 
 The authors list three reasons for deprecating throw.
 Two of the three reasons were a result of the dynamic choice: runtime checking (and its associated opaque failure mode) and runtime performance overheads.
 The third reason, lack of composition in generic code, could have been dealt with using a proper type system (admittedly at an expense).
-著者はスローを卑下するための 3 つの理由をリストします。
-実行時検査(およびそれに関連する不透明な故障モード)と実行時のパフォーマンスのオーバーヘッド: 3 の理由の二つは、動的選択の結果でした。
-第三の理由、汎用コードで組成物の欠如は、(確かに犠牲にして)適切な型システムを使用して対処されている可能性があります。
+
+著者は throw を非推奨にする 3 つの理由を上げます。
+うち 2 つの理由は、動的選択の結果でした:
+実行時検査(およびそれに関連する opaque failure mode)と実行時のパフォーマンスのオーバーヘッド
+第三の理由、汎用コードの composition の欠如は、(確かに犠牲にして)適切な型システムを使用して対処されている可能性があります。
 
 But the worst part is that the cure relies on yet another dynamically enforced construct - the noexcept specifier - which, in my opinion, is just as bad as the disease.
-noexcept 指定子 - - 私の意見では、病気と同じくらい悪いですが、最悪の部分は、治療法はまだ別の動的施行の構築物に依存していますということです。
+最悪の部分は、治療法がまた別の動的施行の構築物 - noexcept 指定子 - に依存しているということです。私の意見では、病気と同じくらい悪いです
 
 "Exception safety" is a commonly discussed practice in the C++ community.
 This approach neatly classifies how functions are intended to behave from a caller's perspective with respect to failure, state transitions, and memory management.
@@ -859,6 +916,7 @@ Just think about it: to guarantee strong safety everywhere, you would need to co
 That either means programming defensively, trusting another function's documented English prose (that isn't being checked by a computer), getting lucky and only calling noexcept functions, or just hoping for the best.
 Thanks to RAII, the leak-freedom aspect of basic safety is easier to attain - and pretty common these days thanks to smart pointers - but even broken invariants are tricky to prevent.
 The article Exception Handling: A False Sense of Security sums this up well.
+
 "例外安全性は、"C++ コミュニティで一般的に議論の練習です。
 このアプローチは、きちんと機能が障害、状態遷移、及びメモリ管理に対する発呼者の観点から動作するように意図されている方法を分類します。
 関数は、 4 種類のいずれかに分類されます。ノースローフォワードプログレスが保証されていて、例外が出現しないことを意味しません。強力な安全性は、状態遷移がアトミックに起こると、障害が部分的にコミットされた状態や壊れた不変式を背後に残していないことを意味します。基本的な安全機能は、部分的に状態の変更をコミットするかもしれませんが、不変条件が破壊されず、漏れが防止されている、ことを意味します。そして最後に、何の安全性は、可能なもののことを意味します。
@@ -873,12 +931,13 @@ The article Exception Handling: A False Sense of Security sums this up well.
 For C++ , the real solution is easy to predict, and rather straightforward: for robust systems programs, don't use exceptions.
 That's the approach Embedded C++ takes, in addition to numerous realtime and mission critical guidelines for C++ , including NASA's Jet Propulsion Laboratory's.
 C++ on Mars sure ain't using exceptions anytime soon.
+
 C++ の場合は、真の解決策は、予測することは容易で、かつかなり簡単です:堅牢なシステムのプログラムのために、例外を使用しないでください。
 それは NASA のジェット推進研究所の含む C++ のための多数のリアルタイムおよびミッションクリティカルなガイドラインに加えて、かかる++アプローチ組み込み C です。
 C++ は火星に確認してくださいいつでもすぐに例外を使用していません。
 
 So if you can safely avoid exceptions and stick to C-like return codes in C++ , what's the beef?
-あなたが安全に例外を回避し、 C++ で C-ようなリターンコードに固執することができそうだとすれば、牛肉は何ですか？
+あなたが安全に例外を回避し、 C++ で C-ようなリターンコードに固執することができそうだとすれば、牛肉は何ですか?
 
 The entire C++ ecosystem uses exceptions.
 To obey the above guidance, you must avoid significant parts of the language and, it turns out, significant chunks of the library ecosystem.
@@ -889,10 +948,11 @@ And so on.
 This even causes insanity like people creating forks of existing libraries that eradicates exceptions.
 The Windows kernel, for instance, has its own fork of the STL that doesn't use exceptions.
 This bifurcation of the ecosystem is neither pleasant nor practical to sustain.
+
 全体 C++ の生態系は、例外を使用しています。
 上記の指針に従うためには、言語の重要な部分とライブラリの生態系の、結局のところ、かなりのチャンクを避けなければなりません。
-標準テンプレートライブラリを使用してみませんか？残念、それは例外を使用しています。
-ブーストを使用してみませんか？残念、それは例外を使用しています。
+標準テンプレートライブラリを使用してみませんか?残念、それは例外を使用しています。
+ブーストを使用してみませんか?残念、それは例外を使用しています。
 あなたのアロケータは、おそらく bad_alloc をスローします。
 等々。
 これはあっても、例外を根絶する既存のライブラリのフォークを作成する人のような狂気を引き起こします。
@@ -904,17 +964,20 @@ Especially because many languages use unchecked exceptions.
 It's clear that they are ill-suited for writing low-level, reliable systems code.
 (I'm sure I will make a few C++ enemies by saying this so bluntly.) After writing code in Midori for years, it brings me tears to go back and write code that uses unchecked exceptions; even simply code reviewing is torture.
 But "thankfully" we have checked exceptions from Java to learn and borrow from … Right?
+
 この混乱は、不良箇所で私たちを置きます。
 特に、多くの言語は、非チェック例外を使用しているため。
 それは彼らが低レベル、信頼性の高いシステムのコードを書くために不向きであることは明らかです。
 (私はそうぶっきらぼうにこのことを言って、いくつかの C++ の敵を作ると確信しています。)年間の Midori のコードを書いた後、それは私が戻って、チェック例外を使用するコードを書くために涙をもたらします。でも、単にコードの見直しは拷問です。
-しかし、"ありがたいこと"私たちは右...学び、から借りて Java からチェック例外をしていますか？
+しかし、"ありがたいこと"私たちは右...学び、から借りて Java からチェック例外をしていますか?
+
 
 ## Checked Exceptions
 
 Ah, checked exceptions.
 The rag doll that nearly every Java programmer, and every person who's observed Java from an arm's length distance, likes to beat on.
 Unfairly so, in my opinion, when you compare it to the unchecked exceptions mess.
+
 ああ、例外をチェックしました。
 縫いぐるみ人形ほぼすべての Java プログラマ、および腕の長さの距離から Java を観察していますすべての人は、上に倒すのが好きです。
 不当ので、私の意見では、あなたが非チェック例外の混乱にそれを比較するとき。
@@ -922,7 +985,7 @@ Unfairly so, in my opinion, when you compare it to the unchecked exceptions mess
 In Java, you know mostly what a method might throw, because a method must say so:
 この方法は、そのように言わなければならないので、 Java では、あなたは、メソッドがスローする可能性があり、ほとんど何を知っています:
 
-```
+```java
 void foo() throws FooException, BarException {
   ...
 }
@@ -931,11 +994,12 @@ void foo() throws FooException, BarException {
 Now a caller knows that invoking foo could result in either FooException or BarException being thrown.
 At callsites a programmer must now decide: 1) propagate thrown exceptions as-is, 2) catch and deal with them, or 3) somehow transform the type of exception being thrown (possibly even "forgetting" the type altogether).
 For instance:
+
 今、呼び出し側は FooException または BarException のいずれかがスローされることに呼び出す foo が生じる可能性がことを知っています。
 callsites で、プログラマは今決定する必要があります: 1 ) 2 )キャッチ、そのままスローされた例外を伝播し、それらに対処、または 3 )何らかの形で例外の型が(おそらくは)全くタイプ"忘却"がスローされる変換します。
 例えば:
 
-```
+```java
 // 1) Propagate exceptions as-is:
 void bar() throws FooException, BarException {
   foo();
@@ -962,6 +1026,7 @@ void bar() throws Exception {
 
 This is getting much closer to something we can use.
 But it fails on a few accounts:
+
 これは、我々が使用することができるものに非常に近いなっています。
 しかし、それはいくつかのアカウントに失敗します。
 
@@ -973,7 +1038,7 @@ Because Java uses exceptions for all error conditions - even bugs, per above - t
 And so they introduced a kind of exception that is unchecked.
 That is, a method can throw it without declaring it, and so callers can invoke it seamlessly.
 
- 2 ::あなたが実際に、私たちの小さな友人の RuntimeException のおかげでスローされる可能性があるすべてを知っていません。
+2. ::あなたが実際に、私たちの小さな友人の RuntimeException のおかげでスローされる可能性があるすべてを知っていません。
 でもバグ、上記のあたり - - Java はすべてのエラー状態の例外を使用しているため、設計者は、人々がこれらすべての例外仕様に怒って行くだろう実現しました。
 だから、彼らはオフになっている例外の種類を導入しました。
 つまり、メソッドを宣言せずにそれを投げることができ、従って発信者がシームレスにそれを呼び出すことができますです。
@@ -991,6 +1056,7 @@ It doesn't help you to write bulletproof code and it's hard to use.
 You end up writing down a lot of gibberish in your code for little perceived benefit.
 And versioning your interfaces is a pain in the ass.
 As we'll see later, we can do better.
+
 つまり、最後のものは面白いです、と Midori が取ったアプローチを記述するとき、私は後でそれに返還しなければなりません。
 要約すると、 Java でチェック例外のための人々の嫌悪感は、主に由来する、または少なくとも大幅に他の三つの弾丸上記、によって強化します。
 結果として得られるモデルは、両方の世界の最悪のようです。
@@ -1007,6 +1073,7 @@ As you should be, in my opinion.
 An API's failure mode is a critical part of its design and contract with callers.
 Just as you wouldn't change the return type of an API silently without callers needing to know, you shouldn't change its failure mode in a semantically meaningful way.
 More on this controversial point later on.
+
 つまり、バージョン管理のポイントは熟考の価値があります。
 あなたはスローの一種類に固執する場合は、バージョン管理の問題は、エラーコードよりも悪いことではありません。
 関数が失敗するか、しませんか。
@@ -1021,11 +1088,13 @@ Notice that they focus a lot on "linguistics"; in other words, they wanted a lan
 The need to check and repropagate all errors at callsites felt a lot more like return values, yet the programming model had that richer and slightly declarative feel of what we now know as exceptions.
 And most importantly, signals (their name for throw) were checked.
 There were also convenient ways to terminate the program should an unexpected signal occur.
+
 バーバラリスコフ、 CLU での例外処理によって、 1979 紙のこの曲がったとグラグラスキャンで説明したように CLU は、興味深いアプローチがあります。
 彼らは"言語学"に多くを焦点を当てていることに注意してください。言い換えれば、彼らは人々が大好きだという言葉を望んでいました。
 callsites ですべてのエラーをチェックし、伝播し直す必要性は、より多くの返り値のように多くのことを感じ、まだプログラミングモデルは、我々は今、例外として知っているもののことより豊かでやや宣言型の感触を持っていました。
 そして、最も重要なのは、信号が(スローのための自分の名前)を確認しました。
 予期しないシグナルが発生したプログラムを終了するための便利な方法もありました。
+
 
 ## Universal Problems with Exceptions
 
@@ -1038,16 +1107,18 @@ In managed systems, gathering a stack trace also requires groveling metadata, to
 If the error is caught and handled, however, you don't even need that information at runtime! Diagnostics are better implemented in the logging and diagnostics infrastructure, not the exception system itself.
 The concerns are orthogonal.
 Although, to really nail the diagnostics requirement above, something needs to be able to recover stack traces; never underestimate the power of printf debugging and how important stack traces are to it.
+
 まず、例外をスローすると、通常は途方もなく高価です。
 これはほとんどの場合、スタックトレースの収集に起因しています。
 管理対象システムでは、スタックトレースを収集することも、関数のシンボル名の文字列を作成するには、卑俗なメタデータを必要とします。
-エラーがキャッチされ処理されている場合は、しかし、あなたも、実行時にその情報を必要としません！診断は、より良いロギングおよび診断インフラストラクチャではなく、例外システム自体に実装されています。
+エラーがキャッチされ処理されている場合は、しかし、あなたも、実行時にその情報を必要としません!診断は、より良いロギングおよび診断インフラストラクチャではなく、例外システム自体に実装されています。
 懸念は直交しています。
 実際に上記の診断要件を爪に、けれども、何かがスタックトレースを回復できるようにする必要があります。 printf 関数のデバッグとどのように重要なスタックトレースがそれにしているの力を過小評価することはありません。
 
 Next, exceptions can significantly impair code quality.
 I touched on this topic in my last post, and there are good papers on the topic in the context of C++ .
 Not having static type system information makes it hard to model control flow in the compiler, which leads to overly conservative optimizers.
+
 次に、例外が大幅にコードの品質を損なうことができます。
 私は私の最後のポストでこの話題に触れ、および C++ の文脈におけるトピックに関する良い論文があります。
 静的型システムの情報がないと、それは難しい過度に保守的オプティマイザにつながるコンパイラで制御フローをモデル化することができます。
@@ -1057,37 +1128,66 @@ Proponents of return codes love that error handling is localized to a specific f
 (I do too!) In exception handling systems, it's all too easy to slap a coarse-grained try/catch block around some huge hunk of code, without carefully reacting to individual failures.
 That produces brittle code that's almost certainly wrong; if not today, then after the inevitable refactoring that will occur down the road.
 A lot of this has to do with having the right syntaxes.
+
 ほとんどの例外システムは誤解もう一つは、エラー処理の粒度を粗くあまりにも奨励しています。
 リターンコードの支持者は、エラー処理は、特定の関数呼び出しに局在することが大好きです。
-(私も！)例外処理システムでは、慎重に、個々の障害に反応することなく、コードのいくつかの巨大な塊の周りの粗粒 try / catch ブロックを平手打ちするすべてあまりにも簡単です。
+(私も!)例外処理システムでは、慎重に、個々の障害に反応することなく、コードのいくつかの巨大な塊の周りの粗粒 try / catch ブロックを平手打ちするすべてあまりにも簡単です。
 それはほぼ確実に間違って脆いコードを生成します。そうでない場合は、今日、その後、道の下に発生する必然的なリファクタリングの後。
 これの多くは、右の構文を持つに関係しています。
 
 Finally, control flow for throws is usually invisible.
 Even with Java, where you annotate method signatures, it's not possible to audit a body of code and see precisely where exceptions come from.
 Silent control flow is just as bad as goto, or setjmp/longjmp, and makes writing reliable code very difficult.
+
 最後に、スローのための制御フローは、通常は見えません。
 でもあなたは、メソッドのシグネチャに注釈を付けるの Java 、で、それはコードの本体を監査し、例外がどこから来るのか正確に確認することはできません。
 サイレント制御フローは goto や setjmp 関数/ longjmp のと同じくらい悪いです、と非常に困難な信頼性の高いコードを書くことができます。
+
 
 ## Where Are We?
 
 Before moving on, let's recap where we are:
 上に移動する前に、私たちがどこにあるのは、おさらいしてみましょう:
 
-:TODO table
+
+|                      | The Good                                                                             | The Bad                                                                                                   | - The ugly                             |
+|:---------------------|:-------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------|:---------------------------------------|
+| Error Codes          | - All function that can fail are explicit annotated.                                 | - You can forget to check them.                                                                           | - Usability is often subpar.           |
+|                      | - All error handling at callsites is explicit.                                       | - Performance of success paths suffers.                                                                   |                                        |
+|                      |                                                                                      |                                                                                                           |                                        |
+| All Exceptions       | - First class language support                                                       | - Performance is typically worse than it could be.                                                        |                                        |
+|                      |                                                                                      | - Handling is often done in a non-local manner, where less informantion about error is known (goto-like). |                                        |
+| Unchecked Exceptions | - Conductive to rapid developemnt where dealing with errors reliably isn't critial.  | - Anything can fail without warning from the language.                                                    | - Reliability is as bad as it gets.    |
+| Checked Exceptions   | - All function that can fail are explicitly annotated                                | - Callsites aren't explicit about what can fail and error propagation.                                    | - People hate them(in Java, at least). |
+|                      |                                                                                      | - Systems that let some subset of exceptions go unchecked poison the well (not all errors are explicit).  |                                        |
+
+
+|                      | The Good                                                                             | The Bad                                                                                                   | - The ugly                             |
+|:---------------------|:-------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------|:---------------------------------------|
+| Error Codes          | - 全ての失敗し得る関数は明示的にアノテートされている                                 | - チェックを忘れ得る                                                                                      | - ユーザビリティが悪い                 |
+|                      | - 呼び出し側の全エラーハンドルが明示的                                               | - 正常処理のパフォーマンスも損ねる                                                                        |                                        |
+|                      |                                                                                      |                                                                                                           |                                        |
+| All Exceptions       | - ファーストクラスの言語サポート                                                     | - パフォーマンスが概して悪くなる                                                                          |                                        |
+|                      |                                                                                      | - ハンドリングはローカルマナーで実施され、エラーの存在についての情報が少ない(goto-like)                   |                                        |
+| Unchecked Exceptions | - エラー処理がクリティカルじゃない rapid な開発には向いている                        | - 言語からの警告無しに失敗が起こりえる                                                                    | - 信頼性はそれが発生するほど悪い       |
+| Checked Exceptions   | - 全ての失敗し得る関数は明示的にアノテートされている                                 | - 呼び出し側にとってはどんなエラーが上がってくるか明示的じゃない                                          | - People hate them(in Java, at least). |
+|                      |                                                                                      | - 例外のいくつかのサブセットを unchecked とするシステム(エラーが明示的じゃないものもある)                 |                                        |
+
+
 
 Wouldn't it be great if we could take all of The Goods and leave out The Bads and The Uglies?
-私たちは製品のすべてを取るとバッズと難しいものを残すことができればそれは素晴らしいことではないでしょうか？
+この中で、良いものだけ選り抜き、悪いものだけ残せたらすばらしくはないでしょうか?
 
 This alone would be a great step forward.
 But it's insufficient.
 This leads me to our first big "ah-hah" moment that shaped everything to come.
 For a significant class of error, none of these approaches are appropriate!
+
 これだけ大きな前進となります。
 しかし、それは不十分です。
-これは来るためにすべてを形作って私たちの最初の大きな"ああ、ほら"瞬間に私をリードしています。
-エラーの重要なクラスでは、これらのアプローチのいずれも適切ではありません！
+これは、来るべき結論に向けた準備でしかありません。
+エラーの重要なクラスでは、これらのアプローチのいずれも適切ではありません!
+
 
 # Bugs Aren't Recoverable Errors!
 
@@ -1127,7 +1227,7 @@ Surprisingly, most systems don't make one, at least not in a principled way! As 
 C++ uses a mixture depending on the audience, but the usual story is a project picks a single one and uses it everywhere.
 You usually don't hear of languages suggesting two different techniques for error handling, however.
 この区別は非常に重要です。
-驚くべきことに、ほとんどのシステムは、少なくともではない原則に基づいた方法で、ものを作ることはありません！我々は上で見たように、 Java や C# の、および動的言語は、ちょうどすべての例外を使用します。 C および Go がリターンコードを使用します。
+驚くべきことに、ほとんどのシステムは、少なくともではない原則に基づいた方法で、ものを作ることはありません!我々は上で見たように、 Java や C# の、および動的言語は、ちょうどすべての例外を使用します。 C および Go がリターンコードを使用します。
 C++ は、観客に応じて混合物を使用していますが、通常の物語は、プロジェクトが単一のものを選び、どこでもそれを使用しています。
 あなたは通常、しかし、エラー処理のための 2 つの異なる技術を示唆している言語で聞くことができません。
 
@@ -1141,7 +1241,7 @@ Each of the above systems offers abandonment-like mechanisms.
 Each rips down the surrounding context abruptly and promptly.
 The scope of this context depends on the system - for example, C# and C++ terminate the process, Go the current Goroutine, and Rust the current thread, optionally with a panic handler attached to salvage the process.
 上記システムの各々は、中断のようなメカニズムを提供しています。
- C# の環境を持っています。フェイルファスト; C++ は、スタンダード::終了を持っています。 Go がパニックを持っています。 Rust がパニックを持っています！;等々。
+ C# の環境を持っています。フェイルファスト; C++ は、スタンダード::終了を持っています。 Go がパニックを持っています。 Rust がパニックを持っています!;等々。
 それぞれが突然かつ迅速に周囲の状況を下にリッピング。
 この文脈の範囲は、システムによって異なります - 例えば、 C# と C++ のプロセスを終了し、現在のゴルーチン、及び Rust に現在のスレッドを移動し、必要に応じてプロセスをサルベージするために取り付けられたパニックハンドラで。
 
@@ -1165,7 +1265,7 @@ Thus there should be no according return code, but instead there should be asser
 それは私には見えるように、戻りコードの友達が獲得しました。
 しかし、私は彼らが間違った点を議論していることを印象を受けました:例外と戻りコードも同様に、表現されている、彼らは、しかし、エラーを記述するために使用すべきではありません。
 実際にリターンコードは ARRAY_INDEX_OUT_OF_RANGE のような定義が含まれています。
-しかし、私は疑問に思いました:どのように私の関数は、サブルーチンから、このリターンコードを取得したときに、反応しなければなりませんか？それは、そのプログラマにメールを送信しなければなりませんか？これは、順番に呼び出し元にこのコードを返すことができ、それはまた、それに対処する方法を知ることができません。
+しかし、私は疑問に思いました:どのように私の関数は、サブルーチンから、このリターンコードを取得したときに、反応しなければなりませんか?それは、そのプログラマにメールを送信しなければなりませんか?これは、順番に呼び出し元にこのコードを返すことができ、それはまた、それに対処する方法を知ることができません。
 私は関数の実装についての仮定をすることはできませんので、さらに悪いことに、私はすべてのサブルーチンから ARRAY_INDEX_OUT_OF_RANGE を期待する必要があります。
 私の結論は ARRAY_INDEX_OUT_OF_RANGE は(プログラミング)エラーであるということです。
 これは、実行時に処理または固定することができない、それだけで、その開発者によって固定することができます。
@@ -1174,12 +1274,12 @@ Thus there should be no according return code, but instead there should be asser
 Abandoning fine grained mutable shared memory scopes is suspect - like Goroutines or threads or whatever - unless your system somehow makes guarantees about the scope of the potential damage done.
 However, it's great that these mechanisms are there for us to use! It means using an abandonment discipline in these languages is indeed possible.
 きめの細かい変更可能な共有メモリースコープを中断することは疑わしいです - ゴルーチンやスレッドまたは何のように - あなたのシステムが何らかの形で行わ潜在的な損傷の範囲について保証するものでない限り。
-しかし、それは私たちが使用するためにこれらのメカニズムがあることが素晴らしいです！それは以下の言語で中断規律を使用することが実際に可能であることを意味します。
+しかし、それは私たちが使用するためにこれらのメカニズムがあることが素晴らしいです!それは以下の言語で中断規律を使用することが実際に可能であることを意味します。
 
 There are architectural elements necessary for this approach to succeed at scale, however.
 I'm sure you're thinking "If I tossed the entire process each time I had a null dereference in my C# program, I'd have some pretty pissed off customers"; and, similarly, "That wouldn't be reliable at all!" Reliability, it turns out, might not be what you think.
 しかし、規模で成功するには、このアプローチのために必要な建築要素があります。
-私は "私は全体のプロセスに私は私の C# のプログラムでヌル間接参照を持っていたそれぞれの時間を投げた場合、私はいくつかの非常に顧客を怒らせているだろう"あなたが考えていると確信しています。そして、同様に、"それは全く信頼できないだろう！"信頼性は、結局のところ、あなたが何を考えではないかもしれません。
+私は "私は全体のプロセスに私は私の C# のプログラムでヌル間接参照を持っていたそれぞれの時間を投げた場合、私はいくつかの非常に顧客を怒らせているだろう"あなたが考えていると確信しています。そして、同様に、"それは全く信頼できないだろう!"信頼性は、結局のところ、あなたが何を考えではないかもしれません。
 
 # Reliability, Fault-Tolerance, and Isolation
 
@@ -1212,7 +1312,7 @@ So why is it novel?
 誤差モデルは、彼らが透明で対処しやすいようにする必要があります。
 しかし、もっと重要なのは、あなたの建築家、システム全体が個々の部分が失敗した場合でも機能し続け、その後、優雅にそれらの失敗の作品を回復するためにあなたのシステムを教えるようにします。
 これは、分散システムでよく知られています。
-では、なぜそれが小説のですか？
+では、なぜそれが小説のですか?
 
 At the center of it all, an operating system is just a distributed network of cooperating processes, much like a distributed cluster of microservices or the Internet itself.
 The main differences include things like latency; what levels of trust you can establish and how easily; and various assumptions about locations, identity, etc.
@@ -1221,7 +1321,7 @@ My impression is that, largely because of the continued success of monolithic ke
 Once you do, however, a lot of design principles become apparent.
 それをすべての中心には、オペレーティングシステムは、多くの microservices の分散型クラスタまたはインターネット自体のように、協調動作するプロセスのちょうど分散ネットワークです。
 主な違いは、待ち時間のようなものが含まれます。信頼のどんなレベルあなたが確立し、どのように簡単にすることができます。等の位置、アイデンティティ、約さまざまな仮定
-しかし、非常に非同期で失敗、分散型、および I / O 集中型のシステムはちょうど起こるにバインドされています。
+しかし、非常に非同期で失敗、分散型、および I/O 集中型のシステムはちょうど起こるにバインドされています。
 私の印象は、主な理由モノリシックカーネルの継続的な成功のため、広く世界はまだ洞察力 "分散システムなどのオペレーティングシステム"への飛躍を行っていない、ということです。
 あなたは一度、しかし、設計原理の多くが明らかになります。
 
@@ -1339,7 +1439,7 @@ Process state is transient by design.
 In a well designed system it can be thrown away and recreated on a whim.
 It's true that a bug can corrupt persistent state, but then you have a bigger problem on your hands - a problem that must be dealt with differently.
 私はスコープのトピックが滑りやすい斜面で認めますよ。
-たぶん、世界のすべてのデータが破壊されているので、どのように処理を投げすることはあっても十分であることを知っていますか？ここで重要な違いがあります。
+たぶん、世界のすべてのデータが破壊されているので、どのように処理を投げすることはあっても十分であることを知っていますか?ここで重要な違いがあります。
 プロセスの状態は、設計によって一過性です。
 うまく設計されたシステムでは、捨てすることができ、気まぐれで再作成します。
 異なる処理されなければならない問題 - それはバグが破損永続的な状態が、その後、あなたはあなたの手に大きな問題を持つことができるというのは本当です。
@@ -1354,7 +1454,7 @@ Indeed, abandonment can help you avoid data corruption, because bugs detected be
 いくつかの背景については、我々は、フォールトトレラントシステム設計に見ることができます。
 中断は、(フェイルファスト)既にそのレルムで一般的な技術である、と私たちは、通常のプログラムやプロセスにこれらのシステムについて知っていることの多くを適用することができます。
 おそらく最も重要な技術は、定期的にジャーナリングと貴重な永続的な状態をチェックポイントされています。
-Jim Gray 氏の 1985 紙、なぜないコンピュータを停止し、どのような素敵なこの概念を説明する？それについて行うことができます。
+Jim Gray 氏の 1985 紙、なぜないコンピュータを停止し、どのような素敵なこの概念を説明する?それについて行うことができます。
 プログラムはクラウドに移動し続け、積極的に小さい独立したサービスに分解するにつれ、過渡的かつ持続的な状態のこの明確な分離がさらに重要です。
 ソフトウェアが書かれている方法でこれらのシフトの結果として、中断は、それがかつてあったより近代的なアーキテクチャではるかに達成可能です。
 実際、中断は、次のチェックポイントの前に検出されたバグが今まで逃げるの悪い状態を防ぐため、あなたは、データの破損を避けるのを助けることができます。
@@ -1369,7 +1469,7 @@ Midori のカーネルのバグは別の方法で処理しました。
 ありがたいことに、あなたは古典的な"カーネル"の機能であることを考えるだろう何の最も - スケジューラ、メモリマネージャ、ファイルシステム、ネットワークスタック、さらにはデバイスドライバが - 障害がに含まれていることができ、ユーザーモードでの孤立したプロセスで代わりに実行されました通常の方法は、上述しました。
 
 # Bugs: Abandonment, Assertions, and Contracts
-＃バグ:中断、アサーション、および契約
+#バグ:中断、アサーション、および契約
 
 A number of kinds of bugs in Midori might trigger abandonment:
 Midori のバグの種類の数は中断を誘発する可能性があります:
@@ -1473,7 +1573,7 @@ Between you and me, I'll take the overflow abandonments!
 私はこのアイデアについてに話をした初期のほとんどの C# からの反応や C++ 開発者はそれについて否定的であるが、我々の経験では 10 のうち 9 回は、このアプローチはプログラムのバグを回避するのに役立ったということでした。
 その残りの 1 時間は、通常中断したいつか後半私たちの 72 時間のストレスのいずれかで動作します - いくつかの無害なカウンタがオーバーフローしたときに - 私たちはブラウザやマルチメディアプレーヤー、我々はシステムを拷問するために何ができる何か他のもので、システム全体を連打します。
 私はいつもそれが面白い私たちはこれらの代わりの製品がデッドロックや競合状態を言うことですストレスプログラムを通じて、成熟古典的な方法を固定の時間を費やしたことがわかりました。
-あなたと私の間に、私はオーバーフロー中断を取りますよ！
+あなたと私の間に、私はオーバーフロー中断を取りますよ!
 
 ## Out-of-Memory and Stack Overflow
 
@@ -1520,7 +1620,7 @@ But we kept this to as little code as possible.
 
 For the rest? Yes, you guessed it: abandonment.
 Nice and simple.
-残りの？はい、あなたはそれを推測:中断を。
+残りの?はい、あなたはそれを推測:中断を。
 ニースとシンプル。
 
 
@@ -1650,14 +1750,14 @@ Research efforts like Ada-based SPARK and proposals for realtime and embedded sy
 Going deeper into the theoretical rabbit's hole, programming logic like Hoare's axiomatic semantics provide the foundation for all of it.
 For me, however, the most philosophical inspiration came from CLU's, and later Argus's, overall approach to error handling.
 契約は、 Midori のバグをキャッチするための中心的なメカニズムでした。
-私たちは歌う＃、スペック＃のバリアントを使用する特異点、で始まるにもかかわらず、我々はすぐにバニラの C# に離れて移動し、私たちが望んで再発見しなければなりませんでした。
+私たちは歌う#、スペック#のバリアントを使用する特異点、で始まるにもかかわらず、我々はすぐにバニラの C# に離れて移動し、私たちが望んで再発見しなければなりませんでした。
 我々は最終的に年間のモデルと一緒に生活した後、非常に別の場所で終わりました。
 
 すべての契約とアサーションは不変の私たちの言語の理解への副作用自由感謝と副作用を証明しました。
 これはおそらく、言語の技術革新の最大の面積だったので、私はすぐにそれについての記事を書くようにしてくださいます。
 
 他の地域と同じように、我々は他の多くのシステムに触発し、影響を受けました。
-スペック＃は明白です。
+スペック#は明白です。
 Eiffel は、から学ぶために多くの公開事例研究がある、特にとして絶大な影響を与えました。
 エイダベース SPARK 、あまりにもリアルタイムおよび組込みシステムの提案のような研究努力。
 理論上のウサギの穴に深く行く、ホーアの公理的意味論のようなプログラミングロジックはそれのすべてのための基盤を提供します。
@@ -1758,7 +1858,7 @@ The theorem proving techniques simply did not scale for our needs; our core syst
 これらは、事実を伝播し、すでにコードを最適化するためにそれらを使用しています。
 これは、冗長なチェックを排除含まれています:明示的契約でエンコードされた、または通常のプログラムロジックで。
 そして彼らは、プログラマは異なる、より高速なコンパイラに切り替えないように、時間の合理的な量でこれらの分析を実行するように訓練されています。
-定理証明の技術は、単に私たちのニーズに合わせて拡張できませんでした。当社のコアシステムモジュールは、分析フレームワークを証明品種定理に最善を使用して分析するために一日を引き継ぎました！
+定理証明の技術は、単に私たちのニーズに合わせて拡張できませんでした。当社のコアシステムモジュールは、分析フレームワークを証明品種定理に最善を使用して分析するために一日を引き継ぎました!
 
 Furthermore, the contracts a method declared were part of its signature.
 This meant they would automatically show up in documentation, IDE tooltips, and more.
@@ -1778,7 +1878,7 @@ For example, here is System.IO.TextReader's Read method:
 その結果、すべての通常のサブタイプ要件がそれらに適用されます。
 そして、もちろん、これは、標準的な最適化コンパイラ技術を使用して数秒で行うことができるモジュラー局所分析を容易にしました。
 
-.NET と Java で例外の一般的な使用の 90 代の％が前提条件となりました。
+.NET と Java で例外の一般的な使用の 90 代の % が前提条件となりました。
 例外 ArgumentNullException 、例外 ArgumentOutOfRangeException 、および関連する種類のすべてと、より重要なのは、マニュアルをチェックし、スローがなくなっていました。
 方法は、多くの場合、今日の C# でこれらのチェックがちりばめています。単独で.NET の CoreFX レポにおけるこれらの何千ものがあります。
 例えば、ここでシステムです。 IO.TextReader の Read メソッド:
@@ -1817,7 +1917,7 @@ All this exception nonsense encourages very bad behavior.
 If we use Midori-style contracts, on the other hand, this collapses to:
 これは、いくつかの理由で壊れています。
 これはもちろん、苦労冗長です。
-すべてのことセレモニー！しかし、我々はときに、開発者は本当に今までにそれらをキャッチべきではない例外を文書化するために私達の方法から抜け出す道を行かなければなりません。
+すべてのことセレモニー!しかし、我々はときに、開発者は本当に今までにそれらをキャッチべきではない例外を文書化するために私達の方法から抜け出す道を行かなければなりません。
 その代わりに、彼らは開発中にバグを見つけ、それを修正する必要があります。
 このすべての例外ナンセンスは非常に悪い行動を奨励しています。
 
@@ -1881,7 +1981,7 @@ But I'm jumping way ahead …
 Although we landed on the obvious syntax that is very Eiffel- and Spe C# -like - coming full circle - as I mentioned earlier, we really didn't want to change the language at the outset.
 So we actually began with a simple API approach:
 
-完全な円を来て - - 私たちは非常に Eiffel-とスペック＃の様である明白な構文に上陸したが、私は先に述べたように、私たちは本当に最初に言語を変更する必要はありませんでした。
+完全な円を来て - - 私たちは非常に Eiffel-とスペック#の様である明白な構文に上陸したが、私は先に述べたように、私たちは本当に最初に言語を変更する必要はありませんでした。
 だから我々は、実際には、単純な API のアプローチで始まりました:
 
 
@@ -1922,9 +2022,9 @@ For a long time, we had the same three levels for contracts that we did assertio
 これはまた、我々は良好なパフォーマンスを得るために必要であったが見つかりましたバックエンドコンパイラと統合することがタフになります。
 
 第二に、あなたは契約を呼び出して問題に気づいたかもしれません。保証します。
-確実には、関数のすべての出口パスに保持するために意図されているので、どのように我々は、 API として純粋にこれを実装するのでしょうか？答えは、あなたがすることはできません。
+確実には、関数のすべての出口パスに保持するために意図されているので、どのように我々は、 API として純粋にこれを実装するのでしょうか?答えは、あなたがすることはできません。
 言語コンパイラはそれを放出された後、一つのアプローチは、結果の MSIL を書き換えされていますが、それはすべて一体として厄介です。
-この時点で、あなたは、なぜ単にこれは言語の表現力と意味論の問題であることを認め、構文を追加しないだろうし始めますか？
+この時点で、あなたは、なぜ単にこれは言語の表現力と意味論の問題であることを認め、構文を追加しないだろうし始めますか?
 
 私たちにとって永遠の闘争の別の領域は、契約が条件付きであるか否かでした。
 多くの古典的なシステムでは、あなたは完全に最適化されたものをデバッグビルドで契約を確認しますが、ないと思います。
@@ -1976,7 +2076,7 @@ For cases where you wanted conditional checks, you always had the assertion syst
 I felt better about this bet when we deployed the new model and found that lots of people had been misusing the "weak" and "strong" notions above out of confusion.
 Forcing developers to make the decision led to healthier code.
 最後に - これは私のための棺内釘だった - 契約は、 API の署名の一部となっていました。
-それも条件付きの契約を結んでいるためには何を意味するのでしょうか？どのようなツールは、それについて推論することになっていますか？デバッグはリリースビルドよりもビルドに異なるドキュメントを生成？また、できるだけ早くあなたがこれを行うように、あなたは、その前提条件が満たされていない場合、コードが実行されないということである重要な保証を失います。
+それも条件付きの契約を結んでいるためには何を意味するのでしょうか?どのようなツールは、それについて推論することになっていますか?デバッグはリリースビルドよりもビルドに異なるドキュメントを生成?また、できるだけ早くあなたがこれを行うように、あなたは、その前提条件が満たされていない場合、コードが実行されないということである重要な保証を失います。
 
 その結果、我々は全体の条件付きコンパイル方式を被爆しました。
 
@@ -2030,6 +2130,11 @@ An invariant's accessibility modifier controlled which members the invariant was
 For example, a public invariant only had to hold at the entry and exit of functions with public accessibility; this allowed for the common pattern of private functions temporarily violating invariants, so long as public entrypoints preserved them.
 Of course, as in the above example, a class was free to declare a private invariant too, which was required to hold at all function entries and exits.
 
+不変にプライベートのマークが付いていることに注意してください。
+不変のために保持するために必要とされたメンバー不変のアクセシビリティ修飾子制御。
+例えば、公共不変では唯一の公共アクセシビリティ機能の入り口と出口で保持しなければなりませんでした。これはあまりにも長い間、パブリックエントリポイントがそれらを保存として、一時的に不変条件を違反プライベート関数の一般的なパターンを可能にしました。
+もちろん、上記の例のように、クラスは、すべての関数のエントリと終了時に保持するために必要とされた、あまりにもプライベート不変を宣言して自由でした。
+
 I actually quite liked this design, and I think it would have worked.
 The primary concern we all had was the silent introduction of checks all over the place.
 To this day, that bit still makes me nervous.
@@ -2038,13 +2143,6 @@ Now, our compiler eventually got very good at recognizing and coalescing redunda
 However, in the extreme example given above, I'm sure there would have been a performance penalty.
 That would have put pressure on us changing the policy for when invariants are checked, which would have possibly complicated the overall contracts model.
 
-I really wish we had more time to explore invariants more deeply.
-I don't think the team sorely missed not having them - certainly I didn't hear much complaining about their absence (probably because the team was so performance conscious) - but I do think invariants would have been a nice icing to put on the contracts cake.
-不変にプライベートのマークが付いていることに注意してください。
-不変のために保持するために必要とされたメンバー不変のアクセシビリティ修飾子制御。
-例えば、公共不変では唯一の公共アクセシビリティ機能の入り口と出口で保持しなければなりませんでした。これはあまりにも長い間、パブリックエントリポイントがそれらを保存として、一時的に不変条件を違反プライベート関数の一般的なパターンを可能にしました。
-もちろん、上記の例のように、クラスは、すべての関数のエントリと終了時に保持するために必要とされた、あまりにもプライベート不変を宣言して自由でした。
-
 私は実際には非常にこのデザインが好き、と私はそれが働いていると思います。
 我々はすべてが持っていた主な関心事は、すべての場所の上のチェックのサイレント導入しました。
 この日に、そのビットはまだ私が神経質になります。
@@ -2052,6 +2150,9 @@ I don't think the team sorely missed not having them - certainly I didn't hear m
 今、私たちのコンパイラは、最終的に認識し、冗長契約のチェックを合体で非常に良好です。契約の存在が実際にコードの品質良好に十分な場合がありました。
 しかし、上記の極端な例では、私はパフォーマンスの低下があっただろうと確信しています。
 それはおそらく、全体の契約モデルを複雑にしているだろう不変条件がチェックされたときのポリシーを変える私たちに圧力をかけているだろう。
+
+I really wish we had more time to explore invariants more deeply.
+I don't think the team sorely missed not having them - certainly I didn't hear much complaining about their absence (probably because the team was so performance conscious) - but I do think invariants would have been a nice icing to put on the contracts cake.
 
 私は本当に私たちがより深く不変条件を探るために多くの時間があればいいのに。
 (おそらくチームはとてもパフォーマンスを意識したので)確かに、私はずっと彼らの不在に文句を聞いていなかった - - 私はチームが痛んでそれらを持っていない逃したとは思わないが、私は不変条件を置くために素敵なアイシングされているだろうと思います契約ケーキ。
@@ -2065,20 +2166,21 @@ A contract similarly checks the range of values that a variable holds.
 The difference? Types are proven at compile-time through rigorous and composable inductive rules that are moderately inexpensive to check local to a function, usually, but not always, aided by developer-authored annotations.
 Contracts are proven at compile-time where possible and at runtime otherwise, and as a result, permit far less rigorous specification using arbitrary logic encoded in the language itself.
 
-Types are preferable, because they are guaranteed to be compile-time checked; and guaranteed to be fast to check.
-The assurances given to the developer are strong and the overall developer productivity of using them is better.
-
-Limitations in a type system are inevitable, however; a type system needs to leave some wiggle room, otherwise it quickly grows unwieldly and unusable and, in the extreme, devolves into bi-value bits and bytes.
-On the other hand, I was always disappointed by two specific areas of wiggle room that required the use of contracts:
 私はいつも型システムがオフの葉どこ契約が始まることを言うのが好き。
 型システムでは、型を使用して変数の属性をエンコードすることができます。
 タイプは、変数が保持している可能性のある予想される範囲の値を制限します。
 契約は、同様に、変数が保持する値の範囲をチェックします。
-違い？タイプは通常、関数にローカルチェックして適度に安価であり、厳格かつ構成可能な誘導性規則を通じてコンパイル時に証明され、常にではないが、開発者が執筆した注釈によって支援されています。
+違い?タイプは通常、関数にローカルチェックして適度に安価であり、厳格かつ構成可能な誘導性規則を通じてコンパイル時に証明され、常にではないが、開発者が執筆した注釈によって支援されています。
 契約は、結果として、言語自体でエンコードされた任意の論理を使用してはるかに少ない厳しい仕様を可能にすることが可能とそうでない場合は、実行時に、およびコンパイル時に実証されています。
+
+Types are preferable, because they are guaranteed to be compile-time checked; and guaranteed to be fast to check.
+The assurances given to the developer are strong and the overall developer productivity of using them is better.
 
 それらはコンパイル時にチェックであることが保証されているので種類は、好ましいです。そして、チェックして高速であることが保証。
 開発者に与えられた保証が強く、それらを使用しての全体的な開発者の生産性が優れています。
+
+Limitations in a type system are inevitable, however; a type system needs to leave some wiggle room, otherwise it quickly grows unwieldly and unusable and, in the extreme, devolves into bi-value bits and bytes.
+On the other hand, I was always disappointed by two specific areas of wiggle room that required the use of contracts:
 
 型システムの制限は、しかし、避けられません。型システムは、いくつかの余地を残すために必要がある、それ以外の場合はすぐに極端に、 unwieldly 、使用できなく成長し、二値のビットとバイトに委譲します。
 一方、私は常に契約の利用を必要余地の 2 つの特定の領域に失望しました。
@@ -2092,9 +2194,10 @@ On the other hand, I was always disappointed by two specific areas of wiggle roo
 Approximately 90% of our contracts fell into these two buckets.
 As a result, we seriously explored more sophisticated type systems to classify the nullability and ranges of variables using the type system instead of contracts.
 
-To make it concrete, this was the difference between this code which uses contracts:
-当社の契約の約 90 ％は、これらの 2 つのバケットに落ちました。
+当社の契約の約 90 % は、これらの 2 つのバケットに落ちました。
 その結果、我々は真剣に NULL 値を許可するかどうかと契約するのではなく、型システムを使用して変数の範囲を分類するために、より洗練されたタイプのシステムを検討しました。
+
+To make it concrete, this was the difference between this code which uses contracts:
 
 それは具体的にするために、これは契約を利用して、このコードの違いはありました:
 
@@ -2131,16 +2234,17 @@ The first one's really tough: guaranteeing statically that variables do not take
 This is what Tony Hoare has famously called his "billion dollar mistake".
 Fixing this for good is a righteous goal for any language and I'm happy to see newer language designers tackling this problem head-on.
 
-Many areas of the language fight you every step of the way on this one.
-Generics, zero-initialization, constructors, and more.
-Retrofitting non-null into an existing language is tough!
 最初のものは本当にタフだ:変数が null 値を取らないことを静的に保証します。
 これは、アントニーホーアが有名な彼の "十億ドル規模のミス"と呼ばれているものです。
 良いのためにこれを修正するには、任意の言語のための正義の目標であると私は、この問題を真正面から取り組む新しい言語設計者を見てうれしいです。
 
+Many areas of the language fight you every step of the way on this one.
+Generics, zero-initialization, constructors, and more.
+Retrofitting non-null into an existing language is tough!
+
 言語の多くの地域は、あなたにこの 1 上の方法のあらゆるステップを戦います。
 ジェネリック医薬品、ゼロ初期化、コンストラクタ、およびより多くの。
-既存の言語に null 以外の改造することは難しいです！
+既存の言語に null 以外の改造することは難しいです!
 
 ### The Type System
 
@@ -2153,14 +2257,15 @@ In a nutshell, non-nullability boiled down to some simple type system rules:
 4. T implicitly converts to T?. In a sense, T is a subtype of T? (although not entirely true).
 5. Operators exist to convert a T? to a T, with runtime checks that abandoned on null.
 1. すべての飾り気のないタイプ T は、デフォルトでは null 以外でした。
-2. 任意のタイプで修正されるだろうか？、 T のように？ NULL 可能で、それをマークします。
+2. 任意のタイプで修正されるだろうか?、 T のように? NULL 可能で、それをマークします。
 3. null は null 以外の型の変数の値が不正です。
-4. T は暗黙的に T に変換します？ある意味で、 T は T のサブタイプでありますか？(完全に真実ではないが)。
-5. オペレータは T を変換するために存在しますか？ヌルに中断された実行時チェックと、 T へ。
+4. T は暗黙的に T に変換します?ある意味で、 T は T のサブタイプでありますか?(完全に真実ではないが)。
+5. オペレータは T を変換するために存在しますか?ヌルに中断された実行時チェックと、 T へ。
 
 Most of this is probably "obvious" in the sense that there aren't many choices.
 The name of the game is systematically ensuring all avenues of null are known to the type system.
 In particular, no null can ever "sneakily" become the value of a non-null T type; this meant addressing zero-initialization, perhaps the hardest problem of all.
+
 これのほとんどは多くの選択肢が存在しないという意味で、おそらく"明らか"です。
 ゲームの名前は、体系的な型システムに知られているヌルのすべての道を確保することです。
 特に、ヌルは、これまで"こそこそ" null 以外の T 型の値になることはできません。これは、ゼロ初期化、すべてのおそらく最も困難な問題に対処する意味しました。
@@ -2173,7 +2278,8 @@ But sometimes it's simply not possible.
 Multi-step initialization happens from time to time - especially with collections data structures - and had to be supported.
 
 Imagine for a moment we have a map:
-構文的には、我々は T からの変換、＃ 5 を達成するためにいくつかの方法を提供しましたか？ T.へ
+
+構文的には、我々は T からの変換、# 5 を達成するためにいくつかの方法を提供しましたか? T.へ
 もちろん、我々はこれをお勧めし、できるだけ長く"非ヌル"空間に滞在するあなたを好みました。
 しかし、時にはそれは単に不可能です。
 特にコレクションのデータ構造で - - 多段階の初期化は、随時発生し、サポートしなければなりませんでした。
@@ -2190,6 +2296,7 @@ The Map itself is not null.
 The int keys inside of it will not be null.
 The Customer values inside of it will also not be null.
 Let's now say that the indexer actually returns null to indicate the key was missing:
+
 これは建設によって私たちに 3 つのことを伝えます:
 
 地図自体が null ではありません。
@@ -2205,9 +2312,11 @@ public TValue? this[TKey key] {
 ```
 
 Now we need some way of checking at callsites whether the lookup succeeded. We debated many syntaxes.
+
 今、私たちは、ルックアップが成功したかどうか callsites でチェックするいくつかの方法が必要です。我々は、多くの構文を議論しました。
 
 The easiest we landed on was a guarded check:
+
 私たちがしたガード付きチェックに上陸した最も簡単:
 
 ```
@@ -2222,13 +2331,14 @@ It annoyed me that it was hard to figure out what went wrong when it failed.
 For example, it didn't work if you compared c to a variable that held the null value, only the literal null.
 But the syntax was easy to remember and usually did the right thing.
 
-These checks dynamically branch to a different piece of logic if the value is indeed null.
-Often you'd want to simply assert that the value is non-null and abandon otherwise.
-There was an explicit type-assertion operator to do that:
 私は"魔法"型の強制についてのフェンスに常にあった、認めますよ。
 それが失敗したときに何が悪かったのかを把握することは困難であったことを私にイライラ。
 あなたが NULL 値のみリテラルヌルを保持していた変数に C を比較した場合例えば、それは動作しませんでした。
 しかし、構文は、覚えやすいし、通常は正しいことをしました。
+
+These checks dynamically branch to a different piece of logic if the value is indeed null.
+Often you'd want to simply assert that the value is non-null and abandon otherwise.
+There was an explicit type-assertion operator to do that:
 
 値が実際に null の場合これらのチェックは、動的論理の異なる作品に分岐します。
 多くの場合、あなたは単に値が非 NULL であることを主張する、そうでなければ中断したいと思います。
@@ -2240,7 +2350,7 @@ Customer customer = notnull(maybeCustomer);
 ```
 
 The notnull operator turned any expression of type T? into an expression of type T.
-NOTNULL 演算子は型 T の任意の式を回しましたか？型 T の式に
+NOTNULL 演算子は型 T の任意の式を回しましたか?型 T の式に
 
 ### Generics
 
@@ -2260,27 +2370,29 @@ var d = C.N<object?>();
 ```
 
 The basic question is, what are the types of a, b, c, and d?
-基本的な問題は、 B 、 C 、 D の種類どのようなものですか？
+基本的な問題は、 B 、 C 、 D の種類どのようなものですか?
 
 I think we made this one harder initially than we needed to largely because C# 's existing nullable is a pretty odd duck and we got distracted trying to mimic it too much.
 The good news is we finally found our way, but it took a while.
+
 私たちは難しく、最初は C# の既存の NULL 可能ではかなり奇妙なアヒルであり、我々はあまりにも多くのそれを模倣しようと気を取られてしまった主な理由私たちがするのに必要なよりも、この 1 を作ったと思います。
 良いニュースは、我々は最終的に我々の方法を発見されたが、それはしばらく時間がかかりました。
 
 To illustrate what I mean, let's go back to the example.
 There are two camps:
+
 私が何を意味するか説明するために、例に戻りましょう。
 二つの陣営があります。
 
 - The .NET camp: a is object; b, c, and d are object?.
 - The functional language camp: a is object; b and c are object?; d is object??.
-- .NET キャンプ:オブジェクトです。 B 、 C 、 D は物体であります？
-- 関数型言語のキャンプは:オブジェクトです。 b 及び c は、オブジェクトがありますか？; d は??オブジェクトです。
+- .NET キャンプ:オブジェクトです。 B 、 C 、 D は物体であります?
+- 関数型言語のキャンプは:オブジェクトです。 b 及び c は、オブジェクトがありますか?; d は??オブジェクトです。
 
 In other words, the .NET camp thinks you should collapse any sequence of 1 or more ?s into a single ?.
 The functional language camp - who understands the elegance of mathematical composition - eschews the magic and lets the world be as it is.
 We eventually realized that the .NET route is incredibly complex, and requires runtime support.
-つまり、.NET キャンプでは、 1 以上の任意のシーケンスを折りたたむ必要があります考えていますか？シングルへの？。
+つまり、.NET キャンプでは、 1 以上の任意のシーケンスを折りたたむ必要があります考えていますか?シングルへの?。
 関数型言語キャンプ - 数学的な構図の優雅さを理解する - 魔法を控え、そのまま世界があることができます。
 我々は最終的には、.NET のルートは非常に複雑であることに気づき、およびランタイムサポートを必要とします。
 
@@ -2302,32 +2414,33 @@ But honestly, when you stop to think about it, that makes sense.
 It's more transparent and reflects precisely what's going on under here.
 Best not to fight it.
 
+このモデルでは、 1 層をはがす必要がありますか?一度に。
+あなたはそれについて考えるために停止したときにしかし、正直なところ、それは理にかなっています。
+これは、より透明だし、ここの下で何が起こっているか正確に反映しています。
+それを戦うしないことをお勧め。
+
 There's also the question of implementation.
 The easiest implementation is to expand T? into some "wrapper type," like Maybe<T>, and then inject the appropriate wrap and unwrap operations.
 Indeed, that's a reasonable mental model for how the implementation works.
 There are two reasons this simple model doesn't work, however.
 
+実装の問題もあります。
+最も簡単な実装では、 T を拡張するのですか?たぶん、<T>のようないくつかの "ラッパー型"にして、適切なラップやアンラップ操作を注入。
+確かに、それは実装がどのように動作するかのための合理的なメンタルモデルです。
+この単純なモデルは、しかし、動作しない理由は 2 つあります。
+
 First, for reference type T, T? must not carry a wasteful extra bit; a pointer's runtime representation can carry null as a value already, and for a systems language, we'd like to exploit this fact and store T? as efficiently as T.
 This can be done fairly easily by specializing the generic instantiation.
 But this does mean that non-null can no longer simply be a front-end trick.
 It requires back-end compiler support.
-このモデルでは、 1 層をはがす必要がありますか？一度に。
-あなたはそれについて考えるために停止したときにしかし、正直なところ、それは理にかなっています。
-これは、より透明だし、ここの下で何が起こっているか正確に反映しています。
-それを戦うしないことをお勧め。
 
-実装の問題もあります。
-最も簡単な実装では、 T を拡張するのですか？たぶん、<T>のようないくつかの "ラッパー型"にして、適切なラップやアンラップ操作を注入。
-確かに、それは実装がどのように動作するかのための合理的なメンタルモデルです。
-この単純なモデルは、しかし、動作しない理由は 2 つあります。
-
-まず、参照型 T のために、 T ？無駄な余分なビットを運ぶことはいけません。ポインタの実行時表現は、すでに値として null を運ぶことができ、およびシステムの言語のために、私たちはこの事実とストア T を利用したいのですが？効率的に T として
+まず、参照型 T のために、 T ?無駄な余分なビットを運ぶことはいけません。ポインタの実行時表現は、すでに値として null を運ぶことができ、およびシステムの言語のために、私たちはこの事実とストア T を利用したいのですが?効率的に T として
 これは、一般的なインスタンス化を専門とすることによって、かなり簡単に行うことができます。
 しかし、これは null 以外は、もはや単にフロントエンドトリックすることができないことを意味します。
 これは、バックエンドのコンパイラのサポートを必要とします。
 
 (Note that this trick is not so easy to extend to T??!)
-(このトリックが T ??に拡張するのは容易ではないことに注意してください！)
+(このトリックが T ??に拡張するのは容易ではないことに注意してください!)
 
 Second, Midori supported safe covariant arrays, thanks to our mutability annotations.
 If T and T? have a different physical representation, however, then converting T[] to T?[] is a non-transforming operation.
@@ -2335,10 +2448,10 @@ This was a minor blemish, particularly since covariant arrays become far less us
 
 Anyway, we eventually burned the ships on .NET Nullable<T> and went with the more composable multi-? design.
 第二に、 Midori は、私たちの可変性の注釈のおかげで安全な共変アレイをサポート。
-T と T の場合？その後、 T は[] T への変換、しかし、異なる物理的表現がありますか？[]非変換操作です。
+T と T の場合?その後、 T は[] T への変換、しかし、異なる物理的表現がありますか?[]非変換操作です。
 これは、彼らがすでに持っている安全上の穴を塞ぐ一度共変アレイがはるかに役立つようになり、特に以来、マイナーな傷でした。
 
-とにかく、我々は最終的には、.NET の Nullable <T>に船を燃やし、より構成可能なマルチと一緒に行きましたか？設計。
+とにかく、我々は最終的には、.NET の Nullable <T>に船を燃やし、より構成可能なマルチと一緒に行きましたか?設計。
 
 ### Zero-Initialization
 
@@ -2364,9 +2477,10 @@ But that stunk.
 It infected the whole system with nullable types immediately.
 My hypothesis was that nullability only truly works if nullable is the uncommon (say 20%) case.
 This would have destroyed that in an instant.
+
 しかし、それは stink の過去形。
 それはすぐに NULL 可能タイプで、システム全体を感染させました。
-私の仮説は NULL 可能では珍しい(例えば 20 ％)の場合であれば NULL 値を許可するかどうかのみ、真に機能するということでした。
+私の仮説は NULL 可能では珍しい(例えば 20 %)の場合であれば NULL 値を許可するかどうかのみ、真に機能するということでした。
 これは、その瞬間に破壊されたであろう。
 
 So we went down the path of eliminating automatic zero-initialization semantics.
@@ -2375,6 +2489,7 @@ This was quite a large change.
 If I could do it all over again, I'd just eliminate the value vs.
 reference type distinction altogether in C# .
 The rationale for that'll become clearer in an upcoming post on battling the garbage collector.
+
 だから我々は、自動ゼロ初期化のセマンティクスを排除するパスを下って行きました。
 これは非常に大きな変化でした。
 ( C# 6 は、構造体は、独自のゼロ引数のコンストラクタを提供することを可能にする道を下って行き、最終的に起因し、これは生態系に与えた薄手の影響にそれをバックアウトする必要がありました。)動作するように作られたが、もちろん、かなり遠い方向転換し、我々はおそらくとあまりにも気を取ら得たいくつかの他の問題を提起されている可能性があります。
@@ -2391,22 +2506,24 @@ In the early days of Midori, we wanted "cognitive familiarity." In the later day
 It was that later mindset that prevented us from doing non-null types in earnest.
 My belief to this day is that additive annotations just won't work; Spe C# tried this with ! and the polarity always felt inverted.
 Non-null needs to be the default for this to have the impact we desired.
+
 我々は固体の設計、およびいくつかのプロトタイプを持っていましたが、オペレーティングシステム全体を横切って、このいずれかを展開することはありません。
  C# の互換性の私達の所望のレベルに縛られた理由。
 公平を期すために、私はかなりこの 1 ビットのワッフル、と私はそれが最終的に私の決断だったとします。
 Midori の初期の頃で、私たちは"認知親しみやすさ"を望んでいましたプロジェクトの数日後に、我々は実際には C# に拡張子"アドオン"としての機能のすべてを行うことができるかどうかを検討しました。
 これは本格的に null 以外の種類をやってから私たちを防ぐこと後で考え方でした。
-この日に私の信念は、添加剤のアノテーションがうまく動作しないことです。スペック＃でこれを試してみました！そして、極性が常に反転感じました。
+この日に私の信念は、添加剤のアノテーションがうまく動作しないことです。スペック#でこれを試してみました!そして、極性が常に反転感じました。
 null 以外は、これは我々が希望のインパクトを持っているためにデフォルトにする必要があります。
 
 One of my biggest regrets is that we waited so long on non-null types.
 We only explored it in earnest once contracts were a known quantity, and we noticed the thousands of requires x != nulls all over the place.
 It would have been complex and expensive, however this would have been a particularly killer combination if we nuked the value type distinction at the same time.
 Live and learn!
+
 私の最大の後悔の一つは、我々が null 以外の種類に限り待っていたということです。
-契約が既知量であった、そして我々は、 x を必要とする何千ものに気づいたら、私たちは本格的にそれを探求しました！=すべての場所でゼロにします。
+契約が既知量であった、そして我々は、 x を必要とする何千ものに気づいたら、私たちは本格的にそれを探求しました!=すべての場所でゼロにします。
 我々は同時に値型の区別を被爆場合、それは複雑で高価であったであろう、しかしこれは、特にキラー組み合わせだったでしょう。
-生活し、学びます！
+生活し、学びます!
 
 If we shipped our language as a standalone thing, different from C# proper, I'm convinced this would have made the cut.
 我々は C# 、適切とは異なるスタンドアロンのもの、として私たちの言語を出荷した場合、私はこのカットをしただろう確信しています。
@@ -2421,6 +2538,7 @@ For example, say you had an integer that could only hold the numbers 0 through 1
 It could be stated as `int<0..1000000>`.
 Of course, this points out that you probably should be using a uint instead and the compiler would warn you.
 In fact, the full set of numbers could be conceptually represented as ranges in this way:
+
 基本的な考え方は、任意の数値型の下限と上限型パラメータを与えることができることです。
 たとえば、あなたが唯一の排他的に、 0 1,000,000 までの数字を保持することができ整数を持っていたと言います。
 これは、 `int 型<0..1000000>`として記載することができました。
@@ -2440,6 +2558,7 @@ typedef uint number<0..4294967295>;
 The really "cool" - but scary complicated - part is to then use dependent types to permit symbolic range parameters.
 For example, say I have an array and want to pass an index whose range is guaranteed to be in-bounds.
 Normally I'd write:
+
 本当に"クール" - しかし、複雑な恐ろしい - 部分は、シンボリック範囲パラメータを可能にするために、依存する型を使用することです。
 例えば、私は配列を持っており、その範囲内で、境界であることが保証されたインデックスを渡したいと言います。
 通常、私は記述します:
@@ -2474,20 +2593,22 @@ Of course, there's no guarantee the compiler will eliminate the bounds check, if
 But we would hope that it does no worse a job with these types than with normal contracts checks.
 And admittedly this approach is a more direct encoding of information in the type system.
 
+もちろん、あなたが何らかの形でそのエイリアス解析をつまずか場合、コンパイラは、境界チェックを排除するという保証はありません。
+しかし、我々は、それは通常の契約のチェックをよりこれらのタイプの悪化仕事何もしないことを望んでいるだろう。
+そして確かに、この方法は、型システム内の情報のより直接的な符号化です。
+
 Anyway, I still chalk this one up to a cool idea, but one that's still in the realm of "nice to have but not critical."
+
+とにかく、私はまだクールなアイディアが、の分野ではまだです 1 までこの 1 チョーク "を持っているのはいいが、重要ではありません。"
+
 
 The "not critical" aspect is especially true thanks to slices being first class in the type system.
 I'd say 66% or more of the situations where range checks were used would have been better written using slices.
 I think mainly people were still getting used to having them and so they'd write the standard C# thing rather than just using a slice.
 I'll cover slices in an upcoming post, but they removed the need for writing range checks altogether in most code.
-もちろん、あなたが何らかの形でそのエイリアス解析をつまずか場合、コンパイラは、境界チェックを排除するという保証はありません。
-しかし、我々は、それは通常の契約のチェックをよりこれらのタイプの悪化仕事何もしないことを望んでいるだろう。
-そして確かに、この方法は、型システム内の情報のより直接的な符号化です。
-
-とにかく、私はまだクールなアイディアが、の分野ではまだです 1 までこの 1 チョーク "を持っているのはいいが、重要ではありません。"
 
 "重要ではない"の側面は、特に型システムで最初のクラスであるスライスに真のおかげです。
-私は、範囲チェックを使用した状況の 66 ％以上がより良いスライスを使って書かれていたであろうと思います。
+私は、範囲チェックを使用した状況の 66 % 以上がより良いスライスを使って書かれていたであろうと思います。
 私は主に、人々はまだそれらを持つことに慣れたと思うので、彼らは、標準的な C# のことを書きたいだけではなくスライスを使用して。
 私は今後の記事でスライスをカバーしますが、彼らはほとんどのコードに完全に範囲チェックを記述するための必要性を除去しました。
 
@@ -2505,8 +2626,8 @@ Examples include:
 - Network I/O.
 - Parsing data (e.g., a compiler parser).
 - Validating user data (e.g., a web form submission).
-- ファイル I / O 。
-- ネットワーク I / O 。
+- ファイル I/O
+- ネットワーク I/O
 - 解析データ(例えば、コンパイラのパーサー)。
 - 検証のユーザデータ(例えば、 Web フォームの提出)。
 
@@ -2528,15 +2649,30 @@ Imagine if the program you're using decided to wink out of existence every time 
 We used exceptions for recoverable errors.
 Not the unchecked kind, and not quite the Java checked kind, either.
 
+私たちは、回復可能なエラーのための例外を使用していました。
+ていない未チェックの種類ではなく、かなり Java はどちらか、種類を確認しました。
+
 First thing's first: although Midori had exceptions, a method that wasn't annotated as throws could never throw one.
 Never ever ever.
 There were no sneaky RuntimeExceptions like in Java, for instance.
 We didn't need them anyway, because the same situations Java used runtime exceptions for were instead using abandonment in Midori.
 
+まず最初の最初: Midori の例外を持っていたものの、スローとして注釈されなかったメソッドが 1 を投げることができませんでした。
+決して、これまで。
+Java でのような全く卑劣な RuntimeExceptions は、例えば、ありませんでした。
+同じような状況は、 Java ではなく、 Midori に中断を使用していたために実行時例外を使用するので、私たちは、とにかくそれらを必要としませんでした。
+
+
 This led to a magical property of the result system.
 90-something% of the functions in our system could not throw exceptions! By default, in fact, they could not.
 This was a stark contrast to systems like C++ where you must go out of your way to abstain from exceptions and state that fact using noexcept.
 APIs could still fail due to abandonment, of course, but only when callers fail meet the stated contract, similar to passing an argument of the wrong type.
+
+これは、結果システムの魔法のプロパティにつながりました。
+我々のシステムで機能の 90 代の % は、例外をスローすることができませんでした!デフォルトでは、実際に、彼らはできませんでした。
+これは、 noexcept を使用して例外と状態、その事実を控えるためにあなたの道を行かなければならない C++ のようなシステムとは対照的でした。
+API はまだもちろん、中断による失敗する可能性がありますが、発信者は、間違った型の引数を渡すに似述べ契約を満たす失敗したときのみ。
+
 
 Our choice of exceptions was controversial at the outset.
 We had a mixture of imperative, procedural, object oriented, and functional language perspective on the team.
@@ -2545,29 +2681,17 @@ The functional perspective would be to use dataflow for all errors, but exceptio
 In the end, I think what we chose was a nice compromise between all of the available recoverable error models available to us.
 As we'll see later, we did offer a mechanism for treating errors as first class values for that rare case where a more dataflow style of programming was what the developer wanted.
 
-Most importantly, however, we wrote a lot of code in this model, and it worked very well for us.
-Even the functional language guys came around eventually.
-As did the C programmers, thanks to some cues we took from return codes.
-
-私たちは、回復可能なエラーのための例外を使用していました。
-ていない未チェックの種類ではなく、かなり Java はどちらか、種類を確認しました。
-
-まず最初の最初: Midori の例外を持っていたものの、スローとして注釈されなかったメソッドが 1 を投げることができませんでした。
-決して、これまで。
-Java でのような全く卑劣な RuntimeExceptions は、例えば、ありませんでした。
-同じような状況は、 Java ではなく、 Midori に中断を使用していたために実行時例外を使用するので、私たちは、とにかくそれらを必要としませんでした。
-
-これは、結果システムの魔法のプロパティにつながりました。
-我々のシステムで機能の 90 代の％は、例外をスローすることができませんでした！デフォルトでは、実際に、彼らはできませんでした。
-これは、 noexcept を使用して例外と状態、その事実を控えるためにあなたの道を行かなければならない C++ のようなシステムとは対照的でした。
-API はまだもちろん、中断による失敗する可能性がありますが、発信者は、間違った型の引数を渡すに似述べ契約を満たす失敗したときのみ。
-
 例外の私たちの選択は、冒頭で物議ました。
 私たちは不可欠、手続き型、オブジェクト指向、そしてチームの関数型言語の視点の混合物を持っていました。
 C プログラマは、エラーコードを使用したいと我々は、 Java を再作成するだろう心配していた、または悪化し、 C# のデザイン。
 機能的な観点は、すべてのエラーのためのデータフローを使用することであろうが、例外は非常に制御フロー指向しました。
 最後に、私たちは私たちに利用できる利用可能な回復可能なエラーモデルのすべての間で素敵な妥協だっ選んだと思います。
 我々は後で見るように、私たちはプログラミングのより多くのデータフロースタイルは、開発者が望んでいたそのまれなケースのためのファーストクラスの値としてエラーを処理するためのメカニズムを提供しました。
+
+
+Most importantly, however, we wrote a lot of code in this model, and it worked very well for us.
+Even the functional language guys came around eventually.
+As did the C programmers, thanks to some cues we took from return codes.
 
 しかし、最も重要なことは、我々はこのモデルでコードの多くを書いて、それが私たちのために非常によく働きました。
 でも関数型言語の人たちは、最終的に周りに来ました。
@@ -2579,32 +2703,16 @@ At some point, I made a controversial observation and decision.
 Just as you wouldn't change a function's return type with the expectation of zero compatibility impact, you should not be changing a function's exception type with such an expectation.
 In other words, an exception, as with error codes, is just a different kind of return value!
 
+いくつかの時点で、私は論争の観察と決定しました。
+あなたがゼロ互換性への影響の期待と、関数の戻り値の型を変更しないのと同じように、あなたはそのような期待を持つ関数の例外タイプを変更すべきではありません。
+言い換えれば、例外は、エラーコードと同様に、戻り値のちょうど別の種類です!
+
+
 This has been one of the parroted arguments against checked exceptions.
 My answer may sound trite, but it's simple: too bad.
 You're in a statically typed programming language, and the dynamic nature of exceptions is precisely the reason they suck.
 We sought to address these very problems, so therefore we embraced it, embellished strong typing, and never looked back.
 This alone helped to bridge the gap between error codes and exceptions.
-
-Exceptions thrown by a function became part of its signature, just as parameters and return values are.
-Remember, due to the rare nature of exceptions compared to abandonment, this wasn't as painful as you might think.
-And a lot of intuitive properties flowed naturally from this decision.
-
-The first thing is the Liskov substitution principle.
-In order to avoid the mess that C++ found itself in, all "checking" has to happen statically, at compile time.
-As a result, all of those performance problems mentioned in the WG21 paper were not problems for us.
-This type system must be bulletproof, however, with no backdoors to defeat it.
-Because we needed to address those performance challenges by depending on throws annotations in our optimizing compiler, type safety hinged on this property.
-
-We tried many many different syntaxes.
-Before we committed to changing the language, we did everything with C# attributes and static analysis.
-The user experience wasn't very good and it's hard to do a real type system that way.
-Furthermore, it felt too bolted on.
-We experimented with approaches from the Redhawk project - what eventually became .NET Native and CoreRT - however, that approach also didn't leverage the language and relied instead on static analysis, though it shares many similar principles with our final solution.
-
-The basic gist of the final syntax was to simply state a method throws as a single bit:
-いくつかの時点で、私は論争の観察と決定しました。
-あなたがゼロ互換性への影響の期待と、関数の戻り値の型を変更しないのと同じように、あなたはそのような期待を持つ関数の例外タイプを変更すべきではありません。
-言い換えれば、例外は、エラーコードと同様に、戻り値のちょうど別の種類です！
 
 これは、チェック例外に対する parroted 引数の一つとなっています。
 私の答えは陳腐に聞こえるかもしれないが、それは簡単です:あまりにも悪いです。
@@ -2612,9 +2720,20 @@ The basic gist of the final syntax was to simply state a method throws as a sing
 私たちは、これらの非常に問題に対処しようとしたので、したがって、我々はそれを受け入れ、強い型付けを装飾し、後ろを振り返ることはありません。
 これだけで、エラーコードと例外の間のギャップを埋めるのに役立ちました。
 
+Exceptions thrown by a function became part of its signature, just as parameters and return values are.
+Remember, due to the rare nature of exceptions compared to abandonment, this wasn't as painful as you might think.
+And a lot of intuitive properties flowed naturally from this decision.
+
 関数によってスローされた例外は、パラメータと戻り値は同じように、その署名の一部となりました。
 中断と比較して、例外のまれな性質のために、覚えておいて、これはあなたが考えるほど痛いませんでした。
 そして、直感的な性質の多くは、この決定から自然に流れました。
+
+
+The first thing is the Liskov substitution principle.
+In order to avoid the mess that C++ found itself in, all "checking" has to happen statically, at compile time.
+As a result, all of those performance problems mentioned in the WG21 paper were not problems for us.
+This type system must be bulletproof, however, with no backdoors to defeat it.
+Because we needed to address those performance challenges by depending on throws annotations in our optimizing compiler, type safety hinged on this property.
 
 まず最初に、リスコフの置換原則です。
 C++ はコンパイル時に、静的に起こることがあり、"チェック"すべて、自分自身を中に見つかった混乱を避けるために。
@@ -2622,12 +2741,20 @@ C++ はコンパイル時に、静的に起こることがあり、"チェック
 このタイプのシステムはそれを倒すためにノーバックドアで、しかし、防弾されなければなりません。
 我々は最適化コンパイラに注釈をスローに依存して、これらのパフォーマンスの課題に対処するために必要なので、型の安全性は、このプロパティにヒンジ結合しました。
 
+We tried many many different syntaxes.
+Before we committed to changing the language, we did everything with C# attributes and static analysis.
+The user experience wasn't very good and it's hard to do a real type system that way.
+Furthermore, it felt too bolted on.
+We experimented with approaches from the Redhawk project - what eventually became .NET Native and CoreRT - however, that approach also didn't leverage the language and relied instead on static analysis, though it shares many similar principles with our final solution.
+
+
 我々は、多くの多くの異なる構文を試してみました。
 我々は言語を変更することにコミットする前に、我々は、 C# の属性と静的解析ですべてをしました。
 ユーザーエクスペリエンスは非常に良好ではなかった、それはそのように実際の型システムを行うのは難しいです。
 さらに、それはあまりにも上のボルトで固定感じました。
 私たちは、レッドホークプロジェクトからのアプローチで実験 - 最終的には、.NET ネイティブと CoreRT なったもの - それが私たちの最終的なソリューションで多くの同様の原理を共有するものの、しかし、そのアプローチは、言語を活用していなかったと静的解析に代わりに依存していました。
 
+The basic gist of the final syntax was to simply state a method throws as a single bit:
 最終的な構文の基本的な骨子は、単に方法は、単一のビットとしてスロー状態になりました:
 
 ```
@@ -2728,24 +2855,22 @@ This turned out to be a very common pattern: An internal system would use typed 
 
 All of this extra typing added great power to recoverable errors.
 But if contracts outnumbered exceptions by 10:1, then simple throws exceptional methods outnumbered multi-failure-mode ones by another 10:1.
+この余分なタイピングのすべてが回復可能なエラーに大きな力を追加しました。
+契約は 10 で例外を上回った場合でも: 1 、単純な例外的な方法は、別の 10 による多重障害モードのものを上回っスロー: 1 。
 
 At this point, you may be wondering, what differentiated this from Java's checked exceptions?
+この時点で、あなたは Java のチェック例外からこれを区別するもの、疑問に思うかもしれ?
 
 The fact that the lion's share of errors were expressed using abandonment meant most APIs didn't throw.
+エラーのライオンのシェアは中断を用いて表現されたという事実は、ほとんどの API はスローされませんでした意味しました。
 
 The fact that we encouraged a single mode of failure simplified the entire system greatly.
 Moreover, we made it easy to go from the world of multiple modes, to just a single and back again.
 
-The rich type system support around weakening and strengthening also helped, as did something else we did to that helped bridge the gap between return codes and exceptions, improved code maintainability, and more …
-この余分なタイピングのすべてが回復可能なエラーに大きな力を追加しました。
-契約は 10 で例外を上回った場合でも: 1 、単純な例外的な方法は、別の 10 による多重障害モードのものを上回っスロー: 1 。
-
-この時点で、あなたは Java のチェック例外からこれを区別するもの、疑問に思うかもしれ？
-
-エラーのライオンのシェアは中断を用いて表現されたという事実は、ほとんどの API はスローされませんでした意味しました。
-
 我々は、単一の障害モードを奨励しているという事実は、大幅にシステム全体を簡素化。
 さらに、我々はそれが簡単に再び 1 つだけとし、複数のモードの世界から行くことになりました。
+
+The rich type system support around weakening and strengthening also helped, as did something else we did to that helped bridge the gap between return codes and exceptions, improved code maintainability, and more …
 
 我々はリターンコードと例外、改良されたコードの保守性、およびより多くの間のギャップを埋める助けすることでした何か他のものをしたとして弱体化と強化の周りの豊かな型システムのサポートも、助けました...
 
@@ -2753,11 +2878,11 @@ The rich type system support around weakening and strengthening also helped, as 
 
 At this point in the story, we still haven't achieved the full explicit syntax of error codes.
 The declarations of functions say whether they can fail (good), but callers of those functions still inherit silent control flow (bad).
+物語の中でこの時点で、我々はまだエラーコードの完全な明示的な構文を達成していません。
+関数の宣言は、彼らが(良い)を失敗することができますが、これらの関数の呼び出し元がまだサイレント制御フロー(悪い)を継承するかどうかを言います。
 
 This brings about something I always loved about our exceptions model.
 A callsite needs to say try:
-物語の中でこの時点で、我々はまだエラーコードの完全な明示的な構文を達成していません。
-関数の宣言は、彼らが(良い)を失敗することができますが、これらの関数の呼び出し元がまだサイレント制御フロー(悪い)を継承するかどうかを言います。
 
 これは私が常に我々の例外モデルについて愛した何かをもたらします。
 呼び出し場所は試して言う必要があります:
@@ -2767,15 +2892,15 @@ int value = try Foo();
 ```
 
 This invokes the function Foo, propagates its error if one occurs, and assigns the return value to value otherwise.
+これは、関数 foo を呼び出す 1 が発生した場合、そのエラーを伝播し、そうでない場合は評価に戻り値を割り当てます。
 
 This has a wonderful property: all control flow remains explicit in the program.
 You can think of try as a kind of conditional return (or conditional throw if you prefer).
 I freaking loved how much easier this made code reviewing error logic! For example, imagine a long function with a few trys inside of it; having the explicit annotation made the points of failure, and therefore control flow, as easy to pick out as return statements:
-これは、関数 foo を呼び出す 1 が発生した場合、そのエラーを伝播し、そうでない場合は評価に戻り値を割り当てます。
 
 これは素晴らしい性質を有している:すべての制御フローがプログラムで明示的に残っています。
 (ご希望の場合は、条件付き投)あなたは条件付きリターンの一種として試して考えることができます。
-私は、これはコードレビューするエラーロジックを作った方法はるかに容易に愛さおかしくなり！例えば、その中の数 trys と長い関数を想像。明示的なアノテーションを持つことは、障害のポイントを作ったので、 return 文として選び出すように簡単、流れを制御します。
+私は、これはコードレビューするエラーロジックを作った方法はるかに容易に愛さおかしくなり!例えば、その中の数 trys と長い関数を想像。明示的なアノテーションを持つことは、障害のポイントを作ったので、 return 文として選び出すように簡単、流れを制御します。
 
 ```
 void doSomething() throws {
@@ -2790,8 +2915,9 @@ void doSomething() throws {
 
 If you have syntax highlighting in your editor, so the trys are bold and blue, it's even better.
 
-This delivered many of the strong benefits of return codes, but without all the baggage.
 あなたのエディタで構文ハイライトを持っているので、 trys は太字と青であれば、それも良いでしょう。
+
+This delivered many of the strong benefits of return codes, but without all the baggage.
 
 これは、戻りコードの強力な利点の多くをもたらしますが、すべての手荷物なし。
 
@@ -2813,6 +2939,8 @@ Of course, if you are trying a function that throws like this, there are two pos
 
 In the first case, you are required to declare that your function throws too.
 It is up to you whether to propagate strong typing information should the callee declare it, or simply leverage the single throws bit, of course.
+最初のケースでは、あなたの関数があまりにもスローすることを宣言する必要があります。
+これは、呼び出される側がそれを宣言するか、または単にシングルはもちろん、少しスロー活用すべきである強い型付け情報を伝播するかどうかまでです。
 
 In the second case, we of course understood all the typing information.
 As a result, if you tried to catch something that wasn't declared as being thrown, we could give you an error about dead code.
@@ -2820,17 +2948,15 @@ This was yet another controversial departure from classical exceptions systems.
 It always bugged me that catch (FooException) is essentially hiding a dynamic type test.
 Would you silently permit someone to call an API that returns just object and automatically assign that returned value to a typed variable? Hell no! So we didn't let you do that with exceptions either.
 
-Here too CLU influenced us.
-Liskov talks about this in A History of CLU:
-最初のケースでは、あなたの関数があまりにもスローすることを宣言する必要があります。
-これは、呼び出される側がそれを宣言するか、または単にシングルはもちろん、少しスロー活用すべきである強い型付け情報を伝播するかどうかまでです。
-
 第二のケースでは、我々は、もちろん、すべての入力情報を理解しました。
 あなたがスローされるように宣言されていない何かをキャッチしようとした場合、結果として、我々はあなたにデッドコードに関するエラーを与えることができます。
 これはまだ古典的な例外システムから別の論争の出発でした。
 それは、常にキャッチ( FooException )は、本質的にダイナミック型テストを隠していることを私に盗聴しました。
-あなたは黙ってただオブジェクトと自動的に入力された変数にその戻り値を割り当てる返す API を呼び出すために誰かを許可しますか？地獄！だから我々はあなたがいずれかの例外を除いてそれを行うことはできませんでした。
+あなたは黙ってただオブジェクトと自動的に入力された変数にその戻り値を割り当てる返す API を呼び出すために誰かを許可しますか?地獄!だから我々はあなたがいずれかの例外を除いてそれを行うことはできませんでした。
 
+
+Here too CLU influenced us.
+Liskov talks about this in A History of CLU:
 ここでも CLU は私たちに影響を与えました。
 CLU の歴史でこのことについてリスコフ会談:
 
@@ -2839,6 +2965,7 @@ Most mechanisms pass these through: if the caller does not handle an exception r
 We rejected this approach because it did not fit our ideas about modular program construction.
 We wanted to be able to call a procedure knowing just its specification, not its implementation.
 However, if exceptions are propagated automatically, a procedure may raise an exception not described in its specification.
+
 > CLU のメカニズムは未処理の例外のその治療に珍しいです。
 ほとんどのメカニズムは介してこれらのを渡す:呼び出し元はと呼ばれる手順によって発生した例外を処理しない場合、例外がというようにその呼び出し元に伝播され、。
 それはモジュラープログラム構築に関する当社の考え方に適合していなかったので、我々はこのアプローチを棄却しました。
@@ -2870,10 +2997,10 @@ But we used exceptions, you might say! It's completely different! Sure, the runt
 But from a language "semantics" perspective, they are isomorphic.
 We encouraged people to think in terms of error codes and not the exceptions they knew and loved.
 This might seem funny: Why not just use return codes, you might wonder? In an upcoming section, I will describe the true isomorphism of the situation to try to convince you of our choice.
-しかし、我々は例外を使用し、あなたは言うかもしれません！それは完全に違います！確かに、ランタイムシステムが異なります。
+しかし、我々は例外を使用し、あなたは言うかもしれません!それは完全に違います!確かに、ランタイムシステムが異なります。
 しかし、言語の"意味論"の観点から、彼らは同型です。
 私たちは、エラーコードではなく、彼らは知っていた、愛さ例外の観点で考えるように人々を奨励しました。
-これは、面白いように見えるかもしれません:なぜあなたは不思議に思うかもしれません、リターンコードを使わないのでしょうか？今後のセクションでは、私は我々の選択のあなたを説得しようとする状況の真の同型を説明します。
+これは、面白いように見えるかもしれません:なぜあなたは不思議に思うかもしれません、リターンコードを使わないのでしょうか?今後のセクションでは、私は我々の選択のあなたを説得しようとする状況の真の同型を説明します。
 
 ### Syntactic Sugar
 
@@ -2881,20 +3008,20 @@ We also offered some syntactic sugar for dealing with errors.
 The try/catch block scoping construct is a bit verbose, especially if you're following our intended best practices of handling errors as locally as possible.
 It also still retains a bit of that unfortunate goto feel for some, especially if you are thinking in terms of return codes.
 That gave way to a type we called Result<T>, which was simply either a T value or an Exception.
-
-This essentially bridged from the world of control-flow to the world of dataflow, for scenarios in which the latter was more natural.
-Both certainly had their place, although most developers preferred the familiar control flow syntax.
-
-To illustrate common usage, imagine you want to log all errors that occur, before repropagating the exception.
-Though this is a common pattern, using try/catch blocks feels a little too control flow heavy for my taste:
 また、エラーに対処するためのいくつかの構文糖を提供しました。
 try / catch ブロックスコープコンストラクトは、ローカルにできるだけエラー処理の我々の意図のベストプラクティスに従っている場合は特に、少し冗長です。
 また、まだあなたがリターンコードの観点で考えている場合は特に、いくつかのためにその不幸な後藤感のビットを保持します。
 それは単に T 値または例外のいずれかであった私たちは結果<T>と呼ばれるタイプ、に道を譲りました。
 
+This essentially bridged from the world of control-flow to the world of dataflow, for scenarios in which the latter was more natural.
+Both certainly had their place, although most developers preferred the familiar control flow syntax.
+
 これは、基本的に後者の方がより自然であったシナリオのために、データフローの世界に制御フローの世界からブリッジさ。
 ほとんどの開発者は使い慣れた制御フロー構文が好ましいが、両方のは、確かに、その場所を持っていました。
 
+
+To illustrate common usage, imagine you want to log all errors that occur, before repropagating the exception.
+Though this is a common pattern, using try/catch blocks feels a little too control flow heavy for my taste:
 一般的な使用法を説明するために、あなたは例外を repropagating 前に、発生するすべてのエラーを記録したい想像してみてください。
 これは try / catch ブロックを使用して一般的なパターンは、ですが少しはあまりにも私の好みのための重い流れを制御感じています:
 
@@ -2951,7 +3078,7 @@ This is the NaN-style dataflow propagation, similar to C# 's new .? feature.
 
 This approach blends what I found to be an elegant mixture of exceptions, return codes, and dataflow error propagation.
 そうです - - 第三 `結果<T>`降伏、私たちは<整数> 2 `の検索結果を追加 3 行目は、`一緒だということに注意してください。
-これは、 C# の新しいと類似の NaN スタイルのデータフローの伝播、ですか。？特徴。
+これは、 C# の新しいと類似の NaN スタイルのデータフローの伝播、ですか。?特徴。
 
 このアプローチは、私は例外、リターンコード、およびデータフローの誤差伝播のエレガントな混合物であることが判明何ブレンド。
 
@@ -2963,13 +3090,13 @@ This isn't theoretical.
 We actually tried it.
 And this is what led us to choose exceptions instead of return codes for performance reasons.
 
-To illustrate how the return code implementation might work, imagine some simple transformations:
 私は説明したモデルは例外で実装する必要はありません。
 それは合理的に例外やリターンコードのいずれかを使用して実装されるのに十分抽象的です。
 これは理論的ではありません。
 私たちは実際にそれを試してみました。
 そして、これはパフォーマンス上の理由から、例外の代わりに、リターンコードを選択するために私達を導いたものです。
 
+To illustrate how the return code implementation might work, imagine some simple transformations:
 リターンコードの実装がうまくいくかもしれない方法を説明するために、いくつかの単純な変換を想像してみてください。
 
 ```
@@ -3011,28 +3138,28 @@ x = tmp.Value;
 
 An optimizing compiler can represent this more efficiently, eliminating excessive copying.
 Especially with inlining.
+最適化コンパイラは、過剰なコピーを排除し、より効率的にこれを表すことができます。
+特にインライン化しています。
 
 If you try to model try/catch/finally this same way, probably using goto, you'll quickly see why compilers have a hard time optimizing in the presence of unchecked exceptions.
 All those hidden control flow edges!
+あなたは/キャッチ/最後にこれと同じ方法を試してモデル化しようとするとコンパイラが非チェック例外の存在下での最適化、ハードの時間を持っている理由、おそらく goto 文使用して、あなたはすぐに表示されます。
+これらすべての隠された制御フローエッジ!
 
 Either way, this exercise very vividly demonstrates the drawbacks of return codes.
 All that goop - which is meant to be rarely needed (assuming, of course, that failure is rare) - is on hot paths, mucking with your program's golden path performance.
 This violates one of our most important principles.
 
-I described the results of our dual mode experiment in my last post.
-In summary, the exceptions approach was 7% smaller and 4% faster as a geomean across our key benchmarks, thanks to a few things:
-最適化コンパイラは、過剰なコピーを排除し、より効率的にこれを表すことができます。
-特にインライン化しています。
-
-あなたは/キャッチ/最後にこれと同じ方法を試してモデル化しようとするとコンパイラが非チェック例外の存在下での最適化、ハードの時間を持っている理由、おそらく goto 文使用して、あなたはすぐに表示されます。
-これらすべての隠された制御フローエッジ！
-
 いずれにしても、この演習は非常に生き生きとリターンコードの欠点を示しています。
 すべてのその無神経な人 - ほとんど必要ありませんされることになって(もちろん、その障害はまれである、と仮定)は - あなたのプログラムの黄金のパス性能でいじくる、ホットパス上にあります。
 これが私たちの最も重要な原則の一つに違反します。
 
+
+I described the results of our dual mode experiment in my last post.
+In summary, the exceptions approach was 7% smaller and 4% faster as a geomean across our key benchmarks, thanks to a few things:
+
 私は私の最後のポストで私たちのデュアルモード実験の結果を説明しました。
-要約すると、例外のアプローチは、私たちの主要なベンチマーク全体の幾何平均としていくつかのおかげで 7 ％より小さく、 4 ％速かったです。
+要約すると、例外のアプローチは、私たちの主要なベンチマーク全体の幾何平均としていくつかのおかげで 7 % より小さく、 4 % 速かったです。
 
 - No calling convention impact.
 - No peanut butter associated with wrapping return values and caller branching.
@@ -3074,32 +3201,31 @@ Back in 2007, I wrote this note about concurrency and exceptions.
 I wrote it mainly from the perspective of parallel, shared memory computations, however similar challenges exist in all concurrent orchestration patterns.
 The basic issue is that the way exceptions are implemented assumes single, sequential stacks, with single failure modes.
 In a concurrent system, you have many stacks and many failure modes, where 0, 1, or many may happen "at once."
+戻る 2007 年に、私は、同時実行性と例外に関するこのノートを書きました。
+しかし私は、同様の課題がすべての同時オーケストレーションパターンに存在し、パラレル、共有メモリ計算の観点から、主にそれを書きました。
+基本的な問題は、例外が実装されている方法は、単一故障モードで、シングル、シーケンシャルスタックを前提としていることです。
+並行システムでは、あなたは 0 、 1 、または多くが起こる可能性があり、多くのスタックと多くの故障モード、持っている "一度に。"
 
 A simple improvement that Midori made was simply ensuring all Exception-related infrastructure handled cases with multiple inner errors.
 At least then a programmer wasn't forced to decide to toss away 1/N'th of the failure information, as most exceptions systems encourage today.
 More than that, however, our scheduling and stack crawling infrastructure fundamentally knew about cactus-style stacks, thanks to our asynchronous model, and what to do with them.
+Midori が作った簡単な改善は、単に複数の内部エラーが発生したすべての例外関連のインフラ扱う例を確保しました。
+その後、少なくともプログラマはほとんど例外システムは、今日の奨励として、障害情報の離れた 1 / N 番目を投げることを決定することを余儀なくされていませんでした。
+それ以上に、しかし、私たちのスケジューリングおよびスタッククロールインフラは基本的に、サボテンスタイルのスタックについて、当社の非同期モデルのおかげで知っていたし、それらをどうしますか。
 
 At first, we didn't support exceptions across asynchronous boundaries.
 Eventually, however, we extended the ability to declare throws, along with optional typed exceptions clauses, across asynchronous process boundaries.
 This brought a rich, typed programming model to the asynchronous actors programming model and felt like a natural extension.
 This borrowed a page from CLU's successor, Argus.
 
-Our diagnostics infrastructure embellished this to give developers debugging experiences with full-blown cross-process causality in their stack views.
-Not only are stacks cactuses in a highly concurrent system, but they are often smeared across process message passing boundaries.
-Being able to debug the system this way was a big time-saver.
-戻る 2007 年に、私は、同時実行性と例外に関するこのノートを書きました。
-しかし私は、同様の課題がすべての同時オーケストレーションパターンに存在し、パラレル、共有メモリ計算の観点から、主にそれを書きました。
-基本的な問題は、例外が実装されている方法は、単一故障モードで、シングル、シーケンシャルスタックを前提としていることです。
-並行システムでは、あなたは 0 、 1 、または多くが起こる可能性があり、多くのスタックと多くの故障モード、持っている "一度に。"
-
-Midori が作った簡単な改善は、単に複数の内部エラーが発生したすべての例外関連のインフラ扱う例を確保しました。
-その後、少なくともプログラマはほとんど例外システムは、今日の奨励として、障害情報の離れた 1 / N 番目を投げることを決定することを余儀なくされていませんでした。
-それ以上に、しかし、私たちのスケジューリングおよびスタッククロールインフラは基本的に、サボテンスタイルのスタックについて、当社の非同期モデルのおかげで知っていたし、それらをどうしますか。
-
 最初に、我々は非同期の境界を越えて例外をサポートしていませんでした。
 最終的に、しかし、我々は非同期プロセスの境界を越えて、任意の型指定された例外条項とともに、スロー宣言する機能を拡張しました。
 これは、モデルのプログラミング非同期俳優に豊かな、型付けされたプログラミングモデルを持ってきて、自然な拡張のように感じました。
 これは CLU の後継者、アーガスからページを借りました。
+
+Our diagnostics infrastructure embellished this to give developers debugging experiences with full-blown cross-process causality in their stack views.
+Not only are stacks cactuses in a highly concurrent system, but they are often smeared across process message passing boundaries.
+Being able to debug the system this way was a big time-saver.
 
 当社の診断インフラストラクチャは、そのスタックビューで本格的なクロスプロセスの因果関係と経験をデバッグする開発者に与えるために、これを装飾します。
 スタックのサボテンは、並行性の高いシステムであるが、それらは多くの場合、プロセスメッセージパッシングの境界を越えて不鮮明にされているだけでなく。
@@ -3110,10 +3236,17 @@ Midori が作った簡単な改善は、単に複数の内部エラーが発生�
 Sometimes a subsystem needs to "get the hell out of Dodge." Abandonment is an option, but only in response to bugs.
 And of course nobody in the process can stop it in its tracks.
 What if we want to back out the callstack to some point, know that no-one on the stack is going to stop us, but then recover and keep going within the same process?
+時々、サブシステムは、"ダッジの地獄を取得します。 "する必要があります中断はオプションですが、唯一のバグに対応しています。
+そしてもちろん、プロセス内の誰もがそのトラックにそれを止めることはできません。
+我々はいくつかのポイントにコールスタックをバックアウトしたい場合はどう、スタック上の誰が私たちを停止しようとされていないことを知っているが、その後回復し、同じプロセス内で続けますか?
 
 Exceptions were close to what we wanted here.
 But unfortunately, code on the stack can catch an in-flight exception, thereby effectively suppressing the abort.
 We wanted something unsuppressable.
+
+例外は、我々がここで何を望むかに近かったです。
+しかし残念ながら、スタック上のコードは、それによって効果的にアボートを抑制すること、飛行中の例外をキャッチすることができます。
+私たちは unsuppressable 何かを望んでいました。
 
 Enter aborts.
 We invented aborts mainly in support of our UI framework which used Functional Reactive Programming (FRP), although the pattern came up in a few spots.
@@ -3123,25 +3256,6 @@ Thanks to all of that user code on the stack being functionally pure, aborting i
 No errant side-effects would be left behind.
 And all engine code that was traversed was audited and hardened thoroughly, thanks to typed exceptions, to ensure invariants were maintained.
 
-The abort design borrows a page from the capability playbook.
-First, we introduce a base type called AbortException.
-It may be used directly or subclassed.
-One of these is special: nobody can catch-and-ignore it.
-The exception is reraised automatically at the end of any catch block that attempts to catch it.
-We say that such exceptions are undeniable.
-
-But someone's got to catch an abort.
-The whole idea is to exit a context, not tear down the entire process a la abandonment.
-And here's where capabilities enter the picture.
-Here's the basic shape of AbortException:
-時々、サブシステムは、"ダッジの地獄を取得します。 "する必要があります中断はオプションですが、唯一のバグに対応しています。
-そしてもちろん、プロセス内の誰もがそのトラックにそれを止めることはできません。
-我々はいくつかのポイントにコールスタックをバックアウトしたい場合はどう、スタック上の誰が私たちを停止しようとされていないことを知っているが、その後回復し、同じプロセス内で続けますか？
-
-例外は、我々がここで何を望むかに近かったです。
-しかし残念ながら、スタック上のコードは、それによって効果的にアボートを抑制すること、飛行中の例外をキャッチすることができます。
-私たちは unsuppressable 何かを望んでいました。
-
 アボート入力します。
 パターンはいくつかのスポットを思いついたが、私たちは、主に官能性反応プログラミング( FRP )を使用し、当社の UI フレームワークのサポートでアボート発明しました。
 FRP の再計算が起こっていたように、現在の再計算を無効こと、それはイベントがシステムに入力している可能性があります、または新しい発見がなされました。
@@ -3150,12 +3264,24 @@ FRP の再計算が起こっていたように、現在の再計算を無効こ�
 いいえ誤った副作用が取り残されないであろう。
 そして、不変量を確保するために、入力された例外のおかげで監査され、徹底的に硬化させた走査したすべてのエンジンコードが維持されました。
 
+
+The abort design borrows a page from the capability playbook.
+First, we introduce a base type called AbortException.
+It may be used directly or subclassed.
+One of these is special: nobody can catch-and-ignore it.
+The exception is reraised automatically at the end of any catch block that attempts to catch it.
+We say that such exceptions are undeniable.
 アボートデザインは、能力脚本からページを借ります。
 まず、 AbortException と呼ばれる基本型を紹介します。
 これは、直接使用またはサブクラス化することができます。
 これらの一つは特別です:誰もそれを無視キャッチしない - と - することができます。
 例外はそれをキャッチしようとする任意の catch ブロックの終了時に自動的にリレイズされています。
 私たちは、そのような例外が否定できないと言います。
+
+But someone's got to catch an abort.
+The whole idea is to exit a context, not tear down the entire process a la abandonment.
+And here's where capabilities enter the picture.
+Here's the basic shape of AbortException:
 
 しかし、誰かのアボートをキャッチするようになりました。
 全体的なアイデアは、コンテキストを終了し、全体ではなくプロセスにラ中断を取り壊すことです。
@@ -3175,28 +3301,27 @@ Notice that, at the time of construction, an immutable token is provided; in ord
 If the token doesn't match, abandonment occurs.
 The idea is that the throwing and intended catching parties of an abort are usually the same, or at least in cahoots with one another, such that sharing the token securely with one another is easy to do.
 This is a great example of objects as unforgeable capabilities in action.
-
-And yes, an arbitrary piece of code on the stack can trigger an abandonment, but such code could already do that by simply dereferencing null.
-This technique prohibits executing in the aborting context when it might not have been ready for it.
-
-Other frameworks have similar patterns.
-The .NET Framework has ThreadAbortException which is also undeniable unless you invoke Thread.ResetAbort; sadly, because it isn't capability-based, a clumsy combination of security annotations and hosting APIs are required to stop unintended swallowing of aborts.
-More often, this goes unchecked.
-
-Thanks to exceptions being immutable, and the token above being immutable, a common pattern was to cache these guys in static variables and use singletons.
-For example:
 建設時には、不変のトークンが提供され、ことに注意してください。スローを抑制するために、リセットが呼び出され、マッチングトークンが提供されなければなりません。
 トークンが一致しない場合、中断が発生します。
 アイデアは、互いにしっかりとトークンを共有することは行うことは容易であるように、通常は同じであるか、または少なくとも互いに共謀に投げることとアボートのパーティーを引くことを意図しています。
 これはアクションで偽造不可能な機能などのオブジェクトの良い例です。
 
+And yes, an arbitrary piece of code on the stack can trigger an abandonment, but such code could already do that by simply dereferencing null.
+This technique prohibits executing in the aborting context when it might not have been ready for it.
 そして、はい、スタック上のコードの任意の部分は中断をトリガすることができますが、そのようなコードはすでに、単に null を参照解除することによってそれを行うことができます。
 この技術は、それはそれのために準備されていない可能性がある場合中止コンテキストで実行禁止しています。
+
+Other frameworks have similar patterns.
+The .NET Framework has ThreadAbortException which is also undeniable unless you invoke Thread.ResetAbort; sadly, because it isn't capability-based, a clumsy combination of security annotations and hosting APIs are required to stop unintended swallowing of aborts.
+More often, this goes unchecked.
 
 他のフレームワークは、同様のパターンを持っています。
 .NET Framework は、あなたがスレッドを起動しない限り、また否定できない ThreadAbortException のを持っています。 ResetAbort;それは能力ベースではないので悲しいことに、セキュリティアノテーションとホスティングの API の不器用な組み合わせが異常終了の意図しない嚥下を停止する必要があります。
 多くの場合、これは未チェックになります。
 
+
+Thanks to exceptions being immutable, and the token above being immutable, a common pattern was to cache these guys in static variables and use singletons.
+For example:
 不変であること例外のおかげで、かつ不変であること上記のトークンは、一般的なパターンは、静的変数でこれらの人をキャッシュし、シングルトンを使用していました。
 例えば:
 
@@ -3237,21 +3362,21 @@ I mentioned a number of operations that abandoned upon failure.
 That included allocating memory, performing arithmetic operations that overflowed or divided-by-zero, etc.
 In a few of these instances, a fraction of the uses are appropriate for dynamic error propagation and recovery, rather than abandonment.
 Even if abandonment is better in the common case.
-
-This turned out to be a pattern.
-Not terribly common, but it came up.
-As a result, we had a whole set of arithmetic APIs that used a dataflow-style of propagation should overflow, NaN, or any number of things happen.
-
-I also already mentioned a concrete instance of this earlier, which is the ability to try new an allocation, when OOM yields a recoverable error rather than abandonment.
-This was super uncommon, but could crop up if you wanted to, say, allocate a large buffer for some multimedia operation.
 私は失敗したときに中断された操作の数を述べました。
 つまり等、オーバーフローまたは分割ゼロによる演算を行うことにより、メモリの割り当てに含ま
 これらのインスタンスの数では、用途の割合はむしろ中断より、動的エラー伝播と回復のために適切です。
 中断は、一般的な場合には優れている場合でも。
 
+This turned out to be a pattern.
+Not terribly common, but it came up.
+As a result, we had a whole set of arithmetic APIs that used a dataflow-style of propagation should overflow, NaN, or any number of things happen.
+
 これはパターンであることが判明しました。
 ひどく一般的ではありませんが、それが上がってきました。
 その結果、我々は、 NaN のをオーバーフロー、または物事の任意の数が起こるはず伝播のデータフロースタイルを使用する算術の API のセット全体を持っていました。
+
+I also already mentioned a concrete instance of this earlier, which is the ability to try new an allocation, when OOM yields a recoverable error rather than abandonment.
+This was super uncommon, but could crop up if you wanted to, say, allocate a large buffer for some multimedia operation.
 
 OOM が中断ではなく、回復可能なエラーを生成するとき、私はすでに、新しい割り当てをしようとする能力である、この以前の具体的なインスタンスを述べました。
 これは超珍しいだったが、あなたは、たとえば、いくつかのマルチメディア操作に大きなバッファを割り当てるしたい場合は、最大切り抜くことができます。
@@ -3259,10 +3384,15 @@ OOM が中断ではなく、回復可能なエラーを生成するとき、私�
 ## Keepers
 
 The last pattern I'll cover is called the keeper pattern.
+私が取り上げる最後のパターンはキーパーのパターンと呼ばれています。
 
 In a lot of ways, the way recoverable exceptions are handled is "inside out." A bunch of code is called, passing arguments down the callstack, until finally some code is reached that deems that state unacceptable.
 In the exceptions model, control flow is then propagated back up the callstack, unwinding it, until some code is found that handles the error.
 At that point if the operation is to be retried, the sequence of calls must be reissued, etc.
+
+多くの点では、回復可能な例外が処理される方法は、"裏返し"です。最終的にいくつかのコードは、その状態が許容できないと判断し、その到達するまでコードの束は、コールスタックダウン引数を渡す、と呼ばれています。
+いくつかのコードがエラーを処理すること見つかるまで、例外モデルでは、制御フローは、その後、それを巻き戻す、コールスタックをバックアップ伝播されます。
+操作を再試行する場合にはその時点で、呼び出しのシーケンスは、等を再発行する必要があります
 
 An alternative pattern is to use a keeper.
 The keeper is an object that understands how to recover from errors "in situ," so that the callstack needn't be unwound.
@@ -3270,23 +3400,18 @@ Instead, the code that would have otherwise thrown an exception consults the kee
 A nice aspect of keepers is that often, when done as a configured capability, surrounding code doesn't even need to know they exist - unlike exceptions which, in our system, had to be declared as part of the type system.
 Another aspect of keepers is that they are simple and cheap.
 
-Keepers in Midori could be used for prompt operations, but more often spanned asynchronous boundaries.
-
-The canonical example of a keeper is one guarding filesystem operations.
-Accessing files and directories on a file system typically has failure modes such as:
-私が取り上げる最後のパターンはキーパーのパターンと呼ばれています。
-
-多くの点では、回復可能な例外が処理される方法は、"裏返し"です。最終的にいくつかのコードは、その状態が許容できないと判断し、その到達するまでコードの束は、コールスタックダウン引数を渡す、と呼ばれています。
-いくつかのコードがエラーを処理すること見つかるまで、例外モデルでは、制御フローは、その後、それを巻き戻す、コールスタックをバックアップ伝播されます。
-操作を再試行する場合にはその時点で、呼び出しのシーケンスは、等を再発行する必要があります
-
 代替パターンがキーパーを使用することです。
 キーパーは、コールスタックが巻き戻される必要がないように"、その場で"エラーから回復する方法を理解するオブジェクトです。
 その代わりに、それ以外の場合は例外がスローされたであろうコードを続行するにはどのようにコードを指示キーパーを調べます。
 我々のシステムでは、型システムの一部として宣言されなければならなかった、例外とは異なり - キーパーの素敵な側面は、設定された機能として行われたとき、多くの場合、周囲のコードがあっても、彼らが存在を知っている必要がないことです。
 キーパーの別の態様は、それらが簡単で安価であることです。
 
+Keepers in Midori could be used for prompt operations, but more often spanned asynchronous boundaries.
 Midori 中のキーパーは、プロンプトの操作のために使用されるが、より頻繁に非同期の境界をスパンすることができました。
+
+
+The canonical example of a keeper is one guarding filesystem operations.
+Accessing files and directories on a file system typically has failure modes such as:
 
 キーパーの標準的な例は、ファイルシステム操作を守って 1 です。
 ファイルシステム上のファイルやディレクトリへのアクセス、一般的のような故障モードを持っています。
@@ -3334,15 +3459,15 @@ The keeper is then permitted to perform an operation, possibly asynchronous, to 
 In many cases, the keeper can optionally return updated arguments for the operation.
 For example, InsufficientPrivileges could return alternative Credentials to use.
 (Maybe the program prompted the user and she switched to an account with write access.) In each case shown, the keeper could throw an exception if it didn't want to handle the error, although this part of the pattern was optional.
-
-Finally, I should note that Windows's Structured Exception Handling (SEH) system supports "continuable" exceptions which are conceptually attempting to achieve this same thing.
-They let some code decide how to restart the faulting computation.
-Unfortunately, they're done using ambient handlers on the callstack, rather than first class objects in the language, and so are far less elegant - and significantly more error prone - than the keepers pattern.
 アイデアは、障害が発生した場合、それぞれの場合において、関連する入力がキーパーに提供される、ということです。
 キーパーは、その後回復するために、非同期の可能性、操作の実行を許可されています。
 多くの場合、ゴールキーパーは、必要に応じて、操作のための更新された引数を返すことができます。
 例えば、 InsufficientPrivileges は、使用する代替の資格情報を返すことができます。
 (たぶんプログラムは、ユーザを促し、彼女は書き込みアクセス権を持つアカウントに切り替えました。)パターンのこの部分はオプションでしたが、それは、エラーを処理したくなかった場合に示される各ケースで、キーパーが例外をスローする可能性があります。
+
+Finally, I should note that Windows's Structured Exception Handling (SEH) system supports "continuable" exceptions which are conceptually attempting to achieve this same thing.
+They let some code decide how to restart the faulting computation.
+Unfortunately, they're done using ambient handlers on the callstack, rather than first class objects in the language, and so are far less elegant - and significantly more error prone - than the keepers pattern.
 
 最後に、私は( SEH )システムの処理の Windows の構造化例外は、概念的に、この同じことを達成しようとしている"継続可能"の例外をサポートしていることに注意してください。
 彼らはいくつかのコードは、断層運動計算を再起動する方法を決定しましょう。
@@ -3352,17 +3477,17 @@ Unfortunately, they're done using ambient handlers on the callstack, rather than
 
 Most people asked us about whether having async and throws as type system attributes bifurcated the entire universe of libraries.
 The answer was "No, not really." But it sure was painful in highly polymorphic library code.
+ほとんどの人は非同期を有し、型システム属性は、ライブラリの宇宙全体を分岐として投げるかどうかについての私達に尋ねました。
+答えは"いいえ、そうでもない。"でしたしかし、それは確かに高度に多型ライブラリのコードに苦痛でした。
 
 The most jarring example was combinators like map, filter, sort, etc.
 In those cases, you often have arbitrary functions and want the async and throws attributes of those functions to "flow through" transparently.
 
-The design we had to solve this was to let you parameterize over effects.
-For instance, here is a universal mapping function, Map, that propagates the async or throws effect of its func parameter:
-ほとんどの人は非同期を有し、型システム属性は、ライブラリの宇宙全体を分岐として投げるかどうかについての私達に尋ねました。
-答えは"いいえ、そうでもない。"でしたしかし、それは確かに高度に多型ライブラリのコードに苦痛でした。
-
 最も耳障りな例では、マップ、フィルタ、並べ替え、などのようなコンビネータました
 これらのケースでは、多くの場合、任意の関数を持っていると非同期をしたいし、それらの機能の属性は透過的"に流れる"にスローされます。
+
+The design we had to solve this was to let you parameterize over effects.
+For instance, here is a universal mapping function, Map, that propagates the async or throws effect of its func parameter:
 
 我々はこの問題を解決しなければならなかったデザインは、効果の上にパラメータ化させることでした。
 例えば、ここでは非同期に伝播したり、 FUNC パラメータの影響をスローユニバーサルマッピング機能、マップは、次のとおりです。
@@ -3380,11 +3505,11 @@ U[] Map<T, U, effect E>(T[] ts, Func<T, U, E> func) E {
 Notice here that we've got an ordinary generic type, E, except that its declaration is prefixed by the keyword effect.
 We then use E symbolically in place of the effects list of the Map signature, in addition to using it in the "propagate" position via effect(E) when invoking func.
 It's a pretty trivial exercise in substitution, replacing E with throws and effect(E) with try, to see the logical transformation.
-
-A legal invocation might be:
 私たちは、その宣言は、キーワードの効果が付けられていることを除いて、通常のジェネリック型、 E を持っていることをここで注意してください。
 私たちは、その後、 FUNC を呼び出すときに効果( E )を介して"伝播"の位置にそれを使用することに加えて、地図の署名の効果リストの代わりに象徴 E を使用します。
 これは、論理的な変換を確認するために、試してみるとスローし、効果( E )と E を置き換える、置換ではかなり些細な運動です。
+
+A legal invocation might be:
 
 法律上の呼び出しは次のようになります。
 
@@ -3394,12 +3519,12 @@ string[] ys = try Map<int, string, throws>(xs, x => ...);
 ```
 
 Notice here that the throws flows through, so that we can pass a callback that throws exceptions.
+私たちは、例外をスローするコールバックを渡すことができるように、流れるスローすることをここで注意してください。
 
 As a total aside, we discussed taking this further, and allowing programmers to declare arbitrary effects.
 I've hypothesized about such a type system previously.
 We were concerned, however, that this sort of higher order programming might be gratuitously clever and hard to understand, no matter how powerful.
 The simple model above probably would've been a sweet spot and I think we'd have done it given a few more months.
-私たちは、例外をスローするコールバックを渡すことができるように、流れるスローすることをここで注意してください。
 
 余談合計として、私たちはこれをさらに取って、プログラマが任意の効果を宣言することができますについて議論しました。
 私は以前に、このようなタイプのシステムについて仮説を立てました。
@@ -3411,11 +3536,11 @@ The simple model above probably would've been a sweet spot and I think we'd have
 We've reached the end of this particular journey.
 As I said at the outset, a relatively predictable and tame outcome.
 But I hope all that background helped to take you through the evolution as we sorted through the landscape of errors.
-
-In summary, the final model featured:
 我々は、この特定の旅の終わりに達しました。
 私は当初、比較的予測と飼いならさ結果で述べたように。
 しかし、私はすべてのことの背景には、我々はエラーの風景を通してソートとして進化をお連れするのに役立った願っています。
+
+In summary, the final model featured:
 
 要約すると、最終的なモデルが特色:
 
@@ -3445,18 +3570,31 @@ In particular, I'd have liked to put this one into the final model category:
 Abandonment, and the degree to which we used it, was in my opinion our biggest and most successful bet with the Error Model.
 We found bugs early and often, where they are easiest to diagnose and fix.
 Abandonment-based errors outnumbered recoverable errors by a ratio approaching 10:1, making checked exceptions rare and tolerable to the developer.
+中断、そして我々はそれを使用する度、私の意見ではエラーモデルとの最大かつ最も成功した賭けでした。
+彼らは診断と修正するのが最も簡単である場合我々は、早期かつ頻繁にバグを発見しました。
+開発者に稀で、許容チェック例外を作り、 1 :中断ベースのエラーが 10 に近づい比で回復可能なエラーを上回っ。
 
 Although we never had a chance to ship this, we have since brought some of these lessons learned to other settings.
+我々はこれを出荷する機会があったことはありませんが、我々はそれ以来これらのレッスンのいくつかは他の設定に学んで持ってきました。
 
 During the Microsoft Edge browser rewrite from Internet Explorer, for example, we adopted abandonment in a few areas.
 The key one, applied by a Midori engineer, was OOM.
 The old code would attempt to limp along as I described earlier and almost always did the wrong thing.
 My understanding is that abandonment has found numerous lurking bugs, as was our experience regularly in Midori when porting existing codebases.
 The great thing too is that abandonment is more of an architectural discipline that can be adopted in existing code-bases ranging in programming languages.
+Internet Explorer での Microsoft エッジブラウザ書き直し時には、例えば、我々はいくつかの領域に中断を採用しました。
+Midori エンジニアによって適用する鍵 1 は、 OOM ました。
+古いコードは、私が先に説明し、ほとんど常に間違ったことをしたとしてもたつくしようとしていました。
+私の理解では、既存のコードベースを移植する際 Midori で定期的に私たちの経験だったとして中断は、数多く潜んでいるバグを発見したということです。
+素晴らしいところは、あまりにも中断は、プログラミング言語に至るまで、既存のコード-拠点で採用することができる建築の規律のよりであるということです。
 
 The architectural foundation of fine-grained isolation is critical, however many systems have an informal notion of this architecture.
 A reason why OOM abandonment works well in a browser is that most browsers devote separate processes to individual tabs already.
 Browsers mimic operating systems in many ways and here too we see this playing out.
+
+きめの細かい分離のアーキテクチャ基盤は、しかし、多くのシステムでは、このアーキテクチャの非公式の概念を持っている、非常に重要です。
+OOM の中断がブラウザでうまく機能する理由は、ほとんどのブラウザが既に個々のタブに別々のプロセスを捧げることです。
+ブラウザは多くの方法でオペレーティングシステムを模倣し、ここでも我々はこの演奏を参照してください。
 
 More recently, we've been exploring proposals to bring some of this discipline - including contracts - to C++ .
 There are also concrete proposals to bring some of these features to C# too.
@@ -3464,43 +3602,26 @@ We are actively iterating on a proposal that would bring some non-null checking 
 I have to admit, I wish all of those proposals the best, however nothing will be as bulletproof as an entire stack written in the same error discipline.
 And remember, the entire isolation and concurrency model is essential for abandonment at scale.
 
-I am hopeful that continued sharing of knowledge will lead to even more wide-scale adoption some of these ideas.
-
-And, of course, I've mentioned that Go, Rust, and Swift have given the world some very good systems-appropriate error models in the meantime.
-I might have some minor nits here and there, but the reality is that they're worlds beyond what we had in the industry at the time we began the Midori journey.
-It's a good time to be a systems programmer!
-
-Next time I'll talk more about the language.
-Specifically, we'll see how Midori was able to tame the garbage collector using a magical elixir of architecture, language support, and libraries.
-I hope to see you again soon!
-中断、そして我々はそれを使用する度、私の意見ではエラーモデルとの最大かつ最も成功した賭けでした。
-彼らは診断と修正するのが最も簡単である場合我々は、早期かつ頻繁にバグを発見しました。
-開発者に稀で、許容チェック例外を作り、 1 :中断ベースのエラーが 10 に近づい比で回復可能なエラーを上回っ。
-
-我々はこれを出荷する機会があったことはありませんが、我々はそれ以来これらのレッスンのいくつかは他の設定に学んで持ってきました。
-
-Internet Explorer での Microsoft エッジブラウザ書き直し時には、例えば、我々はいくつかの領域に中断を採用しました。
-Midori エンジニアによって適用する鍵 1 は、 OOM ました。
-古いコードは、私が先に説明し、ほとんど常に間違ったことをしたとしてもたつくしようとしていました。
-私の理解では、既存のコードベースを移植する際 Midori で定期的に私たちの経験だったとして中断は、数多く潜んでいるバグを発見したということです。
-素晴らしいところは、あまりにも中断は、プログラミング言語に至るまで、既存のコード-拠点で採用することができる建築の規律のよりであるということです。
-
-きめの細かい分離のアーキテクチャ基盤は、しかし、多くのシステムでは、このアーキテクチャの非公式の概念を持っている、非常に重要です。
-OOM の中断がブラウザでうまく機能する理由は、ほとんどのブラウザが既に個々のタブに別々のプロセスを捧げることです。
-ブラウザは多くの方法でオペレーティングシステムを模倣し、ここでも我々はこの演奏を参照してください。
-
 C++ に - 契約を含む - 最近では、我々はこの規律のいくつかを持って提案を模索してきました。
 あまりにも C# のにこれらの機能のいくつかを持って具体的な提案もあります。
 我々は積極的に C# にいくつかの非ヌルチェックをもたらす提案に反復されています。
 私は認めざるを得ない、私は最高のそれらの提案のすべてを願って、しかし何も同じエラー規律で書かれたスタック全体のように防弾ません。
 そして、全体の隔離や同時実行モデルはスケールの中断のために不可欠である、覚えておいてください。
 
+I am hopeful that continued sharing of knowledge will lead to even more wide-scale adoption some of these ideas.
 私は知識の継続的な共有がさらに大規模な採用にこれらのアイデアのいくつかをリードすることを期待しています。
 
+And, of course, I've mentioned that Go, Rust, and Swift have given the world some very good systems-appropriate error models in the meantime.
+I might have some minor nits here and there, but the reality is that they're worlds beyond what we had in the industry at the time we began the Midori journey.
+It's a good time to be a systems programmer!
  Go 、 Rust 、および Swift は、その間に世界をいくつかの非常に良いシステム-適切なエラーモデルを与えていることと、もちろん、私が述べました。
 私はここにあるいくつかのマイナーなニットを持っているかもしれないが、現実には、彼らが我々は Midori の旅を始めた時点で、業界にいたものを超えた世界だということです。
-これは、システムプログラマーであることには良い時間です！
+これは、システムプログラマーであることには良い時間です!
+
+Next time I'll talk more about the language.
+Specifically, we'll see how Midori was able to tame the garbage collector using a magical elixir of architecture, language support, and libraries.
+I hope to see you again soon!
 
 次回は、私は言語について詳しく説明します。
 具体的には、 Midori のアーキテクチャ、言語サポート、およびライブラリの魔法の万能薬を使用して、ガベージコレクタを飼いならすことができた方法を見ていきます。
-私はすぐに再びお会いしたいです！
+私はすぐに再びお会いしたいです!
