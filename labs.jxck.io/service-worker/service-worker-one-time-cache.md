@@ -1,1 +1,0 @@
-../../blog.jxck.io/drafts/service-worker-one-time-cache.md
