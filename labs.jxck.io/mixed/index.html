@@ -4,12 +4,6 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <title>Upgrade Insecure Requests Demo | labs.jxck.io</title>
 
-<script>
-// enable Upgrade-Insecure-Requests
-if (location.search === '?uir=on') {
-  document.write('<meta http-equiv="Content-Security-Policy" content="Upgrade-Insecure-Requests">');
-}
-</script>
 <style>
 pre {
   font-size: 1em;
@@ -24,115 +18,9 @@ strong {
 
 <h1>Mixed Content</h1>
 
-<p>このページは HTTPS で配信されていますが、以下の HTTP の Mixed Content を含みます。</p>
-
-<script>
-if (location.search === '?uir=on') {
-  document.write('<p>ただし <strong>Upgrade Insecure Request が ON</strong> であるため、 http リクエストは https リクエストに読みかれられます');
-} else {
-  document.write('<p>ただし <strong>Upgrade Insecure Request が OFF</strong> であるため、 Active コンテンツはブロックされ Passive コンテンツは読み込まれますが URL バーとコンソールに警告が出ます');
-}
-</script>
 
 <ul>
-<li><a href=index.html>Upgarade Insecure Request = OFF</a>
-<li><a href=index.html?uir=on>Upgarade Insecure Request = ON</a>
-</ul>
-
-<h3>Mixed Passive Content</h3>
-パッシブコンテンツは、悪意のあるコンテンツに差し替えられても、表示の変更に止まるなど影響が小さいとされる以下のコンテンツです。
-
-<ul>
-  <li>&lt;img src&gt;
-  <li>&lt;audio src&gt;
-  <li>&lt;video src&gt;
-  <li>&lt;object src&gt;
-</ul>
-
-このページでは以下が埋め込まれています。
-
-<pre id=passive-src></pre>
-
-これらは、ブロックされません。
-
-
-<h3>Mixed Active Content</h3>
-アクティブコンテンツは、悪意のあるコンテンツに差し替えられた場合、 DOM へのアクセスなどが可能になり影響が大きいとされる以下のコンテンツです。
-
-<ul>
-  <li>&lt;script src&gt;
-  <li>&lt;link href&gt;
-  <li>&lt;iframe src&gt;
-  <li>&lt;object data&gt;
-  <li>XHR
-  <li>CSS 内の URL (@font-face, background-image etc)
-</ul>
-
-このページでは以下が埋め込まれています。
-
-<pre id=active-src></pre>
-
-これらは、ブロックされます。
-(iframe は Upgrade-Insecure-Reuqest が有効でもブロックされます)
-
-<hr>
-
-<h2>Passive Contents</h2>
-<div id=passive>
-<img    src=http://labs.jxck.io/mixed/contents/jxck.png></img>
-<audio controller src=http://labs.jxck.io/mixed/contents/audio.mp3></audio>
-<video controller src=http://labs.jxck.io/mixed/contents/video.mp4></video>
-</div>
-
-<hr>
-
-<h2>Active Contents</h2>
-<div id=active>
-<script src=http://labs.jxck.io/mixed/contents/script.js></script>
-<link   link=http://labs.jxck.io/mixed/contents/style.css></link>
-<iframe src=http://labs.jxck.io/></iframe>
-<!-- <object data=http://labs.jxck.io/mixed/contents/flash.flv></object> -->
-<script>
-var xhr = new XMLHttpRequest();
-xhr.open('GET', 'http://labs.jxck.io');
-xhr.addEventListener('load', () => {
-  console.log(xhr.status);
-});
-xhr.send();
-</script>
-<style>
-body {
-  background-image: url("http://labs.jxck.io/mixed/contents/1x1.png");
-}
-</style>
-</div>
-
-<script>
-// html special chars
-function hsc(str) {
-  return str.replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#039;');
-}
-
-['passive', 'active'].forEach(function(id) {
-  var html = document.getElementById(id).innerHTML;
-  document.getElementById(id+'-src').innerHTML = hsc(html.trim());
-});
-</script>
-
-<h2>About Mixed Contents</h2>
-
-<ul>
-  <li><a href="https://support.mozilla.org/en-US/kb/how-does-content-isnt-secure-affect-my-safety">How does content that isn't secure affect my safety?</a>
-  <li><a href="https://developer.mozilla.org/en-US/docs/Security/MixedContent/How_to_fix_website_with_mixed_content">How to fix a website with blocked mixed content</a>
-</ul>
-
-<h2>Ackknowledge/License for Contents</h2>
-
-<ul>
-  <li>Sample Audio/Video from <a href=http://www.sample-videos.com/>samle-videos.com</a>
-  <li>Sample Image from <a href=https://commons.wikimedia.org/wiki/File:1x1.png>commons.wikimedia.org</a>
+  <li><a href=mixed.html>Normal</a>
+  <li><a href=mixed.html?upgrade-insecure-request>Upgrade Insecure Request</a>
+  <li><a href=mixed.html?block-all-mixed-content>Block All Mixed Content</a>
 </ul>
