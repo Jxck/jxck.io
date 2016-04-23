@@ -279,6 +279,9 @@ self.addEventListener('fetch', (e) => {
 
 
 
+## backgroundsync
+
+chrome://flags/#enable-experimental-web-platform-features
 
 
 
