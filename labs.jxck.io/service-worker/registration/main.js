@@ -1,12 +1,15 @@
-console.log('master');
-navigator.serviceWorker.register('/worker.js', { scope: '/' }).then((registration) => {
-  console.log('registration');
-
-}).catch(console.error.bind(console));
-
-
-document.getElementById('button').addEventListener('click', () => {
-  fetch('/test.html').then((e) => {
-    console.log(e);
+navigator.serviceWorker.register('worker.js').then((registration) => {
+  registration.addEventListener('updatefound', (e) => {
+    console.log('updatefound');
+    console.log(`installing: ${registration.installing}
+waiting: ${registration.waiting}
+active: ${registration.active}`);
   });
-});
+
+  console.log(navigator.serviceWorker.controller);
+  return navigator.serviceWorker.ready;
+}).then((registration) => {
+    console.log(`installing: ${registration.installing}
+waiting: ${registration.waiting}
+active: ${registration.active}`);
+}).catch(console.error.bind(console));

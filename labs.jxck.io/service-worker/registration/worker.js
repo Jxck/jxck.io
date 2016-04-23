@@ -1,18 +1,11 @@
-console.info(' worker');
+const v = 2;
+console.info(` worker${v}`);
 
 self.addEventListener('install', (e) => {
-  console.info(` install`, e);
-  e.waitUntil(skipWaiting());
+  console.info(` install${v}`);
+  //e.waitUntil(skipWaiting());
 });
 
 self.addEventListener('activate', (e) => {
-  console.info(` activate`, e);
-});
-
-self.addEventListener('fetch', (e) => {
-  let path = new URL(e.request.url).pathname;
-  if (path === '/test.html') {
-    e.respondWith(new Response('test'));
-  }
-  return;
+  console.info(` activate${v}`);
 });

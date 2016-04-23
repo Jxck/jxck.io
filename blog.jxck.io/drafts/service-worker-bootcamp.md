@@ -2,18 +2,61 @@
 
 ## Registration
 
-登録する。
+ここでスクリプトを取得し、登録する。
 既に登録されていれば何も起こらないので、気にしないで良い。
 
 ```
-navigator.serviceWorker.register('/worker.js', { scope: '/' }).then((registration) => {
+console.log('master');
+navigator.serviceWorker.register('worker.js').then((registration) => {
   console.log('registration');
-});
+}).catch(console.error.bind(console));
 ```
 
 ```
 console.log('worker');
 ```
+
+
+## onfetch
+
+ブラウザ(client) が発行したリクエストをフックする。
+
+```js
+console.info(' worker');
+
+self.addEventListener('fetch', (e) => {
+  let path = new URL(e.request.url).pathname;
+  if (path === '/registration/test') {
+    e.respondWith(new Response('test'));
+  }
+  return;
+});
+```
+
+存在しないページへのリクエストで、 SW からレスポンスが返る。
+
+```html
+<a href=test>test</a>
+```
+
+しかし、登録直後に、以下のようなボタンをクリックしても、リクエストがフックされない。
+
+```html
+<a href=test>test</a>
+<input id=test type=button value=test />
+```
+
+```js
+document.getElementById('test').addEventListener('click', () => {
+  fetch('test').then((e) => {
+    console.log(e);
+  });
+});
+```
+
+SPA などで引っかかりやすい。
+これはライフサイクルと関係している。
+
 
 ## lifecycle
 
@@ -31,176 +74,149 @@ self.addEventListener('activate', (e) => {
 });
 ```
 
+ログをみると、 master.js で register の Promise が resolve してから、 `install` イベントが起きてる。
+
+ただし、 active になっているが、 controller になっていない。
+これは、すでにページでインタラクションがおこっていた場合などに、
+不整合をおこしたりしないため。
+
+ページを表示するときに controller になれば、問題は少ないので、
+リロードすると contoller になる。
+
+
+## claim
+
+active イベントの発火直後に controller にしたいなら
+claim() を呼ぶ
+
+```js
+self.addEventListener('activate', (e) => {
+  console.info(' activate', e);
+  e.waitUntil(self.clients.claim());
+});
+```
+
+すると、すぐさま controller になる。
+ボタンクリックの fetch もすぐ proxy されるようになる。
+
+
+なお、 master.js の方で registration が終わったらすぐに fetch したいような場合。
+
+`navigator.serviceWorker.ready` の resolve を待てば activate は待てる。
+しかし、 controller の設定はそれよりも遅れるので、これではできない。
+
+```js
+navigator.serviceWorker.register('worker.js').then((registration) => {
+  return navigator.serviceWorker.ready;
+}).then(() => {
+  return fetch('test'); // 404
+});
+```
+
+
+fetch が proxy されるのは、 controller が設定されてから。
+つまり controller change イベントがおこってから。
+
+```js
+navigator.serviceWorker.addEventListener('controllerchange', () => {
+  fetch('test'); // 200
+});
+```
+
+しかし、一旦 controller が設定されるともう発火しない。
+すでに controller が設定されているかは
+
+`navigator.serviceWorker.controller`
+
+でわかる。
+
+つまり、こう書けば初回を含め毎回かならず fetch ヒットする。
+
+
+```js
+let controller = new Promise((resolve, reject) => {
+  navigator.serviceWorker.addEventListener('controllerchange', resolve);
+});
+
+navigator.serviceWorker.register('worker.js').then((registration) => {
+  return navigator.serviceWorker.ready;
+}).then(() => {
+  if (navigator.serviceWorker.controller) {
+    return navigator.serviceWorker.controller;
+  }
+  return controller;
+}).then((controller) => {
+  return fetch('test');
+}).then((res) => {
+  console.log(res);
+}).catch(console.error.bind(console));
+```
+
+
 ## 更新
 
-update したらどうなるか。
+ライフサイクルの理解は、 sw をアップデートするときにより重要になる。
 
-v1 でインストールして
+master.js はいくら更新しても変わらないが、 worker.js が 1byte でも変わると
+register 時に sw のアップデートプロセスが走る。
+
+例えば、 v1 でインストールしておく。
 
 ```js
 const v = 1;
 console.info(` worker${v}`);
 
 self.addEventListener('install', (e) => {
-  console.info(` install${v}`, e);
+  console.info(` install${v}`);
+  e.waitUntil(skipWaiting());
 });
 
 self.addEventListener('activate', (e) => {
-  console.info(` activate${v}`, e);
+  console.info(` activate${v}`);
 });
 ```
 
-v2 に変える。
+1byte 変更して v2 に変える。
 
-install2 が発火するが、 activate2 が発火するのは
-ページが閉じられてから。
+リロードすると、 install2 が発火するが activate2 はすぐには発火しない。
+
+実はこの時点では v1 が active で v2 は waiting の状態。
+
+すでに controller がいる場合は、その controller をいきなり置き換えると不整合が発生するかもしれない。
+
+そこで、ページを閉じて次に開いたとき、完全に置き換えて大丈夫なタイミングで置きかわる。
+
 
 skipWaiting() を使うと、一気に activate2 までいける。
 
 ```js
 console.info(' worker');
 const v = 2;
+console.info(` worker${v}`);
 
 self.addEventListener('install', (e) => {
-  console.info(` install${v}`, e);
+  console.info(` install${v}`);
   e.waitUntil(skipWaiting());
 });
 
 self.addEventListener('activate', (e) => {
-  console.info(` activate${v}`, e);
+  console.info(` activate${v}`);
 });
 ```
 
-## controll
+ただし、 active になっても controller ではないので、更新後すぐ使いたいなら、 claim と併用する。
 
-```
-self.addEventListener('fetch', (e) => {
-  let path = new URL(e.request.url).pathname;
-  if (path === '/test.html') {
-    e.respondWith(new Response('test'));
-  }
-  return;
-});
-```
-
-
-この状態で '/test.html' に移動、してみる。
-
-
-## ボタンから fetch してみる。
-
-
-```html
-<input type=button id=button value=button>
-```
+なお、今どの状態にあるかは、 registration object に入ってる。
 
 ```js
-document.getElementById('button').addEventListener('click', () => {
-  fetch('/test.html').then((e) => {
-    console.log(e);
-  });
-});
-```
-
-一回目は、 fetch できない。
-リロードするとできる。
-
-アクティブだが、コントローラーではないから。
-
-
-## いつコントロールを始めるか
-
-register された worker.js は、 install され active になる。
-
-```js
-self.addEventListener('install', (e) => {
-  console.log('install', e);
-});
-
-self.addEventListener('activate', (e) => {
-  console.log('activate', e);
-});
-```
-
-これを registration 側で知るには。
-
-registration.[installing, waiting, active] のどれかに入ってる。
-
-```js
-// master.js
 navigator.serviceWorker.register('worker.js').then((registration) => {
-  console.log('installing', registration.installing); // sw
-  console.log('waiting', registration.waiting);
-  console.log('active', registration.active);
-}).catch(console.error.bind(console));
-```
-
-worker 側で activate イベントは起こっているけど、 master 側で resolve された時点では installing.
-
-installing -> active に移ったかどうかは、 navigator.serviceWorker.ready の resolve() でわかる。
-
-```js
-// master.js
-navigator.serviceWorker.register('worker.js').then((registration) => {
-  console.log('installing', registration.installing); // sw
-  console.log('waiting', registration.waiting);
-  console.log('active', registration.active);
-  console.log('=========================');
-  return navigator.serviceWorker.ready;
-}).then((registration) => {
   console.log('installing', registration.installing);
   console.log('waiting', registration.waiting);
-  console.log('active', registration.active); // sw
+  console.log('active', registration.active);
 }).catch(console.error.bind(console));
 ```
 
-### controller
-
-activate されても controll されているとは限らない。
-
-すぐに control させたい場合は `activate` のタイミングで `claim()` をする。
-
-```js
-// worker.js
-self.addEventListener('activate', (e) => {
-  console.log('activate', e);
-  e.waitUntil(self.clients.claim());
-});
-```
-
-e.waitUntil によって claim() が終わるまでは activate が終わらなくなる。
-つまり、 activate が終わったら reolve する ready を待っていれば、
-コントローラが変わるのを待てる。
-
-
-ちなみに。
-controller が変化すると controllerchange event が発火するため、 master 側でそれを捕捉できる。
-
-```js
-navigator.serviceWorker.addEventListener('controllerchange', (e) => {
-  console.log('controllerchange', e);
-});
-```
-
-
-```js
-// worker
-self.addEventListener('activate', (e) => {
-  console.log('activate', e);
-  e.waitUntil(self.clients.claim());
-});
-
-self.addEventListener('fetch', (e) => {
-  let path = new URL(e.request.url).pathname;
-  if (path === '/test.html') {
-    e.respondWith(new Response('test'));
-  }
-  return;
-});
-```
-
-
-## 更新
+###
 
 ファイルが 1byte でも変わると、 Update が発生したと認識され updatefound イベントが発火する。
 このとき、 install が発生し、 registration.installing に入る。
