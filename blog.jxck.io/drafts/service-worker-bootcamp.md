@@ -300,6 +300,17 @@ self.addEventListener('fetch', (e) => {
 chrome://flags/#enable-experimental-web-platform-features
 
 
+```
+return registration.sync.register('update-cache');
+```
+
+```
+self.addEventListener('sync', (e) => {
+  console.info(` sync`, e);
+  return fetch('/test.html').then(console.log.bind(console));
+});
+```
+
 
 ## quota
 
