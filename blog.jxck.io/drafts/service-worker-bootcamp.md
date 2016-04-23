@@ -3,17 +3,77 @@
 ## Registration
 
 登録する。
-
+既に登録されていれば何も起こらないので、気にしないで良い。
 
 ```
 navigator.serviceWorker.register('/worker.js', { scope: '/' }).then((registration) => {
-  console.log('master');
+  console.log('registration');
 });
 ```
 
 ```
 console.log('worker');
+```
 
+## lifecycle
+
+install と active イベントがある。
+
+```js
+console.info(' worker');
+
+self.addEventListener('install', (e) => {
+  console.info(' install', e);
+});
+
+self.addEventListener('activate', (e) => {
+  console.info(' activate', e);
+});
+```
+
+## 更新
+
+update したらどうなるか。
+
+v1 でインストールして
+
+```js
+const v = 1;
+console.info(` worker${v}`);
+
+self.addEventListener('install', (e) => {
+  console.info(` install${v}`, e);
+});
+
+self.addEventListener('activate', (e) => {
+  console.info(` activate${v}`, e);
+});
+```
+
+v2 に変える。
+
+install2 が発火するが、 activate2 が発火するのは
+ページが閉じられてから。
+
+skipWaiting() を使うと、一気に activate2 までいける。
+
+```js
+console.info(' worker');
+const v = 2;
+
+self.addEventListener('install', (e) => {
+  console.info(` install${v}`, e);
+  e.waitUntil(skipWaiting());
+});
+
+self.addEventListener('activate', (e) => {
+  console.info(` activate${v}`, e);
+});
+```
+
+## controll
+
+```
 self.addEventListener('fetch', (e) => {
   let path = new URL(e.request.url).pathname;
   if (path === '/test.html') {
@@ -108,39 +168,18 @@ self.addEventListener('activate', (e) => {
 });
 ```
 
+e.waitUntil によって claim() が終わるまでは activate が終わらなくなる。
+つまり、 activate が終わったら reolve する ready を待っていれば、
+コントローラが変わるのを待てる。
+
+
+ちなみに。
 controller が変化すると controllerchange event が発火するため、 master 側でそれを捕捉できる。
 
 ```js
 navigator.serviceWorker.addEventListener('controllerchange', (e) => {
   console.log('controllerchange', e);
 });
-```
-
-
-なので、 contoller が登録された後であれば、 sw を使える。
-
-```js
-// master
-navigator.serviceWorker.register('worker.js').then((registration) => {
-  console.log(navigator.serviceWorker.controller);
-  return navigator.serviceWorker.ready;
-}).then((registration) => {
-  if (navigator.serviceWorker.controller) {
-    return registration;
-  }
-  return new Promise((resolve, reject) => {
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
-      resolve(registration);
-    });
-  });
-}).then((registration) => {
-  console.log(registration);
-  fetch('hello.html').then((res) => {
-    res.text().then((text) => {
-      console.log(text);
-    });
-  });
-}).catch(console.error.bind(console));
 ```
 
 
@@ -152,11 +191,11 @@ self.addEventListener('activate', (e) => {
 });
 
 self.addEventListener('fetch', (e) => {
-  if (e.request.url === 'http://localhost:3000/hello.html') {
-    e.respondWith(new Response('world'));
-  } else {
-    return
+  let path = new URL(e.request.url).pathname;
+  if (path === '/test.html') {
+    e.respondWith(new Response('test'));
   }
+  return;
 });
 ```
 
@@ -239,3 +278,16 @@ self.addEventListener('fetch', (e) => {
 ```
 
 
+
+
+
+
+## quota
+
+TBD
+
+```
+navigator.webkitTemporaryStorage.queryUsageAndQuota
+webkitStorageInfo.queryUsageAndQuota
+navigator.storageQuota.queryInfo 
+```
