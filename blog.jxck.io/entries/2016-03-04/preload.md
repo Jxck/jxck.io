@@ -241,7 +241,7 @@ Link: </app/style.css>; rel=preload; as=style; nopush
 
 ```
 <link rel=preload as=script src=/assets/js/highlight.min.js>
-<link rel=preload as=script src=//www.jxck.io/assets/js/ga.js>
+<link rel=preload as=script src=//jxck.io/assets/js/ga.js>
 ```
 
 

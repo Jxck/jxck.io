@@ -58,7 +58,7 @@
   "headline": "${this.title} | blog.jxck.io",
   "image": {
     "@type": "ImageObject",
-    "url": "https://www.jxck.io/assets/img/jxck.png",
+    "url": "https://jxck.io/assets/img/jxck.png",
     "height": 700,
     "width": 700
   },
@@ -67,14 +67,14 @@
   "author": {
     "@type": "Person",
     "name": "Jxck",
-    "image": "https://www.jxck.io/assets/img/jxck.png"
+    "image": "https://jxck.io/assets/img/jxck.png"
   },
    "publisher": {
     "@type": "Organization",
     "name": "Jxck",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://www.jxck.io/assets/img/jxck.png",
+      "url": "https://jxck.io/assets/img/jxck.png",
       "height": 60,
       "width": 257
     }
@@ -123,7 +123,7 @@ Twitter と Facebook だけ、以下を参考に対応した。
 <meta name=twitter:url         content=${this.canonical}>
 <meta name=twitter:title       content="${this.title} | blog.jxck.io">
 <meta name=twitter:description content="${this.description}">
-<meta name=twitter:image       content=https://www.jxck.io/assets/img/jxck.png>
+<meta name=twitter:image       content=https://jxck.io/assets/img/jxck.png>
 ```
 
 
@@ -138,7 +138,7 @@ Twitter と Facebook だけ、以下を参考に対応した。
 <meta property=og:title       content="${this.title} | blog.jxck.io">
 <meta property=og:site_name   content=blog.jxck.io>
 <meta property=og:description content="${this.description}">
-<meta property=og:image       content=https://www.jxck.io/assets/img/jxck.png> 
+<meta property=og:image       content=https://jxck.io/assets/img/jxck.png> 
 ```
 
 

@@ -128,7 +128,7 @@ $ time zopfli --i10 -c loading-css-over-http2.html
 この結果だと `-i20` 以上は誤差のようである。
 ただ、開発用の Mac では少し違う結果が出たりもしたため、結果 `i=30` くらいに落ち着いた。
 
-また、 [WebP](//www.jxck.io/assets/img/jxck.webp) と [PNG](//www.jxck.io/assets/img/jxck.png) の画像ファイルでも検証したところ、以下のようになった。
+また、 [WebP](//jxck.io/assets/img/jxck.webp) と [PNG](//jxck.io/assets/img/jxck.png) の画像ファイルでも検証したところ、以下のようになった。
 
 
 |         file | size  |

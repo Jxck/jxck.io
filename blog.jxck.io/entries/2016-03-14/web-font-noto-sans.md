@@ -342,8 +342,8 @@ p q r s t u v w x y z { | } ~
 [サブセットフォントメーカー](http://opentype.jp/subsetfontmk.htm)
 
 
-- [NotoSansCJKjp-Jxck-Bold.otf](//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.otf) (473.2K)
-- [NotoSansCJKjp-Jxck-Regular.otf](//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.otf) (471.2K)
+- [NotoSansCJKjp-Jxck-Bold.otf](//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.otf) (473.2K)
+- [NotoSansCJKjp-Jxck-Regular.otf](//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.otf) (471.2K)
 
 
 ### Woff 変換
@@ -357,8 +357,8 @@ p q r s t u v w x y z { | } ~
 また IE はどうでもいいので、 IE に対応させるための EOT ファイルも作成し無い。
 
 
-- [NotoSansCJKjp-Jxck-Bold.woff](//www.jxck.io/assets/font/assets/font/NotoSansCJKjp-Jxck-Bold.woff) (379.7K)
-- [NotoSansCJKjp-Jxck-Regular.woff](//www.jxck.io/assets/font/assets/font/NotoSansCJKjp-Jxck-Regular.woff) (375.8K)
+- [NotoSansCJKjp-Jxck-Bold.woff](//jxck.io/assets/font/assets/font/NotoSansCJKjp-Jxck-Bold.woff) (379.7K)
+- [NotoSansCJKjp-Jxck-Regular.woff](//jxck.io/assets/font/assets/font/NotoSansCJKjp-Jxck-Regular.woff) (375.8K)
 
 
 ## 効果
@@ -408,7 +408,7 @@ Android は ["NotoSansJP-Regular.otf" という名前で入っているらしい
   font-weight: 400;
   src: local("NotoSansCJKjp-Bold.otf"),
        local("NotoSansJP-Bold.otf"),
-       url("//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=20163014") format("woff");
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=20163014") format("woff");
 }
 
 @font-face {
@@ -417,7 +417,7 @@ Android は ["NotoSansJP-Regular.otf" という名前で入っているらしい
   font-weight: 700;
   src: local("NotoSansCJKjp-Bold.otf"),
        local("NotoSansJP-Bold.otf"),
-       url("//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff?ver=201603014") format("woff");
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff?ver=201603014") format("woff");
 }
 ```
 
@@ -463,7 +463,7 @@ Cache-Control: max-age=31536000
 ただし、影響が大きい Regular のみにした。
 
 ```html
-<link rel=preload as=font type=font/woff href=//www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
+<link rel=preload as=font type=font/woff href=//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
 ```
 
 また、 AMP 対応ページでは `rel=preload` は許可されてないため指定するとエラーになったため、 AMP の方には指定していない。

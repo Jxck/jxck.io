@@ -104,7 +104,7 @@ CSP の違反レポートは以下のような JSON データである。
 ```json
 {
     "csp-report": {
-        "document-uri": "https://www.jxck.io/",
+        "document-uri": "https://jxck.io/",
         "violated-directive": "default-src 'self'",
         "effective-directive": "img-src",
         "original-policy": "default-src 'self';",
