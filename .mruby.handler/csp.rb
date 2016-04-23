@@ -11,6 +11,7 @@ Proc.new do |env|
     csp = [
       "default-src",
       "'self'",
+      "https://jxck.io",
       "https://*.jxck.io",
       "https://www.google-analytics.com",
       "https://cdn.ampproject.org",
@@ -26,6 +27,7 @@ Proc.new do |env|
     csp = [
       "default-src",
       "'self'",
+      "https://jxck.io",
       "https://*.jxck.io",
       "https://www.google-analytics.com",
       "https://www.youtube.com",
