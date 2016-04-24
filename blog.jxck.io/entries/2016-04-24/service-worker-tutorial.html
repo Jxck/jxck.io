@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=/entries/2016-04-24/service-worker-tutorial.html>
+<link rel=amphtml href=/entries/2016-04-24/service-worker-tutorial.amp.html>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+<link rel=author href=//jxck.io/assets/humans.txt>
+<link rel=preload as=font type=font/woff href=//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
+<script async src=//jxck.io/assets/js/ga.js></script>
+<script async src=/assets/js/highlight.min.js></script>
+<script async src=/assets/js/master.js></script>
+<script async src=/assets/js/main.js></script>
+
+<meta name=author content=Jxck>
+<meta name=description content="Service Worker の初心者向けのチュートリアルや、使ってみた系のエントリも増えてきました。しかし、 Service Worker は通常のブラウザ用 JS の開発と少し経路が違い、慣れるまで開発やデバッグもなかなか難しいと思います。そこで特に難しい部分、そして分かって...">
+<meta name=keywords content="service worker,tutorial">
+
+<meta name=twitter:card content=summary>
+<meta name=twitter:site content=@jxck_>
+<meta name=twitter:url content=https://blog.jxck.io/entries/2016-04-24/service-worker-tutorial.html>
+<meta name=twitter:title content="中級者向け Service Worker Tutorial | blog.jxck.io">
+<meta name=twitter:description content="Service Worker の初心者向けのチュートリアルや、使ってみた系のエントリも増えてきました。しかし、 Service Worker は通常のブラウザ用 JS の開発と少し経路が違い、慣れるまで開発やデバッグもなかなか難しいと思います。そこで特に難しい部分、そして分かって...">
+<meta name=twitter:image content=https://jxck.io/assets/img/jxck.png>
+
+<meta property=og:type content="article">
+<meta property=og:url content=https://blog.jxck.io/entries/2016-04-24/service-worker-tutorial.html>
+<meta property=og:title content="中級者向け Service Worker Tutorial | blog.jxck.io">
+<meta property=og:site_name content=blog.jxck.io>
+<meta property=og:description content="Service Worker の初心者向けのチュートリアルや、使ってみた系のエントリも増えてきました。しかし、 Service Worker は通常のブラウザ用 JS の開発と少し経路が違い、慣れるまで開発やデバッグもなかなか難しいと思います。そこで特に難しい部分、そして分かって...">
+<meta property=og:image content=https://jxck.io/assets/img/jxck.png>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "中級者向け Service Worker Tutorial | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2016-04-24T08:00:00+08:00",
+  "dateModified": "2016-04-24T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "Service Worker の初心者向けのチュートリアルや、使ってみた系のエントリも増えてきました。しかし、 Service Worker は通常のブラウザ用 JS の開発と少し経路が違い、慣れるまで開発やデバッグもなかなか難しいと思います。そこで特に難しい部分、そして分かって..."
+}
+</script>
+
+<link rel=icon sizes=192x192 href=//jxck.io/assets/img/jxck.png>
+<link rel=apple-touch-icon sizes=128x128 href=//jxck.io/assets/img/jxck.png>
+
+<title>中級者向け Service Worker Tutorial | blog.jxck.io</title>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+<header>
+  <ul>
+    <li><a href=//blog.jxck.io><img class=logo alt="blog top" width=30 src=/assets/img/blog.svg></a>
+    <li><a href="/entries/2016-04-24/service-worker-tutorial.amp.html#development=1"><img alt="move to amp version" width=30 src=/assets/img/amp.svg></a>
+    <li><a href=.><img alt="move to parent directory" width=30 src=/assets/img/up.svg></a>
+    <li><a href=/feeds/atom.xml><img alt="rss feed" width=30 src=/assets/img/rss.svg></a>
+    <li><a href=//jxck.io/humans.txt><img alt="huamns.txt" width=30 src=/assets/img/humans.svg></a>
+    <li><a href=//jxck.io><img class=logo alt="jxck logo" width=30 src=/assets/img/jxck.svg></a>
+  </li>
+</header>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+<main>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2016-04-24>2016-04-24</time>
+    <li>updated_at: <time class=updated_at datetime=2016-04-24>2016-04-24</time>
+    <li class=tags>tags: [<a>service worker</a>,<a>tutorial</a>]
+  </ul>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+  <article>
+    <h1><a href="/entries/2016-04-24/service-worker-tutorial.html">中級者向け Service Worker Tutorial</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>Service Worker の初心者向けのチュートリアルや、使ってみた系のエントリも増えてきました。
+      しかし、 Service Worker は通常のブラウザ用 JS の開発と少し経路が違い、慣れるまで開発やデバッグもなかなか難しいと思います。
+      <p>そこで特に難しい部分、そして分かっていないと実際にデプロイした際に難しいと思う部分について、実際に動きを確認しながら解説したいと思います。
+      <p>なお、 Service Worker の基本的な概念などについては、他のチュートリアルなどを見て理解している前提で進めます。
+      <p>思いつきで撮ったので色々ミスも有ります、また Chrome Dev Tools の UI はどうせ変わるのでそのつもりで見てください。
+      <p>TODO になっている動画は、そのうち撮って追加します。
+      <p><strong>あと、全部撮り終わってからキーボードを打つ音がうるさいのに気づいたので、 GW 中にでも追加分と合わせて取りなおそうかと思います。。</strong>
+    </section>
+    <section>
+      <h2 id="claim"><a href="#claim">claim</a></h2>
+      <p>controller とは何か、いつ controller になるか、 <code>clamim()</code> で何が起こるのかなどについて。
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/m6qBg4M3RTA" frameborder="0" allowfullscreen></iframe>
+      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+      <pre class=html><code>&lt;!DOCTYPE html&gt;
+&lt;meta charset=utf-8&gt;
+&lt;title&gt;Service Worker&lt;/title&gt;
+
+&lt;h1&gt;Service Worker&lt;/h1&gt;
+
+&lt;a href=test&gt;test&lt;/a&gt;
+
+&lt;input id=test type=button value=test&gt;
+
+&lt;script src=main.js&gt;&lt;/script&gt;</code></pre>
+      <pre class=js><code>console.log(&#039;master&#039;);
+
+document.getElementById(&#039;button&#039;).addEventListener(&#039;click&#039;, () =&gt; {
+  fetch(&#039;/test&#039;);
+});
+
+navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt; {
+  console.log(registration);
+});</code></pre>
+      <pre class=js><code>console.info(` worker`);
+
+self.addEventListener(&#039;activate&#039;, (e) =&gt; {
+  console.info(&#039;activate&#039;, e);
+  e.waitUntil(self.clients.claim());
+});
+
+self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
+  let path = new URL(e.request.url).pathname;
+  console.log(path);
+  if (path === &#039;/test&#039;) {
+    e.respondWith(new Response(&#039;test&#039;));
+  }
+  return;
+});</code></pre>
+    </section>
+    <section>
+      <h2 id="controllerchange"><a href="#controllerchange">controllerchange</a></h2>
+      <p>register が終わった後、「新しく登録された controller が使えるようになったら」または「すでに登録されている controller が使えるようになったら」という状態をとる方法と <code>controllerchange</code> イベント。
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/XoI0FPDV8Xo" frameborder="0" allowfullscreen></iframe>
+      <pre class=js><code>console.log(&#039;master&#039;);
+
+let controllerChange = new Promise((resolve, reject) =&gt; {
+  navigator.serviceWorker.addEventListener(&#039;controllerchange&#039;, () =&gt; {
+    resolve(navigator.serviceWorker.controller);
+  });
+});
+
+navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt; {
+  return navigator.serviceWorker.ready;
+}).then(() =&gt; {
+  if (navigator.serviceWorker.controller) {
+    return navigator.serviceWorker.controller;
+  }
+  return controllerChange;
+}).then((controller) =&gt; {
+  console.log(controller);
+  fetch(&#039;/test&#039;);
+});</code></pre>
+      <pre class=js><code>console.info(` worker`);
+
+self.addEventListener(&#039;activate&#039;, (e) =&gt; {
+  console.info(&#039;activate&#039;, e);
+  e.waitUntil(self.clients.claim());
+});
+
+self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
+  let path = new URL(e.request.url).pathname;
+  console.log(path);
+  if (path === &#039;/test&#039;) {
+    e.respondWith(new Response(&#039;test&#039;));
+  }
+  return;
+});</code></pre>
+    </section>
+    <section>
+      <h2 id="updatefound"><a href="#updatefound">updatefound</a></h2>
+      <p>Service Worker が更新される際の動きと、 <code>skipWaiting()</code> が何をスキップするのか？
+      <code>install</code>, <code>activate</code> イベントの用途。
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/AMbQ7d9rjao" frameborder="0" allowfullscreen></iframe>
+      <pre class=js><code>console.log(&#039;master&#039;);
+
+navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt; {
+  registration.addEventListener(&#039;updatefound&#039;, (e) =&gt; {
+    console.info(&#039; update&#039;, e);
+  });
+  return navigator.serviceWorker.ready;
+});</code></pre>
+      <pre class=js><code>console.info(` worker`);
+
+const ver = 2;
+
+self.addEventListener(&#039;install&#039;, (e) =&gt; {
+  console.info(` install${ver}`, e);
+  e.waitUntil(skipWaiting());
+});
+
+self.addEventListener(&#039;activate&#039;, (e) =&gt; {
+  console.info(` activate${ver}`, e);
+  e.waitUntil(self.clients.claim());
+});
+
+self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
+  let path = new URL(e.request.url).pathname;
+  console.log(path);
+  if (path === &#039;/test&#039;) {
+    e.respondWith(new Response(&#039;test&#039;));
+  }
+  return;
+});</code></pre>
+    </section>
+    <section>
+      <h2 id="scope"><a href="#scope">scope</a></h2>
+      <p>scope の影響範囲と、複数のワーカが有った場合の挙動
+      <p>TODO (GW予定/未定)
+    </section>
+    <section>
+      <h2 id="sync"><a href="#sync">sync</a></h2>
+      <p>background sync の発火タイミング
+      <p>TODO (GW予定/未定)
+    </section>
+    <section>
+      <h2 id="push"><a href="#push">push</a></h2>
+      <p>push に必要な情報とその取り方、投げ方。
+      <p>TODO (GW予定/未定)
+    </section>
+    <section>
+      <h2 id="図"><a href="#図">図</a></h2>
+      <p>映像中で使用した図です
+      <p><img src=service-worker-lifecycle.svg alt="service-worker-lifecycle" title="null"  >
+    </section>
+  </article>
+
+</main>
+<hr>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
+</footer>
