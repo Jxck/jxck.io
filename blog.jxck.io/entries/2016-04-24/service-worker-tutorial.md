@@ -159,6 +159,12 @@ self.addEventListener('fetch', (e) => {
 });
 ```
 
+## update()
+
+`update()` とキャッシュ周りの挙動
+
+TODO (GW予定/未定)
+
 
 ## scope
 
