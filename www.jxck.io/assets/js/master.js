@@ -7,15 +7,15 @@
 
   let log = DEBUG ? console.log.bind(console) : () => {};
 
-  let controllerChange = new Promise((resolve, reject) => {
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
-      return resolve(registration);
-    });
-  });
-
-
   // window
   if (typeof window !== 'undefined') {
+
+    const controllerChange = new Promise((resolve, reject) => {
+      navigator.serviceWorker.addEventListener('controllerchange', (e) => {
+        return resolve(e);
+      });
+    });
+
     if(location.search !== '?sw') return;
     navigator.serviceWorker.register(KEY, { scope: '/' }).then((registration) => {
       registration.addEventListener('updatefound', (e) => {
@@ -86,15 +86,26 @@
               return update;
             });
 
-            return Promise.race([
-              new Promise((resolve, reject) => {
-                if (response) {
-                  console.warn('%ccache hit:', 'color: green', response.url, response.type);
-                }
-                resolve(response);
-              }),
-              update
-            ]);
+            if (response) {
+              console.warn('%ccache hit:', 'color: green', response.url, response.type, response.headers.get('cache-control'));
+              let cacheControl = response.headers.get('cache-control');
+              let cacheHeader = cacheControl
+                .split(', ')
+                .map((h) => h.split('='))
+                .reduce((pre, curr) => {
+                  pre[curr[0]] = curr[1]; return pre
+                }, {});
+
+              let stateWhileRevalidate = parseInt(cacheHeader['stale-while-revalidate']);
+              let date = new Date(response.headers.get('date'));
+              if (d.getTime() + stateWhileRevalidate < Date.now()) {
+                return response;
+              }
+              console.warn('expired cache');
+              caches.delete(response);
+            }
+
+            return update;
           });
         })
       );
