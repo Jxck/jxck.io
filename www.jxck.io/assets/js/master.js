@@ -1,10 +1,18 @@
 (() => {
+  // stale-while-revalidate.js
   'use strict';
 
   const DEBUG = true;
   const KEY = '/assets/js/master.js?ver=0';
 
   let log = DEBUG ? console.log.bind(console) : () => {};
+
+  let controllerChange = new Promise((resolve, reject) => {
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      return resolve(registration);
+    });
+  });
+
 
   // window
   if (typeof window !== 'undefined') {
@@ -22,13 +30,9 @@
       if (navigator.serviceWorker.controller) {
         return registration;
       }
-      return new Promise((resolve, reject) => {
-        navigator.serviceWorker.addEventListener('controllerchange', () => {
-          return resolve(registration);
-        });
-      });
-    }).then((registration) => {
-      log(registration);
+      return controllerChange;
+    }).then(() => {
+      log(navigator.serviceWorker.controller);
     }).catch(console.error.bind(console));
   }
 
@@ -67,16 +71,16 @@
     });
 
     self.addEventListener('fetch', (e) => {
-      let request = e.request;
+      const request = e.request;
       console.log('%crequest  :', 'color: blue', request.url, request.type);
 
-      let url = new URL(request.url);
+      const url = new URL(request.url);
       if (url.pathname === KEY) return;
 
       e.respondWith(
         caches.open(KEY).then((cache) => {
           return cache.match(request).then((response) => {
-            let update = fetch(request).then((update) => {
+            const update = fetch(request).then((update) => {
               console.info('%cupdate   :', 'color: red',  update.url, update.type);
               cache.put(request, update.clone());
               return update;
@@ -84,12 +88,10 @@
 
             return Promise.race([
               new Promise((resolve, reject) => {
-                if(!!response) {
-                  if (response) {
-                    console.warn('%ccache hit:', 'color: green', response.url, response.type);
-                  }
-                  resolve(response);
+                if (response) {
+                  console.warn('%ccache hit:', 'color: green', response.url, response.type);
                 }
+                resolve(response);
               }),
               update
             ]);
