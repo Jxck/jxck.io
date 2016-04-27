@@ -3,7 +3,7 @@
   'use strict';
 
   const DEBUG = true;
-  const KEY = '/assets/js/master.js?ver=0';
+  const KEY = '/assets/js/stale-while-revalidate.js?ver=0';
 
   let log = DEBUG ? console.log.bind(console) : () => {};
 
@@ -96,13 +96,18 @@
                   pre[curr[0]] = curr[1]; return pre
                 }, {});
 
-              let stateWhileRevalidate = parseInt(cacheHeader['stale-while-revalidate']);
-              let date = new Date(response.headers.get('date'));
-              if (d.getTime() + stateWhileRevalidate < Date.now()) {
-                return response;
+              // fixme
+              const staleWhileRevalidate = parseInt(cacheHeader['stale-while-revalidate']); //ms
+              if (staleWhileRevalidate) {
+                const date = new Date(response.headers.get('date')).getTime();
+                const now = Date.now();
+                if (date + staleWhileRevalidate < now) {
+                  return response;
+                }
+                console.warn('expired cache');
+                caches.delete(response);
               }
-              console.warn('expired cache');
-              caches.delete(response);
+              return response;
             }
 
             return update;
