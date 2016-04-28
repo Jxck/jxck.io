@@ -130,16 +130,16 @@ console.log('master');
 
 navigator.serviceWorker.register('worker.js').then((registration) => {
   registration.addEventListener('updatefound', (e) => {
-    console.info(' update', e);
+    console.info('update', e);
   });
   return navigator.serviceWorker.ready;
 });
 ```
 
 ```js
-console.info(` worker`);
+console.info('worker');
 
-const ver = 2;
+const ver = 1;
 
 self.addEventListener('install', (e) => {
   console.info(` install${ver}`, e);
@@ -153,13 +153,16 @@ self.addEventListener('activate', (e) => {
 
 self.addEventListener('fetch', (e) => {
   let path = new URL(e.request.url).pathname;
-  console.log(path);
-  if (path === '/test') {
+  console.info(path);
+  if (path === '/service-worker/updatefound/test') {
     e.respondWith(new Response('test'));
   }
   return;
 });
 ```
+
+DEMO: [https://labs.jxck.io/service-worker/updatefound/](https://labs.jxck.io/service-worker/updatefound/)
+
 
 ## update()
 
