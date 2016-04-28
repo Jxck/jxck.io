@@ -31,7 +31,7 @@ controller とは何か、いつ controller になるか、 `clamim()` で何が
 
 <input id=test type=button value=test>
 
-<script src=main.js></script>
+<script src=master.js></script>
 ```
 
 ```js
@@ -47,7 +47,7 @@ navigator.serviceWorker.register('worker.js').then((registration) => {
 ```
 
 ```js
-console.info(` worker`);
+console.info('worker');
 
 self.addEventListener('activate', (e) => {
   console.info('activate', e);
@@ -63,6 +63,9 @@ self.addEventListener('fetch', (e) => {
   return;
 });
 ```
+
+DEMO: [https://labs.jxck.io/service-worker/claim/index.html](https://labs.jxck.io/service-worker/claim/index.html)
+
 
 ## controllerchange
 
