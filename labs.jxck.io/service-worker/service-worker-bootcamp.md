@@ -1,1 +1,0 @@
-../../blog.jxck.io/drafts/service-worker-bootcamp.md
