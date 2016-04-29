@@ -21,7 +21,7 @@ document.getElementById('cache').addEventListener('click', () => {
     let message = JSON.stringify({ n: n++ });
     navigator.serviceWorker.controller.postMessage(message, [chan.port2]);
     navigator.storageQuota.queryInfo("temporary").then((info) => {
-      log.value += (`cache: ${n}, usage: ${info.usage}, quota: ${info.quota}\n`);
+      log.value += (`cache: ${n}, usage: ${info.usage/(1024*1024)}, quota: ${info.quota/(1024*1024)}\n`)
     });
-  }, 1000);
+  }, 500);
 });
