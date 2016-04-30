@@ -8,7 +8,7 @@ self.addEventListener('activate', (e) => {
 self.addEventListener('fetch', (e) => {
   let path = new URL(e.request.url).pathname;
   console.log(path);
-  if (path === '/service-worker/claim/test') {
+  if (path.indexOf('test') > -1) {
     e.respondWith(new Response('test'));
   }
   return;
