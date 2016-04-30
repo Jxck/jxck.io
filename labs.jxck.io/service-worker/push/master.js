@@ -9,7 +9,7 @@ let log = DEBUG ? console.log.bind(console) : () => {};
 if (typeof window !== 'undefined') {
   navigator.serviceWorker.register(KEY).then((registration) => {
     registration.pushManager.subscribe({
-      userVisibleOnly: true
+      userVisibleOnly: true,
     }).then((subscription) => {
       log(JSON.stringify(subscription, ' ', ' '));
     });
@@ -29,13 +29,13 @@ if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalSco
   });
 
   self.addEventListener('push', (event) => {
-   log('pushed message', event);
+    log('pushed message', event);
     let message = event.data.text();
     event.waitUntil(
       self.registration.showNotification('hoge', {
         body: message,
         icon: '/service-worker/push/jxck.png',
-        tag: 'my-tag'
+        tag: 'my-tag',
       })
     );
   });
