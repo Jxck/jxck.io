@@ -10,5 +10,5 @@ self.addEventListener('activate', (e) => {
 
 self.addEventListener('sync', (e) => {
   console.info('sync', e);
-  fetch('sync');
+  self.registration.showNotification('sync');
 });
