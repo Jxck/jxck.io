@@ -7,11 +7,6 @@ let url = require('url');
 let fs = require('fs');
 let parse = require('remark').parse;
 
-
-global.__defineGetter__('__LINE__', () => {
-  return (new Error()).stack.split('\n')[3].split(':').reverse()[1];
-});
-
 // read template and trim
 function read(path) {
   return fs.readFileSync(path).toString().trim();
@@ -55,7 +50,7 @@ function Tags(text) {
   return { tags, text };
 }
 
-// # Intro の中身を取り出す
+// # Intro/# Theme の中身を取り出す
 function Description(text) {
   let intro = text.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2].trim();
   intro = intro.replace(/(\n|\r)/g, '');
@@ -206,13 +201,19 @@ class Builder {
   thematicBreak() { return '<hr>'; }
 }
 
+global.__defineGetter__('__LINE__', () => {
+  return (new Error()).stack.split('\n')[3].split(':').reverse()[1];
+});
+
 function p() {
   let arg = Array.from(arguments);
   arg.unshift(__LINE__);
   console.log.apply(this, arg);
 }
 
-let j = JSON.stringify.bind(JSON);
+function j(o) {
+  return JSON.stringify(o, ' ', ' ');
+}
 
 function traverse(ast, option) {
   option.enter(ast);
