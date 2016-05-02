@@ -57,7 +57,7 @@ function Tags(text) {
 
 // # Intro の中身を取り出す
 function Description(text) {
-  let intro = text.match(/## Intro(([\n\r]|.)*?)##/m)[1].trim();
+  let intro = text.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2].trim();
   intro = intro.replace(/(\n|\r)/g, '');
   intro = intro.substring(0, 140) + '...';
   intro = hsp(intro);
