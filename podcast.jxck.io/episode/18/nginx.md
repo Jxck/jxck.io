@@ -5,7 +5,7 @@
 
 ## Theme
 
-第18回目のテーマは Nginx です。
+第 18 回目のテーマは Nginx です。
 
 今回は [@cubicdaiya](https://twitter.com/cubicdaiya) さんをお迎えして、 すっかり HTTP サーバのデファクトの地位につきつつある Nginx について、なぜ Nginx を選ぶのか、 Nginx から見た現在の Web にはどういう変化があるのか。 そして Nginx はこれからどうなっていくのか、それが Web にどんな変化をもたらすのかを議論しました。
 
@@ -64,15 +64,15 @@
 
 - [h2o](http://t.umblr.com/redirect?z=https%3A%2F%2Fh2o.examp1e.net%2F&t=YmJmMTlmMzcyMTg1MTRiZTQ1M2M0ZTU1ZmZmOTE1YzM5ZjAzN2E1MSx0UFVqYktDZw%3D%3D)
 - [nghttp2](http://t.umblr.com/redirect?z=https%3A%2F%2Fnghttp2.org%2F&t=MmQ5ZGNkYjgwOWUxMDg2YThlNTFhZjRkNTIxYmVmNjc4ZTBlNTlhNyx0UFVqYktDZw%3D%3D)
-- [nginxのパラメータチューニングとh2o](http://t.umblr.com/redirect?z=http%3A%2F%2Fqiita.com%2Fcubicdaiya%2Fitems%2F235777dc401ec419b14e&t=YzhiZWFkNjhkN2NjOGU4ZWNjMmU2YWMyODg3MzRiMmM5ODE5YWYzNyx0UFVqYktDZw%3D%3D)
+- [nginx のパラメータチューニングと h2o](http://t.umblr.com/redirect?z=http%3A%2F%2Fqiita.com%2Fcubicdaiya%2Fitems%2F235777dc401ec419b14e&t=YzhiZWFkNjhkN2NjOGU4ZWNjMmU2YWMyODg3MzRiMmM5ODE5YWYzNyx0UFVqYktDZw%3D%3D)
 - [open_file_cache](http://t.umblr.com/redirect?z=http%3A%2F%2Fnginx.org%2Fen%2Fdocs%2Fhttp%2Fngx_http_core_module.html%23open_file_cache&t=OWQzMjNiYTE0ODEwMGMxOGVkZjU2OWI3MmQ2NzlmNTUwM2M5MmFkZCx0UFVqYktDZw%3D%3D)
 - [tcp_nopush](http://t.umblr.com/redirect?z=http%3A%2F%2Fnginx.org%2Fen%2Fdocs%2Fhttp%2Fngx_http_core_module.html%23tcp_nopush&t=MjUyMzJiMDE3M2QyZWFlZWQwYWUyMjg2NWJmOWFlMjA2YTUwY2M5OSx0UFVqYktDZw%3D%3D)
 
 
 ### Nginx の HTTP2 対応(49:40~)
 
-- [http2(後日RFCが出ました)](http://t.umblr.com/redirect?z=https%3A%2F%2Ftools.ietf.org%2Fhtml%2Frfc7540&t=ZDNkNjkxODUyYWYxOWZhMzk5ZWYxYjk5ZWRjMmUzZGFhOTA5YmQ2Yix0UFVqYktDZw%3D%3D)
-- [hpack(後日RFCが出ました)](http://t.umblr.com/redirect?z=https%3A%2F%2Ftools.ietf.org%2Fhtml%2Frfc7541&t=NjFlYzlkYTc4ODhjMTg5MmJjNGRkYmI2ZTY0ZmNmMGIxNTRlMzRlMSx0UFVqYktDZw%3D%3D)
+- [http2(後日 RFC が出ました)](http://t.umblr.com/redirect?z=https%3A%2F%2Ftools.ietf.org%2Fhtml%2Frfc7540&t=ZDNkNjkxODUyYWYxOWZhMzk5ZWYxYjk5ZWRjMmUzZGFhOTA5YmQ2Yix0UFVqYktDZw%3D%3D)
+- [hpack(後日 RFC が出ました)](http://t.umblr.com/redirect?z=https%3A%2F%2Ftools.ietf.org%2Fhtml%2Frfc7541&t=NjFlYzlkYTc4ODhjMTg5MmJjNGRkYmI2ZTY0ZmNmMGIxNTRlMzRlMSx0UFVqYktDZw%3D%3D)
 - [How NGINX Plans to Support HTTP/2](http://t.umblr.com/redirect?z=http%3A%2F%2Fnginx.com%2Fblog%2Fhow-nginx-plans-to-support-http2%2F&t=YWVhMDA1NTZiNDJlNWYwZTdhZDc5N2RjYzNlNmZmMjdkOTA4M2UwOCx0UFVqYktDZw%3D%3D)
 - [ngrep](http://t.umblr.com/redirect?z=http%3A%2F%2Fngrep.sourceforge.net%2Fdownload.html&t=ZDQ3NGU5NWQ5OWRmMjE1ZWNhN2IxZGU4MmI1MTczOWMxM2IyZGQ2ZSx0UFVqYktDZw%3D%3D)
 - [tcpdump](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.tcpdump.org%2F&t=NDY2Mjk1ODEzZDc3OWIwNGJjNjMzOWFkMjA3YTEwZTRmZTkyYTA4OSx0UFVqYktDZw%3D%3D)

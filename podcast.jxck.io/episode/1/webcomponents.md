@@ -5,7 +5,7 @@
 
 ## Theme
 
-第一回目のテーマは WebComponents です。
+第 1 回目のテーマは WebComponents です。
 
 [@hokaccha](https://twitter.com/hokaccha) さんと [@ahomu](https://twitter.com/ahomu) さんをお迎えし、 WebComponents で何が変わるのか、 ShadowDOM で何が嬉しいのか、今の課題は何か？
 

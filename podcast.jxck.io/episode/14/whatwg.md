@@ -5,9 +5,9 @@
 
 ## Theme
 
-第14回目のテーマは WHATWG です。
+第 14 回目のテーマは WHATWG です。
 
-今回は [@myakura](https://twitter.com/myakura) さんと [@nunnun (hiro)](https://twitter.com/nunnun) さんをお迎えして、 WHATWG、 W3C、 TAG などの成り立ちや、それらがやっていること。先日の HTML5 勧告の意味。 LivingStandard とはどう考えればいいのか？といった話から、標準化において「今何が起こっているのか」、「これからどうなっていくのか」そして、「自分たちはそれにどう参加できるのか？」を議論しました。
+今回は [@myakura](https://twitter.com/myakura) さんと [@nunnun (hiro)](https://twitter.com/nunnun) さんをお迎えして、 WHATWG 、 W3C 、 TAG などの成り立ちや、それらがやっていること。先日の HTML5 勧告の意味。 LivingStandard とはどう考えればいいのか？といった話から、標準化において「今何が起こっているのか」、「これからどうなっていくのか」そして、「自分たちはそれにどう参加できるのか？」を議論しました。
 
 後半は Extensible Web の話になったので、 [次のエピソード](http://mozaic.fm/post/108491263993/15-extensible-web) に分けています。
 
@@ -36,7 +36,7 @@
  - [AB](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.w3.org%2Fwiki%2FAB&t=Yjg0NjQ0NDkxYWVkNmE2ZWQwYTdhMTAxNmYxMjk0ODQ0NDE3ZDFmMCxjOFd4eUYzMA%3D%3D) (W3C Advisory Board)
 - 10:20 ~ : HTML5 勧告の意味とは？
  - [HTML5 IS A W3C RECOMMENDATION](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.w3.org%2Fblog%2Fnews%2Farchives%2F4167&t=NDUzNTRhOGNhMzMxZGFhNjljMmY2NjY3YjBkMzg4ODM1OTAyYTNlZSxjOFd4eUYzMA%3D%3D)
- - [HTML5勧告–オープン・ウェブ・プラットフォームの重要なマイルストーンを達成](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.w3.org%2F2014%2F10%2Fhtml5-rec.html.ja&t=MTVkOWEyNmM0ZWMyNDNkOGYxODc4NGZmMjAyNTQwM2YzZDJiZWRhZCxjOFd4eUYzMA%3D%3D)
+ - [HTML5 勧告-オープン・ウェブ・プラットフォームの重要なマイルストーンを達成](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.w3.org%2F2014%2F10%2Fhtml5-rec.html.ja&t=MTVkOWEyNmM0ZWMyNDNkOGYxODc4NGZmMjAyNTQwM2YzZDJiZWRhZCxjOFd4eUYzMA%3D%3D)
  - [W3C Patent Policy](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.w3.org%2FConsortium%2FPatent-Policy%2F&t=YWQ4MTk2MzQxMDc0Nzk2MDM3YzZkN2E5NWM4MjA5ZjBkMDFjYTQzMyxjOFd4eUYzMA%3D%3D)
 - 15:10 ~ : WHATWG はどうしてできたか
  - [WHATWG](http://t.umblr.com/redirect?z=https%3A%2F%2Fwhatwg.org%2F&t=Y2ZhZTM5ZGExMTBiZDkyYTg4YTllMTE5MTJhMTJkOGFiMmU5Y2YyMixjOFd4eUYzMA%3D%3D) (Web Hipertext Application Technology Working Group)
@@ -47,7 +47,7 @@
  - [DHTML (Dynamic HTML)](http://t.umblr.com/redirect?z=http%3A%2F%2Fja.wikipedia.org%2Fwiki%2F%25E3%2583%2580%25E3%2582%25A4%25E3%2583%258A%25E3%2583%259F%25E3%2583%2583%25E3%2582%25AFHTML&t=MTdiNjA1ZmYyMDQzOTAxYTE4NmM3NDA4YTAzNDgwYjc5YWY1YzVhOCxjOFd4eUYzMA%3D%3D)
 - 26:45 ~ : WHATWG と W3C の作業の進み方
  - Tim が書いたブログ[Reinventing HTML](http://t.umblr.com/redirect?z=http%3A%2F%2Fdig.csail.mit.edu%2Fbreadcrumbs%2Fnode%2F166&t=NGYzNTc1ZDAzN2Y1YjIyZWU2NjJmMTA0OTA4NjQ5YzZiNjhjYTk4ZSxjOFd4eUYzMA%3D%3D)
- - W3C が HTML5 の作業を開始した時の話 [新しいW3C HTMLワーキンググループとHTML5](http://t.umblr.com/redirect?z=http%3A%2F%2Fstandards.mitsue.co.jp%2Farchives%2F001222.html&t=Yzc2ZjI5ZTYzYzMyYWQwMWJhYTNkNjBlNTFiZDcxNTY2MzU1MWUwOCxjOFd4eUYzMA%3D%3D)
+ - W3C が HTML5 の作業を開始した時の話 [新しい W3C HTML ワーキンググループと HTML5](http://t.umblr.com/redirect?z=http%3A%2F%2Fstandards.mitsue.co.jp%2Farchives%2F001222.html&t=Yzc2ZjI5ZTYzYzMyYWQwMWJhYTNkNjBlNTFiZDcxNTY2MzU1MWUwOCxjOFd4eUYzMA%3D%3D)
 - 35:20 ~ : WHATWG と W3C の仕様乖離の話
  - [W3C-WHATWG の仕様乖離の話](http://t.umblr.com/redirect?z=http%3A%2F%2Fdeveloper.telerik.com%2Ffeatured%2Fw3c-vs-whatwg-html5-specs-differences-documented%2F&t=OWU3ODA2MjBhY2FhYWM5YmRiNDdkNDQ2YjdiZWRmZjA2ODM4MGEyNyxjOFd4eUYzMA%3D%3D)
 - 39:10 ~ : WHATWG と W3C の乖離は今後も続くのか？

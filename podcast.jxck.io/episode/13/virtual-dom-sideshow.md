@@ -5,7 +5,7 @@
 
 ## Theme
 
-第13回目の SideShow です。
+第 13 回目の SideShow です。
 
 [@mizchi](https://twitter.com/mizchi/) さんとのこぼれ話をお送りします。
 
@@ -27,9 +27,9 @@
 - [kuromoji.js](http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Ftakuyaa%2Fkuromoji.js&t=MjU1MzVhODFhMzY5MTFiM2I2ZjEyMmVhZjk0MDBlNzUxYzdmMmUyOCxBT1VMOXRnbw%3D%3D)
 - [MeCab](http://t.umblr.com/redirect?z=http%3A%2F%2Fmecab.googlecode.com%2Fsvn%2Ftrunk%2Fmecab%2Fdoc%2Findex.html&t=ODZmYzJjZjBhOTQ1NmZmNDI0ZTRjZmZiYzcwY2MwNzMwNmNmZmMyZSxBT1VMOXRnbw%3D%3D)
 - [Angular.js が嫌い](http://t.umblr.com/redirect?z=http%3A%2F%2Fmizchi.hatenablog.com%2Fentry%2F2014%2F10%2F06%2F162103&t=MjVkNzNhZWYxOWYzZjY4NDMxOGNhYWQ5NzdmNTBmZDJjOWQ4NmMyZixBT1VMOXRnbw%3D%3D)
-- [Object.observeのGoogle Chromeでの先行実装とAngularについて](http://t.umblr.com/redirect?z=http%3A%2F%2Fmizchi.hatenablog.com%2Fentry%2F2014%2F10%2F07%2F103316&t=Yzg2MmNjYTc2YTRmZDUzYWM1Yzg5N2RkN2Y4MjJlZjdiYTRiNWVmYSxBT1VMOXRnbw%3D%3D)
+- [Object.observe の Google Chrome での先行実装と Angular について](http://t.umblr.com/redirect?z=http%3A%2F%2Fmizchi.hatenablog.com%2Fentry%2F2014%2F10%2F07%2F103316&t=Yzg2MmNjYTc2YTRmZDUzYWM1Yzg5N2RkN2Y4MjJlZjdiYTRiNWVmYSxBT1VMOXRnbw%3D%3D)
 - FireFox
 - [vimperator](http://t.umblr.com/redirect?z=https%3A%2F%2Faddons.mozilla.org%2Fja%2Ffirefox%2Faddon%2Fvimperator%2F&t=ZmE1MjNjYmQ1MjQzMTcxMzAwZjEwMjZlMjE3Yzg4ZjNlNjc0NTY0YixBT1VMOXRnbw%3D%3D)
 - [どの程度あおり？](http://t.umblr.com/redirect?z=http%3A%2F%2Fqiita.com%2Fmizchi%2Fitems%2F4d25bc26def1719d52e6&t=MTYzM2ViOTc1N2MxZTUwYmZmN2ZjNTkyMmRjOTZlMjRhYjRjNjI1NyxBT1VMOXRnbw%3D%3D)
-- [あなたがReactを使うべき理由](http://t.umblr.com/redirect?z=http%3A%2F%2Fmizchi.hatenablog.com%2Fentry%2F2014%2F09%2F02%2F201728&t=OTk4NjQ5YmVmNmNlY2E5MGYwNTk5ODlhZDQyYTExODAwYWFkNzgwOSxBT1VMOXRnbw%3D%3D)
+- [あなたが React を使うべき理由](http://t.umblr.com/redirect?z=http%3A%2F%2Fmizchi.hatenablog.com%2Fentry%2F2014%2F09%2F02%2F201728&t=OTk4NjQ5YmVmNmNlY2E5MGYwNTk5ODlhZDQyYTExODAwYWFkNzgwOSxBT1VMOXRnbw%3D%3D)
 - 最近くやしいこと [TypedCoffee](http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fmizchi%2FTypedCoffeeScript&t=N2MxZmViNTA4MmQ0MGVhMWIxOWIyMmZjOWRjNGYxNmQ2ZDcyMWM2MixBT1VMOXRnbw%3D%3D)

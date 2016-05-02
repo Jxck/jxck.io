@@ -5,7 +5,7 @@
 
 ## Theme
 
-第19回目の Side Show です。
+第 19 回目の Side Show です。
 
 [@Constellation](https://twitter.com/Constellation) さんが語る JavaScript Engine (JSCore) での実装の裏話と、 WebAssembly についてお送りします。
 

@@ -5,7 +5,7 @@
 
 ## Theme
 
-第17回目のテーマは Service Worker です。
+第 17 回目のテーマは Service Worker です。
 
 今回は [@kinu](https://twitter.com/kinu) さんと [@nhiroki_](https://twitter.com/nhiroki_) さんをお迎えして、 今実装や仕様策定が進んでいる Service Worker について、なぜこうした仕様が出てきたのか、これを用いて何ができるのか、これがどう Web を変えるのか。
 

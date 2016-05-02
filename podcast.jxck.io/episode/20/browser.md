@@ -4,7 +4,7 @@
 
 ## Theme
 
-第20回のテーマはブラウザです。
+第 20 回のテーマはブラウザです。
 
 今回は [@takoratta](https://twitter.com/takoratta) さんをお迎えして、ブラウザは今どうなっているのか、そして、その進化は Web の進化とどう関わっているのかにつて議論しました。
 
@@ -52,7 +52,7 @@
 - ブラウザはどこまでをカバーすべきか？
  - [houdini](http://t.umblr.com/redirect?z=https%3A%2F%2Fdrafts.css-houdini.org%2F&t=NDc5YjM5NmY1MjEzYmY0ZmZjMjk1ZTFkYmIyMWY0MmE5YWY1NDNjMCwwcTh4dTN3Nw%3D%3D)
  - [Permission API](http://t.umblr.com/redirect?z=https%3A%2F%2Fw3c.github.io%2Fpermissions%2F&t=NGNjNWI5MzZiZjgxNjZmYTA0MTI3ZTc3OWQ5N2U3NWRiZmJjZWE5OSwwcTh4dTN3Nw%3D%3D)
- - [不正なSSL証明書を見破るPublic Key Pinningを試す](http://t.umblr.com/redirect?z=http%3A%2F%2Fd.hatena.ne.jp%2Fjovi0608%2F20140902%2F1409635279&t=ZDNlYmQ3YzgxZDE1YTA1MjA1ODQyODkwMThkYTY0MWYyMGJmNzczZCwwcTh4dTN3Nw%3D%3D)
+ - [不正な SSL 証明書を見破る Public Key Pinning を試す](http://t.umblr.com/redirect?z=http%3A%2F%2Fd.hatena.ne.jp%2Fjovi0608%2F20140902%2F1409635279&t=ZDNlYmQ3YzgxZDE1YTA1MjA1ODQyODkwMThkYTY0MWYyMGJmNzczZCwwcTh4dTN3Nw%3D%3D)
  - [Web の進化を一年くらい止めようという話](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.quirksmode.org%2Fblog%2Farchives%2F2015%2F07%2Fstop_pushing_th.html&t=NzA1MjJmMzMyN2Y2OTY4YmM0ZTM4NGJkNTY5MGM4YTJjOGQ0MWExYywwcTh4dTN3Nw%3D%3D)
  - [Progressive Web Apps: Escaping Tabs Without Losing Our Soul](http://t.umblr.com/redirect?z=https%3A%2F%2Finfrequently.org%2F2015%2F06%2Fprogressive-apps-escaping-tabs-without-losing-our-soul%2F&t=NWY5MjEyMDc2MTUwZGZkYzg3NTgzY2Y2MGE5YjA5MGQ2MzhlZTM5ZiwwcTh4dTN3Nw%3D%3D)
 
@@ -88,7 +88,7 @@
  - [NaCl](http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.chrome.com%2Fnative-client%2Fnacl-and-pnacl&t=YzUxM2Q5ZjJkYjQ0OWRjOTEyOGE4YTI0NzA2NjdkZmUzNWVkNmJhMywwcTh4dTN3Nw%3D%3D)
  - [REST](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.ics.uci.edu%2F%7Efielding%2Fpubs%2Fdissertation%2Frest_arch_style.htm&t=MTMyMDY4M2E0YWUzZGRmZmJiYzFmYWNkYjRhNjExY2Y0YTMyMjg0ZCwwcTh4dTN3Nw%3D%3D)
  - [TPAC での Tim, Vint, Jun のトーク](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.w3.org%2F2015%2F10%2F27-tpac-minutes.html&t=YzZmZjVhOTU1YWIyZjI2MjA5ODEyZjMwMDYyNjFjZjk4NWQ0NTgwOSwwcTh4dTN3Nw%3D%3D)
- - [「Webってインターネットになったんだな by yohei」についてのまとめ](http://t.umblr.com/redirect?z=http%3A%2F%2Fd.hatena.ne.jp%2Fnaoya%2F20130123%2F1358918510&t=MmZmNTcwMDUzYmM4OTVkNWVjMmJiOTIzNzRhZDI3NDdhMzZkNjVhZCwwcTh4dTN3Nw%3D%3D)
+ - [「Web ってインターネットになったんだな by yohei」についてのまとめ](http://t.umblr.com/redirect?z=http%3A%2F%2Fd.hatena.ne.jp%2Fnaoya%2F20130123%2F1358918510&t=MmZmNTcwMDUzYmM4OTVkNWVjMmJiOTIzNzRhZDI3NDdhMzZkNjVhZCwwcTh4dTN3Nw%3D%3D)
 
 - これからブラウザはどうなっていくのか？
  - モバイルのブラウザ UX が酷い

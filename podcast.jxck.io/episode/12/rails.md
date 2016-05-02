@@ -5,7 +5,7 @@
 
 ## Theme
 
-第12回目のテーマは Ruby on Rails です。
+第 12 回目のテーマは Ruby on Rails です。
 
 今回は Ruby と Rail のコミッターである [@a_matsuda](https://twitter.com/a_matsuda/) さんをお迎えして、 Rails が引っ張ってきた Web 開発と、 Web の進化が Ruby に与えた影響などを振り返りながら、 Rails に「今何が起こっているのか」、「これからどうなっていくのか」を議論しました。
 
@@ -25,14 +25,14 @@
 
 - [Ruby on Rails](http://t.umblr.com/redirect?z=http%3A%2F%2Frubyonrails.org%2F&t=NGI3ZjQ4ZjQ2Y2UxNWFmNjU5OTE2YzUwNzM0NGIxZDY4YjYxZGM3YixMdFdhcWRlTA%3D%3D)
 - [Rails の歴史](http://t.umblr.com/redirect?z=http%3A%2F%2Fja.wikipedia.org%2Fwiki%2FRuby_on_Rails&t=ODhjOWVmZWQxMGZiZTk4NDY5NTY0Njg3YTU3NjJhZmE3MWM4NGVjNSxMdFdhcWRlTA%3D%3D) (Wikipedia 引用)
-  - 2004年7月 最初のバージョン公開
-  - 2005年12月13日 バージョン1.0リリース
-  - 2007年12月 7日 バージョン2.0リリース
-  - 2010年 8月29日 バージョン3.0リリース
-  - 2013年 6月27日 バージョン4.0リリース
+  - 2004/7 最初のバージョン公開
+  - 2005/12/13 ver 1.0 リリース
+  - 2007/12/7  ver 2.0 リリース
+  - 2010/8/29  ver 3.0 リリース
+  - 2013/6/27  ver 4.0 リリース
 - 今年中盤くらいにあった投稿
-  - [Railsが時代に合わなくなってきた](http://t.umblr.com/redirect?z=http%3A%2F%2Fqiita.com%2Fkaiinui%2Fitems%2F2781219340d427543d08&t=ZGFjM2I5MWM0MTg0MWRjYzlkMjk0Yzk2MmM5MDUyMTVkYTFjMmFjNyxMdFdhcWRlTA%3D%3D)
-  - [「Railsが時代に合わなくなってきた」のフォロー](http://t.umblr.com/redirect?z=http%3A%2F%2Fwazanova.jp%2Fitems%2F1361&t=MmZjNTBmZTI3OThiOGZjMGJiZjRjYjE0ZmFlYWM2YzU1YjI0YTA5NyxMdFdhcWRlTA%3D%3D)
+  - [Rails が時代に合わなくなってきた](http://t.umblr.com/redirect?z=http%3A%2F%2Fqiita.com%2Fkaiinui%2Fitems%2F2781219340d427543d08&t=ZGFjM2I5MWM0MTg0MWRjYzlkMjk0Yzk2MmM5MDUyMTVkYTFjMmFjNyxMdFdhcWRlTA%3D%3D)
+  - [「Rails が時代に合わなくなってきた」のフォロー](http://t.umblr.com/redirect?z=http%3A%2F%2Fwazanova.jp%2Fitems%2F1361&t=MmZjNTBmZTI3OThiOGZjMGJiZjRjYjE0ZmFlYWM2YzU1YjI0YTA5NyxMdFdhcWRlTA%3D%3D)
 - [DHH(David Heinemeier Hansson)](https://twitter.com/dhh) Rails の作者
 - [Jeremy Kemper](https://twitter.com/bitsweat) Rails Comitter
 - [Koichi Sasada](https://twitter.com/koichisasada) Ruby Comitter
@@ -54,4 +54,4 @@
 
 ## Related Entry
 
-- [mozaic.fm#12 Railsの話で思ったこと](http://t.umblr.com/redirect?z=http%3A%2F%2Fjacoyutorius.com%2F%3Fp%3D1019&t=NmZhMzRlZDYzNDEzYWNkYzY1YWE0ZjY2MTE2M2RkOTI0YjkzZWI3ZixMdFdhcWRlTA%3D%3D)
+- [mozaic.fm#12 Rails の話で思ったこと](http://t.umblr.com/redirect?z=http%3A%2F%2Fjacoyutorius.com%2F%3Fp%3D1019&t=NmZhMzRlZDYzNDEzYWNkYzY1YWE0ZjY2MTE2M2RkOTI0YjkzZWI3ZixMdFdhcWRlTA%3D%3D)

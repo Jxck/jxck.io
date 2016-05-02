@@ -7,9 +7,9 @@
 
 HTTP2 番外編です。
 
-今回は [第二回 http2](http://mozaic.fm/post/83421293098/2-http2) に収まらなかった 「Nghttp2 の今後」について、番外編として配信します。
+今回は [第 2 回 http2](http://mozaic.fm/post/83421293098/2-http2) に収まらなかった 「Nghttp2 の今後」について、番外編として配信します。
 
-OSS 奨励賞受賞の裏話や、http2 や spdylay が今後どうなるのか、 [tatsuhiro_t](https://twitter.com/tatsuhiro_t) さんの今後の活動についてなど、こぼれ話をまとめた 15 分です。
+OSS 奨励賞受賞の裏話や、 http2 や spdylay が今後どうなるのか、 [tatsuhiro_t](https://twitter.com/tatsuhiro_t) さんの今後の活動についてなど、こぼれ話をまとめた 15 分です。
 
 感想などは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) までお願いします。
 

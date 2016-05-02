@@ -5,13 +5,13 @@
 
 ## Theme
 
-第6回目のテーマは WebRTC です。
+第 6 回目のテーマは WebRTC です。
 
 今回は [@komasshu](https://twitter.com/komasshu) さんと、 [@Tukimikage](https://twitter.com/Tukimikage) さんをお迎えし WebRTC をテーマに 「今なにが起こっているのか？」「これからどうなっていくのか？」をたっぷり議論しました。
 
 感想などは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) までお願いします。
 
-(NATをアドレストランスポートと言い間違ってますが、そっとしておいてあげて下さい汗)
+(NAT をアドレストランスポートと言い間違ってますが、そっとしておいてあげて下さい汗)
 
 
 ## Guest
@@ -33,4 +33,4 @@
 - [H.264](http://t.umblr.com/redirect?z=http%3A%2F%2Fja.wikipedia.org%2Fwiki%2FH264&t=YjAyNmJmNjU0NTJhN2U2NmI3ZTg3NDUxYTYyYWQxNGFkYzc0MTY5ZCxWalY2d1lFQQ%3D%3D)
 - [Object RTC](http://t.umblr.com/redirect?z=http%3A%2F%2Fortc.org%2F&t=NzA2NGRmNmIzNjRiZTZlYjUwZTM4NmJmNGRlODgzYzM4NjgyZDg2YyxWalY2d1lFQQ%3D%3D)
 - [skyway](http://t.umblr.com/redirect?z=http%3A%2F%2Fnttcom.github.io%2Fskyway%2F&t=MjQ3MzRhNjZmNTM0Yzk5NGM4Zjc1NDQ5OGYwZjQyY2U4Y2JmNWI4NSxWalY2d1lFQQ%3D%3D)
-- [Intel® CS for WebRTC](http://t.umblr.com/redirect?z=https%3A%2F%2Fsoftware.intel.com%2Fsites%2Flandingpage%2Fwebrtc%2F&t=YmI3ZTA5ZTA3Zjg5ZWI4Y2RkMTA0OWFhNWM1OGUxMjg1N2U5YWMwMSxWalY2d1lFQQ%3D%3D)
+- [Intel ® CS for WebRTC](http://t.umblr.com/redirect?z=https%3A%2F%2Fsoftware.intel.com%2Fsites%2Flandingpage%2Fwebrtc%2F&t=YmI3ZTA5ZTA3Zjg5ZWI4Y2RkMTA0OWFhNWM1OGUxMjg1N2U5YWMwMSxWalY2d1lFQQ%3D%3D)

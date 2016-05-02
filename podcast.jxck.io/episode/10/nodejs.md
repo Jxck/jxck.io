@@ -5,7 +5,7 @@
 
 ## Theme
 
-第10回目のテーマは Node.js です。
+第 10 回目のテーマは Node.js です。
 
 今回は唯一の日本人 Node.js コミッタである [@koichik](https://twitter.com/koichik/) さんと、日本 Node.js ユーザグループの現代表である [@yosuke_furukawa](https://twitter.com/yosuke_furukawa) さんをお迎えし、 Node.js をテーマに 「Node.js ができた理由」から、「node@1.0」の展望「nodeconf.eu での最新事情」や「Node.js コミュニティの今後」などを二時間半たっぷり議論しました。
 
@@ -28,7 +28,7 @@
   - [node.js](http://t.umblr.com/redirect?z=http%3A%2F%2Fnodejs.org&t=MjZjZTRhNDVhNDBjYjVmNWEwMzk2MDkzNzY0MDg3MDFjOTQ1YWRlNixYdVJHVGd5bQ%3D%3D)
   - [Guille のライブコーディング](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.nicovideo.jp%2Fwatch%2F1320664679&t=ZjA5M2ZlN2VjNWQ3YWM3OTM3MTg3OWNlZjgzNGY3YzRiNGQyNDU5OCxYdVJHVGd5bQ%3D%3D)
   - [async listener](http://t.umblr.com/redirect?z=http%3A%2F%2Fnodejs.org%2Fdocs%2Fv0.11.14%2Fapi%2Fall.html%23all_async_listeners&t=MjY0M2YyYTFiNzI3YmRmZWMyMjE2YWNjYmVlYTgwYzgxNWJhYTRhZCxYdVJHVGd5bQ%3D%3D)
-  - [assertの移植](http://t.umblr.com/redirect?z=http%3A%2F%2Fgithub.com%2Fjxck%2Fassert&t=Y2VhODQ0NTA1ODA0NWI2NTRkYTBlZjdkN2Y2ZGQxOTA1NzIwZGEwOCxYdVJHVGd5bQ%3D%3D)
+  - [assert の移植](http://t.umblr.com/redirect?z=http%3A%2F%2Fgithub.com%2Fjxck%2Fassert&t=Y2VhODQ0NTA1ODA0NWI2NTRkYTBlZjdkN2Y2ZGQxOTA1NzIwZGEwOCxYdVJHVGd5bQ%3D%3D)
   - [event emitter](http://t.umblr.com/redirect?z=http%3A%2F%2Fnodejs.org%2Fapi%2Fevents.html&t=MWI5NTk2M2U1ZjNlYmVmM2Y5NTYyZDdlNzIzMTJlMTM2YmI2MDA2OSxYdVJHVGd5bQ%3D%3D)
 - 13:50 ~ : isomorphic
   - [EventEmitter2](http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fasyncly%2FEventEmitter2&t=OGJhODA4MzAwYmU3YzJmZjNmOWI4NzI3YzQ2OTVjMTUwMmY4YjE1MixYdVJHVGd5bQ%3D%3D)
@@ -71,7 +71,7 @@
   - [位置透過性 椎名林檎](http://jxck.tumblr.com/post/11435831106/hook-io)
 - 01:34:30 ~ : Node は何に向いていたのか？
   - [render](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.renderjs.org%2F&t=MjI4Yjk0NGYzYzc0ZDEwMDczMjlmNzg5NTAyYTMwMTE3YjMyMTU5MCxYdVJHVGd5bQ%3D%3D)
-  - [Rendr入門: サーバサイドで(も)動かす、Backbone.js](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.slideshare.net%2Fmshk%2Frendr&t=YjA2MTAyZDRmNjRkOWQwOGU1NTQ1MmQ2OWYxZjYyZmE3MDkwY2RhZCxYdVJHVGd5bQ%3D%3D)
+  - [Rendr 入門: サーバサイドで(も)動かす、 Backbone.js](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.slideshare.net%2Fmshk%2Frendr&t=YjA2MTAyZDRmNjRkOWQwOGU1NTQ1MmQ2OWYxZjYyZmE3MDkwY2RhZCxYdVJHVGd5bQ%3D%3D)
 - 01:42:00 ~ : 今のトレンド LevelDB + WebRTC + Microservices
   - [MEAN](http://t.umblr.com/redirect?z=http%3A%2F%2Fmeanjs.org%2F&t=YWZmMWFkY2JlYjAwOGNiYWY3OTJkZDcxZjYzZWE0MjFhOTUxMmI3YSxYdVJHVGd5bQ%3D%3D)
   - [LevelDB](http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fgoogle%2Fleveldb&t=NjkwYTNjNWUzNmUzMmU5MWQwMjMxOWI4MWMxMzZhOTVjY2FkOTYzMCxYdVJHVGd5bQ%3D%3D)
@@ -87,7 +87,7 @@
   - [closure compiler](http://t.umblr.com/redirect?z=https%3A%2F%2Fdevelopers.google.com%2Fclosure%2Fcompiler%2F%3Fhl%3Dja&t=MWMyN2Y0ZGE1YjJmOTQ3MDVlZDg5MDJmOTE4NzBkZDk3ZDFjMWM2NyxYdVJHVGd5bQ%3D%3D)
 - 2:09:00 ~ : 日本の Node コミュニティの今後
   - [meso さんの引退宣言](http://t.umblr.com/redirect?z=https%3A%2F%2Fdocs.google.com%2Fpresentation%2Fd%2F1IYwvHLAT0sFLAOmBGQ7dUyD7NKajwfkOgh8SAYvJa2c%2Fedit%23slide%3Did.p&t=MDVkOTRhODQ4NTJkZWE1ZDVjODFiM2RiY2UzN2Q4MDA4MjkyNGM2MSxYdVJHVGd5bQ%3D%3D)
-  - [東京Node学園祭2014](http://t.umblr.com/redirect?z=http%3A%2F%2Fnodefest.jp%2F2014%2F&t=YWE2NjZiNjAzMGQ3M2QzMDQ1NWQ3MDkxMDgwMTRiYWQ3ZDJhOWJmNSxYdVJHVGd5bQ%3D%3D)
+  - [東京 Node 学園祭 2014](http://t.umblr.com/redirect?z=http%3A%2F%2Fnodefest.jp%2F2014%2F&t=YWE2NjZiNjAzMGQ3M2QzMDQ1NWQ3MDkxMDgwMTRiYWQ3ZDJhOWJmNSxYdVJHVGd5bQ%3D%3D)
   - [hapi](http://t.umblr.com/redirect?z=http%3A%2F%2Fhapijs.com%2F&t=OTA3OGMwNzZlN2EzNGYyNTcxZDdhOGM0ODFkOGM1OTVjYjQxOWE2YixYdVJHVGd5bQ%3D%3D)
 - 2:20:10 ~ : Node.js の今後(本題)
   - [flatiron](http://t.umblr.com/redirect?z=http%3A%2F%2Fflatironjs.org%2F&t=M2VhNDhjZTA5MDcwNDFhZTA5NDQ4NzcwMzQ2NmVhMmJkNzZjM2U5MixYdVJHVGd5bQ%3D%3D)
