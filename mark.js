@@ -198,10 +198,7 @@ class Builder {
   html       (node) {
     let value = `${node.value}\n`;
     if (!this.ampurl && value.match(/<iframe.*/)) {
-      // TODO: use amp-iframe in amp.html
-      // return value.replace(/iframe/g, 'amp-iframe');
-
-      return ''; // remove iframe in amp.html
+      return value.replace(/iframe/g, 'amp-iframe');
     }
     return value;
   }
