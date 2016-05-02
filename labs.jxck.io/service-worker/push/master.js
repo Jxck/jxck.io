@@ -1,4 +1,6 @@
 navigator.serviceWorker.register('worker.js').then((registration) => {
+  return navigator.serviceWorker.ready;
+}).then((registration) => {
   registration.pushManager.subscribe({
     userVisibleOnly: true,
   }).then((subscription) => {
