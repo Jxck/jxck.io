@@ -17,7 +17,7 @@ TODO になっている動画は、そのうち撮って追加します。
 
 controller とは何か、いつ controller になるか、 `clamim()` で何が起こるのかなどについて。
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/m6qBg4M3RTA" frameborder="0" allowfullscreen></iframe>
+<iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/m6qBg4M3RTA" frameborder="0" allowfullscreen></iframe>
 
 
 ```html
@@ -71,7 +71,7 @@ DEMO: [https://labs.jxck.io/service-worker/claim/index.html](https://labs.jxck.i
 
 register が終わった後、「新しく登録された controller が使えるようになったら」または「すでに登録されている controller が使えるようになったら」という状態をとる方法と `controllerchange` イベント。
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/XoI0FPDV8Xo" frameborder="0" allowfullscreen></iframe>
+<iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/XoI0FPDV8Xo" frameborder="0" allowfullscreen></iframe>
 
 
 ```js
@@ -123,7 +123,7 @@ DEMO: [https://labs.jxck.io/service-worker/controllerchange/](https://labs.jxck.
 Service Worker が更新される際の動きと、 `skipWaiting()` が何をスキップするのか？
 `install`, `activate` イベントの用途。
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/AMbQ7d9rjao" frameborder="0" allowfullscreen></iframe>
+<iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/AMbQ7d9rjao" frameborder="0" allowfullscreen></iframe>
 
 ```js
 console.log('master');
