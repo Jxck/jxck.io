@@ -16,6 +16,9 @@ Proc.new do |env|
       "https://www.google-analytics.com",
       "https://cdn.ampproject.org",
       ";",
+      "child-src",
+      "https://www.youtube.com",
+      ";",
       "style-src",
       "'unsafe-inline'",
       ";",
@@ -30,6 +33,8 @@ Proc.new do |env|
       "https://jxck.io",
       "https://*.jxck.io",
       "https://www.google-analytics.com",
+      ";",
+      "child-src",
       "https://www.youtube.com",
       ";",
       "report-uri #{REPORT_URI}"
