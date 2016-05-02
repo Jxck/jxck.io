@@ -1,6 +1,6 @@
 # [browser] #20 Browser
 
-<audio preload=none controls src=http://files.mozaic.fm/mozaic-ep20.mp3"></audio>
+<audio preload="none" src="https://files.mozaic.fm/mozaic-ep20.mp3" controls></audio>
 
 ## Theme
 
