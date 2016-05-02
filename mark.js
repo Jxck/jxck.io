@@ -499,7 +499,7 @@ function prepare(filepath, option) {
 
   // template
   let meta = read('./.template/meta.html');
-  let template = read('./.template/simple.html');
+  let template = read('./.template/blog.html');
   let style = null;
 
   let target = `${dir}/${name}.html`;
@@ -550,7 +550,7 @@ if (process.argv.length < 3) {
 
 let filepath = process.argv[2];
 
-// simple html
+// blog html
 (() => {
   let info = prepare(filepath, { amp: false });
 
