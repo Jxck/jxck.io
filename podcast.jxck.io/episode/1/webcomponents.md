@@ -1,6 +1,6 @@
 # #1 WebComponents
 
-<audio preload="none" controls="" src="http://files.mozaic.fm/mozaic-ep1.m4a"></audio>
+<audio preload=none controls src=http://files.mozaic.fm/mozaic-ep1.m4a></audio>
 
 
 ## Theme

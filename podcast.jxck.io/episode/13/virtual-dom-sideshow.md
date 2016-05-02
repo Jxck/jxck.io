@@ -1,6 +1,6 @@
 # #13 Virtual DOM sideshow
 
-<audio preload="none" controls="" src="http://files.mozaic.fm/mozaic-ep13.sideshow.mp3"></audio>
+<audio preload=none controls src=http://files.mozaic.fm/mozaic-ep13.sideshow.mp3"></audio>
 
 
 ## Theme

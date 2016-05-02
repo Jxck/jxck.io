@@ -1,6 +1,6 @@
 # #2 HTTP2 sideshow
 
-<audio preload="none" controls="" src="http://files.mozaic.fm/mozaic-ep2.sideshow.m4a"></audio>
+<audio preload=none controls src=http://files.mozaic.fm/mozaic-ep2.sideshow.m4a></audio>
 
 
 ## Theme

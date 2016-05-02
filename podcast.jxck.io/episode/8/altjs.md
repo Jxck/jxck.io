@@ -1,6 +1,6 @@
 # #8 AltJS
 
-<audio preload="none" controls="" src="http://files.mozaic.fm/mozaic-ep8.m4a"></audio>
+<audio preload=none controls src=http://files.mozaic.fm/mozaic-ep8.m4a></audio>
 
 
 ## Theme
@@ -45,4 +45,4 @@ altJS をテーマに 「今なにが起こっているのか？」「これか�
 
 当日のスライドです
 
-<iframe src="//www.slideshare.net/slideshow/embed_code/key/LiQQdYTyTazUDn" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/Jxck/mozaicfm-ep8alt-jslldiver" title="mozaicfm-ep8 #altJS @ll-diver" target="_blank">mozaicfm-ep8 #altJS @ll-diver</a> </strong> from <strong><a href="//www.slideshare.net/Jxck" target="_blank">Jxck :)</a></strong> </div>
+<iframe src=//www.slideshare.net/slideshow/embed_code/key/LiQQdYTyTazUDn" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/Jxck/mozaicfm-ep8alt-jslldiver" title="mozaicfm-ep8 #altJS @ll-diver" target="_blank">mozaicfm-ep8 #altJS @ll-diver</a> </strong> from <strong><a href="//www.slideshare.net/Jxck" target="_blank">Jxck :)</a></strong> </div>

@@ -1,6 +1,6 @@
 # #18 Nginx
 
-<audio preload="none" controls="" src="http://files.mozaic.fm/mozaic-ep18.mp3"></audio>
+<audio preload=none controls src=http://files.mozaic.fm/mozaic-ep18.mp3"></audio>
 
 
 ## Theme

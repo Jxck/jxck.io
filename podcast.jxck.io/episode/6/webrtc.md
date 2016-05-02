@@ -1,6 +1,6 @@
 # #6 WebRTC
 
-<audio preload="none" controls="" src="http://files.mozaic.fm/mozaic-ep6.m4a"></audio>
+<audio preload=none controls src=http://files.mozaic.fm/mozaic-ep6.m4a></audio>
 
 
 ## Theme

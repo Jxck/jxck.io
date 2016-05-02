@@ -1,6 +1,6 @@
 # #11 High Performance Browser Networking
 
-<audio preload="none" controls="" src="http://files.mozaic.fm/mozaic-ep11.m4a"></audio>
+<audio preload=none controls src=http://files.mozaic.fm/mozaic-ep11.m4a></audio>
 
 
 ## Theme

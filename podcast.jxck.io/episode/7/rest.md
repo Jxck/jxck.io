@@ -1,6 +1,6 @@
 # #7 REST
 
-<audio preload="none" controls="" src="http://files.mozaic.fm/mozaic-ep7.m4a"></audio>
+<audio preload=none controls src=http://files.mozaic.fm/mozaic-ep7.m4a></audio>
 
 
 ## Theme

@@ -1,6 +1,6 @@
 # #12 Rails
 
-<audio preload="none" controls="" src="http://files.mozaic.fm/mozaic-ep12.mp3"></audio>
+<audio preload=none controls src=http://files.mozaic.fm/mozaic-ep12.mp3"></audio>
 
 
 ## Theme
