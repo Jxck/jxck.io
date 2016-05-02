@@ -7,9 +7,9 @@
 
 第 10 回目の SideShow です。
 
-[@koichik](https://twitter.com/koichik) さんの「ところでみんな Promise 好き？」から始まった、 Promise / Generator / Rxjs などの話題と、 Java の Future や Haskell の Monad との関係などの解説です。
+[@koichik](https://twitter.com/koichik) さんの「ところでみんな Promise 好き?」から始まった、 Promise / Generator / Rxjs などの話題と、 Java の Future や Haskell の Monad との関係などの解説です。
 
-エピソードの感想などは、 [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) までお願いします。
+ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
 
 
 ## Guest
@@ -24,17 +24,17 @@
   - [ES6 Promise](http://t.umblr.com/redirect?z=http%3A%2F%2Fpeople.mozilla.org%2F%7Ejorendorff%2Fes6-draft.html%23sec-promise-objects&t=YThiMjU4NTJjM2JlYTM2NTg0YzUxNjg0NzVmNmE2ZmMwYjgwM2VlYiwzM1NyMFYwWQ%3D%3D)
   - [WindJS](http://t.umblr.com/redirect?z=http%3A%2F%2Ftry.buildwinjs.com%2F&t=OGFmNDU0MGFlNzIwNWQ5YjJhNzAwZWY5OWE5NGEyOTBkNmE3ZTU1NCwzM1NyMFYwWQ%3D%3D)
   - [カール・ヒューイット](http://t.umblr.com/redirect?z=http%3A%2F%2Fja.wikipedia.org%2Fwiki%2F%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%25AB%25E3%2583%25BB%25E3%2583%2592%25E3%2583%25A5%25E3%2583%25BC%25E3%2582%25A4%25E3%2583%2583%25E3%2583%2588&t=MWNlYzlkNzg1NTI3MzllOGZlZmRjMDkyZTZjYzA4NjA3Zjk1NTRjNiwzM1NyMFYwWQ%3D%3D)
-- 1:40 ~ : そもそもの Promise とは？
+- 1:40 ~ : そもそもの Promise とは?
   - [Java の Future](http://t.umblr.com/redirect?z=http%3A%2F%2Fdocs.oracle.com%2Fjavase%2F7%2Fdocs%2Fapi%2Fjava%2Futil%2Fconcurrent%2FFuture.html&t=NWIzMzk3YWU5ZGZiN2VlY2JjOGUwMGQzY2IyZjRiMjRmMzFjYTQ3NSwzM1NyMFYwWQ%3D%3D)
   - [Haskell の Thunk](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.haskell.org%2Fhaskellwiki%2FThunk&t=ZjU2NDAxYTMwYzA2ZDEyZmQwMTEzZTBlOTI5YzMwZjI1OTY0ZTk3OSwzM1NyMFYwWQ%3D%3D)
-- 7:30 ~ : 本当に Promise は必要なのか？
+- 7:30 ~ : 本当に Promise は必要なのか?
   - [Scala の Option](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.scala-lang.org%2Fapi%2Fcurrent%2Fscala%2FOption.html&t=NTk3NmNmNTdlZDdjZTcxMzUzNjgxZjkwZDFjMzg5M2JiYWM0ZjIyZSwzM1NyMFYwWQ%3D%3D)
   - [jQuery の Deffered](http://t.umblr.com/redirect?z=http%3A%2F%2Fapi.jquery.com%2Fcategory%2Fdeferred-object%2F&t=Y2ZjMmVjMjA2NzY4NzMyMTZmODdiYmY3NzYzMTA2ZGU5ODBmOTNkYywzM1NyMFYwWQ%3D%3D)
   - [DOM の Promise](http://t.umblr.com/redirect?z=https%3A%2F%2Fdom.spec.whatwg.org%2F%23promises&t=ZTk2ZjRiNWQzYThiZmMxODNjYjQyZTgwOTRkYjBiZWI4ZTBmYWZmOCwzM1NyMFYwWQ%3D%3D)
 - 15:22 ~ : JS の Promise と Haskell の I/O モナド
   - [Haskell の I/O monad](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.haskell.org%2Fhaskellwiki%2FIO_inside%23Dark_side_of_IO_monad&t=NjQ5NGNjOTY5NTI0NzI0MGI1NzM3OWU0YWMyZTAzNTIyOWE0NDAwMywzM1NyMFYwWQ%3D%3D)
   - [Haskell の do 記法](http://t.umblr.com/redirect?z=http%3A%2F%2Fen.wikibooks.org%2Fwiki%2FHaskell%2FSyntactic_sugar%23Do_and_proc_notation&t=MTIzODQwNWQ4NGZmZDg4MDJkNjFkZWE5ZWNiMGYyZmU3ZjYzY2JlMCwzM1NyMFYwWQ%3D%3D)
-- 18:45 ~ : genrator ってどうなの？
+- 18:45 ~ : genrator ってどうなの?
   - [function*](http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FStatements%2Ffunction%2A&t=NDg1YmQ1Y2U1OTAxOTdjM2NkOWVmMDkwNTEzZmE4MGU0NzAzOGQyNCwzM1NyMFYwWQ%3D%3D)
 - 20:50 ~ : generator と Go の groutine/channel
   - [Go の Channel](http://t.umblr.com/redirect?z=http%3A%2F%2Fgolang.org%2Fref%2Fspec%23Channel_types&t=NGQ5NWM2ODVmMjRmYjNhNTA5MDQ2YTVlNmM3YjkxMGYzYjkwZGFhZiwzM1NyMFYwWQ%3D%3D)

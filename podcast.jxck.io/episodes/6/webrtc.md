@@ -7,9 +7,9 @@
 
 第 6 回目のテーマは WebRTC です。
 
-今回は [@komasshu](https://twitter.com/komasshu) さんと、 [@Tukimikage](https://twitter.com/Tukimikage) さんをお迎えし WebRTC をテーマに 「今なにが起こっているのか？」「これからどうなっていくのか？」をたっぷり議論しました。
+今回は [@komasshu](https://twitter.com/komasshu) さんと、 [@Tukimikage](https://twitter.com/Tukimikage) さんをお迎えし WebRTC をテーマに 「今なにが起こっているのか?」「これからどうなっていくのか?」をたっぷり議論しました。
 
-感想などは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) までお願いします。
+ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
 
 (NAT をアドレストランスポートと言い間違ってますが、そっとしておいてあげて下さい汗)
 

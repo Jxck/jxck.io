@@ -13,7 +13,8 @@
 
 今回も [Qiita で事前に質問を集め](http://t.umblr.com/redirect?z=http%3A%2F%2Fqiita.com%2FJxck_%2Fitems%2Fc5bfa3d16053de3f21eb&t=YzNkOTU5YzlkYjhkNTI1MmExY2IyYzVkZTMxMWJkNWEzZTM4NWQ4Yyw1U1JuYnNhSg%3D%3D) その中のいつくかは紹介しています。質問くださったみなさんありがとうございました。
 
-エピソードの感想などは、 [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) までお願いします。
+
+ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
 
 
 ## Guest

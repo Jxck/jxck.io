@@ -11,9 +11,9 @@
 
 前回に引き続き [@myakura](https://twitter.com/myakura) さんと [@nunnun (hiro)](https://twitter.com/nunnun) さんをお迎えして、 これまでの Web の標準化の持つ課題を解決する動きとして始まった、 [Extensible Web](http://t.umblr.com/redirect?z=https%3A%2F%2Fextensiblewebmanifesto.org%2F&t=MDEwMjcwZjY4OGY1OGNjNjUyMjAzNGFmODYxZDFjYzJkZDNjOTczZSw2MzlZMGxWUg%3D%3D)とはなんなのか、どういう経緯で提唱され、何を解決するのか。
 
-それによって「今何が起こっているのか」、「これからどうなっていくのか」そして、「自分たちはそれにどう参加できるのか？」を議論しました。
+それによって「今何が起こっているのか」、「これからどうなっていくのか」そして、「自分たちはそれにどう参加できるのか?」を議論しました。
 
-エピソードの感想などは、 [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) までお願いします。
+ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
 
 
 ## Guest
@@ -24,7 +24,7 @@
 
 ## Show Note
 
-- 0:00 ~ : Extensible Web とはなにか？
+- 0:00 ~ : Extensible Web とはなにか?
  - [Extensible Web Manifesto](http://t.umblr.com/redirect?z=https%3A%2F%2Fextensiblewebmanifesto.org%2F&t=MDEwMjcwZjY4OGY1OGNjNjUyMjAzNGFmODYxZDFjYzJkZDNjOTczZSw2MzlZMGxWUg%3D%3D)
  - [翻訳](http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fextensibleweb%2Fmanifesto%2Fpull%2F3&t=ZTdiYWY0NDJkNWVhYzU4NTBlNTdlMjVmNmMyN2I1YzNkZGRjZGVhMCw2MzlZMGxWUg%3D%3D) を PR したんだけどまだ本家の反応がない。。
  - [Extensible Web の夜明けと開発者が得た可能性の話](http://t.umblr.com/redirect?z=http%3A%2F%2Fjxck.hatenablog.com%2Fentry%2Fextendthewebforward&t=MDY2NGNiZTRhYTAyOTRiYjJhZDdkZDJlNWY4OTJkZWZjMzkwMWFiNyw2MzlZMGxWUg%3D%3D)
@@ -49,11 +49,11 @@
  - [Blob](http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fja%2Fdocs%2FDOM%2FBlob&t=OTY5ODJlN2JhYWNhMzQ5ZjIzNjZmNDljOTdhNWRmMjk5ZmQyNTRiMCw2MzlZMGxWUg%3D%3D)
  - [Service Worker のドラフト](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.w3.org%2FTR%2Fservice-workers%2F&t=YmIzZDk2MzhkN2M4YzgyZGVlN2Y1MDllYTMyNzlhZDVhZWQ1OWZmZSw2MzlZMGxWUg%3D%3D)
  - [W3C Respec](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.w3.org%2Frespec%2F&t=OGIwZWNjNDkxNzczNDM3MTEwMTY0NzkzYTFjZmQyMGU2OTA1MjIzOSw2MzlZMGxWUg%3D%3D)
-- 22:40 ~ : 本題、これからどうなるか？ (by @myakura)
+- 22:40 ~ : 本題、これからどうなるか? (by @myakura)
  - [houdini](http://t.umblr.com/redirect?z=http%3A%2F%2Flists.w3.org%2FArchives%2FPublic%2Fpublic-houdini%2F&t=OGQ3NTdjNWViYjU3Mjc4MmVkY2Y4ZTJhMDc0ZGI3Yzk2MjJlOWUzZCw2MzlZMGxWUg%3D%3D)
  - [the New Gang of Four](http://t.umblr.com/redirect?z=https%3A%2F%2Fbriankardell.wordpress.com%2F2012%2F12%2F07%2Fthe-new-gang-of-four%2F&t=NTUwMDk5YzFjY2MzZjE2NmMxNjZkMjhkZWEyNDQyNTc4MTQyNTY2Miw2MzlZMGxWUg%3D%3D)
  - [W3C TAG/Spec-reviews](http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fw3ctag%2Fspec-reviews&t=OTBlYTMyZWJjY2I0ZmViMDU5YzY4NzRlNGJkN2I4MmIyY2E3N2YxNSw2MzlZMGxWUg%3D%3D)
  - [TAG の選挙](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.w3.org%2Fblog%2Fnews%2Farchives%2F4304&t=MmJhNGE1Mjg5M2E0ZjI3OGUyODFhMWU2ZmMzZmUyOTc2MDZjNjYzNiw2MzlZMGxWUg%3D%3D)
-- 38:10 ~ : 本題、これからどうなるか？ (by @nunnun)
+- 38:10 ~ : 本題、これからどうなるか? (by @nunnun)
  - [TPAC 2015 @札幌](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.w3.org%2F2015%2F11%2FTPAC%2F&t=MWQzMWQxZjNkZTViYzQ3ZDBlNWRjZWY1NDgxMjVmMzE2MDc4YmE4NCw2MzlZMGxWUg%3D%3D)
  - (W3C の歩き方リンク予定地)

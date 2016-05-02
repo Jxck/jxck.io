@@ -12,7 +12,7 @@ CCS Injection の影響や発見の経緯、 Open SSL や TLS の現状、ここ
 
 今回は [Qiita でラフノートを公開](http://t.umblr.com/redirect?z=http%3A%2F%2Fqiita.com%2FJxck_%2Fitems%2F324f5b68f2da4add6a45&t=NDdhYmRlYmQ4Mjk4MTc0YWNiZmVhNGE4NDY5NDUyNDAxNGYwNzQ1NywyNkZTeUFxTw%3D%3D) し、質問を募集しました。全部は紹介できませんでしたが、質問頂いた方々有難うございました。
 
-感想などは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) までお願いします。
+ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
 
 
 ## Guest

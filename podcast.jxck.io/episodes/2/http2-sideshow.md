@@ -11,7 +11,7 @@ HTTP2 番外編です。
 
 OSS 奨励賞受賞の裏話や、 http2 や spdylay が今後どうなるのか、 [tatsuhiro_t](https://twitter.com/tatsuhiro_t) さんの今後の活動についてなど、こぼれ話をまとめた 15 分です。
 
-感想などは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) までお願いします。
+ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
 
 
 ## Guest

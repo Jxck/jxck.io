@@ -9,7 +9,7 @@
 
 [@a_matsuda](https://twitter.com/a_matsuda/) さんの語る Rails 開発のスタイルと、そのコミュニティの持つ力、 Rails が引っ張ったテストの話などをお送りします。
 
-エピソードの感想などは、 [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) までお願いします。
+ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
 
 
 ## Guest

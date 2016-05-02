@@ -9,12 +9,9 @@
 
 今回は [#LLDiver](http://t.umblr.com/redirect?z=http%3A%2F%2Fll.jus.or.jp%2F2014%2F&t=NGQzZjI1NTkzNmU0NTkzNzE0ZmRjN2ZhNGNiOTI4Yzk3Mjg5NDFkNCxmVGVJRVNsdA%3D%3D) で [「mozaic.fm 出張版: TypeScript and Dart」](http://t.umblr.com/redirect?z=http%3A%2F%2Fll.jus.or.jp%2F2014%2Fprogram%23mozaic.fm&t=ZjIyYjIzMTBkZmM0ZjcwOTM4NjNjOTliY2U3MjNiZDhkZTdhNGEwNCxmVGVJRVNsdA%3D%3D) という枠をやらせて頂きました。
 
-ゲストは [あんどう](https://twitter.com/technohippy) さんと、 [わかめ](https://twitter.com/vvakame) さんをお迎えし  
-altJS をテーマに 「今なにが起こっているのか？」「これからどうなっていくのか？」を議論しました。
+ゲストは [あんどう](https://twitter.com/technohippy) さんと、 [わかめ](https://twitter.com/vvakame) さんをお迎えし altJS をテーマに 「今なにが起こっているのか?」「これからどうなっていくのか?」を議論しました。
 
-エピソードの感想は [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) までお願いします。
-
-今回は、設備での録音がうまくできなかったので、手元で別途撮ったもの使っているので、あまり音が良くありませんがご了承ください。
+ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
 
 
 ## Guest

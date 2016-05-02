@@ -7,11 +7,11 @@
 
 第 7 回目のテーマは REST です。
 
-今回は [@yohei](https://twitter.com/yohei) さんと、 [@t_wada](https://twitter.com/t_wada) さんをお迎えし、 REST をテーマに 「もういちど REST とは何か、ちゃんと話そう」という議論を皮切りに「今なにが起こっているのか？」「これからどうなっていくのか？」また、「Web を支える技術を改訂するとしたら？」をたっぷり議論しました。
+今回は [@yohei](https://twitter.com/yohei) さんと、 [@t_wada](https://twitter.com/t_wada) さんをお迎えし、 REST をテーマに 「もういちど REST とは何か、ちゃんと話そう」という議論を皮切りに「今なにが起こっているのか?」「これからどうなっていくのか?」また、「Web を支える技術を改訂するとしたら?」をたっぷり議論しました。
 
 エピソード中にも出てきましたが、 **「Web を支える技術」を改訂する際に「こういうことを載せて欲しい」** という [@yohei](https://twitter.com/yohei) さんへの要望があれば [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) をつけて、是非つぶやいてください。
 
-エピソードの感想なども、同じく [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) までお願いします。
+エピソードの感想なども、同じく [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
 
 今回は、居酒屋トークの録音なので周囲の雑音が多いですがご了承ください。
 
@@ -44,10 +44,3 @@
 - [Tim Berners-Lee による Web を作った理由 | TED の前半](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.ted.com%2Ftalks%2Ftim_berners_lee_on_the_next_web&t=YjE2NWQ3ZmIzMWRhODZkNTQ5OWViYzAzODY3NDU3Nzg4MTc2MTdjZSxwWVJrNjFZVw%3D%3D)
 - [伊勢の神宮](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.jinjahoncho.or.jp%2Fizanai%2Fise.html&t=MzdiNjFhZDk1M2RkODg2MGY3MTQwZGRjNmZjNTczZjY4MWZlNDE5MyxwWVJrNjFZVw%3D%3D)
 - [黒幕 稲尾編集長](https://twitter.com/inao/status/487591486519640064)
-
-
-## Related Entry
-
-- [REST が日本で受け入れられていった頃の話( #mozaicfm の補足)](http://t.umblr.com/redirect?z=http%3A%2F%2Fblog.kentarok.org%2Fentry%2F2014%2F08%2F20%2F000434&t=NjMzYjk3NjYzYmJkMGZiN2ExNjZkZjQzYzI4NTMxYzFhZjg2ZDhjZSxwWVJrNjFZVw%3D%3D)
-- [#mozaicfm REST を聴いての感想](http://t.umblr.com/redirect?z=http%3A%2F%2Fd.hatena.ne.jp%2Ftkawa%2F20140821&t=NzY0MjhkMDM1YTdiZDBlNjg0ODhlY2NkNGE4ZGQxOTljMjZmYjVlNixwWVJrNjFZVw%3D%3D)
-- [#mozaicfm #7 REST を聞いて](http://t.umblr.com/redirect?z=http%3A%2F%2Fkysnm.hatenablog.com%2Fentry%2F2014%2F08%2F23%2F124641&t=NDRjMWVhMWM2NDMwMDAxMjAxYjVjNGUxMDM3YjQzYjUwYTRmYmNkYixwWVJrNjFZVw%3D%3D)

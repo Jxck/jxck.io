@@ -7,11 +7,11 @@
 
 第 1 回目のテーマは WebComponents です。
 
-[@hokaccha](https://twitter.com/hokaccha) さんと [@ahomu](https://twitter.com/ahomu) さんをお迎えし、 WebComponents で何が変わるのか、 ShadowDOM で何が嬉しいのか、今の課題は何か？
+[@hokaccha](https://twitter.com/hokaccha) さんと [@ahomu](https://twitter.com/ahomu) さんをお迎えし、 WebComponents で何が変わるのか、 ShadowDOM で何が嬉しいのか、今の課題は何か?
 
-「なにが起こっているのか？」「これからどうなっていくのか？」を議論しました。
+「なにが起こっているのか?」「これからどうなっていくのか?」を議論しました。
 
-初めてなので色々聞き苦しいところもあるかもしれませんが、感想などは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) までお願いします。
+ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
 
 
 ## Guest

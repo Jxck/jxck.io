@@ -9,7 +9,7 @@
 
 今回は [@cubicdaiya](https://twitter.com/cubicdaiya) さんをお迎えして、 すっかり HTTP サーバのデファクトの地位につきつつある Nginx について、なぜ Nginx を選ぶのか、 Nginx から見た現在の Web にはどういう変化があるのか。 そして Nginx はこれからどうなっていくのか、それが Web にどんな変化をもたらすのかを議論しました。
 
-エピソードの感想などは、 [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) までお願いします。
+ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
 
 
 ## Guest
@@ -84,7 +84,7 @@
 - [HTTPS 化する Web をどう考えるか(書いたのは収録後です)](http://t.umblr.com/redirect?z=http%3A%2F%2Fjxck.hatenablog.com%2Fentry%2Fweb-over-https&t=ZGZjMDNkNWU3MzVmMDI5NDMzMWI4NDI2NDI3YTYzYWE4Zjk3YjUxZix0UFVqYktDZw%3D%3D)
 
 
-### QUIC はどうか？(58:10~)
+### QUIC はどうか?(58:10~)
 
 - [QUIC](http://t.umblr.com/redirect?z=http%3A%2F%2Fblog.chromium.org%2F2013%2F06%2Fexperimenting-with-quic.html&t=MWQ0Y2JmMTFkZDFhZWFhOTczN2U4Y2UyZThjYTY4ZmZjZjRlNmVlOSx0UFVqYktDZw%3D%3D)
 - **Google はインターネットを fork しようとしている**

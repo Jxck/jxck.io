@@ -7,15 +7,15 @@
 
 第 16 回目のテーマは Security (application) です。
 
-今回は [@hasegawayosuke](https://twitter.com/hasegawayosuke) さんをお迎えして、 Web アプリケーションの開発技術が進化することによって、同じように変わっている筈のセキュリティに関して、その変化をどう考えればいいのか？
+今回は [@hasegawayosuke](https://twitter.com/hasegawayosuke) さんをお迎えして、 Web アプリケーションの開発技術が進化することによって、同じように変わっている筈のセキュリティに関して、その変化をどう考えればいいのか?
 
-開発者とセキュリティ関係者のあいだで、足りてないと認識されているものは何か？
+開発者とセキュリティ関係者のあいだで、足りてないと認識されているものは何か?
 
 それらをふまえてセキュリティをとりまく環境で「今何が起こっているのか」、そして「これからどうなっていくのか」について議論しました。
 
 hasegawa さんが本を書いてる件は、許可を取っておりカットしてません。公表して自分を追い込むメソッドだそうです w
 
-エピソードの感想などは、 [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) までお願いします。
+ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
 
 
 ## Guest

@@ -11,7 +11,7 @@
 
 また、危なげな運用で続けてきた mozaic.fm も、一つ目の目標だった 10 回を達成することができました。これも、購読/出演、してくださった皆様のおかげです。これからもしばらくは続けたいと思いますので、よろしくお願いします。
 
-エピソードの感想などは、 [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) までお願いします。
+ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
 
 
 ## Guest
@@ -41,10 +41,10 @@
 - 28:20 ~ : Node.js はなぜシングルスレッドのイベント駆動を選んだのか
   - [C10K 問題](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.hyuki.com%2Fyukiwiki%2Fwiki.cgi%3FTheC10kProblem&t=Mjg4ODgzNzFmYmY2MzdlZTA1N2VkNmE0YzMzZDcwMjdiMWQzNDEwNSxYdVJHVGd5bQ%3D%3D)
   - [Gopher(golang じゃない方)](http://t.umblr.com/redirect?z=http%3A%2F%2Fja.wikipedia.org%2Fwiki%2FGopher&t=NjVkZjM1MjZkMzUyMjk4YmYyODNiNzcyNTc2YTdjYzQ1ZDA2NzBkYyxYdVJHVGd5bQ%3D%3D)
-- 36:16 ~ : そもそも非同期とは？
+- 36:16 ~ : そもそも非同期とは?
   - [v8](http://t.umblr.com/redirect?z=https%3A%2F%2Fcode.google.com%2Fp%2Fv8%2F&t=NWE1ZmZlZTZlNTEzZjk4NzVmM2FiOWYyMzVkOGZjMGIyOTc5YjQ1MixYdVJHVGd5bQ%3D%3D)
   - [イベントループを止めてはいけない](http://t.umblr.com/redirect?z=http%3A%2F%2Fjxck.hatenablog.com%2Fentry%2Ffor-with-eventloop&t=YzU4MTMyZDRkNjM1MTIyMDczMGVmMmYzNjgzYjk4MTA3OTQwOWM2NSxYdVJHVGd5bQ%3D%3D)
-- 43:10 ~ : 本当に Callback Hell はあるのか？
+- 43:10 ~ : 本当に Callback Hell はあるのか?
   - [async.js](http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fcaolan%2Fasync&t=OGIzMmY4NDQ2MjE1NzY2YTllMjExYzI4YmU5MTFlMDY3N2Q0NjMxOCxYdVJHVGd5bQ%3D%3D)
   - [Flowless (koichik の flow control)](http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fkoichik%2Fnode-flowless&t=MzBmNmMwOWRkNjQ3NjJhZDQ2Mjc0ZGI2OTI4NGU5YTUwZGZhZjI1ZSxYdVJHVGd5bQ%3D%3D)
 - 50:18 ~ : Stream を制すものは Node を制す
@@ -53,7 +53,7 @@
   - [stream handbook](http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fsubstack%2Fstream-handbook&t=MzE4ZDlmODM5MDQ0NmM1NjJhOGFhYWQ4NjI2OTIzYWQ1MWUxNzY4YSxYdVJHVGd5bQ%3D%3D)
   - [dominic tarr / event-stream](http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fdominictarr%2Fevent-stream&t=MWQ5YzA1ZjgwYjM5NTZmZTZmZGM5NjZiNGVhYTNkM2RkZmUxOTU4ZSxYdVJHVGd5bQ%3D%3D)
   - [dominic tarr / through](http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fdominictarr%2Fthrough&t=Y2RmNDg4N2EzMjRhYjYxMjExYmJmZDY0NGU5MjY2Y2U0Mzg0NzllOSxYdVJHVGd5bQ%3D%3D)
-- 01:00:00 ~ : Node の弱点とは？
+- 01:00:00 ~ : Node の弱点とは?
   - [LET IT CRASH!?](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.slideshare.net%2Fkoichik%2Fnode8-let-it-crash&t=NTQwMjI0Y2U4ODY3YTFhNjRmMDY5ZWMzNWNlMDkxMGJmMjEyOGE4ZCxYdVJHVGd5bQ%3D%3D)
   - [domain](http://t.umblr.com/redirect?z=http%3A%2F%2Fnodejs.org%2Fapi%2Fdomain.html&t=MjkxNjVhN2NhODExNjViNjdhZDk1ZDI4YTAzNmNlNWJkODk4YmVhMCxYdVJHVGd5bQ%3D%3D)
   - [izc / cluster_master](http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fisaacs%2Fcluster-master&t=ZDE0M2IwNDg4MjFhOWMwZDk4ZWQ1ZjdmMzlkZDU4NzUzMDNmNjFkMCxYdVJHVGd5bQ%3D%3D)
@@ -69,7 +69,7 @@
   - [graft](http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2FGraftJS%2Fgraft&t=ZWVhZDc2ZDBhYjA2YzJjYzQ0NDJkZWY1NjQ5OWJjOGJmMGZmYTM5MSxYdVJHVGd5bQ%3D%3D)
   - [jschan](http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2FGraftJS%2Fjschan&t=ZTM5NmU0OGYxOGEyYzM3ZTM3MzhlMjVhMWIzNmFkZWZkMjk0NjM0YSxYdVJHVGd5bQ%3D%3D)
   - [位置透過性 椎名林檎](http://jxck.tumblr.com/post/11435831106/hook-io)
-- 01:34:30 ~ : Node は何に向いていたのか？
+- 01:34:30 ~ : Node は何に向いていたのか?
   - [render](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.renderjs.org%2F&t=MjI4Yjk0NGYzYzc0ZDEwMDczMjlmNzg5NTAyYTMwMTE3YjMyMTU5MCxYdVJHVGd5bQ%3D%3D)
   - [Rendr 入門: サーバサイドで(も)動かす、 Backbone.js](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.slideshare.net%2Fmshk%2Frendr&t=YjA2MTAyZDRmNjRkOWQwOGU1NTQ1MmQ2OWYxZjYyZmE3MDkwY2RhZCxYdVJHVGd5bQ%3D%3D)
 - 01:42:00 ~ : 今のトレンド LevelDB + WebRTC + Microservices
@@ -82,7 +82,7 @@
   - <a>ES6 promise</a>
   - [Walmart 事件](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.joyent.com%2Fblog%2Fwalmart-node-js-memory-leak&t=YWYwZjQxOWJjNTg1NmFmMzZmYjMwNTE2Y2I5NzQ3YzU5MzgxMGIzMSxYdVJHVGd5bQ%3D%3D)
   - [boxer](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.getboxer.com%2F&t=NjFjY2NlOTFhZTA4MjA2NTg3N2Y1MTQ3ZTVhZTdmNjk2YmNlMjljNCxYdVJHVGd5bQ%3D%3D)
-- 2:06:20 ~ : 海外での TypeScript 事情？
+- 2:06:20 ~ : 海外での TypeScript 事情?
   - [traceur compiler](http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fgoogle%2Ftraceur-compiler&t=YjE5MzBiNDcwMzA5OGRmNWY5NDQ0ZjEzYzE0NGI2NGJjNzkyYjhhZSxYdVJHVGd5bQ%3D%3D)
   - [closure compiler](http://t.umblr.com/redirect?z=https%3A%2F%2Fdevelopers.google.com%2Fclosure%2Fcompiler%2F%3Fhl%3Dja&t=MWMyN2Y0ZGE1YjJmOTQ3MDVlZDg5MDJmOTE4NzBkZDk3ZDFjMWM2NyxYdVJHVGd5bQ%3D%3D)
 - 2:09:00 ~ : 日本の Node コミュニティの今後

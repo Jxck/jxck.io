@@ -7,11 +7,11 @@
 
 第 2 回目のテーマは HTTP2 です。
 
-今回は [@tatsuhiro_t](https://twitter.com/tatsuhiro_t) さんと [@jovi0608](https://twitter.com/jovi0608) さんをお迎えし HTTP の世界で、「今なにが起こっているのか？」「これからどうなっていくのか？」を議論しました。
+今回は [@tatsuhiro_t](https://twitter.com/tatsuhiro_t) さんと [@jovi0608](https://twitter.com/jovi0608) さんをお迎えし HTTP の世界で、「今なにが起こっているのか?」「これからどうなっていくのか?」を議論しました。
 
 なお、今回は編集で収まりきらなかった 「Nghttp2 の今後」について、番外編として後日配信する予定です。ユーザの方は必聴です。
 
-感想などは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) までお願いします。
+ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
 
 
 ## Guest

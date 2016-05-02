@@ -9,7 +9,7 @@
 
 今回は [@mizchi](https://twitter.com/mizchi/) さんをお迎えして、 Virtual DOM というアイデアの本質、それが可能にした Flux というアーキテクチャ、そして各種の実装と今後の期待について、「今何が起こっているのか」、「これからどうなっていくのか」を議論しました。
 
-エピソードの感想などは、 [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) までお願いします。
+ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
 
 
 ## Guest
@@ -18,7 +18,6 @@
 
 
 ## Show Note
-
 
 ### Virtual DOM
 

@@ -11,11 +11,11 @@
 
 [High Performance Browser Networking](http://t.umblr.com/redirect?z=http%3A%2F%2Fchimera.labs.oreilly.com%2Fbooks%2F1230000000545&t=MTAyNjg5OGQzODVlMWRkZDYwNTEzOGE3MGJjYzUzMDllNmMwMzg1MCxNNk5KM3NVNA%3D%3D)は、複雑化し知らなくてはならい知識が飛躍的に増えた Web の世界でのネットワークに関わる知識について、幅広く詳細に解説した Web エンジニア必携の一冊です。
 
-インタビューでは Ilya はいったいどういうエンジニアで、何故この本を執筆したのか。この本以降でのアップデートや、 Ilya 自身の見る「これからの Web」について、何がおこっているのか？、これからどうなっていくのか？をお聞きしました。
+インタビューでは Ilya はいったいどういうエンジニアで、何故この本を執筆したのか。この本以降でのアップデートや、 Ilya 自身の見る「これからの Web」について、何がおこっているのか?、これからどうなっていくのか?をお聞きしました。
 
 別途 [Qiita で募集した質問](http://t.umblr.com/redirect?z=http%3A%2F%2Fqiita.com%2FJxck_%2Fitems%2Fa0cea350cc982915d092&t=OWIzYTViMTkwZTA3MDc5OWZlZTVmOGY0OTNhZDBiNzVhMGU5MjRhNixNNk5KM3NVNA%3D%3D) も一部採用させていただきました。応募頂いた皆様ありがとうございました。
 
-エピソードの感想などは、 [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) までお願いします。
+ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
 
 
 ## Guest

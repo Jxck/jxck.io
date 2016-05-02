@@ -9,7 +9,7 @@
 
 [@mizchi](https://twitter.com/mizchi/) さんとのこぼれ話をお送りします。
 
-エピソードの感想などは、 [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) までお願いします。
+ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
 
 
 ## Guest
@@ -30,6 +30,6 @@
 - [Object.observe の Google Chrome での先行実装と Angular について](http://t.umblr.com/redirect?z=http%3A%2F%2Fmizchi.hatenablog.com%2Fentry%2F2014%2F10%2F07%2F103316&t=Yzg2MmNjYTc2YTRmZDUzYWM1Yzg5N2RkN2Y4MjJlZjdiYTRiNWVmYSxBT1VMOXRnbw%3D%3D)
 - FireFox
 - [vimperator](http://t.umblr.com/redirect?z=https%3A%2F%2Faddons.mozilla.org%2Fja%2Ffirefox%2Faddon%2Fvimperator%2F&t=ZmE1MjNjYmQ1MjQzMTcxMzAwZjEwMjZlMjE3Yzg4ZjNlNjc0NTY0YixBT1VMOXRnbw%3D%3D)
-- [どの程度あおり？](http://t.umblr.com/redirect?z=http%3A%2F%2Fqiita.com%2Fmizchi%2Fitems%2F4d25bc26def1719d52e6&t=MTYzM2ViOTc1N2MxZTUwYmZmN2ZjNTkyMmRjOTZlMjRhYjRjNjI1NyxBT1VMOXRnbw%3D%3D)
+- [どの程度あおり?](http://t.umblr.com/redirect?z=http%3A%2F%2Fqiita.com%2Fmizchi%2Fitems%2F4d25bc26def1719d52e6&t=MTYzM2ViOTc1N2MxZTUwYmZmN2ZjNTkyMmRjOTZlMjRhYjRjNjI1NyxBT1VMOXRnbw%3D%3D)
 - [あなたが React を使うべき理由](http://t.umblr.com/redirect?z=http%3A%2F%2Fmizchi.hatenablog.com%2Fentry%2F2014%2F09%2F02%2F201728&t=OTk4NjQ5YmVmNmNlY2E5MGYwNTk5ODlhZDQyYTExODAwYWFkNzgwOSxBT1VMOXRnbw%3D%3D)
 - 最近くやしいこと [TypedCoffee](http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fmizchi%2FTypedCoffeeScript&t=N2MxZmViNTA4MmQ0MGVhMWIxOWIyMmZjOWRjNGYxNmQ2ZDcyMWM2MixBT1VMOXRnbw%3D%3D)

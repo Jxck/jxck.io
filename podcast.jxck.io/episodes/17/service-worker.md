@@ -11,9 +11,9 @@
 
 実装や仕様の裏話や、これが普及してからの懸念点なども含めて、じっくり議論しました。
 
-エピソードの感想などは、 [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) までお願いします。
+ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
 
-また、 Service Worker へのフィードバックは [bug tracker](http://t.umblr.com/redirect?z=https%3A%2F%2Fcrbug.com%2Fnew&t=YWNmMmZiNmZkMzU2YjM3ZmFjZjllYjA2YWVhYmIxM2RhMmRlZGIzYyxBOEh1Q2lxdQ%3D%3D) (基本は英語ですが、日本語でも良いそうです)、もしくは [#serviceworker](https://twitter.com/search?q=%23serviceworker&src=hash) までお願いします。
+また、 Service Worker へのフィードバックは [bug tracker](http://t.umblr.com/redirect?z=https%3A%2F%2Fcrbug.com%2Fnew&t=YWNmMmZiNmZkMzU2YjM3ZmFjZjllYjA2YWVhYmIxM2RhMmRlZGIzYyxBOEh1Q2lxdQ%3D%3D) (基本は英語ですが、日本語でも良いそうです)、もしくは [#serviceworker](https://twitter.com/search?q=%23serviceworker&src=hash) です。
 
 
 ## Guest
@@ -98,7 +98,7 @@
 - [bug tracker (英語ですが最悪日本語でも可)](http://t.umblr.com/redirect?z=https%3A%2F%2Fcrbug.com%2Fnew&t=YWNmMmZiNmZkMzU2YjM3ZmFjZjllYjA2YWVhYmIxM2RhMmRlZGIzYyxBOEh1Q2lxdQ%3D%3D)
 
 
-### これからどうなっていくか？ (1:07:20~)
+### これからどうなっていくか? (1:07:20~)
 
 - [Service worker が拓く mobile web の新しいかたち](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.slideshare.net%2Fkinukox%2Fservice-worker-mobile-web&t=OTRhOTgyNzM3NzQ2OWY0MmYxYjA5MjhhN2FlZjliN2UyYjA5YjRmOCxBOEh1Q2lxdQ%3D%3D)
 - [ServiceWorker のスコープとページコントロールについて](http://t.umblr.com/redirect?z=http%3A%2F%2Fqiita.com%2Fnhiroki%2Fitems%2Feb16b802101153352bba&t=MzNjOTg3ZTFiOWE5MzkxMjBjNzY5YTE1MWE1YjEyNjk2NzdlYzFlYSxBOEh1Q2lxdQ%3D%3D)

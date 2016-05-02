@@ -11,7 +11,7 @@
 
 プロジェクトオーナーである DHH が最初の Rails をリリースしてから 10 年たった今、この 10 年を見てきた [@a_matsuda](https://twitter.com/a_matsuda/) さんとともに、 10 年前と比べて様変わりしたフロントエンド開発との兼ね合いや、 Microservices に対する感触などについて議論しました。
 
-エピソードの感想などは、 [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) までお願いします。
+ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
 
 (なお、 Android での不具合のフィードバックを頂いたため、今回から配信形式を m4a ではなく mp3 に変えました。アートワークはありません。)
 
