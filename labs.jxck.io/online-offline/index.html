@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<title>online/offline event demo | labs.jxck.io</title>
+
+<h1>online/offline event demo</h1>
+
+<p>navigator.onLine = <span id=status></span></p>
+
+<script>
+window.onload = function(e) {
+  Notification.requestPermission();
+  document.getElementById('status').textContent = navigator.onLine;
+}
+
+window.ononline = function(e) {
+  console.log(e);
+  let n = new Notification('became online');
+  setTimeout(n.close.bind(n), 3000);
+  document.getElementById('status').textContent = navigator.onLine;
+}
+
+window.onoffline = function(e) {
+  console.log(e);
+  let n = new Notification('became offline');
+  setTimeout(n.close.bind(n), 3000);
+  document.getElementById('status').textContent = navigator.onLine;
+}
+</script>
+
