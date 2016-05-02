@@ -1,4 +1,4 @@
-# #8 AltJS
+# [altjs] #8 AltJS
 
 <audio preload=none controls src=http://files.mozaic.fm/mozaic-ep8.m4a></audio>
 

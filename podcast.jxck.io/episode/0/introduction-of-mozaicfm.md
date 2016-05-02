@@ -1,4 +1,4 @@
-# #0 introduction of mozaic.fm
+# [intro] #0 introduction of mozaic.fm
 
 <audio preload=none controls src=http://files.mozaic.fm/mozaic-ep0.m4a></audio>
 

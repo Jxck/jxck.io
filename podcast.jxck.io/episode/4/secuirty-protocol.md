@@ -1,4 +1,4 @@
-# #4 Security (protocol)
+# [security] #4 Security (protocol)
 
 <audio preload=none controls src=http://files.mozaic.fm/mozaic-ep4.m4a></audio>
 

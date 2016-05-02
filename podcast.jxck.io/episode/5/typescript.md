@@ -1,4 +1,4 @@
-# #5 TypeScript
+# [typescript] #5 TypeScript
 
 <audio preload=none controls src=http://files.mozaic.fm/mozaic-ep5.m4a></audio>
 
