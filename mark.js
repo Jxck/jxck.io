@@ -62,6 +62,7 @@ function Description(text) {
 // tag ごとのビルダ
 class Builder {
   constructor(option, indent) {
+    this.host = option.host;
     this.canonical = option.canonical;
     this.ampurl = option.ampurl;
     this.template = option.template;
@@ -484,6 +485,7 @@ function prepare(filepath, option) {
   let created_at = dir.split('/')[3];
   let updated_at = fs.statSync(filepath).mtime.toISOString().substring(0, 10);
   let baseurl = '/' + dir.split('/').slice(2).join('/');
+  let host = dir.split('/')[1];
 
   let file = read(filepath);
 
@@ -537,6 +539,7 @@ function prepare(filepath, option) {
     description,
     canonical,
     ampurl,
+    host,
     meta,
     template,
     style,
