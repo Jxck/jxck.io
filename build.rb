@@ -1,17 +1,19 @@
 #!/usr/bin/env ruby
 
-# 各 markdown を mark.js にかけながら index.html を作る
+# html, amp.html 削除
 `rm -rf ./blog.jxck.io/entries/**/*.html`
 puts "blog html deleted"
 
+# エントリ markdown をビルド
+`find ./blog.jxck.io/entries/**/*.md | xargs -L1 ./mark.js`
+puts "blog html build"
+
+# index.html をビルド
 top = ""
 entries = Dir.glob("./blog.jxck.io/entries/**/**")
   .select { |path| path.match(/.*.md$/) }
   .sort { |a, b| b <=> a }
   .map.with_index { |file, i|
-    puts "process #{file}"
-
-    `./mark.js #{file}`
     head = `head -n 1 #{file}`
 
     title = head.match(/\# \[.*\] (.*)/)[1]
@@ -39,3 +41,4 @@ html = html.gsub('"', '\"')
 html = eval('"' + html + '"')
 
 File.write("./blog.jxck.io/index.html", html)
+puts "build index.html"

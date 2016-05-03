@@ -556,6 +556,7 @@ let filepath = process.argv[2];
 
 // blog html
 (() => {
+  p('mark html', filepath);
   let info = prepare(filepath, { amp: false });
 
   let ast = parse(info.md, { position: false });
@@ -570,6 +571,7 @@ let filepath = process.argv[2];
 
 // amp html
 (() => {
+  p('mark amp', filepath);
   let info = prepare(filepath, { amp: true });
 
   let ast = parse(info.md, { position: false });
