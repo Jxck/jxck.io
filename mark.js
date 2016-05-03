@@ -96,8 +96,7 @@ class Builder {
     return this.wrap`${node.value}`;
   }
   article(node) {
-    let value = this.wrap`<article>${node.value}</article>`;
-    return value;
+    return this.wrap`<article>${node.value}</article>`;
   }
   section(node) {
     return this.wrap`<section>${node.value}</section>\n`;
@@ -215,6 +214,7 @@ function j(o) {
   return JSON.stringify(o, ' ', ' ');
 }
 
+// markdwon ast traverse
 function traverse(ast, option) {
   option.enter(ast);
   if (!ast.children) return option.leave(ast);
@@ -235,6 +235,7 @@ function isInline(node) {
   ].indexOf(node.type) > -1;
 }
 
+// table を th/td/thead/tbody に分類
 function tabling(ast) {
   return ast.map((node) => {
     if (node.type !== 'table') return node;
