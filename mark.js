@@ -50,7 +50,7 @@ function Tags(text) {
   return { tags, text };
 }
 
-// # Intro/# Theme の中身を取り出す
+// Intro/Theme の中身を取り出す
 function Description(text) {
   let intro = text.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2].trim();
   intro = intro.replace(/(\n|\r)/g, '');
@@ -75,6 +75,9 @@ class Builder {
     this.title = '';
 
     this.indent = indent;
+  }
+  get isAMP() {
+    return !this.ampurl;
   }
   taglist() {
     return this.tags.map((tag) => `<a>${tag}</a>`).join(',');
@@ -110,7 +113,7 @@ class Builder {
       // h1 の中身はタイトル
       this.title = node.value;
       // h1 だけは canonical にリンク
-      val = `<h${node.depth}><a href="/${this.canonical}">${this.title}</a></h${node.depth}>\n`;
+      val = `<h${node.depth}><a href=${this.canonical}>${this.title}</a></h${node.depth}>\n`;
     } else {
       // h2 以降は id を振る
       val = `<h${node.depth} id="${unspace(node.value)}"><a href="#${unspace(node.value)}">${node.value}</a></h${node.depth}>\n`;
@@ -120,8 +123,7 @@ class Builder {
   code(node) {
     let lang = node.lang || '';
     let value = `<pre class=${lang}><code>${node.value}</code></pre>\n`;
-    if (this.ampurl && !this.pred) {
-      // has amp url so not amp page
+    if (!this.isAMP && !this.pred) {
       value = [this.Style('/assets/css/pre.css'), value].join('\n');
       this.pred = true;
     }
@@ -129,8 +131,7 @@ class Builder {
   }
   table(node) {
     let value = this.wrap`<table>${node.value}</table>`;
-    if (this.ampurl && !this.tabled) {
-      // has amp url so not amp page
+    if (!this.isAMP && !this.tabled) {
       value = [this.Style('/assets/css/table.css'), value].join('\n');
       this.tabled = true;
     }
@@ -142,18 +143,24 @@ class Builder {
   tableHead  (node) { return `<th class=align-${node.align}>${node.value}</th>\n`; }
   tableData  (node) { return `<td class=align-${node.align}>${node.value}</td>\n`; }
   paragraph  (node) { return `<p>${node.value}\n`; }
+
   // inline
   inlineCode (node) { return h`<code>${node.value}</code>`; }
   blockquote (node) { return h`<blockquote>${node.value}</blockquote>\n`; }
   listItem   (node) { return `<li>${node.value}\n`; }
-  link       (node) {
-    if (!this.ampurl && node.url.match(/^chrome:\/\//)) {
+  strong     (node) { return `<strong>${node.value}</strong>`; }
+  emphasis   (node) { return `<em>${node.value}</em>`; }
+  text       (node) { return node.value; }
+  thematicBreak() { return '<hr>'; }
+
+  link(node) {
+    if (this.isAMP && node.url.match(/^chrome:\/\//)) {
       // amp page ignores chrome:// url
       return node.url;
     }
     return `<a href="${node.url}">${node.value}</a>`;
   }
-  image      (node) {
+  image(node) {
     let width = '';
     let height = '';
 
@@ -167,7 +174,7 @@ class Builder {
     }
 
     // AMP should specify width-height
-    if (!this.ampurl) {
+    if (this.isAMP) {
       // not has amp link means amp template
       if (width === '' || height === '') {
         console.log('no widthxheight for img');
@@ -187,17 +194,13 @@ class Builder {
     <img src=${node.url} alt="${node.alt}" title="${node.title}">
     </picture>`;
   }
-  strong     (node) { return `<strong>${node.value}</strong>`; }
-  emphasis   (node) { return `<em>${node.value}</em>`; }
-  html       (node) {
+  html(node) {
     let value = `${node.value}\n`;
-    if (!this.ampurl && value.match(/<iframe.*/)) {
+    if (this.isAMP && value.match(/<iframe.*/)) {
       return value.replace(/iframe/g, 'amp-iframe');
     }
     return value;
   }
-  text(node) { return node.value; }
-  thematicBreak() { return '<hr>'; }
 }
 
 global.__defineGetter__('__LINE__', () => {
@@ -480,7 +483,7 @@ function prepare(filepath, option) {
   let name = path.parse(filepath).name;
   let created_at = dir.split('/')[3];
   let updated_at = fs.statSync(filepath).mtime.toISOString().substring(0, 10);
-  let baseurl = dir.replace('./blog.jxck.io/', '');
+  let baseurl = '/' + dir.split('/').slice(2).join('/');
 
   let file = read(filepath);
 
@@ -529,7 +532,6 @@ function prepare(filepath, option) {
     name,
     created_at,
     updated_at,
-    baseurl,
     tags,
     md,
     description,

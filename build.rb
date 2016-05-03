@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+# 各 markdown を mark.js にかけながら index.html を作る
 `rm -rf ./blog.jxck.io/entries/**/*.html`
 puts "blog html deleted"
 
