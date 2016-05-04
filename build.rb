@@ -1,15 +1,15 @@
 #!/usr/bin/env ruby
 
 # .gz 削除
-`find ./blog.jxck.io/* -name *.gz -delete`
+puts `find ./blog.jxck.io/* -name *.gz | xargs -L 4 -P 4 rm`
 puts "blog gz deleted"
 
 # html, amp.html 削除
-`rm -rf ./blog.jxck.io/entries/**/*.html`
+puts `find ./blog.jxck.io/entries/* -name *.html | xargs -L 4 -P 4 rm`
 puts "blog html deleted"
 
 # エントリ markdown をビルド
-`find ./blog.jxck.io/entries/**/*.md | xargs -L1 ./mark.js`
+puts `find ./blog.jxck.io/entries/**/*.md | xargs -L 1 -P 4 ./mark.js`
 puts "blog html build"
 
 # index.html をビルド
