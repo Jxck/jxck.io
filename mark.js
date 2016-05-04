@@ -59,6 +59,11 @@ function Description(text) {
   return intro;
 }
 
+const CSS = {
+  PRE: '/assets/css/pre.css',
+  TABLE: '/assets/css/table.css',
+}
+
 // tag ごとのビルダ
 class Builder {
   constructor(option, indent) {
@@ -125,7 +130,7 @@ class Builder {
     let lang = node.lang || '';
     let value = `<pre class=${lang}><code>${node.value}</code></pre>\n`;
     if (!this.isAMP && !this.pred) {
-      value = [this.Style('/assets/css/pre.css'), value].join('\n');
+      value = [this.Style(CSS.PRE), value].join('\n');
       this.pred = true;
     }
     return value;
@@ -133,7 +138,7 @@ class Builder {
   table(node) {
     let value = this.wrap`<table>${node.value}</table>`;
     if (!this.isAMP && !this.tabled) {
-      value = [this.Style('/assets/css/table.css'), value].join('\n');
+      value = [this.Style(CSS.TABLE), value].join('\n');
       this.tabled = true;
     }
     return value;
