@@ -4,16 +4,14 @@
 
 <h1>Service Worker: scope</h1>
 
-<strong>/index.html</strong>
-
-<a href=next.html>next</a>
+<strong>/next.html</strong>
 
 <input type=button id=button value=button>
 
 <script>
-console.log('master');
+console.log('next');
 
-navigator.serviceWorker.register('worker.js', { scope: './index.html' }).then((registration) => {
+navigator.serviceWorker.register('worker2.js', { scope: './next.html' }).then((registration) => {
   return navigator.serviceWorker.ready;
 });
 
@@ -21,4 +19,3 @@ document.getElementById('button').addEventListener('click', () => {
   fetch('test').then((res) => res.text()).then(console.log.bind(console));
 });
 </script>
-
