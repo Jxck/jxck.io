@@ -1,8 +1,7 @@
 {
-  "name": "blog.jxck.io",
+  "name": "jxck.io",
   "version": "0.0.1",
-  "description": "blog.jxck.io",
-  "main": "mdbuild.js",
+  "description": "jxck.io",
   "dependencies": {
     "remark": "^4.2.2",
     "web-push": "^2.1.1"
@@ -28,13 +27,13 @@
     "textlint-rule-web-plus-db": "^1.1.5"
   },
   "scripts": {
-    "build": "./build.rb && ./compress.rb blog.jxck.io & gulp",
-    "dev": "find ./blog.jxck.io/* -name *.gz -delete && ./build.rb",
-    "www": "./compress.rb www.jxck.io",
-    "blog": "./compress.rb blog.jxck.io",
-    "slide": "./compress.rb slide.jxck.io",
-    "start": "sudo $DOTFILES/local/h2o/bin/h2o -m daemon -c h2o.conf",
-    "stop": "sudo kill -TERM `cat ../logs/pid`",
+    "build":   "./build.rb && ./compress.rb blog.jxck.io & gulp",
+    "dev":     "./build.rb",
+    "www":     "./compress.rb www.jxck.io",
+    "blog":    "./compress.rb blog.jxck.io",
+    "slide":   "./compress.rb slide.jxck.io",
+    "start":   "sudo $DOTFILES/local/h2o/bin/h2o -m daemon -c h2o.conf",
+    "stop":    "sudo kill -TERM `cat ../logs/pid`",
     "restart": "npm stop && npm start"
   },
   "repository": {
@@ -45,5 +44,5 @@
   "bugs": {
     "url": "https://github.com/jxck/jxck.io/issues"
   },
-  "homepage": "https://github.com/jxck/jxck.io#readme"
+  "homepage": "https://jxck.io"
 }
