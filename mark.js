@@ -66,7 +66,7 @@ const CSS = {
 
 // tag ごとのビルダ
 class Builder {
-  constructor(option, indent) {
+  constructor(option) {
     this.host = option.host;
     this.canonical = option.canonical;
     this.ampurl = option.ampurl;
@@ -78,9 +78,8 @@ class Builder {
     this.dir = option.dir;
     this.tags = option.tags;
     this.style = option.style;
+    this.indent = option.indent;
     this.title = '';
-
-    this.indent = indent;
   }
   get isAMP() {
     return !this.ampurl;
@@ -513,6 +512,8 @@ function prepare(filepath, option) {
 
   let target = `${dir}/${name}.html`;
 
+  let indent = '  ';
+
   if (option.amp) {
     ampurl = null;
     template = read('./.template/amp.html');
@@ -549,6 +550,7 @@ function prepare(filepath, option) {
     template,
     style,
     target,
+    indent,
   };
 }
 
@@ -566,8 +568,7 @@ let filepath = process.argv[2];
 
   let ast = parse(info.md, { position: false });
 
-  let indent = '  ';
-  let builder = new Builder(info, indent);
+  let builder = new Builder(info);
 
   let article = build(ast, info.dir, builder);
 
@@ -581,8 +582,7 @@ let filepath = process.argv[2];
 
   let ast = parse(info.md, { position: false });
 
-  let indent = '  ';
-  let builder = new Builder(info, indent);
+  let builder = new Builder(info);
 
   let article = build(ast, info.dir, builder);
 
