@@ -12,28 +12,28 @@ def hsp(str)
 end
 
 entries = Dir.glob("./blog.jxck.io/entries/**/**")
-             .select { |path| path.match(/.*.md\z/) }
-             .sort { |a, b| b <=> a }
-             .map { |name|
-               href = name.gsub("./blog.jxck.io/", "https://blog.jxck.io/").gsub(".md", ".html")
-               file = File.open(name)
-               text = file.read
-               title = text.match(/^# \[.*\] (.*)/)[1]
-               summary = text.match(/## intro(.*?)##/im)[1].strip # .gsub(/\n/, "")
-               summary = hsp(summary)
-               splitted = name.split("/")
-               date = splitted[3]
-               id = "tag:blog.jxck.io,2016:entry://#{date}"
-               updated = "#{date}T00:00:00Z"
+  .select { |path| path.match(/.*.md\z/) }
+  .sort { |a, b| b <=> a }
+  .map { |name|
+    href     = name.gsub("./blog.jxck.io/", "https://blog.jxck.io/").gsub(".md", ".html")
+    file     = File.open(name)
+    text     = file.read
+    title    = text.match(/^# \[.*\] (.*)/)[1]
+    summary  = text.match(/## intro(.*?)##/im)[1].strip # .gsub(/\n/, "")
+    summary  = hsp(summary)
+    splitted = name.split("/")
+    date     = splitted[3]
+    id       = "tag:blog.jxck.io,2016:entry://#{date}"
+    updated  = "#{date}T00:00:00Z"
 
-               {
-                 title: title,
-                 href: href,
-                 id: id,
-                 updated: updated,
-                 summary: summary
-               }
-             }
+    {
+      title:   title,
+      href:    href,
+      id:      id,
+      updated: updated,
+      summary: summary
+    }
+  }
 
 xml_entries = entries.map{|e|
   <<-EOS
