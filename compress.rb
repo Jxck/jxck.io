@@ -2,7 +2,7 @@
 
 dir = ARGV[0]
 
-rm = "find ./#{dir}/* -name *.gz -delete"
+rm = "find ./#{dir}/* -name *.gz | xargs -L 4 -P 4 rm"
 puts rm
 puts system(rm)
 
