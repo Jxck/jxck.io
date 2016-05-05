@@ -62,8 +62,14 @@ function Description(text) {
 }
 
 const CSS = {
-  PRE: '/assets/css/pre.css',
-  TABLE: '/assets/css/table.css',
+  ARTICLE: '/assets/css/article.css',
+  BODY:    '/assets/css/body.css',
+  INFO:    '/assets/css/info.css',
+  HEADER:  '/assets/css/header.css',
+  MAIN:    '/assets/css/main.css',
+  FOOTER:  '/assets/css/footer.css',
+  PRE:     '/assets/css/pre.css',
+  TABLE:   '/assets/css/table.css',
 }
 
 // tag ごとのビルダ
@@ -515,17 +521,8 @@ function prepare(filepath, option) {
   if (option.amp) {
     ampurl = null;
     template = read('./.template/amp.html');
-    style = [
-      'article.css',
-      'body.css',
-      'footer.css',
-      'header.css',
-      'info.css',
-      'main.css',
-      'pre.css',
-      'table.css',
-    ].map((f) => {
-      return `blog.jxck.io/assets/css/${f}`;
+    style = Object.keys(CSS).map((f) => {
+      return `blog.jxck.io/assets/css/${f.toLowerCase()}.css`;
     }).map((f) => {
       return fs.readFileSync(f).toString();
     }).join('\n');
