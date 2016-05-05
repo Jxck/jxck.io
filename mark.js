@@ -32,7 +32,9 @@ function unspace(str) {
 }
 
 // tag を抜き出す
-function Tags(text) {
+function Tags(filepath) {
+  let text = read(filepath);
+
   // [foo][bar] の部分
   let tagtext = text.match(/\# ((\[(.+?)\])+)/)[1];
   // tag は必ず書く
@@ -42,12 +44,12 @@ function Tags(text) {
   }
 
   // tag を本文から消す
-  text = text.replace(' ' + tagtext, '');
+  let md = text.replace(' ' + tagtext, '');
 
   // tag をリストに
   let tags = tagtext.substr(1, tagtext.length - 2).split('][');
 
-  return { tags, text };
+  return { tags, md };
 }
 
 // Intro/Theme の中身を取り出す
@@ -491,12 +493,8 @@ function prepare(filepath, option) {
   let baseurl = '/' + dir.split('/').slice(2).join('/');
   let host = dir.split('/')[1];
 
-  let file = read(filepath);
-
   // separate tag
-  let parsed = Tags(file);
-  let tags = parsed.tags;
-  let md = parsed.text;
+  let { tags, md } = Tags(filepath);
 
   // take description
   let description = Description(md);
