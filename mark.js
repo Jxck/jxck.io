@@ -230,17 +230,6 @@ function j(o) {
   return JSON.stringify(o, ' ', ' ');
 }
 
-// markdwon ast traverse
-function traverse(ast, option) {
-  option.enter(ast);
-  if (!ast.children) return option.leave(ast);
-
-  ast.children = ast.children.map((child) => {
-    return traverse(child, option);
-  });
-  return option.leave(ast);
-}
-
 // 改行したく無いタグ
 function isInline(node) {
   return [
@@ -251,244 +240,261 @@ function isInline(node) {
   ].indexOf(node.type) > -1;
 }
 
-// table を th/td/thead/tbody に分類
-function tabling(ast) {
-  return ast.map((node) => {
-    if (node.type !== 'table') return node;
+class AST {
+  constructor(md) {
+    this.ast = parse(md, { position: false });
 
-    let align = node.align;
-    node.children = node.children.map((row, i) => {
-      let type = (i === 0) ? 'tableHead' : 'tableData';
-      row.children = row.children.map((cell, i) => {
-        cell.type = type;
-        cell.align = align[i];
-        return cell;
-      });
-      return row;
-    });
-
-    node.children = node.children.reduce((acc, row, i) => {
-      (i === 0) ? acc[0].children.push(row) : acc[1].children.push(row);
-      return acc;
-    }, [{ type: 'thead', children: []}, { type: 'tbody', children: []}]);
-
-    return node;
-  });
-}
-
-function sectioning(children, depth) {
-  // 最初のセクションは <article> にする
-  let section = {
-    type:     depth === 1 ? 'article' : 'section',
-    children: [],
-    depth:    depth,
-  };
-
-  // 横に並ぶべき <section> を入れる配列
-  let sections = [];
-  while (true) {
-    // 横並びになっている子要素を取り出す
-    let child = children.shift();
-    if (child === undefined) break;
-
-    // H2.. が来たらそこで section を追加する
-    if (child.type === 'heading') {
-      if (section.depth < child.depth) {
-        // 一つレベルが下がる場合
-        // 今の <section> の下に新しい <section> ができる
-        // <section>
-        //  <h2>
-        //  <section>
-        //    <h3> <- これ
-
-        // その h を一旦戻す
-        children.unshift(child);
-
-        // そこを起点に再起する
-        // そこに <section> ができて、
-        // 戻した h を最初にできる
-        Array.prototype.push.apply(section.children, sectioning(children, child.depth));
-        continue;
-      }
-      else if (section.depth === child.depth) {
-        // 同じレベルの h の場合
-        // 同じレベルで別の <section> を作る必要がある
-        // <section>
-        //  <h2>
-        // </section>
-        // <section>
-        //  <h2> <- これ
-
-        // そこまでの sections を一旦終わらせて
-        // 親の child に追加する
-        // そして、同じレベルの新しい <section> を開始
-        if (section.children.length > 0) {
-          sections.push(section);
-          section = {
-            type:     'section',
-            children: [],
-            depth:    child.depth,
-          };
-        }
-        // もし今 section に子要素が無ければ
-        // そのまま今の section に追加して良い
-      }
-      else if (section.depth > child.depth) {
-        // レベルが一つ上がる場合
-        // 今は一つ下がったレベルで再帰している最中だったが
-        // それが終わったことを意味する
-        // <section>
-        //   <h2>
-        //   <section>
-        //     <h3>
-        //     <p>
-        //   <h2> <- 今ここ
-
-        // その h を一旦戻す
-        children.unshift(child);
-
-        // ループを終わらせ関数を一つ抜ける
-        break;
-      }
-    }
-
-    // 今の <section> の子要素として追加
-    section.children.push(child);
+    // pre process
+    this.ast.children = this.tabling(this.ast.children);
+    this.ast.children = this.sectioning(this.ast.children, 1);
   }
 
-  // 最後のセクションを追加
-  sections.push(section);
+  // markdwon ast traverse
+  traverse(ast, option) {
+    option.enter(ast);
+    if (!ast.children) return option.leave(ast);
 
-  // そこまでの <section> のツリーを返す
-  // 再帰している場合は、親の <section> の
-  // childrens として使われる
-  return sections;
-}
+    ast.children = ast.children.map((child) => {
+      return this.traverse(child, option);
+    });
+    return option.leave(ast);
+  }
 
-function build(AST, dir, template) {
-  // pre process
-  AST.children = tabling(AST.children);
-  AST.children = sectioning(AST.children, 1);
+  // table を th/td/thead/tbody に分類
+  tabling(ast) {
+    return ast.map((node) => {
+      if (node.type !== 'table') return node;
 
-  // 結果を入れるスタック
-  // push => unshift()
-  // pop  => shift()
-  // top  => [0]
-  let stack = [];
-
-  let codes = [];
-
-  // トラバース
-  traverse(AST, {
-    enter(node) {
-      // enter では、 inline 属性を追加し
-      // stack に詰むだけ
-      // 実際は、pop 側で整合検証くらいしか使ってない
-
-      node.inline = isInline(node.type);
-      stack.unshift(node);
-    },
-    leave(node) {
-      if (node.type === 'code') {
-        // コードを抜き取り、ここで id に置き換える
-        // インデントを無視するため、全部組み上がったら後で差し込む。
-        let value = node.value;
-        if (value === '') {
-          let tmp = node.lang.split(':');
-          node.lang = tmp[0];
-          let file = path.format({ dir: dir, base: tmp[1]});
-          value = read(file);
-        }
-        codes.push(value);
-        node.value = `// ${codes.length}`;
-      }
-      if (node.value) {
-        // value があったら、 text とか
-
-        // pop して
-        let top = stack.shift();
-        // 対応を確認
-        if (top.type !== node.type) {
-          console.error('ERROR', top, node);
-          process.exit(1);
-        }
-
-        // 閉じる
-        if (template[node.type] === undefined) {
-          console.error('ERROR', node.type);
-          process.exit(1);
-        }
-        stack.unshift({
-          tag:    'full',
-          val:    template[node.type](node),
-          inline: isInline(node),
+      let align = node.align;
+      node.children = node.children.map((row, i) => {
+        let type = (i === 0) ? 'tableHead' : 'tableData';
+        row.children = row.children.map((cell, i) => {
+          cell.type = type;
+          cell.align = align[i];
+          return cell;
         });
-      } else {
-        // 完成している兄弟タグを集めてきて配列に並べる
-        let vals = [];
+        return row;
+      });
 
-        while (stack[0].tag === 'full') {
+      node.children = node.children.reduce((acc, row, i) => {
+        (i === 0) ? acc[0].children.push(row) : acc[1].children.push(row);
+        return acc;
+      }, [{ type: 'thead', children: []}, { type: 'tbody', children: []}]);
+
+      return node;
+    });
+  }
+
+  sectioning(children, depth) {
+    // 最初のセクションは <article> にする
+    let section = {
+      type:     depth === 1 ? 'article' : 'section',
+      children: [],
+      depth:    depth,
+    };
+
+    // 横に並ぶべき <section> を入れる配列
+    let sections = [];
+    while (true) {
+      // 横並びになっている子要素を取り出す
+      let child = children.shift();
+      if (child === undefined) break;
+
+      // H2.. が来たらそこで section を追加する
+      if (child.type === 'heading') {
+        if (section.depth < child.depth) {
+          // 一つレベルが下がる場合
+          // 今の <section> の下に新しい <section> ができる
+          // <section>
+          //  <h2>
+          //  <section>
+          //    <h3> <- これ
+
+          // その h を一旦戻す
+          children.unshift(child);
+
+          // そこを起点に再起する
+          // そこに <section> ができて、
+          // 戻した h を最初にできる
+          Array.prototype.push.apply(section.children, this.sectioning(children, child.depth));
+          continue;
+        }
+        else if (section.depth === child.depth) {
+          // 同じレベルの h の場合
+          // 同じレベルで別の <section> を作る必要がある
+          // <section>
+          //  <h2>
+          // </section>
+          // <section>
+          //  <h2> <- これ
+
+          // そこまでの sections を一旦終わらせて
+          // 親の child に追加する
+          // そして、同じレベルの新しい <section> を開始
+          if (section.children.length > 0) {
+            sections.push(section);
+            section = {
+              type:     'section',
+              children: [],
+              depth:    child.depth,
+            };
+          }
+          // もし今 section に子要素が無ければ
+          // そのまま今の section に追加して良い
+        }
+        else if (section.depth > child.depth) {
+          // レベルが一つ上がる場合
+          // 今は一つ下がったレベルで再帰している最中だったが
+          // それが終わったことを意味する
+          // <section>
+          //   <h2>
+          //   <section>
+          //     <h3>
+          //     <p>
+          //   <h2> <- 今ここ
+
+          // その h を一旦戻す
+          children.unshift(child);
+
+          // ループを終わらせ関数を一つ抜ける
+          break;
+        }
+      }
+
+      // 今の <section> の子要素として追加
+      section.children.push(child);
+    }
+
+    // 最後のセクションを追加
+    sections.push(section);
+
+    // そこまでの <section> のツリーを返す
+    // 再帰している場合は、親の <section> の
+    // childrens として使われる
+    return sections;
+  }
+
+  build(dir, template) {
+    // 結果を入れるスタック
+    // push => unshift()
+    // pop  => shift()
+    // top  => [0]
+    let stack = [];
+
+    let codes = [];
+
+    // トラバース
+    this.traverse(this.ast, {
+      enter(node) {
+        // enter では、 inline 属性を追加し
+        // stack に詰むだけ
+        // 実際は、pop 側で整合検証くらいしか使ってない
+
+        node.inline = isInline(node.type);
+        stack.unshift(node);
+      },
+      leave(node) {
+        if (node.type === 'code') {
+          // コードを抜き取り、ここで id に置き換える
+          // インデントを無視するため、全部組み上がったら後で差し込む。
+          let value = node.value;
+          if (value === '') {
+            let tmp = node.lang.split(':');
+            node.lang = tmp[0];
+            let file = path.format({ dir: dir, base: tmp[1]});
+            value = read(file);
+          }
+          codes.push(value);
+          node.value = `// ${codes.length}`;
+        }
+        if (node.value) {
+          // value があったら、 text とか
+
+          // pop して
           let top = stack.shift();
-
-          if (top.inline && vals[0] && vals[0].inline) {
-            // 取得したのが inline で、一個前も inline だったら
-            // inline どうしをくっつける
-            let val = vals.shift();
-            val.val = top.val + val.val;
-            vals.unshift(val);
-          } else {
-            // そうで無ければただの兄弟要素
-            vals.unshift(top);
+          // 対応を確認
+          if (top.type !== node.type) {
+            console.error('ERROR', top, node);
+            process.exit(1);
           }
-        }
 
-        // タグを全部連結する
-        vals = vals.map((val) => val.val).join('').trim();
-
-        // それを親タグで閉じる
-        let top = stack.shift();
-        if (top.type !== node.type) {
-          console.error('ERROR', top, node);
-          process.exit(1);
-        }
-
-        // 今見ているのが paragraph で
-        if (node.type === 'paragraph') {
-          // その親が P いらないタグ だったら
-          if (['listItem', 'blockquote'].indexOf(stack[0].type) > -1) {
-            // Paragraph を消すために Str に差し替える
-            // Str はタグをつけない
-            node = { type: 'text' };
+          // 閉じる
+          if (template[node.type] === undefined) {
+            console.error('ERROR', node.type);
+            process.exit(1);
           }
+          stack.unshift({
+            tag:    'full',
+            val:    template[node.type](node),
+            inline: isInline(node),
+          });
+        } else {
+          // 完成している兄弟タグを集めてきて配列に並べる
+          let vals = [];
+
+          while (stack[0].tag === 'full') {
+            let top = stack.shift();
+
+            if (top.inline && vals[0] && vals[0].inline) {
+              // 取得したのが inline で、一個前も inline だったら
+              // inline どうしをくっつける
+              let val = vals.shift();
+              val.val = top.val + val.val;
+              vals.unshift(val);
+            } else {
+              // そうで無ければただの兄弟要素
+              vals.unshift(top);
+            }
+          }
+
+          // タグを全部連結する
+          vals = vals.map((val) => val.val).join('').trim();
+
+          // それを親タグで閉じる
+          let top = stack.shift();
+          if (top.type !== node.type) {
+            console.error('ERROR', top, node);
+            process.exit(1);
+          }
+
+          // 今見ているのが paragraph で
+          if (node.type === 'paragraph') {
+            // その親が P いらないタグ だったら
+            if (['listItem', 'blockquote'].indexOf(stack[0].type) > -1) {
+              // Paragraph を消すために Str に差し替える
+              // Str はタグをつけない
+              node = { type: 'text' };
+            }
+          }
+
+          node.value = vals;
+
+          if (!template[node.type]) {
+            console.error('unsupported type', node.type);
+          }
+          stack.unshift({
+            tag:    'full',
+            val:    template[node.type](node),
+            inline: isInline(node),
+          });
         }
+      },
+    });
 
-        node.value = vals;
+    // 結果の <article> 結果
+    let article = stack[0].val;
 
-        if (!template[node.type]) {
-          console.error('unsupported type', node.type);
-        }
-        stack.unshift({
-          tag:    'full',
-          val:    template[node.type](node),
-          inline: isInline(node),
-        });
-      }
-    },
-  });
+    let result = template.HTML(article);
 
-  // 結果の <article> 結果
-  let article = stack[0].val;
+    // indent を無視するため
+    // ここで pre に code を戻す
+    // ついでにエスケープ
+    codes.forEach((code, i) => {
+      result = result.replace(`// ${i + 1}`, hsp(code));
+    });
 
-  let result = template.HTML(article);
-
-  // indent を無視するため
-  // ここで pre に code を戻す
-  // ついでにエスケープ
-  codes.forEach((code, i) => {
-    result = result.replace(`// ${i + 1}`, hsp(code));
-  });
-
-  return result;
+    return result;
+  }
 }
 
 function prepare(filepath, option) {
@@ -560,12 +566,11 @@ let filepath = process.argv[2];
 (() => {
   p('mark html', filepath);
   let info = prepare(filepath, { amp: false });
-
-  let ast = parse(info.md, { position: false });
-
   let builder = new Builder(info);
 
-  let article = build(ast, info.dir, builder);
+  let ast = new AST(info.md);
+
+  let article = ast.build(info.dir, builder);
 
   fs.writeFileSync(info.target, article);
 })();
@@ -574,12 +579,11 @@ let filepath = process.argv[2];
 (() => {
   p('mark amp', filepath);
   let info = prepare(filepath, { amp: true });
-
-  let ast = parse(info.md, { position: false });
-
   let builder = new Builder(info);
 
-  let article = build(ast, info.dir, builder);
+  let ast = new AST(info.md);
+
+  let article = ast.build(info.dir, builder);
 
   fs.writeFileSync(info.target, article);
 })();
