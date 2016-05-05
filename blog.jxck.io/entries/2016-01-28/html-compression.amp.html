@@ -152,8 +152,21 @@ img {
   height: auto;
 }
 
-footer {
-  padding: 1em;
+.info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.info li {
+  margin-right: 1em;
+  list-style-type: none;
+}
+
+.info li::before {
+  content: none;
 }
 
 header {
@@ -198,23 +211,6 @@ header ul li:first-child {
 header .logo {
   border: 1px solid #ccc;
   box-sizing: border-box;
-}
-
-.info {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 0;
-}
-
-.info li {
-  margin-right: 1em;
-  list-style-type: none;
-}
-
-.info li::before {
-  content: none;
 }
 
 main {
@@ -361,6 +357,10 @@ code {
 code::before, code::after {
   /* うざかった */
   /* content: "`"; */
+}
+
+footer {
+  padding: 1em;
 }
 
 pre {
