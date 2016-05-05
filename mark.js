@@ -250,14 +250,14 @@ class AST {
   }
 
   // markdwon ast traverse
-  traverse(ast, option) {
-    option.enter(ast);
-    if (!ast.children) return option.leave(ast);
+  traverse(ast, handler) {
+    handler.enter(ast);
+    if (!ast.children) return handler.leave(ast);
 
     ast.children = ast.children.map((child) => {
-      return this.traverse(child, option);
+      return this.traverse(child, handler);
     });
-    return option.leave(ast);
+    return handler.leave(ast);
   }
 
   // table を th/td/thead/tbody に分類
