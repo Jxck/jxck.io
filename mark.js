@@ -279,7 +279,7 @@ class AST {
       node.children = node.children.reduce((acc, row, i) => {
         (i === 0) ? acc[0].children.push(row) : acc[1].children.push(row);
         return acc;
-      }, [{ type: 'thead', children: []}, { type: 'tbody', children: []}]);
+      }, [{ type: 'thead', children: []}, { type: 'tbody', children: [] }]);
 
       return node;
     });
@@ -498,12 +498,13 @@ class AST {
 }
 
 function prepare(filepath, option) {
+  let indent = '  ';
   let dir = path.parse(filepath).dir;
   let name = path.parse(filepath).name;
+  let host = dir.split('/')[1];
+  let baseurl = '/' + dir.split('/').slice(2).join('/');
   let created_at = dir.split('/')[3];
   let updated_at = fs.statSync(filepath).mtime.toISOString().substring(0, 10);
-  let baseurl = '/' + dir.split('/').slice(2).join('/');
-  let host = dir.split('/')[1];
 
   // separate tag
   let { tags, md } = Tags(filepath);
@@ -514,19 +515,15 @@ function prepare(filepath, option) {
   // meta
   let canonical = `${baseurl}/${name}.html`;
   let ampurl = `${baseurl}/${name}.amp.html`;
-
-  // template
-  let meta = read('./.template/meta.html');
-  let template = read('./.template/blog.html');
-  let style = null;
-
   let target = `${dir}/${name}.html`;
 
-  let indent = '  ';
+  // template
+  let meta = option.meta;
+  let template = option.template;
+  let style = null;
 
   if (option.amp) {
     ampurl = null;
-    template = read('./.template/amp.html');
     style = Object.keys(CSS).map((f) => {
       return `blog.jxck.io/assets/css/${f.toLowerCase()}.css`;
     }).map((f) => {
@@ -565,7 +562,12 @@ let filepath = process.argv[2];
 // blog html
 (() => {
   p('mark html', filepath);
-  let info = prepare(filepath, { amp: false });
+  let option = {
+    amp: false,
+    meta: read('./.template/meta.html'),
+    template: read('./.template/blog.html'),
+  }
+  let info = prepare(filepath, option);
   let builder = new Builder(info);
 
   let ast = new AST(info.md);
@@ -578,7 +580,12 @@ let filepath = process.argv[2];
 // amp html
 (() => {
   p('mark amp', filepath);
-  let info = prepare(filepath, { amp: true });
+  let option = {
+    amp: true,
+    meta: read('./.template/meta.html'),
+    template: read('./.template/amp.html'),
+  }
+  let info = prepare(filepath, option);
   let builder = new Builder(info);
 
   let ast = new AST(info.md);
