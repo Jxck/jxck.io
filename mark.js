@@ -72,6 +72,14 @@ const CSS = {
   TABLE:   '/assets/css/table.css',
 }
 
+function CatStyle(path) {
+  return Object.keys(CSS).map((f) => {
+    return `${path}/${f.toLowerCase()}.css`;
+  }).map((f) => {
+    return fs.readFileSync(f).toString();
+  }).join('\n');
+}
+
 // tag ごとのビルダ
 class Builder {
   constructor(option) {
@@ -524,12 +532,7 @@ function prepare(filepath, option) {
 
   if (option.amp) {
     ampurl = null;
-    style = Object.keys(CSS).map((f) => {
-      return `blog.jxck.io/assets/css/${f.toLowerCase()}.css`;
-    }).map((f) => {
-      return fs.readFileSync(f).toString();
-    }).join('\n');
-
+    style = CatStyle('blog.jxck.io/assets/css');
     target = `${dir}/${name}.amp.html`;
   }
 
@@ -569,11 +572,8 @@ let filepath = process.argv[2];
   }
   let info = prepare(filepath, option);
   let builder = new Builder(info);
-
   let ast = new AST(info.md);
-
   let article = ast.build(info.dir, builder);
-
   fs.writeFileSync(info.target, article);
 })();
 
@@ -587,10 +587,7 @@ let filepath = process.argv[2];
   }
   let info = prepare(filepath, option);
   let builder = new Builder(info);
-
   let ast = new AST(info.md);
-
   let article = ast.build(info.dir, builder);
-
   fs.writeFileSync(info.target, article);
 })();
