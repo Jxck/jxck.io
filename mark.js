@@ -562,6 +562,26 @@ if (process.argv.length < 3) {
 
 let filepath = process.argv[2];
 
+if (process.argv[3] === 'podcast') {
+
+  // podcast html
+  (() => {
+    p('podcast html', filepath);
+    let option = {
+      amp: false,
+      meta: read('./.template/meta.html'),
+      template: read('./.template/podcast.html'),
+    }
+    let info = prepare(filepath, option);
+    let builder = new Builder(info);
+    let ast = new AST(info.md);
+    let article = ast.build(info.dir, builder);
+    fs.writeFileSync(info.target, article);
+  })();
+
+  process.exit(0);
+}
+
 // blog html
 (() => {
   p('mark html', filepath);
