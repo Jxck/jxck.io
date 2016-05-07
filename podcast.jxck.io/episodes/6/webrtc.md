@@ -1,4 +1,4 @@
-# [webrtc] #6 WebRTC
+# [webrtc] ep6 WebRTC
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep6.m4a" controls></audio>
 

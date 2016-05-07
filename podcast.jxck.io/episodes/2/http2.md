@@ -1,4 +1,4 @@
-# [http2] #2 HTTP2
+# [http2] ep2 HTTP2
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep2.m4a" controls></audio>
 

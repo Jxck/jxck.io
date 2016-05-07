@@ -1,4 +1,4 @@
-# [http2] #2 HTTP2 sideshow
+# [http2] ep2 HTTP2 sideshow
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep2.sideshow.m4a" controls></audio>
 

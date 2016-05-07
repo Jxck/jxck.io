@@ -1,4 +1,4 @@
-# [service worker] #17 Service Worker
+# [service worker] ep17 Service Worker
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep17.mp3" controls></audio>
 

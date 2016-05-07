@@ -1,4 +1,4 @@
-# [rails] #12 Rails sideshow
+# [rails] ep12 Rails sideshow
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep12.sideshow.mp3" controls></audio>
 

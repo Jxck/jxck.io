@@ -1,4 +1,4 @@
-# [rails] #12 Rails
+# [rails] ep12 Rails
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep12.mp3" controls></audio>
 

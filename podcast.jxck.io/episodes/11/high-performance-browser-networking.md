@@ -1,4 +1,4 @@
-# #11 High Performance Browser Networking
+# [performance] ep11 High Performance Browser Networking
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep11.m4a" controls></audio>
 

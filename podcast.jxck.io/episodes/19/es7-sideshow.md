@@ -1,4 +1,4 @@
-# [es7] #19 ES7 sideshow
+# [es7] ep19 ES7 sideshow
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep19.sideshow.mp3" controls></audio>
 

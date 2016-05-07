@@ -1,4 +1,4 @@
-# [virtual dom] #13 Virtual DOM
+# [virtual dom] ep13 Virtual DOM
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep13.mp3" controls></audio>
 
