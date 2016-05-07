@@ -142,7 +142,7 @@ class Builder {
     return val;
   }
   code(node) {
-    let lang = node.lang || '';
+    let lang = node.lang || '""';
     let value = `<pre class=${lang}><code>${node.value}</code></pre>\n`;
     if (!this.isAMP && !this.pred) {
       value = [this.Style(CSS.PRE), value].join('\n');
