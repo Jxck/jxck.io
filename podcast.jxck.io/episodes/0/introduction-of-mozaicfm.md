@@ -1,4 +1,4 @@
-# [intro] ep0 introduction of mozaic.fm
+# [2014-03-31] ep0 introduction of mozaic.fm
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep0.m4a" controls></audio>
 

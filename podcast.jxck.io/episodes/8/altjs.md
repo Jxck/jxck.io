@@ -1,4 +1,4 @@
-# [altjs] ep8 AltJS
+# [2014-09-03] ep8 AltJS
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep8.m4a" controls></audio>
 
