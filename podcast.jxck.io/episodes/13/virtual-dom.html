@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=/episodes/13/virtual-dom.html>
+<link rel=amphtml href=/episodes/13/virtual-dom.amp.html>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=alternate type=application/atom+xml title=podcast.jxck.io href=/feeds/atom.xml>
+<link rel=author href=//jxck.io/assets/humans.txt>
+<link rel=preload as=font type=font/woff href=//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
+<script async src=//jxck.io/assets/js/ga.js></script>
+<script async src=/assets/js/highlight.min.js></script>
+<script async src=/assets/js/stale-while-revalidate.js></script>
+<script async src=/assets/js/main.js></script>
+
+<meta name=author content=Jxck>
+<meta name=description content="第 13 回目のテーマは Virtual DOM です。今回は [@mizchi](https://twitter.com/mizchi/) さんをお迎えして、 Virtual DOM というアイデアの本質、それが可能にした Flux というアーキテクチャ、そして各種の実装と今後...">
+<meta name=keywords content="2014-12-27">
+
+<meta name=twitter:card content=summary>
+<meta name=twitter:site content=@jxck_>
+<meta name=twitter:url content=https://podcast.jxck.io/episodes/13/virtual-dom.html>
+<meta name=twitter:title content="ep13 Virtual DOM | blog.jxck.io">
+<meta name=twitter:description content="第 13 回目のテーマは Virtual DOM です。今回は [@mizchi](https://twitter.com/mizchi/) さんをお迎えして、 Virtual DOM というアイデアの本質、それが可能にした Flux というアーキテクチャ、そして各種の実装と今後...">
+<meta name=twitter:image content=https://jxck.io/assets/img/jxck.png>
+
+<meta property=og:type content="article">
+<meta property=og:url content=https://podcast.jxck.io/episodes/13/virtual-dom.html>
+<meta property=og:title content="ep13 Virtual DOM | blog.jxck.io">
+<meta property=og:site_name content=blog.jxck.io>
+<meta property=og:description content="第 13 回目のテーマは Virtual DOM です。今回は [@mizchi](https://twitter.com/mizchi/) さんをお迎えして、 Virtual DOM というアイデアの本質、それが可能にした Flux というアーキテクチャ、そして各種の実装と今後...">
+<meta property=og:image content=https://jxck.io/assets/img/jxck.png>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "ep13 Virtual DOM | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "13T08:00:00+08:00",
+  "dateModified": "2016-05-07T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "第 13 回目のテーマは Virtual DOM です。今回は [@mizchi](https://twitter.com/mizchi/) さんをお迎えして、 Virtual DOM というアイデアの本質、それが可能にした Flux というアーキテクチャ、そして各種の実装と今後..."
+}
+</script>
+
+<link rel=icon sizes=192x192 href=//jxck.io/assets/img/jxck.png>
+<link rel=apple-touch-icon sizes=128x128 href=//jxck.io/assets/img/jxck.png>
+
+<title>ep13 Virtual DOM | mozaic.fm</title>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+<header>
+  <ul>
+    <li><a href=/><img class=logo alt="blog top" width=30 src=/assets/img/mozaic.svg></a>
+    <li><a href=/feeds/atom.xml><img alt="rss feed" width=30 src=/assets/img/podcast.svg></a>
+    <li><a href=https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd><img alt="huamns.txt" width=30 src=/assets/img/twitter.svg></a>
+    <li><a href=//jxck.io><img class=logo alt="jxck logo" width=30 src=/assets/img/jxck.svg></a>
+  </ul>
+</header>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+<main>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2014-12-27>2014-12-27</time>
+  </ul>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+  <article>
+    <h1><a href=/episodes/13/virtual-dom.html>ep13 Virtual DOM</a></h1>
+    <p><audio preload="none" src="https://files.mozaic.fm/mozaic-ep13.mp3" controls>
+    </audio>
+    <section>
+      <h2 id="Theme"><a href="#Theme">Theme</a></h2>
+      <p>第 13 回目のテーマは Virtual DOM です。
+      <p>今回は <a href="https://twitter.com/mizchi/">@mizchi</a> さんをお迎えして、 Virtual DOM というアイデアの本質、それが可能にした Flux というアーキテクチャ、そして各種の実装と今後の期待について、「今何が起こっているのか」、「これからどうなっていくのか」を議論しました。
+      <p>ハッシュタグは <a href="https://twitter.com/search?q=mozaicfm&src=hash">#mozaicfm</a> です。
+    </section>
+    <section>
+      <h2 id="Guest"><a href="#Guest">Guest</a></h2>
+      <ul>
+        <li><a href="https://twitter.com/mizchi">@mizchi</a>
+      </ul>
+    </section>
+    <section>
+      <h2 id="Show+Note"><a href="#Show+Note">Show Note</a></h2>
+      <section>
+        <h3 id="Virtual+DOM"><a href="#Virtual+DOM">Virtual DOM</a></h3>
+        <ul>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fqiita.com%2Fadvent-calendar%2F2014%2Fvirtual-dom&t=MjdjMzRjYTdkNTIyY2E2YmU0MzFkOGQ0YjgwMTAzMzMwZTg4OGY3NCxKc2dSYkdjVw%3D%3D">Virtual DOM Advent Calendar</a>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fqiita.com%2Fmizchi%2Fitems%2F4d25bc26def1719d52e6&t=Y2E1ZGM0YzBjMzUzNDJhMjYxNDE3ZDRkZTFkM2I0ZDFiOTBhZDUzOSxKc2dSYkdjVw%3D%3D">なぜ仮想 DOM という概念が俺達の魂を震えさせるのか</a>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fmizchi.hatenablog.com%2Fentry%2F2014%2F09%2F02%2F201728&t=NzYwMzdkZDcxZmE2ZjY1MWQ5OGEwMDcxMTI2ZTcwYzY1M2U4YjhjYSxKc2dSYkdjVw%3D%3D">あなたが React を使うべき理由</a>
+          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fswannodette%2Fom&t=NzM5Yjc5NDRmZjkzODJjZTIwNWQzZjkwYTA3OTg1NzhkMzFhMjBhOSxKc2dSYkdjVw%3D%3D">om</a>
+          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fclojure%2Fclojurescript&t=MzkwYWYyMmNkYzhkNDdhNTUxZTc1Y2YzZTJmYzQxZTMwMzVjMjBmYixKc2dSYkdjVw%3D%3D">ClosureScript</a>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Ffacebook.github.io%2Freact%2F&t=MGMzYmI4MTY5YWZiZmE1ODU3NzhkZjMwNThmYjAwMzdmYzlhNTgwZCxKc2dSYkdjVw%3D%3D">React</a>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Ffacebook.github.io%2Fjsx%2F&t=MjVmY2NjNTM2YjBiMGUwOTVlNDlhM2E5M2E4NWEyZTU1MjY1ODM3NSxKc2dSYkdjVw%3D%3D">JSX</a>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fsteps.dodgson.org%2Fb%2F2014%2F12%2F11%2Fwhy-is-real-dom-slow%2F&t=MWE1OTM5YjkwODc1YjMyYjUwN2EyYzU4ODc0ZjE5NjAzYzM5ZTA1NSxKc2dSYkdjVw%3D%3D">リアルな DOM はなぜ遅いのか</a>
+          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fjadejs%2Freact-jade&t=ZTNlODk0Y2UzYjQwNWIwYTgwMTQzNDJkNjBjMjNhM2Y3YWQ4YzdiOSxKc2dSYkdjVw%3D%3D">react-jade</a>
+          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fsegmentio%2Fdeku&t=YjRkNGY3ZDcyOTYxNGE3M2Y0ZTU5ZGQ1ODhiYzhlMDgxNTA5NjBjNSxKc2dSYkdjVw%3D%3D">deku</a>
+          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2FMatt-Esch%2Fvirtual-dom&t=ZjJiOWQ0MTk2NWFjZDBlZTYyN2IyMDVhMGJkZjg3MjU0NTExYTM1ZixKc2dSYkdjVw%3D%3D">virtual-dom</a>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.ractivejs.org%2F&t=N2QwYzJjMjJjYzJmZDUxNjQ2NDk1YjYyMzY2ZThmMDYzZDQxNzJlMyxKc2dSYkdjVw%3D%3D">ractive.js</a>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fcalendar.perfplanet.com%2F2013%2Fdiff%2F&t=MzA2ZWM0ODJjNWM0NWJhNjQ2MzYwMjgwMGE5ZmY3NTcxMDUyNTlmMCxKc2dSYkdjVw%3D%3D">React's diff algorith</a>
+        </ul>
+      </section>
+      <section>
+        <h3 id="Flux"><a href="#Flux">Flux</a></h3>
+        <ul>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Ffacebook.github.io%2Fflux%2F&t=NzIyNjIwMmIzNDE0ODNkYTJhZDFlYjcwY2NjZjM4OWQ1YWNkNzRkMCxKc2dSYkdjVw%3D%3D">Flux</a>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fsaneyukis.hatenablog.com%2Fentry%2F2014%2F09%2F26%2F174750&t=YWQ4YmE2Nzc1NmVjODY5YmIxYTgxY2QwNDBiMjkwZjYyMzIyMjExMSxKc2dSYkdjVw%3D%3D">Flux アーキテクチャ覚え書き</a>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fsaneyukis.hatenablog.com%2Fentry%2F2014%2F12%2F24%2F014421&t=NTEwZTVjYjdjZmEzZGEyM2MyNTIyM2E1ZGQ2OGRhYTQyZDNiZTNkYSxKc2dSYkdjVw%3D%3D">Flux とはなんだったのか + misc at 2014</a>(収録後公開)
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fblog.nodejitsu.com%2Fscaling-isomorphic-javascript-code%2F&t=MzA3ZGU2MzkyYmY2ODNiYTA4YzcwODFmMWMzNjQxMzA0YjdjNmFjZSxKc2dSYkdjVw%3D%3D">MVC 周りの整理エントリ</a>
+          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fspoike%2Frefluxjs&t=NDBhNTljNjI1MzI0MmIxOWY0Njc4NjljOTM3ZThiMWY5OTczZjhlOSxKc2dSYkdjVw%3D%3D">Reflux</a>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fdeloreanjs.com%2F&t=OTNhNmZjNzIzY2E0YzZiMTY0ZTllMjNmZDZkOTY3MGRjNmE2NDY2NixKc2dSYkdjVw%3D%3D">Delorean</a>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Ffluxxor.com%2F&t=YjEyZWZjMjQyYzhjZDFkOWIxOGIxODdkNGQyYTA2YTExNzJlNTQzZCxKc2dSYkdjVw%3D%3D">Fluxxor</a>
+        </ul>
+      </section>
+    </section>
+  </article>
+
+</main>
+<hr>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</address>
+</footer>

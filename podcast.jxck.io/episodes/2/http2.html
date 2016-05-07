@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=/episodes/2/http2.html>
+<link rel=amphtml href=/episodes/2/http2.amp.html>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=alternate type=application/atom+xml title=podcast.jxck.io href=/feeds/atom.xml>
+<link rel=author href=//jxck.io/assets/humans.txt>
+<link rel=preload as=font type=font/woff href=//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
+<script async src=//jxck.io/assets/js/ga.js></script>
+<script async src=/assets/js/highlight.min.js></script>
+<script async src=/assets/js/stale-while-revalidate.js></script>
+<script async src=/assets/js/main.js></script>
+
+<meta name=author content=Jxck>
+<meta name=description content="第 2 回目のテーマは HTTP2 です。今回は [@tatsuhiro_t](https://twitter.com/tatsuhiro_t) さんと [@jovi0608](https://twitter.com/jovi0608) さんをお迎えし HTTP の世界で、「今な...">
+<meta name=keywords content="2014-04-22">
+
+<meta name=twitter:card content=summary>
+<meta name=twitter:site content=@jxck_>
+<meta name=twitter:url content=https://podcast.jxck.io/episodes/2/http2.html>
+<meta name=twitter:title content="ep2 HTTP2 | blog.jxck.io">
+<meta name=twitter:description content="第 2 回目のテーマは HTTP2 です。今回は [@tatsuhiro_t](https://twitter.com/tatsuhiro_t) さんと [@jovi0608](https://twitter.com/jovi0608) さんをお迎えし HTTP の世界で、「今な...">
+<meta name=twitter:image content=https://jxck.io/assets/img/jxck.png>
+
+<meta property=og:type content="article">
+<meta property=og:url content=https://podcast.jxck.io/episodes/2/http2.html>
+<meta property=og:title content="ep2 HTTP2 | blog.jxck.io">
+<meta property=og:site_name content=blog.jxck.io>
+<meta property=og:description content="第 2 回目のテーマは HTTP2 です。今回は [@tatsuhiro_t](https://twitter.com/tatsuhiro_t) さんと [@jovi0608](https://twitter.com/jovi0608) さんをお迎えし HTTP の世界で、「今な...">
+<meta property=og:image content=https://jxck.io/assets/img/jxck.png>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "ep2 HTTP2 | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2T08:00:00+08:00",
+  "dateModified": "2016-05-07T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "第 2 回目のテーマは HTTP2 です。今回は [@tatsuhiro_t](https://twitter.com/tatsuhiro_t) さんと [@jovi0608](https://twitter.com/jovi0608) さんをお迎えし HTTP の世界で、「今な..."
+}
+</script>
+
+<link rel=icon sizes=192x192 href=//jxck.io/assets/img/jxck.png>
+<link rel=apple-touch-icon sizes=128x128 href=//jxck.io/assets/img/jxck.png>
+
+<title>ep2 HTTP2 | mozaic.fm</title>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+<header>
+  <ul>
+    <li><a href=/><img class=logo alt="blog top" width=30 src=/assets/img/mozaic.svg></a>
+    <li><a href=/feeds/atom.xml><img alt="rss feed" width=30 src=/assets/img/podcast.svg></a>
+    <li><a href=https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd><img alt="huamns.txt" width=30 src=/assets/img/twitter.svg></a>
+    <li><a href=//jxck.io><img class=logo alt="jxck logo" width=30 src=/assets/img/jxck.svg></a>
+  </ul>
+</header>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+<main>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2014-04-22>2014-04-22</time>
+  </ul>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+  <article>
+    <h1><a href=/episodes/2/http2.html>ep2 HTTP2</a></h1>
+    <p><audio preload="none" src="https://files.mozaic.fm/mozaic-ep2.m4a" controls>
+    </audio>
+    <section>
+      <h2 id="Theme"><a href="#Theme">Theme</a></h2>
+      <p>第 2 回目のテーマは HTTP2 です。
+      <p>今回は <a href="https://twitter.com/tatsuhiro_t">@tatsuhiro_t</a> さんと <a href="https://twitter.com/jovi0608">@jovi0608</a> さんをお迎えし HTTP の世界で、「今なにが起こっているのか?」「これからどうなっていくのか?」を議論しました。
+      <p>なお、今回は編集で収まりきらなかった 「Nghttp2 の今後」について、番外編として後日配信する予定です。ユーザの方は必聴です。
+      <p>ハッシュタグは <a href="https://twitter.com/search?q=mozaicfm&src=hash">#mozaicfm</a> です。
+    </section>
+    <section>
+      <h2 id="Guest"><a href="#Guest">Guest</a></h2>
+      <ul>
+        <li><a href="https://twitter.com/tatsuhiro_t">@tatsuhiro_t</a>
+        <li><a href="https://twitter.com/jovi0608">@jovi0608</a>
+      </ul>
+    </section>
+    <section>
+      <h2 id="Show+Note"><a href="#Show+Note">Show Note</a></h2>
+      <ul>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Ftools.ietf.org%2Fhtml%2Fdraft-ietf-httpbis-http2&t=NTQxM2I0NTEzNDk4ODE3YzU4OGQwNGE5YzViYzcyYjFhYzVjZGFhYixOUVNmZnZqSA%3D%3D">HTTP2 SPEC</a>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.chromium.org%2Fspdy%2Fspdy-protocol&t=OTk1ZjdiYzM5YjE5ZGQwYWYxOTFmZTNiMGNlOTA2MTdmZTczMGRjNixOUVNmZnZqSA%3D%3D">SPDY SPEC</a>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Ftools.ietf.org%2Fhtml%2Frfc6455&t=OTRjMTlmYzRiMTEyMjE2M2JiMzdiZWFhOWUwZTI0MzEwMmVhNzY1YixOUVNmZnZqSA%3D%3D">WebSocket SPEC(RFC 6455)</a>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Ftatsuhiro-t%2Fnghttp2&t=MTk1ZGZhZTY0ZjM5Y2NiODJmMTEyNThiNjk2NGVlMzg4ODQ3YWIzMixOUVNmZnZqSA%3D%3D">nghttp2</a>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Ftatsuhiro-t%2Fspdylay&t=ZDIxNjBlMzFiNWQ5ZjNiOTc3OTBlZWFjMThjYjQ2NDhjYTFlMjkxMCxOUVNmZnZqSA%3D%3D">spdylay</a>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Ftatsuhiro-t%2Fwslay&t=MTM4OTcwNjc3MmI2YzdjYmI1ZGM1MzFhYjA5MWNkNTdiMzc0MzAzYSxOUVNmZnZqSA%3D%3D">wslay</a>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Ftechnotes.googlecode.com%2Fgit%2Fnextprotoneg.html&t=MGYxYWIxZDZkMjRjMzdhNmY0ZmZlNjhjOGIxZjhhNGQyZjc4YTE3YixOUVNmZnZqSA%3D%3D">NPN(Next Protocol Negotiation)</a>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Ftools.ietf.org%2Fhtml%2Fdraft-ietf-tls-applayerprotoneg&t=NTk3MGVmNjk0YWNiYjExMmVjOTNjNmY5MzU4MTYwMGYxOWIyZTE4ZixOUVNmZnZqSA%3D%3D">ALPN(Application Layer Protocol Negotiaion)</a>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Ftools.ietf.org%2Fhtml%2Fdraft-ietf-httpbis-header-compression&t=MjgzZGUyNmI0ODA2ZGFjNGFiNjBlOTgwMjYzZDdiNGEzMzM0NDhmOSxOUVNmZnZqSA%3D%3D">HPACK</a>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Ftools.ietf.org%2Fhtml%2Fdraft-montenegro-httpbis-speed-mobility&t=ODIyYmJlYjRlY2Y4ZGI1YjZiODZhYmJiYmEzYmZkNmIwY2IwMmRiMyxOUVNmZnZqSA%3D%3D">HTTP Speed+Mobility</a>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Ftools.ietf.org%2Fhtml%2Fdraft-tarreau-httpbis-network-friendly&t=NDhiNzEyNjdkMTk4M2MyODI5ZTMwYTdiYzZiMDA4OWUwZmYwYTMzNixOUVNmZnZqSA%3D%3D">Proposal for a Network-Friendly HTTP Upgrade</a>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Ftools.ietf.org%2Fagenda%2F83%2Fslides%2Fslides-83-httpbis-5.pdf&t=MmEwYjFlMWQzNTRmNmQ5NDQ3YWNkNGJmYjhiYTMyMGYzNzg0NGZmZCxOUVNmZnZqSA%3D%3D">Waka</a>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Ftools.ietf.org%2Fhtml%2Fdraft-ietf-hybi-websocket-multiplexing&t=OWVlNmJlMzY2NGM0MjEyN2EyN2FmM2JiMzg3YjhkM2QwMGUyOGNiYSxOUVNmZnZqSA%3D%3D">WebSocket Multiplexing Extension</a>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Ftools.ietf.org%2Fhtml%2Fdraft-ietf-hybi-websocket-perframe-compression&t=NjVlNGQ2ZjVhMGY2MjNmMDg3MDBmOGEyMWE2MWFjNTZlMjcwMTJiNSxOUVNmZnZqSA%3D%3D">WebSocket Perframe Compression</a>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Ftools.ietf.org%2Fhtml%2Fdraft-hirano-httpbis-websocket-over-http2&t=NmNiMTZiODVhM2VmYjdhMzFmMmJmMTFjZTI0ZDM1YWU1NjkzNjhlMCxOUVNmZnZqSA%3D%3D">WebSocket over HTTP/2.0</a>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fblog.chromium.org%2F2012%2F01%2Fmaking-web-speedier-and-safer-with-spdy.html&t=MmE3NDcyZGZmMGNlNWNjYmQ2NWI3MGVjMTZkMzJjZjU4Mzc3NTU1OCxOUVNmZnZqSA%3D%3D">Chromium SPDY Blog</a>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.slideshare.net%2Fmnot%2Fwhat-http20-will-do-for-you&t=NjViODkzMzQzODdmYTBmZDI2MThiNDNhMzNmMjcwMTRhOWE2MmIwMyxOUVNmZnZqSA%3D%3D">Mark Nottingham Slide</a>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fwww.imperialviolet.org%2F2012%2F09%2F21%2Fcrime.html&t=YTk4OGM2NTdmZDFkZDg5MzU1NGZiZjNlYWEzOTllYjVhMWUzOTY2MyxOUVNmZnZqSA%3D%3D">CRIME</a>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.studyinghttp.net%2Fconnections%23UseOfThe100Status&t=YmQzYzI0OGEyYmJkN2VjMmFiZTA1NzBmZGFiZmQ5MDZkNzJiZDQxMyxOUVNmZnZqSA%3D%3D">100 Continue</a>
+        <li><a href="https://twitter.com/tatsuhiro_t/status/452469688425922560">HTTP2 Handsign</a>
+      </ul>
+    </section>
+  </article>
+
+</main>
+<hr>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</address>
+</footer>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=/episodes/12/rails.html>
+<link rel=amphtml href=/episodes/12/rails.amp.html>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=alternate type=application/atom+xml title=podcast.jxck.io href=/feeds/atom.xml>
+<link rel=author href=//jxck.io/assets/humans.txt>
+<link rel=preload as=font type=font/woff href=//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
+<script async src=//jxck.io/assets/js/ga.js></script>
+<script async src=/assets/js/highlight.min.js></script>
+<script async src=/assets/js/stale-while-revalidate.js></script>
+<script async src=/assets/js/main.js></script>
+
+<meta name=author content=Jxck>
+<meta name=description content="第 12 回目のテーマは Ruby on Rails です。今回は Ruby と Rail のコミッターである [@a_matsuda](https://twitter.com/a_matsuda/) さんをお迎えして、 Rails が引っ張ってきた Web 開発と、 Web の...">
+<meta name=keywords content="2014-12-07">
+
+<meta name=twitter:card content=summary>
+<meta name=twitter:site content=@jxck_>
+<meta name=twitter:url content=https://podcast.jxck.io/episodes/12/rails.html>
+<meta name=twitter:title content="ep12 Rails | blog.jxck.io">
+<meta name=twitter:description content="第 12 回目のテーマは Ruby on Rails です。今回は Ruby と Rail のコミッターである [@a_matsuda](https://twitter.com/a_matsuda/) さんをお迎えして、 Rails が引っ張ってきた Web 開発と、 Web の...">
+<meta name=twitter:image content=https://jxck.io/assets/img/jxck.png>
+
+<meta property=og:type content="article">
+<meta property=og:url content=https://podcast.jxck.io/episodes/12/rails.html>
+<meta property=og:title content="ep12 Rails | blog.jxck.io">
+<meta property=og:site_name content=blog.jxck.io>
+<meta property=og:description content="第 12 回目のテーマは Ruby on Rails です。今回は Ruby と Rail のコミッターである [@a_matsuda](https://twitter.com/a_matsuda/) さんをお迎えして、 Rails が引っ張ってきた Web 開発と、 Web の...">
+<meta property=og:image content=https://jxck.io/assets/img/jxck.png>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "ep12 Rails | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "12T08:00:00+08:00",
+  "dateModified": "2016-05-07T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "第 12 回目のテーマは Ruby on Rails です。今回は Ruby と Rail のコミッターである [@a_matsuda](https://twitter.com/a_matsuda/) さんをお迎えして、 Rails が引っ張ってきた Web 開発と、 Web の..."
+}
+</script>
+
+<link rel=icon sizes=192x192 href=//jxck.io/assets/img/jxck.png>
+<link rel=apple-touch-icon sizes=128x128 href=//jxck.io/assets/img/jxck.png>
+
+<title>ep12 Rails | mozaic.fm</title>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+<header>
+  <ul>
+    <li><a href=/><img class=logo alt="blog top" width=30 src=/assets/img/mozaic.svg></a>
+    <li><a href=/feeds/atom.xml><img alt="rss feed" width=30 src=/assets/img/podcast.svg></a>
+    <li><a href=https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd><img alt="huamns.txt" width=30 src=/assets/img/twitter.svg></a>
+    <li><a href=//jxck.io><img class=logo alt="jxck logo" width=30 src=/assets/img/jxck.svg></a>
+  </ul>
+</header>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+<main>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2014-12-07>2014-12-07</time>
+  </ul>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+  <article>
+    <h1><a href=/episodes/12/rails.html>ep12 Rails</a></h1>
+    <p><audio preload="none" src="https://files.mozaic.fm/mozaic-ep12.mp3" controls>
+    </audio>
+    <section>
+      <h2 id="Theme"><a href="#Theme">Theme</a></h2>
+      <p>第 12 回目のテーマは Ruby on Rails です。
+      <p>今回は Ruby と Rail のコミッターである <a href="https://twitter.com/a_matsuda/">@a_matsuda</a> さんをお迎えして、 Rails が引っ張ってきた Web 開発と、 Web の進化が Ruby に与えた影響などを振り返りながら、 Rails に「今何が起こっているのか」、「これからどうなっていくのか」を議論しました。
+      <p>プロジェクトオーナーである DHH が最初の Rails をリリースしてから 10 年たった今、この 10 年を見てきた <a href="https://twitter.com/a_matsuda/">@a_matsuda</a> さんとともに、 10 年前と比べて様変わりしたフロントエンド開発との兼ね合いや、 Microservices に対する感触などについて議論しました。
+      <p>ハッシュタグは <a href="https://twitter.com/search?q=mozaicfm&src=hash">#mozaicfm</a> です。
+      <p>(なお、 Android での不具合のフィードバックを頂いたため、今回から配信形式を m4a ではなく mp3 に変えました。アートワークはありません。)
+    </section>
+    <section>
+      <h2 id="Guest"><a href="#Guest">Guest</a></h2>
+      <ul>
+        <li><a href="https://twitter.com/a_matsuda">@a_matsuda</a>
+      </ul>
+    </section>
+    <section>
+      <h2 id="Show+Note"><a href="#Show+Note">Show Note</a></h2>
+      <ul>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Frubyonrails.org%2F&t=NGI3ZjQ4ZjQ2Y2UxNWFmNjU5OTE2YzUwNzM0NGIxZDY4YjYxZGM3YixMdFdhcWRlTA%3D%3D">Ruby on Rails</a>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fja.wikipedia.org%2Fwiki%2FRuby_on_Rails&t=ODhjOWVmZWQxMGZiZTk4NDY5NTY0Njg3YTU3NjJhZmE3MWM4NGVjNSxMdFdhcWRlTA%3D%3D">Rails の歴史</a> (Wikipedia 引用)<ul>
+          <li>2004/7 最初のバージョン公開
+          <li>2005/12/13 ver 1.0 リリース
+          <li>2007/12/7  ver 2.0 リリース
+          <li>2010/8/29  ver 3.0 リリース
+          <li>2013/6/27  ver 4.0 リリース
+        </ul>
+        <li>今年中盤くらいにあった投稿<ul>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fqiita.com%2Fkaiinui%2Fitems%2F2781219340d427543d08&t=ZGFjM2I5MWM0MTg0MWRjYzlkMjk0Yzk2MmM5MDUyMTVkYTFjMmFjNyxMdFdhcWRlTA%3D%3D">Rails が時代に合わなくなってきた</a>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwazanova.jp%2Fitems%2F1361&t=MmZjNTBmZTI3OThiOGZjMGJiZjRjYjE0ZmFlYWM2YzU1YjI0YTA5NyxMdFdhcWRlTA%3D%3D">「Rails が時代に合わなくなってきた」のフォロー</a>
+        </ul>
+        <li><a href="https://twitter.com/dhh">DHH(David Heinemeier Hansson)</a> Rails の作者
+        <li><a href="https://twitter.com/bitsweat">Jeremy Kemper</a> Rails Comitter
+        <li><a href="https://twitter.com/koichisasada">Koichi Sasada</a> Ruby Comitter
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fcoffeescript.org%2F&t=NTdmNDE5M2QyNTA1YTA2YzhjYzJiOTNhZDgzMTVlZmZmNjM5ODRlOCxMdFdhcWRlTA%3D%3D">Coffee Script</a>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Frails%2Fsprockets-rails&t=Y2U0OWE3OGRkY2NkMjQyYmU2NjYxZDg0MDVhM2FiNGNmYTEyMDhiNyxMdFdhcWRlTA%3D%3D">Sprockets</a> Asset Pipeline のためのプリプロセッサライブラリ
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.merbivore.com%2F&t=ZmY2NDRkODdkZDczNzkzZmE2YThiYzY4ZGU2NzkzNDMyYmUwMTMxNyxMdFdhcWRlTA%3D%3D">Merb</a> Rails と統合したフレームワーク
+        <li><a href="https://twitter.com/wycats">Yehuda Katz</a> Merb チームの開発者
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fmislav%2Fwill_paginate&t=NGUwZTYyMmQ4NmY3YzkzMjcxNzBlNzEwYmY5ZDllYWFhYmU5ZDI2MixMdFdhcWRlTA%3D%3D">Will Paginate</a> ページネーションプラグイン
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Famatsuda%2Fkaminari&t=ODA0OGY5MGEzZjZhYWQzN2E3NmU2YTE5YTFkNGM2MGY2MDczY2QwZixMdFdhcWRlTA%3D%3D">kaminari</a> a_matsuda さん作のページネーションプラグイン
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Frails%2Farel&t=ZTgxMDU3ZDY1N2E5MzE5MmEzMTljMGI1ZGE2YjE4MWNiNmEyZjQ3MSxMdFdhcWRlTA%3D%3D">Arel</a>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Frails%2Fturbolinks&t=ZmIwMTc3ZjU1MmNhZDkzMWIzNTE3YzFhNmVlYWU2MzQyZmY4OWU5OCxMdFdhcWRlTA%3D%3D">turbolinks</a> Rails の Pjax 実装
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fweblog.rubyonrails.org%2F2014%2F11%2F28%2FRails-4-2-0-rc1-has-been-released%2F&t=NjFmOTgzNmM4MTZkYjMwNWM3NDhhMjU3M2QzMTJmMjQxYTNjOTM0MCxMdFdhcWRlTA%3D%3D">Rails4.2.0rc1</a> 録音二日後に公開されました
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Femberjs.com%2F&t=MTdlNGZkZDFiMTE0OGRlNmFlNzQ3NGMxOTVlMzBiYjQ5OTM5ZTY5ZSxMdFdhcWRlTA%3D%3D">Ember.js</a>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Frails%2Fjbuilder&t=NGI4ZWQxNDk0YmI2YTAxMmJiZjM4MTAwNDE1YjRlN2E2YWU3NmFiOCxMdFdhcWRlTA%3D%3D">jbuilder</a>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fbackbonejs.org&t=Yjg3NTExZmM4OWU5ZDZmNGY5YTVmNjM4NWIzZTk1NzVkODU1MjdhNSxMdFdhcWRlTA%3D%3D">backbone.js</a>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fmartinfowler.com%2Farticles%2Fmicroservices.html&t=MDBiYzRkZTBiM2ExMGE1ZTY2NGIwYzNlZGIyNGE2YzIxYzA3NzNkYyxMdFdhcWRlTA%3D%3D">microservices</a>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Frails%2Factiveresource&t=MjJjOWYxNWE3YTBjMzY5MjMwYjczZTRmM2U2ZWViYWU4NjkyNmIwZSxMdFdhcWRlTA%3D%3D">Active Resource</a>
+      </ul>
+    </section>
+    <section>
+      <h2 id="Related+Entry"><a href="#Related+Entry">Related Entry</a></h2>
+      <ul>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fjacoyutorius.com%2F%3Fp%3D1019&t=NmZhMzRlZDYzNDEzYWNkYzY1YWE0ZjY2MTE2M2RkOTI0YjkzZWI3ZixMdFdhcWRlTA%3D%3D">mozaic.fm#12 Rails の話で思ったこと</a>
+      </ul>
+    </section>
+  </article>
+
+</main>
+<hr>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</address>
+</footer>

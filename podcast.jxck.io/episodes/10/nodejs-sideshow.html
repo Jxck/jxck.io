@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=/episodes/10/nodejs-sideshow.html>
+<link rel=amphtml href=/episodes/10/nodejs-sideshow.amp.html>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=alternate type=application/atom+xml title=podcast.jxck.io href=/feeds/atom.xml>
+<link rel=author href=//jxck.io/assets/humans.txt>
+<link rel=preload as=font type=font/woff href=//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
+<script async src=//jxck.io/assets/js/ga.js></script>
+<script async src=/assets/js/highlight.min.js></script>
+<script async src=/assets/js/stale-while-revalidate.js></script>
+<script async src=/assets/js/main.js></script>
+
+<meta name=author content=Jxck>
+<meta name=description content="第 10 回目 node.js の SideShow です。[@koichik](https://twitter.com/koichik) さんの「ところでみんな Promise 好き?」から始まった、 Promise / Generator / Rxjs などの話題と、 Jav...">
+<meta name=keywords content="2014-10-23">
+
+<meta name=twitter:card content=summary>
+<meta name=twitter:site content=@jxck_>
+<meta name=twitter:url content=https://podcast.jxck.io/episodes/10/nodejs-sideshow.html>
+<meta name=twitter:title content="ep10 node.js sideshow | blog.jxck.io">
+<meta name=twitter:description content="第 10 回目 node.js の SideShow です。[@koichik](https://twitter.com/koichik) さんの「ところでみんな Promise 好き?」から始まった、 Promise / Generator / Rxjs などの話題と、 Jav...">
+<meta name=twitter:image content=https://jxck.io/assets/img/jxck.png>
+
+<meta property=og:type content="article">
+<meta property=og:url content=https://podcast.jxck.io/episodes/10/nodejs-sideshow.html>
+<meta property=og:title content="ep10 node.js sideshow | blog.jxck.io">
+<meta property=og:site_name content=blog.jxck.io>
+<meta property=og:description content="第 10 回目 node.js の SideShow です。[@koichik](https://twitter.com/koichik) さんの「ところでみんな Promise 好き?」から始まった、 Promise / Generator / Rxjs などの話題と、 Jav...">
+<meta property=og:image content=https://jxck.io/assets/img/jxck.png>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "ep10 node.js sideshow | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "10T08:00:00+08:00",
+  "dateModified": "2016-05-07T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "第 10 回目 node.js の SideShow です。[@koichik](https://twitter.com/koichik) さんの「ところでみんな Promise 好き?」から始まった、 Promise / Generator / Rxjs などの話題と、 Jav..."
+}
+</script>
+
+<link rel=icon sizes=192x192 href=//jxck.io/assets/img/jxck.png>
+<link rel=apple-touch-icon sizes=128x128 href=//jxck.io/assets/img/jxck.png>
+
+<title>ep10 node.js sideshow | mozaic.fm</title>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+<header>
+  <ul>
+    <li><a href=/><img class=logo alt="blog top" width=30 src=/assets/img/mozaic.svg></a>
+    <li><a href=/feeds/atom.xml><img alt="rss feed" width=30 src=/assets/img/podcast.svg></a>
+    <li><a href=https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd><img alt="huamns.txt" width=30 src=/assets/img/twitter.svg></a>
+    <li><a href=//jxck.io><img class=logo alt="jxck logo" width=30 src=/assets/img/jxck.svg></a>
+  </ul>
+</header>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+<main>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2014-10-23>2014-10-23</time>
+  </ul>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+  <article>
+    <h1><a href=/episodes/10/nodejs-sideshow.html>ep10 node.js sideshow</a></h1>
+    <p><audio preload="none" src="https://files.mozaic.fm/mozaic-ep10.sideshow.m4a" controls>
+    </audio>
+    <section>
+      <h2 id="Theme"><a href="#Theme">Theme</a></h2>
+      <p>第 10 回目 node.js の SideShow です。
+      <p><a href="https://twitter.com/koichik">@koichik</a> さんの「ところでみんな Promise 好き?」から始まった、 Promise / Generator / Rxjs などの話題と、 Java の Future や Haskell の Monad との関係などの解説です。
+      <p>ハッシュタグは <a href="https://twitter.com/search?q=mozaicfm&src=hash">#mozaicfm</a> です。
+    </section>
+    <section>
+      <h2 id="Guest"><a href="#Guest">Guest</a></h2>
+      <ul>
+        <li><a href="https://twitter.com/koichik">@koichik</a>
+        <li><a href="https://twitter.com/yosuke_furukawa">@yosuke_furukawa</a>
+      </ul>
+    </section>
+    <section>
+      <h2 id="Show+Note"><a href="#Show+Note">Show Note</a></h2>
+      <ul>
+        <li>0:00 ~ : そもそもみんな Promise 好き?<ul>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fpeople.mozilla.org%2F%7Ejorendorff%2Fes6-draft.html%23sec-promise-objects&t=YThiMjU4NTJjM2JlYTM2NTg0YzUxNjg0NzVmNmE2ZmMwYjgwM2VlYiwzM1NyMFYwWQ%3D%3D">ES6 Promise</a>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Ftry.buildwinjs.com%2F&t=OGFmNDU0MGFlNzIwNWQ5YjJhNzAwZWY5OWE5NGEyOTBkNmE3ZTU1NCwzM1NyMFYwWQ%3D%3D">WindJS</a>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fja.wikipedia.org%2Fwiki%2F%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%25AB%25E3%2583%25BB%25E3%2583%2592%25E3%2583%25A5%25E3%2583%25BC%25E3%2582%25A4%25E3%2583%2583%25E3%2583%2588&t=MWNlYzlkNzg1NTI3MzllOGZlZmRjMDkyZTZjYzA4NjA3Zjk1NTRjNiwzM1NyMFYwWQ%3D%3D">カール・ヒューイット</a>
+        </ul>
+        <li>1:40 ~ : そもそもの Promise とは?<ul>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fdocs.oracle.com%2Fjavase%2F7%2Fdocs%2Fapi%2Fjava%2Futil%2Fconcurrent%2FFuture.html&t=NWIzMzk3YWU5ZGZiN2VlY2JjOGUwMGQzY2IyZjRiMjRmMzFjYTQ3NSwzM1NyMFYwWQ%3D%3D">Java の Future</a>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.haskell.org%2Fhaskellwiki%2FThunk&t=ZjU2NDAxYTMwYzA2ZDEyZmQwMTEzZTBlOTI5YzMwZjI1OTY0ZTk3OSwzM1NyMFYwWQ%3D%3D">Haskell の Thunk</a>
+        </ul>
+        <li>7:30 ~ : 本当に Promise は必要なのか?<ul>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.scala-lang.org%2Fapi%2Fcurrent%2Fscala%2FOption.html&t=NTk3NmNmNTdlZDdjZTcxMzUzNjgxZjkwZDFjMzg5M2JiYWM0ZjIyZSwzM1NyMFYwWQ%3D%3D">Scala の Option</a>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fapi.jquery.com%2Fcategory%2Fdeferred-object%2F&t=Y2ZjMmVjMjA2NzY4NzMyMTZmODdiYmY3NzYzMTA2ZGU5ODBmOTNkYywzM1NyMFYwWQ%3D%3D">jQuery の Deffered</a>
+          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdom.spec.whatwg.org%2F%23promises&t=ZTk2ZjRiNWQzYThiZmMxODNjYjQyZTgwOTRkYjBiZWI4ZTBmYWZmOCwzM1NyMFYwWQ%3D%3D">DOM の Promise</a>
+        </ul>
+        <li>15:22 ~ : JS の Promise と Haskell の I/O モナド<ul>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.haskell.org%2Fhaskellwiki%2FIO_inside%23Dark_side_of_IO_monad&t=NjQ5NGNjOTY5NTI0NzI0MGI1NzM3OWU0YWMyZTAzNTIyOWE0NDAwMywzM1NyMFYwWQ%3D%3D">Haskell の I/O monad</a>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fen.wikibooks.org%2Fwiki%2FHaskell%2FSyntactic_sugar%23Do_and_proc_notation&t=MTIzODQwNWQ4NGZmZDg4MDJkNjFkZWE5ZWNiMGYyZmU3ZjYzY2JlMCwzM1NyMFYwWQ%3D%3D">Haskell の do 記法</a>
+        </ul>
+        <li>18:45 ~ : genrator ってどうなの?<ul>
+          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FStatements%2Ffunction%2A&t=NDg1YmQ1Y2U1OTAxOTdjM2NkOWVmMDkwNTEzZmE4MGU0NzAzOGQyNCwzM1NyMFYwWQ%3D%3D">function*</a>
+        </ul>
+        <li>20:50 ~ : generator と Go の groutine/channel<ul>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fgolang.org%2Fref%2Fspec%23Channel_types&t=NGQ5NWM2ODVmMjRmYjNhNTA5MDQ2YTVlNmM3YjkxMGYzYjkwZGFhZiwzM1NyMFYwWQ%3D%3D">Go の Channel</a>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fjxck.hatenablog.com%2Fentry%2F2014-01-12%2Fgenerator-screencaset&t=ZWZkNGYxYTU5OTFlY2M3ZWM1Y2NkYmVlYWI5OTI4N2NhZWVhOTdiZiwzM1NyMFYwWQ%3D%3D">Generator のスクリーンキャスト</a>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fkoajs.com%2F%2522%2522&t=MDYxNzRhZmYyNDIyOTE1NDg0NzBjMjgxMDc4ZmE2ZmMzZDViNjBhMywzM1NyMFYwWQ%3D%3D">koa</a>
+          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Ftj%2Fco&t=NzdmZjgwMjllMjFlMzRkMGJkY2M3MTgyMThmMzgzNzJjNjY2YjRjMywzM1NyMFYwWQ%3D%3D">co</a>
+        </ul>
+        <li>29:45 ~ : generator と Lua の coroutine<ul>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.lua.org%2Fmanual%2F5.2%2Fmanual.html%232.6&t=NThmOWY5OTk2NzY5YWIzYTg3NGVlNTJhNjJhODFiMDMyYzhhZTZkMywzM1NyMFYwWQ%3D%3D">Lua の coroutine</a>
+        </ul>
+        <li>33:10 ~ : generator と goroutine の決定的な違い<ul>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fja.wikipedia.org%2Fwiki%2F%25E3%2583%258B%25E3%2582%25AF%25E3%2583%25A9%25E3%2582%25A6%25E3%2582%25B9%25E3%2583%25BB%25E3%2583%25B4%25E3%2582%25A3%25E3%2583%25AB%25E3%2583%2588&t=MTAxOWM3ZTgzYjk1NWZjODgwMzQ0NjAxZjI4OGJiNjg5Yzg0ZTc2MCwzM1NyMFYwWQ%3D%3D">ニクラウス・ヴィルト</a>
+        </ul>
+        <li>40:43 ~ : Async/Await<ul>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fmsdn.microsoft.com%2Fja-jp%2Flibrary%2Fhh191443.aspx&t=MTg3ZjVjOWFlNDllMjgxMTk2YjFjNjgwZTUzMmZkZTMzMGE5ZmE4NCwzM1NyMFYwWQ%3D%3D">C# async/await</a>
+          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fkoajs%2Fkoa%2Fissues%2F339&t=MDk1M2U5M2Q4YjcxMjAxNWI2Njk1NzBjNjZmNWQ2YjE2OWZjMzkzNSwzM1NyMFYwWQ%3D%3D">koa への issue</a>
+        </ul>
+        <li>43:00 ~ : Reactive Programming と RxJS<ul>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Freactive-extensions.github.io%2FRxJS%2F&t=ZDVlNjg4Njk1ZTc1ZWZhNWZlYzk4NWU5Yjg0Zjg3OTIyNTJiYTBiNywzM1NyMFYwWQ%3D%3D">RxJS</a>
+          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fen.wikipedia.org%2Fwiki%2FFunctional_reactive_programming&t=ODEyMGFmNTQzMTgxMmI2Y2I2MDgwZGIzMzk2MTFiMTM0NGJlNzM4ZiwzM1NyMFYwWQ%3D%3D">Functional Reactive Programming</a>
+          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fwww.meteor.com%2F&t=MjU5ZTQ0ZDgxZGVhZTMzMTM3NmYzOGRkZTFhNDQ5Y2Q1YzRkM2EzNywzM1NyMFYwWQ%3D%3D">meteor</a>
+          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fcloudup.com%2F&t=Zjc2NmQyNDkxOTAzZWVmNWZiODQ5MzEyMGU3MWJmOGI0NmQ4Njk5MSwzM1NyMFYwWQ%3D%3D">cloudup</a>
+          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fwww.npmjs.org%2Fpackage%2Famqp&t=Y2MwZmU2OThkMTMyNzZiY2Q5ODZjOWUyYTZkMWNkMTM3YWRkNzU0YywzM1NyMFYwWQ%3D%3D">node-amqp</a>
+        </ul>
+      </ul>
+    </section>
+  </article>
+
+</main>
+<hr>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</address>
+</footer>
