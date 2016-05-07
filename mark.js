@@ -95,6 +95,7 @@ class Builder {
     this.tags = option.tags;
     this.style = option.style;
     this.indent = option.indent;
+    this.icon = option.icon;
     this.title = '';
   }
   get isAMP() {
@@ -521,6 +522,7 @@ function prepare(filepath, option) {
   let description = Description(md);
 
   // meta
+  let icon = option.icon;
   let canonical = `${baseurl}/${name}.html`;
   let ampurl = `${baseurl}/${name}.amp.html`;
   let target = `${dir}/${name}.html`;
@@ -552,6 +554,7 @@ function prepare(filepath, option) {
     style,
     target,
     indent,
+    icon,
   };
 }
 
@@ -571,6 +574,7 @@ if (process.argv[3] === 'podcast') {
       amp: false,
       meta: read('./.template/meta.html'),
       template: read('./.template/podcast.html'),
+      icon: 'https://jxck.io/assets/img/mozaic.png', //TODO: https://mozaic.fm/assets/img/mozaic.png
     }
     let info = prepare(filepath, option);
     let builder = new Builder(info);
@@ -589,6 +593,7 @@ if (process.argv[3] === 'podcast') {
     amp: false,
     meta: read('./.template/meta.html'),
     template: read('./.template/blog.html'),
+    icon: 'https://jxck.io/assets/img/jxck.png',
   }
   let info = prepare(filepath, option);
   let builder = new Builder(info);
@@ -604,6 +609,7 @@ if (process.argv[3] === 'podcast') {
     amp: true,
     meta: read('./.template/meta.html'),
     template: read('./.template/amp.html'),
+    icon: 'https://podcast.jxck.io/assets/img/jxck.png',
   }
   let info = prepare(filepath, option);
   let builder = new Builder(info);
