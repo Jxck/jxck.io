@@ -547,7 +547,7 @@ th:last-child, td:last-child {
       <h2 id="CSP+の設定"><a href="#CSP+の設定">CSP の設定</a></h2>
       <p>CSP を有効にするには、 Content-Security-Policy ヘッダを付与し、その引数にポリシーを指定する。
       <p>ポリシーは、コンテンツが読み込み可能なコンテンツについての制限であり、以下のような指定が可能である。
-      <pre class=><code>Content-Security-Policy: default-src &#039;self&#039;</code></pre>
+      <pre class=""><code>Content-Security-Policy: default-src &#039;self&#039;</code></pre>
       <p>ここで使用されるディレクティブについては、以下が参考になる。
       <p><a href="https://developer.mozilla.org/ja/docs/Web/Security/CSP/CSP_policy_directives">CSP におけるポリシーのディレクティブ - Web セキュリティ | MDN</a>
       <p>基本的には、同一オリジン以外の外部スクリプトや、 <code>&lt;script&gt;</code> 内に直接記述するインラインスクリプトなどを全て除外し、そうしたスクリプトがあった場合も実行を阻止する。
@@ -557,7 +557,7 @@ th:last-child, td:last-child {
     <section>
       <h2 id="CSP+の注意点"><a href="#CSP+の注意点">CSP の注意点</a></h2>
       <p>もし、先ほど例示した設定をサイト全体に適用した場合、何がおこるかを考えてみる。
-      <pre class=><code>Content-Security-Policy: default-src &#039;self&#039;</code></pre>
+      <pre class=""><code>Content-Security-Policy: default-src &#039;self&#039;</code></pre>
       <p>まず、この指定により、インラインスクリプトが全て無効になる。
       よくある例として、 Google Analytics のためページ下部に埋め込んだ <code>&lt;script&gt;</code> が全て動かなくなるため、アナリティクスが動かなくなる。
       <p>他にも、例えば <code>cdn.jquery.com</code> などの Public CDN から取得しているスクリプトも軒並み動かなくなる。
@@ -574,7 +574,7 @@ th:last-child, td:last-child {
       <p>そこで、移行手段として Content-Security-Policy-Report-Only を利用することができる。
       <p>これは、ポリシー違反があった場合、レポートだけを送信し、コンテンツの挙動を一切ブロックしないというものである。
       <p>以下のように、ポリシーに <code>report-uri</code> ディレクティブでレポート先 uri を指定する。
-      <pre class=><code>Content-Security-Policy-Report-Only: default-src &#039;self&#039;; report-uri http://example.com/csp-report</code></pre>
+      <pre class=""><code>Content-Security-Policy-Report-Only: default-src &#039;self&#039;; report-uri http://example.com/csp-report</code></pre>
       <p>これによって、ポリシー違反があってもコンテンツをブロックしないため、サイトへの影響はほぼ無くなる。
       <p>まずはこの指定でレポートを収集しながら、影響範囲を把握しポリシーとコンテンツを徐々に改善することができる。
       <p>修正が完了し、レポートが落ち着いたら Content-Security-Policy に移行するフローが導入しやすいだろう。
@@ -625,7 +625,7 @@ th:last-child, td:last-child {
       <p>しかし、 AMP のカスタムタグがインラインスタイルを使用している部分は、手を入れることができない。
       <p>かといって、全体としてスタイルに <code>&#039;unsafe-inline&#039;</code> を許容するのもはばかられたため、 AMP ページのみスタイルの <code>&#039;unsafe-inline&#039;</code> を許可した。
       <p>よって、通常のページと AMP 対応ページでは以下の出し分けをしている。
-      <pre class=><code># normal page
+      <pre class=""><code># normal page
 content-security-policy-report-only: default-src &#039;self&#039; https://*.jxck.io https://www.google-analytics.com ; child-src https://www.youtube.com ; report-uri https://xxx.report-uri.io/r/default/csp/reportOnly
 
 # amp page

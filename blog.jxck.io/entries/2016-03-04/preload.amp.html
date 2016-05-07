@@ -618,7 +618,7 @@ document.body.appendChild(script);</code></pre>
       <h2 id="Header+での指定"><a href="#Header+での指定">Header での指定</a></h2>
       <p>Preload は、同じセマンティクスを HTTP Header にも適用できる。
       <p>つまりここまでマークアップで示してきた例は、(onload hack など除き)基本的に全て HTTP Response Header で行うことができる。
-      <pre class=><code>Link: &lt;script.js&gt;;rel=&quot;preload&quot;;as=&quot;script&quot;
+      <pre class=""><code>Link: &lt;script.js&gt;;rel=&quot;preload&quot;;as=&quot;script&quot;
 
 Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin</code></pre>
       <p>HTTP Header にすることによって、マークアップと最適化を分離することができる。
@@ -651,7 +651,7 @@ Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin
       クライアントの状態を踏まえて、コンテントネゴシエーションを重視する場合に Preload を。
       <p>という感じに、組み合わせて使うのが最も理想だと言えるだろう。
       <p>なお、 HTTP2 の Push はさせずブラウザに Fetch で Preload させたい場合は、 <code>nopush</code> を付けることで Opt-Out することができる。
-      <pre class=><code>Link: &lt;/app/style.css&gt;; rel=preload; as=style; nopush</code></pre>
+      <pre class=""><code>Link: &lt;/app/style.css&gt;; rel=preload; as=style; nopush</code></pre>
     </section>
     <section>
       <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
@@ -670,7 +670,7 @@ Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin
         そのため HTTP Header で Link rel=preload を指定すれば、必ず HTTP2 Push が発生する。
         <p>まず、本サイトはまだ HTTP2 Push を持ちいた最適化は、キャッシュを有効に使えなくなるという理由から行っておらず、 <a href="https://tools.ietf.org/html/draft-kazuho-h2-cache-digest">Cache Digest</a> を Service Worker で管理する方式を採用する予定なので、そこまでは Link Header を付けるのは避けたい。
         <p>そこで、ページで共通するサブリソースについて、 HTML のトップレベルへの <code>&lt;link&gt;</code> タグで指定することにした。
-        <pre class=><code>&lt;link rel=preload as=script src=/assets/js/highlight.min.js&gt;
+        <pre class=""><code>&lt;link rel=preload as=script src=/assets/js/highlight.min.js&gt;
 &lt;link rel=preload as=script src=//jxck.io/assets/js/ga.js&gt;</code></pre>
       </section>
       <section>
