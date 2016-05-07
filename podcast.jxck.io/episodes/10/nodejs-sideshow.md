@@ -1,11 +1,11 @@
-# [node.js] #10 node.js sideshow
+# [2014-10-23] ep10 node.js sideshow
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep10.sideshow.m4a" controls></audio>
 
 
 ## Theme
 
-第 10 回目の SideShow です。
+第 10 回目 node.js の SideShow です。
 
 [@koichik](https://twitter.com/koichik) さんの「ところでみんな Promise 好き?」から始まった、 Promise / Generator / Rxjs などの話題と、 Java の Future や Haskell の Monad との関係などの解説です。
 

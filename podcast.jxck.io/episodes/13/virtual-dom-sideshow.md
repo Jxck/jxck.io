@@ -1,11 +1,11 @@
-# [virtual dom] #13 Virtual DOM sideshow
+# [2014-12-31] ep13 Virtual DOM sideshow
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep13.sideshow.mp3" controls></audio>
 
 
 ## Theme
 
-第 13 回目の SideShow です。
+第 13 回目 Virtual DOM の SideShow です。
 
 [@mizchi](https://twitter.com/mizchi/) さんとのこぼれ話をお送りします。
 

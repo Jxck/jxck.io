@@ -1,10 +1,10 @@
-# [browser] #20 Browser
+# [2015-11-26] ep20 Browser
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep20.mp3" controls></audio>
 
 ## Theme
 
-第 20 回のテーマはブラウザです。
+第 20 回のテーマは Browser です。
 
 今回は [@takoratta](https://twitter.com/takoratta) さんをお迎えして、ブラウザは今どうなっているのか、そして、その進化は Web の進化とどう関わっているのかにつて議論しました。
 

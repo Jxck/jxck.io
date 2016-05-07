@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=/episodes/9/socket.io.html>
+<link rel=amphtml href=/episodes/9/socket.io.amp.html>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=alternate type=application/atom+xml title=podcast.jxck.io href=/feeds/atom.xml>
+<link rel=author href=//jxck.io/assets/humans.txt>
+<link rel=preload as=font type=font/woff href=//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
+<script async src=//jxck.io/assets/js/ga.js></script>
+<script async src=/assets/js/highlight.min.js></script>
+<script async src=/assets/js/stale-while-revalidate.js></script>
+<script async src=/assets/js/main.js></script>
+
+<meta name=author content=Jxck>
+<meta name=description content="第 9 回目のテーマは Socket.IO です。**全編英語**です。今回は [Socket.IO@1.0](http://socket.io) 公開を記念して、日本で開催した [Socket.IO Meetup](http://t.umblr.com/redirect?z=h...">
+<meta name=keywords content="2014-09-08">
+
+<meta name=twitter:card content=summary>
+<meta name=twitter:site content=@jxck_>
+<meta name=twitter:url content=https://podcast.jxck.io/episodes/9/socket.io.html>
+<meta name=twitter:title content="ep9 Socket.IO | blog.jxck.io">
+<meta name=twitter:description content="第 9 回目のテーマは Socket.IO です。**全編英語**です。今回は [Socket.IO@1.0](http://socket.io) 公開を記念して、日本で開催した [Socket.IO Meetup](http://t.umblr.com/redirect?z=h...">
+<meta name=twitter:image content=https://jxck.io/assets/img/jxck.png>
+
+<meta property=og:type content="article">
+<meta property=og:url content=https://podcast.jxck.io/episodes/9/socket.io.html>
+<meta property=og:title content="ep9 Socket.IO | blog.jxck.io">
+<meta property=og:site_name content=blog.jxck.io>
+<meta property=og:description content="第 9 回目のテーマは Socket.IO です。**全編英語**です。今回は [Socket.IO@1.0](http://socket.io) 公開を記念して、日本で開催した [Socket.IO Meetup](http://t.umblr.com/redirect?z=h...">
+<meta property=og:image content=https://jxck.io/assets/img/jxck.png>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "ep9 Socket.IO | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "9T08:00:00+08:00",
+  "dateModified": "2016-05-07T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "第 9 回目のテーマは Socket.IO です。**全編英語**です。今回は [Socket.IO@1.0](http://socket.io) 公開を記念して、日本で開催した [Socket.IO Meetup](http://t.umblr.com/redirect?z=h..."
+}
+</script>
+
+<link rel=icon sizes=192x192 href=//jxck.io/assets/img/jxck.png>
+<link rel=apple-touch-icon sizes=128x128 href=//jxck.io/assets/img/jxck.png>
+
+<title>ep9 Socket.IO | mozaic.fm</title>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+<header>
+  <ul>
+    <li><a href=/><img class=logo alt="blog top" width=30 src=/assets/img/mozaic.svg></a>
+    <li><a href=/feeds/atom.xml><img alt="rss feed" width=30 src=/assets/img/podcast.svg></a>
+    <li><a href=https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd><img alt="huamns.txt" width=30 src=/assets/img/twitter.svg></a>
+    <li><a href=//jxck.io><img class=logo alt="jxck logo" width=30 src=/assets/img/jxck.svg></a>
+  </ul>
+</header>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+<main>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2014-09-08>2014-09-08</time>
+  </ul>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+  <article>
+    <h1><a href=/episodes/9/socket.io.html>ep9 Socket.IO</a></h1>
+    <p><audio preload="none" src="https://files.mozaic.fm/mozaic-ep9.m4a" controls>
+    </audio>
+    <section>
+      <h2 id="Theme"><a href="#Theme">Theme</a></h2>
+      <p>第 9 回目のテーマは Socket.IO です。<strong>全編英語</strong>です。
+      <p>今回は <a href="http://socket.io">Socket.IO@1.0</a> 公開を記念して、日本で開催した <a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fconnpass.com%2Fevent%2F6911%2F&t=MDllNGRmMTE1Njk2NTgxNTYyMzRkMzFhN2FkY2E5ZjIwYjRkOGI3Miw1U1JuYnNhSg%3D%3D">Socket.IO Meetup</a> で来日した、開発者である <a href="https://twitter.com/rauchg">@rauchg</a> さんをお迎えし、 Socket.IO をテーマに 「Socket.IO を作ったモチベーション」から、「Socket.IO@1.0 での変更点」や「Socket.IO@2.0 の話」などをしました。
+      <p>ちょうどこの時期にポストされた、彼の同僚であり Express や Mocha の作者である <a href="https://twitter.com/tjholowaychuk">TJ Holowaychuk</a> の、 <a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fmedium.com%2Fcode-adventures%2Ffarewell-node-js-4ba9e7f3e52b&t=ZTIwYjJiYmI0Yjg4MTQxZWYwYzAzNzZhNTQzNjFhOWMyZjdlODg0Ziw1U1JuYnNhSg%3D%3D">Farewell Node.js</a> などをネタに、「他の言語で実装した場合」の話などもしました。
+      <p>今回も <a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fqiita.com%2FJxck_%2Fitems%2Fc5bfa3d16053de3f21eb&t=YzNkOTU5YzlkYjhkNTI1MmExY2IyYzVkZTMxMWJkNWEzZTM4NWQ4Yyw1U1JuYnNhSg%3D%3D">Qiita で事前に質問を集め</a> その中のいつくかは紹介しています。質問くださったみなさんありがとうございました。
+      <p>ハッシュタグは <a href="https://twitter.com/search?q=mozaicfm&src=hash">#mozaicfm</a> です。
+    </section>
+    <section>
+      <h2 id="Guest"><a href="#Guest">Guest</a></h2>
+      <ul>
+        <li><a href="https://twitter.com/rauchg">@rauchg</a>
+      </ul>
+    </section>
+    <section>
+      <h2 id="Show+Note"><a href="#Show+Note">Show Note</a></h2>
+      <ul>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fsocket.io&t=M2IzMjdlYWE4MThlMTZiMzQ5OTA1NmVjMGE1ZDUxODNmNzU5ZWM0MSw1U1JuYnNhSg%3D%3D">Socket.IO</a>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fsocket.io%2Fblog%2Fintroducing-socket-io-1-0%2F&t=ODNkODcyYWRhOWVjN2NjYzM0NDkxYmFhZjk3ODlhOWNhZjgyNGQwZCw1U1JuYnNhSg%3D%3D">Introducing Socket.IO 1.0</a>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fmedium.com%2Fcode-adventures%2Ffarewell-node-js-4ba9e7f3e52b&t=ZTIwYjJiYmI0Yjg4MTQxZWYwYzAzNzZhNTQzNjFhOWMyZjdlODg0Ziw1U1JuYnNhSg%3D%3D">Farewell Node.js</a> <small>
+        (TJ が Node.js をやめて Go にいく宣言をした記事)</small>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fnodefest.jp%2F2012%2F&t=ODFlMWVmYzM2ODAxYTk5YzNiYTA1NWVjNzMyZjAyZTE4NWJiNWIxNiw1U1JuYnNhSg%3D%3D">東京 Node 学園祭 2012</a> <small>
+        (Guille の最初の来日)</small>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fconnpass.com%2Fevent%2F6911%2F&t=MDllNGRmMTE1Njk2NTgxNTYyMzRkMzFhN2FkY2E5ZjIwYjRkOGI3Miw1U1JuYnNhSg%3D%3D">Socket.IO Meetup</a> <small>
+        (Socket.IO@1.0 を記念して Guille 二回目の来日)</small>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fautomattic%2Fsocket.io-emitter&t=OGRjMDljOTQ3YjJiMmE3ZGE1YTk5MTg2MzUyNTI2NWEzNmI2NWI5Ziw1U1JuYnNhSg%3D%3D">socket.io-emitter</a> <small>
+        (socket.io のメッセージングに外から redis 経由でメッセージを送るインタフェース)</small>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fmqtt.org&t=YzU2OTY2OWEwZThmYWJkZmVkY2U5NTkxODYzMWY5YWRmMjY5MDdhMSw1U1JuYnNhSg%3D%3D">MQTT</a> <small>
+        (最近話題の軽量プロトコル、 socket.io-emitter に良いのではという話)</small>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fnodefest.jp%2F2014%2F&t=MWNkOWU2OGQ0YjM2YTVkYzk2NjMzMDBlNGViZmI0YTNkNWJjMTM3Niw1U1JuYnNhSg%3D%3D">東京 Node 学園祭 2014</a> <small>
+        (今年の東京 Node 学園祭にも再来日予定です)</small>
+      </ul>
+    </section>
+  </article>
+
+</main>
+<hr>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</address>
+</footer>

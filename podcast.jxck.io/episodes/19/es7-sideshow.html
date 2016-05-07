@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=/episodes/19/es7-sideshow.html>
+<link rel=amphtml href=/episodes/19/es7-sideshow.amp.html>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=alternate type=application/atom+xml title=podcast.jxck.io href=/feeds/atom.xml>
+<link rel=author href=//jxck.io/assets/humans.txt>
+<link rel=preload as=font type=font/woff href=//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
+<script async src=//jxck.io/assets/js/ga.js></script>
+<script async src=/assets/js/highlight.min.js></script>
+<script async src=/assets/js/stale-while-revalidate.js></script>
+<script async src=/assets/js/main.js></script>
+
+<meta name=author content=Jxck>
+<meta name=description content="第 19 回目 ES7 の SideShow です。[@Constellation](https://twitter.com/Constellation) さんが語る JavaScript Engine (JSCore) での実装の裏話と、 WebAssembly についてお送り...">
+<meta name=keywords content="2015-08-05">
+
+<meta name=twitter:card content=summary>
+<meta name=twitter:site content=@jxck_>
+<meta name=twitter:url content=https://podcast.jxck.io/episodes/19/es7-sideshow.html>
+<meta name=twitter:title content="ep19 ES7 sideshow | blog.jxck.io">
+<meta name=twitter:description content="第 19 回目 ES7 の SideShow です。[@Constellation](https://twitter.com/Constellation) さんが語る JavaScript Engine (JSCore) での実装の裏話と、 WebAssembly についてお送り...">
+<meta name=twitter:image content=https://jxck.io/assets/img/jxck.png>
+
+<meta property=og:type content="article">
+<meta property=og:url content=https://podcast.jxck.io/episodes/19/es7-sideshow.html>
+<meta property=og:title content="ep19 ES7 sideshow | blog.jxck.io">
+<meta property=og:site_name content=blog.jxck.io>
+<meta property=og:description content="第 19 回目 ES7 の SideShow です。[@Constellation](https://twitter.com/Constellation) さんが語る JavaScript Engine (JSCore) での実装の裏話と、 WebAssembly についてお送り...">
+<meta property=og:image content=https://jxck.io/assets/img/jxck.png>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "ep19 ES7 sideshow | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "19T08:00:00+08:00",
+  "dateModified": "2016-05-07T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "第 19 回目 ES7 の SideShow です。[@Constellation](https://twitter.com/Constellation) さんが語る JavaScript Engine (JSCore) での実装の裏話と、 WebAssembly についてお送り..."
+}
+</script>
+
+<link rel=icon sizes=192x192 href=//jxck.io/assets/img/jxck.png>
+<link rel=apple-touch-icon sizes=128x128 href=//jxck.io/assets/img/jxck.png>
+
+<title>ep19 ES7 sideshow | mozaic.fm</title>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+<header>
+  <ul>
+    <li><a href=/><img class=logo alt="blog top" width=30 src=/assets/img/mozaic.svg></a>
+    <li><a href=/feeds/atom.xml><img alt="rss feed" width=30 src=/assets/img/podcast.svg></a>
+    <li><a href=https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd><img alt="huamns.txt" width=30 src=/assets/img/twitter.svg></a>
+    <li><a href=//jxck.io><img class=logo alt="jxck logo" width=30 src=/assets/img/jxck.svg></a>
+  </ul>
+</header>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+<main>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2015-08-05>2015-08-05</time>
+  </ul>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+  <article>
+    <h1><a href=/episodes/19/es7-sideshow.html>ep19 ES7 sideshow</a></h1>
+    <p><audio preload="none" src="https://files.mozaic.fm/mozaic-ep19.sideshow.mp3" controls>
+    </audio>
+    <section>
+      <h2 id="Theme"><a href="#Theme">Theme</a></h2>
+      <p>第 19 回目 ES7 の SideShow です。
+      <p><a href="https://twitter.com/Constellation">@Constellation</a> さんが語る JavaScript Engine (JSCore) での実装の裏話と、 WebAssembly についてお送りします。
+      <p>なお、エピソード内で「何よりも ES6 module が欲しい」という要望を出していましたが、 <a href="https://twitter.com/Constellation">@Constellation</a> さんが、 <a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fplus.google.com%2F+YusukeSUZUKI%2Fposts%2FCtKaHMhXrEH&t=OWMxZmRiYmMxZjQwNTJiZmZkNmY5Mzc5ZWI2ZjY3NGYxZDJiZGQ4NCxvVk9uSjZwVA%3D%3D">実装に着手してくれました!!</a> 楽しみに待ちましょう!!
+      <p><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fbugs.webkit.org%2Fshow_bug.cgi%3Fid%3D147340&t=YjJiY2YxNGUwYzM5NTQwNWZiYTE2Y2RhZGQ4ZDExODQ0ZWYxNWMwZSxvVk9uSjZwVA%3D%3D">Bug 147340 - [ES6] Implement ES6 Modules</a>
+    </section>
+    <section>
+      <h2 id="Guest"><a href="#Guest">Guest</a></h2>
+      <ul>
+        <li><a href="https://twitter.com/Constellation">@Constellation</a>
+      </ul>
+    </section>
+    <section>
+      <h2 id="Show+Note"><a href="#Show+Note">Show Note</a></h2>
+      <ul>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FWeakMap&t=N2U2NTdkYjg5NDMwNWRmNWYzMDc1NDE0MDUyYWFkNmUxNTA3ZDM5YyxvVk9uSjZwVA%3D%3D">WeakMap</a>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FMap&t=YzZlZTBiZTJiYTQxYjFmZmNiNDJmNWQxM2Y3YWRkMDM1MzdjY2RlMSxvVk9uSjZwVA%3D%3D">Map</a>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fesdiscuss.org%2Ftopic%2Ftemplate-site-objects-and-weakmap&t=ZGNiNDA0NTI0ZjE3ZjY2YjA4M2E5NTc4YjliMzk5YzczOTJhNDhlZCxvVk9uSjZwVA%3D%3D">WeakMap の実装</a>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fdl.acm.org%2Fcitation.cfm%3Fid%3D263733&t=NTU1NDNkZjM2NGYwMWY5OTNjMmJkNjE2Njk1MWZlZDUwOTlhMmRjOSxvVk9uSjZwVA%3D%3D">Ephemerons</a>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fja%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FSIMD&t=NTA3ZjJiY2E5OTRmYmFlZjc5YjNmNjg2YjJlYTA1ZWFjZTE3MDQwYSxvVk9uSjZwVA%3D%3D">SIMD</a>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fwww.w3.org%2Fcommunity%2Fwebassembly%2F&t=M2ExNTQzZDU3Y2U1MzA2Y2I1MmM3ODgyYTg4MDllZDNkMTMzZDhhYSxvVk9uSjZwVA%3D%3D">WebAssembly のコミュニティページ</a>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fbrendaneich.com%2F2015%2F06%2Ffrom-asm-js-to-webassembly%2F&t=ODc2ODY3N2Y0Y2VlNWRkNGRjZTljMzgwZjg3MTdkMjg3ZWZlNjM2ZSxvVk9uSjZwVA%3D%3D">brendan eich の WebAssembly についての記事</a>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Ftrac.webkit.org%2Fchangeset%2F187531&t=YjViNTNiNjljNzgxYWRhYzY5MDcwYTUwNjI1ZWQ5OWVjMjU5YzVmNyxvVk9uSjZwVA%3D%3D">WebAssembly base line compiler のパッチ</a>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.chrome.com%2Fnative-client&t=YThiMDQ0M2RkNTY0Nzk4OGEzZjQ1OWJiYjc5ZTc1Zjk2NGViYTc0OSxvVk9uSjZwVA%3D%3D">NaCl</a>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FSymbol%2Fspecies&t=YjNiNDE0OTk3NWU3NzY0NDgxN2VmNGY3ODAxZThlZjI2NDE1M2UyNSxvVk9uSjZwVA%3D%3D">Symbol.species</a>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.2ality.com%2F2014%2F09%2Fes6-modules-final.html&t=YzlkNGRiOWQyMDA0ZmQwMDBlMjI5ZDY0ZTQ0NzZhZmY0YTBjODg5MyxvVk9uSjZwVA%3D%3D">ES6 modules</a>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fplus.google.com%2F+YusukeSUZUKI%2Fposts%2FCtKaHMhXrEH&t=OWMxZmRiYmMxZjQwNTJiZmZkNmY5Mzc5ZWI2ZjY3NGYxZDJiZGQ4NCxvVk9uSjZwVA%3D%3D">後日 Const さんが WebKit のインターンで module をやってくれることになりました!</a>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgroups.google.com%2Fa%2Fchromium.org%2Fforum%2F%23%21topic%2Fblink-dev%2FtL4LjQq8lNI%2Fdiscussion&t=MDVmNGY5ZTg2MGIzZjFlYzhkODNmYWI4NTdhMmZlMTJlZmI3NzVjMCxvVk9uSjZwVA%3D%3D">CSSJIT</a>
+      </ul>
+    </section>
+  </article>
+
+</main>
+<hr>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</address>
+</footer>

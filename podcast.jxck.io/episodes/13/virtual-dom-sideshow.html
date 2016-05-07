@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=/episodes/13/virtual-dom-sideshow.html>
+<link rel=amphtml href=/episodes/13/virtual-dom-sideshow.amp.html>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=alternate type=application/atom+xml title=podcast.jxck.io href=/feeds/atom.xml>
+<link rel=author href=//jxck.io/assets/humans.txt>
+<link rel=preload as=font type=font/woff href=//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
+<script async src=//jxck.io/assets/js/ga.js></script>
+<script async src=/assets/js/highlight.min.js></script>
+<script async src=/assets/js/stale-while-revalidate.js></script>
+<script async src=/assets/js/main.js></script>
+
+<meta name=author content=Jxck>
+<meta name=description content="第 13 回目 Virtual DOM の SideShow です。[@mizchi](https://twitter.com/mizchi/) さんとのこぼれ話をお送りします。ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mo...">
+<meta name=keywords content="2014-12-31">
+
+<meta name=twitter:card content=summary>
+<meta name=twitter:site content=@jxck_>
+<meta name=twitter:url content=https://podcast.jxck.io/episodes/13/virtual-dom-sideshow.html>
+<meta name=twitter:title content="ep13 Virtual DOM sideshow | blog.jxck.io">
+<meta name=twitter:description content="第 13 回目 Virtual DOM の SideShow です。[@mizchi](https://twitter.com/mizchi/) さんとのこぼれ話をお送りします。ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mo...">
+<meta name=twitter:image content=https://jxck.io/assets/img/jxck.png>
+
+<meta property=og:type content="article">
+<meta property=og:url content=https://podcast.jxck.io/episodes/13/virtual-dom-sideshow.html>
+<meta property=og:title content="ep13 Virtual DOM sideshow | blog.jxck.io">
+<meta property=og:site_name content=blog.jxck.io>
+<meta property=og:description content="第 13 回目 Virtual DOM の SideShow です。[@mizchi](https://twitter.com/mizchi/) さんとのこぼれ話をお送りします。ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mo...">
+<meta property=og:image content=https://jxck.io/assets/img/jxck.png>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "ep13 Virtual DOM sideshow | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "13T08:00:00+08:00",
+  "dateModified": "2016-05-07T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "第 13 回目 Virtual DOM の SideShow です。[@mizchi](https://twitter.com/mizchi/) さんとのこぼれ話をお送りします。ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mo..."
+}
+</script>
+
+<link rel=icon sizes=192x192 href=//jxck.io/assets/img/jxck.png>
+<link rel=apple-touch-icon sizes=128x128 href=//jxck.io/assets/img/jxck.png>
+
+<title>ep13 Virtual DOM sideshow | mozaic.fm</title>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+<header>
+  <ul>
+    <li><a href=/><img class=logo alt="blog top" width=30 src=/assets/img/mozaic.svg></a>
+    <li><a href=/feeds/atom.xml><img alt="rss feed" width=30 src=/assets/img/podcast.svg></a>
+    <li><a href=https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd><img alt="huamns.txt" width=30 src=/assets/img/twitter.svg></a>
+    <li><a href=//jxck.io><img class=logo alt="jxck logo" width=30 src=/assets/img/jxck.svg></a>
+  </ul>
+</header>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+<main>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2014-12-31>2014-12-31</time>
+  </ul>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+  <article>
+    <h1><a href=/episodes/13/virtual-dom-sideshow.html>ep13 Virtual DOM sideshow</a></h1>
+    <p><audio preload="none" src="https://files.mozaic.fm/mozaic-ep13.sideshow.mp3" controls>
+    </audio>
+    <section>
+      <h2 id="Theme"><a href="#Theme">Theme</a></h2>
+      <p>第 13 回目 Virtual DOM の SideShow です。
+      <p><a href="https://twitter.com/mizchi/">@mizchi</a> さんとのこぼれ話をお送りします。
+      <p>ハッシュタグは <a href="https://twitter.com/search?q=mozaicfm&src=hash">#mozaicfm</a> です。
+    </section>
+    <section>
+      <h2 id="Guest"><a href="#Guest">Guest</a></h2>
+      <ul>
+        <li><a href="https://twitter.com/mizchi">@mizchi</a>
+      </ul>
+    </section>
+    <section>
+      <h2 id="Show+Note"><a href="#Show+Note">Show Note</a></h2>
+      <ul>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2FRaynos%2Fmercury&t=ZThkMjNlOWI2ZDc1MDU4ZjU0YjMxYmU1Y2E2NjE5ZDBiZmE0ZDlmOSxBT1VMOXRnbw%3D%3D">mercury</a>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2FMatt-Esch%2Fvirtual-dom&t=ZDRhYzBiYWI0NTUwZjU4YjdhNDI4ZGY2MDFiNjdmZjdhYTAyMzMzOCxBT1VMOXRnbw%3D%3D">なんかうまく発音できない人(Matt-Esch)の virtual-dom</a>
+        <li>jQuery の資産
+        <li>そこまでいったら本当に isomorphic
+        <li>完璧なコンバータ指向の AltJS
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Ftakuyaa%2Fkuromoji.js&t=MjU1MzVhODFhMzY5MTFiM2I2ZjEyMmVhZjk0MDBlNzUxYzdmMmUyOCxBT1VMOXRnbw%3D%3D">kuromoji.js</a>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fmecab.googlecode.com%2Fsvn%2Ftrunk%2Fmecab%2Fdoc%2Findex.html&t=ODZmYzJjZjBhOTQ1NmZmNDI0ZTRjZmZiYzcwY2MwNzMwNmNmZmMyZSxBT1VMOXRnbw%3D%3D">MeCab</a>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fmizchi.hatenablog.com%2Fentry%2F2014%2F10%2F06%2F162103&t=MjVkNzNhZWYxOWYzZjY4NDMxOGNhYWQ5NzdmNTBmZDJjOWQ4NmMyZixBT1VMOXRnbw%3D%3D">Angular.js が嫌い</a>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fmizchi.hatenablog.com%2Fentry%2F2014%2F10%2F07%2F103316&t=Yzg2MmNjYTc2YTRmZDUzYWM1Yzg5N2RkN2Y4MjJlZjdiYTRiNWVmYSxBT1VMOXRnbw%3D%3D">Object.observe の Google Chrome での先行実装と Angular について</a>
+        <li>FireFox
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Faddons.mozilla.org%2Fja%2Ffirefox%2Faddon%2Fvimperator%2F&t=ZmE1MjNjYmQ1MjQzMTcxMzAwZjEwMjZlMjE3Yzg4ZjNlNjc0NTY0YixBT1VMOXRnbw%3D%3D">vimperator</a>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fqiita.com%2Fmizchi%2Fitems%2F4d25bc26def1719d52e6&t=MTYzM2ViOTc1N2MxZTUwYmZmN2ZjNTkyMmRjOTZlMjRhYjRjNjI1NyxBT1VMOXRnbw%3D%3D">どの程度あおり?</a>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fmizchi.hatenablog.com%2Fentry%2F2014%2F09%2F02%2F201728&t=OTk4NjQ5YmVmNmNlY2E5MGYwNTk5ODlhZDQyYTExODAwYWFkNzgwOSxBT1VMOXRnbw%3D%3D">あなたが React を使うべき理由</a>
+        <li>最近くやしいこと <a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fmizchi%2FTypedCoffeeScript&t=N2MxZmViNTA4MmQ0MGVhMWIxOWIyMmZjOWRjNGYxNmQ2ZDcyMWM2MixBT1VMOXRnbw%3D%3D">TypedCoffee</a>
+      </ul>
+    </section>
+  </article>
+
+</main>
+<hr>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</address>
+</footer>

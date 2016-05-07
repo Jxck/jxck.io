@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=/episodes/4/secuirty-protocol.html>
+<link rel=amphtml href=/episodes/4/secuirty-protocol.amp.html>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=alternate type=application/atom+xml title=podcast.jxck.io href=/feeds/atom.xml>
+<link rel=author href=//jxck.io/assets/humans.txt>
+<link rel=preload as=font type=font/woff href=//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
+<script async src=//jxck.io/assets/js/ga.js></script>
+<script async src=/assets/js/highlight.min.js></script>
+<script async src=/assets/js/stale-while-revalidate.js></script>
+<script async src=/assets/js/main.js></script>
+
+<meta name=author content=Jxck>
+<meta name=description content="第 4 回目のテーマは Security (Protocol)です。今回は、 [CCS Injection](http://t.umblr.com/redirect?z=http%3A%2F%2Fccsinjection.lepidum.co.jp%2Fja.html&amp;t=ZmF...">
+<meta name=keywords content="2014-06-07">
+
+<meta name=twitter:card content=summary>
+<meta name=twitter:site content=@jxck_>
+<meta name=twitter:url content=https://podcast.jxck.io/episodes/4/secuirty-protocol.html>
+<meta name=twitter:title content="ep4 Security (protocol) | blog.jxck.io">
+<meta name=twitter:description content="第 4 回目のテーマは Security (Protocol)です。今回は、 [CCS Injection](http://t.umblr.com/redirect?z=http%3A%2F%2Fccsinjection.lepidum.co.jp%2Fja.html&amp;t=ZmF...">
+<meta name=twitter:image content=https://jxck.io/assets/img/jxck.png>
+
+<meta property=og:type content="article">
+<meta property=og:url content=https://podcast.jxck.io/episodes/4/secuirty-protocol.html>
+<meta property=og:title content="ep4 Security (protocol) | blog.jxck.io">
+<meta property=og:site_name content=blog.jxck.io>
+<meta property=og:description content="第 4 回目のテーマは Security (Protocol)です。今回は、 [CCS Injection](http://t.umblr.com/redirect?z=http%3A%2F%2Fccsinjection.lepidum.co.jp%2Fja.html&amp;t=ZmF...">
+<meta property=og:image content=https://jxck.io/assets/img/jxck.png>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "ep4 Security (protocol) | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "4T08:00:00+08:00",
+  "dateModified": "2016-05-07T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "第 4 回目のテーマは Security (Protocol)です。今回は、 [CCS Injection](http://t.umblr.com/redirect?z=http%3A%2F%2Fccsinjection.lepidum.co.jp%2Fja.html&amp;t=ZmF..."
+}
+</script>
+
+<link rel=icon sizes=192x192 href=//jxck.io/assets/img/jxck.png>
+<link rel=apple-touch-icon sizes=128x128 href=//jxck.io/assets/img/jxck.png>
+
+<title>ep4 Security (protocol) | mozaic.fm</title>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+<header>
+  <ul>
+    <li><a href=/><img class=logo alt="blog top" width=30 src=/assets/img/mozaic.svg></a>
+    <li><a href=/feeds/atom.xml><img alt="rss feed" width=30 src=/assets/img/podcast.svg></a>
+    <li><a href=https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd><img alt="huamns.txt" width=30 src=/assets/img/twitter.svg></a>
+    <li><a href=//jxck.io><img class=logo alt="jxck logo" width=30 src=/assets/img/jxck.svg></a>
+  </ul>
+</header>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+<main>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2014-06-07>2014-06-07</time>
+  </ul>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+  <article>
+    <h1><a href=/episodes/4/secuirty-protocol.html>ep4 Security (protocol)</a></h1>
+    <p><audio preload="none" src="https://files.mozaic.fm/mozaic-ep4.m4a" controls>
+    </audio>
+    <section>
+      <h2 id="Theme"><a href="#Theme">Theme</a></h2>
+      <p>第 4 回目のテーマは Security (Protocol)です。
+      <p>今回は、 <a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fccsinjection.lepidum.co.jp%2Fja.html&t=ZmFlMzZhZGMyNjA2MDU5ZDUzNTJmZWQwNTM2ZjFhZmJmMWYyMWQzMywyNkZTeUFxTw%3D%3D">CCS Injection</a> の発見にともない、発見者の菊池さんと <a href="https://twitter.com/lefb">@lef</a> さんをお迎えし、 CCS Injection の影響や発見の経緯、 Open SSL や TLS の現状、ここから見える未来など、プロトコル寄りのセキュリティをテーマに、議論しました。
+      <p>今回は <a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fqiita.com%2FJxck_%2Fitems%2F324f5b68f2da4add6a45&t=NDdhYmRlYmQ4Mjk4MTc0YWNiZmVhNGE4NDY5NDUyNDAxNGYwNzQ1NywyNkZTeUFxTw%3D%3D">Qiita でラフノートを公開</a> し、質問を募集しました。全部は紹介できませんでしたが、質問頂いた方々有難うございました。
+      <p>ハッシュタグは <a href="https://twitter.com/search?q=mozaicfm&src=hash">#mozaicfm</a> です。
+    </section>
+    <section>
+      <h2 id="Guest"><a href="#Guest">Guest</a></h2>
+      <ul>
+        <li><a href="https://twitter.com/lef">@lef</a>
+        <li>菊池さん
+      </ul>
+    </section>
+    <section>
+      <h2 id="Show+Note"><a href="#Show+Note">Show Note</a></h2>
+      <ul>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fccsinjection.lepidum.co.jp%2Fja.html&t=ZmFlMzZhZGMyNjA2MDU5ZDUzNTJmZWQwNTM2ZjFhZmJmMWYyMWQzMywyNkZTeUFxTw%3D%3D">CCS Injection Vulnerability</a>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fccsinjection.lepidum.co.jp%2Fblog%2F2014-06-05%2FCCS-Injection%2Findex.html&t=MzM3MGQxOTM4N2NmNzM5MDhmMTgwYjVlOWE1ZGU2Y2IzNmVmY2MwYywyNkZTeUFxTw%3D%3D">CCS Injection 脆弱性(CVE-2014-0224)発見の経緯についての紹介</a>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fwww.imperialviolet.org%2F2014%2F06%2F05%2Fearlyccs.html&t=ZDU4NzhlYTAyYmUzMDY1MTE3OTMxYTQ1NDFmOGI3ZjY0YjA0YzMwNCwyNkZTeUFxTw%3D%3D">imperialviolet</a>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fsect.iij.ad.jp%2Fd%2F2014%2F06%2F069806.html&t=YTUxOGI2ZTI3ODI3YjE5YzRhMDUxM2M4YmRmZGUzMTE3NDg1MDI5NiwyNkZTeUFxTw%3D%3D">OpenSSL の Man-in-the-middle 攻撃可能な脆弱性の影響</a>
+        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.ipa.go.jp%2Fsecurity%2Fciadr%2Fvul%2F20140606-jvn.html&t=YzBkZGI4NzE1ZjMyZGYyY2Y2ZGRmNTM0MzA0NjIxZTk3YWRkNWU2YiwyNkZTeUFxTw%3D%3D">IPA - 「OpenSSL」における Change Cipher Spec メッセージ処理の脆弱性対策について(JVN#61247051)</a>
+        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fplus.google.com%2Fapp%2Fbasic%2Fstream%2Fz12xhp3hbzbhhjgfm22ncvtbeua1dpaa004&t=N2UzZjI1YjA2NmU2MzZhZDBjZjUwYjc0YmU2NDExNTBmMWIwNWRjYSwyNkZTeUFxTw%3D%3D">Mark J Cox の G+ 投稿</a>
+      </ul>
+    </section>
+  </article>
+
+</main>
+<hr>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</address>
+</footer>

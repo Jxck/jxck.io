@@ -1,4 +1,4 @@
-# [rest] #7 REST
+# [2014-08-19] ep7 REST
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep7.m4a" controls></audio>
 

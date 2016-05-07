@@ -1,4 +1,4 @@
-# [angular.js] #3 Angular.js
+# [2014-05-31] ep3 Angular.js
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep3.m4a" controls></audio>
 

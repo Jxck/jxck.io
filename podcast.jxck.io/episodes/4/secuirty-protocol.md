@@ -1,14 +1,13 @@
-# [security] #4 Security (protocol)
+# [2014-06-07] ep4 Security (protocol)
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep4.m4a" controls></audio>
 
 
 ## Theme
 
-第 4 回目のテーマはセキュリティ(プロトコル編)です。
+第 4 回目のテーマは Security (Protocol)です。
 
-今回は、 [CCS Injection](http://t.umblr.com/redirect?z=http%3A%2F%2Fccsinjection.lepidum.co.jp%2Fja.html&t=ZmFlMzZhZGMyNjA2MDU5ZDUzNTJmZWQwNTM2ZjFhZmJmMWYyMWQzMywyNkZTeUFxTw%3D%3D) の発見にともない、発見者の菊池さんと [@lef](https://twitter.com/lefb) さんをお迎えし  
-CCS Injection の影響や発見の経緯、 Open SSL や TLS の現状、ここから見える未来など、プロトコル寄りのセキュリティをテーマに、議論しました。
+今回は、 [CCS Injection](http://t.umblr.com/redirect?z=http%3A%2F%2Fccsinjection.lepidum.co.jp%2Fja.html&t=ZmFlMzZhZGMyNjA2MDU5ZDUzNTJmZWQwNTM2ZjFhZmJmMWYyMWQzMywyNkZTeUFxTw%3D%3D) の発見にともない、発見者の菊池さんと [@lef](https://twitter.com/lefb) さんをお迎えし、 CCS Injection の影響や発見の経緯、 Open SSL や TLS の現状、ここから見える未来など、プロトコル寄りのセキュリティをテーマに、議論しました。
 
 今回は [Qiita でラフノートを公開](http://t.umblr.com/redirect?z=http%3A%2F%2Fqiita.com%2FJxck_%2Fitems%2F324f5b68f2da4add6a45&t=NDdhYmRlYmQ4Mjk4MTc0YWNiZmVhNGE4NDY5NDUyNDAxNGYwNzQ1NywyNkZTeUFxTw%3D%3D) し、質問を募集しました。全部は紹介できませんでしたが、質問頂いた方々有難うございました。
 
