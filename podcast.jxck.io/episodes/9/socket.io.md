@@ -7,7 +7,7 @@
 
 第 9 回目のテーマは Socket.IO です。**全編英語**です。
 
-今回は Socket.IO@1.0 公開を記念して、日本で開催した [Socket.IO Meetup](http://t.umblr.com/redirect?z=http%3A%2F%2Fconnpass.com%2Fevent%2F6911%2F&t=MDllNGRmMTE1Njk2NTgxNTYyMzRkMzFhN2FkY2E5ZjIwYjRkOGI3Miw1U1JuYnNhSg%3D%3D) で来日した、開発者である [@rauchg](https://twitter.com/rauchg) さんをお迎えし、 Socket.IO をテーマに 「Socket.IO を作ったモチベーション」から、「Socket.IO@1.0 での変更点」や「Socket.IO@2.0 の話」などをしました。
+今回は [Socket.IO@1.0](http://socket.io) 公開を記念して、日本で開催した [Socket.IO Meetup](http://t.umblr.com/redirect?z=http%3A%2F%2Fconnpass.com%2Fevent%2F6911%2F&t=MDllNGRmMTE1Njk2NTgxNTYyMzRkMzFhN2FkY2E5ZjIwYjRkOGI3Miw1U1JuYnNhSg%3D%3D) で来日した、開発者である [@rauchg](https://twitter.com/rauchg) さんをお迎えし、 Socket.IO をテーマに 「Socket.IO を作ったモチベーション」から、「Socket.IO@1.0 での変更点」や「Socket.IO@2.0 の話」などをしました。
 
 ちょうどこの時期にポストされた、彼の同僚であり Express や Mocha の作者である [TJ Holowaychuk](https://twitter.com/tjholowaychuk) の、 [Farewell Node.js](http://t.umblr.com/redirect?z=https%3A%2F%2Fmedium.com%2Fcode-adventures%2Ffarewell-node-js-4ba9e7f3e52b&t=ZTIwYjJiYmI0Yjg4MTQxZWYwYzAzNzZhNTQzNjFhOWMyZjdlODg0Ziw1U1JuYnNhSg%3D%3D) などをネタに、「他の言語で実装した場合」の話などもしました。
 

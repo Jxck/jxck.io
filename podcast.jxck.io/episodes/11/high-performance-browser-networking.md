@@ -7,9 +7,9 @@
 
 第 11 回目のテーマは High Performance Browser Networking です。
 
-今回は HPBN の著者であり、 Google の Developer Advocate である [@igrigorik](https://twitter.com/igrigorik/) さんとをお迎えして実施しました。この書籍のちょっと遅れた出版記念イベントとして [HPBN-meetup](http://t.umblr.com/redirect?z=http%3A%2F%2Fgoogledevjp.blogspot.jp%2F2014%2F10%2Fblog-post.html&t=MmY0ODgzODQ5NDIyYTI3ODE1YzU2MTI3YjE0OTNkMWZkNzMxMTI0YSxNNk5KM3NVNA%3D%3D) で実施したインタビュー形式の公開収録の模様を配信します。今回は Google さんに通訳をつけて頂きましたので、その分ラグや lost in translation がありますが、ご了承ください。
+今回は [High Performance Browser Networking](http://t.umblr.com/redirect?z=http%3A%2F%2Fchimera.labs.oreilly.com%2Fbooks%2F1230000000545&t=MTAyNjg5OGQzODVlMWRkZDYwNTEzOGE3MGJjYzUzMDllNmMwMzg1MCxNNk5KM3NVNA%3D%3D) の著者であり、 Google の Developer Advocate である [@igrigorik](https://twitter.com/igrigorik/) さんをお迎えして開催した、この書籍のちょっと遅れた出版記念イベントである [HPBN-meetup](http://t.umblr.com/redirect?z=http%3A%2F%2Fgoogledevjp.blogspot.jp%2F2014%2F10%2Fblog-post.html&t=MmY0ODgzODQ5NDIyYTI3ODE1YzU2MTI3YjE0OTNkMWZkNzMxMTI0YSxNNk5KM3NVNA%3D%3D) で実施したインタビュー形式の公開収録の模様を配信します。今回は Google さんに通訳をつけて頂きましたので、その分ラグや lost in translation がありますが、ご了承ください。
 
-[High Performance Browser Networking](http://t.umblr.com/redirect?z=http%3A%2F%2Fchimera.labs.oreilly.com%2Fbooks%2F1230000000545&t=MTAyNjg5OGQzODVlMWRkZDYwNTEzOGE3MGJjYzUzMDllNmMwMzg1MCxNNk5KM3NVNA%3D%3D)は、複雑化し知らなくてはならい知識が飛躍的に増えた Web の世界でのネットワークに関わる知識について、幅広く詳細に解説した Web エンジニア必携の一冊です。
+HPBN は、複雑化し、知らなくてはならい知識が飛躍的に増えた Web のネットワークに関わる知識について、幅広く詳細に解説した Web エンジニア必携の一冊です。
 
 インタビューでは Ilya はいったいどういうエンジニアで、何故この本を執筆したのか。この本以降でのアップデートや、 Ilya 自身の見る「これからの Web」について、何がおこっているのか?、これからどうなっていくのか?をお聞きしました。
 

@@ -11,7 +11,7 @@
 
 ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
 
-(NAT をアドレストランスポートと言い間違ってますが、そっとしておいてあげて下さい汗)
+(NAT をアドレストランスポートと言い間違ってますが、そっとしておいてあげて下さい)
 
 
 ## Guest
