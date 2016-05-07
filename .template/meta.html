@@ -18,39 +18,3 @@
 
 <link rel=icon sizes=192x192 href=${this.icon}>
 <link rel=apple-touch-icon sizes=128x128 href=${this.icon}>
-
-<script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "BlogPosting",
-  "mainEntityOfPage":{
-    "@type":"WebPage",
-    "@id":"https://${this.host}"
-  },
-  "headline": "${this.title} | ${this.host}",
-  "image": {
-    "@type": "ImageObject",
-    "url": "${this.icon}",
-    "height": 700,
-    "width": 700
-  },
-  "datePublished": "${this.created_at}T08:00:00+08:00",
-  "dateModified": "${this.updated_at}T08:00:00+08:00",
-  "author": {
-    "@type": "Person",
-    "name": "Jxck",
-    "image": "${this.icon}"
-  },
-   "publisher": {
-    "@type": "Organization",
-    "name": "Jxck",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "${this.icon}",
-      "height": 60,
-      "width": 257
-    }
-  },
-  "description": "${this.description}"
-}
-</script>
