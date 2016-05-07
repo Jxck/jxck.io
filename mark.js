@@ -574,7 +574,7 @@ if (process.argv[3] === 'podcast') {
       amp: false,
       meta: read('./.template/meta.html'),
       template: read('./.template/podcast.html'),
-      icon: 'https://jxck.io/assets/img/mozaic.png', //TODO: https://mozaic.fm/assets/img/mozaic.png
+      icon: 'https://podcast.jxck.io/assets/img/mozaic.png', //TODO: https://mozaic.fm/assets/img/mozaic.png
     }
     let info = prepare(filepath, option);
     let builder = new Builder(info);
@@ -609,7 +609,7 @@ if (process.argv[3] === 'podcast') {
     amp: true,
     meta: read('./.template/meta.html'),
     template: read('./.template/amp.html'),
-    icon: 'https://podcast.jxck.io/assets/img/jxck.png',
+    icon: 'https://jxck.io/assets/img/jxck.png',
   }
   let info = prepare(filepath, option);
   let builder = new Builder(info);
