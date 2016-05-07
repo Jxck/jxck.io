@@ -589,9 +589,10 @@ if (process.argv[3] === 'podcast') {
 // blog html
 (() => {
   p('mark html', filepath);
+  let meta = read('./.template/meta.html') + '\n' + read('./.template/ld-json.html');
   let option = {
     amp: false,
-    meta: read('./.template/meta.html'),
+    meta: meta,
     template: read('./.template/blog.html'),
     icon: 'https://jxck.io/assets/img/jxck.png',
   }
@@ -605,9 +606,10 @@ if (process.argv[3] === 'podcast') {
 // amp html
 (() => {
   p('mark amp', filepath);
+  let meta = read('./.template/meta.html') + '\n' + read('./.template/ld-json.html');
   let option = {
     amp: true,
-    meta: read('./.template/meta.html'),
+    meta: meta,
     template: read('./.template/amp.html'),
     icon: 'https://jxck.io/assets/img/jxck.png',
   }
