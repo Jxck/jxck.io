@@ -12,7 +12,7 @@ by Jxck
 <meta name=viewport content="width=device-width,initial-scale=1">
 <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
 <link rel=author href=//jxck.io/assets/humans.txt>
-<link rel=preload as=font type=font/woff href=//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
+<link rel=preload as=font type=font/woff href="//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014" crossorigin>
 <script async src=//jxck.io/assets/js/ga.js></script>
 <script async src=/assets/js/highlight.min.js></script>
 <script async src=/assets/js/stale-while-revalidate.js></script>
@@ -52,7 +52,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-02-15T08:00:00+08:00",
-  "dateModified": "2016-04-11T08:00:00+08:00",
+  "dateModified": "2016-05-07T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -83,7 +83,7 @@ by Jxck
 <header>
   <ul>
     <li><a href=//blog.jxck.io><img class=logo alt="blog top" width=30 src=/assets/img/blog.svg></a>
-    <li><a href=/entries/2016-02-15/loading-css-over-http2.amp.html#development=1><img alt="move to amp version" width=30 src=/assets/img/amp.svg></a>
+    <li><a href="/entries/2016-02-15/loading-css-over-http2.amp.html#development=1"><img alt="move to amp version" width=30 src=/assets/img/amp.svg></a>
     <li><a href=.><img alt="move to parent directory" width=30 src=/assets/img/up.svg></a>
     <li><a href=/feeds/atom.xml><img alt="rss feed" width=30 src=/assets/img/rss.svg></a>
     <li><a href=//jxck.io/humans.txt><img alt="huamns.txt" width=30 src=/assets/img/humans.svg></a>
@@ -96,7 +96,7 @@ by Jxck
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-02-15>2016-02-15</time>
-    <li>updated_at: <time class=updated_at datetime=2016-04-11>2016-04-11</time>
+    <li>updated_at: <time class=updated_at datetime=2016-05-07>2016-05-07</time>
     <li class=tags>tags: [<a>css</a>,<a>http2</a>,<a>performance</a>]
   </ul>
 
@@ -163,7 +163,7 @@ by Jxck
       <p>これは、コンポーネントと対する CSS が複数になり、その複数の CSS が非同期に順不同で取得された場合に、要素がランダムに出現することを意味する。
       <p>最初の要素が表示され、読んでいる間に新しい要素の出現によりレイアウトが変わり、全部表示されるまで落ち着いて読めない。
       <p>こうした Content-Shifting の問題は、広告が後から次々に表示されるページなどで多く発生し、<a href="https://www.youtube.com/watch?v=uPnEZd6wCtk">フラストレーションがたまった経験</a> は誰にでもあるだろう。
-      <iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/uPnEZd6wCtk" frameborder="0" allowfullscreen></iframe>
+      <iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/uPnEZd6wCtk" allowfullscreen></iframe>
       <p>本来なら、最初に見える部分="Above the fold" を最適化したいわけだが、それがどの要素で成り立つかは viewwport に依存する。
       <p>サイズが分かっていれば、コンテンツを埋める枠のサイズを全て最初に指定することもできるが、以下の方法を使えば、どのような viewport でも適切に表示できることができる。
     </section>
