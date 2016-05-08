@@ -1,6 +1,12 @@
-# [2014-04-07] ep1 WebComponents
+# [web components][hokaccha][ahomu][mozaic.fm] ep1 WebComponents
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep1.m4a" controls></audio>
+
+<ul class=info>
+  <li>published_at: <time datetime=2014-04-07>2014-04-07</time>
+  <li>guest: <a href=https://twitter.com/hokaccha>@hokaccha</a>
+  <li>guest: <a href=https://twitter.com/ahomu>@ahomu</a>
+</ul>
 
 
 ## Theme
@@ -12,12 +18,6 @@
 「なにが起こっているのか?」「これからどうなっていくのか?」を議論しました。
 
 ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
-
-## Guest
-
-- [@hokaccha](https://twitter.com/hokaccha)
-- [@ahomu](https://twitter.com/ahomu)
 
 
 ## Show Note

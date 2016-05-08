@@ -1,6 +1,11 @@
-# [2014-12-31] ep13 Virtual DOM sideshow
+# [virtual dom][react][flex][mizchi][mozaic.fm] ep13 Virtual DOM sideshow
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep13.sideshow.mp3" controls></audio>
+
+<ul class=info>
+  <li>published_at: <time datetime=2014-12-31>2014-12-31</time>
+  <li>guest: <a href=https://twitter.com/mizchi>@mizchi</a>
+</ul>
 
 
 ## Theme
@@ -10,11 +15,6 @@
 [@mizchi](https://twitter.com/mizchi/) さんとのこぼれ話をお送りします。
 
 ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
-
-## Guest
-
-- [@mizchi](https://twitter.com/mizchi)
 
 
 ## Show Note

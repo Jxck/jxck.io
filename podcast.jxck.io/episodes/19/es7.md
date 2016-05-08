@@ -1,6 +1,11 @@
-# [2015-08-02] ep19 ES7
+# [es7][javascript][constellation][mozaic.fm] ep19 ES7
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep19.mp3" controls></audio>
+
+<ul class=info>
+  <li>published_at: <time datetime=2015-08-02>2015-08-02</time>
+  <li>guest: <a href=https://twitter.com/Constellation>@Constellation</a>
+</ul>
 
 
 ## Theme
@@ -8,11 +13,6 @@
 第 19 回のテーマは ES7 です。
 
 今回は [@Constellation](https://twitter.com/Constellation) さんをお迎えして、先日公開された ES6 をふまえ、次の仕様として議論が始まった ES7 について、 ブラウザのエンジンを実装する立場から見た、現状や懸念点などについて話を聞きながら、これから ECMAScript はどうなっていくのか、どうなっていくべきなのかについて議論しました。
-
-
-## Guest
-
-- [@Constellation](https://twitter.com/Constellation)
 
 
 ## Show Note

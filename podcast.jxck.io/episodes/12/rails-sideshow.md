@@ -1,6 +1,11 @@
-# [2014-12-12] ep12 Rails sideshow
+# [rails][a_matsuda][mozaic.fm] ep12 Rails sideshow
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep12.sideshow.mp3" controls></audio>
+
+<ul class=info>
+  <li>published_at: <time datetime=2014-12-12>2014-12-12</time>
+  <li>guest: <a href=https://twitter.com/a_matsuda>@a_matsuda</a>
+</ul>
 
 
 ## Theme
@@ -10,11 +15,6 @@
 [@a_matsuda](https://twitter.com/a_matsuda/) さんの語る Rails 開発のスタイルと、そのコミュニティの持つ力、 Rails が引っ張ったテストの話などをお送りします。
 
 ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
-
-## Guest
-
-- [@a_matsuda](https://twitter.com/a_matsuda)
 
 
 ## Show Note

@@ -1,6 +1,12 @@
-# [2014-10-07] ep10 Node.js
+# [node.js][koichik][yosuke_furukawa][mozaic.fm] ep10 Node.js
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep10.m4a" controls></audio>
+
+<ul class=info>
+  <li>published_at: <time datetime=2014-10-07>2014-10-07</time>
+  <li>guest: <a href=https://twitter.com/koichik>@koichik</a>
+  <li>guest: <a href=https://twitter.com/yosuke_furukawa>@yosuke_furukawa</a>
+</ul>
 
 
 ## Theme
@@ -12,12 +18,6 @@
 また、危なげな運用で続けてきた mozaic.fm も、一つ目の目標だった 10 回を達成することができました。これも、購読/出演、してくださった皆様のおかげです。これからもしばらくは続けたいと思いますので、よろしくお願いします。
 
 ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
-
-## Guest
-
-- [@koichik](https://twitter.com/koichik)
-- [@yosuke_furukawa](https://twitter.com/yosuke_furukawa)
 
 
 ## Show Note

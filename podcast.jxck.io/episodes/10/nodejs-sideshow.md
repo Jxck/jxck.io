@@ -1,6 +1,12 @@
-# [2014-10-23] ep10 node.js sideshow
+# [node.js][koichik][yosuke_furukawa][mozaic.fm] ep10 Node.js sideshow
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep10.sideshow.m4a" controls></audio>
+
+<ul class=info>
+  <li>published_at: <time datetime=2014-10-23>2014-10-23</time>
+  <li>guest: <a href=https://twitter.com/koichik>@koichik</a>
+  <li>guest: <a href=https://twitter.com/yosuke_furukawa>@yosuke_furukawa</a>
+</ul>
 
 
 ## Theme
@@ -10,12 +16,6 @@
 [@koichik](https://twitter.com/koichik) さんの「ところでみんな Promise 好き?」から始まった、 Promise / Generator / Rxjs などの話題と、 Java の Future や Haskell の Monad との関係などの解説です。
 
 ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
-
-## Guest
-
-- [@koichik](https://twitter.com/koichik)
-- [@yosuke_furukawa](https://twitter.com/yosuke_furukawa)
 
 
 ## Show Note

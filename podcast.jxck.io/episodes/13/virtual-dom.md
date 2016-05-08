@@ -1,6 +1,11 @@
-# [2014-12-27] ep13 Virtual DOM
+# [virtual dom][react][flex][mizchi][mozaic.fm] ep13 Virtual DOM
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep13.mp3" controls></audio>
+
+<ul class=info>
+  <li>published_at: <time datetime=2014-12-27>2014-12-27</time>
+  <li>guest: <a href=https://twitter.com/mizchi>@mizchi</a>
+</ul>
 
 
 ## Theme
@@ -10,11 +15,6 @@
 今回は [@mizchi](https://twitter.com/mizchi/) さんをお迎えして、 Virtual DOM というアイデアの本質、それが可能にした Flux というアーキテクチャ、そして各種の実装と今後の期待について、「今何が起こっているのか」、「これからどうなっていくのか」を議論しました。
 
 ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
-
-## Guest
-
-- [@mizchi](https://twitter.com/mizchi)
 
 
 ## Show Note

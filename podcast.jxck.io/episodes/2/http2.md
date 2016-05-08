@@ -1,6 +1,12 @@
-# [2014-04-22] ep2 HTTP2
+# [http2][tatsuhiro_t][jovi0608][mozaic.fm] ep2 HTTP2
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep2.m4a" controls></audio>
+
+<ul class=info>
+  <li>published_at: <time datetime=2014-04-22>2014-04-22</time>
+  <li>guest: <a href=https://twitter.com/tatsuhiro_t>@tatsuhiro_t</a>
+  <li>guest: <a href=https://twitter.com/jovi0608>@jovi0608</a>
+</ul>
 
 
 ## Theme
@@ -12,12 +18,6 @@
 なお、今回は編集で収まりきらなかった 「Nghttp2 の今後」について、番外編として後日配信する予定です。ユーザの方は必聴です。
 
 ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
-
-## Guest
-
-- [@tatsuhiro_t](https://twitter.com/tatsuhiro_t)
-- [@jovi0608](https://twitter.com/jovi0608)
 
 
 ## Show Note

@@ -1,6 +1,12 @@
-# [2014-08-04] ep6 WebRTC
+# [webrtc][komasshu][tukimikage][mozaic.fm] ep6 WebRTC
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep6.m4a" controls></audio>
+
+<ul class=info>
+  <li>published_at: <time datetime=2014-08-04>2014-08-04</time>
+  <li>guest: <a href=https://twitter.com/komasshu>@komasshu</a>
+  <li>guest: <a href=https://twitter.com/Tukimikage>@Tukimikage</a>
+</ul>
 
 
 ## Theme
@@ -12,12 +18,6 @@
 ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
 
 (NAT をアドレストランスポートと言い間違ってますが、そっとしておいてあげて下さい)
-
-
-## Guest
-
-- [@komasshu](https://twitter.com/komasshu)
-- [@Tukimikage](https://twitter.com/Tukimikage)
 
 
 ## Show Note

@@ -1,6 +1,12 @@
-# [2014-08-19] ep7 REST
+# [web][rest][yohei][t_wada][mozaic.fm] ep7 REST
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep7.m4a" controls></audio>
+
+<ul class=info>
+  <li>published_at: <time datetime=2014-08-19>2014-08-19</time>
+  <li>guest: <a href=https://twitter.com/yohei>@yohei</a>
+  <li>guest: <a href=https://twitter.com/t_wada>@t_wada</a>
+</ul>
 
 
 ## Theme
@@ -14,12 +20,6 @@
 エピソードの感想なども、同じく [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
 
 今回は、居酒屋トークの録音なので周囲の雑音が多いですがご了承ください。
-
-
-## Guest
-
-- [@yohei](https://twitter.com/yohei)
-- [@t_wada](https://twitter.com/t_wada)
 
 
 ## Show Note

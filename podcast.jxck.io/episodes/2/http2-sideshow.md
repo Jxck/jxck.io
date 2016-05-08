@@ -1,6 +1,12 @@
-# [2014-04-29] ep2 HTTP2 sideshow
+# [http2][tatsuhiro_t][jovi0608][mozaic.fm] ep2 HTTP2 sideshow
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep2.sideshow.m4a" controls></audio>
+
+<ul class=info>
+  <li>published_at: <time datetime=2014-04-29>2014-04-29</time>
+  <li>guest: <a href=https://twitter.com/tatsuhiro_t>@tatsuhiro_t</a>
+  <li>guest <a href=https://twitter.com/jovi0608>@jovi0608</a>
+</ul>
 
 
 ## Theme
@@ -12,12 +18,6 @@
 OSS 奨励賞受賞の裏話や、 http2 や spdylay が今後どうなるのか、 [tatsuhiro_t](https://twitter.com/tatsuhiro_t) さんの今後の活動についてなど、こぼれ話をまとめた 15 分です。
 
 ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
-
-## Guest
-
-- [@tatsuhiro_t](https://twitter.com/tatsuhiro_t)
-- [@jovi0608](https://twitter.com/jovi0608)
 
 
 ## Show Note

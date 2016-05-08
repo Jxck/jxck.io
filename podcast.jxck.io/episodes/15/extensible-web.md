@@ -1,6 +1,12 @@
-# [2015-01-19] ep15 Extensible Web
+# [extensible web][myakura][nunnun][mozaic.fm] ep15 Extensible Web
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep15.mp3" controls></audio>
+
+<ul class=info>
+  <li>published_at: <time datetime=2015-01-19>2015-01-19</time>
+  <li>guest: <a href=https://twitter.com/myakura>@myakura</a>
+  <li>guest: <a href=https://twitter.com/nunnun>@nunnun</a>
+</ul>
 
 
 ## Theme
@@ -14,12 +20,6 @@
 それによって「今何が起こっているのか」、「これからどうなっていくのか」そして、「自分たちはそれにどう参加できるのか?」を議論しました。
 
 ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
-
-## Guest
-
-- [@myakura](https://twitter.com/myakura)
-- [@nunnun (hiro)](https://twitter.com/nunnun)
 
 
 ## Show Note

@@ -1,6 +1,11 @@
-# [2015-06-01] ep18 Nginx
+# [nginx][cubicdaiya][mozaic.fm] ep18 Nginx
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep18.mp3" controls></audio>
+
+<ul class=info>
+  <li>published_at: <time datetime=2015-06-01>2015-06-01</time>
+  <li>guest: <a href=https://twitter.com/cubicdaiya>@cubicdaiya</a>
+</ul>
 
 
 ## Theme
@@ -10,11 +15,6 @@
 今回は [@cubicdaiya](https://twitter.com/cubicdaiya) さんをお迎えして、 すっかり HTTP サーバのデファクトの地位につきつつある Nginx について、なぜ Nginx を選ぶのか、 Nginx から見た現在の Web にはどういう変化があるのか。 そして Nginx はこれからどうなっていくのか、それが Web にどんな変化をもたらすのかを議論しました。
 
 ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
-
-## Guest
-
-- [@cubicdaiya](https://twitter.com/cubicdaiya)
 
 
 ## Show Note

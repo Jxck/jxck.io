@@ -1,6 +1,12 @@
-# [2014-09-03] ep8 AltJS
+# [typescript][altjs][technohippy][vvakame][mozaic.fm] ep8 AltJS
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep8.m4a" controls></audio>
+
+<ul class=info>
+  <li>published_at: <time datetime=2014-09-03>22014-09-03</time>
+  <li>guest: <a href=https://twitter.com/technohippy>technohippy</a>
+  <li>guest: <a href=https://twitter.com/vvakame>vvakame</a>
+</ul>
 
 
 ## Theme
@@ -12,12 +18,6 @@
 ゲストは [あんどう](https://twitter.com/technohippy) さんと、 [わかめ](https://twitter.com/vvakame) さんをお迎えし altJS をテーマに 「今なにが起こっているのか?」「これからどうなっていくのか?」を議論しました。
 
 ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
-
-## Guest
-
-- [あんどうやすし](https://twitter.com/technohippy)
-- [わかめ](https://twitter.com/vvakame)
 
 
 ## Show Note

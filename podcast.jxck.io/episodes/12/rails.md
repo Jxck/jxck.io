@@ -1,6 +1,11 @@
-# [2014-12-07] ep12 Rails
+# [rails][igrigorik][mozaic.fm] ep12 Rails
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep12.mp3" controls></audio>
+
+<ul class=info>
+  <li>published_at: <time datetime=2014-12-07>2014-12-07</time>
+  <li>guest: <a href=https://twitter.com/a_matsuda>@a_matsuda</a>
+</ul>
 
 
 ## Theme
@@ -14,11 +19,6 @@
 ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
 
 (なお、 Android での不具合のフィードバックを頂いたため、今回から配信形式を m4a ではなく mp3 に変えました。アートワークはありません。)
-
-
-## Guest
-
-- [@a_matsuda](https://twitter.com/a_matsuda)
 
 
 ## Show Note

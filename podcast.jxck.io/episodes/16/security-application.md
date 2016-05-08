@@ -1,6 +1,11 @@
-# [2015-03-27] ep16 Security (application)
+# [security][hasegawayosuke][mozaic.fm] ep16 Security (application)
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep16.mp3" controls></audio>
+
+<ul class=info>
+  <li>published_at: <time datetime=2015-03-27>2015-03-27</time>
+  <li>guest: <a href=https://twitter.com/hasegawayosuke>@hasegawayosuke</a>
+</ul>
 
 
 ## Theme
@@ -16,11 +21,6 @@
 hasegawa さんが本を書いてる件は、許可を取っておりカットしてません。公表して自分を追い込むメソッドだそうです w
 
 ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
-
-## Guest
-
-- [@hasegawayosuke](https://twitter.com/hasegawayosuke)
 
 
 ## Show Note

@@ -1,6 +1,12 @@
-# [2015-01-18] ep14 WHATWG
+# [whatwg][w3c][myakura][nunnun][mozaic.fm] ep14 WHATWG
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep14.mp3" controls></audio>
+
+<ul class=info>
+  <li>published_at: <time datetime=2015-01-18>2015-01-18</time>
+  <li>guest: <a href=https://twitter.com/myakura>@myakura</a>
+  <li>guest: <a href=https://twitter.com/nunnun>@nunnun</a>
+</ul>
 
 
 ## Theme
@@ -12,12 +18,6 @@
 後半は Extensible Web の話になったので、 [次のエピソード](http://mozaic.fm/post/108491263993/15-extensible-web) に分けています。
 
 ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
-
-## Guest
-
-- [@myakura](https://twitter.com/myakura)
-- [@nunnun (hiro)](https://twitter.com/nunnun)
 
 
 ## Show Note

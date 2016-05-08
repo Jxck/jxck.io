@@ -1,6 +1,11 @@
-# [2014-06-16] ep5 TypeScript
+# [typescript][vvakame][mozaic.fm] ep5 TypeScript
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep5.m4a" controls></audio>
+
+<ul class=info>
+  <li>published_at: <time datetime=2014-06-16>2014-06-16</time>
+  <li><a href=https://twitter.com/vvakame>@vvakame</a>
+</ul>
 
 
 ## Theme
@@ -12,11 +17,6 @@
 今回は議論が色々広がって 1.5h になりました。また、録音したのは約一ヶ月前(5 月中旬)のもので、冒頭で第 4 回と言っていましたが、急遽第 4 回に別の話を差し込んだため第 5 回になりました。
 
 ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
-
-## Guest
-
-- [@vvakame](https://twitter.com/vvakame)
 
 
 ## Show Note

@@ -1,6 +1,11 @@
-# [2014-11-10] ep11 High Performance Browser Networking
+# [performance][network][igrigorik][mozaic.fm] ep11 High Performance Browser Networking
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep11.m4a" controls></audio>
+
+<ul class=info>
+  <li>published_at: <time datetime=2014-11-10>2014-11-10</time>
+  <li>guest: <a href=https://twitter.com/igrigorik>@igrigorik</a>
+</ul>
 
 
 ## Theme
@@ -16,11 +21,6 @@ HPBN は、複雑化し、知らなくてはならい知識が飛躍的に増え
 別途 [Qiita で募集した質問](http://t.umblr.com/redirect?z=http%3A%2F%2Fqiita.com%2FJxck_%2Fitems%2Fa0cea350cc982915d092&t=OWIzYTViMTkwZTA3MDc5OWZlZTVmOGY0OTNhZDBiNzVhMGU5MjRhNixNNk5KM3NVNA%3D%3D) も一部採用させていただきました。応募頂いた皆様ありがとうございました。
 
 ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
-
-## Guest
-
-- [@igrigorik](https://twitter.com/igrigorik)
 
 
 ## Show Note

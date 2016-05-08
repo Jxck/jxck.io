@@ -1,6 +1,12 @@
-# [2014-06-07] ep4 Security (protocol)
+# [security][lef][mozaic.fm] ep4 Security (protocol)
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep4.m4a" controls></audio>
+
+<ul class=info>
+  <li>published_at: <time datetime=2014-06-07>2014-06-07</time>
+  <li>guest: <a href=https://twitter.com/lef>@lef</a>
+  <li>guest: 菊池さん
+</ul>
 
 
 ## Theme
@@ -12,12 +18,6 @@
 今回は [Qiita でラフノートを公開](http://t.umblr.com/redirect?z=http%3A%2F%2Fqiita.com%2FJxck_%2Fitems%2F324f5b68f2da4add6a45&t=NDdhYmRlYmQ4Mjk4MTc0YWNiZmVhNGE4NDY5NDUyNDAxNGYwNzQ1NywyNkZTeUFxTw%3D%3D) し、質問を募集しました。全部は紹介できませんでしたが、質問頂いた方々有難うございました。
 
 ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
-
-## Guest
-
-- [@lef](https://twitter.com/lef)
-- 菊池さん
 
 
 ## Show Note

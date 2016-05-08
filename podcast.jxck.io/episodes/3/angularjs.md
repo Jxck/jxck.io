@@ -1,6 +1,12 @@
-# [2014-05-31] ep3 Angular.js
+# [angular.js][can_i_do_web][konpyu][mozaic.fm] ep3 Angular.js
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep3.m4a" controls></audio>
+
+<ul class=info>
+  <li>published_at: <time datetime=2014-05-31>2014-05-31</time>
+  <li>guest: <a href=https://twitter.com/can_i_do_web>@can_i_do_web</a>
+  <li>guest: <a href=https://twitter.com/konpyu>@konpyu</a>
+</ul>
 
 
 ## Theme
@@ -10,12 +16,6 @@
 今回は [@can_i_do_web](https://twitter.com/can_i_do_web) さんと [@konpyu](https://twitter.com/konpyu) さんをお迎えし Angular.js をテーマに、日本のコミュニティの話や、 Angular.js 製 Web サービス [note](http://t.umblr.com/redirect?z=https%3A%2F%2Fnote.mu%2F&t=NGI1YzIxMDI3ZThkYzY5Njg0NTAzODBjM2NjNTI5NWZmMmU0ZTMyMixqYnFMam9ibQ%3D%3D) の開発経験などから 「今なにが起こっているのか?」「これからどうなっていくのか?」を議論しました。
 
 ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
-
-## Guest
-
-- [@can_i_do_web](https://twitter.com/can_i_do_web)
-- [@konpyu](https://twitter.com/konpyu)
 
 
 ## Show Note

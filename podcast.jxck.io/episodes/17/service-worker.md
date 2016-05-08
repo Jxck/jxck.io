@@ -1,6 +1,12 @@
-# [2015-04-22] ep17 Service Worker
+# [service worker][kinu][nhiroki_][mozaic.fm] ep17 Service Worker
 
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep17.mp3" controls></audio>
+
+<ul class=info>
+  <li>published_at: <time datetime=2015-04-22>2015-04-22</time>
+  <li>guest: <a href=https://twitter.com/kinu>@kinu</a>
+  <li>guest: <a href=https://twitter.com/nhiroki_>@nhiroki_</a>
+</ul>
 
 
 ## Theme
@@ -14,12 +20,6 @@
 ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
 
 また、 Service Worker へのフィードバックは [bug tracker](http://t.umblr.com/redirect?z=https%3A%2F%2Fcrbug.com%2Fnew&t=YWNmMmZiNmZkMzU2YjM3ZmFjZjllYjA2YWVhYmIxM2RhMmRlZGIzYyxBOEh1Q2lxdQ%3D%3D) (基本は英語ですが、日本語でも良いそうです)、もしくは [#serviceworker](https://twitter.com/search?q=%23serviceworker&src=hash) です。
-
-
-## Guest
-
-- [@kinu](https://twitter.com/kinu)
-- [@nhiroki_](https://twitter.com/nhiroki_)
 
 
 ## Show Note
