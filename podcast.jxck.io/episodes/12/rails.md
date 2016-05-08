@@ -50,8 +50,3 @@
 - [backbone.js](http://t.umblr.com/redirect?z=http%3A%2F%2Fbackbonejs.org&t=Yjg3NTExZmM4OWU5ZDZmNGY5YTVmNjM4NWIzZTk1NzVkODU1MjdhNSxMdFdhcWRlTA%3D%3D)
 - [microservices](http://t.umblr.com/redirect?z=http%3A%2F%2Fmartinfowler.com%2Farticles%2Fmicroservices.html&t=MDBiYzRkZTBiM2ExMGE1ZTY2NGIwYzNlZGIyNGE2YzIxYzA3NzNkYyxMdFdhcWRlTA%3D%3D)
 - [Active Resource](http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Frails%2Factiveresource&t=MjJjOWYxNWE3YTBjMzY5MjMwYjczZTRmM2U2ZWViYWU4NjkyNmIwZSxMdFdhcWRlTA%3D%3D)
-
-
-## Related Entry
-
-- [mozaic.fm#12 Rails の話で思ったこと](http://t.umblr.com/redirect?z=http%3A%2F%2Fjacoyutorius.com%2F%3Fp%3D1019&t=NmZhMzRlZDYzNDEzYWNkYzY1YWE0ZjY2MTE2M2RkOTI0YjkzZWI3ZixMdFdhcWRlTA%3D%3D)

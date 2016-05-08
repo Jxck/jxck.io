@@ -33,13 +33,8 @@
 - [Chrome Dev Editor](http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fdart-lang%2Fchromedeveditor&t=YTdjZTRhODNhNGU5M2ViYjJhYzkwZjkzYTFhZDE0N2I3YjcyY2QwNSxmVGVJRVNsdA%3D%3D)
 
 
-## Related Entry
-
-- [2014/09 の Dart に関して](http://t.umblr.com/redirect?z=http%3A%2F%2Fnothingcosmos.blog52.fc2.com%2Fblog-entry-180.html&t=MDM1Y2FhMzAxMDAwMjU3NDgwZjUwYWRmNGI1N2ZkZTQ3ZTA5ODEzZCxmVGVJRVNsdA%3D%3D)
-
-
 ## Slide
 
 当日のスライドです
 
-<iframe src=//www.slideshare.net/slideshow/embed_code/key/LiQQdYTyTazUDn" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/Jxck/mozaicfm-ep8alt-jslldiver" title="mozaicfm-ep8 #altJS @ll-diver" target="_blank">mozaicfm-ep8 #altJS @ll-diver</a> </strong> from <strong><a href="//www.slideshare.net/Jxck" target="_blank">Jxck :)</a></strong> </div>
+- [mozaicfm-ep8 #altJS @ll-diver](http://www.slideshare.net/Jxck/mozaicfm-ep8alt-jslldiver)
