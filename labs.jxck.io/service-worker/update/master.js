@@ -5,9 +5,10 @@ navigator.serviceWorker.register('worker.js').then((registration) => {
     console.info('update', e);
   });
 
-  setInterval(() => {
-    console.log('update');
-    registration.update();
-  }, 3000);
   return navigator.serviceWorker.ready;
+}).then((registration) => {
+  setInterval(() => {
+    console.log('update()');
+    registration.update();
+  }, 1000);
 });

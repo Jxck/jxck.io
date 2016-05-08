@@ -20,3 +20,7 @@ self.addEventListener('fetch', (e) => {
   }
   return;
 });
+
+self.addEventListener('push', () => {
+  self.registration.update();
+});
