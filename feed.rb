@@ -11,7 +11,7 @@ def hsp(str)
      .gsub(/'/, "&#039;")
 end
 
-def Feed(dir)
+def Blog(dir)
   host = dir.split("/")[1]
 
   entries = Dir.glob(dir)
@@ -62,7 +62,6 @@ def Feed(dir)
 #{xml_entries}
 </feed>
   EOS
-  File.write("#{host}/feeds/atom.xml", xml)
 
   json = JSON.pretty_generate(
     title:     host,
@@ -73,7 +72,8 @@ def Feed(dir)
     entry:     entries
   )
 
+  File.write("#{host}/feeds/atom.xml", xml)
   File.write("#{host}/feeds/atom.json", json)
 end
 
-Feed("./blog.jxck.io/entries/**/**")
+Blog("./blog.jxck.io/entries/**/**")
