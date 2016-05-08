@@ -70,7 +70,7 @@ const CSS = {
   FOOTER:  '/assets/css/footer.css',
   PRE:     '/assets/css/pre.css',
   TABLE:   '/assets/css/table.css',
-}
+};
 
 function CatStyle(path) {
   return Object.keys(CSS).map((f) => {
@@ -189,7 +189,7 @@ class Builder {
     let size = node.url.split('#')[1];
     if (size) {
       size = size.split('x');
-      if (size.length == 2) {
+      if (size.length === 2) {
         width = `width=${size[0]}`;
         height = `height=${size[1]}`;
       }
@@ -235,7 +235,7 @@ function p() {
   console.log.apply(this, arg);
 }
 
-function j(o) {
+function json(o) {
   return JSON.stringify(o, ' ', ' ');
 }
 
@@ -277,9 +277,9 @@ class AST {
       let align = node.align;
       node.children = node.children.map((row, i) => {
         let type = (i === 0) ? 'tableHead' : 'tableData';
-        row.children = row.children.map((cell, i) => {
+        row.children = row.children.map((cell, j) => {
           cell.type = type;
-          cell.align = align[i];
+          cell.align = align[j];
           return cell;
         });
         return row;
@@ -288,7 +288,10 @@ class AST {
       node.children = node.children.reduce((acc, row, i) => {
         (i === 0) ? acc[0].children.push(row) : acc[1].children.push(row);
         return acc;
-      }, [{ type: 'thead', children: []}, { type: 'tbody', children: [] }]);
+      }, [
+        {type: 'thead', children: []},
+        {type: 'tbody', children: []},
+      ]);
 
       return node;
     });
@@ -566,16 +569,15 @@ if (process.argv.length < 3) {
 let filepath = process.argv[2];
 
 if (process.argv[3] === 'podcast') {
-
   // podcast html
   (() => {
     p('podcast html', filepath);
     let option = {
-      amp: false,
-      meta: read('./.template/meta.html'),
+      amp:      false,
+      meta:     read('./.template/meta.html'),
       template: read('./.template/podcast.html'),
-      icon: 'https://podcast.jxck.io/assets/img/mozaic.png', //TODO: https://mozaic.fm/assets/img/mozaic.png
-    }
+      icon:     'https://podcast.jxck.io/assets/img/mozaic.png', // TODO: https://mozaic.fm/assets/img/mozaic.png
+    };
     let info = prepare(filepath, option);
     let builder = new Builder(info);
     let ast = new AST(info.md);
@@ -591,11 +593,11 @@ if (process.argv[3] === 'podcast') {
   p('mark html', filepath);
   let meta = read('./.template/meta.html') + '\n' + read('./.template/ld-json.html');
   let option = {
-    amp: false,
-    meta: meta,
+    amp:      false,
+    meta:     meta,
     template: read('./.template/blog.html'),
-    icon: 'https://jxck.io/assets/img/jxck.png',
-  }
+    icon:     'https://jxck.io/assets/img/jxck.png',
+  };
   let info = prepare(filepath, option);
   let builder = new Builder(info);
   let ast = new AST(info.md);
@@ -608,11 +610,11 @@ if (process.argv[3] === 'podcast') {
   p('mark amp', filepath);
   let meta = read('./.template/meta.html') + '\n' + read('./.template/ld-json.html');
   let option = {
-    amp: true,
-    meta: meta,
+    amp:      true,
+    meta:     meta,
     template: read('./.template/amp.html'),
-    icon: 'https://jxck.io/assets/img/jxck.png',
-  }
+    icon:     'https://jxck.io/assets/img/jxck.png',
+  };
   let info = prepare(filepath, option);
   let builder = new Builder(info);
   let ast = new AST(info.md);
