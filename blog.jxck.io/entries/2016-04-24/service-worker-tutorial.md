@@ -166,9 +166,58 @@ DEMO: [https://labs.jxck.io/service-worker/updatefound/](https://labs.jxck.io/se
 
 ## update()
 
-`update()` とキャッシュ周りの挙動
+`registration.update()` による worker の更新と、ブラウザキャッシュにヒットする場合の挙動。
 
-TODO (GW予定/未定)
+<iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/7uRVh9PzV5o" allowfullscreen></iframe>
+
+
+```js
+console.log('master');
+
+navigator.serviceWorker.register('worker.js').then((registration) => {
+  registration.addEventListener('updatefound', (e) => {
+    console.info('update', e);
+  });
+
+  return navigator.serviceWorker.ready;
+}).then((registration) => {
+  setInterval(() => {
+    console.log('update()');
+    registration.update();
+  }, 1000);
+});
+```
+
+```js
+console.info('worker');
+
+const ver = 1;
+
+self.addEventListener('install', (e) => {
+  console.info(` install${ver}`, e);
+  e.waitUntil(skipWaiting());
+});
+
+self.addEventListener('activate', (e) => {
+  console.info(` activate${ver}`, e);
+  e.waitUntil(self.clients.claim());
+});
+
+self.addEventListener('fetch', (e) => {
+  let path = new URL(e.request.url).pathname;
+  console.info(path);
+  if (path.indexOf('test') > -1) {
+    e.respondWith(new Response('test'));
+  }
+  return;
+});
+
+self.addEventListener('push', () => {
+  self.registration.update();
+});
+```
+
+DEMO: [https://labs.jxck.io/service-worker/update/](https://labs.jxck.io/service-worker/update/)
 
 
 ## scope
