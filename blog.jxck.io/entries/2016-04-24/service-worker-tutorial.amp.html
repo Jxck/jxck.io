@@ -50,7 +50,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-04-24T08:00:00+08:00",
-  "dateModified": "2016-05-07T08:00:00+08:00",
+  "dateModified": "2016-05-09T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -524,7 +524,7 @@ th:last-child, td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-04-24>2016-04-24</time>
-    <li>updated_at: <time class=updated_at datetime=2016-05-07>2016-05-07</time>
+    <li>updated_at: <time class=updated_at datetime=2016-05-09>2016-05-09</time>
     <li class=tags>tags: [<a>service worker</a>,<a>tutorial</a>]
   </ul>
 
@@ -660,8 +660,49 @@ self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
     </section>
     <section>
       <h2 id="update()"><a href="#update()">update()</a></h2>
-      <p><code>update()</code> とキャッシュ周りの挙動
-      <p>TODO (GW予定/未定)
+      <p><code>registration.update()</code> による worker の更新と、ブラウザキャッシュにヒットする場合の挙動。
+      <amp-iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/7uRVh9PzV5o" allowfullscreen></amp-iframe>
+      <pre class=js><code>console.log(&#039;master&#039;);
+
+navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt; {
+  registration.addEventListener(&#039;updatefound&#039;, (e) =&gt; {
+    console.info(&#039;update&#039;, e);
+  });
+
+  return navigator.serviceWorker.ready;
+}).then((registration) =&gt; {
+  setInterval(() =&gt; {
+    console.log(&#039;update()&#039;);
+    registration.update();
+  }, 1000);
+});</code></pre>
+      <pre class=js><code>console.info(&#039;worker&#039;);
+
+const ver = 1;
+
+self.addEventListener(&#039;install&#039;, (e) =&gt; {
+  console.info(` install${ver}`, e);
+  e.waitUntil(skipWaiting());
+});
+
+self.addEventListener(&#039;activate&#039;, (e) =&gt; {
+  console.info(` activate${ver}`, e);
+  e.waitUntil(self.clients.claim());
+});
+
+self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
+  let path = new URL(e.request.url).pathname;
+  console.info(path);
+  if (path.indexOf(&#039;test&#039;) &gt; -1) {
+    e.respondWith(new Response(&#039;test&#039;));
+  }
+  return;
+});
+
+self.addEventListener(&#039;push&#039;, () =&gt; {
+  self.registration.update();
+});</code></pre>
+      <p>DEMO: <a href="https://labs.jxck.io/service-worker/update/">https://labs.jxck.io/service-worker/update/</a>
     </section>
     <section>
       <h2 id="scope"><a href="#scope">scope</a></h2>
