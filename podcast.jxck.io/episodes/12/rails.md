@@ -10,7 +10,7 @@
 
 ## Theme
 
-第 12 回目のテーマは Ruby on Rails です。
+第 12 回のテーマは Ruby on Rails です。
 
 今回は Ruby と Rail のコミッターである [@a_matsuda](https://twitter.com/a_matsuda/) さんをお迎えして、 Rails が引っ張ってきた Web 開発と、 Web の進化が Ruby に与えた影響などを振り返りながら、 Rails に「今何が起こっているのか」、「これからどうなっていくのか」を議論しました。
 

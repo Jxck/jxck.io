@@ -10,7 +10,7 @@
 
 ## Theme
 
-第 19 回目 ES7 の SideShow です。
+第 19 回 ES7 の SideShow です。
 
 [@Constellation](https://twitter.com/Constellation) さんが語る JavaScript Engine (JSCore) での実装の裏話と、 WebAssembly についてお送りします。
 

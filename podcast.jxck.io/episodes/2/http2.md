@@ -11,7 +11,7 @@
 
 ## Theme
 
-第 2 回目のテーマは HTTP2 です。
+第 2 回のテーマは HTTP2 です。
 
 今回は [@tatsuhiro_t](https://twitter.com/tatsuhiro_t) さんと [@jovi0608](https://twitter.com/jovi0608) さんをお迎えし HTTP の世界で、「今なにが起こっているのか?」「これからどうなっていくのか?」を議論しました。
 

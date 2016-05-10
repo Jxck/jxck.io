@@ -17,3 +17,9 @@ https://help.apple.com/itc/podcasts_connect/#/itc2b3780e76
 - `<itunes:summary><![CDATA[<a href="http://www.apple.com">Apple</a>]]></itunes:summary>` みたいにして display issue を防ぐ
 - `<item>` を追加して行く、順番は `<pubDate>` で判断される。24h 以内なら `<itunes:order>` で上書きもできる
 
+### RSS 2.0
+
+http://cyber.law.harvard.edu/rss/rss.html
+
+- enclosure の url は http じゃないとだめらしい
+- 

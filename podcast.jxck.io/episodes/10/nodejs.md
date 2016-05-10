@@ -11,7 +11,7 @@
 
 ## Theme
 
-第 10 回目のテーマは Node.js です。
+第 10 回のテーマは Node.js です。
 
 今回は唯一の日本人 Node.js コミッタである [@koichik](https://twitter.com/koichik/) さんと、日本 Node.js ユーザグループの現代表である [@yosuke_furukawa](https://twitter.com/yosuke_furukawa) さんをお迎えし、 Node.js をテーマに 「Node.js ができた理由」から、「node@1.0」の展望「nodeconf.eu での最新事情」や「Node.js コミュニティの今後」などを二時間半たっぷり議論しました。
 

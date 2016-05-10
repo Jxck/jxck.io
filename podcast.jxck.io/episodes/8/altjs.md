@@ -3,7 +3,7 @@
 <audio preload="none" src="https://files.mozaic.fm/mozaic-ep8.m4a" controls></audio>
 
 <ul class=info>
-  <li>published_at: <time datetime=2014-09-03>22014-09-03</time>
+  <li>published_at: <time datetime=2014-09-03>2014-09-03</time>
   <li>guest: <a href=https://twitter.com/technohippy>technohippy</a>
   <li>guest: <a href=https://twitter.com/vvakame>vvakame</a>
 </ul>
@@ -11,7 +11,7 @@
 
 ## Theme
 
-第 8 回目のテーマは altJS(TypeScript, Dart) です。
+第 8 回のテーマは altJS(TypeScript, Dart) です。
 
 今回は [#LLDiver](http://t.umblr.com/redirect?z=http%3A%2F%2Fll.jus.or.jp%2F2014%2F&t=NGQzZjI1NTkzNmU0NTkzNzE0ZmRjN2ZhNGNiOTI4Yzk3Mjg5NDFkNCxmVGVJRVNsdA%3D%3D) で [「mozaic.fm 出張版: TypeScript and Dart」](http://t.umblr.com/redirect?z=http%3A%2F%2Fll.jus.or.jp%2F2014%2Fprogram%23mozaic.fm&t=ZjIyYjIzMTBkZmM0ZjcwOTM4NjNjOTliY2U3MjNiZDhkZTdhNGEwNCxmVGVJRVNsdA%3D%3D) という枠をやらせて頂きました。
 

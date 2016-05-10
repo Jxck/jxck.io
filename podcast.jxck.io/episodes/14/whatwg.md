@@ -11,7 +11,7 @@
 
 ## Theme
 
-第 14 回目のテーマは WHATWG です。
+第 14 回のテーマは WHATWG です。
 
 今回は [@myakura](https://twitter.com/myakura) さんと [@nunnun (hiro)](https://twitter.com/nunnun) さんをお迎えして、 WHATWG 、 W3C 、 TAG などの成り立ちや、それらがやっていること。先日の HTML5 勧告の意味。 LivingStandard とはどう考えればいいのか?といった話から、標準化において「今何が起こっているのか」、「これからどうなっていくのか」そして、「自分たちはそれにどう参加できるのか?」を議論しました。
 

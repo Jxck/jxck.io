@@ -10,7 +10,7 @@
 
 ## Theme
 
-第 16 回目のテーマは Security (application) です。
+第 16 回のテーマは Security (application) です。
 
 今回は [@hasegawayosuke](https://twitter.com/hasegawayosuke) さんをお迎えして、 Web アプリケーションの開発技術が進化することによって、同じように変わっている筈のセキュリティに関して、その変化をどう考えればいいのか?
 

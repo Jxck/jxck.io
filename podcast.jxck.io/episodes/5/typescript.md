@@ -10,7 +10,7 @@
 
 ## Theme
 
-第 5 回目のテーマは TypeScript です。
+第 5 回のテーマは TypeScript です。
 
 今回は [@vvakame](https://twitter.com/vvakame) さんをお迎えし TypeScript をテーマに、 TypeScript の現状や、 d.ts の話、型の有無に起因する議論、最近のモジュールシステム、 Alt-JS 全般にまつわるエコシステムの話や、 Angular-TypeScript の感想、非同期の話、 TypeScript の今後など 「今なにが起こっているのか?」「これからどうなっていくのか?」をたっぷり議論しました。
 
