@@ -10,7 +10,7 @@
 
 ## Theme
 
-第 13 回目 Virtual DOM の SideShow です。
+第 13 回 Virtual DOM の SideShow です。
 
 [@mizchi](https://twitter.com/mizchi/) さんとのこぼれ話をお送りします。
 

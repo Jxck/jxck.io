@@ -11,7 +11,7 @@
 
 ## Theme
 
-第 4 回目のテーマは Security (Protocol)です。
+第 4 回のテーマは Security (Protocol)です。
 
 今回は、 [CCS Injection](http://t.umblr.com/redirect?z=http%3A%2F%2Fccsinjection.lepidum.co.jp%2Fja.html&t=ZmFlMzZhZGMyNjA2MDU5ZDUzNTJmZWQwNTM2ZjFhZmJmMWYyMWQzMywyNkZTeUFxTw%3D%3D) の発見にともない、発見者の菊池さんと [@lef](https://twitter.com/lefb) さんをお迎えし、 CCS Injection の影響や発見の経緯、 Open SSL や TLS の現状、ここから見える未来など、プロトコル寄りのセキュリティをテーマに、議論しました。
 

@@ -10,7 +10,7 @@
 
 ## Theme
 
-第 11 回目のテーマは High Performance Browser Networking です。
+第 11 回のテーマは High Performance Browser Networking です。
 
 今回は [High Performance Browser Networking](http://t.umblr.com/redirect?z=http%3A%2F%2Fchimera.labs.oreilly.com%2Fbooks%2F1230000000545&t=MTAyNjg5OGQzODVlMWRkZDYwNTEzOGE3MGJjYzUzMDllNmMwMzg1MCxNNk5KM3NVNA%3D%3D) の著者であり、 Google の Developer Advocate である [@igrigorik](https://twitter.com/igrigorik/) さんをお迎えして開催した、この書籍のちょっと遅れた出版記念イベントである [HPBN-meetup](http://t.umblr.com/redirect?z=http%3A%2F%2Fgoogledevjp.blogspot.jp%2F2014%2F10%2Fblog-post.html&t=MmY0ODgzODQ5NDIyYTI3ODE1YzU2MTI3YjE0OTNkMWZkNzMxMTI0YSxNNk5KM3NVNA%3D%3D) で実施したインタビュー形式の公開収録の模様を配信します。今回は Google さんに通訳をつけて頂きましたので、その分ラグや lost in translation がありますが、ご了承ください。
 

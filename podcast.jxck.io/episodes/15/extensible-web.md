@@ -11,7 +11,7 @@
 
 ## Theme
 
-第 15 回目のテーマは Extensible Web です。
+第 15 回のテーマは Extensible Web です。
 
 収録自体は [前回のエピソード](http://mozaic.fm/post/108439721723/14-whatwg) の続きにあたります。
 

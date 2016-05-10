@@ -10,7 +10,7 @@
 
 ## Theme
 
-第 13 回目のテーマは Virtual DOM です。
+第 13 回のテーマは Virtual DOM です。
 
 今回は [@mizchi](https://twitter.com/mizchi/) さんをお迎えして、 Virtual DOM というアイデアの本質、それが可能にした Flux というアーキテクチャ、そして各種の実装と今後の期待について、「今何が起こっているのか」、「これからどうなっていくのか」を議論しました。
 

@@ -11,7 +11,7 @@
 
 ## Theme
 
-第 3 回目のテーマは Angular.js です。
+第 3 回のテーマは Angular.js です。
 
 今回は [@can_i_do_web](https://twitter.com/can_i_do_web) さんと [@konpyu](https://twitter.com/konpyu) さんをお迎えし Angular.js をテーマに、日本のコミュニティの話や、 Angular.js 製 Web サービス [note](http://t.umblr.com/redirect?z=https%3A%2F%2Fnote.mu%2F&t=NGI1YzIxMDI3ZThkYzY5Njg0NTAzODBjM2NjNTI5NWZmMmU0ZTMyMixqYnFMam9ibQ%3D%3D) の開発経験などから 「今なにが起こっているのか?」「これからどうなっていくのか?」を議論しました。
 

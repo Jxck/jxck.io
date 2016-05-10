@@ -10,7 +10,7 @@
 
 ## Theme
 
-第 12 回目 Ruby on Rails の SideShow です。
+第 12 回 Ruby on Rails の SideShow です。
 
 [@a_matsuda](https://twitter.com/a_matsuda/) さんの語る Rails 開発のスタイルと、そのコミュニティの持つ力、 Rails が引っ張ったテストの話などをお送りします。
 
