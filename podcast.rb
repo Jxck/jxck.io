@@ -15,51 +15,53 @@ dir = "./podcast.jxck.io/**/*"
 
 class EP
   attr_reader :path
+
   def initialize(path)
     @path = path
     @text = File.read(path)
   end
+
   def num
     @path.split('/')[3].to_i
   end
+
   def sideshow?
     !! (@path =~ /.*sideshow.md/)
   end
-  def <=>(target)
-    if num == target.num
-      return sideshow? ? 1: -1
-    end
-    return num <=> target.num
-  end
-  def to_s
-    return path
-  end
-  def url
-    path.sub('./', 'https://').sub('.md', '.html')
-  end
+
   def title
     hsp @text.match(/^# \[.*\] (.*)/)[1]
   end
-  def summary
-    hsp @text.match(/## Theme(.*?)##/im)[1].strip # .gsub(/\n/, "")
-    ""
+
+  def url
+    path.sub('./', 'https://').sub('.md', '.html')
   end
+
+  def pubDate
+    datetime = @text.match(/datetime=(.*?)>/)[1]
+    Time.parse(datetime).rfc822
+  end
+
+  def summary
+    hsp @text.match(/## Theme(.*?)##/im)[1].strip
+  end
+
   def subtitle
     summary
   end
+
   def description
     hsp @text
   end
-  def pubDate
-    datetime = @text.match(/datetime=(.*?)>/)[1]
-    Time.new(datetime).rfc822
-  end
+
   def file
     "files.mozaic.fm/mozaic-ep#{num}#{'.sideshow' if sideshow?}.mp3"
   end
+
   def size
     File.open("../#{file}").size
   end
+
   def duration
     sec = `mp3info -p "%S\n" ../#{file}`.to_i
     Time.at(sec).utc.strftime("%X")
@@ -84,10 +86,18 @@ class EP
        </item>
     EOS
   end
-end
 
-#ep = EP.new("./podcast.jxck.io/episodes/20/browser.md")
-#puts ep.item
+  def <=>(target)
+    if num == target.num
+      return sideshow? ? 1: -1
+    end
+    return num <=> target.num
+  end
+
+  def to_s
+    "#{pubDate}"
+  end
+end
 
 items = Dir.glob(dir)
   .select {|path| path.match(/.*.md\z/) }
@@ -95,7 +105,6 @@ items = Dir.glob(dir)
   .sort
   .map {|ep| ep.item }
   .join("")
-
 
 xml = <<-EOS
 <?xml version="1.0" encoding="UTF-8"?>
@@ -131,4 +140,4 @@ xml = <<-EOS
 </rss>
 EOS
 
-puts xml
+File.write("./podcast.jxck.io/feeds/rss2.xml", xml)
