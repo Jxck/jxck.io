@@ -116,7 +116,7 @@ xml = <<-EOS
     <generator>Ruby</generator>
     <language>ja</language>
     <copyright>Copyright (c) 2014 mozaic.fm. All Rights Reserved. Redistribute, Transcript are not allowed.</copyright>
-    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="https://podcast.jxck.io/feeds/rss2.xml" />
+    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="https://podcast.jxck.io/feeds/feed.xml" />
     <itunes:author>Jxck</itunes:author>
     <itunes:category text="Technology"><itunes:category text="Podcasting" /></itunes:category>
     <itunes:explicit>no</itunes:explicit>
@@ -140,4 +140,4 @@ xml = <<-EOS
 </rss>
 EOS
 
-File.write("./podcast.jxck.io/feeds/rss2.xml", xml)
+File.write("./podcast.jxck.io/feeds/feed.xml", xml)
