@@ -3,15 +3,13 @@
 require "time"
 
 # html special chars
-def hsp(str)
+def hsc(str)
   str.gsub(/&/, "&amp;")
      .gsub(/</, "&lt;")
      .gsub(/>/, "&gt;")
      .gsub(/"/, "&quot;")
      .gsub(/'/, "&#039;")
 end
-
-dir = "./podcast.jxck.io/**/*"
 
 class EP
   attr_reader :path
@@ -30,7 +28,7 @@ class EP
   end
 
   def title
-    hsp @text.match(/^# \[.*\] (.*)/)[1]
+    hsc @text.match(/^# \[.*\] (.*)/)[1]
   end
 
   def url
@@ -43,7 +41,7 @@ class EP
   end
 
   def summary
-    hsp @text.match(/## Theme(.*?)##/im)[1].strip
+    hsc @text.match(/## Theme(.*?)##/im)[1].strip.split("\n")[0]
   end
 
   def subtitle
@@ -51,7 +49,7 @@ class EP
   end
 
   def description
-    hsp @text
+    hsc @text.sub(/#(.*?)## Theme/m, "# #{title}")
   end
 
   def file
@@ -95,9 +93,11 @@ class EP
   end
 
   def to_s
-    "#{pubDate}"
+    "#{summary}"
   end
 end
+
+dir = "./podcast.jxck.io/**/*"
 
 items = Dir.glob(dir)
   .select {|path| path.match(/.*.md\z/) }
