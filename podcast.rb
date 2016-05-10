@@ -49,7 +49,7 @@ class EP
   end
 
   def description
-    hsc @text.sub(/#(.*?)## Theme/m, "# #{title}")
+    hsc @text.sub(/#(.*?)## Theme/m, "# #{title}").gsub(/\[(.*?)\]\(.*?\)/, '\1')
   end
 
   def file
@@ -103,6 +103,7 @@ items = Dir.glob(dir)
   .select {|path| path.match(/.*.md\z/) }
   .map {|path| EP.new(path) }
   .sort
+  .reverse
   .map {|ep| ep.item }
   .join("")
 
