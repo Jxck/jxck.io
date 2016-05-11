@@ -13,10 +13,12 @@ end
 
 class EP
   attr_reader :path
+  attr_accessor :order
 
   def initialize(path)
     @path = path
     @text = File.read(path)
+    @order = 0
   end
 
   def num
@@ -104,7 +106,10 @@ items = Dir.glob(dir)
   .map {|path| EP.new(path) }
   .sort
   .reverse
-  .map {|ep| ep.item }
+  .map.with_index {|ep, i|
+    ep.order = i
+    ep.item
+  }
   .join("")
 
 xml = <<-EOS
