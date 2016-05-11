@@ -21,6 +21,10 @@ class Article
     @text = File.read(path)
   end
 
+  def host
+    path.split('/')[1]
+  end
+
   def title
     hsc @text.match(/^# \[.*\] (.*)/)[1]
   end
@@ -29,12 +33,8 @@ class Article
     path.sub('./', 'https://').sub('.md', '.html')
   end
 
-  def summary
-    hsc @text.match(/## Theme(.*?)##/im)[1].strip.split("\n")[0]
-  end
-
   def to_s
-    @path
+    path
   end
 end
 
@@ -44,8 +44,7 @@ class Entry < Article
   end
 
   def summary
-    # TODO
-    hsc @text.match(/## intro(.*?)##/im)[1].strip
+    hsc @text.match(/## Intro(.*?)##/im)[1].strip
   end
 
   def updated
@@ -81,7 +80,7 @@ class Episode < Article
   end
 
   def subtitle
-    summary
+    hsc @text.match(/## Theme(.*?)##/im)[1].strip.split("\n")[0]
   end
 
   def sideshow?
@@ -117,10 +116,6 @@ class Episode < Article
       sec = `mp3info -p "%S\n" ../#{file}`.to_i
     end
     Time.at(sec).utc.strftime("%X")
-  end
-
-  def to_s
-    "#{summary}"
   end
 
   def <=>(target)
