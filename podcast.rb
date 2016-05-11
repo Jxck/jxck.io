@@ -63,7 +63,12 @@ class EP
   end
 
   def duration
-    sec = `mp3info -p "%S\n" ../#{file}`.to_i
+    sec = 0
+    if RUBY_PLATFORM.match(/darwin/)
+      sec = `afinfo ../#{file}  | grep duration | cut -d' ' -f 3`.to_i
+    else
+      sec = `mp3info -p "%S\n" ../#{file}`.to_i
+    end
     Time.at(sec).utc.strftime("%X")
   end
 
@@ -80,6 +85,7 @@ class EP
          <itunes:duration>#{duration}</itunes:duration>
          <itunes:explicit>no</itunes:explicit>
          <itunes:keywords>web,tech,it</itunes:keywords>
+         <itunes:order>#{order}</itunes:order>
          <itunes:subtitle>#{subtitle}</itunes:subtitle>
          <media:content url="https://#{file}" fileSize="#{size}" type="audio/mpeg" />
          <description>#{description}</description>
