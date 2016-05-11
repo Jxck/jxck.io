@@ -102,7 +102,11 @@ class Episode < Article
   end
 
   def size
-    File.open("../#{file}").size
+    begin
+      File.open("../#{file}").size
+    rescue
+      0
+    end
   end
 
   def duration
