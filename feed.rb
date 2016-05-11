@@ -4,6 +4,16 @@ require "erb"
 require "json"
 require "time"
 
+##################
+# - podcast feed (rss2.xml)
+#  - description: Thema 全体 (link の url は消す), podcast app に表示する用
+#  - subtitle:    itunes:subtitle で Thema の一行分
+# - blog feed (atom.xml)
+#  - summary:     Intro の全体
+# - blog/podcast の HTML meta (meta.html)
+#  - description: Intro/Thema を 140 文字に切ったもの
+##################
+
 # html special chars
 def hsc(str)
   str.gsub(/&/, "&amp;")
@@ -156,7 +166,7 @@ def blog(target)
 end
 
 def podcast(target)
-  dir = "./podcast.jxck.io/**/*"
+  dir = "./podcast.jxck.io/episodes/**/*"
   items = Dir.glob(dir)
     .select {|path| path.match(/.*.md\z/) }
     .map {|path| Episode.new(path) }
