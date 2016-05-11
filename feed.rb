@@ -126,35 +126,37 @@ class Episode < Article
   end
 end
 
-def atom(dir)
+def blog(target)
+  dir = "./blog.jxck.io/entries/**/*"
   entries = Dir.glob(dir)
     .select { |path| path.match(/.*.md\z/) }
     .map { |path| Entry.new(path) }
     .sort
     .reverse
 
-  ERB.new(File.read(".template/atom.xml")).result(binding)
+  if target.include?("markdown")
+  end
+
+  if target.include?("feed")
+    # xml
+    xml = ERB.new(File.read(".template/atom.xml")).result(binding)
+    File.write("./blog.jxck.io/feeds/atom.xml", xml)
+
+    # json
+    json = JSON.pretty_generate(
+      title:     "blog.jxck.io",
+      alternate: "https://blog.jxck.io",
+      author:    { name: "Jxck" },
+      id:        "tag:blog.jxck.io,2016:feed",
+      update:    "2016-01-28T18:30:02Z",
+      entry:     entries.map(&:json)
+    )
+    File.write("./blog.jxck.io/feeds/atom.json", json)
+  end
 end
 
-def json(dir)
-  entries = Dir.glob(dir)
-    .select { |path| path.match(/.*.md\z/) }
-    .map { |path| Entry.new(path) }
-    .sort
-    .reverse
-    .map {|e| e.json}
-
-  JSON.pretty_generate(
-    title:     "blog.jxck.io",
-    alternate: "https://blog.jxck.io",
-    author:    { name: "Jxck" },
-    id:        "tag:blog.jxck.io,2016:feed",
-    update:    "2016-01-28T18:30:02Z",
-    entry:     entries
-  )
-end
-
-def rss2(dir)
+def podcast(target)
+  dir = "./podcast.jxck.io/**/*"
   items = Dir.glob(dir)
     .select {|path| path.match(/.*.md\z/) }
     .map {|path| Episode.new(path) }
@@ -165,19 +167,16 @@ def rss2(dir)
       ep
     }
 
-  ERB.new(File.read(".template/rss2.xml")).result(binding)
+  if target.include?("markdown")
+  end
+
+  if target.include?("feed")
+    xml = ERB.new(File.read(".template/rss2.xml")).result(binding)
+    File.write("./podcast.jxck.io/feeds/feed.xml", xml)
+  end
 end
 
 if __FILE__ == $0
-  target = ARGV[0]
-
-  if target == "blog"
-    File.write("./blog.jxck.io/feeds/atom.xml", atom("./blog.jxck.io/entries/**/*"))
-    File.write("./blog.jxck.io/feeds/atom.json", json("./blog.jxck.io/entries/**/*"))
-  elsif target == "podcast"
-    File.write("./podcast.jxck.io/feeds/feed.xml", rss2("./podcast.jxck.io/**/*"))
-  else
-    puts '"blog" or "podcast"'
-    exit -1
-  end
+  blog(["markdown", "feed"])
+  podcast(["markdown", "feed"])
 end
