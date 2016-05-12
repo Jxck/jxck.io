@@ -249,8 +249,15 @@ def rss2(dir)
 end
 
 if __FILE__ == $0
-  File.write("./blog.jxck.io/feeds/atom.xml", atom("./blog.jxck.io/entries/**/*"))
-  File.write("./blog.jxck.io/feeds/atom.json", json("./blog.jxck.io/entries/**/*"))
-  File.write("./podcast.jxck.io/feeds/feed.xml", rss2("./podcast.jxck.io/**/*"))
+  target = ARGV[0]
 
+  if target == "blog"
+    File.write("./blog.jxck.io/feeds/atom.xml", atom("./blog.jxck.io/entries/**/*"))
+    File.write("./blog.jxck.io/feeds/atom.json", json("./blog.jxck.io/entries/**/*"))
+  elsif target == "podcast"
+    File.write("./podcast.jxck.io/feeds/feed.xml", rss2("./podcast.jxck.io/**/*"))
+  else
+    puts '"blog" or "podcast"'
+    exit -1
+  end
 end
