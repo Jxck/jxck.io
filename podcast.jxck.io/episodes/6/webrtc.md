@@ -1,6 +1,6 @@
 # [webrtc][komasshu][tukimikage][mozaic.fm] ep6 WebRTC
 
-<audio preload="none" src="https://files.mozaic.fm/mozaic-ep6.m4a" controls></audio>
+<audio preload="none" src="https://files.mozaic.fm/mozaic-ep6.mp3" controls></audio>
 
 <ul class=info>
   <li>published_at: <time datetime=2014-08-04>2014-08-04</time>

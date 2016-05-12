@@ -1,6 +1,6 @@
 # [web][rest][yohei][t_wada][mozaic.fm] ep7 REST
 
-<audio preload="none" src="https://files.mozaic.fm/mozaic-ep7.m4a" controls></audio>
+<audio preload="none" src="https://files.mozaic.fm/mozaic-ep7.mp3" controls></audio>
 
 <ul class=info>
   <li>published_at: <time datetime=2014-08-19>2014-08-19</time>

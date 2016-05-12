@@ -1,6 +1,6 @@
 # [web components][hokaccha][ahomu][mozaic.fm] ep1 WebComponents
 
-<audio preload="none" src="https://files.mozaic.fm/mozaic-ep1.m4a" controls></audio>
+<audio preload="none" src="https://files.mozaic.fm/mozaic-ep1.mp3" controls></audio>
 
 <ul class=info>
   <li>published_at: <time datetime=2014-04-07>2014-04-07</time>

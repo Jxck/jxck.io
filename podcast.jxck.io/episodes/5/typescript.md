@@ -1,6 +1,6 @@
 # [typescript][vvakame][mozaic.fm] ep5 TypeScript
 
-<audio preload="none" src="https://files.mozaic.fm/mozaic-ep5.m4a" controls></audio>
+<audio preload="none" src="https://files.mozaic.fm/mozaic-ep5.mp3" controls></audio>
 
 <ul class=info>
   <li>published_at: <time datetime=2014-06-16>2014-06-16</time>

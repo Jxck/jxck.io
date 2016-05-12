@@ -1,6 +1,6 @@
 # [http2][tatsuhiro_t][jovi0608][mozaic.fm] ep2 HTTP2
 
-<audio preload="none" src="https://files.mozaic.fm/mozaic-ep2.m4a" controls></audio>
+<audio preload="none" src="https://files.mozaic.fm/mozaic-ep2.mp3" controls></audio>
 
 <ul class=info>
   <li>published_at: <time datetime=2014-04-22>2014-04-22</time>

@@ -1,6 +1,6 @@
 # [node.js][koichik][yosuke_furukawa][mozaic.fm] ep10 Node.js sideshow
 
-<audio preload="none" src="https://files.mozaic.fm/mozaic-ep10.sideshow.m4a" controls></audio>
+<audio preload="none" src="https://files.mozaic.fm/mozaic-ep10.sideshow.mp3" controls></audio>
 
 <ul class=info>
   <li>published_at: <time datetime=2014-10-23>2014-10-23</time>

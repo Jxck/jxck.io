@@ -1,6 +1,6 @@
 # [angular.js][can_i_do_web][konpyu][mozaic.fm] ep3 Angular.js
 
-<audio preload="none" src="https://files.mozaic.fm/mozaic-ep3.m4a" controls></audio>
+<audio preload="none" src="https://files.mozaic.fm/mozaic-ep3.mp3" controls></audio>
 
 <ul class=info>
   <li>published_at: <time datetime=2014-05-31>2014-05-31</time>

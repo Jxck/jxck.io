@@ -1,6 +1,6 @@
 # [socket.io][websocket][rauchg][mozaic.fm] ep9 Socket.IO
 
-<audio preload="none" src="https://files.mozaic.fm/mozaic-ep9.m4a" controls></audio>
+<audio preload="none" src="https://files.mozaic.fm/mozaic-ep9.mp3" controls></audio>
 
 <ul class=info>
   <li>published_at: <time datetime=2014-09-08>2014-09-08</time>
