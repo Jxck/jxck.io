@@ -105,20 +105,8 @@ class EP
   end
 end
 
-dir = "./podcast.jxck.io/**/*"
-
-items = Dir.glob(dir)
-  .select {|path| path.match(/.*.md\z/) }
-  .map {|path| EP.new(path) }
-  .sort
-  .reverse
-  .map.with_index {|ep, i|
-    ep.order = i
-    ep.item
-  }
-  .join("")
-
-xml = <<-EOS
+def rss2(items)
+<<-EOS
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/" >
   <channel>
@@ -151,5 +139,22 @@ xml = <<-EOS
   </channel>
 </rss>
 EOS
+end
 
-File.write("./podcast.jxck.io/feeds/feed.xml", xml)
+if __FILE__ == $0
+  dir = "./podcast.jxck.io/**/*"
+
+  items = Dir.glob(dir)
+    .select {|path| path.match(/.*.md\z/) }
+    .map {|path| EP.new(path) }
+    .sort
+    .reverse
+    .map.with_index {|ep, i|
+      ep.order = i
+      ep.item
+    }
+    .join("")
+
+  xml = rss2(items)
+  File.write("./podcast.jxck.io/feeds/feed.xml", xml)
+end
