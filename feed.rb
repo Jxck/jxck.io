@@ -1,7 +1,8 @@
 #!/usr/bin/ruby
 
-require "time"
 require "erb"
+require "json"
+require "time"
 
 # html special chars
 def hsc(str)
@@ -137,7 +138,6 @@ def atom(dir)
 end
 
 def json(dir)
-  require "json"
   entries = Dir.glob(dir)
     .select { |path| path.match(/.*.md\z/) }
     .map { |path| Entry.new(path) }
