@@ -6,5 +6,13 @@
 <author><name>Jxck</name></author>
 <id>tag:blog.jxck.io,2016:feed</id>
 <updated>2016-01-28T18:30:02Z</updated>
-#{entries.map(&:xml).join}
+<% entries.each do |e| %>
+  <entry>
+   <title><%= e.title %></title>
+   <link href="<%= e.href %>" rel="alternate" />
+   <id><%= e.id %></id>
+   <updated><%= e.updated %></updated>
+   <summary><%= e.summary %></summary>
+  </entry>
+<% end  %>
 </feed>

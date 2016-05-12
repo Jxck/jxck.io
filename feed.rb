@@ -160,15 +160,14 @@ class Episode < Article
 end
 
 def atom(dir)
+  require "erb"
   entries = Dir.glob(dir)
     .select { |path| path.match(/.*.md\z/) }
     .map { |path| Entry.new(path) }
     .sort
     .reverse
 
-
-  xml = File.read(".template/atom.xml").gsub('"', '\"')
-  eval('"' + xml + '"')
+  ERB.new(File.read(".template/atom.xml")).result(binding)
 end
 
 def json(dir)
