@@ -56,7 +56,7 @@ class Entry < Article
     "tag:blog.jxck.io,2016:entry://#{date}"
   end
 
-  def entry
+  def xml
     <<-EOS
   <entry>
    <title>#{title}</title>
@@ -165,21 +165,10 @@ def atom(dir)
     .map { |path| Entry.new(path) }
     .sort
     .reverse
-    .map {|e| e.entry }
-    .join("")
 
-  <<-EOS
-<?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns='http://www.w3.org/2005/Atom' xml:lang='ja'>
-<title>blog.jxck.io</title>
-<link rel="alternate" href="https://blog.jxck.io/"/>
-<link rel="self" type="application/atom+xml" href="https://blog.jxck.io/feeds/atom.xml"/>
-<author><name>Jxck</name></author>
-<id>tag:blog.jxck.io,2016:feed</id>
-<updated>2016-01-28T18:30:02Z</updated>
-#{entries}
-</feed>
-  EOS
+
+  xml = File.read(".template/atom.xml").gsub('"', '\"')
+  eval('"' + xml + '"')
 end
 
 def json(dir)
