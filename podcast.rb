@@ -11,22 +11,12 @@ def hsc(str)
      .gsub(/'/, "&#039;")
 end
 
-class EP
+class Article
   attr_reader :path
-  attr_accessor :order
 
   def initialize(path)
     @path = path
     @text = File.read(path)
-    @order = 0
-  end
-
-  def num
-    @path.split('/')[3].to_i
-  end
-
-  def sideshow?
-    !! (@path =~ /.*sideshow.md/)
   end
 
   def title
@@ -37,17 +27,33 @@ class EP
     path.sub('./', 'https://').sub('.md', '.html')
   end
 
-  def pubDate
-    datetime = @text.match(/datetime=(.*?)>/)[1]
-    Time.parse(datetime).rfc822
-  end
-
   def summary
     hsc @text.match(/## Theme(.*?)##/im)[1].strip.split("\n")[0]
   end
 
+  def to_s
+    @path
+  end
+end
+
+class Episode < Article
+  attr_accessor :order
+
+  def num
+    @path.split('/')[3].to_i
+  end
+
   def subtitle
     summary
+  end
+
+  def sideshow?
+    !! (@path =~ /.*sideshow.md/)
+  end
+
+  def pubDate
+    datetime = @text.match(/datetime=(.*?)>/)[1]
+    Time.parse(datetime).rfc822
   end
 
   def description
@@ -72,6 +78,17 @@ class EP
     Time.at(sec).utc.strftime("%X")
   end
 
+  def to_s
+    "#{summary}"
+  end
+
+  def <=>(target)
+    if num == target.num
+      return sideshow? ? 1: -1
+    end
+    return num <=> target.num
+  end
+
   def item
     <<-EOS
        <item>
@@ -91,17 +108,6 @@ class EP
          <description>#{description}</description>
        </item>
     EOS
-  end
-
-  def <=>(target)
-    if num == target.num
-      return sideshow? ? 1: -1
-    end
-    return num <=> target.num
-  end
-
-  def to_s
-    "#{summary}"
   end
 end
 
@@ -146,7 +152,7 @@ if __FILE__ == $0
 
   items = Dir.glob(dir)
     .select {|path| path.match(/.*.md\z/) }
-    .map {|path| EP.new(path) }
+    .map {|path| Episode.new(path) }
     .sort
     .reverse
     .map.with_index {|ep, i|
