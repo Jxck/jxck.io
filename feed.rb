@@ -1,6 +1,7 @@
 #!/usr/bin/ruby
 
 require "time"
+require "erb"
 
 # html special chars
 def hsc(str)
@@ -56,18 +57,6 @@ class Entry < Article
     "tag:blog.jxck.io,2016:entry://#{date}"
   end
 
-  def xml
-    <<-EOS
-  <entry>
-   <title>#{title}</title>
-   <link href="#{href}" rel="alternate" />
-   <id>#{id}</id>
-   <updated>#{updated}</updated>
-   <summary>#{summary}</summary>
-  </entry>
-    EOS
-  end
-
   def json
     {
       title:   title,
@@ -81,7 +70,6 @@ class Entry < Article
   def <=>(target)
     return path <=> target.path
   end
-
 end
 
 class Episode < Article
@@ -136,31 +124,9 @@ class Episode < Article
     end
     return num <=> target.num
   end
-
-  def item
-    <<-EOS
-       <item>
-         <category>mozaicfm</category>
-         <enclosure url="http://#{file}" length="#{size}" type="audio/mpeg" />
-         <guid isPermaLink="false">#{url}</guid>
-         <link>#{url}</link>
-         <pubDate>#{pubDate}</pubDate>
-         <title>#{title} | mozaic.fm</title>
-         <itunes:author>Jxck</itunes:author>
-         <itunes:duration>#{duration}</itunes:duration>
-         <itunes:explicit>no</itunes:explicit>
-         <itunes:keywords>web,tech,it</itunes:keywords>
-         <itunes:order>#{order}</itunes:order>
-         <itunes:subtitle>#{subtitle}</itunes:subtitle>
-         <media:content url="https://#{file}" fileSize="#{size}" type="audio/mpeg" />
-         <description>#{description}</description>
-       </item>
-    EOS
-  end
 end
 
 def atom(dir)
-  require "erb"
   entries = Dir.glob(dir)
     .select { |path| path.match(/.*.md\z/) }
     .map { |path| Entry.new(path) }
@@ -197,43 +163,10 @@ def rss2(dir)
     .reverse
     .map.with_index {|ep, i|
       ep.order = i
-      ep.item
+      ep
     }
-    .join("")
 
-  <<-EOS
-<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/" >
-  <channel>
-    <title>mozaic.fm</title>
-    <link>http://mozaic.fm/</link>
-    <description>next generation web podcast</description>
-    <generator>Ruby</generator>
-    <language>ja</language>
-    <copyright>Copyright (c) 2014 mozaic.fm. All Rights Reserved. Redistribute, Transcript are not allowed.</copyright>
-    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="https://podcast.jxck.io/feeds/feed.xml" />
-    <itunes:author>Jxck</itunes:author>
-    <itunes:category text="Technology"><itunes:category text="Podcasting" /></itunes:category>
-    <itunes:explicit>no</itunes:explicit>
-    <itunes:image href="http://files.mozaic.fm/mozaic.png" />
-    <itunes:keywords>web,technology,programming,it,software,jxck</itunes:keywords>
-    <itunes:subtitle>next generation web podcast</itunes:subtitle>
-    <itunes:summary>talking about next generation web technologies hosted by Jxck </itunes:summary>
-    <media:category scheme="http://www.itunes.com/dtds/podcast-1.0.dtd">Technology/Podcasting</media:category>
-    <media:copyright>Copyright (c) 2014 mozaic.fm. All Rights Reserved. Redistribute, Transcript are not allowed.</media:copyright>
-    <media:credit role="author">Jxck</media:credit>
-    <media:description type="plain">next generation web podcast</media:description>
-    <media:keywords>web,technology,programming,it,software,jxck</media:keywords>
-    <media:rating>nonadult</media:rating>
-    <media:thumbnail url="http://files.mozaic.fm/mozaic.png" />
-    <itunes:owner>
-      <itunes:email>block.rxckin.beats@gmail.com</itunes:email>
-      <itunes:name>Jxck</itunes:name>
-    </itunes:owner>
-#{items}
-  </channel>
-</rss>
-  EOS
+  ERB.new(File.read(".template/rss2.xml")).result(binding)
 end
 
 if __FILE__ == $0
