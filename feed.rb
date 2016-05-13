@@ -8,8 +8,10 @@ require "time"
 # - podcast feed (rss2.xml)
 #  - description: Thema 全体 (link の url は消す), podcast app に表示する用
 #  - subtitle:    itunes:subtitle で Thema の一行分
+#
 # - blog feed (atom.xml)
 #  - summary:     Intro の全体
+#
 # - blog/podcast の HTML meta (meta.html)
 #  - description: Intro/Thema を 140 文字に切ったもの
 ##################
@@ -29,6 +31,10 @@ class Article
   def initialize(path)
     @path = path
     @text = File.read(path)
+  end
+
+  def tags
+    @text.split("\n")[0].scan(/\[(.+?)\]/).flatten
   end
 
   def host
