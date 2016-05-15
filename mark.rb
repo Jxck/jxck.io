@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require "uri"
 require "json"
 require "kramdown"
 
@@ -15,20 +16,14 @@ require "kramdown"
 #  return fs.readFileSync(path).toString().trim();
 #}
 #
-#// html special chars
-#function hsp(str) {
-#  return str.replace(/&/g, '&amp;')
-#            .replace(/</g, '&lt;')
-#            .replace(/>/g, '&gt;')
-#            .replace(/"/g, '&quot;')
-#            .replace(/'/g, '&#039;');
-#}
-#
-#// tagged literal of hsp
-#function h(tag, val) {
-#  return `${tag[0]}${hsp(val)}${tag[1]}`;
-#}
-#
+# html special chars
+def hsp(str)
+  str.gsub(/&/, '&amp;')
+     .gsub(/</, '&lt;')
+     .gsub(/>/, '&gt;')
+     .gsub(/"/, '&quot;')
+     .gsub(/'/, '&#039;')
+end
 
 # replace ' ' to '+'
 def unspace(str)
@@ -123,10 +118,12 @@ class Builder
 #    this.meta = eval('`' + this.meta + '`');
 #    return eval('`' + this.template + '`');
 #  }
+  def raw(node)
+    node.value
+  end
   def root(node)
     wrap("#{node.value}")
   end
-
   def article(node)
     "<article>#{wrap(node.value)}</article>"
   end
@@ -160,84 +157,104 @@ class Builder
 #    }
 #    return value;
 #  }
-#  table(node) {
-#    let value = this.wrap`<table>${node.value}</table>`;
-#    if (!this.isAMP && !this.tabled) {
-#      value = [this.Style(CSS.TABLE), value].join('\n');
-#      this.tabled = true;
-#    }
-#    return value;
-#  }
-#  thead      (node) { return this.wrap`<thead>${node.value}</thead>\n`; }
-#  tbody      (node) { return this.wrap`<tbody>${node.value}</tbody>\n`; }
-#  tableRow   (node) { return this.wrap`<tr>${node.value}</tr>\n`; }
-#  tableHead  (node) { return `<th class=align-${node.align}>${node.value}</th>\n`; }
-#  tableData  (node) { return `<td class=align-${node.align}>${node.value}</td>\n`; }
-   def p(node)
-     "<p>#{node.value}\n"
-   end
-#
-#  // inline
+  def table(node)
+    value = "<table>#{wrap(node.value)}</table>"
+    #if (!this.isAMP && !this.tabled) {
+    #  value = [this.Style(CSS.TABLE), value].join('\n');
+    #  this.tabled = true;
+    #}
+    return value;
+  end
+  def thead(node)
+    "<thead>#{wrap(node.value)}</thead>\n"
+  end
+  def tbody(node)
+    "<tbody>#{wrap(node.value)}</thody>\n"
+  end
+  def tr(node)
+    "<tr>#{wrap(node.value)}</tr>\n"
+  end
+  def th(node)
+    "<th class=align-#{node.alignment}>#{node.value}</th>\n"
+  end
+  def td(node)
+    "<td class=align-#{node.alignment}>#{node.value}</td>\n"
+  end
+  def p(node)
+    "<p>#{node.value}\n"
+  end
+
+#  // inline TODO
 #  inlineCode (node) { return h`<code>${node.value}</code>`; }
-#  blockquote (node) { return h`<blockquote>${node.value}</blockquote>\n`; }
+   def blockquote(node)
+      "<blockquote>#{hsp(node.value)}</blockquote>\n"
+   end
    def li(node)
      "<li>#{node.value}\n"
    end
-#  strong     (node) { return `<strong>${node.value}</strong>`; }
-#  emphasis   (node) { return `<em>${node.value}</em>`; }
+   def strong(node)
+     "<strong>#{node.value}</strong>"
+   end
+   def em(node)
+     "<em>#{node.value}</em>"
+   end
    def text(node)
      node.value
    end
-#  thematicBreak() { return '<hr>'; }
-#
-#  link(node) {
-#    if (this.isAMP && node.url.match(/^chrome:\/\//)) {
-#      // amp page ignores chrome:// url
-#      return node.url;
-#    }
-#    return `<a href="${node.url}">${node.value}</a>`;
-#  }
-#  image(node) {
-#    let width = '';
-#    let height = '';
-#
-#    let size = node.url.split('#')[1];
-#    if (size) {
-#      size = size.split('x');
-#      if (size.length === 2) {
-#        width = `width=${size[0]}`;
-#        height = `height=${size[1]}`;
-#      }
-#    }
-#
-#    // AMP should specify width-height
-#    if (this.isAMP) {
-#      // not has amp link means amp template
-#      if (width === '' || height === '') {
-#        console.log('no widthxheight for img');
-#        exit(1);
-#      }
-#      return `<amp-img layout=responsive src=${node.url} alt="${node.alt}" title="${node.title}" ${width} ${height}>`;
-#    }
-#
-#    // SVG should specify width-height
-#    if (path.parse(url.parse(node.url).path).ext === '.svg') {
-#      return `<img src=${node.url} alt="${node.alt}" title="${node.title}" ${width} ${height}>`;
-#    }
-#
-#    // No width-height for normal img
-#    return `<picture>
-#    <source type=image/webp srcset=${node.url.replace(/(.png|.gif)/, '.webp')}>
-#    <img src=${node.url} alt="${node.alt}" title="${node.title}">
-#    </picture>`;
-#  }
-#  html(node) {
-#    let value = `${node.value}\n`;
-#    if (this.isAMP && value.match(/<iframe.*/)) {
-#      return value.replace(/iframe/g, 'amp-iframe');
-#    }
-#    return value;
-#  }
+   def hr(node)
+     "<hr>"
+   end
+
+  def a(node)
+    #if (this.isAMP && node.url.match(/^chrome:\/\//)) {
+    #  // amp page ignores chrome:// url
+    #  return node.url;
+    #}
+    "<a href=\"#{node.attr["href"]}\">#{node.value}</a>"
+  end
+  def img(node)
+    width = '';
+    height = '';
+
+    size = node.attr["src"].split('#')[1];
+    if size
+      size = size.split('x');
+      if size.size == 2
+        width = "width=#{size[0]}"
+        height = "height=#{size[1]}"
+      end
+    end
+
+    #// AMP should specify width-height
+    #if (this.isAMP) {
+    #  // not has amp link means amp template
+    #  if (width === '' || height === '') {
+    #    console.log('no widthxheight for img');
+    #    exit(1);
+    #  }
+    #  return `<amp-img layout=responsive src=${node.url} alt="${node.alt}" title="${node.title}" ${width} ${height}>`;
+    #}
+
+    # SVG should specify width-height
+    if File.extname(URI.parse(node.attr["src"]).path) == ".svg"
+      return %(<img src=#{node.attr["src"]} alt="#{node.attr["alt"]}" title="#{node.attr["title"]}" #{width} #{height}>)
+    end
+
+    # No width-height for normal img
+    return <<-EOS
+      <picture>
+   <source type=image/webp srcset=#{node.attr["src"].sub(/(.png|.gif|.jpg)/, '.webp')}>
+   <img src=#{node.attr["src"]} alt="#{node.attr["alt"]}" title="#{node.attr["title"]}">
+   </picture>
+    EOS
+  end
+  def html_element(node)
+    value = "#{node.value}\n"
+    #if (this.isAMP && value.match(/<iframe.*/)) {
+    #  return value.replace(/iframe/g, 'amp-iframe');
+    #}
+    return value
+  end
 end
 
 class Hash
@@ -311,13 +328,14 @@ class Traverser
       top = @stack.shift
       # 対応を確認
       if top.type != node.type
-        STDERR.puts "ERROR", top, node
+        #STDERR.puts __LINE__, "ERROR", top, node
+        p node.children.first.first
         exit(1)
       end
 
       # 閉じる
       unless @builder.respond_to?(node.type)
-        STDERR.puts "ERROR", node.type
+        STDERR.puts __LINE__, "ERROR", top, node
         exit(1)
       end
 
@@ -352,7 +370,7 @@ class Traverser
       top = @stack.shift()
       top.type != node.type
       if top.type != node.type
-        puts 'ERROR', top, node
+        puts "ERROR", __LINE__, top, node
         exit(1)
       end
 
@@ -369,7 +387,7 @@ class Traverser
       node.value = vals
 
       unless @builder.respond_to?(node.type)
-        STDERR.puts 'unsupported type', node.type
+        STDERR.puts "unsupported type", node.type
       end
 
       @stack.unshift({
@@ -415,6 +433,7 @@ class AST
       }
       next node
     }
+
     return table
   end
 
@@ -653,15 +672,9 @@ end
 #})();
 
 md = <<-EOS
-## ul
-
-- hoge
-- fuga
-
-## ol
-
-1. fuga
-1. piyo
+<script>
+  console.log()
+</script>
 EOS
 
 AST.new(md).build(Builder.new({}))
