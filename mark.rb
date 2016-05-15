@@ -29,10 +29,12 @@ require "kramdown"
 #  return `${tag[0]}${hsp(val)}${tag[1]}`;
 #}
 #
-#// replace ' ' to '+'
-#function unspace(str) {
-#  return str.replace(/ /g, '+');
-#}
+
+# replace ' ' to '+'
+def unspace(str)
+  str.gsub(/ /, '+');
+end
+
 #
 #// tag を抜き出す
 #function Tags(filepath) {
@@ -43,7 +45,7 @@ require "kramdown"
 #  // tag は必ず書く
 #  if (tagtext === undefined || tagtext.length === 0) {
 #    console.error('\x1b[0;31mThere is No TAGS\x1b[0m');
-#    process.exit(1);
+#    exit(1);
 #  }
 #
 #  // tag を本文から消す
@@ -82,12 +84,14 @@ require "kramdown"
 #    return fs.readFileSync(f).toString();
 #  }).join('\n');
 #}
-#
-#// tag ごとのビルダ
-#class Builder {
-#  constructor(option) {
+
+
+
+# tag ごとのビルダ
+class Builder
+  def initialize(option)
 #    this.host = option.host;
-#    this.canonical = option.canonical;
+    @canonical = option.canonical || "https://example.com" #TODO
 #    this.ampurl = option.ampurl;
 #    this.template = option.template;
 #    this.meta = option.meta;
@@ -97,21 +101,20 @@ require "kramdown"
 #    this.dir = option.dir;
 #    this.tags = option.tags;
 #    this.style = option.style;
-#    this.indent = option.indent;
+    @indent = option.indent || "  ";
 #    this.icon = option.icon;
 #    this.title = '';
-#  }
+   end
 #  get isAMP() {
 #    return !this.ampurl;
 #  }
 #  taglist() {
 #    return this.tags.map((tag) => `<a>${tag}</a>`).join(',');
 #  }
-#  wrap(tag, value) {
-#    // increase indent
-#    value = `\n${value}`.replace(/\n/gm, `\n${this.indent}`);
-#    return `${tag[0]}${value}\n${tag[1]}`;
-#  }
+  def wrap(value)
+    # increase indent
+    "\n#{value}".gsub(/\n/m, "\n#{@indent}") + "\n"
+  end
 #  Style(href) {
 #    return `<link rel=stylesheet property=stylesheet type=text/css href=${href}>`;
 #  }
@@ -120,31 +123,34 @@ require "kramdown"
 #    this.meta = eval('`' + this.meta + '`');
 #    return eval('`' + this.template + '`');
 #  }
-#  root(node) {
-#    return this.wrap`${node.value}`;
-#  }
-#  article(node) {
-#    return this.wrap`<article>${node.value}</article>`;
-#  }
-#  section(node) {
-#    return this.wrap`<section>${node.value}</section>\n`;
-#  }
-#  list(node) {
-#    return node.ordered ? this.wrap`<ol>${node.value}</ol>\n` : this.wrap`<ul>${node.value}</ul>\n`;
-#  }
-#  heading(node) {
-#    let val;
-#    if (node.depth === 1) {
-#      // h1 の中身はタイトル
-#      this.title = node.value;
-#      // h1 だけは canonical にリンク
-#      val = `<h${node.depth}><a href=${this.canonical}>${this.title}</a></h${node.depth}>\n`;
-#    } else {
-#      // h2 以降は id を振る
-#      val = `<h${node.depth} id="${unspace(node.value)}"><a href="#${unspace(node.value)}">${node.value}</a></h${node.depth}>\n`;
-#    }
-#    return val;
-#  }
+  def root(node)
+    wrap("#{node.value}")
+  end
+
+  def article(node)
+    "<article>#{wrap(node.value)}</article>"
+  end
+  def section(node)
+    "<section>#{wrap(node.value)}</section>\n"
+  end
+  def ul(node)
+    "<ul>#{wrap(node.value)}</ul>\n"
+  end
+  def ol(node)
+    "<ol>#{wrap(node.value)}</ol>\n"
+  end
+  def header(node)
+    level = node.options.level
+    if level == 1
+      # h1 の中身はタイトル
+      @title = node.value
+      # h1 だけは canonical にリンク
+      return "<h#{level}><a href=#{@canonical}>#{@title}</a></h#{level}>\n"
+    else
+      # h2 以降は id を振る
+      return "<h#{level} id=\"#{unspace(node.value)}\"><a href=\"#{unspace(node.value)}\">#{node.value}</a></h#{level}>\n";
+    end
+  end
 #  code(node) {
 #    let lang = node.lang || '""';
 #    let value = `<pre class=${lang}><code>${node.value}</code></pre>\n`;
@@ -167,15 +173,21 @@ require "kramdown"
 #  tableRow   (node) { return this.wrap`<tr>${node.value}</tr>\n`; }
 #  tableHead  (node) { return `<th class=align-${node.align}>${node.value}</th>\n`; }
 #  tableData  (node) { return `<td class=align-${node.align}>${node.value}</td>\n`; }
-#  paragraph  (node) { return `<p>${node.value}\n`; }
+   def p(node)
+     "<p>#{node.value}\n"
+   end
 #
 #  // inline
 #  inlineCode (node) { return h`<code>${node.value}</code>`; }
 #  blockquote (node) { return h`<blockquote>${node.value}</blockquote>\n`; }
-#  listItem   (node) { return `<li>${node.value}\n`; }
+   def li(node)
+     "<li>#{node.value}\n"
+   end
 #  strong     (node) { return `<strong>${node.value}</strong>`; }
 #  emphasis   (node) { return `<em>${node.value}</em>`; }
-#  text       (node) { return node.value; }
+   def text(node)
+     node.value
+   end
 #  thematicBreak() { return '<hr>'; }
 #
 #  link(node) {
@@ -203,7 +215,7 @@ require "kramdown"
 #      // not has amp link means amp template
 #      if (width === '' || height === '') {
 #        console.log('no widthxheight for img');
-#        process.exit(1);
+#        exit(1);
 #      }
 #      return `<amp-img layout=responsive src=${node.url} alt="${node.alt}" title="${node.title}" ${width} ${height}>`;
 #    }
@@ -226,32 +238,8 @@ require "kramdown"
 #    }
 #    return value;
 #  }
-#}
-#
-#global.__defineGetter__('__LINE__', () => {
-#  return (new Error()).stack.split('\n')[3].split(':').reverse()[1];
-#});
-#
-#function p() {
-#  let arg = Array.from(arguments);
-#  arg.unshift(__LINE__);
-#  console.log.apply(this, arg);
-#}
-#
-#function json(o) {
-#  return JSON.stringify(o, ' ', ' ');
-#}
-#
-#// 改行したく無いタグ
-#function isInline(node) {
-#  return [
-#    'str',
-#    'header',
-#    'strong',
-#    'paragraph',
-#  ].indexOf(node.type) > -1;
-#}
-#
+end
+
 class Hash
   def method_missing(method, *params)
     if method[-1] == "="
@@ -261,10 +249,146 @@ class Hash
       self[method.to_sym]
     end
   end
+
+  def inline?
+    [
+      :text,
+      :header,
+      :strong,
+      :paragraph,
+    ].include?(self.type)
+  end
 end
 
 def j(o)
   puts JSON.pretty_generate(o)
+end
+
+class Traverser
+
+  # 結果を入れるスタック
+  # push => unshift()
+  # pop  => shift()
+  # top  => [0]
+  def initialize(builder)
+    @stack = []
+    @codes = []
+    @builder = builder
+  end
+
+  def enter(node)
+    puts "enter: #{node.type}"
+    # enter では、 inline 属性を追加し
+    # stack に詰むだけ
+    # 実際は、pop 側で整合検証くらいしか使ってない
+
+    @stack.unshift(node);
+  end
+
+  def leave(node)
+    puts "leave: #{node.type}"
+
+    if node.type == :codespan
+      # コードを抜き取り、ここで id に置き換える
+      tmp = node.value.split("\n")
+      node.lang = tmp.shift
+      node.value = tmp.join("\n")
+      if node.value == ""
+        # code が書かれてなかったらファイルから読む
+        # ```js:main.js
+        node.lang, node.path = node.lang.split(":")
+        node.value = File.read(node.path);
+      end
+      # インデントを無視するため、全部組み上がったら後で差し込む。
+      # TODO
+      codes.push(node)
+      node.value = "// #{codes.length}"
+    end
+    if node.value
+      # value があったら、 text とか
+
+      # pop して
+      top = @stack.shift
+      # 対応を確認
+      if top.type != node.type
+        STDERR.puts "ERROR", top, node
+        exit(1)
+      end
+
+      # 閉じる
+      unless @builder.respond_to?(node.type)
+        STDERR.puts "ERROR", node.type
+        exit(1)
+      end
+
+      @stack.unshift({
+        tag:    :full,
+        val:    @builder.send(node.type, node),
+        inline?: node.inline?,
+      })
+    else
+      # 完成している兄弟タグを集めてきて配列に並べる
+      vals = []
+
+      while @stack.first.tag == :full
+        top = @stack.shift()
+
+        if top.inline? && vals.first && vals.first.inline?
+          # 取得したのが inline で、一個前も inline だったら
+          # inline どうしをくっつける
+          val = vals.shift
+          val.val = top.val + val.val
+          vals.unshift(val)
+        else
+          # そうで無ければただの兄弟要素
+          vals.unshift(top)
+        end
+      end
+
+      # タグを全部連結する
+      vals = vals.map{|val| val.val}.join('').strip
+
+      # それを親タグで閉じる
+      top = @stack.shift()
+      top.type != node.type
+      if top.type != node.type
+        puts 'ERROR', top, node
+        exit(1)
+      end
+
+      # 今見ているのが paragraph で
+      if node.type == :p
+        # その親が p いらないタグ だったら
+        if [:li, :blockquote].include?(@stack[0].type)
+          # p を消すために text に差し替える
+          # text はタグをつけない
+          node = { type: :text }
+        end
+      end
+
+      node.value = vals
+
+      unless @builder.respond_to?(node.type)
+        STDERR.puts 'unsupported type', node.type
+      end
+
+      @stack.unshift({
+        tag:     :full,
+        val:     @builder.send(node.type, node),
+        inline?: node.inline?,
+      })
+    end
+  end
+
+  def traverse(ast)
+    enter(ast)
+    return leave(ast) unless ast.children
+
+    ast.children = ast.children.map {|child|
+      next traverse(child)
+    }
+    return leave(ast)
+  end
 end
 
 class AST
@@ -272,48 +396,26 @@ class AST
     @ast = Kramdown::Document.new(md).to_hashAST
 
     # pre process
-    @ast.children = sectioning(@ast.children, 1);
+    @ast.children = sectioning(@ast.children, 1)
   end
 
-  #// markdwon ast traverse
-  #traverse(ast, handler) {
-  #  handler.enter(ast);
-  #  if (!ast.children) return handler.leave(ast);
-
-  #  ast.children = ast.children.map((child) => {
-  #    return this.traverse(child, handler);
-  #  });
-  #  return handler.leave(ast);
-  #}
-
-  def tabling(ast)
+  def tabling(table)
     # thead > tr > td を th にしたい
-    ast.child = ast.child.map {|node|
-    #  if (node.type !== 'table') return node;
 
-    #  let align = node.align;
-    #  node.children = node.children.map((row, i) => {
-    #    let type = (i === 0) ? 'tableHead' : 'tableData';
-    #    row.children = row.children.map((cell, j) => {
-    #      cell.type = type;
-    #      cell.align = align[j];
-    #      return cell;
-    #    });
-    #    return row;
-    #  });
+    alignment = table.options.alignment
 
-    #  node.children = node.children.reduce((acc, row, i) => {
-    #    (i === 0) ? acc[0].children.push(row) : acc[1].children.push(row);
-    #    return acc;
-    #  }, [
-    #    {type: 'thead', children: []},
-    #    {type: 'tbody', children: []},
-    #  ]);
-
-      node
+    table.children = table.children.map {|node|
+      node.children.map {|tr|
+        tr.children.map.with_index {|td, i|
+          if node.type == :thead
+            td.type = :th
+          end
+          td.alignment = alignment[i]
+        }
+      }
+      next node
     }
-
-    ast
+    return table
   end
 
   def sectioning(children, level)
@@ -327,11 +429,11 @@ class AST
     }
 
     # 横に並ぶべき <section> を入れる配列
-    sections = [];
+    sections = []
 
     loop {
       # 横並びになっている子要素を取り出す
-      child = children.shift();
+      child = children.shift()
       break if child == nil
 
       # blank は消す
@@ -350,7 +452,7 @@ class AST
           #     <h3> <- これ
 
           # その h を一旦戻す
-          children.unshift(child);
+          children.unshift(child)
 
           # そこを起点に再起する
           # そこに <section> ができて、
@@ -370,7 +472,7 @@ class AST
           # 親の child に追加する
           # そして、同じレベルの新しい <section> を開始
           if section.children.length > 0
-            sections.push(section);
+            sections.push(section)
             section = {
               type: :section,
               options: {
@@ -393,147 +495,47 @@ class AST
           #   <h2> <- 今ここ
 
           # その h を一旦戻す
-          children.unshift(child);
+          children.unshift(child)
 
           # ループを終わらせ関数を一つ抜ける
-          break;
+          break
         end
       end
 
       # 今の <section> の子要素として追加
-      section.children.push(child);
+      section.children.push(child)
     }
 
     # 最後のセクションを追加
-    sections.push(section);
+    sections.push(section)
 
     # そこまでの <section> のツリーを返す
     # 再帰している場合は、親の <section> の
     # childrens として使われる
-    return sections;
+    return sections
   end
 
-  #build(dir, template) {
-  #  // 結果を入れるスタック
-  #  // push => unshift()
-  #  // pop  => shift()
-  #  // top  => [0]
-  #  let stack = [];
+  def build(builder)
 
-  #  let codes = [];
+    # traverse
+    stack = Traverser.new(builder).traverse(@ast)
 
-  #  // トラバース
-  #  this.traverse(this.ast, {
-  #    enter(node) {
-  #      // enter では、 inline 属性を追加し
-  #      // stack に詰むだけ
-  #      // 実際は、pop 側で整合検証くらいしか使ってない
+    # 結果の <article> 結果
+    article = stack[0].val;
 
-  #      node.inline = isInline(node.type);
-  #      stack.unshift(node);
-  #    },
-  #    leave(node) {
-  #      if (node.type === 'code') {
-  #        // コードを抜き取り、ここで id に置き換える
-  #        // インデントを無視するため、全部組み上がったら後で差し込む。
-  #        let value = node.value;
-  #        if (value === '') {
-  #          let tmp = node.lang.split(':');
-  #          node.lang = tmp[0];
-  #          let file = path.format({ dir: dir, base: tmp[1]});
-  #          value = read(file);
-  #        }
-  #        codes.push(value);
-  #        node.value = `// ${codes.length}`;
-  #      }
-  #      if (node.value) {
-  #        // value があったら、 text とか
+    puts article
 
-  #        // pop して
-  #        let top = stack.shift();
-  #        // 対応を確認
-  #        if (top.type !== node.type) {
-  #          console.error('ERROR', top, node);
-  #          process.exit(1);
-  #        }
+    #let result = template.HTML(article);
 
-  #        // 閉じる
-  #        if (template[node.type] === undefined) {
-  #          console.error('ERROR', node.type);
-  #          process.exit(1);
-  #        }
-  #        stack.unshift({
-  #          tag:    'full',
-  #          val:    template[node.type](node),
-  #          inline: isInline(node),
-  #        });
-  #      } else {
-  #        // 完成している兄弟タグを集めてきて配列に並べる
-  #        let vals = [];
+    ## indent を無視するため
+    ## ここで pre に code を戻す
+    ## ついでにエスケープ
+    #codes.forEach((code, i) => {
+    #  result = result.replace(`// ${i + 1}`, hsp(code));
+    #});
 
-  #        while (stack[0].tag === 'full') {
-  #          let top = stack.shift();
-
-  #          if (top.inline && vals[0] && vals[0].inline) {
-  #            // 取得したのが inline で、一個前も inline だったら
-  #            // inline どうしをくっつける
-  #            let val = vals.shift();
-  #            val.val = top.val + val.val;
-  #            vals.unshift(val);
-  #          } else {
-  #            // そうで無ければただの兄弟要素
-  #            vals.unshift(top);
-  #          }
-  #        }
-
-  #        // タグを全部連結する
-  #        vals = vals.map((val) => val.val).join('').trim();
-
-  #        // それを親タグで閉じる
-  #        let top = stack.shift();
-  #        if (top.type !== node.type) {
-  #          console.error('ERROR', top, node);
-  #          process.exit(1);
-  #        }
-
-  #        // 今見ているのが paragraph で
-  #        if (node.type === 'paragraph') {
-  #          // その親が P いらないタグ だったら
-  #          if (['listItem', 'blockquote'].indexOf(stack[0].type) > -1) {
-  #            // Paragraph を消すために Str に差し替える
-  #            // Str はタグをつけない
-  #            node = { type: 'text' };
-  #          }
-  #        }
-
-  #        node.value = vals;
-
-  #        if (!template[node.type]) {
-  #          console.error('unsupported type', node.type);
-  #        }
-  #        stack.unshift({
-  #          tag:    'full',
-  #          val:    template[node.type](node),
-  #          inline: isInline(node),
-  #        });
-  #      }
-  #    },
-  #  });
-
-  #  // 結果の <article> 結果
-  #  let article = stack[0].val;
-
-  #  let result = template.HTML(article);
-
-  #  // indent を無視するため
-  #  // ここで pre に code を戻す
-  #  // ついでにエスケープ
-  #  codes.forEach((code, i) => {
-  #    result = result.replace(`// ${i + 1}`, hsp(code));
-  #  });
-
-  #  return result;
-  #}
+    #return result;
+  end
 end
 
 #
@@ -591,7 +593,7 @@ end
 #
 #if (process.argv.length < 3) {
 #  console.error('no file name');
-#  process.exit(1);
+#  exit(1);
 #}
 #
 #let filepath = process.argv[2];
@@ -613,7 +615,7 @@ end
 #    fs.writeFileSync(info.target, article);
 #  })();
 #
-#  process.exit(0);
+#  exit(0);
 #}
 #
 #// blog html
@@ -651,11 +653,15 @@ end
 #})();
 
 md = <<-EOS
-| 範囲            | 文字数 |
-|:----------------|-------:|
-| 基本ラテン文字  | 94     |
-| CJK記号と句読点 | 10     |
+## ul
 
+- hoge
+- fuga
+
+## ol
+
+1. fuga
+1. piyo
 EOS
 
-AST.new(md)
+AST.new(md).build(Builder.new({}))
