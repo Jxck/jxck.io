@@ -628,8 +628,10 @@ class AST
 end
 
 class Builder
+  attr_accessor :text
   def initialize(filepath)
     @filepath = filepath
+    @text = File.read(filepath)
   end
 
   def dir
@@ -648,6 +650,14 @@ class Builder
     "/" + dir.split("/")[2..4].join("/")
   end
 
+  def canonical
+    "#{baseurl}/#{name}.html"
+  end
+
+  def ampurl
+    "#{baseurl}/#{name}.amp.html"
+  end
+
   def created_at
     dir.split("/")[3]
   end
@@ -655,15 +665,38 @@ class Builder
   def updated_at
     File.mtime(@filepath).strftime("%Y-%m-%d")
   end
+
+  # tag を抜き出す
+  def tags
+    @text.split("\n")[0].scan(/\[(.+?)\]/).flatten
+  end
+
+  def htmlfile
+   "#{dir}/#{name}.html"
+  end
+
+  # tag を本文から消す
+  def no_tag
+    @text.sub(" [" + tags.join("][") + "]", "");
+  end
+
+  def description
+    @text.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2].gsub(/\[(.*?)\]\(.*?\)/, '\1').strip();
+  end
 end
 
 b = Builder.new("./blog.jxck.io/entries/2016-01-27/new-blog-start.md")
-p b.dir
-p b.name
-p b.host
-p b.baseurl
-p b.created_at
-p b.updated_at
+#p b.dir
+#p b.name
+#p b.host
+#p b.baseurl
+#p b.created_at
+#p b.updated_at
+#puts b.no_tag
+#p b.description
+#p b.canonical
+#p b.ampurl
+p b.htmlfile
 
 #function prepare(filepath, option) {
 #  let indent = '  ';
