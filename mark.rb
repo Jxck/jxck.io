@@ -2,6 +2,7 @@
 
 require "uri"
 require "json"
+require "pathname"
 require "kramdown"
 
 #'use strict';
@@ -18,16 +19,21 @@ require "kramdown"
 #
 # html special chars
 def hsp(str)
-  str.gsub(/&/, '&amp;')
-     .gsub(/</, '&lt;')
-     .gsub(/>/, '&gt;')
-     .gsub(/"/, '&quot;')
-     .gsub(/'/, '&#039;')
+  str.gsub(/&/, "&amp;")
+     .gsub(/</, "&lt;")
+     .gsub(/>/, "&gt;")
+     .gsub(/"/, "&quot;")
+     .gsub(/'/, "&#039;")
 end
+
+#// tagged literal of hsp
+#function h(tag, val) {
+#  return `${tag[0]}${hsp(val)}${tag[1]}`;
+#}
 
 # replace ' ' to '+'
 def unspace(str)
-  str.gsub(/ /, '+');
+  str.gsub(/ /, "+");
 end
 
 #
@@ -83,8 +89,9 @@ end
 
 
 # tag ごとのビルダ
-class Builder
+class Markup
   def initialize(option)
+    @indent = "  "
 #    this.host = option.host;
     @canonical = option.canonical || "https://example.com" #TODO
 #    this.ampurl = option.ampurl;
@@ -96,7 +103,6 @@ class Builder
 #    this.dir = option.dir;
 #    this.tags = option.tags;
 #    this.style = option.style;
-    @indent = option.indent || "  ";
 #    this.icon = option.icon;
 #    this.title = '';
    end
@@ -142,21 +148,24 @@ class Builder
       # h1 の中身はタイトル
       @title = node.value
       # h1 だけは canonical にリンク
-      return "<h#{level}><a href=#{@canonical}>#{@title}</a></h#{level}>\n"
+      return %(<h#{level}><a href=#{@canonical}>#{@title}</a></h#{level}>\n)
     else
       # h2 以降は id を振る
-      return "<h#{level} id=\"#{unspace(node.value)}\"><a href=\"#{unspace(node.value)}\">#{node.value}</a></h#{level}>\n";
+      return %(<h#{level} id="#{unspace(node.value)}"><a href="#{unspace(node.value)}">#{node.value}</a></h#{level}>\n)
     end
   end
-#  code(node) {
-#    let lang = node.lang || '""';
-#    let value = `<pre class=${lang}><code>${node.value}</code></pre>\n`;
-#    if (!this.isAMP && !this.pred) {
-#      value = [this.Style(CSS.PRE), value].join('\n');
-#      this.pred = true;
-#    }
-#    return value;
-#  }
+  def codespan(node)
+    if node.inline?
+      return inlineCode(node)
+    end
+    lang = node.lang || '""';
+    value = "<pre class=#{lang}><code>#{node.value}</code></pre>\n"
+    #if (!this.isAMP && !this.pred) {
+    #  value = [this.Style(CSS.PRE), value].join('\n');
+    #  this.pred = true;
+    #}
+    return value;
+  end
   def table(node)
     value = "<table>#{wrap(node.value)}</table>"
     #if (!this.isAMP && !this.tabled) {
@@ -180,45 +189,56 @@ class Builder
   def td(node)
     "<td class=align-#{node.alignment}>#{node.value}</td>\n"
   end
+  def dl(node)
+    "<dl>#{wrap(node.value)}</dl>\n"
+  end
+  def dt(node)
+    "<dt>#{node.value}\n"
+  end
+  def dd(node)
+    "<dd>#{node.value}\n"
+  end
   def p(node)
     "<p>#{node.value}\n"
   end
 
-#  // inline TODO
-#  inlineCode (node) { return h`<code>${node.value}</code>`; }
-   def blockquote(node)
-      "<blockquote>#{hsp(node.value)}</blockquote>\n"
-   end
-   def li(node)
-     "<li>#{node.value}\n"
-   end
-   def strong(node)
-     "<strong>#{node.value}</strong>"
-   end
-   def em(node)
-     "<em>#{node.value}</em>"
-   end
-   def text(node)
-     node.value
-   end
-   def hr(node)
-     "<hr>"
-   end
-
+  ## inline elements
+  def inlineCode(node)
+    "<code>#{hsp(node.value)}</code>"
+  end
+  def blockquote(node)
+    "<blockquote>#{hsp(node.value)}</blockquote>\n"
+  end
+  def li(node)
+    "<li>#{node.value}\n"
+  end
+  def strong(node)
+    "<strong>#{node.value}</strong>"
+  end
+  def em(node)
+    "<em>#{node.value}</em>"
+  end
+  def text(node)
+    node.value
+  end
+  def hr(node)
+    "<hr>"
+  end
   def a(node)
     #if (this.isAMP && node.url.match(/^chrome:\/\//)) {
     #  // amp page ignores chrome:// url
     #  return node.url;
     #}
-    "<a href=\"#{node.attr["href"]}\">#{node.value}</a>"
+    %(<a href="#{node.attr["href"]}">#{node.value}</a>)
+    # TODO: rel="noopener noreferrer"
   end
   def img(node)
-    width = '';
-    height = '';
+    width = "";
+    height = "";
 
-    size = node.attr["src"].split('#')[1];
+    size = node.attr["src"].split("#")[1];
     if size
-      size = size.split('x');
+      size = size.split("x");
       if size.size == 2
         width = "width=#{size[0]}"
         height = "height=#{size[1]}"
@@ -243,13 +263,24 @@ class Builder
     # No width-height for normal img
     return <<-EOS
       <picture>
-   <source type=image/webp srcset=#{node.attr["src"].sub(/(.png|.gif|.jpg)/, '.webp')}>
+   <source type=image/webp srcset=#{node.attr["src"].sub(/(.png|.gif|.jpg)/, ".webp")}>
    <img src=#{node.attr["src"]} alt="#{node.attr["alt"]}" title="#{node.attr["title"]}">
    </picture>
     EOS
   end
   def html_element(node)
-    value = "#{node.value}\n"
+    if node.value != "iframe"
+      STDERR.puts "unsupported html element #{node.value}"
+      exit(1)
+    end
+    attrs = node.attr.map{|key, value|
+      if value == ""
+        next key
+      end
+      %(#{key}="#{value}")
+    }.join(" ")
+    value = "<#{node.value} #{attrs}></#{node.value}>\n"
+
     #if (this.isAMP && value.match(/<iframe.*/)) {
     #  return value.replace(/iframe/g, 'amp-iframe');
     #}
@@ -268,7 +299,7 @@ class Hash
   end
 
   def inline?
-    [
+    self.inline || [
       :text,
       :header,
       :strong,
@@ -278,19 +309,28 @@ class Hash
 end
 
 def j(o)
-  puts JSON.pretty_generate(o)
+  puts caller().first, JSON.pretty_generate(o)
 end
 
+def pp(*o)
+  puts "============"
+  p caller().first, *o
+  puts "============"
+end
+
+# markup をセットして生成したら
+# ast を渡すと traverse しながらビルドしてくれる
 class Traverser
+  attr_reader :codes
 
   # 結果を入れるスタック
   # push => unshift()
   # pop  => shift()
   # top  => [0]
-  def initialize(builder)
+  def initialize(markup)
     @stack = []
     @codes = []
-    @builder = builder
+    @markup = markup
   end
 
   def enter(node)
@@ -306,21 +346,33 @@ class Traverser
     puts "leave: #{node.type}"
 
     if node.type == :codespan
-      # コードを抜き取り、ここで id に置き換える
-      tmp = node.value.split("\n")
-      node.lang = tmp.shift
-      node.value = tmp.join("\n")
-      if node.value == ""
-        # code が書かれてなかったらファイルから読む
-        # ```js:main.js
-        node.lang, node.path = node.lang.split(":")
-        node.value = File.read(node.path);
+      if node.value.include?("\n")
+        # code block の ```hoge```
+
+        # コードを抜き取り、ここで id に置き換える
+        values = node.value.split("\n")
+        # 最初の行は lang
+        node.lang = values.shift
+        # 残りは value
+        value = values.join("\n")
+        if value == ""
+          # code が書かれてなかったらファイルから読む
+          # ```js:main.js
+          node.lang, node.path = node.lang.split(":")
+          value = File.read(node.path);
+        end
+
+        # インデントを無視するため、全部組み上がったら後で差し込む。
+        @codes.push(value)
+
+        # あとで差し変えるため id として番号を入れておく
+        node.value = "// #{@codes.length}"
+      else
+        # inline の `code`
+        node.inline = true
       end
-      # インデントを無視するため、全部組み上がったら後で差し込む。
-      # TODO
-      codes.push(node)
-      node.value = "// #{codes.length}"
     end
+
     if node.value
       # value があったら、 text とか
 
@@ -328,20 +380,19 @@ class Traverser
       top = @stack.shift
       # 対応を確認
       if top.type != node.type
-        #STDERR.puts __LINE__, "ERROR", top, node
-        p node.children.first.first
+        STDERR.puts __LINE__, "ERROR", top, node
         exit(1)
       end
 
       # 閉じる
-      unless @builder.respond_to?(node.type)
+      unless @markup.respond_to?(node.type)
         STDERR.puts __LINE__, "ERROR", top, node
         exit(1)
       end
 
       @stack.unshift({
         tag:    :full,
-        val:    @builder.send(node.type, node),
+        val:    @markup.send(node.type, node),
         inline?: node.inline?,
       })
     else
@@ -364,7 +415,7 @@ class Traverser
       end
 
       # タグを全部連結する
-      vals = vals.map{|val| val.val}.join('').strip
+      vals = vals.map{|val| val.val}.join.strip
 
       # それを親タグで閉じる
       top = @stack.shift()
@@ -386,13 +437,13 @@ class Traverser
 
       node.value = vals
 
-      unless @builder.respond_to?(node.type)
+      unless @markup.respond_to?(node.type)
         STDERR.puts "unsupported type", node.type
       end
 
       @stack.unshift({
         tag:     :full,
-        val:     @builder.send(node.type, node),
+        val:     @markup.send(node.type, node),
         inline?: node.inline?,
       })
     end
@@ -437,6 +488,19 @@ class AST
     return table
   end
 
+  def dling(dl)
+    # <dd><p>hoge</dd> の <p> を消したい
+    dl.children = dl.children.map{|c|
+      if c.type == :dt
+        next c
+      end
+
+      c.children = c.children.first.children
+      next c
+    }
+    return dl
+  end
+
   def sectioning(children, level)
     # 最初のセクションは <article> にする
     section = {
@@ -459,6 +523,9 @@ class AST
       next if child.type == :blank
 
       child = tabling(child) if child.type == :table
+
+      child = dling(child) if child.type == :dl
+      j child
 
       # H2.. が来たらそこで section を追加する
       if child.type == :header
@@ -534,30 +601,70 @@ class AST
     return sections
   end
 
-  def build(builder)
+  def build(markup)
 
     # traverse
-    stack = Traverser.new(builder).traverse(@ast)
+    traverser = Traverser.new(markup)
+    stack = traverser.traverse(@ast)
 
     # 結果の <article> 結果
     article = stack[0].val;
 
-    puts article
 
     #let result = template.HTML(article);
 
-    ## indent を無視するため
-    ## ここで pre に code を戻す
-    ## ついでにエスケープ
-    #codes.forEach((code, i) => {
-    #  result = result.replace(`// ${i + 1}`, hsp(code));
-    #});
+    # indent を無視するため
+    # ここで pre に code を戻す
+    # ついでにエスケープ
+    traverser.codes.each.with_index{|code, i|
+      #TODO 本当は result を変える
+      #result = result.replace(`// ${i + 1}`, hsp(code));
+      article.sub!("// #{i + 1}", hsp(code))
+    }
+    puts article
 
     #return result;
   end
 end
 
-#
+class Builder
+  def initialize(filepath)
+    @filepath = filepath
+  end
+
+  def dir
+    File.dirname(@filepath)
+  end
+
+  def name
+    File.basename(@filepath, ".*")
+  end
+
+  def host
+    dir.split("/")[1]
+  end
+
+  def baseurl
+    "/" + dir.split("/")[2..4].join("/")
+  end
+
+  def created_at
+    dir.split("/")[3]
+  end
+
+  def updated_at
+    File.mtime(@filepath).strftime("%Y-%m-%d")
+  end
+end
+
+b = Builder.new("./blog.jxck.io/entries/2016-01-27/new-blog-start.md")
+p b.dir
+p b.name
+p b.host
+p b.baseurl
+p b.created_at
+p b.updated_at
+
 #function prepare(filepath, option) {
 #  let indent = '  ';
 #  let dir = path.parse(filepath).dir;
@@ -671,10 +778,17 @@ end
 #  fs.writeFileSync(info.target, article);
 #})();
 
+__END__
 md = <<-EOS
-<script>
-  console.log()
-</script>
+hoge
+
+A
+: definition of A
+
+B
+: definition of B
+
+fuga
 EOS
 
-AST.new(md).build(Builder.new({}))
+AST.new(md).build(Markup.new({}))
