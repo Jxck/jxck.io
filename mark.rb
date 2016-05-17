@@ -362,7 +362,7 @@ class Traverser
   end
 
   def leave(node)
-    puts "leave: #{node.type} #{node.value}"
+    #TODO: puts "leave: #{node.type} #{node.value}"
 
     if node.type == :codeblock
       # コードを抜き取り、ここで id に置き換える
@@ -514,6 +514,7 @@ class AST
   end
 
   def sectioning(children, level)
+
     # 最初のセクションは <article> にする
     section = {
       type: level === 1 ? :article : :section,
@@ -556,7 +557,7 @@ class AST
           # 戻した h を最初にできる
           section.children.concat(sectioning(children, child.options.level))
           next
-        elsif section.options.depth == child.options.depth
+        elsif section.options.level == child.options.level
           # 同じレベルの h の場合
           # 同じレベルで別の <section> を作る必要がある
           # <section>
@@ -580,7 +581,7 @@ class AST
           end
           # もし今 section に子要素が無ければ
           # そのまま今の section に追加して良い
-        elsif section.options.depth > child.options.depth
+        elsif section.options.level > child.options.level
           # レベルが一つ上がる場合
           # 今は一つ下がったレベルで再帰している最中だったが
           # それが終わったことを意味する
