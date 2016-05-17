@@ -154,12 +154,9 @@ class Markup
       return %(<h#{level} id="#{unspace(node.value)}"><a href="##{unspace(node.value)}">#{node.value}</a></h#{level}>\n)
     end
   end
-  def codespan(node)
-    if node.inline?
-      return inlineCode(node)
-    end
-    lang = node.lang || '""';
-    value = "<pre class=#{lang}><code>#{node.value}</code></pre>\n"
+  def codeblock(node)
+    lang = node.attr && node.attr["class"].sub("language-", "")
+    value = "<pre#{lang ? %( class=#{lang}) : ""}><code>#{node.value}</code></pre>\n"
     #if (!this.isAMP && !this.pred) {
     #  value = [this.Style(CSS.PRE), value].join('\n');
     #  this.pred = true;
@@ -203,11 +200,14 @@ class Markup
   end
 
   ## inline elements
-  def inlineCode(node)
+  def codespan(node)
     "<code>#{hsp(node.value)}</code>"
   end
   def blockquote(node)
     "<blockquote>#{hsp(node.value)}</blockquote>\n"
+  end
+  def smart_quote(node)
+    "'"
   end
   def li(node)
     "<li>#{node.value}\n"
@@ -221,8 +221,14 @@ class Markup
   def text(node)
     node.value
   end
+  def br(node)
+    "<br>"
+  end
   def hr(node)
     "<hr>"
+  end
+  def entity(node)
+    node.options.original
   end
   def a(node)
     #if (this.isAMP && node.url.match(/^chrome:\/\//)) {
@@ -334,7 +340,7 @@ class Traverser
   end
 
   def enter(node)
-    # TODO puts "enter: #{node.type}"
+    #TODO: puts "enter: #{node.type}"
     # enter では、 inline 属性を追加し
     # stack に詰むだけ
     # 実際は、pop 側で整合検証くらいしか使ってない
@@ -343,34 +349,23 @@ class Traverser
   end
 
   def leave(node)
-    # TODO puts "leave: #{node.type}"
+    puts "leave: #{node.type} #{node.value}"
 
-    if node.type == :codespan
-      if node.value.include?("\n")
-        # code block の ```hoge```
-
-        # コードを抜き取り、ここで id に置き換える
-        values = node.value.split("\n")
-        # 最初の行は lang
-        node.lang = values.shift
-        # 残りは value
-        value = values.join("\n")
-        if value == ""
-          # code が書かれてなかったらファイルから読む
-          # ```js:main.js
-          node.lang, node.path = node.lang.split(":")
-          value = File.read(node.path);
-        end
-
-        # インデントを無視するため、全部組み上がったら後で差し込む。
-        @codes.push(value)
-
-        # あとで差し変えるため id として番号を入れておく
-        node.value = "// #{@codes.length}"
-      else
-        # inline の `code`
-        node.inline = true
+    if node.type == :codeblock
+      # コードを抜き取り、ここで id に置き換える
+      value = node.value
+      if value == ""
+        # code が書かれてなかったらファイルから読む
+        # ```js:main.js
+        node.attr["class"], node.path = node.attr["class"].split(":")
+        value = File.read(node.path);
       end
+
+      # インデントを無視するため、全部組み上がったら後で差し込む。
+      @codes.push(value.strip)
+
+      # あとで差し変えるため id として番号を入れておく
+      node.value = "// #{@codes.length}"
     end
 
     if node.value
@@ -462,7 +457,10 @@ end
 
 class AST
   def initialize(md)
-    @ast = Kramdown::Document.new(md).to_hashAST
+    option = {
+      input: "GFM"
+    }
+    @ast = Kramdown::Document.new(md, option).to_hashAST
 
     # pre process
     @ast.children = sectioning(@ast.children, 1)
@@ -660,7 +658,7 @@ class Entry
   end
 
   def updated_at
-    File.mtime(@path).strftime("%Y-%m-%d")
+    File.mtime("#{name}.md").strftime("%Y-%m-%d")
   end
 
   def title
@@ -673,7 +671,7 @@ class Entry
   end
 
   def htmlfile
-    "#{dir}/#{name}.html"
+    "#{name}.html"
   end
 
   # tag を本文から消す
@@ -684,7 +682,7 @@ class Entry
   def description
     # TODO: description の link を無くす
     #@text.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2].gsub(/\[(.*?)\]\(.*?\)/, '\1').strip();
-    hsp @text.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2].strip()[0...140] + "..."
+    hsp @text.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2].gsub(/(\n|\r)/, '').strip()[0...140] + "..."
   end
 end
 
@@ -802,12 +800,16 @@ end
 #  fs.writeFileSync(info.target, article);
 #})();
 
-path = "./blog.jxck.io/entries/2016-01-27/new-blog-start.md"
+path = ARGV.first
 icon = "https://jxck.io/assets/img/jxck.png"
+meta_template = File.read(".template/meta.html") + File.read(".template/ld-json.html")
+blog_template = File.read(".template/blog.html")
+
 entry = Entry.new(path, icon)
+Dir.chdir(entry.dir) # change dir for read script file
 article = AST.new(entry.no_tag).build(Markup.new(entry.canonical))
 entry.article = article
-entry.meta = ERB.new(File.read(".template/meta.html") + File.read(".template/ld-json.html")).result(binding).strip()
+entry.meta = ERB.new(meta_template).result(binding).strip()
 
-html = ERB.new(File.read(".template/blog.html")).result(binding).strip()
+html = ERB.new(blog_template).result(binding).strip()
 File.write(entry.htmlfile, html)
