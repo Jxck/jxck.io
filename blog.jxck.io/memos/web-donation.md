@@ -5,3 +5,4 @@
 - https://jquery.org/donate/
 - http://www.apache.org/foundation/contributing.html
 - http://webfoundation.org/get-involved/fundraising-team/
+- https://supporters.eff.org/donate/support-work-on-certbot
