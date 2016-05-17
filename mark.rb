@@ -93,6 +93,9 @@ class Markup
   def initialize(canonical)
     @indent = "  "
     @canonical = canonical
+    @css = {
+      PRE: "/assets/css/pre.css",
+    }
 #    this.host = option.host;
 #    this.ampurl = option.ampurl;
 #    this.template = option.template;
@@ -116,9 +119,9 @@ class Markup
     # increase indent
     "\n#{value}".gsub(/\n/m, "\n#{@indent}") + "\n"
   end
-#  Style(href) {
-#    return `<link rel=stylesheet property=stylesheet type=text/css href=${href}>`;
-#  }
+  def style(href)
+    "<link rel=stylesheet property=stylesheet type=text/css href=#{href}>"
+  end
 #  HTML(article) {
 #    this.article = article;
 #    this.meta = eval('`' + this.meta + '`');
@@ -157,6 +160,11 @@ class Markup
   def codeblock(node)
     lang = node.attr && node.attr["class"].sub("language-", "")
     value = "<pre#{lang ? %( class=#{lang}) : ""}><code>#{node.value}</code></pre>\n"
+
+    if @css.PRE
+      value = style(@css.PRE) + "\n" + value
+      @css.PRE = nil
+    end
     #if (!this.isAMP && !this.pred) {
     #  value = [this.Style(CSS.PRE), value].join('\n');
     #  this.pred = true;
@@ -207,7 +215,12 @@ class Markup
     "<blockquote>#{hsp(node.value)}</blockquote>\n"
   end
   def smart_quote(node)
-    "'"
+    {
+      lsquo: "'",
+      rsquo: "`",
+      ldquo: '"',
+      rdquo: '"',
+    }[node.value]
   end
   def li(node)
     "<li>#{node.value}\n"
@@ -222,7 +235,7 @@ class Markup
     node.value
   end
   def br(node)
-    "<br>"
+    "" #TODO "<br>"
   end
   def hr(node)
     "<hr>"
@@ -802,8 +815,8 @@ end
 
 path = ARGV.first
 icon = "https://jxck.io/assets/img/jxck.png"
-meta_template = File.read(".template/meta.html") + File.read(".template/ld-json.html")
-blog_template = File.read(".template/blog.html")
+meta_template = File.read(".template/meta.html.erb") + File.read(".template/ld-json.html.erb")
+blog_template = File.read(".template/blog.html.erb")
 
 entry = Entry.new(path, icon)
 Dir.chdir(entry.dir) # change dir for read script file
