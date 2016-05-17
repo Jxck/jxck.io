@@ -16,7 +16,7 @@ end
 
 # replace ' ' to '+'
 def unspace(str)
-  str.gsub(/ /, "+");
+  str.gsub(/ /, "+")
 end
 
 # tag ごとのビルダ
@@ -80,7 +80,7 @@ class Markup
       value = style(@css.PRE) + "\n" + value
       @css.PRE = nil
     end
-    return value;
+    value
   end
 
   def tabletag(node)
@@ -95,7 +95,7 @@ class Markup
       value = style(@css.TABLE) + "\n" + value
       @css.TABLE = nil
     end
-    return value;
+    value
   end
   def thead(node)
     "<thead>#{wrap(node.value)}</thead>\n"
@@ -170,11 +170,11 @@ class Markup
   end
 
   def imgsize(node)
-    width, height = "", "";
+    width, height = "", ""
 
-    size = node.attr["src"].split("#")[1];
+    size = node.attr["src"].split("#")[1]
     if size
-      size = size.split("x");
+      size = size.split("x")
       if size.size == 1
         width = "width=#{size[0]}"
       elsif size.size == 2
@@ -208,15 +208,13 @@ class Markup
       STDERR.puts "unsupported html element #{node.value}"
       exit(1)
     end
-    attrs = node.attr.map{|key, value|
+    attrs = node.attr.map{ |key, value|
       if value == ""
         next key
       end
       %(#{key}="#{value}")
     }.join(" ")
-    value = "<#{node.value} #{attrs}></#{node.value}>\n"
-
-    return value
+    "<#{node.value} #{attrs}></#{node.value}>\n"
   end
 end
 
@@ -260,26 +258,26 @@ class AMP < Markup
     # AMP should specify width-height
     if width == "" || height == ""
       STDERR.puts("no width x height for img")
-      exit(1);
+      exit(1)
     end
     %(<amp-img layout=responsive src=#{node.attr["src"]} alt="#{node.attr["alt"]}" title="#{node.attr["title"]}" #{width} #{height}>)
   end
   def html_element(node)
     value = super(node)
     if value.match(/<iframe.*/)
-      value.gsub!(/iframe/, 'amp-iframe');
+      value.gsub!(/iframe/, 'amp-iframe')
     end
     value
   end
 end
 
 def j(o)
-  puts caller().first, JSON.pretty_generate(o)
+  puts caller.first, JSON.pretty_generate(o)
 end
 
 def pp(*o)
   puts "============"
-  p caller().first, *o
+  p caller.first, *o
   puts "============"
 end
 
@@ -305,7 +303,7 @@ class Traverser
     # stack に詰むだけ
     # 実際は、pop 側で整合検証くらいしか使ってない
 
-    @stack.unshift(node);
+    @stack.unshift(node)
   end
 
   def leave(node)
@@ -318,7 +316,7 @@ class Traverser
         # code が書かれてなかったらファイルから読む
         # ```js:main.js
         node.attr["class"], node.path = node.attr["class"].split(":")
-        value = File.read(node.path);
+        value = File.read(node.path)
       end
 
       # インデントを無視するため、全部組み上がったら後で差し込む。
@@ -348,14 +346,14 @@ class Traverser
       @stack.unshift({
         tag:    :full,
         val:    @markup.send(node.type, node),
-        inline?: node.inline?,
+        inline?: node.inline?
       })
     else
       # 完成している兄弟タグを集めてきて配列に並べる
       vals = []
 
       while @stack.first.tag == :full
-        top = @stack.shift()
+        top = @stack.shift
 
         if top.inline? && vals.first && vals.first.inline?
           # 取得したのが inline で、一個前も inline だったら
@@ -370,10 +368,10 @@ class Traverser
       end
 
       # タグを全部連結する
-      vals = vals.map{|val| val.val}.join.strip
+      vals = vals.map{ |val| val.val}.join.strip
 
       # それを親タグで閉じる
-      top = @stack.shift()
+      top = @stack.shift
       top.type != node.type
       if top.type != node.type
         puts "ERROR", __LINE__, top, node
@@ -399,7 +397,7 @@ class Traverser
       @stack.unshift({
         tag:     :full,
         val:     @markup.send(node.type, node),
-        inline?: node.inline?,
+        inline?: node.inline?
       })
     end
   end
@@ -408,10 +406,10 @@ class Traverser
     enter(ast)
     return leave(ast) unless ast.children
 
-    ast.children = ast.children.map {|child|
+    ast.children = ast.children.map { |child|
       next traverse(child)
     }
-    return leave(ast)
+    leave(ast)
   end
 end
 
@@ -431,33 +429,29 @@ class AST
 
     alignment = table.options.alignment
 
-    table.children = table.children.map {|node|
-      node.children.map {|tr|
-        tr.children.map.with_index {|td, i|
-          if node.type == :thead
-            td.type = :th
-          end
+    table.children = table.children.map { |node|
+      node.children.map { |tr|
+        tr.children.map.with_index { |td, i|
+          td.type = :th if node.type == :thead
           td.alignment = alignment[i]
         }
       }
       next node
     }
 
-    return table
+    table
   end
 
   def dling(dl)
     # <dd><p>hoge</dd> の <p> を消したい
 
-    dl.children = dl.children.map{|c|
-      if c.type == :dt
-        next c
-      end
+    dl.children = dl.children.map{ |c|
+      next c if c.type == :dt
 
       c.children = c.children.first.children
       next c
     }
-    return dl
+    dl
   end
 
   def sectioning(children, level)
@@ -474,9 +468,9 @@ class AST
     # 横に並ぶべき <section> を入れる配列
     sections = []
 
-    loop {
+    loop do
       # 横並びになっている子要素を取り出す
-      child = children.shift()
+      child = children.shift
       break if child == nil
 
       # blank は消す
@@ -521,9 +515,9 @@ class AST
             section = {
               type: :section,
               options: {
-                level: child.options.level,
+                level: child.options.level
               },
-              children: [],
+              children: []
             }
           end
           # もし今 section に子要素が無ければ
@@ -549,7 +543,7 @@ class AST
 
       # 今の <section> の子要素として追加
       section.children.push(child)
-    }
+    end
 
     # 最後のセクションを追加
     sections.push(section)
@@ -557,7 +551,7 @@ class AST
     # そこまでの <section> のツリーを返す
     # 再帰している場合は、親の <section> の
     # childrens として使われる
-    return sections
+    sections
   end
 
   def build(markup)
@@ -567,16 +561,16 @@ class AST
     stack = traverser.traverse(@ast)
 
     # 結果の <article> 結果
-    article = stack[0].val;
+    article = stack[0].val
 
     # indent を無視するため
     # ここで pre に code を戻す
     # ついでにエスケープ
-    traverser.codes.each.with_index{|code, i|
-      article.sub!("// #{i + 1}"){hsp(code)}
+    traverser.codes.each.with_index{ |code, i|
+      article.sub!("// #{i + 1}"){ hsp(code) }
     }
 
-    return article
+    article
   end
 end
 
@@ -605,12 +599,12 @@ class Entry
   end
 
   def canonical
-    # TODO https://
+    # TODO: https://
     "#{baseurl}/#{name}.html"
   end
 
   def ampurl
-    # TODO https://
+    # TODO: https://
     "#{baseurl}/#{name}.amp.html"
   end
 
@@ -641,75 +635,19 @@ class Entry
 
   # tag を本文から消す
   def no_tag
-    @text.sub(" [" + tags.join("][") + "]", "");
+    @text.sub(" [" + tags.join("][") + "]", "")
   end
 
   def description
     # description の link は無くす
-    hsp @text.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2].gsub(/\[(.*?)\]\(.*?\)/, '\1').gsub(/(\n|\r)/, '').strip()[0...140] + "..."
+    hsp @text
+      .match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2]
+      .gsub(/\[(.*?)\]\(.*?\)/, '\1')
+      .gsub(/(\n|\r)/, '')
+      .strip[0...140]
+      .concat("...")
   end
 end
-
-#if (process.argv.length < 3) {
-#  console.error('no file name');
-#  exit(1);
-#}
-#
-#let filepath = process.argv[2];
-#
-#if (process.argv[3] === 'podcast') {
-#  // podcast html
-#  (() => {
-#    p('podcast html', filepath);
-#    let option = {
-#      amp:      false,
-#      meta:     read('./.template/meta.html'),
-#      template: read('./.template/podcast.html'),
-#      icon:     'https://podcast.jxck.io/assets/img/mozaic.png', // TODO: https://mozaic.fm/assets/img/mozaic.png
-#    };
-#    let info = prepare(filepath, option);
-#    let builder = new Builder(info);
-#    let ast = new AST(info.md);
-#    let article = ast.build(info.dir, builder);
-#    fs.writeFileSync(info.target, article);
-#  })();
-#
-#  exit(0);
-#}
-#
-#// blog html
-#(() => {
-#  p('mark html', filepath);
-#  let meta = read('./.template/meta.html') + '\n' + read('./.template/ld-json.html');
-#  let option = {
-#    amp:      false,
-#    meta:     meta,
-#    template: read('./.template/blog.html'),
-#    icon:     'https://jxck.io/assets/img/jxck.png',
-#  };
-#  let info = prepare(filepath, option);
-#  let builder = new Builder(info);
-#  let ast = new AST(info.md);
-#  let article = ast.build(info.dir, builder);
-#  fs.writeFileSync(info.target, article);
-#})();
-#
-#// amp html
-#(() => {
-#  p('mark amp', filepath);
-#  let meta = read('./.template/meta.html') + '\n' + read('./.template/ld-json.html');
-#  let option = {
-#    amp:      true,
-#    meta:     meta,
-#    template: read('./.template/amp.html'),
-#    icon:     'https://jxck.io/assets/img/jxck.png',
-#  };
-#  let info = prepare(filepath, option);
-#  let builder = new Builder(info);
-#  let ast = new AST(info.md);
-#  let article = ast.build(info.dir, builder);
-#  fs.writeFileSync(info.target, article);
-#})();
 
 path = ARGV.first
 icon = "https://jxck.io/assets/img/jxck.png"
@@ -717,7 +655,6 @@ meta_template = File.read(".template/meta.html.erb") + File.read(".template/ld-j
 blog_template = File.read(".template/blog.html.erb")
 amp_template = File.read(".template/amp.html.erb")
 
-#style = Dir.glob("./blog.jxck.io/assets/css/*.css").sort.map {|css| File.read(css) }.join("\n")
 style = [
   "./blog.jxck.io/assets/css/article.css",
   "./blog.jxck.io/assets/css/body.css",
@@ -727,7 +664,7 @@ style = [
   "./blog.jxck.io/assets/css/footer.css",
   "./blog.jxck.io/assets/css/pre.css",
   "./blog.jxck.io/assets/css/table.css",
-].map {|css| File.read(css) }.join("\n")
+].map { |css| File.read(css) }.join("\n")
 
 entry = Entry.new(path, icon)
 Dir.chdir(entry.dir) # change dir for read script file
@@ -735,13 +672,13 @@ Dir.chdir(entry.dir) # change dir for read script file
 # blog
 article = AST.new(entry.no_tag).build(Markup.new(entry.canonical))
 entry.article = article
-entry.meta = ERB.new(meta_template).result(binding).strip()
-html = ERB.new(blog_template).result(binding).strip()
+entry.meta = ERB.new(meta_template).result(binding).strip
+html = ERB.new(blog_template).result(binding).strip
 File.write(entry.htmlfile, html)
 
 # AMP
 article = AST.new(entry.no_tag).build(AMP.new(entry.canonical))
 entry.article = article
-entry.meta = ERB.new(meta_template).result(binding).strip()
-html = ERB.new(amp_template).result(binding).strip()
+entry.meta = ERB.new(meta_template).result(binding).strip
+html = ERB.new(amp_template).result(binding).strip
 File.write(entry.ampfile, html)
