@@ -490,6 +490,7 @@ class AST
 
   def dling(dl)
     # <dd><p>hoge</dd> の <p> を消したい
+
     dl.children = dl.children.map{|c|
       if c.type == :dt
         next c
@@ -613,8 +614,6 @@ class AST
     # ここで pre に code を戻す
     # ついでにエスケープ
     traverser.codes.each.with_index{|code, i|
-      #TODO 本当は result を変える
-      #result = result.replace(`// ${i + 1}`, hsp(code));
       article.sub!("// #{i + 1}", hsp(code))
     }
 
@@ -685,7 +684,7 @@ class Entry
   def description
     # TODO: description の link を無くす
     #@text.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2].gsub(/\[(.*?)\]\(.*?\)/, '\1').strip();
-    @text.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2].strip()[0...140] + "..."
+    hsp @text.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2].strip()[0...140] + "..."
   end
 end
 
