@@ -123,7 +123,7 @@ by Jxck
     <section>
       <h2 id="Preload+の特徴"><a href="#Preload+の特徴">Preload の特徴</a></h2>
       <p>Resource Hints の例えば Prefetch との違いは、 Prefetch がナビゲーションの前に動作するのに対して、 Prelaod はナビゲーションが行われた後に動作することが上げられる。
-      <p>Prefetch は、画面を遷移する前に、次の遷移先で必要となるリソースについて、投機的な取得を指示していた。
+      <p>Prefetch は、画面を遷移する前に、次の遷移先で必要となるリソースについて、投機的な取得を指示していた。<br>
       一方 Preload は現在表示しようとしているページに遷移した後、そのページ内でのリソース取得を最適化する。(Chrome が独自に実装している Subresouce というのもあった、それに近い)
       <p>また、 Preload は以下のような特徴を持ち、今までできなかったことができるようになる。
       <ul>
@@ -154,7 +154,7 @@ by Jxck
     <section>
       <h2 id="遅延実行"><a href="#遅延実行">遅延実行</a></h2>
       <p>Preload を使うことで、「<strong>取得しておきたいけど実行はしたくない</strong>」というスクリプトの取得ができる。
-      <p>後から <code>&lt;script&gt;</code> を差し込むことで、 JS の「取得と実行」を遅延させることはこれまでもできたが、「取得」だけを先に行うことはできなかった。
+      <p>後から <code>&lt;script&gt;</code> を差し込むことで、 JS の「取得と実行」を遅延させることはこれまでもできたが、「取得」だけを先に行うことはできなかった。<br>
       また、取得を XHR で行い保存しておいたものをあとで <code>eval</code> することもできるが、 Preload を使うことで実行を <code>&lt;script&gt;</code> で行え、ブラウザの Preloader に取得させるため、再利用が効く。
       <p>まず「取得」を Preload で行う、これは HTML に書いておいても良いし、それ自体も遅延したければ好きなタイミングで以下のようにノードを作れば良い。
       <pre class=html><code>&lt;link rel=preload as=script href=script.js&gt;</code></pre>
@@ -170,7 +170,7 @@ document.body.appendChild(script);</code></pre>
     </section>
     <section>
       <h2 id="非同期ローダ"><a href="#非同期ローダ">非同期ローダ</a></h2>
-      <p><code>&lt;link rel=preload&gt;</code> は自身で <code>onload</code> を発火する。
+      <p><code>&lt;link rel=preload&gt;</code> は自身で <code>onload</code> を発火する。<br>
       これを利用すると、 HTML と少しの JS で <strong>非同期ローダ</strong> を実現することができる。
       <p>例えば CSS の場合はこうなる。
       <pre class=html><code>&lt;link rel=preload as=style href=style.css onload=&quot;this.rel=&#039;stylesheet&#039;&quot;&gt;</code></pre>
@@ -184,7 +184,7 @@ document.body.appendChild(script);</code></pre>
     </section>
     <section>
       <h2 id="Media+Query"><a href="#Media+Query">Media Query</a></h2>
-      <p>Preload はリンクであるため、仕様上 media 属性を持つ。(chrome ではまだ未サポート)
+      <p>Preload はリンクであるため、仕様上 media 属性を持つ。(chrome ではまだ未サポート)<br>
       つまり Media Query を用いた条件付きローディングができる。
       <p>例えば <code>&lt;picture&gt;</code> で Image を読み分けている場合、その条件と同じものを <code>&lt;link rel=preload&gt;</code> に指定することで、一致した条件のみの画像を Prelaod できる。
       <pre class=html><code>&lt;link rel=preload as=image href=large.png media=&quot;(max-width: 600px)&quot;&gt;
@@ -203,7 +203,7 @@ Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin
     </section>
     <section>
       <h2 id="Feature+Detection"><a href="#Feature+Detection">Feature Detection</a></h2>
-      <p>Preload をヒントとして使っていれば、サポートされてい無いブラウザにおいては従来通りのタイミングで取得が走るだけになる。
+      <p>Preload をヒントとして使っていれば、サポートされてい無いブラウザにおいては従来通りのタイミングで取得が走るだけになる。<br>
       しかし、 <code>onload</code> ハックなどを用いたより積極的な活用を行う上では、ブラウザのサポートの有無を知りたい場合もある。
       <p>そこで、サポートされる <code>rel</code> の値を DOM から取れるような提案がなされている。
       <pre class=js><code>document.createElement(&quot;link&quot;).relList.supports(&quot;preload&quot;));</code></pre>
@@ -213,7 +213,7 @@ Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin
       <h2 id="HTTP2"><a href="#HTTP2">HTTP2</a></h2>
       <p>HTTP2 において、 HTTP Link preload ヘッダは Push するリソースを指定する目的で使用している。
       <p>しかし、実際の動作として、サーバが行う HTTP2 の Push と、ブラウザが行う Preload は補完関係にある。
-      <p>HTTP2 の Push ではリクエストより先にリソースを送ることができ、ブラウザはそれをキャッシュとして保存する。
+      <p>HTTP2 の Push ではリクエストより先にリソースを送ることができ、ブラウザはそれをキャッシュとして保存する。<br>
       レスポンスの HTML を取得した後、サブリソースを発見して Fetch するタイミングで、そのキャッシュがヒットするという仕組みである。
       <p>一方で、 Push はブラウザが発呼する Fetch とは方向が逆であるため、ある程度の制限が出る。
       <ul>
@@ -224,7 +224,7 @@ Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin
       </ul>
       <p>Push が既にブラウザにキャッシュされているリソースを考慮できないという問題は、別途 <a href="https://tools.ietf.org/html/draft-kazuho-h2-cache-digest">提案</a> があるが、基本的に Push はクライアントの状況を踏まえることが難しい。
       <p>もともと HTTP を基本とする Web がプルベースを前提としているため、 Fetch でリクエストを投げる際にクライアントの情報を載せ、サーバがそれをレスポンスに反映するモデルの方が、細かい調整がしやすいのは自明である。
-      <p>したがって、クライアントが置かれた状況を限定的に捉え、より積極的にリソースをキャッシュさせる用途で Push を。
+      <p>したがって、クライアントが置かれた状況を限定的に捉え、より積極的にリソースをキャッシュさせる用途で Push を。<br>
       クライアントの状態を踏まえて、コンテントネゴシエーションを重視する場合に Preload を。
       <p>という感じに、組み合わせて使うのが最も理想だと言えるだろう。
       <p>なお、 HTTP2 の Push はさせずブラウザに Fetch で Preload させたい場合は、 <code>nopush</code> を付けることで Opt-Out することができる。
@@ -243,7 +243,7 @@ Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin
       </section>
       <section>
         <h3 id="指定方法"><a href="#指定方法">指定方法</a></h3>
-        <p>本サイトは H2O でサーブしているが、まだ nopush には対応していない。
+        <p>本サイトは H2O でサーブしているが、まだ nopush には対応していない。<br>
         そのため HTTP Header で Link rel=preload を指定すれば、必ず HTTP2 Push が発生する。
         <p>まず、本サイトはまだ HTTP2 Push を持ちいた最適化は、キャッシュを有効に使えなくなるという理由から行っておらず、 <a href="https://tools.ietf.org/html/draft-kazuho-h2-cache-digest">Cache Digest</a> を Service Worker で管理する方式を採用する予定なので、そこまでは Link Header を付けるのは避けたい。
         <p>そこで、ページで共通するサブリソースについて、 HTML のトップレベルへの <code>&lt;link&gt;</code> タグで指定することにした。

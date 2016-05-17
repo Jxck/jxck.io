@@ -138,7 +138,7 @@ by Jxck
         <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
         <pre><code>gzip: ON</code></pre>
         <p><a href="https://h2o.examp1e.net/configure/gzip_directives.html#gzip">Configure > Gzip Directives > "gzip"</a>
-        <p>これにより、あらかじめ圧縮していないコンテンツや、バックエンドのアプリケーションが動的に生成したコンテンツを圧縮転送することができる。
+        <p>これにより、あらかじめ圧縮していないコンテンツや、バックエンドのアプリケーションが動的に生成したコンテンツを圧縮転送することができる。<br>
         圧縮時間分のオーバーヘッドは考えられるが、一般的に gzip の処理時間は小さく、転送量の削減によるネットワーク的メリットの方が高いため、この方法が採用されることが多い。
       </section>
       <section>
@@ -146,7 +146,7 @@ by Jxck
         <p>あらかじめコンテンツを gzip 圧縮した状態で <code>ファイル名.gz</code> で配置し、以下を設定すると、 h2o は自動的に圧縮済みファイルを転送してくれる。
         <pre><code>file.send-gzip: ON</code></pre>
         <p><a href="https://h2o.examp1e.net/configure/file_directives.html#file.send-gzip">Configure > File Directives > "file.send-gzip"</a>
-        <p>事前に圧縮するため、レスポンスへのオーバーヘッドは無くなる。
+        <p>事前に圧縮するため、レスポンスへのオーバーヘッドは無くなる。<br>
         しかし、バックエンドが動的に生成するレスポンスには適用できないため、事前に準備可能な静的ファイルへの適用に限定される。
       </section>
     </section>
@@ -169,7 +169,7 @@ by Jxck
         <h3 id="ベンチマーク"><a href="#ベンチマーク">ベンチマーク</a></h3>
         <p>以下のように、前回の記事に対して zopfli コマンドを実行し、 time コマンドで実行時間を計測した。
         <pre class=sh><code>$ time zopfli --i10 -c loading-css-over-http2.html</code></pre>
-        <p><code>--i</code> が探索回数であり、これを増やせばより小さく圧縮できるが、時間がかかる。
+        <p><code>--i</code> が探索回数であり、これを増やせばより小さく圧縮できるが、時間がかかる。<br>
         デフォルトは <code>i = 15</code> であるため、 <code>10..100</code> まで増やしながら実行した。
         <p>最初の段は、元のファイルサイズ、二段目は <code>gzip</code> コマンドの結果である。
         <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/table.css>
@@ -243,7 +243,7 @@ by Jxck
               <td class=align-right>5156</td>
             </tr>
           </tbody>
-        </table><p>この結果だと <code>-i20</code> 以上は誤差のようである。
+        </table><p>この結果だと <code>-i20</code> 以上は誤差のようである。<br>
         ただ、開発用の Mac では少し違う結果が出たりもしたため、結果 <code>i=30</code> くらいに落ち着いた。
         <p>また、 <a href="//jxck.io/assets/img/jxck.webp">WebP</a> と <a href="//jxck.io/assets/img/jxck.png">PNG</a> の画像ファイルでも検証したところ、以下のようになった。
         <table>
@@ -295,8 +295,8 @@ by Jxck
     </section>
     <section>
       <h2 id="brotli"><a href="#brotli">brotli</a></h2>
-      <p>また Google は <a href="https://github.com/google/brotli">brotli</a> という圧縮フォーマットも持っている。
-      こちらは、 gzip などとの互換は無いため、クライアントも対応しないと使うことはできない。
+      <p>また Google は <a href="https://github.com/google/brotli">brotli</a> という圧縮フォーマットも持っている。<br>
+      こちらは、 gzip などとの互換は無いため、クライアントも対応しないと使うことはできない。<br>
       新しいフォーマットとして、 <a href="https://tools.ietf.org/html/draft-alakuijala-brotli-08">IETF へのドラフトの提出</a> もなされている。
       <p>現在は <a href="https://plus.google.com/u/0/+IlyaGrigorik/posts/X9ogn4fLtHL">Chrome が HTTPS のみでサポート</a> していおり、 Canary で <code>chrome://flags#brotli</code> を有効にすると、 <code>Accept-Encoding: br</code> が追加されるので、サーバはこれを見て brotli で圧縮したファイルを返すことができる。
       <p>ほとんどのブラウザが対応している gzip と違い、まだ対応ブラウザも少なく、 H2O も対応していないため <code>Accept-Encoding</code> での判断を自分でハンドラに書く必要がある。

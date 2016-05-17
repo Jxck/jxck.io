@@ -135,7 +135,7 @@ by Jxck
       <h2 id="CSP+の注意点"><a href="#CSP+の注意点">CSP の注意点</a></h2>
       <p>もし、先ほど例示した設定をサイト全体に適用した場合、何がおこるかを考えてみる。
       <pre><code>Content-Security-Policy: default-src &#039;self&#039;</code></pre>
-      <p>まず、この指定により、インラインスクリプトが全て無効になる。
+      <p>まず、この指定により、インラインスクリプトが全て無効になる。<br>
       よくある例として、 Google Analytics のためページ下部に埋め込んだ <code>&lt;script&gt;</code> が全て動かなくなるため、アナリティクスが動かなくなる。
       <p>他にも、例えば <code>cdn.jquery.com</code> などの Public CDN から取得しているスクリプトも軒並み動かなくなる。
       <p>スクリプトだけでなく、 <code>&lt;img&gt;</code> や <code>&lt;iframe&gt;</code> なども注意が必要だ。

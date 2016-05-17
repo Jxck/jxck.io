@@ -577,7 +577,7 @@ th:last-child, td:last-child {
         <h3 id="dns-prefetch"><a href="#dns-prefetch">dns-prefetch</a></h3>
         <p>DNS の問い合わせを事前に行い、キャッシュしておくことで、名前解決コストを下げる方法である。
         <pre class=html><code>&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//example.com&quot;&gt;</code></pre>
-        <p>例えば、メインページで接続する API サーバや、 CDN のエッジへの名前解決を行うなどが予想されるだろう。
+        <p>例えば、メインページで接続する API サーバや、 CDN のエッジへの名前解決を行うなどが予想されるだろう。<br>
         以下のようなケースで使用できる。
         <ul>
           <li>既に接続先ドメインがわかっている
@@ -590,7 +590,7 @@ th:last-child, td:last-child {
         <p>仕様では、クロスオリジンも張ることができる。
         <pre class=html><code>&lt;link rel=&quot;preconnect&quot; href=&quot;//example.com&quot;&gt;
 &lt;link rel=&quot;preconnect&quot; href=&quot;//cdn.example.com&quot; crossorigin&gt;</code></pre>
-        <p>例えば API エンドポイントは決まっており、そこに対して連続したリクエストが発生すると分かっているような場合が予想される。
+        <p>例えば API エンドポイントは決まっており、そこに対して連続したリクエストが発生すると分かっているような場合が予想される。<br>
         以下のようなケースで使用できる。
         <ul>
           <li>既に接続先ドメインがわかっている
@@ -613,7 +613,7 @@ th:last-child, td:last-child {
         <p>prefetch 可能なリソースのみからなるページならば、ページ全体を事前に取得することが可能な筈である。
         <p>そこで、そのページ全体を取得し、バックグラウンドに起こしたタブの中で、描画まで行ってしまうという方法である。
         <pre class=html><code>&lt;link rel=&quot;prerender&quot; href=&quot;//example.com/next-page.html&quot;&gt;</code></pre>
-        <p>描画が完了しているため、実際の遷移が発生したら、そのタブを切り替えるだけでよくなる。理論上は最速表示となるだろう。
+        <p>描画が完了しているため、実際の遷移が発生したら、そのタブを切り替えるだけでよくなる。理論上は最速表示となるだろう。<br>
         以下のようなケースで使用できる。
         <ul>
           <li>prefetch 可能なリソースのみからなるページ
