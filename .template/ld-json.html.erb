@@ -1,0 +1,35 @@
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://<%= entry.host %>"
+  },
+  "headline": "<%= entry.title %> | <%= entry.host %>",
+  "image": {
+    "@type": "ImageObject",
+    "url": "<%= entry.icon %>",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "<%= entry.created_at %>T08:00:00+08:00",
+  "dateModified": "<%= entry.updated_at %>T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "<%= entry.icon %>"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "<%= entry.icon %>",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "<%= entry.description %>"
+}
+</script>
