@@ -5,18 +5,6 @@ require "json"
 require "pathname"
 require "kramdown"
 
-#'use strict';
-#
-#let path = require('path');
-#let url = require('url');
-#let fs = require('fs');
-#let parse = require('remark').parse;
-#
-#// read template and trim
-#function read(path) {
-#  return fs.readFileSync(path).toString().trim();
-#}
-#
 # html special chars
 def hsp(str)
   str.gsub(/&/, "&amp;")
@@ -26,58 +14,11 @@ def hsp(str)
      .gsub(/'/, "&#039;")
 end
 
-#// tagged literal of hsp
-#function h(tag, val) {
-#  return `${tag[0]}${hsp(val)}${tag[1]}`;
-#}
-
 # replace ' ' to '+'
 def unspace(str)
   str.gsub(/ /, "+");
 end
 
-#
-#// tag を抜き出す
-#function Tags(filepath) {
-#  let text = read(filepath);
-#
-#  // [foo][bar] の部分
-#  let tagtext = text.match(/\# ((\[(.+?)\])+)/)[1];
-#  // tag は必ず書く
-#  if (tagtext === undefined || tagtext.length === 0) {
-#    console.error('\x1b[0;31mThere is No TAGS\x1b[0m');
-#    exit(1);
-#  }
-#
-#  // tag を本文から消す
-#  let md = text.replace(' ' + tagtext, '');
-#
-#  // tag をリストに
-#  let tags = tagtext.substr(1, tagtext.length - 2).split('][');
-#
-#  return { tags, md };
-#}
-#
-#// Intro/Theme の中身を取り出す
-#function Description(text) {
-#  let intro = text.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2].trim();
-#  intro = intro.replace(/(\n|\r)/g, '');
-#  intro = intro.substring(0, 140) + '...';
-#  intro = hsp(intro);
-#  return intro;
-#}
-#
-#const CSS = {
-#  ARTICLE: '/assets/css/article.css',
-#  BODY:    '/assets/css/body.css',
-#  INFO:    '/assets/css/info.css',
-#  HEADER:  '/assets/css/header.css',
-#  MAIN:    '/assets/css/main.css',
-#  FOOTER:  '/assets/css/footer.css',
-#  PRE:     '/assets/css/pre.css',
-#  TABLE:   '/assets/css/table.css',
-#};
-#
 #function CatStyle(path) {
 #  return Object.keys(CSS).map((f) => {
 #    return `${path}/${f.toLowerCase()}.css`;
@@ -85,8 +26,6 @@ end
 #    return fs.readFileSync(f).toString();
 #  }).join('\n');
 #}
-
-
 
 # tag ごとのビルダ
 class Markup
@@ -97,25 +36,7 @@ class Markup
       PRE:   "/assets/css/pre.css",
       TABLE: "/assets/css/table.css",
     }
-#    this.host = option.host;
-#    this.ampurl = option.ampurl;
-#    this.template = option.template;
-#    this.meta = option.meta;
-#    this.description = option.description;
-#    this.created_at = option.created_at;
-#    this.updated_at = option.updated_at;
-#    this.dir = option.dir;
-#    this.tags = option.tags;
-#    this.style = option.style;
-#    this.icon = option.icon;
-#    this.title = '';
-   end
-#  get isAMP() {
-#    return !this.ampurl;
-#  }
-#  taglist() {
-#    return this.tags.map((tag) => `<a>${tag}</a>`).join(',');
-#  }
+  end
   def wrap(value)
     # increase indent
     "\n#{value}".gsub(/\n/m, "\n#{@indent}") + "\n"
@@ -123,11 +44,6 @@ class Markup
   def style(href)
     "<link rel=stylesheet property=stylesheet type=text/css href=#{href}>"
   end
-#  HTML(article) {
-#    this.article = article;
-#    this.meta = eval('`' + this.meta + '`');
-#    return eval('`' + this.template + '`');
-#  }
   def raw(node)
     node.value
   end
@@ -167,10 +83,6 @@ class Markup
       value = style(@css.PRE) + "\n" + value
       @css.PRE = nil
     end
-    #if (!this.isAMP && !this.pred) {
-    #  value = [this.Style(CSS.PRE), value].join('\n');
-    #  this.pred = true;
-    #}
     return value;
   end
   def table(node)
@@ -180,10 +92,6 @@ class Markup
       value = style(@css.TABLE) + "\n" + value
       @css.TABLE = nil
     end
-    #if (!this.isAMP && !this.tabled) {
-    #  value = [this.Style(CSS.TABLE), value].join('\n');
-    #  this.tabled = true;
-    #}
     return value;
   end
   def thead(node)
@@ -214,7 +122,7 @@ class Markup
     "<p>#{node.value}\n"
   end
 
-  ## inline elements
+  # inline elements
   def codespan(node)
     "<code>#{hsp(node.value)}</code>"
   end
@@ -254,35 +162,28 @@ class Markup
     "..." if node.value == :hellip
   end
   def a(node)
-    #if (this.isAMP && node.url.match(/^chrome:\/\//)) {
-    #  // amp page ignores chrome:// url
-    #  return node.url;
-    #}
     %(<a href="#{node.attr["href"]}">#{node.value}</a>)
     # TODO: rel="noopener noreferrer"
   end
-  def img(node)
-    width = "";
-    height = "";
+
+  def imgsize(node)
+    width, height = "", "";
 
     size = node.attr["src"].split("#")[1];
     if size
       size = size.split("x");
-      if size.size == 2
+      if size.size == 1
+        width = "width=#{size[0]}"
+      elsif size.size == 2
         width = "width=#{size[0]}"
         height = "height=#{size[1]}"
       end
     end
+    return width, height
+  end
 
-    #// AMP should specify width-height
-    #if (this.isAMP) {
-    #  // not has amp link means amp template
-    #  if (width === '' || height === '') {
-    #    console.log('no widthxheight for img');
-    #    exit(1);
-    #  }
-    #  return `<amp-img layout=responsive src=${node.url} alt="${node.alt}" title="${node.title}" ${width} ${height}>`;
-    #}
+  def img(node)
+    width, height = imgsize(node)
 
     # SVG should specify width-height
     if File.extname(URI.parse(node.attr["src"]).path) == ".svg"
@@ -310,9 +211,6 @@ class Markup
     }.join(" ")
     value = "<#{node.value} #{attrs}></#{node.value}>\n"
 
-    #if (this.isAMP && value.match(/<iframe.*/)) {
-    #  return value.replace(/iframe/g, 'amp-iframe');
-    #}
     return value
   end
 end
@@ -334,6 +232,31 @@ class Hash
       :strong,
       :paragraph,
     ].include?(self.type)
+  end
+end
+
+class AMP < Markup
+  def a(node)
+    if node.attr["href"].match(/^chrome:\/\//)
+      # amp page ignores `chrome://` url
+      return node.url;
+    end
+    super(node)
+  end
+  def img(node)
+    # AMP should specify width-height
+    if width == "" || height == ""
+      STDERR.puts("no width x height for img")
+      exit(1);
+    end
+    %(<amp-img layout=responsive src=#{node.attr["src"]} alt="#{node.attr["alt"]}" title="#{node.attr["title"]}" #{width} #{height}>)
+  end
+  def html_element(node)
+    value = super(node)
+    if value.match(/<iframe.*/)
+      value.sub(/iframe/, 'amp-iframe');
+    end
+    value
   end
 end
 
@@ -363,7 +286,8 @@ class Traverser
   end
 
   def enter(node)
-    #TODO: puts "enter: #{node.type}"
+    # DEBUG: puts "enter: #{node.type}"
+
     # enter では、 inline 属性を追加し
     # stack に詰むだけ
     # 実際は、pop 側で整合検証くらいしか使ってない
@@ -710,59 +634,6 @@ class Entry
   end
 end
 
-
-#function prepare(filepath, option) {
-#  let indent = '  ';
-#  let dir = path.parse(filepath).dir;
-#  let name = path.parse(filepath).name;
-#  let host = dir.split('/')[1];
-#  let baseurl = '/' + dir.split('/').slice(2).join('/');
-#  let created_at = dir.split('/')[3];
-#  let updated_at = fs.statSync(filepath).mtime.toISOString().substring(0, 10);
-#
-#  // separate tag
-#  let { tags, md } = Tags(filepath);
-#
-#  // take description
-#  let description = Description(md);
-#
-#  // meta
-#  let icon = option.icon;
-#  let canonical = `${baseurl}/${name}.html`;
-#  let ampurl = `${baseurl}/${name}.amp.html`;
-#  let target = `${dir}/${name}.html`;
-#
-#  // template
-#  let meta = option.meta;
-#  let template = option.template;
-#  let style = null;
-#
-#  if (option.amp) {
-#    ampurl = null;
-#    style = CatStyle('blog.jxck.io/assets/css');
-#    target = `${dir}/${name}.amp.html`;
-#  }
-#
-#  return {
-#    dir,
-#    name,
-#    created_at,
-#    updated_at,
-#    tags,
-#    md,
-#    description,
-#    canonical,
-#    ampurl,
-#    host,
-#    meta,
-#    template,
-#    style,
-#    target,
-#    indent,
-#    icon,
-#  };
-#}
-#
 #if (process.argv.length < 3) {
 #  console.error('no file name');
 #  exit(1);
@@ -831,9 +702,12 @@ blog_template = File.read(".template/blog.html.erb")
 
 entry = Entry.new(path, icon)
 Dir.chdir(entry.dir) # change dir for read script file
+
+# blog
 article = AST.new(entry.no_tag).build(Markup.new(entry.canonical))
 entry.article = article
 entry.meta = ERB.new(meta_template).result(binding).strip()
-
 html = ERB.new(blog_template).result(binding).strip()
 File.write(entry.htmlfile, html)
+
+# AMP
