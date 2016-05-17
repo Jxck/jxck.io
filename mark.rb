@@ -69,8 +69,7 @@ class Markup
 
   def pre(node)
     lang = node.attr && node.attr["class"].sub("language-", "")
-    # TODO:こっち value = "<pre#{lang ? %( class=#{lang}) : ""}><code>#{node.value}</code></pre>\n"
-    %(<pre class=#{lang || '""'}><code>#{node.value}</code></pre>\n)
+    "<pre#{lang ? %( class=#{lang}) : ""}><code>#{node.value}</code></pre>\n"
   end
   protected :pre
 
