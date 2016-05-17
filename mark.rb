@@ -385,7 +385,7 @@ class Traverser
       end
 
       # インデントを無視するため、全部組み上がったら後で差し込む。
-      @codes.push(value.strip)
+      @codes.push(value.chomp)
 
       # あとで差し変えるため id として番号を入れておく
       node.value = "// #{@codes.length}"
