@@ -645,9 +645,8 @@ class Entry
   end
 
   def description
-    # TODO: description の link を無くす
-    #@text.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2].gsub(/\[(.*?)\]\(.*?\)/, '\1').strip();
-    hsp @text.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2].gsub(/(\n|\r)/, '').strip()[0...140] + "..."
+    # description の link は無くす
+    hsp @text.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2].gsub(/\[(.*?)\]\(.*?\)/, '\1').gsub(/(\n|\r)/, '').strip()[0...140] + "..."
   end
 end
 
