@@ -163,7 +163,7 @@ by Jxck
         <h3 id="Public-Key-Pins+ヘッダ"><a href="#Public-Key-Pins+ヘッダ">Public-Key-Pins ヘッダ</a></h3>
         <p>HPKP を有効化するには、 Public-Key-Pins ヘッダを付与し、その引数にハッシュを指定する。
         <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-        <pre class=""><code>Public-Key-Pins: pin-sha256=&quot;base64==&quot;; max-age=expireTime [; includeSubdomains][; report-uri=&quot;reportURI&quot;]</code></pre>
+        <pre><code>Public-Key-Pins: pin-sha256=&quot;base64==&quot;; max-age=expireTime [; includeSubdomains][; report-uri=&quot;reportURI&quot;]</code></pre>
         <p>設定については、以下が参考になる。
         <p><a href="https://developer.mozilla.org/ja/docs/Web/Security/Public_Key_Pinning">Public Key Pinning - Web セキュリティ | MDN</a>
         <p>基本的には後述する方法で取得した証明書のハッシュである Subject Public Key Information(SPKI) の Base64 と、ブラウザに保持する期限、検証に失敗した場合のレポート送信先を指定する。
@@ -275,13 +275,13 @@ curl -sI https://github.com | grep Public-Key-Pins | ruby -nle &#039;puts $_.gsu
         <h3 id="結果"><a href="#結果">結果</a></h3>
         <p>生成したヘッダは以下である。
         max-age は、とりあえず 3600s と短い値から始めることにした。
-        <pre class=""><code>Public-Key-Pins:
+        <pre><code>Public-Key-Pins:
   max-age=3600;
   pin-sha256=&quot;7JT7NhX2St/VBBkRi4BO427M7ytLy7p3CRYPtHpSm7c=&quot;;
   pin-sha256=&quot;+WpRHNpAId2FIOvVgwmS3HsG+eJtERKC4/qM1tQaeRk=&quot;;
   report-uri=&quot;https://4887c342aec2b444c655987aa8b0d5cb.report-uri.io/r/default/hpkp/enforce&quot;</code></pre>
         <p>Report-Only は、 <code>max-age</code> が不要になる。また report-uri.io では、 Report-Only 用に URI が変わるので、それを設定している。
-        <pre class=""><code>Public-Key-Pins-Report-Only:
+        <pre><code>Public-Key-Pins-Report-Only:
   pin-sha256=&quot;7JT7NhX2St/VBBkRi4BO427M7ytLy7p3CRYPtHpSm7c=&quot;;
   pin-sha256=&quot;+WpRHNpAId2FIOvVgwmS3HsG+eJtERKC4/qM1tQaeRk=&quot;;
   report-uri=&quot;https://4887c342aec2b444c655987aa8b0d5cb.report-uri.io/r/default/hpkp/reportOnly&quot;</code></pre>
