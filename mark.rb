@@ -94,7 +94,8 @@ class Markup
     @indent = "  "
     @canonical = canonical
     @css = {
-      PRE: "/assets/css/pre.css",
+      PRE:   "/assets/css/pre.css",
+      TABLE: "/assets/css/table.css",
     }
 #    this.host = option.host;
 #    this.ampurl = option.ampurl;
@@ -159,7 +160,8 @@ class Markup
   end
   def codeblock(node)
     lang = node.attr && node.attr["class"].sub("language-", "")
-    value = "<pre#{lang ? %( class=#{lang}) : ""}><code>#{node.value}</code></pre>\n"
+    # TODO:こっち value = "<pre#{lang ? %( class=#{lang}) : ""}><code>#{node.value}</code></pre>\n"
+    value = %(<pre class=#{lang || '""'}><code>#{node.value}</code></pre>\n)
 
     if @css.PRE
       value = style(@css.PRE) + "\n" + value
@@ -173,6 +175,11 @@ class Markup
   end
   def table(node)
     value = "<table>#{wrap(node.value)}</table>"
+
+    if @css.TABLE
+      value = style(@css.TABLE) + "\n" + value
+      @css.TABLE = nil
+    end
     #if (!this.isAMP && !this.tabled) {
     #  value = [this.Style(CSS.TABLE), value].join('\n');
     #  this.tabled = true;
@@ -183,7 +190,7 @@ class Markup
     "<thead>#{wrap(node.value)}</thead>\n"
   end
   def tbody(node)
-    "<tbody>#{wrap(node.value)}</thody>\n"
+    "<tbody>#{wrap(node.value)}</tbody>\n"
   end
   def tr(node)
     "<tr>#{wrap(node.value)}</tr>\n"
@@ -217,7 +224,7 @@ class Markup
   def smart_quote(node)
     {
       lsquo: "'",
-      rsquo: "`",
+      rsquo: "'",
       ldquo: '"',
       rdquo: '"',
     }[node.value]
@@ -242,6 +249,9 @@ class Markup
   end
   def entity(node)
     node.options.original
+  end
+  def typographic_sym(node)
+    "..." if node.value == :hellip
   end
   def a(node)
     #if (this.isAMP && node.url.match(/^chrome:\/\//)) {
@@ -282,9 +292,9 @@ class Markup
     # No width-height for normal img
     return <<-EOS
       <picture>
-   <source type=image/webp srcset=#{node.attr["src"].sub(/(.png|.gif|.jpg)/, ".webp")}>
-   <img src=#{node.attr["src"]} alt="#{node.attr["alt"]}" title="#{node.attr["title"]}">
-   </picture>
+    <source type=image/webp srcset=#{node.attr["src"].sub(/(.png|.gif|.jpg)/, ".webp")}>
+    <img src=#{node.attr["src"]} alt="#{node.attr["alt"]}" title="#{node.attr["title"]}">
+    </picture>
     EOS
   end
   def html_element(node)
@@ -362,7 +372,7 @@ class Traverser
   end
 
   def leave(node)
-    #TODO: puts "leave: #{node.type} #{node.value}"
+    puts "leave: #{node.type} #{node.value}"
 
     if node.type == :codeblock
       # コードを抜き取り、ここで id に置き換える
