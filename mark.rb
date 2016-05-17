@@ -90,10 +90,10 @@ end
 
 # tag ごとのビルダ
 class Markup
-  def initialize(option)
+  def initialize(canonical)
     @indent = "  "
+    @canonical = canonical
 #    this.host = option.host;
-    @canonical = option.canonical || "https://example.com" #TODO
 #    this.ampurl = option.ampurl;
 #    this.template = option.template;
 #    this.meta = option.meta;
@@ -151,7 +151,7 @@ class Markup
       return %(<h#{level}><a href=#{@canonical}>#{@title}</a></h#{level}>\n)
     else
       # h2 以降は id を振る
-      return %(<h#{level} id="#{unspace(node.value)}"><a href="#{unspace(node.value)}">#{node.value}</a></h#{level}>\n)
+      return %(<h#{level} id="#{unspace(node.value)}"><a href="##{unspace(node.value)}">#{node.value}</a></h#{level}>\n)
     end
   end
   def codespan(node)
@@ -334,7 +334,7 @@ class Traverser
   end
 
   def enter(node)
-    puts "enter: #{node.type}"
+    # TODO puts "enter: #{node.type}"
     # enter では、 inline 属性を追加し
     # stack に詰むだけ
     # 実際は、pop 側で整合検証くらいしか使ってない
@@ -343,7 +343,7 @@ class Traverser
   end
 
   def leave(node)
-    puts "leave: #{node.type}"
+    # TODO puts "leave: #{node.type}"
 
     if node.type == :codespan
       if node.value.include?("\n")
@@ -525,7 +525,6 @@ class AST
       child = tabling(child) if child.type == :table
 
       child = dling(child) if child.type == :dl
-      j child
 
       # H2.. が来たらそこで section を追加する
       if child.type == :header
@@ -610,9 +609,6 @@ class AST
     # 結果の <article> 結果
     article = stack[0].val;
 
-
-    #let result = template.HTML(article);
-
     # indent を無視するため
     # ここで pre に code を戻す
     # ついでにエスケープ
@@ -621,25 +617,25 @@ class AST
       #result = result.replace(`// ${i + 1}`, hsp(code));
       article.sub!("// #{i + 1}", hsp(code))
     }
-    puts article
 
-    #return result;
+    return article
   end
 end
 
-class Builder
-  attr_accessor :text
-  def initialize(filepath)
-    @filepath = filepath
-    @text = File.read(filepath)
+class Entry
+  attr_accessor :article, :meta, :icon
+  def initialize(path, icon)
+    @path = path
+    @text = File.read(path)
+    @icon = icon
   end
 
   def dir
-    File.dirname(@filepath)
+    File.dirname(@path)
   end
 
   def name
-    File.basename(@filepath, ".*")
+    File.basename(@path, ".*")
   end
 
   def host
@@ -651,10 +647,12 @@ class Builder
   end
 
   def canonical
+    # TODO https://
     "#{baseurl}/#{name}.html"
   end
 
   def ampurl
+    # TODO https://
     "#{baseurl}/#{name}.amp.html"
   end
 
@@ -663,7 +661,11 @@ class Builder
   end
 
   def updated_at
-    File.mtime(@filepath).strftime("%Y-%m-%d")
+    File.mtime(@path).strftime("%Y-%m-%d")
+  end
+
+  def title
+    @text.match(/^# \[.*\] (.*)/)[1]
   end
 
   # tag を抜き出す
@@ -672,7 +674,7 @@ class Builder
   end
 
   def htmlfile
-   "#{dir}/#{name}.html"
+    "#{dir}/#{name}.html"
   end
 
   # tag を本文から消す
@@ -681,22 +683,12 @@ class Builder
   end
 
   def description
-    @text.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2].gsub(/\[(.*?)\]\(.*?\)/, '\1').strip();
+    # TODO: description の link を無くす
+    #@text.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2].gsub(/\[(.*?)\]\(.*?\)/, '\1').strip();
+    @text.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2].strip()[0...140] + "..."
   end
 end
 
-b = Builder.new("./blog.jxck.io/entries/2016-01-27/new-blog-start.md")
-#p b.dir
-#p b.name
-#p b.host
-#p b.baseurl
-#p b.created_at
-#p b.updated_at
-#puts b.no_tag
-#p b.description
-#p b.canonical
-#p b.ampurl
-p b.htmlfile
 
 #function prepare(filepath, option) {
 #  let indent = '  ';
@@ -811,17 +803,12 @@ p b.htmlfile
 #  fs.writeFileSync(info.target, article);
 #})();
 
-__END__
-md = <<-EOS
-hoge
+path = "./blog.jxck.io/entries/2016-01-27/new-blog-start.md"
+icon = "https://jxck.io/assets/img/jxck.png"
+entry = Entry.new(path, icon)
+article = AST.new(entry.no_tag).build(Markup.new(entry.canonical))
+entry.article = article
+entry.meta = ERB.new(File.read(".template/meta.html") + File.read(".template/ld-json.html")).result(binding).strip()
 
-A
-: definition of A
-
-B
-: definition of B
-
-fuga
-EOS
-
-AST.new(md).build(Markup.new({}))
+html = ERB.new(File.read(".template/blog.html")).result(binding).strip()
+File.write(entry.htmlfile, html)
