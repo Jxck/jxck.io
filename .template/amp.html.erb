@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html amp>
+<head>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=<%= entry.canonical %>>
+<meta name=viewport content="width=device-width,minimum-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+<link rel=author href=//jxck.io/assets/humans.txt>
+
+<%= entry.meta %>
+
+<title><%= entry.title %> | blog.jxck.io</title>
+<script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+<script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+<script async src=https://cdn.ampproject.org/v0.js></script>
+
+<style amp-custom>
+<%= style %>
+</style>
+</head>
+<body>
+<header>
+  <ul>
+    <li><a href=//blog.jxck.io><amp-img class=logo alt="blog top" width=30 height=30 src=/assets/img/blog.svg></a>
+    <li><a href=.><amp-img alt="move to parent directory" width=30 height=30 src=/assets/img/up.svg></a>
+    <li><a href=/feeds/atom.xml><amp-img alt="rss feed" width=30 height=30 src=/assets/img/rss.svg></a>
+    <li><a href=//jxck.io/humans.txt><amp-img alt="huamns.txt" width=30 height=30 src=/assets/img/humans.svg></a>
+    <li><a href=//jxck.io><amp-img class=logo alt="jxck logo" width=30 height=30 src=/assets/img/jxck.svg></a>
+  </ul>
+</header>
+<main>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=<%= entry.created_at %>><%= entry.created_at %></time>
+    <li>updated_at: <time class=updated_at datetime=<%= entry.updated_at %>><%= entry.updated_at %></time>
+    <li class=tags>tags: [<%= entry.tags.map{|tag| "<a>#{tag}</a>"}.join(",") %>]
+  </ul>
+
+<%= entry.article %>
+</main>
+<hr>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
+</footer>
+</body>
+</html>
+<amp-analytics type="googleanalytics" id="analytics1">
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
