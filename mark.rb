@@ -19,14 +19,6 @@ def unspace(str)
   str.gsub(/ /, "+");
 end
 
-#function CatStyle(path) {
-#  return Object.keys(CSS).map((f) => {
-#    return `${path}/${f.toLowerCase()}.css`;
-#  }).map((f) => {
-#    return fs.readFileSync(f).toString();
-#  }).join('\n');
-#}
-
 # tag ごとのビルダ
 class Markup
   def initialize(canonical)
@@ -74,10 +66,16 @@ class Markup
       return %(<h#{level} id="#{unspace(node.value)}"><a href="##{unspace(node.value)}">#{node.value}</a></h#{level}>\n)
     end
   end
-  def codeblock(node)
+
+  def pre(node)
     lang = node.attr && node.attr["class"].sub("language-", "")
     # TODO:こっち value = "<pre#{lang ? %( class=#{lang}) : ""}><code>#{node.value}</code></pre>\n"
-    value = %(<pre class=#{lang || '""'}><code>#{node.value}</code></pre>\n)
+    %(<pre class=#{lang || '""'}><code>#{node.value}</code></pre>\n)
+  end
+  protected :pre
+
+  def codeblock(node)
+    value = pre(node)
 
     if @css.PRE
       value = style(@css.PRE) + "\n" + value
@@ -85,8 +83,14 @@ class Markup
     end
     return value;
   end
+
+  def tabletag(node)
+    "<table>#{wrap(node.value)}</table>"
+  end
+  protected :tabletag
+
   def table(node)
-    value = "<table>#{wrap(node.value)}</table>"
+    value = tabletag(node)
 
     if @css.TABLE
       value = style(@css.TABLE) + "\n" + value
@@ -181,6 +185,7 @@ class Markup
     end
     return width, height
   end
+  protected :imgsize
 
   def img(node)
     width, height = imgsize(node)
@@ -198,6 +203,7 @@ class Markup
     </picture>
     EOS
   end
+
   def html_element(node)
     if node.value != "iframe"
       STDERR.puts "unsupported html element #{node.value}"
@@ -239,11 +245,19 @@ class AMP < Markup
   def a(node)
     if node.attr["href"].match(/^chrome:\/\//)
       # amp page ignores `chrome://` url
-      return node.url;
+      return node.attr["href"]
     end
     super(node)
   end
+  def codeblock(node)
+    pre(node)
+  end
+  def table(node)
+    tabletag(node)
+  end
   def img(node)
+    width, height = imgsize(node)
+
     # AMP should specify width-height
     if width == "" || height == ""
       STDERR.puts("no width x height for img")
@@ -254,7 +268,7 @@ class AMP < Markup
   def html_element(node)
     value = super(node)
     if value.match(/<iframe.*/)
-      value.sub(/iframe/, 'amp-iframe');
+      value.gsub!(/iframe/, 'amp-iframe');
     end
     value
   end
@@ -622,6 +636,10 @@ class Entry
     "#{name}.html"
   end
 
+  def ampfile
+    "#{name}.amp.html"
+  end
+
   # tag を本文から消す
   def no_tag
     @text.sub(" [" + tags.join("][") + "]", "");
@@ -699,15 +717,33 @@ path = ARGV.first
 icon = "https://jxck.io/assets/img/jxck.png"
 meta_template = File.read(".template/meta.html.erb") + File.read(".template/ld-json.html.erb")
 blog_template = File.read(".template/blog.html.erb")
+amp_template = File.read(".template/amp.html.erb")
+
+#style = Dir.glob("./blog.jxck.io/assets/css/*.css").sort.map {|css| File.read(css) }.join("\n")
+style = [
+  "./blog.jxck.io/assets/css/article.css",
+  "./blog.jxck.io/assets/css/body.css",
+  "./blog.jxck.io/assets/css/info.css",
+  "./blog.jxck.io/assets/css/header.css",
+  "./blog.jxck.io/assets/css/main.css",
+  "./blog.jxck.io/assets/css/footer.css",
+  "./blog.jxck.io/assets/css/pre.css",
+  "./blog.jxck.io/assets/css/table.css",
+].map {|css| File.read(css) }.join("\n")
 
 entry = Entry.new(path, icon)
 Dir.chdir(entry.dir) # change dir for read script file
 
 # blog
-article = AST.new(entry.no_tag).build(Markup.new(entry.canonical))
-entry.article = article
-entry.meta = ERB.new(meta_template).result(binding).strip()
-html = ERB.new(blog_template).result(binding).strip()
-File.write(entry.htmlfile, html)
+#article = AST.new(entry.no_tag).build(Markup.new(entry.canonical))
+#entry.article = article
+#entry.meta = ERB.new(meta_template).result(binding).strip()
+#html = ERB.new(blog_template).result(binding).strip()
+#File.write(entry.htmlfile, html)
 
 # AMP
+article = AST.new(entry.no_tag).build(AMP.new(entry.canonical))
+entry.article = article
+entry.meta = ERB.new(meta_template).result(binding).strip()
+html = ERB.new(amp_template).result(binding).strip()
+File.write(entry.ampfile, html)
