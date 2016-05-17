@@ -9,7 +9,7 @@ puts `find ./blog.jxck.io/entries/* -name *.html | xargs -L 4 -P 4 rm`
 puts "blog html deleted"
 
 # エントリ markdown をビルド
-puts `find ./blog.jxck.io/entries/**/*.md | xargs -L 1 -P 4 ./mark.js`
+puts `find ./blog.jxck.io/entries/**/*.md | xargs -L 1 -P 4 ./mark.rb`
 puts "blog html build"
 
 # index.html をビルド
