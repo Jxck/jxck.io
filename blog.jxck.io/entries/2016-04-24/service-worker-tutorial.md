@@ -94,7 +94,6 @@ navigator.serviceWorker.register('worker.js').then((registration) => {
   console.log(controller);
   fetch('/test');
 });
-
 ```
 
 ```js

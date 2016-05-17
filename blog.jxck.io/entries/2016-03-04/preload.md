@@ -89,7 +89,6 @@ Preload を使うことで、「**取得しておきたいけど実行はした�
 
 ```html
 <link rel=preload as=script href=script.js>
-
 ```
 
 ```js
