@@ -310,7 +310,7 @@ class Traverser
   end
 
   def leave(node)
-    puts "leave: #{node.type} #{node.value}"
+    # DEBUG: puts "leave: #{node.type} #{node.value}"
 
     if node.type == :codeblock
       # コードを抜き取り、ここで id に置き換える
@@ -735,11 +735,11 @@ entry = Entry.new(path, icon)
 Dir.chdir(entry.dir) # change dir for read script file
 
 # blog
-#article = AST.new(entry.no_tag).build(Markup.new(entry.canonical))
-#entry.article = article
-#entry.meta = ERB.new(meta_template).result(binding).strip()
-#html = ERB.new(blog_template).result(binding).strip()
-#File.write(entry.htmlfile, html)
+article = AST.new(entry.no_tag).build(Markup.new(entry.canonical))
+entry.article = article
+entry.meta = ERB.new(meta_template).result(binding).strip()
+html = ERB.new(blog_template).result(binding).strip()
+File.write(entry.htmlfile, html)
 
 # AMP
 article = AST.new(entry.no_tag).build(AMP.new(entry.canonical))
