@@ -37,7 +37,7 @@ Content-Security-Policy: default-src 'self'
 
 ここで使用されるディレクティブについては、以下が参考になる。
 
-[CSP におけるポリシーのディレクティブ - Web セキュリティ | MDN](https://developer.mozilla.org/ja/docs/Web/Security/CSP/CSP_policy_directives)
+[CSP におけるポリシーのディレクティブ - Web セキュリティ \| MDN](https://developer.mozilla.org/ja/docs/Web/Security/CSP/CSP_policy_directives)
 
 
 基本的には、同一オリジン以外の外部スクリプトや、 `<script>` 内に直接記述するインラインスクリプトなどを全て除外し、そうしたスクリプトがあった場合も実行を阻止する。
