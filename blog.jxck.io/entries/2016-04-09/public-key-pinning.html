@@ -19,21 +19,21 @@ by Jxck
 <script async src=/assets/js/main.js></script>
 
 <meta name=author content=Jxck>
-<meta name=description content="本サイトにて Public Key Pinning for HTTP を有効化した。[CSP](https://blog.jxck.io/entries/2016-03-30/content-security-policy.html) 同様、まずは Report-Only を設定...">
+<meta name=description content="本サイトにて Public Key Pinning for HTTP を有効化した。CSP 同様、まずは Report-Only を設定し、HPKP Report についても、 report-uri.io を用いて収集することにした。導入に必要な設定や、注意点についてまとめる。な...">
 <meta name=keywords content="hpkp,security">
 
 <meta name=twitter:card content=summary>
 <meta name=twitter:site content=@jxck_>
 <meta name=twitter:url content=https://blog.jxck.io/entries/2016-04-09/public-key-pinning.html>
 <meta name=twitter:title content="Public Key Pinning for HTTP(HPKP) 対応と report-uri.io でのレポート収集 | blog.jxck.io">
-<meta name=twitter:description content="本サイトにて Public Key Pinning for HTTP を有効化した。[CSP](https://blog.jxck.io/entries/2016-03-30/content-security-policy.html) 同様、まずは Report-Only を設定...">
+<meta name=twitter:description content="本サイトにて Public Key Pinning for HTTP を有効化した。CSP 同様、まずは Report-Only を設定し、HPKP Report についても、 report-uri.io を用いて収集することにした。導入に必要な設定や、注意点についてまとめる。な...">
 <meta name=twitter:image content=https://jxck.io/assets/img/jxck.png>
 
 <meta property=og:type content="article">
 <meta property=og:url content=https://blog.jxck.io/entries/2016-04-09/public-key-pinning.html>
 <meta property=og:title content="Public Key Pinning for HTTP(HPKP) 対応と report-uri.io でのレポート収集 | blog.jxck.io">
 <meta property=og:site_name content=blog.jxck.io>
-<meta property=og:description content="本サイトにて Public Key Pinning for HTTP を有効化した。[CSP](https://blog.jxck.io/entries/2016-03-30/content-security-policy.html) 同様、まずは Report-Only を設定...">
+<meta property=og:description content="本サイトにて Public Key Pinning for HTTP を有効化した。CSP 同様、まずは Report-Only を設定し、HPKP Report についても、 report-uri.io を用いて収集することにした。導入に必要な設定や、注意点についてまとめる。な...">
 <meta property=og:image content=https://jxck.io/assets/img/jxck.png>
 
 <link rel=icon sizes=192x192 href=https://jxck.io/assets/img/jxck.png>
@@ -54,7 +54,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-04-09T08:00:00+08:00",
-  "dateModified": "2016-04-11T08:00:00+08:00",
+  "dateModified": "2016-05-17T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -70,7 +70,7 @@ by Jxck
       "width": 257
     }
   },
-  "description": "本サイトにて Public Key Pinning for HTTP を有効化した。[CSP](https://blog.jxck.io/entries/2016-03-30/content-security-policy.html) 同様、まずは Report-Only を設定..."
+  "description": "本サイトにて Public Key Pinning for HTTP を有効化した。CSP 同様、まずは Report-Only を設定し、HPKP Report についても、 report-uri.io を用いて収集することにした。導入に必要な設定や、注意点についてまとめる。な..."
 }
 </script>
 
@@ -95,7 +95,7 @@ by Jxck
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-04-09>2016-04-09</time>
-    <li>updated_at: <time class=updated_at datetime=2016-04-11>2016-04-11</time>
+    <li>updated_at: <time class=updated_at datetime=2016-05-17>2016-05-17</time>
     <li class=tags>tags: [<a>hpkp</a>,<a>security</a>]
   </ul>
 
@@ -105,11 +105,11 @@ by Jxck
     <section>
       <h2 id="Intro"><a href="#Intro">Intro</a></h2>
       <p>本サイトにて Public Key Pinning for HTTP を有効化した。
-      <p><a href="https://blog.jxck.io/entries/2016-03-30/content-security-policy.html">CSP</a> 同様、まずは Report-Only を設定し、
+      <p><a href="https://blog.jxck.io/entries/2016-03-30/content-security-policy.html">CSP</a> 同様、まずは Report-Only を設定し、<br>
       HPKP Report についても、 <a href="https://report-uri.io">report-uri.io</a> を用いて収集することにした。
       <p>導入に必要な設定や、注意点についてまとめる。
       <p>なお、本サイトへの導入はあくまで <strong>実験</strong> である。運用や影響も踏まえると、一般サービスへの安易な導入は推奨しない。
-      <p>また、本来は HSTS と併用することが推奨されている。(必須ではない)
+      <p>また、本来は HSTS と併用することが推奨されている。(必須ではない)<br>
       そちらも追って対応する予定である。
     </section>
     <section>
@@ -163,7 +163,7 @@ by Jxck
         <h3 id="Public-Key-Pins+ヘッダ"><a href="#Public-Key-Pins+ヘッダ">Public-Key-Pins ヘッダ</a></h3>
         <p>HPKP を有効化するには、 Public-Key-Pins ヘッダを付与し、その引数にハッシュを指定する。
         <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-        <pre class=""><code>Public-Key-Pins: pin-sha256=&quot;base64==&quot;; max-age=expireTime [; includeSubdomains][; report-uri=&quot;reportURI&quot;]</code></pre>
+        <pre><code>Public-Key-Pins: pin-sha256=&quot;base64==&quot;; max-age=expireTime [; includeSubdomains][; report-uri=&quot;reportURI&quot;]</code></pre>
         <p>設定については、以下が参考になる。
         <p><a href="https://developer.mozilla.org/ja/docs/Web/Security/Public_Key_Pinning">Public Key Pinning - Web セキュリティ | MDN</a>
         <p>基本的には後述する方法で取得した証明書のハッシュである Subject Public Key Information(SPKI) の Base64 と、ブラウザに保持する期限、検証に失敗した場合のレポート送信先を指定する。
@@ -273,19 +273,19 @@ curl -sI https://github.com | grep Public-Key-Pins | ruby -nle &#039;puts $_.gsu
       </section>
       <section>
         <h3 id="結果"><a href="#結果">結果</a></h3>
-        <p>生成したヘッダは以下である。
+        <p>生成したヘッダは以下である。<br>
         max-age は、とりあえず 3600s と短い値から始めることにした。
-        <pre class=""><code>Public-Key-Pins:
+        <pre><code>Public-Key-Pins:
   max-age=3600;
   pin-sha256=&quot;7JT7NhX2St/VBBkRi4BO427M7ytLy7p3CRYPtHpSm7c=&quot;;
   pin-sha256=&quot;+WpRHNpAId2FIOvVgwmS3HsG+eJtERKC4/qM1tQaeRk=&quot;;
   report-uri=&quot;https://4887c342aec2b444c655987aa8b0d5cb.report-uri.io/r/default/hpkp/enforce&quot;</code></pre>
         <p>Report-Only は、 <code>max-age</code> が不要になる。また report-uri.io では、 Report-Only 用に URI が変わるので、それを設定している。
-        <pre class=""><code>Public-Key-Pins-Report-Only:
+        <pre><code>Public-Key-Pins-Report-Only:
   pin-sha256=&quot;7JT7NhX2St/VBBkRi4BO427M7ytLy7p3CRYPtHpSm7c=&quot;;
   pin-sha256=&quot;+WpRHNpAId2FIOvVgwmS3HsG+eJtERKC4/qM1tQaeRk=&quot;;
   report-uri=&quot;https://4887c342aec2b444c655987aa8b0d5cb.report-uri.io/r/default/hpkp/reportOnly&quot;</code></pre>
-        <p>意図的にレポートを上げて見てみたかったが、単に不正な証明書を用意するだけではだめだった。
+        <p>意図的にレポートを上げて見てみたかったが、単に不正な証明書を用意するだけではだめだった。<br>
         どうやったら、正しく HPKP 違反ができるのか、自前で CA を立てるなどする必要があるのかもしれない。
         <p>ということで CSP と違い、よほどのことがない限りレポートは上がらないはずであると考える。
         <p>もしレポートが上がった場合、結構な問題が発生している可能性もあるので、必要に応じて追記や報告をしたい。

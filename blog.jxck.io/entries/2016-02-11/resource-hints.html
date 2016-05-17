@@ -19,21 +19,21 @@ by Jxck
 <script async src=/assets/js/main.js></script>
 
 <meta name=author content=Jxck>
-<meta name=description content="Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要となるリソースを教える」ことで、投機的な取得を行う API 群である。[https://w3c.github.io/resource-hints/](https://w3c.github...">
+<meta name=description content="Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要となるリソースを教える」ことで、投機的な取得を行う API 群である。https://w3c.github.io/resource-hints/主に以下がある。- dns-prefetc...">
 <meta name=keywords content="resouce-hints,performance">
 
 <meta name=twitter:card content=summary>
 <meta name=twitter:site content=@jxck_>
 <meta name=twitter:url content=https://blog.jxck.io/entries/2016-02-11/resource-hints.html>
 <meta name=twitter:title content="Resource Hints API でリソースの投機的取得 | blog.jxck.io">
-<meta name=twitter:description content="Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要となるリソースを教える」ことで、投機的な取得を行う API 群である。[https://w3c.github.io/resource-hints/](https://w3c.github...">
+<meta name=twitter:description content="Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要となるリソースを教える」ことで、投機的な取得を行う API 群である。https://w3c.github.io/resource-hints/主に以下がある。- dns-prefetc...">
 <meta name=twitter:image content=https://jxck.io/assets/img/jxck.png>
 
 <meta property=og:type content="article">
 <meta property=og:url content=https://blog.jxck.io/entries/2016-02-11/resource-hints.html>
 <meta property=og:title content="Resource Hints API でリソースの投機的取得 | blog.jxck.io">
 <meta property=og:site_name content=blog.jxck.io>
-<meta property=og:description content="Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要となるリソースを教える」ことで、投機的な取得を行う API 群である。[https://w3c.github.io/resource-hints/](https://w3c.github...">
+<meta property=og:description content="Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要となるリソースを教える」ことで、投機的な取得を行う API 群である。https://w3c.github.io/resource-hints/主に以下がある。- dns-prefetc...">
 <meta property=og:image content=https://jxck.io/assets/img/jxck.png>
 
 <link rel=icon sizes=192x192 href=https://jxck.io/assets/img/jxck.png>
@@ -54,7 +54,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-02-11T08:00:00+08:00",
-  "dateModified": "2016-04-11T08:00:00+08:00",
+  "dateModified": "2016-03-28T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -70,7 +70,7 @@ by Jxck
       "width": 257
     }
   },
-  "description": "Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要となるリソースを教える」ことで、投機的な取得を行う API 群である。[https://w3c.github.io/resource-hints/](https://w3c.github..."
+  "description": "Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要となるリソースを教える」ことで、投機的な取得を行う API 群である。https://w3c.github.io/resource-hints/主に以下がある。- dns-prefetc..."
 }
 </script>
 
@@ -95,7 +95,7 @@ by Jxck
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-02-11>2016-02-11</time>
-    <li>updated_at: <time class=updated_at datetime=2016-04-11>2016-04-11</time>
+    <li>updated_at: <time class=updated_at datetime=2016-03-28>2016-03-28</time>
     <li class=tags>tags: [<a>resouce-hints</a>,<a>performance</a>]
   </ul>
 
@@ -149,7 +149,7 @@ by Jxck
         <h3 id="dns-prefetch"><a href="#dns-prefetch">dns-prefetch</a></h3>
         <p>DNS の問い合わせを事前に行い、キャッシュしておくことで、名前解決コストを下げる方法である。
         <pre class=html><code>&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//example.com&quot;&gt;</code></pre>
-        <p>例えば、メインページで接続する API サーバや、 CDN のエッジへの名前解決を行うなどが予想されるだろう。
+        <p>例えば、メインページで接続する API サーバや、 CDN のエッジへの名前解決を行うなどが予想されるだろう。<br>
         以下のようなケースで使用できる。
         <ul>
           <li>既に接続先ドメインがわかっている
@@ -162,7 +162,7 @@ by Jxck
         <p>仕様では、クロスオリジンも張ることができる。
         <pre class=html><code>&lt;link rel=&quot;preconnect&quot; href=&quot;//example.com&quot;&gt;
 &lt;link rel=&quot;preconnect&quot; href=&quot;//cdn.example.com&quot; crossorigin&gt;</code></pre>
-        <p>例えば API エンドポイントは決まっており、そこに対して連続したリクエストが発生すると分かっているような場合が予想される。
+        <p>例えば API エンドポイントは決まっており、そこに対して連続したリクエストが発生すると分かっているような場合が予想される。<br>
         以下のようなケースで使用できる。
         <ul>
           <li>既に接続先ドメインがわかっている
@@ -185,7 +185,7 @@ by Jxck
         <p>prefetch 可能なリソースのみからなるページならば、ページ全体を事前に取得することが可能な筈である。
         <p>そこで、そのページ全体を取得し、バックグラウンドに起こしたタブの中で、描画まで行ってしまうという方法である。
         <pre class=html><code>&lt;link rel=&quot;prerender&quot; href=&quot;//example.com/next-page.html&quot;&gt;</code></pre>
-        <p>描画が完了しているため、実際の遷移が発生したら、そのタブを切り替えるだけでよくなる。理論上は最速表示となるだろう。
+        <p>描画が完了しているため、実際の遷移が発生したら、そのタブを切り替えるだけでよくなる。理論上は最速表示となるだろう。<br>
         以下のようなケースで使用できる。
         <ul>
           <li>prefetch 可能なリソースのみからなるページ

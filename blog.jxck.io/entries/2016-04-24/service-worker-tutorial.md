@@ -94,7 +94,6 @@ navigator.serviceWorker.register('worker.js').then((registration) => {
   console.log(controller);
   fetch('/test');
 });
-
 ```
 
 ```js
@@ -245,4 +244,4 @@ TODO (GW予定/未定)
 
 映像中で使用した図です
 
-![service-worker-lifecycle](service-worker-lifecycle.svg#840x450)
+![service-worker-lifecycle](service-worker-lifecycle.svg#840x450, "service worker lifecycle")

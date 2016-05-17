@@ -83,23 +83,24 @@ HTTP には、 **Conditional GET** (条件付き GET) という仕組みがあ�
 
 具体的には、サーバは `ETag`, `Last-Modified` などのヘッダをレスポンスに付与することで、リソースに関する情報をサーバに伝える。
 
-<dl>
-  <dt>ETag
-  <dd>そのリソースを一意に特定する値、要するにリソースのハッシュ値
-  <dt>Last-Modified
-  <dd>そのリソースが最後に更新されたタイムスタンプ
-</dl>
+ETag
+: そのリソースを一意に特定する値、要するにリソースのハッシュ値
+
+Last-Modified
+: そのリソースが最後に更新されたタイムスタンプ
+
 
 
 この値を保存したブラウザは、同じ URL へのリクエストに、キャッシュしたリソースに付与されていた値を設定してサーバに問い合わせる。
 サーバは、リクエストされたリソースについて各値を検証する。
 
-<dl>
-  <dt>If-Non-Match
-  <dd>ETag で受け取った値を付与、サーバはその値と現在のリソースの値を比較
-  <dt>If-Modified-Since
-  <dd>Last-Modified で受け取った値を付与、サーバはリソースの最終更新日を比較
-</dl>
+
+If-Non-Match
+: ETag で受け取った値を付与、サーバはその値と現在のリソースの値を比較
+
+If-Modified-Since
+: Last-Modified で受け取った値を付与、サーバはリソースの最終更新日を比較
+
 
 
 これによって、ブラウザがキャッシュしたリソースが、まだ新鮮であるかどうかをサーバが判断できる。
@@ -197,7 +198,7 @@ Cache-Control: max-age=3600, stale-if-error=360
 以下に用意したデモページを用意した。
 
 
-https://labs.jxck.io/stale-while-revalidate/
+[https://labs.jxck.io/stale-while-revalidate/](https://labs.jxck.io/stale-while-revalidate/)
 
 
 サーバは、アクセスの度に異なるシーケンス番号、タイムスタンプ、ランダムな文字列を返すようになっている。

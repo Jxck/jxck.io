@@ -54,7 +54,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-04-11T08:00:00+08:00",
-  "dateModified": "2016-04-11T08:00:00+08:00",
+  "dateModified": "2016-04-12T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -95,7 +95,7 @@ by Jxck
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-04-11>2016-04-11</time>
-    <li>updated_at: <time class=updated_at datetime=2016-04-11>2016-04-11</time>
+    <li>updated_at: <time class=updated_at datetime=2016-04-12>2016-04-12</time>
     <li class=tags>tags: [<a>hsts</a>,<a>security</a>]
   </ul>
 
@@ -122,7 +122,7 @@ by Jxck
       <h2 id="Strict-Transport-Security+ヘッダ"><a href="#Strict-Transport-Security+ヘッダ">Strict-Transport-Security ヘッダ</a></h2>
       <p>以下のような HTTP ヘッダを追加することで、 HSTS を有効にすることができる。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre class=""><code>Strict-Transport-Security: max-age=7776000</code></pre>
+      <pre><code>Strict-Transport-Security: max-age=7776000</code></pre>
       <p>このヘッダは、 HTTP ではなく HTTPS のレスポンスに付与する。
       <p>このヘッダを受け取ったブラウザは 7776000秒(90日) のあいだは、そのドメインに <code>http://~</code> で始まるリクエストを送信する際に、自動的にこれを <code>https://~</code> に置き換える。
       <p>これによって、例えば既にどこかのページに張られたリンクが <code>http://~</code> であったとしても、リダイレクトではなく最初から HTTPS を強制することができる。
@@ -145,7 +145,7 @@ by Jxck
       <p>また、 Chrome の Preload 登録の条件には、 <code>includeSubDomains</code> の適用が含まれている。
       <p>従って同様の理由から、止むを得ず <strong>preload 登録は見送る</strong> こととした。
       <p>結果、現時点では <a href="https://jxck.io">jxck.io</a> 及び <a href="https://blog.jxck.io">blog.jxck.io</a> に対して、以下のヘッダを付与した。
-      <pre class=""><code>Strict-Transport-Security: max-age=31536000</code></pre>
+      <pre><code>Strict-Transport-Security: max-age=31536000</code></pre>
     </section>
   </article>
 

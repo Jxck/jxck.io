@@ -19,21 +19,21 @@ by Jxck
 <script async src=/assets/js/main.js></script>
 
 <meta name=author content=Jxck>
-<meta name=description content="Chrome が予定している `&lt;link rel=stylesheet&gt;` の挙動の変更について、Google Chrome チームの Jake が、興味深いブログを上げている。[The future of loading CSS](https://jakearchibald....">
+<meta name=description content="Chrome が予定している `&lt;link rel=stylesheet&gt;` の挙動の変更について、Google Chrome チームの Jake が、興味深いブログを上げている。The future of loading CSSこの内容は、単に Chrome に対する変更だけで...">
 <meta name=keywords content="css,http2,performance">
 
 <meta name=twitter:card content=summary>
 <meta name=twitter:site content=@jxck_>
 <meta name=twitter:url content=https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html>
 <meta name=twitter:title content="HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について | blog.jxck.io">
-<meta name=twitter:description content="Chrome が予定している `&lt;link rel=stylesheet&gt;` の挙動の変更について、Google Chrome チームの Jake が、興味深いブログを上げている。[The future of loading CSS](https://jakearchibald....">
+<meta name=twitter:description content="Chrome が予定している `&lt;link rel=stylesheet&gt;` の挙動の変更について、Google Chrome チームの Jake が、興味深いブログを上げている。The future of loading CSSこの内容は、単に Chrome に対する変更だけで...">
 <meta name=twitter:image content=https://jxck.io/assets/img/jxck.png>
 
 <meta property=og:type content="article">
 <meta property=og:url content=https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html>
 <meta property=og:title content="HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について | blog.jxck.io">
 <meta property=og:site_name content=blog.jxck.io>
-<meta property=og:description content="Chrome が予定している `&lt;link rel=stylesheet&gt;` の挙動の変更について、Google Chrome チームの Jake が、興味深いブログを上げている。[The future of loading CSS](https://jakearchibald....">
+<meta property=og:description content="Chrome が予定している `&lt;link rel=stylesheet&gt;` の挙動の変更について、Google Chrome チームの Jake が、興味深いブログを上げている。The future of loading CSSこの内容は、単に Chrome に対する変更だけで...">
 <meta property=og:image content=https://jxck.io/assets/img/jxck.png>
 
 <link rel=icon sizes=192x192 href=https://jxck.io/assets/img/jxck.png>
@@ -54,7 +54,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-02-15T08:00:00+08:00",
-  "dateModified": "2016-05-07T08:00:00+08:00",
+  "dateModified": "2016-05-17T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -70,7 +70,7 @@ by Jxck
       "width": 257
     }
   },
-  "description": "Chrome が予定している `&lt;link rel=stylesheet&gt;` の挙動の変更について、Google Chrome チームの Jake が、興味深いブログを上げている。[The future of loading CSS](https://jakearchibald...."
+  "description": "Chrome が予定している `&lt;link rel=stylesheet&gt;` の挙動の変更について、Google Chrome チームの Jake が、興味深いブログを上げている。The future of loading CSSこの内容は、単に Chrome に対する変更だけで..."
 }
 </script>
 
@@ -95,7 +95,7 @@ by Jxck
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-02-15>2016-02-15</time>
-    <li>updated_at: <time class=updated_at datetime=2016-05-07>2016-05-07</time>
+    <li>updated_at: <time class=updated_at datetime=2016-05-17>2016-05-17</time>
     <li class=tags>tags: [<a>css</a>,<a>http2</a>,<a>performance</a>]
   </ul>
 
@@ -120,7 +120,7 @@ by Jxck
 &lt;body&gt;
   &lt;!-- content --&gt;
 &lt;/body&gt;</code></pre>
-      <p>ところが、リクエストの多重化が可能な HTTP/2 においては、そこを心配する必要がなくなった。
+      <p>ところが、リクエストの多重化が可能な HTTP/2 においては、そこを心配する必要がなくなった。<br>
       このため、コンポーネントごとに CSS を分割するのは、キャッシュの容易性を考えても良い方法と言える。
       <pre class=html><code>&lt;head&gt;
   &lt;link rel=&quot;stylesheet&quot; href=&quot;/header.css&quot;&gt;
@@ -133,11 +133,10 @@ by Jxck
   &lt;!-- content --&gt;
 &lt;/body&gt;</code></pre>
       <p>ただし、この場合でも2つの懸念が残る。
-      <blockquote>&lt;head&gt;
-       を出力する時点で、ページ内に存在する全てのコンポーネントを把握していないといけない</blockquote>
+      <blockquote>&lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; を出力する時点で、ページ内に存在する全てのコンポーネントを把握していないといけない</blockquote>
       <p>HTML を全て生成してから順次送るのであれば問題ないが、本来 HTML は先頭から、準備ができた順にコンポーネントを送信することも可能であるにもかかわらず、それができなくなる。
       <blockquote>footer.css のローディングが遅い場合、サイト全体をブロックする</blockquote>
-      <p>footer.css が必要なのは、 HTML 中の <code>&lt;footer&gt;</code> をレンダリングする時であり、そこまでに出てくる <code>&lt;header&gt;</code> などは、先にレンダリングすることも可能だ。
+      <p>footer.css が必要なのは、 HTML 中の <code>&lt;footer&gt;</code> をレンダリングする時であり、そこまでに出てくる <code>&lt;header&gt;</code> などは、先にレンダリングすることも可能だ。<br>
       しかし、実際はそのたった1つの CSS のせいで、そこまでに揃っているコンポーネントもレンダリングされず、真っ白のままになる。
     </section>
     <section>
@@ -151,9 +150,9 @@ by Jxck
         <li><a href="https://www.filamentgroup.com/lab/performance-rwd.html">https://www.filamentgroup.com/lab/performance-rwd.html</a>
         <li><a href="http://www.lukew.com/ff/entry.asp?1756">http://www.lukew.com/ff/entry.asp?1756</a>
       </ul>
-      <p>ただし、この方法には JS のライブラリが必須となる。
-      なぜなら、 Webkit は <code>&lt;link rel=stylesheet&gt;</code> が追加されると、それが JS によって追加されたものであれ、レンダリングをブロックしてしまうからである。
-      Firefox や IE/Edge は、 JS で追加されたものについては非同期に読み込むため、この問題は無い。
+      <p>ただし、この方法には JS のライブラリが必須となる。<br>
+      なぜなら、 Webkit は <code>&lt;link rel=stylesheet&gt;</code> が追加されると、それが JS によって追加されたものであれ、レンダリングをブロックしてしまうからである。<br>
+      Firefox や IE/Edge は、 JS で追加されたものについては非同期に読み込むため、この問題は無い。<br>
       Chrome は、現在の Stable では Webkit と同じだが、 Canary では Firefox, IE/Edge の方法に移行している。
     </section>
     <section>
@@ -188,7 +187,7 @@ by Jxck
   &lt;link rel=&quot;stylesheet&quot; href=&quot;/footer.css&quot;&gt;
   &lt;footer&gt;&lt;/footer&gt;
 &lt;/body&gt;</code></pre>
-      <p>まず、各 <code>&lt;link rel=stylesheet&gt;</code> はそれ以降のレンダリングをブロックするが、それ以前のコンテントのレンダリングをブロックしない。
+      <p>まず、各 <code>&lt;link rel=stylesheet&gt;</code> はそれ以降のレンダリングをブロックするが、それ以前のコンテントのレンダリングをブロックしない。<br>
       CSS は並列で読み込まれ、直列に適用される。
       <p>もし、 Header, Article, Footer の CSS が読み込まれていた場合を考えると、以下のような状態になる。
       <ul>
@@ -204,7 +203,7 @@ by Jxck
         <li>コンポーネント単位で設計し、そのコンポーネントの直前に <code>&lt;link&gt;</code> を書けば良い。
         <li>ストリームで考えられる(<code>&lt;link&gt;</code> の有無を先に考えなくて良いのでサーバは完成した順に HTML を送信できる)。
       </ul>
-      <p>ただし、レイアウトシステムを使う場合は、 Content-Shifting が発生しないように意識する必要がある。
+      <p>ただし、レイアウトシステムを使う場合は、 Content-Shifting が発生しないように意識する必要がある。<br>
       特に Table や Flexbox を利用したレイアウトでは、それが発生しやすい。これまでも同じ問題は認識されていたが、前述のような progressive な読み込みではこの問題がより発生しやすい。
       <p>Flexbox は小さいコンポーネント単位で使用し、全体のレイアウトには CSS grid を使うのが良いだろう。
     </section>
@@ -218,21 +217,21 @@ by Jxck
         <li>Firefox: <code>&lt;head&gt;</code> に <code>&lt;link rel=stylesheet&gt;</code> があるとブロックするが、 <code>&lt;body&gt;</code> では <code>&lt;head&gt;</code> の CSS がブロックしていない限りはブロックしない。これは FOUC(flash of unstyled content) を引き起こす。
         <li>IE/Edge: CSS が読み込み終わるまでパーサをブロックする、しかし、 <code>&lt;link&gt;</code> 前のコンテンツはレンダリングする。
       </ul>
-      <p>Chrome は IE/Ednge の方式に移ることを検討している。これにより Progressive Rendering パターンが可能になる。
+      <p>Chrome は IE/Ednge の方式に移ることを検討している。これにより Progressive Rendering パターンが可能になる。<br>
       合わせて <a href="https://github.com/whatwg/html/pull/616"><code>&lt;body&gt;</code>内の<code>&lt;link&gt;</code>を許可する仕様</a> の策定を進めている。
       <p>この変更は、後方互換であり、必要になるまでレンダリングされないだけである。
     </section>
     <section>
       <h2 id="Firefox+での+FOUC+対策"><a href="#Firefox+での+FOUC+対策">Firefox での FOUC 対策</a></h2>
-      <p>Firefox では、以下のように <code>&lt;script&gt;</code> をはさむことで CSS がロードされるまでパースをブロックし FOUC を回避できる。
+      <p>Firefox では、以下のように <code>&lt;script&gt;</code> をはさむことで CSS がロードされるまでパースをブロックし FOUC を回避できる。<br>
       <code>&lt;script&gt;</code> には中身が必要だが、スペース1つで十分である。
       <pre class=html><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;/article.css&quot;&gt;&lt;script&gt; &lt;/script&gt;
 &lt;main&gt;&lt;/main&gt;</code></pre>
     </section>
     <section>
       <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
-      <p>全てをまとめると、現状の Firefox, IE/Edge では Progressive Rendering が可能になる。
-      現状の Chrome & Safari では CSS がロードされるまで White Screen になるが、従来のように全てを <code>&lt;head&gt;</code> に置いていたのと比べれば問題ではない。
+      <p>全てをまとめると、現状の Firefox, IE/Edge では Progressive Rendering が可能になる。<br>
+      現状の Chrome & Safari では CSS がロードされるまで White Screen になるが、従来のように全てを <code>&lt;head&gt;</code> に置いていたのと比べれば問題ではない。<br>
       そして、数ヶ月以内に Chrome は IE/Edge の方式に移るので、問題は解決する。
       <p>これにより、 Just in time CSS が可能になり、レンダリングプロセスが最適化可能になる。
     </section>
@@ -245,7 +244,7 @@ by Jxck
         <li>Firefox 用の <code>&lt;script&gt; &lt;/script&gt;</code> はとりあえず無し
         <li>まだ <code>&lt;body&gt;</code> 内の <code>&lt;link&gt;</code> は仕様上許容されてなので、 <a href="https://validator.w3.org/nu/">w3c validator</a> ではそこがひっかかる
       </ul>
-      <p>元のリソースが小さいため、ネットワークをスロットリングしても、大きな変化が確認できなかった。
+      <p>元のリソースが小さいため、ネットワークをスロットリングしても、大きな変化が確認できなかった。<br>
       この記事のここのサンプルを、 <a href="https://labs.jxck.io">labs.jxck.io</a> に作成し、個々の CSS はサーバ側で遅延を入れる形で設定する。
     </section>
   </article>

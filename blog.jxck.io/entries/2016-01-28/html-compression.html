@@ -19,21 +19,21 @@ by Jxck
 <script async src=/assets/js/main.js></script>
 
 <meta name=author content=Jxck>
-<meta name=description content="本サイト [blog.jxck.io](https://blog.jxck.io) 以下については、 Markdown から静的ファイルを生成するスタイルで作成している。この変換時に以前から思っていた **HTML の最適化** を実施することにした。しかし、 md-&gt;html ...">
+<meta name=description content="本サイト blog.jxck.io 以下については、 Markdown から静的ファイルを生成するスタイルで作成している。この変換時に以前から思っていた **HTML の最適化** を実施することにした。しかし、 md-&gt;html 変換時にそれができるツールが見当たらないため、 ...">
 <meta name=keywords content="html,performance">
 
 <meta name=twitter:card content=summary>
 <meta name=twitter:site content=@jxck_>
 <meta name=twitter:url content=https://blog.jxck.io/entries/2016-01-28/html-compression.html>
 <meta name=twitter:title content="HTML の省略によるサイズ最適化 | blog.jxck.io">
-<meta name=twitter:description content="本サイト [blog.jxck.io](https://blog.jxck.io) 以下については、 Markdown から静的ファイルを生成するスタイルで作成している。この変換時に以前から思っていた **HTML の最適化** を実施することにした。しかし、 md-&gt;html ...">
+<meta name=twitter:description content="本サイト blog.jxck.io 以下については、 Markdown から静的ファイルを生成するスタイルで作成している。この変換時に以前から思っていた **HTML の最適化** を実施することにした。しかし、 md-&gt;html 変換時にそれができるツールが見当たらないため、 ...">
 <meta name=twitter:image content=https://jxck.io/assets/img/jxck.png>
 
 <meta property=og:type content="article">
 <meta property=og:url content=https://blog.jxck.io/entries/2016-01-28/html-compression.html>
 <meta property=og:title content="HTML の省略によるサイズ最適化 | blog.jxck.io">
 <meta property=og:site_name content=blog.jxck.io>
-<meta property=og:description content="本サイト [blog.jxck.io](https://blog.jxck.io) 以下については、 Markdown から静的ファイルを生成するスタイルで作成している。この変換時に以前から思っていた **HTML の最適化** を実施することにした。しかし、 md-&gt;html ...">
+<meta property=og:description content="本サイト blog.jxck.io 以下については、 Markdown から静的ファイルを生成するスタイルで作成している。この変換時に以前から思っていた **HTML の最適化** を実施することにした。しかし、 md-&gt;html 変換時にそれができるツールが見当たらないため、 ...">
 <meta property=og:image content=https://jxck.io/assets/img/jxck.png>
 
 <link rel=icon sizes=192x192 href=https://jxck.io/assets/img/jxck.png>
@@ -54,7 +54,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-01-28T08:00:00+08:00",
-  "dateModified": "2016-04-11T08:00:00+08:00",
+  "dateModified": "2016-05-17T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -70,7 +70,7 @@ by Jxck
       "width": 257
     }
   },
-  "description": "本サイト [blog.jxck.io](https://blog.jxck.io) 以下については、 Markdown から静的ファイルを生成するスタイルで作成している。この変換時に以前から思っていた **HTML の最適化** を実施することにした。しかし、 md-&gt;html ..."
+  "description": "本サイト blog.jxck.io 以下については、 Markdown から静的ファイルを生成するスタイルで作成している。この変換時に以前から思っていた **HTML の最適化** を実施することにした。しかし、 md-&gt;html 変換時にそれができるツールが見当たらないため、 ..."
 }
 </script>
 
@@ -95,7 +95,7 @@ by Jxck
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-01-28>2016-01-28</time>
-    <li>updated_at: <time class=updated_at datetime=2016-04-11>2016-04-11</time>
+    <li>updated_at: <time class=updated_at datetime=2016-05-17>2016-05-17</time>
     <li class=tags>tags: [<a>html</a>,<a>performance</a>]
   </ul>
 
@@ -112,7 +112,7 @@ by Jxck
     </section>
     <section>
       <h2 id="静的コンテンツの最適化"><a href="#静的コンテンツの最適化">静的コンテンツの最適化</a></h2>
-      <p>パフォーマンス改善の常套手段として、コンテンツの最適化がある。
+      <p>パフォーマンス改善の常套手段として、コンテンツの最適化がある。<br>
       ただ、ここ最適化と言っているものには大きく二つある。
       <ul>
         <li>gzip などのアルゴリズムにより経路上で圧縮する
@@ -200,10 +200,10 @@ by Jxck
       <section>
         <h3 id="影響"><a href="#影響">影響</a></h3>
         <p>生成した結果は <a href="https://validator.w3.org/nu/">HTML Validator</a> で確認しているが問題は無い。
-        <p>HTML として問題が無いのであれば、 HTML に対応したツールでは扱えることになる。使えない場合、少し厳しく言うとそのツールは HTML を正しく扱えてない、つまりバグということになる。
+        <p>HTML として問題が無いのであれば、 HTML に対応したツールでは扱えることになる。使えない場合、少し厳しく言うとそのツールは HTML を正しく扱えてない、つまりバグということになる。<br>
         まあ、そもそも HTML というのは、 XML と全く違い「緩い」部分が多いため、パースするのは非常に難しいので、完全に扱いきれないツールがあっても多少は仕方がない。
         <p>特に片手間な正規表現で HTML を処理している場合(スクレイピング、エディタのシンタックスハイライト etc)は、影響が皆無ともいえないが、現状自分の環境で、特に困った場面はいまのところない。
-        <p>それも、強気に言えば「そのライブラリetc が正しく HTML を扱えてないだけだ」と言うこともできなくはない。
+        <p>それも、強気に言えば「そのライブラリetc が正しく HTML を扱えてないだけだ」と言うこともできなくはない。<br>
         結局 HTML をパースしたければ、正しくパースできるライブラリを使うしかないという話になる。
       </section>
       <section>
@@ -215,14 +215,14 @@ by Jxck
      131     408    9158 html-compression.html
 jxck$ wc html-no-compression.html
      141     417    9417 html-no-compression.html</code></pre>
-        <p>また Chrome の devtools で二つのファイルをレンダリングし、 Timeline から <em>Parse HTML</em> の時間を確認した。
+        <p>また Chrome の devtools で二つのファイルをレンダリングし、 Timeline から <em>Parse HTML</em> の時間を確認した。<br>
         10回平均した結果がこうだ。
         <ul>
           <li>省略有: 約80ms
           <li>省略無: 約90ms
         </ul>
         <p>また、何回かやると 有 が 100ms を超える場合や 無 が 70ms を切るような場合もあった。
-        <p>この程度の速度差であれば体感は難しいので、もはや誤差といえる。
+        <p>この程度の速度差であれば体感は難しいので、もはや誤差といえる。<br>
         しかし、これは逆に、 <em>省略がパースを著しく遅くする、といった影響はない</em> と言えるだろう。
         <p>これなら、ペイロードが小さくなることによる、ネットワーク効率としてのメリットを重視するリスクはなさそうだ。
         <p>(もちろんサイズが大きくなれば変わるかもしれないが、このエントリはこのサイトの平均的なものなので問題ない)
@@ -238,7 +238,7 @@ jxck$ wc html-no-compression.html
     </section>
     <section>
       <h2 id="結論"><a href="#結論">結論</a></h2>
-      <p>HTML も省略可能な部分が有り、省略しても Valid な HTML にすることが可能である。
+      <p>HTML も省略可能な部分が有り、省略しても Valid な HTML にすることが可能である。<br>
       また、このエントリにおいては、省略によるパースへの影響は認められなかった。
       <p>HTML を手書きするのではなく、テンプレートなどから生成する場合、もし省略できるのなら、「片手間にスクレイピングしようとしている人にとって面倒」というあたり以外には、特にデメリットは無いように思う。
       <p>今回削除した以外にも、インデントや改行も最適化の対象ではあるが、本サイトのソースはあくまで観賞用であるためそのままにしている。

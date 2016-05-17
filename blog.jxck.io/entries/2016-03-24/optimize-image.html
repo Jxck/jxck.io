@@ -19,21 +19,21 @@ by Jxck
 <script async src=/assets/js/main.js></script>
 
 <meta name=author content=Jxck>
-<meta name=description content="本サイトで使用している PNG/JPEG 画像に対し、メタデータ削除、減色、リサイズなど基本的な最適化処理の適用戦略と、その方法および結果について。画像最適化シリーズ第 1 回目のエントリである。+ [&gt; 画像最適化戦略 PNG/JEPG 編](/entries/2016-03-...">
+<meta name=description content="本サイトで使用している PNG/JPEG 画像に対し、メタデータ削除、減色、リサイズなど基本的な最適化処理の適用戦略と、その方法および結果について。画像最適化シリーズ第 1 回目のエントリである。+ &gt; 画像最適化戦略 PNG/JEPG 編+ 画像最適化戦略 Picture 編+...">
 <meta name=keywords content="image,performance">
 
 <meta name=twitter:card content=summary>
 <meta name=twitter:site content=@jxck_>
 <meta name=twitter:url content=https://blog.jxck.io/entries/2016-03-24/optimize-image.html>
 <meta name=twitter:title content="画像最適化戦略 PNG/JEPG 編 | blog.jxck.io">
-<meta name=twitter:description content="本サイトで使用している PNG/JPEG 画像に対し、メタデータ削除、減色、リサイズなど基本的な最適化処理の適用戦略と、その方法および結果について。画像最適化シリーズ第 1 回目のエントリである。+ [&gt; 画像最適化戦略 PNG/JEPG 編](/entries/2016-03-...">
+<meta name=twitter:description content="本サイトで使用している PNG/JPEG 画像に対し、メタデータ削除、減色、リサイズなど基本的な最適化処理の適用戦略と、その方法および結果について。画像最適化シリーズ第 1 回目のエントリである。+ &gt; 画像最適化戦略 PNG/JEPG 編+ 画像最適化戦略 Picture 編+...">
 <meta name=twitter:image content=https://jxck.io/assets/img/jxck.png>
 
 <meta property=og:type content="article">
 <meta property=og:url content=https://blog.jxck.io/entries/2016-03-24/optimize-image.html>
 <meta property=og:title content="画像最適化戦略 PNG/JEPG 編 | blog.jxck.io">
 <meta property=og:site_name content=blog.jxck.io>
-<meta property=og:description content="本サイトで使用している PNG/JPEG 画像に対し、メタデータ削除、減色、リサイズなど基本的な最適化処理の適用戦略と、その方法および結果について。画像最適化シリーズ第 1 回目のエントリである。+ [&gt; 画像最適化戦略 PNG/JEPG 編](/entries/2016-03-...">
+<meta property=og:description content="本サイトで使用している PNG/JPEG 画像に対し、メタデータ削除、減色、リサイズなど基本的な最適化処理の適用戦略と、その方法および結果について。画像最適化シリーズ第 1 回目のエントリである。+ &gt; 画像最適化戦略 PNG/JEPG 編+ 画像最適化戦略 Picture 編+...">
 <meta property=og:image content=https://jxck.io/assets/img/jxck.png>
 
 <link rel=icon sizes=192x192 href=https://jxck.io/assets/img/jxck.png>
@@ -54,7 +54,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-03-24T08:00:00+08:00",
-  "dateModified": "2016-04-11T08:00:00+08:00",
+  "dateModified": "2016-04-03T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -70,7 +70,7 @@ by Jxck
       "width": 257
     }
   },
-  "description": "本サイトで使用している PNG/JPEG 画像に対し、メタデータ削除、減色、リサイズなど基本的な最適化処理の適用戦略と、その方法および結果について。画像最適化シリーズ第 1 回目のエントリである。+ [&gt; 画像最適化戦略 PNG/JEPG 編](/entries/2016-03-..."
+  "description": "本サイトで使用している PNG/JPEG 画像に対し、メタデータ削除、減色、リサイズなど基本的な最適化処理の適用戦略と、その方法および結果について。画像最適化シリーズ第 1 回目のエントリである。+ &gt; 画像最適化戦略 PNG/JEPG 編+ 画像最適化戦略 Picture 編+..."
 }
 </script>
 
@@ -95,7 +95,7 @@ by Jxck
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-03-24>2016-03-24</time>
-    <li>updated_at: <time class=updated_at datetime=2016-04-11>2016-04-11</time>
+    <li>updated_at: <time class=updated_at datetime=2016-04-03>2016-04-03</time>
     <li class=tags>tags: [<a>image</a>,<a>performance</a>]
   </ul>
 
@@ -127,7 +127,7 @@ by Jxck
     </section>
     <section>
       <h2 id="メタ情報削除"><a href="#メタ情報削除">メタ情報削除</a></h2>
-      <p>画像には位置情報やカラープロファイルなどのメタ情報が内包されている場合がある。
+      <p>画像には位置情報やカラープロファイルなどのメタ情報が内包されている場合がある。<br>
       これらの情報が不要であれば消してしまうことで、データを削減できる。
       <p>そのためのツールはいくつかあるが、有名どころでは以下がある。
       <ul>
@@ -136,7 +136,7 @@ by Jxck
     </section>
     <section>
       <h2 id="減色"><a href="#減色">減色</a></h2>
-      <p>一点の色の情報を 24bit で表しているものを、例えば 8bit に変換することで、データ量を減らすことができる。
+      <p>一点の色の情報を 24bit で表しているものを、例えば 8bit に変換することで、データ量を減らすことができる。<br>
       もちろん、表現できる色の数も減るため、人間が見た目で気になら無い範囲で行うことになる。
       <ul>
         <li><a href="https://tinypng.com/">TinyPNG</a> (JPEG も対応している)
@@ -161,9 +161,9 @@ by Jxck
         <h3 id="方式によるサイズ"><a href="#方式によるサイズ">方式によるサイズ</a></h3>
         <p>まず、前者のサイズについて、少し古いが Steve 先生の調査がある。
         <p><a href="http://yuiblog.com/blog/2008/12/05/imageopt-4/">Image Optimization, Part 4: Progressive JPEG...Hot or Not?</a>
-        <p>あらゆる画像を二つの形式で保存した場合、サイズがそれぞれどうなるかを検証している。
+        <p>あらゆる画像を二つの形式で保存した場合、サイズがそれぞれどうなるかを検証している。<br>
         結果だけ引用する。
-        <blockquote>when your JPEG image is under 10K, it&#039;s better to be saved as baseline JPEG (estimated 75% chance it will be smaller)
+        <blockquote>when your JPEG image is under 10K, it&#039;s better to be saved as baseline JPEG (estimated 75% chance it will be smaller)&lt;br&gt;
           for files over 10K the progressive JPEG will give you a better compression (in 94% of the cases)</blockquote>
         <p>素材のサイズが 10K を超えるかどうかで結果が変わるそうだ。そして必ずではないので、実際に両方で保存してみて試すしかないとのこと。
       </section>
@@ -209,7 +209,7 @@ gulp.task(&#039;default&#039;, [&#039;image&#039;]);</code></pre>
     <section>
       <h2 id="結果"><a href="#結果">結果</a></h2>
       <p>gulp-image の実行結果は以下である。
-      <pre class=""><code>✔ 2016-02-17/before.png -&gt; before=57.88 KB after=22.07 KB reduced=35.82 KB(61.9%)
+      <pre><code>✔ 2016-02-17/before.png -&gt; before=57.88 KB after=22.07 KB reduced=35.82 KB(61.9%)
 ✔ 2016-02-17/after.png -&gt; before=67.92 KB after=25.22 KB reduced=42.7 KB(62.9%)
 ✔ 2016-02-11/net-internals-prerender.png -&gt; before=65.7 KB after=26.05 KB reduced=39.65 KB(60.4%)
 ✔ 2016-02-17/zopfli.png -&gt; before=77.52 KB after=49.29 KB reduced=28.23 KB(36.4%)

@@ -92,7 +92,7 @@ Public-Key-Pins: pin-sha256="base64=="; max-age=expireTime [; includeSubdomains]
 
 設定については、以下が参考になる。
 
-[Public Key Pinning - Web セキュリティ | MDN](https://developer.mozilla.org/ja/docs/Web/Security/Public_Key_Pinning)
+[Public Key Pinning - Web セキュリティ \| MDN](https://developer.mozilla.org/ja/docs/Web/Security/Public_Key_Pinning)
 
 
 基本的には後述する方法で取得した証明書のハッシュである Subject Public Key Information(SPKI) の Base64 と、ブラウザに保持する期限、検証に失敗した場合のレポート送信先を指定する。
@@ -244,7 +244,7 @@ Leaf の証明書を Pin 留めしてしまうと、前述の通り証明書の�
 
 デモとして、 Report-Only 無しのヘッダを指定したページを以下に用意した。
 
-[Public Key Pinning DEMO | labs.jxck.io](https://labs.jxck.io/public-key-pinning/)
+[Public Key Pinning DEMO \| labs.jxck.io](https://labs.jxck.io/public-key-pinning/)
 
 HPKP が有効になっていることは、 [chrome://net-internals/#hsts](chrome://net-internals/#hsts) で確認できる。しかし Report-Only ではここに上がらないようである。
 

@@ -54,7 +54,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-02-08T08:00:00+08:00",
-  "dateModified": "2016-04-23T08:00:00+08:00",
+  "dateModified": "2016-05-17T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -95,7 +95,7 @@ by Jxck
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-02-08>2016-02-08</time>
-    <li>updated_at: <time class=updated_at datetime=2016-04-23>2016-04-23</time>
+    <li>updated_at: <time class=updated_at datetime=2016-05-17>2016-05-17</time>
     <li class=tags>tags: [<a>h2o</a>,<a>http2</a>]
   </ul>
 
@@ -116,13 +116,13 @@ by Jxck
     </section>
     <section>
       <h2 id="証明書"><a href="#証明書">証明書</a></h2>
-      <p>実は <strong>*.jxck.io</strong> に対するワイルドカード証明書を買っている。
-      したがって、 Let's Encrypt は使ってない。
+      <p>実は <strong>*.jxck.io</strong> に対するワイルドカード証明書を買っている。<br>
+      したがって、 Let's Encrypt は使ってない。<br>
       これは Podcast のドメインのほうでやっていこうと思ってる。
     </section>
     <section>
       <h2 id="ドメイン"><a href="#ドメイン">ドメイン</a></h2>
-      <p>今までは <a href="https://jxck.io">jxck.io</a> だけで使っていたけど、これを複数ドメインにわけて運用する。
+      <p>今までは <a href="https://jxck.io">jxck.io</a> だけで使っていたけど、これを複数ドメインにわけて運用する。<br>
       ワイルドカードがあり、同一 IP でデプロイされていると、 http2 でコネクションを束ねられる。
     </section>
     <section>
@@ -135,18 +135,18 @@ by Jxck
     <section>
       <h2 id="静的ファイルへのマッピング"><a href="#静的ファイルへのマッピング">静的ファイルへのマッピング</a></h2>
       <p>h2o の設定でちょっとハマったのがパスとファイルの紐付けができないところ。
-      <p>たとえば、 <code>favicon.ico</code> だとか <code>robots.txt</code> は、特定の URL に対して特定のファイルを割り当てる。
+      <p>たとえば、 <code>favicon.ico</code> だとか <code>robots.txt</code> は、特定の URL に対して特定のファイルを割り当てる。<br>
       これがこう書けると嬉しい。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre class=""><code>paths:
+      <pre><code>paths:
   &quot;/favicon.ico&quot;:
      file.dir: /some/path/to/favicon.ico
   &quot;/&quot;:
      file.dir: /path/to/doc-root</code></pre>
-      <p>しかし、実際は paths へはディレクトリしか紐づけられない。
-      やるなら mruby.handler を使うしかない。
+      <p>しかし、実際は paths へはディレクトリしか紐づけられない。<br>
+      やるなら mruby.handler を使うしかない。<br>
       (399 は、 fallthroug の独自ルールになってるらしい)
-      <pre class=""><code>&quot;/&quot;:
+      <pre><code>&quot;/&quot;:
   mruby.handler: |
     Proc.new do |env|
       if env[&quot;PATH_INFO&quot;] == &quot;/favicon.ico&quot;
@@ -156,12 +156,12 @@ by Jxck
       end
     end
   file.dir: /path/to/dir</code></pre>
-      <p>しかしこれを毎回書くのはちょっと面倒。
+      <p>しかしこれを毎回書くのはちょっと面倒。<br>
       kazuho さんとは、ファイルを割り当てられるようにするか、もはや h2o.conf を自動生成するか、 ruby で書けるようにしたらいいか、みたいな話をした。
     </section>
     <section>
       <h2 id="HSTS"><a href="#HSTS">HSTS</a></h2>
-      <p>http -> https へのリダイレクトは入れているが、 HSTS ヘッダはまだ吐いてない。
+      <p>http -> https へのリダイレクトは入れているが、 HSTS ヘッダはまだ吐いてない。<br>
       これ吐いてしまうと、ブラウザに忘れさせない限り http では繋がらなくなり、デバッグがちょっと面倒になる場合がある。
       <p>一通り開発が落ち着いたら吐く。
     </section>
