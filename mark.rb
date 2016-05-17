@@ -636,7 +636,7 @@ class AST
     # ここで pre に code を戻す
     # ついでにエスケープ
     traverser.codes.each.with_index{|code, i|
-      article.sub!("// #{i + 1}", hsp(code))
+      article.sub!("// #{i + 1}"){hsp(code)}
     }
 
     return article
