@@ -153,7 +153,7 @@ class Markup
     node.value
   end
   def br(node)
-    "" #TODO "<br>"
+    "<br>"
   end
   def hr(node)
     "<hr>"
