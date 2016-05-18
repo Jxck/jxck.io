@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require "pp"
 require "uri"
 require "json"
 require "pathname"
@@ -46,9 +47,9 @@ end
 
 # tag ごとのビルダ
 class Markup
-  def initialize(canonical)
+  attr_writer :canonical
+  def initialize()
     @indent = "  "
-    @canonical = canonical
     @css = {
       PRE:   "/assets/css/pre.css",
       TABLE: "/assets/css/table.css",
@@ -79,6 +80,7 @@ class Markup
   def ol(node)
     "<ol>#{wrap(node.value)}</ol>\n"
   end
+
   def header(node)
     level = node.options.level
     if level == 1
@@ -410,6 +412,7 @@ class Traverser
 end
 
 class AST
+  attr_accessor :ast
   def initialize(md)
     option = {
       input: "GFM"
@@ -549,30 +552,11 @@ class AST
     # childrens として使われる
     sections
   end
-
-  def build(markup)
-
-    # traverse
-    traverser = Traverser.new(markup)
-    stack = traverser.traverse(@ast)
-
-    # 結果の <article> 結果
-    article = stack[0].val
-
-    # indent を無視するため
-    # ここで pre に code を戻す
-    # ついでにエスケープ
-    traverser.codes.each.with_index{ |code, i|
-      article.sub!("// #{i + 1}"){ hsp(code) }
-    }
-
-    article
-  end
 end
 
 # File に関する情報の抽象
 class Entry
-  attr_accessor :article, :meta, :icon
+  attr_accessor :article, :icon
   def initialize(path, icon)
     @path = path
     @text = File.read(path)
@@ -610,7 +594,7 @@ class Entry
   end
 
   def updated_at
-    File.mtime("#{name}.md").strftime("%Y-%m-%d")
+    File.mtime("#{dir}/#{name}.md").strftime("%Y-%m-%d")
   end
 
   def title
@@ -623,11 +607,11 @@ class Entry
   end
 
   def htmlfile
-    "#{name}.html"
+    "#{dir}/#{name}.html"
   end
 
   def ampfile
-    "#{name}.amp.html"
+    "#{dir}/#{name}.amp.html"
   end
 
   # tag を本文から消す
@@ -643,6 +627,30 @@ class Entry
       .gsub(/(\n|\r)/, '')
       .strip[0...140]
       .concat("...")
+  end
+
+  def build(markup) # Markup/AMP
+    # setting canonical
+    markup.canonical = canonical
+
+    # parse ast
+    ast  = AST.new(no_tag)
+
+    # traverse
+    traverser = Traverser.new(markup)
+    stack = traverser.traverse(ast.ast)
+
+    # 結果の <article> 結果
+    article = stack[0].val
+
+    # indent を無視するため
+    # ここで pre に code を戻す
+    # ついでにエスケープ
+    traverser.codes.each.with_index{ |code, i|
+      article.sub!("// #{i + 1}"){ hsp(code) }
+    }
+
+    @article = article
   end
 end
 
@@ -664,18 +672,17 @@ style = [
 ].map { |css| File.read(css) }.join("\n")
 
 entry = Entry.new(path, icon)
-Dir.chdir(entry.dir) # change dir for read script file
 
 # blog
-article = AST.new(entry.no_tag).build(Markup.new(entry.canonical))
-entry.article = article
-entry.meta = ERB.new(meta_template).result(binding).strip
+markup = Markup.new()
+entry.build(markup)
+meta = ERB.new(meta_template).result(binding).strip
 html = ERB.new(blog_template).result(binding).strip
 File.write(entry.htmlfile, html)
 
 # AMP
-article = AST.new(entry.no_tag).build(AMP.new(entry.canonical))
-entry.article = article
-entry.meta = ERB.new(meta_template).result(binding).strip
+amp = AMP.new()
+entry.build(amp)
+meta = ERB.new(meta_template).result(binding).strip
 html = ERB.new(amp_template).result(binding).strip
 File.write(entry.ampfile, html)
