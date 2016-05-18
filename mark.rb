@@ -693,8 +693,9 @@ class Episode < Article
 
   def article
     super
-      .sub(/audio: (.*)/, "<audio preload=none src=#{audio} controls>")
+      .sub(/audio: (.*)/, "<audio preload=none src=#{audio} controls></audio>")
       .sub(/<ul>(.*?)<li>published_at:/m, '<ul class=info>\1<li>published_at:')
+      .sub(/published_at: (.*)/, "published_at: <time datetime=#{datetime}>#{datetime}</time>")
   end
 
   def num
@@ -717,8 +718,11 @@ class Episode < Article
     audio.sub("https://", "")
   end
 
+  def datetime
+    @info.match(/published_at: (.*)/)[1]
+  end
+
   def pubDate
-    datetime = @info.match(/published_at: (.*)/)[1]
     Time.parse(datetime).rfc822
   end
 
