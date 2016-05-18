@@ -1,17 +1,5 @@
 #!/usr/bin/env ruby
 
-# .gz 削除
-puts `find ./blog.jxck.io/* -name *.gz | xargs -L 4 -P 4 rm`
-puts "blog gz deleted"
-
-# html, amp.html 削除
-puts `find ./blog.jxck.io/entries/* -name *.html | xargs -L 4 -P 4 rm`
-puts "blog html deleted"
-
-# エントリ markdown をビルド
-puts `find ./blog.jxck.io/entries/**/*.md | xargs -L 1 -P 4 ./mark.rb`
-puts "blog html build"
-
 # index.html をビルド
 top = ""
 entries = Dir.glob("./blog.jxck.io/entries/**/**")

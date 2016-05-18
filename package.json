@@ -27,12 +27,10 @@
     "textlint-rule-web-plus-db": "^1.1.5"
   },
   "scripts": {
-    "build":   "./build.rb && ./compress.rb blog.jxck.io & gulp",
-    "dev":     "./build.rb",
-    "www":     "./compress.rb www.jxck.io",
-    "blog":    "./compress.rb blog.jxck.io",
+    "dev":     "./mark.rb blog & ./mark.rb podcast",
+    "gzip":    "./compress.rb www.jxck.io blog.jxck.io podcast.jxck.io",
+    "build":   "npm run dev && npm run gzip & gulp",
     "slide":   "./compress.rb slide.jxck.io",
-    "podcast": "./compress.rb podcast.jxck.io",
     "start":   "sudo $DOTFILES/local/h2o/bin/h2o -m daemon -c h2o.conf",
     "stop":    "sudo kill -TERM `cat ../logs/pid`",
     "restart": "npm stop && npm start"

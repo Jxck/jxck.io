@@ -792,7 +792,9 @@ if __FILE__ == $0
   end
 
   # blog feed
-  def blogfeed()
+  def blogfeed(feed = false)
+    puts "build blog"
+
     # entries
     dir = "./blog.jxck.io/entries/**/*"
     icon = "https://jxck.io/assets/img/jxck.png"
@@ -802,10 +804,11 @@ if __FILE__ == $0
       .sort
       .reverse
 
-    # xml
-    xml = ERB.new(File.read(".template/atom.xml.erb")).result(binding)
-
-    File.write("./blog.jxck.io/feeds/atom.xml", xml)
+    if feed
+      puts "build blog feed"
+      xml = ERB.new(File.read(".template/atom.xml.erb")).result(binding)
+      File.write("./blog.jxck.io/feeds/atom.xml", xml)
+    end
 
     entries.each {|e|
       blog(e)
@@ -825,9 +828,12 @@ if __FILE__ == $0
     File.write(episode.htmlfile, html)
   end
 
-  def podcastfeed()
+  def podcastfeed(feed = false)
+    puts "build podcast"
     dir = "./podcast.jxck.io/episodes/**/*"
     host = "podcast.jxck.io"
+
+    # episodes
     episodes = Dir.glob(dir)
       .select {|path| path.match(/.*.md\z/) }
       .map {|path| Episode.new(path) }
@@ -838,14 +844,22 @@ if __FILE__ == $0
         ep
       }
 
-    xml = ERB.new(File.read(".template/rss2.xml.erb")).result(binding)
-    File.write("./podcast.jxck.io/feeds/feed.xml", xml)
+    if feed
+      puts "build podcast feed"
+      xml = ERB.new(File.read(".template/rss2.xml.erb")).result(binding)
+      File.write("./podcast.jxck.io/feeds/feed.xml", xml)
+    end
 
     episodes.each {|e|
       podcast(e)
     }
   end
 
-  blogfeed()
-  podcastfeed()
+  if ARGV.include? "blog"
+    blogfeed(ARGV.include? "feed")
+  end
+
+  if ARGV.include? "podcast"
+    podcastfeed(ARGV.include? "feed")
+  end
 end
