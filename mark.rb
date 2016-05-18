@@ -803,7 +803,7 @@ if __FILE__ == $0
       .reverse
 
     # xml
-    xml = ERB.new(File.read(".template/atom.xml")).result(binding)
+    xml = ERB.new(File.read(".template/atom.xml.erb")).result(binding)
 
     File.write("./blog.jxck.io/feeds/atom.xml", xml)
 
@@ -838,7 +838,7 @@ if __FILE__ == $0
         ep
       }
 
-    xml = ERB.new(File.read(".template/rss2.xml")).result(binding)
+    xml = ERB.new(File.read(".template/rss2.xml.erb")).result(binding)
     File.write("./podcast.jxck.io/feeds/feed.xml", xml)
 
     episodes.each {|e|
