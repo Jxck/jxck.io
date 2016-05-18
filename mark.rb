@@ -577,8 +577,12 @@ class Article
     dir.split("/")[1]
   end
 
+  def relative
+    "#{dir.split("/")[2..4].join("/")}/#{name}.html"
+  end
+
   def baseurl
-    "/" + dir.split("/")[2..4].join("/")
+    "/#{dir.split("/")[2..4].join("/")}"
   end
 
   def url
@@ -813,6 +817,10 @@ if __FILE__ == $0
     entries.each {|e|
       blog(e)
     }
+
+    puts "build archive.page"
+    archive = ERB.new(File.read(".template/archive.html.erb")).result(binding)
+    File.write("./blog.jxck.io/index.html", archive)
   end
 
   def podcast(episode)
