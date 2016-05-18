@@ -9,4 +9,3 @@ ARGV.each do |dir|
   puts zopfli
   puts system(zopfli)
 end
-
