@@ -739,7 +739,7 @@ end
 
 if __FILE__ == $0
 
-  def blog(entry)
+  def entry(entry)
     meta_template = File.read(".template/meta.html.erb") + File.read(".template/ld-json.html.erb")
     blog_template = File.read(".template/blog.html.erb")
     amp_template = File.read(".template/amp.html.erb")
@@ -771,7 +771,7 @@ if __FILE__ == $0
   end
 
   # blog feed
-  def main()
+  def blog()
     # entries
     dir = "./blog.jxck.io/entries/**/*"
     icon = "https://jxck.io/assets/img/jxck.png"
@@ -787,13 +787,45 @@ if __FILE__ == $0
     File.write("./blog.jxck.io/feeds/atom.xml", xml)
 
     entries.each {|e|
-      blog(e)
+      entry(e)
     }
+  end
+
+  def feed(item)
+    meta_template = File.read(".template/meta.html.erb") + File.read(".template/ld-json.html.erb")
+    blog_template = File.read(".template/blog.html.erb")
+    amp_template = File.read(".template/amp.html.erb")
+
+    style = [
+      "./blog.jxck.io/assets/css/article.css",
+      "./blog.jxck.io/assets/css/body.css",
+      "./blog.jxck.io/assets/css/info.css",
+      "./blog.jxck.io/assets/css/header.css",
+      "./blog.jxck.io/assets/css/main.css",
+      "./blog.jxck.io/assets/css/footer.css",
+      "./blog.jxck.io/assets/css/pre.css",
+      "./blog.jxck.io/assets/css/table.css",
+    ].map { |css| File.read(css) }.join("\n")
+
+    # blog
+    markup = Markup.new()
+    entry.build(markup)
+    meta = ERB.new(meta_template).result(binding).strip
+    html = ERB.new(blog_template).result(binding).strip
+    File.write(entry.htmlfile, html)
+
+    # amp
+    amp = AMP.new()
+    entry.build(amp)
+    meta = ERB.new(meta_template).result(binding).strip
+    html = ERB.new(amp_template).result(binding).strip
+    File.write(entry.ampfile, html)
   end
 
   def podcast()
     dir = "./podcast.jxck.io/episodes/**/*"
-    items = Dir.glob(dir)
+    host = "podcast.jxck.io"
+    episodes = Dir.glob(dir)
     .select {|path| path.match(/.*.md\z/) }
     .map {|path| Episode.new(path) }
     .sort
@@ -805,6 +837,10 @@ if __FILE__ == $0
 
     xml = ERB.new(File.read(".template/rss2.xml")).result(binding)
     File.write("./podcast.jxck.io/feeds/feed.xml", xml)
+
+    #items.each {|i|
+    #  feed(i)
+    #}
   end
 
   podcast()
