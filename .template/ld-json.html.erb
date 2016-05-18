@@ -4,32 +4,32 @@
   "@type": "BlogPosting",
   "mainEntityOfPage":{
     "@type":"WebPage",
-    "@id":"https://<%= entry.host %>"
+    "@id":"https://<%= host %>"
   },
-  "headline": "<%= entry.title %> | <%= entry.host %>",
+  "headline": "<%= title %> | <%= host %>",
   "image": {
     "@type": "ImageObject",
-    "url": "<%= entry.icon %>",
+    "url": "<%= icon %>",
     "height": 700,
     "width": 700
   },
-  "datePublished": "<%= entry.created_at %>T08:00:00+08:00",
-  "dateModified": "<%= entry.updated_at %>T08:00:00+08:00",
+  "datePublished": "<%= created_at %>T08:00:00+08:00",
+  "dateModified": "<%= updated_at %>T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
-    "image": "<%= entry.icon %>"
+    "image": "<%= icon %>"
   },
    "publisher": {
     "@type": "Organization",
     "name": "Jxck",
     "logo": {
       "@type": "ImageObject",
-      "url": "<%= entry.icon %>",
+      "url": "<%= icon %>",
       "height": 60,
       "width": 257
     }
   },
-  "description": "<%= entry.description(140) %>"
+  "description": "<%= description(140) %>"
 }
 </script>
