@@ -558,7 +558,7 @@ end
 
 # File に関する情報の抽象
 class Article
-  attr_reader :path
+  attr_reader :path, :article
 
   def initialize(path)
     @path = path
@@ -642,14 +642,22 @@ class Article
     @article = article
   end
 
+  def htmlfile
+    "#{dir}/#{name}.html"
+  end
+
   def to_s
     path
+  end
+
+  def <=>(target)
+    return path <=> target.path
   end
 end
 
 # Blog Entry の抽象
 class Entry < Article
-  attr_accessor :article, :icon
+  attr_accessor :icon # TODO: いる？
 
   def initialize(path, icon = "")
     super(path)
@@ -669,22 +677,25 @@ class Entry < Article
     File.mtime("#{dir}/#{name}.md").strftime("%Y-%m-%d")
   end
 
-  def htmlfile
-    "#{dir}/#{name}.html"
-  end
-
   def ampfile
     "#{dir}/#{name}.amp.html"
-  end
-
-  def <=>(target)
-    return path <=> target.path
   end
 end
 
 # Podcast Episode の抽象
 class Episode < Article
   attr_accessor :order
+
+  def initialize(path)
+    super(path)
+    @info = @text.match(/## Info(([\n\r]|.)*?)##/m)[1]
+  end
+
+  def article
+    super
+      .sub(/audio: (.*)/, "<audio preload=none src=#{audio} controls>")
+      .sub(/<ul>(.*?)<li>published_at:/m, '<ul class=info>\1<li>published_at:')
+  end
 
   def num
     @path.split('/')[3].to_i
@@ -698,17 +709,23 @@ class Episode < Article
     !! (@path =~ /.*sideshow.md/)
   end
 
-  def pubDate
-    datetime = @text.match(/datetime=(.*?)>/)[1]
-    Time.parse(datetime).rfc822
-  end
-
-  def description
-    hsp @text.sub(/#(.*?)## Theme/m, "# #{title}").gsub(/\[(.*?)\]\(.*?\)/, '\1')
+  def audio
+    @info.match(/audio: (.*)/)[1]
   end
 
   def file
-    "files.mozaic.fm/mozaic-ep#{num}#{'.sideshow' if sideshow?}.mp3"
+    audio.sub("https://", "")
+  end
+
+  def pubDate
+    datetime = @info.match(/published_at: (.*)/)[1]
+    Time.parse(datetime).rfc822
+  end
+
+  def description(limit)
+    return super(limit) if limit > 0
+
+    hsp @text.sub(/#(.*?)## Theme/m, "# #{title}").gsub(/\[(.*?)\]\(.*?\)/, '\1')
   end
 
   def size
@@ -739,7 +756,7 @@ end
 
 if __FILE__ == $0
 
-  def entry(entry)
+  def blog(entry)
     meta_template = File.read(".template/meta.html.erb") + File.read(".template/ld-json.html.erb")
     blog_template = File.read(".template/blog.html.erb")
     amp_template = File.read(".template/amp.html.erb")
@@ -758,28 +775,28 @@ if __FILE__ == $0
     # blog
     markup = Markup.new()
     entry.build(markup)
-    meta = ERB.new(meta_template).result(binding).strip
+    meta = ERB.new(meta_template).result(entry.instance_eval { binding }).strip
     html = ERB.new(blog_template).result(binding).strip
     File.write(entry.htmlfile, html)
 
     # amp
     amp = AMP.new()
     entry.build(amp)
-    meta = ERB.new(meta_template).result(binding).strip
+    meta = ERB.new(meta_template).result(entry.instance_eval { binding }).strip
     html = ERB.new(amp_template).result(binding).strip
     File.write(entry.ampfile, html)
   end
 
   # blog feed
-  def blog()
+  def blogfeed()
     # entries
     dir = "./blog.jxck.io/entries/**/*"
     icon = "https://jxck.io/assets/img/jxck.png"
     entries = Dir.glob(dir)
-    .select { |path| path.match(/.*.md\z/) }
-    .map { |path| Entry.new(path, icon) }
-    .sort
-    .reverse
+      .select { |path| path.match(/.*.md\z/) }
+      .map { |path| Entry.new(path, icon) }
+      .sort
+      .reverse
 
     # xml
     xml = ERB.new(File.read(".template/atom.xml")).result(binding)
@@ -787,43 +804,46 @@ if __FILE__ == $0
     File.write("./blog.jxck.io/feeds/atom.xml", xml)
 
     entries.each {|e|
-      entry(e)
+      blog(e)
     }
   end
 
-  def episode(episode)
+  def podcast(episode)
+    icon = "https://podcast.jxck.io/assets/img/mozaic.png" # TODO: https://mozaic.fm/assets/img/mozaic.png
     meta_template = File.read(".template/meta.html.erb")
-    blog_template = File.read(".template/podcast.html.erb")
-    amp_template = File.read(".template/amp.html.erb")
+    podcast_template = File.read(".template/podcast.html.erb")
 
     # entry
     markup = Markup.new()
     episode.build(markup)
-    meta = ERB.new(meta_template).result(binding).strip
-    html = ERB.new(blog_template).result(binding).strip
+    meta = ERB.new(meta_template).result(episode.instance_eval { binding }).strip
+    html = ERB.new(podcast_template).result(binding).strip
     File.write(episode.htmlfile, html)
   end
 
-  def podcast()
+  def podcastfeed()
     dir = "./podcast.jxck.io/episodes/**/*"
     host = "podcast.jxck.io"
     episodes = Dir.glob(dir)
-    .select {|path| path.match(/.*.md\z/) }
-    .map {|path| Episode.new(path) }
-    .sort
-    .reverse
-    .map.with_index {|ep, i|
-      ep.order = i
-      ep
-    }
+      .select {|path| path.match(/.*.md\z/) }
+      .map {|path| Episode.new(path) }
+      .sort
+      .reverse
+      .map.with_index {|ep, i|
+        ep.order = i
+        ep
+      }
 
     xml = ERB.new(File.read(".template/rss2.xml")).result(binding)
     File.write("./podcast.jxck.io/feeds/feed.xml", xml)
 
     episodes.each {|e|
-      episode(e)
+      podcast(e)
     }
   end
 
-  podcast()
+  blogfeed()
+  #podcastfeed()
+  e = Episode.new("./podcast.jxck.io/episodes/1/webcomponents.md")
+  podcast(e)
 end
