@@ -2,7 +2,7 @@
 
 ## Info
 
-raudio: https://files.mozaic.fm/mozaic-ep2.mp3
+audio: https://files.mozaic.fm/mozaic-ep2.mp3
 
 - published_at: 2014-04-22
 - guest: [@tatsuhiro_t](https://twitter.com/tatsuhiro_t)

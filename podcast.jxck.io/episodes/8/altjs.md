@@ -2,7 +2,7 @@
 
 ## Info
 
-raudio: https://files.mozaic.fm/mozaic-ep8.mp3
+audio: https://files.mozaic.fm/mozaic-ep8.mp3
 
 - published_at: 2014-09-03
 - guest: [technohippy](https://twitter.com/technohippy)

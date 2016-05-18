@@ -2,7 +2,7 @@
 
 ## Info
 
-raudio: https://files.mozaic.fm/mozaic-ep15.mp3
+audio: https://files.mozaic.fm/mozaic-ep15.mp3
 
 - published_at: 2015-01-19
 - guest: [@myakura](https://twitter.com/myakura)

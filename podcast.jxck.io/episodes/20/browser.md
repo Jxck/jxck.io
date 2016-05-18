@@ -2,7 +2,7 @@
 
 ## Info
 
-raudio: https://files.mozaic.fm/mozaic-ep20.mp3
+audio: https://files.mozaic.fm/mozaic-ep20.mp3
 
 - published_at: 2015-11-26
 - guest: [@takoratta](https://twitter.com/takoratta)

@@ -2,7 +2,7 @@
 
 ## Info
 
-raudio: https://files.mozaic.fm/mozaic-ep10.sideshow.mp3
+audio: https://files.mozaic.fm/mozaic-ep10.sideshow.mp3
 
 - published_at: 2014-10-23
 - guest: [@koichik](https://twitter.com/koichik)

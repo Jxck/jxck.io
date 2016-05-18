@@ -2,7 +2,7 @@
 
 ## Info
 
-raudio: https://files.mozaic.fm/mozaic-ep17.mp3
+audio: https://files.mozaic.fm/mozaic-ep17.mp3
 
 - published_at: 2015-04-22
 - guest: [@kinu](https://twitter.com/kinu)

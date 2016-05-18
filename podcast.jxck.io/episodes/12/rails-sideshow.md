@@ -2,7 +2,7 @@
 
 ## Info
 
-raudio: https://files.mozaic.fm/mozaic-ep12.sideshow.mp3
+audio: https://files.mozaic.fm/mozaic-ep12.sideshow.mp3
 
 - published_at: 2014-12-12
 - guest: [@a_matsuda](https://twitter.com/a_matsuda)

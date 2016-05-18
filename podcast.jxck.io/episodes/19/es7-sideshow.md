@@ -2,7 +2,7 @@
 
 ## Info
 
-raudio: https://files.mozaic.fm/mozaic-ep19.sideshow.mp3
+audio: https://files.mozaic.fm/mozaic-ep19.sideshow.mp3
 
 - published_at: 2015-08-05
 - guest: [@Constellation](https://twitter.com/Constellation)

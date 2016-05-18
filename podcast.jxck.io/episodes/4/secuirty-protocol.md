@@ -2,7 +2,7 @@
 
 ## Info
 
-raudio: https://files.mozaic.fm/mozaic-ep4.mp3
+audio: https://files.mozaic.fm/mozaic-ep4.mp3
 
 - published_at: 2014-06-07
 - guest: [@lef](https://twitter.com/lef)

@@ -2,7 +2,7 @@
 
 ## Info
 
-raudio: https://files.mozaic.fm/mozaic-ep18.mp3
+audio: https://files.mozaic.fm/mozaic-ep18.mp3
 
 - published_at: 2015-06-01
 - guest: [@cubicdaiya](https://twitter.com/cubicdaiya)

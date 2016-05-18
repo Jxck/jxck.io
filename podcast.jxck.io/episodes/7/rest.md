@@ -2,7 +2,7 @@
 
 ## Info
 
-raudio: https://files.mozaic.fm/mozaic-ep7.mp3
+audio: https://files.mozaic.fm/mozaic-ep7.mp3
 
 - published_at: 2014-08-19
 - guest: [@yohei](https://twitter.com/yohei)
