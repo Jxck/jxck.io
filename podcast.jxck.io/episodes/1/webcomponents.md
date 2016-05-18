@@ -1,12 +1,12 @@
 # [web components][hokaccha][ahomu][mozaic.fm] ep1 WebComponents
 
-<audio preload="none" src="https://files.mozaic.fm/mozaic-ep1.mp3" controls></audio>
+## Info
 
-<ul class=info>
-  <li>published_at: <time datetime=2014-04-07>2014-04-07</time>
-  <li>guest: <a href=https://twitter.com/hokaccha>@hokaccha</a>
-  <li>guest: <a href=https://twitter.com/ahomu>@ahomu</a>
-</ul>
+raudio: https://files.mozaic.fm/mozaic-ep1.mp3
+
+- published_at: 2014-04-07
+- guest: [@hokaccha](https://twitter.com/hokaccha)
+- guest: [@ahomu](https://twitter.com/ahomu)
 
 
 ## Theme

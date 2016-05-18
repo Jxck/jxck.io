@@ -1,11 +1,11 @@
 # [chrome][browser][takoratta][mozaic.fm] ep20 Browser
 
-<audio preload="none" src="https://files.mozaic.fm/mozaic-ep20.mp3" controls></audio>
+## Info
 
-<ul class=info>
-  <li>published_at: <time datetime=2015-11-26>2015-11-26</time>
-  <li>guest: <a href=https://twitter.com/takoratta>@takoratta</a>
-</ul>
+raudio: https://files.mozaic.fm/mozaic-ep20.mp3
+
+- published_at: 2015-11-26
+- guest: [@takoratta](https://twitter.com/takoratta)
 
 
 ## Theme

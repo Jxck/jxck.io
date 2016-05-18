@@ -1,12 +1,12 @@
 # [web][rest][yohei][t_wada][mozaic.fm] ep7 REST
 
-<audio preload="none" src="https://files.mozaic.fm/mozaic-ep7.mp3" controls></audio>
+## Info
 
-<ul class=info>
-  <li>published_at: <time datetime=2014-08-19>2014-08-19</time>
-  <li>guest: <a href=https://twitter.com/yohei>@yohei</a>
-  <li>guest: <a href=https://twitter.com/t_wada>@t_wada</a>
-</ul>
+raudio: https://files.mozaic.fm/mozaic-ep7.mp3
+
+- published_at: 2014-08-19
+- guest: [@yohei](https://twitter.com/yohei)
+- guest: [@t_wada](https://twitter.com/t_wada)
 
 
 ## Theme

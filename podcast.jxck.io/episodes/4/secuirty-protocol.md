@@ -1,12 +1,12 @@
 # [security][lef][mozaic.fm] ep4 Security (protocol)
 
-<audio preload="none" src="https://files.mozaic.fm/mozaic-ep4.mp3" controls></audio>
+## Info
 
-<ul class=info>
-  <li>published_at: <time datetime=2014-06-07>2014-06-07</time>
-  <li>guest: <a href=https://twitter.com/lef>@lef</a>
-  <li>guest: 菊池さん
-</ul>
+raudio: https://files.mozaic.fm/mozaic-ep4.mp3
+
+- published_at: 2014-06-07
+- guest: [@lef](https://twitter.com/lef)
+- guest: 菊池さん
 
 
 ## Theme

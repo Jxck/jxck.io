@@ -1,12 +1,12 @@
 # [angular.js][can_i_do_web][konpyu][mozaic.fm] ep3 Angular.js
 
-<audio preload="none" src="https://files.mozaic.fm/mozaic-ep3.mp3" controls></audio>
+## Info
 
-<ul class=info>
-  <li>published_at: <time datetime=2014-05-31>2014-05-31</time>
-  <li>guest: <a href=https://twitter.com/can_i_do_web>@can_i_do_web</a>
-  <li>guest: <a href=https://twitter.com/konpyu>@konpyu</a>
-</ul>
+raudio: https://files.mozaic.fm/mozaic-ep3.mp3
+
+- published_at: 2014-05-31
+- guest: [@can_i_do_web](https://twitter.com/can_i_do_web)
+- guest: [@konpyu](https://twitter.com/konpyu)
 
 
 ## Theme

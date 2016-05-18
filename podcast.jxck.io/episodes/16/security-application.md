@@ -1,11 +1,11 @@
 # [security][hasegawayosuke][mozaic.fm] ep16 Security (application)
 
-<audio preload="none" src="https://files.mozaic.fm/mozaic-ep16.mp3" controls></audio>
+## Info
 
-<ul class=info>
-  <li>published_at: <time datetime=2015-03-27>2015-03-27</time>
-  <li>guest: <a href=https://twitter.com/hasegawayosuke>@hasegawayosuke</a>
-</ul>
+raudio: https://files.mozaic.fm/mozaic-ep16.mp3
+
+- published_at: 2015-03-27
+- guest: [@hasegawayosuke](https://twitter.com/hasegawayosuke)
 
 
 ## Theme

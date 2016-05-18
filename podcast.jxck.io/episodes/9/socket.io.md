@@ -1,11 +1,11 @@
 # [socket.io][websocket][rauchg][mozaic.fm] ep9 Socket.IO
 
-<audio preload="none" src="https://files.mozaic.fm/mozaic-ep9.mp3" controls></audio>
+## Info
 
-<ul class=info>
-  <li>published_at: <time datetime=2014-09-08>2014-09-08</time>
-  <li>guest: <a href=https://twitter.com/rauchg>@rauchg</a>
-</ul>
+raudio: https://files.mozaic.fm/mozaic-ep9.mp3
+
+- published_at: 2014-09-08
+- guest: [@rauchg](https://twitter.com/rauchg)
 
 
 ## Theme

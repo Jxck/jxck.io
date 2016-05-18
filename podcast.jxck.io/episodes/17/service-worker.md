@@ -1,12 +1,12 @@
 # [service worker][kinu][nhiroki_][mozaic.fm] ep17 Service Worker
 
-<audio preload="none" src="https://files.mozaic.fm/mozaic-ep17.mp3" controls></audio>
+## Info
 
-<ul class=info>
-  <li>published_at: <time datetime=2015-04-22>2015-04-22</time>
-  <li>guest: <a href=https://twitter.com/kinu>@kinu</a>
-  <li>guest: <a href=https://twitter.com/nhiroki_>@nhiroki_</a>
-</ul>
+raudio: https://files.mozaic.fm/mozaic-ep17.mp3
+
+- published_at: 2015-04-22
+- guest: [@kinu](https://twitter.com/kinu)
+- guest: [@nhiroki_](https://twitter.com/nhiroki_)
 
 
 ## Theme

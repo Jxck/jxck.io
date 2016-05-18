@@ -1,11 +1,11 @@
 # [rails][a_matsuda][mozaic.fm] ep12 Rails sideshow
 
-<audio preload="none" src="https://files.mozaic.fm/mozaic-ep12.sideshow.mp3" controls></audio>
+## Info
 
-<ul class=info>
-  <li>published_at: <time datetime=2014-12-12>2014-12-12</time>
-  <li>guest: <a href=https://twitter.com/a_matsuda>@a_matsuda</a>
-</ul>
+raudio: https://files.mozaic.fm/mozaic-ep12.sideshow.mp3
+
+- published_at: 2014-12-12
+- guest: [@a_matsuda](https://twitter.com/a_matsuda)
 
 
 ## Theme

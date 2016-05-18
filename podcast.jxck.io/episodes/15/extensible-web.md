@@ -1,12 +1,12 @@
 # [extensible web][myakura][nunnun][mozaic.fm] ep15 Extensible Web
 
-<audio preload="none" src="https://files.mozaic.fm/mozaic-ep15.mp3" controls></audio>
+## Info
 
-<ul class=info>
-  <li>published_at: <time datetime=2015-01-19>2015-01-19</time>
-  <li>guest: <a href=https://twitter.com/myakura>@myakura</a>
-  <li>guest: <a href=https://twitter.com/nunnun>@nunnun</a>
-</ul>
+raudio: https://files.mozaic.fm/mozaic-ep15.mp3
+
+- published_at: 2015-01-19
+- guest: [@myakura](https://twitter.com/myakura)
+- guest: [@nunnun](https://twitter.com/nunnun)
 
 
 ## Theme

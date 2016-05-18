@@ -1,12 +1,12 @@
 # [node.js][koichik][yosuke_furukawa][mozaic.fm] ep10 Node.js
 
-<audio preload="none" src="https://files.mozaic.fm/mozaic-ep10.mp3" controls></audio>
+## Info
 
-<ul class=info>
-  <li>published_at: <time datetime=2014-10-07>2014-10-07</time>
-  <li>guest: <a href=https://twitter.com/koichik>@koichik</a>
-  <li>guest: <a href=https://twitter.com/yosuke_furukawa>@yosuke_furukawa</a>
-</ul>
+raudio: https://files.mozaic.fm/mozaic-ep10.mp3
+
+- published_at: 2014-10-07
+- guest: [@koichik](https://twitter.com/koichik)
+- guest: [@yosuke_furukawa](https://twitter.com/yosuke_furukawa)
 
 
 ## Theme

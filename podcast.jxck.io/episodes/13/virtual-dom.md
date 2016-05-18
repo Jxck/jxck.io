@@ -1,11 +1,11 @@
 # [virtual dom][react][flex][mizchi][mozaic.fm] ep13 Virtual DOM
 
-<audio preload="none" src="https://files.mozaic.fm/mozaic-ep13.mp3" controls></audio>
+## Info
 
-<ul class=info>
-  <li>published_at: <time datetime=2014-12-27>2014-12-27</time>
-  <li>guest: <a href=https://twitter.com/mizchi>@mizchi</a>
-</ul>
+raudio: https://files.mozaic.fm/mozaic-ep13.mp3
+
+- published_at: 2014-12-27
+- guest: [@mizchi](https://twitter.com/mizchi)
 
 
 ## Theme

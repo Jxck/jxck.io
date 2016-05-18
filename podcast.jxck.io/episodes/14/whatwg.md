@@ -1,12 +1,12 @@
 # [whatwg][w3c][myakura][nunnun][mozaic.fm] ep14 WHATWG
 
-<audio preload="none" src="https://files.mozaic.fm/mozaic-ep14.mp3" controls></audio>
+## Info
 
-<ul class=info>
-  <li>published_at: <time datetime=2015-01-18>2015-01-18</time>
-  <li>guest: <a href=https://twitter.com/myakura>@myakura</a>
-  <li>guest: <a href=https://twitter.com/nunnun>@nunnun</a>
-</ul>
+raudio: https://files.mozaic.fm/mozaic-ep14.mp3
+
+- published_at: 2015-01-18
+- guest: [@myakura](https://twitter.com/myakura)
+- guest: [@nunnun](https://twitter.com/nunnun)
 
 
 ## Theme

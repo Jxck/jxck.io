@@ -1,11 +1,11 @@
 # [nginx][cubicdaiya][mozaic.fm] ep18 Nginx
 
-<audio preload="none" src="https://files.mozaic.fm/mozaic-ep18.mp3" controls></audio>
+## Info
 
-<ul class=info>
-  <li>published_at: <time datetime=2015-06-01>2015-06-01</time>
-  <li>guest: <a href=https://twitter.com/cubicdaiya>@cubicdaiya</a>
-</ul>
+raudio: https://files.mozaic.fm/mozaic-ep18.mp3
+
+- published_at: 2015-06-01
+- guest: [@cubicdaiya](https://twitter.com/cubicdaiya)
 
 
 ## Theme

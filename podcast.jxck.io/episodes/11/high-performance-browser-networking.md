@@ -1,11 +1,11 @@
 # [performance][network][igrigorik][mozaic.fm] ep11 High Performance Browser Networking
 
-<audio preload="none" src="https://files.mozaic.fm/mozaic-ep11.mp3" controls></audio>
+## Info
 
-<ul class=info>
-  <li>published_at: <time datetime=2014-11-10>2014-11-10</time>
-  <li>guest: <a href=https://twitter.com/igrigorik>@igrigorik</a>
-</ul>
+raudio: https://files.mozaic.fm/mozaic-ep11.mp3
+
+- published_at: 2014-11-10
+- guest: [@igrigorik](https://twitter.com/igrigorik)
 
 
 ## Theme

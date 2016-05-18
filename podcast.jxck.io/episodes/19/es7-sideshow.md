@@ -1,11 +1,11 @@
 # [es7][javascript][constellation][mozaic.fm] ep19 ES7 sideshow
 
-<audio preload="none" src="https://files.mozaic.fm/mozaic-ep19.sideshow.mp3" controls></audio>
+## Info
 
-<ul class=info>
-  <li>published_at: <time datetime=2015-08-05>2015-08-05</time>
-  <li>guest: <a href=https://twitter.com/Constellation>@Constellation</a>
-</ul>
+raudio: https://files.mozaic.fm/mozaic-ep19.sideshow.mp3
+
+- published_at: 2015-08-05
+- guest: [@Constellation](https://twitter.com/Constellation)
 
 
 ## Theme

@@ -1,12 +1,12 @@
 # [http2][tatsuhiro_t][jovi0608][mozaic.fm] ep2 HTTP2 sideshow
 
-<audio preload="none" src="https://files.mozaic.fm/mozaic-ep2.sideshow.mp3" controls></audio>
+## Info
 
-<ul class=info>
-  <li>published_at: <time datetime=2014-04-29>2014-04-29</time>
-  <li>guest: <a href=https://twitter.com/tatsuhiro_t>@tatsuhiro_t</a>
-  <li>guest <a href=https://twitter.com/jovi0608>@jovi0608</a>
-</ul>
+raudio: https://files.mozaic.fm/mozaic-ep2.sideshow.mp3
+
+- published_at: 2014-04-29
+- guest: [@tatsuhiro_t](https://twitter.com/tatsuhiro_t)
+- guest [@jovi0608](https://twitter.com/jovi0608)
 
 
 ## Theme
