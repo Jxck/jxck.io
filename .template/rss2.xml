@@ -7,7 +7,7 @@
     <generator>Ruby</generator>
     <language>ja</language>
     <copyright>Copyright (c) 2014 mozaic.fm. All Rights Reserved. Redistribute, Transcript are not allowed.</copyright>
-    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="https://<%= items[0].host %>/feeds/feed.xml" />
+    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="https://<%= host %>/feeds/feed.xml" />
     <itunes:author>Jxck</itunes:author>
     <itunes:category text="Technology"><itunes:category text="Podcasting" /></itunes:category>
     <itunes:explicit>no</itunes:explicit>
@@ -26,22 +26,22 @@
       <itunes:email>block.rxckin.beats@gmail.com</itunes:email>
       <itunes:name>Jxck</itunes:name>
     </itunes:owner>
-<% items.each do |i| %>
+<% episodes.each do |episode| %>
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://<%= i.file %>" length="<%= i.size %>" type="audio/mpeg" />
-      <guid isPermaLink="false"><%= i.url %></guid>
-      <link><%= i.url %></link>
-      <pubDate><%= i.pubDate %></pubDate>
-      <title><%= i.title %> | mozaic.fm</title>
+      <enclosure url="http://<%= episode.file %>" length="<%= episode.size %>" type="audio/mpeg" />
+      <guid isPermaLink="false"><%= episode.url %></guid>
+      <link><%= episode.url %></link>
+      <pubDate><%= episode.pubDate %></pubDate>
+      <title><%= episode.title %> | mozaic.fm</title>
       <itunes:author>Jxck</itunes:author>
-      <itunes:duration><%= i.duration %></itunes:duration>
+      <itunes:duration><%= episode.duration %></itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order><%= i.order %></itunes:order>
-      <itunes:subtitle><%= i.subtitle %></itunes:subtitle>
-      <media:content url="https://<%= i.file %>" fileSize="<%= i.size %>" type="audio/mpeg" />
-      <description><%= i.description %></description>
+      <itunes:order><%= episode.order %></itunes:order>
+      <itunes:subtitle><%= episode.subtitle %></itunes:subtitle>
+      <media:content url="https://<%= episode.file %>" fileSize="<%= episode.size %>" type="audio/mpeg" />
+      <description><%= episode.description %></description>
     </item>
 <% end %>
   </channel>
