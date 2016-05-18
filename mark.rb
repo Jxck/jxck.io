@@ -682,37 +682,6 @@ class Entry < Article
   end
 end
 
-def blog(entry)
-  meta_template = File.read(".template/meta.html.erb") + File.read(".template/ld-json.html.erb")
-  blog_template = File.read(".template/blog.html.erb")
-  amp_template = File.read(".template/amp.html.erb")
-
-  style = [
-    "./blog.jxck.io/assets/css/article.css",
-    "./blog.jxck.io/assets/css/body.css",
-    "./blog.jxck.io/assets/css/info.css",
-    "./blog.jxck.io/assets/css/header.css",
-    "./blog.jxck.io/assets/css/main.css",
-    "./blog.jxck.io/assets/css/footer.css",
-    "./blog.jxck.io/assets/css/pre.css",
-    "./blog.jxck.io/assets/css/table.css",
-  ].map { |css| File.read(css) }.join("\n")
-
-  # blog
-  markup = Markup.new()
-  entry.build(markup)
-  meta = ERB.new(meta_template).result(binding).strip
-  html = ERB.new(blog_template).result(binding).strip
-  File.write(entry.htmlfile, html)
-
-  # amp
-  amp = AMP.new()
-  entry.build(amp)
-  meta = ERB.new(meta_template).result(binding).strip
-  html = ERB.new(amp_template).result(binding).strip
-  File.write(entry.ampfile, html)
-end
-
 # Podcast Episode の抽象
 class Episode < Article
   attr_accessor :order
@@ -768,30 +737,63 @@ class Episode < Article
   end
 end
 
-# blog feed
-def main()
-  # entries
-  dir = "./blog.jxck.io/entries/**/*"
-  icon = "https://jxck.io/assets/img/jxck.png"
-  entries = Dir.glob(dir)
+if __FILE__ == $0
+
+  def blog(entry)
+    meta_template = File.read(".template/meta.html.erb") + File.read(".template/ld-json.html.erb")
+    blog_template = File.read(".template/blog.html.erb")
+    amp_template = File.read(".template/amp.html.erb")
+
+    style = [
+      "./blog.jxck.io/assets/css/article.css",
+      "./blog.jxck.io/assets/css/body.css",
+      "./blog.jxck.io/assets/css/info.css",
+      "./blog.jxck.io/assets/css/header.css",
+      "./blog.jxck.io/assets/css/main.css",
+      "./blog.jxck.io/assets/css/footer.css",
+      "./blog.jxck.io/assets/css/pre.css",
+      "./blog.jxck.io/assets/css/table.css",
+    ].map { |css| File.read(css) }.join("\n")
+
+    # blog
+    markup = Markup.new()
+    entry.build(markup)
+    meta = ERB.new(meta_template).result(binding).strip
+    html = ERB.new(blog_template).result(binding).strip
+    File.write(entry.htmlfile, html)
+
+    # amp
+    amp = AMP.new()
+    entry.build(amp)
+    meta = ERB.new(meta_template).result(binding).strip
+    html = ERB.new(amp_template).result(binding).strip
+    File.write(entry.ampfile, html)
+  end
+
+  # blog feed
+  def main()
+    # entries
+    dir = "./blog.jxck.io/entries/**/*"
+    icon = "https://jxck.io/assets/img/jxck.png"
+    entries = Dir.glob(dir)
     .select { |path| path.match(/.*.md\z/) }
     .map { |path| Entry.new(path, icon) }
     .sort
     .reverse
 
-  # xml
-  xml = ERB.new(File.read(".template/atom.xml")).result(binding)
+    # xml
+    xml = ERB.new(File.read(".template/atom.xml")).result(binding)
 
-  File.write("./blog.jxck.io/feeds/atom.xml", xml)
+    File.write("./blog.jxck.io/feeds/atom.xml", xml)
 
-  entries.each {|e|
-    blog(e)
-  }
-end
+    entries.each {|e|
+      blog(e)
+    }
+  end
 
-def podcast()
-  dir = "./podcast.jxck.io/episodes/**/*"
-  items = Dir.glob(dir)
+  def podcast()
+    dir = "./podcast.jxck.io/episodes/**/*"
+    items = Dir.glob(dir)
     .select {|path| path.match(/.*.md\z/) }
     .map {|path| Episode.new(path) }
     .sort
@@ -801,8 +803,9 @@ def podcast()
       ep
     }
 
-  xml = ERB.new(File.read(".template/rss2.xml")).result(binding)
-  File.write("./podcast.jxck.io/feeds/feed.xml", xml)
-end
+    xml = ERB.new(File.read(".template/rss2.xml")).result(binding)
+    File.write("./podcast.jxck.io/feeds/feed.xml", xml)
+  end
 
-podcast()
+  podcast()
+end
