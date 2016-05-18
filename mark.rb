@@ -637,13 +637,18 @@ class Entry < Article
     @text.sub(" [" + tags.join("][") + "]", "")
   end
 
-  def description
+  def description(limit = 0)
     # description の link は無くす
-    hsp @text
+    val = hsp @text
       .match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2]
       .gsub(/\[(.*?)\]\(.*?\)/, '\1')
+      .strip()
+
+    return val if limit == 0
+
+    val
       .gsub(/(\n|\r)/, '')
-      .strip[0...140]
+      .strip[0...(limit-3)]
       .concat("...")
   end
 
