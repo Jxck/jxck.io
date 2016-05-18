@@ -14,9 +14,34 @@ def hsp(str)
      .gsub(/'/, "&#039;")
 end
 
+def j(o)
+  puts caller.first, JSON.pretty_generate(o)
+end
+
 # replace ' ' to '+'
 def unspace(str)
   str.gsub(/ /, "+")
+end
+
+# dot access Hash
+class Hash
+  def method_missing(method, *params)
+    if method[-1] == "="
+      key = method[0..-2].to_sym
+      self[key] = params[0]
+    else
+      self[method.to_sym]
+    end
+  end
+
+  def inline?
+    self.inline || [
+      :text,
+      :header,
+      :strong,
+      :paragraph,
+    ].include?(self.type)
+  end
 end
 
 # tag ごとのビルダ
@@ -218,26 +243,7 @@ class Markup
   end
 end
 
-class Hash
-  def method_missing(method, *params)
-    if method[-1] == "="
-      key = method[0..-2].to_sym
-      self[key] = params[0]
-    else
-      self[method.to_sym]
-    end
-  end
-
-  def inline?
-    self.inline || [
-      :text,
-      :header,
-      :strong,
-      :paragraph,
-    ].include?(self.type)
-  end
-end
-
+# AMP 用に拡張した Markup
 class AMP < Markup
   def a(node)
     if node.attr["href"].match(/^chrome:\/\//)
@@ -269,16 +275,6 @@ class AMP < Markup
     end
     value
   end
-end
-
-def j(o)
-  puts caller.first, JSON.pretty_generate(o)
-end
-
-def pp(*o)
-  puts "============"
-  p caller.first, *o
-  puts "============"
 end
 
 # markup をセットして生成したら
@@ -574,6 +570,7 @@ class AST
   end
 end
 
+# File に関する情報の抽象
 class Entry
   attr_accessor :article, :meta, :icon
   def initialize(path, icon)
