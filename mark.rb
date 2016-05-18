@@ -2,6 +2,7 @@
 
 require "pp"
 require "uri"
+require "erb"
 require "json"
 require "pathname"
 require "kramdown"
@@ -555,12 +556,12 @@ class AST
 end
 
 # File に関する情報の抽象
-class Entry
-  attr_accessor :article, :icon
-  def initialize(path, icon)
+class Article
+  attr_reader :path
+
+  def initialize(path)
     @path = path
     @text = File.read(path)
-    @icon = icon
   end
 
   def dir
@@ -573,6 +574,32 @@ class Entry
 
   def host
     dir.split("/")[1]
+  end
+
+  def url
+    path.sub('./', 'https://').sub('.md', '.html')
+  end
+
+  def title
+    hsp @text.match(/^# \[.*\] (.*)/)[1]
+  end
+
+  def tags
+    @text.split("\n")[0].scan(/\[(.+?)\]/).flatten
+  end
+
+  def to_s
+    path
+  end
+end
+
+# Blog Entry の抽象
+class Entry < Article
+  attr_accessor :article, :icon
+
+  def initialize(path, icon = "")
+    super(path)
+    @icon = icon
   end
 
   def baseurl
@@ -595,15 +622,6 @@ class Entry
 
   def updated_at
     File.mtime("#{dir}/#{name}.md").strftime("%Y-%m-%d")
-  end
-
-  def title
-    @text.match(/^# \[.*\] (.*)/)[1]
-  end
-
-  # tag を抜き出す
-  def tags
-    @text.split("\n")[0].scan(/\[(.+?)\]/).flatten
   end
 
   def htmlfile
@@ -652,6 +670,10 @@ class Entry
 
     @article = article
   end
+
+  def <=>(target)
+    return path <=> target.path
+  end
 end
 
 path = ARGV.first
@@ -671,18 +693,43 @@ style = [
   "./blog.jxck.io/assets/css/table.css",
 ].map { |css| File.read(css) }.join("\n")
 
-entry = Entry.new(path, icon)
 
 # blog
-markup = Markup.new()
-entry.build(markup)
-meta = ERB.new(meta_template).result(binding).strip
-html = ERB.new(blog_template).result(binding).strip
-File.write(entry.htmlfile, html)
+def blog()
+  entry = Entry.new(path, icon)
+  markup = Markup.new()
+  entry.build(markup)
+  meta = ERB.new(meta_template).result(binding).strip
+  html = ERB.new(blog_template).result(binding).strip
+  File.write(entry.htmlfile, html)
+end
 
 # AMP
-amp = AMP.new()
-entry.build(amp)
-meta = ERB.new(meta_template).result(binding).strip
-html = ERB.new(amp_template).result(binding).strip
-File.write(entry.ampfile, html)
+def amp()
+  entry = Entry.new(path, icon)
+  amp = AMP.new()
+  entry.build(amp)
+  meta = ERB.new(meta_template).result(binding).strip
+  html = ERB.new(amp_template).result(binding).strip
+  File.write(entry.ampfile, html)
+end
+
+# blog feed
+def feed()
+  # entries
+  dir = "./blog.jxck.io/entries/**/*"
+  entries = Dir.glob(dir)
+    .select { |path| path.match(/.*.md\z/) }
+    .map { |path| Entry.new(path) }
+    .sort
+    .reverse
+
+  # xml
+  xml = ERB.new(File.read(".template/atom.xml")).result(binding)
+
+  File.write("./blog.jxck.io/feeds/atom.xml", xml)
+end
+
+#blog()
+#amp()
+feed()
