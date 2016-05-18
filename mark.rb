@@ -374,7 +374,7 @@ class Traverser
       top = @stack.shift
       top.type != node.type
       if top.type != node.type
-        puts "ERROR", __LINE__, top, node
+        STDERR.puts "ERROR", __LINE__, top, node
         exit(1)
       end
 
@@ -726,7 +726,7 @@ class Episode < Article
     Time.parse(datetime).rfc822
   end
 
-  def description(limit)
+  def description(limit = 0)
     return super(limit) if limit > 0
 
     hsp @text.sub(/#(.*?)## Theme/m, "# #{title}").gsub(/\[(.*?)\]\(.*?\)/, '\1')
@@ -847,7 +847,5 @@ if __FILE__ == $0
   end
 
   blogfeed()
-  #podcastfeed()
-  e = Episode.new("./podcast.jxck.io/episodes/1/webcomponents.md")
-  podcast(e)
+  podcastfeed()
 end
