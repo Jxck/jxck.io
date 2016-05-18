@@ -681,37 +681,30 @@ class Entry < Article
   end
 end
 
-path = ARGV.first
-icon = "https://jxck.io/assets/img/jxck.png"
-meta_template = File.read(".template/meta.html.erb") + File.read(".template/ld-json.html.erb")
-blog_template = File.read(".template/blog.html.erb")
-amp_template = File.read(".template/amp.html.erb")
+def blog(entry)
+  meta_template = File.read(".template/meta.html.erb") + File.read(".template/ld-json.html.erb")
+  blog_template = File.read(".template/blog.html.erb")
+  amp_template = File.read(".template/amp.html.erb")
 
-style = [
-  "./blog.jxck.io/assets/css/article.css",
-  "./blog.jxck.io/assets/css/body.css",
-  "./blog.jxck.io/assets/css/info.css",
-  "./blog.jxck.io/assets/css/header.css",
-  "./blog.jxck.io/assets/css/main.css",
-  "./blog.jxck.io/assets/css/footer.css",
-  "./blog.jxck.io/assets/css/pre.css",
-  "./blog.jxck.io/assets/css/table.css",
-].map { |css| File.read(css) }.join("\n")
+  style = [
+    "./blog.jxck.io/assets/css/article.css",
+    "./blog.jxck.io/assets/css/body.css",
+    "./blog.jxck.io/assets/css/info.css",
+    "./blog.jxck.io/assets/css/header.css",
+    "./blog.jxck.io/assets/css/main.css",
+    "./blog.jxck.io/assets/css/footer.css",
+    "./blog.jxck.io/assets/css/pre.css",
+    "./blog.jxck.io/assets/css/table.css",
+  ].map { |css| File.read(css) }.join("\n")
 
-
-# blog
-def blog()
-  entry = Entry.new(path, icon)
+  # blog
   markup = Markup.new()
   entry.build(markup)
   meta = ERB.new(meta_template).result(binding).strip
   html = ERB.new(blog_template).result(binding).strip
   File.write(entry.htmlfile, html)
-end
 
-# AMP
-def amp()
-  entry = Entry.new(path, icon)
+  # amp
   amp = AMP.new()
   entry.build(amp)
   meta = ERB.new(meta_template).result(binding).strip
@@ -723,9 +716,10 @@ end
 def feed()
   # entries
   dir = "./blog.jxck.io/entries/**/*"
+  icon = "https://jxck.io/assets/img/jxck.png"
   entries = Dir.glob(dir)
     .select { |path| path.match(/.*.md\z/) }
-    .map { |path| Entry.new(path) }
+    .map { |path| Entry.new(path, icon) }
     .sort
     .reverse
 
@@ -733,8 +727,10 @@ def feed()
   xml = ERB.new(File.read(".template/atom.xml")).result(binding)
 
   File.write("./blog.jxck.io/feeds/atom.xml", xml)
+
+  entries.each {|e|
+    blog(e)
+  }
 end
 
-#blog()
-#amp()
 feed()
