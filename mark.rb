@@ -4,6 +4,7 @@ require "pp"
 require "uri"
 require "erb"
 require "json"
+require "time"
 require "pathname"
 require "kramdown"
 
@@ -588,6 +589,21 @@ class Article
     @text.split("\n")[0].scan(/\[(.+?)\]/).flatten
   end
 
+  def description(limit = 0)
+    # description の link は無くす
+    val = hsp @text
+      .match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2]
+      .gsub(/\[(.*?)\]\(.*?\)/, '\1')
+      .strip()
+
+    return val if limit == 0
+
+    val
+      .gsub(/(\n|\r)/, '')
+      .strip[0...(limit-3)]
+      .concat("...")
+  end
+
   def to_s
     path
   end
@@ -635,21 +651,6 @@ class Entry < Article
   # tag を本文から消す
   def no_tag
     @text.sub(" [" + tags.join("][") + "]", "")
-  end
-
-  def description(limit = 0)
-    # description の link は無くす
-    val = hsp @text
-      .match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2]
-      .gsub(/\[(.*?)\]\(.*?\)/, '\1')
-      .strip()
-
-    return val if limit == 0
-
-    val
-      .gsub(/(\n|\r)/, '')
-      .strip[0...(limit-3)]
-      .concat("...")
   end
 
   def build(markup) # Markup/AMP
@@ -712,8 +713,63 @@ def blog(entry)
   File.write(entry.ampfile, html)
 end
 
+# Podcast Episode の抽象
+class Episode < Article
+  attr_accessor :order
+
+  def num
+    @path.split('/')[3].to_i
+  end
+
+  def subtitle
+    description.split("\n")[2]
+  end
+
+  def sideshow?
+    !! (@path =~ /.*sideshow.md/)
+  end
+
+  def pubDate
+    datetime = @text.match(/datetime=(.*?)>/)[1]
+    Time.parse(datetime).rfc822
+  end
+
+  def description
+    hsp @text.sub(/#(.*?)## Theme/m, "# #{title}").gsub(/\[(.*?)\]\(.*?\)/, '\1')
+  end
+
+  def file
+    "files.mozaic.fm/mozaic-ep#{num}#{'.sideshow' if sideshow?}.mp3"
+  end
+
+  def size
+    begin
+      File.open("../#{file}").size
+    rescue
+      0
+    end
+  end
+
+  def duration
+    sec = 0
+    if RUBY_PLATFORM.match(/darwin/)
+      sec = `afinfo ../#{file}  | grep duration | cut -d' ' -f 3`.to_i
+    else
+      sec = `mp3info -p "%S\n" ../#{file}`.to_i
+    end
+    Time.at(sec).utc.strftime("%X")
+  end
+
+  def <=>(target)
+    if num == target.num
+      return sideshow? ? 1: -1
+    end
+    return num <=> target.num
+  end
+end
+
 # blog feed
-def feed()
+def main()
   # entries
   dir = "./blog.jxck.io/entries/**/*"
   icon = "https://jxck.io/assets/img/jxck.png"
@@ -733,4 +789,20 @@ def feed()
   }
 end
 
-feed()
+def podcast()
+  dir = "./podcast.jxck.io/episodes/**/*"
+  items = Dir.glob(dir)
+    .select {|path| path.match(/.*.md\z/) }
+    .map {|path| Episode.new(path) }
+    .sort
+    .reverse
+    .map.with_index {|ep, i|
+      ep.order = i
+      ep
+    }
+
+  xml = ERB.new(File.read(".template/rss2.xml")).result(binding)
+  File.write("./podcast.jxck.io/feeds/feed.xml", xml)
+end
+
+podcast()
