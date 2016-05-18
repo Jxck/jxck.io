@@ -1,19 +1,19 @@
 <meta name=author content=Jxck>
-<meta name=description content="<%= entry.description %>">
+<meta name=description content="<%= entry.description(140) %>">
 <meta name=keywords content="<%= entry.tags.join(",") %>">
 
 <meta name=twitter:card content=summary>
 <meta name=twitter:site content=@jxck_>
 <meta name=twitter:url content=https://<%= entry.host %><%= entry.canonical %>>
 <meta name=twitter:title content="<%= entry.title %> | <%= entry.host %>">
-<meta name=twitter:description content="<%= entry.description %>">
+<meta name=twitter:description content="<%= entry.description(140) %>">
 <meta name=twitter:image content=<%= entry.icon %>>
 
 <meta property=og:type content="article">
 <meta property=og:url content=https://<%= entry.host %><%= entry.canonical %>>
 <meta property=og:title content="<%= entry.title %> | <%= entry.host %>">
 <meta property=og:site_name content=<%= entry.host %>>
-<meta property=og:description content="<%= entry.description %>">
+<meta property=og:description content="<%= entry.description(140) %>">
 <meta property=og:image content=<%= entry.icon %>>
 
 <link rel=icon sizes=192x192 href=<%= entry.icon %>>

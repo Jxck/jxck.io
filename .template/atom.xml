@@ -9,10 +9,10 @@
 <% entries.each do |e| %>
   <entry>
    <title><%= e.title %></title>
-   <link href="<%= e.href %>" rel="alternate" />
-   <id><%= e.id %></id>
-   <updated><%= e.updated %></updated>
-   <summary><%= e.summary %></summary>
+   <link href="<%= e.url %>" rel="alternate" />
+   <id>tag:blog.jxck.io,2016:entry://<%= e.created_at %></id>
+   <updated><%= e.created_at %>T00:00:00Z</updated>
+   <summary><%= e.description %></summary>
   </entry>
 <% end  %>
 </feed>
