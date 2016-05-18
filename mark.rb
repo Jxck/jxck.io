@@ -577,8 +577,17 @@ class Article
     dir.split("/")[1]
   end
 
+  def baseurl
+    "/" + dir.split("/")[2..4].join("/")
+  end
+
   def url
     path.sub('./', 'https://').sub('.md', '.html')
+  end
+
+  def canonical
+    # TODO: https://
+    "#{baseurl}/#{name}.html"
   end
 
   def title
@@ -587,6 +596,11 @@ class Article
 
   def tags
     @text.split("\n")[0].scan(/\[(.+?)\]/).flatten
+  end
+
+  # tag を本文から消す
+  def no_tag
+    @text.sub(" [" + tags.join("][") + "]", "")
   end
 
   def description(limit = 0)
@@ -602,55 +616,6 @@ class Article
       .gsub(/(\n|\r)/, '')
       .strip[0...(limit-3)]
       .concat("...")
-  end
-
-  def to_s
-    path
-  end
-end
-
-# Blog Entry の抽象
-class Entry < Article
-  attr_accessor :article, :icon
-
-  def initialize(path, icon = "")
-    super(path)
-    @icon = icon
-  end
-
-  def baseurl
-    "/" + dir.split("/")[2..4].join("/")
-  end
-
-  def canonical
-    # TODO: https://
-    "#{baseurl}/#{name}.html"
-  end
-
-  def ampurl
-    # TODO: https://
-    "#{baseurl}/#{name}.amp.html"
-  end
-
-  def created_at
-    dir.split("/")[3]
-  end
-
-  def updated_at
-    File.mtime("#{dir}/#{name}.md").strftime("%Y-%m-%d")
-  end
-
-  def htmlfile
-    "#{dir}/#{name}.html"
-  end
-
-  def ampfile
-    "#{dir}/#{name}.amp.html"
-  end
-
-  # tag を本文から消す
-  def no_tag
-    @text.sub(" [" + tags.join("][") + "]", "")
   end
 
   def build(markup) # Markup/AMP
@@ -675,6 +640,41 @@ class Entry < Article
     }
 
     @article = article
+  end
+
+  def to_s
+    path
+  end
+end
+
+# Blog Entry の抽象
+class Entry < Article
+  attr_accessor :article, :icon
+
+  def initialize(path, icon = "")
+    super(path)
+    @icon = icon
+  end
+
+  def ampurl
+    # TODO: https://
+    "#{baseurl}/#{name}.amp.html"
+  end
+
+  def created_at
+    dir.split("/")[3]
+  end
+
+  def updated_at
+    File.mtime("#{dir}/#{name}.md").strftime("%Y-%m-%d")
+  end
+
+  def htmlfile
+    "#{dir}/#{name}.html"
+  end
+
+  def ampfile
+    "#{dir}/#{name}.amp.html"
   end
 
   def <=>(target)
@@ -791,35 +791,17 @@ if __FILE__ == $0
     }
   end
 
-  def feed(item)
-    meta_template = File.read(".template/meta.html.erb") + File.read(".template/ld-json.html.erb")
-    blog_template = File.read(".template/blog.html.erb")
+  def episode(episode)
+    meta_template = File.read(".template/meta.html.erb")
+    blog_template = File.read(".template/podcast.html.erb")
     amp_template = File.read(".template/amp.html.erb")
 
-    style = [
-      "./blog.jxck.io/assets/css/article.css",
-      "./blog.jxck.io/assets/css/body.css",
-      "./blog.jxck.io/assets/css/info.css",
-      "./blog.jxck.io/assets/css/header.css",
-      "./blog.jxck.io/assets/css/main.css",
-      "./blog.jxck.io/assets/css/footer.css",
-      "./blog.jxck.io/assets/css/pre.css",
-      "./blog.jxck.io/assets/css/table.css",
-    ].map { |css| File.read(css) }.join("\n")
-
-    # blog
+    # entry
     markup = Markup.new()
-    entry.build(markup)
+    episode.build(markup)
     meta = ERB.new(meta_template).result(binding).strip
     html = ERB.new(blog_template).result(binding).strip
-    File.write(entry.htmlfile, html)
-
-    # amp
-    amp = AMP.new()
-    entry.build(amp)
-    meta = ERB.new(meta_template).result(binding).strip
-    html = ERB.new(amp_template).result(binding).strip
-    File.write(entry.ampfile, html)
+    File.write(episode.htmlfile, html)
   end
 
   def podcast()
@@ -838,9 +820,9 @@ if __FILE__ == $0
     xml = ERB.new(File.read(".template/rss2.xml")).result(binding)
     File.write("./podcast.jxck.io/feeds/feed.xml", xml)
 
-    #items.each {|i|
-    #  feed(i)
-    #}
+    episodes.each {|e|
+      episode(e)
+    }
   end
 
   podcast()
