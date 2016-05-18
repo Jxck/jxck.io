@@ -79,7 +79,7 @@ raudio: https://files.mozaic.fm/mozaic-ep10.mp3
   - [JXTA](http://t.umblr.com/redirect?z=https%3A%2F%2Fjxta.kenai.com%2F&t=OWY3ODJkOWI2NmY1MWQwZGRiNGE5ZGJjZjkyNjY0NzM5OGFlMmNjZixYdVJHVGd5bQ%3D%3D)
 - 1:51:00 ~ : Node.js の未来
   - [ES6 modules](http://t.umblr.com/redirect?z=http%3A%2F%2Fwiki.ecmascript.org%2Fdoku.php%3Fid%3Dharmony%3Amodules&t=NmNjNzY2ZDFhNTI4ODFlNTgyOTVmNmEwMzI2NTRhMWEyOWExODVkYSxYdVJHVGd5bQ%3D%3D)
-  - <a>ES6 promise</a>
+  - ES6 promise
   - [Walmart 事件](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.joyent.com%2Fblog%2Fwalmart-node-js-memory-leak&t=YWYwZjQxOWJjNTg1NmFmMzZmYjMwNTE2Y2I5NzQ3YzU5MzgxMGIzMSxYdVJHVGd5bQ%3D%3D)
   - [boxer](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.getboxer.com%2F&t=NjFjY2NlOTFhZTA4MjA2NTg3N2Y1MTQ3ZTVhZTdmNjk2YmNlMjljNCxYdVJHVGd5bQ%3D%3D)
 - 2:06:20 ~ : 海外での TypeScript 事情?
