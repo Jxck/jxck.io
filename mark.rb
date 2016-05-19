@@ -699,7 +699,7 @@ end
 
 # Podcast Episode の抽象
 class Episode < Article
-  attr_accessor :order
+  attr_accessor :order, :prev, :next
 
   def initialize(path)
     super(path)
@@ -869,7 +869,9 @@ if __FILE__ == $0
       File.write("./podcast.jxck.io/feeds/feed.xml", xml)
     end
 
-    episodes.each {|e|
+    episodes.each.with_index { |e, i|
+      e.prev = episodes[i+1] if i < episodes.size
+      e.next = episodes[i-1] if i > 0
       podcast(e)
     }
   end
