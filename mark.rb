@@ -883,9 +883,11 @@ if __FILE__ == $0
   if ARGV.include? "podcast"
     podcastfeed(ARGV.include? "feed")
   end
-end
 
-# test
-icon = "https://jxck.io/assets/img/jxck.png"
-e = Entry.new("./blog.jxck.io/entries/2016-01-27/new-blog-start.md", icon)
-blog(e)
+  if ARGV.first == "-t"
+    # test
+    icon = "https://jxck.io/assets/img/jxck.png"
+    e = Entry.new("./blog.jxck.io/entries/2016-01-27/new-blog-start.md", icon)
+    blog(e)
+  end
+end
