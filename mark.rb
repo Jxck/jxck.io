@@ -49,7 +49,7 @@ end
 
 # tag ごとのビルダ
 class Markup
-  attr_writer :canonical
+  attr_writer :url
   def initialize()
     @indent = "  "
     @css = {
@@ -88,8 +88,8 @@ class Markup
     if level == 1
       # h1 の中身はタイトル
       @title = node.value
-      # h1 だけは canonical にリンク
-      return %(<h#{level}><a href=#{@canonical}>#{@title}</a></h#{level}>\n)
+      # h1 だけは self url にリンク
+      return %(<h#{level}><a href=#{@url}>#{@title}</a></h#{level}>\n)
     else
       # h2 以降は id を振る
       return %(<h#{level} id="#{unspace(node.value)}"><a href="##{unspace(node.value)}">#{node.value}</a></h#{level}>\n)
@@ -591,13 +591,13 @@ class Article
   end
 
   # "/entries/2016-01-27/new-blog-start.html"
-  def canonical
+  def url
     "/#{baseurl}/#{name}.html"
   end
 
   # "https://blog.jxck.io/entries/2016-01-27/new-blog-start.html"
-  def url
-    "https://#{host}#{canonical}"
+  def canonical
+    "https://#{host}#{url}"
   end
 
   def title
@@ -629,8 +629,8 @@ class Article
   end
 
   def build(markup) # Markup/AMP
-    # setting canonical
-    markup.canonical = canonical
+    # setting self url
+    markup.url = url
 
     # parse ast
     ast  = AST.new(no_tag)
@@ -675,9 +675,13 @@ class Entry < Article
   end
 
   # "/entries/2016-01-27/new-blog-start.amp.html"
-  def ampurl
-    # TODO: https://
+  def amprelative
     "/#{baseurl}/#{name}.amp.html"
+  end
+
+  # "https://blog.jxck.io/entries/2016-01-27/new-blog-start.amp.html"
+  def ampurl
+    "https://#{host}/#{amprelative}"
   end
 
   def created_at
