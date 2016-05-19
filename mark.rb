@@ -565,30 +565,37 @@ class Article
     @text = File.read(path)
   end
 
+  # "./blog.jxck.io/entries/2016-01-27"
   def dir
     File.dirname(@path)
   end
 
+  # "new-blog-start"
   def name
     File.basename(@path, ".*")
   end
 
+  # "blog.jxck.io"
   def host
     dir.split("/")[1]
   end
 
-  def relative
-    "#{dir.split("/")[2..4].join("/")}/#{name}.html"
-  end
-
+  # "/entries/2016-01-27"
   def baseurl
     "/#{dir.split("/")[2..4].join("/")}"
   end
 
+  # "entries/2016-01-27/new-blog-start.html"
+  def relative
+    "#{dir.split("/")[2..4].join("/")}/#{name}.html"
+  end
+
+  # "https://blog.jxck.io/entries/2016-01-27/new-blog-start.html"
   def url
     path.sub('./', 'https://').sub('.md', '.html')
   end
 
+  # "/entries/2016-01-27/new-blog-start.html"
   def canonical
     # TODO: https://
     "#{baseurl}/#{name}.html"
@@ -668,6 +675,7 @@ class Entry < Article
     @icon = icon
   end
 
+  # "/entries/2016-01-27/new-blog-start.amp.html"
   def ampurl
     # TODO: https://
     "#{baseurl}/#{name}.amp.html"
@@ -873,3 +881,8 @@ if __FILE__ == $0
     podcastfeed(ARGV.include? "feed")
   end
 end
+
+# test
+icon = "https://jxck.io/assets/img/jxck.png"
+e = Entry.new("./blog.jxck.io/entries/2016-01-27/new-blog-start.md", icon)
+blog(e)
