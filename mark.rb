@@ -580,25 +580,24 @@ class Article
     dir.split("/")[1]
   end
 
-  # "/entries/2016-01-27"
+  # "entries/2016-01-27"
   def baseurl
-    "/#{dir.split("/")[2..4].join("/")}"
+    "#{dir.split("/")[2..4].join("/")}"
   end
 
   # "entries/2016-01-27/new-blog-start.html"
   def relative
-    "#{dir.split("/")[2..4].join("/")}/#{name}.html"
-  end
-
-  # "https://blog.jxck.io/entries/2016-01-27/new-blog-start.html"
-  def url
-    path.sub('./', 'https://').sub('.md', '.html')
+    "#{baseurl}/#{name}.html"
   end
 
   # "/entries/2016-01-27/new-blog-start.html"
   def canonical
-    # TODO: https://
-    "#{baseurl}/#{name}.html"
+    "/#{baseurl}/#{name}.html"
+  end
+
+  # "https://blog.jxck.io/entries/2016-01-27/new-blog-start.html"
+  def url
+    "https://#{host}#{canonical}"
   end
 
   def title
@@ -678,7 +677,7 @@ class Entry < Article
   # "/entries/2016-01-27/new-blog-start.amp.html"
   def ampurl
     # TODO: https://
-    "#{baseurl}/#{name}.amp.html"
+    "/#{baseurl}/#{name}.amp.html"
   end
 
   def created_at
