@@ -863,10 +863,12 @@ if __FILE__ == $0
     }
   end
 
+  # $ mark.rb blog feed
   if ARGV.include? "blog"
     blogfeed(ARGV.include? "feed")
   end
 
+  # $ mark.rb podcast feed
   if ARGV.include? "podcast"
     podcastfeed(ARGV.include? "feed")
   end
