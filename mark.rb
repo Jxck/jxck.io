@@ -281,6 +281,22 @@ class AMP < Markup
   end
 end
 
+class Podcast < Markup
+  def header(node)
+    level = node.options.level
+    if level == 1
+      # h1 の中身はタイトル
+      @title = node.value
+      # h1 だけは self url にリンク
+      return %(<h#{level}>#{@title}</h#{level}>\n)
+    else
+      # h2 以降は id を振る
+      return %(<h#{level}>#{node.value}</h#{level}>\n)
+    end
+  end
+end
+
+
 # markup をセットして生成したら
 # ast を渡すと traverse しながらビルドしてくれる
 class Traverser
@@ -840,7 +856,7 @@ if __FILE__ == $0
     podcast_template = File.read(".template/podcast.html.erb")
 
     # entry
-    markup = Markup.new()
+    markup = Podcast.new()
     episode.build(markup)
     meta = ERB.new(meta_template).result(episode.instance_eval { binding }).strip
     html = ERB.new(podcast_template).result(binding).strip
