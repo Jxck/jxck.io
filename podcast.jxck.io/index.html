@@ -1,119 +1,89 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
- <meta http-equiv="Content-Type" content="text/html; charset=unicode">
- <meta name="Author" content="Made by 'tree'">
- <meta name="GENERATOR" content="$Version: $ tree v1.6.0 (c) 1996 - 2011 by Steve Baker, Thomas Moore, Francesc Rocher, Kyosuke Tokoro $">
- <title>Directory Tree</title>
- <style type="text/css">
-  <!-- 
-  BODY { font-family : ariel, monospace, sans-serif; }
-  P { font-weight: normal; font-family : ariel, monospace, sans-serif; color: black; background-color: transparent;}
-  B { font-weight: normal; color: black; background-color: transparent;}
-  A:visited { font-weight : normal; text-decoration : none; background-color : transparent; margin : 0px 0px 0px 0px; padding : 0px 0px 0px 0px; display: inline; }
-  A:link    { font-weight : normal; text-decoration : none; margin : 0px 0px 0px 0px; padding : 0px 0px 0px 0px; display: inline; }
-  A:hover   { color : #000000; font-weight : normal; text-decoration : underline; background-color : yellow; margin : 0px 0px 0px 0px; padding : 0px 0px 0px 0px; display: inline; }
-  A:active  { color : #000000; font-weight: normal; background-color : transparent; margin : 0px 0px 0px 0px; padding : 0px 0px 0px 0px; display: inline; }
-  .VERSION { font-size: small; font-family : arial, sans-serif; }
-  .NORM  { color: black;  background-color: transparent;}
-  .FIFO  { color: purple; background-color: transparent;}
-  .CHAR  { color: yellow; background-color: transparent;}
-  .DIR   { color: blue;   background-color: transparent;}
-  .BLOCK { color: yellow; background-color: transparent;}
-  .LINK  { color: aqua;   background-color: transparent;}
-  .SOCK  { color: fuchsia;background-color: transparent;}
-  .EXEC  { color: green;  background-color: transparent;}
-  -->
- </style>
-</head>
-<body>
-	<h1>Directory Tree</h1><p>
-	<a href="https://podcast.jxck.io/episodes">https://podcast.jxck.io/episodes</a><br>
-	|-- <a href="https://podcast.jxck.io/episodes/0/">0</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/0/introduction-of-mozaicfm.html">introduction-of-mozaicfm.html</a><br>
-	|   `-- <a href="https://podcast.jxck.io/episodes/0/introduction-of-mozaicfm.md">introduction-of-mozaicfm.md</a><br>
-	|-- <a href="https://podcast.jxck.io/episodes/1/">1</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/1/webcomponents.html">webcomponents.html</a><br>
-	|   `-- <a href="https://podcast.jxck.io/episodes/1/webcomponents.md">webcomponents.md</a><br>
-	|-- <a href="https://podcast.jxck.io/episodes/10/">10</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/10/nodejs.html">nodejs.html</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/10/nodejs.md">nodejs.md</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/10/nodejs-sideshow.html">nodejs-sideshow.html</a><br>
-	|   `-- <a href="https://podcast.jxck.io/episodes/10/nodejs-sideshow.md">nodejs-sideshow.md</a><br>
-	|-- <a href="https://podcast.jxck.io/episodes/11/">11</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/11/high-performance-browser-networking.html">high-performance-browser-networking.html</a><br>
-	|   `-- <a href="https://podcast.jxck.io/episodes/11/high-performance-browser-networking.md">high-performance-browser-networking.md</a><br>
-	|-- <a href="https://podcast.jxck.io/episodes/12/">12</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/12/rails.html">rails.html</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/12/rails.md">rails.md</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/12/rails-sideshow.html">rails-sideshow.html</a><br>
-	|   `-- <a href="https://podcast.jxck.io/episodes/12/rails-sideshow.md">rails-sideshow.md</a><br>
-	|-- <a href="https://podcast.jxck.io/episodes/13/">13</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/13/virtual-dom.html">virtual-dom.html</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/13/virtual-dom.md">virtual-dom.md</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/13/virtual-dom-sideshow.html">virtual-dom-sideshow.html</a><br>
-	|   `-- <a href="https://podcast.jxck.io/episodes/13/virtual-dom-sideshow.md">virtual-dom-sideshow.md</a><br>
-	|-- <a href="https://podcast.jxck.io/episodes/14/">14</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/14/whatwg.html">whatwg.html</a><br>
-	|   `-- <a href="https://podcast.jxck.io/episodes/14/whatwg.md">whatwg.md</a><br>
-	|-- <a href="https://podcast.jxck.io/episodes/15/">15</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/15/extensible-web.html">extensible-web.html</a><br>
-	|   `-- <a href="https://podcast.jxck.io/episodes/15/extensible-web.md">extensible-web.md</a><br>
-	|-- <a href="https://podcast.jxck.io/episodes/16/">16</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/16/security-application.html">security-application.html</a><br>
-	|   `-- <a href="https://podcast.jxck.io/episodes/16/security-application.md">security-application.md</a><br>
-	|-- <a href="https://podcast.jxck.io/episodes/17/">17</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/17/service-worker.html">service-worker.html</a><br>
-	|   `-- <a href="https://podcast.jxck.io/episodes/17/service-worker.md">service-worker.md</a><br>
-	|-- <a href="https://podcast.jxck.io/episodes/18/">18</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/18/nginx.html">nginx.html</a><br>
-	|   `-- <a href="https://podcast.jxck.io/episodes/18/nginx.md">nginx.md</a><br>
-	|-- <a href="https://podcast.jxck.io/episodes/19/">19</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/19/es7.html">es7.html</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/19/es7.md">es7.md</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/19/es7-sideshow.html">es7-sideshow.html</a><br>
-	|   `-- <a href="https://podcast.jxck.io/episodes/19/es7-sideshow.md">es7-sideshow.md</a><br>
-	|-- <a href="https://podcast.jxck.io/episodes/2/">2</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/2/http2.html">http2.html</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/2/http2.md">http2.md</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/2/http2-sideshow.html">http2-sideshow.html</a><br>
-	|   `-- <a href="https://podcast.jxck.io/episodes/2/http2-sideshow.md">http2-sideshow.md</a><br>
-	|-- <a href="https://podcast.jxck.io/episodes/20/">20</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/20/browser.html">browser.html</a><br>
-	|   `-- <a href="https://podcast.jxck.io/episodes/20/browser.md">browser.md</a><br>
-	|-- <a href="https://podcast.jxck.io/episodes/3/">3</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/3/angularjs.html">angularjs.html</a><br>
-	|   `-- <a href="https://podcast.jxck.io/episodes/3/angularjs.md">angularjs.md</a><br>
-	|-- <a href="https://podcast.jxck.io/episodes/4/">4</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/4/secuirty-protocol.html">secuirty-protocol.html</a><br>
-	|   `-- <a href="https://podcast.jxck.io/episodes/4/secuirty-protocol.md">secuirty-protocol.md</a><br>
-	|-- <a href="https://podcast.jxck.io/episodes/5/">5</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/5/typescript.html">typescript.html</a><br>
-	|   `-- <a href="https://podcast.jxck.io/episodes/5/typescript.md">typescript.md</a><br>
-	|-- <a href="https://podcast.jxck.io/episodes/6/">6</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/6/webrtc.html">webrtc.html</a><br>
-	|   `-- <a href="https://podcast.jxck.io/episodes/6/webrtc.md">webrtc.md</a><br>
-	|-- <a href="https://podcast.jxck.io/episodes/7/">7</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/7/rest.html">rest.html</a><br>
-	|   `-- <a href="https://podcast.jxck.io/episodes/7/rest.md">rest.md</a><br>
-	|-- <a href="https://podcast.jxck.io/episodes/8/">8</a><br>
-	|   |-- <a href="https://podcast.jxck.io/episodes/8/altjs.html">altjs.html</a><br>
-	|   `-- <a href="https://podcast.jxck.io/episodes/8/altjs.md">altjs.md</a><br>
-	`-- <a href="https://podcast.jxck.io/episodes/9/">9</a><br>
-	&nbsp;&nbsp;&nbsp; |-- <a href="https://podcast.jxck.io/episodes/9/socket.io.html">socket.io.html</a><br>
-	&nbsp;&nbsp;&nbsp; `-- <a href="https://podcast.jxck.io/episodes/9/socket.io.md">socket.io.md</a><br>
-	<br><br>
-	</p>
-	<p>
+<!DOCTYPE html>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
 
-21 directories, 52 files
-	<br><br>
-	</p>
-	<hr>
-	<p class="VERSION">
-		 tree v1.6.0 (c) 1996 - 2011 by Steve Baker and Thomas Moore <br>
-		 HTML output hacked and copyleft (c) 1998 by Francesc Rocher <br>
-		 Charsets / OS/2 support (c) 2001 by Kyosuke Tokoro
-	</p>
-</body>
-</html>
+by Jxck
+-->
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml />
+<link rel=author href=//jxck.io/assets/humans.txt>
+<script async src=//jxck.io/assets/js/ga.js></script>
+<script async src=/assets/js/stale-while-revalidate.js></script>
+<script async src=/assets/js/main.js></script>
+
+<title>blog.jxck.io</title>
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+<header>
+  <ul>
+    <li><a href=//blog.jxck.io><img class=logo alt="blog top" width=30 src=/assets/img/blog.svg></a>
+    <li><a href=/feeds/atom.xml><img alt="rss feed" width=30 src=/assets/img/rss.svg></a>
+    <li><a href=//jxck.io/humans.txt><img alt="huamns.txt" width=30 src=/assets/img/humans.svg></a>
+    <li><a href=//jxck.io><img class=logo alt="jxck logo" width=30 src=/assets/img/jxck.svg></a>
+  </ul>
+</header>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+<main class=archive>
+  <h1><a href=#archive>Archive</a></h1>
+  <h2><a href=#2016>2016</a></h2>
+  <ol>
+    <li>
+      <p><a href="/episodes/20/browser.html">第 20 回のテーマは Browser です。</a>
+      <p>今回は <a href="https://twitter.com/takoratta">@takoratta</a> さんをお迎えして、ブラウザは今どうなっているのか、そして、その進化は Web の進化とどう関わっているのかにつて議論しました。
+    </li>
+    <li>
+      <p><a href="/episodes/19/es7.html">第 19 回 ES7 の SideShow です。</a>
+      <p><a href="https://twitter.com/Constellation">@Constellation</a> さんが語る JavaScript Engine (JSCore) での実装の裏話と、 WebAssembly についてお送りします。
+      <p>なお、エピソード内で「何よりも ES6 module が欲しい」という要望を出していましたが、 <a href="https://twitter.com/Constellation">@Constellation</a> さんが、 <a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fplus.google.com%2F+YusukeSUZUKI%2Fposts%2FCtKaHMhXrEH&t=OWMxZmRiYmMxZjQwNTJiZmZkNmY5Mzc5ZWI2ZjY3NGYxZDJiZGQ4NCxvVk9uSjZwVA%3D%3D">実装に着手してくれました!!</a> 楽しみに待ちましょう!!
+      <p><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fbugs.webkit.org%2Fshow_bug.cgi%3Fid%3D147340&t=YjJiY2YxNGUwYzM5NTQwNWZiYTE2Y2RhZGQ4ZDExODQ0ZWYxNWMwZSxvVk9uSjZwVA%3D%3D">Bug 147340 - [ES6] Implement ES6 Modules</a>
+    </li>
+    <li><a href="/episodes/19/es7-sideshow.html">es7-sideshow.html</a>
+    <li><a href="/episodes/18/nginx.html">nginx.html</a>
+    <li><a href="/episodes/17/service-worker.html">service-worker.html</a>
+    <li><a href="/episodes/16/security-application.html">security-application.html</a>
+    <li><a href="/episodes/15/extensible-web.html">extensible-web.html</a>
+  </ol>
+  <style>
+ol > li:before {
+  content: none;
+}
+ol > li {
+  display: block;
+  width: 100%;
+  margin-bottom: 1em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+ol > li > p {
+  padding: 0.2em 1em;
+}
+ol > li > p:first-child {
+  margin: 0;
+  padding: 0.2em 1em;
+  background-color: #333;
+  border-radius: 4px 4px 0 0;
+}
+ol > li > p:first-child a:visited {
+  color: white;
+}
+ol > li > p:first-child a:hover {
+  color: royalblue;
+}
+ol > li > p:first-child a {
+  display: block;
+}
+  </style>
+</main>
+
+<hr>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
+</footer>
+<body>
