@@ -21,9 +21,9 @@ audio: https://files.mozaic.fm/mozaic-ep5.mp3
 
 ## Show Note
 
-- [TypeScript](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.typescriptlang.org%2F&t=ZTZjZjZlYWZiZDU4NTZlYWVmOWNlOTA5MWNjNGE3Mzc4MWJiMTYyMCxoUjJ5aE5MYw%3D%3D)
-- [TypeScript リファレンス](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.impressjapan.jp%2Fbooks%2F1113101087&t=YWNkZWU3NzFiZTY3NGVlMzk5YjdhYmRlNGY5MzdmNTM0NmYxNjJhMyxoUjJ5aE5MYw%3D%3D)
-- [DefinitelyTyped](http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fborisyankov%2FDefinitelyTyped&t=YmMxMDExMTdhNTY0NDM2M2U4YmJkNDBmMDFmZTY3N2FjM2I5NzQ5NCxoUjJ5aE5MYw%3D%3D)
+- [TypeScript](http://www.typescriptlang.org/)
+- [TypeScript リファレンス](http://www.impressjapan.jp/books/1113101087)
+- [DefinitelyTyped](https://github.com/borisyankov/DefinitelyTyped)
 - [Constellation さん](https://twitter.com/Constellation)
-- [Aligning with ECMAScript 6](http://t.umblr.com/redirect?z=https%3A%2F%2Ftypescript.codeplex.com%2Fwikipage%3Ftitle%3DECMAScript+6+Status%26referringTitle%3DRoadmap&t=ZWMwOGZlNjlhMzgwOTQ3ZDlhM2JkNWViM2QzNTY3MGVhZTI1NjNkMyxoUjJ5aE5MYw%3D%3D)
-- [ES6 ジェネレータと co と koa の話](http://t.umblr.com/redirect?z=http%3A%2F%2Fjxck.hatenablog.com%2Fentry%2F2014-01-12%2Fgenerator-screencaset&t=YTkzZmNlZTJmYTYyZTQ5MzAyZmY1ZWRkMWFkYWYyNWFkNGI2ZGNhMixoUjJ5aE5MYw%3D%3D)
+- [Aligning with ECMAScript 6](https://typescript.codeplex.com/wikipage%3Ftitle%3DECMAScript+6+Status%26referringTitle%3DRoadmap)
+- [ES6 ジェネレータと co と koa の話](http://jxck.hatenablog.com/entry/2014-01-12/generator-screencaset)

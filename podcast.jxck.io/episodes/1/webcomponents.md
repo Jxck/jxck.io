@@ -22,20 +22,20 @@ audio: https://files.mozaic.fm/mozaic-ep1.mp3
 
 ## Show Note
 
-- [Introduction to Web Components](http://t.umblr.com/redirect?z=http%3A%2F%2Fw3c.github.io%2Fwebcomponents%2Fexplainer%2F&t=ZGVjZTNlNDE4NGYwZWQ0ODBlYmYyZjAzNzI5ZTcxNzBlZjJlM2YxYyxqTmxRYWszeA%3D%3D)
-- [Template Element](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.whatwg.org%2Fspecs%2Fweb-apps%2Fcurrent-work%2Fmultipage%2Fscripting-1.html%23the-template-element&t=NDk1NjBhOWJmNzI2MDZmZmJhNDVhYTAwZDU5Y2IzMzk3ZTU1YmNmZCxqTmxRYWszeA%3D%3D)
-- [Custom Elements](http://t.umblr.com/redirect?z=http%3A%2F%2Fw3c.github.io%2Fwebcomponents%2Fspec%2Fcustom%2Findex.html&t=OTFhMzg5YTMyOGZiNzM4YjcxY2Q3NDM5ZDQzZTg4YjhiMDA1Mjc4OSxqTmxRYWszeA%3D%3D)
-- [HTML Imports](http://t.umblr.com/redirect?z=http%3A%2F%2Fw3c.github.io%2Fwebcomponents%2Fspec%2Fimports%2Findex.html&t=YjhmOGNlYmI2MTY5ZTNjNjgxZjJlNmJmNTA2NzA4OTg5M2FiYzMyZSxqTmxRYWszeA%3D%3D)
-- [Shadow DOM](http://t.umblr.com/redirect?z=http%3A%2F%2Fw3c.github.io%2Fwebcomponents%2Fspec%2Fshadow%2Findex.html&t=MGExMTU3MmQ3ODhmZDhlODFmZjk4NDY1ZjA2ZTU0YTUxYjE0OTE5ZixqTmxRYWszeA%3D%3D)
-- [polymer.js](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.polymer-project.org%2F&t=ZmU1NGMxMmU3MmYyMDlkOTJhYjBhMWM4OWJjN2FlNDU4ZDZhOWNiZCxqTmxRYWszeA%3D%3D)
-- [platform.js](http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fpolymer%2Fplatform&t=MmJjZGJjMGNjM2UwMzdlYWU4OTNhMDRmYzYyOTFkYjhhOWQ4OGI4ZSxqTmxRYWszeA%3D%3D)
-- [Brick](http://t.umblr.com/redirect?z=http%3A%2F%2Fmozilla.github.io%2Fbrick%2Findex.html&t=MzQ4ZjVhNjgyY2QwOTM4ODBkNzZhM2I5MDI3YmI2MWE2MTY1ZDA5NyxqTmxRYWszeA%3D%3D)
-- [x-tag](http://t.umblr.com/redirect?z=http%3A%2F%2Fx-tags.org&t=OTliMzRlY2IxNDgwZWI3Y2ExMzgwMjUyOWQ5NGZiOTQ5ODcyMTAzZCxqTmxRYWszeA%3D%3D)
-- [vulcanize](http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2FPolymer%2Fvulcanize&t=NWYyM2YxNWFlZGZjN2Q1MThhYzkwMzE2MTVkOTZmODgwMTU4OGFlYixqTmxRYWszeA%3D%3D)
+- [Introduction to Web Components](http://w3c.github.io/webcomponents/explainer/)
+- [Template Element](http://www.whatwg.org/specs/web-apps/current-work/multipage/scripting-1.html%23the-template-element)
+- [Custom Elements](http://w3c.github.io/webcomponents/spec/custom/index.html)
+- [HTML Imports](http://w3c.github.io/webcomponents/spec/imports/index.html)
+- [Shadow DOM](http://w3c.github.io/webcomponents/spec/shadow/index.html)
+- [polymer.js](http://www.polymer-project.org/)
+- [platform.js](https://github.com/polymer/platform)
+- [Brick](http://mozilla.github.io/brick/index.html)
+- [x-tag](http://x-tags.org)
+- [vulcanize](https://github.com/Polymer/vulcanize)
 
 
 ## Additional
 
-- [ShadowDom Visualizer](http://t.umblr.com/redirect?z=http%3A%2F%2Fhtml5-demos.appspot.com%2Fshadowdom-visualizer&t=OGRlOTc5NDY2YTVjNDY1MWMwN2UwZDFkYjQ3MzM0MmIzNTkxMDhmZixqTmxRYWszeA%3D%3D)
-- [Chromium Dashboard-Shadow DOM](http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.chromestatus.com%2Ffeatures%2F4507242028072960&t=ODA4YmZiNTE0Yjc0OWNjOWQ4MWUwZWI3ZDhiNzEwYTNmMWYwYWQ2NCxqTmxRYWszeA%3D%3D)
-- [Status IE-Shadow DOM](http://t.umblr.com/redirect?z=http%3A%2F%2Fstatus.modern.ie%2Fshadowdomunprefixed&t=MWM2ZjVjOGJlODIzZjM5MGNlYzRjYzkzZjYwZTRjMjJiOGVmMWRjYixqTmxRYWszeA%3D%3D)
+- [ShadowDom Visualizer](http://html5-demos.appspot.com/shadowdom-visualizer)
+- [Chromium Dashboard-Shadow DOM](http://www.chromestatus.com/features/4507242028072960)
+- [Status IE-Shadow DOM](http://status.modern.ie/shadowdomunprefixed)
