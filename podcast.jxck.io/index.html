@@ -1,89 +1,383 @@
 <!DOCTYPE html>
+<html lang=ja>
+<head>
 <meta charset=utf-8>
-<!--
-貴様、見ているな！！
-このサイトの技術的なまとめはこちらをどうぞ。
-https://labs.jxck.io/blog
+  <!--
+  貴様、見ているな！！
+  このサイトの技術的なまとめはこちらをどうぞ。
+  https://labs.jxck.io/blog
 
-by Jxck
--->
-<meta name=viewport content="width=device-width,initial-scale=1">
-<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml />
-<link rel=author href=//jxck.io/assets/humans.txt>
-<script async src=//jxck.io/assets/js/ga.js></script>
-<script async src=/assets/js/stale-while-revalidate.js></script>
-<script async src=/assets/js/main.js></script>
+  by Jxck
+  -->
+  <link rel=canonical href=https://mozaic.fm>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <link rel=alternate type=application/rss+xml title=mozaic.fm href=/feeds/feed.xml>
+  <link rel=author href=//jxck.io/assets/humans.txt>
+  <script async src=//jxck.io/assets/js/ga.js></script>
+  <script async src=/assets/js/highlight.min.js></script>
+  <script src=/assets/js/mozaic.js></script>
 
-<title>blog.jxck.io</title>
-<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+  <!-- TODO -->
+  <!-- %= meta %  -->
 
-<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+  <title>mozaic.fm</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css>
+</head>
+<body>
+
 <header>
   <ul>
-    <li><a href=//blog.jxck.io><img class=logo alt="blog top" width=30 src=/assets/img/blog.svg></a>
-    <li><a href=/feeds/atom.xml><img alt="rss feed" width=30 src=/assets/img/rss.svg></a>
-    <li><a href=//jxck.io/humans.txt><img alt="huamns.txt" width=30 src=/assets/img/humans.svg></a>
-    <li><a href=//jxck.io><img class=logo alt="jxck logo" width=30 src=/assets/img/jxck.svg></a>
+    <li><a href=/><img class=logo alt="blog top" width=50 src=/assets/img/mozaic.svg></a>
+    <li><a href=/feeds/feed.xml><img alt="rss feed" width=50 src=/assets/img/podcast.svg></a>
+    <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495><img alt="itunes" width=50 src=/assets/img/itunes.svg></a>
+    <li><a href="https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd"><img alt="huamns.txt" width=50 src=/assets/img/twitter.svg></a>
+    <li><a href=//jxck.io><img class=logo alt="jxck logo" width=50 src=/assets/img/jxck.svg></a>
   </ul>
 </header>
 
-<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
-<main class=archive>
-  <h1><a href=#archive>Archive</a></h1>
-  <h2><a href=#2016>2016</a></h2>
-  <ol>
-    <li>
-      <p><a href="/episodes/20/browser.html">第 20 回のテーマは Browser です。</a>
-      <p>今回は <a href="https://twitter.com/takoratta">@takoratta</a> さんをお迎えして、ブラウザは今どうなっているのか、そして、その進化は Web の進化とどう関わっているのかにつて議論しました。
-    </li>
-    <li>
-      <p><a href="/episodes/19/es7.html">第 19 回 ES7 の SideShow です。</a>
-      <p><a href="https://twitter.com/Constellation">@Constellation</a> さんが語る JavaScript Engine (JSCore) での実装の裏話と、 WebAssembly についてお送りします。
-      <p>なお、エピソード内で「何よりも ES6 module が欲しい」という要望を出していましたが、 <a href="https://twitter.com/Constellation">@Constellation</a> さんが、 <a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fplus.google.com%2F+YusukeSUZUKI%2Fposts%2FCtKaHMhXrEH&t=OWMxZmRiYmMxZjQwNTJiZmZkNmY5Mzc5ZWI2ZjY3NGYxZDJiZGQ4NCxvVk9uSjZwVA%3D%3D">実装に着手してくれました!!</a> 楽しみに待ちましょう!!
-      <p><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fbugs.webkit.org%2Fshow_bug.cgi%3Fid%3D147340&t=YjJiY2YxNGUwYzM5NTQwNWZiYTE2Y2RhZGQ4ZDExODQ0ZWYxNWMwZSxvVk9uSjZwVA%3D%3D">Bug 147340 - [ES6] Implement ES6 Modules</a>
-    </li>
-    <li><a href="/episodes/19/es7-sideshow.html">es7-sideshow.html</a>
-    <li><a href="/episodes/18/nginx.html">nginx.html</a>
-    <li><a href="/episodes/17/service-worker.html">service-worker.html</a>
-    <li><a href="/episodes/16/security-application.html">security-application.html</a>
-    <li><a href="/episodes/15/extensible-web.html">extensible-web.html</a>
-  </ol>
-  <style>
-ol > li:before {
-  content: none;
-}
-ol > li {
-  display: block;
-  width: 100%;
-  margin-bottom: 1em;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-ol > li > p {
-  padding: 0.2em 1em;
-}
-ol > li > p:first-child {
-  margin: 0;
-  padding: 0.2em 1em;
-  background-color: #333;
-  border-radius: 4px 4px 0 0;
-}
-ol > li > p:first-child a:visited {
-  color: white;
-}
-ol > li > p:first-child a:hover {
-  color: royalblue;
-}
-ol > li > p:first-child a {
-  display: block;
-}
-  </style>
+<main>
+
+  <article>
+    <section>
+      <h2>ep20 Browser</h2>
+      第 20 回のテーマは Browser です。
+
+今回は @takoratta さんをお迎えして、ブラウザは今どうなっているのか、そして、その進化は Web の進化とどう関わっているのかにつて議論しました。
+    </section>
+  </article>
+
+  <article>
+    <section>
+      <h2>ep19 ES7 sideshow</h2>
+      第 19 回 ES7 の SideShow です。
+
+@Constellation さんが語る JavaScript Engine (JSCore) での実装の裏話と、 WebAssembly についてお送りします。
+
+なお、エピソード内で「何よりも ES6 module が欲しい」という要望を出していましたが、 @Constellation さんが、 実装に着手してくれました!! 楽しみに待ちましょう!!
+
+Bug 147340 - [ES6] Implement ES6 Modules
+    </section>
+  </article>
+
+  <article>
+    <section>
+      <h2>ep19 ES7</h2>
+      第 19 回のテーマは ES7 です。
+
+今回は @Constellation さんをお迎えして、先日公開された ES6 をふまえ、次の仕様として議論が始まった ES7 について、 ブラウザのエンジンを実装する立場から見た、現状や懸念点などについて話を聞きながら、これから ECMAScript はどうなっていくのか、どうなっていくべきなのかについて議論しました。
+    </section>
+  </article>
+
+  <article>
+    <section>
+      <h2>ep18 Nginx</h2>
+      第 18 回のテーマは Nginx です。
+
+今回は @cubicdaiya さんをお迎えして、 すっかり HTTP サーバのデファクトの地位につきつつある Nginx について、なぜ Nginx を選ぶのか、 Nginx から見た現在の Web にはどういう変化があるのか。 そして Nginx はこれからどうなっていくのか、それが Web にどんな変化をもたらすのかを議論しました。
+
+ハッシュタグは #mozaicfm です。
+    </section>
+  </article>
+
+  <article>
+    <section>
+      <h2>ep17 Service Worker</h2>
+      第 17 回のテーマは Service Worker です。
+
+今回は @kinu さんと @nhiroki_ さんをお迎えして、 今実装や仕様策定が進んでいる Service Worker について、なぜこうした仕様が出てきたのか、これを用いて何ができるのか、これがどう Web を変えるのか。
+
+実装や仕様の裏話や、これが普及してからの懸念点なども含めて、じっくり議論しました。
+
+ハッシュタグは #mozaicfm です。
+
+また、 Service Worker へのフィードバックは bug tracker です。
+    </section>
+  </article>
+
+  <article>
+    <section>
+      <h2>ep16 Security (application)</h2>
+      第 16 回のテーマは Security (application) です。
+
+今回は @hasegawayosuke さんをお迎えして、 Web アプリケーションの開発技術が進化することによって、同じように変わっている筈のセキュリティに関して、その変化をどう考えればいいのか?
+
+開発者とセキュリティ関係者のあいだで、足りてないと認識されているものは何か?
+
+それらをふまえてセキュリティをとりまく環境で「今何が起こっているのか」、そして「これからどうなっていくのか」について議論しました。
+
+hasegawa さんが本を書いてる件は、許可を取っておりカットしてません。公表して自分を追い込むメソッドだそうです w
+
+ハッシュタグは #mozaicfm です。
+    </section>
+  </article>
+
+  <article>
+    <section>
+      <h2>ep15 Extensible Web</h2>
+      第 15 回のテーマは Extensible Web です。
+
+収録自体は 前回のエピソード の続きにあたります。
+
+前回に引き続き @myakura さんと @nunnun (hiro) さんをお迎えして、 これまでの Web の標準化の持つ課題を解決する動きとして始まった、 Extensible Webとはなんなのか、どういう経緯で提唱され、何を解決するのか。
+
+それによって「今何が起こっているのか」、「これからどうなっていくのか」そして、「自分たちはそれにどう参加できるのか?」を議論しました。
+
+ハッシュタグは #mozaicfm です。
+    </section>
+  </article>
+
+  <article>
+    <section>
+      <h2>ep14 WHATWG</h2>
+      第 14 回のテーマは WHATWG です。
+
+今回は @myakura さんと @nunnun (hiro) さんをお迎えして、 WHATWG 、 W3C 、 TAG などの成り立ちや、それらがやっていること。先日の HTML5 勧告の意味。 LivingStandard とはどう考えればいいのか?といった話から、標準化において「今何が起こっているのか」、「これからどうなっていくのか」そして、「自分たちはそれにどう参加できるのか?」を議論しました。
+
+後半は Extensible Web の話になったので、 次のエピソード に分けています。
+
+ハッシュタグは #mozaicfm です。
+    </section>
+  </article>
+
+  <article>
+    <section>
+      <h2>ep13 Virtual DOM sideshow</h2>
+      第 13 回 Virtual DOM の SideShow です。
+
+@mizchi さんとのこぼれ話をお送りします。
+
+ハッシュタグは #mozaicfm です。
+    </section>
+  </article>
+
+  <article>
+    <section>
+      <h2>ep13 Virtual DOM</h2>
+      第 13 回のテーマは Virtual DOM です。
+
+今回は @mizchi さんをお迎えして、 Virtual DOM というアイデアの本質、それが可能にした Flux というアーキテクチャ、そして各種の実装と今後の期待について、「今何が起こっているのか」、「これからどうなっていくのか」を議論しました。
+
+ハッシュタグは #mozaicfm です。
+    </section>
+  </article>
+
+  <article>
+    <section>
+      <h2>ep12 Rails sideshow</h2>
+      第 12 回 Ruby on Rails の SideShow です。
+
+@a_matsuda さんの語る Rails 開発のスタイルと、そのコミュニティの持つ力、 Rails が引っ張ったテストの話などをお送りします。
+
+ハッシュタグは #mozaicfm です。
+    </section>
+  </article>
+
+  <article>
+    <section>
+      <h2>ep12 Rails</h2>
+      第 12 回のテーマは Ruby on Rails です。
+
+今回は Ruby と Rail のコミッターである @a_matsuda さんをお迎えして、 Rails が引っ張ってきた Web 開発と、 Web の進化が Ruby に与えた影響などを振り返りながら、 Rails に「今何が起こっているのか」、「これからどうなっていくのか」を議論しました。
+
+プロジェクトオーナーである DHH が最初の Rails をリリースしてから 10 年たった今、この 10 年を見てきた @a_matsuda さんとともに、 10 年前と比べて様変わりしたフロントエンド開発との兼ね合いや、 Microservices に対する感触などについて議論しました。
+
+ハッシュタグは #mozaicfm です。
+
+(なお、 Android での不具合のフィードバックを頂いたため、今回から配信形式を m4a ではなく mp3 に変えました。アートワークはありません。)
+    </section>
+  </article>
+
+  <article>
+    <section>
+      <h2>ep11 High Performance Browser Networking</h2>
+      第 11 回のテーマは High Performance Browser Networking です。
+
+今回は High Performance Browser Networking で実施したインタビュー形式の公開収録の模様を配信します。今回は Google さんに通訳をつけて頂きましたので、その分ラグや lost in translation がありますが、ご了承ください。
+
+HPBN は、複雑化し、知らなくてはならい知識が飛躍的に増えた Web のネットワークに関わる知識について、幅広く詳細に解説した Web エンジニア必携の一冊です。
+
+インタビューでは Ilya はいったいどういうエンジニアで、何故この本を執筆したのか。この本以降でのアップデートや、 Ilya 自身の見る「これからの Web」について、何がおこっているのか?、これからどうなっていくのか?をお聞きしました。
+
+別途 Qiita で募集した質問 も一部採用させていただきました。応募頂いた皆様ありがとうございました。
+
+ハッシュタグは #mozaicfm です。
+    </section>
+  </article>
+
+  <article>
+    <section>
+      <h2>ep10 Node.js sideshow</h2>
+      第 10 回 Node.js の SideShow です。
+
+@koichik さんの「ところでみんな Promise 好き?」から始まった、 Promise / Generator / Rxjs などの話題と、 Java の Future や Haskell の Monad との関係などの解説です。
+
+ハッシュタグは #mozaicfm です。
+    </section>
+  </article>
+
+  <article>
+    <section>
+      <h2>ep10 Node.js</h2>
+      第 10 回のテーマは Node.js です。
+
+今回は唯一の日本人 Node.js コミッタである @koichik さんと、日本 Node.js ユーザグループの現代表である @yosuke_furukawa さんをお迎えし、 Node.js をテーマに 「Node.js ができた理由」から、「node@1.0」の展望「nodeconf.eu での最新事情」や「Node.js コミュニティの今後」などを二時間半たっぷり議論しました。
+
+また、危なげな運用で続けてきた mozaic.fm も、一つ目の目標だった 10 回を達成することができました。これも、購読/出演、してくださった皆様のおかげです。これからもしばらくは続けたいと思いますので、よろしくお願いします。
+
+ハッシュタグは #mozaicfm です。
+    </section>
+  </article>
+
+  <article>
+    <section>
+      <h2>ep9 Socket.IO</h2>
+      第 9 回のテーマは Socket.IO です。**全編英語**です。
+
+今回は Socket.IO@1.0 公開を記念して、日本で開催した Socket.IO Meetup さんをお迎えし、 Socket.IO をテーマに 「Socket.IO を作ったモチベーション」から、「Socket.IO@1.0 での変更点」や「Socket.IO@2.0 の話」などをしました。
+
+ちょうどこの時期にポストされた、彼の同僚であり Express や Mocha の作者である TJ Holowaychuk の、 Farewell Node.js などをネタに、「他の言語で実装した場合」の話などもしました。
+
+今回も Qiita で事前に質問を集め その中のいつくかは紹介しています。質問くださったみなさんありがとうございました。
+
+
+ハッシュタグは #mozaicfm です。
+    </section>
+  </article>
+
+  <article>
+    <section>
+      <h2>ep8 AltJS</h2>
+      第 8 回のテーマは altJS(TypeScript, Dart) です。
+
+今回は #LLDiver という枠をやらせて頂きました。
+
+ゲストは あんどう さんと、 わかめ さんをお迎えし altJS をテーマに 「今なにが起こっているのか?」「これからどうなっていくのか?」を議論しました。
+
+ハッシュタグは #mozaicfm です。
+    </section>
+  </article>
+
+  <article>
+    <section>
+      <h2>ep7 REST</h2>
+      第 7 回のテーマは REST です。
+
+今回は @yohei さんと、 @t_wada さんをお迎えし、 REST をテーマに 「もういちど REST とは何か、ちゃんと話そう」という議論を皮切りに「今なにが起こっているのか?」「これからどうなっていくのか?」また、「Web を支える技術を改訂するとしたら?」をたっぷり議論しました。
+
+エピソード中にも出てきましたが、 **「Web を支える技術」を改訂する際に「こういうことを載せて欲しい」** という @yohei さんへの要望があれば #mozaicfm をつけて、是非つぶやいてください。
+
+エピソードの感想なども、同じく #mozaicfm です。
+
+今回は、居酒屋トークの録音なので周囲の雑音が多いですがご了承ください。
+    </section>
+  </article>
+
+  <article>
+    <section>
+      <h2>ep6 WebRTC</h2>
+      第 6 回のテーマは WebRTC です。
+
+今回は @komasshu さんと、 @Tukimikage さんをお迎えし WebRTC をテーマに 「今なにが起こっているのか?」「これからどうなっていくのか?」をたっぷり議論しました。
+
+ハッシュタグは #mozaicfm です。
+
+(NAT をアドレストランスポートと言い間違ってますが、そっとしておいてあげて下さい)
+    </section>
+  </article>
+
+  <article>
+    <section>
+      <h2>ep5 TypeScript</h2>
+      第 5 回のテーマは TypeScript です。
+
+今回は @vvakame さんをお迎えし TypeScript をテーマに、 TypeScript の現状や、 d.ts の話、型の有無に起因する議論、最近のモジュールシステム、 Alt-JS 全般にまつわるエコシステムの話や、 Angular-TypeScript の感想、非同期の話、 TypeScript の今後など 「今なにが起こっているのか?」「これからどうなっていくのか?」をたっぷり議論しました。
+
+今回は議論が色々広がって 1.5h になりました。また、録音したのは約一ヶ月前(5 月中旬)のもので、冒頭で第 4 回と言っていましたが、急遽第 4 回に別の話を差し込んだため第 5 回になりました。
+
+ハッシュタグは #mozaicfm です。
+    </section>
+  </article>
+
+  <article>
+    <section>
+      <h2>ep4 Security (protocol)</h2>
+      第 4 回のテーマは Security (Protocol)です。
+
+今回は、 CCS Injection さんをお迎えし、 CCS Injection の影響や発見の経緯、 Open SSL や TLS の現状、ここから見える未来など、プロトコル寄りのセキュリティをテーマに、議論しました。
+
+今回は Qiita でラフノートを公開 し、質問を募集しました。全部は紹介できませんでしたが、質問頂いた方々有難うございました。
+
+ハッシュタグは #mozaicfm です。
+    </section>
+  </article>
+
+  <article>
+    <section>
+      <h2>ep3 Angular.js</h2>
+      第 3 回のテーマは Angular.js です。
+
+今回は @can_i_do_web さんと @konpyu さんをお迎えし Angular.js をテーマに、日本のコミュニティの話や、 Angular.js 製 Web サービス note の開発経験などから 「今なにが起こっているのか?」「これからどうなっていくのか?」を議論しました。
+
+ハッシュタグは #mozaicfm です。
+    </section>
+  </article>
+
+  <article>
+    <section>
+      <h2>ep2 HTTP2 sideshow</h2>
+      第 2 回 HTTP2 の SideShow です。
+
+今回は 第 2 回 に収まらなかった 「Nghttp2 の今後」について、番外編として配信します。
+
+OSS 奨励賞受賞の裏話や、 http2 や spdylay が今後どうなるのか、 tatsuhiro_t さんの今後の活動についてなど、こぼれ話をまとめた 15 分です。
+
+ハッシュタグは #mozaicfm です。
+    </section>
+  </article>
+
+  <article>
+    <section>
+      <h2>ep2 HTTP2</h2>
+      第 2 回のテーマは HTTP2 です。
+
+今回は @tatsuhiro_t さんと @jovi0608 さんをお迎えし HTTP の世界で、「今なにが起こっているのか?」「これからどうなっていくのか?」を議論しました。
+
+なお、今回は編集で収まりきらなかった 「Nghttp2 の今後」について、番外編として後日配信する予定です。ユーザの方は必聴です。
+
+ハッシュタグは #mozaicfm です。
+    </section>
+  </article>
+
+  <article>
+    <section>
+      <h2>ep1 WebComponents</h2>
+      第 1 回のテーマは WebComponents です。
+
+今回は @hokaccha さんと @ahomu さんをお迎えし、 WebComponents で何が変わるのか、 ShadowDOM で何が嬉しいのか、今の課題は何か?
+
+「なにが起こっているのか?」「これからどうなっていくのか?」を議論しました。
+
+ハッシュタグは #mozaicfm です。
+    </section>
+  </article>
+
+  <article>
+    <section>
+      <h2>ep0 introduction of mozaic.fm</h2>
+      次世代 Web Podcast Mozaic の紹介です。 feed のテストも兼ねています。
+    </section>
+  </article>
+
 </main>
 
-<hr>
-
-<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
 <footer>
-  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</address>
 </footer>
-<body>
+</body>
+</html>

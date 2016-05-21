@@ -890,6 +890,10 @@ if __FILE__ == $0
       e.next = episodes[i-1] if i > 0
       podcast(e)
     }
+
+    puts "build index.html"
+    archive = ERB.new(File.read(".template/podcast.index.html.erb")).result(binding)
+    File.write("./podcast.jxck.io/index.html", archive)
   end
 
   # $ mark.rb blog feed
