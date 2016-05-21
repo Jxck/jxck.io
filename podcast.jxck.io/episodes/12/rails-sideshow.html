@@ -47,43 +47,7 @@
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
-  <style>
-  body {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 1.2em;
-  }
-
-  header ul li {
-    width: 50px;
-    height: 50px;
-  }
-
-  header ul li a {
-    width: 50px;
-    height: 50px;
-  }
-
-  article ul {
-    font-family: inherit;
-    font-size: 1em;
-  }
-
-  article li {
-    margin: 0.2em 0;
-  }
-
-  article ul > li > ul {
-    margin: 0.2em 0 0.6em 1em;
-  }
-
-  nav {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-
-  }
-  </style>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css>
 </head>
 <body>
 
@@ -91,6 +55,7 @@
   <ul>
     <li><a href=/><img class=logo alt="blog top" width=50 src=/assets/img/mozaic.svg></a>
     <li><a href=/feeds/feed.xml><img alt="rss feed" width=50 src=/assets/img/podcast.svg></a>
+    <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495><img alt="itunes" width=50 src=/assets/img/itunes.svg></a>
     <li><a href="https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd"><img alt="huamns.txt" width=50 src=/assets/img/twitter.svg></a>
     <li><a href=//jxck.io><img class=logo alt="jxck logo" width=50 src=/assets/img/jxck.svg></a>
   </ul>
@@ -99,13 +64,13 @@
 <main>
   <nav>
     <span>&lt;&lt;&nbsp;<a href=/episodes/12/rails.html>ep12 Rails</a></span>
-    <span><a href=/episodes/13/virtual-dom.html>ep13 Virtual DOM</a>&nbsp;&gt;&gt;&gt;</span>
+    <span><a href=/episodes/13/virtual-dom.html>ep13 Virtual DOM</a>&nbsp;&gt;&gt;</span>
   </nav>
 
   <article>
-    <h1><a href=/episodes/12/rails-sideshow.html>ep12 Rails sideshow</a></h1>
+    <h1>ep12 Rails sideshow</h1>
     <section>
-      <h2 id="Info"><a href="#Info">Info</a></h2>
+      <h2>Info</h2>
       <p><audio preload=none src=https://files.mozaic.fm/mozaic-ep12.sideshow.mp3 controls></audio>
       <ul class=info>
         <li>published_at: <time datetime=2014-12-12>2014-12-12</time>
@@ -113,37 +78,36 @@
       </ul>
     </section>
     <section>
-      <h2 id="Theme"><a href="#Theme">Theme</a></h2>
+      <h2>Theme</h2>
       <p>第 12 回 Ruby on Rails の SideShow です。
       <p><a href="https://twitter.com/a_matsuda/">@a_matsuda</a> さんの語る Rails 開発のスタイルと、そのコミュニティの持つ力、 Rails が引っ張ったテストの話などをお送りします。
       <p>ハッシュタグは <a href="https://twitter.com/search?q=mozaicfm&src=hash">#mozaicfm</a> です。
     </section>
     <section>
-      <h2 id="Show+Note"><a href="#Show+Note">Show Note</a></h2>
+      <h2>Show Note</h2>
       <ul>
         <li><a href="https://twitter.com/tenderlove">Aaron Patterson</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Frubykaigi.org%2F2014&t=NWVhZWQ4NGE2NDViYjVmYWExYWEzMjMwMzM3ZDQxNjA3ZTM4NTlmNiwySFZWM2dMWQ%3D%3D">RubyKaigi</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Frubyconf.org%2F&t=YzNhNjlmYmVjN2IyNGIxNzk1ZTllNTIwMTUxMWMyZjY2ZGNlZDVhYiwySFZWM2dMWQ%3D%3D">RubyConf</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fjosevalim&t=ZjA5MGNiYzY2MTFiNDk3OWEwZGMxMmQzNDAzNDY4ZWIwMzM5NDE4OSwySFZWM2dMWQ%3D%3D">Josevalim</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Freia-lang.org%2F&t=MjAyYjNhOTExOGJhZTI4Yjc4MDNkMDg4YTFmNWYzNWU4NjgwN2QyOSwySFZWM2dMWQ%3D%3D">Reia</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Felixir-lang.org%2F&t=MTViZmM1ZWMzOTNkNDNkZDhiZDFmMGY1ZDlkYmQ3MzM4ODlkYTI4MSwySFZWM2dMWQ%3D%3D">Elixir</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fplataformatec.com&t=OTIxNmE2ZWZlMTFhMmQwMzMxMTA1ZDMwNmExNjExMDRkZGM0NDQ1MCwySFZWM2dMWQ%3D%3D">Platformatec</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Frubykaigi.org%2F2014%2Fpresentation%2FS-YukihiroMatzMatsumoto&t=MTdmYzIxMmE5NzU3NzI2N2Y5ZWE3ZDhkYjhjOWZkNzIyNDEwOTllNCwySFZWM2dMWQ%3D%3D">RubyKaigi 2014 での Ruby に型という話</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fwww.djangoproject.com%2F&t=NTVjMzRjMGMwZTg4OGU4ZTQ4NTFmZWI3NjIxMTFjYzk0ZjMzMjY3MSwySFZWM2dMWQ%3D%3D">Django</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fpragprog.com%2Fbook%2Fruby%2Fprogramming-ruby&t=MDc5YjkwOWMyYjE3ODg2ODFiZjYwMDgwMzBmYzA5MzI5MWNhN2ZhYywySFZWM2dMWQ%3D%3D">Dave Thomas の Pickax(つるはし)本</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.clear-code.com%2Fblog%2F2014%2F11%2F6.html&t=MjFiMDZhZDc2YzY4YmMzMzg1ZTY4NDYzM2FiYmZjNmRlNWIzYjU0ZSwySFZWM2dMWQ%3D%3D">Ruby のテスティングフレームワークの歴史(2014 年版)</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fdavid.heinemeierhansson.com%2F2012%2Frails-is-omakase.html&t=MDc1NThjOTBkYmJmYjJkZThlZjE0ZTkxN2ZjNjAzNmIzYjgxZmM1YiwySFZWM2dMWQ%3D%3D">Rails is omakase</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fdavid.heinemeierhansson.com%2F2014%2Ftdd-is-dead-long-live-testing.html&t=NzVhMDZhMzY0ZjJjYWU3M2UwMDZhMmNmNTIwNDFkOGM5NzY0OGI1ZCwySFZWM2dMWQ%3D%3D">TDD is dead. Long live testing.</a>
+        <li><a href="http://rubykaigi.org/2014">RubyKaigi</a>
+        <li><a href="http://rubyconf.org/">RubyConf</a>
+        <li><a href="https://github.com/josevalim">Josevalim</a>
+        <li><a href="http://reia-lang.org/">Reia</a>
+        <li><a href="http://elixir-lang.org/">Elixir</a>
+        <li><a href="http://plataformatec.com">Platformatec</a>
+        <li><a href="http://rubykaigi.org/2014/presentation/S-YukihiroMatzMatsumoto">RubyKaigi 2014 での Ruby に型という話</a>
+        <li><a href="https://www.djangoproject.com/">Django</a>
+        <li><a href="https://pragprog.com/book/ruby/programming-ruby">Dave Thomas の Pickax(つるはし)本</a>
+        <li><a href="http://www.clear-code.com/blog/2014/11/6.html">Ruby のテスティングフレームワークの歴史(2014 年版)</a>
+        <li><a href="http://david.heinemeierhansson.com/2012/rails-is-omakase.html">Rails is omakase</a>
+        <li><a href="http://david.heinemeierhansson.com/2014/tdd-is-dead-long-live-testing.html">TDD is dead. Long live testing.</a>
       </ul>
     </section>
   </article>
 
   <nav>
-    <span>&lt;&lt;&lt;&nbsp;<a href=/episodes/12/rails.html>ep12 Rails</a></span>
-    <span><a href=/episodes/13/virtual-dom.html>ep13 Virtual DOM</a>&nbsp;&gt;&gt;&gt;</span>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/12/rails.html>ep12 Rails</a></span>
+    <span><a href=/episodes/13/virtual-dom.html>ep13 Virtual DOM</a>&nbsp;&gt;&gt;</span>
   </nav>
 </main>
-<hr>
 
 <footer>
   <address class=copyright>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</address>

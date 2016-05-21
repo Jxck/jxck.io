@@ -47,43 +47,7 @@
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
-  <style>
-  body {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 1.2em;
-  }
-
-  header ul li {
-    width: 50px;
-    height: 50px;
-  }
-
-  header ul li a {
-    width: 50px;
-    height: 50px;
-  }
-
-  article ul {
-    font-family: inherit;
-    font-size: 1em;
-  }
-
-  article li {
-    margin: 0.2em 0;
-  }
-
-  article ul > li > ul {
-    margin: 0.2em 0 0.6em 1em;
-  }
-
-  nav {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-
-  }
-  </style>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css>
 </head>
 <body>
 
@@ -91,6 +55,7 @@
   <ul>
     <li><a href=/><img class=logo alt="blog top" width=50 src=/assets/img/mozaic.svg></a>
     <li><a href=/feeds/feed.xml><img alt="rss feed" width=50 src=/assets/img/podcast.svg></a>
+    <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495><img alt="itunes" width=50 src=/assets/img/itunes.svg></a>
     <li><a href="https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd"><img alt="huamns.txt" width=50 src=/assets/img/twitter.svg></a>
     <li><a href=//jxck.io><img class=logo alt="jxck logo" width=50 src=/assets/img/jxck.svg></a>
   </ul>
@@ -99,13 +64,13 @@
 <main>
   <nav>
     <span>&lt;&lt;&nbsp;<a href=/episodes/0/introduction-of-mozaicfm.html>ep0 introduction of mozaic.fm</a></span>
-    <span><a href=/episodes/2/http2.html>ep2 HTTP2</a>&nbsp;&gt;&gt;&gt;</span>
+    <span><a href=/episodes/2/http2.html>ep2 HTTP2</a>&nbsp;&gt;&gt;</span>
   </nav>
 
   <article>
-    <h1><a href=/episodes/1/webcomponents.html>ep1 WebComponents</a></h1>
+    <h1>ep1 WebComponents</h1>
     <section>
-      <h2 id="Info"><a href="#Info">Info</a></h2>
+      <h2>Info</h2>
       <p><audio preload=none src=https://files.mozaic.fm/mozaic-ep1.mp3 controls></audio>
       <ul class=info>
         <li>published_at: <time datetime=2014-04-07>2014-04-07</time>
@@ -114,43 +79,42 @@
       </ul>
     </section>
     <section>
-      <h2 id="Theme"><a href="#Theme">Theme</a></h2>
+      <h2>Theme</h2>
       <p>第 1 回のテーマは WebComponents です。
       <p>今回は <a href="https://twitter.com/hokaccha">@hokaccha</a> さんと <a href="https://twitter.com/ahomu">@ahomu</a> さんをお迎えし、 WebComponents で何が変わるのか、 ShadowDOM で何が嬉しいのか、今の課題は何か?
       <p>「なにが起こっているのか?」「これからどうなっていくのか?」を議論しました。
       <p>ハッシュタグは <a href="https://twitter.com/search?q=mozaicfm&src=hash">#mozaicfm</a> です。
     </section>
     <section>
-      <h2 id="Show+Note"><a href="#Show+Note">Show Note</a></h2>
+      <h2>Show Note</h2>
       <ul>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fw3c.github.io%2Fwebcomponents%2Fexplainer%2F&t=ZGVjZTNlNDE4NGYwZWQ0ODBlYmYyZjAzNzI5ZTcxNzBlZjJlM2YxYyxqTmxRYWszeA%3D%3D">Introduction to Web Components</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.whatwg.org%2Fspecs%2Fweb-apps%2Fcurrent-work%2Fmultipage%2Fscripting-1.html%23the-template-element&t=NDk1NjBhOWJmNzI2MDZmZmJhNDVhYTAwZDU5Y2IzMzk3ZTU1YmNmZCxqTmxRYWszeA%3D%3D">Template Element</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fw3c.github.io%2Fwebcomponents%2Fspec%2Fcustom%2Findex.html&t=OTFhMzg5YTMyOGZiNzM4YjcxY2Q3NDM5ZDQzZTg4YjhiMDA1Mjc4OSxqTmxRYWszeA%3D%3D">Custom Elements</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fw3c.github.io%2Fwebcomponents%2Fspec%2Fimports%2Findex.html&t=YjhmOGNlYmI2MTY5ZTNjNjgxZjJlNmJmNTA2NzA4OTg5M2FiYzMyZSxqTmxRYWszeA%3D%3D">HTML Imports</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fw3c.github.io%2Fwebcomponents%2Fspec%2Fshadow%2Findex.html&t=MGExMTU3MmQ3ODhmZDhlODFmZjk4NDY1ZjA2ZTU0YTUxYjE0OTE5ZixqTmxRYWszeA%3D%3D">Shadow DOM</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.polymer-project.org%2F&t=ZmU1NGMxMmU3MmYyMDlkOTJhYjBhMWM4OWJjN2FlNDU4ZDZhOWNiZCxqTmxRYWszeA%3D%3D">polymer.js</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fpolymer%2Fplatform&t=MmJjZGJjMGNjM2UwMzdlYWU4OTNhMDRmYzYyOTFkYjhhOWQ4OGI4ZSxqTmxRYWszeA%3D%3D">platform.js</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fmozilla.github.io%2Fbrick%2Findex.html&t=MzQ4ZjVhNjgyY2QwOTM4ODBkNzZhM2I5MDI3YmI2MWE2MTY1ZDA5NyxqTmxRYWszeA%3D%3D">Brick</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fx-tags.org&t=OTliMzRlY2IxNDgwZWI3Y2ExMzgwMjUyOWQ5NGZiOTQ5ODcyMTAzZCxqTmxRYWszeA%3D%3D">x-tag</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2FPolymer%2Fvulcanize&t=NWYyM2YxNWFlZGZjN2Q1MThhYzkwMzE2MTVkOTZmODgwMTU4OGFlYixqTmxRYWszeA%3D%3D">vulcanize</a>
+        <li><a href="http://w3c.github.io/webcomponents/explainer/">Introduction to Web Components</a>
+        <li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/scripting-1.html%23the-template-element">Template Element</a>
+        <li><a href="http://w3c.github.io/webcomponents/spec/custom/index.html">Custom Elements</a>
+        <li><a href="http://w3c.github.io/webcomponents/spec/imports/index.html">HTML Imports</a>
+        <li><a href="http://w3c.github.io/webcomponents/spec/shadow/index.html">Shadow DOM</a>
+        <li><a href="http://www.polymer-project.org/">polymer.js</a>
+        <li><a href="https://github.com/polymer/platform">platform.js</a>
+        <li><a href="http://mozilla.github.io/brick/index.html">Brick</a>
+        <li><a href="http://x-tags.org">x-tag</a>
+        <li><a href="https://github.com/Polymer/vulcanize">vulcanize</a>
       </ul>
     </section>
     <section>
-      <h2 id="Additional"><a href="#Additional">Additional</a></h2>
+      <h2>Additional</h2>
       <ul>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fhtml5-demos.appspot.com%2Fshadowdom-visualizer&t=OGRlOTc5NDY2YTVjNDY1MWMwN2UwZDFkYjQ3MzM0MmIzNTkxMDhmZixqTmxRYWszeA%3D%3D">ShadowDom Visualizer</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.chromestatus.com%2Ffeatures%2F4507242028072960&t=ODA4YmZiNTE0Yjc0OWNjOWQ4MWUwZWI3ZDhiNzEwYTNmMWYwYWQ2NCxqTmxRYWszeA%3D%3D">Chromium Dashboard-Shadow DOM</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fstatus.modern.ie%2Fshadowdomunprefixed&t=MWM2ZjVjOGJlODIzZjM5MGNlYzRjYzkzZjYwZTRjMjJiOGVmMWRjYixqTmxRYWszeA%3D%3D">Status IE-Shadow DOM</a>
+        <li><a href="http://html5-demos.appspot.com/shadowdom-visualizer">ShadowDom Visualizer</a>
+        <li><a href="http://www.chromestatus.com/features/4507242028072960">Chromium Dashboard-Shadow DOM</a>
+        <li><a href="http://status.modern.ie/shadowdomunprefixed">Status IE-Shadow DOM</a>
       </ul>
     </section>
   </article>
 
   <nav>
-    <span>&lt;&lt;&lt;&nbsp;<a href=/episodes/0/introduction-of-mozaicfm.html>ep0 introduction of mozaic.fm</a></span>
-    <span><a href=/episodes/2/http2.html>ep2 HTTP2</a>&nbsp;&gt;&gt;&gt;</span>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/0/introduction-of-mozaicfm.html>ep0 introduction of mozaic.fm</a></span>
+    <span><a href=/episodes/2/http2.html>ep2 HTTP2</a>&nbsp;&gt;&gt;</span>
   </nav>
 </main>
-<hr>
 
 <footer>
   <address class=copyright>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</address>

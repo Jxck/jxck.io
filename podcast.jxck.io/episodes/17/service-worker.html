@@ -47,43 +47,7 @@
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
-  <style>
-  body {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 1.2em;
-  }
-
-  header ul li {
-    width: 50px;
-    height: 50px;
-  }
-
-  header ul li a {
-    width: 50px;
-    height: 50px;
-  }
-
-  article ul {
-    font-family: inherit;
-    font-size: 1em;
-  }
-
-  article li {
-    margin: 0.2em 0;
-  }
-
-  article ul > li > ul {
-    margin: 0.2em 0 0.6em 1em;
-  }
-
-  nav {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-
-  }
-  </style>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css>
 </head>
 <body>
 
@@ -91,6 +55,7 @@
   <ul>
     <li><a href=/><img class=logo alt="blog top" width=50 src=/assets/img/mozaic.svg></a>
     <li><a href=/feeds/feed.xml><img alt="rss feed" width=50 src=/assets/img/podcast.svg></a>
+    <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495><img alt="itunes" width=50 src=/assets/img/itunes.svg></a>
     <li><a href="https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd"><img alt="huamns.txt" width=50 src=/assets/img/twitter.svg></a>
     <li><a href=//jxck.io><img class=logo alt="jxck logo" width=50 src=/assets/img/jxck.svg></a>
   </ul>
@@ -99,13 +64,13 @@
 <main>
   <nav>
     <span>&lt;&lt;&nbsp;<a href=/episodes/16/security-application.html>ep16 Security (application)</a></span>
-    <span><a href=/episodes/18/nginx.html>ep18 Nginx</a>&nbsp;&gt;&gt;&gt;</span>
+    <span><a href=/episodes/18/nginx.html>ep18 Nginx</a>&nbsp;&gt;&gt;</span>
   </nav>
 
   <article>
-    <h1><a href=/episodes/17/service-worker.html>ep17 Service Worker</a></h1>
+    <h1>ep17 Service Worker</h1>
     <section>
-      <h2 id="Info"><a href="#Info">Info</a></h2>
+      <h2>Info</h2>
       <p><audio preload=none src=https://files.mozaic.fm/mozaic-ep17.mp3 controls></audio>
       <ul class=info>
         <li>published_at: <time datetime=2015-04-22>2015-04-22</time>
@@ -114,116 +79,115 @@
       </ul>
     </section>
     <section>
-      <h2 id="Theme"><a href="#Theme">Theme</a></h2>
+      <h2>Theme</h2>
       <p>第 17 回のテーマは Service Worker です。
       <p>今回は <a href="https://twitter.com/kinu">@kinu</a> さんと <a href="https://twitter.com/nhiroki_">@nhiroki_</a> さんをお迎えして、 今実装や仕様策定が進んでいる Service Worker について、なぜこうした仕様が出てきたのか、これを用いて何ができるのか、これがどう Web を変えるのか。
       <p>実装や仕様の裏話や、これが普及してからの懸念点なども含めて、じっくり議論しました。
       <p>ハッシュタグは <a href="https://twitter.com/search?q=mozaicfm&src=hash">#mozaicfm</a> です。
-      <p>また、 Service Worker へのフィードバックは <a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fcrbug.com%2Fnew&t=YWNmMmZiNmZkMzU2YjM3ZmFjZjllYjA2YWVhYmIxM2RhMmRlZGIzYyxBOEh1Q2lxdQ%3D%3D">bug tracker</a> (基本は英語ですが、日本語でも良いそうです)、もしくは <a href="https://twitter.com/search?q=%23serviceworker&src=hash">#serviceworker</a> です。
+      <p>また、 Service Worker へのフィードバックは <a href="https://crbug.com/new">bug tracker</a> (基本は英語ですが、日本語でも良いそうです)、もしくは <a href="https://twitter.com/search?q=%23serviceworker&src=hash">#serviceworker</a> です。
     </section>
     <section>
-      <h2 id="Show+Note"><a href="#Show+Note">Show Note</a></h2>
+      <h2>Show Note</h2>
       <section>
-        <h3 id="関連仕様"><a href="#関連仕様">関連仕様</a></h3>
+        <h3>関連仕様</h3>
         <ul>
-          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fslightlyoff.github.io%2FServiceWorker%2Fspec%2Fservice_worker%2Findex.html&t=ODU3MmZlNGYzNjZlNWU5YzE2MjI2OGVkNDczYTM4NGI0MGM5MmJlOSxBOEh1Q2lxdQ%3D%3D">ServiceWorker</a>
-          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdevelopers.whatwg.org%2Foffline.html%23offline&t=NDFmZTE1NTgzMzBkODc2ZGUyNGQzNDY4ZWIyYjUzODM0YTU2OTY0OCxBOEh1Q2lxdQ%3D%3D">AppCache</a>
-          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fw3c.github.io%2Fpush-api%2F&t=NjU4YmZjYWQ3NmNhNGIwNTY1ZjM2OTU1ZDEzNDFhYmY3N2VjOGNhYixBOEh1Q2lxdQ%3D%3D">Push API</a>
-          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fnotifications.spec.whatwg.org%2F&t=OWE3MzkxY2FjNGVjNDQ5ZjJjYjhkYzAxOWQ4MDQzY2M2NzVmNTk5YyxBOEh1Q2lxdQ%3D%3D">Notifications API</a>
-          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Ffetch.spec.whatwg.org%2F&t=MDFhM2VlNTc4MGU0MDViNmE1OWYzMWQ3OWI4N2UyMjc5ZDU1Y2QxYyxBOEh1Q2lxdQ%3D%3D">Fetch</a>
-          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fw3c.github.io%2Fpermissions%2F&t=YTI5YWVlZmQxZDA4OGYwYjk1ZTA1MGNhZGU3ZGEyMWU2NTY0YTU5NCxBOEh1Q2lxdQ%3D%3D">Permissions API</a>
+          <li><a href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html">ServiceWorker</a>
+          <li><a href="https://developers.whatwg.org/offline.html%23offline">AppCache</a>
+          <li><a href="http://w3c.github.io/push-api/">Push API</a>
+          <li><a href="https://notifications.spec.whatwg.org/">Notifications API</a>
+          <li><a href="https://fetch.spec.whatwg.org/">Fetch</a>
+          <li><a href="https://w3c.github.io/permissions/">Permissions API</a>
         </ul>
       </section>
       <section>
-        <h3 id="Service+Worker+の始まり(0:00)"><a href="#Service+Worker+の始まり(0:00)">Service Worker の始まり(0:00)</a></h3>
+        <h3>Service Worker の始まり(0:00)</h3>
         <ul>
-          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fslightlyoff.github.io%2FServiceWorker%2Fspec%2Fservice_worker%2Findex.html&t=ODU3MmZlNGYzNjZlNWU5YzE2MjI2OGVkNDczYTM4NGI0MGM5MmJlOSxBOEh1Q2lxdQ%3D%3D">ServiceWorker</a>
+          <li><a href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html">ServiceWorker</a>
         </ul>
       </section>
       <section>
-        <h3 id="Application+Cache+はなぜダメだったのか+(4:30~)"><a href="#Application+Cache+はなぜダメだったのか+(4:30~)">Application Cache はなぜダメだったのか (4:30~)</a></h3>
+        <h3>Application Cache はなぜダメだったのか (4:30~)</h3>
         <ul>
-          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdevelopers.whatwg.org%2Foffline.html%23offline&t=NDFmZTE1NTgzMzBkODc2ZGUyNGQzNDY4ZWIyYjUzODM0YTU2OTY0OCxBOEh1Q2lxdQ%3D%3D">AppCache</a>
-          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Falistapart.com%2Farticle%2Fapplication-cache-is-a-douchebag&t=ZGJhODIzZGE5ODI2ZTUzOGMyMjdmNTdmMjE1NTVhNzJmNzA0ZDZlNyxBOEh1Q2lxdQ%3D%3D">AppCache のダメなところ</a>
-          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fblog.andlabs.org%2F2010%2F06%2Fchrome-and-safari-users-open-to-stealth.html&t=NDFhZmJlMDJmOTk0YTY5NDJmYjA0ZWRkMzkwYjAyNzVmOGViMzYwYixBOEh1Q2lxdQ%3D%3D">AppCache cache poisoning</a>
-          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Flists.w3.org%2FArchives%2FPublic%2Fpublic-webapps%2F2013JanMar%2F0977.html&t=OTUxYTA3NjIwMDRlMjFhMmRmZmZiMWFjMGM2NTE3Y2ZiZjcyODgyMyxBOEh1Q2lxdQ%3D%3D">Service Worker の改善スタートのきっかけ</a>
-          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fwww.w3.org%2Fcommunity%2Ffixing-appcache%2F&t=YWMxZDJjYWVhOTAwOTlkNTg0YmRhNjdkYmVmYjVjNTdhMjU3YWFmMCxBOEh1Q2lxdQ%3D%3D">W3C Fixing AppCache コミュニティ</a>
-          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.chrome.com%2Fextensions%2Fevent_pages&t=MTRmMjEyMDM0ODYyOWZjZWU2ZGI5MTFlNjZjNjk0ZDQ3ZTA5Mzg1ZCxBOEh1Q2lxdQ%3D%3D">参考になった仕様 Chrome Event Pages</a>
-          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.w3.org%2FTR%2FDataCache%2F&t=OTU5ZmY3ZTY5YWM5ZTI1ZDEyYmQ3OWNkM2ZhNTdkNDVmZjQyNzI4YSxBOEh1Q2lxdQ%3D%3D">幻の仕様 DataCache</a>
-          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fslightlyoff%2FServiceWorker%2Fissues%2F2&t=ZDA1MjNkNTJmZmE0YTllOWQ1YzQ1Mjc4MTdjZDA0ZDY1ZWY3OWNhMCxBOEh1Q2lxdQ%3D%3D">[issue] The new API should be able to explain AppCache</a>
+          <li><a href="https://developers.whatwg.org/offline.html%23offline">AppCache</a>
+          <li><a href="http://alistapart.com/article/application-cache-is-a-douchebag">AppCache のダメなところ</a>
+          <li><a href="http://blog.andlabs.org/2010/06/chrome-and-safari-users-open-to-stealth.html">AppCache cache poisoning</a>
+          <li><a href="https://lists.w3.org/Archives/Public/public-webapps/2013JanMar/0977.html">Service Worker の改善スタートのきっかけ</a>
+          <li><a href="https://www.w3.org/community/fixing-appcache/">W3C Fixing AppCache コミュニティ</a>
+          <li><a href="https://developer.chrome.com/extensions/event_pages">参考になった仕様 Chrome Event Pages</a>
+          <li><a href="http://www.w3.org/TR/DataCache/">幻の仕様 DataCache</a>
+          <li><a href="https://github.com/slightlyoff/ServiceWorker/issues/2">[issue] The new API should be able to explain AppCache</a>
         </ul>
       </section>
       <section>
-        <h3 id="Service+Worker+はそれをどう解決したか+(12:20~)"><a href="#Service+Worker+はそれをどう解決したか+(12:20~)">Service Worker はそれをどう解決したか (12:20~)</a></h3>
+        <h3>Service Worker はそれをどう解決したか (12:20~)</h3>
         <ul>
-          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fslightlyoff%2FServiceWorker%2Fissues%2F2&t=ZDA1MjNkNTJmZmE0YTllOWQ1YzQ1Mjc4MTdjZDA0ZDY1ZWY3OWNhMCxBOEh1Q2lxdQ%3D%3D">The new API should be able to explain AppCache</a>
-          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fslightlyoff%2FServiceWorker%2Fissues%2F5&t=ZmMyOTBjZjQ3MjBlYjMyOTk1Mjk0ZjgwZTk3OTMyZGVhNGFiMzYzYixBOEh1Q2lxdQ%3D%3D">Why Fetch but not XHR, from SW point of view</a>
+          <li><a href="https://github.com/slightlyoff/ServiceWorker/issues/2">The new API should be able to explain AppCache</a>
+          <li><a href="https://github.com/slightlyoff/ServiceWorker/issues/5">Why Fetch but not XHR, from SW point of view</a>
         </ul>
       </section>
       <section>
-        <h3 id="新しく出た+API+の詳解+(18:30~)"><a href="#新しく出た+API+の詳解+(18:30~)">新しく出た API の詳解 (18:30~)</a></h3>
+        <h3>新しく出た API の詳解 (18:30~)</h3>
         <ul>
-          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.w3.org%2FTR%2Fworkers%2F&t=MDU3NWU4ODlmYTA1ZmUzNTUxYWNiZWUyYzY3ZDAxNDdkMjE0ZDE1OCxBOEh1Q2lxdQ%3D%3D">WebWorker/SharedWorker との違い</a>
-          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Ffetch.spec.whatwg.org&t=YjcyNTE1MzhlMmNjNmY4ODIxNGQyZjFkZTM3ZmYxOGRkODkxZmRjOSxBOEh1Q2lxdQ%3D%3D">Fetch</a> と XHR の違い
-          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fslightlyoff%2FServiceWorker%2Fissues%2F5&t=ZmMyOTBjZjQ3MjBlYjMyOTk1Mjk0ZjgwZTk3OTMyZGVhNGFiMzYzYixBOEh1Q2lxdQ%3D%3D">[issue] Why Fetch but not XHR, from SW point of view</a>
-          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fw3c.github.io%2Fpush-api%2F&t=NjU4YmZjYWQ3NmNhNGIwNTY1ZjM2OTU1ZDEzNDFhYmY3N2VjOGNhYixBOEh1Q2lxdQ%3D%3D">Push API</a> と他の Push との違い
-          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fgoogledevjp.blogspot.jp%2F2015%2F03%2Fservice-worker.html&t=OGZiMTA3MDRlODllZGEzYzhiNmQ4NGNjMTJjYzg5YWEwODcyZDA0OSxBOEh1Q2lxdQ%3D%3D">Service Worker ハッカソン</a>
+          <li><a href="http://www.w3.org/TR/workers/">WebWorker/SharedWorker との違い</a>
+          <li><a href="https://fetch.spec.whatwg.org">Fetch</a> と XHR の違い
+          <li><a href="https://github.com/slightlyoff/ServiceWorker/issues/5">[issue] Why Fetch but not XHR, from SW point of view</a>
+          <li><a href="http://w3c.github.io/push-api/">Push API</a> と他の Push との違い
+          <li><a href="http://googledevjp.blogspot.jp/2015/03/service-worker.html">Service Worker ハッカソン</a>
         </ul>
       </section>
       <section>
-        <h3 id="Push+への危惧と+Permission+API+(40:15~)"><a href="#Push+への危惧と+Permission+API+(40:15~)">Push への危惧と Permission API (40:15~)</a></h3>
+        <h3>Push への危惧と Permission API (40:15~)</h3>
         <ul>
-          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fjohnme-gcm.appspot.com%2Fchat%2F&t=ZjljYThlOTI0NmY1Zjg2OWQ5YTMwNTAwOTNhZTc3OGFhODY3YjdmMyxBOEh1Q2lxdQ%3D%3D">Push を使った Chat のデモ</a>
-          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdocs.google.com%2Fdocument%2Fd%2F1WNPIS_2F0eyDm5SS2E6LZ_75tk6XtBSnR1xNjWJ_DPE%2Fedit%3Fpli%3D1%23heading%3Dh.21qsculrt3ow&t=YWFjMDBmMWIxMTcwYWZmMGNkNTFiZjQ4NzUxMmFlZWRkNzIzOTM0NixBOEh1Q2lxdQ%3D%3D">Push, Permissions API and UX</a>
-          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgroups.google.com%2Fd%2Ftopic%2Fmozilla.dev.platform%2FrnSFZq14Xi4%2Fdiscussion&t=MDczOTczZTYxNmI2OWI4ZjA3Nzc3MmM5ZWIyNDM2MDhiOTk4ZWFiNSxBOEh1Q2lxdQ%3D%3D">Permission の整理について</a>
-          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fw3c.github.io%2Fpermissions%2F&t=YTI5YWVlZmQxZDA4OGYwYjk1ZTA1MGNhZGU3ZGEyMWU2NTY0YTU5NCxBOEh1Q2lxdQ%3D%3D">Permissions API</a>
+          <li><a href="https://johnme-gcm.appspot.com/chat/">Push を使った Chat のデモ</a>
+          <li><a href="https://docs.google.com/document/d/1WNPIS_2F0eyDm5SS2E6LZ_75tk6XtBSnR1xNjWJ_DPE/edit%3Fpli%3D1%23heading%3Dh.21qsculrt3ow">Push, Permissions API and UX</a>
+          <li><a href="https://groups.google.com/d/topic/mozilla.dev.platform/rnSFZq14Xi4/discussion">Permission の整理について</a>
+          <li><a href="https://w3c.github.io/permissions/">Permissions API</a>
         </ul>
       </section>
       <section>
-        <h3 id="BackGround+Sync+とは何か+(49:30~)"><a href="#BackGround+Sync+とは何か+(49:30~)">BackGround Sync とは何か (49:30~)</a></h3>
+        <h3>BackGround Sync とは何か (49:30~)</h3>
         <ul>
-          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fslightlyoff%2FBackgroundSync%2Fblob%2Fmaster%2Fexplainer.md&t=MmU0M2E1MGE1NGE4MzcxMWMxODAwYjAwZGIxYmFhODhmZWRhNzUwMixBOEh1Q2lxdQ%3D%3D">BackGround Sync</a>
+          <li><a href="https://github.com/slightlyoff/BackgroundSync/blob/master/explainer.md">BackGround Sync</a>
         </ul>
       </section>
       <section>
-        <h3 id="今後予定している+API+(54:00~)"><a href="#今後予定している+API+(54:00~)">今後予定している API (54:00~)</a></h3>
+        <h3>今後予定している API (54:00~)</h3>
         <ul>
-          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fslightlyoff%2FGeofencing&t=MWJkZmM0NWY3NTFkMjNlNmU5NDRlMTM5YWZkNzNmMTIwYzA5YWVhYyxBOEh1Q2lxdQ%3D%3D">GeoFenching</a>
-          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fmkruisselbrink.github.io%2Fnavigator-connect%2F&t=Y2VlOTk1YzQ1MGYwYjAzMTFlM2JlOGY4ZWU3MDQ1M2ZmNTBiMzVkMCxBOEh1Q2lxdQ%3D%3D">Navigator.connect</a> (<a href="http://mozaic.fm/post/108491263993/15-extensible-web">#15</a> で @myakura さんが言及)
+          <li><a href="https://github.com/slightlyoff/Geofencing">GeoFenching</a>
+          <li><a href="http://mkruisselbrink.github.io/navigator-connect/">Navigator.connect</a> (<a href="http://mozaic.fm/post/108491263993/15-extensible-web">#15</a> で @myakura さんが言及)
         </ul>
       </section>
       <section>
-        <h3 id="CacheAPI+と+Browser+Cache+の違い+(57:30~)"><a href="#CacheAPI+と+Browser+Cache+の違い+(57:30~)">CacheAPI と Browser Cache の違い (57:30~)</a></h3>
+        <h3>CacheAPI と Browser Cache の違い (57:30~)</h3>
         <ul>
-          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.w3.org%2FTR%2Fservice-workers%2F%23cache-storage&t=ZTIxMjNhNTQ1NjNiODE1MWRhMDY3NDk3NzUxMDQyNjg5YTc5MTBjNyxBOEh1Q2lxdQ%3D%3D">Cache</a> と ブラウザキャッシュの違い
+          <li><a href="http://www.w3.org/TR/service-workers/%23cache-storage">Cache</a> と ブラウザキャッシュの違い
         </ul>
       </section>
       <section>
-        <h3 id="Devtools+と+ServiceWorker+(1:00:00~)"><a href="#Devtools+と+ServiceWorker+(1:00:00~)">Devtools と ServiceWorker (1:00:00~)</a></h3>
+        <h3>Devtools と ServiceWorker (1:00:00~)</h3>
         <ul>
-          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdocs.google.com%2Fpresentation%2Fd%2F1DKu4RZigLvM5XUq3ovsgffQBIHrro5-pii4qEJuyvrQ%2Fedit%23slide%3Did.p&t=NGQyZDA0MGIyYTU3NmFjNjc3Y2M5ZWE3YzdhZTRhNGFlZGFhMjNjOCxBOEh1Q2lxdQ%3D%3D">Developer Tools 改善中</a>
+          <li><a href="https://docs.google.com/presentation/d/1DKu4RZigLvM5XUq3ovsgffQBIHrro5-pii4qEJuyvrQ/edit%23slide%3Did.p">Developer Tools 改善中</a>
           <li>Twitter <a href="https://twitter.com/search?q=%23serviceworker&src=hash">#serviceworker</a> タグ
-          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fslightlyoff%2FServiceWorker%2Fcommit%2Fc49c878cdcbaf7a81e9e8cf3cca9970787017a19&t=ZDdkZDVjZjFiZGUzNjcxMzJmMjI2M2Y1NjQwMTMzYTE5YzdkNjZlNCxBOEh1Q2lxdQ%3D%3D">元は NavigationController という名前だった</a>
-          <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fcrbug.com%2Fnew&t=YWNmMmZiNmZkMzU2YjM3ZmFjZjllYjA2YWVhYmIxM2RhMmRlZGIzYyxBOEh1Q2lxdQ%3D%3D">bug tracker (英語ですが最悪日本語でも可)</a>
+          <li><a href="https://github.com/slightlyoff/ServiceWorker/commit/c49c878cdcbaf7a81e9e8cf3cca9970787017a19">元は NavigationController という名前だった</a>
+          <li><a href="https://crbug.com/new">bug tracker (英語ですが最悪日本語でも可)</a>
         </ul>
       </section>
       <section>
-        <h3 id="これからどうなっていくか?+(1:07:20~)"><a href="#これからどうなっていくか?+(1:07:20~)">これからどうなっていくか? (1:07:20~)</a></h3>
+        <h3>これからどうなっていくか? (1:07:20~)</h3>
         <ul>
-          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.slideshare.net%2Fkinukox%2Fservice-worker-mobile-web&t=OTRhOTgyNzM3NzQ2OWY0MmYxYjA5MjhhN2FlZjliN2UyYjA5YjRmOCxBOEh1Q2lxdQ%3D%3D">Service worker が拓く mobile web の新しいかたち</a>
-          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fqiita.com%2Fnhiroki%2Fitems%2Feb16b802101153352bba&t=MzNjOTg3ZTFiOWE5MzkxMjBjNzY5YTE1MWE1YjEyNjk2NzdlYzFlYSxBOEh1Q2lxdQ%3D%3D">ServiceWorker のスコープとページコントロールについて</a>
-          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fblog.nhiroki.jp%2F2015%2F04%2F18%2Fservice-worker-claim%2F&t=ZDJmODcwYzcwMjQxNjU3MGE4ZWY4MWVjOGI0ZTY3Yzk0Nzg4N2I4YSxBOEh1Q2lxdQ%3D%3D">Service Worker の claim() について</a>
+          <li><a href="http://www.slideshare.net/kinukox/service-worker-mobile-web">Service worker が拓く mobile web の新しいかたち</a>
+          <li><a href="http://qiita.com/nhiroki/items/eb16b802101153352bba">ServiceWorker のスコープとページコントロールについて</a>
+          <li><a href="http://blog.nhiroki.jp/2015/04/18/service-worker-claim/">Service Worker の claim() について</a>
         </ul>
       </section>
     </section>
   </article>
 
   <nav>
-    <span>&lt;&lt;&lt;&nbsp;<a href=/episodes/16/security-application.html>ep16 Security (application)</a></span>
-    <span><a href=/episodes/18/nginx.html>ep18 Nginx</a>&nbsp;&gt;&gt;&gt;</span>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/16/security-application.html>ep16 Security (application)</a></span>
+    <span><a href=/episodes/18/nginx.html>ep18 Nginx</a>&nbsp;&gt;&gt;</span>
   </nav>
 </main>
-<hr>
 
 <footer>
   <address class=copyright>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</address>

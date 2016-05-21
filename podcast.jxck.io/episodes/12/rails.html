@@ -47,43 +47,7 @@
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
-  <style>
-  body {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 1.2em;
-  }
-
-  header ul li {
-    width: 50px;
-    height: 50px;
-  }
-
-  header ul li a {
-    width: 50px;
-    height: 50px;
-  }
-
-  article ul {
-    font-family: inherit;
-    font-size: 1em;
-  }
-
-  article li {
-    margin: 0.2em 0;
-  }
-
-  article ul > li > ul {
-    margin: 0.2em 0 0.6em 1em;
-  }
-
-  nav {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-
-  }
-  </style>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css>
 </head>
 <body>
 
@@ -91,6 +55,7 @@
   <ul>
     <li><a href=/><img class=logo alt="blog top" width=50 src=/assets/img/mozaic.svg></a>
     <li><a href=/feeds/feed.xml><img alt="rss feed" width=50 src=/assets/img/podcast.svg></a>
+    <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495><img alt="itunes" width=50 src=/assets/img/itunes.svg></a>
     <li><a href="https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd"><img alt="huamns.txt" width=50 src=/assets/img/twitter.svg></a>
     <li><a href=//jxck.io><img class=logo alt="jxck logo" width=50 src=/assets/img/jxck.svg></a>
   </ul>
@@ -99,13 +64,13 @@
 <main>
   <nav>
     <span>&lt;&lt;&nbsp;<a href=/episodes/11/high-performance-browser-networking.html>ep11 High Performance Browser Networking</a></span>
-    <span><a href=/episodes/12/rails-sideshow.html>ep12 Rails sideshow</a>&nbsp;&gt;&gt;&gt;</span>
+    <span><a href=/episodes/12/rails-sideshow.html>ep12 Rails sideshow</a>&nbsp;&gt;&gt;</span>
   </nav>
 
   <article>
-    <h1><a href=/episodes/12/rails.html>ep12 Rails</a></h1>
+    <h1>ep12 Rails</h1>
     <section>
-      <h2 id="Info"><a href="#Info">Info</a></h2>
+      <h2>Info</h2>
       <p><audio preload=none src=https://files.mozaic.fm/mozaic-ep12.mp3 controls></audio>
       <ul class=info>
         <li>published_at: <time datetime=2014-12-07>2014-12-07</time>
@@ -113,7 +78,7 @@
       </ul>
     </section>
     <section>
-      <h2 id="Theme"><a href="#Theme">Theme</a></h2>
+      <h2>Theme</h2>
       <p>第 12 回のテーマは Ruby on Rails です。
       <p>今回は Ruby と Rail のコミッターである <a href="https://twitter.com/a_matsuda/">@a_matsuda</a> さんをお迎えして、 Rails が引っ張ってきた Web 開発と、 Web の進化が Ruby に与えた影響などを振り返りながら、 Rails に「今何が起こっているのか」、「これからどうなっていくのか」を議論しました。
       <p>プロジェクトオーナーである DHH が最初の Rails をリリースしてから 10 年たった今、この 10 年を見てきた <a href="https://twitter.com/a_matsuda/">@a_matsuda</a> さんとともに、 10 年前と比べて様変わりしたフロントエンド開発との兼ね合いや、 Microservices に対する感触などについて議論しました。
@@ -121,10 +86,10 @@
       <p>(なお、 Android での不具合のフィードバックを頂いたため、今回から配信形式を m4a ではなく mp3 に変えました。アートワークはありません。)
     </section>
     <section>
-      <h2 id="Show+Note"><a href="#Show+Note">Show Note</a></h2>
+      <h2>Show Note</h2>
       <ul>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Frubyonrails.org%2F&t=NGI3ZjQ4ZjQ2Y2UxNWFmNjU5OTE2YzUwNzM0NGIxZDY4YjYxZGM3YixMdFdhcWRlTA%3D%3D">Ruby on Rails</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fja.wikipedia.org%2Fwiki%2FRuby_on_Rails&t=ODhjOWVmZWQxMGZiZTk4NDY5NTY0Njg3YTU3NjJhZmE3MWM4NGVjNSxMdFdhcWRlTA%3D%3D">Rails の歴史</a> (Wikipedia 引用)<ul>
+        <li><a href="http://rubyonrails.org/">Ruby on Rails</a>
+        <li><a href="http://ja.wikipedia.org/wiki/Ruby_on_Rails">Rails の歴史</a> (Wikipedia 引用)<ul>
           <li>2004/7 最初のバージョン公開
           <li>2005/12/13 ver 1.0 リリース
           <li>2007/12/7  ver 2.0 リリース
@@ -132,36 +97,35 @@
           <li>2013/6/27  ver 4.0 リリース
         </ul>
         <li>今年中盤くらいにあった投稿<ul>
-          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fqiita.com%2Fkaiinui%2Fitems%2F2781219340d427543d08&t=ZGFjM2I5MWM0MTg0MWRjYzlkMjk0Yzk2MmM5MDUyMTVkYTFjMmFjNyxMdFdhcWRlTA%3D%3D">Rails が時代に合わなくなってきた</a>
-          <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwazanova.jp%2Fitems%2F1361&t=MmZjNTBmZTI3OThiOGZjMGJiZjRjYjE0ZmFlYWM2YzU1YjI0YTA5NyxMdFdhcWRlTA%3D%3D">「Rails が時代に合わなくなってきた」のフォロー</a>
+          <li><a href="http://qiita.com/kaiinui/items/2781219340d427543d08">Rails が時代に合わなくなってきた</a>
+          <li><a href="http://wazanova.jp/items/1361">「Rails が時代に合わなくなってきた」のフォロー</a>
         </ul>
         <li><a href="https://twitter.com/dhh">DHH(David Heinemeier Hansson)</a> Rails の作者
         <li><a href="https://twitter.com/bitsweat">Jeremy Kemper</a> Rails Comitter
         <li><a href="https://twitter.com/koichisasada">Koichi Sasada</a> Ruby Comitter
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fcoffeescript.org%2F&t=NTdmNDE5M2QyNTA1YTA2YzhjYzJiOTNhZDgzMTVlZmZmNjM5ODRlOCxMdFdhcWRlTA%3D%3D">Coffee Script</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Frails%2Fsprockets-rails&t=Y2U0OWE3OGRkY2NkMjQyYmU2NjYxZDg0MDVhM2FiNGNmYTEyMDhiNyxMdFdhcWRlTA%3D%3D">Sprockets</a> Asset Pipeline のためのプリプロセッサライブラリ
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.merbivore.com%2F&t=ZmY2NDRkODdkZDczNzkzZmE2YThiYzY4ZGU2NzkzNDMyYmUwMTMxNyxMdFdhcWRlTA%3D%3D">Merb</a> Rails と統合したフレームワーク
+        <li><a href="http://coffeescript.org/">Coffee Script</a>
+        <li><a href="https://github.com/rails/sprockets-rails">Sprockets</a> Asset Pipeline のためのプリプロセッサライブラリ
+        <li><a href="http://www.merbivore.com/">Merb</a> Rails と統合したフレームワーク
         <li><a href="https://twitter.com/wycats">Yehuda Katz</a> Merb チームの開発者
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fmislav%2Fwill_paginate&t=NGUwZTYyMmQ4NmY3YzkzMjcxNzBlNzEwYmY5ZDllYWFhYmU5ZDI2MixMdFdhcWRlTA%3D%3D">Will Paginate</a> ページネーションプラグイン
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Famatsuda%2Fkaminari&t=ODA0OGY5MGEzZjZhYWQzN2E3NmU2YTE5YTFkNGM2MGY2MDczY2QwZixMdFdhcWRlTA%3D%3D">kaminari</a> a_matsuda さん作のページネーションプラグイン
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Frails%2Farel&t=ZTgxMDU3ZDY1N2E5MzE5MmEzMTljMGI1ZGE2YjE4MWNiNmEyZjQ3MSxMdFdhcWRlTA%3D%3D">Arel</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Frails%2Fturbolinks&t=ZmIwMTc3ZjU1MmNhZDkzMWIzNTE3YzFhNmVlYWU2MzQyZmY4OWU5OCxMdFdhcWRlTA%3D%3D">turbolinks</a> Rails の Pjax 実装
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fweblog.rubyonrails.org%2F2014%2F11%2F28%2FRails-4-2-0-rc1-has-been-released%2F&t=NjFmOTgzNmM4MTZkYjMwNWM3NDhhMjU3M2QzMTJmMjQxYTNjOTM0MCxMdFdhcWRlTA%3D%3D">Rails4.2.0rc1</a> 録音二日後に公開されました
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Femberjs.com%2F&t=MTdlNGZkZDFiMTE0OGRlNmFlNzQ3NGMxOTVlMzBiYjQ5OTM5ZTY5ZSxMdFdhcWRlTA%3D%3D">Ember.js</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Frails%2Fjbuilder&t=NGI4ZWQxNDk0YmI2YTAxMmJiZjM4MTAwNDE1YjRlN2E2YWU3NmFiOCxMdFdhcWRlTA%3D%3D">jbuilder</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fbackbonejs.org&t=Yjg3NTExZmM4OWU5ZDZmNGY5YTVmNjM4NWIzZTk1NzVkODU1MjdhNSxMdFdhcWRlTA%3D%3D">backbone.js</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fmartinfowler.com%2Farticles%2Fmicroservices.html&t=MDBiYzRkZTBiM2ExMGE1ZTY2NGIwYzNlZGIyNGE2YzIxYzA3NzNkYyxMdFdhcWRlTA%3D%3D">microservices</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Frails%2Factiveresource&t=MjJjOWYxNWE3YTBjMzY5MjMwYjczZTRmM2U2ZWViYWU4NjkyNmIwZSxMdFdhcWRlTA%3D%3D">Active Resource</a>
+        <li><a href="https://github.com/mislav/will_paginate">Will Paginate</a> ページネーションプラグイン
+        <li><a href="https://github.com/amatsuda/kaminari">kaminari</a> a_matsuda さん作のページネーションプラグイン
+        <li><a href="https://github.com/rails/arel">Arel</a>
+        <li><a href="https://github.com/rails/turbolinks">turbolinks</a> Rails の Pjax 実装
+        <li><a href="http://weblog.rubyonrails.org/2014/11/28/Rails-4-2-0-rc1-has-been-released/">Rails4.2.0rc1</a> 録音二日後に公開されました
+        <li><a href="http://emberjs.com/">Ember.js</a>
+        <li><a href="https://github.com/rails/jbuilder">jbuilder</a>
+        <li><a href="http://backbonejs.org">backbone.js</a>
+        <li><a href="http://martinfowler.com/articles/microservices.html">microservices</a>
+        <li><a href="https://github.com/rails/activeresource">Active Resource</a>
       </ul>
     </section>
   </article>
 
   <nav>
-    <span>&lt;&lt;&lt;&nbsp;<a href=/episodes/11/high-performance-browser-networking.html>ep11 High Performance Browser Networking</a></span>
-    <span><a href=/episodes/12/rails-sideshow.html>ep12 Rails sideshow</a>&nbsp;&gt;&gt;&gt;</span>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/11/high-performance-browser-networking.html>ep11 High Performance Browser Networking</a></span>
+    <span><a href=/episodes/12/rails-sideshow.html>ep12 Rails sideshow</a>&nbsp;&gt;&gt;</span>
   </nav>
 </main>
-<hr>
 
 <footer>
   <address class=copyright>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</address>

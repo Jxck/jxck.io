@@ -47,43 +47,7 @@
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
-  <style>
-  body {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 1.2em;
-  }
-
-  header ul li {
-    width: 50px;
-    height: 50px;
-  }
-
-  header ul li a {
-    width: 50px;
-    height: 50px;
-  }
-
-  article ul {
-    font-family: inherit;
-    font-size: 1em;
-  }
-
-  article li {
-    margin: 0.2em 0;
-  }
-
-  article ul > li > ul {
-    margin: 0.2em 0 0.6em 1em;
-  }
-
-  nav {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-
-  }
-  </style>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css>
 </head>
 <body>
 
@@ -91,6 +55,7 @@
   <ul>
     <li><a href=/><img class=logo alt="blog top" width=50 src=/assets/img/mozaic.svg></a>
     <li><a href=/feeds/feed.xml><img alt="rss feed" width=50 src=/assets/img/podcast.svg></a>
+    <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495><img alt="itunes" width=50 src=/assets/img/itunes.svg></a>
     <li><a href="https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd"><img alt="huamns.txt" width=50 src=/assets/img/twitter.svg></a>
     <li><a href=//jxck.io><img class=logo alt="jxck logo" width=50 src=/assets/img/jxck.svg></a>
   </ul>
@@ -99,13 +64,13 @@
 <main>
   <nav>
     <span>&lt;&lt;&nbsp;<a href=/episodes/5/typescript.html>ep5 TypeScript</a></span>
-    <span><a href=/episodes/7/rest.html>ep7 REST</a>&nbsp;&gt;&gt;&gt;</span>
+    <span><a href=/episodes/7/rest.html>ep7 REST</a>&nbsp;&gt;&gt;</span>
   </nav>
 
   <article>
-    <h1><a href=/episodes/6/webrtc.html>ep6 WebRTC</a></h1>
+    <h1>ep6 WebRTC</h1>
     <section>
-      <h2 id="Info"><a href="#Info">Info</a></h2>
+      <h2>Info</h2>
       <p><audio preload=none src=https://files.mozaic.fm/mozaic-ep6.mp3 controls></audio>
       <ul class=info>
         <li>published_at: <time datetime=2014-08-04>2014-08-04</time>
@@ -114,37 +79,36 @@
       </ul>
     </section>
     <section>
-      <h2 id="Theme"><a href="#Theme">Theme</a></h2>
+      <h2>Theme</h2>
       <p>第 6 回のテーマは WebRTC です。
       <p>今回は <a href="https://twitter.com/komasshu">@komasshu</a> さんと、 <a href="https://twitter.com/Tukimikage">@Tukimikage</a> さんをお迎えし WebRTC をテーマに 「今なにが起こっているのか?」「これからどうなっていくのか?」をたっぷり議論しました。
       <p>ハッシュタグは <a href="https://twitter.com/search?q=mozaicfm&src=hash">#mozaicfm</a> です。
       <p>(NAT をアドレストランスポートと言い間違ってますが、そっとしておいてあげて下さい)
     </section>
     <section>
-      <h2 id="Show+Note"><a href="#Show+Note">Show Note</a></h2>
+      <h2>Show Note</h2>
       <ul>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.webrtc.org%2F&t=ZTI3NDE1ZjZjNDAxNzE2ZDg5NmFiMTgxN2NmNWMyOTYwYTk0ZWIyYyxWalY2d1lFQQ%3D%3D">WebRTC</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.html5rocks.com%2Fen%2Ftutorials%2Fwebrtc%2Finfrastructure%2F&t=MTUwNjk5ODc2OWE0ZTA2OGM0NWMwYjVkYmMzZmNlZjUyN2U2NmE5YyxWalY2d1lFQQ%3D%3D">WebRTC in the real world: STUN, TURN and signaling | HTML5Rocks</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Ftools.ietf.org%2Fhtml%2Frfc3489&t=ODFkOGRjMzczOTgzNzMzMGYxZWE1ZDhlOWU4ZTk4NDFjMjFlOGNlNixWalY2d1lFQQ%3D%3D">STUN</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Ftools.ietf.org%2Fhtml%2Frfc5766&t=MGVhZTYzOGE0NGU0MDMzNWQ1N2ViN2FkM2YwNjZjYmQ1YjU4NzZkYixWalY2d1lFQQ%3D%3D">TURN</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Ftools.ietf.org%2Fhtml%2Frfc6347&t=ZmE4NGFiZjljODk5MDA0ZjAzODQzZTUwMDBhMzBhOGM5ZDQwY2RiZCxWalY2d1lFQQ%3D%3D">DTLS</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.html5rocks.com%2Fja%2Ftutorials%2Fwebrtc%2Fdatachannels%2F&t=ODNiNWQzZmMzYjUwY2U0NzNkNGYzZmJjYmZhODI3ODRkNzQzMTNkYSxWalY2d1lFQQ%3D%3D">Data Channel | HTML5Rocks</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fpeerjs.com%2F&t=OWUyMTFmMWRiMWFlY2YwYjc5YjVmOTBkZTU4NjIyNzNlNmU2YTM4NSxWalY2d1lFQQ%3D%3D">PeerJS</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fja.wikipedia.org%2Fwiki%2FVP8&t=ZTcxZTdjMmRhMmE0NWZkZmFlYjFjMWI5N2U3ZTRlNTZmMTlmZWY0MixWalY2d1lFQQ%3D%3D">VP8</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fja.wikipedia.org%2Fwiki%2FH264&t=YjAyNmJmNjU0NTJhN2U2NmI3ZTg3NDUxYTYyYWQxNGFkYzc0MTY5ZCxWalY2d1lFQQ%3D%3D">H.264</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fortc.org%2F&t=NzA2NGRmNmIzNjRiZTZlYjUwZTM4NmJmNGRlODgzYzM4NjgyZDg2YyxWalY2d1lFQQ%3D%3D">Object RTC</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fnttcom.github.io%2Fskyway%2F&t=MjQ3MzRhNjZmNTM0Yzk5NGM4Zjc1NDQ5OGYwZjQyY2U4Y2JmNWI4NSxWalY2d1lFQQ%3D%3D">skyway</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fsoftware.intel.com%2Fsites%2Flandingpage%2Fwebrtc%2F&t=YmI3ZTA5ZTA3Zjg5ZWI4Y2RkMTA0OWFhNWM1OGUxMjg1N2U5YWMwMSxWalY2d1lFQQ%3D%3D">Intel ® CS for WebRTC</a>
+        <li><a href="http://www.webrtc.org/">WebRTC</a>
+        <li><a href="http://www.html5rocks.com/en/tutorials/webrtc/infrastructure/">WebRTC in the real world: STUN, TURN and signaling | HTML5Rocks</a>
+        <li><a href="http://tools.ietf.org/html/rfc3489">STUN</a>
+        <li><a href="http://tools.ietf.org/html/rfc5766">TURN</a>
+        <li><a href="http://tools.ietf.org/html/rfc6347">DTLS</a>
+        <li><a href="http://www.html5rocks.com/ja/tutorials/webrtc/datachannels/">Data Channel | HTML5Rocks</a>
+        <li><a href="http://peerjs.com/">PeerJS</a>
+        <li><a href="http://ja.wikipedia.org/wiki/VP8">VP8</a>
+        <li><a href="http://ja.wikipedia.org/wiki/H264">H.264</a>
+        <li><a href="http://ortc.org/">Object RTC</a>
+        <li><a href="http://nttcom.github.io/skyway/">skyway</a>
+        <li><a href="https://software.intel.com/sites/landingpage/webrtc/">Intel ® CS for WebRTC</a>
       </ul>
     </section>
   </article>
 
   <nav>
-    <span>&lt;&lt;&lt;&nbsp;<a href=/episodes/5/typescript.html>ep5 TypeScript</a></span>
-    <span><a href=/episodes/7/rest.html>ep7 REST</a>&nbsp;&gt;&gt;&gt;</span>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/5/typescript.html>ep5 TypeScript</a></span>
+    <span><a href=/episodes/7/rest.html>ep7 REST</a>&nbsp;&gt;&gt;</span>
   </nav>
 </main>
-<hr>
 
 <footer>
   <address class=copyright>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</address>

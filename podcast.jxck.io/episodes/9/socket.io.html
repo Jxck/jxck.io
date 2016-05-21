@@ -47,43 +47,7 @@
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
-  <style>
-  body {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 1.2em;
-  }
-
-  header ul li {
-    width: 50px;
-    height: 50px;
-  }
-
-  header ul li a {
-    width: 50px;
-    height: 50px;
-  }
-
-  article ul {
-    font-family: inherit;
-    font-size: 1em;
-  }
-
-  article li {
-    margin: 0.2em 0;
-  }
-
-  article ul > li > ul {
-    margin: 0.2em 0 0.6em 1em;
-  }
-
-  nav {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-
-  }
-  </style>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css>
 </head>
 <body>
 
@@ -91,6 +55,7 @@
   <ul>
     <li><a href=/><img class=logo alt="blog top" width=50 src=/assets/img/mozaic.svg></a>
     <li><a href=/feeds/feed.xml><img alt="rss feed" width=50 src=/assets/img/podcast.svg></a>
+    <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495><img alt="itunes" width=50 src=/assets/img/itunes.svg></a>
     <li><a href="https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd"><img alt="huamns.txt" width=50 src=/assets/img/twitter.svg></a>
     <li><a href=//jxck.io><img class=logo alt="jxck logo" width=50 src=/assets/img/jxck.svg></a>
   </ul>
@@ -99,13 +64,13 @@
 <main>
   <nav>
     <span>&lt;&lt;&nbsp;<a href=/episodes/8/altjs.html>ep8 AltJS</a></span>
-    <span><a href=/episodes/10/nodejs.html>ep10 Node.js</a>&nbsp;&gt;&gt;&gt;</span>
+    <span><a href=/episodes/10/nodejs.html>ep10 Node.js</a>&nbsp;&gt;&gt;</span>
   </nav>
 
   <article>
-    <h1><a href=/episodes/9/socket.io.html>ep9 Socket.IO</a></h1>
+    <h1>ep9 Socket.IO</h1>
     <section>
-      <h2 id="Info"><a href="#Info">Info</a></h2>
+      <h2>Info</h2>
       <p><audio preload=none src=https://files.mozaic.fm/mozaic-ep9.mp3 controls></audio>
       <ul class=info>
         <li>published_at: <time datetime=2014-09-08>2014-09-08</time>
@@ -113,34 +78,33 @@
       </ul>
     </section>
     <section>
-      <h2 id="Theme"><a href="#Theme">Theme</a></h2>
+      <h2>Theme</h2>
       <p>第 9 回のテーマは Socket.IO です。<strong>全編英語</strong>です。
-      <p>今回は <a href="http://socket.io">Socket.IO@1.0</a> 公開を記念して、日本で開催した <a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fconnpass.com%2Fevent%2F6911%2F&t=MDllNGRmMTE1Njk2NTgxNTYyMzRkMzFhN2FkY2E5ZjIwYjRkOGI3Miw1U1JuYnNhSg%3D%3D">Socket.IO Meetup</a> で来日した、開発者である <a href="https://twitter.com/rauchg">@rauchg</a> さんをお迎えし、 Socket.IO をテーマに 「Socket.IO を作ったモチベーション」から、「Socket.IO@1.0 での変更点」や「Socket.IO@2.0 の話」などをしました。
-      <p>ちょうどこの時期にポストされた、彼の同僚であり Express や Mocha の作者である <a href="https://twitter.com/tjholowaychuk">TJ Holowaychuk</a> の、 <a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fmedium.com%2Fcode-adventures%2Ffarewell-node-js-4ba9e7f3e52b&t=ZTIwYjJiYmI0Yjg4MTQxZWYwYzAzNzZhNTQzNjFhOWMyZjdlODg0Ziw1U1JuYnNhSg%3D%3D">Farewell Node.js</a> などをネタに、「他の言語で実装した場合」の話などもしました。
-      <p>今回も <a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fqiita.com%2FJxck_%2Fitems%2Fc5bfa3d16053de3f21eb&t=YzNkOTU5YzlkYjhkNTI1MmExY2IyYzVkZTMxMWJkNWEzZTM4NWQ4Yyw1U1JuYnNhSg%3D%3D">Qiita で事前に質問を集め</a> その中のいつくかは紹介しています。質問くださったみなさんありがとうございました。
+      <p>今回は <a href="http://socket.io">Socket.IO@1.0</a> 公開を記念して、日本で開催した <a href="http://connpass.com/event/6911/">Socket.IO Meetup</a> で来日した、開発者である <a href="https://twitter.com/rauchg">@rauchg</a> さんをお迎えし、 Socket.IO をテーマに 「Socket.IO を作ったモチベーション」から、「Socket.IO@1.0 での変更点」や「Socket.IO@2.0 の話」などをしました。
+      <p>ちょうどこの時期にポストされた、彼の同僚であり Express や Mocha の作者である <a href="https://twitter.com/tjholowaychuk">TJ Holowaychuk</a> の、 <a href="https://medium.com/code-adventures/farewell-node-js-4ba9e7f3e52b">Farewell Node.js</a> などをネタに、「他の言語で実装した場合」の話などもしました。
+      <p>今回も <a href="http://qiita.com/Jxck_/items/c5bfa3d16053de3f21eb">Qiita で事前に質問を集め</a> その中のいつくかは紹介しています。質問くださったみなさんありがとうございました。
       <p>ハッシュタグは <a href="https://twitter.com/search?q=mozaicfm&src=hash">#mozaicfm</a> です。
     </section>
     <section>
-      <h2 id="Show+Note"><a href="#Show+Note">Show Note</a></h2>
+      <h2>Show Note</h2>
       <ul>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fsocket.io&t=M2IzMjdlYWE4MThlMTZiMzQ5OTA1NmVjMGE1ZDUxODNmNzU5ZWM0MSw1U1JuYnNhSg%3D%3D">Socket.IO</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fsocket.io%2Fblog%2Fintroducing-socket-io-1-0%2F&t=ODNkODcyYWRhOWVjN2NjYzM0NDkxYmFhZjk3ODlhOWNhZjgyNGQwZCw1U1JuYnNhSg%3D%3D">Introducing Socket.IO 1.0</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fmedium.com%2Fcode-adventures%2Ffarewell-node-js-4ba9e7f3e52b&t=ZTIwYjJiYmI0Yjg4MTQxZWYwYzAzNzZhNTQzNjFhOWMyZjdlODg0Ziw1U1JuYnNhSg%3D%3D">Farewell Node.js</a> (TJ が Node.js をやめて Go にいく宣言をした記事)
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fnodefest.jp%2F2012%2F&t=ODFlMWVmYzM2ODAxYTk5YzNiYTA1NWVjNzMyZjAyZTE4NWJiNWIxNiw1U1JuYnNhSg%3D%3D">東京 Node 学園祭 2012</a> (Guille の最初の来日)
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fconnpass.com%2Fevent%2F6911%2F&t=MDllNGRmMTE1Njk2NTgxNTYyMzRkMzFhN2FkY2E5ZjIwYjRkOGI3Miw1U1JuYnNhSg%3D%3D">Socket.IO Meetup</a> (Socket.IO@1.0 を記念して Guille 二回の来日)
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fautomattic%2Fsocket.io-emitter&t=OGRjMDljOTQ3YjJiMmE3ZGE1YTk5MTg2MzUyNTI2NWEzNmI2NWI5Ziw1U1JuYnNhSg%3D%3D">socket.io-emitter</a> (socket.io のメッセージングに外から redis 経由でメッセージを送るインタフェース)
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fmqtt.org&t=YzU2OTY2OWEwZThmYWJkZmVkY2U5NTkxODYzMWY5YWRmMjY5MDdhMSw1U1JuYnNhSg%3D%3D">MQTT</a> (最近話題の軽量プロトコル、 socket.io-emitter に良いのではという話)
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fnodefest.jp%2F2014%2F&t=MWNkOWU2OGQ0YjM2YTVkYzk2NjMzMDBlNGViZmI0YTNkNWJjMTM3Niw1U1JuYnNhSg%3D%3D">東京 Node 学園祭 2014</a> (今年の東京 Node 学園祭にも再来日予定です)
+        <li><a href="http://socket.io">Socket.IO</a>
+        <li><a href="http://socket.io/blog/introducing-socket-io-1-0/">Introducing Socket.IO 1.0</a>
+        <li><a href="https://medium.com/code-adventures/farewell-node-js-4ba9e7f3e52b">Farewell Node.js</a> (TJ が Node.js をやめて Go にいく宣言をした記事)
+        <li><a href="http://nodefest.jp/2012/">東京 Node 学園祭 2012</a> (Guille の最初の来日)
+        <li><a href="http://connpass.com/event/6911/">Socket.IO Meetup</a> (Socket.IO@1.0 を記念して Guille 二回の来日)
+        <li><a href="https://github.com/automattic/socket.io-emitter">socket.io-emitter</a> (socket.io のメッセージングに外から redis 経由でメッセージを送るインタフェース)
+        <li><a href="http://mqtt.org">MQTT</a> (最近話題の軽量プロトコル、 socket.io-emitter に良いのではという話)
+        <li><a href="http://nodefest.jp/2014/">東京 Node 学園祭 2014</a> (今年の東京 Node 学園祭にも再来日予定です)
       </ul>
     </section>
   </article>
 
   <nav>
-    <span>&lt;&lt;&lt;&nbsp;<a href=/episodes/8/altjs.html>ep8 AltJS</a></span>
-    <span><a href=/episodes/10/nodejs.html>ep10 Node.js</a>&nbsp;&gt;&gt;&gt;</span>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/8/altjs.html>ep8 AltJS</a></span>
+    <span><a href=/episodes/10/nodejs.html>ep10 Node.js</a>&nbsp;&gt;&gt;</span>
   </nav>
 </main>
-<hr>
 
 <footer>
   <address class=copyright>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</address>

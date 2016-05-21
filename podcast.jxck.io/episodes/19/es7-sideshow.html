@@ -47,43 +47,7 @@
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
-  <style>
-  body {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 1.2em;
-  }
-
-  header ul li {
-    width: 50px;
-    height: 50px;
-  }
-
-  header ul li a {
-    width: 50px;
-    height: 50px;
-  }
-
-  article ul {
-    font-family: inherit;
-    font-size: 1em;
-  }
-
-  article li {
-    margin: 0.2em 0;
-  }
-
-  article ul > li > ul {
-    margin: 0.2em 0 0.6em 1em;
-  }
-
-  nav {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-
-  }
-  </style>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css>
 </head>
 <body>
 
@@ -91,6 +55,7 @@
   <ul>
     <li><a href=/><img class=logo alt="blog top" width=50 src=/assets/img/mozaic.svg></a>
     <li><a href=/feeds/feed.xml><img alt="rss feed" width=50 src=/assets/img/podcast.svg></a>
+    <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495><img alt="itunes" width=50 src=/assets/img/itunes.svg></a>
     <li><a href="https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd"><img alt="huamns.txt" width=50 src=/assets/img/twitter.svg></a>
     <li><a href=//jxck.io><img class=logo alt="jxck logo" width=50 src=/assets/img/jxck.svg></a>
   </ul>
@@ -99,13 +64,13 @@
 <main>
   <nav>
     <span>&lt;&lt;&nbsp;<a href=/episodes/19/es7.html>ep19 ES7</a></span>
-    <span><a href=/episodes/20/browser.html>ep20 Browser</a>&nbsp;&gt;&gt;&gt;</span>
+    <span><a href=/episodes/20/browser.html>ep20 Browser</a>&nbsp;&gt;&gt;</span>
   </nav>
 
   <article>
-    <h1><a href=/episodes/19/es7-sideshow.html>ep19 ES7 sideshow</a></h1>
+    <h1>ep19 ES7 sideshow</h1>
     <section>
-      <h2 id="Info"><a href="#Info">Info</a></h2>
+      <h2>Info</h2>
       <p><audio preload=none src=https://files.mozaic.fm/mozaic-ep19.sideshow.mp3 controls></audio>
       <ul class=info>
         <li>published_at: <time datetime=2015-08-05>2015-08-05</time>
@@ -113,38 +78,37 @@
       </ul>
     </section>
     <section>
-      <h2 id="Theme"><a href="#Theme">Theme</a></h2>
+      <h2>Theme</h2>
       <p>第 19 回 ES7 の SideShow です。
       <p><a href="https://twitter.com/Constellation">@Constellation</a> さんが語る JavaScript Engine (JSCore) での実装の裏話と、 WebAssembly についてお送りします。
-      <p>なお、エピソード内で「何よりも ES6 module が欲しい」という要望を出していましたが、 <a href="https://twitter.com/Constellation">@Constellation</a> さんが、 <a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fplus.google.com%2F+YusukeSUZUKI%2Fposts%2FCtKaHMhXrEH&t=OWMxZmRiYmMxZjQwNTJiZmZkNmY5Mzc5ZWI2ZjY3NGYxZDJiZGQ4NCxvVk9uSjZwVA%3D%3D">実装に着手してくれました!!</a> 楽しみに待ちましょう!!
-      <p><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fbugs.webkit.org%2Fshow_bug.cgi%3Fid%3D147340&t=YjJiY2YxNGUwYzM5NTQwNWZiYTE2Y2RhZGQ4ZDExODQ0ZWYxNWMwZSxvVk9uSjZwVA%3D%3D">Bug 147340 - [ES6] Implement ES6 Modules</a>
+      <p>なお、エピソード内で「何よりも ES6 module が欲しい」という要望を出していましたが、 <a href="https://twitter.com/Constellation">@Constellation</a> さんが、 <a href="https://plus.google.com/+YusukeSUZUKI/posts/CtKaHMhXrEH">実装に着手してくれました!!</a> 楽しみに待ちましょう!!
+      <p><a href="https://bugs.webkit.org/show_bug.cgi%3Fid%3D147340">Bug 147340 - [ES6] Implement ES6 Modules</a>
     </section>
     <section>
-      <h2 id="Show+Note"><a href="#Show+Note">Show Note</a></h2>
+      <h2>Show Note</h2>
       <ul>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FWeakMap&t=N2U2NTdkYjg5NDMwNWRmNWYzMDc1NDE0MDUyYWFkNmUxNTA3ZDM5YyxvVk9uSjZwVA%3D%3D">WeakMap</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FMap&t=YzZlZTBiZTJiYTQxYjFmZmNiNDJmNWQxM2Y3YWRkMDM1MzdjY2RlMSxvVk9uSjZwVA%3D%3D">Map</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fesdiscuss.org%2Ftopic%2Ftemplate-site-objects-and-weakmap&t=ZGNiNDA0NTI0ZjE3ZjY2YjA4M2E5NTc4YjliMzk5YzczOTJhNDhlZCxvVk9uSjZwVA%3D%3D">WeakMap の実装</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fdl.acm.org%2Fcitation.cfm%3Fid%3D263733&t=NTU1NDNkZjM2NGYwMWY5OTNjMmJkNjE2Njk1MWZlZDUwOTlhMmRjOSxvVk9uSjZwVA%3D%3D">Ephemerons</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fja%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FSIMD&t=NTA3ZjJiY2E5OTRmYmFlZjc5YjNmNjg2YjJlYTA1ZWFjZTE3MDQwYSxvVk9uSjZwVA%3D%3D">SIMD</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fwww.w3.org%2Fcommunity%2Fwebassembly%2F&t=M2ExNTQzZDU3Y2U1MzA2Y2I1MmM3ODgyYTg4MDllZDNkMTMzZDhhYSxvVk9uSjZwVA%3D%3D">WebAssembly のコミュニティページ</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fbrendaneich.com%2F2015%2F06%2Ffrom-asm-js-to-webassembly%2F&t=ODc2ODY3N2Y0Y2VlNWRkNGRjZTljMzgwZjg3MTdkMjg3ZWZlNjM2ZSxvVk9uSjZwVA%3D%3D">brendan eich の WebAssembly についての記事</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Ftrac.webkit.org%2Fchangeset%2F187531&t=YjViNTNiNjljNzgxYWRhYzY5MDcwYTUwNjI1ZWQ5OWVjMjU5YzVmNyxvVk9uSjZwVA%3D%3D">WebAssembly base line compiler のパッチ</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.chrome.com%2Fnative-client&t=YThiMDQ0M2RkNTY0Nzk4OGEzZjQ1OWJiYjc5ZTc1Zjk2NGViYTc0OSxvVk9uSjZwVA%3D%3D">NaCl</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FSymbol%2Fspecies&t=YjNiNDE0OTk3NWU3NzY0NDgxN2VmNGY3ODAxZThlZjI2NDE1M2UyNSxvVk9uSjZwVA%3D%3D">Symbol.species</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.2ality.com%2F2014%2F09%2Fes6-modules-final.html&t=YzlkNGRiOWQyMDA0ZmQwMDBlMjI5ZDY0ZTQ0NzZhZmY0YTBjODg5MyxvVk9uSjZwVA%3D%3D">ES6 modules</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fplus.google.com%2F+YusukeSUZUKI%2Fposts%2FCtKaHMhXrEH&t=OWMxZmRiYmMxZjQwNTJiZmZkNmY5Mzc5ZWI2ZjY3NGYxZDJiZGQ4NCxvVk9uSjZwVA%3D%3D">後日 Const さんが WebKit のインターンで module をやってくれることになりました!</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgroups.google.com%2Fa%2Fchromium.org%2Fforum%2F%23%21topic%2Fblink-dev%2FtL4LjQq8lNI%2Fdiscussion&t=MDVmNGY5ZTg2MGIzZjFlYzhkODNmYWI4NTdhMmZlMTJlZmI3NzVjMCxvVk9uSjZwVA%3D%3D">CSSJIT</a>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap">WeakMap</a>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a>
+        <li><a href="https://esdiscuss.org/topic/template-site-objects-and-weakmap">WeakMap の実装</a>
+        <li><a href="http://dl.acm.org/citation.cfm%3Fid%3D263733">Ephemerons</a>
+        <li><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/SIMD">SIMD</a>
+        <li><a href="https://www.w3.org/community/webassembly/">WebAssembly のコミュニティページ</a>
+        <li><a href="https://brendaneich.com/2015/06/from-asm-js-to-webassembly/">brendan eich の WebAssembly についての記事</a>
+        <li><a href="http://trac.webkit.org/changeset/187531">WebAssembly base line compiler のパッチ</a>
+        <li><a href="https://developer.chrome.com/native-client">NaCl</a>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/species">Symbol.species</a>
+        <li><a href="http://www.2ality.com/2014/09/es6-modules-final.html">ES6 modules</a>
+        <li><a href="https://plus.google.com/+YusukeSUZUKI/posts/CtKaHMhXrEH">後日 Const さんが WebKit のインターンで module をやってくれることになりました!</a>
+        <li><a href="https://groups.google.com/a/chromium.org/forum/%23%21topic/blink-dev/tL4LjQq8lNI/discussion">CSSJIT</a>
       </ul>
     </section>
   </article>
 
   <nav>
-    <span>&lt;&lt;&lt;&nbsp;<a href=/episodes/19/es7.html>ep19 ES7</a></span>
-    <span><a href=/episodes/20/browser.html>ep20 Browser</a>&nbsp;&gt;&gt;&gt;</span>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/19/es7.html>ep19 ES7</a></span>
+    <span><a href=/episodes/20/browser.html>ep20 Browser</a>&nbsp;&gt;&gt;</span>
   </nav>
 </main>
-<hr>
 
 <footer>
   <address class=copyright>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</address>

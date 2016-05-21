@@ -47,43 +47,7 @@
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
-  <style>
-  body {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 1.2em;
-  }
-
-  header ul li {
-    width: 50px;
-    height: 50px;
-  }
-
-  header ul li a {
-    width: 50px;
-    height: 50px;
-  }
-
-  article ul {
-    font-family: inherit;
-    font-size: 1em;
-  }
-
-  article li {
-    margin: 0.2em 0;
-  }
-
-  article ul > li > ul {
-    margin: 0.2em 0 0.6em 1em;
-  }
-
-  nav {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-
-  }
-  </style>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css>
 </head>
 <body>
 
@@ -91,6 +55,7 @@
   <ul>
     <li><a href=/><img class=logo alt="blog top" width=50 src=/assets/img/mozaic.svg></a>
     <li><a href=/feeds/feed.xml><img alt="rss feed" width=50 src=/assets/img/podcast.svg></a>
+    <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495><img alt="itunes" width=50 src=/assets/img/itunes.svg></a>
     <li><a href="https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd"><img alt="huamns.txt" width=50 src=/assets/img/twitter.svg></a>
     <li><a href=//jxck.io><img class=logo alt="jxck logo" width=50 src=/assets/img/jxck.svg></a>
   </ul>
@@ -99,13 +64,13 @@
 <main>
   <nav>
     <span>&lt;&lt;&nbsp;<a href=/episodes/15/extensible-web.html>ep15 Extensible Web</a></span>
-    <span><a href=/episodes/17/service-worker.html>ep17 Service Worker</a>&nbsp;&gt;&gt;&gt;</span>
+    <span><a href=/episodes/17/service-worker.html>ep17 Service Worker</a>&nbsp;&gt;&gt;</span>
   </nav>
 
   <article>
-    <h1><a href=/episodes/16/security-application.html>ep16 Security (application)</a></h1>
+    <h1>ep16 Security (application)</h1>
     <section>
-      <h2 id="Info"><a href="#Info">Info</a></h2>
+      <h2>Info</h2>
       <p><audio preload=none src=https://files.mozaic.fm/mozaic-ep16.mp3 controls></audio>
       <ul class=info>
         <li>published_at: <time datetime=2015-03-27>2015-03-27</time>
@@ -113,7 +78,7 @@
       </ul>
     </section>
     <section>
-      <h2 id="Theme"><a href="#Theme">Theme</a></h2>
+      <h2>Theme</h2>
       <p>第 16 回のテーマは Security (application) です。
       <p>今回は <a href="https://twitter.com/hasegawayosuke">@hasegawayosuke</a> さんをお迎えして、 Web アプリケーションの開発技術が進化することによって、同じように変わっている筈のセキュリティに関して、その変化をどう考えればいいのか?
       <p>開発者とセキュリティ関係者のあいだで、足りてないと認識されているものは何か?
@@ -122,41 +87,40 @@
       <p>ハッシュタグは <a href="https://twitter.com/search?q=mozaicfm&src=hash">#mozaicfm</a> です。
     </section>
     <section>
-      <h2 id="Show+Note"><a href="#Show+Note">Show Note</a></h2>
+      <h2>Show Note</h2>
       <ul>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fd.hatena.ne.jp%2Fhasegawayosuke%2F20141212%2Fp1&t=YTllMDNlMTRjMzUwOWM1OTVmNGMwNTJjZDI2OGU5NDVjZTNiZGQ3YSxNOEk2bE9USw%3D%3D">iframe で 2sh を表示す</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FGlossary%2FCross-site_scripting&t=MGRhMDQyNGI0ZGM4YzlmY2UyZjZmYzlmOTBiZmYwY2ZiMzVhOTg1MixNOEk2bE9USw%3D%3D">XSS</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2FPersona%2FThe_implementor_s_guide%2FProblems_integrating_with_CRSF_protection&t=NzFiMGRlYjY5NGVkMmFkZjNkODlkYjhlNDdkYTFmYmE1NTZiODEyNCxNOEk2bE9USw%3D%3D">CSRF</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FGlossary%2FSQL_Injection&t=YWJmNGVkNTFhOTU0MmJhOGQ1MjcyNTIxNWZkNjU5MzZjMjg3MzUxOSxNOEk2bE9USw%3D%3D">SQL Injection</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fja%2Fdocs%2FE4X&t=NzNiNzE5N2UyMDliN2JlNDlhODcyNTc5Y2EwMTkzMDU4NGEzZTA5MyxNOEk2bE9USw%3D%3D">E4X</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.slideshare.net%2Fhasegawayosuke%2Fkobe-45571422&t=ZTViMmUyOTI1OWIxNzcyYjJiODFhNjg3ZWYwMDQzZWY4YzY2ODI1MixNOEk2bE9USw%3D%3D">ES6 時代における Web 開発者とセキュリティ業界の乖離</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fja%2Fdocs%2FSecurity%2FCSP&t=ZTQ5ZjQ0ZjBlN2Y4YTQzYjViODE1Yjc4ZTIwODRjZDY0MTlhZDgyNixNOEk2bE9USw%3D%3D">CSP</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwindows.microsoft.com%2Fja-jp%2Finternet-explorer%2Fproducts%2Fie-9%2Ffeatures%2Fcross-site-scripting-filter&t=YWNjNmUxOTk4OGVjNmY1MGY3NTYyM2M1NjYzMTMwNDU3NTM0MzhhMixNOEk2bE9USw%3D%3D">XSS Filter(IE 独自)</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fextensiblewebmanifesto.org%2Fja&t=YmI2YzdkOWMzMGRjYmQwMzM0ZmQxYTA0NmNjNDBjZmRjNjc3OTNhNCxNOEk2bE9USw%3D%3D">Extensible Web</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.w3.org%2F2012%2Fsysapps%2Ftcp-udp-sockets%2F&t=MGUxMjMxN2FjM2MwNTliY2EzZTVlZWM5MzA2YjdmOTA0ZmFlN2JiZSxNOEk2bE9USw%3D%3D">TCP and UDP Socket API</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.ipa.go.jp%2Fsecurity%2Fvuln%2Fwebsecurity.html&t=Yjk2M2Q3ODgxOGY0NWYxN2FkZGExYWRhMDY2Y2U5YzUyYmJjYjA5ZSxNOEk2bE9USw%3D%3D">「安全なウェブサイトの作り方」改訂第 7 版(3/12 改訂)</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.mozilla-japan.org%2Fsecurity%2Fbug-bounty.html&t=ODgxMDUzNzY5ZjMwM2QwMjhmNzk2Yjc4N2JlYjcwMzc2MmE5MjJjNyxNOEk2bE9USw%3D%3D">Mozilla セキュリティバグ報奨金制度</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.slideshare.net%2Fmuneakinishimura%2Fmozilla200&t=N2FlYzZhZmY2MTBhOGZmZGVmZTU1NWNkZTdmNDc3YmIzNTNiYWRlZixNOEk2bE9USw%3D%3D">Mozilla の報奨金制度で 200 万円ほど稼いだ話</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Futf-8.jp%2Fpublic%2F20150214%2Fes6-literals-xss.pdf&t=NmM5MWExOTBkYjYwZDM3YmY3NTBhZmQ3ZjA2NzMwNjQyZWY5YzUxMyxNOEk2bE9USw%3D%3D">XSS 対策としての ES6 テンプレートリテラル</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fd.hatena.ne.jp%2Fhasegawayosuke%2F20150130&t=NDdmMTdjN2VlNGY0ODVlYWY5Y2JjMmU3YzMyZDc2ZDAxMDY2M2Q3OCxNOEk2bE9USw%3D%3D">iframe sandbox のブログ</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fmsdn.microsoft.com%2Fja-jp%2Flibrary%2Fie%2Fcc848922%28v%3Dvs.85%29.aspx&t=YzRlOTk2ZGZkOGVkMGNhNjNhODZmZDFjZDQzM2I3NThlMTJkZjIzYixNOEk2bE9USw%3D%3D">toStaticHTML</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.slideshare.net%2Fx00mario%2Fes6-en&t=ODI5ZTk4Y2E3MjEzOTY4ODQ2MTRjNTcxMTg5YWZkNDRjMTlmYjNiZixNOEk2bE9USw%3D%3D">ECMAScript 6 from an Attacker's Perspective - Breaking Frameworks, Sandboxes, and everything else</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.sbcr.jp%2Fproducts%2F4797361193.html&t=ZGQ0NTdjZmRhMDA2ZTMyOWUxOGRhM2ZkODQyZGI4NzEwZGYzMWY3YixNOEk2bE9USw%3D%3D">体系的に学ぶ 安全な Web アプリケーションの作り方(通称:徳丸本)</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.shoeisha.co.jp%2Fbook%2Fdetail%2F9784798128092&t=OWU4MzA0YTE5YWRmMjU1YWM5MDVjNGJiY2QyOTZhYTgzMGEzYTFlZixNOEk2bE9USw%3D%3D">めんどうくさい Web セキュリティ</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fwww.jpcert.or.jp%2Fresearch%2Fhtml5.html&t=MGQ2MGYyNTZjYzM1MmZhZGUxZDI2YjM1NjYzZGU1OTMyYzc5NmIwMSxNOEk2bE9USw%3D%3D">HTML5 を利用した Web アプリケーションのセキュリティ問題に関する調査報告書(JPCERT CC)</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fwww.owasp.org%2Findex.php%2FJapan&t=MzViNjg2MTI5OWZlMDAyMDk3ZGI5MzJhMDUzYjQwYjE4OGY2YjZiOSxNOEk2bE9USw%3D%3D">OWASP Japan</a>(ずっと owaps だと思ってました。。)
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fd.hatena.ne.jp%2Fku-ma-me%2F20141225%2Fp1&t=YTdjZjU1NmJiYzhjNWUyYmVmOTNmYjg4N2E1MDE3NWUwYzA4ZDdjMSxNOEk2bE9USw%3D%3D">100 種類の言語で Quine</a>
+        <li><a href="http://d.hatena.ne.jp/hasegawayosuke/20141212/p1">iframe で 2sh を表示す</a>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Glossary/Cross-site_scripting">XSS</a>
+        <li><a href="https://developer.mozilla.org/en-US/Persona/The_implementor_s_guide/Problems_integrating_with_CRSF_protection">CSRF</a>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Glossary/SQL_Injection">SQL Injection</a>
+        <li><a href="https://developer.mozilla.org/ja/docs/E4X">E4X</a>
+        <li><a href="http://www.slideshare.net/hasegawayosuke/kobe-45571422">ES6 時代における Web 開発者とセキュリティ業界の乖離</a>
+        <li><a href="https://developer.mozilla.org/ja/docs/Security/CSP">CSP</a>
+        <li><a href="http://windows.microsoft.com/ja-jp/internet-explorer/products/ie-9/features/cross-site-scripting-filter">XSS Filter(IE 独自)</a>
+        <li><a href="http://extensiblewebmanifesto.org/ja">Extensible Web</a>
+        <li><a href="http://www.w3.org/2012/sysapps/tcp-udp-sockets/">TCP and UDP Socket API</a>
+        <li><a href="http://www.ipa.go.jp/security/vuln/websecurity.html">「安全なウェブサイトの作り方」改訂第 7 版(3/12 改訂)</a>
+        <li><a href="http://www.mozilla-japan.org/security/bug-bounty.html">Mozilla セキュリティバグ報奨金制度</a>
+        <li><a href="http://www.slideshare.net/muneakinishimura/mozilla200">Mozilla の報奨金制度で 200 万円ほど稼いだ話</a>
+        <li><a href="http://utf-8.jp/public/20150214/es6-literals-xss.pdf">XSS 対策としての ES6 テンプレートリテラル</a>
+        <li><a href="http://d.hatena.ne.jp/hasegawayosuke/20150130">iframe sandbox のブログ</a>
+        <li><a href="https://msdn.microsoft.com/ja-jp/library/ie/cc848922%28v%3Dvs.85%29.aspx">toStaticHTML</a>
+        <li><a href="http://www.slideshare.net/x00mario/es6-en">ECMAScript 6 from an Attacker's Perspective - Breaking Frameworks, Sandboxes, and everything else</a>
+        <li><a href="http://www.sbcr.jp/products/4797361193.html">体系的に学ぶ 安全な Web アプリケーションの作り方(通称:徳丸本)</a>
+        <li><a href="http://www.shoeisha.co.jp/book/detail/9784798128092">めんどうくさい Web セキュリティ</a>
+        <li><a href="https://www.jpcert.or.jp/research/html5.html">HTML5 を利用した Web アプリケーションのセキュリティ問題に関する調査報告書(JPCERT CC)</a>
+        <li><a href="https://www.owasp.org/index.php/Japan">OWASP Japan</a>(ずっと owaps だと思ってました。。)
+        <li><a href="http://d.hatena.ne.jp/ku-ma-me/20141225/p1">100 種類の言語で Quine</a>
       </ul>
-      <p>BGM: <a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.jazz-on-line.com%2F&t=NDYyNzVhOGIwN2I3NmNjMWFhMjE4MDk4NjZmNzgxOTNlMjMyMTMxOCxNOEk2bE9USw%3D%3D">public domain jazz</a>
+      <p>BGM: <a href="http://www.jazz-on-line.com/">public domain jazz</a>
     </section>
   </article>
 
   <nav>
-    <span>&lt;&lt;&lt;&nbsp;<a href=/episodes/15/extensible-web.html>ep15 Extensible Web</a></span>
-    <span><a href=/episodes/17/service-worker.html>ep17 Service Worker</a>&nbsp;&gt;&gt;&gt;</span>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/15/extensible-web.html>ep15 Extensible Web</a></span>
+    <span><a href=/episodes/17/service-worker.html>ep17 Service Worker</a>&nbsp;&gt;&gt;</span>
   </nav>
 </main>
-<hr>
 
 <footer>
   <address class=copyright>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</address>

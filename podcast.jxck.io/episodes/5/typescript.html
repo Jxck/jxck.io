@@ -47,43 +47,7 @@
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
-  <style>
-  body {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 1.2em;
-  }
-
-  header ul li {
-    width: 50px;
-    height: 50px;
-  }
-
-  header ul li a {
-    width: 50px;
-    height: 50px;
-  }
-
-  article ul {
-    font-family: inherit;
-    font-size: 1em;
-  }
-
-  article li {
-    margin: 0.2em 0;
-  }
-
-  article ul > li > ul {
-    margin: 0.2em 0 0.6em 1em;
-  }
-
-  nav {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-
-  }
-  </style>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css>
 </head>
 <body>
 
@@ -91,6 +55,7 @@
   <ul>
     <li><a href=/><img class=logo alt="blog top" width=50 src=/assets/img/mozaic.svg></a>
     <li><a href=/feeds/feed.xml><img alt="rss feed" width=50 src=/assets/img/podcast.svg></a>
+    <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495><img alt="itunes" width=50 src=/assets/img/itunes.svg></a>
     <li><a href="https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd"><img alt="huamns.txt" width=50 src=/assets/img/twitter.svg></a>
     <li><a href=//jxck.io><img class=logo alt="jxck logo" width=50 src=/assets/img/jxck.svg></a>
   </ul>
@@ -99,13 +64,13 @@
 <main>
   <nav>
     <span>&lt;&lt;&nbsp;<a href=/episodes/4/secuirty-protocol.html>ep4 Security (protocol)</a></span>
-    <span><a href=/episodes/6/webrtc.html>ep6 WebRTC</a>&nbsp;&gt;&gt;&gt;</span>
+    <span><a href=/episodes/6/webrtc.html>ep6 WebRTC</a>&nbsp;&gt;&gt;</span>
   </nav>
 
   <article>
-    <h1><a href=/episodes/5/typescript.html>ep5 TypeScript</a></h1>
+    <h1>ep5 TypeScript</h1>
     <section>
-      <h2 id="Info"><a href="#Info">Info</a></h2>
+      <h2>Info</h2>
       <p><audio preload=none src=https://files.mozaic.fm/mozaic-ep5.mp3 controls></audio>
       <ul class=info>
         <li>published_at: <time datetime=2014-06-16>2014-06-16</time>
@@ -113,31 +78,30 @@
       </ul>
     </section>
     <section>
-      <h2 id="Theme"><a href="#Theme">Theme</a></h2>
+      <h2>Theme</h2>
       <p>第 5 回のテーマは TypeScript です。
       <p>今回は <a href="https://twitter.com/vvakame">@vvakame</a> さんをお迎えし TypeScript をテーマに、 TypeScript の現状や、 d.ts の話、型の有無に起因する議論、最近のモジュールシステム、 Alt-JS 全般にまつわるエコシステムの話や、 Angular-TypeScript の感想、非同期の話、 TypeScript の今後など 「今なにが起こっているのか?」「これからどうなっていくのか?」をたっぷり議論しました。
       <p>今回は議論が色々広がって 1.5h になりました。また、録音したのは約一ヶ月前(5 月中旬)のもので、冒頭で第 4 回と言っていましたが、急遽第 4 回に別の話を差し込んだため第 5 回になりました。
       <p>ハッシュタグは <a href="https://twitter.com/search?q=mozaicfm&src=hash">#mozaicfm</a> です。
     </section>
     <section>
-      <h2 id="Show+Note"><a href="#Show+Note">Show Note</a></h2>
+      <h2>Show Note</h2>
       <ul>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.typescriptlang.org%2F&t=ZTZjZjZlYWZiZDU4NTZlYWVmOWNlOTA5MWNjNGE3Mzc4MWJiMTYyMCxoUjJ5aE5MYw%3D%3D">TypeScript</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.impressjapan.jp%2Fbooks%2F1113101087&t=YWNkZWU3NzFiZTY3NGVlMzk5YjdhYmRlNGY5MzdmNTM0NmYxNjJhMyxoUjJ5aE5MYw%3D%3D">TypeScript リファレンス</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fborisyankov%2FDefinitelyTyped&t=YmMxMDExMTdhNTY0NDM2M2U4YmJkNDBmMDFmZTY3N2FjM2I5NzQ5NCxoUjJ5aE5MYw%3D%3D">DefinitelyTyped</a>
+        <li><a href="http://www.typescriptlang.org/">TypeScript</a>
+        <li><a href="http://www.impressjapan.jp/books/1113101087">TypeScript リファレンス</a>
+        <li><a href="https://github.com/borisyankov/DefinitelyTyped">DefinitelyTyped</a>
         <li><a href="https://twitter.com/Constellation">Constellation さん</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Ftypescript.codeplex.com%2Fwikipage%3Ftitle%3DECMAScript+6+Status%26referringTitle%3DRoadmap&t=ZWMwOGZlNjlhMzgwOTQ3ZDlhM2JkNWViM2QzNTY3MGVhZTI1NjNkMyxoUjJ5aE5MYw%3D%3D">Aligning with ECMAScript 6</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fjxck.hatenablog.com%2Fentry%2F2014-01-12%2Fgenerator-screencaset&t=YTkzZmNlZTJmYTYyZTQ5MzAyZmY1ZWRkMWFkYWYyNWFkNGI2ZGNhMixoUjJ5aE5MYw%3D%3D">ES6 ジェネレータと co と koa の話</a>
+        <li><a href="https://typescript.codeplex.com/wikipage%3Ftitle%3DECMAScript+6+Status%26referringTitle%3DRoadmap">Aligning with ECMAScript 6</a>
+        <li><a href="http://jxck.hatenablog.com/entry/2014-01-12/generator-screencaset">ES6 ジェネレータと co と koa の話</a>
       </ul>
     </section>
   </article>
 
   <nav>
-    <span>&lt;&lt;&lt;&nbsp;<a href=/episodes/4/secuirty-protocol.html>ep4 Security (protocol)</a></span>
-    <span><a href=/episodes/6/webrtc.html>ep6 WebRTC</a>&nbsp;&gt;&gt;&gt;</span>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/4/secuirty-protocol.html>ep4 Security (protocol)</a></span>
+    <span><a href=/episodes/6/webrtc.html>ep6 WebRTC</a>&nbsp;&gt;&gt;</span>
   </nav>
 </main>
-<hr>
 
 <footer>
   <address class=copyright>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</address>

@@ -47,43 +47,7 @@
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
-  <style>
-  body {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 1.2em;
-  }
-
-  header ul li {
-    width: 50px;
-    height: 50px;
-  }
-
-  header ul li a {
-    width: 50px;
-    height: 50px;
-  }
-
-  article ul {
-    font-family: inherit;
-    font-size: 1em;
-  }
-
-  article li {
-    margin: 0.2em 0;
-  }
-
-  article ul > li > ul {
-    margin: 0.2em 0 0.6em 1em;
-  }
-
-  nav {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-
-  }
-  </style>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css>
 </head>
 <body>
 
@@ -91,6 +55,7 @@
   <ul>
     <li><a href=/><img class=logo alt="blog top" width=50 src=/assets/img/mozaic.svg></a>
     <li><a href=/feeds/feed.xml><img alt="rss feed" width=50 src=/assets/img/podcast.svg></a>
+    <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495><img alt="itunes" width=50 src=/assets/img/itunes.svg></a>
     <li><a href="https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd"><img alt="huamns.txt" width=50 src=/assets/img/twitter.svg></a>
     <li><a href=//jxck.io><img class=logo alt="jxck logo" width=50 src=/assets/img/jxck.svg></a>
   </ul>
@@ -99,13 +64,13 @@
 <main>
   <nav>
     <span>&lt;&lt;&nbsp;<a href=/episodes/18/nginx.html>ep18 Nginx</a></span>
-    <span><a href=/episodes/19/es7-sideshow.html>ep19 ES7 sideshow</a>&nbsp;&gt;&gt;&gt;</span>
+    <span><a href=/episodes/19/es7-sideshow.html>ep19 ES7 sideshow</a>&nbsp;&gt;&gt;</span>
   </nav>
 
   <article>
-    <h1><a href=/episodes/19/es7.html>ep19 ES7</a></h1>
+    <h1>ep19 ES7</h1>
     <section>
-      <h2 id="Info"><a href="#Info">Info</a></h2>
+      <h2>Info</h2>
       <p><audio preload=none src=https://files.mozaic.fm/mozaic-ep19.mp3 controls></audio>
       <ul class=info>
         <li>published_at: <time datetime=2015-08-02>2015-08-02</time>
@@ -113,51 +78,50 @@
       </ul>
     </section>
     <section>
-      <h2 id="Theme"><a href="#Theme">Theme</a></h2>
+      <h2>Theme</h2>
       <p>第 19 回のテーマは ES7 です。
       <p>今回は <a href="https://twitter.com/Constellation">@Constellation</a> さんをお迎えして、先日公開された ES6 をふまえ、次の仕様として議論が始まった ES7 について、 ブラウザのエンジンを実装する立場から見た、現状や懸念点などについて話を聞きながら、これから ECMAScript はどうなっていくのか、どうなっていくべきなのかについて議論しました。
     </section>
     <section>
-      <h2 id="Show+Note"><a href="#Show+Note">Show Note</a></h2>
+      <h2>Show Note</h2>
       <ul>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2FConstellation%2Fiv%2Ftree%2Fmaster%2Fiv%2Flv5%23iv--lv5&t=NGM5YmQ4NDA4OWQ1MDkwNjc1NDYwNWE2ZDg2ODgxMmU0OTlhNzFiZix3ak5CTUpqYw%3D%3D">Lv.5</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fesprima.org%2F&t=MjVjYzAwMjljMDFiMTg2ZjAzMzg4Y2M2MjI0YmM2MmQ0ODY5OWY0ZCx3ak5CTUpqYw%3D%3D">exprima</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Festools%2Festraverse&t=ZTI4MmFlMGI1YzM0NzAyNmZjZWI0YzZkZDMwMDVmOTQ4OTdhNTM3Mix3ak5CTUpqYw%3D%3D">estraverse</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Festools%2Fescodegen&t=MGEwMTNmMWJmMDA3YmM5MGJmNTgxZTI0NzBlMDViNjY3NDBhMTNhNix3ak5CTUpqYw%3D%3D">escodegen</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FSymbol&t=ZDE2YTgxMTVlZWM2YjY5ZWQ3ZjhjY2ZmMjBiZGI1NmMwOTIxMmZmNSx3ak5CTUpqYw%3D%3D">ES6 symbol</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fjsrocks.org%2F2015%2F01%2Ftemporal-dead-zone-tdz-demystified%2F&t=ZTQ5NzBmMTViMjU2ZDdjNjI4M2Y3ZDFkNWUyOTEzN2FiZWI0MjA1Yyx3ak5CTUpqYw%3D%3D">TDZ</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fesdiscuss.org%2Ftopic%2Fperformance-concern-with-let-const&t=NWEwMjljNWMwNzA1ZjY2YjJiMGRhMjk0OWIxZGY3MmU0ODhjYjBkNyx3ak5CTUpqYw%3D%3D">TDZ のパフォーマンス</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FGenerator&t=OWQ0ZjIxNWYyMjg3NTJmYzkwZGQ2YTY1YjdiYTc2NzJkOTRiNDk2Nix3ak5CTUpqYw%3D%3D">ES6 generator</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Feslint.org%2Fdocs%2Frules%2Fno-var&t=OTViMzkwYThmMzBlNTkzYzEyMzgxMzliMWMyNzQ1YzhkYWFkYmRhNix3ak5CTUpqYw%3D%3D">eslint no-var</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Ftc39%2Fecma262&t=MWM5OTJmYTlkYzA5N2I1MGQ4OGY0ZWZhODEzZTY3ZDI5ZDUxYzFmZix3ak5CTUpqYw%3D%3D">ES7 の提案一覧</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FArray%2Fincludes&t=YmZhZTU0NWIxODYyZTc3ZTdhZWIwOTY5MDM3MTNiYTZmYTI2NzZhYyx3ak5CTUpqYw%3D%3D">Array.prototype.includes</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FObject%2Fobserve&t=YzA2ZWQzZjBjMGE5ZDRjNGJiN2Y3NDY4ZDc3YTc4NDNjZjFjOTkxMyx3ak5CTUpqYw%3D%3D">Object.observe</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Ftc39.github.io%2Fecmascript-asyncawait%2F&t=ZjVmMDg0YTFjNGYyZThjMjJkMjQwNGIxMDczYjBjZGQ1ZmFiYzc2Zix3ak5CTUpqYw%3D%3D">async-await</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FPromise&t=NWQ2ZTA4MDYwYmMzOWFkYmE2ZjFlMWU4ZTYzNmQ3YWJhZDcwN2UyNSx3ak5CTUpqYw%3D%3D">Promise</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FGenerator&t=OWQ0ZjIxNWYyMjg3NTJmYzkwZGQ2YTY1YjdiYTc2NzJkOTRiNDk2Nix3ak5CTUpqYw%3D%3D">Generator</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fesdiscuss.org%2Ftopic%2Fcancelable-promises&t=ZjdiMWQzNmNkZGJiOWZhYTk1MjZjYzAyMzdiOWQ0NTNjZDU4NmFhNyx3ak5CTUpqYw%3D%3D">cancelable promise</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fpromises-aplus%2Fpromises-spec%2Fissues%2F94&t=OTMxOGVhYjM5OGI0ZWQxZjU0YWNmZTkzYjEzZGZlYTllOWU5YWMwZCx3ak5CTUpqYw%3D%3D">monadic-promise</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fpetkaantonov%2Fbluebird%2Fissues%2F50&t=NjgxNTM3YzE4ZGU1MTVkNTM4OGI2OTdkM2I0YjNiYjc3MDM1MWNmNix3ak5CTUpqYw%3D%3D">promise-flatmap</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgist.github.com%2FJxck%2F129ed81ad6bce4710758&t=ODAxMDQ2ZTgwOTk1YzE2OGJjYzdiYWNiZTdiZDI3OTBlZjUzNDYzNyx3ak5CTUpqYw%3D%3D">promise.chain</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2Fzenparsing%2Fes-observable&t=OTM3MzUyY2IyNmQ0YWM5NWUzZjMzNTY2MjA1ZDFiMTIxOTQyMWI2Zix3ak5CTUpqYw%3D%3D">es-observable</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fgithub.com%2FReactive-Extensions%2FRxJS&t=MzY1ZWI1YTExMTI4NzRlOTVmYmQyY2UxNTg0MDk0ZjllMjZhYmYyMix3ak5CTUpqYw%3D%3D">RxJS</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FOperators%2FArray_comprehensions&t=MTBkYWRkZWYxMzZkYWRiNGUzNjhhOTE3MzgyOGZhM2NlZDc5YTc2Nyx3ak5CTUpqYw%3D%3D">Array comprehensions</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FStatements%2Flet&t=MTVmMTU2OTg2MWE4YjMzN2I5YWQ1ZmE3YWJhNGFhMTc4ODA1NmY2NCx3ak5CTUpqYw%3D%3D">let</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FClasses&t=MTYxMjkwMjc5NTA2NWYxNjA1MDk5YmE1NDFkMmIxNDRkZmY5OWI4MCx3ak5CTUpqYw%3D%3D">class</a>
-        <li><a href="http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.2ality.com%2F2015%2F06%2Ftail-call-optimization.html&t=NzIyMTI3YzQ0YzlhZDA5NWY1M2IyOTgzMzhmZTZkNzY4MGM5ODUzZix3ak5CTUpqYw%3D%3D">tail call optimization</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2Ftemplate_strings&t=MThmYmM5OGQzODRhNjJmOWU3ZGRjNGMwYzkyYTk1Y2FkMjI0MDk1NSx3ak5CTUpqYw%3D%3D">template literal</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FIteration_protocols&t=YTY1MzhiMDdiNGE5MDU1Y2E0NzVkNTYxMmYwOGExOWUxZTM1MDQ0Nix3ak5CTUpqYw%3D%3D">iterator</a>
-        <li><a href="http://t.umblr.com/redirect?z=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FProxy&t=ZjRhYjU3ZDlhMzVkZWYyYjU1YTI3YmIwNjI4NzkwYTQyYjhkMDJmMyx3ak5CTUpqYw%3D%3D">Proxy</a>
+        <li><a href="https://github.com/Constellation/iv/tree/master/iv/lv5%23iv--lv5">Lv.5</a>
+        <li><a href="http://esprima.org/">exprima</a>
+        <li><a href="https://github.com/estools/estraverse">estraverse</a>
+        <li><a href="https://github.com/estools/escodegen">escodegen</a>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">ES6 symbol</a>
+        <li><a href="http://jsrocks.org/2015/01/temporal-dead-zone-tdz-demystified/">TDZ</a>
+        <li><a href="https://esdiscuss.org/topic/performance-concern-with-let-const">TDZ のパフォーマンス</a>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator">ES6 generator</a>
+        <li><a href="http://eslint.org/docs/rules/no-var">eslint no-var</a>
+        <li><a href="https://github.com/tc39/ecma262">ES7 の提案一覧</a>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes">Array.prototype.includes</a>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/observe">Object.observe</a>
+        <li><a href="https://tc39.github.io/ecmascript-asyncawait/">async-await</a>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator">Generator</a>
+        <li><a href="https://esdiscuss.org/topic/cancelable-promises">cancelable promise</a>
+        <li><a href="https://github.com/promises-aplus/promises-spec/issues/94">monadic-promise</a>
+        <li><a href="https://github.com/petkaantonov/bluebird/issues/50">promise-flatmap</a>
+        <li><a href="https://gist.github.com/Jxck/129ed81ad6bce4710758">promise.chain</a>
+        <li><a href="https://github.com/zenparsing/es-observable">es-observable</a>
+        <li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS</a>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Array_comprehensions">Array comprehensions</a>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let">let</a>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">class</a>
+        <li><a href="http://www.2ality.com/2015/06/tail-call-optimization.html">tail call optimization</a>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings">template literal</a>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols">iterator</a>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy">Proxy</a>
       </ul>
     </section>
   </article>
 
   <nav>
-    <span>&lt;&lt;&lt;&nbsp;<a href=/episodes/18/nginx.html>ep18 Nginx</a></span>
-    <span><a href=/episodes/19/es7-sideshow.html>ep19 ES7 sideshow</a>&nbsp;&gt;&gt;&gt;</span>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/18/nginx.html>ep18 Nginx</a></span>
+    <span><a href=/episodes/19/es7-sideshow.html>ep19 ES7 sideshow</a>&nbsp;&gt;&gt;</span>
   </nav>
 </main>
-<hr>
 
 <footer>
   <address class=copyright>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</address>
