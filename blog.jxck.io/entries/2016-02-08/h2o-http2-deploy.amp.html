@@ -222,31 +222,6 @@ header .logo {
   box-sizing: border-box;
 }
 
-main {
-  display: block;
-  width: 80%;
-  margin: 1em auto;
-}
-
-@media screen and (max-device-width: 480px) {
-  main {
-    width: 94%;
-  }
-}
-
-a {
-  word-wrap: break-word;
-  text-decoration: none;
-}
-
-a {
-  color: RoyalBlue;
-}
-
-a:visited {
-  color: Brown;
-}
-
 h1 > a,
 h2 > a,
 h3 > a,
@@ -303,11 +278,6 @@ strong::before, strong::after {
   content: "**";
 }
 
-ol, ul {
-  list-style: none;
-  padding-left: 0;
-}
-
 ul li::before {
   content: "- ";
 }
@@ -319,6 +289,49 @@ ol {
 ol li::before {
   counter-increment: list;
   content: counter(list) ". ";
+}
+
+dl dt::after {
+  content: ":";
+}
+
+blockquote::before {
+  content: "> ";
+}
+
+code::before, code::after {
+  /* うざかった */
+  /* content: "`"; */
+}
+
+main {
+  display: block;
+  width: 80%;
+  margin: 1em auto;
+}
+
+@media screen and (max-device-width: 480px) {
+  main {
+    width: 94%;
+  }
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+}
+
+a {
+  color: RoyalBlue;
+}
+
+a:visited {
+  color: Brown;
+}
+
+ol, ul {
+  list-style: none;
+  padding-left: 0;
 }
 
 li {
@@ -334,10 +347,6 @@ dl dt {
   font-weight: bold;
 }
 
-dl dt::after {
-  content: ":";
-}
-
 dl dd {
   margin-top: 0.4em;
   margin-bottom: 0.4em;
@@ -351,21 +360,12 @@ blockquote {
   margin: 1.4em 0;
 }
 
-blockquote::before {
-  content: "> ";
-}
-
 code {
   border: 1px solid #ddd;
   background-color: #efefef;
   border-radius: 4px;
   padding: 0.1em;
   margin: 1.4em 0;
-}
-
-code::before, code::after {
-  /* うざかった */
-  /* content: "`"; */
 }
 
 footer {
