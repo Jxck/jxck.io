@@ -31,6 +31,7 @@
     "gzip":    "./compress.rb www.jxck.io blog.jxck.io podcast.jxck.io",
     "build":   "npm run dev && npm run gzip && gulp",
     "slide":   "./compress.rb slide.jxck.io",
+    "clean":   "find ./**/* -name *.gz | xargs -L 4 -P 4 rm",
     "start":   "sudo $DOTFILES/local/h2o/bin/h2o -m daemon -c h2o.conf",
     "stop":    "sudo kill -TERM `cat ../logs/pid`",
     "restart": "npm stop && npm start"
