@@ -60,12 +60,14 @@
 </header>
 
 <main>
+  <ol>
 <% episodes.each do |e| %>
-  <article>
-    <h2><a href="<%= e.url %>"><%= e.title %></a></h2>
-    <%= e.theme_html %>
-  </article>
+    <li>
+      <h2><a href="<%= e.url %>"><%= e.title %></a></h2>
+      <%= e.theme_html %>
+    </li>
 <% end %>
+  </ol>
 </main>
 
 <footer>

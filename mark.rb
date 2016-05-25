@@ -306,9 +306,9 @@ class Podcast < Markup
       # h1 の中身はタイトル
       @title = node.value
       # h1 だけは self url にリンク
-      return %(<h#{level}>#{@title}</h#{level}>\n)
+      return %(<h#{level}><a href=#{@url}>#{@title}</a></h#{level}>\n)
     else
-      # h2 以降は id を振る
+      # h2 以降はそのまま
       return %(<h#{level}>#{node.value}</h#{level}>\n)
     end
   end
@@ -779,7 +779,7 @@ class Episode < Article
       .to_html
 
     # fixup indent
-    oneline(html).gsub("</p><p>", "</p>\n    <p>")
+    oneline(html).gsub("</p><p>", "</p>\n      <p>")
   end
 
   def size
