@@ -820,6 +820,7 @@ if __FILE__ == $0
       "./blog.jxck.io/assets/css/body.css",
       "./blog.jxck.io/assets/css/info.css",
       "./blog.jxck.io/assets/css/header.css",
+      "./blog.jxck.io/assets/css/markdown.css",
       "./blog.jxck.io/assets/css/main.css",
       "./blog.jxck.io/assets/css/footer.css",
       "./blog.jxck.io/assets/css/pre.css",

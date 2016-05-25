@@ -23,78 +23,9 @@ a:visited {
   color: Brown;
 }
 
-h1 > a,
-h2 > a,
-h3 > a,
-h4 > a,
-h5 > a,
-h6 > a {
-  pointer-events: none;
-  color: #222;
-}
-
-h1 > a:visited,
-h2 > a:visited,
-h3 > a:visited,
-h4 > a:visited,
-h5 > a:visited,
-h6 > a:visited {
-  color: #222;
-}
-
-h1 > a:hover:before,
-h2 > a:hover:before,
-h3 > a:hover:before,
-h4 > a:hover:before,
-h5 > a:hover:before,
-h6 > a:hover:before {
-  color: Brown;
-}
-
-h1 > a::before {
-  content: "# ";
-  pointer-events: all;
-}
-
-h2 > a::before {
-  content: "## ";
-  pointer-events: all;
-}
-
-h3 > a::before {
-  content: "### ";
-  pointer-events: all;
-}
-
-h4 > a::before {
-  content: "#### ";
-  pointer-events: all;
-}
-
-i::before, i::after {
-  content: "*";
-}
-
-strong::before, strong::after {
-  content: "**";
-}
-
 ol, ul {
   list-style: none;
   padding-left: 0;
-}
-
-ul li::before {
-  content: "- ";
-}
-
-ol {
-  counter-reset: list;
-}
-
-ol li::before {
-  counter-increment: list;
-  content: counter(list) ". ";
 }
 
 li {
@@ -110,10 +41,6 @@ dl dt {
   font-weight: bold;
 }
 
-dl dt::after {
-  content: ":";
-}
-
 dl dd {
   margin-top: 0.4em;
   margin-bottom: 0.4em;
@@ -127,19 +54,10 @@ blockquote {
   margin: 1.4em 0;
 }
 
-blockquote::before {
-  content: "> ";
-}
-
 code {
   border: 1px solid #ddd;
   background-color: #efefef;
   border-radius: 4px;
   padding: 0.1em;
   margin: 1.4em 0;
-}
-
-code::before, code::after {
-  /* うざかった */
-  /* content: "`"; */
 }
