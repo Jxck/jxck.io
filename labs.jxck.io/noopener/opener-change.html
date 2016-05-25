@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<title>opener-change</title>
+
+<h1>moves parent window to example.com</h1>
+
+<p>link this page with target=_blank from any page
+<p>this page changes <code>windoe.opener.location</code> to <a href=http://example.com>http://example.com</a> via javascript
+<p>if you wanna aboid this, add <code>rel="noopener"</code> and for FF (not support noopener) <code>rel="noreferrer"</code> to your link.
+
+<pre>
+window.opener.location = 'http://example.com';
+</pre>
+
+<script>
+window.opener.location = 'http://example.com';
+</script>
