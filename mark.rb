@@ -769,7 +769,7 @@ class Episode < Article
   end
 
   def summary()
-    hsp @text.sub(/#(.*?)## Theme/m, "# #{title}").gsub(/\[(.*?)\]\(.*?\)/, '\1')
+    hsp unlink @text.sub(/#(.*?)## Theme/m, "# #{title}")
   end
 
   def size
