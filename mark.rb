@@ -17,6 +17,24 @@ def hsp(str)
      .gsub(/'/, "&#039;")
 end
 
+# trim to 140 word for html meta description
+def short(str)
+  limit = 140
+  str.gsub(/(\n|\r)/, '')
+     .strip[0...(limit-3)]
+     .concat("...")
+end
+
+# remove markdown link
+def unlink(str)
+  str.gsub(/\[(.*?)\]\(.*?\)/, '\1')
+end
+
+# remove \n\r for online
+def oneline(str)
+  str.gsub(/(\n|\r)/, "")
+end
+
 def j(o)
   puts caller.first, JSON.pretty_generate(o)
 end
@@ -629,20 +647,12 @@ class Article
     @text.sub(" [" + tags.join("][") + "]", "")
   end
 
-  def description(limit = 0)
-    # description の link は無くす
-    val = hsp @text
-      .match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2]
-      .gsub(/\[(.*?)\]\(.*?\)/, '\1')
-      .strip()
+  def theme
+    @text.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2]
+  end
 
-    return val if limit == 0
-
-    # 長さがあれば詰める
-    val
-      .gsub(/(\n|\r)/, '')
-      .strip[0...(limit-3)]
-      .concat("...")
+  def description
+    unlink theme
   end
 
   def build(markup) # Markup/AMP

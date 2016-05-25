@@ -12,7 +12,7 @@
    <link href="<%= e.canonical %>" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://<%= e.created_at %></id>
    <updated><%= e.created_at %>T00:00:00Z</updated>
-   <summary><%= e.description %></summary>
+   <summary><%= hsp e.description.strip %></summary>
   </entry>
 <% end  %>
 </feed>
