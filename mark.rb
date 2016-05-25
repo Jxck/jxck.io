@@ -638,6 +638,7 @@ class Article
 
     return val if limit == 0
 
+    # 長さがあれば詰める
     val
       .gsub(/(\n|\r)/, '')
       .strip[0...(limit-3)]
@@ -734,7 +735,7 @@ class Episode < Article
   end
 
   def subtitle
-    description.split("\n")[2]
+    summary.split("\n")[2]
   end
 
   def sideshow?
@@ -757,9 +758,7 @@ class Episode < Article
     Time.parse(datetime).rfc822
   end
 
-  def description(limit = 0)
-    return super(limit) if limit > 0
-
+  def summary()
     hsp @text.sub(/#(.*?)## Theme/m, "# #{title}").gsub(/\[(.*?)\]\(.*?\)/, '\1')
   end
 
