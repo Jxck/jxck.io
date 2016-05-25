@@ -39,9 +39,9 @@ def j(o)
   puts caller.first, JSON.pretty_generate(o)
 end
 
-# replace ' ' to '+'
+# replace " " to "+"
 def unspace(str)
-  str.gsub(/ /, "+")
+  str.tr(" ", "+")
 end
 
 # dot access Hash
@@ -56,19 +56,19 @@ class Hash
   end
 
   def inline?
-    self.inline || [
+    inline || [
       :text,
       :header,
       :strong,
       :paragraph,
-    ].include?(self.type)
+    ].include?(type)
   end
 end
 
 # tag ごとのビルダ
 class Markup
   attr_writer :url
-  def initialize()
+  def initialize
     @indent = "  "
     @css = {
       PRE:   "/assets/css/pre.css",
@@ -181,10 +181,10 @@ class Markup
   end
   def smart_quote(node)
     {
-      lsquo: "'",
-      rsquo: "'",
-      ldquo: '"',
-      rdquo: '"',
+      lsquo: %('),
+      rsquo: %('),
+      ldquo: %("),
+      rdquo: %("),
     }[node.value]
   end
   def li(node)
@@ -293,7 +293,7 @@ class AMP < Markup
   def html_element(node)
     value = super(node)
     if value.match(/<iframe.*/)
-      value.gsub!(/iframe/, 'amp-iframe')
+      value.gsub!(/iframe/, "amp-iframe")
     end
     value
   end
@@ -741,7 +741,7 @@ class Episode < Article
   end
 
   def num
-    @path.split('/')[3].to_i
+    @path.split("/")[3].to_i
   end
 
   def subtitle
