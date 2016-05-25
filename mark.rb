@@ -906,6 +906,11 @@ if __FILE__ == $0
     podcastfeed(ARGV.include? "feed")
   end
 
+  if ARGV.include? "full"
+    blogfeed(true)
+    podcastfeed(true)
+  end
+
   if ARGV.first == "-t"
     # test
     icon = "https://jxck.io/assets/img/jxck.png"
