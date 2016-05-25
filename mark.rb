@@ -772,6 +772,16 @@ class Episode < Article
     hsp unlink @text.sub(/#(.*?)## Theme/m, "# #{title}")
   end
 
+  def theme_html()
+    # build markdown to html
+    html = Kramdown::Document
+      .new(theme, {input: "GFM"})
+      .to_html
+
+    # fixup indent
+    oneline(html).gsub("</p><p>", "</p>\n    <p>")
+  end
+
   def size
     begin
       File.open("../#{file}").size

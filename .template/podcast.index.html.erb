@@ -44,10 +44,8 @@
 <main>
 <% episodes.each do |e| %>
   <article>
-    <section>
-      <h2><%= e.title %></h2>
-      <%= e.summary %>
-    </section>
+    <h2><a href=<%= e.url %>><%= e.title %></a></h2>
+    <%= e.theme_html %>
   </article>
 <% end %>
 </main>
