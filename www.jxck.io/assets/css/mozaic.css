@@ -70,7 +70,21 @@ article h1 {
 }
 
 article section {
-  padding: 0 1em;
+  padding: 0 2em;
+}
+
+@media screen and (max-device-width: 480px) {
+  article section {
+    padding: 0 1em;
+  }
+
+  main {
+    width: 100%;
+  }
+
+  nav {
+    font-size: 0.7em;
+  }
 }
 
 article ul {
@@ -93,9 +107,8 @@ nav {
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
-  font-size: 0.7em;
 }
 
 nav > span {
-  color: #fff;
+  color: #333;
 }
