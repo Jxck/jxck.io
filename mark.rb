@@ -8,6 +8,13 @@ require "time"
 require "pathname"
 require "kramdown"
 
+# html
+def to_html(md)
+  Kramdown::Document
+    .new(md, {input: "GFM"})
+    .to_html
+end
+
 # html special chars
 def hsp(str)
   str.gsub(/&/, "&amp;")
@@ -774,9 +781,7 @@ class Episode < Article
 
   def theme_html()
     # build markdown to html
-    html = Kramdown::Document
-      .new(theme, {input: "GFM"})
-      .to_html
+    html = to_html(theme)
 
     # fixup indent
     oneline(html).gsub("</p><p>", "</p>\n      <p>")
