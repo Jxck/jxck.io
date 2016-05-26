@@ -14,8 +14,6 @@ audio: https://files.mozaic.fm/mozaic-ep12.sideshow.mp3
 
 [@a_matsuda](https://twitter.com/a_matsuda/) さんの語る Rails 開発のスタイルと、そのコミュニティの持つ力、 Rails が引っ張ったテストの話などをお送りします。
 
-ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
 
 ## Show Note
 

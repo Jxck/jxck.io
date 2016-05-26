@@ -16,8 +16,6 @@ audio: https://files.mozaic.fm/mozaic-ep5.mp3
 
 今回は議論が色々広がって 1.5h になりました。また、録音したのは約一ヶ月前(5 月中旬)のもので、冒頭で第 4 回と言っていましたが、急遽第 4 回に別の話を差し込んだため第 5 回になりました。
 
-ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
 
 ## Show Note
 

@@ -17,8 +17,6 @@ audio: https://files.mozaic.fm/mozaic-ep17.mp3
 
 実装や仕様の裏話や、これが普及してからの懸念点なども含めて、じっくり議論しました。
 
-ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
 また、 Service Worker へのフィードバックは [bug tracker](https://crbug.com/new) (基本は英語ですが、日本語でも良いそうです)、もしくは [#serviceworker](https://twitter.com/search?q=%23serviceworker&src=hash) です。
 
 

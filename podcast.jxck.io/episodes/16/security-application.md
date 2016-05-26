@@ -20,8 +20,6 @@ audio: https://files.mozaic.fm/mozaic-ep16.mp3
 
 hasegawa さんが本を書いてる件は、許可を取っておりカットしてません。公表して自分を追い込むメソッドだそうです w
 
-ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
 
 ## Show Note
 

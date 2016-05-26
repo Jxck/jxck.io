@@ -17,8 +17,6 @@ audio: https://files.mozaic.fm/mozaic-ep2.sideshow.mp3
 
 OSS 奨励賞受賞の裏話や、 http2 や spdylay が今後どうなるのか、 [tatsuhiro_t](https://twitter.com/tatsuhiro_t) さんの今後の活動についてなど、こぼれ話をまとめた 15 分です。
 
-ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
 
 ## Show Note
 

@@ -14,8 +14,6 @@ audio: https://files.mozaic.fm/mozaic-ep13.mp3
 
 今回は [@mizchi](https://twitter.com/mizchi/) さんをお迎えして、 Virtual DOM というアイデアの本質、それが可能にした Flux というアーキテクチャ、そして各種の実装と今後の期待について、「今何が起こっているのか」、「これからどうなっていくのか」を議論しました。
 
-ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
 
 ## Show Note
 

@@ -14,8 +14,6 @@ audio: https://files.mozaic.fm/mozaic-ep13.sideshow.mp3
 
 [@mizchi](https://twitter.com/mizchi/) さんとのこぼれ話をお送りします。
 
-ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
 
 ## Show Note
 

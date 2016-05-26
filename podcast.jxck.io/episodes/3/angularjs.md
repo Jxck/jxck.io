@@ -15,8 +15,6 @@ audio: https://files.mozaic.fm/mozaic-ep3.mp3
 
 今回は [@can_i_do_web](https://twitter.com/can_i_do_web) さんと [@konpyu](https://twitter.com/konpyu) さんをお迎えし Angular.js をテーマに、日本のコミュニティの話や、 Angular.js 製 Web サービス [note](https://note.mu/) の開発経験などから 「今なにが起こっているのか?」「これからどうなっていくのか?」を議論しました。
 
-ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
 
 ## Show Note
 

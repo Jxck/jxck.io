@@ -19,9 +19,6 @@ audio: https://files.mozaic.fm/mozaic-ep9.mp3
 今回も [Qiita で事前に質問を集め](http://qiita.com/Jxck_/items/c5bfa3d16053de3f21eb) その中のいつくかは紹介しています。質問くださったみなさんありがとうございました。
 
 
-ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
-
 ## Show Note
 
 - [Socket.IO](http://socket.io)

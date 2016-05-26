@@ -17,8 +17,6 @@ audio: https://files.mozaic.fm/mozaic-ep8.mp3
 
 ゲストは [あんどう](https://twitter.com/technohippy) さんと、 [わかめ](https://twitter.com/vvakame) さんをお迎えし altJS をテーマに 「今なにが起こっているのか?」「これからどうなっていくのか?」を議論しました。
 
-ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
 
 ## Show Note
 

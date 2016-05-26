@@ -17,8 +17,6 @@ audio: https://files.mozaic.fm/mozaic-ep7.mp3
 
 エピソード中にも出てきましたが、 **「Web を支える技術」を改訂する際に「こういうことを載せて欲しい」** という [@yohei](https://twitter.com/yohei) さんへの要望があれば [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) をつけて、是非つぶやいてください。
 
-エピソードの感想なども、同じく [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
 今回は、居酒屋トークの録音なので周囲の雑音が多いですがご了承ください。
 
 

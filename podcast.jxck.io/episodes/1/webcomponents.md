@@ -17,8 +17,6 @@ audio: https://files.mozaic.fm/mozaic-ep1.mp3
 
 「なにが起こっているのか?」「これからどうなっていくのか?」を議論しました。
 
-ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
 
 ## Show Note
 

@@ -15,8 +15,6 @@ audio: https://files.mozaic.fm/mozaic-ep6.mp3
 
 今回は [@komasshu](https://twitter.com/komasshu) さんと、 [@Tukimikage](https://twitter.com/Tukimikage) さんをお迎えし WebRTC をテーマに 「今なにが起こっているのか?」「これからどうなっていくのか?」をたっぷり議論しました。
 
-ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
 (NAT をアドレストランスポートと言い間違ってますが、そっとしておいてあげて下さい)
 
 

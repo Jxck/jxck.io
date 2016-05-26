@@ -17,8 +17,6 @@ audio: https://files.mozaic.fm/mozaic-ep14.mp3
 
 後半は Extensible Web の話になったので、 [次のエピソード](http://mozaic.fm/post/108491263993/15-extensible-web) に分けています。
 
-ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
 
 ## Show Note
 

@@ -17,8 +17,6 @@ audio: https://files.mozaic.fm/mozaic-ep2.mp3
 
 なお、今回は編集で収まりきらなかった 「Nghttp2 の今後」について、番外編として後日配信する予定です。ユーザの方は必聴です。
 
-ハッシュタグは [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) です。
-
 
 ## Show Note
 
