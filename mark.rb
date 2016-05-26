@@ -902,7 +902,7 @@ if __FILE__ == $0
     if feed
       puts "build podcast feed"
       xml = ERB.new(File.read(".template/rss2.xml.erb")).result(binding)
-      File.write("./podcast.jxck.io/feeds/feed.xml", xml)
+      File.write("./feed.mozaic.fm/index.xml", xml)
     end
 
     episodes.each.with_index { |e, i|
