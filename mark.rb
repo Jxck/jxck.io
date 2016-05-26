@@ -763,6 +763,10 @@ class Episode < Article
     @info.match(/audio: (.*)/)[1]
   end
 
+  def guests
+    @info.scan(/guest: (.*)/) || []
+  end
+
   def file
     audio.sub("https://", "")
   end
@@ -941,5 +945,12 @@ if __FILE__ == $0
     icon = "https://jxck.io/assets/img/jxck.png"
     e = Entry.new("./blog.jxck.io/entries/2016-01-27/new-blog-start.md", icon)
     blog(e)
+  end
+
+  if ARGV.first == "-tp"
+    e = Episode.new("./podcast.jxck.io/episodes/1/webcomponents.md")
+    #podcast(e)
+    puts e.guests[0]
+    puts e.guests[1]
   end
 end
