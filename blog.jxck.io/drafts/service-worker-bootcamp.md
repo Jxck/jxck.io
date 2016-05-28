@@ -294,11 +294,69 @@ self.addEventListener('fetch', (e) => {
 ```
 
 
+## path
+
+register 時に path を指定できる。
+path を変えれば一つのドメイン以下に複数の sw を登録することが可能。
+しかし、一つのページ(client) に対して、起動する(controller) となる sw は必ず一つ。
+そして、その sw はパスとの最長一致で決まる。
+
+省略すれば `{scope:'.'}` と同じ。
+
+```js
+navigator.serviceWorker.register('worker.js')
+```
+
+そして、この `'.'` は worker.js のパス階層を意味する。
+
+https://example.com/foo/worker.js を '.' で登録すると、そのパスは
+https://example.com/foo を意味する。
+
+この worker.js は `/foo` 以下のパスであれば register できる。
+例えば `{scope: '/foo/bar'}` も `{scope: '/foo/bar/index.html'}` も可能
+
+ただし、 `/foo/worker.js` を `/index.html` や `/baz` に登録することはできない。
+
+その場合は Service-Worker-Allowed ヘッダを指定する。
+
+```
+Service-Worker-Allowed: `/baz`
+```
+
+これで `/assets/js/worker.js` などに sw の js をおける。
+
+
+
+ここで
+
+- `/foo/`
+- `/foo/bar/`
+- `/foo/bar/index.html`
+
+と三つの scope で sw が登録されていたとする。
+
+起動する sw はパスとの最長一致で決まるので、
+こうなる
+
+- `/foo/bar/index.html` なら 3
+- `/foo/bar/baz/main.html` なら 2
+- `/` なら起動しない
+
+逆に scope `/` に sw が登録されていれば、全てのページをコントロールできる。
+
+もし、全てのページの中で一つだけ `/foo/bar/baz/test.html` だけ sw の影響を与えたく無いという場合は、
+`/` に登録した sw の中で分岐するか、 `/foo/bar/baz/test.html` の scope に対してピンポイントに
+空の sw を登録するという方法もある。
+
 
 ## backgroundsync
 
 chrome://flags/#enable-experimental-web-platform-features
 
+オンラインの場合はすぐに
+オフラインの場合は、オンラインになったら発火するイベント
+正確にはオンライン/オフラインではなく、「サーバと接続可能になったら」なので、
+クライアントがもっと別の要素を持ち込む可能性もある。(バッテリー、電波状態など)
 
 ```
 return registration.sync.register('update-cache');
@@ -310,6 +368,23 @@ self.addEventListener('sync', (e) => {
   return fetch('/test.html').then(console.log.bind(console));
 });
 ```
+
+
+発火タイミングを考えると、サーバに送信して保存したいようなデータは、
+fetch して reject でハンドラに設定するのではなく、
+必ず sync のハンドラから送ると良い。
+
+
+```
+self.addEventListener('fetch', (e) => {
+  self.addEventListener('sync', (e) => {
+    fetch(e.request);
+  });
+});
+```
+
+ただし、この e.request はメモリ上のデータであり、送信される前に sw が落ちると消える可能性がある。
+よって、一旦 index.db などに保存するのが望ましい。
 
 
 ## quota
