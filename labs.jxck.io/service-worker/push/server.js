@@ -7,28 +7,26 @@ webPush.setGCMAPIKey(GCM_API_KEY);
 
 
 var op = {
- "endpoint": "https://android.googleapis.com/gcm/send/fFmRPjwHvsU:APA91bHHSdOyt7lPHLQEPpWgQLAIcPZkWdugVoTczzKatJbkD-EpWpzfyknUjbAwgx85vIg_zpihMWff3TT7XJ0RcLu05l5Zgm9TPJ9TgVZ67E2vUXJoFwvBKwOBhxzEzHG4i-dJmZNy",
- "keys": {
-  "p256dh": "BAi6I1vyQP3mGZAj13PiZqF-g96h04Ojv2U8K8xgGX2bo4-1Kl7VzbrKyqTczpjkAVZXSZAYtwxgFWuiGeqkwLM=",
-  "auth": "--kaKOilQ9Q1SysX33U3jQ=="
- }
-};
-
-var op = {
-  endpoint: "https://updates.push.services.mozilla.com/push/v1/gAAAAABXC3bzxzUrS0A-EJbGaYiSW8rXmDM7v4o09OHSsnuqh-sAo4cKm732NTwI2Ldt96YCzpZ42SpCX5G-l7rZ-UTJG7mOxBCsgoVKgd3TWCAChhgv1TnkqT8eSS8WqNURlVfaHCxf",
-  keys: {
-    p256dh: '',
-    auth: '',
-  }
+  "endpoint": "https://android.googleapis.com/gcm/send/dhS0icj2JN8:APA91bEcWpgGHzqBheB1DYAn417hxdSrBi89jffMMqSDMPB22rr2AZCFQsz_DHlBYmR0LgyGHA54yaDNiOmqpsiL7DRPbclLmYIWqLDw9g0wlBvPHkj53PXuXa5bBsCLJSkzWWyyumBk",
+  "key": "BGr5KL28PzvBMvCD9fqqHZ+8Hukrl1bzL4yxXwoue17ZRd1mH5+mTiEfiCjKNeozGsLCfNRGvT2TRTaDuNMK9h8=",
+  "authSecret": "5EhXxO22QOC/05d3/JNWoA=="
 }
 
-var data = "yey";
+var data = "yeyyy";
 webPush.sendNotification(op.endpoint, {
   payload: data,
-  userPublicKey: op.keys.p256dh,
-  userAuth: op.keys.auth,
+  userPublicKey: op.key,
+  userAuth: op.authSecret,
 })
 .then(console.log.bind(console))
 .catch((err) => {
-  console.log(err.stack);
+  console.log(err);
 });
+
+
+//webPush.sendNotification(req.body.endpoint, {
+//  TTL: req.body.ttl,
+//  payload: req.body.payload,
+//  userPublicKey: req.body.key,
+//  userAuth: req.body.authSecret,
+//});
