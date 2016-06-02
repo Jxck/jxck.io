@@ -1,28 +1,45 @@
 'use strict';
 let p = console.log.bind(console);
 
-const webPush = require('web-push');
+let sqlite3 = require('sqlite3');
+let webPush = require('web-push');
 const GCM_API_KEY = "AIzaSyAJs2U3XSP39SjeY5RhGXPqc0P2Xw_2byI";
 webPush.setGCMAPIKey(GCM_API_KEY);
 
+const table = 'notification';
 
-var op = {
-  "endpoint": "https://android.googleapis.com/gcm/send/dhS0icj2JN8:APA91bEcWpgGHzqBheB1DYAn417hxdSrBi89jffMMqSDMPB22rr2AZCFQsz_DHlBYmR0LgyGHA54yaDNiOmqpsiL7DRPbclLmYIWqLDw9g0wlBvPHkj53PXuXa5bBsCLJSkzWWyyumBk",
-  "key": "BGr5KL28PzvBMvCD9fqqHZ+8Hukrl1bzL4yxXwoue17ZRd1mH5+mTiEfiCjKNeozGsLCfNRGvT2TRTaDuNMK9h8=",
-  "authSecret": "5EhXxO22QOC/05d3/JNWoA=="
-}
+let db = new sqlite3.Database('../../../../db/push.sqlite3', sqlite3.OPEN_READWRITE);
 
-var data = "yeyyy";
-webPush.sendNotification(op.endpoint, {
-  payload: data,
-  userPublicKey: op.key,
-  userAuth: op.authSecret,
-})
-.then(console.log.bind(console))
-.catch((err) => {
-  console.log(err);
+const data = (new Date).toISOString();
+p(data);
+db.each('SELECT userAuth, userPublicKey, endpoint FROM notification', (err, row) => {
+  if (err) return console.error(err);
+
+  webPush.sendNotification(row.endpoint, {
+    payload: row.userAuth,
+    userPublicKey: row.userPublicKey,
+    userAuth: row.userAuth,
+  })
+  .then((result) => {
+    if (result === '') return { success: true };
+    console.log('aaaaaaaaaa', row.userAuth, result);
+    return JSON.parse(result)
+  })
+  .then((result) => {
+    if (result.success) return;
+    console.log(row.userAuth, result.failure);
+    return new Promise((resolve, reject) => {
+      console.log('delete');
+      db.run(`delete from ${table} where userAuth = ?`, row.userAuth, resolve);
+    });
+  })
+  .then((resolve) => {
+    console.log(resolve);
+  })
+  .catch((err) => {
+    console.log('fail', err);
+  });
 });
-
 
 //webPush.sendNotification(req.body.endpoint, {
 //  TTL: req.body.ttl,

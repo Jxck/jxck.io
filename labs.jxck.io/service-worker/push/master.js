@@ -1,3 +1,6 @@
+'use strict';
+let p = console.log.bind(console);
+
 navigator.serviceWorker.register('worker.js').then((registration) => {
   return navigator.serviceWorker.ready;
 }).then((registration) => {
@@ -5,19 +8,28 @@ navigator.serviceWorker.register('worker.js').then((registration) => {
 }).then((subscription) => {
   console.log(JSON.stringify(subscription, ' ', ' '));
 
-  // Retrieve the user's public key.
-  const rawKey = subscription.getKey ? subscription.getKey('p256dh') : '';
-  const rawAuthSecret = subscription.getKey ? subscription.getKey('auth') : '';
-  key = rawKey ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))) : '';
-  authSecret = rawAuthSecret ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) : '';
-  endpoint = subscription.endpoint;
+  const endpoint = subscription.endpoint;
+  const auth = subscription.getKey('auth');
+  const p256dh = subscription.getKey('p256dh');
 
-  body = JSON.stringify({
-    endpoint: subscription.endpoint,
-    key: key,
-    authSecret: authSecret,
-  })
+  const userAuth = btoa(String.fromCharCode(...new Uint8Array(auth)));
+  const userPublicKey = btoa(String.fromCharCode(...new Uint8Array(p256dh)));
 
+  const body = JSON.stringify({ endpoint, userAuth, userPublicKey });
   console.log(body);
-  window.b = JSON.parse(body);
+
+  const url = 'wss://ws.jxck.io';
+  const protocol = 'push-register';
+  let ws = new WebSocket(url, protocol);
+
+  ws.addEventListener('message', (e) => {
+    console.log('message', e);
+  });
+  ws.addEventListener('open', () => {
+    ws.send(body);
+  });
+  ws.addEventListener('error', (e) => {
+    console.error(e);
+  });
+
 }).catch(console.error.bind(console));
