@@ -5,7 +5,8 @@
   "dependencies": {
     "remark": "^4.2.2",
     "sqlite3": "^3.1.4",
-    "web-push": "^2.1.1"
+    "web-push": "^2.1.1",
+    "websocket": "^1.0.23"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
@@ -28,13 +29,13 @@
     "textlint-rule-web-plus-db": "^1.1.5"
   },
   "scripts": {
-    "dev":     "./mark.rb blog && ./mark.rb podcast",
-    "gzip":    "./compress.rb www.jxck.io blog.jxck.io podcast.jxck.io",
-    "build":   "npm run dev && npm run gzip && gulp",
-    "slide":   "./compress.rb slide.jxck.io",
-    "clean":   "find ./**/* -name *.gz | xargs -L 4 -P 4 rm",
-    "start":   "sudo $DOTFILES/local/h2o/bin/h2o -m daemon -c h2o.conf",
-    "stop":    "sudo kill -TERM `cat ../logs/pid`",
+    "dev": "./mark.rb blog && ./mark.rb podcast",
+    "gzip": "./compress.rb www.jxck.io blog.jxck.io podcast.jxck.io",
+    "build": "npm run dev && npm run gzip && gulp",
+    "slide": "./compress.rb slide.jxck.io",
+    "clean": "find ./**/* -name *.gz | xargs -L 4 -P 4 rm",
+    "start": "sudo $DOTFILES/local/h2o/bin/h2o -m daemon -c h2o.conf",
+    "stop": "sudo kill -TERM `cat ../logs/pid`",
     "restart": "npm stop && npm start"
   },
   "repository": {
