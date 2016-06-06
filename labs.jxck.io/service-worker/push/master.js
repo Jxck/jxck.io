@@ -19,7 +19,7 @@ navigator.serviceWorker.register('worker.js').then((registration) => {
   console.log(body);
 
   const url = 'wss://ws.jxck.io';
-  const protocol = 'push-register';
+  const protocol = 'push_register';
   let ws = new WebSocket(url, protocol);
 
   ws.addEventListener('message', (e) => {

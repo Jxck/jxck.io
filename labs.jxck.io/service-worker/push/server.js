@@ -1,28 +1,37 @@
 'use strict';
 let p = console.log.bind(console);
 
+let push = require('web-push');
 let sqlite3 = require('sqlite3');
-let webPush = require('web-push');
-const GCM_API_KEY = "AIzaSyAJs2U3XSP39SjeY5RhGXPqc0P2Xw_2byI";
-webPush.setGCMAPIKey(GCM_API_KEY);
 
-const table = 'notification';
+const GCM_API_KEY = 'AIzaSyAJs2U3XSP39SjeY5RhGXPqc0P2Xw_2byI';
+push.setGCMAPIKey(GCM_API_KEY);
 
-let db = new sqlite3.Database('../../../../db/push.sqlite3', sqlite3.OPEN_READWRITE);
-
+const table = 'labs';
 const data = (new Date).toISOString();
-p(data);
-db.each('SELECT userAuth, userPublicKey, endpoint FROM notification', (err, row) => {
+const PUSH_DB = `${process.env['SERVER']}/db/push.sqlite3`;
+
+let db = new sqlite3.Database(PUSH_DB, sqlite3.OPEN_READ);
+
+const PAYLOAD = JSON.stringify({
+  tag: 'blog update',
+  title: `blog を更新しました`,
+  icon: '/service-worker/push/jxck.png',
+  body: `blog.jxck.io`.trim()
+});
+
+db.each(`SELECT userAuth, userPublicKey, endpoint FROM ${table}`, (err, row) => {
   if (err) return console.error(err);
 
-  webPush.sendNotification(row.endpoint, {
-    payload: row.userAuth,
-    userPublicKey: row.userPublicKey,
+  push.sendNotification(row.endpoint, {
+    TTL: 60*60*24*7, // 1 week
+    payload: PAYLOAD,
     userAuth: row.userAuth,
+    userPublicKey: row.userPublicKey,
   })
   .then((result) => {
     if (result === '') return { success: true };
-    console.log('aaaaaaaaaa', row.userAuth, result);
+    console.log(row.userAuth, result);
     return JSON.parse(result)
   })
   .then((result) => {
@@ -40,10 +49,3 @@ db.each('SELECT userAuth, userPublicKey, endpoint FROM notification', (err, row)
     console.log('fail', err);
   });
 });
-
-//webPush.sendNotification(req.body.endpoint, {
-//  TTL: req.body.ttl,
-//  payload: req.body.payload,
-//  userPublicKey: req.body.key,
-//  userAuth: req.body.authSecret,
-//});

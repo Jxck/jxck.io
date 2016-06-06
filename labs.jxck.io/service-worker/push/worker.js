@@ -1,22 +1,18 @@
 self.addEventListener('install', (e) => {
+  console.info('install', e);
   e.waitUntil(self.skipWaiting());
-  console.info('installed', e);
 });
 
 self.addEventListener('activate', (e) => {
+  console.info('activat', e);
   e.waitUntil(self.clients.claim());
-  console.info('activated', e);
 });
 
 self.addEventListener('push', (e) => {
-  console.info('pushed message', e);
-  let message = e.data.text();
+  console.info('push', e);
+  let data = JSON.parse(e.data.text());
   e.waitUntil(
-    self.registration.showNotification('hoge', {
-      body: message,
-      icon: '/service-worker/push/jxck.png',
-      tag: 'my-tag',
-    })
+    self.registration.showNotification(data.title, data)
   );
 });
 
@@ -29,15 +25,15 @@ self.addEventListener('notificationclick', (e) => {
       type: 'window'
     })
     .then((windowClients) => {
-      Array.from(windowClients).forEach((client) => {
+      // if window already exists
+      for (client of windowClients) {
         console.info(client.url);
-        if (client.url === url && 'focus' in client) {
+        if (client.url === url) {
           return client.focus();
         }
-      });
-      if (clients.openWindow) {
-        return clients.openWindow(url);
       }
+      // open new window if no window
+      return clients.openWindow(url);
     })
   );
 });
