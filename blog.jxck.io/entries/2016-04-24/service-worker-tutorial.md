@@ -219,13 +219,6 @@ self.addEventListener('push', () => {
 DEMO: [https://labs.jxck.io/service-worker/update/](https://labs.jxck.io/service-worker/update/)
 
 
-## scope
-
-scope の影響範囲と、複数のワーカが有った場合の挙動
-
-TODO (GW予定/未定)
-
-
 ## sync
 
 background sync の発火タイミングと fetch を sync で送る場合の考え方。
@@ -268,7 +261,156 @@ DEMO: [https://labs.jxck.io/service-worker/backgroundsync/](https://labs.jxck.io
 
 push に必要な情報とその取り方、投げ方。
 
-TODO (GW予定/未定)
+**デモで作った API KEY は当たり前ですが無効にしてあります、全く同じ値を入れても動きません**
+
+### 1. Google Developer Console
+
+Console の UI はコロコロ変わります。以下の情報を頑張って探してください。
+
+- プロジェクトを作る
+- プロジェクト ID の数字を探す
+- Google Cloud Messaging の API Key を探す
+- manifest.json を作って HTML にリンクスする
+
+```json
+{
+  "name": "labs.jxck.io push demo",
+  "short_name": "labs.jxck.io",
+  "icons": [{
+    "src": "/service-worker/push/jxck.png",
+    "sizes": "256x256",
+    "type": "image/png"
+  }],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#ccc",
+  "gcm_sender_id": "************"
+}
+```
+
+(`gcm_user_visible_only` は今はもういりません)
+
+```html
+<!DOCTYPE html>
+<meta charset=utf-8>
+<title>Service Worker Push Demo | labs.jxck.io</title>
+
+<link rel=manifest href=manifest.json>
+
+<script src=master.js></script>
+
+<h1>Push DEMO</h1>
+```
+
+
+### 2.master.js
+
+`endpoint`, `userAuth`, `userPublickKey` をなんらかの方法でサーバに送ります。
+
+```js
+'use strict';
+let p = console.log.bind(console);
+
+navigator.serviceWorker.register('worker.js').then((registration) => {
+  return navigator.serviceWorker.ready;
+}).then((registration) => {
+  return registration.pushManager.subscribe({ userVisibleOnly: true });
+}).then((subscription) => {
+  console.log(subscription);
+
+  const endpoint = subscription.endpoint;
+  const auth = subscription.getKey('auth');
+  const p256dh = subscription.getKey('p256dh');
+
+  const userAuth = btoa(String.fromCharCode(...new Uint8Array(auth)));
+  const userPublicKey = btoa(String.fromCharCode(...new Uint8Array(p256dh)));
+
+  // send to server
+  const body = {endpoint, userAuth, userPublicKey};
+
+  console.log(body);
+
+}).catch(console.error.bind(console));
+```
+
+
+### 3.worker.js
+
+
+```js
+self.addEventListener('install', (e) => {
+  console.info('install', e);
+  e.waitUntil(self.skipWaiting());
+});
+
+self.addEventListener('activate', (e) => {
+  console.info('activat', e);
+  e.waitUntil(self.clients.claim());
+});
+
+self.addEventListener('push', (e) => {
+  console.info('push', e);
+  const message = e.data.text();
+
+  e.waitUntil(self.registration.showNotification('title', {
+    body: message,
+    icon: '/service-worker/push/jxck.png',
+    tag:  'push-demo',
+  }));
+});
+
+self.addEventListener('notificationclick', (e) => {
+  console.info('notificationclick', e.notification.tag);
+  e.notification.close();
+  const URL = 'https://labs.jxck.io/service-worker/push/';
+  e.waitUntil(clients.matchAll({
+      type: 'window'
+    }).then((windowClients) => {
+      let target = windowClients.filter((client) => {
+        return client.url === URL;
+      });
+      console.log(target, target.length);
+      if (target.length > 0) {
+        // タブが開いているので、最初のものにフォーカスする
+        return target[0].focus();
+      }
+      // タブが開いてないので開く
+      return clients.openWindow(URL);
+  }));
+});
+```
+
+### 4.push.js
+
+使用したモジュール: https://github.com/web-push-libs/web-push
+
+
+```js
+'use strict';
+
+let push = require('web-push');
+
+const GCM_API_KEY = '*******';
+push.setGCMAPIKey(GCM_API_KEY);
+
+const data = {
+  "endpoint": "********",
+  "userAuth": "********",
+  "userPublicKey": "******"
+}
+
+push.sendNotification(data.endpoint, {
+  payload:       'push test for service worker',
+  userAuth:      data.userAuth,
+  userPublicKey: data.userPublicKey,
+})
+.then((result) => {
+  console.log(result);
+})
+.catch((err) => {
+  console.error('fail', err);
+});
+```
 
 
 ## 図

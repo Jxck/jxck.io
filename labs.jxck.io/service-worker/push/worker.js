@@ -12,7 +12,7 @@ self.addEventListener('push', (e) => {
   console.info('push', e);
   const message = e.data.text();
 
-  e.waitUntil(self.registration.showNotification('タイトル', {
+  e.waitUntil(self.registration.showNotification('title', {
     body: message,
     icon: '/service-worker/push/jxck.png',
     tag:  'push-demo',
