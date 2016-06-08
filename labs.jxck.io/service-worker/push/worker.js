@@ -10,30 +10,31 @@ self.addEventListener('activate', (e) => {
 
 self.addEventListener('push', (e) => {
   console.info('push', e);
-  let data = JSON.parse(e.data.text());
-  e.waitUntil(
-    self.registration.showNotification(data.title, data)
-  );
+  const message = e.data.text();
+
+  e.waitUntil(self.registration.showNotification('タイトル', {
+    body: message,
+    icon: '/service-worker/push/jxck.png',
+    tag:  'push-demo',
+  }));
 });
 
 self.addEventListener('notificationclick', (e) => {
-  console.info('notification click: tag ', e.notification.tag);
+  console.info('notificationclick', e.notification.tag);
   e.notification.close();
-  const url = 'https://labs.jxck.io/service-worker/push/';
-  e.waitUntil(
-    clients.matchAll({
+  const URL = 'https://labs.jxck.io/service-worker/push/';
+  e.waitUntil(clients.matchAll({
       type: 'window'
-    })
-    .then((windowClients) => {
-      // if window already exists
-      for (client of windowClients) {
-        console.info(client.url);
-        if (client.url === url) {
-          return client.focus();
-        }
+    }).then((windowClients) => {
+      let target = windowClients.filter((client) => {
+        return client.url === URL;
+      });
+      console.log(target, target.length);
+      if (target.length > 0) {
+        // タブが開いているので、最初のものにフォーカスする
+        return target[0].focus();
       }
-      // open new window if no window
-      return clients.openWindow(url);
-    })
-  );
+      // タブが開いてないので開く
+      return clients.openWindow(URL);
+  }));
 });
