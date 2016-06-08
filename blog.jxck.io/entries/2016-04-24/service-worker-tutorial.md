@@ -13,6 +13,20 @@ Service Worker の初心者向けのチュートリアルや、使ってみた�
 
 TODO になっている動画は、そのうち撮って追加します。
 
+
+## List
+
+1. [#claim](#claim)
+2. [#controllerchange](#controllerchange)
+3. [#updatefound](#updatefound)
+4. [#update()](#update())
+5. [#backgroundsync](#backgroundsync)
+6. [#push](#push)
+6-1. [#1. Google Developer Console](#1.+Google+Developer+Console)
+6-2. [#2.master.js](#2.master.js)
+6-3. [#3.worker.js](#3.worker.js)
+6-4. [#4.push.js](#4.push.js)
+
 ## claim
 
 controller とは何か、いつ controller になるか、 `clamim()` で何が起こるのかなどについて。
@@ -219,9 +233,12 @@ self.addEventListener('push', () => {
 DEMO: [https://labs.jxck.io/service-worker/update/](https://labs.jxck.io/service-worker/update/)
 
 
-## sync
+## backgroundsync
 
-background sync の発火タイミングと fetch を sync で送る場合の考え方。
+sync の発火タイミングと fetch を sync で送る場合の考え方。
+
+<iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/b7ZM7uzkykA" allowfullscreen></iframe>
+
 
 ```js
 // master.js
@@ -272,6 +289,9 @@ Console の UI はコロコロ変わります。以下の情報を頑張って�
 - Google Cloud Messaging の API Key を探す
 - manifest.json を作って HTML にリンクスする
 
+<iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/MlCZWVvUiXM" allowfullscreen></iframe>
+
+
 ```json
 {
   "name": "labs.jxck.io push demo",
@@ -307,6 +327,9 @@ Console の UI はコロコロ変わります。以下の情報を頑張って�
 
 `endpoint`, `userAuth`, `userPublickKey` をなんらかの方法でサーバに送ります。
 
+<iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/f-ney12qAEI" allowfullscreen></iframe>
+
+
 ```js
 'use strict';
 let p = console.log.bind(console);
@@ -335,6 +358,8 @@ navigator.serviceWorker.register('worker.js').then((registration) => {
 
 
 ### 3.worker.js
+
+<iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/k939NlThH4E" allowfullscreen></iframe>
 
 
 ```js
@@ -384,6 +409,8 @@ self.addEventListener('notificationclick', (e) => {
 
 使用したモジュール: https://github.com/web-push-libs/web-push
 
+<iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/hIliK4l4wqw" allowfullscreen></iframe>
+
 
 ```js
 'use strict';
@@ -411,6 +438,8 @@ push.sendNotification(data.endpoint, {
   console.error('fail', err);
 });
 ```
+
+DEMO(push は飛ばしてません): [https://labs.jxck.io/service-worker/push/](https://labs.jxck.io/service-worker/push/)
 
 
 ## 図
