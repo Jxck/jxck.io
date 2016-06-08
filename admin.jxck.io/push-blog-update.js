@@ -15,9 +15,10 @@ let db = new sqlite3.Database(PUSH_DB, sqlite3.OPEN_READ);
 
 const PAYLOAD = JSON.stringify({
   tag: 'blog update',
+  url: 'blog.jxck.io',
   title: `blog を更新しました`,
   icon: '/service-worker/push/jxck.png',
-  body: `blog.jxck.io`.trim()
+  body: `blog.jxck.io`.trim(),
 });
 
 db.each(`SELECT userAuth, userPublicKey, endpoint FROM ${table}`, (err, row) => {
