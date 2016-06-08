@@ -228,9 +228,40 @@ TODO (GW予定/未定)
 
 ## sync
 
-background sync の発火タイミング
+background sync の発火タイミングと fetch を sync で送る場合の考え方。
 
-TODO (GW予定/未定)
+```js
+// master.js
+navigator.serviceWorker.register('worker.js').then((registration) => {
+  return navigator.serviceWorker.ready;
+}).then((registration) => {
+  // register sync
+  document.getElementById('button').addEventListener('click', () => {
+    registration.sync.register('sync-data').then(() => {
+      console.log('sync registered');
+    }).catch(console.error.bind(console));
+  });
+}).catch(console.error.bind(console));
+```
+
+```js
+// worker.js
+self.addEventListener('install', (e) => {
+  console.info('install', e);
+  e.waitUntil(skipWaiting());
+});
+
+self.addEventListener('activate', (e) => {
+  console.info('activate', e);
+  e.waitUntil(self.clients.claim());
+});
+
+self.addEventListener('sync', (e) => {
+  console.log('sync', e);
+});
+```
+
+DEMO: [https://labs.jxck.io/service-worker/backgroundsync/](https://labs.jxck.io/service-worker/backgroundsync/)
 
 
 ## push
