@@ -9,6 +9,6 @@ self.addEventListener('activate', (e) => {
 });
 
 self.addEventListener('sync', (e) => {
-  console.info('sync', e);
-  self.registration.showNotification('sync');
+  console.log('sync', e);
 });
+
