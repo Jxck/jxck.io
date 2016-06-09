@@ -1,4 +1,4 @@
-# Passive Event Listeners によるスクロールの改善
+# [rendering][performance] Passive Event Listeners によるスクロールの改善
 
 ## Intro
 
