@@ -2,9 +2,9 @@
 
 ## Intro
 
-DOM のイベントリスナの仕様に Passive Event Listeners というオプションが追加されました。
+DOM のイベントリスナの仕様に Passive Event Listeners というオプションが追加された。
 
-このオプションは、主にモバイルなどでのスクロールの詰まり(scroll jank) を解決するために導入されたものである。
+このオプションは、主にモバイルなどでのスクロールの詰まり(Scroll Jank) を解決するために導入されたものである。
 
 今回は、この仕様が解決する問題と、本サイトへの適用を解説する。
 
@@ -15,7 +15,7 @@ DOM のイベントリスナの仕様に Passive Event Listeners というオプ
 
 画面のスクロールに合わせたインタラクションを実装する場合、 Scroll Event にイベントリスナを登録する。
 
-典型的な例では `touchstart` と `touchend` をフックし、その中で DOM の操作などを実施する。
+典型的な例では `touchstart` や `touchend` をフックし、その中で DOM の操作などを実施するなどがある。
 
 場合によってはイベントリスナ内で `preventDefault()` を呼ぶことで、スクロールそのものを止めることもできる。
 
@@ -28,18 +28,18 @@ DOM のイベントリスナの仕様に Passive Event Listeners というオプ
 
 しかし、 Scroll Event にイベントリスナが登録された場合、そのイベントリスナの中で `preventDefault()` が呼ばれる場合は、スクロールを止めなくてはいけない。
 
-ところが、登録されたイベントリスナの中で `preventDefault()` が実行されるかどうかは、ブラウザにとっては実際にイベントリスナを実行してみないとわからない。
+ところが、登録されたイベントリスナの中で `preventDefault()` が実行されるかどうかは、実際にイベントリスナを実行してみないとわからない。
 
-つまりブラウザは、イベントリスナが登録されているイベントについては、発火するたびに `preventDefault()` が呼ばれるかどうかを気にしながら、スクロールを行わなくてはならない。
+つまりブラウザは、 Scroll Event にイベントリスナが登録されている場合、ハンドラの実行が終了し `preventDefault()` が呼ばれなかったことを確認してからでないと、スクロールすることができない。
 
-これが Scroll Jank が発生する原因となっている。
+これが Scroll Jank が発生する原因となる。
 
 
 ## 影響
 
-ブラウザにとっては、イベントリスナを実際に実行し、その処理が終わるまで `preventDefault()` が呼ばれるかどうかわからない。
+イベントリスナを実際に実行し、その処理が終わるまで `preventDefault()` が呼ばれるかどうかわからないため、 Scroll Jank がおこる。
 
-Scroll Event に登録されたイベントリスナの実行時間が長ければ長いほど、 Scroll Jank の影響が大きくなる。
+つまり、 Scroll Event に登録されたイベントリスナの実行時間が長ければ長いほど、 Scroll Jank の影響が大きくなる。
 
 Chrome は現在、実行時間の長いリスナが登録された場合、以下のような警告を devtools に表示する。
 
@@ -108,10 +108,9 @@ document.addEventListener('touchstart', handler, {capture: true});
 
 引数をオブジェクトにした結果、 Passive 用に引数を追加するよりも柔軟な設計となったが、互換性の問題が発生してしまう結果となった。
 
+これは `{passive: true}` は JS としては trusy であるため、第三引数が Event Listener Option に対応してないブラウザにおいて単に `useCapture` を有効にしたと解釈されてしまうためにおこる。
 
-`{passive: true}` は JS としては trusy であるため、第三引数が Event Listener Option に対応してないブラウザにおいて単に `useCapture` を有効にしたと解釈されてしまい、挙動が壊れる可能性があるためである。
-
-例えば以下のような指定が、古いブラウザでは意図に反して `useCapture` を有効にしたと解釈されてしまうのである。
+例えばキャプチャリングフェーズでの補足を `false` にする指定を Event Listener Options で指定した場合、古いブラウザでは意図に反して `useCapture` を `true` にしたと解釈されてしまうのである。
 
 
 ```js
@@ -150,6 +149,9 @@ function addEventListenerWithOptions(target, type, handler, options) {
 }
 ```
 
+https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#feature-detection
+
+
 ## Demo
 
 長いドキュメントで、 touchstart イベントにあえて遅延を入れたデモを用意した。
@@ -167,7 +169,7 @@ function addEventListenerWithOptions(target, type, handler, options) {
 
 ## Intersection Observer
 
-さて、 Scroll のハンドラを補足するユースケースの一つに、画面のスクロール位置取得がある。
+Scroll にハンドラを補足するユースケースの一つに、画面のスクロール位置取得がある。
 
 画面のどの分が表示されているかを `scrollTop()` などを用いて測定することで、インタラクションを実施する手法として知られている。
 
