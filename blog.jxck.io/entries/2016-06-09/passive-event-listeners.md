@@ -149,15 +149,31 @@ function addEventListenerWithOptions(target, type, handler, options) {
 }
 ```
 
-https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#feature-detection
+[https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#feature-detection](https://blog.jxck.io/entries/2016-04-24/service-worker-tutorial.html)
 
 
-## Demo
+## DEMO
 
 長いドキュメントで、 touchstart イベントにあえて遅延を入れたデモを用意した。
 ここに、 Passive オプション指定の有無による挙動の変化を試すことができる。
 
-- http://labs.jxck.io/passive-event-listener/index.html
+- [Passive Event Uisteners DEMO](http://labs.jxck.io/passive-event-listeners/index.html)
+
+
+ちょっと分かりにくいがキャプチャも載せておく。
+
+### Passive False
+
+touchstart イベントに時間がかかっているため、スクロールが詰まる。
+
+![Passive False DEMO](passive-event-listeners-false.gif#1347x687)
+
+
+### Passive True
+
+スクロールが詰まらない。
+
+![Passive True DEMO](passive-event-listeners-true.gif#1347x687)
 
 
 ## 本サイトへの適用
@@ -181,10 +197,10 @@ Scroll にハンドラを補足するユースケースの一つに、画面の�
 
 本サイトでも追って解説を行う予定である。
 
-- https://github.com/WICG/IntersectionObserver/blob/gh-pages/explainer.md
+- [Intersection Observers Explained](https://github.com/WICG/IntersectionObserver/blob/gh-pages/explainer.md)
 
 
 ## Links
 
-- https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md
-- https://blog.chromium.org/2016/05/new-apis-to-help-developers-improve.html
+- [Passive event listeners Explained](https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md)
+- [Chromium Blog: New APIs to help developers improve scroll performance](https://blog.chromium.org/2016/05/new-apis-to-help-developers-improve.html)
