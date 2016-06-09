@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html>
+<link rel=amphtml href=https://blog.jxck.io//entries/2016-06-09/passive-event-listeners.amp.html>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+<link rel=author href=//jxck.io/assets/humans.txt>
+<link rel=preload as=font type=font/woff href="//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014" crossorigin>
+<script async src=//jxck.io/assets/js/ga.js></script>
+<script async src=/assets/js/highlight.min.js></script>
+<script async src=/assets/js/stale-while-revalidate.js></script>
+<script async src=/assets/js/main.js></script>
+
+<meta name=author content=Jxck>
+<meta name=description content="DOM のイベントリスナの仕様に Passive Event Listeners というオプションが追加された。このオプションは、主にモバイルなどでのスクロールの詰まり(Scroll Jank) を解決するために導入されたものである。今回は、この仕様が解決する問題と、本サイ...">
+<meta name=keywords content="rendering,performance">
+
+<meta name=twitter:card content=summary>
+<meta name=twitter:site content=@jxck_>
+<meta name=twitter:url content=https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html>
+<meta name=twitter:title content="Passive Event Listeners によるスクロールの改善 | blog.jxck.io">
+<meta name=twitter:description content="DOM のイベントリスナの仕様に Passive Event Listeners というオプションが追加された。このオプションは、主にモバイルなどでのスクロールの詰まり(Scroll Jank) を解決するために導入されたものである。今回は、この仕様が解決する問題と、本サイ...">
+<meta name=twitter:image content=https://jxck.io/assets/img/jxck.png>
+
+<meta property=og:type content="article">
+<meta property=og:url content=https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html>
+<meta property=og:title content="Passive Event Listeners によるスクロールの改善 | blog.jxck.io">
+<meta property=og:site_name content=blog.jxck.io>
+<meta property=og:description content="DOM のイベントリスナの仕様に Passive Event Listeners というオプションが追加された。このオプションは、主にモバイルなどでのスクロールの詰まり(Scroll Jank) を解決するために導入されたものである。今回は、この仕様が解決する問題と、本サイ...">
+<meta property=og:image content=https://jxck.io/assets/img/jxck.png>
+
+<link rel=icon sizes=192x192 href=https://jxck.io/assets/img/jxck.png>
+<link rel=apple-touch-icon sizes=128x128 href=https://jxck.io/assets/img/jxck.png>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "Passive Event Listeners によるスクロールの改善 | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2016-06-09T08:00:00+08:00",
+  "dateModified": "2016-06-09T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "DOM のイベントリスナの仕様に Passive Event Listeners というオプションが追加された。このオプションは、主にモバイルなどでのスクロールの詰まり(Scroll Jank) を解決するために導入されたものである。今回は、この仕様が解決する問題と、本サイ..."
+}
+</script>
+
+<title>Passive Event Listeners によるスクロールの改善 | blog.jxck.io</title>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+<header>
+  <ul>
+    <li><a href=//blog.jxck.io><img class=logo alt="blog top" width=30 src=/assets/img/blog.svg></a>
+    <li><a href="/entries/2016-06-09/passive-event-listeners.amp.html#development=1"><img alt="move to amp version" width=30 src=/assets/img/amp.svg></a>
+    <li><a href=.><img alt="move to parent directory" width=30 src=/assets/img/up.svg></a>
+    <li><a href=/feeds/atom.xml><img alt="rss feed" width=30 src=/assets/img/rss.svg></a>
+    <li><a href=//jxck.io/humans.txt><img alt="huamns.txt" width=30 src=/assets/img/humans.svg></a>
+    <li><a href=//jxck.io><img class=logo alt="jxck logo" width=30 src=/assets/img/jxck.svg></a>
+  </ul>
+</header>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/markdown.css>
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+<main>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2016-06-09>2016-06-09</time>
+    <li>updated_at: <time class=updated_at datetime=2016-06-09>2016-06-09</time>
+    <li class=tags>tags: [<a>rendering</a>,<a>performance</a>]
+  </ul>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+  <article>
+    <h1><a href=/entries/2016-06-09/passive-event-listeners.html>Passive Event Listeners によるスクロールの改善</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>DOM のイベントリスナの仕様に Passive Event Listeners というオプションが追加された。
+      <p>このオプションは、主にモバイルなどでのスクロールの詰まり(Scroll Jank) を解決するために導入されたものである。
+      <p>今回は、この仕様が解決する問題と、本サイトへの適用を解説する。
+      <p><a href="https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md">Passive Event Listeners Spec</a>
+    </section>
+    <section>
+      <h2 id="Scroll+Event+の+PreventDefault()"><a href="#Scroll+Event+の+PreventDefault()">Scroll Event の PreventDefault()</a></h2>
+      <p>画面のスクロールに合わせたインタラクションを実装する場合、 Scroll Event にイベントリスナを登録する。
+      <p>典型的な例では <code>touchstart</code> や <code>touchend</code> をフックし、その中で DOM の操作などを実施するなどがある。
+      <p>場合によってはイベントリスナ内で <code>preventDefault()</code> を呼ぶことで、スクロールそのものを止めることもできる。
+      <p>実はこれが Scroll Jank の原因となることが非常に多いことがわかっている。
+    </section>
+    <section>
+      <h2 id="Scroll+Jank"><a href="#Scroll+Jank">Scroll Jank</a></h2>
+      <p>ブラウザは、単純なドキュメントであれば、そのスクロールがスムーズになるように最適化することができる。
+      <p>しかし、 Scroll Event にイベントリスナが登録された場合、そのイベントリスナの中で <code>preventDefault()</code> が呼ばれる場合は、スクロールを止めなくてはいけない。
+      <p>ところが、登録されたイベントリスナの中で <code>preventDefault()</code> が実行されるかどうかは、実際にイベントリスナを実行してみないとわからない。
+      <p>つまりブラウザは、 Scroll Event にイベントリスナが登録されている場合、ハンドラの実行が終了し <code>preventDefault()</code> が呼ばれなかったことを確認してからでないと、スクロールすることができない。
+      <p>これが Scroll Jank が発生する原因となる。
+    </section>
+    <section>
+      <h2 id="影響"><a href="#影響">影響</a></h2>
+      <p>イベントリスナを実際に実行し、その処理が終わるまで <code>preventDefault()</code> が呼ばれるかどうかわからないため、 Scroll Jank がおこる。
+      <p>つまり、 Scroll Event に登録されたイベントリスナの実行時間が長ければ長いほど、 Scroll Jank の影響が大きくなる。
+      <p>Chrome は現在、実行時間の長いリスナが登録された場合、以下のような警告を devtools に表示する。
+      <blockquote>explainer.md#the-problem:1 Deferred long-running timer task(s) to improve scrolling smoothness. See crbug.com/574343.</blockquote>
+      <p>ただし、イベントリスナの実行自体にも多少のオーバーヘッドがあるため、空のイベントリスナを登録しただけでも、ブラウザのスクロール最適化を邪魔するには十分であり、影響がでることも確認されている。
+      <p>仕様には Scroll Event にイベントリスナを登録したサイトの中で、実際に <code>preventDefault()</code> を呼ぶのは 20% 程度という調査結果が記載されている。
+      <p>これは 80% のケースで、ブラウザがリスナの完了を待つことなくスクロールしても問題がなかったということを意味している。
+    </section>
+    <section>
+      <h2 id="Passive+Event+Listeners"><a href="#Passive+Event+Listeners">Passive Event Listeners</a></h2>
+      <p>もし、ブラウザがリスナを実行する前に、リスナが <code>preventDefault()</code> を呼ばないことを保障できればこの問題は解決する。
+      <p>この <code>preventDefault()</code> を呼ばないリスナを <strong>Passive Listener</strong> と表現する。
+      <p>そして、登録したリスナが <strong>Passive Listener</strong> であることを明示するのが、今回追加された <code>passive</code> フラグである。
+      <p>この値は、同じく今回追加された <code>addEventListener()</code> の第三引数に渡す <strong>Event Listener Options</strong> で指定する。
+      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+      <pre class=js><code>document.addEventListener(&#039;touchstart&#039;, handler, {passive: true});</code></pre>
+      <p>開発者がこれを明示的に指定することで、ブラウザはリスナが <code>preventDefault()</code> を呼ばないことを前提とできるため、リスナの完了を待たずにスクロールすることができ、それを最適化できる余地が生まれる。
+      <p>なお Passive Listener 内で <code>preventDefault()</code> を呼んだ場合は無視されるため、呼んだとしても <code>defaultPrevented=false</code> のままになる。
+      <p>Listener 内で <code>preventDefault()</code> を呼べるかどうかは、 <code>cancelable=true</code> となっているかどうかでわかる。
+      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/table.css>
+      <table>
+        <thead>
+          <tr>
+            <th class=align-left>listener</th>
+            <th class=align-left>cancelable</th>
+            <th class=align-left>preventDefault</th>
+            <th class=align-left>defaultPrevented</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class=align-left>normal</td>
+            <td class=align-left>true</td>
+            <td class=align-left>cancel default</td>
+            <td class=align-left>false - true</td>
+          </tr>
+          <tr>
+            <td class=align-left>passive</td>
+            <td class=align-left>false</td>
+            <td class=align-left>ignored</td>
+            <td class=align-left>false - false</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2 id="Event+Listener+Options"><a href="#Event+Listener+Options">Event Listener Options</a></h2>
+      <p><code>addEventListener</code> の第三引数は、すでに <code>useCapture</code> として boolean が定義されている。
+      <p>これが <code>true</code> の場合は、イベントはバブリングフェーズではなく、キャプチャリングフェーズで発火されることになる。
+      <p>Event Listener Options 対応以降は、ここにオブジェクトを渡すことになるため、 <code>useCapture</code> フラグ相当は、 <code>{capture: true}</code> としてプロパティによる定義を行う。
+      <pre class=js><code>// before
+document.addEventListener(&#039;touchstart&#039;, handler, true);
+
+// after
+document.addEventListener(&#039;touchstart&#039;, handler, {capture: true});</code></pre>
+      <p>引数をオブジェクトにしたことにより、フラグの追加に対して開いた設計となるため、ここに Passive フラグを付け加えることができるわけである。
+      <p>今後リスナに対する新たなオプション(ブラウザが実行前に知りたい内容)を追加する場合にも、同様に追加が可能となる。
+    </section>
+    <section>
+      <h2 id="Feature+Detection"><a href="#Feature+Detection">Feature Detection</a></h2>
+      <p>引数をオブジェクトにした結果、 Passive 用に引数を追加するよりも柔軟な設計となったが、互換性の問題が発生してしまう結果となった。
+      <p>これは <code>{passive: true}</code> は JS としては trusy であるため、第三引数が Event Listener Option に対応してないブラウザにおいて単に <code>useCapture</code> を有効にしたと解釈されてしまうためにおこる。
+      <p>例えばキャプチャリングフェーズでの補足を <code>false</code> にする指定を Event Listener Options で指定した場合、古いブラウザでは意図に反して <code>useCapture</code> を <code>true</code> にしたと解釈されてしまうのである。
+      <pre class=js><code>document.addEventListener(&#039;touchstart&#039;, handler, {capture: false});</code></pre>
+      <p>これを避けるためには Feature Detection が必要となる。
+      <p>スペックにサンプルが掲載されているので、引用しコメントで解説を追記する。
+      <pre class=js><code>var supportsPassive = false;
+try {
+  // getter として opt.get を定義して、 addEventListener 内で呼ばれたことがわかるようにする
+  var opts = Object.defineProperty({}, &#039;passive&#039;, {
+    get: function() {
+      // 内部で opts.capture が呼ばれたら対応ブラウザ
+      // 用意しておいたフラグを有効にする
+      supportsPassive = true;
+    }
+  });
+  // ためにし適当なイベントを補足し、 opts.get が呼ばれるか試す
+  window.addEventListener(&quot;test&quot;, null, opts);
+} catch (e) {}
+
+function addEventListenerWithOptions(target, type, handler, options) {
+  var optionsOrCapture = options;
+  if (!supportsPassive) {
+    // 非対応ブラウザでは、他のオプションは全て捨て
+    // { capture: bool } の値を useCapture の値として採用する
+    optionsOrCapture = options.capture;
+  }
+  //
+  target.addEventListener(type, handler, optionsOrCapture);
+}</code></pre>
+      <p><a href="https://blog.jxck.io/entries/2016-04-24/service-worker-tutorial.html">https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#feature-detection</a>
+    </section>
+    <section>
+      <h2 id="DEMO"><a href="#DEMO">DEMO</a></h2>
+      <p>長いドキュメントで、 touchstart イベントにあえて遅延を入れたデモを用意した。<br>
+      ここに、 Passive オプション指定の有無による挙動の変化を試すことができる。
+      <ul>
+        <li><a href="http://labs.jxck.io/passive-event-listeners/index.html">Passive Event Uisteners DEMO</a>
+      </ul>
+      <p>ちょっと分かりにくいがキャプチャも載せておく。
+      <section>
+        <h3 id="Passive+False"><a href="#Passive+False">Passive False</a></h3>
+        <p>touchstart イベントに時間がかかっているため、スクロールが詰まる。
+        <p><picture>
+            <source type=image/webp srcset=passive-event-listeners-false.webp#1347x687>
+            <img src=passive-event-listeners-false.gif#1347x687 alt="Passive False DEMO" title="">
+            </picture>
+      </section>
+      <section>
+        <h3 id="Passive+True"><a href="#Passive+True">Passive True</a></h3>
+        <p>スクロールが詰まらない。
+        <p><picture>
+            <source type=image/webp srcset=passive-event-listeners-true.webp#1347x687>
+            <img src=passive-event-listeners-true.gif#1347x687 alt="Passive True DEMO" title="">
+            </picture>
+      </section>
+    </section>
+    <section>
+      <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
+      <p>特に scroll event を使ってはおらず、また別途 passive にすることでメリットのある JS も無いため、現時点での採用は無い。
+      <p>採用した場合はここを更新する。
+    </section>
+    <section>
+      <h2 id="Intersection+Observer"><a href="#Intersection+Observer">Intersection Observer</a></h2>
+      <p>Scroll にハンドラを補足するユースケースの一つに、画面のスクロール位置取得がある。
+      <p>画面のどの分が表示されているかを <code>scrollTop()</code> などを用いて測定することで、インタラクションを実施する手法として知られている。
+      <p>こうした場面で、 Passive Listenr を指定する効果が予想される。
+      <p>しかし、この場面では要素の出現と位置をより効率的に取得する Intersection Observer という仕様が提案されている。
+      <p>実装されれば、こちらを用いる方が Scroll を監視するよりも正確かつ効率がよく実装が可能となる。
+      <p>本サイトでも追って解説を行う予定である。
+      <ul>
+        <li><a href="https://github.com/WICG/IntersectionObserver/blob/gh-pages/explainer.md">Intersection Observers Explained</a>
+      </ul>
+    </section>
+    <section>
+      <h2 id="Links"><a href="#Links">Links</a></h2>
+      <ul>
+        <li><a href="https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md">Passive event listeners Explained</a>
+        <li><a href="https://blog.chromium.org/2016/05/new-apis-to-help-developers-improve.html">Chromium Blog: New APIs to help developers improve scroll performance</a>
+      </ul>
+    </section>
+  </article>
+
+</main>
+<hr>
+
+<link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
+</footer>

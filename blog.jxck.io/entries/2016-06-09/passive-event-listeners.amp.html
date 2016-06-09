@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html amp>
+<head>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html>
+<meta name=viewport content="width=device-width,minimum-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+<link rel=author href=//jxck.io/assets/humans.txt>
+
+<meta name=author content=Jxck>
+<meta name=description content="DOM のイベントリスナの仕様に Passive Event Listeners というオプションが追加された。このオプションは、主にモバイルなどでのスクロールの詰まり(Scroll Jank) を解決するために導入されたものである。今回は、この仕様が解決する問題と、本サイ...">
+<meta name=keywords content="rendering,performance">
+
+<meta name=twitter:card content=summary>
+<meta name=twitter:site content=@jxck_>
+<meta name=twitter:url content=https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html>
+<meta name=twitter:title content="Passive Event Listeners によるスクロールの改善 | blog.jxck.io">
+<meta name=twitter:description content="DOM のイベントリスナの仕様に Passive Event Listeners というオプションが追加された。このオプションは、主にモバイルなどでのスクロールの詰まり(Scroll Jank) を解決するために導入されたものである。今回は、この仕様が解決する問題と、本サイ...">
+<meta name=twitter:image content=https://jxck.io/assets/img/jxck.png>
+
+<meta property=og:type content="article">
+<meta property=og:url content=https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html>
+<meta property=og:title content="Passive Event Listeners によるスクロールの改善 | blog.jxck.io">
+<meta property=og:site_name content=blog.jxck.io>
+<meta property=og:description content="DOM のイベントリスナの仕様に Passive Event Listeners というオプションが追加された。このオプションは、主にモバイルなどでのスクロールの詰まり(Scroll Jank) を解決するために導入されたものである。今回は、この仕様が解決する問題と、本サイ...">
+<meta property=og:image content=https://jxck.io/assets/img/jxck.png>
+
+<link rel=icon sizes=192x192 href=https://jxck.io/assets/img/jxck.png>
+<link rel=apple-touch-icon sizes=128x128 href=https://jxck.io/assets/img/jxck.png>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "Passive Event Listeners によるスクロールの改善 | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2016-06-09T08:00:00+08:00",
+  "dateModified": "2016-06-09T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "DOM のイベントリスナの仕様に Passive Event Listeners というオプションが追加された。このオプションは、主にモバイルなどでのスクロールの詰まり(Scroll Jank) を解決するために導入されたものである。今回は、この仕様が解決する問題と、本サイ..."
+}
+</script>
+
+<title>Passive Event Listeners によるスクロールの改善 | blog.jxck.io</title>
+<script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+<script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+<script async src=https://cdn.ampproject.org/v0.js></script>
+
+<style amp-custom>
+article img {
+  margin: 1em 0;
+  border: 1px solid #ccc;
+  box-sizing: content-box;
+}
+
+article ul, article ol {
+  font-family: monospace;
+  font-size: 1.2em;
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 400;
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=20163014") format("woff");
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 700;
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff?ver=201603014") format("woff");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+  color: #222;
+  background-color: #fefefe;
+}
+
+iframe {
+  display: block;
+  max-width: 100%;
+  margin: 1em 0;
+}
+
+.archive {
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.archive ul {
+  margin: 0;
+}
+
+.archive time {
+  padding-right: 0.5em;
+}
+
+.archive time::after {
+  content: ":";
+}
+
+.archive .tags {
+  font-size: 0.8em;
+  margin-left: 1em;
+}
+
+.tags a {
+  margin: 0 0.2em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+audio {
+  width: 70%;
+}
+
+@media screen and (max-device-width: 480px) {
+  audio {
+    width: 100%;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.info li {
+  margin-right: 1em;
+  list-style-type: none;
+}
+
+.info li::before {
+  content: none;
+}
+
+header {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.4em;
+  background-color: #222;
+}
+
+header ul {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 80%;
+  margin: 0 auto;
+  padding: 4px;
+}
+
+header ul li {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  margin-left: 1em;
+}
+
+header ul li a {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+header ul li::before {
+  content: none;
+}
+
+header ul li:first-child {
+  flex-grow: 1;
+  margin-left: 0;
+}
+
+header .logo {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  pointer-events: none;
+  color: #222;
+}
+
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: #222;
+}
+
+h1 > a:hover:before,
+h2 > a:hover:before,
+h3 > a:hover:before,
+h4 > a:hover:before,
+h5 > a:hover:before,
+h6 > a:hover:before {
+  color: Brown;
+}
+
+h1 > a::before {
+  content: "# ";
+  pointer-events: all;
+}
+
+h2 > a::before {
+  content: "## ";
+  pointer-events: all;
+}
+
+h3 > a::before {
+  content: "### ";
+  pointer-events: all;
+}
+
+h4 > a::before {
+  content: "#### ";
+  pointer-events: all;
+}
+
+i::before, i::after {
+  content: "*";
+}
+
+strong::before, strong::after {
+  content: "**";
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+dl dt::after {
+  content: ":";
+}
+
+blockquote::before {
+  content: "> ";
+}
+
+code::before, code::after {
+  /* うざかった */
+  /* content: "`"; */
+}
+
+main {
+  display: block;
+  width: 80%;
+  margin: 1em auto;
+}
+
+@media screen and (max-device-width: 480px) {
+  main {
+    width: 94%;
+  }
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+}
+
+a {
+  color: RoyalBlue;
+}
+
+a:visited {
+  color: Brown;
+}
+
+ol, ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+ul, ol, dl {
+  margin: 1.4em 0;
+}
+
+dl dt {
+  font-weight: bold;
+}
+
+dl dd {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+blockquote {
+  display: block;
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  padding: 1em;
+  margin: 1.4em 0;
+}
+
+code {
+  border: 1px solid #ddd;
+  background-color: #efefef;
+  border-radius: 4px;
+  padding: 0.1em;
+  margin: 1.4em 0;
+}
+
+footer {
+  padding: 1em;
+}
+
+pre {
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: 1.2em;
+  margin: 1.4em 0 0 0;
+  border-radius: 4px;
+}
+
+pre::before {
+  content: "```" attr(class) "\A";
+}
+
+pre::after {
+  position: relative;
+  top: -1em;
+  content:"\A```";
+}
+
+pre > code {
+  overflow: auto;
+  display: block;
+  padding: 0.6em;
+  margin: 0;
+  border: none;
+  background-color: #efefef;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs,
+.hljs-subst ,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-name ,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition ,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-type,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-section,
+.hljs-meta,
+.hljs-meta-string,
+.hljs-emphasis {
+}
+
+table {
+  font-family: monospace;
+  margin: 2em 0;
+  border-spacing: 0 0.4em;
+}
+
+th {
+  padding: 0em 1.0em 0.6em;
+  border-left: 0.14em solid #222;
+  border-bottom: 2px dashed #222;
+}
+
+td {
+  padding: 0.4em 1.2em;
+  border-left: 0.14em solid #222;
+}
+
+th:last-child, td:last-child {
+  border-right: 0.14em solid #222;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+</style>
+</head>
+<body>
+<header>
+  <ul>
+    <li><a href=//blog.jxck.io><amp-img class=logo alt="blog top" width=30 height=30 src=/assets/img/blog.svg></a>
+    <li><a href=.><amp-img alt="move to parent directory" width=30 height=30 src=/assets/img/up.svg></a>
+    <li><a href=/feeds/atom.xml><amp-img alt="rss feed" width=30 height=30 src=/assets/img/rss.svg></a>
+    <li><a href=//jxck.io/humans.txt><amp-img alt="huamns.txt" width=30 height=30 src=/assets/img/humans.svg></a>
+    <li><a href=//jxck.io><amp-img class=logo alt="jxck logo" width=30 height=30 src=/assets/img/jxck.svg></a>
+  </ul>
+</header>
+<main>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2016-06-09>2016-06-09</time>
+    <li>updated_at: <time class=updated_at datetime=2016-06-09>2016-06-09</time>
+    <li class=tags>tags: [<a>rendering</a>,<a>performance</a>]
+  </ul>
+
+
+  <article>
+    <h1><a href=/entries/2016-06-09/passive-event-listeners.html>Passive Event Listeners によるスクロールの改善</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>DOM のイベントリスナの仕様に Passive Event Listeners というオプションが追加された。
+      <p>このオプションは、主にモバイルなどでのスクロールの詰まり(Scroll Jank) を解決するために導入されたものである。
+      <p>今回は、この仕様が解決する問題と、本サイトへの適用を解説する。
+      <p><a href="https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md">Passive Event Listeners Spec</a>
+    </section>
+    <section>
+      <h2 id="Scroll+Event+の+PreventDefault()"><a href="#Scroll+Event+の+PreventDefault()">Scroll Event の PreventDefault()</a></h2>
+      <p>画面のスクロールに合わせたインタラクションを実装する場合、 Scroll Event にイベントリスナを登録する。
+      <p>典型的な例では <code>touchstart</code> や <code>touchend</code> をフックし、その中で DOM の操作などを実施するなどがある。
+      <p>場合によってはイベントリスナ内で <code>preventDefault()</code> を呼ぶことで、スクロールそのものを止めることもできる。
+      <p>実はこれが Scroll Jank の原因となることが非常に多いことがわかっている。
+    </section>
+    <section>
+      <h2 id="Scroll+Jank"><a href="#Scroll+Jank">Scroll Jank</a></h2>
+      <p>ブラウザは、単純なドキュメントであれば、そのスクロールがスムーズになるように最適化することができる。
+      <p>しかし、 Scroll Event にイベントリスナが登録された場合、そのイベントリスナの中で <code>preventDefault()</code> が呼ばれる場合は、スクロールを止めなくてはいけない。
+      <p>ところが、登録されたイベントリスナの中で <code>preventDefault()</code> が実行されるかどうかは、実際にイベントリスナを実行してみないとわからない。
+      <p>つまりブラウザは、 Scroll Event にイベントリスナが登録されている場合、ハンドラの実行が終了し <code>preventDefault()</code> が呼ばれなかったことを確認してからでないと、スクロールすることができない。
+      <p>これが Scroll Jank が発生する原因となる。
+    </section>
+    <section>
+      <h2 id="影響"><a href="#影響">影響</a></h2>
+      <p>イベントリスナを実際に実行し、その処理が終わるまで <code>preventDefault()</code> が呼ばれるかどうかわからないため、 Scroll Jank がおこる。
+      <p>つまり、 Scroll Event に登録されたイベントリスナの実行時間が長ければ長いほど、 Scroll Jank の影響が大きくなる。
+      <p>Chrome は現在、実行時間の長いリスナが登録された場合、以下のような警告を devtools に表示する。
+      <blockquote>explainer.md#the-problem:1 Deferred long-running timer task(s) to improve scrolling smoothness. See crbug.com/574343.</blockquote>
+      <p>ただし、イベントリスナの実行自体にも多少のオーバーヘッドがあるため、空のイベントリスナを登録しただけでも、ブラウザのスクロール最適化を邪魔するには十分であり、影響がでることも確認されている。
+      <p>仕様には Scroll Event にイベントリスナを登録したサイトの中で、実際に <code>preventDefault()</code> を呼ぶのは 20% 程度という調査結果が記載されている。
+      <p>これは 80% のケースで、ブラウザがリスナの完了を待つことなくスクロールしても問題がなかったということを意味している。
+    </section>
+    <section>
+      <h2 id="Passive+Event+Listeners"><a href="#Passive+Event+Listeners">Passive Event Listeners</a></h2>
+      <p>もし、ブラウザがリスナを実行する前に、リスナが <code>preventDefault()</code> を呼ばないことを保障できればこの問題は解決する。
+      <p>この <code>preventDefault()</code> を呼ばないリスナを <strong>Passive Listener</strong> と表現する。
+      <p>そして、登録したリスナが <strong>Passive Listener</strong> であることを明示するのが、今回追加された <code>passive</code> フラグである。
+      <p>この値は、同じく今回追加された <code>addEventListener()</code> の第三引数に渡す <strong>Event Listener Options</strong> で指定する。
+      <pre class=js><code>document.addEventListener(&#039;touchstart&#039;, handler, {passive: true});</code></pre>
+      <p>開発者がこれを明示的に指定することで、ブラウザはリスナが <code>preventDefault()</code> を呼ばないことを前提とできるため、リスナの完了を待たずにスクロールすることができ、それを最適化できる余地が生まれる。
+      <p>なお Passive Listener 内で <code>preventDefault()</code> を呼んだ場合は無視されるため、呼んだとしても <code>defaultPrevented=false</code> のままになる。
+      <p>Listener 内で <code>preventDefault()</code> を呼べるかどうかは、 <code>cancelable=true</code> となっているかどうかでわかる。
+      <table>
+        <thead>
+          <tr>
+            <th class=align-left>listener</th>
+            <th class=align-left>cancelable</th>
+            <th class=align-left>preventDefault</th>
+            <th class=align-left>defaultPrevented</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class=align-left>normal</td>
+            <td class=align-left>true</td>
+            <td class=align-left>cancel default</td>
+            <td class=align-left>false - true</td>
+          </tr>
+          <tr>
+            <td class=align-left>passive</td>
+            <td class=align-left>false</td>
+            <td class=align-left>ignored</td>
+            <td class=align-left>false - false</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2 id="Event+Listener+Options"><a href="#Event+Listener+Options">Event Listener Options</a></h2>
+      <p><code>addEventListener</code> の第三引数は、すでに <code>useCapture</code> として boolean が定義されている。
+      <p>これが <code>true</code> の場合は、イベントはバブリングフェーズではなく、キャプチャリングフェーズで発火されることになる。
+      <p>Event Listener Options 対応以降は、ここにオブジェクトを渡すことになるため、 <code>useCapture</code> フラグ相当は、 <code>{capture: true}</code> としてプロパティによる定義を行う。
+      <pre class=js><code>// before
+document.addEventListener(&#039;touchstart&#039;, handler, true);
+
+// after
+document.addEventListener(&#039;touchstart&#039;, handler, {capture: true});</code></pre>
+      <p>引数をオブジェクトにしたことにより、フラグの追加に対して開いた設計となるため、ここに Passive フラグを付け加えることができるわけである。
+      <p>今後リスナに対する新たなオプション(ブラウザが実行前に知りたい内容)を追加する場合にも、同様に追加が可能となる。
+    </section>
+    <section>
+      <h2 id="Feature+Detection"><a href="#Feature+Detection">Feature Detection</a></h2>
+      <p>引数をオブジェクトにした結果、 Passive 用に引数を追加するよりも柔軟な設計となったが、互換性の問題が発生してしまう結果となった。
+      <p>これは <code>{passive: true}</code> は JS としては trusy であるため、第三引数が Event Listener Option に対応してないブラウザにおいて単に <code>useCapture</code> を有効にしたと解釈されてしまうためにおこる。
+      <p>例えばキャプチャリングフェーズでの補足を <code>false</code> にする指定を Event Listener Options で指定した場合、古いブラウザでは意図に反して <code>useCapture</code> を <code>true</code> にしたと解釈されてしまうのである。
+      <pre class=js><code>document.addEventListener(&#039;touchstart&#039;, handler, {capture: false});</code></pre>
+      <p>これを避けるためには Feature Detection が必要となる。
+      <p>スペックにサンプルが掲載されているので、引用しコメントで解説を追記する。
+      <pre class=js><code>var supportsPassive = false;
+try {
+  // getter として opt.get を定義して、 addEventListener 内で呼ばれたことがわかるようにする
+  var opts = Object.defineProperty({}, &#039;passive&#039;, {
+    get: function() {
+      // 内部で opts.capture が呼ばれたら対応ブラウザ
+      // 用意しておいたフラグを有効にする
+      supportsPassive = true;
+    }
+  });
+  // ためにし適当なイベントを補足し、 opts.get が呼ばれるか試す
+  window.addEventListener(&quot;test&quot;, null, opts);
+} catch (e) {}
+
+function addEventListenerWithOptions(target, type, handler, options) {
+  var optionsOrCapture = options;
+  if (!supportsPassive) {
+    // 非対応ブラウザでは、他のオプションは全て捨て
+    // { capture: bool } の値を useCapture の値として採用する
+    optionsOrCapture = options.capture;
+  }
+  //
+  target.addEventListener(type, handler, optionsOrCapture);
+}</code></pre>
+      <p><a href="https://blog.jxck.io/entries/2016-04-24/service-worker-tutorial.html">https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#feature-detection</a>
+    </section>
+    <section>
+      <h2 id="DEMO"><a href="#DEMO">DEMO</a></h2>
+      <p>長いドキュメントで、 touchstart イベントにあえて遅延を入れたデモを用意した。<br>
+      ここに、 Passive オプション指定の有無による挙動の変化を試すことができる。
+      <ul>
+        <li><a href="http://labs.jxck.io/passive-event-listeners/index.html">Passive Event Uisteners DEMO</a>
+      </ul>
+      <p>ちょっと分かりにくいがキャプチャも載せておく。
+      <section>
+        <h3 id="Passive+False"><a href="#Passive+False">Passive False</a></h3>
+        <p>touchstart イベントに時間がかかっているため、スクロールが詰まる。
+        <p><amp-img layout=responsive src=passive-event-listeners-false.gif#1347x687 alt="Passive False DEMO" title="" width=1347 height=687>
+      </section>
+      <section>
+        <h3 id="Passive+True"><a href="#Passive+True">Passive True</a></h3>
+        <p>スクロールが詰まらない。
+        <p><amp-img layout=responsive src=passive-event-listeners-true.gif#1347x687 alt="Passive True DEMO" title="" width=1347 height=687>
+      </section>
+    </section>
+    <section>
+      <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
+      <p>特に scroll event を使ってはおらず、また別途 passive にすることでメリットのある JS も無いため、現時点での採用は無い。
+      <p>採用した場合はここを更新する。
+    </section>
+    <section>
+      <h2 id="Intersection+Observer"><a href="#Intersection+Observer">Intersection Observer</a></h2>
+      <p>Scroll にハンドラを補足するユースケースの一つに、画面のスクロール位置取得がある。
+      <p>画面のどの分が表示されているかを <code>scrollTop()</code> などを用いて測定することで、インタラクションを実施する手法として知られている。
+      <p>こうした場面で、 Passive Listenr を指定する効果が予想される。
+      <p>しかし、この場面では要素の出現と位置をより効率的に取得する Intersection Observer という仕様が提案されている。
+      <p>実装されれば、こちらを用いる方が Scroll を監視するよりも正確かつ効率がよく実装が可能となる。
+      <p>本サイトでも追って解説を行う予定である。
+      <ul>
+        <li><a href="https://github.com/WICG/IntersectionObserver/blob/gh-pages/explainer.md">Intersection Observers Explained</a>
+      </ul>
+    </section>
+    <section>
+      <h2 id="Links"><a href="#Links">Links</a></h2>
+      <ul>
+        <li><a href="https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md">Passive event listeners Explained</a>
+        <li><a href="https://blog.chromium.org/2016/05/new-apis-to-help-developers-improve.html">Chromium Blog: New APIs to help developers improve scroll performance</a>
+      </ul>
+    </section>
+  </article>
+
+</main>
+<hr>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
+</footer>
+</body>
+</html>
+<amp-analytics type="googleanalytics" id="analytics1">
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
