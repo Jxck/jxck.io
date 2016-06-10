@@ -125,15 +125,15 @@ document.addEventListener('touchstart', handler, {capture: false});
 ```js
 var supportsPassive = false;
 try {
-  // getter として opt.get を定義して、 addEventListener 内で呼ばれたことがわかるようにする
+  // getter として opts.passive を定義して、 addEventListener 内で呼ばれたことがわかるようにする
   var opts = Object.defineProperty({}, 'passive', {
     get: function() {
-      // 内部で opts.capture が呼ばれたら対応ブラウザ
+      // 内部で opts.passive が呼ばれたら対応ブラウザ
       // 用意しておいたフラグを有効にする
       supportsPassive = true;
     }
   });
-  // ためにし適当なイベントを補足し、 opts.get が呼ばれるか試す
+  // ためにし適当なイベントを補足し、 opts.passive が呼ばれるか試す
   window.addEventListener("test", null, opts);
 } catch (e) {}
 
@@ -187,13 +187,11 @@ touchstart イベントに時間がかかっているため、スクロールが
 
 Scroll にハンドラを補足するユースケースの一つに、画面のスクロール位置取得がある。
 
-画面のどの分が表示されているかを `scrollTop()` などを用いて測定することで、インタラクションを実施する手法として知られている。
+画面のどの分が表示されているかを `scrollTop` などを用いて測定するような場面では、 Passive Listener を指定する効果が予想される。
 
-こうした場面で、 Passive Listenr を指定する効果が予想される。
+しかし、この場面により適した仕様として、要素の出現と位置をより効率的に取得する Intersection Observer という仕様が提案されている。
 
-しかし、この場面では要素の出現と位置をより効率的に取得する Intersection Observer という仕様が提案されている。
-
-実装されれば、こちらを用いる方が Scroll を監視するよりも正確かつ効率がよく実装が可能となる。
+実装されれば、こちらを用いる方が Scroll を監視するよりも正確かつ効率のよい実装が可能となる。
 
 本サイトでも追って解説を行う予定である。
 

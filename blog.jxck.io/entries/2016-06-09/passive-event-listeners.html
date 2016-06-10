@@ -54,7 +54,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-06-09T08:00:00+08:00",
-  "dateModified": "2016-06-09T08:00:00+08:00",
+  "dateModified": "2016-06-10T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -96,7 +96,7 @@ by Jxck
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-06-09>2016-06-09</time>
-    <li>updated_at: <time class=updated_at datetime=2016-06-09>2016-06-09</time>
+    <li>updated_at: <time class=updated_at datetime=2016-06-10>2016-06-10</time>
     <li class=tags>tags: [<a>rendering</a>,<a>performance</a>]
   </ul>
 
@@ -195,15 +195,15 @@ document.addEventListener(&#039;touchstart&#039;, handler, {capture: true});</co
       <p>スペックにサンプルが掲載されているので、引用しコメントで解説を追記する。
       <pre class=js><code>var supportsPassive = false;
 try {
-  // getter として opt.get を定義して、 addEventListener 内で呼ばれたことがわかるようにする
+  // getter として opts.passive を定義して、 addEventListener 内で呼ばれたことがわかるようにする
   var opts = Object.defineProperty({}, &#039;passive&#039;, {
     get: function() {
-      // 内部で opts.capture が呼ばれたら対応ブラウザ
+      // 内部で opts.passive が呼ばれたら対応ブラウザ
       // 用意しておいたフラグを有効にする
       supportsPassive = true;
     }
   });
-  // ためにし適当なイベントを補足し、 opts.get が呼ばれるか試す
+  // ためにし適当なイベントを補足し、 opts.passive が呼ばれるか試す
   window.addEventListener(&quot;test&quot;, null, opts);
 } catch (e) {}
 
@@ -252,10 +252,9 @@ function addEventListenerWithOptions(target, type, handler, options) {
     <section>
       <h2 id="Intersection+Observer"><a href="#Intersection+Observer">Intersection Observer</a></h2>
       <p>Scroll にハンドラを補足するユースケースの一つに、画面のスクロール位置取得がある。
-      <p>画面のどの分が表示されているかを <code>scrollTop()</code> などを用いて測定することで、インタラクションを実施する手法として知られている。
-      <p>こうした場面で、 Passive Listenr を指定する効果が予想される。
-      <p>しかし、この場面では要素の出現と位置をより効率的に取得する Intersection Observer という仕様が提案されている。
-      <p>実装されれば、こちらを用いる方が Scroll を監視するよりも正確かつ効率がよく実装が可能となる。
+      <p>画面のどの分が表示されているかを <code>scrollTop</code> などを用いて測定するような場面では、 Passive Listener を指定する効果が予想される。
+      <p>しかし、この場面により適した仕様として、要素の出現と位置をより効率的に取得する Intersection Observer という仕様が提案されている。
+      <p>実装されれば、こちらを用いる方が Scroll を監視するよりも正確かつ効率のよい実装が可能となる。
       <p>本サイトでも追って解説を行う予定である。
       <ul>
         <li><a href="https://github.com/WICG/IntersectionObserver/blob/gh-pages/explainer.md">Intersection Observers Explained</a>
