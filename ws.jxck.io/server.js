@@ -8,9 +8,13 @@ let WebSocketServer = require('websocket').server;
 
 const PORT = 6000;
 
-// handlers
+/**
+ * Registering Handlers
+ * { protocol: function(request) {} }
+ */
 let handlers = {
-  push_register: require('./push_register')
+  echo:          require('./echo'),
+  push_register: require('./push_register'),
 }
 
 // http server
