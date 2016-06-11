@@ -46,7 +46,8 @@ module.exports = function(request) {
     logger('message', message);
     if (message.type !== 'utf8') throw new Error('support utf8 only');
 
-    return save(origin, JSON.parse(message.utf8Data));
+    // TODO: remove table name
+    return save('blog', JSON.parse(message.utf8Data));
   }).catch((err) => {
     logger('error', err);
     return connection.drop(connection.CLOSE_REASON_UNPROCESSABLE_INPUT, err.message);

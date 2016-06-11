@@ -9,40 +9,6 @@ navigator.serviceWorker.register('worker.js').then((registration) => {
 // TODO
 ((registration) => {
 
-  Notification.requestPermission((permission) => {
-    if (permission !== 'denied') {
-      sw.pushManager.subscribe().then((subscription) => {
-        //
-      });
-    }
-  });
-
-  registration.pushManager.hasPermission().then((pushPermissionStatus) => {
-    // Once we have a service worker, and checked permission,
-    // enable the buttons
-    var buttonContainer = document.querySelector('.button-container');
-    buttonContainer.style.display = 'block';
-
-    // If we don't have permission then set the UI accordingly
-    if (pushPermissionStatus !== 'granted') {
-      changeState(STATE_NOTIFICATION_PERMISSION);
-      return;
-    }
-
-    // We have permission, so let's update the subscription
-    // just to be safe
-    serviceWorkerRegistration.pushManager.getSubscription().then((pushSubscription) => {
-      // Check if we have an existing pushSubscription
-      if (pushSubscription) {
-        sendSubscription(pushSubscription);
-        changeState(STATE_ALLOW_PUSH_SEND);
-      } else {
-        changeState(STATE_NOTIFICATION_PERMISSION);
-      }
-    });
-  });
-
-
 
   const endpoint = subscription.endpoint;
   const auth = subscription.getKey('auth');
@@ -119,3 +85,36 @@ navigator.serviceWorker.register('worker.js').then((registration) => {
     );
   });
 })();
+
+//  Notification.requestPermission((permission) => {
+//    if (permission !== 'denied') {
+//      sw.pushManager.subscribe().then((subscription) => {
+//        //
+//      });
+//    }
+//  });
+//
+//  registration.pushManager.hasPermission().then((pushPermissionStatus) => {
+//    // Once we have a service worker, and checked permission,
+//    // enable the buttons
+//    var buttonContainer = document.querySelector('.button-container');
+//    buttonContainer.style.display = 'block';
+//
+//    // If we don't have permission then set the UI accordingly
+//    if (pushPermissionStatus !== 'granted') {
+//      changeState(STATE_NOTIFICATION_PERMISSION);
+//      return;
+//    }
+//
+//    // We have permission, so let's update the subscription
+//    // just to be safe
+//    serviceWorkerRegistration.pushManager.getSubscription().then((pushSubscription) => {
+//      // Check if we have an existing pushSubscription
+//      if (pushSubscription) {
+//        sendSubscription(pushSubscription);
+//        changeState(STATE_ALLOW_PUSH_SEND);
+//      } else {
+//        changeState(STATE_NOTIFICATION_PERMISSION);
+//      }
+//    });
+//  });
