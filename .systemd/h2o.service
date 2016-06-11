@@ -1,0 +1,16 @@
+[Unit]
+Description=jxck.io
+After=syslog.target network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=forking
+Restart=always
+PIDFile=/home/jxck/server/pid/h2o.pid
+WorkingDirectory=/home/jxck/server/jxck.io
+ExecStartPre=/home/jxck/dotfiles/local/h2o/bin/h2o -c h2o.conf -t
+ExecStart=/home/jxck/dotfiles/local/h2o/bin/h2o -c h2o.conf -m daemon
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+
+[Install]
+WantedBy=multi-user.target
