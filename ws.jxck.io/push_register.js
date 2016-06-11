@@ -9,24 +9,35 @@ const LABS = 'https://labs.jxck.io';
 let db = new sqlite3.Database(PUSH_DB, sqlite3.OPEN_READWRITE);
 
 function save(table, data) {
-  logger('save', data.userAuth);
-  const insert = `INSERT INTO ${table} (userAuth, userPublicKey, endpoint) VALUES (?, ?, ?)`;
+  logger('save', table, data.userAuth);
+  const insert = `INSERT INTO ? (userAuth, userPublicKey, endpoint) VALUES (?, ?, ?)`;
 
   return new Promise((resolve, reject) => {
-    db.run(insert, [data.userAuth, data.userPublicKey, data.endpoint], (err, result) => {
+    db.run(insert, [table, data.userAuth, data.userPublicKey, data.endpoint], (err, result) => {
       if (err) return reject(err);
       return resolve(result);
     });
   });
 }
 
+function allowedOrigin(origin) {
+  if (origin === 'https://blog.jxck.io') return true;
+
+  return false;
+}
+
 // export handler
 module.exports = function(request) {
   const protocol = request.requestedProtocols[0];
-  const allowOrigin = LABS;
+  const origin = request.origin;
 
-  let connection = request.accept(protocol, allowOrigin);
-  logger('accept', allowOrigin, protocol);
+  if (allowedOrigin(origin) === false) {
+    request.reject();
+    return logger('reject', origin, protocol);
+  }
+
+  let connection = request.accept(protocol, origin);
+  logger('accept', origin, protocol);
 
   new Promise((resolve, reject) => {
     connection.on('message', resolve);
@@ -35,7 +46,7 @@ module.exports = function(request) {
     logger('message', message);
     if (message.type !== 'utf8') throw new Error('support utf8 only');
 
-    return save('labs', JSON.parse(message.utf8Data));
+    return save(origin, JSON.parse(message.utf8Data));
   }).catch((err) => {
     logger('error', err);
     return connection.drop(connection.CLOSE_REASON_UNPROCESSABLE_INPUT, err.message);

@@ -37,6 +37,9 @@ Proc.new do |env|
       "child-src",
       "https://www.youtube.com",
       ";",
+      "connect-src",
+      "wss://ws.jxck.io",
+      ";",
       "report-uri #{REPORT_URI}"
     ]
     headers["Content-Security-Policy-Report-Only"] = csp.join(" ")
