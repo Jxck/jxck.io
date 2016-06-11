@@ -35,7 +35,7 @@
     "slide": "./compress.rb slide.jxck.io",
     "clean": "find ./**/* -name *.gz | xargs -L 4 -P 4 rm",
     "start": "sudo $DOTFILES/local/h2o/bin/h2o -m daemon -c h2o.conf",
-    "stop": "sudo kill -TERM `cat ../logs/pid`",
+    "stop": "sudo kill -TERM `cat ../pid/h2o.pid`",
     "restart": "npm stop && npm start"
   },
   "repository": {
