@@ -6,7 +6,7 @@ let logger = console.log.bind(console);
 let http = require('http');
 let WebSocketServer = require('websocket').server;
 
-const PORT = 6000;
+const PORT = process.env.PORT;
 
 /**
  * Registering Handlers

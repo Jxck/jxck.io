@@ -1,0 +1,13 @@
+[Unit]
+Description=ws.jxck.io
+
+[Service]
+Environment=NODE_ENV=production PORT=6000 SERVER=/home/jxck/server
+ExecStart=/usr/local/bin/node server.js
+WorkingDirectory=/home/jxck/server/jxck.io/ws.jxck.io
+Restart=always
+Type=simple
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
