@@ -16,9 +16,9 @@ let db = new sqlite3.Database(PUSH_DB, sqlite3.OPEN_READ);
 const PAYLOAD = JSON.stringify({
   tag: 'blog update',
   url: 'blog.jxck.io',
-  title: `blog を更新しました`,
+  title: 'blog を更新しました',
   icon: '/assets/img/jxck.png',
-  body: `blog.jxck.io`.trim(),
+  body: 'Passive Event Listeners によるスクロールの改善',
 });
 
 db.each(`SELECT userAuth, userPublicKey, endpoint FROM ${table}`, (err, row) => {
