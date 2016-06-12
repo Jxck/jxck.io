@@ -9,6 +9,35 @@
   if (typeof window !== 'undefined') {
     if(location.search !== '?sw') return;
 
+    let registerPush = ((registration) => {
+      registration.pushManager.subscribe({userVisibleOnly: true}).then((subscription) => {
+        const endpoint = subscription.endpoint;
+        const auth = subscription.getKey('auth');
+        const p256dh = subscription.getKey('p256dh');
+
+        const userAuth = btoa(String.fromCharCode(...new Uint8Array(auth)));
+        const userPublicKey = btoa(String.fromCharCode(...new Uint8Array(p256dh)));
+
+        const body = JSON.stringify({ endpoint, userAuth, userPublicKey });
+        console.log(JSON.stringify(subscription, ' ', ' '));
+        console.log(body);
+
+        const url = 'wss://ws.jxck.io';
+        const protocol = 'push_register';
+        let ws = new WebSocket(url, protocol);
+
+        ws.addEventListener('message', (e) => {
+          console.log('message', e);
+        });
+        ws.addEventListener('open', () => {
+          ws.send(body);
+        });
+        ws.addEventListener('error', (e) => {
+          console.error(e);
+        });
+      });
+    });
+
     let controllerChange = new Promise((resolve, reject) => {
       navigator.serviceWorker.addEventListener('controllerchange', () => {
         resolve(navigator.serviceWorker.controller);
@@ -17,7 +46,8 @@
 
     navigator.serviceWorker.register(KEY, { scope: '/' }).then((registration) => {
       return navigator.serviceWorker.ready;
-    }).then(() => {
+    }).then((registration) => {
+      registerPush(registration);
       if (navigator.serviceWorker.controller) {
         return navigator.serviceWorker.controller;
       }
@@ -29,6 +59,8 @@
 
   // service worker
   if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalScope) {
+    importScripts('sw.push.js');
+
     self.addEventListener('install', (e) => {
       log('install > skipWaiting', e);
       e.waitUntil(skipWaiting());
