@@ -35,6 +35,7 @@ Proc.new do |env|
       "https://www.google-analytics.com",
       ";",
       "child-src",
+      "https://blog.jxck.io", # service-worker
       "https://www.youtube.com",
       ";",
       "connect-src",
