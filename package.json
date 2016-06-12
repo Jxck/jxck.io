@@ -32,7 +32,7 @@
     "blog": "./mark.rb blog",
     "podcast": "./mark.rb podcast",
     "gzip": "./compress.rb www.jxck.io blog.jxck.io podcast.jxck.io",
-    "build": "npm run dev && npm run gzip && gulp",
+    "build": "npm run blog && npm run gzip && gulp",
     "slide": "./compress.rb slide.jxck.io",
     "clean": "find ./**/* -name *.gz | xargs -L 4 -P 4 rm",
     "_start": "sudo $DOTFILES/local/h2o/bin/h2o -m daemon -c h2o.conf",
