@@ -1,4 +1,4 @@
-# [html][security] target=_blank がもたらすフィッシング詐欺の可能性と対応
+# [html][security] リンクのへの rel=noopener 付与によるフィッシング詐欺対策
 
 ## Intro
 
@@ -11,7 +11,7 @@
 
 例えば http://parent.example.com に表示された `<a href="http://child.example.com" target=_blank>` というリンクをクリックした場合、 http://child.example.com が別タブ(ウィンドウ)として開かれる。
 
-この時、開いた側の parent.example.com を parent 、開かれた側の child.example.com を child とする。
+この時、開いた側の http://parent.example.com を parent 、開かれた側の http://child.example.com を child とする。
 
 child 側では以下のような JS を書くことで、 parent 側の location を変えて、任意の URL に遷移されることが可能である。
 
@@ -37,7 +37,7 @@ child で上記の JS が動くと、裏で勝手に parent が画面遷移し�
 
 以下のような挙動が確認できるはずだ。
 
-![Window Opener DEMO](window-opener.gif)
+![Window Opener DEMO](window-opener.gif#150x150)
 
 
 ## open link in new tab
@@ -58,12 +58,16 @@ child で上記の JS が動くと、裏で勝手に parent が画面遷移し�
 なお IE は(security zone setting をいじらない限り)この問題が発生しないようだ。
 
 
-[引用](https://danielstjules.github.io/blankshield/)
+引用元: [blankshield demo \| Reverse tabnabber phishing](https://danielstjules.github.io/blankshield/)
 
 
 ## revers tabnabbing
 
 上記の挙動を利用して、以下のような攻撃が考えられる。
+
+これも言葉での説明ではわかりにくいので、先に実行結果を示す。
+
+
 
 
 ### 攻撃の概要
