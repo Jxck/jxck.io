@@ -22,7 +22,22 @@ window.opener.location = http://fishing.example.com
 多くのブラウザでは、 child が別タブで開いた場合に、そちらが手前に表示され、 parent は裏に回る。
 child で上記の JS が動くと、裏で勝手に parent が画面遷移している状態となる。
 
+
 これは、オリジンが違っても可能であるため、リンクをたどってきたユーザを任意のサイトに誘導することが可能というわけである。
+
+
+## DEMO
+
+言葉では分かりにくいので、デモを用意した。
+
+[Window Opener DEMO](https://labs.jxck.io/noopener/)
+
+
+リンク先が Parent ページであり、真ん中のリンクから開いた Child ページが、裏で Parent を http://example.com に遷移させている。
+
+以下のような挙動が確認できるはずだ。
+
+![Window Opener DEMO](window-opener.gif)
 
 
 ## open link in new tab
@@ -145,9 +160,11 @@ parent 側のリンクタグに `rel=noopener` を追加することで、 child
 
 ## DEMO
 
-`rel` の有無により、child から parent ページの遷移の動作を試すデモを以下に用意した。
+`rel` の有無により、child から parent ページの遷移の動作を試すデモも以下に用意した。
 
-[labs.jxck.io/noopener](https://labs.jxck.io/noopener)
+先ほどと同じ、以下のページの最後のリンクが Parent ページの遷移を抑止している。
+
+[noopener DEMO](https://labs.jxck.io/noopener)
 
 
 ## 本サイトでの適用
