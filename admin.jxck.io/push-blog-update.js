@@ -4,10 +4,10 @@ let p = console.log.bind(console);
 let push = require('web-push');
 let sqlite3 = require('sqlite3');
 
-const GCM_API_KEY = 'AIzaSyAJs2U3XSP39SjeY5RhGXPqc0P2Xw_2byI';
+const GCM_API_KEY = require('fs').readFileSync('./blog.jxck.io.key', {encoding:'utf8'}).trim();
 push.setGCMAPIKey(GCM_API_KEY);
 
-const table = 'labs';
+const table = 'Blog';
 const data = (new Date).toISOString();
 const PUSH_DB = `${process.env['SERVER']}/db/push.sqlite3`;
 
@@ -17,7 +17,7 @@ const PAYLOAD = JSON.stringify({
   tag: 'blog update',
   url: 'blog.jxck.io',
   title: `blog を更新しました`,
-  icon: '/service-worker/push/jxck.png',
+  icon: '/assets/img/jxck.png',
   body: `blog.jxck.io`.trim(),
 });
 
