@@ -20,6 +20,7 @@ function save(table, data) {
   });
 }
 
+// return table name for origin and allowOrigin flag
 function allowedOrigin(origin) {
   if (origin === 'https://blog.jxck.io') return ['Blog', true];
 
@@ -48,7 +49,6 @@ module.exports = function(request) {
     logger('message', message);
     if (message.type !== 'utf8') throw new Error('support utf8 only');
 
-    // TODO: remove table name
     return save(table, JSON.parse(message.utf8Data));
   }).catch((err) => {
     logger('error', err);

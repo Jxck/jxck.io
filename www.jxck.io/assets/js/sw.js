@@ -7,8 +7,6 @@
 
   // window
   if (typeof window !== 'undefined') {
-    if(location.search !== '?sw') return;
-
     let registerPush = ((registration) => {
       registration.pushManager.subscribe({userVisibleOnly: true}).then((subscription) => {
         const endpoint = subscription.endpoint;
