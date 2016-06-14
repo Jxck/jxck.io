@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html amp>
+<head>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=https://blog.jxck.io/entries/2016-06-12/noopener.html>
+<meta name=viewport content="width=device-width,minimum-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+<link rel=author href=//jxck.io/assets/humans.txt>
+
+<meta name=author content=Jxck>
+<meta name=description content="本サイト以下全ての `target=_blank` 付きのリンクに `rel=&quot;noopener noreferrer&quot;` の付与を実施した。このプロパティの意味と、これが無い場合のフィッシング詐欺攻撃の可能性について解説する。...">
+<meta name=keywords content="html,security">
+
+<meta name=twitter:card content=summary>
+<meta name=twitter:site content=@jxck_>
+<meta name=twitter:url content=https://blog.jxck.io/entries/2016-06-12/noopener.html>
+<meta name=twitter:title content="リンクのへの rel=noopener 付与による Tabnabbing 対策 | blog.jxck.io">
+<meta name=twitter:description content="本サイト以下全ての `target=_blank` 付きのリンクに `rel=&quot;noopener noreferrer&quot;` の付与を実施した。このプロパティの意味と、これが無い場合のフィッシング詐欺攻撃の可能性について解説する。...">
+<meta name=twitter:image content=https://jxck.io/assets/img/jxck.png>
+
+<meta property=og:type content="article">
+<meta property=og:url content=https://blog.jxck.io/entries/2016-06-12/noopener.html>
+<meta property=og:title content="リンクのへの rel=noopener 付与による Tabnabbing 対策 | blog.jxck.io">
+<meta property=og:site_name content=blog.jxck.io>
+<meta property=og:description content="本サイト以下全ての `target=_blank` 付きのリンクに `rel=&quot;noopener noreferrer&quot;` の付与を実施した。このプロパティの意味と、これが無い場合のフィッシング詐欺攻撃の可能性について解説する。...">
+<meta property=og:image content=https://jxck.io/assets/img/jxck.png>
+
+<link rel=icon sizes=192x192 href=https://jxck.io/assets/img/jxck.png>
+<link rel=apple-touch-icon sizes=128x128 href=https://jxck.io/assets/img/jxck.png>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "リンクのへの rel=noopener 付与による Tabnabbing 対策 | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2016-06-12T08:00:00+08:00",
+  "dateModified": "2016-06-15T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "本サイト以下全ての `target=_blank` 付きのリンクに `rel=&quot;noopener noreferrer&quot;` の付与を実施した。このプロパティの意味と、これが無い場合のフィッシング詐欺攻撃の可能性について解説する。..."
+}
+</script>
+
+<title>リンクのへの rel=noopener 付与による Tabnabbing 対策 | blog.jxck.io</title>
+<script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+<script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+<script async src=https://cdn.ampproject.org/v0.js></script>
+
+<style amp-custom>
+article img {
+  margin: 1em 0;
+  border: 1px solid #ccc;
+  box-sizing: content-box;
+}
+
+article ul, article ol {
+  font-family: monospace;
+  font-size: 1.2em;
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 400;
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=20163014") format("woff");
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 700;
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff?ver=201603014") format("woff");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+  color: #222;
+  background-color: #fefefe;
+}
+
+iframe {
+  display: block;
+  max-width: 100%;
+  margin: 1em 0;
+}
+
+.archive {
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.archive ul {
+  margin: 0;
+}
+
+.archive time {
+  padding-right: 0.5em;
+}
+
+.archive time::after {
+  content: ":";
+}
+
+.archive .tags {
+  font-size: 0.8em;
+  margin-left: 1em;
+}
+
+.tags a {
+  margin: 0 0.2em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+audio {
+  width: 70%;
+}
+
+@media screen and (max-device-width: 480px) {
+  audio {
+    width: 100%;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.info li {
+  margin-right: 1em;
+  list-style-type: none;
+}
+
+.info li::before {
+  content: none;
+}
+
+header {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.4em;
+  background-color: #222;
+}
+
+header ul {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 80%;
+  margin: 0 auto;
+  padding: 4px;
+}
+
+header ul li {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  margin-left: 1em;
+}
+
+header ul li a {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+header ul li::before {
+  content: none;
+}
+
+header ul li:first-child {
+  flex-grow: 1;
+  margin-left: 0;
+}
+
+header .logo {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  pointer-events: none;
+  color: #222;
+}
+
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: #222;
+}
+
+h1 > a:hover:before,
+h2 > a:hover:before,
+h3 > a:hover:before,
+h4 > a:hover:before,
+h5 > a:hover:before,
+h6 > a:hover:before {
+  color: Brown;
+}
+
+h1 > a::before {
+  content: "# ";
+  pointer-events: all;
+}
+
+h2 > a::before {
+  content: "## ";
+  pointer-events: all;
+}
+
+h3 > a::before {
+  content: "### ";
+  pointer-events: all;
+}
+
+h4 > a::before {
+  content: "#### ";
+  pointer-events: all;
+}
+
+i::before, i::after {
+  content: "*";
+}
+
+strong::before, strong::after {
+  content: "**";
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+dl dt::after {
+  content: ":";
+}
+
+blockquote::before {
+  content: "> ";
+}
+
+code::before, code::after {
+  /* うざかった */
+  /* content: "`"; */
+}
+
+main {
+  display: block;
+  width: 80%;
+  margin: 1em auto;
+}
+
+@media screen and (max-device-width: 480px) {
+  main {
+    width: 94%;
+  }
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+}
+
+a {
+  color: RoyalBlue;
+}
+
+a:visited {
+  color: Brown;
+}
+
+ol, ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+ul, ol, dl {
+  margin: 1.4em 0;
+}
+
+dl dt {
+  font-weight: bold;
+}
+
+dl dd {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+blockquote {
+  display: block;
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  padding: 1em;
+  margin: 1.4em 0;
+}
+
+code {
+  border: 1px solid #ddd;
+  background-color: #efefef;
+  border-radius: 4px;
+  padding: 0.1em;
+  margin: 1.4em 0;
+}
+
+footer {
+  padding: 1em;
+}
+
+pre {
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: 1.2em;
+  margin: 1.4em 0 0 0;
+  border-radius: 4px;
+}
+
+pre::before {
+  content: "```" attr(class) "\A";
+}
+
+pre::after {
+  position: relative;
+  top: -1em;
+  content:"\A```";
+}
+
+pre > code {
+  overflow: auto;
+  display: block;
+  padding: 0.6em;
+  margin: 0;
+  border: none;
+  background-color: #efefef;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs,
+.hljs-subst ,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-name ,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition ,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-type,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-section,
+.hljs-meta,
+.hljs-meta-string,
+.hljs-emphasis {
+}
+
+table {
+  font-family: monospace;
+  margin: 2em 0;
+  border-spacing: 0 0.4em;
+}
+
+th {
+  padding: 0em 1.0em 0.6em;
+  border-left: 0.14em solid #222;
+  border-bottom: 2px dashed #222;
+}
+
+td {
+  padding: 0.4em 1.2em;
+  border-left: 0.14em solid #222;
+}
+
+th:last-child, td:last-child {
+  border-right: 0.14em solid #222;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+</style>
+</head>
+<body>
+<header>
+  <ul>
+    <li><a href=//blog.jxck.io><amp-img class=logo alt="blog top" width=30 height=30 src=/assets/img/blog.svg></a>
+    <li><a href=.><amp-img alt="move to parent directory" width=30 height=30 src=/assets/img/up.svg></a>
+    <li><a href=/feeds/atom.xml><amp-img alt="rss feed" width=30 height=30 src=/assets/img/rss.svg></a>
+    <li><a href=//jxck.io/humans.txt><amp-img alt="huamns.txt" width=30 height=30 src=/assets/img/humans.svg></a>
+    <li><a href=//jxck.io><amp-img class=logo alt="jxck logo" width=30 height=30 src=/assets/img/jxck.svg></a>
+  </ul>
+</header>
+<main>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2016-06-12>2016-06-12</time>
+    <li>updated_at: <time class=updated_at datetime=2016-06-15>2016-06-15</time>
+    <li class=tags>tags: [<a>html</a>,<a>security</a>]
+  </ul>
+
+
+  <article>
+    <h1><a href=/entries/2016-06-12/noopener.html>リンクのへの rel=noopener 付与による Tabnabbing 対策</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>本サイト以下全ての <code>target=_blank</code> 付きのリンクに <code>rel=&quot;noopener noreferrer&quot;</code> の付与を実施した。
+      <p>このプロパティの意味と、これが無い場合のフィッシング詐欺攻撃の可能性について解説する。
+    </section>
+    <section>
+      <h2 id="window.opener"><a href="#window.opener">window.opener</a></h2>
+      <p>以下が今回注目する挙動である。
+      <p><amp-img layout=responsive src=window-opener.gif#150x150 alt="Window Opener DEMO" title="window opener demo" width=150 height=150>
+      <p>このデモでは、 <a href="https://labs.jxck.io/noopener">https://labs.jxck.io/noopener</a> から開いた <a href="https://labs.jxck.io/noopener/opener-change.html">https://labs.jxck.io/noopener/opener-change.html</a> のページが別タブで開いた後、最初に開いたタブが勝手に <a href="http://example.com">http://example.com</a> に遷移しているというものである。
+      <p>最初のページを Parent、開いたタブを Child とする。
+      <p>child 側では以下のような JS が書かれており、 parent 側の location を変えて、任意の URL に遷移されることが可能である。
+      <pre><code>window.opener.location = http://example.com</code></pre>
+      <p>多くのブラウザでは、 child が <code>target=blank_</code> により別タブで開いた場合に、そちらが手前に表示され、 parent は裏に回る。<br>
+      child で上記の JS が動くと、裏で勝手に parent が画面遷移している状態となる。
+      <p>これは、オリジンが違っても可能であるため、リンクをたどってきたユーザを任意のサイトに誘導することが可能というわけである。
+      <p><a href="https://labs.jxck.io/noopener/">Window Opener DEMO</a>
+    </section>
+    <section>
+      <h2 id="open+link+in+new+tab"><a href="#open+link+in+new+tab">open link in new tab</a></h2>
+      <p><code>target=_blank</code> が無いリンクを、別タブとして開いても、この攻撃は再現しないようである。
+      <p>しかし、 <code>target=_blank</code> がついたリンクを、さらに「別タブとして開く」機能を用いて開いた場合の挙動は、ブラウザによって異なる。
+      <table>
+        <thead>
+          <tr>
+            <th class=align-left>Browser</th>
+            <th class=align-center>Click</th>
+            <th class=align-center>Shift+click</th>
+            <th class=align-center>Meta/Ctrl+click</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class=align-left>Chrome40</td>
+            <td class=align-center>x</td>
+            <td class=align-center>x</td>
+            <td class=align-center>x</td>
+          </tr>
+          <tr>
+            <td class=align-left>Firefox34</td>
+            <td class=align-center></td>
+            <td class=align-center></td>
+            <td class=align-center></td>
+          </tr>
+          <tr>
+            <td class=align-left>Opera26</td>
+            <td class=align-center>x</td>
+            <td class=align-center>x</td>
+            <td class=align-center>x</td>
+          </tr>
+          <tr>
+            <td class=align-left>Safari7,8</td>
+            <td class=align-center>x</td>
+            <td class=align-center></td>
+            <td class=align-center></td>
+          </tr>
+        </tbody>
+      </table><p>なお IE は(security zone setting をいじらない限り)この問題が発生しないようだ。
+      <p>引用元: <a href="https://danielstjules.github.io/blankshield/">blankshield demo | Reverse tabnabber phishing</a>
+    </section>
+    <section>
+      <h2 id="tabnabbing"><a href="#tabnabbing">tabnabbing</a></h2>
+      <p>上記の挙動を、フィッシング詐欺に利用できることが既に指摘されている。
+      <p>この手法は Tabnabbing と呼ばれている。
+      <ul>
+        <li><a href="http://www.azarask.in/blog/post/a-new-type-of-phishing-attack/">Tabnabbing: A New Type of Phishing Attack « Aza on Design</a>
+        <li><a href="https://www.jitbit.com/alexblog/256-targetblank---the-most-underestimated-vulnerability-ever/">Target="_blank" - the most underestimated vulnerability ever</a>
+      </ul>
+      <p>この攻撃方法を解説する。
+      <section>
+        <h3 id="攻撃の概要"><a href="#攻撃の概要">攻撃の概要</a></h3>
+        <p><amp-img layout=responsive src=tab-nabbing.svg#500x500 alt="tab-nabbing.svg" title="tab-nabbing の解説図" width=500 height=500>
+        <p><code>https://cgm.example.com</code> (左上) というサービスがあるとし、これは SNS やチーム後ラボレーション系サービスを想定する。
+        <p>攻撃者は、このサービスの不特定ユーザのユーザ名およびパスワードを盗みたいとする。
+        <p>この攻撃の成立のために、サービスに必要な仕様は <strong>任意のリンクを貼ることができて、そのリンクが <code>target=_blank</code> にマークアップされる</strong> ことである。
+        <p>攻撃者が必要な準備は以下である。
+      </section>
+      <section>
+        <h3 id="誘導用サイト(右上)"><a href="#誘導用サイト(右上)">誘導用サイト(右上)</a></h3>
+        <p>ユーザを収集用サイトに誘導するサイトである。
+        <ul>
+          <li>見た目がごく普通のサイト <code>https://happy.example.jp</code> を用意する
+          <li>このサイトに <code>window.opener.location = &quot;https://cgn.example.com/login&quot;</code> を仕込む
+          <li>(この JS が動くなら、 XSS でこのスクリプトを別サービスに仕込んでも代替できる)
+        </ul>
+      </section>
+      <section>
+        <h3 id="収集用サイト(左下)"><a href="#収集用サイト(左下)">収集用サイト(左下)</a></h3>
+        <p>ユーザ情報を収集する、ダミーサイトである。
+        <ul>
+          <li>対象サイトと酷似したドメイン取得する、今回の場合 <code>cgn.example.com</code> など
+          <li><code>https://cgn.example.com/login</code> に本家のログインページと全く同じ見た目を実装する
+          <li>ログイン情報を収集したら、すぐさま本家 <code>https://cgm.example.com</code> (右下==左上) にリダイレクトするよう実装する
+        </ul>
+      </section>
+      <section>
+        <h3 id="攻撃"><a href="#攻撃">攻撃</a></h3>
+        <p>実際の攻撃は以下の手順で行う
+        <ul>
+          <li>本家のサービスに <code>https://happy.example.jp</code> (右上) のリンクを貼る
+          <li>本家サービスを利用中の他のユーザに、このリンクを踏ませる
+          <li>被害者は、別のタブで開き、本家のタブは裏に隠れる。
+          <li>見終わって閉じると、さっきまでの本家サイトのタブがなぜかログイン画面(左下)になっている。
+          <li>このログイン画面はダミーであり、ユーザ名/パスワードを入力すると、本家(右下)へリダイレクトする。
+        </ul>
+        <p>最近は遷移の途中や、一定時間経過後にログインを要求するサービスもあるため、この挙動を攻撃とは思わないユーザがいても不思議では無いだろう。<br>
+        もっとも、自分が開いていた正しいページが、勝手に別の攻撃ページに置き換わっているという想定が一般的とは考えにくい。
+        <p>最後のリダイレクトは、攻撃サイトからすでにログイン済みの本家サイトにリダイレクトすることで、ユーザからみれば単にログインが成功したように見える。
+        <p>つまり、攻撃自体に気づけない可能性もある。
+      </section>
+      <section>
+        <h3 id="攻撃に気づくために"><a href="#攻撃に気づくために">攻撃に気づくために</a></h3>
+        <p>被害者が攻撃を見破れるとしたら以下の点であるだろう。
+        <ul>
+          <li>別タブで誘導サイトを開いたときに、裏でタブがリダイレクトしたことを、タブのアイコンで気づく
+          <li>何もしてないのに勝手にログアウトされていることに不信感を抱き気づく
+          <li>ブラウザが記録しているログイン情報が自動挿入されないことに気づく
+          <li>ドメイン名が違うことに気づく
+          <li>メジャーなサービスなのに URL グリーンバーに組織情報が表示されずに気づく
+        </ul>
+      </section>
+      <section>
+        <h3 id="対策"><a href="#対策">対策</a></h3>
+        <p>本家サービスからすれば、ダミーのログイン画面に対してできることは無い。<br>
+        銀行当のサイトが注意喚起を高い頻度で行っていることを見てもわかるだろう。
+        <p>したがって、この攻撃ストーリーであれば、最初の誘導サイトを開いたときにリダイレクトされることを防ぐのが効果的である。
+        <p>そこで使用できるのが <code>rel=noopener</code> 属性である。
+      </section>
+    </section>
+    <section>
+      <h2 id="noopener"><a href="#noopener">noopener</a></h2>
+      <p>parent 側のリンクタグに <code>rel=noopener</code> を追加することで、 child が parent を <code>window.opener</code> 経由で参照できなくなるため、 parent の location の変更などを抑止することが可能である。
+      <p><a href="https://html.spec.whatwg.org/multipage/semantics.html#link-type-noopener">4.6.6.11 Link type "noopener" | WHATWG Spec</a>
+      <p>ただし、 Chrome, Opera 以外は現時点で <code>noopener</code> に対応していない。
+      <p><a href="http://caniuse.com/#feat=rel-noopener">rel=noopener | Can I use</a>
+      <p>代替として <code>noreferrer</code> を指定することで同じ挙動が実現できる。
+      <p>したがって、以下のようにすることで目的が達成できる。
+      <pre class=html><code>&lt;a href=&quot;http://example.com&quot; target=_blank rel=&quot;noopener noreferrer&quot;&gt;</code></pre>
+      <p>ただし <code>noreferrer</code> はその名の通り Referrer を抑止する属性であるため、副作用には注意が必要である。
+    </section>
+    <section>
+      <h2 id="DEMO"><a href="#DEMO">DEMO</a></h2>
+      <p><code>rel</code> の有無により、child から parent ページの遷移の動作を試すデモも以下に用意した。
+      <p><a href="https://labs.jxck.io/noopener">noopener DEMO</a>
+    </section>
+    <section>
+      <h2 id="本サイトでの適用"><a href="#本サイトでの適用">本サイトでの適用</a></h2>
+      <p>そもそも <code>target=_blank</code> が無ければ対応の必要はなく、モバイルに向けては <code>target=_blank</code> は UX を損ねるという話もあるため、本サイトでは基本的に <code>target=_blank</code> は付与していない。そもそもログインなどのクレデンシャルの保持も無い。
+      <p>ただ、ごく一部デモページで <code>target=_blank</code> を付けていたので、それら全てについて試験的に <code>rel=&quot;noopener noreferrer&quot;</code> の付与を実施した。
+    </section>
+    <section>
+      <h2 id="注意"><a href="#注意">注意</a></h2>
+      <p><code>window.opener</code> の挙動は、あくまでもフィッシング詐欺への応用が可能であるだけで、実際の攻撃はダミーのログイン画面への入力時点で発生している。
+      <p>フィッシングメールに含まれるリンクからの誘導や、ダミーログインの URL を直接踏ませるのとも本質的には同じである。
+      <p>したがって、リンクに <code>rel=noopener</code> を付与していないサイトが総じて脆弱であるというわけではない。
+      <p>例えば Google はこの挙動を脆弱性とは認定していない。
+      <ul>
+        <li><a href="https://sites.google.com/site/bughunteruniversity/nonvuln/phishing-with-window-opener">Phishing by navigating browser tabs - Bughunter University</a>
+      </ul>
+      <p>ただし、「既に開いてるタブが、勝手に遷移している可能性がある」というのは、一般的に知られた挙動とは言えないと考える。
+      <p>システムを騙すより人間を騙す方が楽であるため、安全側に倒すという意味においても、システム側で対応可能な本対策は検討に値するのではないだろうか。
+    </section>
+  </article>
+
+</main>
+<hr>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
+</footer>
+</body>
+</html>
+<amp-analytics type="googleanalytics" id="analytics1">
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
