@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<title>Intersection Observer DEMO | labs.jxck.io</title>
+
+<style>
+  code {
+    background-color: #ccc;
+  }
+  body {
+  }
+  .root {
+    width: 200px;
+    height: 400px;
+    border: 1px solid #ccc;
+    overflow: scroll;
+  }
+  .root div {
+    width: 100px;
+    height: 100px;
+    background-color: #ccc;
+    margin: 10px;
+  }
+
+  .flex-container {
+    display: flex;
+  }
+
+  .target {
+    background-color: blue;
+  }
+</style>
+
+<h1>Scroll Position DEMO</h1>
+<div class=flex-container>
+  <section>
+  <h2>onscroll</h2>
+  <div id=scroll class=root>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div class=target></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  </section>
+
+  <section>
+  <h2>intersection observer</h2>
+  <div id=intersection class=root>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div class=target></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  </section>
+</div>
+
+<script>
+(() => {
+  const offset = 50; // px
+  let root = document.querySelector('#scroll');
+  let target = document.querySelector('#scroll .target');
+  root.addEventListener('scroll', (e) => {
+
+    // root の上下端
+    let rootTop = root.scrollTop;
+    let rootBottom = rootTop + root.clientHeight;
+    // console.log(rootTop, rootBottom);
+
+    // target の上下端
+    let rect = target.getBoundingClientRect();
+    let top = target.offsetTop - root.offsetTop;
+    let bottom = top + rect.height;
+    // console.log(top, bottom);
+
+    if (rootTop < top + offset && rootBottom > bottom - offset) {
+      target.style.backgroundColor = 'red';
+    } else {
+      target.style.backgroundColor = 'blue';
+    }
+  });
+})();
+</script>
+
+<script>
+(() => {
+  const offset = 50; // px
+  let root = document.querySelector('#intersection');
+  let target = document.querySelector('#intersection .target');
+  const rootMargin = `-${offset}px`;
+  const threshold = 0.0;
+  let observer = new IntersectionObserver((changes) => {
+    for (let change of changes) {
+      // console.log(change);
+      // console.log(change.time);               // Timestamp when the change occurred
+      // console.log(change.rootBounds);         // Unclipped area of root
+      // console.log(change.boundingClientRect); // target.boundingClientRect()
+      console.log(change.intersectionRect);   // boundingClientRect, clipped by its containing block ancestors, and intersected with rootBounds
+      // console.log(change.intersectionRatio);  // Ratio of intersectionRect area to boundingClientRect area
+      // console.log(change.target);             // the Element target
+
+      change.target.style.backgroundColor = change.intersectionRect.top > 0 ? 'red' : 'blue';
+    }
+  }, { root, rootMargin, threshold });
+
+  observer.observe(target);
+})();
+</script>
