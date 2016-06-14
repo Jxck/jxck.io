@@ -149,7 +149,7 @@ function addEventListenerWithOptions(target, type, handler, options) {
 }
 ```
 
-[https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#feature-detection](https://blog.jxck.io/entries/2016-04-24/service-worker-tutorial.html)
+[https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#feature-detection](https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#feature-detection)
 
 
 ## DEMO
