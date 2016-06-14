@@ -15,10 +15,10 @@ let db = new sqlite3.Database(PUSH_DB, sqlite3.OPEN_READ);
 
 const PAYLOAD = JSON.stringify({
   tag: 'blog update',
-  url: 'blog.jxck.io',
+  url: 'https://blog.jxck.io/entries/2016-06-12/noopener.html',
   title: 'blog を更新しました',
   icon: '/assets/img/jxck.png',
-  body: 'Passive Event Listeners によるスクロールの改善',
+  body: 'リンクのへの rel=noopener 付与による Tabnabbing 対策',
 });
 
 db.each(`SELECT userAuth, userPublicKey, endpoint FROM ${table}`, (err, row) => {
