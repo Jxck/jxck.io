@@ -19,6 +19,7 @@
 
     // parse pushed data
     let data = JSON.parse(e.data.text());
+    console.info('data', data);
 
     // prepare notification handler
     self.addEventListener('notificationclick', (e) => {
@@ -33,7 +34,8 @@
           .matchAll({ type: 'window' })
           .then((windowClients) => {
             // if window already exists
-            for (client of windowClients) {
+            for (let client of windowClients) {
+              console.log(client, client.url);
               if (client.url === data.url) {
                 return client.focus();
               }
@@ -50,36 +52,3 @@
     );
   });
 })();
-
-//  Notification.requestPermission((permission) => {
-//    if (permission !== 'denied') {
-//      sw.pushManager.subscribe().then((subscription) => {
-//        //
-//      });
-//    }
-//  });
-//
-//  registration.pushManager.hasPermission().then((pushPermissionStatus) => {
-//    // Once we have a service worker, and checked permission,
-//    // enable the buttons
-//    var buttonContainer = document.querySelector('.button-container');
-//    buttonContainer.style.display = 'block';
-//
-//    // If we don't have permission then set the UI accordingly
-//    if (pushPermissionStatus !== 'granted') {
-//      changeState(STATE_NOTIFICATION_PERMISSION);
-//      return;
-//    }
-//
-//    // We have permission, so let's update the subscription
-//    // just to be safe
-//    serviceWorkerRegistration.pushManager.getSubscription().then((pushSubscription) => {
-//      // Check if we have an existing pushSubscription
-//      if (pushSubscription) {
-//        sendSubscription(pushSubscription);
-//        changeState(STATE_ALLOW_PUSH_SEND);
-//      } else {
-//        changeState(STATE_NOTIFICATION_PERMISSION);
-//      }
-//    });
-//  });

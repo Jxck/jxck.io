@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   const DEBUG = true;
-  const KEY = '/assets/js/sw.js?ver=0';
+  const VERSION='ver=2';
 
   let log = DEBUG ? console.log.bind(console) : () => {};
 
@@ -42,7 +42,7 @@
       });
     });
 
-    navigator.serviceWorker.register(KEY, { scope: '/' }).then((registration) => {
+    navigator.serviceWorker.register(`/assets/js/sw.js?${VERSION}`, { scope: '/' }).then((registration) => {
       return navigator.serviceWorker.ready;
     }).then((registration) => {
       registerPush(registration);
@@ -57,7 +57,7 @@
 
   // service worker
   if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalScope) {
-    importScripts('sw.push.js');
+    importScripts(`sw.push.js?${VERSION}`);
 
     self.addEventListener('install', (e) => {
       log('install > skipWaiting', e);

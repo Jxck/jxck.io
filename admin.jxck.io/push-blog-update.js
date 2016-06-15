@@ -21,9 +21,7 @@ const PAYLOAD = JSON.stringify({
   body: 'リンクのへの rel=noopener 付与による Tabnabbing 対策',
 });
 
-db.each(`SELECT userAuth, userPublicKey, endpoint FROM ${table}`, (err, row) => {
-  if (err) return console.error(err);
-
+function send_update(row) {
   push.sendNotification(row.endpoint, {
     TTL: 60*60*24*7, // 1 week
     payload: PAYLOAD,
@@ -49,4 +47,10 @@ db.each(`SELECT userAuth, userPublicKey, endpoint FROM ${table}`, (err, row) => 
   .catch((err) => {
     console.log('fail', err);
   });
+}
+
+let where = ` where userAuth = '${auth}'`;
+db.each(`SELECT userAuth, userPublicKey, endpoint FROM ${table}${where}`, (err, row) => {
+  if (err) return console.error(err);
+  send_update(row);
 });
