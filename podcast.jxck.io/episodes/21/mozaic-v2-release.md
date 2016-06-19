@@ -16,7 +16,7 @@ mozaic.fm の v2 をリリースしました。 breaking change があるので�
 [http://feed.mozaic.fm](http://feed.mozaic.fm)
 
 
-以下 CHANGELOG です。
+## Change Log
 
 - feed の URL が [http://feed.mozaic.fm](http://feed.mozaic.fm) に変わります。
   - feedburner をやめたかったので自分で生成するようにしました。
