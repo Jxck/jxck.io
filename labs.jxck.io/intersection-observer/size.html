@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="demo">
+<title>DEMO | labs.jxck.io</title>
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  #target {
+    padding: 0;
+    margin: 300px auto;
+    width:  500px;
+    height: 500px;
+    background-color: #ccc;
+  }
+</style>
+
+<div>
+  <div id=target>
+    <p>target.offsetTop    <span id=offsetTop   ></span>
+    <p>target.offsetHeight <span id=offsetHeight></span>
+    <p>target.offsetWidth  <span id=offsetWidth ></span>
+    <p>target.offsetLeft   <span id=offsetLeft  ></span>
+    <p>rect.top            <span id=rect_top    ></span>
+    <p>rect.bottom         <span id=rect_bottom ></span>
+    <p>rect.height         <span id=rect_height ></span>
+    <p>rect.left           <span id=rect_left   ></span>
+    <p>rect.right          <span id=rect_right  ></span>
+    <p>rect.width          <span id=rect_width  ></span>
+  </div>
+</div>
+
+
+<script>
+  let $offsetTop    = document.getElementById('offsetTop');
+  let $offsetHeight = document.getElementById('offsetHeight');
+  let $offsetWidth  = document.getElementById('offsetWidth');
+  let $offsetLeft   = document.getElementById('offsetLeft');
+
+  let $rect_top     = document.getElementById('rect_top');
+  let $rect_bottom  = document.getElementById('rect_bottom');
+  let $rect_height  = document.getElementById('rect_height');
+  let $rect_left    = document.getElementById('rect_left');
+  let $rect_right   = document.getElementById('rect_right');
+  let $rect_width   = document.getElementById('rect_width');
+
+  window.addEventListener('scroll', () => {
+    let target = document.getElementById('target');
+    $offsetTop   .textContent = target.offsetTop   ;
+    $offsetHeight.textContent = target.offsetHeight;
+    $offsetWidth .textContent = target.offsetWidth ;
+    $offsetLeft  .textContent = target.offsetLeft  ;
+
+    let rect = target.getBoundingClientRect();
+    $rect_top    .textContent = rect.top    ;
+    $rect_bottom .textContent = rect.bottom ;
+    $rect_height .textContent = rect.height ;
+    $rect_left   .textContent = rect.left   ;
+    $rect_right  .textContent = rect.right  ;
+    $rect_width  .textContent = rect.width  ;
+  });
+</script>
