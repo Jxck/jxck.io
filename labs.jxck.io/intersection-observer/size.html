@@ -1,65 +1,130 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="demo">
 <title>DEMO | labs.jxck.io</title>
 
 <style>
-  body {
+  * {
     margin: 0;
     padding: 0;
   }
-  #target {
+
+  .target {
     padding: 0;
-    margin: 300px auto;
+    margin: 100px auto;
     width:  500px;
-    height: 500px;
+    height: 800px;
     background-color: #ccc;
+  }
+
+  .red   { background-color: #f40; }
+  .green { background-color: #060; }
+  .blue  { background-color: #07b; }
+
+  #view {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 300px;
+  }
+
+  #view div {
+    margin-bottom: 10px;
   }
 </style>
 
-<div>
-  <div id=target>
-    <p>target.offsetTop    <span id=offsetTop   ></span>
-    <p>target.offsetHeight <span id=offsetHeight></span>
-    <p>target.offsetWidth  <span id=offsetWidth ></span>
-    <p>target.offsetLeft   <span id=offsetLeft  ></span>
-    <p>rect.top            <span id=rect_top    ></span>
-    <p>rect.bottom         <span id=rect_bottom ></span>
-    <p>rect.height         <span id=rect_height ></span>
-    <p>rect.left           <span id=rect_left   ></span>
-    <p>rect.right          <span id=rect_right  ></span>
-    <p>rect.width          <span id=rect_width  ></span>
+<div id=view>
+  <div>
+    <p>document.scrollTop <span id=scrollTop></span>
+    <p>document.clientHeight <span id=clientHeight></span>
+  </div>
+  <div class='view0 red'>
+    <p>on view port        <span class=viewport    ></span>
+    <p>rect.top            <span class=rect_top    ></span>
+    <p>rect.bottom         <span class=rect_bottom ></span>
+    <p>rect.height         <span class=rect_height ></span>
+    <p>rect.left           <span class=rect_left   ></span>
+    <p>rect.right          <span class=rect_right  ></span>
+    <p>rect.width          <span class=rect_width  ></span>
+
+    <p>target.offsetTop    <span class=offsetTop   ></span>
+    <p>target.offsetHeight <span class=offsetHeight></span>
+    <p>target.offsetWidth  <span class=offsetWidth ></span>
+    <p>target.offsetLeft   <span class=offsetLeft  ></span>
+  </div>
+  <div class='view1 green'>
+    <p>on view port        <span class=viewport    ></span>
+    <p>rect.top            <span class=rect_top    ></span>
+    <p>rect.bottom         <span class=rect_bottom ></span>
+    <p>rect.height         <span class=rect_height ></span>
+    <p>rect.left           <span class=rect_left   ></span>
+    <p>rect.right          <span class=rect_right  ></span>
+    <p>rect.width          <span class=rect_width  ></span>
+
+    <p>target.offsetTop    <span class=offsetTop   ></span>
+    <p>target.offsetHeight <span class=offsetHeight></span>
+    <p>target.offsetWidth  <span class=offsetWidth ></span>
+    <p>target.offsetLeft   <span class=offsetLeft  ></span>
+  </div>
+  <div class='view2 blue'>
+    <p>on view port        <span class=viewport    ></span>
+    <p>rect.top            <span class=rect_top    ></span>
+    <p>rect.bottom         <span class=rect_bottom ></span>
+    <p>rect.height         <span class=rect_height ></span>
+    <p>rect.left           <span class=rect_left   ></span>
+    <p>rect.right          <span class=rect_right  ></span>
+    <p>rect.width          <span class=rect_width  ></span>
+
+    <p>target.offsetTop    <span class=offsetTop   ></span>
+    <p>target.offsetHeight <span class=offsetHeight></span>
+    <p>target.offsetWidth  <span class=offsetWidth ></span>
+    <p>target.offsetLeft   <span class=offsetLeft  ></span>
   </div>
 </div>
 
+<div class='target red'></div>
+<div class='target green'></div>
+<div class='target blue'></div>
 
 <script>
-  let $offsetTop    = document.getElementById('offsetTop');
-  let $offsetHeight = document.getElementById('offsetHeight');
-  let $offsetWidth  = document.getElementById('offsetWidth');
-  let $offsetLeft   = document.getElementById('offsetLeft');
-
-  let $rect_top     = document.getElementById('rect_top');
-  let $rect_bottom  = document.getElementById('rect_bottom');
-  let $rect_height  = document.getElementById('rect_height');
-  let $rect_left    = document.getElementById('rect_left');
-  let $rect_right   = document.getElementById('rect_right');
-  let $rect_width   = document.getElementById('rect_width');
-
   window.addEventListener('scroll', () => {
-    let target = document.getElementById('target');
-    $offsetTop   .textContent = target.offsetTop   ;
-    $offsetHeight.textContent = target.offsetHeight;
-    $offsetWidth .textContent = target.offsetWidth ;
-    $offsetLeft  .textContent = target.offsetLeft  ;
+    let scrollTop    = document.documentElement.scrollTop;
+    let clientHeight = document.documentElement.clientHeight;
+    document.querySelector('#scrollTop').textContent =    scrollTop;
+    document.querySelector('#clientHeight').textContent = clientHeight;
 
-    let rect = target.getBoundingClientRect();
-    $rect_top    .textContent = rect.top    ;
-    $rect_bottom .textContent = rect.bottom ;
-    $rect_height .textContent = rect.height ;
-    $rect_left   .textContent = rect.left   ;
-    $rect_right  .textContent = rect.right  ;
-    $rect_width  .textContent = rect.width  ;
+    document.querySelectorAll('.target').forEach((target, i) => {
+      // DOM
+      let view = document.querySelector(`.view${i}`);
+      let $viewport     = view.querySelector('.viewport');
+
+      let $rect_top     = view.querySelector('.rect_top');
+      let $rect_bottom  = view.querySelector('.rect_bottom');
+      let $rect_height  = view.querySelector('.rect_height');
+      let $rect_left    = view.querySelector('.rect_left');
+      let $rect_right   = view.querySelector('.rect_right');
+      let $rect_width   = view.querySelector('.rect_width');
+
+      let $offsetTop    = view.querySelector('.offsetTop');
+      let $offsetHeight = view.querySelector('.offsetHeight');
+      let $offsetWidth  = view.querySelector('.offsetWidth');
+      let $offsetLeft   = view.querySelector('.offsetLeft');
+
+      // position
+      let rect = target.getBoundingClientRect();
+      $rect_top    .textContent = rect.top    ;
+      $rect_bottom .textContent = rect.bottom ;
+      $rect_height .textContent = rect.height ;
+      $rect_left   .textContent = rect.left   ;
+      $rect_right  .textContent = rect.right  ;
+      $rect_width  .textContent = rect.width  ;
+
+      $offsetTop   .textContent = target.offsetTop   ;
+      $offsetHeight.textContent = target.offsetHeight;
+      $offsetWidth .textContent = target.offsetWidth ;
+      $offsetLeft  .textContent = target.offsetLeft  ;
+
+      $viewport.textContent =  rect.top < clientHeight && rect.bottom > 0;
+    });
   });
 </script>
