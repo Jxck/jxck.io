@@ -124,6 +124,8 @@
       $offsetWidth .textContent = target.offsetWidth ;
       $offsetLeft  .textContent = target.offsetLeft  ;
 
+      // 矩形の上端が viewport の下端より上
+      // 矩形の下端が viewport の上端より下
       $viewport.textContent =  rect.top < clientHeight && rect.bottom > 0;
     });
   });
