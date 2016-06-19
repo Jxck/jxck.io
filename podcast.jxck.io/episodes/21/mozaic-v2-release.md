@@ -4,7 +4,7 @@
 
 audio: https://files.mozaic.fm/mozaic-ep21.mp3
 
-- published_at: 2015-05-29
+- published_at: 2016-06-20
 
 
 ## Theme
@@ -43,5 +43,6 @@ mozaic.fm を引き続きよろしくお願いいたします。
 
 ## Show Note
 
-- [mozaic.fm](https://mozaic.fm)
+- [new site](https://mozaic.fm)
+- [new feed url](http://feed.mozaic.fm)
 - [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash)
