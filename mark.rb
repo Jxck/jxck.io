@@ -880,7 +880,7 @@ if __FILE__ == $0
   end
 
   def podcast(episode)
-    icon = "https://podcast.jxck.io/assets/img/mozaic.png" # TODO: https://mozaic.fm/assets/img/mozaic.png
+    icon = "https://mozaic.fm/assets/img/mozaic.png" # TODO: https://mozaic.fm/assets/img/mozaic.png
     meta_template = File.read(".template/meta.html.erb")
     podcast_template = File.read(".template/podcast.html.erb")
 
@@ -894,8 +894,8 @@ if __FILE__ == $0
 
   def podcastfeed(feed = false)
     puts "build podcast"
-    dir = "./podcast.jxck.io/episodes/**/*"
-    host = "podcast.jxck.io"
+    dir = "./mozaic.fm/episodes/**/*"
+    host = "mozaic.fm"
 
     # episodes
     episodes = Dir.glob(dir)
@@ -922,7 +922,7 @@ if __FILE__ == $0
 
     puts "build index.html"
     archive = ERB.new(File.read(".template/podcast.index.html.erb")).result(binding)
-    File.write("./podcast.jxck.io/index.html", archive)
+    File.write("./mozaic.fm/index.html", archive)
   end
 
   # $ mark.rb blog feed
@@ -948,7 +948,7 @@ if __FILE__ == $0
   end
 
   if ARGV.first == "-tp"
-    e = Episode.new("./podcast.jxck.io/episodes/1/webcomponents.md")
+    e = Episode.new("./mozaic.fm/episodes/1/webcomponents.md")
     #podcast(e)
     puts e.guests[0]
     puts e.guests[1]

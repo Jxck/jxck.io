@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <!--
+  貴様、見ているな！！
+  このサイトの技術的なまとめはこちらをどうぞ。
+  https://labs.jxck.io/blog
+
+  by Jxck
+  -->
+  <link rel="canonical" href="https://mozaic.fm">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="alternate" type="application/rss+xml" title="mozaic.fm" href="http://feed.mozaic.fm">
+  <link rel="author" href="//jxck.io/assets/humans.txt">
+  <script async src="//jxck.io/assets/js/ga.js"></script>
+  <script async src="/assets/js/highlight.min.js"></script>
+  <script src="/assets/js/mozaic.js"></script>
+
+  <meta name=author content=Jxck>
+<meta name=description content="第 12 回 Ruby on Rails の SideShow です。@a_matsuda さんの語る Rails 開発のスタイルと、そのコミュニティの持つ力、 Rails が引っ張ったテストの話などをお送りします。...">
+<meta name=keywords content="rails,a_matsuda,mozaic.fm">
+
+<meta name=twitter:card content=summary>
+<meta name=twitter:site content=@jxck_>
+<meta name=twitter:url content=https://mozaic.fm/episodes/12/rails-sideshow.html>
+<meta name=twitter:title content="ep12 Rails sideshow | mozaic.fm">
+<meta name=twitter:description content="第 12 回 Ruby on Rails の SideShow です。@a_matsuda さんの語る Rails 開発のスタイルと、そのコミュニティの持つ力、 Rails が引っ張ったテストの話などをお送りします。...">
+<meta name=twitter:image content=https://mozaic.fm/assets/img/mozaic.png>
+
+<meta property=og:type content="article">
+<meta property=og:url content=https://mozaic.fm/episodes/12/rails-sideshow.html>
+<meta property=og:title content="ep12 Rails sideshow | mozaic.fm">
+<meta property=og:site_name content=mozaic.fm>
+<meta property=og:description content="第 12 回 Ruby on Rails の SideShow です。@a_matsuda さんの語る Rails 開発のスタイルと、そのコミュニティの持つ力、 Rails が引っ張ったテストの話などをお送りします。...">
+<meta property=og:image content=https://mozaic.fm/assets/img/mozaic.png>
+
+<link rel=icon sizes=192x192 href=https://mozaic.fm/assets/img/mozaic.png>
+<link rel=apple-touch-icon sizes=128x128 href=https://mozaic.fm/assets/img/mozaic.png>
+
+  <title>ep12 Rails sideshow | mozaic.fm</title>
+  <link rel="prev" href="https://mozaic.fm/episodes/12/rails.html">
+  <link rel="next" href="https://mozaic.fm/episodes/13/virtual-dom.html">
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/body.css">
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/header.css">
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/main.css">
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/info.css">
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/article.css">
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/footer.css">
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/mozaic.css">
+</head>
+<body>
+
+<header>
+  <ul>
+    <li><a href="/"><img class="logo" alt="blog top" width="50" src="/assets/img/mozaic.svg"></a>
+    <!--li><a><img alt="receive push notification" width="50" src="/assets/img/push.svg"></a-->
+    <li><a href="http://feed.mozaic.fm"><img alt="rss feed" width="50" src="/assets/img/podcast.svg"></a>
+    <li><a href="https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495"><img alt="itunes" width="50" src="/assets/img/itunes.svg"></a>
+    <li><a href="https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd"><img alt="huamns.txt" width="50" src="/assets/img/twitter.svg"></a>
+    <li><a href="//jxck.io"><img class="logo" alt="jxck logo" width="50" src="/assets/img/jxck.svg"></a>
+  </ul>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/12/rails.html">ep12 Rails</a></span>
+    <span><a href="/episodes/13/virtual-dom.html">ep13 Virtual DOM</a>&nbsp;&gt;&gt;</span>
+  </nav>
+
+  <article>
+    <h1><a href=/episodes/12/rails-sideshow.html>ep12 Rails sideshow</a></h1>
+    <section>
+      <h2>Info</h2>
+      <p><audio preload=none src=https://files.mozaic.fm/mozaic-ep12.sideshow.mp3 controls></audio>
+      <ul class=info>
+        <li>published_at: <time datetime=2014-12-12>2014-12-12</time>
+        <li>guest: <a href="https://twitter.com/a_matsuda">@a_matsuda</a>
+      </ul>
+    </section>
+    <section>
+      <h2>Theme</h2>
+      <p>第 12 回 Ruby on Rails の SideShow です。
+      <p><a href="https://twitter.com/a_matsuda/">@a_matsuda</a> さんの語る Rails 開発のスタイルと、そのコミュニティの持つ力、 Rails が引っ張ったテストの話などをお送りします。
+    </section>
+    <section>
+      <h2>Show Note</h2>
+      <ul>
+        <li><a href="https://twitter.com/tenderlove">Aaron Patterson</a>
+        <li><a href="http://rubykaigi.org/2014">RubyKaigi</a>
+        <li><a href="http://rubyconf.org/">RubyConf</a>
+        <li><a href="https://github.com/josevalim">Josevalim</a>
+        <li><a href="http://reia-lang.org/">Reia</a>
+        <li><a href="http://elixir-lang.org/">Elixir</a>
+        <li><a href="http://plataformatec.com">Platformatec</a>
+        <li><a href="http://rubykaigi.org/2014/presentation/S-YukihiroMatzMatsumoto">RubyKaigi 2014 での Ruby に型という話</a>
+        <li><a href="https://www.djangoproject.com/">Django</a>
+        <li><a href="https://pragprog.com/book/ruby/programming-ruby">Dave Thomas の Pickax(つるはし)本</a>
+        <li><a href="http://www.clear-code.com/blog/2014/11/6.html">Ruby のテスティングフレームワークの歴史(2014 年版)</a>
+        <li><a href="http://david.heinemeierhansson.com/2012/rails-is-omakase.html">Rails is omakase</a>
+        <li><a href="http://david.heinemeierhansson.com/2014/tdd-is-dead-long-live-testing.html">TDD is dead. Long live testing.</a>
+      </ul>
+    </section>
+  </article>
+
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/12/rails.html">ep12 Rails</a></span>
+    <span><a href="/episodes/13/virtual-dom.html">ep13 Virtual DOM</a>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <address class="copyright">Copyright &copy; 2016 <a href="/">mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</address>
+</footer>
+</body>
+</html>

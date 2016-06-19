@@ -31,7 +31,7 @@
   "scripts": {
     "blog": "./mark.rb blog",
     "podcast": "./mark.rb podcast",
-    "gzip": "./compress.rb www.jxck.io blog.jxck.io podcast.jxck.io",
+    "gzip": "./compress.rb www.jxck.io blog.jxck.io mozaic.fm",
     "build": "npm run blog && npm run gzip && gulp",
     "slide": "./compress.rb slide.jxck.io",
     "clean": "find ./**/* -name *.gz | xargs -L 4 -P 4 rm",
@@ -40,6 +40,7 @@
     "_restart": "npm stop && npm start",
     "start": "sudo systemctl start h2o",
     "stop": "sudo systemctl stop h2o",
+    "kill": "sudo systemctl kill h2o",
     "restart": "sudo systemctl restart h2o",
     "reload": "sudo systemctl reload h2o"
 

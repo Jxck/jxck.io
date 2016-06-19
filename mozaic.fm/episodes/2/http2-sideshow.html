@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <!--
+  貴様、見ているな！！
+  このサイトの技術的なまとめはこちらをどうぞ。
+  https://labs.jxck.io/blog
+
+  by Jxck
+  -->
+  <link rel="canonical" href="https://mozaic.fm">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="alternate" type="application/rss+xml" title="mozaic.fm" href="http://feed.mozaic.fm">
+  <link rel="author" href="//jxck.io/assets/humans.txt">
+  <script async src="//jxck.io/assets/js/ga.js"></script>
+  <script async src="/assets/js/highlight.min.js"></script>
+  <script src="/assets/js/mozaic.js"></script>
+
+  <meta name=author content=Jxck>
+<meta name=description content="第 2 回 HTTP2 の SideShow です。今回は 第 2 回 に収まらなかった 「Nghttp2 の今後」について、番外編として配信します。OSS 奨励賞受賞の裏話や、 http2 や spdylay が今後どうなるのか、 tatsuhiro_t さんの今後の活動...">
+<meta name=keywords content="http2,tatsuhiro_t,jovi0608,mozaic.fm">
+
+<meta name=twitter:card content=summary>
+<meta name=twitter:site content=@jxck_>
+<meta name=twitter:url content=https://mozaic.fm/episodes/2/http2-sideshow.html>
+<meta name=twitter:title content="ep2 HTTP2 sideshow | mozaic.fm">
+<meta name=twitter:description content="第 2 回 HTTP2 の SideShow です。今回は 第 2 回 に収まらなかった 「Nghttp2 の今後」について、番外編として配信します。OSS 奨励賞受賞の裏話や、 http2 や spdylay が今後どうなるのか、 tatsuhiro_t さんの今後の活動...">
+<meta name=twitter:image content=https://mozaic.fm/assets/img/mozaic.png>
+
+<meta property=og:type content="article">
+<meta property=og:url content=https://mozaic.fm/episodes/2/http2-sideshow.html>
+<meta property=og:title content="ep2 HTTP2 sideshow | mozaic.fm">
+<meta property=og:site_name content=mozaic.fm>
+<meta property=og:description content="第 2 回 HTTP2 の SideShow です。今回は 第 2 回 に収まらなかった 「Nghttp2 の今後」について、番外編として配信します。OSS 奨励賞受賞の裏話や、 http2 や spdylay が今後どうなるのか、 tatsuhiro_t さんの今後の活動...">
+<meta property=og:image content=https://mozaic.fm/assets/img/mozaic.png>
+
+<link rel=icon sizes=192x192 href=https://mozaic.fm/assets/img/mozaic.png>
+<link rel=apple-touch-icon sizes=128x128 href=https://mozaic.fm/assets/img/mozaic.png>
+
+  <title>ep2 HTTP2 sideshow | mozaic.fm</title>
+  <link rel="prev" href="https://mozaic.fm/episodes/2/http2.html">
+  <link rel="next" href="https://mozaic.fm/episodes/3/angularjs.html">
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/body.css">
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/header.css">
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/main.css">
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/info.css">
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/article.css">
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/footer.css">
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/mozaic.css">
+</head>
+<body>
+
+<header>
+  <ul>
+    <li><a href="/"><img class="logo" alt="blog top" width="50" src="/assets/img/mozaic.svg"></a>
+    <!--li><a><img alt="receive push notification" width="50" src="/assets/img/push.svg"></a-->
+    <li><a href="http://feed.mozaic.fm"><img alt="rss feed" width="50" src="/assets/img/podcast.svg"></a>
+    <li><a href="https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495"><img alt="itunes" width="50" src="/assets/img/itunes.svg"></a>
+    <li><a href="https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd"><img alt="huamns.txt" width="50" src="/assets/img/twitter.svg"></a>
+    <li><a href="//jxck.io"><img class="logo" alt="jxck logo" width="50" src="/assets/img/jxck.svg"></a>
+  </ul>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/2/http2.html">ep2 HTTP2</a></span>
+    <span><a href="/episodes/3/angularjs.html">ep3 Angular.js</a>&nbsp;&gt;&gt;</span>
+  </nav>
+
+  <article>
+    <h1><a href=/episodes/2/http2-sideshow.html>ep2 HTTP2 sideshow</a></h1>
+    <section>
+      <h2>Info</h2>
+      <p><audio preload=none src=https://files.mozaic.fm/mozaic-ep2.sideshow.mp3 controls></audio>
+      <ul class=info>
+        <li>published_at: <time datetime=2014-04-29>2014-04-29</time>
+        <li>guest: <a href="https://twitter.com/tatsuhiro_t">@tatsuhiro_t</a>
+        <li>guest <a href="https://twitter.com/jovi0608">@jovi0608</a>
+      </ul>
+    </section>
+    <section>
+      <h2>Theme</h2>
+      <p>第 2 回 HTTP2 の SideShow です。
+      <p>今回は <a href="http://mozaic.fm/post/83421293098/2-http2">第 2 回</a> に収まらなかった 「Nghttp2 の今後」について、番外編として配信します。
+      <p>OSS 奨励賞受賞の裏話や、 http2 や spdylay が今後どうなるのか、 <a href="https://twitter.com/tatsuhiro_t">tatsuhiro_t</a> さんの今後の活動についてなど、こぼれ話をまとめた 15 分です。
+    </section>
+    <section>
+      <h2>Show Note</h2>
+      <ul>
+        <li><a href="http://ossforum.jp/ossaward9th2">第九回 日本 OSS 奨励賞</a>
+        <li><a href="https://github.com/sorced-jim/SPDY-for-iPhone">SPDY-for-iPhone</a>
+        <li><a href="http://en.wikipedia.org/wiki/Dynamic_Adaptive_Streaming_over_HTTP">mpeg-dash</a>
+        <li><a href="https://github.com/tatsuhiro-t/nghttp2/tree/master/examples">nghttp2-examples</a>
+        <li><a href="https://nghttp2.org/">nghttp2 public test server</a>
+        <li><a href="https://github.com/matsumoto-r/mruby-http2">mruby-http2</a>
+        <li><a href="https://wiki.php.net/ideas/php6">php6-ideas</a>
+      </ul>
+    </section>
+  </article>
+
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/2/http2.html">ep2 HTTP2</a></span>
+    <span><a href="/episodes/3/angularjs.html">ep3 Angular.js</a>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <address class="copyright">Copyright &copy; 2016 <a href="/">mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</address>
+</footer>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <!--
+  貴様、見ているな！！
+  このサイトの技術的なまとめはこちらをどうぞ。
+  https://labs.jxck.io/blog
+
+  by Jxck
+  -->
+  <link rel="canonical" href="https://mozaic.fm">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="alternate" type="application/rss+xml" title="mozaic.fm" href="http://feed.mozaic.fm">
+  <link rel="author" href="//jxck.io/assets/humans.txt">
+  <script async src="//jxck.io/assets/js/ga.js"></script>
+  <script async src="/assets/js/highlight.min.js"></script>
+  <script src="/assets/js/mozaic.js"></script>
+
+  <meta name=author content=Jxck>
+<meta name=description content="mozaic.fm の v2 をリリースしました。 breaking change があるので、そのアナウンスとテストを兼ねています。一番大きいのは、 feed の URL の変更です。新しい URL はこちらです。http://feed.mozaic.fm...">
+<meta name=keywords content="release note,jxck,mozaic.fm">
+
+<meta name=twitter:card content=summary>
+<meta name=twitter:site content=@jxck_>
+<meta name=twitter:url content=https://mozaic.fm/episodes/21/mozaic-v2-release.html>
+<meta name=twitter:title content="ep21 mozaic.fm v2 release note | mozaic.fm">
+<meta name=twitter:description content="mozaic.fm の v2 をリリースしました。 breaking change があるので、そのアナウンスとテストを兼ねています。一番大きいのは、 feed の URL の変更です。新しい URL はこちらです。http://feed.mozaic.fm...">
+<meta name=twitter:image content=https://mozaic.fm/assets/img/mozaic.png>
+
+<meta property=og:type content="article">
+<meta property=og:url content=https://mozaic.fm/episodes/21/mozaic-v2-release.html>
+<meta property=og:title content="ep21 mozaic.fm v2 release note | mozaic.fm">
+<meta property=og:site_name content=mozaic.fm>
+<meta property=og:description content="mozaic.fm の v2 をリリースしました。 breaking change があるので、そのアナウンスとテストを兼ねています。一番大きいのは、 feed の URL の変更です。新しい URL はこちらです。http://feed.mozaic.fm...">
+<meta property=og:image content=https://mozaic.fm/assets/img/mozaic.png>
+
+<link rel=icon sizes=192x192 href=https://mozaic.fm/assets/img/mozaic.png>
+<link rel=apple-touch-icon sizes=128x128 href=https://mozaic.fm/assets/img/mozaic.png>
+
+  <title>ep21 mozaic.fm v2 release note | mozaic.fm</title>
+  <link rel="prev" href="https://mozaic.fm/episodes/20/browser.html">
+  
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/body.css">
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/header.css">
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/main.css">
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/info.css">
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/article.css">
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/footer.css">
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/mozaic.css">
+</head>
+<body>
+
+<header>
+  <ul>
+    <li><a href="/"><img class="logo" alt="blog top" width="50" src="/assets/img/mozaic.svg"></a>
+    <!--li><a><img alt="receive push notification" width="50" src="/assets/img/push.svg"></a-->
+    <li><a href="http://feed.mozaic.fm"><img alt="rss feed" width="50" src="/assets/img/podcast.svg"></a>
+    <li><a href="https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495"><img alt="itunes" width="50" src="/assets/img/itunes.svg"></a>
+    <li><a href="https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd"><img alt="huamns.txt" width="50" src="/assets/img/twitter.svg"></a>
+    <li><a href="//jxck.io"><img class="logo" alt="jxck logo" width="50" src="/assets/img/jxck.svg"></a>
+  </ul>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/20/browser.html">ep20 Browser</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+
+  <article>
+    <h1><a href=/episodes/21/mozaic-v2-release.html>ep21 mozaic.fm v2 release note</a></h1>
+    <section>
+      <h2>Info</h2>
+      <p><audio preload=none src=https://files.mozaic.fm/mozaic-ep21.mp3 controls></audio>
+      <ul class=info>
+        <li>published_at: <time datetime=2016-06-20>2016-06-20</time>
+      </ul>
+    </section>
+    <section>
+      <h2>Theme</h2>
+      <p>mozaic.fm の v2 をリリースしました。 breaking change があるので、そのアナウンスとテストを兼ねています。
+      <p>一番大きいのは、 feed の URL の変更です。新しい URL はこちらです。
+      <p><a href="http://feed.mozaic.fm">http://feed.mozaic.fm</a>
+    </section>
+    <section>
+      <h2>Change Log</h2>
+      <p>少し時間がかかってしまいましたが、全体的に作り直しました。<br>
+      以下が v2 の変更点です。
+      <ul>
+        <li>feed の URL が <a href="http://feed.mozaic.fm">http://feed.mozaic.fm</a> に変わります。<ul>
+          <li>feedburner をやめたかったので自分で生成するようにしました。
+          <li>現時点での全エピソードを feed に載せるようにしました。
+          <li>古い URL は feedburner のドメインなので、リダイレクトはできません。
+          <li>古い URL の feed は、このエピソード以降更新されません。
+          <li>itunes の場合は自動で更新されると思います。
+          <li>うまくいかない場合は登録のやり直しをお願いします。
+        </ul>
+        <li>サイトを作り直しました。<ul>
+          <li>tumblr をやめたかったので、自分で作りました。
+          <li>基本 https ですが、 feed などは非対応アプリがあるので http も配っています。
+          <li>一応 PWA 的にしたかったのですが、一気には作り込めなかったので、細かい機能をちょっとづつ足していきます。
+          <li>ep12 以前の音声ファイルは m4a でしたが、全て mp3 に統一しました。
+          <li>エピソードの URL が全部変わりますが、しばらくはリダイレクトします。
+        </ul>
+      </ul>
+      <p>不具合などがあった場合は、 <a href="https://twitter.com/jxck_">@jxck_</a> までおしらせください。<br>
+      mozaic.fm を引き続きよろしくお願いいたします。
+    </section>
+    <section>
+      <h2>Show Note</h2>
+      <ul>
+        <li><a href="https://mozaic.fm">new site</a>
+        <li><a href="http://feed.mozaic.fm">new feed url</a>
+        <li><a href="https://twitter.com/search?q=mozaicfm&src=hash">#mozaicfm</a>
+      </ul>
+    </section>
+  </article>
+
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/20/browser.html">ep20 Browser</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <address class="copyright">Copyright &copy; 2016 <a href="/">mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</address>
+</footer>
+</body>
+</html>

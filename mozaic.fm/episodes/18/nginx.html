@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <!--
+  貴様、見ているな！！
+  このサイトの技術的なまとめはこちらをどうぞ。
+  https://labs.jxck.io/blog
+
+  by Jxck
+  -->
+  <link rel="canonical" href="https://mozaic.fm">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="alternate" type="application/rss+xml" title="mozaic.fm" href="http://feed.mozaic.fm">
+  <link rel="author" href="//jxck.io/assets/humans.txt">
+  <script async src="//jxck.io/assets/js/ga.js"></script>
+  <script async src="/assets/js/highlight.min.js"></script>
+  <script src="/assets/js/mozaic.js"></script>
+
+  <meta name=author content=Jxck>
+<meta name=description content="第 18 回のテーマは Nginx です。今回は @cubicdaiya さんをお迎えして、 すっかり HTTP サーバのデファクトの地位につきつつある Nginx について、なぜ Nginx を選ぶのか、 Nginx から見た現在の Web にはどういう変化があるのか。 ...">
+<meta name=keywords content="nginx,cubicdaiya,mozaic.fm">
+
+<meta name=twitter:card content=summary>
+<meta name=twitter:site content=@jxck_>
+<meta name=twitter:url content=https://mozaic.fm/episodes/18/nginx.html>
+<meta name=twitter:title content="ep18 Nginx | mozaic.fm">
+<meta name=twitter:description content="第 18 回のテーマは Nginx です。今回は @cubicdaiya さんをお迎えして、 すっかり HTTP サーバのデファクトの地位につきつつある Nginx について、なぜ Nginx を選ぶのか、 Nginx から見た現在の Web にはどういう変化があるのか。 ...">
+<meta name=twitter:image content=https://mozaic.fm/assets/img/mozaic.png>
+
+<meta property=og:type content="article">
+<meta property=og:url content=https://mozaic.fm/episodes/18/nginx.html>
+<meta property=og:title content="ep18 Nginx | mozaic.fm">
+<meta property=og:site_name content=mozaic.fm>
+<meta property=og:description content="第 18 回のテーマは Nginx です。今回は @cubicdaiya さんをお迎えして、 すっかり HTTP サーバのデファクトの地位につきつつある Nginx について、なぜ Nginx を選ぶのか、 Nginx から見た現在の Web にはどういう変化があるのか。 ...">
+<meta property=og:image content=https://mozaic.fm/assets/img/mozaic.png>
+
+<link rel=icon sizes=192x192 href=https://mozaic.fm/assets/img/mozaic.png>
+<link rel=apple-touch-icon sizes=128x128 href=https://mozaic.fm/assets/img/mozaic.png>
+
+  <title>ep18 Nginx | mozaic.fm</title>
+  <link rel="prev" href="https://mozaic.fm/episodes/17/service-worker.html">
+  <link rel="next" href="https://mozaic.fm/episodes/19/es7.html">
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/body.css">
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/header.css">
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/main.css">
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/info.css">
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/article.css">
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/footer.css">
+  <link rel="stylesheet" property="stylesheet" type="text/css" href="/assets/css/mozaic.css">
+</head>
+<body>
+
+<header>
+  <ul>
+    <li><a href="/"><img class="logo" alt="blog top" width="50" src="/assets/img/mozaic.svg"></a>
+    <!--li><a><img alt="receive push notification" width="50" src="/assets/img/push.svg"></a-->
+    <li><a href="http://feed.mozaic.fm"><img alt="rss feed" width="50" src="/assets/img/podcast.svg"></a>
+    <li><a href="https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495"><img alt="itunes" width="50" src="/assets/img/itunes.svg"></a>
+    <li><a href="https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd"><img alt="huamns.txt" width="50" src="/assets/img/twitter.svg"></a>
+    <li><a href="//jxck.io"><img class="logo" alt="jxck logo" width="50" src="/assets/img/jxck.svg"></a>
+  </ul>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/17/service-worker.html">ep17 Service Worker</a></span>
+    <span><a href="/episodes/19/es7.html">ep19 ES7</a>&nbsp;&gt;&gt;</span>
+  </nav>
+
+  <article>
+    <h1><a href=/episodes/18/nginx.html>ep18 Nginx</a></h1>
+    <section>
+      <h2>Info</h2>
+      <p><audio preload=none src=https://files.mozaic.fm/mozaic-ep18.mp3 controls></audio>
+      <ul class=info>
+        <li>published_at: <time datetime=2015-06-01>2015-06-01</time>
+        <li>guest: <a href="https://twitter.com/cubicdaiya">@cubicdaiya</a>
+      </ul>
+    </section>
+    <section>
+      <h2>Theme</h2>
+      <p>第 18 回のテーマは Nginx です。
+      <p>今回は <a href="https://twitter.com/cubicdaiya">@cubicdaiya</a> さんをお迎えして、 すっかり HTTP サーバのデファクトの地位につきつつある Nginx について、なぜ Nginx を選ぶのか、 Nginx から見た現在の Web にはどういう変化があるのか。 そして Nginx はこれからどうなっていくのか、それが Web にどんな変化をもたらすのかを議論しました。
+    </section>
+    <section>
+      <h2>Show Note</h2>
+      <section>
+        <h3>Nginx を使い始めた理由(0:00~)</h3>
+        <ul>
+          <li><a href="https://github.com/cubicdaiya/ngx_small_light">ngx-small-light</a>
+          <li><a href="https://github.com/cubicdaiya/nginx-build">nginx-build</a>
+          <li><a href="https://github.com/mruby/mruby">mruby</a>
+          <li><a href="https://h2o.examp1e.net">h2o</a>
+          <li><a href="http://gihyo.jp/magazine/wdpress/archive/2013/vol72">Web+DB Press Vol.72</a>
+          <li><a href="https://developers.google.com/speed/webp/">WebP</a>
+        </ul>
+      </section>
+      <section>
+        <h3>Nginx のアーキテクチャ(7:26~)</h3>
+        <ul>
+          <li><a href="http://gihyo.jp/magazine/wdpress/archive/2013/vol72">Web+DB Press Vol.72</a>
+          <li><a href="http://www.hyuki.com/yukiwiki/wiki.cgi%3FTheC10kProblem">C10K</a>
+          <li><a href="http://man7.org/linux/man-pages/man7/epoll.7.html">epoll</a>
+          <li><a href="http://">kqueue</a>
+          <li><a href="http://httpd.apache.org/docs/2.4/en/mod/prefork.html">apache prefork mpm</a>
+          <li><a href="http://httpd.apache.org/docs/2.4/en/mod/event.html">apache event mpm</a>
+          <li><a href="https://www.python.org/dev/peps/pep-0333/">WSGI</a>
+          <li><a href="http://plackperl.org/">PSGI</a>
+          <li><a href="http://rack.github.io/">Rack</a>
+          <li><a href="http://unicorn.bogomips.org/">Unicorn</a>
+          <li><a href="http://search.cpan.org/%7Emiyagawa/Starman-0.4013/lib/Starman.pm">Starman</a>
+        </ul>
+      </section>
+      <section>
+        <h3>なぜ Nginx をフロントに立てるのか(17:30~)</h3>
+        <ul>
+          <li><a href="https://www.kernel.org/doc/Documentation/filesystems/tmpfs.txt">tmpfs</a>
+          <li><a href="https://httpd.apache.org/docs/2.4/en/howto/htaccess.html">.htaccess</a>
+        </ul>
+      </section>
+      <section>
+        <h3>Nginx のスクリプティングモジュール (25:40~)</h3>
+        <ul>
+          <li><a href="https://github.com/openresty/lua-nginx-module">lua-nginx-module</a>
+          <li><a href="https://github.com/matsumoto-r/ngx_mruby">ngx_mruby</a>
+          <li><a href="http://en.wikipedia.org/wiki/Real-time_bidding">Rial Time Bidding(RTB)</a>
+          <li><a href="http://wiki.nginx.org/HttpLuaModule%23ngx.location.capture">location.capture()</a>
+          <li><a href="http://openresty.org/">OpenResty</a>
+          <li><a href="http://nginx.com/blog/nginx-open-source-reflecting-back-and-looking-ahead/">JavaScript を載せる</a> という話
+        </ul>
+      </section>
+      <section>
+        <h3>H2O と Nginx(46:10~)</h3>
+        <ul>
+          <li><a href="https://h2o.examp1e.net/">h2o</a>
+          <li><a href="https://nghttp2.org/">nghttp2</a>
+          <li><a href="http://qiita.com/cubicdaiya/items/235777dc401ec419b14e">nginx のパラメータチューニングと h2o</a>
+          <li><a href="http://nginx.org/en/docs/http/ngx_http_core_module.html%23open_file_cache">open_file_cache</a>
+          <li><a href="http://nginx.org/en/docs/http/ngx_http_core_module.html%23tcp_nopush">tcp_nopush</a>
+        </ul>
+      </section>
+      <section>
+        <h3>Nginx の HTTP2 対応(49:40~)</h3>
+        <ul>
+          <li><a href="https://tools.ietf.org/html/rfc7540">http2(後日 RFC が出ました)</a>
+          <li><a href="https://tools.ietf.org/html/rfc7541">hpack(後日 RFC が出ました)</a>
+          <li><a href="http://nginx.com/blog/how-nginx-plans-to-support-http2/">How NGINX Plans to Support HTTP/2</a>
+          <li><a href="http://ngrep.sourceforge.net/download.html">ngrep</a>
+          <li><a href="http://www.tcpdump.org/">tcpdump</a>
+          <li><a href="https://github.com/grpc/grpc">grpc</a>
+        </ul>
+      </section>
+      <section>
+        <h3>TLS 前提になっていく感じどうなのか(56:10~)</h3>
+        <ul>
+          <li><a href="http://jxck.hatenablog.com/entry/web-over-https">HTTPS 化する Web をどう考えるか(書いたのは収録後です)</a>
+        </ul>
+      </section>
+      <section>
+        <h3>QUIC はどうか?(58:10~)</h3>
+        <ul>
+          <li><a href="http://blog.chromium.org/2013/06/experimenting-with-quic.html">QUIC</a>
+          <li><strong>Google はインターネットを fork しようとしている</strong>
+        </ul>
+      </section>
+      <section>
+        <h3>Nginx 1.9 の新機能(1:05:10~)</h3>
+        <ul>
+          <li><a href="http://trac.nginx.org/nginx/milestone/1.9">Nginx マイルストーン 1.9</a>
+          <li><a href="http://nginx.com/products/">Nginx Plus</a>
+          <li><a href="http://nginx.org/en/docs/http/ngx_http_stub_status_module.html">ngx_http_stub_status_module</a>
+          <li>(収録語 Upstream 一覧の動的更新を cubicdaiya さんがモジュールで公開されました <a href="https://github.com/cubicdaiya/ngx_dynamic_upstream">ngx_dynamic_upstream</a>)
+        </ul>
+      </section>
+      <section>
+        <h3>tengine (1:42:30~)</h3>
+        <ul>
+          <li><a href="http://tengine.taobao.org/">tengine</a>
+          <li>(SO_REUSEPORT サポートは <a href="http://hg.nginx.org/nginx/rev/4f6efabcb09b">もうすぐ</a> 入りそうです)
+        </ul>
+      </section>
+      <section>
+        <h3>Nginx 1.8 リリース (1:17:10~)</h3>
+        <ul>
+          <li><a href="http://nginx.org/en/CHANGES-1.8">CHANGES-1.8</a>
+          <li><a href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html%23proxy_request_buffering">proxy_request_buffering</a>
+          <li><a href="http://man7.org/linux/man-pages/man7/aio.7.html">AIO</a>
+          <li><a href="http://nginx.org/en/docs/http/ngx_http_hls_module.html">HLS(http live streaming) module</a>
+        </ul>
+      </section>
+      <section>
+        <h3>これからの HTTP Server と Nginx(1:21:10~)</h3>
+        <ul>
+          <li><a href="https://github.com/h2o/h2o/tree/master/examples/libh2o">libh2o</a>
+          <li><a href="https://github.com/tatsuhiro-t/nghttp2/tree/master/lib">libnghttp2</a>
+        </ul>
+      </section>
+    </section>
+  </article>
+
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/17/service-worker.html">ep17 Service Worker</a></span>
+    <span><a href="/episodes/19/es7.html">ep19 ES7</a>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <address class="copyright">Copyright &copy; 2016 <a href="/">mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</address>
+</footer>
+</body>
+</html>
