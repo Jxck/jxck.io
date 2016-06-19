@@ -100,5 +100,10 @@ http://cyber.law.harvard.edu/rss/rss.html
 また RSS2.0 的には `<enclosure>` の url は http じゃないとだめらしい。
 
 
-## 
+## podcast connect
+
+itunes は podcast connect という画面から、 feed url を変えられる
+
+https://podcastconnect.apple.com
+
 
