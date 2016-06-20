@@ -880,7 +880,7 @@ if __FILE__ == $0
   end
 
   def podcast(episode)
-    icon = "https://mozaic.fm/assets/img/mozaic.png" # TODO: https://mozaic.fm/assets/img/mozaic.png
+    icon = "https://mozaic.fm/assets/img/mozaic.png"
     meta_template = File.read(".template/meta.html.erb")
     podcast_template = File.read(".template/podcast.html.erb")
 
