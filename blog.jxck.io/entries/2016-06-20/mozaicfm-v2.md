@@ -1,8 +1,8 @@
-# [mozaic.fm][rss][pwa][podcast] mozaic.fm の v2.0.0 のリリースログと Podcast の実装
+# [mozaic.fm][rss][podcast] mozaic.fm の v2 のリリースと Podcast の実装と移行
 
 ## Intro
 
-[mozaic.fm](https://mozaic.fm) をリニューアルし、 v2.0.0 としてリリースした。
+[mozaic.fm](https://mozaic.fm) をリニューアルし、 v2 としてリリースした。
 
 今回の更新のモチベーションは大きく分けて 2 つある。
 
@@ -27,7 +27,7 @@ feed は tumblr に feedburner というサービスを連携して提供して�
 
 ## 旧 mozaic.fm の問題点
 
-mozaic.fm は、  Web の技術について「** 今何がおこっているか**」「**これからどうなっていくか**」を議論する Podcast である。
+mozaic.fm は、  Web の技術について「**今何がおこっているか**」と「**これからどうなっていくか**」を議論する Podcast である。
 
 必然的に、最新の Web の技術や、セキュリティ/パフォーマンスなどの周辺技術についても触れることが多い。
 
@@ -52,29 +52,29 @@ Feed さえ適切に配布できていれば、基本的にバグがあっても
 
 いきなりサイトを更新するのも難しいため、まず基礎となるブログを作ることにした。
 
-それが、本サイト https://blog.jxck.io である。
+それが、本サイト [https://blog.jxck.io](https://blog.jxck.io) である。
 
 基本的には http2 ベースで設計しており、その他多くの技術を試しているが、その記録は全てこのサイト自体のエントリとして書き、ドックフーディングしてきたので、そちらをご覧いただきたい。
 
-新しい https://mozaic.fm は、本サイトのコピペをベースとしている。
+新しい [https://mozaic.fm](https://mozaic.fm) は、本サイトのコピペをベースとしている。
 
 
 ## RSS 実装
 
-RSS の仕様には、主に RSS1.0/2.0/Atom の三つがある。
+RSS の仕様には、主に RSS1.0, RSS2.0, Atom の三つがある。
 
 本サイト blog.jxck.io では最新である Atom を採用したが、 Podcast の RSS は **RSS2.0** を用いる必要があった。
 
 RSS2.0 の仕様は以下にある。
 
-http://cyber.law.harvard.edu/rss/rss.html
+[http://cyber.law.harvard.edu/rss/rss.html](http://cyber.law.harvard.edu/rss/rss.html)
 
 
 また、 Apple は Podcast 向けの拡張ボキャブラリを追加しているため、それらも対応している。
 
-- https://help.apple.com/itc/podcasts_connect/#/itc1723472cb
-- https://help.apple.com/itc/podcasts_connect/#/itca5b22233a
-- https://help.apple.com/itc/podcasts_connect/#/itc2b3780e76
+- [https://help.apple.com/itc/podcasts_connect/#/itc1723472cb](https://help.apple.com/itc/podcasts_connect/#/itc1723472cb)
+- [https://help.apple.com/itc/podcasts_connect/#/itca5b22233a](https://help.apple.com/itc/podcasts_connect/#/itca5b22233a)
+- [https://help.apple.com/itc/podcasts_connect/#/itc2b3780e76](https://help.apple.com/itc/podcasts_connect/#/itc2b3780e76)
 
 
 基本的には RSS2.0 に加え `<itunes:xxx>` な名前空間のタグが拡張されている。
@@ -101,10 +101,9 @@ http://cyber.law.harvard.edu/rss/rss.html
 
 ## podcast connect
 
-itunes は podcast connect という画面から、 feed url を変えられる。
-この画面の場所がわかりにくく、たどり着くのに苦労した。
+itunes は podcast connect という場所がわかりにくい画面から、 feed url を変えられる。
 
-https://podcastconnect.apple.com
+[https://podcastconnect.apple.com](https://podcastconnect.apple.com)
 
 
 ## 移行作業
@@ -117,8 +116,8 @@ tumblr に mozaic.fm ドメインを貼り、 feedburner と連携してフィ�
 1. tumblr 上で最後のエピソードを更新し、 feedburner のフィードに反映させる
 1. DNS を変更し、 mozaic.fm を tumblr から新サイトへ向ける
 1. feedburner が新サイトを見ないように、独自ドメインを剥がした tumblr に向ける
-1. mozaic.fm が自サーバを向いたので、 let's encrypt の certbot を走らせ https://mozaic.fm を有効にする
-1. http://mozaic.fm を全て https://mozaic.fm に向ける
+1. mozaic.fm が自サーバを向いたので、 let's encrypt の certbot を走らせ [https://mozaic.fm](https://mozaic.fm) を有効にする
+1. [http://mozaic.fm](http://mozaic.fm) を全て [https://mozaic.fm](https://mozaic.fm) にリダイレクト
 1. 旧エピソードの tumblr 自体の URL を、新 URL にリダイレクトする
 1. itunes の podcast connect から itunes に登録された mozaic.fm の feed を新しいものにする
 
