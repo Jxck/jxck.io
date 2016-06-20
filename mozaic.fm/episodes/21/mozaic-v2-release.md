@@ -37,6 +37,10 @@ mozaic.fm の v2 をリリースしました。 breaking change があるので�
   - エピソードの URL が全部変わりますが、しばらくはリダイレクトします。
 
 
+技術的詳細はいかにまとめました。
+
+- [mozaic.fm の v2 のリリースと Podcast の実装と移行](https://blog.jxck.io/entries/2016-06-20/mozaicfm-v2.html)
+
 不具合などがあった場合は、 [@jxck_](https://twitter.com/jxck_) までおしらせください。
 mozaic.fm を引き続きよろしくお願いいたします。
 
@@ -46,3 +50,4 @@ mozaic.fm を引き続きよろしくお願いいたします。
 - [new site](https://mozaic.fm)
 - [new feed url](http://feed.mozaic.fm)
 - [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash)
+- [mozaic.fm の v2 のリリースと Podcast の実装と移行](https://blog.jxck.io/entries/2016-06-20/mozaicfm-v2.html)
