@@ -37,7 +37,7 @@ mozaic.fm の v2 をリリースしました。 breaking change があるので�
   - エピソードの URL が全部変わりますが、しばらくはリダイレクトします。
 
 
-技術的詳細はいかにまとめました。
+技術的詳細は以下にまとめました。
 
 - [mozaic.fm の v2 のリリースと Podcast の実装と移行](https://blog.jxck.io/entries/2016-06-20/mozaicfm-v2.html)
 
