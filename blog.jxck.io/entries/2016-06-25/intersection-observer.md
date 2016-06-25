@@ -1,4 +1,4 @@
-# Intersection Observer を用いた要素出現検出の最適化
+# [intersection observer][scroll][performance] Intersection Observer を用いた要素出現検出の最適化
 
 ## Intro
 
@@ -33,7 +33,7 @@
 
 先に全体図を示す。今回は上下方向にのみ注目する。
 
-![dom-size-potision-api](dom-size-potision-api.svg 'DOM のサイズと位置に関する API')
+![dom-size-potision-api](dom-size-potision-api.svg#700x700 'DOM のサイズと位置に関する API')
 
 
 ### スクロール量(scrollTop)
@@ -183,7 +183,7 @@ observer.observe(target);
 - `change.target`             : target
 
 
-![intersection-observer](intersection-observer.svg 'intersection observer api')
+![intersection-observer](intersection-observer.svg#500x500 'Intersection Observer API')
 
 特に `change.intersectionRect` および `change.intersectionRatio` は、自分で計算するとボトルネックになりがちである。
 
