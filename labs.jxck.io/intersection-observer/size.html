@@ -13,8 +13,18 @@
     padding: 0;
     margin: 100px auto;
     width:  500px;
-    height: 800px;
+    height: 500px;
     background-color: #ccc;
+  }
+
+  .h200 {
+    height: 200px;
+  }
+  .h800 {
+    height: 800px;
+  }
+  .h1000 {
+    height: 1000px;
   }
 
   .red   { background-color: #f40; }
@@ -31,15 +41,18 @@
   #view div {
     margin-bottom: 10px;
   }
+
 </style>
 
 <div id=view>
   <div>
-    <p>document.scrollTop <span id=scrollTop></span>
-    <p>document.clientHeight <span id=clientHeight></span>
+    <p>document.documentElement.scrollTop    <span id=scrollTop></span>
+    <p>window.pageYOffset                    <span id=pageYOffset></span>
+    <p>document.documentElement.clientHeight <span id=clientHeight></span>
+    <p>document.documentElement.scrollHeight <span id=scrollHeight></span>
   </div>
   <div class='view0 red'>
-    <p>on view port        <span class=viewport    ></span>
+    <p>on view port        <strong class=viewport  ></strong>
     <p>rect.top            <span class=rect_top    ></span>
     <p>rect.bottom         <span class=rect_bottom ></span>
     <p>rect.height         <span class=rect_height ></span>
@@ -53,7 +66,7 @@
     <p>target.offsetLeft   <span class=offsetLeft  ></span>
   </div>
   <div class='view1 green'>
-    <p>on view port        <span class=viewport    ></span>
+    <p>on view port        <strong class=viewport  ></strong>
     <p>rect.top            <span class=rect_top    ></span>
     <p>rect.bottom         <span class=rect_bottom ></span>
     <p>rect.height         <span class=rect_height ></span>
@@ -67,7 +80,7 @@
     <p>target.offsetLeft   <span class=offsetLeft  ></span>
   </div>
   <div class='view2 blue'>
-    <p>on view port        <span class=viewport    ></span>
+    <p>on view port        <strong class=viewport  ></strong>
     <p>rect.top            <span class=rect_top    ></span>
     <p>rect.bottom         <span class=rect_bottom ></span>
     <p>rect.height         <span class=rect_height ></span>
@@ -82,18 +95,23 @@
   </div>
 </div>
 
-<div class='target red'></div>
-<div class='target green'></div>
-<div class='target blue'></div>
+<div class='target h200 red'></div>
+<div class='target h800 green'></div>
+<div class='target h1000 blue'></div>
 
 <script>
   window.addEventListener('scroll', () => {
     let scrollTop    = document.documentElement.scrollTop;
+    let scrollHeight = document.documentElement.scrollHeight;
+    let pageYOffset  = window.pageYOffset;
     let clientHeight = document.documentElement.clientHeight;
+
     document.querySelector('#scrollTop').textContent =    scrollTop;
+    document.querySelector('#scrollHeight').textContent = scrollHeight;
+    document.querySelector('#pageYOffset').textContent =  pageYOffset;
     document.querySelector('#clientHeight').textContent = clientHeight;
 
-    document.querySelectorAll('.target').forEach((target, i) => {
+    Array.from(document.querySelectorAll('.target')).forEach((target, i) => {
       // DOM
       let view = document.querySelector(`.view${i}`);
       let $viewport     = view.querySelector('.viewport');
@@ -124,9 +142,10 @@
       $offsetWidth .textContent = target.offsetWidth ;
       $offsetLeft  .textContent = target.offsetLeft  ;
 
-      // 矩形の上端が viewport の下端より上
-      // 矩形の下端が viewport の上端より下
-      $viewport.textContent =  rect.top < clientHeight && rect.bottom > 0;
+      let scroll = scrollTop || pageYOffset;
+      $viewport.textContent = (0 < rect.top && rect.top < clientHeight)       // 対象の上端は表示領域に入っている
+                           || (0 < rect.bottom && rect.bottom < clientHeight) // 対象の下端は表示領域に入っている
+                           || (0 > rect.top && rect.bottom > clientHeight);   // 上端下端も表示されてないがその間が表示されている
     });
   });
 </script>
