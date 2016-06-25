@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html amp>
+<head>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=https://blog.jxck.io/entries/2016-06-25/intersection-observer.html>
+<meta name=viewport content="width=device-width,minimum-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+<link rel=author href=//jxck.io/assets/humans.txt>
+
+<meta name="author" content="Jxck">
+<meta name="description" content="スクロールによる DOM 要素の出現などを効率よく検知するため、新しく Intersection Observer という API が追加された。この API の使い方と、本サイトへの適用について記す。...">
+<meta name="keywords" content="intersection observer,scroll,performance">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@jxck_">
+<meta name="twitter:url" content="https://blog.jxck.io/entries/2016-06-25/intersection-observer.html">
+<meta name="twitter:title" content="Intersection Observer を用いた要素出現検出の最適化 | blog.jxck.io">
+<meta name="twitter:description" content="スクロールによる DOM 要素の出現などを効率よく検知するため、新しく Intersection Observer という API が追加された。この API の使い方と、本サイトへの適用について記す。...">
+<meta name="twitter:image" content="https://jxck.io/assets/img/jxck.png">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blog.jxck.io/entries/2016-06-25/intersection-observer.html">
+<meta property="og:title" content="Intersection Observer を用いた要素出現検出の最適化 | blog.jxck.io">
+<meta property="og:site_name" content="blog.jxck.io">
+<meta property="og:description" content="スクロールによる DOM 要素の出現などを効率よく検知するため、新しく Intersection Observer という API が追加された。この API の使い方と、本サイトへの適用について記す。...">
+<meta property="og:image" content="https://jxck.io/assets/img/jxck.png">
+
+<link rel="icon" sizes="192x192" href="https://jxck.io/assets/img/jxck.png">
+<link rel="apple-touch-icon" sizes="128x128" href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "Intersection Observer を用いた要素出現検出の最適化 | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2016-06-25T08:00:00+08:00",
+  "dateModified": "2016-06-26T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "スクロールによる DOM 要素の出現などを効率よく検知するため、新しく Intersection Observer という API が追加された。この API の使い方と、本サイトへの適用について記す。..."
+}
+</script>
+
+<title>Intersection Observer を用いた要素出現検出の最適化 | blog.jxck.io</title>
+<script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+<script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+<script async src=https://cdn.ampproject.org/v0.js></script>
+
+<style amp-custom>
+article img {
+  margin: 1em 0;
+  border: 1px solid #ccc;
+  box-sizing: content-box;
+}
+
+article ul, article ol {
+  font-family: monospace;
+  font-size: 1.2em;
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 400;
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=20163014") format("woff");
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 700;
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff?ver=201603014") format("woff");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+  color: #222;
+  background-color: #fefefe;
+}
+
+iframe {
+  display: block;
+  max-width: 100%;
+  margin: 1em 0;
+}
+
+.archive {
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.archive ul {
+  margin: 0;
+}
+
+.archive time {
+  padding-right: 0.5em;
+}
+
+.archive time::after {
+  content: ":";
+}
+
+.archive .tags {
+  font-size: 0.8em;
+  margin-left: 1em;
+}
+
+.tags a {
+  margin: 0 0.2em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+audio {
+  width: 70%;
+}
+
+@media screen and (max-device-width: 480px) {
+  audio {
+    width: 100%;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.info li {
+  margin-right: 1em;
+  list-style-type: none;
+}
+
+.info li::before {
+  content: none;
+}
+
+header {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.4em;
+  background-color: #222;
+}
+
+header ul {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 80%;
+  margin: 0 auto;
+  padding: 4px;
+}
+
+header ul li {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  margin-left: 1em;
+}
+
+header ul li a {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+header ul li::before {
+  content: none;
+}
+
+header ul li:first-child {
+  flex-grow: 1;
+  margin-left: 0;
+}
+
+header .logo {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  pointer-events: none;
+  color: #222;
+}
+
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: #222;
+}
+
+h1 > a:hover:before,
+h2 > a:hover:before,
+h3 > a:hover:before,
+h4 > a:hover:before,
+h5 > a:hover:before,
+h6 > a:hover:before {
+  color: Brown;
+}
+
+h1 > a::before {
+  content: "# ";
+  pointer-events: all;
+}
+
+h2 > a::before {
+  content: "## ";
+  pointer-events: all;
+}
+
+h3 > a::before {
+  content: "### ";
+  pointer-events: all;
+}
+
+h4 > a::before {
+  content: "#### ";
+  pointer-events: all;
+}
+
+i::before, i::after {
+  content: "*";
+}
+
+strong::before, strong::after {
+  content: "**";
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+dl dt::after {
+  content: ":";
+}
+
+blockquote::before {
+  content: "> ";
+}
+
+code::before, code::after {
+  /* うざかった */
+  /* content: "`"; */
+}
+
+main {
+  display: block;
+  width: 80%;
+  margin: 1em auto;
+}
+
+@media screen and (max-device-width: 480px) {
+  main {
+    width: 94%;
+  }
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+}
+
+a {
+  color: RoyalBlue;
+}
+
+a:visited {
+  color: Brown;
+}
+
+ol, ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+ul, ol, dl {
+  margin: 1.4em 0;
+}
+
+dl dt {
+  font-weight: bold;
+}
+
+dl dd {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+blockquote {
+  display: block;
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  padding: 1em;
+  margin: 1.4em 0;
+}
+
+code {
+  border: 1px solid #ddd;
+  background-color: #efefef;
+  border-radius: 4px;
+  padding: 0.1em;
+  margin: 1.4em 0;
+}
+
+footer {
+  padding: 1em;
+}
+
+pre {
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: 1.2em;
+  margin: 1.4em 0 0 0;
+  border-radius: 4px;
+}
+
+pre::before {
+  content: "```" attr(class) "\A";
+}
+
+pre::after {
+  position: relative;
+  top: -1em;
+  content:"\A```";
+}
+
+pre > code {
+  overflow: auto;
+  display: block;
+  padding: 0.6em;
+  margin: 0;
+  border: none;
+  background-color: #efefef;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs,
+.hljs-subst ,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-name ,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition ,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-type,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-section,
+.hljs-meta,
+.hljs-meta-string,
+.hljs-emphasis {
+}
+
+table {
+  font-family: monospace;
+  margin: 2em 0;
+  border-spacing: 0 0.4em;
+}
+
+th {
+  padding: 0em 1.0em 0.6em;
+  border-left: 0.14em solid #222;
+  border-bottom: 2px dashed #222;
+}
+
+td {
+  padding: 0.4em 1.2em;
+  border-left: 0.14em solid #222;
+}
+
+th:last-child, td:last-child {
+  border-right: 0.14em solid #222;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+</style>
+</head>
+<body>
+<header>
+  <ul>
+    <li><a href=//blog.jxck.io><amp-img class=logo alt="blog top" width=30 height=30 src=/assets/img/blog.svg></a>
+    <li><a href=.><amp-img alt="move to parent directory" width=30 height=30 src=/assets/img/up.svg></a>
+    <li><a href=/feeds/atom.xml><amp-img alt="rss feed" width=30 height=30 src=/assets/img/rss.svg></a>
+    <li><a href=//jxck.io/humans.txt><amp-img alt="huamns.txt" width=30 height=30 src=/assets/img/humans.svg></a>
+    <li><a href=//jxck.io><amp-img class=logo alt="jxck logo" width=30 height=30 src=/assets/img/jxck.svg></a>
+  </ul>
+</header>
+<main>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2016-06-25>2016-06-25</time>
+    <li>updated_at: <time class=updated_at datetime=2016-06-26>2016-06-26</time>
+    <li class=tags>tags: [<a>intersection observer</a>,<a>scroll</a>,<a>performance</a>]
+  </ul>
+
+
+  <article>
+    <h1><a href=/entries/2016-06-25/intersection-observer.html>Intersection Observer を用いた要素出現検出の最適化</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>スクロールによる DOM 要素の出現などを効率よく検知するため、新しく Intersection Observer という API が追加された。
+      <p>この API の使い方と、本サイトへの適用について記す。
+    </section>
+    <section>
+      <h2 id="要素交差の検出"><a href="#要素交差の検出">要素交差の検出</a></h2>
+      <p>ページをスクロールしていく過程で、特定の DOM が画面に出現したことをフックしたいケースがある。
+      <p>代表例は <strong>画像の遅延読み込み</strong> であり、初期ロードでは画像の取得を行わずスクロールしていく過程で順次取得する手法である。特に画像の多いページで、初期表示の高速かに寄与する場合がある。
+      <p>これを実装するのに必要なのは、「 <code>&lt;img&gt;</code> 要素が出現しているかどうか」であるが、見た方を変えれば「画面外にあった <code>&lt;img&gt;</code> が viewport と交差したか」と言える。
+      <p>つまり、 <strong>要素出現の取得</strong> は、 <strong>要素同士の交差取得</strong> として汎用化し、その一例と見ることができる。
+      <p>新しく追加された、 Intersection Observe は「対象の親要素」と「対象の要素」が <strong>交差(Intersect)したことを取得する API</strong> である。
+    </section>
+    <section>
+      <h2 id="従来の方法"><a href="#従来の方法">従来の方法</a></h2>
+      <p>従来は、どのようにして要素の交差を取得していたかを振り返ろう。
+      <p>まず、要素の位置に関する API は以下のようになっている。
+      <p><strong>ただし、これは互換性の問題を多く含んでいるため、厳密には色々あるが、調べるのが面倒だったので単なる参考として載せる</strong>
+      <section>
+        <h3 id="図"><a href="#図">図</a></h3>
+        <p>先に全体図を示す。今回は上下方向にのみ注目する。
+        <p><amp-img layout=responsive src=dom-size-potision-api.svg#700x818 alt="dom-size-potision-api" title="DOM のサイズと位置に関する API" width=700 height=818>
+      </section>
+      <section>
+        <h3 id="スクロール量(scrollTop)"><a href="#スクロール量(scrollTop)">スクロール量(scrollTop)</a></h3>
+        <p>ページがどの程度スクロールされたかという値である。
+        <p>基本は <code>document.documentElement.scrollTop</code> だが、互換モードでは <code>document.body.scrollTop</code> を使う。<br>
+        しかし iPhone には <code>scrollTop</code> がないので、 <code>window.pageYOffset</code> を使うが、これは <code>window.scrollY</code> のエイリアスになってる。
+        <p>要するに 4 つある。
+        <ul>
+          <li><code>document.documentElement.scrollTop</code>
+          <li><code>document.body.scrollTop</code>
+          <li><code>window.pageYOffset</code>
+          <li><code>window.scrollY</code>
+        </ul>
+        <p>よくある話だ。
+      </section>
+      <section>
+        <h3 id="絶対位置(offsetTop)"><a href="#絶対位置(offsetTop)">絶対位置(offsetTop)</a></h3>
+        <p>body を親要素とすれば、そこからの offset 位置はドキュメント上の絶対位置と考えることができる。
+        <p>これは、要素自体が持っている。
+        <pre><code>let target = document.querySelector(&#039;.target&#039;);
+// target.offsetTop;
+// target.offsetHeight;
+// target.offsetWidth;
+// target.offsetLeft;</code></pre>
+      </section>
+      <section>
+        <h3 id="相対位置(getBoundingClientRect)"><a href="#相対位置(getBoundingClientRect)">相対位置(getBoundingClientRect)</a></h3>
+        <p>対象の DOM が、現在画面表示(viewport)上どの位置にあるか。<br>
+        スクロールするたびに変わる値で、常に表示領域の中の位置になる。
+        <p>これは、対象 DOM の <code>getBoundingClientRect()</code> で取れる。
+        <pre><code>let rect = target.getBoundingClientRect();
+// rect.top;
+// rect.bottom;
+// rect.height;
+// rect.left;
+// rect.right;
+// rect.width;</code></pre>
+      </section>
+      <section>
+        <h3 id="出現取得"><a href="#出現取得">出現取得</a></h3>
+        <p>ここまでを踏まえると、画面をスクロールし、画面の中に対象の DOM が入っていることは、以下のように判定できる。
+        <pre class=js><code>   (0 &lt; rect.top &amp;&amp; rect.top &lt; clientHeight)       // 対象の上端は表示領域に入っている
+|| (0 &lt; rect.bottom &amp;&amp; rect.bottom &lt; clientHeight) // 対象の下端は表示領域に入っている
+|| (rect.top &lt; 0 &amp;&amp; clientHeight &lt; rect.bottom)    // 上端下端も表示されてないがその間が表示されている</code></pre>
+        <p>この三つの論理和が満たされれば、どこかしらが表示されている。
+        <p>もちろん、計算基準の親要素を変えれば、 viewport 以外の要素でのスクロールによる出現にも対応できる。
+      </section>
+      <section>
+        <h3 id="onscroll+イベント"><a href="#onscroll+イベント">onscroll イベント</a></h3>
+        <p>上記の判定は、スクロールするたび、つまり onscroll イベントごとに計算すれば DOM の出現監視になる。
+        <p>ただし、 onscroll は発生頻度が非常に多いため、愚直にコールバックに指定してしまうと、ボトルネックになり Scroll Junk を引き起こす可能性がある。
+        <p>対策としては、まずコールバックを実行するイベントを間引く throttling がある。
+        <p>たとえば、 undersocre.js の <a href="http://underscorejs.org/#throttle">throttle()</a> 相当のものや、 Reactive Extension 系のライブラリを使うことで実現できる。
+        <p>また、計算処理のみでコールバックを抜けるのであれば、 <code>.preventDeafult()</code> を呼ばないため、別エントリで解説した Passive Event Listener を利用できる。
+        <ul>
+          <li><a href="https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html">Passive Event Listeners によるスクロールの改善</a>
+        </ul>
+      </section>
+      <section>
+        <h3 id="Scroll+&+Position+API+DEMO"><a href="#Scroll+&+Position+API+DEMO">Scroll & Position API DEMO</a></h3>
+        <p>ここまでの API の値の変化を確認するデモを以下に用意した。
+        <ul>
+          <li><a href="https://labs.jxck.io/intersection-observer/size.html">Scroll & Position API DEMO</a>
+        </ul>
+      </section>
+    </section>
+    <section>
+      <h2 id="問題点"><a href="#問題点">問題点</a></h2>
+      <p>さて、ここまで見て来た方法には問題が多くあった。
+      <ol>
+        <li>scroll event のハンドラが Scroll Junk を引き起こす可能性がある
+        <li>全 scroll event での実施は回数が多いので、 throttling (まびき)を行う必要がある
+        <li>サイズや位置を取得する API は Forced Synchronous Layout を発生させる
+        <li>API が分かりづらく、互換性も微妙で、単純に実装が面倒くさい
+      </ol>
+      <p>ここでは 3 に注目したい。
+      <section>
+        <h3 id="Forced+Synchronous+Layout"><a href="#Forced+Synchronous+Layout">Forced Synchronous Layout</a></h3>
+        <p>ここまでに紹介した、 <code>scrollTop</code>, <code>offset*</code>, <code>getBoundingClientRect()</code> などの呼び出しは、その時点での DOM の位置を取得するために、 Layout 計算を行う。
+        <p>この計算は同期処理であり、つまりブロックが発生する。さらにそれを onscroll など頻度の高いイベントの中で行うのは、ブラウザの表示を阻害しスムーズなスクロール表示を阻害してしまう。
+        <p>そこで、この頻出処理をブラウザのネイティブ API として実装し、より効率良く実装するのが、今回紹介する Intersection Observer である。
+      </section>
+    </section>
+    <section>
+      <h2 id="Intersection+Observer"><a href="#Intersection+Observer">Intersection Observer</a></h2>
+      <p>Intersection Observer は交点(Intersection) を監視し、指定した要素同士の交差が発生したら、イベントを発火する Observer である。
+      <p>交点の検出処理は、ブラウザが内部で行っているため、前述のような onscroll 内での同期処理などは一切必要がなくなる。
+      <p>逆を言えば、スクロール以外による交差の発生も一括して取得することが可能になる。
+      <p>これにより、 Scroll Junk の原因が除去され効率良く実装することが可能となる。
+    </section>
+    <section>
+      <h2 id="API"><a href="#API">API</a></h2>
+      <p>コールバックとオプションを指定し、 Intersection Observer Class を生成する。<br>
+      任意の DOM 要素を <code>observe()</code> メソッドを指定することで、対象を監視する。
+      <p>複数要素を同じように監視する場合は、同じ Inetrsection Observer インスタンスで、 observe を複数回呼ぶことができる。
+      <pre class=js><code>let observer = new IntersectionObserver((changes) =&gt; {
+  for (let change of changes) {
+    console.log(change);
+  }
+}, option);
+observer.observe(target);</code></pre>
+      <section>
+        <h3 id="callback"><a href="#callback">callback</a></h3>
+        <p>複数の DOM を監視した場合は、一つのイベントで複数の変更が取得されるため、コールバックの引数は監視した DOM の数だけ入ってくる。
+        <p>一つの変更は以下のプロパティを持つ
+        <ul>
+          <li><code>change.time</code>               : タイムスタンプ
+          <li><code>change.rootBounds</code>         : root の <code>getBoundingClientRect()</code>
+          <li><code>change.boundingClientRect</code> : target の <code>getBoundingClientRect()</code>
+          <li><code>change.intersectionRect</code>   : 交差領域の <code>getBoundingClientRect()</code>
+          <li><code>change.intersectionRatio</code>  : 交差している領域の割合
+          <li><code>change.target</code>             : target
+        </ul>
+        <p><amp-img layout=responsive src=intersection-observer.svg#500x357 alt="intersection-observer" title="Intersection Observer API" width=500 height=357>
+        <p>特に <code>change.intersectionRect</code> および <code>change.intersectionRatio</code> は、自分で計算するとボトルネックになりがちである。
+        <p>第二引数には、オプションには三つのプロパティを設定したオブジェクトを指定できる。
+        <pre class=js><code>let observer = new IntersectionObserver((changes) =&gt; {
+  // callback
+}, {
+  root: document.querySelector(&#039;.target&#039;),
+  threshold: [0, 0.2, 0.4, 0.6, 0.8, 1.0],
+  rootMargin: &#039;10px&#039;,
+});
+observer.observe(target);</code></pre>
+      </section>
+      <section>
+        <h3 id="root"><a href="#root">root</a></h3>
+        <p>デフォルトでは、 viewport を対象にした交差検出を行うことができるが、これはデフォルトの root が document 自身になっているからである。
+        <p>root オプションを用いることで、任意の親要素内を指定できるため、例えば <code>overflow: scroll</code> になった div の中のリストなどを指定することができる。
+      </section>
+      <section>
+        <h3 id="threshold"><a href="#threshold">threshold</a></h3>
+        <p><code>change.intersectionRatio</code> によって、交差している領域の割合を取得することができるが、コールバックが呼ばれるタイミングが交差のタイミングだけだと、 0% や 100% など、あまり約に経たない値しか出ない。
+        <p>これは、表示が 0 (表示されてない), 100 (全て表示されている) のどちらかしかないためである。
+        <p>イベント発生頻度を増やすには、 threshold オプションを使うことができる。
+        <p>例えば、以下のように引数を設定すれば、交差領域が 20% 変化する毎にコールバックを呼ぶことが出来る。
+        <p>これにより、表示領域の変化に合わせたインタラクションも実装が可能になる。
+      </section>
+      <section>
+        <h3 id="rootMargin"><a href="#rootMargin">rootMargin</a></h3>
+        <p>画像の遅延読み込みなどを実装したい場合は、 viewport を root として <code>&lt;img&gt;</code> を IntersectionObserver で監視するだろう。
+        <p>これにより、 viewport 上に <code>&lt;img&gt;</code> が出現したことを検出し、そこで画像の取得を走らせることができる。
+        <p>しかし、 viewport 上に表示されてから取得しては少し遅い場合がある。できれば、表示される少し前にそれが分かっていれば、小さい画像なら空の <code>&lt;img&gt;</code> を出すことすらなく済むかもしれない。
+        <p>こうした場合は rootMargin オプションを指定することができる。
+        <p>値は CSS の margin への指定と同じだ、例えば以下のように設定すれば、上下左右が交差する 10px 手前でイベントが発火する。
+      </section>
+      <section>
+        <h3 id="Intersection+Observe+DEMO"><a href="#Intersection+Observe+DEMO">Intersection Observe DEMO</a></h3>
+        <p>Intersection Observer を用いた、基本的なデモを用意した。<br>
+        threshold を 10% にし、 intersectionRatio を表示するように実装している。
+        <ul>
+          <li><a href="https://labs.jxck.io/intersection-observer/intersection.html">Intersection Observer DEMO</a>
+        </ul>
+        <p>また以下に Intersecton Observer と、それ以前の API で、要素出現の検出を比較する DEMO を用意した。<br>
+        こちらは、 <code>overflow: scroll</code> な div を親とする出現検出も含めてある。
+        <ul>
+          <li><a href="https://labs.jxck.io/intersection-observer/visibility-change.html">Visibility Change DEMO</a>
+        </ul>
+      </section>
+    </section>
+    <section>
+      <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
+      <p>この機能を用いて、本サイトでも画像の遅延読み込みを実装するつもりでいる。
+      <p>しかし、本サイトでは Service Worker や HTTP2 Push など他の最適化戦略も併用する予定であるため、検証がまだ追いついていない。
+      <p>また、現状では最適化した SVG がほとんどであるため、画像の取得がボトルネックと見直すには弱い場合が多く、行ったん見送ることにした。
+      <p>将来的に最適化戦略がおちついたら、追記する。
+    </section>
+    <section>
+      <h2 id="Links"><a href="#Links">Links</a></h2>
+      <ul>
+        <li><a href="http://rawgit.com/WICG/IntersectionObserver/master/index.html">Intersection Observer Spec</a>
+        <li><a href="https://github.com/WICG/IntersectionObserver/blob/gh-pages/explainer.md">Intersection Observers Explained</a>
+        <li><a href="https://gist.github.com/paulirish/5d52fb081b3570c81e3a">What forces layout/reflow. The comprehensive list.</a>
+      </ul>
+    </section>
+  </article>
+
+</main>
+<hr>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
+</footer>
+</body>
+</html>
+<amp-analytics type="googleanalytics" id="analytics1">
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
