@@ -1,275 +1,36 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="intersection observer demo">
-<title>Intersection Observer DEMO | labs.jxck.io</title>
+<meta name=description content="index page of labs.jxck.io">
+<title>Intersection Obsever | labs.jxck.io</title>
 
-<style>
-  body {
-    width: 100%;
-  }
-  code {
-    background-color: #ccc;
-  }
+<link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/body.css>
 
-  .flex-container {
-    display: flex;
-  }
+<link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/header.css>
+<header>
+  <ul>
+    <li><a href=//jxck.io><img class=logo alt="jxck logo" width=30 src=//jxck.io/assets/img/jxck.svg></a>
+  </li>
+</header>
 
-  .flex-container section {
-    flex-direction: row;
-    margin-right: 1em;
-    width: 20%;
-  }
-
-  .flex-container > section > div > div {
-    width: 100px;
-    height: 100px;
-    background-color: #ccc;
-    margin: 10px;
-  }
-
-  .overflow {
-    border: 1px solid #ccc;
-    height: 400px;
-    overflow: scroll;
-  }
-
-</style>
-
-<h1>Scroll Position DEMO</h1>
-<div class=flex-container>
+<link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/markdown.css>
+<link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/main.css>
+<main role=main class=archive>
+  <h1 id=labs><a href=#labs>Intersection Observer Labs</a></h1>
   <section>
-    <h2>viewport<br>scroll</h2>
-    <div class='viewport scroll'>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div class=target></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
+    <h2 id=contents><a href=#contents>contents</a></h2>
+    <ul>
+      <li><a href=size.html>old style api</a>
+      <li><a href=intersection.html>intersection</a>
+      <li><a href=visibility-change.html>visibility-change</a>
+    </ul>
   </section>
+</main>
 
-  <section>
-  <h2>viewport<br>intersection-observer</h2>
-    <div class='viewport intersection'>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div class=target></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </section>
+<hr>
 
-  <section>
-    <h2>overflow<br>scroll</h2>
-    <div class='overflow scroll'>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div class=target></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </section>
-
-  <section>
-    <h2>overflow<br>intersection-observer</h2>
-    <div class='overflow intersection'>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div class=target></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </section>
-</div>
-
-<script>
-  // viewport scroll
-  (() => {
-    const offset = 50; // px
-    let target = document.querySelector('.viewport.scroll .target');
-    window.addEventListener('scroll', (e) => {
-
-      // viewport の上下端
-      let scrollTop    = document.documentElement.scrollTop + offset;
-      let clientHeight = document.documentElement.clientHeight - offset;
-
-      // target の上下端
-      let rect = target.getBoundingClientRect();
-
-      if (rect.top < clientHeight && rect.bottom > offset) {
-        target.style.backgroundColor = 'red';
-      } else {
-        target.style.backgroundColor = 'blue';
-      }
-    });
-  })();
-</script>
-
-<script>
-  // viewport intersection-observer
-  (() => {
-    const offset = 50; // px
-    let root = document.querySelector('.viewport.intersection');
-    let target = root.querySelector('.target');
-    const rootMargin = `-${offset}px`;
-    const threshold = 0.0;
-    let observer = new IntersectionObserver((changes) => {
-      for (let change of changes) {
-        // console.log(change);
-        // console.log(change.time);               // Timestamp when the change occurred
-        // console.log(change.rootBounds);         // Unclipped area of root
-        // console.log(change.boundingClientRect); // target.boundingClientRect()
-        console.log(change.intersectionRect);      // boundingClientRect, clipped by its containing block ancestors, and intersected with rootBounds
-        // console.log(change.intersectionRatio);  // Ratio of intersectionRect area to boundingClientRect area
-        // console.log(change.target);             // the Element target
-
-        change.target.style.backgroundColor = change.intersectionRect.top > 0 ? 'red' : 'blue';
-      }
-    }, { rootMargin, threshold }); // No Root is viewport
-
-    observer.observe(target);
-  })();
-</script>
-
-<script>
-  // overflow scroll
-  (() => {
-    const offset = 50; // px
-    let root = document.querySelector('.overflow.scroll');
-    let target = root.querySelector('.target');
-    root.addEventListener('scroll', (e) => {
-
-      // root の上下端
-      let rootTop = root.scrollTop;
-      let rootBottom = rootTop + root.clientHeight;
-      // console.log(rootTop, rootBottom);
-
-      // target の上下端
-      let rect = target.getBoundingClientRect();
-      let top = target.offsetTop - root.offsetTop;
-      let bottom = top + rect.height;
-      // console.log(top, bottom);
-
-      if (rootTop < top + offset && rootBottom > bottom - offset) {
-        target.style.backgroundColor = 'red';
-      } else {
-        target.style.backgroundColor = 'blue';
-      }
-    });
-  })();
-</script>
-
-<script>
-  // overflow intersection-observer
-  (() => {
-    const offset = 50; // px
-    let root = document.querySelector('.overflow.intersection');
-    let target = root.querySelector('.target');
-    const rootMargin = `-${offset}px`;
-    const threshold = 0.0;
-    let observer = new IntersectionObserver((changes) => {
-      for (let change of changes) {
-        // console.log(change);
-        // console.log(change.time);               // Timestamp when the change occurred
-        // console.log(change.rootBounds);         // Unclipped area of root
-        // console.log(change.boundingClientRect); // target.boundingClientRect()
-        console.log(change.intersectionRect);      // boundingClientRect, clipped by its containing block ancestors, and intersected with rootBounds
-        // console.log(change.intersectionRatio);  // Ratio of intersectionRect area to boundingClientRect area
-        // console.log(change.target);             // the Element target
-
-        change.target.style.backgroundColor = change.intersectionRect.top > 0 ? 'red' : 'blue';
-      }
-    }, { root, rootMargin, threshold });
-
-    observer.observe(target);
-  })();
-</script>
-
+<link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/footer.css>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=//jxck.io>Jxck</a>. All Rights Reserved.</address>
+</footer>
+<script src=//jxck.io/assets/js/ga.js></script>
