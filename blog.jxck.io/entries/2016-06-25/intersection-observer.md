@@ -11,9 +11,9 @@
 
 ページをスクロールしていく過程で、特定の DOM が画面に出現したことをフックしたいケースがある。
 
-代表例は **画像の遅延読み込み** であり、初期ロードでは画像の取得を行わずスクロールしていく過程で順次取得する手法である。特に画像の多いページで、初期表示の高速かに寄与する場合がある。
+代表例は **画像の遅延読み込み** であり、初期ロードでは画像の取得を行わずスクロールしていく過程で順次取得する手法である。特に画像の多いページで、初期表示の高速化に寄与する場合がある。
 
-これを実装するのに必要なのは、「 `<img>` 要素が出現しているかどうか」であるが、見た方を変えれば「画面外にあった `<img>` が viewport と交差したか」と言える。
+これを実装するのに必要なのは、「 `<img>` 要素が出現しているかどうか」であるが、本質的には「画面外にあった `<img>` が viewport と交差したか」を取得することになる。
 
 つまり、 **要素出現の取得** は、 **要素同士の交差取得** として汎用化し、その一例と見ることができる。
 
@@ -22,9 +22,9 @@
 
 ## 従来の方法
 
-従来は、どのようにして要素の交差を取得していたかを振り返ろう。
+まず、従来どのようにして要素の交差を取得していたかを振り返る。
 
-まず、要素の位置に関する API は以下のようになっている。
+要素の位置に関する API は以下のようになっている。
 
 **ただし、これは互換性の問題を多く含んでいるため、厳密には色々あるが、調べるのが面倒だったので単なる参考として載せる**
 
@@ -86,7 +86,7 @@ let rect = target.getBoundingClientRect();
 ```
 
 
-### 出現取得
+### 表示判定
 
 ここまでを踏まえると、画面をスクロールし、画面の中に対象の DOM が入っていることは、以下のように判定できる。
 
@@ -124,7 +124,7 @@ let rect = target.getBoundingClientRect();
 
 ## 問題点
 
-さて、ここまで見て来た方法には問題が多くあった。
+さて、ここまで見て来た方法には多くの問題があった。
 
 1. scroll event のハンドラが Scroll Junk を引き起こす可能性がある
 1. 全 scroll event での実施は回数が多いので、 throttling (まびき)を行う必要がある
@@ -136,9 +136,9 @@ let rect = target.getBoundingClientRect();
 
 ### Forced Synchronous Layout
 
-ここまでに紹介した、 `scrollTop`, `offset*`, `getBoundingClientRect()` などの呼び出しは、その時点での DOM の位置を取得するために、 Layout 計算を行う。
+ここまでに紹介した、 `scrollTop`, `offset*`, `getBoundingClientRect()` などの呼び出しは、その時点での DOM の位置を取得するために Layout 計算を行う。
 
-この計算は同期処理であり、つまりブロックが発生する。さらにそれを onscroll など頻度の高いイベントの中で行うのは、ブラウザの表示を阻害しスムーズなスクロール表示を阻害してしまう。
+この計算は同期処理であり、つまりブロックが発生する。さらにそれを onscroll など頻度の高いイベントの中で行うのは、スムーズなスクロール表示のためのブラウザの最適化を阻害してしまう。
 
 そこで、この頻出処理をブラウザのネイティブ API として実装し、より効率良く実装するのが、今回紹介する Intersection Observer である。
 
@@ -151,12 +151,13 @@ Intersection Observer は交点(Intersection) を監視し、指定した要素�
 
 逆を言えば、スクロール以外による交差の発生も一括して取得することが可能になる。
 
-これにより、 Scroll Junk の原因が除去され効率良く実装することが可能となる。
+これにより、 Scroll Junk の原因が除去され、効率良く実装することが可能となる。
 
 ## API
 
-コールバックとオプションを指定し、 Intersection Observer Class を生成する。
-任意の DOM 要素を `observe()` メソッドを指定することで、対象を監視する。
+コールバックとオプションを指定し、 Intersection Observer Class のインスタンスを生成する。
+
+生成した Observer に対して、任意の DOM 要素を `observe()` メソッドで指定することで、対象を監視する。
 
 複数要素を同じように監視する場合は、同じ Inetrsection Observer インスタンスで、 observe を複数回呼ぶことができる。
 
@@ -175,12 +176,16 @@ observer.observe(target);
 
 一つの変更は以下のプロパティを持つ
 
-- `change.time`               : タイムスタンプ
-- `change.rootBounds`         : root の `getBoundingClientRect()`
-- `change.boundingClientRect` : target の `getBoundingClientRect()`
-- `change.intersectionRect`   : 交差領域の `getBoundingClientRect()`
-- `change.intersectionRatio`  : 交差している領域の割合
-- `change.target`             : target
+
+| プロパティ                  | 内容                                  |
+|:----------------------------|:--------------------------------------|
+| `change.time`               | タイムスタンプ                        |
+| `change.rootBounds`         | root の `getBoundingClientRect()`     |
+| `change.boundingClientRect` | target の `getBoundingClientRect()`   |
+| `change.intersectionRect`   | 交差領域の `getBoundingClientRect()`  |
+| `change.intersectionRatio`  | 交差している領域の割合                |
+| `change.target`             | target                                |
+
 
 
 ![intersection-observer](intersection-observer.svg#500x357 'Intersection Observer API')
@@ -205,18 +210,26 @@ observer.observe(target);
 
 デフォルトでは、 viewport を対象にした交差検出を行うことができるが、これはデフォルトの root が document 自身になっているからである。
 
-root オプションを用いることで、任意の親要素内を指定できるため、例えば `overflow: scroll` になった div の中のリストなどを指定することができる。
+root オプションを用いることで、任意の親要素内を指定できるため、例えば `overflow: scroll` になった div の中の交差を判定することができる。
 
+```js
+{ root: document.querySelector('.target') }
+```
 
 ### threshold
 
-`change.intersectionRatio` によって、交差している領域の割合を取得することができるが、コールバックが呼ばれるタイミングが交差のタイミングだけだと、 0% や 100% など、あまり約に経たない値しか出ない。
+`change.intersectionRatio` によって、交差している領域の割合を取得することができるが、コールバックが呼ばれるタイミングが交差のタイミングだけだと、 0% や 100% などあまり役に経たない値しか出ない。
 
 これは、表示が 0 (表示されてない), 100 (全て表示されている) のどちらかしかないためである。
 
 イベント発生頻度を増やすには、 threshold オプションを使うことができる。
 
-例えば、以下のように引数を設定すれば、交差領域が 20% 変化する毎にコールバックを呼ぶことが出来る。
+例えば、以下のように引数を設定すれば、交差領域が 20% 変化する毎にコールバックを呼ぶことができる。
+
+
+```js
+{ rootMargin: '10px' }
+```
 
 これにより、表示領域の変化に合わせたインタラクションも実装が可能になる。
 
@@ -225,14 +238,17 @@ root オプションを用いることで、任意の親要素内を指定でき
 
 画像の遅延読み込みなどを実装したい場合は、 viewport を root として `<img>` を IntersectionObserver で監視するだろう。
 
-これにより、 viewport 上に `<img>` が出現したことを検出し、そこで画像の取得を走らせることができる。
+viewport 上に `<img>` が出現したことを検出することで、そこで画像の取得を走らせることができる。
 
-しかし、 viewport 上に表示されてから取得しては少し遅い場合がある。できれば、表示される少し前にそれが分かっていれば、小さい画像なら空の `<img>` を出すことすらなく済むかもしれない。
+しかし、 viewport 上に表示されてからの取得するより、表示される少し前に取得を開始できれば、小さい画像なら空の `<img>` すら出さずに済む可能性がある。
 
 こうした場合は rootMargin オプションを指定することができる。
 
 値は CSS の margin への指定と同じだ、例えば以下のように設定すれば、上下左右が交差する 10px 手前でイベントが発火する。
 
+```js
+{ root: document.querySelector('.target') }
+```
 
 ### Intersection Observe DEMO
 
@@ -254,9 +270,9 @@ threshold を 10% にし、 intersectionRatio を表示するように実装し�
 
 しかし、本サイトでは Service Worker や HTTP2 Push など他の最適化戦略も併用する予定であるため、検証がまだ追いついていない。
 
-また、現状では最適化した SVG がほとんどであるため、画像の取得がボトルネックと見直すには弱い場合が多く、行ったん見送ることにした。
+また、現状では最適化した SVG がほとんどであるため、画像の取得がボトルネックと見なすには弱い場合が多く、一旦見送ることにした。
 
-将来的に最適化戦略がおちついたら、追記する。
+将来的に最適化戦略が落ち着いたら、追記する。
 
 
 ## Links

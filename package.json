@@ -37,7 +37,7 @@
     "clean": "find ./**/* -name *.gz | xargs -L 4 -P 4 rm",
     "_start": "sudo $DOTFILES/local/h2o/bin/h2o -m daemon -c h2o.conf",
     "_stop": "sudo kill -TERM `cat ../pid/h2o.pid`",
-    "_restart": "npm stop && npm start",
+    "_restart": "npm run _stop && npm run _start",
     "start": "sudo systemctl start h2o",
     "stop": "sudo systemctl stop h2o",
     "kill": "sudo systemctl kill h2o",
