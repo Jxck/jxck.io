@@ -108,9 +108,9 @@ let rect = target.getBoundingClientRect();
 
 対策としては、まずコールバックを実行するイベントを間引く throttling がある。
 
-たとえば、 undersocre.js の [throttle()](http://underscorejs.org/#throttle) 相当のものや、 Reactive Extension 系のライブラリを使うことで実現できる。
+たとえば、 underscore.js の [throttle()](http://underscorejs.org/#throttle) 相当のものや、 Reactive Extension 系のライブラリを使うことで実現できる。
 
-また、計算処理のみでコールバックを抜けるのであれば、 `.preventDeafult()` を呼ばないため、別エントリで解説した Passive Event Listener を利用できる。
+また、計算処理のみでコールバックを抜けるのであれば、 `.preventDefault()` を呼ばないため、別エントリで解説した Passive Event Listener を利用できる。
 
 - [Passive Event Listeners によるスクロールの改善](https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html)
 
