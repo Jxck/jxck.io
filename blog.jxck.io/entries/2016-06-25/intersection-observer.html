@@ -55,7 +55,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-06-25T08:00:00+08:00",
-  "dateModified": "2016-06-26T08:00:00+08:00",
+  "dateModified": "2016-07-03T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -97,7 +97,7 @@ by Jxck
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-06-25>2016-06-25</time>
-    <li>updated_at: <time class=updated_at datetime=2016-06-26>2016-06-26</time>
+    <li>updated_at: <time class=updated_at datetime=2016-07-03>2016-07-03</time>
     <li class=tags>tags: [<a>intersection observer</a>,<a>scroll</a>,<a>performance</a>]
   </ul>
 
@@ -112,15 +112,15 @@ by Jxck
     <section>
       <h2 id="要素交差(intersection)の検出"><a href="#要素交差(intersection)の検出">要素交差(intersection)の検出</a></h2>
       <p>ページをスクロールしていく過程で、特定の DOM が画面に出現したことをフックしたいケースがある。
-      <p>代表例は <strong>画像の遅延読み込み</strong> であり、初期ロードでは画像の取得を行わずスクロールしていく過程で順次取得する手法である。特に画像の多いページで、初期表示の高速かに寄与する場合がある。
-      <p>これを実装するのに必要なのは、「 <code>&lt;img&gt;</code> 要素が出現しているかどうか」であるが、見た方を変えれば「画面外にあった <code>&lt;img&gt;</code> が viewport と交差したか」と言える。
+      <p>代表例は <strong>画像の遅延読み込み</strong> であり、初期ロードでは画像の取得を行わずスクロールしていく過程で順次取得する手法である。特に画像の多いページで、初期表示の高速化に寄与する場合がある。
+      <p>これを実装するのに必要なのは、「 <code>&lt;img&gt;</code> 要素が出現しているかどうか」であるが、本質的には「画面外にあった <code>&lt;img&gt;</code> が viewport と交差したか」を取得することになる。
       <p>つまり、 <strong>要素出現の取得</strong> は、 <strong>要素同士の交差取得</strong> として汎用化し、その一例と見ることができる。
       <p>新しく追加された、 Intersection Observe は「対象の親要素」と「対象の要素」が <strong>交差(Intersect)したことを取得する API</strong> である。
     </section>
     <section>
       <h2 id="従来の方法"><a href="#従来の方法">従来の方法</a></h2>
-      <p>従来は、どのようにして要素の交差を取得していたかを振り返ろう。
-      <p>まず、要素の位置に関する API は以下のようになっている。
+      <p>まず、従来どのようにして要素の交差を取得していたかを振り返る。
+      <p>要素の位置に関する API は以下のようになっている。
       <p><strong>ただし、これは互換性の問題を多く含んでいるため、厳密には色々あるが、調べるのが面倒だったので単なる参考として載せる</strong>
       <section>
         <h3 id="図"><a href="#図">図</a></h3>
@@ -166,7 +166,7 @@ by Jxck
 // rect.width;</code></pre>
       </section>
       <section>
-        <h3 id="出現取得"><a href="#出現取得">出現取得</a></h3>
+        <h3 id="表示判定"><a href="#表示判定">表示判定</a></h3>
         <p>ここまでを踏まえると、画面をスクロールし、画面の中に対象の DOM が入っていることは、以下のように判定できる。
         <pre class=js><code>   (0 &lt; rect.top &amp;&amp; rect.top &lt; clientHeight)       // 対象の上端は表示領域に入っている
 || (0 &lt; rect.bottom &amp;&amp; rect.bottom &lt; clientHeight) // 対象の下端は表示領域に入っている
@@ -179,8 +179,8 @@ by Jxck
         <p>上記の判定は、スクロールするたび、つまり onscroll イベントごとに計算すれば DOM の出現監視になる。
         <p>ただし、 onscroll は発生頻度が非常に多いため、愚直にコールバックに指定してしまうと、ボトルネックになり Scroll Junk を引き起こす可能性がある。
         <p>対策としては、まずコールバックを実行するイベントを間引く throttling がある。
-        <p>たとえば、 undersocre.js の <a href="http://underscorejs.org/#throttle">throttle()</a> 相当のものや、 Reactive Extension 系のライブラリを使うことで実現できる。
-        <p>また、計算処理のみでコールバックを抜けるのであれば、 <code>.preventDeafult()</code> を呼ばないため、別エントリで解説した Passive Event Listener を利用できる。
+        <p>たとえば、 underscore.js の <a href="http://underscorejs.org/#throttle">throttle()</a> 相当のものや、 Reactive Extension 系のライブラリを使うことで実現できる。
+        <p>また、計算処理のみでコールバックを抜けるのであれば、 <code>.preventDefault()</code> を呼ばないため、別エントリで解説した Passive Event Listener を利用できる。
         <ul>
           <li><a href="https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html">Passive Event Listeners によるスクロールの改善</a>
         </ul>
@@ -195,7 +195,7 @@ by Jxck
     </section>
     <section>
       <h2 id="問題点"><a href="#問題点">問題点</a></h2>
-      <p>さて、ここまで見て来た方法には問題が多くあった。
+      <p>さて、ここまで見て来た方法には多くの問題があった。
       <ol>
         <li>scroll event のハンドラが Scroll Junk を引き起こす可能性がある
         <li>全 scroll event での実施は回数が多いので、 throttling (まびき)を行う必要がある
@@ -205,8 +205,8 @@ by Jxck
       <p>ここでは 3 に注目したい。
       <section>
         <h3 id="Forced+Synchronous+Layout"><a href="#Forced+Synchronous+Layout">Forced Synchronous Layout</a></h3>
-        <p>ここまでに紹介した、 <code>scrollTop</code>, <code>offset*</code>, <code>getBoundingClientRect()</code> などの呼び出しは、その時点での DOM の位置を取得するために、 Layout 計算を行う。
-        <p>この計算は同期処理であり、つまりブロックが発生する。さらにそれを onscroll など頻度の高いイベントの中で行うのは、ブラウザの表示を阻害しスムーズなスクロール表示を阻害してしまう。
+        <p>ここまでに紹介した、 <code>scrollTop</code>, <code>offset*</code>, <code>getBoundingClientRect()</code> などの呼び出しは、その時点での DOM の位置を取得するために Layout 計算を行う。
+        <p>この計算は同期処理であり、つまりブロックが発生する。さらにそれを onscroll など頻度の高いイベントの中で行うのは、スムーズなスクロール表示のためのブラウザの最適化を阻害してしまう。
         <p>そこで、この頻出処理をブラウザのネイティブ API として実装し、より効率良く実装するのが、今回紹介する Intersection Observer である。
       </section>
     </section>
@@ -215,12 +215,12 @@ by Jxck
       <p>Intersection Observer は交点(Intersection) を監視し、指定した要素同士の交差が発生したら、イベントを発火する Observer である。
       <p>交点の検出処理は、ブラウザが内部で行っているため、前述のような onscroll 内での同期処理などは一切必要がなくなる。
       <p>逆を言えば、スクロール以外による交差の発生も一括して取得することが可能になる。
-      <p>これにより、 Scroll Junk の原因が除去され効率良く実装することが可能となる。
+      <p>これにより、 Scroll Junk の原因が除去され、効率良く実装することが可能となる。
     </section>
     <section>
       <h2 id="API"><a href="#API">API</a></h2>
-      <p>コールバックとオプションを指定し、 Intersection Observer Class を生成する。<br>
-      任意の DOM 要素を <code>observe()</code> メソッドを指定することで、対象を監視する。
+      <p>コールバックとオプションを指定し、 Intersection Observer Class のインスタンスを生成する。
+      <p>生成した Observer に対して、任意の DOM 要素を <code>observe()</code> メソッドで指定することで、対象を監視する。
       <p>複数要素を同じように監視する場合は、同じ Inetrsection Observer インスタンスで、 observe を複数回呼ぶことができる。
       <pre class=js><code>let observer = new IntersectionObserver((changes) =&gt; {
   for (let change of changes) {
@@ -232,15 +232,41 @@ observer.observe(target);</code></pre>
         <h3 id="callback"><a href="#callback">callback</a></h3>
         <p>複数の DOM を監視した場合は、一つのイベントで複数の変更が取得されるため、コールバックの引数は監視した DOM の数だけ入ってくる。
         <p>一つの変更は以下のプロパティを持つ
-        <ul>
-          <li><code>change.time</code>               : タイムスタンプ
-          <li><code>change.rootBounds</code>         : root の <code>getBoundingClientRect()</code>
-          <li><code>change.boundingClientRect</code> : target の <code>getBoundingClientRect()</code>
-          <li><code>change.intersectionRect</code>   : 交差領域の <code>getBoundingClientRect()</code>
-          <li><code>change.intersectionRatio</code>  : 交差している領域の割合
-          <li><code>change.target</code>             : target
-        </ul>
-        <p><img src=intersection-observer.svg#500x357 alt="intersection-observer" title="Intersection Observer API" width=500 height=357>
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/table.css>
+        <table>
+          <thead>
+            <tr>
+              <th class=align-left>プロパティ</th>
+              <th class=align-left>内容</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class=align-left><code>change.time</code></td>
+              <td class=align-left>タイムスタンプ</td>
+            </tr>
+            <tr>
+              <td class=align-left><code>change.rootBounds</code></td>
+              <td class=align-left>root の <code>getBoundingClientRect()</code></td>
+            </tr>
+            <tr>
+              <td class=align-left><code>change.boundingClientRect</code></td>
+              <td class=align-left>target の <code>getBoundingClientRect()</code></td>
+            </tr>
+            <tr>
+              <td class=align-left><code>change.intersectionRect</code></td>
+              <td class=align-left>交差領域の <code>getBoundingClientRect()</code></td>
+            </tr>
+            <tr>
+              <td class=align-left><code>change.intersectionRatio</code></td>
+              <td class=align-left>交差している領域の割合</td>
+            </tr>
+            <tr>
+              <td class=align-left><code>change.target</code></td>
+              <td class=align-left>target</td>
+            </tr>
+          </tbody>
+        </table><p><img src=intersection-observer.svg#500x357 alt="intersection-observer" title="Intersection Observer API" width=500 height=357>
         <p>特に <code>change.intersectionRect</code> および <code>change.intersectionRatio</code> は、自分で計算するとボトルネックになりがちである。
         <p>第二引数には、オプションには三つのプロパティを設定したオブジェクトを指定できる。
         <pre class=js><code>let observer = new IntersectionObserver((changes) =&gt; {
@@ -255,23 +281,26 @@ observer.observe(target);</code></pre>
       <section>
         <h3 id="root"><a href="#root">root</a></h3>
         <p>デフォルトでは、 viewport を対象にした交差検出を行うことができるが、これはデフォルトの root が document 自身になっているからである。
-        <p>root オプションを用いることで、任意の親要素内を指定できるため、例えば <code>overflow: scroll</code> になった div の中のリストなどを指定することができる。
+        <p>root オプションを用いることで、任意の親要素内を指定できるため、例えば <code>overflow: scroll</code> になった div の中の交差を判定することができる。
+        <pre class=js><code>{ root: document.querySelector(&#039;.target&#039;) }</code></pre>
       </section>
       <section>
         <h3 id="threshold"><a href="#threshold">threshold</a></h3>
-        <p><code>change.intersectionRatio</code> によって、交差している領域の割合を取得することができるが、コールバックが呼ばれるタイミングが交差のタイミングだけだと、 0% や 100% など、あまり約に経たない値しか出ない。
+        <p><code>change.intersectionRatio</code> によって、交差している領域の割合を取得することができるが、コールバックが呼ばれるタイミングが交差のタイミングだけだと、 0% や 100% などあまり役に経たない値しか出ない。
         <p>これは、表示が 0 (表示されてない), 100 (全て表示されている) のどちらかしかないためである。
         <p>イベント発生頻度を増やすには、 threshold オプションを使うことができる。
-        <p>例えば、以下のように引数を設定すれば、交差領域が 20% 変化する毎にコールバックを呼ぶことが出来る。
+        <p>例えば、以下のように引数を設定すれば、交差領域が 20% 変化する毎にコールバックを呼ぶことができる。
+        <pre class=js><code>{ threshold: [0, 0.2, 0.4, 0.6, 0.8, 1.0] }</code></pre>
         <p>これにより、表示領域の変化に合わせたインタラクションも実装が可能になる。
       </section>
       <section>
         <h3 id="rootMargin"><a href="#rootMargin">rootMargin</a></h3>
         <p>画像の遅延読み込みなどを実装したい場合は、 viewport を root として <code>&lt;img&gt;</code> を IntersectionObserver で監視するだろう。
-        <p>これにより、 viewport 上に <code>&lt;img&gt;</code> が出現したことを検出し、そこで画像の取得を走らせることができる。
-        <p>しかし、 viewport 上に表示されてから取得しては少し遅い場合がある。できれば、表示される少し前にそれが分かっていれば、小さい画像なら空の <code>&lt;img&gt;</code> を出すことすらなく済むかもしれない。
+        <p>viewport 上に <code>&lt;img&gt;</code> が出現したことを検出することで、そこで画像の取得を走らせることができる。
+        <p>しかし、 viewport 上に表示されてからの取得するより、表示される少し前に取得を開始できれば、小さい画像なら空の <code>&lt;img&gt;</code> すら出さずに済む可能性がある。
         <p>こうした場合は rootMargin オプションを指定することができる。
         <p>値は CSS の margin への指定と同じだ、例えば以下のように設定すれば、上下左右が交差する 10px 手前でイベントが発火する。
+        <pre class=js><code>{ rootMargin: &#039;10px&#039; }</code></pre>
       </section>
       <section>
         <h3 id="Intersection+Observe+DEMO"><a href="#Intersection+Observe+DEMO">Intersection Observe DEMO</a></h3>
@@ -291,8 +320,8 @@ observer.observe(target);</code></pre>
       <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
       <p>この機能を用いて、本サイトでも画像の遅延読み込みを実装するつもりでいる。
       <p>しかし、本サイトでは Service Worker や HTTP2 Push など他の最適化戦略も併用する予定であるため、検証がまだ追いついていない。
-      <p>また、現状では最適化した SVG がほとんどであるため、画像の取得がボトルネックと見直すには弱い場合が多く、行ったん見送ることにした。
-      <p>将来的に最適化戦略がおちついたら、追記する。
+      <p>また、現状では最適化した SVG がほとんどであるため、画像の取得がボトルネックと見なすには弱い場合が多く、一旦見送ることにした。
+      <p>将来的に最適化戦略が落ち着いたら、追記する。
     </section>
     <section>
       <h2 id="Links"><a href="#Links">Links</a></h2>

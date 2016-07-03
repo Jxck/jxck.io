@@ -50,7 +50,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-02-01T08:00:00+08:00",
-  "dateModified": "2016-04-11T08:00:00+08:00",
+  "dateModified": "2016-07-03T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -524,7 +524,7 @@ th:last-child, td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-02-01>2016-02-01</time>
-    <li>updated_at: <time class=updated_at datetime=2016-04-11>2016-04-11</time>
+    <li>updated_at: <time class=updated_at datetime=2016-07-03>2016-07-03</time>
     <li class=tags>tags: [<a>amp</a>,<a>html</a>,<a>performance</a>]
   </ul>
 
@@ -555,9 +555,9 @@ th:last-child, td:last-child {
         <p>AMP への対応は、実際には 「遅くなる原因」=「アンチパターン」が Invalid となる仕様を定義し、それを開発者に強制することで、必然的にボトルネックの少ないコンテンツにする仕様と言える。
         <p>具体的には以下のようなアンチパターンを排除する。
         <ul>
-          <li>JS の実行: 実際には <code>document.write</code> などによるブロックなどがネックになりやすいが、細かくいうと色々あるので、丸っと一括で禁止するという感じ
-          <li>外部 CSS: 全部 HTML 内に書かせることで、 fetch や再描画を防ぐ
-          <li><code>&lt;img&gt;</code>: 画像の width x height を明示させ、そこに非同期読み込みする <code>&lt;amp-img&gt;</code> を代わりに使わせることで、画像表示を最適化する
+          <li>JS の実行: 実際には <code>document.write</code> などによるブロックなどがネックになりやすいが、細かくいうと色々あるので、丸っと一括で禁止ししている
+          <li>外部 CSS: 全部 HTML 内にインラインで書かせることにより fetch や再描画を防ぐ
+          <li><code>&lt;img&gt;</code>: 画像の <code>width x height</code> を明示させ、 <code>&lt;amp-img&gt;</code> を代わりに使わせることで、画像を非同期に読み込み表示を最適化する
         </ul>
         <p>まあ、ほとんどが実際は <strong>粗悪なアド</strong> を縛るような仕様になっている。<br>
         アドの実装は開発者が手を出しにくいところであるため、こうした外部要因による強制力(AMP 対応が一般化したら、対応してないアドにとっては不利になる)があるのは良いだろう。
