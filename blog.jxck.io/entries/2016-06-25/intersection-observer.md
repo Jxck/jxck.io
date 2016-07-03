@@ -228,7 +228,7 @@ root オプションを用いることで、任意の親要素内を指定でき
 
 
 ```js
-{ rootMargin: '10px' }
+{ threshold: [0, 0.2, 0.4, 0.6, 0.8, 1.0] }
 ```
 
 これにより、表示領域の変化に合わせたインタラクションも実装が可能になる。
@@ -247,7 +247,7 @@ viewport 上に `<img>` が出現したことを検出することで、そこ�
 値は CSS の margin への指定と同じだ、例えば以下のように設定すれば、上下左右が交差する 10px 手前でイベントが発火する。
 
 ```js
-{ root: document.querySelector('.target') }
+{ rootMargin: '10px' }
 ```
 
 ### Intersection Observe DEMO
