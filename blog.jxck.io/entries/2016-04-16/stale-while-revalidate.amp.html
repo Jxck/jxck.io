@@ -50,7 +50,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-04-16T08:00:00+08:00",
-  "dateModified": "2016-05-17T08:00:00+08:00",
+  "dateModified": "2016-07-04T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -524,7 +524,7 @@ th:last-child, td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-04-16>2016-04-16</time>
-    <li>updated_at: <time class=updated_at datetime=2016-05-17>2016-05-17</time>
+    <li>updated_at: <time class=updated_at datetime=2016-07-04>2016-07-04</time>
     <li class=tags>tags: [<a>SwR</a>,<a>http</a>,<a>cache</a>,<a>performance</a>]
   </ul>
 
@@ -687,7 +687,7 @@ th:last-child, td:last-child {
       <section>
         <h3 id="1+year+fresh/stale+cache"><a href="#1+year+fresh/stale+cache">1 year fresh/stale cache</a></h3>
         <pre><code>Cache-Control: max-age=15768000, stale-while-revalidate=15768000</code></pre>
-        <p>両方を半年づつ設定した場合、半年づつ <strong>fresh</strong> / <strong>stale</strong> になる。
+        <p>両方を半年ずつ設定した場合、半年ずつ <strong>fresh</strong> / <strong>stale</strong> になる。
         <p>この場合 <code>stale-while-revalidate</code> に <strong>*対応していないブラウザ</strong> でも、半年はキャッシュが効く。
         <p>まだ <code>stale-while-revalidate</code> の実装が行き渡らないうちは、こうした両方での指定も考慮すべきだろう。
         <p><code>max-age</code> の割合を、リソースのコンテンツ頻度などを元に考慮することで、サーバへの負荷とキャッシュの鮮度のバランスを取ることができる。

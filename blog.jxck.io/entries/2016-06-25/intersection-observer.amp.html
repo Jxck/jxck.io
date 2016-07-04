@@ -50,7 +50,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-06-25T08:00:00+08:00",
-  "dateModified": "2016-07-03T08:00:00+08:00",
+  "dateModified": "2016-07-04T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -524,7 +524,7 @@ th:last-child, td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-06-25>2016-06-25</time>
-    <li>updated_at: <time class=updated_at datetime=2016-07-03>2016-07-03</time>
+    <li>updated_at: <time class=updated_at datetime=2016-07-04>2016-07-04</time>
     <li class=tags>tags: [<a>intersection observer</a>,<a>scroll</a>,<a>performance</a>]
   </ul>
 
@@ -558,7 +558,7 @@ th:last-child, td:last-child {
         <h3 id="スクロール量(scrollTop)"><a href="#スクロール量(scrollTop)">スクロール量(scrollTop)</a></h3>
         <p>ページがどの程度スクロールされたかという値である。
         <p>基本は <code>document.documentElement.scrollTop</code> だが、互換モードでは <code>document.body.scrollTop</code> を使う。<br>
-        しかし iPhone には <code>scrollTop</code> がないので、 <code>window.pageYOffset</code> を使うが、これは <code>window.scrollY</code> のエイリアスになってる。
+        しかし iPhone には <code>scrollTop</code> がないので、 <code>window.pageYOffset</code> を使うが、これは <code>window.scrollY</code> のエイリアスになっている。
         <p>要するに 4 つある。
         <ul>
           <li><code>document.documentElement.scrollTop</code>
@@ -603,7 +603,7 @@ th:last-child, td:last-child {
       <section>
         <h3 id="onscroll+イベント"><a href="#onscroll+イベント">onscroll イベント</a></h3>
         <p>上記の判定は、スクロールするたび、つまり onscroll イベントごとに計算すれば DOM の出現監視になる。
-        <p>ただし、 onscroll は発生頻度が非常に多いため、愚直にコールバックに指定してしまうと、ボトルネックになり Scroll Junk を引き起こす可能性がある。
+        <p>ただし、 onscroll は発生頻度が非常に多いため、愚直にコールバックに指定してしまうと、ボトルネックになり Scroll Jank を引き起こす可能性がある。
         <p>対策としては、まずコールバックを実行するイベントを間引く throttling がある。
         <p>たとえば、 underscore.js の <a href="http://underscorejs.org/#throttle">throttle()</a> 相当のものや、 Reactive Extension 系のライブラリを使うことで実現できる。
         <p>また、計算処理のみでコールバックを抜けるのであれば、 <code>.preventDefault()</code> を呼ばないため、別エントリで解説した Passive Event Listener を利用できる。
@@ -623,7 +623,7 @@ th:last-child, td:last-child {
       <h2 id="問題点"><a href="#問題点">問題点</a></h2>
       <p>さて、ここまで見て来た方法には多くの問題があった。
       <ol>
-        <li>scroll event のハンドラが Scroll Junk を引き起こす可能性がある
+        <li>scroll event のハンドラが Scroll Jank を引き起こす可能性がある
         <li>全 scroll event での実施は回数が多いので、 throttling (まびき)を行う必要がある
         <li>サイズや位置を取得する API は Forced Synchronous Layout を発生させる
         <li>API が分かりづらく、互換性も微妙で、単純に実装が面倒くさい
@@ -641,13 +641,13 @@ th:last-child, td:last-child {
       <p>Intersection Observer は交点(Intersection) を監視し、指定した要素同士の交差が発生したら、イベントを発火する Observer である。
       <p>交点の検出処理は、ブラウザが内部で行っているため、前述のような onscroll 内での同期処理などは一切必要がなくなる。
       <p>逆を言えば、スクロール以外による交差の発生も一括して取得することが可能になる。
-      <p>これにより、 Scroll Junk の原因が除去され、効率良く実装することが可能となる。
+      <p>これにより、 Scroll Jank の原因が除去され、効率良く実装することが可能となる。
     </section>
     <section>
       <h2 id="API"><a href="#API">API</a></h2>
       <p>コールバックとオプションを指定し、 Intersection Observer Class のインスタンスを生成する。
       <p>生成した Observer に対して、任意の DOM 要素を <code>observe()</code> メソッドで指定することで、対象を監視する。
-      <p>複数要素を同じように監視する場合は、同じ Inetrsection Observer インスタンスで、 observe を複数回呼ぶことができる。
+      <p>複数要素を同じように監視する場合は、同じ Intersection Observer インスタンスで、 observe を複数回呼ぶことができる。
       <pre class=js><code>let observer = new IntersectionObserver((changes) =&gt; {
   for (let change of changes) {
     console.log(change);
@@ -693,7 +693,7 @@ observer.observe(target);</code></pre>
           </tbody>
         </table><p><amp-img layout=responsive src=intersection-observer.svg#500x357 alt="intersection-observer" title="Intersection Observer API" width=500 height=357>
         <p>特に <code>change.intersectionRect</code> および <code>change.intersectionRatio</code> は、自分で計算するとボトルネックになりがちである。
-        <p>第二引数には、オプションには三つのプロパティを設定したオブジェクトを指定できる。
+        <p>第二引数には、オプションとして三つのプロパティを設定したオブジェクトを指定できる。
         <pre class=js><code>let observer = new IntersectionObserver((changes) =&gt; {
   // callback
 }, {
@@ -711,7 +711,7 @@ observer.observe(target);</code></pre>
       </section>
       <section>
         <h3 id="threshold"><a href="#threshold">threshold</a></h3>
-        <p><code>change.intersectionRatio</code> によって、交差している領域の割合を取得することができるが、コールバックが呼ばれるタイミングが交差のタイミングだけだと、 0% や 100% などあまり役に経たない値しか出ない。
+        <p><code>change.intersectionRatio</code> によって、交差している領域の割合を取得することができるが、コールバックが呼ばれるタイミングが交差のタイミングだけだと、 0% や 100% などあまり役に立たない値しか出ない。
         <p>これは、表示が 0 (表示されてない), 100 (全て表示されている) のどちらかしかないためである。
         <p>イベント発生頻度を増やすには、 threshold オプションを使うことができる。
         <p>例えば、以下のように引数を設定すれば、交差領域が 20% 変化する毎にコールバックを呼ぶことができる。
@@ -722,7 +722,7 @@ observer.observe(target);</code></pre>
         <h3 id="rootMargin"><a href="#rootMargin">rootMargin</a></h3>
         <p>画像の遅延読み込みなどを実装したい場合は、 viewport を root として <code>&lt;img&gt;</code> を IntersectionObserver で監視するだろう。
         <p>viewport 上に <code>&lt;img&gt;</code> が出現したことを検出することで、そこで画像の取得を走らせることができる。
-        <p>しかし、 viewport 上に表示されてからの取得するより、表示される少し前に取得を開始できれば、小さい画像なら空の <code>&lt;img&gt;</code> すら出さずに済む可能性がある。
+        <p>しかし、 viewport 上に表示されてから取得するより、表示される少し前に取得を開始できれば、小さい画像なら空の <code>&lt;img&gt;</code> すら出さずに済む可能性がある。
         <p>こうした場合は rootMargin オプションを指定することができる。
         <p>値は CSS の margin への指定と同じだ、例えば以下のように設定すれば、上下左右が交差する 10px 手前でイベントが発火する。
         <pre class=js><code>{ rootMargin: &#039;10px&#039; }</code></pre>
