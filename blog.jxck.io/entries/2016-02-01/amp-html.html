@@ -55,7 +55,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-02-01T08:00:00+08:00",
-  "dateModified": "2016-07-03T08:00:00+08:00",
+  "dateModified": "2016-07-05T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -97,7 +97,7 @@ by Jxck
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-02-01>2016-02-01</time>
-    <li>updated_at: <time class=updated_at datetime=2016-07-03>2016-07-03</time>
+    <li>updated_at: <time class=updated_at datetime=2016-07-05>2016-07-05</time>
     <li class=tags>tags: [<a>amp</a>,<a>html</a>,<a>performance</a>]
   </ul>
 
@@ -111,7 +111,7 @@ by Jxck
     </section>
     <section>
       <h2 id="Update"><a href="#Update">Update</a></h2>
-      <p>以下の記事が出たので、古かったフォーマットのアップデートと <a href="https://blog.jxck.io/entries/2016-02-26/jsonld-opengraph.html">JSON-LD によるメタデータの提供</a> に対応した。
+      <p>次の記事が出たので、古かったフォーマットのアップデートと <a href="https://blog.jxck.io/entries/2016-02-26/jsonld-opengraph.html">JSON-LD によるメタデータの提供</a> に対応した。
       <ul>
         <li><a href="http://googledevjp.blogspot.jp/2016/02/google-accelerated-mobile-pages.html">Google モバイル検索が Accelerated Mobile Pages に対応しました</a>
         <li><a href="http://ymotongpoo.hatenablog.com/entry/2016/02/25/224159">AMP対応 2016.02版</a>
@@ -125,18 +125,18 @@ by Jxck
       <p>実際は、高速化するというより、 <strong>遅くなる原因を排除する</strong> という制約を課す仕様という作りになっている。
       <section>
         <h3 id="対応のメリット"><a href="#対応のメリット">対応のメリット</a></h3>
-        <p>AMP への対応は、実際には 「遅くなる原因」=「アンチパターン」が Invalid となる仕様を定義し、それを開発者に強制することで、必然的にボトルネックの少ないコンテンツにする仕様と言える。
-        <p>具体的には以下のようなアンチパターンを排除する。
+        <p>AMP への対応は、実際には 「遅くなる原因」=「アンチパターン」が Invalid となる仕様を定義し、それを開発者に強制することで、必然的にボトルネックの少ないコンテンツにする仕様といえる。
+        <p>具体的には次のようなアンチパターンを排除する。
         <ul>
           <li>JS の実行: 実際には <code>document.write</code> などによるブロックなどがネックになりやすいが、細かくいうと色々あるので、丸っと一括で禁止ししている
           <li>外部 CSS: 全部 HTML 内にインラインで書かせることにより fetch や再描画を防ぐ
           <li><code>&lt;img&gt;</code>: 画像の <code>width x height</code> を明示させ、 <code>&lt;amp-img&gt;</code> を代わりに使わせることで、画像を非同期に読み込み表示を最適化する
         </ul>
         <p>まあ、ほとんどが実際は <strong>粗悪なアド</strong> を縛るような仕様になっている。<br>
-        アドの実装は開発者が手を出しにくいところであるため、こうした外部要因による強制力(AMP 対応が一般化したら、対応してないアドにとっては不利になる)があるのは良いだろう。
+        アドの実装は開発者が手を出しにくいところであるため、こうした外部要因による強制力(AMP 対応が一般化したら、対応してないアドにとっては不利になる)があるのはよいだろう。
         <p>もちろん、アドが貼れない訳ではない。
         <p>他にも禁止している <code>&lt;iframe&gt;</code> やアナリティクス、その他 JS がないと実現できない UI 効果などは <code>&lt;amp-x&gt;</code> というコンポーネントによって実現できるようになっている。
-        <p>逆を言えばこれらコンポーネントに縛ることで、変な実装が入ることを防いでいる。
+        <p>逆をいえばこれらコンポーネントに縛ることで、変な実装が入ることを防いでいる。
         <p>また、こうした制約を満たしたサイトは、各ベンダがキャッシュしてくれるという効果が強くあるだろう。
         <p>AMP に合意したベンダは、サイトをクロールし AMP 対応ページを見つけた際に、それをキャッシュし代わりに配信してくれる。<br>
         (AMP に対応していれば、自然とそういうことがしやすいサイトになっている)
@@ -146,7 +146,7 @@ by Jxck
       </section>
       <section>
         <h3 id="構成要素"><a href="#構成要素">構成要素</a></h3>
-        <p>AMP は以下の三つの要素からなる。
+        <p>AMP は次の三つの要素からなる。
         <ul>
           <li>AMP HTML
           <li>AMP JS
@@ -159,7 +159,7 @@ by Jxck
       <h2 id="HTML+対応"><a href="#HTML+対応">HTML 対応</a></h2>
       <section>
         <h3 id="AMP+HTML"><a href="#AMP+HTML">AMP HTML</a></h3>
-        <p>本サイトの HTML は、 <a href="/entries/2016-01-28/html-compression.html">HTML の省略によるサイズ最適化</a> に書いた通り、極力タグを省略した作りにしている。
+        <p>本サイトの HTML は、 <a href="/entries/2016-01-28/html-compression.html">HTML の省略によるサイズ最適化</a> に書いたとおり、極力タグを省略した作りにしている。
         <p>しかし、 AMP の仕様では <code>&lt;head&gt;</code>, <code>&lt;body&gt;</code> などの記述は必須となっているため、追加した。
       </section>
     </section>
@@ -184,8 +184,8 @@ by Jxck
       <section>
         <h3 id="CSS"><a href="#CSS">CSS</a></h3>
         <p><code>&lt;link&gt;</code> による CSS の読み込みも禁止されている。
-        <p>しかし、 <code>&lt;style&gt;</code> が禁止されているわけではないので、全ての CSS を結合して HTML 内に埋め込むようにした。
-        <p>これは、別途対応した以下のコンポーネント単位の読み込みによる最適化と競合しているが、仕様なのでしかたがない。
+        <p>しかし、 <code>&lt;style&gt;</code> が禁止されているわけではないので、すべての CSS を結合して HTML 内に埋め込むようにした。
+        <p>これは、別途対応した次のコンポーネント単位の読み込みによる最適化と競合しているが、仕様なのでしかたがない。
         <p><a href="loading-css-over-http2.html">HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について</a>
       </section>
       <section>
@@ -197,7 +197,7 @@ by Jxck
         <p><a href="https://www.ampproject.org/docs/reference/extended/amp-img.html">amp-img</a>
         <p>このタグには <code>width</code> <code>height</code> の記述が必須となっており、 <code>layout=responsive</code> とすることでそのサイズ比を保ったままレスポンシブ表示してくれる。
         <p>この記事では markdown から生成しているため、この指定はいちいち調べて URL の最後に <code>#widthxheight</code> などとサイズを付与しておき、 AMP バージョンだけビルド時にそれを読むようにした。
-        <p>全てのイメージにサイズを付けるのは、特に既存のコンテンツがあるとなかなか難しそうな気がする。
+        <p>すべてのイメージにサイズを付けるのは、特に既存のコンテンツがあるとなかなか難しそうな気がする。
       </section>
       <section>
         <h3 id="amp-iframe"><a href="#amp-iframe">amp-iframe</a></h3>
@@ -240,7 +240,7 @@ by Jxck
       <h2 id="debug"><a href="#debug">debug</a></h2>
       <p>AMP として正しい HTML かどうかは、 Chrome Developer Tools で調べることができる。
       <p>単に Tools を開けば、そのページの対応している AMP バージョンを知ることができるが、 URL に <code>#development=1</code> を付与することでより細かくエラーを見ることができる。
-      <p>このページのデバッグフラグ付き AMP 対応ページの URL は以下になる。
+      <p>このページのデバッグフラグ付き AMP 対応ページの URL は次になる。
       <p><a href="amp-html.amp.html#development=1">amp-html.amp.html#development=1</a>
       <p>また、分かりやすいように通常の HTML の右上に AMP のイメージもとである &#x26a1; を模したアイコンを追加し、そこに AMP 版へのリンクを追加した。
     </section>

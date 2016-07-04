@@ -55,7 +55,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-06-20T08:00:00+08:00",
-  "dateModified": "2016-07-04T08:00:00+08:00",
+  "dateModified": "2016-07-05T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -97,7 +97,7 @@ by Jxck
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-06-20>2016-06-20</time>
-    <li>updated_at: <time class=updated_at datetime=2016-07-04>2016-07-04</time>
+    <li>updated_at: <time class=updated_at datetime=2016-07-05>2016-07-05</time>
     <li class=tags>tags: [<a>mozaic.fm</a>,<a>rss</a>,<a>podcast</a>]
   </ul>
 
@@ -140,14 +140,14 @@ by Jxck
       <h2 id="ブログ実装"><a href="#ブログ実装">ブログ実装</a></h2>
       <p>いきなりサイトを更新するのも難しいため、まず基礎となるブログを作ることにした。
       <p>それが、本サイト <a href="https://blog.jxck.io">https://blog.jxck.io</a> である。
-      <p>基本的には http2 ベースで設計しており、その他多くの技術を試しているが、その記録は全てこのサイト自体のエントリとして書き、ドックフーディングしてきたので、そちらをご覧いただきたい。
+      <p>基本的には http2 ベースで設計しており、その他多くの技術を試しているが、その記録はすべてこのサイト自体のエントリとして書き、ドックフーディングしてきたので、そちらをご覧いただきたい。
       <p>新しい <a href="https://mozaic.fm">https://mozaic.fm</a> は、本サイトのコピペをベースとしている。
     </section>
     <section>
       <h2 id="RSS+実装"><a href="#RSS+実装">RSS 実装</a></h2>
       <p>RSS の仕様には、主に RSS1.0, RSS2.0, Atom の三つがある。
       <p>本サイト blog.jxck.io では最新である Atom を採用したが、 Podcast の RSS は <strong>RSS2.0</strong> を用いる必要があった。
-      <p>RSS2.0 の仕様は以下にある。
+      <p>RSS2.0 の仕様は次にある。
       <p><a href="http://cyber.law.harvard.edu/rss/rss.html">http://cyber.law.harvard.edu/rss/rss.html</a>
       <p>また、 Apple は Podcast 向けの拡張ボキャブラリを追加しているため、それらも対応している。
       <ul>
@@ -179,7 +179,7 @@ by Jxck
     </section>
     <section>
       <h2 id="移行作業"><a href="#移行作業">移行作業</a></h2>
-      <p>tumblr に mozaic.fm ドメインを貼り、 feedburner と連携してフィードを配信しているため、移行には以下の作業を行った。
+      <p>tumblr に mozaic.fm ドメインを貼り、 feedburner と連携してフィードを配信しているため、移行には次の作業を行った。
       <ol>
         <li>先に新しいサイトと feed を作る
         <li>feed をサブドメインとして先に運用する
@@ -187,7 +187,7 @@ by Jxck
         <li>DNS を変更し、 mozaic.fm を tumblr から新サイトへ向ける
         <li>feedburner が新サイトを見ないように、独自ドメインを剥がした tumblr に向ける
         <li>mozaic.fm が自サーバを向いたので、 let's encrypt の certbot を走らせ <a href="https://mozaic.fm">https://mozaic.fm</a> を有効にする
-        <li><a href="http://mozaic.fm">http://mozaic.fm</a> を全て <a href="https://mozaic.fm">https://mozaic.fm</a> にリダイレクト
+        <li><a href="http://mozaic.fm">http://mozaic.fm</a> をすべて <a href="https://mozaic.fm">https://mozaic.fm</a> にリダイレクト
         <li>旧エピソードの tumblr 自体の URL を、新 URL にリダイレクトする
         <li>itunes の podcast connect から itunes に登録された mozaic.fm の feed を新しいものにする
       </ol>

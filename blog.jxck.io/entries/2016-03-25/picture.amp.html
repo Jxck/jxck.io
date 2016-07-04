@@ -50,7 +50,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-03-25T08:00:00+08:00",
-  "dateModified": "2016-04-11T08:00:00+08:00",
+  "dateModified": "2016-07-05T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -524,7 +524,7 @@ th:last-child, td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-03-25>2016-03-25</time>
-    <li>updated_at: <time class=updated_at datetime=2016-04-11>2016-04-11</time>
+    <li>updated_at: <time class=updated_at datetime=2016-07-05>2016-07-05</time>
     <li class=tags>tags: [<a>picture</a>,<a>image</a>,<a>performance</a>]
   </ul>
 
@@ -545,13 +545,13 @@ th:last-child, td:last-child {
     <section>
       <h2 id="画像の出し分け"><a href="#画像の出し分け">画像の出し分け</a></h2>
       <p>本サイトでは、それぞれの画像のサイズを、適切にリサイズしている。
-      <p>しかし、例えば Device Pixel Ratio が大きい Retina 対応端末などには、 大きいサイズのファイルを提供しなければ、拡大表示による画像の荒れが発生してしまう。
+      <p>しかし、たとえば Device Pixel Ratio が大きい Retina 対応端末などには、 大きいサイズのファイルを提供しなければ、拡大表示による画像の荒れが発生してしまう。
       <p>そこで、同一画像でいくつかのファイルサイズを用意し、ブラウザの DPR などに応じて出し分けるのが望ましい。
     </section>
     <section>
       <h2 id="最適な画像を決定する変数"><a href="#最適な画像を決定する変数">最適な画像を決定する変数</a></h2>
       <p>サイズ・フォーマット的に最適なイメージは、主に端末とブラウザの組み合わせで変わる。<br>
-      具体的には、現状以下の分岐を考慮する必要がある。
+      具体的には、現状次の分岐を考慮する必要がある。
       <ul>
         <li>ViewPort Size はいくつか(端末サイズの分岐)
         <li>DPI はいくつか(端末 Retina 対応)
@@ -560,14 +560,14 @@ th:last-child, td:last-child {
         <h3 id="サイズ最適化"><a href="#サイズ最適化">サイズ最適化</a></h3>
         <p>PNG/JPEG などのラスタ形式画像において、サイズとは基本的に縦横に敷き詰められた正方形の数を指す。
         <p>100x100 個の正方形でなる画像は、 100x100 で表示すれば基本的には問題ない。
-        <p>しかし、 200x200 で表示すれば、同じ正方形を縦横二つ並べて大きくしないといけないため、鮮明さが落ちる。
+        <p>しかし、 200x200 で表示すれば、同じ正方形を縦横ふたつ並べて大きくしないといけないため、鮮明さが落ちる。
         <p>ところがこれは、 CSS などで <code>width=100</code> <code>height=100</code> をきっちり指定すれば済むという問題ではない。
         <p>これは、 <strong>Device Pixel</strong> と <strong>CSS Pixel</strong> のサイズが必ずしも同じとは限らないからである。
       </section>
       <section>
         <h3 id="Device/CSS+Pixel+Size"><a href="#Device/CSS+Pixel+Size">Device/CSS Pixel Size</a></h3>
         <p>Retina ディスプレイは、通常のスクリーンよりも、スクリーン上に並ぶ正方形が小さいサイズになっている。
-        <p>スクリーンが持つ 1x1 を描画するための四角は <strong>Device Pixel</strong> といい、これが小ほど <strong>画面密度(Device Pixel Ratio)</strong> が高いと表現する。
+        <p>スクリーンがもつ 1x1 を描画するための四角は <strong>Device Pixel</strong> といい、これが小ほど <strong>画面密度(Device Pixel Ratio)</strong> が高いと表現する。
         <p>もし Device Pixel Size が通常の半分の Retina ディスプレイで 100x100 の画像をを素直に表示すると、同じスクリーンサイズの非 Retina で表示した時の 50x50 の見た目、つまり小さくなってしまう。
         <p>よって、 Retina 端末は、実際に自分が持っている <strong>Device Pixel</strong> と、 CSS で指定する <strong>CSS Pixel</strong> を分けることにした。
         <p>つまり、 CSS で 100x100 (CSS Pixel)で表示するように指定された画像は、勝手に 200x200 (Device Pixel)に拡大して表示することで、製作者が想定する <strong>描画サイズ(見た目の大きさ)</strong> になるようにしている。
@@ -576,7 +576,7 @@ th:last-child, td:last-child {
         <p>そのため、 Retina 対応するためには、あらかじめ 200x200 で作った画像も用意し、出し分ける必要がある。
         <p>今では <code>x3</code> の端末もあるため、 300x300 の画像も必要になる。将来的にこれが増えていく可能性もゼロではないだろう。
         <p>逆に、大きいサイズの画像を小さく表示する分には、見た目上の問題は通常無い。
-        <p>従って、 300x300 を用意しておき、相手がだれであろうとそれを送って、 200x200 なり 100x100 なり都合の良いサイズで表示してもらえば、 <strong>見た目の問題</strong> は解決する。
+        <p>したがって、 300x300 を用意しておき、相手がだれであろうとそれを送って、 200x200 なり 100x100 なり都合のよいサイズで表示してもらえば、 <strong>見た目の問題</strong> は解決する。
         <p>しかし、 100x100 のデータが必要な端末に 300x300 の画像を送るのは単純に無駄だ。単純計算で、本来必要なデータの 9 倍近いデータを送ることになる。
         <p>最適な画像を出し分けるのは、大事な一方、実は非常に複雑なのだ。
       </section>
@@ -589,7 +589,7 @@ th:last-child, td:last-child {
       <p>この指定方法はいくつか考えられる。
       <section>
         <h3 id="Media+Query+の指定"><a href="#Media+Query+の指定">Media Query の指定</a></h3>
-        <p>Media Query を用いて DPR 値で分岐した場合以下のように指定できる。
+        <p>Media Query を用いて DPR 値で分岐した場合次のように指定できる。
         <pre class=html><code>&lt;picture&gt;
   &lt;source type=image/png srcset=300x300.png media=&quot;min-device-pixel-ratio: 2.5&quot;&gt;
   &lt;source type=image/png srcset=200x200.png media=&quot;min-device-pixel-ratio: 1.5&quot;&gt;
@@ -600,7 +600,7 @@ th:last-child, td:last-child {
       </section>
       <section>
         <h3 id="sizes+の指定"><a href="#sizes+の指定">sizes の指定</a></h3>
-        <p>sizes を用いて、画像のサイズを明示した場合以下のように指定できる。
+        <p>sizes を用いて、画像のサイズを明示した場合次のように指定できる。
         <pre class=html><code>&lt;picture&gt;
   &lt;source type=image/png sizes=100px
           srcset=&quot;100x100.png 100w,
@@ -612,7 +612,7 @@ th:last-child, td:last-child {
       </section>
       <section>
         <h3 id="DEMO"><a href="#DEMO">DEMO</a></h3>
-        <p>これらの指定のデモは、以下に掲載した。
+        <p>これらの指定のデモは、次に掲載した。
         <p><a href="https://labs.jxck.io/picture/">labs.jxck.io/picture</a>
       </section>
       <section>
@@ -627,7 +627,7 @@ th:last-child, td:last-child {
         <p>両者の一番の違いは「<strong>ブラウザに考える余地があるかどうか</strong>」である。
         <p>もし、将来より大きい DPI や、今とは違う表示サイズや、表示形式から根本的に違うディスプレイが出て来た場合、後者はブラウザ自身がそれを考慮して適切な画像を選べるが、前者はクエリに手を入れて対応していく必要がある。
         <p>ブラウザに考える余地を与えるメリットは他にもある。
-        <p>例えば、将来的にモバイル端末自身が
+        <p>たとえば、将来的にモバイル端末自身が
         <blockquote>ネットワーク環境が悪いため、 DPI は x3 だがあえて 100w の画像を取得しよう</blockquote>
         <p>といったこともできる可能性がある。
         <p>ブラウザや置かれた状況によって取得される画像が変わるというのは、コンテンツの種類によっては問題になるかもしれない。<br>
@@ -637,14 +637,14 @@ th:last-child, td:last-child {
     </section>
     <section>
       <h2 id="結果"><a href="#結果">結果</a></h2>
-      <p>ただし、本サイトでは主に以下の画像を使う。
+      <p>ただし、本サイトでは主に次の画像を使う。
       <ul>
         <li>cacoo などで作成した画像
         <li>スクリーンショット
       </ul>
       <p>この中で、最初の画像については、基本的に SVG で出力する。<br>
       二番目の画像については、オリジナルよりも大きい画像を生成するのは難しい。
-      <p>スクリーンショットを x3 のデバイスで取得できれば良いが、現状筆者はそれを持っていない。
+      <p>スクリーンショットを x3 のデバイスで取得できればよいが、現状筆者はそれを持っていない。
       <p>したがって、大きな画像を用意して、小さく出せるものはあまりないため、この出し分けは大きな画像が取得できる場合のみにすることとした。
     </section>
   </article>

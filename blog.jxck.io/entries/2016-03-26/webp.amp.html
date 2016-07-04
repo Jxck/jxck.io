@@ -50,7 +50,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-03-26T08:00:00+08:00",
-  "dateModified": "2016-04-11T08:00:00+08:00",
+  "dateModified": "2016-07-05T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -524,7 +524,7 @@ th:last-child, td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-03-26>2016-03-26</time>
-    <li>updated_at: <time class=updated_at datetime=2016-04-11>2016-04-11</time>
+    <li>updated_at: <time class=updated_at datetime=2016-07-05>2016-07-05</time>
     <li class=tags>tags: [<a>webp</a>,<a>image</a>,<a>performance</a>]
   </ul>
 
@@ -546,17 +546,17 @@ th:last-child, td:last-child {
     <section>
       <h2 id="WebP"><a href="#WebP">WebP</a></h2>
       <p>従来の Web において、画像は用途毎に PNG/JPEG/GIF などを使い分けていた。<br>
-      一般的には以下のような使い分けが行われている。
+      一般的には次のような使い分けが行われている。
       <ul>
         <li>PNG : 主に UI アイコンなど色変化の少ない画像
         <li>JEPG: 主に写真など色変化が多い画像
         <li>GIF : 主に GIF アニメメーション
       </ul>
-      <p>WebP は Google が開発した画像フォーマットであり、これら三つの用途全てに適した上で、さらに小さいサイズに圧縮できる場合が多い。
-      <p>また、 WebP は動画フォーマットである WebM の 1 フレームに相当するため、 WebP アニメーションは簡易 WebM と言っても良い。<br>
-      GIF アニメよりも、色数が多く綺麗なアニメーションを小さいサイズで作ることができるため、技術ブログで言えばスクリーンデモのキャプチャなどに適しているだろう。
+      <p>WebP は Google が開発した画像フォーマットであり、これら三つの用途すべてに適した上で、さらに小さいサイズに圧縮できる場合が多い。
+      <p>また、 WebP は動画フォーマットである WebM の 1 フレームに相当するため、 WebP アニメーションは簡易 WebM と言ってもよい。<br>
+      GIF アニメよりも、色数が多くきれいなアニメーションを小さいサイズで作ることができるため、技術ブログでいえばスクリーンデモのキャプチャなどに適しているだろう。
       <p>現状まだ対応するブラウザは限られているが、対応しているのであれば WebP で配布するのが望ましい場合が多い。
-      <p>WebP のデモは以下に記載した。
+      <p>WebP のデモは次に記載した。
       <p><a href="https://labs.jxck.io/webp/">labs.jxck.io/webp</a>
     </section>
     <section>
@@ -592,17 +592,17 @@ Usage:
       <h2 id="<code>&lt;picture&gt;</code>+での+WebP+の指定"><a href="#<code>&lt;picture&gt;</code>+での+WebP+の指定"><code>&lt;picture&gt;</code> での WebP の指定</a></h2>
       <p>ブラウザにおける <a href="http://caniuse.com/#feat=webp">WebP の対応はまだまだ限定的</a> であるため、非対応ブラウザには PNG/JPEG/GIF などを送る必要がある。
       <p>この方法として、 JS による補完や、 User-Agent を用いたサーバサイドでの分岐などが紹介される場合がある。<br>
-      しかし、別途 JS を利用する場合はイニシャルレンダリングへの影響を免れず、 User-Agent での分岐は保守性の問題から避けるべきパターンの一つといえる。
+      しかし、別途 JS を利用する場合はイニシャルレンダリングへの影響を免れず、 User-Agent での分岐は保守性の問題から避けるべきパターンのひとつといえる。
       <p>現時点では、 HTML の <code>&lt;picture&gt;</code> を用いることで、ブラウザ自体にそれを判断させることができるため、本サイトではこの方法を採用することとした。
-      <p>画像を以下のように指定することで、対応ブラウザが自ら WebP をリクエストするようになり、 WebP や <code>&lt;picture&gt;</code> に対応していない場合は <code>&lt;img&gt;</code> に指定した画像にフォールバックする。
+      <p>画像を次のように指定することで、対応ブラウザが自ら WebP をリクエストするようになり、 WebP や <code>&lt;picture&gt;</code> に対応していない場合は <code>&lt;img&gt;</code> に指定した画像にフォールバックする。
       <pre class=html><code>&lt;picture&gt;
   &lt;source type=image/webp srcset=hero-image.webp&gt;
   &lt;img src=hero-image.png alt=&quot;hero image&quot;&gt;
 &lt;/picture&gt;</code></pre>
       <p>この場合、 WebP に対応しているが <code>&lt;picture&gt;</code> に対応していないブラウザが気になるところだが、現状 <a href="http://caniuse.com/#search=picture">picture</a> に対応し <a href="http://caniuse.com/#search=webp">webp</a> に対応していないブラウザは無い。
-      <p>従って <code>&lt;picture&gt;</code> に対応していない(= WebP も非対応)ブラウザに向けたフォールバックとして、 <code>&lt;img&gt;</code> には PNG を指定する。
+      <p>したがって <code>&lt;picture&gt;</code> に対応していない(= WebP も非対応)ブラウザに向けたフォールバックとして、 <code>&lt;img&gt;</code> には PNG を指定する。
       <p>この指定は、現在 WebP に対応していないブラウザが将来対応した場合に、サイトに何も手を加える必要がない。
-      <p>将来、新しい画像フォーマットが出た場合は <code>&lt;source&gt;</code> を加えることで、ブラウザに選択肢を増やせば良いため、 UA のメンテナンスと比べても、好ましい方法と言える。
+      <p>将来、新しい画像フォーマットが出た場合は <code>&lt;source&gt;</code> を加えることで、ブラウザに選択肢を増やせばよいため、 UA のメンテナンスと比べても、好ましい方法といえる。
     </section>
   </article>
 
