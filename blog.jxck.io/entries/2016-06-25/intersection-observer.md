@@ -104,7 +104,7 @@ let rect = target.getBoundingClientRect();
 
 上記の判定は、スクロールするたび、つまり onscroll イベントごとに計算すれば DOM の出現監視になる。
 
-ただし、 onscroll は発生頻度が非常に多いため、愚直にコールバックに指定してしまうと、ボトルネックになり Scroll Junk を引き起こす可能性がある。
+ただし、 onscroll は発生頻度が非常に多いため、愚直にコールバックに指定してしまうと、ボトルネックになり Scroll Jank を引き起こす可能性がある。
 
 対策としては、まずコールバックを実行するイベントを間引く throttling がある。
 
@@ -126,7 +126,7 @@ let rect = target.getBoundingClientRect();
 
 さて、ここまで見て来た方法には多くの問題があった。
 
-1. scroll event のハンドラが Scroll Junk を引き起こす可能性がある
+1. scroll event のハンドラが Scroll Jank を引き起こす可能性がある
 1. 全 scroll event での実施は回数が多いので、 throttling (まびき)を行う必要がある
 1. サイズや位置を取得する API は Forced Synchronous Layout を発生させる
 1. API が分かりづらく、互換性も微妙で、単純に実装が面倒くさい
@@ -151,7 +151,7 @@ Intersection Observer は交点(Intersection) を監視し、指定した要素�
 
 逆を言えば、スクロール以外による交差の発生も一括して取得することが可能になる。
 
-これにより、 Scroll Junk の原因が除去され、効率良く実装することが可能となる。
+これにより、 Scroll Jank の原因が除去され、効率良く実装することが可能となる。
 
 ## API
 
@@ -159,7 +159,7 @@ Intersection Observer は交点(Intersection) を監視し、指定した要素�
 
 生成した Observer に対して、任意の DOM 要素を `observe()` メソッドで指定することで、対象を監視する。
 
-複数要素を同じように監視する場合は、同じ Inetrsection Observer インスタンスで、 observe を複数回呼ぶことができる。
+複数要素を同じように監視する場合は、同じ Intersection Observer インスタンスで、 observe を複数回呼ぶことができる。
 
 ```js
 let observer = new IntersectionObserver((changes) => {
@@ -192,7 +192,7 @@ observer.observe(target);
 
 特に `change.intersectionRect` および `change.intersectionRatio` は、自分で計算するとボトルネックになりがちである。
 
-第二引数には、オプションには三つのプロパティを設定したオブジェクトを指定できる。
+第二引数には、オプションとして三つのプロパティを設定したオブジェクトを指定できる。
 
 
 ```js
@@ -218,7 +218,7 @@ root オプションを用いることで、任意の親要素内を指定でき
 
 ### threshold
 
-`change.intersectionRatio` によって、交差している領域の割合を取得することができるが、コールバックが呼ばれるタイミングが交差のタイミングだけだと、 0% や 100% などあまり役に経たない値しか出ない。
+`change.intersectionRatio` によって、交差している領域の割合を取得することができるが、コールバックが呼ばれるタイミングが交差のタイミングだけだと、 0% や 100% などあまり役に立たない値しか出ない。
 
 これは、表示が 0 (表示されてない), 100 (全て表示されている) のどちらかしかないためである。
 
@@ -240,7 +240,7 @@ root オプションを用いることで、任意の親要素内を指定でき
 
 viewport 上に `<img>` が出現したことを検出することで、そこで画像の取得を走らせることができる。
 
-しかし、 viewport 上に表示されてからの取得するより、表示される少し前に取得を開始できれば、小さい画像なら空の `<img>` すら出さずに済む可能性がある。
+しかし、 viewport 上に表示されてから取得するより、表示される少し前に取得を開始できれば、小さい画像なら空の `<img>` すら出さずに済む可能性がある。
 
 こうした場合は rootMargin オプションを指定することができる。
 
