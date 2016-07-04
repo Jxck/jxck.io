@@ -439,7 +439,7 @@ push.sendNotification(data.endpoint, {
 });
 ```
 
-DEMO(push は飛ばしてません): [https://labs.jxck.io/service-worker/push/](https://labs.jxck.io/service-worker/push/)
+DEMO(push は飛ばしていません): [https://labs.jxck.io/service-worker/push/](https://labs.jxck.io/service-worker/push/)
 
 
 ## 図

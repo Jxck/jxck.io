@@ -133,7 +133,7 @@ try {
       supportsPassive = true;
     }
   });
-  // ためにし適当なイベントを補足し、 opts.passive が呼ばれるか試す
+  // 試しに適当なイベントを補足し、 opts.passive が呼ばれるか試す
   window.addEventListener("test", null, opts);
 } catch (e) {}
 

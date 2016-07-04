@@ -264,7 +264,7 @@ Cache-Control: max-age=1, stale-while-revalidate=3153600
 Cache-Control: max-age=15768000, stale-while-revalidate=15768000
 ```
 
-両方を半年づつ設定した場合、半年づつ **fresh** / **stale** になる。
+両方を半年ずつ設定した場合、半年ずつ **fresh** / **stale** になる。
 
 この場合 `stale-while-revalidate` に ***対応していないブラウザ** でも、半年はキャッシュが効く。
 

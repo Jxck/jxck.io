@@ -41,7 +41,7 @@
 ページがどの程度スクロールされたかという値である。
 
 基本は `document.documentElement.scrollTop` だが、互換モードでは `document.body.scrollTop` を使う。
-しかし iPhone には `scrollTop` がないので、 `window.pageYOffset` を使うが、これは `window.scrollY` のエイリアスになってる。
+しかし iPhone には `scrollTop` がないので、 `window.pageYOffset` を使うが、これは `window.scrollY` のエイリアスになっている。
 
 要するに 4 つある。
 
