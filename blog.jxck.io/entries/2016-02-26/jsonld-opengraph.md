@@ -4,7 +4,7 @@
 
 本サイトのメタ情報を整理するため、 HTML のメタタグの整理、 JSON-LD による schema.org 対応、 Facebook, Twitter を主とした Open Graph 対応を実施した。
 
-これにより、既にAMP 対応していた本サイトが、 Google のモバイル検索でキャッシュの対象となる(クロール待ち)。
+これにより、すでにAMP 対応していた本サイトが、 Google のモバイル検索でキャッシュの対象となる(クロール待ち)。
 
 
 ## Meta Tag
@@ -44,7 +44,7 @@
 
 ### JSON-LD
 
-結果、以下のような `<script>` を埋め込んでいる。
+結果、次のような `<script>` を埋め込んでいる。
 
 ```html
 <script type="application/ld+json">

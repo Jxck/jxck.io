@@ -41,7 +41,7 @@ DOM のイベントリスナの仕様に Passive Event Listeners というオプ
 
 つまり、 Scroll Event に登録されたイベントリスナの実行時間が長ければ長いほど、 Scroll Jank の影響が大きくなる。
 
-Chrome は現在、実行時間の長いリスナが登録された場合、以下のような警告を devtools に表示する。
+Chrome は現在、実行時間の長いリスナが登録された場合、次のような警告を devtools に表示する。
 
 > explainer.md#the-problem:1 Deferred long-running timer task(s) to improve scrolling smoothness. See crbug.com/574343.
 
@@ -72,7 +72,7 @@ document.addEventListener('touchstart', handler, {passive: true});
 
 なお Passive Listener 内で `preventDefault()` を呼んだ場合は無視されるため、呼んだとしても `defaultPrevented=false` のままになる。
 
-Listener 内で `preventDefault()` を呼べるかどうかは、 `cancelable=true` となっているかどうかでわかる。
+Listener 内で `preventDefault()` を呼べるかどうかは、 `cancelable=true` となっているかどうかで分かる。
 
 
 | listener | cancelable  | preventDefault | defaultPrevented |
@@ -110,7 +110,7 @@ document.addEventListener('touchstart', handler, {capture: true});
 
 これは `{passive: true}` は JS としては trusy であるため、第三引数が Event Listener Option に対応してないブラウザにおいて単に `useCapture` を有効にしたと解釈されてしまうためにおこる。
 
-例えばキャプチャリングフェーズでの補足を `false` にする指定を Event Listener Options で指定した場合、古いブラウザでは意図に反して `useCapture` を `true` にしたと解釈されてしまうのである。
+たとえばキャプチャリングフェーズでの補足を `false` にする指定を Event Listener Options で指定した場合、古いブラウザでは意図に反して `useCapture` を `true` にしたと解釈されてしまうのである。
 
 
 ```js
@@ -185,7 +185,7 @@ touchstart イベントに時間がかかっているため、スクロールが
 
 ## Intersection Observer
 
-Scroll にハンドラを補足するユースケースの一つに、画面のスクロール位置取得がある。
+Scroll にハンドラを補足するユースケースのひとつに、画面のスクロール位置取得がある。
 
 画面のどの分が表示されているかを `scrollTop` などを用いて測定するような場面では、 Passive Listener を指定する効果が予想される。
 

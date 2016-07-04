@@ -24,7 +24,7 @@
 
 まず、従来どのようにして要素の交差を取得していたかを振り返る。
 
-要素の位置に関する API は以下のようになっている。
+要素の位置に関する API は次のようになっている。
 
 **ただし、これは互換性の問題を多く含んでいるため、厳密には色々あるが、調べるのが面倒だったので単なる参考として載せる**
 
@@ -88,7 +88,7 @@ let rect = target.getBoundingClientRect();
 
 ### 表示判定
 
-ここまでを踏まえると、画面をスクロールし、画面の中に対象の DOM が入っていることは、以下のように判定できる。
+ここまでを踏まえると、画面をスクロールし、画面の中に対象の DOM が入っていることは、次のように判定できる。
 
 ```js
    (0 < rect.top && rect.top < clientHeight)       // 対象の上端は表示領域に入っている
@@ -117,7 +117,7 @@ let rect = target.getBoundingClientRect();
 
 ### Scroll & Position API DEMO
 
-ここまでの API の値の変化を確認するデモを以下に用意した。
+ここまでの API の値の変化を確認するデモを次に用意した。
 
 - [Scroll & Position API DEMO](https://labs.jxck.io/intersection-observer/size.html)
 
@@ -149,7 +149,7 @@ Intersection Observer は交点(Intersection) を監視し、指定した要素�
 
 交点の検出処理は、ブラウザが内部で行っているため、前述のような onscroll 内での同期処理などは一切必要がなくなる。
 
-逆を言えば、スクロール以外による交差の発生も一括して取得することが可能になる。
+逆をいえば、スクロール以外による交差の発生も一括して取得することが可能になる。
 
 これにより、 Scroll Jank の原因が除去され、効率良く実装することが可能となる。
 
@@ -172,9 +172,9 @@ observer.observe(target);
 
 ### callback
 
-複数の DOM を監視した場合は、一つのイベントで複数の変更が取得されるため、コールバックの引数は監視した DOM の数だけ入ってくる。
+複数の DOM を監視した場合は、ひとつのイベントで複数の変更が取得されるため、コールバックの引数は監視した DOM の数だけ入ってくる。
 
-一つの変更は以下のプロパティを持つ
+ひとつの変更は次のプロパティをもつ
 
 
 | プロパティ                  | 内容                                  |
@@ -210,7 +210,7 @@ observer.observe(target);
 
 デフォルトでは、 viewport を対象にした交差検出を行うことができるが、これはデフォルトの root が document 自身になっているからである。
 
-root オプションを用いることで、任意の親要素内を指定できるため、例えば `overflow: scroll` になった div の中の交差を判定することができる。
+root オプションを用いることで、任意の親要素内を指定できるため、たとえば `overflow: scroll` になった div の中の交差を判定することができる。
 
 ```js
 { root: document.querySelector('.target') }
@@ -220,11 +220,11 @@ root オプションを用いることで、任意の親要素内を指定でき
 
 `change.intersectionRatio` によって、交差している領域の割合を取得することができるが、コールバックが呼ばれるタイミングが交差のタイミングだけだと、 0% や 100% などあまり役に立たない値しか出ない。
 
-これは、表示が 0 (表示されてない), 100 (全て表示されている) のどちらかしかないためである。
+これは、表示が 0 (表示されてない), 100 (すべて表示されている) のどちらかしかないためである。
 
 イベント発生頻度を増やすには、 threshold オプションを使うことができる。
 
-例えば、以下のように引数を設定すれば、交差領域が 20% 変化する毎にコールバックを呼ぶことができる。
+たとえば、次のように引数を設定すれば、交差領域が 20% 変化する毎にコールバックを呼ぶことができる。
 
 
 ```js
@@ -244,7 +244,7 @@ viewport 上に `<img>` が出現したことを検出することで、そこ�
 
 こうした場合は rootMargin オプションを指定することができる。
 
-値は CSS の margin への指定と同じだ、例えば以下のように設定すれば、上下左右が交差する 10px 手前でイベントが発火する。
+値は CSS の margin への指定と同じだ、例えば次のように設定すれば、上下左右が交差する 10px 手前でイベントが発火する。
 
 ```js
 { rootMargin: '10px' }
@@ -258,7 +258,7 @@ threshold を 10% にし、 intersectionRatio を表示するように実装し�
 - [Intersection Observer DEMO](https://labs.jxck.io/intersection-observer/intersection.html)
 
 
-また以下に Intersecton Observer と、それ以前の API で、要素出現の検出を比較する DEMO を用意した。
+また次に Intersecton Observer と、それ以前の API で、要素出現の検出を比較する DEMO を用意した。
 こちらは、 `overflow: scroll` な div を親とする出現検出も含めてある。
 
 - [Visibility Change DEMO](https://labs.jxck.io/intersection-observer/visibility-change.html)

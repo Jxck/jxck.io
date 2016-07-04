@@ -2,7 +2,7 @@
 
 ## Intro
 
-本サイト [blog.jxck.io](https://blog.jxck.io) 以下については、 Markdown から静的ファイルを生成するスタイルで作成している。
+本サイト [blog.jxck.io](https://blog.jxck.io) 次については、 Markdown から静的ファイルを生成するスタイルで作成している。
 
 この変換時に以前から思っていた **HTML の最適化** を実施することにした。
 
@@ -16,7 +16,7 @@
 ## 静的コンテンツの最適化
 
 パフォーマンス改善の常套手段として、コンテンツの最適化がある。
-ただ、ここ最適化と言っているものには大きく二つある。
+ただ、ここ最適化と言っているものには大きくふたつある。
 
 - gzip などのアルゴリズムにより経路上で圧縮する
 - bmp を png, jpeg, webp などのフォーマットに変換し圧縮する
@@ -34,13 +34,13 @@
 
 ### タグそのもの
 
-`<html>`、 `<head>`、 `<body>` は、タグ自体を書かなくても良い場合があり、仕様では以下に定義がある。
+`<html>`、 `<head>`、 `<body>` は、タグ自体を書かなくてもよい場合があり、仕様では次に定義がある。
 
 [https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission](https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission)
 
 > An html element's end tag may be omitted if the html element is not immediately followed by a comment.
 
-すぐ次がコメントでないなら、 `<html>` は省略しても良い。 `<head>` や `<body>` も同様だ。
+すぐ次がコメントでないなら、 `<html>` は省略してもよい。 `<head>` や `<body>` も同様だ。
 
 ```html
 <!-- before -->
@@ -65,11 +65,11 @@
 
 ### 閉じタグ
 
-HTML には閉じタグの省略が許されているものがいくつかあり、仕様では以下に定義がある。
+HTML には閉じタグの省略が許されているものがいくつかあり、仕様では次に定義がある。
 
 [https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission](https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission)
 
-例えば、 `</li>` は以下の条件なら省略が可能だ。
+たとえば、 `</li>` は次の条件なら省略が可能だ。
 
 > An li element's end tag may be omitted if the li element is immediately followed by another li element or if there is no more content in the parent element.
 
@@ -101,7 +101,7 @@ HTML には閉じタグの省略が許されているものがいくつかあり
 
 ### attibute value の quote
 
-もうひとつ、要素を囲む引用符(`'`, `"`) も省略可能な場合があり、仕様では以下に定義がある。
+もうひとつ、要素を囲む引用符(`'`, `"`) も省略可能な場合があり、仕様では次に定義がある。
 
 [https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html](https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html)
 
@@ -119,7 +119,7 @@ HTML には閉じタグの省略が許されているものがいくつかあり
 ```
 
 
-要素一つにつき 2 byte の省略になる。
+要素ひとつにつき 2 byte の省略になる。
 
 
 ## その最適化は現実的か？
@@ -127,9 +127,9 @@ HTML には閉じタグの省略が許されているものがいくつかあり
 
 ### 好き嫌い
 
-まず、こうした省略によって、例えば XML として崩れてるみたいなことを言う人もいる。
+まず、こうした省略によって、たとえば XML として崩れてるみたいなことをいう人もいる。
 
-気持ちはわかるが、そもそもこの程度を省略しなかったところで XML などではない。
+気持ちは分かるが、そもそもこの程度を省略しなかったところで XML などではない。
 
 あくまで書いているのは HTML であり、 Markdown からの変換過程で最適化しているので、昨今のフロントのビルドタスクを見れば特段特別なことでもない。
 
@@ -138,12 +138,12 @@ HTML には閉じタグの省略が許されているものがいくつかあり
 
 生成した結果は [HTML Validator](https://validator.w3.org/nu/) で確認しているが問題は無い。
 
-HTML として問題が無いのであれば、 HTML に対応したツールでは扱えることになる。使えない場合、少し厳しく言うとそのツールは HTML を正しく扱えてない、つまりバグということになる。
+HTML として問題が無いのであれば、 HTML に対応したツールでは扱えることになる。使えない場合、少し厳しくいうとそのツールは HTML を正しく扱えてない、つまりバグということになる。
 まあ、そもそも HTML というのは、 XML と全く違い「緩い」部分が多いため、パースするのは非常に難しいので、完全に扱いきれないツールがあっても多少は仕方がない。
 
 特に片手間な正規表現で HTML を処理している場合(スクレイピング、エディタのシンタックスハイライト etc)は、影響が皆無ともいえないが、現状自分の環境で、特に困った場面はいまのところない。
 
-それも、強気に言えば「そのライブラリetc が正しく HTML を扱えてないだけだ」と言うこともできなくはない。
+それも、強気にいえば「そのライブラリetc が正しく HTML を扱えてないだけだ」ということもできなくはない。
 結局 HTML をパースしたければ、正しくパースできるライブラリを使うしかないという話になる。
 
 
@@ -154,7 +154,7 @@ HTML として問題が無いのであれば、 HTML に対応したツールで
 なので、その視点からいくつかの測定を実施する。
 
 
-まず、省略時のサイズであるが、この記事自体を `<html>`, `<head>`, `<body>` 、閉じたタグ、引用符を全て付けた場合と比べると 259 byte の削減になっていた。
+まず、省略時のサイズであるが、この記事自体を `<html>`, `<head>`, `<body>` 、閉じたタグ、引用符をすべて付けた場合と比べると 259 byte の削減になっていた。
 
 ```sh
 jxck$ wc html-compression.html
@@ -163,7 +163,7 @@ jxck$ wc html-no-compression.html
      141     417    9417 html-no-compression.html
 ```
 
-また Chrome の devtools で二つのファイルをレンダリングし、 Timeline から *Parse HTML* の時間を確認した。
+また Chrome の devtools でふたつのファイルをレンダリングし、 Timeline から *Parse HTML* の時間を確認した。
 10回平均した結果がこうだ。
 
 - 省略有: 約80ms
@@ -172,7 +172,7 @@ jxck$ wc html-no-compression.html
 また、何回かやると 有 が 100ms を超える場合や 無 が 70ms を切るような場合もあった。
 
 この程度の速度差であれば体感は難しいので、もはや誤差といえる。
-しかし、これは逆に、 *省略がパースを著しく遅くする、といった影響はない* と言えるだろう。
+しかし、これは逆に、 *省略がパースを著しく遅くする、といった影響はない* といえるだろう。
 
 これなら、ペイロードが小さくなることによる、ネットワーク効率としてのメリットを重視するリスクはなさそうだ。
 
