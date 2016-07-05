@@ -45,3 +45,7 @@ audio: https://files.mozaic.fm/mozaic-ep22.mp3
   - [Feature Policy](https://wicg.github.io/feature-policy/)
   - [Shop Polymer DEMO](https://shop.polymer-project.org/)
   - [amp-install-serviceworker](https://ampbyexample.com/components/amp-install-serviceworker/)
+- カルーセル
+  - 以下のように横にスライドする表示形式のこと。
+
+![carousel sample](carousel.png "google top news carousel sample")
