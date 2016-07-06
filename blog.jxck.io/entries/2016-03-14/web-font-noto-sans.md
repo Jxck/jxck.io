@@ -61,7 +61,7 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 本サイトでは、 Markdown から生成していることもあり、「通常の文字」と「**太文字**」しか基本的に使わない。
 (CSS を別途当てて、調整するといったことをしていない)
 
-従って、 Regular と Bold のみ使用する。
+したがって、 Regular と Bold のみ使用する。
 
 この時点で 8.7MB ある。
 

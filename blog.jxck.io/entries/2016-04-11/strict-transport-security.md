@@ -66,7 +66,7 @@ Chrome の場合は、以下からドメインを申請すると、審査が実�
 
 また、 Chrome の Preload 登録の条件には、 `includeSubDomains` の適用が含まれている。
 
-従って同様の理由から、止むを得ず **preload 登録は見送る** こととした。
+したがって同様の理由から、止むを得ず **preload 登録は見送る** こととした。
 
 結果、現時点では [jxck.io](https://jxck.io) 及び [blog.jxck.io](https://blog.jxck.io) に対して、以下のヘッダを付与した。
 

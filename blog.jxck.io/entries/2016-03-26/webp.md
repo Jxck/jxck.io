@@ -101,7 +101,7 @@ Usage:
 
 この場合、 WebP に対応しているが `<picture>` に対応していないブラウザが気になるところだが、現状 [picture](http://caniuse.com/#search=picture) に対応し [webp](http://caniuse.com/#search=webp) に対応していないブラウザは無い。
 
-従って `<picture>` に対応していない(= WebP も非対応)ブラウザに向けたフォールバックとして、 `<img>` には PNG を指定する。
+したがって `<picture>` に対応していない(= WebP も非対応)ブラウザに向けたフォールバックとして、 `<img>` には PNG を指定する。
 
 
 この指定は、現在 WebP に対応していないブラウザが将来対応した場合に、サイトに何も手を加える必要がない。

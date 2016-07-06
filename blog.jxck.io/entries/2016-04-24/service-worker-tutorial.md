@@ -83,7 +83,7 @@ DEMO: [https://labs.jxck.io/service-worker/claim/index.html](https://labs.jxck.i
 
 ## controllerchange
 
-register が終わった後、「新しく登録された controller が使えるようになったら」または「すでに登録されている controller が使えるようになったら」という状態をとる方法と `controllerchange` イベント。
+register が終わった後、「新しく登録された controller が使えるようになったら」または「既に登録されている controller が使えるようになったら」という状態をとる方法と `controllerchange` イベント。
 
 <iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/XoI0FPDV8Xo" allowfullscreen></iframe>
 

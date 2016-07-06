@@ -108,7 +108,7 @@ let rect = target.getBoundingClientRect();
 
 対策としては、まずコールバックを実行するイベントを間引く throttling がある。
 
-たとえば、 underscore.js の [throttle()](http://underscorejs.org/#throttle) 相当のものや、 Reactive Extension 系のライブラリを使うことで実現できる。
+例えば、 underscore.js の [throttle()](http://underscorejs.org/#throttle) 相当のものや、 Reactive Extension 系のライブラリを使うことで実現できる。
 
 また、計算処理のみでコールバックを抜けるのであれば、 `.preventDefault()` を呼ばないため、別エントリで解説した Passive Event Listener を利用できる。
 

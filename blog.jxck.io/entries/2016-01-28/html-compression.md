@@ -101,7 +101,7 @@ HTML には閉じタグの省略が許されているものがいくつかあり
 
 ### attibute value の quote
 
-もうひとつ、要素を囲む引用符(`'`, `"`) も省略可能な場合があり、仕様では以下に定義がある。
+もう一つ、要素を囲む引用符(`'`, `"`) も省略可能な場合があり、仕様では以下に定義がある。
 
 [https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html](https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html)
 
@@ -129,7 +129,7 @@ HTML には閉じタグの省略が許されているものがいくつかあり
 
 まず、こうした省略によって、例えば XML として崩れてるみたいなことを言う人もいる。
 
-気持ちはわかるが、そもそもこの程度を省略しなかったところで XML などではない。
+気持ちは分かるが、そもそもこの程度を省略しなかったところで XML などではない。
 
 あくまで書いているのは HTML であり、 Markdown からの変換過程で最適化しているので、昨今のフロントのビルドタスクを見れば特段特別なことでもない。
 

@@ -72,7 +72,7 @@ document.addEventListener('touchstart', handler, {passive: true});
 
 なお Passive Listener 内で `preventDefault()` を呼んだ場合は無視されるため、呼んだとしても `defaultPrevented=false` のままになる。
 
-Listener 内で `preventDefault()` を呼べるかどうかは、 `cancelable=true` となっているかどうかでわかる。
+Listener 内で `preventDefault()` を呼べるかどうかは、 `cancelable=true` となっているかどうかで分かる。
 
 
 | listener | cancelable  | preventDefault | defaultPrevented |
@@ -84,7 +84,7 @@ Listener 内で `preventDefault()` を呼べるかどうかは、 `cancelable=tr
 
 ## Event Listener Options
 
-`addEventListener` の第三引数は、すでに `useCapture` として boolean が定義されている。
+`addEventListener` の第三引数は、既に `useCapture` として boolean が定義されている。
 
 これが `true` の場合は、イベントはバブリングフェーズではなく、キャプチャリングフェーズで発火されることになる。
 
@@ -191,7 +191,7 @@ Scroll にハンドラを補足するユースケースの一つに、画面の�
 
 しかし、この場面により適した仕様として、要素の出現と位置をより効率的に取得する Intersection Observer という仕様が提案されている。
 
-実装されれば、こちらを用いる方が Scroll を監視するよりも正確かつ効率のよい実装が可能となる。
+実装されれば、こちらを用いる方が Scroll を監視するよりも正確かつ効率の良い実装が可能となる。
 
 本サイトでも追って解説を行う予定である。
 

@@ -77,7 +77,7 @@ Chrome と Firefox への Preload Pins のリストは以下である。
 - [[chrome] Contents of /trunk/src/net/http/transport_security_state_static.json](https://src.chromium.org/viewvc/chrome/trunk/src/net/http/transport_security_state_static.json)
 - [mozilla-central mozilla/security/manager/tools/PreloadedHPKPins.json](http://mxr.mozilla.org/mozilla-central/source/security/manager/tools/PreloadedHPKPins.json)
 
-従って本サイトでは、 HTTP ヘッダでの対応を実施する。
+したがって本サイトでは、 HTTP ヘッダでの対応を実施する。
 
 
 ## HPKP の設定
