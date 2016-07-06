@@ -55,7 +55,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-06-09T08:00:00+08:00",
-  "dateModified": "2016-07-06T08:00:00+08:00",
+  "dateModified": "2016-07-07T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -97,7 +97,7 @@ by Jxck
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-06-09>2016-06-09</time>
-    <li>updated_at: <time class=updated_at datetime=2016-07-06>2016-07-06</time>
+    <li>updated_at: <time class=updated_at datetime=2016-07-07>2016-07-07</time>
     <li class=tags>tags: [<a>rendering</a>,<a>performance</a>]
   </ul>
 
@@ -189,7 +189,7 @@ document.addEventListener(&#039;touchstart&#039;, handler, {capture: true});</co
     <section>
       <h2 id="Feature+Detection"><a href="#Feature+Detection">Feature Detection</a></h2>
       <p>引数をオブジェクトにした結果、 Passive 用に引数を追加するよりも柔軟な設計となったが、互換性の問題が発生してしまう結果となった。
-      <p>これは <code>{passive: true}</code> は JS としては trusy であるため、第三引数が Event Listener Option に対応してないブラウザにおいて単に <code>useCapture</code> を有効にしたと解釈されてしまうためにおこる。
+      <p>これは <code>{passive: true}</code> は JS としては truthy であるため、第三引数が Event Listener Option に対応してないブラウザにおいて単に <code>useCapture</code> を有効にしたと解釈されてしまうためにおこる。
       <p>例えばキャプチャリングフェーズでの補足を <code>false</code> にする指定を Event Listener Options で指定した場合、古いブラウザでは意図に反して <code>useCapture</code> を <code>true</code> にしたと解釈されてしまうのである。
       <pre class=js><code>document.addEventListener(&#039;touchstart&#039;, handler, {capture: false});</code></pre>
       <p>これを避けるためには Feature Detection が必要となる。

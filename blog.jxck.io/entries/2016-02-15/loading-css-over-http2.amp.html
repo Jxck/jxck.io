@@ -50,7 +50,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-02-15T08:00:00+08:00",
-  "dateModified": "2016-07-06T08:00:00+08:00",
+  "dateModified": "2016-07-07T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -524,7 +524,7 @@ th:last-child, td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-02-15>2016-02-15</time>
-    <li>updated_at: <time class=updated_at datetime=2016-07-06>2016-07-06</time>
+    <li>updated_at: <time class=updated_at datetime=2016-07-07>2016-07-07</time>
     <li class=tags>tags: [<a>css</a>,<a>http2</a>,<a>performance</a>]
   </ul>
 
@@ -622,7 +622,7 @@ th:last-child, td:last-child {
         <li>Header: レンダリングされる
         <li>Article: レンダリングされる
         <li>Comment: comment.css がブロックしてるのでレンダリングされない
-        <li>Aboute me: comment.css がブロックしてるのでレンダリングされない
+        <li>About me: comment.css がブロックしてるのでレンダリングされない
         <li>Footer: CSS は既にあるが、 comment.css がブロックしているのでレンダリングされない
       </ul>
       <p>以下のメリットがある
@@ -645,7 +645,7 @@ th:last-child, td:last-child {
         <li>Firefox: <code>&lt;head&gt;</code> に <code>&lt;link rel=stylesheet&gt;</code> があるとブロックするが、 <code>&lt;body&gt;</code> では <code>&lt;head&gt;</code> の CSS がブロックしていない限りはブロックしない。これは FOUC(flash of unstyled content) を引き起こす。
         <li>IE/Edge: CSS が読み込み終わるまでパーサをブロックする、しかし、 <code>&lt;link&gt;</code> 前のコンテンツはレンダリングする。
       </ul>
-      <p>Chrome は IE/Ednge の方式に移ることを検討している。これにより Progressive Rendering パターンが可能になる。<br>
+      <p>Chrome は IE/Edge の方式に移ることを検討している。これにより Progressive Rendering パターンが可能になる。<br>
       合わせて <a href="https://github.com/whatwg/html/pull/616"><code>&lt;body&gt;</code>内の<code>&lt;link&gt;</code>を許可する仕様</a> の策定を進めている。
       <p>この変更は、後方互換であり、必要になるまでレンダリングされないだけである。
     </section>

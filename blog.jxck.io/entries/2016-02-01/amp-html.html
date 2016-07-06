@@ -55,7 +55,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-02-01T08:00:00+08:00",
-  "dateModified": "2016-07-06T08:00:00+08:00",
+  "dateModified": "2016-07-07T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -97,7 +97,7 @@ by Jxck
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-02-01>2016-02-01</time>
-    <li>updated_at: <time class=updated_at datetime=2016-07-06>2016-07-06</time>
+    <li>updated_at: <time class=updated_at datetime=2016-07-07>2016-07-07</time>
     <li class=tags>tags: [<a>amp</a>,<a>html</a>,<a>performance</a>]
   </ul>
 
@@ -128,7 +128,7 @@ by Jxck
         <p>AMP への対応は、実際には 「遅くなる原因」=「アンチパターン」が Invalid となる仕様を定義し、それを開発者に強制することで、必然的にボトルネックの少ないコンテンツにする仕様と言える。
         <p>具体的には以下のようなアンチパターンを排除する。
         <ul>
-          <li>JS の実行: 実際には <code>document.write</code> などによるブロックなどがネックになりやすいが、細かくいうと色々あるので、丸っと一括で禁止ししている
+          <li>JS の実行: 実際には <code>document.write</code> などによるブロックなどがネックになりやすいが、細かくいうと色々あるので、まるっと一括で禁止ししている
           <li>外部 CSS: 全部 HTML 内にインラインで書かせることにより fetch や再描画を防ぐ
           <li><code>&lt;img&gt;</code>: 画像の <code>width x height</code> を明示させ、 <code>&lt;amp-img&gt;</code> を代わりに使わせることで、画像を非同期に読み込み表示を最適化する
         </ul>
@@ -172,7 +172,7 @@ by Jxck
       <pre class=html><code>&lt;link rel=amphtml href=${path}.amp.html&gt;</code></pre>
       <p>一方 <code>.amp.html</code> では、オリジナルコンテンツの存在と、ブックマークなどが統一できるように <code>canonical</code> を追加している。
       <pre class=html><code>&lt;link rel=canonical href=${path}.html&gt;</code></pre>
-      <p>access_log で UA などを追えば、 apmhtml を見るクローラが追えるかもしれない。
+      <p>access_log で UA などを追えば、 amphtml を見るクローラが追えるかもしれない。
       <section>
         <h3 id="JS"><a href="#JS">JS</a></h3>
         <p>JS は一切許されない。 JS が必要な表現などは AMP のライブラリとして用意されているカスタムエレメントを経由して実現する必要がある。

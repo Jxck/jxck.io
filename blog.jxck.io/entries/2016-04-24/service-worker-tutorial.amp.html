@@ -50,7 +50,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-04-24T08:00:00+08:00",
-  "dateModified": "2016-07-06T08:00:00+08:00",
+  "dateModified": "2016-07-07T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -524,7 +524,7 @@ th:last-child, td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-04-24>2016-04-24</time>
-    <li>updated_at: <time class=updated_at datetime=2016-07-06>2016-07-06</time>
+    <li>updated_at: <time class=updated_at datetime=2016-07-07>2016-07-07</time>
     <li class=tags>tags: [<a>service worker</a>,<a>tutorial</a>]
   </ul>
 
@@ -557,7 +557,7 @@ th:last-child, td:last-child {
     </section>
     <section>
       <h2 id="claim"><a href="#claim">claim</a></h2>
-      <p>controller とは何か、いつ controller になるか、 <code>clamim()</code> で何が起こるのかなどについて。
+      <p>controller とは何か、いつ controller になるか、 <code>claim()</code> で何が起こるのかなどについて。
       <amp-iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/m6qBg4M3RTA" allowfullscreen></amp-iframe>
       <pre class=html><code>&lt;!DOCTYPE html&gt;
 &lt;meta charset=utf-8&gt;
@@ -825,7 +825,7 @@ navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt
 });
 
 self.addEventListener(&#039;activate&#039;, (e) =&gt; {
-  console.info(&#039;activat&#039;, e);
+  console.info(&#039;activate&#039;, e);
   e.waitUntil(self.clients.claim());
 });
 

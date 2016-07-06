@@ -55,7 +55,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-04-09T08:00:00+08:00",
-  "dateModified": "2016-07-06T08:00:00+08:00",
+  "dateModified": "2016-07-07T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -97,7 +97,7 @@ by Jxck
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-04-09>2016-04-09</time>
-    <li>updated_at: <time class=updated_at datetime=2016-07-06>2016-07-06</time>
+    <li>updated_at: <time class=updated_at datetime=2016-07-07>2016-07-07</time>
     <li class=tags>tags: [<a>hpkp</a>,<a>security</a>]
   </ul>
 
@@ -249,7 +249,7 @@ openssl s_client -servername github.com -connect github.com:443 -showcerts 2&gt;
   | openssl dgst -sha256 -binary 2&gt;/dev/null \
   | openssl enc -base64 2&gt;/dev/null</code></pre>
         <p>実際に <code>Public-Key-Pins</code> ヘッダを見てみる。この中にはバックアップを含めいくつか登録されているが、その中に上で計算したものが入っている。
-        <pre class=sh><code># get the actual Public-Key-Pins headre
+        <pre class=sh><code># get the actual Public-Key-Pins header
 # this will include hash calculated above
 echo &#039;---- ACTUAL ----&#039;
 curl -sI https://github.com | grep Public-Key-Pins | ruby -nle &#039;puts $_.gsub(&quot;;&quot;, &quot;\n&quot;)&#039;</code></pre>
