@@ -54,7 +54,7 @@ Feed さえ適切に配布できていれば、基本的にバグがあっても
 
 それが、本サイト [https://blog.jxck.io](https://blog.jxck.io) である。
 
-基本的には http2 ベースで設計しており、その他多くの技術を試しているが、その記録はすべてこのサイト自体のエントリとして書き、ドックフーディングしてきたので、そちらをご覧いただきたい。
+基本的には http2 ベースで設計しており、その他多くの技術を試しているが、その記録は全てこのサイト自体のエントリとして書き、ドックフーディングしてきたので、そちらをご覧いただきたい。
 
 新しい [https://mozaic.fm](https://mozaic.fm) は、本サイトのコピペをベースとしている。
 
@@ -65,7 +65,7 @@ RSS の仕様には、主に RSS1.0, RSS2.0, Atom の三つがある。
 
 本サイト blog.jxck.io では最新である Atom を採用したが、 Podcast の RSS は **RSS2.0** を用いる必要があった。
 
-RSS2.0 の仕様は次にある。
+RSS2.0 の仕様は以下にある。
 
 [http://cyber.law.harvard.edu/rss/rss.html](http://cyber.law.harvard.edu/rss/rss.html)
 
@@ -108,7 +108,7 @@ itunes は podcast connect という場所がわかりにくい画面から、 f
 
 ## 移行作業
 
-tumblr に mozaic.fm ドメインを貼り、 feedburner と連携してフィードを配信しているため、移行には次の作業を行った。
+tumblr に mozaic.fm ドメインを貼り、 feedburner と連携してフィードを配信しているため、移行には以下の作業を行った。
 
 
 1. 先に新しいサイトと feed を作る
@@ -117,7 +117,7 @@ tumblr に mozaic.fm ドメインを貼り、 feedburner と連携してフィ�
 1. DNS を変更し、 mozaic.fm を tumblr から新サイトへ向ける
 1. feedburner が新サイトを見ないように、独自ドメインを剥がした tumblr に向ける
 1. mozaic.fm が自サーバを向いたので、 let's encrypt の certbot を走らせ [https://mozaic.fm](https://mozaic.fm) を有効にする
-1. [http://mozaic.fm](http://mozaic.fm) をすべて [https://mozaic.fm](https://mozaic.fm) にリダイレクト
+1. [http://mozaic.fm](http://mozaic.fm) を全て [https://mozaic.fm](https://mozaic.fm) にリダイレクト
 1. 旧エピソードの tumblr 自体の URL を、新 URL にリダイレクトする
 1. itunes の podcast connect から itunes に登録された mozaic.fm の feed を新しいものにする
 

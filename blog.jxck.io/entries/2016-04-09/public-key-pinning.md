@@ -28,7 +28,7 @@ Public Key Pinning for HTTP(HPKP) とは、証明書の信頼性を向上させ�
 
 本ドメインの証明書の有効性は、この CA によって担保されており、この CA の信頼性は各デバイスにプリインストールされた CA の証明書(およびそこまでのチェイン)で担保されている。
 
-この仕組み(PKI) は、デバイスが CA を信用していることが土台となっているため、たとえば CA が危殆化するなどのインシデントが発生すると、基盤そのものが揺らぐことを意味する。
+この仕組み(PKI) は、デバイスが CA を信用していることが土台となっているため、例えば CA が危殆化するなどのインシデントが発生すると、基盤そのものが揺らぐことを意味する。
 
 もし CA が攻撃され、偽の証明書が発行された場合、ユーザはその証明書が CA から発行された本物にしか見えないため、接続先が偽サイトだとしても信用してしまう。
 
@@ -77,7 +77,7 @@ Chrome と Firefox への Preload Pins のリストは以下である。
 - [[chrome] Contents of /trunk/src/net/http/transport_security_state_static.json](https://src.chromium.org/viewvc/chrome/trunk/src/net/http/transport_security_state_static.json)
 - [mozilla-central mozilla/security/manager/tools/PreloadedHPKPins.json](http://mxr.mozilla.org/mozilla-central/source/security/manager/tools/PreloadedHPKPins.json)
 
-したがって本サイトでは、 HTTP ヘッダでの対応を実施する。
+従って本サイトでは、 HTTP ヘッダでの対応を実施する。
 
 
 ## HPKP の設定
@@ -101,7 +101,7 @@ Public-Key-Pins: pin-sha256="base64=="; max-age=expireTime [; includeSubdomains]
 
 Pin を設定する際は、現在有効な Pin 以外に、バックアップ Pin の登録が必須になっている。
 
-これは、有効な Pin をひとつしか登録しない場合、証明書の危殆化や期限切れなどで、証明書を新しく更新すると必ず不一致が起こってしまうためである。
+これは、有効な Pin を一つしか登録しない場合、証明書の危殆化や期限切れなどで、証明書を新しく更新すると必ず不一致が起こってしまうためである。
 
 
 ### Subject Public Key Information (SPKI)
@@ -122,7 +122,7 @@ $ openssl req -in my-signing-request.csr -pubkey -noout | openssl rsa -pubin -ou
 
 ブラウザは、  Pin に一致しない証明書を検出した場合、違反レポートを生成し `report-uri` に指定した URI に対して自動的に送信する。
 
-HPKP の違反レポートは次のような JSON データである。
+HPKP の違反レポートは以下のような JSON データである。
 
 ```json
 {
@@ -165,7 +165,7 @@ HPKP の違反レポートは次のような JSON データである。
 
 HPKP の運用での一番の懸念は、証明書の更新だろう。
 
-たとえば今回は、現行の Pin(Pin1 とする)に加えてバックアップ Pin(Pin2 とする) をひとつ登録したため、このバックアップ Pin2 にあたる証明書への更新までは問題ないだろう。
+例えば今回は、現行の Pin(Pin1 とする)に加えてバックアップ Pin(Pin2 とする) を一つ登録したため、このバックアップ Pin2 にあたる証明書への更新までは問題ないだろう。
 
 しかし、問題はそのあとどうするかである。(その後更新する新しい証明書の Pin を Pin3, 4... とする)
 
@@ -181,7 +181,7 @@ HPKP の運用での一番の懸念は、証明書の更新だろう。
 
 Report-Only でない運用では、接続ができないという状態になるため、サービスへの影響も大きくなる。
 
-それを踏まえてか、次のような中間証明書を Pin 留めするという運用もあるようなので、紹介する。
+それを踏まえてか、以下のような中間証明書を Pin 留めするという運用もあるようなので、紹介する。
 
 
 ### 中間証明書の Pin
@@ -192,7 +192,7 @@ Github では、 Leaf (`github.com` 自体の証明書) ではなく、そこか
 
 OpenSSL の `-showcerts` コマンドを用いて、 Github の証明書を取得し Pin を計算してみる。
 
-(証明書がふたつあり、中間証明書にあたるふたつ目だけ抜き出している)
+(証明書が二つ見あり、中間証明書にあたる二つ目だけ抜き出している)
 
 ```sh
 # github.com pins Intermediate Certificate
@@ -216,7 +216,7 @@ echo '---- ACTUAL ----'
 curl -sI https://github.com | grep Public-Key-Pins | ruby -nle 'puts $_.gsub(";", "\n")'
 ```
 
-Leaf の証明書を Pin 留めしてしまうと、前述のとおり証明書の更新で Pin との不整合が起きた場合に、接続できなくなってしまう。
+Leaf の証明書を Pin 留めしてしまうと、前述の通り証明書の更新で Pin との不整合が起きた場合に、接続できなくなってしまう。
 
 このリスクを減らすために、中間証明書を Pin 留めするという運用になっている模様である。
 
@@ -231,9 +231,9 @@ Leaf の証明書を Pin 留めしてしまうと、前述のとおり証明書�
 
 本サイトでは、 2 年ごとに更新するワイルドカード証明書を購入して使用している。
 
-つまり、全サブドメインで証明書はひとつであり、期限も長いので、運用はそこまで難しくないだろうと考えている。
+つまり、全サブドメインで証明書は一つであり、期限も長いので、運用はそこまで難しくないだろうと考えている。
 
-バックアップ Pin としては、未来の(次の更新で使用する)証明書用の鍵を先にひとつ用意しておき、そこからバックアップ用 Pin を生成することにした。
+バックアップ Pin としては、未来の(次の更新で使用する)証明書用の鍵を先に一つ用意しておき、そこからバックアップ用 Pin を生成することにした。
 
 `report-uri` には CSP 同様 [report-uri.io](https://report-uri.io) を設定する。
 
@@ -242,7 +242,7 @@ Leaf の証明書を Pin 留めしてしまうと、前述のとおり証明書�
 今回はあくまで実験であるため、 CSP 同様に Report-Only での運用とする。
 
 
-デモとして、 Report-Only 無しのヘッダを指定したページを次に用意した。
+デモとして、 Report-Only 無しのヘッダを指定したページを以下に用意した。
 
 [Public Key Pinning DEMO \| labs.jxck.io](https://labs.jxck.io/public-key-pinning/)
 

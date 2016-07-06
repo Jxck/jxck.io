@@ -11,7 +11,7 @@
 
 ## HSTS
 
-本サイト ([blog.jxck.io](https://blog.jxck.io)) では、フル HTTPS 化が完了しており、 HTTP へのリクエストはすべて HTTPS へリダイレクトしている。
+本サイト ([blog.jxck.io](https://blog.jxck.io)) では、フル HTTPS 化が完了しており、 HTTP へのリクエストは全て HTTPS へリダイレクトしている。
 
 特に本サイトのタイトル自体が `blog.jxck.io` であり、ドメイン名と同じになっているため、これが Twitter などで `http://blog.jxck.io` へのリンクと解釈される場合が多く、そこからの HTTP アクセスも少なくはない。
 
@@ -25,7 +25,7 @@
 
 ## Strict-Transport-Security ヘッダ
 
-次のような HTTP ヘッダを追加することで、 HSTS を有効にすることができる。
+以下のような HTTP ヘッダを追加することで、 HSTS を有効にすることができる。
 
 
 ```
@@ -36,7 +36,7 @@ Strict-Transport-Security: max-age=7776000
 
 このヘッダを受け取ったブラウザは 7776000秒(90日) のあいだは、そのドメインに `http://~` で始まるリクエストを送信する際に、自動的にこれを `https://~` に置き換える。
 
-これによって、例えばすでにどこかのページに張られたリンクが `http://~` であったとしても、リダイレクトではなく最初から HTTPS を強制することができる。
+これによって、例えば既にどこかのページに張られたリンクが `http://~` であったとしても、リダイレクトではなく最初から HTTPS を強制することができる。
 
 
 ## preload
@@ -58,7 +58,7 @@ Chrome の場合は、以下からドメインを申請すると、審査が実�
 
 しかし、本ドメインには [labs.jxck.io](https://labs.jxck.io) という実験用のサブドメインがある。
 
-ここでは、平文 HTTP との比較や、 Mixed Contents の挙動のテストなど、さまざまな実験を行うために、 HTTP もリダイレクトせずサーブしている。
+ここでは、平文 HTTP との比較や、 Mixed Contents の挙動のテストなど、様々な実験を行うために、 HTTP もリダイレクトせずサーブしている。
 
 ここを HSTS に含んでしてしまうと、実験ができなくなってしまうため、除外する必要がある。
 
@@ -66,9 +66,9 @@ Chrome の場合は、以下からドメインを申請すると、審査が実�
 
 また、 Chrome の Preload 登録の条件には、 `includeSubDomains` の適用が含まれている。
 
-したがって同様の理由から、止むを得ず **preload 登録は見送る** こととした。
+従って同様の理由から、止むを得ず **preload 登録は見送る** こととした。
 
-結果、現時点では [jxck.io](https://jxck.io) 及び [blog.jxck.io](https://blog.jxck.io) に対して、次のヘッダを付与した。
+結果、現時点では [jxck.io](https://jxck.io) 及び [blog.jxck.io](https://blog.jxck.io) に対して、以下のヘッダを付与した。
 
 ```
 Strict-Transport-Security: max-age=31536000

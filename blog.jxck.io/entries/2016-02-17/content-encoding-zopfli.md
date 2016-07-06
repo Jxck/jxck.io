@@ -20,9 +20,9 @@ HTTP には、似た仕組みとして `TE: gzip` と `Transfer-Encoding: gzip` 
 
 これは、前述の `Accept-Encoding` が End-To-End で圧縮したコンテンツを転送するのと違い、 Hop-by-Hop で経路上での圧縮を実施する点で、意味的に差異がある。
 
-たとえば HTML でいえば、前者は「コンテンツ自体が gzip された html である」のに対し、後者は「コンテンツはあくまで html だが、経路上では圧縮されている」ということになる。
+例えば HTML で言えば、前者は「コンテンツ自体が gzip された html である」のに対し、後者は「コンテンツはあくまで html だが、経路上では圧縮されている」ということになる。
 
-本サイトは、あくまで HTML を配信したいので、転送量削減のために圧縮を施すのであれば、 `TE: gzip` と `Transfer-Encoding: gzip` を使うのが妥当といえるだろう。
+本サイトは、あくまで HTML を配信したいので、転送量削減のために圧縮を施すのであれば、 `TE: gzip` と `Transfer-Encoding: gzip` を使うのが妥当と言えるだろう。
 
 しかし `TE` はブラウザ実装の問題のためか、歴史的にもあまり使われておらず、送信してくるブラウザもほとんどない。(Opera は送信すると言われているが未確認)。
 
@@ -32,7 +32,7 @@ HTTP には、似た仕組みとして `TE: gzip` と `Transfer-Encoding: gzip` 
 
 [8.1.2.2.  Connection-Specific Header Fields](https://tools.ietf.org/html/rfc7540#section-8.1.2.2)
 
-まとめると、次の理由により、この方法は却下した。
+まとめると、以下の理由により、この方法は却下した。
 
 - TE を送るブラウザは少ない
 - h2o も対応していない
@@ -97,7 +97,7 @@ zopfli は、探索を繰り返す回数を調節できるため、この回数�
 
 ### ベンチマーク
 
-次のように、前回の記事に対して zopfli コマンドを実行し、 time コマンドで実行時間を計測した。
+以下のように、前回の記事に対して zopfli コマンドを実行し、 time コマンドで実行時間を計測した。
 
 ```sh
 $ time zopfli --i10 -c loading-css-over-http2.html
@@ -128,7 +128,7 @@ $ time zopfli --i10 -c loading-css-over-http2.html
 この結果だと `-i20` 以上は誤差のようである。
 ただ、開発用の Mac では少し違う結果が出たりもしたため、結果 `i=30` くらいに落ち着いた。
 
-また、 [WebP](//jxck.io/assets/img/jxck.webp) と [PNG](//jxck.io/assets/img/jxck.png) の画像ファイルでも検証したところ、次のようになった。
+また、 [WebP](//jxck.io/assets/img/jxck.webp) と [PNG](//jxck.io/assets/img/jxck.png) の画像ファイルでも検証したところ、以下のようになった。
 
 
 |         file | size  |
@@ -148,7 +148,7 @@ WebP はそもそも圧縮率が高いためか、オーバーヘッドが出て
 
 以上により、本サイトでは全静的コンテンツをデプロイプロセスで zopfli による圧縮を実施し、それを h2o の `send-gzip` ディレクティブで配信することにした。
 
-検証の結果、このサイトでは次の設定を採用した。
+検証の結果、このサイトでは以下の設定を採用した。
 
 - `i=30`
 - `send-gzip: ON`
@@ -178,6 +178,6 @@ WebP はそもそも圧縮率が高いためか、オーバーヘッドが出て
 
 ほとんどのブラウザが対応している gzip と違い、まだ対応ブラウザも少なく、 H2O も対応していないため `Accept-Encoding` での判断を自分でハンドラに書く必要がある。
 
-H2O にはすでにbrotli への対応を求める issue が上がっているので、対応したらそこでまた検証しようと思う。
+H2O には既にbrotli への対応を求める issue が上がっているので、対応したらそこでまた検証しようと思う。
 
 [Feature request: file.send-brotli #660](https://github.com/h2o/h2o/issues/660)
