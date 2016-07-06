@@ -317,7 +317,7 @@ Cache-Control: max-age=15768000, stale-while-revalidate=15768000
 - SiE=1day : その日のうちは、エラーの代替表示として stale cache を利用
 
 ```
-Cache-Control: max-age=1, stale-while-revalidate=600, statle-if-error=864000
+Cache-Control: max-age=1, stale-while-revalidate=600, stale-if-error=864000
 ```
 
 非常に短期のセッションでキャッシュを有効にする設定である。

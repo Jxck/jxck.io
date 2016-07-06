@@ -210,7 +210,7 @@ openssl s_client -servername github.com -connect github.com:443 -showcerts 2>/de
 実際に `Public-Key-Pins` ヘッダを見てみる。この中にはバックアップを含めいくつか登録されているが、その中に上で計算したものが入っている。
 
 ```sh
-# get the actual Public-Key-Pins headre
+# get the actual Public-Key-Pins header
 # this will include hash calculated above
 echo '---- ACTUAL ----'
 curl -sI https://github.com | grep Public-Key-Pins | ruby -nle 'puts $_.gsub(";", "\n")'

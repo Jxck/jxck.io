@@ -108,7 +108,7 @@ document.addEventListener('touchstart', handler, {capture: true});
 
 引数をオブジェクトにした結果、 Passive 用に引数を追加するよりも柔軟な設計となったが、互換性の問題が発生してしまう結果となった。
 
-これは `{passive: true}` は JS としては trusy であるため、第三引数が Event Listener Option に対応してないブラウザにおいて単に `useCapture` を有効にしたと解釈されてしまうためにおこる。
+これは `{passive: true}` は JS としては truthy であるため、第三引数が Event Listener Option に対応してないブラウザにおいて単に `useCapture` を有効にしたと解釈されてしまうためにおこる。
 
 例えばキャプチャリングフェーズでの補足を `false` にする指定を Event Listener Options で指定した場合、古いブラウザでは意図に反して `useCapture` を `true` にしたと解釈されてしまうのである。
 

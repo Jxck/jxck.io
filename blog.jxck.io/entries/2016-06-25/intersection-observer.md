@@ -96,7 +96,7 @@ let rect = target.getBoundingClientRect();
 || (rect.top < 0 && clientHeight < rect.bottom)    // 上端下端も表示されてないがその間が表示されている
 ```
 
-この三つの論理和が満たされれば、どこかしらが表示されている。
+この三つの論理和が満たされれば、どこかが表示されている。
 
 もちろん、計算基準の親要素を変えれば、 viewport 以外の要素でのスクロールによる出現にも対応できる。
 

@@ -186,6 +186,7 @@ parent 側のリンクタグに `rel=noopener` を追加することで、 child
 - [Phishing by navigating browser tabs - Bughunter University](https://sites.google.com/site/bughunteruniversity/nonvuln/phishing-with-window-opener)
 
 
-ただし、「既に開いてるタブが、勝手に遷移している可能性がある」というのは、一般的に知られた挙動とは言えないと考える。
+ただし、「既に開いているタブが、勝手に遷移している可能性がある」というのは、一般的に知られた挙動とは言えないと考える。
 
 システムを騙すより人間を騙す方が楽であるため、安全側に倒すという意味においても、システム側で対応可能な本対策は検討に値するのではないだろうか。
+

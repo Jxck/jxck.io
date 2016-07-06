@@ -104,6 +104,6 @@ feed の id は、 feed を生成し直すたびに振るのかと思ったが�
 
 ## Outro
 
-firefox がデフォルトで持ってる feed reader や feedly, Live Dowango Reader などでチェックしたところ普通に動いている。
+firefox がデフォルトで持っている feed reader や feedly, Live Dowango Reader などでチェックしたところ普通に動いている。
 
 追加の属性については、必要に応じて足していく。

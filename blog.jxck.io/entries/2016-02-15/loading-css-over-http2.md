@@ -132,7 +132,7 @@ CSS は並列で読み込まれ、直列に適用される。
 - Header: レンダリングされる
 - Article: レンダリングされる
 - Comment: comment.css がブロックしてるのでレンダリングされない
-- Aboute me: comment.css がブロックしてるのでレンダリングされない
+- About me: comment.css がブロックしてるのでレンダリングされない
 - Footer: CSS は既にあるが、 comment.css がブロックしているのでレンダリングされない
 
 以下のメリットがある
@@ -160,7 +160,7 @@ HTML の仕様には、ページのレンダリングが CSS によりどうブ�
 - Firefox: `<head>` に `<link rel=stylesheet>` があるとブロックするが、 `<body>` では `<head>` の CSS がブロックしていない限りはブロックしない。これは FOUC(flash of unstyled content) を引き起こす。
 - IE/Edge: CSS が読み込み終わるまでパーサをブロックする、しかし、 `<link>` 前のコンテンツはレンダリングする。
 
-Chrome は IE/Ednge の方式に移ることを検討している。これにより Progressive Rendering パターンが可能になる。
+Chrome は IE/Edge の方式に移ることを検討している。これにより Progressive Rendering パターンが可能になる。
 合わせて [`<body>`内の`<link>`を許可する仕様](https://github.com/whatwg/html/pull/616) の策定を進めている。
 
 この変更は、後方互換であり、必要になるまでレンダリングされないだけである。

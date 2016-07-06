@@ -29,7 +29,7 @@ TODO になっている動画は、そのうち撮って追加します。
 
 ## claim
 
-controller とは何か、いつ controller になるか、 `clamim()` で何が起こるのかなどについて。
+controller とは何か、いつ controller になるか、 `claim()` で何が起こるのかなどについて。
 
 <iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/m6qBg4M3RTA" allowfullscreen></iframe>
 
@@ -369,7 +369,7 @@ self.addEventListener('install', (e) => {
 });
 
 self.addEventListener('activate', (e) => {
-  console.info('activat', e);
+  console.info('activate', e);
   e.waitUntil(self.clients.claim());
 });
 
