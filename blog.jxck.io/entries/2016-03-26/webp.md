@@ -99,7 +99,7 @@ Usage:
 </picture>
 ```
 
-この場合、 WebP に対応しているが `<picture>` に対応していないブラウザが気になるところだが、現状 [picture](http://caniuse.com/#search=picture) に対応し [webp](http://caniuse.com/#search=webp) に対応していないブラウザは無い。
+この場合、 WebP に対応しているが `<picture>` に対応していないブラウザがあるのかが気になるところだが、現状 [picture](http://caniuse.com/#search=picture) に対応し [webp](http://caniuse.com/#search=webp) に対応していないブラウザは無い。
 
 したがって `<picture>` に対応していない(= WebP も非対応)ブラウザに向けたフォールバックとして、 `<img>` には PNG を指定する。
 

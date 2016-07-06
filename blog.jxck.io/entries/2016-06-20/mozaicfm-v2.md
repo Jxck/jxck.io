@@ -94,8 +94,7 @@ RSS2.0 の仕様は以下にある。
 ただし、 Podcast は長い音声を再生するため、途中からの再生が可能なように HTTP の byte-range ヘッダをサポートする必要がある。
 
 音声ファイルは HTTPS で配信することが可能だ。
-
-ただし、 RSS 自体は HTTPS で配信すると iPhone の Podcast アプリでは読めないようであったため、 HTTP での提供も行っている。
+しかし、 RSS 自体は HTTPS で配信すると iPhone の Podcast アプリでは読めないようであったため、 HTTP での提供も行っている。
 
 また RSS2.0 的には `<enclosure>` の url は http じゃないとだめらしい。
 
