@@ -552,7 +552,7 @@ th:last-child, td:last-child {
       <p>以下のような HTTP ヘッダを追加することで、 HSTS を有効にすることができる。
       <pre><code>Strict-Transport-Security: max-age=7776000</code></pre>
       <p>このヘッダは、 HTTP ではなく HTTPS のレスポンスに付与する。
-      <p>このヘッダを受け取ったブラウザは 7776000秒(90日) のあいだは、そのドメインに <code>http://~</code> で始まるリクエストを送信する際に、自動的にこれを <code>https://~</code> に置き換える。
+      <p>このヘッダを受け取ったブラウザは 7776000 秒(90 日) のあいだは、そのドメインに <code>http://~</code> で始まるリクエストを送信する際に、自動的にこれを <code>https://~</code> に置き換える。
       <p>これによって、例えば既にどこかのページに張られたリンクが <code>http://~</code> であったとしても、リダイレクトではなく最初から HTTPS を強制することができる。
     </section>
     <section>
@@ -571,7 +571,7 @@ th:last-child, td:last-child {
       <p>ここを HSTS に含んでしてしまうと、実験ができなくなってしまうため、除外する必要がある。
       <p>結果として、本ドメインでは <strong><code>includeSubDomains</code> の指定はせず</strong>、ドメインごとに個別に指定することとした。
       <p>また、 Chrome の Preload 登録の条件には、 <code>includeSubDomains</code> の適用が含まれている。
-      <p>従って同様の理由から、止むを得ず <strong>preload 登録は見送る</strong> こととした。
+      <p>したがって同様の理由から、止むを得ず <strong>preload 登録は見送る</strong> こととした。
       <p>結果、現時点では <a href="https://jxck.io">jxck.io</a> 及び <a href="https://blog.jxck.io">blog.jxck.io</a> に対して、以下のヘッダを付与した。
       <pre><code>Strict-Transport-Security: max-age=31536000</code></pre>
     </section>

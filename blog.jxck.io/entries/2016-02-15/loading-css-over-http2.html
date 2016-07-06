@@ -20,21 +20,21 @@ by Jxck
 <script async src=/assets/js/main.js></script>
 
 <meta name="author" content="Jxck">
-<meta name="description" content="Chrome が予定している `&lt;link rel=stylesheet&gt;` の挙動の変更について、Google Chrome チームの Jake が、興味深いブログを上げている。The future of loading CSSこの内容は、単に Chrome ...">
+<meta name="description" content="Chrome が予定している `&lt;link rel=stylesheet&gt;` の挙動の変更について、 Google Chrome チームの Jake が、興味深いブログを上げている。The future of loading CSSこの内容は、単に Chrome...">
 <meta name="keywords" content="css,http2,performance">
 
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@jxck_">
 <meta name="twitter:url" content="https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html">
 <meta name="twitter:title" content="HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について | blog.jxck.io">
-<meta name="twitter:description" content="Chrome が予定している `&lt;link rel=stylesheet&gt;` の挙動の変更について、Google Chrome チームの Jake が、興味深いブログを上げている。The future of loading CSSこの内容は、単に Chrome ...">
+<meta name="twitter:description" content="Chrome が予定している `&lt;link rel=stylesheet&gt;` の挙動の変更について、 Google Chrome チームの Jake が、興味深いブログを上げている。The future of loading CSSこの内容は、単に Chrome...">
 <meta name="twitter:image" content="https://jxck.io/assets/img/jxck.png">
 
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html">
 <meta property="og:title" content="HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について | blog.jxck.io">
 <meta property="og:site_name" content="blog.jxck.io">
-<meta property="og:description" content="Chrome が予定している `&lt;link rel=stylesheet&gt;` の挙動の変更について、Google Chrome チームの Jake が、興味深いブログを上げている。The future of loading CSSこの内容は、単に Chrome ...">
+<meta property="og:description" content="Chrome が予定している `&lt;link rel=stylesheet&gt;` の挙動の変更について、 Google Chrome チームの Jake が、興味深いブログを上げている。The future of loading CSSこの内容は、単に Chrome...">
 <meta property="og:image" content="https://jxck.io/assets/img/jxck.png">
 
 <link rel="icon" sizes="192x192" href="https://jxck.io/assets/img/jxck.png">
@@ -71,7 +71,7 @@ by Jxck
       "width": 257
     }
   },
-  "description": "Chrome が予定している `&lt;link rel=stylesheet&gt;` の挙動の変更について、Google Chrome チームの Jake が、興味深いブログを上げている。The future of loading CSSこの内容は、単に Chrome ..."
+  "description": "Chrome が予定している `&lt;link rel=stylesheet&gt;` の挙動の変更について、 Google Chrome チームの Jake が、興味深いブログを上げている。The future of loading CSSこの内容は、単に Chrome..."
 }
 </script>
 
@@ -106,7 +106,7 @@ by Jxck
     <h1><a href=/entries/2016-02-15/loading-css-over-http2.html>HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について</a></h1>
     <section>
       <h2 id="Intro"><a href="#Intro">Intro</a></h2>
-      <p>Chrome が予定している <code>&lt;link rel=stylesheet&gt;</code> の挙動の変更について、Google Chrome チームの Jake が、興味深いブログを上げている。
+      <p>Chrome が予定している <code>&lt;link rel=stylesheet&gt;</code> の挙動の変更について、 Google Chrome チームの Jake が、興味深いブログを上げている。
       <p><a href="https://jakearchibald.com/2016/link-in-body/">The future of loading CSS</a>
       <p>この内容は、単に Chrome に対する変更だけではなく、 HTTP2 によって変化する最適化手法と、それを最も活かすための HTML, CSS の構成についてのヒントがある。
       <p>今回は、この内容を意訳+補足解説し、本サイトに適用していく。
@@ -134,19 +134,19 @@ by Jxck
 &lt;body&gt;
   &lt;!-- content --&gt;
 &lt;/body&gt;</code></pre>
-      <p>ただし、この場合でも2つの懸念が残る。
+      <p>ただし、この場合でも 2 つの懸念が残る。
       <blockquote>&lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; を出力する時点で、ページ内に存在する全てのコンポーネントを把握していないといけない</blockquote>
-      <p>HTML を全て生成してから順次送るのであれば問題ないが、本来 HTML は先頭から、準備ができた順にコンポーネントを送信することも可能であるにもかかわらず、それができなくなる。
+      <p>HTML を全て生成してから順次送るのであれば問題ないが、本来 HTML は先頭から、準備ができた順にコンポーネントを送信することも可能であるにも関わらず、それができなくなる。
       <blockquote>footer.css のローディングが遅い場合、サイト全体をブロックする</blockquote>
       <p>footer.css が必要なのは、 HTML 中の <code>&lt;footer&gt;</code> をレンダリングする時であり、そこまでに出てくる <code>&lt;header&gt;</code> などは、先にレンダリングすることも可能だ。<br>
-      しかし、実際はそのたった1つの CSS のせいで、そこまでに揃っているコンポーネントもレンダリングされず、真っ白のままになる。
+      しかし、実際はそのたった 1 つの CSS のせいで、そこまでに揃っているコンポーネントもレンダリングされず、真っ白のままになる。
     </section>
     <section>
       <h2 id="CSS+の遅延ロード"><a href="#CSS+の遅延ロード">CSS の遅延ロード</a></h2>
       <p>この問題に対応するため、以下のような JS を用いて CSS を非同期ロードする方法がある。
       <p><a href="https://github.com/filamentgroup/loadCSS">https://github.com/filamentgroup/loadCSS</a>
       <p>スタイルが当たってない状態で表示されてほしくないコンポーネントには、 <code>display: none</code> などをつけておき、ロードされたスタイルの中で表示されるようにする。
-      <p>この方法は、クリティカルレンダリングパスの改善方法の1つとして、多くのパフォーマンスエキスパートから推奨されている。
+      <p>この方法は、クリティカルレンダリングパスの改善方法の 1 つとして、多くのパフォーマンスエキスパートから推奨されている。
       <ul>
         <li><a href="https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery">https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery</a>
         <li><a href="https://www.filamentgroup.com/lab/performance-rwd.html">https://www.filamentgroup.com/lab/performance-rwd.html</a>
@@ -197,7 +197,7 @@ by Jxck
         <li>Article: レンダリングされる
         <li>Comment: comment.css がブロックしてるのでレンダリングされない
         <li>Aboute me: comment.css がブロックしてるのでレンダリングされない
-        <li>Footer: CSS はすでにあるが、 comment.css がブロックしているのでレンダリングされない
+        <li>Footer: CSS は既にあるが、 comment.css がブロックしているのでレンダリングされない
       </ul>
       <p>以下のメリットがある
       <ul>
@@ -226,7 +226,7 @@ by Jxck
     <section>
       <h2 id="Firefox+での+FOUC+対策"><a href="#Firefox+での+FOUC+対策">Firefox での FOUC 対策</a></h2>
       <p>Firefox では、以下のように <code>&lt;script&gt;</code> をはさむことで CSS がロードされるまでパースをブロックし FOUC を回避できる。<br>
-      <code>&lt;script&gt;</code> には中身が必要だが、スペース1つで十分である。
+      <code>&lt;script&gt;</code> には中身が必要だが、スペース 1 つで十分である。
       <pre class=html><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;/article.css&quot;&gt;&lt;script&gt; &lt;/script&gt;
 &lt;main&gt;&lt;/main&gt;</code></pre>
     </section>
@@ -241,7 +241,7 @@ by Jxck
       <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
       <p>以下を実施した
       <ul>
-        <li>本サイトの CSS は、基本的には1つにまとめていたが、これをコンポーネント単位に分割した
+        <li>本サイトの CSS は、基本的には 1 つにまとめていたが、これをコンポーネント単位に分割した
         <li>記事をビルドする際に、 HTML のコンポーネントの前に <code>&lt;link rel=stylesheet&gt;</code> を追加した
         <li>Firefox 用の <code>&lt;script&gt; &lt;/script&gt;</code> はとりあえず無し
         <li>まだ <code>&lt;body&gt;</code> 内の <code>&lt;link&gt;</code> は仕様上許容されてなので、 <a href="https://validator.w3.org/nu/">w3c validator</a> ではそこがひっかかる

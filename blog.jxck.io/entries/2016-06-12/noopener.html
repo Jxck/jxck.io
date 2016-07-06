@@ -117,7 +117,7 @@ by Jxck
           <img src=window-opener.gif#150x150 alt="Window Opener DEMO" title="window opener demo">
           </picture>
       <p>このデモでは、 <a href="https://labs.jxck.io/noopener">https://labs.jxck.io/noopener</a> から開いた <a href="https://labs.jxck.io/noopener/opener-change.html">https://labs.jxck.io/noopener/opener-change.html</a> のページが別タブで開いた後、最初に開いたタブが勝手に <a href="http://example.com">http://example.com</a> に遷移しているというものである。
-      <p>最初のページを Parent、開いたタブを Child とする。
+      <p>最初のページを Parent 、開いたタブを Child とする。
       <p>child 側では以下のような JS が書かれており、 parent 側の location を変えて、任意の URL に遷移されることが可能である。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre><code>window.opener.location = http://example.com</code></pre>
@@ -215,8 +215,8 @@ by Jxck
           <li>このログイン画面はダミーであり、ユーザ名/パスワードを入力すると、本家(右下)へリダイレクトする。
         </ul>
         <p>最近は遷移の途中や、一定時間経過後にログインを要求するサービスもあるため、この挙動を攻撃とは思わないユーザがいても不思議では無いだろう。<br>
-        もっとも、自分が開いていた正しいページが、勝手に別の攻撃ページに置き換わっているという想定が一般的とは考えにくい。
-        <p>最後のリダイレクトは、攻撃サイトからすでにログイン済みの本家サイトにリダイレクトすることで、ユーザからみれば単にログインが成功したように見える。
+        最も、自分が開いていた正しいページが、勝手に別の攻撃ページに置き換わっているという想定が一般的とは考えにくい。
+        <p>最後のリダイレクトは、攻撃サイトから既にログイン済みの本家サイトにリダイレクトすることで、ユーザからみれば単にログインが成功したように見える。
         <p>つまり、攻撃自体に気づけない可能性もある。
       </section>
       <section>
@@ -233,7 +233,7 @@ by Jxck
       <section>
         <h3 id="対策"><a href="#対策">対策</a></h3>
         <p>本家サービスからすれば、ダミーのログイン画面に対してできることは無い。<br>
-        銀行当のサイトが注意喚起を高い頻度で行っていることを見てもわかるだろう。
+        銀行当のサイトが注意喚起を高い頻度で行っていることを見ても分かるだろう。
         <p>したがって、この攻撃ストーリーであれば、最初の誘導サイトを開いたときにリダイレクトされることを防ぐのが効果的である。
         <p>そこで使用できるのが <code>rel=noopener</code> 属性である。
       </section>
@@ -251,7 +251,7 @@ by Jxck
     </section>
     <section>
       <h2 id="DEMO"><a href="#DEMO">DEMO</a></h2>
-      <p><code>rel</code> の有無により、child から parent ページの遷移の動作を試すデモも以下に用意した。
+      <p><code>rel</code> の有無により、 child から parent ページの遷移の動作を試すデモも以下に用意した。
       <p><a href="https://labs.jxck.io/noopener">noopener DEMO</a>
     </section>
     <section>

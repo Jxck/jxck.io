@@ -599,8 +599,8 @@ Usage:
   &lt;source type=image/webp srcset=hero-image.webp&gt;
   &lt;img src=hero-image.png alt=&quot;hero image&quot;&gt;
 &lt;/picture&gt;</code></pre>
-      <p>この場合、 WebP に対応しているが <code>&lt;picture&gt;</code> に対応していないブラウザが気になるところだが、現状 <a href="http://caniuse.com/#search=picture">picture</a> に対応し <a href="http://caniuse.com/#search=webp">webp</a> に対応していないブラウザは無い。
-      <p>従って <code>&lt;picture&gt;</code> に対応していない(= WebP も非対応)ブラウザに向けたフォールバックとして、 <code>&lt;img&gt;</code> には PNG を指定する。
+      <p>この場合、 WebP に対応しているが <code>&lt;picture&gt;</code> に対応していないブラウザがあるのかが気になるところだが、現状 <a href="http://caniuse.com/#search=picture">picture</a> に対応し <a href="http://caniuse.com/#search=webp">webp</a> に対応していないブラウザは無い。
+      <p>したがって <code>&lt;picture&gt;</code> に対応していない(= WebP も非対応)ブラウザに向けたフォールバックとして、 <code>&lt;img&gt;</code> には PNG を指定する。
       <p>この指定は、現在 WebP に対応していないブラウザが将来対応した場合に、サイトに何も手を加える必要がない。
       <p>将来、新しい画像フォーマットが出た場合は <code>&lt;source&gt;</code> を加えることで、ブラウザに選択肢を増やせば良いため、 UA のメンテナンスと比べても、好ましい方法と言える。
     </section>

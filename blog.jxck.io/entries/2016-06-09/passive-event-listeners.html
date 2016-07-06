@@ -146,7 +146,7 @@ by Jxck
       <pre class=js><code>document.addEventListener(&#039;touchstart&#039;, handler, {passive: true});</code></pre>
       <p>開発者がこれを明示的に指定することで、ブラウザはリスナが <code>preventDefault()</code> を呼ばないことを前提とできるため、リスナの完了を待たずにスクロールすることができ、それを最適化できる余地が生まれる。
       <p>なお Passive Listener 内で <code>preventDefault()</code> を呼んだ場合は無視されるため、呼んだとしても <code>defaultPrevented=false</code> のままになる。
-      <p>Listener 内で <code>preventDefault()</code> を呼べるかどうかは、 <code>cancelable=true</code> となっているかどうかでわかる。
+      <p>Listener 内で <code>preventDefault()</code> を呼べるかどうかは、 <code>cancelable=true</code> となっているかどうかで分かる。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/table.css>
       <table>
         <thead>
@@ -175,7 +175,7 @@ by Jxck
     </section>
     <section>
       <h2 id="Event+Listener+Options"><a href="#Event+Listener+Options">Event Listener Options</a></h2>
-      <p><code>addEventListener</code> の第三引数は、すでに <code>useCapture</code> として boolean が定義されている。
+      <p><code>addEventListener</code> の第三引数は、既に <code>useCapture</code> として boolean が定義されている。
       <p>これが <code>true</code> の場合は、イベントはバブリングフェーズではなく、キャプチャリングフェーズで発火されることになる。
       <p>Event Listener Options 対応以降は、ここにオブジェクトを渡すことになるため、 <code>useCapture</code> フラグ相当は、 <code>{capture: true}</code> としてプロパティによる定義を行う。
       <pre class=js><code>// before
@@ -255,7 +255,7 @@ function addEventListenerWithOptions(target, type, handler, options) {
       <p>Scroll にハンドラを補足するユースケースの一つに、画面のスクロール位置取得がある。
       <p>画面のどの分が表示されているかを <code>scrollTop</code> などを用いて測定するような場面では、 Passive Listener を指定する効果が予想される。
       <p>しかし、この場面により適した仕様として、要素の出現と位置をより効率的に取得する Intersection Observer という仕様が提案されている。
-      <p>実装されれば、こちらを用いる方が Scroll を監視するよりも正確かつ効率のよい実装が可能となる。
+      <p>実装されれば、こちらを用いる方が Scroll を監視するよりも正確かつ効率の良い実装が可能となる。
       <p>本サイトでも追って解説を行う予定である。
       <ul>
         <li><a href="https://github.com/WICG/IntersectionObserver/blob/gh-pages/explainer.md">Intersection Observers Explained</a>

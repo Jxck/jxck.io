@@ -605,7 +605,7 @@ th:last-child, td:last-child {
         <p>上記の判定は、スクロールするたび、つまり onscroll イベントごとに計算すれば DOM の出現監視になる。
         <p>ただし、 onscroll は発生頻度が非常に多いため、愚直にコールバックに指定してしまうと、ボトルネックになり Scroll Jank を引き起こす可能性がある。
         <p>対策としては、まずコールバックを実行するイベントを間引く throttling がある。
-        <p>たとえば、 underscore.js の <a href="http://underscorejs.org/#throttle">throttle()</a> 相当のものや、 Reactive Extension 系のライブラリを使うことで実現できる。
+        <p>例えば、 underscore.js の <a href="http://underscorejs.org/#throttle">throttle()</a> 相当のものや、 Reactive Extension 系のライブラリを使うことで実現できる。
         <p>また、計算処理のみでコールバックを抜けるのであれば、 <code>.preventDefault()</code> を呼ばないため、別エントリで解説した Passive Event Listener を利用できる。
         <ul>
           <li><a href="https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html">Passive Event Listeners によるスクロールの改善</a>

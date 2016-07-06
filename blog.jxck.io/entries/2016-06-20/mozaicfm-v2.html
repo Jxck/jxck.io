@@ -131,7 +131,7 @@ by Jxck
       <p>HTTPS 化をしていないために、使うことができない API も最近は多い。
       <p>そもそも Tumblr であるため、最新の技術の適用も難しい。
       <p>Feed さえ適切に配布できていれば、基本的にバグがあっても大した問題にならないという利点があり、
-      <p>アクセスする人も、ほとんどが Web の技術に多少なりとも興味があるリスナーに限定されているという特殊性があるにもかかわらず、
+      <p>アクセスする人も、ほとんどが Web の技術に多少なりとも興味があるリスナーに限定されているという特殊性があるにも関わらず、
       <p>エピソード内で言及している技術を一切使ってないというのもどうかと思い、脱 Tumblr を決定した。
       <p>また feedburner は、ずっと「もうすぐサービスが終了しそう」といったうわさも絶えず、それ以前に使いにくいので嫌いだった。
       <p>ついでに脱 feedburner も決定した。
@@ -164,12 +164,12 @@ by Jxck
         <li><code>&lt;itunes:summary&gt;</code> 無ければ <code>&lt;description&gt;</code> に詳細、メディアフォーマット、スケジュールなど詳細を記す
         <li><code>&lt;itunes:category&gt;</code> にサブカテゴリーを定義できる
         <li><code>&lt;itunes:summary&gt;&lt;![CDATA[&lt;a href=&quot;http://www.apple.com&quot;&gt;Apple&lt;/a&gt;]]&gt;&lt;/itunes:summary&gt;</code> とコメント化し display issue を防ぐ
-        <li><code>&lt;item&gt;</code> を追加して行く、順番は <code>&lt;pubDate&gt;</code> で判断される。24h 以内なら <code>&lt;itunes:order&gt;</code> で上書きもできる
+        <li><code>&lt;item&gt;</code> を追加して行く、順番は <code>&lt;pubDate&gt;</code> で判断される。 24h 以内なら <code>&lt;itunes:order&gt;</code> で上書きもできる
       </ul>
       <p>音声の配信は、通常の HTTP サーバから行うことができる。<br>
       ただし、 Podcast は長い音声を再生するため、途中からの再生が可能なように HTTP の byte-range ヘッダをサポートする必要がある。
-      <p>音声ファイルは HTTPS で配信することが可能だ。
-      <p>ただし、 RSS 自体は HTTPS で配信すると iPhone の Podcast アプリでは読めないようであったため、 HTTP での提供も行っている。
+      <p>音声ファイルは HTTPS で配信することが可能だ。<br>
+      しかし、 RSS 自体は HTTPS で配信すると iPhone の Podcast アプリでは読めないようであったため、 HTTP での提供も行っている。
       <p>また RSS2.0 的には <code>&lt;enclosure&gt;</code> の url は http じゃないとだめらしい。
     </section>
     <section>
