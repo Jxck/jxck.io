@@ -32,7 +32,7 @@ audio: https://files.mozaic.fm/mozaic-ep22.mp3
   - [Chrome Extension](https://chrome.google.com/webstore/detail/amp-validator/nmoffdblmcmgeicmolmhobpoocbbmknc?hl=ja)
   - [sitemap.xmlをクロールしてサイト内の全ページのAMPのバリデーションをしてくれるコマンドラインツールを作った](http://blog.sushi.money/entry/2016/06/23/154827)
 - PWA(Progressive Web Apps)
-  - [Prgressive Web Apps](https://developers.google.com/web/progressive-web-apps/)
+  - [Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/)
 - Simillar Project
   - [Facebook Instant Articles](https://instantarticles.fb.com/)
   - [Apple News](http://www.apple.com/news/)
