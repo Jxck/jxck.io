@@ -87,7 +87,7 @@ RSS2.0 の仕様は以下にある。
 - `<itunes:summary>` 無ければ `<description>` に詳細、メディアフォーマット、スケジュールなど詳細を記す
 - `<itunes:category>` にサブカテゴリーを定義できる
 - `<itunes:summary><![CDATA[<a href="http://www.apple.com">Apple</a>]]></itunes:summary>` とコメント化し display issue を防ぐ
-- `<item>` を追加して行く、順番は `<pubDate>` で判断される。24h 以内なら `<itunes:order>` で上書きもできる
+- `<item>` を追加して行く、順番は `<pubDate>` で判断される。 24h 以内なら `<itunes:order>` で上書きもできる
 
 
 音声の配信は、通常の HTTP サーバから行うことができる。

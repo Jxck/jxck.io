@@ -178,6 +178,6 @@ WebP はそもそも圧縮率が高いためか、オーバーヘッドが出て
 
 ほとんどのブラウザが対応している gzip と違い、まだ対応ブラウザも少なく、 H2O も対応していないため `Accept-Encoding` での判断を自分でハンドラに書く必要がある。
 
-H2O には既にbrotli への対応を求める issue が上がっているので、対応したらそこでまた検証しようと思う。
+H2O には既に brotli への対応を求める issue が上がっているので、対応したらそこでまた検証しようと思う。
 
 [Feature request: file.send-brotli #660](https://github.com/h2o/h2o/issues/660)

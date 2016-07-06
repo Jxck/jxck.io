@@ -2,7 +2,7 @@
 
 ## Intro
 
-Chrome が予定している `<link rel=stylesheet>` の挙動の変更について、Google Chrome チームの Jake が、興味深いブログを上げている。
+Chrome が予定している `<link rel=stylesheet>` の挙動の変更について、 Google Chrome チームの Jake が、興味深いブログを上げている。
 
 [The future of loading CSS](https://jakearchibald.com/2016/link-in-body/)
 
@@ -44,7 +44,7 @@ HTML 自体がコンポーネントを意識した作りになっている場合
 ```
 
 
-ただし、この場合でも2つの懸念が残る。
+ただし、この場合でも 2 つの懸念が残る。
 
 > `<head>` を出力する時点で、ページ内に存在する全てのコンポーネントを把握していないといけない
 
@@ -53,7 +53,7 @@ HTML を全て生成してから順次送るのであれば問題ないが、本
 > footer.css のローディングが遅い場合、サイト全体をブロックする
 
 footer.css が必要なのは、 HTML 中の `<footer>` をレンダリングする時であり、そこまでに出てくる `<header>` などは、先にレンダリングすることも可能だ。
-しかし、実際はそのたった1つの CSS のせいで、そこまでに揃っているコンポーネントもレンダリングされず、真っ白のままになる。
+しかし、実際はそのたった 1 つの CSS のせいで、そこまでに揃っているコンポーネントもレンダリングされず、真っ白のままになる。
 
 
 ## CSS の遅延ロード
@@ -64,7 +64,7 @@ footer.css が必要なのは、 HTML 中の `<footer>` をレンダリングす
 
 スタイルが当たってない状態で表示されてほしくないコンポーネントには、 `display: none` などをつけておき、ロードされたスタイルの中で表示されるようにする。
 
-この方法は、クリティカルレンダリングパスの改善方法の1つとして、多くのパフォーマンスエキスパートから推奨されている。
+この方法は、クリティカルレンダリングパスの改善方法の 1 つとして、多くのパフォーマンスエキスパートから推奨されている。
 
 
 - [https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery](https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery)
@@ -169,7 +169,7 @@ Chrome は IE/Ednge の方式に移ることを検討している。これによ
 ## Firefox での FOUC 対策
 
 Firefox では、以下のように `<script>` をはさむことで CSS がロードされるまでパースをブロックし FOUC を回避できる。
-`<script>` には中身が必要だが、スペース1つで十分である。
+`<script>` には中身が必要だが、スペース 1 つで十分である。
 
 ```html
 <link rel="stylesheet" href="/article.css"><script> </script>
@@ -190,7 +190,7 @@ Firefox では、以下のように `<script>` をはさむことで CSS がロ�
 
 以下を実施した
 
-- 本サイトの CSS は、基本的には1つにまとめていたが、これをコンポーネント単位に分割した
+- 本サイトの CSS は、基本的には 1 つにまとめていたが、これをコンポーネント単位に分割した
 - 記事をビルドする際に、 HTML のコンポーネントの前に `<link rel=stylesheet>` を追加した
 - Firefox 用の `<script> </script>` はとりあえず無し
 - まだ `<body>` 内の `<link>` は仕様上許容されてなので、 [w3c validator](https://validator.w3.org/nu/) ではそこがひっかかる

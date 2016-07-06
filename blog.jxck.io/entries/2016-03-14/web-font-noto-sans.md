@@ -41,7 +41,7 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
   ASCII and full-width and punctuations.
 
 
-このサブセットが含む JIS X 0208 とは、いわゆる JIS漢字コード のことであり、 7000 字近い漢字がきっちり収録されている。
+このサブセットが含む JIS X 0208 とは、いわゆる JIS 漢字コード のことであり、 7000 字近い漢字がきっちり収録されている。
 
 そして font-weight (太さ) が 100~900 まで 7 段階提供されており、それぞれサイズは以下となっている。(やはり太いとデカい)
 
@@ -75,9 +75,9 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 
 収録されている、 JIS X 0208 は以下のようになっている。
 
-> JIS（日本工業規格）で定められた漢字の規格で、JISX0208に含まれる。日常で使用頻度の高い漢字を集め、コンピューターで利用するためにコード化したもの。JIS第1水準は2965字で、常用漢字1945字とその他の人名用漢字が含まれており、通常の文書であればJIS第1水準の文字だけで記述できるとされている。JIS第2水準は3390字で、DTPで使用するフォントの多くは、JIS第1水準とJIS第2水準を網羅している。JIS第3水準およびJIS第4水準は、業種によって必要になる特殊な記号などを集めたもので、JISX0208を拡張する別の規格である。
+> JIS （日本工業規格）で定められた漢字の規格で、 JISX0208 に含まれる。日常で使用頻度の高い漢字を集め、コンピューターで利用するためにコード化したもの。 JIS 第 1 水準は 2965 字で、常用漢字 1945 字とその他の人名用漢字が含まれており、通常の文書であれば JIS 第 1 水準の文字だけで記述できるとされている。 JIS 第 2 水準は 3390 字で、 DTP で使用するフォントの多くは、 JIS 第 1 水準と JIS 第 2 水準を網羅している。 JIS 第 3 水準および JIS 第 4 水準は、業種によって必要になる特殊な記号などを集めたもので、 JISX0208 を拡張する別の規格である。
 
-[http://yougo.ascii.jp/caltar/JIS漢字水準](http://yougo.ascii.jp/caltar/JIS%E6%BC%A2%E5%AD%97%E6%B0%B4%E6%BA%96)
+[http://yougo.ascii.jp/caltar/JIS 漢字水準](http://yougo.ascii.jp/caltar/JIS%E6%BC%A2%E5%AD%97%E6%B0%B4%E6%BA%96)
 
 
 しかし、このブログは **技術ブログ** であり、使われる漢字は非常に限定的だ。
@@ -107,11 +107,11 @@ p q r s t u v w x y z { | } ~
 [BasicLatin.txt](BasicLatin.txt)
 
 
-## CJK記号と句読点(3000-303F)
+## CJK 記号と句読点(3000-303F)
 
 句読点やカッコなど。基本的に `[](){}` など半角のカッコを使うが、全角のカッコも必要になる。
 
-[Unicode CJK記号と句読点 - CJK Symbols and Punctuation -](http://homepage2.nifty.com/k_maeda/code/uni/uni090.html)
+[Unicode CJK 記号と句読点 - CJK Symbols and Punctuation -](http://homepage2.nifty.com/k_maeda/code/uni/uni090.html)
 
 
 以下が候補
@@ -253,9 +253,9 @@ p q r s t u v w x y z { | } ~
 
 ### 常用漢字
 
-常用漢字は文化庁が告示している。2010年に改定があった。
+常用漢字は文化庁が告示している。 2010 年に改定があった。
 
-[常用漢字表（平成22年内閣告示第2号）](http://kokugo.bunka.go.jp/kokugo_nihongo/joho/kijun/naikaku/kanji/)
+[常用漢字表（平成 22 年内閣告示第 2 号）](http://kokugo.bunka.go.jp/kokugo_nihongo/joho/kijun/naikaku/kanji/)
 
 
 > 一般の社会生活において現代の国語を書き表すための漢字使用の目安を、次の表のように定める。
@@ -313,16 +313,16 @@ p q r s t u v w x y z { | } ~
 ここまでの結果を合わせる。
 
 
-| 範囲            | 文字数 |
-|:----------------|-------:|
-| 基本ラテン文字  | 94     |
-| CJK記号と句読点 | 10     |
-| ひらがな        | 81     |
-| カタカナ        | 83     |
-| 半角形と全角形  | 0      |
-| 常用漢字        | 2136   |
-| 不要文字        | - 23   |
-| 合計            | 2381   |
+| 範囲             | 文字数 |
+|:-----------------|-------:|
+| 基本ラテン文字   | 94     |
+| CJK 記号と句読点 | 10     |
+| ひらがな         | 81     |
+| カタカナ         | 83     |
+| 半角形と全角形   | 0      |
+| 常用漢字         | 2136   |
+| 不要文字         | - 23   |
+| 合計             | 2381   |
 
 
 全て合わせたのが以下である。
@@ -350,7 +350,7 @@ p q r s t u v w x y z { | } ~
 
 この OTF ファイルを、以下のツールを用い、 Woff 形式に変換する。
 
-[WOFFコンバータ](http://opentype.jp/woffconv.htm)
+[WOFF コンバータ](http://opentype.jp/woffconv.htm)
 
 
 メタデータは一切付与しない。

@@ -49,7 +49,7 @@ Web における、キャッシュの指定には大きく二つの方式があ�
 
 かと言って、短い消極的な期間にしては、高頻度でリクエストが発生してキャッシュの効果が薄れる。
 
-そこで、現実的には期間を長く、推奨される最大値の **1年** などを指定し、更新があったらそのリソースの URL を変更するという運用がよく行われる。
+そこで、現実的には期間を長く、推奨される最大値の **1 年** などを指定し、更新があったらそのリソースの URL を変更するという運用がよく行われる。
 
 例えば `production.min.js` を 1 年間ブラウザにキャッシュさせる。
 
@@ -212,7 +212,7 @@ Cache-Control: max-age=5, stale-while-revalidate=10, stale-if-error=15
 ```
 
 
-以下にデモのキャプチャを用意した。Chrome の dev tools とサーバ側のアクセスログを表示している。
+以下にデモのキャプチャを用意した。 Chrome の dev tools とサーバ側のアクセスログを表示している。
 
 サーバへのアクセスが発生し表示が更新されているが、全てキャッシュがヒットしていることが分かるだろう。
 
@@ -297,7 +297,7 @@ Cache-Control: max-age=15768000, stale-while-revalidate=15768000
 - 更新された日に RSS などからアクセスし、多少うろついて帰る
 - 長いスパンを開けて、検索などからアクセスし、多少うろついて帰る
 
-現状、多くのサイトがキャッシュを設定しているため、ブラウザのローカルキャッシュは [2日程度で消える](https://code.facebook.com/posts/964122680272229/web-performance-cache-efficiency-exercise/) と言われている。
+現状、多くのサイトがキャッシュを設定しているため、ブラウザのローカルキャッシュは [2 日程度で消える](https://code.facebook.com/posts/964122680272229/web-performance-cache-efficiency-exercise/) と言われている。
 
 そのため、後者の長いスパンの中で、前回アクセス時のキャッシュの適用を期待するのは難しい。
 
@@ -328,5 +328,5 @@ Cache-Control: max-age=1, stale-while-revalidate=600, statle-if-error=864000
 
 ## link
 
-- [mnot’s blog: Chrome and Stale-While-Revalidate](https://www.mnot.net/blog/2014/06/01/chrome_and_stale-while-revalidate)
+- [mnot ’ s blog: Chrome and Stale-While-Revalidate](https://www.mnot.net/blog/2014/06/01/chrome_and_stale-while-revalidate)
 - [[Web facing change PSA] Heads-up: Faster assets with the HTTP caching extension "stale-while-revalidate"](https://groups.google.com/a/chromium.org/forum/#!msg/chromium-dev/zchogDvIYrY/ZqWSdt3LJdMJ)

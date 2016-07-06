@@ -35,7 +35,7 @@ Public Key Pinning for HTTP(HPKP) とは、証明書の信頼性を向上させ�
 仕組み上 CA の危殆化はあってはならない訳だが、証明書の価値が高まりつつあり、一方で多くの認証局が運用されている今、一部の CA では実際に攻撃による偽の証明書発行が発生している。
 
 - [Pinning 年表](https://jp.globalsign.com/blog/2013/certificate_public_key_pinning.html) 参照
-- [1. 不正なSSL証明書の脅威](http://d.hatena.ne.jp/jovi0608/20140902/1409635279) 参照
+- [1. 不正な SSL 証明書の脅威](http://d.hatena.ne.jp/jovi0608/20140902/1409635279) 参照
 
 そこで、このリスクを低減するために考案されたのが HPKP である。
 

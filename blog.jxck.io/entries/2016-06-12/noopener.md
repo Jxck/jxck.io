@@ -15,7 +15,7 @@
 
 このデモでは、 [https://labs.jxck.io/noopener](https://labs.jxck.io/noopener) から開いた [https://labs.jxck.io/noopener/opener-change.html](https://labs.jxck.io/noopener/opener-change.html) のページが別タブで開いた後、最初に開いたタブが勝手に [http://example.com](http://example.com) に遷移しているというものである。
 
-最初のページを Parent、開いたタブを Child とする。
+最初のページを Parent 、開いたタブを Child とする。
 
 child 側では以下のような JS が書かれており、 parent 側の location を変えて、任意の URL に遷移されることが可能である。
 
@@ -160,7 +160,7 @@ parent 側のリンクタグに `rel=noopener` を追加することで、 child
 
 ## DEMO
 
-`rel` の有無により、child から parent ページの遷移の動作を試すデモも以下に用意した。
+`rel` の有無により、 child から parent ページの遷移の動作を試すデモも以下に用意した。
 
 [noopener DEMO](https://labs.jxck.io/noopener)
 

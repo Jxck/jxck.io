@@ -12,7 +12,7 @@ Google が推奨する仕様である [AMP HTML](https://www.ampproject.org/) �
 以下の記事が出たので、古かったフォーマットのアップデートと [JSON-LD によるメタデータの提供](https://blog.jxck.io/entries/2016-02-26/jsonld-opengraph.html) に対応した。
 
 - [Google モバイル検索が Accelerated Mobile Pages に対応しました](http://googledevjp.blogspot.jp/2016/02/google-accelerated-mobile-pages.html)
-- [AMP対応 2016.02版](http://ymotongpoo.hatenablog.com/entry/2016/02/25/224159)
+- [AMP 対応 2016.02 版](http://ymotongpoo.hatenablog.com/entry/2016/02/25/224159)
 
 
 ## AMP
