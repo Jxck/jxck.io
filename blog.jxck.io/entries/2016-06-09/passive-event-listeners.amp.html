@@ -50,7 +50,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-06-09T08:00:00+08:00",
-  "dateModified": "2016-07-05T08:00:00+08:00",
+  "dateModified": "2016-07-06T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -524,7 +524,7 @@ th:last-child, td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-06-09>2016-06-09</time>
-    <li>updated_at: <time class=updated_at datetime=2016-07-05>2016-07-05</time>
+    <li>updated_at: <time class=updated_at datetime=2016-07-06>2016-07-06</time>
     <li class=tags>tags: [<a>rendering</a>,<a>performance</a>]
   </ul>
 
@@ -557,7 +557,7 @@ th:last-child, td:last-child {
       <h2 id="影響"><a href="#影響">影響</a></h2>
       <p>イベントリスナを実際に実行し、その処理が終わるまで <code>preventDefault()</code> が呼ばれるかどうかわからないため、 Scroll Jank がおこる。
       <p>つまり、 Scroll Event に登録されたイベントリスナの実行時間が長ければ長いほど、 Scroll Jank の影響が大きくなる。
-      <p>Chrome は現在、実行時間の長いリスナが登録された場合、次のような警告を devtools に表示する。
+      <p>Chrome は現在、実行時間の長いリスナが登録された場合、以下のような警告を devtools に表示する。
       <blockquote>explainer.md#the-problem:1 Deferred long-running timer task(s) to improve scrolling smoothness. See crbug.com/574343.</blockquote>
       <p>ただし、イベントリスナの実行自体にも多少のオーバーヘッドがあるため、空のイベントリスナを登録しただけでも、ブラウザのスクロール最適化を邪魔するには十分であり、影響がでることも確認されている。
       <p>仕様には Scroll Event にイベントリスナを登録したサイトの中で、実際に <code>preventDefault()</code> を呼ぶのは 20% 程度という調査結果が記載されている。
@@ -572,7 +572,7 @@ th:last-child, td:last-child {
       <pre class=js><code>document.addEventListener(&#039;touchstart&#039;, handler, {passive: true});</code></pre>
       <p>開発者がこれを明示的に指定することで、ブラウザはリスナが <code>preventDefault()</code> を呼ばないことを前提とできるため、リスナの完了を待たずにスクロールすることができ、それを最適化できる余地が生まれる。
       <p>なお Passive Listener 内で <code>preventDefault()</code> を呼んだ場合は無視されるため、呼んだとしても <code>defaultPrevented=false</code> のままになる。
-      <p>Listener 内で <code>preventDefault()</code> を呼べるかどうかは、 <code>cancelable=true</code> となっているかどうかで分かる。
+      <p>Listener 内で <code>preventDefault()</code> を呼べるかどうかは、 <code>cancelable=true</code> となっているかどうかでわかる。
       <table>
         <thead>
           <tr>
@@ -615,7 +615,7 @@ document.addEventListener(&#039;touchstart&#039;, handler, {capture: true});</co
       <h2 id="Feature+Detection"><a href="#Feature+Detection">Feature Detection</a></h2>
       <p>引数をオブジェクトにした結果、 Passive 用に引数を追加するよりも柔軟な設計となったが、互換性の問題が発生してしまう結果となった。
       <p>これは <code>{passive: true}</code> は JS としては trusy であるため、第三引数が Event Listener Option に対応してないブラウザにおいて単に <code>useCapture</code> を有効にしたと解釈されてしまうためにおこる。
-      <p>たとえばキャプチャリングフェーズでの補足を <code>false</code> にする指定を Event Listener Options で指定した場合、古いブラウザでは意図に反して <code>useCapture</code> を <code>true</code> にしたと解釈されてしまうのである。
+      <p>例えばキャプチャリングフェーズでの補足を <code>false</code> にする指定を Event Listener Options で指定した場合、古いブラウザでは意図に反して <code>useCapture</code> を <code>true</code> にしたと解釈されてしまうのである。
       <pre class=js><code>document.addEventListener(&#039;touchstart&#039;, handler, {capture: false});</code></pre>
       <p>これを避けるためには Feature Detection が必要となる。
       <p>スペックにサンプルが掲載されているので、引用しコメントで解説を追記する。
@@ -671,7 +671,7 @@ function addEventListenerWithOptions(target, type, handler, options) {
     </section>
     <section>
       <h2 id="Intersection+Observer"><a href="#Intersection+Observer">Intersection Observer</a></h2>
-      <p>Scroll にハンドラを補足するユースケースのひとつに、画面のスクロール位置取得がある。
+      <p>Scroll にハンドラを補足するユースケースの一つに、画面のスクロール位置取得がある。
       <p>画面のどの分が表示されているかを <code>scrollTop</code> などを用いて測定するような場面では、 Passive Listener を指定する効果が予想される。
       <p>しかし、この場面により適した仕様として、要素の出現と位置をより効率的に取得する Intersection Observer という仕様が提案されている。
       <p>実装されれば、こちらを用いる方が Scroll を監視するよりも正確かつ効率のよい実装が可能となる。

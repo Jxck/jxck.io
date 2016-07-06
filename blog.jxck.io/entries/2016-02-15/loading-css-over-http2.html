@@ -55,7 +55,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-02-15T08:00:00+08:00",
-  "dateModified": "2016-07-05T08:00:00+08:00",
+  "dateModified": "2016-07-06T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -97,7 +97,7 @@ by Jxck
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-02-15>2016-02-15</time>
-    <li>updated_at: <time class=updated_at datetime=2016-07-05>2016-07-05</time>
+    <li>updated_at: <time class=updated_at datetime=2016-07-06>2016-07-06</time>
     <li class=tags>tags: [<a>css</a>,<a>http2</a>,<a>performance</a>]
   </ul>
 
@@ -108,13 +108,13 @@ by Jxck
       <h2 id="Intro"><a href="#Intro">Intro</a></h2>
       <p>Chrome が予定している <code>&lt;link rel=stylesheet&gt;</code> の挙動の変更について、Google Chrome チームの Jake が、興味深いブログを上げている。
       <p><a href="https://jakearchibald.com/2016/link-in-body/">The future of loading CSS</a>
-      <p>この内容は、単に Chrome に対する変更だけではなく、 HTTP2 によって変化する最適化手法と、それをもっとも活かすための HTML, CSS の構成についてのヒントがある。
+      <p>この内容は、単に Chrome に対する変更だけではなく、 HTTP2 によって変化する最適化手法と、それを最も活かすための HTML, CSS の構成についてのヒントがある。
       <p>今回は、この内容を意訳+補足解説し、本サイトに適用していく。
     </section>
     <section>
       <h2 id="HTTP/1.1+時代の+CSS"><a href="#HTTP/1.1+時代の+CSS">HTTP/1.1 時代の CSS</a></h2>
       <p>HTML 自体がコンポーネントを意識した作りになっている場合は、自然と CSS も <code>class</code> などを使いコンポーネント単位に作ることができるだろう。
-      <p>しかし、 HTTP/1.1 では、リクエストの数を減らすためにすべての CSS を 1 つ(もしくは少数個)に結合する最適化が主流だった。
+      <p>しかし、 HTTP/1.1 では、リクエストの数を減らすために全ての CSS を 1 つ(もしくは少数個)に結合する最適化が主流だった。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre class=html><code>&lt;head&gt;
   &lt;link rel=&quot;stylesheet&quot; href=&quot;bundle.css&quot;&gt;
@@ -123,7 +123,7 @@ by Jxck
   &lt;!-- content --&gt;
 &lt;/body&gt;</code></pre>
       <p>ところが、リクエストの多重化が可能な HTTP/2 においては、そこを心配する必要がなくなった。<br>
-      このため、コンポーネントごとに CSS を分割するのは、キャッシュの容易性を考えてもよい方法といえる。
+      このため、コンポーネントごとに CSS を分割するのは、キャッシュの容易性を考えても良い方法と言える。
       <pre class=html><code>&lt;head&gt;
   &lt;link rel=&quot;stylesheet&quot; href=&quot;/header.css&quot;&gt;
   &lt;link rel=&quot;stylesheet&quot; href=&quot;/main.css&quot;&gt;
@@ -136,14 +136,14 @@ by Jxck
 &lt;/body&gt;</code></pre>
       <p>ただし、この場合でも2つの懸念が残る。
       <blockquote>&lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; を出力する時点で、ページ内に存在する全てのコンポーネントを把握していないといけない</blockquote>
-      <p>HTML をすべて生成してから順次送るのであれば問題ないが、本来 HTML は先頭から、準備ができた順にコンポーネントを送信することも可能であるにもかかわらず、それができなくなる。
+      <p>HTML を全て生成してから順次送るのであれば問題ないが、本来 HTML は先頭から、準備ができた順にコンポーネントを送信することも可能であるにもかかわらず、それができなくなる。
       <blockquote>footer.css のローディングが遅い場合、サイト全体をブロックする</blockquote>
       <p>footer.css が必要なのは、 HTML 中の <code>&lt;footer&gt;</code> をレンダリングする時であり、そこまでに出てくる <code>&lt;header&gt;</code> などは、先にレンダリングすることも可能だ。<br>
       しかし、実際はそのたった1つの CSS のせいで、そこまでに揃っているコンポーネントもレンダリングされず、真っ白のままになる。
     </section>
     <section>
       <h2 id="CSS+の遅延ロード"><a href="#CSS+の遅延ロード">CSS の遅延ロード</a></h2>
-      <p>この問題に対応するため、次のような JS を用いて CSS を非同期ロードする方法がある。
+      <p>この問題に対応するため、以下のような JS を用いて CSS を非同期ロードする方法がある。
       <p><a href="https://github.com/filamentgroup/loadCSS">https://github.com/filamentgroup/loadCSS</a>
       <p>スタイルが当たってない状態で表示されてほしくないコンポーネントには、 <code>display: none</code> などをつけておき、ロードされたスタイルの中で表示されるようにする。
       <p>この方法は、クリティカルレンダリングパスの改善方法の1つとして、多くのパフォーマンスエキスパートから推奨されている。
@@ -165,11 +165,11 @@ by Jxck
       <p>こうした Content-Shifting の問題は、広告が後から次々に表示されるページなどで多く発生し、<a href="https://www.youtube.com/watch?v=uPnEZd6wCtk">フラストレーションがたまった経験</a> は誰にでもあるだろう。
       <iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/uPnEZd6wCtk" allowfullscreen></iframe>
       <p>本来なら、最初に見える部分="Above the fold" を最適化したいわけだが、それがどの要素で成り立つかは viewwport に依存する。
-      <p>サイズが分かっていれば、コンテンツを埋める枠のサイズをすべて最初に指定することもできるが、次の方法を使えば、どのような viewport でも適切に表示できることができる。
+      <p>サイズが分かっていれば、コンテンツを埋める枠のサイズを全て最初に指定することもできるが、以下の方法を使えば、どのような viewport でも適切に表示できることができる。
     </section>
     <section>
       <h2 id="HTTP2+時代の最適化"><a href="#HTTP2+時代の最適化">HTTP2 時代の最適化</a></h2>
-      <p>HTTP2 では次のように書くことが可能になる。
+      <p>HTTP2 では以下のように書くことが可能になる。
       <pre class=html><code>&lt;head&gt;
 &lt;!-- header には、コンポーネントに依存する CSS は書かない --&gt;
 &lt;/head&gt;
@@ -191,7 +191,7 @@ by Jxck
 &lt;/body&gt;</code></pre>
       <p>まず、各 <code>&lt;link rel=stylesheet&gt;</code> はそれ以降のレンダリングをブロックするが、それ以前のコンテントのレンダリングをブロックしない。<br>
       CSS は並列で読み込まれ、直列に適用される。
-      <p>もし、 Header, Article, Footer の CSS が読み込まれていた場合を考えると、次のような状態になる。
+      <p>もし、 Header, Article, Footer の CSS が読み込まれていた場合を考えると、以下のような状態になる。
       <ul>
         <li>Header: レンダリングされる
         <li>Article: レンダリングされる
@@ -199,15 +199,15 @@ by Jxck
         <li>Aboute me: comment.css がブロックしてるのでレンダリングされない
         <li>Footer: CSS はすでにあるが、 comment.css がブロックしているのでレンダリングされない
       </ul>
-      <p>次のメリットがある
+      <p>以下のメリットがある
       <ul>
-        <li>上から順番に表示され "Above the Fold" がどの部分かは気にしないでよい。
-        <li>コンポーネント単位で設計し、そのコンポーネントの直前に <code>&lt;link&gt;</code> を書けばよい。
-        <li>ストリームで考えられる(<code>&lt;link&gt;</code> の有無を先に考えなくてよいのでサーバは完成した順に HTML を送信できる)。
+        <li>上から順番に表示され "Above the Fold" がどの部分かは気にしないで良い。
+        <li>コンポーネント単位で設計し、そのコンポーネントの直前に <code>&lt;link&gt;</code> を書けば良い。
+        <li>ストリームで考えられる(<code>&lt;link&gt;</code> の有無を先に考えなくて良いのでサーバは完成した順に HTML を送信できる)。
       </ul>
       <p>ただし、レイアウトシステムを使う場合は、 Content-Shifting が発生しないように意識する必要がある。<br>
       特に Table や Flexbox を利用したレイアウトでは、それが発生しやすい。これまでも同じ問題は認識されていたが、前述のような progressive な読み込みではこの問題がより発生しやすい。
-      <p>Flexbox は小さいコンポーネント単位で使用し、全体のレイアウトには CSS grid を使うのがよいだろう。
+      <p>Flexbox は小さいコンポーネント単位で使用し、全体のレイアウトには CSS grid を使うのが良いだろう。
     </section>
     <section>
       <h2 id="Chrome+での変更点"><a href="#Chrome+での変更点">Chrome での変更点</a></h2>
@@ -225,15 +225,15 @@ by Jxck
     </section>
     <section>
       <h2 id="Firefox+での+FOUC+対策"><a href="#Firefox+での+FOUC+対策">Firefox での FOUC 対策</a></h2>
-      <p>Firefox では、次のように <code>&lt;script&gt;</code> をはさむことで CSS がロードされるまでパースをブロックし FOUC を回避できる。<br>
+      <p>Firefox では、以下のように <code>&lt;script&gt;</code> をはさむことで CSS がロードされるまでパースをブロックし FOUC を回避できる。<br>
       <code>&lt;script&gt;</code> には中身が必要だが、スペース1つで十分である。
       <pre class=html><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;/article.css&quot;&gt;&lt;script&gt; &lt;/script&gt;
 &lt;main&gt;&lt;/main&gt;</code></pre>
     </section>
     <section>
       <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
-      <p>すべてをまとめると、現状の Firefox, IE/Edge では Progressive Rendering が可能になる。<br>
-      現状の Chrome & Safari では CSS がロードされるまで White Screen になるが、従来のようにすべてを <code>&lt;head&gt;</code> に置いていたのと比べれば問題ではない。<br>
+      <p>全てをまとめると、現状の Firefox, IE/Edge では Progressive Rendering が可能になる。<br>
+      現状の Chrome & Safari では CSS がロードされるまで White Screen になるが、従来のように全てを <code>&lt;head&gt;</code> に置いていたのと比べれば問題ではない。<br>
       そして、数ヶ月以内に Chrome は IE/Edge の方式に移るので、問題は解決する。
       <p>これにより、 Just in time CSS が可能になり、レンダリングプロセスが最適化可能になる。
     </section>

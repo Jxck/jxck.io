@@ -55,7 +55,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-04-11T08:00:00+08:00",
-  "dateModified": "2016-07-05T08:00:00+08:00",
+  "dateModified": "2016-07-06T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -97,7 +97,7 @@ by Jxck
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-04-11>2016-04-11</time>
-    <li>updated_at: <time class=updated_at datetime=2016-07-05>2016-07-05</time>
+    <li>updated_at: <time class=updated_at datetime=2016-07-06>2016-07-06</time>
     <li class=tags>tags: [<a>hsts</a>,<a>security</a>]
   </ul>
 
@@ -112,7 +112,7 @@ by Jxck
     </section>
     <section>
       <h2 id="HSTS"><a href="#HSTS">HSTS</a></h2>
-      <p>本サイト (<a href="https://blog.jxck.io">blog.jxck.io</a>) では、フル HTTPS 化が完了しており、 HTTP へのリクエストはすべて HTTPS へリダイレクトしている。
+      <p>本サイト (<a href="https://blog.jxck.io">blog.jxck.io</a>) では、フル HTTPS 化が完了しており、 HTTP へのリクエストは全て HTTPS へリダイレクトしている。
       <p>特に本サイトのタイトル自体が <code>blog.jxck.io</code> であり、ドメイン名と同じになっているため、これが Twitter などで <code>http://blog.jxck.io</code> へのリンクと解釈される場合が多く、そこからの HTTP アクセスも少なくはない。
       <p>しかし、 MITM の脅威への対策が可能な HTTPS でも、最初のリクエストが HTTP であると、そこに付け入る隙ができてしまう。
       <p>そこで、 「<code>blog.jxck.io</code> にアクセスするときは必ず HTTPS を用いる」ことをブラウザに覚えさせ、 <code>http://blog.jxck.io</code> のリンクを踏んでも、ブラウザが自動的に <code>https://blog.jxck.io</code> に置き換えてアクセスさせる仕組みが HSTS である。
@@ -122,12 +122,12 @@ by Jxck
     </section>
     <section>
       <h2 id="Strict-Transport-Security+ヘッダ"><a href="#Strict-Transport-Security+ヘッダ">Strict-Transport-Security ヘッダ</a></h2>
-      <p>次のような HTTP ヘッダを追加することで、 HSTS を有効にすることができる。
+      <p>以下のような HTTP ヘッダを追加することで、 HSTS を有効にすることができる。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre><code>Strict-Transport-Security: max-age=7776000</code></pre>
       <p>このヘッダは、 HTTP ではなく HTTPS のレスポンスに付与する。
       <p>このヘッダを受け取ったブラウザは 7776000秒(90日) のあいだは、そのドメインに <code>http://~</code> で始まるリクエストを送信する際に、自動的にこれを <code>https://~</code> に置き換える。
-      <p>これによって、たとえばすでにどこかのページに張られたリンクが <code>http://~</code> であったとしても、リダイレクトではなく最初から HTTPS を強制することができる。
+      <p>これによって、例えば既にどこかのページに張られたリンクが <code>http://~</code> であったとしても、リダイレクトではなく最初から HTTPS を強制することができる。
     </section>
     <section>
       <h2 id="preload"><a href="#preload">preload</a></h2>
@@ -141,12 +141,12 @@ by Jxck
       <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
       <p>本来はトップドメインに <code>includeSubDomains</code> を付与した指定をすることで <code>*.jxck.io</code> つまりサブドメイン含めた全体に対して、設定を有効にするのが望ましい。
       <p>しかし、本ドメインには <a href="https://labs.jxck.io">labs.jxck.io</a> という実験用のサブドメインがある。
-      <p>ここでは、平文 HTTP との比較や、 Mixed Contents の挙動のテストなど、さまざまな実験を行うために、 HTTP もリダイレクトせずサーブしている。
+      <p>ここでは、平文 HTTP との比較や、 Mixed Contents の挙動のテストなど、様々な実験を行うために、 HTTP もリダイレクトせずサーブしている。
       <p>ここを HSTS に含んでしてしまうと、実験ができなくなってしまうため、除外する必要がある。
       <p>結果として、本ドメインでは <strong><code>includeSubDomains</code> の指定はせず</strong>、ドメインごとに個別に指定することとした。
       <p>また、 Chrome の Preload 登録の条件には、 <code>includeSubDomains</code> の適用が含まれている。
-      <p>したがって同様の理由から、止むを得ず <strong>preload 登録は見送る</strong> こととした。
-      <p>結果、現時点では <a href="https://jxck.io">jxck.io</a> 及び <a href="https://blog.jxck.io">blog.jxck.io</a> に対して、次のヘッダを付与した。
+      <p>従って同様の理由から、止むを得ず <strong>preload 登録は見送る</strong> こととした。
+      <p>結果、現時点では <a href="https://jxck.io">jxck.io</a> 及び <a href="https://blog.jxck.io">blog.jxck.io</a> に対して、以下のヘッダを付与した。
       <pre><code>Strict-Transport-Security: max-age=31536000</code></pre>
     </section>
   </article>

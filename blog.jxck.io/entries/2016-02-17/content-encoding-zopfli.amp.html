@@ -50,7 +50,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-02-17T08:00:00+08:00",
-  "dateModified": "2016-07-05T08:00:00+08:00",
+  "dateModified": "2016-07-06T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -524,7 +524,7 @@ th:last-child, td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-02-17>2016-02-17</time>
-    <li>updated_at: <time class=updated_at datetime=2016-07-05>2016-07-05</time>
+    <li>updated_at: <time class=updated_at datetime=2016-07-06>2016-07-06</time>
     <li class=tags>tags: [<a>zopfli</a>,<a>http</a>,<a>performance</a>]
   </ul>
 
@@ -545,13 +545,13 @@ th:last-child, td:last-child {
       <h2 id="Transfer-Encoding"><a href="#Transfer-Encoding">Transfer-Encoding</a></h2>
       <p>HTTP には、似た仕組みとして <code>TE: gzip</code> と <code>Transfer-Encoding: gzip</code> による、経路圧縮がある。
       <p>これは、前述の <code>Accept-Encoding</code> が End-To-End で圧縮したコンテンツを転送するのと違い、 Hop-by-Hop で経路上での圧縮を実施する点で、意味的に差異がある。
-      <p>たとえば HTML でいえば、前者は「コンテンツ自体が gzip された html である」のに対し、後者は「コンテンツはあくまで html だが、経路上では圧縮されている」ということになる。
-      <p>本サイトは、あくまで HTML を配信したいので、転送量削減のために圧縮を施すのであれば、 <code>TE: gzip</code> と <code>Transfer-Encoding: gzip</code> を使うのが妥当といえるだろう。
+      <p>例えば HTML で言えば、前者は「コンテンツ自体が gzip された html である」のに対し、後者は「コンテンツはあくまで html だが、経路上では圧縮されている」ということになる。
+      <p>本サイトは、あくまで HTML を配信したいので、転送量削減のために圧縮を施すのであれば、 <code>TE: gzip</code> と <code>Transfer-Encoding: gzip</code> を使うのが妥当と言えるだろう。
       <p>しかし <code>TE</code> はブラウザ実装の問題のためか、歴史的にもあまり使われておらず、送信してくるブラウザもほとんどない。(Opera は送信すると言われているが未確認)。
       <p>そのため、 HTTP/1.1 対応のサーバでも <code>Transfer-Encoding: gzip</code> に対応したものは少なく、 h2o も対応していない。(<code>Transfer-Encoding: chunked</code> は対応している)
       <p>また、このヘッダは <strong>コネクションに対する設定</strong> であるが、 HTTP2 ではこうしたコネクションに対する設定は、代わりに <strong>SETTINGS Frame</strong> を利用することになったため、こうしたヘッダは設定不可とされている。
       <p><a href="https://tools.ietf.org/html/rfc7540#section-8.1.2.2">8.1.2.2.  Connection-Specific Header Fields</a>
-      <p>まとめると、次の理由により、この方法は却下した。
+      <p>まとめると、以下の理由により、この方法は却下した。
       <ul>
         <li>TE を送るブラウザは少ない
         <li>h2o も対応していない
@@ -595,7 +595,7 @@ th:last-child, td:last-child {
       <p>zopfli は、探索を繰り返す回数を調節できるため、この回数の増減による、圧縮率と実行時間を検証した。
       <section>
         <h3 id="ベンチマーク"><a href="#ベンチマーク">ベンチマーク</a></h3>
-        <p>次のように、前回の記事に対して zopfli コマンドを実行し、 time コマンドで実行時間を計測した。
+        <p>以下のように、前回の記事に対して zopfli コマンドを実行し、 time コマンドで実行時間を計測した。
         <pre class=sh><code>$ time zopfli --i10 -c loading-css-over-http2.html</code></pre>
         <p><code>--i</code> が探索回数であり、これを増やせばより小さく圧縮できるが、時間がかかる。<br>
         デフォルトは <code>i = 15</code> であるため、 <code>10..100</code> まで増やしながら実行した。
@@ -672,7 +672,7 @@ th:last-child, td:last-child {
           </tbody>
         </table><p>この結果だと <code>-i20</code> 以上は誤差のようである。<br>
         ただ、開発用の Mac では少し違う結果が出たりもしたため、結果 <code>i=30</code> くらいに落ち着いた。
-        <p>また、 <a href="//jxck.io/assets/img/jxck.webp">WebP</a> と <a href="//jxck.io/assets/img/jxck.png">PNG</a> の画像ファイルでも検証したところ、次のようになった。
+        <p>また、 <a href="//jxck.io/assets/img/jxck.webp">WebP</a> と <a href="//jxck.io/assets/img/jxck.png">PNG</a> の画像ファイルでも検証したところ、以下のようになった。
         <table>
           <thead>
             <tr>
@@ -705,7 +705,7 @@ th:last-child, td:last-child {
     <section>
       <h2 id="zopfli+++send-gzip"><a href="#zopfli+++send-gzip">zopfli + send-gzip</a></h2>
       <p>以上により、本サイトでは全静的コンテンツをデプロイプロセスで zopfli による圧縮を実施し、それを h2o の <code>send-gzip</code> ディレクティブで配信することにした。
-      <p>検証の結果、このサイトでは次の設定を採用した。
+      <p>検証の結果、このサイトでは以下の設定を採用した。
       <ul>
         <li><code>i=30</code>
         <li><code>send-gzip: ON</code>
@@ -724,7 +724,7 @@ th:last-child, td:last-child {
       新しいフォーマットとして、 <a href="https://tools.ietf.org/html/draft-alakuijala-brotli-08">IETF へのドラフトの提出</a> もなされている。
       <p>現在は <a href="https://plus.google.com/u/0/+IlyaGrigorik/posts/X9ogn4fLtHL">Chrome が HTTPS のみでサポート</a> していおり、 Canary で <code>chrome://flags#brotli</code> を有効にすると、 <code>Accept-Encoding: br</code> が追加されるので、サーバはこれを見て brotli で圧縮したファイルを返すことができる。
       <p>ほとんどのブラウザが対応している gzip と違い、まだ対応ブラウザも少なく、 H2O も対応していないため <code>Accept-Encoding</code> での判断を自分でハンドラに書く必要がある。
-      <p>H2O にはすでにbrotli への対応を求める issue が上がっているので、対応したらそこでまた検証しようと思う。
+      <p>H2O には既にbrotli への対応を求める issue が上がっているので、対応したらそこでまた検証しようと思う。
       <p><a href="https://github.com/h2o/h2o/issues/660">Feature request: file.send-brotli #660</a>
     </section>
   </article>

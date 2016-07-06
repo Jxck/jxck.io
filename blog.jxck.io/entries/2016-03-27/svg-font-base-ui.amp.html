@@ -50,7 +50,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-03-27T08:00:00+08:00",
-  "dateModified": "2016-07-05T08:00:00+08:00",
+  "dateModified": "2016-07-06T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -524,7 +524,7 @@ th:last-child, td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-03-27>2016-03-27</time>
-    <li>updated_at: <time class=updated_at datetime=2016-07-05>2016-07-05</time>
+    <li>updated_at: <time class=updated_at datetime=2016-07-06>2016-07-06</time>
     <li class=tags>tags: [<a>svg</a>,<a>image</a>,<a>performance</a>]
   </ul>
 
@@ -546,11 +546,11 @@ th:last-child, td:last-child {
     <section>
       <h2 id="ベクタ画像とラスタ画像"><a href="#ベクタ画像とラスタ画像">ベクタ画像とラスタ画像</a></h2>
       <p>ここまでの画像最適化では、 PNG/JPEG/WebP など <strong>ラスタ形式</strong> の画像について記述した。<br>
-      しかし、 UI アイコンなどについては、 SVG や Font といった <strong>ベクタ形式</strong> を用いる方が、よい場合がある。
+      しかし、 UI アイコンなどについては、 SVG や Font といった <strong>ベクタ形式</strong> を用いる方が、良い場合がある。
       <p>ラスタ画像はピクセルの色情報を持ち、それを並べて表示するのに対し、ベクタ形式はパスの情報を持ち、それを描画する。
       <p>写真などはラスタ形式を利用するが、自作の画像やアイコンなどについてはベクタ形式にすることで、サイズを小さくできる場合が多い。
       <p>またパス情報を元に描画するため、どんなに拡大してもラスタ形式のように画像が荒れることはない。
-      <p>以下は元サイズの 2 倍に拡大した PNG 画像(<strong>左</strong>)と、同じ大きさで表示した SVG 画像(<strong>右</strong>)を比較したスクリーンショットである。 PNG は文字の周囲が荒れているのが分かるだろう。
+      <p>以下は元サイズの 2 倍に拡大した PNG 画像(<strong>左</strong>)と、同じ大きさで表示した SVG 画像(<strong>右</strong>)を比較したスクリーンショットである。 PNG は文字の周囲が荒れているのがわかるだろう。
       <p><a href="png-svg.png"><amp-img layout=responsive src=png-svg.png#1038x212 alt="2 倍に拡大した PNG と同じ大きさの SVG の比較" title="png-svg" width=1038 height=212></a>
       <p>このため、 <a href="/entries/2016-03-26/picture.html">画像最適化戦略 Picture 編</a> で実施したようなデバイス解像度による複数画像の出し分けなども不要になる。
       <p>本サイトでは、このメリットを活かし、 UI コンポーネントは基本的にベクタフォーマットである SVG および Font を用いて構築することとした。
@@ -558,10 +558,10 @@ th:last-child, td:last-child {
     </section>
     <section>
       <h2 id="SVG"><a href="#SVG">SVG</a></h2>
-      <p>本サイトのヘッダ部分に表示されているアイコンなどは、基本的にすべて SVG を表示している。
+      <p>本サイトのヘッダ部分に表示されているアイコンなどは、基本的に全て SVG を表示している。
       <p>また、自分で作る説明用の図なども、基本的には SVG で作るようにしている。
       <p>SVG を生成するツールは、イラストレーターなどがよく使われるようである。
-      <p>しかし、筆者はイラレを持っておらず、また長いことスライドやブログの画像はすべて cacoo で作成してきた。
+      <p>しかし、筆者はイラレを持っておらず、また長いことスライドやブログの画像は全て cacoo で作成してきた。
       <p>cacoo は、作成した図を SVG 書き出すことが可能であるため、まずはこれを用いて自分のロゴを SVG で出した。
       <p>ソースは以下である。
       <pre class=svg><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
@@ -603,7 +603,7 @@ th:last-child, td:last-child {
       <p>同じものを 256x256 の PNG と比べてみる。
       <p>PNG の方は拡大すると、特にフォント部分がぼやけているのが分かるだろう。
       <p>SVG は拡大しても問題はない。
-      <p>なお、 PNG と cacoo で書き出した時点での SVG のサイズの比較は次のとおりである。
+      <p>なお、 PNG と cacoo で書き出した時点での SVG のサイズの比較は以下の通りである。
       <ul>
         <li>PNG: 3860byte
         <li>SVG: 1430byte
@@ -666,13 +666,13 @@ th:last-child, td:last-child {
     </section>
     <section>
       <h2 id="SVG+ギャラリー"><a href="#SVG+ギャラリー">SVG ギャラリー</a></h2>
-      <p>こうして手書きした SVG は次にソースとともに掲載している。
+      <p>こうして手書きした SVG は以下にソースとともに掲載している。
       <p>ソースは観賞用であるため、インデントや改行などは削ってない。
       <p>それ以外で、削れそうな部分があれば今後も削っていく予定である。
       <p><a href="//labs.jxck.io/svg">labs.jxck.io/svg</a>
       <p>SVG の弱点として、 HTML に埋め込んだ SVG でないと CSS で色を指定できないという問題がある。<br>
       本サイトの SVG は、外部リソースとして <code>&lt;img&gt;</code> で読んでいるため、色は SVG 自体に書いて作成している。
-      <p>なお、 404 ページや 500 ページを作る際にデザインを考えてたところ、この SVG にリンク貼って返せばそれでよいんじゃないか?と思い、今は単にステータスコードを書いた SVG を返すようにしている。
+      <p>なお、 404 ページや 500 ページを作る際にデザインを考えてたところ、この SVG にリンク貼って返せばそれで良いんじゃないか?と思い、今は単にステータスコードを書いた SVG を返すようにしている。
       <p>正しくステータスコードと Contnet-Type が設定してあれば問題ない筈なので、こだわりたい人はここで Animation SVG とかやればいいんじゃないだろうか。
       <p>サーバの出したステータスコードに応じて SVG を動的に生成し、返すようにする予定である。
     </section>
@@ -683,7 +683,7 @@ th:last-child, td:last-child {
       <p>一方、単に CSS の <code>content:</code> 要素に文字を指定するだけでも、 Font を使用することができる。
       <p>このサイトは見た目が Markdown ライクになるように CSS を作っている。
       <p>装飾に使用している <code>#</code> や <code>-</code> などの文字は、 <code>before</code>/<code>after</code> 擬似要素への <code>content:</code> に文字を指定することで、フォントデータを使って装飾している。
-      <p>たとえば見出し <code>&lt;h1&gt;~&lt;h4&gt;</code> と <code>pre</code> は次のように指定している。
+      <p>例えば見出し <code>&lt;h1&gt;~&lt;h4&gt;</code> と <code>pre</code> は以下のように指定している。
       <pre class=css><code>h1::before,
 h2::before,
 h3::before,
