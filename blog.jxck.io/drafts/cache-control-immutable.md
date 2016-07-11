@@ -73,6 +73,17 @@ Cache-Control: max-age=10000, immutable
 - [Bits Up!: Cache-Control: immutable](http://bitsup.blogspot.jp/2016/05/cache-control-immutable.html)
 
 
+## DEMO
+
+画像に対して `cache-control: immutable` を設定した画像と、していない画像を並べたデモページを以下に用意した。
+
+一度読み込んでからリロードを行うことで、キャッシュのヒットが確認できるだろう。
+
+執筆時点では Firefox のみ、かつ HTTPS のみで実装されている。
+
+- [Cache Control Immutable DEMO \| labs.jxck.io](https://labs.jxck.io/cache-control-immutable/)
+
+
 ## リロードというユーザ操作
 
 リロードは必ずしもブラウザが勝手に発生するものだけではない、ユーザが明示的に行う操作の場合もある。
@@ -81,7 +92,7 @@ Cache-Control: max-age=10000, immutable
 
 すぐ浮かぶだけでも以下のような場合があるだろう。
 
-- リソースの更新をいち早く知りたい場合(F5連打)
+- リソースの更新をいち早く知りたい場合(F5 連打)
 - バグによって画面の表示が崩れた場合
 - ユーザの置かれているネットワークが不調で、コンテンツの取得が正しく完了しなかった場合
 - なんらかの場面で、ページ側がユーザに「リロードしてください」と依頼する場合(希少)
@@ -96,7 +107,7 @@ Cache-Control: max-age=10000, immutable
 
 もし、リクエストが発生しないからと、リソースをなんでも immutable に指定すると、ユーザが慣習によって期待していたリロードの挙動を著しく損ねる可能性もある。
 
-従って、例え max-age が付与できる設計であるとしても、 immutable の指定には慎重であるべきと考える。
+したがって、例え max-age が付与できる設計であるとしても、 immutable の指定には慎重であるべきと考える。
 
 
 ## 本サイトへの適用
