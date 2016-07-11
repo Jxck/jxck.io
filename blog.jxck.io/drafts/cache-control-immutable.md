@@ -2,7 +2,7 @@
 
 ## Intro
 
-ブラウザはリロード時に、 Conditional Get によってキャッシュの Validate (有効性の問い合わせ)を行う。
+ブラウザはリロード時に、 max-age に満たないキャッシュを持っていても Conditional GET によってキャッシュの Validate (有効性の問い合わせ)を行う。
 
 Cache-Control Extension として提案されている immutable オプションは、キャッシュが max-age 内であればリロード時もキャッシュヒットさせる拡張である。
 
@@ -13,33 +13,49 @@ Cache-Control Extension として提案されている immutable オプション
 
 Cache-Control に max-age を指定することで、ブラウザにリソースをキャッシュさせることができる。
 
-このキャッシュは max-age の期間内はフレッシュとみなされ、フレッシュであればサーバへの問い合わせなく再利用される。
+このキャッシュは max-age の期間内は fresh とみなされ、 fresh であればサーバへの問い合わせなく再利用される。
 
-サーバへの問い合わせが無いため、事実上最速のリソース取得となる。
+サーバへの問い合わせ(RTT)が無いため、事実上最速のリソース取得となる。
 
 
 ## Reload
 
-しかし、現在のブラウザではフレッシュなキャッシュがそのままヒットするのは、ナビゲート(遷移)時のみである。
+しかし、現在のブラウザでは fresh なキャッシュがそのままヒットするのは、ナビゲート(遷移)時のみである。
 
 リロードやスパーリロードの場合は、 max-age 内のキャッシュであっても、扱いが変わる。
 
 
-- ナビゲート(link, redirect): フレッシュなキャッシュはヒットする
-- リロード(F5, cmd+r etc): フレッシュであっても無視し、 Conditional Get を行う
-- スーパーリロード(shift + reload etc): フレッシュあっても無視し、 Get を行う。
+- ナビゲート(link, redirect):  fresh なキャッシュはヒットする
+- リロード(F5, cmd+r etc):  fresh であっても無視し、 Conditional GET を行う
+- スーパーリロード(shift + reload etc):  fresh あっても無視し、 GET を行う。
 
 
-ブラウザがリロードを行った場合に挙動については、以下に詳細がまとまっている。
+## 不必要な Conditional GET
 
-- https://docs.google.com/document/d/1vwx8WiUASKyC2I-j2smNhaJaQQhcWREh7PC3HiIAQCo/edit
+ブラウザの実装上の理由で不必要(とみなされやすい) Conditional GET が発生することもある。
+
+特にブラウザ間の実装差異のため、 Chrome では他のブラウザよりも多くの Validation が行われ、多数の無駄な Conditional GET が発生していたことが Facebook により報告されていた。
+
+- [Issue 505048 - chromium - Chrome makes more conditional re-validation requests than other browsers - Monorail](https://bugs.chromium.org/p/chromium/issues/detail?id=505048)
+
+
+これは、リロードが発生するタイミングについて、仕様上曖昧な部分があったという理由も大きいようである。
+
+そこで、ブラウザがリロードを行った場合に挙動について調査が行われ、結果が以下にまとまっている。
+
+- [Reload Reloaded](https://docs.google.com/document/d/1vwx8WiUASKyC2I-j2smNhaJaQQhcWREh7PC3HiIAQCo/edit)
+
+
+無駄 Conditional GET 、つまり不必要な Validation の発生は、 304 レスポンスを返すだけのものであり、無駄な RTT であると言える。
+
+したがって、キャッシュの設計がきちんとなされている場合は、ブラウザの実装に依存せずにリロード時にも Cache HIT させたいという要望から提案されたのが、 Immutable Extension である。
 
 
 ## Immutable Extension
 
 Cache-Control Immutable Extension は、 Cache-Control の拡張の一つである。
 
-以下のように指定することで、キャッシュを immutable と指定することができ、ブラウザはキャッシュがフレッシュであればリロード時でもヒットさせるようになる。
+以下のように指定することで、キャッシュを immutable と指定することができ、ブラウザはキャッシュが fresh であればリロード時でもヒットさせるようになる。
 
 
 ```
@@ -51,40 +67,102 @@ Cache-Control: max-age=10000, immutable
 特に、画像、映像、フォントといったサイズが大きくも表示において重要なリソースについては、キャッシュの再利用がサーバの負荷という面でも、 UX の面でも有利に働く。
 
 
+執筆時点では、 Firefox が https 通信限定で、この拡張をサポートしている。
+
+- [1267474 - Cache-Control: immutable](https://bugzilla.mozilla.org/show_bug.cgi?id=1267474)
+- [Bits Up!: Cache-Control: immutable](http://bitsup.blogspot.jp/2016/05/cache-control-immutable.html)
+
+
 ## リロードというユーザ操作
 
-そもそも、ユーザがリロードを行う場合とはどういう場合だろうか。
+リロードは必ずしもブラウザが勝手に発生するものだけではない、ユーザが明示的に行う操作の場合もある。
 
-よく F5 連打といえば、同一 URI 上でのリソースの更新をいち早く知りたい場合に使われる。
+では、そもそもユーザがリロードを行う場合とはどういう場合だろうか。
 
-それ以外には、なんらかのバグによって画面の表示が崩れたりした場合に、ユーザが復旧のために取れる手段としても使われているだろう。
+すぐ浮かぶだけでも以下のような場合があるだろう。
 
-古いサイトには、なんらかの場面でユーザに「リロードしてください」と依頼するものもあったと思う。
+- リソースの更新をいち早く知りたい場合(F5連打)
+- バグによって画面の表示が崩れた場合
+- ユーザの置かれているネットワークが不調で、コンテンツの取得が正しく完了しなかった場合
+- なんらかの場面で、ページ側がユーザに「リロードしてください」と依頼する場合(希少)
 
-筆者は、本来ユーザが明示的にリロードを発生させること自体が、サイトの作りとして問題をはらんでいる場合があると考えている。
 
-今では更新を通知して導く方法もたくさんある、崩れるのは明らかにバグだ、ましてやユーザにリロードを行わせる設計は間違っていると言える。
+更新通知は自動/半自動含め実装方法はかなり増えた、崩れるのは明らかにバグであるし、ましてやユーザにリロードを行わせる設計は間違っていると言える。
 
+現状、本来ユーザが明示的にリロードを発生させること自体が、サイトの作りとして問題をはらんでいる場合が多いと考えている。
 
-それでも、ユーザの置かれたネットワークのプロキシや、ブラウザ拡張や、その他ユーザサイドの問題として、ユーザがリロードを行う場合はあるだろう。
-この場合、ユーザがリロードを行うのは、リソースの状態をサーバに問い合わせ、フレッシュに保ちたいという意図が考えられる。
+それでも、ユーザの置かれたネットワークのプロキシや、ブラウザ拡張、その他ユーザサイドの問題として、ユーザがリロードを行う場合はあるだろう。
+この場合、ユーザがリロードを行うのは、リソースの状態をサーバに問い合わせ、 fresh に保ちたいという意図が考えられる。
 
-もし、多くのリソースを immutable に指定すれば、キャッシュはヒットしても、サーバへの問い合わせ(スーパーリロード以外)は行われなくなる。
+もし、リクエストが発生しないからと、リソースをなんでも immutable に指定すると、ユーザが慣習によって期待していたリロードの挙動を著しく損ねる可能性もある。
 
-結論から言うと、例え max-age が付与できる設計であるとしても、 immutable を指定するのは慎重であるべきではないかと考える。
+従って、例え max-age が付与できる設計であるとしても、 immutable の指定には慎重であるべきと考える。
 
 
 ## 本サイトへの適用
 
-このサイトでは Web Font を配布しているが、その内容は変更頻度が非常に低い。
+本サイトでは、サイトへのアクセスログから 304 レスポンスの頻度が多いリソースを抽出し解析を試みた。
 
-また、サイト上で動画の次にサイズの大きいリソースである。
+その結果が以下である。
 
-しかし、表示時に Web Font の問い合わせが発生してしまうと、画面の表示が一瞬システムフォントになるか、フォントが表示されない状態に見える可能性がある。
+
+```sh
+$ cat access_log.* | grep 304 | cut -f7 | sort | uniq -c | sort -nr | head -n 30
+43468 /feeds/atom.xml
+31113 /
+11341 /assets/js/ga.js
+10831 /assets/img/jxck.svg
+10432 /assets/css/footer.css
+10404 /assets/css/main.css
+10368 /assets/css/body.css
+10367 /assets/css/header.css
+ 8880 /assets/img/rss.svg
+ 8485 /assets/img/blog.svg
+ 7898 /mozaic.png
+ 7778 /assets/css/article.css
+ 7760 /assets/js/main.js
+ 7433 /assets/css/info.css
+ 7063 /assets/js/highlight.min.js
+ 6283 /assets/img/up.svg
+ 5985 /assets/img/humans.svg
+ 5885 /assets/img/amp.svg
+ 5590 /assets/css/pre.css
+ 4612 /assets/img/jxck.png
+ 3582 /assets/css/markdown.css
+ 2656 /assets/js/stale-while-revalidate.js
+ 2303 /assets/js/master.js
+ 2198 /assets/js/sw.js
+ 2162 /assets/js/sw.js?ver=2
+ 1864 /assets/img/mozaic.svg
+ 1789 /manifest.json
+ 1481 /assets/img/podcast.svg
+ 1478 /entries/2016-06-09/passive-event-listeners.html
+ 1462 /assets/img/twitter.svg
+```
+
+RSS については、ブラウザのリロードとは関係なく、 `/` (root)へのアクセスは更新頻度が高いため対象外とした。
+
+以降は、アセット系が続くが、 JS や CSS についてはまだ更新の可能性が高く、 SVG についても手書きをしているものが多くまだまだ最適化のため書き直しをする可能性がある。
+
+したがって、最も変更の可能性が低い `/assets/img/jxck.png` のみ実験的に対応することとした。
+
+
+## Web Font への効果
+
+実は検証を開始する前に一番期待していたのは、 Web Font への効果であった。
+
+本サイトは [自分でカスタマイズした Noto Sans CJK](https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html) を配布しており、その内容は変更頻度が非常に低い。
+
+また、表示時に Web Font の問い合わせが発生してしまうと、画面の表示が一瞬システムフォントになるか、フォントが表示されない状態に見える可能性がある。
 302 が返ってくるとしても、 1RTT 発生してしまうことに変わりは無い。
 
 したがって、リロード時だとしてもそのままローカルキャッシュがヒットし、表示に利用される方が望ましい。
 
-また、 Favicon は多くのリクエストで暗黙的に発生しがちだが、こちらもおおよそ変更の予定が無い。
+そこで Web Font への適用が一番効果があるだろうと考えたのだが、現時点では Firefox はリロード時に Web Font を問い合わせない実装になっているようであり、効果が確認できなかった。
 
-こちらも immutable 指定が可能であると判断した。
+これが Firefox だけの実装であるかは、他のブラウザが実装するまで確認ができない。
+
+しかし Immutable はあくまで拡張であり、実装されていないブラウザでは無視されるだけなので、本サイトでは投機的に Web Font にもこの設定を適用することとした。
+
+
+今後、検証を重ねながらより積極的な設定へと段階的に移行し、知見が溜まったら追記していく。
