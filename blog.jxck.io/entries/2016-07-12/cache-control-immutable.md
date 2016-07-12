@@ -1,10 +1,10 @@
-# [performance][cache][http] Cache-Control: immutable によるリロード時のキャッシュ最適化
+# [cache][http][performance] Cache-Control の Immutable 拡張によるリロード時のキャッシュ最適化
 
 ## Intro
 
 ブラウザはリロード時に、 max-age に満たないキャッシュを持っていても Conditional GET によってキャッシュの Validate (有効性の問い合わせ)を行う。
 
-Cache-Control Extension として提案されている immutable オプションは、キャッシュが max-age 内であればリロード時もキャッシュヒットさせる拡張である。
+Cache-Control Extension として提案されている Immutable 拡張は、キャッシュが max-age 内であればリロード時もキャッシュヒットさせる拡張である。
 
 このヘッダの効果と、本サイトへの適用について記す。
 
@@ -55,10 +55,10 @@ Cache-Control に max-age を指定することで、ブラウザにリソース
 
 Cache-Control Immutable Extension は、 Cache-Control の拡張の一つである。
 
-以下のように指定することで、キャッシュを immutable と指定することができ、ブラウザはキャッシュが fresh であればリロード時でもヒットさせるようになる。
+以下のように指定することで、キャッシュを Immutable と指定することができ、ブラウザはキャッシュが fresh であればリロード時でもヒットさせるようになる。
 
 
-```
+```sh
 Cache-Control: max-age=10000, immutable
 ```
 
@@ -84,6 +84,9 @@ Cache-Control: max-age=10000, immutable
 - [Cache Control Immutable DEMO \| labs.jxck.io](https://labs.jxck.io/cache-control-immutable/)
 
 
+![cache-control-immutable](cache-control-immutable.gif#759x555 'Firefox Nightly での Cache-Control Immutable のデモ')
+
+
 ## リロードというユーザ操作
 
 リロードは必ずしもブラウザが勝手に発生するものだけではなく、ユーザが明示的に行う操作の場合もある。
@@ -104,9 +107,9 @@ Cache-Control: max-age=10000, immutable
 
 それでもネットワークのプロキシやブラウザ拡張、その他のユーザサイドの問題で、ユーザがリロードを行う場合はあるだろう。 この場合ユーザがリロードを行うのは、リソースの状態をサーバに問い合わせて fresh に保ちたいという意図が考えられる。
 
-もしリクエストが発生しないからと、無作為にリソースを immutable に指定すると、ユーザが慣習によって期待していたリロードの挙動を著しく損ねる可能性もある。
+もしリクエストが発生しないからと、無作為にリソースを Immutable に指定すると、ユーザが慣習によって期待していたリロードの挙動を著しく損ねる可能性もある。
 
-したがって、例え max-age が付与できる設計であるとしても、 immutable の指定には慎重であるべきと考える。
+したがって、例え max-age が付与できる設計であるとしても、 Immutable の指定には慎重であるべきと考える。
 
 
 ## 本サイトへの適用
