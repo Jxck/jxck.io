@@ -198,18 +198,31 @@ Page:
 
 ## Pattern 2: Mutable content, always server-revalidated
 
+```
+cache-contorl: no-cache
+```
+
+- コンテンツが変更される場合がある
+- サーバに問い合わせずキャッシュを使ってはいけない
+
+- no-cache: cache するなという意味では無い キャッシュを使う前に revalidate しろという意味。
+- no-store: はキャッシュするなという意味
+- must-revalidate は必ず revalidate しろという意味では無い max-age より小さければ使いまわせるという意味。
 
 
+この場合 ETag や Last-Modified をつけ、 I-N-M, I-M-S で問い合わせる。
+HTTP 304 が返る。
 
-max-age + url 変更
-でも、そのリンクを含む HTML はキャッシュできない
+ネットワークアクセスが必ず発生する。
 
 
-no-cache は cache するなという意味では無い
-キャッシュを使う前に revalidate しろという意味。
+## max-age on mutable content is often the wrong choice
 
-must-revalidate は必ず revalidate しろという意味では無い
-max-age より小さければ使いまわせるという意味。
+10分は使っていいけど、それ以降は必ず問いあわせろ。
+
+```
+Cache-Control: must-revalidate, max-age=600
+```
 
 変更するコンテンツに max-age つけると
 ある時点で JS, CSS をキャッシュし、 css がキャッシュから落ちたとして
@@ -217,6 +230,75 @@ max-age より小さければ使いまわせるという意味。
 CSS が新しくなり不整合、みたいなレースコンディションがある。
 
 ページを refresh するとサーバは max-age を無視して revalidate する。
+
+
+This pattern can appear to work in testing, but break stuff in the real world, and it's really difficult to track down.
+In the example above, the server actually had updated HTML, CSS & JS, but the page ended up with the old HTML & JS from the cache, and the updated CSS from the server.
+The version mismatch broke things.
+
+
+
+
+
+Often, when we make significant changes to HTML, we're likely to also change the CSS to reflect the new structure, and update the JS to cater for changes to the style and content.
+These resources are interdependent, but the caching headers can't express that.
+Users may end up with the new version of one/two of the resources, but the old version of the other(s).
+
+max-age is relative to the response time, so if all the above resources are requested as part of the same navigation they'll be set to expire at roughly the same time, but there's still the small possibility of a race there.
+If you have some pages that don't include the JS, or include different CSS, your expiry dates can get out of sync.
+And worse, the browser drops things from the cache all the time, and it doesn't know that the HTML, CSS, & JS are interdependent, so it'll happily drop one but not the others.
+Multiply all this together and it becomes not-unlikely that you can end up with mismatched versions of these resources.
+
+For the user, this can result in broken layout and/or functionality.
+From subtle glitches, to entirely unusable content.
+
+Thankfully, there's an escape hatch for the user
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 sw からの addAll などはブラウザキャッシュにヒットする
