@@ -159,6 +159,48 @@ cache するなという意味では無い
 
 https://jakearchibald.com/2016/caching-best-practices/
 
+
+キャッシュを使いこなせば、パフォーマンス、帯域節約、サーバコストなどでメリットがある。
+でもみんな上手く使えてない。
+
+
+基本的には二つのパターンに落とせる。
+
+## Pattern 1: Immutable content + long max-age
+
+```
+Cache-Control: max-age=31536000
+```
+
+- The content at this URL never changes, therefore…
+- The browser/CDN can cache this resource for a year without a problem
+- Cached content younger than max-age seconds can be used without consulting the server
+Page:
+
+
+- URL が不変
+- browser/CDN がこのリソースを一年キャッシュできる
+- max-age よりも短いキャッシュはサーバに問い合わせず使われる
+
+中身を変える場合は、 URL を変える。
+
+ハッシュ、時間、バージョンなど
+
+```
+<script src="/script-f93bca2c.js"></script>
+<link rel="stylesheet" href="/styles-a837cb1e.css">
+<img src="/cats-0e9a2ef4.jpg" alt="…">
+```
+
+しかし、これは記事などには適用しにくい。
+コンテンツの URL は変えられないけど、変更はすぐ反映されて欲しい。
+
+
+## Pattern 2: Mutable content, always server-revalidated
+
+
+
+
 max-age + url 変更
 でも、そのリンクを含む HTML はキャッシュできない
 
@@ -188,27 +230,77 @@ Here I'd cache the root page using pattern 2 (server revalidation), and the rest
 Each service worker update will trigger a request for the root page, but the rest of the resources will only be downloaded if their URL has changed.
 This is great because it saves bandwidth and improves performance whether you're updating from the previous version, or 10 versions ago.
 
+
+root をパターン2(server revalidation) を使ってキャッシュし、
+残りのリソース(immutable content)を パターン1 を使う。
+それぞれの service worker は root へのリクエストで update が発生する
+しかし残りのリソースは、 URL が変更された時だけダウンロードされる。
+これによって帯域を保護でき、パフォーマンスを向上する、
+一つ前の、もしくは 10 個前のバージョンからアップデートする、
+
+
+
 This is a huge advantage over native, where the whole binary is downloaded even for a minor change, or involves complex binary diffing.
 Here we can update a large web app with relatively little download.
 
+マイナーチェンジでも全てのバイナリをダウンロードする、
+もしくは複雑な差分取得を行うネイティブに対して大きなアドバンテージである。
+大きな Web アプリのアップデートでも、必要な最小限のダウンロードで済む。
+
+
 Service workers work best as an enhancement rather than a workaround, so instead of fighting the cache, work with it!
 
+Service Worker はワークアラウンドというよりは、拡張として最適である、
+だからキャッシュと戦うのではなく、それを活用すべき。
+
+
 Used carefully, max-age & mutable content can be beneficial
+
+慎重に max-age と mutable content を使うことはメリットがある。
 
 max-age on mutable content is often the wrong choice, but not always.
 For instance this page has a max-age of three minutes.
 Race conditions aren't an issue here because this page doesn't have any dependencies that follow the same caching pattern (my CSS, JS & image URLs follow pattern 1 - immutable content), and nothing dependent on this page follows the same pattern.
 
+
+mutable content の max-age は多くの場合間違った選択だが、常に間違いとは限らない。
+例えば、ページが max-age として 3min だったとする。
+この場合、ページが同じキャッシュパターンの依存を持っていないため、レースコンディションはない(CSS, JS, Image の URL はパターン 1 の immutable content をつかっている)
+なので、この同じパターンを使うものは何もこのページに依存していない。
+
+
 This pattern means, if I'm lucky enough to write a popular article, my CDN (Cloudflare) can take the heat off my server, as long as I can live with it taking up to three minutes for article updates to be seen by users, which I am.
+
+このパターンが意味するところは、もしアクセスが多い記事を書いた時、 CDN(Cloudflare) がトラフィックを受けてくれる
+TODO
+
 
 This pattern shouldn't be used lightly.
 If I added a new section to one article and linked to it in another article, I've created a dependency that could race.
+
+このパターンは簡単に使われるべきではない
+もし新しいセクションを記事に追加し、他の記事からリンクした時、レースになる依存を作ることになる。
+
+
 The user could click the link and be taken to a copy of the article without the referenced section.
+
+ユーザがリンクをクリックし、参照されたセクションのない記事のコピーを取るかもしれない。
+
+
 If I wanted to avoid this, I'd update the first article, flush Cloudflare's cached copy using their UI, wait three minutes, then add the link to it in the other article.
 Yeah… you have to be pretty careful with this pattern.
 
+これを避けるために、最初の記事を更新し、 Cloudflare のキャッシュコピーを UI からフラッシュし、 3min 待ち、その後にリンクを他の記事に追加しないといけない。
+つまり、非常に慎重に行わないといけない。
+
+
 Used correctly, caching is a massive performance enhancement and bandwidth saver.
 Favour immutable content for any URL that can easily change, otherwise play it safe with server revalidation.
+
+更新頻度の高い URL を immutable content にすることは、サーバリバリデーションするより。
+正しく使った場合、キャッシュはパフォーマンスの改善とサーバの帯域節約に強く貢献する。
+
 Only mix max-age and mutable content if you're feeling brave, and you're sure your content has no dependancies or dependents that could get out of sync.
 
-
+勇気がある場合のみ max-age と mutable content をミックスすればいい
+そして、コンテンツが同期のとれない依存をしたりされたりしないと確信できる場合のみ
