@@ -233,79 +233,177 @@ CSS が新しくなり不整合、みたいなレースコンディションが�
 
 
 This pattern can appear to work in testing, but break stuff in the real world, and it's really difficult to track down.
+このパターンはテスト段階では良くても、リアルワールドではうまく動かない。トラックが難しい。
+
+
 In the example above, the server actually had updated HTML, CSS & JS, but the page ended up with the old HTML & JS from the cache, and the updated CSS from the server.
 The version mismatch broke things.
-
-
-
+この場合は、サーバで HTML, CSS, JS が更新されたにもかかわらず、 HTML, JS だけキャッシュヒットして、 CSS だけサーバから最新のものを取得した場合に壊れる。
 
 
 Often, when we make significant changes to HTML, we're likely to also change the CSS to reflect the new structure, and update the JS to cater for changes to the style and content.
 These resources are interdependent, but the caching headers can't express that.
 Users may end up with the new version of one/two of the resources, but the old version of the other(s).
 
+多くの場合、依存しているものは同時に更新したいが、キャッシュヘッダはそれを更新できない。
+
+
+
+
 max-age is relative to the response time, so if all the above resources are requested as part of the same navigation they'll be set to expire at roughly the same time, but there's still the small possibility of a race there.
+
+max-age はレスポンスタイムに直結する、もし全てのリソースが同じナビゲーションでリクエストされると、おおよそ同じタイミングで expire されるが、それでも多少はレースコンディションに陥る可能性がある。
+
+
 If you have some pages that don't include the JS, or include different CSS, your expiry dates can get out of sync.
 And worse, the browser drops things from the cache all the time, and it doesn't know that the HTML, CSS, & JS are interdependent, so it'll happily drop one but not the others.
 Multiply all this together and it becomes not-unlikely that you can end up with mismatched versions of these resources.
 
+JS を含まない、もしくは違う CSS を含むページをもっていて、 expire がすぎた場合。
+最悪にも、ブラウザがキャッシュから削除して、 HTML, CSS, JS の互換が崩れる場合、 TODO
+
+
+
 For the user, this can result in broken layout and/or functionality.
 From subtle glitches, to entirely unusable content.
 
+ユーザにとっては画面の崩れや動かないサイトになる。
+
+
 Thankfully, there's an escape hatch for the user
 
+これには回避策がある。
 
 
 
 
 
+## A refresh sometimes fixes it
+
+If the page is loaded as part of a refresh, browsers will always revalidate with the server, ignoring max-age.
+So if the user is experiencing something broken because of max-age, hitting refresh should fix everything.
+Of course, forcing the user to do this reduces trust, as it gives the perception that your site is temperamental.
+
+ページがリフレッシュでロードされるとき、ブラウザは max-age を無視して revalidate する。
+なので、 max-age のせいで何か壊れた場合、ユーザは refresh で全てをもとどおりにできる。
+もちろん、そんなことさせてたらユーザの信頼は失う。
+
+
+## A service worker can extend the life of these bugs
+
+Say you have the following service worker:
+
+この sw があったとする
+
+```js
+const version = '2';
+
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(`static-${version}`)
+      .then(cache => cache.addAll([
+        '/styles.css',
+        '/script.js'
+      ]))
+  );
+});
+
+self.addEventListener('activate', event => {
+  // …delete old caches…
+});
+
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => response || fetch(event.request))
+  );
+});
+```
+
+
+This service worker
+
+- Caches the script and styles up front
+- Serves from the cache if there's a match, otherwise goes to the network
+
+If we change our CSS/JS we bump the version to make the service worker byte-different, which triggers an update.
+However, since addAll fetches through the HTTP cache (like almost all fetches do), we could run into the max-age race condition and cache incompatible versions of the CSS & JS.
+
+
+script と style をキャッシュする。ひっとすれば返すし、なければネットワークへ。
+css/js を更新してバージョンをあげたら、 sw が byte-different で update が走る。
+しかし、 addAll が HTTP cache をヒットするので、やっぱり max-age レースコンディションになる。
 
 
 
+Once they're cached, that's it, we'll be serving incompatible CSS & JS until we next update the service worker - and that's assuming we don't run into another race condition in the next update.
+
+一度キャッシュされると、それまで。次の sw のアップデートがあるまで不整合のまま。(ただし別のレースコンディションにならない場合のみ)
+
+
+You could bypass the cache in the service worker:
+
+sw からキャッシュをバイパスする方法がある。
+
+
+```
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(`static-${version}`)
+      .then(cache => cache.addAll([
+        new Request('/styles.css', { cache: 'no-cache' }),
+        new Request('/script.js', { cache: 'no-cache' })
+      ]))
+  );
+});
+```
+
+Unfortunately the cache options aren't yet supported in Chrome/Opera and only recently landed in Firefox Nightly, but you can sort-of do it yourself:
+
+残念なことに firefox だけなので、ワークアラウンドとして適当なクエリをつける。
+
+
+```
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(`static-${version}`)
+      .then(cache => Promise.all(
+        [
+          '/styles.css',
+          '/script.js'
+        ].map(url => {
+          // cache-bust using a random query string
+          return fetch(`${url}?${Math.random()}`).then(response => {
+            // fail on 404, 500 etc
+            if (!response.ok) throw Error('Not ok');
+            return cache.put(url, response);
+          })
+        })
+      ))
+  );
+});
+```
+
+
+In the above I'm cache-busting with a random number, but you could go one step further and use a build-step to add a hash of the content (similar to what sw-precache does).
+
+ここでは乱数をつけているが、ビルドステップでハッシュをつけることもできる。(sw-precache がやってるように)
+
+This is kinda reimplementing pattern 1 in JavaScript, but only for the benefit of service worker users rather than all browsers & your CDN.
+
+これはパターン 1 を JS でやってるのと同じ、しかし sw へのメリットだけで browser や CDN にはない。
 
 
 
+## The service worker & the HTTP cache play well together, don't make them fight!
+
+As you can see, you can hack around poor caching in your service worker, but you're way better off fixing the root of the problem.
+Getting your caching right makes things easier in service worker land, but also benefits browsers that don't support service worker (Safari, IE/Edge), and lets you get the most out of your CDN.
 
 
+見てきたように、 SW からキャッシュを迂回する稚拙な方法があった、しかし根本解決すべき。
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-sw からの addAll などはブラウザキャッシュにヒットする
-
-new Request('/styles.css', { cache: 'no-cache' })
-
-とか、乱数をつけるとかでバイパスする。
+sw でキャッシュを正しく、簡単にする、しかし全ての sw はサポートしてない、そして CDN はおおよそいらなくなる。
 
 
 Here I'd cache the root page using pattern 2 (server revalidation), and the rest of the resources using pattern 1 (immutable content).
@@ -336,7 +434,7 @@ Service Worker はワークアラウンドというよりは、拡張として�
 だからキャッシュと戦うのではなく、それを活用すべき。
 
 
-Used carefully, max-age & mutable content can be beneficial
+## Used carefully, max-age & mutable content can be beneficial
 
 慎重に max-age と mutable content を使うことはメリットがある。
 
