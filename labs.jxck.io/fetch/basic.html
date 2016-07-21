@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="demo">
+<title>Fetch Basic DEMO | labs.jxck.io</title>
+
+<style>
+textarea {
+  width: 50em;
+  height: 50em;
+}
+</style>
+
+<h1>Fetch Basic DEMO</h1>
+
+<textarea></textarea>
+
+<script>
+let $log = document.querySelector('textarea');
+$log.value = '';
+function log(message) {
+  $log.value =  $log.value + `${message}\n`;
+}
+</script>
+
+<script>
+fetch('basic.html').then((res) => {
+  return res.text();
+}).then((text) => {
+  log(`**fetching self html source as text**`);
+  log(text);
+});
+</script>
+
