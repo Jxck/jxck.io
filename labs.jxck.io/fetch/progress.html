@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="demo">
+<title>Fetch Progress DEMO | labs.jxck.io</title>
+
+<style>
+textarea {
+  width: 50em;
+  height: 50em;
+}
+</style>
+
+<h1>Fetch Progress DEMO</h1>
+
+<textarea></textarea>
+
+<script>
+let $log = document.querySelector('textarea');
+function log(message) {
+  $log.value = `${message}\n` + $log.value;
+}
+</script>
+
+<script>
+const url = '3MB.bmp';
+log(`fetching ${url}\n`);
+fetch(url).then(response => {
+  const total = response.headers.get('content-length');
+  log(`content-length: ${total}\n`);
+
+  let reader = response.body.getReader();
+  let chunk = 0;
+
+  reader.read().then(function processResult(result) {
+    if (result.done) {
+      return log('Fetch complete');
+    }
+
+    chunk += result.value.length;
+    log(`received: ${chunk}(${Math.round(chunk/total * 100)} %)`);
+
+    return reader.read().then(processResult);
+  });
+});
+</script>
