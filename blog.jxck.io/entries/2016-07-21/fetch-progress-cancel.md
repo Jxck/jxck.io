@@ -1,4 +1,4 @@
-# [fetch][stream][promise][whatwg] fetch() でのプログレス取得とキャンセル
+# [fetch][stream][promise][whatwg] Fetch での Stream を用いたプログレス取得とキャンセル
 
 ## Intro
 
@@ -37,12 +37,15 @@ WHATWG が定義する Fetch API は、出たばかりの仕様では、途中�
 例えば、なんらかの Text を取得する場合、基本は以下のようになる。
 
 ```js
-fetch('/foo.txt').then((res) => {
-  res.text();
-}).then(text) =>
+fetch('foo.txt').then((res) => {
+  return res.text();
+}).then((text) => {
   console.log(text);
 });
 ```
+
+- [Fetch Basic DEMO](https://labs.jxck.io/fetch/basic.html)
+
 
 `res.text()` が body を resolve する Promsie を返していることがわかる。
 
@@ -143,6 +146,8 @@ fetch('foo.txt').then((res) => {
 });
 ```
 
+- [Fetch Progress DEMO](https://labs.jxck.io/fetch/progress.html)
+
 
 ## Fetch の cancel
 
@@ -178,6 +183,8 @@ fetch(url).then((res) => {
 });
 ```
 
+- [Fetch Cancel DEMO](https://labs.jxck.io/fetch/cancel.html)
+
 
 ## Promise の cancel
 
@@ -202,3 +209,8 @@ fetch(url).then((res) => {
 従って、今後 XHR の代替として fetch を使うかどうかは機能的な問題ではなく、 **ブラウザが実装しているか** という問題のみになるだろう。
 
 - [Fetch \| canuise](http://caniuse.com/#feat=fetch)
+
+
+ただし XHR が無くなることはないため今後も利用可能だ。
+
+以上のような仕様と現状を踏まえた上で、何を採用するか選択するのが良いだろう。
