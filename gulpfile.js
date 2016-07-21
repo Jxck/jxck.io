@@ -7,7 +7,6 @@ const imageOption = {
   pngquant:       true,
   optipng:        true,
   zopflipng:      false,
-  advpng:         true,
   jpegRecompress: true,
   jpegoptim:      true,
   mozjpeg:        true,
