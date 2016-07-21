@@ -1,4 +1,4 @@
-# fetch でのプログレス取得とキャンセル
+# [fetch][stream][promise][whatwg] fetch() でのプログレス取得とキャンセル
 
 ## Intro
 
