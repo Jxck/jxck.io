@@ -25,11 +25,11 @@ function log(message) {
 <script>
 const url = '3MB.bmp';
 log(`fetching ${url}\n`);
-fetch(url).then(response => {
-  const total = response.headers.get('content-length');
+fetch(url).then((res) => {
+  const total = res.headers.get('content-length');
   log(`content-length: ${total}\n`);
 
-  let reader = response.body.getReader();
+  let reader = res.body.getReader();
   let chunk = 0;
 
   reader.read().then(function processResult(result) {
