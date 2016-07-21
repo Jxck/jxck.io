@@ -108,10 +108,17 @@ by Jxck
       <h2 id="Intro"><a href="#Intro">Intro</a></h2>
       <p>WHATWG が定義する Fetch API は、出たばかりの仕様では、途中でのキャンセルや、プログレスイベントの取得が含まれていなかった。
       <p>しかし、後の更新で fetch 結果の Response Body が WHATWG Stream API を実装することになったため、現在の仕様ではプログレスを取ることもキャンセルをすることも可能となっている。
-      <p>これは API の面で 「XHR ではできるが Fetch ではできない」ことが、仕様上は無くなったことを意味する。
-      <p>むしろ Opaque Response のハンドルや Cache API との連携など Fetch の方が細かく出来ることが多いだろう。
-      <p>つまり、今 Fetch を使うか XHR を使う上での問題はあくまで「<strong>ブラウザが実装しているか</strong>」が基本となる。
       <p>今回は、こうした API のアップデートについて記す。
+    </section>
+    <section>
+      <h2 id="Update"><a href="#Update">Update</a></h2>
+      <p>最初の公開時には、以下のように書いていた。
+      <blockquote>「XHR ではできるが Fetch ではできない」ことが、仕様上は無くなったことを意味する。</blockquote>
+      <p>しかし、現時点で仕様としてまだ出来ないことがあることが判明した。
+      <ul>
+        <li>Upload の Progress
+      </ul>
+      <p>これに伴い、記事の一部を修正した。
     </section>
     <section>
       <h2 id="Fetch"><a href="#Fetch">Fetch</a></h2>
@@ -268,13 +275,19 @@ by Jxck
     </section>
     <section>
       <h2 id="結論"><a href="#結論">結論</a></h2>
-      <p>仕様の上では XHR ではできて fetch ではできないことは、基本的には無いと認識している。(あったら教えて欲しい)
-      <p>従って、今後 XHR の代替として fetch を使うかどうかは機能的な問題ではなく、 <strong>ブラウザが実装しているか</strong> という問題のみになるだろう。
+      <p>Stream での progress と cancel は可能になったが、まだ <strong>ブラウザが実装しているか</strong> という問題もある。
       <ul>
         <li><a href="http://caniuse.com/#feat=fetch">Fetch | canuise</a>
       </ul>
-      <p>ただし XHR が無くなることはないため今後も利用可能だ。
+      <p>一方 XHR が無くなることはないため今後も利用可能だ。
       <p>以上のような仕様と現状を踏まえた上で、何を採用するか選択するのが良いだろう。
+    </section>
+    <section>
+      <h2 id="Special+Thanks"><a href="#Special+Thanks">Special Thanks</a></h2>
+      <ul>
+        <li><a href="https://twitter.com/hirano_y_aa">@hirano_y_aa</a>
+        <li><a href="https://twitter.com/ykzts">@ykzts</a>
+      </ul>
     </section>
   </article>
 
