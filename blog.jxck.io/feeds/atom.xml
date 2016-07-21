@@ -8,6 +8,24 @@
 <updated>2016-01-28T18:30:02Z</updated>
 
   <entry>
+   <title>Fetch での Stream を用いたプログレス取得とキャンセル</title>
+   <link href="https://blog.jxck.io/entries/2016-07-21/fetch-progress-cancel.html" rel="alternate" />
+   <id>tag:blog.jxck.io,2016:entry://2016-07-21</id>
+   <updated>2016-07-21T00:00:00Z</updated>
+   <summary>WHATWG が定義する Fetch API は、出たばかりの仕様では、途中でのキャンセルや、プログレスイベントの取得が含まれていなかった。
+
+しかし、後の更新で fetch 結果の Response Body が WHATWG Stream API を実装することになったため、現在の仕様ではプログレスを取ることもキャンセルをすることも可能となっている。
+
+これは API の面で 「XHR ではできるが Fetch ではできない」ことが、仕様上は無くなったことを意味する。
+
+むしろ Opaque Response のハンドルや Cache API との連携など Fetch の方が細かく出来ることが多いだろう。
+
+つまり、今 Fetch を使うか XHR を使う上での問題はあくまで「**ブラウザが実装しているか**」が基本となる。
+
+今回は、こうした API のアップデートについて記す。</summary>
+  </entry>
+
+  <entry>
    <title>Cache-Control の Immutable 拡張によるリロード時のキャッシュ最適化</title>
    <link href="https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-07-12</id>
