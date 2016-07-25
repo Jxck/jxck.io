@@ -54,7 +54,7 @@ fetch('foo.txt').then((res) => {
 - [Fetch Basic DEMO](https://labs.jxck.io/fetch/basic.html)
 
 
-`res.text()` が body を resolve する Promsie を返していることがわかる。
+`res.text()` が body を resolve する Promsie を返していることが分かる。
 
 
 この API では、以下の二つができない。
@@ -62,7 +62,7 @@ fetch('foo.txt').then((res) => {
 - `foo.txt` が大きかった場合、 fetch を中断(キャンセル)する。
 - `foo.txt` が大きかった場合、ダウンロードの進捗(プログレス)を得る。
 
-現在の Promise の仕様は、非同期処理に対してあくまで **fullfilled(完了した)** か **rejected(失敗した)** の二つの状態を返すことしかできない。
+現在の Promise の仕様では、非同期処理に対してあくまで **fullfilled(完了した)** か **rejected(失敗した)** の二つの状態を返すことしかできない。
 
 このため、その途中の状態に処理を挟む余地がないためである。
 
@@ -75,7 +75,7 @@ fetch('foo.txt').then((res) => {
 
 Stream は、 I/O 処理を chunk ごとに返し、非同期処理の **途中** に処理を挟むための仕様である。
 
-先の例を Stream で取得する場合以下のように書くことができる。
+先の例を Stream で取得する場合、以下のように書くことができる。
 
 
 ```js
@@ -103,9 +103,9 @@ fetch('foo.txt').then((res) => {
 });
 ```
 
-コードを見れば分かるように WHATWG の Stream は、 Chunk を resolve する Promise を返す。
+コードを見れば分かるように、 WHATWG の Stream は Chunk を resolve する Promise を返す。
 
-従って EventEmitter ベースである Node.js の Stream とは使い勝手が少し違う。
+従って EventEmitter ベースである Node.js の Stream とは少々使い勝手が異なる。
 
 
 ## Progress の取得
@@ -122,7 +122,8 @@ fetch('foo.txt').then((res) => {
 });
 ```
 
-(クロスオリジンのリソースを CORS を使わずに取得する `mode: no-cors` の場合は、 Opaque な Response となりヘッダが取れないが、これは基本的にキャッシュのために使うものなので、body も取れないためプログレスを出す用途ではない。)
+
+(クロスオリジンのリソースを CORS を使わずに取得する `mode: no-cors` の場合は、 Opaque な Response となりヘッダは取れない。しかし基本的にキャッシュのために使うものであり、body も取れないためプログレスを出す用途はないだろう)
 
 これを用いれば、以下のように Progress を得ることができる。
 (進捗率の数値を使えば、 CSS でプログレスバーを表示することも可能だろう)
@@ -158,12 +159,13 @@ fetch('foo.txt').then((res) => {
 
 ## Fetch の cancel
 
-Stream もしくはそこから取得した Reader はキャンセルすることができる。
+Stream 、もしくはそこから取得した Reader はキャンセルすることができる。
 
 - `res.body.cancel()`
 - `reader.cancel()`
 
-これを用いれば、大きなファイルのダウンロードを途中で止めるといった実装が可能となる。
+これを用いることで、サイズの大きなファイルのダウンロードを途中で止めるといった実装が可能となる。
+
 
 ```js
 fetch(url).then((res) => {
@@ -195,13 +197,13 @@ fetch(url).then((res) => {
 
 ## Promise の cancel
 
-現在の仕様では Stream を経由せず Promise のレベルで fetch をキャンセルすることはできない。
+現在の仕様では、 Stream を経由せず Promise のレベルで fetch をキャンセルすることはできない。
 
-これは Promsie そのものにキャンセルという概念がまだ入っていないからである。
+これは Promsie そのものにキャンセルという概念が含まれていないためである。
 
-もし Promise 自体にキャンセルの概念が入れば、 Stream を取得する必要もなくなる。
+もし Promise 自体にキャンセルの概念が入れば、 Stream の取得は不要となる。
 
-現在は fetch 以外にも Promise を返す API は増えて来ているため、 Cancelable Promise の議論は現在も続いている。
+fetch を含めて Promise を返す API は増加しつつあるため、 Cancelable Promise の議論は現在も続いている。
 
 - [cancelable promises slide](https://docs.google.com/presentation/d/1V4vmC54gJkwAss1nfEt9ywc-QOVOfleRxD5qtpMpc8U/preview?slide=id.gc6f9e470d_0_0)
 - [cancelable promises draft](https://domenic.github.io/cancelable-promise/)
@@ -216,9 +218,9 @@ Stream での progress と cancel は可能になったが、まだ **ブラウ�
 - [Fetch \| canuise](http://caniuse.com/#feat=fetch)
 
 
-一方 XHR が無くなることはないため今後も利用可能だ。
+一方 XHR が無くなることはないため、今後も利用可能である。
 
-以上のような仕様と現状を踏まえた上で、何を採用するか選択するのが良いだろう。
+以上のような仕様と現状を踏まえた上で、何を採用するか検討するのが良いだろう。
 
 
 ## Special Thanks
