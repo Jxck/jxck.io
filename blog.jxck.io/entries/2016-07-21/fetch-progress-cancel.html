@@ -55,7 +55,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-07-21T08:00:00+08:00",
-  "dateModified": "2016-07-21T08:00:00+08:00",
+  "dateModified": "2016-07-25T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -97,7 +97,7 @@ by Jxck
   <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/info.css>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-07-21>2016-07-21</time>
-    <li>updated_at: <time class=updated_at datetime=2016-07-21>2016-07-21</time>
+    <li>updated_at: <time class=updated_at datetime=2016-07-25>2016-07-25</time>
     <li class=tags>tags: [<a>fetch</a>,<a>stream</a>,<a>promise</a>,<a>whatwg</a>]
   </ul>
 
@@ -147,13 +147,13 @@ by Jxck
       <ul>
         <li><a href="https://labs.jxck.io/fetch/basic.html">Fetch Basic DEMO</a>
       </ul>
-      <p><code>res.text()</code> が body を resolve する Promsie を返していることがわかる。
+      <p><code>res.text()</code> が body を resolve する Promsie を返していることが分かる。
       <p>この API では、以下の二つができない。
       <ul>
         <li><code>foo.txt</code> が大きかった場合、 fetch を中断(キャンセル)する。
         <li><code>foo.txt</code> が大きかった場合、ダウンロードの進捗(プログレス)を得る。
       </ul>
-      <p>現在の Promise の仕様は、非同期処理に対してあくまで <strong>fullfilled(完了した)</strong> か <strong>rejected(失敗した)</strong> の二つの状態を返すことしかできない。
+      <p>現在の Promise の仕様では、非同期処理に対してあくまで <strong>fullfilled(完了した)</strong> か <strong>rejected(失敗した)</strong> の二つの状態を返すことしかできない。
       <p>このため、その途中の状態に処理を挟む余地がないためである。
     </section>
     <section>
@@ -163,7 +163,7 @@ by Jxck
         <li><a href="https://streams.spec.whatwg.org/">Streams Spec</a>
       </ul>
       <p>Stream は、 I/O 処理を chunk ごとに返し、非同期処理の <strong>途中</strong> に処理を挟むための仕様である。
-      <p>先の例を Stream で取得する場合以下のように書くことができる。
+      <p>先の例を Stream で取得する場合、以下のように書くことができる。
       <pre class=js><code>fetch(&#039;foo.txt&#039;).then((res) =&gt; {
   // foo.txt の全体サイズ
   const total = res.headers.get(&#039;content-length&#039;);
@@ -186,8 +186,8 @@ by Jxck
     return reader.read().then(processResult);
   });
 });</code></pre>
-      <p>コードを見れば分かるように WHATWG の Stream は、 Chunk を resolve する Promise を返す。
-      <p>従って EventEmitter ベースである Node.js の Stream とは使い勝手が少し違う。
+      <p>コードを見れば分かるように、 WHATWG の Stream は Chunk を resolve する Promise を返す。
+      <p>従って EventEmitter ベースである Node.js の Stream とは少々使い勝手が異なる。
     </section>
     <section>
       <h2 id="Progress+の取得"><a href="#Progress+の取得">Progress の取得</a></h2>
@@ -197,7 +197,7 @@ by Jxck
       <pre class=js><code>fetch(&#039;foo.txt&#039;).then((res) =&gt; {
   const total = res.headers.get(&#039;content-length&#039;);
 });</code></pre>
-      <p>(クロスオリジンのリソースを CORS を使わずに取得する <code>mode: no-cors</code> の場合は、 Opaque な Response となりヘッダが取れないが、これは基本的にキャッシュのために使うものなので、body も取れないためプログレスを出す用途ではない。)
+      <p>(クロスオリジンのリソースを CORS を使わずに取得する <code>mode: no-cors</code> の場合は、 Opaque な Response となりヘッダは取れない。しかし基本的にキャッシュのために使うものであり、body も取れないためプログレスを出す用途はないだろう)
       <p>これを用いれば、以下のように Progress を得ることができる。<br>
       (進捗率の数値を使えば、 CSS でプログレスバーを表示することも可能だろう)
       <pre class=js><code>fetch(&#039;foo.txt&#039;).then((res) =&gt; {
@@ -229,12 +229,12 @@ by Jxck
     </section>
     <section>
       <h2 id="Fetch+の+cancel"><a href="#Fetch+の+cancel">Fetch の cancel</a></h2>
-      <p>Stream もしくはそこから取得した Reader はキャンセルすることができる。
+      <p>Stream 、もしくはそこから取得した Reader はキャンセルすることができる。
       <ul>
         <li><code>res.body.cancel()</code>
         <li><code>reader.cancel()</code>
       </ul>
-      <p>これを用いれば、大きなファイルのダウンロードを途中で止めるといった実装が可能となる。
+      <p>これを用いることで、サイズの大きなファイルのダウンロードを途中で止めるといった実装が可能となる。
       <pre class=js><code>fetch(url).then((res) =&gt; {
   const total = res.headers.get(&#039;content-length&#039;);
 
@@ -263,10 +263,10 @@ by Jxck
     </section>
     <section>
       <h2 id="Promise+の+cancel"><a href="#Promise+の+cancel">Promise の cancel</a></h2>
-      <p>現在の仕様では Stream を経由せず Promise のレベルで fetch をキャンセルすることはできない。
-      <p>これは Promsie そのものにキャンセルという概念がまだ入っていないからである。
-      <p>もし Promise 自体にキャンセルの概念が入れば、 Stream を取得する必要もなくなる。
-      <p>現在は fetch 以外にも Promise を返す API は増えて来ているため、 Cancelable Promise の議論は現在も続いている。
+      <p>現在の仕様では、 Stream を経由せず Promise のレベルで fetch をキャンセルすることはできない。
+      <p>これは Promsie そのものにキャンセルという概念が含まれていないためである。
+      <p>もし Promise 自体にキャンセルの概念が入れば、 Stream の取得は不要となる。
+      <p>fetch を含めて Promise を返す API は増加しつつあるため、 Cancelable Promise の議論は現在も続いている。
       <ul>
         <li><a href="https://docs.google.com/presentation/d/1V4vmC54gJkwAss1nfEt9ywc-QOVOfleRxD5qtpMpc8U/preview?slide=id.gc6f9e470d_0_0">cancelable promises slide</a>
         <li><a href="https://domenic.github.io/cancelable-promise/">cancelable promises draft</a>
@@ -279,8 +279,8 @@ by Jxck
       <ul>
         <li><a href="http://caniuse.com/#feat=fetch">Fetch | canuise</a>
       </ul>
-      <p>一方 XHR が無くなることはないため今後も利用可能だ。
-      <p>以上のような仕様と現状を踏まえた上で、何を採用するか選択するのが良いだろう。
+      <p>一方 XHR が無くなることはないため、今後も利用可能である。
+      <p>以上のような仕様と現状を踏まえた上で、何を採用するか検討するのが良いだろう。
     </section>
     <section>
       <h2 id="Special+Thanks"><a href="#Special+Thanks">Special Thanks</a></h2>
