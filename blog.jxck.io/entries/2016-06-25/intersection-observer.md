@@ -136,7 +136,7 @@ let rect = target.getBoundingClientRect();
 
 ### Forced Synchronous Layout
 
-ここまでに紹介した、 `scrollTop`, `offset*`, `getBoundingClientRect()` などの呼び出しは、その時点での DOM の位置を取得するために Layout 計算を行う。
+ここまでに紹介した、 `scrollTop`, `offset`, `getBoundingClientRect()` などの呼び出しは、その時点での DOM の位置を取得するために Layout 計算を行う。
 
 この計算は同期処理であり、つまりブロックが発生する。さらにそれを onscroll など頻度の高いイベントの中で行うのは、スムーズなスクロール表示のためのブラウザの最適化を阻害してしまう。
 
