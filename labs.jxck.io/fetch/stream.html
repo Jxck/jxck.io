@@ -1,0 +1,49 @@
+
+<!----------- WIP --------------->
+
+
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="demo">
+<title>Fetch Stream DEMO | labs.jxck.io</title>
+
+<style>
+textarea {
+  width: 50em;
+  height: 50em;
+}
+</style>
+
+<h1>Fetch Progress DEMO</h1>
+
+<textarea></textarea>
+
+<script>
+let $log = document.querySelector('textarea');
+$log.value = '';
+function log(message) {
+  $log.value += message;
+}
+</script>
+
+<script>
+const url = './stream.html';
+console.log('start');
+fetch(url).then((res) => {
+  console.log('body');
+  let reader = res.body.getReader();
+  let decoder = new TextDecoder();
+
+  reader.read().then(function processResult(result) {
+    console.log(result);
+    if (result.done) {
+      return clearInterval(timer);
+    }
+
+    setTimeout(() => {
+      log(decoder.decode(result.value, {stream: true}));
+    }, 1000);
+  });
+});
+</script>
