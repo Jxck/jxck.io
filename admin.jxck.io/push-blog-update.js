@@ -13,12 +13,17 @@ const PUSH_DB = `${process.env['SERVER']}/db/push.sqlite3`;
 
 let db = new sqlite3.Database(PUSH_DB, sqlite3.OPEN_READ);
 
+/** CHANGE ME **/
+const url = 'https://blog.jxck.io/entries/2016-06-12/noopener.html';
+const body = 'リンクのへの rel=noopener 付与による Tabnabbing 対策';
+/***************/
+
 const PAYLOAD = JSON.stringify({
   tag: 'blog update',
-  url: 'https://blog.jxck.io/entries/2016-06-12/noopener.html',
   title: 'blog を更新しました',
   icon: '/assets/img/jxck.png',
-  body: 'リンクのへの rel=noopener 付与による Tabnabbing 対策',
+  url: url,
+  body: body,
 });
 
 function send_update(row) {
@@ -50,7 +55,7 @@ function send_update(row) {
 }
 
 let where = ` where userAuth = '${auth}'`;
-db.each(`SELECT userAuth, userPublicKey, endpoint FROM ${table}${where}`, (err, row) => {
+db.each(`SELECT userAuth, userPublicKey, endpoint FROM ${table}`, (err, row) => {
   if (err) return console.error(err);
   send_update(row);
 });
