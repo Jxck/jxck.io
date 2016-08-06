@@ -8,6 +8,20 @@
 <updated>2016-01-28T18:30:02Z</updated>
 
   <entry>
+   <title>SQL でファイル検索するコマンド selects を書いた話</title>
+   <link href="https://blog.jxck.io/entries/2016-08-05/sql-for-file-search.html" rel="alternate" />
+   <id>tag:blog.jxck.io,2016:entry://2016-08-05</id>
+   <updated>2016-08-05T00:00:00Z</updated>
+   <summary>UNIX コマンドを SQL で抽出できるツール qq を作った。 というエントリを読んで、そういえば似たようなものを作ってたなと思い出した。
+
+自分の dotfiles の中にある、便利コマンド集の中にある selects についてである。
+
+このコマンドは SQL という検索を記述的に表現する共通言語をファイル検索に応用し、 Ruby の動的言語として表現力を使って実装したものといえる。
+
+その実装方法と実行例などについて記す。</summary>
+  </entry>
+
+  <entry>
    <title>Fetch での Stream を用いたプログレス取得とキャンセル</title>
    <link href="https://blog.jxck.io/entries/2016-07-21/fetch-progress-cancel.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-07-21</id>
@@ -15,12 +29,6 @@
    <summary>WHATWG が定義する Fetch API は、出たばかりの仕様では、途中でのキャンセルや、プログレスイベントの取得が含まれていなかった。
 
 しかし、後の更新で fetch 結果の Response Body が WHATWG Stream API を実装することになったため、現在の仕様ではプログレスを取ることもキャンセルをすることも可能となっている。
-
-これは API の面で 「XHR ではできるが Fetch ではできない」ことが、仕様上は無くなったことを意味する。
-
-むしろ Opaque Response のハンドルや Cache API との連携など Fetch の方が細かく出来ることが多いだろう。
-
-つまり、今 Fetch を使うか XHR を使う上での問題はあくまで「**ブラウザが実装しているか**」が基本となる。
 
 今回は、こうした API のアップデートについて記す。</summary>
   </entry>
