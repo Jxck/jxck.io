@@ -15,21 +15,21 @@ by Jxck
 <link rel=author href=//jxck.io/assets/humans.txt>
 
 <meta name="author" content="Jxck">
-<meta name="description" content="UNIX コマンドを SQL で抽出できるツール qq を作った。 というエントリを読んで、そういえば似たようなものを作ってたなと思い出した。自分の dotfiles の中にある、便利コマンド集の中にある selects についてである。このコマンドは SQL という **...">
-<meta name="keywords" content="sql,linux">
+<meta name="description" content="UNIX コマンドを SQL で抽出できるツール qq を作った。 というエントリを読んで、そういえば似たようなものを作ってたなと思い出した。自分の dotfiles の中にある、便利コマンド集の中にある selects についてである。このコマンドは SQL という検索を...">
+<meta name="keywords" content="selects,sql,linux">
 
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@jxck_">
 <meta name="twitter:url" content="https://blog.jxck.io/entries/2016-08-05/sql-for-file-search.html">
 <meta name="twitter:title" content="SQL でファイル検索するコマンド selects を書いた話 | blog.jxck.io">
-<meta name="twitter:description" content="UNIX コマンドを SQL で抽出できるツール qq を作った。 というエントリを読んで、そういえば似たようなものを作ってたなと思い出した。自分の dotfiles の中にある、便利コマンド集の中にある selects についてである。このコマンドは SQL という **...">
+<meta name="twitter:description" content="UNIX コマンドを SQL で抽出できるツール qq を作った。 というエントリを読んで、そういえば似たようなものを作ってたなと思い出した。自分の dotfiles の中にある、便利コマンド集の中にある selects についてである。このコマンドは SQL という検索を...">
 <meta name="twitter:image" content="https://jxck.io/assets/img/jxck.png">
 
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://blog.jxck.io/entries/2016-08-05/sql-for-file-search.html">
 <meta property="og:title" content="SQL でファイル検索するコマンド selects を書いた話 | blog.jxck.io">
 <meta property="og:site_name" content="blog.jxck.io">
-<meta property="og:description" content="UNIX コマンドを SQL で抽出できるツール qq を作った。 というエントリを読んで、そういえば似たようなものを作ってたなと思い出した。自分の dotfiles の中にある、便利コマンド集の中にある selects についてである。このコマンドは SQL という **...">
+<meta property="og:description" content="UNIX コマンドを SQL で抽出できるツール qq を作った。 というエントリを読んで、そういえば似たようなものを作ってたなと思い出した。自分の dotfiles の中にある、便利コマンド集の中にある selects についてである。このコマンドは SQL という検索を...">
 <meta property="og:image" content="https://jxck.io/assets/img/jxck.png">
 
 <link rel="icon" sizes="192x192" href="https://jxck.io/assets/img/jxck.png">
@@ -66,7 +66,7 @@ by Jxck
       "width": 257
     }
   },
-  "description": "UNIX コマンドを SQL で抽出できるツール qq を作った。 というエントリを読んで、そういえば似たようなものを作ってたなと思い出した。自分の dotfiles の中にある、便利コマンド集の中にある selects についてである。このコマンドは SQL という **..."
+  "description": "UNIX コマンドを SQL で抽出できるツール qq を作った。 というエントリを読んで、そういえば似たようなものを作ってたなと思い出した。自分の dotfiles の中にある、便利コマンド集の中にある selects についてである。このコマンドは SQL という検索を..."
 }
 </script>
 
@@ -525,7 +525,7 @@ th:last-child, td:last-child {
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-08-05>2016-08-05</time>
     <li>updated_at: <time class=updated_at datetime=2016-08-06>2016-08-06</time>
-    <li class=tags>tags: [<a>sql</a>,<a>linux</a>]
+    <li class=tags>tags: [<a>selects</a>,<a>sql</a>,<a>linux</a>]
   </ul>
 
 
@@ -535,7 +535,7 @@ th:last-child, td:last-child {
       <h2 id="Intro"><a href="#Intro">Intro</a></h2>
       <p><a href="http://mattn.kaoriya.net/software/lang/go/20160805190022.htm">UNIX コマンドを SQL で抽出できるツール qq を作った。</a> というエントリを読んで、そういえば似たようなものを作ってたなと思い出した。
       <p>自分の <a href="https://github.com/jxck/dotfiles">dotfiles</a> の中にある、便利コマンド集の中にある <a href="https://github.com/Jxck/dotfiles/blob/master/bin/selects">selects</a> についてである。
-      <p>このコマンドは SQL という <strong>検索を記述的に表現する共通言語</strong> をファイル検索に応用し、 Ruby の動的言語として表現力を使って実装したものだ。
+      <p>このコマンドは SQL という検索を記述的に表現する共通言語をファイル検索に応用し、 Ruby の動的言語として表現力を使って実装したものといえる。
       <p>その実装方法と実行例などについて記す。
     </section>
     <section>
@@ -552,14 +552,14 @@ th:last-child, td:last-child {
 2016-07-07 23:54:19 +0900	12291	service-worker-tutorial.md
 2016-07-07 23:54:19 +0900	17377	stale-while-revalidate.md
 2016-08-02 13:46:38 +0900	12564	intersection-observer.md</code></pre>
-      <p>同じことをいわゆるシェル芸で行うことはできるが、こう書いた方が後で読んだ時、他人が読んだ時に、意図を含めてわかりやすく無いだろうか？
+      <p>同じことをいわゆるシェル芸で行うことはできるが、こう書いた方が後で読んだ時、他人が読んだ時に、意図を含めてわかりやすく無いだろうか?
       <p>そう思って確か三ヶ月くらい前から暇を見て書いてるが、まあ遊びのようなものなので、まだ dotfiles の便利コマンドディレクトリに入っている。
       <p>依存ライブラリは無く、 1 ファイルで完結しているので、パスの通った所に置いてもらえればすぐ使える。
       <p><a href="https://github.com/Jxck/dotfiles/blob/master/bin/selects">https://github.com/Jxck/dotfiles/blob/master/bin/selects</a>
     </section>
     <section>
       <h2 id="Example"><a href="#Example">Example</a></h2>
-      <p>まず例をいくつか示す
+      <p>まず例をいくつか示す。
       <section>
         <h3 id="ディレクトリ以下をごっそり"><a href="#ディレクトリ以下をごっそり">ディレクトリ以下をごっそり</a></h3>
         <pre><code>$ selects &#039;*&#039; from &#039;./entries/**/*&#039;
@@ -627,8 +627,8 @@ false   false   true    core</code></pre>
    .select(&#039;where 句にあたる filter の proc&#039;)
    .sort(&#039;order by 句にあたる sort の proc&#039;)
    .map(&#039;抽出したファイルから select 句にあたる属性を取り出す&#039;)</code></pre>
-      <p>各 Proc は引数として受け取ったトークンを元に ruby のメソッドチェインを組み立てている。
-      <p>たとえば
+      <p>各 Proc は引数として受け取ったトークンを元に Ruby のメソッドチェインを組み立てている。
+      <p>例えば
       <pre><code>where size &gt; 1000</code></pre>
       <p>は
       <pre class=ruby><code>File.size(file) &gt; 100</code></pre>
@@ -640,7 +640,7 @@ false   false   true    core</code></pre>
   .method(&#039;&gt;&#039;)
   .call(100)</code></pre>
       <p>この仕組みを踏まえた上でもう一度クエリを見てみて欲しい。
-      <p>だんだん Ruby のメソッドチェインに見えてきたんじゃないだろうか。
+      <p>もはや Ruby のメソッドチェインにしか見えないのではないだろうか?
       <pre><code>$ selects atime, basename from &#039;./entries/**/*&#039; where atime &#039;&gt;&#039; 2016-08-01 and directory? == true</code></pre>
       <p><code>select</code>, <code>where</code>, <code>order by</code> に使える属性なども、 ruby の File クラスのドキュメントを見てくれれば良い。
       <p><a href="http://docs.ruby-lang.org/ja/2.3.0/class/File.html">http://docs.ruby-lang.org/ja/2.3.0/class/File.html</a>
@@ -650,11 +650,8 @@ false   false   true    core</code></pre>
     <section>
       <h2 id="メリット"><a href="#メリット">メリット</a></h2>
       <p>遊びで作り始めた割には結構手応えを感じたりもしている。
-      <p>実際に複雑なファイルの検索を <code>find</code> や <code>grep</code> を駆使したワンライナーで書くと非常に読みにくい。
-      <p>ましてや、ファイルの属性やファイルパス中の文字で複雑な検索やソートするのは、書けても二度と読めない可能性がある。
-      <p>特に、自分はシェル芸力が低いので、そういった場合は最初からスクリプトを書くと思う。
-      <p>ところがそのスクリプトも、結局は <code>glob</code> して <code>map</code> して <code>reduce</code> するよくあるものなので、
-      <p>そこを DSL っぽくしたのがこのコマンドの正体だ。
+      <p>実際に複雑なファイルの検索を <code>find</code> や <code>grep</code> を駆使したワンライナーで書くと非常に読みにくい。まして、ファイルの属性やファイルパス中の文字で複雑な検索やソートするのは、書けても二度と読めない可能性がある。
+      <p>特に、自分はシェル芸力が低いので、そういった場合は最初からスクリプトを書くだろう。ところがそのスクリプトも、結局は <code>glob</code> して <code>map</code> して <code>reduce</code> するよくあるものなので、それを DSL っぽくしたのがこのコマンドの正体だ。
       <p>このコマンドは SQL という検索を記述的に表現する共通言語をファイル検索に応用し、Ruby という表現力が高い動的言語のメリットを活かして実装した DSL と言える。
       <p>だから Ruby を知ってて SQL が書ける人には、 <strong>Ruby で書いた SQL っぽいメソッドチェインに見える</strong> というメリットがある(と思う)。
     </section>
@@ -664,12 +661,12 @@ false   false   true    core</code></pre>
         <li><code>selects</code> にしたのは既に <code>select</code> が linux にあるから。
         <li>結果の頭にヘッダ(列名)を出してないのは、パイプしやすくするため。
         <li>パイプ後の <code>cut</code> コマンドと相性が良いように、列はタブ区切りにしている。
-        <li>'*' と '<' と '>' は Shell で意味を持つのでクオートが必要。
+        <li><code>&#039;*&#039;</code>, <code>&#039;&lt;&#039;</code>,  <code>&#039;&gt;&#039;</code> は Shell で意味を持つのでクオートが必要。
         <li>Ruby の <code>File</code> と <code>File::Stat</code> のメソッドを呼べるようにしている。
-        <li>SQL よりも Ruby に寄ってるので曖昧検索は like ではなく where で <code>basename =~ &#039;.*foo.*&#039;</code> などする。
+        <li>SQL よりも Ruby に寄ってるので曖昧検索は <code>like</code> ではなく <code>where</code> で <code>basename =~ &#039;.*foo.*&#039;</code> などする。
         <li>SQL の仕様は尊重しつつも、準拠よりあくまで裏の Ruby が透けて見える範囲で実装したい。
         <li>まだ <code>group by</code> などは対応してないが、そのくらいはやっても良いかなと思っている。
-        <li>動的に組み立てて実行しているため、うまくやれば任意の Ruby が実行できるかもしれない。是非探して遊んでみて欲しい。
+        <li>動的に組み立てて実行しているため、上手くやれば任意の Ruby が実行できるかもしれない。是非探して遊んでみて欲しい。
       </ul>
     </section>
   </article>
