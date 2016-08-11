@@ -121,7 +121,7 @@ google analytics については後述するコンポーネントがあるため
 
 これは、別途対応した以下のコンポーネント単位の読み込みによる最適化と競合しているが、仕様なのでしかたがない。
 
-[HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について](loading-css-over-http2.html)
+[HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について](/entries/2016-02-15/loading-css-over-http2.html)
 
 
 ### amp custom element 対応
@@ -130,7 +130,8 @@ google analytics については後述するコンポーネントがあるため
 
 AMP-HTML 内では、 `<img>` タグを直接書くことは禁止されており、代わりに、 `<amp-img>` というカスタムタグを使用する。
 
-[amp-img](https://www.ampproject.org/docs/reference/extended/amp-img.html)
+[amp-img](https://www.ampproject.org/docs/reference/amp-img.html)
+
 
 このタグには `width` `height` の記述が必須となっており、 `layout=responsive` とすることでそのサイズ比を保ったままレスポンシブ表示してくれる。
 
@@ -144,6 +145,7 @@ AMP-HTML 内では、 `<img>` タグを直接書くことは禁止されてお�
 AMP-HTML 内では、 `<iframe>` タグを直接書くことは禁止されており、代わりに、 `<amp-iframe>` というカスタムタグを使用する。
 
 [amp-iframe](https://www.ampproject.org/docs/reference/extended/amp-iframe.html)
+
 
 ただし、このタグもまた制約が多い。一番大きいのは **位置** に対する制約だ。
 

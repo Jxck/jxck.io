@@ -357,8 +357,8 @@ p q r s t u v w x y z { | } ~
 また IE はどうでもいいので、 IE に対応させるための EOT ファイルも作成し無い。
 
 
-- [NotoSansCJKjp-Jxck-Bold.woff](//jxck.io/assets/font/assets/font/NotoSansCJKjp-Jxck-Bold.woff) (379.7K)
-- [NotoSansCJKjp-Jxck-Regular.woff](//jxck.io/assets/font/assets/font/NotoSansCJKjp-Jxck-Regular.woff) (375.8K)
+- [NotoSansCJKjp-Jxck-Bold.woff](//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff) (379.7K)
+- [NotoSansCJKjp-Jxck-Regular.woff](//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff) (375.8K)
 
 
 ## 効果
