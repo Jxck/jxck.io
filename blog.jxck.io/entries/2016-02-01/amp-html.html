@@ -55,7 +55,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-02-01T08:00:00+08:00",
-  "dateModified": "2016-07-07T08:00:00+08:00",
+  "dateModified": "2016-08-11T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -97,7 +97,7 @@ by Jxck
   <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/info.css>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-02-01>2016-02-01</time>
-    <li>updated_at: <time class=updated_at datetime=2016-07-07>2016-07-07</time>
+    <li>updated_at: <time class=updated_at datetime=2016-08-11>2016-08-11</time>
     <li class=tags>tags: [<a>amp</a>,<a>html</a>,<a>performance</a>]
   </ul>
 
@@ -186,7 +186,7 @@ by Jxck
         <p><code>&lt;link&gt;</code> による CSS の読み込みも禁止されている。
         <p>しかし、 <code>&lt;style&gt;</code> が禁止されているわけではないので、全ての CSS を結合して HTML 内に埋め込むようにした。
         <p>これは、別途対応した以下のコンポーネント単位の読み込みによる最適化と競合しているが、仕様なのでしかたがない。
-        <p><a href="loading-css-over-http2.html">HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について</a>
+        <p><a href="/entries/2016-02-15/loading-css-over-http2.html">HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について</a>
       </section>
       <section>
         <h3 id="amp+custom+element+対応"><a href="#amp+custom+element+対応">amp custom element 対応</a></h3>
@@ -194,7 +194,7 @@ by Jxck
       <section>
         <h3 id="amp-img"><a href="#amp-img">amp-img</a></h3>
         <p>AMP-HTML 内では、 <code>&lt;img&gt;</code> タグを直接書くことは禁止されており、代わりに、 <code>&lt;amp-img&gt;</code> というカスタムタグを使用する。
-        <p><a href="https://www.ampproject.org/docs/reference/extended/amp-img.html">amp-img</a>
+        <p><a href="https://www.ampproject.org/docs/reference/amp-img.html">amp-img</a>
         <p>このタグには <code>width</code> <code>height</code> の記述が必須となっており、 <code>layout=responsive</code> とすることでそのサイズ比を保ったままレスポンシブ表示してくれる。
         <p>この記事では markdown から生成しているため、この指定はいちいち調べて URL の最後に <code>#widthxheight</code> などとサイズを付与しておき、 AMP バージョンだけビルド時にそれを読むようにした。
         <p>全てのイメージにサイズを付けるのは、特に既存のコンテンツがあるとなかなか難しそうな気がする。
