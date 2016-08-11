@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<% entries.each do |e| %>
+  <url>
+   <loc><%= e.canonical %></loc>
+   <lastmod><%= e.updated_at %></lastmod>
+  </url>
+<% end  %>
+</urlset>

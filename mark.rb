@@ -865,9 +865,12 @@ if __FILE__ == $0
       .reverse
 
     if feed
-      puts "build blog feed"
+      puts "build blog feed & sitemap"
       xml = ERB.new(File.read(".template/atom.xml.erb")).result(binding)
       File.write("./blog.jxck.io/feeds/atom.xml", xml)
+
+      xml = ERB.new(File.read(".template/sitemap.xml.erb")).result(binding)
+      File.write("./blog.jxck.io/feeds/sitemap.xml", xml)
     end
 
     entries.each {|e|
