@@ -35,6 +35,23 @@ TODO
 もし通知を前提としている、もしくは通知への依存が強いタイプのサービスであれば、要するにドメインが死ぬ。
 
 
+```js
+switch (Notification.permission) {
+  case "granted":
+    // granted
+    break;
+  case "denied":
+    // denied
+    break;
+  case "default":
+    // default
+    break;
+  default:
+    break;
+}
+```
+
+
 ## ブロックを解除する難易度が高い
 
 ブロックはユーザの操作によって解除することが可能だ。
@@ -45,10 +62,20 @@ TODO
 TODO: すくしょ Chrome/Firefox
 
 
+facebook などは、以下のようなアイコンでこれをお願いしている。
+
+
+![permission-asking](permission-asking.png)
+
+
+
+
 これは一般ユーザにとっては敷居が高い
 
 
 ## 通知へのオプトイン
+
+
 
 ## サイト内 Notification の代用
 
