@@ -14,8 +14,8 @@ const PUSH_DB = `${process.env['SERVER']}/db/push.sqlite3`;
 let db = new sqlite3.Database(PUSH_DB, sqlite3.OPEN_READ);
 
 /** CHANGE ME **/
-const url = 'https://blog.jxck.io/entries/2016-06-12/noopener.html';
-const body = 'リンクのへの rel=noopener 付与による Tabnabbing 対策';
+const url = 'https://blog.jxck.io/entries/2016-08-22/websocket-connectivity.html';
+const body = '「Socket.IO は必要か?」または「WebSocket は通るのか?」問題について 2016 年版';
 /***************/
 
 const PAYLOAD = JSON.stringify({
@@ -54,7 +54,7 @@ function send_update(row) {
   });
 }
 
-let where = ` where userAuth = '${auth}'`;
+// let where = ` where userAuth = '${auth}'`;
 db.each(`SELECT userAuth, userPublicKey, endpoint FROM ${table}`, (err, row) => {
   if (err) return console.error(err);
   send_update(row);
