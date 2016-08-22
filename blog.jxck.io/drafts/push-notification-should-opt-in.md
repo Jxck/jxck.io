@@ -8,9 +8,9 @@ Serivce Worker での Push Notification を提供するサイトも増えてき�
 
 TODO: 図
 
-これはブラウザ側のダイアログであり、コンテンツ側がメッセージやデザインをカスタマイズできるものではない。
+権限の設定はコンテンツではなくブラウザの領域のため、コンテンツ側がこのダイアログのメッセージやデザインをカスタマイズできるものではない。
 
-従って、ユーザは初めて訪れた知らないサイトで、その許可を利用してサービスが何をどう Push してくるのかすら補足説明が無いまま、「通知を許可しますか？」と問われる訳である。
+従って、ユーザは初めて訪れた知らないサイトで、その許可を利用してサービスが何をどう Push してくるのかすら説明が無いまま、「通知を許可しますか？」と問われる訳である。
 
 ユーザの体験として良いものではない。
 
@@ -35,10 +35,11 @@ TODO: firefox
 
 facebook は以下のようなアイコンを出している。
 
-この設定から通知を再度許可する設定は、一般ユーザにとって簡単なことだろうか？筆者はあまりそうは思えない。
+![permission-asking](permission-asking.png)
 
-そもそもこの permission 管理の画面
-、あまり現実的ではないと思われる。
+サービスができるのはそれくらいなのである。
+
+この設定から通知を再度許可する設定は、一般ユーザにとって簡単なことだろうか？筆者はあまりそうは思えない。
 
 それらを踏まえて、 Push Notification の実装のあり方と、本サイトへの適用について記す。
 
@@ -48,10 +49,19 @@ facebook は以下のようなアイコンを出している。
 Push Notification を愚直に実装した場合、以下のようなコードが考えられる。
 
 
-TODO
+```js
+navigator.serviceWorker.register('worker.js').then((registration) => {
+  return navigator.serviceWorker.ready;
+}).then((registration) => {
+  return registration.pushManager.subscribe({ userVisibleOnly: true });
+}).then((subscription) => {
+  console.log(subscription);
+});
+```
 
+ページを開いた時に Service Worker を登録し、そのまま `pushManager.subscribe()` を呼ぶことで、許可が無い場合に許可を求める。
 
-しかし、これではユーザに対して突然許可を求めるダイアログが表示されることになる。
+これではユーザに対して突然許可を求めるダイアログが表示されることになる。
 
 良くわからないダイアログが出たら、ブロックするユーザも多いだろう。
 
@@ -95,7 +105,6 @@ TODO: すくしょ Chrome/Firefox
 facebook などは、以下のようなアイコンでこれをお願いしている。
 
 
-![permission-asking](permission-asking.png)
 
 
 
