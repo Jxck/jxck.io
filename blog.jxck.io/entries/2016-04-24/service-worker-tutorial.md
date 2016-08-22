@@ -133,7 +133,7 @@ DEMO: [https://labs.jxck.io/service-worker/controllerchange/](https://labs.jxck.
 
 ## updatefound
 
-Service Worker が更新される際の動きと、 `skipWaiting()` が何をスキップするのか？
+Service Worker が更新される際の動きと、 `skipWaiting()` が何をスキップするのか?
 `install`, `activate` イベントの用途。
 
 <iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/AMbQ7d9rjao" allowfullscreen></iframe>

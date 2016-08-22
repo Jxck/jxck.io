@@ -31,7 +31,7 @@ WHATWG が定義する Fetch API は、出たばかりの仕様では、途中�
 
 仕様が出たばかりの頃の解説は以前のブログに書いた、本エントリはここからの差分を記す。
 
-- [Fetch API 解説、または Web において "Fetch する" とは何か？](http://jxck.hatenablog.com/entry/whatwg-fetch)
+- [Fetch API 解説、または Web において "Fetch する" とは何か?](http://jxck.hatenablog.com/entry/whatwg-fetch)
 
 
 ## Promise API
