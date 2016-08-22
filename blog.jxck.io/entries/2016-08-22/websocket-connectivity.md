@@ -1,4 +1,4 @@
-# [websocket] 「WebSocket は通るのか?」問題について 2016 年版
+# [socket.io][websocket][network] 「Socket.IO は必要か?」または「WebSocket は通るのか?」問題について 2016 年版
 
 ## Intro
 
