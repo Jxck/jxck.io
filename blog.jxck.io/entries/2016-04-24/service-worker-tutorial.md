@@ -407,7 +407,7 @@ self.addEventListener('notificationclick', (e) => {
 
 ### 4.push.js
 
-使用したモジュール: https://github.com/web-push-libs/web-push
+使用したモジュール: [https://github.com/web-push-libs/web-push](https://labs.jxck.io/service-worker/push/)
 
 <iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/hIliK4l4wqw" allowfullscreen></iframe>
 
