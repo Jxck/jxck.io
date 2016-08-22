@@ -328,5 +328,5 @@ Cache-Control: max-age=1, stale-while-revalidate=600, stale-if-error=864000
 
 ## link
 
-- [mnot ’ s blog: Chrome and Stale-While-Revalidate](https://www.mnot.net/blog/2014/06/01/chrome_and_stale-while-revalidate)
+- [mnot's blog: Chrome and Stale-While-Revalidate](https://www.mnot.net/blog/2014/06/01/chrome_and_stale-while-revalidate)
 - [[Web facing change PSA] Heads-up: Faster assets with the HTTP caching extension "stale-while-revalidate"](https://groups.google.com/a/chromium.org/forum/#!msg/chromium-dev/zchogDvIYrY/ZqWSdt3LJdMJ)

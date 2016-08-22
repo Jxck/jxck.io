@@ -59,7 +59,7 @@ child で上記の JS が動くと、裏で勝手に parent が画面遷移し�
 
 この手法は Tabnabbing と呼ばれている。
 
-- [Tabnabbing: A New Type of Phishing Attack « Aza on Design](http://www.azarask.in/blog/post/a-new-type-of-phishing-attack/)
+- [Tabnabbing: A New Type of Phishing Attack Aza on Design](http://www.azarask.in/blog/post/a-new-type-of-phishing-attack/)
 - [Target="_blank" - the most underestimated vulnerability ever](https://www.jitbit.com/alexblog/256-targetblank---the-most-underestimated-vulnerability-ever/)
 
 この攻撃方法を解説する。
