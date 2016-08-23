@@ -1,8 +1,8 @@
-# dotfiles の便利コマンド集
+# [dotfiles] dotfiles の便利コマンド集
 
 ## Intro
 
-前回の selects について反応をもらったところ、他にもあるなら紹介して欲しいと言われた。
+以前の [selects](https://blog.jxck.io/entries/2016-08-05/sql-for-file-search.html) について書いたとろ、他にもあるなら紹介して欲しいと反応があった。
 
 こういうオレオレコマンドはおそらく多くの人が持ってると思うが、自分が極々特定の問題を解決するために作ったものだと、確かに表に出てくることは少ないかもしれない。
 
@@ -221,8 +221,8 @@ $ cleanup.sh
 
 ちなみに、謎ファイルの正体は、以下などにまとまっている。
 
-- http://library.gnome.org/admin/system-admin-guide/stable/appendixa-0.html.ja
-- http://uguisu.skr.jp/Windows/setting.html
+- [http://library.gnome.org/admin/system-admin-guide/stable/appendixa-0.html.ja](http://library.gnome.org/admin/system-admin-guide/stable/appendixa-0.html.ja)
+- [http://uguisu.skr.jp/Windows/setting.html](http://uguisu.skr.jp/Windows/setting.html)
 
 
 ## color
@@ -373,7 +373,7 @@ $ histuniq
 
 自分は「有り」で書くタイプなのだけど、前に @inao さんに「消せ」といわれて消した時に書いたスクリプトが、地味に便利で使っているうちに育ってきた。
 
-https://github.com/dotfiles/bin/space.rb
+[https://github.com/dotfiles/bin/space.rb](https://github.com/dotfiles/bin/space.rb)
 
 
 ## 要件
@@ -469,7 +469,7 @@ Port がすでに開いてるエラーにあったとき便利。
 
 ## alc()
 
-英単語を渡すと http://alc.co.jp で検索して結果を返すコマンド。
+英単語を渡すと [http://alc.co.jp](http://alc.co.jp) で検索して結果を返すコマンド。
 
 
 # zsh のエイリアス
