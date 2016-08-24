@@ -17,10 +17,13 @@ img, svg {
   background: black;
   border: 1px solid black;
 }
-
+strong {
+  color: red;
+}
 </style>
 
-<h1>SVG 強者への質問</h1>
+<h1><del>SVG 強者への質問</del> Chrome のバグだった模様</h1>
+<strong>firefox では動くので chrome のバグだったっぽい</strong>
 <h2>img 読み込み</h2>
 <p>最終的に表示したいのがこれ。これは SVG ファイルにまとめて img で読んでいる
 <p>svg の中には二つの clipPath がある。
@@ -249,3 +252,10 @@ fill="#fff"
 &lt;/defs&gt;
 &lt;/svg&gt;
 </pre>
+
+
+<h2>image を使う</h2>
+
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="300" viewBox="0 0 300 300">
+  <image width="300" height="300" xlink:href="push.image.svg#main"/>
+</svg>
