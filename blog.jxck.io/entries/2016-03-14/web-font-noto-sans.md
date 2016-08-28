@@ -303,9 +303,36 @@ p q r s t u v w x y z { | } ~
 畝 租 朕 逓 哺 曹 惧 梗 痘 虞 嗣 塑 彙 楷 窟 嘱 畿 憬 璃 錮 嚇 濯 璽
 ```
 
-除いた結果が以下である。
+
+これらを反映した結果が以下である。
 
 [Kanji.txt](Kanji.txt)
+
+
+
+### 更新(2016/08/28)
+
+しばらく運用して、省かれていた以下の文字が記事中に必要になったため、文字セットに追加した。
+(後述する結果にも反映していある)
+
+
+```
+✔
+ー (伸ばし棒)
+叩
+套
+嬉
+揃
+殆
+溜
+筈
+紐
+綺
+繋
+脆
+閾
+騙
+```
 
 
 ## 結果
@@ -316,13 +343,15 @@ p q r s t u v w x y z { | } ~
 | 範囲             | 文字数 |
 |:-----------------|-------:|
 | 基本ラテン文字   | 94     |
-| CJK 記号と句読点 | 10     |
+| CJK 記号と句読点 | 11     |
 | ひらがな         | 81     |
 | カタカナ         | 83     |
 | 半角形と全角形   | 0      |
 | 常用漢字         | 2136   |
+| 記号             | 1      |
 | 不要文字         | - 23   |
-| 合計             | 2381   |
+| 追加更新         | 13     |
+| 合計             | 2396   |
 
 
 全て合わせたのが以下である。
@@ -385,7 +414,7 @@ p q r s t u v w x y z { | } ~
 |        | サイズ |
 |:-------|-------:|
 | before | 547.5K |
-| after  | 375.8K |
+| after  | 378.4K |
 
 
 ## フォントの設定
@@ -408,7 +437,7 @@ Android は ["NotoSansJP-Regular.otf" という名前で入っているらしい
   font-weight: 400;
   src: local("NotoSansCJKjp-Bold.otf"),
        local("NotoSansJP-Bold.otf"),
-       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=20163014") format("woff");
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=20160314") format("woff");
 }
 
 @font-face {
@@ -417,7 +446,7 @@ Android は ["NotoSansJP-Regular.otf" という名前で入っているらしい
   font-weight: 700;
   src: local("NotoSansCJKjp-Bold.otf"),
        local("NotoSansJP-Bold.otf"),
-       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff?ver=201603014") format("woff");
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff?ver=20160314") format("woff");
 }
 ```
 
