@@ -1,76 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+<svg id="main" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 300 300">
 
-<circle
-  cx="150"
-  cy="40"
-  r="14"
-  fill="#fff">
-</circle>
+ <!-- cutoff
+ <path d="
+ M 150,120
+ L 10,60
+ L 10,220
+ L 150,150
+ L 290,220
+ L 290,60
+ L 150,120
+ "
+ fill="red"
+ />
+ <circle cx="150" cy="150" r="130" stroke-width="12" stroke="red" fill="transparent"/>
+ <circle cx="150" cy="150" r="110" stroke-width="12" stroke="red" fill="transparent"/>
+ -->
 
-<circle
-  cx="150"
-  cy="120"
-  r="70"
-  fill="#fff">
-</circle>
+ <!-- left-out -->
+ <path d="
+ M 49.74,77.03
+ L 38.45,72.19
+ A 136 136 0 0 0 28.36 210.82
+ L 39.09,205.45
+ A 124 124 0 0 1 49.74,77.03
+ Z
+ "
+ />
 
-<rect
-  x="80"
-  y="120"
-  width="140"
-  height="70"
-  fill="#fff"
-/>
+ <!-- right-out -->
+ <path d="
+ M 250.26,77.03
+ L 261.54,72.19
+ A 136 136 0 0 1 271.64 210.82
+ L 260.91,205.45
+ A 124 124 0 0 0 250.26 77.03
+ Z
+ "
+ />
 
-<path d="
-M 80, 170
-L 50, 240
-L 250,240
-L 220,170
-L 80,170
-"
-fill="#fff"
-/>
+ <!-- left-in -->
+ <path d="
+ M 68.69,85.15
+ L 57.30,80.27
+ A 116 116 0 0 0 46.25 201.88
+ L 56.98,196.51
+ A 104 104 0 0 1 68.69 85.15
+ Z
+ "
+ />
 
-<clipPath id="cut-off-top">
-  <rect x="0" y="250" width="200" height="40" />
-</clipPath>
+ <!-- right-in -->
+ <path d="
+ M 242.7,80.27
+ L 231.30,85.15
+ A 104 104 0 0 1 243.02 196.51
+ L 253.75,201.88
+ A 116 116 0 0 0 242.70 80.27
+ Z
+ "
+ />
 
-<circle
-  cx="150" cy="250" r="30"
-  fill="#fff"
-  clip-path="url(#cut-off-top)"
-/>
+ <!-- top -->
+ <circle
+ cx="150"
+ cy="40"
+ r="14"
+ />
 
-<clipPath id="cut-off-circle">
-  <path d="
-  M 150,120
-  L 10,60
-  L 10,220
-  L 150,150
-  L 290,220
-  L 290,60
-  L 150,120
-  "
-  fill="red"
-  />
-</clipPath>
+ <!-- body-->
+ <path d="
+ M 220,120
+ A 70 70 0 0 0 150 50
+ A 70 70 0 0 0 80 120
+ L 80,170
+ L 50,240
+ L 250,240
+ L 220,170
+ L 220,120
+ Z
+ "/>
 
-<circle
-  cx="150" cy="150" r="130"
-  stroke="#fff"
-  stroke-width="12"
-  fill="transparent"
-  clip-path="url(#cut-off-circle)"
-/>
-
-<circle
-  cx="150" cy="150" r="110"
-  stroke="#fff"
-  stroke-width="12"
-  fill="transparent"
-  clip-path="url(#cut-off-circle)"
-/>
-
+ <!-- bottom -->
+ <path d="
+ M 150,250
+ L 180,250
+ A 30 30 0 0 1 150 280
+ A 30 30 0 0 1 120 250
+ Z
+ "/>
 </svg>
