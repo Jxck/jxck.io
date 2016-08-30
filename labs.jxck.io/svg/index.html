@@ -31,8 +31,15 @@ pre {
 window.addEventListener('DOMContentLoaded', () => {
   "use strict";
   let imgs = document.getElementsByTagName('img');
-  let url = new URL(imgs[0].src);
-  Array.from(imgs).map(img => img.src).forEach((url) => {
+  let svgs = document.querySelectorAll('svg use');
+
+  let img_url = Array.from(imgs).map(img => img.src);
+  let svg_url = Array.from(svgs).map(svg => svg.href.baseVal.replace(/#.*/, ''));
+
+  let urls = [...img_url, ...svg_url];
+  console.log(urls);
+
+  urls.forEach((url) => {
     fetch(url).then((res) => res.text()).then((txt) => {
       let id = url.split('/').pop();
       console.log(id);
@@ -46,16 +53,15 @@ window.addEventListener('DOMContentLoaded', () => {
 <h1>SVG Gallery</h1>
 
 <h2 id=jxck-cacoo>Jxck(cacoo)</h2>
-<!-- img width=200 height=200 src=cacoo.svg -->
-<svg><use xlink:href="cacoo.svg#main"/></svg>
+<img src=cacoo.svg>
 <pre id=cacoo.svg></pre>
 
 <h2 id=jxck-svggo>Jxck(cacoo -> svggo)</h2>
-<img width=200 height=200 src=svggo.svg>
+<img src=svggo.svg>
 <pre id=svggo.svg></pre>
 
 <h2 id=jxck>Jxck(hand write)</h2>
-<img width=200 height=200 src=jxck.svg>
+<img src=jxck.svg>
 <pre id=jxck.svg></pre>
 
 <h2 id=push>Push</h2>
@@ -67,55 +73,55 @@ window.addEventListener('DOMContentLoaded', () => {
 <pre id=amp.svg></pre>
 
 <h2 id=up>UP</h2>
-<img width=200 height=200 src=up.svg>
+<img src=up.svg>
 <pre id=up.svg></pre>
 
 <h2 id=rss>RSS</h2>
-<img width=200 height=200 src=rss.svg>
+<img src=rss.svg>
 <pre id=rss.svg></pre>
 
 <h2 id=humans>Humans.txt</h2>
-<img width=200 height=200 src=humans.svg>
+<img src=humans.svg>
 <pre id=humans.svg></pre>
 
 <h2 id=itunes>iTunes</h2>
-<img width=200 height=200 src=itunes.svg>
+<img src=itunes.svg>
 <pre id=itunes.svg></pre>
 
 <h2 id=podcast>Podcast</h2>
-<img width=200 height=200 src=podcast.svg>
+<img src=podcast.svg>
 <pre id=podcast.svg></pre>
 
 <h2 id=mozaic>Mozaic</h2>
-<img width=200 height=200 src=mozaic.svg>
+<img src=mozaic.svg>
 <pre id=mozaic.svg></pre>
 
 <h2 id=blog>Blog</h2>
-<img width=200 height=200 src=blog.svg>
+<img src=blog.svg>
 <pre id=blog.svg></pre>
 
 <h2 id=slide>Slide</h2>
-<img width=200 height=200 src=slide.svg>
+<img src=slide.svg>
 <pre id=slide.svg></pre>
 
 <h2 id=labs>Labs</h2>
-<img width=200 height=200 src=labs.svg>
+<img src=labs.svg>
 <pre id=labs.svg></pre>
 
 <h2 id=lgtm>LGTM</h2>
-<img width=200 height=200 src=lgtm.svg>
+<img src=lgtm.svg>
 <pre id=lgtm.svg></pre>
 
 <h2 id=404>404</h2>
-<img width=200 height=200 src=404.svg>
+<img src=404.svg>
 <pre id=404.svg></pre>
 
 <h2 id=500>500</h2>
-<img width=200 height=200 src=500.svg>
+<img src=500.svg>
 <pre id=500.svg></pre>
 
 <h2 id=503>503</h2>
-<img width=200 height=200 src=503.svg>
+<img src=503.svg>
 <pre id=503.svg></pre>
 
 <footer>
