@@ -47,8 +47,10 @@ def j(o)
 end
 
 # replace " " to "+"
-def unspace(str)
-  str.tr(" ", "+")
+def escape(str)
+  str
+    .tr('"', '')
+    .tr(' ', '+')
 end
 
 # dot access Hash
@@ -117,7 +119,7 @@ class Markup
       return %(<h#{level}><a href=#{@url}>#{@title}</a></h#{level}>\n)
     else
       # h2 以降は id を振る
-      return %(<h#{level} id="#{unspace(node.value)}"><a href="##{unspace(node.value)}">#{node.value}</a></h#{level}>\n)
+      return %(<h#{level} id="#{escape(node.value)}"><a href="##{escape(node.value)}">#{node.value}</a></h#{level}>\n)
     end
   end
 
