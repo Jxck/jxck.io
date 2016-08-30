@@ -6,15 +6,18 @@
 
 <style>
 img {
+  width: 200px;
+  height: 200px;
   border: solid 1px #000;
   background: #000;
+  fill: white;
 }
 svg {
   width: 200px;
   height: 200px;
   background-color: black;
   display: block;
-  fill: white;
+  fill: yellow;
 }
 pre {
   background: #ccc;
@@ -40,7 +43,8 @@ window.addEventListener('DOMContentLoaded', () => {
 <h1>SVG Gallery</h1>
 
 <h2 id=jxck-cacoo>Jxck(cacoo)</h2>
-<img width=200 height=200 src=cacoo.svg>
+<!-- img width=200 height=200 src=cacoo.svg -->
+<svg><use xlink:href="cacoo.svg#main"/></svg>
 <pre id=cacoo.svg></pre>
 
 <h2 id=jxck-svggo>Jxck(cacoo -> svggo)</h2>
@@ -51,8 +55,12 @@ window.addEventListener('DOMContentLoaded', () => {
 <img width=200 height=200 src=jxck.svg>
 <pre id=jxck.svg></pre>
 
+<h2 id=push>Push</h2>
+<svg><use xlink:href="push.svg#main"/></svg>
+<pre id=push.svg></pre>
+
 <h2 id=amp>AMP</h2>
-<img width=200 height=200 src=amp.svg>
+<svg><use xlink:href="amp.svg#main"/></svg>
 <pre id=amp.svg></pre>
 
 <h2 id=up>UP</h2>
@@ -74,11 +82,6 @@ window.addEventListener('DOMContentLoaded', () => {
 <h2 id=podcast>Podcast</h2>
 <img width=200 height=200 src=podcast.svg>
 <pre id=podcast.svg></pre>
-
-<h2 id=push>Push</h2>
-<svg><use xlink:href="push.svg#main"/></svg>
-
-<pre id=push.svg></pre>
 
 <h2 id=mozaic>Mozaic</h2>
 <img width=200 height=200 src=mozaic.svg>
