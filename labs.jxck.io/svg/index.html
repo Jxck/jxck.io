@@ -10,6 +10,8 @@ img {
   background: #000;
 }
 svg {
+  width: 200px;
+  height: 200px;
   background-color: black;
   display: block;
   fill: white;
@@ -18,6 +20,7 @@ pre {
   background: #ccc;
 }
 </style>
+
 <script>
 window.addEventListener('DOMContentLoaded', () => {
   "use strict";
@@ -73,7 +76,8 @@ window.addEventListener('DOMContentLoaded', () => {
 <pre id=podcast.svg></pre>
 
 <h2 id=push>Push</h2>
-<img width=200 height=200 src=push.svg>
+<svg><use xlink:href="push.svg#main"/></svg>
+
 <pre id=push.svg></pre>
 
 <h2 id=mozaic>Mozaic</h2>
