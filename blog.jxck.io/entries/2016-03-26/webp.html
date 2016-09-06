@@ -1,44 +1,46 @@
 <!DOCTYPE html>
-<meta charset=utf-8>
-<!--
-貴様、見ているな！！
-このサイトの技術的なまとめはこちらをどうぞ。
-https://labs.jxck.io/blog
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <!--
+    貴様、見ているな！！
+    このサイトの技術的なまとめはこちらをどうぞ。
+    https://labs.jxck.io/blog
 
-by Jxck
--->
-<link rel=canonical href=https://blog.jxck.io/entries/2016-03-26/webp.html>
-<link rel=amphtml href=https://blog.jxck.io//entries/2016-03-26/webp.amp.html>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
-<link rel=author href=//jxck.io/assets/humans.txt>
-<link rel=manifest href=/manifest.json>
-<link rel=preload as=font type=font/woff href="//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201608028" crossorigin>
-<script async src=//jxck.io/assets/js/ga.js></script>
-<script async src=//jxck.io/assets/js/highlight.min.js></script>
-<script async src=//jxck.io/assets/js/sw.js></script>
-<script async src=//jxck.io/assets/js/main.js></script>
+    by Jxck
+    -->
+    <link rel="canonical" href="https://blog.jxck.io/entries/2016-03-26/webp.html">
+    <link rel="amphtml" href="https://blog.jxck.io//entries/2016-03-26/webp.amp.html">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="alternate" type="application/atom+xml" title="blog.jxck.io" href="/feeds/atom.xml">
+    <link rel="author" href="//jxck.io/assets/humans.txt">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="preload" as="font" type="font/woff" href="//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201608028" crossorigin>
+    <script async src="//jxck.io/assets/js/ga.js"></script>
+    <script async src="//jxck.io/assets/js/highlight.min.js"></script>
+    <script async src="//jxck.io/assets/js/sw.js"></script>
+    <script async src="//jxck.io/assets/js/main.js"></script>
 
-<meta name=author content=Jxck>
-<meta name=description content="本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい WebP 形式を提供し、対応ブラウザに配布するようにした。フォーマットを出し分けるため、画像の指定は `&lt;picture&gt;` 要素を用いて対応した。画像最適化シリーズ第 3...">
-<meta name=keywords content="webp,image,performance">
+    <meta name="author" content="Jxck">
+<meta name="description" content="本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい WebP 形式を提供し、対応ブラウザに配布するようにした。フォーマットを出し分けるため、画像の指定は `&lt;picture&gt;` 要素を用いて対応した。画像最適化シリーズ第 3...">
+<meta name="keywords" content="webp,image,performance">
 
-<meta name=twitter:card content=summary>
-<meta name=twitter:site content=@jxck_>
-<meta name=twitter:url content="https://blog.jxck.io/entries/2016-03-26/webp.html">
-<meta name=twitter:title content="画像最適化戦略 WebP 編 | blog.jxck.io">
-<meta name=twitter:description content="本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい WebP 形式を提供し、対応ブラウザに配布するようにした。フォーマットを出し分けるため、画像の指定は `&lt;picture&gt;` 要素を用いて対応した。画像最適化シリーズ第 3...">
-<meta name=twitter:image content="https://jxck.io/assets/img/jxck.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@jxck_">
+<meta name="twitter:url" content="https://blog.jxck.io/entries/2016-03-26/webp.html">
+<meta name="twitter:title" content="画像最適化戦略 WebP 編 | blog.jxck.io">
+<meta name="twitter:description" content="本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい WebP 形式を提供し、対応ブラウザに配布するようにした。フォーマットを出し分けるため、画像の指定は `&lt;picture&gt;` 要素を用いて対応した。画像最適化シリーズ第 3...">
+<meta name="twitter:image" content="https://jxck.io/assets/img/jxck.png">
 
-<meta property=og:type content=article>
-<meta property=og:url content="https://blog.jxck.io/entries/2016-03-26/webp.html">
-<meta property=og:title content="画像最適化戦略 WebP 編 | blog.jxck.io">
-<meta property=og:site_name content="blog.jxck.io">
-<meta property=og:description content="本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい WebP 形式を提供し、対応ブラウザに配布するようにした。フォーマットを出し分けるため、画像の指定は `&lt;picture&gt;` 要素を用いて対応した。画像最適化シリーズ第 3...">
-<meta property=og:image content="https://jxck.io/assets/img/jxck.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blog.jxck.io/entries/2016-03-26/webp.html">
+<meta property="og:title" content="画像最適化戦略 WebP 編 | blog.jxck.io">
+<meta property="og:site_name" content="blog.jxck.io">
+<meta property="og:description" content="本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい WebP 形式を提供し、対応ブラウザに配布するようにした。フォーマットを出し分けるため、画像の指定は `&lt;picture&gt;` 要素を用いて対応した。画像最適化シリーズ第 3...">
+<meta property="og:image" content="https://jxck.io/assets/img/jxck.png">
 
-<link rel=icon sizes=192x192 href="https://jxck.io/assets/img/jxck.png">
-<link rel=apple-touch-icon sizes=128x128 href="https://jxck.io/assets/img/jxck.png">
+<link rel="icon" sizes="192x192" href="https://jxck.io/assets/img/jxck.png">
+<link rel="apple-touch-icon" sizes="128x128" href="https://jxck.io/assets/img/jxck.png">
 <script type="application/ld+json">
 {
   "@context": "http://schema.org",
@@ -75,33 +77,33 @@ by Jxck
 }
 </script>
 
-<title>画像最適化戦略 WebP 編 | blog.jxck.io</title>
+    <title>画像最適化戦略 WebP 編 | blog.jxck.io</title>
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/body.css">
+  </head>
+  <body>
+    <link rel="stylesheet" property="stylesheet" type="text/css href=//jxck.io/assets/css/header.css">
+    <header>
+      <ul>
+        <li><a href="//blog.jxck.io"><img class="logo" alt="blog top" width="30" src=//jxck.io/assets/img/blog.svg></a>
+        <li><a href="/entries/2016-03-26/webp.amp.html#development=1"><svg alt="move to amp version" width="30" height="30"><use xlink:href="/assets/img/amp.svg#main"/></svg></a>
+        <li><a href="."><img alt="move to parent directory" width="30" src="//jxck.io/assets/img/up.svg"></a>
+        <li><a href="/feeds/atom.xml"><img alt="rss feed" width="30" src="//jxck.io/assets/img/rss.svg"></a>
+        <li><a href="//jxck.io/humans.txt"><img alt="huamns.txt" width="30" src="//jxck.io/assets/img/humans.svg"></a>
+        <li><a href="//jxck.io"><img class="logo" alt="jxck logo" width="30" src="//jxck.io/assets/img/jxck.svg"></a>
+      </ul>
+    </header>
 
-<link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/body.css>
+    <link rel="stylesheet" property="stylesheet" type="text/css href=//jxck.io/assets/css/markdown.css">
+    <link rel="stylesheet" property="stylesheet" type="text/css href=//jxck.io/assets/css/main.css">
+    <main>
+      <link rel="stylesheet" property="stylesheet" type="text/css href=//jxck.io/assets/css/info.css">
+      <ul class="info">
+        <li>created_at: <time class="created_at" datetime="2016-03-26">2016-03-26</time>
+        <li>updated_at: <time class="updated_at" datetime="2016-07-06">2016-07-06</time>
+        <li class="tags">tags: [<a>webp</a>,<a>image</a>,<a>performance</a>]
+      </ul>
 
-<link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/header.css>
-<header>
-  <ul>
-    <li><a href=//blog.jxck.io><img class=logo alt="blog top" width=30 src=//jxck.io/assets/img/blog.svg></a>
-    <li><a href="/entries/2016-03-26/webp.amp.html#development=1"><svg alt="move to amp version" width=30 height=30><use xlink:href="/assets/img/amp.svg#main"/></svg> </a>
-    <li><a href=.><img alt="move to parent directory" width=30 src=//jxck.io/assets/img/up.svg></a>
-    <li><a href=/feeds/atom.xml><img alt="rss feed" width=30 src=//jxck.io/assets/img/rss.svg></a>
-    <li><a href=//jxck.io/humans.txt><img alt="huamns.txt" width=30 src=//jxck.io/assets/img/humans.svg></a>
-    <li><a href=//jxck.io><img class=logo alt="jxck logo" width=30 src=//jxck.io/assets/img/jxck.svg></a>
-  </ul>
-</header>
-
-<link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/markdown.css>
-<link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/main.css>
-<main>
-  <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/info.css>
-  <ul class=info>
-    <li>created_at: <time class=created_at datetime=2016-03-26>2016-03-26</time>
-    <li>updated_at: <time class=updated_at datetime=2016-07-06>2016-07-06</time>
-    <li class=tags>tags: [<a>webp</a>,<a>image</a>,<a>performance</a>]
-  </ul>
-
-  <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/article.css>
+      <link rel="stylesheet" property="stylesheet" type="text/css href=//jxck.io/assets/css/article.css">
   <article>
     <h1><a href=/entries/2016-03-26/webp.html>画像最適化戦略 WebP 編</a></h1>
     <section>
@@ -180,10 +182,12 @@ Usage:
     </section>
   </article>
 
-</main>
-<hr>
+    </main>
+    <hr>
 
-<link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/footer.css>
-<footer>
-  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
-</footer>
+    <link rel="stylesheet" property="stylesheet" type="text/css href=//jxck.io/assets/css/footer.css">
+    <footer>
+      <address class="copyright">Copyright &copy; 2016 <a href="/">Jxck</a>. All Rights Reserved.</address>
+    </footer>
+  </body>
+</html>
