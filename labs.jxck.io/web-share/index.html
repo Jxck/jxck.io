@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="demo">
+<title>DEMO | labs.jxck.io</title>
+
+<h1>Web Share</h1>
+
+<p>navigator.share() <span id="support">unsupported</span></p>
+<button id="share">Share !!</button>
+
+<script>
+if (navigator.share !== undefined) {
+  document.getElementById("support").textContent == "supported";
+}
+
+let shareButton = document.getElementById("share");
+shareButton.addEventListener("click", () => {
+  navigator
+    .share({
+      title: "Lab Page",
+      url: window.location.href
+    })
+    .then(console.log.bind(console))
+    .catch(console.log.bind(console));
+});
+</script>
+
