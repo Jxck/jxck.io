@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="service worker push demo">
+<title>Service Worker Push DEMO | labs.jxck.io</title>
+
+<link rel=manifest href=manifest.json>
+
+<script src=master.js></script>
+
+<h1>Push DEMO</h1>
+
+<strong>only for code demo, you will receive no push from us</strong>
+
+<style>
+#push {
+  font-size: 2em;
+  color: #fff;
+  width: 8em;
+  height: 5em;
+  border-radius: 10px;
+  margin: 1em;
+}
+
+
+.default {
+  background-color: #ccc;
+}
+.default:after {
+  content: 'opt-in できますよ';
+}
+
+
+.granted {
+  background-color: #ff0;
+}
+.granted:after {
+  content: 'opt-in してます';
+}
+
+
+.denied {
+  background-color: #000;
+}
+.denied:after {
+  content: '送れません';
+}
+
+
+.disabled {
+  background-color: #ccc;
+}
+.disabled:after {
+  content: '送れるけど送りません';
+}
+
+</style>
+<button id=push class=disabled type=button></button>
