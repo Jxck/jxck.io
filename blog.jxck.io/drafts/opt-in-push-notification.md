@@ -6,7 +6,7 @@ Serivce Worker での Push Notification を提供するサイトも増えてき�
 
 しかし、実装方法によってはサイトを開いたら、無機質なダイアログが突然開きパーミッションを求められる。
 
-TODO: 図
+![notification permission asking](notification-permission-asking.png "notification-permission-asking")
 
 権限の設定はコンテンツではなくブラウザの領域のため、コンテンツ側がこのダイアログのメッセージやデザインをカスタマイズできるものではない。
 
@@ -20,16 +20,16 @@ TODO: 図
 
 ここでユーザがブロックを選択するということは、サイトにとって致命的な機会損失にすらなり得る。
 
-その **ドメイン** から、そのブラウザに対して、今後一切 Push を送ることが一切できなくなるからだ。
+その **ドメイン** から、そのブラウザに対して、今後一切 Push を送ることができなくなるからだ。
 
-一度ブロックされた場合、 JS から許可を求めることはできなくなる。(それができてはブロックの意味が無い。)
+一度ブロックされた場合、 JS から再度許可を求めることはできなくなる。(それができてはブロックの意味が無い)
 
 ブロックを解除する唯一の方法は、ユーザによる設定変更だ。
 ところで、その設定方法はご存知だろうか？
 
-TODO: chrome 
+![chrome setting](chrome-setting.png "chrome setting")
 
-TODO: firefox 
+![firefox setting](firefox-setting.png "firefox setting")
 
 サービスとしてはここを変更してもらう以外に方法は無い。
 
