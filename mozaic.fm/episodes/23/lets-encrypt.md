@@ -66,4 +66,4 @@ audio: https://files.mozaic.fm/mozaic-ep23.mp3
   - [Public Key Pinning Extension for HTTP (HPKP)](https://tools.ietf.org/html/rfc7469)
 
 - 1:24:30 これからどうなっていくのか?
-  - [軽量暗号 Lightweight Cryptography](http://www.cryptrec.go.jp/english/system.html)
+  - [軽量暗号 Lightweight Cryptography](http://www.cryptrec.go.jp/symposium/20150320_cryptrec-lw.pdf)
