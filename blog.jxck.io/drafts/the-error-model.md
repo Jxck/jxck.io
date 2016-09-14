@@ -786,6 +786,10 @@ It's of course possible to try.
 Doing so requires reading API documentation, doing manual audits of the code, leaning heavily on code reviews, and a healthy dose of luck.
 The language isn't helping you out one bit here.
 
+これを試してみるもちろん可能です。
+それをするには、 API ドキュメントをしっかり読み、コードの手動監査をやって、ヘビーなコードレビューで学んで、あとのコードの健全性は運任せ。
+言語は、一切支援してくれません。
+
 Because failures are rare, this tends not to be as utterly disastrous as it sounds.
 My conclusion is that's why many people in the industry think unchecked exceptions are "good enough."
 They stay out of your way for the common success paths and, because most people don't write robust error handling code in non-systems programs,
@@ -794,15 +798,12 @@ Catching and then proceeding often works too.
 No harm, no foul.
 Statistically speaking, programs "work."
 
-これを試してみるもちろん可能です。
-それをするには、 API ドキュメントをしっかり読み、コードの手動監査をやって、ヘビーなコードレビューを学んで、あとのコードの健全性は運任せ。
-言語は、一切支援してくれません。
 障害は滅多におきないため、これは思ったほど悲惨なことにならない傾向にあります。
 私の結論は、業界で多くの人々が Unchecked Exception が "十分である" と思う理由は、
 多くの人が、システムプログラムでないプログラムでロバストなエラーハンドリングを書かないため、
-彼らが、共通のサクセスパスの外にいて、Exception を投げるのは、通常 pickle fast から出られる。
+彼らが、共通のサクセスパスの外にいて、Exception を投げるのは、通常困難な状態から素早く出られる。
 キャッチした後の動作も、多くはうまく動作します。
-害なし、ずるなし。統計的に言えば、プログラムは "動く"。
+害なし、ズルなし。統計的に言えば、プログラムは "動く"。
 
 Maybe statistical correctness is okay for scripting languages, but for the lowest levels of an operating system,
 or any mission critical application or service, this isn't an appropriate solution.
