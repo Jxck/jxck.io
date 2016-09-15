@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="demo">
+<title>Form Validation DEMO | labs.jxck.io</title>
+
+<style>
+</style>
+
+<h1>Form Validation</h1>
+
+<form>
+  <fieldset>
+    <legend>Login</legend>
+    <div>
+      <label for=name>name</label>
+      <input id=name name=name type=text pattern="[a-z]" />
+    </div>
+
+    <div>
+      <label for=email>email</label>
+      <input id=email name=email type=email />
+    </div>
+
+    <div>
+      <label for=password>password</label>
+      <input id=password name=password type=password />
+    </div>
+    <button type=submit>ok</button>
+  </fieldset>
+</form>
+
+
+<script>
+let form = document.querySelector('form');
+form.addEventListener('invalid', (e) => {
+  console.log(e);
+});
+
+</script>
+
