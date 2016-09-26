@@ -14,11 +14,15 @@ Web に関する、特にブラウザが実装するような機能について�
 これを Breaking the Web といい、プロトコルにしても API にしても、標準化団体やブラウザベンダなどは、これを極力避けることを念頭に置いて作業を行っている。
 (セキュリティ的な理由など、すべてがそうとは限らないが。)
 
-しかし、新しい仕様は、実際に実装して使ってみないと、その仕様が妥当か、実装が可能かなどわからないことが多いことも多々ある。
+一方で、新しいく提案される仕様は、実際に実装して使ってみないと、その仕様が妥当か、実装が可能か、安全か、本当に問題を解決するか、などわからないことが多いことも多々ある。
 このため、ブラウザは新しい仕様をドラフトなどの提案段階でも実装してシップすることで、開発者からのフィードバックを集めることも多い。
 
-ところが、固まっていない仕様の場合は、シップした後に変更が入る可能性が高い。
+もちろん、固まっていない仕様の場合は、後に変更が入る可能性が高い。
 そのため、新しい仕様の実験は、常に Breaking the Web と表裏一体の関係になりやすいという問題をはらむ。
+
+ソフトウェア開発には、実装とドックフーディング、そのフィードバックによる更新が常套手段だが、一度作られたコンテンツが更新されない可能性がある Web においては、それが非常に難しい。
+
+そこで、かつてブラウザや端末のメーカが取った手法が Vender Prefix だった。
 
 
 ## Vender Prefix
@@ -32,16 +36,43 @@ o
 webkit
 ```
 
-代表的な使い方はこんな感じになる。
-(HTML5 時代を生き抜いた方々には、おなじみの書き方だろう。)
+Vender Prefix はまさしくその機能が **実験中** であることを示すために用いられてきたため、これを付したベンダは、実験の結果をより積極的に反映できると期待したのだろう。
+そして、実験が終わればプレフィックスは取られ、標準プロパティに置きかわり役目を終える。はずだった。
+
+
+ところが、実際には多くのコンテンツが以下のようなコードを書く結果となった。
+(HTML5 時代に、こうしたコードを多く見た/書いたのでは無いだろうか?)
+
 
 ```css
 .radius {
-	-webkit-border-radius: 1em;
-	-ms-border-radius: 1em;
-	-o-border-radius: 1em;
-	-webkit-border-radius: 1em;
-	border-radius: 1em;
+  -webkit-border-radius: 1em;
+  -ms-border-radius: 1em;
+}
+```
+
+```js
+var peerConnection = window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
+```
+
+
+特に、仕様の策定、実験に時間のかかる 機能があった場合、仕様策定
+
+
+
+しかし、上記のようなコードに強く依存されたコンテンツが普及してしまうと、もはやちょっとした変更がすぐに Break the Web を招いてしまう。
+
+また、実装が安定して Vender Prefix が不要となっても、 Vender Prefix 付きのものだけで書かれた CSS/JS も多くあるため、実装から消すのも難しい実情がある。
+
+Vender Prefix は、「変更や消滅がありえる」ということを、使う側に強制することができなかったため、本来の目的を果たすためには少し弱い仕組みだったといえる。
+
+```css
+.radius {
+  -webkit-border-radius: 1em;
+  -ms-border-radius: 1em;
+  -o-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em;
 }
 ```
 
@@ -49,19 +80,10 @@ JS ならこうだ。
 
 ```js
 var peerConnection = window.RTCPeerConnection
-				  || window.mozRTCPeerConnection
-				  || window.webkitRTCPeerConnection
-				  || window.msRTCPeerConnection;
+                  || window.mozRTCPeerConnection
+                  || window.webkitRTCPeerConnection
+                  || window.msRTCPeerConnection;
 ```
-
-
-
-ところが、 Vender Prefix はまさしく実験中の機能が **実験中** であることを示すために用いられてきたため、実験の結果もっと大きく変更が必要となる可能性だってある。
-しかし、上記のようなコードに強く依存されたコンテンツが普及してしまうと、もはやちょっとした変更がすぐに Break the Web を招いてしまう。
-
-また、実装が安定して Vender Prefix が不要となっても、 Vender Prefix 付きのものだけで書かれた CSS/JS も多くあるため、実装から消すのも難しい実情がある。
-
-Vender Prefix は、「変更や消滅がありえる」ということを、使う側に強制することができなかったため、本来の目的を果たすためには少し弱い仕組みだったといえる。
 
 
 ## Origin Trials
@@ -118,22 +140,29 @@ https://github.com/jpchase/OriginTrials/blob/gh-pages/available-trials.md
 しばらくすると、メールでトークンが送られてくる。
 このトークンを、 HTML か HTTP Header の中に仕込むことで、ブラウザが Origin Trials へのオプトインを認識し、申請した機能が使えるようになる。
 
+
 #### HTML の場合
 
 ```
-<meta http-equiv="origin-trial" content="token">
+<meta
+  http-equiv="origin-trial"
+  data-feature="Foreign Fetch"
+  data-expires="2016-10-27"
+  content="AjWBjwNj3D6ajLeOwcUojZHss8sYj1mPvbhnmUQRcdrLzXKs13uUlR4pXvlOB7e9R5oMUNZbngniw6X2SLHlXgYAAABXeyJvcmlnaW4iOiAiaHR0cHM6Ly9sYWJzLmp4Y2suaW86NDQzIiwgImZlYXR1cmUiOiAiRm9yZWlnbkZldGNoIiwgImV4cGlyeSI6IDE0Nzc1OTMwMDB9">
 ```
+
 
 #### HTTP Header の場合
 
 ```
-Origin-Trial: **token as provided in the email**
+Origin-Trial: AjWBjwNj3D6ajLeOwcUojZHss8sYj1mPvbhnmUQRcdrLzXKs13uUlR4pXvlOB7e9R5oMUNZbngniw6X2SLHlXgYAAABXeyJvcmlnaW4iOiAiaHR0cHM6Ly9sYWJzLmp4Y2suaW86NDQzIiwgImZlYXR1cmUiOiAiRm9yZWlnbkZldGNoIiwgImV4cGlyeSI6IDE0Nzc1OTMwMDB9
 ```
+
 
 ### 動作検証
 
-実際に Foreign Fetch を使ってコンテンツを作成してみる。
 コンテンツの開発自体は、 localhost で行うが、この場合はブラウザのフラグを設定することで、自分だけ有効にして開発すればいいだろう。
+実際に Foreign Fetch を使って作成したコンテンツを以下に設置した。
 
 完成したコンテンツをドメインに配置するが、ここで Origin Trials Token を入れたものと入れなかったもの二つを用意してみた。
 
@@ -143,3 +172,8 @@ Origin-Trial: **token as provided in the email**
 
 Token が無い方では、動かないことがわかる。
 ただし、利用者本人のブラウザでフラグが有効にされている場合は、 Token の有無に関係なく動作することに留意したい。
+
+
+### Tools
+
+- [Origin Trials Chrome Extension](https://chrome.google.com/webstore/detail/origin-trials/abpmcigmbmlngkajkikaghaibaocdhkp/related)
