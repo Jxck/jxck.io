@@ -98,7 +98,7 @@ Vender Prefix は、 **「変更や消滅がありえる」ということを使
 
 そこで考えられた仕組みが Origin Trials だ。
 
-https://github.com/jpchase/OriginTrials/blob/gh-pages/developer-guide.md
+[https://github.com/jpchase/OriginTrials/blob/gh-pages/developer-guide.md](https://github.com/jpchase/OriginTrials/blob/gh-pages/developer-guide.md)
 
 Origin Trials は、その名の通り「特定のオリジンにだけ、実験中の機能を、期限付きで提供する」仕組みである。
 
@@ -165,19 +165,9 @@ Origin-Trial: AjWBjwNj3D6ajLeOwcUojZHss8sYj1mPvbhnmUQRcdrLzXKs13uUlR4pXvlOB7e9R5
 
 ### 動作検証
 
-コンテンツの開発自体は、 localhost で行うが、この場合はブラウザのフラグを設定することで、自分だけ有効にして開発すればいいだろう。
-実際に Foreign Fetch を使って作成したコンテンツを以下に設置した。
-
-完成したコンテンツをドメインに配置するが、ここで Origin Trials Token を入れたものと入れなかったもの二つを用意してみた。
-
-
-- [Token 有り]()
-- [Token 無し]()
-
-Token が無い方では、動かないことがわかる。
-ただし、利用者本人のブラウザでフラグが有効にされている場合は、 Token の有無に関係なく動作することに留意したい。
-
-
-### Tools
+Origin Trials が有効になっているかを知る Chrome Extension がある。
 
 - [Origin Trials Chrome Extension](https://chrome.google.com/webstore/detail/origin-trials/abpmcigmbmlngkajkikaghaibaocdhkp/related)
+
+
+次回は、この Origin-Trial token によって有効になった Foreign Fetch について、実際のデモを作成しながら解説する。
