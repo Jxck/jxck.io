@@ -1,6 +1,6 @@
 # [origin-trials][web] Web 標準化のフィードバックサイクルを円滑にする Origin Trials について
 
-## intro
+## Intro
 
 ブラウザに追加される新しい機能に対して、 Vender Prefix の代替となる Origin Trials の導入が徐々に始まっている。
 今回は、これまでの Vender Prefix の問題点と、代替として提案された Origin Trials のデザインや導入方法などについて記す。
@@ -71,8 +71,6 @@ var peerConnection = window.webkitRTCPeerConnection || window.mozRTCPeerConnecti
 }
 ```
 
-JS ならこうだ。
-
 ```js
 var peerConnection = window.RTCPeerConnection
                   || window.mozRTCPeerConnection
@@ -88,7 +86,7 @@ HTML5 時代には、特に実装が早い webkit/moz あたりを取り上げ�
 Vender Prefix は、 **「変更や消滅がありえる」ということを使う側に強制することができなかった** ため、本来の目的を果たすためには弱い仕組みだったといえる。
 
 
-![warning message for vender prefix at devtools](vender-prefix-warning.png "vender prefix warning")
+![warning message for vender prefix at devtools](vender-prefix-warning.png#570x194 "vender prefix warning")
 
 
 また、 Prefix が付いていたのが、ベンダの独自拡張であったとしても、それに依存するサイトは同様の理由で産まれた。
@@ -187,13 +185,13 @@ Origin Trials の対象となる機能は、執筆時点で以下のとおりで
 - いくつかの質問
 
 
-### Origin Trial Token
+## Origin Trial Token
 
 しばらくすると、メールでトークンが送られてくる。
 このトークンを、 HTML か HTTP Header の中に仕込むことで、ブラウザが Origin Trials へのオプトインを認識し、申請した機能が使えるようになる。
 
 
-#### HTML の場合
+### HTML の場合
 
 HTML ページがある場合は、 `<meta>` タグに埋め込むことで、ブラウザがそれを認識し、ページ上で機能が有効になる。
 
@@ -206,7 +204,7 @@ HTML ページがある場合は、 `<meta>` タグに埋め込むことで、�
 ```
 
 
-#### HTTP Header の場合
+### HTTP Header の場合
 
 HTTP ヘッダの `Origin-Trial` ヘッダに埋め込むこともできる。ページの無い API などの場合はこちらを使う。
 
@@ -215,11 +213,11 @@ Origin-Trial: AjWBjwNj3D6ajLeOwcUojZHss8sYj1mPvbhnmUQRcdrLzXKs13uUlR4pXvlOB7e9R5
 ```
 
 
-### Tool
+## Tool
 
 一応 Origin Trials が有効になっているかを知る Chrome Extension があるが、これは HTML の方しか見ていない模様。
 
-- [Origin Trials Chrome Extension](https://chrome.google.com/webstore/detail/origin-trials/abpmcigmbmlngkajkikaghaibaocdhkp/related)
+[Origin Trials Chrome Extension](https://chrome.google.com/webstore/detail/origin-trials/abpmcigmbmlngkajkikaghaibaocdhkp/related)
 
 
 ## Foreign Fetch
