@@ -88,6 +88,9 @@ HTML5 時代には、特に実装が早い webkit/moz あたりを取り上げ�
 Vender Prefix は、 **「変更や消滅がありえる」ということを使う側に強制することができなかった** ため、本来の目的を果たすためには弱い仕組みだったといえる。
 
 
+![warning message for vender prefix at devtools](vender-prefix-warning.png "vender prefix warning")
+
+
 また、 Prefix が付いていたのが、ベンダの独自拡張であったとしても、それに依存するサイトは同様の理由で産まれた。
 今年 Firefox が [Prefix のついた webkit 独自拡張を見るようになった](http://www.otsukare.info/2016/01/04/webkit-resolved-fixed) のも、 Vender Prefix の性質を象徴する現象と言えると思う。
 
