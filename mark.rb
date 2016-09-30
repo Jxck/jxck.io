@@ -859,7 +859,7 @@ if __FILE__ == $0
 
     # entries
     dir = "./blog.jxck.io/entries/**/*"
-    icon = "https://jxck.io/assets/img/jxck.png"
+    icon = "https://jxck.io/assets/img/logo.png"
     entries = Dir.glob(dir)
       .select { |path| path.match(/.*.md\z/) }
       .map { |path| Entry.new(path, icon) }
