@@ -77,6 +77,7 @@ end
 # tag ごとのビルダ
 class Markup
   attr_writer :url
+  attr_accessor :baseurl
   def initialize
     @indent = "  "
     @css = {
@@ -359,7 +360,8 @@ class Traverser
         # code が書かれてなかったらファイルから読む
         # ```js:main.js
         node.attr["class"], node.path = node.attr["class"].split(":")
-        value = File.read(node.path)
+        path = "./blog.jxck.io/#{@markup.baseurl}/#{node.path}"
+        value = File.read(path)
       end
 
       # インデントを無視するため、全部組み上がったら後で差し込む。
@@ -667,6 +669,7 @@ class Article
   def build(markup) # Markup/AMP
     # setting self url
     markup.url = url
+    markup.baseurl = baseurl
 
     # parse ast
     ast  = AST.new(no_tag)
