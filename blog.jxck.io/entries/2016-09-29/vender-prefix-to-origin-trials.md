@@ -158,7 +158,7 @@ Origin Trials の対象となる機能は、執筆時点で以下のとおりで
 
 - Persistent Storage (Experimenting until mid-October 2016)
 - Web Bluetooth (Experimenting until Late January 2017)
-- Web UDB (Experimenting until March 2017)
+- Web USB (Experimenting until March 2017)
 - Foreign Fetch (Experimenting until March 2017)
 
 それぞれ、トライアルのおおよその期間も記されている。
