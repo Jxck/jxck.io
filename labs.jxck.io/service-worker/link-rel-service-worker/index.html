@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="link rel service worker">
+<title>Link rel=Service Worker DEMO | labs.jxck.io</title>
+
+<h1>Link rel=serviceworker DEMO</h1>
+
+<style>
+
+</style>
+<p>this page has a button for fetching <strong>random value</strong> from <a href=./random>./random</a> API
+<p>API serves with <code>Link: rel=serviceworker</code> header and register service worker for offline support
+<p>so make this page offline via devtools, you can fetch random value from service worker fallback
+
+<p>random: <span id=random></span></p>
+<button id=button>fetch</button>
+<script>
+document.getElementById('button').addEventListener('click', () => {
+  fetch('./random')
+    .then((res) => res.text())
+    .then((text) => {
+      console.log(text);
+      document.getElementById('random').textContent = text;
+    })
+    .catch(console.log.bind(console));
+});
+</script>
