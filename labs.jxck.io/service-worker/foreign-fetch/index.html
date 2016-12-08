@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="link rel service worker">
+<meta http-equiv="origin-trial"
+      data-feature="Foreign Fetch"
+      data-expires="2017-01-16"
+      content="Ai32KiE0NsOIRPR/NxvUwEpcM4hYyo6RPRvkG8liNEIXP4DW6furrliZkqCqZh/ug83oAcdctA12PEh3ymNUZg0AAABneyJvcmlnaW4iOiAiaHR0cHM6Ly9qeGNrLmlvOjQ0MyIsICJpc1N1YmRvbWFpbiI6IHRydWUsICJmZWF0dXJlIjogIkZvcmVpZ25GZXRjaCIsICJleHBpcnkiOiAxNDg0NTgyMTg2fQ==">
+
+<title>Foreign Fetch DEMO | labs.jxck.io</title>
+
+<h1>Foreign Fetch DEMO</h1>
+
+<p>random: <span id=random></span></p>
+<button id=button>fetch</button>
+
+<script>
+document.getElementById('button').addEventListener('click', () => {
+  fetch('https://api.jxck.io/random/number')
+    .then((res) => res.text())
+    .then((text) => {
+      console.log(text);
+      document.getElementById('random').textContent = text;
+    })
+    .catch(console.error.bind(console));
+});
+</script>
