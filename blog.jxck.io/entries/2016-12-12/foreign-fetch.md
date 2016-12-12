@@ -13,7 +13,7 @@ Service Worker に Foreign Fetch という機能が提案されている。
 
 ここではこれを、 1st Party の Service Worker とする。
 
-またこのブログは、 3rd Party のサービスとして Google Analytics や Youtub などを利用している。
+またこのブログは、 3rd Party のサービスとして Google Analytics や Youtube などを利用している。
 
 もしサイト全体をオフライン対応するとなれば、 1st Party のコンテンツのみだけではなく、 3rd Party のコンテンツや API についても、オフライン対応が必要となるだろう。
 
@@ -34,7 +34,7 @@ Service Worker に Foreign Fetch という機能が提案されている。
 
 自分の管理下にある 1st Party でさえ、適切に Service Worker を作成し適用するのは簡単とは現状言い難い。
 
-ましてやそれぞれ特製の違う 3rd Party のサービスを、全て適切にオフライン対応し、それら全てを 1 つの Service Worker にマージして、適切にアップデートしながら提供することは、かなり難しいことだろうと筆者は感じている。
+ましてやそれぞれ特性の違う 3rd Party のサービスを、全て適切にオフライン対応し、それら全てを 1 つの Service Worker にマージして、適切にアップデートしながら提供することは、かなり難しいことだろうと筆者は感じている。
 
 
 ## 3rd Party Service Worker
