@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <!--
+    貴様、見ているな！！
+    このサイトの技術的なまとめはこちらをどうぞ。
+    https://labs.jxck.io/blog
+
+    by Jxck
+    -->
+    <link rel="canonical" href="https://blog.jxck.io/entries/2016-12-11/link-rel-service-worker.html">
+    <link rel="amphtml" href="https://blog.jxck.io//entries/2016-12-11/link-rel-service-worker.amp.html">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="alternate" type="application/atom+xml" title="blog.jxck.io" href="/feeds/atom.xml">
+    <link rel="author" href="//jxck.io/assets/humans.txt">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="preload" as="font" type="font/woff" href="//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201608028" crossorigin>
+    <script async src="//jxck.io/assets/js/ga.js"></script>
+    <script async src="//jxck.io/assets/js/highlight.min.js"></script>
+    <script async src="//jxck.io/assets/js/sw.js"></script>
+    <script async src="//jxck.io/assets/js/main.js"></script>
+
+    <meta name="author" content="Jxck">
+    <meta name="description" content="Service Worker を登録する方法は現状 3 つある。HTML meta タグでの追加ならば、 Service Worker を追加するためだけの JS であれば不要になる。HTTP ヘッダでの追加ならば、 HTML を持たない API にも Service Wo...">
+    <meta name="keywords" content="origin trials,service worker,offline">
+    <meta itemprop="image" content="https://jxck.io/assets/img/jxck.png">
+    <meta itemprop="name" content="blog.jxck.io">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jxck_">
+    <meta name="twitter:url" content="https://blog.jxck.io/entries/2016-12-11/link-rel-service-worker.html">
+    <meta name="twitter:title" content="Link rel=serviceworker ヘッダによる API やアセットの Offline 対応 | blog.jxck.io">
+    <meta name="twitter:description" content="Service Worker を登録する方法は現状 3 つある。HTML meta タグでの追加ならば、 Service Worker を追加するためだけの JS であれば不要になる。HTTP ヘッダでの追加ならば、 HTML を持たない API にも Service Wo...">
+    <meta name="twitter:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://blog.jxck.io/entries/2016-12-11/link-rel-service-worker.html">
+    <meta property="og:title" content="Link rel=serviceworker ヘッダによる API やアセットの Offline 対応 | blog.jxck.io">
+    <meta property="og:site_name" content="blog.jxck.io">
+    <meta property="og:description" content="Service Worker を登録する方法は現状 3 つある。HTML meta タグでの追加ならば、 Service Worker を追加するためだけの JS であれば不要になる。HTTP ヘッダでの追加ならば、 HTML を持たない API にも Service Wo...">
+    <meta property="og:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <link rel="icon" sizes="192x192" href="https://jxck.io/assets/img/jxck.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "Link rel=serviceworker ヘッダによる API やアセットの Offline 対応 | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2016-12-11T08:00:00+08:00",
+  "dateModified": "2016-12-12T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "Service Worker を登録する方法は現状 3 つある。HTML meta タグでの追加ならば、 Service Worker を追加するためだけの JS であれば不要になる。HTTP ヘッダでの追加ならば、 HTML を持たない API にも Service Wo..."
+}
+</script>
+
+    <title>Link rel=serviceworker ヘッダによる API やアセットの Offline 対応 | blog.jxck.io</title>
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/body.css">
+  </head>
+  <body>
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/header.css">
+    <header>
+      <ul>
+        <li><a href="//blog.jxck.io"><img class="logo" alt="blog" title="blog top" width="30" src=//jxck.io/assets/img/blog.svg></a>
+        <li><a href="/entries/2016-12-11/link-rel-service-worker.amp.html#development=1"><svg width="30" height="30"><use xlink:href="/assets/img/amp.svg#main"/></svg></a>
+        <li><a href="."><img alt="up" title="move to parent directory" width="30" src="//jxck.io/assets/img/up.svg"></a>
+        <li><a href="/feeds/atom.xml"><img alt="rss" title="rss feed" width="30" src="//jxck.io/assets/img/rss.svg"></a>
+        <li><a href="//jxck.io/humans.txt"><img alt="humans" title="huamns.txt" width="30" src="//jxck.io/assets/img/humans.svg"></a>
+        <li><a href="//jxck.io"><img class="logo" alt="jxck" title="jxck logo" width="30" src="//jxck.io/assets/img/jxck.png"></a>
+      </ul>
+    </header>
+
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/markdown.css">
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/main.css">
+    <main>
+      <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/info.css">
+      <ul class="info">
+        <li>created_at: <time class="created_at" datetime="2016-12-11">2016-12-11</time>
+        <li>updated_at: <time class="updated_at" datetime="2016-12-12">2016-12-12</time>
+        <li class="tags">tags: [<a>origin trials</a>,<a>service worker</a>,<a>offline</a>]
+      </ul>
+
+      <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/article.css">
+  <article>
+    <h1><a href=/entries/2016-12-11/link-rel-service-worker.html>Link rel=serviceworker ヘッダによる API やアセットの Offline 対応</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>Service Worker を登録する方法は現状 3 つある。<br>
+      HTML meta タグでの追加ならば、 Service Worker を追加するためだけの JS であれば不要になる。<br>
+      HTTP ヘッダでの追加ならば、 HTML を持たない API にも Service Worker を追加した対応が可能である。<br>
+      次の記事で foreign fetch について解説する予定であるため、その前提知識として本機能を分離し紹介する。
+    </section>
+    <section>
+      <h2 id="JS+での登録"><a href="#JS+での登録">JS での登録</a></h2>
+      <p>ページ上で実行されている JS (<code>main.js</code> とする) の中で Service Worker のコード(<code>sw.js</code> とする)を登録する場合は、以下のようになる。
+      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+      <pre class=js><code>// main.js
+navigator.serviceworker.register(&quot;/sw.js&quot;, { scope: &quot;/&quot; });</code></pre>
+      <p>Service Worker は、その処理(ここでいう <code>sw.js</code> の中身)をインラインで登録することはできず、必ず別のファイルに分けて Registration 処理の中で読み込む必要がある。
+      <p>これは、たとえそのページが <code>sw.js</code> の登録以外に JS を一切利用しないような場合でも、この 1 行のためだけにページ上で動く <code>main.js</code> を読み込ませる必要があることを意味する。
+      <p>もし他の JS があったとしても、そのファイルへの変更が難しい場合や、 Service Worker の登録ロジックを分離するためにファイルを分けたい場合などもある。
+    </section>
+    <section>
+      <h2 id="HTML+link+tag+での登録"><a href="#HTML+link+tag+での登録">HTML link tag での登録</a></h2>
+      <p><code>sw.js</code> を登録するだけであれば、 HTML のメタタグを用いて行うことができる。<br>
+      (<code>registrer()</code> の引数相当は、 HTML attributes で表現する)
+      <pre class=js><code>&lt;link rel=&quot;serviceworker&quot; href=&quot;sw.js&quot; scope=&quot;/&quot;&gt;</code></pre>
+      <p>これによって登録のためだけの <code>main.js</code> を読み込むオーバーヘッドがなくなる。<br>
+      もしくは、別の JS から登録の処理を分離できるため、ページ(URL)単位でのハンドリングで有利な場合もあるだろう。
+      <p>(なお、 <a href="https://blog.jxck.io/entries/2016-02-01/amp-html.html">AMP</a> では現在 <code>&lt;link&gt;</code> の <code>rel</code> には <code>serviceworker</code> が許容されていないため、この方法は使えない。<br>
+      代わりに <a href="`https://www.ampproject.org/docs/reference/components/amp-install-serviceworker`">amp-install-serviceworker</a> が提供されているが、 <code>&lt;link&gt;</code> がサポートされていればこれは不要と考えているので <a href="https://github.com/ampproject/amphtml/issues/6601">issue</a> を登録しておいた。)
+    </section>
+    <section>
+      <h2 id="HTTP+Link+Header+での登録"><a href="#HTTP+Link+Header+での登録">HTTP Link Header での登録</a></h2>
+      <p>同じことを HTTP のレスポンスだけで行うこともできる。<br>
+      (<code>registrer()</code> の引数相当は、 HTTP Header の attribute で表現する)
+      <pre><code>Link: &lt;sw.js&gt;; rel=&quot;serviceworker&quot;; scope=&quot;/&quot;</code></pre>
+      <p>このヘッダをレスポンスに付与すれば Service Worker を登録することができる。<br>
+      これによって、コンテンツを一切いじらずにサーバの設定だけで、 Service Worker の登録が可能になる。<br>
+      (ちなみに、この方法は AMP でも使える)
+      <p>それだけに留まらず、そもそも Service Worker の登録に Web ページが不要になることをも意味する。
+    </section>
+    <section>
+      <h2 id="DEMO"><a href="#DEMO">DEMO</a></h2>
+      <p>基本は次回の記事で解説する foreign-fetch と合わせた利用が主なユースケースになるため、 「Link ヘッダで Service Worker を登録する」という一点に絞ったデモを用意した。
+      <p>以下のリンクは、ボタンが 1 つあるページに遷移し、ボタンをクリックすると、同じオリジンの <code>./random</code> を fetch する。 <code>./random</code> はランダムな数字を返すと同時に Service Worker を Link ヘッダで提供する。<br>
+      この Service Worker を登録した後は、ページをオフラインにしても Service Worker にフォールバックして引き続き乱数を取得できることに注目したい。
+      <p><a href="https://labs.jxck.io/service-worker/link-rel-service-worker/">Link rel=serviceworker DEMO</a>
+      <p>ただし、ページそのものはオフライン対応してないため、リロードはできない点に注意。<br>
+      これは、 1 つのページの controller になれる Service Worker は同時に 1 つという制限があるためである。
+    </section>
+    <section>
+      <h2 id="そして+foreign+fetch+へ"><a href="#そして+foreign+fetch+へ">そして foreign fetch へ</a></h2>
+      <p>Link ヘッダや、タグを用いた Service Worker の登録が可能になったことについて解説した。<br>
+      しかし、ここでは、 <code>./index.html</code> も <code>./random</code> も同じドメインであったため、ページと <code>./random</code> の API を両方オフライン対応するためには、両方を 1 つの Service Worker で処理する。
+      <p>ところが、もし <code>./random</code> のような API が 3rd Party API つまり 別のオリジンだった場合はどうだろうか。<br>
+      そこで出て来るのが、次に解説する foreign fetch である。
+    </section>
+  </article>
+
+    </main>
+    <hr>
+
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/footer.css">
+    <footer>
+      <address class="copyright">Copyright &copy; 2016 <a href="/">Jxck</a>. All Rights Reserved.</address>
+    </footer>
+  </body>
+</html>

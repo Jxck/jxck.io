@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html amp>
+<head>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=https://blog.jxck.io/entries/2016-12-12/foreign-fetch.html>
+<meta name=viewport content="width=device-width,minimum-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+<link rel=author href=//jxck.io/assets/humans.txt>
+
+<meta name="author" content="Jxck">
+    <meta name="description" content="Service Worker に Foreign Fetch という機能が提案されている。この機能があるとクロスオリジンへの fetch をフックできる Service Worker を、その対象オリジンから提供できるようになる。一体どういう仕組みなのか、これによって何が可...">
+    <meta name="keywords" content="fetch,service worker,origin trials">
+    <meta itemprop="image" content="https://jxck.io/assets/img/jxck.png">
+    <meta itemprop="name" content="blog.jxck.io">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jxck_">
+    <meta name="twitter:url" content="https://blog.jxck.io/entries/2016-12-12/foreign-fetch.html">
+    <meta name="twitter:title" content="Foreign Fetch による Micro Service Workers | blog.jxck.io">
+    <meta name="twitter:description" content="Service Worker に Foreign Fetch という機能が提案されている。この機能があるとクロスオリジンへの fetch をフックできる Service Worker を、その対象オリジンから提供できるようになる。一体どういう仕組みなのか、これによって何が可...">
+    <meta name="twitter:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://blog.jxck.io/entries/2016-12-12/foreign-fetch.html">
+    <meta property="og:title" content="Foreign Fetch による Micro Service Workers | blog.jxck.io">
+    <meta property="og:site_name" content="blog.jxck.io">
+    <meta property="og:description" content="Service Worker に Foreign Fetch という機能が提案されている。この機能があるとクロスオリジンへの fetch をフックできる Service Worker を、その対象オリジンから提供できるようになる。一体どういう仕組みなのか、これによって何が可...">
+    <meta property="og:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <link rel="icon" sizes="192x192" href="https://jxck.io/assets/img/jxck.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "Foreign Fetch による Micro Service Workers | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2016-12-12T08:00:00+08:00",
+  "dateModified": "2016-12-12T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "Service Worker に Foreign Fetch という機能が提案されている。この機能があるとクロスオリジンへの fetch をフックできる Service Worker を、その対象オリジンから提供できるようになる。一体どういう仕組みなのか、これによって何が可..."
+}
+</script>
+
+<title>Foreign Fetch による Micro Service Workers | blog.jxck.io</title>
+<script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+<script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+<script async src=https://cdn.ampproject.org/v0.js></script>
+
+<style amp-custom>
+article img {
+  margin: 1em 0;
+  border: 1px solid #ccc;
+  box-sizing: content-box;
+}
+
+article ul, article ol {
+  font-family: monospace;
+  font-size: 1.2em;
+}
+
+article li {
+  margin-bottom: 0.6em;
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 400;
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=20160828") format("woff");
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 700;
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff?ver=20160828") format("woff");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+  color: #222;
+  background-color: #fefefe;
+}
+
+iframe {
+  display: block;
+  max-width: 100%;
+  margin: 1em 0;
+}
+
+.archive {
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.archive ul {
+  margin: 0;
+}
+
+.archive time {
+  padding-right: 0.5em;
+}
+
+.archive time::after {
+  content: ":";
+}
+
+.archive .tags {
+  font-size: 0.8em;
+  margin-left: 1em;
+}
+
+.tags a {
+  margin: 0 0.2em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+audio {
+  width: 70%;
+}
+
+@media screen and (max-device-width: 480px) {
+  audio {
+    width: 100%;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.info li {
+  margin-right: 1em;
+  list-style-type: none;
+}
+
+.info li::before {
+  content: none;
+}
+
+header {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.4em;
+  background-color: #222;
+}
+
+header ul {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 80%;
+  margin: 0 auto;
+  padding: 4px;
+}
+
+header ul li {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  margin-left: 1em;
+}
+
+header ul li a {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+header ul li svg {
+  fill: #fff;
+}
+
+header ul li::before {
+  content: none;
+}
+
+header ul li:first-child {
+  flex-grow: 1;
+  margin-left: 0;
+}
+
+header .logo {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  pointer-events: none;
+  color: #222;
+}
+
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: #222;
+}
+
+h1 > a:hover:before,
+h2 > a:hover:before,
+h3 > a:hover:before,
+h4 > a:hover:before,
+h5 > a:hover:before,
+h6 > a:hover:before {
+  color: Brown;
+}
+
+h1 > a::before {
+  content: "# ";
+  pointer-events: all;
+}
+
+h2 > a::before {
+  content: "## ";
+  pointer-events: all;
+}
+
+h3 > a::before {
+  content: "### ";
+  pointer-events: all;
+}
+
+h4 > a::before {
+  content: "#### ";
+  pointer-events: all;
+}
+
+i::before, i::after {
+  content: "*";
+}
+
+strong::before, strong::after {
+  content: "**";
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+dl dt::after {
+  content: ":";
+}
+
+blockquote::before {
+  content: "> ";
+}
+
+code::before, code::after {
+  /* うざかった */
+  /* content: "`"; */
+}
+
+main {
+  display: block;
+  width: 80%;
+  margin: 1em auto;
+}
+
+@media screen and (max-device-width: 480px) {
+  main {
+    width: 94%;
+  }
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+}
+
+a {
+  color: RoyalBlue;
+}
+
+a:visited {
+  color: Brown;
+}
+
+ol, ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+ul, ol, dl {
+  margin: 1.4em 0;
+}
+
+dl dt {
+  font-weight: bold;
+}
+
+dl dd {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+blockquote {
+  display: block;
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  padding: 1em;
+  margin: 1.4em 0;
+}
+
+code {
+  border: 1px solid #ddd;
+  background-color: #efefef;
+  border-radius: 4px;
+  padding: 0.1em;
+  margin: 1.4em 0;
+}
+
+footer {
+  padding: 1em;
+}
+
+pre {
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: 1.2em;
+  margin: 1.4em 0 0 0;
+  border-radius: 4px;
+}
+
+pre::before {
+  content: "```" attr(class) "\A";
+}
+
+pre::after {
+  position: relative;
+  top: -1em;
+  content:"\A```";
+}
+
+pre > code {
+  overflow: auto;
+  display: block;
+  padding: 0.6em;
+  margin: 0;
+  border: none;
+  background-color: #efefef;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs,
+.hljs-subst ,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-name ,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition ,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-type,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-section,
+.hljs-meta,
+.hljs-meta-string,
+.hljs-emphasis {
+}
+
+table {
+  font-family: monospace;
+  margin: 2em 0;
+  border-spacing: 0 0.4em;
+}
+
+th {
+  padding: 0em 1.0em 0.6em;
+  border-left: 0.14em solid #222;
+  border-bottom: 2px dashed #222;
+}
+
+td {
+  padding: 0.4em 1.2em;
+  border-left: 0.14em solid #222;
+}
+
+th:last-child, td:last-child {
+  border-right: 0.14em solid #222;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+</style>
+</head>
+<body>
+<header>
+  <ul>
+    <li><a href=//blog.jxck.io><amp-img class=logo alt="blog top" width=30 height=30 src=//jxck.io/assets/img/blog.svg></a>
+    <li><a href=.><amp-img alt="move to parent directory" width=30 height=30 src=//jxck.io/assets/img/up.svg></a>
+    <li><a href=/feeds/atom.xml><amp-img alt="rss feed" width=30 height=30 src=//jxck.io/assets/img/rss.svg></a>
+    <li><a href=//jxck.io/humans.txt><amp-img alt="huamns.txt" width=30 height=30 src=//jxck.io/assets/img/humans.svg></a>
+    <li><a href=//jxck.io><amp-img class=logo alt="jxck logo" width=30 height=30 src=//jxck.io/assets/img/jxck.svg></a>
+  </ul>
+</header>
+<main>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2016-12-12>2016-12-12</time>
+    <li>updated_at: <time class=updated_at datetime=2016-12-12>2016-12-12</time>
+    <li class=tags>tags: [<a>fetch</a>,<a>service worker</a>,<a>origin trials</a>]
+  </ul>
+
+
+  <article>
+    <h1><a href=/entries/2016-12-12/foreign-fetch.html>Foreign Fetch による Micro Service Workers</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>Service Worker に Foreign Fetch という機能が提案されている。<br>
+      この機能があるとクロスオリジンへの fetch をフックできる Service Worker を、その対象オリジンから提供できるようになる。<br>
+      一体どういう仕組みなのか、これによって何が可能になるのかについて、デモを交えて記す。
+    </section>
+    <section>
+      <h2 id="1st+Party+と+3rd+Party"><a href="#1st+Party+と+3rd+Party">1st Party と 3rd Party</a></h2>
+      <p>例えばこのブログであれば、筆者自身が Service Worker を登録することで、 Push などの機能を提供することができる。
+      <p>ここではこれを、 1st Party の Service Worker とする。
+      <p>またこのブログは、 3rd Party のサービスとして Google Analytics や Youtub などを利用している。
+      <p>もしサイト全体をオフライン対応するとなれば、 1st Party のコンテンツのみだけではなく、 3rd Party のコンテンツや API についても、オフライン対応が必要となるだろう。
+      <p>方法の 1 つとして、 1st Party の Service Worker の中で、全ての 3rd Party サービスも onfetch と cache を用いてオフライン対応をすることが可能だ。
+      <p>ところが、別オリジンから配布される JS/CSS のライブラリや、 Font/Image などのコンテンツ、地図やカレンダーなど、依存する 3rd Party サービスが増えてくれば、対応すべき対象は増えていくことになる。
+    </section>
+    <section>
+      <h2 id="1st+Party+Service+Worker+の限界"><a href="#1st+Party+Service+Worker+の限界">1st Party Service Worker の限界</a></h2>
+      <p>そして、 1st Party と 3rd Party のサービスは基本的には Cross Origin の関係になるだろう。
+      <p>この場合 3rd Party コンテンツへの fetch を 1st Party Service Worker でフックした場合、そのレスポンスは Opaque となり中身を見ることができない。 Cache API への単純な保存は可能だが、より細かい制御を必要とする場合、オリジンが異なることは大きな制限となる。
+      <p>もし 3rd Party のサービスが CORS に対応しているなら、 Same Origin の Response と同じく中身を見ることができるため、この問題はない。
+      <p>しかし、 1 つのページの controller になれる Service Worker は 1 つだけであるため、 1 つの Service Worker の中で依存する全ての 1st, 3rd Party へのリクエストを処理する必要がある。
+      <p>自分の管理下にある 1st Party でさえ、適切に Service Worker を作成し適用するのは簡単とは現状言い難い。
+      <p>ましてやそれぞれ特製の違う 3rd Party のサービスを、全て適切にオフライン対応し、それら全てを 1 つの Service Worker にマージして、適切にアップデートしながら提供することは、かなり難しいことだろうと筆者は感じている。
+    </section>
+    <section>
+      <h2 id="3rd+Party+Service+Worker"><a href="#3rd+Party+Service+Worker">3rd Party Service Worker</a></h2>
+      <p>3rd Party のサービスの特性は、そのサービスの提供者が一番よく把握している。
+      <p>つまり、 3rd Party のサービスをオフライン対応するのであれば、その Service Worker のロジックは同じく 3rd Party のプロバイダがサービスと合わせて提供する方が合理的だと言えるだろう。
+      <p>しかし、前述の通り 1 つのページに対しては、同時に 1 つの Service Worker しか controller になれない。
+      <p>そこで、ページに対しては 1st Party Service Worker を登録し、それとは別に 3rd Party Service Worker を 3rd Party サービスに対して登録可能にするというのが、 foreign-fetch である。
+    </section>
+    <section>
+      <h2 id="foreign-fetch+の仕組み"><a href="#foreign-fetch+の仕組み">foreign-fetch の仕組み</a></h2>
+      <p>さて、言葉での解説では想像しにくいと思うので、実際のデモを交えて解説をしていく。
+      <p>以下は <code>https://labs.jxck.io</code> をオリジンとする 1 つだけボタンを持つページに遷移する。これが 1st Party にあたる。
+      <p>ページ内のボタンは <code>https://api.jxck.io</code> という別オリジンの API を叩き、乱数を取得して表示するだけの簡単なものだ。<br>
+      これは 3rd Party にあたり、 CORS に対応している。
+      <p><a href="https://labs.jxck.io/service-worker/foreign-fetch/index.html">https://labs.jxck.io/service-worker/foreign-fetch/index.html</a>
+      <p>ページに読み込まれる <code>index.html</code> と <code>worker.js</code> は 1st Party Service Worker でキャッシュされており、オフライン対応されている。
+      <pre class=js><code>const CACHE = &quot;foreign-fetch&quot;;
+self.addEventListener(&#039;install&#039;, (e) =&gt; {
+  console.info(&#039;install&#039;, e);
+
+  e.waitUntil(
+    caches.open(CACHE).then((cache) =&gt; {
+      return cache.addAll([
+        &#039;.&#039;,
+        &#039;./index.html&#039;,
+        &#039;./worker.js&#039;
+      ])
+    })
+  );
+});
+
+self.addEventListener(&#039;activate&#039;, (e) =&gt; {
+  console.info(&#039;activate&#039;, e);
+
+  e.waitUntil(self.clients.claim());
+});
+
+self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
+  console.info(&#039;fetch&#039;, e.request);
+
+  e.respondWith(
+    caches.open(CACHE).then((cache) =&gt; {
+      return cache.match(e.request).then((cached) =&gt; {
+        console.log(&#039;cached&#039;, cached);
+        return cached || fetch(e.request);
+      }).catch(console.error.bind(console))
+    })
+  );
+});</code></pre>
+      <p>しかし、この 1st Party Service Worker は、 3rd Party API についてはキャッシュをしていない。乱数を返す API で、特定の 1 つをキャッシュしても意味がないからだ。
+      <p>キャッシュがないリクエストは実際に fetch を発行しているため、本来なら乱数の取得で失敗するはずだが、このページはオフラインでも乱数を取得し表示することができる。
+      <p>これは、 1st Party とは別に 3rd Party の Service Worker が登録されているためである。
+    </section>
+    <section>
+      <h2 id="3rd+Party+Service+Worker+の登録"><a href="#3rd+Party+Service+Worker+の登録">3rd Party Service Worker の登録</a></h2>
+      <p>乱数の API は <code>https://api.jxck.io/random/number</code> への GET である。
+      <p>実はこの API のレスポンスには、以下のようなヘッダが登録されている。
+      <pre><code>Link: &lt;/random/worker.js&gt;; rel=&quot;serviceworker&quot;
+Origin-Trial: Ai32KiE0NsOIRPR/NxvUwEpcM4hYyo6RPRvkG8liNEIX...</code></pre>
+      <p>この Link タグは、前回の記事で紹介した HTTP Header ベースの Service Worker 登録であり、以下のような Service Worker が登録されている。
+      <pre class=js><code>self.addEventListener(&#039;install&#039;, (e) =&gt; {
+  console.log(&#039;install&#039;);
+  e.registerForeignFetch({
+    scopes: [&#039;/random/number&#039;], // or self.registration.scope to handle everything
+    origins: [&#039;*&#039;] // or [&#039;https://client1.com&#039;] to limit the remote origins
+  });
+});
+
+self.addEventListener(&#039;activate&#039;, (e) =&gt; {
+  console.log(&#039;activate&#039;);
+});
+
+self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
+  console.log(&#039;fetch&#039;);
+});
+
+self.addEventListener(&#039;foreignfetch&#039;, (e) =&gt; {
+  console.log(&#039;foreignfetch&#039;);
+  e.respondWith(
+    fetch(e.request)
+      .then((response) =&gt; {
+        console.log(&#039;online response&#039;);
+        return {
+          response,
+          origin: e.origin // Make this a CORS response
+        };
+      })
+      .catch(() =&gt; {
+        console.log(&#039;offline response&#039;);
+        return {
+          response: new Response(Math.floor(Math.random()*100)),
+          origin: e.origin // Make this a CORS response
+        };
+      })
+  );
+});</code></pre>
+      <p>この <code>foreignfetch</code> イベントが今回の要である。<br>
+      <code>install</code> イベントで指定した origin (ここでは全オリジン) から、 scope の範囲にあるリクエストをハンドルできる。
+      <p>先ほどの 1st Party Service Worker がキャッシュしていなかった乱数のリクエストを、実際に fetch した時、二段目としてこの 3rd Party Service Worker に渡ってくる。 Origin と Scope が対象範囲であるこのリクエストは <code>foreginfetch</code> イベントを発火する。
+      <p>実際に fetch を発行し、失敗した Service Worker は、フォールバックとして乱数を JS で生成しそれを返す。
+      <p>これにより、 1st Party の Service Worker は fetch が成功したかのように挙動するのである。
+    </section>
+    <section>
+      <h2 id="foreign-fetch+によるサービス間連携"><a href="#foreign-fetch+によるサービス間連携">foreign-fetch によるサービス間連携</a></h2>
+      <p>この 3rd Party Service Worker は、ページに紐づいている訳ではなく、イメージとしては API に紐づいている。
+      <p>例えば、今回は <code>labs.jxck.io</code> から fetch していたが、別のオリジン/ページから同じ API を fetch しても、 Origin/Scope が範囲内であれば、同じ 3rd Party Service Worker が起動して処理を行う。
+      <p>つまり、 3rd Party Service Worker は異なる 1st Party Service Worker 間で共有されるのだ。
+      <p>これはかつて同じオリジンのキャッシュが別ページ間で使い回される CDN の利点のように、別のページで既に登録されている 3rd Party Service Worker はそのまま使いまわせることを意味し、例えば font のような大きいアセットファイルのキャッシュなども、ページ間で使いまわすことができるということを意味する。
+      <p>使い回せるのはキャッシュだけではない。
+      <p>例えばコメント投稿の API を通じて、あるページで投稿されたコメントデータを、瞬時に別のページで表示できるようなる。<br>
+      サービス連携のような使い方が可能になるのだ。
+    </section>
+    <section>
+      <h2 id="Micro+Serivce+Workers"><a href="#Micro+Serivce+Workers">Micro Serivce Workers</a></h2>
+      <p>1st Party Service Worker で全ての処理を行う必要があったモデルには、かなり無理があった。
+      <p>3rd Party が持つロジックを全て適切に 1st Party 内に実装するのは難しいし、そもそも 1st Party が必ずそれを行うことを前提とするのは非現実的だ。
+      <p>3rd Party が API に Service Worker を含めて提供し、それが 1st Party から見れば透過的に動作するのは非常に自然かつ妥当であると言える。
+      <p>それだけでなく、 3rd Party Service Worker が 1st Party とは別に同時に起動できるのは、これまでの Service Worker がページに対して必ず 1 つだけしか起動できなかった制限を大きく解消する。
+      <p>Service Worker をレイヤリングすることで、ロジックを分割し、凝集度を高めることができる。<br>
+      責務の分離を促すことは、 Service Worker の鬼門であるアップデートの負荷を下げることに繋がる。
+      <p>また、この 3rd Party API を使うことで、サービス間の連携が行えることは、さらに可能性を広げるだろう。
+      <p>Micro Services に分割されたそれぞれの API は、対応する Service Worker を合わせて提供することで、オフライン対応のみならず、 1st Party に委ねていた幅広いユースケースへの対応を、取り戻すことができる。
+    </section>
+    <section>
+      <h2 id="foreign-fetch"><a href="#foreign-fetch">foreign-fetch</a></h2>
+      <p>foreign-fetch は現状まだ Origin-Trials の対象であるが、 Trials を外れれば、今後各 API が Service Worker を提供するのが一般的になっていく可能性がある。
+      <p>また Microservices 化を進める 1 つの Origanization の中の複数の Service も、 foreign-fetch を用いたもろもろの連携が視野に入ってくると、 JSON API までにとどまりがちだった Service の定義がもう少し広がるかもしれない。
+      <p>デバッグなどが難しいという問題があるが、本ブログでも積極的に導入し知見を貯めていきたい。
+    </section>
+  </article>
+
+</main>
+<hr>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
+</footer>
+</body>
+</html>
+<amp-analytics type="googleanalytics" id="analytics1">
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>

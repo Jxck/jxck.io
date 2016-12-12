@@ -62,7 +62,7 @@ Service Worker に Foreign Fetch という機能が提案されている。
 
 ページに読み込まれる `index.html` と `worker.js` は 1st Party Service Worker でキャッシュされており、オフライン対応されている。
 
-``js:worker.js
+```js:worker.js
 ```
 
 しかし、この 1st Party Service Worker は、 3rd Party API についてはキャッシュをしていない。乱数を返す API で、特定の 1 つをキャッシュしても意味がないからだ。
