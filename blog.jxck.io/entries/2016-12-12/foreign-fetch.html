@@ -118,7 +118,7 @@
       <h2 id="1st+Party+と+3rd+Party"><a href="#1st+Party+と+3rd+Party">1st Party と 3rd Party</a></h2>
       <p>例えばこのブログであれば、筆者自身が Service Worker を登録することで、 Push などの機能を提供することができる。
       <p>ここではこれを、 1st Party の Service Worker とする。
-      <p>またこのブログは、 3rd Party のサービスとして Google Analytics や Youtub などを利用している。
+      <p>またこのブログは、 3rd Party のサービスとして Google Analytics や Youtube などを利用している。
       <p>もしサイト全体をオフライン対応するとなれば、 1st Party のコンテンツのみだけではなく、 3rd Party のコンテンツや API についても、オフライン対応が必要となるだろう。
       <p>方法の 1 つとして、 1st Party の Service Worker の中で、全ての 3rd Party サービスも onfetch と cache を用いてオフライン対応をすることが可能だ。
       <p>ところが、別オリジンから配布される JS/CSS のライブラリや、 Font/Image などのコンテンツ、地図やカレンダーなど、依存する 3rd Party サービスが増えてくれば、対応すべき対象は増えていくことになる。
@@ -130,7 +130,7 @@
       <p>もし 3rd Party のサービスが CORS に対応しているなら、 Same Origin の Response と同じく中身を見ることができるため、この問題はない。
       <p>しかし、 1 つのページの controller になれる Service Worker は 1 つだけであるため、 1 つの Service Worker の中で依存する全ての 1st, 3rd Party へのリクエストを処理する必要がある。
       <p>自分の管理下にある 1st Party でさえ、適切に Service Worker を作成し適用するのは簡単とは現状言い難い。
-      <p>ましてやそれぞれ特製の違う 3rd Party のサービスを、全て適切にオフライン対応し、それら全てを 1 つの Service Worker にマージして、適切にアップデートしながら提供することは、かなり難しいことだろうと筆者は感じている。
+      <p>ましてやそれぞれ特性の違う 3rd Party のサービスを、全て適切にオフライン対応し、それら全てを 1 つの Service Worker にマージして、適切にアップデートしながら提供することは、かなり難しいことだろうと筆者は感じている。
     </section>
     <section>
       <h2 id="3rd+Party+Service+Worker"><a href="#3rd+Party+Service+Worker">3rd Party Service Worker</a></h2>
