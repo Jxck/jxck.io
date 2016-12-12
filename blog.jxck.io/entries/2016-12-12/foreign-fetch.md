@@ -83,7 +83,7 @@ Link: </random/worker.js>; rel="serviceworker"
 Origin-Trial: Ai32KiE0NsOIRPR/NxvUwEpcM4hYyo6RPRvkG8liNEIX...
 ```
 
-この Link タグは、前回の記事で紹介した HTTP Header ベースの Service Worker 登録であり、以下のような Service Worker が登録されている。
+この Link タグは、 [前回の記事](/entries/2016-12-11/link-rel-service-worker.html) で紹介した HTTP Header ベースの Service Worker 登録であり、以下のような Service Worker が登録されている。
 
 
 ```js:random.js

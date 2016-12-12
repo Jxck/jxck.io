@@ -77,4 +77,4 @@ Link ヘッダや、タグを用いた Service Worker の登録が可能にな�
 しかし、ここでは、 `./index.html` も `./random` も同じドメインであったため、ページと `./random` の API を両方オフライン対応するためには、両方を 1 つの Service Worker で処理する。
 
 ところが、もし `./random` のような API が 3rd Party API つまり 別のオリジンだった場合はどうだろうか。
-そこで出て来るのが、次に解説する foreign fetch である。
+そこで出て来るのが、次に解説する [foreign fetch](/entries/2016-12-12/foreign-fetch.html) である。

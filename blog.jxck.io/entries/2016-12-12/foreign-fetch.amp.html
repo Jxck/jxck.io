@@ -623,7 +623,7 @@ self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
       <p>実はこの API のレスポンスには、以下のようなヘッダが登録されている。
       <pre><code>Link: &lt;/random/worker.js&gt;; rel=&quot;serviceworker&quot;
 Origin-Trial: Ai32KiE0NsOIRPR/NxvUwEpcM4hYyo6RPRvkG8liNEIX...</code></pre>
-      <p>この Link タグは、前回の記事で紹介した HTTP Header ベースの Service Worker 登録であり、以下のような Service Worker が登録されている。
+      <p>この Link タグは、 <a href="/entries/2016-12-11/link-rel-service-worker.html">前回の記事</a> で紹介した HTTP Header ベースの Service Worker 登録であり、以下のような Service Worker が登録されている。
       <pre class=js><code>self.addEventListener(&#039;install&#039;, (e) =&gt; {
   console.log(&#039;install&#039;);
   e.registerForeignFetch({
