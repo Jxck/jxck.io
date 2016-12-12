@@ -1,4 +1,4 @@
-# [fetch][service worker][offline] Link rel=serviceworker ヘッダによる API やアセットの Offline 対応
+# [origin trials][service worker][offline] Link rel=serviceworker ヘッダによる API やアセットの Offline 対応
 
 ## Intro
 
@@ -62,17 +62,19 @@ Link: <sw.js>; rel="serviceworker"; scope="/"
 
 基本は次回の記事で解説する foreign-fetch と合わせた利用が主なユースケースになるため、 「Link ヘッダで Service Worker を登録する」という一点に絞ったデモを用意した。
 
-以下のリンクは、ボタンが一つあるページに遷移し、ボタンをクリックすると、同じオリジンの `./random` を fetch する。 `./random` はランダムな数字を返すと同時に Service Worker を Link ヘッダで提供する。
+以下のリンクは、ボタンが 1 つあるページに遷移し、ボタンをクリックすると、同じオリジンの `./random` を fetch する。 `./random` はランダムな数字を返すと同時に Service Worker を Link ヘッダで提供する。
 この Service Worker を登録した後は、ページをオフラインにしても Service Worker にフォールバックして引き続き乱数を取得できることに注目したい。
 
 [Link rel=serviceworker DEMO](https://labs.jxck.io/service-worker/link-rel-service-worker/)
 
+ただし、ページそのものはオフライン対応してないため、リロードはできない点に注意。
+これは、 1 つのページの controller になれる Service Worker は同時に 1 つという制限があるためである。
 
 
 ## そして foreign fetch へ
 
 Link ヘッダや、タグを用いた Service Worker の登録が可能になったことについて解説した。
-しかし、ここでは、 `./index.html` も `./random` も同じドメインであったため、両方を一つの Service Worker で処理すれば済む話ではある。
+しかし、ここでは、 `./index.html` も `./random` も同じドメインであったため、ページと `./random` の API を両方オフライン対応するためには、両方を 1 つの Service Worker で処理する。
 
-しかし、もし `./random` のような API が Third Party API つまり 別のオリジンだった場合はどうだろうか。
+ところが、もし `./random` のような API が 3rd Party API つまり 別のオリジンだった場合はどうだろうか。
 そこで出て来るのが、次に解説する foreign fetch である。
