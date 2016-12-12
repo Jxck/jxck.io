@@ -1,0 +1,1 @@
+../../../labs.jxck.io/service-worker/foreign-fetch/worker.js

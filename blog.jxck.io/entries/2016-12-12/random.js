@@ -1,0 +1,1 @@
+../../../api.jxck.io/random/worker.js
