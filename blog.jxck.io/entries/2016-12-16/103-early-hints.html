@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <!--
+    貴様、見ているな！！
+    このサイトの技術的なまとめはこちらをどうぞ。
+    https://labs.jxck.io/blog
+
+    by Jxck
+    -->
+    <link rel="canonical" href="https://blog.jxck.io/entries/2016-12-16/103-early-hints.html">
+    <link rel="amphtml" href="https://blog.jxck.io//entries/2016-12-16/103-early-hints.amp.html">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="alternate" type="application/atom+xml" title="blog.jxck.io" href="/feeds/atom.xml">
+    <link rel="author" href="//jxck.io/assets/humans.txt">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="preload" as="font" type="font/woff" href="//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201608028" crossorigin>
+    <script async src="//jxck.io/assets/js/ga.js"></script>
+    <script async src="//jxck.io/assets/js/highlight.min.js"></script>
+    <script async src="//jxck.io/assets/js/sw.js"></script>
+    <script async src="//jxck.io/assets/js/main.js"></script>
+
+    <meta name="author" content="Jxck">
+    <meta name="description" content="これは、 http2 Advent Calendar 2016 の 16 日目の記事である。HTTP に新しいステータスコード `103 Early Hints` が追加されようとしている。HTTP/1.1 および HTTP2 双方と関わり、リソース配信の最適化に利用するこ...">
+    <meta name="keywords" content="early hints,prelaod,push,http2,http">
+    <meta itemprop="image" content="https://jxck.io/assets/img/jxck.png">
+    <meta itemprop="name" content="blog.jxck.io">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jxck_">
+    <meta name="twitter:url" content="https://blog.jxck.io/entries/2016-12-16/103-early-hints.html">
+    <meta name="twitter:title" content="HTTP の新しいステータスコード 103 Early Hints | blog.jxck.io">
+    <meta name="twitter:description" content="これは、 http2 Advent Calendar 2016 の 16 日目の記事である。HTTP に新しいステータスコード `103 Early Hints` が追加されようとしている。HTTP/1.1 および HTTP2 双方と関わり、リソース配信の最適化に利用するこ...">
+    <meta name="twitter:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://blog.jxck.io/entries/2016-12-16/103-early-hints.html">
+    <meta property="og:title" content="HTTP の新しいステータスコード 103 Early Hints | blog.jxck.io">
+    <meta property="og:site_name" content="blog.jxck.io">
+    <meta property="og:description" content="これは、 http2 Advent Calendar 2016 の 16 日目の記事である。HTTP に新しいステータスコード `103 Early Hints` が追加されようとしている。HTTP/1.1 および HTTP2 双方と関わり、リソース配信の最適化に利用するこ...">
+    <meta property="og:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <link rel="icon" sizes="192x192" href="https://jxck.io/assets/img/jxck.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "HTTP の新しいステータスコード 103 Early Hints | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2016-12-16T08:00:00+08:00",
+  "dateModified": "2016-12-16T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "これは、 http2 Advent Calendar 2016 の 16 日目の記事である。HTTP に新しいステータスコード `103 Early Hints` が追加されようとしている。HTTP/1.1 および HTTP2 双方と関わり、リソース配信の最適化に利用するこ..."
+}
+</script>
+
+    <title>HTTP の新しいステータスコード 103 Early Hints | blog.jxck.io</title>
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/body.css">
+  </head>
+  <body>
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/header.css">
+    <header>
+      <ul>
+        <li><a href="//blog.jxck.io"><img class="logo" alt="blog" title="blog top" width="30" src=//jxck.io/assets/img/blog.svg></a>
+        <li><a href="/entries/2016-12-16/103-early-hints.amp.html#development=1"><svg width="30" height="30"><use xlink:href="/assets/img/amp.svg#main"/></svg></a>
+        <li><a href="."><img alt="up" title="move to parent directory" width="30" src="//jxck.io/assets/img/up.svg"></a>
+        <li><a href="/feeds/atom.xml"><img alt="rss" title="rss feed" width="30" src="//jxck.io/assets/img/rss.svg"></a>
+        <li><a href="//jxck.io/humans.txt"><img alt="humans" title="huamns.txt" width="30" src="//jxck.io/assets/img/humans.svg"></a>
+        <li><a href="//jxck.io"><img class="logo" alt="jxck" title="jxck logo" width="30" src="//jxck.io/assets/img/jxck.png"></a>
+      </ul>
+    </header>
+
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/markdown.css">
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/main.css">
+    <main>
+      <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/info.css">
+      <ul class="info">
+        <li>created_at: <time class="created_at" datetime="2016-12-16">2016-12-16</time>
+        <li>updated_at: <time class="updated_at" datetime="2016-12-16">2016-12-16</time>
+        <li class="tags">tags: [<a>early hints</a>,<a>prelaod</a>,<a>push</a>,<a>http2</a>,<a>http</a>]
+      </ul>
+
+      <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/article.css">
+  <article>
+    <h1><a href=/entries/2016-12-16/103-early-hints.html>HTTP の新しいステータスコード 103 Early Hints</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>これは、 <a href="http://qiita.com/advent-calendar/2016/http2">http2 Advent Calendar 2016</a> の 16 日目の記事である。
+      <p>HTTP に新しいステータスコード <code>103 Early Hints</code> が追加されようとしている。<br>
+      HTTP/1.1 および HTTP2 双方と関わり、リソース配信の最適化に利用することができる。
+      <p>いったい何のために必要なのか、どういうメリットが考えられるかを解説する。
+    </section>
+    <section>
+      <h2 id="HTTP2+Push+の復習"><a href="#HTTP2+Push+の復習">HTTP2 Push の復習</a></h2>
+      <p>まず HTTP2 の Push について復習する。
+      <p>H2 Push は、簡単に言えば PUSH_PROMISE フレームを用いて、レスポンスよりも先に依存するリソースを返すための仕様である。<br>
+      例えば <code>/users</code> のレスポンスは <code>script.js</code> と <code>style.css</code> をサブリソースとして含んでいるとする。
+      <p>HTTP2 では SQL を発行して <code>Users</code> の一覧を取得している間に、先行して <code>script.js</code> と <code>style.js</code> を Push しておくことができる。<br>
+      Push されたリソースはブラウザのキャッシュに入り、 <code>/users</code> のレスポンスが終わり HTML がパースされたのち、二つのリソースへの追加リクエストが発行された際に、キャッシュがヒットしてリソースが揃う。
+      <p>これにより二つのポイントが最適化されていることになる。
+      <ul>
+        <li>DB アクセスの時間を有効に使える
+        <li>2 つのサブリソースへのリクエストが実質なくなり各 0.5 RTT 分づつ浮く
+      </ul>
+      <p>これが H2 Push の基本となる。
+    </section>
+    <section>
+      <h2 id="Reverse+Proxy"><a href="#Reverse+Proxy">Reverse Proxy</a></h2>
+      <p>通常、サービスを提供する場合は、ロジックを持つ Origin Server の手前には Reverse Proxy などが立っている場合が多いだろう。
+      <p>もし Origin が H2 を話し、 Reverse Proxy も H2 のままフォワードすれば、 H2 Push をそのままクライアントに届けることができる。
+      <p>しかし、構成によっては Reverse Proxy が H2 を H1.1 に解いてフォワードする場合がある。<br>
+      この場合、 H2 のフレームを使うことができないため、そのままでは Push を行うことができない。
+      <p>そこで、 HTTP の Link ヘッダなどを用いて、 Reverse Proxy にサブリソースの存在を伝え、それを H2 の Push に翻訳してもらってクライアントに Push というワークアラウントがある。
+      <p>さて、この場合は先ほどあげた二つのポイントと照らし合わせても、前者の DB アクセスの時間の有効利用を再現することはできない。
+      <p>理由は H1.1 時代のプロトコルフォーマットにある。
+    </section>
+    <section>
+      <h2 id="ステータスコードとヘッダ"><a href="#ステータスコードとヘッダ">ステータスコードとヘッダ</a></h2>
+      <p>テキストベースプロトコルである HTTP/1.1 のレスポンスはこうなっている。
+      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+      <pre><code>200 OK
+Content-Length: 100
+Content-Type: text/html
+Link: &lt;/style.css&gt;; rel=preload
+Link: &lt;/script.js&gt;; rel=preload
+
+{response body}</code></pre>
+      <p>このバイト列を順にソケットに書いていく限り、 Push のために送りたい Link ヘッダは、ステータスコードが決まってからでないと書き込むことができない。
+      <p>そしてこのステータスコードが 200 なのか 404 なのか 500 なのかは、 DB を叩いて見ないとわからないのだ。 DB を引いている間に Link ヘッダだけを送るということは、従来の H1.1 の範囲では実現できない。
+      <p>この制限のため、 H1.1 に翻訳する形で H2 を使う場合、 Push のポテンシャルを引き出すことができなかったのだ。
+    </section>
+    <section>
+      <h2 id="103+Early+Hints"><a href="#103+Early+Hints">103 Early Hints</a></h2>
+      <p>この問題に対応するために提案されたのが h2o の開発者である <a href="https://twitter.com/kazuho">@kazuho</a> さんが提案した、ステータスコード 103 だ。
+      <p><a href="https://tools.ietf.org/html/draft-kazuho-early-hints-status-code">An HTTP Status Code for Indicating Hints</a>
+      <p>103 は、ヘッダだけを送る目的で使われ、実際のレスポンスは後から来るというセマンティクスになっている。
+      <p>先の例の場合、 DB を引いてる最中に Link だけを 103 で送り、残りは後から送る。
+      <pre><code>103 Early Hints
+Link: &lt;/style.css&gt;; rel=preload
+Link: &lt;/script.js&gt;; rel=preload
+
+
+200 OK
+Content-Length: 100
+Content-Type: text/html
+
+{response body}</code></pre>
+      <p>Origin Server はリクエストを受信したのち、ステータスコードが決まる前に、サブリソースの存在を 103 でレスポンスする。<br>
+      Reverse Proxy はこの 103 消費し、 H2 Push に読み替えてクライアントに Push する。
+      <p>Origin Server は User を DB から引いて、レスポンスコードが決まってから body とともにレスポンスを返す。
+      <p>これにより、 H2 Push の二つのメリットが、両方享受できるようになるわけである。
+    </section>
+    <section>
+      <h2 id="静的アセット+Push+の移譲"><a href="#静的アセット+Push+の移譲">静的アセット Push の移譲</a></h2>
+      <p>もし Reverse Proxy が H2 を解かず、 Origin が直接 Push を行えるとしても、 Early Hints は役に立つ。
+      <p>通常、静的アセットファイルの送信は、 Origin ではなく Reverse Proxy がコンテンツサーバとなり、そこから配信されることが多いだろう。
+      <p>そこで Origin がサブリソースを Push したい場合、直接そのアセットを body に含めた Push Promise を送るのではなく、 H2 のフレームで Early Hints にパスだけを指定して送信する。<br>
+      それを Reverse Proxy が消費し、 H2 Push に読み替えて指定されたパスの静的アセットをクライアントに Push する用途が考えられる。
+      <p>これにより、従来の構成と同様に、 Origin が静的アセットファイルそのものを保持する必要がなくなるわけである。
+    </section>
+    <section>
+      <h2 id="H2+Push+以外の用途"><a href="#H2+Push+以外の用途">H2 Push 以外の用途</a></h2>
+      <p>HTTP の Link の用途は H2 Push だけではなく、 Resource Hints と呼ばれる仕様によって、次に利用するリソースの情報を提供する仕様がある。
+      <p>こうした情報は、投機的にクライアントに与えられ消費されるわけだが、これもステータスコードの決定を待つ必要が無い場合が多い。
+      <p>そこで、 Reverse Proxy の存在を前提とせずとも、直接クライアントに対して 103 を送り、消費させる構成も考えられるだろう。
+      <p>H2 の Push が可能なのは、そのサーバが扱えるコンテンツ = 1st Party リソースに限るが、 Resouce Hints にはこの制限が無い。そこで、別オリジンの CDN などを利用し、 3rd Party の静的アセットを配信する場合も、そのサブリソースの存在をいち早く伝える上で、 Early Hints は有用である。
+      <p>ただし、 103 に対応していないクライアントに送った場合、意図しない挙動があり得るため、時期尚早といえる。しばらくは、実装が担保できる Reverse Proxy を前提としてデプロイすることになるだろう。
+    </section>
+    <section>
+      <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
+      <p>マクロに捉えると、 103 Early Hints は、レスポンス無いの <strong>既知のメタ情報</strong> と <strong>未知のコンテンツ</strong> を分離し、非同期に送達できる仕組みであると見ることができる。
+      <p>H1.1 のセマンティクス上にありながら、そのペイロードフォーマットの制限を外すことにより、既存の資産を有効活用しながらも、 H1.1/H2 双方の新機能の恩恵を受ける上で、非常に重要な概念と言えるのではないだろうか。
+    </section>
+    <section>
+      <h2 id="Special+Thanks"><a href="#Special+Thanks">Special Thanks</a></h2>
+      <p>この記事を書くにあたり <a href="https://twitter.com/kazuho">@kazuho</a> さんにアドバイスをいただきました。ありがとうございます。
+    </section>
+  </article>
+
+    </main>
+    <hr>
+
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/footer.css">
+    <footer>
+      <address class="copyright">Copyright &copy; 2016 <a href="/">Jxck</a>. All Rights Reserved.</address>
+    </footer>
+  </body>
+</html>
