@@ -39,7 +39,7 @@ Service Worker は、その処理(ここでいう `sw.js` の中身)をインラ
 もしくは、別の JS から登録の処理を分離できるため、ページ(URL)単位でのハンドリングで有利な場合もあるだろう。
 
 (なお、 [AMP](https://blog.jxck.io/entries/2016-02-01/amp-html.html) では現在 `<link>` の `rel` には `serviceworker` が許容されていないため、この方法は使えない。
-代わりに [amp-install-serviceworker](`https://www.ampproject.org/docs/reference/components/amp-install-serviceworker`) が提供されているが、 `<link>` がサポートされていればこれは不要と考えているので [issue](https://github.com/ampproject/amphtml/issues/6601) を登録しておいた。)
+代わりに [amp-install-serviceworker](https://www.ampproject.org/docs/reference/components/amp-install-serviceworker) が提供されているが、 `<link>` がサポートされていればこれは不要と考えているので [issue](https://github.com/ampproject/amphtml/issues/6601) を登録しておいた。)
 
 
 ## HTTP Link Header での登録
