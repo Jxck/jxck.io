@@ -900,6 +900,14 @@ if __FILE__ == $0
     template = ERB.new(tags_template).result(binding).strip
     html = ERB.new(template).result(binding)
     File.write("./blog.jxck.io/tags/index.html", html)
+
+    tags.each {|tag, v|
+      tags = { tag => v }
+      tags_template = File.read(".template/tags.html.erb")
+      template = ERB.new(tags_template).result(binding).strip
+      html = ERB.new(template).result(binding)
+      File.write("./blog.jxck.io/tags/#{tag}.html", html)
+    }
   end
 
   def podcast(episode)

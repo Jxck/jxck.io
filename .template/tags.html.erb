@@ -17,7 +17,7 @@
     <script async src="//jxck.io/assets/js/main.js"></script>
     <script async src="//jxck.io/assets/js/ga.js"></script>
 
-    <title><%= tag %> | blog.jxck.io</title>
+    <title>#<%= tag %> | blog.jxck.io</title>
     <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/body.css">
 
     <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/header.css">
@@ -26,7 +26,7 @@
     <header>
       <ul>
         <li><a href="//blog.jxck.io"><img class="logo" alt="blog top" width="30" src="//jxck.io/assets/img/blog.svg"></a>
-        <li><a href="/#{path}/.."><img alt="move to parent directory" width="30" src="//jxck.io/assets/img/up.svg"></a>
+        <li><a href="."><img alt="move to parent directory" width="30" src="//jxck.io/assets/img/up.svg"></a>
         <li><a href="/feeds/atom.xml"><img alt="rss feed" width="30" src="//jxck.io/assets/img/rss.svg"></a>
         <li><a href="//jxck.io/humans.txt"><img alt="huamns.txt" width="30" src="//jxck.io/assets/img/humans.svg"></a>
         <li><a href="//jxck.io"><img class="logo" alt="jxck logo" width="30" src="//jxck.io/assets/img/jxck.svg"></a>
@@ -36,16 +36,14 @@
     <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/markdown.css">
     <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/main.css">
     <main class="archive">
-      <h1><a href="#<%= tag %>"><%= tag %></a></h1>
-      <dl>
-      <% Hash[tags.sort].each do |key, entries| %>
-        <dt><%= key %></dt>
+      <h1><%= tag %></h1>
+      <dl><% Hash[tags.sort].each do |tag, entries| %>
+        <dt><a href='/tags/<%= tag.gsub(' ', '%20') %>.html'><%= tag %></a></dt>
         <dd>
           <ul><% entries.each do |e| %>
-            <li><time datetime=<%= e.created_at %>><%= e.created_at %></time><a href=<%= e.relative %>><%= e.title %></a><span class=tags>[<%= e.tags.reverse.map{|tag| "<a>#{tag}</a>" }.join(",") %>]</span><% end %>
+            <li><time datetime=<%= e.created_at %>><%= e.created_at %></time><a href=<%= e.url %>><%= e.title %></a><span class=tags>[<%= e.tags.map{|tag| "<a href='/tags/#{tag.gsub(' ', '%20')}.html'>#{tag}</a>" }.join(",") %>]</span><% end %>
           </ul>
-        </dd>
-      <% end %>
+        </dd><% end %>
       </dl>
     </main>
 

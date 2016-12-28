@@ -40,7 +40,7 @@ by Jxck
   <ul class=info>
     <li>created_at: <time class=created_at datetime=<%= entry.created_at %>><%= entry.created_at %></time>
     <li>updated_at: <time class=updated_at datetime=<%= entry.updated_at %>><%= entry.updated_at %></time>
-    <li class=tags>tags: [<%= entry.tags.map{|tag| "<a>#{tag}</a>"}.join(",") %>]
+    <li class=tags>tags: [<%= entry.tags.map{|tag| "<a href='/tags/#{tag.gsub(' ', '%20')}.html'>#{tag}</a>" }.join(",") %>]
   </ul>
 
 <%= entry.article %>
