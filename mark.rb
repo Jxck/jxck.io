@@ -209,10 +209,10 @@ class Markup
   def text(node)
     node.value
   end
-  def br(node)
+  def br(_node)
     "<br>"
   end
-  def hr(node)
+  def hr(_node)
     "<hr>"
   end
   def entity(node)
@@ -227,7 +227,8 @@ class Markup
   end
 
   def imgsize(node)
-    width, height = "", ""
+    width = ""
+    height = ""
 
     size = node.attr["src"].split("#")[1]
     if size
@@ -265,7 +266,7 @@ class Markup
       STDERR.puts "unsupported html element #{node.value}"
       exit(1)
     end
-    attrs = node.attr.map{ |key, value|
+    attrs = node.attr.map {|key, value|
       if value == ""
         next key
       end
@@ -323,7 +324,6 @@ class Podcast < Markup
     end
   end
 end
-
 
 # markup をセットして生成したら
 # ast を渡すと traverse しながらビルドしてくれる
@@ -417,7 +417,6 @@ class Traverser
 
       # それを親タグで閉じる
       top = @stack.shift
-      top.type != node.type
       if top.type != node.type
         STDERR.puts "ERROR", __LINE__, top, node
         exit(1)
@@ -475,9 +474,9 @@ class AST
 
     alignment = table.options.alignment
 
-    table.children = table.children.map { |node|
-      node.children.map { |tr|
-        tr.children.map.with_index { |td, i|
+    table.children = table.children.map {|node|
+      node.children.map {|tr|
+        tr.children.map.with_index {|td, i|
           td.type = :th if node.type == :thead
           td.alignment = alignment[i]
         }
@@ -501,10 +500,9 @@ class AST
   end
 
   def sectioning(children, level)
-
     # 最初のセクションは <article> にする
     section = {
-      type: level === 1 ? :article : :section,
+      type: level == 1 ? :article : :section,
       options: {
         level: level,
       },
@@ -517,7 +515,7 @@ class AST
     loop do
       # 横並びになっている子要素を取り出す
       child = children.shift
-      break if child == nil
+      break if child.nil?
 
       # blank は消す
       next if child.type == :blank
@@ -672,7 +670,7 @@ class Article
     markup.baseurl = baseurl
 
     # parse ast
-    ast  = AST.new(no_tag)
+    ast = AST.new(no_tag)
 
     # traverse
     traverser = Traverser.new(markup)
@@ -684,8 +682,8 @@ class Article
     # indent を無視するため
     # ここで pre に code を戻す
     # ついでにエスケープ
-    traverser.codes.each.with_index{ |code, i|
-      article.sub!("// #{i + 1}"){ hsp(code) }
+    traverser.codes.each.with_index {|code, i|
+      article.sub!("// #{i + 1}") { hsp(code) }
     }
 
     @article = article
@@ -699,8 +697,8 @@ class Article
     path
   end
 
-  def <=>(target)
-    return path <=> target.path
+  def <=>(other)
+    return path <=> other.path
   end
 end
 
@@ -814,15 +812,15 @@ class Episode < Article
     Time.at(sec).utc.strftime("%X")
   end
 
-  def <=>(target)
-    if num == target.num
-      return sideshow? ? 1: -1
+  def <=>(other)
+    if num == other.num
+      return sideshow? ? 1 : -1
     end
-    return num <=> target.num
+    return num <=> other.num
   end
 end
 
-if __FILE__ == $0
+if __FILE__ == $PROGRAM_NAME
 
   def blog(entry)
     meta_template = File.read(".template/meta.html.erb") + File.read(".template/ld-json.html.erb")
@@ -842,14 +840,14 @@ if __FILE__ == $0
     ].map { |css| File.read(css) }.join("\n")
 
     # blog
-    markup = Markup.new()
+    markup = Markup.new
     entry.build(markup)
     meta = ERB.new(meta_template).result(entry.instance_eval { binding }).strip
     html = ERB.new(blog_template).result(binding).strip
     File.write(entry.htmlfile, html)
 
     # amp
-    amp = AMP.new()
+    amp = AMP.new
     entry.build(amp)
     meta = ERB.new(meta_template).result(entry.instance_eval { binding }).strip
     html = ERB.new(amp_template).result(binding).strip
@@ -864,10 +862,10 @@ if __FILE__ == $0
     dir = "./blog.jxck.io/entries/**/*"
     icon = "https://jxck.io/assets/img/jxck.png"
     entries = Dir.glob(dir)
-      .select { |path| path.match(/.*.md\z/) }
-      .map { |path| Entry.new(path, icon) }
-      .sort
-      .reverse
+                 .select { |path| path.match(/.*.md\z/) }
+                 .map { |path| Entry.new(path, icon) }
+                 .sort
+                 .reverse
 
     if feed
       puts "build blog feed & sitemap"
@@ -888,11 +886,11 @@ if __FILE__ == $0
 
     puts "build tags page"
     tags = entries.map {|entry|
-      entry.tags.reduce({}){|acc, tag|
+      entry.tags.reduce({}) {|acc, tag|
         acc.merge({tag => [entry]})
       }
-    }.reduce() {|acc, entry|
-      acc.merge(entry) {|key, old, new| new + old }
+    }.reduce {|acc, entry|
+      acc.merge(entry) { |_key, old, new| new + old }
     }
 
     tag = "TAGS"
@@ -916,7 +914,7 @@ if __FILE__ == $0
     podcast_template = File.read(".template/podcast.html.erb")
 
     # entry
-    markup = Podcast.new()
+    markup = Podcast.new
     episode.build(markup)
     meta = ERB.new(meta_template).result(episode.instance_eval { binding }).strip
     html = ERB.new(podcast_template).result(binding).strip
@@ -930,14 +928,14 @@ if __FILE__ == $0
 
     # episodes
     episodes = Dir.glob(dir)
-      .select {|path| path.match(/.*.md\z/) }
-      .map {|path| Episode.new(path) }
-      .sort
-      .reverse
-      .map.with_index {|ep, i|
-        ep.order = i
-        ep
-      }
+                  .select { |path| path.match(/.*.md\z/) }
+                  .map { |path| Episode.new(path) }
+                  .sort
+                  .reverse
+                  .map.with_index {|ep, i|
+                    ep.order = i
+                    ep
+                  }
 
     if feed
       puts "build podcast feed"
@@ -945,7 +943,7 @@ if __FILE__ == $0
       File.write("./feed.mozaic.fm/index.xml", xml)
     end
 
-    episodes.each.with_index { |e, i|
+    episodes.each.with_index {|e, i|
       e.prev = episodes[i+1] if i < episodes.size
       e.next = episodes[i-1] if i > 0
       podcast(e)
@@ -958,12 +956,12 @@ if __FILE__ == $0
 
   # $ mark.rb blog feed
   if ARGV.include? "blog"
-    blogfeed(ARGV.include? "feed")
+    blogfeed(ARGV.include?("feed"))
   end
 
   # $ mark.rb podcast feed
   if ARGV.include? "podcast"
-    podcastfeed(ARGV.include? "feed")
+    podcastfeed(ARGV.include?("feed"))
   end
 
   if ARGV.include? "full"
@@ -980,7 +978,7 @@ if __FILE__ == $0
 
   if ARGV.first == "-tp"
     e = Episode.new("./mozaic.fm/episodes/1/webcomponents.md")
-    #podcast(e)
+    # podcast(e)
     puts e.guests[0]
     puts e.guests[1]
   end
