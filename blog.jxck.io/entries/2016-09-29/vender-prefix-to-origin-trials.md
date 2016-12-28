@@ -1,4 +1,4 @@
-# [origin-trials][vender prefix][web] Web 標準化のフィードバックサイクルを円滑にする Origin Trials について
+# [origin trials][vender prefix][web] Web 標準化のフィードバックサイクルを円滑にする Origin Trials について
 
 ## Intro
 

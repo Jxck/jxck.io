@@ -1,4 +1,4 @@
-# [GDE][web] Google Developer Experts (GDE) になりました
+# [gde][web] Google Developer Experts (GDE) になりました
 
 ## Intro
 

@@ -1,4 +1,4 @@
-# [SwR][http][cache][performance] Stale-While-Revalidate ヘッダによるブラウザキャッシュの非同期更新
+# [swr][http][cache][performance] Stale-While-Revalidate ヘッダによるブラウザキャッシュの非同期更新
 
 ## Intro
 

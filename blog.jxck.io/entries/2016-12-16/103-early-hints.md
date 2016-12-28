@@ -1,4 +1,4 @@
-# [early hints][prelaod][push][http2][http] HTTP の新しいステータスコード 103 Early Hints
+# [early hints][preload][push][http2][http] HTTP の新しいステータスコード 103 Early Hints
 
 ## Intro
 
