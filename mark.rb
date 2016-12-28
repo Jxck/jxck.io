@@ -882,9 +882,24 @@ if __FILE__ == $0
       blog(e)
     }
 
-    puts "build archive.page"
+    puts "build archive page"
     archive = ERB.new(File.read(".template/archive.html.erb")).result(binding)
     File.write("./blog.jxck.io/index.html", archive)
+
+    puts "build tags page"
+    tags = entries.map {|entry|
+      entry.tags.reduce({}){|acc, tag|
+        acc.merge({tag => [entry]})
+      }
+    }.reduce() {|acc, entry|
+      acc.merge(entry) {|key, old, new| new + old }
+    }
+
+    tag = "TAGS"
+    tags_template = File.read(".template/tags.html.erb")
+    template = ERB.new(tags_template).result(binding).strip
+    html = ERB.new(template).result(binding)
+    File.write("./blog.jxck.io/tags/index.html", html)
   end
 
   def podcast(episode)
