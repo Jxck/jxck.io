@@ -1,35 +1,35 @@
 #!/usr/bin/env ruby
 
-require 'pp'
-require 'uri'
-require 'erb'
-require 'json'
-require 'time'
-require 'pathname'
-require 'kramdown'
+require "pp"
+require "uri"
+require "erb"
+require "json"
+require "time"
+require "pathname"
+require "kramdown"
 
 # html
 def to_html(md)
   Kramdown::Document
-    .new(md, {input: 'GFM'})
+    .new(md, {input: "GFM"})
     .to_html
 end
 
 # html special chars
 def hsp(str)
-  str.gsub(/&/, '&amp;')
-     .gsub(/</, '&lt;')
-     .gsub(/>/, '&gt;')
-     .gsub(/"/, '&quot;')
+  str.gsub(/&/, "&amp;")
+     .gsub(/</, "&lt;")
+     .gsub(/>/, "&gt;")
+     .gsub(/"/, "&quot;")
      .gsub(/'/, '&#039;')
 end
 
 # trim to 140 word for html meta description
 def short(str)
   limit = 140
-  str.gsub(/(\n|\r)/, '')
+  str.gsub(/(\n|\r)/, "")
      .strip[0...(limit-3)]
-     .concat('...')
+     .concat("...")
 end
 
 # remove markdown link
@@ -39,7 +39,7 @@ end
 
 # remove \n\r for online
 def oneline(str)
-  str.gsub(/(\n|\r)/, '')
+  str.gsub(/(\n|\r)/, "")
 end
 
 def j(o)
@@ -49,14 +49,14 @@ end
 # replace " " to "+"
 def escape(str)
   str
-    .tr('"', '')
-    .tr(' ', '+')
+    .tr('"', "")
+    .tr(" ", "+")
 end
 
 # dot access Hash
 class Hash
   def method_missing(method, *params)
-    if method[-1] == '='
+    if method[-1] == "="
       key = method[0..-2].to_sym
       self[key] = params[0]
     else
@@ -79,10 +79,10 @@ class Markup
   attr_writer :url
   attr_accessor :baseurl
   def initialize
-    @indent = '  '
+    @indent = "  "
     @css = {
-      PRE:   '/assets/css/pre.css',
-      TABLE: '/assets/css/table.css',
+      PRE:   "/assets/css/pre.css",
+      TABLE: "/assets/css/table.css",
     }
   end
   def wrap(value)
@@ -955,29 +955,29 @@ if __FILE__ == $PROGRAM_NAME
   end
 
   # $ mark.rb blog feed
-  if ARGV.include? 'blog'
-    blogfeed(ARGV.include?('feed'))
+  if ARGV.include? "blog"
+    blogfeed(ARGV.include?("feed"))
   end
 
   # $ mark.rb podcast feed
-  if ARGV.include? 'podcast'
-    podcastfeed(ARGV.include?('feed'))
+  if ARGV.include? "podcast"
+    podcastfeed(ARGV.include?("feed"))
   end
 
-  if ARGV.include? 'full'
+  if ARGV.include? "full"
     blogfeed(true)
     podcastfeed(true)
   end
 
-  if ARGV.first == '-t'
+  if ARGV.first == "-t"
     # test
-    icon = 'https://jxck.io/assets/img/jxck.png'
-    e = Entry.new('./blog.jxck.io/entries/2016-01-27/new-blog-start.md', icon)
+    icon = "https://jxck.io/assets/img/jxck.png"
+    e = Entry.new("./blog.jxck.io/entries/2016-01-27/new-blog-start.md", icon)
     blog(e)
   end
 
-  if ARGV.first == '-tp'
-    e = Episode.new('./mozaic.fm/episodes/1/webcomponents.md')
+  if ARGV.first == "-tp"
+    e = Episode.new("./mozaic.fm/episodes/1/webcomponents.md")
     # podcast(e)
     puts e.guests[0]
     puts e.guests[1]

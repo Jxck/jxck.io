@@ -5,12 +5,12 @@
 # http://opentype.jp/subsetfontmk.htm を使って生成し
 # http://opentype.jp/woffconv.htm で woff にする
 # バージョンをつけてデプロイする。
-current = Dir.glob('../../../blog.jxck.io/entries/**/*.md').select {|file|
-  file != '../../../blog.jxck.io/entries/2016-03-14/web-font-noto-sans.md'
+current = Dir.glob("../../../blog.jxck.io/entries/**/*.md").select {|file|
+  file != "../../../blog.jxck.io/entries/2016-03-14/web-font-noto-sans.md"
 }.map {|file|
   File.read(file).gsub(/(.)/, '\\1\n')
-}.join('').split('\n').sort.uniq
+}.join("").split('\n').sort.uniq
 
-all = File.read('./All.txt').split('\n')
+all = File.read("./All.txt").split('\n')
 
-puts(current - all - ['', ' ', '\t'])
+puts(current - all - ["", " ", '\t'])
