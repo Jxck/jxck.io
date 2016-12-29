@@ -1,27 +1,27 @@
 #!/usr/bin/env ruby
 
-require "pp"
-require "uri"
-require "erb"
-require "json"
-require "time"
-require "pathname"
-require "kramdown"
+require 'pp'
+require 'uri'
+require 'erb'
+require 'json'
+require 'time'
+require 'pathname'
+require 'kramdown'
 
 # html
 def to_html(md)
   Kramdown::Document
-    .new(md, {input: "GFM"})
+    .new(md, {input: 'GFM'})
     .to_html
 end
 
 # html special chars
 def hsp(str)
-  str.gsub(/&/, "&amp;")
-     .gsub(/</, "&lt;")
-     .gsub(/>/, "&gt;")
-     .gsub(/"/, "&quot;")
-     .gsub(/'/, "&#039;")
+  str.gsub(/&/, '&amp;')
+     .gsub(/</, '&lt;')
+     .gsub(/>/, '&gt;')
+     .gsub(/"/, '&quot;')
+     .gsub(/'/, '&#039;')
 end
 
 # trim to 140 word for html meta description
@@ -29,7 +29,7 @@ def short(str)
   limit = 140
   str.gsub(/(\n|\r)/, '')
      .strip[0...(limit-3)]
-     .concat("...")
+     .concat('...')
 end
 
 # remove markdown link
@@ -39,7 +39,7 @@ end
 
 # remove \n\r for online
 def oneline(str)
-  str.gsub(/(\n|\r)/, "")
+  str.gsub(/(\n|\r)/, '')
 end
 
 def j(o)
@@ -56,7 +56,7 @@ end
 # dot access Hash
 class Hash
   def method_missing(method, *params)
-    if method[-1] == "="
+    if method[-1] == '='
       key = method[0..-2].to_sym
       self[key] = params[0]
     else
@@ -79,10 +79,10 @@ class Markup
   attr_writer :url
   attr_accessor :baseurl
   def initialize
-    @indent = "  "
+    @indent = '  '
     @css = {
-      PRE:   "/assets/css/pre.css",
-      TABLE: "/assets/css/table.css",
+      PRE:   '/assets/css/pre.css',
+      TABLE: '/assets/css/table.css',
     }
   end
   def wrap(value)
@@ -96,7 +96,7 @@ class Markup
     node.value
   end
   def root(node)
-    wrap("#{node.value}")
+    wrap(node.value.to_s)
   end
   def article(node)
     "<article>#{wrap(node.value)}</article>"
@@ -126,7 +126,7 @@ class Markup
 
   def pre(node)
     lang = node.attr && node.attr["class"].sub("language-", "")
-    "<pre#{lang ? %( class=#{lang}) : ""}><code>#{node.value}</code></pre>\n"
+    "<pre#{lang ? %( class=#{lang}) : ''}><code>#{node.value}</code></pre>\n"
   end
   protected :pre
 
@@ -222,7 +222,7 @@ class Markup
     "..." if node.value == :hellip
   end
   def a(node)
-    %(<a href="#{node.attr["href"]}">#{node.value}</a>)
+    %(<a href="#{node.attr['href']}">#{node.value}</a>)
     # TODO: rel="noopener noreferrer"
   end
 
@@ -249,14 +249,14 @@ class Markup
 
     # SVG should specify width-height
     if File.extname(URI.parse(node.attr["src"]).path) == ".svg"
-      return %(<img src=#{node.attr["src"]} alt="#{node.attr["alt"]}" title="#{node.attr["title"]}" #{width} #{height}>)
+      return %(<img src=#{node.attr['src']} alt="#{node.attr['alt']}" title="#{node.attr['title']}" #{width} #{height}>)
     end
 
     # No width-height for normal img
     return <<-EOS
       <picture>
-    <source type=image/webp srcset=#{node.attr["src"].sub(/(.png|.gif|.jpg)/, ".webp")}>
-    <img src=#{node.attr["src"]} alt="#{node.attr["alt"]}" title="#{node.attr["title"]}">
+    <source type=image/webp srcset=#{node.attr['src'].sub(/(.png|.gif|.jpg)/, '.webp')}>
+    <img src=#{node.attr['src']} alt="#{node.attr['alt']}" title="#{node.attr['title']}">
     </picture>
     EOS
   end
@@ -279,7 +279,7 @@ end
 # AMP 用に拡張した Markup
 class AMP < Markup
   def a(node)
-    if node.attr["href"].match(/^chrome:\/\//)
+    if node.attr["href"].match(%r{^chrome:\/\/})
       # amp page ignores `chrome://` url
       return node.attr["href"]
     end
@@ -299,7 +299,7 @@ class AMP < Markup
       STDERR.puts("no width x height for img")
       exit(1)
     end
-    %(<amp-img layout=responsive src=#{node.attr["src"]} alt="#{node.attr["alt"]}" title="#{node.attr["title"]}" #{width} #{height}>)
+    %(<amp-img layout=responsive src=#{node.attr['src']} alt="#{node.attr['alt']}" title="#{node.attr['title']}" #{width} #{height}>)
   end
   def html_element(node)
     value = super(node)
@@ -413,7 +413,7 @@ class Traverser
       end
 
       # タグを全部連結する
-      vals = vals.map{ |val| val.val}.join.strip
+      vals = vals.map(&:val).join.strip
 
       # それを親タグで閉じる
       top = @stack.shift
@@ -554,7 +554,7 @@ class AST
           # そこまでの sections を一旦終わらせて
           # 親の child に追加する
           # そして、同じレベルの新しい <section> を開始
-          if section.children.length > 0
+          unless section.children.empty?
             sections.push(section)
             section = {
               type: :section,
@@ -625,7 +625,7 @@ class Article
 
   # "entries/2016-01-27"
   def baseurl
-    "#{dir.split("/")[2..4].join("/")}"
+    dir.split("/")[2..4].join("/").to_s
   end
 
   # "entries/2016-01-27/new-blog-start.html"
@@ -955,29 +955,29 @@ if __FILE__ == $PROGRAM_NAME
   end
 
   # $ mark.rb blog feed
-  if ARGV.include? "blog"
-    blogfeed(ARGV.include?("feed"))
+  if ARGV.include? 'blog'
+    blogfeed(ARGV.include?('feed'))
   end
 
   # $ mark.rb podcast feed
-  if ARGV.include? "podcast"
-    podcastfeed(ARGV.include?("feed"))
+  if ARGV.include? 'podcast'
+    podcastfeed(ARGV.include?('feed'))
   end
 
-  if ARGV.include? "full"
+  if ARGV.include? 'full'
     blogfeed(true)
     podcastfeed(true)
   end
 
-  if ARGV.first == "-t"
+  if ARGV.first == '-t'
     # test
-    icon = "https://jxck.io/assets/img/jxck.png"
-    e = Entry.new("./blog.jxck.io/entries/2016-01-27/new-blog-start.md", icon)
+    icon = 'https://jxck.io/assets/img/jxck.png'
+    e = Entry.new('./blog.jxck.io/entries/2016-01-27/new-blog-start.md', icon)
     blog(e)
   end
 
-  if ARGV.first == "-tp"
-    e = Episode.new("./mozaic.fm/episodes/1/webcomponents.md")
+  if ARGV.first == '-tp'
+    e = Episode.new('./mozaic.fm/episodes/1/webcomponents.md')
     # podcast(e)
     puts e.guests[0]
     puts e.guests[1]
