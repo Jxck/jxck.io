@@ -893,7 +893,7 @@ if __FILE__ == $PROGRAM_NAME
       acc.merge(entry) { |_key, old, new| new + old }
     }
 
-    tag = "TAGS"
+    tag = "Tags"
     tags_template = File.read(".template/tags.html.erb")
     template = ERB.new(tags_template).result(binding).strip
     html = ERB.new(template).result(binding)
