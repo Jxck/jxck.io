@@ -41,6 +41,15 @@ Web に関する新しい技術についてエントリを書いておきなが�
 
 出て頂いたみなさん、ありがとうございました。
 
+## 発表資料
+
+公開した主な発表資料
+
+- [Aggressive Web Site Optimization 2016Q1  #scripty5](https://speakerdeck.com/jxck/aggressive-web-site-optimization-2016q1)
+- [Service Worker registration/lifecycle  #frontendmt](https://speakerdeck.com/jxck/service-worker-registration-and-lifecycle)
+- [Stream b/w node.js & whatwg  #tng22](https://speakerdeck.com/jxck/stream-between-nodejs-and-whatwg)
+- [Web over HTTPS  #devfest16](https://speakerdeck.com/jxck/web-over-https)
+
 
 ## GDE
 
