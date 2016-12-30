@@ -23,11 +23,11 @@
     "textlint-rule-web-plus-db": "^1.1.5"
   },
   "scripts": {
-    "blog": "./mark.rb blog",
-    "podcast": "./mark.rb podcast",
-    "gzip": "./compress.rb www.jxck.io blog.jxck.io mozaic.fm",
+    "blog": "bundle exec ruby ./mark.rb blog",
+    "podcast": "bundle exec ruby ./mark.rb podcast",
+    "gzip": "bundle exec ruby ./compress.rb www.jxck.io blog.jxck.io mozaic.fm",
     "build": "npm run blog && npm run gzip && gulp",
-    "slide": "./compress.rb slide.jxck.io",
+    "slide": "bundle exec ruby ./compress.rb slide.jxck.io",
     "clean": "find ./**/* -name *.gz | xargs -L 4 -P 4 rm",
     "lint": "textlint -c ./.textlintrc ./blog.jxck.io/entries/**/*.md --fix && selects path from './**/*' where extname '==' '.md' | xargs -L 1 space.rb -ra",
     "_start": "sudo $DOTFILES/local/h2o/bin/h2o -m daemon -c h2o.conf",
