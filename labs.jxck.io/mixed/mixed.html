@@ -25,7 +25,7 @@ img, audio, video, iframe, object {
 
 <h1>Mixed Contents Demo</h1>
 
-<p><strong>see error message on console</strong>
+<p><strong>access https://~ and see error message on console</strong>
 
 <hr>
 <h2>Passive Contents</h2>
@@ -55,8 +55,20 @@ img, audio, video, iframe, object {
     <dt>object</dt>
     <dd><object data=http://labs.jxck.io/mixed/contents/demo.swf type=application/x-shockwave-flash width=300 height=150></object></dd>
 
+    <dt>stylesheet</dt>
+    <dd><link href=http://labs.jxck.io/mixed/contents/style.css rel=stylesheet></link></dd>
+
     <dt>script</dt>
     <dd><script src=http://labs.jxck.io/mixed/contents/script.js></script></dd>
+
+    <dt>style url()</dt>
+    <dd>
+      <style>
+        body {
+          background-image: url(http://labs.jxck.io/mixed/contents/1x1.png);
+        }
+      </style>
+    </dd>
 
     <dt>XHR</dt>
     <dd>
@@ -68,18 +80,6 @@ img, audio, video, iframe, object {
         });
         xhr.send();
       </script>
-    </dd>
-
-    <dt>stylesheet</dt>
-    <dd><link href=http://labs.jxck.io/mixed/contents/style.css rel=stylesheet></link></dd>
-
-    <dt>style url()</dt>
-    <dd>
-      <style>
-        body {
-          background-image: url(http://labs.jxck.io/mixed/contents/1x1.png);
-        }
-      </style>
     </dd>
   </dl>
 </div>
@@ -94,7 +94,7 @@ img, audio, video, iframe, object {
   <li>&lt;img src&gt;
   <li>&lt;audio src&gt;
   <li>&lt;video src&gt;
-  <li>&lt;object&gt;
+  <li>(&lt;object&gt; with requesting subresource with http)
 </ul>
 
 <pre id=passive-src></pre>
@@ -103,12 +103,12 @@ img, audio, video, iframe, object {
 <h3>Mixed Active Content</h3>
 
 <ul>
-  <li>&lt;script src&gt;
-  <li>&lt;link href&gt;
   <li>&lt;iframe src&gt;
   <li>&lt;object data&gt;
-  <li>XHR
+  <li>&lt;link href&gt;
+  <li>&lt;script src&gt;
   <li>url() in CSS (@font-face, background-image etc)
+  <li>XHR
 </ul>
 
 
