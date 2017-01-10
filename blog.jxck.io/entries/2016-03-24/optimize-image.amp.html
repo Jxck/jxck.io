@@ -560,7 +560,7 @@ th:last-child, td:last-child {
       <p>したがって、表示するサイズぴったりにリサイズすれば、データ量も最適となる。
       <p>また、見た目上の変化/劣化が生じなければ、減色や余計なメタ情報の削除などによって、サイズを削減できる場合がある。
       <p>(Retina など High DPI 端末に向けたサイズの対応は、 <a href="/entries/2016-03-25/picture.html">別エントリ</a> で記載する)
-      <p>画像を表示する際に <code>&lt;img&gt;</code> や CSS に <code>width</code>, <code>height</code> を指定しなければ、画像本来のサイズで表示される。
+      <p>画像を表示する際に <code translate="no">&lt;img&gt;</code> や CSS に <code translate="no">width</code>, <code translate="no">height</code> を指定しなければ、画像本来のサイズで表示される。
       <p>もしここで、本来のサイズと別のサイズを指定すれば、拡大か縮小が発生する。
       <p>したがって、意図した大きさで収まるようにリサイズをした上で、サイズを指定せず表示する。
     </section>
@@ -617,9 +617,9 @@ th:last-child, td:last-child {
     </section>
     <section>
       <h2 id="gulp-image"><a href="#gulp-image">gulp-image</a></h2>
-      <p>画像フォーマットや、最適化対象によって、様々なツールがあるが、それらを一つにまとめた <code>gulp-image</code> というツールがあるため、これを採用することにした。
+      <p>画像フォーマットや、最適化対象によって、様々なツールがあるが、それらを一つにまとめた <code translate="no">gulp-image</code> というツールがあるため、これを採用することにした。
       <p>リサイズは別途行い、その結果に対して以下のような gulp タスクを作成した。
-      <pre class=js><code>&#039;use strict&#039;;
+      <pre class=js><code translate="no">&#039;use strict&#039;;
 
 let gulp = require(&#039;gulp&#039;);
 let image = require(&#039;gulp-image&#039;);
@@ -647,7 +647,7 @@ gulp.task(&#039;default&#039;, [&#039;image&#039;]);</code></pre>
     <section>
       <h2 id="結果"><a href="#結果">結果</a></h2>
       <p>gulp-image の実行結果は以下である。
-      <pre><code>✔ 2016-02-17/before.png -&gt; before=57.88 KB after=22.07 KB reduced=35.82 KB(61.9%)
+      <pre><code translate="no">✔ 2016-02-17/before.png -&gt; before=57.88 KB after=22.07 KB reduced=35.82 KB(61.9%)
 ✔ 2016-02-17/after.png -&gt; before=67.92 KB after=25.22 KB reduced=42.7 KB(62.9%)
 ✔ 2016-02-11/net-internals-prerender.png -&gt; before=65.7 KB after=26.05 KB reduced=39.65 KB(60.4%)
 ✔ 2016-02-17/zopfli.png -&gt; before=77.52 KB after=49.29 KB reduced=28.23 KB(36.4%)

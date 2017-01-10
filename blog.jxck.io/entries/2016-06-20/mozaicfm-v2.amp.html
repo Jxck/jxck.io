@@ -592,22 +592,22 @@ th:last-child, td:last-child {
         <li><a href="https://help.apple.com/itc/podcasts_connect/#/itca5b22233a">https://help.apple.com/itc/podcasts_connect/#/itca5b22233a</a>
         <li><a href="https://help.apple.com/itc/podcasts_connect/#/itc2b3780e76">https://help.apple.com/itc/podcasts_connect/#/itc2b3780e76</a>
       </ul>
-      <p>基本的には RSS2.0 に加え <code>&lt;itunes:xxx&gt;</code> な名前空間のタグが拡張されている。
+      <p>基本的には RSS2.0 に加え <code translate="no">&lt;itunes:xxx&gt;</code> な名前空間のタグが拡張されている。
       <ul>
         <li>アートワークは 1400x1400 ~ 3000x3000 の間で 72dpi, JPEG/PNG (gzip 可)
         <li>音声形式は M4A, MP3, MOV, MP4, M4V, PDF, EPUB
-        <li><code>&lt;enclosure&gt;</code> でエピソードを囲む
-        <li><code>&lt;channel&gt;</code> <code>&lt;item&gt;</code> レベルの title, author, description が itunes search で使われる
-        <li><code>&lt;itunes:summary&gt;</code> 無ければ <code>&lt;description&gt;</code> に詳細、メディアフォーマット、スケジュールなど詳細を記す
-        <li><code>&lt;itunes:category&gt;</code> にサブカテゴリーを定義できる
-        <li><code>&lt;itunes:summary&gt;&lt;![CDATA[&lt;a href=&quot;http://www.apple.com&quot;&gt;Apple&lt;/a&gt;]]&gt;&lt;/itunes:summary&gt;</code> とコメント化し display issue を防ぐ
-        <li><code>&lt;item&gt;</code> を追加して行く、順番は <code>&lt;pubDate&gt;</code> で判断される。 24h 以内なら <code>&lt;itunes:order&gt;</code> で上書きもできる
+        <li><code translate="no">&lt;enclosure&gt;</code> でエピソードを囲む
+        <li><code translate="no">&lt;channel&gt;</code> <code translate="no">&lt;item&gt;</code> レベルの title, author, description が itunes search で使われる
+        <li><code translate="no">&lt;itunes:summary&gt;</code> 無ければ <code translate="no">&lt;description&gt;</code> に詳細、メディアフォーマット、スケジュールなど詳細を記す
+        <li><code translate="no">&lt;itunes:category&gt;</code> にサブカテゴリーを定義できる
+        <li><code translate="no">&lt;itunes:summary&gt;&lt;![CDATA[&lt;a href=&quot;http://www.apple.com&quot;&gt;Apple&lt;/a&gt;]]&gt;&lt;/itunes:summary&gt;</code> とコメント化し display issue を防ぐ
+        <li><code translate="no">&lt;item&gt;</code> を追加して行く、順番は <code translate="no">&lt;pubDate&gt;</code> で判断される。 24h 以内なら <code translate="no">&lt;itunes:order&gt;</code> で上書きもできる
       </ul>
       <p>音声の配信は、通常の HTTP サーバから行うことができる。<br>
       ただし、 Podcast は長い音声を再生するため、途中からの再生が可能なように HTTP の byte-range ヘッダをサポートする必要がある。
       <p>音声ファイルは HTTPS で配信することが可能だ。<br>
       しかし、 RSS 自体は HTTPS で配信すると iPhone の Podcast アプリでは読めないようであったため、 HTTP での提供も行っている。
-      <p>また RSS2.0 的には <code>&lt;enclosure&gt;</code> の url は http じゃないとだめらしい。
+      <p>また RSS2.0 的には <code translate="no">&lt;enclosure&gt;</code> の url は http じゃないとだめらしい。
     </section>
     <section>
       <h2 id="podcast+connect"><a href="#podcast+connect">podcast connect</a></h2>

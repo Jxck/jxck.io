@@ -111,7 +111,7 @@
     <section>
       <h2 id="Intro"><a href="#Intro">Intro</a></h2>
       <p>これは、 <a href="http://qiita.com/advent-calendar/2016/http2">http2 Advent Calendar 2016</a> の 16 日目の記事である。
-      <p>HTTP に新しいステータスコード <code>103 Early Hints</code> が追加されようとしている。<br>
+      <p>HTTP に新しいステータスコード <code translate="no">103 Early Hints</code> が追加されようとしている。<br>
       HTTP/1.1 および HTTP2 双方と関わり、リソース配信の最適化に利用することができる。
       <p>いったい何のために必要なのか、どういうメリットが考えられるかを解説する。
     </section>
@@ -119,9 +119,9 @@
       <h2 id="HTTP2+Push+の復習"><a href="#HTTP2+Push+の復習">HTTP2 Push の復習</a></h2>
       <p>まず HTTP2 の Push について復習する。
       <p>H2 Push は、簡単に言えば PUSH_PROMISE フレームを用いて、レスポンスよりも先に依存するリソースを返すための仕様である。<br>
-      例えば <code>/users</code> のレスポンスは <code>script.js</code> と <code>style.css</code> をサブリソースとして含んでいるとする。
-      <p>HTTP2 では SQL を発行して <code>Users</code> の一覧を取得している間に、先行して <code>script.js</code> と <code>style.js</code> を Push しておくことができる。<br>
-      Push されたリソースはブラウザのキャッシュに入り、 <code>/users</code> のレスポンスが終わり HTML がパースされたのち、二つのリソースへの追加リクエストが発行された際に、キャッシュがヒットしてリソースが揃う。
+      例えば <code translate="no">/users</code> のレスポンスは <code translate="no">script.js</code> と <code translate="no">style.css</code> をサブリソースとして含んでいるとする。
+      <p>HTTP2 では SQL を発行して <code translate="no">Users</code> の一覧を取得している間に、先行して <code translate="no">script.js</code> と <code translate="no">style.js</code> を Push しておくことができる。<br>
+      Push されたリソースはブラウザのキャッシュに入り、 <code translate="no">/users</code> のレスポンスが終わり HTML がパースされたのち、二つのリソースへの追加リクエストが発行された際に、キャッシュがヒットしてリソースが揃う。
       <p>これにより二つのポイントが最適化されていることになる。
       <ul>
         <li>DB アクセスの時間を有効に使える
@@ -143,7 +143,7 @@
       <h2 id="ステータスコードとヘッダ"><a href="#ステータスコードとヘッダ">ステータスコードとヘッダ</a></h2>
       <p>テキストベースプロトコルである HTTP/1.1 のレスポンスはこうなっている。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre><code>200 OK
+      <pre><code translate="no">200 OK
 Content-Length: 100
 Content-Type: text/html
 Link: &lt;/style.css&gt;; rel=preload
@@ -160,7 +160,7 @@ Link: &lt;/script.js&gt;; rel=preload
       <p><a href="https://tools.ietf.org/html/draft-kazuho-early-hints-status-code">An HTTP Status Code for Indicating Hints</a>
       <p>103 は、ヘッダだけを送る目的で使われ、実際のレスポンスは後から来るというセマンティクスになっている。
       <p>先の例の場合、 DB を引いてる最中に Link だけを 103 で送り、残りは後から送る。
-      <pre><code>103 Early Hints
+      <pre><code translate="no">103 Early Hints
 Link: &lt;/style.css&gt;; rel=preload
 Link: &lt;/script.js&gt;; rel=preload
 

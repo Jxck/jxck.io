@@ -602,7 +602,7 @@ th:last-child, td:last-child {
       <section>
         <h3 id="問題の詳細"><a href="#問題の詳細">問題の詳細</a></h3>
         <p>WebSocket のネゴシエーションは、 HTTP リクエスト形式のパケットで始まる。<br>
-        このリクエストが <code>Connection: Upgrade</code> というヘッダを持っていることで、以降を WebSocket で通信する合意をとるという仕組みだ。
+        このリクエストが <code translate="no">Connection: Upgrade</code> というヘッダを持っていることで、以降を WebSocket で通信する合意をとるという仕組みだ。
         <p>ただし、 Proxy や LoadBalancer や Firewall といったネットワーク経路上に挟まっている、俗にいうミドルボックス(intermedialies ともいう)の中には、こうしたヘッダの存在を許可しないものがある。
         <p>理由は様々だが、多くの場合はその後の通信をサポートしてない、未知のヘッダであるなどの理由から、ヘッダがあった時点でコネクションを切断したりする。
         <p>他にも、 Personal Firewall (要するにウィルス対策ソフト)の中に、こうしたヘッダを落とす製品があることも確認されていた。
@@ -612,8 +612,8 @@ th:last-child, td:last-child {
       <section>
         <h3 id="解決方法"><a href="#解決方法">解決方法</a></h3>
         <p>実はこの問題の解決は意外と簡単で、暗号化してしまえばいい。
-        <p>つまり <code>ws://</code> ではなく <code>wss://</code> にすることで、 TLS で暗号化する。 End-To-End 暗号化であれば、ミドルボックスはそもそも HTTP ヘッダが見えないため、それを元に落とすことができない。
-        <p>そうでなかったとしても、 HTTPS 化が推奨されている現状、新規で作るなら <code>wss://</code> にしない積極的な理由はほぼ無いだろう。サイトが http でも wss を使うことはできるため、導入の負荷はサイト全体の TLS 化と比べても低いと思われる。
+        <p>つまり <code translate="no">ws://</code> ではなく <code translate="no">wss://</code> にすることで、 TLS で暗号化する。 End-To-End 暗号化であれば、ミドルボックスはそもそも HTTP ヘッダが見えないため、それを元に落とすことができない。
+        <p>そうでなかったとしても、 HTTPS 化が推奨されている現状、新規で作るなら <code translate="no">wss://</code> にしない積極的な理由はほぼ無いだろう。サイトが http でも wss を使うことはできるため、導入の負荷はサイト全体の TLS 化と比べても低いと思われる。
       </section>
       <section>
         <h3 id="補足"><a href="#補足">補足</a></h3>
@@ -637,9 +637,9 @@ th:last-child, td:last-child {
         <p>この問題の特徴は、すぐに切れるわけでは無いというところである。
         <p>どのくらいで切れるかは、ウィルス対策ソフトが長い接続を「怪しい」と判断する閾値によるが、あまりにも短いとちょっと遅いサーバを HTTP で叩いてる間にも切れてしまう。
         <p>何十秒かに一回切れてしまうのが問題なだけなら、単純に再接続すれば解決する。
-        <p>WebSocket は PING 機能を持っているため、切断したら <code>onclose</code> イベントで判明するはずである。
+        <p>WebSocket は PING 機能を持っているため、切断したら <code translate="no">onclose</code> イベントで判明するはずである。
         <p>そこでもう一度コネクションを貼り直す方法が考えられる。
-        <pre class=js><code>ws.addEventListener(&#039;close&#039;, () =&gt; {
+        <pre class=js><code translate="no">ws.addEventListener(&#039;close&#039;, () =&gt; {
   if (意図しない切断) {
     return reconnect();
   }
@@ -651,7 +651,7 @@ th:last-child, td:last-child {
         <p>切断 - 再接続のループが、なんらかの原因により非常に速いサイクルで発生していしまう可能性もある。
         <p>おそらくこちらが想定していない理由での、短時間の切断が発生しており、これはどんなにリトライしても解決しないどころか、ブラウザの負荷が上がるだけである。
         <p>理想的には、リトライの回数や、発生時間を監視するなどの実装があったほうがよくなる。
-        <p>また、同等のことが <code>onerror</code> で必要になる場合は、両方に対応する。
+        <p>また、同等のことが <code translate="no">onerror</code> で必要になる場合は、両方に対応する。
       </section>
     </section>
     <section>
@@ -660,8 +660,8 @@ th:last-child, td:last-child {
       (Rails のことだから ActionCable 上にプラグインを当てて XHR Polling を入れる人もすぐ出るだろうが)
       <p>生の WebSocket を使う場合は、ここまでをまとめて以下を行うことを勧める。
       <ul>
-        <li>暗号化した <code>wss://</code> を使う
-        <li><code>onclose</code> での再接続を検討する
+        <li>暗号化した <code translate="no">wss://</code> を使う
+        <li><code translate="no">onclose</code> での再接続を検討する
         <li>自分のサービスのクライアントで、どの程度「繋がらない」人がいるか計測する
         <li>繋がらない理由が分かるように、上記を参考に監視を設定する
       </ul>

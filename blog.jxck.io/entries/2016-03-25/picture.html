@@ -110,7 +110,7 @@
     <h1><a href=/entries/2016-03-25/picture.html>画像最適化戦略 Picture 編</a></h1>
     <section>
       <h2 id="Intro"><a href="#Intro">Intro</a></h2>
-      <p>本サイトで使用している PNG/JPEG 画像を、対応デバイスと、 Device Pixel Ratio に対して最適なサイズで出し分けるために、 <code>&lt;picture&gt;</code> 要素を適用した。
+      <p>本サイトで使用している PNG/JPEG 画像を、対応デバイスと、 Device Pixel Ratio に対して最適なサイズで出し分けるために、 <code translate="no">&lt;picture&gt;</code> 要素を適用した。
       <p>画像最適化シリーズ第 2 回目のエントリである。
       <ul>
         <li><a href="/entries/2016-03-24/optimize-image.html">画像最適化戦略 PNG/JEPG 編</a>
@@ -138,7 +138,7 @@
         <p>PNG/JPEG などのラスタ形式画像において、サイズとは基本的に縦横に敷き詰められた正方形の数を指す。
         <p>100x100 個の正方形でなる画像は、 100x100 で表示すれば基本的には問題ない。
         <p>しかし、 200x200 で表示すれば、同じ正方形を縦横二つ並べて大きくしないといけないため、鮮明さが落ちる。
-        <p>ところがこれは、 CSS などで <code>width=100</code> <code>height=100</code> をきっちり指定すれば済むという問題ではない。
+        <p>ところがこれは、 CSS などで <code translate="no">width=100</code> <code translate="no">height=100</code> をきっちり指定すれば済むという問題ではない。
         <p>これは、 <strong>Device Pixel</strong> と <strong>CSS Pixel</strong> のサイズが必ずしも同じとは限らないからである。
       </section>
       <section>
@@ -148,10 +148,10 @@
         <p>もし Device Pixel Size が通常の半分の Retina ディスプレイで 100x100 の画像を素直に表示すると、同じスクリーンサイズの非 Retina で表示した時の 50x50 の見た目、つまり小さくなってしまう。
         <p>よって、 Retina 端末は、実際に自分が持っている <strong>Device Pixel</strong> と、 CSS で指定する <strong>CSS Pixel</strong> を分けることにした。
         <p>つまり、 CSS で 100x100 (CSS Pixel)で表示するように指定された画像は、勝手に 200x200 (Device Pixel)に拡大して表示することで、製作者が想定する <strong>描画サイズ(見た目の大きさ)</strong> になるようにしている。
-        <p><code>x2</code> と表される解像度は、 Device Pixel Size が CSS Pixel Size の二倍であることを意味する。
+        <p><code translate="no">x2</code> と表される解像度は、 Device Pixel Size が CSS Pixel Size の二倍であることを意味する。
         <p>ところが、見た目の大きさのために拡大しているので、画像は当然荒くなる。
         <p>そのため、 Retina 対応するためには、あらかじめ 200x200 で作った画像も用意し、出し分ける必要がある。
-        <p>今では <code>x3</code> の端末もあるため、 300x300 の画像も必要になる。将来的にこれが増えていく可能性もゼロではないだろう。
+        <p>今では <code translate="no">x3</code> の端末もあるため、 300x300 の画像も必要になる。将来的にこれが増えていく可能性もゼロではないだろう。
         <p>逆に、大きいサイズの画像を小さく表示する分には、見た目上の問題は通常無い。
         <p>したがって、 300x300 を用意しておき、相手がだれであろうとそれを送って、 200x200 なり 100x100 なり都合の良いサイズで表示してもらえば、 <strong>見た目の問題</strong> は解決する。
         <p>しかし、 100x100 のデータが必要な端末に 300x300 の画像を送るのは単純に無駄だ。単純計算で、本来必要なデータの 9 倍近いデータを送ることになる。
@@ -159,16 +159,16 @@
       </section>
     </section>
     <section>
-      <h2 id="<code>&lt;picture&gt;</code>+による対応"><a href="#<code>&lt;picture&gt;</code>+による対応"><code>&lt;picture&gt;</code> による対応</a></h2>
+      <h2 id="<code+translate=no>&lt;picture&gt;</code>+による対応"><a href="#<code+translate=no>&lt;picture&gt;</code>+による対応"><code translate="no">&lt;picture&gt;</code> による対応</a></h2>
       <p>今回は、デバイスのサイズや解像度などに応じて、適切なサイズの画像を出し分けられるようにする設定を考える。
-      <p>そこで <code>&lt;picture&gt;</code> の <code>&lt;srcset&gt;</code> と <code>sizes</code> で DPR が大きい端末のための、大きいサイズの画像を指定することにした。
+      <p>そこで <code translate="no">&lt;picture&gt;</code> の <code translate="no">&lt;srcset&gt;</code> と <code translate="no">sizes</code> で DPR が大きい端末のための、大きいサイズの画像を指定することにした。
       <p>基本的に Width-Height は変更しない前提であれば、 DPI が x2, x3... と増える場合にサイズが x2, x3... となる画像を提供することになる。
       <p>この指定方法はいくつか考えられる。
       <section>
         <h3 id="Media+Query+の指定"><a href="#Media+Query+の指定">Media Query の指定</a></h3>
         <p>Media Query を用いて DPR 値で分岐した場合以下のように指定できる。
         <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-        <pre class=html><code>&lt;picture&gt;
+        <pre class=html><code translate="no">&lt;picture&gt;
   &lt;source type=image/png srcset=300x300.png media=&quot;min-device-pixel-ratio: 2.5&quot;&gt;
   &lt;source type=image/png srcset=200x200.png media=&quot;min-device-pixel-ratio: 1.5&quot;&gt;
   &lt;source type=image/png srcset=100x100.png&gt;
@@ -179,7 +179,7 @@
       <section>
         <h3 id="sizes+の指定"><a href="#sizes+の指定">sizes の指定</a></h3>
         <p>sizes を用いて、画像のサイズを明示した場合以下のように指定できる。
-        <pre class=html><code>&lt;picture&gt;
+        <pre class=html><code translate="no">&lt;picture&gt;
   &lt;source type=image/png sizes=100px
           srcset=&quot;100x100.png 100w,
                   200x200.png 200w,
@@ -198,7 +198,7 @@
         <p>Media Query を用いた指定は、コンテンツ側が「この場合はこれ」とブラウザに指定していることになる。<br>
         ブラウザはそのクエリを評価し、その結果に忠実に画像を選択することになる。
         <p>sizes の指定は、コンテンツ側が「こういう選択肢がある」と提示し、ブラウザがそこから選択することになる。
-        <p>srcset で画像の実際のサイズを <code>w</code> で指定し、それを表示したいサイズを <code>sizes</code> で指定している。
+        <p>srcset で画像の実際のサイズを <code translate="no">w</code> で指定し、それを表示したいサイズを <code translate="no">sizes</code> で指定している。
         <p>ブラウザは
         <blockquote>DPI x2 のディスプレイなので 100px で表示するのに最適なのは 200w の画像だ</blockquote>
         <p>といった具合に画像を選択する。

@@ -548,10 +548,10 @@ th:last-child, td:last-child {
     </section>
     <section>
       <h2 id="Meta+Tag"><a href="#Meta+Tag">Meta Tag</a></h2>
-      <p>まず HTML の仕様に従い、基本的なメタ情報を <code>&lt;meta&gt;</code> により定義した。
+      <p>まず HTML の仕様に従い、基本的なメタ情報を <code translate="no">&lt;meta&gt;</code> により定義した。
       <p><a href="https://dev.w3.org/html5/spec-preview/the-meta-element.html">https://dev.w3.org/html5/spec-preview/the-meta-element.html</a>
       <p>各要素は、テンプレート生成時に利用した値を埋め込んでいるため、 <a href="https://blog.jxck.io/entries/2016-02-09/atom-feed.html">本サイトの Atom RSS-feed</a> などと同じ値である。
-      <pre class=html><code>&lt;meta name=author content=Jxck&gt;
+      <pre class=html><code translate="no">&lt;meta name=author content=Jxck&gt;
 &lt;meta name=description content=${this.description}&gt;
 &lt;meta name=keywords content=&quot;${this.tags}&quot;&gt;
 
@@ -571,8 +571,8 @@ th:last-child, td:last-child {
       </ul>
       <section>
         <h3 id="JSON-LD"><a href="#JSON-LD">JSON-LD</a></h3>
-        <p>結果、以下のような <code>&lt;script&gt;</code> を埋め込んでいる。
-        <pre class=html><code>&lt;script type=&quot;application/ld+json&quot;&gt;
+        <p>結果、以下のような <code translate="no">&lt;script&gt;</code> を埋め込んでいる。
+        <pre class=html><code translate="no">&lt;script type=&quot;application/ld+json&quot;&gt;
 {
   &quot;@context&quot;: &quot;http://schema.org&quot;,
   &quot;@type&quot;: &quot;BlogPosting&quot;,
@@ -609,8 +609,8 @@ th:last-child, td:last-child {
 &lt;/script&gt;</code></pre>
         <p>フォーマットは Google の検証ツールを用いてチェックしながら作成した。
         <p><a href="https://developers.google.com/structured-data/testing-tool/">Structured Data Testing Tool</a>
-        <p>悩んだ点として、 Google の Validator では <code>publisher</code> が必須なのだが、 <code>publisher</code> の <code>@type</code> は <code>Person</code> だと怒られる。
-        <p>実際には、本サイトは個人運営なのだが、しかたなく <code>Organization</code> を選択した。問題があったり、回避方法が見つかったら修正する。
+        <p>悩んだ点として、 Google の Validator では <code translate="no">publisher</code> が必須なのだが、 <code translate="no">publisher</code> の <code translate="no">@type</code> は <code translate="no">Person</code> だと怒られる。
+        <p>実際には、本サイトは個人運営なのだが、しかたなく <code translate="no">Organization</code> を選択した。問題があったり、回避方法が見つかったら修正する。
       </section>
       <section>
         <h3 id="JSON-LD+と+LD-JSON"><a href="#JSON-LD+と+LD-JSON">JSON-LD と LD-JSON</a></h3>
@@ -630,7 +630,7 @@ th:last-child, td:last-child {
           <li><a href="https://dev.twitter.com/ja/cards/types/summary">twitter cards</a>
           <li><a href="https://cards-dev.twitter.com/validator">Card validator</a>
         </ul>
-        <pre class=html><code>&lt;meta name=twitter:card        content=summary&gt;
+        <pre class=html><code translate="no">&lt;meta name=twitter:card        content=summary&gt;
 &lt;meta name=twitter:site        content=@jxck_&gt;
 &lt;meta name=twitter:url         content=${this.canonical}&gt;
 &lt;meta name=twitter:title       content=&quot;${this.title} | blog.jxck.io&quot;&gt;
@@ -643,7 +643,7 @@ th:last-child, td:last-child {
           <li><a href="https://developers.facebook.com/docs/sharing/webmasters">facebook open graph</a>
           <li><a href="https://developers.facebook.com/tools/debug/">fecebook URL Debugger</a>
         </ul>
-        <pre class=html><code>&lt;meta property=og:type        content=&quot;article&quot;&gt;
+        <pre class=html><code translate="no">&lt;meta property=og:type        content=&quot;article&quot;&gt;
 &lt;meta property=og:url         content=${this.canonical}&gt;
 &lt;meta property=og:title       content=&quot;${this.title} | blog.jxck.io&quot;&gt;
 &lt;meta property=og:site_name   content=blog.jxck.io&gt;

@@ -550,28 +550,28 @@ th:last-child, td:last-child {
     </section>
     <section>
       <h2 id="JS+での登録"><a href="#JS+での登録">JS での登録</a></h2>
-      <p>ページ上で実行されている JS (<code>main.js</code> とする) の中で Service Worker のコード(<code>sw.js</code> とする)を登録する場合は、以下のようになる。
-      <pre class=js><code>// main.js
+      <p>ページ上で実行されている JS (<code translate="no">main.js</code> とする) の中で Service Worker のコード(<code translate="no">sw.js</code> とする)を登録する場合は、以下のようになる。
+      <pre class=js><code translate="no">// main.js
 navigator.serviceworker.register(&quot;/sw.js&quot;, { scope: &quot;/&quot; });</code></pre>
-      <p>Service Worker は、その処理(ここでいう <code>sw.js</code> の中身)をインラインで登録することはできず、必ず別のファイルに分けて Registration 処理の中で読み込む必要がある。
-      <p>これは、たとえそのページが <code>sw.js</code> の登録以外に JS を一切利用しないような場合でも、この 1 行のためだけにページ上で動く <code>main.js</code> を読み込ませる必要があることを意味する。
+      <p>Service Worker は、その処理(ここでいう <code translate="no">sw.js</code> の中身)をインラインで登録することはできず、必ず別のファイルに分けて Registration 処理の中で読み込む必要がある。
+      <p>これは、たとえそのページが <code translate="no">sw.js</code> の登録以外に JS を一切利用しないような場合でも、この 1 行のためだけにページ上で動く <code translate="no">main.js</code> を読み込ませる必要があることを意味する。
       <p>もし他の JS があったとしても、そのファイルへの変更が難しい場合や、 Service Worker の登録ロジックを分離するためにファイルを分けたい場合などもある。
     </section>
     <section>
       <h2 id="HTML+link+tag+での登録"><a href="#HTML+link+tag+での登録">HTML link tag での登録</a></h2>
-      <p><code>sw.js</code> を登録するだけであれば、 HTML のメタタグを用いて行うことができる。<br>
-      (<code>registrer()</code> の引数相当は、 HTML attributes で表現する)
-      <pre class=js><code>&lt;link rel=&quot;serviceworker&quot; href=&quot;sw.js&quot; scope=&quot;/&quot;&gt;</code></pre>
-      <p>これによって登録のためだけの <code>main.js</code> を読み込むオーバーヘッドがなくなる。<br>
+      <p><code translate="no">sw.js</code> を登録するだけであれば、 HTML のメタタグを用いて行うことができる。<br>
+      (<code translate="no">registrer()</code> の引数相当は、 HTML attributes で表現する)
+      <pre class=js><code translate="no">&lt;link rel=&quot;serviceworker&quot; href=&quot;sw.js&quot; scope=&quot;/&quot;&gt;</code></pre>
+      <p>これによって登録のためだけの <code translate="no">main.js</code> を読み込むオーバーヘッドがなくなる。<br>
       もしくは、別の JS から登録の処理を分離できるため、ページ(URL)単位でのハンドリングで有利な場合もあるだろう。
-      <p>(なお、 <a href="https://blog.jxck.io/entries/2016-02-01/amp-html.html">AMP</a> では現在 <code>&lt;link&gt;</code> の <code>rel</code> には <code>serviceworker</code> が許容されていないため、この方法は使えない。<br>
-      代わりに <a href="https://www.ampproject.org/docs/reference/components/amp-install-serviceworker">amp-install-serviceworker</a> が提供されているが、 <code>&lt;link&gt;</code> がサポートされていればこれは不要と考えているので <a href="https://github.com/ampproject/amphtml/issues/6601">issue</a> を登録しておいた。)
+      <p>(なお、 <a href="https://blog.jxck.io/entries/2016-02-01/amp-html.html">AMP</a> では現在 <code translate="no">&lt;link&gt;</code> の <code translate="no">rel</code> には <code translate="no">serviceworker</code> が許容されていないため、この方法は使えない。<br>
+      代わりに <a href="https://www.ampproject.org/docs/reference/components/amp-install-serviceworker">amp-install-serviceworker</a> が提供されているが、 <code translate="no">&lt;link&gt;</code> がサポートされていればこれは不要と考えているので <a href="https://github.com/ampproject/amphtml/issues/6601">issue</a> を登録しておいた。)
     </section>
     <section>
       <h2 id="HTTP+Link+Header+での登録"><a href="#HTTP+Link+Header+での登録">HTTP Link Header での登録</a></h2>
       <p>同じことを HTTP のレスポンスだけで行うこともできる。<br>
-      (<code>registrer()</code> の引数相当は、 HTTP Header の attribute で表現する)
-      <pre><code>Link: &lt;sw.js&gt;; rel=&quot;serviceworker&quot;; scope=&quot;/&quot;</code></pre>
+      (<code translate="no">registrer()</code> の引数相当は、 HTTP Header の attribute で表現する)
+      <pre><code translate="no">Link: &lt;sw.js&gt;; rel=&quot;serviceworker&quot;; scope=&quot;/&quot;</code></pre>
       <p>このヘッダをレスポンスに付与すれば Service Worker を登録することができる。<br>
       これによって、コンテンツを一切いじらずにサーバの設定だけで、 Service Worker の登録が可能になる。<br>
       (ちなみに、この方法は AMP でも使える)
@@ -580,7 +580,7 @@ navigator.serviceworker.register(&quot;/sw.js&quot;, { scope: &quot;/&quot; });<
     <section>
       <h2 id="DEMO"><a href="#DEMO">DEMO</a></h2>
       <p>基本は次回の記事で解説する foreign-fetch と合わせた利用が主なユースケースになるため、 「Link ヘッダで Service Worker を登録する」という一点に絞ったデモを用意した。
-      <p>以下のリンクは、ボタンが 1 つあるページに遷移し、ボタンをクリックすると、同じオリジンの <code>./random</code> を fetch する。 <code>./random</code> はランダムな数字を返すと同時に Service Worker を Link ヘッダで提供する。<br>
+      <p>以下のリンクは、ボタンが 1 つあるページに遷移し、ボタンをクリックすると、同じオリジンの <code translate="no">./random</code> を fetch する。 <code translate="no">./random</code> はランダムな数字を返すと同時に Service Worker を Link ヘッダで提供する。<br>
       この Service Worker を登録した後は、ページをオフラインにしても Service Worker にフォールバックして引き続き乱数を取得できることに注目したい。
       <p><a href="https://labs.jxck.io/service-worker/link-rel-service-worker/">Link rel=serviceworker DEMO</a>
       <p>ただし、ページそのものはオフライン対応してないため、リロードはできない点に注意。<br>
@@ -589,8 +589,8 @@ navigator.serviceworker.register(&quot;/sw.js&quot;, { scope: &quot;/&quot; });<
     <section>
       <h2 id="そして+foreign+fetch+へ"><a href="#そして+foreign+fetch+へ">そして foreign fetch へ</a></h2>
       <p>Link ヘッダや、タグを用いた Service Worker の登録が可能になったことについて解説した。<br>
-      しかし、ここでは、 <code>./index.html</code> も <code>./random</code> も同じドメインであったため、ページと <code>./random</code> の API を両方オフライン対応するためには、両方を 1 つの Service Worker で処理する。
-      <p>ところが、もし <code>./random</code> のような API が 3rd Party API つまり 別のオリジンだった場合はどうだろうか。<br>
+      しかし、ここでは、 <code translate="no">./index.html</code> も <code translate="no">./random</code> も同じドメインであったため、ページと <code translate="no">./random</code> の API を両方オフライン対応するためには、両方を 1 つの Service Worker で処理する。
+      <p>ところが、もし <code translate="no">./random</code> のような API が 3rd Party API つまり 別のオリジンだった場合はどうだろうか。<br>
       そこで出て来るのが、次に解説する <a href="/entries/2016-12-12/foreign-fetch.html">foreign fetch</a> である。
     </section>
   </article>

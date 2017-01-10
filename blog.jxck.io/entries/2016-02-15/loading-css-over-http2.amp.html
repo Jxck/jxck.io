@@ -543,16 +543,16 @@ th:last-child, td:last-child {
     <h1><a href=/entries/2016-02-15/loading-css-over-http2.html>HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について</a></h1>
     <section>
       <h2 id="Intro"><a href="#Intro">Intro</a></h2>
-      <p>Chrome が予定している <code>&lt;link rel=stylesheet&gt;</code> の挙動の変更について、 Google Chrome チームの Jake が、興味深いブログを上げている。
+      <p>Chrome が予定している <code translate="no">&lt;link rel=stylesheet&gt;</code> の挙動の変更について、 Google Chrome チームの Jake が、興味深いブログを上げている。
       <p><a href="https://jakearchibald.com/2016/link-in-body/">The future of loading CSS</a>
       <p>この内容は、単に Chrome に対する変更だけではなく、 HTTP2 によって変化する最適化手法と、それを最も活かすための HTML, CSS の構成についてのヒントがある。
       <p>今回は、この内容を意訳+補足解説し、本サイトに適用していく。
     </section>
     <section>
       <h2 id="HTTP/1.1+時代の+CSS"><a href="#HTTP/1.1+時代の+CSS">HTTP/1.1 時代の CSS</a></h2>
-      <p>HTML 自体がコンポーネントを意識した作りになっている場合は、自然と CSS も <code>class</code> などを使いコンポーネント単位に作ることができるだろう。
+      <p>HTML 自体がコンポーネントを意識した作りになっている場合は、自然と CSS も <code translate="no">class</code> などを使いコンポーネント単位に作ることができるだろう。
       <p>しかし、 HTTP/1.1 では、リクエストの数を減らすために全ての CSS を 1 つ(もしくは少数個)に結合する最適化が主流だった。
-      <pre class=html><code>&lt;head&gt;
+      <pre class=html><code translate="no">&lt;head&gt;
   &lt;link rel=&quot;stylesheet&quot; href=&quot;bundle.css&quot;&gt;
 &lt;/head&gt;
 &lt;body&gt;
@@ -560,7 +560,7 @@ th:last-child, td:last-child {
 &lt;/body&gt;</code></pre>
       <p>ところが、リクエストの多重化が可能な HTTP/2 においては、そこを心配する必要がなくなった。<br>
       このため、コンポーネントごとに CSS を分割するのは、キャッシュの容易性を考えても良い方法と言える。
-      <pre class=html><code>&lt;head&gt;
+      <pre class=html><code translate="no">&lt;head&gt;
   &lt;link rel=&quot;stylesheet&quot; href=&quot;/header.css&quot;&gt;
   &lt;link rel=&quot;stylesheet&quot; href=&quot;/main.css&quot;&gt;
   &lt;link rel=&quot;stylesheet&quot; href=&quot;/article.css&quot;&gt;
@@ -574,14 +574,14 @@ th:last-child, td:last-child {
       <blockquote>head を出力する時点で、ページ内に存在する全てのコンポーネントを把握していないといけない</blockquote>
       <p>HTML を全て生成してから順次送るのであれば問題ないが、本来 HTML は先頭から、準備ができた順にコンポーネントを送信することも可能であるにも関わらず、それができなくなる。
       <blockquote>footer.css のローディングが遅い場合、サイト全体をブロックする</blockquote>
-      <p>footer.css が必要なのは、 HTML 中の <code>&lt;footer&gt;</code> をレンダリングする時であり、そこまでに出てくる <code>&lt;header&gt;</code> などは、先にレンダリングすることも可能だ。<br>
+      <p>footer.css が必要なのは、 HTML 中の <code translate="no">&lt;footer&gt;</code> をレンダリングする時であり、そこまでに出てくる <code translate="no">&lt;header&gt;</code> などは、先にレンダリングすることも可能だ。<br>
       しかし、実際はそのたった 1 つの CSS のせいで、そこまでに揃っているコンポーネントもレンダリングされず、真っ白のままになる。
     </section>
     <section>
       <h2 id="CSS+の遅延ロード"><a href="#CSS+の遅延ロード">CSS の遅延ロード</a></h2>
       <p>この問題に対応するため、以下のような JS を用いて CSS を非同期ロードする方法がある。
       <p><a href="https://github.com/filamentgroup/loadCSS">https://github.com/filamentgroup/loadCSS</a>
-      <p>スタイルが当たってない状態で表示されてほしくないコンポーネントには、 <code>display: none</code> などをつけておき、ロードされたスタイルの中で表示されるようにする。
+      <p>スタイルが当たってない状態で表示されてほしくないコンポーネントには、 <code translate="no">display: none</code> などをつけておき、ロードされたスタイルの中で表示されるようにする。
       <p>この方法は、クリティカルレンダリングパスの改善方法の 1 つとして、多くのパフォーマンスエキスパートから推奨されている。
       <ul>
         <li><a href="https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery">https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery</a>
@@ -589,7 +589,7 @@ th:last-child, td:last-child {
         <li><a href="http://www.lukew.com/ff/entry.asp?1756">http://www.lukew.com/ff/entry.asp?1756</a>
       </ul>
       <p>ただし、この方法には JS のライブラリが必須となる。<br>
-      なぜなら、 Webkit は <code>&lt;link rel=stylesheet&gt;</code> が追加されると、それが JS によって追加されたものであれ、レンダリングをブロックしてしまうからである。<br>
+      なぜなら、 Webkit は <code translate="no">&lt;link rel=stylesheet&gt;</code> が追加されると、それが JS によって追加されたものであれ、レンダリングをブロックしてしまうからである。<br>
       Firefox や IE/Edge は、 JS で追加されたものについては非同期に読み込むため、この問題は無い。<br>
       Chrome は、現在の Stable では Webkit と同じだが、 Canary では Firefox, IE/Edge の方法に移行している。
     </section>
@@ -606,7 +606,7 @@ th:last-child, td:last-child {
     <section>
       <h2 id="HTTP2+時代の最適化"><a href="#HTTP2+時代の最適化">HTTP2 時代の最適化</a></h2>
       <p>HTTP2 では以下のように書くことが可能になる。
-      <pre class=html><code>&lt;head&gt;
+      <pre class=html><code translate="no">&lt;head&gt;
 &lt;!-- header には、コンポーネントに依存する CSS は書かない --&gt;
 &lt;/head&gt;
 &lt;body&gt;
@@ -625,7 +625,7 @@ th:last-child, td:last-child {
   &lt;link rel=&quot;stylesheet&quot; href=&quot;/footer.css&quot;&gt;
   &lt;footer&gt;&lt;/footer&gt;
 &lt;/body&gt;</code></pre>
-      <p>まず、各 <code>&lt;link rel=stylesheet&gt;</code> はそれ以降のレンダリングをブロックするが、それ以前のコンテントのレンダリングをブロックしない。<br>
+      <p>まず、各 <code translate="no">&lt;link rel=stylesheet&gt;</code> はそれ以降のレンダリングをブロックするが、それ以前のコンテントのレンダリングをブロックしない。<br>
       CSS は並列で読み込まれ、直列に適用される。
       <p>もし、 Header, Article, Footer の CSS が読み込まれていた場合を考えると、以下のような状態になる。
       <ul>
@@ -638,8 +638,8 @@ th:last-child, td:last-child {
       <p>以下のメリットがある
       <ul>
         <li>上から順番に表示され "Above the Fold" がどの部分かは気にしないで良い。
-        <li>コンポーネント単位で設計し、そのコンポーネントの直前に <code>&lt;link&gt;</code> を書けば良い。
-        <li>ストリームで考えられる(<code>&lt;link&gt;</code> の有無を先に考えなくて良いのでサーバは完成した順に HTML を送信できる)。
+        <li>コンポーネント単位で設計し、そのコンポーネントの直前に <code translate="no">&lt;link&gt;</code> を書けば良い。
+        <li>ストリームで考えられる(<code translate="no">&lt;link&gt;</code> の有無を先に考えなくて良いのでサーバは完成した順に HTML を送信できる)。
       </ul>
       <p>ただし、レイアウトシステムを使う場合は、 Content-Shifting が発生しないように意識する必要がある。<br>
       特に Table や Flexbox を利用したレイアウトでは、それが発生しやすい。これまでも同じ問題は認識されていたが、前述のような progressive な読み込みではこの問題がより発生しやすい。
@@ -648,28 +648,28 @@ th:last-child, td:last-child {
     <section>
       <h2 id="Chrome+での変更点"><a href="#Chrome+での変更点">Chrome での変更点</a></h2>
       <p>HTML の仕様には、ページのレンダリングが CSS によりどうブロックされるかについては、明確に書かれていない。
-      <p>また、仕様では <code>&lt;body&gt;</code> への <code>&lt;link rel=stylesheet&gt;</code> の記述も推奨されていない。
+      <p>また、仕様では <code translate="no">&lt;body&gt;</code> への <code translate="no">&lt;link rel=stylesheet&gt;</code> の記述も推奨されていない。
       <p>しかし、実際にブラウザはそれぞれの方法でそれを許容している。
       <ul>
-        <li>Chrome, Safari: <code>&lt;link rel=stylesheet&gt;</code> があるとロードされるまで、直ちにレンダリングを止める。このため、 <code>&lt;link&gt;</code> より <strong>上</strong> の要素も、レンダリング途中で止まる場合がよくある。
-        <li>Firefox: <code>&lt;head&gt;</code> に <code>&lt;link rel=stylesheet&gt;</code> があるとブロックするが、 <code>&lt;body&gt;</code> では <code>&lt;head&gt;</code> の CSS がブロックしていない限りはブロックしない。これは FOUC(flash of unstyled content) を引き起こす。
-        <li>IE/Edge: CSS が読み込み終わるまでパーサをブロックする、しかし、 <code>&lt;link&gt;</code> 前のコンテンツはレンダリングする。
+        <li>Chrome, Safari: <code translate="no">&lt;link rel=stylesheet&gt;</code> があるとロードされるまで、直ちにレンダリングを止める。このため、 <code translate="no">&lt;link&gt;</code> より <strong>上</strong> の要素も、レンダリング途中で止まる場合がよくある。
+        <li>Firefox: <code translate="no">&lt;head&gt;</code> に <code translate="no">&lt;link rel=stylesheet&gt;</code> があるとブロックするが、 <code translate="no">&lt;body&gt;</code> では <code translate="no">&lt;head&gt;</code> の CSS がブロックしていない限りはブロックしない。これは FOUC(flash of unstyled content) を引き起こす。
+        <li>IE/Edge: CSS が読み込み終わるまでパーサをブロックする、しかし、 <code translate="no">&lt;link&gt;</code> 前のコンテンツはレンダリングする。
       </ul>
       <p>Chrome は IE/Edge の方式に移ることを検討している。これにより Progressive Rendering パターンが可能になる。<br>
-      合わせて <a href="https://github.com/whatwg/html/pull/616"><code>&lt;body&gt;</code>内の<code>&lt;link&gt;</code>を許可する仕様</a> の策定を進めている。
+      合わせて <a href="https://github.com/whatwg/html/pull/616"><code translate="no">&lt;body&gt;</code>内の<code translate="no">&lt;link&gt;</code>を許可する仕様</a> の策定を進めている。
       <p>この変更は、後方互換であり、必要になるまでレンダリングされないだけである。
     </section>
     <section>
       <h2 id="Firefox+での+FOUC+対策"><a href="#Firefox+での+FOUC+対策">Firefox での FOUC 対策</a></h2>
-      <p>Firefox では、以下のように <code>&lt;script&gt;</code> をはさむことで CSS がロードされるまでパースをブロックし FOUC を回避できる。<br>
-      <code>&lt;script&gt;</code> には中身が必要だが、スペース 1 つで十分である。
-      <pre class=html><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;/article.css&quot;&gt;&lt;script&gt; &lt;/script&gt;
+      <p>Firefox では、以下のように <code translate="no">&lt;script&gt;</code> をはさむことで CSS がロードされるまでパースをブロックし FOUC を回避できる。<br>
+      <code translate="no">&lt;script&gt;</code> には中身が必要だが、スペース 1 つで十分である。
+      <pre class=html><code translate="no">&lt;link rel=&quot;stylesheet&quot; href=&quot;/article.css&quot;&gt;&lt;script&gt; &lt;/script&gt;
 &lt;main&gt;&lt;/main&gt;</code></pre>
     </section>
     <section>
       <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
       <p>全てをまとめると、現状の Firefox, IE/Edge では Progressive Rendering が可能になる。<br>
-      現状の Chrome & Safari では CSS がロードされるまで White Screen になるが、従来のように全てを <code>&lt;head&gt;</code> に置いていたのと比べれば問題ではない。<br>
+      現状の Chrome & Safari では CSS がロードされるまで White Screen になるが、従来のように全てを <code translate="no">&lt;head&gt;</code> に置いていたのと比べれば問題ではない。<br>
       そして、数ヶ月以内に Chrome は IE/Edge の方式に移るので、問題は解決する。
       <p>これにより、 Just in time CSS が可能になり、レンダリングプロセスが最適化可能になる。
     </section>
@@ -678,9 +678,9 @@ th:last-child, td:last-child {
       <p>以下を実施した
       <ul>
         <li>本サイトの CSS は、基本的には 1 つにまとめていたが、これをコンポーネント単位に分割した
-        <li>記事をビルドする際に、 HTML のコンポーネントの前に <code>&lt;link rel=stylesheet&gt;</code> を追加した
-        <li>Firefox 用の <code>&lt;script&gt; &lt;/script&gt;</code> はとりあえず無し
-        <li>まだ <code>&lt;body&gt;</code> 内の <code>&lt;link&gt;</code> は仕様上許容されてなので、 <a href="https://validator.w3.org/nu/">w3c validator</a> ではそこがひっかかる
+        <li>記事をビルドする際に、 HTML のコンポーネントの前に <code translate="no">&lt;link rel=stylesheet&gt;</code> を追加した
+        <li>Firefox 用の <code translate="no">&lt;script&gt; &lt;/script&gt;</code> はとりあえず無し
+        <li>まだ <code translate="no">&lt;body&gt;</code> 内の <code translate="no">&lt;link&gt;</code> は仕様上許容されてなので、 <a href="https://validator.w3.org/nu/">w3c validator</a> ではそこがひっかかる
       </ul>
       <p>元のリソースが小さいため、ネットワークをスロットリングしても、大きな変化が確認できなかった。<br>
       この記事のここのサンプルを、 <a href="https://labs.jxck.io">labs.jxck.io</a> に作成し、個々の CSS はサーバ側で遅延を入れる形で設定する。

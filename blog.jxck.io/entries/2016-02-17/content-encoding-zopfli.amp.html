@@ -543,22 +543,22 @@ th:last-child, td:last-child {
     <h1><a href=/entries/2016-02-17/content-encoding-zopfli.html>zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について</a></h1>
     <section>
       <h2 id="Intro"><a href="#Intro">Intro</a></h2>
-      <p>HTTP では <code>Accept-Encoding</code> と <code>Content-Encoding</code> でのネゴシエーションにより、 gz などで圧縮したコンテンツを転送することができる。本サイトでは zopfli を用いて gzip 形式の配信に対応した。
+      <p>HTTP では <code translate="no">Accept-Encoding</code> と <code translate="no">Content-Encoding</code> でのネゴシエーションにより、 gz などで圧縮したコンテンツを転送することができる。本サイトでは zopfli を用いて gzip 形式の配信に対応した。
     </section>
     <section>
       <h2 id="Accept-Encoding"><a href="#Accept-Encoding">Accept-Encoding</a></h2>
-      <p>クライアントが <code>Accept-Encoding: gzip</code> を指定して来た場合、サーバは <code>Content-Encoding: gzip</code> を付与し、 URI に指定されたコンテンツを gzip 圧縮して送信することができる。
+      <p>クライアントが <code translate="no">Accept-Encoding: gzip</code> を指定して来た場合、サーバは <code translate="no">Content-Encoding: gzip</code> を付与し、 URI に指定されたコンテンツを gzip 圧縮して送信することができる。
       <p>特にテキストベースの HTML, CSS, JS などは、この圧縮の効果が高く、ペイロードが小さくなるためパフォーマンスの向上が期待できる。
       <p>逆に、 PNG, JPEG など圧縮形式の画像などについては、オーバーヘッドが発生しサイズが増える可能性もあるため、対象フォーマットの選択には注意が必要である。
     </section>
     <section>
       <h2 id="Transfer-Encoding"><a href="#Transfer-Encoding">Transfer-Encoding</a></h2>
-      <p>HTTP には、似た仕組みとして <code>TE: gzip</code> と <code>Transfer-Encoding: gzip</code> による、経路圧縮がある。
-      <p>これは、前述の <code>Accept-Encoding</code> が End-To-End で圧縮したコンテンツを転送するのと違い、 Hop-by-Hop で経路上での圧縮を実施する点で、意味的に差異がある。
+      <p>HTTP には、似た仕組みとして <code translate="no">TE: gzip</code> と <code translate="no">Transfer-Encoding: gzip</code> による、経路圧縮がある。
+      <p>これは、前述の <code translate="no">Accept-Encoding</code> が End-To-End で圧縮したコンテンツを転送するのと違い、 Hop-by-Hop で経路上での圧縮を実施する点で、意味的に差異がある。
       <p>例えば HTML で言えば、前者は「コンテンツ自体が gzip された html である」のに対し、後者は「コンテンツはあくまで html だが、経路上では圧縮されている」ということになる。
-      <p>本サイトは、あくまで HTML を配信したいので、転送量削減のために圧縮を施すのであれば、 <code>TE: gzip</code> と <code>Transfer-Encoding: gzip</code> を使うのが妥当と言えるだろう。
-      <p>しかし <code>TE</code> はブラウザ実装の問題のためか、歴史的にもあまり使われておらず、送信してくるブラウザもほとんどない。(Opera は送信すると言われているが未確認)。
-      <p>そのため、 HTTP/1.1 対応のサーバでも <code>Transfer-Encoding: gzip</code> に対応したものは少なく、 h2o も対応していない。(<code>Transfer-Encoding: chunked</code> は対応している)
+      <p>本サイトは、あくまで HTML を配信したいので、転送量削減のために圧縮を施すのであれば、 <code translate="no">TE: gzip</code> と <code translate="no">Transfer-Encoding: gzip</code> を使うのが妥当と言えるだろう。
+      <p>しかし <code translate="no">TE</code> はブラウザ実装の問題のためか、歴史的にもあまり使われておらず、送信してくるブラウザもほとんどない。(Opera は送信すると言われているが未確認)。
+      <p>そのため、 HTTP/1.1 対応のサーバでも <code translate="no">Transfer-Encoding: gzip</code> に対応したものは少なく、 h2o も対応していない。(<code translate="no">Transfer-Encoding: chunked</code> は対応している)
       <p>また、このヘッダは <strong>コネクションに対する設定</strong> であるが、 HTTP2 ではこうしたコネクションに対する設定は、代わりに <strong>SETTINGS Frame</strong> を利用することになったため、こうしたヘッダは設定不可とされている。
       <p><a href="https://tools.ietf.org/html/rfc7540#section-8.1.2.2">8.1.2.2.  Connection-Specific Header Fields</a>
       <p>まとめると、以下の理由により、この方法は却下した。
@@ -570,19 +570,19 @@ th:last-child, td:last-child {
     </section>
     <section>
       <h2 id="h2o+の設定"><a href="#h2o+の設定">h2o の設定</a></h2>
-      <p>本サイトをデプロイしている h2o は、 <code>Content-Encoding: gzip</code> による転送を 2 つの方法でサポートしている。
+      <p>本サイトをデプロイしている h2o は、 <code translate="no">Content-Encoding: gzip</code> による転送を 2 つの方法でサポートしている。
       <section>
         <h3 id="gzip+ディレクティブ"><a href="#gzip+ディレクティブ">gzip ディレクティブ</a></h3>
         <p>以下を設定すると、 h2o はコンテンツを on the fly (リクエストが来てから)圧縮し送信してくれる。
-        <pre><code>gzip: ON</code></pre>
+        <pre><code translate="no">gzip: ON</code></pre>
         <p><a href="https://h2o.examp1e.net/configure/gzip_directives.html#gzip">Configure > Gzip Directives > "gzip"</a>
         <p>これにより、あらかじめ圧縮していないコンテンツや、バックエンドのアプリケーションが動的に生成したコンテンツを圧縮転送することができる。<br>
         圧縮時間分のオーバーヘッドは考えられるが、一般的に gzip の処理時間は小さく、転送量の削減によるネットワーク的メリットの方が高いため、この方法が採用されることが多い。
       </section>
       <section>
         <h3 id="send-gzip+ディレクティブ"><a href="#send-gzip+ディレクティブ">send-gzip ディレクティブ</a></h3>
-        <p>あらかじめコンテンツを gzip 圧縮した状態で <code>ファイル名.gz</code> で配置し、以下を設定すると、 h2o は自動的に圧縮済みファイルを転送してくれる。
-        <pre><code>file.send-gzip: ON</code></pre>
+        <p>あらかじめコンテンツを gzip 圧縮した状態で <code translate="no">ファイル名.gz</code> で配置し、以下を設定すると、 h2o は自動的に圧縮済みファイルを転送してくれる。
+        <pre><code translate="no">file.send-gzip: ON</code></pre>
         <p><a href="https://h2o.examp1e.net/configure/file_directives.html#file.send-gzip">Configure > File Directives > "file.send-gzip"</a>
         <p>事前に圧縮するため、レスポンスへのオーバーヘッドは無くなる。<br>
         しかし、バックエンドが動的に生成するレスポンスには適用できないため、事前に準備可能な静的ファイルへの適用に限定される。
@@ -606,10 +606,10 @@ th:last-child, td:last-child {
       <section>
         <h3 id="ベンチマーク"><a href="#ベンチマーク">ベンチマーク</a></h3>
         <p>以下のように、前回の記事に対して zopfli コマンドを実行し、 time コマンドで実行時間を計測した。
-        <pre class=sh><code>$ time zopfli --i10 -c loading-css-over-http2.html</code></pre>
-        <p><code>--i</code> が探索回数であり、これを増やせばより小さく圧縮できるが、時間がかかる。<br>
-        デフォルトは <code>i = 15</code> であるため、 <code>10..100</code> まで増やしながら実行した。
-        <p>最初の段は、元のファイルサイズ、二段目は <code>gzip</code> コマンドの結果である。
+        <pre class=sh><code translate="no">$ time zopfli --i10 -c loading-css-over-http2.html</code></pre>
+        <p><code translate="no">--i</code> が探索回数であり、これを増やせばより小さく圧縮できるが、時間がかかる。<br>
+        デフォルトは <code translate="no">i = 15</code> であるため、 <code translate="no">10..100</code> まで増やしながら実行した。
+        <p>最初の段は、元のファイルサイズ、二段目は <code translate="no">gzip</code> コマンドの結果である。
         <table>
           <thead>
             <tr>
@@ -680,8 +680,8 @@ th:last-child, td:last-child {
               <td class=align-right>5156</td>
             </tr>
           </tbody>
-        </table><p>この結果だと <code>-i20</code> 以上は誤差のようである。<br>
-        ただ、開発用の Mac では少し違う結果が出たりもしたため、結果 <code>i=30</code> くらいに落ち着いた。
+        </table><p>この結果だと <code translate="no">-i20</code> 以上は誤差のようである。<br>
+        ただ、開発用の Mac では少し違う結果が出たりもしたため、結果 <code translate="no">i=30</code> くらいに落ち着いた。
         <p>また、 <a href="//jxck.io/assets/img/jxck.webp">WebP</a> と <a href="//jxck.io/assets/img/jxck.png">PNG</a> の画像ファイルでも検証したところ、以下のようになった。
         <table>
           <thead>
@@ -714,17 +714,17 @@ th:last-child, td:last-child {
     </section>
     <section>
       <h2 id="zopfli+++send-gzip"><a href="#zopfli+++send-gzip">zopfli + send-gzip</a></h2>
-      <p>以上により、本サイトでは全静的コンテンツをデプロイプロセスで zopfli による圧縮を実施し、それを h2o の <code>send-gzip</code> ディレクティブで配信することにした。
+      <p>以上により、本サイトでは全静的コンテンツをデプロイプロセスで zopfli による圧縮を実施し、それを h2o の <code translate="no">send-gzip</code> ディレクティブで配信することにした。
       <p>検証の結果、このサイトでは以下の設定を採用した。
       <ul>
-        <li><code>i=30</code>
-        <li><code>send-gzip: ON</code>
+        <li><code translate="no">i=30</code>
+        <li><code translate="no">send-gzip: ON</code>
         <li>webp は対象外
       </ul>
       <p>動作は、 HTTP ヘッダで確認できる。
       <p><amp-img layout=responsive src=zopfli.png#656x463 alt="Content-Encoding Support Before/After" title="Content-Encoding ヘッダの確認" width=656 height=463>
-      <p>また、一部は h2o の mruby-handler で動的な生成をしているが、 <code>gzip</code> ディレクティブの効果は未検証なので設定していない。
-      <p>本サイトの中で、 <code>.html</code>, <code>.css</code>, <code>.js</code> で終わるような URL は、 <code>.gz</code> を後ろに付けると zopfli 圧縮版が取得できるので、興味があれば試してみて欲しい。
+      <p>また、一部は h2o の mruby-handler で動的な生成をしているが、 <code translate="no">gzip</code> ディレクティブの効果は未検証なので設定していない。
+      <p>本サイトの中で、 <code translate="no">.html</code>, <code translate="no">.css</code>, <code translate="no">.js</code> で終わるような URL は、 <code translate="no">.gz</code> を後ろに付けると zopfli 圧縮版が取得できるので、興味があれば試してみて欲しい。
       <p><a href="https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html.gz">この HTML の zopfli 圧縮版</a>
     </section>
     <section>
@@ -732,8 +732,8 @@ th:last-child, td:last-child {
       <p>また Google は <a href="https://github.com/google/brotli">brotli</a> という圧縮フォーマットも持っている。<br>
       こちらは、 gzip などとの互換は無いため、クライアントも対応しないと使うことはできない。<br>
       新しいフォーマットとして、 <a href="https://tools.ietf.org/html/draft-alakuijala-brotli-08">IETF へのドラフトの提出</a> もなされている。
-      <p>現在は <a href="https://plus.google.com/u/0/+IlyaGrigorik/posts/X9ogn4fLtHL">Chrome が HTTPS のみでサポート</a> していおり、 Canary で <code>chrome://flags#brotli</code> を有効にすると、 <code>Accept-Encoding: br</code> が追加されるので、サーバはこれを見て brotli で圧縮したファイルを返すことができる。
-      <p>ほとんどのブラウザが対応している gzip と違い、まだ対応ブラウザも少なく、 H2O も対応していないため <code>Accept-Encoding</code> での判断を自分でハンドラに書く必要がある。
+      <p>現在は <a href="https://plus.google.com/u/0/+IlyaGrigorik/posts/X9ogn4fLtHL">Chrome が HTTPS のみでサポート</a> していおり、 Canary で <code translate="no">chrome://flags#brotli</code> を有効にすると、 <code translate="no">Accept-Encoding: br</code> が追加されるので、サーバはこれを見て brotli で圧縮したファイルを返すことができる。
+      <p>ほとんどのブラウザが対応している gzip と違い、まだ対応ブラウザも少なく、 H2O も対応していないため <code translate="no">Accept-Encoding</code> での判断を自分でハンドラに書く必要がある。
       <p>H2O には既に brotli への対応を求める issue が上がっているので、対応したらそこでまた検証しようと思う。
       <p><a href="https://github.com/h2o/h2o/issues/660">Feature request: file.send-brotli #660</a>
     </section>

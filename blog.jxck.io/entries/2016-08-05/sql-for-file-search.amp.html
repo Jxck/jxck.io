@@ -551,7 +551,7 @@ th:last-child, td:last-child {
     <section>
       <h2 id="selects"><a href="#selects">selects</a></h2>
       <p>結論からいうとこういうコマンドだ。
-      <pre><code>$ selects mtime, size, basename from &#039;./entries/**/*&#039; where extname &#039;==&#039; &#039;.md&#039; and size &#039;&gt;&#039; 1000 order by mtime
+      <pre><code translate="no">$ selects mtime, size, basename from &#039;./entries/**/*&#039; where extname &#039;==&#039; &#039;.md&#039; and size &#039;&gt;&#039; 1000 order by mtime
 
 2016-07-06 22:45:44 +0900	18437	web-font-noto-sans.md
 2016-07-07 23:54:19 +0900	11236	amp-html.md
@@ -572,7 +572,7 @@ th:last-child, td:last-child {
       <p>まず例をいくつか示す。
       <section>
         <h3 id="ディレクトリ以下をごっそり"><a href="#ディレクトリ以下をごっそり">ディレクトリ以下をごっそり</a></h3>
-        <pre><code>$ selects &#039;*&#039; from &#039;./entries/**/*&#039;
+        <pre><code translate="no">$ selects &#039;*&#039; from &#039;./entries/**/*&#039;
 2016-08-05 22:42:14 +0900	4096	2016-01-27
 2016-08-05 22:40:44 +0900	12499	new-blog-start.amp.html
 2016-08-05 22:41:32 +0900	3756	new-blog-start.amp.html.gz
@@ -584,7 +584,7 @@ th:last-child, td:last-child {
       </section>
       <section>
         <h3 id=".html+だけ"><a href="#.html+だけ">.html だけ</a></h3>
-        <pre><code>$ selects basename from &#039;./entries/**/*&#039; where extname == &#039;.html&#039;
+        <pre><code translate="no">$ selects basename from &#039;./entries/**/*&#039; where extname == &#039;.html&#039;
 new-blog-start.amp.html
 new-blog-start.html
 html-compression.amp.html
@@ -596,7 +596,7 @@ h2o-http2-deploy.amp.html
       </section>
       <section>
         <h3 id="like+的な"><a href="#like+的な">like 的な</a></h3>
-        <pre><code>$ selects basename from &#039;./entries/**/*&#039; where basename &#039;=~&#039; &#039;mozaic&#039;
+        <pre><code translate="no">$ selects basename from &#039;./entries/**/*&#039; where basename &#039;=~&#039; &#039;mozaic&#039;
 mozaicfm-v2.amp.html
 mozaicfm-v2.amp.html.gz
 mozaicfm-v2.html
@@ -606,7 +606,7 @@ mozaicfm-v2.md.gz</code></pre>
       </section>
       <section>
         <h3 id="属性で絞る"><a href="#属性で絞る">属性で絞る</a></h3>
-        <pre><code>$ selects atime, basename from &#039;./entries/**/*&#039; where atime &#039;&gt;&#039; 2016-08-01 and directory? == true
+        <pre><code translate="no">$ selects atime, basename from &#039;./entries/**/*&#039; where atime &#039;&gt;&#039; 2016-08-01 and directory? == true
 2016-08-05 22:42:14 +0900       2016-01-27
 2016-08-05 22:42:14 +0900       2016-01-28
 2016-08-05 22:42:14 +0900       2016-02-01
@@ -616,7 +616,7 @@ mozaicfm-v2.md.gz</code></pre>
       </section>
       <section>
         <h3 id="/dev+以下で+pipe+か+socket+か+symlink+だけを+ctime,+atime+の順で"><a href="#/dev+以下で+pipe+か+socket+か+symlink+だけを+ctime,+atime+の順で">/dev 以下で pipe か socket か symlink だけを ctime, atime の順で</a></h3>
-        <pre><code>$ selects socket?, pipe?, symlink? basename from &#039;/dev/*&#039; where pipe? == true or socket? == true or symlink? == true order by atime, ctime
+        <pre><code translate="no">$ selects socket?, pipe?, symlink? basename from &#039;/dev/*&#039; where pipe? == true or socket? == true or symlink? == true order by atime, ctime
 false   true    true    initctl
 false   false   true    dvd
 false   false   true    cdrom
@@ -633,26 +633,26 @@ false   false   true    core</code></pre>
       <h2 id="からくり"><a href="#からくり">からくり</a></h2>
       <p>なんとなく気づいた方がいるかもしれないが、これは全部 Ruby に変換している。
       <p>つまりこんな感じだ。
-      <pre class=ruby><code>Dir.glob(&#039;from 句にあたる */** 的なの&#039;)
+      <pre class=ruby><code translate="no">Dir.glob(&#039;from 句にあたる */** 的なの&#039;)
    .select(&#039;where 句にあたる filter の proc&#039;)
    .sort(&#039;order by 句にあたる sort の proc&#039;)
    .map(&#039;抽出したファイルから select 句にあたる属性を取り出す&#039;)</code></pre>
       <p>各 Proc は引数として受け取ったトークンを元に Ruby のメソッドチェインを組み立てている。
       <p>例えば
-      <pre><code>where size &gt; 1000</code></pre>
+      <pre><code translate="no">where size &gt; 1000</code></pre>
       <p>は
-      <pre class=ruby><code>File.size(file) &gt; 100</code></pre>
+      <pre class=ruby><code translate="no">File.size(file) &gt; 100</code></pre>
       <p>になれば良い。<br>
-      これを文字として得ている <code>&#039;size&#039;</code>, <code>&#039;&gt;&#039;</code>, <code>&#039;100&#039;</code> を使って動的に組み立てると以下になる。
-      <pre class=ruby><code>File
+      これを文字として得ている <code translate="no">&#039;size&#039;</code>, <code translate="no">&#039;&gt;&#039;</code>, <code translate="no">&#039;100&#039;</code> を使って動的に組み立てると以下になる。
+      <pre class=ruby><code translate="no">File
   .method(&#039;size&#039;)
   .call(file)
   .method(&#039;&gt;&#039;)
   .call(100)</code></pre>
       <p>この仕組みを踏まえた上でもう一度クエリを見てみて欲しい。
       <p>もはや Ruby のメソッドチェインにしか見えないのではないだろうか?
-      <pre><code>$ selects atime, basename from &#039;./entries/**/*&#039; where atime &#039;&gt;&#039; 2016-08-01 and directory? == true</code></pre>
-      <p><code>select</code>, <code>where</code>, <code>order by</code> に使える属性なども、 ruby の File クラスのドキュメントを見てくれれば良い。
+      <pre><code translate="no">$ selects atime, basename from &#039;./entries/**/*&#039; where atime &#039;&gt;&#039; 2016-08-01 and directory? == true</code></pre>
+      <p><code translate="no">select</code>, <code translate="no">where</code>, <code translate="no">order by</code> に使える属性なども、 ruby の File クラスのドキュメントを見てくれれば良い。
       <p><a href="http://docs.ruby-lang.org/ja/2.3.0/class/File.html">http://docs.ruby-lang.org/ja/2.3.0/class/File.html</a>
       <p>裏に Ruby が透けて見えるため、 Ruby を知ってると「こうすれば動きそう」がそのまま動く。
       <p>これが Ruby にした理由だ。
@@ -660,22 +660,22 @@ false   false   true    core</code></pre>
     <section>
       <h2 id="メリット"><a href="#メリット">メリット</a></h2>
       <p>遊びで作り始めた割には結構手応えを感じたりもしている。
-      <p>実際に複雑なファイルの検索を <code>find</code> や <code>grep</code> を駆使したワンライナーで書くと非常に読みにくい。まして、ファイルの属性やファイルパス中の文字で複雑な検索やソートするのは、書けても二度と読めない可能性がある。
-      <p>特に、自分はシェル芸力が低いので、そういった場合は最初からスクリプトを書くだろう。ところがそのスクリプトも、結局は <code>glob</code> して <code>map</code> して <code>reduce</code> するよくあるものなので、それを DSL っぽくしたのがこのコマンドの正体だ。
+      <p>実際に複雑なファイルの検索を <code translate="no">find</code> や <code translate="no">grep</code> を駆使したワンライナーで書くと非常に読みにくい。まして、ファイルの属性やファイルパス中の文字で複雑な検索やソートするのは、書けても二度と読めない可能性がある。
+      <p>特に、自分はシェル芸力が低いので、そういった場合は最初からスクリプトを書くだろう。ところがそのスクリプトも、結局は <code translate="no">glob</code> して <code translate="no">map</code> して <code translate="no">reduce</code> するよくあるものなので、それを DSL っぽくしたのがこのコマンドの正体だ。
       <p>このコマンドは SQL という検索を記述的に表現する共通言語をファイル検索に応用し、Ruby という表現力が高い動的言語のメリットを活かして実装した DSL と言える。
       <p>だから Ruby を知ってて SQL が書ける人には、 <strong>Ruby で書いた SQL っぽいメソッドチェインに見える</strong> というメリットがある(と思う)。
     </section>
     <section>
       <h2 id="細かいところ"><a href="#細かいところ">細かいところ</a></h2>
       <ul>
-        <li><code>selects</code> にしたのは既に <code>select</code> が linux にあるから。
+        <li><code translate="no">selects</code> にしたのは既に <code translate="no">select</code> が linux にあるから。
         <li>結果の頭にヘッダ(列名)を出してないのは、パイプしやすくするため。
-        <li>パイプ後の <code>cut</code> コマンドと相性が良いように、列はタブ区切りにしている。
-        <li><code>&#039;*&#039;</code>, <code>&#039;&lt;&#039;</code>,  <code>&#039;&gt;&#039;</code> は Shell で意味を持つのでクオートが必要。
-        <li>Ruby の <code>File</code> と <code>File::Stat</code> のメソッドを呼べるようにしている。
-        <li>SQL よりも Ruby に寄ってるので曖昧検索は <code>like</code> ではなく <code>where</code> で <code>basename =~ &#039;.*foo.*&#039;</code> などする。
+        <li>パイプ後の <code translate="no">cut</code> コマンドと相性が良いように、列はタブ区切りにしている。
+        <li><code translate="no">&#039;*&#039;</code>, <code translate="no">&#039;&lt;&#039;</code>,  <code translate="no">&#039;&gt;&#039;</code> は Shell で意味を持つのでクオートが必要。
+        <li>Ruby の <code translate="no">File</code> と <code translate="no">File::Stat</code> のメソッドを呼べるようにしている。
+        <li>SQL よりも Ruby に寄ってるので曖昧検索は <code translate="no">like</code> ではなく <code translate="no">where</code> で <code translate="no">basename =~ &#039;.*foo.*&#039;</code> などする。
         <li>SQL の仕様は尊重しつつも、準拠よりあくまで裏の Ruby が透けて見える範囲で実装したい。
-        <li>まだ <code>group by</code> などは対応してないが、そのくらいはやっても良いかなと思っている。
+        <li>まだ <code translate="no">group by</code> などは対応してないが、そのくらいはやっても良いかなと思っている。
         <li>動的に組み立てて実行しているため、上手くやれば任意の Ruby が実行できるかもしれない。是非探して遊んでみて欲しい。
       </ul>
     </section>

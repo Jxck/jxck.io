@@ -551,38 +551,38 @@ th:last-child, td:last-child {
     <section>
       <h2 id="Scroll+Event+の+PreventDefault()"><a href="#Scroll+Event+の+PreventDefault()">Scroll Event の PreventDefault()</a></h2>
       <p>画面のスクロールに合わせたインタラクションを実装する場合、 Scroll Event にイベントリスナを登録する。
-      <p>典型的な例では <code>touchstart</code> や <code>touchend</code> をフックし、その中で DOM の操作などを実施するなどがある。
-      <p>場合によってはイベントリスナ内で <code>preventDefault()</code> を呼ぶことで、スクロールそのものを止めることもできる。
+      <p>典型的な例では <code translate="no">touchstart</code> や <code translate="no">touchend</code> をフックし、その中で DOM の操作などを実施するなどがある。
+      <p>場合によってはイベントリスナ内で <code translate="no">preventDefault()</code> を呼ぶことで、スクロールそのものを止めることもできる。
       <p>実はこれが Scroll Jank の原因となることが非常に多いことがわかっている。
     </section>
     <section>
       <h2 id="Scroll+Jank"><a href="#Scroll+Jank">Scroll Jank</a></h2>
       <p>ブラウザは、単純なドキュメントであれば、そのスクロールがスムーズになるように最適化することができる。
-      <p>しかし、 Scroll Event にイベントリスナが登録された場合、そのイベントリスナの中で <code>preventDefault()</code> が呼ばれる場合は、スクロールを止めなくてはいけない。
-      <p>ところが、登録されたイベントリスナの中で <code>preventDefault()</code> が実行されるかどうかは、実際にイベントリスナを実行してみないとわからない。
-      <p>つまりブラウザは、 Scroll Event にイベントリスナが登録されている場合、ハンドラの実行が完了し <code>preventDefault()</code> が呼ばれなかったことを確認してからでないと、スクロールすることができない。
+      <p>しかし、 Scroll Event にイベントリスナが登録された場合、そのイベントリスナの中で <code translate="no">preventDefault()</code> が呼ばれる場合は、スクロールを止めなくてはいけない。
+      <p>ところが、登録されたイベントリスナの中で <code translate="no">preventDefault()</code> が実行されるかどうかは、実際にイベントリスナを実行してみないとわからない。
+      <p>つまりブラウザは、 Scroll Event にイベントリスナが登録されている場合、ハンドラの実行が完了し <code translate="no">preventDefault()</code> が呼ばれなかったことを確認してからでないと、スクロールすることができない。
       <p>これが Scroll Jank が発生する原因となる。
     </section>
     <section>
       <h2 id="影響"><a href="#影響">影響</a></h2>
-      <p>イベントリスナを実際に実行し、その処理が終わるまで <code>preventDefault()</code> が呼ばれるかどうかわからないため、 Scroll Jank がおこる。
+      <p>イベントリスナを実際に実行し、その処理が終わるまで <code translate="no">preventDefault()</code> が呼ばれるかどうかわからないため、 Scroll Jank がおこる。
       <p>つまり、 Scroll Event に登録されたイベントリスナの実行時間が長ければ長いほど、 Scroll Jank の影響が大きくなる。
       <p>Chrome は現在、実行時間の長いリスナが登録された場合、以下のような警告を devtools に表示する。
       <blockquote>explainer.md#the-problem:1 Deferred long-running timer task(s) to improve scrolling smoothness. See crbug.com/574343.</blockquote>
       <p>ただし、イベントリスナの実行自体にも多少のオーバーヘッドがあるため、空のイベントリスナを登録しただけでも、ブラウザのスクロール最適化を邪魔するには十分であり、影響がでることも確認されている。
-      <p>仕様には Scroll Event にイベントリスナを登録したサイトの中で、実際に <code>preventDefault()</code> を呼ぶのは 20% 程度という調査結果が記載されている。
+      <p>仕様には Scroll Event にイベントリスナを登録したサイトの中で、実際に <code translate="no">preventDefault()</code> を呼ぶのは 20% 程度という調査結果が記載されている。
       <p>これは 80% のケースで、ブラウザがリスナの完了を待つことなくスクロールしても問題がなかったということを意味している。
     </section>
     <section>
       <h2 id="Passive+Event+Listeners"><a href="#Passive+Event+Listeners">Passive Event Listeners</a></h2>
-      <p>もし、ブラウザがリスナを実行する前に、リスナが <code>preventDefault()</code> を呼ばないことを保障できればこの問題は解決する。
-      <p>この <code>preventDefault()</code> を呼ばないリスナを <strong>Passive Listener</strong> と表現する。
-      <p>そして、登録したリスナが <strong>Passive Listener</strong> であることを明示するのが、今回追加された <code>passive</code> フラグである。
-      <p>この値は、同じく今回追加された <code>addEventListener()</code> の第三引数に渡す <strong>Event Listener Options</strong> で指定する。
-      <pre class=js><code>document.addEventListener(&#039;touchstart&#039;, handler, {passive: true});</code></pre>
-      <p>開発者がこれを明示的に指定することで、ブラウザはリスナが <code>preventDefault()</code> を呼ばないことを前提とできるため、リスナの完了を待たずにスクロールすることができ、それを最適化できる余地が生まれる。
-      <p>なお Passive Listener 内で <code>preventDefault()</code> を呼んだ場合は無視されるため、呼んだとしても <code>defaultPrevented=false</code> のままになる。
-      <p>Listener 内で <code>preventDefault()</code> を呼べるかどうかは、 <code>cancelable=true</code> となっているかどうかで分かる。
+      <p>もし、ブラウザがリスナを実行する前に、リスナが <code translate="no">preventDefault()</code> を呼ばないことを保障できればこの問題は解決する。
+      <p>この <code translate="no">preventDefault()</code> を呼ばないリスナを <strong>Passive Listener</strong> と表現する。
+      <p>そして、登録したリスナが <strong>Passive Listener</strong> であることを明示するのが、今回追加された <code translate="no">passive</code> フラグである。
+      <p>この値は、同じく今回追加された <code translate="no">addEventListener()</code> の第三引数に渡す <strong>Event Listener Options</strong> で指定する。
+      <pre class=js><code translate="no">document.addEventListener(&#039;touchstart&#039;, handler, {passive: true});</code></pre>
+      <p>開発者がこれを明示的に指定することで、ブラウザはリスナが <code translate="no">preventDefault()</code> を呼ばないことを前提とできるため、リスナの完了を待たずにスクロールすることができ、それを最適化できる余地が生まれる。
+      <p>なお Passive Listener 内で <code translate="no">preventDefault()</code> を呼んだ場合は無視されるため、呼んだとしても <code translate="no">defaultPrevented=false</code> のままになる。
+      <p>Listener 内で <code translate="no">preventDefault()</code> を呼べるかどうかは、 <code translate="no">cancelable=true</code> となっているかどうかで分かる。
       <table>
         <thead>
           <tr>
@@ -610,10 +610,10 @@ th:last-child, td:last-child {
     </section>
     <section>
       <h2 id="Event+Listener+Options"><a href="#Event+Listener+Options">Event Listener Options</a></h2>
-      <p><code>addEventListener</code> の第三引数は、既に <code>useCapture</code> として boolean が定義されている。
-      <p>これが <code>true</code> の場合は、イベントはバブリングフェーズではなく、キャプチャリングフェーズで発火されることになる。
-      <p>Event Listener Options 対応以降は、ここにオブジェクトを渡すことになるため、 <code>useCapture</code> フラグ相当は、 <code>{capture: true}</code> としてプロパティによる定義を行う。
-      <pre class=js><code>// before
+      <p><code translate="no">addEventListener</code> の第三引数は、既に <code translate="no">useCapture</code> として boolean が定義されている。
+      <p>これが <code translate="no">true</code> の場合は、イベントはバブリングフェーズではなく、キャプチャリングフェーズで発火されることになる。
+      <p>Event Listener Options 対応以降は、ここにオブジェクトを渡すことになるため、 <code translate="no">useCapture</code> フラグ相当は、 <code translate="no">{capture: true}</code> としてプロパティによる定義を行う。
+      <pre class=js><code translate="no">// before
 document.addEventListener(&#039;touchstart&#039;, handler, true);
 
 // after
@@ -624,12 +624,12 @@ document.addEventListener(&#039;touchstart&#039;, handler, {capture: true});</co
     <section>
       <h2 id="Feature+Detection"><a href="#Feature+Detection">Feature Detection</a></h2>
       <p>引数をオブジェクトにした結果、 Passive 用に引数を追加するよりも柔軟な設計となったが、互換性の問題が発生してしまう結果となった。
-      <p>これは <code>{passive: true}</code> は JS としては truthy であるため、第三引数が Event Listener Option に対応してないブラウザにおいて単に <code>useCapture</code> を有効にしたと解釈されてしまうためにおこる。
-      <p>例えばキャプチャリングフェーズでの補足を <code>false</code> にする指定を Event Listener Options で指定した場合、古いブラウザでは意図に反して <code>useCapture</code> を <code>true</code> にしたと解釈されてしまうのである。
-      <pre class=js><code>document.addEventListener(&#039;touchstart&#039;, handler, {capture: false});</code></pre>
+      <p>これは <code translate="no">{passive: true}</code> は JS としては truthy であるため、第三引数が Event Listener Option に対応してないブラウザにおいて単に <code translate="no">useCapture</code> を有効にしたと解釈されてしまうためにおこる。
+      <p>例えばキャプチャリングフェーズでの補足を <code translate="no">false</code> にする指定を Event Listener Options で指定した場合、古いブラウザでは意図に反して <code translate="no">useCapture</code> を <code translate="no">true</code> にしたと解釈されてしまうのである。
+      <pre class=js><code translate="no">document.addEventListener(&#039;touchstart&#039;, handler, {capture: false});</code></pre>
       <p>これを避けるためには Feature Detection が必要となる。
       <p>スペックにサンプルが掲載されているので、引用しコメントで解説を追記する。
-      <pre class=js><code>var supportsPassive = false;
+      <pre class=js><code translate="no">var supportsPassive = false;
 try {
   // getter として opts.passive を定義して、 addEventListener 内で呼ばれたことがわかるようにする
   var opts = Object.defineProperty({}, &#039;passive&#039;, {
@@ -682,7 +682,7 @@ function addEventListenerWithOptions(target, type, handler, options) {
     <section>
       <h2 id="Intersection+Observer"><a href="#Intersection+Observer">Intersection Observer</a></h2>
       <p>Scroll にハンドラを補足するユースケースの一つに、画面のスクロール位置取得がある。
-      <p>画面のどの分が表示されているかを <code>scrollTop</code> などを用いて測定するような場面では、 Passive Listener を指定する効果が予想される。
+      <p>画面のどの分が表示されているかを <code translate="no">scrollTop</code> などを用いて測定するような場面では、 Passive Listener を指定する効果が予想される。
       <p>しかし、この場面により適した仕様として、要素の出現と位置をより効率的に取得する Intersection Observer という仕様が提案されている。
       <p>実装されれば、こちらを用いる方が Scroll を監視するよりも正確かつ効率の良い実装が可能となる。
       <p>本サイトでも追って解説を行う予定である。

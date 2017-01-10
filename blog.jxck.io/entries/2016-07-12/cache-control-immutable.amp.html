@@ -582,7 +582,7 @@ th:last-child, td:last-child {
       <h2 id="Immutable+Extension"><a href="#Immutable+Extension">Immutable Extension</a></h2>
       <p>Cache-Control Immutable Extension は、 Cache-Control の拡張の一つである。
       <p>以下のように指定することで、キャッシュを Immutable と指定することができ、ブラウザはキャッシュが fresh であればリロード時でもヒットさせるようになる。
-      <pre class=sh><code>Cache-Control: max-age=10000, immutable</code></pre>
+      <pre class=sh><code translate="no">Cache-Control: max-age=10000, immutable</code></pre>
       <p>これによって、なんらかの原因でユーザがリロードを行う場面においても、無駄なリクエストを防ぐことができる。
       <p>特に、画像、動画、フォントといったサイズが大きくも表示において重要なリソースについては、キャッシュの再利用がサーバの負荷という面でも、 UX の面でも有利に働く。
       <p>執筆時点では、 Firefox Nightly(version 50.0a1) が https 通信限定で、この拡張をサポートしている。
@@ -593,7 +593,7 @@ th:last-child, td:last-child {
     </section>
     <section>
       <h2 id="DEMO"><a href="#DEMO">DEMO</a></h2>
-      <p>画像に対して <code>cache-control: immutable</code> を設定した画像と、していない画像を並べたデモページを以下に用意した。
+      <p>画像に対して <code translate="no">cache-control: immutable</code> を設定した画像と、していない画像を並べたデモページを以下に用意した。
       <p>一度読み込んでからリロードを行うことで、キャッシュのヒットが確認できるだろう。
       <p>執筆時点では Firefox Nightly(version 50.0a1) のみ、かつ https のみで実装されている。
       <ul>
@@ -622,7 +622,7 @@ th:last-child, td:last-child {
       <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
       <p>本サイトでは、サイトへのアクセスログから 304 レスポンスの頻度が多いリソースを抽出し解析を試みた。
       <p>その結果が以下である。
-      <pre class=sh><code>$ cat access_log.* | grep 304 | cut -f7 | sort | uniq -c | sort -nr | head -n 30
+      <pre class=sh><code translate="no">$ cat access_log.* | grep 304 | cut -f7 | sort | uniq -c | sort -nr | head -n 30
 43468 /feeds/atom.xml
 31113 /
 11341 /assets/js/ga.js
@@ -653,9 +653,9 @@ th:last-child, td:last-child {
  1481 /assets/img/podcast.svg
  1478 /entries/2016-06-09/passive-event-listeners.html
  1462 /assets/img/twitter.svg</code></pre>
-      <p>RSS はブラウザのリロードとは関係がなく、また <code>/</code> (root)へのアクセスは更新頻度が高いため対象外とした。
+      <p>RSS はブラウザのリロードとは関係がなく、また <code translate="no">/</code> (root)へのアクセスは更新頻度が高いため対象外とした。
       <p>以降はアセット系が続くが、 JS や CSS についてはまだ更新の可能性が高く、 SVG についても手書きのものが多数含まれるため、今後も最適化のための描き直しをする可能性がある。
-      <p>したがって、最も変更の可能性が低い <code>/assets/img/jxck.png</code> のみ実験的に対応することとした。
+      <p>したがって、最も変更の可能性が低い <code translate="no">/assets/img/jxck.png</code> のみ実験的に対応することとした。
     </section>
     <section>
       <h2 id="Web+Font+への効果"><a href="#Web+Font+への効果">Web Font への効果</a></h2>

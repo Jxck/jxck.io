@@ -110,7 +110,7 @@
     <h1><a href=/entries/2016-06-12/noopener.html>リンクのへの rel=noopener 付与による Tabnabbing 対策</a></h1>
     <section>
       <h2 id="Intro"><a href="#Intro">Intro</a></h2>
-      <p>本サイト以下全ての <code>target=_blank</code> 付きのリンクに <code>rel=&quot;noopener noreferrer&quot;</code> の付与を実施した。
+      <p>本サイト以下全ての <code translate="no">target=_blank</code> 付きのリンクに <code translate="no">rel=&quot;noopener noreferrer&quot;</code> の付与を実施した。
       <p>このプロパティの意味と、これが無い場合のフィッシング詐欺攻撃の可能性について解説する。
     </section>
     <section>
@@ -124,16 +124,16 @@
       <p>最初のページを Parent 、開いたタブを Child とする。
       <p>child 側では以下のような JS が書かれており、 parent 側の location を変えて、任意の URL に遷移されることが可能である。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre><code>window.opener.location = http://example.com</code></pre>
-      <p>多くのブラウザでは、 child が <code>target=blank_</code> により別タブで開いた場合に、そちらが手前に表示され、 parent は裏に回る。<br>
+      <pre><code translate="no">window.opener.location = http://example.com</code></pre>
+      <p>多くのブラウザでは、 child が <code translate="no">target=blank_</code> により別タブで開いた場合に、そちらが手前に表示され、 parent は裏に回る。<br>
       child で上記の JS が動くと、裏で勝手に parent が画面遷移している状態となる。
       <p>これは、オリジンが違っても可能であるため、リンクをたどってきたユーザを任意のサイトに誘導することが可能というわけである。
       <p><a href="https://labs.jxck.io/noopener/">Window Opener DEMO</a>
     </section>
     <section>
       <h2 id="open+link+in+new+tab"><a href="#open+link+in+new+tab">open link in new tab</a></h2>
-      <p><code>target=_blank</code> が無いリンクを、別タブとして開いても、この攻撃は再現しないようである。
-      <p>しかし、 <code>target=_blank</code> がついたリンクを、さらに「別タブとして開く」機能を用いて開いた場合の挙動は、ブラウザによって異なる。
+      <p><code translate="no">target=_blank</code> が無いリンクを、別タブとして開いても、この攻撃は再現しないようである。
+      <p>しかし、 <code translate="no">target=_blank</code> がついたリンクを、さらに「別タブとして開く」機能を用いて開いた場合の挙動は、ブラウザによって異なる。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/table.css>
       <table>
         <thead>
@@ -185,17 +185,17 @@
       <section>
         <h3 id="攻撃の概要"><a href="#攻撃の概要">攻撃の概要</a></h3>
         <p><img src=tab-nabbing.svg#500x500 alt="tab-nabbing.svg" title="tab-nabbing の解説図" width=500 height=500>
-        <p><code>https://cgm.example.com</code> (左上) というサービスがあるとし、これは SNS やチーム後ラボレーション系サービスを想定する。
+        <p><code translate="no">https://cgm.example.com</code> (左上) というサービスがあるとし、これは SNS やチーム後ラボレーション系サービスを想定する。
         <p>攻撃者は、このサービスの不特定ユーザのユーザ名およびパスワードを盗みたいとする。
-        <p>この攻撃の成立のために、サービスに必要な仕様は <strong>任意のリンクを貼ることができて、そのリンクが <code>target=_blank</code> にマークアップされる</strong> ことである。
+        <p>この攻撃の成立のために、サービスに必要な仕様は <strong>任意のリンクを貼ることができて、そのリンクが <code translate="no">target=_blank</code> にマークアップされる</strong> ことである。
         <p>攻撃者が必要な準備は以下である。
       </section>
       <section>
         <h3 id="誘導用サイト(右上)"><a href="#誘導用サイト(右上)">誘導用サイト(右上)</a></h3>
         <p>ユーザを収集用サイトに誘導するサイトである。
         <ul>
-          <li>見た目がごく普通のサイト <code>https://happy.example.jp</code> を用意する
-          <li>このサイトに <code>window.opener.location = &quot;https://cgn.example.com/login&quot;</code> を仕込む
+          <li>見た目がごく普通のサイト <code translate="no">https://happy.example.jp</code> を用意する
+          <li>このサイトに <code translate="no">window.opener.location = &quot;https://cgn.example.com/login&quot;</code> を仕込む
           <li>(この JS が動くなら、 XSS でこのスクリプトを別サービスに仕込んでも代替できる)
         </ul>
       </section>
@@ -203,16 +203,16 @@
         <h3 id="収集用サイト(左下)"><a href="#収集用サイト(左下)">収集用サイト(左下)</a></h3>
         <p>ユーザ情報を収集する、ダミーサイトである。
         <ul>
-          <li>対象サイトと酷似したドメイン取得する、今回の場合 <code>cgn.example.com</code> など
-          <li><code>https://cgn.example.com/login</code> に本家のログインページと全く同じ見た目を実装する
-          <li>ログイン情報を収集したら、すぐさま本家 <code>https://cgm.example.com</code> (右下==左上) にリダイレクトするよう実装する
+          <li>対象サイトと酷似したドメイン取得する、今回の場合 <code translate="no">cgn.example.com</code> など
+          <li><code translate="no">https://cgn.example.com/login</code> に本家のログインページと全く同じ見た目を実装する
+          <li>ログイン情報を収集したら、すぐさま本家 <code translate="no">https://cgm.example.com</code> (右下==左上) にリダイレクトするよう実装する
         </ul>
       </section>
       <section>
         <h3 id="攻撃"><a href="#攻撃">攻撃</a></h3>
         <p>実際の攻撃は以下の手順で行う
         <ul>
-          <li>本家のサービスに <code>https://happy.example.jp</code> (右上) のリンクを貼る
+          <li>本家のサービスに <code translate="no">https://happy.example.jp</code> (右上) のリンクを貼る
           <li>本家サービスを利用中の他のユーザに、このリンクを踏ませる
           <li>被害者は、別のタブで開き、本家のタブは裏に隠れる。
           <li>見終わって閉じると、さっきまでの本家サイトのタブがなぜかログイン画面(左下)になっている。
@@ -239,35 +239,35 @@
         <p>本家サービスからすれば、ダミーのログイン画面に対してできることは無い。<br>
         銀行当のサイトが注意喚起を高い頻度で行っていることを見ても分かるだろう。
         <p>したがって、この攻撃ストーリーであれば、最初の誘導サイトを開いたときにリダイレクトされることを防ぐのが効果的である。
-        <p>そこで使用できるのが <code>rel=noopener</code> 属性である。
+        <p>そこで使用できるのが <code translate="no">rel=noopener</code> 属性である。
       </section>
     </section>
     <section>
       <h2 id="noopener"><a href="#noopener">noopener</a></h2>
-      <p>parent 側のリンクタグに <code>rel=noopener</code> を追加することで、 child が parent を <code>window.opener</code> 経由で参照できなくなるため、 parent の location の変更などを抑止することが可能である。
+      <p>parent 側のリンクタグに <code translate="no">rel=noopener</code> を追加することで、 child が parent を <code translate="no">window.opener</code> 経由で参照できなくなるため、 parent の location の変更などを抑止することが可能である。
       <p><a href="https://html.spec.whatwg.org/multipage/semantics.html#link-type-noopener">4.6.6.11 Link type "noopener" | WHATWG Spec</a>
-      <p>ただし、 Chrome, Opera 以外は現時点で <code>noopener</code> に対応していない。
+      <p>ただし、 Chrome, Opera 以外は現時点で <code translate="no">noopener</code> に対応していない。
       <p><a href="http://caniuse.com/#feat=rel-noopener">rel=noopener | Can I use</a>
-      <p>代替として <code>noreferrer</code> を指定することで同じ挙動が実現できる。
+      <p>代替として <code translate="no">noreferrer</code> を指定することで同じ挙動が実現できる。
       <p>したがって、以下のようにすることで目的が達成できる。
-      <pre class=html><code>&lt;a href=&quot;http://example.com&quot; target=_blank rel=&quot;noopener noreferrer&quot;&gt;</code></pre>
-      <p>ただし <code>noreferrer</code> はその名の通り Referrer を抑止する属性であるため、副作用には注意が必要である。
+      <pre class=html><code translate="no">&lt;a href=&quot;http://example.com&quot; target=_blank rel=&quot;noopener noreferrer&quot;&gt;</code></pre>
+      <p>ただし <code translate="no">noreferrer</code> はその名の通り Referrer を抑止する属性であるため、副作用には注意が必要である。
     </section>
     <section>
       <h2 id="DEMO"><a href="#DEMO">DEMO</a></h2>
-      <p><code>rel</code> の有無により、 child から parent ページの遷移の動作を試すデモも以下に用意した。
+      <p><code translate="no">rel</code> の有無により、 child から parent ページの遷移の動作を試すデモも以下に用意した。
       <p><a href="https://labs.jxck.io/noopener">noopener DEMO</a>
     </section>
     <section>
       <h2 id="本サイトでの適用"><a href="#本サイトでの適用">本サイトでの適用</a></h2>
-      <p>そもそも <code>target=_blank</code> が無ければ対応の必要はなく、モバイルにおいて <code>target=_blank</code> は UX を損ねるという話もあるため、本サイトでは基本的に <code>target=_blank</code> は付与していない。そもそもログインなどのクレデンシャルの保持も無い。
-      <p>ただ、ごく一部デモページで <code>target=_blank</code> を付けていたので、それら全てについて試験的に <code>rel=&quot;noopener noreferrer&quot;</code> の付与を実施した。
+      <p>そもそも <code translate="no">target=_blank</code> が無ければ対応の必要はなく、モバイルにおいて <code translate="no">target=_blank</code> は UX を損ねるという話もあるため、本サイトでは基本的に <code translate="no">target=_blank</code> は付与していない。そもそもログインなどのクレデンシャルの保持も無い。
+      <p>ただ、ごく一部デモページで <code translate="no">target=_blank</code> を付けていたので、それら全てについて試験的に <code translate="no">rel=&quot;noopener noreferrer&quot;</code> の付与を実施した。
     </section>
     <section>
       <h2 id="注意"><a href="#注意">注意</a></h2>
-      <p><code>window.opener</code> の挙動は、あくまでもフィッシング詐欺への応用が可能であるだけで、実際の攻撃はダミーのログイン画面への入力時点で発生している。
+      <p><code translate="no">window.opener</code> の挙動は、あくまでもフィッシング詐欺への応用が可能であるだけで、実際の攻撃はダミーのログイン画面への入力時点で発生している。
       <p>フィッシングメールに含まれるリンクからの誘導や、ダミーログインの URL を直接踏ませるのとも本質的には同じである。
-      <p>したがって、リンクに <code>rel=noopener</code> を付与していないサイトが総じて脆弱であるというわけではない。
+      <p>したがって、リンクに <code translate="no">rel=noopener</code> を付与していないサイトが総じて脆弱であるというわけではない。
       <p>例えば Google はこの挙動を脆弱性とは認定していない。
       <ul>
         <li><a href="https://sites.google.com/site/bughunteruniversity/nonvuln/phishing-with-window-opener">Phishing by navigating browser tabs - Bughunter University</a>

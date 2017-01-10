@@ -117,10 +117,10 @@
       <h2 id="WHATWG+URL"><a href="#WHATWG+URL">WHATWG URL</a></h2>
       <p>URL は非常によく使われる、 Web において重要なフォーマットの一つだ。
       <p>ものによっては一見シンプルに見えるかもしれないが、その仕様はそれなりに大きい。
-      <p>しかし、これまで DOM/JS はこれをパースする専用の API を持っていなかったため、例えば <code>&lt;input type=text&gt;</code> に入力された URL 文字列のパースは、片手間な正規表現で行われることも少なくなかった。
+      <p>しかし、これまで DOM/JS はこれをパースする専用の API を持っていなかったため、例えば <code translate="no">&lt;input type=text&gt;</code> に入力された URL 文字列のパースは、片手間な正規表現で行われることも少なくなかった。
       <p>同様に、動的生成されるクエリやハッシュなどを URL に含める場面でも、やはり文字列操作による構築が行われてきた。
       <p>片手間な正規表現や文字列処理が、 URL が本来持つ仕様(username/password, escape, punycode etc)を正しく満たせるとは限らず、それ自体が様々な問題(セキュリティ etc)を引き起こす要因になることも少なくなかった。
-      <p>ところが近年、 <code>fetch()</code> や <code>&lt;input type=url&gt;</code> など、 URL を扱う仕様も増えてきたため、 URL のフォーマット及び処理方法を整備する目的で URL Standard の仕様が策定された。
+      <p>ところが近年、 <code translate="no">fetch()</code> や <code translate="no">&lt;input type=url&gt;</code> など、 URL を扱う仕様も増えてきたため、 URL のフォーマット及び処理方法を整備する目的で URL Standard の仕様が策定された。
       <p>それが以下である。
       <p>原文: <a href="https://url.spec.whatwg.org">https://url.spec.whatwg.org</a><br>
       翻訳: <a href="https://triple-underscore.github.io/URL-ja.html">https://triple-underscore.github.io/URL-ja.html</a>
@@ -148,8 +148,8 @@
     </section>
     <section>
       <h2 id="Node+の+url+module+実装"><a href="#Node+の+url+module+実装">Node の url module 実装</a></h2>
-      <p>Node は既に URL をパースするための <code>url</code> モジュールを標準でもっている。<br>
-      しかし、これが実装されたのは URL Standard が定義される前なので、 <code>url</code> モジュールが準拠するのはもちろん RFC である。(それ自体が問題になること自体はほとんどない。)
+      <p>Node は既に URL をパースするための <code translate="no">url</code> モジュールを標準でもっている。<br>
+      しかし、これが実装されたのは URL Standard が定義される前なので、 <code translate="no">url</code> モジュールが準拠するのはもちろん RFC である。(それ自体が問題になること自体はほとんどない。)
       <p>しかし API についてみれば、先ほどの URLSearchParams も含めて WHATWG の定義とはかなり差異がある。
       <p>同じ JS であるにも関わらず、ブラウザと Node で API が違うというのは、 isomorphic/universal 化が進む昨今では決して嬉しいことではない。
       <p>そこで筆者はこの URL オブジェクトを実装していた時期があった。だいぶ実装は進んだが後述する punycode と unicode 周りの対応が面倒で途中で止まっていた。
@@ -165,7 +165,7 @@
       <h2 id="URL+オブジェクト"><a href="#URL+オブジェクト">URL オブジェクト</a></h2>
       <p>Node v7.0.0 で実装された API は以下のように使うことができる。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre class=js><code>const URL = require(&#039;url&#039;).URL;
+      <pre class=js><code translate="no">const URL = require(&#039;url&#039;).URL;
 
 const u = new URL(&#039;https://jxck:password@blog.jxck.io/path/to/entry?log=true&amp;lang=ja#main&#039;);
 console.log(u);
@@ -181,7 +181,7 @@ console.log(u);
 // }</code></pre>
       <p>この API を経由すれば、日本語ドメインの Punycode 化、 IPv6 アドレスの対応、 escape などもやってくれる。<br>
       (ここら辺が、正規表現での処理時に問題になりやすいあたりだ。)
-      <pre class=js><code>const URL = require(&#039;url&#039;).URL;
+      <pre class=js><code translate="no">const URL = require(&#039;url&#039;).URL;
 
 // 日本語ドメイン
 const jp = new URL(&#039;https://じゃっく.jp&#039;);
@@ -220,7 +220,7 @@ console.log(ja);
       <h2 id="URLSearchParams+オブジェクト"><a href="#URLSearchParams+オブジェクト">URLSearchParams オブジェクト</a></h2>
       <p>また、 query parameter を表現する URLSearchParams は別オブジェクトであるため、 query parameter の取得や生成もこのオブジェクトを利用できる。
       <p>一応 Node v7.0.0 にもコードはあるようだが、正しく動いてないようなので、完成予定の Chrome の結果を代わりに貼っておく。
-      <pre class=js><code>const URL = require(&#039;url&#039;).URL;
+      <pre class=js><code translate="no">const URL = require(&#039;url&#039;).URL;
 
 const u = new URL(&#039;https://jxck.io?log=warn&amp;lang=ja&#039;);
 const searchParams = u.searchParams;
@@ -236,7 +236,7 @@ for ([k, v] of searchParams) {
   // lang ja
   // debug true
 }</code></pre>
-      <p>ブラウザ上でも、おそらくこれまで <code>?</code> と <code>&amp;</code> と <code>=</code> で <code>split()</code> したり、 <code>join()</code> してきたであろう query だが、 URLSearchParams 経由で解析/組み立てを行えば、おろそかにされがちだったエスケープなども正しく行われるため、積極的に使っていきたい。
+      <p>ブラウザ上でも、おそらくこれまで <code translate="no">?</code> と <code translate="no">&amp;</code> と <code translate="no">=</code> で <code translate="no">split()</code> したり、 <code translate="no">join()</code> してきたであろう query だが、 URLSearchParams 経由で解析/組み立てを行えば、おろそかにされがちだったエスケープなども正しく行われるため、積極的に使っていきたい。
       <p>こちらは caniuse があるので、貼っておく。
       <p><a href="http://caniuse.com/#feat=urlsearchparams">http://caniuse.com/#feat=urlsearchparams</a>
     </section>

@@ -130,23 +130,23 @@
       <p>CSP を有効にするには、 Content-Security-Policy ヘッダを付与し、その引数にポリシーを指定する。
       <p>ポリシーは、コンテンツが読み込み可能なコンテンツについての制限であり、以下のような指定が可能である。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre><code>Content-Security-Policy: default-src &#039;self&#039;</code></pre>
+      <pre><code translate="no">Content-Security-Policy: default-src &#039;self&#039;</code></pre>
       <p>ここで使用されるディレクティブについては、以下が参考になる。
       <p><a href="https://developer.mozilla.org/ja/docs/Web/Security/CSP/CSP_policy_directives">CSP におけるポリシーのディレクティブ - Web セキュリティ | MDN</a>
-      <p>基本的には、同一オリジン以外の外部スクリプトや、 <code>&lt;script&gt;</code> 内に直接記述するインラインスクリプトなどを全て除外し、そうしたスクリプトがあった場合も実行を阻止する。
+      <p>基本的には、同一オリジン以外の外部スクリプトや、 <code translate="no">&lt;script&gt;</code> 内に直接記述するインラインスクリプトなどを全て除外し、そうしたスクリプトがあった場合も実行を阻止する。
       <p>また、ポリシー違反があった事実を JSON 形式のレポートとして生成し、指定 URL に送信することが可能である。
       <p>このレポートを収集解析することで、攻撃の事実などを知ることができ、対策が可能となる。
     </section>
     <section>
       <h2 id="CSP+の注意点"><a href="#CSP+の注意点">CSP の注意点</a></h2>
       <p>もし、先ほど例示した設定をサイト全体に適用した場合、何がおこるかを考えてみる。
-      <pre><code>Content-Security-Policy: default-src &#039;self&#039;</code></pre>
+      <pre><code translate="no">Content-Security-Policy: default-src &#039;self&#039;</code></pre>
       <p>まず、この指定により、インラインスクリプトが全て無効になる。<br>
-      よくある例として、 Google Analytics のためページ下部に埋め込んだ <code>&lt;script&gt;</code> が全て動かなくなるため、アナリティクスが動かなくなる。
-      <p>他にも、例えば <code>cdn.jquery.com</code> などの Public CDN から取得しているスクリプトも軒並み動かなくなる。
-      <p>スクリプトだけでなく、 <code>&lt;img&gt;</code> や <code>&lt;iframe&gt;</code> なども注意が必要だ。
+      よくある例として、 Google Analytics のためページ下部に埋め込んだ <code translate="no">&lt;script&gt;</code> が全て動かなくなるため、アナリティクスが動かなくなる。
+      <p>他にも、例えば <code translate="no">cdn.jquery.com</code> などの Public CDN から取得しているスクリプトも軒並み動かなくなる。
+      <p>スクリプトだけでなく、 <code translate="no">&lt;img&gt;</code> や <code translate="no">&lt;iframe&gt;</code> なども注意が必要だ。
       <p>特にアド(広告)を貼っている場合は、そのアドは表示されなくなる可能性が高い。
-      <p>同じオリジンから配布している JS でも、内部で <code>eval()</code> を実行している箇所や、 XHR, WebSocket で別オリジンに接続している箇所は、ポリシー違反になる場合もある。
+      <p>同じオリジンから配布している JS でも、内部で <code translate="no">eval()</code> を実行している箇所や、 XHR, WebSocket で別オリジンに接続している箇所は、ポリシー違反になる場合もある。
       <p>とにかく、ある程度外部のリソースへリンクしているコンテンツにとっては、前述の制約はかなり厳しいものである。
       <p>よって、ここに対してホワイトリストで、信頼するドメインの追加や、幾つかの挙動を例外的に許可する設定を足していくことになる。
     </section>
@@ -156,17 +156,17 @@
       <p>したがって、いきなりポリシーを有効にするのはかなり難しいと思われる。
       <p>そこで、移行手段として Content-Security-Policy-Report-Only を利用することができる。
       <p>これは、ポリシー違反があった場合、レポートだけを送信し、コンテンツの挙動を一切ブロックしないというものである。
-      <p>以下のように、ポリシーに <code>report-uri</code> ディレクティブでレポート先 uri を指定する。
-      <pre><code>Content-Security-Policy-Report-Only: default-src &#039;self&#039;; report-uri http://example.com/csp-report</code></pre>
+      <p>以下のように、ポリシーに <code translate="no">report-uri</code> ディレクティブでレポート先 uri を指定する。
+      <pre><code translate="no">Content-Security-Policy-Report-Only: default-src &#039;self&#039;; report-uri http://example.com/csp-report</code></pre>
       <p>これによって、ポリシー違反があってもコンテンツをブロックしないため、サイトへの影響はほぼ無くなる。
       <p>まずはこの指定でレポートを収集しながら、影響範囲を把握しポリシーとコンテンツを徐々に改善することができる。
       <p>修正が完了し、レポートが落ち着いたら Content-Security-Policy に移行するフローが導入しやすいだろう。
     </section>
     <section>
       <h2 id="report-uri.io"><a href="#report-uri.io">report-uri.io</a></h2>
-      <p>ブラウザは、 CSP に違反した実行を検出した場合、違反レポートを生成し <code>report-uri</code> に指定した URI に対して自動的に送信する。
+      <p>ブラウザは、 CSP に違反した実行を検出した場合、違反レポートを生成し <code translate="no">report-uri</code> に指定した URI に対して自動的に送信する。
       <p>CSP の違反レポートは以下のような JSON データである。
-      <pre class=json><code>{
+      <pre class=json><code translate="no">{
     &quot;csp-report&quot;: {
         &quot;document-uri&quot;: &quot;https://jxck.io/&quot;,
         &quot;violated-directive&quot;: &quot;default-src &#039;self&#039;&quot;,
@@ -180,7 +180,7 @@
       <p>こうしたレポートにより、どのページの、どの実行が、どのポリシーに違反したかなどが取得できる。
       <p>このレポートの収集と解析を行うサービスとして、 report-uri.io というサービスが最近登場した。
       <p><a href="http://report-uri.io/">Welcome to report-uri.io</a>
-      <p>登録し、発行された URI を <code>report-uri</code> に指定するだけなので、導入は非常に楽である。
+      <p>登録し、発行された URI を <code translate="no">report-uri</code> に指定するだけなので、導入は非常に楽である。
       <p>ダッシュボードでは、レポートの分析や、ポリシーディレクティブの生成のサポートまで行ってくれるようである。
     </section>
     <section>
@@ -200,15 +200,15 @@
         <li>*.jxck.io 間でコンテンツをリンクしている
         <li>AMP のカスタムタグを CDN より読み込んでいる
         <li>AMP のカスタムタグがインラインスタイルを使用していた
-        <li>YouTube の動画を <code>&lt;iframe&gt;</code> で埋め込んでいる
+        <li>YouTube の動画を <code translate="no">&lt;iframe&gt;</code> で埋め込んでいる
         <li>Google Analytics を設定している
         <li>一部インラインスクリプト、インラインスタイルを使用していた
       </ul>
       <p>基本的には、必要なオリジンをホワイトリストに追加し、インラインスタイル、インラインスクリプトは外部化した。
       <p>しかし、 AMP のカスタムタグがインラインスタイルを使用している部分は、手を入れることができない。
-      <p>かといって、全体としてスタイルに <code>&#039;unsafe-inline&#039;</code> を許容するのもはばかられたため、 AMP ページのみスタイルの <code>&#039;unsafe-inline&#039;</code> を許可した。
+      <p>かといって、全体としてスタイルに <code translate="no">&#039;unsafe-inline&#039;</code> を許容するのもはばかられたため、 AMP ページのみスタイルの <code translate="no">&#039;unsafe-inline&#039;</code> を許可した。
       <p>よって、通常のページと AMP 対応ページでは以下の出し分けをしている。
-      <pre><code># normal page
+      <pre><code translate="no"># normal page
 content-security-policy-report-only: default-src &#039;self&#039; https://*.jxck.io https://www.google-analytics.com ; child-src https://www.youtube.com ; report-uri https://xxx.report-uri.io/r/default/csp/reportOnly
 
 # amp page

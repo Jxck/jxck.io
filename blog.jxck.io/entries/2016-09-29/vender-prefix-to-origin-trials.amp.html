@@ -568,11 +568,11 @@ th:last-child, td:last-child {
       <p>Vender Prefix は、まさしくその機能が <strong>実験中</strong> であることを示すために用いられ、これを付したベンダは、実験の結果をより積極的に反映できると期待した。<br>
       そして、実験が終われば Prefix は取られ、標準プロパティに置きかわり役目を終える。はずだった。
       <p>ところが、実際には多くのコンテンツが以下のようなコードを含む結果となった。
-      <pre class=css><code>.radius {
+      <pre class=css><code translate="no">.radius {
   -webkit-border-radius: 1em;
   -moz-border-radius: 1em;
 }</code></pre>
-      <pre class=js><code>var peerConnection = window.webkitRTCPeerConnection || window.mozRTCPeerConnection;</code></pre>
+      <pre class=js><code translate="no">var peerConnection = window.webkitRTCPeerConnection || window.mozRTCPeerConnection;</code></pre>
       <p>このコードには以下のような問題がある。
       <ul>
         <li>webkit/moz 以外のブラウザがその機能を実装しても有効にならない
@@ -580,14 +580,14 @@ th:last-child, td:last-child {
         <li>実験だった筈が、挙動を大きく変更しにくい。
       </ul>
       <p>本来は以下のように書かれるべきだった。
-      <pre class=css><code>.radius {
+      <pre class=css><code translate="no">.radius {
   -webkit-border-radius: 1em;
   -ms-border-radius: 1em;
   -o-border-radius: 1em;
   -webkit-border-radius: 1em;
   border-radius: 1em;
 }</code></pre>
-      <pre class=js><code>var peerConnection = window.RTCPeerConnection
+      <pre class=js><code translate="no">var peerConnection = window.RTCPeerConnection
                   || window.mozRTCPeerConnection
                   || window.webkitRTCPeerConnection
                   || window.msRTCPeerConnection;</code></pre>
@@ -664,8 +664,8 @@ th:last-child, td:last-child {
       このトークンを、 HTML か HTTP Header の中に仕込むことで、ブラウザが Origin Trials へのオプトインを認識し、申請した機能が使えるようになる。
       <section>
         <h3 id="HTML+の場合"><a href="#HTML+の場合">HTML の場合</a></h3>
-        <p>HTML ページがある場合は、 <code>&lt;meta&gt;</code> タグに埋め込むことで、ブラウザがそれを認識し、ページ上で機能が有効になる。
-        <pre><code>&lt;meta
+        <p>HTML ページがある場合は、 <code translate="no">&lt;meta&gt;</code> タグに埋め込むことで、ブラウザがそれを認識し、ページ上で機能が有効になる。
+        <pre><code translate="no">&lt;meta
   http-equiv=&quot;origin-trial&quot;
   data-feature=&quot;Foreign Fetch&quot;
   data-expires=&quot;2016-10-27&quot;
@@ -673,8 +673,8 @@ th:last-child, td:last-child {
       </section>
       <section>
         <h3 id="HTTP+Header+の場合"><a href="#HTTP+Header+の場合">HTTP Header の場合</a></h3>
-        <p>HTTP ヘッダの <code>Origin-Trial</code> ヘッダに埋め込むこともできる。ページの無い API などの場合はこちらを使う。
-        <pre><code>Origin-Trial: AjWBjwNj3D6ajLeOwcUojZHss8sYj1mPvbhnmUQRcdrLzXKs13uUlR4pXvlOB7e9R5oMUNZbngniw6X2SLHlXgYAAABXeyJvcmlnaW4iOiAiaHR0cHM6Ly9sYWJzLmp4Y2suaW86NDQzIiwgImZlYXR1cmUiOiAiRm9yZWlnbkZldGNoIiwgImV4cGlyeSI6IDE0Nzc1OTMwMDB9</code></pre>
+        <p>HTTP ヘッダの <code translate="no">Origin-Trial</code> ヘッダに埋め込むこともできる。ページの無い API などの場合はこちらを使う。
+        <pre><code translate="no">Origin-Trial: AjWBjwNj3D6ajLeOwcUojZHss8sYj1mPvbhnmUQRcdrLzXKs13uUlR4pXvlOB7e9R5oMUNZbngniw6X2SLHlXgYAAABXeyJvcmlnaW4iOiAiaHR0cHM6Ly9sYWJzLmp4Y2suaW86NDQzIiwgImZlYXR1cmUiOiAiRm9yZWlnbkZldGNoIiwgImV4cGlyeSI6IDE0Nzc1OTMwMDB9</code></pre>
       </section>
     </section>
     <section>

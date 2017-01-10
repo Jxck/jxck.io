@@ -111,7 +111,7 @@
     <section>
       <h2 id="Intro"><a href="#Intro">Intro</a></h2>
       <p>本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい WebP 形式を提供し、対応ブラウザに配布するようにした。
-      <p>フォーマットを出し分けるため、画像の指定は <code>&lt;picture&gt;</code> 要素を用いて対応した。
+      <p>フォーマットを出し分けるため、画像の指定は <code translate="no">&lt;picture&gt;</code> 要素を用いて対応した。
       <p>画像最適化シリーズ第 3 回目のエントリである。
       <ul>
         <li><a href="/entries/2016-03-24/optimize-image.html">画像最適化戦略 PNG/JEPG 編</a>
@@ -143,14 +143,14 @@
       <p>WebP への変換ツールは、 Google が公式に提供しているバイナリか、 Linux/Mac ならパッケージで提供されているものを使うことができる。
       <p><a href="https://developers.google.com/speed/webp/download">Downloading and Installing WebP</a>
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre class=sh><code>$ brew install webp    # mac
+      <pre class=sh><code translate="no">$ brew install webp    # mac
 $ apt-get install webp # linux</code></pre>
       <p>他にも、 gulp などのプラグインや、 GUI ツールなどもある。
     </section>
     <section>
       <h2 id="cwebp"><a href="#cwebp">cwebp</a></h2>
       <p>PNG からの変換は cwebp コマンドで行う。
-      <pre class=sh><code>$ cwebp
+      <pre class=sh><code translate="no">$ cwebp
 Usage:
 
    cwebp [options] -q quality input.png -o output.webp
@@ -159,7 +159,7 @@ Usage:
    Typical value is around 80.
 
    Try -longhelp for an exhaustive list of advanced options.</code></pre>
-      <p>基本的には <code>-q</code> の調整になるが、これは画像ごとに結果をみながらやるしかない。
+      <p>基本的には <code translate="no">-q</code> の調整になるが、これは画像ごとに結果をみながらやるしかない。
       <p>まずは、デフォルトの 80 で比較していく。
       <ul>
         <li><a href="/assets/img/jxck.png">jxck.png</a> : 4061 byte
@@ -167,20 +167,20 @@ Usage:
       </ul>
     </section>
     <section>
-      <h2 id="<code>&lt;picture&gt;</code>+での+WebP+の指定"><a href="#<code>&lt;picture&gt;</code>+での+WebP+の指定"><code>&lt;picture&gt;</code> での WebP の指定</a></h2>
+      <h2 id="<code+translate=no>&lt;picture&gt;</code>+での+WebP+の指定"><a href="#<code+translate=no>&lt;picture&gt;</code>+での+WebP+の指定"><code translate="no">&lt;picture&gt;</code> での WebP の指定</a></h2>
       <p>ブラウザにおける <a href="http://caniuse.com/#feat=webp">WebP の対応はまだまだ限定的</a> であるため、非対応ブラウザには PNG/JPEG/GIF などを送る必要がある。
       <p>この方法として、 JS による補完や、 User-Agent を用いたサーバサイドでの分岐などが紹介される場合がある。<br>
       しかし、別途 JS を利用する場合はイニシャルレンダリングへの影響を免れず、 User-Agent での分岐は保守性の問題から避けるべきパターンの一つといえる。
-      <p>現時点では、 HTML の <code>&lt;picture&gt;</code> を用いることで、ブラウザ自体にそれを判断させることができるため、本サイトではこの方法を採用することとした。
-      <p>画像を以下のように指定することで、対応ブラウザが自ら WebP をリクエストするようになり、 WebP や <code>&lt;picture&gt;</code> に対応していない場合は <code>&lt;img&gt;</code> に指定した画像にフォールバックする。
-      <pre class=html><code>&lt;picture&gt;
+      <p>現時点では、 HTML の <code translate="no">&lt;picture&gt;</code> を用いることで、ブラウザ自体にそれを判断させることができるため、本サイトではこの方法を採用することとした。
+      <p>画像を以下のように指定することで、対応ブラウザが自ら WebP をリクエストするようになり、 WebP や <code translate="no">&lt;picture&gt;</code> に対応していない場合は <code translate="no">&lt;img&gt;</code> に指定した画像にフォールバックする。
+      <pre class=html><code translate="no">&lt;picture&gt;
   &lt;source type=image/webp srcset=hero-image.webp&gt;
   &lt;img src=hero-image.png alt=&quot;hero image&quot;&gt;
 &lt;/picture&gt;</code></pre>
-      <p>この場合、 WebP に対応しているが <code>&lt;picture&gt;</code> に対応していないブラウザがあるのかが気になるところだが、現状 <a href="http://caniuse.com/#search=picture">picture</a> に対応し <a href="http://caniuse.com/#search=webp">webp</a> に対応していないブラウザは無い。
-      <p>したがって <code>&lt;picture&gt;</code> に対応していない(= WebP も非対応)ブラウザに向けたフォールバックとして、 <code>&lt;img&gt;</code> には PNG を指定する。
+      <p>この場合、 WebP に対応しているが <code translate="no">&lt;picture&gt;</code> に対応していないブラウザがあるのかが気になるところだが、現状 <a href="http://caniuse.com/#search=picture">picture</a> に対応し <a href="http://caniuse.com/#search=webp">webp</a> に対応していないブラウザは無い。
+      <p>したがって <code translate="no">&lt;picture&gt;</code> に対応していない(= WebP も非対応)ブラウザに向けたフォールバックとして、 <code translate="no">&lt;img&gt;</code> には PNG を指定する。
       <p>この指定は、現在 WebP に対応していないブラウザが将来対応した場合に、サイトに何も手を加える必要がない。
-      <p>将来、新しい画像フォーマットが出た場合は <code>&lt;source&gt;</code> を加えることで、ブラウザに選択肢を増やせば良いため、 UA のメンテナンスと比べても、好ましい方法と言える。
+      <p>将来、新しい画像フォーマットが出た場合は <code translate="no">&lt;source&gt;</code> を加えることで、ブラウザに選択肢を増やせば良いため、 UA のメンテナンスと比べても、好ましい方法と言える。
     </section>
   </article>
 

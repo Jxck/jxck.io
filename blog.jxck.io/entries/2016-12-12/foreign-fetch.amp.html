@@ -575,12 +575,12 @@ th:last-child, td:last-child {
     <section>
       <h2 id="foreign-fetch+の仕組み"><a href="#foreign-fetch+の仕組み">foreign-fetch の仕組み</a></h2>
       <p>さて、言葉での解説では想像しにくいと思うので、実際のデモを交えて解説をしていく。
-      <p>以下は <code>https://labs.jxck.io</code> をオリジンとする 1 つだけボタンを持つページに遷移する。これが 1st Party にあたる。
-      <p>ページ内のボタンは <code>https://api.jxck.io</code> という別オリジンの API を叩き、乱数を取得して表示するだけの簡単なものだ。<br>
+      <p>以下は <code translate="no">https://labs.jxck.io</code> をオリジンとする 1 つだけボタンを持つページに遷移する。これが 1st Party にあたる。
+      <p>ページ内のボタンは <code translate="no">https://api.jxck.io</code> という別オリジンの API を叩き、乱数を取得して表示するだけの簡単なものだ。<br>
       これは 3rd Party にあたり、 CORS に対応している。
       <p><a href="https://labs.jxck.io/service-worker/foreign-fetch/index.html">https://labs.jxck.io/service-worker/foreign-fetch/index.html</a>
-      <p>ページに読み込まれる <code>index.html</code> と <code>worker.js</code> は 1st Party Service Worker でキャッシュされており、オフライン対応されている。
-      <pre class=js><code>const CACHE = &quot;foreign-fetch&quot;;
+      <p>ページに読み込まれる <code translate="no">index.html</code> と <code translate="no">worker.js</code> は 1st Party Service Worker でキャッシュされており、オフライン対応されている。
+      <pre class=js><code translate="no">const CACHE = &quot;foreign-fetch&quot;;
 self.addEventListener(&#039;install&#039;, (e) =&gt; {
   console.info(&#039;install&#039;, e);
 
@@ -619,12 +619,12 @@ self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
     </section>
     <section>
       <h2 id="3rd+Party+Service+Worker+の登録"><a href="#3rd+Party+Service+Worker+の登録">3rd Party Service Worker の登録</a></h2>
-      <p>乱数の API は <code>https://api.jxck.io/random/number</code> への GET である。
+      <p>乱数の API は <code translate="no">https://api.jxck.io/random/number</code> への GET である。
       <p>実はこの API のレスポンスには、以下のようなヘッダが登録されている。
-      <pre><code>Link: &lt;/random/worker.js&gt;; rel=&quot;serviceworker&quot;
+      <pre><code translate="no">Link: &lt;/random/worker.js&gt;; rel=&quot;serviceworker&quot;
 Origin-Trial: Ai32KiE0NsOIRPR/NxvUwEpcM4hYyo6RPRvkG8liNEIX...</code></pre>
       <p>この Link タグは、 <a href="/entries/2016-12-11/link-rel-service-worker.html">前回の記事</a> で紹介した HTTP Header ベースの Service Worker 登録であり、以下のような Service Worker が登録されている。
-      <pre class=js><code>self.addEventListener(&#039;install&#039;, (e) =&gt; {
+      <pre class=js><code translate="no">self.addEventListener(&#039;install&#039;, (e) =&gt; {
   console.log(&#039;install&#039;);
   e.registerForeignFetch({
     scopes: [&#039;/random/number&#039;], // or self.registration.scope to handle everything
@@ -660,16 +660,16 @@ self.addEventListener(&#039;foreignfetch&#039;, (e) =&gt; {
       })
   );
 });</code></pre>
-      <p>この <code>foreignfetch</code> イベントが今回の要である。<br>
-      <code>install</code> イベントで指定した origin (ここでは全オリジン) から、 scope の範囲にあるリクエストをハンドルできる。
-      <p>先ほどの 1st Party Service Worker がキャッシュしていなかった乱数のリクエストを、実際に fetch した時、二段目としてこの 3rd Party Service Worker に渡ってくる。 Origin と Scope が対象範囲であるこのリクエストは <code>foreginfetch</code> イベントを発火する。
+      <p>この <code translate="no">foreignfetch</code> イベントが今回の要である。<br>
+      <code translate="no">install</code> イベントで指定した origin (ここでは全オリジン) から、 scope の範囲にあるリクエストをハンドルできる。
+      <p>先ほどの 1st Party Service Worker がキャッシュしていなかった乱数のリクエストを、実際に fetch した時、二段目としてこの 3rd Party Service Worker に渡ってくる。 Origin と Scope が対象範囲であるこのリクエストは <code translate="no">foreginfetch</code> イベントを発火する。
       <p>実際に fetch を発行し、失敗した Service Worker は、フォールバックとして乱数を JS で生成しそれを返す。
       <p>これにより、 1st Party の Service Worker は fetch が成功したかのように挙動するのである。
     </section>
     <section>
       <h2 id="foreign-fetch+によるサービス間連携"><a href="#foreign-fetch+によるサービス間連携">foreign-fetch によるサービス間連携</a></h2>
       <p>この 3rd Party Service Worker は、ページに紐づいている訳ではなく、イメージとしては API に紐づいている。
-      <p>例えば、今回は <code>labs.jxck.io</code> から fetch していたが、別のオリジン/ページから同じ API を fetch しても、 Origin/Scope が範囲内であれば、同じ 3rd Party Service Worker が起動して処理を行う。
+      <p>例えば、今回は <code translate="no">labs.jxck.io</code> から fetch していたが、別のオリジン/ページから同じ API を fetch しても、 Origin/Scope が範囲内であれば、同じ 3rd Party Service Worker が起動して処理を行う。
       <p>つまり、 3rd Party Service Worker は異なる 1st Party Service Worker 間で共有されるのだ。
       <p>これはかつて同じオリジンのキャッシュが別ページ間で使い回される CDN の利点のように、別のページで既に登録されている 3rd Party Service Worker はそのまま使いまわせることを意味し、例えば font のような大きいアセットファイルのキャッシュなども、ページ間で使いまわすことができるということを意味する。
       <p>使い回せるのはキャッシュだけではない。

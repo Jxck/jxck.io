@@ -145,7 +145,7 @@
       <p>cacoo は、作成した図を SVG 書き出すことが可能であるため、まずはこれを用いて自分のロゴを SVG で出した。
       <p>ソースは以下である。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre class=svg><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+      <pre class=svg><code translate="no">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;svg contentScriptType=&quot;text/ecmascript&quot;
      xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;
      zoomAndPan=&quot;magnify&quot;
@@ -196,7 +196,7 @@
       cacoo で吐いたままの SVG には、不要なメタ情報などが含まれている。
       <p>表示上不要なメタ情報は、 PNG/JPEG etc 同様に削除することでサイズ上のメリットが得られる。
       <p>これを行うツールに SVGGo があるため、これをかけてみた結果が以下である。
-      <pre class=svg><code>&lt;svg contentScriptType=&quot;text/ecmascript&quot;
+      <pre class=svg><code translate="no">&lt;svg contentScriptType=&quot;text/ecmascript&quot;
      viewBox=&quot;-15.0 -15.0 286.0 286.0&quot;
      preserveAspectRatio=&quot;xMidYMin meet&quot;
      xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;
@@ -228,7 +228,7 @@
       <p>同じ表示が実現できるのであれば、無駄なパスの書き方は極力避けたい。
       <p>cacoo の吐く SVG を読んでみると、この部分が気に食わなかったため、しかたなくエディタで手書きすることにした。
       <p>簡単な画像であれば、自分でゼロから手書きすることで、不要なメタ情報や無駄パスがない SVG を作ることができる。
-      <pre class=svg><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+      <pre class=svg><code translate="no">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 256 256&quot;&gt;
   &lt;rect width=&quot;256&quot; height=&quot;256&quot; fill=&quot;#000000&quot; /&gt;
   &lt;text fill=&quot;#ffffff&quot; font-size=&quot;90&quot; font-weight=&quot;bold&quot; font-family=&quot;Helvetica&quot;&gt;
@@ -252,7 +252,7 @@
       <p>それ以外で、削れそうな部分があれば今後も削っていく予定である。
       <p><a href="//labs.jxck.io/svg">labs.jxck.io/svg</a>
       <p>SVG の弱点として、 HTML に埋め込んだ SVG でないと CSS で色を指定できないという問題がある。<br>
-      本サイトの SVG は、外部リソースとして <code>&lt;img&gt;</code> で読んでいるため、色は SVG 自体に書いて作成している。
+      本サイトの SVG は、外部リソースとして <code translate="no">&lt;img&gt;</code> で読んでいるため、色は SVG 自体に書いて作成している。
       <p>なお、 404 ページや 500 ページを作る際にデザインを考えていたところ、この SVG にリンク貼って返せばそれで良いのでは?と思い、今は単にステータスコードを書いた SVG を返すようにしている。
       <p>正しくステータスコードと Contnet-Type が設定してあれば問題ない筈なので、こだわりたい人はここで Animation SVG とかやればいいんじゃないだろうか。
       <p>サーバの出したステータスコードに応じて SVG を動的に生成し、返すようにする予定である。
@@ -261,11 +261,11 @@
       <h2 id="Font"><a href="#Font">Font</a></h2>
       <p>フォントもベクタデータである。単色しか塗れないという制限もあるが、 UI アイコンをフォントデータとして生成し、それを指定するなどの方法がある。
       <p>代表例が <a href="https://fortawesome.github.io/Font-Awesome/">Font-Awesome</a> だが、本サイトでは導入していない。
-      <p>一方、単に CSS の <code>content:</code> 要素に文字を指定するだけでも、 Font を使用することができる。
+      <p>一方、単に CSS の <code translate="no">content:</code> 要素に文字を指定するだけでも、 Font を使用することができる。
       <p>このサイトは見た目が Markdown ライクになるように CSS を作っている。
-      <p>装飾に使用している <code>#</code> や <code>-</code> などの文字は、 <code>before</code>/<code>after</code> 擬似要素への <code>content:</code> に文字を指定することで、フォントデータを使って装飾している。
-      <p>例えば見出し <code>&lt;h1&gt;~&lt;h4&gt;</code> と <code>pre</code> は以下のように指定している。
-      <pre class=css><code>h1::before,
+      <p>装飾に使用している <code translate="no">#</code> や <code translate="no">-</code> などの文字は、 <code translate="no">before</code>/<code translate="no">after</code> 擬似要素への <code translate="no">content:</code> に文字を指定することで、フォントデータを使って装飾している。
+      <p>例えば見出し <code translate="no">&lt;h1&gt;~&lt;h4&gt;</code> と <code translate="no">pre</code> は以下のように指定している。
+      <pre class=css><code translate="no">h1::before,
 h2::before,
 h3::before,
 h4::before {

@@ -550,7 +550,7 @@ th:last-child, td:last-child {
       <h2 id="要素交差(intersection)の検出"><a href="#要素交差(intersection)の検出">要素交差(intersection)の検出</a></h2>
       <p>ページをスクロールしていく過程で、特定の DOM が画面に出現したことをフックしたいケースがある。
       <p>代表例は <strong>画像の遅延読み込み</strong> であり、初期ロードでは画像の取得を行わずスクロールしていく過程で順次取得する手法である。特に画像の多いページで、初期表示の高速化に寄与する場合がある。
-      <p>これを実装するのに必要なのは、「 <code>&lt;img&gt;</code> 要素が出現しているかどうか」であるが、本質的には「画面外にあった <code>&lt;img&gt;</code> が viewport と交差したか」を取得することになる。
+      <p>これを実装するのに必要なのは、「 <code translate="no">&lt;img&gt;</code> 要素が出現しているかどうか」であるが、本質的には「画面外にあった <code translate="no">&lt;img&gt;</code> が viewport と交差したか」を取得することになる。
       <p>つまり、 <strong>要素出現の取得</strong> は、 <strong>要素同士の交差取得</strong> として汎用化し、その一例と見ることができる。
       <p>新しく追加された、 Intersection Observe は「対象の親要素」と「対象の要素」が <strong>交差(Intersect)したことを取得する API</strong> である。
     </section>
@@ -567,14 +567,14 @@ th:last-child, td:last-child {
       <section>
         <h3 id="スクロール量(scrollTop)"><a href="#スクロール量(scrollTop)">スクロール量(scrollTop)</a></h3>
         <p>ページがどの程度スクロールされたかという値である。
-        <p>基本は <code>document.documentElement.scrollTop</code> だが、互換モードでは <code>document.body.scrollTop</code> を使う。<br>
-        しかし iPhone には <code>scrollTop</code> がないので、 <code>window.pageYOffset</code> を使うが、これは <code>window.scrollY</code> のエイリアスになっている。
+        <p>基本は <code translate="no">document.documentElement.scrollTop</code> だが、互換モードでは <code translate="no">document.body.scrollTop</code> を使う。<br>
+        しかし iPhone には <code translate="no">scrollTop</code> がないので、 <code translate="no">window.pageYOffset</code> を使うが、これは <code translate="no">window.scrollY</code> のエイリアスになっている。
         <p>要するに 4 つある。
         <ul>
-          <li><code>document.documentElement.scrollTop</code>
-          <li><code>document.body.scrollTop</code>
-          <li><code>window.pageYOffset</code>
-          <li><code>window.scrollY</code>
+          <li><code translate="no">document.documentElement.scrollTop</code>
+          <li><code translate="no">document.body.scrollTop</code>
+          <li><code translate="no">window.pageYOffset</code>
+          <li><code translate="no">window.scrollY</code>
         </ul>
         <p>よくある話だ。
       </section>
@@ -582,7 +582,7 @@ th:last-child, td:last-child {
         <h3 id="絶対位置(offsetTop)"><a href="#絶対位置(offsetTop)">絶対位置(offsetTop)</a></h3>
         <p>body を親要素とすれば、そこからの offset 位置はドキュメント上の絶対位置と考えることができる。
         <p>これは、要素自体が持っている。
-        <pre><code>let target = document.querySelector(&#039;.target&#039;);
+        <pre><code translate="no">let target = document.querySelector(&#039;.target&#039;);
 // target.offsetTop;
 // target.offsetHeight;
 // target.offsetWidth;
@@ -592,8 +592,8 @@ th:last-child, td:last-child {
         <h3 id="相対位置(getBoundingClientRect)"><a href="#相対位置(getBoundingClientRect)">相対位置(getBoundingClientRect)</a></h3>
         <p>対象の DOM が、現在画面表示(viewport)上どの位置にあるか。<br>
         スクロールするたびに変わる値で、常に表示領域の中の位置になる。
-        <p>これは、対象 DOM の <code>getBoundingClientRect()</code> で取れる。
-        <pre><code>let rect = target.getBoundingClientRect();
+        <p>これは、対象 DOM の <code translate="no">getBoundingClientRect()</code> で取れる。
+        <pre><code translate="no">let rect = target.getBoundingClientRect();
 // rect.top;
 // rect.bottom;
 // rect.height;
@@ -604,7 +604,7 @@ th:last-child, td:last-child {
       <section>
         <h3 id="表示判定"><a href="#表示判定">表示判定</a></h3>
         <p>ここまでを踏まえると、画面をスクロールし、画面の中に対象の DOM が入っていることは、以下のように判定できる。
-        <pre class=js><code>   (0 &lt; rect.top &amp;&amp; rect.top &lt; clientHeight)       // 対象の上端は表示領域に入っている
+        <pre class=js><code translate="no">   (0 &lt; rect.top &amp;&amp; rect.top &lt; clientHeight)       // 対象の上端は表示領域に入っている
 || (0 &lt; rect.bottom &amp;&amp; rect.bottom &lt; clientHeight) // 対象の下端は表示領域に入っている
 || (rect.top &lt; 0 &amp;&amp; clientHeight &lt; rect.bottom)    // 上端下端も表示されてないがその間が表示されている</code></pre>
         <p>この三つの論理和が満たされれば、どこかが表示されている。
@@ -616,7 +616,7 @@ th:last-child, td:last-child {
         <p>ただし、 onscroll は発生頻度が非常に多いため、愚直にコールバックに指定してしまうと、ボトルネックになり Scroll Jank を引き起こす可能性がある。
         <p>対策としては、まずコールバックを実行するイベントを間引く throttling がある。
         <p>例えば、 underscore.js の <a href="http://underscorejs.org/#throttle">throttle()</a> 相当のものや、 Reactive Extension 系のライブラリを使うことで実現できる。
-        <p>また、計算処理のみでコールバックを抜けるのであれば、 <code>.preventDefault()</code> を呼ばないため、別エントリで解説した Passive Event Listener を利用できる。
+        <p>また、計算処理のみでコールバックを抜けるのであれば、 <code translate="no">.preventDefault()</code> を呼ばないため、別エントリで解説した Passive Event Listener を利用できる。
         <ul>
           <li><a href="https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html">Passive Event Listeners によるスクロールの改善</a>
         </ul>
@@ -641,7 +641,7 @@ th:last-child, td:last-child {
       <p>ここでは 3 に注目したい。
       <section>
         <h3 id="Forced+Synchronous+Layout"><a href="#Forced+Synchronous+Layout">Forced Synchronous Layout</a></h3>
-        <p>ここまでに紹介した、 <code>scrollTop</code>, <code>offset</code>, <code>getBoundingClientRect()</code> などの呼び出しは、その時点での DOM の位置を取得するために Layout 計算を行う。
+        <p>ここまでに紹介した、 <code translate="no">scrollTop</code>, <code translate="no">offset</code>, <code translate="no">getBoundingClientRect()</code> などの呼び出しは、その時点での DOM の位置を取得するために Layout 計算を行う。
         <p>この計算は同期処理であり、つまりブロックが発生する。さらにそれを onscroll など頻度の高いイベントの中で行うのは、スムーズなスクロール表示のためのブラウザの最適化を阻害してしまう。
         <p>そこで、この頻出処理をブラウザのネイティブ API として実装し、より効率良く実装するのが、今回紹介する Intersection Observer である。
       </section>
@@ -656,9 +656,9 @@ th:last-child, td:last-child {
     <section>
       <h2 id="API"><a href="#API">API</a></h2>
       <p>コールバックとオプションを指定し、 Intersection Observer Class のインスタンスを生成する。
-      <p>生成した Observer に対して、任意の DOM 要素を <code>observe()</code> メソッドで指定することにより、対象を監視する。
+      <p>生成した Observer に対して、任意の DOM 要素を <code translate="no">observe()</code> メソッドで指定することにより、対象を監視する。
       <p>複数要素を同じように監視する場合は、同じ Intersection Observer インスタンスで、 observe を複数回呼ぶことができる。
-      <pre class=js><code>let observer = new IntersectionObserver((changes) =&gt; {
+      <pre class=js><code translate="no">let observer = new IntersectionObserver((changes) =&gt; {
   for (let change of changes) {
     console.log(change);
   }
@@ -677,34 +677,34 @@ observer.observe(target);</code></pre>
           </thead>
           <tbody>
             <tr>
-              <td class=align-left><code>change.time</code></td>
+              <td class=align-left><code translate="no">change.time</code></td>
               <td class=align-left>タイムスタンプ</td>
             </tr>
             <tr>
-              <td class=align-left><code>change.rootBounds</code></td>
-              <td class=align-left>root の <code>getBoundingClientRect()</code></td>
+              <td class=align-left><code translate="no">change.rootBounds</code></td>
+              <td class=align-left>root の <code translate="no">getBoundingClientRect()</code></td>
             </tr>
             <tr>
-              <td class=align-left><code>change.boundingClientRect</code></td>
-              <td class=align-left>target の <code>getBoundingClientRect()</code></td>
+              <td class=align-left><code translate="no">change.boundingClientRect</code></td>
+              <td class=align-left>target の <code translate="no">getBoundingClientRect()</code></td>
             </tr>
             <tr>
-              <td class=align-left><code>change.intersectionRect</code></td>
-              <td class=align-left>交差領域の <code>getBoundingClientRect()</code></td>
+              <td class=align-left><code translate="no">change.intersectionRect</code></td>
+              <td class=align-left>交差領域の <code translate="no">getBoundingClientRect()</code></td>
             </tr>
             <tr>
-              <td class=align-left><code>change.intersectionRatio</code></td>
+              <td class=align-left><code translate="no">change.intersectionRatio</code></td>
               <td class=align-left>交差している領域の割合</td>
             </tr>
             <tr>
-              <td class=align-left><code>change.target</code></td>
+              <td class=align-left><code translate="no">change.target</code></td>
               <td class=align-left>target</td>
             </tr>
           </tbody>
         </table><p><amp-img layout=responsive src=intersection-observer.svg#500x357 alt="intersection-observer" title="Intersection Observer API" width=500 height=357>
-        <p>特に <code>change.intersectionRect</code> および <code>change.intersectionRatio</code> は、自分で計算するとボトルネックになりがちである。
+        <p>特に <code translate="no">change.intersectionRect</code> および <code translate="no">change.intersectionRatio</code> は、自分で計算するとボトルネックになりがちである。
         <p>第二引数には、オプションとして三つのプロパティを設定したオブジェクトを指定できる。
-        <pre class=js><code>let observer = new IntersectionObserver((changes) =&gt; {
+        <pre class=js><code translate="no">let observer = new IntersectionObserver((changes) =&gt; {
   // callback
 }, {
   root: document.querySelector(&#039;.target&#039;),
@@ -716,26 +716,26 @@ observer.observe(target);</code></pre>
       <section>
         <h3 id="root"><a href="#root">root</a></h3>
         <p>デフォルトでは、 viewport を対象にした交差検出を行うことができるが、これはデフォルトの root が document 自身になっているからである。
-        <p>root オプションを用いることで、任意の親要素内を指定できるため、例えば <code>overflow: scroll</code> になった div の中の交差を判定することができる。
-        <pre class=js><code>{ root: document.querySelector(&#039;.target&#039;) }</code></pre>
+        <p>root オプションを用いることで、任意の親要素内を指定できるため、例えば <code translate="no">overflow: scroll</code> になった div の中の交差を判定することができる。
+        <pre class=js><code translate="no">{ root: document.querySelector(&#039;.target&#039;) }</code></pre>
       </section>
       <section>
         <h3 id="threshold"><a href="#threshold">threshold</a></h3>
-        <p><code>change.intersectionRatio</code> によって、交差している領域の割合を取得できるが、コールバックが呼ばれるタイミングが交差のタイミングだけでは、 0% や 100% などあまり役に立たない値しか出ない。
+        <p><code translate="no">change.intersectionRatio</code> によって、交差している領域の割合を取得できるが、コールバックが呼ばれるタイミングが交差のタイミングだけでは、 0% や 100% などあまり役に立たない値しか出ない。
         <p>これは、表示が 0 (表示されてない), 100 (全て表示されている) のどちらかしかないためである。
         <p>イベント発生頻度を増やすには、 threshold オプションを使うことができる。
         <p>例えば、以下のように引数を設定すれば、交差領域が 20% 変化する毎にコールバックを呼ぶことができる。
-        <pre class=js><code>{ threshold: [0, 0.2, 0.4, 0.6, 0.8, 1.0] }</code></pre>
+        <pre class=js><code translate="no">{ threshold: [0, 0.2, 0.4, 0.6, 0.8, 1.0] }</code></pre>
         <p>これにより、表示領域の変化に合わせたインタラクションも実装が可能になる。
       </section>
       <section>
         <h3 id="rootMargin"><a href="#rootMargin">rootMargin</a></h3>
-        <p>画像の遅延読み込みなどを実装したい場合は、 viewport を root として <code>&lt;img&gt;</code> を IntersectionObserver で監視するだろう。
-        <p>viewport 上に <code>&lt;img&gt;</code> が出現したことを検出することで、そこで画像の取得を走らせることができる。
-        <p>しかし、 viewport 上に表示されてから取得するより、表示される少し前に取得を開始できれば、小さい画像なら空の <code>&lt;img&gt;</code> すら出さずに済む可能性がある。
+        <p>画像の遅延読み込みなどを実装したい場合は、 viewport を root として <code translate="no">&lt;img&gt;</code> を IntersectionObserver で監視するだろう。
+        <p>viewport 上に <code translate="no">&lt;img&gt;</code> が出現したことを検出することで、そこで画像の取得を走らせることができる。
+        <p>しかし、 viewport 上に表示されてから取得するより、表示される少し前に取得を開始できれば、小さい画像なら空の <code translate="no">&lt;img&gt;</code> すら出さずに済む可能性がある。
         <p>こうした場合は rootMargin オプションを指定することができる。
         <p>値は CSS の margin への指定と同じだ、例えば以下のように設定すれば、上下左右が交差する 10px 手前でイベントが発火する。
-        <pre class=js><code>{ rootMargin: &#039;10px&#039; }</code></pre>
+        <pre class=js><code translate="no">{ rootMargin: &#039;10px&#039; }</code></pre>
       </section>
       <section>
         <h3 id="Intersection+Observe+DEMO"><a href="#Intersection+Observe+DEMO">Intersection Observe DEMO</a></h3>
@@ -745,7 +745,7 @@ observer.observe(target);</code></pre>
           <li><a href="https://labs.jxck.io/intersection-observer/intersection.html">Intersection Observer DEMO</a>
         </ul>
         <p>また以下に Intersecton Observer と、それ以前の API で、要素出現の検出を比較する DEMO を用意した。<br>
-        こちらは、 <code>overflow: scroll</code> な div を親とする出現検出も含めてある。
+        こちらは、 <code translate="no">overflow: scroll</code> な div を親とする出現検出も含めてある。
         <ul>
           <li><a href="https://labs.jxck.io/intersection-observer/visibility-change.html">Visibility Change DEMO</a>
         </ul>
