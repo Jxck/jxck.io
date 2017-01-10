@@ -14,44 +14,74 @@ pre {
 strong {
   color: #ff0000;
 }
+
+img, audio, video, iframe, object {
+  border: solid 1px black;
+  display: block;
+}
 </style>
 
 <p><a href=/mixed>back to list</a>
 
 <h1>Mixed Contents Demo</h1>
 
-<p>see error message on console
+<p><strong>see error message on console</strong>
 
-
-
+<hr>
 <h2>Passive Contents</h2>
 <div id=passive>
-<img            src=http://labs.jxck.io/mixed/contents/jxck.png></img>
-<audio controls src=http://labs.jxck.io/mixed/contents/audio.mp3></audio>
-<video controls src=http://labs.jxck.io/mixed/contents/video.mp4></video>
+  <dl>
+    <dt>img</dt>
+    <dd><img src=http://labs.jxck.io/mixed/contents/jxck.png width=100 height=100></img></dd>
+
+    <dt>audio</dt>
+    <dd><audio controls src=http://labs.jxck.io/mixed/contents/audio.mp3></audio></dd>
+
+    <dt>video</dt>
+    <dd><video controls src=http://labs.jxck.io/mixed/contents/video.mp4></video></dd>
+
+    <!-- TODO: <object> with requesting subresource with http -->
+  </dl>
 </div>
 
 <hr>
 
 <h2>Active Contents</h2>
 <div id=active>
-<script src=http://labs.jxck.io/mixed/contents/script.js></script>
-<link  href=http://labs.jxck.io/mixed/contents/style.css rel=stylesheet></link>
-<iframe src=http://labs.jxck.io/></iframe>
-<!-- <object data=http://labs.jxck.io/mixed/contents/flash.flv></object> -->
-<script>
-var xhr = new XMLHttpRequest();
-xhr.open('GET', 'http://labs.jxck.io');
-xhr.addEventListener('load', () => {
-  console.log(xhr.status);
-});
-xhr.send();
-</script>
-<style>
-body {
-  background-image: url(http://labs.jxck.io/mixed/contents/1x1.png);
-}
-</style>
+  <dl>
+    <dt>iframe</dt>
+    <dd><iframe src=http://labs.jxck.io/></iframe></dd>
+
+    <dt>object</dt>
+    <dd><object data=http://labs.jxck.io/mixed/contents/demo.swf type=application/x-shockwave-flash width=300 height=150></object></dd>
+
+    <dt>script</dt>
+    <dd><script src=http://labs.jxck.io/mixed/contents/script.js></script></dd>
+
+    <dt>XHR</dt>
+    <dd>
+      <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'http://labs.jxck.io');
+        xhr.addEventListener('load', () => {
+          console.log(xhr.status);
+        });
+        xhr.send();
+      </script>
+    </dd>
+
+    <dt>stylesheet</dt>
+    <dd><link href=http://labs.jxck.io/mixed/contents/style.css rel=stylesheet></link></dd>
+
+    <dt>style url()</dt>
+    <dd>
+      <style>
+        body {
+          background-image: url(http://labs.jxck.io/mixed/contents/1x1.png);
+        }
+      </style>
+    </dd>
+  </dl>
 </div>
 
 <hr>
@@ -64,7 +94,7 @@ body {
   <li>&lt;img src&gt;
   <li>&lt;audio src&gt;
   <li>&lt;video src&gt;
-  <li>&lt;object src&gt;
+  <li>&lt;object&gt;
 </ul>
 
 <pre id=passive-src></pre>
@@ -78,7 +108,7 @@ body {
   <li>&lt;iframe src&gt;
   <li>&lt;object data&gt;
   <li>XHR
-  <li>CSS 内の URL (@font-face, background-image etc)
+  <li>url() in CSS (@font-face, background-image etc)
 </ul>
 
 
@@ -99,6 +129,7 @@ body {
 <ul>
   <li>Sample Audio/Video from <a href=http://www.sample-videos.com/>samle-videos.com</a>
   <li>Sample Image from <a href=https://commons.wikimedia.org/wiki/File:1x1.png>commons.wikimedia.org</a>
+  <li>Sample Flash from <a href=https://github.com/mozilla/shumway/tree/master/examples/Box2DFlashAS3>github.com/mozilla/shumway</a>
 </ul>
 
 <script>
