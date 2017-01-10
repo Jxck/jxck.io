@@ -126,7 +126,7 @@ class Markup
 
   def pre(node)
     lang = node.attr && node.attr["class"].sub("language-", "")
-    "<pre#{lang ? %( class=#{lang}) : ''}><code>#{node.value}</code></pre>\n"
+    "<pre#{lang ? %( class=#{lang}) : ''}><code translate=\"no\">#{node.value}</code></pre>\n"
   end
   protected :pre
 
@@ -184,7 +184,7 @@ class Markup
 
   # inline elements
   def codespan(node)
-    "<code>#{hsp(node.value)}</code>"
+    "<code translate=\"no\">#{hsp(node.value)}</code>"
   end
   def blockquote(node)
     "<blockquote>#{hsp(node.value)}</blockquote>\n"
