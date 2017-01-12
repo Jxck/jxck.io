@@ -718,7 +718,7 @@ class Entry < Article
 
   # "https://blog.jxck.io/entries/2016-01-27/new-blog-start.amp.html"
   def ampurl
-    "https://#{host}/#{amprelative}"
+    "https://#{host}#{amprelative}"
   end
 
   def created_at
