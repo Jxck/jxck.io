@@ -172,7 +172,7 @@ mixed contents は、発生したこと自体を把握しにくかったとい�
 
 広告は入れ子の iframe で作られているものが多い。
 
-![典型的な nested iframe](iframe.png#600x600 'ディスプレイ広告の基礎とセキュリティ(P7) by Kenta Suzuki')
+![典型的な nested iframe](iframe.png#600x451 'ディスプレイ広告の基礎とセキュリティ(P7) by Kenta Suzuki')
 
 [ディスプレイ広告の基礎とセキュリティ(P7) by Kenta Suzuki](https://speakerdeck.com/suzuken/deisupureiguang-gao-falseji-chu-tosekiyuritei)
 
