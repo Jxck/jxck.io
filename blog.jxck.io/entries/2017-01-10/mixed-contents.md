@@ -6,14 +6,14 @@ HTTPS 移行の問題点の一つに、 mixed contents への対応がある。
 
 逆に mixed contents の発生を恐れ、 HTTPS に移行できないサービスもあるだろう。
 
-問題は mixed contents が「どこで発生しているかわかりにくい」という場合もあるため、そこで利用できる可能性のある `Upgrade-Insecure-Request` および、 CSP の `Block-All-Mixed-Contents` を解説する。
+本エントリでは mixed contents の正しい理解と、その検出や解消に利用できる可能性のある、 CSP の `Upgrade-Insecure-Request` および、 `Block-All-Mixed-Contents` を解説する。
 
 
 ## mixed contents
 
 HTTPS で配信されたコンテンツが、サブリソースとして HTTP のコンテンツを含む場合、これを **mixed contents** という。
 
-HTTPS 化されたコンテンツは MITM に対する耐性があるが、そこに含まれるサブリソースが HTTP で配信されると、 MITM への耐性がないため、そこを起点に HTTPS コンテンツへの改ざんが成立してしまう可能性がある。
+HTTPS は MITM に対する耐性があるが、 HTTP は MITM への耐性がないため、 mixed contents の状態ではサブリソースを起点にメインコンテンツへの改ざんが成立してしまう可能性がある。
 
 このため HTTPS で配信されていても、 mixed contents がある場合は完全に安全とは言えず、ブラウザは通常ユーザに安全ではないことを警告する。
 
