@@ -9,13 +9,26 @@
 
 <div>
   <audio id=audio preload=metadata src=audio.mp3></audio>
+  <div>
   <time id=duration></time>
+  </div>
+
+  <div>
   <progress id=progress></progress>
+  </div>
+
+  <div>
   <button id=play>play</button>
   <button id=pause>stop</button>
 
   <button id=volup>+</button>
   <button id=voldown>-</button>
+
+  <button id=bb>&lt;&lt;</button>
+  <button id=b>&lt;</button>
+  <button id=f>&gt;</button>
+  <button id=ff>&gt;&gt;</button>
+  </div>
 </div>
 
 <script>
@@ -43,6 +56,28 @@ $('#voldown').addEventListener('click', () => {
   $audio.volume -= 0.01;
   console.log($audio.volume);
 })
+
+$('#bb').addEventListener('click', () => {
+  console.log('bb()');
+  $audio.currentTime -= 30;
+})
+
+$('#b').addEventListener('click', () => {
+  console.log('b()');
+  $audio.currentTime -= 10;
+})
+
+$('#f').addEventListener('click', () => {
+  console.log('f()');
+  $audio.currentTime += 10;
+})
+
+$('#ff').addEventListener('click', () => {
+  console.log('ff()');
+  $audio.currentTime += 30;
+})
+
+
 
 $audio.addEventListener('abort', (e) => {
   console.log('abort', e);
@@ -119,6 +154,9 @@ $audio.addEventListener('ratechange', (e) => {
 
 $audio.addEventListener('seeked', (e) => {
   console.log('seeked', e);
+  let $progress = $('#progress');
+  let $audio = $('#audio');
+  $progress.value = $audio.currentTime;
 });
 
 $audio.addEventListener('seeking', (e) => {
