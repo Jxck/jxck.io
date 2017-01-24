@@ -16,11 +16,22 @@
 <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css>
 <main class=archive>
   <h1><a href=#slides>Slides</a></h1>
-  <h2><a href=#2016>2016</a></h2>
-  <ul>
-    <li><time datetime=2016-03-14>2016-03-18</time><a href=20160318/agressive-web-site-optimization-2016q1.pdf>Agressive Web Site Optimization 2016Q1</a>@<a href=http://scripty.connpass.com/event/27752/>SCRIPTY#5</a><span class=tags>[<a>web</a>,<a>optimization</a>]</span>
-  </ul>
 </main>
+
+<template id=section_template>
+  <section>
+    <h2><a href=""></a></h2>
+    <ul></ul>
+  </section>
+</template>
+
+<template id=item_template>
+  <li><time datetime=""></time><a class=slide href=""></a> @ <a class=event href=""></a><span id="tag"></span>
+</template>
+
+<template id=tag_template>
+  <span class=tags>[<a href=""></a></span>
+</template>
 
 <script>
 var entries = {
@@ -535,6 +546,41 @@ var entries = {
     }
   ]
 };
+</script>
+<script>
+let item_template = document.getElementById('item_template');
+let section_template = document.getElementById('section_template');
+let tag_template = document.getElementById('section_template');
+let $archive = document.querySelector('.archive');
+console.log(entries);
+
+Object.keys(entries).sort().reverse().forEach((key) => {
+  let $section = document.importNode(section_template.content, true);
+  {
+    $a = $section.querySelector('h2 a');
+    $a.href = `#{key}`;
+    $a.textContent = key;
+  }
+
+  let $ul = $section.querySelector('ul')
+  entries[key].map((entry) => {
+    let $item = document.importNode(item_template.content, true);
+
+    $item.querySelector('time').textContent = entry.date;
+    $item.querySelector('time').setAttribute('datetime', entry.date);
+
+    $item.querySelector('.slide').textContent = entry.slide.title;
+    $item.querySelector('.slide').href = entry.slide.url;
+
+    $item.querySelector('.event').textContent = entry.event.tag;
+    $item.querySelector('.event').title = entry.event.title;
+    $item.querySelector('.event').href = entry.event.url;
+
+    $ul.appendChild($item);
+  });
+
+  $archive.appendChild($section);
+});
 </script>
 <hr>
 
