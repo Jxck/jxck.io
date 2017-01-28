@@ -40,7 +40,7 @@
 - マイナンバーサイト 32bit IE/Safari + Java
   - [http://internet.watch.impress.co.jp/docs/yajiuma/1039551.html](http://internet.watch.impress.co.jp/docs/yajiuma/1039551.html)
   - IC カード対応のため止むを得ずらしい
-- webpack 2系（2.2）正式リリース
+- webpack 2 系（ 2.2 ）正式リリース
   - [https://medium.com/webpack/webpack-2-2-the-final-release-76c3d43bf144](https://medium.com/webpack/webpack-2-2-the-final-release-76c3d43bf144)
   - tree shaking が入った(uglify で消す)
 - webcomponents.org がリニューアル
@@ -64,7 +64,7 @@
 - cache-control: no-transform は無視するらしい(opt-in だからか)
   - Cloudflare の AMP 施策
   - [https://www.cloudflare.com/website-optimization/accelerated-mobile-links/](https://www.cloudflare.com/website-optimization/accelerated-mobile-links/)
-- 新しい Google の圧縮ライブラリ Dracoとguetzli
+- 新しい Google の圧縮ライブラリ Draco と guetzli
   - [https://opensource.googleblog.com/2017/01/introducing-draco-compression-for-3d.html](https://opensource.googleblog.com/2017/01/introducing-draco-compression-for-3d.html)
   - https://github.com/google/guetzli
   - WebVR 系コンテンツ特化とか
@@ -90,7 +90,7 @@
   - [https://github.com/tc39/proposal-cancelable-promises/issues/70](https://github.com/tc39/proposal-cancelable-promises/issues/70)
   - https://medium.com/@benlesh/promise-cancellation-is-dead-long-live-promise-cancellation-c6601f1f5082#.8803mtmd3
   - domenic 大丈夫かな…
-  - Aborting a fetch NG：[https://github.com/whatwg/fetch/issues/447](https://github.com/whatwg/fetch/issues/447)
+  - Aborting a fetch NG ：[https://github.com/whatwg/fetch/issues/447](https://github.com/whatwg/fetch/issues/447)
   - [https://github.com/whatwg/fetch/issues/455](https://github.com/whatwg/fetch/issues/455)
   - https://github.com/whatwg/fetch/issues/455#issuecomment-274869169
 - google/ngx_token_binding
@@ -127,7 +127,7 @@
 - HTTPS に移行しない Neverssl
   - [http://neverssl.com/](http://neverssl.com/)
   - example.com あればいらない気もした
-- GodaddyのSSL証明書にドメイン認証の脆弱性があり8850件の証明書が失効された
+- Godaddy の SSL 証明書にドメイン認証の脆弱性があり 8850 件の証明書が失効された
   - [http://blog.tokumaru.org/2017/01/godaddyssl8850.html?m=1](http://blog.tokumaru.org/2017/01/godaddyssl8850.html?m=1)
 - autofill で個人情報が意図せず送られる
   - [https://gist.github.com/mala/a53e3f8a0c793a5c7bef2215dd951879](https://gist.github.com/mala/a53e3f8a0c793a5c7bef2215dd951879)
@@ -137,7 +137,7 @@
 - [HTTPS on NYTimes.com](HTTPS on NYTimes.com)
   - https://open.blogs.nytimes.com/2017/01/10/https-on-nytimes-com/
   - デカイ事例
-- Let’s Encrypt 順調です
+- Let's Encrypt 順調です
   - [https://letsencrypt.org//2017/01/06/le-2016-in-review.html](https://letsencrypt.org//2017/01/06/le-2016-in-review.html)
   - パンクしないかちょっと心配
 - Amazon が CA 参入らしい
