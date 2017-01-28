@@ -22,7 +22,7 @@
     <script async src="//jxck.io/assets/js/main.js"></script>
 
     <meta name="author" content="Jxck">
-    <meta name="description" content="HTTPS 移行の問題点の一つに、 mixed contents への対応がある。逆に mixed contents の発生を恐れ、 HTTPS に移行できないサービスもあるだろう。問題は mixed contents が「どこで発生しているかわかりにくい」という場合もある...">
+    <meta name="description" content="HTTPS 移行の問題点の一つに、 mixed contents への対応がある。逆に mixed contents の発生を恐れ、 HTTPS に移行できないサービスもあるだろう。本エントリでは mixed contents の正しい理解と、その検出や解消に利用できる可能...">
     <meta name="keywords" content="csp,mixed contents,upgrade-insecure-request,block-all-mixed-contents">
     <meta itemprop="image" content="https://jxck.io/assets/img/jxck.png">
     <meta itemprop="name" content="blog.jxck.io">
@@ -31,14 +31,14 @@
     <meta name="twitter:site" content="@jxck_">
     <meta name="twitter:url" content="https://blog.jxck.io/entries/2017-01-10/mixed-contents.html">
     <meta name="twitter:title" content="mixed contents 対応を促進する CSP ディレクティブ | blog.jxck.io">
-    <meta name="twitter:description" content="HTTPS 移行の問題点の一つに、 mixed contents への対応がある。逆に mixed contents の発生を恐れ、 HTTPS に移行できないサービスもあるだろう。問題は mixed contents が「どこで発生しているかわかりにくい」という場合もある...">
+    <meta name="twitter:description" content="HTTPS 移行の問題点の一つに、 mixed contents への対応がある。逆に mixed contents の発生を恐れ、 HTTPS に移行できないサービスもあるだろう。本エントリでは mixed contents の正しい理解と、その検出や解消に利用できる可能...">
     <meta name="twitter:image" content="https://jxck.io/assets/img/jxck.png">
 
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://blog.jxck.io/entries/2017-01-10/mixed-contents.html">
     <meta property="og:title" content="mixed contents 対応を促進する CSP ディレクティブ | blog.jxck.io">
     <meta property="og:site_name" content="blog.jxck.io">
-    <meta property="og:description" content="HTTPS 移行の問題点の一つに、 mixed contents への対応がある。逆に mixed contents の発生を恐れ、 HTTPS に移行できないサービスもあるだろう。問題は mixed contents が「どこで発生しているかわかりにくい」という場合もある...">
+    <meta property="og:description" content="HTTPS 移行の問題点の一つに、 mixed contents への対応がある。逆に mixed contents の発生を恐れ、 HTTPS に移行できないサービスもあるだろう。本エントリでは mixed contents の正しい理解と、その検出や解消に利用できる可能...">
     <meta property="og:image" content="https://jxck.io/assets/img/jxck.png">
 
     <link rel="icon" sizes="192x192" href="https://jxck.io/assets/img/jxck.png">
@@ -59,7 +59,7 @@
     "width": 700
   },
   "datePublished": "2017-01-10T08:00:00+08:00",
-  "dateModified": "2017-01-12T08:00:00+08:00",
+  "dateModified": "2017-01-17T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -75,7 +75,7 @@
       "width": 257
     }
   },
-  "description": "HTTPS 移行の問題点の一つに、 mixed contents への対応がある。逆に mixed contents の発生を恐れ、 HTTPS に移行できないサービスもあるだろう。問題は mixed contents が「どこで発生しているかわかりにくい」という場合もある..."
+  "description": "HTTPS 移行の問題点の一つに、 mixed contents への対応がある。逆に mixed contents の発生を恐れ、 HTTPS に移行できないサービスもあるだろう。本エントリでは mixed contents の正しい理解と、その検出や解消に利用できる可能..."
 }
 </script>
 
@@ -101,7 +101,7 @@
       <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/info.css">
       <ul class="info">
         <li>created_at: <time class="created_at" datetime="2017-01-10">2017-01-10</time>
-        <li>updated_at: <time class="updated_at" datetime="2017-01-12">2017-01-12</time>
+        <li>updated_at: <time class="updated_at" datetime="2017-01-17">2017-01-17</time>
         <li class="tags">tags: [<a href='/tags/csp.html'>csp</a>,<a href='/tags/mixed%20contents.html'>mixed contents</a>,<a href='/tags/upgrade-insecure-request.html'>upgrade-insecure-request</a>,<a href='/tags/block-all-mixed-contents.html'>block-all-mixed-contents</a>]
       </ul>
 
@@ -112,12 +112,12 @@
       <h2 id="Intro"><a href="#Intro">Intro</a></h2>
       <p>HTTPS 移行の問題点の一つに、 mixed contents への対応がある。
       <p>逆に mixed contents の発生を恐れ、 HTTPS に移行できないサービスもあるだろう。
-      <p>問題は mixed contents が「どこで発生しているかわかりにくい」という場合もあるため、そこで利用できる可能性のある <code translate="no">Upgrade-Insecure-Request</code> および、 CSP の <code translate="no">Block-All-Mixed-Contents</code> を解説する。
+      <p>本エントリでは mixed contents の正しい理解と、その検出や解消に利用できる可能性のある、 CSP の <code translate="no">Upgrade-Insecure-Request</code> および、 <code translate="no">Block-All-Mixed-Contents</code> を解説する。
     </section>
     <section>
       <h2 id="mixed+contents"><a href="#mixed+contents">mixed contents</a></h2>
       <p>HTTPS で配信されたコンテンツが、サブリソースとして HTTP のコンテンツを含む場合、これを <strong>mixed contents</strong> という。
-      <p>HTTPS 化されたコンテンツは MITM に対する耐性があるが、そこに含まれるサブリソースが HTTP で配信されると、 MITM への耐性がないため、そこを起点に HTTPS コンテンツへの改ざんが成立してしまう可能性がある。
+      <p>HTTPS は MITM に対する耐性があるが、 HTTP は MITM への耐性がないため、 mixed contents の状態ではサブリソースを起点にメインコンテンツへの改ざんが成立してしまう可能性がある。
       <p>このため HTTPS で配信されていても、 mixed contents がある場合は完全に安全とは言えず、ブラウザは通常ユーザに安全ではないことを警告する。
       <p>近年の HTTPS 化の流れで、これまで HTTP で作られていたコンテンツを HTTPS に移行する際に、 mixed contents の問題が顕在化するのはよくある話だ。
       <p>これは <code translate="no">http://</code> で書かれたサブリソースの URL を、全て <code translate="no">https://</code> に書き換えれば問題は解決する。従って全てのコンテンツを管理下におき、修正が可能であれば特に問題はない。
