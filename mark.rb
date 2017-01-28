@@ -977,6 +977,7 @@ if __FILE__ == $PROGRAM_NAME
   end
 
   if ARGV.first == "-tp"
+    # test podcast
     e = Episode.new("./mozaic.fm/episodes/1/webcomponents.md")
     # podcast(e)
     puts e.guests[0]
