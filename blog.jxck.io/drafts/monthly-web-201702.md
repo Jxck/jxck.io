@@ -4,9 +4,49 @@
 
 今月の Web メモ
 
+## Browser
+
+### Chrome
+
+- Chrome57 Stable
+- Chrome58 Beta
+- Chrome59 Canaly
+
+- [release](https://chromereleases.googleblog.com/) ([stable updates tag](https://chromereleases.googleblog.com/search/label/Stable%20updates))
+- [updates](https://developers.google.com/web/updates/)
+- [chromium](https://www.chromium.org/developers/calendar)
+
+
+### Firefox
+
+- Firefox51 Stable
+
+
+
+- [relese](https://www.mozilla.org/en-US/firefox/releases/)
+
+
+### Safari
+
+- Safari 10.0
+
+
+- [tech preview](https://developer.apple.com/safari/technology-preview/release-notes/)
+- [release](https://developer.apple.com/library/content/releasenotes/General/WhatsNewInSafari/Introduction/Introduction.html)
+
+
+### Edge
+
+- 15019 (Windows Insider Preview (Fast) Desktop)
+- 15014 (Windows Insider Preview (Fast) Mobile)
+- 15007 (Release date: 01/12/2017)
+- 15002 (Release date: 01/09/2017)
+- 14986 (Release date: 12/07/2016)
+
+- [change log](https://developer.microsoft.com/en-us/microsoft-edge/platform/changelog/)
+
+
 ## API
-
-
 
 - 1/26: [Shared Memory と Atomics が stage 4](http://www.2ality.com/2017/01/shared-array-buffer.html)
   - [ES2017 に入る](http://www.2ality.com/2016/02/ecmascript-2017.html) ことに
