@@ -26,3 +26,7 @@
   - WHATWG の標準化プロセスにおいて、テスト作成とブラウザへのバグ報告を推奨した。
   - 思った以上に上手く回っている
   - [テスト](https://github.com/w3c/web-platform-tests/pull/4611) はスペックメンテナの責務ではなくコミュニティベース。([tes the web forward](http://testthewebforward.org/))
+- 1/30: [rendering pipeline のパフォーマンス改善](https://blog.chromium.org/2017/01/performance-improvements-in-chromes.html)
+  - re-rendering の領域を局所化
+- 1/30: [IETF US 開催に懸念](https://www.ietf.org/blog/2017/01/barriers-to-entry/)
+  - IETF Chicago の場所を変えるのは遅いが、来れない人帰れない人もいるかもなので、状況を注視。
