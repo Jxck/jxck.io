@@ -27,7 +27,6 @@ const getStream = (dispatch) => {
     .mediaDevices
     .getUserMedia(constraints)
     .then((stream) => {
-      console.log(stream);
       dispatch({
         type: 'GET_STREAM',
         stream, stream
@@ -37,7 +36,6 @@ const getStream = (dispatch) => {
 
 // Reducer
 const streamReducer = (state = {stream: undefined}, action) => {
-  console.log(state, action);
   switch (action.type) {
     case 'GET_STREAM':
       return Object.assign({}, state, {
@@ -48,16 +46,33 @@ const streamReducer = (state = {stream: undefined}, action) => {
   }
 }
 
+class Video extends React.Component {
+  render() {
+    const { stream } = this.props;
+    if (stream === undefined) {
+      return <p>empty</p>
+    }
+
+    const src = URL.createObjectURL(stream);
+    return (
+      <div>
+        <p>stream.active: {stream.active ? 'active': 'innactive'}</p>
+        <p>stream.id: {stream.id}</p>
+        <video autoPlay controls src={src}></video>
+      </div>
+    )
+  }
+}
+
 // Components
 class Stream extends React.Component {
   render() {
     const { stream, getStream } = this.props;
-    let src = stream ? URL.createObjectURL(stream): '';
     return (
       <section>
         <h2>Stream</h2>
+        <Video stream={stream} />
         <button onClick={getStream}>start</button>
-        <video autoPlay controls src={src}></video>
       </section>
     )
   }
@@ -93,7 +108,6 @@ const getSupportedConstraints = (dispatch) => {
     if (a.startsWith('moz')) return 1;
     return (a.length > b.length) ? 1 : -1;
   });
-  console.log(supported);
   dispatch({
     type: 'SUPPORTED_CONSTRAINTS',
     supported, supported
