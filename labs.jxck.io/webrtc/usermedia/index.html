@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="WebRTC UserMedia demo">
+<title>WebRTC UserMedia demo | labs.jxck.io</title>
+
+<style>
+  .flex {
+    display: flex;
+  }
+  video, dl {
+    display: block;
+    margin: 1em;
+  }
+  table {
+    font-size: 60%;
+  }
+  td, th {
+    border: 1px solid #ccc;
+    padding: 2px;
+  }
+  dd {
+    font-weight: bold;
+  }
+</style>
+
+<h1>WebRTC UserMedia demo</h1>
+
+<div>
+  <select name=facingMode>
+    <option value=user>user</option>
+    <option value=environment>environment</option>
+    <option value=left>left</option>
+    <option value=right>right</option>
+  </select>
+  <button class=start>start</button>
+  <button class=stop>stop</button>
+</div>
+
+<div class=flex>
+  <video class=local controls autoplay></video>
+  <dl class=stream>
+    <dt>stream.id</dt>
+    <dd class=id>
+
+    <dt>stream.active</dt>
+    <dd class=active>
+
+    <dt>navigator.mediaDevices.getSupportedConstraints()
+    <dd class=getSupportedConstraints>supported
+
+    <dt>track.getConstraints()
+    <dd class=getConstraints>supported
+
+    <dt>track.getCapabilities()
+    <dd class=getCapabilities>supported
+
+    <dt>track.getSettings()
+    <dd class=getSettings>supported
+  </dl>
+</div>
+
+<h2>track info</h2>
+<table class=tracks>
+  <thead>
+    <tr>
+      <th>kind
+      <th>id
+      <th>label
+      <th>enabled
+      <th>muted
+      <th>readyState
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<h2>track constraints</h2>
+<table class=constraints>
+  <thead></thead>
+  <tbody></tbody>
+</table>
+
+<h2>devices</h2>
+<table class=devices>
+  <thead>
+    <tr>
+      <th>deviceId
+      <th>kind
+      <th>label
+      <th>groupId
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<script src=index.js></script>
