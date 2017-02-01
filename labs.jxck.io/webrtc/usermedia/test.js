@@ -1,5 +1,4 @@
 // Action
-
 const enumDevice = (dispatch) => {
   navigator.mediaDevices.enumerateDevices().then((devices) => {
     console.log(devices);
@@ -16,51 +15,6 @@ const deviceReducer = (state = {devices: []}, action) => {
     case 'ENUM_DEVICE':
       return Object.assign({}, state, {
         devices: action.devices
-      })
-    default:
-      return state
-  }
-}
-
-
-const loading = () => {
-  return {
-    type: 'LOADING'
-  }
-}
-
-const fetching = (dispatch) => {
-  dispatch(loading());
-  fetch('http://httpbin.org/status/200').then((res) => {
-    console.log(res);
-    dispatch({
-      type: 'FETCH_SUCCESS',
-      value: res.status
-    })
-  }).catch((err) => {
-    dispatch({
-      type: 'FETCH_FAIL',
-      err: err
-    });
-  });
-}
-
-// Reducer
-const counterReducer = (state = { value: 0 }, action) => {
-  switch (action.type) {
-    case 'FETCH_SUCCESS':
-      return Object.assign({}, state, {
-        value: action.value,
-        loading: false
-      })
-    case 'FETCH_FAIL':
-      console.error(action.err);
-      return Object.assign({}, state, {
-        loading: false
-      })
-    case 'LOADING':
-      return Object.assign({}, state, {
-        loading: true
       })
     default:
       return state
@@ -101,50 +55,30 @@ const DeviceContainer = ReactRedux.connect(
 )(Device);
 
 
-class Counter extends React.Component {
-  onStart() {
-    if (this.props.id) {
-      return console.log('starting');
-    }
-    this.props.onStart();
-  }
-
+// Container
+class App extends React.Component {
   render() {
-    const { value, onFetch, loading } = this.props
-    const nowloading = loading ? <strong>now loading</strong>: ''
     return (
       <div>
         <DeviceContainer />
-        <p>Clicked: {value} times</p>
-        { nowloading }
-        <div>
-          <button onClick={onFetch}>Fetch</button>
-        </div>
       </div>
     )
   }
 }
 
-// Container
 const AppContainer = ReactRedux.connect(
   (state) => {
     return {
-      value: state.counter.value,
-      loading: state.counter.loading
     }
   },
   (dispatch) => {
     return {
-      onFetch(status) {
-        fetching(dispatch)
-      }
     }
   }
-)(Counter);
+)(App);
 
 
 const reducer = Redux.combineReducers({
-  counter: counterReducer,
   device: deviceReducer,
 });
 const store = Redux.createStore(reducer)
