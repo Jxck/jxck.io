@@ -1,4 +1,5 @@
 const log = console.log.bind(console);
+
 /***********************************
  * pollyfill
  ***********************************/
@@ -17,32 +18,70 @@ navigator.mediaDevices.getUserMedia = navigator.mediaDevices.getUserMedia || fun
 /***********************************
  * Stream
  ***********************************/
+class Track {
+  constructor(track) {
+    this.track = track
+  }
+
+  getConstraints() {
+    const support = !!MediaStreamTrack.prototype.getConstraints;
+    return support ? this.track.getConstraints() : {};
+  }
+
+  getCapabilities() {
+    const support = !!MediaStreamTrack.prototype.getCapabilities;
+    return support ? this.track.getCapabilities() : {};
+  }
+
+  getSettings() {
+    const support = !!MediaStreamTrack.prototype.getSettings;
+    return support ? this.track.getSettings() : {};
+  }
+}
+
+class Stream {
+  static getUserMedia(constraints) {
+    return navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
+      return Promise.resolve(new Stream(stream));
+    });
+  }
+
+  constructor(stream) {
+    this.stream = stream
+  }
+
+  get src() {
+    return URL.createObjectURL(this.stream);
+  }
+
+  tracks() {
+    return this.stream
+      .getTracks()
+      .map((track) => new Track(track))
+  }
+}
 
 // Action
 const getStream = (dispatch) => {
   const constraints = {
     audio: true,
-    video: true,
+    video: {facingMode: 'user'},
   };
-  navigator
-    .mediaDevices
-    .getUserMedia(constraints)
-    .then((stream) => {
-      dispatch({
-        type: 'GET_STREAM',
-        stream: stream,
-        tracks: stream.getTracks()
-      })
-    });
+  Stream.getUserMedia(constraints).then((stream) => {
+    // resolve stream
+    dispatch({
+      type: 'GET_STREAM',
+      stream: stream,
+    })
+  });
 }
 
 // Reducer
-const streamReducer = (state = {stream: undefined, tracks: []}, action) => {
+const streamReducer = (state = {stream: undefined}, action) => {
   switch (action.type) {
     case 'GET_STREAM':
       return Object.assign({}, state, {
         stream: action.stream,
-        tracks: action.tracks,
       })
     default:
       return state
@@ -88,26 +127,30 @@ class Video extends React.Component {
       return <p>empty</p>
     }
 
-    const src = URL.createObjectURL(stream);
     return (
       <div>
         <p>stream.active: {stream.active ? 'active': 'innactive'}</p>
         <p>stream.id: {stream.id}</p>
-        <video autoPlay controls src={src}></video>
+        <video autoPlay controls src={stream.src}></video>
       </div>
     )
   }
 }
 
 // Components
-class Stream extends React.Component {
+class StreamComponent extends React.Component {
+  componentDidMount() {
+    // TODO: remove
+    // this.props.getStream();
+  }
+
   render() {
-    const { stream, tracks, getStream } = this.props;
+    const { stream, getStream } = this.props;
     return (
       <section>
         <h2>Stream</h2>
         <Video stream={stream} />
-        <Tracks tracks={tracks} />
+        <Tracks tracks={stream ? stream.tracks() : []} />
         <button onClick={getStream}>start</button>
       </section>
     )
@@ -119,7 +162,6 @@ const StreamContainer = ReactRedux.connect(
   (state) => {
     return {
       stream: state.stream.stream,
-      tracks: state.stream.tracks,
     }
   },
   (dispatch) => {
@@ -129,7 +171,7 @@ const StreamContainer = ReactRedux.connect(
       }
     }
   }
-)(Stream);
+)(StreamComponent);
 
 
 
@@ -147,7 +189,7 @@ const getSupportedConstraints = (dispatch) => {
   });
   dispatch({
     type: 'SUPPORTED_CONSTRAINTS',
-    supported, supported
+    supported, supported,
   })
 }
 
@@ -170,14 +212,44 @@ class Constraints extends React.Component {
   }
 
   render() {
-    const { supported, stream, tracks } = this.props;
+    const { supported, tracks } = this.props;
     const th = supported.map((key) => <th>{key}</th>)
+
+    const consts = tracks.map((track) => {
+      const values = track.getConstraints();
+      const td = supported
+        .map((key) => values[key])
+        .map((value) => <td>{JSON.stringify(value)}</td>);
+
+      return <tr><td>constraints</td>{td}</tr>;
+    });
+
+    const caps = tracks.map((track) => {
+      const values = track.getCapabilities();
+      const td = supported
+        .map((key) => values[key])
+        .map((value) => <td>{JSON.stringify(value)}</td>);
+
+      return <tr><td>capabilities</td>{td}</tr>;
+    });
+
+    const settings = tracks.map((track) => {
+      const values = track.getSettings();
+      const td = supported
+        .map((key) => values[key])
+        .map((value) => <td>{JSON.stringify(value)}</td>);
+
+      return <tr><td>settings</td>{td}</tr>;
+    });
 
     return (
       <section>
         <h2>Constraints</h2>
         <table>
           <tr>{th}</tr>
+          {consts}
+          {caps}
+          {settings}
         </table>
       </section>
     )
@@ -187,9 +259,10 @@ class Constraints extends React.Component {
 // Container
 const ConstraintsContainer = ReactRedux.connect(
   (state) => {
+    const stream = state.stream.stream;
     return {
       supported: state.constraints.supported,
-      tracks: state.stream.tracks,
+      tracks: stream ? stream.tracks() : [],
     }
   },
   (dispatch) => {
