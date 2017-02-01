@@ -12,6 +12,76 @@ navigator.mediaDevices.getUserMedia = navigator.mediaDevices.getUserMedia || fun
 };
 
 
+
+/***********************************
+ * Stream
+ ***********************************/
+
+// Action
+const getStream = (dispatch) => {
+  const constraints = {
+    audio: true,
+    video: true,
+  };
+  navigator
+    .mediaDevices
+    .getUserMedia(constraints)
+    .then((stream) => {
+      console.log(stream);
+      dispatch({
+        type: 'GET_STREAM',
+        stream, stream
+      })
+    });
+}
+
+// Reducer
+const streamReducer = (state = {stream: undefined}, action) => {
+  console.log(state, action);
+  switch (action.type) {
+    case 'GET_STREAM':
+      return Object.assign({}, state, {
+        stream: action.stream
+      })
+    default:
+      return state
+  }
+}
+
+// Components
+class Stream extends React.Component {
+  render() {
+    const { stream, getStream } = this.props;
+    let src = stream ? URL.createObjectURL(stream): '';
+    return (
+      <section>
+        <h2>Stream</h2>
+        <button onClick={getStream}>start</button>
+        <video autoPlay controls src={src}></video>
+      </section>
+    )
+  }
+}
+
+// Container
+const StreamContainer = ReactRedux.connect(
+  (state) => {
+    return {
+      stream: state.stream.stream,
+    }
+  },
+  (dispatch) => {
+    return {
+      getStream() {
+        getStream(dispatch)
+      }
+    }
+  }
+)(Stream);
+
+
+
+
 /***********************************
  * Constraints
  ***********************************/
@@ -51,7 +121,6 @@ class Constraints extends React.Component {
   render() {
     const { supported } = this.props;
     const th = supported.map((key) => <th>{key}</th>)
-
     return (
       <section>
         <h2>Constraints</h2>
@@ -78,13 +147,6 @@ const ConstraintsContainer = ReactRedux.connect(
     }
   }
 )(Constraints);
-
-
-
-
-
-
-
 
 
 
@@ -179,6 +241,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <StreamContainer />
         <ConstraintsContainer />
         <DeviceContainer />
       </div>
@@ -200,6 +263,7 @@ const AppContainer = ReactRedux.connect(
 
 const reducer = Redux.combineReducers({
   device: deviceReducer,
+  stream: streamReducer,
   constraints: constraintsReducer,
 });
 const store = Redux.createStore(reducer)
