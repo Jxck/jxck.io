@@ -1,3 +1,4 @@
+const log = console.log.bind(console);
 /***********************************
  * pollyfill
  ***********************************/
@@ -29,20 +30,54 @@ const getStream = (dispatch) => {
     .then((stream) => {
       dispatch({
         type: 'GET_STREAM',
-        stream, stream
+        stream: stream,
+        tracks: stream.getTracks()
       })
     });
 }
 
 // Reducer
-const streamReducer = (state = {stream: undefined}, action) => {
+const streamReducer = (state = {stream: undefined, tracks: []}, action) => {
   switch (action.type) {
     case 'GET_STREAM':
       return Object.assign({}, state, {
-        stream: action.stream
+        stream: action.stream,
+        tracks: action.tracks,
       })
     default:
       return state
+  }
+}
+
+class Tracks extends React.Component {
+  render() {
+    const { tracks } = this.props;
+    const tr = tracks.map((track) => {
+      return (
+        <tr>
+          <td>{track.kind}</td>
+          <td>{track.id}</td>
+          <td>{track.label}</td>
+          <td>{track.enabled}</td>
+          <td>{track.muted}</td>
+          <td>{track.readyState}</td>
+        </tr>
+      )
+    });
+
+    return (
+      <table>
+        <tr>
+          <th>kind</th>
+          <th>id</th>
+          <th>label</th>
+          <th>enabled</th>
+          <th>muted</th>
+          <th>readyState</th>
+        </tr>
+        {tr}
+      </table>
+    )
   }
 }
 
@@ -67,11 +102,12 @@ class Video extends React.Component {
 // Components
 class Stream extends React.Component {
   render() {
-    const { stream, getStream } = this.props;
+    const { stream, tracks, getStream } = this.props;
     return (
       <section>
         <h2>Stream</h2>
         <Video stream={stream} />
+        <Tracks tracks={tracks} />
         <button onClick={getStream}>start</button>
       </section>
     )
@@ -83,6 +119,7 @@ const StreamContainer = ReactRedux.connect(
   (state) => {
     return {
       stream: state.stream.stream,
+      tracks: state.stream.tracks,
     }
   },
   (dispatch) => {
@@ -133,8 +170,9 @@ class Constraints extends React.Component {
   }
 
   render() {
-    const { supported } = this.props;
+    const { supported, stream, tracks } = this.props;
     const th = supported.map((key) => <th>{key}</th>)
+
     return (
       <section>
         <h2>Constraints</h2>
@@ -151,6 +189,7 @@ const ConstraintsContainer = ReactRedux.connect(
   (state) => {
     return {
       supported: state.constraints.supported,
+      tracks: state.stream.tracks,
     }
   },
   (dispatch) => {
