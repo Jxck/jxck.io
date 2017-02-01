@@ -1,14 +1,25 @@
-// Action
+/**
+ * Action
+ */
 const enumDevice = (dispatch) => {
   navigator.mediaDevices.enumerateDevices().then((devices) => {
-    console.log(devices);
     dispatch({
       type: 'ENUM_DEVICE',
-      devices: devices,
+      devices: devices.sort((a, b) => a.kind > b.kind ? 1: -1),
     });
   });
+
+  navigator.mediaDevices.ondevicechange = (e) => {
+    console.log(e);
+    enumDevice(dispatch);
+  };
 }
 
+
+
+/**
+ * Reducer
+ */
 const deviceReducer = (state = {devices: []}, action) => {
   console.log(state, action);
   switch (action.type) {
@@ -22,23 +33,48 @@ const deviceReducer = (state = {devices: []}, action) => {
 }
 
 
-// Component
+/**
+ * Component
+ */
 class Device extends React.Component {
+  componentDidMount() {
+    this.props.onEnumDevice();
+  }
+
   render() {
     const {onEnumDevice, devices} = this.props
-    console.log(devices);
-    const li = devices.map((d) => {
-      return <li>{d.kind}</li>
+    const tr = devices.map((d) => {
+      return (
+        <tr>
+          <td>{d.kind}</td>
+          <td>{d.label}</td>
+          <td>{d.deviceId}</td>
+          <td>{d.groupId}</td>
+        </tr>
+      )
     });
     return (
-      <div>
-        <ul>{li}</ul>
-        <button onClick={onEnumDevice}>Device</button>
-      </div>
+      <section>
+        <h2>Devices</h2>
+        <button onClick={onEnumDevice}>refresh</button>
+        <table>
+          <tr>
+            <th>kind</th>
+            <th>label</th>
+            <th>deviceId</th>
+            <th>groupId</th>
+          </tr>
+          {tr}
+        </table>
+      </section>
     )
   }
 }
 
+
+/**
+ * Container
+ */
 const DeviceContainer = ReactRedux.connect(
   (state) => {
     return {
@@ -55,7 +91,9 @@ const DeviceContainer = ReactRedux.connect(
 )(Device);
 
 
-// Container
+/**
+ * Main
+ */
 class App extends React.Component {
   render() {
     return (
