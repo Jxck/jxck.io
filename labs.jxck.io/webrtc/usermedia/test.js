@@ -1,6 +1,99 @@
-/**
- * Action
- */
+/***********************************
+ * pollyfill
+ ***********************************/
+navigator.mediaDevices.getUserMedia = navigator.mediaDevices.getUserMedia || function(conf) {
+  navigator.getUserMedia = navigator.getUserMedia ||
+    navigator.webkitGetUserMedia ||
+    navigator.mozGetUserMedia ||
+    navigator.msGetUserMedia;
+  return new Promise((resolve, reject) => {
+    navigator.getUserMedia(conf, resolve, reject);
+  });
+};
+
+
+/***********************************
+ * Constraints
+ ***********************************/
+
+// Action
+const getSupportedConstraints = (dispatch) => {
+  const keys = navigator.mediaDevices.getSupportedConstraints();
+  let supported = Object.keys(keys).sort((a, b) => {
+    if (a.startsWith('moz')) return 1;
+    return (a.length > b.length) ? 1 : -1;
+  });
+  console.log(supported);
+  dispatch({
+    type: 'SUPPORTED_CONSTRAINTS',
+    supported, supported
+  })
+}
+
+// Reducer
+const constraintsReducer = (state = {supported: []}, action) => {
+  switch (action.type) {
+    case 'SUPPORTED_CONSTRAINTS':
+      return Object.assign({}, state, {
+        supported: action.supported
+      })
+    default:
+      return state
+  }
+}
+
+// Components
+class Constraints extends React.Component {
+  componentDidMount() {
+    this.props.getSupportedConstraints();
+  }
+
+  render() {
+    const { supported } = this.props;
+    const th = supported.map((key) => <th>{key}</th>)
+
+    return (
+      <section>
+        <h2>Constraints</h2>
+        <table>
+          <tr>{th}</tr>
+        </table>
+      </section>
+    )
+  }
+}
+
+// Container
+const ConstraintsContainer = ReactRedux.connect(
+  (state) => {
+    return {
+      supported: state.constraints.supported,
+    }
+  },
+  (dispatch) => {
+    return {
+      getSupportedConstraints() {
+        getSupportedConstraints(dispatch)
+      }
+    }
+  }
+)(Constraints);
+
+
+
+
+
+
+
+
+
+
+
+/***********************************
+ * Device
+ ***********************************/
+
+// Action
 const enumDevice = (dispatch) => {
   navigator.mediaDevices.enumerateDevices().then((devices) => {
     dispatch({
@@ -10,18 +103,12 @@ const enumDevice = (dispatch) => {
   });
 
   navigator.mediaDevices.ondevicechange = (e) => {
-    console.log(e);
     enumDevice(dispatch);
   };
 }
 
-
-
-/**
- * Reducer
- */
+// Reducer
 const deviceReducer = (state = {devices: []}, action) => {
-  console.log(state, action);
   switch (action.type) {
     case 'ENUM_DEVICE':
       return Object.assign({}, state, {
@@ -32,10 +119,7 @@ const deviceReducer = (state = {devices: []}, action) => {
   }
 }
 
-
-/**
- * Component
- */
+// Component
 class Device extends React.Component {
   componentDidMount() {
     this.props.onEnumDevice();
@@ -71,10 +155,7 @@ class Device extends React.Component {
   }
 }
 
-
-/**
- * Container
- */
+// Container
 const DeviceContainer = ReactRedux.connect(
   (state) => {
     return {
@@ -92,12 +173,13 @@ const DeviceContainer = ReactRedux.connect(
 
 
 /**
- * Main
+ * App
  */
 class App extends React.Component {
   render() {
     return (
       <div>
+        <ConstraintsContainer />
         <DeviceContainer />
       </div>
     )
@@ -118,6 +200,7 @@ const AppContainer = ReactRedux.connect(
 
 const reducer = Redux.combineReducers({
   device: deviceReducer,
+  constraints: constraintsReducer,
 });
 const store = Redux.createStore(reducer)
 
