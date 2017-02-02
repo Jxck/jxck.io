@@ -90,3 +90,50 @@
 
 - 1/31: [Securitry and Frontend Performance](http://www.oreilly.com/webops-perf/free/security-and-frontend-performance.csp)
   - Web のパフォーマンスとセキュリティをあえて一緒に扱う書籍。 CSP, HSTS, ResourceHints, SW など
+
+- 1/31: [Edge の WebRTC1.0 紹介](https://blogs.windows.com/msedgedev/2017/01/31/introducing-webrtc-microsoft-edge/)
+  - ORTC, WebRTC1.0 両サポート、 H.264/AVC は HW Enc/Dec だけど VP8 は Soft だからパフォーマンス注意。
+
+- 2/1: [Chrome for iOS が OSS](https://blog.chromium.org/2017/01/open-sourcing-chrome-on-ios.html)
+  - Webkit で レンダリングする iOS 用の Chrome が OSS に
+
+- 2/1: [なぜサポートが終了した Web ブラウザーを使うと危険なのか?](https://blogs.msdn.microsoft.com/osamum/2015/10/08/web-1/)
+  - "サポート期間の終了した古い IE に対し、いままでと同じような品質でコンテンツが閲覧できるように精一杯の労力を注いでケアをしても、それはユーザーのためにはならない"
+
+- 2/1: [Etsy での TLS 証明書の扱いかた](https://codeascraft.com/2017/01/31/how-etsy-manages-https-and-ssl-certificates-for-custom-domains-on-pattern/)
+  - Custom Domain の場合のパターンが解説されてる
+
+- 2/2: [知っておくべきセキュリティヘッダ](https://blog.appcanary.com/2017/http-security-headers.html)
+  - HTTP のヘッダで知っておくべきものリスト
+
+- 2/2: [Front-end Handbook 2017](https://www.gitbook.com/book/frontendmasters/front-end-handbook-2017/details)
+  - フロントエンド開発の総合的な知識の本
+  - 中身は解説というよりリンク集
+
+- 2/2: [WebVR Rocks](https://webvr.rocks)
+  - WebVR のポータル
+
+- 2/2: [Google/Chrome/preload-webpack-plugin](https://github.com/GoogleChrome/preload-webpack-plugin)
+  - WebPack で Preload するプラグイン
+
+
+
+
+
+## Blink On
+
+blink on で色々出たのでこっちにまとめ
+
+
+- [State of Chrome's Memory](https://docs.google.com/presentation/d/1s8qy_yPrR1Q3AngHnfHFIlIzoDaoLrBAL-Iy0FHeTOY/edit#slide=id.g1c51f9ea06_0_11)
+  - Chrome のメモリ周りの実装のまとめ
+
+- [JavaScript preprocessing/precompilation](https://gist.github.com/addyosmani/4009ee1238c4b1ff6f2a2d8a5057c181)
+  - JS のソースをサーバ側で Precompile できないかの議事録
+  - パースは意外と遅いので、これを速くするどこかの段階までサーバでやっておきたいという話
+
+
+
+
+
+
