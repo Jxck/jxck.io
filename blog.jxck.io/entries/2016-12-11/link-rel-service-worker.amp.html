@@ -79,6 +79,18 @@ by Jxck
 <script async src=https://cdn.ampproject.org/v0.js></script>
 
 <style amp-custom>
+article section p {
+  margin-left: 0.8em;
+}
+
+article pre {
+  margin-left: 0.8em;
+}
+
+article table {
+  margin-left: 0.8em;
+}
+
 article img {
   margin: 1em 0;
   border: 1px solid #ccc;
@@ -86,12 +98,22 @@ article img {
 }
 
 article ul, article ol {
+  margin-left: 0.8em;
   font-family: monospace;
   font-size: 1.2em;
 }
 
 article li {
-  margin-bottom: 0.6em;
+  margin-bottom: 0.4em;
+}
+
+article ul li ul {
+  margin: 0.2em 0 1.2em 1em;
+  font-size: 1em;
+}
+
+article ul li ul li {
+  margin-bottom: 0;
 }
 
 @font-face {
@@ -382,6 +404,11 @@ footer {
   padding: 1em;
 }
 
+footer address {
+  width: 80%;
+  margin: 0 auto;
+}
+
 pre {
   word-break: break-all;
   word-wrap: break-word;
@@ -598,7 +625,7 @@ navigator.serviceworker.register(&quot;/sw.js&quot;, { scope: &quot;/&quot; });<
 </main>
 <hr>
 <footer>
-  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
+  <address class="copyright">Copyright &copy; 2016 <a href="/">Jxck</a>. All Rights Reserved. Using <a href="https://www.google.com/intl/ja/policies/privacy/partners/">google analytics</a>.</address>
 </footer>
 </body>
 </html>

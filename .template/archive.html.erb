@@ -33,8 +33,12 @@ by Jxck
 <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/main.css>
 <main class=archive>
   <h1><a href=#archive>Archive</a></h1>
+  <h2><a href=#2017>2017</a></h2>
+  <ul><% entries.select {|e| e.created_at.start_with?("2017") }.each do |e| %>
+    <li><time datetime=<%= e.created_at %>><%= e.created_at %></time><a href=<%= e.relative %>><%= e.title %></a><span class=tags>[<%= e.tags.reverse.map{|tag| "<a href='/tags/#{tag.gsub(' ', '%20')}.html'>#{tag}</a>" }.join(",") %>]</span><% end %>
+  </ul>
   <h2><a href=#2016>2016</a></h2>
-  <ul><% entries.each do |e| %>
+  <ul><% entries.select {|e| e.created_at.start_with?("2016") }.each do |e| %>
     <li><time datetime=<%= e.created_at %>><%= e.created_at %></time><a href=<%= e.relative %>><%= e.title %></a><span class=tags>[<%= e.tags.reverse.map{|tag| "<a href='/tags/#{tag.gsub(' ', '%20')}.html'>#{tag}</a>" }.join(",") %>]</span><% end %>
   </ul>
 </main>
@@ -43,5 +47,5 @@ by Jxck
 
 <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/footer.css>
 <footer>
-  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</address>
+  <address class="copyright">Copyright &copy; 2016 <a href="/">Jxck</a>. All Rights Reserved. Using <a href="https://www.google.com/intl/ja/policies/privacy/partners/">google analytics</a>.</address>
 </footer>
