@@ -10,6 +10,13 @@ class Track {
     this.track = track
   }
 
+  get kind      () { return this.track.kind       }
+  get id        () { return this.track.id         }
+  get label     () { return this.track.label      }
+  get enabled   () { return this.track.enabled    }
+  get muted     () { return this.track.muted      }
+  get readyState() { return this.track.readyState }
+
   getConstraints() {
     const support = !!MediaStreamTrack.prototype.getConstraints;
     return support ? this.track.getConstraints() : {};
@@ -47,6 +54,12 @@ class Stream {
     this.stream = stream
   }
 
+  get id() {
+    return this.stream.id
+  }
+  get active() {
+    return this.stream.active
+  }
   get src() {
     return URL.createObjectURL(this.stream);
   }
@@ -127,8 +140,10 @@ class Video extends React.Component {
 
     return (
       <div>
-        <p>stream.active: {stream.active ? 'active': 'innactive'}</p>
-        <p>stream.id: {stream.id}</p>
+        <p>
+          <span>stream.active:</span><strong>{stream.active ? 'active': 'innactive'} </strong>
+          <span>stream.id:</span><strong>{stream.id}</strong>
+        </p>
         <video autoPlay controls src={stream.src}></video>
       </div>
     )
@@ -219,7 +234,7 @@ class Constraints extends React.Component {
         .map((key) => values[key])
         .map((value) => <td>{JSON.stringify(value)}</td>);
 
-      return <tr><td>constraints</td>{td}</tr>;
+      return <tr><td>constraints({track.kind})</td>{td}</tr>;
     });
 
     const caps = tracks.map((track) => {
@@ -228,7 +243,7 @@ class Constraints extends React.Component {
         .map((key) => values[key])
         .map((value) => <td>{JSON.stringify(value)}</td>);
 
-      return <tr><td>capabilities</td>{td}</tr>;
+      return <tr><td>capabilities({track.kind})</td>{td}</tr>;
     });
 
     const settings = tracks.map((track) => {
@@ -237,14 +252,17 @@ class Constraints extends React.Component {
         .map((key) => values[key])
         .map((value) => <td>{JSON.stringify(value)}</td>);
 
-      return <tr><td>settings</td>{td}</tr>;
+      return <tr><td>settings({track.kind})</td>{td}</tr>;
     });
 
     return (
       <section>
         <h2>Constraints</h2>
         <table>
-          <tr>{th}</tr>
+          <tr>
+            <th>type</th>
+            {th}
+          </tr>
           {consts}
           {caps}
           {settings}
