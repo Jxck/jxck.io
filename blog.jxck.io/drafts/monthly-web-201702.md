@@ -128,6 +128,7 @@
   - SW の起動が重くても、それを待たずに fetch を投げられる
   - レスポンスは SW の中で扱える
   - origin trial で chrome 57 から
+  - [Service-Worker-Navigation-Preload ヘッダもある](https://twitter.com/horo/status/827321909108838400)
 
 - 2/2: [Android で Add to Home Screen](https://developers.google.com/web/updates/2017/02/improved-add-to-home-screen)
   - [chome beta 57](https://blog.chromium.org/2017/02/integrating-progressive-web-apps-deeply.html?m=1)
@@ -143,7 +144,8 @@
 - 2/2: [webpack 2 の変更点](https://medium.com/webpack/webpack-2-and-beyond-40520af9067f)
   - tree shaking とか
 
-
+- 2/2: [AVA 0.18 リリース](https://github.com/avajs/ava/releases/tag/v0.18.0)
+  - power asset から magic assert に乗り換え
 
 
 
@@ -183,3 +185,10 @@ blink on 7 で色々出たのでこっちにまとめ
   - Cross-vendor, cross-host remote-control interfaces
   - Testbench environments that span machines
   - Lots of configured hardware on the bots!
+
+- [Network speed and save-data APIs](https://docs.google.com/document/d/1lWOaN-IFKVyCA-1rp05kqrmzCjI9rPs9Bj-opfQO1bs/edit)
+  - chrome には Network Quality Estimator があって、回線状況などがとれる。これを API として出すにはどうするかという Save Data API 周りの話。
+
+
+- [Understand V8 Performance via Tracing](https://docs.google.com/presentation/d/1m0AZPbSf1SU6-7w13OhBGP23eJMUGrPDOitxrtsXFng/edit#slide=id.g1c3772d87f_0_710)
+  - chrome の trace を改善
