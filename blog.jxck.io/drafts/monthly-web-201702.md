@@ -8,7 +8,13 @@
 
 ### Chrome
 
-- Chrome57 Stable
+- 2/2: Beta [Chrome57](https://blog.chromium.org/2017/02/chrome-57-beta-css-grid-layout-improved.html)
+  - Grid
+  - Add to Home Screeen
+  - Media Session
+  - text padding
+  - SW NavigationPreload
+  - remove vender prefix from IDB
 - Chrome58 Beta, Dev, Canaly
 
 - [release](https://chromereleases.googleblog.com/) ([stable updates tag](https://chromereleases.googleblog.com/search/label/Stable%20updates))
@@ -19,7 +25,9 @@
 
 ### Firefox
 
-- Firefox51 Stable
+- 1/31 Stable [Firefox51](https://blog.nightly.mozilla.org/2017/01/31/these-weeks-in-firefox-issue-9/)
+  - new logo
+  - e10s
 - Firefox52 Beta
 - Firefox53 Dev
 - Firefox54 Nightly
@@ -116,14 +124,46 @@
 - 2/2: [Google/Chrome/preload-webpack-plugin](https://github.com/GoogleChrome/preload-webpack-plugin)
   - WebPack で Preload するプラグイン
 
+- 2/2: [Navigation Preload](https://mattto.github.io/sw/demo/navigation-preload/)
+  - SW の起動が重くても、それを待たずに fetch を投げられる
+  - レスポンスは SW の中で扱える
+  - origin trial で chrome 57 から
+
+- 2/2: [Android で Add to Home Screen](https://developers.google.com/web/updates/2017/02/improved-add-to-home-screen)
+  - [chome beta 57](https://blog.chromium.org/2017/02/integrating-progressive-web-apps-deeply.html?m=1)
+  - 対 Native で始まった PWA の本懐
+  - Intent に登録されて開ける
+
+- 2/2: [Chrome Headless mode](https://www.youtube.com/watch?v=n6biclFh0i0)
+  - Head less mode のデモ
+
+- 2/2: [Next.js 2 の話](https://jsmantra.com/next-on-next-js-1a134505f346#.w8idjqiea)
+  - もう 2 か、早いな。
+
+- 2/2: [webpack 2 の変更点](https://medium.com/webpack/webpack-2-and-beyond-40520af9067f)
+  - tree shaking とか
+
+
+
 
 
 
 
 ## Blink On
 
-blink on で色々出たのでこっちにまとめ
+blink on 7 で色々出たのでこっちにまとめ
 
+### まとめ
+
+- [セッション](https://docs.google.com/document/d/1jlpsfv0kXCveOEX5l75aATgRXbcAvwyse4Tn6jVprWs/edit#)
+- [LT まとめ](https://docs.google.com/spreadsheets/d/1LmQXu9YgrfllLq2lQP7JL8khkUVdHi2Pnl9gvFRXPo8/edit#gid=0)
+
+### セッション
+
+- [State of Speed 2017](https://docs.google.com/presentation/d/1nB5AV8-0us1AbeAScrpjt4u_tf20wOnB5DmOVy_NiEc/edit#slide=id.g1c32d4b274_0_723)
+  - Chrome の Speed(広義) の今
+
+### LT
 
 - [State of Chrome's Memory](https://docs.google.com/presentation/d/1s8qy_yPrR1Q3AngHnfHFIlIzoDaoLrBAL-Iy0FHeTOY/edit#slide=id.g1c51f9ea06_0_11)
   - Chrome のメモリ周りの実装のまとめ
@@ -132,8 +172,14 @@ blink on で色々出たのでこっちにまとめ
   - JS のソースをサーバ側で Precompile できないかの議事録
   - パースは意外と遅いので、これを速くするどこかの段階までサーバでやっておきたいという話
 
+- [Loading Reloaded](https://docs.google.com/presentation/d/12fJMXBCUR7uAshbY6shLei3wriJjO5YJxxqFMEAmNaA/edit#slide=id.g1c4e3b0266_0_55)
+  - Reload を見直した話
+  - 豊島さん
 
-
-
-
-
+- [WebRTC testing challenges](https://docs.google.com/presentation/d/1zwjRHXTG4VtlVUbP-W6qwUcUa40C1MEhOx-iaSEF-YM/edit#slide=id.g20b7302f09_0_54)
+  - WebRTC をテストをどうにかしようという話
+  - 問題をよくわかってて期待
+  - Ability to insert mocks "underneath" the browser
+  - Cross-vendor, cross-host remote-control interfaces
+  - Testbench environments that span machines
+  - Lots of configured hardware on the bots!
