@@ -1,7 +1,7 @@
 'use strict';
 
 // server for CSP report-uri
-const PORT = 8000;
+const PORT = process.env['PORT'];
 const FILE = `${process.env['SERVER']}/logs/report-csp.log`
 
 const http = require('http');
