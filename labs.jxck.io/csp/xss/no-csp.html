@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="csp xss demo">
+<title>CSP XSS DEMO | labs.jxck.io</title>
+
+<!--
+<meta http-equiv=Content-Security-Policy content="default-src 'self'">
+-->
+
+<h1>XSS Chat</h1>
+
+<ul id=messages>
+  <li>hello</li>
+  <li>hi</li>
+  <li><script>alert('unescaped injected inline script')</script></li>
+</ul>
+
+<input id=message type=text></input>
+<button id=send>send</button>
