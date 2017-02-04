@@ -1,0 +1,13 @@
+[Unit]
+Description=report-uri.jxck.io
+After=network.target nss-lookup.target
+
+[Service]
+Type=simple
+Restart=always
+Environment=NODE_ENV=production PORT=8000 SERVER=/home/jxck/server
+WorkingDirectory=/home/jxck/server/jxck.io/report-uri.jxck.io
+ExecStart=/home/jxck/dotfiles/pkg/nodebrew/current/bin/node index.js
+
+[Install]
+WantedBy=multi-user.target
