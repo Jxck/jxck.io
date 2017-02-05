@@ -46,6 +46,7 @@ class Stream {
       });
     };
     return navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
+      log(stream);
       return Promise.resolve(new Stream(stream));
     });
   }
@@ -79,6 +80,8 @@ const getStream = (constraints, dispatch) => {
       type: 'GET_STREAM',
       stream: stream,
     })
+  }).catch((err) => {
+    console.error(err);
   });
 }
 
@@ -164,17 +167,39 @@ class StreamComponent extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    let value = e.target.setting.value;
-    this.props.getStream(JSON.parse(value))
+    let value = JSON.parse(e.target.setting.value);
+    let facingMode = e.target.facingMode.value;
+
+    if (facingMode !== "default") {
+      value.video.facingMode = facingMode;
+    }
+
+    log(value);
+
+
+
+    this.props.getStream(value)
   }
 
   render() {
     const { stream } = this.props;
-    const setting = JSON.stringify({audio: true, video: true});
+    const setting = JSON.stringify({
+      audio: true,
+      video: {
+        deviceId: 'default'
+      }
+    });
     return (
       <section>
         <form onSubmit={this.onSubmit.bind(this)}>
           <textarea name="setting">{setting}</textarea>
+          <select name="facingMode">
+            <option value="default">default</option>
+            <option value="user">user</option>
+            <option value="environment">environment</option>
+            <option value="left">left</option>
+            <option value="right">right</option>
+          </select>
           <button type="submit">ok</button>
         </form>
         <h2>Stream</h2>
