@@ -72,11 +72,7 @@ class Stream {
 }
 
 // Action
-const getStream = (dispatch) => {
-  const constraints = {
-    audio: true,
-    video: {facingMode: 'user'},
-  };
+const getStream = (constraints, dispatch) => {
   Stream.getUserMedia(constraints).then((stream) => {
     // resolve stream
     dispatch({
@@ -157,14 +153,24 @@ class StreamComponent extends React.Component {
     // this.props.getStream();
   }
 
+  onSubmit(e) {
+    e.preventDefault();
+    let value = e.target.setting.value;
+    this.props.getStream(JSON.parse(value))
+  }
+
   render() {
-    const { stream, getStream } = this.props;
+    const { stream } = this.props;
+    const setting = JSON.stringify({audio: true, video: true});
     return (
       <section>
+        <form onSubmit={this.onSubmit.bind(this)}>
+          <textarea name="setting">{setting}</textarea>
+          <button type="submit">ok</button>
+        </form>
         <h2>Stream</h2>
         <Video stream={stream} />
         <Tracks tracks={stream ? stream.tracks() : []} />
-        <button onClick={getStream}>start</button>
       </section>
     )
   }
@@ -179,8 +185,8 @@ const StreamContainer = ReactRedux.connect(
   },
   (dispatch) => {
     return {
-      getStream() {
-        getStream(dispatch)
+      getStream(constraints) {
+        getStream(constraints, dispatch)
       }
     }
   }
