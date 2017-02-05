@@ -128,6 +128,15 @@ class Tracks extends React.Component {
 }
 
 class Video extends React.Component {
+  componentDidUpdate() {
+    // FIXME: if React supports srcObject
+    this.video.srcObject = this.props.stream.stream;
+  }
+
+  bindVideo(video) {
+    this.video = video;
+  }
+
   render() {
     const { stream } = this.props;
     if (stream === undefined) {
@@ -140,7 +149,7 @@ class Video extends React.Component {
           <span>stream.active:</span><strong>{stream.active ? 'active': 'innactive'} </strong>
           <span>stream.id:</span><strong>{stream.id}</strong>
         </p>
-        <video autoPlay controls src={stream.src}></video>
+        <video autoPlay controls ref={this.bindVideo.bind(this)}></video>
       </div>
     )
   }
