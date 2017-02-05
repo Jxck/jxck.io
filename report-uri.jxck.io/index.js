@@ -14,7 +14,14 @@ http.createServer((req, res) => {
   });
   req.on('end', (e) => {
     // csp-report
-    let json = JSON.parse(body);
+    let json;
+    try {
+      json = JSON.parse(body);
+    } catch(err) {
+      console.error(err);
+      res.writeHead(400, {'Content-Type': 'text/plain'});
+      return res.end();
+    }
 
     // add header to json
     json['headers'] = req.headers;
@@ -26,7 +33,12 @@ http.createServer((req, res) => {
     // save with CRLF
     let str = JSON.stringify(json)+'\r\n';
     fs.appendFile(FILE, str, (err) => {
-      res.writeHead(201, {'Content-Type': 'text/plain'});
+      let status = 201;
+      if (err) {
+        console.error(err);
+        status = 500;
+      }
+      res.writeHead(status, {'Content-Type': 'text/plain'});
       res.end();
     });
   });
