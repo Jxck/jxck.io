@@ -168,23 +168,53 @@ class Video extends React.Component {
 
 
 class Configure extends React.Component {
+  constructor() {
+    super();
+    this.state = {audio: {}, video: {}};
+  }
+
+  setVideoState(value) {
+    const video = Object.assign({}, this.state.video, value);
+    this.setState(Object.assign({}, this.state, {video}));
+  }
+
+  setAudioState(value) {
+    const audio = Object.assign({}, this.state.audio, value);
+    this.setState(Object.assign({}, this.state, {audio}));
+  }
+
+  facingMode(e) {
+    const facingMode = e.target.selectedOptions[0].value;
+    this.setVideoState({facingMode});
+  }
+
+  width(e) {
+    const width = e.target.value;
+    this.setVideoState({width});
+  }
+
+  height(e) {
+    const height = e.target.value;
+    this.setVideoState({height});
+  }
+
   render() {
-    let constraints = JSON.stringify({audio: {}, video: {}});
     const { onSubmit } = this.props;
+    const constraints = JSON.stringify(this.state, ' ', ' ');
     return (
       <form onSubmit={onSubmit}>
         <DeviceContainer />
         <textarea name="constraints" value={constraints}></textarea>
         <div>
-          <select name="facingMode">
+          <select name="facingMode" onChange={this.facingMode.bind(this)}>
             <option value="default">default</option>
             <option value="user">user</option>
             <option value="environment">environment</option>
             <option value="left">left</option>
             <option value="right">right</option>
           </select>
-          <input type="number" name="width"  placeholder="width"  step="10" />
-          <input type="number" name="height" placeholder="height" step="10" />
+          <input type="number" name="width"  placeholder="width"  step="10" onChange={this.width.bind(this)}/>
+          <input type="number" name="height" placeholder="height" step="10" onChange={this.height.bind(this)}/>
         </div>
         <button type="submit">ok</button>
       </form>
