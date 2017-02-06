@@ -33,7 +33,6 @@ class Track {
   }
 
   stop() {
-    log('track#stop()');
     return this.track.stop();
   }
 }
@@ -51,13 +50,13 @@ class Stream {
       });
     };
     return navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
-      log(stream);
-      return Promise.resolve(new Stream(stream));
+      return Promise.resolve(new Stream(stream, constraints));
     });
   }
 
-  constructor(stream) {
+  constructor(stream, constraints) {
     this.stream = stream
+    this.constraints = constraints;
   }
 
   get id() {
@@ -83,9 +82,6 @@ class Stream {
 
 // Action
 const getStream = (constraints, dispatch) => {
-
-  log(constraints);
-
   Stream.getUserMedia(constraints).then((stream) => {
     // resolve stream
     dispatch({
@@ -179,46 +175,41 @@ class StreamComponent extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    let value = JSON.parse(e.target.setting.value);
+    let constraints = JSON.parse(e.target.constraints.value);
 
     let facingMode = e.target.facingMode.value;
     if (facingMode !== "default") {
-      value.video.facingMode = facingMode;
+      constraints.video.facingMode = facingMode;
     }
 
     let deviceId = e.target.deviceId.value;
     if (deviceId) {
-      value.video.deviceId = deviceId;
+      constraints.video.deviceId = deviceId;
     }
 
     let width = e.target.width.value;
     if (width) {
-      value.video.width = width;
+      constraints.video.width = width;
     }
 
     let height = e.target.height.value;
     if (height) {
-      value.video.height = height;
+      constraints.video.height = height;
     }
 
     // stop current stream before replace to new
     this.props.stream && this.props.stream.stop()
-    this.props.getStream(value)
+    this.props.getStream(constraints)
   }
 
   render() {
     const { stream } = this.props;
-    const setting = JSON.stringify({
-      audio: true,
-      video: {
-        deviceId: 'default'
-      }
-    }, ' ', ' ');
+    let constraints = JSON.stringify(stream ? stream.constraints : {audio: true, video: {}});
     return (
       <section>
         <form onSubmit={this.onSubmit.bind(this)}>
           <DeviceContainer />
-          <textarea name="setting">{setting}</textarea>
+          <textarea name="constraints" value={constraints}></textarea>
           <div>
             <select name="facingMode">
               <option value="default">default</option>
