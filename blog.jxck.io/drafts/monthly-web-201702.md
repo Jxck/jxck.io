@@ -147,8 +147,8 @@
 - 2/2: [AVA 0.18 リリース](https://github.com/avajs/ava/releases/tag/v0.18.0)
   - power asset から magic assert に乗り換え
 
-
-
+- 2/2: [URL.createObjectURL(stream) が廃止予定](https://www.fxsitecompat.com/ja/docs/2017/url-createobjecturl-stream-has-been-deprecated)
+  - 古い WebRTC アプリが結構壊れそう
 
 
 ## Blink On
