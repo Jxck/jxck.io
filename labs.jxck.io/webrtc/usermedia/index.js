@@ -166,16 +166,38 @@ class Video extends React.Component {
   }
 }
 
+
+class Configure extends React.Component {
+  render() {
+    let constraints = JSON.stringify({audio: {}, video: {}});
+    const { onSubmit } = this.props;
+    return (
+      <form onSubmit={onSubmit}>
+        <DeviceContainer />
+        <textarea name="constraints" value={constraints}></textarea>
+        <div>
+          <select name="facingMode">
+            <option value="default">default</option>
+            <option value="user">user</option>
+            <option value="environment">environment</option>
+            <option value="left">left</option>
+            <option value="right">right</option>
+          </select>
+          <input type="number" name="width"  placeholder="width"  step="10" />
+          <input type="number" name="height" placeholder="height" step="10" />
+        </div>
+        <button type="submit">ok</button>
+      </form>
+    )
+  }
+}
+
 // Components
 class StreamComponent extends React.Component {
-  componentDidMount() {
-    // TODO: remove
-    // this.props.getStream();
-  }
-
   onSubmit(e) {
     e.preventDefault();
     let constraints = JSON.parse(e.target.constraints.value);
+    log(constraints);
 
     let facingMode = e.target.facingMode.value;
     if (facingMode !== "default") {
@@ -204,25 +226,9 @@ class StreamComponent extends React.Component {
 
   render() {
     const { stream } = this.props;
-    let constraints = JSON.stringify(stream ? stream.constraints : {audio: true, video: {}});
     return (
       <section>
-        <form onSubmit={this.onSubmit.bind(this)}>
-          <DeviceContainer />
-          <textarea name="constraints" value={constraints}></textarea>
-          <div>
-            <select name="facingMode">
-              <option value="default">default</option>
-              <option value="user">user</option>
-              <option value="environment">environment</option>
-              <option value="left">left</option>
-              <option value="right">right</option>
-            </select>
-            <input type="number" name="width"  placeholder="width"  step="10" />
-            <input type="number" name="height" placeholder="height" step="10" />
-          </div>
-          <button type="submit">ok</button>
-        </form>
+        <Configure onSubmit={this.onSubmit.bind(this)}/>
         <h2>Stream</h2>
         <Video stream={stream} />
         <Tracks tracks={stream ? stream.tracks() : []} />
