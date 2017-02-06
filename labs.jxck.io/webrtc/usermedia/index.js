@@ -31,6 +31,10 @@ class Track {
     const support = !!MediaStreamTrack.prototype.getSettings;
     return support ? this.track.getSettings() : {};
   }
+
+  stop() {
+    return this.track.stop();
+  }
 }
 
 class Stream {
@@ -70,6 +74,10 @@ class Stream {
       .getTracks()
       .map((track) => new Track(track))
   }
+
+  stop() {
+    this.tracks().forEach((track) => track.stop())
+  }
 }
 
 // Action
@@ -89,6 +97,8 @@ const getStream = (constraints, dispatch) => {
 const streamReducer = (state = {stream: undefined}, action) => {
   switch (action.type) {
     case 'GET_STREAM':
+      // stop current stream before replace to new
+      state.stream && state.stream.stop()
       return Object.assign({}, state, {
         stream: action.stream,
       })
@@ -175,8 +185,6 @@ class StreamComponent extends React.Component {
     }
 
     log(value);
-
-
 
     this.props.getStream(value)
   }
