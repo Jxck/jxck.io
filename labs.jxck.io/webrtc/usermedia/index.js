@@ -187,9 +187,18 @@ class StreamComponent extends React.Component {
     }
 
     let deviceId = e.target.deviceId.value;
-
     if (deviceId) {
       value.video.deviceId = deviceId;
+    }
+
+    let width = e.target.width.value;
+    if (width) {
+      value.video.width = width;
+    }
+
+    let height = e.target.height.value;
+    if (height) {
+      value.video.height = height;
     }
 
     // stop current stream before replace to new
@@ -204,19 +213,23 @@ class StreamComponent extends React.Component {
       video: {
         deviceId: 'default'
       }
-    });
+    }, ' ', ' ');
     return (
       <section>
         <form onSubmit={this.onSubmit.bind(this)}>
           <DeviceContainer />
           <textarea name="setting">{setting}</textarea>
-          <select name="facingMode">
-            <option value="default">default</option>
-            <option value="user">user</option>
-            <option value="environment">environment</option>
-            <option value="left">left</option>
-            <option value="right">right</option>
-          </select>
+          <div>
+            <select name="facingMode">
+              <option value="default">default</option>
+              <option value="user">user</option>
+              <option value="environment">environment</option>
+              <option value="left">left</option>
+              <option value="right">right</option>
+            </select>
+            <input type="number" name="width"  placeholder="width"  step="10" />
+            <input type="number" name="height" placeholder="height" step="10" />
+          </div>
           <button type="submit">ok</button>
         </form>
         <h2>Stream</h2>
