@@ -33,6 +33,7 @@ class Track {
   }
 
   stop() {
+    log('track#stop()');
     return this.track.stop();
   }
 }
@@ -82,6 +83,9 @@ class Stream {
 
 // Action
 const getStream = (constraints, dispatch) => {
+
+  log(constraints);
+
   Stream.getUserMedia(constraints).then((stream) => {
     // resolve stream
     dispatch({
@@ -97,8 +101,6 @@ const getStream = (constraints, dispatch) => {
 const streamReducer = (state = {stream: undefined}, action) => {
   switch (action.type) {
     case 'GET_STREAM':
-      // stop current stream before replace to new
-      state.stream && state.stream.stop()
       return Object.assign({}, state, {
         stream: action.stream,
       })
@@ -178,14 +180,20 @@ class StreamComponent extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     let value = JSON.parse(e.target.setting.value);
-    let facingMode = e.target.facingMode.value;
 
+    let facingMode = e.target.facingMode.value;
     if (facingMode !== "default") {
       value.video.facingMode = facingMode;
     }
 
-    log(value);
+    let deviceId = e.target.deviceId.value;
 
+    if (deviceId) {
+      value.video.deviceId = deviceId;
+    }
+
+    // stop current stream before replace to new
+    this.props.stream && this.props.stream.stop()
     this.props.getStream(value)
   }
 
@@ -200,6 +208,7 @@ class StreamComponent extends React.Component {
     return (
       <section>
         <form onSubmit={this.onSubmit.bind(this)}>
+          <DeviceContainer />
           <textarea name="setting">{setting}</textarea>
           <select name="facingMode">
             <option value="default">default</option>
@@ -382,10 +391,11 @@ class Device extends React.Component {
     const tr = devices.map((d) => {
       return (
         <tr>
-          <td>{d.kind}</td>
-          <td>{d.label}</td>
-          <td>{d.deviceId}</td>
-          <td>{d.groupId}</td>
+          <td><input type="radio" name="deviceId" value={d.deviceId}/></td>
+          <td><div>{d.kind}    </div></td>
+          <td><div>{d.label}   </div></td>
+          <td><div>{d.deviceId}</div></td>
+          <td><div>{d.groupId} </div></td>
         </tr>
       )
     });
@@ -395,6 +405,7 @@ class Device extends React.Component {
         <button onClick={onEnumDevice}>refresh</button>
         <table>
           <tr>
+            <th>select</th>
             <th>kind</th>
             <th>label</th>
             <th>deviceId</th>
@@ -433,7 +444,6 @@ class App extends React.Component {
       <div>
         <StreamContainer />
         <ConstraintsContainer />
-        <DeviceContainer />
       </div>
     )
   }
