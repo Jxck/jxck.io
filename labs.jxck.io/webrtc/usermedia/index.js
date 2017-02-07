@@ -173,48 +173,39 @@ class Configure extends React.Component {
     this.state = {audio: {}, video: {}};
   }
 
-  setVideoState(value) {
-    const video = Object.assign({}, this.state.video, value);
-    this.setState(Object.assign({}, this.state, {video}));
+  bindRef(form) {
+    this.form = form
   }
 
-  setAudioState(value) {
-    const audio = Object.assign({}, this.state.audio, value);
-    this.setState(Object.assign({}, this.state, {audio}));
-  }
-
-  facingMode(e) {
-    const facingMode = e.target.selectedOptions[0].value;
-    this.setVideoState({facingMode});
-  }
-
-  width(e) {
-    const width = e.target.value;
-    this.setVideoState({width});
-  }
-
-  height(e) {
-    const height = e.target.value;
-    this.setVideoState({height});
+  onChange() {
+    const formData = new FormData(this.form);
+    const updatedState = Array.from(formData.entries())
+      .filter(([k, v]) => !(v == "" || k == "constraints"))
+      .reduce((state, [k, v]) => {
+        const [tag, key] = k.split(".")
+        state[tag][key] = v;
+        return state;
+      }, this.state);
+    this.setState(updatedState);
   }
 
   render() {
     const { onSubmit } = this.props;
     const constraints = JSON.stringify(this.state, ' ', ' ');
     return (
-      <form onSubmit={onSubmit}>
+      <form ref={this.bindRef.bind(this)} onChange={this.onChange.bind(this)} onSubmit={onSubmit}>
         <DeviceContainer />
         <textarea name="constraints" value={constraints}></textarea>
         <div>
-          <select name="facingMode" onChange={this.facingMode.bind(this)}>
+          <select name="video.facingMode">
             <option value="default">default</option>
             <option value="user">user</option>
             <option value="environment">environment</option>
             <option value="left">left</option>
             <option value="right">right</option>
           </select>
-          <input type="number" name="width"  placeholder="width"  step="10" onChange={this.width.bind(this)}/>
-          <input type="number" name="height" placeholder="height" step="10" onChange={this.height.bind(this)}/>
+          <input type="number" name="video.width"  placeholder="width"  step="10"/>
+          <input type="number" name="video.height" placeholder="height" step="10"/>
         </div>
         <button type="submit">ok</button>
       </form>
@@ -431,7 +422,7 @@ class Device extends React.Component {
     const tr = devices.map((d) => {
       return (
         <tr>
-          <td><input type="radio" name="deviceId" value={d.deviceId}/></td>
+          <td><input type="radio" name="video.deviceId" value={d.deviceId}/></td>
           <td><div>{d.kind}    </div></td>
           <td><div>{d.label}   </div></td>
           <td><div>{d.deviceId}</div></td>
