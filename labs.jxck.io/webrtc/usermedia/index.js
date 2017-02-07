@@ -178,12 +178,18 @@ class Configure extends React.Component {
   }
 
   onChange(e) {
+    const type = e.target.type;
     const name = e.target.name;
+    const state = this.state;
+
+    let value = e.target.value;
+    if (type === "number") {
+      value = parseFloat(value);
+    }
 
     // videoinput/audioinput/audiooutput
     const [tag, key] = name.replace('input', '').replace('output', '').split('.');
-    const state = this.state;
-    state[tag][key] = e.target.value;
+    state[tag][key] = value;
     this.setState(state);
   }
 
@@ -204,6 +210,7 @@ class Configure extends React.Component {
           </select>
           <input type="number" name="video.width"  placeholder="width"  step="10"/>
           <input type="number" name="video.height" placeholder="height" step="10"/>
+          <input type="number" name="video.frameRate" placeholder="frameRate" min="1" max="60"/>
           <input type="number" name="video.aspectRatio" placeholder="aspectRatio" min="1.0" step="0.1"/>
           <input type="number" name="audio.volume" placeholder="volume" min="0.1" max="1.0" step="0.1"/>
         </div>
