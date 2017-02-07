@@ -220,26 +220,6 @@ class StreamComponent extends React.Component {
     let constraints = JSON.parse(e.target.constraints.value);
     log(constraints);
 
-    let facingMode = e.target.facingMode.value;
-    if (facingMode !== "default") {
-      constraints.video.facingMode = facingMode;
-    }
-
-    let deviceId = e.target.deviceId.value;
-    if (deviceId) {
-      constraints.video.deviceId = deviceId;
-    }
-
-    let width = e.target.width.value;
-    if (width) {
-      constraints.video.width = width;
-    }
-
-    let height = e.target.height.value;
-    if (height) {
-      constraints.video.height = height;
-    }
-
     // stop current stream before replace to new
     this.props.stream && this.props.stream.stop()
     this.props.getStream(constraints)
