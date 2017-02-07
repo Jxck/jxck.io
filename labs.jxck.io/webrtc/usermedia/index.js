@@ -181,7 +181,7 @@ class Configure extends React.Component {
     const name = e.target.name;
 
     // videoinput/audioinput/audiooutput
-    const [tag, key] = name.replace("input", "").replace("output", "").split(".");
+    const [tag, key] = name.replace('input', '').replace('output', '').split('.');
     const state = this.state;
     state[tag][key] = e.target.value;
     this.setState(state);
@@ -204,6 +204,7 @@ class Configure extends React.Component {
           </select>
           <input type="number" name="video.width"  placeholder="width"  step="10"/>
           <input type="number" name="video.height" placeholder="height" step="10"/>
+          <input type="number" name="audio.volume" placeholder="volume" min="0.1" max="1.0" step="0.1"/>
         </div>
         <button type="submit">ok</button>
       </form>
