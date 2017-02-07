@@ -177,16 +177,11 @@ class Configure extends React.Component {
     this.form = form
   }
 
-  onChange() {
-    const formData = new FormData(this.form);
-    const updatedState = Array.from(formData.entries())
-      .filter(([k, v]) => !(v == "" || k == "constraints"))
-      .reduce((state, [k, v]) => {
-        const [tag, key] = k.split(".")
-        state[tag][key] = v;
-        return state;
-      }, this.state);
-    this.setState(updatedState);
+  onChange(e) {
+    const [tag, key] = e.target.name.split(".");
+    const state = this.state;
+    state[tag][key] = e.target.value;
+    this.setState(state);
   }
 
   render() {
