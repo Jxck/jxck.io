@@ -465,7 +465,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Range type="width" />
+        <Range type="width" min="100" max="200" step="10"/>
+        <Range type="volume" min="0" max="1" step="0.1" />
         <FacingMode />
         <StreamContainer />
         <ConstraintsContainer />
@@ -559,6 +560,8 @@ class Range extends React.Component {
     const type = this.props.type;
     const {ideal, exact, value, min, max} = this.state;
 
+    log(this.state);
+
     if (exact) {
       if (value === null) return null
       return { [type] : { exact : value }}
@@ -587,26 +590,28 @@ class Range extends React.Component {
   }
 
   onChange(e) {
-    const {name, value} = e.target;
-    this.setState(Object.assign(this.state, {value: parseInt(value)}))
+    let {name, value} = e.target;
+    if (name === this.props.type) name = "value";
+    this.setState(Object.assign(this.state, {[name]: parseInt(value)}))
   }
 
   render() {
-    const type = this.props.type
+    const {type, min, max, step} = this.props
 
-    let input = <input type="number" name={type} placeholder={type}/>
-      if (this.state.ideal) {
-        input = (
-          [
-            <input type="number" name="min" placeholder="min"/>,
-            <input type="number" name={type} placeholder="ideal"/>,
-            <input type="number" name="max" placeholder="max"/>,
-          ]
-        )
-      }
+    let input = <input type="number" placeholder={type} name={type} min={min} max={max} step={step} />;
+
+    if (this.state.ideal) {
+      input = (
+        [
+          <input type="number" name="min"  placeholder="min"   min={min} max={max} step={step} />,
+          <input type="number" name={type} placeholder="ideal" min={min} max={max} step={step} />,
+          <input type="number" name="max"  placeholder="max"   min={min} max={max} step={step} />,
+        ]
+      )
+    }
     if (this.state.exact) {
       input = (
-        <input type="number" name={type} placeholder="exact"/>
+        <input type="number" name={type} placeholder="exact" min={min} max={max} step={step} />
       )
     }
     return (
