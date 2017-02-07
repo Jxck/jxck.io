@@ -204,13 +204,6 @@ class Configure extends React.Component {
         <DeviceContainer />
         <textarea name="constraints" value={constraints}></textarea>
         <div>
-          <select name="video.facingMode">
-            <option value="default">default</option>
-            <option value="user">user</option>
-            <option value="environment">environment</option>
-            <option value="left">left</option>
-            <option value="right">right</option>
-          </select>
           <input type="number" name="video.width"  placeholder="width"  step="10"/>
           <input type="number" name="video.height" placeholder="height" step="10"/>
           <input type="number" name="video.frameRate" placeholder="frameRate" min="1" max="60"/>
@@ -223,6 +216,14 @@ class Configure extends React.Component {
     )
   }
 }
+
+
+
+
+
+
+
+
 
 // Components
 class StreamComponent extends React.Component {
@@ -464,8 +465,158 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <Range type="width" />
+        <FacingMode />
         <StreamContainer />
         <ConstraintsContainer />
+      </div>
+    )
+  }
+}
+
+class FacingMode extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      facingMode: null,
+      ideal: false,
+      exact: false,
+    }
+  }
+
+  get constraints() {
+    let mode = this.state.facingMode;
+    if (mode === null) {
+      return null
+    }
+    if (this.state.exact) {
+      return { facingMode : { exact : mode } }
+    }
+    if (this.state.ideal) {
+      return { facingMode : { ideal: mode } }
+    }
+    return { facingMode : mode }
+  }
+
+  onMode(e) {
+    e.stopPropagation();
+    const value = e.target.value;
+    this.setState(Object.assign(this.state, {facingMode: value}));
+  }
+
+  onIdeal(e) {
+    e.stopPropagation();
+    const value = e.target.checked;
+    this.setState(Object.assign(this.state, {ideal: value}));
+  }
+
+  onExact(e) {
+    e.stopPropagation();
+    const value = e.target.checked;
+    this.setState(Object.assign(this.state, {exact: value}));
+  }
+
+  render() {
+    const mode  = "video.facingMode"
+    const ideal = "video.facingMode.ideal"
+    const exact = "video.facingMode.exact"
+    return (
+      <dl>
+        <dt><label htmlFor={mode}>{mode}</label></dt>
+        <dd>
+          <select id={mode} name={mode} onChange={this.onMode.bind(this)}>
+            <option value="default">default</option>
+            <option value="user">user</option>
+            <option value="environment">environment</option>
+            <option value="left">left</option>
+            <option value="right">right</option>
+          </select>
+        </dd>
+        <dt><label>{ideal}</label></dt>
+        <dd><input type="checkbox" name={ideal} onChange={this.onIdeal.bind(this)}/></dd>
+        <dt><label>{exact}</label></dt>
+        <dd><input type="checkbox" name={exact} onChange={this.onExact.bind(this)}/></dd>
+        <dt>state</dt>
+        <dd>{JSON.stringify(this.constraints)}</dd>
+      </dl>
+    )
+  }
+}
+
+class Range extends React.Component {
+  constructor(props) {
+    super();
+    this.state = {
+      ideal: false,
+      exact: false,
+      value: null,
+      min:   null,
+      max:   null,
+    }
+  }
+
+  get constraints() {
+    const type = this.props.type;
+    const {ideal, exact, value, min, max} = this.state;
+
+    if (exact) {
+      if (value === null) return null
+      return { [type] : { exact : value }}
+    }
+
+    if (ideal) {
+      if (value === null && min === null && max === null) return null
+      let result = {}
+      if (value) result.ideal = value
+      if (min) result.min = min
+      if (max) result.max = max
+      return { [type]: result }
+    }
+
+    if (value === null) return null
+
+    return { [type]: value };
+  }
+
+  onExact(e) {
+    this.setState(Object.assign(this.state, {exact: e.target.checked}))
+  }
+
+  onIdeal(e) {
+    this.setState(Object.assign(this.state, {ideal: e.target.checked}))
+  }
+
+  onChange(e) {
+    const {name, value} = e.target;
+    this.setState(Object.assign(this.state, {value: parseInt(value)}))
+  }
+
+  render() {
+    const type = this.props.type
+
+    let input = <input type="number" name={type} placeholder={type}/>
+      if (this.state.ideal) {
+        input = (
+          [
+            <input type="number" name="min" placeholder="min"/>,
+            <input type="number" name={type} placeholder="ideal"/>,
+            <input type="number" name="max" placeholder="max"/>,
+          ]
+        )
+      }
+    if (this.state.exact) {
+      input = (
+        <input type="number" name={type} placeholder="exact"/>
+      )
+    }
+    return (
+      <div>
+        <div onChange={this.onChange.bind(this)}>
+          {input}
+        </div>
+        <input type="checkbox" name="ideal" onChange={this.onIdeal.bind(this)}/>
+        <input type="checkbox" name="exact" onChange={this.onExact.bind(this)}/>
+        <div>{JSON.stringify(this.constraints)}</div>
       </div>
     )
   }
