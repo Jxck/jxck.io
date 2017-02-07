@@ -204,6 +204,7 @@ class Configure extends React.Component {
           </select>
           <input type="number" name="video.width"  placeholder="width"  step="10"/>
           <input type="number" name="video.height" placeholder="height" step="10"/>
+          <input type="number" name="video.aspectRatio" placeholder="aspectRatio" min="1.0" step="0.1"/>
           <input type="number" name="audio.volume" placeholder="volume" min="0.1" max="1.0" step="0.1"/>
         </div>
         <button type="submit">ok</button>
@@ -217,7 +218,6 @@ class StreamComponent extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     let constraints = JSON.parse(e.target.constraints.value);
-    log(constraints);
 
     // stop current stream before replace to new
     this.props.stream && this.props.stream.stop()
