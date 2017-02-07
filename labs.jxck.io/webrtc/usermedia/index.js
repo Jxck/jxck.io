@@ -178,7 +178,10 @@ class Configure extends React.Component {
   }
 
   onChange(e) {
-    const [tag, key] = e.target.name.split(".");
+    const name = e.target.name;
+
+    // videoinput/audioinput/audiooutput
+    const [tag, key] = name.replace("input", "").replace("output", "").split(".");
     const state = this.state;
     state[tag][key] = e.target.value;
     this.setState(state);
@@ -395,9 +398,10 @@ class Device extends React.Component {
   render() {
     const {onEnumDevice, devices} = this.props
     const tr = devices.map((d) => {
+      const name = `${d.kind}.deviceId`;
       return (
         <tr>
-          <td><input type="radio" name="video.deviceId" value={d.deviceId}/></td>
+          <td><input type="radio" name={name} value={d.deviceId}/></td>
           <td><div>{d.kind}    </div></td>
           <td><div>{d.label}   </div></td>
           <td><div>{d.deviceId}</div></td>
