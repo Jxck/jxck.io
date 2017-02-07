@@ -56,6 +56,17 @@
 - [change log](https://developer.microsoft.com/en-us/microsoft-edge/platform/changelog/)
 
 
+### V8
+
+- 2/6: [V8 Release 5.7](http://v8project.blogspot.jp/2017/02/v8-release-57.html)
+  - Native async functions as fast as promises
+  - Continued ES2015 improvements
+  - RegExp 15 % faster
+  - padStart/End, Intl.DateTimeFormat.prototype.formatToParts 
+  - WASM enabled
+  - etc
+
+
 ## API
 
 - 1/26: [Shared Memory と Atomics が stage 4](http://www.2ality.com/2017/01/shared-array-buffer.html)
@@ -149,6 +160,19 @@
 
 - 2/2: [URL.createObjectURL(stream) が廃止予定](https://www.fxsitecompat.com/ja/docs/2017/url-createobjecturl-stream-has-been-deprecated)
   - 古い WebRTC アプリが結構壊れそう
+
+- 2/6: [WordPress 4.7.2 脆弱性](http://www.ipa.go.jp/security/ciadr/vul/20170206-wordpress.html)
+  - [徳丸先生の検証](http://blog.tokumaru.org/2017/02/wordpress-4.7.1-Privilege-Escalation.html)
+
+- 2/6: [The Security Impact of HTTPS Interception](https://zakird.com/papers/https_interception.pdf)
+  - HTTPS で MITM があった時のインパクトについての調査
+  - あとで
+
+- 2/6: [TLS 本](https://www.feistyduck.com/books/bulletproof-ssl-and-tls/)
+  - TLS1.3 にも追従予定らしい
+
+- 2/6: [HTTP2 本](http://shop.oreilly.com/product/0636920052326.do)
+  - Akamai の人、オライリーから
 
 
 ## Blink On
