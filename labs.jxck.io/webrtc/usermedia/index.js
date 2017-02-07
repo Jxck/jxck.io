@@ -186,6 +186,9 @@ class Configure extends React.Component {
     if (type === "number") {
       value = parseFloat(value);
     }
+    if (type === "checkbox") {
+      value = e.target.checked;
+    }
 
     // videoinput/audioinput/audiooutput
     const [tag, key] = name.replace('input', '').replace('output', '').split('.');
@@ -213,6 +216,7 @@ class Configure extends React.Component {
           <input type="number" name="video.frameRate" placeholder="frameRate" min="1" max="60"/>
           <input type="number" name="video.aspectRatio" placeholder="aspectRatio" min="1.0" step="0.1"/>
           <input type="number" name="audio.volume" placeholder="volume" min="0.1" max="1.0" step="0.1"/>
+          <input type="checkbox" name="audio.echoCancellation" placeholder="echoCancellation" placeholder="echoCancellation"/>
         </div>
         <button type="submit">ok</button>
       </form>
