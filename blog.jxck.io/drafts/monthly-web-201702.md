@@ -66,6 +66,48 @@
   - WASM enabled
   - etc
 
+## Blink On
+
+blink on 7 で色々出たのでこっちにまとめ
+
+### まとめ
+
+- [セッション](https://docs.google.com/document/d/1jlpsfv0kXCveOEX5l75aATgRXbcAvwyse4Tn6jVprWs/edit#)
+- [LT まとめ](https://docs.google.com/spreadsheets/d/1LmQXu9YgrfllLq2lQP7JL8khkUVdHi2Pnl9gvFRXPo8/edit#gid=0)
+
+### セッション
+
+- [State of Speed 2017](https://docs.google.com/presentation/d/1nB5AV8-0us1AbeAScrpjt4u_tf20wOnB5DmOVy_NiEc/edit#slide=id.g1c32d4b274_0_723)
+  - Chrome の Speed(広義) の今
+
+### LT
+
+- [State of Chrome's Memory](https://docs.google.com/presentation/d/1s8qy_yPrR1Q3AngHnfHFIlIzoDaoLrBAL-Iy0FHeTOY/edit#slide=id.g1c51f9ea06_0_11)
+  - Chrome のメモリ周りの実装のまとめ
+
+- [JavaScript preprocessing/precompilation](https://gist.github.com/addyosmani/4009ee1238c4b1ff6f2a2d8a5057c181)
+  - JS のソースをサーバ側で Precompile できないかの議事録
+  - パースは意外と遅いので、これを速くするどこかの段階までサーバでやっておきたいという話
+
+- [Loading Reloaded](https://docs.google.com/presentation/d/12fJMXBCUR7uAshbY6shLei3wriJjO5YJxxqFMEAmNaA/edit#slide=id.g1c4e3b0266_0_55)
+  - Reload を見直した話
+  - 豊島さん
+
+- [WebRTC testing challenges](https://docs.google.com/presentation/d/1zwjRHXTG4VtlVUbP-W6qwUcUa40C1MEhOx-iaSEF-YM/edit#slide=id.g20b7302f09_0_54)
+  - WebRTC をテストをどうにかしようという話
+  - 問題をよくわかってて期待
+  - Ability to insert mocks "underneath" the browser
+  - Cross-vendor, cross-host remote-control interfaces
+  - Testbench environments that span machines
+  - Lots of configured hardware on the bots!
+
+- [Network speed and save-data APIs](https://docs.google.com/document/d/1lWOaN-IFKVyCA-1rp05kqrmzCjI9rPs9Bj-opfQO1bs/edit)
+  - chrome には Network Quality Estimator があって、回線状況などがとれる。これを API として出すにはどうするかという Save Data API 周りの話。
+
+
+- [Understand V8 Performance via Tracing](https://docs.google.com/presentation/d/1m0AZPbSf1SU6-7w13OhBGP23eJMUGrPDOitxrtsXFng/edit#slide=id.g1c3772d87f_0_710)
+  - chrome の trace を改善
+
 
 ## API
 
@@ -80,6 +122,10 @@
 - 1/27: [Edge で WebRTC 1.0 がデフォルト](https://developer.microsoft.com/en-us/microsoft-edge/platform/changelog/desktop/15019/)
   - ORTC とは別に互換のために実装してた機能が表に
   - [公式ブログ](https://blogs.windows.com/msedgedev/2017/01/31/introducing-webrtc-microsoft-edge/)
+
+- 1/30: [ONE URL STANDARD PLEASE](https://daniel.haxx.se/blog/2017/01/30/one-url-standard-please/]
+  - URL の仕様が RFC と WHATWG と各実装とあって大変だという話
+  - curl の作者の意見なので説得力ある
 
 - 1/30: [Firefox はしばらくゲームに注力するらしい](http://rockridge.hatenablog.com/entry/2017/01/30/004857)
   - FF51: WebGL default
@@ -161,6 +207,9 @@
 - 2/2: [URL.createObjectURL(stream) が廃止予定](https://www.fxsitecompat.com/ja/docs/2017/url-createobjecturl-stream-has-been-deprecated)
   - 古い WebRTC アプリが結構壊れそう
 
+- 2/5: [WordPress で複数の改ざん事例](http://d.hatena.ne.jp/Kango/20170205/1486314605)
+  - けっこう色々やられてる模様
+
 - 2/6: [WordPress 4.7.2 脆弱性](http://www.ipa.go.jp/security/ciadr/vul/20170206-wordpress.html)
   - [徳丸先生の検証](http://blog.tokumaru.org/2017/02/wordpress-4.7.1-Privilege-Escalation.html)
 
@@ -174,45 +223,26 @@
 - 2/6: [HTTP2 本](http://shop.oreilly.com/product/0636920052326.do)
   - Akamai の人、オライリーから
 
+- 2/7: [Chrome VP9/SVG DEMO](https://sfu.medooze.com/svc/)
+  - Chrome VP9/SVG のデモ
+  - SVG のレイヤ選択を SFU に指示して違いを体感
+  - chrome --force-fieldtrials=WebRTC-SupportVP9SVC を有効にする必要
 
-## Blink On
+- 2/7: [Polyfills and the evolution of the web](https://w3ctag.github.io/polyfills/)
+  - Web と共同する上で Polyfill がどうあるべきかという TAG のドキュメント
 
-blink on 7 で色々出たのでこっちにまとめ
+- 2/7: [How not to feature detect](https://miketaylr.com/posts/2017/02/how-not-to-feature-detect.html)
+  - Firefox は Notification を無効にすると window.Notification 自体が消える
+  - この feature detect に twitter が引っかかり tweet ボタンでバグがあったらしい
+  - 正しい feature detect について解説
 
-### まとめ
+- 2/7: [Yahoo広告配信用 s.yimg.jp ドメインでのXSSの解説](https://gist.github.com/mala/1d30e42e9e99520b7a501e9d2458eb49)
+  - URL 正規表現の不備による XSS
+  - URL パーサの実装にもおかしいものがいくつかあるらしい
 
-- [セッション](https://docs.google.com/document/d/1jlpsfv0kXCveOEX5l75aATgRXbcAvwyse4Tn6jVprWs/edit#)
-- [LT まとめ](https://docs.google.com/spreadsheets/d/1LmQXu9YgrfllLq2lQP7JL8khkUVdHi2Pnl9gvFRXPo8/edit#gid=0)
+- 2/7: [WASM のロゴ投票](https://github.com/WebAssembly/design/issues/980)
+  - 投票中
 
-### セッション
-
-- [State of Speed 2017](https://docs.google.com/presentation/d/1nB5AV8-0us1AbeAScrpjt4u_tf20wOnB5DmOVy_NiEc/edit#slide=id.g1c32d4b274_0_723)
-  - Chrome の Speed(広義) の今
-
-### LT
-
-- [State of Chrome's Memory](https://docs.google.com/presentation/d/1s8qy_yPrR1Q3AngHnfHFIlIzoDaoLrBAL-Iy0FHeTOY/edit#slide=id.g1c51f9ea06_0_11)
-  - Chrome のメモリ周りの実装のまとめ
-
-- [JavaScript preprocessing/precompilation](https://gist.github.com/addyosmani/4009ee1238c4b1ff6f2a2d8a5057c181)
-  - JS のソースをサーバ側で Precompile できないかの議事録
-  - パースは意外と遅いので、これを速くするどこかの段階までサーバでやっておきたいという話
-
-- [Loading Reloaded](https://docs.google.com/presentation/d/12fJMXBCUR7uAshbY6shLei3wriJjO5YJxxqFMEAmNaA/edit#slide=id.g1c4e3b0266_0_55)
-  - Reload を見直した話
-  - 豊島さん
-
-- [WebRTC testing challenges](https://docs.google.com/presentation/d/1zwjRHXTG4VtlVUbP-W6qwUcUa40C1MEhOx-iaSEF-YM/edit#slide=id.g20b7302f09_0_54)
-  - WebRTC をテストをどうにかしようという話
-  - 問題をよくわかってて期待
-  - Ability to insert mocks "underneath" the browser
-  - Cross-vendor, cross-host remote-control interfaces
-  - Testbench environments that span machines
-  - Lots of configured hardware on the bots!
-
-- [Network speed and save-data APIs](https://docs.google.com/document/d/1lWOaN-IFKVyCA-1rp05kqrmzCjI9rPs9Bj-opfQO1bs/edit)
-  - chrome には Network Quality Estimator があって、回線状況などがとれる。これを API として出すにはどうするかという Save Data API 周りの話。
-
-
-- [Understand V8 Performance via Tracing](https://docs.google.com/presentation/d/1m0AZPbSf1SU6-7w13OhBGP23eJMUGrPDOitxrtsXFng/edit#slide=id.g1c3772d87f_0_710)
-  - chrome の trace を改善
+- 2/7: [NASA Node 使ってるって](https://medium.com/@nodejs/ground-control-to-major-tom-how-nasa-uses-node-js-8d011e167436)
+  - 宇宙開発の、人の命を預かるところで
+  - マジか
