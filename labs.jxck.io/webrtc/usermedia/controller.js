@@ -99,106 +99,89 @@ const DeviceContainer = ReactRedux.connect(
  * FacingMode
  ***********************************/
 
-// // Action
-// const selectFacing = (dispatch, e) => {
-//   dispatch({
-//     type: 'SELECT_FACING',
-//     facingMode: {facingMode: e.target.value}
-//   });
-// }
-// 
-// class FacingMode extends React.Component {
-//   constructor() {
-//     super();
-//     this.state = {
-//       facingMode: null,
-//       ideal: false,
-//       exact: false,
-//     }
-//   }
-// 
-//   get constraints() {
-//     let mode = this.state.facingMode;
-//     if (mode === null) {
-//       return null
-//     }
-//     if (this.state.exact) {
-//       return { facingMode : { exact : mode } }
-//     }
-//     if (this.state.ideal) {
-//       return { facingMode : { ideal: mode } }
-//     }
-//     return { facingMode : mode }
-//   }
-// 
-//   onMode(e) {
-//     e.stopPropagation();
-//     const value = e.target.value;
-//     this.setState(Object.assign(this.state, {facingMode: value}));
-//   }
-// 
-//   onIdeal(e) {
-//     e.stopPropagation();
-//     const value = e.target.checked;
-//     this.setState(Object.assign(this.state, {ideal: value}));
-//   }
-// 
-//   onExact(e) {
-//     e.stopPropagation();
-//     const value = e.target.checked;
-//     this.setState(Object.assign(this.state, {exact: value}));
-//   }
-// 
-//   render() {
-//     const mode  = "video.facingMode"
-//     const ideal = "video.facingMode.ideal"
-//     const exact = "video.facingMode.exact"
-//     return (
-//       <div>
-//         <div>
-//           <label htmlFor={mode}>{mode}</label>
-//           <select id={mode} name={mode} onChange={this.props.onSelectFacing}>
-//             {[
-//               "default",
-//               "user",
-//               "environment",
-//               "left",
-//               "right",
-//             ].map((option) => {
-//               return <option value={option}>{option}</option>
-//             })}
-//           </select>
-//         </div>
-// 
-//         <div>
-//           <label htmlFor={ideal}>{ideal}</label>
-//           <input type="checkbox" id={ideal} name={ideal} onChange={this.onIdeal.bind(this)}/>
-//         </div>
-// 
-//         <div>
-//           <label htmlFor={exact}>{exact}</label>
-//           <input type="checkbox" id={exact} name={exact} onChange={this.onExact.bind(this)}/>
-//         </div>
-//       </div>
-//     )
-//   }
-// }
-// 
-// // Container
-// const FacingModeContainer = ReactRedux.connect(
-//   (state) => {
-//     return {
-//       constraint: state.constraint.facingMode,
-//     }
-//   },
-//   (dispatch) => {
-//     return {
-//       onSelectFacing(event) {
-//         selectFacing(dispatch, event)
-//       }
-//     }
-//   }
-// )(FacingMode);
+// Action
+const selectFacing = (dispatch, facingMode) => {
+  const type = 'SELECT_FACING';
+  const {mode, ideal, exact} = facingMode;
+
+  if (mode === "") {
+    return dispatch({type});
+  }
+  if (exact) {
+    return dispatch({type, facingMode : { exact : mode } });
+  }
+  if (ideal) {
+    return dispatch({type, facingMode : { ideal: mode } });
+  }
+
+  return dispatch({type, facingMode: mode});
+}
+
+class FacingMode extends React.Component {
+  onChange() {
+    this.props.onSelectFacing({
+      mode:  this.mode.value,
+      ideal: this.ideal.checked,
+      exact: this.exact.checked,
+    });
+  }
+
+  bindElem(elem) {
+    if (elem === null) return
+    this[elem.name] = elem;
+  }
+
+  render() {
+    const mode  = "mode"
+    const ideal = "ideal"
+    const exact = "exact"
+    return (
+      <div onChange={this.onChange.bind(this)}>
+        <div>
+          <label htmlFor={mode}>{mode}</label>
+          <select ref={this.bindElem.bind(this)} id={mode} name={mode}>
+            {[
+              "",
+              "default",
+              "user",
+              "environment",
+              "left",
+              "right",
+            ].map((option) => {
+              return <option value={option}>{option}</option>
+            })}
+          </select>
+        </div>
+
+        <div>
+          <label htmlFor={ideal}>{ideal}</label>
+          <input type="checkbox" id={ideal} name={ideal} ref={this.bindElem.bind(this)}/>
+        </div>
+
+        <div>
+          <label htmlFor={exact}>{exact}</label>
+          <input type="checkbox" id={exact} name={exact} ref={this.bindElem.bind(this)}/>
+        </div>
+      </div>
+    )
+  }
+}
+
+// Container
+const FacingModeContainer = ReactRedux.connect(
+  (state) => {
+    return {
+      constraint: state.constraint,
+    }
+  },
+  (dispatch) => {
+    return {
+      onSelectFacing(event) {
+        selectFacing(dispatch, event)
+      }
+    }
+  }
+)(FacingMode);
 
 
 
@@ -213,6 +196,9 @@ const constraintReducer = (state = {}, action) => {
     case 'SELECT_DEVICE':
       const {name, value} = action.device
       return Object.assign({}, state, {[name]: value});
+    case 'SELECT_FACING':
+      const facingMode = action.facingMode;
+      return Object.assign({}, state, {facingMode});
     default:
       return state
   }
@@ -320,6 +306,31 @@ const constraintReducer = (state = {}, action) => {
 // }
 
 
+
+class Display extends React.Component {
+  render() {
+    const constraint = JSON.stringify(this.props.constraint, ' ', ' ')
+    return (
+      <textarea value={constraint}></textarea>
+    )
+  }
+}
+
+const DisplayContainer = ReactRedux.connect(
+  (state) => {
+    return {
+      constraint: state.constraint
+    }
+  },
+  (dispatch) => {
+    return {
+    }
+  }
+)(Display);
+
+
+
+
 /**
  * Controllers
  */
@@ -327,11 +338,12 @@ class Controllers extends React.Component {
 
   // <Range type="width" min="100" max="200" step="10"/>
   // <Range type="volume" min="0" max="1" step="0.1" />
-  // <FacingModeContainer />
   render() {
     return (
       <div>
         <DeviceContainer />
+        <FacingModeContainer />
+        <DisplayContainer />
       </div>
     )
   }
