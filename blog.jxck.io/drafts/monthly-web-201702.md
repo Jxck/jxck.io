@@ -80,6 +80,9 @@ blink on 7 で色々出たのでこっちにまとめ
 - [State of Speed 2017](https://docs.google.com/presentation/d/1nB5AV8-0us1AbeAScrpjt4u_tf20wOnB5DmOVy_NiEc/edit#slide=id.g1c32d4b274_0_723)
   - Chrome の Speed(広義) の今
 
+- [HTML Imports](https://docs.google.com/presentation/d/1ksnC9Qr3c8RwbDyo1G8ZZSVOEfXpnfQsTHhR5ny9Wk4/edit#slide=id.g1c508fcb31_0_22)
+  - ES module を先にという話と現状
+
 ### LT
 
 - [State of Chrome's Memory](https://docs.google.com/presentation/d/1s8qy_yPrR1Q3AngHnfHFIlIzoDaoLrBAL-Iy0FHeTOY/edit#slide=id.g1c51f9ea06_0_11)
@@ -207,6 +210,14 @@ blink on 7 で色々出たのでこっちにまとめ
 - 2/2: [URL.createObjectURL(stream) が廃止予定](https://www.fxsitecompat.com/ja/docs/2017/url-createobjecturl-stream-has-been-deprecated)
   - 古い WebRTC アプリが結構壊れそう
 
+- 2/3: [Road of the service worker response](https://docs.google.com/presentation/d/1qVj_RSs6EFQXI4RznqMzLk8PcrD0IREeBWnTbozFJXQ/edit#slide=id.g1c5ddbc764_0_531)
+  - Navigation preload の解説
+  - @loading summit の資料
+
+- 2/3: [Performance of Service Worker controlled pages](https://docs.google.com/presentation/d/1NTj3ncjNc0x3Pa0XRzNyDsFyKj-wYvzXcBmcqrg2JyQ/edit#slide=id.g1c5cb3a2b2_0_150)
+  - horo さんの資料
+  - @loading summit の資料
+
 - 2/5: [WordPress で複数の改ざん事例](http://d.hatena.ne.jp/Kango/20170205/1486314605)
   - けっこう色々やられてる模様
 
@@ -246,3 +257,9 @@ blink on 7 で色々出たのでこっちにまとめ
 - 2/7: [NASA Node 使ってるって](https://medium.com/@nodejs/ground-control-to-major-tom-how-nasa-uses-node-js-8d011e167436)
   - 宇宙開発の、人の命を預かるところで
   - マジか
+
+- 2/8: [&lt;h&gt; タグの追加提案](https://github.com/w3c/html/issues/774)
+  - [Jake](https://twitter.com/jaffathecake/status/829329173051211776)
+
+- 2/8: [http2 http2 を拡張した backplane](https://medium.com/backplane/6824d0af3196)
+  - あとで
