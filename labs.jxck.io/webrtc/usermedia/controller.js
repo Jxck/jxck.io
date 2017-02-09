@@ -27,12 +27,10 @@ const selectDevice = (dispatch, e) => {
 }
 
 // Reducer
-const deviceReducer = (state = {devices: []}, action) => {
+const deviceReducer = (state = [], action) => {
   switch (action.type) {
     case 'ENUM_DEVICE':
-      return Object.assign({}, state, {
-        devices: action.devices
-      })
+      return Object.assign([], state, action.devices)
     default:
       return state
   }
@@ -80,8 +78,8 @@ class Device extends React.Component {
 const DeviceContainer = ReactRedux.connect(
   (state) => {
     return {
-      devices: state.device.devices,
-      // constraint: state.constraint.devices,
+      devices: state.devices
+      //constraint: state.constraint.devices,
     }
   },
   (dispatch) => {
@@ -201,24 +199,34 @@ const DeviceContainer = ReactRedux.connect(
 //     }
 //   }
 // )(FacingMode);
-// 
-// 
-// 
-// 
-// 
-// 
-// // Constraint Reducer
-// const constraintReducer = (state, action) => {
-//   log(state);
-//   switch (action.type) {
-//     case 'SELECT_DEVICE':
-//       const {name, value} = action.device;
-//       return Object.assign({}, state, { device: { [name]: value } })
-//     default:
-//       return state
-//   }
-// }
-// 
+
+
+
+
+
+
+
+
+// Constraint Reducer
+//const constraintReducer = (state = {constraint: {}}, action) => {
+//  switch (action.type) {
+//    case 'SELECT_DEVICE':
+//      const {name, value} = action.device
+//      const device = { [name]: value }
+//      let newState = {
+//        ...state,
+//        device: {
+//          ...Object.assign({}, state.constraint.device, device),
+//        }
+//      }
+//      console.table(newState);
+//
+//      return newState;
+//    default:
+//      return state
+//  }
+//}
+
 
 
 
@@ -376,10 +384,12 @@ const AppContainer = ReactRedux.connect(
 
 
 const reducer = Redux.combineReducers({
-  device: deviceReducer,
-  // constraint: constraintReducer,
+  devices: deviceReducer,
+  //constraint: constraintReducer,
 });
-const store = Redux.createStore(reducer, {})
+const store = Redux.createStore(reducer, {},
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
 
 ReactDOM.render(
   <ReactRedux.Provider store={store}>
