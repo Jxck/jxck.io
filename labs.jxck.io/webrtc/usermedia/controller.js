@@ -18,12 +18,33 @@ const enumDevice = (dispatch) => {
   };
 }
 
+const selectDevice = (dispatch, e) => {
+  const {name, value} = e.target
+  dispatch({
+    type: 'SELECT_DEVICE',
+    device: {name, value}
+  });
+}
+
 // Reducer
 const deviceReducer = (state = {devices: []}, action) => {
   switch (action.type) {
     case 'ENUM_DEVICE':
       return Object.assign({}, state, {
         devices: action.devices
+      })
+    default:
+      return state
+  }
+}
+
+const constraintsReducer = (state = {constraints: {}}, action) => {
+  log(action);
+  switch (action.type) {
+    case 'SELECT_DEVICE':
+      const {name, value} = action.device;
+      return Object.assign({}, state, {
+        constraints: { [name]: value }
       })
     default:
       return state
@@ -39,10 +60,9 @@ class Device extends React.Component {
   render() {
     const {onEnumDevice, devices} = this.props
     const tr = devices.map((d) => {
-      const name = `${d.kind}.deviceId`;
       return (
         <tr>
-          <td><input type="radio" name={name} value={d.deviceId}/></td>
+          <td><input type="radio" name={d.kind} value={d.deviceId} onChange={this.props.onSelectDevice}/></td>
           <td><div>{d.kind}    </div></td>
           <td><div>{d.label}   </div></td>
           <td><div>{d.deviceId}</div></td>
@@ -75,12 +95,16 @@ const DeviceContainer = ReactRedux.connect(
     log(state);
     return {
       devices: state.device.devices,
+      constraints: state.constraints.devices,
     }
   },
   (dispatch) => {
     return {
       onEnumDevice() {
         enumDevice(dispatch)
+      },
+      onSelectDevice(event) {
+        selectDevice(dispatch, event)
       }
     }
   }
@@ -171,8 +195,6 @@ class Range extends React.Component {
   get constraints() {
     const type = this.props.type;
     const {ideal, exact, value, min, max} = this.state;
-
-    log(this.state);
 
     if (exact) {
       if (value === null) return null
@@ -295,6 +317,7 @@ const AppContainer = ReactRedux.connect(
 
 const reducer = Redux.combineReducers({
   device: deviceReducer,
+  constraints: constraintsReducer,
 });
 const store = Redux.createStore(reducer)
 
