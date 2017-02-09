@@ -208,24 +208,15 @@ const DeviceContainer = ReactRedux.connect(
 
 
 // Constraint Reducer
-//const constraintReducer = (state = {constraint: {}}, action) => {
-//  switch (action.type) {
-//    case 'SELECT_DEVICE':
-//      const {name, value} = action.device
-//      const device = { [name]: value }
-//      let newState = {
-//        ...state,
-//        device: {
-//          ...Object.assign({}, state.constraint.device, device),
-//        }
-//      }
-//      console.table(newState);
-//
-//      return newState;
-//    default:
-//      return state
-//  }
-//}
+const constraintReducer = (state = {}, action) => {
+  switch (action.type) {
+    case 'SELECT_DEVICE':
+      const {name, value} = action.device
+      return Object.assign({}, state, {[name]: value});
+    default:
+      return state
+  }
+}
 
 
 
@@ -385,7 +376,7 @@ const AppContainer = ReactRedux.connect(
 
 const reducer = Redux.combineReducers({
   devices: deviceReducer,
-  //constraint: constraintReducer,
+  constraint: constraintReducer,
 });
 const store = Redux.createStore(reducer, {},
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
