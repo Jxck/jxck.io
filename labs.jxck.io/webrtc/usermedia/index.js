@@ -31,6 +31,10 @@ class Track {
     const support = !!MediaStreamTrack.prototype.getSettings;
     return support ? this.track.getSettings() : {};
   }
+
+  stop() {
+    return this.track.stop();
+  }
 }
 
 class Stream {
@@ -46,13 +50,13 @@ class Stream {
       });
     };
     return navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
-      log(stream);
-      return Promise.resolve(new Stream(stream));
+      return Promise.resolve(new Stream(stream, constraints));
     });
   }
 
-  constructor(stream) {
+  constructor(stream, constraints) {
     this.stream = stream
+    this.constraints = constraints;
   }
 
   get id() {
@@ -69,6 +73,10 @@ class Stream {
     return this.stream
       .getTracks()
       .map((track) => new Track(track))
+  }
+
+  stop() {
+    this.tracks().forEach((track) => track.stop())
   }
 }
 
@@ -158,50 +166,81 @@ class Video extends React.Component {
   }
 }
 
-// Components
-class StreamComponent extends React.Component {
-  componentDidMount() {
-    // TODO: remove
-    // this.props.getStream();
+
+class Configure extends React.Component {
+  constructor() {
+    super();
+    this.state = {audio: {}, video: {}};
   }
 
-  onSubmit(e) {
-    e.preventDefault();
-    let value = JSON.parse(e.target.setting.value);
-    let facingMode = e.target.facingMode.value;
+  bindRef(form) {
+    this.form = form
+  }
 
-    if (facingMode !== "default") {
-      value.video.facingMode = facingMode;
+  onChange(e) {
+    const type = e.target.type;
+    const name = e.target.name;
+    const state = this.state;
+
+    let value = e.target.value;
+    if (type === "number") {
+      value = parseFloat(value);
+    }
+    if (type === "checkbox") {
+      value = e.target.checked;
     }
 
-    log(value);
+    // videoinput/audioinput/audiooutput
+    const [tag, key] = name.replace('input', '').replace('output', '').split('.');
+    state[tag][key] = value;
+    this.setState(state);
+  }
+
+  render() {
+    const { onSubmit } = this.props;
+    const constraints = JSON.stringify(this.state, ' ', ' ');
+    return (
+      <form ref={this.bindRef.bind(this)} onChange={this.onChange.bind(this)} onSubmit={onSubmit}>
+        <DeviceContainer />
+        <textarea name="constraints" value={constraints}></textarea>
+        <div>
+          <input type="number" name="video.width"  placeholder="width"  step="10"/>
+          <input type="number" name="video.height" placeholder="height" step="10"/>
+          <input type="number" name="video.frameRate" placeholder="frameRate" min="1" max="60"/>
+          <input type="number" name="video.aspectRatio" placeholder="aspectRatio" min="1.0" step="0.1"/>
+          <input type="number" name="audio.volume" placeholder="volume" min="0.1" max="1.0" step="0.1"/>
+          <input type="checkbox" name="audio.echoCancellation" placeholder="echoCancellation" placeholder="echoCancellation"/>
+        </div>
+        <button type="submit">ok</button>
+      </form>
+    )
+  }
+}
 
 
 
-    this.props.getStream(value)
+
+
+
+
+
+
+// Components
+class StreamComponent extends React.Component {
+  onSubmit(e) {
+    e.preventDefault();
+    let constraints = JSON.parse(e.target.constraints.value);
+
+    // stop current stream before replace to new
+    this.props.stream && this.props.stream.stop()
+    this.props.getStream(constraints)
   }
 
   render() {
     const { stream } = this.props;
-    const setting = JSON.stringify({
-      audio: true,
-      video: {
-        deviceId: 'default'
-      }
-    });
     return (
       <section>
-        <form onSubmit={this.onSubmit.bind(this)}>
-          <textarea name="setting">{setting}</textarea>
-          <select name="facingMode">
-            <option value="default">default</option>
-            <option value="user">user</option>
-            <option value="environment">environment</option>
-            <option value="left">left</option>
-            <option value="right">right</option>
-          </select>
-          <button type="submit">ok</button>
-        </form>
+        <Configure onSubmit={this.onSubmit.bind(this)}/>
         <h2>Stream</h2>
         <Video stream={stream} />
         <Tracks tracks={stream ? stream.tracks() : []} />
@@ -372,12 +411,14 @@ class Device extends React.Component {
   render() {
     const {onEnumDevice, devices} = this.props
     const tr = devices.map((d) => {
+      const name = `${d.kind}.deviceId`;
       return (
         <tr>
-          <td>{d.kind}</td>
-          <td>{d.label}</td>
-          <td>{d.deviceId}</td>
-          <td>{d.groupId}</td>
+          <td><input type="radio" name={name} value={d.deviceId}/></td>
+          <td><div>{d.kind}    </div></td>
+          <td><div>{d.label}   </div></td>
+          <td><div>{d.deviceId}</div></td>
+          <td><div>{d.groupId} </div></td>
         </tr>
       )
     });
@@ -387,6 +428,7 @@ class Device extends React.Component {
         <button onClick={onEnumDevice}>refresh</button>
         <table>
           <tr>
+            <th>select</th>
             <th>kind</th>
             <th>label</th>
             <th>deviceId</th>
@@ -423,9 +465,163 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <Range type="width" min="100" max="200" step="10"/>
+        <Range type="volume" min="0" max="1" step="0.1" />
+        <FacingMode />
         <StreamContainer />
         <ConstraintsContainer />
-        <DeviceContainer />
+      </div>
+    )
+  }
+}
+
+class FacingMode extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      facingMode: null,
+      ideal: false,
+      exact: false,
+    }
+  }
+
+  get constraints() {
+    let mode = this.state.facingMode;
+    if (mode === null) {
+      return null
+    }
+    if (this.state.exact) {
+      return { facingMode : { exact : mode } }
+    }
+    if (this.state.ideal) {
+      return { facingMode : { ideal: mode } }
+    }
+    return { facingMode : mode }
+  }
+
+  onMode(e) {
+    e.stopPropagation();
+    const value = e.target.value;
+    this.setState(Object.assign(this.state, {facingMode: value}));
+  }
+
+  onIdeal(e) {
+    e.stopPropagation();
+    const value = e.target.checked;
+    this.setState(Object.assign(this.state, {ideal: value}));
+  }
+
+  onExact(e) {
+    e.stopPropagation();
+    const value = e.target.checked;
+    this.setState(Object.assign(this.state, {exact: value}));
+  }
+
+  render() {
+    const mode  = "video.facingMode"
+    const ideal = "video.facingMode.ideal"
+    const exact = "video.facingMode.exact"
+    return (
+      <dl>
+        <dt><label htmlFor={mode}>{mode}</label></dt>
+        <dd>
+          <select id={mode} name={mode} onChange={this.onMode.bind(this)}>
+            <option value="default">default</option>
+            <option value="user">user</option>
+            <option value="environment">environment</option>
+            <option value="left">left</option>
+            <option value="right">right</option>
+          </select>
+        </dd>
+        <dt><label>{ideal}</label></dt>
+        <dd><input type="checkbox" name={ideal} onChange={this.onIdeal.bind(this)}/></dd>
+        <dt><label>{exact}</label></dt>
+        <dd><input type="checkbox" name={exact} onChange={this.onExact.bind(this)}/></dd>
+        <dt>state</dt>
+        <dd>{JSON.stringify(this.constraints)}</dd>
+      </dl>
+    )
+  }
+}
+
+class Range extends React.Component {
+  constructor(props) {
+    super();
+    this.state = {
+      ideal: false,
+      exact: false,
+      value: null,
+      min:   null,
+      max:   null,
+    }
+  }
+
+  get constraints() {
+    const type = this.props.type;
+    const {ideal, exact, value, min, max} = this.state;
+
+    log(this.state);
+
+    if (exact) {
+      if (value === null) return null
+      return { [type] : { exact : value }}
+    }
+
+    if (ideal) {
+      if (value === null && min === null && max === null) return null
+      let result = {}
+      if (value) result.ideal = value
+      if (min) result.min = min
+      if (max) result.max = max
+      return { [type]: result }
+    }
+
+    if (value === null) return null
+
+    return { [type]: value };
+  }
+
+  onExact(e) {
+    this.setState(Object.assign(this.state, {exact: e.target.checked}))
+  }
+
+  onIdeal(e) {
+    this.setState(Object.assign(this.state, {ideal: e.target.checked}))
+  }
+
+  onChange(e) {
+    let {name, value} = e.target;
+    if (name === this.props.type) name = "value";
+    this.setState(Object.assign(this.state, {[name]: parseInt(value)}))
+  }
+
+  render() {
+    const {type, min, max, step} = this.props
+
+    let input = <input type="number" placeholder={type} name={type} min={min} max={max} step={step} />;
+
+    if (this.state.ideal) {
+      input = (
+        [
+          <input type="number" name="min"  placeholder="min"   min={min} max={max} step={step} />,
+          <input type="number" name={type} placeholder="ideal" min={min} max={max} step={step} />,
+          <input type="number" name="max"  placeholder="max"   min={min} max={max} step={step} />,
+        ]
+      )
+    }
+    if (this.state.exact) {
+      input = (
+        <input type="number" name={type} placeholder="exact" min={min} max={max} step={step} />
+      )
+    }
+    return (
+      <div>
+        <div onChange={this.onChange.bind(this)}>
+          {input}
+        </div>
+        <input type="checkbox" name="ideal" onChange={this.onIdeal.bind(this)}/>
+        <input type="checkbox" name="exact" onChange={this.onExact.bind(this)}/>
+        <div>{JSON.stringify(this.constraints)}</div>
       </div>
     )
   }
