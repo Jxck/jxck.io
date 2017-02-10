@@ -102,7 +102,7 @@ RSS2.0 の仕様は以下にある。
 
 itunes は podcast connect という場所がわかりにくい画面から、 feed url を変えられる。
 
-[https://podcastconnect.apple.com](https://podcastconnect.apple.com)
+[https://podcastsconnect.apple.com/](https://podcastsconnect.apple.com/)
 
 
 ## 移行作業

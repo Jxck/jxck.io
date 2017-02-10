@@ -206,7 +206,7 @@ fetch(url).then((res) => {
 fetch を含めて Promise を返す API は増加しつつあるため、 Cancelable Promise の議論は現在も続いている。
 
 - [cancelable promises slide](https://docs.google.com/presentation/d/1V4vmC54gJkwAss1nfEt9ywc-QOVOfleRxD5qtpMpc8U/preview?slide=id.gc6f9e470d_0_0)
-- [cancelable promises draft](https://domenic.github.io/cancelable-promise/)
+- [cancelable promises draft](https://domenic.github.io/cancelable-promise/) (現在は取り下げられている)
 
 まだ、はっきりとした結論が出ているわけではないので、もう少し仕様が固まれば別途エントリを書きたい。
 

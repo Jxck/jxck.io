@@ -428,7 +428,7 @@ p q r s t u v w x y z { | } ~
 
 現在 NotoSans は "NotoSansCJKjp-Bold.otf" という名前で配布されている。
 
-Android は ["NotoSansJP-Regular.otf" という名前で入っているらしい](http://toach.click/2016/01/30/how-to-noto-sans-japanese#Android_MarshmallowNoto_Sans_Japanese) ため、それも含めて以下のように設定する。
+Android は ["NotoSansJP-Regular.otf" という名前で入っているらしい](http://toach.click/how-to-noto-sans-japanese/#Android_MarshmallowNoto_Sans_Japanese) ため、それも含めて以下のように設定する。
 
 ```css
 @font-face {

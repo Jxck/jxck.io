@@ -96,7 +96,7 @@
 
 ### JSON-LD と LD-JSON
 
-JSON-LD と紛らわしいものに [LD-JSON (Line Delimitered JSON)](https://en.wikipedia.org/wiki/Line_Delimited_JSON) がある。
+JSON-LD と紛らわしいものに [LD-JSON (Line Delimitered JSON)](https://en.wikipedia.org/wiki/JSON_Streaming#Line_delimited_JSON) がある。
 
 それだけなら、実際全く関係ない仕様なのでまあ問題ない。
 
