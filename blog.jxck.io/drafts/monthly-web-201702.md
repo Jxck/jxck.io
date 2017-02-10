@@ -153,14 +153,14 @@ blink on 7 で色々出たのでこっちにまとめ
   - Android Chrome で media の再生が便利に
   - [sample](https://googlechrome.github.io/samples/media-session)
 
-- 1/31: [Chrome for iOS](https://blogs.windows.com/msedgedev/2017/01/31/introducing-webrtc-microsoft-edge/) が OSS に
-  - Webkit でレンダリングする iOS 用の Chrome が OSS に
-
 - 1/31: [Securitry and Frontend Performance](http://www.oreilly.com/webops-perf/free/security-and-frontend-performance.csp)
   - Web のパフォーマンスとセキュリティをあえて一緒に扱う書籍。 CSP, HSTS, ResourceHints, SW など
 
 - 1/31: [Edge の WebRTC1.0 紹介](https://blogs.windows.com/msedgedev/2017/01/31/introducing-webrtc-microsoft-edge/)
   - ORTC, WebRTC1.0 両サポート、 H.264/AVC は HW Enc/Dec だけど VP8 は Soft だからパフォーマンス注意。
+
+- 2/1: [Indefensible: the W3C says companies should get to decide when and how security researchers reveal defects in browsers](https://www.eff.org/deeplinks/2017/02/indefensible-w3c-says-companies-should-get-decide-when-and-how-security)
+  - 大事そうな話なのであとで読む
 
 - 2/1: [Chrome for iOS が OSS](https://blog.chromium.org/2017/01/open-sourcing-chrome-on-ios.html)
   - Webkit で レンダリングする iOS 用の Chrome が OSS に
@@ -292,7 +292,6 @@ blink on 7 で色々出たのでこっちにまとめ
 
 - 2/9: [Wireshark の TLS1.3 対応 動いた](http://d.hatena.ne.jp/ASnoKaze/20170209/1486573451)
   - 動いたらしい
-
 
 - 2/10: [エンプラ WebRTC の話](http://iwashi.co/2017/02/10/enterprise-webrtc)
   - エンプラは Chrome より Edge に期待
