@@ -218,6 +218,9 @@ blink on 7 で色々出たのでこっちにまとめ
   - horo さんの資料
   - @loading summit の資料
 
+- 2/3 [MooTools の歴史](https://betweenthewires.org/between-the-wires-mootools-7ac80d4ca28f)
+  - コア開発者インタビュー
+
 - 2/5: [WordPress で複数の改ざん事例](http://d.hatena.ne.jp/Kango/20170205/1486314605)
   - けっこう色々やられてる模様
 
@@ -258,8 +261,44 @@ blink on 7 で色々出たのでこっちにまとめ
   - 宇宙開発の、人の命を預かるところで
   - マジか
 
+- 2/7: [CSS Grid の解説](https://bitsofco.de/css-grid-terminology/)
+  - 結構詳しめ
+
 - 2/8: [&lt;h&gt; タグの追加提案](https://github.com/w3c/html/issues/774)
   - [Jake](https://twitter.com/jaffathecake/status/829329173051211776)
+  - 揉めてる
 
 - 2/8: [http2 http2 を拡張した backplane](https://medium.com/backplane/6824d0af3196)
   - あとで
+
+- 2/8: [Code Smells in CSS Revisited](https://csswizardry.com/2017/02/code-smells-in-css-revisited/)
+  - 匂い大事
+
+- 2/9: [IPA の AppGoat に脆弱性](http://forest.watch.impress.co.jp/docs/news/1043501.html)
+  - 脆弱性学習ツールの脆弱性
+
+- 2/9: [The Evergreen Web](https://w3ctag.github.io/evergreen-web/)
+  - ブラウザは常に最新にアップデートしよう
+  - ブラウザの実装もちゃんと仕様に追従しよう
+  - 組み込む時は適当なサブセット作るのやめよう
+  - みたいな TAG の Findig という資料
+
+- 2/9: [JS Start-up Performance](https://medium.com/@addyosmani/javascript-start-up-performance-69200f43b201)
+  - devtools で測定しながら
+
+- 2/9: [service-mocker](https://github.com/service-mocker/service-mocker)
+  - Service Worker でモックサーバ
+  - [誰もが一度は考えるやつ](http://jxck.hatenablog.com/entry/response-injection)
+
+- 2/9: [Wireshark の TLS1.3 対応 動いた](http://d.hatena.ne.jp/ASnoKaze/20170209/1486573451)
+  - 動いたらしい
+
+
+- 2/10: [エンプラ WebRTC の話](http://iwashi.co/2017/02/10/enterprise-webrtc)
+  - エンプラは Chrome より Edge に期待
+
+- 2/10: [仮想 DOM の内部](http://postd.cc/the-inner-workings-of-virtual-dom/)
+  - コードレベル、フローレベルでの解説
+
+- 2/11: [Extensible web summit](https://app.livestorm.co/bocoup/extensible-web-summit)
+  - やるらしい
