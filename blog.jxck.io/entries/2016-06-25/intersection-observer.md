@@ -277,6 +277,6 @@ threshold を 10% にし、 intersectionRatio を表示するように実装し�
 
 ## Links
 
-- [Intersection Observer Spec](http://rawgit.com/WICG/IntersectionObserver/master/index.html)
+- [Intersection Observer Spec](https://wicg.github.io/IntersectionObserver/)
 - [Intersection Observers Explained](https://github.com/WICG/IntersectionObserver/blob/gh-pages/explainer.md)
 - [What forces layout/reflow. The comprehensive list.](https://gist.github.com/paulirish/5d52fb081b3570c81e3a)
