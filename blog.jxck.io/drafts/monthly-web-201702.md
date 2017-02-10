@@ -31,6 +31,7 @@
 - Firefox52 Beta
 - Firefox53 Dev
 - Firefox54 Nightly
+  - [es modules が動くように](https://twitter.com/malyw/status/829707412659658753)
 
 - [relese](https://www.mozilla.org/en-US/firefox/releases/)
 - [nightly](https://www.mozilla.org/ja/firefox/channel/desktop/)
@@ -110,6 +111,13 @@ blink on 7 で色々出たのでこっちにまとめ
 
 - [Understand V8 Performance via Tracing](https://docs.google.com/presentation/d/1m0AZPbSf1SU6-7w13OhBGP23eJMUGrPDOitxrtsXFng/edit#slide=id.g1c3772d87f_0_710)
   - chrome の trace を改善
+
+
+## TAG Finding
+
+Finding っていう資料が二つ出た。
+
+TODO
 
 
 ## API
