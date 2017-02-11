@@ -38,7 +38,7 @@ class Track {
 }
 
 class Stream {
-  static getUserMedia(constraints) {
+  static getUserMedia(constraint) {
     // polyfill
     navigator.mediaDevices.getUserMedia = navigator.mediaDevices.getUserMedia || function(conf) {
       navigator.getUserMedia = navigator.getUserMedia ||
@@ -49,14 +49,14 @@ class Stream {
         navigator.getUserMedia(conf, resolve, reject);
       });
     };
-    return navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
-      return Promise.resolve(new Stream(stream, constraints));
+    return navigator.mediaDevices.getUserMedia(constraint).then((stream) => {
+      return Promise.resolve(new Stream(stream, constraint));
     });
   }
 
-  constructor(stream, constraints) {
+  constructor(stream, constraint) {
     this.stream = stream
-    this.constraints = constraints;
+    this.constraint = constraint;
   }
 
   get id() {
@@ -85,9 +85,8 @@ class Stream {
 }
 
 // Action
-const getStream = (constraints, dispatch) => {
-  Stream.getUserMedia(constraints).then((stream) => {
-    log(stream);
+const getStream = (constraint, dispatch) => {
+  Stream.getUserMedia(constraint).then((stream) => {
     // resolve stream
     dispatch({
       type: 'GET_STREAM',
@@ -200,8 +199,8 @@ const StreamContainer = ReactRedux.connect(
   },
   (dispatch) => {
     return {
-      getStream(constraints) {
-        getStream(constraints, dispatch)
+      getStream(constraint) {
+        getStream(constraint, dispatch)
       }
     }
   }
@@ -536,7 +535,6 @@ class Range extends React.Component {
             <input type="checkbox" id={exact} name={exact} ref={this.bindElem.bind(this)}/>
           </label>
         </div>
-        <div>{JSON.stringify(this.constraints)}</div>
       </div>
     )
   }
