@@ -240,9 +240,9 @@ class RangeValue {
     if (ideal) {
       if (value === null && min === null && max === null) return null
       let result = {}
-      if (value) result.ideal = value
-      if (min) result.min = min
-      if (max) result.max = max
+      if (value || value ===0) result.ideal = value
+      if (min   || min   ===0) result.min = min
+      if (max   || max   ===0) result.max = max
       return result
     }
 
@@ -279,16 +279,16 @@ class Range extends React.Component {
     let input = (
       <div>
         <label htmlFor={value}>{value}</label>
-        <input type="number" id={value} placeholder={type} name={value} min={min} max={max} step={step} ref={this.bindElem.bind(this)}/>
+        <input type="number" id={value} placeholder={type} name={value} min={min} max={max} step={step} value={state && state.value} ref={this.bindElem.bind(this)}/>
       </div>
     )
 
     if (state && state.ideal) {
       input = (
         [
-          <input type="number" name="min"   placeholder="min"   min={min} max={max} step={step} ref={this.bindElem.bind(this)}/>,
-          <input type="number" name={value} placeholder={value} min={min} max={max} step={step} ref={this.bindElem.bind(this)}/>,
-          <input type="number" name="max"   placeholder="max"   min={min} max={max} step={step} ref={this.bindElem.bind(this)}/>,
+          <input type="number" name="min"   placeholder="min"   min={min} max={max} step={step} value={state && state.min} ref={this.bindElem.bind(this)}/>,
+          <input type="number" name={value} placeholder={value} min={min} max={max} step={step} value={state && state.value} ref={this.bindElem.bind(this)}/>,
+          <input type="number" name="max"   placeholder="max"   min={min} max={max} step={step} value={state && state.max} ref={this.bindElem.bind(this)}/>,
         ]
       )
     }
@@ -297,7 +297,7 @@ class Range extends React.Component {
       input = (
         <div>
           <label htmlFor={exact}>{exact}</label>
-          <input type="number" id={exact} placeholder={exact} name={type} min={min} max={max} step={step} ref={this.bindElem.bind(this)}/>
+          <input type="number" id={exact} placeholder={exact} name={type} min={min} max={max} step={step} value={state && state.value} ref={this.bindElem.bind(this)}/>
         </div>
       )
     }
@@ -389,13 +389,13 @@ const DisplayContainer = ReactRedux.connect(
  */
 class Controllers extends React.Component {
 
-  // <Range type="volume" min="0" max="1" step="0.1" />
   render() {
     return (
       <div>
         <DeviceContainer />
         <FacingModeContainer />
         <RangeContainer type="width" min="100" max="200" step="10" />
+        <RangeContainer type="volume" min="0" max="1" step="0.1" />
         <DisplayContainer />
       </div>
     )
