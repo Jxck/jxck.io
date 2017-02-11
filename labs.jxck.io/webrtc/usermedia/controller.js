@@ -100,14 +100,7 @@ const DeviceContainer = ReactRedux.connect(
  * FacingMode
  ***********************************/
 
-// ActionCreator
-const selectFacing = (dispatch, value) => {
-  return dispatch({
-    type: 'SELECT_FACING',
-    value: value
-  });
-}
-
+// DTO
 class FacingModeValue {
   constructor(mode, ideal, exact) {
     this.mode  = mode
@@ -132,6 +125,15 @@ class FacingModeValue {
   }
 }
 
+// ActionCreator
+const selectFacing = (dispatch, value) => {
+  return dispatch({
+    type: 'SELECT_FACING',
+    value: value
+  });
+}
+
+// Component
 class FacingMode extends React.Component {
   onChange() {
     this.props.onSelectFacing(new FacingModeValue(
@@ -205,14 +207,7 @@ const FacingModeContainer = ReactRedux.connect(
  * Range
  ***********************************/
 
-// ActionCreator
-const onRange = (dispatch, value) => {
-  return dispatch({
-    type: 'SELECT_RANGE',
-    value: value
-  });
-}
-
+// DTO
 class RangeValue {
   constructor(type, ideal, exact, min, max, value) {
     this.type  = type
@@ -252,6 +247,15 @@ class RangeValue {
   }
 }
 
+// ActionCreator
+const onRange = (dispatch, value) => {
+  return dispatch({
+    type: 'SELECT_RANGE',
+    value: value
+  });
+}
+
+// Component
 class Range extends React.Component {
   onChange() {
     this.props.onRange(new RangeValue(
@@ -328,6 +332,7 @@ class Range extends React.Component {
   }
 }
 
+// Container
 const RangeContainer = ReactRedux.connect(
   (state, ownProps) => {
     const {type} = ownProps;
@@ -343,7 +348,7 @@ const RangeContainer = ReactRedux.connect(
   }
 )(Range);
 
-// Constraint Reducer
+// Reducer
 const constraintReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SELECT_DEVICE':
@@ -363,9 +368,11 @@ const constraintReducer = (state = {}, action) => {
 
 
 
-/**
+/***********************************
  * Display
- */
+ ***********************************/
+
+// Component
 class Display extends React.Component {
   render() {
     const constraint = JSON.stringify(this.props.constraint, ' ', ' ')
@@ -375,6 +382,7 @@ class Display extends React.Component {
   }
 }
 
+// Container
 const DisplayContainer = ReactRedux.connect(
   (state) => {
     return {
@@ -390,11 +398,12 @@ const DisplayContainer = ReactRedux.connect(
 
 
 
-/**
+/***********************************
  * Controllers
- */
-class Controllers extends React.Component {
+ ***********************************/
 
+// Component
+class Controllers extends React.Component {
   // TODO: channelCount, echoCancellation
   render() {
     return (
@@ -415,6 +424,7 @@ class Controllers extends React.Component {
   }
 }
 
+// Container
 const ControllersContainer = ReactRedux.connect(
   (state) => {
     return {
@@ -429,9 +439,9 @@ const ControllersContainer = ReactRedux.connect(
 
 
 
-/**
+/***********************************
  * App
- */
+ ***********************************/
 class App extends React.Component {
   render() {
     return (
