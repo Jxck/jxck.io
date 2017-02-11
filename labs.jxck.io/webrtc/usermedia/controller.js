@@ -102,30 +102,44 @@ const DeviceContainer = ReactRedux.connect(
  ***********************************/
 
 // ActionCreator
-const selectFacing = (dispatch, facingMode) => {
-  const type = 'SELECT_FACING';
-  const {mode, ideal, exact} = facingMode;
+const selectFacing = (dispatch, value) => {
+  return dispatch({
+    type: 'SELECT_FACING',
+    value: value
+  });
+}
 
-  if (mode === "") {
-    return dispatch({type});
-  }
-  if (exact) {
-    return dispatch({type, facingMode : { exact : mode } });
-  }
-  if (ideal) {
-    return dispatch({type, facingMode : { ideal: mode } });
+class FacingModeValue {
+  constructor(mode, ideal, exact) {
+    this.mode  = mode
+    this.ideal = ideal
+    this.exact = exact
   }
 
-  return dispatch({type, facingMode: mode});
+  toJSON() {
+    const {mode, ideal, exact} = this;
+
+    if (mode === "") {
+      return null;
+    }
+    if (exact) {
+      return { exact : mode };
+    }
+    if (ideal) {
+      return { ideal: mode };
+    }
+
+    return mode;
+  }
 }
 
 class FacingMode extends React.Component {
   onChange() {
-    this.props.onSelectFacing({
-      mode:  this.mode.value,
-      ideal: this.ideal.checked,
-      exact: this.exact.checked,
-    });
+    this.props.onSelectFacing(new FacingModeValue(
+      this.mode.value,
+      this.ideal.checked,
+      this.exact.checked,
+    ));
   }
 
   bindElem(elem) {
@@ -173,7 +187,6 @@ class FacingMode extends React.Component {
 const FacingModeContainer = ReactRedux.connect(
   (state) => {
     return {
-      constraint: state.constraint,
     }
   },
   (dispatch) => {
@@ -216,12 +229,12 @@ class RangeValue {
     return parseFloat(val);
   }
 
-  format() {
+  toJSON() {
     const {type, ideal, exact, value, min, max} = this;
 
     if (exact) {
       if (value === null) return null
-      return { [type] : { exact : value }}
+      return { exact : value }
     }
 
     if (ideal) {
@@ -230,12 +243,12 @@ class RangeValue {
       if (value) result.ideal = value
       if (min) result.min = min
       if (max) result.max = max
-      return { [type]: result }
+      return result
     }
 
     if (value === null) return null
 
-    return { [type]: value }
+    return value
   }
 }
 
@@ -331,8 +344,8 @@ const constraintReducer = (state = {}, action) => {
       const {name, value} = action.device
       return Object.assign({}, state, {[name]: value});
     case 'SELECT_FACING':
-      const facingMode = action.facingMode;
-      return Object.assign({}, state, {facingMode});
+      const facingMode = action.value;
+      return Object.assign({}, state, {"facingMode": facingMode});
     case 'SELECT_RANGE':
       const range = action.value
       return Object.assign({}, state, {[range.type]: range});
