@@ -95,6 +95,8 @@ const DeviceContainer = ReactRedux.connect(
 )(Device);
 
 
+
+
 /***********************************
  * FacingMode
  ***********************************/
@@ -184,15 +186,33 @@ const FacingModeContainer = ReactRedux.connect(
 )(FacingMode);
 
 
+
+
 /***********************************
  * Range
  ***********************************/
 
 // ActionCreator
-const onRange = (dispatch, val) => {
+const onRange = (dispatch, value) => {
+  return dispatch({
+    type: 'SELECT_RANGE',
+    value: value
+  });
+}
 
-  const range = ((val) => {
-    const {type, ideal, exact, value, min, max} = val;
+class RangeValue {
+  constructor(type, ideal, exact, min, max, value) {
+    this.type  = type
+    this.ideal = ideal
+    this.exact = exact
+    this.value = value
+    this.min   = min
+    this.max   = max
+  }
+
+  format() {
+    const {type, ideal, exact, value, min, max} = this;
+
     if (exact) {
       if (value === null) return null
       return { [type] : { exact : value }}
@@ -210,36 +230,19 @@ const onRange = (dispatch, val) => {
     if (value === null) return null
 
     return { [type]: value }
-  })(val);
-
-  return dispatch({
-    type: 'SELECT_RANGE',
-    value: range
-  });
+  }
 }
 
 class Range extends React.Component {
-
-  // onChange(e) {
-  //   let {name, value} = e.target;
-  //   if (name === this.props.type) name = "value";
-  //   this.setState(Object.assign(this.state, {[name]: parseInt(value)}))
-  // }
-
   onChange() {
-    let value = this.value.value;
-
-    if (value !== null) {
-      value = parseInt(value);
-    }
-    this.props.onRange({
-      type:  this.props.type,
-      ideal: this.ideal.checked,
-      exact: this.exact.checked,
-      value: value,
-      //min:   this.min.value,
-      //max:   this.max.value,
-    });
+    this.props.onRange(new RangeValue(
+      this.props.type,
+      this.ideal.checked,
+      this.exact.checked,
+      //this.min.value,
+      //this.max.value,
+      this.value.value
+    ));
   }
 
   bindElem(elem) {
@@ -248,9 +251,19 @@ class Range extends React.Component {
   }
 
   render() {
-    const {type, min, max, step} = this.props
+    log(this.props);
+    const {type, min, max, step, state} = this.props
 
-    // let input = <input type="number" placeholder={type} name={type} min={min} max={max} step={step} />;
+    const value = "value"
+    const ideal = "ideal"
+    const exact = "exact"
+
+    let input = (
+      <div>
+        <label htmlFor={value}>{value}</label>
+        <input type="number" id={value} placeholder={type} name={value} min={min} max={max} step={step} ref={this.bindElem.bind(this)}/>
+      </div>
+    )
 
     // if (this.state.ideal) {
     //   input = (
@@ -261,22 +274,21 @@ class Range extends React.Component {
     //     ]
     //   )
     // }
-    // if (this.state.exact) {
-    //   input = (
-    //     <input type="number" name={type} placeholder="exact" min={min} max={max} step={step} />
-    //   )
-    // }
 
+    log(state && state.exact);
+    if (state && state.exact) {
+      input = (
+        <div>
+          <label htmlFor={exact}>{exact}</label>
+          <input type="number" id={exact} placeholder={exact} name={type} min={min} max={max} step={step} ref={this.bindElem.bind(this)}/>
+        </div>
+      )
+    }
 
-    const value = "value"
-    const ideal = "ideal"
-    const exact = "exact"
     return (
       <div className="flex" onChange={this.onChange.bind(this)}>
-        <div>
-          <label htmlFor={value}>{value}</label>
-          <input type="number" id={value} placeholder={type} name={value} min={min} max={max} step={step} ref={this.bindElem.bind(this)}/>
-        </div>
+
+        {input}
 
         <div>
           <label htmlFor={ideal}>{ideal}</label>
@@ -294,14 +306,15 @@ class Range extends React.Component {
 }
 
 const RangeContainer = ReactRedux.connect(
-  (state) => {
-    return {
-    }
+  (state, ownProps) => {
+    const {type} = ownProps;
+    const value = state.constraint[type];
+    return {state: value}
   },
   (dispatch) => {
     return {
-      onRange(val) {
-        onRange(dispatch, val)
+      onRange(value) {
+        onRange(dispatch, value)
       }
     }
   }
@@ -317,7 +330,7 @@ const constraintReducer = (state = {}, action) => {
       const facingMode = action.facingMode;
       return Object.assign({}, state, {facingMode});
     case 'SELECT_RANGE':
-      return Object.assign({}, state, action.value);
+      return Object.assign({}, state, action.value.format());
     default:
       return state
   }
@@ -326,21 +339,9 @@ const constraintReducer = (state = {}, action) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/**
+ * Display
+ */
 class Display extends React.Component {
   render() {
     const constraint = JSON.stringify(this.props.constraint, ' ', ' ')
@@ -393,6 +394,8 @@ const ControllersContainer = ReactRedux.connect(
     }
   }
 )(Controllers);
+
+
 
 
 /**
