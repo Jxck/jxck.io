@@ -239,8 +239,8 @@ class Range extends React.Component {
       this.props.type,
       this.ideal.checked,
       this.exact.checked,
-      //this.min.value,
-      //this.max.value,
+      this.min ? this.min.value : null,
+      this.max ? this.max.value : null,
       this.value.value
     ));
   }
@@ -251,7 +251,6 @@ class Range extends React.Component {
   }
 
   render() {
-    log(this.props);
     const {type, min, max, step, state} = this.props
 
     const value = "value"
@@ -265,17 +264,16 @@ class Range extends React.Component {
       </div>
     )
 
-    // if (this.state.ideal) {
-    //   input = (
-    //     [
-    //       <input type="number" name="min"  placeholder="min"   min={min} max={max} step={step} />,
-    //       <input type="number" name={type} placeholder="ideal" min={min} max={max} step={step} />,
-    //       <input type="number" name="max"  placeholder="max"   min={min} max={max} step={step} />,
-    //     ]
-    //   )
-    // }
+    if (state && state.ideal) {
+      input = (
+        [
+          <input type="number" name="min"   placeholder="min"   min={min} max={max} step={step} ref={this.bindElem.bind(this)}/>,
+          <input type="number" name={value} placeholder={value} min={min} max={max} step={step} ref={this.bindElem.bind(this)}/>,
+          <input type="number" name="max"   placeholder="max"   min={min} max={max} step={step} ref={this.bindElem.bind(this)}/>,
+        ]
+      )
+    }
 
-    log(state && state.exact);
     if (state && state.exact) {
       input = (
         <div>
@@ -330,7 +328,8 @@ const constraintReducer = (state = {}, action) => {
       const facingMode = action.facingMode;
       return Object.assign({}, state, {facingMode});
     case 'SELECT_RANGE':
-      return Object.assign({}, state, action.value.format());
+      const range = action.value
+      return Object.assign({}, state, {[range.type]: range});
     default:
       return state
   }
