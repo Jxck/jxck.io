@@ -1,6 +1,216 @@
 const log = console.log.bind(console);
 
 /***********************************
+ * Stream
+ ***********************************/
+
+// class
+class Track {
+  constructor(track) {
+    this.track = track
+  }
+
+  get kind      () { return this.track.kind       }
+  get id        () { return this.track.id         }
+  get label     () { return this.track.label      }
+  get enabled   () { return this.track.enabled    }
+  get muted     () { return this.track.muted      }
+  get readyState() { return this.track.readyState }
+
+  getConstraints() {
+    const support = !!MediaStreamTrack.prototype.getConstraints;
+    return support ? this.track.getConstraints() : {};
+  }
+
+  getCapabilities() {
+    const support = !!MediaStreamTrack.prototype.getCapabilities;
+    return support ? this.track.getCapabilities() : {};
+  }
+
+  getSettings() {
+    const support = !!MediaStreamTrack.prototype.getSettings;
+    return support ? this.track.getSettings() : {};
+  }
+
+  stop() {
+    return this.track.stop();
+  }
+}
+
+class Stream {
+  static getUserMedia(constraints) {
+    // polyfill
+    navigator.mediaDevices.getUserMedia = navigator.mediaDevices.getUserMedia || function(conf) {
+      navigator.getUserMedia = navigator.getUserMedia ||
+        navigator.webkitGetUserMedia ||
+        navigator.mozGetUserMedia ||
+        navigator.msGetUserMedia;
+      return new Promise((resolve, reject) => {
+        navigator.getUserMedia(conf, resolve, reject);
+      });
+    };
+    return navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
+      return Promise.resolve(new Stream(stream, constraints));
+    });
+  }
+
+  constructor(stream, constraints) {
+    this.stream = stream
+    this.constraints = constraints;
+  }
+
+  get id() {
+    return this.stream.id
+  }
+  get active() {
+    return this.stream.active
+  }
+  get src() {
+    return URL.createObjectURL(this.stream);
+  }
+
+  tracks() {
+    return this.stream
+      .getTracks()
+      .map((track) => new Track(track))
+  }
+
+  objectURL() {
+    return URL.createObjectURL(this.stream);
+  }
+
+  stop() {
+    this.tracks().forEach((track) => track.stop())
+  }
+}
+
+// Action
+const getStream = (constraints, dispatch) => {
+  Stream.getUserMedia(constraints).then((stream) => {
+    log(stream);
+    // resolve stream
+    dispatch({
+      type: 'GET_STREAM',
+      stream: stream,
+    })
+  }).catch((err) => {
+    console.error(err);
+  });
+}
+
+// Reducer
+const streamReducer = (state = null, action) => {
+  switch (action.type) {
+    case 'GET_STREAM':
+      return action.stream
+    default:
+      return state
+  }
+}
+
+// Components
+class Tracks extends React.Component {
+  render() {
+    const { tracks } = this.props;
+    const tr = tracks.map((track) => {
+      return (
+        <tr>
+          <td>{track.kind}</td>
+          <td>{track.id}</td>
+          <td>{track.label}</td>
+          <td>{track.enabled}</td>
+          <td>{track.muted}</td>
+          <td>{track.readyState}</td>
+        </tr>
+      )
+    });
+
+    return (
+      <table>
+        <tr>
+          <th>kind</th>
+          <th>id</th>
+          <th>label</th>
+          <th>enabled</th>
+          <th>muted</th>
+          <th>readyState</th>
+        </tr>
+        {tr}
+      </table>
+    )
+  }
+}
+
+class Video extends React.Component {
+  componentDidUpdate() {
+    // FIXME: if React supports srcObject
+    // this.video.srcObject = this.props.stream;
+  }
+
+  bindVideo(video) {
+    this.video = video;
+  }
+
+  render() {
+    const { stream } = this.props;
+    if (stream === null) {
+      return <p>empty</p>
+    }
+
+    return (
+      <div>
+        <p>
+          <span>stream.active:</span><strong>{stream.active ? 'active': 'innactive'} </strong>
+          <span>stream.id:</span><strong>{stream.id}</strong>
+        </p>
+        <video autoPlay controls src={stream.objectURL()} ref={this.bindVideo.bind(this)}></video>
+      </div>
+    )
+  }
+}
+
+class StreamComponent extends React.Component {
+  onClick(e) {
+    // TODO: fixme with valid constraints
+    //const constraint = JSON.parse(JSON.stringify(this.props.constraint));
+    const constraint = { audio: true, video: true };
+    this.props.getStream(constraint);
+  }
+
+  render() {
+    const { stream } = this.props;
+    return (
+      <section>
+        <h2>Stream</h2>
+        <button onClick={this.onClick.bind(this)}>start</button>
+        <Video stream={stream} />
+        <Tracks tracks={stream ? stream.tracks() : []} />
+      </section>
+    )
+  }
+}
+
+// Container
+const StreamContainer = ReactRedux.connect(
+  (state) => {
+    return {
+      stream: state.stream,
+      constraint: state.constraint,
+    }
+  },
+  (dispatch) => {
+    return {
+      getStream(constraints) {
+        getStream(constraints, dispatch)
+      }
+    }
+  }
+)(StreamComponent);
+
+
+
+
+/***********************************
  * Device
  ***********************************/
 
@@ -446,6 +656,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <StreamContainer />
         <ControllersContainer />
       </div>
     )
@@ -465,8 +676,9 @@ const AppContainer = ReactRedux.connect(
 
 
 const reducer = Redux.combineReducers({
-  devices: deviceReducer,
+  devices:    deviceReducer,
   constraint: constraintReducer,
+  stream:     streamReducer,
 });
 const store = Redux.createStore(reducer, {},
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
