@@ -4,7 +4,7 @@ const log = console.log.bind(console);
  * Device
  ***********************************/
 
-// Action
+// ActionCreator
 const enumDevice = (dispatch) => {
   navigator.mediaDevices.enumerateDevices().then((devices) => {
     dispatch({
@@ -99,7 +99,7 @@ const DeviceContainer = ReactRedux.connect(
  * FacingMode
  ***********************************/
 
-// Action
+// ActionCreator
 const selectFacing = (dispatch, facingMode) => {
   const type = 'SELECT_FACING';
   const {mode, ideal, exact} = facingMode;
@@ -184,11 +184,128 @@ const FacingModeContainer = ReactRedux.connect(
 )(FacingMode);
 
 
+/***********************************
+ * Range
+ ***********************************/
+
+// ActionCreator
+const onRange = (dispatch, val) => {
+
+  const range = ((val) => {
+    const {type, ideal, exact, value, min, max} = val;
+    if (exact) {
+      if (value === null) return null
+      return { [type] : { exact : value }}
+    }
+
+    if (ideal) {
+      if (value === null && min === null && max === null) return null
+      let result = {}
+      if (value) result.ideal = value
+      if (min) result.min = min
+      if (max) result.max = max
+      return { [type]: result }
+    }
+
+    if (value === null) return null
+
+    return { [type]: value }
+  })(val);
+
+  return dispatch({
+    type: 'SELECT_RANGE',
+    value: range
+  });
+}
+
+class Range extends React.Component {
+
+  // onChange(e) {
+  //   let {name, value} = e.target;
+  //   if (name === this.props.type) name = "value";
+  //   this.setState(Object.assign(this.state, {[name]: parseInt(value)}))
+  // }
+
+  onChange() {
+    let value = this.value.value;
+
+    if (value !== null) {
+      value = parseInt(value);
+    }
+    this.props.onRange({
+      type:  this.props.type,
+      ideal: this.ideal.checked,
+      exact: this.exact.checked,
+      value: value,
+      //min:   this.min.value,
+      //max:   this.max.value,
+    });
+  }
+
+  bindElem(elem) {
+    if (elem === null) return
+    this[elem.name] = elem;
+  }
+
+  render() {
+    const {type, min, max, step} = this.props
+
+    // let input = <input type="number" placeholder={type} name={type} min={min} max={max} step={step} />;
+
+    // if (this.state.ideal) {
+    //   input = (
+    //     [
+    //       <input type="number" name="min"  placeholder="min"   min={min} max={max} step={step} />,
+    //       <input type="number" name={type} placeholder="ideal" min={min} max={max} step={step} />,
+    //       <input type="number" name="max"  placeholder="max"   min={min} max={max} step={step} />,
+    //     ]
+    //   )
+    // }
+    // if (this.state.exact) {
+    //   input = (
+    //     <input type="number" name={type} placeholder="exact" min={min} max={max} step={step} />
+    //   )
+    // }
 
 
+    const value = "value"
+    const ideal = "ideal"
+    const exact = "exact"
+    return (
+      <div className="flex" onChange={this.onChange.bind(this)}>
+        <div>
+          <label htmlFor={value}>{value}</label>
+          <input type="number" id={value} placeholder={type} name={value} min={min} max={max} step={step} ref={this.bindElem.bind(this)}/>
+        </div>
 
+        <div>
+          <label htmlFor={ideal}>{ideal}</label>
+          <input type="checkbox" id={ideal} name={ideal} ref={this.bindElem.bind(this)}/>
+        </div>
 
+        <div>
+          <label htmlFor={exact}>{exact}</label>
+          <input type="checkbox" id={exact} name={exact} ref={this.bindElem.bind(this)}/>
+        </div>
+        <div>{JSON.stringify(this.constraints)}</div>
+      </div>
+    )
+  }
+}
 
+const RangeContainer = ReactRedux.connect(
+  (state) => {
+    return {
+    }
+  },
+  (dispatch) => {
+    return {
+      onRange(val) {
+        onRange(dispatch, val)
+      }
+    }
+  }
+)(Range);
 
 // Constraint Reducer
 const constraintReducer = (state = {}, action) => {
@@ -199,6 +316,8 @@ const constraintReducer = (state = {}, action) => {
     case 'SELECT_FACING':
       const facingMode = action.facingMode;
       return Object.assign({}, state, {facingMode});
+    case 'SELECT_RANGE':
+      return Object.assign({}, state, action.value);
     default:
       return state
   }
@@ -219,91 +338,6 @@ const constraintReducer = (state = {}, action) => {
 
 
 
-
-
-
-
-
-// class Range extends React.Component {
-//   constructor(props) {
-//     super();
-//     this.state = {
-//       ideal: false,
-//       exact: false,
-//       value: null,
-//       min:   null,
-//       max:   null,
-//     }
-//   }
-// 
-//   get constraints() {
-//     const type = this.props.type;
-//     const {ideal, exact, value, min, max} = this.state;
-// 
-//     if (exact) {
-//       if (value === null) return null
-//       return { [type] : { exact : value }}
-//     }
-// 
-//     if (ideal) {
-//       if (value === null && min === null && max === null) return null
-//       let result = {}
-//       if (value) result.ideal = value
-//       if (min) result.min = min
-//       if (max) result.max = max
-//       return { [type]: result }
-//     }
-// 
-//     if (value === null) return null
-// 
-//     return { [type]: value };
-//   }
-// 
-//   onExact(e) {
-//     this.setState(Object.assign(this.state, {exact: e.target.checked}))
-//   }
-// 
-//   onIdeal(e) {
-//     this.setState(Object.assign(this.state, {ideal: e.target.checked}))
-//   }
-// 
-//   onChange(e) {
-//     let {name, value} = e.target;
-//     if (name === this.props.type) name = "value";
-//     this.setState(Object.assign(this.state, {[name]: parseInt(value)}))
-//   }
-// 
-//   render() {
-//     const {type, min, max, step} = this.props
-// 
-//     let input = <input type="number" placeholder={type} name={type} min={min} max={max} step={step} />;
-// 
-//     if (this.state.ideal) {
-//       input = (
-//         [
-//           <input type="number" name="min"  placeholder="min"   min={min} max={max} step={step} />,
-//           <input type="number" name={type} placeholder="ideal" min={min} max={max} step={step} />,
-//           <input type="number" name="max"  placeholder="max"   min={min} max={max} step={step} />,
-//         ]
-//       )
-//     }
-//     if (this.state.exact) {
-//       input = (
-//         <input type="number" name={type} placeholder="exact" min={min} max={max} step={step} />
-//       )
-//     }
-//     return (
-//       <div>
-//         <div onChange={this.onChange.bind(this)}>
-//           {input}
-//         </div>
-//         <input type="checkbox" name="ideal" onChange={this.onIdeal.bind(this)}/>
-//         <input type="checkbox" name="exact" onChange={this.onExact.bind(this)}/>
-//         <div>{JSON.stringify(this.constraints)}</div>
-//       </div>
-//     )
-//   }
-// }
 
 
 
@@ -336,13 +370,13 @@ const DisplayContainer = ReactRedux.connect(
  */
 class Controllers extends React.Component {
 
-  // <Range type="width" min="100" max="200" step="10"/>
   // <Range type="volume" min="0" max="1" step="0.1" />
   render() {
     return (
       <div>
         <DeviceContainer />
         <FacingModeContainer />
+        <RangeContainer type="width" min="100" max="200" step="10" />
         <DisplayContainer />
       </div>
     )
