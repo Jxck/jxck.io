@@ -153,8 +153,9 @@ class FacingMode extends React.Component {
     const exact = "exact"
     return (
       <div className="flex" onChange={this.onChange.bind(this)}>
+        <div>{mode}</div>
+
         <div>
-          <label htmlFor={mode}>{mode}</label>
           <select ref={this.bindElem.bind(this)} id={mode} name={mode}>
             {[
               "",
@@ -278,8 +279,7 @@ class Range extends React.Component {
 
     let input = (
       <div>
-        <label htmlFor={value}>{value}</label>
-        <input type="number" id={value} placeholder={type} name={value} min={min} max={max} step={step} value={state && state.value} ref={this.bindElem.bind(this)}/>
+        <input type="number" placeholder={type} name={value} min={min} max={max} step={step} value={state && state.value} ref={this.bindElem.bind(this)}/>
       </div>
     )
 
@@ -296,25 +296,32 @@ class Range extends React.Component {
     if (state && state.exact) {
       input = (
         <div>
-          <label htmlFor={exact}>{exact}</label>
-          <input type="number" id={exact} placeholder={exact} name={type} min={min} max={max} step={step} value={state && state.value} ref={this.bindElem.bind(this)}/>
+          <label>
+            {exact}
+            <input type="number" placeholder={exact} name={type} min={min} max={max} step={step} value={state && state.value} ref={this.bindElem.bind(this)}/>
+          </label>
         </div>
       )
     }
 
     return (
       <div className="flex" onChange={this.onChange.bind(this)}>
+        <div>{type}</div>
 
         {input}
 
         <div>
-          <label htmlFor={ideal}>{ideal}</label>
-          <input type="checkbox" id={ideal} name={ideal} ref={this.bindElem.bind(this)}/>
+          <label>
+            {ideal}
+            <input type="checkbox" id={ideal} name={ideal} ref={this.bindElem.bind(this)}/>
+          </label>
         </div>
 
         <div>
-          <label htmlFor={exact}>{exact}</label>
-          <input type="checkbox" id={exact} name={exact} ref={this.bindElem.bind(this)}/>
+          <label>
+            {exact}
+            <input type="checkbox" id={exact} name={exact} ref={this.bindElem.bind(this)}/>
+          </label>
         </div>
         <div>{JSON.stringify(this.constraints)}</div>
       </div>
