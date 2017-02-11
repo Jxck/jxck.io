@@ -79,7 +79,6 @@ const DeviceContainer = ReactRedux.connect(
   (state) => {
     return {
       devices: state.devices
-      //constraint: state.constraint.devices,
     }
   },
   (dispatch) => {
@@ -396,13 +395,20 @@ const DisplayContainer = ReactRedux.connect(
  */
 class Controllers extends React.Component {
 
+  // TODO: channelCount, echoCancellation
   render() {
     return (
       <div>
         <DeviceContainer />
         <FacingModeContainer />
         <RangeContainer type="width" min="100" max="200" step="10" />
+        <RangeContainer type="height" min="100" max="200" step="10" />
         <RangeContainer type="volume" min="0" max="1" step="0.1" />
+        <RangeContainer type="latency" min="0" max="100" step="10" />
+        <RangeContainer type="frameRate" min="0" max="60" step="10" />
+        <RangeContainer type="sampleRate" min="0" max="9600" step="1000" />
+        <RangeContainer type="sampleSize" min="16" max="32" step="16" />
+        <RangeContainer type="aspectRatio" min="0" max="3" step="0.1" />
         <DisplayContainer />
       </div>
     )
