@@ -136,7 +136,7 @@ class FacingMode extends React.Component {
     const ideal = "ideal"
     const exact = "exact"
     return (
-      <div onChange={this.onChange.bind(this)}>
+      <div className="flex" onChange={this.onChange.bind(this)}>
         <div>
           <label htmlFor={mode}>{mode}</label>
           <select ref={this.bindElem.bind(this)} id={mode} name={mode}>
