@@ -205,9 +205,15 @@ class RangeValue {
     this.type  = type
     this.ideal = ideal
     this.exact = exact
-    this.value = value
-    this.min   = min
-    this.max   = max
+    this.value = this.parseFloat(value)
+    this.min   = this.parseFloat(min)
+    this.max   = this.parseFloat(max)
+  }
+
+  parseFloat(val) {
+    if (val === "") return null
+    if (val === null) return null
+    return parseFloat(val);
   }
 
   format() {
