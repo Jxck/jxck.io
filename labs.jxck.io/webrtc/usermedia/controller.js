@@ -169,6 +169,24 @@ class Video extends React.Component {
   }
 }
 
+const formatConstraint = (raw) => {
+  return Object.keys(raw).reduce((acc, key) => {
+    if (key === 'audioinput') {
+      acc.audio.deviceId = raw.audioinput;
+      return acc;
+    }
+
+    if (key === 'videoinput') {
+      acc.video.deviceId = raw.videoinput;
+      return acc;
+    }
+
+    let [target, type] = key.split('.');
+    acc[target][type] = raw[key].toJSON();
+    return acc;
+  }, {video:{}, audio:{}});
+}
+
 class StreamComponent extends React.Component {
   onClick(e) {
     // TODO: fixme with valid constraints
@@ -587,25 +605,7 @@ const constraintReducer = (state = {}, action) => {
 class Display extends React.Component {
   render() {
     const raw = this.props.constraint;
-
-    const formatted = Object.keys(raw).reduce((acc, key) => {
-      log(key);
-
-      if (key === 'audioinput') {
-        acc.audio.deviceId = raw.audioinput;
-        return acc;
-      }
-
-      if (key === 'videoinput') {
-        acc.video.deviceId = raw.videoinput;
-        return acc;
-      }
-
-      let [target, type] = key.split('.');
-      acc[target][type] = raw[key].toJSON();
-      return acc;
-    }, {video:{}, audio:{}});
-
+    const formatted = formatConstraint(raw)
     return (
       <div>
         <textarea value={`// formatted
