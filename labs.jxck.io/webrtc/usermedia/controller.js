@@ -437,6 +437,7 @@ class RangeValue {
 
   toJSON() {
     const {type, ideal, exact, value, min, max} = this;
+    log(type, ideal, exact, value, min, max);
 
     if (exact) {
       if (value === null) return null
@@ -490,8 +491,6 @@ class Range extends React.Component {
     const value = "value"
     const ideal = "ideal"
     const exact = "exact"
-
-    jog(state);
 
     let input = (
       <div>
@@ -587,9 +586,34 @@ const constraintReducer = (state = {}, action) => {
 // Component
 class Display extends React.Component {
   render() {
-    const constraint = JSON.stringify(this.props.constraint, ' ', ' ')
+    const raw = this.props.constraint;
+
+    const formatted = Object.keys(raw).reduce((acc, key) => {
+      log(key);
+
+      if (key === 'audioinput') {
+        acc.audio.deviceId = raw.audioinput;
+        return acc;
+      }
+
+      if (key === 'videoinput') {
+        acc.video.deviceId = raw.videoinput;
+        return acc;
+      }
+
+      let [target, type] = key.split('.');
+      acc[target][type] = raw[key].toJSON();
+      return acc;
+    }, {video:{}, audio:{}});
+
     return (
-      <textarea value={constraint}></textarea>
+      <div>
+        <textarea value={`// formatted
+${JSON.stringify(formatted, ' ', ' ')}
+// raw
+${JSON.stringify(raw, ' ', ' ')}
+`}></textarea>
+      </div>
     )
   }
 }
