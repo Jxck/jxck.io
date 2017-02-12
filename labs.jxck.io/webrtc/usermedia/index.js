@@ -197,12 +197,17 @@ class StreamComponent extends React.Component {
   render() {
     const { stream } = this.props;
     return (
-      <section>
-        <h2>Stream</h2>
-        <button onClick={this.onClick.bind(this)}>start</button>
-        <Video stream={stream} />
-        <Tracks tracks={stream ? stream.tracks() : []} />
-      </section>
+      <div className="flex">
+        <section>
+          <h2>Stream</h2>
+          <button onClick={this.onClick.bind(this)}>start</button>
+          <Video stream={stream} />
+        </section>
+        <section>
+          <h2>Tracks</h2>
+          <Tracks tracks={stream ? stream.tracks() : []} />
+        </section>
+      </div>
     )
   }
 }
@@ -605,13 +610,15 @@ class Display extends React.Component {
     const raw = this.props.constraint;
     const formatted = formatConstraint(raw)
     return (
-      <div>
+      <section>
+        <h2>constraints</h2>
         <textarea value={`// formatted
 ${JSON.stringify(formatted, ' ', ' ')}
+
 // raw
 ${JSON.stringify(raw, ' ', ' ')}
 `}></textarea>
-      </div>
+      </section>
     )
   }
 }
@@ -641,17 +648,20 @@ class Controllers extends React.Component {
   // TODO: channelCount, echoCancellation
   render() {
     return (
-      <div>
+      <div className="flex">
         <DeviceContainer />
-        <FacingModeContainer />
-        <RangeContainer type="video.width"       min="100" max="200"  step="10"   />
-        <RangeContainer type="video.height"      min="100" max="200"  step="10"   />
-        <RangeContainer type="video.latency"     min="0"   max="100"  step="10"   />
-        <RangeContainer type="video.frameRate"   min="0"   max="60"   step="10"   />
-        <RangeContainer type="video.aspectRatio" min="0"   max="3"    step="0.1"  />
-        <RangeContainer type="audio.volume"      min="0"   max="1"    step="0.1"  />
-        <RangeContainer type="audio.sampleRate"  min="0"   max="9600" step="1000" />
-        <RangeContainer type="audio.sampleSize"  min="16"  max="32"   step="16"   />
+        <section>
+          <h2>settings</h2>
+          <FacingModeContainer />
+          <RangeContainer type="video.width"       min="100" max="200"  step="10"   />
+          <RangeContainer type="video.height"      min="100" max="200"  step="10"   />
+          <RangeContainer type="video.latency"     min="0"   max="100"  step="10"   />
+          <RangeContainer type="video.frameRate"   min="0"   max="60"   step="10"   />
+          <RangeContainer type="video.aspectRatio" min="0"   max="3"    step="0.1"  />
+          <RangeContainer type="audio.volume"      min="0"   max="1"    step="0.1"  />
+          <RangeContainer type="audio.sampleRate"  min="0"   max="9600" step="1000" />
+          <RangeContainer type="audio.sampleSize"  min="16"  max="32"   step="16"   />
+        </section>
         <DisplayContainer />
       </div>
     )
