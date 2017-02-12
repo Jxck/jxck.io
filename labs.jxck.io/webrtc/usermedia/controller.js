@@ -675,6 +675,110 @@ const ControllersContainer = ReactRedux.connect(
 
 
 /***********************************
+ * Constraints
+ ***********************************/
+
+// ActionCreator
+const getSupportedConstraints = (dispatch) => {
+  const keys = navigator.mediaDevices.getSupportedConstraints();
+  let supported = Object.keys(keys).sort((a, b) => {
+    if (a.startsWith('moz')) return 1;
+    return (a.length > b.length) ? 1 : -1;
+  });
+  dispatch({
+    type: 'SUPPORTED_CONSTRAINTS',
+    supported, supported,
+  })
+}
+
+// Reducer
+const supportedConstraintsReducer = (state = {supported: []}, action) => {
+  switch (action.type) {
+    case 'SUPPORTED_CONSTRAINTS':
+      return Object.assign({}, state, {
+        supported: action.supported
+      })
+    default:
+      return state
+  }
+}
+
+// Components
+class SupportedConstraints extends React.Component {
+  componentDidMount() {
+    this.props.getSupportedConstraints();
+  }
+
+  render() {
+    const { supported, tracks } = this.props;
+    const th = supported.map((key) => <th>{key}</th>)
+
+    const consts = tracks.map((track) => {
+      const values = track.getConstraints();
+      const td = supported
+        .map((key) => values[key])
+        .map((value) => <td>{JSON.stringify(value)}</td>);
+
+      return <tr><td>constraints({track.kind})</td>{td}</tr>;
+    });
+
+    const caps = tracks.map((track) => {
+      const values = track.getCapabilities();
+      const td = supported
+        .map((key) => values[key])
+        .map((value) => <td>{JSON.stringify(value)}</td>);
+
+      return <tr><td>capabilities({track.kind})</td>{td}</tr>;
+    });
+
+    const settings = tracks.map((track) => {
+      const values = track.getSettings();
+      const td = supported
+        .map((key) => values[key])
+        .map((value) => <td>{JSON.stringify(value)}</td>);
+
+      return <tr><td>settings({track.kind})</td>{td}</tr>;
+    });
+
+    return (
+      <section>
+        <h2>Supported Constraints</h2>
+        <table>
+          <tr>
+            <th>type</th>
+            {th}
+          </tr>
+          {consts}
+          {caps}
+          {settings}
+        </table>
+      </section>
+    )
+  }
+}
+
+// Container
+const SupportedConstraintsContainer = ReactRedux.connect(
+  (state) => {
+    const stream = state.stream;
+    return {
+      supported: state.supportedConstraints.supported,
+      tracks: stream ? stream.tracks() : [],
+    }
+  },
+  (dispatch) => {
+    return {
+      getSupportedConstraints() {
+        getSupportedConstraints(dispatch)
+      }
+    }
+  }
+)(SupportedConstraints);
+
+
+
+
+/***********************************
  * App
  ***********************************/
 class App extends React.Component {
@@ -683,6 +787,7 @@ class App extends React.Component {
       <div>
         <StreamContainer />
         <ControllersContainer />
+        <SupportedConstraintsContainer />
       </div>
     )
   }
@@ -704,6 +809,7 @@ const reducer = Redux.combineReducers({
   devices:    deviceReducer,
   constraint: constraintReducer,
   stream:     streamReducer,
+  supportedConstraints: supportedConstraintsReducer,
 });
 const store = Redux.createStore(reducer, {},
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
