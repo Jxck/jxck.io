@@ -189,9 +189,8 @@ const formatConstraint = (raw) => {
 
 class StreamComponent extends React.Component {
   onClick(e) {
-    // TODO: fixme with valid constraints
-    //const constraint = JSON.parse(JSON.stringify(this.props.constraint));
-    const constraint = { audio: true, video: true };
+    const constraint = formatConstraint(this.props.constraint);
+    if (this.props.stream) this.props.stream.stop(); // stop if existed
     this.props.getStream(constraint);
   }
 
