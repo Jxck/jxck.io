@@ -441,9 +441,9 @@ class RangeValue {
     this.type  = type
     this.ideal = ideal
     this.exact = exact
-    this.value = this.parseFloat(value)
-    this.min   = this.parseFloat(min)
-    this.max   = this.parseFloat(max)
+    this.value = value
+    this.min   = min
+    this.max   = max
   }
 
   parseFloat(val) {
@@ -454,25 +454,24 @@ class RangeValue {
 
   toJSON() {
     const {type, ideal, exact, value, min, max} = this;
-    log(type, ideal, exact, value, min, max);
 
     if (exact) {
       if (value === null) return null
-      return { exact : value }
+      return { exact : this.parseFloat(value) }
     }
 
     if (ideal) {
       if (value === null && min === null && max === null) return null
       let result = {}
-      if (value || value ===0) result.ideal = value
-      if (min   || min   ===0) result.min = min
-      if (max   || max   ===0) result.max = max
+      if (value || value ===0) result.ideal = this.parseFloat(value)
+      if (min   || min   ===0) result.min = this.parseFloat(min)
+      if (max   || max   ===0) result.max = this.parseFloat(max)
       return result
     }
 
     if (value === null) return null
 
-    return value
+    return this.parseFloat(value)
   }
 }
 
