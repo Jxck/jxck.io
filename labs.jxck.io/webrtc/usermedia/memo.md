@@ -1,0 +1,252 @@
+# media stram constraints
+
+## getUserMedia
+
+かつては `navigator.getUserMedia()` だったが今は `navigator.mediaDevices.getUserMedia()` になっている。
+
+Promise を返し、 resolve すると MediaStream が返る。
+
+
+## MediaStream
+
+MediaStream(以下 Stream) は複数の MediaStreamTrack(以下 Track) からなる。
+
+Track は、主に VideoTrack と AudioTrack で、カメラやマイクの入出力が Track で、それを束ねたものが Stream ということだ。
+
+Stream からは Track を get/add/remove すること、それを onaddtrack/onremovetrack で検知することができる。
+
+つまり音声 Track だけ消すとか、新たに Track を追加する、任意の Track を引数に Stream を生成するなどが可能だ。
+
+ただ、現時点では getUserMedia は Stream を返すため、 Track だけを取得する方法は今はない。
+
+
+## MediaStreamTrack
+
+Track には主に、 "audioinput", "audiooutput", "videoinput" の三種類があり、 kind プロパティとして保持されている。
+その種類の通り、マイク、スピーカ、カメラと繋がっている。
+mute や stop() は基本的にはこのトラック単位の状態や操作になっている。
+
+例えば Stream には stop() は無いため、トラック全部を止めたければこうなる。
+
+```js
+stream.getTracks().forEach((track) => track.stop())
+```
+
+## MediaStreamConstraints
+
+MediaStreamConstraints(以下 constraints) はデバイスを扱う際の細かな設定だ。
+
+通常 stream を取得する場合、このような引数を渡すと、デフォルトのカメラ、マイク、スピーカを Track とした Stream が生成される。
+
+
+```js
+navigator.mediaDevices.getUserMedia({audio: true, video: true}).then((stream) => {})
+```
+
+この引数は非常にこまかく設定することが可能だ。
+
+## deviceId
+
+認識されているデバイスには deviceId がふられており、特定のデバイスを指定できる。
+これはカメラ、マイク両方で使うことができる。
+
+deviceId は `navigator.mediaDevices.enumerateDevices` から取得できる。
+
+resolve される値は、接続されたデバイス情報の配列だ。
+
+```js
+[
+{
+ "deviceId": "24831b5e1a3cb951228f764eb5161064c636f0f70adf85f63e3dc06ca8c86b70",
+ "kind": "audioinput",
+ "label": "Built-in Audio Digital Stereo",
+ "groupId": "4cd2266f081945fd6e52bf9c54d510e57c596d3ddc049c1dbc2357324f1e3582"
+},
+...
+]
+```
+
+例えばこの audioinput を指定したい場合は以下のようになる。
+
+```js
+{
+  video: true,
+  audio: {
+    deviceId: "24831b5e1a3cb951228f764eb5161064c636f0f70adf85f63e3dc06ca8c86b70"
+  }
+}
+```
+
+
+## facingMode
+
+これは deviceId の代わりにカメラの位置関係を指定するもので、以下の値が定義されている。
+
+- "user"
+- "environment"
+- "left"
+- "right"
+
+これは主にモバイル端末やタブレット PC で、前面/背面に二つのカメラを持っている場合、 "user" は前面、 "environment" は背面のカメラが選択される。
+
+```js
+{
+  video: {
+    facingMode: "user"
+  },
+  audio: true
+}
+```
+
+これはカメラの位置関係がデバイスに設定されている必要がある。
+
+
+## supported constraints
+
+deviceId や facingMode 以外にも、いくつかのパラメータが定義されている。
+
+- audio
+  - volume
+  - sampleRate
+  - sampleSize
+  - echoCancellation
+- video
+  - facingMode
+  - width
+  - height
+  - aspectRatio
+  - frameRate
+  - latency
+  - channelCount
+- common
+  - deviceId
+  - groupId
+
+
+ただし、これら全てがサポートされている(値として設定した場合に反映される)とは限らない。
+
+そこで、デバイスがサポートしている constraints を確認する方法がある。
+
+Firefox は、 moz Prefix 付きで、仕様にないプロパティを設定可能なことなどもわかる。
+
+```js
+const supportedConstraints = navigator.mediaDevices.getSupportedConstraints();
+// {
+//   "browserWindow": true,
+//   "deviceId": true,
+//   "echoCancellation": true,
+//   "facingMode": true,
+//   "frameRate": true,
+//   "height": true,
+//   "mediaSource": true,
+//   "mozAutoGainControl": true,
+//   "mozNoiseSuppression": true,
+//   "scrollWithPage": true,
+//   "viewportHeight": true,
+//   "viewportOffsetX": true,
+//   "viewportOffsetY": true,
+//   "viewportWidth": true,
+//   "width": true
+// }
+
+
+let constraint = {
+  audio: true,
+  video: {}
+}
+
+if (supportedConstraints['frameRate']) {
+  constraint.video.frameRate = 30
+}
+...
+```
+
+
+## ideal/exact/min/max
+
+値の設定の仕方にはいくつかの方法があり、書き方によって挙動が違う。。
+
+
+### normal
+
+まず以下の書き方は、 frameRate として 60 を求めているが、もしデバイスがそれを満たせない場合は 60 にならない場合がある。
+つまり、これはベストエフォートの値だ。
+
+```js
+{
+  video: {
+    frameRate: 60
+  }
+}
+```
+
+
+### exact
+
+確実に 60 を求めたい場合は exact を指定する。
+この場合  `getUserMedia()` から resolve された Stream の VideoTrack は確実に frameRate 60 になっている。
+もしデバイスがそれを満たせなかった場合は、 `getUserMedia()` は reject される。
+
+```js
+{
+  video: {
+    frameRate: {
+      exact: 60
+    }
+  }
+}
+```
+
+
+### min/max
+
+値を範囲で指定することもできる。もちろんどちらかだけでも良い。
+
+
+```js
+{
+  video: {
+    frameRate: {
+      min: 15,
+      max: 60,
+    }
+  }
+}
+```
+
+
+### ideal
+
+min/max を広く取った場合、範囲内のどこが適応されるか分からない。
+
+この場合、合わせて ideal を指定する。
+
+
+TODO
+
+### advanced
+
+TODO
+
+### Track#getConstraints
+
+直近の applyConstraints() の引数。
+
+### Track#getCapabilities
+
+Track がサポートしている constraints の一覧。
+
+### Track#getSettings
+
+現在 Track に適用されている constraints の値。
+applyConstraints() の引数に、デフォルト値がマージされた値になる。
+
+
+
+
+## chrome://webrtc-internals/
+
+chrome の場合は
+
+- chrome://media-internals/ から device の情報
+- chrome://webrtc-internals/ から device constraints の値を見ることができる
