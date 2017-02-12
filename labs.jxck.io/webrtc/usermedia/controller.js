@@ -1,4 +1,5 @@
 const log = console.log.bind(console);
+const jog = (e) => log(JSON.stringify(e));
 
 /***********************************
  * Stream
@@ -254,9 +255,10 @@ class Device extends React.Component {
   render() {
     const {onEnumDevice, onSelectDevice, devices} = this.props
     const tr = devices.map((d) => {
+      const disabled = d.kind.endsWith("output") ? true : false;
       return (
         <tr>
-          <td><input type="radio" name={d.kind} value={d.deviceId} onChange={onSelectDevice}/></td>
+          <td><input type="radio" name={d.kind} value={d.deviceId} disabled={disabled} onChange={onSelectDevice}/></td>
           <td><div>{d.kind}    </div></td>
           <td><div>{d.label}   </div></td>
           <td><div>{d.deviceId}</div></td>
@@ -489,6 +491,8 @@ class Range extends React.Component {
     const ideal = "ideal"
     const exact = "exact"
 
+    jog(state);
+
     let input = (
       <div>
         <input type="number" placeholder={type} name={value} min={min} max={max} step={step} value={state && state.value} ref={this.bindElem.bind(this)}/>
@@ -564,7 +568,7 @@ const constraintReducer = (state = {}, action) => {
       return Object.assign({}, state, {[name]: value});
     case 'SELECT_FACING':
       const facingMode = action.value;
-      return Object.assign({}, state, {"facingMode": facingMode});
+      return Object.assign({}, state, {"video.facingMode": facingMode});
     case 'SELECT_RANGE':
       const range = action.value
       return Object.assign({}, state, {[range.type]: range});
@@ -618,14 +622,14 @@ class Controllers extends React.Component {
       <div>
         <DeviceContainer />
         <FacingModeContainer />
-        <RangeContainer type="width"       min="100" max="200"  step="10"   />
-        <RangeContainer type="height"      min="100" max="200"  step="10"   />
-        <RangeContainer type="volume"      min="0"   max="1"    step="0.1"  />
-        <RangeContainer type="latency"     min="0"   max="100"  step="10"   />
-        <RangeContainer type="frameRate"   min="0"   max="60"   step="10"   />
-        <RangeContainer type="sampleRate"  min="0"   max="9600" step="1000" />
-        <RangeContainer type="sampleSize"  min="16"  max="32"   step="16"   />
-        <RangeContainer type="aspectRatio" min="0"   max="3"    step="0.1"  />
+        <RangeContainer type="video.width"       min="100" max="200"  step="10"   />
+        <RangeContainer type="video.height"      min="100" max="200"  step="10"   />
+        <RangeContainer type="video.latency"     min="0"   max="100"  step="10"   />
+        <RangeContainer type="video.frameRate"   min="0"   max="60"   step="10"   />
+        <RangeContainer type="video.aspectRatio" min="0"   max="3"    step="0.1"  />
+        <RangeContainer type="audio.volume"      min="0"   max="1"    step="0.1"  />
+        <RangeContainer type="audio.sampleRate"  min="0"   max="9600" step="1000" />
+        <RangeContainer type="audio.sampleSize"  min="16"  max="32"   step="16"   />
         <DisplayContainer />
       </div>
     )
