@@ -217,12 +217,28 @@ if (supportedConstraints['frameRate']) {
 
 ### ideal
 
-min/max を広く取った場合、範囲内のどこが適応されるか分からない。
+例えば width で ideal を設定した場合を考える。
 
-この場合、合わせて ideal を指定する。
+```js
+{
+  video: {
+    width: {
+      ideal: 1280
+    },
+    height: {
+      ideal: 720
+    }
+  }
+}
+```
 
+この場合、複数の候補がある中から、可能な限り 1280x720 に近い値が得られる。
+具体的には、可能な候補それぞれに対して下記を計算する。
 
-TODO
+(actual == ideal) ? 0 : |actual - ideal|/max(|actual|,|ideal|)
+
+この値が一番小さいものが返る。
+
 
 ### advanced
 
