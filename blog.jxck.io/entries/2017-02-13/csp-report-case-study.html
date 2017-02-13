@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8">
+    <!--
+    貴様、見ているな！！
+    このサイトの技術的なまとめはこちらをどうぞ。
+    https://labs.jxck.io/blog
+
+    by Jxck
+    -->
+    <link rel="canonical" href="https://blog.jxck.io/entries/2017-02-13/csp-report-case-study.html">
+    <link rel="amphtml" href="https://blog.jxck.io/entries/2017-02-13/csp-report-case-study.amp.html">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="alternate" type="application/atom+xml" title="blog.jxck.io" href="/feeds/atom.xml">
+    <link rel="author" href="//jxck.io/assets/humans.txt">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="preload" as="font" type="font/woff" href="//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201608028" crossorigin>
+    <script async src="//jxck.io/assets/js/ga.js"></script>
+    <script async src="//jxck.io/assets/js/highlight.min.js"></script>
+    <script async src="//jxck.io/assets/js/sw.js"></script>
+    <script async src="//jxck.io/assets/js/main.js"></script>
+
+    <meta name="author" content="Jxck">
+    <meta name="description" content="このブログで CSP レポートの収集を開始してもうすぐ 1 年になる。現状、対象ドメイン内で `&lt;input&gt;` は一切提供しておらず、大半が静的に生成されたページであるが、この条件でも、かなり多くのレポートが集まった。今回は、収集した実際のレポートを例に、攻撃...">
+    <meta name="keywords" content="csp,security">
+    <meta itemprop="image" content="https://jxck.io/assets/img/jxck.png">
+    <meta itemprop="name" content="blog.jxck.io">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jxck_">
+    <meta name="twitter:url" content="https://blog.jxck.io/entries/2017-02-13/csp-report-case-study.html">
+    <meta name="twitter:title" content="CSP Report 収集と実レポートの考察 | blog.jxck.io">
+    <meta name="twitter:description" content="このブログで CSP レポートの収集を開始してもうすぐ 1 年になる。現状、対象ドメイン内で `&lt;input&gt;` は一切提供しておらず、大半が静的に生成されたページであるが、この条件でも、かなり多くのレポートが集まった。今回は、収集した実際のレポートを例に、攻撃...">
+    <meta name="twitter:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://blog.jxck.io/entries/2017-02-13/csp-report-case-study.html">
+    <meta property="og:title" content="CSP Report 収集と実レポートの考察 | blog.jxck.io">
+    <meta property="og:site_name" content="blog.jxck.io">
+    <meta property="og:description" content="このブログで CSP レポートの収集を開始してもうすぐ 1 年になる。現状、対象ドメイン内で `&lt;input&gt;` は一切提供しておらず、大半が静的に生成されたページであるが、この条件でも、かなり多くのレポートが集まった。今回は、収集した実際のレポートを例に、攻撃...">
+    <meta property="og:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <link rel="icon" sizes="192x192" href="https://jxck.io/assets/img/jxck.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "CSP Report 収集と実レポートの考察 | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2017-02-13T08:00:00+08:00",
+  "dateModified": "2017-02-14T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "このブログで CSP レポートの収集を開始してもうすぐ 1 年になる。現状、対象ドメイン内で `&lt;input&gt;` は一切提供しておらず、大半が静的に生成されたページであるが、この条件でも、かなり多くのレポートが集まった。今回は、収集した実際のレポートを例に、攻撃..."
+}
+</script>
+
+    <title>CSP Report 収集と実レポートの考察 | blog.jxck.io</title>
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/body.css">
+  </head>
+  <body>
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/header.css">
+    <header>
+      <ul>
+        <li><a href="//blog.jxck.io"><img class="logo" alt="blog" title="blog top" width="30" src=//jxck.io/assets/img/blog.svg></a>
+        <li><a href="/entries/2017-02-13/csp-report-case-study.amp.html#development=1"><svg width="30" height="30"><use xlink:href="/assets/img/amp.svg#main"/></svg></a>
+        <li><a href="."><img alt="up" title="move to parent directory" width="30" src="//jxck.io/assets/img/up.svg"></a>
+        <li><a href="/feeds/atom.xml"><img alt="rss" title="rss feed" width="30" src="//jxck.io/assets/img/rss.svg"></a>
+        <li><a href="//jxck.io/humans.txt"><img alt="humans" title="huamns.txt" width="30" src="//jxck.io/assets/img/humans.svg"></a>
+        <li><a href="//jxck.io"><img class="logo" alt="jxck" title="jxck logo" width="30" src="//jxck.io/assets/img/jxck.png"></a>
+      </ul>
+    </header>
+
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/markdown.css">
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/main.css">
+    <main>
+      <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/info.css">
+      <ul class="info">
+        <li>created_at: <time class="created_at" datetime="2017-02-13">2017-02-13</time>
+        <li>updated_at: <time class="updated_at" datetime="2017-02-14">2017-02-14</time>
+        <li class="tags">tags: [<a href='/tags/csp.html'>csp</a>,<a href='/tags/security.html'>security</a>]
+      </ul>
+
+      <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/article.css">
+  <article>
+    <h1><a href=/entries/2017-02-13/csp-report-case-study.html>CSP Report 収集と実レポートの考察</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>このブログで CSP レポートの収集を開始してもうすぐ 1 年になる。
+      <p>現状、対象ドメイン内で <code translate="no">&lt;input&gt;</code> は一切提供しておらず、大半が静的に生成されたページであるが、この条件でも、かなり多くのレポートが集まった。<br>
+      今回は、収集した実際のレポートを例に、攻撃ではないと思われるレポートとしてどういったものが送られて来たかを中心に、その内容やレポーティングサーバ、 CSP の運用に関する現時点の考察についてまとめる。
+    </section>
+    <section>
+      <h2 id="収集目的"><a href="#収集目的">収集目的</a></h2>
+      <p>CSP の基本は、意図しないリソースの読み込みや、 Inline Script の実行を防ぐことにある。
+      <p>例えば、エスケープ漏れにより XSS が発生し、悪意のある Inline Script が埋め込まれた場合でも、 Inline Script を禁止するポリシーを適用したページでは、その実行はブラウザによって Violation(違反)と判断されブロックされる。
+      <p>これによって、対策漏れにより発生してした XSS の発動を水際で防ぐことが可能となる。
+      <p>しかし、本質的な CSP の責務は「<strong>ポリシーに照らし合わせた違反のブロック</strong>」であり、その「<strong>ポリシーの違反が攻撃とは限らない</strong>」という点には注意が必要だ。
+      <p>例えば、 Web を閲覧するユーザの中には、以下に挙げるような方法で、 DOM を変更し自分にあった閲覧環境を実現している場合がある。
+      <ul>
+        <li>ブックマークレット
+        <li>ブラウザ拡張
+        <li>ローカルプロキシ
+        <li>スクリーンリーダ
+        <li>etc
+      </ul>
+      <p>実装によっては、これらがサーバ側で定義された CSP ポリシーに違反する場合もあるだろう。しかし、だからといってこれらをブロックしてしまっては、ユーザに不便を強いる可能性がある。
+      <p>しかし、実際どういったポリシーがどういったユーザに不便を強いる可能性があるのかは、 CSP をデプロイしてみないとわからない。
+      <p>そこで、比較的に技術リテラシーの高いユーザが閲覧していると予想される本サイトに対して、去年の 3 月から CSP を適用しレポートの収集を実施することにした。
+      <p><a href="https://blog.jxck.io/entries/2016-03-30/content-security-policy.html">Content Security Policy(CSP) 対応と report-uri.io でのレポート収集 | blog.jxck.io</a>
+      <p>なにより重要なのは、 <strong>このサイトはほとんど全てが静的に生成されており、かつ <code translate="no">&lt;input&gt;</code> フォームが無い</strong> という点である。
+      <p>この条件で XSS に準ずる攻撃を成立されるのは難しいだろう。できたとしても、それをするメリットはかなり低いし、実際に攻撃は観測していない。
+      <p>つまり、このサイトで収集した CSP 違反のレポートは、ほとんどが設定ミスかユーザの閲覧環境に起因するものであるだろうと推測できるため、ここから、リアルワールドにおいて本質的に攻撃では無いポリシー違反がどの程度発生するのかを知る上で参考になると考える。
+      <p>今回はそのレポート収取の結果と、運用に当たって気づいたノウハウについて紹介する。
+    </section>
+    <section>
+      <h2 id="基本構成"><a href="#基本構成">基本構成</a></h2>
+      <p>まず、設定および構成について述べておく。
+      <p>本サイトは <code translate="no">*.jxck.io</code> ドメインを使い、複数のサブドメインを運用している。
+      <p><code translate="no">labs.jxck.io</code> だけは(CSP に違反するデモを含む)、脆弱性デモを含む様々なデモを置いているため、対象外として扱う。
+      <p>CSP は全て Report-Only で HTTP ヘッダから適応しており、 CSP レポートを収集している。
+      <p>現状は以下である。(まだ改善点はある)
+      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+      <pre><code translate="no">content-security-policy-report-only:
+  default-src &#039;self&#039;
+              https://jxck.io
+              https://*.jxck.io
+              https://www.google-analytics.com;
+  child-src   https://blog.jxck.io
+              https://www.youtube.com;
+  connect-src wss://ws.jxck.io;
+  report-uri https://jxck.report-uri.io/r/default/csp/reportOnly</code></pre>
+      <p>ポリシーは <code translate="no">default-src &#039;self&#039;</code> の設定を基本として、レポートを集めながら try & error で更新した。
+      <p>レポート送信のエンドポイントは <code translate="no">report-uri.io</code> を使っていたが、後述するように今は自前で立てたサーバに移行している。
+    </section>
+    <section>
+      <h2 id="全体像"><a href="#全体像">全体像</a></h2>
+      <p>以下が CSP をデプロイしてから、今月までのレポート発生のグラフである。
+      <p><picture>
+          <source type=image/webp srcset=graph-of-csp-report-12month.webp#2642x786>
+          <img src=graph-of-csp-report-12month.png#2642x786 alt="graph of csp report 12 month" title="graph of csp report for 12 month generated by report-uri.io">
+          </picture>
+      <p>まず最初の期間は、コンテンツ自体の更新も多く、ポリシーを修正する期間だったためレポートが多い。
+      <p>その後も、コンテンツの更新(AMP の対応、 YouTube 埋め込みの対応 etc) を行うたびに設定の更新が必要になるため、ところどころ山がある。
+      <p>しかし、全体として、定常的にレポートが上がっており、コンテンツが安定ている今でも、レポートがなくなることは基本的には無いことが分かる。
+    </section>
+    <section>
+      <h2 id="Report+Case+Study"><a href="#Report+Case+Study">Report Case Study</a></h2>
+      <p>次に個々のレポートを細かく見た結果、よく発生していたものについて紹介する。
+      <section>
+        <h3 id="DOM+Change+by+User"><a href="#DOM+Change+by+User">DOM Change by User</a></h3>
+        <p>Bookmarklet などから DOM を変更することで、ページそのものをカスタマイズしたりするユーザや、 Devtools からこのサイト上で色々試したりするユーザもいるだろう。<br>
+        一例として、以下のレポートは、 CSP の指定範囲外オリジンから jQuery を埋め込んだことによるレポートと思われる。
+        <pre><code translate="no">{
+  &quot;csp-report&quot;: {
+    &quot;document-uri&quot;:        &quot;https://blog.jxck.io/entries/...&quot;,
+    &quot;referrer&quot;:            &quot;https://blog.jxck.io/&quot;,
+    &quot;violated-directive&quot;:  &quot;script-src&quot;,
+    &quot;effective-directive&quot;: &quot;script-src&quot;,
+    &quot;original-policy&quot;:     &quot;default-src &#039;self&#039; https://jxck.io...&quot;,
+    &quot;disposition&quot;:         &quot;report&quot;,
+    &quot;blocked-uri&quot;:         &quot;https://code.jquery.com/jquery-3.0.0.min.js&quot;,
+    &quot;line-number&quot;:         1,
+    &quot;column-number&quot;:       108,
+    &quot;status-code&quot;:         0
+  }
+}</code></pre>
+        <p>こうしたレポートは非常に多い。
+      </section>
+      <section>
+        <h3 id="Extension"><a href="#Extension">Extension</a></h3>
+        <p>以下のレポートは、ブラウザ拡張がブロックされたであろうと想像される。<br>
+        画像について何か改変をしているようだが、詳細はわからない。
+        <pre class=js><code translate="no">{
+  &quot;csp-report&quot;: {
+    &quot;document-uri&quot;:        &quot;https://blog.jxck.io/entries/...&quot;,
+    &quot;violated-directive&quot;:  &quot;default-src &#039;self&#039; https://jxck.io ...&quot;,
+    &quot;effective-directive&quot;: &quot;img-src&quot;,
+    &quot;original-policy&quot;:     &quot;default-src &#039;self&#039; https://jxck.io ...&quot;,
+    &quot;blocked-uri&quot;:         &quot;ms-browser-extension&quot;,
+    &quot;status-code&quot;:         0
+  }
+}</code></pre>
+        <p>こうした拡張を通じた DOM の改変が起こる可能性として、以下のような場面があるだろう。
+        <ul>
+          <li>Reader View Mode
+          <li>Screen Reader
+          <li>Outline Viewer
+        </ul>
+        <p>Safari の Reder View と、 Firefox の Screen Reader 拡張である JAWS については、特に問題がなさそうなことを確認してる。<br>
+        しかし、これらも実装次第ではあると思うので、もっと幅広い検証が必要かもしれない。
+      </section>
+      <section>
+        <h3 id="Browser+Inline+Style"><a href="#Browser+Inline+Style">Browser Inline Style</a></h3>
+        <p>本サイトでは記事の原稿を Markdown でも閲覧できる。また RSS feed は XML で提供し、 humand.txt や robot.txt は Text で提供している。
+        <p>こうした <code translate="no">.md</code>, <code translate="no">.txt</code>, <code translate="no">.xml</code>, <code translate="no">.json</code> などのページをブラウザで表示すると、ブラウザによってはそれを内部的に HTML に整形して表示する。
+        <p>このとき、 HTML の中にある Inline Style がポリシー違反と判定されるため、レポートが上がる。
+        <p><picture>
+            <source type=image/webp srcset=chrome-inline-style-violation.webp#1667x656>
+            <img src=chrome-inline-style-violation.png#1667x656 alt="inline style violation for RSS feed in chrome" title="chrome add inline style for display rss feed which violates CSP Policy">
+            </picture>
+        <pre class=js><code translate="no">{
+  &quot;csp-report&quot;: {
+  &quot;document-uri&quot;:        &quot;https://jxck.io/humans.txt&quot;,
+  &quot;referrer&quot;:            &quot;&quot;,
+  &quot;violated-directive&quot;:  &quot;style-src&quot;,
+  &quot;effective-directive&quot;: &quot;style-src&quot;,
+  &quot;original-policy&quot;:     &quot;default-src &#039;self&#039; https://*.jxck.io...&quot;,
+  &quot;disposition&quot;:         &quot;report&quot;,
+  &quot;blocked-uri&quot;:         &quot;inline&quot;,
+  &quot;line-number&quot;:         1,
+  &quot;status-code&quot;:         0
+  }
+}</code></pre>
+        <p>これはもちろん悪意のあるポリシー違反でないため、本サイトではこの種のコンテントタイプのページへは CSP を適用しないこととした。
+      </section>
+      <section>
+        <h3 id="Firefox+view:source"><a href="#Firefox+view:source">Firefox view:source</a></h3>
+        <p>本サイトは技術者向けの内容が多いため、このサイト内の HTML ソースをブラウザで表示する閲覧者も多い。
+        <p>Firefox ではソースを表示すると、オリジンが <code translate="no">view-source://~</code> となるため、このページが CSP 違反となりレポートが上がる。
+        <p>Chrome でも同じくオリジンが変わるが、ここでレポートはあがらない実装になっているようだ。
+        <p><picture>
+            <source type=image/webp srcset=firefox-view-source-violation.webp#1674x824>
+            <img src=firefox-view-source-violation.png#1674x824 alt="view source in firefox" title="view-source:// violates csp policy in firefox">
+            </picture>
+        <p>これは対応せず無視することとした。
+      </section>
+      <section>
+        <h3 id="about:blank_"><a href="#about:blank_">about:blank_</a></h3>
+        <p>なんらかの操作によって、コンテキストが <code translate="no">about://blank</code> になりオリジンの違反としてレポートがちょくちょく来る。
+        <pre class=js><code translate="no">{
+  &quot;csp-report&quot;: {
+    &quot;document-uri&quot;:        &quot;about://blank&quot;,
+    &quot;violated-directive&quot;:  &quot;default-src &#039;self&#039; https://jxck.io...&quot;,
+    &quot;effective-directive&quot;: &quot;img-src&quot;,
+    &quot;original-policy&quot;:     &quot;default-src &#039;self&#039; https://jxck.io...&quot;,
+    &quot;blocked-uri&quot;:         &quot;data&quot;,
+    &quot;status-code&quot;:         0
+  }
+}</code></pre>
+        <p>おそらく <code translate="no">&lt;a&gt;</code> のリンク先をいじる何かなどで発生しているのではないかと考えてはいるが、これも無害として無視している。
+      </section>
+    </section>
+    <section>
+      <h2 id="Reporting+Server"><a href="#Reporting+Server">Reporting Server</a></h2>
+      <p>CSP のレポート収集サービスとして、 <a href="https://report-uri.io">report-uri.io</a> がよく紹介され、本サイトでもこれを用いてレポートを収集していた。<br>
+      無料で使うことができる点で導入の敷居が低いのは良かったが、現在は以下のような理由でもう使っていない。
+      <ul>
+        <li>レポートをエクスポートできない
+        <li>半年以前のレポートが検索できない(内部的に消されている?)
+        <li>HTTP のヘッダを見ることができないので細かな解析ができない
+        <li>エンドポイントのレスポンスが悪く、一つのページが複数のレポートをあげると詰まって 5xx が返りレポートを取りこぼす
+        <li>レポート検索/閲覧の UI が非常に見辛い
+      </ul>
+      <p>Reporting Server は、小さい JSON ファイルが POST で受け取れる単純な API であれば良いため、自分で自作することとした。<br>
+      それなりのサービスであれば、ログなどを解析/可視化する基盤(graphite, kibana, ES, BigQ, mackerel etc) があると思うので、エンドポイントを自分で立ててそこに流し込むのが良いだろう。
+      <p>また、もし自分でエンドポイントを実装する際には、以下の点に注意して実装するのが良いと思われる。
+      <ul>
+        <li>report-uri は非推奨なので、 <a href="http://wicg.github.io/reporting/">report-to</a> を前提として設計
+        <li>レポートには UA やタイムスタンプはないので、必ず HTTP ヘッダ(全体)を一緒に保存する
+        <li>意図しないリクエストを <code translate="no">content-type: csp-report</code> で間引きたくなるが、<a href="https://www.tollmanz.com/content-security-policy-report-samples/">準拠してないクライアント</a> もあるようなので注意が必要
+      </ul>
+      <p>report-uri から report-to への変更で、 CSP 以外も含めたレポート送信が Reporting API に統合される。<br>
+      ここではヘッダ指定のしかたから、 Cookie の扱いなど色々変わりそうなので、本サイトで実装を終えたら追って解説しようと思う。
+    </section>
+    <section>
+      <h2 id="考察"><a href="#考察">考察</a></h2>
+      <p>レポートの中には、聞いたことがあるサービスの URL などが入っている場合もあるので、サービス連携によって発生したものもあるようだ。
+      <p>その他にも多種のレポートが上がって来るが、大抵のものはレポートだけでは実際に何が原因で発生したのかを知るのは難しい。<br>
+      もちろん、 Report-Only を外してそれらをブロックしていたら、ユーザがどのような体験をしていたかも、ほとんどわからない。
+      <p>想像通り、 <code translate="no">&lt;input&gt;</code> が無い本サイトでもこれだけのレポートが来ていることから、 <code translate="no">&lt;input&gt;</code> によりユーザの入力を受けつけるサービスでは、より多くの違反が観測されるだろう。<br>
+      そして、攻撃では無いポリシー違反を許容するためには、ポリシーを逐一更新して縛りを緩くしていく以外に方法はなく、一方で緩くすればするほどポリシーに穴ができ、実際の攻撃が発生した際に役に立たなくなる可能性がある。
+      <p>CSP によるブロックは、かなり堅牢な防御となる一方、多くのユーザに影響を与えるもろ刃の剣でもある。
+      <p>それでも、 <a href="https://github.com">github</a> や <a href="https://twitter.com">twitter</a> は既に Report-Only 無しで CSP を運用しているため、ユーザのフィードバックを反映しながら、ポリシーの精度を向上し徐々に適用していけば、 Report-Only なしの運用も決して無理ではないだろう。
+      <p>一方、レポートが収集できること、それを解析してサービス上で何が起こっているかが分かるだけでも、何もわからなかった従来と比べれば大きな進歩であると感じている。
+      <p>そこで、 Report-Only を外すことを目的にポリシーを緩めるのではなく、厳しい CSP を Report-Only で運用する方針も決して無くはないだろう。
+      <p>そもそも CSP は、それのみで攻撃を防ぐのでは無く、従来通りのセキュリティ対策を行った結果、意図せぬ漏れを埋めるために追加で行う対策である。
+      <p>レポートから攻撃の脆弱性を早期に発見して、速やかに実装の改善に反映できるのであれば、それでも十分に価値があると筆者は考える。
+      <p>report-uri.io を使っていたために、過去のレポートの解析などがかなり制限されてしまったのが心残りだが、自前のサーバに移行したことでより詳細に解析することができるようになったため、今後もレポートの観察を続け、何かあったらアップデートしたい。
+    </section>
+    <section>
+      <h2 id="参考"><a href="#参考">参考</a></h2>
+      <p>この辺の話を発表した資料
+      <ul>
+        <li><a href="https://speakerdeck.com/jxck/csp-and-real-world-reporting">CSP による防御とリアルワールドレポート収集</a>
+        <li><a href="https://speakerdeck.com/jxck/csp-a-powerful-security-steroid">CSP a Powerful Security Steroid (上の拡充版)</a>
+      </ul>
+    </section>
+  </article>
+
+    </main>
+    <hr>
+
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/footer.css">
+    <footer>
+      <address class="copyright">Copyright &copy; 2016 <a href="/">Jxck</a>. All Rights Reserved. Using <a href="https://www.google.com/intl/ja/policies/privacy/partners/">google analytics</a>.</address>
+    </footer>
+  </body>
+</html>
