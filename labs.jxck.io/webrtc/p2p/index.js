@@ -1,4 +1,4 @@
-const log   = console.debug.bind(console)
+const log   = console.log.bind(console)
 const info  = console.info.bind(console)
 const error = console.error.bind(console)
 const warn  = console.warn.bind(console)
@@ -14,8 +14,8 @@ local.on('icecandidate', (candidate) => {
   log(candidate.candidate)
   remote
     .addIceCandidate(candidate)
-    .then(log)
-    .catch(error)
+    .then((e) => console.log(e))
+    .catch((err) => console.error(err))
 })
 
 remote.on('icecandidate', (candidate) => {
@@ -25,8 +25,8 @@ remote.on('icecandidate', (candidate) => {
   log(candidate.candidate)
   local
     .addIceCandidate(candidate)
-    .then(log)
-    .catch(error)
+    .then((e) => console.log(e))
+    .catch((err) => console.error(err))
 })
 
 local.on('iceconnectionstatechange', (e) => {
@@ -64,8 +64,8 @@ Promise.all([
     remote.setLocalDescription(rtcSessionDescription),
   ])
 })
-  .then(console.log.bind(console))
-  .catch(console.error.bind(console))
+  .then((e) => console.log(e))
+  .catch((err) => console.error(err))
 
 
 local.on('channel', (channel) => {
