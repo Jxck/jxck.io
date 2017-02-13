@@ -218,6 +218,12 @@ TODO
 - 2/2: [URL.createObjectURL(stream) が廃止予定](https://www.fxsitecompat.com/ja/docs/2017/url-createobjecturl-stream-has-been-deprecated)
   - 古い WebRTC アプリが結構壊れそう
 
+- 2/2: [Selenium ライブラリの紹介](http://qiita.com/h_network21/items/a4cbff763b9ee8a7879a)
+  - 各言語ごとに紹介
+
+- 2/2: [Using HTTP/2 Responsibly: Adapting for Users](http://alistapart.com/article/using-http-2-responsibly-adapting-for-users)
+  - あとで
+
 - 2/3: [Road of the service worker response](https://docs.google.com/presentation/d/1qVj_RSs6EFQXI4RznqMzLk8PcrD0IREeBWnTbozFJXQ/edit#slide=id.g1c5ddbc764_0_531)
   - Navigation preload の解説
   - @loading summit の資料
@@ -272,6 +278,9 @@ TODO
 - 2/7: [CSS Grid の解説](https://bitsofco.de/css-grid-terminology/)
   - 結構詳しめ
 
+- 2/7: [WASM Performance](http://www.stefankrause.net/wp/?p=405)
+  - 各ブラウザでの WASM の速度比較
+
 - 2/8: [&lt;h&gt; タグの追加提案](https://github.com/w3c/html/issues/774)
   - [Jake](https://twitter.com/jaffathecake/status/829329173051211776)
   - 揉めてる
@@ -301,11 +310,26 @@ TODO
 - 2/9: [Wireshark の TLS1.3 対応 動いた](http://d.hatena.ne.jp/ASnoKaze/20170209/1486573451)
   - 動いたらしい
 
+- 2/9: [Firefox 52 ESR では Service Worker とプッシュ通知が無効化されます](https://www.fxsitecompat.com/ja/docs/2017/service-workers-and-push-notifications-are-disabled-on-firefox-52-esr/)
+  - 延長サポートバンのみ、アーキテクチャ変更のために一時的に。
+
+- 2/9: [月額課金モデルの Web サービスの設計方法](http://www.bokukoko.info/entry/2017/02/09/001144)
+  - ケース別ペイメントサービス設計知見
+
+- 2/9: [仮想 DOM の内部](http://postd.cc/the-inner-workings-of-virtual-dom/)
+  - コードレベル、フローレベルでの解説
+
 - 2/10: [エンプラ WebRTC の話](http://iwashi.co/2017/02/10/enterprise-webrtc)
   - エンプラは Chrome より Edge に期待
 
-- 2/10: [仮想 DOM の内部](http://postd.cc/the-inner-workings-of-virtual-dom/)
-  - コードレベル、フローレベルでの解説
+- 2/10: [mozilla のセキュリティ啓発サイト](https://www.mozilla.org/ja/teach/smarton/)
+  - トラッキング、サイバーセキュリティ、サーベイランス
 
 - 2/11: [Extensible web summit](https://app.livestorm.co/bocoup/extensible-web-summit)
   - やるらしい
+
+- 2/11: [React 基礎](http://basic-react.axlight.com/html/)
+  - react tutorial on gitbook
+
+- 2/11: [スノーデン引き渡されるか](http://www.jiji.com/jc/article?k=2017021100379)
+  - ロシアから引き渡されるかも..
