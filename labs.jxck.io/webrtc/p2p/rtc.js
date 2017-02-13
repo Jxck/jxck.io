@@ -1,4 +1,4 @@
-const debug = DEBUG ? console.debug.bind(console) : ()=>{}
+debug = DEBUG ? console.debug.bind(console) : ()=>{}
 
 class Channel extends EventEmitter {
   constructor(channel) {

@@ -1,31 +1,44 @@
-export class WS extends EventEmitter {
-  constructor(url) {
-    super();
+debug = DEBUG ? console.debug.bind(console) : ()=>{}
 
-    this.ws = new WebSocket(url);
+class WS extends EventEmitter {
+  constructor(url, protocols) {
+    super()
+
+    this.ws = new WebSocket(url, protocols)
 
     this.ws.onopen = (e) => {
-      this.emit('open', e);
-    };
+      debug(`ws#on('${e.type}')`, e)
+      this.emit('open', e)
+    }
 
     this.ws.onmessage = (e) => {
-      this.emit('message', JSON.parse(e.data));
-    };
+      debug(`ws#on('${e.type}')`, e)
+      this.emit('message', JSON.parse(e.data))
+    }
 
     this.ws.onclose = (e) => {
-      this.emit('close', e);
-    };
+      debug(`ws#on('${e.type}')`, e)
+      this.emit('close', e)
+    }
 
     this.ws.onerror = (e) => {
-      this.emit('error', e);
-    };
+      debug(`ws#on('${e.type}')`, e)
+      this.emit('error', e)
+    }
   }
 
-  send(message) {
-    this.ws.send(JSON.stringify(message));
+  json(data) {
+    debug(`ws#json(data)`, data)
+    this.ws.send(JSON.stringify(data))
+  }
+
+  send(data) {
+    debug(`ws#send(data)`, data)
+    this.ws.send(data)
   }
 
   close(code, reason) {
+    debug(`ws#close(code, reason)`, code, reason)
     this.ws.close(code, reason);
   }
 }
