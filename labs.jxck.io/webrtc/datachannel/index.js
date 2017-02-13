@@ -45,9 +45,7 @@ remote.onicecandidate = (e) => {
 }
 
 
-// checking -> connected -> completed
-//  "new"
-//  "checking"
+// checking -> connected -> completed //  "new" //  "checking"
 //  "connected"
 //  "completed"
 //  "failed"
@@ -80,12 +78,8 @@ Promise.all([
   new Promise((done, fail) => {
     local.onnegotiationneeded = done
   }),
-  new Promise((done, fail) => {
-    remote.onnegotiationneeded = done
-  }),
-
-]).then(([e1, e2]) => {
-  log(e1.type, e2.type)
+]).then(([e1]) => {
+  log(e1.type)
   info('2. onnegotiationneeded が発生したらネゴシエーションする')
 
   info('3. local の offer を作成')
@@ -120,51 +114,45 @@ Promise.all([
 // firefox では createDataChannel か addStream してないと
 // createOffer() できない
 info('1. createDataChannel()')
-const localchannel  = local.createDataChannel('localchannel')
-const remotechannel = remote.createDataChannel('remotechannel')
+const channel_local  = local.createDataChannel('channel')
 
-local.ondatachannel = (e) => {
-  info('9. local  で remote DataChannel ができる')
+channel_local.onopen = (e) => {
+  info('10. local で remote との接続が open する')
 
-  const channel = e.channel
-
-  channel.onopen = (e) => {
-    info('10. remote との接続が open する')
-
+  setTimeout(() => {
     info('11, local から remote にメッセージを送る')
-    channel.send("from local")
+    channel_local.send("from local")
+  }, 100)
 
-    localchannel.onmessage = (e) => {
-      info('14. local で remote からのメッセージを受け取る')
-      log(e.data)
+  channel_local.onmessage = (e) => {
+    info('14. local で remote からのメッセージを受け取る')
+    log(e.data)
 
-
-      localchannel.onclose = (e) => {
-        info('16. local で on close が発生')
-      }
-
-      info('15. local を close する')
-      localchannel.close()
+    channel_local.onclose = (e) => {
+      info('16. local で on close が発生')
     }
+
+    info('15. local を close する')
+    channel_local.close()
   }
 }
 
 remote.ondatachannel = (e) => {
-  info('9. remote で local DataChannel ができる')
+  info('9. remote で DataChannel ができる')
 
-  const channel = e.channel
+  const channel_remote = e.channel
 
-  channel.onopen = (e) => {
-    info('10. local との接続が open する')
+  channel_remote.onopen = (e) => {
+    info('10. remote で local との接続が open する')
 
-    remotechannel.onmessage = (e) => {
+    channel_remote.onmessage = (e) => {
       info('12. remote で local からのメッセージを受け取る')
       log(e.data)
 
       info('13. remote から local にメッセージを送る')
-      channel.send("from remote")
+      channel_remote.send("from remote")
 
-      remotechannel.onclose = (e) => {
+      channel_remote.onclose = (e) => {
         info('19. remote で on close が発生')
 
         info('20. remote, local を close する')
@@ -172,14 +160,21 @@ remote.ondatachannel = (e) => {
         local.close()
       }
 
-      channel.onclose = (e) => {
+      channel_remote.onclose = (e) => {
         info('17. remote で local の close を補足')
 
         info('18. remote を close する')
-        remotechannel.close()
+        channel_remote.close()
       }
     }
   }
+
+  [
+    "onbufferedamountlow",
+    "onerror",
+  ].forEach((ev) => {
+    channel_remote[ev] = error
+  })
 }
 
 
@@ -187,6 +182,5 @@ remote.ondatachannel = (e) => {
   "onbufferedamountlow",
   "onerror",
 ].forEach((ev) => {
-  localchannel[ev]  = error
-  remotechannel[ev] = error
+  channel_local[ev]  = error
 })
