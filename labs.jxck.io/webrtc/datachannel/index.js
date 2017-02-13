@@ -1,20 +1,10 @@
-const log   = console.log.bind(console);
-const info  = console.info.bind(console);
-const error = console.error.bind(console);
+const log   = console.log.bind(console)
+const info  = console.info.bind(console)
+const error = console.error.bind(console)
 
-let local = new RTCPeerConnection();
-let remote  = new RTCPeerConnection();
+let local = new RTCPeerConnection()
+let remote  = new RTCPeerConnection()
 
-[
-  'onicecandidateerror',
-  'onicegatheringstatechange',
-  'onfingerprintfailure',
-  'onaddstream',
-  'onremovestream',
-].forEach((ev) => {
-  local[ev]   = error;
-  remote[ev]  = error;
-});
 
 // signalingstatechange で状態が以下の順で変わる
 //  "stable"
@@ -23,40 +13,39 @@ let remote  = new RTCPeerConnection();
 //  "have-local-pranswer"
 //  "have-remote-pranswer"
 local.onsignalingstatechange = (e) => {
-  log(`${e.type}:\tlocal:\t[${local.signalingState}]`);
+  log(`${e.type}:\tlocal:\t[${local.signalingState}]`)
 }
 
 remote.onsignalingstatechange = (e) => {
-  log(`${e.type}:\tremote:\t[${remote.signalingState}]`);
+  log(`${e.type}:\tremote:\t[${remote.signalingState}]`)
 }
 
 
-
-// 7. ice candidate を交換
+// ice candidate を交換
 local.onicecandidate = (e) => {
-  if (e.candidate === null) return;
+  if (e.candidate === null) return
 
-  info('7. local で上がった ice candidate を remote に渡す');
-  log(e.candidate.candidate);
+  info('7. local で上がった ice candidate を remote に渡す')
+  log(e.candidate.candidate)
   remote
     .addIceCandidate(e.candidate)
     .then(log)
-    .catch(log);
+    .catch(error)
 }
 
 remote.onicecandidate = (e) => {
-  if (e.candidate === null) return;
+  if (e.candidate === null) return
 
-  info('7. remote で上がった ice candidate を local に渡す');
-  log(e.candidate.candidate);
+  info('7. remote で上がった ice candidate を local に渡す')
+  log(e.candidate.candidate)
   local
     .addIceCandidate(e.candidate)
     .then(log)
-    .catch(log);
+    .catch(error)
 }
 
 
-// 8. checking -> connected -> completed
+// checking -> connected -> completed
 //  "new"
 //  "checking"
 //  "connected"
@@ -66,13 +55,25 @@ remote.onicecandidate = (e) => {
 //  "closed"
 local.oniceconnectionstatechange = (e) => {
   info('8. local  の state が変わる')
-  log(`${e.type}:\tlocal:\t[${local.iceConnectionState}, ${local.iceGatheringState}]`);
+  log(`${e.type}:\tlocal:\t[${local.iceConnectionState}, ${local.iceGatheringState}]`)
 }
 
 remote.oniceconnectionstatechange = (e) => {
   info('8. remote の state が変わる')
-  log(`${e.type}:\tremote:\t[${remote.iceConnectionState}, ${local.iceGatheringState}]`);
+  log(`${e.type}:\tremote:\t[${remote.iceConnectionState}, ${local.iceGatheringState}]`)
 }
+
+
+[
+  'onicecandidateerror',
+  'onicegatheringstatechange',
+  'onfingerprintfailure',
+  'onaddstream',
+  'onremovestream',
+].forEach((ev) => {
+  local[ev]   = error
+  remote[ev]  = error
+})
 
 
 Promise.all([
@@ -84,60 +85,66 @@ Promise.all([
   }),
 
 ]).then(([e1, e2]) => {
-  log(e1.type, e2.type);
-  info('2. onnegotiationneeded が発生したらネゴシエーションする');
+  log(e1.type, e2.type)
+  info('2. onnegotiationneeded が発生したらネゴシエーションする')
 
-  info('3. local の offer を作成');
-  return local.createOffer();
+  info('3. local の offer を作成')
+  return local.createOffer()
 
 }).then((rtcSessionDescription) => {
 
-  info('4. local の offer を双方に適応');
-  log(rtcSessionDescription.type, rtcSessionDescription.sdp);
+  info('4. local の offer を双方に適応')
+  log(rtcSessionDescription.type, rtcSessionDescription.sdp)
   return Promise.all([
     local.setLocalDescription(rtcSessionDescription),
     remote.setRemoteDescription(rtcSessionDescription),
-  ]);
+  ])
 
 }).then((e) => {
 
-  info('5. remote の offer を作成');
-  return remote.createAnswer();
+  info('5. remote の offer を作成')
+  return remote.createAnswer()
 
 }).then((rtcSessionDescription) => {
 
-  info('6. remote の offer を双方に適応');
-  log(rtcSessionDescription.type, rtcSessionDescription.sdp);
+  info('6. remote の offer を双方に適応')
+  log(rtcSessionDescription.type, rtcSessionDescription.sdp)
   return Promise.all([
     local.setRemoteDescription(rtcSessionDescription),
     remote.setLocalDescription(rtcSessionDescription),
-  ]);
+  ])
 
-}).catch(console.error.bind(console))
-
-
+}).catch(error)
 
 
 // firefox では createDataChannel か addStream してないと
 // createOffer() できない
-info('1. createDataChannel()');
-const localchannel  = local.createDataChannel('localchannel');
-const remotechannel = remote.createDataChannel('remotechannel');
+info('1. createDataChannel()')
+const localchannel  = local.createDataChannel('localchannel')
+const remotechannel = remote.createDataChannel('remotechannel')
 
 local.ondatachannel = (e) => {
   info('9. local  で remote DataChannel ができる')
 
-  const channel = e.channel;
+  const channel = e.channel
 
   channel.onopen = (e) => {
-    info('10. channelmote との 接続 が open する');
+    info('10. remote との接続が open する')
 
-    info('11, local から remote にメッセージを送る');
-    channel.send("from local");
+    info('11, local から remote にメッセージを送る')
+    channel.send("from local")
 
     localchannel.onmessage = (e) => {
       info('14. local で remote からのメッセージを受け取る')
-      log(e.data);
+      log(e.data)
+
+
+      localchannel.onclose = (e) => {
+        info('16. local で on close が発生')
+      }
+
+      info('15. local を close する')
+      localchannel.close()
     }
   }
 }
@@ -145,17 +152,32 @@ local.ondatachannel = (e) => {
 remote.ondatachannel = (e) => {
   info('9. remote で local DataChannel ができる')
 
-  const channel = e.channel;
+  const channel = e.channel
 
   channel.onopen = (e) => {
-    info('10. local との接続が open する');
+    info('10. local との接続が open する')
 
     remotechannel.onmessage = (e) => {
       info('12. remote で local からのメッセージを受け取る')
-      log(e.data);
+      log(e.data)
 
-      info('13. remote から remote にメッセージを送る')
-      channel.send("from remote");
+      info('13. remote から local にメッセージを送る')
+      channel.send("from remote")
+
+      remotechannel.onclose = (e) => {
+        info('19. remote で on close が発生')
+
+        info('20. remote, local を close する')
+        remote.close()
+        local.close()
+      }
+
+      channel.onclose = (e) => {
+        info('17. remote で local の close を補足')
+
+        info('18. remote を close する')
+        remotechannel.close()
+      }
     }
   }
 }
@@ -164,8 +186,7 @@ remote.ondatachannel = (e) => {
 [
   "onbufferedamountlow",
   "onerror",
-  "onclose",
 ].forEach((ev) => {
-  localchannel[ev]  = error;
-  remotechannel[ev] = error;
-});
+  localchannel[ev]  = error
+  remotechannel[ev] = error
+})
