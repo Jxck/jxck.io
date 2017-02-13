@@ -37,6 +37,11 @@ const local = new RTC('local')
 //
 //
 
+const ws = new WS('wss://ws.jxck.io', 'echo');
+
+ws.on('open', () => {
+
+
 Promise.all([
   new Promise((done, fail) => {
     local.on('negotiationneeded', done)
@@ -105,7 +110,9 @@ Promise.all([
 //})
 
 
-// firefox では createDataChannel か addStream してないと
-// createOffer() できない
-info('1. createDataChannel()')
-local.createDataChannel('channel')
+  // firefox では createDataChannel か addStream してないと
+  // createOffer() できない
+  info('1. createDataChannel()')
+  local.createDataChannel('channel')
+
+});
