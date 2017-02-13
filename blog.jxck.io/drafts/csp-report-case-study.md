@@ -74,22 +74,61 @@ TODO: グラフ
 次に個々のレポートを細かくみた結果、よく発生していたものについて紹介する。
 
 
-### DOM Change from Bookmark
+### DOM Change from Bookmarklet
 
-Bookmark から
+以下のレポートは、 CSP の指定範囲外オリジンから jQuery を埋め込んだことによるレポートと思われる。
+Bookmarklet などから DOM を変更することで、ページそのものをカスタマイズしたりするユーザもいる。
+もしくは、このサイト上で色々試したりするユーザもいるだろう。
 
+```
+{
+  "csp-report": {
+    "document-uri":        "https://blog.jxck.io/entries/...",
+    "referrer":            "https://blog.jxck.io/",
+    "violated-directive":  "script-src",
+    "effective-directive": "script-src",
+    "original-policy":     "default-src 'self' https://jxck.io...",
+    "disposition":         "report",
+    "blocked-uri":         "https://code.jquery.com/jquery-3.0.0.min.js",
+    "line-number":         1,
+    "column-number":       108,
+    "status-code":         0
+  }
+}
+```
+
+同様に devtools からの変更でもレポートを起こすことができる。
+Local Proxy による変更でも同じことが起こるだろう。
 
 ### Extension
 
-以下のようなレポートによって、ブラウザエクステンションが
+以下のレポートは、ブラウザエクステンションがブロックされたであろうと想像される。
+画像について何か改変をしているようだが、詳細はわからない。
+
+```js
+{
+  "csp-report": {
+    "document-uri":        "https://blog.jxck.io/entries/...",
+    "violated-directive":  "default-src 'self' https://jxck.io ...",
+    "effective-directive": "img-src",
+    "original-policy":     "default-src 'self' https://jxck.io ...",
+    "blocked-uri":         "ms-browser-extension",
+    "status-code":         0
+  }
+}
+```
+
+こうした拡張を通じた DOM の改変が起こる可能性として、以下のような場面があるだろう。
+
+- Reader View Mode
+- Screen Reader
+- Outline Viewer
+
+Safari の Reder View と、 Screen Reader である TODO については、特に問題がなさそうなことを確認してる。
+しかし、これらも実装次第ではあると思うので、もっと幅広い検証が必要かもしれない。
 
 
-### Firefox reader view
-
-??
-
-
-### テキストページ
+### browser inline style
 
 本サイトでは記事の原稿を .md でも閲覧できる。また RSS feed は XML で提供し、 humand.txt や robot.txt は Text で提供している。
 
@@ -99,6 +138,22 @@ Bookmark から
 
 ![inline style violation for RSS feed in chrome](inline-style-violation.png "chrome add inline style for display rss feed which violates CSP Policy")
 
+
+```js
+{
+  "csp-report": {
+  "document-uri":        "https://jxck.io/humans.txt",
+  "referrer":            "",
+  "violated-directive":  "style-src",
+  "effective-directive": "style-src",
+  "original-policy":     "default-src 'self' https://*.jxck.io...",
+  "disposition":         "report",
+  "blocked-uri":         "inline",
+  "line-number":         1,
+  "status-code":         0
+  }
+}
+```
 
 これはもちろん悪意のあるポリシー違反でないため、本サイトではこの種のコンテントタイプのページへは CSP を適用しないこととした。
 
@@ -142,7 +197,39 @@ https://twitter.com/Jxck_/status/715748823713185792
 
 
 
+## CSP のサポート
+
+このへんがまとまってる
+
+[Content Security Policy Reference](https://content-security-policy.com/)
+
+## CSP Report
+
+レポートを取るのが重要
+レポートだけでも良さそう
+それだけでも前進している
 
 
+## Reporting Server
 
-##
+CSP のレポート収集サービスとして、 [report-uri.io](https://report-uri.io) がよく紹介され、本サイトでもこれを用いてレポートを収集していた。
+無料で使うことができる点で導入の敷居が低いのは良かったが、現在は以下のような理由でもう使っていない。
+
+- レポートをエクスポートできない
+- 半年以前のレポートが検索できない(内部的に消されている?)
+- HTTP のヘッダを見ることができないので細かな解析ができない
+- エンドポイントのレスポンスが悪く、一つのページが複数のレポートをあげると詰まって 5xx が返りレポートを取りこぼす
+- レポート検索/閲覧の UI が非常に見辛い
+
+
+Reporting Server は、小さい JSON ファイルが POST で受け取れる単純な API であればよいため、自分で自作することとした。
+それなりのサービスであれば、ログなどを解析/可視化する基盤(graphite, kibana, ES, BigQ, mackerel etc) があると思うので、エンドポイントを自分で立ててそこに流し込むのが良いだろう。
+
+また、もし自分でエンドポイントを実装する際には、以下の点に注意して実装するのが良いと思われる。
+
+- report-uri は非推奨なので、 [report-to](http://wicg.github.io/reporting/) を前提として設計
+- レポートには UA やタイムスタンプはないので、必ず HTTP ヘッダ(全体)を一緒に保存する
+- 意図しないリクエストを `content-type: csp-report` で間引きたくなるが、[準拠してないクライアント](https://www.tollmanz.com/content-security-policy-report-samples/) もあるようなので注意が必要
+
+report-uri から report-to への変更で、 CSP 以外も含めたレポート送信が Reporting API に統合される。
+ここではヘッダ指定のしかたから、 Cookie の扱いなど色々変わりそうなので、本サイトで実装を終えたら追って解説しようと思う。
