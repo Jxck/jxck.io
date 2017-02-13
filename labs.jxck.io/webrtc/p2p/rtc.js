@@ -48,14 +48,12 @@ class Channel extends EventEmitter {
 
 
 class RTC extends EventEmitter {
-  constructor(id) {
+  constructor(id, config) {
     super()
 
     this.id = id
 
-    this.connection = new RTCPeerConnection({
-      iceServers: [],
-    })
+    this.connection = new RTCPeerConnection(config)
 
     this.connection.onicecandidate = (e) => {
       debug(`${this.id}#on('${e.type}')`, e.candidate, e)
