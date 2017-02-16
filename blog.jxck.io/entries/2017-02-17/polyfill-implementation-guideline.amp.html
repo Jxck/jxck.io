@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html amp>
+<head>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=https://blog.jxck.io/entries/2017-02-17/polyfill-implementation-guideline.html>
+<meta name=viewport content="width=device-width,minimum-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+<link rel=author href=//jxck.io/assets/humans.txt>
+
+<meta name="author" content="Jxck">
+    <meta name="description" content="W3C の TAG から、主にブラウザ API の Polyfill に関するドキュメントが公開された。Polyfills and the evolution of the WebPolyfill は便利な一方で、時として標準化の妨げになってしまう場合があるため、それを避け...">
+    <meta name="keywords" content="polyfill,TAG,w3c">
+    <meta itemprop="image" content="https://jxck.io/assets/img/jxck.png">
+    <meta itemprop="name" content="blog.jxck.io">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jxck_">
+    <meta name="twitter:url" content="https://blog.jxck.io/entries/2017-02-17/polyfill-implementation-guideline.html">
+    <meta name="twitter:title" content="Polyfill のあり方と Web の進化と協調するためのガイドライン | blog.jxck.io">
+    <meta name="twitter:description" content="W3C の TAG から、主にブラウザ API の Polyfill に関するドキュメントが公開された。Polyfills and the evolution of the WebPolyfill は便利な一方で、時として標準化の妨げになってしまう場合があるため、それを避け...">
+    <meta name="twitter:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://blog.jxck.io/entries/2017-02-17/polyfill-implementation-guideline.html">
+    <meta property="og:title" content="Polyfill のあり方と Web の進化と協調するためのガイドライン | blog.jxck.io">
+    <meta property="og:site_name" content="blog.jxck.io">
+    <meta property="og:description" content="W3C の TAG から、主にブラウザ API の Polyfill に関するドキュメントが公開された。Polyfills and the evolution of the WebPolyfill は便利な一方で、時として標準化の妨げになってしまう場合があるため、それを避け...">
+    <meta property="og:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <link rel="icon" sizes="192x192" href="https://jxck.io/assets/img/jxck.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "Polyfill のあり方と Web の進化と協調するためのガイドライン | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2017-02-17T08:00:00+08:00",
+  "dateModified": "2017-02-17T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "W3C の TAG から、主にブラウザ API の Polyfill に関するドキュメントが公開された。Polyfills and the evolution of the WebPolyfill は便利な一方で、時として標準化の妨げになってしまう場合があるため、それを避け..."
+}
+</script>
+
+<title>Polyfill のあり方と Web の進化と協調するためのガイドライン | blog.jxck.io</title>
+<script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+<script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+<script async src=https://cdn.ampproject.org/v0.js></script>
+
+<style amp-custom>
+article section p {
+  margin-left: 0.8em;
+}
+
+article pre {
+  margin-left: 0.8em;
+}
+
+article table {
+  margin-left: 0.8em;
+}
+
+article img {
+  margin: 1em 0;
+  border: 1px solid #ccc;
+  box-sizing: content-box;
+}
+
+article ul, article ol {
+  margin-left: 0.8em;
+  font-family: monospace;
+  font-size: 1.2em;
+}
+
+article li {
+  margin-bottom: 0.4em;
+}
+
+article ul li ul {
+  margin: 0.2em 0 1.2em 1em;
+  font-size: 1em;
+}
+
+article ul li ul li {
+  margin-bottom: 0;
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 400;
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=20160828") format("woff");
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 700;
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff?ver=20160828") format("woff");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+  color: #222;
+  background-color: #fefefe;
+}
+
+iframe {
+  display: block;
+  max-width: 100%;
+  margin: 1em 0;
+}
+
+.archive {
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.archive ul {
+  margin: 0;
+}
+
+.archive time {
+  padding-right: 0.5em;
+}
+
+.archive time::after {
+  content: ":";
+}
+
+.archive .tags {
+  font-size: 0.8em;
+  margin-left: 1em;
+}
+
+.tags a {
+  margin: 0 0.2em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+audio {
+  width: 70%;
+}
+
+@media screen and (max-device-width: 480px) {
+  audio {
+    width: 100%;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.info li {
+  margin-right: 1em;
+  list-style-type: none;
+}
+
+.info li::before {
+  content: none;
+}
+
+header {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.4em;
+  background-color: #222;
+}
+
+header ul {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 80%;
+  margin: 0 auto;
+  padding: 4px;
+}
+
+header ul li {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  margin-left: 1em;
+}
+
+header ul li a {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+header ul li svg {
+  fill: #fff;
+}
+
+header ul li::before {
+  content: none;
+}
+
+header ul li:first-child {
+  flex-grow: 1;
+  margin-left: 0;
+}
+
+header .logo {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  pointer-events: none;
+  color: #222;
+}
+
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: #222;
+}
+
+h1 > a:hover:before,
+h2 > a:hover:before,
+h3 > a:hover:before,
+h4 > a:hover:before,
+h5 > a:hover:before,
+h6 > a:hover:before {
+  color: Brown;
+}
+
+h1 > a::before {
+  content: "# ";
+  pointer-events: all;
+}
+
+h2 > a::before {
+  content: "## ";
+  pointer-events: all;
+}
+
+h3 > a::before {
+  content: "### ";
+  pointer-events: all;
+}
+
+h4 > a::before {
+  content: "#### ";
+  pointer-events: all;
+}
+
+i::before, i::after {
+  content: "*";
+}
+
+strong::before, strong::after {
+  content: "**";
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+dl dt::after {
+  content: ":";
+}
+
+blockquote::before {
+  content: "> ";
+}
+
+code::before, code::after {
+  /* うざかった */
+  /* content: "`"; */
+}
+
+main {
+  display: block;
+  width: 80%;
+  margin: 1em auto;
+}
+
+@media screen and (max-device-width: 480px) {
+  main {
+    width: 94%;
+  }
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+}
+
+a {
+  color: RoyalBlue;
+}
+
+a:visited {
+  color: Brown;
+}
+
+ol, ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+ul, ol, dl {
+  margin: 1.4em 0;
+}
+
+dl dt {
+  font-weight: bold;
+}
+
+dl dd {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+blockquote {
+  display: block;
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  padding: 1em;
+  margin: 1.4em 0;
+}
+
+code {
+  border: 1px solid #ddd;
+  background-color: #efefef;
+  border-radius: 4px;
+  padding: 0.1em;
+  margin: 1.4em 0;
+}
+
+footer {
+  padding: 1em;
+}
+
+footer address,
+footer strong {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+}
+
+pre {
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: 1.2em;
+  margin: 1.4em 0 0 0;
+  border-radius: 4px;
+}
+
+pre::before {
+  content: "```" attr(class) "\A";
+}
+
+pre::after {
+  position: relative;
+  top: -1em;
+  content:"\A```";
+}
+
+pre > code {
+  overflow: auto;
+  display: block;
+  padding: 0.6em;
+  margin: 0;
+  border: none;
+  background-color: #efefef;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs,
+.hljs-subst ,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-name ,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition ,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-type,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-section,
+.hljs-meta,
+.hljs-meta-string,
+.hljs-emphasis {
+}
+
+table {
+  font-family: monospace;
+  margin: 2em 0;
+  border-spacing: 0 0.4em;
+}
+
+th {
+  padding: 0em 1.0em 0.6em;
+  border-left: 0.14em solid #222;
+  border-bottom: 2px dashed #222;
+}
+
+td {
+  padding: 0.4em 1.2em;
+  border-left: 0.14em solid #222;
+}
+
+th:last-child, td:last-child {
+  border-right: 0.14em solid #222;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+</style>
+</head>
+<body>
+<header>
+  <ul>
+    <li><a href=//blog.jxck.io><amp-img class=logo alt="blog top" width=30 height=30 src=//jxck.io/assets/img/blog.svg></a>
+    <li><a href=.><amp-img alt="move to parent directory" width=30 height=30 src=//jxck.io/assets/img/up.svg></a>
+    <li><a href=/feeds/atom.xml><amp-img alt="rss feed" width=30 height=30 src=//jxck.io/assets/img/rss.svg></a>
+    <li><a href=//jxck.io/humans.txt><amp-img alt="huamns.txt" width=30 height=30 src=//jxck.io/assets/img/humans.svg></a>
+    <li><a href=//jxck.io><amp-img class=logo alt="jxck logo" width=30 height=30 src=//jxck.io/assets/img/jxck.svg></a>
+  </ul>
+</header>
+<main>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2017-02-17>2017-02-17</time>
+    <li>updated_at: <time class=updated_at datetime=2017-02-17>2017-02-17</time>
+    <li class=tags>tags: [<a href='/tags/polyfill.html'>polyfill</a>,<a href='/tags/TAG.html'>TAG</a>,<a href='/tags/w3c.html'>w3c</a>]
+  </ul>
+
+
+  <article>
+    <h1><a href=/entries/2017-02-17/polyfill-implementation-guideline.html>Polyfill のあり方と Web の進化と協調するためのガイドライン</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>W3C の TAG から、主にブラウザ API の Polyfill に関するドキュメントが公開された。
+      <p><a href="https://w3ctag.github.io/polyfills/">Polyfills and the evolution of the Web</a>
+      <p>Polyfill は便利な一方で、時として標準化の妨げになってしまう場合があるため、それを避けるために、 Polyfill 実装者、利用者、仕様策定者などが、どう振る舞うべきかという趣旨である。
+      <p>今回はこの内容を元に、 Web の進化と協調する Polyfill のあり方について、主に「実装者」がどうすべきかに着目し記す。
+    </section>
+    <section>
+      <h2 id="Web+における+Breaking+Change"><a href="#Web+における+Breaking+Change">Web における Breaking Change</a></h2>
+      <p>Breaking Change は、簡単に言えば <strong>後方互換を失うことで既存のものが壊れる可能性がある変更</strong> のことを表す。
+      <p>そして、 Web における Breaking Change (<strong>Break the Web</strong>)、具体的には Web の標準技術について、何か追加/変更を行なったことによって既存のコンテンツが壊れることは、基本的に許されない。
+      <p>また Web 上には、更新されないまま残るコンテンツも多くあるため、壊れたコンテンツ側が変更に追従すれば良いという前提を取るのが難しい。
+      <p>実際にはブラウザやコンテンツの実装、セキュリティ的な理由、なんらかの問題により deprecate される API もあり、壊れるコンテンツはある。<br>
+      しかし、少なくとも仕様策定が原因で発生することは無いように作業は進められる。
+      <p>プラットフォームとしての Web にはバージョンが無いため、作った時に動いたものは、何か標準仕様に変更があっても動き続けることが求められるのだ。
+    </section>
+    <section>
+      <h2 id="Polyfill"><a href="#Polyfill">Polyfill</a></h2>
+      <p>Polyfill は W3C/WHATWG や ECMA などの策定によって、次々と登場する新しい API を先取りするために、既にある API を用いて、実装の無い新しい API を「擬似的に実装する」手法をさす。
+      <p>しかし、良かれと思って作られた Polyfill も、仕様が確立していないものを、あまりに先行して実装してしまうと、標準化を妨げる厄介な問題をもたらす場合がある。
+      <p>もし Polyfill を作るのであれば、まず最初にその仕様が標準化プロセスにおいて、どのようなステータスなのかを確認することが重要だ。
+    </section>
+    <section>
+      <h2 id="仕様策定の速度"><a href="#仕様策定の速度">仕様策定の速度</a></h2>
+      <p>Break The Web を避けるために、 Web に新しい API を追加する作業は慎重に行われ、時間がかかることもよくある。
+      <p>TAG のドキュメントでは、大まかな流れが以下のように紹介されている。
+      <ol>
+        <li>Idea discussion
+        <li>Incubation
+        <li>First native implementation (as a trial / behind flag)
+        <li>Specification
+        <li>Multiple interoperable implementations
+        <li>Universal support
+      </ol>
+      <p>多くの場合、 5  と 6 の間は、実装が他よりも遅れるブラウザがあるために時間がかかる。<br>
+      その間にも、新しい機能を用いたコンテツが全てのブラウザで動くように導入するのが、 Polyfill の代表的なユースケースだ。
+      <p>ただし、ここでは 4 が終わっているため、 Polyfill が実装する仕様は 6 の段階で各ブラウザが提供するものと同等であり、 6 の段階に至ったら「Polyfill 自体の読み込みをやめる」だけで、他のコードは一切変更せずにネイティブの API を呼び出して動くというのが理想的な流れだ。
+    </section>
+    <section>
+      <h2 id="Speculative+Polyfill"><a href="#Speculative+Polyfill">Speculative Polyfill</a></h2>
+      <p>問題を起こしやすいのは、 1 から 4 の段階、つまり仕様がきっちりと固まってない段階で、早まった API を実装した Polyfill を提供してしまうパターンだ。
+      <p>これは俗に Ponyfill/Prolyfill/Nottifill などと呼ばれて<a href="https://github.com/jonathantneal/document-promises/issues/4#issuecomment-256235909">分類</a> されることもあるが、いずれも問題をはらむ可能性があるということから TAG のドキュメントではこれらを総じて <strong>Speculative Polyfill</strong> としている。文意としては "先走った Polyfill" といったところか。
+      <p>策定中の API は、クラス/メソッド名などが確定しておらず、議論や試験実装を経てそれらを変更する可能性がある。
+      <p>しかし、 "先走った Polyfill" の実装が、仕様が固まる前に広まってしまい、固まる前のクラス/メッソド名が多くのコンテンツで使われてしまうと、仕様側でそれを変更するのが難しくなってしまう場合がある。
+      <p>実際にこれが問題になった事例もいくつかある。
+      <section>
+        <h3 id="Mootools+の+Array.prototype.includes"><a href="#Mootools+の+Array.prototype.includes">Mootools の Array.prototype.includes</a></h3>
+        <p>現在 <code translate="no">Array.prototype.contains()</code> として定義/実装されているものは、最初 <code translate="no">includes()</code> という名前で提案されており、実際に実装まで行われたブラウザがあった。
+        <pre class=js><code translate="no">[1, 2, 3].includes(2) // true</code></pre>
+        <p>しかし、この仕様を実装したブラウザで jsfiddle が壊れてことから、そこで使われていた MooTools が問題を起こしていたことが判明した。
+        <p>MooTools は早い段階から <code translate="no">includes()</code> を実装していたのだが、その実装は行儀の良いものではなかった。
+        <p>具体的には、その時点で Array が実装しているメソッドをホワイトリストとして定義し、当時そのリストに無かった <code translate="no">includes()</code> の Polyfill を追加した独自の Array を提供していた。
+        <pre class=js><code translate="no">(&#039;Array&#039;, Array, [
+  &#039;pop&#039;, &#039;push&#039;, &#039;reverse&#039;, &#039;shift&#039;, &#039;sort&#039;, &#039;splice&#039;, &#039;unshift&#039;, &#039;concat&#039;, &#039;join&#039;, &#039;slice&#039;,
+  &#039;indexOf&#039;, &#039;lastIndexOf&#039;, &#039;filter&#039;, &#039;forEach&#039;, &#039;every&#039;, &#039;map&#039;, &#039;some&#039;, &#039;reduce&#039;, &#039;reduceRight&#039;
+])</code></pre>
+        <p><a href="https://github.com/mootools/mootools-core/blob/09b99e5886ca466480d4ae9acbb769e284f4acf1/Source/Core/Core.js#L269">Core.js#L269</a>
+        <p>しかし、 <code translate="no">includes()</code> の実装を追加する前に <code translate="no">Array.prototype.includes</code> の存在をチェックし、存在したらスルーしていたため、そこにネイティブの実装が加わった時点で、最終的な独自の Array には、ネイティブ実装の <code translate="no">includes()</code> も Polyfill の <code translate="no">includes()</code> もない Array が提供されたというバグである。
+      </section>
+      <section>
+        <h3 id="creataShadowRoot"><a href="#creataShadowRoot">creataShadowRoot</a></h3>
+        <p>TAG のドキュメントでは、 ShadowDOM の <code translate="no">createShadowRoot()</code> についても言及されている。
+        <p>ShadowDOM の仕様は、これまでの DOM に新しい概念を持ち込むため仕様の策定が難しく、かなりの時間を要した。<br>
+        API 自体も途中で更新され、更新後を v1 としてそれまでが v0 として扱われることとなった。
+        <p>その API の一つであり、非常に重要な <code translate="no">createShadowRoot()</code> は、 v1 に上がる際に open/close を値として持つ <code translate="no">mode</code> という概念を持つこととなった。<br>
+        この <code translate="no">mode</code> については、どちらをデフォルトとするのかという議論があったようだが、結果として <code translate="no">createShadowRoot({mode})</code> のように、引数を必須とすることで、省略時のデフォルトを定義しない方向で策定されることとなった。
+        <p>しかし、 <code translate="no">createShadowRoot()</code> は主に Google が先行して Chrome に実装しており、それがかなり広く普及してしまったため、途中から引数を必須にすることは実質不可能だった。ただし、 <code translate="no">mode</code> の概念を外すことはできないため、 <code translate="no">createShadowRoot()</code> は従来のままとし、代わりに「引数を必須とする別の名前のメソッド」を定義することでこの問題を回避することとなった。
+        <p>これが v1 で引数必須として定義されている <code translate="no">attachShadow({mode})</code> である。
+        <pre class=js><code translate="no">// v0
+document.createElement(&#039;div&#039;).createShadowRoot();
+
+// v1 (引数必須)
+document.createElement(&#039;div&#039;).createShadowRoot({ mode: &#039;open&#039; });</code></pre>
+        <p>ブラウザ自体の実装は、外部ライブラリとしての Polyfill とはまた違い、開発者からのフィードバックを集める以上、実装しないわけにもいかない。しかし、一度リリースし普及すれば、取り消すことは難しい。
+        <p>このジレンマの解決としてベンダプレフィックスがあったが、これは次に紹介するように必ずしもうまくはいかなかった。
+      </section>
+    </section>
+    <section>
+      <h2 id="fantasy+override"><a href="#fantasy+override">fantasy override</a></h2>
+      <p>Polyfill が、ネイティブの実装と別の名前で提供されているなら、これらの問題を避けることができる。<br>
+      しかし、多くのコンテンツは、まだ仕様策定/実装が途中の機能を、将来使われるか、一部のブラウザだけが提供している仮の("fantasy")実装に寄せて使ってしまうため、依然問題となる。
+      <p>例えば、以下のような記述はよく見られる。
+      <pre class=js><code translate="no">requestAnimationFrame = requestAnimationFrame || webkitRequestAnimationFrame || polyfillRequestAnimationFrame;</code></pre>
+      <p>もしこのコードを書いた時、最初の二つがなかった時は <code translate="no">polyfillRequestAnimationFrame</code> が使われるため、その挙動に依存した実装がされるだろう。<br>
+      その後、 <code translate="no">window.webkitRequestAnimationFrame</code> がネイティブ実装されるとそちらが使われるが、それが <code translate="no">polyfillRequestAnimationFrame</code> の挙動と変わっていると、コンテンツが壊れてしまうことになる。また、ベンダプレフィックス付きの実装はあくまでも試験的な実装であるはずが、プレフィックスが取れた実装が提供された際に、そこで挙動が変わるとまたコンテンツが壊れる可能性が出る。
+      <p>つまり、このコードは最終的な <code translate="no">requestAnimationFrame</code> が取り得る選択肢を、非常に狭めてしまう結果となるのだ。
+      <p>本来ベンダプレフィックスは、先行実装であることを示すつもりで付けられていたが、こうした使われ方が広まった結果、本来の意図を果たすことができなかった。
+      <p>特に WebKit が先行し、他のブラウザはプレフィックス付き実装すらしていなかった機能については、 webkit プレフィックスをつけて実装され、そのまま放置されているものも少なくない。<br>
+      そういったコンテンツを動作させられるよう、  <a href="https://groups.google.com/forum/?_escaped_fragment_=topic/mozilla.dev.platform/969k-Iryiyo">Firefox</a> や <a href="https://msdn.microsoft.com/ja-jp/library/mt270097(v=vs.85).aspx">Edge</a> が一部の webkit プレフィックスをサポートするという本末転倒な事態となっている。
+      <p>なお、 Extensible Web 以降、低レベルで実装の難易度が高く、問題が起こったときの影響が大きいものについては、ベンダプレフィックスの代わりに Origin Trial が採用さている。これについては以下を参照のこと。
+      <p><a href="https://blog.jxck.io/entries/2016-09-29/vender-prefix-to-origin-trials.html">Web 標準化のフィードバックサイクルを円滑にする Origin Trials について</a>
+    </section>
+    <section>
+      <h2 id="Polyfill+を実装するタイミング"><a href="#Polyfill+を実装するタイミング">Polyfill を実装するタイミング</a></h2>
+      <p>では、いつどの時点での仕様を元に Polyfill を実装するのが良いかというと、これは一概には言えない。<br>
+      仕様策定を追っている人であれば、仕様の成熟度合いやブラウザの実装状況などを踏まえた上で適切な時点を判断できるだろうが、そうでない場合は、その仕様の策定者や ML に提案を投げるのが一番安全だ。<br>
+      もしそこからレスポンスが無いようであれば、おそらく実装すべきタイミングにそもそも至っていない。
+      <p>参考になる指標として、ドキュメントでは以下が挙げられている。
+      <ul>
+        <li>既に実装しているブラウザが複数あるか?
+        <li>インタフェース仕様の変更が起こりそうな問題を解決済みで、コンセンサスが取れた仕様があるか
+        <li><a href="https://github.com/w3c/web-platform-tests">Test Suite</a> が存在するか
+        <li>メジャーなブラウザベンダから "Intent To Implement" がアナウンスされているか
+      </ul>
+    </section>
+    <section>
+      <h2 id="実装者向けガイドライン"><a href="#実装者向けガイドライン">実装者向けガイドライン</a></h2>
+      <p>一番重要なのは名前だ。特に global スコープやネイティブオブジェクトの prototype に、策定段階の名前を使った実装を行うことは非常にリスクが高い。<br>
+      ドキュメントでは、例えば仕様で <code translate="no">Foo</code> と定義されているものは、 <code translate="no">FooPolyfill</code> や <code translate="no">FutureFoo</code> などに変えて実装することが推奨されている。<br>
+      また <code translate="no">$</code>, <code translate="no">root</code>, <code translate="no">web</code> といった一般的で短い名前を利用することも、非推奨とされている。
+      <p>そして、もしブラウザが実装を持っていたら、その実装に移譲するようにコードを書くべきである。またブラウザの実装が全てを提供してないない場合は、不足分のみを補うようにする。
+      <p>例えば <code translate="no">URL</code> を提供するが、その内部で <code translate="no">URL#searchParams</code> が <code translate="no">URLSearchParams</code> を提供していなかった場合は、 <code translate="no">URL</code> 全体を Polyfill で置き換えるのでは無く、使える部分は <code translate="no">URL</code> を使い、 <code translate="no">URL#searchParams</code> だけ <code translate="no">URLSearchParams</code> を追加するように実装するのが望ましい。
+      <p>他細かい点では以下があげられる。
+      <ul>
+        <li>module 機構を使い、 global スコープやネイティブオブジェクトのプロトタイプを直接汚染しない
+        <li>ユーザが最新の実装に追従しやすいよう、 npm や CDN(<a href="https://cdnjs.com">cdnjs.com</a>, <a href="https://polyfill.io">polyfill.io</a>) などで提供する
+        <li>Web Platform Test があったらパスすること
+        <li>Polyfill の実装経験は貴重なので、気づいた点を仕様策定にフィードバックする
+        <li>ネイティブ実装に移譲した場合はコンソールなどに Polyfill が不要であったことを知らせる
+      </ul>
+    </section>
+    <section>
+      <h2 id="利用者が気をつけるべきこと"><a href="#利用者が気をつけるべきこと">利用者が気をつけるべきこと</a></h2>
+      <p>Polyfill を使う側にも注意すべき点はある。
+      <p>まず何よりも、 Polyfill の役割をきちんと理解し、そのコードが極力最新である状態を保つことが重要だ。
+      <p>また、その時点での標準化の状況を踏まえて、例えば API の変更やブラウザ実装の問題などを含めて最善な状態がどうであるかを見極めた上での利用が望ましい。
+      <p>仕様策定に対して、あまりにも早すぎる段階での Polyfill 実装については、コンテンツへの大々的な導入に際して仕様策定の ML などに問い合わせるといった慎重さがあるとなお良いだろう。
+    </section>
+    <section>
+      <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
+      <p>Polyfill の先行実装によって標準化へのフィードバックを行うことは非常に重要だが、実装方法によっては標準化を妨げることになりかねない。
+      <p>最近では、名前空間/実装合戦のような雰囲気を感じることもあるが、もしその Polyfill が普及すればその実装が及ぼす影響は決して無視できない。
+      <p>polyfill を実装、利用する際は、こうした点を踏まえた上で慎重に行い Web の進歩が少しでも円滑になればと思う。
+    </section>
+  </article>
+
+</main>
+<hr>
+<footer>
+  <address class="copyright">Copyright &copy; 2016 <a href="/">Jxck</a>. All Rights Reserved. Using <a href="https://www.google.com/intl/ja/policies/privacy/partners/">google analytics</a>.</address>
+</footer>
+</body>
+</html>
+<amp-analytics type="googleanalytics" id="analytics1">
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
