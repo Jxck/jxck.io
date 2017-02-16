@@ -333,3 +333,43 @@ TODO
 
 - 2/11: [スノーデン引き渡されるか](http://www.jiji.com/jc/article?k=2017021100379)
   - ロシアから引き渡されるかも..
+
+- 2/10: [Bridging CSS and JS with Custom Properties](https://sgom.es/posts/2017-02-10-bridging-css-and-js-with-custom-properties/)
+  - あとで
+
+- 2/12: [Stats in Chrome](https://docs.google.com/presentation/d/1Lq2DD28CGa7bxawVH_2OcmyiTiBn74dvC6vn2essroY/edit)
+  -  chrome://tracing の使い方
+
+- 2/16: [V8 の新しいコンパイラパイプライン](https://v8project.blogspot.com/2017/02/help-us-test-future-of-v8.html)
+  - Ignition interpreter + Turbofan compiler のフィールドテスト開始
+  - flags からも有効にできるのでフィードバック募集中とのこと
+
+- 2/14: [Manifoldjs が PWA Builder に改名](https://medium.com/web-on-the-edge/manifoldjs-is-becoming-pwa-builder-to-simplify-building-progressive-web-apps-49bff31f9380#.hkcmqzler)
+  - PWA を GUI で簡単に作れるみたいなやつ
+
+- 2/15: [TLS1.3 の Go 実装](https://blog.cloudflare.com/ncc-groups-cryptography-services-audit-of-tls-1-3/)
+  - Cloudflare から
+  - crypto/tls を土台に実装
+
+- 2/14: [複数ブラウザでも Fingerprint 可能](https://arstechnica.com/security/2017/02/now-sites-can-fingerprint-you-online-even-when-you-use-multiple-browsers/)
+  - 細かい情報を集めれば複数ブラウザでもユーザの識別ができる
+
+- 2/15: [2017年前半の PWA ロードマップ](https://docs.google.com/document/d/1_PcEyuXaRckigJ4lcQNzsQPe2bXsOHdUw1zncO4_fKs/edit)
+  - 2017 Q1/Q2 における PWA のロードマップ
+
+
+- 2:14 [Chrome の VP9/SVC で WebRTC](https://webrtchacks.com/chrome-vp9-svc/)
+  - SVC の解説
+
+
+
+
+
+
+
+
+
+
+
+
+
