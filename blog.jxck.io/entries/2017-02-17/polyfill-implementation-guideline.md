@@ -92,7 +92,7 @@ MooTools は早い段階から `includes()` を実装していたのだが、そ
 しかし、 `includes()` の実装を追加する前に `Array.prototype.includes` の存在をチェックし、存在したらスルーしていたため、そこにネイティブの実装が加わった時点で、最終的な独自の Array には、ネイティブ実装の `includes()` も Polyfill の `includes()` もない Array が提供されたというバグである。
 
 
-### creataShadowRoot
+### createShadowRoot
 
 TAG のドキュメントでは、 ShadowDOM の `createShadowRoot()` についても言及されている。
 
