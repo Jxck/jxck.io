@@ -154,19 +154,19 @@
       <p>しかし、 "先走った Polyfill" の実装が、仕様が固まる前に広まってしまい、固まる前のクラス/メッソド名が多くのコンテンツで使われてしまうと、仕様側でそれを変更するのが難しくなってしまう場合がある。
       <p>実際にこれが問題になった事例もいくつかある。
       <section>
-        <h3 id="Mootools+の+Array.prototype.includes"><a href="#Mootools+の+Array.prototype.includes">Mootools の Array.prototype.includes</a></h3>
-        <p>現在 <code translate="no">Array.prototype.contains()</code> として定義/実装されているものは、最初 <code translate="no">includes()</code> という名前で提案されており、実際に実装まで行われたブラウザがあった。
+        <h3 id="Mootools+の+Array.prototype.contains"><a href="#Mootools+の+Array.prototype.contains">Mootools の Array.prototype.contains</a></h3>
+        <p>現在 <code translate="no">Array.prototype.includes()</code> として定義/実装されているものは、最初 <code translate="no">contains()</code> という名前で提案されており、実際に実装まで行われたブラウザがあった。
         <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-        <pre class=js><code translate="no">[1, 2, 3].includes(2) // true</code></pre>
+        <pre class=js><code translate="no">[1, 2, 3].contains(2) // true</code></pre>
         <p>しかし、この仕様を実装したブラウザで jsfiddle が壊れてことから、そこで使われていた MooTools が問題を起こしていたことが判明した。
-        <p>MooTools は早い段階から <code translate="no">includes()</code> を実装していたのだが、その実装は行儀の良いものではなかった。
-        <p>具体的には、その時点で Array が実装しているメソッドをホワイトリストとして定義し、当時そのリストに無かった <code translate="no">includes()</code> の Polyfill を追加した独自の Array を提供していた。
+        <p>MooTools は早い段階から <code translate="no">contains()</code> を実装していたのだが、その実装は行儀の良いものではなかった。
+        <p>具体的には、その時点で Array が実装しているメソッドをホワイトリストとして定義し、当時そのリストに無かった <code translate="no">contains()</code> の Polyfill を追加した独自の Array を提供していた。
         <pre class=js><code translate="no">(&#039;Array&#039;, Array, [
   &#039;pop&#039;, &#039;push&#039;, &#039;reverse&#039;, &#039;shift&#039;, &#039;sort&#039;, &#039;splice&#039;, &#039;unshift&#039;, &#039;concat&#039;, &#039;join&#039;, &#039;slice&#039;,
   &#039;indexOf&#039;, &#039;lastIndexOf&#039;, &#039;filter&#039;, &#039;forEach&#039;, &#039;every&#039;, &#039;map&#039;, &#039;some&#039;, &#039;reduce&#039;, &#039;reduceRight&#039;
 ])</code></pre>
         <p><a href="https://github.com/mootools/mootools-core/blob/09b99e5886ca466480d4ae9acbb769e284f4acf1/Source/Core/Core.js#L269">Core.js#L269</a>
-        <p>しかし、 <code translate="no">includes()</code> の実装を追加する前に <code translate="no">Array.prototype.includes</code> の存在をチェックし、存在したらスルーしていたため、そこにネイティブの実装が加わった時点で、最終的な独自の Array には、ネイティブ実装の <code translate="no">includes()</code> も Polyfill の <code translate="no">includes()</code> もない Array が提供されたというバグである。
+        <p>しかし、 <code translate="no">contains()</code> の実装を追加する前に <code translate="no">Array.prototype.contains</code> の存在をチェックし、存在したらスルーしていたため、そこにネイティブの実装が加わった時点で、最終的な独自の Array には、ネイティブ実装の <code translate="no">contains()</code> も Polyfill の <code translate="no">contains()</code> もない Array が提供されたというバグである。
       </section>
       <section>
         <h3 id="createShadowRoot"><a href="#createShadowRoot">createShadowRoot</a></h3>

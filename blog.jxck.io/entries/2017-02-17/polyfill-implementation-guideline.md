@@ -66,19 +66,19 @@ TAG のドキュメントでは、大まかな流れが以下のように紹介�
 実際にこれが問題になった事例もいくつかある。
 
 
-### Mootools の Array.prototype.includes
+### Mootools の Array.prototype.contains
 
-現在 `Array.prototype.contains()` として定義/実装されているものは、最初 `includes()` という名前で提案されており、実際に実装まで行われたブラウザがあった。
+現在 `Array.prototype.includes()` として定義/実装されているものは、最初 `contains()` という名前で提案されており、実際に実装まで行われたブラウザがあった。
 
 ```js
-[1, 2, 3].includes(2) // true
+[1, 2, 3].contains(2) // true
 ```
 
 しかし、この仕様を実装したブラウザで jsfiddle が壊れてことから、そこで使われていた MooTools が問題を起こしていたことが判明した。
 
-MooTools は早い段階から `includes()` を実装していたのだが、その実装は行儀の良いものではなかった。
+MooTools は早い段階から `contains()` を実装していたのだが、その実装は行儀の良いものではなかった。
 
-具体的には、その時点で Array が実装しているメソッドをホワイトリストとして定義し、当時そのリストに無かった `includes()` の Polyfill を追加した独自の Array を提供していた。
+具体的には、その時点で Array が実装しているメソッドをホワイトリストとして定義し、当時そのリストに無かった `contains()` の Polyfill を追加した独自の Array を提供していた。
 
 ```js
 ('Array', Array, [
@@ -89,7 +89,7 @@ MooTools は早い段階から `includes()` を実装していたのだが、そ
 [Core.js#L269](https://github.com/mootools/mootools-core/blob/09b99e5886ca466480d4ae9acbb769e284f4acf1/Source/Core/Core.js#L269)
 
 
-しかし、 `includes()` の実装を追加する前に `Array.prototype.includes` の存在をチェックし、存在したらスルーしていたため、そこにネイティブの実装が加わった時点で、最終的な独自の Array には、ネイティブ実装の `includes()` も Polyfill の `includes()` もない Array が提供されたというバグである。
+しかし、 `contains()` の実装を追加する前に `Array.prototype.contains` の存在をチェックし、存在したらスルーしていたため、そこにネイティブの実装が加わった時点で、最終的な独自の Array には、ネイティブ実装の `contains()` も Polyfill の `contains()` もない Array が提供されたというバグである。
 
 
 ### createShadowRoot
