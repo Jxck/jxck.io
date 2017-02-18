@@ -46,7 +46,6 @@ class Channel extends EventEmitter {
   }
 }
 
-
 class RTC extends EventEmitter {
   constructor(id, config) {
     super()
@@ -61,14 +60,24 @@ class RTC extends EventEmitter {
       this.emit('icecandidate', e.candidate, e)
     }
 
+    this.connection.onconnectionstatechange = (e) => {
+      debug(`${this.id}#on('${e.type}')`, this.connectionState, e)
+      this.emit('connectionstatechange', this.connectionState, e)
+    }
+
     this.connection.oniceconnectionstatechange = (e) => {
-      debug(`${this.id}#on('${e.type}')`, this.iceConnectionState, this.iceGatheringState, e)
+      debug(`${this.id}#on('${e.type}')`, this.iceConnectionState, e)
       this.emit('iceconnectionstatechange', this.iceConnectionState, e)
     }
 
     this.connection.onsignalingstatechange = (e) => {
       debug(`${this.id}#on('${e.type}')`, this.signalingState, e)
       this.emit('signalingstatechange', this.signalingState, e)
+    }
+
+    this.connection.onicegatheringstatechange = (e) => {
+      debug(`${this.id}#on('${e.type}')`, this.iceGatheringState, e)
+      this.emit('icegatheringstatechange', this.iceGatheringState, e)
     }
 
     this.connection.onnegotiationneeded = (e) => {
@@ -95,18 +104,60 @@ class RTC extends EventEmitter {
       debug(this.id, 'removeStream', e)
       this.emit('removeStream', e.stream, e)
     }
+
+    this.connection.onicecandidateerror = (e) => {
+      debug(`${this.id}#on('${e.type}')`, e)
+      this.emit('icecandidateerror', e)
+    }
+
+    this.connection.onfingerprintfailure = (e) => {
+      debug(`${this.id}#on('${e.type}')`, e)
+      this.emit('fingerprintfailure', e)
+    }
   }
 
   get signalingState() {
     return this.connection.signalingState
   }
 
+  get iceGatheringState() {
+    return this.connection.iceGatheringState
+  }
+
   get iceConnectionState() {
     return this.connection.iceConnectionState
   }
 
-  get iceGatheringState() {
-    return this.connection.iceGatheringState
+  get connectionState() {
+    return this.connection.connectionState
+  }
+
+  get localDescription() {
+    return this.connection.localDescription
+  }
+
+  get currentLocalDescription() {
+    return this.connection.currentLocalDescription
+  }
+
+  get pendingLocalDescription() {
+    return this.connection.pendingLocalDescription
+  }
+
+  get remoteDescription() {
+    return this.connection.remoteDescription
+  }
+
+  get currentRemoteDescription() {
+    return this.connection.currentRemoteDescription
+  }
+
+  get pendingRemoteDescription() {
+    return this.connection.pendingRemoteDescription
+  }
+
+  get canTrickleIceCandidates() {
+    return this.connection.canTrickleIceCandidates
   }
 
   createDataChannel(label, dataChannelDict) {
