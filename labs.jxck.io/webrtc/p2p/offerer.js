@@ -21,7 +21,7 @@ offerer.on('icecandidate', (candidate) => {
   if (candidate === null) return
 
   info('7. offerer で上がった ice candidate を remote に渡す')
-  ws.send({type: 'offer_candidate', candidate: candidate});
+  ws.send({type: 'offer_candidate', candidate: candidate})
 })
 
 offerer.on('iceconnectionstatechange', (e) => {
@@ -39,7 +39,7 @@ offerer.on('negotiationneeded', () => {
   })
     .then((e) => console.log(e))
     .catch((err) => console.error(err))
-});
+})
 
 
 ws.on('message', (message) => {
@@ -58,7 +58,7 @@ ws.on('message', (message) => {
       .then((e) => console.log(e))
       .catch((err) => console.error(err))
   }
-});
+})
 
 offerer.on('channel', (channel) => {
   info('9. offerer で answerer との接続が open する')

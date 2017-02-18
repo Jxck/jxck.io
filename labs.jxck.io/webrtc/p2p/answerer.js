@@ -17,7 +17,7 @@ answerer.on('icecandidate', (candidate) => {
   if (candidate === null) return
 
   info('7. answwerer で上がった ice candidate を offerer に渡す')
-  ws.send({type: 'answer_candidate', candidate: candidate});
+  ws.send({type: 'answer_candidate', candidate: candidate})
 })
 
 answerer.on('iceconnectionstatechange', (e) => {
