@@ -30,7 +30,7 @@ ws.on('message', (message) => {
       info('5. answerer の answer を作成')
       return answerer.createAnswer()
     }).then((rtcSessionDescription) => {
-      info('6. answerer の answer を双方に適応')
+      info('6. answerer の answer を適応し送信')
       log(rtcSessionDescription.type, rtcSessionDescription.sdp)
       ws.send(rtcSessionDescription)
       return answerer.setLocalDescription(rtcSessionDescription)
