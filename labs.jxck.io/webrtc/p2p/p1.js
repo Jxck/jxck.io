@@ -37,24 +37,34 @@ const local = new RTC('local')
 //
 //
 
-const ws = new WS('wss://ws.jxck.io', 'echo');
+const ws = new WS('wss://ws.jxck.io', 'echo')
 
 ws.on('open', () => {
+  let $call = document.querySelector('#call')
+  $call.disabled = false
+  $call.addEventListener('click', () => {
+    log('click')
+    call()
+  })
+})
 
 
-Promise.all([
+function call() {
+
   new Promise((done, fail) => {
     local.on('negotiationneeded', done)
-  }),
-]).then(([e1, e2]) => {
-  info('2. onnegotiationneeded が発生したらネゴシエーションする')
-  info('3. local の offer を作成')
-  return local.createOffer()
-}).then((rtcSessionDescription) => {
-  info('4. local の offer を適応し送信')
-  log(rtcSessionDescription.type, rtcSessionDescription.sdp)
-  return local.setLocalDescription(rtcSessionDescription);
-})//.then((e) => {
+  }).then(() => {
+    info('2. onnegotiationneeded が発生したらネゴシエーションする')
+    info('3. local の offer を作成')
+    return local.createOffer()
+  }).then((rtcSessionDescription) => {
+    info('4. local の offer を適応し送信')
+    ws.json(rtcSessionDescription)
+    return local.setLocalDescription(rtcSessionDescription)
+  })
+
+
+//.then((e) => {
 //  info('5. remote の offer を作成')
 //  return remote.createAnswer()
 //}).then((rtcSessionDescription) => {
@@ -115,4 +125,4 @@ Promise.all([
   info('1. createDataChannel()')
   local.createDataChannel('channel')
 
-});
+}
