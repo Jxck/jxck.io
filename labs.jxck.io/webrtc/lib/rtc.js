@@ -93,18 +93,6 @@ class RTC extends EventEmitter {
       })
     }
 
-    // TODO: deprecated
-    this.connection.onaddstream = (e) => {
-      debug(this.id, 'addStream', e)
-      this.emit('addStream', e.stream, e)
-    }
-
-    // TODO: deprecated
-    this.connection.onremovestream = (e) => {
-      debug(this.id, 'removeStream', e)
-      this.emit('removeStream', e.stream, e)
-    }
-
     this.connection.onicecandidateerror = (e) => {
       debug(`${this.id}#on('${e.type}')`, e)
       this.emit('icecandidateerror', e)
@@ -170,6 +158,9 @@ class RTC extends EventEmitter {
   }
 
   addIceCandidate(candidate) {
+    if (!(candidate instanceof RTCIceCandidate)) {
+      candidate = new RTCIceCandidate(candidate);
+    }
     debug(`${this.id}#addIceCandidate(candidate)`, candidate)
     return this.connection.addIceCandidate(candidate)
   }
@@ -185,24 +176,18 @@ class RTC extends EventEmitter {
   }
 
   setLocalDescription(description) {
+    if (!(description instanceof RTCSessionDescription)) {
+      description = new RTCSessionDescription(description);
+    }
     debug(`${this.id}#setLocalDescription(description)`, description)
     return this.connection.setLocalDescription(description)
   }
 
   setRemoteDescription(description) {
+    if (!(description instanceof RTCSessionDescription)) {
+      description = new RTCSessionDescription(description);
+    }
     debug(`${this.id}#setRemoteDescription(description)`, description)
     return this.connection.setRemoteDescription(description)
-  }
-
-  // TODO: deprecated
-  addStream(stream) {
-    debug(this.id, 'addStream', stream)
-    this.connection.addStream(stream)
-  }
-
-  // TODO: deprecated
-  removeStream(stream) {
-    debug(this.id, 'removeStream', stream)
-    this.connection.removeStream(stream)
   }
 }
