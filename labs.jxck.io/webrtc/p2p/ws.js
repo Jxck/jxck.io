@@ -27,14 +27,9 @@ class WS extends EventEmitter {
     }
   }
 
-  json(data) {
-    debug(`ws#json(data)`, data)
-    this.ws.send(JSON.stringify(data))
-  }
-
   send(data) {
     debug(`ws#send(data)`, data)
-    this.ws.send(data)
+    this.ws.send(JSON.stringify(data))
   }
 
   close(code, reason) {

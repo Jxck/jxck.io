@@ -135,12 +135,12 @@ class RTC extends EventEmitter {
 
   setLocalDescription(description) {
     debug(`${this.id}#setLocalDescription(description)`, description)
-    this.connection.setLocalDescription(description)
+    return this.connection.setLocalDescription(description)
   }
 
   setRemoteDescription(description) {
     debug(`${this.id}#setRemoteDescription(description)`, description)
-    this.connection.setRemoteDescription(description)
+    return this.connection.setRemoteDescription(description)
   }
 
   // TODO: deprecated
