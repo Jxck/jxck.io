@@ -85,6 +85,11 @@ class RTC extends EventEmitter {
       this.emit('negotiationneeded', e)
     }
 
+    this.connection.ontrack = (e) => {
+      debug(`${this.id}#on('${e.type}')`, e)
+      this.emit('track', e)
+    }
+
     this.connection.ondatachannel = (e) => {
       debug(`${this.id}#on('${e.type}')`, e.channel.label, e)
       const channel = new Channel(e.channel)
@@ -189,5 +194,16 @@ class RTC extends EventEmitter {
     }
     debug(`${this.id}#setRemoteDescription(description)`, description)
     return this.connection.setRemoteDescription(description)
+  }
+
+  addTrack(track, stream) {
+    debug(`${this.id}#addTrack(track, stream)`, track, stream)
+    return this.connection.addTrack(track, stream)
+  }
+
+  addStream(stream) {
+    // deprecated in spec but living in chrome
+    debug(`${this.id}#addStream(stream)`, stream)
+    return this.connection.addStream(stream)
   }
 }
