@@ -32,7 +32,7 @@ offerer.on('negotiationneeded', () => {
   info('2. onnegotiationneeded が発生したらネゴシエーションする')
   info('3. offerer の offer を作成')
   offerer.createOffer().then((rtcSessionDescription) => {
-    info('4. offerer の offerer を適応し送信')
+    info('4. offerer の offer を適応し送信')
     log(rtcSessionDescription.type, rtcSessionDescription.sdp)
     ws.send(rtcSessionDescription)
     return offerer.setLocalDescription(rtcSessionDescription)
