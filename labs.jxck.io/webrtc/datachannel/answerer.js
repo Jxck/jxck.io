@@ -4,7 +4,7 @@ const error = console.error.bind(console)
 const warn  = console.warn.bind(console)
 
 
-const ws = new WS('wss://ws.jxck.io', ['broadcast', 'webrtc-p2p-demo'])
+const ws = new WS('wss://ws.jxck.io', ['broadcast', 'webrtc-datachannel-demo'])
 
 ws.on('open', () => {
   let $ready = document.querySelector('#ready')

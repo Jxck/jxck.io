@@ -4,14 +4,17 @@ const error = console.error.bind(console)
 const warn  = console.warn.bind(console)
 
 
-const ws = new WS('wss://ws.jxck.io', ['broadcast', 'webrtc-p2p-demo'])
+const ws = new WS('wss://ws.jxck.io', ['broadcast', 'webrtc-datachannel-demo'])
 
 ws.on('open', () => {
   let $call = document.querySelector('#call')
   $call.disabled = false
   $call.addEventListener('click', () => {
-    log('click')
-    call()
+    // firefox では createDataChannel か addStream してないと
+    // createOffer() できない
+    info('1. createDataChannel()')
+    offerer.createDataChannel('channel')
+    // ここで negotiation needed が発火する
   })
 })
 
@@ -80,11 +83,3 @@ offerer.on('channel', (channel) => {
     channel.close()
   })
 })
-
-function call() {
-  // firefox では createDataChannel か addStream してないと
-  // createOffer() できない
-  info('1. createDataChannel()')
-  offerer.createDataChannel('channel')
-  // ここで negotiation needed が発火する
-}
