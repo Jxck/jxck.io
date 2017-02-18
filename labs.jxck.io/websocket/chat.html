@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="demo">
+<title>WebSocket Chat DEMO | labs.jxck.io</title>
+
+<style>
+</style>
+
+<h1>WebSocket Chat DEMO</h1>
+
+<ul id=messages></ul>
+
+<input id=input type=text></input>
+<button id=send disabled=true>send</button>
+
+<script>
+const log = console.log.bind(console)
+const ws = new WebSocket('ws://localhost:4000', ['broadcast', 'chat'])
+
+const $messages = document.querySelector('#messages')
+const $input = document.querySelector('#input')
+const $send = document.querySelector('#send')
+
+ws.onopen = (e) => {
+  log(e)
+  $send.disabled = false
+
+  $send.onclick = () => {
+    const value = $input.value
+    ws.send(value)
+  }
+
+  ws.onmessage = (e) => {
+    log(e)
+    const value = e.data
+    const $li = document.createElement('li')
+    $li.textContent = value
+    $messages.appendChild($li)
+  }
+}
+</script>
+
