@@ -34,6 +34,6 @@ class WS extends EventEmitter {
 
   close(code, reason) {
     debug(`ws#close(code, reason)`, code, reason)
-    this.ws.close(code, reason);
+    this.ws.close(code, reason)
   }
 }

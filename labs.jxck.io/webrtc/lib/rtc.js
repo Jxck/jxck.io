@@ -81,7 +81,7 @@ class RTC extends EventEmitter {
       const channel = new Channel(e.channel)
       channel.on('open', (e) => {
         this.emit('channel', channel, e)
-      });
+      })
     }
 
     // TODO: deprecated
@@ -114,8 +114,8 @@ class RTC extends EventEmitter {
     const dataChannel = new Channel(this.connection.createDataChannel(label, dataChannelDict))
 
     dataChannel.on('open', (e) => {
-      this.emit('channel', dataChannel, e);
-    });
+      this.emit('channel', dataChannel, e)
+    })
   }
 
   addIceCandidate(candidate) {
