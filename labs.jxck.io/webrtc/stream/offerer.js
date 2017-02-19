@@ -6,7 +6,7 @@ const warn  = console.warn.bind(console)
 const $ = document.querySelector.bind(document);
 const ws = new WS('wss://ws.jxck.io', ['broadcast', 'webrtc-datachannel-demo'])
 
-const offerer = new RTC('offerer')
+const rtc  = new RTC(btoa(Math.random()*1000))
 
 ws.on('open', () => {
   $('#call').disabled = false
@@ -16,10 +16,10 @@ ws.on('open', () => {
     navigator.mediaDevices.getUserMedia({audio:true, video:true})
       .then((stream) => {
         info('1. addTrack()')
-        offerer.addStream(stream)
+        rtc.addStream(stream)
         // TODO: fixme with addTrack if chrome supports
         //stream.getTracks().forEach((track) => {
-        //  offerer.addTrack(track, stream)
+        //  rtc.addTrack(track, stream)
         //})
         // ここで negotiation needed が発火する
         $('#local').srcObject = stream
@@ -27,46 +27,55 @@ ws.on('open', () => {
   })
 })
 
-offerer.on('icecandidate', (candidate) => {
+rtc.on('icecandidate', (candidate) => {
   if (candidate === null) return
 
-  info('7. offerer で上がった ice candidate を remote に渡す')
+  info('7. ice candidate を送信')
   ws.send({type: 'candidate', candidate: candidate})
 })
 
-offerer.on('negotiationneeded', () => {
+rtc.on('negotiationneeded', () => {
   info('2. onnegotiationneeded が発生したらネゴシエーションする')
-  info('3. offerer の offer を作成')
-  offerer.createOffer().then((rtcSessionDescription) => {
-    info('4. offerer の offer を適応し送信')
+  info('3. offer を作成')
+  rtc.createOffer().then((rtcSessionDescription) => {
+    info('4. offer を local に適用')
     log(rtcSessionDescription.type, rtcSessionDescription.sdp)
-    return offerer.setLocalDescription(rtcSessionDescription)
+    return rtc.setLocalDescription(rtcSessionDescription)
   }).then(() => {
-    ws.send(offerer.localDescription)
+    info('4. offer を送信')
+    ws.send(rtc.localDescription)
   }).catch((err) => console.error(err))
 })
 
-offerer.on('addstream', (stream) => {
+
+// rtc.on('track', (e) => {
+//   log(e.track.kind)
+//   if (e.track.kind === 'video') {
+//     $('#remote').srcObject = e.streams[0]
+//   }
+// })
+
+rtc.on('addstream', (stream) => {
   $('#remote').srcObject = stream
 })
 
 ws.on('message', (message) => {
   if (message.type === 'offer') {
-    offerer.setRemoteDescription(message).then((e) => {
-      info('5. offerer の answer を作成')
-      return offerer.createAnswer()
+    rtc.setRemoteDescription(message).then((e) => {
+      info('5. answer を作成')
+      return rtc.createAnswer()
     }).then((rtcSessionDescription) => {
-      info('6. offerer の answer を local に適応')
+      info('6. answer を local に適用')
       log(rtcSessionDescription.type, rtcSessionDescription.sdp)
-      return offerer.setLocalDescription(rtcSessionDescription)
+      return rtc.setLocalDescription(rtcSessionDescription)
     }).then(() => {
-      info('6. offerer の answer を送信')
-      ws.send(offerer.localDescription)
+      info('6. answer を送信')
+      ws.send(rtc.localDescription)
     }).catch((err) => console.error(err))
   }
 
   if (message.type === 'answer') {
-    offerer.setRemoteDescription(message)
+    rtc.setRemoteDescription(message)
       .then((e) => console.log(e))
       .catch((err) => console.error(err))
   }
@@ -74,8 +83,8 @@ ws.on('message', (message) => {
   if (message.type === 'candidate') {
     const candidate = message.candidate
 
-    info('7. answer で上がった ice candidate を offerer に適応')
-    offerer
+    info('7. 受信した ice candidate を適用')
+    rtc
       .addIceCandidate(candidate)
       .then((e) => console.log(e))
       .catch((err) => console.error(err))
