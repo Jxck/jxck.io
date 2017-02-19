@@ -3,15 +3,14 @@ const info  = console.info.bind(console)
 const error = console.error.bind(console)
 const warn  = console.warn.bind(console)
 
-const $local = document.querySelector('#local')
-const $remote = document.querySelector('#remote')
-
+const $ = document.querySelector.bind(document);
 const ws = new WS('wss://ws.jxck.io', ['broadcast', 'webrtc-datachannel-demo'])
 
+const offerer = new RTC('offerer')
+
 ws.on('open', () => {
-  let $call = document.querySelector('#call')
-  $call.disabled = false
-  $call.addEventListener('click', () => {
+  $('#call').disabled = false
+  $('#call').addEventListener('click', () => {
     // firefox では createDataChannel か addStream してないと
     // createOffer() できない
     navigator.mediaDevices.getUserMedia({audio:true, video:true})
@@ -23,12 +22,10 @@ ws.on('open', () => {
         //  offerer.addTrack(track, stream)
         //})
         // ここで negotiation needed が発火する
-        $local.srcObject = stream
+        $('#local').srcObject = stream
       })
   })
 })
-
-const offerer = new RTC('offerer')
 
 offerer.on('icecandidate', (candidate) => {
   if (candidate === null) return

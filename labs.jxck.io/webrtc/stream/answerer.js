@@ -3,17 +3,15 @@ const info  = console.info.bind(console)
 const error = console.error.bind(console)
 const warn  = console.warn.bind(console)
 
-const $local = document.querySelector('#local')
-const $remote = document.querySelector('#remote')
-
+const $ = document.querySelector.bind(document);
 const ws = new WS('wss://ws.jxck.io', ['broadcast', 'webrtc-datachannel-demo'])
 
+const answerer  = new RTC('answerer')
+
 ws.on('open', () => {
-  let $ready = document.querySelector('#ready')
-  $ready.textContent = 'ready'
+  $('#call').disabled = false
 })
 
-const answerer  = new RTC('answerer')
 
 answerer.on('icecandidate', (candidate) => {
   if (candidate === null) return
@@ -25,12 +23,12 @@ answerer.on('icecandidate', (candidate) => {
 answerer.on('track', (e) => {
   log(e.track.kind)
   if (e.track.kind === 'video') {
-    $remote.srcObject = e.streams[0]
+    $('#remote').srcObject = e.streams[0]
   }
 })
 
 answerer.on('addstream', (stream) => {
-  $remote.srcObject = stream
+  $('#remote').srcObject = stream
 })
 
 ws.on('message', (message) => {
