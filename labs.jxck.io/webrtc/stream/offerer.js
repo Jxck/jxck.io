@@ -40,14 +40,31 @@ offerer.on('negotiationneeded', () => {
   offerer.createOffer().then((rtcSessionDescription) => {
     info('4. offerer の offer を適応し送信')
     log(rtcSessionDescription.type, rtcSessionDescription.sdp)
-    ws.send(rtcSessionDescription)
     return offerer.setLocalDescription(rtcSessionDescription)
-  })
-    .then((e) => console.log(e))
-    .catch((err) => console.error(err))
+  }).then(() => {
+    ws.send(offerer.localDescription)
+  }).catch((err) => console.error(err))
+})
+
+offerer.on('addstream', (stream) => {
+  $('#remote').srcObject = stream
 })
 
 ws.on('message', (message) => {
+  if (message.type === 'offer') {
+    offerer.setRemoteDescription(message).then((e) => {
+      info('5. offerer の answer を作成')
+      return offerer.createAnswer()
+    }).then((rtcSessionDescription) => {
+      info('6. offerer の answer を local に適応')
+      log(rtcSessionDescription.type, rtcSessionDescription.sdp)
+      return offerer.setLocalDescription(rtcSessionDescription)
+    }).then(() => {
+      info('6. offerer の answer を送信')
+      ws.send(offerer.localDescription)
+    }).catch((err) => console.error(err))
+  }
+
   if (message.type === 'answer') {
     offerer.setRemoteDescription(message)
       .then((e) => console.log(e))
