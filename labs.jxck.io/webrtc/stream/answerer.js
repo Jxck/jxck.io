@@ -17,7 +17,7 @@ answerer.on('icecandidate', (candidate) => {
   if (candidate === null) return
 
   info('8. answwerer で上がった ice candidate を offerer に渡す')
-  ws.send({type: 'answer_candidate', candidate: candidate})
+  ws.send({type: 'candidate', candidate: candidate})
 })
 
 answerer.on('track', (e) => {
@@ -46,7 +46,7 @@ ws.on('message', (message) => {
       .catch((err) => console.error(err))
   }
 
-  if (message.type === 'offer_candidate') {
+  if (message.type === 'candidate') {
     const candidate = message.candidate
 
     info('7. offerer で上がった ice candidate を answer に適応')

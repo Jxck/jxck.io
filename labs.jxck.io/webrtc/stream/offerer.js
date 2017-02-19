@@ -31,7 +31,7 @@ offerer.on('icecandidate', (candidate) => {
   if (candidate === null) return
 
   info('7. offerer で上がった ice candidate を remote に渡す')
-  ws.send({type: 'offer_candidate', candidate: candidate})
+  ws.send({type: 'candidate', candidate: candidate})
 })
 
 offerer.on('negotiationneeded', () => {
@@ -54,7 +54,7 @@ ws.on('message', (message) => {
       .catch((err) => console.error(err))
   }
 
-  if (message.type === 'answer_candidate') {
+  if (message.type === 'candidate') {
     const candidate = message.candidate
 
     info('7. answer で上がった ice candidate を offerer に適応')
