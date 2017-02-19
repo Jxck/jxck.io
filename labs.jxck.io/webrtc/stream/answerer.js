@@ -18,20 +18,20 @@ const answerer  = new RTC('answerer')
 answerer.on('icecandidate', (candidate) => {
   if (candidate === null) return
 
-  info('7. answwerer で上がった ice candidate を offerer に渡す')
+  info('8. answwerer で上がった ice candidate を offerer に渡す')
   ws.send({type: 'answer_candidate', candidate: candidate})
 })
 
-answerer.on('iceconnectionstatechange', (e) => {
-  info('8. answerer  の state が変わる', answerer.iceConnectionState, answerer.iceGatheringState)
+answerer.on('track', (e) => {
+  log(e.track.kind)
+  if (e.track.kind === 'video') {
+    $remote.srcObject = e.streams[0]
+  }
 })
 
-answerer.on('track', (e) => {
-  log(e.track.kind);
-  if (e.track.kind === 'video') {
-    $remote.srcObject = e.streams[0];
-  }
-});
+answerer.on('addstream', (stream) => {
+  $remote.srcObject = stream
+})
 
 ws.on('message', (message) => {
   if (message.type === 'offer') {

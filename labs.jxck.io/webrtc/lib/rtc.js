@@ -85,6 +85,12 @@ class RTC extends EventEmitter {
       this.emit('negotiationneeded', e)
     }
 
+    // deprecated in spec but living in chrome
+    this.connection.onaddstream = (e) => {
+      debug(`${this.id}#on('${e.type}')`, e)
+      this.emit('addstream', e.stream)
+    }
+
     this.connection.ontrack = (e) => {
       debug(`${this.id}#on('${e.type}')`, e)
       this.emit('track', e)
@@ -201,8 +207,8 @@ class RTC extends EventEmitter {
     return this.connection.addTrack(track, stream)
   }
 
+  // deprecated in spec but living in chrome
   addStream(stream) {
-    // deprecated in spec but living in chrome
     debug(`${this.id}#addStream(stream)`, stream)
     return this.connection.addStream(stream)
   }

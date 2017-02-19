@@ -17,9 +17,11 @@ ws.on('open', () => {
     navigator.mediaDevices.getUserMedia({audio:true, video:true})
       .then((stream) => {
         info('1. addTrack()')
-        stream.getTracks().forEach((track) => {
-          offerer.addTrack(track, stream); // TODO: fixme with addTrack if chrome supports
-        });
+        offerer.addStream(stream)
+        // TODO: fixme with addTrack if chrome supports
+        //stream.getTracks().forEach((track) => {
+        //  offerer.addTrack(track, stream)
+        //})
         // ここで negotiation needed が発火する
         $local.srcObject = stream
       })
@@ -35,10 +37,6 @@ offerer.on('icecandidate', (candidate) => {
   ws.send({type: 'offer_candidate', candidate: candidate})
 })
 
-offerer.on('iceconnectionstatechange', (e) => {
-  info('8. offerer の state が変わる', offerer.iceConnectionState, offerer.iceGatheringState)
-})
-
 offerer.on('negotiationneeded', () => {
   info('2. onnegotiationneeded が発生したらネゴシエーションする')
   info('3. offerer の offer を作成')
@@ -51,7 +49,6 @@ offerer.on('negotiationneeded', () => {
     .then((e) => console.log(e))
     .catch((err) => console.error(err))
 })
-
 
 ws.on('message', (message) => {
   if (message.type === 'answer') {
