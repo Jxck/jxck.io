@@ -393,4 +393,15 @@ Finding っていう資料が二つ出た。
 - 2/19: [サイトの「HTTPS化」が世界的に進んで大きなターニングポイントを迎える](http://gigazine.net/news/20170218-https-adoption-tipping-point/)
   - 元ネタ [HTTPS adoption has reached the tipping point](https://www.troyhunt.com/https-adoption-has-reached-the-tipping-point/)
 
+- 2/20: [HLS の図解](http://did2memo.net/2017/02/20/http-live-streaming/)
+  - AbemaTV/FRESH のを参考に解説
+
 - 2/20: [JS での i18n](http://qiita.com/mrasu/items/92971c09b6190fdfd45e)
+  - ライブラリ周りの紹介
+
+- 2/20: [h タグの話](https://jakearchibald.com/2017/do-we-need-a-new-heading-element/)
+  - h1, h2 みたいに番号のない h タグの話
+
+- 2/21: [CORS 用のトークンはいらない](https://scotthelme.co.uk/csrf-is-dead/)
+  - SameSite Cookie を使えばいいのではという話
+  - [caniuse](http://caniuse.com/#search=SameSite)
