@@ -30,6 +30,7 @@
   - e10s
 - Firefox52 Beta
 - Firefox53 Dev
+  - [TURN/TLS support](https://wiki.mozilla.org/Media/WebRTC/ReleaseNotes/53)
 - Firefox54 Nightly
   - [es modules が動くように](https://twitter.com/malyw/status/829707412659658753)
 
@@ -40,7 +41,6 @@
 ### Safari
 
 - Safari 10.0
-
 
 - [tech preview](https://developer.apple.com/safari/technology-preview/release-notes/)
 - [release](https://developer.apple.com/library/content/releasenotes/General/WhatsNewInSafari/Introduction/Introduction.html)
@@ -67,14 +67,17 @@
   - WASM enabled
   - etc
 
+
 ## Blink On
 
 blink on 7 で色々出たのでこっちにまとめ
+
 
 ### まとめ
 
 - [セッション](https://docs.google.com/document/d/1jlpsfv0kXCveOEX5l75aATgRXbcAvwyse4Tn6jVprWs/edit#)
 - [LT まとめ](https://docs.google.com/spreadsheets/d/1LmQXu9YgrfllLq2lQP7JL8khkUVdHi2Pnl9gvFRXPo8/edit#gid=0)
+
 
 ### セッション
 
@@ -83,6 +86,7 @@ blink on 7 で色々出たのでこっちにまとめ
 
 - [HTML Imports](https://docs.google.com/presentation/d/1ksnC9Qr3c8RwbDyo1G8ZZSVOEfXpnfQsTHhR5ny9Wk4/edit#slide=id.g1c508fcb31_0_22)
   - ES module を先にという話と現状
+
 
 ### LT
 
@@ -108,16 +112,20 @@ blink on 7 で色々出たのでこっちにまとめ
 - [Network speed and save-data APIs](https://docs.google.com/document/d/1lWOaN-IFKVyCA-1rp05kqrmzCjI9rPs9Bj-opfQO1bs/edit)
   - chrome には Network Quality Estimator があって、回線状況などがとれる。これを API として出すにはどうするかという Save Data API 周りの話。
 
-
 - [Understand V8 Performance via Tracing](https://docs.google.com/presentation/d/1m0AZPbSf1SU6-7w13OhBGP23eJMUGrPDOitxrtsXFng/edit#slide=id.g1c3772d87f_0_710)
   - chrome の trace を改善
+
+- [v8 stats in chrome](https://docs.google.com/presentation/d/1Lq2DD28CGa7bxawVH_2OcmyiTiBn74dvC6vn2essroY/edit#slide=id.g1a504e63c9_2_84)
+  - chrome://tracing の使い方
 
 
 ## TAG Finding
 
 Finding っていう資料が二つ出た。
 
-TODO
+- [The evergreen Web](https://www.w3.org/2001/tag/doc/evergreen-web/)
+- [Polyfills and the evolution of the Web](https://www.w3.org/2001/tag/doc/polyfills/)
+  - [blogged](https://blog.jxck.io/entries/2017-02-17/polyfill-implementation-guideline.html)
 
 
 ## API
@@ -340,36 +348,49 @@ TODO
 - 2/12: [Stats in Chrome](https://docs.google.com/presentation/d/1Lq2DD28CGa7bxawVH_2OcmyiTiBn74dvC6vn2essroY/edit)
   -  chrome://tracing の使い方
 
-- 2/16: [V8 の新しいコンパイラパイプライン](https://v8project.blogspot.com/2017/02/help-us-test-future-of-v8.html)
-  - Ignition interpreter + Turbofan compiler のフィールドテスト開始
-  - flags からも有効にできるのでフィードバック募集中とのこと
+- 2/13: [アメブロの SSL 化](http://ameblo.jp/staff/entry-12247397187.html)
+  - プラグイン系の仕様変更
+  - コメント欄、これがリアルワールドの反応か
 
 - 2/14: [Manifoldjs が PWA Builder に改名](https://medium.com/web-on-the-edge/manifoldjs-is-becoming-pwa-builder-to-simplify-building-progressive-web-apps-49bff31f9380#.hkcmqzler)
   - PWA を GUI で簡単に作れるみたいなやつ
+
+- 2/14: [複数ブラウザでも Fingerprint 可能](https://arstechnica.com/security/2017/02/now-sites-can-fingerprint-you-online-even-when-you-use-multiple-browsers/)
+  - 細かい情報を集めれば複数ブラウザでもユーザの識別ができる
+
+- 2:14 [Chrome の VP9/SVC で WebRTC](https://webrtchacks.com/chrome-vp9-svc/)
+  - SVC の解説
 
 - 2/15: [TLS1.3 の Go 実装](https://blog.cloudflare.com/ncc-groups-cryptography-services-audit-of-tls-1-3/)
   - Cloudflare から
   - crypto/tls を土台に実装
 
-- 2/14: [複数ブラウザでも Fingerprint 可能](https://arstechnica.com/security/2017/02/now-sites-can-fingerprint-you-online-even-when-you-use-multiple-browsers/)
-  - 細かい情報を集めれば複数ブラウザでもユーザの識別ができる
-
 - 2/15: [2017年前半の PWA ロードマップ](https://docs.google.com/document/d/1_PcEyuXaRckigJ4lcQNzsQPe2bXsOHdUw1zncO4_fKs/edit)
   - 2017 Q1/Q2 における PWA のロードマップ
 
+- 2/15: [JavaScript Debugging Improvements](https://webkit.org/blog/7219/javascript-debugging-improvements/)
+  - Webkit のデバッグが捗るようになる話
 
-- 2:14 [Chrome の VP9/SVC で WebRTC](https://webrtchacks.com/chrome-vp9-svc/)
-  - SVC の解説
+- 2/16: [V8 の新しいコンパイラパイプライン](https://v8project.blogspot.com/2017/02/help-us-test-future-of-v8.html)
+  - Ignition interpreter + Turbofan compiler のフィールドテスト開始
+  - flags からも有効にできるのでフィードバック募集中とのこと
 
+- 2/16: [background-fetch](https://github.com/WICG/background-fetch)
+  - background-sync 的な感じで background-fetch の登録
 
+- 2/17: [知っておきたいブラウザについての基礎入門](https://speakerdeck.com/pastak/zhi-tuteokitaiburauzanituitefalseji-chu-ru-men)
+  - ブラウザごとのエンジンの違いや、レンダリングプロセスなどの解説する良い資料。
 
+- 2/17: [V8 JavaScript Engine: High-performance ES2015 and beyond](https://v8project.blogspot.jp/2017/02/high-performance-es2015-and-beyond.html)
+  - v8 の ES2015 パフォーマンス
 
+- 2/17: [FRESH!におけるPCブラウザのFlash脱却](https://developers.cyberagent.co.jp/blog/archives/4283/)
+  - HLS をどうするか
 
+- 2/19: [Firefoxでレガシーなアドオンが使えるのは2017年11月半ばまで ](http://rockridge.hatenablog.com/entry/2017/02/19/231302)
+  - e10s と WebExtensions
 
+- 2/19: [サイトの「HTTPS化」が世界的に進んで大きなターニングポイントを迎える](http://gigazine.net/news/20170218-https-adoption-tipping-point/)
+  - 元ネタ [HTTPS adoption has reached the tipping point](https://www.troyhunt.com/https-adoption-has-reached-the-tipping-point/)
 
-
-
-
-
-
-
+- 2/20: [JS での i18n](http://qiita.com/mrasu/items/92971c09b6190fdfd45e)
