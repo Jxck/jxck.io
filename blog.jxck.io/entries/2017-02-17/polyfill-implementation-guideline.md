@@ -112,7 +112,7 @@ API 自体も途中で更新され、更新後を v1 としてそれまでが v0
 document.createElement('div').createShadowRoot();
 
 // v1 (引数必須)
-document.createElement('div').createShadowRoot({ mode: 'open' });
+document.createElement('div').attachShadow({ mode: 'open' });
 ```
 
 ブラウザ自体の実装は、外部ライブラリとしての Polyfill とはまた違い、開発者からのフィードバックを集める以上、実装しないわけにもいかない。しかし、一度リリースし普及すれば、取り消すことは難しい。

@@ -642,7 +642,7 @@ th:last-child, td:last-child {
 document.createElement(&#039;div&#039;).createShadowRoot();
 
 // v1 (引数必須)
-document.createElement(&#039;div&#039;).createShadowRoot({ mode: &#039;open&#039; });</code></pre>
+document.createElement(&#039;div&#039;).attachShadow({ mode: &#039;open&#039; });</code></pre>
         <p>ブラウザ自体の実装は、外部ライブラリとしての Polyfill とはまた違い、開発者からのフィードバックを集める以上、実装しないわけにもいかない。しかし、一度リリースし普及すれば、取り消すことは難しい。
         <p>このジレンマの解決としてベンダプレフィックスがあったが、これは次に紹介するように必ずしもうまくはいかなかった。
       </section>
