@@ -8,7 +8,7 @@ logger('initial connection Map()');
 setInterval(() => {
   connectionmap = new Map();
   logger('reset connection Map()');
-}, 60*60*6);
+}, 1000*60*60);
 
 // export handler
 module.exports = function(request) {
