@@ -18,14 +18,15 @@
 
 <script>
 if (navigator.share !== undefined) {
-  document.getElementById("support").textContent == "supported";
+  document.getElementById("support").textContent = "supported";
 }
 
 const shareButton = document.getElementById("share");
 shareButton.addEventListener("click", () => {
   navigator
     .share({
-      title: "Lab Page",
+      title: "Web Share DEMO",
+      text: "DEMO of Web Share API enabled by Origin Trials",
       url: window.location.href
     })
     .then(console.log.bind(console))
