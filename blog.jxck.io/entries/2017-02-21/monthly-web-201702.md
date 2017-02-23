@@ -15,12 +15,12 @@
   - text padding
   - SW NavigationPreload
   - remove vender prefix from IDB
-- Chrome58 Beta, Dev, Canaly
+- Chrome58 Beta, Dev, Canary
 
 - [release](https://chromereleases.googleblog.com/) ([stable updates tag](https://chromereleases.googleblog.com/search/label/Stable%20updates))
 - [updates](https://developers.google.com/web/updates/)
 - [chromium](https://www.chromium.org/developers/calendar)
-- [canaly](https://www.chromium.org/getting-involved/dev-channel)
+- [canary](https://www.chromium.org/getting-involved/dev-channel)
 
 
 ### Firefox
@@ -34,7 +34,7 @@
 - Firefox54 Nightly
   - [es modules が動くように](https://twitter.com/malyw/status/829707412659658753)
 
-- [relese](https://www.mozilla.org/en-US/firefox/releases/)
+- [release](https://www.mozilla.org/en-US/firefox/releases/)
 - [nightly](https://www.mozilla.org/ja/firefox/channel/desktop/)
 
 
