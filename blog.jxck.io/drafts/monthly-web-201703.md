@@ -26,6 +26,9 @@
 
 ### Firefox
 
+Firefoxの開発者向けのノート
+- https://developer.mozilla.org/en-US/Firefox/Releases/51
+
 //- 1/31 Stable [Firefox51](https://blog.nightly.mozilla.org/2017/01/31/these-weeks-in-firefox-issue-9/)
 //  - new logo
 //  - e10s
@@ -37,6 +40,7 @@
 //
 //- [release](https://www.mozilla.org/en-US/firefox/releases/)
 //- [nightly](https://www.mozilla.org/ja/firefox/channel/desktop/)
+
 
 
 - 2/20: [Firefox で event.timeStamp が DOMHighResTimeStamp を返すように](https://www.fxsitecompat.com/ja/docs/2017/event-timestamp-now-returns-domhighrestimestamp-by-default/)
