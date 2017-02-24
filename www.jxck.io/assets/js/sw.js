@@ -45,7 +45,8 @@
     navigator.serviceWorker.register(`/assets/js/sw.js?${VERSION}`, { scope: '/' }).then((registration) => {
       return navigator.serviceWorker.ready;
     }).then((registration) => {
-      registerPush(registration);
+      // TODO: disable push while WIP
+      // registerPush(registration);
       if (navigator.serviceWorker.controller) {
         return navigator.serviceWorker.controller;
       }
@@ -57,7 +58,8 @@
 
   // service worker
   if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalScope) {
-    importScripts(`sw.push.js?${VERSION}`);
+    // TODO: disable push while WIP
+    // importScripts(`sw.push.js?${VERSION}`);
 
     self.addEventListener('install', (e) => {
       log('install > skipWaiting', e);
