@@ -16,7 +16,7 @@ class WS extends EventEmitter {
     this.ws.onmessage = (e) => {
       const {id, name, message} = JSON.parse(e.data)
       if (id === this.id) return;
-      debug(`ws#on('${name}')`, message)
+      debug(`ws#on('${name}')`, e.data)
       super.emit(name, message)
     }
 
@@ -33,8 +33,9 @@ class WS extends EventEmitter {
 
   emit(name, message) {
     console.assert(name !== undefined && message !== undefined)
-    debug(`ws#send(name, data)`, name, message)
-    this.ws.send(JSON.stringify({id: this.id, name, message}))
+    const data = JSON.stringify({id: this.id, name, message});
+    debug(`ws#emit(name, message)`, data)
+    this.ws.send(data)
   }
 
   close(code, reason) {

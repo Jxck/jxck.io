@@ -88,11 +88,11 @@ class Util {
 
 
 
-class ORTC {
+class ORTC extends EventEmitter {
   constructor(id) {
-    this.id = id;
+    super();
 
-    this.socket = new WS('wss://ws.jxck.io', ['broadcast', 'ortc-demo']);
+    this.id = id;
 
     this.iceOptions = {
       gatherPolicy: 'all',
@@ -142,7 +142,6 @@ class ORTC {
     this.renderStream = new MediaStream();
 
     this.selfInfo = {};
-    this.peerInfo = {};
     this.remoteCandidates = [];
     this.localCandidatesCreated = false;
     this.remoteIceParams = null;
@@ -154,98 +153,18 @@ class ORTC {
       audio: 100,
       video: 200,
     };
+  }
 
-    this.socket.on('connectRequest', (message) => {
-      console.log(JSON.stringify(message));
-      this.handleCallRequest(message);
-    });
-
-    this.socket.on('start', (message) => {
-      console.log(JSON.stringify(message));
-
-      this.selfInfo.dtlsRole = message.dtlsrole;
-      this.initiateConnection();
-    });
-
-    this.socket.on('candidate', (message) => {
-      console.log(JSON.stringify(message));
-      if (!(this.iceTr && this.dtlsTr)) {
-        return console.error('iceTr, dtlsTr does not initiated');
-      }
-
-      console.log('Remote ICE candidate:', message.candidate.ip + ':' + message.candidate.port);
-
-      if (Object.keys(message.candidate).length > 0) {
-        this.remoteCandidates.push(message.candidate);
-      } else {
-        console.info('---- Remote ICE Candidate Complete ----');
-        this.iceTr.setRemoteCandidates(this.remoteCandidates);
-      }
-    });
-
-    this.socket.on('params', (message) => {
-      console.log(JSON.stringify(message));
-      if (!(this.iceTr && this.dtlsTr)) {
-        return console.error('iceTr, dtlsTr does not initiated');
-      }
-
-      // 相手からの parameter を受け取った
-
-      // candidate を送り終わって無いと start() できないので取っておく
-      let remote = message.params;
-      this.remoteIceParams = remote.ice;
-      this.remoteDtlsParams = remote.dtls;
-
-      // すでに local からの candidate を全て送り終わっていたら
-      // 受け取った parameter で start()
-      if (this.localCandidatesCreated) {
-        this.iceTr.start(this.iceGathr, this.remoteIceParams, this.selfInfo.dtlsRole);
-        this.dtlsTr.start(this.remoteDtlsParams);
-      }
-    });
-
-    this.socket.on('capability', (message) => {
-      console.log(JSON.stringify(message));
-      if (!(this.iceTr && this.dtlsTr)) {
-        return console.error('iceTr, dtlsTr does not initiated');
-      }
-
-      // 相手から来た capability を受け取る
-      // すでに sender/receiver が作られていれば send()/receive() を
-      // なければ Params に保存する。
-      let remote = message.caps;
-      let kind = remote.kind;
-
-      // role は送ってきた側が sender/receiver のどちあらかを表す
-      // 逆側に設定する。
-      if (remote.role === 'sender') {
-        if (this.Transports.recver[kind]) {
-          this.transportRecv(kind, remote);
-
-          this.trackCount++;
-          if (this.trackCount == 2) {
-            this.videoRenderer.srcObject = this.renderStream;
-          }
-        } else {
-          this.Params.recver[kind] = remote;
-        }
-      }
-
-      if (remote.role === 'receiver') {
-        if (this.Transports.sender[kind]) {
-          this.transportSend(kind, remote);
-        } else {
-          this.Params.sender[kind] = remote;
-        }
-      }
-    });
+  start() {
+    this.iceTr.start(this.iceGathr, this.remoteIceParams, this.selfInfo.dtlsRole);
+    this.dtlsTr.start(this.remoteDtlsParams);
   }
 
   sendTrack(track) {
     let kind = track.kind;
     this.Transports.sender[kind] = new RTCRtpSender(track, this.dtlsTr);
     this.Caps.sender[kind] = RTCRtpSender.getCapabilities(kind);
-    this.socket.emit('capability', {
+    this.emit('capability', {
       id: this.id,
       caps: {
         kind: kind,
@@ -256,11 +175,83 @@ class ORTC {
     });
   }
 
+  recvCandidate(message) {
+    console.log(JSON.stringify(message));
+    if (!(this.iceTr && this.dtlsTr)) {
+      return console.error('iceTr, dtlsTr does not initiated');
+    }
+
+    console.log('Remote ICE candidate:', message.candidate.ip + ':' + message.candidate.port);
+
+    if (Object.keys(message.candidate).length > 0) {
+      this.remoteCandidates.push(message.candidate);
+    } else {
+      console.info('---- Remote ICE Candidate Complete ----');
+      this.iceTr.setRemoteCandidates(this.remoteCandidates);
+    }
+  }
+
+  recvParams(message) {
+    console.log(JSON.stringify(message));
+    if (!(this.iceTr && this.dtlsTr)) {
+      return console.error('iceTr, dtlsTr does not initiated');
+    }
+
+    // 相手からの parameter を受け取った
+
+    // candidate を送り終わって無いと start() できないので取っておく
+    let remote = message.params;
+    this.remoteIceParams = remote.ice;
+    this.remoteDtlsParams = remote.dtls;
+
+    // すでに local からの candidate を全て送り終わっていたら
+    // 受け取った parameter で start()
+    if (this.localCandidatesCreated) {
+      this.start();
+    }
+  }
+
+  recvCapability(message) {
+    console.log(JSON.stringify(message));
+    if (!(this.iceTr && this.dtlsTr)) {
+      return console.error('iceTr, dtlsTr does not initiated');
+    }
+
+    // 相手から来た capability を受け取る
+    // すでに sender/receiver が作られていれば send()/receive() を
+    // なければ Params に保存する。
+    let remote = message.caps;
+    let kind = remote.kind;
+
+    // role は送ってきた側が sender/receiver のどちあらかを表す
+    // 逆側に設定する。
+    if (remote.role === 'sender') {
+      if (this.Transports.recver[kind]) {
+        this.transportRecv(kind, remote);
+
+        this.trackCount++;
+        if (this.trackCount == 2) {
+          this.videoRenderer.srcObject = this.renderStream;
+        }
+      } else {
+        this.Params.recver[kind] = remote;
+      }
+    }
+
+    if (remote.role === 'receiver') {
+      if (this.Transports.sender[kind]) {
+        this.transportSend(kind, remote);
+      } else {
+        this.Params.sender[kind] = remote;
+      }
+    }
+  }
+
   recvTrack(kind) {
     this.Transports.recver[kind] = new RTCRtpReceiver(this.dtlsTr, kind);
     this.Caps.recver[kind] = RTCRtpReceiver.getCapabilities(kind);
     this.renderStream.addTrack(this.Transports.recver[kind].track);
-    this.socket.emit('capability', {
+    this.emit('capability', {
       id: this.id,
       caps: {
         kind: kind,
@@ -268,32 +259,6 @@ class ORTC {
         caps: this.Caps.recver[kind],
       }
     });
-  }
-
-  connectRequest() {
-    console.info('---- connectRequest ----');
-    this.socket.emit('connectRequest', {
-      id: this.id,
-    });
-  }
-
-  handleCallRequest(message) {
-    console.info('---- handleCallRequest ----');
-
-    // accept
-    this.peerInfo.id = message.id;
-
-    // 送ってきた 相手を controlling として start する
-    this.socket.emit('start', {
-      id: this.id,
-      dtlsrole: 'controlling',
-    });
-
-    // 自分を controlled として start する
-    this.selfInfo.dtlsRole = 'controlled';
-    this.initiateConnection();
-
-    console.log('Accepted Peer:', this.peerInfo.id, 'connection request.');
   }
 
   transportSend(kind, remote) {
@@ -313,9 +278,10 @@ class ORTC {
     this.Transports.recver[kind].receive(recvParams);
   }
 
-  initiateConnection() {
+  initiateConnection(dtlsRole) {
     console.log('---- initiateConnection ----');
 
+    this.selfInfo.dtlsRole = dtlsRole;
     this.iceGathr = new RTCIceGatherer(this.iceOptions);
     this.iceTr = new RTCIceTransport();
     this.dtlsTr = new RTCDtlsTransport(this.iceTr);
@@ -325,38 +291,7 @@ class ORTC {
     }
 
     this.iceGathr.onlocalcandidate = (e) => {
-      this.socket.emit('candidate', {
-        id: this.id,
-        candidate: e.candidate,
-      });
-
-      this.localCandidatesCreated = false;
-
-      if (Object.keys(e.candidate).length == 0) {
-        console.info('---- Local ICE Candidate Complete ----');
-
-        // candidate の生成が終了
-        this.localCandidatesCreated = true;
-
-        // parameter を相手に送る
-        this.socket.emit('params', {
-          id: this.id,
-          params: {
-            ice: this.iceGathr.getLocalParameters(),
-            dtls: this.dtlsTr.getLocalParameters()
-          }
-        });
-
-        // candidate を生成してる途中に相手から
-        // すでに parameter を受け取っていたらここで start()
-        // まだなら onparameter で start()
-        if (this.remoteIceParams) {
-          this.iceTr.start(this.iceGathr, this.remoteIceParams, this.selfInfo.dtlsRole);
-          this.dtlsTr.start(this.remoteDtlsParams);
-        }
-      } else {
-        console.log('Local ICE candidate: ', e.candidate.ip + ':' + e.candidate.port);
-      }
+      super.emit('localcandidate', e);
     };
 
     this.iceTr.onicestatechange = (e) => {
@@ -379,24 +314,7 @@ class ORTC {
       console.error('DTLS ERROR', e);
     };
 
-
-    // Get a local stream
-    navigator.mediaDevices.getUserMedia({
-      audio: true,
-      video: {
-        width: 640,
-        height: 480,
-        facingMode: 'user'
-      }
-    }).then((stream) => {
-      console.info('---- getUserMedia ----', stream);
-      let $local = document.getElementById('local');
-      $local.srcObject = stream;
-
-      return stream;
-    })
-      .then(this.gotMedia.bind(this))
-      .catch(console.error.bind(console));
+    super.emit('needstream');
   }
 
   gotMedia(stream) {
@@ -464,7 +382,99 @@ class ORTC {
 }
 
 window.onload = function() {
-  const id = location.hash;
-  const ortc = new ORTC(id);
-  document.getElementById('connect').addEventListener('click', ortc.connectRequest.bind(ortc));
-};
+  const id = location.hash
+  const ortc = new ORTC(id)
+  const socket = new WS('wss://ws.jxck.io', ['broadcast', 'ortc-demo'])
+
+  ortc.on('localcandidate', (e) => {
+    socket.emit('candidate', {
+      id: id,
+      candidate: e.candidate,
+    });
+
+    ortc.localCandidatesCreated = false;
+
+    if (Object.keys(e.candidate).length == 0) {
+      console.info('---- Local ICE Candidate Complete ----');
+
+      // candidate の生成が終了
+      ortc.localCandidatesCreated = true;
+
+      // parameter を相手に送る
+      socket.emit('params', {
+        id: id,
+        params: {
+          ice: ortc.iceGathr.getLocalParameters(),
+          dtls: ortc.dtlsTr.getLocalParameters()
+        }
+      });
+
+      // candidate を生成してる途中に相手から
+      // すでに parameter を受け取っていたらここで start()
+      // まだなら onparameter で start()
+      if (ortc.remoteIceParams) {
+        ortc.start()
+      }
+
+    } else {
+      console.log('Local ICE candidate: ', e.candidate.ip + ':' + e.candidate.port);
+    }
+  });
+
+  ortc.on('needstream', () => {
+    // Get a local stream
+    navigator.mediaDevices.getUserMedia({
+      audio: true,
+      video: {
+        width: 640,
+        height: 480,
+      }
+    }).then((stream) => {
+      console.info('---- getUserMedia ----', stream);
+      let $local = document.getElementById('local');
+      $local.srcObject = stream;
+
+      ortc.gotMedia(stream);
+    }).catch(console.error.bind(console));
+  });
+
+  ortc.on('capability', (e) => {
+    socket.emit('capability', e);
+  });
+
+  socket.on('params', (message) => {
+    ortc.recvParams(message);
+  });
+
+  socket.on('candidate', (message) => {
+    ortc.recvCandidate(message);
+  });
+
+  socket.on('capability', (message) => {
+    ortc.recvCapability(message);
+  });
+
+  socket.on('start', (message) => {
+    console.log(JSON.stringify(message));
+    ortc.initiateConnection(message.dtlsrole);
+  });
+
+  socket.on('connectRequest', (message) => {
+    console.log(JSON.stringify(message))
+
+    // 送ってきた 相手を controlling として start する
+    socket.emit('start', {
+      id: id,
+      dtlsrole: 'controlling',
+    });
+
+    // 自分を controlled として start する
+    ortc.initiateConnection('controlled');
+  });
+
+  socket.on('open', () => {
+    document.getElementById('connect').addEventListener('click', () => {
+      socket.emit('connectRequest', { id })
+    })
+  })
+}
