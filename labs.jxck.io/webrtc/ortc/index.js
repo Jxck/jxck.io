@@ -143,7 +143,14 @@ class ORTC extends EventEmitter {
     }
 
     this.videoRenderer = document.getElementById('remote');
+
     this.mediaStream = new MediaStream();
+    this.mediaStream.onaddtrack = (e) => {
+      console.log(e);
+    }
+    this.mediaStream.onremovetrack = (e) => {
+      console.log(e);
+    }
 
     this.selfInfo = {};
     this.remoteCandidates = [];
@@ -160,7 +167,7 @@ class ORTC extends EventEmitter {
   }
 
   start() {
-    this.rtcIceTransport.start(this.rtcIceGatherer, this.remoteIceParams, this.selfInfo.dtlsRole);
+    this.rtcIceTransport.start(this.rtcIceGatherer, this.remoteIceParams, this.selfInfo.rtcIceRole);
     this.rtcDtlsTransport.start(this.remoteDtlsParams);
   }
 
@@ -180,7 +187,6 @@ class ORTC extends EventEmitter {
   }
 
   recvCandidate(message) {
-    console.log(JSON.stringify(message));
     if (!(this.rtcIceTransport && this.rtcDtlsTransport)) {
       return console.error('rtcIceTransport, rtcDtlsTransport does not initiated');
     }
@@ -196,7 +202,6 @@ class ORTC extends EventEmitter {
   }
 
   recvParams(message) {
-    console.log(JSON.stringify(message));
     if (!(this.rtcIceTransport && this.rtcDtlsTransport)) {
       return console.error('rtcIceTransport, rtcDtlsTransport does not initiated');
     }
@@ -216,7 +221,6 @@ class ORTC extends EventEmitter {
   }
 
   recvCapability(message) {
-    console.log(JSON.stringify(message));
     if (!(this.rtcIceTransport && this.rtcDtlsTransport)) {
       return console.error('rtcIceTransport, rtcDtlsTransport does not initiated');
     }
@@ -282,8 +286,8 @@ class ORTC extends EventEmitter {
     this.Transports.recver[kind].receive(recvParams);
   }
 
-  initiateConnection(dtlsRole) {
-    this.selfInfo.dtlsRole = dtlsRole;
+  initiateConnection(rtcIceRole) {
+    this.selfInfo.rtcIceRole = rtcIceRole;
     this.rtcIceGatherer = new RTCIceGatherer(this.iceOptions);
     this.rtcIceTransport = new RTCIceTransport();
     this.rtcDtlsTransport = new RTCDtlsTransport(this.rtcIceTransport);
@@ -463,7 +467,7 @@ window.onload = function() {
 
   socket.on('start', (message) => {
     // console.log(JSON.stringify(message));
-    ortc.initiateConnection(message.dtlsrole);
+    ortc.initiateConnection(message.rtcIceRole);
   });
 
   socket.on('connectRequest', (message) => {
@@ -472,11 +476,11 @@ window.onload = function() {
     // 送ってきた 相手を controlling として start する
     socket.emit('start', {
       id: id,
-      dtlsrole: 'controlling',
+      rtcIceRole: RTCIceRole.controlling,
     });
 
     // 自分を controlled として start する
-    ortc.initiateConnection('controlled');
+    ortc.initiateConnection(RTCIceRole.controlled);
   });
 
   socket.on('open', () => {
