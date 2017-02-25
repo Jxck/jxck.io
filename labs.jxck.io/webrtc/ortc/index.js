@@ -44,91 +44,92 @@ class WS extends EventEmitter {
 }
 
 
+class Util {
+  static Caps2Params(sendCaps, remoteRecvCaps) {
+    let muxId = '';
+    let codecs = Util.filterCodecParams(sendCaps.codecs, remoteRecvCaps.codecs);
+    let headerExtensions = Util.filterHdrExtParams(sendCaps.headerExtensions, remoteRecvCaps.headerExtensions);
+    let encodings = [];
 
-var util = {};
-util.Caps2Params = function(sendCaps, remoteRecvCaps) {
-  let muxId = '';
-  let codecs = util.filterCodecParams(sendCaps.codecs, remoteRecvCaps.codecs);
-  let headerExtensions = util.filterHdrExtParams(sendCaps.headerExtensions, remoteRecvCaps.headerExtensions);
-  let encodings = [];
+    // RTCRtcpParameters
+    let rtcp = {
+      ssrc: 0,
+      cname: '',
+      reducedSize: false,
+      mux: true,
+    };
 
-  // RTCRtcpParameters
-  let rtcp = {
-    ssrc: 0,
-    cname: '',
-    reducedSize: false,
-    mux: true,
-  };
-
-  // RTCRtpParameters
-  return { muxId, codecs, headerExtensions, encodings, rtcp };
-};
-
-util.filterCodecParams = function(left, right) {
-  let codecPrms = [];
-
-  if (left && right) {
-    left.forEach(function(leftItem) {
-      for (let i = 0; i < right.length; i++) {
-        let codec = right[i];
-        let equality = (leftItem.name == codec.name &&
-          leftItem.kind === codec.kind &&
-          leftItem.preferredPayloadType === codec.preferredPayloadType &&
-          leftItem.numChannels === codec.numChannels);
-
-        if (equality) {
-          let codecParams = {
-            name: codec.name,
-            payloadType: codec.preferredPayloadType,
-            clockRate: codec.clockRate,
-            numChannels: codec.numChannels,
-            rtcpFeedback: codec.rtcpFeedback,
-            parameters: codec.parameters,
-          };
-          codecPrms.push(codecParams);
-
-          break;
-        }
-      }
-    });
+    // RTCRtpParameters
+    return { muxId, codecs, headerExtensions, encodings, rtcp };
   }
 
-  return codecPrms;
-};
+  static filterCodecParams(left, right) {
+    let codecPrms = [];
 
-util.filterHdrExtParams = function(left, right) {
-  let hdrExtPrms = [];
-  return hdrExtPrms;
-};
+    if (left && right) {
+      left.forEach(function(leftItem) {
+        for (let i = 0; i < right.length; i++) {
+          let codec = right[i];
+          let equality = (leftItem.name == codec.name &&
+            leftItem.kind === codec.kind &&
+            leftItem.preferredPayloadType === codec.preferredPayloadType &&
+            leftItem.numChannels === codec.numChannels);
 
-util.RTCRtpEncodingParameters = function(ssrc, codecPayloadType, fec, rtx, priority, maxBitrate, minQuality, framerateBias, resolutionScale, framerateScale, active, encodingId, dependencyEncodingId) {
-  codecPayloadType = codecPayloadType || 0;
-  fec = fec || 0;
-  rtx = rtx || 0;
-  priority = priority || 1.0;
-  maxBitrate = maxBitrate || 2000000.0;
-  minQuality = minQuality || 0;
-  framerateBias = framerateBias || 0.5;
-  resolutionScale = resolutionScale || 1.0;
-  framerateScale = framerateScale || 1.0;
-  active = active || true;
+          if (equality) {
+            let codecParams = {
+              name: codec.name,
+              payloadType: codec.preferredPayloadType,
+              clockRate: codec.clockRate,
+              numChannels: codec.numChannels,
+              rtcpFeedback: codec.rtcpFeedback,
+              parameters: codec.parameters,
+            };
+            codecPrms.push(codecParams);
 
-  return {
-    ssrc,
-    codecPayloadType,
-    fec,
-    rtx,
-    priority,
-    maxBitrate,
-    minQuality,
-    framerateBias,
-    resolutionScale,
-    framerateScale,
-    active,
-    encodingId,
-    dependencyEncodingId,
-  };
-};
+            break;
+          }
+        }
+      });
+    }
+
+    return codecPrms;
+  }
+
+  static filterHdrExtParams(left, right) {
+    let hdrExtPrms = [];
+    return hdrExtPrms;
+  }
+
+  static RTCRtpEncodingParameters(ssrc, codecPayloadType, fec, rtx, priority, maxBitrate, minQuality, framerateBias, resolutionScale, framerateScale, active, encodingId, dependencyEncodingId) {
+    codecPayloadType = codecPayloadType || 0;
+    fec = fec || 0;
+    rtx = rtx || 0;
+    priority = priority || 1.0;
+    maxBitrate = maxBitrate || 2000000.0;
+    minQuality = minQuality || 0;
+    framerateBias = framerateBias || 0.5;
+    resolutionScale = resolutionScale || 1.0;
+    framerateScale = framerateScale || 1.0;
+    active = active || true;
+
+    return {
+      ssrc,
+      codecPayloadType,
+      fec,
+      rtx,
+      priority,
+      maxBitrate,
+      minQuality,
+      framerateBias,
+      resolutionScale,
+      framerateScale,
+      active,
+      encodingId,
+      dependencyEncodingId,
+    }
+  }
+}
+
 
 (function(global) {
   'use strict';
@@ -250,16 +251,16 @@ util.RTCRtpEncodingParameters = function(ssrc, codecPayloadType, fec, rtx, prior
 
   function transportSend(kind, remote) {
     let ssrc = SSRC[kind];
-    let encodingParams = util.RTCRtpEncodingParameters(ssrc);
-    let sendParams = util.Caps2Params(Caps.sender[kind], remote.caps);
+    let encodingParams = Util.RTCRtpEncodingParameters(ssrc);
+    let sendParams = Util.Caps2Params(Caps.sender[kind], remote.caps);
     sendParams.encodings.push(encodingParams);
     Transports.sender[kind].send(sendParams);
   }
 
   function transportRecv(kind, remote) {
     let ssrc = SSRC[kind];
-    let encodingParams = util.RTCRtpEncodingParameters(ssrc);
-    let recvParams = util.Caps2Params(remote.caps, Caps.recver[kind]);
+    let encodingParams = Util.RTCRtpEncodingParameters(ssrc);
+    let recvParams = Util.Caps2Params(remote.caps, Caps.recver[kind]);
     recvParams.muxId = remote.muxId;
     recvParams.encodings.push(encodingParams);
     Transports.recver[kind].receive(recvParams);
