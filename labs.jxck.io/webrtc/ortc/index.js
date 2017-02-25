@@ -1,49 +1,5 @@
 debug = DEBUG ? console.debug.bind(console) : ()=>{}
 
-class WS extends EventEmitter {
-  constructor(url, protocols) {
-    super()
-
-    this.id = btoa(Math.random()*1000)
-
-    this.ws = new WebSocket(url, protocols)
-
-    this.ws.onopen = (e) => {
-      debug(`ws#on('${e.type}')`, e, this.id)
-      super.emit('open', e)
-    }
-
-    this.ws.onmessage = (e) => {
-      const {id, name, message} = JSON.parse(e.data)
-      if (id === this.id) return;
-      debug(`ws#on('${name}')`, message)
-      super.emit(name, message)
-    }
-
-    this.ws.onclose = (e) => {
-      debug(`ws#on('${e.type}')`, e)
-      super.emit('close', e)
-    }
-
-    this.ws.onerror = (e) => {
-      debug(`ws#on('${e.type}')`, e)
-      super.emit('error', e)
-    }
-  }
-
-  emit(name, message) {
-    console.assert(name !== undefined && message !== undefined)
-    debug(`ws#send(name, data)`, name, message)
-    this.ws.send(JSON.stringify({id: this.id, name, message}))
-  }
-
-  close(code, reason) {
-    debug(`ws#close(code, reason)`, code, reason)
-    this.ws.close(code, reason)
-  }
-}
-
-
 class Util {
   static Caps2Params(sendCaps, remoteRecvCaps) {
     let muxId = '';
@@ -133,11 +89,15 @@ class Util {
 
 
 class ORTC {
-  constructor() {
-    this.id = location.hash;
+  constructor(id) {
+    this.id = id;
 
     this.socket = new WS('wss://ws.jxck.io', ['broadcast', 'ortc-demo']);
-    this.iceOptions = { gatherPolicy: 'all', iceServers: [] };
+
+    this.iceOptions = {
+      gatherPolicy: 'all',
+      iceServers: []
+    };
 
     this.iceGathr = null;
     this.iceTr = null;
@@ -197,7 +157,6 @@ class ORTC {
 
     this.socket.on('connectRequest', (message) => {
       console.log(JSON.stringify(message));
-
       this.handleCallRequest(message);
     });
 
@@ -365,15 +324,15 @@ class ORTC {
       console.error(e);
     }
 
-    this.iceGathr.onlocalcandidate = (evt) => {
+    this.iceGathr.onlocalcandidate = (e) => {
       this.socket.emit('candidate', {
         id: this.id,
-        candidate: evt.candidate,
+        candidate: e.candidate,
       });
 
       this.localCandidatesCreated = false;
 
-      if (Object.keys(evt.candidate).length == 0) {
+      if (Object.keys(e.candidate).length == 0) {
         console.info('---- Local ICE Candidate Complete ----');
 
         // candidate の生成が終了
@@ -396,7 +355,7 @@ class ORTC {
           this.dtlsTr.start(this.remoteDtlsParams);
         }
       } else {
-        console.log('Local ICE candidate: ', evt.candidate.ip + ':' + evt.candidate.port);
+        console.log('Local ICE candidate: ', e.candidate.ip + ':' + e.candidate.port);
       }
     };
 
@@ -505,6 +464,7 @@ class ORTC {
 }
 
 window.onload = function() {
-  const ortc = new ORTC();
+  const id = location.hash;
+  const ortc = new ORTC(id);
   document.getElementById('connect').addEventListener('click', ortc.connectRequest.bind(ortc));
 };
