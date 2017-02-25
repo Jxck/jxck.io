@@ -181,12 +181,12 @@ class ORTC extends EventEmitter {
       return console.error('iceTr, dtlsTr does not initiated');
     }
 
-    console.log('Remote ICE candidate:', message.candidate.ip + ':' + message.candidate.port);
+    // console.log('Remote ICE candidate:', message.candidate.ip + ':' + message.candidate.port);
 
     if (Object.keys(message.candidate).length > 0) {
       this.remoteCandidates.push(message.candidate);
     } else {
-      console.info('---- Remote ICE Candidate Complete ----');
+      // console.info('---- Remote ICE Candidate Complete ----');
       this.iceTr.setRemoteCandidates(this.remoteCandidates);
     }
   }
@@ -279,45 +279,50 @@ class ORTC extends EventEmitter {
   }
 
   initiateConnection(dtlsRole) {
-    console.log('---- initiateConnection ----');
+    // console.log('---- initiateConnection ----');
 
     this.selfInfo.dtlsRole = dtlsRole;
     this.iceGathr = new RTCIceGatherer(this.iceOptions);
     this.iceTr = new RTCIceTransport();
     this.dtlsTr = new RTCDtlsTransport(this.iceTr);
 
-    this.iceGathr.ongatherstatechange = (e) => {
-      console.error(e);
+    this.iceGathr.onstatechange = (e) => {
+      console.log(e);
+    }
+
+    this.iceGathr.error = (e) => {
+      console.log(e);
     }
 
     this.iceGathr.onlocalcandidate = (e) => {
+      console.log(this.iceGathr.state, e);
       super.emit('localcandidate', e);
     };
 
     this.iceTr.onicestatechange = (e) => {
-      console.log('ICE State Change', this.iceTr.state, e.state);
+      // console.log('ICE State Change', this.iceTr.state, e.state);
     };
 
     this.iceTr.oncandidatepairchange = (e) => {
-      console.info('ICE Candidate Pair Change:', e.pair, e);
+      // console.info('ICE Candidate Pair Change:', e.pair, e);
     };
 
     this.iceGathr.onerror = (e) => {
-      console.error('ICE ERROR', e);
+      // console.error('ICE ERROR', e);
     };
 
     this.dtlsTr.ondtlsstatechange = (e) => {
-      console.log('DTLS State Change', this.dtlsTr.state, e.state);
+      // console.log('DTLS State Change', this.dtlsTr.state, e.state);
     };
 
     this.dtlsTr.onerror = (e) => {
-      console.error('DTLS ERROR', e);
+      // console.error('DTLS ERROR', e);
     };
 
     super.emit('needstream');
   }
 
-  gotMedia(stream) {
+  addStream(stream) {
     // gUM で取得した stream を sender/recver を生成
     // capability を送る。
 
@@ -395,7 +400,7 @@ window.onload = function() {
     ortc.localCandidatesCreated = false;
 
     if (Object.keys(e.candidate).length == 0) {
-      console.info('---- Local ICE Candidate Complete ----');
+      // console.info('---- Local ICE Candidate Complete ----');
 
       // candidate の生成が終了
       ortc.localCandidatesCreated = true;
@@ -417,7 +422,7 @@ window.onload = function() {
       }
 
     } else {
-      console.log('Local ICE candidate: ', e.candidate.ip + ':' + e.candidate.port);
+      // console.log('Local ICE candidate: ', e.candidate.ip + ':' + e.candidate.port);
     }
   });
 
@@ -425,17 +430,15 @@ window.onload = function() {
     // Get a local stream
     navigator.mediaDevices.getUserMedia({
       audio: true,
-      video: {
-        width: 640,
-        height: 480,
-      }
+      video: true,
     }).then((stream) => {
-      console.info('---- getUserMedia ----', stream);
+      // console.info('---- getUserMedia ----', stream);
       let $local = document.getElementById('local');
       $local.srcObject = stream;
-
-      ortc.gotMedia(stream);
-    }).catch(console.error.bind(console));
+      ortc.addStream(stream);
+    }).catch((err) => {
+      console.error(err);
+    });
   });
 
   ortc.on('capability', (e) => {
@@ -455,12 +458,12 @@ window.onload = function() {
   });
 
   socket.on('start', (message) => {
-    console.log(JSON.stringify(message));
+    // console.log(JSON.stringify(message));
     ortc.initiateConnection(message.dtlsrole);
   });
 
   socket.on('connectRequest', (message) => {
-    console.log(JSON.stringify(message))
+    // console.log(JSON.stringify(message))
 
     // 送ってきた 相手を controlling として start する
     socket.emit('start', {
