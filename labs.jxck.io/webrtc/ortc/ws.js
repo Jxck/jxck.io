@@ -62,7 +62,7 @@ var Socket = (function (_EE) {
 
     _get(Object.getPrototypeOf(Socket.prototype), 'constructor', this).call(this);
 
-    this.ws = new WebSocket(url);
+    this.ws = new WebSocket('wss://ws.jxck.io', ['broadcast', 'ortc-demo'])
 
     this.ws.onopen = function (e) {
       setTimeout(function () {

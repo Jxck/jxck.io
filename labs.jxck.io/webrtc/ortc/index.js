@@ -85,7 +85,7 @@ util.RTCRtpEncodingParameters = function(ssrc, codecPayloadType, fec, rtx, prior
 
 (function(global) {
   'use strict';
-  let id = localStorage.getItem('id');
+  let id = location.hash;
   let socket = new Socket();
 
   let iceOptions = { gatherPolicy: 'all', iceServers: [] };
