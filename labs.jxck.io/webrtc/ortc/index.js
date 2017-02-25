@@ -143,7 +143,7 @@ class ORTC extends EventEmitter {
     }
 
     this.videoRenderer = document.getElementById('remote');
-    this.renderStream = new MediaStream();
+    this.mediaStream = new MediaStream();
 
     this.selfInfo = {};
     this.remoteCandidates = [];
@@ -235,7 +235,7 @@ class ORTC extends EventEmitter {
 
         this.trackCount++;
         if (this.trackCount == 2) {
-          this.videoRenderer.srcObject = this.renderStream;
+          this.videoRenderer.srcObject = this.mediaStream;
         }
       } else {
         this.Params.recver[kind] = remote;
@@ -254,7 +254,7 @@ class ORTC extends EventEmitter {
   recvTrack(kind) {
     this.Transports.recver[kind] = new RTCRtpReceiver(this.rtcDtlsTransport, kind);
     this.Caps.recver[kind] = RTCRtpReceiver.getCapabilities(kind);
-    this.renderStream.addTrack(this.Transports.recver[kind].track);
+    this.mediaStream.addTrack(this.Transports.recver[kind].track);
     this.emit('capability', {
       id: this.id,
       caps: {
@@ -352,7 +352,7 @@ class ORTC extends EventEmitter {
 
         this.trackCount++;
         if (this.trackCount == 2) {
-          this.videoRenderer.srcObject = this.renderStream;
+          this.videoRenderer.srcObject = this.mediaStream;
         }
       }
     }
@@ -365,7 +365,7 @@ class ORTC extends EventEmitter {
 
         this.trackCount++;
         if (this.trackCount == 2) {
-          this.videoRenderer.srcObject = this.renderStream;
+          this.videoRenderer.srcObject = this.mediaStream;
         }
       }
     }
