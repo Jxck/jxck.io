@@ -1,5 +1,10 @@
 debug = DEBUG ? console.debug.bind(console) : ()=>{}
 
+// polyfill
+window.RTCIceRole  = (window.RTCIceRole !== undefined)  ? RTCIceRole  : { controlling: "controlling", controlled: "controlled" }
+window.RTCDtlsRole = (window.RTCDtlsRole !== undefined) ? RTCDtlsRole : { auto: "auto", client: "client", server: "server" }
+
+
 class Util {
   static Caps2Params(sendCaps, remoteRecvCaps) {
     let muxId = '';
@@ -87,7 +92,6 @@ class Util {
 }
 
 
-
 class ORTC extends EventEmitter {
   constructor(id) {
     super();
@@ -99,9 +103,9 @@ class ORTC extends EventEmitter {
       iceServers: []
     };
 
-    this.iceGathr = null;
-    this.iceTr = null;
-    this.dtlsTr = null;
+    this.rtcIceGatherer = null;
+    this.rtcIceTransport = null;
+    this.rtcDtlsTransport = null;
 
     this.Transports = {
       sender: {
@@ -156,13 +160,13 @@ class ORTC extends EventEmitter {
   }
 
   start() {
-    this.iceTr.start(this.iceGathr, this.remoteIceParams, this.selfInfo.dtlsRole);
-    this.dtlsTr.start(this.remoteDtlsParams);
+    this.rtcIceTransport.start(this.rtcIceGatherer, this.remoteIceParams, this.selfInfo.dtlsRole);
+    this.rtcDtlsTransport.start(this.remoteDtlsParams);
   }
 
   sendTrack(track) {
     let kind = track.kind;
-    this.Transports.sender[kind] = new RTCRtpSender(track, this.dtlsTr);
+    this.Transports.sender[kind] = new RTCRtpSender(track, this.rtcDtlsTransport);
     this.Caps.sender[kind] = RTCRtpSender.getCapabilities(kind);
     this.emit('capability', {
       id: this.id,
@@ -177,8 +181,8 @@ class ORTC extends EventEmitter {
 
   recvCandidate(message) {
     console.log(JSON.stringify(message));
-    if (!(this.iceTr && this.dtlsTr)) {
-      return console.error('iceTr, dtlsTr does not initiated');
+    if (!(this.rtcIceTransport && this.rtcDtlsTransport)) {
+      return console.error('rtcIceTransport, rtcDtlsTransport does not initiated');
     }
 
     // console.log('Remote ICE candidate:', message.candidate.ip + ':' + message.candidate.port);
@@ -187,14 +191,14 @@ class ORTC extends EventEmitter {
       this.remoteCandidates.push(message.candidate);
     } else {
       // console.info('---- Remote ICE Candidate Complete ----');
-      this.iceTr.setRemoteCandidates(this.remoteCandidates);
+      this.rtcIceTransport.setRemoteCandidates(this.remoteCandidates);
     }
   }
 
   recvParams(message) {
     console.log(JSON.stringify(message));
-    if (!(this.iceTr && this.dtlsTr)) {
-      return console.error('iceTr, dtlsTr does not initiated');
+    if (!(this.rtcIceTransport && this.rtcDtlsTransport)) {
+      return console.error('rtcIceTransport, rtcDtlsTransport does not initiated');
     }
 
     // 相手からの parameter を受け取った
@@ -213,8 +217,8 @@ class ORTC extends EventEmitter {
 
   recvCapability(message) {
     console.log(JSON.stringify(message));
-    if (!(this.iceTr && this.dtlsTr)) {
-      return console.error('iceTr, dtlsTr does not initiated');
+    if (!(this.rtcIceTransport && this.rtcDtlsTransport)) {
+      return console.error('rtcIceTransport, rtcDtlsTransport does not initiated');
     }
 
     // 相手から来た capability を受け取る
@@ -248,7 +252,7 @@ class ORTC extends EventEmitter {
   }
 
   recvTrack(kind) {
-    this.Transports.recver[kind] = new RTCRtpReceiver(this.dtlsTr, kind);
+    this.Transports.recver[kind] = new RTCRtpReceiver(this.rtcDtlsTransport, kind);
     this.Caps.recver[kind] = RTCRtpReceiver.getCapabilities(kind);
     this.renderStream.addTrack(this.Transports.recver[kind].track);
     this.emit('capability', {
@@ -279,43 +283,41 @@ class ORTC extends EventEmitter {
   }
 
   initiateConnection(dtlsRole) {
-    // console.log('---- initiateConnection ----');
-
     this.selfInfo.dtlsRole = dtlsRole;
-    this.iceGathr = new RTCIceGatherer(this.iceOptions);
-    this.iceTr = new RTCIceTransport();
-    this.dtlsTr = new RTCDtlsTransport(this.iceTr);
+    this.rtcIceGatherer = new RTCIceGatherer(this.iceOptions);
+    this.rtcIceTransport = new RTCIceTransport();
+    this.rtcDtlsTransport = new RTCDtlsTransport(this.rtcIceTransport);
 
-    this.iceGathr.onstatechange = (e) => {
+    this.rtcIceGatherer.onstatechange = (e) => {
       console.log(e);
     }
 
-    this.iceGathr.error = (e) => {
+    this.rtcIceGatherer.error = (e) => {
       console.log(e);
     }
 
-    this.iceGathr.onlocalcandidate = (e) => {
-      console.log(this.iceGathr.state, e);
+    this.rtcIceGatherer.onlocalcandidate = (e) => {
+      console.log(this.rtcIceGatherer.state, e);
       super.emit('localcandidate', e);
     };
 
-    this.iceTr.onicestatechange = (e) => {
-      // console.log('ICE State Change', this.iceTr.state, e.state);
+    this.rtcIceTransport.onicestatechange = (e) => {
+      // console.log('ICE State Change', this.rtcIceTransport.state, e.state);
     };
 
-    this.iceTr.oncandidatepairchange = (e) => {
+    this.rtcIceTransport.oncandidatepairchange = (e) => {
       // console.info('ICE Candidate Pair Change:', e.pair, e);
     };
 
-    this.iceGathr.onerror = (e) => {
+    this.rtcIceGatherer.onerror = (e) => {
       // console.error('ICE ERROR', e);
     };
 
-    this.dtlsTr.ondtlsstatechange = (e) => {
-      // console.log('DTLS State Change', this.dtlsTr.state, e.state);
+    this.rtcDtlsTransport.ondtlsstatechange = (e) => {
+      // console.log('DTLS State Change', this.rtcDtlsTransport.state, e.state);
     };
 
-    this.dtlsTr.onerror = (e) => {
+    this.rtcDtlsTransport.onerror = (e) => {
       // console.error('DTLS ERROR', e);
     };
 
@@ -409,8 +411,8 @@ window.onload = function() {
       socket.emit('params', {
         id: id,
         params: {
-          ice: ortc.iceGathr.getLocalParameters(),
-          dtls: ortc.dtlsTr.getLocalParameters()
+          ice: ortc.rtcIceGatherer.getLocalParameters(),
+          dtls: ortc.rtcDtlsTransport.getLocalParameters()
         }
       });
 
@@ -430,7 +432,9 @@ window.onload = function() {
     // Get a local stream
     navigator.mediaDevices.getUserMedia({
       audio: true,
-      video: true,
+      video: {
+        facingMode: id,
+      },
     }).then((stream) => {
       // console.info('---- getUserMedia ----', stream);
       let $local = document.getElementById('local');
@@ -476,6 +480,7 @@ window.onload = function() {
   });
 
   socket.on('open', () => {
+    console.log('open');
     document.getElementById('connect').addEventListener('click', () => {
       socket.emit('connectRequest', { id })
     })
