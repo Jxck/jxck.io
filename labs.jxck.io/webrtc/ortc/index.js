@@ -142,8 +142,6 @@ class ORTC extends EventEmitter {
       }
     }
 
-    this.videoRenderer = document.getElementById('remote');
-
     this.mediaStream = new MediaStream();
     this.mediaStream.onaddtrack = (e) => {
       console.log(e);
@@ -227,7 +225,7 @@ class ORTC extends EventEmitter {
 
         this.trackCount++;
         if (this.trackCount == 2) {
-          this.videoRenderer.srcObject = this.mediaStream;
+          super.emit('mediastream', this.mediaStream);
         }
       } else {
         this.Params.recver[kind] = remote;
@@ -358,7 +356,7 @@ class ORTC extends EventEmitter {
 
         this.trackCount++;
         if (this.trackCount == 2) {
-          this.videoRenderer.srcObject = this.mediaStream;
+          super.emit('mediastream', this.mediaStream);
         }
       }
     }
@@ -371,7 +369,7 @@ class ORTC extends EventEmitter {
 
         this.trackCount++;
         if (this.trackCount == 2) {
-          this.videoRenderer.srcObject = this.mediaStream;
+          super.emit('mediastream', this.mediaStream);
         }
       }
     }
@@ -398,6 +396,12 @@ window.onload = function() {
   const id = location.hash
   const ortc = new ORTC(id)
   const socket = new WS('wss://ws.jxck.io', ['broadcast', 'ortc-demo'])
+  const $video = document.getElementById('remote');
+
+
+  ortc.on('mediastream', (stream) => {
+    $video.srcObject = stream
+  });
 
   ortc.on('localcandidate', (e) => {
     socket.emit('candidate', {
