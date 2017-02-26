@@ -242,10 +242,9 @@ class ORTC extends EventEmitter {
     let kind = track.kind;
     this.Transports.sender[kind] = new RTCRtpSender(track, this.rtcDtlsTransport);
     this.Caps.sender[kind] = RTCRtpSender.getCapabilities(kind);
-    this.emit('capability', {
+    this.emit('capability:sender', {
       caps: {
         kind: kind,
-        role: 'sender',
         caps: this.Caps.sender[kind],
         muxId: null,
       }
@@ -257,43 +256,46 @@ class ORTC extends EventEmitter {
     this.Transports.recver[kind] = new RTCRtpReceiver(this.rtcDtlsTransport, kind);
     this.Caps.recver[kind] = RTCRtpReceiver.getCapabilities(kind);
     this.mediaStream.addTrack(this.Transports.recver[kind].track);
-    this.emit('capability', {
+    this.emit('capability:receiver', {
       caps: {
         kind: kind,
-        role: 'receiver',
         caps: this.Caps.recver[kind],
       }
     });
   }
 
-  recvCapability(message) {
+  addSenderCapability(message) {
     // 相手から来た capability を受け取る
     // すでに sender/receiver が作られていれば send()/receive() を
     // なければ Params に保存する。
     let remote = message.caps;
     let kind = remote.kind;
 
-    // role は送ってきた側が sender/receiver のどちあらかを表す
     // 逆側に設定する。
-    if (remote.role === 'sender') {
-      if (this.Transports.recver[kind]) {
-        this.transportRecv(kind, remote);
+    if (this.Transports.recver[kind]) {
+      this.transportRecv(kind, remote);
 
-        this.trackCount++;
-        if (this.trackCount == 2) {
-          super.emit('mediastream', this.mediaStream);
-        }
-      } else {
-        this.Params.recver[kind] = remote;
+      this.trackCount++;
+      if (this.trackCount == 2) {
+        super.emit('mediastream', this.mediaStream);
       }
+    } else {
+      this.Params.recver[kind] = remote;
     }
+  }
 
-    if (remote.role === 'receiver') {
-      if (this.Transports.sender[kind]) {
-        this.transportSend(kind, remote);
-      } else {
-        this.Params.sender[kind] = remote;
-      }
+  addReceiverCapability(message) {
+    // 相手から来た capability を受け取る
+    // すでに sender/receiver が作られていれば send()/receive() を
+    // なければ Params に保存する。
+    let remote = message.caps;
+    let kind = remote.kind;
+
+    // 逆側に設定する。
+    if (this.Transports.sender[kind]) {
+      this.transportSend(kind, remote);
+    } else {
+      this.Params.sender[kind] = remote;
     }
   }
 
@@ -411,8 +413,12 @@ window.onload = function() {
     });
   });
 
-  ortc.on('capability', (e) => {
-    socket.emit('capability', e);
+  ortc.on('capability:sender', (e) => {
+    socket.emit('capability:sender', e);
+  });
+
+  ortc.on('capability:receiver', (e) => {
+    socket.emit('capability:receiver', e);
   });
 
 
@@ -445,8 +451,12 @@ window.onload = function() {
     ortc.addRemoteCandidate(message.candidate);
   });
 
-  socket.on('capability', (message) => {
-    ortc.recvCapability(message);
+  socket.on('capability:sender', (message) => {
+    ortc.addSenderCapability(message);
+  });
+
+  socket.on('capability:receiver', (message) => {
+    ortc.addReceiverCapability(message);
   });
 
   socket.on('start', (message) => {
