@@ -277,7 +277,17 @@ class ORTC extends EventEmitter {
 
     this.rtcIceGatherer.onlocalcandidate = (e) => {
       debug(e.type, e);
-      super.emit('localcandidate', e.candidate);
+
+      const candidate = e.candidate;
+
+      debug('localcandidate', candidate);
+      super.emit('localcandidate', candidate);
+
+      // polyfill for RTCIceCandidateComplete
+      if (Object.keys(candidate).length == 0) {
+        debug('localcandidatecomplete', candidate);
+        super.emit('localcandidatecomplete');
+      }
     };
 
     this.rtcIceGatherer.onerror = (e) => {
@@ -392,39 +402,32 @@ window.onload = function() {
     $video.srcObject = stream
   });
 
+  ortc.on('localcandidatecomplete', () => {
+    // candidate の生成が終了
+    ortc.localCandidatesCreated = true;
+
+    // parameter を相手に送る
+    socket.emit('params', {
+      id: id,
+      params: {
+        ice: ortc.rtcIceGatherer.getLocalParameters(),
+        dtls: ortc.rtcDtlsTransport.getLocalParameters()
+      }
+    });
+
+    // candidate を生成してる途中に相手から
+    // すでに parameter を受け取っていたらここで start()
+    // まだなら onparameter で start()
+    if (ortc.rtcIceParameters) {
+      ortc.start()
+    }
+  });
+
   ortc.on('localcandidate', (candidate) => {
     socket.emit('candidate', {
       id: id,
       candidate: candidate,
     });
-
-    ortc.localCandidatesCreated = false;
-
-    if (Object.keys(candidate).length == 0) {
-      // console.info('---- Local ICE Candidate Complete ----');
-
-      // candidate の生成が終了
-      ortc.localCandidatesCreated = true;
-
-      // parameter を相手に送る
-      socket.emit('params', {
-        id: id,
-        params: {
-          ice: ortc.rtcIceGatherer.getLocalParameters(),
-          dtls: ortc.rtcDtlsTransport.getLocalParameters()
-        }
-      });
-
-      // candidate を生成してる途中に相手から
-      // すでに parameter を受け取っていたらここで start()
-      // まだなら onparameter で start()
-      if (ortc.rtcIceParameters) {
-        ortc.start()
-      }
-
-    } else {
-      // console.log('Local ICE candidate: ', e.candidate.ip + ':' + e.candidate.port);
-    }
   });
 
   ortc.on('needstream', () => {
@@ -461,13 +464,10 @@ window.onload = function() {
   });
 
   socket.on('start', (message) => {
-    // console.log(JSON.stringify(message));
     ortc.initiateConnection(message.rtcIceRole);
   });
 
   socket.on('connectRequest', (message) => {
-    // console.log(JSON.stringify(message))
-
     // 送ってきた 相手を controlling として start する
     socket.emit('start', {
       id: id,
