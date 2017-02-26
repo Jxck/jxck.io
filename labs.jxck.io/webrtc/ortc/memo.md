@@ -20,3 +20,10 @@ statechange も上がらないので、 Object.keys とかで
 ```js
 rtcIceTransport.onicestatechange
 ```
+
+
+
+## flow
+
+localcandidate を送り終わってないと params で start() することができない。
+localcandidate の終わりと params の受信を両方待つ Promsie.all を作ってやるのが良さそう。
