@@ -193,6 +193,13 @@ class ORTC extends EventEmitter {
     };
   }
 
+  getLocalParameters() {
+    return {
+      rtcIceParameters:  this.rtcIceGatherer.getLocalParameters(),
+      rtcDtlsParameters: this.rtcDtlsTransport.getLocalParameters(),
+    }
+  }
+
   start() {
     this.rtcIceTransport.start(this.rtcIceGatherer, this.rtcIceParameters, this.rtcIceRole);
     this.rtcDtlsTransport.start(this.rtcDtlsParameters);
@@ -222,9 +229,9 @@ class ORTC extends EventEmitter {
     // 相手からの parameter を受け取った
 
     // candidate を送り終わって無いと start() できないので取っておく
-    let remote = message.params;
-    this.rtcIceParameters = remote.ice;
-    this.rtcDtlsParameters = remote.dtls;
+    const params = message.params;
+    this.rtcIceParameters = params.rtcIceParameters;
+    this.rtcDtlsParameters = params.rtcDtlsParameters;
 
     // すでに local からの candidate を全て送り終わっていたら
     // 受け取った parameter で start()
@@ -410,10 +417,7 @@ window.onload = function() {
     // parameter を相手に送る
     socket.emit('params', {
       id: id,
-      params: {
-        ice: ortc.rtcIceGatherer.getLocalParameters(),
-        dtls: ortc.rtcDtlsTransport.getLocalParameters()
-      }
+      params: ortc.getLocalParameters(),
     });
 
     // candidate を生成してる途中に相手から
