@@ -98,6 +98,8 @@ class ORTC extends EventEmitter {
 
     this.id = id;
 
+    this.rtcIceRole = null;
+
     this.iceOptions = {
       gatherPolicy: 'all',
       iceServers: []
@@ -179,8 +181,6 @@ class ORTC extends EventEmitter {
     this.mediaStream.onremovetrack = (e) => {
       console.log(e);
     }
-
-    this.rtcIceRole = null;
 
     this.trackCount = 0;
 
@@ -452,10 +452,12 @@ window.onload = function() {
   });
 
   socket.on('capability', (message) => {
+    console.log(message);
     ortc.recvCapability(message);
   });
 
   socket.on('start', (message) => {
+    console.log(message);
     ortc.initiateConnection(message.rtcIceRole);
   });
 
@@ -463,15 +465,11 @@ window.onload = function() {
     console.log('open');
     document.getElementById('connect').addEventListener('click', () => {
 
-
-
       // 相手を controlled として start する
       socket.emit('start', {
         id: id,
         rtcIceRole: RTCIceRole.controlling,
       });
-
-
 
       // 自分を controlling として start する
       ortc.initiateConnection(RTCIceRole.controlled);
