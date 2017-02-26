@@ -225,21 +225,6 @@ class ORTC extends EventEmitter {
     this.rtcIceTransport.addRemoteCandidate(candidate);
   }
 
-  recvParams(message) {
-    // 相手からの parameter を受け取った
-
-    // candidate を送り終わって無いと start() できないので取っておく
-    const params = message.params;
-    this.rtcIceParameters = params.rtcIceParameters;
-    this.rtcDtlsParameters = params.rtcDtlsParameters;
-
-    // すでに local からの candidate を全て送り終わっていたら
-    // 受け取った parameter で start()
-    if (this.localCandidatesCreated) {
-      this.start();
-    }
-  }
-
   recvCapability(message) {
     // 相手から来た capability を受け取る
     // すでに sender/receiver が作られていれば send()/receive() を
@@ -410,24 +395,6 @@ window.onload = function() {
     $video.srcObject = stream
   });
 
-  ortc.on('localcandidatecomplete', () => {
-    // candidate の生成が終了
-    ortc.localCandidatesCreated = true;
-
-    // parameter を相手に送る
-    socket.emit('params', {
-      id: id,
-      params: ortc.getLocalParameters(),
-    });
-
-    // candidate を生成してる途中に相手から
-    // すでに parameter を受け取っていたらここで start()
-    // まだなら onparameter で start()
-    if (ortc.rtcIceParameters) {
-      ortc.start()
-    }
-  });
-
   ortc.on('localcandidate', (candidate) => {
     socket.emit('candidate', {
       id: id,
@@ -456,8 +423,37 @@ window.onload = function() {
     socket.emit('capability', e);
   });
 
+  ortc.on('localcandidatecomplete', () => {
+    // candidate の生成が終了
+    ortc.localCandidatesCreated = true;
+
+    // parameter を相手に送る
+    socket.emit('params', {
+      id: id,
+      params: ortc.getLocalParameters(),
+    });
+
+    // candidate を生成してる途中に相手から
+    // すでに parameter を受け取っていたらここで start()
+    // まだなら onparameter で start()
+    if (ortc.rtcIceParameters) {
+      ortc.start()
+    }
+  });
+
   socket.on('params', (message) => {
-    ortc.recvParams(message);
+    // 相手からの parameter を受け取った
+
+    // candidate を送り終わって無いと start() できないので取っておく
+    const params = message.params;
+    ortc.rtcIceParameters = params.rtcIceParameters;
+    ortc.rtcDtlsParameters = params.rtcDtlsParameters;
+
+    // すでに local からの candidate を全て送り終わっていたら
+    // 受け取った parameter で start()
+    if (ortc.localCandidatesCreated) {
+      ortc.start();
+    }
   });
 
   socket.on('candidate', (message) => {
