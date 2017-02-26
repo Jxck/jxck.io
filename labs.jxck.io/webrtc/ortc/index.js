@@ -190,6 +190,11 @@ class ORTC extends EventEmitter {
     };
   }
 
+  addRemoteCandidate(candidate) {
+    debug('addRemoteCandidate()', candidate.type, candidate.ip, candidate.port);
+    this.rtcIceTransport.addRemoteCandidate(candidate);
+  }
+
   getLocalParameters() {
     return {
       rtcIceParameters:  this.rtcIceGatherer.getLocalParameters(),
@@ -200,88 +205,6 @@ class ORTC extends EventEmitter {
   start(rtcIceParametersRemote, rtcDtlsParametersRemote) {
     this.rtcIceTransport.start(this.rtcIceGatherer, rtcIceParametersRemote, this.rtcIceRole);
     this.rtcDtlsTransport.start(rtcDtlsParametersRemote);
-  }
-
-  sendTrack(track) {
-    let kind = track.kind;
-    this.Transports.sender[kind] = new RTCRtpSender(track, this.rtcDtlsTransport);
-    this.Caps.sender[kind] = RTCRtpSender.getCapabilities(kind);
-    this.emit('capability', {
-      id: this.id,
-      caps: {
-        kind: kind,
-        role: 'sender',
-        caps: this.Caps.sender[kind],
-        muxId: null,
-      }
-    });
-  }
-
-  addRemoteCandidate(candidate) {
-    debug('addRemoteCandidate()', candidate.type, candidate.ip, candidate.port);
-    this.rtcIceTransport.addRemoteCandidate(candidate);
-  }
-
-  recvCapability(message) {
-    // 相手から来た capability を受け取る
-    // すでに sender/receiver が作られていれば send()/receive() を
-    // なければ Params に保存する。
-    let remote = message.caps;
-    let kind = remote.kind;
-
-    // role は送ってきた側が sender/receiver のどちあらかを表す
-    // 逆側に設定する。
-    if (remote.role === 'sender') {
-      if (this.Transports.recver[kind]) {
-        this.transportRecv(kind, remote);
-
-        this.trackCount++;
-        if (this.trackCount == 2) {
-          super.emit('mediastream', this.mediaStream);
-        }
-      } else {
-        this.Params.recver[kind] = remote;
-      }
-    }
-
-    if (remote.role === 'receiver') {
-      if (this.Transports.sender[kind]) {
-        this.transportSend(kind, remote);
-      } else {
-        this.Params.sender[kind] = remote;
-      }
-    }
-  }
-
-  recvTrack(kind) {
-    this.Transports.recver[kind] = new RTCRtpReceiver(this.rtcDtlsTransport, kind);
-    this.Caps.recver[kind] = RTCRtpReceiver.getCapabilities(kind);
-    this.mediaStream.addTrack(this.Transports.recver[kind].track);
-    this.emit('capability', {
-      id: this.id,
-      caps: {
-        kind: kind,
-        role: 'receiver',
-        caps: this.Caps.recver[kind],
-      }
-    });
-  }
-
-  transportSend(kind, remote) {
-    const ssrc = this.SSRC[kind];
-    const encodingParams = Util.RTCRtpEncodingParameters(ssrc);
-    const sendParams = Util.Caps2Params(this.Caps.sender[kind], remote.caps);
-    sendParams.encodings.push(encodingParams);
-    this.Transports.sender[kind].send(sendParams);
-  }
-
-  transportRecv(kind, remote) {
-    const ssrc = this.SSRC[kind];
-    const encodingParams = Util.RTCRtpEncodingParameters(ssrc);
-    const recvParams = Util.Caps2Params(remote.caps, this.Caps.recver[kind]);
-    recvParams.muxId = remote.muxId;
-    recvParams.encodings.push(encodingParams);
-    this.Transports.recver[kind].receive(recvParams);
   }
 
   initiateConnection(rtcIceRole) {
@@ -317,15 +240,96 @@ class ORTC extends EventEmitter {
     super.emit('needstream');
   }
 
+
+
+
+
+
+
+  sendTrack(track) {
+    let kind = track.kind;
+    this.Transports.sender[kind] = new RTCRtpSender(track, this.rtcDtlsTransport);
+    this.Caps.sender[kind] = RTCRtpSender.getCapabilities(kind);
+    this.emit('capability', {
+      id: this.id,
+      caps: {
+        kind: kind,
+        role: 'sender',
+        caps: this.Caps.sender[kind],
+        muxId: null,
+      }
+    });
+  }
+
+  recvTrack(kind) {
+    this.Transports.recver[kind] = new RTCRtpReceiver(this.rtcDtlsTransport, kind);
+    this.Caps.recver[kind] = RTCRtpReceiver.getCapabilities(kind);
+    this.mediaStream.addTrack(this.Transports.recver[kind].track);
+    this.emit('capability', {
+      id: this.id,
+      caps: {
+        kind: kind,
+        role: 'receiver',
+        caps: this.Caps.recver[kind],
+      }
+    });
+  }
+
+  recvCapability(message) {
+    // 相手から来た capability を受け取る
+    // すでに sender/receiver が作られていれば send()/receive() を
+    // なければ Params に保存する。
+    let remote = message.caps;
+    let kind = remote.kind;
+
+    // role は送ってきた側が sender/receiver のどちあらかを表す
+    // 逆側に設定する。
+    if (remote.role === 'sender') {
+      if (this.Transports.recver[kind]) {
+        this.transportRecv(kind, remote);
+
+        this.trackCount++;
+        if (this.trackCount == 2) {
+          super.emit('mediastream', this.mediaStream);
+        }
+      } else {
+        this.Params.recver[kind] = remote;
+      }
+    }
+
+    if (remote.role === 'receiver') {
+      if (this.Transports.sender[kind]) {
+        this.transportSend(kind, remote);
+      } else {
+        this.Params.sender[kind] = remote;
+      }
+    }
+  }
+
+  transportSend(kind, remote) {
+    const ssrc = this.SSRC[kind];
+    const encodingParams = Util.RTCRtpEncodingParameters(ssrc);
+    const sendParams = Util.Caps2Params(this.Caps.sender[kind], remote.caps);
+    sendParams.encodings.push(encodingParams);
+    this.Transports.sender[kind].send(sendParams);
+  }
+
+  transportRecv(kind, remote) {
+    const ssrc = this.SSRC[kind];
+    const encodingParams = Util.RTCRtpEncodingParameters(ssrc);
+    const recvParams = Util.Caps2Params(remote.caps, this.Caps.recver[kind]);
+    recvParams.muxId = remote.muxId;
+    recvParams.encodings.push(encodingParams);
+    this.Transports.recver[kind].receive(recvParams);
+  }
+
   addStream(stream) {
     // gUM で取得した stream を sender/recver を生成
     // capability を送る。
 
     // Send Audio/Video
-    const audioTracks = stream.getAudioTracks();
-    const videoTracks = stream.getVideoTracks();
-    const audioTrack = audioTracks[0];
-    const videoTrack = videoTracks[0];
+    const audioTrack = stream.getAudioTracks()[0];
+    const videoTrack = stream.getVideoTracks()[0];
     this.sendTrack(audioTrack);
     this.sendTrack(videoTrack);
 
