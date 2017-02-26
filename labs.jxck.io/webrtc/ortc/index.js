@@ -1,4 +1,4 @@
-debug = DEBUG ? console.debug.bind(console) : ()=>{}
+debug = DEBUG ? console.info.bind(console) : ()=>{}
 
 // polyfill
 window.RTCIceRole  = (window.RTCIceRole !== undefined)  ? RTCIceRole  : { controlling: "controlling", controlled: "controlled" }
@@ -151,7 +151,6 @@ class ORTC extends EventEmitter {
     }
 
     this.selfInfo = {};
-    this.remoteCandidates = [];
     this.localCandidatesCreated = false;
     this.rtcIceParameters = null;
     this.rtcDtlsParameters = null;
@@ -184,15 +183,9 @@ class ORTC extends EventEmitter {
     });
   }
 
-  recvCandidate(message) {
-    // console.log('Remote ICE candidate:', message.candidate.ip + ':' + message.candidate.port);
-
-    if (Object.keys(message.candidate).length > 0) {
-      this.remoteCandidates.push(message.candidate);
-    } else {
-      // console.info('---- Remote ICE Candidate Complete ----');
-      this.rtcIceTransport.setRemoteCandidates(this.remoteCandidates);
-    }
+  addRemoteCandidate(candidate) {
+    debug('addRemoteCandidate()', candidate.type, candidate.ip, candidate.port);
+    this.rtcIceTransport.addRemoteCandidate(candidate);
   }
 
   recvParams(message) {
@@ -464,7 +457,7 @@ window.onload = function() {
   });
 
   socket.on('candidate', (message) => {
-    ortc.recvCandidate(message);
+    ortc.addRemoteCandidate(message.candidate);
   });
 
   socket.on('capability', (message) => {
