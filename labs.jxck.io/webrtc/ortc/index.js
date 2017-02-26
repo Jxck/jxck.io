@@ -61,33 +61,22 @@ class Util {
     return hdrExtPrms;
   }
 
-  static RTCRtpEncodingParameters(ssrc, codecPayloadType, fec, rtx, priority, maxBitrate, minQuality, framerateBias, resolutionScale, framerateScale, active, encodingId, dependencyEncodingId) {
-    codecPayloadType = codecPayloadType || 0;
-    fec = fec || 0;
-    rtx = rtx || 0;
-    priority = priority || 1.0;
-    maxBitrate = maxBitrate || 2000000.0;
-    minQuality = minQuality || 0;
-    framerateBias = framerateBias || 0.5;
-    resolutionScale = resolutionScale || 1.0;
-    framerateScale = framerateScale || 1.0;
-    active = active || true;
-
-    return {
-      ssrc,
-      codecPayloadType,
-      fec,
-      rtx,
-      priority,
-      maxBitrate,
-      minQuality,
-      framerateBias,
-      resolutionScale,
-      framerateScale,
-      active,
-      encodingId,
-      dependencyEncodingId,
+  static RTCRtpEncodingParameters(params) {
+    const defaults = {
+      codecPayloadType     : 0,
+      fec                  : 0,
+      rtx                  : 0,
+      priority             : 1.0,
+      maxBitrate           : 2000000.0,
+      minQuality           : 0,
+      framerateBias        : 0.5,
+      resolutionScale      : 1.0,
+      framerateScale       : 1.0,
+      active               : true,
+      encodingId           : undefined,
+      dependencyEncodingId : undefined,
     }
+    return Object.assign({}, defaults, params);
   }
 }
 
@@ -247,6 +236,7 @@ class ORTC extends EventEmitter {
 
 
   sendTrack(track) {
+    console.log('sendTrack');
     let kind = track.kind;
     this.Transports.sender[kind] = new RTCRtpSender(track, this.rtcDtlsTransport);
     this.Caps.sender[kind] = RTCRtpSender.getCapabilities(kind);
@@ -262,6 +252,7 @@ class ORTC extends EventEmitter {
   }
 
   recvTrack(kind) {
+    console.log('recvTrack');
     this.Transports.recver[kind] = new RTCRtpReceiver(this.rtcDtlsTransport, kind);
     this.Caps.recver[kind] = RTCRtpReceiver.getCapabilities(kind);
     this.mediaStream.addTrack(this.Transports.recver[kind].track);
@@ -308,7 +299,7 @@ class ORTC extends EventEmitter {
 
   transportSend(kind, remote) {
     const ssrc = this.SSRC[kind];
-    const encodingParams = Util.RTCRtpEncodingParameters(ssrc);
+    const encodingParams = Util.RTCRtpEncodingParameters({ssrc});
     const sendParams = Util.Caps2Params(this.Caps.sender[kind], remote.caps);
     sendParams.encodings.push(encodingParams);
     this.Transports.sender[kind].send(sendParams);
@@ -316,7 +307,7 @@ class ORTC extends EventEmitter {
 
   transportRecv(kind, remote) {
     const ssrc = this.SSRC[kind];
-    const encodingParams = Util.RTCRtpEncodingParameters(ssrc);
+    const encodingParams = Util.RTCRtpEncodingParameters({ssrc});
     const recvParams = Util.Caps2Params(remote.caps, this.Caps.recver[kind]);
     recvParams.muxId = remote.muxId;
     recvParams.encodings.push(encodingParams);
@@ -324,8 +315,10 @@ class ORTC extends EventEmitter {
   }
 
   addStream(stream) {
+    console.log('addStream');
     // gUM で取得した stream を sender/recver を生成
     // capability を送る。
+    console.log(stream.getTracks());
 
     // Send Audio/Video
     const audioTrack = stream.getAudioTracks()[0];
@@ -456,17 +449,14 @@ window.onload = function() {
   });
 
   socket.on('capability', (message) => {
-    console.log(message);
     ortc.recvCapability(message);
   });
 
   socket.on('start', (message) => {
-    console.log(message);
     ortc.initiateConnection(message.rtcIceRole);
   });
 
   socket.on('open', () => {
-    console.log('open');
     document.getElementById('connect').addEventListener('click', () => {
 
       // 相手を controlled として start する
