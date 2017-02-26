@@ -103,9 +103,39 @@ class ORTC extends EventEmitter {
       iceServers: []
     };
 
+
+    // RTCIceGatherer
     this.rtcIceGatherer = null;
-    this.rtcIceTransport = null;
-    this.rtcDtlsTransport = null;
+
+
+    // RTCIceTransport
+    this.rtcIceTransport = new RTCIceTransport();
+
+    this.rtcIceTransport.onstatechange = (e) => {
+      debug(e.type, e.state, e);
+    };
+
+    this.rtcIceTransport.onicestatechange = (e) => {
+      // deprecated ?
+      debug(e.type, e.state, e);
+    };
+
+    this.rtcIceTransport.oncandidatepairchange = (e) => {
+      debug(e.type, e.pair, e);
+    };
+
+
+    // RTCDtlsTransport
+    this.rtcDtlsTransport = new RTCDtlsTransport(this.rtcIceTransport);
+
+    this.rtcDtlsTransport.ondtlsstatechange = (e) => {
+      debug(e.type, e.state, e);
+    };
+
+    this.rtcDtlsTransport.onerror = (e) => {
+      console.error(e.type, e);
+    };
+
 
     this.Transports = {
       sender: {
@@ -291,35 +321,6 @@ class ORTC extends EventEmitter {
     };
 
     this.rtcIceGatherer.onerror = (e) => {
-      console.error(e.type, e);
-    };
-
-
-    // RTCIceTransport
-    this.rtcIceTransport = new RTCIceTransport();
-
-    this.rtcIceTransport.onstatechange = (e) => {
-      debug(e.type, e.state, e);
-    };
-
-    this.rtcIceTransport.onicestatechange = (e) => {
-      // deprecated ?
-      debug(e.type, e.state, e);
-    };
-
-    this.rtcIceTransport.oncandidatepairchange = (e) => {
-      debug(e.type, e.pair, e);
-    };
-
-
-    // RTCDtlsTransport
-    this.rtcDtlsTransport = new RTCDtlsTransport(this.rtcIceTransport);
-
-    this.rtcDtlsTransport.ondtlsstatechange = (e) => {
-      debug(e.type, e.state, e);
-    };
-
-    this.rtcDtlsTransport.onerror = (e) => {
       console.error(e.type, e);
     };
 
