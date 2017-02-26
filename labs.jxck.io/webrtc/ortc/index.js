@@ -82,6 +82,63 @@ class Util {
   }
 }
 
+class Transport extends EventEmitter {
+  constructor(rtcDtlsTransport) {
+    super()
+    this.id = Math.floor(Math.random() * 1000)
+    this.rtcDtlsTransport = rtcDtlsTransport;
+  }
+
+  get track() {
+    this.receiver.track
+  }
+
+  addSender(track) {
+    const kind = track.kind
+    console.log('addSender', kind)
+    this.sender = new RTCRtpSender(track, this.rtcDtlsTransport)
+    this.senderCaps = RTCRtpSender.getCapabilities(kind)
+
+    this.emit('capability:sender', {
+      muxId: null,
+      kind: kind,
+      caps: this.senderCaps,
+    })
+  }
+
+  addReceiver(senderParams) {
+    const kind = senderParams.kind
+    console.log('addReceiver', kind)
+
+    this.receiver = new RTCRtpReceiver(this.rtcDtlsTransport, kind)
+    this.receiverCaps = RTCRtpReceiver.getCapabilities(kind)
+
+    this.emit('capability:receiver', {
+      kind: kind,
+      caps: this.recverCaps,
+    })
+  }
+
+  send(receiverParams) {
+    const ssrc = this.id
+    const encodingParams = Util.RTCRtpEncodingParameters({ssrc})
+    const params = Util.Caps2Params(this.senderCaps, receiverParams.caps)
+    params.encodings.push(encodingParams)
+    this.sender.send(params)
+  }
+
+  receive(senderParams) {
+    const ssrc = this.id
+    const encodingParams = Util.RTCRtpEncodingParameters({ssrc})
+    const params = Util.Caps2Params(senderParams.caps, this.recverCaps)
+    params.muxId = senderParams.muxId
+    params.encodings.push(encodingParams)
+    this.receiver.receive(params)
+
+    this.emit('track', this.receiver.track)
+  }
+}
+
 
 class ORTC extends EventEmitter {
   constructor(id) {
