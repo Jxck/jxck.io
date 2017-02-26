@@ -181,8 +181,6 @@ class ORTC extends EventEmitter {
     }
 
     this.rtcIceRole = null;
-    this.rtcIceParameters = null;
-    this.rtcDtlsParameters = null;
 
     this.trackCount = 0;
 
@@ -199,9 +197,9 @@ class ORTC extends EventEmitter {
     }
   }
 
-  start() {
-    this.rtcIceTransport.start(this.rtcIceGatherer, this.rtcIceParameters, this.rtcIceRole);
-    this.rtcDtlsTransport.start(this.rtcDtlsParameters);
+  start(rtcIceParametersRemote, rtcDtlsParametersRemote) {
+    this.rtcIceTransport.start(this.rtcIceGatherer, rtcIceParametersRemote, this.rtcIceRole);
+    this.rtcDtlsTransport.start(rtcDtlsParametersRemote);
   }
 
   sendTrack(track) {
@@ -422,6 +420,9 @@ window.onload = function() {
     socket.emit('capability', e);
   });
 
+
+  // localcandidate を送り終わってないと remote params で start() することができない。
+  // localcandidate の終わりと params の受信を両方待つ Promsie.all を作ってやる
   Promise.all([
     new Promise((done, fail) => {
       ortc.on('localcandidatecomplete', () => {
@@ -430,24 +431,19 @@ window.onload = function() {
           id: id,
           params: ortc.getLocalParameters(),
         });
-
         done()
       });
     }),
     new Promise((done, fail) => {
       socket.on('params', (message) => {
         // parameter を受信
-
-        // candidate を送り終わって無いと start() できないので取っておく
-        const params = message.params;
-        ortc.rtcIceParameters = params.rtcIceParameters;
-        ortc.rtcDtlsParameters = params.rtcDtlsParameters;
-
-        done()
+        done(message.params)
       });
     })
-  ]).then(() => {
-    ortc.start();
+  ]).then(([_undefined, params]) => {
+    const rtcIceParametersRemote = params.rtcIceParameters;
+    const rtcDtlsParametersRemote = params.rtcDtlsParameters;
+    ortc.start(rtcIceParametersRemote, rtcDtlsParametersRemote);
   });
 
 
