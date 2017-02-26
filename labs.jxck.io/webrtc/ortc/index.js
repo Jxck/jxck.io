@@ -465,7 +465,8 @@ window.onload = function() {
 
   socket.on('open', () => {
     debug('ws:open');
-    document.getElementById('connect').addEventListener('click', () => {
+    document.getElementById('call').disabled = false;
+    document.getElementById('call').addEventListener('click', () => {
 
       // 相手を controlled として start する
       socket.emit('start', {
