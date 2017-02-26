@@ -150,7 +150,7 @@ class ORTC extends EventEmitter {
       console.log(e);
     }
 
-    this.selfInfo = {};
+    this.rtcIceRole = null;
     this.localCandidatesCreated = false;
     this.rtcIceParameters = null;
     this.rtcDtlsParameters = null;
@@ -164,7 +164,7 @@ class ORTC extends EventEmitter {
   }
 
   start() {
-    this.rtcIceTransport.start(this.rtcIceGatherer, this.rtcIceParameters, this.selfInfo.rtcIceRole);
+    this.rtcIceTransport.start(this.rtcIceGatherer, this.rtcIceParameters, this.rtcIceRole);
     this.rtcDtlsTransport.start(this.rtcDtlsParameters);
   }
 
@@ -266,7 +266,7 @@ class ORTC extends EventEmitter {
   }
 
   initiateConnection(rtcIceRole) {
-    this.selfInfo.rtcIceRole = rtcIceRole;
+    this.rtcIceRole = rtcIceRole;
 
     // RTCIceGatherer
     this.rtcIceGatherer = new RTCIceGatherer(this.iceOptions);
@@ -470,11 +470,17 @@ window.onload = function() {
   socket.on('open', () => {
     console.log('open');
     document.getElementById('connect').addEventListener('click', () => {
+
+
+
       // 相手を controlled として start する
       socket.emit('start', {
         id: id,
         rtcIceRole: RTCIceRole.controlling,
       });
+
+
+
       // 自分を controlling として start する
       ortc.initiateConnection(RTCIceRole.controlled);
     })
