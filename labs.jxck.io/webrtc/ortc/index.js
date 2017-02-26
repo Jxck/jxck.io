@@ -275,13 +275,9 @@ class ORTC extends EventEmitter {
       debug(e.type, e);
     }
 
-    this.rtcIceGatherer.error = (e) => {
-      debug(e.type, e);
-    }
-
     this.rtcIceGatherer.onlocalcandidate = (e) => {
-      debug(e.type, this.rtcIceGatherer.state, e);
-      super.emit('localcandidate', e);
+      debug(e.type, e);
+      super.emit('localcandidate', e.candidate);
     };
 
     this.rtcIceGatherer.onerror = (e) => {
@@ -396,15 +392,15 @@ window.onload = function() {
     $video.srcObject = stream
   });
 
-  ortc.on('localcandidate', (e) => {
+  ortc.on('localcandidate', (candidate) => {
     socket.emit('candidate', {
       id: id,
-      candidate: e.candidate,
+      candidate: candidate,
     });
 
     ortc.localCandidatesCreated = false;
 
-    if (Object.keys(e.candidate).length == 0) {
+    if (Object.keys(candidate).length == 0) {
       // console.info('---- Local ICE Candidate Complete ----');
 
       // candidate の生成が終了
