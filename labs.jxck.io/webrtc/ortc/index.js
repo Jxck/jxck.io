@@ -155,8 +155,8 @@ class ORTC extends EventEmitter {
     this.selfInfo = {};
     this.remoteCandidates = [];
     this.localCandidatesCreated = false;
-    this.remoteIceParams = null;
-    this.remoteDtlsParams = null;
+    this.rtcIceParameters = null;
+    this.rtcDtlsParameters = null;
 
     this.trackCount = 0;
 
@@ -167,8 +167,8 @@ class ORTC extends EventEmitter {
   }
 
   start() {
-    this.rtcIceTransport.start(this.rtcIceGatherer, this.remoteIceParams, this.selfInfo.rtcIceRole);
-    this.rtcDtlsTransport.start(this.remoteDtlsParams);
+    this.rtcIceTransport.start(this.rtcIceGatherer, this.rtcIceParameters, this.selfInfo.rtcIceRole);
+    this.rtcDtlsTransport.start(this.rtcDtlsParameters);
   }
 
   sendTrack(track) {
@@ -202,8 +202,8 @@ class ORTC extends EventEmitter {
 
     // candidate を送り終わって無いと start() できないので取っておく
     let remote = message.params;
-    this.remoteIceParams = remote.ice;
-    this.remoteDtlsParams = remote.dtls;
+    this.rtcIceParameters = remote.ice;
+    this.rtcDtlsParameters = remote.dtls;
 
     // すでに local からの candidate を全て送り終わっていたら
     // 受け取った parameter で start()
@@ -425,7 +425,7 @@ window.onload = function() {
       // candidate を生成してる途中に相手から
       // すでに parameter を受け取っていたらここで start()
       // まだなら onparameter で start()
-      if (ortc.remoteIceParams) {
+      if (ortc.rtcIceParameters) {
         ortc.start()
       }
 
