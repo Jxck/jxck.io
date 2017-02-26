@@ -31,10 +31,12 @@ class Util {
       left.forEach(function(leftItem) {
         for (let i = 0; i < right.length; i++) {
           let codec = right[i];
-          let equality = (leftItem.name == codec.name &&
+          let equality = (
+            leftItem.name == codec.name &&
             leftItem.kind === codec.kind &&
             leftItem.preferredPayloadType === codec.preferredPayloadType &&
-            leftItem.numChannels === codec.numChannels);
+            leftItem.numChannels === codec.numChannels
+          );
 
           if (equality) {
             let codecParams = {
@@ -63,18 +65,18 @@ class Util {
 
   static RTCRtpEncodingParameters(params) {
     const defaults = {
-      codecPayloadType     : 0,
-      fec                  : 0,
-      rtx                  : 0,
-      priority             : 1.0,
-      maxBitrate           : 2000000.0,
-      minQuality           : 0,
-      framerateBias        : 0.5,
-      resolutionScale      : 1.0,
-      framerateScale       : 1.0,
-      active               : true,
-      encodingId           : undefined,
-      dependencyEncodingId : undefined,
+      codecPayloadType:     0,
+      fec:                  0,
+      rtx:                  0,
+      priority:             1.0,
+      maxBitrate:           2000000.0,
+      minQuality:           0,
+      framerateBias:        0.5,
+      resolutionScale:      1.0,
+      framerateScale:       1.0,
+      active:               true,
+      encodingId:           undefined,
+      dependencyEncodingId: undefined,
     }
     return Object.assign({}, defaults, params);
   }
@@ -196,7 +198,7 @@ class ORTC extends EventEmitter {
     this.rtcDtlsTransport.start(rtcDtlsParametersRemote);
   }
 
-  initiateConnection(rtcIceRole) {
+  call(rtcIceRole) {
     this.rtcIceRole = rtcIceRole;
 
     // RTCIceGatherer
@@ -241,7 +243,6 @@ class ORTC extends EventEmitter {
     this.Transports.sender[kind] = new RTCRtpSender(track, this.rtcDtlsTransport);
     this.Caps.sender[kind] = RTCRtpSender.getCapabilities(kind);
     this.emit('capability', {
-      id: this.id,
       caps: {
         kind: kind,
         role: 'sender',
@@ -257,7 +258,6 @@ class ORTC extends EventEmitter {
     this.Caps.recver[kind] = RTCRtpReceiver.getCapabilities(kind);
     this.mediaStream.addTrack(this.Transports.recver[kind].track);
     this.emit('capability', {
-      id: this.id,
       caps: {
         kind: kind,
         role: 'receiver',
@@ -318,7 +318,6 @@ class ORTC extends EventEmitter {
     console.log('addStream');
     // gUM で取得した stream を sender/recver を生成
     // capability を送る。
-    console.log(stream.getTracks());
 
     // Send Audio/Video
     const audioTrack = stream.getAudioTracks()[0];
@@ -391,7 +390,6 @@ window.onload = function() {
 
   ortc.on('localcandidate', (candidate) => {
     socket.emit('candidate', {
-      id: id,
       candidate: candidate,
     });
   });
@@ -425,7 +423,6 @@ window.onload = function() {
       ortc.on('localcandidatecomplete', () => {
         // parameter を送信
         socket.emit('params', {
-          id: id,
           params: ortc.getLocalParameters(),
         });
         done()
@@ -453,20 +450,20 @@ window.onload = function() {
   });
 
   socket.on('start', (message) => {
-    ortc.initiateConnection(message.rtcIceRole);
+    ortc.call(message.rtcIceRole);
   });
 
   socket.on('open', () => {
+    debug('ws:open');
     document.getElementById('connect').addEventListener('click', () => {
 
       // 相手を controlled として start する
       socket.emit('start', {
-        id: id,
         rtcIceRole: RTCIceRole.controlling,
       });
 
       // 自分を controlling として start する
-      ortc.initiateConnection(RTCIceRole.controlled);
+      ortc.call(RTCIceRole.controlled);
     })
   })
 }
