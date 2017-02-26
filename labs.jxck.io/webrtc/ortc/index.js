@@ -187,10 +187,6 @@ class ORTC extends EventEmitter {
   }
 
   recvCandidate(message) {
-    if (!(this.rtcIceTransport && this.rtcDtlsTransport)) {
-      return console.error('rtcIceTransport, rtcDtlsTransport does not initiated');
-    }
-
     // console.log('Remote ICE candidate:', message.candidate.ip + ':' + message.candidate.port);
 
     if (Object.keys(message.candidate).length > 0) {
@@ -202,10 +198,6 @@ class ORTC extends EventEmitter {
   }
 
   recvParams(message) {
-    if (!(this.rtcIceTransport && this.rtcDtlsTransport)) {
-      return console.error('rtcIceTransport, rtcDtlsTransport does not initiated');
-    }
-
     // 相手からの parameter を受け取った
 
     // candidate を送り終わって無いと start() できないので取っておく
@@ -221,10 +213,6 @@ class ORTC extends EventEmitter {
   }
 
   recvCapability(message) {
-    if (!(this.rtcIceTransport && this.rtcDtlsTransport)) {
-      return console.error('rtcIceTransport, rtcDtlsTransport does not initiated');
-    }
-
     // 相手から来た capability を受け取る
     // すでに sender/receiver が作られていれば send()/receive() を
     // なければ Params に保存する。
