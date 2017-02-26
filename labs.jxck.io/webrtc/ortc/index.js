@@ -7,10 +7,10 @@ window.RTCDtlsRole = (window.RTCDtlsRole !== undefined) ? RTCDtlsRole : { auto: 
 
 class Util {
   static Caps2Params(sendCaps, remoteRecvCaps) {
-    let muxId = '';
-    let codecs = Util.filterCodecParams(sendCaps.codecs, remoteRecvCaps.codecs);
-    let headerExtensions = Util.filterHdrExtParams(sendCaps.headerExtensions, remoteRecvCaps.headerExtensions);
-    let encodings = [];
+    let muxId = ''
+    let codecs = Util.filterCodecParams(sendCaps.codecs, remoteRecvCaps.codecs)
+    let headerExtensions = Util.filterHdrExtParams(sendCaps.headerExtensions, remoteRecvCaps.headerExtensions)
+    let encodings = []
 
     // RTCRtcpParameters
     let rtcp = {
@@ -18,25 +18,25 @@ class Util {
       cname: '',
       reducedSize: false,
       mux: true,
-    };
+    }
 
     // RTCRtpParameters
-    return { muxId, codecs, headerExtensions, encodings, rtcp };
+    return { muxId, codecs, headerExtensions, encodings, rtcp }
   }
 
   static filterCodecParams(left, right) {
-    let codecPrms = [];
+    let codecPrms = []
 
     if (left && right) {
       left.forEach(function(leftItem) {
         for (let i = 0; i < right.length; i++) {
-          let codec = right[i];
+          let codec = right[i]
           let equality = (
             leftItem.name == codec.name &&
             leftItem.kind === codec.kind &&
             leftItem.preferredPayloadType === codec.preferredPayloadType &&
             leftItem.numChannels === codec.numChannels
-          );
+          )
 
           if (equality) {
             let codecParams = {
@@ -46,21 +46,21 @@ class Util {
               numChannels: codec.numChannels,
               rtcpFeedback: codec.rtcpFeedback,
               parameters: codec.parameters,
-            };
-            codecPrms.push(codecParams);
+            }
+            codecPrms.push(codecParams)
 
-            break;
+            break
           }
         }
-      });
+      })
     }
 
-    return codecPrms;
+    return codecPrms
   }
 
   static filterHdrExtParams(left, right) {
-    let hdrExtPrms = [];
-    return hdrExtPrms;
+    let hdrExtPrms = []
+    return hdrExtPrms
   }
 
   static RTCRtpEncodingParameters(params) {
@@ -78,56 +78,56 @@ class Util {
       encodingId:           undefined,
       dependencyEncodingId: undefined,
     }
-    return Object.assign({}, defaults, params);
+    return Object.assign({}, defaults, params)
   }
 }
 
 
 class ORTC extends EventEmitter {
   constructor(id) {
-    super();
+    super()
 
-    this.id = id;
+    this.id = id
 
-    this.rtcIceRole = null;
+    this.rtcIceRole = null
 
     this.iceOptions = {
       gatherPolicy: 'all',
       iceServers: []
-    };
+    }
 
 
     // RTCIceGatherer
-    this.rtcIceGatherer = null;
+    this.rtcIceGatherer = null
 
 
     // RTCIceTransport
-    this.rtcIceTransport = new RTCIceTransport();
+    this.rtcIceTransport = new RTCIceTransport()
 
     this.rtcIceTransport.onstatechange = (e) => {
-      debug(e.type, e.state, e);
-    };
+      debug(e.type, e.state, e)
+    }
 
     this.rtcIceTransport.onicestatechange = (e) => {
       // deprecated ?
-      debug(e.type, e.state, e);
-    };
+      debug(e.type, e.state, e)
+    }
 
     this.rtcIceTransport.oncandidatepairchange = (e) => {
-      debug(e.type, e.pair, e);
-    };
+      debug(e.type, e.pair, e)
+    }
 
 
     // RTCDtlsTransport
-    this.rtcDtlsTransport = new RTCDtlsTransport(this.rtcIceTransport);
+    this.rtcDtlsTransport = new RTCDtlsTransport(this.rtcIceTransport)
 
     this.rtcDtlsTransport.ondtlsstatechange = (e) => {
-      debug(e.type, e.state, e);
-    };
+      debug(e.type, e.state, e)
+    }
 
     this.rtcDtlsTransport.onerror = (e) => {
-      console.error(e.type, e);
-    };
+      console.error(e.type, e)
+    }
 
 
     this.Transports = {
@@ -139,7 +139,7 @@ class ORTC extends EventEmitter {
         video: null,
         audio: null,
       }
-    };
+    }
 
     // local capabilities
     this.Caps = {
@@ -151,7 +151,7 @@ class ORTC extends EventEmitter {
         video: null,
         audio: null,
       }
-    };
+    }
 
     // remote parameters
     this.Params = {
@@ -165,25 +165,25 @@ class ORTC extends EventEmitter {
       }
     }
 
-    this.mediaStream = new MediaStream();
+    this.mediaStream = new MediaStream()
     this.mediaStream.onaddtrack = (e) => {
-      console.log(e);
+      console.log(e)
     }
     this.mediaStream.onremovetrack = (e) => {
-      console.log(e);
+      console.log(e)
     }
 
-    this.trackCount = 0;
+    this.trackCount = 0
 
     this.SSRC = {
       audio: 100,
       video: 200,
-    };
+    }
   }
 
   addRemoteCandidate(candidate) {
-    debug('addRemoteCandidate()', candidate.type, candidate.ip, candidate.port);
-    this.rtcIceTransport.addRemoteCandidate(candidate);
+    debug('addRemoteCandidate()', candidate.type, candidate.ip, candidate.port)
+    this.rtcIceTransport.addRemoteCandidate(candidate)
   }
 
   getLocalParameters() {
@@ -194,41 +194,41 @@ class ORTC extends EventEmitter {
   }
 
   start(rtcIceParametersRemote, rtcDtlsParametersRemote) {
-    this.rtcIceTransport.start(this.rtcIceGatherer, rtcIceParametersRemote, this.rtcIceRole);
-    this.rtcDtlsTransport.start(rtcDtlsParametersRemote);
+    this.rtcIceTransport.start(this.rtcIceGatherer, rtcIceParametersRemote, this.rtcIceRole)
+    this.rtcDtlsTransport.start(rtcDtlsParametersRemote)
   }
 
   call(rtcIceRole) {
-    this.rtcIceRole = rtcIceRole;
+    this.rtcIceRole = rtcIceRole
 
     // RTCIceGatherer
-    this.rtcIceGatherer = new RTCIceGatherer(this.iceOptions);
+    this.rtcIceGatherer = new RTCIceGatherer(this.iceOptions)
 
     this.rtcIceGatherer.onstatechange = (e) => {
-      debug(e.type, e);
+      debug(e.type, e)
     }
 
     this.rtcIceGatherer.onlocalcandidate = (e) => {
-      debug(e.type, e);
+      debug(e.type, e)
 
-      const candidate = e.candidate;
+      const candidate = e.candidate
 
-      debug('localcandidate', candidate);
-      super.emit('localcandidate', candidate);
+      debug('localcandidate', candidate)
+      super.emit('localcandidate', candidate)
 
       // polyfill for RTCIceCandidateComplete
       if (Object.keys(candidate).length == 0) {
-        debug('localcandidatecomplete', candidate);
-        super.emit('localcandidatecomplete');
+        debug('localcandidatecomplete', candidate)
+        super.emit('localcandidatecomplete')
       }
-    };
+    }
 
     this.rtcIceGatherer.onerror = (e) => {
-      console.error(e.type, e);
-    };
+      console.error(e.type, e)
+    }
 
 
-    super.emit('needstream');
+    super.emit('needstream')
   }
 
 
@@ -238,49 +238,49 @@ class ORTC extends EventEmitter {
 
 
   sendTrack(track) {
-    console.log('sendTrack');
-    let kind = track.kind;
-    this.Transports.sender[kind] = new RTCRtpSender(track, this.rtcDtlsTransport);
-    this.Caps.sender[kind] = RTCRtpSender.getCapabilities(kind);
+    console.log('sendTrack')
+    let kind = track.kind
+    this.Transports.sender[kind] = new RTCRtpSender(track, this.rtcDtlsTransport)
+    this.Caps.sender[kind] = RTCRtpSender.getCapabilities(kind)
     this.emit('capability:sender', {
       caps: {
         kind: kind,
         caps: this.Caps.sender[kind],
         muxId: null,
       }
-    });
+    })
   }
 
   recvTrack(kind) {
-    console.log('recvTrack');
-    this.Transports.recver[kind] = new RTCRtpReceiver(this.rtcDtlsTransport, kind);
-    this.Caps.recver[kind] = RTCRtpReceiver.getCapabilities(kind);
-    this.mediaStream.addTrack(this.Transports.recver[kind].track);
+    console.log('recvTrack')
+    this.Transports.recver[kind] = new RTCRtpReceiver(this.rtcDtlsTransport, kind)
+    this.Caps.recver[kind] = RTCRtpReceiver.getCapabilities(kind)
+    this.mediaStream.addTrack(this.Transports.recver[kind].track)
     this.emit('capability:receiver', {
       caps: {
         kind: kind,
         caps: this.Caps.recver[kind],
       }
-    });
+    })
   }
 
   addSenderCapability(message) {
     // 相手から来た capability を受け取る
     // すでに sender/receiver が作られていれば send()/receive() を
     // なければ Params に保存する。
-    let remote = message.caps;
-    let kind = remote.kind;
+    let remote = message.caps
+    let kind = remote.kind
 
     // 逆側に設定する。
     if (this.Transports.recver[kind]) {
-      this.transportRecv(kind, remote);
+      this.transportRecv(kind, remote)
 
-      this.trackCount++;
+      this.trackCount++
       if (this.trackCount == 2) {
-        super.emit('mediastream', this.mediaStream);
+        super.emit('mediastream', this.mediaStream)
       }
     } else {
-      this.Params.recver[kind] = remote;
+      this.Params.recver[kind] = remote
     }
   }
 
@@ -288,92 +288,92 @@ class ORTC extends EventEmitter {
     // 相手から来た capability を受け取る
     // すでに sender/receiver が作られていれば send()/receive() を
     // なければ Params に保存する。
-    let remote = message.caps;
-    let kind = remote.kind;
+    let remote = message.caps
+    let kind = remote.kind
 
     // 逆側に設定する。
     if (this.Transports.sender[kind]) {
-      this.transportSend(kind, remote);
+      this.transportSend(kind, remote)
     } else {
-      this.Params.sender[kind] = remote;
+      this.Params.sender[kind] = remote
     }
   }
 
   transportSend(kind, remote) {
-    const ssrc = this.SSRC[kind];
-    const encodingParams = Util.RTCRtpEncodingParameters({ssrc});
-    const sendParams = Util.Caps2Params(this.Caps.sender[kind], remote.caps);
-    sendParams.encodings.push(encodingParams);
-    this.Transports.sender[kind].send(sendParams);
+    const ssrc = this.SSRC[kind]
+    const encodingParams = Util.RTCRtpEncodingParameters({ssrc})
+    const sendParams = Util.Caps2Params(this.Caps.sender[kind], remote.caps)
+    sendParams.encodings.push(encodingParams)
+    this.Transports.sender[kind].send(sendParams)
   }
 
   transportRecv(kind, remote) {
-    const ssrc = this.SSRC[kind];
-    const encodingParams = Util.RTCRtpEncodingParameters({ssrc});
-    const recvParams = Util.Caps2Params(remote.caps, this.Caps.recver[kind]);
-    recvParams.muxId = remote.muxId;
-    recvParams.encodings.push(encodingParams);
-    this.Transports.recver[kind].receive(recvParams);
+    const ssrc = this.SSRC[kind]
+    const encodingParams = Util.RTCRtpEncodingParameters({ssrc})
+    const recvParams = Util.Caps2Params(remote.caps, this.Caps.recver[kind])
+    recvParams.muxId = remote.muxId
+    recvParams.encodings.push(encodingParams)
+    this.Transports.recver[kind].receive(recvParams)
   }
 
   addStream(stream) {
-    console.log('addStream');
+    console.log('addStream')
     // gUM で取得した stream を sender/recver を生成
     // capability を送る。
 
     // Send Audio/Video
-    const audioTrack = stream.getAudioTracks()[0];
-    const videoTrack = stream.getVideoTracks()[0];
-    this.sendTrack(audioTrack);
-    this.sendTrack(videoTrack);
+    const audioTrack = stream.getAudioTracks()[0]
+    const videoTrack = stream.getVideoTracks()[0]
+    this.sendTrack(audioTrack)
+    this.sendTrack(videoTrack)
 
     // Receive Audio/Video
-    this.recvTrack('audio');
-    this.recvTrack('video');
+    this.recvTrack('audio')
+    this.recvTrack('video')
 
     // この時点で先に相手の Parameter を受け取っていたら
     // sender.send() / recver.receive() を始める
     // もしまだ transport がなかったら
     // transport 作るときにやるからここは無視
     if (this.Params.recver.audio) {
-      const remote = this.Params.recver.audio;
+      const remote = this.Params.recver.audio
       if (this.Transports.recver.audio) {
-        const kind = remote.kind;
-        this.transportRecv(kind, remote);
+        const kind = remote.kind
+        this.transportRecv(kind, remote)
 
-        this.trackCount++;
+        this.trackCount++
         if (this.trackCount == 2) {
-          super.emit('mediastream', this.mediaStream);
+          super.emit('mediastream', this.mediaStream)
         }
       }
     }
 
     if (this.Params.recver.video) {
-      let remote = this.Params.recver.video;
+      let remote = this.Params.recver.video
       if (this.Transports.recver.video) {
-        let kind = remote.kind;
-        this.transportRecv(kind, remote);
+        let kind = remote.kind
+        this.transportRecv(kind, remote)
 
-        this.trackCount++;
+        this.trackCount++
         if (this.trackCount == 2) {
-          super.emit('mediastream', this.mediaStream);
+          super.emit('mediastream', this.mediaStream)
         }
       }
     }
 
     if (this.Params.sender.audio) {
-      let kind = 'audio';
-      let remote = this.Params.sender[kind];
+      let kind = 'audio'
+      let remote = this.Params.sender[kind]
       if (this.Transports.sender[kind]) {
-        this.transportSend(kind, remote);
+        this.transportSend(kind, remote)
       }
     }
 
     if (this.Params.sender.video) {
-      let kind = 'video';
-      let remote = this.Params.sender[kind];
+      let kind = 'video'
+      let remote = this.Params.sender[kind]
       if (this.Transports.sender[kind]) {
-        this.transportSend(kind, remote);
+        this.transportSend(kind, remote)
       }
     }
   }
@@ -383,18 +383,18 @@ window.onload = function() {
   const id = location.hash
   const ortc = new ORTC(id)
   const socket = new WS('wss://ws.jxck.io', ['broadcast', 'ortc-demo'])
-  const $video = document.getElementById('remote');
+  const $video = document.getElementById('remote')
 
 
   ortc.on('mediastream', (stream) => {
     $video.srcObject = stream
-  });
+  })
 
   ortc.on('localcandidate', (candidate) => {
     socket.emit('candidate', {
       candidate: candidate,
-    });
-  });
+    })
+  })
 
   ortc.on('needstream', () => {
     // Get a local stream
@@ -404,22 +404,22 @@ window.onload = function() {
         facingMode: id,
       },
     }).then((stream) => {
-      // console.info('---- getUserMedia ----', stream);
-      let $local = document.getElementById('local');
-      $local.srcObject = stream;
-      ortc.addStream(stream);
+      // console.info('---- getUserMedia ----', stream)
+      let $local = document.getElementById('local')
+      $local.srcObject = stream
+      ortc.addStream(stream)
     }).catch((err) => {
-      console.error(err);
-    });
-  });
+      console.error(err)
+    })
+  })
 
   ortc.on('capability:sender', (e) => {
-    socket.emit('capability:sender', e);
-  });
+    socket.emit('capability:sender', e)
+  })
 
   ortc.on('capability:receiver', (e) => {
-    socket.emit('capability:receiver', e);
-  });
+    socket.emit('capability:receiver', e)
+  })
 
 
   // localcandidate を送り終わってないと remote params で start() することができない。
@@ -430,51 +430,51 @@ window.onload = function() {
         // parameter を送信
         socket.emit('params', {
           params: ortc.getLocalParameters(),
-        });
+        })
         done()
-      });
+      })
     }),
     new Promise((done, fail) => {
       socket.on('params', (message) => {
         // parameter を受信
         done(message.params)
-      });
+      })
     })
   ]).then(([_undefined, params]) => {
-    const rtcIceParametersRemote = params.rtcIceParameters;
-    const rtcDtlsParametersRemote = params.rtcDtlsParameters;
-    ortc.start(rtcIceParametersRemote, rtcDtlsParametersRemote);
-  });
+    const rtcIceParametersRemote = params.rtcIceParameters
+    const rtcDtlsParametersRemote = params.rtcDtlsParameters
+    ortc.start(rtcIceParametersRemote, rtcDtlsParametersRemote)
+  })
 
 
   socket.on('candidate', (message) => {
-    ortc.addRemoteCandidate(message.candidate);
-  });
+    ortc.addRemoteCandidate(message.candidate)
+  })
 
   socket.on('capability:sender', (message) => {
-    ortc.addSenderCapability(message);
-  });
+    ortc.addSenderCapability(message)
+  })
 
   socket.on('capability:receiver', (message) => {
-    ortc.addReceiverCapability(message);
-  });
+    ortc.addReceiverCapability(message)
+  })
 
   socket.on('start', (message) => {
-    ortc.call(message.rtcIceRole);
-  });
+    ortc.call(message.rtcIceRole)
+  })
 
   socket.on('open', () => {
-    debug('ws:open');
-    document.getElementById('call').disabled = false;
+    debug('ws:open')
+    document.getElementById('call').disabled = false
     document.getElementById('call').addEventListener('click', () => {
 
       // 相手を controlled として start する
       socket.emit('start', {
         rtcIceRole: RTCIceRole.controlling,
-      });
+      })
 
       // 自分を controlling として start する
-      ortc.call(RTCIceRole.controlled);
+      ortc.call(RTCIceRole.controlled)
     })
   })
 }
