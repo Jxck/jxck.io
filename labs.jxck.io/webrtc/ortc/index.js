@@ -181,7 +181,6 @@ class ORTC extends EventEmitter {
     }
 
     this.rtcIceRole = null;
-    this.localCandidatesCreated = false;
     this.rtcIceParameters = null;
     this.rtcDtlsParameters = null;
 
@@ -423,38 +422,34 @@ window.onload = function() {
     socket.emit('capability', e);
   });
 
-  ortc.on('localcandidatecomplete', () => {
-    // candidate の生成が終了
-    ortc.localCandidatesCreated = true;
+  Promise.all([
+    new Promise((done, fail) => {
+      ortc.on('localcandidatecomplete', () => {
+        // parameter を送信
+        socket.emit('params', {
+          id: id,
+          params: ortc.getLocalParameters(),
+        });
 
-    // parameter を相手に送る
-    socket.emit('params', {
-      id: id,
-      params: ortc.getLocalParameters(),
-    });
+        done()
+      });
+    }),
+    new Promise((done, fail) => {
+      socket.on('params', (message) => {
+        // parameter を受信
 
-    // candidate を生成してる途中に相手から
-    // すでに parameter を受け取っていたらここで start()
-    // まだなら onparameter で start()
-    if (ortc.rtcIceParameters) {
-      ortc.start()
-    }
+        // candidate を送り終わって無いと start() できないので取っておく
+        const params = message.params;
+        ortc.rtcIceParameters = params.rtcIceParameters;
+        ortc.rtcDtlsParameters = params.rtcDtlsParameters;
+
+        done()
+      });
+    })
+  ]).then(() => {
+    ortc.start();
   });
 
-  socket.on('params', (message) => {
-    // 相手からの parameter を受け取った
-
-    // candidate を送り終わって無いと start() できないので取っておく
-    const params = message.params;
-    ortc.rtcIceParameters = params.rtcIceParameters;
-    ortc.rtcDtlsParameters = params.rtcDtlsParameters;
-
-    // すでに local からの candidate を全て送り終わっていたら
-    // 受け取った parameter で start()
-    if (ortc.localCandidatesCreated) {
-      ortc.start();
-    }
-  });
 
   socket.on('candidate', (message) => {
     ortc.addRemoteCandidate(message.candidate);
