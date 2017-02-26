@@ -322,10 +322,9 @@ class ORTC extends EventEmitter {
     // capability を送る。
 
     // Send Audio/Video
-    const audioTrack = stream.getAudioTracks()[0]
-    const videoTrack = stream.getVideoTracks()[0]
-    this.sendTrack(audioTrack)
-    this.sendTrack(videoTrack)
+    stream.getTracks().forEach((track) => {
+      this.sendTrack(track)
+    })
 
     // Receive Audio/Video
     this.recvTrack('audio')
