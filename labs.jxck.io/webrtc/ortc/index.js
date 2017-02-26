@@ -153,18 +153,6 @@ class ORTC extends EventEmitter {
       }
     }
 
-    // remote parameters
-    this.Params = {
-      sender: {
-        video: null,
-        audio: null,
-      },
-      recver: {
-        video: null,
-        audio: null,
-      }
-    }
-
     this.mediaStream = new MediaStream()
     this.mediaStream.onaddtrack = (e) => {
       console.log(e)
@@ -237,8 +225,8 @@ class ORTC extends EventEmitter {
 
 
 
-  sendTrack(track) {
-    console.log('sendTrack')
+  addSender(track) {
+    console.log('addSender', track.kind)
     let kind = track.kind
     this.Transports.sender[kind] = new RTCRtpSender(track, this.rtcDtlsTransport)
     this.Caps.sender[kind] = RTCRtpSender.getCapabilities(kind)
@@ -251,8 +239,8 @@ class ORTC extends EventEmitter {
     })
   }
 
-  recvTrack(kind) {
-    console.log('recvTrack')
+  addReceiver(kind) {
+    console.log('addReceiver', kind)
     this.Transports.recver[kind] = new RTCRtpReceiver(this.rtcDtlsTransport, kind)
     this.Caps.recver[kind] = RTCRtpReceiver.getCapabilities(kind)
     this.mediaStream.addTrack(this.Transports.recver[kind].track)
@@ -271,16 +259,13 @@ class ORTC extends EventEmitter {
     let remote = message.caps
     let kind = remote.kind
 
-    // 逆側に設定する。
-    if (this.Transports.recver[kind]) {
-      this.transportRecv(kind, remote)
+    this.addReceiver(kind)
 
-      this.trackCount++
-      if (this.trackCount == 2) {
-        super.emit('mediastream', this.mediaStream)
-      }
-    } else {
-      this.Params.recver[kind] = remote
+    this.transportRecv(kind, remote)
+
+    this.trackCount++;
+    if (this.trackCount == 2) {
+      super.emit('mediastream', this.mediaStream)
     }
   }
 
@@ -292,11 +277,7 @@ class ORTC extends EventEmitter {
     let kind = remote.kind
 
     // 逆側に設定する。
-    if (this.Transports.sender[kind]) {
-      this.transportSend(kind, remote)
-    } else {
-      this.Params.sender[kind] = remote
-    }
+    this.transportSend(kind, remote)
   }
 
   transportSend(kind, remote) {
@@ -323,58 +304,8 @@ class ORTC extends EventEmitter {
 
     // Send Audio/Video
     stream.getTracks().forEach((track) => {
-      this.sendTrack(track)
+      this.addSender(track)
     })
-
-    // Receive Audio/Video
-    this.recvTrack('audio')
-    this.recvTrack('video')
-
-    // この時点で先に相手の Parameter を受け取っていたら
-    // sender.send() / recver.receive() を始める
-    // もしまだ transport がなかったら
-    // transport 作るときにやるからここは無視
-    if (this.Params.recver.audio) {
-      const remote = this.Params.recver.audio
-      if (this.Transports.recver.audio) {
-        const kind = remote.kind
-        this.transportRecv(kind, remote)
-
-        this.trackCount++
-        if (this.trackCount == 2) {
-          super.emit('mediastream', this.mediaStream)
-        }
-      }
-    }
-
-    if (this.Params.recver.video) {
-      let remote = this.Params.recver.video
-      if (this.Transports.recver.video) {
-        let kind = remote.kind
-        this.transportRecv(kind, remote)
-
-        this.trackCount++
-        if (this.trackCount == 2) {
-          super.emit('mediastream', this.mediaStream)
-        }
-      }
-    }
-
-    if (this.Params.sender.audio) {
-      let kind = 'audio'
-      let remote = this.Params.sender[kind]
-      if (this.Transports.sender[kind]) {
-        this.transportSend(kind, remote)
-      }
-    }
-
-    if (this.Params.sender.video) {
-      let kind = 'video'
-      let remote = this.Params.sender[kind]
-      if (this.Transports.sender[kind]) {
-        this.transportSend(kind, remote)
-      }
-    }
   }
 }
 
