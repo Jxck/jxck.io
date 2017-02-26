@@ -467,21 +467,16 @@ window.onload = function() {
     ortc.initiateConnection(message.rtcIceRole);
   });
 
-  socket.on('connectRequest', (message) => {
-    // 送ってきた 相手を controlling として start する
-    socket.emit('start', {
-      id: id,
-      rtcIceRole: RTCIceRole.controlling,
-    });
-
-    // 自分を controlled として start する
-    ortc.initiateConnection(RTCIceRole.controlled);
-  });
-
   socket.on('open', () => {
     console.log('open');
     document.getElementById('connect').addEventListener('click', () => {
-      socket.emit('connectRequest', { id })
+      // 相手を controlled として start する
+      socket.emit('start', {
+        id: id,
+        rtcIceRole: RTCIceRole.controlling,
+      });
+      // 自分を controlling として start する
+      ortc.initiateConnection(RTCIceRole.controlled);
     })
   })
 }
