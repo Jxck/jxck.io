@@ -276,42 +276,56 @@ class ORTC extends EventEmitter {
 
   initiateConnection(rtcIceRole) {
     this.selfInfo.rtcIceRole = rtcIceRole;
+
+    // RTCIceGatherer
     this.rtcIceGatherer = new RTCIceGatherer(this.iceOptions);
-    this.rtcIceTransport = new RTCIceTransport();
-    this.rtcDtlsTransport = new RTCDtlsTransport(this.rtcIceTransport);
 
     this.rtcIceGatherer.onstatechange = (e) => {
-      console.log(e);
+      debug(e.type, e);
     }
 
     this.rtcIceGatherer.error = (e) => {
-      console.log(e);
+      debug(e.type, e);
     }
 
     this.rtcIceGatherer.onlocalcandidate = (e) => {
-      console.log(this.rtcIceGatherer.state, e);
+      debug(e.type, this.rtcIceGatherer.state, e);
       super.emit('localcandidate', e);
     };
 
+    this.rtcIceGatherer.onerror = (e) => {
+      console.error(e.type, e);
+    };
+
+
+    // RTCIceTransport
+    this.rtcIceTransport = new RTCIceTransport();
+
+    this.rtcIceTransport.onstatechange = (e) => {
+      debug(e.type, e.state, e);
+    };
+
     this.rtcIceTransport.onicestatechange = (e) => {
-      // console.log('ICE State Change', this.rtcIceTransport.state, e.state);
+      // deprecated ?
+      debug(e.type, e.state, e);
     };
 
     this.rtcIceTransport.oncandidatepairchange = (e) => {
-      // console.info('ICE Candidate Pair Change:', e.pair, e);
+      debug(e.type, e.pair, e);
     };
 
-    this.rtcIceGatherer.onerror = (e) => {
-      // console.error('ICE ERROR', e);
-    };
+
+    // RTCDtlsTransport
+    this.rtcDtlsTransport = new RTCDtlsTransport(this.rtcIceTransport);
 
     this.rtcDtlsTransport.ondtlsstatechange = (e) => {
-      // console.log('DTLS State Change', this.rtcDtlsTransport.state, e.state);
+      debug(e.type, e.state, e);
     };
 
     this.rtcDtlsTransport.onerror = (e) => {
-      // console.error('DTLS ERROR', e);
+      console.error(e.type, e);
     };
+
 
     super.emit('needstream');
   }
