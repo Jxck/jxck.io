@@ -35,6 +35,56 @@
 
 <script>
 var entries = {
+  2017: [
+    {
+      date: "2017-02-25",
+      slide: {
+        title: "Web over Service Worker",
+        url: "https://speakerdeck.com/jxck/web-over-serviceworker",
+      },
+      event: {
+        title: "Inside Frontend #1",
+        url: "http://inside-frontend.com/",
+        tag: "#inside_fe",
+      },
+      blog: {
+        title: "",
+        url: "",
+      }
+    },
+    {
+      date: "2017-02-09",
+      slide: {
+        title: "CSP powerful security steroid",
+        url: "https://speakerdeck.com/jxck/csp-a-powerful-security-steroid",
+      },
+      event: {
+        title: "Chrome Tech Talk Night #9",
+        url: "https://developers-jp.googleblog.com/2017/01/chrome-tech-talk-night-9.html",
+        tag: "#chromejp",
+      },
+      blog: {
+        title: "",
+        url: "",
+      }
+    },
+    {
+      date: "2017-02-03",
+      slide: {
+        title: "CSP real world reporting",
+        url: "https://speakerdeck.com/jxck/csp-and-real-world-reporting",
+      },
+      event: {
+        title: "Recruit Tech Night vol.3",
+        url: "https://atnd.org/events/85028",
+        tag: "#rtechnight",
+      },
+      blog: {
+        title: "",
+        url: "",
+      }
+    },
+  ],
   2016: [
     {
       date: "2016-10-09",
@@ -552,7 +602,6 @@ let item_template = document.getElementById('item_template');
 let section_template = document.getElementById('section_template');
 let tag_template = document.getElementById('section_template');
 let $archive = document.querySelector('.archive');
-console.log(entries);
 
 Object.keys(entries).sort().reverse().forEach((key) => {
   let $section = document.importNode(section_template.content, true);
