@@ -283,7 +283,15 @@ class ORTC extends EventEmitter {
 
 
 
+  addStream(stream) {
+    console.log('addStream')
+    stream.getTracks().forEach((track) => {
+      this.addSender(track)
+    })
+  }
+
   addSender(track) {
+    // sender を作り caps を送る
     console.log('addSender', track.kind)
     let kind = track.kind
     this.Transports.sender[kind] = new RTCRtpSender(track, this.rtcDtlsTransport)
@@ -299,6 +307,7 @@ class ORTC extends EventEmitter {
 
   addReceiver(kind) {
     console.log('addReceiver', kind)
+    // receiver を作り caps を送る
     this.Transports.recver[kind] = new RTCRtpReceiver(this.rtcDtlsTransport, kind)
     this.Caps.recver[kind] = RTCRtpReceiver.getCapabilities(kind)
     this.mediaStream.addTrack(this.Transports.recver[kind].track)
@@ -311,9 +320,8 @@ class ORTC extends EventEmitter {
   }
 
   addSenderCapability(message) {
-    // 相手から来た capability を受け取る
-    // すでに sender/receiver が作られていれば send()/receive() を
-    // なければ Params に保存する。
+    // 相手から来た sender の capability を受け取る
+    // 対応する receiver を作り、 receive() する
     let remote = message.caps
     let kind = remote.kind
 
@@ -328,9 +336,8 @@ class ORTC extends EventEmitter {
   }
 
   addReceiverCapability(message) {
-    // 相手から来た capability を受け取る
-    // すでに sender/receiver が作られていれば send()/receive() を
-    // なければ Params に保存する。
+    // 相手から来た receiver の capability を受け取り
+    // sender に設定する
     let remote = message.caps
     let kind = remote.kind
 
@@ -339,6 +346,7 @@ class ORTC extends EventEmitter {
   }
 
   transportSend(kind, remote) {
+    // caps を適用して send() する
     const ssrc = this.SSRC[kind]
     const encodingParams = Util.RTCRtpEncodingParameters({ssrc})
     const sendParams = Util.Caps2Params(this.Caps.sender[kind], remote.caps)
@@ -347,23 +355,13 @@ class ORTC extends EventEmitter {
   }
 
   transportRecv(kind, remote) {
+    // caps を適用して receive() する
     const ssrc = this.SSRC[kind]
     const encodingParams = Util.RTCRtpEncodingParameters({ssrc})
     const recvParams = Util.Caps2Params(remote.caps, this.Caps.recver[kind])
     recvParams.muxId = remote.muxId
     recvParams.encodings.push(encodingParams)
     this.Transports.recver[kind].receive(recvParams)
-  }
-
-  addStream(stream) {
-    console.log('addStream')
-    // gUM で取得した stream を sender/recver を生成
-    // capability を送る。
-
-    // Send Audio/Video
-    stream.getTracks().forEach((track) => {
-      this.addSender(track)
-    })
   }
 }
 
