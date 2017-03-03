@@ -1,4 +1,4 @@
-# [utf-16][unicode][javascript] JavaScript に置ける文字コードと「文字数」の数え方
+# [utf-16][unicode][javascript] JavaScript における文字コードと「文字数」の数え方
 
 ## Intro
 
