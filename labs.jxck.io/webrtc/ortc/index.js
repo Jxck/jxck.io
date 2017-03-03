@@ -180,6 +180,9 @@ class ORTC extends EventEmitter {
 
     this.rtcDtlsTransport.ondtlsstatechange = (e) => {
       debug(e.type, e.state, e)
+      if (e.state === 'connected') {
+        super.emit('connected');
+      }
     }
 
     this.rtcDtlsTransport.onerror = (e) => {
@@ -239,6 +242,7 @@ class ORTC extends EventEmitter {
   }
 
   start(rtcIceParametersRemote, rtcDtlsParametersRemote) {
+    debug('start()', rtcIceParametersRemote, rtcDtlsParametersRemote)
     this.rtcIceTransport.start(this.rtcIceGatherer, rtcIceParametersRemote, this.rtcIceRole)
     this.rtcDtlsTransport.start(rtcDtlsParametersRemote)
   }
@@ -271,9 +275,6 @@ class ORTC extends EventEmitter {
     this.rtcIceGatherer.onerror = (e) => {
       console.error(e.type, e)
     }
-
-
-    super.emit('needstream')
   }
 
 
@@ -383,7 +384,7 @@ window.onload = function() {
     })
   })
 
-  ortc.on('needstream', () => {
+  ortc.on('connected', () => {
     // Get a local stream
     navigator.mediaDevices.getUserMedia({
       audio: true,
@@ -391,7 +392,7 @@ window.onload = function() {
         facingMode: id,
       },
     }).then((stream) => {
-      // console.info('---- getUserMedia ----', stream)
+      console.log('getUserMedia', stream)
       let $local = document.getElementById('local')
       $local.srcObject = stream
       ortc.addStream(stream)
