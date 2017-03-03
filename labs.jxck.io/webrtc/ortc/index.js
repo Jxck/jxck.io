@@ -300,11 +300,9 @@ class ORTC extends EventEmitter {
     this.Transports.sender[kind] = new RTCRtpSender(track, this.rtcDtlsTransport)
 
     this.emit('capability:sender', {
-      caps: {
-        kind: kind,
-        caps: caps,
-        muxId: null,
-      }
+      kind: kind,
+      caps: caps,
+      muxId: null,
     })
   }
 
@@ -320,22 +318,21 @@ class ORTC extends EventEmitter {
     this.mediaStream.addTrack(this.Transports.recver[kind].track)
 
     this.emit('capability:receiver', {
-      caps: {
-        kind: kind,
-        caps: caps,
-      }
+      kind: kind,
+      caps: caps,
     })
   }
 
   addSenderCapability(message) {
     // 相手から来た sender の capability を受け取る
     // 対応する receiver を作り、 receive() する
-    let remote = message.caps
-    let kind = remote.kind
+    const kind = message.kind
+    const caps = message.caps
+    const muxId = message.muxId
 
     this.addReceiver(kind)
 
-    this.transportRecv(kind, remote)
+    this.transportRecv(kind, caps, muxId)
 
     this.trackCount++;
     if (this.trackCount == 2) {
@@ -346,28 +343,28 @@ class ORTC extends EventEmitter {
   addReceiverCapability(message) {
     // 相手から来た receiver の capability を受け取り
     // sender に設定する
-    let remote = message.caps
-    let kind = remote.kind
+    const kind = message.kind
+    const caps = message.caps
 
     // 逆側に設定する。
-    this.transportSend(kind, remote)
+    this.transportSend(kind, caps)
   }
 
-  transportSend(kind, remote) {
+  transportSend(kind, caps) {
     // caps を適用して send() する
     const ssrc = this.SSRC[kind]
     const encodingParams = Util.RTCRtpEncodingParameters({ssrc})
-    const sendParams = Util.Caps2Params(this.Caps.sender[kind], remote.caps)
+    const sendParams = Util.Caps2Params(this.Caps.sender[kind], caps)
     sendParams.encodings.push(encodingParams)
     this.Transports.sender[kind].send(sendParams)
   }
 
-  transportRecv(kind, remote) {
+  transportRecv(kind, caps, muxId) {
     // caps を適用して receive() する
     const ssrc = this.SSRC[kind]
     const encodingParams = Util.RTCRtpEncodingParameters({ssrc})
-    const recvParams = Util.Caps2Params(remote.caps, this.Caps.recver[kind])
-    recvParams.muxId = remote.muxId
+    const recvParams = Util.Caps2Params(caps, this.Caps.recver[kind])
+    recvParams.muxId = muxId
     recvParams.encodings.push(encodingParams)
     this.Transports.recver[kind].receive(recvParams)
   }
