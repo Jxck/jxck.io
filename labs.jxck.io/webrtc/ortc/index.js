@@ -223,10 +223,6 @@ class ORTC extends EventEmitter {
 
     this.trackCount = 0
 
-    this.SSRC = {
-      audio: 100,
-      video: 200,
-    }
   }
 
   addRemoteCandidate(candidate) {
@@ -296,28 +292,32 @@ class ORTC extends EventEmitter {
     const kind = track.kind
     const caps = RTCRtpSender.getCapabilities(kind)
 
-    this.Caps.sender[kind] = caps
-    this.Transports.sender[kind] = new RTCRtpSender(track, this.rtcDtlsTransport)
+    const ssrc = Math.floor(Math.random()*1000)
+
+    this.Caps.sender[ssrc] = caps
+    this.Transports.sender[ssrc] = new RTCRtpSender(track, this.rtcDtlsTransport)
 
     this.emit('capability:sender', {
+      ssrc: ssrc,
       kind: kind,
       caps: caps,
       muxId: null,
     })
   }
 
-  addReceiver(kind) {
-    console.log('addReceiver', kind)
+  addReceiver(kind, ssrc) {
+    console.log('addReceiver', kind, ssrc)
     // receiver を作り caps を送る
     const caps = RTCRtpReceiver.getCapabilities(kind)
 
-    this.Caps.recver[kind] = caps
-    this.Transports.recver[kind] = new RTCRtpReceiver(this.rtcDtlsTransport, kind)
+    this.Caps.recver[ssrc] = caps
+    this.Transports.recver[ssrc] = new RTCRtpReceiver(this.rtcDtlsTransport, kind)
 
     // mediastream に追加
-    this.mediaStream.addTrack(this.Transports.recver[kind].track)
+    this.mediaStream.addTrack(this.Transports.recver[ssrc].track)
 
     this.emit('capability:receiver', {
+      ssrc: ssrc,
       kind: kind,
       caps: caps,
     })
@@ -329,10 +329,11 @@ class ORTC extends EventEmitter {
     const kind = message.kind
     const caps = message.caps
     const muxId = message.muxId
+    const ssrc = message.ssrc
 
-    this.addReceiver(kind)
+    this.addReceiver(kind, ssrc)
 
-    this.transportRecv(kind, caps, muxId)
+    this.transportRecv(kind, caps, muxId, ssrc)
 
     this.trackCount++;
     if (this.trackCount == 2) {
@@ -345,28 +346,27 @@ class ORTC extends EventEmitter {
     // sender に設定する
     const kind = message.kind
     const caps = message.caps
+    const ssrc = message.ssrc
 
     // 逆側に設定する。
-    this.transportSend(kind, caps)
+    this.transportSend(kind, caps, ssrc)
   }
 
-  transportSend(kind, caps) {
+  transportSend(kind, caps, ssrc) {
     // caps を適用して send() する
-    const ssrc = this.SSRC[kind]
     const encodingParams = Util.RTCRtpEncodingParameters({ssrc})
-    const sendParams = Util.Caps2Params(this.Caps.sender[kind], caps)
+    const sendParams = Util.Caps2Params(this.Caps.sender[ssrc], caps)
     sendParams.encodings.push(encodingParams)
-    this.Transports.sender[kind].send(sendParams)
+    this.Transports.sender[ssrc].send(sendParams)
   }
 
-  transportRecv(kind, caps, muxId) {
+  transportRecv(kind, caps, muxId, ssrc) {
     // caps を適用して receive() する
-    const ssrc = this.SSRC[kind]
     const encodingParams = Util.RTCRtpEncodingParameters({ssrc})
-    const recvParams = Util.Caps2Params(caps, this.Caps.recver[kind])
+    const recvParams = Util.Caps2Params(caps, this.Caps.recver[ssrc])
     recvParams.muxId = muxId
     recvParams.encodings.push(encodingParams)
-    this.Transports.recver[kind].receive(recvParams)
+    this.Transports.recver[ssrc].receive(recvParams)
   }
 }
 
@@ -375,7 +375,7 @@ window.onload = function() {
   const ortc = new ORTC(id)
   const socket = new WS('wss://ws.jxck.io', ['broadcast', 'ortc-demo'])
   const $video = document.getElementById('remote')
-
+  const $local = document.getElementById('local')
 
   ortc.on('mediastream', (stream) => {
     $video.srcObject = stream
@@ -396,7 +396,6 @@ window.onload = function() {
       },
     }).then((stream) => {
       console.log('getUserMedia', stream)
-      let $local = document.getElementById('local')
       $local.srcObject = stream
       ortc.addStream(stream)
     }).catch((err) => {
