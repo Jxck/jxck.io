@@ -303,9 +303,9 @@ for (let c of '𩸽定食') console.log(c)
 ```
 
 
-## Split Operator
+## Spread Operator
 
-Split Operator を用いた分割も、 Code Point の単位で分割される。
+Spread Operator を用いた分割も、 Code Point の単位で分割される。
 
 ```js
 ((a, b, c) => console.log(a, b, c))(...'𩸽定食') // 𩸽 定 食
@@ -391,7 +391,7 @@ Array.of(...'👨‍👩‍👧‍👦')
 
 
 これは、 👨‍👩‍👧‍👦 という絵文字自体が、👨, 👩, 👧, 👦 という 4 つの絵文字とそれを結合する制御文字でできているからである。
-この制御文字を **ZWJ**(ZERO WCode PointTH JOINER) といい、 ZWJ の Code Point は `0x200D` だ。
+この制御文字を **ZWJ**(ZERO WIDTH JOINER) といい、 ZWJ の Code Point は `0x200D` だ。
 先ほどのように「**文字の数を数える == Code Point の数を数える**」としてしまえば、これは `emoji * 4 + ZWJ * 3` で 7 文字となる。
 
 ところが、おそらく多くの人がこれを 1 文字と捉えるだろう。
