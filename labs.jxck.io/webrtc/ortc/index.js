@@ -293,13 +293,16 @@ class ORTC extends EventEmitter {
   addSender(track) {
     // sender を作り caps を送る
     console.log('addSender', track.kind)
-    let kind = track.kind
+    const kind = track.kind
+    const caps = RTCRtpSender.getCapabilities(kind)
+
+    this.Caps.sender[kind] = caps
     this.Transports.sender[kind] = new RTCRtpSender(track, this.rtcDtlsTransport)
-    this.Caps.sender[kind] = RTCRtpSender.getCapabilities(kind)
+
     this.emit('capability:sender', {
       caps: {
         kind: kind,
-        caps: this.Caps.sender[kind],
+        caps: caps,
         muxId: null,
       }
     })
@@ -308,13 +311,18 @@ class ORTC extends EventEmitter {
   addReceiver(kind) {
     console.log('addReceiver', kind)
     // receiver を作り caps を送る
+    const caps = RTCRtpReceiver.getCapabilities(kind)
+
+    this.Caps.recver[kind] = caps
     this.Transports.recver[kind] = new RTCRtpReceiver(this.rtcDtlsTransport, kind)
-    this.Caps.recver[kind] = RTCRtpReceiver.getCapabilities(kind)
+
+    // mediastream に追加
     this.mediaStream.addTrack(this.Transports.recver[kind].track)
+
     this.emit('capability:receiver', {
       caps: {
         kind: kind,
-        caps: this.Caps.recver[kind],
+        caps: caps,
       }
     })
   }
