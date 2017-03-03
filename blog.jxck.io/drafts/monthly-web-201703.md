@@ -8,6 +8,15 @@
 
 ### Chrome
 
+- 2/28 [API Deprecations and Removals in Chrome 57](https://developers.google.com/web/updates/2017/02/chrome-57-deprecations)
+  - FileReaderSync in service workers
+  - webkitCancelRequestAnimationFrame
+  - BluetoothDevice.uuids
+  - webkit-prefixed IndexedDB
+  - etc
+
+
+
 //- 2/2: Beta [Chrome57](https://blog.chromium.org/2017/02/chrome-57-beta-css-grid-layout-improved.html)
 //  - Grid
 //  - Add to Home Screeen
@@ -25,6 +34,10 @@
 - [API Deprecations and Removals in Chrome 57  \|  Web  \|  Google Developers](https://developers.google.com/web/updates/2017/02/chrome-57-deprecations)
 
 ### Firefox
+
+- 2/22: [ECMAScript 2016+ in Firefox](https://blog.mozilla.org/javascript/2017/02/22/ecmascript-2016plus-in-firefox/)
+  - Nightly 54 で Kangax ES2016 compat 100% 達成
+
 
 Firefoxの開発者向けのノート
 - https://developer.mozilla.org/en-US/Firefox/Releases/51
@@ -53,6 +66,13 @@ Firefoxの開発者向けのノート
   - WebExtension/e10s 周りのスケジュールが載ってる
 
 ### Safari
+
+- 2/22: [Safari Technology Preview 24](https://webkit.org/blog/7423/release-notes-for-safari-technology-preview-24/)
+    - User Timing
+    - Link Preload
+    - import()
+    - etc
+
 
 //- Safari 10.0
 //
@@ -90,6 +110,8 @@ Firefoxの開発者向けのノート
   - HTTPS 化が広がり、それをほどく挙動のウイルス対策ソフトが出ててる
   - これがむしろ脆弱性を作り込む場合があって有害という話っぽい
 
+- 2/17: [Twitter の React-Base Mobile Web はネイティブに匹敵する](https://www.infoq.com/news/2017/02/twitter-react-mobile-stack)
+  - Twitter の PWA がいい感じらしい
 
 
 ## News
@@ -107,3 +129,123 @@ Firefoxの開発者向けのノート
 - [HTTP Live Streaming の解説](http://did2memo.net/2017/02/20/http-live-streaming/)
   - HLS, .ts, .m3u8 の解説
   - AbemaTV/FRESH を題材に
+
+- 2/23: [SHAttered](https://shattered.it/)
+  - SHA1 の衝突を発生させる手法が公開
+  - これが色々と飛び火した
+  - [Google Online Security Blog: Announcing the first SHA1 collision](https://security.googleblog.com/2017/02/announcing-first-sha1-collision.html)
+  - [Cryptanalysis of SHA-1](https://www.schneier.com/blog/archives/2005/02/cryptanalysis_o.html)
+  - [IIJ Security Diary: SHAttered attack (SHA-1コリジョン発見)](https://sect.iij.ad.jp/d/2017/02/271993.html)
+
+- 2/22: [Node v7.6.0](https://nodejs.org/en/blog/release/v7.6.0/)
+  - v8 to 5.5
+  - libuv to 1.11.0
+  - whatwg url
+  - etc
+
+- 2/22: [TypeScript 2.2](https://blogs.msdn.microsoft.com/typescript/2017/02/22/announcing-typescript-2-2/)
+  - object type
+  - better mixin
+  - new.target
+  - etc
+
+
+
+- 2/23: [Rails 5.1.0.beta1](http://weblog.rubyonrails.org/2017/2/23/Rails-5-1-beta1/)
+  - Yarn, WebPack 統合
+  - jQuery を削除
+  - Capybara で System tests
+  - secrets の暗号化
+  - form_tag/form_for が form_with に統合
+  - etc
+
+
+- 2/23: [Neutrino](https://hacks.mozilla.org/2017/02/using-neutrino-for-modern-javascript-development/)
+  - mozilla 作 JS の preset tool
+
+- 2/23: [WASM のロゴが決定](https://github.com/carlosbaraza/web-assembly-logo)
+  - [投票結果](https://github.com/WebAssembly/design/issues/980#issue-205968264)
+
+- 2/24: [Annotation is now a web standard](https://hypothes.is/blog/annotation-is-now-a-web-standard/)
+  - [Three recommendations to enable Annotations on the Web](https://www.w3.org/blog/news/archives/6156)
+  - あとで
+
+- 2/22: [Making a Conscious Choice - Mozilla Open Design](https://blog.mozilla.org/opendesign/making-a-conscious-choice/)
+  - あとで
+
+- 2/25: [Securing Browsers Through Isolation Versus Mitigation](https://medium.com/@justin.schuh/securing-browsers-through-isolation-versus-mitigation-15f0baced2c2#.hc1zvqdsu)
+  - あとで
+
+
+- 2/26: [netcode.io](http://new.gafferongames.com/post/why_cant_i_send_udp_packets_from_a_browser/)
+  - ブラウザで UDP を使えない理由と、使えるようにする場合の問題、それに対する netcode.io の話。
+
+- 2/27: [Mozilla Pocket を買収](https://blog.mozilla.org/blog/2017/02/27/mozilla-acquires-pocket/)
+  - ブランドは残すらしい
+
+- 2/28: [mobile において何を計るべきかe](https://www.thinkwithgoogle.com/articles/mobile-page-speed-new-industry-benchmarks.html)
+  - 記事の下にスライドがあるタイプ
+
+- 2/28: [Sir Tim Berners Lee 来日](https://sites.google.com/keio.jp/20170313-tbl-party/)
+  - 慶應義塾から名誉博士号授与
+  - 3/13 (Web の誕生日前日)に来日らしい
+
+
+- 3/1: [An interactive web server](https://github.com/gchaincl/httplab)
+  - レスポンスを自由に変えられるサーバ
+  - デモを見るとわかりやすい
+  - 検証などで使いやすそう
+
+
+- 2/28: [WASM のデザインがベンダ間でおおよそ合意](https://lists.w3.org/Archives/Public/public-webassembly/2017Feb/0002.html)
+  - 今後は W3C で WG 作り、実装しながら色々進めて行くらしい。
+
+- 2/27: [TLS1.3 を読めない Proxy](https://bugs.chromium.org/p/chromium/issues/detail?id=694593)
+  - [Symantec の Blue Coat など](https://www.theregister.co.uk/2017/02/27/blue_coat_chokes_on_chrome_encryption_update/)
+  - Google Chrome 56 で一時的に TLS1.3 を無効
+  - 今後は 1.3 - 1.2 でフォールバックっぽい
+
+
+- 3/1: [Mobile Web Progress 2017](https://ti.to/samsunginternet/mwp2017/en)
+  - イベントがあるらしい
+
+- 3/1: [Add &gt;link&lt; rel="modulepreload" by domenic](https://github.com/whatwg/html/pull/2383)
+  - whatwg/html への提案
+
+
+- 2/28: [Feature watch: ECMAScript 2018](http://www.2ality.com/2017/02/ecmascript-2018.html)
+  - stage の候補や解説
+
+
+- 3/1: [github/rawrtc/rawrtc](https://github.com/rawrtc/rawrtc)
+  - WebRTC/ORTC の実装
+
+- 3/1: [V8: Behind the Scenes](http://benediktmeurer.de/2017/03/01/v8-behind-the-scenes-february-edition/)
+  - TurboFan の話
+
+- 3/1: [V8 JavaScript Engine: Fast For-In in V8](https://v8project.blogspot.jp/2017/03/fast-for-in-in-v8.html)
+  - V8 での for-in 最適化
+
+- 2/28: [H2O version 2.2 beta](http://blog.kazuhooku.com/2017/02/h2o-version-22-beta-released-with-tls.html)
+  - TLS 1.3 対応
+
+
+- 3/1: [Rails 5.0.2](http://weblog.rubyonrails.org/2017/3/1/Rails-5-0-2-has-been-released/)
+
+- 3/1: [AWS S3 で大規模障害](https://aws.amazon.com/message/41926/)
+  - 人的ミスだったらしい
+
+
+
+
+
+## WASM 解説シリーズ
+
+[https://hacks.mozilla.org/](https://hacks.mozilla.org/) に [Lin Clark](http://code-cartoons.com/) が連載
+
+- 2/28: [Where is WebAssembly now and what’s next? ★ Mozilla Hacks – the Web developer blog](https://hacks.mozilla.org/2017/02/where-is-webassembly-now-and-whats-next/)
+- 2/28: [What makes WebAssembly fast? ★ Mozilla Hacks – the Web developer blog](https://hacks.mozilla.org/2017/02/what-makes-webassembly-fast/)
+- 2/28: [Creating and working with WebAssembly modules ★ Mozilla Hacks – the Web developer blog](https://hacks.mozilla.org/2017/02/creating-and-working-with-webassembly-modules/)
+- 2/28: [A crash course in assembly ★ Mozilla Hacks – the Web developer blog](https://hacks.mozilla.org/2017/02/a-crash-course-in-assembly/)
+- 2/28: [A crash course in just\-in\-time \(JIT\) compilers ★ Mozilla Hacks – the Web developer blog](https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/)
+- 2/28: [A cartoon intro to WebAssembly ★ Mozilla Hacks – the Web developer blog](https://hacks.mozilla.org/2017/02/a-cartoon-intro-to-webassembly/)
