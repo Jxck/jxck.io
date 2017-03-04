@@ -12,19 +12,8 @@ ws.on('open', () => {
 })
 
 const id = 'answerer'
-const config = {
-  "iceServers": [
-    {
-      "urls": [""],
-      "username": "",
-      "credential": ""
-    }
-  ],
-  "iceTransportPolicy": "relay",
-  // "rtcpMuxPolicy": "require",
-}
 
-const answerer  = new RTC(id, config)
+const answerer  = new RTC(id)
 
 answerer.on('icecandidate', (candidate) => {
   if (candidate === null) return
@@ -68,7 +57,7 @@ answerer.on('channel', (channel) => {
 
   channel.on('message', (data) => {
     info('12. answerer で offerer からのメッセージを受け取る')
-    log(data)
+    document.querySelector('#message').textContent = data
 
     info('13. answerer から offerer にメッセージを送る')
     channel.send("from answerer")

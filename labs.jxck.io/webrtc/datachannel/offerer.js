@@ -19,18 +19,8 @@ ws.on('open', () => {
 })
 
 const id = 'offerer'
-const config = {
-  "iceServers": [
-    {
-      "urls": [""],
-      "username": "",
-      "credential": ""
-    }
-  ],
-  "iceTransportPolicy": "relay",
-  // "rtcpMuxPolicy": "require",
-}
-const offerer = new RTC(id, config)
+
+const offerer = new RTC(id)
 
 offerer.on('icecandidate', (candidate) => {
   if (candidate === null) return
@@ -85,7 +75,7 @@ offerer.on('channel', (channel) => {
 
   channel.on('message', (data) => {
     info('14. offerer で answerer からのメッセージを受け取る')
-    log(data)
+    document.querySelector('#message').textContent = data
 
     channel.on('close', (e) => {
       info('16. offerer で on close が発生')
