@@ -9,7 +9,6 @@ const ws = new WS('wss://ws.jxck.io', ['broadcast', 'webrtc-datachannel-demo'])
 const id = btoa(Math.random()*1000)
 const deviceId = location.hash.replace('#', '')
 const constraint = {audio:true, video: {deviceId: deviceId}}
-console.log(constraint)
 const rtc  = new RTC(id)
 
 ws.on('open', () => {
@@ -17,14 +16,15 @@ ws.on('open', () => {
   $('#call').addEventListener('click', () => {
     // firefox では createDataChannel か addStream してないと
     // createOffer() できない
+    debug(constraint)
     navigator.mediaDevices.getUserMedia(constraint)
       .then((stream) => {
         info('1. addTrack()')
         rtc.addStream(stream)
         // TODO: fixme with addTrack if chrome supports
-        //stream.getTracks().forEach((track) => {
-        //  rtc.addTrack(track, stream)
-        //})
+        // stream.getTracks().forEach((track) => {
+        //   rtc.addTrack(track, stream)
+        // })
         // ここで negotiation needed が発火する
         $('#local').srcObject = stream
       })
