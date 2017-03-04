@@ -33,7 +33,7 @@ rtc.on('icecandidate', (candidate) => {
   if (candidate === null) return
 
   info('7. ice candidate を送信')
-  ws.send({type: 'candidate', candidate: candidate})
+  ws.emit('candidate', candidate)
 })
 
 rtc.on('negotiationneeded', () => {
@@ -41,11 +41,10 @@ rtc.on('negotiationneeded', () => {
   info('3. offer を作成')
   rtc.createOffer().then((rtcSessionDescription) => {
     info('4. offer を local に適用')
-    log(rtcSessionDescription.type, rtcSessionDescription.sdp)
     return rtc.setLocalDescription(rtcSessionDescription)
   }).then(() => {
     info('4. offer を送信')
-    ws.send(rtc.localDescription)
+    ws.emit('offer', rtc.localDescription)
   }).catch((err) => console.error(err))
 })
 
@@ -61,35 +60,30 @@ rtc.on('addstream', (stream) => {
   $('#remote').srcObject = stream
 })
 
-ws.on('message', (message) => {
-  if (message.type === 'offer') {
-    info('5. offer を受信')
-    rtc.setRemoteDescription(message).then((e) => {
-      info('5. answer を作成')
-      return rtc.createAnswer()
-    }).then((rtcSessionDescription) => {
-      info('6. answer を local に適用')
-      log(rtcSessionDescription.type, rtcSessionDescription.sdp)
-      return rtc.setLocalDescription(rtcSessionDescription)
-    }).then(() => {
-      info('6. answer を送信')
-      ws.send(rtc.localDescription)
-    }).catch((err) => console.error(err))
-  }
+ws.on('offer', (description) => {
+  info('5. offer を受信')
+  rtc.setRemoteDescription(description).then((e) => {
+    info('5. answer を作成')
+    return rtc.createAnswer()
+  }).then((rtcSessionDescription) => {
+    info('6. answer を local に適用')
+    return rtc.setLocalDescription(rtcSessionDescription)
+  }).then(() => {
+    info('6. answer を送信')
+    ws.emit('answer', rtc.localDescription)
+  }).catch((err) => console.error(err))
+})
 
-  if (message.type === 'answer') {
-    rtc.setRemoteDescription(message)
-      .then((e) => console.log(e))
-      .catch((err) => console.error(err))
-  }
+ws.on('answer', (description) => {
+  rtc.setRemoteDescription(description)
+    .then((e) => console.log(e))
+    .catch((err) => console.error(err))
+})
 
-  if (message.type === 'candidate') {
-    const candidate = message.candidate
-
-    info('7. 受信した ice candidate を適用')
-    rtc
-      .addIceCandidate(candidate)
-      .then((e) => console.log(e))
-      .catch((err) => console.error(err))
-  }
+ws.on('candidate', (candidate) => {
+  info('7. 受信した ice candidate を適用')
+  rtc
+    .addIceCandidate(candidate)
+    .then((e) => console.log(e))
+    .catch((err) => console.error(err))
 })
