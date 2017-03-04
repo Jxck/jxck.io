@@ -172,7 +172,7 @@ class RTC extends EventEmitter {
 
   addIceCandidate(candidate) {
     if (!(candidate instanceof RTCIceCandidate)) {
-      candidate = new RTCIceCandidate(candidate);
+      candidate = new RTCIceCandidate(candidate)
     }
     debug(`${this.id}#addIceCandidate(candidate)`, candidate)
     return this.connection.addIceCandidate(candidate)
@@ -190,7 +190,7 @@ class RTC extends EventEmitter {
 
   setLocalDescription(description) {
     if (!(description instanceof RTCSessionDescription)) {
-      description = new RTCSessionDescription(description);
+      description = new RTCSessionDescription(description)
     }
     debug(`${this.id}#setLocalDescription(description)`, description)
     return this.connection.setLocalDescription(description)
@@ -198,7 +198,7 @@ class RTC extends EventEmitter {
 
   setRemoteDescription(description) {
     if (!(description instanceof RTCSessionDescription)) {
-      description = new RTCSessionDescription(description);
+      description = new RTCSessionDescription(description)
     }
     debug(`${this.id}#setRemoteDescription(description)`, description)
     return this.connection.setRemoteDescription(description)

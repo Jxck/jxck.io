@@ -1,5 +1,5 @@
-const log = console.log.bind(console);
-const jog = (e) => log(JSON.stringify(e));
+const log = console.log.bind(console)
+const jog = (e) => log(JSON.stringify(e))
 
 /***********************************
  * Stream
@@ -19,22 +19,22 @@ class Track {
   get readyState() { return this.track.readyState }
 
   getConstraints() {
-    const support = !!MediaStreamTrack.prototype.getConstraints;
-    return support ? this.track.getConstraints() : {};
+    const support = !!MediaStreamTrack.prototype.getConstraints
+    return support ? this.track.getConstraints() : {}
   }
 
   getCapabilities() {
-    const support = !!MediaStreamTrack.prototype.getCapabilities;
-    return support ? this.track.getCapabilities() : {};
+    const support = !!MediaStreamTrack.prototype.getCapabilities
+    return support ? this.track.getCapabilities() : {}
   }
 
   getSettings() {
-    const support = !!MediaStreamTrack.prototype.getSettings;
-    return support ? this.track.getSettings() : {};
+    const support = !!MediaStreamTrack.prototype.getSettings
+    return support ? this.track.getSettings() : {}
   }
 
   stop() {
-    return this.track.stop();
+    return this.track.stop()
   }
 }
 
@@ -45,19 +45,19 @@ class Stream {
       navigator.getUserMedia = navigator.getUserMedia ||
         navigator.webkitGetUserMedia ||
         navigator.mozGetUserMedia ||
-        navigator.msGetUserMedia;
+        navigator.msGetUserMedia
       return new Promise((resolve, reject) => {
-        navigator.getUserMedia(conf, resolve, reject);
-      });
-    };
+        navigator.getUserMedia(conf, resolve, reject)
+      })
+    }
     return navigator.mediaDevices.getUserMedia(constraint).then((stream) => {
-      return Promise.resolve(new Stream(stream, constraint));
-    });
+      return Promise.resolve(new Stream(stream, constraint))
+    })
   }
 
   constructor(stream, constraint) {
     this.stream = stream
-    this.constraint = constraint;
+    this.constraint = constraint
   }
 
   get id() {
@@ -67,7 +67,7 @@ class Stream {
     return this.stream.active
   }
   get src() {
-    return URL.createObjectURL(this.stream);
+    return URL.createObjectURL(this.stream)
   }
 
   tracks() {
@@ -77,7 +77,7 @@ class Stream {
   }
 
   objectURL() {
-    return URL.createObjectURL(this.stream);
+    return URL.createObjectURL(this.stream)
   }
 
   stop() {
@@ -94,8 +94,8 @@ const getStream = (constraint, dispatch) => {
       stream: stream,
     })
   }).catch((err) => {
-    console.error(err);
-  });
+    console.error(err)
+  })
 }
 
 // Reducer
@@ -111,7 +111,7 @@ const streamReducer = (state = null, action) => {
 // Components
 class Tracks extends React.Component {
   render() {
-    const { tracks } = this.props;
+    const { tracks } = this.props
     const tr = tracks.map((track) => {
       return (
         <tr>
@@ -123,7 +123,7 @@ class Tracks extends React.Component {
           <td>{track.readyState}</td>
         </tr>
       )
-    });
+    })
 
     return (
       <table>
@@ -144,15 +144,15 @@ class Tracks extends React.Component {
 class Video extends React.Component {
   componentDidUpdate() {
     // FIXME: if React supports srcObject
-    // this.video.srcObject = this.props.stream;
+    // this.video.srcObject = this.props.stream
   }
 
   bindVideo(video) {
-    this.video = video;
+    this.video = video
   }
 
   render() {
-    const { stream } = this.props;
+    const { stream } = this.props
     if (stream === null) {
       return <p>empty</p>
     }
@@ -172,30 +172,30 @@ class Video extends React.Component {
 const formatConstraint = (raw) => {
   return Object.keys(raw).reduce((acc, key) => {
     if (key === 'audioinput') {
-      acc.audio.deviceId = raw.audioinput;
-      return acc;
+      acc.audio.deviceId = raw.audioinput
+      return acc
     }
 
     if (key === 'videoinput') {
-      acc.video.deviceId = raw.videoinput;
-      return acc;
+      acc.video.deviceId = raw.videoinput
+      return acc
     }
 
-    let [target, type] = key.split('.');
-    acc[target][type] = raw[key].toJSON();
-    return acc;
-  }, {video:{}, audio:{}});
+    let [target, type] = key.split('.')
+    acc[target][type] = raw[key].toJSON()
+    return acc
+  }, {video:{}, audio:{}})
 }
 
 class StreamComponent extends React.Component {
   onClick(e) {
-    const constraint = formatConstraint(this.props.constraint);
-    if (this.props.stream) this.props.stream.stop(); // stop if existed
-    this.props.getStream(constraint);
+    const constraint = formatConstraint(this.props.constraint)
+    if (this.props.stream) this.props.stream.stop() // stop if existed
+    this.props.getStream(constraint)
   }
 
   render() {
-    const { stream } = this.props;
+    const { stream } = this.props
     return (
       <div className="flex">
         <section>
@@ -227,7 +227,7 @@ const StreamContainer = ReactRedux.connect(
       }
     }
   }
-)(StreamComponent);
+)(StreamComponent)
 
 
 
@@ -242,12 +242,12 @@ const enumDevice = (dispatch) => {
     dispatch({
       type: 'ENUM_DEVICE',
       devices: devices.sort((a, b) => a.kind > b.kind ? 1: -1),
-    });
-  });
+    })
+  })
 
   navigator.mediaDevices.ondevicechange = (e) => {
-    enumDevice(dispatch);
-  };
+    enumDevice(dispatch)
+  }
 }
 
 const selectDevice = (dispatch, e) => {
@@ -255,7 +255,7 @@ const selectDevice = (dispatch, e) => {
   dispatch({
     type: 'SELECT_DEVICE',
     device: {name, value}
-  });
+  })
 }
 
 // Reducer
@@ -271,13 +271,13 @@ const deviceReducer = (state = [], action) => {
 // Component
 class Device extends React.Component {
   componentDidMount() {
-    this.props.onEnumDevice();
+    this.props.onEnumDevice()
   }
 
   render() {
     const {onEnumDevice, onSelectDevice, devices} = this.props
     const tr = devices.map((d) => {
-      const disabled = d.kind.endsWith("output") ? true : false;
+      const disabled = d.kind.endsWith("output") ? true : false
       return (
         <tr>
           <td><input type="radio" name={d.kind} value={d.deviceId} disabled={disabled} onChange={onSelectDevice}/></td>
@@ -287,7 +287,7 @@ class Device extends React.Component {
           <td><div>{d.groupId} </div></td>
         </tr>
       )
-    });
+    })
     return (
       <section>
         <h2>Devices</h2>
@@ -324,7 +324,7 @@ const DeviceContainer = ReactRedux.connect(
       }
     }
   }
-)(Device);
+)(Device)
 
 
 
@@ -342,19 +342,19 @@ class FacingModeValue {
   }
 
   toJSON() {
-    const {mode, ideal, exact} = this;
+    const {mode, ideal, exact} = this
 
     if (mode === "") {
-      return null;
+      return null
     }
     if (exact) {
-      return { exact : mode };
+      return { exact : mode }
     }
     if (ideal) {
-      return { ideal: mode };
+      return { ideal: mode }
     }
 
-    return mode;
+    return mode
   }
 }
 
@@ -363,7 +363,7 @@ const selectFacing = (dispatch, value) => {
   return dispatch({
     type: 'SELECT_FACING',
     value: value
-  });
+  })
 }
 
 // Component
@@ -373,12 +373,12 @@ class FacingMode extends React.Component {
       this.mode.value,
       this.ideal.checked,
       this.exact.checked,
-    ));
+    ))
   }
 
   bindElem(elem) {
     if (elem === null) return
-    this[elem.name] = elem;
+    this[elem.name] = elem
   }
 
   render() {
@@ -431,7 +431,7 @@ const FacingModeContainer = ReactRedux.connect(
       }
     }
   }
-)(FacingMode);
+)(FacingMode)
 
 
 
@@ -454,11 +454,11 @@ class RangeValue {
   parseFloat(val) {
     if (val === "") return null
     if (val === null) return null
-    return parseFloat(val);
+    return parseFloat(val)
   }
 
   toJSON() {
-    const {type, ideal, exact, value, min, max} = this;
+    const {type, ideal, exact, value, min, max} = this
 
     if (exact) {
       if (value === null) return null
@@ -485,7 +485,7 @@ const onRange = (dispatch, value) => {
   return dispatch({
     type: 'SELECT_RANGE',
     value: value
-  });
+  })
 }
 
 // Component
@@ -498,12 +498,12 @@ class Range extends React.Component {
       this.min ? this.min.value : null,
       this.max ? this.max.value : null,
       this.value.value
-    ));
+    ))
   }
 
   bindElem(elem) {
     if (elem === null) return
-    this[elem.name] = elem;
+    this[elem.name] = elem
   }
 
   render() {
@@ -567,8 +567,8 @@ class Range extends React.Component {
 // Container
 const RangeContainer = ReactRedux.connect(
   (state, ownProps) => {
-    const {type} = ownProps;
-    const value = state.constraint[type];
+    const {type} = ownProps
+    const value = state.constraint[type]
     return {state: value}
   },
   (dispatch) => {
@@ -578,20 +578,20 @@ const RangeContainer = ReactRedux.connect(
       }
     }
   }
-)(Range);
+)(Range)
 
 // Reducer
 const constraintReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SELECT_DEVICE':
       const {name, value} = action.device
-      return Object.assign({}, state, {[name]: value});
+      return Object.assign({}, state, {[name]: value})
     case 'SELECT_FACING':
-      const facingMode = action.value;
-      return Object.assign({}, state, {"video.facingMode": facingMode});
+      const facingMode = action.value
+      return Object.assign({}, state, {"video.facingMode": facingMode})
     case 'SELECT_RANGE':
       const range = action.value
-      return Object.assign({}, state, {[range.type]: range});
+      return Object.assign({}, state, {[range.type]: range})
     default:
       return state
   }
@@ -607,7 +607,7 @@ const constraintReducer = (state = {}, action) => {
 // Component
 class Display extends React.Component {
   render() {
-    const raw = this.props.constraint;
+    const raw = this.props.constraint
     const formatted = formatConstraint(raw)
     return (
       <section>
@@ -634,7 +634,7 @@ const DisplayContainer = ReactRedux.connect(
     return {
     }
   }
-)(Display);
+)(Display)
 
 
 
@@ -678,7 +678,7 @@ const ControllersContainer = ReactRedux.connect(
     return {
     }
   }
-)(Controllers);
+)(Controllers)
 
 
 
@@ -689,11 +689,11 @@ const ControllersContainer = ReactRedux.connect(
 
 // ActionCreator
 const getSupportedConstraints = (dispatch) => {
-  const keys = navigator.mediaDevices.getSupportedConstraints();
+  const keys = navigator.mediaDevices.getSupportedConstraints()
   let supported = Object.keys(keys).sort((a, b) => {
-    if (a.startsWith('moz')) return 1;
-    return (a.length > b.length) ? 1 : -1;
-  });
+    if (a.startsWith('moz')) return 1
+    return (a.length > b.length) ? 1 : -1
+  })
   dispatch({
     type: 'SUPPORTED_CONSTRAINTS',
     supported, supported,
@@ -715,39 +715,39 @@ const supportedConstraintsReducer = (state = {supported: []}, action) => {
 // Components
 class SupportedConstraints extends React.Component {
   componentDidMount() {
-    this.props.getSupportedConstraints();
+    this.props.getSupportedConstraints()
   }
 
   render() {
-    const { supported, tracks } = this.props;
+    const { supported, tracks } = this.props
     const th = supported.map((key) => <th>{key}</th>)
 
     const consts = tracks.map((track) => {
-      const values = track.getConstraints();
+      const values = track.getConstraints()
       const td = supported
         .map((key) => values[key])
-        .map((value) => <td>{JSON.stringify(value)}</td>);
+        .map((value) => <td>{JSON.stringify(value)}</td>)
 
-      return <tr><td>constraints({track.kind})</td>{td}</tr>;
-    });
+      return <tr><td>constraints({track.kind})</td>{td}</tr>
+    })
 
     const caps = tracks.map((track) => {
-      const values = track.getCapabilities();
+      const values = track.getCapabilities()
       const td = supported
         .map((key) => values[key])
-        .map((value) => <td>{JSON.stringify(value)}</td>);
+        .map((value) => <td>{JSON.stringify(value)}</td>)
 
-      return <tr><td>capabilities({track.kind})</td>{td}</tr>;
-    });
+      return <tr><td>capabilities({track.kind})</td>{td}</tr>
+    })
 
     const settings = tracks.map((track) => {
-      const values = track.getSettings();
+      const values = track.getSettings()
       const td = supported
         .map((key) => values[key])
-        .map((value) => <td>{JSON.stringify(value)}</td>);
+        .map((value) => <td>{JSON.stringify(value)}</td>)
 
-      return <tr><td>settings({track.kind})</td>{td}</tr>;
-    });
+      return <tr><td>settings({track.kind})</td>{td}</tr>
+    })
 
     return (
       <section>
@@ -769,7 +769,7 @@ class SupportedConstraints extends React.Component {
 // Container
 const SupportedConstraintsContainer = ReactRedux.connect(
   (state) => {
-    const stream = state.stream;
+    const stream = state.stream
     return {
       supported: state.supportedConstraints.supported,
       tracks: stream ? stream.tracks() : [],
@@ -782,7 +782,7 @@ const SupportedConstraintsContainer = ReactRedux.connect(
       }
     }
   }
-)(SupportedConstraints);
+)(SupportedConstraints)
 
 
 
@@ -811,7 +811,7 @@ const AppContainer = ReactRedux.connect(
     return {
     }
   }
-)(App);
+)(App)
 
 
 const reducer = Redux.combineReducers({
@@ -819,7 +819,7 @@ const reducer = Redux.combineReducers({
   constraint: constraintReducer,
   stream:     streamReducer,
   supportedConstraints: supportedConstraintsReducer,
-});
+})
 const store = Redux.createStore(reducer, {},
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )

@@ -86,7 +86,7 @@ class Transport extends EventEmitter {
   constructor(rtcDtlsTransport) {
     super()
     this.id = Math.floor(Math.random() * 1000)
-    this.rtcDtlsTransport = rtcDtlsTransport;
+    this.rtcDtlsTransport = rtcDtlsTransport
   }
 
   get track() {
@@ -181,7 +181,7 @@ class ORTC extends EventEmitter {
     this.rtcDtlsTransport.ondtlsstatechange = (e) => {
       debug(e.type, e.state, e)
       if (e.state === 'connected') {
-        super.emit('connected');
+        super.emit('connected')
       }
     }
 
@@ -335,7 +335,7 @@ class ORTC extends EventEmitter {
 
     this.transportRecv(kind, caps, muxId, ssrc)
 
-    this.trackCount++;
+    this.trackCount++
     if (this.trackCount == 2) {
       super.emit('mediastream', this.mediaStream)
     }
