@@ -8,8 +8,7 @@ const ws = new WS('wss://ws.jxck.io', ['broadcast', 'webrtc-datachannel-demo'])
 
 const id = btoa(Math.random()*1000)
 
-const config = window.Config || undefined
-const rtc  = new RTC(id, config)
+const rtc  = new RTC(id)
 
 ws.on('open', () => {
   $('#call').disabled = false
@@ -59,11 +58,13 @@ rtc.on('negotiationneeded', () => {
 // })
 
 rtc.on('addstream', (stream) => {
+  console.error(stream);
   $('#remote').srcObject = stream
 })
 
 ws.on('message', (message) => {
   if (message.type === 'offer') {
+    info('5. offer を受信')
     rtc.setRemoteDescription(message).then((e) => {
       info('5. answer を作成')
       return rtc.createAnswer()
