@@ -58,7 +58,6 @@ rtc.on('negotiationneeded', () => {
 // })
 
 rtc.on('addstream', (stream) => {
-  console.error(stream);
   $('#remote').srcObject = stream
 })
 

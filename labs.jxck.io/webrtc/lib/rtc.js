@@ -50,6 +50,8 @@ class RTC extends EventEmitter {
   constructor(id, config) {
     super()
 
+    debug(id, JSON.stringify(config))
+
     this.id = id
 
     this.connection = new RTCPeerConnection(config)
