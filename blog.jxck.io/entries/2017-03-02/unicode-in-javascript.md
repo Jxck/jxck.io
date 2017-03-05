@@ -324,7 +324,7 @@ c // "食"
 
 ## Array.of
 
-文字列から、文字の配列に分割するのは、 split operator と Array.of を合わせるのが一番簡単だろう。
+文字列から、文字の配列に分割するのは、 Spread operator と Array.of を合わせるのが一番簡単だろう。
 
 ```js
 Array.of(...'叱られた😭')
