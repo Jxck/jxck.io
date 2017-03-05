@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<title>sample</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="ORTC demo">
+<title>ORTC DEMO | labs.jxck.io</title>
+
 <style>
 video {
   border: 1px solid #ccc;
@@ -15,12 +18,14 @@ textarea {
 }
 </style>
 
-<input id="connect" type="button" value="connect" />
+<button id="call" disabled=true>call</button>
 
 <div>
   <video id="local" autoplay controls></video>
   <video id="remote" autoplay controls></video>
 </div>
 
+<script>DEBUG = true</script>
+<script src="../lib/events.js"></script>
 <script src="ws.js"></script>
 <script src="index.js"></script>

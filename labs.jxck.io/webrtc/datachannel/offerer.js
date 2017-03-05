@@ -18,7 +18,19 @@ ws.on('open', () => {
   })
 })
 
-const offerer = new RTC('offerer')
+const id = 'offerer'
+const config = {
+  "iceServers": [
+    {
+      "urls": [""],
+      "username": "",
+      "credential": ""
+    }
+  ],
+  "iceTransportPolicy": "relay",
+  // "rtcpMuxPolicy": "require",
+}
+const offerer = new RTC(id, config)
 
 offerer.on('icecandidate', (candidate) => {
   if (candidate === null) return

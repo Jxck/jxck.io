@@ -11,7 +11,20 @@ ws.on('open', () => {
   $ready.textContent = 'ready'
 })
 
-const answerer  = new RTC('answerer')
+const id = 'answerer'
+const config = {
+  "iceServers": [
+    {
+      "urls": [""],
+      "username": "",
+      "credential": ""
+    }
+  ],
+  "iceTransportPolicy": "relay",
+  // "rtcpMuxPolicy": "require",
+}
+
+const answerer  = new RTC(id, config)
 
 answerer.on('icecandidate', (candidate) => {
   if (candidate === null) return

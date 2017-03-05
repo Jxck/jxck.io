@@ -6,7 +6,20 @@ const warn  = console.warn.bind(console)
 const $ = document.querySelector.bind(document);
 const ws = new WS('wss://ws.jxck.io', ['broadcast', 'webrtc-datachannel-demo'])
 
-const rtc  = new RTC(btoa(Math.random()*1000))
+const id = btoa(Math.random()*1000)
+const config = {
+  "iceServers": [
+    {
+      "urls": [""],
+      "username": "",
+      "credential": ""
+    }
+  ],
+  "iceTransportPolicy": "relay",
+  // "rtcpMuxPolicy": "require",
+}
+
+const rtc  = new RTC(id, config)
 
 ws.on('open', () => {
   $('#call').disabled = false
