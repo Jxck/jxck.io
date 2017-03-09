@@ -4,7 +4,7 @@ class WS extends EventEmitter {
   constructor(url, protocols) {
     super()
 
-    this.id = btoa(Math.random()*1000)
+    this.id = btoa(Math.floor(Math.random()*10000)).replace(/=/g, "").toLowerCase()
 
     this.ws = new WebSocket(url, protocols)
 
