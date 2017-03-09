@@ -12,8 +12,13 @@ const constraint = {audio:true, video: {deviceId: deviceId}}
 const rtc  = new RTC(id)
 
 ws.on('open', () => {
+  $('#id').textContent = ws.id
   $('#call').disabled = false
-  $('#call').addEventListener('click', () => {
+  $('#start').addEventListener('submit', (e) => {
+    e.preventDefault();
+    window.peerid = $('#peer').value; // save to global
+    if (peerid === '') return alert('input peerid')
+
     // firefox では createDataChannel か addStream してないと
     // createOffer() できない
     debug(constraint)
@@ -35,7 +40,7 @@ rtc.on('icecandidate', (candidate) => {
   if (candidate === null) return
 
   info('7. ice candidate を送信')
-  ws.emit('candidate', candidate)
+  ws.emit('candidate', {from: ws.id, to: window.peerid, data: candidate})
 })
 
 rtc.on('negotiationneeded', () => {
@@ -46,7 +51,7 @@ rtc.on('negotiationneeded', () => {
     return rtc.setLocalDescription(rtcSessionDescription)
   }).then(() => {
     info('4. offer を送信')
-    ws.emit('offer', rtc.localDescription)
+    ws.emit('offer', {from: ws.id, to: window.peerid, data: rtc.localDescription})
   }).catch((err) => console.error(err))
 })
 
@@ -62,7 +67,9 @@ rtc.on('addstream', (stream) => {
   $('#remote').srcObject = stream
 })
 
-ws.on('offer', (description) => {
+ws.on('offer', ({from: from, to: to, data: description}) => {
+  log(from, to);
+  if (to !== ws.id) return
   info('5. offer を受信')
   rtc.setRemoteDescription(description).then((e) => {
     info('5. answer を作成')
@@ -72,17 +79,21 @@ ws.on('offer', (description) => {
     return rtc.setLocalDescription(rtcSessionDescription)
   }).then(() => {
     info('6. answer を送信')
-    ws.emit('answer', rtc.localDescription)
+    ws.emit('answer', {from: ws.id, to: from, data: rtc.localDescription})
   }).catch((err) => console.error(err))
 })
 
-ws.on('answer', (description) => {
+ws.on('answer', ({from: from, to: to, data: description}) => {
+  log(from, to);
+  if (to !== ws.id) return
   rtc.setRemoteDescription(description)
     .then((e) => console.log(e))
     .catch((err) => console.error(err))
 })
 
-ws.on('candidate', (candidate) => {
+ws.on('candidate', ({from: from, to: to, data: candidate}) => {
+  log(from, to);
+  if (to !== ws.id) return
   info('7. 受信した ice candidate を適用')
   rtc
     .addIceCandidate(candidate)

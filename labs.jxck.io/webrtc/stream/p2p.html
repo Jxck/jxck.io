@@ -9,13 +9,19 @@
     width: 300px;
     border: 1px solid #ccc;
   }
+  input[type=text] {
+    width: 15em;
+  }
 </style>
 
 <h1>Stream P2P DEMO</h1>
+<h2>ID: <span id=id></span></h2>
 
-<div>
-  <button disabled=true id=call>call</button>
-</div>
+<form id=start>
+  <button type=submit disabled=true id=call>call</button>
+  <span>to</span>
+  <input id=peer name=peer type=text placeholder="peer id"></input>
+</form>
 
 <div>
   <video autoplay id=local></video>
