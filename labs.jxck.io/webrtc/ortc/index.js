@@ -97,7 +97,7 @@ class Transport extends EventEmitter {
 
   addSender(track) {
     const kind = track.kind
-    console.log('addSender', kind)
+    debug('addSender', kind)
     this.sender = new RTCRtpSender(track, this.rtcDtlsTransport)
     this.senderCaps = RTCRtpSender.getCapabilities(kind)
 
@@ -111,7 +111,7 @@ class Transport extends EventEmitter {
 
   addReceiver(senderParams) {
     const kind = senderParams.kind
-    console.log('addReceiver', kind)
+    debug('addReceiver', kind)
 
     this.receiver = new RTCRtpReceiver(this.rtcDtlsTransport, kind)
     this.receiverCaps = RTCRtpReceiver.getCapabilities(kind)
@@ -219,10 +219,10 @@ class ORTC extends EventEmitter {
 
     this.mediaStream = new MediaStream()
     this.mediaStream.onaddtrack = (e) => {
-      console.log(e)
+      debug(e)
     }
     this.mediaStream.onremovetrack = (e) => {
-      console.log(e)
+      debug(e)
     }
 
     this.trackCount = 0
@@ -284,7 +284,7 @@ class ORTC extends EventEmitter {
 
 
   addStream(stream) {
-    console.log('addStream')
+    debug('addStream')
     stream.getTracks().forEach((track) => {
       this.addSender(track)
     })
@@ -292,7 +292,7 @@ class ORTC extends EventEmitter {
 
   addSender(track) {
     // sender を作り caps を送る
-    console.log('addSender', track.kind)
+    debug('addSender', track.kind)
     const kind = track.kind
     const caps = RTCRtpSender.getCapabilities(kind)
     const muxId = null
@@ -311,7 +311,7 @@ class ORTC extends EventEmitter {
   }
 
   addReceiver(kind, ssrc) {
-    console.log('addReceiver', kind, ssrc)
+    debug('addReceiver', kind, ssrc)
     // receiver を作り caps を送る
     const caps = RTCRtpReceiver.getCapabilities(kind)
 
@@ -387,6 +387,8 @@ window.onload = function() {
 
   ortc.on('localcandidate', (candidate) => {
     socket.emit('candidate', {
+      from: socket.id,
+      to: window.peerid,
       candidate: candidate,
     })
   })
@@ -397,7 +399,7 @@ window.onload = function() {
       audio: true,
       video: true,
     }).then((stream) => {
-      console.log('getUserMedia', stream)
+      debug('getUserMedia', stream)
       $local.srcObject = stream
       ortc.addStream(stream)
     }).catch((err) => {
@@ -405,12 +407,20 @@ window.onload = function() {
     })
   })
 
-  ortc.on('capability:sender', (e) => {
-    socket.emit('capability:sender', e)
+  ortc.on('capability:sender', (capability) => {
+    socket.emit('capability:sender', {
+      from: socket.id,
+      to: window.peerid,
+      capability,
+    })
   })
 
-  ortc.on('capability:receiver', (e) => {
-    socket.emit('capability:receiver', e)
+  ortc.on('capability:receiver', (capability) => {
+    socket.emit('capability:receiver', {
+      from: socket.id,
+      to: window.peerid,
+      capability,
+    })
   })
 
 
@@ -421,15 +431,18 @@ window.onload = function() {
       ortc.on('localcandidatecomplete', () => {
         // parameter を送信
         socket.emit('params', {
+          from: socket.id,
+          to: window.peerid,
           params: ortc.getLocalParameters(),
         })
         done()
       })
     }),
     new Promise((done, fail) => {
-      socket.on('params', (message) => {
+      socket.on('params', ({from, to, params}) => {
         // parameter を受信
-        done(message.params)
+        if (to !== socket.id) return;
+        done(params)
       })
     })
   ]).then(([_undefined, params]) => {
@@ -439,20 +452,25 @@ window.onload = function() {
   })
 
 
-  socket.on('candidate', (message) => {
-    ortc.addRemoteCandidate(message.candidate)
+  socket.on('candidate', ({from, to, candidate}) => {
+    if (to !== socket.id) return
+    ortc.addRemoteCandidate(candidate)
   })
 
-  socket.on('capability:sender', (message) => {
-    ortc.addSenderCapability(message)
+  socket.on('capability:sender', ({from, to, capability}) => {
+    if (to !== socket.id) return
+    ortc.addSenderCapability(capability)
   })
 
-  socket.on('capability:receiver', (message) => {
-    ortc.addReceiverCapability(message)
+  socket.on('capability:receiver', ({from, to, capability}) => {
+    if (to !== socket.id) return
+    ortc.addReceiverCapability(capability)
   })
 
-  socket.on('start', (message) => {
-    ortc.call(message.rtcIceRole)
+  socket.on('start', ({from, to, rtcIceRole}) => {
+    if (to !== socket.id) return
+    window.peerid = from // save to global
+    ortc.call(rtcIceRole)
   })
 
   socket.on('open', () => {
@@ -460,6 +478,7 @@ window.onload = function() {
     $('#id').textContent = socket.id
 
     $('#call').disabled = false
+    $('#peer').value = '';
     $('#start').addEventListener('submit', (e) => {
       e.preventDefault()
       window.peerid = $('#peer').value; // save to global
@@ -467,6 +486,8 @@ window.onload = function() {
 
       // 相手を controlled として start する
       socket.emit('start', {
+        from: socket.id,
+        to: peerid,
         rtcIceRole: RTCIceRole.controlling,
       })
 
