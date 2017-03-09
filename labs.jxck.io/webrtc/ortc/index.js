@@ -1,5 +1,7 @@
 debug = DEBUG ? console.info.bind(console) : ()=>{}
 
+const $ = document.querySelector.bind(document);
+
 // polyfill
 window.RTCIceRole  = (window.RTCIceRole !== undefined)  ? RTCIceRole  : { controlling: "controlling", controlled: "controlled" }
 window.RTCDtlsRole = (window.RTCDtlsRole !== undefined) ? RTCDtlsRole : { auto: "auto", client: "client", server: "server" }
@@ -99,11 +101,12 @@ class Transport extends EventEmitter {
     this.sender = new RTCRtpSender(track, this.rtcDtlsTransport)
     this.senderCaps = RTCRtpSender.getCapabilities(kind)
 
-    this.emit('capability:sender', {
+    const capability = {
       muxId: null,
       kind: kind,
       caps: this.senderCaps,
-    })
+    }
+    this.emit('capability:sender', capability)
   }
 
   addReceiver(senderParams) {
@@ -113,10 +116,11 @@ class Transport extends EventEmitter {
     this.receiver = new RTCRtpReceiver(this.rtcDtlsTransport, kind)
     this.receiverCaps = RTCRtpReceiver.getCapabilities(kind)
 
-    this.emit('capability:receiver', {
+    const capability = {
       kind: kind,
       caps: this.recverCaps,
-    })
+    }
+    this.emit('capability:receiver', capability)
   }
 
   send(receiverParams) {
@@ -291,6 +295,7 @@ class ORTC extends EventEmitter {
     console.log('addSender', track.kind)
     const kind = track.kind
     const caps = RTCRtpSender.getCapabilities(kind)
+    const muxId = null
 
     const ssrc = Math.floor(Math.random()*1000)
 
@@ -298,10 +303,10 @@ class ORTC extends EventEmitter {
     this.Transports.sender[ssrc] = new RTCRtpSender(track, this.rtcDtlsTransport)
 
     this.emit('capability:sender', {
-      ssrc: ssrc,
-      kind: kind,
-      caps: caps,
-      muxId: null,
+      ssrc,
+      kind,
+      caps,
+      muxId,
     })
   }
 
@@ -317,9 +322,9 @@ class ORTC extends EventEmitter {
     this.mediaStream.addTrack(this.Transports.recver[ssrc].track)
 
     this.emit('capability:receiver', {
-      ssrc: ssrc,
-      kind: kind,
-      caps: caps,
+      ssrc,
+      kind,
+      caps,
     })
   }
 
@@ -371,11 +376,10 @@ class ORTC extends EventEmitter {
 }
 
 window.onload = function() {
-  const id = location.hash
-  const ortc = new ORTC(id)
   const socket = new WS('wss://ws.jxck.io', ['broadcast', 'ortc-demo'])
-  const $video = document.getElementById('remote')
-  const $local = document.getElementById('local')
+  const ortc = new ORTC(socket.id)
+  const $video = $('#remote')
+  const $local = $('#local')
 
   ortc.on('mediastream', (stream) => {
     $video.srcObject = stream
@@ -391,9 +395,7 @@ window.onload = function() {
     // Get a local stream
     navigator.mediaDevices.getUserMedia({
       audio: true,
-      video: {
-        facingMode: id,
-      },
+      video: true,
     }).then((stream) => {
       console.log('getUserMedia', stream)
       $local.srcObject = stream
@@ -455,8 +457,13 @@ window.onload = function() {
 
   socket.on('open', () => {
     debug('ws:open')
-    document.getElementById('call').disabled = false
-    document.getElementById('call').addEventListener('click', () => {
+    $('#id').textContent = socket.id
+
+    $('#call').disabled = false
+    $('#start').addEventListener('submit', (e) => {
+      e.preventDefault()
+      window.peerid = $('#peer').value; // save to global
+      if (window.peerid === '') return alert('input peerid')
 
       // 相手を controlled として start する
       socket.emit('start', {

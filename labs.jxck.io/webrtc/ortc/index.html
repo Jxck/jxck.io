@@ -18,7 +18,14 @@ textarea {
 }
 </style>
 
-<button id="call" disabled=true>call</button>
+<h1>ORTC DEMO</h1>
+<h2>ID: <span id=id></span></h2>
+
+<form id=start>
+  <button type=submit disabled=true id=call>call</button>
+  <span>to</span>
+  <input id=peer name=peer type=text placeholder="peer id"></input>
+</form>
 
 <div>
   <video id="local" autoplay controls></video>
