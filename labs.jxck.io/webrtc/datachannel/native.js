@@ -126,7 +126,7 @@ channel_local.onopen = (e) => {
 
   channel_local.onmessage = (e) => {
     info('14. local で remote からのメッセージを受け取る')
-    log(e.data)
+      document.querySelector('#from_remote').textContent = e.data
 
     channel_local.onclose = (e) => {
       info('16. local で on close が発生')
@@ -147,7 +147,7 @@ remote.ondatachannel = (e) => {
 
     channel_remote.onmessage = (e) => {
       info('12. remote で local からのメッセージを受け取る')
-      log(e.data)
+      document.querySelector('#from_local').textContent = e.data
 
       info('13. remote から local にメッセージを送る')
       channel_remote.send("from remote")

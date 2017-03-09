@@ -7,7 +7,7 @@ const warn  = console.warn.bind(console)
 const ws = new WS('wss://ws.jxck.io', ['broadcast', 'webrtc-datachannel-demo'])
 
 ws.on('open', () => {
-  let $call = document.querySelector('#call')
+  const $call = document.querySelector('#call')
   $call.disabled = false
   $call.addEventListener('click', () => {
     // firefox では createDataChannel か addStream してないと
@@ -19,24 +19,13 @@ ws.on('open', () => {
 })
 
 const id = 'offerer'
-const config = {
-  "iceServers": [
-    {
-      "urls": [""],
-      "username": "",
-      "credential": ""
-    }
-  ],
-  "iceTransportPolicy": "relay",
-  // "rtcpMuxPolicy": "require",
-}
-const offerer = new RTC(id, config)
+const offerer = new RTC(id)
 
 offerer.on('icecandidate', (candidate) => {
   if (candidate === null) return
 
   info('7. offerer で上がった ice candidate を remote に渡す')
-  ws.send({type: 'offer_candidate', candidate: candidate})
+  ws.emit('candidate', candidate)
 })
 
 offerer.on('iceconnectionstatechange', (e) => {
@@ -49,7 +38,7 @@ offerer.on('negotiationneeded', () => {
   offerer.createOffer().then((rtcSessionDescription) => {
     info('4. offerer の offer を適応し送信')
     log(rtcSessionDescription.type, rtcSessionDescription.sdp)
-    ws.send(rtcSessionDescription)
+    ws.emit('offer', rtcSessionDescription)
     return offerer.setLocalDescription(rtcSessionDescription)
   })
     .then((e) => console.log(e))
@@ -57,22 +46,18 @@ offerer.on('negotiationneeded', () => {
 })
 
 
-ws.on('message', (message) => {
-  if (message.type === 'answer') {
-    offerer.setRemoteDescription(message)
-      .then((e) => console.log(e))
-      .catch((err) => console.error(err))
-  }
+ws.on('answer', (message) => {
+  offerer.setRemoteDescription(message)
+    .then((e) => console.log(e))
+    .catch((err) => console.error(err))
+})
 
-  if (message.type === 'answer_candidate') {
-    const candidate = message.candidate
-
-    info('7. answer で上がった ice candidate を offerer に適応')
-    offerer
-      .addIceCandidate(candidate)
-      .then((e) => console.log(e))
-      .catch((err) => console.error(err))
-  }
+ws.on('candidate', (candidate) => {
+  info('7. answer で上がった ice candidate を offerer に適応')
+  offerer
+    .addIceCandidate(candidate)
+    .then((e) => console.log(e))
+    .catch((err) => console.error(err))
 })
 
 offerer.on('channel', (channel) => {
@@ -85,7 +70,7 @@ offerer.on('channel', (channel) => {
 
   channel.on('message', (data) => {
     info('14. offerer で answerer からのメッセージを受け取る')
-    log(data)
+    document.querySelector('#message').textContent = data
 
     channel.on('close', (e) => {
       info('16. offerer で on close が発生')

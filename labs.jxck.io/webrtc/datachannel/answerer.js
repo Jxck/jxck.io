@@ -12,55 +12,39 @@ ws.on('open', () => {
 })
 
 const id = 'answerer'
-const config = {
-  "iceServers": [
-    {
-      "urls": [""],
-      "username": "",
-      "credential": ""
-    }
-  ],
-  "iceTransportPolicy": "relay",
-  // "rtcpMuxPolicy": "require",
-}
-
-const answerer  = new RTC(id, config)
+const answerer  = new RTC(id)
 
 answerer.on('icecandidate', (candidate) => {
   if (candidate === null) return
 
   info('7. answwerer で上がった ice candidate を offerer に渡す')
-  ws.send({type: 'answer_candidate', candidate: candidate})
+  ws.emit('candidate', candidate)
 })
 
 answerer.on('iceconnectionstatechange', (e) => {
   info('8. answerer  の state が変わる', answerer.iceConnectionState, answerer.iceGatheringState)
 })
 
-ws.on('message', (message) => {
-  if (message.type === 'offer') {
-    answerer.setRemoteDescription(message).then((e) => {
-      info('5. answerer の answer を作成')
-      return answerer.createAnswer()
-    }).then((rtcSessionDescription) => {
-      info('6. answerer の answer を適応し送信')
-      log(rtcSessionDescription.type, rtcSessionDescription.sdp)
-      ws.send(rtcSessionDescription)
-      return answerer.setLocalDescription(rtcSessionDescription)
-    })
-      .then((e) => console.log(e))
-      .catch((err) => console.error(err))
-  }
+ws.on('offer', (message) => {
+  answerer.setRemoteDescription(message).then((e) => {
+    info('5. answerer の answer を作成')
+    return answerer.createAnswer()
+  }).then((rtcSessionDescription) => {
+    info('6. answerer の answer を適応し送信')
+    log(rtcSessionDescription.type, rtcSessionDescription.sdp)
+    ws.emit('answer', rtcSessionDescription)
+    return answerer.setLocalDescription(rtcSessionDescription)
+  })
+    .then((e) => console.log(e))
+    .catch((err) => console.error(err))
+})
 
-  if (message.type === 'offer_candidate') {
-    const candidate = message.candidate
-
-    info('7. offerer で上がった ice candidate を answer に適応')
-    answerer
-      .addIceCandidate(candidate)
-      .then((e) => console.log(e))
-      .catch((err) => console.error(err))
-  }
+ws.on('candidate', (candidate) => {
+  info('7. offerer で上がった ice candidate を answer に適応')
+  answerer
+    .addIceCandidate(candidate)
+    .then((e) => console.log(e))
+    .catch((err) => console.error(err))
 })
 
 answerer.on('channel', (channel) => {
@@ -68,7 +52,7 @@ answerer.on('channel', (channel) => {
 
   channel.on('message', (data) => {
     info('12. answerer で offerer からのメッセージを受け取る')
-    log(data)
+    document.querySelector('#message').textContent = data
 
     info('13. answerer から offerer にメッセージを送る')
     channel.send("from answerer")

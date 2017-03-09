@@ -1,4 +1,4 @@
-debug = DEBUG ? console.debug.bind(console) : ()=>{}
+debug = DEBUG ? console. debug.bind(console) : ()=>{}
 
 class WS extends EventEmitter {
   constructor(url, protocols) {
@@ -10,30 +10,32 @@ class WS extends EventEmitter {
 
     this.ws.onopen = (e) => {
       debug(`ws#on('${e.type}')`, e, this.id)
-      this.emit('open', e)
+      super.emit('open', e)
     }
 
     this.ws.onmessage = (e) => {
-      const data = JSON.parse(e.data)
-      if (data.id === this.id) return
-      debug(`ws#on('${e.type}')`, data.data)
-      this.emit('message', data.data)
+      const {id, name, message} = JSON.parse(e.data)
+      if (id === this.id) return
+      debug(`ws#on('${name}')`, e.data)
+      super.emit(name, message)
     }
 
     this.ws.onclose = (e) => {
       debug(`ws#on('${e.type}')`, e)
-      this.emit('close', e)
+      super.emit('close', e)
     }
 
     this.ws.onerror = (e) => {
       debug(`ws#on('${e.type}')`, e)
-      this.emit('error', e)
+      super.emit('error', e)
     }
   }
 
-  send(data) {
-    debug(`ws#send(data)`, data)
-    this.ws.send(JSON.stringify({id: this.id, data: data}))
+  emit(name, message) {
+    console.assert(name !== undefined && message !== undefined)
+    const data = JSON.stringify({id: this.id, name, message})
+    debug(`ws#emit(name, message)`, data)
+    this.ws.send(data)
   }
 
   close(code, reason) {

@@ -78,7 +78,7 @@ local.on('channel', (channel) => {
 
   channel.on('message', (data) => {
     info('14. local で remote からのメッセージを受け取る')
-    log(data)
+    document.querySelector('#from_remote').textContent = data
 
     channel.on('close', (e) => {
       info('16. local で on close が発生')
@@ -94,7 +94,7 @@ remote.on('channel', (channel) => {
 
   channel.on('message', (data) => {
     info('12. remote で local からのメッセージを受け取る')
-    log(data)
+    document.querySelector('#from_local').textContent = data
 
     info('13. remote から local にメッセージを送る')
     channel.send("from remote")
