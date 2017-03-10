@@ -9,11 +9,12 @@ const ws = new WS('wss://ws.jxck.io', ['broadcast', 'webrtc-datachannel-demo'])
 const id = btoa(Math.random()*1000)
 const deviceId = location.hash.replace('#', '')
 const constraint = {audio:true, video: {deviceId: deviceId}}
-const rtc  = new RTC(id)
+const rtc  = new RTC(id, Config)
 
 ws.on('open', () => {
   $('#id').textContent = ws.id
   $('#call').disabled = false
+  $('#peer').value = ''
   $('#start').addEventListener('submit', (e) => {
     e.preventDefault();
     window.peerid = $('#peer').value; // save to global
@@ -68,7 +69,6 @@ rtc.on('addstream', (stream) => {
 })
 
 ws.on('offer', ({from: from, to: to, data: description}) => {
-  log(from, to);
   if (to !== ws.id) return
   info('5. offer を受信')
   rtc.setRemoteDescription(description).then((e) => {
@@ -84,7 +84,6 @@ ws.on('offer', ({from: from, to: to, data: description}) => {
 })
 
 ws.on('answer', ({from: from, to: to, data: description}) => {
-  log(from, to);
   if (to !== ws.id) return
   rtc.setRemoteDescription(description)
     .then((e) => console.log(e))
@@ -92,7 +91,6 @@ ws.on('answer', ({from: from, to: to, data: description}) => {
 })
 
 ws.on('candidate', ({from: from, to: to, data: candidate}) => {
-  log(from, to);
   if (to !== ws.id) return
   info('7. 受信した ice candidate を適用')
   rtc
