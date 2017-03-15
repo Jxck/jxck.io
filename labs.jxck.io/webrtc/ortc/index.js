@@ -152,10 +152,9 @@ class ORTC extends EventEmitter {
 
     this.rtcIceRole = null
 
-    this.iceOptions = {
-      gatherPolicy: 'all',
-      iceServers: []
-    }
+    this.iceOptions = ortcConfig
+
+    debug(this.iceOptions)
 
 
     // RTCIceGatherer
