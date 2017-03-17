@@ -71,6 +71,7 @@ rtc.on('addstream', (stream) => {
 ws.on('offer', ({from: from, to: to, data: description}) => {
   if (to !== ws.id) return
   info('5. offer を受信')
+  info(description.sdp)
   rtc.setRemoteDescription(description).then((e) => {
     info('5. answer を作成')
     return rtc.createAnswer()
@@ -84,6 +85,8 @@ ws.on('offer', ({from: from, to: to, data: description}) => {
 })
 
 ws.on('answer', ({from: from, to: to, data: description}) => {
+  info('6. answer を受信')
+  info(description.sdp)
   if (to !== ws.id) return
   rtc.setRemoteDescription(description)
     .then((e) => console.log(e))
@@ -93,6 +96,7 @@ ws.on('answer', ({from: from, to: to, data: description}) => {
 ws.on('candidate', ({from: from, to: to, data: candidate}) => {
   if (to !== ws.id) return
   info('7. 受信した ice candidate を適用')
+  info(candidate.candidate)
   rtc
     .addIceCandidate(candidate)
     .then((e) => console.log(e))
