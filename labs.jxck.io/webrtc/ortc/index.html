@@ -18,7 +18,14 @@ textarea {
 }
 </style>
 
-<button id="call" disabled=true>call</button>
+<h1>ORTC DEMO</h1>
+<h2>ID: <span id=id></span></h2>
+
+<form id=start>
+  <button type=submit disabled=true id=call>call</button>
+  <span>to</span>
+  <input id=peer name=peer type=text placeholder="peer id"/>
+</form>
 
 <div>
   <video id="local" autoplay controls></video>
@@ -26,6 +33,7 @@ textarea {
 </div>
 
 <script>DEBUG = true</script>
+<script src="../lib/config.js"></script>
 <script src="../lib/events.js"></script>
 <script src="../lib/ws.js"></script>
 <script src="index.js"></script>
