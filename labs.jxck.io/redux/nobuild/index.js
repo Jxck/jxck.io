@@ -38,26 +38,16 @@ class Counter extends React.Component {
     }
   }
 
-  incrementIfOdd() {
-    if (this.props.value % 2 !== 0) {
-      this.props.onIncrement()
-    }
-  }
-
-  incrementAsync() {
-    setTimeout(this.props.onIncrement, 1000)
-  }
-
   render() {
-    const { value, onIncrement, onDecrement } = this.props
+    const { value, onIncrement, onDecrement, onIncrementIfOdd, onIncrementAsync } = this.props
     return (
       <div>
         <p>Clicked: {value} times</p>
         <div>
           <button onClick={onIncrement}>+</button>
           <button onClick={onDecrement}>-</button>
-          <button onClick={this.incrementIfOdd.bind(this)}>Increment if odd</button>
-          <button onClick={this.incrementAsync.bind(this)}>Increment async</button>
+          <button onClick={onIncrementIfOdd.bind(this, value)}>Increment if odd</button>
+          <button onClick={onIncrementAsync}>Increment async</button>
         </div>
       </div>
     )
@@ -76,7 +66,16 @@ function mapDispatchToProps(dispatch) {
     },
     onDecrement() {
       dispatch(decrement())
-    }
+    },
+    onIncrementIfOdd(value) {
+      if (value % 2 == 0) return
+      dispatch(increment())
+    },
+    onIncrementAsync() {
+      setTimeout(() => {
+        dispatch(increment())
+      }, 1000)
+    },
   }
 }
 
@@ -95,4 +94,3 @@ ReactDOM.render(
   </ReactRedux.Provider>,
   document.getElementById('root')
 )
-
