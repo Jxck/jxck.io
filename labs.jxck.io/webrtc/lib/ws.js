@@ -34,12 +34,12 @@ class WS extends EventEmitter {
   emit(name, message) {
     console.assert(name !== undefined && message !== undefined)
     const data = JSON.stringify({id: this.id, name, message})
-    debug(`ws#emit(name, message)`, data)
+    debug(`ws#emit('${name}')`, data)
     this.ws.send(data)
   }
 
   close(code, reason) {
-    debug(`ws#close(code, reason)`, code, reason)
+    debug(`ws#close('${code}', '${reason}')`, code, reason)
     this.ws.close(code, reason)
   }
 }

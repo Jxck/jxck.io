@@ -25,7 +25,7 @@ ws.on('open', () => {
     debug(constraint)
     navigator.mediaDevices.getUserMedia(constraint)
       .then((stream) => {
-        info('1. addTrack()')
+        info('1. addStream()')
         rtc.addStream(stream)
         // TODO: fixme with addTrack if chrome supports
         // stream.getTracks().forEach((track) => {
