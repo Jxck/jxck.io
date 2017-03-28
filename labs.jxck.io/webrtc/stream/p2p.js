@@ -4,7 +4,7 @@ const error = console.error.bind(console)
 const warn  = console.warn.bind(console)
 
 const $ = document.querySelector.bind(document)
-const ws = new WS('wss://ws.jxck.io', ['broadcast', 'webrtc-datachannel-demo'])
+const ws = new WS('wss://ws.jxck.io', ['broadcast', 'webrtc-stream-p2p-demo'])
 
 const id = btoa(Math.random()*1000)
 const deviceId = location.hash.replace('#', '')
