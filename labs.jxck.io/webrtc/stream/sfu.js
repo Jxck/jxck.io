@@ -4,13 +4,14 @@ const error = console.error.bind(console)
 const warn  = console.warn.bind(console)
 
 const $ = document.querySelector.bind(document)
-const ws = new WS('ws://localhost:3001/');
+const ws = new WS('ws://localhost:30000/');
 
 const constraint = {audio: true, video: true}
 const id = btoa(Math.random()*1000)
 const rtc  = new RTC(id)
 
 ws.on('open', (e) => {
+  $('#id').textContent = ws.id
   $('#call').addEventListener('click', (e) => {
     navigator.mediaDevices.getUserMedia(constraint)
       .then((stream) => {
@@ -29,12 +30,13 @@ rtc.on('icecandidate', (candidate) => {
 rtc.on('negotiationneeded', () => {
   info('2. onnegotiationneeded が発生したらネゴシエーションする')
   info('3. offer を作成')
-  rtc.createOffer().then((offer) => {
-    info('4. offer を local に適用')
-    return rtc.setLocalDescription(offer);
-  }).then(() => {
-    info('4. offer を送信')
-    ws.emit('offer', rtc.localDescription) // TODO:
+  const option = {
+    offerToReceiveAudio: 1,
+    offerToReceiveVideo: 1,
+  }
+  rtc.createOffer(option).then((offer) => {
+    ws.emit('offer', offer)
+    // ここで setLocalDescription はしない
   }).catch((err) => console.error(err))
 });
 
@@ -43,6 +45,7 @@ rtc.on('iceconnectionstatechange', (state) => {
 });
 
 rtc.on('addstream', (stream) => {
+  info('addstream', stream)
   $('#remote').srcObject = stream;
 });
 
@@ -58,6 +61,9 @@ ws.on('offer', ({to, sdp}) => {
   }).then((rtcSessionDescription) => {
     info('6. answer を local に適用')
     return rtc.setLocalDescription(rtcSessionDescription)
+  }).then(() => {
+    info('6. answer を送信')
+    ws.emit('answer', rtc.localDescription)
   }).catch((err) => console.error(err))
 });
 
