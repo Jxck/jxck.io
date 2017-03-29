@@ -1,0 +1,12 @@
+[Unit]
+Description=turn.jxck.io
+After=network.target nss-lookup.target
+
+[Service]
+Type=simple
+Restart=always
+WorkingDirectory=/home/jxck/server/jxck.io/turn.jxck.io
+ExecStart=/usr/bin/turnserver -c coturnserver.conf
+
+[Install]
+WantedBy=multi-user.target
