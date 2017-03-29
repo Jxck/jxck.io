@@ -12,8 +12,6 @@ const rtc  = new RTC(id)
 
 ws.on('open', (e) => {
   $('#call').addEventListener('click', (e) => {
-    e.preventDefault()
-
     navigator.mediaDevices.getUserMedia(constraint)
       .then((stream) => {
         info('1. addStream()')
