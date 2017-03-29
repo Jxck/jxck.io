@@ -253,11 +253,11 @@ class ORTC extends EventEmitter {
     this.rtcIceGatherer = new RTCIceGatherer(this.iceOptions)
 
     this.rtcIceGatherer.onstatechange = (e) => {
-      debug(e.type, e)
+      debug(e.type, this.rtcIceGatherer.state, e)
     }
 
     this.rtcIceGatherer.onlocalcandidate = (e) => {
-      debug(e.type, e)
+      debug(e.type, e.complete, e)
 
       const candidate = e.candidate
 
