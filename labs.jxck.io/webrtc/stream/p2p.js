@@ -7,9 +7,11 @@ const $ = document.querySelector.bind(document)
 const ws = new WS('wss://ws.jxck.io', ['broadcast', 'webrtc-stream-p2p-demo'])
 
 const id = btoa(Math.random()*1000)
-const deviceId = location.hash.replace('#', '')
-const constraint = {audio:true, video: {deviceId: deviceId}}
-const rtc  = new RTC(id, Config)
+const constraint = {audio:true, video: true}
+
+const url = new URL(location.href)
+const turn = url.searchParams.get('turn') === 'true'
+const rtc  = new RTC(id, turn ? Config : undefined)
 
 ws.on('open', () => {
   $('#id').textContent = ws.id
