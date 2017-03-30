@@ -49,13 +49,16 @@ rtc.on('icecandidate', (candidate) => {
 rtc.on('negotiationneeded', () => {
   info('2. onnegotiationneeded が発生したらネゴシエーションする')
   info('3. offer を作成')
-  rtc.createOffer().then((rtcSessionDescription) => {
-    info('4. offer を local に適用')
-    return rtc.setLocalDescription(rtcSessionDescription)
-  }).then(() => {
-    info('4. offer を送信')
-    ws.emit('offer', {from: ws.id, to: window.peerid, data: rtc.localDescription})
-  }).catch((err) => console.error(err))
+  rtc.createOffer()
+    .then((rtcSessionDescription) => {
+      info('4. offer を local に適用')
+      return rtc.setLocalDescription(rtcSessionDescription)
+    })
+    .then(() => {
+      info('4. offer を送信')
+      ws.emit('offer', {from: ws.id, to: window.peerid, data: rtc.localDescription})
+    })
+    .catch((err) => console.error(err))
 })
 
 
@@ -74,16 +77,20 @@ ws.on('offer', ({from: from, to: to, data: description}) => {
   if (to !== ws.id) return
   info('5. offer を受信')
   info(description.sdp)
-  rtc.setRemoteDescription(description).then((e) => {
-    info('5. answer を作成')
-    return rtc.createAnswer()
-  }).then((rtcSessionDescription) => {
-    info('6. answer を local に適用')
-    return rtc.setLocalDescription(rtcSessionDescription)
-  }).then(() => {
-    info('6. answer を送信')
-    ws.emit('answer', {from: ws.id, to: from, data: rtc.localDescription})
-  }).catch((err) => console.error(err))
+  rtc.setRemoteDescription(description)
+    .then((e) => {
+      info('5. answer を作成')
+      return rtc.createAnswer()
+    })
+    .then((rtcSessionDescription) => {
+      info('6. answer を local に適用')
+      return rtc.setLocalDescription(rtcSessionDescription)
+    })
+    .then(() => {
+      info('6. answer を送信')
+      ws.emit('answer', {from: ws.id, to: from, data: rtc.localDescription})
+    })
+    .catch((err) => console.error(err))
 })
 
 ws.on('answer', ({from: from, to: to, data: description}) => {

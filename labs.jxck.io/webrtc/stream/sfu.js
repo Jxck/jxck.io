@@ -1,6 +1,5 @@
 const log   = console.log.bind(console)
 const info  = console.info.bind(console)
-const error = console.error.bind(console)
 const warn  = console.warn.bind(console)
 
 const $ = document.querySelector.bind(document)
@@ -19,7 +18,8 @@ ws.on('open', (e) => {
         // ここで negotiation needed が発火する
         rtc.addStream(stream);
         $('#local').srcObject = stream
-      }).catch((err) => console.error(err))
+      })
+      .catch((err) => console.error(err))
   })
 });
 
@@ -34,10 +34,12 @@ rtc.on('negotiationneeded', () => {
     offerToReceiveAudio: 1,
     offerToReceiveVideo: 1,
   }
-  rtc.createOffer(option).then((offer) => {
-    ws.emit('offer', offer)
-    // ここで setLocalDescription はしない
-  }).catch((err) => console.error(err))
+  rtc.createOffer(option)
+    .then((offer) => {
+      ws.emit('offer', offer)
+      // ここで setLocalDescription はしない
+    })
+    .catch((err) => console.error(err))
 });
 
 rtc.on('iceconnectionstatechange', (state) => {
@@ -55,16 +57,20 @@ ws.on('offer', ({to, sdp}) => {
   info('5. offer を受信')
   warn(sdp.sdp.match(/a=candidate:udpcandidate.*/)[0])
 
-  rtc.setRemoteDescription(sdp).then((e) => {
-    info('5. answer を作成')
-    return rtc.createAnswer()
-  }).then((rtcSessionDescription) => {
-    info('6. answer を local に適用')
-    return rtc.setLocalDescription(rtcSessionDescription)
-  }).then(() => {
-    info('6. answer を送信')
-    ws.emit('answer', rtc.localDescription)
-  }).catch((err) => console.error(err))
+  rtc.setRemoteDescription(sdp)
+    .then(() => {
+      info('5. answer を作成')
+      return rtc.createAnswer()
+    })
+    .then((rtcSessionDescription) => {
+      info('6. answer を local に適用')
+      return rtc.setLocalDescription(rtcSessionDescription)
+    })
+    .then(() => {
+      info('6. answer を送信')
+      ws.emit('answer', rtc.localDescription)
+    })
+    .catch((err) => console.error(err))
 });
 
 ws.on('answer', ({to, sdp}) => {
