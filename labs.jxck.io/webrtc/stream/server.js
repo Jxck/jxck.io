@@ -4,7 +4,7 @@ const ws = require('ws')
 const events = require('events')
 const mediasoup = require('mediasoup')
 
-const port = 30000
+const port = 9000
 const wsServer = new ws.Server({ port })
 
 

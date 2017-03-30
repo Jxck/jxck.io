@@ -3,7 +3,7 @@ const info  = console.info.bind(console)
 const warn  = console.warn.bind(console)
 
 const $ = document.querySelector.bind(document)
-const ws = new WS('ws://localhost:30000/');
+const ws = new WS('wss://sfu.jxck.io/');
 
 const constraint = {audio: true, video: true}
 const id = btoa(Math.random()*1000)
