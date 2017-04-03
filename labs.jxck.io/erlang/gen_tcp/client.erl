@@ -9,15 +9,17 @@
 
 main(_) ->
     {ok, Socket} = ?Log(gen_tcp:connect({127, 0, 0, 1}, 3000, [binary, {active, true}])),
-    gen_tcp:send(Socket, "foo"),
-    receive_roop(Socket).
+    ?Log(gen_tcp:send(Socket, "foo")),
+    loop(Socket).
 
 
-receive_roop(Socket) ->
+loop(Socket) ->
     receive
         {tcp, Socket, Data} ->
             ?Log(Data),
-            gen_tcp:close(Socket);
+            ?Log(gen_tcp:close(Socket));
         {tcp_closed, Socket} ->
-            ?Log({tcp_closed, Socket})
+            ?Log({tcp_closed, Socket});
+        Error ->
+            ?Log(Error)
     end.

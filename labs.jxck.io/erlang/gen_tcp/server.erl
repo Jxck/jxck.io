@@ -10,16 +10,18 @@
 main(_) ->
     {ok, Listen} = ?Log(gen_tcp:listen(3000, [{reuseaddr, true}, {active, once}, binary])),
     {ok, Socket} = ?Log(gen_tcp:accept(Listen)),
-    receive_roop(Socket).
+    loop(Socket).
 
 
-receive_roop(Socket) ->
+loop(Socket) ->
     receive
         {tcp, Socket, Data} ->
             gen_tcp:send(Socket, Data),
             ?Log(Data),
             inet:setopts(Socket, [{active, once}]),
-            receive_roop(Socket);
+            loop(Socket);
         {tcp_closed, Socket} ->
-            ?Log({tcp_closed, Socket})
+            ?Log({tcp_closed, Socket});
+        Error ->
+            ?Log(Error)
     end.
