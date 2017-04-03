@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="demo">
+<title>WebSocket Console | labs.jxck.io</title>
+
+<style>
+</style>
+
+<h1>WebSocket Console DEMO</h1>
+
+<form id=connect>
+  <label for=url>url:</label>
+  <input name=url type=text value="wss://ws.jxck.io" />
+
+  <label for=subprotocol>subprotocol:</label>
+  <input name=subprotocol type=text value="broadcast,chat" />
+
+  <button type=submit>connect</button>
+</form>
+
+<div>
+  <ul id=messages></ul>
+  <input id=input type=text></input>
+  <button id=send disabled=true>send</button>
+</div>
+
+<script>
+const log = console.log.bind(console)
+const $ = document.querySelector.bind(document)
+
+$('#connect').addEventListener('submit', (e) => {
+  e.preventDefault();
+  let data = new FormData(e.target)
+  let url = data.get('url')
+  let subprotocol = data.get('subprotocol').split(',')
+
+  const ws = new WebSocket(url, subprotocol)
+
+  const $messages = $('#messages')
+  const $input    = $('#input')
+  const $send     = $('#send')
+
+  ws.onopen = (e) => {
+    log(e)
+      $send.disabled = false
+
+      $send.onclick = () => {
+        const value = $input.value
+          ws.send(value)
+      }
+
+    ws.onmessage = (e) => {
+      log(e)
+        const value = e.data
+        const $li = document.createElement('li')
+        $li.textContent = value
+        $messages.appendChild($li)
+    }
+  }
+});
+</script>
