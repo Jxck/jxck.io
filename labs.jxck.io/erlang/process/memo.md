@@ -236,6 +236,13 @@ main(_) ->
 get() を追加する。
 
 ```erlang
+#!/usr/bin/env escript
+-module(message).
+-mode(compile).
+-compile(export_all).
+
+-include("../logger.hrl").
+
 store(State) ->
     receive
         {PID, save, {Key, Value}} ->
@@ -267,7 +274,7 @@ get(PID, Key) ->
     end.
 
 main(_) ->
-    PID = spawn(?MODULE, store, [#{}]),
+    PID = ?Log(spawn(?MODULE, store, [#{}])),
     save(PID, a, 10),
     save(PID, b, 20),
     get(PID, a),
