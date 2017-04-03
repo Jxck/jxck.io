@@ -7,23 +7,6 @@
 
 -behaviour(gen_server).
 
-main(_) ->
-    ?Log(start_link()),
-    ?Log(save(a, 10)),
-    ?Log(save(b, 20)),
-    ?Log(take(a)),
-    ?Log(take(b)).
-
-start_link() ->
-    gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
-
-save(Key, Value) ->
-    gen_server:call(?MODULE, {save, {Key, Value}}).
-
-take(Key) ->
-    gen_server:call(?MODULE, {take, Key}).
-
-
 %% Callback
 % gen_server module            Callback module
 % -----------------            ---------------
@@ -74,3 +57,21 @@ code_change(OldVsn, State, Extra) ->
 terminate(Reason, State) ->
     ?Log(Reason, State),
     ok.
+
+
+%% main
+start_link() ->
+    gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
+
+save(Key, Value) ->
+    gen_server:call(?MODULE, {save, {Key, Value}}).
+
+take(Key) ->
+    gen_server:call(?MODULE, {take, Key}).
+
+main(_) ->
+    ?Log(start_link()),
+    ?Log(save(a, 10)),
+    ?Log(save(b, 20)),
+    ?Log(take(a)),
+    ?Log(take(b)).

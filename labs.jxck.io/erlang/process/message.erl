@@ -13,7 +13,7 @@ store(State) ->
             ?Log(NewState),
             PID ! ok,
             store(NewState);
-        {PID, get, Key} ->
+        {PID, take, Key} ->
             ?Log(Key),
             PID ! maps:get(Key, State),
             store(State);
@@ -29,15 +29,15 @@ save(PID, Key, Value) ->
         Message -> ?Log(Message)
     end.
 
-get(PID, Key) ->
-    PID ! {self(), get, Key},
+take(PID, Key) ->
+    PID ! {self(), take, Key},
     receive
         Message -> ?Log(Message)
     end.
 
 main(_) ->
     PID = ?Log(spawn(?MODULE, store, [#{}])),
-    save(PID, a, 10),
-    save(PID, b, 20),
-    get(PID, a),
-    get(PID, b).
+    ?Log(save(PID, a, 10)),
+    ?Log(save(PID, b, 20)),
+    ?Log(take(PID, a)),
+    ?Log(take(PID, b)).
