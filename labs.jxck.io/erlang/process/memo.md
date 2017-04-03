@@ -1,11 +1,26 @@
 # erlang process
 
+## escript
+
+```erlang
+#!/usr/bin/env escript
+-module(message).
+-mode(compile).
+-compile(export_all).
+
+main(Arg) -> ?Log(Arg).
+```
+
+escript で実行する上で、コンパイルできてないと spawn がうまく行かないっぽいので、
+`-mode(compile)` をつけておく。
+
+
 ## spawn
 
 spawn すると process ができて process id が返る。
 
 
-```
+```erlang
 store() ->
     ?Log(store).
 
@@ -19,7 +34,7 @@ main(_) ->
 
 この PID に対してメッセージを送る。
 
-```
+```erlang
 store() ->
     ?Log(store).
 
@@ -35,7 +50,7 @@ main(_) ->
 
 受け取ったが、先に main() の方が終わってしまう。
 
-```
+```erlang
 store() ->
     receive
         Message -> ?Log(Message)
@@ -55,7 +70,7 @@ store から main に対して返事がしたい。
 これは self() で取れる。
 
 
-```
+```erlang
 store() ->
     receive
         {PID, Message} ->
@@ -76,7 +91,7 @@ main(_) ->
 store が返してきたメッセージを main 側でも受け取る。
 
 
-```
+```erlang
 store() ->
     receive
         {PID, Message} ->
@@ -101,7 +116,7 @@ main(_) ->
 
 メッセージを送って、返事を表示するだけの処理を、関数にする。
 
-```
+```erlang
 hello(PID) ->
     PID ! {self(), hello},
     receive
@@ -116,7 +131,7 @@ main(_) ->
 これでメッセージのたびに receive を書く必要がなくなった。
 しかし、 hello() を二回呼んでみると、二回目が返ってこないことに気づく。
 
-```
+```erlang
 main(_) ->
     PID = spawn(?MODULE, store, []),
     hello(PID),
@@ -130,7 +145,7 @@ main(_) ->
 
 store がメッセージを受け取りつづけられるようにするには、再起すれば良い。
 
-```
+```erlang
 store() ->
     receive
         {PID, Message} ->
@@ -155,7 +170,7 @@ store() ->
 実際の保存はせず、オウム返しする。
 
 
-```
+```erlang
 store() ->
     receive
         {PID, save, {Key, Value}} ->
@@ -189,7 +204,7 @@ store() を再起する際に、最新の Map を引数として渡す。
 
 保存したら ok を返すようにした。
 
-```
+```erlang
 store(State) ->
     receive
         {PID, save, {Key, Value}} ->
@@ -220,7 +235,7 @@ main(_) ->
 
 get() を追加する。
 
-```
+```erlang
 store(State) ->
     receive
         {PID, save, {Key, Value}} ->
@@ -258,6 +273,3 @@ main(_) ->
     get(PID, a),
     get(PID, b).
 ```
-
-
-

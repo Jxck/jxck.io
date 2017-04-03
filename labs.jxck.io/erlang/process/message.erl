@@ -1,8 +1,9 @@
 #!/usr/bin/env escript
 -module(message).
+-mode(compile).
 -compile(export_all).
 
--define(Log(A), (fun(P) -> io:format("[~p:~p#~p] ~p~n", [?MODULE, ?FUNCTION_NAME, ?LINE, P]), P end)(A)).
+-include("../logger.hrl").
 
 store(State) ->
     receive
@@ -35,7 +36,7 @@ get(PID, Key) ->
     end.
 
 main(_) ->
-    PID = spawn(?MODULE, store, [#{}]),
+    PID = ?Log(spawn(?MODULE, store, [#{}])),
     save(PID, a, 10),
     save(PID, b, 20),
     get(PID, a),
