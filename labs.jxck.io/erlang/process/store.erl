@@ -1,43 +1,24 @@
-#!/usr/bin/env escript
 -module(store).
--mode(compile).
--compile(export_all).
 
 -include("../logger.hrl").
 
-store(State) ->
-    receive
-        {PID, save, {Key, Value}} ->
-            ?Log({Key, Value}),
-            NewState = State#{Key => Value},
-            ?Log(NewState),
-            PID ! ok,
-            store(NewState);
-        {PID, take, Key} ->
-            ?Log(Key),
-            PID ! maps:get(Key, State),
-            store(State);
+-export([
+         init/0,
+         handle_call/3
+        ]).
 
-        Unknown ->
-            ?Log(Unknown),
-            store(State)
-    end.
+init() ->
+    State = #{},
+    State.
 
-save(PID, Key, Value) ->
-    PID ! {self(), save, {Key, Value}},
-    receive
-        Message -> ?Log(Message)
-    end.
+handle_call({save, {Key, Value}}, _From, State) ->
+    ?Log(Key, Value, State),
+    NewState = State#{Key => Value},
+    ?Log(NewState),
+    {reply, ok, NewState};
 
-take(PID, Key) ->
-    PID ! {self(), take, Key},
-    receive
-        Message -> ?Log(Message)
-    end.
-
-main(_) ->
-    PID = ?Log(spawn(?MODULE, store, [#{}])),
-    ?Log(save(PID, a, 10)),
-    ?Log(save(PID, b, 20)),
-    ?Log(take(PID, a)),
-    ?Log(take(PID, b)).
+handle_call({take, Key}, _From, State) ->
+    ?Log(Key, State),
+    Value = maps:get(Key, State),
+    ?Log(Value),
+    {reply, Value, State}.

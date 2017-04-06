@@ -280,3 +280,31 @@ main(_) ->
     get(PID, a),
     get(PID, b).
 ```
+
+
+## ロジックの分離
+
+メッセージのハンドリングとロジック部分を分離する
+
+- store.erl: ロジック
+- server.erl: メッセージングを管理
+- main.erl: 実行
+- Makefile
+
+
+```Makefile
+.SUFFIXES: .erl .beam
+
+.erl.beam:
+	erlc -W $<
+
+MODS = store server main
+
+all: compile
+	erl -boot start_clean -noshell -s main main
+
+compile: ${MODS:%=%.beam}
+
+clean:
+	rm -rf *.beam *.dump
+```
