@@ -9,19 +9,26 @@
 
 main(_) ->
     ok = ?Log(ssl:start()),
-    {ok, Listen} = ssl:listen(3000, [{certfile,"/keys/cert.pem"}, {keyfile, "/keys/key.pem"}, {reuseaddr, true}]),
-    {ok, Socket} = ?Log(ssl:transport_accept(Listen)),
-    ok = ?Log(ssl:ssl_accept(Socket)),
-    loop(Socket).
+    {ok, Listen} = ssl:listen(3000, [{certfile,"/keys/cert.pem"}, {keyfile, "/keys/key.pem"}, {reuseaddr, true}, {active, once}, binary]),
+    accept_loop(Listen).
 
-loop(Socket) ->
+accept_loop(Listen) ->
+    {ok, {sslsocket, _, From}=Socket} = ssl:transport_accept(Listen),
+    ok = ssl:ssl_accept(Socket),
+    ?Log(accept, From),
+    PID = spawn(fun() -> receive_loop(Socket) end),
+    ssl:controlling_process(Socket, PID),
+    accept_loop(Listen).
+
+receive_loop(Socket) ->
     receive
-        {ssl, Socket, Data} ->
-            ?Log(Data),
+        {ssl, {sslsocket, _, From}=Socket, Data} ->
+            ?Log(Data, from, From),
             ok = ssl:send(Socket, Data),
-            loop(Socket);
-        {ssl_closed, Socket} ->
-            ?Log({ssl_closed, Socket}),
+            ssl:setopts(Socket, [{active, once}]),
+            receive_loop(Socket);
+        {ssl_closed, {sslsocket, _, From}=Socket} ->
+            ?Log({ssl_closed, From}),
             ?Log(ssl:close(Socket));
         Error ->
             ?Log(Error)

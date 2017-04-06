@@ -7,17 +7,32 @@
 
 -include("../logger.hrl").
 
+%% サーバからの受信なので {active, true} で開く。
+%% 受信と送信が平行できるように受信は spawn し、制御プロセスを移譲する。
 main(_) ->
     ok = ?Log(ssl:start()),
-    {ok, Socket} = ssl:connect("localhost", 3000,  []),
-    ok = ssl:send(Socket, "foo"),
-    loop(Socket).
+    {ok, Socket} = ssl:connect({127,0,0,1}, 3000, [binary, {active, true}]),
 
-loop(Socket) ->
+    PID = spawn(fun() -> receive_loop(Socket) end),
+    ssl:controlling_process(Socket, PID),
+
+    send_loop(Socket).
+
+%% コンソールから入力を受け取り送信
+send_loop(Socket) ->
+    {ok, [Msg]} = io:fread("> ", "~s"),
+    ssl:send(Socket, Msg),
+    send_loop(Socket).
+
+%% 受信
+receive_loop(Socket) ->
     receive
         {ssl, Socket, Data} ->
             ?Log(Data),
-            ok = ssl:close(Socket);
+            receive_loop(Socket);
+        {ssl_closed, Socket} ->
+            ?Log({ssl_closed, Socket}),
+            ?Log(ssl:close(Socket));
         Error ->
             ?Log(Error)
     end.
