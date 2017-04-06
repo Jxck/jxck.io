@@ -4,7 +4,7 @@
 
 ```erlang
 #!/usr/bin/env escript
--module(message).
+-module(store).
 -mode(compile).
 -compile(export_all).
 
@@ -237,7 +237,7 @@ get() を追加する。
 
 ```erlang
 #!/usr/bin/env escript
--module(message).
+-module(store).
 -mode(compile).
 -compile(export_all).
 

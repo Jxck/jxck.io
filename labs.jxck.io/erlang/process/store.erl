@@ -1,5 +1,5 @@
 #!/usr/bin/env escript
--module(message).
+-module(store).
 -mode(compile).
 -compile(export_all).
 
