@@ -32,6 +32,9 @@ receive_loop(Socket) ->
         {tcp_closed, Socket} ->
             ?Log({tcp_closed, Socket}),
             ?Log(gen_tcp:close(Socket));
+        {tcp_error, Socket, Reason} ->
+            ?Log({tcp_error, Socket, Reason}),
+            ?Log(gen_tcp:close(Socket));
         Error ->
             ?Log(Error)
     end.

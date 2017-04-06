@@ -33,6 +33,9 @@ receive_loop(Socket) ->
         {ssl_closed, Socket} ->
             ?Log({ssl_closed, Socket}),
             ?Log(ssl:close(Socket));
+        {ssl_error, {sslsocket, _, From}=Socket, Reason} ->
+            ?Log({ssl_error, From, Reason}),
+            ?Log(ssl:close(Socket));
         Error ->
             ?Log(Error)
     end.
