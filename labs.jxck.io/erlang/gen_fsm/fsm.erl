@@ -79,30 +79,30 @@ third_state(next, _From, State) ->
 
 
 % main
-start_link(MachineName) ->
-    gen_fsm:start_link({global, MachineName}, ?MODULE, [], []).
+start_link() ->
+    gen_fsm:start_link({local, fsm}, ?MODULE, [], []).
 
-next(MachineName) ->
-    gen_fsm:send_event({global, MachineName}, next).
+next() ->
+    gen_fsm:send_event(fsm, next).
 
-sync_next(MachineName) ->
-    gen_fsm:sync_send_event({global, MachineName}, next).
+sync_next() ->
+    gen_fsm:sync_send_event(fsm, next).
 
-reset(MachineName) ->
-    gen_fsm:send_all_state_event({global, MachineName}, reset).
+reset() ->
+    gen_fsm:send_all_state_event(fsm, reset).
 
-sync_reset(MachineName) ->
-    gen_fsm:sync_send_all_state_event({global, MachineName}, reset).
+sync_reset() ->
+    gen_fsm:sync_send_all_state_event(fsm, reset).
 
 main([]) ->
-    ?Log(start_link(fsm)),
-    ?Log(sync_next(fsm)),
-    ?Log(sync_next(fsm)),
-    ?Log(sync_next(fsm)),
-    ?Log(sync_next(fsm)),
-    ?Log(sync_reset(fsm)),
-    ?Log(next(fsm)),
-    ?Log(next(fsm)),
-    ?Log(next(fsm)),
-    ?Log(reset(fsm)),
+    ?Log(start_link()),
+    ?Log(sync_next()),
+    ?Log(sync_next()),
+    ?Log(sync_next()),
+    ?Log(sync_next()),
+    ?Log(sync_reset()),
+    ?Log(next()),
+    ?Log(next()),
+    ?Log(next()),
+    ?Log(reset()),
     ok.
