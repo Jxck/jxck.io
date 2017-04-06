@@ -7,21 +7,78 @@
 
 -behaviour(gen_fsm).
 
--define(SERVER, ?MODULE).
+% gen_fsm module                    Callback module
+% --------------                    ---------------
+% gen_fsm:start
+% gen_fsm:start_link                -----> Module:init/1
+%
+% gen_fsm:stop                      -----> Module:terminate/3
+%
+% gen_fsm:send_event                -----> Module:StateName/2
+%
+% gen_fsm:send_all_state_event      -----> Module:handle_event/3
+%
+% gen_fsm:sync_send_event           -----> Module:StateName/3
+%
+% gen_fsm:sync_send_all_state_event -----> Module:handle_sync_event/4
+%
+% -                                 -----> Module:handle_info/3
+%
+% -                                 -----> Module:terminate/3
+%
+% -                                 -----> Module:code_change/4
+init([]) ->
+    State = #{count => 0},
+    {ok, first_state, State}.
 
-main([]) ->
-    ?Log(start_link(fsm)),
-    ?Log(sync_next(fsm)),
-    ?Log(sync_next(fsm)),
-    ?Log(sync_next(fsm)),
-    ?Log(sync_next(fsm)),
-    ?Log(sync_reset(fsm)),
-    ?Log(next(fsm)),
-    ?Log(next(fsm)),
-    ?Log(next(fsm)),
-    ?Log(reset(fsm)),
+% async events
+handle_event(reset, _StateName, _State) ->
+    ?Log("Async reset..."),
+    {next_state, first_state, #{count => 0}}.
+
+% sync events
+handle_sync_event(reset, _From, _StateName, _State) ->
+    ?Log("Sync reset..."),
+    {reply, 0, first_state, #{count => 0}}.
+
+handle_info(_Info, StateName, State) ->
+    {next_state, StateName, State}.
+
+terminate(_Reason, _StateName, _State) ->
     ok.
 
+code_change(_OldVsn, StateName, State, _Extra) ->
+    {ok, StateName, State}.
+
+
+% Async events.
+first_state(next, #{count := N} = State) ->
+    ?Log("First state..."),
+    {next_state, second_state, State#{count := N + 1}}.
+
+second_state(next, #{count := N} = State) ->
+    ?Log("Second state..."),
+    {next_state, third_state, State#{count := N + 1}}.
+
+third_state(next, #{count := N} = State) ->
+    ?Log("Third state..."),
+    {next_state, first_state, State#{count := N + 1}}.
+
+% Sync events.
+first_state(next, _From, State) ->
+    {next_state, NextState, NewState} = first_state(next, State),
+    {reply, maps:get(count, NewState), NextState, NewState}.
+
+second_state(next, _From, State) ->
+    {next_state, NextState, NewState} = second_state(next, State),
+    {reply, maps:get(count, NewState), NextState, NewState}.
+
+third_state(next, _From, State) ->
+    {next_state, NextState, NewState} = third_state(next, State),
+    {reply, maps:get(count, NewState), NextState, NewState}.
+
+
+% main
 start_link(MachineName) ->
     gen_fsm:start_link({global, MachineName}, ?MODULE, [], []).
 
@@ -37,62 +94,15 @@ reset(MachineName) ->
 sync_reset(MachineName) ->
     gen_fsm:sync_send_all_state_event({global, MachineName}, reset).
 
-init([]) ->
-    State = #{count => 0},
-    {ok, first_state, State}.
-
-%-----------------------------------------------------------------------------------
-% Async events.
-%-----------------------------------------------------------------------------------
-first_state(next, #{count := N} = State) ->
-    io:format("First state...~n"),
-    {next_state, second_state, State#{count := N + 1}}.
-
-second_state(next, #{count := N} = State) ->
-    io:format("Second state...~n"),
-    {next_state, third_state, State#{count := N + 1}}.
-
-third_state(next, #{count := N} = State) ->
-    io:format("Third state...~n"),
-    {next_state, first_state, State#{count := N + 1}}.
-
-%-----------------------------------------------------------------------------------
-% Sync events.
-%-----------------------------------------------------------------------------------
-first_state(Event, _From, State) ->
-    {next_state, NextState, NewState} = first_state(Event, State),
-    {reply, maps:get(count, NewState), NextState, NewState}.
-
-second_state(Event, _From, State) ->
-    {next_state, NextState, NewState} = second_state(Event, State),
-    {reply, maps:get(count, NewState), NextState, NewState}.
-
-third_state(Event, _From, State) ->
-    {next_state, NextState, NewState} = third_state(Event, State),
-    {reply, maps:get(count, NewState), NextState, NewState}.
-
-%-----------------------------------------------------------------------------------
-% Async events (All).
-%-----------------------------------------------------------------------------------
-handle_event(reset, _StateName, _State) ->
-    io:format("Async reset...~n"),
-    {next_state, first_state, #{count => 0}}.
-
-%-----------------------------------------------------------------------------------
-% Sync events (All).
-%-----------------------------------------------------------------------------------
-handle_sync_event(reset, _From, _StateName, _State) ->
-    io:format("Sync reset...~n"),
-    {reply, 0, first_state, #{count => 0}}.
-
-%-----------------------------------------------------------------------------------
-% Regular OTP messages.
-%-----------------------------------------------------------------------------------
-handle_info(_Info, StateName, State) ->
-    {next_state, StateName, State}.
-
-terminate(_Reason, _StateName, _State) ->
+main([]) ->
+    ?Log(start_link(fsm)),
+    ?Log(sync_next(fsm)),
+    ?Log(sync_next(fsm)),
+    ?Log(sync_next(fsm)),
+    ?Log(sync_next(fsm)),
+    ?Log(sync_reset(fsm)),
+    ?Log(next(fsm)),
+    ?Log(next(fsm)),
+    ?Log(next(fsm)),
+    ?Log(reset(fsm)),
     ok.
-
-code_change(_OldVsn, StateName, State, _Extra) ->
-    {ok, StateName, State}.
