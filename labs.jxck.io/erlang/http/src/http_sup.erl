@@ -5,6 +5,8 @@
 
 -module(http_sup).
 
+-include("../logger.hrl").
+
 -behaviour(supervisor).
 
 %% API
@@ -20,7 +22,7 @@
 %%====================================================================
 
 start_link() ->
-    supervisor:start_link({local, ?SERVER}, ?MODULE, []).
+    ?Log(supervisor:start_link({local, ?SERVER}, ?MODULE, [])).
 
 %%====================================================================
 %% Supervisor callbacks
@@ -28,7 +30,19 @@ start_link() ->
 
 %% Child :: {Id,StartFunc,Restart,Shutdown,Type,Modules}
 init([]) ->
-    {ok, { {one_for_all, 0, 1}, []} }.
+    Children = [
+                {
+                 http_listener,
+                 { http_listener, start_link, [] },
+                 permanent, 5, worker, [http_listener]
+                },
+                {
+                 http_worker_sup,
+                 { http_worker_sup, start_link, []},
+                 permanent, 5, supervisor, [http_worker_sup]
+                }
+               ],
+    {ok, { {one_for_all, 0, 1}, Children} }.
 
 %%====================================================================
 %% Internal functions
