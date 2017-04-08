@@ -5,7 +5,7 @@
 
 -module(http_app).
 
--include("../logger.hrl").
+-include("logger.hrl").
 
 -behaviour(application).
 

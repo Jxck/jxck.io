@@ -5,7 +5,7 @@
 
 -module(http_sup).
 
--include("../logger.hrl").
+-include("logger.hrl").
 
 -behaviour(supervisor).
 

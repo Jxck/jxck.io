@@ -5,7 +5,7 @@
 
 -module(http_worker_sup).
 
--include("../logger.hrl").
+-include("logger.hrl").
 
 %% API
 -export([start_link/0, start_child/1]).

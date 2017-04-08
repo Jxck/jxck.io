@@ -5,7 +5,7 @@
 
 -module(http_worker).
 
--include("../logger.hrl").
+-include("logger.hrl").
 
 %% Supervisor callbacks
 -export([start_link/1]).
@@ -35,7 +35,7 @@ process(Socket, Size, Timeout) ->
     end.
 
 response(Request) ->
-    ?Log(Request),
+    ?Log(http:decode(Request)),
     <<
       "HTTP/1.0 200 OK\r\n",
       "Date: Tue, 25 Oct 2016 10:21:33 GMT\r\n",

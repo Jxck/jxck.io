@@ -5,7 +5,7 @@
 
 -module(http_listener).
 
--include("../logger.hrl").
+-include("logger.hrl").
 
 %% Supervisor callbacks
 -export([start_link/0]).
