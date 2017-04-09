@@ -118,27 +118,15 @@ get({"/", #{
      };
 
 get({"/", _Header, _Body}) ->
+    {ok, File} = file:read_file("./src/index.html"),
+    ?Log(File),
     #{ status  => "200",
        headers => #{
          "Content-Type" => "text/html; charset=utf-8",
          "Connection" => "close",
          "Server" => "erlang"
         },
-       body => <<
-                 "<!DOCTYPE html>\r\n",
-                 "<meta charset=utf-8>\r\n",
-                 "<meta name=viewport content='width=device-width,initial-scale=1'>\r\n",
-                 "<meta name=description content=demo>\r\n",
-                 "<title>DEMO</title>\r\n",
-                 "<h1>Test</h1>\r\n",
-                 "<script>\r\n",
-                 "ws = new WebSocket('ws://localhost:3000', [])\r\n",
-                 "ws.onopen = (e) => {\r\n",
-                 "  console.log(e)\r\n",
-                 "  ws.send('')\r\n",
-                 "}\r\n",
-                 "</script>"
-               >>
+       body => File
      };
 
 get({"/favicon.ico", _Header, _Body}) ->

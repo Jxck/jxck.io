@@ -1,6 +1,7 @@
 -module(ws).
 
 -export([
+         encode/1,
          decode/1,
          main/1
         ]).
@@ -43,6 +44,20 @@ opcode(<<16#0F:4>>) -> reserved_control_frames.
 % + - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - +
 % |                     Payload Data continued ...                |
 % +---------------------------------------------------------------+
+%
+% Server Side (no mask) Only
+encode({text_frame, Payload}) when is_binary(Payload) ->
+    Header = <<1:1, 0:1, 0:1, 0:1, 16#01:4>>,
+
+    Length = case byte_size(Payload) of
+                 Len when Len =< 125 -> <<Len>>;
+                 Len when Len =< 16#FFFF -> <<126, Len:16>>;
+                 Len -> <<127, Len:64>>
+             end,
+
+    <<Header/binary, Length/binary, Payload/binary>>.
+
+
 decode(<<
          FIN:1/bits,
          RSV1:1/bits,
