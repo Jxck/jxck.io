@@ -135,7 +135,7 @@ get({"/", _Header, _Body}) ->
                  "ws = new WebSocket('ws://localhost:3000', [])\r\n",
                  "ws.onopen = (e) => {\r\n",
                  "  console.log(e)\r\n",
-                 "  ws.send('aaa')\r\n",
+                 "  ws.send('')\r\n",
                  "}\r\n",
                  "</script>"
                >>

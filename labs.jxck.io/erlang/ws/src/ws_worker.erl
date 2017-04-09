@@ -47,12 +47,8 @@ handle_info({tcp, Socket, Packet}, State) ->
     ?Log(Packet),
     WS = decode(Packet),
     ?Log(WS),
+    ?Log("==================", maps:get(length, WS)),
     %gen_tcp:send(Socket, Packet),
-    inet:setopts(Socket, [{active, once}]),
-    {noreply, State};
-
-handle_info({tcp, Socket, Packet}, State) ->
-    ?Log(Packet),
     inet:setopts(Socket, [{active, once}]),
     {noreply, State};
 
