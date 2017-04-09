@@ -46,9 +46,21 @@ handle_info({tcp, Socket, Packet}, State) ->
     {ok, #{method := Method, target := URL, headers := Header, body := Body}} = http:decode(Packet),
     ?Log(Method, URL, from, Socket),
     Fn = list_to_atom(string:to_lower(Method)),
-    Response = apply(?MODULE, Fn, [{URL, Header, Body}]),
-    gen_tcp:send(Socket, http:encode(default(Response))),
-    inet:setopts(Socket, [{active, once}]),
+
+    case (default(apply(?MODULE, Fn, [{URL, Header, Body}]))) of
+        #{status  := "101", headers := #{"Upgrade" := "websocket"}}=Response ->
+            %% websocket へのアップグレード
+            %% 101 を返したら、 ws_worker を起動し
+            %% 制御を移譲する。移譲してから {active,once} を resume
+            %% するため、ここではしない。
+            gen_tcp:send(Socket, http:encode(Response)),
+            maps:remove(socket, State),
+            {ok, Pid} = ws_worker_sup:start_child(Socket),
+            gen_tcp:controlling_process(Socket, Pid);
+        Response ->
+            gen_tcp:send(Socket, http:encode(Response)),
+            inet:setopts(Socket, [{active, once}])
+    end,
     {noreply, State};
 
 handle_info({tcp_closed, Socket}, State) ->
@@ -86,6 +98,7 @@ default(#{body := Body, headers := _Headers}=Response) ->
     Headers = maps:merge(DefaultHeader, _Headers),
     maps:put(headers, Headers, Response).
 
+%% WebSocket Upgrade
 get({"/", #{
        "Connection" := "Upgrade",
        "Upgrade" := "websocket",
@@ -120,7 +133,10 @@ get({"/", _Header, _Body}) ->
                  "<h1>Test</h1>\r\n",
                  "<script>\r\n",
                  "ws = new WebSocket('ws://localhost:3000', [])\r\n",
-                 "console.log(ws)\r\n",
+                 "ws.onopen = (e) => {\r\n",
+                 "  console.log(e)\r\n",
+                 "  ws.send('aaa')\r\n",
+                 "}\r\n",
                  "</script>"
                >>
      };

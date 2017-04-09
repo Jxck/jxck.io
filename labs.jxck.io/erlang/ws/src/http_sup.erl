@@ -40,6 +40,11 @@ init([]) ->
                  http_worker_sup,
                  { http_worker_sup, start_link, []},
                  permanent, 5, supervisor, [http_worker_sup]
+                },
+                {
+                 ws_worker_sup,
+                 { ws_worker_sup, start_link, []},
+                 permanent, 5, supervisor, [ws_worker_sup]
                 }
                ],
     {ok, { {one_for_all, 0, 1}, Children} }.
