@@ -11,12 +11,12 @@
 
 %% Supervisor callbacks
 -export([
+         init/1,
          start_link/1,
-         code_change/3,
          handle_call/3,
          handle_cast/2,
          handle_info/2,
-         init/1,
+         code_change/3,
          terminate/2
         ]).
 
@@ -31,8 +31,8 @@ start_link(Socket) ->
 init(Socket) ->
     ?Log(Socket),
     State = #{socket => Socket},
-    %% 制御を移譲されてから {active,once} を resume する。
-    inet:setopts(Socket, [{active, once}]),
+    %% 制御を移譲されてから {active, true}にする
+    inet:setopts(Socket, [{active, true}]),
     {ok, State}.
 
 handle_call(Msg, From, State) ->

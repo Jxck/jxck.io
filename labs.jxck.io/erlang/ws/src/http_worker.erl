@@ -11,12 +11,12 @@
 
 %% Supervisor callbacks
 -export([
+         init/1,
          start_link/1,
-         code_change/3,
          handle_call/3,
          handle_cast/2,
          handle_info/2,
-         init/1,
+         code_change/3,
          terminate/2
         ]).
 
@@ -50,9 +50,7 @@ handle_info({tcp, Socket, Packet}, State) ->
     case (default(apply(?MODULE, Fn, [{URL, Header, Body}]))) of
         #{status  := "101", headers := #{"Upgrade" := "websocket"}}=Response ->
             %% websocket へのアップグレード
-            %% 101 を返したら、 ws_worker を起動し
-            %% 制御を移譲する。移譲してから {active,once} を resume
-            %% するため、ここではしない。
+            %% 101 を返したら ws_worker を起動し制御を移譲する。
             gen_tcp:send(Socket, http:encode(Response)),
             maps:remove(socket, State),
             {ok, Pid} = ws_worker_sup:start_child(Socket),
