@@ -45,14 +45,14 @@ handle_cast(Msg, State) ->
 
 handle_info({tcp, Socket, Packet}, State) ->
     ?Log(Packet),
-    decode(Packet),
+    WS = decode(Packet),
+    ?Log(WS),
     %gen_tcp:send(Socket, Packet),
     inet:setopts(Socket, [{active, once}]),
     {noreply, State};
 
 handle_info({tcp, Socket, Packet}, State) ->
     ?Log(Packet),
-    %gen_tcp:send(Socket, Packet),
     inet:setopts(Socket, [{active, once}]),
     {noreply, State};
 
@@ -83,4 +83,4 @@ terminate(Reason, State) ->
 %% Internal functions
 %%====================================================================
 decode(Packet) ->
-    ?Log(Packet).
+    ws:decode(Packet).
