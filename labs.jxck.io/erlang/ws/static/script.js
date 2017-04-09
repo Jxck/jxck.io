@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<meta charset=utf-8>
-<meta name=viewport content='width=device-width,initial-scale=1'>
-<meta name=description content=demo>
-<title>DEMO</title>
-<h1>Test</h1>
-<script>
+'use strict';
+let log = console.log.bind(console);
+
 function loop(ws, n) {
     if(n === 0) return ws.close();
     ws.onmessage = (ev) => {
@@ -16,8 +12,7 @@ function loop(ws, n) {
     ws.send(rand);
 }
 
-ws = new WebSocket('ws://localhost:3000', [])
+let ws = new WebSocket('ws://localhost:3000', [])
 ws.onopen = (e) => {
     loop(ws, 10)
 }
-</script>

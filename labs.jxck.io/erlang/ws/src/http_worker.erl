@@ -88,6 +88,14 @@ terminate(Reason, State) ->
 %% Internal functions
 %%====================================================================
 
+content_type(Path) ->
+    case filename:extension(Path) of
+         ".html" -> "text/html";
+         ".js"   -> "text/javascript";
+         ".css"  -> "text/css";
+         ".ico"  -> "image/vnd.microsoft.icon"
+    end.
+
 default(#{body := Body, headers := _Headers}=Response) ->
     DefaultHeader = #{
       "Date" => httpd_util:rfc1123_date(),
@@ -105,7 +113,6 @@ get({"/", #{
       }=Header, _Body}) ->
 
     Hash = base64:encode(crypto:hash(sha, Key ++ "258EAFA5-E914-47DA-95CA-C5AB0DC85B11")),
-    ?Log(Hash),
     #{ status  => "101",
        headers => #{
          "Upgrade" => "websocket",
@@ -115,33 +122,17 @@ get({"/", #{
        body => <<>>
      };
 
-get({"/", _Header, _Body}) ->
-    {ok, File} = file:read_file("./src/index.html"),
-    ?Log(File),
+get({URL, _Header, _Body}) ->
+    Path = case filelib:is_dir(URL) of
+               true  -> "./static/" ++ URL ++ "index.html";
+               false -> "./static/" ++ URL
+           end,
+    {ok, File} = file:read_file(Path),
     #{ status  => "200",
        headers => #{
-         "Content-Type" => "text/html; charset=utf-8",
+         "Content-Type" => content_type(Path),
          "Connection" => "close",
          "Server" => "erlang"
         },
        body => File
-     };
-
-get({"/favicon.ico", _Header, _Body}) ->
-    #{ status  => "404",
-       headers => #{
-        },
-       body => <<>>
-     };
-
-get({_URL, _Header, _Body}) ->
-    ?Log("---------------------------------------"),
-    ?Log(_URL),
-    #{ status  => "200",
-       headers => #{
-         "Content-Type" => "text/html; charset=utf-8",
-         "Connection" => "close",
-         "Server" => "erlang"
-        },
-       body => <<>>
      }.
