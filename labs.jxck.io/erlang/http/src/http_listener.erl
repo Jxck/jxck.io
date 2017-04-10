@@ -28,7 +28,7 @@ init() ->
     Backlog = 10244,
     Options = [binary,
                inet6, % support both ipv4 and ipv6
-               {active, false},
+               {active, once},
                {reuseaddr, true},
                {backlog, Backlog}
               ],
