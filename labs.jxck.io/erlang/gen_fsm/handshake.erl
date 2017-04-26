@@ -124,4 +124,7 @@ main([]) ->
     (gen_fsm:sync_send_event(server, #{type => change_cipher_spec})),
     (gen_fsm:sync_send_event(server, #{type => finished})),
     (gen_fsm:sync_send_event(server, #{type => application})),
+    (gen_fsm:sync_send_event(server, #{type => application})),
+    (gen_fsm:sync_send_event(server, #{type => application})),
+    (gen_fsm:sync_send_event(server, #{type => application})),
     ok.
