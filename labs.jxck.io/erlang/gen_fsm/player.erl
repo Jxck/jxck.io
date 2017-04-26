@@ -1,5 +1,5 @@
 #!/usr/bin/env escript
--module(store).
+-module(player).
 -mode(compile).
 -compile(export_all).
 
