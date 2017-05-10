@@ -22,7 +22,7 @@ Web Share API は、 Web コンテンツと SNS やメールなどとの連携�
 ## DEMO
 
 DEMO を以下に公開している。
-(Origin Trials のトークンを仕込んでいるが、現状これは不要である)
+(まだ Origin Trials のトークンはそのままになっている)
 
 [http://labs.jxck.io/webshare/](http://labs.jxck.io/webshare/)
 
@@ -48,19 +48,21 @@ navigator
   .catch(console.log.bind(console));
 ```
 
-まず、 navigator.share を見ることで、サポートの有無を判別できる。
-結果は Promise を返すため、 Share の成功可否についても判別が可能だ。
+こうした API であるため、 `navigator.share` を見ることで、サポートの有無を判別できる。
+結果は Promise を返し、 Share の成功可否によって変わる。
 
 また、 Web Share は Share の発信だけで無く、受信についても視野に入れいている。
 現状その API は議論中だが、同様に navigator を基本に拡張されていくと思われる。
 
 
 簡素な Share の送信だけであれば、以下のような URI Scheme の策定も可能かもしれない。
-しかし、上述のような サポート判別/成功判別/受信側の拡張 などを考えると JS API としての策定が妥当であるとし、今回の API が策定された。
 
-```
+```html
 <a href="share:?title=Example%20Page&amp;url=https://example.com/page">Share this</a>
 ```
+
+しかし、上述のような サポート判別/成功判別/受信側の拡張 などを考えると JS API としての策定が妥当であるとし、今回の API が策定された。
+
 
 Web Share を標準化する上での方針などについては以下にまとまっている。
 
@@ -69,6 +71,7 @@ Web Share を標準化する上での方針などについては以下にまと�
 
 ## Origin Trials の卒業
 
-WebShare は Origin Trials を卒業したため、しばらくするとトークンなしでも機能が使えるようになる予定とのことだ。
+Web Share は Origin Trials を卒業したため、しばらくするとトークンなしでも機能が使えるようになる予定とのことだ。
 しかし、これは仕様の策定が終わったことも、ブラウザの普及が進んだことも意味しない。
+
 あくまで、仕様策定作業を開始するにあたっての WIP リクエストが、最低限のフィードバックを集めマージされたようなものだと考えるのが近いかもしれない。
