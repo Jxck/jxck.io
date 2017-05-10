@@ -2,7 +2,7 @@
 
 ## Intro
 
-Web Share API が Origin Trials を卒業したという知らせが届いた。
+[Web Share API](https://github.com/WICG/web-share) が Origin Trials を卒業したという知らせが届いた。
 
 コンテンツを他のサービスなどと連携するこの API について紹介する。
 
@@ -12,11 +12,7 @@ Web Share API が Origin Trials を卒業したという知らせが届いた。
 ブラウザで開いている Web コンテンツを、他のサービスやアプリと連携するための方法は、以前から検討されていた。
 主だったものとしては、すでに策定は止まっているが Android の Intent を参考にした [Web Intents](https://www.w3.org/TR/web-intents/) が挙げられる。
 
-Android の Intent は、当然 Android に強く依存しているため、そのまま標準化する方針に近かった Web Intents は、より汎用的なデバイス連携を視野に入れ、大きく複雑になったことが問題となった。
-
-同様に、 Safari を含めた多くのデバイスは、独自に閲覧中の URL/Title などを他のアプリと連携する機能を有しているが、これらはデバイスに強く依存し、コンテンツ制作者はデバイスの挙動に最適化する必要があり、制限も大きい。
-
-Web Share API は、 Web コンテンツと SNS やメールなどとの連携を主目的とした、より簡素で軽量な API となっているため、コンテンツ制作者は、その範囲で share の挙動をコントロールし、デバイスとの安定した連携が可能になる。
+Web Share API は、 Web コンテンツと SNS やメールなどとの連携を主目的とした、より簡素で軽量な API となっている。
 
 
 ## DEMO
@@ -24,7 +20,7 @@ Web Share API は、 Web コンテンツと SNS やメールなどとの連携�
 DEMO を以下に公開している。
 (まだ Origin Trials のトークンはそのままになっている)
 
-[http://labs.jxck.io/webshare/](http://labs.jxck.io/webshare/)
+[DEMO: web-share](http://labs.jxck.io/web-share/)
 
 
 ## API
@@ -66,7 +62,7 @@ navigator
 
 Web Share を標準化する上での方針などについては以下にまとまっている。
 
-[https://github.com/WICG/web-share/blob/master/docs/explainer.md
+[Web Share API Explained](https://github.com/WICG/web-share/blob/master/docs/explainer.md)
 
 
 ## Origin Trials の卒業
