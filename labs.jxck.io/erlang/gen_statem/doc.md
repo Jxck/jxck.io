@@ -214,18 +214,20 @@ The following is a complete list of event types and where they come from:
 ## 4.6  Example
 
 This example starts off as equivalent to the example in section gen_fsm Behavior. In later sections, additions and tweaks are made using features in gen_statem that gen_fsm does not have. The end of this chapter provides the example again with all the added features.
-この例は、セクション gen_fsm ビヘイビアの例と同じように始まり ます。後のセクションでは、 gen_fsm にはない gen_statem の機能を使って追加や修正を行っています。この章の最後には、追加されたすべての機能についての例が再び示されています。
+
+この例は、セクション gen_fsm ビヘイビアの例と同じように始まります。後のセクションでは、 gen_fsm にはない gen_statem の機能を使って追加や修正を行っています。この章の最後には、追加されたすべての機能についての例が再び示されています。
 
 
 A door with a code lock can be seen as a state machine. Initially, the door is locked. When someone presses a button, an event is generated. Depending on what buttons have been pressed before, the sequence so far can be correct, incomplete, or wrong. If correct, the door is unlocked for 10 seconds (10,000 milliseconds). If incomplete, we wait for another button to be pressed. If wrong, we start all over, waiting for a new button sequence.
-コードロック付きのドアは、ステートマシンと見なすことができます。最初は、ドアがロックされています。誰かがボタンを押すと、イベントが生成されます。前にどのボタンが押されているかに応じて、これまでのシーケンスは正しい、不完全な、または間違っている可能性があります。正しい場合、ドアは 10 秒間(10,000 ミリ秒)ロックが解除されます。不完全な場合、別のボタンが押されるのを待ちます。間違っている場合は、新しいボタンシーケンスを待っています。
+
+コードロック付きのドアは、ステートマシンと見なすことができます。最初は、ドアがロックされています。誰かがボタンを押すと、イベントが生成されます。前にどのボタンが押されているかに応じて、これまでのシーケンスは correct/incomplete/wron になる可能性があります。 correct の場合、ドアは 10 秒間(10,000 ミリ秒)ロックが解除されます。 incomplete な場合、別のボタンが押されるのを待ちます。 wrong の場合は、新しいボタンシーケンスを待っています。
 
 
 IMAGE MISSING
 Figure 4.1:   Code Lock State Diagram
 
 This code lock state machine can be implemented using gen_statem with the following callback module:
-このコードロックステートマシンは、次のコールバックモジュールを使用して gen_statem を使用して実装でき ます。
+このコードロックステートマシンは、次のコールバックモジュールを使用して gen_statem を使用して実装できます。
 
 
 ```erlang
@@ -258,8 +260,7 @@ locked(
     case Remaining of
         [Digit] ->
             do_unlock(),
-            {next_state, open, Data#{remaining := Code},
-             [{state_timeout,10000,lock}];
+            {next_state, open, Data#{remaining := Code}, [{state_timeout,10000,lock}];
         [Digit|Rest] -> % Incomplete
             {next_state, locked, Data#{remaining := Rest}};
         _Wrong ->
@@ -294,7 +295,7 @@ In the example in the previous section, gen_statem is started by calling code_lo
 
 ```erlang
 start_link(Code) ->
-    gen_statem:start_link({local,?NAME}, ?MODULE, Code, []).
+    gen_statem:start_link({local, ?NAME}, ?MODULE, Code, []).
 ```
 
 start_link calls function gen_statem:start_link/4, which spawns and links to a new process, a gen_statem.
@@ -302,39 +303,55 @@ start_link calls function gen_statem:start_link/4, which spawns and links to a n
 start_link は、関数 gen_statem:start_link/4 を呼び出します。 これは、新しいプロセス gen_statem を生成してリンクします。
 
 
-- The first argument, {local,?NAME}, specifies the name. In this case, the gen_statem is locally registered as code_lock through the macro ?NAME.
-  最初の引数{local 、?NAME}は名前を指定します。この場合、 gen_statem は、局所的に登録されて code_lock マクロを通して?NAME 。
+- The first argument, {local, ?NAME}, specifies the name. In this case, the gen_statem is locally registered as code_lock through the macro ?NAME.
 
-  If the name is omitted, the gen_statem is not registered. Instead its pid must be used. The name can also be specified as {global,Name}, then the gen_statem is registered using global:register_name/2 in Kernel.
-  名前を省略すると、 gen_statem は登録されません。代わりに、その pid を使用する必要があります。名前は{global 、 Name}として指定することもでき、 gen_statem は カーネルの global:register_name / 2 を使って登録 されます。
+- 最初の引数 `{local, ?NAME}` は名前を指定します。この場合、 gen_statem は、 ?NAME マクロを通して code_lock として local に登録されます。
+
+
+- If the name is omitted, the gen_statem is not registered. Instead its pid must be used. The name can also be specified as {global,Name}, then the gen_statem is registered using global:register_name/2 in Kernel.
+
+- 名前を省略すると、 gen_statem は登録されません。代わりに、その pid を使用する必要があります。名前は `{global, Name}` として指定することもでき、 gen_statem は カーネルの global:register_name/2 を使って登録されます。
+
 
 - The second argument, ?MODULE, is the name of the callback module, that is, the module where the callback functions are located, which is this module.
-  2 番目の引数、?MODULE は、コールバックモジュールの名前です。コールバック関数が配置されているモジュール(このモジュールです)です。
 
-  The interface functions (start_link/1 and button/1) are located in the same module as the callback functions (init/1, locked/3, and open/3). It is normally good programming practice to have the client-side code and the server-side code contained in one module.
-  インタフェース関数(start_link / 1 と button / 1)は、コールバック関数(init / 1 、 locked / 3 、 open / 3)と同じモジュールにあります。クライアント側のコードとサーバー側のコードを 1 つのモジュールに含めることは、通常はプログラミングの良い習慣です。
+- 2 番目の引数?MODULE は、コールバックモジュールの名前です。コールバック関数が配置されているモジュール(このモジュールです)です。
+
+- The interface functions (start_link/1 and button/1) are located in the same module as the callback functions (init/1, locked/3, and open/3). It is normally good programming practice to have the client-side code and the server-side code contained in one module.
+
+- インタフェース関数(`start_link/1` と `button/1`)は、コールバック関数(`init/1`, `locked/3`, `open/3`)と同じモジュールにあります。クライアント側のコードとサーバー側のコードを 1 つのモジュールに含めることは、通常はプログラミングの良い習慣です。
+
 
 - The third argument, Code, is a list of digits, which is the correct unlock code that is passed to callback function init/1.
-  3 番目の引数、 Code は、コールバック関数 init / 1 に渡される正しいロック解除コードである数字のリストです。
+
+- 3 番目の引数 `Code` は、コールバック関数 `init/1` に渡される正しいロック解除コードである数字のリストです。
+
 
 - The fourth argument, [], is a list of options. For the available options, see gen_statem:start_link/3.
-  4 番目の引数[]は、オプションのリストです。使用可能なオプションについては、 gen_statem :start_link / 3 を参照してください 。
+
+- 4 番目の引数 `[]` は、オプションのリストです。使用可能なオプションについては、 `gen_statem:start_link/3` を参照してください 。
+
 
 If name registration succeeds, the new gen_statem process calls callback function code_lock:init(Code). This function is expected to return {ok, State, Data}, where State is the initial state of the gen_statem, in this case locked; assuming that the door is locked to begin with. Data is the internal server data of the gen_statem. Here the server data is a map with key code that stores the correct button sequence, and key remaining that stores the remaining correct button sequence (the same as the code to begin with).
-名前の登録に成功すると、新しい gen_statem プロセスがコールバック関数 code_lock:init(Code)を呼び出します。この関数は{ok 、 State 、 Data}を返すことが期待されます。ここで State は gen_statem の初期状態です(この場合はロックされます)。ドアが最初にロックされていると仮定します。データは、 gen_statem の内部サーバーデータです。ここで、サーバーデータは、正しいボタンシーケンスを格納する キーコードを持つマップであり、
+
+名前の登録に成功すると、新しい gen_statem プロセスがコールバック関数 `code_lock:init(Code)` を呼び出します。この関数は `{ok, State, Data}` を返すことが期待されます。ここで State は gen_statem の初期状態です(この場合はロックされます)。ドアが最初にロックされていると仮定します。データは、 gen_statem の内部サーバーデータです。ここで、サーバーデータは、正しいボタンシーケンスを格納する キーコードを持つマップであり、
+
 
 ```erlang
 init(Code) ->
     do_lock(),
     Data = #{code => Code, remaining => Code},
-    {ok,locked,Data}.
+    {ok, locked, Data}.
 ```
 
 Function gen_statem:start_link is synchronous. It does not return until the gen_statem is initialized and is ready to receive events.
-関数 gen_statem:start_link は同期です。 gen_statem が初期化され、イベントを受け取る準備が整うまでは戻らない。
+
+関数 `gen_statem:start_link` は同期です。 gen_statem が初期化され、イベントを受け取る準備が整うまでは戻らない。
 
 Function gen_statem:start_link must be used if the gen_statem is part of a supervision tree, that is, started by a supervisor. Another function, gen_statem:start can be used to start a standalone gen_statem, that is, a gen_statem that is not part of a supervision tree.
-機能 gen_statem:gen_statem が 監視ツリーの一部である場合、つまりスーパーバイザによって開始される場合は、 start_link を使用する必要があります。もう一つの機能、 gen_statem:スタートは 、スタンドアロンの起動に使用することができ gen_statem で、 gen_statem 監督ツリーの一部ではありません。
+
+`gen_statem:start_link` は gen_statem がスーパバイザに管理されている場合に使われる。
+`gen_statem:start` は、スタンドアローンの gen_statem を起動するのに使う。
 
 
 ```erlang
@@ -343,14 +360,14 @@ callback_mode() ->
 ```
 
 Function Module:callback_mode/0 selects the CallbackMode for the callback module, in this case state_functions. That is, each state has got its own handler function.
-汎用 Module:callback_mode/0 は コールバックモジュールの CallbackMode を選択し ます。この場合は state_functions です。つまり、各状態には独自のハンドラ関数があります。
+`Module:callback_mode/0` は コールバックモジュールの CallbackMode を選択し ます。この場合は `state_functions` です。つまり、各状態には独自のハンドラ関数があります。
 
 
 ## 4.8  Handling Events
 
 The function notifying the code lock about a button event is implemented using gen_statem:cast/2:
 
-ボタンイベントをコードロックに通知する関数は、 gen_statem:cast/2:
+ボタンイベントをコードロックに通知する関数は、 `gen_statem:cast/2` で実装される。
 
 ```erlang
 button(Digit) ->
