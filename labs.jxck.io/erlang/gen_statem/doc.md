@@ -360,6 +360,7 @@ callback_mode() ->
 ```
 
 Function Module:callback_mode/0 selects the CallbackMode for the callback module, in this case state_functions. That is, each state has got its own handler function.
+
 `Module:callback_mode/0` は コールバックモジュールの CallbackMode を選択し ます。この場合は `state_functions` です。つまり、各状態には独自のハンドラ関数があります。
 
 
@@ -376,10 +377,16 @@ button(Digit) ->
 
 
 The first argument is the name of the gen_statem and must agree with the name used to start it. So, we use the same macro ?NAME as when starting. {button,Digit} is the event content.
-最初の引数は gen_statem の名前であり、それを開始するために使用される名前と一致しなければなりません。したがって、起動時と同じマクロ「NAME」を使用します。 {button 、 Digit}はイベントの内容です。
+
+最初の引数は gen_statem の名前であり、それを開始するために使用される名前と一致しなければなりません。したがって、起動時と同じマクロ `?NAME` を使用します。 `{button, Digit}` はイベントの内容です。
 
 The event is made into a message and sent to the gen_statem. When the event is received, the gen_statem calls StateName(cast, Event, Data), which is expected to return a tuple {next_state, NewStateName, NewData}, or {next_state, NewStateName, NewData, Actions}. StateName is the name of the current state and NewStateName is the name of the next state to go to. NewData is a new value for the server data of the gen_statem, and Actions is a list of actions on the gen_statem engine.
-このイベントはメッセージとして作成され、 gen_statem に送信されます。イベントが受信されると、 gen_statem は 、タプル{next_state 、 NewStateName 、 NewData}、{next_state 、 NewStateName 、 NewData 、 Actions}を返すと予想される StateName(cast 、 Event 、 Data)を呼び出します。 StateName は現在の状態の名前であり、 NewStateName は次に行く状態の名前です。 NEWDATA はのサーバーデータの新しい値で gen_statem 、そしてアクションのアクションのリストである gen_statem のエンジン。
+
+このイベントはメッセージとして作成され、 gen_statem に送信されます。
+イベントが受信されると、 gen_statem は `{next_state, NewStateName, NewData}` か `{next_state, NewStateName, NewData, Actions}` を返す `StateName(cast, Event, Data)` を呼び出します。
+`StateName` は現在の状態の名前であり `NewStateName` は次の状態の名前です。
+`NewData` は gen_statem のサーバデータの新しい値で、 `Actions` は gen_statem エンジンのアクションのリストである。
+
 
 ```erlang
 locked(
@@ -404,30 +411,40 @@ open(cast, {button,_}, Data) ->
 ```
 
 If the door is locked and a button is pressed, the pressed button is compared with the next correct button. Depending on the result, the door is either unlocked and the gen_statem goes to state open, or the door remains in state locked.
-ドアがロックされてボタンが押されると、押されたボタンは次の正しいボタンと比較されます。その結果に応じて、ドアはロック解除のどちらかであると gen_statem は状態になり、オープン、またはドアが状態のままロックされました。
+
+ドアがロックされてボタンが押されると、押されたボタンは次の正しいボタンと比較されます。その結果に応じて、ドアはロック解除され gen_statem はオープン状態になるか、またはドアがロック状態のままになる。
+
 
 If the pressed button is incorrect, the server data restarts from the start of the code sequence.
-押されたボタンが間違っていると、サーバー・データはコード・シーケンスの開始から再開します。
+
+押されたボタンが間違っていると、サーバデータはコードシーケンスの開始から再開します。
+
 
 If the whole code is correct, the server changes states to open.
-コード全体が正しい場合、サーバーは状態を open に変更します。
+
+コード全体が正しい場合、サーバは状態を open に変更します。
+
 
 In state open, a button event is ignored by staying in the same state. This can also be done by returning {keep_state, Data} or in this case since Data unchanged even by returning keep_state_and_data.
-状態が開いている場合、ボタンイベントは同じ状態にとどまることによって無視されます。これは、返すことで行うことができる{KEEP_STATE 、データを}ため、またはこの場合にはデータも返すことで不変 keep_state_and_data を。
+
+Open 状態の場合、ボタンイベントは同じ状態にとどまることによって無視されます。これは、 `{keep_state, Data}` を返す、またはデータが不変の場合は `keep_state_and_data` を返すことでもできます。
 
 
 ## 4.9  State Time-Outs
 
 When a correct code has been given, the door is unlocked and the following tuple is returned from locked/2:
-正しいコードが与えられると、ドアはロック解除され、 locked / 2 から次のタプルが返されます。
+
+正しいコードが与えられると、ドアはロック解除され `locked/2` から次のタプルが返されます。
+
 
 ```erlang
-{next_state, open, Data#{remaining := Code},
- [{state_timeout,10000,lock}]};
+{next_state, open, Data#{remaining := Code}, [{state_timeout, 10000, lock}]};
 ```
 
 10,000 is a time-out value in milliseconds. After this time (10 seconds), a time-out occurs. Then, StateName(state_timeout, lock, Data) is called. The time-out occurs when the door has been in state open for 10 seconds. After that the door is locked again:
-10,000 はミリ秒単位のタイムアウト値です。この時間(10 秒)後、タイムアウトが発生します。次に、 StateName(state_timeout 、 lock 、 Data)が呼び出されます。タイムアウトは、ドアが 10 秒間開いた状態で発生します。その後、ドアは再びロックされます。
+
+10,000 はミリ秒単位のタイムアウト値です。この時間(10 秒)後、タイムアウトが発生します。次に、 `StateName(state_timeout, lock, Data)` が呼び出されます。タイムアウトは、ドアが 10 秒間 open 状態になったあとで発生します。その後、ドアは再びロックされます。
+
 
 ```erlang
 open(state_timeout, lock,  Data) ->
@@ -436,16 +453,19 @@ open(state_timeout, lock,  Data) ->
 ```
 
 The timer for a state time-out is automatically cancelled when the state machine changes states. You can restart a state time-out by setting it to a new time, which cancels the running timer and starts a new. This implies that you can cancel a state time-out by restarting it with time infinity.
+
 ステートマシンがステートを変更すると、ステートタイムアウトのタイマーは自動的にキャンセルされます。ステートタイムアウトを新しい時間に設定すると、実行中のタイマーをキャンセルして新しいタイマーを開始することができます。これは、無限に時間を戻して状態のタイムアウトをキャンセルできることを意味します。
 
 
 ## 4.10  All State Events
 
 Sometimes events can arrive in any state of the gen_statem. It is convenient to handle these in a common state handler function that all state functions call for events not specific to the state.
+
 場合によっては、 gen_statem のどの状態でもイベントが到着することがあります。すべての状態関数が状態に固有でないイベントを呼び出す共通の状態ハンドラ関数でこれらを処理すると便利です。
 
 Consider a code_length/0 function that returns the length of the correct code (that should not be sensitive to reveal). We dispatch all events that are not state-specific to the common function handle_event/3:
-正確なコードの長さを返す code_length / 0 関数を 考えてみましょう。状態固有でないすべてのイベントを共通関数 handle_event / 3 にディスパッチします。
+
+正確なコードの長さを返す `code_length/0` 関数を考えてみましょう。状態固有でないすべてのイベントを共通関数 `handle_event/3` にディスパッチします。
 
 
 ```erlang
@@ -471,13 +491,16 @@ handle_event({call,From}, code_length, #{code := Code} = Data) ->
 ```
 
 This example uses gen_statem:call/2, which waits for a reply from the server. The reply is sent with a {reply,From,Reply} tuple in an action list in the {keep_state, ...} tuple that retains the current state. This return form is convenient when you want to stay in the current state but do not know or care about what it is.
-この例では、 gen_statem:call / 2 を使用し て、サーバーからの応答を待ちます。返信は、現在の状態を保持する{keep_state 、...}タプルのアクションリストの{reply 、 From 、 Reply}タプルで送信されます。この返品フォームは、現在の状態にとどまりたいが、それが何であるかを知らないか気にしないときに便利です。
+
+この例では、 `gen_statem:call/2` を使用し て、サーバーからの応答を待ちます。返信は、現在の状態を保持する`{keep_state, ...}` タプルのアクションリストの `{reply, From, Reply}` タプルで送信されます。この応答フォームは、現在の状態にとどまりたいが、それが何であるかを知らないか気にしないときに便利です。
 
 
 ## 4.11  One Event Handler
 
 If mode handle_event_function is used, all events are handled in Module:handle_event/4 and we can (but do not have to) use an event-centered approach where we first branch depending on event and then depending on state:
-モード handle_event_function が使用されている場合、すべてのイベントは Module:handle_event/4 で処理され 、イベントに応じて最初に分岐し、次に状態に応じて分岐するイベント中心のアプローチを使用できます(ただし、そうする必要はありません)。
+
+モード handle_event_function が使用されている場合、すべてのイベントは `Module:handle_event/4` で処理され 、イベントに応じて最初に分岐し、次に状態に応じて分岐するイベント中心のアプローチを使用できます(ただし、そうする必要はありません)。
+
 
 ```erlang
 ...
@@ -515,10 +538,13 @@ handle_event(state_timeout, lock, open, Data) ->
 ### In a Supervision Tree
 
 If the gen_statem is part of a supervision tree, no stop function is needed. The gen_statem is automatically terminated by its supervisor. Exactly how this is done is defined by a shutdown strategy set in the supervisor.
-場合 gen_statem が監督・ツリーの一部であり、何の停止機能は必要ありません。 gen_statem は自動的にスーパーバイザで終了します。これがどのように行われるかは 、監督者に設定された シャットダウン戦略によって決まります。
+
+場合 gen_statem が supervision tree の一部であり、 stop 関数が不要な場合。 gen_statem は自動的に supervisor に終了されます。これがどのように行われるかは、 supervisor に設定された シャットダウン戦略によって決まります。
 
 If it is necessary to clean up before termination, the shutdown strategy must be a time-out value and the gen_statem must in function init/1 set itself to trap exit signals by calling process_flag(trap_exit, true):
-終了前にクリーンアップする必要がある場合、シャットダウンストラテジはタイムアウト値でなければならず、 gen_statem は init / 1 関数で process_flag(trap_exit 、 true)を呼び出して終了信号をトラップするように設定する 必要があります。
+
+終了前にクリーンアップする必要がある場合、シャットダウンストラテジはタイムアウト値でなければならず、 gen_statem は `init/1` 関数で `process_flag(trap_exit , true)` を呼び出して終了信号をトラップするように設定する 必要があります。
+
 
 ```erlang
 init(Args) ->
@@ -528,10 +554,13 @@ init(Args) ->
 ```
 
 When ordered to shut down, the gen_statem then calls callback function terminate(shutdown, State, Data).
-シャットダウンするように指示されると、 gen_statem はコールバック関数 terminate(shutdown 、 State 、 Data)を呼び出します。
+
+シャットダウンするように指示されると、 gen_statem はコールバック関数 `terminate(shutdown, State, Data)` を呼び出します。
 
 In this example, function terminate/3 locks the door if it is open, so we do not accidentally leave the door open when the supervision tree terminates:
-この例では、機能終了/ 3 はドアが開いている場合にロックします。したがって、監視ツリーが終了したときに誤ってドアを開いたままにしないでください。
+
+この例では、 terminate/3 はドアが開いている場合にロックします。したがって、 supervision tree が terminate したときに誤ってドアを開いたままにしません。
+
 
 ```erlang
 terminate(_Reason, State, _Data) ->
@@ -539,10 +568,12 @@ terminate(_Reason, State, _Data) ->
     ok.
 ```
 
+
 ### Standalone gen_statem
 
 If the gen_statem is not part of a supervision tree, it can be stopped using gen_statem:stop, preferably through an API function:
-場合 gen_statem が監視ツリーの一部ではない、それが使用して停止させることができる gen_statem た:停止、好ましくは、 API 関数を介し:
+
+gen_statem が supervision tree の一部ではない場合、 gen_statem:stop を利用して停止することもできる。好ましくは API 関数を介し:
 
 ```erlang
 ...
@@ -554,19 +585,25 @@ stop() ->
 ```
 
 This makes the gen_statem call callback function terminate/3 just like for a supervised server and waits for the process to terminate.
-これにより、 gen_statem コールコールバック関数 は監視対象サーバと同様に/ 3 終了し、プロセスが終了するのを待ちます。
+
+これにより、 gen_statem はコールコールバック関数 teminate/3 を呼び出し、監視対象サーバと同様にプロセスが終了するのを待ちます。
 
 
 ## 4.13  Event Time-Outs
 
 A timeout feature inherited from gen_statem's predecessor gen_fsm, is an event time-out, that is, if an event arrives the timer is cancelled. You get either an event or a time-out, but not both.
-継承されたタイムアウト機能 gen_statem の前身の gen_fsm はイベントがタイマーがキャンセルされた到着した場合、つまり、イベントのタイムアウトです。イベントまたはタイムアウトのいずれかが発生しますが、両方ではありません。
+
+gen_statem の前身である gen_fsm から継承したタイムアウト機能は、タイマーがキャンセルするとイベントが到着するタイムアウト機能です。
+イベントかタイムアウトのどちらかを受け取り、両方ではありません。
 
 It is ordered by the state transition action {timeout,Time,EventContent}, or just Time, or even just Time instead of an action list (the latter is a form inherited from gen_fsm.
-これは、状態遷移アクション{timeout 、 Time 、 EventContent}、または単に Time 、またはアクションリストの代わりに Time だけで順序付けられ ます(後者は gen_fsm から継承されたフォームです)。
+
+これは、状態遷移アクション `{timeout, Time, EventContent}`、または単に Time 、またはアクションリストの代わりに Time だけで順序付けられ ます(後者は gen_fsm から継承されたフォームです)。
 
 This type of time-out is useful to for example act on inactivity. Let us restart the code sequence if no button is pressed for say 30 seconds:
+
 このタイプのタイムアウトは、例えば、非アクティブに対処するのに便利です。たとえば、 30 秒間ボタンを押さなかった場合は、コードシーケンスを再起動します。
+
 
 ```erlang
 ...
@@ -584,10 +621,13 @@ locked(
 ...
 ```
 
+
 Whenever we receive a button event we start an event timeout of 30 seconds, and if we get an event type timeout we reset the remaining code sequence.
-ボタンイベントを受信するたびに、 30 秒のイベントタイムアウトが開始され、イベントタイプのタイムアウトが発生 すると、残りのコードシーケンスがリセットされます。
+
+ボタンイベントを受信するたびに、 30 秒のイベントタイムアウトが開始され、イベントタイプのタイムアウトが発生すると、残りのコードシーケンスがリセットされます。
 
 An event timeout is cancelled by any other event so you either get some other event or the timeout event. It is therefore not possible nor needed to cancel or restart an event timeout. Whatever event you act on has already cancelled the event timeout...
+
 イベントのタイムアウトは他のイベントによってキャンセルされ、他のイベントやタイムアウトイベントが発生します。したがって、イベント・タイムアウトを取り消したり、再始動することは不可能でもありません。どのようなイベントを行っても、イベントのタイムアウトは既にキャンセルされています...
 
 
