@@ -223,8 +223,7 @@ A door with a code lock can be seen as a state machine. Initially, the door is l
 コードロック付きのドアは、ステートマシンと見なすことができます。最初は、ドアがロックされています。誰かがボタンを押すと、イベントが生成されます。前にどのボタンが押されているかに応じて、これまでのシーケンスは correct/incomplete/wron になる可能性があります。 correct の場合、ドアは 10 秒間(10,000 ミリ秒)ロックが解除されます。 incomplete な場合、別のボタンが押されるのを待ちます。 wrong の場合は、新しいボタンシーケンスを待っています。
 
 
-IMAGE MISSING
-Figure 4.1:   Code Lock State Diagram
+![Figure 4.1:   Code Lock State Diagram](http://erlang.org/doc/design_principles/code_lock.png)
 
 This code lock state machine can be implemented using gen_statem with the following callback module:
 このコードロックステートマシンは、次のコールバックモジュールを使用して gen_statem を使用して実装できます。
@@ -634,19 +633,21 @@ An event timeout is cancelled by any other event so you either get some other ev
 ## 4.14  Erlang Timers
 
 The previous example of state time-outs only work if the state machine stays in the same state during the time-out time. And event time-outs only work if no disturbing unrelated events occur.
-状態タイムアウトの前の例は、タイムアウト時間中に状態マシンが同じ状態にとどまる場合にのみ機能します。また、イベントのタイムアウトは、無関係な無関係なイベントが発生しない場合にのみ機能します。
+
+前述の状態タイムアウトの例は、タイムアウト時間中に状態マシンが同じ状態にとどまる場合にのみ機能します。また、イベントのタイムアウトは、無関係なイベントが発生しない場合にのみ機能します。
 
 You may want to start a timer in one state and respond to the time-out in another, maybe cancel the time-out without changing states, or perhaps run multiple time-outs in parallel. All this can be accomplished with Erlang Timers: erlang:start_timer3,4.
-1 つの状態でタイマーを開始し、別のタイムアウトに応答することもできます。状態を変更せずにタイムアウトをキャンセルするか、複数のタイムアウトを並行して実行することができます。これはすべて Erlang Timer:erlang:start_timer3,4 で行うことができ ます。
+
+1 つの状態でタイマーを開始し、別のタイムアウトに応答することもできます。状態を変更せずにタイムアウトをキャンセルするか、複数のタイムアウトを並行して実行することができます。これはすべて Erlang Timer `erlang:start_timer/3,4` で行うことができます。
 
 Here is how to accomplish the state time-out in the previous example by insted using an Erlang Timer:
-Erlang Timer を使用して insted で前の例の状態タイムアウトを達成する方法は次のとおりです。
+
+代わりに Erlang Timer を使用して前の例の状態タイムアウトを達成する方法は次のとおりです。
+
 
 ```erlang
 ...
-locked(
-  cast, {button,Digit},
-  #{code := Code, remaining := Remaining} = Data) ->
+locked(cast, {button,Digit}, #{code := Code, remaining := Remaining} = Data) ->
     case Remaining of
         [Digit] ->
             do_unlock(),
@@ -663,47 +664,57 @@ open(cast, {button,_}, Data) ->
 ```
 
 Removing the timer key from the map when we change to state locked is not strictly necessary since we can only get into state open with an updated timer map value. But it can be nice to not have outdated values in the state Data!
-状態ロックに変更したときにマップからタイマーキーを 削除することは 、更新されたタイマーマップ値で状態を開くことしかできないため、厳密には必要ではありません。しかし、状態データに時代遅れの値を持たないのは良いことです!
+
+状態ロックに変更したときにマップからタイマーキーを削除することは、更新されたタイマーマップ値で状態を開くことしかできないため、厳密には必要ではありません。しかし、状態データに期限切れの値を持たないのは良いことです!
 
 If you need to cancel a timer because of some other event, you can use erlang:cancel_timer(Tref). Note that a time-out message cannot arrive after this, unless you have postponed it before (see the next section), so ensure that you do not accidentally postpone such messages. Also note that a time-out message may have arrived just before you cancelling it, so you may have to read out such a message from the process mailbox depending on the return value from erlang:cancel_timer(Tref).
-他のイベントのためにタイマーをキャンセルする必要がある場合は、 erlang:cancel_timer(Tref)を使用でき ます。タイムアウト・メッセージは、これを延期した場合(次のセクションを参照)は、誤ってそのようなメッセージを延期しないようにしてください。また、キャンセルする直前にタイムアウト・メッセージが到着した可能性があるので、 erlang:cancel_timer(Tref)の戻り値に応じてプロセス・メールボックスからそのようなメッセージを読み取る必要があるかもしれません 。
+
+他のイベントのためにタイマーをキャンセルする必要がある場合は、 `erlang:cancel_timer(Tref)` を使用できます。タイムアウト・メッセージは、これを延期した場合(次のセクションを参照)は、誤ってそのようなメッセージを延期しないようにしてください。また、キャンセルする直前にタイムアウト・メッセージが到着した可能性があるので、 `erlang:cancel_timer(Tref)` の戻り値に応じてプロセス・メールボックスからそのようなメッセージを読み取る必要があるかもしれません。
 
 Another way to handle a late time-out can be to not cancel it, but to ignore it if it arrives in a state where it is known to be late.
+
 遅いタイムアウトを処理するもう 1 つの方法は、それを取り消すことではなく、それが遅れていることが分かっている状態に到着した場合には無視することです。
 
 
 ## 4.15  Postponing Events
 
 If you want to ignore a particular event in the current state and handle it in a future state, you can postpone the event. A postponed event is retried after the state has changed, that is, OldState =/= NewState.
-現在の状態で特定のイベントを無視し、それを将来の状態で処理したい場合は、そのイベントを延期することができます。延期されたイベントは、状態が変更された後に再試行されます。つまり、 OldState = / NewState です。
+
+現在の状態で特定のイベントを無視し、それを将来の状態で処理したい場合は、そのイベントを延期することができます。延期されたイベントは、状態が変更された後に再試行されます。つまり、 `OldState =/= NewState` です。
 
 Postponing is ordered by the state transition action postpone.
-延期は、状態遷移措置を 延期することによって命じられ ます。
+
+延期は、状態遷移の postpone で行います。
 
 In this example, instead of ignoring button events while in the open state, we can postpone them and they are queued and later handled in the locked state:
-この例では、開いた状態でボタンイベントを無視するのではなく、それらを延期することができ、それらはキューに入れられ、後でロック状態で処理されます。
+
+この例では、 Open 状態でボタンイベントを無視するのではなく、それらを延期することができ、それらはキューに入れられ、後で locked 状態で処理されます。
 
 ```erlang
 ...
-open(cast, {button,_}, Data) ->
-    {keep_state,Data,[postpone]};
+open(cast, {button, _}, Data) ->
+    {keep_state, Data, [postpone]};
 ...
 ```
 
 Since a postponed event is only retried after a state change, you have to think about where to keep a state data item. You can keep it in the server Data or in the State itself, for example by having two more or less identical states to keep a boolean value, or by using a complex state with callback mode handle_event_function. If a change in the value changes the set of events that is handled, then the value should be kept in the State. Otherwise no postponed events will be retried since only the server Data changes.
-延期されたイベントは状態の変更後にのみ再試行されるため、状態データ項目をどこに保存するかについて考える必要があります。ブール値を保持するために、 2 つの多かれ少なかれ同じ状態を持つか、またはコールバックモード handle_event_function で複雑な状態を使用するなどして、サーバーのデータ または状態自体に 保持することができます。値の変更によって処理されるイベントのセットが変更された場合、値は状態に保持されます。そうでなければ、延期されたイベントはサーバデータだけが変更されるので再試行されません。
+
+延期されたイベントは状態の変更後にのみ再試行されるため、状態データをどこに保持するかについて考える必要があります。ブール値を保持するために、 2 つの多かれ少なかれ同じ状態を持つか、またはコールバックモード handle_event_function で複雑な状態を使用するなどして、サーバーのデータ または状態自体に 保持することができます。値の変更によって処理されるイベントのセットが変更された場合、値は状態に保持されます。そうでなければ、延期されたイベントはサーバデータだけが変更されるので再試行されません。
 
 This is not important if you do not postpone events. But if you later decide to start postponing some events, then the design flaw of not having separate states when they should be, might become a hard to find bug.
+
 イベントを延期しない場合、これは重要ではありません。しかし、後にいくつかのイベントを延期することにした場合、別の状態を持たないという設計上の欠陥が、バグを見つけにくくなる可能性があります。
 
 
 ### Fuzzy State Diagrams
 
 It is not uncommon that a state diagram does not specify how to handle events that are not illustrated in a particular state in the diagram. Hopefully this is described in an associated text or from the context.
+
 状態図では、図の特定の状態には示されていないイベントをどのように処理するかを指定していることは珍しいことではありません。うまくいけば、これは関連するテキストまたは文脈で記述されているといいでしょう。
 
 Possible actions: ignore as in drop the event (maybe log it) or deal with the event in some other state as in postpone it.
-実行可能なアクション:イベントをドロップする(無視する)ように無視するか、イベントを延期するときと同じように他の状態で処理します。
+
+取りえる方法は、イベントをドロップする(無視する)ように無視するか、イベントを延期するときと同じように他の状態で処理します。
 
 
 ### Selective Receive
@@ -712,30 +723,30 @@ Erlang's selective receive statement is often used to describe simple state mach
 
 Erlang の選択受信文は、単純なステートマシンの例を簡単な Erlang コードで記述するためによく使用されます。以下は、最初の例の実装です。
 
+
 ```erlang
 -module(code_lock).
 -define(NAME, code_lock_1).
--export([start_link/1,button/1]).
+-export([start_link/1, button/1]).
 
 start_link(Code) ->
-    spawn(
-      fun () ->
-              true = register(?NAME, self()),
-              do_lock(),
-              locked(Code, Code)
-      end).
+    spawn(fun() ->
+                  true = register(?NAME, self()),
+                  do_lock(),
+                  locked(Code, Code)
+          end).
 
 button(Digit) ->
-    ?NAME ! {button,Digit}.
+    ?NAME ! {button, Digit}.
 
 locked(Code, [Digit|Remaining]) ->
     receive
-        {button,Digit} when Remaining =:= [] ->
+        {button, Digit} when Remaining =:= [] ->
             do_unlock(),
             open(Code);
-        {button,Digit} ->
+        {button, Digit} ->
             locked(Code, Remaining);
-        {button,_} ->
+        {button, _} ->
             locked(Code, Code)
     end.
 
@@ -753,25 +764,31 @@ do_unlock() ->
 ```
 
 The selective receive in this case causes implicitly open to postpone any events to the locked state.
-この場合の選択的受信は、暗黙的に開い て、すべてのイベントをロック状態に延期させる。
+
+この場合の選択的受信は、暗黙的に open て、すべてのイベントを locked 状態に延期させる。
 
 A selective receive cannot be used from a gen_statem behavior as for any gen_* behavior, as the receive statement is within the gen_* engine itself. It must be there because all sys compatible behaviors must respond to system messages and therefore do that in their engine receive loop, passing non-system messages to the callback module.
-受信文が gen_ *エンジン自体の中にあるので 、 gen_statem ビヘイビアからは、任意の gen_ *ビヘイビアのように選択受信を使用することはできません。すべての sys 互換動作がシステムメッセージに応答しなければならないため、非システムメッセージをコールバックモジュールに渡して、エンジン受信ループ内でそれを行う必要があるからです 。
+
+受信文が gen_* エンジン自体の中にあるので 、 gen_statem ビヘイビアからは、任意の gen_* ビヘイビアのように選択受信を使用することはできません。すべての sys 互換動作がシステムメッセージに応答しなければならないため、非システムメッセージをコールバックモジュールに渡して、エンジン受信ループ内でそれを行う必要があるからです。
 
 The state transition action postpone is designed to model selective receives. A selective receive implicitly postpones any not received events, but the postpone state transition action explicitly postpones one received event.
-状態遷移 アクションの 延期は、選択受信をモデル化するように設計されています。選択的受信は、受信されなかったイベントを 暗黙的に延期するが、延期された状態遷移アクションは、受信した 1 つのイベントを明示的に延期する。
+
+状態遷移アクションの延期は、選択受信をモデル化するように設計されています。選択的受信は、受信されなかったイベントを暗黙的に延期するが、延期された状態遷移アクションは、受信した 1 つのイベントを明示的に延期する。
 
 Both mechanisms have the same theoretical time and memory complexity, while the selective receive language construct has smaller constant factors.
+
 どちらのメカニズムも理論的な時間とメモリの複雑さは同じですが、選択受信言語構造はより小さい一定の要素を持っています。
 
 
 ## 4.16  State Entry Actions
 
 Say you have a state machine specification that uses state entry actions. Allthough you can code this using self-generated events (described in the next section), especially if just one or a few states has got state entry actions, this is a perfect use case for the built in state enter calls.
-状態入力アクションを使用するステートマシン仕様があるとします。これは、自己生成イベント(次のセクションで説明します)を使用してコード化することはできますが、特に 1 つまたは少数の州で州の入力アクションがある場合は、組み込みの状態入力呼び出しの完璧な使用例です 。
+
+状態入力アクションを使用するステートマシン仕様があるとします。これは、自己生成イベント(次のセクションで説明します)を使用してコード化することはできますが、特に 1 つまたは少数の state で state 入力アクションがある場合は、組み込みの状態入力呼び出しの完璧な使用例です。
 
 You return a list containing state_enter from your callback_mode/0 function and the gen_statem engine will call your state callback once with the arguments (enter, OldState, ...) whenever the state changes. Then you just need to handle these event-like calls in all states.
-callback_mode / 0 関数から state_enter を 含むリストを返すと、 gen_statem エンジンは、状態が変わるたびに引数(enter 、 OldState 、...)で状態コールバックを 1 回呼び出します 。次に、これらのイベントのような呼び出しをすべての状態で処理するだけです。
+
+`callback_mode/0` 関数から state_enter を 含むリストを返すと、 gen_statem エンジンは、状態が変わるたびに引数(enter, OldState, ...)で状態コールバックを 1 回呼び出します 。次に、これらのイベントのような呼び出しをすべての状態で処理するだけです。
 
 
 ```erlang
@@ -787,9 +804,7 @@ callback_mode() ->
 locked(enter, _OldState, Data) ->
     do_lock(),
     {keep_state,Data#{remaining => Code}};
-locked(
-  cast, {button,Digit},
-  #{code := Code, remaining := Remaining} = Data) ->
+locked(cast, {button,Digit}, #{code := Code, remaining := Remaining} = Data) ->
     case Remaining of
         [Digit] ->
             {next_state, open, Data};
@@ -804,28 +819,35 @@ open(state_timeout, lock, Data) ->
 ```
 
 You can repeat the state entry code by returning one of {repeat_state, ...}, {repeat_state_and_data,_} or repeat_state_and_data that otherwise behaves exactly like their keep_state siblings. See the type state_callback_result() in the reference manual.
-{repeat_state 、...}、{repeat_state_and_data 、_} または repeat_state_and_data の いずれかを返すことで状態エントリーコードを繰り返すことができます。 それ以外の場合は、 keep_state の兄弟とまったく同じように動作します。 リファレンスマニュアルの state_callback_result()のタイプを参照してください 。
+
+`{repeat_state, ...}`、 `{repeat_state_and_data, _}` または repeat_state_and_data の いずれかを返すことで状態エントリーコードを繰り返すことができます。 それ以外の場合は、 `keep_state` の兄弟とまったく同じように動作します。リファレンスマニュアルの `state_callback_result()` のタイプを参照してください。
+
 
 ### 4.17  Self-Generated Events
 
 It can sometimes be beneficial to be able to generate events to your own state machine. This can be done with the state transition action {next_event,EventType,EventContent}.
-自分のステートマシンにイベントを生成できることが有益な場合もあります。これは状態遷移アクション {next_event 、 EventType 、 EventContent}で行うことができ ます。
+
+自分のステートマシンにイベントを生成できることが有益な場合もあります。これは状態遷移アクション `{next_event, EventType, EventContent}` で行うことができます。
 
 You can generate events of any existing type, but the internal type can only be generated through action next_event. Hence, it cannot come from an external source, so you can be certain that an internal event is an event from your state machine to itself.
-既存のタイプのイベントを生成することはできます が、内部タイプはアクション next_event によってのみ生成でき ます。したがって、外部ソースから来ることはできません。したがって、内部イベントは、自分のステートマシンからそれ自体へのイベントであることが確実になります。
+
+既存のタイプのイベントを生成することはできますが、内部タイプはアクション next_event によってのみ生成できます。したがって、外部ソースから来ることはできません。したがって、内部イベントは、自分のステートマシンからそれ自体へのイベントであることが確実になります。
 
 One example for this is to pre-process incoming data, for example decrypting chunks or collecting characters up to a line break. Purists may argue that this should be modelled with a separate state machine that sends pre-processed events to the main state machine. But to decrease overhead the small pre-processing state machine can be implemented in the common state event handling of the main state machine using a few state data variables that then sends the pre-processed events as internal events to the main state machine.
-これの 1 つの例は、着信データを前処理することです(例えば、チャンクを解読するか、改行まで文字を収集するなど)。純粋主義者は、前処理されたイベントをメインステートマシンに送信する別のステートマシンでモデル化する必要があると主張するかもしれません。しかし、オーバーヘッドを減少させるために、少量の前処理ステートマシンを、いくつかの状態データ変数を使用して主ステートマシンの共通ステートイベント処理で実装することができ、その後、前処理されたイベントを内部イベントとして主ステートマシンに送信する。
+
+これの 1 つの例は、受信データを前処理することです(例えば、チャンクを解読するか、改行まで文字を収集するなど)。純粋主義者は、前処理されたイベントをメインステートマシンに送信する別のステートマシンでモデル化する必要があると主張するかもしれません。しかし、オーバーヘッドを減少させるために、少量の前処理ステートマシンを、いくつかの状態データ変数を使用して主ステートマシンの共通ステートイベント処理で実装することができ、その後、前処理されたイベントを内部イベントとして主ステートマシンに送信する。
 
 The following example uses an input model where you give the lock characters with put_chars(Chars) and then call enter() to finish the input.
+
 次の例では、ロック文字に put_chars(Chars)を指定し、次に enter()を呼び出して 入力を終了する入力モデルを使用します。
+
 
 ```erlang
 ...
 -export(put_chars/1, enter/0).
 ...
 put_chars(Chars) when is_binary(Chars) ->
-    gen_statem:call(?NAME, {chars,Chars}).
+    gen_statem:call(?NAME, {chars, Chars}).
 
 enter() ->
     gen_statem:call(?NAME, enter).
@@ -834,40 +856,40 @@ enter() ->
 
 locked(enter, _OldState, Data) ->
     do_lock(),
-    {keep_state,Data#{remaining => Code, buf => []}};
+    {keep_state, Data#{remaining => Code, buf => []}};
 ...
 
-handle_event({call,From}, {chars,Chars}, #{buf := Buf} = Data) ->
-    {keep_state, Data#{buf := [Chars|Buf],
-                       [{reply,From,ok}]};
-handle_event({call,From}, enter, #{buf := Buf} = Data) ->
+handle_event({call, From}, {chars, Chars}, #{buf := Buf} = Data) ->
+    {keep_state, Data#{buf := [Chars|Buf], [{reply, From, ok}]};
+handle_event({call, From}, enter, #{buf := Buf} = Data) ->
     Chars = unicode:characters_to_binary(lists:reverse(Buf)),
     try binary_to_integer(Chars) of
         Digit ->
-            {keep_state, Data#{buf := []},
-             [{reply,From,ok},
-              {next_event,internal,{button,Chars}}]}
+            {keep_state, Data#{buf := []}, [{reply, From, ok}, {next_event, internal, {button, Chars}}]}
     catch
         error:badarg ->
-            {keep_state, Data#{buf := []},
-             [{reply,From,{error,not_an_integer}}]}
+            {keep_state, Data#{buf := []}, [{reply, From, {error, not_an_integer}}]}
     end;
 ...
 ```
 
 If you start this program with code_lock:start([17]) you can unlock with code_lock:put_chars(<<"001">>), code_lock:put_chars(<<"7">>), code_lock:enter().
-このプログラムを code_lock:start([17])で 起動すると、 code_lock:put_chars(<< "001" >>)、 code_lock:put_chars(<< "7" >>)、 code_lock:enter()でロックを解除できます。
+
+このプログラムを `code_lock:start([17])` で 起動すると、 `code_lock:put_chars(<<"001">>)`、 `code_lock:put_chars(<<"7">>)`、 `code_lock:enter()` でロックを解除できます。
+
 
 ## 4.18  Example Revisited
 
 This section includes the example after most of the mentioned modifications and some more using state enter calls, which deserves a new state diagram:
+
 このセクションには、前述の変更のほとんどの例と、いくつかの状態入力コールを使用した新しい状態図が必要な例が含まれています。
 
-IMAGE MISSING
-Figure 4.2:   Code Lock State Diagram Revisited
+![Figure 4.2:   Code Lock State Diagram Revisited](http://erlang.org/doc/design_principles/code_lock_2.png)
+
 
 Notice that this state diagram does not specify how to handle a button event in the state open. So, you need to read somewhere else that unspecified events must be ignored as in not consumed but handled in some other state. Also, the state diagram does not show that the code_length/0 call must be handled in every state.
-この状態図では、開いている状態でボタンイベントを処理する方法は指定されていません。したがって、特定されていないイベントは、消費されずに他の州で処理されなければならないものとして無視する必要があります。また、状態図では 、すべての状態で code_length / 0 コールを処理する必要があることは示されていません。
+
+この状態図では、 open 状態でボタンイベントを処理する方法は指定されていません。したがって、特定されていないイベントは、消費されずに他の state で処理されなければならないものとして無視する必要があります。また、状態図では 、すべての状態で `code_length/0` コールを処理する必要があることは示されていません。
 
 
 ### Callback Mode: state_functions
@@ -879,18 +901,18 @@ Using state functions:
 -behaviour(gen_statem).
 -define(NAME, code_lock_2).
 
--export([start_link/1,stop/0]).
--export([button/1,code_length/0]).
--export([init/1,callback_mode/0,terminate/3,code_change/4]).
--export([locked/3,open/3]).
+-export([start_link/1, stop/0]).
+-export([button/1, code_length/0]).
+-export([init/1, callback_mode/0, terminate/3, code_change/4]).
+-export([locked/3, open/3]).
 
 start_link(Code) ->
-    gen_statem:start_link({local,?NAME}, ?MODULE, Code, []).
+    gen_statem:start_link({local, ?NAME}, ?MODULE, Code, []).
 stop() ->
     gen_statem:stop(?NAME).
 
 button(Digit) ->
-    gen_statem:cast(?NAME, {button,Digit}).
+    gen_statem:cast(?NAME, {button, Digit}).
 code_length() ->
     gen_statem:call(?NAME, code_length).
 
@@ -900,18 +922,14 @@ init(Code) ->
     {ok, locked, Data}.
 
 callback_mode() ->
-    [state_functions,state_enter].
+    [state_functions, state_enter].
 
 locked(enter, _OldState, #{code := Code} = Data) ->
     do_lock(),
     {keep_state, Data#{remaining => Code}};
-locked(
-  timeout, _,
-  #{code := Code, remaining := Remaining} = Data) ->
+locked(timeout, _, #{code := Code, remaining := Remaining} = Data) ->
     {keep_state, Data#{remaining := Code}};
-locked(
-  cast, {button,Digit},
-  #{code := Code, remaining := Remaining} = Data) ->
+locked(cast, {button, Digit}, #{code := Code, remaining := Remaining} = Data) ->
     case Remaining of
         [Digit] -> % Complete
             {next_state, open, Data};
@@ -925,16 +943,16 @@ locked(EventType, EventContent, Data) ->
 
 open(enter, _OldState, _Data) ->
     do_unlock(),
-    {keep_state_and_data, [{state_timeout,10000,lock}]};
+    {keep_state_and_data, [{state_timeout, 10000, lock}]};
 open(state_timeout, lock, Data) ->
     {next_state, locked, Data};
-open(cast, {button,_}, _) ->
+open(cast, {button, _}, _) ->
     {keep_state_and_data, [postpone]};
 open(EventType, EventContent, Data) ->
     handle_event(EventType, EventContent, Data).
 
-handle_event({call,From}, code_length, #{code := Code}) ->
-    {keep_state_and_data, [{reply,From,length(Code)}]}.
+handle_event({call, From}, code_length, #{code := Code}) ->
+    {keep_state_and_data, [{reply, From, length(Code)}]}.
 
 do_lock() ->
     io:format("Locked~n", []).
@@ -945,13 +963,15 @@ terminate(_Reason, State, _Data) ->
     State =/= locked andalso do_lock(),
     ok.
 code_change(_Vsn, State, Data, _Extra) ->
-    {ok,State,Data}.
+    {ok, State, Data}.
 ```
 
 ### Callback Mode: handle_event_function
 
 This section describes what to change in the example to use one handle_event/4 function. The previously used approach to first branch depending on event does not work that well here because of the state enter calls, so this example first branches depending on state:
-この節では、 handle_event / 4 関数を 1 つ使用する例で変更する内容について説明します。以前に使用された、イベントに応じた最初の分岐へのアプローチは、状態入力呼び出しのためにここでうまくいきません。したがって、この例は最初に状態によって分岐します。
+
+この節では、 `handle_event/4` 関数を 1 つ使用する例で変更する内容について説明します。以前に使用された、イベントに応じた最初の分岐へのアプローチは、状態入力呼び出しのためにここでうまくいきません。したがって、この例は最初に状態によって分岐します。
+
 
 ```erlang
 ...
@@ -962,18 +982,12 @@ callback_mode() ->
     [handle_event_function,state_enter].
 
 %% State: locked
-handle_event(
-  enter, _OldState, locked,
-  #{code := Code} = Data) ->
+handle_event(enter, _OldState, locked, #{code := Code} = Data) ->
     do_lock(),
     {keep_state, Data#{remaining => Code}};
-handle_event(
-  timeout, _, locked,
-  #{code := Code, remaining := Remaining} = Data) ->
+handle_event(timeout, _, locked, #{code := Code, remaining := Remaining} = Data) ->
     {keep_state, Data#{remaining := Code}};
-handle_event(
-  cast, {button,Digit}, locked,
-  #{code := Code, remaining := Remaining} = Data) ->
+handle_event(cast, {button,Digit}, locked, #{code := Code, remaining := Remaining} = Data) ->
     case Remaining of
         [Digit] -> % Complete
             {next_state, open, Data};
@@ -1000,25 +1014,31 @@ handle_event({call,From}, code_length, _State, #{code := Code}) ->
 ```
 
 Notice that postponing buttons from the locked state to the open state feels like a strange thing to do for a code lock, but it at least illustrates event postponing.
+
 ロック状態からオープン状態への ボタンの延期は、コードロックのためには奇妙なことだと感じますが、少なくともイベントの延期を示しています。
 
 
 ## 4.19  Filter the State
 
 The example servers so far in this chapter print the full internal state in the error log, for example, when killed by an exit signal or because of an internal error. This state contains both the code lock code and which digits that remain to unlock.
+
 この章のこれまでのサンプルサーバーでは、エラーログに完全な内部状態を表示しています(たとえば、終了信号で終了した場合や内部エラーが原因で発生した場合など)。この状態には、コードロックコードとロック解除するために残っている数字の両方が含まれます。
 
 
 This state data can be regarded as sensitive, and maybe not what you want in the error log because of some unpredictable event.
+
 この状態データは機密と見なすことができ、予測できないイベントのためにエラーログに必要なものではない場合もあります。
 
 
 Another reason to filter the state can be that the state is too large to print, as it fills the error log with uninteresting details.
+
 状態をフィルタリングするもう 1 つの理由は、エラーログに不都合な詳細が含まれているため、状態が大きすぎて印刷できないことがあります。
 
 
 To avoid this, you can format the internal state that gets in the error log and gets returned from sys:get_status/1,2 by implementing function Module:format_status/2, for example like this:
-これを避けるには、エラーログに 取り込まれ、関数 Module:format_status/2 を実装して sys:get_status / 1,2 から返される内部状態をフォーマットすることができます 。
+
+これを避けるには、エラーログに 取り込まれ、関数 `Module:format_status/2` を実装して `sys:get_status/1,2` から返される内部状態をフォーマットすることができます。
+
 
 ```erlang
 ...
@@ -1026,14 +1046,10 @@ To avoid this, you can format the internal state that gets in the error log and 
 ...
 
 format_status(Opt, [_PDict,State,Data]) ->
-    StateData =
-    {State,
-     maps:filter(
-       fun (code, _) -> false;
-           (remaining, _) -> false;
-           (_, _) -> true
-       end,
-       Data)},
+    StateData = {State, maps:filter(fun (code, _) -> false;
+                                        (remaining, _) -> false;
+                                        (_, _) -> true
+                                    end, Data)},
     case Opt of
         terminate ->
             StateData;
@@ -1043,118 +1059,108 @@ format_status(Opt, [_PDict,State,Data]) ->
 ```
 
 It is not mandatory to implement a Module:format_status/2 function. If you do not, a default implementation is used that does the same as this example function without filtering the Data term, that is, StateData = {State,Data}, in this example containing sensitive information.
-Module:format_status/2 関数 を実装することは必須ではありません 。そうでない場合は、 Data 項をフィルタリングせずにこの例の関数と同じ、つまり StateData = {State 、 Data}というこの例では機密情報を含むデフォルトの実装が使用されます。
+
+`Module:format_status/2` 関数を実装することは必須ではありません。そうでない場合は、 Data 項をフィルタリングせずにこの例の関数と同じ、つまり `StateData = {State, Data}` というこの例では機密情報を含むデフォルトの実装が使用されます。
 
 
 ## 4.20  Complex State
 
 The callback mode handle_event_function enables using a non-atom state as described in section Callback Modes, for example, a complex state term like a tuple.
+
 コールバックモード handle_event_function は、コールバックモード、例えばタプルのような複雑な状態の項のように、非アトム状態を使用することを可能にし ます。
 
 
 One reason to use this is when you have a state item that affects the event handling, in particular in combination with postponing events. We complicate the previous example by introducing a configurable lock button (this is the state item in question), which in the open state immediately locks the door, and an API function set_lock_button/1 to set the lock button.
-これを使用する 1 つの理由は、イベント処理に影響を与える状態項目、特に延期イベントとの組み合わせがある場合です。前の例では、設定可能なロックボタン(これは問題の状態アイテム)を導入することによって複雑になりました。これは、開いた状態ですぐにドアをロックし、ロックボタンを設定する API 関数 set_lock_button / 1 を導入します。
+
+これを使用する 1 つの理由は、イベント処理に影響を与える状態項目、特に延期イベントとの組み合わせがある場合です。前の例では、設定可能なロックボタン(これは問題の状態アイテム)を導入することによって複雑になりました。これは、開いた状態ですぐにドアをロックし、ロックボタンを設定する API 関数 `set_lock_button/1` を導入します。
 
 
 Suppose now that we call set_lock_button while the door is open, and have already postponed a button event that until now was not the lock button. The sensible thing can be to say that the button was pressed too early so it is not to be recognized as the lock button. However, then it can be surprising that a button event that now is the lock button event arrives (as retried postponed) immediately after the state transits to locked.
+
 ドアが開いている ときに set_lock_button を呼び出すと、今までロックボタンではなかったボタンイベントが既に延期されているとします。賢明なことは、ボタンが早すぎるため、ロックボタンとして認識されないと言うことができます。しかし、今、ロックボタンイベントでボタンのイベントがすぐに状態遷移した後に(延期再試行のように)到着したことは驚くべきことができますロック。
 
 
 So we make the button/1 function synchronous by using gen_statem:call and still postpone its events in the open state. Then a call to button/1 during the open state does not return until the state transits to locked, as it is there the event is handled and the reply is sent.
-したがって、 gen_statem:call を使用してボタン/ 1 関数を同期させ 、そのイベントを開いた状態で延期します。次に、開いている 状態の間にボタン/ 1 の呼び出しは、イベントが処理されて応答が送信されるため、状態が locked に遷移するまで戻りません。
+
+したがって、 gen_statem:call を使用して `button/1` 関数を同期させ 、そのイベントを開いた状態で延期します。次に、開いている 状態の間にボタン/ 1 の呼び出しは、イベントが処理されて応答が送信されるため、状態が locked に遷移するまで戻りません。
 
 
 If a process now calls set_lock_button/1 to change the lock button while another process hangs in button/1 with the new lock button, it can be expected that the hanging lock button call immediately takes effect and locks the lock. Therefore, we make the current lock button a part of the state, so that when we change the lock button, the state changes and all postponed events are retried.
-プロセスが set_lock_button / 1 を呼び出してロックボタンを変更すると、新しいロックボタンでボタン/ 1 に別のプロセスがハングアップしているときに、ハンギングロックボタンの呼び出しがすぐに有効になり、ロックがロックされることが期待できます。したがって、現在のロックボタンを状態の一部にして、ロックボタンを変更すると状態が変わり、すべての延期されたイベントが再試行されます。
+
+プロセスが `set_lock_button/1` を呼び出してロックボタンを変更すると、新しいロックボタンで `button/1` に別のプロセスがハングアップしているときに、ハンギングロックボタンの呼び出しがすぐに有効になり、ロックがロックされることが期待できます。したがって、現在のロックボタンを状態の一部にして、ロックボタンを変更すると状態が変わり、すべての延期されたイベントが再試行されます。
 
 
 We define the state as {StateName,LockButton}, where StateName is as before and LockButton is the current lock button:
-状態を{StateName 、 LockButton}と定義します。ここで、 StateName は以前と同じで、 LockButton は現在のロックボタンです。
+状態を `{StateName, LockButton}` と定義します。ここで、 StateName は以前と同じで、 LockButton は現在のロックボタンです。
 
 ```erlang
 -module(code_lock).
 -behaviour(gen_statem).
 -define(NAME, code_lock_3).
 
--export([start_link/2,stop/0]).
--export([button/1,code_length/0,set_lock_button/1]).
--export([init/1,callback_mode/0,terminate/3,code_change/4,format_status/2]).
+-export([start_link/2, stop/0]).
+-export([button/1, code_length/0, set_lock_button/1]).
+-export([init/1, callback_mode/0, terminate/3, code_change/4, format_status/2]).
 -export([handle_event/4]).
 
 start_link(Code, LockButton) ->
-    gen_statem:start_link(
-      {local,?NAME}, ?MODULE, {Code,LockButton}, []).
+    gen_statem:start_link({local, ?NAME}, ?MODULE, {Code, LockButton}, []).
 stop() ->
     gen_statem:stop(?NAME).
 
 button(Digit) ->
-    gen_statem:call(?NAME, {button,Digit}).
+    gen_statem:call(?NAME, {button, Digit}).
 code_length() ->
     gen_statem:call(?NAME, code_length).
 set_lock_button(LockButton) ->
-    gen_statem:call(?NAME, {set_lock_button,LockButton}).
+    gen_statem:call(?NAME, {set_lock_button, LockButton}).
 
-init({Code,LockButton}) ->
+init({Code, LockButton}) ->
     process_flag(trap_exit, true),
     Data = #{code => Code, remaining => undefined},
-    {ok, {locked,LockButton}, Data}.
+    {ok, {locked, LockButton}, Data}.
 
 callback_mode() ->
-    [handle_event_function,state_enter].
+    [handle_event_function, state_enter].
 
-handle_event(
-  {call,From}, {set_lock_button,NewLockButton},
-  {StateName,OldLockButton}, Data) ->
-    {next_state, {StateName,NewLockButton}, Data,
-     [{reply,From,OldLockButton}]};
-handle_event(
-  {call,From}, code_length,
-  {_StateName,_LockButton}, #{code := Code}) ->
-    {keep_state_and_data,
-     [{reply,From,length(Code)}]};
+handle_event({call, From}, {set_lock_button, NewLockButton}, {StateName, OldLockButton}, Data) ->
+    {next_state, {StateName, NewLockButton}, Data, [{reply, From, OldLockButton}]};
+handle_event({call, From}, code_length, {_StateName, _LockButton}, #{code := Code}) ->
+    {keep_state_and_data, [{reply, From, length(Code)}]};
 %%
 %% State: locked
-handle_event(
-  EventType, EventContent,
-  {locked,LockButton}, #{code := Code, remaining := Remaining} = Data) ->
+handle_event(EventType, EventContent, {locked, LockButton}, #{code := Code, remaining := Remaining} = Data) ->
     case {EventType, EventContent} of
         {enter, _OldState} ->
             do_lock(),
             {keep_state, Data#{remaining := Code}};
         {timeout, _} ->
             {keep_state, Data#{remaining := Code}};
-        {{call,From}, {button,Digit}} ->
+        {{call, From}, {button, Digit}} ->
             case Remaining of
                 [Digit] -> % Complete
-                    {next_state, {open,LockButton}, Data,
-                     [{reply,From,ok}]};
+                    {next_state, {open, LockButton}, Data, [{reply, From, ok}]};
                 [Digit|Rest] -> % Incomplete
-                    {keep_state, Data#{remaining := Rest, 30000},
-                     [{reply,From,ok}]};
+                    {keep_state, Data#{remaining := Rest, 30000}, [{reply, From, ok}]};
                 [_|_] -> % Wrong
-                    {keep_state, Data#{remaining := Code},
-                     [{reply,From,ok}]}
+                    {keep_state, Data#{remaining := Code}, [{reply, From, ok}]}
             end
     end;
 %%
 %% State: open
-handle_event(
-  EventType, EventContent,
-  {open,LockButton}, Data) ->
+handle_event(EventType, EventContent, {open, LockButton}, Data) ->
     case {EventType, EventContent} of
         {enter, _OldState} ->
             do_unlock(),
-            {keep_state_and_data, [{state_timeout,10000,lock}]};
+            {keep_state_and_data, [{state_timeout, 10000, lock}]};
         {state_timeout, lock} ->
-            {next_state, {locked,LockButton}, Data};
-        {{call,From}, {button,Digit}} ->
+            {next_state, {locked, LockButton}, Data};
+        {{call, From}, {button, Digit}} ->
             if
                 Digit =:= LockButton ->
-                    {next_state, {locked,LockButton}, Data,
-                     [{reply,From,locked}]);
-    true ->
-        {keep_state_and_data,
-         [postpone]}
+                    {next_state, {locked, LockButton}, Data, [{reply, From, locked}]};
+                true ->
+                    {keep_state_and_data, [postpone]}
             end
     end.
 
@@ -1167,65 +1173,66 @@ terminate(_Reason, State, _Data) ->
     State =/= locked andalso do_lock(),
     ok.
 code_change(_Vsn, State, Data, _Extra) ->
-    {ok,State,Data}.
-format_status(Opt, [_PDict,State,Data]) ->
-    StateData =
-    {State,
-     maps:filter(
-       fun (code, _) -> false;
-           (remaining, _) -> false;
-           (_, _) -> true
-       end,
-       Data)},
+    {ok, State, Data}.
+format_status(Opt, [_PDict, State, Data]) ->
+    StateData = {State, maps:filter(
+                          fun (code, _) -> false;
+                              (remaining, _) -> false;
+                              (_, _) -> true
+                          end,
+                          Data)},
     case Opt of
         terminate ->
             StateData;
         normal ->
-            [{data,[{"State",StateData}]}]
+            [{data, [{"State", StateData}]}]
     end.
 ```
 
 It can be an ill-fitting model for a physical code lock that the button/1 call can hang until the lock is locked. But for an API in general it is not that strange.
-ロックがロックされるまで、ボタン/ 1 コールがハングアップする可能性の ある、物理コードロックの不適切なモデルになる可能性があります。しかし、一般的に API にとってはそれほど奇妙ではありません。
+ロックが locked になるまで button/1 コールがハングアップする可能性があるのは、物理モデルからみると不自然かもしれません。しかし、一般的に API にとってはそれほど奇妙ではありません。
 
 
 ## 4.21  Hibernation
 
 If you have many servers in one node and they have some state(s) in their lifetime in which the servers can be expected to idle for a while, and the amount of heap memory all these servers need is a problem, then the memory footprint of a server can be mimimized by hibernating it through proc_lib:hibernate/3.
-1 つのノードに多数のサーバーがあり、それらのサーバーがしばらくアイドル状態になると予想される寿命があり、これらのサーバーが必要とするヒープメモリーの量に問題がある場合は、メモリー占有量 proc_lib:hibernate / 3 を使って hibernate することで、サーバの最小化を図ることができ ます。
+
+1 つのノードに多数のサーバーがあり、それらのサーバーがしばらくアイドル状態になると予想される寿命があり、これらのサーバーが必要とするヒープメモリーの量に問題がある場合は、メモリー占有量 `proc_lib:hibernate/3` を使って hibernate することで、サーバの最小化を図ることができ ます。
 
 
 ## Note
 
 It is rather costly to hibernate a process; see erlang:hibernate/3. It is not something you want to do after every event.
-プロセスを休止するにはかなりコストがかかります。 erlang:hibernate / 3 を参照してください 。すべてのイベントの後にあなたがしたいことではありません。
 
+プロセスを休止するにはかなりコストがかかります。 `erlang:hibernate/3` を参照してください。すべてのイベントの後にあなたがしたいことではありません。
 
 We can in this example hibernate in the {open,_} state, because what normally occurs in that state is that the state time-out after a while triggers a transition to {locked,_}:
-この例では、{open 、_}状態で冬眠することができます。なぜなら、その状態で通常起こるのは、しばらくしてからの状態タイムアウトが{locked 、_}への遷移を引き起こすからです。
+
+この例では、 `{open, _}` 状態で冬眠することができます。なぜなら、その状態で通常起こるのは、しばらくしてからの状態タイムアウトが `{locked, _}` への遷移を引き起こすからです。
 
 ```erlang
 ...
 %% State: open
-handle_event(
-  EventType, EventContent,
-  {open,LockButton}, Data) ->
+handle_event(EventType, EventContent, {open, LockButton}, Data) ->
     case {EventType, EventContent} of
         {enter, _OldState} ->
             do_unlock(),
-            {keep_state_and_data,
-             [{state_timeout,10000,lock},hibernate]};
+            {keep_state_and_data, [{state_timeout, 10000, lock}, hibernate]};
         ...
 ```
 
 The atom hibernate in the action list on the last line when entering the {open,_} state is the only change. If any event arrives in the {open,_}, state, we do not bother to rehibernate, so the server stays awake after any event.
-{open 、_}状態 に入るときの最後の行のアクションリスト内の 原子の 冬眠は唯一の変更です。{open 、_}状態にイベントが到着した場合は、再起動する必要はありません。そのため、サーバーはイベント発生後も起きています。
+`{open, _}` 状態に入るときの最後の行のアクションリスト内の hibernate アトムは唯一の変更です。 `{open, _}` 状態にイベントが到着した場合は、再起動する必要はありません。そのため、サーバーはイベント発生後も起きています。
+
 
 To change that we would need to insert action hibernate in more places. For example, for the state-independent set_lock_button and code_length operations that then would have to be aware of using hibernate while in the {open,_} state, which would clutter the code.
-これを変更するには、より多くの場所に休止状態のアクションを挿入する必要があります。たとえば、状態に依存しない set_lock_button と code_length の操作では、{open 、_}状態で hibernate を 使用することを認識しなければならず、コードが乱雑になります。
+
+これを変更するには、より多くの場所に休止状態のアクションを挿入する必要があります。たとえば、状態に依存しない set_lock_button と code_length の操作では、 `{open, _}` 状態で hibernate を 使用することを認識しなければならず、コードが乱雑になります。
 
 Another not uncommon scenario is to use the event time-out to triger hibernation after a certain time of inactivity.
+
 もう 1 つの珍しいシナリオでは、一定時間休止した後にトリガー・ハイバネーションにイベント・タイムアウトを使用することです。
 
 This server probably does not use heap memory worth hibernating for. To gain anything from hibernation, your server would have to produce some garbage during callback execution, for which this example server can serve as a bad example.
+
 このサーバーは、おそらく休止状態の価値のあるヒープメモリーを使用しません。休止状態から何かを得るために、サーバはコールバック実行中にいくつかのガベージを生成する必要があります。そのため、このサンプルサーバは悪い例として役立ちます。
