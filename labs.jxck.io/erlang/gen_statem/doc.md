@@ -818,7 +818,7 @@ open(state_timeout, lock, Data) ->
 
 You can repeat the state entry code by returning one of {repeat_state, ...}, {repeat_state_and_data, \_} or repeat_state_and_data that otherwise behaves exactly like their keep_state siblings. See the type state_callback_result() in the reference manual.
 
-`{repeat_state, ...}`、 `{repeat_state_and_data, _}` または repeat_state_and_data の いずれかを返すことで状態エントリーコードを繰り返すことができます。 それ以外の場合は、 `keep_state` の兄弟とまったく同じように動作します。リファレンスマニュアルの `state_callback_result()` のタイプを参照してください。
+`{repeat_state, ...}`、 `{repeat_state_and_data, _}` または `repeat_state_and_data` のいずれかを返すことで状態エントリーコードを繰り返すことができます。 それ以外の場合は、 `keep_state` の兄弟とまったく同じように動作します。リファレンスマニュアルの `state_callback_result()` のタイプを参照してください。
 
 
 ### 4.17  Self-Generated Events
@@ -859,6 +859,7 @@ locked(enter, _OldState, Data) ->
 
 handle_event({call, From}, {chars, Chars}, #{buf := Buf} = Data) ->
     {keep_state, Data#{buf := [Chars|Buf], [{reply, From, ok}]};
+
 handle_event({call, From}, enter, #{buf := Buf} = Data) ->
     Chars = unicode:characters_to_binary(lists:reverse(Buf)),
     try binary_to_integer(Chars) of
@@ -873,7 +874,7 @@ handle_event({call, From}, enter, #{buf := Buf} = Data) ->
 
 If you start this program with `code_lock:start([17])` you can unlock with `code_lock:put_chars(<<"001">>)`, `code_lock:put_chars(<<"7">>)`, `code_lock:enter()`.
 
-このプログラムを `code_lock:start([17])` で 起動すると、 `code_lock:put_chars(<<"001">>)`、 `code_lock:put_chars(<<"7">>)`、 `code_lock:enter()` でロックを解除できます。
+このプログラムを `code_lock:start([17])` で起動すると、 `code_lock:put_chars(<<"001">>)`、 `code_lock:put_chars(<<"7">>)`、 `code_lock:enter()` でロックを解除できます。
 
 
 ## 4.18  Example Revisited

@@ -106,12 +106,12 @@ gen_statem 内の特定の状態に対する 「状態コールバック」は�
 
 When the callback mode is state_functions, the state must be an atom and is used as the state callback name; see Module:StateName/3. This gathers all code for a specific state in one function as the gen_statem engine branches depending on state name. Notice the fact that there is a mandatory callback function Module:terminate/3 makes the state name terminate unusable in this mode.
 
-コールバックモードが state_functions の場合、状態は atom でなければならず、状態のコールバック名として使用されます。 Module:StateName/3 を参照してください 。これにより、状態名に応じて gen_statem エンジンが分岐するため、特定の状態のすべてのコードが 1 つの関数に集約されます。必須のコールバック関数があることに注意してください。 Module :terminate/3 は、このモードで状態名を終了することを不可能にします。
+コールバックモードが state_functions の場合、状態は atom でなければならず、状態のコールバック名として使用されます。 Module:StateName/3 を参照してください。これにより、状態名に応じて gen_statem エンジンが分岐するため、特定の状態のすべてのコードが 1 つの関数に集約されます。必須のコールバック関数があることに注意してください。 Module:terminate/3 は、このモードで状態名を終了することを不可能にします。
 
 
 When the callback mode is handle_event_function, the state can be any term and the state callback name is Module:handle_event/4. This makes it easy to branch depending on state or event as you desire. Be careful about which events you handle in which states so that you do not accidentally postpone an event forever creating an infinite busy loop.
 
-コールバックモードが handle_event_function の場合、状態は、任意の型にすることができ、状態のコールバック名は Module:handle_event/4 です。これにより、必要に応じて状態やイベントに応じて簡単に分岐することができます。どの状態でどのイベントを処理するか注意してください。そうすれば、無限のビジーループを永久に作成して間違ってイベントを延期することはありません。
+コールバックモードが handle_event_function の場合、状態は任意の型にすることができ、状態のコールバック名は Module:handle_event/4 です。これにより、必要に応じて状態やイベントに応じて簡単に分岐することができます。どの状態でどのイベントを処理するか注意してください。そうすれば、無限のビジーループを永久に作成して間違ってイベントを延期することはありません。
 
 
 The gen_statem enqueues incoming events in order of arrival and presents these to the state callback in that order. The state callback can postpone an event so it is not retried in the current state. After a state change the queue restarts with the postponed events.
@@ -121,13 +121,14 @@ gen_statem は到着順に着信イベントをエンキューし、これらを
 
 The gen_statem event queue model is sufficient to emulate the normal process message queue with selective receive. Postponing an event corresponds to not matching it in a receive statement, and changing states corresponds to entering a new receive statement.
 
-gen_statem イベントキューモデルは、選択的に受信して通常の処理メッセージキューをエミュレートするのに十分です。イベントを延期することは、 receive ステートメントでまっちしないことに対応し、状態を変更することは、新しい receive ステートメントを入力することに対応する。
+gen_statem イベントキューモデルは、通常の selective receive でのメッセージキューをエミュレートするのに十分です。イベントを延期することは、 receive ステートメントでマッチしないことに対応し、状態を変更することは、新しい receive ステートメントを入力することに対応する。
 
 
 TODO:
 The state callback can insert events using the `action()` next_event and such an event is inserted as the next to present to the state callback. That is, as if it is the oldest incoming event. A dedicated `event_type()` internal can be used for such events making them impossible to mistake for external events.
 
-状態コールバックは `action()` を使用してイベントを挿入することができます `action()` next_event 、そのようなイベントは状態コールバックに提供するように次のように挿入されています。つまり、それが最古の着信イベントであるかのようになります。専用の event_type() 内部イベントを使用すると、外部イベントを間違えることはありません。
+
+状態コールバックは、 `action() next event` を用いてイベントを挿入できます、そのようなイベントは状態コールバックに提供するように次のように挿入されています。つまり、それが最古の着信イベントであるかのようになります。専用の event_type() 内部イベントを使用すると、外部イベントを間違えることはありません。
 
 
 TODO:
@@ -138,7 +139,7 @@ Inserting an event replaces the trick of calling your own state handling functio
 
 The gen_statem engine can automatically make a specialized call to the state callback whenever a new state is entered; see `state_enter()`. This is for writing code common to all state entries. Another way to do it is to insert events at state transitions, but you have to do so everywhere it is needed.
 
-gen_statem のエンジンが自動的に特化したコールすることができます 状態コールバックを 新しい状態に入った時はいつでも。 `state_enter()` を参照してください 。これは、すべての状態エントリに共通するコードを記述するためのものです。これを行うもう 1 つの方法は、状態遷移でイベントを挿入することですが、必要なときはいつでもイベントを挿入する必要があります。
+gen_statem のエンジンが自動的に特化したコールすることができます 状態コールバックを新しい状態に入った時はいつでも。 `state_enter()` を参照してください 。これは、すべての状態エントリに共通するコードを記述するためのものです。これを行うもう 1 つの方法は、状態遷移でイベントを挿入することですが、必要なときはいつでもイベントを挿入する必要があります。
 
 
 ## Note
@@ -160,7 +161,7 @@ gen_statem は sys で説明したようにシステムメッセージを処理�
 
 Notice that a gen_statem does not trap exit signals automatically, this must be explicitly initiated in the callback module (by calling process_flag(trap_exit, true).
 
-gen_statem は自動的に trap exit しないことに注意してください、これはコールバックモジュールで(process_flag(trap_exit, true) を)明示的に呼び出す必要があります。
+gen_statem は自動的に trap exit しないことに注意してください、これはコールバックモジュールで `process_flag(trap_exit, true)` を 明示的に呼び出す必要があります。
 
 
 Unless otherwise stated, all functions in this module fail if the specified gen_statem does not exist or if bad arguments are specified.
@@ -266,7 +267,7 @@ ok
 
 To compare styles, here follows the same example using callback mode state_functions, or rather the code to replace after function init/1 of the pushbutton.erl example file above:
 
-スタイルを比較するために、ここで使用した同じ例を次の コールバックモード state_functions 関数の後に交換する、またはむしろコードを init/1 の pushbutton.erl 上記の例のファイル:
+スタイルを比較するために、ここで使用した同じ例を次のコールバックモード state_functions 関数の後に交換する、またはむしろコードを init/1 の pushbutton.erl 上記の例のファイル:
 
 
 ```erlang
@@ -315,19 +316,19 @@ Server specification to use when addressing a gen_statem server. See call/2 and 
 
 It can be:
 
-pid() | LocalName
+`pid() | LocalName`
 The gen_statem is locally registered.
 
-{Name, Node}
+`{Name, Node}`
 The gen_statem is locally registered on another node.
 
-{global, GlobalName}
+`{global, GlobalName}`
 The gen_statem is globally registered in global.
 
-{via, RegMod, ViaName}
+`{via, RegMod, ViaName}`
 The gen_statem is registered in an alternative process registry. The registry callback module RegMod is to export functions register_name/2, unregister_name/1, whereis_name/1, and send/2, which are to behave like the corresponding functions in global. Thus, `{via, global, GlobalName}` is the same as `{global, GlobalName}`.
 
-gen_statem は、代替プロセスレジストリに登録されています。レジストリコールバックモジュール RegMod は、関数がエクスポートする register_name/2 、 unregister_name/1 、 whereis_name/1 、及び send/2 に対応するグローバル関数のように動作するようにされます。したがって、`{via, global, GlobalName}` は `{global, GlobalName}` と同じです。
+gen_statem は、代替プロセスレジストリに登録されています。レジストリコールバックモジュール RegMod は、関数がエクスポートする register_name/2、 unregister_name/1、 whereis_name/1、及び send/2 に対応するグローバル関数のように動作するようにされます。したがって、`{via, global, GlobalName}` は `{global, GlobalName}` と同じです。
 
 ```
 debug_opt() =
@@ -343,7 +344,7 @@ gen_statem サーバの起動時に、 enter_loop/4-6 を使用する際に使�
 
 For every entry in Dbgs, the corresponding function in sys is called.
 
-Dbg の すべてのエントリに対して、 sys の対応する関数が呼び出されます。
+Dbg のすべてのエントリに対して、 sys の対応する関数が呼び出されます。
 
 
 ```
@@ -464,7 +465,7 @@ transition_option() =
 
 Transition options can be set by actions and they modify how the state transition is done:
 
-遷移オプションはアクションによって設定することができ 、状態遷移の仕方を変更します。
+遷移オプションはアクションによって設定することができ、状態遷移の仕方を変更します。
 
 - If the state changes, is the initial state, repeat_state or repeat_state_and_data is used, and also state enter calls are used, the gen_statem calls the new state callback with arguments (enter, OldState, Data). Any actions returned from this call are handled as if they were appended to the actions returned by the state callback that changed states.
 - All actions are processed in order of appearance.
@@ -486,7 +487,7 @@ Transition options can be set by actions and they modify how the state transitio
 - タイムアウトタイマー `state_timeout()` および `event_timeout()` が処理されます。ゼロ時間を有するタイムアウトは、外部未受信イベントの前に状態機械に供給されることが保証されているので、そのようなタイムアウトが要求された場合、対応するタイムアウトゼロイベントは最新のイベントとしてエンキューされる。
 - すべてのイベントは `event_timeout()` をキャンセルし、イベントキューが空の場合、タイムアウトイベントは生成されません。
 - 状態の変更は `state_timeout()` をキャンセルし、 このタイプの新しい遷移オプションは新しい状態に属します。
-- エンキューされたイベントがある場合 、おそらく新しい状態の状態コールバックが最も古いエンキューされたイベントで呼び出され、このリストの先頭から再び開始されます。
+- エンキューされたイベントがある場合、おそらく新しい状態の状態コールバックが最も古いエンキューされたイベントで呼び出され、このリストの先頭から再び開始されます。
 - さもなければ、 gen_statem は、次のメッセージを待つために、受信または休止状態に入ります(`hibernate()` が true の場合)。ハイバネーションでは、次の非システムイベントが gen_statem を起こし、次の受信メッセージが gen_statem を目覚めさせますが、システムイベントの場合は、すぐに休止状態に戻ります。新しいメッセージが到着する と、対応するイベントとともに状態コールバックが呼び出され、このリストの先頭から再び開始されます。
 
 
@@ -566,7 +567,7 @@ action() =
 
 These state transition actions can be invoked by returning them from the state callback when it is called with an event, from Module:init/1 or by giving them to enter_loop/5, 6.
 
-これらの状態遷移アクションは、イベントで呼び出されたときに状態コールバックから、 Module:init/1 から 、または enter_loop/5, 6 にそれらを渡すことによって、それらを戻すことによって呼び出すことができます。
+これらの状態遷移アクションは、イベントで呼び出されたときに状態コールバックから、 Module:init/1 から、または enter_loop/5, 6 にそれらを渡すことによって、それらを戻すことによって呼び出すことができます。
 
 
 Actions are executed in the containing list order.
@@ -590,7 +591,7 @@ next_event
 
   Stores the specified EventType and EventContent for insertion after all actions have been executed.
 
-  すべてのアクションが実行された後に挿入するために 、指定された EventType および EventContent を格納します。
+  すべてのアクションが実行された後に挿入するために、指定された EventType および EventContent を格納します。
 
 
   The stored events are inserted in the queue as the next to process before any already queued events. The order of these stored events is preserved, so the first next_event in the containing list becomes the first to process.
@@ -617,7 +618,7 @@ enter_action() =
 
 These state transition actions can be invoked by returning them from the state callback, from Module:init/1 or by giving them to enter_loop/5, 6.
 
-これらの状態遷移アクションは、状態コールバックから、 Module:init/1 から 、またはそれらを enter_loop/5, 6 に 渡すことによって呼び出すことができます。
+これらの状態遷移アクションは、状態コールバックから、 Module:init/1 から、またはそれらを enter_loop/5, 6 に 渡すことによって呼び出すことができます。
 
 
 Actions are executed in the containing list order.
@@ -763,7 +764,7 @@ call(ServerRef :: server_ref(),
 
 Makes a synchronous call to the gen_statem ServerRef by sending a request and waiting until its reply arrives. The gen_statem calls the state callback with event_type() `{call, From}` and event content Request.
 
-同期呼び出しを行い gen_statem の ServerRef 要求を送信し、その応答が到着するまで待つことを。 gen_statem は、コール 状態のコールバックを用いて `event_type() {call 、 From}` 及びイベントコンテンツリクエスト。
+同期呼び出しを行い gen_statem の ServerRef 要求を送信し、その応答が到着するまで待つことを。 gen_statem は、コール 状態のコールバックを用いて `event_type() {call、 From}` 及びイベントコンテンツリクエスト。
 
 
 A Reply is generated when a state callback returns with `{reply, From, Reply}` as one action(), and that Reply becomes the return value of this function.
@@ -928,7 +929,7 @@ gen_statem プロセスは Module:init/1 を呼び出しサーバーを初期化
 
 ServerName specifies the server_name() to register for the gen_statem. If the gen_statem is started with start_link/3, no ServerName is provided and the gen_statem is not registered.
 
-ServerName は、 gen_statem に登録する `server_name()` を指定します。場合 gen_statem がで開始されては start_link/3 、何のサーバー名が提供されていないと gen_statem が登録されていません。
+ServerName は、 gen_statem に登録する `server_name()` を指定します。場合 gen_statem がで開始されては start_link/3、何のサーバー名が提供されていないと gen_statem が登録されていません。
 
 
 Module is the name of the callback module.
@@ -1018,7 +1019,7 @@ CallbackMode = callback_mode() | [ callback_mode() | state_enter() ]
 
 This function is called by a gen_statem when it needs to find out the callback mode of the callback module. The value is cached by gen_statem for efficiency reasons, so this function is only called once after server start and after code change, but before the first state callback in the current code version is called. More occasions may be added in future versions of gen_statem.
 
-この関数は 、コールバックモジュールのコールバックモードを見つける必要があるときに、 gen_statem によって呼び出されます。値は 効率の理由から gen_statem によってキャッシュされるため、この関数はサーバーの起動後およびコード変更後に 1 回だけ呼び出されます が、現在のコードバージョンの最初の 状態コールバックが呼び出される前に呼び出されます。より多くの機会は、将来のバージョンに加えてもよい gen_statem 。
+この関数は、コールバックモジュールのコールバックモードを見つける必要があるときに、 gen_statem によって呼び出されます。値は 効率の理由から gen_statem によってキャッシュされるため、この関数はサーバーの起動後およびコード変更後に 1 回だけ呼び出されます が、現在のコードバージョンの最初の 状態コールバックが呼び出される前に呼び出されます。より多くの機会は、将来のバージョンに加えてもよい gen_statem 。
 
 
 Server start happens either when Module:init/1 returns or when enter_loop/4-6 is called. Code change happens when Module:code_change/4 returns.
@@ -1071,22 +1072,22 @@ OldState と OLDDATA は、内部の状態である gen_statem 。
 
 Extra is passed "as is" from the `{advanced, Extra}` part of the update instruction.
 
-Extra は 、更新命令の`{advanced 、 Extra}` 部分から "そのまま"渡されます。
+Extra は、更新命令の`{advanced、 Extra}` 部分から "そのまま"渡されます。
 
 
 If successful, the function must return the updated internal state in an `{ok, NewState, NewData}` tuple.
 
-成功した場合、関数は更新された内部状態を`{ok 、 NewState 、 NewData}` タプルで返さなければなりません 。
+成功した場合、関数は更新された内部状態を`{ok、 NewState、 NewData}` タプルで返さなければなりません 。
 
 
 If the function returns a failure Reason, the ongoing upgrade fails and rolls back to the old release. Note that Reason can not be an `{ok, _, _}` tuple since that will be regarded as a `{ok, NewState, NewData}` tuple, and that a tuple matching `{ok, _}` is an also invalid failure Reason. It is recommended to use an atom as Reason since it will be wrapped in an `{error, Reason}` tuple.
 
-関数が失敗 Reason を返した場合、進行中のアップグレードは失敗し、古いリリースにロールバックされます。そのノート理由はできません`{OK 、_、_}` つまり、とみなされるので、タプル `{OK 、 NewState に、 NEWDATA}` タプル、およびタプルマッチングがその`{OK 、_}` も無効不良である理由。`{error 、 Reason}` タプルでラップされるので、 Reason としてアトムを使用することをお勧めします。
+関数が失敗 Reason を返した場合、進行中のアップグレードは失敗し、古いリリースにロールバックされます。そのノート理由はできません`{OK、_、_}` つまり、とみなされるので、タプル `{OK、 NewState に、 NEWDATA}` タプル、およびタプルマッチングがその`{OK、_}` も無効不良である理由。`{error、 Reason}` タプルでラップされるので、 Reason としてアトムを使用することをお勧めします。
 
 
 Also note when upgrading a gen_statem, this function and hence the Change={advanced, Extra} parameter in the appup file is not only needed to update the internal state or to act on the Extra argument. It is also needed if an upgrade or downgrade should change callback mode, or else the callback mode after the code change will not be honoured, most probably causing a server crash.
 
-また、 gen_statem をアップグレードするときには、この関数、したがって Appup ファイル内の Change = {advanced 、 Extra}パラメータは 、内部状態を更新するか、 Extra 引数に作用するために必要なだけではありません。アップグレードまたはダウングレードがコールバックモードを変更する必要がある場合、または コード変更後のコールバックモードが有効にならず、おそらくサーバークラッシュが発生する可能性があります。
+また、 gen_statem をアップグレードするときには、この関数、したがって Appup ファイル内の Change = {advanced、 Extra}パラメータは、内部状態を更新するか、 Extra 引数に作用するために必要なだけではありません。アップグレードまたはダウングレードがコールバックモードを変更する必要がある場合、または コード変更後のコールバックモードが有効にならず、おそらくサーバークラッシュが発生する可能性があります。
 
 
 ```
@@ -1171,7 +1172,7 @@ Data is the internal server data of the gen_statem.
 
 The function is to return Status, a term that contains the appropriate details of the current state and status of the gen_statem. There are no restrictions on the form Status can take, but for the sys:get_status/1, 2 case (when Opt is normal), the recommended form for the Status value is [{data, [{"State", Term}]}], where Term provides relevant details of the gen_statem state. Following this recommendation is not required, but it makes the callback module status consistent with the rest of the sys:get_status/1, 2 return value.
 
-この関数は、現在の状態と gen_statem のステータスの適切な詳細を含む用語である Status を返します。ステータスには制限がありませんが、 sys:get_status/1, 2 の 場合(Opt が正常な場合)、ステータス値の推奨形式は[{data 、[{"State"、 Term}]です。 }]、ここで Term は gen_statem 状態の関連する詳細を提供します。この勧告に従うことは必須ではないが、
+この関数は、現在の状態と gen_statem のステータスの適切な詳細を含む用語である Status を返します。ステータスには制限がありませんが、 sys:get_status/1, 2 の 場合(Opt が正常な場合)、ステータス値の推奨形式は[{data、[{"State"、 Term}]です。 }]、ここで Term は gen_statem 状態の関連する詳細を提供します。この勧告に従うことは必須ではないが、
 
 
 One use for this function is to return compact alternative state representations to avoid having large state terms printed in log files. Another use is to hide sensitive data from being written to the error log.
@@ -1201,7 +1202,7 @@ HandleEventResult = event_handler_result(state())
 
 Whenever a gen_statem receives an event from call/2, cast/2, or as a normal process message, one of these functions is called. If callback mode is state_functions, Module:StateName/3 is called, and if it is handle_event_function, Module:handle_event/4 is called.
 
-gen_statem が call/2 、 cast/2 、または通常のプロセスメッセージとしてイベントを受け取る たびに、これらの関数の 1 つが呼び出されます。場合は、コールバックモードがある state_functions 、 Module:StateName/3 と呼ばれ、それがある場合 handle_event_function は、 Module:handle_event/4 と呼ばれています。
+gen_statem が call/2、 cast/2、または通常のプロセスメッセージとしてイベントを受け取る たびに、これらの関数の 1 つが呼び出されます。場合は、コールバックモードがある state_functions、 Module:StateName/3 と呼ばれ、それがある場合 handle_event_function は、 Module:handle_event/4 と呼ばれています。
 
 
 If EventType is `{call, From}`, the caller waits for a reply. The reply can be sent from this or from any other state callback by returning with `{reply, From, Reply}` in Actions, in Replies, or by calling reply(From, Reply).
@@ -1304,7 +1305,7 @@ Reason は停止理由を示す用語で、 State は gen_statem の内部状態
 
 Reason depends on why the gen_statem is terminating. If it is because another callback function has returned, a stop tuple `{stop, Reason}` in Actions, Reason has the value specified in that tuple. If it is because of a failure, Reason is the error reason.
 
-理由は gen_statem が終了する理由に依存します。別のコールバック関数が返されたためであれば、 Actions 、 Reason の stop tuple `{stop 、 Reason}`はそのタプルで指定された値を持ちます。それが失敗のためであれば、 Reason がエラー理由です。
+理由は gen_statem が終了する理由に依存します。別のコールバック関数が返されたためであれば、 Actions、 Reason の stop tuple `{stop、 Reason}`はそのタプルで指定された値を持ちます。それが失敗のためであれば、 Reason がエラー理由です。
 
 
 If the gen_statem is part of a supervision tree and is ordered by its supervisor to terminate, this function is called with Reason = shutdown if both the following conditions apply:
@@ -1332,4 +1333,4 @@ Otherwise, the gen_statem is immediately terminated.
 
 Notice that for any other reason than normal, shutdown, or `{shutdown, Term}`, the gen_statem is assumed to terminate because of an error and an error report is issued using error_logger:format/2.
 
-通常、 シャットダウン、または`{shutdown 、 Term}` 以外の理由で、 gen_statem はエラーのために終了するとみなされ、 error_logger:format/2 を使用してエラーレポートが発行され ます。
+通常、 シャットダウン、または`{shutdown、 Term}` 以外の理由で、 gen_statem はエラーのために終了するとみなされ、 error_logger:format/2 を使用してエラーレポートが発行され ます。
