@@ -2,14 +2,14 @@
 
 This section is to be read with the gen_statem(3) manual page in STDLIB, where all interface functions and callback functions are described in detail.
 
-このセクションは、 STDLIB の gen_statem(3) の マニュアルページと共に読まれます。ここでは、すべてのインタフェース関数とコールバック関数について詳しく説明します。
+このセクションは、 STDLIB の gen_statem(3) のマニュアルページと共に読まれます。ここでは、すべてのインタフェース関数とコールバック関数について詳しく説明します。
 
 
 ## Note
 
 This is a new behavior in Erlang/OTP 19.0. It has been thoroughly reviewed, is stable enough to be used by at least two heavy OTP applications, and is here to stay. Depending on user feedback, we do not expect but can find it necessary to make minor not backward compatible changes into Erlang/OTP 20.0.
 
-これは、 Erlang/OTP 19.0 の新しいビヘイビアです。それは徹底的にレビューされ、少なくとも 2 つの重い OTP アプリケーションで使用されるほど十分安定しています。ユーザーからのフィードバックによっては、望ましくはありませんが、 Erlang / OTP 20.0 で小さくとも後方互換性のない変更をする必要があるかもしれません。
+これは、 Erlang/OTP 19.0 の新しいビヘイビアです。それは徹底的にレビューされ、少なくとも 2 つの重い OTP アプリケーションで使用されるほど十分安定しています。ユーザーからのフィードバックによっては、望ましくはありませんが、 Erlang/OTP 20.0 で小さくとも後方互換性のない変更をする必要があるかもしれません。
 
 
 ## 4.1  Event-Driven State Machines
@@ -78,9 +78,9 @@ See section One Event Handler for an example.
 
 セクション 1 を参照
 
-Both these modes allow other return tuples; see Module:StateName/3 in the gen_statem manual page. These other return tuples can, for example, stop the machine, execute state transition actions on the machine engine itself, and send replies.
+Both these modes allow other return tuples; see `Module:StateName/3` in the gen_statem manual page. These other return tuples can, for example, stop the machine, execute state transition actions on the machine engine itself, and send replies.
 
-どちらのモードでも、他のタプルを返すこともできます。 gen_statem マニュアルページ Module:StateName/3 を参照。これらの他の戻りタプルは、例えば、マシンを停止し、マシンエンジン自体の状態遷移アクションを実行し、応答を送信することができる。
+どちらのモードでも、他のタプルを返すこともできます。 gen_statem マニュアルページ `Module:StateName/3` を参照。これらの他の戻りタプルは、例えば、マシンを停止し、マシンエンジン自体の状態遷移アクションを実行し、応答を送信することができる。
 
 
 ## Choosing the Callback Mode
@@ -113,14 +113,14 @@ With handle_event_function, you are free to mix strategies, as all events and st
 `handle_event_function` では、すべてのイベントと状態が同じコールバック関数内で処理されているため、戦略をミックスするのは自由です。
 
 
-This mode works equally well when you want to focus on one event at the time or on one state at the time, but function Module:handle_event/4 quickly grows too large to handle without branching to helper functions.
+This mode works equally well when you want to focus on one event at the time or on one state at the time, but function `Module:handle_event/4` quickly grows too large to handle without branching to helper functions.
 
-このモードは、その時に 1 つのイベントにフォーカスを当てたいときや、ある時点で 1 つの状態に集中したいときにも同様に機能しますが、関数 module:handle_event/4 はヘルパ関数なしで処理を分離するのが困難なくらい急速に大きくなります。
+このモードは、その時に 1 つのイベントにフォーカスを当てたいときや、ある時点で 1 つの状態に集中したいときにも同様に機能しますが、関数 `Module:handle_event/4` はヘルパ関数なしで処理を分離するのが困難なくらい急速に大きくなります。
 
 
-The mode enables the use of non-atom states, for example, complex states or even hierarchical states. If, for example, a state diagram is largely alike for the client side and the server side of a protocol, you can have a state {StateName, server} or {StateName, client}, and make StateName determine where in the code to handle most events in the state. The second element of the tuple is then used to select whether to handle special client-side or server-side events.
+The mode enables the use of non-atom states, for example, complex states or even hierarchical states. If, for example, a state diagram is largely alike for the client side and the server side of a protocol, you can have a state `{StateName, server}` or `{StateName, client}`, and make StateName determine where in the code to handle most events in the state. The second element of the tuple is then used to select whether to handle special client-side or server-side events.
 
-このモードでは、atom ではない状態、たとえば複雑な状態または階層的状態の使用が可能になります。たとえば、状態図がクライアント側とプロトコルのサーバ側でほぼ同じ場合、状態 `{StateName , server}` または `{StateName, client}` を持つことができ、 StateName で状態内のほとんどのイベントを処理し、その後、タプルの第 2 要素を使用して、クライアント側イベントまたはサーバー側イベントの特定の処理するかどうかを選択します。
+このモードでは、atom ではない状態、たとえば複雑な状態または階層的状態の使用が可能になります。たとえば、状態図がクライアント側とプロトコルのサーバ側でほぼ同じ場合、状態 `{StateName, server}` または `{StateName, client}` を持つことができ、 StateName で状態内のほとんどのイベントを処理し、その後、タプルの第 2 要素を使用して、クライアント側イベントまたはサーバー側イベントの特定の処理するかどうかを選択します。
 
 
 ## 4.3  State Enter Calls
@@ -141,14 +141,14 @@ StateName(EventType, EventContent, Data) ->
 
 Depending on how your state machine is specified, this can be a very useful feature, but it forces you to handle the state enter calls in all states. See also the State Entry Actions chapter.
 
-あなたのステートマシンの指定方法によっては、これは非常に便利な機能ですが、すべての状態で状態入力呼び出しを処理する必要があります。「状態エントリ操作」の 章も参照してください 。
+あなたのステートマシンの指定方法によっては、これは非常に便利な機能ですが、すべての状態で状態入力呼び出しを処理する必要があります。「状態エントリ操作」の章も参照してください 。
 
 
 ### 4.4  Actions
 
 In the first section Event-Driven State Machines actions were mentioned as a part of the general state machine model. These general actions are implemented with the code that callback module gen_statem executes in an event-handling callback function before returning to the gen_statem engine.
 
-最初のセクションでは、 イベントドリブンステートマシンの アクションは、一般的なステートマシンモデルの一部として記述されていました。これらの一般的なアクションは、 gen_statem エンジンに戻る前に、コールバックモジュール gen_statem がイベント処理コールバック関数で実行するコードで実装されます。
+最初のセクションでは、 イベントドリブンステートマシンのアクションは、一般的なステートマシンモデルの一部として記述されていました。これらの一般的なアクションは、 gen_statem エンジンに戻る前に、コールバックモジュール gen_statem がイベント処理コールバック関数で実行するコードで実装されます。
 
 
 There are more specific state-transition actions that a callback function can order the gen_statem engine to do after the callback function return. These are ordered by returning a list of actions in the return tuple from the callback function. These state transition actions affect the gen_statem engine itself and can do the following:
@@ -158,7 +158,7 @@ There are more specific state-transition actions that a callback function can or
 これらの状態遷移アクションは、 gen_statem エンジン自体に影響を与え、以下を実行できます。
 
 
-- Postpone the current event, see section Postponing Events (遅延)
+- Postpone the current event, see section Postponing Events (先送り)
 - Hibernate the gen_statem, treated in Hibernation (停止)
 - Start a state time-out, read more in section State Time-Outs (state タイムアウト)
 - Start an event time-out, see more in section Event Time-Outs (event タイムアウト)
@@ -205,9 +205,7 @@ The following is a complete list of event types and where they come from:
 - timeout
   - {timeout, Time, EventContent} でイベントのタイムアウト
 - internal
-  - {next_event, internal, EventContent}
-
-上述は全て {next_event, EventType, EventContent} でも生成可能。
+  - {next_event, internal, EventContent}、 上述は全て {next_event, EventType, EventContent} でも生成可能。
 
 
 ## 4.6  Example
@@ -289,52 +287,52 @@ The code is explained in the next sections.
 
 ## 4.7  Starting gen_statem
 
-In the example in the previous section, gen_statem is started by calling code_lock:start_link(Code):
+In the example in the previous section, gen_statem is started by calling `code_lock:start_link(Code)`:
 
-前のセクションの例では、 gen_statem は、 code_lock:start_link(Code) を呼び出して起動します。
+前のセクションの例では gen_statem は `code_lock:start_link(Code)` を呼び出して起動します。
 
 ```erlang
 start_link(Code) ->
     gen_statem:start_link({local, ?NAME}, ?MODULE, Code, []).
 ```
 
-start_link calls function gen_statem:start_link/4, which spawns and links to a new process, a gen_statem.
+start_link calls function `gen_statem:start_link/4`, which spawns and links to a new process, a gen_statem.
 
-start_link は、関数 gen_statem:start_link/4 を呼び出します。 これは、新しいプロセス gen_statem を生成してリンクします。
+start_link は、関数 `gen_statem:start_link/4` を呼び出します。 これは、新しいプロセス gen_statem を生成してリンクします。
 
 
-- The first argument, {local, ?NAME}, specifies the name. In this case, the gen_statem is locally registered as code_lock through the macro ?NAME.
+- The first argument, `{local, ?NAME}`, specifies the name. In this case, the gen_statem is locally registered as code_lock through the macro ?NAME.
 
 - 最初の引数 `{local, ?NAME}` は名前を指定します。この場合、 gen_statem は、 ?NAME マクロを通して code_lock として local に登録されます。
 
 
-- If the name is omitted, the gen_statem is not registered. Instead its pid must be used. The name can also be specified as {global, Name}, then the gen_statem is registered using global:register_name/2 in Kernel.
+- If the name is omitted, the gen_statem is not registered. Instead its pid must be used. The name can also be specified as `{global, Name}`, then the gen_statem is registered using `global:register_name/2` in Kernel.
 
-- 名前を省略すると、 gen_statem は登録されません。代わりに、その pid を使用する必要があります。名前は `{global, Name}` として指定することもでき、 gen_statem は カーネルの global:register_name/2 を使って登録されます。
+- 名前を省略すると、 gen_statem は登録されません。代わりに、その pid を使用する必要があります。名前は `{global, Name}` として指定することもでき、 gen_statem は カーネルの `global:register_name/2` を使って登録されます。
 
 
 - The second argument, ?MODULE, is the name of the callback module, that is, the module where the callback functions are located, which is this module.
 
-- 2 番目の引数?MODULE は、コールバックモジュールの名前です。コールバック関数が配置されているモジュール(このモジュールです)です。
+- 2 番目の引数 ?MODULE は、コールバックモジュールの名前です。コールバック関数が配置されているモジュール(このモジュール)です。
 
-- The interface functions (start_link/1 and button/1) are located in the same module as the callback functions (init/1, locked/3, and open/3). It is normally good programming practice to have the client-side code and the server-side code contained in one module.
+- The interface functions (`start_link/1` and `button/1`) are located in the same module as the callback functions (`init/1`, `locked/3`, and `open/3`). It is normally good programming practice to have the client-side code and the server-side code contained in one module.
 
 - インタフェース関数(`start_link/1` と `button/1`)は、コールバック関数(`init/1`, `locked/3`, `open/3`)と同じモジュールにあります。クライアント側のコードとサーバー側のコードを 1 つのモジュールに含めることは、通常はプログラミングの良い習慣です。
 
 
-- The third argument, Code, is a list of digits, which is the correct unlock code that is passed to callback function init/1.
+- The third argument, `Code`, is a list of digits, which is the correct unlock code that is passed to callback function `init/1`.
 
 - 3 番目の引数 `Code` は、コールバック関数 `init/1` に渡される正しいロック解除コードである数字のリストです。
 
 
-- The fourth argument, [], is a list of options. For the available options, see gen_statem:start_link/3.
+- The fourth argument, `[]`, is a list of options. For the available options, see `gen_statem:start_link/3`.
 
 - 4 番目の引数 `[]` は、オプションのリストです。使用可能なオプションについては、 `gen_statem:start_link/3` を参照してください 。
 
 
-If name registration succeeds, the new gen_statem process calls callback function code_lock:init(Code). This function is expected to return {ok, State, Data}, where State is the initial state of the gen_statem, in this case locked; assuming that the door is locked to begin with. Data is the internal server data of the gen_statem. Here the server data is a map with key code that stores the correct button sequence, and key remaining that stores the remaining correct button sequence (the same as the code to begin with).
+If name registration succeeds, the new gen_statem process calls callback function `code_lock:init(Code)`. This function is expected to return `{ok, State, Data}`, where State is the initial state of the gen_statem, in this case locked; assuming that the door is locked to begin with. Data is the internal server data of the gen_statem. Here the server data is a map with key code that stores the correct button sequence, and key remaining that stores the remaining correct button sequence (the same as the code to begin with).
 
-名前の登録に成功すると、新しい gen_statem プロセスがコールバック関数 `code_lock:init(Code)` を呼び出します。この関数は `{ok, State, Data}` を返すことが期待されます。ここで State は gen_statem の初期状態です(この場合はロックされます)。ドアが最初にロックされていると仮定します。データは、 gen_statem の内部サーバーデータです。ここで、サーバーデータは、正しいボタンシーケンスを格納する キーコードを持つマップであり、
+名前の登録に成功すると、新しい gen_statem プロセスがコールバック関数 `code_lock:init(Code)` を呼び出します。この関数は `{ok, State, Data}` を返すことが期待されます。ここで State は gen_statem の初期状態です(この場合はロックされます)。ドアが最初にロックされていると仮定します。データは、 gen_statem の内部サーバーデータです。ここで、サーバーデータは、正しいボタンシーケンスを格納するキーコードを持つマップであり、
 
 
 ```erlang
@@ -344,7 +342,7 @@ init(Code) ->
     {ok, locked, Data}.
 ```
 
-Function gen_statem:start_link is synchronous. It does not return until the gen_statem is initialized and is ready to receive events.
+Function `gen_statem:start_link` is synchronous. It does not return until the gen_statem is initialized and is ready to receive events.
 
 関数 `gen_statem:start_link` は同期です。 gen_statem が初期化され、イベントを受け取る準備が整うまでは戻らない。
 
@@ -359,14 +357,14 @@ callback_mode() ->
     state_functions.
 ```
 
-Function Module:callback_mode/0 selects the CallbackMode for the callback module, in this case state_functions. That is, each state has got its own handler function.
+Function `Module:callback_mode/0` selects the CallbackMode for the callback module, in this case state_functions. That is, each state has got its own handler function.
 
 `Module:callback_mode/0` は コールバックモジュールの CallbackMode を選択し ます。この場合は `state_functions` です。つまり、各状態には独自のハンドラ関数があります。
 
 
 ## 4.8  Handling Events
 
-The function notifying the code lock about a button event is implemented using gen_statem:cast/2:
+The function notifying the code lock about a button event is implemented using `gen_statem:cast/2`:
 
 ボタンイベントをコードロックに通知する関数は、 `gen_statem:cast/2` で実装される。
 
@@ -376,11 +374,11 @@ button(Digit) ->
 ```
 
 
-The first argument is the name of the gen_statem and must agree with the name used to start it. So, we use the same macro ?NAME as when starting. {button, Digit} is the event content.
+The first argument is the name of the gen_statem and must agree with the name used to start it. So, we use the same macro `?NAME` as when starting. `{button, Digit}` is the event content.
 
 最初の引数は gen_statem の名前であり、それを開始するために使用される名前と一致しなければなりません。したがって、起動時と同じマクロ `?NAME` を使用します。 `{button, Digit}` はイベントの内容です。
 
-The event is made into a message and sent to the gen_statem. When the event is received, the gen_statem calls StateName(cast, Event, Data), which is expected to return a tuple {next_state, NewStateName, NewData}, or {next_state, NewStateName, NewData, Actions}. StateName is the name of the current state and NewStateName is the name of the next state to go to. NewData is a new value for the server data of the gen_statem, and Actions is a list of actions on the gen_statem engine.
+The event is made into a message and sent to the gen_statem. When the event is received, the gen_statem calls `StateName(cast, Event, Data)`, which is expected to return a tuple `{next_state, NewStateName, NewData}`, or `{next_state, NewStateName, NewData, Actions}`. `StateName` is the name of the current state and `NewStateName` is the name of the next state to go to. `NewData` is a new value for the server data of the gen_statem, and `Actions` is a list of actions on the gen_statem engine.
 
 このイベントはメッセージとして作成され、 gen_statem に送信されます。
 イベントが受信されると、 gen_statem は `{next_state, NewStateName, NewData}` か `{next_state, NewStateName, NewData, Actions}` を返す `StateName(cast, Event, Data)` を呼び出します。
@@ -422,14 +420,14 @@ If the whole code is correct, the server changes states to open.
 コード全体が正しい場合、サーバは状態を open に変更します。
 
 
-In state open, a button event is ignored by staying in the same state. This can also be done by returning {keep_state, Data} or in this case since Data unchanged even by returning keep_state_and_data.
+In state open, a button event is ignored by staying in the same state. This can also be done by returning `{keep_state, Data}` or in this case since Data unchanged even by returning `keep_state_and_data`.
 
 Open 状態の場合、ボタンイベントは同じ状態にとどまることによって無視されます。これは、 `{keep_state, Data}` を返す、またはデータが不変の場合は `keep_state_and_data` を返すことでもできます。
 
 
 ## 4.9  State Time-Outs
 
-When a correct code has been given, the door is unlocked and the following tuple is returned from locked/2:
+When a correct code has been given, the door is unlocked and the following tuple is returned from `locked/2`:
 
 正しいコードが与えられると、ドアはロック解除され `locked/2` から次のタプルが返されます。
 
@@ -460,7 +458,7 @@ Sometimes events can arrive in any state of the gen_statem. It is convenient to 
 
 場合によっては、 gen_statem のどの状態でもイベントが到着することがあります。すべての状態関数が状態に固有でないイベントを呼び出す共通の状態ハンドラ関数でこれらを処理すると便利です。
 
-Consider a code_length/0 function that returns the length of the correct code (that should not be sensitive to reveal). We dispatch all events that are not state-specific to the common function handle_event/3:
+Consider a `code_length/0` function that returns the length of the correct code (that should not be sensitive to reveal). We dispatch all events that are not state-specific to the common function `handle_event/3`:
 
 正確なコードの長さを返す `code_length/0` 関数を考えてみましょう。状態固有でないすべてのイベントを共通関数 `handle_event/3` にディスパッチします。
 
@@ -487,14 +485,14 @@ handle_event({call, From}, code_length, #{code := Code} = Data) ->
     {keep_state, Data, [{reply, From, length(Code)}]}.
 ```
 
-This example uses gen_statem:call/2, which waits for a reply from the server. The reply is sent with a {reply, From, Reply} tuple in an action list in the {keep_state, ...} tuple that retains the current state. This return form is convenient when you want to stay in the current state but do not know or care about what it is.
+This example uses `gen_statem:call/2`, which waits for a reply from the server. The reply is sent with a `{reply, From, Reply}` tuple in an action list in the `{keep_state, ...}` tuple that retains the current state. This return form is convenient when you want to stay in the current state but do not know or care about what it is.
 
 この例では、 `gen_statem:call/2` を使用し て、サーバーからの応答を待ちます。返信は、現在の状態を保持する`{keep_state, ...}` タプルのアクションリストの `{reply, From, Reply}` タプルで送信されます。この応答フォームは、現在の状態にとどまりたいが、それが何であるかを知らないか気にしないときに便利です。
 
 
 ## 4.11  One Event Handler
 
-If mode handle_event_function is used, all events are handled in Module:handle_event/4 and we can (but do not have to) use an event-centered approach where we first branch depending on event and then depending on state:
+If mode handle_event_function is used, all events are handled in `Module:handle_event/4` and we can (but do not have to) use an event-centered approach where we first branch depending on event and then depending on state:
 
 モード handle_event_function が使用されている場合、すべてのイベントは `Module:handle_event/4` で処理され 、イベントに応じて最初に分岐し、次に状態に応じて分岐するイベント中心のアプローチを使用できます(ただし、そうする必要はありません)。
 
@@ -538,9 +536,9 @@ If the gen_statem is part of a supervision tree, no stop function is needed. The
 
 gen_statem が supervision tree の一部であり、 stop 関数が不要な場合。 gen_statem は自動的に supervisor に終了されます。これがどのように行われるかは、 supervisor に設定された シャットダウン戦略によって決まります。
 
-If it is necessary to clean up before termination, the shutdown strategy must be a time-out value and the gen_statem must in function init/1 set itself to trap exit signals by calling process_flag(trap_exit, true):
+If it is necessary to clean up before termination, the shutdown strategy must be a time-out value and the gen_statem must in function `init/1` set itself to trap exit signals by calling `process_flag(trap_exit, true)`:
 
-終了前にクリーンアップする必要がある場合、シャットダウンストラテジはタイムアウト値でなければならず、 gen_statem は `init/1` 関数で `process_flag(trap_exit , true)` を呼び出して終了信号をトラップするように設定する 必要があります。
+終了前にクリーンアップする必要がある場合、シャットダウンストラテジはタイムアウト値でなければならず、 gen_statem は `init/1` 関数で `process_flag(trap_exit , true)` を呼び出して終了信号をトラップするように設定する必要があります。
 
 
 ```erlang
@@ -550,13 +548,13 @@ init(Args) ->
     ...
 ```
 
-When ordered to shut down, the gen_statem then calls callback function terminate(shutdown, State, Data).
+When ordered to shut down, the gen_statem then calls callback function `terminate(shutdown, State, Data)`.
 
 シャットダウンするように指示されると、 gen_statem はコールバック関数 `terminate(shutdown, State, Data)` を呼び出します。
 
-In this example, function terminate/3 locks the door if it is open, so we do not accidentally leave the door open when the supervision tree terminates:
+In this example, function `terminate/3` locks the door if it is open, so we do not accidentally leave the door open when the supervision tree terminates:
 
-この例では、 terminate/3 はドアが開いている場合にロックします。したがって、 supervision tree が terminate したときに誤ってドアを開いたままにしません。
+この例では、 `terminate/3` はドアが開いている場合にロックします。したがって、 supervision tree が terminate したときに誤ってドアを開いたままにしません。
 
 
 ```erlang
@@ -568,9 +566,9 @@ terminate(_Reason, State, _Data) ->
 
 ### Standalone gen_statem
 
-If the gen_statem is not part of a supervision tree, it can be stopped using gen_statem:stop, preferably through an API function:
+If the gen_statem is not part of a supervision tree, it can be stopped using `gen_statem:stop`, preferably through an API function:
 
-gen_statem が supervision tree の一部ではない場合、 gen_statem:stop を利用して停止することもできる。好ましくは API 関数を介し:
+gen_statem が supervision tree の一部ではない場合、 `gen_statem:stop` を利用して停止することもできる。好ましくは API 関数を介し:
 
 ```erlang
 ...
@@ -581,9 +579,9 @@ stop() ->
     gen_statem:stop(?NAME).
 ```
 
-This makes the gen_statem call callback function terminate/3 just like for a supervised server and waits for the process to terminate.
+This makes the gen_statem call callback function `terminate/3` just like for a supervised server and waits for the process to terminate.
 
-これにより、 gen_statem はコールコールバック関数 teminate/3 を呼び出し、監視対象サーバと同様にプロセスが終了するのを待ちます。
+これにより、 gen_statem はコールコールバック関数 `teminate/3` を呼び出し、監視対象サーバと同様にプロセスが終了するのを待ちます。
 
 
 ## 4.13  Event Time-Outs
@@ -593,7 +591,7 @@ A timeout feature inherited from gen_statem's predecessor gen_fsm, is an event t
 gen_statem の前身である gen_fsm から継承したタイムアウト機能は、タイマーがキャンセルするとイベントが到着するタイムアウト機能です。
 イベントかタイムアウトのどちらかを受け取り、両方ではありません。
 
-It is ordered by the state transition action {timeout, Time, EventContent}, or just Time, or even just Time instead of an action list (the latter is a form inherited from gen_fsm.
+It is ordered by the state transition action `{timeout, Time, EventContent}`, or just Time, or even just Time instead of an action list (the latter is a form inherited from gen_fsm.
 
 これは、状態遷移アクション `{timeout, Time, EventContent}`、または単に Time 、またはアクションリストの代わりに Time だけで実行されます(後者は gen_fsm から継承されたフォームです)。
 
@@ -630,7 +628,7 @@ The previous example of state time-outs only work if the state machine stays in 
 
 前述の状態タイムアウトの例は、タイムアウト時間中に状態マシンが同じ状態にとどまる場合にのみ機能します。また、イベントのタイムアウトは、無関係なイベントが発生しない場合にのみ機能します。
 
-You may want to start a timer in one state and respond to the time-out in another, maybe cancel the time-out without changing states, or perhaps run multiple time-outs in parallel. All this can be accomplished with Erlang Timers: erlang:start_timer3, 4.
+You may want to start a timer in one state and respond to the time-out in another, maybe cancel the time-out without changing states, or perhaps run multiple time-outs in parallel. All this can be accomplished with Erlang Timers: `erlang:start_timer3, 4`.
 
 1 つの状態でタイマーを開始し、別のタイムアウトに応答することもできます。状態を変更せずにタイムアウトをキャンセルするか、複数のタイムアウトを並行して実行することができます。これはすべて Erlang Timer `erlang:start_timer/3, 4` で行うことができます。
 
@@ -661,9 +659,9 @@ Removing the timer key from the map when we change to state locked is not strict
 
 状態ロックに変更したときにマップからタイマーキーを削除することは、更新されたタイマーマップ値で状態を開くことしかできないため、厳密には必要ではありません。しかし、状態データに期限切れの値を持たないのは良いことです!
 
-If you need to cancel a timer because of some other event, you can use erlang:cancel_timer(Tref). Note that a time-out message cannot arrive after this, unless you have postponed it before (see the next section), so ensure that you do not accidentally postpone such messages. Also note that a time-out message may have arrived just before you cancelling it, so you may have to read out such a message from the process mailbox depending on the return value from erlang:cancel_timer(Tref).
+If you need to cancel a timer because of some other event, you can use `erlang:cancel_timer(Tref)`. Note that a time-out message cannot arrive after this, unless you have postponed it before (see the next section), so ensure that you do not accidentally postpone such messages. Also note that a time-out message may have arrived just before you cancelling it, so you may have to read out such a message from the process mailbox depending on the return value from `erlang:cancel_timer(Tref)`.
 
-他のイベントのためにタイマーをキャンセルする必要がある場合は、 `erlang:cancel_timer(Tref)` を使用できます。タイムアウト・メッセージは、これを延期した場合(次のセクションを参照)は、誤ってそのようなメッセージを延期しないようにしてください。また、キャンセルする直前にタイムアウト・メッセージが到着した可能性があるので、 `erlang:cancel_timer(Tref)` の戻り値に応じてプロセス・メールボックスからそのようなメッセージを読み取る必要があるかもしれません。
+他のイベントのためにタイマーをキャンセルする必要がある場合は、 `erlang:cancel_timer(Tref)` を使用できます。タイムアウト・メッセージは、これを先送りした場合(次のセクションを参照)は、誤ってそのようなメッセージを先送りしないようにしてください。また、キャンセルする直前にタイムアウト・メッセージが到着した可能性があるので、 `erlang:cancel_timer(Tref)` の戻り値に応じてプロセス・メールボックスからそのようなメッセージを読み取る必要があるかもしれません。
 
 Another way to handle a late time-out can be to not cancel it, but to ignore it if it arrives in a state where it is known to be late.
 
@@ -672,17 +670,17 @@ Another way to handle a late time-out can be to not cancel it, but to ignore it 
 
 ## 4.15  Postponing Events
 
-If you want to ignore a particular event in the current state and handle it in a future state, you can postpone the event. A postponed event is retried after the state has changed, that is, OldState =/= NewState.
+If you want to ignore a particular event in the current state and handle it in a future state, you can postpone the event. A postponed event is retried after the state has changed, that is, `OldState =/= NewState`.
 
-現在の状態で特定のイベントを無視し、それを将来の状態で処理したい場合は、そのイベントを延期することができます。延期されたイベントは、状態が変更された後に再試行されます。つまり、 `OldState =/= NewState` です。
+現在の状態で特定のイベントを無視し、それを将来の状態で処理したい場合は、そのイベントを先送りすることができます。先送りされたイベントは、状態が変更された後に再試行されます。つまり、 `OldState =/= NewState` です。
 
 Postponing is ordered by the state transition action postpone.
 
-延期は、状態遷移の postpone で行います。
+先送りは、状態遷移の postpone で行います。
 
 In this example, instead of ignoring button events while in the open state, we can postpone them and they are queued and later handled in the locked state:
 
-この例では、 Open 状態でボタンイベントを無視するのではなく、それらを延期することができ、それらはキューに入れられ、後で locked 状態で処理されます。
+この例では、 Open 状態でボタンイベントを無視するのではなく、それらを先送りすることができ、それらはキューに入れられ、後で locked 状態で処理されます。
 
 ```erlang
 ...
@@ -693,14 +691,14 @@ open(cast, {button, _}, Data) ->
 
 Since a postponed event is only retried after a state change, you have to think about where to keep a state data item. You can keep it in the server Data or in the State itself, for example by having two more or less identical states to keep a boolean value, or by using a complex state with callback mode handle_event_function. If a change in the value changes the set of events that is handled, then the value should be kept in the State. Otherwise no postponed events will be retried since only the server Data changes.
 
-延期されたイベントは状態の変更後にのみ再試行されるため、状態データの保存先を考える必要があります。
+先送りされたイベントは状態の変更後にのみ再試行されるため、状態データの保存先を考える必要があります。
 サーバーの Data または State 自体に保持することができます、例えば 2 つ前後の boolean を持つ同じ状態を持つ、もしくは複雑な状態を handle_event_function で使うなど。
 値の変更によって処理されるイベントのセットが変更された場合、値は状態に保持されます。
-そうでなければ、延期されたイベントはサーバデータだけが変更されるので再試行されません。
+そうでなければ、先送りされたイベントはサーバデータだけが変更されるので再試行されません。
 
 This is not important if you do not postpone events. But if you later decide to start postponing some events, then the design flaw of not having separate states when they should be, might become a hard to find bug.
 
-イベントを延期しない場合、これは重要ではありません。しかし、後にいくつかのイベントを延期することにした場合、別の状態を持たないという設計上の欠陥が、バグを見つけにくくなる可能性があります。
+イベントを先送りしない場合、これは重要ではありません。しかし、後にいくつかのイベントを先送りすることにした場合、別の状態を持たないという設計上の欠陥が、バグを見つけにくくなる可能性があります。
 
 
 ### Fuzzy State Diagrams
@@ -711,7 +709,7 @@ It is not uncommon that a state diagram does not specify how to handle events th
 
 Possible actions: ignore as in drop the event (maybe log it) or deal with the event in some other state as in postpone it.
 
-取りえる方法は、イベントをドロップする(無視する)ように無視するか、イベントを延期するときと同じように他の状態で処理します。
+取りえる方法は、イベントをドロップする(無視する)ように無視するか、イベントを先送りするときと同じように他の状態で処理します。
 
 
 ### Selective Receive
@@ -762,7 +760,7 @@ do_unlock() ->
 
 The selective receive in this case causes implicitly open to postpone any events to the locked state.
 
-この場合の選択的受信は、暗黙的に open のすべてのイベントを locked 状態に遅延させる。
+この場合の選択的受信は、暗黙的に open のすべてのイベントを locked 状態に先送りさせる。
 
 A selective receive cannot be used from a gen_statem behavior as for any gen_* behavior, as the receive statement is within the gen_* engine itself. It must be there because all sys compatible behaviors must respond to system messages and therefore do that in their engine receive loop, passing non-system messages to the callback module.
 
@@ -770,7 +768,7 @@ A selective receive cannot be used from a gen_statem behavior as for any gen_* b
 
 The state transition action postpone is designed to model selective receives. A selective receive implicitly postpones any not received events, but the postpone state transition action explicitly postpones one received event.
 
-状態遷移アクションの延期は、選択受信をモデル化するように設計されています。選択的受信は、受信されなかったイベントを暗黙的に延期するが、延期された状態遷移アクションは、受信した 1 つのイベントを明示的に延期する。
+状態遷移アクションの先送りは、選択受信をモデル化するように設計されています。選択的受信は、受信されなかったイベントを暗黙的に先送りするが、先送りされた状態遷移アクションは、受信した 1 つのイベントを明示的に先送りする。
 
 Both mechanisms have the same theoretical time and memory complexity, while the selective receive language construct has smaller constant factors.
 
@@ -783,9 +781,9 @@ Say you have a state machine specification that uses state entry actions. Alltho
 
 状態入力アクションを使用するステートマシン仕様があるとします。これは、自己生成イベント(次のセクションで説明します)を使用してコード化することはできますが、特に 1 つまたは少数の state で state 入力アクションがある場合は、組み込みの状態入力呼び出しの完璧な使用例です。
 
-You return a list containing state_enter from your callback_mode/0 function and the gen_statem engine will call your state callback once with the arguments (enter, OldState, ...) whenever the state changes. Then you just need to handle these event-like calls in all states.
+You return a list containing state_enter from your `callback_mode/0` function and the gen_statem engine will call your state callback once with the arguments `(enter, OldState, ...)` whenever the state changes. Then you just need to handle these event-like calls in all states.
 
-`callback_mode/0` 関数から state_enter を含むリストを返すと、 gen_statem エンジンは、状態が変わるたびに引数(enter, OldState, ...)で状態コールバックを 1 回呼び出します 。次に、これらのイベントのような呼び出しをすべての状態で処理するだけです。
+`callback_mode/0` 関数から state_enter を含むリストを返すと、 gen_statem エンジンは、状態が変わるたびに引数 `(enter, OldState, ...)` で状態コールバックを 1 回呼び出します 。次に、これらのイベントのような呼び出しをすべての状態で処理するだけです。
 
 
 ```erlang
@@ -816,28 +814,39 @@ open(state_timeout, lock, Data) ->
 
 ```
 
-You can repeat the state entry code by returning one of {repeat_state, ...}, {repeat_state_and_data, \_} or repeat_state_and_data that otherwise behaves exactly like their keep_state siblings. See the type state_callback_result() in the reference manual.
+You can repeat the state entry code by returning one of `{repeat_state, ...}`, `{repeat_state_and_data, \_}` or `repeat_state_and_data` that otherwise behaves exactly like their `keep_state` siblings. See the type `state_callback_result()` in the reference manual.
 
 `{repeat_state, ...}`、 `{repeat_state_and_data, _}` または `repeat_state_and_data` のいずれかを返すことで状態エントリーコードを繰り返すことができます。 それ以外の場合は、 `keep_state` の兄弟とまったく同じように動作します。リファレンスマニュアルの `state_callback_result()` のタイプを参照してください。
 
 
 ### 4.17  Self-Generated Events
 
-It can sometimes be beneficial to be able to generate events to your own state machine. This can be done with the state transition action {next_event, EventType, EventContent}.
+It can sometimes be beneficial to be able to generate events to your own state machine. This can be done with the state transition action `{next_event, EventType, EventContent}`.
 
-自分のステートマシンにイベントを生成できることが有益な場合もあります。これは状態遷移アクション `{next_event, EventType, EventContent}` で行うことができます。
+自身のステートマシンにイベントを生成できることが有益な場合もあります。これは状態遷移アクション `{next_event, EventType, EventContent}` で行うことができます。
 
 You can generate events of any existing type, but the internal type can only be generated through action next_event. Hence, it cannot come from an external source, so you can be certain that an internal event is an event from your state machine to itself.
 
-既存のタイプのイベントを生成することはできますが、内部タイプはアクション next_event によってのみ生成できます。したがって、外部ソースから来ることはできません。したがって、内部イベントは、自分のステートマシンからそれ自体へのイベントであることが確実になります。
+既存のタイプのイベントを生成することはできますが、 internal は next_event によってのみ生成できます。したがって internal イベントは外部ソースから来ることがなく、常に自身のステートマシンからであることが確信できます。
 
 One example for this is to pre-process incoming data, for example decrypting chunks or collecting characters up to a line break. Purists may argue that this should be modelled with a separate state machine that sends pre-processed events to the main state machine. But to decrease overhead the small pre-processing state machine can be implemented in the common state event handling of the main state machine using a few state data variables that then sends the pre-processed events as internal events to the main state machine.
 
-これの 1 つの例は、受信データを前処理することです(例えば、チャンクを解読するか、改行まで文字を収集するなど)。純粋主義者は、前処理されたイベントをメインステートマシンに送信する別のステートマシンでモデル化する必要があると主張するかもしれません。しかし、オーバーヘッドを減少させるために、少量の前処理ステートマシンを、いくつかの状態データ変数を使用して主ステートマシンの共通ステートイベント処理で実装することができ、その後、前処理されたイベントを内部イベントとして主ステートマシンに送信する。
 
-The following example uses an input model where you give the lock characters with put_chars(Chars) and then call enter() to finish the input.
 
-次の例では、ロック文字に put_chars(Chars)を指定し、次に enter()を呼び出して 入力を終了する入力モデルを使用します。
+利用例の 1 つは、受信データの前処理です。(例えばチャンクの解読、改行まで文字収集など)。純粋主義者は、前処理済みのイベントをメインステートマシンに送信する別のステートマシンでモデル化する必要があると主張するかもしれません。
+
+オーバーヘッドを減らすための
+小規模な前処理のステートマシンは、
+メインのステートマシンに
+前処理済みのイベントを内部イベントとして送信する
+少量の状態データ変数を用いて
+メインのステートマシンの共通の状態イベントをハンドリングすることで
+実装できる。
+
+
+The following example uses an input model where you give the lock characters with `put_chars(Chars)` and then call `enter()` to finish the input.
+
+次の例では、ロック文字に `put_chars(Chars)` を指定し、次に `enter()` を呼び出して入力を終了する入力モデルを使用します。
 
 
 ```erlang
@@ -886,7 +895,7 @@ This section includes the example after most of the mentioned modifications and 
 ![Figure 4.2:   Code Lock State Diagram Revisited](http://erlang.org/doc/design_principles/code_lock_2.png)
 
 
-Notice that this state diagram does not specify how to handle a button event in the state open. So, you need to read somewhere else that unspecified events must be ignored as in not consumed but handled in some other state. Also, the state diagram does not show that the code_length/0 call must be handled in every state.
+Notice that this state diagram does not specify how to handle a button event in the state open. So, you need to read somewhere else that unspecified events must be ignored as in not consumed but handled in some other state. Also, the state diagram does not show that the `code_length/0` call must be handled in every state.
 
 この状態図では、 open 状態でボタンイベントを処理する方法は指定されていません。したがって、特定されていないイベントは、消費されずに他の state で処理されなければならないものとして無視する必要があります。また、状態図では、すべての状態で `code_length/0` コールを処理する必要があることは示されていません。
 
@@ -967,7 +976,7 @@ code_change(_Vsn, State, Data, _Extra) ->
 
 ### Callback Mode: handle_event_function
 
-This section describes what to change in the example to use one handle_event/4 function. The previously used approach to first branch depending on event does not work that well here because of the state enter calls, so this example first branches depending on state:
+This section describes what to change in the example to use one `handle_event/4` function. The previously used approach to first branch depending on event does not work that well here because of the state enter calls, so this example first branches depending on state:
 
 この節では、 `handle_event/4` 関数を 1 つ使用する例で変更する内容について説明します。以前に使用された、イベントに応じた最初の分岐へのアプローチは、状態入力呼び出しのためにここでうまくいきません。したがって、この例は最初に状態によって分岐します。
 
@@ -1014,7 +1023,7 @@ handle_event({call, From}, code_length, _State, #{code := Code}) ->
 
 Notice that postponing buttons from the locked state to the open state feels like a strange thing to do for a code lock, but it at least illustrates event postponing.
 
-ロック状態からオープン状態へのボタンの延期は、コードロックのためには奇妙なことだと感じますが、少なくともイベントの延期を示しています。
+ロック状態からオープン状態へのボタンの先送りは、コードロックのためには奇妙なことだと感じますが、少なくともイベントの先送りを示しています。
 
 
 ## 4.19  Filter the State
@@ -1034,9 +1043,9 @@ Another reason to filter the state can be that the state is too large to print, 
 状態をフィルタリングするもう 1 つの理由は、エラーログに不都合な詳細が含まれているため、状態が大きすぎて印刷できないことがあります。
 
 
-To avoid this, you can format the internal state that gets in the error log and gets returned from sys:get_status/1, 2 by implementing function Module:format_status/2, for example like this:
+To avoid this, you can format the internal state that gets in the error log and gets returned from `sys:get_status/1, 2` by implementing function `Module:format_status/2`, for example like this:
 
-これを避けるには、エラーログに 取り込まれ、関数 `Module:format_status/2` を実装して `sys:get_status/1, 2` から返される内部状態をフォーマットすることができます。
+これを避けるには、エラーログに取り込まれ、関数 `Module:format_status/2` を実装して `sys:get_status/1, 2` から返される内部状態をフォーマットすることができます。
 
 
 ```erlang
@@ -1057,7 +1066,7 @@ format_status(Opt, [_PDict, State, Data]) ->
     end.
 ```
 
-It is not mandatory to implement a Module:format_status/2 function. If you do not, a default implementation is used that does the same as this example function without filtering the Data term, that is, StateData = {State, Data}, in this example containing sensitive information.
+It is not mandatory to implement a `Module:format_status/2` function. If you do not, a default implementation is used that does the same as this example function without filtering the Data term, that is, `StateData = {State, Data}`, in this example containing sensitive information.
 
 `Module:format_status/2` 関数を実装することは必須ではありません。そうでない場合は、 Data 項をフィルタリングせずにこの例の関数と同じ、つまり `StateData = {State, Data}` というこの例では機密情報を含むデフォルトの実装が使用されます。
 
@@ -1066,32 +1075,37 @@ It is not mandatory to implement a Module:format_status/2 function. If you do no
 
 The callback mode handle_event_function enables using a non-atom state as described in section Callback Modes, for example, a complex state term like a tuple.
 
-コールバックモード handle_event_function は、コールバックモード、例えばタプルのような複雑な状態の項のように、非アトム状態を使用することを可能にし ます。
+コールバックモード handle_event_function は、コールバックモード、例えばタプルのような複雑な状態のデータなど、 atom 以外のデータ構造を使用することができます。
 
 
-One reason to use this is when you have a state item that affects the event handling, in particular in combination with postponing events. We complicate the previous example by introducing a configurable lock button (this is the state item in question), which in the open state immediately locks the door, and an API function set_lock_button/1 to set the lock button.
+One reason to use this is when you have a state item that affects the event handling, in particular in combination with postponing events. We complicate the previous example by introducing a configurable lock button (this is the state item in question), which in the open state immediately locks the door, and an API function `set_lock_button/1` to set the lock button.
 
-これを使用する 1 つの理由は、イベント処理に影響を与える状態項目、特に延期イベントとの組み合わせがある場合です。前の例では、設定可能なロックボタン(これは問題の状態アイテム)を導入することによって複雑になりました。これは、開いた状態ですぐにドアをロックし、ロックボタンを設定する API 関数 `set_lock_button/1` を導入します。
-
-
-Suppose now that we call set_lock_button while the door is open, and have already postponed a button event that until now was not the lock button. The sensible thing can be to say that the button was pressed too early so it is not to be recognized as the lock button. However, then it can be surprising that a button event that now is the lock button event arrives (as retried postponed) immediately after the state transits to locked.
-
-ドアが開いている ときに set_lock_button を呼び出すと、今までロックボタンではなかったボタンイベントが既に延期されているとします。賢明なことは、ボタンが早すぎるため、ロックボタンとして認識されないと言うことができます。しかし、今、ロックボタンイベントでボタンのイベントがすぐに状態遷移した後に(延期再試行のように)到着したことは驚くべきことができますロック。
+これを使用する 1 つの理由は、イベント処理に影響を与える state item 、特に先送りイベントとの組み合わせがある場合です。
+前の例では、設定可能なロックボタン(状態アイテム)を導入することによって複雑になりました。
+これは、開いた状態ですぐにドアをロックし、ロックボタンを設定する API 関数 `set_lock_button/1` を導入します。
 
 
-So we make the button/1 function synchronous by using gen_statem:call and still postpone its events in the open state. Then a call to button/1 during the open state does not return until the state transits to locked, as it is there the event is handled and the reply is sent.
+Suppose now that we call `set_lock_button` while the door is open, and have already postponed a button event that until now was not the lock button. The sensible thing can be to say that the button was pressed too early so it is not to be recognized as the lock button. However, then it can be surprising that a button event that now is the lock button event arrives (as retried postponed) immediately after the state transits to locked.
 
-したがって、 gen_statem:call を使用して `button/1` 関数を同期させ 、そのイベントを開いた状態で延期します。次に、開いている 状態の間にボタン/ 1 の呼び出しは、イベントが処理されて応答が送信されるため、状態が locked に遷移するまで戻りません。
-
-
-If a process now calls set_lock_button/1 to change the lock button while another process hangs in button/1 with the new lock button, it can be expected that the hanging lock button call immediately takes effect and locks the lock. Therefore, we make the current lock button a part of the state, so that when we change the lock button, the state changes and all postponed events are retried.
-
-プロセスが `set_lock_button/1` を呼び出してロックボタンを変更すると、新しいロックボタンで `button/1` に別のプロセスがハングアップしているときに、ハンギングロックボタンの呼び出しがすぐに有効になり、ロックがロックされることが期待できます。したがって、現在のロックボタンを状態の一部にして、ロックボタンを変更すると状態が変わり、すべての延期されたイベントが再試行されます。
+ドアが開いているときに `set_lock_button` を呼び出すと、今までロックボタンではなかったボタンイベントが既に先送りされているとします。
+賢明なことは、ボタンが早すぎるため、ロックボタンとして認識されないと言うことができます。
+しかし、今、ロックボタンイベントでボタンのイベントがすぐに状態遷移した後に(先送り再試行のように)到着したことは驚くべきことができますロック。
 
 
-We define the state as {StateName, LockButton}, where StateName is as before and LockButton is the current lock button:
+So we make the `button/1` function synchronous by using `gen_statem:call` and still postpone its events in the open state. Then a call to `button/1` during the open state does not return until the state transits to locked, as it is there the event is handled and the reply is sent.
 
-状態を `{StateName, LockButton}` と定義します。ここで、 StateName は以前と同じで、 LockButton は現在のロックボタンです。
+したがって、 `gen_statem:call` を使用して `button/1` 関数を同期させ、そのイベントを開いた状態で先送りします。次に、開いている状態の間に `button/1` の呼び出しは、イベントが処理されて応答が送信されるため、状態が locked に遷移するまで戻りません。
+
+
+TODO:
+If a process now calls `set_lock_button/1` to change the lock button while another process hangs in `button/1` with the new lock button, it can be expected that the hanging lock button call immediately takes effect and locks the lock. Therefore, we make the current lock button a part of the state, so that when we change the lock button, the state changes and all postponed events are retried.
+
+プロセスが `set_lock_button/1` を呼び出してロックボタンを変更すると、新しいロックボタンで `button/1` に別のプロセスがハングアップしているときに、ハンギングロックボタンの呼び出しがすぐに有効になり、ロックがロックされることが期待できます。したがって、現在のロックボタンを状態の一部にして、ロックボタンを変更すると状態が変わり、すべての先送りされたイベントが再試行されます。
+
+
+We define the state as `{StateName, LockButton}`, where StateName is as before and LockButton is the current lock button:
+
+状態を `{StateName, LockButton}` と定義します。ここで StateName は以前と同じで LockButton は現在のロックボタンです。
 
 
 ```erlang
@@ -1190,21 +1204,21 @@ format_status(Opt, [_PDict, State, Data]) ->
     end.
 ```
 
-It can be an ill-fitting model for a physical code lock that the button/1 call can hang until the lock is locked. But for an API in general it is not that strange.
+It can be an ill-fitting model for a physical code lock that the `button/1` call can hang until the lock is locked. But for an API in general it is not that strange.
 
-ロックが locked になるまで button/1 コールがハングアップする可能性があるのは、物理モデルからみると不自然かもしれません。しかし、一般的に API にとってはそれほど奇妙ではありません。
+ロックが locked になるまで `button/1` コールがハングアップする可能性があるのは、物理モデルからみると不自然かもしれません。しかし、一般的に API にとってはそれほど奇妙ではありません。
 
 
 ## 4.21  Hibernation
 
-If you have many servers in one node and they have some state(s) in their lifetime in which the servers can be expected to idle for a while, and the amount of heap memory all these servers need is a problem, then the memory footprint of a server can be mimimized by hibernating it through proc_lib:hibernate/3.
+If you have many servers in one node and they have some state(s) in their lifetime in which the servers can be expected to idle for a while, and the amount of heap memory all these servers need is a problem, then the memory footprint of a server can be mimimized by hibernating it through `proc_lib:hibernate/3`.
 
 1 つのノードに多数のサーバーがあり、それらのサーバーがしばらくアイドル状態になると予想される寿命があり、これらのサーバーが必要とするヒープメモリーの量に問題がある場合は、メモリー占有量 `proc_lib:hibernate/3` を使って hibernate することで、サーバの最小化を図ることができ ます。
 
 
 ## Note
 
-It is rather costly to hibernate a process; see erlang:hibernate/3. It is not something you want to do after every event.
+It is rather costly to hibernate a process; see `erlang:hibernate/3`. It is not something you want to do after every event.
 
 プロセスを休止するにはかなりコストがかかります。 `erlang:hibernate/3` を参照してください。すべてのイベントの後にあなたがしたいことではありません。
 
