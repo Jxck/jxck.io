@@ -1,4 +1,4 @@
-# [erlang][gen_statem] gen_fsm から gen_statem へ
+# [erlang][gen_statem][gen_fsm] gen_fsm から gen_statem へ
 
 ## Intro
 
@@ -101,7 +101,7 @@ erlang:'!'                        -----> Module:StateName/3
 
 コールバックは減っていることがわかる。
 
-gen_statem では、同期/非同期の使い分けが、 call/cast になっている。
+大きいところとして、 gen_statem では、同期/非同期の使い分けが、 call/cast になっている。
 
 そして、 Module:StateName/3 は引数の最初に Event Type を取り、ここで call/cast どちらで来たのかなどを受け取るようになった。 info の場合もここで分岐する。
 
