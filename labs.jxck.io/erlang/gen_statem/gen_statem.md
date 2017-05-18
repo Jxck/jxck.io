@@ -8,15 +8,18 @@ OTP の内部でも ssl などはすでに gen_statem に移行している。
 
 このビヘイビアの概要について記す。
 
+
+### reference
+
 - [gen_statem API](http://erlang.org/doc/man/gen_statem.html)
 - [gen_statem Behavior](http://erlang.org/doc/design_principles/statem.html)
 
 
-## 注意
+### caution
 
 すでにかなり安定はしているが、軽微といえども非互換な変更が OTP 20 以降に発生する可能性があることがドキュメントに言及されている。
 
-本記事は、 19 時点での API ドキュメントをベースにしている。
+本記事は 19 時点での API ドキュメントをベースにしている。
 
 
 ## State Machine
@@ -26,9 +29,10 @@ OTP の内部でも ssl などはすでに gen_statem に移行している。
 この状態の変化を、現在の状態(S)と発生したイベント(E)の組み合わせによって、実行する処理(A)と次の状態(S')とし、以下のようにモデル化する。
 
 
-```erlang
+```
 State(S) x Event(E) -> Actions(A), State(S')
 ```
+
 
 これを、状態(S)を関数名とし、イベント(E)をパターンマッチで明示的に表現する gen_fsm ビヘイビアを用いて実装されることが多かった。
 
@@ -54,7 +58,6 @@ gen_fsm と似ているものの互換性が保たれているわけではない
 ## behavior
 
 gen_fsm と gen_statem の behavior を比較する。
-
 
 ```
 gen_fsm module                    Callback module
@@ -116,9 +119,9 @@ hello(cast, eventname, Data) -> ...;
 hello(info, eventname, Data) -> ...;
 ```
 
+
 EventType は後述するものも含めて 6 種類ある。
 これにより、 Module:StateName/3 へのハンドラの統合がされている。
-
 
 ハンドラの戻り値はいくつかの種類があるが、 gen_fsm で `Timeout`, `hibernate` などとしていたタプルの 4 番目がアクションとして整理された。
 
@@ -129,7 +132,9 @@ EventType は後述するものも含めて 6 種類ある。
 {next_state, NextStateName, NewStateData, Timeout}
 ```
 
+
 gen_fsm のようにも書けるが、複数のアクション(tuple)を配列で書くことができる。
+
 
 ```erlang
 {next_state, NextStateName, NewStateData}
@@ -137,18 +142,21 @@ gen_fsm のようにも書けるが、複数のアクション(tuple)を配列�
 {next_state, NextStateName, NewStateData, [{timeout, Time, Data1}, {state_timeout, Time, Data}2]}
 ```
 
+
 追加されたアクションについても一部後述する。
 
 
 ## keep_state
 
-ハンドラの最後で状態を遷移しない場合、 gen_fsm では自身と同じ状態名を明示的に指定していた。
+ハンドラの最後でステートを遷移しない場合、 gen_fsm では自身と同じステート名を明示的に指定していた。
+
 
 ```erlang
 % hello から遷移しない
 hello(Event, Data) ->
     {next_state, hello, Data}.
 ```
+
 
 これを明示的に表すのに keep_state が使える。
 
@@ -159,6 +167,7 @@ hello(cast, Event, Data) ->
     {keep_state, Data}.
 ```
 
+
 データまで同じなら keep_state_and_data だけで良い。
 
 
@@ -168,7 +177,8 @@ hello(cast, Event, Data) ->
     keep_state_and_data.
 ```
 
-これは後述する、 timeout などのアクションを使う際に、アクションは実行したいが状態は遷移したくないという場合に使える。
+
+これは後述する、 timeout などのアクションを使う際に、アクションは実行したいがステートは遷移したくないという場合に使える。
 
 
 ```erlang
@@ -181,32 +191,34 @@ hello(cast, Event, Data) ->
 ## callback_mode
 
 gen_statem では callback_mode/0 というビヘイビアが追加された。
-これは、コールバックの実装方法を指定するもので、 gen_fsm のように atom で状態に名前をつけ、対応する関数を実装するスタイルは `state_functions` になる。
+これは、コールバックの実装方法を指定するもので、 gen_fsm のように atom でステートに名前をつけ、対応する関数を実装するスタイルは `state_functions` になる。
 
 
 ```erlang
-callback_mode() -> state_functions
+callback_mode() -> state_functions.
 ```
 
 
 ## handle_event_function
 
-gen_fsm では、状態には atom で名前をつけるスタイルをとった。
-しかし、なんらかのデータコンテナの値などを状態として扱いたい場合、atom ではなくそのパターンマッチをそのまま状態として持つ方が便利な場合もある。
+gen_fsm では、ステートには atom で名前をつけるスタイルをとった。
+しかし、なんらかのデータコンテナの値などをステートとして扱いたい場合 atom ではなくそのパターンマッチをそのままステートとして持つ方が便利な場合もある。
 
-callback_mode/0 で `handle_event_function` を返すと、状態名を atom 以外の任意の値にすることができる。
+callback_mode/0 で `handle_event_function` を返すと、ステート名を atom 以外の任意の値にすることができる。
 
 
 ```erlang
 callback_mode() -> handle_event_function.
 ```
 
-コールバックは `handle_event` 1 種類になり、この関数の引数のマッチで状態を表す。
+
+コールバックは `handle_event` 1 種類になり、この関数の引数のマッチでステートを表す。
 
 
 ```erlang
 handle_event(EventType, EventContent, State, Data)
 ```
+
 
 これにより Map や record などを用いたデータへのパターンマッチなどを使って複雑な状態を表現することができる。
 
@@ -229,7 +241,6 @@ handle_event(#{data := [1,2,3]}, EventContent, State, Data) -> ...;
 callback_mode() ->
     [state_functions, state_enter].
 
-
 StateName(enter, OldState, Data) ->
     % この状態に入ったとき最初に必ず一回実行される
     {keep_state_and_data, [{state_timeout, 5000, SomeState}]};
@@ -249,17 +260,15 @@ State Enter Call 以外で呼びだした `repeat_state` は `keep_state` と等
 
 gen_statem の中でのタイムアウトは主に 3 つの方法がある。
 
-
 サーバ実装などにおいては、相手からの応答のタイムアウトや、トークンの期限など、タイムアウトのモデルは非常に重要だ。
 
 gen_fsm よりも強化されており、 gen_statem を使う大きなモチベーションの 1 つと感じる。
 
 
-
 ### Timeout Event
 
-
 以下のようなアクションを返すと、イベントタイムアウトが開始される。
+
 
 ```erlang
 {next_state, NextState, Data, 10000}
@@ -269,17 +278,19 @@ gen_fsm よりも強化されており、 gen_statem を使う大きなモチベ
 
 1000ms 以内に次のイベントが無ければ Timeout イベントが上がる。
 
+
 ```erlang
 NextState(timeout, Context, Data)
 ```
 
-どんなイベントが発生してもこのタイマーはキャンセルされる。
 
+どんなイベントが発生してもこのタイマーはキャンセルされる。
 
 
 ### State Timeout Event
 
 以下のようなアクションを返すと、ステートタイムアウトが開始される。
+
 
 ```erlang
 {next_state, NextState, Data, [{state_timeout, 10000, EventContent}]}
@@ -288,17 +299,16 @@ NextState(timeout, Context, Data)
 
 1000ms 以内にステートが遷移しなければ Timeout イベントが上がる。
 
+
 ```erlang
 NextState(state_timeout, Context, Data)
 ```
 
+
 どんな状態に遷移していもこのタイマーはキャンセルされる。
 
 
-
-
 ### Erlang Timer
-
 
 イベントやステートの変化などをまたぐ、独立したタイマーを自前で管理したい場合、ハンドラ内で erlang:start_timer/3 を用いてタイマーを作り、それを保持しておく。
 
@@ -308,7 +318,7 @@ Timer = erlang:start_timer(1000, self(), Data)
 ```
 
 
-このタイマーのタイムアウトが発生すると、その時いる状態でタイムアウトイベントが上がる。
+このタイマーのタイムアウトが発生すると、その時いるステートでタイムアウトイベントが上がる。
 
 
 ```erlang
@@ -341,28 +351,30 @@ erlang:cancel_timer(Timer)
 
 gen_fsm では、イベントは gen_statem を用いて発行する以外になかったが、コールバック処理の結果別のイベントを発生したい場合がある。
 
-gen_statem では、以下のような next_event アクションを返すことで、内部からイベントを発行できる。
+gen_statem では、以下のような `next_event` アクションを返すことで、内部からイベントを発行できる。
 
 
 ```erlang
 {keep_state, Data, [{reply, From, ok}, {next_event, cast, Arg}]};
 ```
 
-call, info などすべての EventType は、 next_event で送ることができ、外部からのイベントと同じように扱うことができる。
+
+call, info などすべての EventType は、 `next_event` で送ることができ、外部からのイベントと同じように扱うことができる。
 
 
 ## internal event
 
-internal という EventType があり、これは next_event でしか送ることができないようになっている。
+`internal` という EventType があり、これは `next_event` でしか送ることができないようになっている。
+
 
 ```erlang
 {keep_state, Data, [{reply, From, ok}, {next_event, internal, Arg}]};
 ```
 
 
-逆をいえば、 internal は外部から送られてくることが無いため、内部で発生した Self Generated イベントであることが保証できる。
+逆をいえば、 `internal` は外部から送られてくることが無いため、内部で発生した Self Generated イベントであることが保証できる。
 
-他の EventType は next_event で来たものか、外から来たものか区別ができないため、イベントを内部に閉じたい場合に利用することができる。
+他の EventType は `next_event` で来たものか、外から来たものか区別ができないため、イベントを内部に閉じたい場合に利用することができる。
 
 
 ## Module:format_status/2
