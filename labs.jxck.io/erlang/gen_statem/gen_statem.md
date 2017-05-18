@@ -8,6 +8,9 @@ OTP の内部でも ssl などはすでに gen_statem に移行している。
 
 このビヘイビアの概要について記す。
 
+- [gen_statem API](http://erlang.org/doc/man/gen_statem.html)
+- [gen_statem Behavior](http://erlang.org/doc/design_principles/statem.html)
+
 
 ## 注意
 
