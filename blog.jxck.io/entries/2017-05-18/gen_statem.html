@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8">
+    <!--
+    貴様、見ているな！！
+    このサイトの技術的なまとめはこちらをどうぞ。
+    https://labs.jxck.io/blog
+
+    by Jxck
+    -->
+    <link rel="canonical" href="https://blog.jxck.io/entries/2017-05-18/gen_statem.html">
+    <link rel="amphtml" href="https://blog.jxck.io/entries/2017-05-18/gen_statem.amp.html">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="alternate" type="application/atom+xml" title="blog.jxck.io" href="/feeds/atom.xml">
+    <link rel="author" href="//jxck.io/assets/humans.txt">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="preload" as="font" type="font/woff" href="//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201608028" crossorigin>
+    <script async src="//jxck.io/assets/js/ga.js"></script>
+    <script async src="//jxck.io/assets/js/highlight.min.js"></script>
+    <script async src="//jxck.io/assets/js/sw.js"></script>
+    <script async src="//jxck.io/assets/js/main.js"></script>
+
+    <meta name="author" content="Jxck">
+    <meta name="description" content="Erlang/OTP 19 から、 gen_fsm の後継として gen_statem が導入された。OTP の内部でも ssl などはすでに gen_statem に移行している。このビヘイビアの概要について記す。...">
+    <meta name="keywords" content="erlang,gen_statem,gen_fsm">
+    <meta itemprop="image" content="https://jxck.io/assets/img/jxck.png">
+    <meta itemprop="name" content="blog.jxck.io">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jxck_">
+    <meta name="twitter:url" content="https://blog.jxck.io/entries/2017-05-18/gen_statem.html">
+    <meta name="twitter:title" content="gen_fsm から gen_statem へ | blog.jxck.io">
+    <meta name="twitter:description" content="Erlang/OTP 19 から、 gen_fsm の後継として gen_statem が導入された。OTP の内部でも ssl などはすでに gen_statem に移行している。このビヘイビアの概要について記す。...">
+    <meta name="twitter:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://blog.jxck.io/entries/2017-05-18/gen_statem.html">
+    <meta property="og:title" content="gen_fsm から gen_statem へ | blog.jxck.io">
+    <meta property="og:site_name" content="blog.jxck.io">
+    <meta property="og:description" content="Erlang/OTP 19 から、 gen_fsm の後継として gen_statem が導入された。OTP の内部でも ssl などはすでに gen_statem に移行している。このビヘイビアの概要について記す。...">
+    <meta property="og:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <link rel="icon" sizes="192x192" href="https://jxck.io/assets/img/jxck.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "gen_fsm から gen_statem へ | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2017-05-18T08:00:00+08:00",
+  "dateModified": "2017-05-18T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "Erlang/OTP 19 から、 gen_fsm の後継として gen_statem が導入された。OTP の内部でも ssl などはすでに gen_statem に移行している。このビヘイビアの概要について記す。..."
+}
+</script>
+
+    <title>gen_fsm から gen_statem へ | blog.jxck.io</title>
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/body.css">
+  </head>
+  <body>
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/header.css">
+    <header>
+      <ul>
+        <li><a href="//blog.jxck.io"><img class="logo" alt="blog" title="blog top" width="30" src=//jxck.io/assets/img/blog.svg></a>
+        <li><a href="/entries/2017-05-18/gen_statem.amp.html#development=1"><svg width="30" height="30"><use xlink:href="/assets/img/amp.svg#main"/></svg></a>
+        <li><a href="."><img alt="up" title="move to parent directory" width="30" src="//jxck.io/assets/img/up.svg"></a>
+        <li><a href="/feeds/atom.xml"><img alt="rss" title="rss feed" width="30" src="//jxck.io/assets/img/rss.svg"></a>
+        <li><a href="//jxck.io/humans.txt"><img alt="humans" title="huamns.txt" width="30" src="//jxck.io/assets/img/humans.svg"></a>
+        <li><a href="//jxck.io"><img class="logo" alt="jxck" title="jxck logo" width="30" src="//jxck.io/assets/img/jxck.png"></a>
+      </ul>
+    </header>
+
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/markdown.css">
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/main.css">
+    <main>
+      <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/info.css">
+      <ul class="info">
+        <li>created_at: <time class="created_at" datetime="2017-05-18">2017-05-18</time>
+        <li>updated_at: <time class="updated_at" datetime="2017-05-18">2017-05-18</time>
+        <li class="tags">tags: [<a href='/tags/erlang.html'>erlang</a>,<a href='/tags/gen_statem.html'>gen_statem</a>,<a href='/tags/gen_fsm.html'>gen_fsm</a>]
+      </ul>
+
+      <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/article.css">
+  <article>
+    <h1><a href=/entries/2017-05-18/gen_statem.html>gen_fsm から gen_statem へ</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>Erlang/OTP 19 から、 gen_fsm の後継として gen_statem が導入された。
+      <p>OTP の内部でも ssl などはすでに gen_statem に移行している。
+      <p>このビヘイビアの概要について記す。
+      <section>
+        <h3 id="reference"><a href="#reference">reference</a></h3>
+        <ul>
+          <li><a href="http://erlang.org/doc/man/gen_statem.html">gen_statem API</a>
+          <li><a href="http://erlang.org/doc/design_principles/statem.html">gen_statem Behavior</a>
+        </ul>
+      </section>
+      <section>
+        <h3 id="caution"><a href="#caution">caution</a></h3>
+        <p>すでにかなり安定はしているが、軽微といえども非互換な変更が OTP 20 以降に発生する可能性があることがドキュメントに言及されている。
+        <p>本記事は 19 時点での API ドキュメントをベースにしている。
+      </section>
+    </section>
+    <section>
+      <h2 id="State+Machine"><a href="#State+Machine">State Machine</a></h2>
+      <p>特にサーバのようなプログラムでは、状態の管理が重要になる。
+      <p>この状態の変化を、現在の状態(S)と発生したイベント(E)の組み合わせによって、実行する処理(A)と次の状態(S')とし、以下のようにモデル化する。
+      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+      <pre><code translate="no">State(S) x Event(E) -&gt; Actions(A), State(S&#039;)</code></pre>
+      <p>これを、状態(S)を関数名とし、イベント(E)をパターンマッチで明示的に表現する gen_fsm ビヘイビアを用いて実装されることが多かった。
+      <p>gen_statem は、この gen_fsm を強化したものとなっている。
+    </section>
+    <section>
+      <h2 id="gen_fsm+to+gen_statem"><a href="#gen_fsm+to+gen_statem">gen_fsm to gen_statem</a></h2>
+      <p>まず、ビヘイビアの callback API が整理されている。<br>
+      gen_fsm と似ているものの互換性が保たれているわけではない。
+      <p>その上で追加された機能には以下のようなものがある。
+      <ul>
+        <li>keep_state, repeat_state
+        <li>callback_mode/1
+        <li>postpone
+        <li>next_event
+        <li>state_enter
+        <li>format_status
+        <li>etc
+      </ul>
+    </section>
+    <section>
+      <h2 id="behavior"><a href="#behavior">behavior</a></h2>
+      <p>gen_fsm と gen_statem の behavior を比較する。
+      <pre><code translate="no">gen_fsm module                    Callback module
+--------------                    ---------------
+gen_fsm:start
+gen_fsm:start_link                -----&gt; Module:init/1
+
+gen_fsm:stop                      -----&gt; Module:terminate/3
+
+gen_fsm:send_event                -----&gt; Module:StateName/2
+
+gen_fsm:send_all_state_event      -----&gt; Module:handle_event/3
+
+gen_fsm:sync_send_event           -----&gt; Module:StateName/3
+
+gen_fsm:sync_send_all_state_event -----&gt; Module:handle_sync_event/4
+
+-                                 -----&gt; Module:handle_info/3
+
+-                                 -----&gt; Module:terminate/3
+
+-                                 -----&gt; Module:code_change/4</code></pre>
+      <pre><code translate="no">gen_statem module                        Callback module
+-----------------                        ---------------
+gen_statem:start
+gen_statem:start_link             -----&gt; Module:init/1
+
+Server start or code change       -----&gt; Module:callback_mode/0
+
+gen_statem:stop                   -----&gt; Module:terminate/3
+
+gen_statem:call
+gen_statem:cast
+erlang:send
+erlang:&#039;!&#039;                        -----&gt; Module:StateName/3
+                                         Module:handle_event/4
+
+-                                 -----&gt; Module:terminate/3
+
+-                                 -----&gt; Module:code_change/4</code></pre>
+      <p>コールバックは減っていることがわかる。
+      <p>大きいところとして、 gen_statem では、同期/非同期の使い分けが、 call/cast になっている。
+      <p>そして、 Module:StateName/3 は引数の最初に Event Type を取り、ここで call/cast どちらで来たのかなどを受け取るようになった。 info の場合もここで分岐する。
+      <pre class=erlang><code translate="no">% Module:StateName(EventType, EventContent, Data) -&gt; StateFunctionResult
+hello({call, From}, eventname, Data) -&gt; ...; % From は返答先
+hello(cast, eventname, Data) -&gt; ...;
+hello(info, eventname, Data) -&gt; ...;</code></pre>
+      <p>EventType は後述するものも含めて 6 種類ある。<br>
+      これにより、 Module:StateName/3 へのハンドラの統合がされている。
+      <p>ハンドラの戻り値はいくつかの種類があるが、 gen_fsm で <code translate="no">Timeout</code>, <code translate="no">hibernate</code> などとしていたタプルの 4 番目がアクションとして整理された。
+      <pre class=erlang><code translate="no">{next_state, NextStateName, NewStateData}
+{next_state, NextStateName, NewStateData, hibernate}
+{next_state, NextStateName, NewStateData, Timeout}</code></pre>
+      <p>gen_fsm のようにも書けるが、複数のアクション(tuple)を配列で書くことができる。
+      <pre class=erlang><code translate="no">{next_state, NextStateName, NewStateData}
+{next_state, NextStateName, NewStateData, [{hibernate, true}]}
+{next_state, NextStateName, NewStateData, [{timeout, Time, Data1}, {state_timeout, Time, Data}2]}</code></pre>
+      <p>追加されたアクションについても一部後述する。
+    </section>
+    <section>
+      <h2 id="keep_state"><a href="#keep_state">keep_state</a></h2>
+      <p>ハンドラの最後でステートを遷移しない場合、 gen_fsm では自身と同じステート名を明示的に指定していた。
+      <pre class=erlang><code translate="no">% hello から遷移しない
+hello(Event, Data) -&gt;
+    {next_state, hello, Data}.</code></pre>
+      <p>これを明示的に表すのに keep_state が使える。
+      <pre class=erlang><code translate="no">% hello から遷移しない
+hello(cast, Event, Data) -&gt;
+    {keep_state, Data}.</code></pre>
+      <p>データまで同じなら keep_state_and_data だけで良い。
+      <pre class=erlang><code translate="no">% hello から遷移しない
+hello(cast, Event, Data) -&gt;
+    keep_state_and_data.</code></pre>
+      <p>これは後述する、 timeout などのアクションを使う際に、アクションは実行したいがステートは遷移したくないという場合に使える。
+      <pre class=erlang><code translate="no">% hello から遷移しない
+hello(cast, Event, Data) -&gt;
+    {keep_state_and_data, [{timeout, 1000, world}]}.</code></pre>
+    </section>
+    <section>
+      <h2 id="callback_mode"><a href="#callback_mode">callback_mode</a></h2>
+      <p>gen_statem では callback_mode/0 というビヘイビアが追加された。<br>
+      これは、コールバックの実装方法を指定するもので、 gen_fsm のように atom でステートに名前をつけ、対応する関数を実装するスタイルは <code translate="no">state_functions</code> になる。
+      <pre class=erlang><code translate="no">callback_mode() -&gt; state_functions.</code></pre>
+    </section>
+    <section>
+      <h2 id="handle_event_function"><a href="#handle_event_function">handle_event_function</a></h2>
+      <p>gen_fsm では、ステートには atom で名前をつけるスタイルをとった。<br>
+      しかし、なんらかのデータコンテナの値などをステートとして扱いたい場合 atom ではなくそのパターンマッチをそのままステートとして持つ方が便利な場合もある。
+      <p>callback_mode/0 で <code translate="no">handle_event_function</code> を返すと、ステート名を atom 以外の任意の値にすることができる。
+      <pre class=erlang><code translate="no">callback_mode() -&gt; handle_event_function.</code></pre>
+      <p>コールバックは <code translate="no">handle_event</code> 1 種類になり、この関数の引数のマッチでステートを表す。
+      <pre class=erlang><code translate="no">handle_event(EventType, EventContent, State, Data)</code></pre>
+      <p>これにより Map や record などを用いたデータへのパターンマッチなどを使って複雑な状態を表現することができる。
+      <pre class=erlang><code translate="no">% data が空という状態
+handle_event(#{data := []}, EventContent, State, Data) -&gt; ...;
+
+% data が [1,2,3] という状態
+handle_event(#{data := [1,2,3]}, EventContent, State, Data) -&gt; ...;</code></pre>
+    </section>
+    <section>
+      <h2 id="State+Enter+Calls"><a href="#State+Enter+Calls">State Enter Calls</a></h2>
+      <p><code translate="no">callback_mode</code> で <code translate="no">state_enter</code> を追加すると、状態遷移時に一度実行される State Enter Call を実行できる。
+      <pre class=erlang><code translate="no">callback_mode() -&gt;
+    [state_functions, state_enter].
+
+StateName(enter, OldState, Data) -&gt;
+    % この状態に入ったとき最初に必ず一回実行される
+    {keep_state_and_data, [{state_timeout, 5000, SomeState}]};
+StateName(cast, OldState, Data) -&gt;
+    {next_state, SomeState, Data}.</code></pre>
+      <p>このモードが有効な場合は、すべてのイベントで enter のハンドラ実装が必要になる。
+      <p>また、 State Enter Call 内では <code translate="no">keep_state</code> に似た <code translate="no">repeat_state</code> を呼び出すことで、同じ State Enter Call を繰り返し実行することもできる。
+      <p>State Enter Call 以外で呼びだした <code translate="no">repeat_state</code> は <code translate="no">keep_state</code> と等価。
+    </section>
+    <section>
+      <h2 id="Timeout"><a href="#Timeout">Timeout</a></h2>
+      <p>gen_statem の中でのタイムアウトは主に 3 つの方法がある。
+      <p>サーバ実装などにおいては、相手からの応答のタイムアウトや、トークンの期限など、タイムアウトのモデルは非常に重要だ。
+      <p>gen_fsm よりも強化されており、 gen_statem を使う大きなモチベーションの 1 つと感じる。
+      <section>
+        <h3 id="Timeout+Event"><a href="#Timeout+Event">Timeout Event</a></h3>
+        <p>以下のようなアクションを返すと、イベントタイムアウトが開始される。
+        <pre class=erlang><code translate="no">{next_state, NextState, Data, 10000}
+{next_state, NextState, Data, [{timeout, 10000, EventContent}]}</code></pre>
+        <p>1000ms 以内に次のイベントが無ければ Timeout イベントが上がる。
+        <pre class=erlang><code translate="no">NextState(timeout, Context, Data)</code></pre>
+        <p>どんなイベントが発生してもこのタイマーはキャンセルされる。
+      </section>
+      <section>
+        <h3 id="State+Timeout+Event"><a href="#State+Timeout+Event">State Timeout Event</a></h3>
+        <p>以下のようなアクションを返すと、ステートタイムアウトが開始される。
+        <pre class=erlang><code translate="no">{next_state, NextState, Data, [{state_timeout, 10000, EventContent}]}</code></pre>
+        <p>1000ms 以内にステートが遷移しなければ Timeout イベントが上がる。
+        <pre class=erlang><code translate="no">NextState(state_timeout, Context, Data)</code></pre>
+        <p>どんな状態に遷移していもこのタイマーはキャンセルされる。
+      </section>
+      <section>
+        <h3 id="Erlang+Timer"><a href="#Erlang+Timer">Erlang Timer</a></h3>
+        <p>イベントやステートの変化などをまたぐ、独立したタイマーを自前で管理したい場合、ハンドラ内で erlang:start_timer/3 を用いてタイマーを作り、それを保持しておく。
+        <pre class=erlang><code translate="no">Timer = erlang:start_timer(1000, self(), Data)</code></pre>
+        <p>このタイマーのタイムアウトが発生すると、その時いるステートでタイムアウトイベントが上がる。
+        <pre class=erlang><code translate="no">NextState(info, {timeout, Timer, Data}, Data)</code></pre>
+        <p>キャンセルも自前で行う。
+        <pre class=erlang><code translate="no">erlang:cancel_timer(Timer)</code></pre>
+      </section>
+    </section>
+    <section>
+      <h2 id="Postponing"><a href="#Postponing">Postponing</a></h2>
+      <p>発生したイベントを先送りすることができるアクション。<br>
+      先送りしたイベントはキューに積まれ、状態が遷移したら再度順番に再生される。
+      <pre class=erlang><code translate="no">{keep_state, Data, [postpone]}</code></pre>
+    </section>
+    <section>
+      <h2 id="Self+Generated+Events"><a href="#Self+Generated+Events">Self Generated Events</a></h2>
+      <p>ステートマシン内部から、自身に対してイベントを送信することができる。
+      <p>gen_fsm では、イベントは gen_statem を用いて発行する以外になかったが、コールバック処理の結果別のイベントを発生したい場合がある。
+      <p>gen_statem では、以下のような <code translate="no">next_event</code> アクションを返すことで、内部からイベントを発行できる。
+      <pre class=erlang><code translate="no">{keep_state, Data, [{reply, From, ok}, {next_event, cast, Arg}]};</code></pre>
+      <p>call, info などすべての EventType は、 <code translate="no">next_event</code> で送ることができ、外部からのイベントと同じように扱うことができる。
+    </section>
+    <section>
+      <h2 id="internal+event"><a href="#internal+event">internal event</a></h2>
+      <p><code translate="no">internal</code> という EventType があり、これは <code translate="no">next_event</code> でしか送ることができないようになっている。
+      <pre class=erlang><code translate="no">{keep_state, Data, [{reply, From, ok}, {next_event, internal, Arg}]};</code></pre>
+      <p>逆をいえば、 <code translate="no">internal</code> は外部から送られてくることが無いため、内部で発生した Self Generated イベントであることが保証できる。
+      <p>他の EventType は <code translate="no">next_event</code> で来たものか、外から来たものか区別ができないため、イベントを内部に閉じたい場合に利用することができる。
+    </section>
+    <section>
+      <h2 id="Module:format_status/2"><a href="#Module:format_status/2">Module:format_status/2</a></h2>
+      <p>sys:get_status/1,2 や teminate 時のダンプなどで出力される State の値を、事前に加工できるフックが導入された。
+      <p>オプションなので、 Export されていなくても良い。
+      <p>状態が大きい場合に重要な情報だけに絞る、もしくは機密情報が出力されるのを防ぐ目的などで使われる。
+    </section>
+  </article>
+
+    </main>
+    <hr>
+
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/footer.css">
+    <footer>
+      <address class="copyright">Copyright &copy; 2016 <a href="/">Jxck</a>. All Rights Reserved. Using <a href="https://www.google.com/intl/ja/policies/privacy/partners/">google analytics</a>.</address>
+    </footer>
+  </body>
+</html>
