@@ -127,27 +127,27 @@ code_change(_Vsn, State, Data, _Extra) ->
 main(_) ->
     main().
 
-%main() ->
-%    start_link([1, 2, 3]),
-%    code_length(),
-%    button(1),
-%    timer:sleep(4000),
-%    button(1),
-%    button(0),
-%    timer:sleep(4000),
-%    button(1),
-%    button(2),
-%    code_length(),
-%    button(3),
-%    timer:sleep(6000),
-%    stop(),
-%    ok.
-
 main() ->
-    start([17]),
-    put_chars(<<"001">>),
-    put_chars(<<"7">>),
-    enter().
+    start([1, 2, 3]),
+    code_length(),
+    button(1),
+    timer:sleep(4000),
+    button(1),
+    button(0),
+    timer:sleep(4000),
+    button(1),
+    button(2),
+    code_length(),
+    button(3),
+    timer:sleep(6000),
+    stop(),
+    ok.
+
+%main() ->
+%    start([17]),
+%    put_chars(<<"001">>),
+%    put_chars(<<"7">>),
+%    enter().
 
 
 put_chars(Chars) when is_binary(Chars) ->
