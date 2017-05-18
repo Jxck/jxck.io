@@ -1,12 +1,12 @@
-%#!/usr/bin/env escript
 -module(code_lock).
 -include("../logger.hrl").
 -compile(export_all).
 
+-behaviour(gen_statem).
 
-start_link(Code) ->
+start(Code) ->
     ?Log(Code),
-    gen_statem:start_link({local, ?MODULE}, ?MODULE, Code, []).
+    ?Log(gen_statem:start({local, ?MODULE}, ?MODULE, Code, [])).
 
 stop() ->
     ?Log(stop),
@@ -144,10 +144,10 @@ main(_) ->
 %    ok.
 
 main() ->
-    code_lock:start_link([17]),
-    code_lock:put_chars(<<"001">>),
-    code_lock:put_chars(<<"7">>),
-    code_lock:enter().
+    start([17]),
+    put_chars(<<"001">>),
+    put_chars(<<"7">>),
+    enter().
 
 
 put_chars(Chars) when is_binary(Chars) ->
