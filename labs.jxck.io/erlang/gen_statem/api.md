@@ -1202,12 +1202,12 @@ HandleEventResult = event_handler_result(state())
 
 Whenever a gen_statem receives an event from call/2, cast/2, or as a normal process message, one of these functions is called. If callback mode is state_functions, Module:StateName/3 is called, and if it is handle_event_function, Module:handle_event/4 is called.
 
-gen_statem が call/2、 cast/2、または通常のプロセスメッセージとしてイベントを受け取る たびに、これらの関数の 1 つが呼び出されます。場合は、コールバックモードがある state_functions、 Module:StateName/3 と呼ばれ、それがある場合 handle_event_function は、 Module:handle_event/4 と呼ばれています。
+gen_statem が call/2、 cast/2、または通常のプロセスメッセージとしてイベントを受け取るたびに、これらの関数の 1 つが呼び出されます。コールバックモードが `state_functions` の場合、 Module:StateName/3 が、 `handle_event_function` の場合は、 Module:handle_event/4 が呼ばれています。
 
 
-If EventType is `{call, From}`, the caller waits for a reply. The reply can be sent from this or from any other state callback by returning with `{reply, From, Reply}` in Actions, in Replies, or by calling reply(From, Reply).
+If EventType is `{call, From}`, the caller waits for a reply. The reply can be sent from this or from any other state callback by returning with `{reply, From, Reply}` in Actions, in Replies, or by calling `reply(From, Reply)`.
 
-場合イベントタイプがある `{から、呼び出し}`、呼び出し側は応答を待ちます。応答は、このから、または任意の他から送信することができる 状態のコールバック で戻すことにより、`{返信からの返信、}` で アクションで、 返信、または呼び出すことにより (返信、から)応答を。
+イベントタイプが `{call、From}` の場合、呼び出し側は応答を待ちます。応答は、このハンドラまたは任意の別の状態から `{reply, From, Reply}` を Action や Replie で返す、もしくは `reply(From, Reply)` を呼ぶことで送信することができます。
 
 
 If this function returns with a next state that does not match equal (=/=) to the current state, all postponed events are retried in the next state.

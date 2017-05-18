@@ -41,7 +41,7 @@ A と S' は S と E のみに依存するため、ここで説明したステ�
 
 Like most gen_ behaviors, gen_statem keeps a server Data besides the state. Because of this, and as there is no restriction on the number of states (assuming that there is enough virtual machine memory) or on the number of distinct input events, a state machine implemented with this behavior is in fact Turing complete. But it feels mostly like an Event-Driven Mealy Machine.
 
-ほとんどの gen_ ビヘイビアと同様に、 gen_statem は状態のほかにサーバーデータも保持します。このため、(仮想マシンメモリが十分であることを前提として)状態数や個別の入力イベント数に制限がないため、このビヘイビアを実装したステートマシンは実際にはチューリング完全です。しかし、イベントドリブンミーリマシンのようにも見えます。
+ほとんどの gen_ ビヘイビアと同様に、 gen_statem は State のほかにサーバ Data も保持します。このため、(仮想マシンメモリが十分であることを前提として)状態数や個別の入力イベント数に制限がないため、このビヘイビアを実装したステートマシンは実際にはチューリング完全です。しかし、イベントドリブンミーリマシンのようにも見えます。
 
 
 ## 4.2  Callback Modes
@@ -588,7 +588,7 @@ This makes the gen_statem call callback function `terminate/3` just like for a s
 
 A timeout feature inherited from gen_statem's predecessor gen_fsm, is an event time-out, that is, if an event arrives the timer is cancelled. You get either an event or a time-out, but not both.
 
-gen_statem の前身である gen_fsm から継承したタイムアウト機能は、タイマーがキャンセルするとイベントが到着するタイムアウト機能です。
+gen_statem の前身である gen_fsm から継承したタイムアウト機能は、イベントが到着するとタイマーがキャンセルするタイムアウト機能です。
 イベントかタイムアウトのどちらかを受け取り、両方ではありません。
 
 It is ordered by the state transition action `{timeout, Time, EventContent}`, or just Time, or even just Time instead of an action list (the latter is a form inherited from gen_fsm.
@@ -619,7 +619,7 @@ Whenever we receive a button event we start an event timeout of 30 seconds, and 
 
 An event timeout is cancelled by any other event so you either get some other event or the timeout event. It is therefore not possible nor needed to cancel or restart an event timeout. Whatever event you act on has already cancelled the event timeout...
 
-イベントのタイムアウトは他のイベントによってキャンセルされ、他のイベントやタイムアウトイベントが発生します。したがって、イベント・タイムアウトを取り消したり、再始動する必要はありません。どのようなイベントを行っても、イベントのタイムアウトは既にキャンセルされています...
+タイムアウトイベントは他のイベントによってキャンセルされるため、イベントかタイムアウトどちらかが発生します。これは、イベント・タイムアウトを取り消したり、再始動する必要がないことを意味します。そうした処理を行うためのイベントが発生したらすでにイベントのタイムアウトはにキャンセルされています。
 
 
 ## 4.14  Erlang Timers
