@@ -1,8 +1,10 @@
+#!/usr/bin/env escript
 -module(code_lock).
--include("../logger.hrl").
--compile(export_all).
 
+-mode(compile).
+-compile(export_all).
 -behaviour(gen_statem).
+-include("../logger.hrl").
 
 start(Code) ->
     ?Log(Code),
