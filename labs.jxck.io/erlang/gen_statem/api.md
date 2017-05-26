@@ -842,7 +842,7 @@ enter_loop(Module :: module(),
 
 Makes the calling process become a gen_statem. Does not return, instead the calling process enters the gen_statem receive loop and becomes a gen_statem server. The process must have been started using one of the start functions in proc_lib. The user is responsible for any initialization of the process, including registering a name for it.
 
-呼び出しプロセスを gen_statem にします。戻りません。呼び出しプロセスは、代わりに gen_statem receive ループに入り、 gen_statem サーバーになります。プロセスは、 proc_lib の start 関数の 1 つを使用して開始されてい なければなりません。ユーザーは、プロセスの初期化(プロセスの名前の登録を含む)の初期化を担当します。
+呼び出しプロセスを gen_statem にします。return しない代わりに、呼び出したプロセスは gen_statem の receive ループに入り gen_statem サーバーになります。プロセスは、 proc_lib の start 関数の 1 つを使用して開始されていなければなりません。ユーザーは、プロセスの名前の登録などを含む、初期化処理をする必要があります。
 
 
 This function is useful when a more complex initialization procedure is needed than the gen_statem behavior provides.
@@ -850,12 +850,12 @@ This function is useful when a more complex initialization procedure is needed t
 この関数は、 gen_statem の動作よりも複雑な初期化手順が必要な場合に便利です。
 
 
-Module, Opts have the same meaning as when calling start[_link]/3, 4.
+Module, Opts have the same meaning as when calling `start[_link]/3, 4`.
 
 Module, Opts は `start[_link]/3, 4` を呼び出すときと同じ意味を持ちます。
 
 
-If Server is self() an anonymous server is created just as when using start[_link]/3. If Server is a server_name() a named server is created just as when using start[_link]/4. However, the server_name() name must have been registered accordingly before this function is called.
+If Server is `self()` an anonymous server is created just as when using `start[_link]/3`. If Server is a `server_name()` a named server is created just as when using `start[_link]/4`. However, the `server_name()` name must have been registered accordingly before this function is called.
 
 場合 Server がある `self()` 匿名サーバーは、単に使用している場合として作成された `start[_link]/3` を起動します。場合はサーバがある `server_name()` という名前のサーバーは、単に使用している場合として作成された `start[_link]/4` を起動します。ただし、この関数が呼び出される前に `server_name()` 名が登録されている必要があります。
 
