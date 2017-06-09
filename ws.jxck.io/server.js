@@ -15,7 +15,7 @@ const PORT = process.env.PORT;
 let handlers = {
   echo:          require('./echo'),
   broadcast:     require('./broadcast'),
-  push_register: require('./push_register'),
+  // push_register: require('./push_register'),
 }
 
 // http server
