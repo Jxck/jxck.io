@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="demo">
+<title>Budget API Basic DEMO | labs.jxck.io</title>
+
+<style>
+</style>
+
+<h1>Budget API Basic DEMO</h1>
+
+<h2>Costs</h2>
+<ul id=costs></ul>
+
+<h2>Budgets</h2>
+<ul id=budgets></ul>
+
+
+<script>
+const $budgets = document.querySelector('#budgets');
+navigator.budget.getBudget().then((budgets) => {
+  budgets.forEach(({time, budgetAt}) => {
+    console.log(time, budgetAt);
+    const $li = document.createElement('li');
+    $li.textContent = `${new Date(time)}: ${budgetAt}`;
+    $budgets.append($li);
+  });
+});
+</script>
+
+<script>
+const $costs = document.querySelector('#costs');
+['silent-push'].forEach((operation) => {
+  navigator.budget.getCost(operation).then((cost) => {
+    console.log(operation, cost);
+    const $li = document.createElement('li');
+    $li.textContent = `${operation}: ${cost}`;
+    $costs.append($li);
+  });
+});
+</script>
+
+<script>
+self.addEventListener('push', (e) => {
+  return e.waitUntil(navigator.budget.reserve('silent-push').then((reserved) => {
+    if (reserved) {
+      // No need to show a notification.
+      return Promise.resolve(reserved);
+    }
+
+    // Not enough budget is available, must show a notification.
+    return registration.showNotification();
+  }))
+});
+</script>
