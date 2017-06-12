@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html amp>
+<head>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=https://blog.jxck.io/entries/2017-06-12/web-budget-api.html>
+<meta name=viewport content="width=device-width,minimum-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+<link rel=author href=//jxck.io/assets/humans.txt>
+
+<meta name="author" content="Jxck">
+    <meta name="description" content="PWA の普及により、バックグラウンド処理をいかに制限するかといった課題が生まれた。その対策として、バックグラウンド処理における Budget と Cost の概念が提案され、それを扱う Budget API の策定が進んでいる。基本概念と現時点での API 外観について解...">
+    <meta name="keywords" content="web budget api,service worker,pwa">
+    <meta itemprop="image" content="https://jxck.io/assets/img/jxck.png">
+    <meta itemprop="name" content="blog.jxck.io">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jxck_">
+    <meta name="twitter:url" content="https://blog.jxck.io/entries/2017-06-12/web-budget-api.html">
+    <meta name="twitter:title" content="Web Budget API と Web に導入されつつある Budget と Cost の概念 | blog.jxck.io">
+    <meta name="twitter:description" content="PWA の普及により、バックグラウンド処理をいかに制限するかといった課題が生まれた。その対策として、バックグラウンド処理における Budget と Cost の概念が提案され、それを扱う Budget API の策定が進んでいる。基本概念と現時点での API 外観について解...">
+    <meta name="twitter:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://blog.jxck.io/entries/2017-06-12/web-budget-api.html">
+    <meta property="og:title" content="Web Budget API と Web に導入されつつある Budget と Cost の概念 | blog.jxck.io">
+    <meta property="og:site_name" content="blog.jxck.io">
+    <meta property="og:description" content="PWA の普及により、バックグラウンド処理をいかに制限するかといった課題が生まれた。その対策として、バックグラウンド処理における Budget と Cost の概念が提案され、それを扱う Budget API の策定が進んでいる。基本概念と現時点での API 外観について解...">
+    <meta property="og:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <link rel="icon" sizes="192x192" href="https://jxck.io/assets/img/jxck.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "Web Budget API と Web に導入されつつある Budget と Cost の概念 | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2017-06-12T08:00:00+08:00",
+  "dateModified": "2017-06-12T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "PWA の普及により、バックグラウンド処理をいかに制限するかといった課題が生まれた。その対策として、バックグラウンド処理における Budget と Cost の概念が提案され、それを扱う Budget API の策定が進んでいる。基本概念と現時点での API 外観について解..."
+}
+</script>
+
+<title>Web Budget API と Web に導入されつつある Budget と Cost の概念 | blog.jxck.io</title>
+<script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+<script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+<script async src=https://cdn.ampproject.org/v0.js></script>
+
+<style amp-custom>
+article section p {
+  margin-left: 0.8em;
+}
+
+article pre {
+  margin-left: 0.8em;
+}
+
+article table {
+  margin-left: 0.8em;
+}
+
+article img {
+  margin: 1em 0;
+  border: 1px solid #ccc;
+  box-sizing: content-box;
+}
+
+article ul, article ol {
+  margin-left: 0.8em;
+  font-family: monospace;
+  font-size: 1.2em;
+}
+
+article li {
+  margin-bottom: 0.4em;
+}
+
+article ul li ul {
+  margin: 0.2em 0 1.2em 1em;
+  font-size: 1em;
+}
+
+article ul li ul li {
+  margin-bottom: 0;
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 400;
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=20160828") format("woff");
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 700;
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff?ver=20160828") format("woff");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+  color: #222;
+  background-color: #fefefe;
+}
+
+iframe {
+  display: block;
+  max-width: 100%;
+  margin: 1em 0;
+}
+
+.archive {
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.archive ul {
+  margin: 0;
+}
+
+.archive time {
+  padding-right: 0.5em;
+}
+
+.archive time::after {
+  content: ":";
+}
+
+.archive .tags {
+  font-size: 0.8em;
+  margin-left: 1em;
+}
+
+.tags a {
+  margin: 0 0.2em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+audio {
+  width: 70%;
+}
+
+@media screen and (max-device-width: 480px) {
+  audio {
+    width: 100%;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.info li {
+  margin-right: 1em;
+  list-style-type: none;
+}
+
+.info li::before {
+  content: none;
+}
+
+header {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.4em;
+  background-color: #222;
+}
+
+header ul {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 80%;
+  margin: 0 auto;
+  padding: 4px;
+}
+
+header ul li {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  margin-left: 1em;
+}
+
+header ul li a {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+header ul li svg {
+  fill: #fff;
+}
+
+header ul li::before {
+  content: none;
+}
+
+header ul li:first-child {
+  flex-grow: 1;
+  margin-left: 0;
+}
+
+header .logo {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  pointer-events: none;
+  color: #222;
+}
+
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: #222;
+}
+
+h1 > a:hover:before,
+h2 > a:hover:before,
+h3 > a:hover:before,
+h4 > a:hover:before,
+h5 > a:hover:before,
+h6 > a:hover:before {
+  color: Brown;
+}
+
+h1 > a::before {
+  content: "# ";
+  pointer-events: all;
+}
+
+h2 > a::before {
+  content: "## ";
+  pointer-events: all;
+}
+
+h3 > a::before {
+  content: "### ";
+  pointer-events: all;
+}
+
+h4 > a::before {
+  content: "#### ";
+  pointer-events: all;
+}
+
+i::before, i::after {
+  content: "*";
+}
+
+strong::before, strong::after {
+  content: "**";
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+dl dt::after {
+  content: ":";
+}
+
+blockquote::before {
+  content: "> ";
+}
+
+code::before, code::after {
+  /* うざかった */
+  /* content: "`"; */
+}
+
+main {
+  display: block;
+  width: 80%;
+  margin: 1em auto;
+}
+
+@media screen and (max-device-width: 480px) {
+  main {
+    width: 94%;
+  }
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+}
+
+a {
+  color: RoyalBlue;
+}
+
+a:visited {
+  color: Brown;
+}
+
+ol, ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+ul, ol, dl {
+  margin: 1.4em 0;
+}
+
+dl dt {
+  font-weight: bold;
+}
+
+dl dd {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+blockquote {
+  display: block;
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  padding: 1em;
+  margin: 1.4em 0;
+}
+
+code {
+  border: 1px solid #ddd;
+  background-color: #efefef;
+  border-radius: 4px;
+  padding: 0.1em;
+  margin: 1.4em 0;
+}
+
+footer {
+  padding: 1em;
+}
+
+footer address,
+footer strong {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+}
+
+pre {
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: 1.2em;
+  margin: 1.4em 0 0 0;
+  border-radius: 4px;
+}
+
+pre::before {
+  content: "```" attr(class) "\A";
+}
+
+pre::after {
+  position: relative;
+  top: -1em;
+  content:"\A```";
+}
+
+pre > code {
+  overflow: auto;
+  display: block;
+  padding: 0.6em;
+  margin: 0;
+  border: none;
+  background-color: #efefef;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs,
+.hljs-subst ,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-name ,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition ,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-type,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-section,
+.hljs-meta,
+.hljs-meta-string,
+.hljs-emphasis {
+}
+
+table {
+  font-family: monospace;
+  margin: 2em 0;
+  border-spacing: 0 0.4em;
+}
+
+th {
+  padding: 0em 1.0em 0.6em;
+  border-left: 0.14em solid #222;
+  border-bottom: 2px dashed #222;
+}
+
+td {
+  padding: 0.4em 1.2em;
+  border-left: 0.14em solid #222;
+}
+
+th:last-child, td:last-child {
+  border-right: 0.14em solid #222;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+</style>
+</head>
+<body>
+<header>
+  <ul>
+    <li><a href=//blog.jxck.io><amp-img class=logo alt="blog top" width=30 height=30 src=//jxck.io/assets/img/blog.svg></a>
+    <li><a href=.><amp-img alt="move to parent directory" width=30 height=30 src=//jxck.io/assets/img/up.svg></a>
+    <li><a href=/feeds/atom.xml><amp-img alt="rss feed" width=30 height=30 src=//jxck.io/assets/img/rss.svg></a>
+    <li><a href=//jxck.io/humans.txt><amp-img alt="huamns.txt" width=30 height=30 src=//jxck.io/assets/img/humans.svg></a>
+    <li><a href=//jxck.io><amp-img class=logo alt="jxck logo" width=30 height=30 src=//jxck.io/assets/img/jxck.svg></a>
+  </ul>
+</header>
+<main>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2017-06-12>2017-06-12</time>
+    <li>updated_at: <time class=updated_at datetime=2017-06-12>2017-06-12</time>
+    <li class=tags>tags: [<a href='/tags/web%20budget%20api.html'>web budget api</a>,<a href='/tags/service%20worker.html'>service worker</a>,<a href='/tags/pwa.html'>pwa</a>]
+  </ul>
+
+
+  <article>
+    <h1><a href=/entries/2017-06-12/web-budget-api.html>Web Budget API と Web に導入されつつある Budget と Cost の概念</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>PWA の普及により、バックグラウンド処理をいかに制限するかといった課題が生まれた。
+      <p>その対策として、バックグラウンド処理における Budget と Cost の概念が提案され、それを扱う Budget API の策定が進んでいる。
+      <p>基本概念と現時点での API 外観について解説する。
+    </section>
+    <section>
+      <h2 id="Budget+API"><a href="#Budget+API">Budget API</a></h2>
+      <p>Push API と Background Fetch が入った事で、 Web アプリはユーザ操作への応答のみだけでなく、バックグラウンドでの動作の可能性が増えた。
+      <p>しかし、これまでの Web のライフサイクルとの乖離が大きいため、潜在的な問題が露見する可能性もある。
+      <p>そこで、例えば Chrome は Push API は必ず User Visible な通知(notification)を伴うものに制限していた。
+      <p>一方 Firefox は処理に対して Cost を定義し、アプリに対して Budget を付与することで、処理を制限する方式を模索していた。
+      <p>これが、 Web Budget API として整備され、 Chrome もこの方式にシフトしている。
+      <p><a href="https://wicg.github.io/budget-api/">Web Budget API</a>
+    </section>
+    <section>
+      <h2 id="Cost+&+Budget"><a href="#Cost+&+Budget">Cost & Budget</a></h2>
+      <p>Web Push は、現状ユーザに通知を表示する目的で使われている。
+      <p>しかし、ユーザへの通知ではなく、例えばデータの同期等の処理をバックグラウンドで行うなど Silent Push のユースケースも考えられる。
+      <p>Service Worker が登録されて、そこにユーザへの通知なく Push を自由に送ることができてしまうと、 Push が乱用される可能性がある。
+      <p>Silent Push が乱用されると、ユーザの知らないところで著しくバッテリーが消費されるなどのリスクもあるため、何らかの方法で制限をかける必要がある。
+      <p>そこで、バックグラウンド実行できる処理それぞれに対して <strong>Cost</strong> を割り当て、その Origin が実行できる <strong>Budget</strong> を定義することで、 Budget の範囲内でしか処理できないように制限する方式が提案されている。
+      <p>例えば Silent Push の Cost が <code translate="no">2</code> であったとし、 Origin に付与された Budget が <code translate="no">6</code> だとしたら、 3 回しか Silent Push を送れないといったイメージだ。
+    </section>
+    <section>
+      <h2 id="Budget+API"><a href="#Budget+API">Budget API</a></h2>
+      <p>Budget API は、この Budget と Cost を扱うための API である。
+      <p>基本は <code translate="no">navigator.budget</code> に定義される。
+      <section>
+        <h3 id="budget.getBudget()"><a href="#budget.getBudget()">budget.getBudget()</a></h3>
+        <p>現在から、将来に渡り利用できる budget のリストを取得する。
+        <pre class=js><code translate="no">navigator.budget.getBudget().then((budgets) =&gt; {
+  budgets.forEach((budget) =&gt; {
+    console.log(budget.time, budget.budgetAt);
+  });
+});</code></pre>
+        <p>Budget の値は仕様では定義せず、 User Agent に委ねられている。これにより、 UA にヒューリスティックな値の算出や、ニーズに応じた増減などの余地を与えている。
+      </section>
+      <section>
+        <h3 id="budget.getCost()"><a href="#budget.getCost()">budget.getCost()</a></h3>
+        <p>処理の Cost を取得する。
+        <p>引数には、対象となる処理の名前を与えるが、この値は仕様に定義される。
+        <p>執筆時点では <code translate="no">&quot;silent-push&quot;</code> のみ定義されている。
+        <pre class=js><code translate="no">navigator.budget.getCost(&#039;silent-push&#039;).then((cost) =&gt; {
+  console.log(cost); // 2
+});</code></pre>
+        <p>ここで返される Cost は、上限値であり、実際の UA やデバイスの状況によっては、より低い Cost しか実行時に消費されない可能性がある。
+        <p>例えば、デバイスが充電状態である場合、強い Wifi ネットワークに繋がっている場合などは、デバイスは Cost を下げることを許されている。
+      </section>
+      <section>
+        <h3 id="budget.reserve()"><a href="#budget.reserve()">budget.reserve()</a></h3>
+        <p>実際に処理を実行する際に、 Budget を Cost 分消費する。
+        <p>戻る Promise は、コストが足りたかどうかを bool で解決する。
+        <p><code translate="no">silent-push</code> の場合は、コストが足りればそのまま処理を進められ、足りなかった場合は notification によってユーザに通知する必要が出る。
+        <pre class=js><code translate="no">self.addEventListener(&#039;push&#039;, (e) =&gt; {
+  return e.waitUntil(navigator.budget.reserve(&#039;silent-push&#039;).then((reserved) =&gt; {
+    if (reserved) {
+      // budget が足りている
+      return Promise.resolve(reserved);
+    }
+
+    // budget が不足している
+    // notification をあげる必要がある
+    return registration.showNotification();
+  }))
+});</code></pre>
+      </section>
+      <section>
+        <h3 id="DEMO"><a href="#DEMO">DEMO</a></h3>
+        <p>以下に、簡単な DEMO を用意した。
+        <p><a href="https://labs.jxck.io/budget/basic.html">Budget API DEMO</a>
+      </section>
+      <section>
+        <h3 id="Budget+の導入と+Cost+管理"><a href="#Budget+の導入と+Cost+管理">Budget の導入と Cost 管理</a></h3>
+        <p>Budget のような概念が無いと、ユーザが気づかないうちに実行環境が乱用される可能性があるため、 PWA によってアーキテクチャが変わった Web にとっては、こうした制限はある程度必要だろう。
+        <p>一方で、 Silent Push を積極的に利用して、バックグラウンドでデータの同期を行うといったアプリでは、ユーザの状態として考慮すべき状態変数が一つ増える結果となる。
+        <p>今後定義されるバックグラウンド系の処理も、 Budget 管理の対象になる可能性があるため、 PWA を真剣にやる上では無視できないものになっていく可能性がある。
+        <p>まだ策定が始まったばかりではあるが、バックグラウンド処理を多用するユースケースに期待を寄せている開発者は、今のうちに Origin Trials 経由などで積極的なフィードバックをするといいだろう。
+      </section>
+    </section>
+  </article>
+
+</main>
+<hr>
+<footer>
+  <address class="copyright">Copyright &copy; 2016 <a href="/">Jxck</a>. All Rights Reserved. Using <a href="https://www.google.com/intl/ja/policies/privacy/partners/">google analytics</a>.</address>
+</footer>
+</body>
+</html>
+<amp-analytics type="googleanalytics" id="analytics1">
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>

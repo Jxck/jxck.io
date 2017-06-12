@@ -1,4 +1,4 @@
-# [budget api][service worker] Budget API と Web に導入されつつある Budget と Cost の概念
+# [web budget api][service worker][pwa] Web Budget API と Web に導入されつつある Budget と Cost の概念
 
 ## Intro
 
