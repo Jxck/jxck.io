@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html amp>
+<head>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=https://blog.jxck.io/entries/2017-06-21/nomodule-attribute.html>
+<meta name=viewport content="width=device-width,minimum-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+<link rel=author href=//jxck.io/assets/humans.txt>
+
+<meta name="author" content="Jxck">
+    <meta name="description" content="ブラウザにおける新機能の利用においては、非対応ブラウザの考慮も必要となる。ES Modules の利用においても、いかに非対応ブラウザでフォールバックの手段を提供するかが課題となっていた。今回は、 Modules の対応/非対応を切り分けるための仕様である `nomodul...">
+    <meta name="keywords" content="nomodule,es modules">
+    <meta itemprop="image" content="https://jxck.io/assets/img/jxck.png">
+    <meta itemprop="name" content="blog.jxck.io">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jxck_">
+    <meta name="twitter:url" content="https://blog.jxck.io/entries/2017-06-21/nomodule-attribute.html">
+    <meta name="twitter:title" content="ES Modules への橋渡しとしての nomodule 属性 | blog.jxck.io">
+    <meta name="twitter:description" content="ブラウザにおける新機能の利用においては、非対応ブラウザの考慮も必要となる。ES Modules の利用においても、いかに非対応ブラウザでフォールバックの手段を提供するかが課題となっていた。今回は、 Modules の対応/非対応を切り分けるための仕様である `nomodul...">
+    <meta name="twitter:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://blog.jxck.io/entries/2017-06-21/nomodule-attribute.html">
+    <meta property="og:title" content="ES Modules への橋渡しとしての nomodule 属性 | blog.jxck.io">
+    <meta property="og:site_name" content="blog.jxck.io">
+    <meta property="og:description" content="ブラウザにおける新機能の利用においては、非対応ブラウザの考慮も必要となる。ES Modules の利用においても、いかに非対応ブラウザでフォールバックの手段を提供するかが課題となっていた。今回は、 Modules の対応/非対応を切り分けるための仕様である `nomodul...">
+    <meta property="og:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <link rel="icon" sizes="192x192" href="https://jxck.io/assets/img/jxck.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "ES Modules への橋渡しとしての nomodule 属性 | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2017-06-21T08:00:00+08:00",
+  "dateModified": "2017-06-21T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "ブラウザにおける新機能の利用においては、非対応ブラウザの考慮も必要となる。ES Modules の利用においても、いかに非対応ブラウザでフォールバックの手段を提供するかが課題となっていた。今回は、 Modules の対応/非対応を切り分けるための仕様である `nomodul..."
+}
+</script>
+
+<title>ES Modules への橋渡しとしての nomodule 属性 | blog.jxck.io</title>
+<script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+<script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+<script async src=https://cdn.ampproject.org/v0.js></script>
+
+<style amp-custom>
+article section p {
+  margin-left: 0.8em;
+}
+
+article pre {
+  margin-left: 0.8em;
+}
+
+article table {
+  margin-left: 0.8em;
+}
+
+article img {
+  margin: 1em 0;
+  border: 1px solid #ccc;
+  box-sizing: content-box;
+}
+
+article ul, article ol {
+  margin-left: 0.8em;
+  font-family: monospace;
+  font-size: 1.2em;
+}
+
+article li {
+  margin-bottom: 0.4em;
+}
+
+article ul li ul {
+  margin: 0.2em 0 1.2em 1em;
+  font-size: 1em;
+}
+
+article ul li ul li {
+  margin-bottom: 0;
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 400;
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=20160828") format("woff");
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 700;
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff?ver=20160828") format("woff");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+  color: #222;
+  background-color: #fefefe;
+}
+
+iframe {
+  display: block;
+  max-width: 100%;
+  margin: 1em 0;
+}
+
+.archive {
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.archive ul {
+  margin: 0;
+}
+
+.archive time {
+  padding-right: 0.5em;
+}
+
+.archive time::after {
+  content: ":";
+}
+
+.archive .tags {
+  font-size: 0.8em;
+  margin-left: 1em;
+}
+
+.tags a {
+  margin: 0 0.2em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+audio {
+  width: 70%;
+}
+
+@media screen and (max-device-width: 480px) {
+  audio {
+    width: 100%;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.info li {
+  margin-right: 1em;
+  list-style-type: none;
+}
+
+.info li::before {
+  content: none;
+}
+
+header {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.4em;
+  background-color: #222;
+}
+
+header ul {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 80%;
+  margin: 0 auto;
+  padding: 4px;
+}
+
+header ul li {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  margin-left: 1em;
+}
+
+header ul li a {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+header ul li svg {
+  fill: #fff;
+}
+
+header ul li::before {
+  content: none;
+}
+
+header ul li:first-child {
+  flex-grow: 1;
+  margin-left: 0;
+}
+
+header .logo {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  pointer-events: none;
+  color: #222;
+}
+
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: #222;
+}
+
+h1 > a:hover:before,
+h2 > a:hover:before,
+h3 > a:hover:before,
+h4 > a:hover:before,
+h5 > a:hover:before,
+h6 > a:hover:before {
+  color: Brown;
+}
+
+h1 > a::before {
+  content: "# ";
+  pointer-events: all;
+}
+
+h2 > a::before {
+  content: "## ";
+  pointer-events: all;
+}
+
+h3 > a::before {
+  content: "### ";
+  pointer-events: all;
+}
+
+h4 > a::before {
+  content: "#### ";
+  pointer-events: all;
+}
+
+i::before, i::after {
+  content: "*";
+}
+
+strong::before, strong::after {
+  content: "**";
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+dl dt::after {
+  content: ":";
+}
+
+blockquote::before {
+  content: "> ";
+}
+
+code::before, code::after {
+  /* うざかった */
+  /* content: "`"; */
+}
+
+main {
+  display: block;
+  width: 80%;
+  margin: 1em auto;
+}
+
+@media screen and (max-device-width: 480px) {
+  main {
+    width: 94%;
+  }
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+}
+
+a {
+  color: RoyalBlue;
+}
+
+a:visited {
+  color: Brown;
+}
+
+ol, ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+ul, ol, dl {
+  margin: 1.4em 0;
+}
+
+dl dt {
+  font-weight: bold;
+}
+
+dl dd {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+blockquote {
+  display: block;
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  padding: 1em;
+  margin: 1.4em 0;
+}
+
+code {
+  border: 1px solid #ddd;
+  background-color: #efefef;
+  border-radius: 4px;
+  padding: 0.1em;
+  margin: 1.4em 0;
+}
+
+footer {
+  padding: 1em;
+}
+
+footer address,
+footer strong {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+}
+
+pre {
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: 1.2em;
+  margin: 1.4em 0 0 0;
+  border-radius: 4px;
+}
+
+pre::before {
+  content: "```" attr(class) "\A";
+}
+
+pre::after {
+  position: relative;
+  top: -1em;
+  content:"\A```";
+}
+
+pre > code {
+  overflow: auto;
+  display: block;
+  padding: 0.6em;
+  margin: 0;
+  border: none;
+  background-color: #efefef;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs,
+.hljs-subst ,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-name ,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition ,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-type,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-section,
+.hljs-meta,
+.hljs-meta-string,
+.hljs-emphasis {
+}
+
+table {
+  font-family: monospace;
+  margin: 2em 0;
+  border-spacing: 0 0.4em;
+}
+
+th {
+  padding: 0em 1.0em 0.6em;
+  border-left: 0.14em solid #222;
+  border-bottom: 2px dashed #222;
+}
+
+td {
+  padding: 0.4em 1.2em;
+  border-left: 0.14em solid #222;
+}
+
+th:last-child, td:last-child {
+  border-right: 0.14em solid #222;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+</style>
+</head>
+<body>
+<header>
+  <ul>
+    <li><a href=//blog.jxck.io><amp-img class=logo alt="blog top" width=30 height=30 src=//jxck.io/assets/img/blog.svg></a>
+    <li><a href=.><amp-img alt="move to parent directory" width=30 height=30 src=//jxck.io/assets/img/up.svg></a>
+    <li><a href=/feeds/atom.xml><amp-img alt="rss feed" width=30 height=30 src=//jxck.io/assets/img/rss.svg></a>
+    <li><a href=//jxck.io/humans.txt><amp-img alt="huamns.txt" width=30 height=30 src=//jxck.io/assets/img/humans.svg></a>
+    <li><a href=//jxck.io><amp-img class=logo alt="jxck logo" width=30 height=30 src=//jxck.io/assets/img/jxck.svg></a>
+  </ul>
+</header>
+<main>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2017-06-21>2017-06-21</time>
+    <li>updated_at: <time class=updated_at datetime=2017-06-21>2017-06-21</time>
+    <li class=tags>tags: [<a href='/tags/nomodule.html'>nomodule</a>,<a href='/tags/es%20modules.html'>es modules</a>]
+  </ul>
+
+
+  <article>
+    <h1><a href=/entries/2017-06-21/nomodule-attribute.html>ES Modules への橋渡しとしての nomodule 属性</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>ブラウザにおける新機能の利用においては、非対応ブラウザの考慮も必要となる。
+      <p>ES Modules の利用においても、いかに非対応ブラウザでフォールバックの手段を提供するかが課題となっていた。
+      <p>今回は、 Modules の対応/非対応を切り分けるための仕様である <code translate="no">nomodule</code> 属性を解説する。
+    </section>
+    <section>
+      <h2 id="script+type+module"><a href="#script+type+module">script type module</a></h2>
+      <p>classic script (module ではない JS) は、 <code translate="no">&lt;script&gt;</code> で指定すると、取得解析しそのまま実行される。
+      <p>type は省略されることが多いが、その場合 <code translate="no">text/javascript</code> と解釈されている。
+      <pre class=html><code translate="no">&lt;script type=text/javascript src=bundle.js&gt;&lt;/script&gt;</code></pre>
+      <p>一方、 module script (module として実装された JS) は、 <code translate="no">import/export</code> の処理や依存の解決など、これまでと異なる扱いが必要となる。
+      <p>そこで、ブラウザにおいては同じ <code translate="no">&lt;script&gt;</code> で指定するが、新規に導入された <code translate="no">type=module</code> を指定し、 module script であることを明示することとなった。
+      <pre class=html><code translate="no">&lt;script type=module src=module.js&gt;&lt;/script&gt;</code></pre>
+      <p>しかし、 ES Modules に対応していないブラウザは <code translate="no">type=module</code> を知らないため、 <code translate="no">&lt;script&gt;</code> そのものを無視する。
+      <p>結果、これだけでは何も実行されない。
+      <p>かといって、両方書くと両方実行されてしまうためなんらかの切り分けの方法が必要だった。
+      <pre class=html><code translate="no">&lt;!-- module 対応ブラウザでは両方動く --&gt;
+&lt;script type=text/javascript src=bundle.js&gt;&lt;/script&gt;
+&lt;script type=module src=module.js&gt;&lt;/script&gt;</code></pre>
+    </section>
+    <section>
+      <h2 id="nomodule"><a href="#nomodule">nomodule</a></h2>
+      <p>もしブラウザが ES Modules に対応していれば module script を、そうでなければ classic script を取得実行する。
+      <p>これを実現するために提案されたのが、 <code translate="no">nomodule</code> 属性だ。
+      <p><a href="https://html.spec.whatwg.org/multipage/scripting.html#attr-script-nomodule">nomodule attribute</a>
+      <p>例えば以下を考える。
+      <ul>
+        <li>module script である <code translate="no">module.js</code> をベースとして提供する。
+        <li>ES Moduels 非対応ブラウザに対して WebPack などで bundle した classic script である <code translate="no">bundle.js</code> を提供する。
+        <li>どちらでも実行したい classic script の <code translate="no">analytics.js</code> を提供する。
+      </ul>
+      <p>この場合、以下のように指定できる。
+      <pre class=html><code translate="no">&lt;script type=module src=module.js&gt;&lt;/script&gt;
+&lt;script nomodule type=text/javascript src=bundle.js&gt;&lt;/script&gt;
+&lt;script type=text/javascript src=analytics.js&gt;&lt;/script&gt;</code></pre>
+      <p>挙動は ES Modules 対応/非対応によって以下のようになる。
+    </section>
+    <section>
+      <h2 id="ES+Modules+を実装していない場合"><a href="#ES+Modules+を実装していない場合">ES Modules を実装していない場合</a></h2>
+      <p><code translate="no">type=module</code> と <code translate="no">nomodule</code> は知らないため無視され、以下と同等に解釈される。
+      <pre class=html><code translate="no">&lt;script type=text/javascript src=bundle.js&gt;&lt;/script&gt;
+&lt;script type=text/javascript src=analytics.js&gt;&lt;/script&gt;</code></pre>
+    </section>
+    <section>
+      <h2 id="ES+Modules+を実装している場合"><a href="#ES+Modules+を実装している場合">ES Modules を実装している場合</a></h2>
+      <p>ES Modules を実装する場合は <code translate="no">nomodule</code> の解釈が必須とされている。
+      <p>したがって ES Modules に対応したとされた場合は <code translate="no">nomodule</code> が理解されているとみなす。
+      <p>この場合、 <code translate="no">type=module</code> と <code translate="no">nomodule</code> を解釈し、 module script を実行する代わりに <code translate="no">nomodule</code> が指定された classic script を無視する。
+      <p>結果、以下と同等に解釈される。
+      <pre class=html><code translate="no">&lt;script type=module src=module.js&gt;&lt;/script&gt;
+&lt;script type=text/javascript src=analytics.js&gt;&lt;/script&gt;</code></pre>
+    </section>
+    <section>
+      <h2 id="運用"><a href="#運用">運用</a></h2>
+      <p>現時点では ES Modules で実装したコードを WebPack などでビルドした classic script を提供する運用が多いと思われる。
+      <p>ここで <code translate="no">nomodule</code> の実装が行き渡れば、 ES Modules 対応ブラウザに対して、 module script のまま提供でき、本来の ES Modules のメリットを先行して享受することが可能となるだろう。
+      <p>しばらくは並行運用となるだろうが、現時点で WebPack などのビルドラインを持っているなら、導入の敷居は低そうにも思える。
+      <p>後方互換への手段が固まることは、安心して先に進む準備が整うことを意味するため、 ES Modules へ移行する上での橋渡しとして活用できるだろう。
+    </section>
+  </article>
+
+</main>
+<hr>
+<footer>
+  <address class="copyright">Copyright &copy; 2016 <a href="/">Jxck</a>. All Rights Reserved. Using <a href="https://www.google.com/intl/ja/policies/privacy/partners/">google analytics</a>.</address>
+</footer>
+</body>
+</html>
+<amp-analytics type="googleanalytics" id="analytics1">
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
