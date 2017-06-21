@@ -1,10 +1,13 @@
-# [service worker][push] Service Worker の Push Notification を Opt-In にすべき理由と実装パターン
+# [service worker][push] Web Push を Opt-In にすべき理由と実装パターン
 
 ## Intro
 
 Serivce Worker での Push Notification を提供するサイトも増えてきた。
 
-しかし、実装方法によってはサイトを開いたら、無機質なダイアログが突然開きパーミッションを求められる。
+それに伴い、サイトを開いたら無機質なダイアログが突然開き、パーミッションを求められることも増えた。
+
+
+
 
 ![notification permission asking](notification-permission-asking.png "notification-permission-asking")
 
@@ -249,5 +252,26 @@ facebook などは、以下のようなアイコンでこれをお願いして�
 
 
 これは一般ユーザにとっては敷居が高い
+
+
+
+
+
+
+
+
+
+
+
+
+
+The Budget API provides an alternative to obtaining express user permission where the user agent believes it can appropriately protect the user for strictly resource consuming background operations.
+Budget APIは、ユーザーエージェントが厳密にリソースを消費するバックグラウンド操作のためにユーザーを適切に保護できると考えている場合に、明示的なユーザー許可を得る代わりに使用できます。
+
+Both the APIs described in this document, as well as the specifications that depend on this document, MUST NOT limit the user agent’s ability to require express user permission in addition to budget requirements.
+このドキュメントで説明されているAPIとこのドキュメントに依存する仕様の両方は、予算要件に加えて明示的なユーザー権限を要求するユーザーエージェントの能力を制限してはいけません。
+
+User agents that require express user permission for certain background operations MAY lower or eliminate the background operation cost of such an operation, because the user has explicitly allowed the Web Application to engage on their behalf.
+特定のバックグラウンド操作に対して明示的なユーザー許可を必要とするユーザーエージェントは、ユーザーが明示的にWebアプリケーションを代理することを許可しているため、そのような操作のバックグラウンド操作コストを下げるか、またはなくすことができます。
 
 
