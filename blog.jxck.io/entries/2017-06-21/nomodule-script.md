@@ -22,7 +22,7 @@ type は省略されることが多いが、その場合 `text/javascript` と�
 
 一方、 module script (module として実装された JS) は、 `import/export` の処理や依存の解決など、これまでと異なる扱いが必要となる。
 
-そこで、ブラウザにおいては同じ `<script>` で指定するが、新規に導入された `type=module` を指定し、 module であることを明示することとなった。
+そこで、ブラウザにおいては同じ `<script>` で指定するが、新規に導入された `type=module` を指定し、 module script であることを明示することとなった。
 
 
 ```html
@@ -86,7 +86,7 @@ ES Modules を実装する場合は `nomodule` の解釈が必須とされてい
 
 したがって ES Modules に対応したとされた場合は `nomodule` が理解されているとみなす。
 
-この場合、 `type=module` と `nomodule` を解釈し、 module を実行する代わりに nomodule が指定された script を無視する。
+この場合、 `type=module` と `nomodule` を解釈し、 module script を実行する代わりに `nomodule` が指定された classic script を無視する。
 
 結果、以下と同等に解釈される。
 
@@ -101,8 +101,8 @@ ES Modules を実装する場合は `nomodule` の解釈が必須とされてい
 
 現時点では ES Modules で実装したコードを WebPack などでビルドした classic script を提供する運用が多いと思われる。
 
-ここで nomodule の実装が行き渡れば、 ES Modules 対応ブラウザに対して、 module script のまま提供でき、本来の module のメリットを先行して享受することが可能となるだろう。
+ここで `nomodule` の実装が行き渡れば、 ES Modules 対応ブラウザに対して、 module script のまま提供でき、本来の ES Modules のメリットを先行して享受することが可能となるだろう。
 
 しばらくは並行運用となるだろうが、現時点で WebPack などのビルドラインを持っているなら、導入の敷居は低そうにも思える。
 
-後方互換への手段が固まることは、安心して先にすすむ準備が整うことを意味するため、 ES Module へ移行する上での橋渡しとして活用したい。
+後方互換への手段が固まることは、安心して先に進む準備が整うことを意味するため、 ES Modules へ移行する上での橋渡しとして活用できるだろう。
