@@ -109,7 +109,14 @@ class Client extends events.EventEmitter {
   }
 }
 
-let server = mediasoup.Server()
+let server = mediasoup.Server({
+  dtlsCertificateFile : "/keys/cert.pem",
+  dtlsPrivateKeyFile  : "/keys/key.pem",
+  logLevel   : "debug",
+  rtcMinPort : 40000,
+  //rtcMaxPort : 40006
+})
+
 server.createRoom(roomOptions)
   .then((room) => {
 
