@@ -1,4 +1,4 @@
-# [service worker][push] Web Push を Opt-In にすべき理由と実装パターン
+# [service worker][push] Web Push を Opt-In にすべき理由
 
 ## Intro
 
@@ -6,14 +6,35 @@ Serivce Worker での Push Notification を提供するサイトも増えてき�
 
 それに伴い、サイトを開いたら無機質なダイアログが突然開き、パーミッションを求められることも増えた。
 
-
-
-
 ![notification permission asking](notification-permission-asking.png "notification-permission-asking")
 
 ユーザの体験として良いものではないし、うんざりしている人も多いだろう。
 
 この問題について、 UX の考慮を怠ると **サービスを提供しているドメインで後々後悔する可能性** があるという点について言及しておく。
+
+
+
+## Push
+
+- Push Notification の許可はブラウザ UI 的には Notification の許可になっている
+- Notification がブロックされていると Push Notification は送れない
+- silent push も Notification のブロックがされていると届かない
+- budget があっても無視される
+- Notification を出したいわけではないのに、 Silent Push できない
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## Push then Notification
