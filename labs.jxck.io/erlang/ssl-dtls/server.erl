@@ -7,10 +7,21 @@
 
 -include("../logger.hrl").
 
-%% {protocol, dtls} を追加するだけ
+-define(PORT, 4444).
+-define(KEY,  "/keys/key.pem").
+-define(CERT, "/keys/cert.pem").
+
 main(_) ->
     ok = ?Log(ssl:start()),
-    {ok, Listen} = ssl:listen(3000, [{certfile,"/keys/cert.pem"}, {keyfile, "/keys/key.pem"}, {reuseaddr, true}, {active, once}, {protocol, dtls}, binary]),
+    {ok, Listen} = ssl:listen(?PORT, [
+                                      {ciphers, [{rsa,aes_128_cbc,sha256}]},
+                                      {keyfile, ?KEY},
+                                      {certfile, ?CERT},
+                                      {reuseaddr, true},
+                                      {active, once},
+                                      {protocol, dtls},
+                                      binary
+                                     ]),
     accept_loop(Listen).
 
 accept_loop(Listen) ->

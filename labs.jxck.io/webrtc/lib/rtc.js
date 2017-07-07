@@ -193,6 +193,7 @@ class RTC extends EventEmitter {
       description = new RTCSessionDescription(description)
     }
     debug(`${this.id}#setLocalDescription(description)`, description)
+    debug(description.sdp)
     return this.connection.setLocalDescription(description)
   }
 
@@ -201,6 +202,7 @@ class RTC extends EventEmitter {
       description = new RTCSessionDescription(description)
     }
     debug(`${this.id}#setRemoteDescription(description)`, description)
+    debug(description.sdp)
     return this.connection.setRemoteDescription(description)
   }
 

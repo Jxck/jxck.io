@@ -842,7 +842,7 @@ enter_loop(Module :: module(),
 
 Makes the calling process become a gen_statem. Does not return, instead the calling process enters the gen_statem receive loop and becomes a gen_statem server. The process must have been started using one of the start functions in proc_lib. The user is responsible for any initialization of the process, including registering a name for it.
 
-呼び出しプロセスを gen_statem にします。戻りません。呼び出しプロセスは、代わりに gen_statem receive ループに入り、 gen_statem サーバーになります。プロセスは、 proc_lib の start 関数の 1 つを使用して開始されてい なければなりません。ユーザーは、プロセスの初期化(プロセスの名前の登録を含む)の初期化を担当します。
+呼び出しプロセスを gen_statem にします。return しない代わりに、呼び出したプロセスは gen_statem の receive ループに入り gen_statem サーバーになります。プロセスは、 proc_lib の start 関数の 1 つを使用して開始されていなければなりません。ユーザーは、プロセスの名前の登録などを含む、初期化処理をする必要があります。
 
 
 This function is useful when a more complex initialization procedure is needed than the gen_statem behavior provides.
@@ -850,12 +850,12 @@ This function is useful when a more complex initialization procedure is needed t
 この関数は、 gen_statem の動作よりも複雑な初期化手順が必要な場合に便利です。
 
 
-Module, Opts have the same meaning as when calling start[_link]/3, 4.
+Module, Opts have the same meaning as when calling `start[_link]/3, 4`.
 
 Module, Opts は `start[_link]/3, 4` を呼び出すときと同じ意味を持ちます。
 
 
-If Server is self() an anonymous server is created just as when using start[_link]/3. If Server is a server_name() a named server is created just as when using start[_link]/4. However, the server_name() name must have been registered accordingly before this function is called.
+If Server is `self()` an anonymous server is created just as when using `start[_link]/3`. If Server is a `server_name()` a named server is created just as when using `start[_link]/4`. However, the `server_name()` name must have been registered accordingly before this function is called.
 
 場合 Server がある `self()` 匿名サーバーは、単に使用している場合として作成された `start[_link]/3` を起動します。場合はサーバがある `server_name()` という名前のサーバーは、単に使用している場合として作成された `start[_link]/4` を起動します。ただし、この関数が呼び出される前に `server_name()` 名が登録されている必要があります。
 
@@ -1129,7 +1129,7 @@ Status = term()
 
 This callback is optional, so a callback module does not need to export it. The gen_statem module provides a default implementation of this function that returns `{State, Data}`.
 
-このコールバックはオプションであるため、コールバックモジュールはそれをエクスポートする必要はありません。 gen_statem のモジュールを返し、この関数のデフォルトの実装を提供 `{状態、データを}`。
+このコールバックはオプションであるため、コールバックモジュールはそれをエクスポートする必要はありません。 gen_statem のモジュールを返し、この関数のデフォルトの実装を提供 `{State、Data}`。
 
 
 If this callback is exported but fails, to hide possibly sensitive data, the default function will instead return `{State, Info}`, where Info says nothing but the fact that format_status/2 has crashed.
@@ -1146,18 +1146,18 @@ This function is called by a gen_statem process when any of the following apply:
 - The gen_statem terminates abnormally and logs an error. Opt is set to the atom terminate for this case.
 
 
-- 一つ SYS:GET_STATUS/1, 2 取得するために呼び出される gen_statem の状態を。この場合、 Opt は atom 法線に設定されます。
-- gen_statem は異常終了し、エラーをログに記録します。 この場合、 Opt は atom 終端に設定されます。
+- sys:get_status/1, 2 のいずれかが gen_statem の状態を取得するために呼び出される。この場合 Opt は normal に設定されます。
+- gen_statem は異常終了し、エラーをログに記録します。 Opt は terminate に設定されます。
 
 
 This function is useful for changing the form and appearance of the gen_statem status for these cases. A callback module wishing to change the sys:get_status/1, 2 return value and how its status appears in termination error logs exports an instance of format_status/2, which returns a term describing the current status of the gen_statem.
 
-この関数は、これらの場合の gen_statem ステータスの形式と外観を変更するのに便利です。変更したいコールバックモジュール SYS を:GET_STATUS/1, 2 戻り値とどのようにその状態が終了エラーログに表示さは、インスタンスエクスポート format_status/2 の現在のステータス記述用語戻り、 gen_statem を。
+この関数は、これらの場合の gen_statem ステータスの形式と外観を変更するのに便利です。変更したいコールバックモジュール sys:get_status/1,2 戻り値とどのようにその状態が終了エラーログに表示さは、インスタンスエクスポート format_status/2 の現在のステータス記述用語戻り、 gen_statem を。
 
 
 PDict is the current value of the process dictionary of the gen_statem.
 
-PDict は、プロセス辞書の現在の値である gen_statem 。
+PDict は gen_statem の現在のプロセス辞書の値。
 
 
 State is the internal state of the gen_statem.
@@ -1167,12 +1167,13 @@ State は gen_statem の内部状態です。
 
 Data is the internal server data of the gen_statem.
 
-データ は、 gen_statem の内部サーバーデータです。
+Data は gen_statem の内部サーバーデータです。
 
 
 The function is to return Status, a term that contains the appropriate details of the current state and status of the gen_statem. There are no restrictions on the form Status can take, but for the sys:get_status/1, 2 case (when Opt is normal), the recommended form for the Status value is [{data, [{"State", Term}]}], where Term provides relevant details of the gen_statem state. Following this recommendation is not required, but it makes the callback module status consistent with the rest of the sys:get_status/1, 2 return value.
 
-この関数は、現在の状態と gen_statem のステータスの適切な詳細を含む用語である Status を返します。ステータスには制限がありませんが、 sys:get_status/1, 2 の 場合(Opt が正常な場合)、ステータス値の推奨形式は[{data、[{"State"、 Term}]です。 }]、ここで Term は gen_statem 状態の関連する詳細を提供します。この勧告に従うことは必須ではないが、
+
+この関数は、現在の状態と gen_statem のステータスの適切な詳細を含む用語である Status を返します。ステータスには制限がありませんが、 sys:get_status/1, 2 の 場合(Opt が正常な場合)、ステータス値の推奨形式は [{data, [{"State", Term}]}] 、ここで Term は gen_statem 状態の関連する詳細を提供します。この勧告に従うことは必須ではないが、
 
 
 One use for this function is to return compact alternative state representations to avoid having large state terms printed in log files. Another use is to hide sensitive data from being written to the error log.
