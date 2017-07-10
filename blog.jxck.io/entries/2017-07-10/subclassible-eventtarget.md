@@ -74,7 +74,8 @@ Node では EventEmitter が、メソッド名は違えど同等の役割を果�
 ```
 
 
-EventTarget を元に EventEmitter の shim を書く場合も、メソッドのすり合わせを中心としたコードに留めることができるだろう。
+EventTarget を元に EventEmitter とメソッド名をすり合わせた shim を書く場合は以下のような感じだろうか。
+
 
 ```js
 class EventEmitter extends EventTarget {
@@ -95,5 +96,10 @@ class EventEmitter extends EventTarget {
 }
 ```
 
+ただし、 EventEmitter は EventTarget よりも機能が多く、例えば `listeners()` や `eventNames()` などは、 EventTarget への移譲だけでは実装できない。
 
-実装が進むことに期待したい。
+それらが必要な場合は、別途イベントとリスナの管理が必要になるだろう。こうした機能が必要な場合は、要するに EventEmitter そのものを必要としてるということなので、 porting は依然必要になる。
+
+しかし、 EventTarget 相当を実現するためだけに EventEmitter を導入していた場合は、 EventTarget が継承できるだけで十分な場合も少なくはないだろう。
+
+その場合はネイティブの実装だけで足りるようになるため、実装が進むことに期待したい。
