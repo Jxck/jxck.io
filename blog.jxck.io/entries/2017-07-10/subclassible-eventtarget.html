@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8">
+    <!--
+    貴様、見ているな！！
+    このサイトの技術的なまとめはこちらをどうぞ。
+    https://labs.jxck.io/blog
+
+    by Jxck
+    -->
+    <link rel="canonical" href="https://blog.jxck.io/entries/2017-07-10/subclassible-eventtarget.html">
+    <link rel="amphtml" href="https://blog.jxck.io/entries/2017-07-10/subclassible-eventtarget.amp.html">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="alternate" type="application/atom+xml" title="blog.jxck.io" href="/feeds/atom.xml">
+    <link rel="author" href="//jxck.io/assets/humans.txt">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="preload" as="font" type="font/woff" href="//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201608028" crossorigin>
+    <script async src="//jxck.io/assets/js/ga.js"></script>
+    <script async src="//jxck.io/assets/js/highlight.min.js"></script>
+    <script async src="//jxck.io/assets/js/sw.js"></script>
+    <script async src="//jxck.io/assets/js/main.js"></script>
+
+    <meta name="author" content="Jxck">
+    <meta name="description" content="念願 だった EventTarget の constructible/subclassable が DOM の仕様にマージされた。これにより、いわゆる EventEmitter のブラウザ移植が不要になることが期待される。Allow constructing and sub...">
+    <meta name="keywords" content="event target,event emitter">
+    <meta itemprop="image" content="https://jxck.io/assets/img/jxck.png">
+    <meta itemprop="name" content="blog.jxck.io">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jxck_">
+    <meta name="twitter:url" content="https://blog.jxck.io/entries/2017-07-10/subclassible-eventtarget.html">
+    <meta name="twitter:title" content="EventTarget の継承可能化による EventEmitter の代替 | blog.jxck.io">
+    <meta name="twitter:description" content="念願 だった EventTarget の constructible/subclassable が DOM の仕様にマージされた。これにより、いわゆる EventEmitter のブラウザ移植が不要になることが期待される。Allow constructing and sub...">
+    <meta name="twitter:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://blog.jxck.io/entries/2017-07-10/subclassible-eventtarget.html">
+    <meta property="og:title" content="EventTarget の継承可能化による EventEmitter の代替 | blog.jxck.io">
+    <meta property="og:site_name" content="blog.jxck.io">
+    <meta property="og:description" content="念願 だった EventTarget の constructible/subclassable が DOM の仕様にマージされた。これにより、いわゆる EventEmitter のブラウザ移植が不要になることが期待される。Allow constructing and sub...">
+    <meta property="og:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <link rel="icon" sizes="192x192" href="https://jxck.io/assets/img/jxck.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "EventTarget の継承可能化による EventEmitter の代替 | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2017-07-10T08:00:00+08:00",
+  "dateModified": "2017-07-10T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "念願 だった EventTarget の constructible/subclassable が DOM の仕様にマージされた。これにより、いわゆる EventEmitter のブラウザ移植が不要になることが期待される。Allow constructing and sub..."
+}
+</script>
+
+    <title>EventTarget の継承可能化による EventEmitter の代替 | blog.jxck.io</title>
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/body.css">
+  </head>
+  <body>
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/header.css">
+    <header>
+      <ul>
+        <li><a href="//blog.jxck.io"><img class="logo" alt="blog" title="blog top" width="30" src=//jxck.io/assets/img/blog.svg></a>
+        <li><a href="/entries/2017-07-10/subclassible-eventtarget.amp.html#development=1"><svg width="30" height="30"><use xlink:href="/assets/img/amp.svg#main"/></svg></a>
+        <li><a href="."><img alt="up" title="move to parent directory" width="30" src="//jxck.io/assets/img/up.svg"></a>
+        <li><a href="/feeds/atom.xml"><img alt="rss" title="rss feed" width="30" src="//jxck.io/assets/img/rss.svg"></a>
+        <li><a href="//jxck.io/humans.txt"><img alt="humans" title="huamns.txt" width="30" src="//jxck.io/assets/img/humans.svg"></a>
+        <li><a href="//jxck.io"><img class="logo" alt="jxck" title="jxck logo" width="30" src="//jxck.io/assets/img/jxck.png"></a>
+      </ul>
+    </header>
+
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/markdown.css">
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/main.css">
+    <main>
+      <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/info.css">
+      <ul class="info">
+        <li>created_at: <time class="created_at" datetime="2017-07-10">2017-07-10</time>
+        <li>updated_at: <time class="updated_at" datetime="2017-07-10">2017-07-10</time>
+        <li class="tags">tags: [<a href='/tags/event%20target.html'>event target</a>,<a href='/tags/event%20emitter.html'>event emitter</a>]
+      </ul>
+
+      <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/article.css">
+  <article>
+    <h1><a href=/entries/2017-07-10/subclassible-eventtarget.html>EventTarget の継承可能化による EventEmitter の代替</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p><a href="https://twitter.com/Jxck_/status/826004140211843072">念願</a> だった EventTarget の constructible/subclassable が DOM の仕様にマージされた。
+      <p>これにより、いわゆる EventEmitter のブラウザ移植が不要になることが期待される。
+      <p><a href="https://github.com/whatwg/dom/commit/c4c1c8b47340a1e5ecc1a07670927b831f240586">Allow constructing and subclassing EventTarget</a>
+    </section>
+    <section>
+      <h2 id="EventTarget"><a href="#EventTarget">EventTarget</a></h2>
+      <p><a href="https://dom.spec.whatwg.org/#interface-eventtarget">EventTarget</a> には <code translate="no">addEventListener</code>, <code translate="no">removeEventListener</code>, <code translate="no">dispatchEvent</code> が定義されている。
+      <p>これは、ブラウザが内部で生成する Event や、任意に生成された CustomEvent を発火/補足するために利用される。
+      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+      <pre class=js><code translate="no">callback = console.log.bind(console)
+$div = document.createElement(&#039;div&#039;)
+$div.addEventListener(&#039;foo&#039;, callback)
+$div.dispatchEvent(new CustomEvent(&#039;foo&#039;, {detail:&#039;bar&#039;}))
+// CustomEvent {type: &quot;foo&quot;, detail: &#039;bar&#039;...
+$div.removeEventListener(&#039;foo&#039;, callback)</code></pre>
+      <p>この場合、 <code translate="no">$div</code> は <code translate="no">Element &lt; Node &lt; EventTarget</code> と、祖先に EventTarget を持っている。
+      <p>同様に EventTarget を祖先に持つ要素では、このパターンのハンドリングが可能であるが、任意のクラスを EventTarget にすることができなかった。
+    </section>
+    <section>
+      <h2 id="EventEmitter"><a href="#EventEmitter">EventEmitter</a></h2>
+      <p>Node では EventEmitter が、メソッド名は違えど同等の役割を果たしていると言える。
+      <p>例えば <code translate="no">process</code> は EventEmitter を継承している。
+      <pre class=js><code translate="no">callback = console.log.bind(console)
+process.on(&#039;foo&#039;, callback)
+process.emit(&#039;foo&#039;, &#039;bar&#039;)
+// bar
+process.removeListener(&#039;foo&#039;, callback)</code></pre>
+      <p>大きな違いは、 EventEmitter が任意のクラスで継承できる点だ。<br>
+      したがって、非同期処理をクラスに閉じ込め、加工したイベントとして外に公開するといった設計が可能になる。
+      <p>以下は <code translate="no">setInterval</code> を抽象化したタイマの例だ。
+      <pre class=js><code translate="no">EventEmitter = require(&#039;events&#039;)
+class Timer extends EventEmitter {
+  constructor(interval) {
+    super()
+    setInterval(() =&gt; {
+      this.emit(&#039;tick&#039;, &#039;tick&#039;)
+    }, interval)
+  }
+}
+
+timer = new Timer(100)
+timer.on(&#039;tick&#039;, console.log.bind(console))</code></pre>
+      <p>またこうしたイベントの抽象化の先に stream がある。
+    </section>
+    <section>
+      <h2 id="EventEmitter+porting"><a href="#EventEmitter+porting">EventEmitter porting</a></h2>
+      <p>これまでは、ブラウザ上で任意の class を EventTarget にすることができなかった。
+      <p>そこで、 Node における EventEmitter を用いた設計と同等のことを行うためには、 EventEmitter のポーティングなどが利用されていた。
+      <p>例えば browserify は <a href="https://github.com/Gozala/events">https://github.com/Gozala/events</a> を使っており、筆者も<a href="https://github.com/jxck/events">同じようなこと</a> をしたことがある。
+      <p>しかし、こうした汎用的な処理をより効率よく実現するために、 EventTarget が継承可能となる仕様が追加された。
+      <ul>
+        <li><a href="https://github.com/whatwg/dom/commit/c4c1c8b47340a1e5ecc1a07670927b831f240586">Allow constructing and subclassing EventTarget</a>
+        <li><a href="https://github.com/whatwg/dom/issues/441">Make EventTarget subclassable #441</a>
+      </ul>
+      <p>実装されれば、メソッド名をすり合わせる目的以外で EventEmitter porting は不要となるだろう。
+    </section>
+    <section>
+      <h2 id="constructible/subclassable+EventTarget"><a href="#constructible/subclassable+EventTarget">constructible/subclassable EventTarget</a></h2>
+      <p>具体的には以下のようなコードが書けるようになる。<br>
+      (実装がないため動作未確認)
+      <pre class=js><code translate="no">class Timer extends EventTarget {
+  constructor(interval) {
+    super()
+    setTimeout(() =&gt; {
+      this.dispatchEvent(new CustomEvent(&#039;tick&#039;))
+    }, interval)
+  }
+}
+
+timer = new Timer(100)
+timer.addEventListener(&#039;tick&#039;, console.log.bind(console))</code></pre>
+      <p>EventTarget を元に EventEmitter の shim を書く場合も、メソッドのすり合わせを中心としたコードに留めることができるだろう。
+      <pre class=js><code translate="no">class EventEmitter extends EventTarget {
+  constructor() {
+    // snip
+  }
+
+  on(type, listener) {
+    this.addEventListener(type, listener)
+  }
+
+
+  emit(type, val) {
+    this.dispatchEvent(new CustomEvent(type, {detail: val}));
+  }
+
+  // ... and more
+}</code></pre>
+      <p>ブラウザに実装が進むことを期待している。
+    </section>
+  </article>
+
+    </main>
+    <hr>
+
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/footer.css">
+    <footer>
+      <address class="copyright">Copyright &copy; 2016 <a href="/">Jxck</a>. All Rights Reserved. Using <a href="https://www.google.com/intl/ja/policies/privacy/partners/">google analytics</a>.</address>
+    </footer>
+  </body>
+</html>

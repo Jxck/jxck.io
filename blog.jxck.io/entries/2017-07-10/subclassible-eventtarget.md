@@ -1,4 +1,4 @@
-# [event target]][event emitter] EventTarget の継承可能化による EventEmitter の代替
+# [event target][event emitter] EventTarget の継承可能化による EventEmitter の代替
 
 ## Intro
 
@@ -16,13 +16,7 @@
 これは、ブラウザが内部で生成する Event や、任意に生成された CustomEvent を発火/補足するために利用される。
 
 
-```js
-callback = console.log.bind(console)
-$div = document.createElement('div')
-$div.addEventListener('foo', callback)
-$div.dispatchEvent(new CustomEvent('foo', {detail:'bar'}))
-// CustomEvent {type: "foo", detail: 'bar'...
-$div.removeEventListener(callback)
+```js:et.js
 ```
 
 この場合、 `$div` は `Element < Node < EventTarget` と、祖先に EventTarget を持っている。
@@ -34,32 +28,18 @@ $div.removeEventListener(callback)
 
 Node では EventEmitter が、メソッド名は違えど同等の役割を果たしていると言える。
 
+例えば `process` は EventEmitter を継承している。
 
-```js
-callback = console.log.bind(console)
-process.on('foo', callback)
-process.emit('foo', 'bar)
-// bar
-process.removeListener(callback)
+```js:ee.js
 ```
+
 
 大きな違いは、 EventEmitter が任意のクラスで継承できる点だ。
 したがって、非同期処理をクラスに閉じ込め、加工したイベントとして外に公開するといった設計が可能になる。
 
 以下は `setInterval` を抽象化したタイマの例だ。
 
-```js
-class Timer extends EventEmitter {
-  constructor(interval) {
-    super()
-    setInterval(() => {
-      this.emit('tick')
-    }, interval)
-  }
-}
-
-timer = new Timer(100)
-timer.on('tick', console.log.bind(console))
+```js:timer-ee.js
 ```
 
 
@@ -90,18 +70,7 @@ timer.on('tick', console.log.bind(console))
 (実装がないため動作未確認)
 
 
-```js
-class Timer extends EventTarget {
-  constructor(interval) {
-    super()
-    setTimeout(() => {
-      this.dispatchEvent(new CustomEvent('tick')
-    }, interval)
-  }
-}
-
-timer = new Timer(100)
-timer.addEventListener('tick', console.log.bind(console))
+```js:timer-et.js
 ```
 
 
@@ -127,4 +96,4 @@ class EventEmitter extends EventTarget {
 ```
 
 
-ブラウザに実装が進むことを期待している。
+実装が進むことに期待したい。
