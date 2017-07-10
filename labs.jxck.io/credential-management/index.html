@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="credential management api demo">
+<title>Credential Management API DEMO | labs.jxck.io</title>
+
+<style>
+</style>
+
+<h1>Credential Management API DEMO</h1>
+
+<form id=login method=POST>
+  <label for=id>id</label>
+  <input id=id type=text name=id placeholder=username autocomplete=username />
+
+  <label for=password>password</label>
+  <input id=password type=password name=password placeholder=current-password autocomplete=current-password />
+
+  <input type=hidden name=csrf_token value="******" />
+
+  <button type=submit>ok</button>
+</form>
+
+<script>
+let $form = document.querySelector("#login")
+$form.addEventListener("submit", (e) => {
+  console.log(e.target)
+  e.preventDefault()
+
+  if (navigator.credentials) {
+    let credential = new PasswordCredential(e.target)
+    navigator
+      .credentials
+      .store(credential)
+      .then((e) => {
+        console.log(e)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+});
+
+</script>
+
