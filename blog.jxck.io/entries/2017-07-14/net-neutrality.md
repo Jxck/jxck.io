@@ -6,7 +6,7 @@ US では #NetNeutrality について話題になっている一方、日本で�
 
 インターネットを基盤としている Web 開発者にとっても、いつまで他人事でいられるか怪しい。
 
-事態自体があまり知られてないかもと思い、決して精通しているわけではないが紹介する。
+事態そのものがあまり知られてないかもと思い、決して精通しているわけではないが紹介する。
 
 
 ## ネット中立性とは
@@ -47,15 +47,9 @@ FCC (Federal Communications Commission): アメリカ連邦通信委員会は、
 
 [Join the Battle for Net Neutrality](https://www.battleforthenet.com/)
 
-この講義の成果を [TechCrunch Japan の記事](http://jp.techcrunch.com/2017/07/14/20170713net-neutrality-day-of-action-spurs-millions-to-speak-out-for-online-freedoms/) から引用する。
+[TechCrunch Japan の記事](http://jp.techcrunch.com/2017/07/14/20170713net-neutrality-day-of-action-spurs-millions-to-speak-out-for-online-freedoms/) によると、 200 万のコメントが FCC に送られたらしい。
 
-> - 200 万のコメントが FCC へ行く(非力なサーバーなので数日に分けて送られる。彼らの側の便宜的なシステムダウンは今回なかった)。
-> - 500 万のメールが議会へ(一定の時間間隔で)。
-> - 12 万 4000 の電話が議員たちへ。
-> - 20 の議員事務所を実際に訪問。そのほかのノンネットアクション(リアルアクション)もあった。
-> - 数十名の有名セレブや政治家たちが発言。
-
-Sir Tim Berners-Lee も、コメントを出している。
+Sir Tim Berners-Lee も、 Youtube にメッセージを出している。
 
 <iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/5Gh0NIQ3yd0" allowfullscreen></iframe>
 
