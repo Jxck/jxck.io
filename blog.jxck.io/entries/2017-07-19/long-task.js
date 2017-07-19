@@ -1,4 +1,4 @@
-class LongTask {
+class LongTask extends EventTarget {
   start() {
     //...
   }
@@ -11,13 +11,8 @@ function longTaskPromise({signal}) {
   return new Promise((resolve, reject) => {
     // 処理の Promise 化
     let longTask = new LongTask()
-    longTask.addEventListener('data', (data) => {
-      resolve(data)
-    })
-
-    longTask.addEventListener('error', (err) => {
-      reject(err)
-    })
+    longTask.addEventListener('data', resolve)
+    longTask.addEventListener('error', reject)
     longTask.start()
 
     // abort signal のハンドリング
