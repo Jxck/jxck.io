@@ -8,20 +8,23 @@ Monthly Web 用情報源
 
 ### Chrome
 
-- [web updates](https://developers.google.com/web/updates)
-- [chromium blog](https://blog.chromium.org/)
+- [web updates](https://developers.google.com/web/updates/)
+- [google developer blog](https://developers.googleblog.com/)
+- [google developer japan blog](https://developers-jp.googleblog.com/)
 - [release](https://chromereleases.googleblog.com/) ([stable updates tag](https://chromereleases.googleblog.com/search/label/Stable%20updates))
+- [chromium blog](https://blog.chromium.org/)
 - [chromium](https://www.chromium.org/developers/calendar)
 - [canary](https://www.chromium.org/getting-involved/dev-channel)
 
 
 ### Firefox
 
-- [blog.mozilla.org](https://blog.mozilla.org/)
+- [the mozilla blog](https://blog.mozilla.org/)
+- [hacks mozilla blog](https://hacks.mozilla.org/)
 - [Firefox developer release notes](https://developer.mozilla.org/en-US/Firefox/Releases)
-- [Firefox Nightly News](https://blog.nightly.mozilla.org/)
+- [Firefox site compatibility](https://www.fxsitecompat.com/en-CA/)
 - [release](https://www.mozilla.org/en-US/firefox/releases/)
-- [nightly](https://www.mozilla.org/ja/firefox/channel/desktop/)
+- [Firefox Nightly News](https://blog.nightly.mozilla.org/)
 - [release calendar](https://wiki.mozilla.org/RapidRelease/Calendar)
 
 
@@ -34,9 +37,20 @@ Monthly Web 用情報源
 
 ### Edge
 
+- [ms edge dev blog](https://developer.microsoft.com/en-us/microsoft-edge/platform/) (feed で見るのがいい)
 - [change log](https://developer.microsoft.com/en-us/microsoft-edge/platform/changelog/)
 
 
 ### V8
 
 - [blog](https://v8project.blogspot.jp/)
+
+
+### w3c
+
+- [w3c news](https://www.w3.org/blog/news/)
+
+
+### whatwg
+
+https://twitter.com/thedomstandard
