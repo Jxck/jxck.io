@@ -3,7 +3,7 @@ const info  = console.info.bind(console)
 const warn  = console.warn.bind(console)
 
 const $ = document.querySelector.bind(document)
-const ws = new WS(process.env.DEBUG ? 'ws://localhost:9000' : 'wss://sfu.jxck.io/')
+const ws = new WS('ws://localhost:9000/')
 
 const constraint = {audio: true, video: true}
 const id = btoa(Math.random()*1000)
@@ -16,12 +16,12 @@ ws.on('open', (e) => {
       .then((stream) => {
         info('1. addStream()')
         // ここで negotiation needed が発火する
-        rtc.addStream(stream);
+        rtc.addStream(stream)
         $('#local').srcObject = stream
       })
       .catch((err) => console.error(err))
   })
-});
+})
 
 rtc.on('icecandidate', (candidate) => {
   info('7. ice candidate は無視')
@@ -40,16 +40,16 @@ rtc.on('negotiationneeded', () => {
       // ここで setLocalDescription はしない
     })
     .catch((err) => console.error(err))
-});
+})
 
 rtc.on('iceconnectionstatechange', (state) => {
-  info(state);
-});
+  info(state)
+})
 
 rtc.on('addstream', (stream) => {
   info('addstream', stream)
-  $('#remote').srcObject = stream;
-});
+  $('#remote').srcObject = stream
+})
 
 ws.on('offer', ({to, sdp}) => {
   if (to !== ws.id) return
@@ -71,7 +71,7 @@ ws.on('offer', ({to, sdp}) => {
       ws.emit('answer', rtc.localDescription)
     })
     .catch((err) => console.error(err))
-});
+})
 
 ws.on('answer', ({to, sdp}) => {
   if (to !== ws.id) return
