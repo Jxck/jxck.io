@@ -13,9 +13,9 @@ Monthly Web 用情報源
 - [google developer japan blog](https://developers-jp.googleblog.com/)
 - [release](https://chromereleases.googleblog.com/) ([stable updates tag](https://chromereleases.googleblog.com/search/label/Stable%20updates))
 - [chromium blog](https://blog.chromium.org/)
-- [chromium](https://www.chromium.org/developers/calendar)
+- [calendar](https://www.chromium.org/developers/calendar)
 - [canary](https://www.chromium.org/getting-involved/dev-channel)
-
+- [schedule](https://www.chromestatus.com/features/schedule)
 
 ### Firefox
 
