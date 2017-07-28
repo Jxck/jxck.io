@@ -19,15 +19,16 @@
 
 child 側では以下のような JS が書かれており、 parent 側の location を変えて、任意の URL に遷移されることが可能である。
 
+
 ```
 window.opener.location = http://example.com
 ```
 
 多くのブラウザでは、 child が `target=blank_` により別タブで開いた場合に、そちらが手前に表示され、 parent は裏に回る。
+
 child で上記の JS が動くと、裏で勝手に parent が画面遷移している状態となる。
 
 これは、オリジンが違っても可能であるため、リンクをたどってきたユーザを任意のサイトに誘導することが可能というわけである。
-
 
 [Window Opener DEMO](https://labs.jxck.io/noopener/)
 
@@ -49,7 +50,6 @@ child で上記の JS が動くと、裏で勝手に parent が画面遷移し�
 
 なお IE は(security zone setting をいじらない限り)この問題が発生しないようだ。
 
-
 引用元: [blankshield demo \| Reverse tabnabber phishing](https://danielstjules.github.io/blankshield/)
 
 
@@ -69,7 +69,7 @@ child で上記の JS が動くと、裏で勝手に parent が画面遷移し�
 
 ![tab-nabbing.svg](tab-nabbing.svg#500x500 'tab-nabbing の解説図')
 
-`https://cgm.example.com` (左上) というサービスがあるとし、これは SNS やチーム後ラボレーション系サービスを想定する。
+`https://cgm.example.com` (左上) というサービスがあるとし、これは SNS やチームコラボレーション系サービスを想定する。
 
 攻撃者は、このサービスの不特定ユーザのユーザ名およびパスワードを盗みたいとする。
 
@@ -106,8 +106,8 @@ child で上記の JS が動くと、裏で勝手に parent が画面遷移し�
 - 見終わって閉じると、さっきまでの本家サイトのタブがなぜかログイン画面(左下)になっている。
 - このログイン画面はダミーであり、ユーザ名/パスワードを入力すると、本家(右下)へリダイレクトする。
 
-
 最近は遷移の途中や、一定時間経過後にログインを要求するサービスもあるため、この挙動を攻撃とは思わないユーザがいても不思議では無いだろう。
+
 最も、自分が開いていた正しいページが、勝手に別の攻撃ページに置き換わっているという想定が一般的とは考えにくい。 
 
 最後のリダイレクトは、攻撃サイトから既にログイン済みの本家サイトにリダイレクトすることで、ユーザからみれば単にログインが成功したように見える。
@@ -129,6 +129,7 @@ child で上記の JS が動くと、裏で勝手に parent が画面遷移し�
 ### 対策
 
 本家サービスからすれば、ダミーのログイン画面に対してできることは無い。
+
 銀行当のサイトが注意喚起を高い頻度で行っていることを見ても分かるだろう。
 
 したがって、この攻撃ストーリーであれば、最初の誘導サイトを開いたときにリダイレクトされることを防ぐのが効果的である。
@@ -146,10 +147,10 @@ parent 側のリンクタグに `rel=noopener` を追加することで、 child
 
 [rel=noopener \| Can I use](http://caniuse.com/#feat=rel-noopener)
 
-
 代替として `noreferrer` を指定することで同じ挙動が実現できる。
 
 したがって、以下のようにすることで目的が達成できる。
+
 
 ```html
 <a href="http://example.com" target=_blank rel="noopener noreferrer">
@@ -182,11 +183,8 @@ parent 側のリンクタグに `rel=noopener` を追加することで、 child
 
 例えば Google はこの挙動を脆弱性とは認定していない。
 
-
 - [Phishing by navigating browser tabs - Bughunter University](https://sites.google.com/site/bughunteruniversity/nonvuln/phishing-with-window-opener)
-
 
 ただし、「既に開いているタブが、勝手に遷移している可能性がある」というのは、一般的に知られた挙動とは言えないと考える。
 
 システムを騙すより人間を騙す方が楽であるため、安全側に倒すという意味においても、システム側で対応可能な本対策は検討に値するのではないだろうか。
-
