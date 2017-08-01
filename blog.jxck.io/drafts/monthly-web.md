@@ -17,6 +17,7 @@ Monthly Web 用情報源
 - [canary](https://www.chromium.org/getting-involved/dev-channel)
 - [schedule](https://www.chromestatus.com/features/schedule)
 
+
 ### Firefox
 
 - [the mozilla blog](https://blog.mozilla.org/)
@@ -26,6 +27,7 @@ Monthly Web 用情報源
 - [release](https://www.mozilla.org/en-US/firefox/releases/)
 - [Firefox Nightly News](https://blog.nightly.mozilla.org/)
 - [release calendar](https://wiki.mozilla.org/RapidRelease/Calendar)
+- [platform status](https://platform-status.mozilla.org/)
 
 
 ### Safari
@@ -49,8 +51,29 @@ Monthly Web 用情報源
 ### w3c
 
 - [w3c news](https://www.w3.org/blog/news/)
+- [public-webplatform](http://lists.w3.org/Archives/Public/public-webplatform/)
+- [public-webappsec](http://lists.w3.org/Archives/Public/public-webappsec/)
+- [public-webassembly](http://lists.w3.org/Archives/Public/public-webassembly/)
+- [public-webrtc](http://lists.w3.org/Archives/Public/public-webrtc/)
+- [public-houdini](http://lists.w3.org/Archives/Public/public-houdini/)
+- [ietf-http-wg](http://lists.w3.org/Archives/Public/ietf-http-wg/)
 
 
 ### whatwg
 
-https://twitter.com/thedomstandard
+- [compatstandard](https://twitter.com/compatstandard)
+- [consolelog](https://twitter.com/consolelog)
+- [encodings](https://twitter.com/encodings)
+- [fetchstandard](https://twitter.com/fetchstandard)
+- [fullscreenapi](https://twitter.com/fullscreenapi)
+- [htmlstandard](https://twitter.com/htmlstandard)
+- [infrastandard](https://twitter.com/infrastandard)
+- [mimesniff](https://twitter.com/mimesniff)
+- [notifyapi](https://twitter.com/notifyapi)
+- [storagestandard](https://twitter.com/storagestandard)
+- [streamsstandard](https://twitter.com/streamsstandard)
+- [thedomstandard](https://twitter.com/thedomstandard)
+- [urlstandard](https://twitter.com/urlstandard)
+- [w3cmemes](https://twitter.com/w3cmemes)
+- [WHATWG](https://twitter.com/WHATWG)
+- [xhrstandard](https://twitter.com/xhrstandard)
