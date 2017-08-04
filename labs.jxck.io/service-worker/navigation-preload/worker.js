@@ -1,7 +1,7 @@
 console.info('worker')
 
-const start = Date.now()
-while(Date.now() - start < 600);
+// const start = Date.now()
+// while(Date.now() - start < 600);
 
 self.addEventListener('activate', (e) => {
   if (!self.registration.navigationPreload) {
@@ -12,14 +12,15 @@ self.addEventListener('activate', (e) => {
 })
 
 self.addEventListener('fetch', (e) => {
-  console.log(e.request.url)
-  e.preloadResponse
-    .then((res) => {
-      console.log(res)
-    })
-    .catch((err) => {
-      console.error(err)
-    })
+  console.log('url', e.request.url)
 
-  e.respondWith(fetch(e.request));
+  e.respondWith((() => {
+    return e.preloadResponse.then((res) => {
+      console.info('preload res', res)
+      if (res) return res
+
+      console.log('fetch')
+      return fetch(e.request)
+    });
+  })())
 })

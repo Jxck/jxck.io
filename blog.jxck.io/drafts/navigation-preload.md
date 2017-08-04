@@ -61,3 +61,33 @@ self.addEventListener('activate', (e) => {
 
 
 ### preloadResponse
+
+Preload Response が発生した場合は、リクエストヘッダに以下が追加される。
+
+```
+Service-Worker-Navigation-Preload: true
+```
+
+これにより、サーバ側は Preload リクエストであることを判別できる。
+
+
+サーバが返したレスポンスは、 SW 起動後に `onfetch` ハンドラ内で取得できる。
+
+Preload がある場合はそれを返し、なければ実際に fetch を走らせるコードは以下のようになる。
+
+
+```js
+self.addEventListener('fetch', (e) => {
+  console.log('url', e.request.url)
+
+  e.respondWith((() => {
+    return e.preloadResponse.then((res) => {
+      console.info('preload res', res)
+      if (res) return res
+
+      console.log('fetch')
+      return fetch(e.request)
+    });
+  })())
+})
+```
