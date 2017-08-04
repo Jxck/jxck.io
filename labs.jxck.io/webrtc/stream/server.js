@@ -89,6 +89,7 @@ class Client extends events.EventEmitter {
         const message = { to: this.id, sdp: sdp }
         const data = { id: 'sfu', name: 'offer', message }
         console.log('<< send', this.id, data.name)
+        console.log(JSON.stringify(data))
         this.ws.send(JSON.stringify(data))
       })
       .catch((err) => {
@@ -136,6 +137,7 @@ server.createRoom(roomOptions)
       ws.on('message', (str) => {
         const {id, name, message} = JSON.parse(str)
         console.log('>> received', id, name)
+        console.log(message)
 
         const client = clients.get(id) || new Client(id, ws, room.Peer(id))
         clients.set(id, client)
