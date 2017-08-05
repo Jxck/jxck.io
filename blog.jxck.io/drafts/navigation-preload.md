@@ -26,7 +26,6 @@ SW の起動には、もちろん実行環境によるところが大きいが�
 
 ## Navigation Preload
 
-
 Navigation Preload を有効にすると、 SW が起動してない状態で発生したリクエストを、 SW をバイパスしてネットワーク側に送ることができる。
 
 つまり、実際の Fetch の実施と、 SW の起動を並行して行うということだ。
@@ -40,12 +39,13 @@ Navigation Preload を有効にすると、 SW が起動してない状態で発
 ここで発生するリクエストは Navigation Request と呼ばれ、ブラウザが生成するものであり、ページ構築中/後に JS から発行される XHR などは含まれていない。
 
 
-
 ## API
+
 
 ### navigationPreload.enable()
 
 `onfetch` に先立って有効化されている必要があるため、 `onactivate` で有効にする。
+
 
 ```js
 self.addEventListener('activate', (e) => {
@@ -61,15 +61,6 @@ self.addEventListener('activate', (e) => {
 
 
 ### preloadResponse
-
-Preload Response が発生した場合は、リクエストヘッダに以下が追加される。
-
-```
-Service-Worker-Navigation-Preload: true
-```
-
-これにより、サーバ側は Preload リクエストであることを判別できる。
-
 
 サーバが返したレスポンスは、 SW 起動後に `onfetch` ハンドラ内で取得できる。
 
@@ -91,3 +82,54 @@ self.addEventListener('fetch', (e) => {
   })())
 })
 ```
+
+
+## Service-Worker-Navigation-Preload Header
+
+Preload Response が発生した場合は、リクエストヘッダに以下が追加される。
+
+
+```
+Service-Worker-Navigation-Preload: true
+```
+
+これにより、サーバ側は Preload リクエストであることを判別できる。
+
+値の `true` はデフォルト値であり、以下のように任意の値に変更できる。
+
+
+```js
+navigator.serviceWorker.register('worker.js')
+  .then((registration) => {
+    const ID = btoa(Math.random());
+    return registration.navigationPreload.setHeaderValue(ID)
+  })
+```
+
+
+## getState()
+
+もし Navigation Preload を有効にした状態で、 preloadResponse を確認せずに fetch を実行した場合は、同じリクエストを重複して投げてしまう可能性があるため注意が必要である。
+
+Navigation Preload が有効になっているかは、以下のように取得することができる。
+
+また、同時に前述のヘッダに付与される値も取得が可能だ。
+
+
+```js
+navigator.serviceWorker.register('worker.js')
+  .then((registration) => {
+    return registration.navigationPreload.getState()
+  })
+  .then((state) => {
+    console.log(state.enabled)
+    console.log(state.headerValue)
+  })
+```
+
+
+## DEMO
+
+動作するサンプルを以下に用意した。
+
+- [Service Worker: Navigation Preload DEMO](https://labs.jxck.io/service-worker/navigation-preload/)
