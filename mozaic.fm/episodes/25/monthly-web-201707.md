@@ -42,7 +42,7 @@ Web をより深く理解するために
    - [https://blog.chromium.org/2017/05/chrome-59-beta-headless-chromium-native.html](https://blog.chromium.org/2017/05/chrome-59-beta-headless-chromium-native.html)
    - Headless Chrome
    - Native notifications on macOS
-   - Service Worker Navigation Preload (blog 書いたつもりだったけど、まだ書いてなかったのでそのうち書きます)
+   - Service Worker Navigation Preload (書いてなかったので [blog 書いた](https://blog.jxck.io/entries/2017-08-05/navigation-preload.html))
    - full screen capture
 - Chrome 60 Stable
    - Chrome 60 Beta: Paint Timing API, CSS font-display, and Credential Management API improvements
