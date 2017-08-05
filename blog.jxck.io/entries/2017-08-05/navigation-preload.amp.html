@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html amp>
+<head>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=https://blog.jxck.io/entries/2017-08-05/navigation-preload.html>
+<meta name=viewport content="width=device-width,minimum-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+<link rel=author href=//jxck.io/assets/humans.txt>
+
+<meta name="author" content="Jxck">
+    <meta name="description" content="Service Worker で Fetch を Proxy する場合、 Fetch 発生時に SW が起動していなければ、その起動を待つ必要が出る。そして、この SW の起動には無視できない時間がかかる場合があった。これを改善する Navigation Preload に...">
+    <meta name="keywords" content="navigation preload,service worker,performance">
+    <meta itemprop="image" content="https://jxck.io/assets/img/jxck.png">
+    <meta itemprop="name" content="blog.jxck.io">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jxck_">
+    <meta name="twitter:url" content="https://blog.jxck.io/entries/2017-08-05/navigation-preload.html">
+    <meta name="twitter:title" content="Service Worker の Navigation Preload による表示遅延回避 | blog.jxck.io">
+    <meta name="twitter:description" content="Service Worker で Fetch を Proxy する場合、 Fetch 発生時に SW が起動していなければ、その起動を待つ必要が出る。そして、この SW の起動には無視できない時間がかかる場合があった。これを改善する Navigation Preload に...">
+    <meta name="twitter:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://blog.jxck.io/entries/2017-08-05/navigation-preload.html">
+    <meta property="og:title" content="Service Worker の Navigation Preload による表示遅延回避 | blog.jxck.io">
+    <meta property="og:site_name" content="blog.jxck.io">
+    <meta property="og:description" content="Service Worker で Fetch を Proxy する場合、 Fetch 発生時に SW が起動していなければ、その起動を待つ必要が出る。そして、この SW の起動には無視できない時間がかかる場合があった。これを改善する Navigation Preload に...">
+    <meta property="og:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <link rel="icon" sizes="192x192" href="https://jxck.io/assets/img/jxck.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "Service Worker の Navigation Preload による表示遅延回避 | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2017-08-05T08:00:00+08:00",
+  "dateModified": "2017-08-05T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "Service Worker で Fetch を Proxy する場合、 Fetch 発生時に SW が起動していなければ、その起動を待つ必要が出る。そして、この SW の起動には無視できない時間がかかる場合があった。これを改善する Navigation Preload に..."
+}
+</script>
+
+<title>Service Worker の Navigation Preload による表示遅延回避 | blog.jxck.io</title>
+<script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+<script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+<script async src=https://cdn.ampproject.org/v0.js></script>
+
+<style amp-custom>
+article section p {
+  margin-left: 0.8em;
+}
+
+article pre {
+  margin-left: 0.8em;
+}
+
+article table {
+  margin-left: 0.8em;
+}
+
+article img {
+  margin: 1em 0;
+  border: 1px solid #ccc;
+  box-sizing: content-box;
+}
+
+article ul, article ol {
+  margin-left: 0.8em;
+  font-family: monospace;
+  font-size: 1.2em;
+}
+
+article li {
+  margin-bottom: 0.4em;
+}
+
+article ul li ul {
+  margin: 0.2em 0 1.2em 1em;
+  font-size: 1em;
+}
+
+article ul li ul li {
+  margin-bottom: 0;
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 400;
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=20160828") format("woff");
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 700;
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff?ver=20160828") format("woff");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+  color: #222;
+  background-color: #fefefe;
+}
+
+iframe {
+  display: block;
+  max-width: 100%;
+  margin: 1em 0;
+}
+
+.archive {
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.archive ul {
+  margin: 0;
+}
+
+.archive time {
+  padding-right: 0.5em;
+}
+
+.archive time::after {
+  content: ":";
+}
+
+.archive .tags {
+  font-size: 0.8em;
+  margin-left: 1em;
+}
+
+.tags a {
+  margin: 0 0.2em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+audio {
+  width: 70%;
+}
+
+@media screen and (max-device-width: 480px) {
+  audio {
+    width: 100%;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.info li {
+  margin-right: 1em;
+  list-style-type: none;
+}
+
+.info li::before {
+  content: none;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.4em;
+  background-color: #222;
+}
+
+header ul {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 80%;
+  margin: 0 auto;
+  padding: 4px;
+}
+
+header ul li {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  margin-left: 1em;
+}
+
+header ul li a {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+header ul li svg {
+  fill: #fff;
+}
+
+header ul li::before {
+  content: none;
+}
+
+header ul li:first-child {
+  flex-grow: 1;
+  margin-left: 0;
+}
+
+header .logo {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  pointer-events: none;
+  color: #222;
+}
+
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: #222;
+}
+
+h1 > a:hover:before,
+h2 > a:hover:before,
+h3 > a:hover:before,
+h4 > a:hover:before,
+h5 > a:hover:before,
+h6 > a:hover:before {
+  color: Brown;
+}
+
+h1 > a::before {
+  content: "# ";
+  pointer-events: all;
+}
+
+h2 > a::before {
+  content: "## ";
+  pointer-events: all;
+}
+
+h3 > a::before {
+  content: "### ";
+  pointer-events: all;
+}
+
+h4 > a::before {
+  content: "#### ";
+  pointer-events: all;
+}
+
+i::before, i::after {
+  content: "*";
+}
+
+strong::before, strong::after {
+  content: "**";
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+dl dt::after {
+  content: ":";
+}
+
+blockquote::before {
+  content: "> ";
+}
+
+code::before, code::after {
+  /* うざかった */
+  /* content: "`"; */
+}
+
+main {
+  display: block;
+  width: 80%;
+  margin: 1em auto;
+}
+
+@media screen and (max-device-width: 480px) {
+  main {
+    width: 94%;
+  }
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+}
+
+a {
+  color: RoyalBlue;
+}
+
+a:visited {
+  color: Brown;
+}
+
+ol, ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+ul, ol, dl {
+  margin: 1.4em 0;
+}
+
+dl dt {
+  font-weight: bold;
+}
+
+dl dd {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+blockquote {
+  display: block;
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  padding: 1em;
+  margin: 1.4em 0;
+}
+
+code {
+  border: 1px solid #ddd;
+  background-color: #efefef;
+  border-radius: 4px;
+  padding: 0.1em;
+  margin: 1.4em 0;
+}
+
+footer {
+  padding: 1em;
+}
+
+footer address,
+footer strong {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+}
+
+pre {
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: 1.2em;
+  margin: 1.4em 0 0 0;
+  border-radius: 4px;
+}
+
+pre::before {
+  content: "```" attr(class) "\A";
+}
+
+pre::after {
+  z-index: -1;
+  position: relative;
+  top: -1em;
+  content:"\A```";
+}
+
+pre > code {
+  overflow: auto;
+  display: block;
+  padding: 0.6em;
+  margin: 0;
+  border: none;
+  background-color: #efefef;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs,
+.hljs-subst ,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-name ,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition ,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-type,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-section,
+.hljs-meta,
+.hljs-meta-string,
+.hljs-emphasis {
+}
+
+table {
+  font-family: monospace;
+  margin: 2em 0;
+  border-spacing: 0 0.4em;
+}
+
+th {
+  padding: 0em 1.0em 0.6em;
+  border-left: 0.14em solid #222;
+  border-bottom: 2px dashed #222;
+}
+
+td {
+  padding: 0.4em 1.2em;
+  border-left: 0.14em solid #222;
+}
+
+th:last-child, td:last-child {
+  border-right: 0.14em solid #222;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+</style>
+</head>
+<body>
+<header>
+  <ul>
+    <li><a href=//blog.jxck.io><amp-img class=logo alt="blog top" width=30 height=30 src=//jxck.io/assets/img/blog.svg></a>
+    <li><a href=.><amp-img alt="move to parent directory" width=30 height=30 src=//jxck.io/assets/img/up.svg></a>
+    <li><a href=/feeds/atom.xml><amp-img alt="rss feed" width=30 height=30 src=//jxck.io/assets/img/rss.svg></a>
+    <li><a href=//jxck.io/humans.txt><amp-img alt="huamns.txt" width=30 height=30 src=//jxck.io/assets/img/humans.svg></a>
+    <li><a href=//jxck.io><amp-img class=logo alt="jxck logo" width=30 height=30 src=//jxck.io/assets/img/jxck.svg></a>
+  </ul>
+</header>
+<main>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2017-08-05>2017-08-05</time>
+    <li>updated_at: <time class=updated_at datetime=2017-08-05>2017-08-05</time>
+    <li class=tags>tags: [<a href='/tags/navigation%20preload.html'>navigation preload</a>,<a href='/tags/service%20worker.html'>service worker</a>,<a href='/tags/performance.html'>performance</a>]
+  </ul>
+
+
+  <article>
+    <h1><a href=/entries/2017-08-05/navigation-preload.html>Service Worker の Navigation Preload による表示遅延回避</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>Service Worker で Fetch を Proxy する場合、 Fetch 発生時に SW が起動していなければ、その起動を待つ必要が出る。
+      <p>そして、この SW の起動には無視できない時間がかかる場合があった。
+      <p>これを改善する Navigation Preload について解説する。
+    </section>
+    <section>
+      <h2 id="SW+Bootup"><a href="#SW+Bootup">SW Bootup</a></h2>
+      <p>SW が <code translate="no">onfetch</code> をハンドルし、キャッシュから Response を返す場合は、ネットワークを使わない分、高速に画面をレンダリングできる。
+      <p>しかし、 SW が <code translate="no">onfetch</code> をフックしていてもなお、実際にネットワークにリクエストを投げる場合は少なくない。
+      <p>この場合、もしページのコントローラとなっている SW が起動していない場合は、 <code translate="no">onfetch</code> ハンドラを実行するために、 SW の起動を待つ必要が出てくる。
+      <p>SW の起動には、もちろん実行環境によるところが大きいが、 <a href="https://developers.google.com/web/updates/2017/02/navigation-preload">50~500ms</a> 程度の時間がかかるとされている。
+      <p>つまり、せっかく表示を最適化しても、 SW を追加することでそれを台無しにしてしまうケースがあるということだ。
+      <p>これを解決するのが Navigation Preload である。
+    </section>
+    <section>
+      <h2 id="Navigation+Preload"><a href="#Navigation+Preload">Navigation Preload</a></h2>
+      <p>Navigation Preload を有効にすると、 SW が起動してない状態で発生したリクエストを、 SW をバイパスしてネットワーク側に送ることができる。
+      <p>つまり、実際の Fetch の実施と、 SW の起動を並行して行うということだ。
+      <p>しかし、それだけでは、 <code translate="no">onfetch</code> のハンドラ内でキャッシュ処理などを実行することができない。
+      <p>そこで、 SW が起動した後に、並行して行った Fetch の結果に触ることができるため、後からキャッシュに詰める/ヘッダを追加するといったことが可能になる。
+      <p>ただし、基本的に問題になるのは、しばらくアクセスしてなかったページに遷移して、最初のページを表示する部分になる。
+      <p>ここで発生するリクエストは Navigation Request と呼ばれ、ブラウザが生成するものであり、ページ構築中/後に JS から発行される XHR などは含まれていない。
+    </section>
+    <section>
+      <h2 id="API"><a href="#API">API</a></h2>
+      <section>
+        <h3 id="navigationPreload.enable()"><a href="#navigationPreload.enable()">navigationPreload.enable()</a></h3>
+        <p><code translate="no">onfetch</code> に先立って有効化されている必要があるため、 <code translate="no">onactivate</code> で有効にする。
+        <pre class=js><code translate="no">self.addEventListener(&#039;activate&#039;, (e) =&gt; {
+  if (!self.registration.navigationPreload) {
+    console.log(&quot;navigationPreload not supported&quot;)
+  }
+  console.log(&quot;navigationPreload supported&quot;)
+  e.waitUntil(self.registration.navigationPreload.enable())
+})</code></pre>
+        <p>無効化は <code translate="no">disable()</code> を呼ぶ。
+      </section>
+      <section>
+        <h3 id="preloadResponse"><a href="#preloadResponse">preloadResponse</a></h3>
+        <p>サーバが返したレスポンスは、 SW 起動後に <code translate="no">onfetch</code> ハンドラ内で取得できる。
+        <p>Preload がある場合はそれを返し、なければ実際に fetch を走らせるコードは以下のようになる。
+        <pre class=js><code translate="no">self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
+  console.log(&#039;url&#039;, e.request.url)
+
+  e.respondWith((() =&gt; {
+    return e.preloadResponse.then((res) =&gt; {
+      console.info(&#039;preload res&#039;, res)
+      if (res) return res
+
+      console.log(&#039;fetch&#039;)
+      return fetch(e.request)
+    });
+  })())
+})</code></pre>
+      </section>
+    </section>
+    <section>
+      <h2 id="Service-Worker-Navigation-Preload+Header"><a href="#Service-Worker-Navigation-Preload+Header">Service-Worker-Navigation-Preload Header</a></h2>
+      <p>Preload Response が発生した場合は、リクエストヘッダに以下が追加される。
+      <pre><code translate="no">Service-Worker-Navigation-Preload: true</code></pre>
+      <p>これにより、サーバ側は Preload リクエストであることを判別できる。
+      <p>値の <code translate="no">true</code> はデフォルト値であり、以下のように任意の値に変更できる。
+      <pre class=js><code translate="no">navigator.serviceWorker.register(&#039;worker.js&#039;)
+  .then((registration) =&gt; {
+    const ID = btoa(Math.random());
+    return registration.navigationPreload.setHeaderValue(ID)
+  })</code></pre>
+    </section>
+    <section>
+      <h2 id="getState()"><a href="#getState()">getState()</a></h2>
+      <p>もし Navigation Preload を有効にした状態で、 preloadResponse を確認せずに fetch を実行した場合は、同じリクエストを重複して投げてしまう可能性があるため注意が必要である。
+      <p>Navigation Preload が有効になっているかは、以下のように取得することができる。
+      <p>また、同時に前述のヘッダに付与される値も取得が可能だ。
+      <pre class=js><code translate="no">navigator.serviceWorker.register(&#039;worker.js&#039;)
+  .then((registration) =&gt; {
+    return registration.navigationPreload.getState()
+  })
+  .then((state) =&gt; {
+    console.log(state.enabled)
+    console.log(state.headerValue)
+  })</code></pre>
+    </section>
+    <section>
+      <h2 id="DEMO"><a href="#DEMO">DEMO</a></h2>
+      <p>動作するサンプルを以下に用意した。
+      <ul>
+        <li><a href="https://labs.jxck.io/service-worker/navigation-preload/">Service Worker: Navigation Preload DEMO</a>
+      </ul>
+    </section>
+  </article>
+
+</main>
+<hr>
+<footer>
+  <address class="copyright">Copyright &copy; 2016 <a href="/">Jxck</a>. All Rights Reserved. Using <a href="https://www.google.com/intl/ja/policies/privacy/partners/">google analytics</a>.</address>
+</footer>
+</body>
+</html>
+<amp-analytics type="googleanalytics" id="analytics1">
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
