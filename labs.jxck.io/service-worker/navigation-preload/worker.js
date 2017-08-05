@@ -1,8 +1,5 @@
 console.info('worker')
 
-// const start = Date.now()
-// while(Date.now() - start < 600);
-
 self.addEventListener('activate', (e) => {
   if (!self.registration.navigationPreload) {
     console.log("navigationPreload not supported")
