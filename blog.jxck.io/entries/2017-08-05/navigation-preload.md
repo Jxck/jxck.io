@@ -1,4 +1,4 @@
-# [navigation preload][service worker] Navigation Preload による Service Worker 起動の高速化
+# [navigation preload][service worker][performance] Service Worker の Navigation Preload による表示遅延回避
 
 ## Intro
 
@@ -11,11 +11,11 @@ Service Worker で Fetch を Proxy する場合、 Fetch 発生時に SW が起�
 
 ## SW Bootup
 
-SW が onfetch をハンドルし、キャッシュから Response を返す場合は、ネットワークを使わない分、高速に画面をレンダリングできる。
+SW が `onfetch` をハンドルし、キャッシュから Response を返す場合は、ネットワークを使わない分、高速に画面をレンダリングできる。
 
-しかし、 SW が onfetch をフックしていてもなお、実際にネットワークにリクエストを投げる場合は少なくない。
+しかし、 SW が `onfetch` をフックしていてもなお、実際にネットワークにリクエストを投げる場合は少なくない。
 
-この場合、もしページのコントローラとなっている SW が起動していない場合は、 onfetch ハンドラを実行するために、 SW の起動を待つ必要が出てくる。
+この場合、もしページのコントローラとなっている SW が起動していない場合は、 `onfetch` ハンドラを実行するために、 SW の起動を待つ必要が出てくる。
 
 SW の起動には、もちろん実行環境によるところが大きいが、 [50~500ms](https://developers.google.com/web/updates/2017/02/navigation-preload) 程度の時間がかかるとされている。
 
@@ -30,7 +30,7 @@ Navigation Preload を有効にすると、 SW が起動してない状態で発
 
 つまり、実際の Fetch の実施と、 SW の起動を並行して行うということだ。
 
-しかし、それだけでは、 onfetch のハンドラ内でキャッシュ処理などを実行することができない。
+しかし、それだけでは、 `onfetch` のハンドラ内でキャッシュ処理などを実行することができない。
 
 そこで、 SW が起動した後に、並行して行った Fetch の結果に触ることができるため、後からキャッシュに詰める/ヘッダを追加するといったことが可能になる。
 
