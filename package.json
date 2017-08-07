@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "jxck.io",
   "dependencies": {
-    "remark": "^8.0.0",
     "sqlite3": "^3.1.8",
     "web-push": "^3.2.2",
     "websocket": "^1.0.24"
@@ -14,21 +13,21 @@
     "npm-check-updates": "^2.11.1"
   },
   "scripts": {
-    "blog":     "bundle exec ruby ./mark.rb blog",
-    "podcast":  "bundle exec ruby ./mark.rb podcast",
-    "gzip":     "bundle exec ruby ./compress.rb www.jxck.io blog.jxck.io mozaic.fm",
-    "build":    "npm run blog && npm run gzip && gulp",
-    "clean":    "find ./**/* -name *.gz | xargs -L 4 -P 4 rm",
-    "lint":     "selects path from './**/*' where extname '==' '.md' | xargs -L 1 space.rb -ra",
-    "_start":   "sudo $DOTFILES/local/h2o/bin/h2o -m daemon -c h2o.conf",
-    "_stop":    "sudo kill -TERM `cat ../pid/h2o.pid`",
+    "blog": "bundle exec ruby ./mark.rb blog",
+    "podcast": "bundle exec ruby ./mark.rb podcast",
+    "gzip": "bundle exec ruby ./compress.rb www.jxck.io blog.jxck.io mozaic.fm",
+    "build": "npm run blog && npm run gzip && gulp",
+    "clean": "find ./**/* -name *.gz | xargs -L 4 -P 4 rm",
+    "lint": "selects path from './**/*' where extname '==' '.md' | xargs -L 1 space.rb -ra",
+    "_start": "sudo $DOTFILES/local/h2o/bin/h2o -m daemon -c h2o.conf",
+    "_stop": "sudo kill -TERM `cat ../pid/h2o.pid`",
     "_restart": "npm run _stop && npm run _start",
-    "start":    "sudo systemctl start h2o",
-    "stop":     "sudo systemctl stop h2o",
-    "kill":     "sudo systemctl kill h2o",
-    "restart":  "sudo systemctl restart h2o",
-    "reload":   "sudo systemctl reload h2o",
-    "test":     "$DOTFILES/local/h2o/bin/h2o -t h2o.conf | cat"
+    "start": "sudo systemctl start h2o",
+    "stop": "sudo systemctl stop h2o",
+    "kill": "sudo systemctl kill h2o",
+    "restart": "sudo systemctl restart h2o",
+    "reload": "sudo systemctl reload h2o",
+    "test": "$DOTFILES/local/h2o/bin/h2o -t h2o.conf | cat"
   },
   "repository": {
     "type": "git",
