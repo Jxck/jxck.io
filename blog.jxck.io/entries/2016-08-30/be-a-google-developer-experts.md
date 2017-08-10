@@ -11,7 +11,6 @@ GDE は、簡単に言えば Google の技術についての啓蒙などを行�
 
 [https://developers.google.com/experts/](https://developers.google.com/experts/)
 
-
 各自専門領域(Android, GCP etc)があるが、自分はやはり Web Technologies ということになる。
 
 Web に関する多くが標準技術であるため、 Google Developer Experts という名だが、別に Google や Chrome に限った内容を扱うわけではない。
@@ -39,6 +38,5 @@ Web に関する多くが標準技術であるため、 Google Developer Experts
 別に Google 関係なく勉強会やハンズオンなどで依頼があれば、可処分時間が許す限りは協力したいと考えているので、 Twitter などで気軽にお声がけ頂きたい(それも別に今までと変わらない)。
 
 今後ともよろしくお願いします。
-
 
 Jxck

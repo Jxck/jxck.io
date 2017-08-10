@@ -8,7 +8,6 @@ Preload を指定する `<link rel=preload>` の仕様が公開されており�
 
 今回は、この仕様の特徴と用途を解説し、本サイトへの適用について検討する。
 
-
 - [W3C Preload Spec](https://w3c.github.io/preload/)
 - [Intent to Ship: `<link rel=preload>`](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_nu6HlbNQfo/XzaLNb1bBgAJ)
 - [Preload: What Is It Good For?](https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/)
@@ -22,7 +21,6 @@ link 属性ファミリーで、最適化に用いられる値としては、以
 
 また、既に HTTP2 においてこの仕様の一部が使われており、最適化の意味合いとしてはかかわり合う部分もある。
 
-
 現在 Chrome Canary にのみ実装されており、 4 月には Chrome Stable にも入る予定である。他のブラウザの実装も進みつつある模様。
 
 
@@ -31,8 +29,8 @@ link 属性ファミリーで、最適化に用いられる値としては、以
 Resource Hints の例えば Prefetch との違いは、 Prefetch がナビゲーションの前に動作するのに対して、 Prelaod はナビゲーションが行われた後に動作することが上げられる。
 
 Prefetch は、画面を遷移する前に、次の遷移先で必要となるリソースについて、投機的な取得を指示していた。
-一方 Preload は現在表示しようとしているページに遷移した後、そのページ内でのリソース取得を最適化する。(Chrome が独自に実装している Subresouce というのもあった、それに近い)
 
+一方 Preload は現在表示しようとしているページに遷移した後、そのページ内でのリソース取得を最適化する。(Chrome が独自に実装している Subresouce というのもあった、それに近い)
 
 また、 Preload は以下のような特徴を持ち、今までできなかったことができるようになる。
 
@@ -66,6 +64,7 @@ Prefetch は、画面を遷移する前に、次の遷移先で必要となる�
 
 Web Font の場合はこうなる。
 
+
 ```html
 <link rel=preload  as=font type=font/woff2 href=font.woff2 crossorigin>
 ```
@@ -82,6 +81,7 @@ Web Font の場合はこうなる。
 Preload を使うことで、「**取得しておきたいけど実行はしたくない**」というスクリプトの取得ができる。
 
 後から `<script>` を差し込むことで、 JS の「取得と実行」を遅延させることはこれまでもできたが、「取得」だけを先に行うことはできなかった。
+
 また、取得を XHR で行い保存しておいたものをあとで `eval` することもできるが、 Preload を使うことで実行を `<script>` で行え、ブラウザの Preloader に取得させるため、再利用が効く。
 
 まず「取得」を Preload で行う、これは HTML に書いておいても良いし、それ自体も遅延したければ好きなタイミングで以下のようにノードを作れば良い。
@@ -90,6 +90,7 @@ Preload を使うことで、「**取得しておきたいけど実行はした�
 ```html
 <link rel=preload as=script href=script.js>
 ```
+
 
 ```js
 var preload = document.createElement('link');
@@ -112,15 +113,15 @@ document.body.appendChild(script);
 ## 非同期ローダ
 
 `<link rel=preload>` は自身で `onload` を発火する。
+
 これを利用すると、 HTML と少しの JS で **非同期ローダ** を実現することができる。
 
-
 例えば CSS の場合はこうなる。
+
 
 ```html
 <link rel=preload as=style href=style.css onload="this.rel='stylesheet'">
 ```
-
 
 同じことは JS でも応用できる。
 
@@ -140,9 +141,11 @@ analytics のような場合。とにかく早く取得して、ユーザを取�
 ## Media Query
 
 Preload はリンクであるため、仕様上 media 属性を持つ。(chrome ではまだ未サポート)
+
 つまり Media Query を用いた条件付きローディングができる。
 
 例えば `<picture>` で Image を読み分けている場合、その条件と同じものを `<link rel=preload>` に指定することで、一致した条件のみの画像を Prelaod できる。
+
 
 ```html
 <link rel=preload as=image href=large.png media="(max-width: 600px)">
@@ -156,6 +159,7 @@ Preload はリンクであるため、仕様上 media 属性を持つ。(chrome 
 Preload は、同じセマンティクスを HTTP Header にも適用できる。
 
 つまりここまでマークアップで示してきた例は、(onload hack など除き)基本的に全て HTTP Response Header で行うことができる。
+
 
 ```
 Link: <script.js>;rel="preload";as="script"
@@ -171,6 +175,7 @@ HTTP Header にすることによって、マークアップと最適化を分�
 ## Feature Detection
 
 Preload をヒントとして使っていれば、サポートされてい無いブラウザにおいては従来通りのタイミングで取得が走るだけになる。
+
 しかし、 `onload` ハックなどを用いたより積極的な活用を行う上では、ブラウザのサポートの有無を知りたい場合もある。
 
 そこで、サポートされる `rel` の値を DOM から取れるような提案がなされている。
@@ -190,8 +195,8 @@ HTTP2 において、 HTTP Link preload ヘッダは Push するリソースを�
 しかし、実際の動作として、サーバが行う HTTP2 の Push と、ブラウザが行う Preload は補完関係にある。
 
 HTTP2 の Push ではリクエストより先にリソースを送ることができ、ブラウザはそれをキャッシュとして保存する。
-レスポンスの HTML を取得した後、サブリソースを発見して Fetch するタイミングで、そのキャッシュがヒットするという仕組みである。
 
+レスポンスの HTML を取得した後、サブリソースを発見して Fetch するタイミングで、そのキャッシュがヒットするという仕組みである。
 
 一方で、 Push はブラウザが発呼する Fetch とは方向が逆であるため、ある程度の制限が出る。
 
@@ -205,6 +210,7 @@ Push が既にブラウザにキャッシュされているリソースを考慮
 もともと HTTP を基本とする Web がプルベースを前提としているため、 Fetch でリクエストを投げる際にクライアントの情報を載せ、サーバがそれをレスポンスに反映するモデルの方が、細かい調整がしやすいのは自明である。
 
 したがって、クライアントが置かれた状況を限定的に捉え、より積極的にリソースをキャッシュさせる用途で Push を。
+
 クライアントの状態を踏まえて、コンテントネゴシエーションを重視する場合に Preload を。
 
 という感じに、組み合わせて使うのが最も理想だと言えるだろう。
@@ -219,6 +225,7 @@ Link: </app/style.css>; rel=preload; as=style; nopush
 
 ## 本サイトへの適用
 
+
 ### 対象リソース
 
 本サイトでは、以下のリソースが Preload の対象として、効果が有りそうであると判断した。
@@ -232,11 +239,13 @@ Link: </app/style.css>; rel=preload; as=style; nopush
 ### 指定方法
 
 本サイトは H2O でサーブしているが、まだ nopush には対応していない。
+
 そのため HTTP Header で Link rel=preload を指定すれば、必ず HTTP2 Push が発生する。
 
 まず、本サイトはまだ HTTP2 Push を持ちいた最適化は、キャッシュを有効に使えなくなるという理由から行っておらず、 [Cache Digest](https://tools.ietf.org/html/draft-kazuho-h2-cache-digest) を Service Worker で管理する方式を採用する予定なので、そこまでは Link Header を付けるのは避けたい。
 
 そこで、ページで共通するサブリソースについて、 HTML のトップレベルへの `<link>` タグで指定することにした。
+
 
 ```
 <link rel=preload as=script src=/assets/js/highlight.min.js>
@@ -257,7 +266,6 @@ before
 after
 
 [![after](after.png#1366x768 "result of after adding preload")](after.png)
-
 
 このページでは、むしろ遅くなっている。これは、元のコンテンツで特にリソースの読み込みなどに関するオーバーヘッドが少ないためであると考えられる。したがって、処理が入ることによる内部処理のオーバーヘッドが結果に影響していると推測する。
 

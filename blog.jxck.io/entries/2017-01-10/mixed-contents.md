@@ -38,6 +38,7 @@ HTTPS は MITM に対する耐性があるが、 HTTP は MITM への耐性が�
 まず、 mixed contents 発生時のブラウザの挙動について再度確認する。
 
 mixed contents は URL バーが変化し、ユーザに注意を促す。
+
 また、コンテンツが MITM により改ざんされた場合の影響によって、二つに分類されており、それによって挙動が変わる。
 
 以下にデモを用意した。
@@ -61,6 +62,7 @@ mixed contents が無ければ本来は以下のようになる。
 ### Mixed Active(Script) Contents
 
 以下のタグ、及びスクリプト等は、  **Mixed Active Contents** と呼ばれる。
+
 
 ```html
 <script src>
@@ -86,6 +88,7 @@ CSS 内の URL (@font-face, background-image etc)
 
 以下のタグは、基本的にコンテンツを表示する目的で使われる。
 
+
 ```html
 <img>
 <audio>
@@ -94,6 +97,7 @@ CSS 内の URL (@font-face, background-image etc)
 ```
 
 もし、 `<img>` で読まれるコンテンツが HTTP であり、 MITM によって改ざんされた場合、別の画像を表示することで元コンテンツを改ざんすることが可能だ。
+
 しかし、そこを経由して元コンテツの他の DOM に変更を及ぼすことはできない。
 
 そのため、これらコンテンツの読み込み自体は行われるが、ブラウザの URL バーは異常を検知したような表示になる。
@@ -126,10 +130,10 @@ CSP の `Upgrade-Insecure-Request` を付与した場合、ブラウザは HTTPS
 
 [3.2. Feature Detecting Clients Capable of Upgrading](https://w3c.github.io/webappsec-upgrade-insecure-requests/#feature-detect])
 
-
 [DEMO: Upgrade-Insecure-Request](https://labs.jxck.io/mixed/mixed.html?upgrade-insecure-request)
 
 理想はコンテンツ内の全てのリンクを修正したいところだ。
+
 
 ### Block-All-Mixed-Contents
 
@@ -154,11 +158,12 @@ mixed contents は、発生したこと自体を把握しにくかったとい�
 
 特にコンテンツが多いサービスでは、実際にどこで mixed contents が発生しているのかを知ることができれば、コンテンツの修正を進めることができ、 HTTPS 化を進める上でも役に立つだろう。
 
-
 まず、 `Upgrade-Insecure-Request` は、 URL を書き換えることでサーバにリクエストを発行するため、もしサーバが対応していなければサーバ側に 404 のログを残すことができる。
+
 これにより、コンテンツサーバの中で HTTPS 化が済んでいない URL を発見することに役立つだろう。
 
 次に、 `Block-All-Mixed-Contents` は、 mixed contents が発生した場合にそれが Active/Passive どちらであれレポートを生成する。
+
 しかし、いきなり全てがブロックされては困るので、 `Block-All-Mixed-Contents-Report-Only` を用いることで、挙動を変えないままレポートだけを収集し可視化することができるだろう。
 
 こうしたヘッダの挙動を利用し、 Staging 環境で自動化した実ブラウザからアクセスしたり、限定的なユーザにサービスを提供することで、サービス内の mixed contents の状況を可視化する一助となるだろう。
@@ -176,25 +181,21 @@ mixed contents は、発生したこと自体を把握しにくかったとい�
 
 [ディスプレイ広告の基礎とセキュリティ(P7) by Kenta Suzuki](https://speakerdeck.com/suzuken/deisupureiguang-gao-falseji-chu-tosekiyuritei)
 
-
 iframe 自体を https で読み込んでいても、ネストした iframe 内に http で読み込まれるサブリソースがあると、大元のドキュメントは mixed contents 扱いになる。
 
 [DEMO: mixed iframe](https://labs.jxck.io/mixed/iframe.html)
 
-
 もし大元のコンテンツに `Upgrade-Insecure-Request` をつければ、 iframe 内のサブリソースも全て https に読み替えられるため、サーバが対応していればそれで済む。
-
 
 [DEMO: upgrade insecure request iframe](https://labs.jxck.io/mixed/iframe.html?upgrade-insecure-request)
 
-
 また、 `Block-All-Mixed-Contents` をつければ、 iframe 内のサブリソースはブロックされるため、 mixed contents を回避することはできる。
+
 しかし、 **ネストした iframe 内の mixed contents をブロックしても report は発生しない**。
 
 もし iframe の内側の mixed contents まで report ができてしまうと、その内容を把握できる可能性などセキュリティ上問題があるからだ。
 
 [DEMO: block all mixed contents iframe](https://labs.jxck.io/mixed/iframe.html?block-all-mixed-content)
-
 
 つまり広告配信プラットフォームが提供する広告用の iframe 自体が https に対応していても、そこの入稿される広告コンテンツ本体のどこかに一つでも https 非対応なものがあれば、 mixed contents は避けられない。
 

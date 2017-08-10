@@ -3,6 +3,7 @@
 ## Intro
 
 Service Worker の初心者向けのチュートリアルや、使ってみた系のエントリも増えてきました。
+
 しかし、 Service Worker は通常のブラウザ用 JS の開発と少し経路が違い、慣れるまで開発やデバッグもなかなか難しいと思います。
 
 そこで特に難しい部分、そして分かっていないと実際にデプロイした際に難しいと思う部分について、実際に動きを確認しながら解説したいと思います。
@@ -22,10 +23,15 @@ TODO になっている動画は、そのうち撮って追加します。
 4. [#update()](#update())
 5. [#backgroundsync](#backgroundsync)
 6. [#push](#push)
+
 6-1. [#1. Google Developer Console](#1.+Google+Developer+Console)
+
 6-2. [#2.master.js](#2.master.js)
+
 6-3. [#3.worker.js](#3.worker.js)
+
 6-4. [#4.push.js](#4.push.js)
+
 
 ## claim
 
@@ -48,6 +54,7 @@ controller とは何か、いつ controller になるか、 `claim()` で何が�
 <script src=master.js></script>
 ```
 
+
 ```js
 console.log('master');
 
@@ -59,6 +66,7 @@ navigator.serviceWorker.register('worker.js').then((registration) => {
   console.log(registration);
 });
 ```
+
 
 ```js
 console.info('worker');
@@ -110,6 +118,7 @@ navigator.serviceWorker.register('worker.js').then((registration) => {
 });
 ```
 
+
 ```js
 console.info('worker');
 
@@ -134,9 +143,11 @@ DEMO: [https://labs.jxck.io/service-worker/controllerchange/](https://labs.jxck.
 ## updatefound
 
 Service Worker が更新される際の動きと、 `skipWaiting()` が何をスキップするのか?
+
 `install`, `activate` イベントの用途。
 
 <iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/AMbQ7d9rjao" allowfullscreen></iframe>
+
 
 ```js
 console.log('master');
@@ -148,6 +159,7 @@ navigator.serviceWorker.register('worker.js').then((registration) => {
   return navigator.serviceWorker.ready;
 });
 ```
+
 
 ```js
 console.info('worker');
@@ -200,6 +212,7 @@ navigator.serviceWorker.register('worker.js').then((registration) => {
   }, 1000);
 });
 ```
+
 
 ```js
 console.info('worker');
@@ -254,6 +267,7 @@ navigator.serviceWorker.register('worker.js').then((registration) => {
 }).catch(console.error.bind(console));
 ```
 
+
 ```js
 // worker.js
 self.addEventListener('install', (e) => {
@@ -279,6 +293,7 @@ DEMO: [https://labs.jxck.io/service-worker/backgroundsync/](https://labs.jxck.io
 push に必要な情報とその取り方、投げ方。
 
 **デモで作った API KEY は当たり前ですが無効にしてあります、全く同じ値を入れても動きません**
+
 
 ### 1. Google Developer Console
 
@@ -309,6 +324,7 @@ Console の UI はコロコロ変わります。以下の情報を頑張って�
 ```
 
 (`gcm_user_visible_only` は今はもういりません)
+
 
 ```html
 <!DOCTYPE html>
@@ -404,6 +420,7 @@ self.addEventListener('notificationclick', (e) => {
   }));
 });
 ```
+
 
 ### 4.push.js
 

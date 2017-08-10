@@ -30,18 +30,19 @@ Node では EventEmitter が、メソッド名は違えど同等の役割を果�
 
 例えば `process` は EventEmitter を継承している。
 
+
 ```js:ee.js
 ```
 
-
 大きな違いは、 EventEmitter が任意のクラスで継承できる点だ。
+
 したがって、非同期処理をクラスに閉じ込め、加工したイベントとして外に公開するといった設計が可能になる。
 
 以下は `setInterval` を抽象化したタイマの例だ。
 
+
 ```js:timer-ee.js
 ```
-
 
 またこうしたイベントの抽象化の先に stream がある。
 
@@ -56,10 +57,8 @@ Node では EventEmitter が、メソッド名は違えど同等の役割を果�
 
 しかし、こうした汎用的な処理をより効率よく実現するために、 EventTarget が継承可能となる仕様が追加された。
 
-
 - [Allow constructing and subclassing EventTarget](https://github.com/whatwg/dom/commit/c4c1c8b47340a1e5ecc1a07670927b831f240586)
 - [Make EventTarget subclassable #441](https://github.com/whatwg/dom/issues/441)
-
 
 実装されれば、メソッド名をすり合わせる目的以外で EventEmitter porting は不要となるだろう。
 
@@ -67,12 +66,12 @@ Node では EventEmitter が、メソッド名は違えど同等の役割を果�
 ## constructible/subclassable EventTarget
 
 具体的には以下のようなコードが書けるようになる。
+
 (実装がないため動作未確認)
 
 
 ```js:timer-et.js
 ```
-
 
 EventTarget を元に EventEmitter とメソッド名をすり合わせた shim を書く場合は以下のような感じだろうか。
 

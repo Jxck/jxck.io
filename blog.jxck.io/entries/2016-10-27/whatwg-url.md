@@ -24,8 +24,8 @@ URL は非常によく使われる、 Web において重要なフォーマッ�
 それが以下である。
 
 原文: [https://url.spec.whatwg.org](https://url.spec.whatwg.org)
-翻訳: [https://triple-underscore.github.io/URL-ja.html](https://triple-underscore.github.io/URL-ja.html)
 
+翻訳: [https://triple-underscore.github.io/URL-ja.html](https://triple-underscore.github.io/URL-ja.html)
 
 これによって、既存/新規 DOM API は、 URL を扱う際に、基本的にはこの仕様を参照することができるようになった。
 
@@ -42,11 +42,9 @@ URL は非常によく使われる、 Web において重要なフォーマッ�
 
 > Align RFC 3986 and RFC 3987 with contemporary implementations and obsolete them in the process. (E.g., spaces, other "illegal" code points, query encoding, equality, canonicalization, are all concepts not entirely shared, or defined.) URL parsing needs to become as solid as HTML parsing. [RFC3986] [RFC3987]
 
-
 [翻訳](https://triple-underscore.github.io/URL-ja.html#goals)
 
 > RFC 3986 と RFC 3987 を現今の実装に揃わせて、その過程の中でそれらを過去のものにする。 （例えば、空白類, 他の “合法でない” 符号位置, クエリの符号化方式, 同等性, 正準化, などの概念は、どれも完全には共有もしくは定義されていない。） URL の構文解析法は HTML の構文解析法と同程度に確定的になる必要がある。 [RFC3986] [RFC3987]
-
 
 平たく言えば、不完全だったところを補完したという感じだろうか。
 
@@ -61,7 +59,6 @@ DOM や JS の API として Export されていなかっただけで、ブラ�
 
 [https://gist.github.com/jlong/2428561](https://gist.github.com/jlong/2428561)
 
-
 ところが、 WHATWG のドラフトでは、前述した仕様が定義されたと同時に、それを提供する API が定義された。
 
 それが URL オブジェクトであり、メジャーなブラウザは既に実装が進んでいる。
@@ -70,6 +67,7 @@ DOM や JS の API として Export されていなかっただけで、ブラ�
 ## Node の url module 実装
 
 Node は既に URL をパースするための `url` モジュールを標準でもっている。
+
 しかし、これが実装されたのは URL Standard が定義される前なので、 `url` モジュールが準拠するのはもちろん RFC である。(それ自体が問題になること自体はほとんどない。)
 
 しかし API についてみれば、先ほどの URLSearchParams も含めて WHATWG の定義とはかなり差異がある。
@@ -85,7 +83,6 @@ Node は既に URL をパースするための `url` モジュールを標準で
 
 [url: adding WHATWG URL support #7448](https://github.com/nodejs/node/pull/7448)
 
-
 それが v7.0.0 で Experimental という形で [ship](https://nodejs.org/en/blog/release/v7.0.0/) された。
 
 
@@ -93,16 +90,17 @@ Node は既に URL をパースするための `url` モジュールを標準で
 
 Node v7.0.0 で実装された API は以下のように使うことができる。
 
+
 ```js:url.js
 ```
 
 この API を経由すれば、日本語ドメインの Punycode 化、 IPv6 アドレスの対応、 escape などもやってくれる。
+
 (ここら辺が、正規表現での処理時に問題になりやすいあたりだ。)
 
 
 ```js:url-ext.js
 ```
-
 
 なお、ブラウザの実装状況は caniuse に項目がまだ無い ([issue](https://github.com/Fyrd/caniuse/issues/1312)) ので MDN を貼っておく。
 
@@ -120,7 +118,6 @@ Node v7.0.0 で実装された API は以下のように使うことができる
 ```
 
 ブラウザ上でも、おそらくこれまで `?` と `&` と `=` で `split()` したり、 `join()` してきたであろう query だが、 URLSearchParams 経由で解析/組み立てを行えば、おろそかにされがちだったエスケープなども正しく行われるため、積極的に使っていきたい。
-
 
 こちらは caniuse があるので、貼っておく。
 

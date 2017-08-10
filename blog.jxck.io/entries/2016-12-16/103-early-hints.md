@@ -4,8 +4,8 @@
 
 これは、 [http2 Advent Calendar 2016](http://qiita.com/advent-calendar/2016/http2) の 16 日目の記事である。
 
-
 HTTP に新しいステータスコード `103 Early Hints` が追加されようとしている。
+
 HTTP/1.1 および HTTP2 双方と関わり、リソース配信の最適化に利用することができる。
 
 いったい何のために必要なのか、どういうメリットが考えられるかを解説する。
@@ -16,15 +16,14 @@ HTTP/1.1 および HTTP2 双方と関わり、リソース配信の最適化に�
 まず HTTP2 の Push について復習する。
 
 H2 Push は、簡単に言えば PUSH_PROMISE フレームを用いて、レスポンスよりも先に依存するリソースを返すための仕様である。
+
 例えば `/users` のレスポンスは `script.js` と `style.css` をサブリソースとして含んでいるとする。
 
-
 HTTP2 では SQL を発行して `Users` の一覧を取得している間に、先行して `script.js` と `style.js` を Push しておくことができる。
+
 Push されたリソースはブラウザのキャッシュに入り、 `/users` のレスポンスが終わり HTML がパースされたのち、二つのリソースへの追加リクエストが発行された際に、キャッシュがヒットしてリソースが揃う。
 
-
 これにより二つのポイントが最適化されていることになる。
-
 
 - DB アクセスの時間を有効に使える
 - 2 つのサブリソースへのリクエストが実質なくなり各 0.5 RTT 分づつ浮く
@@ -39,6 +38,7 @@ Push されたリソースはブラウザのキャッシュに入り、 `/users`
 もし Origin が H2 を話し、 Reverse Proxy も H2 のままフォワードすれば、 H2 Push をそのままクライアントに届けることができる。
 
 しかし、構成によっては Reverse Proxy が H2 を H1.1 に解いてフォワードする場合がある。
+
 この場合、 H2 のフレームを使うことができないため、そのままでは Push を行うことができない。
 
 そこで、 HTTP の Link ヘッダなどを用いて、 Reverse Proxy にサブリソースの存在を伝え、それを H2 の Push に翻訳してもらってクライアントに Push というワークアラウントがある。
@@ -63,7 +63,6 @@ Link: </script.js>; rel=preload
 {response body}
 ```
 
-
 このバイト列を順にソケットに書いていく限り、 Push のために送りたい Link ヘッダは、ステータスコードが決まってからでないと書き込むことができない。
 
 そしてこのステータスコードが 200 なのか 404 なのか 500 なのかは、 DB を叩いて見ないとわからないのだ。 DB を引いている間に Link ヘッダだけを送るということは、従来の H1.1 の範囲では実現できない。
@@ -73,15 +72,11 @@ Link: </script.js>; rel=preload
 
 ## 103 Early Hints
 
-
 この問題に対応するために提案されたのが h2o の開発者である [@kazuho](https://twitter.com/kazuho) さんが提案した、ステータスコード 103 だ。
-
 
 [An HTTP Status Code for Indicating Hints](https://tools.ietf.org/html/draft-kazuho-early-hints-status-code)
 
-
 103 は、ヘッダだけを送る目的で使われ、実際のレスポンスは後から来るというセマンティクスになっている。
-
 
 先の例の場合、 DB を引いてる最中に Link だけを 103 で送り、残りは後から送る。
 
@@ -99,8 +94,8 @@ Content-Type: text/html
 {response body}
 ```
 
-
 Origin Server はリクエストを受信したのち、ステータスコードが決まる前に、サブリソースの存在を 103 でレスポンスする。
+
 Reverse Proxy はこの 103 消費し、 H2 Push に読み替えてクライアントに Push する。
 
 Origin Server は User を DB から引いて、レスポンスコードが決まってから body とともにレスポンスを返す。
@@ -115,6 +110,7 @@ Origin Server は User を DB から引いて、レスポンスコードが決�
 通常、静的アセットファイルの送信は、 Origin ではなく Reverse Proxy がコンテンツサーバとなり、そこから配信されることが多いだろう。
 
 そこで Origin がサブリソースを Push したい場合、直接そのアセットを body に含めた Push Promise を送るのではなく、 H2 のフレームで Early Hints にパスだけを指定して送信する。
+
 それを Reverse Proxy が消費し、 H2 Push に読み替えて指定されたパスの静的アセットをクライアントに Push する用途が考えられる。
 
 これにより、従来の構成と同様に、 Origin が静的アセットファイルそのものを保持する必要がなくなるわけである。

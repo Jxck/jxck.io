@@ -6,7 +6,6 @@ Google の Product Manager である [Huib Kleinhout](https://jp.linkedin.com/in
 
 [Completing WebRTC 1.0](https://groups.google.com/d/msg/discuss-webrtc/f4Jg53Phgco/YfetnmoqBQAJ)
 
-
 WebRTC 1.0 を年内に終わらせるためのロードマップ(Chrome の改善を含む)を提示している。
 
 このロードマップに期待を寄せ、簡単に現状を振り返りつつ紹介する。
@@ -38,7 +37,6 @@ WebRTC は主に、 [IETF が策定するプロトコル](https://datatracker.ie
 
 今回は、そんな WebRTC 1.0 の仕様に関しての展望と、それを相互接続性という観点で実現するために Chrome が行うタスクなどについて言及されている。
 
-
 - WebRTC 1.0 の仕様を、 W3C / IETF 双方で完成させる。
   - それぞれのギャップを埋めて公開する。
 
@@ -62,7 +60,6 @@ WebRTC は主に、 [IETF が策定するプロトコル](https://datatracker.ie
 
 いよいよ WebRTC 1.0 が安定と信頼を持って使え、参照できる仕様になるためにできることはいくつかある。
 
-
 - 仕様への貢献
   - あと半年ということなら、本格的なブラッシュアップも始まる。
   - 書かれてることが読みづらいとか、サンプルコードが間違ってる、タイポなどはよくあるので、そうした指摘は良いだろう。
@@ -82,6 +79,5 @@ WebRTC は主に、 [IETF が策定するプロトコル](https://datatracker.ie
 
 - Web Platform Tests
   - WebRTC に限らず、書くとみんなが嬉しい。
-
 
 伸びに伸びた WebRTC 1.0 の決着がやっとつくかどうか、この半年に期待したい。

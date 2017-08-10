@@ -4,7 +4,9 @@
 
 今月の Web メモ
 
+
 ## Browser
+
 
 ### Chrome
 
@@ -272,7 +274,7 @@ Finding っていう資料が二つ出た。
   - この feature detect に twitter が引っかかり tweet ボタンでバグがあったらしい
   - 正しい feature detect について解説
 
-- 2/7: [Yahoo広告配信用 s.yimg.jp ドメインでのXSSの解説](https://gist.github.com/mala/1d30e42e9e99520b7a501e9d2458eb49)
+- 2/7: [Yahoo 広告配信用 s.yimg.jp ドメインでの XSS の解説](https://gist.github.com/mala/1d30e42e9e99520b7a501e9d2458eb49)
   - URL 正規表現の不備による XSS
   - URL パーサの実装にもおかしいものがいくつかあるらしい
 
@@ -365,7 +367,7 @@ Finding っていう資料が二つ出た。
   - Cloudflare から
   - crypto/tls を土台に実装
 
-- 2/15: [2017年前半の PWA ロードマップ](https://docs.google.com/document/d/1_PcEyuXaRckigJ4lcQNzsQPe2bXsOHdUw1zncO4_fKs/edit)
+- 2/15: [2017 年前半の PWA ロードマップ](https://docs.google.com/document/d/1_PcEyuXaRckigJ4lcQNzsQPe2bXsOHdUw1zncO4_fKs/edit)
   - 2017 Q1/Q2 における PWA のロードマップ
 
 - 2/15: [JavaScript Debugging Improvements](https://webkit.org/blog/7219/javascript-debugging-improvements/)
@@ -384,13 +386,13 @@ Finding っていう資料が二つ出た。
 - 2/17: [V8 JavaScript Engine: High-performance ES2015 and beyond](https://v8project.blogspot.jp/2017/02/high-performance-es2015-and-beyond.html)
   - v8 の ES2015 パフォーマンス
 
-- 2/17: [FRESH!におけるPCブラウザのFlash脱却](https://developers.cyberagent.co.jp/blog/archives/4283/)
+- 2/17: [FRESH!における PC ブラウザの Flash 脱却](https://developers.cyberagent.co.jp/blog/archives/4283/)
   - HLS をどうするか
 
-- 2/19: [Firefoxでレガシーなアドオンが使えるのは2017年11月半ばまで ](http://rockridge.hatenablog.com/entry/2017/02/19/231302)
+- 2/19: [Firefox でレガシーなアドオンが使えるのは 2017 年 11 月半ばまで ](http://rockridge.hatenablog.com/entry/2017/02/19/231302)
   - e10s と WebExtensions
 
-- 2/19: [サイトの「HTTPS化」が世界的に進んで大きなターニングポイントを迎える](http://gigazine.net/news/20170218-https-adoption-tipping-point/)
+- 2/19: [サイトの「HTTPS 化」が世界的に進んで大きなターニングポイントを迎える](http://gigazine.net/news/20170218-https-adoption-tipping-point/)
   - 元ネタ [HTTPS adoption has reached the tipping point](https://www.troyhunt.com/https-adoption-has-reached-the-tipping-point/)
 
 - 2/20: [HLS の図解](http://did2memo.net/2017/02/20/http-live-streaming/)

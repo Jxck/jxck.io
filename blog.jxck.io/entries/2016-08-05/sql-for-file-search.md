@@ -15,6 +15,7 @@
 
 結論からいうとこういうコマンドだ。
 
+
 ```
 $ selects mtime, size, basename from './entries/**/*' where extname '==' '.md' and size '>' 1000 order by mtime
 
@@ -45,6 +46,7 @@ $ selects mtime, size, basename from './entries/**/*' where extname '==' '.md' a
 
 ### ディレクトリ以下をごっそり
 
+
 ```
 $ selects '*' from './entries/**/*'
 2016-08-05 22:42:14 +0900	4096	2016-01-27
@@ -59,6 +61,7 @@ $ selects '*' from './entries/**/*'
 
 
 ### .html だけ
+
 
 ```
 $ selects basename from './entries/**/*' where extname == '.html'
@@ -75,6 +78,7 @@ h2o-http2-deploy.amp.html
 
 ### like 的な
 
+
 ```
 $ selects basename from './entries/**/*' where basename '=~' 'mozaic'
 mozaicfm-v2.amp.html
@@ -88,6 +92,7 @@ mozaicfm-v2.md.gz
 
 ### 属性で絞る
 
+
 ```
 $ selects atime, basename from './entries/**/*' where atime '>' 2016-08-01 and directory? == true
 2016-08-05 22:42:14 +0900       2016-01-27
@@ -98,7 +103,9 @@ $ selects atime, basename from './entries/**/*' where atime '>' 2016-08-01 and d
 2016-08-05 22:42:14 +0900       2016-02-11
 ```
 
+
 ### /dev 以下で pipe か socket か symlink だけを ctime, atime の順で
+
 
 ```
 $ selects socket?, pipe?, symlink? basename from '/dev/*' where pipe? == true or socket? == true or symlink? == true order by atime, ctime
@@ -114,11 +121,13 @@ false   false   true    fd
 false   false   true    core
 ```
 
+
 ## からくり
 
 なんとなく気づいた方がいるかもしれないが、これは全部 Ruby に変換している。
 
 つまりこんな感じだ。
+
 
 ```ruby
 Dir.glob('from 句にあたる */** 的なの')
@@ -131,18 +140,22 @@ Dir.glob('from 句にあたる */** 的なの')
 
 例えば
 
+
 ```
 where size > 1000
 ```
 
 は
 
+
 ```ruby
 File.size(file) > 100
 ```
 
 になれば良い。
+
 これを文字として得ている `'size'`, `'>'`, `'100'` を使って動的に組み立てると以下になる。
+
 
 ```ruby
 File
@@ -152,10 +165,10 @@ File
   .call(100)
 ```
 
-
 この仕組みを踏まえた上でもう一度クエリを見てみて欲しい。
 
 もはや Ruby のメソッドチェインにしか見えないのではないだろうか?
+
 
 ```
 $ selects atime, basename from './entries/**/*' where atime '>' 2016-08-01 and directory? == true
@@ -178,7 +191,7 @@ $ selects atime, basename from './entries/**/*' where atime '>' 2016-08-01 and d
 
 特に、自分はシェル芸力が低いので、そういった場合は最初からスクリプトを書くだろう。ところがそのスクリプトも、結局は `glob` して `map` して `reduce` するよくあるものなので、それを DSL っぽくしたのがこのコマンドの正体だ。
 
-このコマンドは SQL という検索を記述的に表現する共通言語をファイル検索に応用し、Ruby という表現力が高い動的言語のメリットを活かして実装した DSL と言える。
+このコマンドは SQL という検索を記述的に表現する共通言語をファイル検索に応用し、 Ruby という表現力が高い動的言語のメリットを活かして実装した DSL と言える。
 
 だから Ruby を知ってて SQL が書ける人には、 **Ruby で書いた SQL っぽいメソッドチェインに見える** というメリットがある(と思う)。
 
@@ -194,4 +207,3 @@ $ selects atime, basename from './entries/**/*' where atime '>' 2016-08-01 and d
 - SQL の仕様は尊重しつつも、準拠よりあくまで裏の Ruby が透けて見える範囲で実装したい。
 - まだ `group by` などは対応してないが、そのくらいはやっても良いかなと思っている。
 - 動的に組み立てて実行しているため、上手くやれば任意の Ruby が実行できるかもしれない。是非探して遊んでみて欲しい。
-

@@ -19,7 +19,6 @@
 
 そこで、 「`blog.jxck.io` にアクセスするときは必ず HTTPS を用いる」ことをブラウザに覚えさせ、 `http://blog.jxck.io` のリンクを踏んでも、ブラウザが自動的に `https://blog.jxck.io` に置き換えてアクセスさせる仕組みが HSTS である。
 
-
 - [RFC 6797 - HTTP Strict Transport Security (HSTS)](https://tools.ietf.org/html/rfc6797)
 
 
@@ -69,6 +68,7 @@ Chrome の場合は、以下からドメインを申請すると、審査が実�
 したがって同様の理由から、止むを得ず **preload 登録は見送る** こととした。
 
 結果、現時点では [jxck.io](https://jxck.io) 及び [blog.jxck.io](https://blog.jxck.io) に対して、以下のヘッダを付与した。
+
 
 ```
 Strict-Transport-Security: max-age=31536000

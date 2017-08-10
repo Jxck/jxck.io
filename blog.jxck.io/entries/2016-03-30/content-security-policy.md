@@ -18,7 +18,6 @@ Content Security Policy(CSP) とは、 Web におけるセキュリティを向�
 - [Content Security Policy Level 2](https://www.w3.org/TR/CSP/)
 - [draft-gondrom-websec-csp-header-00 - HTTP Header Content Security Policy](https://tools.ietf.org/html/draft-gondrom-websec-csp-header-00)
 
-
 具体的には、コンテンツに対し Content-Security-Policy ヘッダを付加することにより、ブラウザに読み込を許可するコンテンツをホワイトリストにより制限することができる。
 
 これによって、コンテンツ作成者が意図しない外部スクリプトや、インラインスクリプトを埋め込むことにより攻撃が実現するタイプの XSS を、ことごとく防ぐことが可能になる。
@@ -39,7 +38,6 @@ Content-Security-Policy: default-src 'self'
 
 [CSP におけるポリシーのディレクティブ - Web セキュリティ \| MDN](https://developer.mozilla.org/ja/docs/Web/Security/CSP/CSP_policy_directives)
 
-
 基本的には、同一オリジン以外の外部スクリプトや、 `<script>` 内に直接記述するインラインスクリプトなどを全て除外し、そうしたスクリプトがあった場合も実行を阻止する。
 
 また、ポリシー違反があった事実を JSON 形式のレポートとして生成し、指定 URL に送信することが可能である。
@@ -51,11 +49,13 @@ Content-Security-Policy: default-src 'self'
 
 もし、先ほど例示した設定をサイト全体に適用した場合、何がおこるかを考えてみる。
 
+
 ```
 Content-Security-Policy: default-src 'self'
 ```
 
 まず、この指定により、インラインスクリプトが全て無効になる。
+
 よくある例として、 Google Analytics のためページ下部に埋め込んだ `<script>` が全て動かなくなるため、アナリティクスが動かなくなる。
 
 他にも、例えば `cdn.jquery.com` などの Public CDN から取得しているスクリプトも軒並み動かなくなる。
@@ -82,6 +82,7 @@ Content-Security-Policy: default-src 'self'
 これは、ポリシー違反があった場合、レポートだけを送信し、コンテンツの挙動を一切ブロックしないというものである。
 
 以下のように、ポリシーに `report-uri` ディレクティブでレポート先 uri を指定する。
+
 
 ```
 Content-Security-Policy-Report-Only: default-src 'self'; report-uri http://example.com/csp-report
@@ -118,11 +119,9 @@ CSP の違反レポートは以下のような JSON データである。
 
 こうしたレポートにより、どのページの、どの実行が、どのポリシーに違反したかなどが取得できる。
 
-
 このレポートの収集と解析を行うサービスとして、 report-uri.io というサービスが最近登場した。
 
 [Welcome to report-uri.io](http://report-uri.io/)
-
 
 登録し、発行された URI を `report-uri` に指定するだけなので、導入は非常に楽である。
 
@@ -136,7 +135,6 @@ CSP の違反レポートは以下のような JSON データである。
 外部コンテンツの取得についても、取得方法の変更や、本サイトオリジンからの配布に変更するなど、対応は不可能ではないだろう。
 
 アドや外部タグの導入も多くはないため、あまり問題はないだろうと思われる。
-
 
 一番懸念しているのは、例えば本サイト購読者の、ブラウザ拡張やブックマークレットなどへの影響である。
 
@@ -158,7 +156,6 @@ CSP の違反レポートは以下のような JSON データである。
 - Google Analytics を設定している
 - 一部インラインスクリプト、インラインスタイルを使用していた
 
-
 基本的には、必要なオリジンをホワイトリストに追加し、インラインスタイル、インラインスクリプトは外部化した。
 
 しかし、 AMP のカスタムタグがインラインスタイルを使用している部分は、手を入れることができない。
@@ -166,6 +163,7 @@ CSP の違反レポートは以下のような JSON データである。
 かといって、全体としてスタイルに `'unsafe-inline'` を許容するのもはばかられたため、 AMP ページのみスタイルの `'unsafe-inline'` を許可した。
 
 よって、通常のページと AMP 対応ページでは以下の出し分けをしている。
+
 
 ```
 # normal page

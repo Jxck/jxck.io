@@ -17,9 +17,11 @@
 そもそも Podcast の実体は、単なる RSS である。
 
 音声やアイコンなどのリソース URL が適切にマークアップされた RSS 形式の XML を配布するだけで実装できる。
+
 Podcast アプリは、このフィードを購読し、音声などを取得し、再生する feed reader の一種といえる。
 
 旧 mozaic.fm は、 tumblr 上に作ったサイトに、音声をリンクしたエントリを上げることで更新していた。
+
 feed は tumblr に feedburner というサービスを連携して提供していた。
 
 サイト上でも音声は再生できるが、 Podcast 自体はアプリで聴くことが多いため、 RSS さえ生成すればサイト自体は必須では無い。
@@ -69,16 +71,13 @@ RSS2.0 の仕様は以下にある。
 
 [http://cyber.law.harvard.edu/rss/rss.html](http://cyber.law.harvard.edu/rss/rss.html)
 
-
 また、 Apple は Podcast 向けの拡張ボキャブラリを追加しているため、それらも対応している。
 
 - [https://help.apple.com/itc/podcasts_connect/#/itc1723472cb](https://help.apple.com/itc/podcasts_connect/#/itc1723472cb)
 - [https://help.apple.com/itc/podcasts_connect/#/itca5b22233a](https://help.apple.com/itc/podcasts_connect/#/itca5b22233a)
 - [https://help.apple.com/itc/podcasts_connect/#/itc2b3780e76](https://help.apple.com/itc/podcasts_connect/#/itc2b3780e76)
 
-
 基本的には RSS2.0 に加え `<itunes:xxx>` な名前空間のタグが拡張されている。
-
 
 - アートワークは 1400x1400 ~ 3000x3000 の間で 72dpi, JPEG/PNG (gzip 可)
 - 音声形式は M4A, MP3, MOV, MP4, M4V, PDF, EPUB
@@ -89,14 +88,16 @@ RSS2.0 の仕様は以下にある。
 - `<itunes:summary><![CDATA[<a href="http://www.apple.com">Apple</a>]]></itunes:summary>` とコメント化し display issue を防ぐ
 - `<item>` を追加して行く、順番は `<pubDate>` で判断される。 24h 以内なら `<itunes:order>` で上書きもできる
 
-
 音声の配信は、通常の HTTP サーバから行うことができる。
+
 ただし、 Podcast は長い音声を再生するため、途中からの再生が可能なように HTTP の byte-range ヘッダをサポートする必要がある。
 
 音声ファイルは HTTPS で配信することが可能だ。
+
 しかし、 RSS 自体は HTTPS で配信すると iPhone の Podcast アプリでは読めないようであったため、 HTTP での提供も行っている。
 
 また RSS2.0 的には `<enclosure>` の url は http じゃないとだめらしい。
+
 
 ## podcast connect
 
@@ -109,7 +110,6 @@ itunes は podcast connect という場所がわかりにくい画面から、 f
 
 tumblr に mozaic.fm ドメインを貼り、 feedburner と連携してフィードを配信しているため、移行には以下の作業を行った。
 
-
 1. 先に新しいサイトと feed を作る
 1. feed をサブドメインとして先に運用する
 1. tumblr 上で最後のエピソードを更新し、 feedburner のフィードに反映させる
@@ -119,7 +119,6 @@ tumblr に mozaic.fm ドメインを貼り、 feedburner と連携してフィ�
 1. [http://mozaic.fm](http://mozaic.fm) を全て [https://mozaic.fm](https://mozaic.fm) にリダイレクト
 1. 旧エピソードの tumblr 自体の URL を、新 URL にリダイレクトする
 1. itunes の podcast connect から itunes に登録された mozaic.fm の feed を新しいものにする
-
 
 feedburner の URL を直接 Podcast アプリに登録している場合は、どうしても新しい feed の URL に変更する必要がある。
 
@@ -137,7 +136,6 @@ feedburner の URL を直接 Podcast アプリに登録している場合は、�
 - Push 通知
 - オフライン再生
 - 再生中の他エピソード閲覧 (SPA)
-
 
 blog.jxck.io は静的なコンテンツサイトであり、現状はそのコピーであるが、今後はこれをベースに、この土台を維持することでサーバサイドレンダリングが不要な状態で、 SPA な実装へシフトしていく。
 

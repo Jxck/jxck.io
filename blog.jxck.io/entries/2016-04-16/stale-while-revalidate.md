@@ -13,6 +13,7 @@ Stale-While-Revalidate ヘッダは、このキャッシュ制御に選択肢を
 
 ## Web におけるキャッシュ
 
+
 ### キャッシュの種類
 
 まず、ブラウザが持つ従来のキャッシュの機構について整理する。
@@ -23,13 +24,14 @@ Stale-While-Revalidate ヘッダは、このキャッシュ制御に選択肢を
 - サーバへの負荷を減らす
 
 これまでは HTTP ヘッダを用いて、キャッシュを管理させる方法を用いてきた。
+
 Web における、キャッシュの指定には大きく二つの方式がある。
 
 - ブラウザはリクエストを発行せず、保持するキャッシュを使用する(`Cache-Control`, `Expires`)
 - ブラウザはリクエストを発行し、サーバにキャッシュの有効性を確認してから、キャッシュを使用する(`ETag`, `Last-Modified`)
 
-
 また、キャッシュは、「再利用」を行う目的でありながら、ある一定の範囲で「更新」を行いたいという、相反するコントロールが求められる。
+
 筆者の認識として、キャッシュ設計の最も難しい点は、ここである。
 
 これらは基本的/一般的な内容であり、キャッシュに関わるヘッダや機能は他にもある点、そしてブラウザは独自の判断でキャッシュを使う場合があることに注意されたい。
@@ -55,12 +57,15 @@ Web における、キャッシュの指定には大きく二つの方式があ�
 
 この JS を `index.html` に指定する際は、以下のようにバージョンを含める。
 
+
 ```html
 <script src=production.min.js?ver=1></script>
 ```
 
 これで `ver=1` を参照している間はキャッシュが使われる。
+
 もし JS が更新されたらバージョンを変えることで、 URL を以下のように変更する。
+
 
 ```html
 <script src=production.min.js?ver=2></script>
@@ -84,24 +89,24 @@ HTTP には、 **Conditional GET** (条件付き GET) という仕組みがあ�
 具体的には、サーバは `ETag`, `Last-Modified` などのヘッダをレスポンスに付与することで、リソースに関する情報をサーバに伝える。
 
 ETag
+
 : そのリソースを一意に特定する値、要するにリソースのハッシュ値
 
 Last-Modified
+
 : そのリソースが最後に更新されたタイムスタンプ
 
-
-
 この値を保存したブラウザは、同じ URL へのリクエストに、キャッシュしたリソースに付与されていた値を設定してサーバに問い合わせる。
+
 サーバは、リクエストされたリソースについて各値を検証する。
 
-
 If-Non-Match
+
 : ETag で受け取った値を付与、サーバはその値と現在のリソースの値を比較
 
 If-Modified-Since
+
 : Last-Modified で受け取った値を付与、サーバはリソースの最終更新日を比較
-
-
 
 これによって、ブラウザがキャッシュしたリソースが、まだ新鮮であるかどうかをサーバが判断できる。
 
@@ -137,11 +142,13 @@ If-Modified-Since
 
 まず、従来の方法で以下のヘッダがあった場合を考える。
 
+
 ```
 Cache-Control: max-age=3600;
 ```
 
 すると、 fetch したレスポンスは 3600s の間は **fresh** とみなされ、その期間はキャッシュヒットする。
+
 しかし、 3600s をすぎるとキャッシュは **stale** とみなされ破棄し、次のリクエストで fetch が走る。
 
 ![max-age](max-age.svg#552x352 "max-age header")
@@ -150,6 +157,7 @@ Cache-Control: max-age=3600;
 ### stale-while-revalidate
 
 `Cache-Control` に `stale-while-revalidate` を指定する。
+
 
 ```
 Cache-Control: max-age=3600, stale-while-revalidate=360
@@ -176,12 +184,15 @@ Cache-Control: max-age=3600, stale-while-revalidate=360
 
 同じく `Cache-Control` に指定する。
 
+
 ```
 Cache-Control: max-age=3600, stale-if-error=360
 ```
 
 すると、 3600s でキャッシュは **stale** になり、次のリクエストで fetch が走る。
+
 しかし、もしその fetch がサーバの 500 やネットワークエラーにより失敗した場合は、 360s 間は stale cache を使用しても良い。
+
 これにより、ブラウザのエラー画面が表示されるのを防ぐことができる。
 
 もちろん、上記二つは組み合わせて使うことができる。
@@ -197,20 +208,18 @@ Cache-Control: max-age=3600, stale-if-error=360
 
 以下に用意したデモページを用意した。
 
-
 [https://labs.jxck.io/stale-while-revalidate/](https://labs.jxck.io/stale-while-revalidate/)
-
 
 サーバは、アクセスの度に異なるシーケンス番号、タイムスタンプ、ランダムな文字列を返すようになっている。
 
 そして、レスポンスに以下のヘッダを追加しているため、アクセスを繰り返せば挙動が確認できるだろう。
+
 (Chrome はリロードではキャッシュを無視する場合があるため、画面に用意したリンクを踏むこと)
 
 
 ```
 Cache-Control: max-age=5, stale-while-revalidate=10, stale-if-error=15
 ```
-
 
 以下にデモのキャプチャを用意した。 Chrome の dev tools とサーバ側のアクセスログを表示している。
 
@@ -228,11 +237,13 @@ Cache-Control: max-age=5, stale-while-revalidate=10, stale-if-error=15
 
 ### 1 year fresh cache
 
+
 ```
 Cache-Control: max-age=31536000
 ```
 
 この設定では、キャッシュは 1 年間 **fresh** となる。
+
 例えば、 `favicon.ico` や `jquery.min.js` などといった更新が少ない、もしくは更新が無い(ある場合はファイル名が変わる) といった場合に設定が可能になる。
 
 キャッシュが途中で消されない理想状態においては、そのブラウザからサーバへのリクエストは 1 年間無いことになる。
@@ -242,11 +253,13 @@ Cache-Control: max-age=31536000
 
 ### 1 year stale cache
 
+
 ```
 Cache-Control: max-age=1, stale-while-revalidate=3153600
 ```
 
 この設定は、キャッシュはすぐに **stale** となる。
+
 しかし、 1 年間はこの **stale cache** を使用することが許可されているため、次のリクエストはキャッシュヒットする。
 
 そして、その裏で **validate** として fetch が走る。もしレスポンスが同じヘッダを持てば、そこからまた 1 年キャッシュが **stale** になる。
@@ -259,6 +272,7 @@ Cache-Control: max-age=1, stale-while-revalidate=3153600
 
 
 ### 1 year fresh/stale cache
+
 
 ```
 Cache-Control: max-age=15768000, stale-while-revalidate=15768000
@@ -274,6 +288,7 @@ Cache-Control: max-age=15768000, stale-while-revalidate=15768000
 
 
 ## 本サイトでの適用
+
 
 ### 現状
 
@@ -316,11 +331,13 @@ Cache-Control: max-age=15768000, stale-while-revalidate=15768000
 - SwR=10min : そのとき滞在しているセッションの中ではキャッシュを使用
 - SiE=1day : その日のうちは、エラーの代替表示として stale cache を利用
 
+
 ```
 Cache-Control: max-age=1, stale-while-revalidate=600, stale-if-error=864000
 ```
 
 非常に短期のセッションでキャッシュを有効にする設定である。
+
 一方、長期のキャッシュは、どうしてもアクセスしてない期間に行われた更新を、バックグラウンドで反映したくなる。
 
 そうした場合は、 Service-Worker を使ったキャッシュ機構を適用するため、別途対応する。

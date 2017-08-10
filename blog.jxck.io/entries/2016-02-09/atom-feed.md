@@ -26,7 +26,9 @@ RSS の主な仕様は三つある
 
 このサイトの、ここまでのエントリのフィードは以下のようになった。
 
+
 ### 完成型
+
 
 ```xml
 <?xml version='1.0' encoding='UTF-8'?>
@@ -96,6 +98,7 @@ feed の id は、 feed を生成し直すたびに振るのかと思ったが�
 ### meta
 
 サイトの HTML に、 Feed を持つことを `<meta>` タグで記述した。
+
 
 ```html
 <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml />

@@ -28,7 +28,6 @@ WHATWG が定義する Fetch API は、出たばかりの仕様では、途中�
 
 - [Fetch Spec](https://fetch.spec.whatwg.org/)
 
-
 仕様が出たばかりの頃の解説は以前のブログに書いた、本エントリはここからの差分を記す。
 
 - [Fetch API 解説、または Web において "Fetch する" とは何か?](http://jxck.hatenablog.com/entry/whatwg-fetch)
@@ -40,8 +39,8 @@ WHATWG が定義する Fetch API は、出たばかりの仕様では、途中�
 
 - [Promise](https://tc39.github.io/ecma262/#sec-promise-constructor)
 
-
 例えば、なんらかの Text を取得する場合、基本は以下のようになる。
+
 
 ```js
 fetch('foo.txt').then((res) => {
@@ -53,9 +52,7 @@ fetch('foo.txt').then((res) => {
 
 - [Fetch Basic DEMO](https://labs.jxck.io/fetch/basic.html)
 
-
 `res.text()` が body を resolve する Promsie を返していることが分かる。
-
 
 この API では、以下の二つができない。
 
@@ -116,17 +113,19 @@ Stream の返す各 Chunk から、その Chunk のサイズを取得するこ�
 
 fetch の返す Response オブジェクトからは以下のように取ることができる。
 
+
 ```js
 fetch('foo.txt').then((res) => {
   const total = res.headers.get('content-length');
 });
 ```
 
-
-(クロスオリジンのリソースを CORS を使わずに取得する `mode: no-cors` の場合は、 Opaque な Response となりヘッダは取れない。しかし基本的にキャッシュのために使うものであり、body も取れないためプログレスを出す用途はないだろう)
+(クロスオリジンのリソースを CORS を使わずに取得する `mode: no-cors` の場合は、 Opaque な Response となりヘッダは取れない。しかし基本的にキャッシュのために使うものであり、 body も取れないためプログレスを出す用途はないだろう)
 
 これを用いれば、以下のように Progress を得ることができる。
+
 (進捗率の数値を使えば、 CSS でプログレスバーを表示することも可能だろう)
+
 
 ```js
 fetch('foo.txt').then((res) => {
@@ -216,7 +215,6 @@ fetch を含めて Promise を返す API は増加しつつあるため、 Cance
 Stream での progress と cancel は可能になったが、まだ **ブラウザが実装しているか** という問題もある。
 
 - [Fetch \| canuise](http://caniuse.com/#feat=fetch)
-
 
 一方 XHR が無くなることはないため、今後も利用可能である。
 

@@ -41,6 +41,7 @@
 ページがどの程度スクロールされたかという値である。
 
 基本は `document.documentElement.scrollTop` だが、互換モードでは `document.body.scrollTop` を使う。
+
 しかし iPhone には `scrollTop` がないので、 `window.pageYOffset` を使うが、これは `window.scrollY` のエイリアスになっている。
 
 要するに 4 つある。
@@ -59,6 +60,7 @@ body を親要素とすれば、そこからの offset 位置はドキュメン�
 
 これは、要素自体が持っている。
 
+
 ```
 let target = document.querySelector('.target');
 // target.offsetTop;
@@ -71,9 +73,11 @@ let target = document.querySelector('.target');
 ### 相対位置(getBoundingClientRect)
 
 対象の DOM が、現在画面表示(viewport)上どの位置にあるか。
+
 スクロールするたびに変わる値で、常に表示領域の中の位置になる。
 
 これは、対象 DOM の `getBoundingClientRect()` で取れる。
+
 
 ```
 let rect = target.getBoundingClientRect();
@@ -90,6 +94,7 @@ let rect = target.getBoundingClientRect();
 
 ここまでを踏まえると、画面をスクロールし、画面の中に対象の DOM が入っていることは、以下のように判定できる。
 
+
 ```js
    (0 < rect.top && rect.top < clientHeight)       // 対象の上端は表示領域に入っている
 || (0 < rect.bottom && rect.bottom < clientHeight) // 対象の下端は表示領域に入っている
@@ -99,6 +104,7 @@ let rect = target.getBoundingClientRect();
 この三つの論理和が満たされれば、どこかが表示されている。
 
 もちろん、計算基準の親要素を変えれば、 viewport 以外の要素でのスクロールによる出現にも対応できる。
+
 
 ### onscroll イベント
 
@@ -153,6 +159,7 @@ Intersection Observer は交点(Intersection) を監視し、指定した要素�
 
 これにより、 Scroll Jank の原因が除去され、効率良く実装することが可能となる。
 
+
 ## API
 
 コールバックとオプションを指定し、 Intersection Observer Class のインスタンスを生成する。
@@ -160,6 +167,7 @@ Intersection Observer は交点(Intersection) を監視し、指定した要素�
 生成した Observer に対して、任意の DOM 要素を `observe()` メソッドで指定することにより、対象を監視する。
 
 複数要素を同じように監視する場合は、同じ Intersection Observer インスタンスで、 observe を複数回呼ぶことができる。
+
 
 ```js
 let observer = new IntersectionObserver((changes) => {
@@ -170,12 +178,12 @@ let observer = new IntersectionObserver((changes) => {
 observer.observe(target);
 ```
 
+
 ### callback
 
 複数の DOM を監視した場合は、一つのイベントで複数の変更が取得されるため、コールバックの引数は監視した DOM の数だけ入ってくる。
 
 一つの変更は以下のプロパティを持つ
-
 
 | プロパティ                  | 内容                                  |
 |:----------------------------|:--------------------------------------|
@@ -185,7 +193,6 @@ observer.observe(target);
 | `change.intersectionRect`   | 交差領域の `getBoundingClientRect()`  |
 | `change.intersectionRatio`  | 交差している領域の割合                |
 | `change.target`             | target                                |
-
 
 
 ![intersection-observer](intersection-observer.svg#500x357 'Intersection Observer API')
@@ -206,15 +213,18 @@ let observer = new IntersectionObserver((changes) => {
 observer.observe(target);
 ```
 
+
 ### root
 
 デフォルトでは、 viewport を対象にした交差検出を行うことができるが、これはデフォルトの root が document 自身になっているからである。
 
 root オプションを用いることで、任意の親要素内を指定できるため、例えば `overflow: scroll` になった div の中の交差を判定することができる。
 
+
 ```js
 { root: document.querySelector('.target') }
 ```
+
 
 ### threshold
 
@@ -246,19 +256,22 @@ viewport 上に `<img>` が出現したことを検出することで、そこ�
 
 値は CSS の margin への指定と同じだ、例えば以下のように設定すれば、上下左右が交差する 10px 手前でイベントが発火する。
 
+
 ```js
 { rootMargin: '10px' }
 ```
 
+
 ### Intersection Observe DEMO
 
 Intersection Observer を用いた、基本的なデモを用意した。
+
 threshold を 10% にし、 intersectionRatio を表示するように実装している。
 
 - [Intersection Observer DEMO](https://labs.jxck.io/intersection-observer/intersection.html)
 
-
 また以下に Intersecton Observer と、それ以前の API で、要素出現の検出を比較する DEMO を用意した。
+
 こちらは、 `overflow: scroll` な div を親とする出現検出も含めてある。
 
 - [Visibility Change DEMO](https://labs.jxck.io/intersection-observer/visibility-change.html)

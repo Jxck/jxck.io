@@ -5,6 +5,7 @@
 本サイトにて Public Key Pinning for HTTP を有効化した。
 
 [CSP](https://blog.jxck.io/entries/2016-03-30/content-security-policy.html) 同様、まずは Report-Only を設定し、
+
 HPKP Report についても、 [report-uri.io](https://report-uri.io) を用いて収集することにした。
 
 導入に必要な設定や、注意点についてまとめる。
@@ -12,17 +13,18 @@ HPKP Report についても、 [report-uri.io](https://report-uri.io) を用い�
 なお、本サイトへの導入はあくまで **実験** である。運用や影響も踏まえると、一般サービスへの安易な導入は推奨しない。
 
 また、本来は HSTS と併用することが推奨されている。(必須ではない)
+
 そちらも追って対応する予定である。
 
 
 ## Public Key Pinning
+
 
 ### 概要
 
 Public Key Pinning for HTTP(HPKP) とは、証明書の信頼性を向上させる仕組みである。
 
 - [RFC 7469 - Public Key Pinning Extension for HTTP](https://tools.ietf.org/html/rfc7469)
-
 
 本サイトは HTTPS を提供しており、証明書は証明機関(CA)より有料のワイルドカード証明書を購入して設定している。(Let's Encrypt ではない)
 
@@ -54,7 +56,6 @@ Public Key Pinning for HTTP(HPKP) とは、証明書の信頼性を向上させ�
 
 [pinningtest.appspot.com](https://pinningtest.appspot.com/)
 
-
 また、違反を発見した場合、ブラウザはその旨をレポートとして生成し、送信することで管理者に通知する。
 
 これによって、筆者は自分のサービスの証明書が偽造されている事実を把握することができる。
@@ -82,9 +83,11 @@ Chrome と Firefox への Preload Pins のリストは以下である。
 
 ## HPKP の設定
 
+
 ### Public-Key-Pins ヘッダ
 
 HPKP を有効化するには、 Public-Key-Pins ヘッダを付与し、その引数にハッシュを指定する。
+
 
 ```
 Public-Key-Pins: pin-sha256="base64=="; max-age=expireTime [; includeSubdomains][; report-uri="reportURI"]
@@ -93,7 +96,6 @@ Public-Key-Pins: pin-sha256="base64=="; max-age=expireTime [; includeSubdomains]
 設定については、以下が参考になる。
 
 [Public Key Pinning - Web セキュリティ \| MDN](https://developer.mozilla.org/ja/docs/Web/Security/Public_Key_Pinning)
-
 
 基本的には後述する方法で取得した証明書のハッシュである Subject Public Key Information(SPKI) の Base64 と、ブラウザに保持する期限、検証に失敗した場合のレポート送信先を指定する。
 
@@ -123,6 +125,7 @@ $ openssl req -in my-signing-request.csr -pubkey -noout | openssl rsa -pubin -ou
 ブラウザは、  Pin に一致しない証明書を検出した場合、違反レポートを生成し `report-uri` に指定した URI に対して自動的に送信する。
 
 HPKP の違反レポートは以下のような JSON データである。
+
 
 ```json
 {
@@ -161,6 +164,7 @@ HPKP の違反レポートは以下のような JSON データである。
 
 ## 懸念点
 
+
 ### 証明書更新と Max-Age
 
 HPKP の運用での一番の懸念は、証明書の更新だろう。
@@ -194,6 +198,7 @@ OpenSSL の `-showcerts` コマンドを用いて、 Github の証明書を取�
 
 (証明書が二つ見あり、中間証明書にあたる二つ目だけ抜き出している)
 
+
 ```sh
 # github.com pins Intermediate Certificate
 # so add `-showcerts` option for first openssl
@@ -208,6 +213,7 @@ openssl s_client -servername github.com -connect github.com:443 -showcerts 2>/de
 ```
 
 実際に `Public-Key-Pins` ヘッダを見てみる。この中にはバックアップを含めいくつか登録されているが、その中に上で計算したものが入っている。
+
 
 ```sh
 # get the actual Public-Key-Pins header
@@ -225,6 +231,7 @@ Leaf の証明書を Pin 留めしてしまうと、前述の通り証明書の�
 
 ## 本サイトでの適用
 
+
 ### Pin
 
 まず現在の証明書から、現行の Pin を生成しそれを指定する。
@@ -241,7 +248,6 @@ Leaf の証明書を Pin 留めしてしまうと、前述の通り証明書の�
 
 今回はあくまで実験であるため、 CSP 同様に Report-Only での運用とする。
 
-
 デモとして、 Report-Only 無しのヘッダを指定したページを以下に用意した。
 
 [Public Key Pinning DEMO \| labs.jxck.io](https://labs.jxck.io/public-key-pinning/)
@@ -252,7 +258,9 @@ HPKP が有効になっていることは、 [chrome://net-internals/#hsts](chro
 ### 結果
 
 生成したヘッダは以下である。
+
 max-age は、とりあえず 3600s と短い値から始めることにした。
+
 
 ```
 Public-Key-Pins:
@@ -264,6 +272,7 @@ Public-Key-Pins:
 
 Report-Only は、 `max-age` が不要になる。また report-uri.io では、 Report-Only 用に URI が変わるので、それを設定している。
 
+
 ```
 Public-Key-Pins-Report-Only:
   pin-sha256="7JT7NhX2St/VBBkRi4BO427M7ytLy7p3CRYPtHpSm7c=";
@@ -272,6 +281,7 @@ Public-Key-Pins-Report-Only:
 ```
 
 意図的にレポートを上げて見てみたかったが、単に不正な証明書を用意するだけではだめだった。
+
 どうやったら、正しく HPKP 違反ができるのか、自前で CA を立てるなどする必要があるのかもしれない。
 
 ということで CSP と違い、よほどのことがない限りレポートは上がらないはずであると考える。

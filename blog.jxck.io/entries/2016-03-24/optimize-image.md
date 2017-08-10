@@ -36,6 +36,7 @@
 ## メタ情報削除
 
 画像には位置情報やカラープロファイルなどのメタ情報が内包されている場合がある。
+
 これらの情報が不要であれば消してしまうことで、データを削減できる。
 
 そのためのツールはいくつかあるが、有名どころでは以下がある。
@@ -46,6 +47,7 @@
 ## 減色
 
 一点の色の情報を 24bit で表しているものを、例えば 8bit に変換することで、データ量を減らすことができる。
+
 もちろん、表現できる色の数も減るため、人間が見た目で気になら無い範囲で行うことになる。
 
 - [TinyPNG](https://tinypng.com/) (JPEG も対応している)
@@ -75,9 +77,11 @@ JPEG は、大きい画像を送信する際に、ベースとなるデータを
 [Image Optimization, Part 4: Progressive JPEG...Hot or Not?](http://yuiblog.com/blog/2008/12/05/imageopt-4/)
 
 あらゆる画像を二つの形式で保存した場合、サイズがそれぞれどうなるかを検証している。
+
 結果だけ引用する。
 
 > when your JPEG image is under 10K, it's better to be saved as baseline JPEG (estimated 75% chance it will be smaller)
+
   for files over 10K the progressive JPEG will give you a better compression (in 94% of the cases)
 
 素材のサイズが 10K を超えるかどうかで結果が変わるそうだ。そして必ずではないので、実際に両方で保存してみて試すしかないとのこと。
@@ -101,6 +105,7 @@ JPEG は、大きい画像を送信する際に、ベースとなるデータを
 画像フォーマットや、最適化対象によって、様々なツールがあるが、それらを一つにまとめた `gulp-image` というツールがあるため、これを採用することにした。
 
 リサイズは別途行い、その結果に対して以下のような gulp タスクを作成した。
+
 
 ```js
 'use strict';
@@ -129,9 +134,11 @@ gulp.task('image', () => {
 gulp.task('default', ['image']);
 ```
 
+
 ## 結果
 
 gulp-image の実行結果は以下である。
+
 
 ```
 ✔ 2016-02-17/before.png -> before=57.88 KB after=22.07 KB reduced=35.82 KB(61.9%)

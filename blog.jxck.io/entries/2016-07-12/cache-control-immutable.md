@@ -24,7 +24,6 @@ Cache-Control に max-age を指定することで、ブラウザにリソース
 
 リロードやスーパーリロードの場合は、 max-age 内のキャッシュであっても、扱いが変わる。
 
-
 - ナビゲート(link, redirect):  fresh なキャッシュはヒットする
 - リロード(F5, cmd+r etc):  fresh であっても無視し、 Conditional GET を行う
 - スーパーリロード(shift + reload etc):  fresh あっても無視し、 GET を行う。
@@ -38,13 +37,11 @@ Cache-Control に max-age を指定することで、ブラウザにリソース
 
 - [Issue 505048 - chromium - Chrome makes more conditional re-validation requests than other browsers - Monorail](https://bugs.chromium.org/p/chromium/issues/detail?id=505048)
 
-
 これは、リロードが発生するタイミングについて、仕様上曖昧な部分があったという理由も大きいようである。
 
 そこで、ブラウザがリロードを行った場合に挙動について調査が行われ、結果が以下にまとまっている。
 
 - [Reload, reloaded](https://docs.google.com/document/d/1vwx8WiUASKyC2I-j2smNhaJaQQhcWREh7PC3HiIAQCo/edit)
-
 
 無駄な Conditional GET 、つまり不必要な Validation の発生は、 304 レスポンスを返すだけのものであり、無駄な RTT であると言える。
 
@@ -66,7 +63,6 @@ Cache-Control: max-age=10000, immutable
 
 特に、画像、動画、フォントといったサイズが大きくも表示において重要なリソースについては、キャッシュの再利用がサーバの負荷という面でも、 UX の面でも有利に働く。
 
-
 執筆時点では、 Firefox Nightly(version 50.0a1) が https 通信限定で、この拡張をサポートしている。
 
 - [1267474 - Cache-Control: immutable](https://bugzilla.mozilla.org/show_bug.cgi?id=1267474)
@@ -83,7 +79,6 @@ Cache-Control: max-age=10000, immutable
 
 - [Cache Control Immutable DEMO \| labs.jxck.io](https://labs.jxck.io/cache-control-immutable/)
 
-
 ![cache-control-immutable](cache-control-immutable.gif#759x555 'Firefox Nightly での Cache-Control Immutable のデモ')
 
 
@@ -99,7 +94,6 @@ Cache-Control: max-age=10000, immutable
 - バグによって画面の表示が崩れた場合
 - ユーザの置かれているネットワークが不調で、コンテンツの取得が正しく完了しなかった場合
 - なんらかの場面で、ページ側がユーザに「リロードしてください」と依頼する場合(希少)
-
 
 更新通知は自動/半自動含め実装方法は増えているし、表示が崩れるのは明らかにバグである。ましてユーザにリロードを行わせる設計は間違っていると言える。
 
@@ -167,6 +161,7 @@ RSS はブラウザのリロードとは関係がなく、また `/` (root)へ�
 本サイトは [自分でカスタマイズした Noto Sans CJK](https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html) を配布しており、その内容は変更頻度が非常に低い。
 
 また、表示時に Web Font の問い合わせが発生してしまうと、画面の表示が一瞬システムフォントになるか、フォントが表示されない状態に見える可能性がある。
+
 302 が返ってくるとしても、 1RTT 発生してしまうことに変わりは無い。
 
 したがって、リロード時だとしてもそのままローカルキャッシュがヒットし、表示に利用される方が望ましい。

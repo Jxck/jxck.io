@@ -3,7 +3,9 @@
 ## Intro
 
 Service Worker に Foreign Fetch という機能が提案されている。
+
 この機能があるとクロスオリジンへの fetch をフックできる Service Worker を、その対象オリジンから提供できるようになる。
+
 一体どういう仕組みなのか、これによって何が可能になるのかについて、デモを交えて記す。
 
 
@@ -55,12 +57,13 @@ Service Worker に Foreign Fetch という機能が提案されている。
 以下は `https://labs.jxck.io` をオリジンとする 1 つだけボタンを持つページに遷移する。これが 1st Party にあたる。
 
 ページ内のボタンは `https://api.jxck.io` という別オリジンの API を叩き、乱数を取得して表示するだけの簡単なものだ。
+
 これは 3rd Party にあたり、 CORS に対応している。
 
 [https://labs.jxck.io/service-worker/foreign-fetch/index.html](https://labs.jxck.io/service-worker/foreign-fetch/index.html)
 
-
 ページに読み込まれる `index.html` と `worker.js` は 1st Party Service Worker でキャッシュされており、オフライン対応されている。
+
 
 ```js:worker.js
 ```
@@ -78,6 +81,7 @@ Service Worker に Foreign Fetch という機能が提案されている。
 
 実はこの API のレスポンスには、以下のようなヘッダが登録されている。
 
+
 ```
 Link: </random/worker.js>; rel="serviceworker"
 Origin-Trial: Ai32KiE0NsOIRPR/NxvUwEpcM4hYyo6RPRvkG8liNEIX...
@@ -89,8 +93,8 @@ Origin-Trial: Ai32KiE0NsOIRPR/NxvUwEpcM4hYyo6RPRvkG8liNEIX...
 ```js:random.js
 ```
 
-
 この `foreignfetch` イベントが今回の要である。
+
 `install` イベントで指定した origin (ここでは全オリジン) から、 scope の範囲にあるリクエストをハンドルできる。
 
 先ほどの 1st Party Service Worker がキャッシュしていなかった乱数のリクエストを、実際に fetch した時、二段目としてこの 3rd Party Service Worker に渡ってくる。 Origin と Scope が対象範囲であるこのリクエストは `foreginfetch` イベントを発火する。
@@ -113,6 +117,7 @@ Origin-Trial: Ai32KiE0NsOIRPR/NxvUwEpcM4hYyo6RPRvkG8liNEIX...
 使い回せるのはキャッシュだけではない。
 
 例えばコメント投稿の API を通じて、あるページで投稿されたコメントデータを、瞬時に別のページで表示できるようなる。
+
 サービス連携のような使い方が可能になるのだ。
 
 
@@ -127,6 +132,7 @@ Origin-Trial: Ai32KiE0NsOIRPR/NxvUwEpcM4hYyo6RPRvkG8liNEIX...
 それだけでなく、 3rd Party Service Worker が 1st Party とは別に同時に起動できるのは、これまでの Service Worker がページに対して必ず 1 つだけしか起動できなかった制限を大きく解消する。
 
 Service Worker をレイヤリングすることで、ロジックを分割し、凝集度を高めることができる。
+
 責務の分離を促すことは、 Service Worker の鬼門であるアップデートの負荷を下げることに繋がる。
 
 また、この 3rd Party API を使うことで、サービス間の連携が行えることは、さらに可能性を広げるだろう。

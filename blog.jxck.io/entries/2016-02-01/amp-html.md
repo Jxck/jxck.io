@@ -37,6 +37,7 @@ AMP への対応は、実際には 「遅くなる原因」=「アンチパタ�
 - `<img>`: 画像の `width x height` を明示させ、 `<amp-img>` を代わりに使わせることで、画像を非同期に読み込み表示を最適化する
 
 まあ、ほとんどが実際は **粗悪なアド** を縛るような仕様になっている。
+
 アドの実装は開発者が手を出しにくいところであるため、こうした外部要因による強制力(AMP 対応が一般化したら、対応してないアドにとっては不利になる)があるのは良いだろう。
 
 もちろん、アドが貼れないという訳ではない。
@@ -45,10 +46,10 @@ AMP への対応は、実際には 「遅くなる原因」=「アンチパタ�
 
 逆を言えばこれらコンポーネントに縛ることで、変な実装が入ることを防いでいる。
 
-
 また、こうした制約を満たしたサイトは、各ベンダがキャッシュしてくれるという効果が強くあるだろう。
 
 AMP に合意したベンダは、サイトをクロールし AMP 対応ページを見つけた際に、それをキャッシュし代わりに配信してくれる。
+
 (AMP に対応していれば、自然とそういうことがしやすいサイトになっている)
 
 現在 Google, Twitter, Pinterest などが対応しているらしく、対応ベンダが増えれば CDN エッジが増え、より最適なルートから素早くページが配信されるという仕組みになっている。
@@ -66,11 +67,11 @@ AMP は以下の三つの要素からなる。
 - AMP JS
 - AMP CDN
 
-
 各要素を細かく説明し、 AMP への対応方法を書いたエントリは他にも多くあるので、対応してみた結果と、この仕様に対する感想を交えて、重要そうなところだけ拾って書く。
 
 
 ## HTML 対応
+
 
 ### AMP HTML
 
@@ -87,11 +88,13 @@ AMP は以下の三つの要素からなる。
 
 このサイトでは `.html` に AMP 対応があることを伝える以下を追記した。
 
+
 ```html
 <link rel=amphtml href=${path}.amp.html>
 ```
 
 一方 `.amp.html` では、オリジナルコンテンツの存在と、ブックマークなどが統一できるように `canonical` を追加している。
+
 
 ```html
 <link rel=canonical href=${path}.html>
@@ -126,12 +129,12 @@ google analytics については後述するコンポーネントがあるため
 
 ### amp custom element 対応
 
+
 ### amp-img
 
 AMP-HTML 内では、 `<img>` タグを直接書くことは禁止されており、代わりに、 `<amp-img>` というカスタムタグを使用する。
 
 [amp-img](https://www.ampproject.org/docs/reference/amp-img.html)
-
 
 このタグには `width` `height` の記述が必須となっており、 `layout=responsive` とすることでそのサイズ比を保ったままレスポンシブ表示してくれる。
 
@@ -146,11 +149,9 @@ AMP-HTML 内では、 `<iframe>` タグを直接書くことは禁止されて�
 
 [amp-iframe](https://www.ampproject.org/docs/reference/extended/amp-iframe.html)
 
-
 ただし、このタグもまた制約が多い。一番大きいのは **位置** に対する制約だ。
 
 > They must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top
-
 
 要するに above-the-fold に iframe を入れたくないということだろう。これはコンテンツを作る時点で気にしておかないといけないし、自動で変換も難しい。
 
@@ -166,7 +167,6 @@ AMP-HTML 内では、 `<iframe>` タグを直接書くことは禁止されて�
 AMP での Google Analytics の設定は `<amp-analytics>` カスタムタグで行う。
 
 [Adding Analytics to your AMP pages](https://developers.google.com/analytics/devguides/collection/amp-analytics/)
-
 
 収集したい情報に応じてやり方がいくつかあるようだが、一番スタンダードな Page Tracking だけ設定した。
 
@@ -193,6 +193,7 @@ AMP Analytics のコードの読み込みは、 AMP JS Library よりも前に�
 </script>
 </amp-analytics>
 ```
+
 
 ## debug
 

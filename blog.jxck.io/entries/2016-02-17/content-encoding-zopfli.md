@@ -43,9 +43,11 @@ HTTP には、似た仕組みとして `TE: gzip` と `Transfer-Encoding: gzip` 
 
 本サイトをデプロイしている h2o は、 `Content-Encoding: gzip` による転送を 2 つの方法でサポートしている。
 
+
 ### gzip ディレクティブ
 
 以下を設定すると、 h2o はコンテンツを on the fly (リクエストが来てから)圧縮し送信してくれる。
+
 
 ```
 gzip: ON
@@ -54,6 +56,7 @@ gzip: ON
 [Configure > Gzip Directives > "gzip"](https://h2o.examp1e.net/configure/gzip_directives.html#gzip)
 
 これにより、あらかじめ圧縮していないコンテンツや、バックエンドのアプリケーションが動的に生成したコンテンツを圧縮転送することができる。
+
 圧縮時間分のオーバーヘッドは考えられるが、一般的に gzip の処理時間は小さく、転送量の削減によるネットワーク的メリットの方が高いため、この方法が採用されることが多い。
 
 
@@ -61,14 +64,15 @@ gzip: ON
 
 あらかじめコンテンツを gzip 圧縮した状態で `ファイル名.gz` で配置し、以下を設定すると、 h2o は自動的に圧縮済みファイルを転送してくれる。
 
+
 ```
 file.send-gzip: ON
 ```
 
 [Configure > File Directives > "file.send-gzip"](https://h2o.examp1e.net/configure/file_directives.html#file.send-gzip)
 
-
 事前に圧縮するため、レスポンスへのオーバーヘッドは無くなる。
+
 しかし、バックエンドが動的に生成するレスポンスには適用できないため、事前に準備可能な静的ファイルへの適用に限定される。
 
 
@@ -78,8 +82,8 @@ zopfli は Google が開発した圧縮アルゴリズム、およびその実�
 
 [https://github.com/google/zopfli](https://github.com/google/zopfli)
 
-
 **圧縮結果が gzip 互換**であるため、方式そのものは実質 gzip である。
+
 
 ### 圧縮率の優先
 
@@ -99,15 +103,16 @@ zopfli は、探索を繰り返す回数を調節できるため、この回数�
 
 以下のように、前回の記事に対して zopfli コマンドを実行し、 time コマンドで実行時間を計測した。
 
+
 ```sh
 $ time zopfli --i10 -c loading-css-over-http2.html
 ```
 
 `--i` が探索回数であり、これを増やせばより小さく圧縮できるが、時間がかかる。
+
 デフォルトは `i = 15` であるため、 `10..100` まで増やしながら実行した。
 
 最初の段は、元のファイルサイズ、二段目は `gzip` コマンドの結果である。
-
 
 |      | time  | size  |
 |-----:|:------|------:|
@@ -126,10 +131,10 @@ $ time zopfli --i10 -c loading-css-over-http2.html
 
 
 この結果だと `-i20` 以上は誤差のようである。
+
 ただ、開発用の Mac では少し違う結果が出たりもしたため、結果 `i=30` くらいに落ち着いた。
 
 また、 [WebP](//jxck.io/assets/img/jxck.webp) と [PNG](//jxck.io/assets/img/jxck.png) の画像ファイルでも検証したところ、以下のようになった。
-
 
 |         file | size  |
 |:-------------|------:|
@@ -154,12 +159,9 @@ WebP はそもそも圧縮率が高いためか、オーバーヘッドが出て
 - `send-gzip: ON`
 - webp は対象外
 
-
 動作は、 HTTP ヘッダで確認できる。
 
-
 ![Content-Encoding Support Before/After](zopfli.png#656x463 "Content-Encoding ヘッダの確認")
-
 
 また、一部は h2o の mruby-handler で動的な生成をしているが、 `gzip` ディレクティブの効果は未検証なので設定していない。
 
@@ -171,7 +173,9 @@ WebP はそもそも圧縮率が高いためか、オーバーヘッドが出て
 ## brotli
 
 また Google は [brotli](https://github.com/google/brotli) という圧縮フォーマットも持っている。
+
 こちらは、 gzip などとの互換は無いため、クライアントも対応しないと使うことはできない。
+
 新しいフォーマットとして、 [IETF へのドラフトの提出](https://tools.ietf.org/html/draft-alakuijala-brotli-08) もなされている。
 
 現在は [Chrome が HTTPS のみでサポート](https://plus.google.com/u/0/+IlyaGrigorik/posts/X9ogn4fLtHL) していおり、 Canary で `chrome://flags#brotli` を有効にすると、 `Accept-Encoding: br` が追加されるので、サーバはこれを見て brotli で圧縮したファイルを返すことができる。

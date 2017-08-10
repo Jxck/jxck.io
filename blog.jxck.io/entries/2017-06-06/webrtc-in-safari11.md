@@ -4,6 +4,7 @@
 
 Safari 11 のアップデートに、待望だった WebRTC がリストされた。
 
+
 ## Safari 11.0 will support WebRTC
 
 [New in Safari 11.0 - Support for real-time communication using WebRTC](https://developer.apple.com/library/content/releasenotes/General/WhatsNewInSafari/Safari_11_0/Safari_11_0.html#//apple_ref/doc/uid/TP40014305-CH13-SW7)

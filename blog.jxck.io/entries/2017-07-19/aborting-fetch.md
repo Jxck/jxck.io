@@ -21,12 +21,10 @@ DOM の API が Promise ベースに移行しつつある流れを汲み、 `fet
 
 しかし、このインタフェースによって、 XHR ではできて `fetch()` ではできないことが大きく 2 つあった。
 
-
 - `fetch()` を中断する
 - `fetch()` の Progress (経過) を取得する
 
-
-したがって、初期の `fetch()` は、プログレスバーとキャンセルボタンを持つUI といった、典型的な実装が不可能だった。
+したがって、初期の `fetch()` は、プログレスバーとキャンセルボタンを持つ UI といった、典型的な実装が不可能だった。
 
 ところが、この問題の一部は後の stream 導入により解決している。
 
@@ -35,10 +33,8 @@ DOM の API が Promise ベースに移行しつつある流れを汲み、 `fet
 
 resolve される response から得られる body が stream に対応したため、 [2 つのことが可能](https://blog.jxck.io/entries/2016-07-21/fetch-progress-cancel.html)となった。
 
-
 - chunk が取得できるようになり、実質 progess の取得が可能になった
 - stream を中断することが可能になった
-
 
 後者の stream の中断は、 `fetch()` の中断の一種として使うこともできる。
 
@@ -103,7 +99,6 @@ XHR であたりまえにできていたことが、できないままでは困�
 
 [Aborting ongoing activities](https://dom.spec.whatwg.org/#aborting-ongoing-activities)
 
-
 実際に、同じ問題を持っていた WebUSB API などの周辺仕様の反応も良好なようだ。
 
 つまり、この方法が今後の Web における一般的な方法として使われていき、 Promise を繋いで非同期処理を行う上での頻出パターンの一つとなる可能性がある。
@@ -115,11 +110,13 @@ XHR であたりまえにできていたことが、できないままでは困�
 
 ## AbortController
 
+
 ### 汎例
 
 まず一般的な方法として、 Promise に包んだロングタスクを中断する方法を解説する。
 
 ここでは EventTarget で実装されたタスクを、中断に対応した Promise にする例である。
+
 
 ```js:long-task.js
 ```
@@ -129,6 +126,7 @@ XHR であたりまえにできていたことが、できないままでは困�
 
 `fetch()` の場合は、以下のようになる。
 
+
 ```js:aborting-fetch.js
 ```
 
@@ -136,6 +134,7 @@ XHR であたりまえにできていたことが、できないままでは困�
 ## Promise.race()
 
 Promise.race() で、勝った 1 つ以外を止める処理もできるようになる。
+
 
 ```js:race-fetch.js
 ```

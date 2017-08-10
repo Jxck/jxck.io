@@ -67,13 +67,11 @@ Chrome は現在、実行時間の長いリスナが登録された場合、以�
 document.addEventListener('touchstart', handler, {passive: true});
 ```
 
-
 開発者がこれを明示的に指定することで、ブラウザはリスナが `preventDefault()` を呼ばないことを前提とできるため、リスナの完了を待たずにスクロールすることができ、それを最適化できる余地が生まれる。
 
 なお Passive Listener 内で `preventDefault()` を呼んだ場合は無視されるため、呼んだとしても `defaultPrevented=false` のままになる。
 
 Listener 内で `preventDefault()` を呼べるかどうかは、 `cancelable=true` となっているかどうかで分かる。
-
 
 | listener | cancelable  | preventDefault | defaultPrevented |
 |:---------|:------------|:---------------|:-----------------|
@@ -117,10 +115,10 @@ document.addEventListener('touchstart', handler, {capture: true});
 document.addEventListener('touchstart', handler, {capture: false});
 ```
 
-
 これを避けるためには Feature Detection が必要となる。
 
 スペックにサンプルが掲載されているので、引用しコメントで解説を追記する。
+
 
 ```js
 var supportsPassive = false;
@@ -155,12 +153,13 @@ function addEventListenerWithOptions(target, type, handler, options) {
 ## DEMO
 
 長いドキュメントで、 touchstart イベントにあえて遅延を入れたデモを用意した。
+
 ここに、 Passive オプション指定の有無による挙動の変化を試すことができる。
 
 - [Passive Event Uisteners DEMO](http://labs.jxck.io/passive-event-listeners/index.html)
 
-
 ちょっと分かりにくいがキャプチャも載せておく。
+
 
 ### Passive False
 
