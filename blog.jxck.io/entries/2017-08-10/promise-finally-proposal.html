@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8">
+    <!--
+    貴様、見ているな！！
+    このサイトの技術的なまとめはこちらをどうぞ。
+    https://labs.jxck.io/blog
+
+    by Jxck
+    -->
+    <link rel="canonical" href="https://blog.jxck.io/entries/2017-08-10/promise-finally-proposal.html">
+    <link rel="amphtml" href="https://blog.jxck.io/entries/2017-08-10/promise-finally-proposal.amp.html">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="alternate" type="application/atom+xml" title="blog.jxck.io" href="/feeds/atom.xml">
+    <link rel="author" href="//jxck.io/assets/humans.txt">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="preload" as="font" type="font/woff" href="//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201608028" crossorigin>
+    <script async src="//jxck.io/assets/js/ga.js"></script>
+    <script async src="//jxck.io/assets/js/highlight.min.js"></script>
+    <script async src="//jxck.io/assets/js/sw.js"></script>
+    <script async src="//jxck.io/assets/js/main.js"></script>
+
+    <meta name="author" content="Jxck">
+    <meta name="description" content="Promise.prototype.finally の仕様が TC39 stage 3 となり、 Safari TP37 で先行実装が入った。tc39/proposal-promise-finally...">
+    <meta name="keywords" content="promise,tc39">
+    <meta itemprop="image" content="https://jxck.io/assets/img/jxck.png">
+    <meta itemprop="name" content="blog.jxck.io">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jxck_">
+    <meta name="twitter:url" content="https://blog.jxck.io/entries/2017-08-10/promise-finally-proposal.html">
+    <meta name="twitter:title" content="Promise.prototype.finally | blog.jxck.io">
+    <meta name="twitter:description" content="Promise.prototype.finally の仕様が TC39 stage 3 となり、 Safari TP37 で先行実装が入った。tc39/proposal-promise-finally...">
+    <meta name="twitter:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://blog.jxck.io/entries/2017-08-10/promise-finally-proposal.html">
+    <meta property="og:title" content="Promise.prototype.finally | blog.jxck.io">
+    <meta property="og:site_name" content="blog.jxck.io">
+    <meta property="og:description" content="Promise.prototype.finally の仕様が TC39 stage 3 となり、 Safari TP37 で先行実装が入った。tc39/proposal-promise-finally...">
+    <meta property="og:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <link rel="icon" sizes="192x192" href="https://jxck.io/assets/img/jxck.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "Promise.prototype.finally | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2017-08-10T08:00:00+08:00",
+  "dateModified": "2017-08-10T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "Promise.prototype.finally の仕様が TC39 stage 3 となり、 Safari TP37 で先行実装が入った。tc39/proposal-promise-finally..."
+}
+</script>
+
+    <title>Promise.prototype.finally | blog.jxck.io</title>
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/body.css">
+  </head>
+  <body>
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/header.css">
+    <header>
+      <ul>
+        <li><a href="//blog.jxck.io"><img class="logo" alt="blog" title="blog top" width="30" src=//jxck.io/assets/img/blog.svg></a>
+        <li><a href="/entries/2017-08-10/promise-finally-proposal.amp.html#development=1"><svg width="30" height="30"><use xlink:href="/assets/img/amp.svg#main"/></svg></a>
+        <li><a href="."><img alt="up" title="move to parent directory" width="30" src="//jxck.io/assets/img/up.svg"></a>
+        <li><a href="/feeds/atom.xml"><img alt="rss" title="rss feed" width="30" src="//jxck.io/assets/img/rss.svg"></a>
+        <li><a href="//jxck.io/humans.txt"><img alt="humans" title="huamns.txt" width="30" src="//jxck.io/assets/img/humans.svg"></a>
+        <li><a href="//jxck.io"><img class="logo" alt="jxck" title="jxck logo" width="30" src="//jxck.io/assets/img/jxck.png"></a>
+      </ul>
+    </header>
+
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/markdown.css">
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/main.css">
+    <main>
+      <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/info.css">
+      <ul class="info">
+        <li>created_at: <time class="created_at" datetime="2017-08-10">2017-08-10</time>
+        <li>updated_at: <time class="updated_at" datetime="2017-08-10">2017-08-10</time>
+        <li class="tags">tags: [<a href='/tags/promise.html'>promise</a>,<a href='/tags/tc39.html'>tc39</a>]
+      </ul>
+
+      <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/article.css">
+  <article>
+    <h1><a href=/entries/2017-08-10/promise-finally-proposal.html>Promise.prototype.finally</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>Promise.prototype.finally の仕様が TC39 stage 3 となり、 <a href="https://webkit.org/blog/7862/release-notes-for-safari-technology-preview-release-37/">Safari TP37</a> で先行実装が入った。
+      <p><a href="https://github.com/tc39/proposal-promise-finally">tc39/proposal-promise-finally</a>
+    </section>
+    <section>
+      <h2 id="common+task+in+async+task"><a href="#common+task+in+async+task">common task in async task</a></h2>
+      <p>よくあるユースケースとして、 <code translate="no">fetch()</code> 中にスピナーを表示し、終わったら消すという場合。
+      <p>スピナーは、 <code translate="no">fetch()</code> が成功(resolve) しようと失敗(reject)しようと消したいため、これまでの Promise では両方のハンドラに処理が必要だった。
+      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+      <pre class=js><code translate="no">showSpinner()
+fetch()
+  .then((response) =&gt; {
+    hideSpinner()
+    console.log(response)
+  })
+  .catch((error) =&gt; {
+    hideSpinner()
+    console.log(error)
+  })</code></pre>
+    </section>
+    <section>
+      <h2 id="finally()"><a href="#finally()">finally()</a></h2>
+      <p><code translate="no">finally()</code> は、 resolve/reject どちらでも実行されるので、こう書くことができる。
+      <pre class=js><code translate="no">showSpinner()
+fetch()
+  .then((response) =&gt; {
+    console.log(response)
+  })
+  .catch((error) =&gt; {
+    console.log(error)
+  })
+  .finally(() =&gt; {
+    hideSpinner()
+  })</code></pre>
+      <p><code translate="no">finally()</code> には引数は渡って来ない。(来たとしても、それが resolve/reject どちらの結果か判別できないため)
+    </section>
+    <section>
+      <h2 id="finally()+の戻り値"><a href="#finally()+の戻り値">finally() の戻り値</a></h2>
+      <p>また、 <code translate="no">finally()</code> はその前の Promise の結果をそのまま戻す。つまり、以下のように先に書いても問題ない。
+      <pre class=js><code translate="no">showSpinner()
+fetch()
+  .finally(() =&gt; {
+    hideSpinner()
+  })
+  .then((response) =&gt; {
+    console.log(response)
+  })
+  .catch((error) =&gt; {
+    console.log(error)
+  })</code></pre>
+      <p>これで、 response/error の処理に時間がかかるとしても、まず Snipper を消すという処理を完了させられる。
+    </section>
+    <section>
+      <h2 id="async/await"><a href="#async/await">async/await</a></h2>
+      <p>なお、 async/await を使った場合は、 try-catch-finally がそのまま使えるため、この仕様とは関係なく以下のように書ける。
+      <pre class=js><code translate="no">(async () =&gt; {
+  try {
+    res = await fetch(&#039;/&#039;)
+    console.log(res)
+  } catch (e) {
+    console.error(e)
+  } finally {
+    hideSpinner()
+  }
+})()</code></pre>
+    </section>
+  </article>
+
+    </main>
+    <hr>
+
+    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/footer.css">
+    <footer>
+      <address class="copyright">Copyright &copy; 2016 <a href="/">Jxck</a>. All Rights Reserved. Using <a href="https://www.google.com/intl/ja/policies/privacy/partners/">google analytics</a>.</address>
+    </footer>
+  </body>
+</html>
