@@ -89,8 +89,3 @@ fetch()
   }
 })()
 ```
-
-
-## DEMO
-
-- [Promise DEMO](http://labs.jxck.io/promise)
