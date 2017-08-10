@@ -1,5 +1,12 @@
 # media stram constraints
 
+## Intro
+
+ブラウザからカメラやマイクにアクセスする API は Media Capture ans Streams の仕様に定義されいている。
+
+[Media Capture and Streams](https://www.w3.org/TR/mediacapture-streams/#mediastreamtrack)
+
+
 ## getUserMedia
 
 かつては `navigator.getUserMedia()` だったが今は `navigator.mediaDevices.getUserMedia()` になっている。
@@ -11,30 +18,36 @@ Promise を返し、 resolve すると MediaStream が返る。
 
 MediaStream(以下 Stream) は複数の MediaStreamTrack(以下 Track) からなる。
 
-Track は、主に VideoTrack と AudioTrack で、カメラやマイクの入出力が Track で、それを束ねたものが Stream ということだ。
+Track は、主に VideoTrack と AudioTrack で、カメラやマイクの入出力を指す。
 
-Stream からは Track を get/add/remove すること、それを onaddtrack/onremovetrack で検知することができる。
+それを束ねたものが Stream ということだ。
 
-つまり音声 Track だけ消すとか、新たに Track を追加する、任意の Track を引数に Stream を生成するなどが可能だ。
+Stream からは Track を get/add/remove し、それを onaddtrack/onremovetrack で検知することができる。
 
-ただ、現時点では getUserMedia は Stream を返すため、 Track だけを取得する方法は今はない。
+つまり音声 Track だけ消す、新たに Track を追加する、任意の Track を引数に Stream を生成するなどが可能だ。
+
+しかし、基本的には Stream から Track を取得し、ゼロから Track を作る方法は今のところない。
 
 
 ## MediaStreamTrack
 
-Track には主に、 "audioinput", "audiooutput", "videoinput" の三種類があり、 kind プロパティとして保持されている。
-その種類の通り、マイク、スピーカ、カメラと繋がっている。
-mute や stop() は基本的にはこのトラック単位の状態や操作になっている。
+Track には主に、 `"audioinput"`, `"audiooutput"`, `"videoinput"` の三種類があり、 kind プロパティとして保持されている。
 
-例えば Stream には stop() は無いため、トラック全部を止めたければこうなる。
+その種類の通り、マイク、スピーカ、カメラと繋がっている。
+
+`mute` や `stop()` は基本的にはこのトラック単位の状態や操作になっている。
+
+例えば Stream には `stop()` は無いため、トラック全部を止めたければこうなる。
+
 
 ```js
 stream.getTracks().forEach((track) => track.stop())
 ```
 
+
 ## MediaStreamConstraints
 
-MediaStreamConstraints(以下 constraints) はデバイスを扱う際の細かな設定だ。
+MediaStreamConstraints(以下 constraints) はデバイスを扱う際の細かな設定である。
 
 通常 stream を取得する場合、このような引数を渡すと、デフォルトのカメラ、マイク、スピーカを Track とした Stream が生成される。
 
@@ -43,30 +56,35 @@ MediaStreamConstraints(以下 constraints) はデバイスを扱う際の細か�
 navigator.mediaDevices.getUserMedia({audio: true, video: true}).then((stream) => {})
 ```
 
-この引数は非常にこまかく設定することが可能だ。
+この引数は非常に細かい指定が可能だ。
+
 
 ## deviceId
 
 認識されているデバイスには deviceId がふられており、特定のデバイスを指定できる。
+
 これはカメラ、マイク両方で使うことができる。
 
 deviceId は `navigator.mediaDevices.enumerateDevices` から取得できる。
 
 resolve される値は、接続されたデバイス情報の配列だ。
 
+
 ```js
-[
-{
- "deviceId": "24831b5e1a3cb951228f764eb5161064c636f0f70adf85f63e3dc06ca8c86b70",
- "kind": "audioinput",
- "label": "Built-in Audio Digital Stereo",
- "groupId": "4cd2266f081945fd6e52bf9c54d510e57c596d3ddc049c1dbc2357324f1e3582"
-},
-...
-]
+console.log(await navigator.mediaDevices.enumerateDevices())
+// [
+// {
+//  "deviceId": "24831b5e1a3cb951228f764eb5161064c636f0f70adf85f63e3dc06ca8c86b70",
+//  "kind": "audioinput",
+//  "label": "Built-in Audio Digital Stereo",
+//  "groupId": "4cd2266f081945fd6e52bf9c54d510e57c596d3ddc049c1dbc2357324f1e3582"
+// },
+// ...
+// ]
 ```
 
 例えばこの audioinput を指定したい場合は以下のようになる。
+
 
 ```js
 {
@@ -87,7 +105,8 @@ resolve される値は、接続されたデバイス情報の配列だ。
 - "left"
 - "right"
 
-これは主にモバイル端末やタブレット PC で、前面/背面に二つのカメラを持っている場合、 "user" は前面、 "environment" は背面のカメラが選択される。
+これは主にモバイル端末やタブレット PC で、前面/背面に二つのカメラを持っている場合、 `"user"` は前面、 `"environment"` は背面のカメラが選択される。
+
 
 ```js
 {
@@ -122,12 +141,12 @@ deviceId や facingMode 以外にも、いくつかのパラメータが定義�
   - deviceId
   - groupId
 
-
 ただし、これら全てがサポートされている(値として設定した場合に反映される)とは限らない。
 
 そこで、デバイスがサポートしている constraints を確認する方法がある。
 
 Firefox は、 moz Prefix 付きで、仕様にないプロパティを設定可能なことなどもわかる。
+
 
 ```js
 const supportedConstraints = navigator.mediaDevices.getSupportedConstraints();
@@ -169,8 +188,10 @@ if (supportedConstraints['frameRate']) {
 
 ### normal
 
-まず以下の書き方は、 frameRate として 60 を求めているが、もしデバイスがそれを満たせない場合は 60 にならない場合がある。
-つまり、これはベストエフォートの値だ。
+以下のように指定すると、ベストエフォートの値として解釈される。
+
+ここでは `frameRate` として `60` を求めているが、もしデバイスがそれを満たせない場合は `60` にならない場合がある。
+
 
 ```js
 {
@@ -183,9 +204,12 @@ if (supportedConstraints['frameRate']) {
 
 ### exact
 
-確実に 60 を求めたい場合は exact を指定する。
-この場合  `getUserMedia()` から resolve された Stream の VideoTrack は確実に frameRate 60 になっている。
-もしデバイスがそれを満たせなかった場合は、 `getUserMedia()` は reject される。
+確実に `60` を求めたい場合は `exact` を指定する。
+
+この場合  `getUserMedia()` から resolve された Stream の VideoTrack は確実に frameRate が `60` になっている。
+
+もしデバイスがそれを満たせなかった場合は、 `getUserMedia()` は **reject される** ため、設定値を保証することができるのだ。
+
 
 ```js
 {
@@ -200,7 +224,7 @@ if (supportedConstraints['frameRate']) {
 
 ### min/max
 
-値を範囲で指定することもできる。もちろんどちらかだけでも良い。
+値を範囲で指定することもできる。もちろん、どちらかだけでも良い。
 
 
 ```js
@@ -217,7 +241,8 @@ if (supportedConstraints['frameRate']) {
 
 ### ideal
 
-例えば width で ideal を設定した場合を考える。
+例えば width で `ideal` を設定した場合を考える。
+
 
 ```js
 {
@@ -232,37 +257,67 @@ if (supportedConstraints['frameRate']) {
 }
 ```
 
-この場合、複数の候補がある中から、可能な限り 1280x720 に近い値が得られる。
+この場合、デバイスが対応可能な複数の候補がある中から、可能な限り `1280x720` に近い値が得られる。
+
 具体的には、可能な候補それぞれに対して下記を計算する。
 
-(actual == ideal) ? 0 : |actual - ideal|/max(|actual|,|ideal|)
+
+```
+(actual == ideal) ? 0 : |actual-ideal| / max(|actual|, |ideal|)
+```
 
 この値が一番小さいものが返る。
 
 
 ### advanced
 
-TODO
+advanced を指定することで優先すべき設定のリストが指定できる。
+
+例えば以下のように指定した場合。
+
+```js
+{
+   width:    {min: 640, ideal: 1280},
+   height:   {min: 480, ideal: 720},
+   advanced: [
+              {width: 1920, height: 1280},
+              {aspectRatio: 1.3333333333}
+            ],
+}
+```
+
+- 1920x1280 を要求
+- それがだめならアスペクト比 4x3 を要求
+- それがだめなら 1280x720 に最も近い値を要求
+
 
 ### Track#getConstraints
 
-直近の applyConstraints() の引数。
+直近の `applyConstraints()` の引数。
+
 
 ### Track#getCapabilities
 
 Track がサポートしている constraints の一覧。
 
+
 ### Track#getSettings
 
 現在 Track に適用されている constraints の値。
-applyConstraints() の引数に、デフォルト値がマージされた値になる。
 
-
+`applyConstraints()` の引数に、デフォルト値がマージされた値になる。
 
 
 ## chrome://webrtc-internals/
 
 chrome の場合は
 
-- chrome://media-internals/ から device の情報
-- chrome://webrtc-internals/ から device constraints の値を見ることができる
+- [chrome://media-internals/ ](chrome://media-internals/ ) から device の情報
+- [chrome://webrtc-internals/](chrome://webrtc-internals/) から device constraints の値を見ることができる
+
+
+## DEMO
+
+これらすべての API を用いて、ブラウザのサポート及び、設定の変更がどう反映されるかを試すことができるデモを用意した。
+
+- [MediaStream API DEMO](https://labs.jxck.io/webrtc/usermedia/)
