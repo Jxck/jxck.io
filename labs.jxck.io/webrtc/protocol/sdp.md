@@ -247,3 +247,73 @@ https://tools.ietf.org/html/draft-ietf-mmusic-msid に定義
 
 
 
+## ICE
+
+
+
+
+TODO
+
+```
+a=ice-ufrag:czZI
+a=ice-pwd:b3hod01i1AZLhfFKqAPVmKeB
+a=ice-options:trickle
+```
+
+
+
+
+## Fingerprint
+
+DTLS-SRTP のコネクションを確立する際に使われる証明書のハッシュ値。
+
+```
+a=fingerprint:sha-256 3A:46:CD:38:CF:B6:B0:A7:3D:A9:71:46:A8:B5:FC:BA:74:D0:15:A4:A8:2D:FA:AD:EC:C2:0A:8E:F0:76:61:68
+```
+
+このシグナリングの後に実施される DTLS-SRTP のハンドシェイクで送られる Certificate の検証に使われる。
+
+相手から受け取った証明書も、シグナリングで受け取った Fingerprint と比較し、なりすましが行われていないか検証する。
+
+RFC5763 に記載。
+
+
+## Setup
+
+DTLS のネゴシエーションを開始すべきエンドポイントを決める。
+
+```
+a=setup:actpass
+```
+
+値は以下の 4 つがある。
+
+- active: 接続要求を出す
+
+- passive: 接続を受け入れる
+
+- actpass: active/passive どちらにもなる
+
+- holdconn: 一時的にコネクションの確率を望まない
+
+
+RFC4145 に記載。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
