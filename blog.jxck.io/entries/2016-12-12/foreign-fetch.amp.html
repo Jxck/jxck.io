@@ -52,7 +52,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-12-12T08:00:00+08:00",
-  "dateModified": "2017-05-23T08:00:00+08:00",
+  "dateModified": "2017-08-10T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -566,7 +566,7 @@ th:last-child, td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-12-12>2016-12-12</time>
-    <li>updated_at: <time class=updated_at datetime=2017-05-23>2017-05-23</time>
+    <li>updated_at: <time class=updated_at datetime=2017-08-10>2017-08-10</time>
     <li class=tags>tags: [<a href='/tags/fetch.html'>fetch</a>,<a href='/tags/service%20worker.html'>service worker</a>,<a href='/tags/origin%20trials.html'>origin trials</a>]
   </ul>
 
@@ -575,9 +575,9 @@ th:last-child, td:last-child {
     <h1><a href=/entries/2016-12-12/foreign-fetch.html>Foreign Fetch による Micro Service Workers</a></h1>
     <section>
       <h2 id="Intro"><a href="#Intro">Intro</a></h2>
-      <p>Service Worker に Foreign Fetch という機能が提案されている。<br>
-      この機能があるとクロスオリジンへの fetch をフックできる Service Worker を、その対象オリジンから提供できるようになる。<br>
-      一体どういう仕組みなのか、これによって何が可能になるのかについて、デモを交えて記す。
+      <p>Service Worker に Foreign Fetch という機能が提案されている。
+      <p>この機能があるとクロスオリジンへの fetch をフックできる Service Worker を、その対象オリジンから提供できるようになる。
+      <p>一体どういう仕組みなのか、これによって何が可能になるのかについて、デモを交えて記す。
     </section>
     <section>
       <h2 id="1st+Party+と+3rd+Party"><a href="#1st+Party+と+3rd+Party">1st Party と 3rd Party</a></h2>
@@ -608,8 +608,8 @@ th:last-child, td:last-child {
       <h2 id="foreign-fetch+の仕組み"><a href="#foreign-fetch+の仕組み">foreign-fetch の仕組み</a></h2>
       <p>さて、言葉での解説では想像しにくいと思うので、実際のデモを交えて解説をしていく。
       <p>以下は <code translate="no">https://labs.jxck.io</code> をオリジンとする 1 つだけボタンを持つページに遷移する。これが 1st Party にあたる。
-      <p>ページ内のボタンは <code translate="no">https://api.jxck.io</code> という別オリジンの API を叩き、乱数を取得して表示するだけの簡単なものだ。<br>
-      これは 3rd Party にあたり、 CORS に対応している。
+      <p>ページ内のボタンは <code translate="no">https://api.jxck.io</code> という別オリジンの API を叩き、乱数を取得して表示するだけの簡単なものだ。
+      <p>これは 3rd Party にあたり、 CORS に対応している。
       <p><a href="https://labs.jxck.io/service-worker/foreign-fetch/index.html">https://labs.jxck.io/service-worker/foreign-fetch/index.html</a>
       <p>ページに読み込まれる <code translate="no">index.html</code> と <code translate="no">worker.js</code> は 1st Party Service Worker でキャッシュされており、オフライン対応されている。
       <pre class=js><code translate="no">const CACHE = &quot;foreign-fetch&quot;;
@@ -692,8 +692,8 @@ self.addEventListener(&#039;foreignfetch&#039;, (e) =&gt; {
       })
   );
 });</code></pre>
-      <p>この <code translate="no">foreignfetch</code> イベントが今回の要である。<br>
-      <code translate="no">install</code> イベントで指定した origin (ここでは全オリジン) から、 scope の範囲にあるリクエストをハンドルできる。
+      <p>この <code translate="no">foreignfetch</code> イベントが今回の要である。
+      <p><code translate="no">install</code> イベントで指定した origin (ここでは全オリジン) から、 scope の範囲にあるリクエストをハンドルできる。
       <p>先ほどの 1st Party Service Worker がキャッシュしていなかった乱数のリクエストを、実際に fetch した時、二段目としてこの 3rd Party Service Worker に渡ってくる。 Origin と Scope が対象範囲であるこのリクエストは <code translate="no">foreginfetch</code> イベントを発火する。
       <p>実際に fetch を発行し、失敗した Service Worker は、フォールバックとして乱数を JS で生成しそれを返す。
       <p>これにより、 1st Party の Service Worker は fetch が成功したかのように挙動するのである。
@@ -705,8 +705,8 @@ self.addEventListener(&#039;foreignfetch&#039;, (e) =&gt; {
       <p>つまり、 3rd Party Service Worker は異なる 1st Party Service Worker 間で共有されるのだ。
       <p>これはかつて同じオリジンのキャッシュが別ページ間で使い回される CDN の利点のように、別のページで既に登録されている 3rd Party Service Worker はそのまま使いまわせることを意味し、例えば font のような大きいアセットファイルのキャッシュなども、ページ間で使いまわすことができるということを意味する。
       <p>使い回せるのはキャッシュだけではない。
-      <p>例えばコメント投稿の API を通じて、あるページで投稿されたコメントデータを、瞬時に別のページで表示できるようなる。<br>
-      サービス連携のような使い方が可能になるのだ。
+      <p>例えばコメント投稿の API を通じて、あるページで投稿されたコメントデータを、瞬時に別のページで表示できるようなる。
+      <p>サービス連携のような使い方が可能になるのだ。
     </section>
     <section>
       <h2 id="Micro+Serivce+Workers"><a href="#Micro+Serivce+Workers">Micro Serivce Workers</a></h2>
@@ -714,8 +714,8 @@ self.addEventListener(&#039;foreignfetch&#039;, (e) =&gt; {
       <p>3rd Party が持つロジックを全て適切に 1st Party 内に実装するのは難しいし、そもそも 1st Party が必ずそれを行うことを前提とするのは非現実的だ。
       <p>3rd Party が API に Service Worker を含めて提供し、それが 1st Party から見れば透過的に動作するのは非常に自然かつ妥当であると言える。
       <p>それだけでなく、 3rd Party Service Worker が 1st Party とは別に同時に起動できるのは、これまでの Service Worker がページに対して必ず 1 つだけしか起動できなかった制限を大きく解消する。
-      <p>Service Worker をレイヤリングすることで、ロジックを分割し、凝集度を高めることができる。<br>
-      責務の分離を促すことは、 Service Worker の鬼門であるアップデートの負荷を下げることに繋がる。
+      <p>Service Worker をレイヤリングすることで、ロジックを分割し、凝集度を高めることができる。
+      <p>責務の分離を促すことは、 Service Worker の鬼門であるアップデートの負荷を下げることに繋がる。
       <p>また、この 3rd Party API を使うことで、サービス間の連携が行えることは、さらに可能性を広げるだろう。
       <p>Micro Services に分割されたそれぞれの API は、対応する Service Worker を合わせて提供することで、オフライン対応のみならず、 1st Party に委ねていた幅広いユースケースへの対応を、取り戻すことができる。
     </section>

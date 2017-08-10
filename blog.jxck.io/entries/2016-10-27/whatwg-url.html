@@ -59,7 +59,7 @@
     "width": 700
   },
   "datePublished": "2016-10-27T08:00:00+08:00",
-  "dateModified": "2017-05-23T08:00:00+08:00",
+  "dateModified": "2017-08-10T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -101,7 +101,7 @@
       <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/info.css">
       <ul class="info">
         <li>created_at: <time class="created_at" datetime="2016-10-27">2016-10-27</time>
-        <li>updated_at: <time class="updated_at" datetime="2017-05-23">2017-05-23</time>
+        <li>updated_at: <time class="updated_at" datetime="2017-08-10">2017-08-10</time>
         <li class="tags">tags: [<a href='/tags/node.js.html'>node.js</a>,<a href='/tags/whatwg.html'>whatwg</a>,<a href='/tags/url.html'>url</a>]
       </ul>
 
@@ -122,8 +122,8 @@
       <p>片手間な正規表現や文字列処理が、 URL が本来持つ仕様(username/password, escape, punycode etc)を正しく満たせるとは限らず、それ自体が様々な問題(セキュリティ etc)を引き起こす要因になることも少なくなかった。
       <p>ところが近年、 <code translate="no">fetch()</code> や <code translate="no">&lt;input type=url&gt;</code> など、 URL を扱う仕様も増えてきたため、 URL のフォーマット及び処理方法を整備する目的で URL Standard の仕様が策定された。
       <p>それが以下である。
-      <p>原文: <a href="https://url.spec.whatwg.org">https://url.spec.whatwg.org</a><br>
-      翻訳: <a href="https://triple-underscore.github.io/URL-ja.html">https://triple-underscore.github.io/URL-ja.html</a>
+      <p>原文: <a href="https://url.spec.whatwg.org">https://url.spec.whatwg.org</a>
+      <p>翻訳: <a href="https://triple-underscore.github.io/URL-ja.html">https://triple-underscore.github.io/URL-ja.html</a>
       <p>これによって、既存/新規 DOM API は、 URL を扱う際に、基本的にはこの仕様を参照することができるようになった。
     </section>
     <section>
@@ -148,8 +148,8 @@
     </section>
     <section>
       <h2 id="Node+の+url+module+実装"><a href="#Node+の+url+module+実装">Node の url module 実装</a></h2>
-      <p>Node は既に URL をパースするための <code translate="no">url</code> モジュールを標準でもっている。<br>
-      しかし、これが実装されたのは URL Standard が定義される前なので、 <code translate="no">url</code> モジュールが準拠するのはもちろん RFC である。(それ自体が問題になること自体はほとんどない。)
+      <p>Node は既に URL をパースするための <code translate="no">url</code> モジュールを標準でもっている。
+      <p>しかし、これが実装されたのは URL Standard が定義される前なので、 <code translate="no">url</code> モジュールが準拠するのはもちろん RFC である。(それ自体が問題になること自体はほとんどない。)
       <p>しかし API についてみれば、先ほどの URLSearchParams も含めて WHATWG の定義とはかなり差異がある。
       <p>同じ JS であるにも関わらず、ブラウザと Node で API が違うというのは、 isomorphic/universal 化が進む昨今では決して嬉しいことではない。
       <p>そこで筆者はこの URL オブジェクトを実装していた時期があった。だいぶ実装は進んだが後述する punycode と unicode 周りの対応が面倒で途中で止まっていた。
@@ -179,8 +179,8 @@ console.log(u);
 //   search: ?log=true&amp;lang=ja
 //   hash: #main
 // }</code></pre>
-      <p>この API を経由すれば、日本語ドメインの Punycode 化、 IPv6 アドレスの対応、 escape などもやってくれる。<br>
-      (ここら辺が、正規表現での処理時に問題になりやすいあたりだ。)
+      <p>この API を経由すれば、日本語ドメインの Punycode 化、 IPv6 アドレスの対応、 escape などもやってくれる。
+      <p>(ここら辺が、正規表現での処理時に問題になりやすいあたりだ。)
       <pre class=js><code translate="no">const URL = require(&#039;url&#039;).URL;
 
 // 日本語ドメイン

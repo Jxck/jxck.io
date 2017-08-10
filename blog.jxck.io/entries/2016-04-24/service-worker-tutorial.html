@@ -59,7 +59,7 @@
     "width": 700
   },
   "datePublished": "2016-04-24T08:00:00+08:00",
-  "dateModified": "2017-05-23T08:00:00+08:00",
+  "dateModified": "2017-08-10T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -101,7 +101,7 @@
       <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/info.css">
       <ul class="info">
         <li>created_at: <time class="created_at" datetime="2016-04-24">2016-04-24</time>
-        <li>updated_at: <time class="updated_at" datetime="2017-05-23">2017-05-23</time>
+        <li>updated_at: <time class="updated_at" datetime="2017-08-10">2017-08-10</time>
         <li class="tags">tags: [<a href='/tags/service%20worker.html'>service worker</a>,<a href='/tags/tutorial.html'>tutorial</a>]
       </ul>
 
@@ -110,8 +110,8 @@
     <h1><a href=/entries/2016-04-24/service-worker-tutorial.html>中級者向け Service Worker Tutorial</a></h1>
     <section>
       <h2 id="Intro"><a href="#Intro">Intro</a></h2>
-      <p>Service Worker の初心者向けのチュートリアルや、使ってみた系のエントリも増えてきました。<br>
-      しかし、 Service Worker は通常のブラウザ用 JS の開発と少し経路が違い、慣れるまで開発やデバッグもなかなか難しいと思います。
+      <p>Service Worker の初心者向けのチュートリアルや、使ってみた系のエントリも増えてきました。
+      <p>しかし、 Service Worker は通常のブラウザ用 JS の開発と少し経路が違い、慣れるまで開発やデバッグもなかなか難しいと思います。
       <p>そこで特に難しい部分、そして分かっていないと実際にデプロイした際に難しいと思う部分について、実際に動きを確認しながら解説したいと思います。
       <p>なお、 Service Worker の基本的な概念などについては、他のチュートリアルなどを見て理解している前提で進めます。
       <p>思いつきで撮ったので色々ミスも有ります、また Chrome Dev Tools の UI はどうせ変わるのでそのつもりで見てください。
@@ -125,12 +125,12 @@
         <li><a href="#updatefound">#updatefound</a>
         <li><a href="#update()">#update()</a>
         <li><a href="#backgroundsync">#backgroundsync</a>
-        <li><a href="#push">#push</a><br>
-        6-1. <a href="#1.+Google+Developer+Console">#1. Google Developer Console</a><br>
-        6-2. <a href="#2.master.js">#2.master.js</a><br>
-        6-3. <a href="#3.worker.js">#3.worker.js</a><br>
-        6-4. <a href="#4.push.js">#4.push.js</a>
+        <li><a href="#push">#push</a>
       </ol>
+      <p>6-1. <a href="#1.+Google+Developer+Console">#1. Google Developer Console</a>
+      <p>6-2. <a href="#2.master.js">#2.master.js</a>
+      <p>6-3. <a href="#3.worker.js">#3.worker.js</a>
+      <p>6-4. <a href="#4.push.js">#4.push.js</a>
     </section>
     <section>
       <h2 id="claim"><a href="#claim">claim</a></h2>
@@ -216,8 +216,8 @@ self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
     </section>
     <section>
       <h2 id="updatefound"><a href="#updatefound">updatefound</a></h2>
-      <p>Service Worker が更新される際の動きと、 <code translate="no">skipWaiting()</code> が何をスキップするのか?<br>
-      <code translate="no">install</code>, <code translate="no">activate</code> イベントの用途。
+      <p>Service Worker が更新される際の動きと、 <code translate="no">skipWaiting()</code> が何をスキップするのか?
+      <p><code translate="no">install</code>, <code translate="no">activate</code> イベントの用途。
       <iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/AMbQ7d9rjao" allowfullscreen></iframe>
       <pre class=js><code translate="no">console.log(&#039;master&#039;);
 

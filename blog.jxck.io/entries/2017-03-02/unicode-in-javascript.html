@@ -59,7 +59,7 @@
     "width": 700
   },
   "datePublished": "2017-03-02T08:00:00+08:00",
-  "dateModified": "2017-05-23T08:00:00+08:00",
+  "dateModified": "2017-08-10T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -101,7 +101,7 @@
       <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/info.css">
       <ul class="info">
         <li>created_at: <time class="created_at" datetime="2017-03-02">2017-03-02</time>
-        <li>updated_at: <time class="updated_at" datetime="2017-05-23">2017-05-23</time>
+        <li>updated_at: <time class="updated_at" datetime="2017-08-10">2017-08-10</time>
         <li class="tags">tags: [<a href='/tags/utf-16.html'>utf-16</a>,<a href='/tags/unicode.html'>unicode</a>,<a href='/tags/javascript.html'>javascript</a>]
       </ul>
 
@@ -110,10 +110,10 @@
     <h1><a href=/entries/2017-03-02/unicode-in-javascript.html>JavaScript における文字コードと「文字数」の数え方</a></h1>
     <section>
       <h2 id="Intro"><a href="#Intro">Intro</a></h2>
-      <p>textarea などに入力された文字数を、 JS で数えたい場合がある。<br>
-      ここで <code translate="no">.length</code> を数えるだけではダメな理由は、文字コードや JS の内部表現の話を理解する必要がある。
-      <p>多言語や絵文字対応なども踏まえた上で、どう処理するべきなのか。<br>
-      それ自体は枯れた話題ではあるが、近年 ECMAScript に追加された機能などを交えて解説する。
+      <p>textarea などに入力された文字数を、 JS で数えたい場合がある。
+      <p>ここで <code translate="no">.length</code> を数えるだけではダメな理由は、文字コードや JS の内部表現の話を理解する必要がある。
+      <p>多言語や絵文字対応なども踏まえた上で、どう処理するべきなのか。
+      <p>それ自体は枯れた話題ではあるが、近年 ECMAScript に追加された機能などを交えて解説する。
       <p>なお、文字コードの仕組みを詳解すること自体が目的では無いため、 BMP, UCS-2, Endian, 歴史的経緯など、この手の話題につき物な話の一部は省くこととする。
     </section>
     <section>
@@ -145,8 +145,8 @@
     </section>
     <section>
       <h2 id="文字の伝達"><a href="#文字の伝達">文字の伝達</a></h2>
-      <p>データとして文字を相手に送る際に、この Code Point が利用できる。<br>
-      例えば 😭 を送るには、 <code translate="no">0x1F62D</code> という Code Point が相手に伝われば良いのだ。
+      <p>データとして文字を相手に送る際に、この Code Point が利用できる。
+      <p>例えば 😭 を送るには、 <code translate="no">0x1F62D</code> という Code Point が相手に伝われば良いのだ。
       <p>では、この値をどうやって送るのか。そこにはいくつかの方式がある。
       <section>
         <h3 id="UTF-32"><a href="#UTF-32">UTF-32</a></h3>
@@ -167,22 +167,22 @@
         <pre><code translate="no">[0x91, 0xCE] // 野
 [0x30, 0x67] // で</code></pre>
         <p>このように 1 Code Point を 16bit データとして表すという発想が、 UTF-16 と呼ばれる方式の中核である。
-        <p>ところが、 <code translate="no">𠮷</code> (0x20BB7), <code translate="no">𩸽</code> (0x29E3D), <code translate="no">𠮟</code> (0x20B9F), <code translate="no">😭</code> (0x1F62D) の 4 文字は 2byte では収まらない。<br>
-        そこで、 UTF-16 では、こうした 2byte では収まらない文字について、倍の 32bit で表す。<br>
-        この 16bit x2 で表される文字を、 <strong>サロゲートペア</strong> と呼ぶ。
+        <p>ところが、 <code translate="no">𠮷</code> (0x20BB7), <code translate="no">𩸽</code> (0x29E3D), <code translate="no">𠮟</code> (0x20B9F), <code translate="no">😭</code> (0x1F62D) の 4 文字は 2byte では収まらない。
+        <p>そこで、 UTF-16 では、こうした 2byte では収まらない文字について、倍の 32bit で表す。
+        <p>この 16bit x2 で表される文字を、 <strong>サロゲートペア</strong> と呼ぶ。
         <pre><code translate="no">[0xD8, 0x67, 0xDE, 0x3D] // 𠮷
 [0xD8, 0x42, 0xDF, 0xB7] // 𩸽
 [0xD8, 0x42, 0xDF, 0x9F] // 𠮟
 [0xD8, 0x3D, 0xDE, 0x2D] // 😭</code></pre>
-        <p>逆を言えば、サロゲートペアになるのは Code Point が大きい、 Unicode に後から追加された文字が多い。<br>
-        <code translate="no">𩸽</code> は後から追加された文字であり、 <code translate="no">𠮷</code> は <code translate="no">吉</code> の、 <code translate="no">𠮟</code> は <code translate="no">𠮟</code> の <strong>異体字</strong> と呼ばれるものだ。絵文字も最近追加されたため Code Point が大きい。
+        <p>逆を言えば、サロゲートペアになるのは Code Point が大きい、 Unicode に後から追加された文字が多い。
+        <p><code translate="no">𩸽</code> は後から追加された文字であり、 <code translate="no">𠮷</code> は <code translate="no">吉</code> の、 <code translate="no">𠮟</code> は <code translate="no">𠮟</code> の <strong>異体字</strong> と呼ばれるものだ。絵文字も最近追加されたため Code Point が大きい。
         <p>こうして、サロゲートペアが導入されたことにより、 UTF-16 のデータは可変長、つまり、文字数がバイト列の長さだけではわからなくなってしまったのである。
         <p>もし、幸運にも文字列の中にサロゲートペアが 1 つも入っていなければ、バイト列を単純に 2 で割れば文字数が出る。しかし 1 つでもサロゲートペアがあると、単純な割り算では本来よりも多くの文字数があるように見えてしまうのだ。
       </section>
       <section>
         <h3 id="UTF-8"><a href="#UTF-8">UTF-8</a></h3>
-        <p>英数字(a-zA-Z0-9) など、いわゆるアスキー文字と呼ばれるものは、 Code Point の中でも小さい値が割り当てられている。<br>
-        これら Code Point は 8bit の範囲に収まっているので、 16 bit で表すと無駄が出てくる。
+        <p>英数字(a-zA-Z0-9) など、いわゆるアスキー文字と呼ばれるものは、 Code Point の中でも小さい値が割り当てられている。
+        <p>これら Code Point は 8bit の範囲に収まっているので、 16 bit で表すと無駄が出てくる。
         <pre><code translate="no">[0x00, 0x61] // a</code></pre>
         <p>そこで、 8bit で表せる Code Point は 8bit で、足らないものは 16bit で、さらに足らないものは 24bit で、、と「小さい Code Point はより小さく」表せば、英語のみのテキストなどはさらに小さく表すことができる。
         <pre><code translate="no">[0x61]                   // a
@@ -197,16 +197,16 @@
       <p>さて、 JS で以下の処理を実行した場合、代入した文字列データがメモリ上に保存されるわけだが、このデータは Code Point がそのまま保存されているわけではない。
       <pre class=js><code translate="no">char = &quot;😭&quot;</code></pre>
       <p>JS の内部表現は UTF-16 であるため、メモリに保存された値は絵文字 <code translate="no">😭</code> の Code Point である <code translate="no">0x1F62D</code> ではなく、それを UTF-16 にした <code translate="no">[0xD8, 0x3D, 0xDE, 0x2D]</code> だ。
-      <p>ここで注意したいのは、ここで UTF-16 が選ばれるのは JS の仕様であって、 JS ファイルのエンコーディングとは関係ない点だ。<br>
-      HTML/CSS/JS ファイルは UTF-8 を使うのがデファクトとなっているが、それによって JS の内部の表現が UTF-8 になったりはしない。
+      <p>ここで注意したいのは、ここで UTF-16 が選ばれるのは JS の仕様であって、 JS ファイルのエンコーディングとは関係ない点だ。
+      <p>HTML/CSS/JS ファイルは UTF-8 を使うのがデファクトとなっているが、それによって JS の内部の表現が UTF-8 になったりはしない。
       <p>イメージとしては、ブラウザは JS ファイルのレスポンスを受けた際、 Content-Encoding ヘッダなどによってファイルを解釈し、そこから Code Point を割り出す。代入された値が "😭" であることを知ったら、それをメモリ上に UTF-16 で保存する。 JS ファイルが Shift-JIS であっても同じだ。
       <p>これを聞くと JS が UTF-16 であれば、その変換オーバーヘッドが無いのでは? と思うかもしれないが、レガシーシステムとの連携などを考えなければ、 UTF-8 以外を使う必要は基本的にないので気にしないで良い。
       <p><strong>JS が内部で持つ値は Code Point ではなく UTF-16 の値だ</strong> という点を踏まえた上で、 JS のプログラム上で文字列を数える処理について見ていく。
     </section>
     <section>
       <h2 id="length"><a href="#length">length</a></h2>
-      <p>length は文字数ではなく、単にこの UTF-16 配列の長さだ。<br>
-      だから、 1 文字に 16bit が 2 つ必要なサロゲートペアは length が 2 となってしまう。
+      <p>length は文字数ではなく、単にこの UTF-16 配列の長さだ。
+      <p>だから、 1 文字に 16bit が 2 つ必要なサロゲートペアは length が 2 となってしまう。
       <p>つまり、内部で保持されているデータはこうなっている。
       <pre><code translate="no">str = `𠮷野屋で𩸽頼んで𠮟られる😭`;
 [
@@ -227,12 +227,12 @@
       <p>この文字列は 13 文字と考えられるが、 <code translate="no">length</code> はこの配列の長さである 17 を返す。
       <pre class=js><code translate="no">str = `𠮷野屋で𩸽頼んで𠮟られる😭`;
 str.length // =&gt; 17</code></pre>
-      <p>これが、文字数を数える処理に length が使えない場合があることの原因だ。<br>
-      (逆を言えば、 16bit で収まる文字の範囲のみであると <strong>保証</strong> できるならば length を使うこともできなくはない)
-      <p>そもそも、 Code Point の数を数えたいのに、内部で保持している UTF-16 の配列を操作しているから問題なのだ。<br>
-      つまり、 JS が内部で保持している UTF-16 の配列を、元の Unicode の Code Point の配列に戻せば良さそうだ。
-      <p>もちろん、この方法は知られている。<br>
-      特に、ブラウザがこれをどう行うべきかというアルゴリズムは WHATWG の仕様に書かれているため、これを実装すれば Code Point の配列が手に入る。
+      <p>これが、文字数を数える処理に length が使えない場合があることの原因だ。
+      <p>(逆を言えば、 16bit で収まる文字の範囲のみであると <strong>保証</strong> できるならば length を使うこともできなくはない)
+      <p>そもそも、 Code Point の数を数えたいのに、内部で保持している UTF-16 の配列を操作しているから問題なのだ。
+      <p>つまり、 JS が内部で保持している UTF-16 の配列を、元の Unicode の Code Point の配列に戻せば良さそうだ。
+      <p>もちろん、この方法は知られている。
+      <p>特に、ブラウザがこれをどう行うべきかというアルゴリズムは WHATWG の仕様に書かれているため、これを実装すれば Code Point の配列が手に入る。
       <p><a href="https://www.w3.org/TR/WebIDL-1/#dfn-obtain-unicode">WebIDL-1#dfn-obtain-unicode</a>
       <p>筆者は、これを実装したライブラリも公開している。
       <p><a href="https://github.com/Jxck/obtain-unicode">github.com/Jxck/obtain-unicode</a>
@@ -242,13 +242,13 @@ codePoints = obtainUnicode(str);
 // [134071, 37326, 23627, 12391, 171581, 38972, 12435, 12391, 134047, 12425, 12428, 12427, 128557]
 
 codePoints.length // =&gt; 13</code></pre>
-      <p>しかし、最近はこうした処理を改善する API がブラウザ自体にあるため、使えるならそれらを使うのが良いだろう。<br>
-      自前で Code Point 列にするのは、それらで間に合わない場合にとる手段だ。
+      <p>しかし、最近はこうした処理を改善する API がブラウザ自体にあるため、使えるならそれらを使うのが良いだろう。
+      <p>自前で Code Point 列にするのは、それらで間に合わない場合にとる手段だ。
     </section>
     <section>
       <h2 id="正規表現"><a href="#正規表現">正規表現</a></h2>
-      <p>正規表現における <code translate="no">.</code> も 1 文字ではなく、 UTF-16 の 16bit データ 1 つを意味する。<br>
-      したがって、サロゲートペアがあると 1 文字にマッチせず、途中で切れる。
+      <p>正規表現における <code translate="no">.</code> も 1 文字ではなく、 UTF-16 の 16bit データ 1 つを意味する。
+      <p>したがって、サロゲートペアがあると 1 文字にマッチせず、途中で切れる。
       <pre class=js><code translate="no">&#039;吉野家&#039;.match(/./) // [&quot;吉&quot;]
 &#039;𠮷野家&#039;.match(/./) // [&quot;�&quot;]
 
@@ -319,15 +319,15 @@ c // &quot;食&quot;</code></pre>
     </section>
     <section>
       <h2 id="charCode/codePoint"><a href="#charCode/codePoint">charCode/codePoint</a></h2>
-      <p><code translate="no">charCodeAt()</code> は文字コードを取り、 <code translate="no">fromCharCode()</code> はその逆を行う。<br>
-      𩸽の方は前半のバイトしかないため、元に戻らない。
+      <p><code translate="no">charCodeAt()</code> は文字コードを取り、 <code translate="no">fromCharCode()</code> はその逆を行う。
+      <p>𩸽の方は前半のバイトしかないため、元に戻らない。
       <pre class=js><code translate="no">&#039;鯖定食&#039;.charCodeAt(0) === 0x9BD6
 &#039;𩸽定食&#039;.charCodeAt(0) === 0xD867
 
 String.fromCharCode(&#039;鯖&#039;.charCodeAt(0)) //&quot;鯖&quot;
 String.fromCharCode(&#039;𩸽&#039;.charCodeAt(0)) // &quot;�&quot;</code></pre>
-      <p>これも、 Code Point を取り出すメソッドが定義されている。<br>
-      これならサロゲートペアもうまく扱える。
+      <p>これも、 Code Point を取り出すメソッドが定義されている。
+      <p>これならサロゲートペアもうまく扱える。
       <pre class=js><code translate="no">&#039;𩸽定食&#039;.codePointAt(0) // 0x9BD6
 &#039;鯖定食&#039;.codePointAt(0) // 0x29E3D
 
@@ -349,16 +349,16 @@ String.fromCodePoint(&#039;𩸽&#039;.codePointAt(0)) // &quot;𩸽&quot;</code>
       <p>1 つが 👨‍👩‍👧‍👦 だ。
       <pre class=js><code translate="no">Array.of(...&#039;👨‍👩‍👧‍👦&#039;)
 [&quot;👨&quot;, &quot;‍&quot;, &quot;👩&quot;, &quot;‍&quot;, &quot;👧&quot;, &quot;‍&quot;, &quot;👦&quot;]</code></pre>
-      <p>この絵文字は "family with mother father son daughter" という名前の文字で、 4 つの絵文字が合成されてできている。<br>
-      家族は多様なので別の組み合わせもある。
+      <p>この絵文字は "family with mother father son daughter" という名前の文字で、 4 つの絵文字が合成されてできている。
+      <p>家族は多様なので別の組み合わせもある。
       <p>いずれにせよ、先ほどの方法で分解すると、個々の顔の間に空の文字が見える。
-      <p>これは、 👨‍👩‍👧‍👦 という絵文字自体が、👨, 👩, 👧, 👦 という 4 つの絵文字とそれを結合する制御文字でできているからである。<br>
-      この制御文字を <strong>ZWJ</strong>(ZERO WIDTH JOINER) といい、 ZWJ の Code Point は <code translate="no">0x200D</code> だ。<br>
-      先ほどのように「<strong>文字の数を数える == Code Point の数を数える</strong>」としてしまえば、これは <code translate="no">emoji * 4 + ZWJ * 3</code> で 7 文字となる。
+      <p>これは、 👨‍👩‍👧‍👦 という絵文字自体が、👨, 👩, 👧, 👦 という 4 つの絵文字とそれを結合する制御文字でできているからである。
+      <p>この制御文字を <strong>ZWJ</strong>(ZERO WIDTH JOINER) といい、 ZWJ の Code Point は <code translate="no">0x200D</code> だ。
+      <p>先ほどのように「<strong>文字の数を数える == Code Point の数を数える</strong>」としてしまえば、これは <code translate="no">emoji * 4 + ZWJ * 3</code> で 7 文字となる。
       <p>ところが、おそらく多くの人がこれを 1 文字と捉えるだろう。
       <p>つまり 1 文字を <strong>カーソルが 1 つ移動する分</strong> と捉えているとなると、 Code Point の数だけでなく、 ZWJ を持つ文字列も 1 文字と捉える必要が出てくる。
-      <p>ZWJ は絵文字だけではなく、アラビア文字などで良く使われているようだ。<br>
-      もし ZWJ で結合された文字も 1 文字と数えたい場合は、 Code Point の分割の後にさらなる結合処理が必要になるだろう。
+      <p>ZWJ は絵文字だけではなく、アラビア文字などで良く使われているようだ。
+      <p>もし ZWJ で結合された文字も 1 文字と数えたい場合は、 Code Point の分割の後にさらなる結合処理が必要になるだろう。
       <p>ちなみに Twitter は 👨‍👩‍👧‍👦 を入れると 7 文字減る。つまり、 ZWJ も 1 文字として Code Point を数えていると推測される。
     </section>
   </article>

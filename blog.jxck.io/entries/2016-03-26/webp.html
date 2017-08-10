@@ -59,7 +59,7 @@
     "width": 700
   },
   "datePublished": "2016-03-26T08:00:00+08:00",
-  "dateModified": "2017-05-23T08:00:00+08:00",
+  "dateModified": "2017-08-10T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -101,7 +101,7 @@
       <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/info.css">
       <ul class="info">
         <li>created_at: <time class="created_at" datetime="2016-03-26">2016-03-26</time>
-        <li>updated_at: <time class="updated_at" datetime="2017-05-23">2017-05-23</time>
+        <li>updated_at: <time class="updated_at" datetime="2017-08-10">2017-08-10</time>
         <li class="tags">tags: [<a href='/tags/webp.html'>webp</a>,<a href='/tags/image.html'>image</a>,<a href='/tags/performance.html'>performance</a>]
       </ul>
 
@@ -122,24 +122,24 @@
     </section>
     <section>
       <h2 id="WebP"><a href="#WebP">WebP</a></h2>
-      <p>従来の Web において、画像は用途毎に PNG/JPEG/GIF などを使い分けていた。<br>
-      一般的には以下のような使い分けが行われている。
+      <p>従来の Web において、画像は用途毎に PNG/JPEG/GIF などを使い分けていた。
+      <p>一般的には以下のような使い分けが行われている。
       <ul>
         <li>PNG : 主に UI アイコンなど色変化の少ない画像
         <li>JEPG: 主に写真など色変化が多い画像
         <li>GIF : 主に GIF アニメメーション
       </ul>
       <p>WebP は Google が開発した画像フォーマットであり、これら三つの用途全てに適した上で、さらに小さいサイズに圧縮できる場合が多い。
-      <p>また、 WebP は動画フォーマットである WebM の 1 フレームに相当するため、 WebP アニメーションは簡易 WebM と言っても良い。<br>
-      GIF アニメよりも、色数が多く綺麗なアニメーションを小さいサイズで作ることができるため、技術ブログで言えばスクリーンデモのキャプチャなどに適しているだろう。
+      <p>また、 WebP は動画フォーマットである WebM の 1 フレームに相当するため、 WebP アニメーションは簡易 WebM と言っても良い。
+      <p>GIF アニメよりも、色数が多く綺麗なアニメーションを小さいサイズで作ることができるため、技術ブログで言えばスクリーンデモのキャプチャなどに適しているだろう。
       <p>現状まだ対応するブラウザは限られているが、対応しているのであれば WebP で配布するのが望ましい場合が多い。
       <p>WebP のデモは以下に記載した。
       <p><a href="https://labs.jxck.io/webp/">labs.jxck.io/webp</a>
     </section>
     <section>
       <h2 id="WebP+変換"><a href="#WebP+変換">WebP 変換</a></h2>
-      <p>本サイトの画像は、 Mac で取得したスクリーンショットか cacoo で作成した図、その他フリー素材が中心である。<br>
-      cacoo で作成した画像は SVG で書き出すため、主にスクリーンショットかフリー素材 が WebP 変換の対象となる。
+      <p>本サイトの画像は、 Mac で取得したスクリーンショットか cacoo で作成した図、その他フリー素材が中心である。
+      <p>cacoo で作成した画像は SVG で書き出すため、主にスクリーンショットかフリー素材 が WebP 変換の対象となる。
       <p>WebP への変換ツールは、 Google が公式に提供しているバイナリか、 Linux/Mac ならパッケージで提供されているものを使うことができる。
       <p><a href="https://developers.google.com/speed/webp/download">Downloading and Installing WebP</a>
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
@@ -169,8 +169,8 @@ Usage:
     <section>
       <h2 id="<code+translate=no>&lt;picture&gt;</code>+での+WebP+の指定"><a href="#<code+translate=no>&lt;picture&gt;</code>+での+WebP+の指定"><code translate="no">&lt;picture&gt;</code> での WebP の指定</a></h2>
       <p>ブラウザにおける <a href="http://caniuse.com/#feat=webp">WebP の対応はまだまだ限定的</a> であるため、非対応ブラウザには PNG/JPEG/GIF などを送る必要がある。
-      <p>この方法として、 JS による補完や、 User-Agent を用いたサーバサイドでの分岐などが紹介される場合がある。<br>
-      しかし、別途 JS を利用する場合はイニシャルレンダリングへの影響を免れず、 User-Agent での分岐は保守性の問題から避けるべきパターンの一つといえる。
+      <p>この方法として、 JS による補完や、 User-Agent を用いたサーバサイドでの分岐などが紹介される場合がある。
+      <p>しかし、別途 JS を利用する場合はイニシャルレンダリングへの影響を免れず、 User-Agent での分岐は保守性の問題から避けるべきパターンの一つといえる。
       <p>現時点では、 HTML の <code translate="no">&lt;picture&gt;</code> を用いることで、ブラウザ自体にそれを判断させることができるため、本サイトではこの方法を採用することとした。
       <p>画像を以下のように指定することで、対応ブラウザが自ら WebP をリクエストするようになり、 WebP や <code translate="no">&lt;picture&gt;</code> に対応していない場合は <code translate="no">&lt;img&gt;</code> に指定した画像にフォールバックする。
       <pre class=html><code translate="no">&lt;picture&gt;

@@ -52,7 +52,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-03-25T08:00:00+08:00",
-  "dateModified": "2017-05-23T08:00:00+08:00",
+  "dateModified": "2017-08-10T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -566,7 +566,7 @@ th:last-child, td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-03-25>2016-03-25</time>
-    <li>updated_at: <time class=updated_at datetime=2017-05-23>2017-05-23</time>
+    <li>updated_at: <time class=updated_at datetime=2017-08-10>2017-08-10</time>
     <li class=tags>tags: [<a href='/tags/picture.html'>picture</a>,<a href='/tags/image.html'>image</a>,<a href='/tags/performance.html'>performance</a>]
   </ul>
 
@@ -592,8 +592,8 @@ th:last-child, td:last-child {
     </section>
     <section>
       <h2 id="最適な画像を決定する変数"><a href="#最適な画像を決定する変数">最適な画像を決定する変数</a></h2>
-      <p>サイズ/フォーマット的に最適なイメージは、主に端末とブラウザの組み合わせで変わる。<br>
-      具体的には、現状以下の分岐を考慮する必要がある。
+      <p>サイズ/フォーマット的に最適なイメージは、主に端末とブラウザの組み合わせで変わる。
+      <p>具体的には、現状以下の分岐を考慮する必要がある。
       <ul>
         <li>ViewPort Size はいくつか(端末サイズの分岐)
         <li>DPI はいくつか(端末 Retina 対応)
@@ -659,8 +659,8 @@ th:last-child, td:last-child {
       </section>
       <section>
         <h3 id="pros/cons"><a href="#pros/cons">pros/cons</a></h3>
-        <p>Media Query を用いた指定は、コンテンツ側が「この場合はこれ」とブラウザに指定していることになる。<br>
-        ブラウザはそのクエリを評価し、その結果に忠実に画像を選択することになる。
+        <p>Media Query を用いた指定は、コンテンツ側が「この場合はこれ」とブラウザに指定していることになる。
+        <p>ブラウザはそのクエリを評価し、その結果に忠実に画像を選択することになる。
         <p>sizes の指定は、コンテンツ側が「こういう選択肢がある」と提示し、ブラウザがそこから選択することになる。
         <p>srcset で画像の実際のサイズを <code translate="no">w</code> で指定し、それを表示したいサイズを <code translate="no">sizes</code> で指定している。
         <p>ブラウザは
@@ -672,8 +672,8 @@ th:last-child, td:last-child {
         <p>例えば、将来的にモバイル端末自身が
         <blockquote>ネットワーク環境が悪いため、 DPI は x3 だがあえて 100w の画像を取得しよう</blockquote>
         <p>といったこともできる可能性がある。
-        <p>ブラウザや置かれた状況によって取得される画像が変わるというのは、コンテンツの種類によっては問題になるかもしれない。<br>
-        しかし、本サイトでは、同じ画像の中から必要十分なサイズの画像をリクエストして欲しいだけなので、問題はない。
+        <p>ブラウザや置かれた状況によって取得される画像が変わるというのは、コンテンツの種類によっては問題になるかもしれない。
+        <p>しかし、本サイトでは、同じ画像の中から必要十分なサイズの画像をリクエストして欲しいだけなので、問題はない。
         <p>本サイトは、こうした選択をブラウザに任せることとし、後者の指定方法を選択することにした。
       </section>
     </section>
@@ -684,8 +684,8 @@ th:last-child, td:last-child {
         <li>cacoo などで作成した画像
         <li>スクリーンショット
       </ul>
-      <p>この中で、最初の画像については、基本的に SVG で出力する。<br>
-      二番目の画像については、オリジナルよりも大きい画像を生成するのは難しい。
+      <p>この中で、最初の画像については、基本的に SVG で出力する。
+      <p>二番目の画像については、オリジナルよりも大きい画像を生成するのは難しい。
       <p>スクリーンショットを x3 のデバイスで取得できれば良いが、現状筆者はそれを持っていない。
       <p>したがって、大きな画像を用意して、小さく出せるものはあまりないため、この出し分けは大きな画像が取得できる場合のみにすることとした。
     </section>

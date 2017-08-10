@@ -52,7 +52,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-08-22T08:00:00+08:00",
-  "dateModified": "2017-05-23T08:00:00+08:00",
+  "dateModified": "2017-08-10T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -566,7 +566,7 @@ th:last-child, td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-08-22>2016-08-22</time>
-    <li>updated_at: <time class=updated_at datetime=2017-05-23>2017-05-23</time>
+    <li>updated_at: <time class=updated_at datetime=2017-08-10>2017-08-10</time>
     <li class=tags>tags: [<a href='/tags/socket.io.html'>socket.io</a>,<a href='/tags/websocket.html'>websocket</a>,<a href='/tags/network.html'>network</a>]
   </ul>
 
@@ -603,10 +603,10 @@ th:last-child, td:last-child {
           <li>JS の API (WebSocket オブジェクトとそのメソッド) を定義した <a href="https://html.spec.whatwg.org/multipage/comms.html#network">W3C の仕様</a>
           <li>ネットワークプロトコルを定義した <a href="https://tools.ietf.org/html/rfc6455">IETF の仕様</a>
         </ul>
-        <p>前者は、仕様としては比較的初期から固まっており、後のバイナリ対応など細かい変更はあれど、簡単なテキストチャットを作るレベルでは、早い段階から落ちついていた。<br>
-        つまり、これはブラウザが実装するかしないかという、いつもの問題とほぼ等しい。
-        <p>次に後者のプロトコルだが、 WebSocket という技術が注目を集め始めたのは、このプロトコル自体が RFC になるよりも前だった。<br>
-        最初は Hixie というエンジニアが書いたドラフトで始まり、その後 HyBi という専門の Working Group に移され、そのしばらく後に RFC になる。
+        <p>前者は、仕様としては比較的初期から固まっており、後のバイナリ対応など細かい変更はあれど、簡単なテキストチャットを作るレベルでは、早い段階から落ちついていた。
+        <p>つまり、これはブラウザが実装するかしないかという、いつもの問題とほぼ等しい。
+        <p>次に後者のプロトコルだが、 WebSocket という技術が注目を集め始めたのは、このプロトコル自体が RFC になるよりも前だった。
+        <p>最初は Hixie というエンジニアが書いたドラフトで始まり、その後 HyBi という専門の Working Group に移され、そのしばらく後に RFC になる。
         <p>ところが、 Hixie 時代からもブラウザやサーバはこの機能を実装し始めていたため、ドラフトのバージョンが上がりプロトコルフォーマットが変更されるたびに、それに追従していた時期がある。
         <p>この時期は、例えばあるブラウザはまだ HyBi-07 だが、サーバは HyBi-14 である、といったように、同じ WebSocket を話しているつもりが動かない場合があった。
       </section>
@@ -633,8 +633,8 @@ th:last-child, td:last-child {
       <h2 id="ヘッダで落とすミドルボックス"><a href="#ヘッダで落とすミドルボックス">ヘッダで落とすミドルボックス</a></h2>
       <section>
         <h3 id="問題の詳細"><a href="#問題の詳細">問題の詳細</a></h3>
-        <p>WebSocket のネゴシエーションは、 HTTP リクエスト形式のパケットで始まる。<br>
-        このリクエストが <code translate="no">Connection: Upgrade</code> というヘッダを持っていることで、以降を WebSocket で通信する合意をとるという仕組みだ。
+        <p>WebSocket のネゴシエーションは、 HTTP リクエスト形式のパケットで始まる。
+        <p>このリクエストが <code translate="no">Connection: Upgrade</code> というヘッダを持っていることで、以降を WebSocket で通信する合意をとるという仕組みだ。
         <p>ただし、 Proxy や LoadBalancer や Firewall といったネットワーク経路上に挟まっている、俗にいうミドルボックス(intermedialies ともいう)の中には、こうしたヘッダの存在を許可しないものがある。
         <p>理由は様々だが、多くの場合はその後の通信をサポートしてない、未知のヘッダであるなどの理由から、ヘッダがあった時点でコネクションを切断したりする。
         <p>他にも、 Personal Firewall (要するにウィルス対策ソフト)の中に、こうしたヘッダを落とす製品があることも確認されていた。
@@ -688,8 +688,8 @@ th:last-child, td:last-child {
     </section>
     <section>
       <h2 id="生+WebSocket+を使うなら"><a href="#生+WebSocket+を使うなら">生 WebSocket を使うなら</a></h2>
-      <p>ActionCable の登場もあって、また生 WebSocket を使う人も増えるかもしれない。<br>
-      (Rails のことだから ActionCable 上にプラグインを当てて XHR Polling を入れる人もすぐ出るだろうが)
+      <p>ActionCable の登場もあって、また生 WebSocket を使う人も増えるかもしれない。
+      <p>(Rails のことだから ActionCable 上にプラグインを当てて XHR Polling を入れる人もすぐ出るだろうが)
       <p>生の WebSocket を使う場合は、ここまでをまとめて以下を行うことを勧める。
       <ul>
         <li>暗号化した <code translate="no">wss://</code> を使う

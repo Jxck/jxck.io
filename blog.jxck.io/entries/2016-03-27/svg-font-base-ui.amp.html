@@ -52,7 +52,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-03-27T08:00:00+08:00",
-  "dateModified": "2017-05-23T08:00:00+08:00",
+  "dateModified": "2017-08-10T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -566,7 +566,7 @@ th:last-child, td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-03-27>2016-03-27</time>
-    <li>updated_at: <time class=updated_at datetime=2017-05-23>2017-05-23</time>
+    <li>updated_at: <time class=updated_at datetime=2017-08-10>2017-08-10</time>
     <li class=tags>tags: [<a href='/tags/svg.html'>svg</a>,<a href='/tags/image.html'>image</a>,<a href='/tags/performance.html'>performance</a>]
   </ul>
 
@@ -587,8 +587,8 @@ th:last-child, td:last-child {
     </section>
     <section>
       <h2 id="ベクタ画像とラスタ画像"><a href="#ベクタ画像とラスタ画像">ベクタ画像とラスタ画像</a></h2>
-      <p>ここまでの画像最適化では、 PNG/JPEG/WebP など <strong>ラスタ形式</strong> の画像について記述した。<br>
-      しかし、 UI アイコンなどについては、 SVG や Font といった <strong>ベクタ形式</strong> を用いる方が、良い場合がある。
+      <p>ここまでの画像最適化では、 PNG/JPEG/WebP など <strong>ラスタ形式</strong> の画像について記述した。
+      <p>しかし、 UI アイコンなどについては、 SVG や Font といった <strong>ベクタ形式</strong> を用いる方が、良い場合がある。
       <p>ラスタ画像はピクセルの色情報を持ち、それを並べて表示するのに対し、ベクタ形式はパスの情報を持ち、それを描画する。
       <p>写真などはラスタ形式を利用するが、自作の画像やアイコンなどについてはベクタ形式にすることで、サイズを小さくできる場合が多い。
       <p>またパス情報を元に描画するため、どんなに拡大してもラスタ形式のように画像が荒れることはない。
@@ -653,8 +653,8 @@ th:last-child, td:last-child {
     </section>
     <section>
       <h2 id="SVGGo+による最適化"><a href="#SVGGo+による最適化">SVGGo による最適化</a></h2>
-      <p>SVG は XML であるため、メタ情報を付与することができる。<br>
-      cacoo で吐いたままの SVG には、不要なメタ情報などが含まれている。
+      <p>SVG は XML であるため、メタ情報を付与することができる。
+      <p>cacoo で吐いたままの SVG には、不要なメタ情報などが含まれている。
       <p>表示上不要なメタ情報は、 PNG/JPEG etc 同様に削除することでサイズ上のメリットが得られる。
       <p>これを行うツールに SVGGo があるため、これをかけてみた結果が以下である。
       <pre class=svg><code translate="no">&lt;svg contentScriptType=&quot;text/ecmascript&quot;
@@ -703,8 +703,8 @@ th:last-child, td:last-child {
         <li>svggo: 638byte
         <li>vim: 291byte
       </ul>
-      <p>cacoo が吐いた SVG と比べれば 20% なので、以降基本的に UI アイコンの SVG は最初から手で書くことにした。<br>
-      また、 PNG と比べると実に 93% サイズを削減している。
+      <p>cacoo が吐いた SVG と比べれば 20% なので、以降基本的に UI アイコンの SVG は最初から手で書くことにした。
+      <p>また、 PNG と比べると実に 93% サイズを削減している。
     </section>
     <section>
       <h2 id="SVG+ギャラリー"><a href="#SVG+ギャラリー">SVG ギャラリー</a></h2>
@@ -712,8 +712,8 @@ th:last-child, td:last-child {
       <p>ソースは観賞用であるため、インデントや改行などは削ってない。
       <p>それ以外で、削れそうな部分があれば今後も削っていく予定である。
       <p><a href="//labs.jxck.io/svg">labs.jxck.io/svg</a>
-      <p>SVG の弱点として、 HTML に埋め込んだ SVG でないと CSS で色を指定できないという問題がある。<br>
-      本サイトの SVG は、外部リソースとして <code translate="no">&lt;img&gt;</code> で読んでいるため、色は SVG 自体に書いて作成している。
+      <p>SVG の弱点として、 HTML に埋め込んだ SVG でないと CSS で色を指定できないという問題がある。
+      <p>本サイトの SVG は、外部リソースとして <code translate="no">&lt;img&gt;</code> で読んでいるため、色は SVG 自体に書いて作成している。
       <p>なお、 404 ページや 500 ページを作る際にデザインを考えていたところ、この SVG にリンク貼って返せばそれで良いのでは?と思い、今は単にステータスコードを書いた SVG を返すようにしている。
       <p>正しくステータスコードと Contnet-Type が設定してあれば問題ない筈なので、こだわりたい人はここで Animation SVG とかやればいいんじゃないだろうか。
       <p>サーバの出したステータスコードに応じて SVG を動的に生成し、返すようにする予定である。
@@ -735,15 +735,20 @@ h4::before {
 
 pre::before {
   content: &quot;```&quot; attr(class) &quot;\A&quot;;
+
 }
 
 pre::after {
+
   position: relative;
+
   top: -1em;
+
+
   content:&quot;\A```&quot;;
 }</code></pre>
-      <p>Font は、外部 SVG と違い、単色ではあるが CSS での色指定も可能である。<br>
-      また、 WebFont を利用しない場合は、マシンローカルのベクタデータを流用していることになるため、画像転送のオーバーヘッドも無くなる。
+      <p>Font は、外部 SVG と違い、単色ではあるが CSS での色指定も可能である。
+      <p>また、 WebFont を利用しない場合は、マシンローカルのベクタデータを流用していることになるため、画像転送のオーバーヘッドも無くなる。
       <p>最近は絵文字を装飾に使用することも視野に入るかもしれないが、絵文字は端末ごとに表示がかなり異なり、かつ特に使いたいものも無かったため、本サイトでは未使用である。
     </section>
   </article>

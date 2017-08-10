@@ -59,7 +59,7 @@
     "width": 700
   },
   "datePublished": "2016-07-21T08:00:00+08:00",
-  "dateModified": "2017-05-23T08:00:00+08:00",
+  "dateModified": "2017-08-10T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -101,7 +101,7 @@
       <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/info.css">
       <ul class="info">
         <li>created_at: <time class="created_at" datetime="2016-07-21">2016-07-21</time>
-        <li>updated_at: <time class="updated_at" datetime="2017-05-23">2017-05-23</time>
+        <li>updated_at: <time class="updated_at" datetime="2017-08-10">2017-08-10</time>
         <li class="tags">tags: [<a href='/tags/fetch.html'>fetch</a>,<a href='/tags/stream.html'>stream</a>,<a href='/tags/promise.html'>promise</a>,<a href='/tags/whatwg.html'>whatwg</a>]
       </ul>
 
@@ -201,9 +201,9 @@
       <pre class=js><code translate="no">fetch(&#039;foo.txt&#039;).then((res) =&gt; {
   const total = res.headers.get(&#039;content-length&#039;);
 });</code></pre>
-      <p>(クロスオリジンのリソースを CORS を使わずに取得する <code translate="no">mode: no-cors</code> の場合は、 Opaque な Response となりヘッダは取れない。しかし基本的にキャッシュのために使うものであり、body も取れないためプログレスを出す用途はないだろう)
-      <p>これを用いれば、以下のように Progress を得ることができる。<br>
-      (進捗率の数値を使えば、 CSS でプログレスバーを表示することも可能だろう)
+      <p>(クロスオリジンのリソースを CORS を使わずに取得する <code translate="no">mode: no-cors</code> の場合は、 Opaque な Response となりヘッダは取れない。しかし基本的にキャッシュのために使うものであり、 body も取れないためプログレスを出す用途はないだろう)
+      <p>これを用いれば、以下のように Progress を得ることができる。
+      <p>(進捗率の数値を使えば、 CSS でプログレスバーを表示することも可能だろう)
       <pre class=js><code translate="no">fetch(&#039;foo.txt&#039;).then((res) =&gt; {
   // foo.txt の全体サイズ
   const total = res.headers.get(&#039;content-length&#039;);

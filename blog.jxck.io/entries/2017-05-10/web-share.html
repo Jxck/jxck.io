@@ -59,7 +59,7 @@
     "width": 700
   },
   "datePublished": "2017-05-10T08:00:00+08:00",
-  "dateModified": "2017-05-23T08:00:00+08:00",
+  "dateModified": "2017-08-10T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -101,7 +101,7 @@
       <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/info.css">
       <ul class="info">
         <li>created_at: <time class="created_at" datetime="2017-05-10">2017-05-10</time>
-        <li>updated_at: <time class="updated_at" datetime="2017-05-23">2017-05-23</time>
+        <li>updated_at: <time class="updated_at" datetime="2017-08-10">2017-08-10</time>
         <li class="tags">tags: [<a href='/tags/whatwg.html'>whatwg</a>,<a href='/tags/web-share.html'>web-share</a>]
       </ul>
 
@@ -115,20 +115,20 @@
     </section>
     <section>
       <h2 id="Web+Share"><a href="#Web+Share">Web Share</a></h2>
-      <p>ブラウザで開いている Web コンテンツを、他のサービスやアプリと連携するための方法は、以前から検討されていた。<br>
-      主だったものとしては、すでに策定は止まっているが Android の Intent を参考にした <a href="https://www.w3.org/TR/web-intents/">Web Intents</a> が挙げられる。
+      <p>ブラウザで開いている Web コンテンツを、他のサービスやアプリと連携するための方法は、以前から検討されていた。
+      <p>主だったものとしては、すでに策定は止まっているが Android の Intent を参考にした <a href="https://www.w3.org/TR/web-intents/">Web Intents</a> が挙げられる。
       <p>Web Share API は、 Web コンテンツと SNS やメールなどとの連携を主目的とした、より簡素で軽量な API となっている。
     </section>
     <section>
       <h2 id="DEMO"><a href="#DEMO">DEMO</a></h2>
-      <p>DEMO を以下に公開している。<br>
-      (まだ Origin Trials のトークンはそのままになっている)
+      <p>DEMO を以下に公開している。
+      <p>(まだ Origin Trials のトークンはそのままになっている)
       <p><a href="http://labs.jxck.io/web-share/">DEMO: web-share</a>
     </section>
     <section>
       <h2 id="API"><a href="#API">API</a></h2>
-      <p>API は非常に簡素だ。<br>
-      現状設定可能なパラメータは、 <code translate="no">title</code>, <code translate="no">text</code>, <code translate="no">url</code> のみである。
+      <p>API は非常に簡素だ。
+      <p>現状設定可能なパラメータは、 <code translate="no">title</code>, <code translate="no">text</code>, <code translate="no">url</code> のみである。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre class=js><code translate="no">if (navigator.share !== undefined) {
   document.getElementById(&quot;support&quot;).textContent = &quot;supported&quot;;
@@ -143,10 +143,10 @@ navigator
   })
   .then(console.log.bind(console))
   .catch(console.log.bind(console));</code></pre>
-      <p>こうした API であるため、 <code translate="no">navigator.share</code> を見ることで、サポートの有無を判別できる。<br>
-      結果は Promise を返し、 Share の成功可否によって変わる。
-      <p>また、 Web Share は Share の発信だけで無く、受信についても視野に入れいている。<br>
-      現状その API は議論中だが、同様に navigator を基本に拡張されていくと思われる。
+      <p>こうした API であるため、 <code translate="no">navigator.share</code> を見ることで、サポートの有無を判別できる。
+      <p>結果は Promise を返し、 Share の成功可否によって変わる。
+      <p>また、 Web Share は Share の発信だけで無く、受信についても視野に入れいている。
+      <p>現状その API は議論中だが、同様に navigator を基本に拡張されていくと思われる。
       <p>簡素な Share の送信だけであれば、以下のような URI Scheme の策定も可能かもしれない。
       <pre class=html><code translate="no">&lt;a href=&quot;share:?title=Example%20Page&amp;amp;url=https://example.com/page&quot;&gt;Share this&lt;/a&gt;</code></pre>
       <p>しかし、上述のような サポート判別/成功判別/受信側の拡張 などを考えると JS API としての策定が妥当であるとし、今回の API が策定された。
@@ -155,8 +155,8 @@ navigator
     </section>
     <section>
       <h2 id="Origin+Trials+の卒業"><a href="#Origin+Trials+の卒業">Origin Trials の卒業</a></h2>
-      <p>Web Share は Origin Trials を卒業したため、しばらくするとトークンなしでも機能が使えるようになる予定とのことだ。<br>
-      しかし、これは仕様の策定が終わったことも、ブラウザの普及が進んだことも意味しない。
+      <p>Web Share は Origin Trials を卒業したため、しばらくするとトークンなしでも機能が使えるようになる予定とのことだ。
+      <p>しかし、これは仕様の策定が終わったことも、ブラウザの普及が進んだことも意味しない。
       <p>あくまで、仕様策定作業を開始するにあたっての WIP リクエストが、最低限のフィードバックを集めマージされたようなものだと考えるのが近いかもしれない。
     </section>
   </article>

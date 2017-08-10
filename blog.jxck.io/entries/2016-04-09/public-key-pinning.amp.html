@@ -52,7 +52,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-04-09T08:00:00+08:00",
-  "dateModified": "2017-05-23T08:00:00+08:00",
+  "dateModified": "2017-08-10T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -566,7 +566,7 @@ th:last-child, td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-04-09>2016-04-09</time>
-    <li>updated_at: <time class=updated_at datetime=2017-05-23>2017-05-23</time>
+    <li>updated_at: <time class=updated_at datetime=2017-08-10>2017-08-10</time>
     <li class=tags>tags: [<a href='/tags/hpkp.html'>hpkp</a>,<a href='/tags/security.html'>security</a>]
   </ul>
 
@@ -576,12 +576,12 @@ th:last-child, td:last-child {
     <section>
       <h2 id="Intro"><a href="#Intro">Intro</a></h2>
       <p>本サイトにて Public Key Pinning for HTTP を有効化した。
-      <p><a href="https://blog.jxck.io/entries/2016-03-30/content-security-policy.html">CSP</a> 同様、まずは Report-Only を設定し、<br>
-      HPKP Report についても、 <a href="https://report-uri.io">report-uri.io</a> を用いて収集することにした。
+      <p><a href="https://blog.jxck.io/entries/2016-03-30/content-security-policy.html">CSP</a> 同様、まずは Report-Only を設定し、
+      <p>HPKP Report についても、 <a href="https://report-uri.io">report-uri.io</a> を用いて収集することにした。
       <p>導入に必要な設定や、注意点についてまとめる。
       <p>なお、本サイトへの導入はあくまで <strong>実験</strong> である。運用や影響も踏まえると、一般サービスへの安易な導入は推奨しない。
-      <p>また、本来は HSTS と併用することが推奨されている。(必須ではない)<br>
-      そちらも追って対応する予定である。
+      <p>また、本来は HSTS と併用することが推奨されている。(必須ではない)
+      <p>そちらも追って対応する予定である。
     </section>
     <section>
       <h2 id="Public+Key+Pinning"><a href="#Public+Key+Pinning">Public Key Pinning</a></h2>
@@ -743,8 +743,8 @@ curl -sI https://github.com | grep Public-Key-Pins | ruby -nle &#039;puts $_.gsu
       </section>
       <section>
         <h3 id="結果"><a href="#結果">結果</a></h3>
-        <p>生成したヘッダは以下である。<br>
-        max-age は、とりあえず 3600s と短い値から始めることにした。
+        <p>生成したヘッダは以下である。
+        <p>max-age は、とりあえず 3600s と短い値から始めることにした。
         <pre><code translate="no">Public-Key-Pins:
   max-age=3600;
   pin-sha256=&quot;7JT7NhX2St/VBBkRi4BO427M7ytLy7p3CRYPtHpSm7c=&quot;;
@@ -755,8 +755,8 @@ curl -sI https://github.com | grep Public-Key-Pins | ruby -nle &#039;puts $_.gsu
   pin-sha256=&quot;7JT7NhX2St/VBBkRi4BO427M7ytLy7p3CRYPtHpSm7c=&quot;;
   pin-sha256=&quot;+WpRHNpAId2FIOvVgwmS3HsG+eJtERKC4/qM1tQaeRk=&quot;;
   report-uri=&quot;https://4887c342aec2b444c655987aa8b0d5cb.report-uri.io/r/default/hpkp/reportOnly&quot;</code></pre>
-        <p>意図的にレポートを上げて見てみたかったが、単に不正な証明書を用意するだけではだめだった。<br>
-        どうやったら、正しく HPKP 違反ができるのか、自前で CA を立てるなどする必要があるのかもしれない。
+        <p>意図的にレポートを上げて見てみたかったが、単に不正な証明書を用意するだけではだめだった。
+        <p>どうやったら、正しく HPKP 違反ができるのか、自前で CA を立てるなどする必要があるのかもしれない。
         <p>ということで CSP と違い、よほどのことがない限りレポートは上がらないはずであると考える。
         <p>もしレポートが上がった場合、結構な問題が発生している可能性もあるので、必要に応じて追記や報告をしたい。
       </section>

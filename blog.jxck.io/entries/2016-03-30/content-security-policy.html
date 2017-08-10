@@ -59,7 +59,7 @@
     "width": 700
   },
   "datePublished": "2016-03-30T08:00:00+08:00",
-  "dateModified": "2017-05-23T08:00:00+08:00",
+  "dateModified": "2017-08-10T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -101,7 +101,7 @@
       <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/info.css">
       <ul class="info">
         <li>created_at: <time class="created_at" datetime="2016-03-30">2016-03-30</time>
-        <li>updated_at: <time class="updated_at" datetime="2017-05-23">2017-05-23</time>
+        <li>updated_at: <time class="updated_at" datetime="2017-08-10">2017-08-10</time>
         <li class="tags">tags: [<a href='/tags/csp.html'>csp</a>,<a href='/tags/security.html'>security</a>]
       </ul>
 
@@ -141,8 +141,8 @@
       <h2 id="CSP+の注意点"><a href="#CSP+の注意点">CSP の注意点</a></h2>
       <p>もし、先ほど例示した設定をサイト全体に適用した場合、何がおこるかを考えてみる。
       <pre><code translate="no">Content-Security-Policy: default-src &#039;self&#039;</code></pre>
-      <p>まず、この指定により、インラインスクリプトが全て無効になる。<br>
-      よくある例として、 Google Analytics のためページ下部に埋め込んだ <code translate="no">&lt;script&gt;</code> が全て動かなくなるため、アナリティクスが動かなくなる。
+      <p>まず、この指定により、インラインスクリプトが全て無効になる。
+      <p>よくある例として、 Google Analytics のためページ下部に埋め込んだ <code translate="no">&lt;script&gt;</code> が全て動かなくなるため、アナリティクスが動かなくなる。
       <p>他にも、例えば <code translate="no">cdn.jquery.com</code> などの Public CDN から取得しているスクリプトも軒並み動かなくなる。
       <p>スクリプトだけでなく、 <code translate="no">&lt;img&gt;</code> や <code translate="no">&lt;iframe&gt;</code> なども注意が必要だ。
       <p>特にアド(広告)を貼っている場合は、そのアドは表示されなくなる可能性が高い。

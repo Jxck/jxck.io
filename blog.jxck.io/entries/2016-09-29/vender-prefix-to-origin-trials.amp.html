@@ -52,7 +52,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-09-29T08:00:00+08:00",
-  "dateModified": "2017-05-23T08:00:00+08:00",
+  "dateModified": "2017-08-10T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -566,7 +566,7 @@ th:last-child, td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-09-29>2016-09-29</time>
-    <li>updated_at: <time class=updated_at datetime=2017-05-23>2017-05-23</time>
+    <li>updated_at: <time class=updated_at datetime=2017-08-10>2017-08-10</time>
     <li class=tags>tags: [<a href='/tags/origin%20trials.html'>origin trials</a>,<a href='/tags/vender%20prefix.html'>vender prefix</a>,<a href='/tags/web.html'>web</a>]
   </ul>
 
@@ -575,8 +575,8 @@ th:last-child, td:last-child {
     <h1><a href=/entries/2016-09-29/vender-prefix-to-origin-trials.html>Web 標準化のフィードバックサイクルを円滑にする Origin Trials について</a></h1>
     <section>
       <h2 id="Intro"><a href="#Intro">Intro</a></h2>
-      <p>ブラウザに追加される新しい機能に対して、 Vender Prefix の代替となる Origin Trials の導入が徐々に始まっている。<br>
-      今回は、これまでの Vender Prefix の問題点と、代替として提案された Origin Trials のデザインや導入方法などについて記す。
+      <p>ブラウザに追加される新しい機能に対して、 Vender Prefix の代替となる Origin Trials の導入が徐々に始まっている。
+      <p>今回は、これまでの Vender Prefix の問題点と、代替として提案された Origin Trials のデザインや導入方法などについて記す。
     </section>
     <section>
       <h2 id="Avoid+Breaking+the+Web"><a href="#Avoid+Breaking+the+Web">Avoid Breaking the Web</a></h2>
@@ -597,8 +597,8 @@ th:last-child, td:last-child {
         <li>ms (Internet Explorer)
       </ul>
       <p>(<a href="https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix">Vendor Prefix - Glossary | MDN</a>)
-      <p>Vender Prefix は、まさしくその機能が <strong>実験中</strong> であることを示すために用いられ、これを付したベンダは、実験の結果をより積極的に反映できると期待した。<br>
-      そして、実験が終われば Prefix は取られ、標準プロパティに置きかわり役目を終える。はずだった。
+      <p>Vender Prefix は、まさしくその機能が <strong>実験中</strong> であることを示すために用いられ、これを付したベンダは、実験の結果をより積極的に反映できると期待した。
+      <p>そして、実験が終われば Prefix は取られ、標準プロパティに置きかわり役目を終える。はずだった。
       <p>ところが、実際には多くのコンテンツが以下のようなコードを含む結果となった。
       <pre class=css><code translate="no">.radius {
   -webkit-border-radius: 1em;
@@ -623,12 +623,12 @@ th:last-child, td:last-child {
                   || window.mozRTCPeerConnection
                   || window.webkitRTCPeerConnection
                   || window.msRTCPeerConnection;</code></pre>
-      <p>HTML5 時代には、特に実装が早い webkit/moz あたりを取り上げて「こう書けば動く」という形でコードが広まる結果となった。<br>
-      特に、仕様の策定に時間がかかった機能は、 Vender Prefix 付きの実装が多くのプロダクトに根強く染み込んでしまった。
+      <p>HTML5 時代には、特に実装が早い webkit/moz あたりを取り上げて「こう書けば動く」という形でコードが広まる結果となった。
+      <p>特に、仕様の策定に時間がかかった機能は、 Vender Prefix 付きの実装が多くのプロダクトに根強く染み込んでしまった。
       <p>Vender Prefix は、 <strong>「変更や消滅がありえる」ということを使う側に強制することができなかった</strong> ため、本来の目的を果たすためには弱い仕組みだったといえる。
       <p><amp-img layout=responsive src=vender-prefix-warning.png#570x194 alt="warning message for vender prefix at devtools" title="vender prefix warning" width=570 height=194>
-      <p>また、 Prefix が付いていたのが、ベンダの独自拡張であったとしても、それに依存するサイトは同様の理由で産まれた。<br>
-      今年 Firefox が <a href="http://www.otsukare.info/2016/01/04/webkit-resolved-fixed">Prefix のついた webkit 独自拡張を見るようになった</a> のも、 Vender Prefix の性質を象徴する現象と言えると思う。
+      <p>また、 Prefix が付いていたのが、ベンダの独自拡張であったとしても、それに依存するサイトは同様の理由で産まれた。
+      <p>今年 Firefox が <a href="http://www.otsukare.info/2016/01/04/webkit-resolved-fixed">Prefix のついた webkit 独自拡張を見るようになった</a> のも、 Vender Prefix の性質を象徴する現象と言えると思う。
     </section>
     <section>
       <h2 id="Doing+Science+On+The+Web"><a href="#Doing+Science+On+The+Web">Doing Science On The Web</a></h2>
@@ -671,8 +671,8 @@ th:last-child, td:last-child {
           <li>Web USB (Experimenting until March 2017)
           <li>Foreign Fetch (Experimenting until March 2017)
         </ul>
-        <p>それぞれ、トライアルのおおよその期間も記されている。<br>
-        この期間になったら、トライアルが終わり、機能が使えなくなる可能性があることを、開発者は事前に了解する必要がある。
+        <p>それぞれ、トライアルのおおよその期間も記されている。
+        <p>この期間になったら、トライアルが終わり、機能が使えなくなる可能性があることを、開発者は事前に了解する必要がある。
         <p>今後、 Origin Trials 対象となる機能については、以下にリストされるようである。
         <p><a href="https://github.com/jpchase/OriginTrials/blob/gh-pages/available-trials.md">Current Experimental Features</a>
         <p>また、最初にトライアルに登録した時点で自動で登録される ML でアナウンスを得ることもできるらしい。
@@ -692,8 +692,8 @@ th:last-child, td:last-child {
     </section>
     <section>
       <h2 id="Origin+Trial+Token"><a href="#Origin+Trial+Token">Origin Trial Token</a></h2>
-      <p>しばらくすると、メールでトークンが送られてくる。<br>
-      このトークンを、 HTML か HTTP Header の中に仕込むことで、ブラウザが Origin Trials へのオプトインを認識し、申請した機能が使えるようになる。
+      <p>しばらくすると、メールでトークンが送られてくる。
+      <p>このトークンを、 HTML か HTTP Header の中に仕込むことで、ブラウザが Origin Trials へのオプトインを認識し、申請した機能が使えるようになる。
       <section>
         <h3 id="HTML+の場合"><a href="#HTML+の場合">HTML の場合</a></h3>
         <p>HTML ページがある場合は、 <code translate="no">&lt;meta&gt;</code> タグに埋め込むことで、ブラウザがそれを認識し、ページ上で機能が有効になる。

@@ -59,7 +59,7 @@
     "width": 700
   },
   "datePublished": "2017-05-18T08:00:00+08:00",
-  "dateModified": "2017-05-23T08:00:00+08:00",
+  "dateModified": "2017-08-10T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -101,7 +101,7 @@
       <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/info.css">
       <ul class="info">
         <li>created_at: <time class="created_at" datetime="2017-05-18">2017-05-18</time>
-        <li>updated_at: <time class="updated_at" datetime="2017-05-23">2017-05-23</time>
+        <li>updated_at: <time class="updated_at" datetime="2017-08-10">2017-08-10</time>
         <li class="tags">tags: [<a href='/tags/erlang.html'>erlang</a>,<a href='/tags/gen_statem.html'>gen_statem</a>,<a href='/tags/gen_fsm.html'>gen_fsm</a>]
       </ul>
 
@@ -137,8 +137,8 @@
     </section>
     <section>
       <h2 id="gen_fsm+to+gen_statem"><a href="#gen_fsm+to+gen_statem">gen_fsm to gen_statem</a></h2>
-      <p>まず、ビヘイビアの callback API が整理されている。<br>
-      gen_fsm と似ているものの互換性が保たれているわけではない。
+      <p>まず、ビヘイビアの callback API が整理されている。
+      <p>gen_fsm と似ているものの互換性が保たれているわけではない。
       <p>その上で追加された機能には以下のようなものがある。
       <ul>
         <li>keep_state, repeat_state
@@ -198,8 +198,8 @@ erlang:&#039;!&#039;                        -----&gt; Module:StateName/3
 hello({call, From}, eventname, Data) -&gt; ...; % From は返答先
 hello(cast, eventname, Data) -&gt; ...;
 hello(info, eventname, Data) -&gt; ...;</code></pre>
-      <p>EventType は後述するものも含めて 6 種類ある。<br>
-      これにより、 Module:StateName/3 へのハンドラの統合がされている。
+      <p>EventType は後述するものも含めて 6 種類ある。
+      <p>これにより、 Module:StateName/3 へのハンドラの統合がされている。
       <p>ハンドラの戻り値はいくつかの種類があるが、 gen_fsm で <code translate="no">Timeout</code>, <code translate="no">hibernate</code> などとしていたタプルの 4 番目がアクションとして整理された。
       <pre class=erlang><code translate="no">{next_state, NextStateName, NewStateData}
 {next_state, NextStateName, NewStateData, hibernate}
@@ -231,14 +231,14 @@ hello(cast, Event, Data) -&gt;
     </section>
     <section>
       <h2 id="callback_mode"><a href="#callback_mode">callback_mode</a></h2>
-      <p>gen_statem では callback_mode/0 というビヘイビアが追加された。<br>
-      これは、コールバックの実装方法を指定するもので、 gen_fsm のように atom でステートに名前をつけ、対応する関数を実装するスタイルは <code translate="no">state_functions</code> になる。
+      <p>gen_statem では callback_mode/0 というビヘイビアが追加された。
+      <p>これは、コールバックの実装方法を指定するもので、 gen_fsm のように atom でステートに名前をつけ、対応する関数を実装するスタイルは <code translate="no">state_functions</code> になる。
       <pre class=erlang><code translate="no">callback_mode() -&gt; state_functions.</code></pre>
     </section>
     <section>
       <h2 id="handle_event_function"><a href="#handle_event_function">handle_event_function</a></h2>
-      <p>gen_fsm では、ステートには atom で名前をつけるスタイルをとった。<br>
-      しかし、なんらかのデータコンテナの値などをステートとして扱いたい場合 atom ではなくそのパターンマッチをそのままステートとして持つ方が便利な場合もある。
+      <p>gen_fsm では、ステートには atom で名前をつけるスタイルをとった。
+      <p>しかし、なんらかのデータコンテナの値などをステートとして扱いたい場合 atom ではなくそのパターンマッチをそのままステートとして持つ方が便利な場合もある。
       <p>callback_mode/0 で <code translate="no">handle_event_function</code> を返すと、ステート名を atom 以外の任意の値にすることができる。
       <pre class=erlang><code translate="no">callback_mode() -&gt; handle_event_function.</code></pre>
       <p>コールバックは <code translate="no">handle_event</code> 1 種類になり、この関数の引数のマッチでステートを表す。
@@ -299,8 +299,8 @@ StateName(cast, OldState, Data) -&gt;
     </section>
     <section>
       <h2 id="Postponing"><a href="#Postponing">Postponing</a></h2>
-      <p>発生したイベントを先送りすることができるアクション。<br>
-      先送りしたイベントはキューに積まれ、状態が遷移したら再度順番に再生される。
+      <p>発生したイベントを先送りすることができるアクション。
+      <p>先送りしたイベントはキューに積まれ、状態が遷移したら再度順番に再生される。
       <pre class=erlang><code translate="no">{keep_state, Data, [postpone]}</code></pre>
     </section>
     <section>

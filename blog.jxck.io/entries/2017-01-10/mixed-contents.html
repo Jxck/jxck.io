@@ -59,7 +59,7 @@
     "width": 700
   },
   "datePublished": "2017-01-10T08:00:00+08:00",
-  "dateModified": "2017-05-23T08:00:00+08:00",
+  "dateModified": "2017-08-10T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -101,7 +101,7 @@
       <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/info.css">
       <ul class="info">
         <li>created_at: <time class="created_at" datetime="2017-01-10">2017-01-10</time>
-        <li>updated_at: <time class="updated_at" datetime="2017-05-23">2017-05-23</time>
+        <li>updated_at: <time class="updated_at" datetime="2017-08-10">2017-08-10</time>
         <li class="tags">tags: [<a href='/tags/csp.html'>csp</a>,<a href='/tags/mixed%20contents.html'>mixed contents</a>,<a href='/tags/upgrade-insecure-request.html'>upgrade-insecure-request</a>,<a href='/tags/block-all-mixed-contents.html'>block-all-mixed-contents</a>]
       </ul>
 
@@ -134,8 +134,8 @@
       <h2 id="mixed+contents+の挙動"><a href="#mixed+contents+の挙動">mixed contents の挙動</a></h2>
       <p><a href="https://w3c.github.io/webappsec-mixed-content/">Mixed Content</a>
       <p>まず、 mixed contents 発生時のブラウザの挙動について再度確認する。
-      <p>mixed contents は URL バーが変化し、ユーザに注意を促す。<br>
-      また、コンテンツが MITM により改ざんされた場合の影響によって、二つに分類されており、それによって挙動が変わる。
+      <p>mixed contents は URL バーが変化し、ユーザに注意を促す。
+      <p>また、コンテンツが MITM により改ざんされた場合の影響によって、二つに分類されており、それによって挙動が変わる。
       <p>以下にデモを用意した。
       <p><a href="https://labs.jxck.io/mixed/mixed.html">DEMO: mixed contents</a>
       <section>
@@ -175,8 +175,8 @@ CSS 内の URL (@font-face, background-image etc)</code></pre>
 &lt;audio&gt;
 &lt;video&gt;
 &lt;object&gt;</code></pre>
-        <p>もし、 <code translate="no">&lt;img&gt;</code> で読まれるコンテンツが HTTP であり、 MITM によって改ざんされた場合、別の画像を表示することで元コンテンツを改ざんすることが可能だ。<br>
-        しかし、そこを経由して元コンテツの他の DOM に変更を及ぼすことはできない。
+        <p>もし、 <code translate="no">&lt;img&gt;</code> で読まれるコンテンツが HTTP であり、 MITM によって改ざんされた場合、別の画像を表示することで元コンテンツを改ざんすることが可能だ。
+        <p>しかし、そこを経由して元コンテツの他の DOM に変更を及ぼすことはできない。
         <p>そのため、これらコンテンツの読み込み自体は行われるが、ブラウザの URL バーは異常を検知したような表示になる。
         <p>特に EV 証明書で、 URL バーに組織名を表示しているような場合は、たとえコンテンツが表示されていたとしても、無視できない問題となってくる。
         <p><a href="https://labs.jxck.io/mixed/mixed.html#passive">DEMO: Mixed Passive Contents</a>
@@ -212,10 +212,10 @@ CSS 内の URL (@font-face, background-image etc)</code></pre>
         <p>mixed contents は、発生したこと自体を把握しにくかったという点が、対応の難しさを助長している場合がある。
         <p>把握できていない場所で mixed contents が発生するまま HTTPS に移行すると、広告が表示されないなどの問題が起こってしまう。
         <p>特にコンテンツが多いサービスでは、実際にどこで mixed contents が発生しているのかを知ることができれば、コンテンツの修正を進めることができ、 HTTPS 化を進める上でも役に立つだろう。
-        <p>まず、 <code translate="no">Upgrade-Insecure-Request</code> は、 URL を書き換えることでサーバにリクエストを発行するため、もしサーバが対応していなければサーバ側に 404 のログを残すことができる。<br>
-        これにより、コンテンツサーバの中で HTTPS 化が済んでいない URL を発見することに役立つだろう。
-        <p>次に、 <code translate="no">Block-All-Mixed-Contents</code> は、 mixed contents が発生した場合にそれが Active/Passive どちらであれレポートを生成する。<br>
-        しかし、いきなり全てがブロックされては困るので、 <code translate="no">Block-All-Mixed-Contents-Report-Only</code> を用いることで、挙動を変えないままレポートだけを収集し可視化することができるだろう。
+        <p>まず、 <code translate="no">Upgrade-Insecure-Request</code> は、 URL を書き換えることでサーバにリクエストを発行するため、もしサーバが対応していなければサーバ側に 404 のログを残すことができる。
+        <p>これにより、コンテンツサーバの中で HTTPS 化が済んでいない URL を発見することに役立つだろう。
+        <p>次に、 <code translate="no">Block-All-Mixed-Contents</code> は、 mixed contents が発生した場合にそれが Active/Passive どちらであれレポートを生成する。
+        <p>しかし、いきなり全てがブロックされては困るので、 <code translate="no">Block-All-Mixed-Contents-Report-Only</code> を用いることで、挙動を変えないままレポートだけを収集し可視化することができるだろう。
         <p>こうしたヘッダの挙動を利用し、 Staging 環境で自動化した実ブラウザからアクセスしたり、限定的なユーザにサービスを提供することで、サービス内の mixed contents の状況を可視化する一助となるだろう。
       </section>
     </section>
@@ -233,8 +233,8 @@ CSS 内の URL (@font-face, background-image etc)</code></pre>
       <p><a href="https://labs.jxck.io/mixed/iframe.html">DEMO: mixed iframe</a>
       <p>もし大元のコンテンツに <code translate="no">Upgrade-Insecure-Request</code> をつければ、 iframe 内のサブリソースも全て https に読み替えられるため、サーバが対応していればそれで済む。
       <p><a href="https://labs.jxck.io/mixed/iframe.html?upgrade-insecure-request">DEMO: upgrade insecure request iframe</a>
-      <p>また、 <code translate="no">Block-All-Mixed-Contents</code> をつければ、 iframe 内のサブリソースはブロックされるため、 mixed contents を回避することはできる。<br>
-      しかし、 <strong>ネストした iframe 内の mixed contents をブロックしても report は発生しない</strong>。
+      <p>また、 <code translate="no">Block-All-Mixed-Contents</code> をつければ、 iframe 内のサブリソースはブロックされるため、 mixed contents を回避することはできる。
+      <p>しかし、 <strong>ネストした iframe 内の mixed contents をブロックしても report は発生しない</strong>。
       <p>もし iframe の内側の mixed contents まで report ができてしまうと、その内容を把握できる可能性などセキュリティ上問題があるからだ。
       <p><a href="https://labs.jxck.io/mixed/iframe.html?block-all-mixed-content">DEMO: block all mixed contents iframe</a>
       <p>つまり広告配信プラットフォームが提供する広告用の iframe 自体が https に対応していても、そこの入稿される広告コンテンツ本体のどこかに一つでも https 非対応なものがあれば、 mixed contents は避けられない。

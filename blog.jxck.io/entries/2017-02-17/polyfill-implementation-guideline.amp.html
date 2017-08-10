@@ -52,7 +52,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2017-02-17T08:00:00+08:00",
-  "dateModified": "2017-05-23T08:00:00+08:00",
+  "dateModified": "2017-08-10T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -566,7 +566,7 @@ th:last-child, td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2017-02-17>2017-02-17</time>
-    <li>updated_at: <time class=updated_at datetime=2017-05-23>2017-05-23</time>
+    <li>updated_at: <time class=updated_at datetime=2017-08-10>2017-08-10</time>
     <li class=tags>tags: [<a href='/tags/polyfill.html'>polyfill</a>,<a href='/tags/TAG.html'>TAG</a>,<a href='/tags/w3c.html'>w3c</a>]
   </ul>
 
@@ -585,8 +585,8 @@ th:last-child, td:last-child {
       <p>Breaking Change は、簡単に言えば <strong>後方互換を失うことで既存のものが壊れる可能性がある変更</strong> のことを表す。
       <p>そして、 Web における Breaking Change (<strong>Break the Web</strong>)、具体的には Web の標準技術について、何か追加/変更を行なったことによって既存のコンテンツが壊れることは、基本的に許されない。
       <p>また Web 上には、更新されないまま残るコンテンツも多くあるため、壊れたコンテンツ側が変更に追従すれば良いという前提を取るのが難しい。
-      <p>実際にはブラウザやコンテンツの実装、セキュリティ的な理由、なんらかの問題により deprecate される API もあり、壊れるコンテンツはある。<br>
-      しかし、少なくとも仕様策定が原因で発生することは無いように作業は進められる。
+      <p>実際にはブラウザやコンテンツの実装、セキュリティ的な理由、なんらかの問題により deprecate される API もあり、壊れるコンテンツはある。
+      <p>しかし、少なくとも仕様策定が原因で発生することは無いように作業は進められる。
       <p>プラットフォームとしての Web にはバージョンが無いため、作った時に動いたものは、何か標準仕様に変更があっても動き続けることが求められるのだ。
     </section>
     <section>
@@ -607,8 +607,8 @@ th:last-child, td:last-child {
         <li>Multiple interoperable implementations
         <li>Universal support
       </ol>
-      <p>多くの場合、 5  と 6 の間は、実装が他よりも遅れるブラウザがあるために時間がかかる。<br>
-      その間にも、新しい機能を用いたコンテツが全てのブラウザで動くように導入するのが、 Polyfill の代表的なユースケースだ。
+      <p>多くの場合、 5  と 6 の間は、実装が他よりも遅れるブラウザがあるために時間がかかる。
+      <p>その間にも、新しい機能を用いたコンテツが全てのブラウザで動くように導入するのが、 Polyfill の代表的なユースケースだ。
       <p>ただし、ここでは 4 が終わっているため、 Polyfill が実装する仕様は 6 の段階で各ブラウザが提供するものと同等であり、 6 の段階に至ったら「Polyfill 自体の読み込みをやめる」だけで、他のコードは一切変更せずにネイティブの API を呼び出して動くというのが理想的な流れだ。
     </section>
     <section>
@@ -635,10 +635,10 @@ th:last-child, td:last-child {
       <section>
         <h3 id="createShadowRoot"><a href="#createShadowRoot">createShadowRoot</a></h3>
         <p>TAG のドキュメントでは、 ShadowDOM の <code translate="no">createShadowRoot()</code> についても言及されている。
-        <p>ShadowDOM の仕様は、これまでの DOM に新しい概念を持ち込むため仕様の策定が難しく、かなりの時間を要した。<br>
-        API 自体も途中で更新され、更新後を v1 としてそれまでが v0 として扱われることとなった。
-        <p>その API の一つであり、非常に重要な <code translate="no">createShadowRoot()</code> は、 v1 に上がる際に open/close を値として持つ <code translate="no">mode</code> という概念を持つこととなった。<br>
-        この <code translate="no">mode</code> については、どちらをデフォルトとするのかという議論があったようだが、結果として <code translate="no">createShadowRoot({mode})</code> のように、引数を必須とすることで、省略時のデフォルトを定義しない方向で策定されることとなった。
+        <p>ShadowDOM の仕様は、これまでの DOM に新しい概念を持ち込むため仕様の策定が難しく、かなりの時間を要した。
+        <p>API 自体も途中で更新され、更新後を v1 としてそれまでが v0 として扱われることとなった。
+        <p>その API の一つであり、非常に重要な <code translate="no">createShadowRoot()</code> は、 v1 に上がる際に open/close を値として持つ <code translate="no">mode</code> という概念を持つこととなった。
+        <p>この <code translate="no">mode</code> については、どちらをデフォルトとするのかという議論があったようだが、結果として <code translate="no">createShadowRoot({mode})</code> のように、引数を必須とすることで、省略時のデフォルトを定義しない方向で策定されることとなった。
         <p>しかし、 <code translate="no">createShadowRoot()</code> は主に Google が先行して Chrome に実装しており、それがかなり広く普及してしまったため、途中から引数を必須にすることは実質不可能だった。ただし、 <code translate="no">mode</code> の概念を外すことはできないため、 <code translate="no">createShadowRoot()</code> は従来のままとし、代わりに「引数を必須とする別の名前のメソッド」を定義することでこの問題を回避することとなった。
         <p>これが v1 で引数必須として定義されている <code translate="no">attachShadow({mode})</code> である。
         <pre class=js><code translate="no">// v0
@@ -652,24 +652,24 @@ document.createElement(&#039;div&#039;).attachShadow({ mode: &#039;open&#039; })
     </section>
     <section>
       <h2 id="fantasy+override"><a href="#fantasy+override">fantasy override</a></h2>
-      <p>Polyfill が、ネイティブの実装と別の名前で提供されているなら、これらの問題を避けることができる。<br>
-      しかし、多くのコンテンツは、まだ仕様策定/実装が途中の機能を、将来使われるか、一部のブラウザだけが提供している仮の("fantasy")実装に寄せて使ってしまうため、依然問題となる。
+      <p>Polyfill が、ネイティブの実装と別の名前で提供されているなら、これらの問題を避けることができる。
+      <p>しかし、多くのコンテンツは、まだ仕様策定/実装が途中の機能を、将来使われるか、一部のブラウザだけが提供している仮の("fantasy")実装に寄せて使ってしまうため、依然問題となる。
       <p>例えば、以下のような記述はよく見られる。
       <pre class=js><code translate="no">requestAnimationFrame = requestAnimationFrame || webkitRequestAnimationFrame || polyfillRequestAnimationFrame;</code></pre>
-      <p>もしこのコードを書いた時、最初の二つがなかった時は <code translate="no">polyfillRequestAnimationFrame</code> が使われるため、その挙動に依存した実装がされるだろう。<br>
-      その後、 <code translate="no">window.webkitRequestAnimationFrame</code> がネイティブ実装されるとそちらが使われるが、それが <code translate="no">polyfillRequestAnimationFrame</code> の挙動と変わっていると、コンテンツが壊れてしまうことになる。また、ベンダプレフィックス付きの実装はあくまでも試験的な実装であるはずが、プレフィックスが取れた実装が提供された際に、そこで挙動が変わるとまたコンテンツが壊れる可能性が出る。
+      <p>もしこのコードを書いた時、最初の二つがなかった時は <code translate="no">polyfillRequestAnimationFrame</code> が使われるため、その挙動に依存した実装がされるだろう。
+      <p>その後、 <code translate="no">window.webkitRequestAnimationFrame</code> がネイティブ実装されるとそちらが使われるが、それが <code translate="no">polyfillRequestAnimationFrame</code> の挙動と変わっていると、コンテンツが壊れてしまうことになる。また、ベンダプレフィックス付きの実装はあくまでも試験的な実装であるはずが、プレフィックスが取れた実装が提供された際に、そこで挙動が変わるとまたコンテンツが壊れる可能性が出る。
       <p>つまり、このコードは最終的な <code translate="no">requestAnimationFrame</code> が取り得る選択肢を、非常に狭めてしまう結果となるのだ。
       <p>本来ベンダプレフィックスは、先行実装であることを示すつもりで付けられていたが、こうした使われ方が広まった結果、本来の意図を果たすことができなかった。
-      <p>特に WebKit が先行し、他のブラウザはプレフィックス付き実装すらしていなかった機能については、 webkit プレフィックスをつけて実装され、そのまま放置されているものも少なくない。<br>
-      そういったコンテンツを動作させられるよう、  <a href="https://groups.google.com/forum/?_escaped_fragment_=topic/mozilla.dev.platform/969k-Iryiyo">Firefox</a> や <a href="https://msdn.microsoft.com/ja-jp/library/mt270097(v=vs.85).aspx">Edge</a> が一部の webkit プレフィックスをサポートするという本末転倒な事態となっている。
+      <p>特に WebKit が先行し、他のブラウザはプレフィックス付き実装すらしていなかった機能については、 webkit プレフィックスをつけて実装され、そのまま放置されているものも少なくない。
+      <p>そういったコンテンツを動作させられるよう、  <a href="https://groups.google.com/forum/?_escaped_fragment_=topic/mozilla.dev.platform/969k-Iryiyo">Firefox</a> や <a href="https://msdn.microsoft.com/ja-jp/library/mt270097(v=vs.85).aspx">Edge</a> が一部の webkit プレフィックスをサポートするという本末転倒な事態となっている。
       <p>なお、 Extensible Web 以降、低レベルで実装の難易度が高く、問題が起こったときの影響が大きいものについては、ベンダプレフィックスの代わりに Origin Trial が採用さている。これについては以下を参照のこと。
       <p><a href="https://blog.jxck.io/entries/2016-09-29/vender-prefix-to-origin-trials.html">Web 標準化のフィードバックサイクルを円滑にする Origin Trials について</a>
     </section>
     <section>
       <h2 id="Polyfill+を実装するタイミング"><a href="#Polyfill+を実装するタイミング">Polyfill を実装するタイミング</a></h2>
-      <p>では、いつどの時点での仕様を元に Polyfill を実装するのが良いかというと、これは一概には言えない。<br>
-      仕様策定を追っている人であれば、仕様の成熟度合いやブラウザの実装状況などを踏まえた上で適切な時点を判断できるだろうが、そうでない場合は、その仕様の策定者や ML に提案を投げるのが一番安全だ。<br>
-      もしそこからレスポンスが無いようであれば、おそらく実装すべきタイミングにそもそも至っていない。
+      <p>では、いつどの時点での仕様を元に Polyfill を実装するのが良いかというと、これは一概には言えない。
+      <p>仕様策定を追っている人であれば、仕様の成熟度合いやブラウザの実装状況などを踏まえた上で適切な時点を判断できるだろうが、そうでない場合は、その仕様の策定者や ML に提案を投げるのが一番安全だ。
+      <p>もしそこからレスポンスが無いようであれば、おそらく実装すべきタイミングにそもそも至っていない。
       <p>参考になる指標として、ドキュメントでは以下が挙げられている。
       <ul>
         <li>既に実装しているブラウザが複数あるか?
@@ -680,9 +680,9 @@ document.createElement(&#039;div&#039;).attachShadow({ mode: &#039;open&#039; })
     </section>
     <section>
       <h2 id="実装者向けガイドライン"><a href="#実装者向けガイドライン">実装者向けガイドライン</a></h2>
-      <p>一番重要なのは名前だ。特に global スコープやネイティブオブジェクトの prototype に、策定段階の名前を使った実装を行うことは非常にリスクが高い。<br>
-      ドキュメントでは、例えば仕様で <code translate="no">Foo</code> と定義されているものは、 <code translate="no">FooPolyfill</code> や <code translate="no">FutureFoo</code> などに変えて実装することが推奨されている。<br>
-      また <code translate="no">$</code>, <code translate="no">root</code>, <code translate="no">web</code> といった一般的で短い名前を利用することも、非推奨とされている。
+      <p>一番重要なのは名前だ。特に global スコープやネイティブオブジェクトの prototype に、策定段階の名前を使った実装を行うことは非常にリスクが高い。
+      <p>ドキュメントでは、例えば仕様で <code translate="no">Foo</code> と定義されているものは、 <code translate="no">FooPolyfill</code> や <code translate="no">FutureFoo</code> などに変えて実装することが推奨されている。
+      <p>また <code translate="no">$</code>, <code translate="no">root</code>, <code translate="no">web</code> といった一般的で短い名前を利用することも、非推奨とされている。
       <p>そして、もしブラウザが実装を持っていたら、その実装に移譲するようにコードを書くべきである。またブラウザの実装が全てを提供してないない場合は、不足分のみを補うようにする。
       <p>例えば <code translate="no">URL</code> を提供するが、その内部で <code translate="no">URL#searchParams</code> が <code translate="no">URLSearchParams</code> を提供していなかった場合は、 <code translate="no">URL</code> 全体を Polyfill で置き換えるのでは無く、使える部分は <code translate="no">URL</code> を使い、 <code translate="no">URL#searchParams</code> だけ <code translate="no">URLSearchParams</code> を追加するように実装するのが望ましい。
       <p>他細かい点では以下があげられる。

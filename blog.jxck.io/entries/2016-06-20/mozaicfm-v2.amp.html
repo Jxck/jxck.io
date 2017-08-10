@@ -52,7 +52,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-06-20T08:00:00+08:00",
-  "dateModified": "2017-05-23T08:00:00+08:00",
+  "dateModified": "2017-08-10T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -566,7 +566,7 @@ th:last-child, td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-06-20>2016-06-20</time>
-    <li>updated_at: <time class=updated_at datetime=2017-05-23>2017-05-23</time>
+    <li>updated_at: <time class=updated_at datetime=2017-08-10>2017-08-10</time>
     <li class=tags>tags: [<a href='/tags/mozaic.fm.html'>mozaic.fm</a>,<a href='/tags/rss.html'>rss</a>,<a href='/tags/podcast.html'>podcast</a>]
   </ul>
 
@@ -586,10 +586,10 @@ th:last-child, td:last-child {
     <section>
       <h2 id="Podcast+の仕組み"><a href="#Podcast+の仕組み">Podcast の仕組み</a></h2>
       <p>そもそも Podcast の実体は、単なる RSS である。
-      <p>音声やアイコンなどのリソース URL が適切にマークアップされた RSS 形式の XML を配布するだけで実装できる。<br>
-      Podcast アプリは、このフィードを購読し、音声などを取得し、再生する feed reader の一種といえる。
-      <p>旧 mozaic.fm は、 tumblr 上に作ったサイトに、音声をリンクしたエントリを上げることで更新していた。<br>
-      feed は tumblr に feedburner というサービスを連携して提供していた。
+      <p>音声やアイコンなどのリソース URL が適切にマークアップされた RSS 形式の XML を配布するだけで実装できる。
+      <p>Podcast アプリは、このフィードを購読し、音声などを取得し、再生する feed reader の一種といえる。
+      <p>旧 mozaic.fm は、 tumblr 上に作ったサイトに、音声をリンクしたエントリを上げることで更新していた。
+      <p>feed は tumblr に feedburner というサービスを連携して提供していた。
       <p>サイト上でも音声は再生できるが、 Podcast 自体はアプリで聴くことが多いため、 RSS さえ生成すればサイト自体は必須では無い。
     </section>
     <section>
@@ -635,10 +635,10 @@ th:last-child, td:last-child {
         <li><code translate="no">&lt;itunes:summary&gt;&lt;![CDATA[&lt;a href=&quot;http://www.apple.com&quot;&gt;Apple&lt;/a&gt;]]&gt;&lt;/itunes:summary&gt;</code> とコメント化し display issue を防ぐ
         <li><code translate="no">&lt;item&gt;</code> を追加して行く、順番は <code translate="no">&lt;pubDate&gt;</code> で判断される。 24h 以内なら <code translate="no">&lt;itunes:order&gt;</code> で上書きもできる
       </ul>
-      <p>音声の配信は、通常の HTTP サーバから行うことができる。<br>
-      ただし、 Podcast は長い音声を再生するため、途中からの再生が可能なように HTTP の byte-range ヘッダをサポートする必要がある。
-      <p>音声ファイルは HTTPS で配信することが可能だ。<br>
-      しかし、 RSS 自体は HTTPS で配信すると iPhone の Podcast アプリでは読めないようであったため、 HTTP での提供も行っている。
+      <p>音声の配信は、通常の HTTP サーバから行うことができる。
+      <p>ただし、 Podcast は長い音声を再生するため、途中からの再生が可能なように HTTP の byte-range ヘッダをサポートする必要がある。
+      <p>音声ファイルは HTTPS で配信することが可能だ。
+      <p>しかし、 RSS 自体は HTTPS で配信すると iPhone の Podcast アプリでは読めないようであったため、 HTTP での提供も行っている。
       <p>また RSS2.0 的には <code translate="no">&lt;enclosure&gt;</code> の url は http じゃないとだめらしい。
     </section>
     <section>

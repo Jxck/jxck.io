@@ -59,7 +59,7 @@
     "width": 700
   },
   "datePublished": "2016-02-01T08:00:00+08:00",
-  "dateModified": "2017-05-23T08:00:00+08:00",
+  "dateModified": "2017-08-10T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -101,7 +101,7 @@
       <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/info.css">
       <ul class="info">
         <li>created_at: <time class="created_at" datetime="2016-02-01">2016-02-01</time>
-        <li>updated_at: <time class="updated_at" datetime="2017-05-23">2017-05-23</time>
+        <li>updated_at: <time class="updated_at" datetime="2017-08-10">2017-08-10</time>
         <li class="tags">tags: [<a href='/tags/amp.html'>amp</a>,<a href='/tags/html.html'>html</a>,<a href='/tags/performance.html'>performance</a>]
       </ul>
 
@@ -136,14 +136,14 @@
           <li>外部 CSS: 全部 HTML 内にインラインで書かせることにより fetch や再描画を防ぐ
           <li><code translate="no">&lt;img&gt;</code>: 画像の <code translate="no">width x height</code> を明示させ、 <code translate="no">&lt;amp-img&gt;</code> を代わりに使わせることで、画像を非同期に読み込み表示を最適化する
         </ul>
-        <p>まあ、ほとんどが実際は <strong>粗悪なアド</strong> を縛るような仕様になっている。<br>
-        アドの実装は開発者が手を出しにくいところであるため、こうした外部要因による強制力(AMP 対応が一般化したら、対応してないアドにとっては不利になる)があるのは良いだろう。
+        <p>まあ、ほとんどが実際は <strong>粗悪なアド</strong> を縛るような仕様になっている。
+        <p>アドの実装は開発者が手を出しにくいところであるため、こうした外部要因による強制力(AMP 対応が一般化したら、対応してないアドにとっては不利になる)があるのは良いだろう。
         <p>もちろん、アドが貼れないという訳ではない。
         <p>他にも禁止している <code translate="no">&lt;iframe&gt;</code> やアナリティクス、その他 JS がないと実現できない UI 効果などは <code translate="no">&lt;amp-x&gt;</code> というコンポーネントによって実現できるようになっている。
         <p>逆を言えばこれらコンポーネントに縛ることで、変な実装が入ることを防いでいる。
         <p>また、こうした制約を満たしたサイトは、各ベンダがキャッシュしてくれるという効果が強くあるだろう。
-        <p>AMP に合意したベンダは、サイトをクロールし AMP 対応ページを見つけた際に、それをキャッシュし代わりに配信してくれる。<br>
-        (AMP に対応していれば、自然とそういうことがしやすいサイトになっている)
+        <p>AMP に合意したベンダは、サイトをクロールし AMP 対応ページを見つけた際に、それをキャッシュし代わりに配信してくれる。
+        <p>(AMP に対応していれば、自然とそういうことがしやすいサイトになっている)
         <p>現在 Google, Twitter, Pinterest などが対応しているらしく、対応ベンダが増えれば CDN エッジが増え、より最適なルートから素早くページが配信されるという仕組みになっている。
         <p><a href="https://www.ampproject.org/docs/support/faqs.html#how-do-accelerated-mobile-pages-work">How do Accelerated Mobile Pages work?</a>
         <p>クローラに AMP 対応を知らせる方法は後述する。
