@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="demo">
+<meta name=description content="Fetch Basic DEMO">
 <title>Fetch Basic DEMO | labs.jxck.io</title>
 
 <style>
@@ -16,19 +16,17 @@ textarea {
 <textarea></textarea>
 
 <script>
-let $log = document.querySelector('textarea');
-$log.value = '';
+let $log = document.querySelector('textarea')
+$log.value = ''
 function log(message) {
-  $log.value =  $log.value + `${message}\n`;
+  $log.value = $log.value + `${message}\n`
 }
 </script>
-
 <script>
-fetch('basic.html').then((res) => {
-  return res.text();
-}).then((text) => {
-  log(`**fetching self html source as text**`);
-  log(text);
-});
+(async () => {
+  const res = await fetch('basic.html')
+  const text = await res.text()
+  log(`**fetching self html source as text**`)
+  log(text)
+})()
 </script>
-

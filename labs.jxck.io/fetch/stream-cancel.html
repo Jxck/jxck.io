@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="demo">
+<title>Fetch Stream Cancel DEMO | labs.jxck.io</title>
+
+<style>
+textarea {
+  width: 50em;
+  height: 50em;
+}
+</style>
+
+<h1>Fetch Stream Cancel DEMO</h1>
+
+<div>
+  <input id=start value=start type=button>
+  <input id=stop  value=stop  type=button>
+</div>
+
+<textarea></textarea>
+
+<script>
+const $log = document.querySelector('textarea')
+$log.value = ''
+function log(message) {
+  $log.value = `${message}\n` + $log.value
+}
+</script>
+
+<script>
+const url = '3MB.bmp'
+const $start = document.querySelector('#start')
+const $stop = document.querySelector('#stop')
+
+$start.addEventListener('click', async () => {
+  log(`start fetching ${url}`)
+
+  const res = await fetch(url)
+  const total = res.headers.get('content-length')
+  log(`content-length: ${total}`)
+
+  let reader = res.body.getReader()
+  let chunk = 0
+
+  $stop.addEventListener('click', () => {
+    log('stop fetching')
+    reader.cancel()
+  })
+
+  while (true) {
+    const result = await reader.read()
+    if (result.done) break
+
+    chunk += result.value.length
+    log(`received: ${chunk}(${Math.floor(chunk/total * 100)} %)`)
+  }
+
+  log('Fetch complete')
+})
+</script>
+
