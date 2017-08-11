@@ -153,7 +153,7 @@ fetch('foo.txt').then((res) => {
 });
 ```
 
-- [Fetch Progress DEMO](https://labs.jxck.io/fetch/progress.html)
+- [Fetch Stream Progress DEMO](https://labs.jxck.io/fetch/stream-progress.html)
 
 
 ## Fetch の cancel
@@ -191,7 +191,7 @@ fetch(url).then((res) => {
 });
 ```
 
-- [Fetch Cancel DEMO](https://labs.jxck.io/fetch/cancel.html)
+- [Fetch Stream Cancel DEMO](https://labs.jxck.io/fetch/stream-cancel.html)
 
 
 ## Promise の cancel
