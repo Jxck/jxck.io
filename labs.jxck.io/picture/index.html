@@ -153,19 +153,19 @@ function hsc(str) {
             .replace(/</g, '&lt;')
             .replace(/>/g, '&gt;')
             .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#039;');
+            .replace(/'/g, '&#039;')
 }
 
-document.getElementById('ratio').textContent = window.devicePixelRatio;
+document.getElementById('ratio').textContent = window.devicePixelRatio
 
-var h2 = document.getElementsByTagName('h2');
+const h2 = document.getElementsByTagName('h2')
 
 Array.prototype.slice.call(h2).forEach(function (h2) {
-  var id = h2.id;
-  console.log(id);
-  var div = document.querySelector("#" + id + " + div");
-  var html = div.innerHTML.trim();
-  var pre =  document.querySelector("#" + id + " + div +  pre");
-  pre.innerHTML = hsc(html);
-});
+  const id = h2.id
+  console.log(id)
+  const div = document.querySelector(`#${id} + div`)
+  const pre =  document.querySelector(`#${id} + div +  pre`)
+  const html = div.innerHTML.trim()
+  pre.innerHTML = hsc(html)
+})
 </script>
