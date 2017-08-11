@@ -8,6 +8,16 @@
 <updated>2016-01-28T18:30:02Z</updated>
 
   <entry>
+   <title>Promise.prototype.finally</title>
+   <link href="https://blog.jxck.io/entries/2017-08-10/promise-finally-proposal.html" rel="alternate" />
+   <id>tag:blog.jxck.io,2016:entry://2017-08-10</id>
+   <updated>2017-08-10T00:00:00Z</updated>
+   <summary>Promise.prototype.finally の仕様が TC39 stage 3 となり、 Safari TP37 で先行実装が入った。
+
+tc39/proposal-promise-finally</summary>
+  </entry>
+
+  <entry>
    <title>Service Worker の Navigation Preload による表示遅延回避</title>
    <link href="https://blog.jxck.io/entries/2017-08-05/navigation-preload.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-08-05</id>
@@ -98,7 +108,6 @@ ES Modules の利用においても、いかに非対応ブラウザでフォー
 
 Completing WebRTC 1.0
 
-
 WebRTC 1.0 を年内に終わらせるためのロードマップ(Chrome の改善を含む)を提示している。
 
 このロードマップに期待を寄せ、簡単に現状を振り返りつつ紹介する。</summary>
@@ -132,9 +141,11 @@ OTP の内部でも ssl などはすでに gen_statem に移行している。
    <id>tag:blog.jxck.io,2016:entry://2017-03-02</id>
    <updated>2017-03-02T00:00:00Z</updated>
    <summary>textarea などに入力された文字数を、 JS で数えたい場合がある。
+
 ここで `.length` を数えるだけではダメな理由は、文字コードや JS の内部表現の話を理解する必要がある。
 
 多言語や絵文字対応なども踏まえた上で、どう処理するべきなのか。
+
 それ自体は枯れた話題ではあるが、近年 ECMAScript に追加された機能などを交えて解説する。
 
 なお、文字コードの仕組みを詳解すること自体が目的では無いため、 BMP, UCS-2, Endian, 歴史的経緯など、この手の話題につき物な話の一部は省くこととする。</summary>
@@ -170,6 +181,7 @@ Polyfill は便利な一方で、時として標準化の妨げになってし�
    <summary>このブログで CSP レポートの収集を開始してもうすぐ 1 年になる。
 
 現状、対象ドメイン内で `&lt;input&gt;` は一切提供しておらず、大半が静的に生成されたページであるが、この条件でも、かなり多くのレポートが集まった。
+
 今回は、収集した実際のレポートを例に、攻撃ではないと思われるレポートとしてどういったものが送られて来たかを中心に、その内容やレポーティングサーバ、 CSP の運用に関する現時点の考察についてまとめる。</summary>
   </entry>
 
@@ -208,8 +220,8 @@ Polyfill は便利な一方で、時として標準化の妨げになってし�
    <updated>2016-12-16T00:00:00Z</updated>
    <summary>これは、 http2 Advent Calendar 2016 の 16 日目の記事である。
 
-
 HTTP に新しいステータスコード `103 Early Hints` が追加されようとしている。
+
 HTTP/1.1 および HTTP2 双方と関わり、リソース配信の最適化に利用することができる。
 
 いったい何のために必要なのか、どういうメリットが考えられるかを解説する。</summary>
@@ -221,7 +233,9 @@ HTTP/1.1 および HTTP2 双方と関わり、リソース配信の最適化に�
    <id>tag:blog.jxck.io,2016:entry://2016-12-12</id>
    <updated>2016-12-12T00:00:00Z</updated>
    <summary>Service Worker に Foreign Fetch という機能が提案されている。
+
 この機能があるとクロスオリジンへの fetch をフックできる Service Worker を、その対象オリジンから提供できるようになる。
+
 一体どういう仕組みなのか、これによって何が可能になるのかについて、デモを交えて記す。</summary>
   </entry>
 
@@ -231,8 +245,11 @@ HTTP/1.1 および HTTP2 双方と関わり、リソース配信の最適化に�
    <id>tag:blog.jxck.io,2016:entry://2016-12-11</id>
    <updated>2016-12-11T00:00:00Z</updated>
    <summary>Service Worker を登録する方法は現状 3 つある。
+
 HTML meta タグでの追加ならば、 Service Worker を追加するためだけの JS であれば不要になる。
+
 HTTP ヘッダでの追加ならば、 HTML を持たない API にも Service Worker を追加した対応が可能である。
+
 次の記事で foreign fetch について解説する予定であるため、その前提知識として本機能を分離し紹介する。</summary>
   </entry>
 
@@ -252,6 +269,7 @@ HTTP ヘッダでの追加ならば、 HTML を持たない API にも Service W
    <id>tag:blog.jxck.io,2016:entry://2016-09-29</id>
    <updated>2016-09-29T00:00:00Z</updated>
    <summary>ブラウザに追加される新しい機能に対して、 Vender Prefix の代替となる Origin Trials の導入が徐々に始まっている。
+
 今回は、これまでの Vender Prefix の問題点と、代替として提案された Origin Trials のデザインや導入方法などについて記す。</summary>
   </entry>
 
@@ -374,6 +392,7 @@ Passive Event Listeners Spec</summary>
    <id>tag:blog.jxck.io,2016:entry://2016-04-24</id>
    <updated>2016-04-24T00:00:00Z</updated>
    <summary>Service Worker の初心者向けのチュートリアルや、使ってみた系のエントリも増えてきました。
+
 しかし、 Service Worker は通常のブラウザ用 JS の開発と少し経路が違い、慣れるまで開発やデバッグもなかなか難しいと思います。
 
 そこで特に難しい部分、そして分かっていないと実際にデプロイした際に難しいと思う部分について、実際に動きを確認しながら解説したいと思います。
@@ -419,6 +438,7 @@ Stale-While-Revalidate ヘッダは、このキャッシュ制御に選択肢を
    <summary>本サイトにて Public Key Pinning for HTTP を有効化した。
 
 CSP 同様、まずは Report-Only を設定し、
+
 HPKP Report についても、 report-uri.io を用いて収集することにした。
 
 導入に必要な設定や、注意点についてまとめる。
@@ -426,6 +446,7 @@ HPKP Report についても、 report-uri.io を用いて収集することに�
 なお、本サイトへの導入はあくまで **実験** である。運用や影響も踏まえると、一般サービスへの安易な導入は推奨しない。
 
 また、本来は HSTS と併用することが推奨されている。(必須ではない)
+
 そちらも追って対応する予定である。</summary>
   </entry>
 
@@ -529,7 +550,6 @@ CSP Report については、 report-uri.io を用いて収集することにし
 この仕様のモチベーションについて、 Chrome 開発者の Yoav Weiss 氏のブログも公開された。
 
 今回は、この仕様の特徴と用途を解説し、本サイトへの適用について検討する。
-
 
 - W3C Preload Spec
 - Intent to Ship: `&lt;link rel=preload&gt;`
