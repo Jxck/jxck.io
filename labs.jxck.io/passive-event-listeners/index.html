@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="passive event listeners demo">
-<title>Passive Listeners DEMO | labs.jxck.io</title>
-<h1>Passive Listeners DEMO<h1>
+<meta name=description content="Passive Event Listeners DEMO">
+<title>Passive Event Listeners DEMO | labs.jxck.io</title>
+<h1>Passive Event Listeners DEMO<h1>
 
 <p>open in mobile or emulator, and touch scroll to bottom.
 <p>you will see the scroll junk in normal and no junk in passive
@@ -423,32 +423,28 @@
 
 <style>
 strong {
-  color: red;
+  color: red
 }
 </style>
 <script>
-var passive = location.search == '?passive';
+const passive = location.search == '?passive'
 
-var supportsPassive = false;
+const supportsPassive = false
 try {
-  var opts = Object.defineProperty({}, 'passive', {
+  const opts = Object.defineProperty({}, 'passive', {
     get: function() {
-      supportsPassive = true;
+      supportsPassive = true
     }
-  });
-  window.addEventListener("test", null, opts);
+  })
+  window.addEventListener("test", null, opts)
 } catch (e) {}
 
-
-document.getElementById('supported').textContent = supportsPassive.toString();
-document.getElementById('passive').textContent = passive.toString();
+document.getElementById('supported').textContent = supportsPassive.toString()
+document.getElementById('passive').textContent = passive.toString()
 
 document.addEventListener('touchstart', function(e) {
-  console.log(e);
-  var i = 0;
-  while(true) {
-    if (++i > 5000) break;
-    console.log('wait');
+  console.log(e)
+  for (let i = 0; i<5000; i++) {
+    console.log('wait')
   }
-}, {passive: passive});
-</script>
+})
