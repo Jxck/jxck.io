@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
-<meta name=description content="demo">
+<meta name=description content="Scroll & Position API DEMO ">
 <title>Scroll & Position API DEMO | labs.jxck.io</title>
 
 <style>
@@ -102,51 +102,51 @@
 
 <script>
   window.addEventListener('scroll', () => {
-    let scrollTop    = document.documentElement.scrollTop;
-    let scrollHeight = document.documentElement.scrollHeight;
-    let pageYOffset  = window.pageYOffset;
-    let clientHeight = document.documentElement.clientHeight;
+    let scrollTop    = document.documentElement.scrollTop
+    let scrollHeight = document.documentElement.scrollHeight
+    let pageYOffset  = window.pageYOffset
+    let clientHeight = document.documentElement.clientHeight
 
-    document.querySelector('#scrollTop').textContent =    scrollTop;
-    document.querySelector('#scrollHeight').textContent = scrollHeight;
-    document.querySelector('#pageYOffset').textContent =  pageYOffset;
-    document.querySelector('#clientHeight').textContent = clientHeight;
+    document.querySelector('#scrollTop').textContent =    scrollTop
+    document.querySelector('#scrollHeight').textContent = scrollHeight
+    document.querySelector('#pageYOffset').textContent =  pageYOffset
+    document.querySelector('#clientHeight').textContent = clientHeight
 
     Array.from(document.querySelectorAll('.target')).forEach((target, i) => {
       // DOM
-      let view = document.querySelector(`.view${i}`);
-      let $viewport     = view.querySelector('.viewport');
+      let view = document.querySelector(`.view${i}`)
+      let $viewport     = view.querySelector('.viewport')
 
-      let $rect_top     = view.querySelector('.rect_top');
-      let $rect_bottom  = view.querySelector('.rect_bottom');
-      let $rect_height  = view.querySelector('.rect_height');
-      let $rect_left    = view.querySelector('.rect_left');
-      let $rect_right   = view.querySelector('.rect_right');
-      let $rect_width   = view.querySelector('.rect_width');
+      let $rect_top     = view.querySelector('.rect_top')
+      let $rect_bottom  = view.querySelector('.rect_bottom')
+      let $rect_height  = view.querySelector('.rect_height')
+      let $rect_left    = view.querySelector('.rect_left')
+      let $rect_right   = view.querySelector('.rect_right')
+      let $rect_width   = view.querySelector('.rect_width')
 
-      let $offsetTop    = view.querySelector('.offsetTop');
-      let $offsetHeight = view.querySelector('.offsetHeight');
-      let $offsetWidth  = view.querySelector('.offsetWidth');
-      let $offsetLeft   = view.querySelector('.offsetLeft');
+      let $offsetTop    = view.querySelector('.offsetTop')
+      let $offsetHeight = view.querySelector('.offsetHeight')
+      let $offsetWidth  = view.querySelector('.offsetWidth')
+      let $offsetLeft   = view.querySelector('.offsetLeft')
 
       // position
-      let rect = target.getBoundingClientRect();
-      $rect_top    .textContent = rect.top    ;
-      $rect_bottom .textContent = rect.bottom ;
-      $rect_height .textContent = rect.height ;
-      $rect_left   .textContent = rect.left   ;
-      $rect_right  .textContent = rect.right  ;
-      $rect_width  .textContent = rect.width  ;
+      let rect = target.getBoundingClientRect()
+      $rect_top    .textContent = rect.top
+      $rect_bottom .textContent = rect.bottom
+      $rect_height .textContent = rect.height
+      $rect_left   .textContent = rect.left
+      $rect_right  .textContent = rect.right
+      $rect_width  .textContent = rect.width
 
-      $offsetTop   .textContent = target.offsetTop   ;
-      $offsetHeight.textContent = target.offsetHeight;
-      $offsetWidth .textContent = target.offsetWidth ;
-      $offsetLeft  .textContent = target.offsetLeft  ;
+      $offsetTop   .textContent = target.offsetTop
+      $offsetHeight.textContent = target.offsetHeight
+      $offsetWidth .textContent = target.offsetWidth
+      $offsetLeft  .textContent = target.offsetLeft
 
-      let scroll = scrollTop || pageYOffset;
+      let scroll = scrollTop || pageYOffset
       $viewport.textContent = (0 < rect.top && rect.top < clientHeight)       // 対象の上端は表示領域に入っている
                            || (0 < rect.bottom && rect.bottom < clientHeight) // 対象の下端は表示領域に入っている
-                           || (0 > rect.top && rect.bottom > clientHeight);   // 上端下端も表示されてないがその間が表示されている
-    });
-  });
+                           || (0 > rect.top && rect.bottom > clientHeight)    // 上端下端も表示されてないがその間が表示されている
+    })
+  })
 </script>

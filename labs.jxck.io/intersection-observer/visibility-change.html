@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="intersection observer demo">
+<meta name=description content="Intersection Observer Visibility Change DEMO">
 <title>Intersection Observer Visibility Change DEMO | labs.jxck.io</title>
 
 <style>
@@ -11,30 +11,25 @@
   code {
     background-color: #ccc;
   }
-
   .flex-container {
     display: flex;
   }
-
   .flex-container section {
     flex-direction: row;
     margin-right: 1em;
     width: 20%;
   }
-
   .flex-container > section > div > div {
     width: 100px;
     height: 100px;
     background-color: #ccc;
     margin: 10px;
   }
-
   .overflow {
     border: 1px solid #ccc;
     height: 400px;
     overflow: scroll;
   }
-
 </style>
 
 <h1>Intersection Observer Visibility Change DEMO</h1>
@@ -171,105 +166,102 @@
 </div>
 
 <script>
-  // viewport scroll
-  (() => {
-    const offset = 50; // px
-    let target = document.querySelector('.viewport.scroll .target');
-    window.addEventListener('scroll', (e) => {
+// viewport scroll
+(() => {
+  const offset = 50 // px
+  const target = document.querySelector('.viewport.scroll .target')
+  window.addEventListener('scroll', (e) => {
+    // viewport の上下端
+    const scrollTop    = document.documentElement.scrollTop + offset
+    const clientHeight = document.documentElement.clientHeight - offset
 
-      // viewport の上下端
-      let scrollTop    = document.documentElement.scrollTop + offset;
-      let clientHeight = document.documentElement.clientHeight - offset;
+    // target の上下端
+    const rect = target.getBoundingClientRect()
 
-      // target の上下端
-      let rect = target.getBoundingClientRect();
-
-      if (rect.top < clientHeight && rect.bottom > offset) {
-        target.style.backgroundColor = 'red';
-      } else {
-        target.style.backgroundColor = 'blue';
-      }
-    });
-  })();
+    if (rect.top < clientHeight && rect.bottom > offset) {
+      target.style.backgroundColor = 'red'
+    } else {
+      target.style.backgroundColor = 'blue'
+    }
+  })
+})()
 </script>
 
 <script>
-  // viewport intersection-observer
-  (() => {
-    const offset = 50; // px
-    let root = document.querySelector('.viewport.intersection');
-    let target = root.querySelector('.target');
-    const rootMargin = `-${offset}px`;
-    const threshold = 0.0;
-    let observer = new IntersectionObserver((changes) => {
-      for (let change of changes) {
-        // console.log(change);
-        // console.log(change.time);               // Timestamp when the change occurred
-        // console.log(change.rootBounds);         // Unclipped area of root
-        // console.log(change.boundingClientRect); // target.boundingClientRect()
-        console.log(change.intersectionRect);      // boundingClientRect, clipped by its containing block ancestors, and intersected with rootBounds
-        // console.log(change.intersectionRatio);  // Ratio of intersectionRect area to boundingClientRect area
-        // console.log(change.target);             // the Element target
+// viewport intersection-observer
+(() => {
+  const offset = 50 // px
+  const root = document.querySelector('.viewport.intersection')
+  const target = root.querySelector('.target')
+  const rootMargin = `-${offset}px`
+  const threshold = 0.0
+  const observer = new IntersectionObserver((changes) => {
+    for (const change of changes) {
+      // console.log(change)
+      // console.log(change.time)               // Timestamp when the change occurred
+      // console.log(change.rootBounds)         // Unclipped area of root
+      // console.log(change.boundingClientRect) // target.boundingClientRect()
+      console.log(change.intersectionRect)      // boundingClientRect, clipped by its containing block ancestors, and intersected with rootBounds
+      // console.log(change.intersectionRatio)  // Ratio of intersectionRect area to boundingClientRect area
+      // console.log(change.target)             // the Element target
 
-        change.target.style.backgroundColor = change.intersectionRect.top > 0 ? 'red' : 'blue';
-      }
-    }, { rootMargin, threshold }); // No Root is viewport
+      change.target.style.backgroundColor = change.intersectionRect.top > 0 ? 'red' : 'blue'
+    }
+  }, { rootMargin, threshold }) // No Root is viewport
 
-    observer.observe(target);
-  })();
+  observer.observe(target)
+})()
 </script>
 
 <script>
-  // overflow scroll
-  (() => {
-    const offset = 50; // px
-    let root = document.querySelector('.overflow.scroll');
-    let target = root.querySelector('.target');
-    root.addEventListener('scroll', (e) => {
+// overflow scroll
+(() => {
+  const offset = 50 // px
+  const root = document.querySelector('.overflow.scroll')
+  const target = root.querySelector('.target')
+  root.addEventListener('scroll', (e) => {
+    // root の上下端
+    const rootTop = root.scrollTop
+    const rootBottom = rootTop + root.clientHeight
+    // console.log(rootTop, rootBottom)
 
-      // root の上下端
-      let rootTop = root.scrollTop;
-      let rootBottom = rootTop + root.clientHeight;
-      // console.log(rootTop, rootBottom);
+    // target の上下端
+    const rect = target.getBoundingClientRect()
+    const top = target.offsetTop - root.offsetTop
+    const bottom = top + rect.height
+    // console.log(top, bottom)
 
-      // target の上下端
-      let rect = target.getBoundingClientRect();
-      let top = target.offsetTop - root.offsetTop;
-      let bottom = top + rect.height;
-      // console.log(top, bottom);
-
-      if (rootTop < top + offset && rootBottom > bottom - offset) {
-        target.style.backgroundColor = 'red';
-      } else {
-        target.style.backgroundColor = 'blue';
-      }
-    });
-  })();
+    if (rootTop < top + offset && rootBottom > bottom - offset) {
+      target.style.backgroundColor = 'red'
+    } else {
+      target.style.backgroundColor = 'blue'
+    }
+  })
+})()
 </script>
 
 <script>
-  // overflow intersection-observer
-  (() => {
-    const offset = 50; // px
-    let root = document.querySelector('.overflow.intersection');
-    let target = root.querySelector('.target');
-    const rootMargin = `-${offset}px`;
-    const threshold = 0.0;
-    let observer = new IntersectionObserver((changes) => {
-      for (let change of changes) {
-        // console.log(change);
-        // console.log(change.time);               // Timestamp when the change occurred
-        // console.log(change.rootBounds);         // Unclipped area of root
-        // console.log(change.boundingClientRect); // target.boundingClientRect()
-        console.log(change.intersectionRect);      // boundingClientRect, clipped by its containing block ancestors, and intersected with rootBounds
-        // console.log(change.intersectionRatio);  // Ratio of intersectionRect area to boundingClientRect area
-        // console.log(change.target);             // the Element target
+// overflow intersection-observer
+(() => {
+  const offset = 50 // px
+  const root = document.querySelector('.overflow.intersection')
+  const target = root.querySelector('.target')
+  const rootMargin = `-${offset}px`
+  const threshold = 0.0
+  const observer = new IntersectionObserver((changes) => {
+    for (const change of changes) {
+      // console.log(change)
+      // console.log(change.time)               // Timestamp when the change occurred
+      // console.log(change.rootBounds)         // Unclipped area of root
+      // console.log(change.boundingClientRect) // target.boundingClientRect()
+      console.log(change.intersectionRect)      // boundingClientRect, clipped by its containing block ancestors, and intersected with rootBounds
+      // console.log(change.intersectionRatio)  // Ratio of intersectionRect area to boundingClientRect area
+      // console.log(change.target)             // the Element target
 
-        change.target.style.backgroundColor = change.intersectionRect.top > 0 ? 'red' : 'blue';
-      }
-    }, { root, rootMargin, threshold });
+      change.target.style.backgroundColor = change.intersectionRect.top > 0 ? 'red' : 'blue'
+    }
+  }, { root, rootMargin, threshold })
 
-    observer.observe(target);
-  })();
+  observer.observe(target)
+})()
 </script>
-

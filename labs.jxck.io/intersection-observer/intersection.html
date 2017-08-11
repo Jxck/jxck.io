@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="intersection observer demo">
+<meta name=description content="Intersection Observer DEMO">
 <title>Intersection Observer DEMO | labs.jxck.io</title>
 
 <style>
@@ -26,22 +26,22 @@
 <div></div>
 
 <script>
-  (() => {
-    // fire callback every 10% intersection change
-    const threshold = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
+(() => {
+  // fire callback every 10% intersection change
+  const threshold = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
 
-    let round = n => Math.round(n*100);
-    let observer = new IntersectionObserver((changes) => {
-      for (let change of changes) {
-        let target = change.target;
-        let ratio = change.intersectionRatio;
-        target.textContent = `${round(ratio)}%`;
-      }
-    }, {threshold}); // No Root is viewport
+  const round = n => Math.round(n*100)
+  const observer = new IntersectionObserver((changes) => {
+    for (const change of changes) {
+      const target = change.target
+      const ratio = change.intersectionRatio
+      target.textContent = `${round(ratio)}%`
+    }
+  }, {threshold}) // No Root is viewport
 
-    let targets = document.querySelectorAll('div');
-    Array.from(targets).forEach((target) => {
-      observer.observe(target);
-    });
-  })();
+  const targets = document.querySelectorAll('div')
+  for (const target of targets) {
+    observer.observe(target)
+  }
+})();
 </script>
