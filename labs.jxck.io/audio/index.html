@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
 <meta name=viewport content='width=device-width,initial-scale=1'>
-<meta name=description content='demo'>
-<title>DEMO | labs.jxck.io</title>
+<meta name=description content='Audio API DEMO'>
+<title>Audio API DEMO | labs.jxck.io</title>
+<style>
+  div {
+    border: 1px solid #ccc;
+    width: 100%;
+    height: 30px;
+  }
 
-<p><audio id=audio preload=metadata src=audio.mp3 controls></audio>
+  progress {
+    width: 100%;
+  }
+</style>
 
+<h1>Audio API DEMO</h1>
+
+<div><audio id=audio preload=metadata src=audio.mp3 controls></audio>
 
 <div>
   <audio id=audio preload=metadata src=audio.mp3></audio>
@@ -32,172 +44,154 @@
 </div>
 
 <script>
-let $ = document.querySelector.bind(document);
-let $audio = $('#audio');
+let $ = document.querySelector.bind(document)
+let $audio = $('#audio')
 
 $('#play').addEventListener('click', () => {
-  console.log('play()');
-  $audio.play();
-});
+  console.log('play()')
+  $audio.play()
+})
 
 $('#pause').addEventListener('click', () => {
-  console.log('pause()');
-  $audio.pause();
+  console.log('pause()')
+  $audio.pause()
 })
 
 $('#volup').addEventListener('click', () => {
-  console.log('volup()');
-  $audio.volume += 0.01;
-  console.log($audio.volume);
+  console.log('volup()')
+  $audio.volume += 0.01
+  console.log($audio.volume)
 })
 
 $('#voldown').addEventListener('click', () => {
-  console.log('voldown()');
-  $audio.volume -= 0.01;
-  console.log($audio.volume);
+  console.log('voldown()')
+  $audio.volume -= 0.01
+  console.log($audio.volume)
 })
 
 $('#bb').addEventListener('click', () => {
-  console.log('bb()');
-  $audio.currentTime -= 30;
+  console.log('bb()')
+  $audio.currentTime -= 30
 })
 
 $('#b').addEventListener('click', () => {
-  console.log('b()');
-  $audio.currentTime -= 10;
+  console.log('b()')
+  $audio.currentTime -= 10
 })
 
 $('#f').addEventListener('click', () => {
-  console.log('f()');
-  $audio.currentTime += 10;
+  console.log('f()')
+  $audio.currentTime += 10
 })
 
 $('#ff').addEventListener('click', () => {
-  console.log('ff()');
-  $audio.currentTime += 30;
+  console.log('ff()')
+  $audio.currentTime += 30
 })
 
 
 
 $audio.addEventListener('abort', (e) => {
-  console.log('abort', e);
-});
+  console.log('abort', e)
+})
 
 $audio.addEventListener('canplay', (e) => {
-  console.log('canplay', e);
-});
+  console.log('canplay', e)
+})
 
 $audio.addEventListener('canplaythrough', (e) => {
-  console.log('canplaythrough', e);
-});
+  console.log('canplaythrough', e)
+})
 
 $audio.addEventListener('durationchange', (e) => {
-  console.log('durationchange', e);
-});
+  console.log('durationchange', e)
+})
 
 $audio.addEventListener('emptied', (e) => {
-  console.log('emptied', e);
-});
+  console.log('emptied', e)
+})
 
 $audio.addEventListener('ended', (e) => {
-  console.log('ended', e);
-});
+  console.log('ended', e)
+})
 
 $audio.addEventListener('error', (e) => {
-  console.log('error', e);
-});
+  console.log('error', e)
+})
 
 $audio.addEventListener('loadeddata', (e) => {
-  console.log('loadeddata', e);
-});
+  console.log('loadeddata', e)
+})
 
 $audio.addEventListener('loadedmetadata', (e) => {
-  console.log('loadedmetadata', e);
-  const duration = $audio.duration;
-  const currentTime = $audio.currentTime;
-  const h = ~~(duration / 3600);
-  const m = ('0'+~~(duration % 3600 / 60)).slice(-2);
-  const s = ('0'+~~(duration % 60)).slice(-2);
-  $('#progress').max = duration;
-  $('#progress').value = currentTime;
-  $('#duration').textContent = `${h}:${m}:${s}`;
-});
+  console.log('loadedmetadata', e)
+  const duration = $audio.duration
+  const currentTime = $audio.currentTime
+  const h = ~~(duration / 3600)
+  const m = ('0'+~~(duration % 3600 / 60)).slice(-2)
+  const s = ('0'+~~(duration % 60)).slice(-2)
+  $('#progress').max = duration
+  $('#progress').value = currentTime
+  $('#duration').textContent = `${h}:${m}:${s}`
+})
 
 $audio.addEventListener('loadstart', (e) => {
-  console.log('loadstart', e);
-});
+  console.log('loadstart', e)
+})
 
 $audio.addEventListener('pause', (e) => {
-  console.log('pause', e);
-});
+  console.log('pause', e)
+})
 
 $audio.addEventListener('play', (e) => {
-  console.log('play', e);
-  let $progress = $('#progress');
-  let $audio = $('#audio');
+  console.log('play', e)
+  let $progress = $('#progress')
+  let $audio = $('#audio')
   setInterval(() => {
-    $progress.value = $audio.currentTime;
-  }, 1000);
-});
+    $progress.value = $audio.currentTime
+  }, 1000)
+})
 
 $audio.addEventListener('playing', (e) => {
-  console.log('playing', e);
-});
+  console.log('playing', e)
+})
 
 $audio.addEventListener('progress', (e) => {
-  console.log('progress', e);
-});
+  console.log('progress', e)
+})
 
 $audio.addEventListener('ratechange', (e) => {
-  console.log('ratechange', e);
-});
+  console.log('ratechange', e)
+})
 
 $audio.addEventListener('seeked', (e) => {
-  console.log('seeked', e);
-  let $progress = $('#progress');
-  let $audio = $('#audio');
-  $progress.value = $audio.currentTime;
-});
+  console.log('seeked', e)
+  let $progress = $('#progress')
+  let $audio = $('#audio')
+  $progress.value = $audio.currentTime
+})
 
 $audio.addEventListener('seeking', (e) => {
-  console.log('seeking', e);
-});
+  console.log('seeking', e)
+})
 
 $audio.addEventListener('stalled', (e) => {
-  console.log('stalled', e);
-});
+  console.log('stalled', e)
+})
 
 $audio.addEventListener('suspend', (e) => {
-  console.log('suspend', e);
-});
+  console.log('suspend', e)
+})
 
 $audio.addEventListener('timeupdate', (e) => {
-  console.log('timeupdate', e.timeStamp, $audio.currentTime);
-});
+  console.log('timeupdate', e.timeStamp, $audio.currentTime)
+})
 
 $audio.addEventListener('volumechange', (e) => {
-  console.log('volumechange', e);
-});
+  console.log('volumechange', e)
+})
 
 $audio.addEventListener('waiting', (e) => {
-  console.log('waiting', e);
-});
-
-
-
+  console.log('waiting', e)
+})
 </script>
-<style>
-  div {
-    border: 1px solid #ccc;
-    width: 100%;
-    height: 30px;
-  }
-
-  progress {
-    width: 100%;
-  }
-
-</style>
-
-
-
