@@ -1,4 +1,4 @@
-# Brotli を用いた静的コンテンツ配信最適化と Accept-Encoding: br
+# [brotli][zopfli][http][performance] Brotli を用いた静的コンテンツ配信最適化と Accept-Encoding: br について
 
 ## Intro
 
@@ -100,3 +100,125 @@ Brotli の実装は Google が公開している。
 [google/brotli](https://github.com/google/brotli)
 
 これを README の通りビルドし、実際にいくつかのコンテンツで圧縮結果を比較した。
+
+
+### HTML
+
+[一つ前の記事](https://blog.jxck.io/entries/2017-08-15/universal-mjs-ecosystem.html)
+
+| file type | size  | ratio |
+|:----------|------:|------:|
+| .html     | 22260 |  100% |
+| .html.gz  |  6347 |   29% |
+| .html.br  |  5658 |   25% |
+
+
+zopfli と比べて、 4 point 圧縮率が向上している。
+
+
+### JS
+
+[highlight.min.js](https://www.jxck.io/assets/js/highlight.min.js)
+
+| file type | size  | ratio |
+|:----------|------:|------:|
+| .js       | 42536 |  100% |
+| .js.gz    | 16289 |   38% |
+| .js.br    | 15775 |   37% |
+
+
+zopfli と比べて、 1 point 圧縮率が向上している。
+
+サイズとしては 1K 程度減っているので、かなり圧縮が効いている。
+
+
+### CSS
+
+[mozaic.css](https://www.jxck.io/assets/css/mozaic.css)
+
+| file type | size  | ratio |
+|:----------|------:|------:|
+| .css      | 1454  |  100% |
+| .css.gz   |  503  |   35% |
+| .css.br   |  402  |   28% |
+
+
+あまり大きなサイズの CSS を使っていなかったので微妙ではある。
+
+zopfli と比べて、 7 point 圧縮率が向上している。
+
+
+### Web Font
+
+[NotoSansCJKjp-Jxck-Regular.woff](https://www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff)
+
+[NotoSansCJKjp-Jxck-Regular.otf](https://www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.otf)
+
+| file type | size   | ratio |
+|:----------|-------:|------:|
+| .otf      | 486132 |  100% |
+| .otf.gz   | 382322 |   79% |
+| .otf.br   | 344003 |   71% |
+
+
+| file type | size   | ratio |
+|:----------|-------:|------:|
+| .woff     | 387528 |  100% |
+| .woff.gz  | 387527 |   99% |
+| .woff.br  | 387533 |  101% |
+
+
+OTF は圧縮効果が高いが、 WoFF は逆効果となっている。
+
+これは WoFF がそもそも圧縮を仕様に含んでいるからと考えられる。
+
+
+### PNG
+
+[mozaic.png](https://www.jxck.io/assets/img/mozaic.png)
+
+| file type | size  | ratio |
+|:----------|------:|------:|
+| .png      | 37509 |  100% |
+| .png.gz   |  3108 |    8% |
+| .png.br   |  3103 |    8% |
+
+
+圧縮効果は高いが、 zopfli と brotli では有意な差はなかった。
+
+
+### WebP
+
+[mozaic.webp](https://www.jxck.io/assets/img/mozaic.webp)
+
+| file type | size  | ratio |
+|:----------|------:|------:|
+| .webp     |  9474 |  100% |
+| .webp.gz  |  2609 |   28% |
+| .webp.br  |  2544 |   27% |
+
+
+WebP も圧縮済みのフォーマットであるため、圧縮が逆効果となる場合が多いが、このファイルでは効果が出ている。
+
+しかし、 jpeg をベースにした別の webp では圧縮が逆効果になっているものもあったので、このあたりはファイルごとに見ていく必要がある。
+
+
+### SVG
+
+[mozaic.svg](https://www.jxck.io/assets/img/mozaic.svg)
+
+| file type | size  | ratio |
+|:----------|------:|------:|
+| .svg      |  2871 |  100% |
+| .svg.gz   |   300 |   10% |
+| .svg.br   |   269 |    9% |
+
+
+テキストであるためかなり圧縮率は高いが、 zopfli との差は小さい。
+
+
+## まとめ
+
+本サイトのコンテンツに対しては、 brotli の圧縮効果は概ね zopfli より高く、これは辞書との相性が大きく効いていると考えられる。
+
+また、ブラウザは brotli への対応が進み、コンテントネゴシエーションによる配信が可能なので、本サイトでは brotli に全面的に対応した。
