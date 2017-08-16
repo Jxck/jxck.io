@@ -1,1 +1,3 @@
-console.log('from Script');
+console.log('from Script')
+
+const Value = 'defined in script'

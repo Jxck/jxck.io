@@ -1,3 +1,5 @@
-import logger from "./logger.js"
+import fn from "./logger.js"
 
-logger.log("this message appended by ES modules")
+console.log('from Module')
+fn("msg")
+console.log('from Module and show Value:', Value)

@@ -1,8 +1,3 @@
-export default {
-  log: (msg) => {
-    console.log(msg)
-    const $div = document.createElement('div')
-    $div.textContent = msg
-    document.body.append($div)
-  }
+export default (msg) => {
+  console.log('from Logger:', msg)
 }
