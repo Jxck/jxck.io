@@ -22,26 +22,28 @@ remote.onsignalingstatechange = (e) => {
 
 
 // ice candidate を交換
-local.onicecandidate = (e) => {
-  if (e.candidate === null) return
+local.onicecandidate = async (e) => {
+  try {
+    if (e.candidate === null) return
 
-  info('7. local で上がった ice candidate を remote に渡す')
-  log(e.candidate.candidate)
-  remote
-    .addIceCandidate(e.candidate)
-    .then(log)
-    .catch(error)
+    info('7. local で上がった ice candidate を remote に渡す')
+    log(e.candidate.candidate)
+    await remote.addIceCandidate(e.candidate)
+  } catch(err) {
+    error(err)
+  }
 }
 
-remote.onicecandidate = (e) => {
-  if (e.candidate === null) return
+remote.onicecandidate = async (e) => {
+  try {
+    if (e.candidate === null) return
 
-  info('7. remote で上がった ice candidate を local に渡す')
-  log(e.candidate.candidate)
-  local
-    .addIceCandidate(e.candidate)
-    .then(log)
-    .catch(error)
+    info('7. remote で上がった ice candidate を local に渡す')
+    log(e.candidate.candidate)
+    await local.addIceCandidate(e.candidate)
+  } catch (err) {
+    error(err)
+  }
 }
 
 
@@ -71,44 +73,41 @@ remote.oniceconnectionstatechange = (e) => {
 ].forEach((ev) => {
   local[ev]   = error
   remote[ev]  = error
-})
+});
 
 
-Promise.all([
-  new Promise((done, fail) => {
-    local.onnegotiationneeded = done
-  }),
-]).then(([e1]) => {
-  log(e1.type)
-  info('2. onnegotiationneeded が発生したらネゴシエーションする')
+(async () => {
+  try {
+    const e1 = await new Promise((done, fail) => {
+      local.onnegotiationneeded = done
+    })
 
-  info('3. local の offer を作成')
-  return local.createOffer()
+    log(e1.type)
+    info('2. onnegotiationneeded が発生したらネゴシエーションする')
 
-}).then((rtcSessionDescription) => {
+    info('3. local の offer を作成')
+    const rtcSessionDescriptionOffer = await local.createOffer()
 
-  info('4. local の offer を双方に適応')
-  log(rtcSessionDescription.type, rtcSessionDescription.sdp)
-  return Promise.all([
-    local.setLocalDescription(rtcSessionDescription),
-    remote.setRemoteDescription(rtcSessionDescription),
-  ])
+    info('4. local の offer を双方に適応')
+    log(rtcSessionDescriptionOffer.type, rtcSessionDescriptionOffer.sdp)
+    await Promise.all([
+      local.setLocalDescription(rtcSessionDescriptionOffer),
+      remote.setRemoteDescription(rtcSessionDescriptionOffer),
+    ])
 
-}).then((e) => {
+    info('5. remote の offer を作成')
+    const rtcSessionDescriptionAnswer = await remote.createAnswer()
 
-  info('5. remote の offer を作成')
-  return remote.createAnswer()
-
-}).then((rtcSessionDescription) => {
-
-  info('6. remote の offer を双方に適応')
-  log(rtcSessionDescription.type, rtcSessionDescription.sdp)
-  return Promise.all([
-    local.setRemoteDescription(rtcSessionDescription),
-    remote.setLocalDescription(rtcSessionDescription),
-  ])
-
-}).catch(error)
+    info('6. remote の offer を双方に適応')
+    log(rtcSessionDescriptionAnswer.type, rtcSessionDescriptionAnswer.sdp)
+    await Promise.all([
+      local.setRemoteDescription(rtcSessionDescriptionAnswer),
+      remote.setLocalDescription(rtcSessionDescriptionAnswer),
+    ])
+  } catch (err) {
+    error(err)
+  }
+})()
 
 
 // firefox では createDataChannel か addStream してないと

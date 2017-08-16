@@ -48,7 +48,7 @@ class Client extends events.EventEmitter {
       console.log(this.id, 'signalingstatechange', this.rtc.signalingState)
     })
 
-    this.rtc.on('negotiationneeded', () => {
+    this.rtc.on('negotiationneeded', async () => {
       console.log(this.id, 'negotiationneeded')
 
       const option = {
@@ -56,57 +56,43 @@ class Client extends events.EventEmitter {
         offerToReceiveVideo: 1,
       }
 
-      this.rtc.createOffer(option)
-        .then((rtcSessionDescription) => {
-          return this.rtc.setLocalDescription(rtcSessionDescription)
-        })
-        .then(() => {
-          const sdp = this.rtc.localDescription.serialize()
-          const message = { to: this.id, sdp: sdp }
-          const data = { id: 'sfu', name: 'offer', message }
-          console.log('<< send', this.id, data.name)
-          this.ws.send(JSON.stringify(data))
-        })
+      const rtcSessionDescription = await this.rtc.createOffer(option)
+      await this.rtc.setLocalDescription(rtcSessionDescription)
+
+      const sdp = this.rtc.localDescription.serialize()
+      const message = { to: this.id, sdp: sdp }
+      const data = { id: 'sfu', name: 'offer', message }
+      console.log('<< send', this.id, data.name)
+      this.ws.send(JSON.stringify(data))
     })
   }
 
-  setOffer(sdp) {
-    this.rtc.setCapabilities(sdp)
-      .then((e) => {
-        console.log(this.id, 'setCapabilities')
+  async setOffer(sdp) {
+    await this.rtc.setCapabilities(sdp)
+    console.log(this.id, 'setCapabilities')
 
-        const option = {
-          offerToReceiveAudio: 1,
-          offerToReceiveVideo: 1,
-        }
-        return this.rtc.createOffer(option)
-      })
-      .then((rtcSessionDescription) => {
-        return this.rtc.setLocalDescription(rtcSessionDescription)
-      })
-      .then(() => {
-        const sdp = this.rtc.localDescription.serialize()
-        const message = { to: this.id, sdp: sdp }
-        const data = { id: 'sfu', name: 'offer', message }
-        console.log('<< send', this.id, data.name)
-        console.log(JSON.stringify(data))
-        this.ws.send(JSON.stringify(data))
-      })
-      .catch((err) => {
-        console.error(err)
-      })
+    const option = {
+      offerToReceiveAudio: 1,
+      offerToReceiveVideo: 1,
+    }
+    const rtcSessionDescription = await this.rtc.createOffer(option)
+    await this.rtc.setLocalDescription(rtcSessionDescription)
+
+    const message = {
+      to: this.id,
+      sdp: this.rtc.localDescription.serialize(),
+    }
+    const data = { id: 'sfu', name: 'offer', message }
+    console.log('<< send', this.id, data.name)
+    console.log(JSON.stringify(data))
+    this.ws.send(JSON.stringify(data))
   }
 
-  setAnswer(message) {
+  async setAnswer(message) {
     const rtcSessionDescription = new RTCSessionDescription(message)
 
-    this.rtc.setRemoteDescription(rtcSessionDescription)
-      .then(() => {
-        console.log(this.id, 'setRemoteDescription')
-      })
-      .catch((err) => {
-        console.error(err)
-      })
+    await this.rtc.setRemoteDescription(rtcSessionDescription)
+    console.log(this.id, 'setRemoteDescription')
   }
 }
 
@@ -116,11 +102,11 @@ let server = mediasoup.Server({
   logLevel   : "debug",
   rtcMinPort : 40000,
   //rtcMaxPort : 40006
-})
+});
 
-server.createRoom(roomOptions)
-  .then((room) => {
-
+(async () => {
+  try {
+    const room = await server.createRoom(roomOptions)
     const clients = new Map()
 
     wsServer.on('connection', (ws) => {
@@ -151,7 +137,7 @@ server.createRoom(roomOptions)
         }
       })
     })
-  })
-  .catch((err) => {
-    console.error(err)
-  })
+  } catch (err) {
+      console.error(err)
+  }
+})()

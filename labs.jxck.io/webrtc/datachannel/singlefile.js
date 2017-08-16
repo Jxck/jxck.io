@@ -7,26 +7,28 @@ const warn  = console.warn.bind(console)
 const local = new RTC('local')
 const remote  = new RTC('remote')
 
-local.on('icecandidate', (candidate) => {
-  if (candidate === null) return
+local.on('icecandidate', async (candidate) => {
+  try {
+    if (candidate === null) return
 
-  info('7. local で上がった ice candidate を remote に渡す')
-  log(candidate.candidate)
-  remote
-    .addIceCandidate(candidate)
-    .then((e) => console.log(e))
-    .catch((err) => console.error(err))
+    info('7. local で上がった ice candidate を remote に渡す')
+    log(candidate.candidate)
+    await remote.addIceCandidate(candidate)
+  } catch (err) {
+    error(err)
+  }
 })
 
-remote.on('icecandidate', (candidate) => {
-  if (candidate === null) return
+remote.on('icecandidate', async (candidate) => {
+  try {
+    if (candidate === null) return
 
-  info('7. remote で上がった ice candidate を local に渡す')
-  log(candidate.candidate)
-  local
-    .addIceCandidate(candidate)
-    .then((e) => console.log(e))
-    .catch((err) => console.error(err))
+    info('7. remote で上がった ice candidate を local に渡す')
+    log(candidate.candidate)
+    await local.addIceCandidate(candidate)
+  } catch (err) {
+    error(err)
+  }
 })
 
 local.on('iceconnectionstatechange', (e) => {
@@ -35,37 +37,40 @@ local.on('iceconnectionstatechange', (e) => {
 
 remote.on('iceconnectionstatechange', (e) => {
   info('8. remote  の state が変わる', remote.iceConnectionState, remote.iceGatheringState)
-})
+});
 
 
-Promise.all([
-  new Promise((done, fail) => {
-    local.on('negotiationneeded', done)
-  }),
-]).then(([e1, e2]) => {
-  info('2. onnegotiationneeded が発生したらネゴシエーションする')
-  info('3. local の offer を作成')
-  return local.createOffer()
-}).then((rtcSessionDescription) => {
-  info('4. local の offer を双方に適応')
-  log(rtcSessionDescription.type, rtcSessionDescription.sdp)
-  return Promise.all([
-    local.setLocalDescription(rtcSessionDescription),
-    remote.setRemoteDescription(rtcSessionDescription),
-  ])
-}).then((e) => {
-  info('5. remote の offer を作成')
-  return remote.createAnswer()
-}).then((rtcSessionDescription) => {
-  info('6. remote の offer を双方に適応')
-  log(rtcSessionDescription.type, rtcSessionDescription.sdp)
-  return Promise.all([
-    local.setRemoteDescription(rtcSessionDescription),
-    remote.setLocalDescription(rtcSessionDescription),
-  ])
-})
-  .then((e) => console.log(e))
-  .catch((err) => console.error(err))
+(async () => {
+  try {
+    await Promise.all([
+      new Promise((done, fail) => {
+        local.on('negotiationneeded', done)
+      }),
+    ])
+    info('2. onnegotiationneeded が発生したらネゴシエーションする')
+    info('3. local の offer を作成')
+    const rtcSessionDescriptionOffer = await local.createOffer()
+
+    info('4. local の offer を双方に適応')
+    log(rtcSessionDescriptionOffer.type, rtcSessionDescriptionOffer.sdp)
+    await Promise.all([
+      local.setLocalDescription(rtcSessionDescriptionOffer),
+      remote.setRemoteDescription(rtcSessionDescriptionOffer),
+    ])
+
+    info('5. remote の offer を作成')
+    const rtcSessionDescriptionAnswer = await remote.createAnswer()
+
+    info('6. remote の offer を双方に適応')
+    log(rtcSessionDescriptionAnswer.type, rtcSessionDescriptionAnswer.sdp)
+    await Promise.all([
+      local.setRemoteDescription(rtcSessionDescriptionAnswer),
+      remote.setLocalDescription(rtcSessionDescriptionAnswer),
+    ])
+  } catch (err) {
+    error(err)
+  }
+})()
 
 
 local.on('channel', (channel) => {

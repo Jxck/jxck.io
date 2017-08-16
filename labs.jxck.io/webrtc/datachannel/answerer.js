@@ -25,26 +25,27 @@ answerer.on('iceconnectionstatechange', (e) => {
   info('8. answerer  の state が変わる', answerer.iceConnectionState, answerer.iceGatheringState)
 })
 
-ws.on('offer', (message) => {
-  answerer.setRemoteDescription(message).then((e) => {
+ws.on('offer', async (message) => {
+  try {
+    await answerer.setRemoteDescription(message)
     info('5. answerer の answer を作成')
-    return answerer.createAnswer()
-  }).then((rtcSessionDescription) => {
+    const rtcSessionDescription = await answerer.createAnswer()
     info('6. answerer の answer を適応し送信')
     log(rtcSessionDescription.type, rtcSessionDescription.sdp)
     ws.emit('answer', rtcSessionDescription)
-    return answerer.setLocalDescription(rtcSessionDescription)
-  })
-    .then((e) => console.log(e))
-    .catch((err) => console.error(err))
+    await answerer.setLocalDescription(rtcSessionDescription)
+  } catch (err) {
+    error(err)
+  }
 })
 
-ws.on('candidate', (candidate) => {
-  info('7. offerer で上がった ice candidate を answer に適応')
-  answerer
-    .addIceCandidate(candidate)
-    .then((e) => console.log(e))
-    .catch((err) => console.error(err))
+ws.on('candidate', async (candidate) => {
+  try {
+    info('7. offerer で上がった ice candidate を answer に適応')
+    await answerer.addIceCandidate(candidate)
+  } catch (err) {
+    error(err)
+  }
 })
 
 answerer.on('channel', (channel) => {

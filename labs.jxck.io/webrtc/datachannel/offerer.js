@@ -32,32 +32,36 @@ offerer.on('iceconnectionstatechange', (e) => {
   info('8. offerer の state が変わる', offerer.iceConnectionState, offerer.iceGatheringState)
 })
 
-offerer.on('negotiationneeded', () => {
-  info('2. onnegotiationneeded が発生したらネゴシエーションする')
-  info('3. offerer の offer を作成')
-  offerer.createOffer().then((rtcSessionDescription) => {
+offerer.on('negotiationneeded', async () => {
+  try {
+    info('2. onnegotiationneeded が発生したらネゴシエーションする')
+    info('3. offerer の offer を作成')
+    const rtcSessionDescription = await offerer.createOffer()
     info('4. offerer の offer を適応し送信')
     log(rtcSessionDescription.type, rtcSessionDescription.sdp)
     ws.emit('offer', rtcSessionDescription)
-    return offerer.setLocalDescription(rtcSessionDescription)
-  })
-    .then((e) => console.log(e))
-    .catch((err) => console.error(err))
+    await offerer.setLocalDescription(rtcSessionDescription)
+  } catch (err) {
+    error(err)
+  }
 })
 
 
-ws.on('answer', (message) => {
-  offerer.setRemoteDescription(message)
-    .then((e) => console.log(e))
-    .catch((err) => console.error(err))
+ws.on('answer', async (message) => {
+  try {
+    await offerer.setRemoteDescription(message)
+  } catch (err) {
+    error(err)
+  }
 })
 
-ws.on('candidate', (candidate) => {
-  info('7. answer で上がった ice candidate を offerer に適応')
-  offerer
-    .addIceCandidate(candidate)
-    .then((e) => console.log(e))
-    .catch((err) => console.error(err))
+ws.on('candidate', async (candidate) => {
+  try {
+    info('7. answer で上がった ice candidate を offerer に適応')
+    await offerer.addIceCandidate(candidate)
+  } catch (err) {
+    error(err)
+  }
 })
 
 offerer.on('channel', (channel) => {
