@@ -15,7 +15,7 @@
 徐々に揃いつつある ES Modules(ESM) の仕様は TC39 で行われており、その仕様については主に以下のような部分になる。
 
 - `import` や `export` と行った構文
-- module 内はデフォルト static mode
+- module 内はデフォルト strict mode
 - module でスコープを閉じる
 - module 内の `this` は `undefined`
 - etc
