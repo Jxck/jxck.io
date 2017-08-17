@@ -15,7 +15,7 @@
   "scripts": {
     "blog": "bundle exec ruby ./mark.rb blog",
     "podcast": "bundle exec ruby ./mark.rb podcast",
-    "gzip": "bundle exec ruby ./compress.rb www.jxck.io blog.jxck.io mozaic.fm",
+    "gzip": "./compress.sh www.jxck.io blog.jxck.io mozaic.fm",
     "build": "npm run blog && npm run gzip && gulp",
     "clean": "find ./**/* -name *.gz | xargs -L 4 -P 4 rm",
     "space": "selects path from './blog.jxck.io/entries/**/*' where extname '==' '.md' | xargs -L 1 space.rb -ra",
