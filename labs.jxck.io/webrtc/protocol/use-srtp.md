@@ -197,26 +197,21 @@ TLS master
 +---------------+
 | TLS extractor |
 +---------------+
-       |                                         +------+   SRTP
-       +-> client_write_SRTP_master_key ----+--->| SRTP |-> client
-       |                                    | +->| KDF  |   write
-       |                                    | |  +------+   keys
-       |                                    | |
-       +-> server_write_SRTP_master_key --  | |  +------+   SRTCP
-       |                                  \ \--->|SRTCP |-> client
-       |                                   \  +->| KDF  |   write
-       |                                    | |  +------+   keys
-       +-> client_write_SRTP_master_salt ---|-+
-       |                                    |
-       |                                    |    +------+   SRTP
-       |                                    +--->| SRTP |-> server
-       +-> server_write_SRTP_master_salt -+-|--->| KDF  |   write
-                                          | |    +------+   keys
-                                          | |
-                                          | |    +------+   SRTCP
-                                          | +--->|SRTCP |-> server
-                                          +----->| KDF  |   write
-                                                 +------+   keys
+       |                                        +-----------+
+       +-> client_write_SRTP_master_key  --+--> |  SRTP-KDF | - SRTP client write keys
+       |                                   |    +-----------+
+       |                                   |
+       |                                   |    +-----------+
+       +-> client_write_SRTP_master_salt --+--> | SRTCP-KDF | - SRTCP client write keys
+       |                                        +-----------+
+       |
+       |                                        +-----------+
+       +-> server_write_SRTP_master_key  --+--> |  SRTP-KDF | - SRTP server write keys
+       |                                   |    +-----------+
+       |                                   |
+       |                                   |    +-----------+
+       +-> server_write_SRTP_master_salt --+--> | SRTCP-KDF | - SRTCP server write keys
+                                                +-----------+
 
 Figure 1: The derivation of the SRTP keys.
 ```
@@ -242,7 +237,7 @@ Figure 2: A DTLS-SRTP session protecting RTP (1) and another one protecting RTCP
 ### 4.3.1 Key Derivation Algorithm)
 
 採用されている暗号化やメッセージ認証変換にかかわらず(srtp 事前定義の変換または、 Section 6 に記載の新しいもの)、相互運用可能な SRTP 実装は、セッション鍵を生成するために、 SRTP 鍵導出を使用しなければなりません。
-鍵導出レートが適切にセッションの開始時に通知されると、 SRTP key derivation のための当事者間の追加の通信は要はありません。
+鍵導出レートが適切にセッションの開始時に通知されると、 SRTP key derivation のための当事者間の追加の通信は必要はありません。
 
 ```
           packet index ---+
