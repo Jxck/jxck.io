@@ -2,7 +2,7 @@
 
 ## Intro
 
-High Sierra に乗る Safari 10.13 で Brotli 対応がされるということで、メジャーブラウザの Brotli 対応が揃うことになる。
+High Sierra に乗る Safari 10.13 で Brotli 対応がされるということで、メジャーブラウザの Brotli 対応が概ね揃うことになる。
 
 そこで、本サイトも Brotli による静的コンテンツ配信に対応した。
 
@@ -15,22 +15,22 @@ brotli は Google が開発した新しい圧縮形式である。
 
 LZ77 とハフマン符号化を合わせたものであり、元々は WOFF2 の仕様の一部として作られたものが、汎用化されたものである。
 
-過去にに公開されている [zopfli](https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html) と比べても、さらに圧縮率が 20-26% 向上しており、解答速度は zlib 相当とされている。
+過去に公開されている [zopfli](https://github.com/google/zopfli) と比べても、さらに圧縮率が [20-26%](https://opensource.googleblog.com/2015/09/introducing-brotli-new-compression.html) 向上しており、解答速度は zlib 相当とされている。
 
-この効果に寄与する最も特徴的な要因は、仕様に含まれる辞書だろう。
+この効果に寄与する特徴的な要因として、仕様に含まれる辞書が挙げられる。
 
 
 ## Static Dictionary
 
 圧縮アルゴリズムは、簡単に言えば頻出する一致部分を短い情報で置き換える方式が中心となる。
 
-ここで、頻出する一致部分を、対象とするコンテンツの中から探す場合は、探索する長さや範囲の広さなどによって効果が変わってしまう。
+ここで、頻出する一致部分を、対象とするコンテンツの中から探す場合は、探索する長さや範囲の広さなどによって結果が変わる。
 
 もちろん、広い範囲を丁寧に探索すれば、効率よく圧縮が可能だとしても、それでは時間がかかってしまう。
 
 そこで、コンテンツの種類に応じて、あらかじめ頻出する単語パターンを辞書として用意する方式が使用される場合がある。
 
-Brotli は、以下のように辞書を構築して 122MB にもなる辞書を構築し、これによって特に Web コンテンツにおいて高い圧縮率を実現している。
+Brotli は、以下の要領で構築した 122MB にもなる辞書を仕様に含み、これによって特に Web コンテンツにおいて高い圧縮率を実現している。
 
 > Unlike other algorithms compared here, brotli includes a static dictionary. It contains 13'504 words or syllables of English, Spanish, Chinese, Hindi, Russian and Arabic, as well as common phrases used in machine readable languages, particularly HTML and JavaScript. The total size of the static dictionary is 122'784 bytes. The static dictionary is extended by a mechanism of transforms that slightly change the words in the dictionary. A total of 1'633'984 sequences, although not all of them unique, can be constructed by using the 121 transforms. To reduce the amount of bias the static dictionary gives to the results, we used a multilingual web corpus of 93 different languages where only 122 of the 1285 documents (9.5 %) are in languages supported by our static dictionary.
 
@@ -38,18 +38,22 @@ Brotli は、以下のように辞書を構築して 122MB にもなる辞書を
 
 なお、仕様には HexString で辞書の全体が記載されているが、これを Ascii に変換したものを以下に置いた。
 
-これを見ると、引用したように HTML や JS などのコンテンツが高く圧縮されるだろうことが、容易に想像できる。
+これを見ると、引用したように HTML や JS などのコンテンツが強く圧縮されるだろうことが、想像できる。
+
+[brotli dictionary ascii](brotli-dict.txt)
 
 
 ## Accept-Encoding: br
 
-Google が提案した圧縮形式としては、本サイトも既に対応している Zopfli もあった。
+Google が提案した圧縮形式としては、本サイトも既に対応している Zopfli もある。
+
+[zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について](https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html)
 
 Zopfli が gzip 互換であり既存のブラウザでもそのまま利用できたのに対し、 Brotli は全く新しいフォーマットとなっている。
 
 つまりブラウザが Brotli に対応していない限り、 Brotli 形式のファイルを配信することができない。
 
-ブラウザが対応している形式については、ブラウザが Accept-Encoding ヘッダにそれを記載に、サーバとネゴシエーションする方法が取られる。
+ブラウザが対応している形式については、ブラウザが Accept-Encoding ヘッダにそれを記載し、サーバとネゴシエーションする方法が取られる。
 
 これまで、多くのブラウザは以下のような値を返していた。
 
@@ -67,17 +71,21 @@ Accept-Encoding: gzip, deflate, br
 
 現状、 Chrome などは HTTPS でしか Brotli を許可せず、またコンテンツによっては Brotli を許可しないフォーマットなどもあるかもしれない。
 
-しかし、それら例外を除けば、単純にテキストベースで **全てのリクエストが 4 byte 増える** ことを意味する。
+しかし、それら例外を除けば、単純にテキストベースで **大半のリクエストのサイズが 4 byte 増える** ことを意味する。
 
-この変更は、 Web 全体のトラフィックで考えるとかなり大きいと言える。
+この変更は、 Web 全体のトラフィックで考えるとかなり大きいと言えるだろう。
 
-HPACK のように 1byte でもペイロードを減らそうとしている現状、この変更は無視できないし、追加したところで、対応しないトラフィックの方が多いうちは、オーバーヘッドの方が多くなる。
+プロトコルレベルでは、 HPACK のように 1byte でもペイロードを減らそうとしている現状、この変化は無視できない。
+
+ところが、追加したところで、対応しないトラフィックの方が多いうちは、オーバーヘッドの方が多くなる。
 
 そのため、ちょっとしたフォーマットが提案されたからといって、ブラウザのリクエストのデフォルト値が簡単に変わるわけではない。
 
 Accept ヘッダへの `image/webp` の追加などもそうだが、相応の効果と普及を考えての変更と見ることができるだろう。
 
-そして、前述の Safari の実装が済むと、主要ブラウザのサポートは完了し、それらのリクエストが増えてると考えると、この 4byte を見過ごす手はない。
+そして、前述の Safari の実装が済むと、主要ブラウザのサポートは完了する。
+
+brotli の圧縮効果が 4byte 以上あるならば、このヘッダを見過ごす手はない。
 
 
 ## Brotli 対応
@@ -101,10 +109,16 @@ Brotli の実装は Google が公開している。
 
 これを README の通りビルドし、実際にいくつかのコンテンツで圧縮結果を比較した。
 
+予備実験とし、 `--quality` を変えて試したところ、基本的には高いほど効果があり、速度はほとんど変わらなかった。
+
+そこで、以下は全て最高値である `--quality 10` を採用している。
+
+zopfli は、以前の検証で出した `--i30` を採用している。
+
 
 ### HTML
 
-[一つ前の記事](https://blog.jxck.io/entries/2017-08-15/universal-mjs-ecosystem.html)
+当サイトの平均的なサンプルとして、[一つ前の記事](https://blog.jxck.io/entries/2017-08-15/universal-mjs-ecosystem.html) の HTML を採用した。
 
 | file type | size  | ratio |
 |:----------|------:|------:|
@@ -150,9 +164,9 @@ zopfli と比べて、 7 point 圧縮率が向上している。
 
 ### Web Font
 
-[NotoSansCJKjp-Jxck-Regular.woff](https://www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff)
+[本サイト用にビルド](https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html) したフォントファイルを採用する。
 
-[NotoSansCJKjp-Jxck-Regular.otf](https://www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.otf)
+[NotoSansCJKjp-Jxck-Regular.woff](https://www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff)
 
 | file type | size   | ratio |
 |:----------|-------:|------:|
@@ -160,6 +174,8 @@ zopfli と比べて、 7 point 圧縮率が向上している。
 | .otf.gz   | 382322 |   79% |
 | .otf.br   | 344003 |   71% |
 
+
+[NotoSansCJKjp-Jxck-Regular.otf](https://www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.otf)
 
 | file type | size   | ratio |
 |:----------|-------:|------:|
@@ -217,8 +233,24 @@ WebP も圧縮済みのフォーマットであるため、圧縮が逆効果と
 テキストであるためかなり圧縮率は高いが、 zopfli との差は小さい。
 
 
+## 速度比較
+
+同じパラメータで、本サイト全体の圧縮タスクの実行時間を比較した。
+
+圧縮対象は、 html/js/css/png/txt/md など 890 ファイルである。
+
+- zopfli: 190.33s user 2.77s system 98% cpu 3:15.28  total
+- brotli:  22.44s user 1.42s system 99% cpu   24.014 total
+
+測定ミスではなく、圧倒的に brotli の方が速い。
+
+単発で試しているうちから圧倒的に速いことは認識しており、サンプルを増やしたため歴然とした差となった。
+
+
 ## まとめ
 
 本サイトのコンテンツに対しては、 brotli の圧縮効果は概ね zopfli より高く、これは辞書との相性が大きく効いていると考えられる。
 
-また、ブラウザは brotli への対応が進み、コンテントネゴシエーションによる配信が可能なので、本サイトでは brotli に全面的に対応した。
+また、ブラウザは brotli への対応が進み、コンテントネゴシエーションによる配信が可能となりつつある。
+
+本サイトは、コンテンツを全面的に brotli で事前圧縮し、対応ブラウザに配信するよう対応した。
