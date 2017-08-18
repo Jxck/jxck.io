@@ -239,8 +239,11 @@ WebP も圧縮済みのフォーマットであるため、圧縮が逆効果と
 
 圧縮対象は、 html/js/css/png/txt/md など 890 ファイルである。
 
-- zopfli: 190.33s user 2.77s system 98% cpu 3:15.28  total
-- brotli:  22.44s user 1.42s system 99% cpu   24.014 total
+
+```
+zopfli: 190.33s user 2.77s system 98% cpu 3:15.28  total
+brotli:  22.44s user 1.42s system 99% cpu   24.014 total
+```
 
 測定ミスではなく、圧倒的に brotli の方が速い。
 
