@@ -8,7 +8,7 @@
 
 画像最適化シリーズ第 3 回目のエントリである。
 
-+ [画像最適化戦略 PNG/JEPG 編](/entries/2016-03-24/optimize-image.html)
++ [画像最適化戦略 PNG/JPEG 編](/entries/2016-03-24/optimize-image.html)
 + [画像最適化戦略 Picture 編](/entries/2016-03-25/picture.html)
 + [> 画像最適化戦略 WebP 編](/entries/2016-03-26/webp.html)
 + [画像最適化戦略 SVG/Font 編](/entries/2016-03-27/svg-font-base-ui.html)
@@ -21,7 +21,7 @@
 一般的には以下のような使い分けが行われている。
 
 - PNG : 主に UI アイコンなど色変化の少ない画像
-- JEPG: 主に写真など色変化が多い画像
+- JPEG: 主に写真など色変化が多い画像
 - GIF : 主に GIF アニメメーション
 
 WebP は Google が開発した画像フォーマットであり、これら三つの用途全てに適した上で、さらに小さいサイズに圧縮できる場合が多い。

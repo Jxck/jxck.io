@@ -2,7 +2,7 @@
 
 ## Intro
 
-High Sierra に乗る Safari 10.13 で Brotli 対応がされるということで、メジャーブラウザの Brotli 対応が概ね揃うことになる。
+High Sierra に乗る Safari 11 で Brotli 対応がされるということで、メジャーブラウザの Brotli 対応が概ね揃うことになる。
 
 そこで、本サイトも Brotli による静的コンテンツ配信に対応した。
 
