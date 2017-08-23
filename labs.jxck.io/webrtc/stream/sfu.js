@@ -4,7 +4,7 @@ const warn  = console.warn.bind(console)
 const error = console.error.bind(console)
 
 const $ = document.querySelector.bind(document)
-const ws = new WS('wss://sfu.jxck.io/')
+const ws = new WS('ws://localhost:9000/')
 
 const constraint = {audio: true, video: true}
 const id = btoa(Math.random()*1000)
