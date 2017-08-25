@@ -156,7 +156,7 @@ SRTPProtectionProfile SRTP_NULL_HMAC_SHA1_32      = {0x00, 0x06};
 以下の SRTP オプションが有効になる
 
 - PRF で key を作り SRTP の KDF (Key Derivation Function) に渡す
-- KDR (Key Derivation Rate) が 0 で、 SRTP のシーケンスナンバーに基づく再送がない
+- KDR (Key Derivation Rate) は 0
 - RFC3711 の AES-CM PRF が鍵導出として使われる
 - 他のパラメータ(SRTP reply window size, FEC order) はデフォルト
 
@@ -277,12 +277,12 @@ index = 2^16 * ROC + SEQ
 
 まず、 label という値が、それぞれに対して定義されている。
 
--  RTP Enc  Key = `0x00`
--  RTP Auth Key = `0x01`
--  RTP Salt key = `0x02`
-- SRTP Enc  Key = `0x03`
-- SRTP Auth Key = `0x04`
-- SRTP Salt Key = `0x05`
+-  SRTP Enc  Key = `0x00`
+-  SRTP Auth Key = `0x01`
+-  SRTP Salt key = `0x02`
+- SRTCP Enc  Key = `0x03`
+- SRTCP Auth Key = `0x04`
+- SRTCP Salt Key = `0x05`
 
 KDR は SRTP では 0
 
@@ -293,12 +293,50 @@ DIV 演算は右シフトで実装できる
 
 このラベルを元に以下のように計算して x を出す。
 
+
+AES-CM の入力ブロックは、
+
+
 ```
-r = index DIV KDR
+r = index(48bit) DIV KDR
 key_id = <label> || r.
-x = key_id XOR MasterSalt
+x = key_id XOR MasterSalt (16bit 左シフト)
 PRF_n(MasterKey, x).
 ```
+
+```
+index DIV kdr:                 000000000000
+label:                       00
+master salt:   0EC675AD498AFEEBB6960B3AABE6
+-----------------------------------------------
+xor:           0EC675AD498AFEEBB6960B3AABE6     (x, PRF input)
+
+x*2^16:        0EC675AD498AFEEBB6960B3AABE60000 (AES-CM input)
+
+cipher key:    C61E7A93744F39EE10734AFE3FF7A087 (AES-CM output)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+```
+k_e (SRTP encryption):             <label> = 0x00, n = session enc key len
+
+k_a (SRTP message authentication): <label> = 0x01, n = session auth key len
+
+k_s (SRTP salting key):            <label> = 0x02, n = session salt key len
+```
+
+
+
 
 
 
