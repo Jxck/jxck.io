@@ -1,4 +1,4 @@
-# [es module][tc39][javascript] .mjs とは何か、またはモジュールベース JS とエコシステムの今後
+# [es modules][tc39][javascript] .mjs とは何か、またはモジュールベース JS とエコシステムの今後
 
 
 ## Intro

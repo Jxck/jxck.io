@@ -52,7 +52,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2017-08-15T08:00:00+08:00",
-  "dateModified": "2017-08-17T08:00:00+08:00",
+  "dateModified": "2017-08-29T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -566,7 +566,7 @@ th:last-child, td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2017-08-15>2017-08-15</time>
-    <li>updated_at: <time class=updated_at datetime=2017-08-17>2017-08-17</time>
+    <li>updated_at: <time class=updated_at datetime=2017-08-29>2017-08-29</time>
     <li class=tags>tags: [<a href='/tags/es%20module.html'>es module</a>,<a href='/tags/tc39.html'>tc39</a>,<a href='/tags/javascript.html'>javascript</a>]
   </ul>
 
@@ -679,7 +679,7 @@ export default { message: &quot;hello world&quot; }</code></pre>
         <h3 id="ツール"><a href="#ツール">ツール</a></h3>
         <p>暗黙的に <code translate="no">.js</code> というファイルを JS ファイルと判断しているツールに取っては <code translate="no">.mjs</code> は単に未知のファイルとなってしまう。
         <p>特に <code translate="no">*.js</code> といった正規表現には <code translate="no">.mjs</code> は引っかからないため、注意が必要となる。
-        <p>しかし、あえて <code translate="no">.jsm</code> ではなく <code translate="no">.mjs</code> が採択されたのは、こうした従来のツールが謝って CJS として ESM を扱わないようにしているという部分もある。
+        <p>しかし、あえて <code translate="no">.jsm</code> ではなく <code translate="no">.mjs</code> が採択されたのは、こうした従来のツールが誤って CJS として ESM を扱わないようにしているという部分もある。
         <p>今後は、明示的に <code translate="no">.mjs</code> を新しい拡張子として認識するように対応を進める必要がある。
         <p>シンタックスハイライトなどは、拡張子を認識しても <code translate="no">import</code> や <code translate="no">export</code> といった構文の対応や依存解決の表示と行った周辺の挙動も合わせて対応が必要になる。
       </section>
