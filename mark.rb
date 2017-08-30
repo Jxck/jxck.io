@@ -304,7 +304,7 @@ class AMP < Markup
   def html_element(node)
     value = super(node)
     if value.match(/<iframe.*/)
-      value.gsub!(/iframe/, "amp-iframe")
+      value.gsub!(/iframe/, 'amp-iframe sandbox="allow-scripts allow-same-origin" layout="responsive"')
     end
     value
   end

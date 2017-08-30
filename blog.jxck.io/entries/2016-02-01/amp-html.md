@@ -15,7 +15,7 @@ Google が推奨する仕様である [AMP HTML](https://www.ampproject.org/) �
 - [AMP 対応 2016.02 版](http://ymotongpoo.hatenablog.com/entry/2016/02/25/224159)
 
 
-## AMP
+## Accelerated Mobile Pages
 
 [ACCELERATED MOBILE PAGES PROJECT](https://www.ampproject.org/)
 
@@ -73,7 +73,7 @@ AMP は以下の三つの要素からなる。
 ## HTML 対応
 
 
-### AMP HTML
+### AMP-HTML
 
 本サイトの HTML は、 [HTML の省略によるサイズ最適化](/entries/2016-01-28/html-compression.html) に書いた通り、極力タグを省略した作りにしている。
 
@@ -127,7 +127,7 @@ google analytics については後述するコンポーネントがあるため
 [HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について](/entries/2016-02-15/loading-css-over-http2.html)
 
 
-### amp custom element 対応
+### amp-custom-element 対応
 
 
 ### amp-img
