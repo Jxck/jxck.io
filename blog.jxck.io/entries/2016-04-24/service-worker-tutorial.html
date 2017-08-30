@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang=ja itemscope itemtype=http://schema.org/BlogPosting>
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
-    <meta charset="utf-8">
+    <meta charset=utf-8>
     <!--
     貴様、見ているな！！
     このサイトの技術的なまとめはこちらをどうぞ。
@@ -9,17 +9,17 @@
 
     by Jxck
     -->
-    <link rel="canonical" href="https://blog.jxck.io/entries/2016-04-24/service-worker-tutorial.html">
-    <link rel="amphtml" href="https://blog.jxck.io/entries/2016-04-24/service-worker-tutorial.amp.html">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="alternate" type="application/atom+xml" title="blog.jxck.io" href="/feeds/atom.xml">
-    <link rel="author" href="//jxck.io/assets/humans.txt">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="preload" as="font" type="font/woff" href="//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201608028" crossorigin>
-    <script async src="//jxck.io/assets/js/ga.js"></script>
-    <script async src="//jxck.io/assets/js/highlight.min.js"></script>
-    <script async src="//jxck.io/assets/js/sw.js"></script>
-    <script async src="//jxck.io/assets/js/main.js"></script>
+    <link rel=canonical href="https://blog.jxck.io/entries/2016-04-24/service-worker-tutorial.html">
+    <link rel=amphtml href="https://blog.jxck.io/entries/2016-04-24/service-worker-tutorial.amp.html">
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+    <link rel=author href=//jxck.io/assets/humans.txt>
+    <link rel=manifest href=/manifest.json>
+    <link rel=preload as=font type=font/woff href="//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201608028" crossorigin>
+    <script async src=//jxck.io/assets/js/ga.js></script>
+    <script async src=//jxck.io/assets/js/highlight.min.js></script>
+    <script async src=//jxck.io/assets/js/sw.js></script>
+    <script async src=//jxck.io/assets/js/main.js></script>
 
     <meta name="author" content="Jxck">
     <meta name="description" content="Service Worker の初心者向けのチュートリアルや、使ってみた系のエントリも増えてきました。しかし、 Service Worker は通常のブラウザ用 JS の開発と少し経路が違い、慣れるまで開発やデバッグもなかなか難しいと思います。そこで特に難しい部分、そして分...">
@@ -59,7 +59,7 @@
     "width": 700
   },
   "datePublished": "2016-04-24T08:00:00+08:00",
-  "dateModified": "2017-08-10T08:00:00+08:00",
+  "dateModified": "2017-08-30T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -80,32 +80,32 @@
 </script>
 
     <title>中級者向け Service Worker Tutorial | blog.jxck.io</title>
-    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/body.css">
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/body.css>
   </head>
   <body>
-    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/header.css">
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/header.css>
     <header>
       <ul>
-        <li><a href="//blog.jxck.io"><img class="logo" alt="blog" title="blog top" width="30" src=//jxck.io/assets/img/blog.svg></a>
-        <li><a href="/entries/2016-04-24/service-worker-tutorial.amp.html#development=1"><svg width="30" height="30"><use xlink:href="/assets/img/amp.svg#main"/></svg></a>
-        <li><a href="."><img alt="up" title="move to parent directory" width="30" src="//jxck.io/assets/img/up.svg"></a>
-        <li><a href="/feeds/atom.xml"><img alt="rss" title="rss feed" width="30" src="//jxck.io/assets/img/rss.svg"></a>
-        <li><a href="//jxck.io/humans.txt"><img alt="humans" title="huamns.txt" width="30" src="//jxck.io/assets/img/humans.svg"></a>
-        <li><a href="//jxck.io"><img class="logo" alt="jxck" title="jxck logo" width="30" src="//jxck.io/assets/img/jxck.png"></a>
+        <li><a href=//blog.jxck.io><img class=logo alt=blog title="blog top" width=30 src=//jxck.io/assets/img/blog.svg></a>
+        <li><a href="/entries/2016-04-24/service-worker-tutorial.amp.html#development=1"><svg width=30 height=30><use xlink:href="/assets/img/amp.svg#main"/></svg></a>
+        <li><a href=.><img alt=up title="move to parent directory" width=30 src=//jxck.io/assets/img/up.svg></a>
+        <li><a href=/feeds/atom.xml><img alt=rss title="rss feed" width=30 src=//jxck.io/assets/img/rss.svg></a>
+        <li><a href=//jxck.io/humans.txt><img alt=humans title=huamns.txt width=30 src=//jxck.io/assets/img/humans.svg></a>
+        <li><a href=//jxck.io><img class=logo alt=jxck title="jxck logo" width=30 src=//jxck.io/assets/img/jxck.png></a>
       </ul>
     </header>
 
-    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/markdown.css">
-    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/main.css">
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/markdown.css>
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/main.css>
     <main>
-      <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/info.css">
-      <ul class="info">
-        <li>created_at: <time class="created_at" datetime="2016-04-24">2016-04-24</time>
-        <li>updated_at: <time class="updated_at" datetime="2017-08-10">2017-08-10</time>
-        <li class="tags">tags: [<a href='/tags/service%20worker.html'>service worker</a>,<a href='/tags/tutorial.html'>tutorial</a>]
+      <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/info.css>
+      <ul class=info>
+        <li>created_at: <time class=created_at datetime=2016-04-24>2016-04-24</time>
+        <li>updated_at: <time class=updated_at datetime=2017-08-30>2017-08-30</time>
+        <li class=tags>tags: [<a href='/tags/service%20worker.html'>service worker</a>,<a href='/tags/tutorial.html'>tutorial</a>]
       </ul>
 
-      <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/article.css">
+      <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/article.css>
   <article>
     <h1><a href=/entries/2016-04-24/service-worker-tutorial.html>中級者向け Service Worker Tutorial</a></h1>
     <section>
@@ -135,7 +135,7 @@
     <section>
       <h2 id="claim"><a href="#claim">claim</a></h2>
       <p>controller とは何か、いつ controller になるか、 <code translate="no">claim()</code> で何が起こるのかなどについて。
-      <iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/m6qBg4M3RTA" allowfullscreen></iframe>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/m6qBg4M3RTA" allowfullscreen></iframe>
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre class=html><code translate="no">&lt;!DOCTYPE html&gt;
 &lt;meta charset=utf-8&gt;
@@ -177,7 +177,7 @@ self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
     <section>
       <h2 id="controllerchange"><a href="#controllerchange">controllerchange</a></h2>
       <p>register が終わった後、「新しく登録された controller が使えるようになったら」または「既に登録されている controller が使えるようになったら」という状態をとる方法と <code translate="no">controllerchange</code> イベント。
-      <iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/XoI0FPDV8Xo" allowfullscreen></iframe>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/XoI0FPDV8Xo" allowfullscreen></iframe>
       <pre class=js><code translate="no">console.log(&#039;master&#039;);
 
 let controllerChange = new Promise((resolve, reject) =&gt; {
@@ -218,7 +218,7 @@ self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
       <h2 id="updatefound"><a href="#updatefound">updatefound</a></h2>
       <p>Service Worker が更新される際の動きと、 <code translate="no">skipWaiting()</code> が何をスキップするのか?
       <p><code translate="no">install</code>, <code translate="no">activate</code> イベントの用途。
-      <iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/AMbQ7d9rjao" allowfullscreen></iframe>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/AMbQ7d9rjao" allowfullscreen></iframe>
       <pre class=js><code translate="no">console.log(&#039;master&#039;);
 
 navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt; {
@@ -254,7 +254,7 @@ self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
     <section>
       <h2 id="update()"><a href="#update()">update()</a></h2>
       <p><code translate="no">registration.update()</code> による worker の更新と、ブラウザキャッシュにヒットする場合の挙動。
-      <iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/7uRVh9PzV5o" allowfullscreen></iframe>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/7uRVh9PzV5o" allowfullscreen></iframe>
       <pre class=js><code translate="no">console.log(&#039;master&#039;);
 
 navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt; {
@@ -300,7 +300,7 @@ self.addEventListener(&#039;push&#039;, () =&gt; {
     <section>
       <h2 id="backgroundsync"><a href="#backgroundsync">backgroundsync</a></h2>
       <p>sync の発火タイミングと fetch を sync で送る場合の考え方。
-      <iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/b7ZM7uzkykA" allowfullscreen></iframe>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/b7ZM7uzkykA" allowfullscreen></iframe>
       <pre class=js><code translate="no">// master.js
 navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt; {
   return navigator.serviceWorker.ready;
@@ -341,7 +341,7 @@ self.addEventListener(&#039;sync&#039;, (e) =&gt; {
           <li>Google Cloud Messaging の API Key を探す
           <li>manifest.json を作って HTML にリンクスする
         </ul>
-        <iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/MlCZWVvUiXM" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/MlCZWVvUiXM" allowfullscreen></iframe>
         <pre class=json><code translate="no">{
   &quot;name&quot;: &quot;labs.jxck.io push demo&quot;,
   &quot;short_name&quot;: &quot;labs.jxck.io&quot;,
@@ -369,7 +369,7 @@ self.addEventListener(&#039;sync&#039;, (e) =&gt; {
       <section>
         <h3 id="2.master.js"><a href="#2.master.js">2.master.js</a></h3>
         <p><code translate="no">endpoint</code>, <code translate="no">userAuth</code>, <code translate="no">userPublickKey</code> をなんらかの方法でサーバに送ります。
-        <iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/f-ney12qAEI" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/f-ney12qAEI" allowfullscreen></iframe>
         <pre class=js><code translate="no">&#039;use strict&#039;;
 let p = console.log.bind(console);
 
@@ -396,7 +396,7 @@ navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt
       </section>
       <section>
         <h3 id="3.worker.js"><a href="#3.worker.js">3.worker.js</a></h3>
-        <iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/k939NlThH4E" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/k939NlThH4E" allowfullscreen></iframe>
         <pre class=js><code translate="no">self.addEventListener(&#039;install&#039;, (e) =&gt; {
   console.info(&#039;install&#039;, e);
   e.waitUntil(self.skipWaiting());
@@ -441,7 +441,7 @@ self.addEventListener(&#039;notificationclick&#039;, (e) =&gt; {
       <section>
         <h3 id="4.push.js"><a href="#4.push.js">4.push.js</a></h3>
         <p>使用したモジュール: <a href="https://labs.jxck.io/service-worker/push/">https://github.com/web-push-libs/web-push</a>
-        <iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/hIliK4l4wqw" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/hIliK4l4wqw" allowfullscreen></iframe>
         <pre class=js><code translate="no">&#039;use strict&#039;;
 
 let push = require(&#039;web-push&#039;);
@@ -479,9 +479,9 @@ push.sendNotification(data.endpoint, {
     </main>
     <hr>
 
-    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/footer.css">
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/footer.css>
     <footer>
-      <address class="copyright">Copyright &copy; 2016 <a href="/">Jxck</a>. All Rights Reserved. Using <a href="https://www.google.com/intl/ja/policies/privacy/partners/">google analytics</a>.</address>
+      <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved. Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>google analytics</a>.</address>
     </footer>
   </body>
 </html>

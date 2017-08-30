@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang=ja itemscope itemtype=http://schema.org/BlogPosting>
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
-    <meta charset="utf-8">
+    <meta charset=utf-8>
     <!--
     貴様、見ているな！！
     このサイトの技術的なまとめはこちらをどうぞ。
@@ -9,17 +9,17 @@
 
     by Jxck
     -->
-    <link rel="canonical" href="https://blog.jxck.io/entries/2017-02-17/polyfill-implementation-guideline.html">
-    <link rel="amphtml" href="https://blog.jxck.io/entries/2017-02-17/polyfill-implementation-guideline.amp.html">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="alternate" type="application/atom+xml" title="blog.jxck.io" href="/feeds/atom.xml">
-    <link rel="author" href="//jxck.io/assets/humans.txt">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="preload" as="font" type="font/woff" href="//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201608028" crossorigin>
-    <script async src="//jxck.io/assets/js/ga.js"></script>
-    <script async src="//jxck.io/assets/js/highlight.min.js"></script>
-    <script async src="//jxck.io/assets/js/sw.js"></script>
-    <script async src="//jxck.io/assets/js/main.js"></script>
+    <link rel=canonical href="https://blog.jxck.io/entries/2017-02-17/polyfill-implementation-guideline.html">
+    <link rel=amphtml href="https://blog.jxck.io/entries/2017-02-17/polyfill-implementation-guideline.amp.html">
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+    <link rel=author href=//jxck.io/assets/humans.txt>
+    <link rel=manifest href=/manifest.json>
+    <link rel=preload as=font type=font/woff href="//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201608028" crossorigin>
+    <script async src=//jxck.io/assets/js/ga.js></script>
+    <script async src=//jxck.io/assets/js/highlight.min.js></script>
+    <script async src=//jxck.io/assets/js/sw.js></script>
+    <script async src=//jxck.io/assets/js/main.js></script>
 
     <meta name="author" content="Jxck">
     <meta name="description" content="W3C の TAG から、主にブラウザ API の Polyfill に関するドキュメントが公開された。Polyfills and the evolution of the WebPolyfill は便利な一方で、時として標準化の妨げになってしまう場合があるため、それを避け...">
@@ -59,7 +59,7 @@
     "width": 700
   },
   "datePublished": "2017-02-17T08:00:00+08:00",
-  "dateModified": "2017-08-10T08:00:00+08:00",
+  "dateModified": "2017-08-30T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -80,32 +80,32 @@
 </script>
 
     <title>Polyfill のあり方と Web の進化と協調するためのガイドライン | blog.jxck.io</title>
-    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/body.css">
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/body.css>
   </head>
   <body>
-    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/header.css">
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/header.css>
     <header>
       <ul>
-        <li><a href="//blog.jxck.io"><img class="logo" alt="blog" title="blog top" width="30" src=//jxck.io/assets/img/blog.svg></a>
-        <li><a href="/entries/2017-02-17/polyfill-implementation-guideline.amp.html#development=1"><svg width="30" height="30"><use xlink:href="/assets/img/amp.svg#main"/></svg></a>
-        <li><a href="."><img alt="up" title="move to parent directory" width="30" src="//jxck.io/assets/img/up.svg"></a>
-        <li><a href="/feeds/atom.xml"><img alt="rss" title="rss feed" width="30" src="//jxck.io/assets/img/rss.svg"></a>
-        <li><a href="//jxck.io/humans.txt"><img alt="humans" title="huamns.txt" width="30" src="//jxck.io/assets/img/humans.svg"></a>
-        <li><a href="//jxck.io"><img class="logo" alt="jxck" title="jxck logo" width="30" src="//jxck.io/assets/img/jxck.png"></a>
+        <li><a href=//blog.jxck.io><img class=logo alt=blog title="blog top" width=30 src=//jxck.io/assets/img/blog.svg></a>
+        <li><a href="/entries/2017-02-17/polyfill-implementation-guideline.amp.html#development=1"><svg width=30 height=30><use xlink:href="/assets/img/amp.svg#main"/></svg></a>
+        <li><a href=.><img alt=up title="move to parent directory" width=30 src=//jxck.io/assets/img/up.svg></a>
+        <li><a href=/feeds/atom.xml><img alt=rss title="rss feed" width=30 src=//jxck.io/assets/img/rss.svg></a>
+        <li><a href=//jxck.io/humans.txt><img alt=humans title=huamns.txt width=30 src=//jxck.io/assets/img/humans.svg></a>
+        <li><a href=//jxck.io><img class=logo alt=jxck title="jxck logo" width=30 src=//jxck.io/assets/img/jxck.png></a>
       </ul>
     </header>
 
-    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/markdown.css">
-    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/main.css">
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/markdown.css>
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/main.css>
     <main>
-      <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/info.css">
-      <ul class="info">
-        <li>created_at: <time class="created_at" datetime="2017-02-17">2017-02-17</time>
-        <li>updated_at: <time class="updated_at" datetime="2017-08-10">2017-08-10</time>
-        <li class="tags">tags: [<a href='/tags/polyfill.html'>polyfill</a>,<a href='/tags/TAG.html'>TAG</a>,<a href='/tags/w3c.html'>w3c</a>]
+      <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/info.css>
+      <ul class=info>
+        <li>created_at: <time class=created_at datetime=2017-02-17>2017-02-17</time>
+        <li>updated_at: <time class=updated_at datetime=2017-08-30>2017-08-30</time>
+        <li class=tags>tags: [<a href='/tags/polyfill.html'>polyfill</a>,<a href='/tags/TAG.html'>TAG</a>,<a href='/tags/w3c.html'>w3c</a>]
       </ul>
 
-      <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/article.css">
+      <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/article.css>
   <article>
     <h1><a href=/entries/2017-02-17/polyfill-implementation-guideline.html>Polyfill のあり方と Web の進化と協調するためのガイドライン</a></h1>
     <section>
@@ -169,7 +169,7 @@
         <p>しかし、 <code translate="no">contains()</code> の実装を追加する前に <code translate="no">Array.prototype.contains</code> の存在をチェックし、存在したらスルーしていたため、そこにネイティブの実装が加わった時点で、最終的な独自の Array には、ネイティブ実装の <code translate="no">contains()</code> も Polyfill の <code translate="no">contains()</code> もない Array が提供されたというバグである。
       </section>
       <section>
-        <h3 id="createShadowRoot"><a href="#createShadowRoot">createShadowRoot</a></h3>
+        <h3 id="createShadowRoot()"><a href="#createShadowRoot()">createShadowRoot()</a></h3>
         <p>TAG のドキュメントでは、 ShadowDOM の <code translate="no">createShadowRoot()</code> についても言及されている。
         <p>ShadowDOM の仕様は、これまでの DOM に新しい概念を持ち込むため仕様の策定が難しく、かなりの時間を要した。
         <p>API 自体も途中で更新され、更新後を v1 としてそれまでが v0 として扱われることとなった。
@@ -248,9 +248,9 @@ document.createElement(&#039;div&#039;).attachShadow({ mode: &#039;open&#039; })
     </main>
     <hr>
 
-    <link rel="stylesheet" property="stylesheet" type="text/css" href="//jxck.io/assets/css/footer.css">
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/footer.css>
     <footer>
-      <address class="copyright">Copyright &copy; 2016 <a href="/">Jxck</a>. All Rights Reserved. Using <a href="https://www.google.com/intl/ja/policies/privacy/partners/">google analytics</a>.</address>
+      <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved. Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>google analytics</a>.</address>
     </footer>
   </body>
 </html>
