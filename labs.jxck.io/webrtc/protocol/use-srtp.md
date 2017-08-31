@@ -248,6 +248,16 @@ server_write_SRTP_master_salt[SRTPSecurityParams.master_salt_len];
 導出方法は、 RFC3711 の 4.3 に書かれてる。
 
 
+### 4.3.3. AES-CM PRF
+
+PRF は AES-CM を使う。
+
+PRF は、 128, 192, 256 のいずれかの長さの Master Key で暗号化され、 m = 128 の入力ブロックサイズから n (2^23 以下) bit の出力をする。
+IV も 128bit にそろえて(*2^16)から計算。
+
+AES で計算する結果を、後述の方法で繋いで KeyStream を作るのが CM (Counter Mode)
+
+
 ## ROC/SEQ/index
 
 SRTP では RTP の SEQ がカンストしたことを数える Rollover Counter を用意する。
@@ -255,10 +265,8 @@ ROC は 2^16 でインクリメントされるので、実際の Packet Index �
 
 
 ```
-index = 2^16 * ROC + SEQ
+Index = 2^16 * ROC + SEQ      (48bit)
 ```
-
-これが 48bit になる。
 
 
 ## KDF
@@ -274,6 +282,20 @@ index = 2^16 * ROC + SEQ
 
 を生成する。
 
+```
+          packet index ---+
+                          |
+                          v
++-----------+ master  +--------+ session encr_key
+|           | key     |        |---------->
+|  SRTP     |-------->| Key    | session auth_key
+|  Key      |         | Deriv  |---------->
+|  Exporter |-------->|        | session salt_key
+|           | master  |        |---------->
++-----------+ salt    +--------+
+
+Figure 5: SRTP key derivation.
+```
 
 まず、 label という値が、それぞれに対して定義されている。
 
@@ -298,45 +320,60 @@ AES-CM の入力ブロックは、
 
 
 ```
-r = index(48bit) DIV KDR
-key_id = <label> || r.
+SessionEncKey : <label> = 0x00, n = 128
+SessionAuthKey: <label> = 0x01, n = 160
+SessionSaltKey: <label> = 0x02, n = 112
+```
+
+```
+r = Index(48bit) DIV KDR
+key_id = <label>(8bit) || r.
 x = key_id XOR MasterSalt (16bit 左シフト)
 PRF_n(MasterKey, x).
 ```
 
+
+PRF_n は、結局はモード関係なく一回だけ AES を実行することと等価になる。
+
+Erlang の場合は、 aes_ecb で一回 block_decrypt すれば良い。
+
+```erl
+CipherKey = crypto:block_encrypt(aes_ecb, MasterKey, X),
 ```
-index DIV kdr:                 000000000000
+
+
+```
+    r:                         000000000000
 label:                       00
-master salt:   0EC675AD498AFEEBB6960B3AABE6
+key_id:                      00000000000000
+MasterSalt:    0EC675AD498AFEEBB6960B3AABE6
 -----------------------------------------------
-xor:           0EC675AD498AFEEBB6960B3AABE6     (x, PRF input)
+X:             0EC675AD498AFEEBB6960B3AABE60000 (xor, *2^16)
 
-x*2^16:        0EC675AD498AFEEBB6960B3AABE60000 (AES-CM input)
-
-cipher key:    C61E7A93744F39EE10734AFE3FF7A087 (AES-CM output)
+cipher key:    C61E7A93744F39EE10734AFE3FF7A087 (PRF(MasterKey, X))
 ```
 
 
-
-
-
-
-
-
-
-
-
-
 ```
-k_e (SRTP encryption):             <label> = 0x00, n = session enc key len
+Index DIV kdr:                   000000000000
+Label:                         02
+MasterSalt:      0EC675AD498AFEEBB6960B3AABE6
+------------------------------------------------
+X:               0EC675AD498AFEE9B6960B3AABE60000 (xor, *2^16)
 
-k_a (SRTP message authentication): <label> = 0x01, n = session auth key len
-
-k_s (SRTP salting key):            <label> = 0x02, n = session salt key len
+SessionSaltKey:  30CBBC08863D8C85D49DB34A9AE1     (PRF(MasterKey, X) bsr 16)
 ```
 
 
+```
+Index DIV kdr:                   000000000000
+Label:                         01
+MasterSalt:      0EC675AD498AFEEBB6960B3AABE6
+-----------------------------------------------
+X:               0EC675AD498AFEEAB6960B3AABE60000 (xor, *2^16)
 
+SessionAtuhKey:  CEBE321F6FF7716B6FD4AB49AF256A15 (PRF(MasterKey, X))
+```
 
 
 
@@ -371,28 +408,15 @@ Figure 3: Default SRTP Encryption Processing.
 暗号化は、 KeyStream Suffix と RTP Packet Payload の XOR で生成される。
 逆にやれば複合できる。
 
-この KeyStream はデフォルトでは AES を用いて生成。
-
-
-SRTP のデフォルト暗号化は AES でモードが 2 つある。
-
-- Counter Mode
-- F8 Mode
-
-
-ここでは Counter Mode (CM) を採用。
+この KeyStream はデフォルトでは AES-CM を用いて生成。
 
 
 ## AES-CM
 
 AES の出力する 128 bit ブロックを、連結したものを Key Stream として使う。
 
-```
-AES(Session Enc Key, IV) || AES(Session Enc Key, IV + 1 mod 2^128) || AES(Session Enc Key, IV + 2 mod 2^128) ...
-```
 
-
-IV は 128 bit で以下。 XOR されている 3 つの項は、 128bit に 0 padding される。
+IV は 128 bit で以下。 (3 つの項を 128bit に 0 padding してから計算している)
 
 
 ```
@@ -400,26 +424,21 @@ IV = (Session Salt Key * 2^16) XOR (SSRC * 2^64) XOR (index * 2^16)
 ```
 
 
+```
+AES(Session Enc Key, IV) ||
+AES(Session Enc Key, IV + 1 mod 2^128) ||
+AES(Session Enc Key, IV + 2 mod 2^128) ...
+```
+
+この連続を KeyStream として使う。
 
 
-### 4.3.3. AES-CM PRF
+## Message 認証
 
-PRF は AES-CM を使う。
+HMAC-SHA1 を使う。
 
-
-
-The currently defined PRF, keyed by 128, 192, or 256 bit master key, has input block size m = 128 and can produce n-bit outputs for n up to 2^23.
-
-PRF は、 128, 192, 256 のいずれかの長さの Master Key で暗号化され、 m = 128 の入力ブロックサイズから n (2^23 以下) bit の出力をする。
-
-PRFn(kmaster,x) SHALL be AES in Counter Mode as described in Section 4.1.1, applied to key k_master, and IV equal to (x*2^16), and with the output keystream truncated to the n first (left-most) bits.
-
-PRFn(kmaster,x) は key に k_master , IV に `x*2^16` とした AES カウンターモード (Section 4.1.1)、そして keystream の出力は左から n bit にまるめられる。
-
-(Requiring n/128, rounded up, applications of AES.)
-
-
-
+160bit の SessionAuthKey を使って
+80bit の AuthTag を生成する。
 
 ## SDP
 
@@ -438,3 +457,30 @@ proto           DCCP/TLS/RTP/SAVP            [RFC5764]
 proto           UDP/TLS/RTP/SAVPF            [RFC5764]
 proto           DCCP/TLS/RTP/SAVPF           [RFC5764]
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+参考: https://www.cisco.com/c/en/us/about/security-center/securing-voip.html
+
