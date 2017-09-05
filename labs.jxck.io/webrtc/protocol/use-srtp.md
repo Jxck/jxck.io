@@ -320,15 +320,15 @@ AES-CM の入力ブロックは、
 
 
 ```
-SessionEncKey : <label> = 0x00, n = 128
+SessionEncrKey: <label> = 0x00, n = 128
 SessionAuthKey: <label> = 0x01, n = 160
 SessionSaltKey: <label> = 0x02, n = 112
 ```
 
 ```
-r = Index(48bit) DIV KDR
-key_id = <label>(8bit) || r.
-x = key_id XOR MasterSalt (16bit 左シフト)
+R = Index(48bit) DIV KDR
+Key_Id = <label>(8bit) || r.
+X = Key_Id XOR MasterSalt (16bit 左シフト)
 PRF_n(MasterKey, x).
 ```
 
@@ -343,20 +343,21 @@ CipherKey = crypto:block_encrypt(aes_ecb, MasterKey, X),
 
 
 ```
-    r:                         000000000000
-label:                       00
-key_id:                      00000000000000
-MasterSalt:    0EC675AD498AFEEBB6960B3AABE6
------------------------------------------------
-X:             0EC675AD498AFEEBB6960B3AABE60000 (xor, *2^16)
+    R:                           000000000000
+Label:                         00
+Key_Id:                        00000000000000
+MasterSalt:      0EC675AD498AFEEBB6960B3AABE6
+-------------------------------------------------
+X:               0EC675AD498AFEEBB6960B3AABE60000 (xor, *2^16)
 
-cipher key:    C61E7A93744F39EE10734AFE3FF7A087 (PRF(MasterKey, X))
+SessionEncrKey:  C61E7A93744F39EE10734AFE3FF7A087 (PRF(MasterKey, X))
 ```
 
 
 ```
-Index DIV kdr:                   000000000000
+    R:                           000000000000
 Label:                         02
+Key_Id:                        02000000000000
 MasterSalt:      0EC675AD498AFEEBB6960B3AABE6
 ------------------------------------------------
 X:               0EC675AD498AFEE9B6960B3AABE60000 (xor, *2^16)
@@ -364,15 +365,21 @@ X:               0EC675AD498AFEE9B6960B3AABE60000 (xor, *2^16)
 SessionSaltKey:  30CBBC08863D8C85D49DB34A9AE1     (PRF(MasterKey, X) bsr 16)
 ```
 
-
 ```
-Index DIV kdr:                   000000000000
+    R:                           000000000000
 Label:                         01
+Key_Id:                        01000000000000
 MasterSalt:      0EC675AD498AFEEBB6960B3AABE6
 -----------------------------------------------
 X:               0EC675AD498AFEEAB6960B3AABE60000 (xor, *2^16)
 
-SessionAtuhKey:  CEBE321F6FF7716B6FD4AB49AF256A15 (PRF(MasterKey, X))
+Auth Key                           AES Input Blocks
+CEBE321F6FF7716B6FD4AB49AF256A15   0EC675AD498AFEEAB6960B3AABE60000
+6D38BAA48F0A0ACF3C34E2359E6CDBCE   0EC675AD498AFEEAB6960B3AABE60001
+E049646C43D9327AD175578EF7227098   0EC675AD498AFEEAB6960B3AABE60002
+6371C10C9A369AC2F94A8C5FBCDDDC25   0EC675AD498AFEEAB6960B3AABE60003
+6D6E919A48B610EF17C2041E47403576   0EC675AD498AFEEAB6960B3AABE60004
+6B68642C59BBFC2F34DB60DBDFB2       0EC675AD498AFEEAB6960B3AABE60005
 ```
 
 
