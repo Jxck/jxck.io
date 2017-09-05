@@ -116,6 +116,38 @@ article ul li ul li {
   margin-bottom: 0;
 }
 
+@supports (line-height-step: 1px) {
+  article {
+    --grid: 1.5em;
+    line-height-step: var(--grid);
+    line-height: 1.2;
+  }
+
+  article section {
+    background-size: 100% var(--grid);
+    /*background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px);*/
+  }
+
+  article h1, article h2, article h3 {
+    display: inline-block;
+    width: 100%;
+    line-height-step: 0;
+    line-height: 1.2;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  article p {
+    margin-top: calc(var(--grid));
+    margin-bottom: calc(var(--grid));
+  }
+
+  article pre, article table {
+    line-height-step: 0;
+    line-height: normal;
+  }
+}
+
 @font-face {
   font-family: "NotoSansCJKjp-Jxck";
   font-style: normal;
