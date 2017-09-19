@@ -2,8 +2,6 @@
 
 ## Intro
 
-
-
 ## TLS Exporter (RFC5705)
 
 例えば DTLS-SRTP の場合、 DTLS でハンドシェイクした後 SRTP でもハンドシェイクをするのは無駄が多い。
@@ -14,7 +12,7 @@
 
 もともと Extractor という名前が使われていたが、 Crypto の世界での Extractor と紛らわしいので変えた。
 
-実際には、共有した情報(Master Secret etc)をそのまま Export しない。例えば複数の上位プロトコルがある場合同じになってしまう。
+共有した情報(Master Secret etc)をそのまま Export すると、複数の上位プロトコルがある場合同じになってしまう。
 
 そこで、 Exported Keying Material (EKM) という情報に加工して渡す。
 
@@ -23,7 +21,7 @@
 - クライアント/サーバ双方が、同じ EKM を上位プロトコルに提供できる
 - EKM は MasterSecret を知らない攻撃者にはただの乱数にしか見えない
 - 単一の (D)TLS コネクションから、複数の EKM が提供できる
-- 一つの EKM から、 Master Secret や他の EKM が推測できない
+- 1 つの EKM から、 Master Secret や他の EKM が推測できない
 
 
 ## Exporter Definition
@@ -45,22 +43,20 @@ TLS がハンドシェイクで使った PRF で算出する。
 context がない場合
 
 ```c
-PRF(SecurityParameters.master_secret, label,
-    SecurityParameters.client_random +
-    SecurityParameters.server_random
+PRF(master_secret,
+    label,
+    client_random + server_random
     )[length]
 ```
 
 context がある場合
 
 ```c
-PRF(SecurityParameters.master_secret, label,
-    SecurityParameters.client_random +
-    SecurityParameters.server_random +
-    context_value_length + context_value
+PRF(master_secret,
+    label,
+    client_random + server_random + context_value_length + context_value
     )[length]
 ```
-
 
 
 ## DTLS (RFC6347)
@@ -88,6 +84,10 @@ DTLS の拡張で `use-srtp` が使用される場合、 DTLS では鍵の交換
 
 この時、双方の証明書の検証は、別途交換されるシグナリングの中で、 SDP の Fingerprint に載っている値との比較で行われる。
 
+```
+a=fingerprint:sha-256 3A:46:CD:38:CF:B6:B0:A7:3D:A9:71:46:A8:B5:FC:BA:74:D0:15:A4:A8:2D:FA:AD:EC:C2:0A:8E:F0:76:61:68
+```
+
 ブラウザが知っている認証局の証明書でも、 Fingerprint と違うと Unknown CA になるので注意。
 
 そして、ハンドシェイクが終わったあと Application Frame にペイロードは乗らない。
@@ -102,14 +102,17 @@ ServerHello は、その Profile から一つを選び、同じく `use-srtp` �
 MKI (Master Key Identifier) がつく場合がある、これは複数のコンテキストがある場合の識別に使う。
 
 ```
-uint8 SRTPProtectionProfile[2];
-
-struct {
-   SRTPProtectionProfiles SRTPProtectionProfiles;
-   opaque srtp_mki<0..255>;
-} UseSRTPData;
-
-SRTPProtectionProfile SRTPProtectionProfiles<2..2^16-1>;
+ 0                   1
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+| Length                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+| Value 1                         |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+| Value 2                         |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+| MKI (0..255)                    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 ```
 
 Profile は以下。
@@ -118,38 +121,28 @@ maximum_lifetime は各鍵で暗号化できるパケットの数。
 
 ```
 SRTPProtectionProfile SRTP_AES128_CM_HMAC_SHA1_80 = {0x00, 0x01};
-        cipher: AES_128_CM
-        cipher_key_length: 128
-        cipher_salt_length: 112
-        maximum_lifetime: 2^31
-        auth_function: HMAC-SHA1
-        auth_key_length: 160
-        auth_tag_length: 80
+        cipher:               AES_128_CM
+        cipher_key_length:    128
+        cipher_salt_length:   112
+        maximum_lifetime:     2^31
+        auth_function:        HMAC-SHA1
+        auth_key_length:      160
+        auth_tag_length:      80
 SRTPProtectionProfile SRTP_AES128_CM_HMAC_SHA1_32 = {0x00, 0x02};
-        cipher: AES_128_CM
-        cipher_key_length: 128
-        cipher_salt_length: 112
-        maximum_lifetime: 2^31
-        auth_function: HMAC-SHA1
-        auth_key_length: 160
-        auth_tag_length: 32
+        =
+        auth_tag_length:      32
         RTCP auth_tag_length: 80
 SRTPProtectionProfile SRTP_NULL_HMAC_SHA1_80      = {0x00, 0x05};
-        cipher: NULL
-        cipher_key_length: 0
-        cipher_salt_length: 0
-        maximum_lifetime: 2^31
-        auth_function: HMAC-SHA1
-        auth_key_length: 160
-        auth_tag_length: 80
+        cipher:               NULL
+        cipher_key_length:    0
+        cipher_salt_length:   0
+        maximum_lifetime:     2^31
+        auth_function:        HMAC-SHA1
+        auth_key_length:      160
+        auth_tag_length:      80
 SRTPProtectionProfile SRTP_NULL_HMAC_SHA1_32      = {0x00, 0x06};
-        cipher: NULL
-        cipher_key_length: 0
-        cipher_salt_length: 0
-        maximum_lifetime: 2^31
-        auth_function: HMAC-SHA1
-        auth_key_length: 160
-        auth_tag_length: 32
+        =
+        auth_tag_length:      32
         RTCP auth_tag_length: 80
 ```
 
@@ -446,6 +439,22 @@ HMAC-SHA1 を使う。
 
 160bit の SessionAuthKey を使って
 80bit の AuthTag を生成する。
+
+
+
+## SRTCP
+
+SRTCP は SRTP に従う。
+3 つのフィールドを追加
+
+- Index
+- E-flag
+- Auth Tag
+- MKI (Option)
+
+追加されるサイズは、最小で 14byte
+あとは Auth Tag と MKI の設定による。
+
 
 ## SDP
 
