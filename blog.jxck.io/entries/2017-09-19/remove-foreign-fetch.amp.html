@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html amp lang=ja>
+<head>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=https://blog.jxck.io/entries/2017-09-19/remove-foreign-fetch.html>
+<meta name=viewport content="width=device-width,minimum-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+<link rel=author href=//jxck.io/assets/humans.txt>
+
+<meta name="author" content="Jxck">
+    <meta name="description" content="以前、本ブログでも紹介した Foreign Fetch が、仕様から削除される方向で進んでいる。Foreign Fetch による Micro Service Workers \| blog.jxck.ioこれは、 Safari などが進めている Cookie の doub...">
+    <meta name="keywords" content="foreign fetch,service worker,cookie">
+    <meta itemprop="image" content="https://jxck.io/assets/img/jxck.png">
+    <meta itemprop="name" content="blog.jxck.io">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jxck_">
+    <meta name="twitter:url" content="https://blog.jxck.io/entries/2017-09-19/remove-foreign-fetch.html">
+    <meta name="twitter:title" content="Foreign Fetch が削除されそうな理由と Cookie の double keying | blog.jxck.io">
+    <meta name="twitter:description" content="以前、本ブログでも紹介した Foreign Fetch が、仕様から削除される方向で進んでいる。Foreign Fetch による Micro Service Workers \| blog.jxck.ioこれは、 Safari などが進めている Cookie の doub...">
+    <meta name="twitter:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://blog.jxck.io/entries/2017-09-19/remove-foreign-fetch.html">
+    <meta property="og:title" content="Foreign Fetch が削除されそうな理由と Cookie の double keying | blog.jxck.io">
+    <meta property="og:site_name" content="blog.jxck.io">
+    <meta property="og:description" content="以前、本ブログでも紹介した Foreign Fetch が、仕様から削除される方向で進んでいる。Foreign Fetch による Micro Service Workers \| blog.jxck.ioこれは、 Safari などが進めている Cookie の doub...">
+    <meta property="og:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <link rel="icon" sizes="192x192" href="https://jxck.io/assets/img/jxck.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "Foreign Fetch が削除されそうな理由と Cookie の double keying | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2017-09-19T08:00:00+08:00",
+  "dateModified": "2017-09-19T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "以前、本ブログでも紹介した Foreign Fetch が、仕様から削除される方向で進んでいる。Foreign Fetch による Micro Service Workers \| blog.jxck.ioこれは、 Safari などが進めている Cookie の doub..."
+}
+</script>
+
+<title>Foreign Fetch が削除されそうな理由と Cookie の double keying | blog.jxck.io</title>
+<script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+<script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+<script async src=https://cdn.ampproject.org/v0.js></script>
+
+<style amp-custom>
+article section p {
+  margin-left: 0.8em;
+}
+
+article pre {
+  margin-left: 0.8em;
+}
+
+article table {
+  margin-left: 0.8em;
+}
+
+article img {
+  margin: 1em 0;
+  border: 1px solid #ccc;
+  box-sizing: content-box;
+}
+
+article ul, article ol {
+  margin-left: 0.8em;
+  font-family: monospace;
+  font-size: 1.2em;
+}
+
+article li {
+  margin-bottom: 0.4em;
+}
+
+article ul li ul {
+  margin: 0.2em 0 1.2em 1em;
+  font-size: 1em;
+}
+
+article ul li ul li {
+  margin-bottom: 0;
+}
+
+@supports (line-height-step: 1px) {
+  article {
+    --grid: 1.5em;
+    line-height-step: var(--grid);
+    line-height: 1.2;
+  }
+
+  article section {
+    background-size: 100% var(--grid);
+    /*background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px);*/
+  }
+
+  article h1, article h2, article h3 {
+    display: inline-block;
+    width: 100%;
+    line-height-step: 0;
+    line-height: 1.2;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  article p {
+    margin-top: calc(var(--grid));
+    margin-bottom: calc(var(--grid));
+  }
+
+  article pre, article table {
+    line-height-step: 0;
+    line-height: normal;
+  }
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 400;
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=20160828") format("woff");
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 700;
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff?ver=20160828") format("woff");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+  color: #222;
+  background-color: #fefefe;
+}
+
+iframe {
+  display: block;
+  max-width: 100%;
+  margin: 1em 0;
+}
+
+.archive {
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.archive ul {
+  margin: 0;
+}
+
+.archive time {
+  padding-right: 0.5em;
+}
+
+.archive time::after {
+  content: ":";
+}
+
+.archive .tags {
+  font-size: 0.8em;
+  margin-left: 1em;
+}
+
+.tags a {
+  margin: 0 0.2em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+audio {
+  width: 70%;
+}
+
+@media screen and (max-device-width: 480px) {
+  audio {
+    width: 100%;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.info li {
+  margin-right: 1em;
+  list-style-type: none;
+}
+
+.info li::before {
+  content: none;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.4em;
+  background-color: #222;
+}
+
+header ul {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 80%;
+  margin: 0 auto;
+  padding: 4px;
+}
+
+header ul li {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  margin-left: 1em;
+}
+
+header ul li a {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+header ul li svg {
+  fill: #fff;
+}
+
+header ul li::before {
+  content: none;
+}
+
+header ul li:first-child {
+  flex-grow: 1;
+  margin-left: 0;
+}
+
+header .logo {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  pointer-events: none;
+  color: #222;
+}
+
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: #222;
+}
+
+h1 > a:hover:before,
+h2 > a:hover:before,
+h3 > a:hover:before,
+h4 > a:hover:before,
+h5 > a:hover:before,
+h6 > a:hover:before {
+  color: Brown;
+}
+
+h1 > a::before {
+  content: "# ";
+  pointer-events: all;
+}
+
+h2 > a::before {
+  content: "## ";
+  pointer-events: all;
+}
+
+h3 > a::before {
+  content: "### ";
+  pointer-events: all;
+}
+
+h4 > a::before {
+  content: "#### ";
+  pointer-events: all;
+}
+
+i::before, i::after {
+  content: "*";
+}
+
+strong::before, strong::after {
+  content: "**";
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+dl dt::after {
+  content: ":";
+}
+
+blockquote::before {
+  content: "> ";
+}
+
+code::before, code::after {
+  /* うざかった */
+  /* content: "`"; */
+}
+
+main {
+  display: block;
+  width: 80%;
+  margin: 1em auto;
+}
+
+@media screen and (max-device-width: 480px) {
+  main {
+    width: 94%;
+  }
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+}
+
+a {
+  color: RoyalBlue;
+}
+
+a:visited {
+  color: Brown;
+}
+
+ol, ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+ul, ol, dl {
+  margin: 1.4em 0;
+}
+
+dl dt {
+  font-weight: bold;
+}
+
+dl dd {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+blockquote {
+  display: block;
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  padding: 1em;
+  margin: 1.4em 0;
+}
+
+code {
+  border: 1px solid #ddd;
+  background-color: #efefef;
+  border-radius: 4px;
+  padding: 0.1em;
+  margin: 1.4em 0;
+}
+
+footer {
+  padding: 1em;
+}
+
+footer address,
+footer strong {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+}
+
+pre {
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: 1.2em;
+  margin: 1.4em 0 0 0;
+  border-radius: 4px;
+}
+
+pre::before {
+  content: "```" attr(class) "\A";
+}
+
+pre::after {
+  z-index: -1;
+  position: relative;
+  top: -1em;
+  content:"\A```";
+}
+
+pre > code {
+  overflow: auto;
+  display: block;
+  padding: 0.6em;
+  margin: 0;
+  border: none;
+  background-color: #efefef;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs,
+.hljs-subst ,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-name ,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition ,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-type,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-section,
+.hljs-meta,
+.hljs-meta-string,
+.hljs-emphasis {
+}
+
+table {
+  font-family: monospace;
+  margin: 2em 0;
+  border-spacing: 0 0.4em;
+}
+
+th {
+  padding: 0em 1.0em 0.6em;
+  border-left: 0.14em solid #222;
+  border-bottom: 2px dashed #222;
+}
+
+td {
+  padding: 0.4em 1.2em;
+  border-left: 0.14em solid #222;
+}
+
+th:last-child, td:last-child {
+  border-right: 0.14em solid #222;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+</style>
+</head>
+<body>
+<header>
+  <ul>
+    <li><a href=//blog.jxck.io><amp-img class=logo alt="blog top" width=30 height=30 src=//jxck.io/assets/img/blog.svg></a>
+    <li><a href=.><amp-img alt="move to parent directory" width=30 height=30 src=//jxck.io/assets/img/up.svg></a>
+    <li><a href=/feeds/atom.xml><amp-img alt="rss feed" width=30 height=30 src=//jxck.io/assets/img/rss.svg></a>
+    <li><a href=//jxck.io/humans.txt><amp-img alt="huamns.txt" width=30 height=30 src=//jxck.io/assets/img/humans.svg></a>
+    <li><a href=//jxck.io><amp-img class=logo alt="jxck logo" width=30 height=30 src=//jxck.io/assets/img/jxck.svg></a>
+  </ul>
+</header>
+<main>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2017-09-19>2017-09-19</time>
+    <li>updated_at: <time class=updated_at datetime=2017-09-19>2017-09-19</time>
+    <li class=tags>tags: [<a href='/tags/foreign%20fetch.html'>foreign fetch</a>,<a href='/tags/service%20worker.html'>service worker</a>,<a href='/tags/cookie.html'>cookie</a>]
+  </ul>
+
+
+  <article>
+    <h1><a href=/entries/2017-09-19/remove-foreign-fetch.html>Foreign Fetch が削除されそうな理由と Cookie の double keying</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>以前、本ブログでも紹介した Foreign Fetch が、仕様から削除される方向で進んでいる。
+      <p><a href="https://blog.jxck.io/entries/2016-12-12/foreign-fetch.html">Foreign Fetch による Micro Service Workers | blog.jxck.io</a>
+      <p>これは、 Safari などが進めている Cookie の double keying が影響しているらしいので、現状についてまとめる。
+    </section>
+    <section>
+      <h2 id="Foreign+Fetch"><a href="#Foreign+Fetch">Foreign Fetch</a></h2>
+      <p>Foreign Fetch は、簡単に言えば 3rd Party Origin の Service Worker が、その Origin に向けた Fetch をハンドルできるようにするという仕様である。
+      <p>これによって、 Origin 単位での Service Worker の責務が分離できるため、以下のような設計が期待できた。
+      <ul>
+        <li>サブドメインごとに SW の責務を分離でき、更新などのライフライクルを変えられる
+        <li>3rd Party が、自サービスのための Offline 対応などを提供できる
+      </ul>
+      <p>しかし、この機能が仕様から削除されようとしている。
+      <p><a href="https://github.com/w3c/ServiceWorker/issues/1188">Remove foreign fetch #1188</a>
+    </section>
+    <section>
+      <h2 id="Foreign+Fetch+Origin+Trial+results"><a href="#Foreign+Fetch+Origin+Trial+results">Foreign Fetch Origin Trial results</a></h2>
+      <p>そもそも Origin Trials が終わった時点で、結果があまり芳しくなかったようだ。
+      <p>(筆者が書いた短いフィードバックまで結果に載っていることから、そもそも Trial Token を取得したユーザも少なかったのではないかと推測する)
+      <ul>
+        <li><a href="https://docs.google.com/document/d/1G3XkRy972OkYEPNmBRvdWRWPNaiSPvnnnWyYNXnkWwU/edit">Foreign Fetch Origin Trial Results 2017-03-07</a>
+        <li><a href="https://groups.google.com/a/chromium.org/forum/?pli=1#!topic/blink-dev/pJ4PwgVcKjY">Foreign Fetch Origin Trial Results</a>
+      </ul>
+      <p>しかし、実装のみではなく仕様からも消える大きなモチベーションとしてセキュリティがあるようだ。
+      <p>ここには 3rd party cookie で行われる行動追跡に対応するための、 double keying という仕組みが関わっているらしい。
+    </section>
+    <section>
+      <h2 id="double+keying+cookie"><a href="#double+keying+cookie">double keying cookie</a></h2>
+      <section>
+        <h3 id="3rd+party+cookie+tracking"><a href="#3rd+party+cookie+tracking">3rd party cookie tracking</a></h3>
+        <p>まず、 3rd Party Cookie による行動追跡について簡単に解説する。
+        <p>例えば、本サイト (jxck.io) が EC サイト(ec.example.com) の Ad などを埋め込んでいたとする。
+        <p>すると、 jxck.io の閲覧者には ec.example.com からの <code translate="no">Set-Cookie</code> が送られ、保存される。
+        <pre><code translate="no">// response-from: ec.example.com
+Set-Cookie: history=jxck.io</code></pre>
+        <p>同じく、筆者が保有する別のサイト (mozaic.fm) にも同じ Ad が含まれていたとした場合。
+        <p>ユーザが mozaic.fm を閲覧すると、 Ad を取得する時に以下のように Cookie が送られる。
+        <pre><code translate="no">// request-for: ec.example.com
+Cookie: history=jxck.io</code></pre>
+        <p>すると Ad プロバイダは、このユーザが過去に jxck.io を閲覧したということがわかる。
+        <p>おおよそこのように行われるのが、 3rd Party Cookie によるユーザの行動追跡となる。
+      </section>
+    </section>
+    <section>
+      <h2 id="double+keying"><a href="#double+keying">double keying</a></h2>
+      <p>Cookie は、ブラウザ内で「<strong>どこから付与されたか</strong>」をキーとして保存されている。
+      <p>したがって、閲覧しているサイトが jxck.io であれ mozaic.fm であれ、同じ ec.example.com にアクセするする際は、そこから取得した Cookie をつける。
+      <p>このブラウザの挙動が、こうしたトラッキングを可能にしていた。
+      <p>そこで、この Cookie のキーを 2 つに変更する。
+      <ul>
+        <li>どのページを見ている時に
+        <li>どこから付与されたのか
+      </ul>
+      <p>こうすれば、 jxck.io を見ているときに付与された Cookie は、同じサブリソースを取得するとしても mozaic.fm では送信されない。
+      <p>よって、ユーザが 3rd Party Cookie で追跡されることが無くなる。
+      <p>このように、 2 つの情報をキーとして保存するのを double keying と言うらしい。
+    </section>
+    <section>
+      <h2 id="ITP+(Intelligent+Tracking+Prevention)"><a href="#ITP+(Intelligent+Tracking+Prevention)">ITP (Intelligent Tracking Prevention)</a></h2>
+      <p>Mac OS は HiSierra から ITP というトラッキング防止の機能を追加する。
+      <p>https://webkit.org/blog/7675/intelligent-tracking-prevention/
+      <p>これにより、 Safari が保存する Cookie の保存に関するポリシーが変更される。
+      <p>簡単に言えば 3rd Party Cookie の保存が厳しめに制限されるわけだが、こうした変更が Double Keying によって実現されているということらしい。
+      <p>この発表は 3rd Party Cookie を使っているアドや Analytics など、多くの実装に影響を与えサービスによっては株価への <a href="http://adworld.hatenablog.com/entry/2017/06/13/004208">影響</a> もある。
+    </section>
+    <section>
+      <h2 id="double+keying+と+foreign+fetch"><a href="#double+keying+と+foreign+fetch">double keying と foreign fetch</a></h2>
+      <p>同じことを、 SW で考えてみる。
+      <p>先の例で ec.example.com から付与される 3rd Party SW は、 jxck.io / mozaic.fm 両方からの ec.example.com への fetch をハンドルできる。
+      <p>これは、 3rd Party Cookie と、本質的には同じ、もしくはそれ以上に柔軟な追跡ができる可能性がある。
+      <p>したがって、 foreign fetch についても double keying を考慮する必要が出てくるのだ。
+      <p>すると、例えば font.example.com というサービスから WebFont を埋め込んでおり、これを SW でキャッシュしたいと考える。
+      <p>そのための SW は font.example.com が実装して配布すれば、 jxck.io も mozaic.fm もその SW が勝手に登録され、勝手にキャッシュを処理してくれるため、 1st Party SW で実装する手間が省ける。
+      <p>ところが、 SW も double keying されていると、 jxck.io が font.example.com から取得した WebFont と mozaic.fm が font.example.com から取得した WebFont は、例え同じファイルだったとしても別の領域に保存されてしまう。
+    </section>
+    <section>
+      <h2 id="3rd+Party+SW+のユースケース"><a href="#3rd+Party+SW+のユースケース">3rd Party SW のユースケース</a></h2>
+      <p>3rd Party SW は、 SW で規模の大きいアプリを開発する際、必須になるだろうと筆者は考えていた。
+      <ul>
+        <li>SW の責務を分離した設計を行う
+        <li>SW のライフサイクルを分け、更新による影響を局所化する
+        <li>1st Party による 3rd Party コンテンツへの重複実装を防ぐ
+      </ul>
+      <p>しかし、 Cookie 以上に柔軟な追跡などの可能性を考えると、 double keying の適用は妥当とも言える。
+      <p>SW も分離して別プロセス、別保存領域で動くようでは、 Foreign Fetch のメリットも減る。
+      <p>すると仕様から削除されるのも妥当と言わざるをえないのかもしれない。
+    </section>
+    <section>
+      <h2 id="代替手段"><a href="#代替手段">代替手段</a></h2>
+      <p>3rd Party コンテンツの処理(offline, background sync etc) は、ライブラリベースで提供して import script で組み込む以外ないだろう。
+      <p>Fetch で言えば URL ベースでの分岐が必要となるため、 Express の MiddleWare 的な構成を取ることになる。
+      <p>個人的には micro service worker 的な実装が可能となる Foreign Fetch の代替案が出てくれると嬉しいが、現時点でそのような話はない。
+      <p>3rd Party での Tracking を考えると、根本的に同等の仕組みを提案するのも難しそうに思う。
+      <p>SW のデプロイが進み、実装が複雑になっていった場合、どう設計をしていくか、再考する必要が出てきた。
+    </section>
+  </article>
+
+</main>
+<hr>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved. Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>google analytics</a>.</address>
+</footer>
+</body>
+</html>
+<amp-analytics type=googleanalytics id=analytics1>
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
