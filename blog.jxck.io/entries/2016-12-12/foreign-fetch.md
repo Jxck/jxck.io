@@ -1,5 +1,14 @@
 # [fetch][service worker][origin trials] Foreign Fetch による Micro Service Workers
 
+## Update
+
+Foreign Fetch は削除される方向で進んでいる。
+
+別途エントリを上げたのでそちらを参照。
+
+[Foreign Fetch が削除されそうな理由と Cookie の double keying \| blog.jxck.io](https://blog.jxck.io/entries/2017-09-19/remove-foreign-fetch.html)
+
+
 ## Intro
 
 Service Worker に Foreign Fetch という機能が提案されている。
