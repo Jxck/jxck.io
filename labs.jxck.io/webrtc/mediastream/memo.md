@@ -4,7 +4,21 @@
 
 ブラウザからカメラやマイクにアクセスする API は Media Capture ans Streams の仕様に定義されいている。
 
-[Media Capture and Streams](https://www.w3.org/TR/mediacapture-streams/#mediastreamtrack)
+[Media Capture and Streams](https://w3c.github.io/mediacapture-main/)
+
+
+## MediaDevices
+
+ブラウザが把握しているメディアソース(カメラやマイク)を管理する。
+
+現時点では 2 つの API が義されている。
+
+```
+navigator.mediaDevices.getUserMedia()
+navigator.mediaDevices.getSupportedConstraints()
+```
+
+詳細は後述していく。
 
 
 ## getUserMedia
@@ -22,11 +36,33 @@ Track は、主に VideoTrack と AudioTrack で、カメラやマイクの入�
 
 それを束ねたものが Stream ということだ。
 
-Stream からは Track を get/add/remove し、それを onaddtrack/onremovetrack で検知することができる。
+Stream から Track を取得することができる。
 
-つまり音声 Track だけ消す、新たに Track を追加する、任意の Track を引数に Stream を生成するなどが可能だ。
+```
+stream.getAudioTracks()      // [AudioTrack...]
+stream.getVideoTracks()      // [VideoTrack...]
+stream.getTracks()           // [Track...]
+stream.getTrackById(trackId) // Track
+```
 
-しかし、基本的には Stream から Track を取得し、ゼロから Track を作る方法は今のところない。
+Stream には Track を get/add/remove し、それを onaddtrack/onremovetrack で検知することができる。
+
+
+```
+stream.onaddtrack = console.log.bind(console)
+stream.onremovetrack = console.log.bind(console)
+
+stream.addTrack(track);
+stream.removeTrack(track);
+```
+
+Stream そのものを Track から作ることもできる。
+
+```
+stream = new MediaStream([track1, track2])
+```
+
+しかし、ゼロから Track を作る方法は今のところなく、 `getUserMedia` などで取得した Stream から取り出すか、それらを `track.clone()` で複製する。
 
 
 ## MediaStreamTrack
@@ -44,6 +80,8 @@ Track には主に、 `"audioinput"`, `"audiooutput"`, `"videoinput"` の三種�
 stream.getTracks().forEach((track) => track.stop())
 ```
 
+他には constraints に関する API があるが、その前に constraints そのものについて先に解説する。
+
 
 ## MediaStreamConstraints
 
@@ -53,7 +91,8 @@ MediaStreamConstraints(以下 constraints) はデバイスを扱う際の細か�
 
 
 ```js
-navigator.mediaDevices.getUserMedia({audio: true, video: true}).then((stream) => {})
+constraints = {audio: true, video: true}
+stream = await navigator.mediaDevices.getUserMedia(constraints)
 ```
 
 この引数は非常に細かい指定が可能だ。
@@ -61,7 +100,7 @@ navigator.mediaDevices.getUserMedia({audio: true, video: true}).then((stream) =>
 
 ## deviceId
 
-認識されているデバイスには deviceId がふられており、特定のデバイスを指定できる。
+認識されているデバイスには deviceId が振られており、特定のデバイスを指定できる。
 
 これはカメラ、マイク両方で使うことができる。
 
@@ -98,7 +137,7 @@ console.log(await navigator.mediaDevices.enumerateDevices())
 
 ## facingMode
 
-これは deviceId の代わりにカメラの位置関係を指定するもので、以下の値が定義されている。
+facingMode は deviceId の代わりにカメラの位置関係を指定するもので、以下の値が定義されている。
 
 - "user"
 - "environment"
@@ -149,41 +188,60 @@ Firefox は、 moz Prefix 付きで、仕様にないプロパティを設定可
 
 
 ```js
+// chrome の出力例
 const supportedConstraints = navigator.mediaDevices.getSupportedConstraints();
-// {
-//   "browserWindow": true,
-//   "deviceId": true,
-//   "echoCancellation": true,
-//   "facingMode": true,
-//   "frameRate": true,
-//   "height": true,
-//   "mediaSource": true,
-//   "mozAutoGainControl": true,
-//   "mozNoiseSuppression": true,
-//   "scrollWithPage": true,
-//   "viewportHeight": true,
-//   "viewportOffsetX": true,
-//   "viewportOffsetY": true,
-//   "viewportWidth": true,
-//   "width": true
-// }
+//{
+//  "aspectRatio":          true,
+//  "brightness":           true,
+//  "channelCount":         true,
+//  "colorTemperature":     true,
+//  "contrast":             true,
+//  "depthFar":             true,
+//  "depthNear":            true,
+//  "deviceId":             true,
+//  "echoCancellation":     true,
+//  "exposureCompensation": true,
+//  "exposureMode":         true,
+//  "facingMode":           true,
+//  "focalLengthX":         true,
+//  "focalLengthY":         true,
+//  "focusMode":            true,
+//  "frameRate":            true,
+//  "groupId":              true,
+//  "height":               true,
+//  "iso":                  true,
+//  "latency":              true,
+//  "pointsOfInterest":     true,
+//  "sampleRate":           true,
+//  "sampleSize":           true,
+//  "saturation":           true,
+//  "sharpness":            true,
+//  "torch":                true,
+//  "videoKind":            true,
+//  "volume":               true,
+//  "whiteBalanceMode":     true,
+//  "width":                true,
+//  "zoom":                 true
+//}
 
 
+
+// デフォルトの設定を作っておき
 let constraint = {
   audio: true,
   video: {}
 }
 
+// サポートに合わせてマージしていく
 if (supportedConstraints['frameRate']) {
   constraint.video.frameRate = 30
 }
-...
 ```
 
 
 ## ideal/exact/min/max
 
-値の設定の仕方にはいくつかの方法があり、書き方によって挙動が違う。。
+値の設定の仕方にはいくつかの方法があり、書き方によって挙動が違う。
 
 
 ### normal
@@ -194,11 +252,14 @@ if (supportedConstraints['frameRate']) {
 
 
 ```js
-{
+constraints = {
   video: {
     frameRate: 60
   }
 }
+
+// frameRate は 60 ではないかもしれない
+stream = await navigator.mediaDevices.getUserMedia(constraints)
 ```
 
 
@@ -208,27 +269,37 @@ if (supportedConstraints['frameRate']) {
 
 この場合  `getUserMedia()` から resolve された Stream の VideoTrack は確実に frameRate が `60` になっている。
 
-もしデバイスがそれを満たせなかった場合は、 `getUserMedia()` は **reject される** ため、設定値を保証することができるのだ。
+もしデバイスがそれを満たせなかった場合は、 `getUserMedia()` は **reject** される。
+
+これにより、 resolve された時は、指定した値が **反映されていることを保証** できるのだ。
 
 
 ```js
-{
+constraints = {
   video: {
     frameRate: {
       exact: 60
     }
   }
 }
+
+
+try {
+  // frameRate は確実に 60
+  stream = await navigator.mediaDevices.getUserMedia(constraints)
+} catch (err) {
+  // frameRate を満たすことができなかった
+}
 ```
 
 
 ### min/max
 
-値を範囲で指定することもできる。もちろん、どちらかだけでも良い。
+`min`/`max` で範囲で指定することもできる。もちろん、どちらかだけでも良い。
 
 
 ```js
-{
+constraints = {
   video: {
     frameRate: {
       min: 15,
@@ -241,11 +312,13 @@ if (supportedConstraints['frameRate']) {
 
 ### ideal
 
-例えば width で `ideal` を設定した場合を考える。
+`ideal` は少し特殊な指定だ。
+
+例えば `width` で `ideal` を設定した場合を考える。
 
 
 ```js
-{
+constraints = {
   video: {
     width: {
       ideal: 1280
@@ -271,7 +344,7 @@ if (supportedConstraints['frameRate']) {
 
 ### advanced
 
-advanced を指定することで優先すべき設定のリストが指定できる。
+`advanced` を指定することで優先すべき設定のリストが指定できる。
 
 例えば以下のように指定した場合。
 
@@ -289,6 +362,11 @@ advanced を指定することで優先すべき設定のリストが指定で�
 - 1920x1280 を要求
 - それがだめならアスペクト比 4x3 を要求
 - それがだめなら 1280x720 に最も近い値を要求
+
+
+## Track が持つ API
+
+MediaStreamTrack は constraints に関する API をいくつか持っている。
 
 
 ### Track#getConstraints
@@ -320,4 +398,4 @@ chrome の場合は
 
 これらすべての API を用いて、ブラウザのサポート及び、設定の変更がどう反映されるかを試すことができるデモを用意した。
 
-- [MediaStream API DEMO](https://labs.jxck.io/webrtc/usermedia/)
+- [MediaStream API DEMO](https://labs.jxck.io/webrtc/mediastream/)
