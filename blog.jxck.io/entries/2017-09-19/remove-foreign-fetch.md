@@ -32,6 +32,7 @@ Foreign Fetch は、簡単に言えば 3rd Party Origin の Service Worker が�
 
 - [Foreign Fetch Origin Trial Results 2017-03-07](https://docs.google.com/document/d/1G3XkRy972OkYEPNmBRvdWRWPNaiSPvnnnWyYNXnkWwU/edit)
 - [Foreign Fetch Origin Trial Results](https://groups.google.com/a/chromium.org/forum/?pli=1#!topic/blink-dev/pJ4PwgVcKjY)
+- [True Sadness - End of Experiment: Foreign Fetch](https://groups.google.com/a/chromium.org/d/msg/blink-dev/sIzHpZVhmBE/hHXlHP7wAAAJ)
 
 しかし、実装のみではなく仕様からも消える大きなモチベーションとしてセキュリティがあるようだ。
 
