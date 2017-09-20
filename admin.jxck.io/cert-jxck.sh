@@ -17,11 +17,9 @@ certbot-auto certonly \
   -d report-uri.jxck.io \
   -d sfu.jxck.io \
   -d spec.jxck.io \
-  -d logo.jxck.io
+  -d logo.jxck.io \
+  -d labs.jxck.io
 
 # no https
 # turn.jxck.io
 # stun.jxck.io
-
-# ダメ絶対
-# labs.jxck.io
