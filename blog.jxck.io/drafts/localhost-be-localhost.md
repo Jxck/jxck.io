@@ -15,7 +15,7 @@
 http://localhost:3000
 ```
 
-このアドレスは、ループバックアドレスに解決され、自ホストを指する前提で使われているだろう。
+このアドレスは、ループバックアドレスに解決され、自ホストを指する前提で使われている。
 
 
 ```
@@ -36,29 +36,34 @@ http://[::1]:3000
 ::1             localhost
 ```
 
-こうした優先解決先が定義されていない状態では、 OS は localhost の解決先を DNS に問い合わせる。
+仮にこの設定を消した状態では、 OS は localhost の解決先を DNS に問い合わせる。
 
-つまり、 DNS が別のアドレスを解決先として返した場合は、 localhost は多くの開発者の意図しない挙動を見せるだろう。
+つまり、 DNS が別のアドレスを解決先として返した場合は、 `localhost` は "localhost" ではなくなる。
 
-開発中、自分の PC へのアクセスだと思っているものが別のホストに飛ぶのは問題がある。
+これに気づかなければ、例えば開発中に自分の PC だと思っているアクセス先が、実は別のホストであるといったことがありえる。
 
-また、近年 HTTPS 化にともない HTTP では使えなくなった機能も、開発用に localhost だけは許されるような実装も多い。
+近年 HTTPS 化にともない HTTP では使えなくなった機能も、開発用に localhost だけは許されるような実装も多い。
 
-localhost がループバック以外のアドレスを返すのは問題となり得る。
+localhost がループバックを返すことが保証されていたほうがメリットがある。
 
 
 ## localhost be localhost
 
 
-[draft-west-let-localhost-be-localhost](https://tools.ietf.org/html/draft-west-let-localhost-be-localhost) (執筆時は -04)
+[draft-west-let-localhost-be-localhost](https://tools.ietf.org/html/draft-west-let-localhost-be-localhost) (執筆時は -06)
 
 ドラフトの内容は非常に単純で、 `localhost` や `*.localhost` はルーップバックアドレスを返すことを仕様として明示するというものだ。
 
 DNS や順ずる API は、 `localhost` を特別なものとして扱い、ループバックアドレスを必ず返し、権威 DNS やキャッシュ DNS は NXDOMAIN を返す。
 
-加えてもし、 DHCP のドメイン検索が例えば `example.com` に設定されていても、 locahost は `localhost.example.com` にはならない。
+加えて、もし DHCP のドメイン検索が `example.com` に設定されていても、 locahost は `localhost.example.com` にはならない。
 
 そして、レジストラは `localhost` の登録依頼を一切受け付けない。
 
 
 これらが守られる限り、 `locahost` は開発者が想定する localhost であることが保証できる。
+
+
+## イントラの開発用ドメインなど
+
+
