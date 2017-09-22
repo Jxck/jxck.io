@@ -1,128 +1,165 @@
-# data channel
+# webrtc
 
-## createDataChannel()
+## 準備
 
-最初に createDataChannel() を呼ぶ。
+- WebSocket などのシグナリングは別途用意済みという前提
+- getUserMedia での Stream の取得も別で行われている前提
 
-firefox では createDataChannel か addStream してないと
-createOffer() できない
 
-```js
-offerer.createDataChannel('channel')
+
+## RTCPeerConnection
+
+
+```javascript
+[Constructor(optional RTCConfiguration configuration)]
+interface RTCPeerConnection : EventTarget {
+    static Promise<RTCCertificate>            generateCertificate(AlgorithmIdentifier keygenAlgorithm);
+
+    Promise<RTCSessionDescriptionInit>        createOffer(optional RTCOfferOptions options);
+    Promise<RTCSessionDescriptionInit>        createAnswer(optional RTCAnswerOptions options);
+    Promise<void>                             setLocalDescription(RTCSessionDescriptionInit description);
+    readonly attribute RTCSessionDescription? localDescription;
+    readonly attribute RTCSessionDescription? currentLocalDescription;
+    readonly attribute RTCSessionDescription? pendingLocalDescription;
+    Promise<void>                             setRemoteDescription(RTCSessionDescriptionInit description);
+    readonly attribute RTCSessionDescription? remoteDescription;
+    readonly attribute RTCSessionDescription? currentRemoteDescription;
+    readonly attribute RTCSessionDescription? pendingRemoteDescription;
+    Promise<void>                             addIceCandidate((RTCIceCandidateInit or RTCIceCandidate) candidate);
+    readonly attribute RTCSignalingState      signalingState;
+    readonly attribute RTCIceGatheringState   iceGatheringState;
+    readonly attribute RTCIceConnectionState  iceConnectionState;
+    readonly attribute RTCPeerConnectionState connectionState;
+    readonly attribute boolean?               canTrickleIceCandidates;
+    readonly attribute RTCSctpTransport?      sctp;
+    static sequence<RTCIceServer>             getDefaultIceServers();
+    RTCConfiguration                          getConfiguration();
+    void                                      setConfiguration(RTCConfiguration configuration);
+    void                                      close();
+    sequence<RTCRtpSender>                    getSenders();
+    sequence<RTCRtpReceiver>                  getReceivers();
+    sequence<RTCRtpTransceiver>               getTransceivers();
+    RTCRtpSender                              addTrack(MediaStreamTrack track, MediaStream... streams);
+    void                                      removeTrack(RTCRtpSender sender);
+    RTCRtpTransceiver                         addTransceiver((MediaStreamTrack or DOMString) trackOrKind, optional RTCRtpTransceiverInit init);
+    RTCDataChannel                            createDataChannel(USVString label, optional RTCDataChannelInit dataChannelDict);
+    Promise<RTCStatsReport>                   getStats(optional MediaStreamTrack? selector = null);
+
+                       attribute EventHandler onnegotiationneeded;
+                       attribute EventHandler onicecandidate;
+                       attribute EventHandler onicecandidateerror;
+                       attribute EventHandler onsignalingstatechange;
+                       attribute EventHandler oniceconnectionstatechange;
+                       attribute EventHandler onicegatheringstatechange;
+                       attribute EventHandler onconnectionstatechange;
+                       attribute EventHandler ontrack;
+                       attribute EventHandler ondatachannel;
+};
+
+
+partial interface RTCPeerConnection {
+    void               setIdentityProvider(DOMString provider, optional RTCIdentityProviderOptions options);
+    Promise<DOMString> getIdentityAssertion();
+    readonly attribute Promise<RTCIdentityAssertion> peerIdentity;
+    readonly attribute DOMString?                    idpLoginUrl;
+    readonly attribute DOMString?                    idpErrorInfo;
+};
+
+
+partial interface RTCPeerConnection {
+    Promise<void> createOffer(RTCSessionDescriptionCallback successCallback, RTCPeerConnectionErrorCallback failureCallback, optional RTCOfferOptions options);
+    Promise<void> setLocalDescription(RTCSessionDescriptionInit description, VoidFunction successCallback, RTCPeerConnectionErrorCallback failureCallback);
+    Promise<void> createAnswer(RTCSessionDescriptionCallback successCallback, RTCPeerConnectionErrorCallback failureCallback);
+    Promise<void> setRemoteDescription(RTCSessionDescriptionInit description, VoidFunction successCallback, RTCPeerConnectionErrorCallback failureCallback);
+    Promise<void> addIceCandidate((RTCIceCandidateInit or RTCIceCandidate) candidate, VoidFunction successCallback, RTCPeerConnectionErrorCallback failureCallback);
+};
 ```
 
 
-## onnegotiationneeded
+## addTrack
 
-offerer で negotiation が必要になると、 `onnegotiationneeded` が発火する。
-このタイミングで createOffer() を行う。
+まず RTCConfiguration を元に new する。
+ここに対して addTrack することで、
+onnegotiationneeded が発火するので、
+そこで言われた通りにシグナリングを行う。
 
+```javascript
+const rtcPeerConnection = new RTCPeerConnection(rtcConfiguration)
 
-```js
-offerer.onnegotiationneeded = () => {
-  offerer.createOffer().then(...)
+rtcPeerConnection.onnegotiationneeded = () => {
+  // negotiation
 }
-```
 
-
-## createOffer()
-
-`createOffer()` すると RTCSessionDescription が resolve される。
-
-まず自身(local)に適応する。
-
-```js
-offerer.setLocalDescription(rtcSessionDescription).then(...)
-```
-
-これを `JSON.strinfigy()` などして、 answerer に送る。
-
-`type: offer` が入ってるので、 WebSocket などで送る際はこの type で識別できる。
-
-
-## setRemoteDescription()
-
-answerer が、 offerer から送られてきた RTCSessionDescription を適用する。
-remote のものなので `setLocalDescription()`
-
-```js
-answerer.setRemoteDescription(rtcSessionDescription).then(...)
-```
-
-
-## createAnswer()
-
-次に answerer で `createAnswer()` する。
-同じように自身に適用する。
-
-```js
-answerer.createAnswer().then((rtcSessionDescription) => {
-  answerer.setLocalDescription(rtcSessionDescription).then(...)
+stream.getTracks().forEach((track) => {
+  rtcPeerConnection.addTrack(track, stream)
 })
 ```
 
-これを `JSON.strinfigy()` などして、 offere に送る。
-
-`type: answer` が入ってるので、 WebSocket などで送る際はこの type で識別できる。
-
-offerer も受け取ったら `setRemoteDescription()` する。
+addTrack が無い場合は addStream する
 
 
-## onicecandidate
+```javascript
+rtcPeerConnection.addStream(stream)
+```
 
-createOffer/Answer している間に icecandidate が発生する。
+## offer/answer
 
-これを相手に送るが、これは SDP と違い type が無いので、送る場合は `type: offerer_candidate` などのキーを入れてから `JSON.stringify()` した方が良い。
+createOffer で作った SDP を setLocalDescription し、 Peer に送る
+受信した相手は、 setRemoteDescription する。
 
-また、最後 null が発生するのでそれは無視。
 
-```js
-offerer.on('icecandidate', (candidate) => {
-  if (candidate === null) return
-  ws.send(JSON.stringify({type: 'answer_candidate', candidate: candidate}))
-})
+```javascript
+// Alice
+const offer = await rtcPeerConnection.createOffer()
+await rtcPeerConnection.setLocalDescription(offer)
+
+//// Alice -> Bob
+
+// Bob
+await rtcPeerConnection.setRemoteDescription(offer)
+const answer = await rtcPeerConnection.createAnswer()
+await rtcPeerConnection.setLocalDescription(answer)
+
+//// Bob -> Alice
+
+// Alice
+await rtcPeerConnection.setRemoteDescription(answer)
 ```
 
 
-## addIceCandidate()
+## ice
 
-相手の ice candidate を受け取ったら適用する。
+offer/answer の交換の横で
+ice candidate が生成される。
+これを相手に送り、送られてくるものは適用する。
+(最後に null な candidate が発生する場合があるが、送る必要はない)
 
-```js
-offerer.addIceCandidate(candidate)
+
+```javascript
+// Alice
+rtcPeerConnection.onicecandidate = (e) => {
+  /// Alice -> Bob
+}
+
+// Bob
+await rtcPeerConnection.addIceCandidate(candidate)
 ```
 
 
-## ondatachannel
+## ontrack
 
-answerer 側では、 `oniceconnectionstatechange` が起こった後に `ondatachannel` が発火し、 datachannel のインスタンスが生成される。
+ice の交換が完了し、相手からの track が届くと ontrack が発火する。
 
-```js
-answerer.ondatachannel = (e) => {
-  log(e.channel)
+```
+rtcPeerConnection.ontrack = (e) => {
+  document.querySelector('video.remote').srcObject = e.streams[0]
 }
 ```
 
 
-## onopen
+## compat
 
-offer/answer 両側で channel が `onopen` を発火したら送受信ができるようになる。
-
-
-```js
-channle.onopen = () => {
-  channel.onmessage = (e) => {
-    console.log(e)
-  }
-
-  channel.onclose = (e) => {
-    console.log(e);
-  }
-
-  channel.onerror = (e) => {
-    console.error(e);
-  }
-
-  channel.send('test');
-}
-```
+- chrome は addTrack がなく addStream しかない
+- だいたい onaddtrack がなく onaddstream しかない
+- Edge は FormData.prototype.get() がない
+- Edge は new RTCPeerConnection() の引数を省略できない

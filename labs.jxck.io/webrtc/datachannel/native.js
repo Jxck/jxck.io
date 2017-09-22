@@ -47,7 +47,9 @@ remote.onicecandidate = async (e) => {
 }
 
 
-// checking -> connected -> completed //  "new" //  "checking"
+// checking -> connected -> completed
+//  "new"
+//  "checking"
 //  "connected"
 //  "completed"
 //  "failed"
@@ -71,8 +73,8 @@ remote.oniceconnectionstatechange = (e) => {
   'onaddstream',
   'onremovestream',
 ].forEach((ev) => {
-  local[ev]   = error
-  remote[ev]  = error
+  local[ev]  = info
+  remote[ev] = info
 });
 
 
