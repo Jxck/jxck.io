@@ -4,11 +4,6 @@
 
 特別なドメインとしてよく使われる、 `.example` `.localhost` `.test` ドメインについて簡単に解説する。
 
-https://tools.ietf.org/html/rfc2606
-https://tools.ietf.org/html/rfc6761
-https://tools.ietf.org/html/draft-west-let-localhost-be-localhost-06
-
-
 
 ## 適当なドメインなどない
 
@@ -32,19 +27,27 @@ https://tools.ietf.org/html/draft-west-let-localhost-be-localhost-06
 
 もしローカルネットワークで使う用途で割り当てたドメインでも、外に出れば実際にそのドメインが取得されているかもしれない。
 
-仮に今は取得されていなかったとしても、今後取得される可能性だってある。
+仮に今は取得されていなかったとしても、今後取得される可能性もある。
 
 もっと言えば、 gTLD (global top level domain) ですら近年は色々と増えている。
 
-例えば、社内のネットワークでは当時存在しなかった `.dev` などを開発用ドメインとして割り当てられるような環境を作っていたとする。
+例えば、社内のネットワークで当時存在しなかった `.dev` を、開発用ドメインとして割り当てられるような環境を作っていたとする。
 
 現在、 `.dev` は正式に gTLD として認定され、 Google がそれを一括して所有している。
 
-先日 Google は `.dev` 全体に対して Chrome に preload HSTS の設定をマージした。
+つまり、これまで社内のみと思われていた `.dev` のアドレスと、同じものが Google からリリースされる可能性もある。
+
+合わせて、先日 Google は `.dev` 全体に対して Chrome に preload HSTS の設定をマージした。
 
 [Preload HSTS for the .dev gTLD](https://chromium-review.googlesource.com/c/chromium/src/+/669923)
 
-自前で `.dev` を運用しているユーザには影響があるだろう。
+HTTPS が前提の昨今、こうして先手を打って HSTS を TLD 以下に強制するということだろう。
+
+もしくは、 `.dev` を社内で勝手に運用している環境を認識して、そうした環境にあっても Google の正規サービスであることを明示する目的もあるかもしれない。
+
+いずれにせよ、自前で `.dev` を運用しているユーザには影響があるだろう。
+
+他にも gTLD はどんどん増えているので、 `.dev` 以外にも注意が必要だ。
 
 
 ## Reserved Top Level DNS Names
@@ -53,7 +56,11 @@ https://tools.ietf.org/html/draft-west-let-localhost-be-localhost-06
 
 そこで RFC6761 (was RFC2606) には、 **予約済みドメイン** としていくつかのドメインとその用途が記されている。
 
-自分でドメインを取得しなくても安心して使うことができるのだ。
+
+- [https://tools.ietf.org/html/rfc6761](https://tools.ietf.org/html/rfc6761)
+- [https://tools.ietf.org/html/rfc2606](https://tools.ietf.org/html/rfc2606)
+
+用途を守れば、そのドメインを所有していなくても、安心して使うことができるのだ。
 
 
 ## `.example`
@@ -68,11 +75,11 @@ TLD としての `*.example` 以外に、以下の 3 つの STD も予約され�
 - example.org
 
 
-ちなみに、この 3 つは HTTP をサーブしている。
+ちなみに、この 3 つは実際にインターネット上で HTTP をサーブしている。
 
-- http://example.com
-- http://example.net
-- http://example.org
+- [http://example.com](http://example.com)
+- [http://example.net](http://example.net)
+- [http://example.org](http://example.org)
 
 
 ちなみに、このアドレスは実は結構便利な作りをしている。
@@ -94,7 +101,7 @@ TLD としての `*.example` 以外に、以下の 3 つの STD も予約され�
 
 主に開発で自ホストに解決される用途で使われる。
 
-実際に `localhost` がループバックアドレスに解決されるのは、 hosts ファイルなどに以下のような設定があるからだ。
+実際には、 OS が名前解決に使う hosts ファイルなどで、 `localhost` がループバックアドレスに指定されている。
 
 ```
 ##
@@ -107,15 +114,17 @@ TLD としての `*.example` 以外に、以下の 3 つの STD も予約され�
 ::1             localhost
 ```
 
-もしこの設定がなければ、他のアドレス同様 DNS に問い合わせ、もし DNS が別のアドレスを返せば `localhost` は "localhost" ではなくなってしまう。
+もしこの設定がなければ、他のアドレス同様 DNS に問い合わせを行い、もし DNS が別のアドレスを返せば `localhost` は "localhost" ではなくなってしまう。
 
-しかし、最近では HTTPS 必須のブラウザ機能が localhost だけは HTTP でも特別扱いするなどといった挙動になっているため、 `localhost` はループバックであることを保証するという提案がある。
+しかし、最近では HTTPS 必須のブラウザ機能が、 localhost だけは特別扱いするなどといった挙動になっている。
+
+そこで、 `localhost` がループバックアドレスであることを保証するべきというドラフトが上がっている。
 
 [Let 'localhost' be localhost. draft-west-let-localhost-be-localhost-06](https://tools.ietf.org/html/draft-west-let-localhost-be-localhost-06)
 
 これが RFC になれば、 `.localhost` は明確にループバックアドレスとして使われることになるだろう。
 
-先ほどの `.dev` の代わりに `.localhost` を別のアドレスで解決する環境を作っていたりする場合は、やはり問題が出るかもしれない。
+先ほどの `.dev` 同様に `.localhost` を別のアドレスで解決する環境を作っていたりする場合は、やはり問題が出るかもしれない。
 
 
 ## `.test`
@@ -124,7 +133,7 @@ TLD としての `*.example` 以外に、以下の 3 つの STD も予約され�
 
 取得されないことと共に、他のネットワークでは別の名前に解決される可能性を前提とした上で、比較的自由に使える。
 
-よって、前述のような `.dev` を運用している際の移行先として考慮できるだろう。
+つまり前述のように、社内ネットワークのような環境で開発用ドメインを運用する際などに、利用できるだろう。
 
 
 ## `.invalid`
