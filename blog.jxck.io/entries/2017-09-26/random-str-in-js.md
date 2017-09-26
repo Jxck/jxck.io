@@ -1,8 +1,14 @@
-# ブラウザで適当なランダム文字列
+# [btoa][random][string][tips] ブラウザで適当なランダム文字列
 
 ## Intro
 
-テストや仮実装で便利
+テストや仮実装で、適当なランダム文字列が欲しい場合に便利なスニペット。
+
+
+## random string
+
+[DEMO](https://labs.jxck.io/ecmascript/random.html)
+
 
 ```js
 // with random
@@ -33,5 +39,3 @@ btoa(crypto.getRandomValues(new Uint8Array(16))).replace(/[0-9]/g, '').replace(/
 crypto.getRandomValues(new Uint8Array(16)).join('')
 // => 24066186112482432389420313011522520523361145
 ```
-
-[DEMO](https://labs.jxck.io/ecmascript/random.html)
