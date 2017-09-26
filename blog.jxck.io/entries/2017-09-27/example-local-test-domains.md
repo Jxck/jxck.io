@@ -1,17 +1,19 @@
-# [dns][domain] .example, .localhost, .test などの予約済みドメインについて
+# [dns][domain] 予約済みドメイン (.example, .localhost, .test) について
 
 ## Intro
 
-特別なドメインとしてよく使われる、 `.example` `.localhost` `.test` ドメインについて簡単に解説する。
+特別なドメインとして予約され、特定の用途で使用可能なドメインとして、 `.example` `.localhost` `.test` などがある。
+
+`localhost` の Draft や、  gTLD である `.dev` が Chrome で Preload HSTS になったなどの動きを踏まえ、これらの意味や用途を解説する。
 
 
-## 適当なドメインなどない
+## ドメインを利用する上での注意
 
 ドメインは、レジストラなどを通じて取得するため、インターネット上では好き勝手に取得することはできない。
 
 しかし、自分で設定可能な DNS や hosts ファイルなどを使えば、任意のドメインを任意のアドレスに解決させることができる。
 
-例えば、自分が適当にリクエストのテストを行うためのドメインを hosts ファイルに設定しループバックアドレスに解決して流していたとする。
+例えば、自分が適当にリクエストのテストを行うためのドメインを hosts ファイルに設定し、ループバックアドレスに解決して流していたとする。
 
 このドメインがたまたま実在するものだった場合、そのテストを他のユーザが実行すれば、実際のドメインに対してパケットが飛んでしまう可能性がある。
 
@@ -19,11 +21,10 @@
 
 ドキュメント通り実行されたコマンドから、大量の port scan を受けてしまうかもしれない。
 
-ドキュメントやテストで適当に思いついたドメイン名を用いるのは問題がある。
+ドキュメントやテストで、適当に思いついたドメイン名を用いるのは問題がある。
 
 
-
-## 今無いドメインが出てくる可能性
+## 「今は」無いドメイン
 
 もしローカルネットワークで使う用途で割り当てたドメインでも、外に出れば実際にそのドメインが取得されているかもしれない。
 
@@ -33,7 +34,7 @@
 
 例えば、社内のネットワークで当時存在しなかった `.dev` を、開発用ドメインとして割り当てられるような環境を作っていたとする。
 
-現在、 `.dev` は正式に gTLD として認定され、 Google がそれを一括して所有している。
+現在、 `.dev` は正式に gTLD として認定され、 [Google](https://www.iana.org/domains/root/db/dev.html) がそれを管理している。
 
 つまり、これまで社内のみと思われていた `.dev` のアドレスと、同じものが Google からリリースされる可能性もある。
 
@@ -56,9 +57,8 @@ HTTPS が前提の昨今、こうして先手を打って HSTS を TLD 以下に
 
 そこで RFC6761 (was RFC2606) には、 **予約済みドメイン** としていくつかのドメインとその用途が記されている。
 
-
-- [https://tools.ietf.org/html/rfc6761](https://tools.ietf.org/html/rfc6761)
-- [https://tools.ietf.org/html/rfc2606](https://tools.ietf.org/html/rfc2606)
+- [RFC6761 Special-Use Domain Names](https://tools.ietf.org/html/rfc6761)
+- [RFC2606 Reserved Top Level DNS Names](https://tools.ietf.org/html/rfc2606)
 
 用途を守れば、そのドメインを所有していなくても、安心して使うことができるのだ。
 
@@ -68,19 +68,18 @@ HTTPS が前提の昨今、こうして先手を打って HSTS を TLD 以下に
 主にドキュメントなどの例示に使われる。
 
 TLD としての `*.example` 以外に、以下の 3 つの STD も予約されており、同様に使うことができる。
+
 (本サイトでは、ブログの例示には主にこれを使っている)
 
 - example.com
 - example.net
 - example.org
 
-
 ちなみに、この 3 つは実際にインターネット上で HTTP をサーブしている。
 
 - [http://example.com](http://example.com)
 - [http://example.net](http://example.net)
 - [http://example.org](http://example.org)
-
 
 ちなみに、このアドレスは実は結構便利な作りをしている。
 
@@ -90,11 +89,9 @@ TLD としての `*.example` 以外に、以下の 3 つの STD も予約され�
 - 余計なヘッダなし
 - コンテンツがほぼ更新されない
 
-
 筆者は Wifi の認証など HTTP のアドレスが欲しい時や、余計な邪魔のないページで devtool をいじりたいとき、単なる疎通確認など色々な場面で使っている。
 
-管理しているのが ICANN なので、 *無くなっている可能性などを気にしないで良い* ため、覚えておくと地味に便利だったりする。
-
+管理しているのが ICANN なので、 **無くなっている可能性などを気にしないで良い** ため、覚えておくと地味に便利だったりする。
 
 
 ## `.localhost`
@@ -102,6 +99,7 @@ TLD としての `*.example` 以外に、以下の 3 つの STD も予約され�
 主に開発で自ホストに解決される用途で使われる。
 
 実際には、 OS が名前解決に使う hosts ファイルなどで、 `localhost` がループバックアドレスに指定されている。
+
 
 ```
 ##
@@ -143,7 +141,6 @@ TLD としての `*.example` 以外に、以下の 3 つの STD も予約され�
 常に NXDOMAIN を返すと想定され、主に DNS の開発などに使うのだろうと思われる。
 
 
-
 ## その他テスト用ドメイン
 
 RFC6761 の他にもこうした用途のドメインはいくつかある。
@@ -159,9 +156,8 @@ RFC6761 の他にもこうした用途のドメインはいくつかある。
 - example5.jp
 - ...
 
-
 詳細は下記参照
 
-- https://www.iana.org/domains/reserved
-- https://jprs.jp/doc/rule/wideusejp-reserved.html
-- https://jprs.jp/faq/use/
+- [https://www.iana.org/domains/reserved](https://www.iana.org/domains/reserved)
+- [https://jprs.jp/doc/rule/wideusejp-reserved.html](https://jprs.jp/doc/rule/wideusejp-reserved.html)
+- [https://jprs.jp/faq/use/](https://jprs.jp/faq/use/)
