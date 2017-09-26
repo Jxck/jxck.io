@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="random demo">
+<title>random DEMO | labs.jxck.io</title>
+
+<style>
+pre {
+  font-family: monospace;
+  border: 1px solid #ccc;
+  padding: 1em;
+  background-color: #ccc;
+}
+</style>
+
+<h1>Random</h1>
+
+<pre>
+// with random
+btoa(Math.random())
+</pre>
+
+<pre>
+// with crypto
+btoa(crypto.getRandomValues(new Uint8Array(16)))
+</pre>
+
+
+<pre>
+// base64 has `=` remove them
+btoa(Math.random()).replace(/=/g, "")
+</pre>
+
+<pre>
+// lower case
+btoa(Math.random()).toLowerCase()
+</pre>
+
+<pre>
+// align length
+btoa(Math.random()).substring(0, 10)
+</pre>
+
+<pre>
+// letter only
+btoa(crypto.getRandomValues(new Uint8Array(16))).replace(/[0-9]/g, '').replace(/=/g, "")
+</pre>
+
+<pre>
+// number only
+crypto.getRandomValues(new Uint8Array(16)).join('')
+</pre>
+
+
+<script>
+Array.from(document.querySelectorAll('pre')).forEach((pre) => {
+  let code = pre.textContent;
+  let result = eval(code);
+  pre.textContent = `${code}// => ${result}`
+});
+</script>
