@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html amp lang=ja>
+<head>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=https://blog.jxck.io/entries/2017-09-27/example-local-test-domains.html>
+<meta name=viewport content="width=device-width,minimum-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+<link rel=author href=//jxck.io/assets/humans.txt>
+
+<meta name="author" content="Jxck">
+    <meta name="description" content="特別なドメインとして予約され、特定の用途で使用可能なドメインとして、 `.example` `.localhost` `.test` などがある。`localhost` の Draft や、  gTLD である `.dev` が Chrome で Preload HSTS ...">
+    <meta name="keywords" content="dns,domain">
+    <meta itemprop="image" content="https://jxck.io/assets/img/jxck.png">
+    <meta itemprop="name" content="blog.jxck.io">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jxck_">
+    <meta name="twitter:url" content="https://blog.jxck.io/entries/2017-09-27/example-local-test-domains.html">
+    <meta name="twitter:title" content="予約済みドメイン (.example, .localhost, .test) について | blog.jxck.io">
+    <meta name="twitter:description" content="特別なドメインとして予約され、特定の用途で使用可能なドメインとして、 `.example` `.localhost` `.test` などがある。`localhost` の Draft や、  gTLD である `.dev` が Chrome で Preload HSTS ...">
+    <meta name="twitter:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://blog.jxck.io/entries/2017-09-27/example-local-test-domains.html">
+    <meta property="og:title" content="予約済みドメイン (.example, .localhost, .test) について | blog.jxck.io">
+    <meta property="og:site_name" content="blog.jxck.io">
+    <meta property="og:description" content="特別なドメインとして予約され、特定の用途で使用可能なドメインとして、 `.example` `.localhost` `.test` などがある。`localhost` の Draft や、  gTLD である `.dev` が Chrome で Preload HSTS ...">
+    <meta property="og:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <link rel="icon" sizes="192x192" href="https://jxck.io/assets/img/jxck.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "予約済みドメイン (.example, .localhost, .test) について | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2017-09-27T08:00:00+08:00",
+  "dateModified": "2017-09-26T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "特別なドメインとして予約され、特定の用途で使用可能なドメインとして、 `.example` `.localhost` `.test` などがある。`localhost` の Draft や、  gTLD である `.dev` が Chrome で Preload HSTS ..."
+}
+</script>
+
+<title>予約済みドメイン (.example, .localhost, .test) について | blog.jxck.io</title>
+<script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+<script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+<script async src=https://cdn.ampproject.org/v0.js></script>
+
+<style amp-custom>
+article section p {
+  margin-left: 0.8em;
+}
+
+article pre {
+  margin-left: 0.8em;
+}
+
+article table {
+  margin-left: 0.8em;
+}
+
+article img {
+  margin: 1em 0;
+  border: 1px solid #ccc;
+  box-sizing: content-box;
+}
+
+article ul, article ol {
+  margin-left: 0.8em;
+  font-family: monospace;
+  font-size: 1.2em;
+}
+
+article li {
+  margin-bottom: 0.4em;
+}
+
+article ul li ul {
+  margin: 0.2em 0 1.2em 1em;
+  font-size: 1em;
+}
+
+article ul li ul li {
+  margin-bottom: 0;
+}
+
+@supports (line-height-step: 1px) {
+  article {
+    --grid: 1.5em;
+    line-height-step: var(--grid);
+    line-height: 1.2;
+  }
+
+  article section {
+    background-size: 100% var(--grid);
+    /*background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px);*/
+  }
+
+  article h1, article h2, article h3 {
+    display: inline-block;
+    width: 100%;
+    line-height-step: 0;
+    line-height: 1.2;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  article p {
+    margin-top: calc(var(--grid));
+    margin-bottom: calc(var(--grid));
+  }
+
+  article pre, article table {
+    line-height-step: 0;
+    line-height: normal;
+  }
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 400;
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=20160828") format("woff");
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 700;
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff?ver=20160828") format("woff");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+  color: #222;
+  background-color: #fefefe;
+}
+
+iframe {
+  display: block;
+  max-width: 100%;
+  margin: 1em 0;
+}
+
+.archive {
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.archive ul {
+  margin: 0;
+}
+
+.archive time {
+  padding-right: 0.5em;
+}
+
+.archive time::after {
+  content: ":";
+}
+
+.archive .tags {
+  font-size: 0.8em;
+  margin-left: 1em;
+}
+
+.tags a {
+  margin: 0 0.2em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+audio {
+  width: 70%;
+}
+
+@media screen and (max-device-width: 480px) {
+  audio {
+    width: 100%;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.info li {
+  margin-right: 1em;
+  list-style-type: none;
+}
+
+.info li::before {
+  content: none;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.4em;
+  background-color: #222;
+}
+
+header ul {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 80%;
+  margin: 0 auto;
+  padding: 4px;
+}
+
+header ul li {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  margin-left: 1em;
+}
+
+header ul li a {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+header ul li svg {
+  fill: #fff;
+}
+
+header ul li::before {
+  content: none;
+}
+
+header ul li:first-child {
+  flex-grow: 1;
+  margin-left: 0;
+}
+
+header .logo {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  pointer-events: none;
+  color: #222;
+}
+
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: #222;
+}
+
+h1 > a:hover:before,
+h2 > a:hover:before,
+h3 > a:hover:before,
+h4 > a:hover:before,
+h5 > a:hover:before,
+h6 > a:hover:before {
+  color: Brown;
+}
+
+h1 > a::before {
+  content: "# ";
+  pointer-events: all;
+}
+
+h2 > a::before {
+  content: "## ";
+  pointer-events: all;
+}
+
+h3 > a::before {
+  content: "### ";
+  pointer-events: all;
+}
+
+h4 > a::before {
+  content: "#### ";
+  pointer-events: all;
+}
+
+i::before, i::after {
+  content: "*";
+}
+
+strong::before, strong::after {
+  content: "**";
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+dl dt::after {
+  content: ":";
+}
+
+blockquote::before {
+  content: "> ";
+}
+
+code::before, code::after {
+  /* うざかった */
+  /* content: "`"; */
+}
+
+main {
+  display: block;
+  width: 80%;
+  margin: 1em auto;
+}
+
+@media screen and (max-device-width: 480px) {
+  main {
+    width: 94%;
+  }
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+}
+
+a {
+  color: RoyalBlue;
+}
+
+a:visited {
+  color: Brown;
+}
+
+ol, ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+ul, ol, dl {
+  margin: 1.4em 0;
+}
+
+dl dt {
+  font-weight: bold;
+}
+
+dl dd {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+blockquote {
+  display: block;
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  padding: 1em;
+  margin: 1.4em 0;
+}
+
+code {
+  border: 1px solid #ddd;
+  background-color: #efefef;
+  border-radius: 4px;
+  padding: 0.1em;
+  margin: 1.4em 0;
+}
+
+footer {
+  padding: 1em;
+}
+
+footer address,
+footer strong {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+}
+
+pre {
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: 1.2em;
+  margin: 1.4em 0 0 0;
+  border-radius: 4px;
+}
+
+pre::before {
+  content: "```" attr(class) "\A";
+}
+
+pre::after {
+  z-index: -1;
+  position: relative;
+  top: -1em;
+  content:"\A```";
+}
+
+pre > code {
+  overflow: auto;
+  display: block;
+  padding: 0.6em;
+  margin: 0;
+  border: none;
+  background-color: #efefef;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs,
+.hljs-subst ,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-name ,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition ,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-type,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-section,
+.hljs-meta,
+.hljs-meta-string,
+.hljs-emphasis {
+}
+
+table {
+  font-family: monospace;
+  margin: 2em 0;
+  border-spacing: 0 0.4em;
+}
+
+th {
+  padding: 0em 1.0em 0.6em;
+  border-left: 0.14em solid #222;
+  border-bottom: 2px dashed #222;
+}
+
+td {
+  padding: 0.4em 1.2em;
+  border-left: 0.14em solid #222;
+}
+
+th:last-child, td:last-child {
+  border-right: 0.14em solid #222;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+</style>
+</head>
+<body>
+<header>
+  <ul>
+    <li><a href=//blog.jxck.io><amp-img class=logo alt="blog top" width=30 height=30 src=//jxck.io/assets/img/blog.svg></a>
+    <li><a href=.><amp-img alt="move to parent directory" width=30 height=30 src=//jxck.io/assets/img/up.svg></a>
+    <li><a href=/feeds/atom.xml><amp-img alt="rss feed" width=30 height=30 src=//jxck.io/assets/img/rss.svg></a>
+    <li><a href=//jxck.io/humans.txt><amp-img alt="huamns.txt" width=30 height=30 src=//jxck.io/assets/img/humans.svg></a>
+    <li><a href=//jxck.io><amp-img class=logo alt="jxck logo" width=30 height=30 src=//jxck.io/assets/img/jxck.svg></a>
+  </ul>
+</header>
+<main>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2017-09-27>2017-09-27</time>
+    <li>updated_at: <time class=updated_at datetime=2017-09-26>2017-09-26</time>
+    <li class=tags>tags: [<a href='/tags/dns.html'>dns</a>,<a href='/tags/domain.html'>domain</a>]
+  </ul>
+
+
+  <article>
+    <h1><a href=/entries/2017-09-27/example-local-test-domains.html>予約済みドメイン (.example, .localhost, .test) について</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>特別なドメインとして予約され、特定の用途で使用可能なドメインとして、 <code translate="no">.example</code> <code translate="no">.localhost</code> <code translate="no">.test</code> などがある。
+      <p><code translate="no">localhost</code> の Draft や、  gTLD である <code translate="no">.dev</code> が Chrome で Preload HSTS になったなどの動きを踏まえ、これらの意味や用途を解説する。
+    </section>
+    <section>
+      <h2 id="ドメインを利用する上での注意"><a href="#ドメインを利用する上での注意">ドメインを利用する上での注意</a></h2>
+      <p>ドメインは、レジストラなどを通じて取得するため、インターネット上では好き勝手に取得することはできない。
+      <p>しかし、自分で設定可能な DNS や hosts ファイルなどを使えば、任意のドメインを任意のアドレスに解決させることができる。
+      <p>例えば、自分が適当にリクエストのテストを行うためのドメインを hosts ファイルに設定し、ループバックアドレスに解決して流していたとする。
+      <p>このドメインがたまたま実在するものだった場合、そのテストを他のユーザが実行すれば、実際のドメインに対してパケットが飛んでしまう可能性がある。
+      <p>同じように、例えば <code translate="no">nmap</code> コマンドを用いた port scan の方法をドキュメントにする際、もしそこに指定したホストが本当に存在したら、問題があるだろう。
+      <p>ドキュメント通り実行されたコマンドから、大量の port scan を受けてしまうかもしれない。
+      <p>ドキュメントやテストで、適当に思いついたドメイン名を用いるのは問題がある。
+    </section>
+    <section>
+      <h2 id="「今は」無いドメイン"><a href="#「今は」無いドメイン">「今は」無いドメイン</a></h2>
+      <p>もしローカルネットワークで使う用途で割り当てたドメインでも、外に出れば実際にそのドメインが取得されているかもしれない。
+      <p>仮に今は取得されていなかったとしても、今後取得される可能性もある。
+      <p>もっと言えば、 gTLD (global top level domain) ですら近年は色々と増えている。
+      <p>例えば、社内のネットワークで当時存在しなかった <code translate="no">.dev</code> を、開発用ドメインとして割り当てられるような環境を作っていたとする。
+      <p>現在、 <code translate="no">.dev</code> は正式に gTLD として認定され、 <a href="https://www.iana.org/domains/root/db/dev.html">Google</a> がそれを管理している。
+      <p>つまり、これまで社内のみと思われていた <code translate="no">.dev</code> のアドレスと、同じものが Google からリリースされる可能性もある。
+      <p>合わせて、先日 Google は <code translate="no">.dev</code> 全体に対して Chrome に preload HSTS の設定をマージした。
+      <p><a href="https://chromium-review.googlesource.com/c/chromium/src/+/669923">Preload HSTS for the .dev gTLD</a>
+      <p>HTTPS が前提の昨今、こうして先手を打って HSTS を TLD 以下に強制するということだろう。
+      <p>もしくは、 <code translate="no">.dev</code> を社内で勝手に運用している環境を認識して、そうした環境にあっても Google の正規サービスであることを明示する目的もあるかもしれない。
+      <p>いずれにせよ、自前で <code translate="no">.dev</code> を運用しているユーザには影響があるだろう。
+      <p>他にも gTLD はどんどん増えているので、 <code translate="no">.dev</code> 以外にも注意が必要だ。
+    </section>
+    <section>
+      <h2 id="Reserved+Top+Level+DNS+Names"><a href="#Reserved+Top+Level+DNS+Names">Reserved Top Level DNS Names</a></h2>
+      <p>以上のことを踏まえれば、将来に渡って取得されないことが保証され、こうした用途に使えるメインがあるのが望ましい。
+      <p>そこで RFC6761 (was RFC2606) には、 <strong>予約済みドメイン</strong> としていくつかのドメインとその用途が記されている。
+      <ul>
+        <li><a href="https://tools.ietf.org/html/rfc6761">RFC6761 Special-Use Domain Names</a>
+        <li><a href="https://tools.ietf.org/html/rfc2606">RFC2606 Reserved Top Level DNS Names</a>
+      </ul>
+      <p>用途を守れば、そのドメインを所有していなくても、安心して使うことができるのだ。
+    </section>
+    <section>
+      <h2 id="<code+translate=no>.example</code>"><a href="#<code+translate=no>.example</code>"><code translate="no">.example</code></a></h2>
+      <p>主にドキュメントなどの例示に使われる。
+      <p>TLD としての <code translate="no">*.example</code> 以外に、以下の 3 つの STD も予約されており、同様に使うことができる。
+      <p>(本サイトでは、ブログの例示には主にこれを使っている)
+      <ul>
+        <li>example.com
+        <li>example.net
+        <li>example.org
+      </ul>
+      <p>ちなみに、この 3 つは実際にインターネット上で HTTP をサーブしている。
+      <ul>
+        <li><a href="http://example.com">http://example.com</a>
+        <li><a href="http://example.net">http://example.net</a>
+        <li><a href="http://example.org">http://example.org</a>
+      </ul>
+      <p>ちなみに、このアドレスは実は結構便利な作りをしている。
+      <ul>
+        <li>単純な HTML (サブリソースなし)
+        <li>HTTP (HSTS なし)
+        <li>HTTPS (HTTP2)
+        <li>余計なヘッダなし
+        <li>コンテンツがほぼ更新されない
+      </ul>
+      <p>筆者は Wifi の認証など HTTP のアドレスが欲しい時や、余計な邪魔のないページで devtool をいじりたいとき、単なる疎通確認など色々な場面で使っている。
+      <p>管理しているのが ICANN なので、 <strong>無くなっている可能性などを気にしないで良い</strong> ため、覚えておくと地味に便利だったりする。
+    </section>
+    <section>
+      <h2 id="<code+translate=no>.localhost</code>"><a href="#<code+translate=no>.localhost</code>"><code translate="no">.localhost</code></a></h2>
+      <p>主に開発で自ホストに解決される用途で使われる。
+      <p>実際には、 OS が名前解決に使う hosts ファイルなどで、 <code translate="no">localhost</code> がループバックアドレスに指定されている。
+      <pre><code translate="no">##
+# Host Database
+#
+# localhost is used to configure the loopback interface
+# when the system is booting.  Do not change this entry.
+##
+127.0.0.1 localhost
+::1             localhost</code></pre>
+      <p>もしこの設定がなければ、他のアドレス同様 DNS に問い合わせを行い、もし DNS が別のアドレスを返せば <code translate="no">localhost</code> は "localhost" ではなくなってしまう。
+      <p>しかし、最近では HTTPS 必須のブラウザ機能が、 localhost だけは特別扱いするなどといった挙動になっている。
+      <p>そこで、 <code translate="no">localhost</code> がループバックアドレスであることを保証するべきというドラフトが上がっている。
+      <p><a href="https://tools.ietf.org/html/draft-west-let-localhost-be-localhost-06">Let 'localhost' be localhost. draft-west-let-localhost-be-localhost-06</a>
+      <p>これが RFC になれば、 <code translate="no">.localhost</code> は明確にループバックアドレスとして使われることになるだろう。
+      <p>先ほどの <code translate="no">.dev</code> 同様に <code translate="no">.localhost</code> を別のアドレスで解決する環境を作っていたりする場合は、やはり問題が出るかもしれない。
+    </section>
+    <section>
+      <h2 id="<code+translate=no>.test</code>"><a href="#<code+translate=no>.test</code>"><code translate="no">.test</code></a></h2>
+      <p>主にテスト用途で使われる。
+      <p>取得されないことと共に、他のネットワークでは別の名前に解決される可能性を前提とした上で、比較的自由に使える。
+      <p>つまり前述のように、社内ネットワークのような環境で開発用ドメインを運用する際などに、利用できるだろう。
+    </section>
+    <section>
+      <h2 id="<code+translate=no>.invalid</code>"><a href="#<code+translate=no>.invalid</code>"><code translate="no">.invalid</code></a></h2>
+      <p>無効であることを明示する用途で使われる。
+      <p>常に NXDOMAIN を返すと想定され、主に DNS の開発などに使うのだろうと思われる。
+    </section>
+    <section>
+      <h2 id="その他テスト用ドメイン"><a href="#その他テスト用ドメイン">その他テスト用ドメイン</a></h2>
+      <p>RFC6761 の他にもこうした用途のドメインはいくつかある。
+      <p>中でも <code translate="no">.テスト</code> や <code translate="no">ドメイン名例.jp</code> などは、 Ascii だけでなく日本語ドメイン(punycode)も検証対象としたい場合などに使えるだろう。
+      <p>一度にたくさんのドメインが欲しい場合は、連番が使える以下が便利だ。
+      <ul>
+        <li>example1.jp
+        <li>example2.jp
+        <li>example3.jp
+        <li>example4.jp
+        <li>example5.jp
+        <li>...
+      </ul>
+      <p>詳細は下記参照
+      <ul>
+        <li><a href="https://www.iana.org/domains/reserved">https://www.iana.org/domains/reserved</a>
+        <li><a href="https://jprs.jp/doc/rule/wideusejp-reserved.html">https://jprs.jp/doc/rule/wideusejp-reserved.html</a>
+        <li><a href="https://jprs.jp/faq/use/">https://jprs.jp/faq/use/</a>
+      </ul>
+    </section>
+  </article>
+
+</main>
+<hr>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved. Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>google analytics</a>.</address>
+</footer>
+</body>
+</html>
+<amp-analytics type=googleanalytics id=analytics1>
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>

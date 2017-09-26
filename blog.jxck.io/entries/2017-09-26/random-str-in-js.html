@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang=ja itemscope itemtype=http://schema.org/BlogPosting>
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset=utf-8>
+    <!--
+    貴様、見ているな！！
+    このサイトの技術的なまとめはこちらをどうぞ。
+    https://labs.jxck.io/blog
+
+    by Jxck
+    -->
+    <link rel=canonical href="https://blog.jxck.io/entries/2017-09-26/random-str-in-js.html">
+    <link rel=amphtml href="https://blog.jxck.io/entries/2017-09-26/random-str-in-js.amp.html">
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+    <link rel=author href=//jxck.io/assets/humans.txt>
+    <link rel=manifest href=/manifest.json>
+    <link rel=preload as=font type=font/woff href="//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201608028" crossorigin>
+    <script async src=//jxck.io/assets/js/ga.js></script>
+    <script async src=//jxck.io/assets/js/highlight.min.js></script>
+    <script async src=//jxck.io/assets/js/sw.js></script>
+    <script async src=//jxck.io/assets/js/main.js></script>
+
+    <meta name="author" content="Jxck">
+    <meta name="description" content="テストや仮実装で、適当なランダム文字列が欲しい場合に便利なスニペット。...">
+    <meta name="keywords" content="btoa,random,string,tips">
+    <meta itemprop="image" content="https://jxck.io/assets/img/jxck.png">
+    <meta itemprop="name" content="blog.jxck.io">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jxck_">
+    <meta name="twitter:url" content="https://blog.jxck.io/entries/2017-09-26/random-str-in-js.html">
+    <meta name="twitter:title" content="ブラウザで適当なランダム文字列 | blog.jxck.io">
+    <meta name="twitter:description" content="テストや仮実装で、適当なランダム文字列が欲しい場合に便利なスニペット。...">
+    <meta name="twitter:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://blog.jxck.io/entries/2017-09-26/random-str-in-js.html">
+    <meta property="og:title" content="ブラウザで適当なランダム文字列 | blog.jxck.io">
+    <meta property="og:site_name" content="blog.jxck.io">
+    <meta property="og:description" content="テストや仮実装で、適当なランダム文字列が欲しい場合に便利なスニペット。...">
+    <meta property="og:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <link rel="icon" sizes="192x192" href="https://jxck.io/assets/img/jxck.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "ブラウザで適当なランダム文字列 | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2017-09-26T08:00:00+08:00",
+  "dateModified": "2017-09-26T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "テストや仮実装で、適当なランダム文字列が欲しい場合に便利なスニペット。..."
+}
+</script>
+
+    <title>ブラウザで適当なランダム文字列 | blog.jxck.io</title>
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/body.css>
+  </head>
+  <body>
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/header.css>
+    <header>
+      <ul>
+        <li><a href=//blog.jxck.io><img class=logo alt=blog title="blog top" width=30 src=//jxck.io/assets/img/blog.svg></a>
+        <li><a href="/entries/2017-09-26/random-str-in-js.amp.html#development=1"><svg width=30 height=30><use xlink:href="/assets/img/amp.svg#main"/></svg></a>
+        <li><a href=.><img alt=up title="move to parent directory" width=30 src=//jxck.io/assets/img/up.svg></a>
+        <li><a href=/feeds/atom.xml><img alt=rss title="rss feed" width=30 src=//jxck.io/assets/img/rss.svg></a>
+        <li><a href=//jxck.io/humans.txt><img alt=humans title=huamns.txt width=30 src=//jxck.io/assets/img/humans.svg></a>
+        <li><a href=//jxck.io><img class=logo alt=jxck title="jxck logo" width=30 src=//jxck.io/assets/img/jxck.png></a>
+      </ul>
+    </header>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/markdown.css>
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/main.css>
+    <main>
+      <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/info.css>
+      <ul class=info>
+        <li>created_at: <time class=created_at datetime=2017-09-26>2017-09-26</time>
+        <li>updated_at: <time class=updated_at datetime=2017-09-26>2017-09-26</time>
+        <li class=tags>tags: [<a href='/tags/btoa.html'>btoa</a>,<a href='/tags/random.html'>random</a>,<a href='/tags/string.html'>string</a>,<a href='/tags/tips.html'>tips</a>]
+      </ul>
+
+      <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/article.css>
+  <article>
+    <h1><a href=/entries/2017-09-26/random-str-in-js.html>ブラウザで適当なランダム文字列</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>テストや仮実装で、適当なランダム文字列が欲しい場合に便利なスニペット。
+    </section>
+    <section>
+      <h2 id="random+string"><a href="#random+string">random string</a></h2>
+      <p><a href="https://labs.jxck.io/ecmascript/random.html">DEMO</a>
+      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+      <pre class=js><code translate="no">// with random
+btoa(Math.random())
+// =&gt; MC44NzEwODQwMjA1NDA2MTE4
+
+// with crypto
+btoa(crypto.getRandomValues(new Uint8Array(16)))
+// =&gt; MjQ2LDE0NSwxNzAsMjQ0LDY4LDg3LDMzLDE0NiwxNzcsNjAsMTUyLDE3MSwxNTAsMTcsMTA4LDEwNA==
+
+// base64 has `=` remove them
+btoa(Math.random()).replace(/=/g, &quot;&quot;)
+// =&gt; MC45NTM0NTM2OTY3MTc5MDY0
+
+// lower case
+btoa(Math.random()).toLowerCase()
+// =&gt; mc43ndy1odizmjg5ndq4otm0
+
+// align length
+btoa(Math.random()).substring(0, 10)
+// =&gt; MC42NjgwND
+
+// letter only
+btoa(crypto.getRandomValues(new Uint8Array(16))).replace(/[0-9]/g, &#039;&#039;).replace(/=/g, &quot;&quot;)
+// =&gt; MTELDMLDksMTMwLDEMywxMzgsNzUsMjQzLDENCwyMDcsMjALDIMiwxNDEsMjILDYLDIMg
+
+// number only
+crypto.getRandomValues(new Uint8Array(16)).join(&#039;&#039;)
+// =&gt; 24066186112482432389420313011522520523361145</code></pre>
+    </section>
+  </article>
+
+    </main>
+    <hr>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/footer.css>
+    <footer>
+      <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved. Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>google analytics</a>.</address>
+    </footer>
+  </body>
+</html>
