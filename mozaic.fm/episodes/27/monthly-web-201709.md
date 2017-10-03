@@ -1,0 +1,541 @@
+# [monthly-web] ep27 Monthly Web 201709
+
+## Info
+
+audio: https://files.mozaic.fm/mozaic-ep27.mp3
+
+- published_at: 2017-10-04
+- guest: [@myakura](https://twitter.com/myakura)
+
+
+## Theme
+
+第 27 回のテーマは 2017 年 9 月の Monthly Web です。
+
+Monthly Web のモチベーションについては以下。
+
+[ep25 Monthly Web 201707](https://mozaic.fm/episodes/25/monthly-web-201707.html)
+
+
+## Show Note
+
+
+### Chrome 動向
+
+
+- Chrome 61 Stable
+   - New in Chrome61
+      - [https://developers.google.com/web/updates/2017/09/nic61](https://developers.google.com/web/updates/2017/09/nic61)
+      - ES modules
+      - Web Share
+      - Web USB
+      - Visual Viewport
+         - [https://wicg.github.io/ViewportAPI/spec.html](https://wicg.github.io/ViewportAPI/spec.html)
+         - [https://developers.google.com/web/updates/2017/09/visual-viewport-api](https://developers.google.com/web/updates/2017/09/visual-viewport-api)
+         - zoom した時に見えている範囲が viewport と違うので、そこを埋める API
+         - offset や resize event など
+         - [Chrome breaks visual viewport - again](https://www.quirksmode.org/blog/archives/2017/09/chrome_breaks_v.html)
+      - スムーズスクロールの API
+         - [https://drafts.csswg.org/cssom-view/](https://drafts.csswg.org/cssom-view/)
+         - scroll 系メソッドのオプションとして behavior: 'smooth' など追加
+         - scroll-behavior プロパティも追加
+         - Firefox は 36 からサポート、他はまだ。。
+- Chrome 62 Beta
+   - New in Chrome
+      - [https://blog.chromium.org/2017/09/chrome-62-beta-network-quality.html](https://blog.chromium.org/2017/09/chrome-62-beta-network-quality.html)
+      - Network Quality Estimator API
+      - OpenType Variable Fonts
+      - Media Capture from DOM Elements
+      - etc, etc, etc
+   - Deprecations and Removals
+      - [https://developers.google.com/web/updates/2017/09/chrome-62-deprecations](https://developers.google.com/web/updates/2017/09/chrome-62-deprecations)
+      - Remove RTCPeerConnection.getStreamById()
+      - Remove SharedWorker.workerStart
+      - Remove SVGPathElement.getPathSegAtLength()
+- Chrome 63 Dev
+- V8
+   - V8 Release 6.2
+      - [https://v8project.blogspot.jp/2017/09/v8-release-62.html](https://v8project.blogspot.jp/2017/09/v8-release-62.html)
+      - Performance
+         - Object#toString (Spider Monkey を真似て)
+         - Proxies
+         - String#includes
+         - {Weak}{Map,Set}
+      - regexp
+         - dotAll mode
+         - look behind assertion
+      - etc
+   - Temporarily disabling escape analysis
+      - [https://v8project.blogspot.jp/2017/09/disabling-escape-analysis.html](https://v8project.blogspot.jp/2017/09/disabling-escape-analysis.html)
+   - Intent to Ship: Promise.prototype.finally
+      - [https://groups.google.com/forum/#!topic/v8-users/r259-82EJXE](https://groups.google.com/forum/#!topic/v8-users/r259-82EJXE)
+- developer updates
+   - Unified autoplay
+      - [https://blog.chromium.org/2017/09/unified-autoplay.html](https://blog.chromium.org/2017/09/unified-autoplay.html)
+      - Chrome 64 から音のあるメディアは自動再生しなくなる
+   - gTLD .dev/.foo が Chrome の Preload HSTS に
+      - [https://ma.ttias.be/chrome-force-dev-domains-https-via-preloaded-hsts/](https://ma.ttias.be/chrome-force-dev-domains-https-via-preloaded-hsts/)
+      - Google 保有の gTLD は使われる前に Preload HSTS していく
+      - [https://security.googleblog.com/2017/09/broadening-hsts-to-secure-more-of-web.html](https://security.googleblog.com/2017/09/broadening-hsts-to-secure-more-of-web.html)
+   - An event for CSS position:sticky
+      - [https://developers.google.com/web/updates/2017/09/sticky-headers](https://developers.google.com/web/updates/2017/09/sticky-headers)
+      - 'sticky-change' event を独自に定義
+      - addEventListener しかできないのか
+      - 将来的には style-mutation observer [http://xml3d.org/xml3d/specification/styleobserver/](http://xml3d.org/xml3d/specification/styleobserver/)
+      - WebRTC の Example [直してる](https://github.com/w3c/mediacapture-main/pull/486) 話
+   - Picture In Picture (PiP)
+      - [https://developers.google.com/web/updates/2017/09/picture-in-picture](https://developers.google.com/web/updates/2017/09/picture-in-picture)
+      - video.requestPictureInPicture()
+   - Sensors For The Web!
+      - [https://developers.google.com/web/updates/2017/09/sensors-for-the-web](https://developers.google.com/web/updates/2017/09/sensors-for-the-web)
+      - new AbsoluteOrientationSensor();
+      - new RelativeOrientationSensor();
+   - PSA: Blink intent process updates
+      - 機能公開までのプロセスの更新
+         - Idea Phase: (early) Intent to Implement
+         - Design Phase: Intent to Implement
+         - Implementation Phase: (origin trial) Intent to Experiment
+         - Implementation Phase: Intent to Ship
+      - [https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/lT94DQ_-ofk/h9203BB6AwAJ](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/lT94DQ_-ofk/h9203BB6AwAJ)
+      - [https://sites.google.com/a/chromium.org/dev/blink/launching-features](https://sites.google.com/a/chromium.org/dev/blink/launching-features)
+   - Aborting fetch
+      - [https://developers.google.com/web/updates/2017/09/abortable-fetch](https://developers.google.com/web/updates/2017/09/abortable-fetch)
+      - [ブログ](https://blog.jxck.io/entries/2017-07-19/aborting-fetch.html)
+- Intent to
+   - Ship: JavaScript module import()
+      - [https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ut-Mr0jt5X8/Q8B4F3wxBQAJ](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ut-Mr0jt5X8/Q8B4F3wxBQAJ)
+   - Ship: Async Iteration / Async Generators
+      - [https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/-lwlcCDOVx0/9zpp0GrCAwAJ](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/-lwlcCDOVx0/9zpp0GrCAwAJ)
+   - Ship: ResizeObserver
+      - [https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/z6ienONUb5A/GlHRa9S2AAAJ](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/z6ienONUb5A/GlHRa9S2AAAJ)
+   - Ship: text-decoration-skip: ink objects; as default
+      - [https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Pp4CqxTJKjo/XR9gff92BAAJ](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Pp4CqxTJKjo/XR9gff92BAAJ)
+   - Implement and Ship MediaStreamTrack.applyConstraints()
+      - [https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/D2va-gTcmvA/haBswl-lAwAJ](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/D2va-gTcmvA/haBswl-lAwAJ)
+   - Implement and ship HTMLTextAreaElement / HTMLSelectElement. autoComplete
+      - [https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2tutRHmhwTE/X0UX8G5eBgAJ](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2tutRHmhwTE/X0UX8G5eBgAJ)
+   - Implement and ship: CSP exemptions for content injected by privileged callers
+      - [https://groups.google.com/forum/#!msg/mozilla.dev.platform/EVKMSAY__lA/8b1ctuJgBwAJ](https://groups.google.com/forum/#!msg/mozilla.dev.platform/EVKMSAY__lA/8b1ctuJgBwAJ)
+   - Implement: Trusted Types for DOM Manipulation
+      - [https://github.com/mikewest/trusted-types](https://github.com/mikewest/trusted-types)
+      - [https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/qbOrXp9g3B8/hziymUnHAQAJ](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/qbOrXp9g3B8/hziymUnHAQAJ)
+   - Implement: PauseFrame API
+      - [https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/e-kQSgkoXpc/nkW5cETqAwAJ](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/e-kQSgkoXpc/nkW5cETqAwAJ)
+   - Implement: Gesture Delegation
+      - [https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/e7I1tZAfavU/wjgW9s0EBAAJ](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/e7I1tZAfavU/wjgW9s0EBAAJ)
+   - Implement and Ship MediaStreamTrack.applyConstraints()
+      - [https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/D2va-gTcmvA/haBswl-lAwAJ](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/D2va-gTcmvA/haBswl-lAwAJ)
+   - Implement: overflow-wrap: break-spaces
+      - [https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/fP1jDcQu68g/qSjd8EI8BQAJ](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/fP1jDcQu68g/qSjd8EI8BQAJ)
+   - Implement: Socket Tagging
+      - [https://groups.google.com/a/chromium.org/forum/#!msg/net-dev/KL1TC-O51fM/0b26cspCAwAJ](https://groups.google.com/a/chromium.org/forum/#!msg/net-dev/KL1TC-O51fM/0b26cspCAwAJ)
+   - Deprecate: Setting cookies from `meta` tags.
+      - [https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/0sJ8GUJO0Dw/iMmcXLIGBAAJ](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/0sJ8GUJO0Dw/iMmcXLIGBAAJ)
+   - Ship: CSS Paint API
+      - [https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/Jex3idOld48](https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/Jex3idOld48)
+      - Worklet を ship するにあたって議論足りてないんじゃねというツッコミがきている
+- Other
+   - MHTML Treatment and Improvement in Chrome
+      - [https://docs.google.com/document/d/1FvmYUC0S0BkdkR7wZsg0hLdKc_qjGnGahBwwa0CdnHE/edit#heading=h.ey8n39382x9r](https://docs.google.com/document/d/1FvmYUC0S0BkdkR7wZsg0hLdKc_qjGnGahBwwa0CdnHE/edit#heading=h.ey8n39382x9r)
+      - Web Packaging など踏まえて Chrome の MHTML を改善する草案
+   - SecureContext requirements for all new features?
+      - [https://groups.google.com/a/chromium.org/d/topic/blink-api-owners-discuss/Gmxej1Ryj8c/discussion](https://groups.google.com/a/chromium.org/d/topic/blink-api-owners-discuss/Gmxej1Ryj8c/discussion)
+      - 新しい API は Secure Context 前提にした方がいいの? という議論
+
+### Firefox 動向
+
+- Firefox 55
+   - [https://developer.mozilla.org/en-US/Firefox/Releases/55](https://developer.mozilla.org/en-US/Firefox/Releases/55)
+   - Sourcemap header supported (from X-SouceMap)
+   - [https://tools.ietf.org/html/rfc6648](https://tools.ietf.org/html/rfc6648)
+- Firefox 56 Stable
+   - [https://developer.mozilla.org/en-US/Firefox/Releases/56](https://developer.mozilla.org/en-US/Firefox/Releases/56)
+   - [https://www.mozilla.org/en-US/firefox/56.0/releasenotes/](https://www.mozilla.org/en-US/firefox/56.0/releasenotes/)
+   - `<link rel="preload">` support
+   - `<applet>` removed
+   - en-US 版で住所の autofill が導入
+   - バックグラウンドのタブにあるビデオや音声の再生の扱いが変更
+   - エンコーディングまわりが Rust ベースに
+      - [https://groups.google.com/forum/#!topic/mozilla.dev.platform/80YUoZNvXYI](https://groups.google.com/forum/#!topic/mozilla.dev.platform/80YUoZNvXYI)
+- Firefox 57 Beta
+   - [https://developer.mozilla.org/en-US/Firefox/Releases/57](https://developer.mozilla.org/en-US/Firefox/Releases/57)
+   - Firefox Quantum
+      - 詳細は下の Developer Edition に
+   - Performance Observer
+      - [https://groups.google.com/forum/#!topic/mozilla.dev.platform/ELX9G6OOAjw](https://groups.google.com/forum/#!topic/mozilla.dev.platform/ELX9G6OOAjw)
+      - Intent to Ship がでた
+      - Chrome はサポート済み、 Safari も 11 でサポート
+   - for-await-of (async iterator なども)
+   - ReadableStream
+   - Windows の日本語フォントが MS PGothic から Meiryo に
+      - [https://www.fxsitecompat.com/en-CA/docs/2017/japanese-default-fonts-have-been-changed/](https://www.fxsitecompat.com/en-CA/docs/2017/japanese-default-fonts-have-been-changed/)
+- Firefox Quantum Developer Edition
+   - [https://hacks.mozilla.org/2017/09/firefox-quantum-developer-edition-fastest-firefox-ever/](https://hacks.mozilla.org/2017/09/firefox-quantum-developer-edition-fastest-firefox-ever/)
+   - Firefox 57 が Beta チャンネルにうつって、 Developer Edition のビルドも出たよという話
+   - the fastest Firefox ever
+   - Photon UI
+      - `<input type=date>` でカレンダーが出るように(Nightly, Dev のみ)
+   - DevTools in 57: Redesigned and better than ever
+      - 開発者ツール改善
+      - [https://blog.nightly.mozilla.org/2017/09/11/developer-tools-visual-refresh-coming-to-nightly/](https://blog.nightly.mozilla.org/2017/09/11/developer-tools-visual-refresh-coming-to-nightly/)
+   - Quantum CSS (aks Stylo)
+      - [https://groups.google.com/forum/#!msg/mozilla.dev.platform/H_Sl_-hCF5w/W7X_loXGAAAJ](https://groups.google.com/forum/#!msg/mozilla.dev.platform/H_Sl_-hCF5w/W7X_loXGAAAJ)
+   - 今後
+      - Quantum Render (GPU-optimized rendering pipeline WebRender by Servo)
+      - Quantum DOM (scheduler)
+- Intent to:
+   - implement: RTCRtpTransceiver
+      - [https://groups.google.com/forum/#!msg/mozilla.dev.platform/QTD7S9kAkGM/wDSHoKwJAQAJ](https://groups.google.com/forum/#!msg/mozilla.dev.platform/QTD7S9kAkGM/wDSHoKwJAQAJ)
+      - ORTC の成果からフィードバックして WebRTC に入った後発の API
+      - 詳細は略
+   - ship: WebVR on macOS
+      - [https://groups.google.com/forum/#!msg/mozilla.dev.platform/MCSJOhbqSVE/ce6sF7JkAAAJ](https://groups.google.com/forum/#!msg/mozilla.dev.platform/MCSJOhbqSVE/ce6sF7JkAAAJ)
+- Other
+   - Adding More Policy Firepower to the Mozilla Network
+      - 7 人の fellow が選ばれ Net Neutrality について 2 年間取り組む
+      - [https://blog.mozilla.org/blog/2017/09/25/adding-policy-firepower-mozilla-network/](https://blog.mozilla.org/blog/2017/09/25/adding-policy-firepower-mozilla-network/)
+   - These Weeks in Firefox: Issue 24
+      - [https://blog.nightly.mozilla.org/2017/09/26/these-weeks-in-firefox-issue-24/](https://blog.nightly.mozilla.org/2017/09/26/these-weeks-in-firefox-issue-24/)
+   - Device Memory header and JS API
+      - [https://groups.google.com/forum/#!msg/mozilla.dev.platform/cfydu35XdnY/3IqYn0oJAQAJ](https://groups.google.com/forum/#!msg/mozilla.dev.platform/cfydu35XdnY/3IqYn0oJAQAJ)
+      - Chrome チームから Device-Memory について Mozilla どうよ?というスレッド
+         - fingerprinting の話や Client Hints についての疑問などが出た
+   - CSS Grid PlayGround
+      - [https://mozilladevelopers.github.io/playground/](https://mozilladevelopers.github.io/playground/)
+
+### Safari 動向
+
+- Safari Technology Preview 39
+   - [https://webkit.org/blog/7913/release-notes-for-safari-technology-preview-39/](https://webkit.org/blog/7913/release-notes-for-safari-technology-preview-39/)
+   - Beacon API
+   - Async Generator
+   - etc
+- Safari Technology Preview 40
+   - [https://webkit.org/blog/7922/release-notes-for-safari-technology-preview-40/](https://webkit.org/blog/7922/release-notes-for-safari-technology-preview-40/)
+   - regexp named capture group
+   - for-await-of
+   - Fetch Improve
+   - etc
+- New WebKit Features in Safari 11
+   - [https://webkit.org/blog/7956/new-webkit-features-in-safari-11/](https://webkit.org/blog/7956/new-webkit-features-in-safari-11/)
+   - [https://developer.apple.com/library/content/releasenotes/General/WhatsNewInSafari/Safari_11_0/Safari_11_0.html](https://developer.apple.com/library/content/releasenotes/General/WhatsNewInSafari/Safari_11_0/Safari_11_0.html)
+   - WebRTC and Media Capture
+   - WebAssembly
+   - Variable Fonts
+   - Timing APIs
+   - Intelligent Tracking Prevention
+   - Video autoplay Blocking on macOS
+   - Safari Tech Preview 22-36 相当とのこと
+- Safari Developer Help
+   - [https://support.apple.com/guide/safari-developer/welcome](https://support.apple.com/guide/safari-developer/welcome)
+   - Safari の Web Inspector のドキュメンテーションが大更新
+- Other
+   - Concurrent JavaScript: It can work!
+      - [https://webkit.org/blog/7846/concurrent-javascript-it-can-work/](https://webkit.org/blog/7846/concurrent-javascript-it-can-work/)
+      - JS で Thread をという話
+   - Credential Management API の現状
+      - [https://lists.webkit.org/pipermail/webkit-dev/2017-September/029577.html](https://lists.webkit.org/pipermail/webkit-dev/2017-September/029577.html)
+      - 実装が IDL 入れただけで止まってるので消さないというメール?
+      - Apple はまだ興味を持っているが、仕様がかたまってないので止まってるとのこと
+   - Designing Websites for iPhone X
+      - [https://webkit.org/blog/7929/designing-websites-for-iphone-x/](https://webkit.org/blog/7929/designing-websites-for-iphone-x/)
+      - iPhone X でスクリーンが角丸になるし、凹みもでる
+      - Safe Area と呼ばれる領域にコンテンツを自動で収める仕組みと、それを回避するためのやりかた
+      - 一部 LG が推している CSS の Round Display 仕様の機能を実装
+   - Abort APIs の実装開始
+      - [https://trac.webkit.org/changeset/222692/webkit](https://trac.webkit.org/changeset/222692/webkit)
+      - Fetch とかはこれから
+   - `<link rel="preconnect">` が実装
+      - [https://trac.webkit.org/changeset/222613/webkit](https://trac.webkit.org/changeset/222613/webkit)
+
+### Edge 動向
+
+- Windows Insider Preview (Fast) build 17004
+   - Fall Creators Update 公開前だからか、更新があまり上がってない
+- EdgeHTML
+   - 16: [https://docs.microsoft.com/en-us/microsoft-edge/dev-guide/whats-new/edgehtml-16](https://docs.microsoft.com/en-us/microsoft-edge/dev-guide/whats-new/edgehtml-16)
+      - unprefixed CSS Grid support
+      - objecgt-fit, object-position
+         - アスペクト比保ったまま画像を拡縮したり、領域に収めたいときに使う
+      - DevTools のリファクタリング
+      - Rayment Request API update
+      - Service Worker (about:flags)
+      - WebVR support motion controllers
+   - 14: [https://docs.microsoft.com/en-us/microsoft-edge/dev-guide/whats-new/edgehtml-14](https://docs.microsoft.com/en-us/microsoft-edge/dev-guide/whats-new/edgehtml-14)
+      - Extensions
+      - Fetch API
+      - Web Authentication API (FIDO 2.0 Web API)
+      - Web Notifications
+      - Web Speech API
+   - 13: [https://docs.microsoft.com/en-us/microsoft-edge/dev-guide/whats-new/edgehtml-13](https://docs.microsoft.com/en-us/microsoft-edge/dev-guide/whats-new/edgehtml-13)
+      - EME
+      - oninvalid
+   - 12: [https://docs.microsoft.com/en-us/microsoft-edge/dev-guide/whats-new/edgehtml-12](https://docs.microsoft.com/en-us/microsoft-edge/dev-guide/whats-new/edgehtml-12)
+      - CSP 1.0
+      - Media Capture and Streams
+      - `<meter>`, `<picture>`, `<template>`, srcset, sizes, `<input type=time>`
+      - Web Audio
+      - Web Driver
+- ChakraCore
+   - [https://github.com/Microsoft/ChakraCore/wiki/Roadmap](https://github.com/Microsoft/ChakraCore/wiki/Roadmap)
+
+### WHATWG/W3C 標準動向
+
+- W3C HTML WG telecon
+   - HTML5.2 の話がメイン
+      - [https://www.w3.org/2017/09/05-html-minutes.html](https://www.w3.org/2017/09/05-html-minutes.html)
+   - Proposal to retain dialog in HTML5.2
+      - [https://lists.w3.org/Archives/Public/public-html/2017Sep/0001.html](https://lists.w3.org/Archives/Public/public-html/2017Sep/0001.html)
+   - Completing the HTML5.2 implementation report
+      - [https://lists.w3.org/Archives/Public/public-html/2017Aug/0013.html](https://lists.w3.org/Archives/Public/public-html/2017Aug/0013.html)
+- Bring outdated parts of the FAQ up to date
+   - [https://github.com/whatwg/html/commit/5d512fe6f54a332d13ff2d0fee59f12a8d1701b3#diff-e6f81a9d8df4fb4d787121a242ea6bf1](https://github.com/whatwg/html/commit/5d512fe6f54a332d13ff2d0fee59f12a8d1701b3#diff-e6f81a9d8df4fb4d787121a242ea6bf1)
+   - HTML の FAQ が更新された
+      - `spec` が `standard` に
+      - XHTML という文字が消える
+      - Will HTML5 ~ が Does HTML5 ~ に
+      - Stable Snapshot が無く Living Standard であることについて加筆
+      - etc
+- W3C Recommendation
+   - Encrypted Media Extensions (EME)
+      - [https://www.w3.org/blog/news/archives/6521](https://www.w3.org/blog/news/archives/6521)
+      - EME の議論の結果: [https://www.w3.org/blog/2017/09/reflections-on-the-eme-debate/](https://www.w3.org/blog/2017/09/reflections-on-the-eme-debate/)
+      - EME 採用で EFF が W3C をやめる
+         - [https://www.w3.org/2017/09/pressrelease-eme-recommendation.html.en](https://www.w3.org/2017/09/pressrelease-eme-recommendation.html.en)
+         - [https://www.eff.org/deeplinks/2017/09/open-letter-w3c-director-ceo-team-and-membership](https://www.eff.org/deeplinks/2017/09/open-letter-w3c-director-ceo-team-and-membership)
+         - [https://www.w3.org/blog/2017/09/w3c-hearing-the-concerns-the-eme-recommendation-raises/](https://www.w3.org/blog/2017/09/w3c-hearing-the-concerns-the-eme-recommendation-raises/)
+- Candidate Recommendation
+   - Payment Request API now a Candidate Rec and being implemented in all major browsers
+      - [https://www.w3.org/blog/wpwg/2017/09/14/payment-request-api-now-being-implemented-in-all-major-browsers-advances-on-the-recommendation-track/](https://www.w3.org/blog/wpwg/2017/09/14/payment-request-api-now-being-implemented-in-all-major-browsers-advances-on-the-recommendation-track/)
+      - [https://www.w3.org/2017/09/payments-media-advisory.html](https://www.w3.org/2017/09/payments-media-advisory.html)
+- First Public Working Draft
+   - Paint Timing 1; Long Tasks API 1
+      - [https://www.w3.org/blog/news/archives/6483](https://www.w3.org/blog/news/archives/6483)
+   - Web of Things
+      - [https://www.w3.org/blog/2017/09/first-public-working-drafts-for-web-of-things/](https://www.w3.org/blog/2017/09/first-public-working-drafts-for-web-of-things/)
+   - WoT Architecture; Wot Description; Wot Scripting API
+      - [https://www.w3.org/blog/news/archives/6503](https://www.w3.org/blog/news/archives/6503)
+   - Intersection Observer
+      - [https://www.w3.org/blog/news/archives/6508](https://www.w3.org/blog/news/archives/6508)
+   - Payment Request API; Payment Method Identifiers
+      - [https://www.w3.org/blog/news/archives/6500](https://www.w3.org/blog/news/archives/6500)
+- Working Draft
+   - Accessibility Conformance Testing (ACT) Rules Format 1.0
+      - [https://www.w3.org/blog/news/archives/6496](https://www.w3.org/blog/news/archives/6496)
+- Call for review
+   - Web Content Accessibility Guidelines (WCAG) 2.1
+      - [https://lists.w3.org/Archives/Public/w3c-wai-ig/2017JulSep/0182.html](https://lists.w3.org/Archives/Public/w3c-wai-ig/2017JulSep/0182.html)
+      - [https://www.w3.org/TR/2017/WD-WCAG21-20170912/](https://www.w3.org/TR/2017/WD-WCAG21-20170912/)
+   - Semantic Sensor Network Ontology Proposed Recommendation Published
+      - [https://www.w3.org/blog/news/archives/6479](https://www.w3.org/blog/news/archives/6479)
+- Chartering
+   - (propose) Web Authentication Working Group
+      - [https://groups.google.com/forum/#!msg/mozilla.dev.platform/xjNCGLnbpik/DCJooEBeAAAJ](https://groups.google.com/forum/#!msg/mozilla.dev.platform/xjNCGLnbpik/DCJooEBeAAAJ)
+   - (re) Web Commerce Interest Group
+      - [https://www.w3.org/blog/news/archives/6515](https://www.w3.org/blog/news/archives/6515)
+      - もと Web Payments IG
+- "Media Capture and Streams" の CfC が終わった
+   - [https://lists.w3.org/Archives/Public/public-webrtc/2017Sep/0044.html](https://lists.w3.org/Archives/Public/public-webrtc/2017Sep/0044.html)
+   - 反対派なかったので CR に向けて進む
+- W3C Credentials Community Group name and mission statement status
+   - [https://lists.w3.org/Archives/Public/public-webappsec/2017Sep/0001.html](https://lists.w3.org/Archives/Public/public-webappsec/2017Sep/0001.html)
+   - Credentials CG の目的を見直し
+- Add a "modern" parsing API #2993
+   - [https://github.com/whatwg/html/issues/2993](https://github.com/whatwg/html/issues/2993)
+- Checkout Web Payments Demos @ Money20/20
+   - [https://www.w3.org/blog/2017/09/check-out-web-payments-demos-money2020/](https://www.w3.org/blog/2017/09/check-out-web-payments-demos-money2020/)
+- New Web History API Proposal
+   - [https://medium.com/@dvoytenko/new-web-history-api-91a1a21ff7b8](https://medium.com/@dvoytenko/new-web-history-api-91a1a21ff7b8)
+- Declarative Shadow DOM #510
+   - [https://github.com/whatwg/dom/issues/510](https://github.com/whatwg/dom/issues/510)
+   - Shadow DOM も割と固まってきたので、宣言的に書けるようにしよう。
+   - `<template attach-shadow shadow-mode="open | closed">`
+- Future of Text Symposium
+   - [https://www.w3.org/Consortium/Offices/blog/2017/09/06/future-of-text-symposium/](https://www.w3.org/Consortium/Offices/blog/2017/09/06/future-of-text-symposium/)
+
+### TC39 標準動向
+
+- ECMA-262 が 20 歳
+   - [http://www.ecma-international.org/news/ECMA-262%2020th%20birthday.htm](http://www.ecma-international.org/news/ECMA-262%2020th%20birthday.htm)
+- TC39 July 2017
+   - [https://maggiepint.com/2017/09/02/tc39-july-2017/](https://maggiepint.com/2017/09/02/tc39-july-2017/)
+   - 7 月のミーティングのまとめ
+- Proposals Diff
+   - 主に TC39 Seq 2017 での更新
+   - [https://github.com/tc39/proposals/compare/master@{2017-09-01}...master@{2017-10-01}](https://github.com/tc39/proposals/compare/master@{2017-09-01}...master@{2017-10-01})
+   - 0->1
+      - Pipeline Operator
+      - Extensible numeric literals
+      - First-Class Protocols
+      - JSON superset
+      - Nullary coalescing operator
+      - Partial application
+   - 1->2
+      - Array.prototype.flat{Map,ten}
+      - Throw expressions
+      - String#matchAll
+      - Numeric separators
+   - 2->3
+      - import.meta
+   - do-expression
+      - [https://github.com/tc39/proposal-do-expressions](https://github.com/tc39/proposal-do-expressions)
+      - Stage 1
+      - do の中ではスコープを作り文ではなく式の組み合わせで書ける
+      - その中では if 文も式
+      - 暗黙のリターンあり
+      - Functional Programming っぽくするための提案
+   - referential-destructuring
+      - [https://github.com/meteor/proposal-referential-destructuring](https://github.com/meteor/proposal-referential-destructuring)
+      - Stage 0
+      - destructuring する際に、コピーではなく、参照を取得
+
+### IETF 標準動向
+
+- RFC
+   - [HTTP Immutable Responses (Cache-Control: immutable)](HTTP Immutable Responses (Cache-Control: immutable))
+      - [https://tools.ietf.org/html/rfc8246](https://tools.ietf.org/html/rfc8246)
+      - キャッシュが max-age 内であればリロード時もキャッシュヒットさせる
+   - RFC8187: Indicating Character Encoding and Language for [HTTP Header Field](HTTP Header Field)
+      - [https://tools.ietf.org/html/rfc8187](https://tools.ietf.org/html/rfc8187)
+      - non-ascii ("£" , "€") を含む初の RFC らしい
+- Draft
+   - IETF Last Call: Happy Eyeballs Version 2
+      - [https://tools.ietf.org/html/draft-ietf-v6ops-rfc6555bis-05](https://tools.ietf.org/html/draft-ietf-v6ops-rfc6555bis-05)
+      - [https://lists.w3.org/Archives/Public/ietf-http-wg/2017JulSep/0416.html](https://lists.w3.org/Archives/Public/ietf-http-wg/2017JulSep/0416.html)
+      - IPv4, v6 両方使える環境で両方試して速く繋がる方を選ぶ
+   - WG Last Call The ORIGIN [HTTP/2 Frame](HTTP/2 Frame)
+      - [https://tools.ietf.org/html/draft-ietf-httpbis-origin-frame-04](https://tools.ietf.org/html/draft-ietf-httpbis-origin-frame-04)
+      - [https://lists.w3.org/Archives/Public/ietf-http-wg/2017JulSep/0409.html](https://lists.w3.org/Archives/Public/ietf-http-wg/2017JulSep/0409.html)
+      - H2 で複数オリジンへの接続を束ねられる
+      - 要求が受け取れないオリジンへのリクエストは 421 Misdirected Request
+      - サーバが束ねられるオリジンを送るフレームを送ることで明示する仕様
+   - [HTTP Random Access and Live Content](HTTP Random Access and Live Content)
+      - [https://tools.ietf.org/html/draft-ietf-httpbis-rand-access-live-01](https://tools.ietf.org/html/draft-ietf-httpbis-rand-access-live-01)
+      - Range リクエストで Live Streaming を受け取れるように
+   - A Method for Web Security Policies
+      - [https://tools.ietf.org/html/draft-foudil-securitytxt-00](https://tools.ietf.org/html/draft-foudil-securitytxt-00)
+      - security.txt に脆弱性連絡先とかを載せる
+      - [https://github.com/EdOverflow/security-txt のサブセットっぽい](https://github.com/EdOverflow/security-txt のサブセットっぽい)
+   - Zstandard Compression and The application/zstd Media Type
+      - [https://tools.ietf.org/html/draft-kucherawy-dispatch-zstd-00](https://tools.ietf.org/html/draft-kucherawy-dispatch-zstd-00)
+      - Facebook 提案の圧縮形式
+   - [HTTP Variants draft-nottingham-variants-00](HTTP Variants draft-nottingham-variants-00)
+      - [https://tools.ietf.org/html/draft-nottingham-variants-00](https://tools.ietf.org/html/draft-nottingham-variants-00)
+      - リソースに対して可能な選択肢をヘッダに載せる
+      - 例えばレスポンスに `Variants: Content-Language;en;de` など
+- Origin-signed responses
+   - [https://lists.w3.org/Archives/Public/ietf-http-wg/2017JulSep/0385.html](https://lists.w3.org/Archives/Public/ietf-http-wg/2017JulSep/0385.html)
+   - WebPackaging の登場により再度議論に
+
+### 周辺動向
+
+- A Guide To Virtual Reality For Web Developers
+   - [https://www.smashingmagazine.com/2017/09/guide-virtual-reality-web-developers/](https://www.smashingmagazine.com/2017/09/guide-virtual-reality-web-developers/)
+- スタバ(日本)TLS1.0/1.1 を切る
+   - [http://www.starbucks.co.jp/notice/20172242.php](http://www.starbucks.co.jp/notice/20172242.php)
+- スタバ(USA) PWA
+   - [https://preview.starbucks.com](https://preview.starbucks.com)
+   - モバイルのみ?
+- みんな Object(object) を最適化
+   - WebPack が吐くコードで使われる [https://twitter.com/bmeurer/status/903128993616027649](https://twitter.com/bmeurer/status/903128993616027649)
+   - V8: [https://twitter.com/v8js/status/903150329973403648](https://twitter.com/v8js/status/903150329973403648)
+   - Spider Monkey: [https://twitter.com/SpiderMonkeyJS/status/903572265379520512](https://twitter.com/SpiderMonkeyJS/status/903572265379520512)
+   - JSC: [https://twitter.com/Constellation/status/903841886367997952](https://twitter.com/Constellation/status/903841886367997952)
+- Assemblyscript
+   - [http://assemblyscript.org](http://assemblyscript.org)
+   - [https://github.com/AssemblyScript/assemblyscript](https://github.com/AssemblyScript/assemblyscript)
+   - A subset of TypeScript that compiles to WebAssembly
+- Nginx Unit
+   - [https://www.nginx.com/products/nginx-unit/](https://www.nginx.com/products/nginx-unit/)
+   - Nginx に複数言語対応のアプリケーションサーバがデプロイできるように
+- HAProxy supports Experimental [HTTP2](HTTP2)
+   - [https://www.mail-archive.com/haproxy@formilux.org/msg27104.html](https://www.mail-archive.com/haproxy@formilux.org/msg27104.html)
+   - Experimental / broken [HTTP/2 support](HTTP/2 support)
+- Dr. Axel による mjs のまとめ
+   - [http://2ality.com/2017/09/native-esm-node.html](http://2ality.com/2017/09/native-esm-node.html)
+- JS の Error Message が見にくいっていう話
+   - [https://twitter.com/brittanystoroz/status/907703775795847169](https://twitter.com/brittanystoroz/status/907703775795847169)
+   - そういうのはバグとしてファイルしろという話
+   - [https://twitter.com/_gsathya/status/907834573320593409](https://twitter.com/_gsathya/status/907834573320593409)
+   - [https://bugs.chromium.org/p/v8/issues/detail?id=6513](https://bugs.chromium.org/p/v8/issues/detail?id=6513)
+   - 色々集まってる
+- HTML Imports の利用が急激に増える
+   - [https://twitter.com/tkochi/status/907475416495022080](https://twitter.com/tkochi/status/907475416495022080)
+   - [https://www.chromestatus.com/metrics/feature/timeline/popularity/455](https://www.chromestatus.com/metrics/feature/timeline/popularity/455)
+   - Polymer 化した YouTube が原因だった
+   - BlinkOn8 での LT [https://docs.google.com/presentation/d/1J5tKTFvbc9nD46yHbEKG-e9B-uUA_vTYf4AfCbWQ7vY](https://docs.google.com/presentation/d/1J5tKTFvbc9nD46yHbEKG-e9B-uUA_vTYf4AfCbWQ7vY)
+- Chrome's Plan to Distrust Symantec Certificates
+   - [https://security.googleblog.com/2017/09/chromes-plan-to-distrust-symantec.html](https://security.googleblog.com/2017/09/chromes-plan-to-distrust-symantec.html)
+   - [https://developers-jp.googleblog.com/2017/09/chromes-plan-to-distrust-symantec.html](https://developers-jp.googleblog.com/2017/09/chromes-plan-to-distrust-symantec.html)
+   - 段階的に無効になり 2018/09 Chrome70 で完全に終わる
+   - また Symantec の CA は DigiCert に売却される
+- Chrome チームの AMA
+   - [https://www.reddit.com/r/webdev/comments/6zpgu1/were_the_chrome_team_here_to_answer_questions/?sort=old](https://www.reddit.com/r/webdev/comments/6zpgu1/were_the_chrome_team_here_to_answer_questions/?sort=old)
+   - セキュリティとかについて気にしている人が多い印象
+- Chrome が HLS をサポートしない理由
+   - むしろ Android からも消していく
+   - MSE(Media Source Extension), EME(Encrypted Media Extension) を整備
+   - [https://bugs.chromium.org/p/chromium/issues/detail?id=761506](https://bugs.chromium.org/p/chromium/issues/detail?id=761506)
+- 各ブラウザの開発ツールのプロトコルが統一されそう
+   - [https://groups.google.com/forum/#!msg/mozilla.dev.platform/4-4A8W-nP5g/BR5cIbJLAQAJ](https://groups.google.com/forum/#!msg/mozilla.dev.platform/4-4A8W-nP5g/BR5cIbJLAQAJ)
+- Building the DOM faster: speculative parsing, async, defer and preload
+   - [https://hacks.mozilla.org/2017/09/building-the-dom-faster-speculative-parsing-async-defer-and-preload/](https://hacks.mozilla.org/2017/09/building-the-dom-faster-speculative-parsing-async-defer-and-preload/)
+   - 良い記事
+- WebVR Origin Trials Result
+   - [https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/HyJOhqcEtQI/LPgY2NosBAAJ](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/HyJOhqcEtQI/LPgY2NosBAAJ)
+   - 結果もう少し API を改善して、もう一度やり直すとのこと
+- Reinventing Web Intents
+   - [https://paul.kinlan.me/reinventing-web-intents/](https://paul.kinlan.me/reinventing-web-intents/)
+   - [https://paul.kinlan.me/the-web-is-my-api/](https://paul.kinlan.me/the-web-is-my-api/)
+   - [https://github.com/GoogleChromeLabs/comlink](https://github.com/GoogleChromeLabs/comlink)
+   - Paul Kinlan が WebIntents にご執心
+   - Tasklets 使って Service を登録し、連携すれば Web Intents になるみたいな話
+   - Comlink でデモ
+
+### イベント
+
+- 9 月
+   - 9/5, 6 Google Developer Days
+      - [https://developers.google.com/events/gdd-europe/](https://developers.google.com/events/gdd-europe/)
+      - [https://www.youtube.com/playlist?list=PLOU2XLYxmsIJz-cYWfjQP8SV7n8C-PTVm](https://www.youtube.com/playlist?list=PLOU2XLYxmsIJz-cYWfjQP8SV7n8C-PTVm)
+   - 9/13 Edge Summit
+      - [https://channel9.msdn.com/Events/WebPlatformSummit/Microsoft-Edge-Web-Summit-2017](https://channel9.msdn.com/Events/WebPlatformSummit/Microsoft-Edge-Web-Summit-2017)
+      - [https://summit.microsoftedge.com/](https://summit.microsoftedge.com/)
+      - PWA を First Class Citizen とする
+      - MSDN と MDN をマージして、 Edge の差分だけ MS Edge Doc にするらしい
+   - 9/13 WebRTC Virtual Interim
+      - [https://www.w3.org/2017/09/13-webrtc-minutes](https://www.w3.org/2017/09/13-webrtc-minutes)
+      - 細かい調整がメイン
+   - 9/20-21 BlinkOn
+      - スライド、動画へのリンク:
+         - [https://docs.google.com/document/d/11Y1MK-jVQl_xlhFS8dds_6FsC70jQ_9aOtcWALBiz5k/preview#](https://docs.google.com/document/d/11Y1MK-jVQl_xlhFS8dds_6FsC70jQ_9aOtcWALBiz5k/preview#)
+      - LT スライド:
+         - [https://docs.google.com/spreadsheets/d/1b8oHNaOxJmRq7JJUQHNCo1O0C0IdUXOByPjNJV1HslE/edit#gid=0](https://docs.google.com/spreadsheets/d/1b8oHNaOxJmRq7JJUQHNCo1O0C0IdUXOByPjNJV1HslE/edit#gid=0)
+      - 内部向け系の話がメイン
+   - 9/22 PWA Roadshow
+      - [https://events.withgoogle.com/pwa-roadshow-tokyo-2017/](https://events.withgoogle.com/pwa-roadshow-tokyo-2017/)
+      - [https://drive.google.com/drive/folders/0B55wxScz_BJtV1lGbTBOYlhLTVk](https://drive.google.com/drive/folders/0B55wxScz_BJtV1lGbTBOYlhLTVk)
+      - 質疑が盛り上がった + ハンズオン
+   - 9/25 WASM WG Video meeting
+      - [https://github.com/WebAssembly/meetings/blob/master/2017/WG-09-25.md](https://github.com/WebAssembly/meetings/blob/master/2017/WG-09-25.md)
+      - 議事録不明
+- 10 月
+   - 10/3-5 QUIC interim
+      - [https://github.com/quicwg/wg-materials/blob/master/interim-17-10/agenda.md](https://github.com/quicwg/wg-materials/blob/master/interim-17-10/agenda.md)
+   - 10/13 WebRTC Vertial Interim
+      - TPAC の前にもう一回 CR blocker を整理する VI をやる
+         - [https://lists.w3.org/Archives/Public/public-webrtc/2017Sep/0045.html](https://lists.w3.org/Archives/Public/public-webrtc/2017Sep/0045.html)
+   - 10/16 Meet the W3C AB London - Oct 2017
+      - [https://ti.to/w3c-ab/meet-the-w3c-ab-london-oct-2017](https://ti.to/w3c-ab/meet-the-w3c-ab-london-oct-2017)
+   - 10/23-24 Chrome Developer Summit
+      - [https://developer.chrome.com/devsummit/](https://developer.chrome.com/devsummit/)
+   - 10/27-29 Mozilla Fes
+      - [https://mozillafestival.org/](https://mozillafestival.org/)
+- 11 月
+   - 11/6-10 TPAC 2017
+      - [https://www.w3.org/2017/11/TPAC/](https://www.w3.org/2017/11/TPAC/)
+      - [https://www.w3.org/wiki/TPAC/2017](https://www.w3.org/wiki/TPAC/2017)
+- 12 月
+   - 12/5-7 W3C Workshop on WebVR Authoring: Opportunities and Challenges
+      - [https://www.w3.org/blog/news/archives/6535](https://www.w3.org/blog/news/archives/6535)
+- Mozilla RoadShow
