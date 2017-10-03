@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="ES Dynamic Import DEMO">
+<title>ES Dynamic Import DEMO | labs.jxck.io</title>
+
+<h1>ES Dynamic Import DEMO</h1>
+
+<p>see console
+
+<main></main>
+
+<script>
+(async () => {
+  try {
+    const {default: str} = await import(`./template.mjs`)
+    const imported = new DOMParser().parseFromString(str, 'text/html')
+
+    const template = imported.querySelector('template')
+    const clone = document.importNode(template.content, true)
+
+    // activate template
+    document.querySelector('main').appendChild(clone)
+  } catch (err) {
+    console.log(err)
+  }
+})()
+</script>

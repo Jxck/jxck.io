@@ -1,0 +1,8 @@
+export default `
+<template>
+  <section>
+    <h2>From template</h2>
+    <script>alert('From template')</script>
+  </section>
+</template>
+`

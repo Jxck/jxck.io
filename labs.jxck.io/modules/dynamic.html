@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="ES Dynamic Import DEMO">
+<title>ES Dynamic Import DEMO | labs.jxck.io</title>
+
+<h1>ES Dynamic Import DEMO</h1>
+
+<p>see console
+
+<main></main>
+
+<script>
+(async () => {
+  const flg = Math.floor(Math.random()*100)%2;
+  const {default: m} = await import(flg === 0? './a.mjs': './b.mjs')
+  m(); // "a" or "b"
+})()
+</script>
