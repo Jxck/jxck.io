@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="HTML Imports DEMO">
+<title>HTML Imports DEMO | labs.jxck.io</title>
+
+<h1>HTML Imports DEMO</h1>
+
+<p>see console
+
+<link rel=import href=template.html>
+
+<main></main>
+
+<script>
+const link = document.querySelector('link[rel="import"]');
+const imported = link.import
+
+const template = imported.querySelector('template');
+const clone = document.importNode(template.content, true);
+
+// activate template
+document.querySelector('main').appendChild(clone);
+</script>
