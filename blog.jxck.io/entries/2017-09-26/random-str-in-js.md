@@ -7,7 +7,7 @@
 
 ## random string
 
-[DEMO](https://labs.jxck.io/ecmascript/random.html)
+[DEMO](https://labs.jxck.io/snippets/random.html)
 
 
 ```js
