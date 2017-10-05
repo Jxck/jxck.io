@@ -363,6 +363,7 @@ Monthly Web のモチベーションについては以下。
 - Proposals Diff
    - 主に TC39 Seq 2017 での更新
    - [https://github.com/tc39/proposals/compare/master@{2017-09-01}...master@{2017-10-01}](https://github.com/tc39/proposals/compare/master@{2017-09-01}...master@{2017-10-01})
+   - [収録後にアップデートサマリが出た](https://ecmascript-daily.github.io/ecmascript/2017/10/02/ecmascript-proposal-updates-2017-09)
    - 0->1
       - Pipeline Operator
       - Extensible numeric literals

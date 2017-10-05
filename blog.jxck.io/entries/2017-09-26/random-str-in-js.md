@@ -32,10 +32,10 @@ btoa(Math.random()).substring(0, 10)
 // => MC42NjgwND
 
 // letter only
-btoa(crypto.getRandomValues(new Uint8Array(16))).replace(/[0-9]/g, '').replace(/=/g, "")
+btoa(crypto.getRandomValues(new Uint8Array(16))).replace(/[0-9]/g, "").replace(/=/g, "")
 // => MTELDMLDksMTMwLDEMywxMzgsNzUsMjQzLDENCwyMDcsMjALDIMiwxNDEsMjILDYLDIMg
 
 // number only
-crypto.getRandomValues(new Uint8Array(16)).join('')
+crypto.getRandomValues(new Uint8Array(16)).join("")
 // => 24066186112482432389420313011522520523361145
 ```
