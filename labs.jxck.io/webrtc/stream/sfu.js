@@ -6,7 +6,7 @@ const error = console.error.bind(console)
 const $ = document.querySelector.bind(document)
 const ws = new WS('ws://localhost:9000/')
 
-const constraint = {audio: true, video: true}
+const constraint = {audio: false, video: true}
 const id = btoa(Math.random()*1000)
 const rtc  = new RTC(id)
 

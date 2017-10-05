@@ -7,6 +7,7 @@ const mediasoup = require('mediasoup')
 const port = 9000
 const wsServer = new ws.Server({ port })
 
+const log = () => {}
 
 const {RTCPeerConnection, RTCSessionDescription} = mediasoup.webrtc
 
@@ -37,19 +38,19 @@ class Client extends events.EventEmitter {
     this.rtc = new RTCPeerConnection({peer, usePlanB})
 
     this.rtc.on('leave', () => {
-      console.log(this.id, 'leave')
+      log(this.id, 'leave')
     })
 
     this.rtc.on('close', () => {
-      console.log(this.id, 'close')
+      log(this.id, 'close')
     })
 
     this.rtc.on('signalingstatechange', (e) => {
-      console.log(this.id, 'signalingstatechange', this.rtc.signalingState)
+      log(this.id, 'signalingstatechange', this.rtc.signalingState)
     })
 
     this.rtc.on('negotiationneeded', async () => {
-      console.log(this.id, 'negotiationneeded')
+      log(this.id, 'negotiationneeded')
 
       const option = {
         offerToReceiveAudio: 1,
@@ -62,14 +63,14 @@ class Client extends events.EventEmitter {
       const sdp = this.rtc.localDescription.serialize()
       const message = { to: this.id, sdp: sdp }
       const data = { id: 'sfu', name: 'offer', message }
-      console.log('<< send', this.id, data.name)
+      log('<< send', this.id, data.name)
       this.ws.send(JSON.stringify(data))
     })
   }
 
   async setOffer(sdp) {
     await this.rtc.setCapabilities(sdp)
-    console.log(this.id, 'setCapabilities')
+    log(this.id, 'setCapabilities')
 
     const option = {
       offerToReceiveAudio: 1,
@@ -83,8 +84,8 @@ class Client extends events.EventEmitter {
       sdp: this.rtc.localDescription.serialize(),
     }
     const data = { id: 'sfu', name: 'offer', message }
-    console.log('<< send', this.id, data.name)
-    console.log(JSON.stringify(data))
+    log('<< send', this.id, data.name)
+    log(JSON.stringify(data))
     this.ws.send(JSON.stringify(data))
   }
 
@@ -92,7 +93,7 @@ class Client extends events.EventEmitter {
     const rtcSessionDescription = new RTCSessionDescription(message)
 
     await this.rtc.setRemoteDescription(rtcSessionDescription)
-    console.log(this.id, 'setRemoteDescription')
+    log(this.id, 'setRemoteDescription')
   }
 }
 
@@ -110,10 +111,10 @@ let server = mediasoup.Server({
     const clients = new Map()
 
     wsServer.on('connection', (ws) => {
-      console.log('ws connected')
+      log('ws connected')
 
       ws.on('close', () => {
-        console.log('ws closed')
+        log('ws closed')
       })
 
       ws.on('error', (err) => {
@@ -122,8 +123,8 @@ let server = mediasoup.Server({
 
       ws.on('message', (str) => {
         const {id, name, message} = JSON.parse(str)
-        console.log('>> received', id, name)
-        console.log(message)
+        log('>> received', id, name)
+        log(message)
 
         const client = clients.get(id) || new Client(id, ws, room.Peer(id))
         clients.set(id, client)
