@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang=ja itemscope itemtype=http://schema.org/BlogPosting>
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset=utf-8>
+    <!--
+    貴様、見ているな！！
+    このサイトの技術的なまとめはこちらをどうぞ。
+    https://labs.jxck.io/blog
+
+    by Jxck
+    -->
+    <link rel=canonical href="https://blog.jxck.io/entries/2017-10-09/css-rhythmic-sizing.html">
+    <link rel=amphtml href="https://blog.jxck.io/entries/2017-10-09/css-rhythmic-sizing.amp.html">
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+    <link rel=author href=//jxck.io/assets/humans.txt>
+    <link rel=manifest href=/manifest.json>
+    <link rel=preload as=font type=font/woff href="//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201608028" crossorigin>
+    <script async src=//jxck.io/assets/js/ga.js></script>
+    <script async src=//jxck.io/assets/js/highlight.min.js></script>
+    <script async src=//jxck.io/assets/js/sw.js></script>
+    <script async src=//jxck.io/assets/js/main.js></script>
+
+    <meta name="author" content="Jxck">
+    <meta name="description" content="タイポグラフィに関連したデザイン手法の 1 つに Vertical Rhythm がある。そして、現在 CSS でそれを簡単に実現するための CSS Rhythmic Sizing という仕様が提案されている。Chrome にフラグ付きで実装されたこの仕様を用いて、本サイト...">
+    <meta name="keywords" content="rhythmic sizing,vertical rhythm,css">
+    <meta itemprop="image" content="https://jxck.io/assets/img/jxck.png">
+    <meta itemprop="name" content="blog.jxck.io">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jxck_">
+    <meta name="twitter:url" content="https://blog.jxck.io/entries/2017-10-09/css-rhythmic-sizing.html">
+    <meta name="twitter:title" content="CSS Rhythmic Sizing で Vertical Rhythm | blog.jxck.io">
+    <meta name="twitter:description" content="タイポグラフィに関連したデザイン手法の 1 つに Vertical Rhythm がある。そして、現在 CSS でそれを簡単に実現するための CSS Rhythmic Sizing という仕様が提案されている。Chrome にフラグ付きで実装されたこの仕様を用いて、本サイト...">
+    <meta name="twitter:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://blog.jxck.io/entries/2017-10-09/css-rhythmic-sizing.html">
+    <meta property="og:title" content="CSS Rhythmic Sizing で Vertical Rhythm | blog.jxck.io">
+    <meta property="og:site_name" content="blog.jxck.io">
+    <meta property="og:description" content="タイポグラフィに関連したデザイン手法の 1 つに Vertical Rhythm がある。そして、現在 CSS でそれを簡単に実現するための CSS Rhythmic Sizing という仕様が提案されている。Chrome にフラグ付きで実装されたこの仕様を用いて、本サイト...">
+    <meta property="og:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <link rel="icon" sizes="192x192" href="https://jxck.io/assets/img/jxck.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "CSS Rhythmic Sizing で Vertical Rhythm | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2017-10-09T08:00:00+08:00",
+  "dateModified": "2017-10-09T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "タイポグラフィに関連したデザイン手法の 1 つに Vertical Rhythm がある。そして、現在 CSS でそれを簡単に実現するための CSS Rhythmic Sizing という仕様が提案されている。Chrome にフラグ付きで実装されたこの仕様を用いて、本サイト..."
+}
+</script>
+
+    <title>CSS Rhythmic Sizing で Vertical Rhythm | blog.jxck.io</title>
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/body.css>
+  </head>
+  <body>
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/header.css>
+    <header>
+      <ul>
+        <li><a href=//blog.jxck.io><img class=logo alt=blog title="blog top" width=30 src=//jxck.io/assets/img/blog.svg></a>
+        <li><a href="/entries/2017-10-09/css-rhythmic-sizing.amp.html#development=1"><svg width=30 height=30><use xlink:href="/assets/img/amp.svg#main"/></svg></a>
+        <li><a href=.><img alt=up title="move to parent directory" width=30 src=//jxck.io/assets/img/up.svg></a>
+        <li><a href=/feeds/atom.xml><img alt=rss title="rss feed" width=30 src=//jxck.io/assets/img/rss.svg></a>
+        <li><a href=//jxck.io/humans.txt><img alt=humans title=huamns.txt width=30 src=//jxck.io/assets/img/humans.svg></a>
+        <li><a href=//jxck.io><img class=logo alt=jxck title="jxck logo" width=30 src=//jxck.io/assets/img/jxck.png></a>
+      </ul>
+    </header>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/markdown.css>
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/main.css>
+    <main>
+      <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/info.css>
+      <ul class=info>
+        <li>created_at: <time class=created_at datetime=2017-10-09>2017-10-09</time>
+        <li>updated_at: <time class=updated_at datetime=2017-10-09>2017-10-09</time>
+        <li class=tags>tags: [<a href='/tags/rhythmic%20sizing.html'>rhythmic sizing</a>,<a href='/tags/vertical%20rhythm.html'>vertical rhythm</a>,<a href='/tags/css.html'>css</a>]
+      </ul>
+
+      <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/article.css>
+  <article>
+    <h1><a href=/entries/2017-10-09/css-rhythmic-sizing.html>CSS Rhythmic Sizing で Vertical Rhythm</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>タイポグラフィに関連したデザイン手法の 1 つに Vertical Rhythm がある。
+      <p>そして、現在 CSS でそれを簡単に実現するための CSS Rhythmic Sizing という仕様が提案されている。
+      <p>Chrome にフラグ付きで実装されたこの仕様を用いて、本サイトへの適用を行ったので、解説する。
+      <p><a href="https://drafts.csswg.org/css-rhythm/examples/snap-height.html">CSS Rhythmic Sizing</a>
+    </section>
+    <section>
+      <h2 id="CSS+Rhythmic+Sizing"><a href="#CSS+Rhythmic+Sizing">CSS Rhythmic Sizing</a></h2>
+      <p>筆者はタイポグラフィやデザインには疎く、 Vertical Rhythm についてもよく知らなかった。
+      <p>しかし、 Chrome でこの仕様を実装している <a href="https://plus.google.com/u/0/111919080701466394452">Koji Ishii</a> さんに API を紹介してもらい、色々学ぶ機会があった。
+      <p>本仕様はまだブラウザ間でも合意が取りきれていない部分があるらしく、ユースケースやフィードバックを集めている段階とのことだったので、
+      <p>トライアルとして、本サイトへの適用を行うことにした。
+      <p>実装にあたっては、全面的に Koji さんに協力して頂いた。
+    </section>
+    <section>
+      <h2 id="Readability+of+Rhythm"><a href="#Readability+of+Rhythm">Readability of Rhythm</a></h2>
+      <p>Vertical Rhythm の効果については、以下のように教えて頂いた。
+      <blockquote>Readability の研究からすると、Vertical Rhythm があたっていると、読むスピードが上がり、読後に質問すると内容を覚えていたり理解していたりする率が上がる、とされています。</blockquote>
+      <p>つまり、本サイトのような、専門的な内容を扱うテキストを中心としたコンテンツでは、効果を期待できそうだ。
+      <p>また、本サイトの特徴上、アクセスするユーザは Chrome が多く、 <code translate="no">#enable-experimental-web-platform-features</code> を有効にしている可能性も期待しやすい。
+      <p>特に入れることによるデメリットもなさそうなので、本サイトには <code translate="no">@support</code> で CSS を切り替えつつ、試験的に適用することにした。
+    </section>
+    <section>
+      <h2 id="DEMO"><a href="#DEMO">DEMO</a></h2>
+      <p>機能を試すデモを以下に用意した。
+      <p><a href="https://labs.jxck.io/rhythmic-sizing/basic.html">Rhysmic Sizing DEMO</a>
+      <p>CSS の機能は Origin Trials ではないため、 <a href="chrome://flags/#enable-experimental-web-platform-features">chrome://flags/#enable-experimental-web-platform-features</a> を有効にする必要がある。
+      <p>作成時は Chrome Canary 63 で挙動を確認している。
+      <p>これを元に解説する。
+      <p>(参考までに <a href="https://drafts.csswg.org/css-rhythm/examples/snap-height.html">CSS Working Group</a> のデモも紹介しておく)
+    </section>
+    <section>
+      <h2 id="Vertical+Rhythm"><a href="#Vertical+Rhythm">Vertical Rhythm</a></h2>
+      <p>例えば以下のようなページがあったとする。
+      <p><picture>
+          <source type=image/webp srcset=single-no-rhythm.webp#500x600>
+          <img src=single-no-rhythm.png#500x600 alt="single-no-rhythm" title="single column with no vertical rhythm">
+          </picture>
+      <p>ここでは、わかりやすくするため、 <code translate="no">font-size</code> を <code translate="no">16px</code> とし、 <code translate="no">&lt;p&gt;</code> のマージンは前後とも <code translate="no">24px</code> としている。
+      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+      <pre class=css><code translate="no">body {
+  --base: 16px; /* base font size */
+  --grid: 24px; /* base grid size */
+  font-size: var(--base);
+}
+
+p {
+  /* align padding with height-step */
+  margin-top: var(--grid);
+  margin-bottom: var(--grid);
+}</code></pre>
+      <p>そこに引いたグリッドの線を見ればわかるように、 <code translate="no">&lt;h1&gt;</code> ~ <code translate="no">&lt;h4&gt;</code> の余白はバラバラになっている。
+      <p>ここで、個々の <code translate="no">line-height</code> を計算し適切に設定する代わりに、 CSS Rhythmic Sizing では以下のようなプロパティが設定できる。
+      <pre class=css><code translate="no">.rhythm {
+  line-height-step: var(--grid);
+}</code></pre>
+      <p>この設定を親要素に指定すると、子要素のインライン要素は、 <code translate="no">line-height</code> を自動で <code translate="no">24px</code> の倍数に揃えることができる。
+      <p>すると、 <code translate="no">&lt;h1&gt;</code> ~ <code translate="no">&lt;h4&gt;</code> の高さは、フォントが <code translate="no">line-height-step</code> の値(つまり <code translate="no">24px</code>) に収まる場合は <code translate="no">24px</code> に、収まらなければ 40, 80... px に自動でアラインされる。
+      <p><code translate="no">&lt;p&gt;</code> のマージンは同じく(相殺含め) <code translate="no">24px</code> に揃っているので、表示は以下のようにグリッドに揃う。
+      <p><picture>
+          <source type=image/webp srcset=single-with-rhythm.webp#500x600>
+          <img src=single-with-rhythm.png#500x600 alt="single-with-rhythm" title="single column with vertical rhythm">
+          </picture>
+      <p>途中にある <code translate="no">&lt;img&gt;</code> もインライン要素なので、同じくリズムに載っていることがわかるだろう。
+    </section>
+    <section>
+      <h2 id="Multi+Column+Layout"><a href="#Multi+Column+Layout">Multi Column Layout</a></h2>
+      <p>確かにリズムが揃っていることはわかるが、それによる効果は本サイトのような Single Column よりも Multi Column なコンテンツの方が実感しやすい。
+      <p>そこで、 CSS の Multi Column Layout で 2 column にするオプションを追加した。
+      <pre class=css><code translate="no">.colmun {
+  column-count: 2;
+  column-gap: calc(var(--grid) * 2);
+  padding: var(--grid);
+}</code></pre>
+      <p>結果は以下である。
+      <p><picture>
+          <source type=image/webp srcset=multi-with-rhythm.webp#1680x700>
+          <img src=multi-with-rhythm.png#1680x700 alt="multi-with-rhythm" title="multi column with vertical rhythm">
+          </picture>
+    </section>
+    <section>
+      <h2 id="Block+Step"><a href="#Block+Step">Block Step</a></h2>
+      <p>ここまではインライン要素に対する設定であるが、仕様にはブロック要素へ設定するプロパティも定義されている。
+      <ul>
+        <li><code translate="no">block-step-size</code>
+        <li><code translate="no">block-step-insert</code>
+        <li><code translate="no">block-step-align</code>
+        <li><code translate="no">block-step-round</code>
+      </ul>
+      <p>しかし、まだ実装したブラウザは確認していない。
+      <p>そこで、現状ブロック要素を Rhythm に載せるには、 <code translate="no">inline-block</code> を指定して無理やり <code translate="no">line-height-step</code> を適用するしかないようだ。
+    </section>
+    <section>
+      <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
+      <p>本サイトは、デモと違い 1 column かつ日本語のコンテンツであり、 Grid の基準になる値もデモほど揃っていない。
+      <p>こうしたコンテンツでの考慮点も教えて頂いた。
+      <blockquote>特に１カラムにおいては、厳密にすべてをリズムに載せる必要はなく、また特に日本語では良くないとされています。リズムは、次の行がリズムに乗っていることで次の行の行頭を探しやすくする、という目的ですので、大きなブロックや表はリズムに乗る必要がありません。</blockquote>
+      <blockquote>原則、行幅が広い時には、行がラップするときに視線が右端から左端まで移動する距離が長くなるので、行間は広めに取ります。でもあまり広げると、かっこわるいし、スペースも無駄なので、Vertical Rhythm で視線移動を補完してあげる、ということなんです。</blockquote>
+      <p>そこで、以下のような方針で適用する。
+      <p>まず <code translate="no">line-height: 15</code> とし、これを基準に <code translate="no">&lt;article&gt;</code> 全体に Rhythm を当てる。
+      <pre class=css><code translate="no">article {
+  line-height: 1.5;
+  --grid: 1.5em;
+  line-height-step: var(--grid);
+}</code></pre>
+      <p><code translate="no">&lt;h1&gt;</code> ~ <code translate="no">&lt;h5&gt;</code> 中はモバイルでの折り返しを考慮して 1.2 とし、中身は Rhythm から外すが、ブロック全体は Rhythm に載せる。
+      <p>しかし、余白が空きすぎるので <code translate="no">margin-bottom</code> のみ消す。
+      <pre class=css><code translate="no">article h1,
+article h2,
+article h3,
+article h4,
+article h5,
+article h6 {
+  display: inline-block;
+  width: 100%;
+  line-height-step: 0;
+  line-height: 1.2;
+  margin-bottom: 0;
+}</code></pre>
+      <p><code translate="no">&lt;p&gt;</code> はリズムに載せるため、 margin/padding を <code translate="no">line-height-step</code> に揃える。
+      <pre class=css><code translate="no">article p {
+  margin-top: var(--grid);
+  margin-bottom: var(--grid);
+}</code></pre>
+      <p><code translate="no">&lt;pre&gt;</code> と <code translate="no">&lt;table&gt;</code> は中身/全体ともに Rhythm に載せないよう、 <code translate="no">line-height-step: 0</code> にする。
+      <pre class=css><code translate="no">article pre,
+article table {
+  line-height-step: 0;
+  line-height: normal;
+}</code></pre>
+      <p>結果は本ページを、フラグを有効にした Chrome Canary と、そうでない Chrome Stable などを横に並べて見比べるなどすれば確認できる。
+    </section>
+    <section>
+      <h2 id="雑感"><a href="#雑感">雑感</a></h2>
+      <p>Vertical Rhythm については、既に CSS で実現する方法が色々あるようだ。
+      <p>しかし、このプロパティが有効であれば、面倒な計算などを行わずに、手軽に実現できることはわかった。
+      <p>Readability という話になると効果の測定が難しいところだが、 CSS を過度に複雑にせず目的を達成できる点では Rhythmic Sizing の導入は検討しやすい。
+      <p>また、低コストでリズムという指標を設計に取り入れられることは、設計にも良い影響があるのでは無いかと考える。
+      <p>仕様のステータスとしてはまだまだだが、今後の展開にも期待したい。
+    </section>
+  </article>
+
+    </main>
+    <hr>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/footer.css>
+    <footer>
+      <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved. Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>google analytics</a>.</address>
+    </footer>
+  </body>
+</html>
