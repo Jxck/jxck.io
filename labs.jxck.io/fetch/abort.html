@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Aborting Fetch DEMO">
+<title>Aborting Fetch DEMO | labs.jxck.io</title>
+
+<h1>Aborting Fetch DEMO</h1>
+
+<script>
+function main() {
+  const controller = new AbortController()
+  const signal = controller.signal
+
+  setTimeout(() => {
+    console.log('abort')
+    controller.abort()
+  }, 10)
+
+  fetch('./3MB.bmp', {signal})
+    .then((res) => {
+      console.log(res);
+      return res.blob()
+    }).then((body) => {
+      console.log(body);
+    }).catch((err) => {
+      console.err(err)
+      if (err.name == 'AbortError') {
+        return
+      }
+    })
+}
+main()
+</script>
