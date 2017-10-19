@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="DOM Base XSS Basic DEMO">
+<title>DOM Base XSS DEMO | labs.jxck.io</title>
+
+<h1>DOM Base XSS DEMO</h1>
+
+<ul id=messages></ul>
+
+<form id=send>
+  <input type=text name=message value="<img src=1 onerror=alert(1)>"/>
+  <button type=submit>send</button>
+</form>
+
+<script>
+const $ = document.querySelector.bind(document)
+$('#send').onsubmit = (e) => {
+  e.preventDefault()
+  const input = new Map(new FormData(e.target))
+  const $li = document.createElement('li')
+  $li.innerHTML = input.get('message') // XSS
+  $('#messages').appendChild($li)
+}
+</script>
