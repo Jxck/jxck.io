@@ -140,6 +140,13 @@ Promise.race() で、勝った 1 つ以外を止める処理もできるよう�
 ```
 
 
+## DEMO
+
+デモを以下に用意した。
+
+[Aborting Fetch DEMO](https://labs.jxck.io/fetch/abort.html)
+
+
 ## 懸念点
 
 Promise も DOM から始まって TC39 に移された経緯があるが、今回の件は TC39 から戻されて DOM 側で解決した。
