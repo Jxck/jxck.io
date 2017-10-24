@@ -69,7 +69,7 @@ rtc.on('addstream', (stream) => {
   $('#remote').srcObject = stream
 })
 
-ws.on('offer', async ({from: from, to: to, data: description}) => {
+ws.on('offer', async ({from, to, data: description}) => {
   try {
     if (to !== ws.id) return
     info('5. offer を受信')
@@ -89,7 +89,7 @@ ws.on('offer', async ({from: from, to: to, data: description}) => {
   }
 })
 
-ws.on('answer', async ({from: from, to: to, data: description}) => {
+ws.on('answer', async ({from, to, data: description}) => {
   try {
     info('6. answer を受信')
     info(description.sdp)
@@ -100,7 +100,7 @@ ws.on('answer', async ({from: from, to: to, data: description}) => {
   }
 })
 
-ws.on('candidate', async ({from: from, to: to, data: candidate}) => {
+ws.on('candidate', async ({from, to, data: candidate}) => {
   try {
     if (to !== ws.id) return
     info('7. 受信した ice candidate を適用')

@@ -23,18 +23,18 @@ ws.onopen = async () => {
   ///////////////////////////////////////////////////////////
   // WebSocket 各イベントリスナを設定
   ///////////////////////////////////////////////////////////
-  ws.onmessage = async (e) => {
-    const data = JSON.parse(e.data)
-    console.log(data)
+  ws.onmessage = async ({data}) => {
+    const {type, message} = JSON.parse(data)
+    console.log(message)
 
-    if (data.message.to !== id) return;
+    if (message.to !== id) return;
 
-    if (data.name == 'offer') {
+    if (type == 'offer') {
       console.log('自分宛の offer を受信')
-      console.log(data)
+      console.log(message)
 
       console.log('remote offer を 適用')
-      await connection.setRemoteDescription(data.message.data)
+      await connection.setRemoteDescription(message.data)
 
       console.log('answer を作成')
       const answer = await connection.createAnswer()
@@ -45,27 +45,27 @@ ws.onopen = async () => {
       console.log('answer を peer に送信')
       ws.send(JSON.stringify({
         id: id,
-        name: 'answer',
+        type: 'answer',
         message: {
           from: id,
-          to: data.message.from,
+          to: message.from,
           data: answer
         }
       }))
     }
 
-    if (data.name == 'answer') {
+    if (type == 'answer') {
       console.log('自分宛の answer を受信')
-      console.log(data.message.data)
+      console.log(message)
 
-      await connection.setRemoteDescription(data.message.data)
+      await connection.setRemoteDescription(message.data)
     }
 
-    if (data.name == 'candidate') {
+    if (type == 'candidate') {
       console.log('自分宛の ice candidate を受信')
-      console.log(data.message.data)
+      console.log(message)
 
-      await connection.addIceCandidate(data.message.data)
+      await connection.addIceCandidate(message.data)
     }
   }
 
@@ -73,8 +73,8 @@ ws.onopen = async () => {
   ///////////////////////////////////////////////////////////
   // RTCPeerConnection 各イベントリスナを設定
   ///////////////////////////////////////////////////////////
-  connection.onnegotiationneeded = async (e) => {
-    console.log('onnegotiationneeded', e)
+  connection.onnegotiationneeded = async ({type}) => {
+    console.log('onnegotiationneeded', type)
     console.log('シグナリングを開始する')
 
 
@@ -93,7 +93,7 @@ ws.onopen = async () => {
     console.log('offer を peer に送信')
     ws.send(JSON.stringify({
       id: id,
-      name: 'offer',
+      type: 'offer',
       message: {
         from: id,
         to: window.peerid,
@@ -102,15 +102,14 @@ ws.onopen = async () => {
     }))
   }
 
-  connection.onicecandidate = (e) => {
-    const candidate = e.candidate
+  connection.onicecandidate = ({candidate}) => {
     if (candidate === null) return
 
     ///////////////////////////////////////////////////////////
     console.log('ice candidate を送信')
     ws.send(JSON.stringify({
       id: id,
-      name: 'candidate',
+      type: 'candidate',
       message: {
         from: id,
         to: window.peerid,
@@ -119,17 +118,16 @@ ws.onopen = async () => {
     }))
   }
 
-  connection.ontrack = (e) => {
+  connection.ontrack = ({streams}) => {
     ///////////////////////////////////////////////////////////
-    console.log(e)
-    console.log('track を受信', e.streams)
-    document.querySelector('#remote').srcObject = e.streams[0]
+    console.log('track を受信', streams)
+    document.querySelector('#remote').srcObject = streams[0]
   }
 
-  connection.onaddstream = (e) => {
+  connection.onaddstream = ({stream}) => {
     ///////////////////////////////////////////////////////////
-    console.log('stream を受信', e.stream)
-    document.querySelector('#remote').srcObject = e.stream
+    console.log('stream を受信', stream)
+    document.querySelector('#remote').srcObject = stream
   }
 
   connection.onicecandidateerror = (e) => {
