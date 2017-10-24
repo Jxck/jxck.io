@@ -4,7 +4,7 @@
     res = await fetch('/')
     console.log(res)
   } catch (e) {
-    console.error(e)
+    console.error(err)
   } finally {
     hideSpinner()
   }
