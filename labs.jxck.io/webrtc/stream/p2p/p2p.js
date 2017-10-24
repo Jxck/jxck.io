@@ -1,7 +1,7 @@
 'use strict'
 
-window.peerid = '';
-window.role = '';
+window.peerid = ''
+window.role = ''
 
 const id = btoa(Math.floor(Math.random()*10000)).replace(/=/g, "").toLowerCase()
 const constraint = {video:true}
@@ -39,8 +39,7 @@ connection.onnegotiationneeded = async (e) => {
   }
 }
 
-connection.onicecandidate = (e) => {
-  const candidate = e.candidate
+connection.onicecandidate = ({candidate}) => {
   if (candidate === null) return
 
   ws.send(JSON.stringify({
@@ -54,12 +53,12 @@ connection.onicecandidate = (e) => {
   }))
 }
 
-connection.ontrack = (e) => {
-  document.querySelector('#remote').srcObject = e.streams[0]
+connection.ontrack = ({streams}) => {
+  document.querySelector('#remote').srcObject = streams[0]
 }
 
-connection.onaddstream = (e) => {
-  document.querySelector('#remote').srcObject = e.stream
+connection.onaddstream = ({stream}) => {
+  document.querySelector('#remote').srcObject = stream
 }
 
 
@@ -82,16 +81,16 @@ document.querySelector('#start').onsubmit = async (e) => {
   }
 }
 
-ws.onmessage = async (e) => {
-  const data = JSON.parse(e.data)
-  if (data.message.to !== id) return;
+ws.onmessage = async ({data}) => {
+  const {type, message} = JSON.parse(data)
+  if (message.to !== id) return
 
-  if (data.type == 'offer') {
-    window.peerid = data.message.from
+  if (type == 'offer') {
+    window.peerid = message.from
     window.role = 'answerer'
 
     // 他の非同期処理を待つことなく、すぐに適用する
-    await connection.setRemoteDescription(data.message.data)
+    await connection.setRemoteDescription(message.data)
 
     // sRD してから非同期処理
     const stream = await navigator.mediaDevices.getUserMedia(constraint)
@@ -106,11 +105,11 @@ ws.onmessage = async (e) => {
     }
   }
 
-  if (data.type == 'answer') {
-    await connection.setRemoteDescription(data.message.data)
+  if (type == 'answer') {
+    await connection.setRemoteDescription(message.data)
   }
 
-  if (data.type == 'candidate') {
-    await connection.addIceCandidate(data.message.data)
+  if (type == 'candidate') {
+    await connection.addIceCandidate(message.data)
   }
 }
