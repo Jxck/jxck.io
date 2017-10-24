@@ -58,13 +58,12 @@ rtc.on('negotiationneeded', async () => {
   }
 })
 
-
-// rtc.on('track', (e) => {
-//   log(e.track.kind)
-//   if (e.track.kind === 'video') {
-//     $('#remote').srcObject = e.streams[0]
-//   }
-// })
+rtc.on('track', (e) => {
+  if (e.track.kind === 'video') {
+    // track が複数あがるので 1 回でいい。
+    $('#remote').srcObject = e.streams[0]
+  }
+})
 
 rtc.on('addstream', (stream) => {
   $('#remote').srcObject = stream
