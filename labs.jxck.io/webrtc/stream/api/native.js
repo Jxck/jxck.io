@@ -10,14 +10,7 @@ document.querySelector('#peer').value = ''
 
 ///////////////////////////////////////////////////////////
 console.info('RTCPeerConnection を生成')
-const connection = new RTCPeerConnection({
-  //iceServers: [{
-  //  urls:           "turn:turn.jxck.io:3478",
-  //  username:       "username1",
-  //  credentialType: "password",
-  //  credential:     "password1",
-  //}]
-})
+const connection = new RTCPeerConnection()
 console.log(connection)
 
 
