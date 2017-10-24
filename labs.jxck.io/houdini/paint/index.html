@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<meta charset=utf8>
+<style>
+.multi-border {
+  display: inline-block;
+  --border-width: 70;
+  font-family: monospace;
+  font-size: 100px;
+  border: solid 0;
+  border-image: paint(border-colors);
+  border-image-slice: var(--border-width);
+  border-width: calc(var(--border-width) * 1px);
+}
+
+th {
+  border-image: paint(border-colors);
+}
+</style>
+
+<div class=multi-border>
+XXX
+</div>
+
+<!--
+＿人人人人人人＿
+＞ 突然の死  ＜
+￣Y^Y^Y^Y^Y^Y^￣
+
+
+| Tables   |      Are      |  Cool |
+|----------|:-------------:|------:|
+| col 1 is |  left-aligned | $1600 |
+| col 2 is |    centered   |   $12 |
+| col 3 is | right-aligned |    $1 |
+-->
+
+
+<table>
+  <thead>
+    <tr><th></th><th>列-A</th><th>列-B</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>行-1</td><td>A-1</td><td>B-1</td></tr>
+    <tr><td>行-2</td><td>A-2</td><td>B-2</td></tr>
+    <tr><td>行-3</td><td>A-3</td><td>B-3</td></tr>
+  </tbody>
+</table>
+
+<script>
+CSS.paintWorklet.addModule('border-colors.js');
+</script>
