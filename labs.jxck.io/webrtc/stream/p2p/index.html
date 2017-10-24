@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Stream P2P demo">
+<title>Stream P2P DEMO | labs.jxck.io</title>
+
+<style>
+  video {
+    width: 300px;
+    border: 1px solid #ccc;
+  }
+  input[type=text] {
+    width: 15em;
+  }
+</style>
+
+<h1>Stream P2P DEMO</h1>
+<h2>ID: <span id=id></span></h2>
+
+<form id=start method=post>
+  <button type=submit id=call>call</button>
+  <span>to</span>
+  <input id=peer name=peer type=text autofocus placeholder="peer id" />
+</form>
+
+<div>
+  <video autoplay id=local></video>
+  <video autoplay id=remote></video>
+</div>
+
+<script>DEBUG = true</script>
+<script src=p2p.js></script>
