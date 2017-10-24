@@ -7,7 +7,7 @@ const mediasoup = require('mediasoup')
 const port = 9000
 const wsServer = new ws.Server({ port })
 
-const log = () => {}
+const log = console.log.bind(console)
 
 const {RTCPeerConnection, RTCSessionDescription} = mediasoup.webrtc
 
