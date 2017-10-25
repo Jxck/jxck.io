@@ -9,8 +9,9 @@ const ws = new WS('wss://ws.jxck.io', ['broadcast', 'webrtc-stream-p2p-demo'])
 const id = btoa(Math.random()*1000)
 const constraint = {audio:true, video: true}
 
-const url = new URL(location.href)
-const turn = url.searchParams.get('turn') === 'true'
+//const url = new URL(location.href)
+//const turn = url.searchParams.get('turn') === 'true'
+const turn = true;
 const rtc  = new RTC(id, turn ? Config : undefined)
 
 ws.on('open', () => {
