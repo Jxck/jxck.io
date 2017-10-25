@@ -11,8 +11,10 @@
 
 <ul id=messages></ul>
 
-<input id=input type=text></input>
-<button id=send disabled=true>send</button>
+<form id=form>
+  <input id=input type=text />
+  <button id=send type=submit disabled=true>send</button>
+</form>
 
 <script>
 const log = console.log.bind(console)
@@ -21,12 +23,14 @@ const ws = new WebSocket('wss://ws.jxck.io', ['broadcast', 'chat'])
 const $messages = document.querySelector('#messages')
 const $input = document.querySelector('#input')
 const $send = document.querySelector('#send')
+const $form = document.querySelector('#form')
 
 ws.onopen = (e) => {
   log(e)
   $send.disabled = false
 
-  $send.onclick = () => {
+  $form.onsubmit = (e) => {
+    e.preventDefault()
     const value = $input.value
     ws.send(value)
   }
