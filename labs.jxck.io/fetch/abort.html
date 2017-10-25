@@ -6,6 +6,7 @@
 
 <h1>Aborting Fetch DEMO</h1>
 
+<p>see the script and dev console</p>
 <script>
 function main() {
   const controller = new AbortController()
@@ -18,14 +19,14 @@ function main() {
 
   fetch('./3MB.bmp', {signal})
     .then((res) => {
-      console.log(res);
+      console.log(res)
       return res.blob()
     }).then((body) => {
-      console.log(body);
+      console.log(body)
     }).catch((err) => {
-      console.err(err)
+      console.error(err.name)
       if (err.name == 'AbortError') {
-        return
+        return console.log('aborted')
       }
     })
 }
