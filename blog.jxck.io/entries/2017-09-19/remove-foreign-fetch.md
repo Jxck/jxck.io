@@ -75,7 +75,7 @@ Cookie: history=jxck.io
 
 Cookie は、ブラウザ内で「**どこから付与されたか**」をキーとして保存されている。
 
-したがって、閲覧しているサイトが jxck.io であれ mozaic.fm であれ、同じ ec.example.com にアクセするする際は、そこから取得した Cookie をつける。
+したがって、閲覧しているサイトが jxck.io であれ mozaic.fm であれ、同じ ec.example.com にアクセスする際は、そこから取得した Cookie をつける。
 
 このブラウザの挙動が、こうしたトラッキングを可能にしていた。
 
