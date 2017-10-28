@@ -1,51 +1,40 @@
 <!DOCTYPE html>
 <meta charset=utf8>
 <style>
-.multi-border {
-  display: inline-block;
-  --border-width: 70;
-  font-family: monospace;
+div {
+  width: 500px;
   font-size: 100px;
-  border: solid 0;
-  border-image: paint(border-colors);
+  margin: 0;
+  padding: 0;
+
+  border-color: red;
+  border-style: double;
+
+  border: double 4px red; /* fall back */
+
+  /* area size for border */
+  --debug: false;
+  --border-width: 10;
   border-image-slice: var(--border-width);
   border-width: calc(var(--border-width) * 1px);
-}
 
-th {
-  border-image: paint(border-colors);
+  /* paint(border-double-custom, outer-color, outer-width, inner-color, inner-width, margin) */
+  border-image-source: paint(border-double-custom, blue, 2px, green, 3px, 5px);
 }
 </style>
 
-<div class=multi-border>
+<div>
 XXX
 </div>
 
-<!--
-＿人人人人人人＿
-＞ 突然の死  ＜
-￣Y^Y^Y^Y^Y^Y^￣
-
-
-| Tables   |      Are      |  Cool |
-|----------|:-------------:|------:|
-| col 1 is |  left-aligned | $1600 |
-| col 2 is |    centered   |   $12 |
-| col 3 is | right-aligned |    $1 |
--->
-
-
-<table>
-  <thead>
-    <tr><th></th><th>列-A</th><th>列-B</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>行-1</td><td>A-1</td><td>B-1</td></tr>
-    <tr><td>行-2</td><td>A-2</td><td>B-2</td></tr>
-    <tr><td>行-3</td><td>A-3</td><td>B-3</td></tr>
-  </tbody>
-</table>
-
 <script>
-CSS.paintWorklet.addModule('border-colors.js');
+CSS.registerProperty({
+  name: '--debug',
+  syntax: '<custom-ident>',
+  inherits: false,
+  initialValue: 'false',
+});
+CSS.paintWorklet.addModule('border-double-custom.js');
+
+// setInterval(() => {location.href = location.href}, 800)
 </script>
