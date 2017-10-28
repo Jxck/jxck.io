@@ -1,9 +1,20 @@
 'use strict'
 
-window.peerid = ''
-window.role = ''
+// Signaling Protocol
+// ws.send(JSON.stringify({
+//   id:   'peerid',
+//   type: 'offer/answer',
+//   message: {
+//     from: 'myid',
+//     to:   'peerid',
+//     data: 'message'
+//   }
+// }))
 
-const id = btoa(Math.floor(Math.random()*10000)).replace(/=/g, "").toLowerCase()
+window.peerid = ''
+
+const rand = () => btoa(Math.floor(Math.random()*10000)).replace(/=/g, "").toLowerCase();
+const id = location.hash ? location.hash : rand()
 const constraint = {video:true}
 
 document.querySelector('#id').textContent = id
@@ -13,31 +24,24 @@ const ws = new WebSocket('wss://ws.jxck.io', ['broadcast', 'webrtc-stream-p2p-de
 const connection = new RTCPeerConnection(Config)
 
 connection.onnegotiationneeded = async (e) => {
-  console.log('onnegotiationneeded', window.role)
-  if (window.role === 'offerer') {
-    await connection.setLocalDescription(await connection.createOffer())
-    ws.send(JSON.stringify({
-      id: window.peerid,
-      type: 'offer',
-      message: {
-        from: id,
-        to: window.peerid,
-        data: connection.localDescription
-      }
-    }))
-  }
-  if (window.role === 'answerer') {
-    await connection.setLocalDescription(await connection.createAnswer())
-    ws.send(JSON.stringify({
-      id: window.peerid,
-      type: 'answer',
-      message: {
-        from: id,
-        to: window.peerid,
-        data: connection.localDescription
-      }
-    }))
-  }
+  console.log('******************* onnegotiationneeded *******************', e)
+
+  // chrome fires onnegotiationneeded in answere side
+  if (connection.signalingState === 'have-remote-offer') return
+
+  // create offer
+  const offer = await connection.createOffer()
+  await connection.setLocalDescription(offer)
+
+  ws.send(JSON.stringify({
+    id:   window.peerid,
+    type: 'offer',
+    message: {
+      from: id,
+      to:   peerid,
+      data: offer
+    }
+  }))
 }
 
 connection.onicecandidate = ({candidate}) => {
@@ -45,23 +49,23 @@ connection.onicecandidate = ({candidate}) => {
   if (candidate === null) return
 
   ws.send(JSON.stringify({
-    id: window.peerid,
+    id:   window.peerid,
     type: 'candidate',
     message: {
       from: id,
-      to: window.peerid,
+      to:   window.peerid,
       data: candidate
     }
   }))
 }
 
 connection.ontrack = ({streams}) => {
-  console.log('ontrack')
+  console.log('ontrack', streams)
   document.querySelector('#remote').srcObject = streams[0]
 }
 
 connection.onaddstream = ({stream}) => {
-  console.log('onaddstream')
+  console.log('onaddstream', stream)
   document.querySelector('#remote').srcObject = stream
 }
 
@@ -89,7 +93,6 @@ document.querySelector('#start').onsubmit = async (e) => {
   e.preventDefault()
   console.log('start')
 
-  window.role = 'offerer'
   window.peerid = document.querySelector('#peer').value
   if (window.peerid === '') return alert('input peerid')
 
@@ -108,22 +111,18 @@ document.querySelector('#start').onsubmit = async (e) => {
 }
 
 ws.onmessage = async ({data}) => {
+  console.log('>>>>>>>>>>>>', data)
   try {
     const {type, message} = JSON.parse(data)
     if (message.to !== id) return
-
     console.log(type, message)
 
     if (type == 'offer') {
       window.peerid = message.from
-      window.role = 'answerer'
 
-      // 他の非同期処理を待つことなく、すぐに適用する
       await connection.setRemoteDescription(message.data)
 
-      // sRD してから非同期処理
       const stream = await navigator.mediaDevices.getUserMedia(constraint)
-      console.log(stream)
       document.querySelector('#local').srcObject = stream
 
       if (connection.addTrack) {
@@ -135,6 +134,18 @@ ws.onmessage = async ({data}) => {
         console.log('addStream')
         connection.addStream(stream)
       }
+
+      await connection.setLocalDescription(await connection.createAnswer())
+
+      ws.send(JSON.stringify({
+        id:   window.peerid,
+        type: 'answer',
+        message: {
+          from: id,
+          to:   window.peerid,
+          data: connection.localDescription
+        }
+      }))
     }
 
     if (type == 'answer') {
