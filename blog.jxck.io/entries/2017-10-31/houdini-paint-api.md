@@ -1,11 +1,16 @@
-# [paint api][houdini][css] Houdini Paint API
+# [paint api][worklets][typed om][property and values][houdini][css] Houdini Paint API
 
 
 ## Intro
 
 Houdini で議論されている CSS Paint API が Chrome Canary で flag 付きで実装されている。
 
-この Paint API を用いたデモを通して、 TypedOM, Property Values, Worklets を含めて解説する。
+デモの実装を通して、関連仕様を含めた以下の 4 つのドラフトを解説する。
+
+- [CSS Painting API Level 1](https://drafts.css-houdini.org/css-paint-api/)
+- [CSS Properties and Values API Level 1](https://drafts.css-houdini.org/css-properties-values-api/)
+- [CSS Typed OM Level 1](https://drafts.css-houdini.org/css-typed-om-1/)
+- [Worklets Level 1](https://drafts.css-houdini.org/worklets/)
 
 
 ## CSS Paint API
@@ -72,14 +77,12 @@ paint(border-double-custom, outer-color, outer-width, inner-color, inner-width, 
 
 また、開発をするに当たって debug フラグを渡せると便利なため、 CSS から debug フラグを渡せるようにもしてみる。
 
-
 例えば
 
 - 外側の線は 3px の black
 - 内側の線は 1px の gray
 - 線の間隔は 4px
 - デバッグ ON
-
 
 として設定する場合は以下のような指定になる。
 
@@ -89,16 +92,16 @@ paint(border-double-custom, outer-color, outer-width, inner-color, inner-width, 
 ```css
 div {
   /* fall back */
-  border: double 4px black;
+  border: double 4px orange;
 
   /* debug option */
-  --debug: false;
+  --debug: true;
 
   /* area size for border */
   --border-width: 10;
   border-image-slice: var(--border-width);
   border-width: calc(var(--border-width) * 1px);
-  border-image-source: paint(border-double-custom, black, 3px, gray, 1px, 4px);
+  border-image-source: paint(border-double-custom, orange, 3px, yellow, 5px, 1px);
 }
 ```
 
@@ -107,7 +110,7 @@ div {
 
 Paint を始め Layout や Animation などの処理は、メインスレッドとは別に実行する必要がある。
 
-また、例えば今回のように border を引く対象が多く存在する場合は、複数処理を並行して走られせる必要もある。
+また、例えば今回のように border を引く対象が多く存在する場合は、複数処理を並行して走らせる必要もある。
 
 こうした用途では、 WebWorker などの Worker は用途として合わないため、 Houdini ではより限定した API で軽量な実行環境として Worklet という API が定義されている。
 
@@ -126,12 +129,12 @@ CSS.paintWorklet.addModule('border-double-custom.js');
 
 Worklet はメインスレッドと Globa を共有せず、必要な情報はコピーして渡すこととなる。
 
-大きく Arguments か Property を経由し、これについては後述する。
+これは、後述する Arguments か Property を経由して行う。
 
 
-## border-double-custom
+## registerPaint()
 
-実際に `border-double-custom` を `addModule` したファイルの中に実装していく。
+実際に `border-double-custom` を `addModule()` したファイルの中に実装していく。
 
 大枠は `registerPaint()` に対して、名前とコールバックを渡すような形になる。
 
@@ -149,7 +152,7 @@ registerPaint('border-double-custom', class {
 ```
 
 
-### inputArguments()
+## inputArguments()
 
 まず、 CSS で指定した線の色と幅、間隔の値を取得する必要がある。
 
@@ -157,14 +160,14 @@ CSS で渡した値の型がなんであるかを指定するために、 `input
 
 
 ```js
-// paint(border-double-custom, black, 2px, gray, 2px, 4px);
+// paint(border-double-custom, orange, 3px, yellow, 5px, 1px);
 static get inputArguments() {
   return [
-    '<color>',  // black
-    '<length>', // 2px
-    '<color>',  // gray
-    '<length>', // 2px
-    '<length>', // 4px
+    '<color>',  // orange
+    '<length>', // 3px
+    '<color>',  // yellow
+    '<length>', // 5px
+    '<length>', // 1px
   ]
 }
 ```
@@ -173,20 +176,15 @@ static get inputArguments() {
 
 [CSS Properties and Values API Level 1](https://drafts.css-houdini.org/css-properties-values-api/#supported-syntax-strings)
 
-
 これによって、 CSS で渡された引数が解析される。
 
-
-## inputProperties()
-
-CSS で指定した debug フラグは、 `pain()` の引数ではなく、別のプロパティとして取得する。
-
-このためには、まず Worklet がアクセス可能なプロパティとして `--debug` を登録し、それを Class の中として取得するという流れになる。
 
 
 ### registerProperty()
 
-Worklet に渡したいプロパティを、メインスレッド側で `registerProperty()` を用いて登録する。
+CSS で指定した debug フラグは、 `pain()` の引数ではなく、別のプロパティとして取得する。
+
+このためには、まず Worklet がアクセス可能なプロパティとして `--debug` をメインスレッド側で `registerProperty()` を用いて登録する。
 
 [CSS Properties and Values API Level 1](https://drafts.css-houdini.org/css-properties-values-api/#registering-custom-properties)
 
@@ -253,6 +251,7 @@ paint(ctx, size styleMap, arguments) {
 
 今回指定した `--debug` は、以下のように取得できる。
 
+
 ```js
 const DEBUG = styleMap.get('--debug').value
 ```
@@ -268,20 +267,20 @@ const DEBUG = styleMap.get('--debug').value
 
 [CSS Typed OM Level 1](https://drafts.css-houdini.org/css-typed-om-1/)
 
+
 ```js
-// paint(border-double-custom, black, 2px, gray, 1px, 3px)
+// paint(border-double-custom, orange, 3px, yellow, 5px, 1px);
 paint(ctx, size styleMap, arguments) {
-  // CSSKeywordValue {value: "black"}
-  // CSSUnitValue {value: 2, unit: "px", type: "length"}
-  // CSSKeywordValue {value: "gray"}
-  // CSSUnitValue {value: 1, unit: "px", type: "length"}
+  // CSSKeywordValue {value: "orange"}
   // CSSUnitValue {value: 3, unit: "px", type: "length"}
+  // CSSKeywordValue {value: "yellow"}
+  // CSSUnitValue {value: 5, unit: "px", type: "length"}
+  // CSSUnitValue {value: 1, unit: "px", type: "length"}
   console.log(arguments)
 }
 ```
 
 (CSSColorValue がまだ無いため、 `<color>` が CSSKeywordValue になっている。[#159](https://github.com/w3c/css-houdini-drafts/issues/159))
-
 
 
 ### 例
@@ -297,10 +296,114 @@ paint(ctx, {width: w, height: h}, styleMap, [color]) {
 ```
 
 
-### 完成形 DEMO
+### 完成形
 
 あとは、 `paint()` の中で要求を満たす二つの矩形を描画する処理を記述すれば良い。
 
-完成形は以下に公開した。 Chrome で flag を有効にすると動作する。
+```html
+<style>
+div {
+  font-size: 30px;
+  text-align: center;
+  margin: 1em;
+  padding: 0;
+
+  /* fall back */
+  border: double 4px red;
+
+  /* debug option */
+  --debug: false;
+
+  /* area size for border */
+  --border-width: 10;
+  border-image-slice: var(--border-width);
+  border-width: calc(var(--border-width) * 1px);
+
+  /* paint(border-double-custom, outer-color, outer-width, inner-color, inner-width, margin) */
+  border-image-source: paint(border-double-custom, orange, 3px, yellow, 5px, 1px);
+}
+</style>
+
+<div>CSS Paint API</div>
+
+<script>
+CSS.registerProperty({
+  name: '--debug',
+  syntax: '<custom-ident>',
+  inherits: true,
+  initialValue: 'false',
+});
+
+CSS.paintWorklet.addModule('border-double-custom.js');
+</script>
+```
+
+```js
+registerPaint('border-double-custom', class {
+  static get inputProperties() {
+    return [
+      '--debug',
+    ]
+  }
+
+  static get inputArguments() {
+    return [
+      '<color>',  // outer_color
+      '<length>', // outer_width
+      '<color>',  // inner_color
+      '<length>', // inner_width
+      '<length>', // margin
+    ]
+  }
+
+  paint(ctx, {width: w, height: h}, styleMap, args) {
+    console.log(ctx)
+    console.log(args)
+
+    const [
+      {value: outer_color},
+      {value: outer_width},
+      {value: inner_color},
+      {value: inner_width},
+      {value: margin}
+    ] = args
+
+    console.log(outer_color, outer_width, inner_color, inner_width, margin)
+
+    // --debug
+    const DEBUG = styleMap.get('--debug').value == "true"
+    if (DEBUG) {
+      ctx.fillStyle = "cyan";
+      ctx.fillRect(0, 0, w, h);
+    }
+
+    // outer
+    this.rect(ctx, outer_color, outer_width, 0, 0, w, h)
+
+    // inner
+    let m = margin + outer_width
+    this.rect(ctx, inner_color, inner_width, m, m, w-(2*m), h-(2*m))
+  }
+
+  rect(ctx, color, l, x, y, w, h) {
+    ctx.strokeStyle = color
+    ctx.lineWidth = l
+    // shit inside for half of line width
+    ctx.strokeRect(x+(l/2), y+(l/2), w-l, h-l)
+  }
+})
+```
+
+
+## 動作イメージ
+
+![border-double-custom demo](./border-double-custom.png#667x401 'border-double-custom implemented by css paint api')
+
+
+## DEMO
+
+完成形は以下に公開した。
+
+Chrome 64 Canary で [flag](chrome://flags/#enable-experimental-web-platform-features) を有効にすると動作する。
 
 [Houdini Paint API DEMO \| labs\.jxck\.io](http://labs.jxck.io/houdini/paint/border-double-custom/)
