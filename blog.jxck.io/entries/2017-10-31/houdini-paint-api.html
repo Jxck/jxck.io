@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang=ja itemscope itemtype=http://schema.org/BlogPosting>
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset=utf-8>
+    <!--
+    貴様、見ているな！！
+    このサイトの技術的なまとめはこちらをどうぞ。
+    https://labs.jxck.io/blog
+
+    by Jxck
+    -->
+    <link rel=canonical href="https://blog.jxck.io/entries/2017-10-31/houdini-paint-api.html">
+    <link rel=amphtml href="https://blog.jxck.io/entries/2017-10-31/houdini-paint-api.amp.html">
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+    <link rel=author href=//jxck.io/assets/humans.txt>
+    <link rel=manifest href=/manifest.json>
+    <link rel=preload as=font type=font/woff href="//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201608028" crossorigin>
+    <script async src=//jxck.io/assets/js/ga.js></script>
+    <script async src=//jxck.io/assets/js/highlight.min.js></script>
+    <script async src=//jxck.io/assets/js/sw.js></script>
+    <script async src=//jxck.io/assets/js/main.js></script>
+
+    <meta name="author" content="Jxck">
+    <meta name="description" content="Houdini で議論されている CSS Paint API が Chrome Canary で flag 付きで実装されている。デモの実装を通して、関連仕様を含めた以下の 4 つのドラフトを解説する。- CSS Painting API Level 1- CSS Prop...">
+    <meta name="keywords" content="paint api,worklets,typed om,property and values,houdini,css">
+    <meta itemprop="image" content="https://jxck.io/assets/img/jxck.png">
+    <meta itemprop="name" content="blog.jxck.io">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jxck_">
+    <meta name="twitter:url" content="https://blog.jxck.io/entries/2017-10-31/houdini-paint-api.html">
+    <meta name="twitter:title" content="Houdini Paint API | blog.jxck.io">
+    <meta name="twitter:description" content="Houdini で議論されている CSS Paint API が Chrome Canary で flag 付きで実装されている。デモの実装を通して、関連仕様を含めた以下の 4 つのドラフトを解説する。- CSS Painting API Level 1- CSS Prop...">
+    <meta name="twitter:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://blog.jxck.io/entries/2017-10-31/houdini-paint-api.html">
+    <meta property="og:title" content="Houdini Paint API | blog.jxck.io">
+    <meta property="og:site_name" content="blog.jxck.io">
+    <meta property="og:description" content="Houdini で議論されている CSS Paint API が Chrome Canary で flag 付きで実装されている。デモの実装を通して、関連仕様を含めた以下の 4 つのドラフトを解説する。- CSS Painting API Level 1- CSS Prop...">
+    <meta property="og:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <link rel="icon" sizes="192x192" href="https://jxck.io/assets/img/jxck.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "Houdini Paint API | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2017-10-31T08:00:00+08:00",
+  "dateModified": "2017-10-31T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "Houdini で議論されている CSS Paint API が Chrome Canary で flag 付きで実装されている。デモの実装を通して、関連仕様を含めた以下の 4 つのドラフトを解説する。- CSS Painting API Level 1- CSS Prop..."
+}
+</script>
+
+    <title>Houdini Paint API | blog.jxck.io</title>
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/body.css>
+  </head>
+  <body>
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/header.css>
+    <header>
+      <ul>
+        <li><a href=//blog.jxck.io><img class=logo alt=blog title="blog top" width=30 src=//jxck.io/assets/img/blog.svg></a>
+        <li><a href="/entries/2017-10-31/houdini-paint-api.amp.html#development=1"><svg width=30 height=30><use xlink:href="/assets/img/amp.svg#main"/></svg></a>
+        <li><a href=.><img alt=up title="move to parent directory" width=30 src=//jxck.io/assets/img/up.svg></a>
+        <li><a href=/feeds/atom.xml><img alt=rss title="rss feed" width=30 src=//jxck.io/assets/img/rss.svg></a>
+        <li><a href=//jxck.io/humans.txt><img alt=humans title=huamns.txt width=30 src=//jxck.io/assets/img/humans.svg></a>
+        <li><a href=//jxck.io><img class=logo alt=jxck title="jxck logo" width=30 src=//jxck.io/assets/img/jxck.png></a>
+      </ul>
+    </header>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/markdown.css>
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/main.css>
+    <main>
+      <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/info.css>
+      <ul class=info>
+        <li>created_at: <time class=created_at datetime=2017-10-31>2017-10-31</time>
+        <li>updated_at: <time class=updated_at datetime=2017-10-31>2017-10-31</time>
+        <li class=tags>tags: [<a href='/tags/paint%20api.html'>paint api</a>,<a href='/tags/worklets.html'>worklets</a>,<a href='/tags/typed%20om.html'>typed om</a>,<a href='/tags/property%20and%20values.html'>property and values</a>,<a href='/tags/houdini.html'>houdini</a>,<a href='/tags/css.html'>css</a>]
+      </ul>
+
+      <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/article.css>
+  <article>
+    <h1><a href=/entries/2017-10-31/houdini-paint-api.html>Houdini Paint API</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>Houdini で議論されている CSS Paint API が Chrome Canary で flag 付きで実装されている。
+      <p>デモの実装を通して、関連仕様を含めた以下の 4 つのドラフトを解説する。
+      <ul>
+        <li><a href="https://drafts.css-houdini.org/css-paint-api/">CSS Painting API Level 1</a>
+        <li><a href="https://drafts.css-houdini.org/css-properties-values-api/">CSS Properties and Values API Level 1</a>
+        <li><a href="https://drafts.css-houdini.org/css-typed-om-1/">CSS Typed OM Level 1</a>
+        <li><a href="https://drafts.css-houdini.org/worklets/">Worklets Level 1</a>
+      </ul>
+    </section>
+    <section>
+      <h2 id="CSS+Paint+API"><a href="#CSS+Paint+API">CSS Paint API</a></h2>
+      <p>CSS Paint API は、特定の領域に対して任意の描画を行うことができる仕様である。
+      <p><a href="https://drafts.css-houdini.org/css-paint-api/">CSS Painting API Level 1</a>
+      <p>例えば、これまで <code translate="no">border</code> は、仕様に定義されたいくつかの種類の style から選び、無いものは画像で代替するのが基本だった。
+      <p>CSS Paint API は用意した領域に対し、画像ではなく Canavas API のサブセットを用いてペイントを行うことができる。
+      <p>今回はデモとして「突然の死」を Paint で書こうと考えた。
+      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+      <pre><code translate="no">＿人人人人人人＿
+＞  突然の死  ＜
+￣Y^Y^Y^Y^Y￣</code></pre>
+      <p>しかし、現時点では <code translate="no">strokeText()</code> など、 Canvas のテキスト系の API は仕様から落とされている。
+      <p>これは、各ブラウザでフォントスタックがマルチスレッド対応されていないため、 Worklets 内での実行が難しいという理由かららしく、将来の仕様まで先送りされているとのこと。
+      <p>代わりにデモのネタを探していたところ <a href="https://twitter.com/yoshiko_pg">@yoshiko</a> から、
+      <blockquote>border double で、太さや間隔を自由に設定したい</blockquote>
+      <p>という丁度いいユースケースをもらったので、これを実現しながら、関連する API の使い方について解説する。
+    </section>
+    <section>
+      <h2 id="border-image"><a href="#border-image">border-image</a></h2>
+      <p>まずは、 border を描画する <code translate="no">&lt;div&gt;</code> に対して、描画領域を用意する。
+      <p>Paint API で実装したペイントは、最終的には <code translate="no">border-image-source</code> に対して指定することになる。
+      <p>そこで、今回は描画領域として <code translate="no">border-width</code> と <code translate="no">border-image-slice</code> を指定する。
+      <pre class=css><code translate="no">div {
+  /* area size for border */
+  --border-width: 10;
+  border-image-slice: var(--border-width);
+  border-width: calc(var(--border-width) * 1px);
+}</code></pre>
+      <p>ここでは <code translate="no">&lt;div&gt;</code> の周囲に <code translate="no">10px</code> 分の領域が作られる。
+    </section>
+    <section>
+      <h2 id="paint()"><a href="#paint()">paint()</a></h2>
+      <p>作成する描画は <code translate="no">border-double-custom</code> という名前とし、これを CSS 内で <code translate="no">paint()</code> 関数に指定して呼び出す。
+      <p><code translate="no">paint()</code> の第二引数以降は、処理に渡される引数となるため、今回は以下のように定義した。
+      <pre class=css><code translate="no">paint(border-double-custom, outer-color, outer-width, inner-color, inner-width, margin)</code></pre>
+      <p>また、開発をするに当たって debug フラグを渡せると便利なため、 CSS から debug フラグを渡せるようにもしてみる。
+      <p>例えば
+      <ul>
+        <li>外側の線は 3px の black
+        <li>内側の線は 1px の gray
+        <li>線の間隔は 4px
+        <li>デバッグ ON
+      </ul>
+      <p>として設定する場合は以下のような指定になる。
+      <p>(フォールバックとして、ネイティブの実装を指定する)
+      <pre class=css><code translate="no">div {
+  /* fall back */
+  border: double 4px orange;
+
+  /* debug option */
+  --debug: true;
+
+  /* area size for border */
+  --border-width: 10;
+  border-image-slice: var(--border-width);
+  border-width: calc(var(--border-width) * 1px);
+  border-image-source: paint(border-double-custom, orange, 3px, yellow, 5px, 1px);
+}</code></pre>
+    </section>
+    <section>
+      <h2 id="paintWorklet"><a href="#paintWorklet">paintWorklet</a></h2>
+      <p>Paint を始め Layout や Animation などの処理は、メインスレッドとは別に実行する必要がある。
+      <p>また、例えば今回のように border を引く対象が多く存在する場合は、複数処理を並行して走らせる必要もある。
+      <p>こうした用途では、 WebWorker などの Worker は用途として合わないため、 Houdini ではより限定した API で軽量な実行環境として Worklet という API が定義されている。
+      <p><a href="https://drafts.css-houdini.org/worklets/">Worklets Level 1</a>
+      <p>Paint API は Worklet の上位に定義された PaintWorklet の中に実際の描画処理を移譲し、メインスレッドからは Worklet への処理の登録のみを行う。
+      <p><a href="https://drafts.css-houdini.org/css-paint-api/#paint-worklet">Paint Worklet</a>
+      <p>Worklet への登録は、モジュール単位となっているため、今回実装するファイルを <code translate="no">border-double-custom.js</code> とした場合、メインからの呼び出しは以下になる。
+      <pre class=js><code translate="no">CSS.paintWorklet.addModule(&#039;border-double-custom.js&#039;);</code></pre>
+      <p>Worklet はメインスレッドと Globa を共有せず、必要な情報はコピーして渡すこととなる。
+      <p>これは、後述する Arguments か Property を経由して行う。
+    </section>
+    <section>
+      <h2 id="registerPaint()"><a href="#registerPaint()">registerPaint()</a></h2>
+      <p>実際に <code translate="no">border-double-custom</code> を <code translate="no">addModule()</code> したファイルの中に実装していく。
+      <p>大枠は <code translate="no">registerPaint()</code> に対して、名前とコールバックを渡すような形になる。
+      <p>コールバックは、関数ではなく必要なプロパティを実装した class を渡す。
+      <p>今回実装するのは以下の 2 つだ。
+      <pre class=js><code translate="no">registerPaint(&#039;border-double-custom&#039;, class {
+  static get inputArguments() { }
+  static get inputArguments() { }
+  paint(ctx, size, styleMap, argments) { }
+})</code></pre>
+    </section>
+    <section>
+      <h2 id="inputArguments()"><a href="#inputArguments()">inputArguments()</a></h2>
+      <p>まず、 CSS で指定した線の色と幅、間隔の値を取得する必要がある。
+      <p>CSS で渡した値の型がなんであるかを指定するために、 <code translate="no">inputArguments()</code> に引数の順に型の配列を指定する。
+      <pre class=js><code translate="no">// paint(border-double-custom, orange, 3px, yellow, 5px, 1px);
+static get inputArguments() {
+  return [
+    &#039;&lt;color&gt;&#039;,  // orange
+    &#039;&lt;length&gt;&#039;, // 3px
+    &#039;&lt;color&gt;&#039;,  // yellow
+    &#039;&lt;length&gt;&#039;, // 5px
+    &#039;&lt;length&gt;&#039;, // 1px
+  ]
+}</code></pre>
+      <p>ここで指定する型は、 CSS Property and Values に定義された Syntax String である。
+      <p><a href="https://drafts.css-houdini.org/css-properties-values-api/#supported-syntax-strings">CSS Properties and Values API Level 1</a>
+      <p>これによって、 CSS で渡された引数が解析される。
+      <section>
+        <h3 id="registerProperty()"><a href="#registerProperty()">registerProperty()</a></h3>
+        <p>CSS で指定した debug フラグは、 <code translate="no">pain()</code> の引数ではなく、別のプロパティとして取得する。
+        <p>このためには、まず Worklet がアクセス可能なプロパティとして <code translate="no">--debug</code> をメインスレッド側で <code translate="no">registerProperty()</code> を用いて登録する。
+        <p><a href="https://drafts.css-houdini.org/css-properties-values-api/#registering-custom-properties">CSS Properties and Values API Level 1</a>
+        <p><code translate="no">--debug</code> は <code translate="no">true/false</code> を引数に取りたいが、 Property Values の定義する Syntax List には <code translate="no">&lt;boolean&gt;</code> は無いため、 <code translate="no">&lt;custom-indent&gt;</code> を利用し、文字列で代替することとした。
+        <pre class=js><code translate="no">CSS.registerProperty({
+  name: &#039;--debug&#039;,
+  syntax: &#039;&lt;custom-ident&gt;&#039;,
+  inherits: true,
+  initialValue: &#039;false&#039;,
+});</code></pre>
+      </section>
+      <section>
+        <h3 id="inputProperties()"><a href="#inputProperties()">inputProperties()</a></h3>
+        <p><code translate="no">registerProperty()</code> で登録された値は、 Worklet 側で <code translate="no">inputProperties()</code> に、ホワイトリストとして指定しておくことで、クラス内に取り込むことができる。
+        <pre class=js><code translate="no">static get inputProperties() {
+  return [
+    &#039;--debug&#039;,
+  ]
+}</code></pre>
+        <p>これにより、後述する <code translate="no">paint()</code> callback に渡る Property Style Map に値が含まれる。
+      </section>
+    </section>
+    <section>
+      <h2 id="paint()"><a href="#paint()">paint()</a></h2>
+      <p><code translate="no">paint()</code> には Canvas Context と領域のサイズ、当たっているスタイル、先に解析した引数が渡る。
+      <pre class=js><code translate="no">paint(ctx, size styleMap, arguments) {
+  // paint with canvas api
+})</code></pre>
+      <section>
+        <h3 id="Rendering+Context"><a href="#Rendering+Context">Rendering Context</a></h3>
+        <p>第一引数は 2D のレンダリングコンテキストである。
+        <p>ここから Canvas の API を呼ぶことで、実際の描画処理を行う。
+        <p><code translate="no">moveTo()</code>, <code translate="no">lineTo()</code>, <code translate="no">strokeRect()</code>, <code translate="no">fillRect()</code> などといったおなじみの Canvas API が利用可能だ。
+        <p>しかし、あくまでサブセットであり前述のように <code translate="no">strokeText()</code> などフォントスタックがないなど、使えないものもある。
+      </section>
+      <section>
+        <h3 id="Paint+Size"><a href="#Paint+Size">Paint Size</a></h3>
+        <p>第二引数は描画対象のサイズであり Width, Height を持つ単純なオブジェクトだ。
+      </section>
+      <section>
+        <h3 id="Style+Property+Map"><a href="#Style+Property+Map">Style Property Map</a></h3>
+        <p>前述の <code translate="no">inputProperties()</code> で指定したプロパティが含まれた Map が渡される。
+        <p>今回指定した <code translate="no">--debug</code> は、以下のように取得できる。
+        <pre class=js><code translate="no">const DEBUG = styleMap.get(&#039;--debug&#039;).value</code></pre>
+        <p>ただし、これは指定した型の都合上、文字列の <code translate="no">&quot;true&quot;</code> か <code translate="no">&quot;false&quot;</code> になっている。
+      </section>
+      <section>
+        <h3 id="Arguments"><a href="#Arguments">Arguments</a></h3>
+        <p>前述の <code translate="no">inputArguments()</code> で指定した引数が配列で渡ってくる。
+        <p>各値は、指定した型でパースされた Typed OM の形でアクセス可能だ。
+        <p><a href="https://drafts.css-houdini.org/css-typed-om-1/">CSS Typed OM Level 1</a>
+        <pre class=js><code translate="no">// paint(border-double-custom, orange, 3px, yellow, 5px, 1px);
+paint(ctx, size styleMap, arguments) {
+  // CSSKeywordValue {value: &quot;orange&quot;}
+  // CSSUnitValue {value: 3, unit: &quot;px&quot;, type: &quot;length&quot;}
+  // CSSKeywordValue {value: &quot;yellow&quot;}
+  // CSSUnitValue {value: 5, unit: &quot;px&quot;, type: &quot;length&quot;}
+  // CSSUnitValue {value: 1, unit: &quot;px&quot;, type: &quot;length&quot;}
+  console.log(arguments)
+}</code></pre>
+        <p>(CSSColorValue がまだ無いため、 <code translate="no">&lt;color&gt;</code> が CSSKeywordValue になっている。<a href="https://github.com/w3c/css-houdini-drafts/issues/159">#159</a>)
+      </section>
+      <section>
+        <h3 id="例"><a href="#例">例</a></h3>
+        <p>例えば、その領域全体を、第一引数で渡ってきた色で塗りつぶす場合は、以下のように Canvas API で描画できる。
+        <pre class=js><code translate="no">paint(ctx, {width: w, height: h}, styleMap, [color]) {
+    ctx.strokeStyle = color
+    ctx.fillRect(0, 0, w, h)
+})</code></pre>
+      </section>
+      <section>
+        <h3 id="完成形"><a href="#完成形">完成形</a></h3>
+        <p>あとは、 <code translate="no">paint()</code> の中で要求を満たす二つの矩形を描画する処理を記述すれば良い。
+        <pre class=html><code translate="no">&lt;style&gt;
+div {
+  font-size: 30px;
+  text-align: center;
+  margin: 1em;
+  padding: 0;
+
+  /* fall back */
+  border: double 4px red;
+
+  /* debug option */
+  --debug: false;
+
+  /* area size for border */
+  --border-width: 10;
+  border-image-slice: var(--border-width);
+  border-width: calc(var(--border-width) * 1px);
+
+  /* paint(border-double-custom, outer-color, outer-width, inner-color, inner-width, margin) */
+  border-image-source: paint(border-double-custom, orange, 3px, yellow, 5px, 1px);
+}
+&lt;/style&gt;
+
+&lt;div&gt;CSS Paint API&lt;/div&gt;
+
+&lt;script&gt;
+CSS.registerProperty({
+  name: &#039;--debug&#039;,
+  syntax: &#039;&lt;custom-ident&gt;&#039;,
+  inherits: true,
+  initialValue: &#039;false&#039;,
+});
+
+CSS.paintWorklet.addModule(&#039;border-double-custom.js&#039;);
+&lt;/script&gt;</code></pre>
+        <pre class=js><code translate="no">registerPaint(&#039;border-double-custom&#039;, class {
+  static get inputProperties() {
+    return [
+      &#039;--debug&#039;,
+    ]
+  }
+
+  static get inputArguments() {
+    return [
+      &#039;&lt;color&gt;&#039;,  // outer_color
+      &#039;&lt;length&gt;&#039;, // outer_width
+      &#039;&lt;color&gt;&#039;,  // inner_color
+      &#039;&lt;length&gt;&#039;, // inner_width
+      &#039;&lt;length&gt;&#039;, // margin
+    ]
+  }
+
+  paint(ctx, {width: w, height: h}, styleMap, args) {
+    console.log(ctx)
+    console.log(args)
+
+    const [
+      {value: outer_color},
+      {value: outer_width},
+      {value: inner_color},
+      {value: inner_width},
+      {value: margin}
+    ] = args
+
+    console.log(outer_color, outer_width, inner_color, inner_width, margin)
+
+    // --debug
+    const DEBUG = styleMap.get(&#039;--debug&#039;).value == &quot;true&quot;
+    if (DEBUG) {
+      ctx.fillStyle = &quot;cyan&quot;;
+      ctx.fillRect(0, 0, w, h);
+    }
+
+    // outer
+    this.rect(ctx, outer_color, outer_width, 0, 0, w, h)
+
+    // inner
+    let m = margin + outer_width
+    this.rect(ctx, inner_color, inner_width, m, m, w-(2*m), h-(2*m))
+  }
+
+  rect(ctx, color, l, x, y, w, h) {
+    ctx.strokeStyle = color
+    ctx.lineWidth = l
+    // shit inside for half of line width
+    ctx.strokeRect(x+(l/2), y+(l/2), w-l, h-l)
+  }
+})</code></pre>
+      </section>
+    </section>
+    <section>
+      <h2 id="動作イメージ"><a href="#動作イメージ">動作イメージ</a></h2>
+      <p><picture>
+          <source type=image/webp srcset=./border-double-custom.webp#667x401>
+          <img src=./border-double-custom.png#667x401 alt="border-double-custom demo" title="border-double-custom implemented by css paint api">
+          </picture>
+    </section>
+    <section>
+      <h2 id="DEMO"><a href="#DEMO">DEMO</a></h2>
+      <p>完成形は以下に公開した。
+      <p>Chrome 64 Canary で <a href="chrome://flags/#enable-experimental-web-platform-features">flag</a> を有効にすると動作する。
+      <p><a href="http://labs.jxck.io/houdini/paint/border-double-custom/">Houdini Paint API DEMO | labs.jxck.io</a>
+    </section>
+  </article>
+
+    </main>
+    <hr>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/footer.css>
+    <footer>
+      <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved. Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>google analytics</a>.</address>
+    </footer>
+  </body>
+</html>
