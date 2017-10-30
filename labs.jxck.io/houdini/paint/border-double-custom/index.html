@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Houdini Paint API DEMO">
+<title>Houdini Paint API DEMO | labs.jxck.io</title>
+
+<h1>Houdini Paint API DEMO</h1>
+
+<style>
+div {
+  font-size: 30px;
+  text-align: center;
+  margin: 1em;
+  padding: 0;
+
+  /* fall back */
+  border: double 4px red;
+
+  /* debug option */
+  --debug: false;
+
+  /* area size for border */
+  --border-width: 10;
+  border-image-slice: var(--border-width);
+  border-width: calc(var(--border-width) * 1px);
+}
+
+.paint1 {
+  /* paint(border-double-custom, outer-color, outer-width, inner-color, inner-width, margin) */
+  border-image-source: paint(border-double-custom, red, 3px, red, 3px, 4px);
+}
+
+.paint2 {
+  border-image-source: paint(border-double-custom, black, 2px, gray, 1px, 3px);
+}
+
+.paint3 {
+  border-image-source: paint(border-double-custom, orange, 4px, yellow, 5px, 0px);
+}
+
+.paint4 {
+  border-image-source: paint(border-double-custom, blue, 3px, green, 3px, 4px);
+}
+</style>
+
+<div class=paint0></div>
+<div class=paint1></div>
+<div class=paint2></div>
+<div class=paint3></div>
+<div class=paint4></div>
+
+<script>
+// insert css to <div>
+for (let $div of document.querySelectorAll('div')) {
+  if ($div.className === 'paint0') {
+    $div.textContent = getComputedStyle($div).border
+    continue
+  }
+  $div.textContent = getComputedStyle($div).borderImageSource
+}
+
+CSS.registerProperty({
+  name: '--debug',
+  syntax: '<custom-ident>',
+  inherits: true,
+  initialValue: 'false',
+});
+
+CSS.paintWorklet.addModule('border-double-custom.js');
+
+// setInterval(location.reload.bind(location), 800)
+</script>
