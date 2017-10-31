@@ -79,9 +79,9 @@ paint(border-double-custom, outer-color, outer-width, inner-color, inner-width, 
 
 例えば
 
-- 外側の線は 3px の black
-- 内側の線は 1px の gray
-- 線の間隔は 4px
+- 外側の線は 3px の orange
+- 内側の線は 5px の yellow
+- 線の間隔は 1px
 - デバッグ ON
 
 として設定する場合は以下のような指定になる。
@@ -145,7 +145,7 @@ Worklet はメインスレッドと Global を共有せず、必要な情報は�
 
 ```js
 registerPaint('border-double-custom', class {
-  static get inputArguments() { }
+  static get inputProperties() { }
   static get inputArguments() { }
   paint(ctx, size, styleMap, argments) { }
 })
