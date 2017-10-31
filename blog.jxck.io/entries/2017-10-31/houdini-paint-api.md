@@ -21,7 +21,7 @@ CSS Paint API は、特定の領域に対して任意の描画を行うことが
 
 例えば、これまで `border` は、仕様に定義されたいくつかの種類の style から選び、無いものは画像で代替するのが基本だった。
 
-CSS Paint API は用意した領域に対し、画像ではなく Canavas API のサブセットを用いてペイントを行うことができる。
+CSS Paint API は用意した領域に対し、画像ではなく Canvas API のサブセットを用いてペイントを行うことができる。
 
 今回はデモとして「突然の死」を Paint で書こうと考えた。
 
@@ -127,7 +127,7 @@ Worklet への登録は、モジュール単位となっているため、今回
 CSS.paintWorklet.addModule('border-double-custom.js');
 ```
 
-Worklet はメインスレッドと Globa を共有せず、必要な情報はコピーして渡すこととなる。
+Worklet はメインスレッドと Global を共有せず、必要な情報はコピーして渡すこととなる。
 
 これは、後述する Arguments か Property を経由して行う。
 
