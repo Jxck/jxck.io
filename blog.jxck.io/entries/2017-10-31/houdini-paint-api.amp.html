@@ -659,9 +659,9 @@ th:last-child, td:last-child {
       <p>また、開発をするに当たって debug フラグを渡せると便利なため、 CSS から debug フラグを渡せるようにもしてみる。
       <p>例えば
       <ul>
-        <li>外側の線は 3px の black
-        <li>内側の線は 1px の gray
-        <li>線の間隔は 4px
+        <li>外側の線は 3px の orange
+        <li>内側の線は 5px の yellow
+        <li>線の間隔は 1px
         <li>デバッグ ON
       </ul>
       <p>として設定する場合は以下のような指定になる。
@@ -700,7 +700,7 @@ th:last-child, td:last-child {
       <p>コールバックは、関数ではなく必要なプロパティを実装した class を渡す。
       <p>今回実装するのは以下の 2 つだ。
       <pre class=js><code translate="no">registerPaint(&#039;border-double-custom&#039;, class {
-  static get inputArguments() { }
+  static get inputProperties() { }
   static get inputArguments() { }
   paint(ctx, size, styleMap, argments) { }
 })</code></pre>
