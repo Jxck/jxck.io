@@ -219,24 +219,20 @@ Key material params
 
 
 ```
-PRF(SecurityParameters.master_secret,
-    "EXTRACTOR-dtls_srtp",
-    SecurityParameters.client_random + SecurityParameters.server_random
-    )[480]
-
+PRF(MasterSecret, "EXTRACTOR-dtls_srtp", 480)
 ```
 
 
 この結果を以下のように分ける
 
 ```
-client_write_SRTP_master_key[SRTPSecurityParams.master_key_len];
-server_write_SRTP_master_key[SRTPSecurityParams.master_key_len];
-client_write_SRTP_master_salt[SRTPSecurityParams.master_salt_len];
-server_write_SRTP_master_salt[SRTPSecurityParams.master_salt_len];
+client_write_SRTP_master_key[master_key_len(128)];
+server_write_SRTP_master_key[master_key_len(128)];
+client_write_SRTP_master_salt[master_salt_len(112)];
+server_write_SRTP_master_salt[master_salt_len(112)];
 ```
 
-この 4 つが Master Key であり、これらを KDF(Key Derivation Function) に渡すことで Session Key を作る。
+この 4 つが Master Key/Salt であり、これらを KDF(Key Derivation Function) に渡すことで Session Key を作る。
 
 導出方法は、 RFC3711 の 4.3 に書かれてる。
 
@@ -328,7 +324,7 @@ PRF_n(MasterKey, x).
 
 PRF_n は、結局はモード関係なく一回だけ AES を実行することと等価になる。
 
-Erlang の場合は、 aes_ecb で一回 block_decrypt すれば良い。
+Erlang の場合は、 aes_ecb で一回 block_encrypt すれば良い。
 
 ```erl
 CipherKey = crypto:block_encrypt(aes_ecb, MasterKey, X),
@@ -410,6 +406,8 @@ Figure 3: Default SRTP Encryption Processing.
 
 この KeyStream はデフォルトでは AES-CM を用いて生成。
 
+SRTPPREFIXLENGTH のデフォルトは 0 なので、結果  Prefix はなく、全体を Suffix として使う。
+
 
 ## AES-CM
 
@@ -433,13 +431,39 @@ AES(Session Enc Key, IV + 2 mod 2^128) ...
 この連続を KeyStream として使う。
 
 
+## Session Keys
+
+ここまであると、 SessionKeys を作る材料が揃う。
+
+- TLS から Export した MasterKey, MasterSalt
+- Index = 0
+- KDR = 0
+- 各ラベル
+
+を使って KDF にかけて、必要な長さになるまで AES-CM を繰り返して取得する。
+
+
 ## Message 認証
 
-HMAC-SHA1 を使う。
+受信したパケットをまず AuthPortion と AuthTag に分ける。
+AuthTag は最後の 10byte で、それを除いた部分が AuthPortion になる。
 
-160bit の SessionAuthKey を使って
-80bit の AuthTag を生成する。
+生成した 160bit の SessionAuthKey を Key として、 AuthPortion を HMAC-SHA1 にかけて 10byte のハッシュを得る。
+ただし、 SRTP の場合はハッシュを取る前に ROC を AuthPortion の後ろに連結してから HMAC-SHA1 をかける。
+SRTCP の場合は AuthPortion をそのままかける。
 
+このハッシュが AuthTag と同じ値になれば、パケットが改ざんされていないことがわかる。
+
+認証は、受信側が検証する場合は復号化よりも先に、送信側がつける場合は暗号化よりもあとに行う。
+
+
+## 復号
+
+検証が終わったら復号を行う。
+ヘッダを除いた Encrypted Portion を取り出す。
+SRTP の場合は ROC と Seq から Index を計算し、 SRTCP の場合はパケットの最後についている Index を取り出してそのまま使う。
+
+SessionEncKey/Salt を使い、 Encrypted Portion と同じ長さの KeyStream を生成し、 EncryptedPortion と XOR をとれば復号できる。
 
 
 ## SRTCP
