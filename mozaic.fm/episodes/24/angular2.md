@@ -13,6 +13,7 @@ audio: https://files.mozaic.fm/mozaic-ep24.mp3
 第 24 回のテーマは Angular2 です。
 
 今回は、ゲストとして Angular のコントリビュータであり、 [ng_japan](http://ngjapan.org/) の代表である [@laco0416](https://twitter.com/laco0416) をお迎えして、 9 月に公開された Angular2 の内容や、現代のフロントエンド開発に向けたフルスタックフレームワークとして Angular2 が何を選んだのか、それは今後の Web 開発にどういう影響を及ぼして行くのか。
+
 Angular 自身、そしてそれを取り巻くエコシステムや標準化の現場で「**今何がおこっているのか**」と「**これからどうなっていくのか**」について議論しました。
 
 (本編の最後に話していたイベントですが、このエピソード公開時点で終わってしまっていました。間に合わなくてすいません。。)
@@ -21,7 +22,7 @@ Angular 自身、そしてそれを取り巻くエコシステムや標準化の
 ## Show Note
 
 - Angular2
-  - [Angular 2.0.0がリリースされました](https://ng2-info.github.io/2016/09/angular-2-final/)
+  - [Angular 2.0.0 がリリースされました](https://ng2-info.github.io/2016/09/angular-2-final/)
 - module
   - [https://github.com/systemjs/systemjs](https://github.com/systemjs/systemjs)
   - [https://github.com/webpack/webpack](https://github.com/webpack/webpack)

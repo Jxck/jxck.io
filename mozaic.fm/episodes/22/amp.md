@@ -30,7 +30,7 @@ audio: https://files.mozaic.fm/mozaic-ep22.mp3
   - [Chrome Dev Tools #development=1](https://www.ampproject.org/docs/guides/validate.html)
   - [AMP HTML ⚡ Validator](https://github.com/ampproject/amphtml/blob/master/validator/README.md)
   - [Chrome Extension](https://chrome.google.com/webstore/detail/amp-validator/nmoffdblmcmgeicmolmhobpoocbbmknc?hl=ja)
-  - [sitemap.xmlをクロールしてサイト内の全ページのAMPのバリデーションをしてくれるコマンドラインツールを作った](http://blog.sushi.money/entry/2016/06/23/154827)
+  - [sitemap.xml をクロールしてサイト内の全ページの AMP のバリデーションをしてくれるコマンドラインツールを作った](http://blog.sushi.money/entry/2016/06/23/154827)
 - PWA(Progressive Web Apps)
   - [Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/)
 - Simillar Project

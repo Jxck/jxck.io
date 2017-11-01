@@ -36,6 +36,7 @@ Web をより深く理解するために
 
 ## Show Note
 
+
 ### Chrome 動向
 
 - Chrome 59

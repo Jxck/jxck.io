@@ -17,6 +17,7 @@ audio: https://files.mozaic.fm/mozaic-ep18.mp3
 
 ## Show Note
 
+
 ### Nginx を使い始めた理由(0:00~)
 
 - [ngx-small-light](https://github.com/cubicdaiya/ngx_small_light)

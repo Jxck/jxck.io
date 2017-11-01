@@ -19,6 +19,7 @@ mozaic.fm の v2 をリリースしました。 breaking change があるので�
 ## Change Log
 
 少し時間がかかってしまいましたが、全体的に作り直しました。
+
 以下が v2 の変更点です。
 
 - feed の URL が [http://feed.mozaic.fm](http://feed.mozaic.fm) に変わります。
@@ -36,12 +37,12 @@ mozaic.fm の v2 をリリースしました。 breaking change があるので�
   - ep12 以前の音声ファイルは m4a でしたが、全て mp3 に統一しました。
   - エピソードの URL が全部変わりますが、しばらくはリダイレクトします。
 
-
 技術的詳細は以下にまとめました。
 
 - [mozaic.fm の v2 のリリースと Podcast の実装と移行](https://blog.jxck.io/entries/2016-06-20/mozaicfm-v2.html)
 
 不具合などがあった場合は、 [@jxck_](https://twitter.com/jxck_) までおしらせください。
+
 mozaic.fm を引き続きよろしくお願いいたします。
 
 

@@ -17,6 +17,7 @@ audio: https://files.mozaic.fm/mozaic-ep13.mp3
 
 ## Show Note
 
+
 ### Virtual DOM
 
 - [Virtual DOM Advent Calendar](http://qiita.com/advent-calendar/2014/virtual-dom)
