@@ -12,7 +12,9 @@ audio: https://files.mozaic.fm/mozaic-ep29.mp3
 
 第 29 回のテーマは Houdini です。
 
-今回は、ゲストとして Chrome チームの開発者であり、 CSS の標準化にも関わられている [@kojiishi](https://twitter.com/kojiishi) さんをお呼びし、 Houdini がどういうモチベーションで始まり、現在仕様策定や実装状況はどうなっているのか。実装する上での問題点や、今後の展望をお聞きし、今後 Houdini が CSS に対してどういった影響を及ぼしていくかを踏まえ、「**今何がおこっているのか**」と「**これからどうなっていくのか**」について議論しました。
+今回は、ゲストとして Chrome チームの開発者であり、 CSS の標準化にも関わられている [@kojiishi](https://twitter.com/kojiishi) さんをお呼びし、 Houdini がどういうモチベーションで始まり、現在仕様策定や実装状況はどうなっているのか。
+
+実装する上での問題点や、今後の展望をお聞きし、今後 Houdini が CSS に対してどういった影響を及ぼしていくかを踏まえ、「**今何がおこっているのか**」と「**これからどうなっていくのか**」について議論しました。
 
 
 ## Show Note
@@ -59,7 +61,7 @@ audio: https://files.mozaic.fm/mozaic-ep29.mp3
   - [Part II: CSS Properties & Values, Custom Paint](https://lists.w3.org/Archives/Public/public-houdini/2017Aug/0002.html)
   - [Part III: Layout Worklets, Future Meetings](https://lists.w3.org/Archives/Public/public-houdini/2017Aug/0003.html)
 - レシピの中括弧
-  - [https:\//wiki.csswg.org/planning/tokyo-2017#afternoon1](https://wiki.csswg.org/planning/tokyo-2017#afternoon1)
+  - [https://wiki.csswg.org/planning/tokyo-2017#afternoon1](https://wiki.csswg.org/planning/tokyo-2017#afternoon1)
   - [CSS Paint API での実装例](http://kojiishi.github.io/css-paint/curly-bracket.html)
 - TPAC 2017
   - [TPAC 2017](https://wiki.csswg.org/planning/tpac-2017)

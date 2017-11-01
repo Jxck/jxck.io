@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <!--
+  貴様、見ているな！！
+  このサイトの技術的なまとめはこちらをどうぞ。
+  https://labs.jxck.io/blog
+
+  by Jxck
+  -->
+  <link rel=canonical href=https://mozaic.fm/episodes/29/houdini.html>
+  <meta name=viewport content=width=device-width,initial-scale=1>
+  <link rel=alternate type=application/rss+xml title=mozaic.fm href=http://feed.mozaic.fm>
+  <link rel=author href=//jxck.io/assets/humans.txt>
+  <script async src=//jxck.io/assets/js/ga.mozaic.js></script>
+  <script async src=//jxck.io/assets/js/highlight.min.js></script>
+  <script src=//jxck.io/assets/js/mozaic.js></script>
+
+  <meta name="author" content="Jxck">
+    <meta name="description" content="第 29 回のテーマは Houdini です。今回は、ゲストとして Chrome チームの開発者であり、 CSS の標準化にも関わられている @kojiishi さんをお呼びし、 Houdini がどういうモチベーションで始まり、現在仕様策定や実装状況はどうなっているのか。...">
+    <meta name="keywords" content="houdini,css">
+    <meta itemprop="image" content="https://mozaic.fm/assets/img/mozaic.png">
+    <meta itemprop="name" content="mozaic.fm">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jxck_">
+    <meta name="twitter:url" content="https://mozaic.fm/episodes/29/houdini.html">
+    <meta name="twitter:title" content="ep29 Houdini | mozaic.fm">
+    <meta name="twitter:description" content="第 29 回のテーマは Houdini です。今回は、ゲストとして Chrome チームの開発者であり、 CSS の標準化にも関わられている @kojiishi さんをお呼びし、 Houdini がどういうモチベーションで始まり、現在仕様策定や実装状況はどうなっているのか。...">
+    <meta name="twitter:image" content="https://mozaic.fm/assets/img/mozaic.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://mozaic.fm/episodes/29/houdini.html">
+    <meta property="og:title" content="ep29 Houdini | mozaic.fm">
+    <meta property="og:site_name" content="mozaic.fm">
+    <meta property="og:description" content="第 29 回のテーマは Houdini です。今回は、ゲストとして Chrome チームの開発者であり、 CSS の標準化にも関わられている @kojiishi さんをお呼びし、 Houdini がどういうモチベーションで始まり、現在仕様策定や実装状況はどうなっているのか。...">
+    <meta property="og:image" content="https://mozaic.fm/assets/img/mozaic.png">
+
+    <link rel="icon" sizes="192x192" href="https://mozaic.fm/assets/img/mozaic.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="https://mozaic.fm/assets/img/mozaic.png">
+
+  <title>ep29 Houdini | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/28/monthly-web-201710.html>
+  
+  <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/body.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/header.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/main.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/info.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/article.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/footer.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/mozaic.css>
+</head>
+<body>
+
+<header>
+  <ul>
+    <li><a href=/><img class=logo alt=top width=50 src=//jxck.io/assets/img/mozaic.svg></a>
+    <!--li><a><img alt="receive push notification" width="50" src="//jxck.io/assets/img/push.svg"></a-->
+    <li><a href=http://feed.mozaic.fm><img alt="rss feed" width=50 src=//jxck.io/assets/img/podcast.svg></a>
+    <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495><img alt=itunes width=50 src=//jxck.io/assets/img/itunes.svg></a>
+    <li><a href=https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd><img alt=huamns.txt width=50 src=//jxck.io/assets/img/twitter.svg></a>
+    <li><a href=//jxck.io><img class=logo alt="jxck logo" width=50 src=//jxck.io/assets/img/jxck.svg></a>
+  </ul>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/28/monthly-web-201710.html">ep28 Monthly Web 201710</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+
+  <article>
+    <h1><a href=/episodes/29/houdini.html>ep29 Houdini</a></h1>
+    <section>
+      <h2>Info</h2>
+      <p><audio preload=none src=https://files.mozaic.fm/mozaic-ep29.mp3 controls></audio>
+      <ul class=info>
+        <li>published_at: <time datetime=2017-11-02>2017-11-02</time>
+        <li>guest: <a href="https://twitter.com/kojiishi">@kojiishi</a>
+      </ul>
+    </section>
+    <section>
+      <h2>Theme</h2>
+      <p>第 29 回のテーマは Houdini です。
+      <p>今回は、ゲストとして Chrome チームの開発者であり、 CSS の標準化にも関わられている <a href="https://twitter.com/kojiishi">@kojiishi</a> さんをお呼びし、 Houdini がどういうモチベーションで始まり、現在仕様策定や実装状況はどうなっているのか。
+      <p>実装する上での問題点や、今後の展望をお聞きし、今後 Houdini が CSS に対してどういった影響を及ぼしていくかを踏まえ、「<strong>今何がおこっているのか</strong>」と「<strong>これからどうなっていくのか</strong>」について議論しました。
+    </section>
+    <section>
+      <h2>Show Note</h2>
+      <ul>
+        <li>Koji さんのドラフト<ul>
+          <li><a href="https://drafts.csswg.org/css-text-3/">CSS Text Module Level 3</a>
+          <li><a href="https://drafts.csswg.org/css-text-decor-3/">CSS Text Decoration Module Level 3</a>
+          <li><a href="https://drafts.csswg.org/css-inline/">CSS Inline Layout Module Level 3</a>
+          <li><a href="https://drafts.csswg.org/css-ruby/">CSS Ruby Layout Module Level 1</a>
+          <li><a href="https://drafts.csswg.org/css-writing-modes-3/">CSS Writing Modes Level 3</a>
+          <li><a href="https://drafts.csswg.org/css-line-grid/">CSS Line Grid Module Level 1</a>
+          <li><a href="https://drafts.csswg.org/css-rhythm/">CSS Rhythmic Sizing</a>
+          <li><a href="http://www.unicode.org/reports/tr50/">UAX #50: Unicode Vertical Text Layout</a>
+        </ul>
+        <li><a href="https://drafts.css-houdini.org/">CSS-TAG Houdini Editor Drafts</a> (<a href="https://github.com/w3c/css-houdini-drafts">github</a>)<ul>
+          <li><a href="https://drafts.css-houdini.org/worklets/">Worklets Level 1</a><ul>
+            <li>JS のメインスレッドとは別に実行される環境
+            <li>ハイレベル API で使用される定義される
+            <li>WebWorker とは違う。イベントベースですらない
+            <li>Class で適宜したハンドラを渡すと内部で実行される
+          </ul>
+          <li><a href="https://drafts.css-houdini.org/css-properties-values-api/">CSS Properties and Values API Level 1</a><ul>
+            <li>name, syntax, inherits, init を指定して任意のプロパティを registerProperty する
+          </ul>
+          <li><a href="https://drafts.css-houdini.org/css-typed-om/">CSS Typed OM Level 1</a><ul>
+            <li>attributeStyleMap 経由で型と値を操作
+            <li>CSSXXXValue などで値を計算
+          </ul>
+          <li><a href="https://drafts.css-houdini.org/box-tree-api/">Box Tree API Level 1</a><ul>
+            <li>行の折り返しなどで生成される Fragment にアクセスできる API
+            <li>まだ中身があまりない
+          </ul>
+          <li><a href="https://drafts.css-houdini.org/css-parser-api/">CSS Parser API</a><ul>
+            <li>CSS パーサを export し CSS を解析した中間表現にアクセスできるように
+            <li>まだ中身がほぼない
+            <li>use case: <a href="https://github.com/WICG/CSS-Parser-API">https:\/\/github.com\/WICG\/CSS-Parser-API</a>
+          </ul>
+          <li><a href="https://drafts.css-houdini.org/css-paint-api/">CSS Painting API Level 1</a><ul>
+            <li>ペイント領域に対して Canvas API サブセットで好きなように描画できる
+          </ul>
+          <li><a href="https://drafts.css-houdini.org/css-layout-api/">CSS Layout API Level 1</a><ul>
+            <li>Style Tree で生成された Fragment をどう配置するかを決める
+            <li>OutPut として Box Tree を提供し、それをブラウザがペイントする
+            <li>Flexbox や Grid みたいなものを自分で定義できる
+          </ul>
+          <li><a href="https://drafts.css-houdini.org/font-metrics-api/">Font Metrics API Level 1</a><ul>
+            <li>baseline などレイアウトに必要なメトリクス情報を取得する
+          </ul>
+        </ul>
+        <li>Paint API で StokeText できないと困る話<ul>
+          <li><a href="https://github.com/w3c/css-houdini-drafts/issues/478">why no fillText/strokeText ? Issue #478</a>
+        </ul>
+        <li>Minutes Paris F2F 2017-08-01<ul>
+          <li><a href="https://lists.w3.org/Archives/Public/public-houdini/2017Aug/0001.html">Part I: AnimationWorklet, TypedOM</a>
+          <li><a href="https://lists.w3.org/Archives/Public/public-houdini/2017Aug/0002.html">Part II: CSS Properties & Values, Custom Paint</a>
+          <li><a href="https://lists.w3.org/Archives/Public/public-houdini/2017Aug/0003.html">Part III: Layout Worklets, Future Meetings</a>
+        </ul>
+        <li>レシピの中括弧<ul>
+          <li><a href="https://wiki.csswg.org/planning/tokyo-2017#afternoon1">https://wiki.csswg.org/planning/tokyo-2017#afternoon1</a>
+          <li><a href="http://kojiishi.github.io/css-paint/curly-bracket.html">CSS Paint API での実装例</a>
+        </ul>
+        <li>TPAC 2017<ul>
+          <li><a href="https://wiki.csswg.org/planning/tpac-2017">TPAC 2017</a>
+          <li><a href="https://github.com/w3c/css-houdini-drafts/wiki/TPAC-F2F-November-2017">TPAC F2F November 2017</a>
+        </ul>
+        <li>各ベンダの最近の CSS エンジン改善<ul>
+          <li>FF: <a href="https://wiki.mozilla.org/Quantum#Quantum_CSS">Quantum - MozillaWiki</a>
+          <li>Edge: <a href="https://blogs.windows.com/msedgedev/2017/08/17/making-web-smoother-independent-rendering/">Making the web smoother with independent rendering - Microsoft Edge Dev Blog</a>
+          <li>Chrome: <a href="https://chromium.googlesource.com/chromium/src/+/master/third_party/WebKit/Source/core/layout/ng/README.md">LayoutNG</a>, <a href="https://chromium.googlesource.com/chromium/src/+/master/third_party/WebKit/Source/core/paint/README.md#slimmingpaintv2-a_k_a_spv2">Sliming Paint V2</a>
+        </ul>
+        <li>see also<ul>
+          <li><a href="https://github.com/GoogleChromeLabs/houdini-samples">GoogleChromeLabs/houdini-samples</a>
+          <li><a href="https://ishoudinireadyyet.com/">Is Houdini Ready Yet?</a>
+          <li><a href="https://www.youtube.com/watch?v=kQ03a6topCM&feature=youtu.be">BlinkOn 8: Line Layout Deep Dive</a>
+        </ul>
+      </ul>
+    </section>
+  </article>
+
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/28/monthly-web-201710.html">ep28 Monthly Web 201710</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed. Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>google analytics</a>.</address>
+  <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong>
+</footer>
+</body>
+</html>
