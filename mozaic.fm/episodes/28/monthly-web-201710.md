@@ -158,6 +158,8 @@ Monthly Web のモチベーションについては以下。
       - Worklet がらみで議論が足りてなかったので止まってたが、月末に動きが
       - Secure Contexts に限定するように変更して、 ship する予定
       - [https://bugs.chromium.org/p/chromium/issues/detail?id=779938](https://bugs.chromium.org/p/chromium/issues/detail?id=779938)
+      - [手書きみたいな線を引くデモ](http://lab.iamvdo.me/houdini/rough-boxes)
+      - [blog](https://blog.jxck.io/entries/2017-10-31/houdini-paint-api.html)
 - Other
    - blink-dev で arch team のスライドまとめ
       - [https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/99hYJxn-IjU/IjGJOQCsBAAJ](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/99hYJxn-IjU/IjGJOQCsBAAJ)
