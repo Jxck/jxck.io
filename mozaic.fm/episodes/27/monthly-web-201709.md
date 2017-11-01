@@ -401,7 +401,7 @@ Monthly Web のモチベーションについては以下。
    - [HTTP Immutable Responses (Cache-Control: immutable)](HTTP Immutable Responses (Cache-Control: immutable))
       - [https://tools.ietf.org/html/rfc8246](https://tools.ietf.org/html/rfc8246)
       - キャッシュが max-age 内であればリロード時もキャッシュヒットさせる
-   - RFC8187: Indicating Character Encoding and Language for [HTTP Header Field](HTTP Header Field)
+   - RFC8187: Indicating Character Encoding and Language for HTTP Header Field
       - [https://tools.ietf.org/html/rfc8187](https://tools.ietf.org/html/rfc8187)
       - non-ascii ("£" , "€") を含む初の RFC らしい
 - Draft
@@ -409,23 +409,23 @@ Monthly Web のモチベーションについては以下。
       - [https://tools.ietf.org/html/draft-ietf-v6ops-rfc6555bis-05](https://tools.ietf.org/html/draft-ietf-v6ops-rfc6555bis-05)
       - [https://lists.w3.org/Archives/Public/ietf-http-wg/2017JulSep/0416.html](https://lists.w3.org/Archives/Public/ietf-http-wg/2017JulSep/0416.html)
       - IPv4, v6 両方使える環境で両方試して速く繋がる方を選ぶ
-   - WG Last Call The ORIGIN [HTTP/2 Frame](HTTP/2 Frame)
+   - WG Last Call The ORIGIN HTTP/2 Frame
       - [https://tools.ietf.org/html/draft-ietf-httpbis-origin-frame-04](https://tools.ietf.org/html/draft-ietf-httpbis-origin-frame-04)
       - [https://lists.w3.org/Archives/Public/ietf-http-wg/2017JulSep/0409.html](https://lists.w3.org/Archives/Public/ietf-http-wg/2017JulSep/0409.html)
       - H2 で複数オリジンへの接続を束ねられる
       - 要求が受け取れないオリジンへのリクエストは 421 Misdirected Request
       - サーバが束ねられるオリジンを送るフレームを送ることで明示する仕様
-   - [HTTP Random Access and Live Content](HTTP Random Access and Live Content)
+   - HTTP Random Access and Live Content
       - [https://tools.ietf.org/html/draft-ietf-httpbis-rand-access-live-01](https://tools.ietf.org/html/draft-ietf-httpbis-rand-access-live-01)
       - Range リクエストで Live Streaming を受け取れるように
    - A Method for Web Security Policies
       - [https://tools.ietf.org/html/draft-foudil-securitytxt-00](https://tools.ietf.org/html/draft-foudil-securitytxt-00)
       - security.txt に脆弱性連絡先とかを載せる
-      - [https://github.com/EdOverflow/security-txt のサブセットっぽい](https://github.com/EdOverflow/security-txt のサブセットっぽい)
+      - [https://github.com/EdOverflow/security-txt](https://github.com/EdOverflow/security-txt) のサブセットっぽい
    - Zstandard Compression and The application/zstd Media Type
       - [https://tools.ietf.org/html/draft-kucherawy-dispatch-zstd-00](https://tools.ietf.org/html/draft-kucherawy-dispatch-zstd-00)
       - Facebook 提案の圧縮形式
-   - [HTTP Variants draft-nottingham-variants-00](HTTP Variants draft-nottingham-variants-00)
+   - HTTP Variants draft-nottingham-variants-00
       - [https://tools.ietf.org/html/draft-nottingham-variants-00](https://tools.ietf.org/html/draft-nottingham-variants-00)
       - リソースに対して可能な選択肢をヘッダに載せる
       - 例えばレスポンスに `Variants: Content-Language;en;de` など
@@ -455,7 +455,7 @@ Monthly Web のモチベーションについては以下。
 - Nginx Unit
    - [https://www.nginx.com/products/nginx-unit/](https://www.nginx.com/products/nginx-unit/)
    - Nginx に複数言語対応のアプリケーションサーバがデプロイできるように
-- HAProxy supports Experimental [HTTP2](HTTP2)
+- HAProxy supports Experimental HTTP2
    - [https://www.mail-archive.com/haproxy@formilux.org/msg27104.html](https://www.mail-archive.com/haproxy@formilux.org/msg27104.html)
    - Experimental / broken [HTTP/2 support](HTTP/2 support)
 - Dr. Axel による mjs のまとめ
