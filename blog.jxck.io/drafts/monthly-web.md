@@ -41,6 +41,7 @@ Monthly Web 用情報源
 
 - [ms edge dev blog](https://developer.microsoft.com/en-us/microsoft-edge/platform/) (feed で見るのがいい)
 - [change log](https://developer.microsoft.com/en-us/microsoft-edge/platform/changelog/)
+- [https:\/\/aka.ms/devguide_edgehtml_16](https://aka.ms/devguide_edgehtml_16)
 
 
 ### V8
