@@ -36,6 +36,10 @@ CSS Paint API は用意した領域に対し、画像ではなく Canvas API の
 
 これは、各ブラウザでフォントスタックがマルチスレッド対応されていないため、 Worklets 内での実行が難しいという理由かららしく、将来の仕様まで先送りされているとのこと。
 
+詳細は以下を参照。
+
+[ep29 Houdini \| mozaic\.fm](https://mozaic.fm/episodes/29/houdini.html)
+
 代わりにデモのネタを探していたところ [@yoshiko](https://twitter.com/yoshiko_pg) から、
 
 > border double で、太さや間隔を自由に設定したい
