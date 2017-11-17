@@ -9,6 +9,11 @@
 [Allow constructing and subclassing EventTarget](https://github.com/whatwg/dom/commit/c4c1c8b47340a1e5ecc1a07670927b831f240586)
 
 
+## Update
+
+Chrome Canary 64 で実装が確認できたため、 DEMO を追加した。
+
+
 ## EventTarget
 
 [EventTarget](https://dom.spec.whatwg.org/#interface-eventtarget) には `addEventListener`, `removeEventListener`, `dispatchEvent` が定義されている。
@@ -67,8 +72,6 @@ Node では EventEmitter が、メソッド名は違えど同等の役割を果�
 
 具体的には以下のようなコードが書けるようになる。
 
-(実装がないため動作未確認)
-
 
 ```js:timer-et.js
 ```
@@ -102,3 +105,10 @@ class EventEmitter extends EventTarget {
 しかし、 EventTarget 相当を実現するためだけに EventEmitter を導入していた場合は、 EventTarget が継承できるだけで十分な場合も少なくはないだろう。
 
 その場合はネイティブの実装だけで足りるようになるため、実装が進むことに期待したい。
+
+
+## DEMO
+
+動作する DEMO を以下に用意した。
+
+[EventTarget DEMO](http://labs.jxck.io/event-target/)

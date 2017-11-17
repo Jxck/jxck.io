@@ -1,7 +1,7 @@
 class Timer extends EventTarget {
   constructor(interval) {
     super()
-    setTimeout(() => {
+    setInterval(() => {
       this.dispatchEvent(new CustomEvent('tick'))
     }, interval)
   }
