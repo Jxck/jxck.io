@@ -1,59 +1,76 @@
-# AsyncGenerator 以降の setTimeout/setInterval
+# AsyncGenerator/AbortingController 以降の非同期 API 設計例
 
 ## Intro
 
-async/await を導入して以降、一層 setTimeout/setInterval が使いにくいものとなった。
-現在実装されている AbortingController と AsyncGenerator を踏まえた上で、
-今後どういう形だと使いやすいかを考察し、モジュールとして公開した。
+async/await 以降、非同期 API は Promise ベースへと移行しつつある。
+ユーザランドでも API を Promise に寄せる方針で設計を行う場合も増えただろう。
 
-https://github.com/jxck/async-timer
+今回は、古き良きコールバックスタイルの代表として setTimeout/setInterval を題材にし、
+現在実装が進む AbortingController と AsyncGenerator を踏まえた上で、
+Async Friendly な API の設計パターンを解説する。
+また、それを呼び出す側への影響を踏まえ、本当にそこまでやるのか?という点に触れたい。
 
 
 ## setTimeout/setInterval
 
 一応復習すると、既存の API は setXX と clearXX が定義されている。
 
-```js
+```javascript
 const id = setTimeout(() => console.log('done'), 100)
 clearTimeout(id)
 
 // same for timeout
 ```
 
-また、引数はコールバックが先で秒数が後となっている。
+引数はコールバックが先で秒数が後となっている。
 (この点でも、 Node.js のコールバックラストスタイルとも相性が悪かった)
 
-これを async の世界に持ち込むと単純にはこうなる。
-(clear したい場合は、もう一枚関数を被せれば良い)
+また、戻り値がタイマーの ID となっており、これを経由してキャンセルする関数が別途あるという点が特徴と言える。
 
-```js
+以降の方法は、 `setImmediate()` や `requestIdleCallback()` についても、同様に適用できる。
+
+## Simple Async
+
+これを async の世界に持ち込むと単純にはこうなる。
+
+```javascript
+console.log('before')
+
 await new Promise(done => setTimeout(() => {
-  console.log('done')
+  console.log('timeout')
   done()
 }, 1000))
+
+console.log('after')
+
+// before
+// timeout
+// after
 ```
 
 ただ、コールバックを書けばいいのなら、後続の処理を全部 `setTimeout()` のコールバックにすればよくなる。
-ならば Async にする意味はあまりない。
+この場合、 Async にする意味はあまりない。
 
 本当は全てが Promise に揃った上で await を縦に連ねたかったのであれば、こうなる。
 
 
-```js
+```javascript
+console.log('before')
 await new Promise(done => setTimeout(done, 100))
-console.log('done')
+console.log('after')
 ```
 
-つまり、 Async な世界では timeout は「時間をそこで止める」だけで良かったと考えられる。
+つまり、 Async な世界では timeout は「時間をそこで止める」だけで良い。
 
-ところが、これだと `clearTimeout()` をどすうるかという話になる。
-もしユーザインタラクションがあったら 100ms 経過しなくても次に進んでほしいという場合に対応できない。
 
 また、同じことを `setInterval()` の場合どうするかという点はより複雑だ。
 async の世界であれば、 interval は縦に連続するタスクの実行と考えられそうだ。
 
 
 ## timeout with aborting promise
+
+ところが、これだと `clearTimeout()` をどすうるかという話になる。
+ユーザインタラクションなどにより Promise を reject してでも先に進みたい場合がある。
 
 以前解説した、 Aborting Fetch で導入された AbortController と AbortSignal は、 DOM の仕様には追加されている。
 
@@ -70,7 +87,7 @@ TODO: caniuse
 するとこうなる。
 
 
-```js
+```javascript
 // 時間と AbortingSignal を受取り
 // Promise を返す関数
 export function timeout(time, signal) {
@@ -86,7 +103,7 @@ export function timeout(time, signal) {
 
 使う側はこうなる。
 
-```js
+```javascript
 import {timer} from "./timer.mjs"
 
 async function main() {
@@ -108,6 +125,30 @@ async function main() {
 しかし、これだと呼ぶ側が try-catch をする必要があり、処理もジャンプしてしまう。
 また従来の API では、そこを識別することすらできなかったはずなので、従来の使用感を維持するためここは Resolve している。
 
+もし Reject にしたい場合は、呼ぶ側は同じく実装が進む try-cache-finally を使うことになるだろう。
+
+```javascript
+import {timer} from "./timer.mjs"
+
+async function main() {
+  // Aborting Style Setup
+  const controller = new AbortController()
+  const signal = controller.signal
+
+  // クリックされたら止める
+  button.onclick = () => {
+    controller.abort()
+  }
+
+  try {
+    await timeout(1000, signal)
+  } catch(err) {
+    console.error(err.type)
+  } finally {
+    console.log('done')
+  }
+}
+```
 
 
 ## interval with async generator
@@ -117,12 +158,14 @@ async function main() {
 
 Promise の連続というと WHATWG Stream が思い起こされるが、 Stream は主に I/O 時の Chunk についての抽象化が主用途と言える。
 
-単にイベントとしての Promise を連続して生成するだけなら、 Generator での生成が妥当そうだ。
+連続するイベントの抽象化は、どちらかというと Observable になるが、これはまだ無い。
+
+そこで、単にイベントとしての Promise を連続して生成するだけなら、現時点では Generator での生成が妥当そうだ。
 
 Async Generator として timer を生成すると以下のようになる。
 
 
-```js
+```javascript
 // Async Generator
 export async function* interval(time, signal) {
   // timeout に入る前に abort されてれば終わる
@@ -136,7 +179,7 @@ export async function* interval(time, signal) {
 利用側は Async Iterator を使うことができるだろう。
 `setInterval()` に渡していたコールバックの処理が、 `for-await-of` に入ることになる。
 
-```js
+```javascript
 import {interval} from "./timer.mjs"
 
 let i = 0
@@ -152,7 +195,7 @@ console.log('done')
 しかし、 interval が undefined しか resolve しないのは勿体無い気もする。
 もし色気を出すとすれば、カウンタくらい返してもバチは当たらないのではないだろうか。
 
-```js
+```javascript
 export async function* interval(time, signal) {
   let i = 0;
   while (!signal.aborted) {
@@ -164,7 +207,7 @@ export async function* interval(time, signal) {
 
 すると回数ベースでの停止は簡単にできる。
 
-```js
+```javascript
 for await (const i of interval(100, signal)) {
   console.log(i)
   if (i === 5) {
@@ -181,18 +224,18 @@ for await (const i of interval(100, signal)) {
 
 例えば DOM にカウンタを並行して表示する場合、以下のように書いた。
 
-```js
-let $a = document.querySelector('#a')
-let $b = document.querySelector('#b')
+```javascript
+const $a = document.querySelector('#a')
+const $b = document.querySelector('#b')
 
 let i = 0
-let ida = setInterval(() => {
+const ida = setInterval(() => {
   $a.textContent = ++i
   if (i >= 10) return clearInterval(ida)
 }, 500);
 
 let j = 0
-let idb = setInterval(() => {
+const idb = setInterval(() => {
   $b.textContent = ++j
   if (j >= 10) return clearInterval(idb)
 }, 600);
@@ -202,7 +245,7 @@ let idb = setInterval(() => {
 方法としては、 async で分けることになる。
 
 
-```js
+```javascript
 import {interval} from "./timer.mjs"
 (async () => {
   const controller = new AbortController()
@@ -236,7 +279,7 @@ import {interval} from "./timer.mjs"
 そこで、これらをモジュールに分ける。
 
 
-```js
+```javascript
 // c.mjs
 import {interval} from "./timer.mjs"
 
@@ -257,7 +300,7 @@ import {interval} from "./timer.mjs"
 結果モジュールを読み込むだけにはできる。
 
 
-```js
+```javascript
 import "./c.mjs"
 import "./d.mjs"
 ```
@@ -265,7 +308,7 @@ import "./d.mjs"
 もし Module 内の top-level await が可能になれば Async は不要になる。
 
 
-```js
+```javascript
 // c.mjs
 import {interval} from "./timer.mjs"
 
@@ -282,6 +325,3 @@ for await (const i of interval(700, signal)) {
 ```
 
 コンテキストを分ける場合は、 Module を分けることになるだろうか。
-
-
-こうすると `setImmediate()` や `requestIdleCallback()` のように、繰り返し相当が無いものについても Promise 化したものを用意すれば同じように繰り返すことができる。
