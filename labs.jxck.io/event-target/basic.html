@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="EventTarget Basic DEMO">
+<title>EventTarget Basic DEMO | labs.jxck.io</title>
+
+<h1>EventTarget Basic DEMO</h1>
+
+<p>500ms timer: see console and source
+
+<ul><ul>
+
+<script>
+class Timer extends EventTarget {
+  constructor(interval) {
+    super()
+    setInterval(() => {
+      this.dispatchEvent(new CustomEvent('tick'))
+    }, interval)
+  }
+}
+
+const $ul = document.querySelector('ul')
+
+const timer = new Timer(500)
+timer.addEventListener('tick', function(e) {
+  console.log(e)
+  const $li = document.createElement('li')
+  $li.textContent = `${e.type}: ${e.timeStamp}`
+  $ul.appendChild($li)
+})
+</script>
