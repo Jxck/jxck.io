@@ -59,7 +59,7 @@
     "width": 700
   },
   "datePublished": "2017-07-10T08:00:00+08:00",
-  "dateModified": "2017-08-30T08:00:00+08:00",
+  "dateModified": "2017-11-16T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -101,7 +101,7 @@
       <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/info.css>
       <ul class=info>
         <li>created_at: <time class=created_at datetime=2017-07-10>2017-07-10</time>
-        <li>updated_at: <time class=updated_at datetime=2017-08-30>2017-08-30</time>
+        <li>updated_at: <time class=updated_at datetime=2017-11-16>2017-11-16</time>
         <li class=tags>tags: [<a href='/tags/event%20target.html'>event target</a>,<a href='/tags/event%20emitter.html'>event emitter</a>]
       </ul>
 
@@ -113,6 +113,10 @@
       <p><a href="https://twitter.com/Jxck_/status/826004140211843072">念願</a> だった EventTarget の constructible/subclassable が DOM の仕様にマージされた。
       <p>これにより、いわゆる EventEmitter のブラウザ移植が不要になることが期待される。
       <p><a href="https://github.com/whatwg/dom/commit/c4c1c8b47340a1e5ecc1a07670927b831f240586">Allow constructing and subclassing EventTarget</a>
+    </section>
+    <section>
+      <h2 id="Update"><a href="#Update">Update</a></h2>
+      <p>Chrome Canary 64 で実装が確認できたため、 DEMO を追加した。
     </section>
     <section>
       <h2 id="EventTarget"><a href="#EventTarget">EventTarget</a></h2>
@@ -169,11 +173,10 @@ timer.on(&#039;tick&#039;, console.log.bind(console))</code></pre>
     <section>
       <h2 id="constructible/subclassable+EventTarget"><a href="#constructible/subclassable+EventTarget">constructible/subclassable EventTarget</a></h2>
       <p>具体的には以下のようなコードが書けるようになる。
-      <p>(実装がないため動作未確認)
       <pre class=js><code translate="no">class Timer extends EventTarget {
   constructor(interval) {
     super()
-    setTimeout(() =&gt; {
+    setInterval(() =&gt; {
       this.dispatchEvent(new CustomEvent(&#039;tick&#039;))
     }, interval)
   }
@@ -202,6 +205,11 @@ timer.addEventListener(&#039;tick&#039;, console.log.bind(console))</code></pre>
       <p>それらが必要な場合は、別途イベントとリスナの管理が必要になるだろう。こうした機能が必要な場合は、要するに EventEmitter そのものを必要としてるということなので、 porting は依然必要になる。
       <p>しかし、 EventTarget 相当を実現するためだけに EventEmitter を導入していた場合は、 EventTarget が継承できるだけで十分な場合も少なくはないだろう。
       <p>その場合はネイティブの実装だけで足りるようになるため、実装が進むことに期待したい。
+    </section>
+    <section>
+      <h2 id="DEMO"><a href="#DEMO">DEMO</a></h2>
+      <p>動作する DEMO を以下に用意した。
+      <p><a href="http://labs.jxck.io/event-target/">EventTarget DEMO</a>
     </section>
   </article>
 
