@@ -410,4 +410,4 @@ registerPaint('border-double-custom', class {
 
 Chrome 64 Canary で [flag](chrome://flags/#enable-experimental-web-platform-features) を有効にすると動作する。
 
-[Houdini Paint API DEMO \| labs\.jxck\.io](http://labs.jxck.io/houdini/paint/border-double-custom/)
+[Houdini Paint API DEMO \| labs\.jxck\.io](https://labs.jxck.io/houdini/paint/border-double-custom/)
