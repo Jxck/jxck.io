@@ -59,7 +59,7 @@
     "width": 700
   },
   "datePublished": "2016-06-12T08:00:00+08:00",
-  "dateModified": "2017-08-30T08:00:00+08:00",
+  "dateModified": "2017-11-28T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -101,7 +101,7 @@
       <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/info.css>
       <ul class=info>
         <li>created_at: <time class=created_at datetime=2016-06-12>2016-06-12</time>
-        <li>updated_at: <time class=updated_at datetime=2017-08-30>2017-08-30</time>
+        <li>updated_at: <time class=updated_at datetime=2017-11-28>2017-11-28</time>
         <li class=tags>tags: [<a href='/tags/html.html'>html</a>,<a href='/tags/security.html'>security</a>]
       </ul>
 
@@ -118,7 +118,7 @@
       <p>以下が今回注目する挙動である。
       <p><picture>
           <source type=image/webp srcset=window-opener.webp#150x150>
-          <img src=window-opener.gif#150x150 alt="Window Opener DEMO" title="window opener demo">
+          <img src=window-opener.gif#150x150 alt="Opener によって別タブで開いた画面が元の画面を遷移させている" title="window opener demo">
           </picture>
       <p>このデモでは、 <a href="https://labs.jxck.io/noopener">https://labs.jxck.io/noopener</a> から開いた <a href="https://labs.jxck.io/noopener/opener-change.html">https://labs.jxck.io/noopener/opener-change.html</a> のページが別タブで開いた後、最初に開いたタブが勝手に <a href="http://example.com">http://example.com</a> に遷移しているというものである。
       <p>最初のページを Parent 、開いたタブを Child とする。
@@ -184,7 +184,7 @@
       <p>この攻撃方法を解説する。
       <section>
         <h3 id="攻撃の概要"><a href="#攻撃の概要">攻撃の概要</a></h3>
-        <p><img src=tab-nabbing.svg#500x500 alt="tab-nabbing.svg" title="tab-nabbing の解説図" width=500 height=500>
+        <p><img src=tab-nabbing.svg#500x500 alt="Opener を利用することで、元サイトとそっくりなログイン画面を用意し、そこに認証情報を入力させることで Tab Naving が成立する" title="tab-nabbing の解説図" width=500 height=500>
         <p><code translate="no">https://cgm.example.com</code> (左上) というサービスがあるとし、これは SNS やチームコラボレーション系サービスを想定する。
         <p>攻撃者は、このサービスの不特定ユーザのユーザ名およびパスワードを盗みたいとする。
         <p>この攻撃の成立のために、サービスに必要な仕様は <strong>任意のリンクを貼ることができて、そのリンクが <code translate="no">target=_blank</code> にマークアップされる</strong> ことである。

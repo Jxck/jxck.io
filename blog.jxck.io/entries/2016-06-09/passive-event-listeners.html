@@ -59,7 +59,7 @@
     "width": 700
   },
   "datePublished": "2016-06-09T08:00:00+08:00",
-  "dateModified": "2017-08-30T08:00:00+08:00",
+  "dateModified": "2017-11-28T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -101,7 +101,7 @@
       <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/info.css>
       <ul class=info>
         <li>created_at: <time class=created_at datetime=2016-06-09>2016-06-09</time>
-        <li>updated_at: <time class=updated_at datetime=2017-08-30>2017-08-30</time>
+        <li>updated_at: <time class=updated_at datetime=2017-11-28>2017-11-28</time>
         <li class=tags>tags: [<a href='/tags/rendering.html'>rendering</a>,<a href='/tags/performance.html'>performance</a>]
       </ul>
 
@@ -229,7 +229,7 @@ function addEventListenerWithOptions(target, type, handler, options) {
       <p>長いドキュメントで、 touchstart イベントにあえて遅延を入れたデモを用意した。
       <p>ここに、 Passive オプション指定の有無による挙動の変化を試すことができる。
       <ul>
-        <li><a href="http://labs.jxck.io/passive-event-listeners/index.html">Passive Event Uisteners DEMO</a>
+        <li><a href="https://labs.jxck.io/passive-event-listeners/index.html">Passive Event Uisteners DEMO</a>
       </ul>
       <p>ちょっと分かりにくいがキャプチャも載せておく。
       <section>
@@ -237,7 +237,7 @@ function addEventListenerWithOptions(target, type, handler, options) {
         <p>touchstart イベントに時間がかかっているため、スクロールが詰まる。
         <p><picture>
             <source type=image/webp srcset=passive-event-listeners-false.webp#1347x687>
-            <img src=passive-event-listeners-false.gif#1347x687 alt="Passive False DEMO" title="">
+            <img src=passive-event-listeners-false.gif#1347x687 alt="リスナが Active であるため、スクロールが詰まる" title="Active Event Listener DEMO">
             </picture>
       </section>
       <section>
@@ -245,7 +245,7 @@ function addEventListenerWithOptions(target, type, handler, options) {
         <p>スクロールが詰まらない。
         <p><picture>
             <source type=image/webp srcset=passive-event-listeners-true.webp#1347x687>
-            <img src=passive-event-listeners-true.gif#1347x687 alt="Passive True DEMO" title="">
+            <img src=passive-event-listeners-true.gif#1347x687 alt="リスナが Passive であるため、スクロールが詰まらない" title="Passive Event Listener DEMO">
             </picture>
       </section>
     </section>

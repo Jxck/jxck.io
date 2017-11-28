@@ -59,7 +59,7 @@
     "width": 700
   },
   "datePublished": "2016-02-17T08:00:00+08:00",
-  "dateModified": "2017-08-30T08:00:00+08:00",
+  "dateModified": "2017-11-28T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -101,7 +101,7 @@
       <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/info.css>
       <ul class=info>
         <li>created_at: <time class=created_at datetime=2016-02-17>2016-02-17</time>
-        <li>updated_at: <time class=updated_at datetime=2017-08-30>2017-08-30</time>
+        <li>updated_at: <time class=updated_at datetime=2017-11-28>2017-11-28</time>
         <li class=tags>tags: [<a href='/tags/zopfli.html'>zopfli</a>,<a href='/tags/brotli.html'>brotli</a>,<a href='/tags/http.html'>http</a>,<a href='/tags/performance.html'>performance</a>]
       </ul>
 
@@ -251,7 +251,7 @@
           </tbody>
         </table><p>この結果だと <code translate="no">-i20</code> 以上は誤差のようである。
         <p>ただ、開発用の Mac では少し違う結果が出たりもしたため、結果 <code translate="no">i=30</code> くらいに落ち着いた。
-        <p>また、 <a href="//jxck.io/assets/img/jxck.webp">WebP</a> と <a href="//jxck.io/assets/img/jxck.png">PNG</a> の画像ファイルでも検証したところ、以下のようになった。
+        <p>また、 <a href="https://jxck.io/assets/img/jxck.webp">WebP</a> と <a href="https://jxck.io/assets/img/jxck.png">PNG</a> の画像ファイルでも検証したところ、以下のようになった。
         <table>
           <thead>
             <tr>
@@ -293,7 +293,7 @@
       <p>動作は、 HTTP ヘッダで確認できる。
       <p><picture>
           <source type=image/webp srcset=zopfli.webp#656x463>
-          <img src=zopfli.png#656x463 alt="Content-Encoding Support Before/After" title="Content-Encoding ヘッダの確認">
+          <img src=zopfli.png#656x463 alt="圧縮が有効である場合、 content-encoding: gzip が追加されていることを確認" title="Content-Encoding Support Before/After">
           </picture>
       <p>また、一部は h2o の mruby-handler で動的な生成をしているが、 <code translate="no">gzip</code> ディレクティブの効果は未検証なので設定していない。
       <p>本サイトの中で、 <code translate="no">.html</code>, <code translate="no">.css</code>, <code translate="no">.js</code> で終わるような URL は、 <code translate="no">.gz</code> を後ろに付けると zopfli 圧縮版が取得できるので、興味があれば試してみて欲しい。
@@ -304,7 +304,7 @@
       <p>また Google は <a href="https://github.com/google/brotli">brotli</a> という圧縮フォーマットも持っている。
       <p>こちらは、 gzip などとの互換は無いため、クライアントも対応しないと使うことはできない。
       <p>新しいフォーマットとして、 <a href="https://tools.ietf.org/html/draft-alakuijala-brotli-08">IETF へのドラフトの提出</a> もなされている。
-      <p>現在は <a href="https://plus.google.com/u/0/+IlyaGrigorik/posts/X9ogn4fLtHL">Chrome が HTTPS のみでサポート</a> していおり、 Canary で <code translate="no">chrome://flags#brotli</code> を有効にすると、 <code translate="no">Accept-Encoding: br</code> が追加されるので、サーバはこれを見て brotli で圧縮したファイルを返すことができる。
+      <p>現在は <a href="https://plus.google.com/u/0/+IlyaGrigorik/posts/X9ogn4fLtHL">Chrome が HTTPS のみでサポート</a> していおり、 Canary で <a href="chrome://flags#brotli">chrome://flags#brotli</a> を有効にすると、 <code translate="no">Accept-Encoding: br</code> が追加されるので、サーバはこれを見て brotli で圧縮したファイルを返すことができる。
       <p>ほとんどのブラウザが対応している gzip と違い、まだ対応ブラウザも少なく、 H2O も対応していないため <code translate="no">Accept-Encoding</code> での判断を自分でハンドラに書く必要がある。
       <p>H2O には既に brotli への対応を求める issue が上がっているので、対応したらそこでまた検証しようと思う。
       <p><a href="https://github.com/h2o/h2o/issues/660">Feature request: file.send-brotli #660</a>

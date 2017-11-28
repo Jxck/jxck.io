@@ -52,7 +52,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-04-16T08:00:00+08:00",
-  "dateModified": "2017-08-30T08:00:00+08:00",
+  "dateModified": "2017-11-28T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -604,7 +604,7 @@ th:last-child, td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-04-16>2016-04-16</time>
-    <li>updated_at: <time class=updated_at datetime=2017-08-30>2017-08-30</time>
+    <li>updated_at: <time class=updated_at datetime=2017-11-28>2017-11-28</time>
     <li class=tags>tags: [<a href='/tags/swr.html'>swr</a>,<a href='/tags/http.html'>http</a>,<a href='/tags/cache.html'>cache</a>,<a href='/tags/performance.html'>performance</a>]
   </ul>
 
@@ -667,22 +667,12 @@ th:last-child, td:last-child {
           <dt>ETag
           <dd>そのリソースを一意に特定する値、要するにリソースのハッシュ値
           <dt>Last-Modified
-          <dd>そのリソースが最後に更新されたタイムスタンプ
-        </dl>
-        <p>この値を保存したブラウザは、同じ URL へのリクエストに、キャッシュしたリソースに付与されていた値を設定してサーバに問い合わせる。
-        <p>サーバは、リクエストされたリソースについて各値を検証する。
-        <dl>
+          <dd>そのリソースが最後に更新されたタイムスタンプ。この値を保存したブラウザは、同じ URL へのリクエストに、キャッシュしたリソースに付与されていた値を設定してサーバに問い合わせる。 サーバは、リクエストされたリソースについて各値を検証する。
           <dt>If-Non-Match
           <dd>ETag で受け取った値を付与、サーバはその値と現在のリソースの値を比較
           <dt>If-Modified-Since
-          <dd>Last-Modified で受け取った値を付与、サーバはリソースの最終更新日を比較
+          <dd>Last-Modified で受け取った値を付与、サーバはリソースの最終更新日を比較 これによって、ブラウザがキャッシュしたリソースが、まだ新鮮であるかどうかをサーバが判断できる。 新鮮ならば <code translate="no">304 Not Modified</code> を返すことで、ブラウザにキャッシュが再利用できることを伝える。 新鮮でなければ新しいリソースをレスポンスし、キャッシュは更新される。 この仕組みは、キャッシュが有効と分かればレスポンスボディが空になるため、ペイロードサイズが大幅に減る。 キャッシュが古い場合は、常に新しいリソースを提供できるため、更新が多いリソースで、最新のコンテンツを提供する場合に使用できる。 ただし、あくまでサーバへの問い合わせ自体は発生するため、ラウンドトリップ自体の削減にはならない。
         </dl>
-        <p>これによって、ブラウザがキャッシュしたリソースが、まだ新鮮であるかどうかをサーバが判断できる。
-        <p>新鮮ならば <code translate="no">304 Not Modified</code> を返すことで、ブラウザにキャッシュが再利用できることを伝える。
-        <p>新鮮でなければ新しいリソースをレスポンスし、キャッシュは更新される。
-        <p>この仕組みは、キャッシュが有効と分かればレスポンスボディが空になるため、ペイロードサイズが大幅に減る。
-        <p>キャッシュが古い場合は、常に新しいリソースを提供できるため、更新が多いリソースで、最新のコンテンツを提供する場合に使用できる。
-        <p>ただし、あくまでサーバへの問い合わせ自体は発生するため、ラウンドトリップ自体の削減にはならない。
       </section>
     </section>
     <section>
@@ -702,7 +692,7 @@ th:last-child, td:last-child {
         <pre><code translate="no">Cache-Control: max-age=3600;</code></pre>
         <p>すると、 fetch したレスポンスは 3600s の間は <strong>fresh</strong> とみなされ、その期間はキャッシュヒットする。
         <p>しかし、 3600s をすぎるとキャッシュは <strong>stale</strong> とみなされ破棄し、次のリクエストで fetch が走る。
-        <p><amp-img layout=responsive src=max-age.svg#552x352 alt="max-age" title="max-age header" width=552 height=352>
+        <p><amp-img layout=responsive src=max-age.svg#552x352 alt="max-age の期間はキャッシュがヒットし、期間を過ぎると取得し直す" title="max-age header flow" width=552 height=352>
       </section>
       <section>
         <h3 id="stale-while-revalidate"><a href="#stale-while-revalidate">stale-while-revalidate</a></h3>
@@ -714,7 +704,7 @@ th:last-child, td:last-child {
         <p>なんらかの理由で 360s の間に validate が完了しなければ、キャッシュを <strong>true stale</strong> とみなして破棄し、次のリクエストで fetch が走る。
         <p><code translate="no">stale-while-revalidate</code> の時間が過ぎれば必ず fetch が発生するということは、従来設定していた <code translate="no">max-age</code> = <code translate="no">max-age</code> + <code translate="no">stale-while-revalidate</code> の時間と設定すれば、従来との差異はキャッシュの新しさだけになる。
         <p>したがって、この設定からであれば、導入はそこまで難しく無いと考えられる。
-        <p><amp-img layout=responsive src=stale-while-revalidate.svg#552x352 alt="stale-while-revalidate" title="stale-while-revalidate header" width=552 height=352>
+        <p><amp-img layout=responsive src=stale-while-revalidate.svg#552x352 alt="fresh で無くなってからも、 while-revalidate の期間は fetch に対し stale なキャッシュをヒットさせし、裏で更新する" title="stale-while-revalidate header flow" width=552 height=352>
       </section>
       <section>
         <h3 id="stale-if-error"><a href="#stale-if-error">stale-if-error</a></h3>
@@ -725,7 +715,7 @@ th:last-child, td:last-child {
         <p>しかし、もしその fetch がサーバの 500 やネットワークエラーにより失敗した場合は、 360s 間は stale cache を使用しても良い。
         <p>これにより、ブラウザのエラー画面が表示されるのを防ぐことができる。
         <p>もちろん、上記二つは組み合わせて使うことができる。
-        <p><amp-img layout=responsive src=stale-if-error.svg#552x352 alt="stale-if-error" title="stale-if-erro header" width=552 height=352>
+        <p><amp-img layout=responsive src=stale-if-error.svg#552x352 alt="fresh で無くなってからも、オリジンがエラーを返す場合は stale なキャッシュをヒットさせる" title="stale-if-erro header" width=552 height=352>
       </section>
     </section>
     <section>
@@ -740,7 +730,7 @@ th:last-child, td:last-child {
       <pre><code translate="no">Cache-Control: max-age=5, stale-while-revalidate=10, stale-if-error=15</code></pre>
       <p>以下にデモのキャプチャを用意した。 Chrome の dev tools とサーバ側のアクセスログを表示している。
       <p>サーバへのアクセスが発生し表示が更新されているが、全てキャッシュがヒットしていることが分かるだろう。
-      <p><amp-img layout=responsive src=stale-while-revalidate-demo.gif#1000x510 alt="stale-while-revalidate-demo" title="stale-while-revalidate demo" width=1000 height=510>
+      <p><amp-img layout=responsive src=stale-while-revalidate-demo.gif#1000x510 alt="statle-while-revalidate の期間はキャッシュを利用し、裏で更新が行われている" title="stale-while-revalidate demo gif" width=1000 height=510>
     </section>
     <section>
       <h2 id="SwR+を用いたキャッシュ戦略の考察"><a href="#SwR+を用いたキャッシュ戦略の考察">SwR を用いたキャッシュ戦略の考察</a></h2>
@@ -768,7 +758,7 @@ th:last-child, td:last-child {
         <h3 id="1+year+fresh/stale+cache"><a href="#1+year+fresh/stale+cache">1 year fresh/stale cache</a></h3>
         <pre><code translate="no">Cache-Control: max-age=15768000, stale-while-revalidate=15768000</code></pre>
         <p>両方を半年ずつ設定した場合、半年ずつ <strong>fresh</strong> / <strong>stale</strong> になる。
-        <p>この場合 <code translate="no">stale-while-revalidate</code> に <strong>*対応していないブラウザ</strong> でも、半年はキャッシュが効く。
+        <p>この場合 <code translate="no">stale-while-revalidate</code> に <strong>対応していないブラウザ</strong> でも、半年はキャッシュが効く。
         <p>まだ <code translate="no">stale-while-revalidate</code> の実装が行き渡らないうちは、こうした両方での指定も考慮すべきだろう。
         <p><code translate="no">max-age</code> の割合を、リソースのコンテンツ頻度などを元に考慮することで、サーバへの負荷とキャッシュの鮮度のバランスを取ることができる。
       </section>

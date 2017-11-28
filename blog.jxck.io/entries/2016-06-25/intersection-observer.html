@@ -59,7 +59,7 @@
     "width": 700
   },
   "datePublished": "2016-06-25T08:00:00+08:00",
-  "dateModified": "2017-08-30T08:00:00+08:00",
+  "dateModified": "2017-11-28T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -101,7 +101,7 @@
       <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/info.css>
       <ul class=info>
         <li>created_at: <time class=created_at datetime=2016-06-25>2016-06-25</time>
-        <li>updated_at: <time class=updated_at datetime=2017-08-30>2017-08-30</time>
+        <li>updated_at: <time class=updated_at datetime=2017-11-28>2017-11-28</time>
         <li class=tags>tags: [<a href='/tags/intersection%20observer.html'>intersection observer</a>,<a href='/tags/scroll.html'>scroll</a>,<a href='/tags/performance.html'>performance</a>]
       </ul>
 
@@ -129,7 +129,7 @@
       <section>
         <h3 id="図"><a href="#図">図</a></h3>
         <p>先に全体図を示す。今回は上下方向にのみ注目する。
-        <p><img src=dom-size-potision-api.svg#700x818 alt="dom-size-potision-api" title="DOM のサイズと位置に関する API" width=700 height=818>
+        <p><img src=dom-size-potision-api.svg#700x818 alt="scrollTop, getBoundingClientRect, height などの相関関係の解説" title="DOM のサイズと位置に関する API" width=700 height=818>
       </section>
       <section>
         <h3 id="スクロール量(scrollTop)"><a href="#スクロール量(scrollTop)">スクロール量(scrollTop)</a></h3>
@@ -270,7 +270,7 @@ observer.observe(target);</code></pre>
               <td class=align-left>target</td>
             </tr>
           </tbody>
-        </table><p><img src=intersection-observer.svg#500x357 alt="intersection-observer" title="Intersection Observer API" width=500 height=357>
+        </table><p><img src=intersection-observer.svg#500x357 alt="IntersectionObserver の各プロパティが表す部分" title="Intersection Observer API" width=500 height=357>
         <p>特に <code translate="no">change.intersectionRect</code> および <code translate="no">change.intersectionRatio</code> は、自分で計算するとボトルネックになりがちである。
         <p>第二引数には、オプションとして三つのプロパティを設定したオブジェクトを指定できる。
         <pre class=js><code translate="no">let observer = new IntersectionObserver((changes) =&gt; {

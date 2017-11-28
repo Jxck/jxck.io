@@ -59,7 +59,7 @@
     "width": 700
   },
   "datePublished": "2017-10-09T08:00:00+08:00",
-  "dateModified": "2017-10-09T08:00:00+08:00",
+  "dateModified": "2017-11-28T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -101,7 +101,7 @@
       <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/info.css>
       <ul class=info>
         <li>created_at: <time class=created_at datetime=2017-10-09>2017-10-09</time>
-        <li>updated_at: <time class=updated_at datetime=2017-10-09>2017-10-09</time>
+        <li>updated_at: <time class=updated_at datetime=2017-11-28>2017-11-28</time>
         <li class=tags>tags: [<a href='/tags/rhythmic%20sizing.html'>rhythmic sizing</a>,<a href='/tags/vertical%20rhythm.html'>vertical rhythm</a>,<a href='/tags/css.html'>css</a>]
       </ul>
 
@@ -126,7 +126,7 @@
     <section>
       <h2 id="Readability+of+Rhythm"><a href="#Readability+of+Rhythm">Readability of Rhythm</a></h2>
       <p>Vertical Rhythm の効果については、以下のように教えて頂いた。
-      <blockquote>Readability の研究からすると、Vertical Rhythm があたっていると、読むスピードが上がり、読後に質問すると内容を覚えていたり理解していたりする率が上がる、とされています。</blockquote>
+      <blockquote>Readability の研究からすると、 Vertical Rhythm があたっていると、読むスピードが上がり、読後に質問すると内容を覚えていたり理解していたりする率が上がる、とされています。</blockquote>
       <p>つまり、本サイトのような、専門的な内容を扱うテキストを中心としたコンテンツでは、効果を期待できそうだ。
       <p>また、本サイトの特徴上、アクセスするユーザは Chrome が多く、 <code translate="no">#enable-experimental-web-platform-features</code> を有効にしている可能性も期待しやすい。
       <p>特に入れることによるデメリットもなさそうなので、本サイトには <code translate="no">@support</code> で CSS を切り替えつつ、試験的に適用することにした。
@@ -145,7 +145,7 @@
       <p>例えば以下のようなページがあったとする。
       <p><picture>
           <source type=image/webp srcset=single-no-rhythm.webp#500x600>
-          <img src=single-no-rhythm.png#500x600 alt="single-no-rhythm" title="single column with no vertical rhythm">
+          <img src=single-no-rhythm.png#500x600 alt="Vertical Rhythm を適用しないシングルカラムでは、各行の高さ/余白のリズムが安定しない" title="single column with no vertical rhythm">
           </picture>
       <p>ここでは、わかりやすくするため、 <code translate="no">font-size</code> を <code translate="no">16px</code> とし、 <code translate="no">&lt;p&gt;</code> のマージンは前後とも <code translate="no">24px</code> としている。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
@@ -170,7 +170,7 @@ p {
       <p><code translate="no">&lt;p&gt;</code> のマージンは同じく(相殺含め) <code translate="no">24px</code> に揃っているので、表示は以下のようにグリッドに揃う。
       <p><picture>
           <source type=image/webp srcset=single-with-rhythm.webp#500x600>
-          <img src=single-with-rhythm.png#500x600 alt="single-with-rhythm" title="single column with vertical rhythm">
+          <img src=single-with-rhythm.png#500x600 alt="Vertical Rhythm を適用したシングルカラムでは、各行の高さ/余白が揃いリズムが安定する" title="single column with vertical rhythm">
           </picture>
       <p>途中にある <code translate="no">&lt;img&gt;</code> もインライン要素なので、同じくリズムに載っていることがわかるだろう。
     </section>
@@ -186,7 +186,7 @@ p {
       <p>結果は以下である。
       <p><picture>
           <source type=image/webp srcset=multi-with-rhythm.webp#1680x700>
-          <img src=multi-with-rhythm.png#1680x700 alt="multi-with-rhythm" title="multi column with vertical rhythm">
+          <img src=multi-with-rhythm.png#1680x700 alt="Vertical Rhythm を適用したマルチカラムレイアウトでは、隣同士での高さも揃いリズムが安定する" title="multi column with vertical rhythm">
           </picture>
     </section>
     <section>
@@ -206,7 +206,7 @@ p {
       <p>本サイトは、デモと違い 1 column かつ日本語のコンテンツであり、 Grid の基準になる値もデモほど揃っていない。
       <p>こうしたコンテンツでの考慮点も教えて頂いた。
       <blockquote>特に１カラムにおいては、厳密にすべてをリズムに載せる必要はなく、また特に日本語では良くないとされています。リズムは、次の行がリズムに乗っていることで次の行の行頭を探しやすくする、という目的ですので、大きなブロックや表はリズムに乗る必要がありません。</blockquote>
-      <blockquote>原則、行幅が広い時には、行がラップするときに視線が右端から左端まで移動する距離が長くなるので、行間は広めに取ります。でもあまり広げると、かっこわるいし、スペースも無駄なので、Vertical Rhythm で視線移動を補完してあげる、ということなんです。</blockquote>
+      <blockquote>原則、行幅が広い時には、行がラップするときに視線が右端から左端まで移動する距離が長くなるので、行間は広めに取ります。でもあまり広げると、かっこわるいし、スペースも無駄なので、 Vertical Rhythm で視線移動を補完してあげる、ということなんです。</blockquote>
       <p>そこで、以下のような方針で適用する。
       <p>まず <code translate="no">line-height: 15</code> とし、これを基準に <code translate="no">&lt;article&gt;</code> 全体に Rhythm を当てる。
       <pre class=css><code translate="no">article {

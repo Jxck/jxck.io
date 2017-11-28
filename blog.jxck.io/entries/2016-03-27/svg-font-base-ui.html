@@ -59,7 +59,7 @@
     "width": 700
   },
   "datePublished": "2016-03-27T08:00:00+08:00",
-  "dateModified": "2017-08-30T08:00:00+08:00",
+  "dateModified": "2017-11-28T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -101,7 +101,7 @@
       <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/info.css>
       <ul class=info>
         <li>created_at: <time class=created_at datetime=2016-03-27>2016-03-27</time>
-        <li>updated_at: <time class=updated_at datetime=2017-08-30>2017-08-30</time>
+        <li>updated_at: <time class=updated_at datetime=2017-11-28>2017-11-28</time>
         <li class=tags>tags: [<a href='/tags/svg.html'>svg</a>,<a href='/tags/image.html'>image</a>,<a href='/tags/performance.html'>performance</a>]
       </ul>
 
@@ -114,10 +114,10 @@
       <p>また、装飾に画像ではなく CSS の contents を利用することで、ローカルフォントデータを利用し、画像転送を減らす工夫にも言及する。
       <p>画像最適化シリーズ第 4 回目のエントリである。
       <ul>
-        <li><a href="/entries/2016-03-24/optimize-image.html">画像最適化戦略 PNG/JPEG 編</a>
-        <li><a href="/entries/2016-03-25/picture.html">画像最適化戦略 Picture 編</a>
-        <li><a href="/entries/2016-03-26/webp.html">画像最適化戦略 WebP 編</a>
-        <li><a href="/entries/2016-03-27/svg-font-base-ui.html">> 画像最適化戦略 SVG/Font 編</a>
+        <li><a href="https://blog.jxck.io/entries/2016-03-24/optimize-image.html">画像最適化戦略 PNG/JPEG 編</a>
+        <li><a href="https://blog.jxck.io/entries/2016-03-25/picture.html">画像最適化戦略 Picture 編</a>
+        <li><a href="https://blog.jxck.io/entries/2016-03-26/webp.html">画像最適化戦略 WebP 編</a>
+        <li><a href="https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html">> 画像最適化戦略 SVG/Font 編</a>
       </ul>
     </section>
     <section>
@@ -128,13 +128,13 @@
       <p>写真などはラスタ形式を利用するが、自作の画像やアイコンなどについてはベクタ形式にすることで、サイズを小さくできる場合が多い。
       <p>またパス情報を元に描画するため、どんなに拡大してもラスタ形式のように画像が荒れることはない。
       <p>以下は元サイズの 2 倍に拡大した PNG 画像(<strong>左</strong>)と、同じ大きさで表示した SVG 画像(<strong>右</strong>)を比較したスクリーンショットである。 PNG は文字の周囲が荒れているのが分かるだろう。
-      <p><a href="png-svg.png"><picture>
+      <p><picture>
           <source type=image/webp srcset=png-svg.webp#1038x212>
           <img src=png-svg.png#1038x212 alt="2 倍に拡大した PNG と同じ大きさの SVG の比較" title="png-svg">
-          </picture></a>
-      <p>このため、 <a href="/entries/2016-03-25/picture.html">画像最適化戦略 Picture 編</a> で実施したようなデバイス解像度による複数画像の出し分けなども不要になる。
+          </picture>
+      <p>このため、 <a href="https://blog.jxck.io/entries/2016-03-25/picture.html">画像最適化戦略 Picture 編</a> で実施したようなデバイス解像度による複数画像の出し分けなども不要になる。
       <p>本サイトでは、このメリットを活かし、 UI コンポーネントは基本的にベクタフォーマットである SVG および Font を用いて構築することとした。
-      <p>なお、現時点でほとんどのブラウザが  <a href="http://caniuse.com/#search=svg">SVG に対応</a> している。
+      <p>なお、現時点でほとんどのブラウザが  <a href="https://caniuse.com/#search=svg">SVG に対応</a> している。
     </section>
     <section>
       <h2 id="SVG"><a href="#SVG">SVG</a></h2>
@@ -250,7 +250,7 @@
       <p>こうして手書きした SVG は以下にソースとともに掲載している。
       <p>ソースは観賞用であるため、インデントや改行などは削ってない。
       <p>それ以外で、削れそうな部分があれば今後も削っていく予定である。
-      <p><a href="//labs.jxck.io/svg">labs.jxck.io/svg</a>
+      <p><a href="https\://labs.jxck.io/svg">https://labs.jxck.io/svg</a>
       <p>SVG の弱点として、 HTML に埋め込んだ SVG でないと CSS で色を指定できないという問題がある。
       <p>本サイトの SVG は、外部リソースとして <code translate="no">&lt;img&gt;</code> で読んでいるため、色は SVG 自体に書いて作成している。
       <p>なお、 404 ページや 500 ページを作る際にデザインを考えていたところ、この SVG にリンク貼って返せばそれで良いのでは?と思い、今は単にステータスコードを書いた SVG を返すようにしている。
