@@ -4,7 +4,7 @@
 
 Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要となるリソースを教える」ことで、投機的な取得を行う API 群である。
 
-[https://w3c.github.io/resource-hints/](https://w3c.github.io/resource-hints/)
+[https\://w3c.github.io/resource-hints/](https://w3c.github.io/resource-hints/)
 
 主に以下がある。
 
@@ -131,7 +131,7 @@ prefetch 可能なリソースのみからなるページならば、ページ�
 
 どの API を選ぶフローは、接続するドメインが分かっている前提であれば、以下のように考えることができる。
 
-![resource-hints](resource-hints.svg#546x608 "選択フロー")
+![接続する URL まで決まっている N -> dns-prefetch, Y -> 静的リソースか、事前取得可能である N -> preconnect, Y -> prefetch 可能かリソースだけでなる N -> prefetch, Y -> prerender](resource-hints.svg#546x608 "Resource Hints API の選択フロー")
 
 
 ## サイトへの適用
@@ -149,6 +149,6 @@ prefetch 可能なリソースのみからなるページならば、ページ�
 
 名前解決の方は確認が難しいので、後者のみ確認結果を載せる。
 
-Chrome の場合は Prerender の状況について `chrome://net-internals` から確認できる。
+Chrome の場合は Prerender の状況について [chrome\://net-internals](chrome\://net-internals) から確認できる。
 
-[![net-internals-prerender](net-internals-prerender.png#1058x299 "chrome://net-internals#prerender")](net-internals-prerender.png)
+![chrome://net-internals#prerender による Prerender の状況確認](net-internals-prerender.png#1058x299 "chrome://net-internals#prerender")

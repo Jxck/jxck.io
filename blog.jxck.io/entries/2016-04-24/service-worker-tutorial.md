@@ -86,7 +86,7 @@ self.addEventListener('fetch', (e) => {
 });
 ```
 
-DEMO: [https://labs.jxck.io/service-worker/claim/index.html](https://labs.jxck.io/service-worker/claim/index.html)
+DEMO: [https\://labs.jxck.io/service-worker/claim/index.html](https://labs.jxck.io/service-worker/claim/index.html)
 
 
 ## controllerchange
@@ -137,7 +137,7 @@ self.addEventListener('fetch', (e) => {
 });
 ```
 
-DEMO: [https://labs.jxck.io/service-worker/controllerchange/](https://labs.jxck.io/service-worker/controllerchange/)
+DEMO: [https\://labs.jxck.io/service-worker/controllerchange/](https://labs.jxck.io/service-worker/controllerchange/)
 
 
 ## updatefound
@@ -186,7 +186,7 @@ self.addEventListener('fetch', (e) => {
 });
 ```
 
-DEMO: [https://labs.jxck.io/service-worker/updatefound/](https://labs.jxck.io/service-worker/updatefound/)
+DEMO: [https\://labs.jxck.io/service-worker/updatefound/](https://labs.jxck.io/service-worker/updatefound/)
 
 
 ## update()
@@ -243,7 +243,7 @@ self.addEventListener('push', () => {
 });
 ```
 
-DEMO: [https://labs.jxck.io/service-worker/update/](https://labs.jxck.io/service-worker/update/)
+DEMO: [https\://labs.jxck.io/service-worker/update/](https://labs.jxck.io/service-worker/update/)
 
 
 ## backgroundsync
@@ -285,7 +285,7 @@ self.addEventListener('sync', (e) => {
 });
 ```
 
-DEMO: [https://labs.jxck.io/service-worker/backgroundsync/](https://labs.jxck.io/service-worker/backgroundsync/)
+DEMO: [https\://labs.jxck.io/service-worker/backgroundsync/](https://labs.jxck.io/service-worker/backgroundsync/)
 
 
 ## push
@@ -424,7 +424,7 @@ self.addEventListener('notificationclick', (e) => {
 
 ### 4.push.js
 
-使用したモジュール: [https://github.com/web-push-libs/web-push](https://labs.jxck.io/service-worker/push/)
+使用したモジュール: [https\://github.com/web-push-libs/web-push](https://labs.jxck.io/service-worker/push/)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/hIliK4l4wqw" allowfullscreen></iframe>
 
@@ -456,11 +456,11 @@ push.sendNotification(data.endpoint, {
 });
 ```
 
-DEMO(push は飛ばしていません): [https://labs.jxck.io/service-worker/push/](https://labs.jxck.io/service-worker/push/)
+DEMO(push は飛ばしていません): [https\://labs.jxck.io/service-worker/push/](https://labs.jxck.io/service-worker/push/)
 
 
 ## 図
 
 映像中で使用した図です
 
-![service-worker-lifecycle](service-worker-lifecycle.svg#840x450 "service worker lifecycle")
+![service worker のライフサイクル (installing -> waiting -> active -> redundunt) の遷移図](service-worker-lifecycle.svg#840x450 "service worker lifecycle")

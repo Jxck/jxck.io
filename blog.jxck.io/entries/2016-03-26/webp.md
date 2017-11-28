@@ -8,10 +8,10 @@
 
 画像最適化シリーズ第 3 回目のエントリである。
 
-+ [画像最適化戦略 PNG/JPEG 編](/entries/2016-03-24/optimize-image.html)
-+ [画像最適化戦略 Picture 編](/entries/2016-03-25/picture.html)
-+ [> 画像最適化戦略 WebP 編](/entries/2016-03-26/webp.html)
-+ [画像最適化戦略 SVG/Font 編](/entries/2016-03-27/svg-font-base-ui.html)
++ [画像最適化戦略 PNG/JPEG 編](https://blog.jxck.io/entries/2016-03-24/optimize-image.html)
++ [画像最適化戦略 Picture 編](https://blog.jxck.io/entries/2016-03-25/picture.html)
++ [> 画像最適化戦略 WebP 編](https://blog.jxck.io/entries/2016-03-26/webp.html)
++ [画像最適化戦略 SVG/Font 編](https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html)
 
 
 ## WebP
@@ -77,13 +77,13 @@ Usage:
 
 まずは、デフォルトの 80 で比較していく。
 
-- [jxck.png ](/assets/img/jxck.png) : 4061 byte
-- [jxck.webp](/assets/img/jxck.webp): 1810 byte
+- [jxck.png ](https://jxck.io/assets/img/jxck.png) : 4061 byte
+- [jxck.webp](https://jxck.io/assets/img/jxck.webp): 1810 byte
 
 
 ## `<picture>` での WebP の指定
 
-ブラウザにおける [WebP の対応はまだまだ限定的](http://caniuse.com/#feat=webp) であるため、非対応ブラウザには PNG/JPEG/GIF などを送る必要がある。
+ブラウザにおける [WebP の対応はまだまだ限定的](https://caniuse.com/#feat=webp) であるため、非対応ブラウザには PNG/JPEG/GIF などを送る必要がある。
 
 この方法として、 JS による補完や、 User-Agent を用いたサーバサイドでの分岐などが紹介される場合がある。
 
@@ -101,7 +101,7 @@ Usage:
 </picture>
 ```
 
-この場合、 WebP に対応しているが `<picture>` に対応していないブラウザがあるのかが気になるところだが、現状 [picture](http://caniuse.com/#search=picture) に対応し [webp](http://caniuse.com/#search=webp) に対応していないブラウザは無い。
+この場合、 WebP に対応しているが `<picture>` に対応していないブラウザがあるのかが気になるところだが、現状 [picture](https://caniuse.com/#search=picture) に対応し [webp](https://caniuse.com/#search=webp) に対応していないブラウザは無い。
 
 したがって `<picture>` に対応していない(= WebP も非対応)ブラウザに向けたフォールバックとして、 `<img>` には PNG を指定する。
 

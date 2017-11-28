@@ -91,4 +91,4 @@ Link ヘッダや、タグを用いた Service Worker の登録が可能にな�
 
 ところが、もし `./random` のような API が 3rd Party API つまり 別のオリジンだった場合はどうだろうか。
 
-そこで出て来るのが、次に解説する [foreign fetch](/entries/2016-12-12/foreign-fetch.html) である。
+そこで出て来るのが、次に解説する [foreign fetch](https://blog.jxck.io/entries/2016-12-12/foreign-fetch.html) である。

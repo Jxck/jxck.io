@@ -77,9 +77,9 @@ TLD としての `*.example` 以外に、以下の 3 つの STD も予約され�
 
 また、この 3 つは実際にインターネット上で HTTP をサーブしている。
 
-- [http://example.com](http://example.com)
-- [http://example.net](http://example.net)
-- [http://example.org](http://example.org)
+- [http\://example.com](http://example.com)
+- [http\://example.net](http://example.net)
+- [http\://example.org](http://example.org)
 
 ちなみに、これらのアドレスは実は結構便利な作りをしている。
 
@@ -158,6 +158,6 @@ RFC6761 の他にもこうした用途のドメインはいくつかある。
 
 詳細は下記参照
 
-- [https://www.iana.org/domains/reserved](https://www.iana.org/domains/reserved)
-- [https://jprs.jp/doc/rule/wideusejp-reserved.html](https://jprs.jp/doc/rule/wideusejp-reserved.html)
-- [https://jprs.jp/faq/use/](https://jprs.jp/faq/use/)
+- [https\://www.iana.org/domains/reserved](https://www.iana.org/domains/reserved)
+- [https\://jprs.jp/doc/rule/wideusejp-reserved.html](https://jprs.jp/doc/rule/wideusejp-reserved.html)
+- [https\://jprs.jp/faq/use/](https://jprs.jp/faq/use/)

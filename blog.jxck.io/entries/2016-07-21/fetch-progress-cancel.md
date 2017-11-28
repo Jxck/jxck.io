@@ -30,7 +30,7 @@ WHATWG が定義する Fetch API は、出たばかりの仕様では、途中�
 
 仕様が出たばかりの頃の解説は以前のブログに書いた、本エントリはここからの差分を記す。
 
-- [Fetch API 解説、または Web において "Fetch する" とは何か?](http://jxck.hatenablog.com/entry/whatwg-fetch)
+- [Fetch API 解説、または Web において "Fetch する" とは何か?](https://jxck.hatenablog.com/entry/whatwg-fetch)
 
 
 ## Promise API
@@ -214,7 +214,7 @@ fetch を含めて Promise を返す API は増加しつつあるため、 Cance
 
 Stream での progress と cancel は可能になったが、まだ **ブラウザが実装しているか** という問題もある。
 
-- [Fetch \| canuise](http://caniuse.com/#feat=fetch)
+- [Fetch \| canuise](https://caniuse.com/#feat=fetch)
 
 一方 XHR が無くなることはないため、今後も利用可能である。
 

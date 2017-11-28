@@ -33,7 +33,7 @@
 
 先に全体図を示す。今回は上下方向にのみ注目する。
 
-![dom-size-potision-api](dom-size-potision-api.svg#700x818 'DOM のサイズと位置に関する API')
+![scrollTop, getBoundingClientRect, height などの相関関係の解説](dom-size-potision-api.svg#700x818 "DOM のサイズと位置に関する API")
 
 
 ### スクロール量(scrollTop)
@@ -195,7 +195,7 @@ observer.observe(target);
 | `change.target`             | target                                |
 
 
-![intersection-observer](intersection-observer.svg#500x357 'Intersection Observer API')
+![IntersectionObserver の各プロパティが表す部分](intersection-observer.svg#500x357 "Intersection Observer API")
 
 特に `change.intersectionRect` および `change.intersectionRatio` は、自分で計算するとボトルネックになりがちである。
 

@@ -6,10 +6,10 @@
 
 画像最適化シリーズ第 1 回目のエントリである。
 
-+ [> 画像最適化戦略 PNG/JPEG 編](/entries/2016-03-24/optimize-image.html)
-+ [画像最適化戦略 Picture 編](/entries/2016-03-25/picture.html)
-+ [画像最適化戦略 WebP 編](/entries/2016-03-26/webp.html)
-+ [画像最適化戦略 SVG/Font 編](/entries/2016-03-27/svg-font-base-ui.html)
++ [> 画像最適化戦略 PNG/JPEG 編](https://blog.jxck.io/entries/2016-03-24/optimize-image.html)
++ [画像最適化戦略 Picture 編](https://blog.jxck.io/entries/2016-03-25/picture.html)
++ [画像最適化戦略 WebP 編](https://blog.jxck.io/entries/2016-03-26/webp.html)
++ [画像最適化戦略 SVG/Font 編](https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html)
 
 
 ## サイズ最適化
@@ -24,7 +24,7 @@
 
 また、見た目上の変化/劣化が生じなければ、減色や余計なメタ情報の削除などによって、サイズを削減できる場合がある。
 
-(Retina など High DPI 端末に向けたサイズの対応は、 [別エントリ](/entries/2016-03-25/picture.html) で記載する)
+(Retina など High DPI 端末に向けたサイズの対応は、 [別エントリ](https://blog.jxck.io/entries/2016-03-25/picture.html) で記載する)
 
 画像を表示する際に `<img>` や CSS に `width`, `height` を指定しなければ、画像本来のサイズで表示される。
 
@@ -52,7 +52,7 @@
 
 - [TinyPNG](https://tinypng.com/) (JPEG も対応している)
 - [JPEGMini](http://www.jpegmini.com/) (有料)
-- [pngquant](http://pngquant.org/) (CLI)
+- [pngquant](https://pngquant.org/) (CLI)
 
 
 ## ベースライン/プログレッシブ
@@ -74,7 +74,7 @@ JPEG は、大きい画像を送信する際に、ベースとなるデータを
 
 まず、前者のサイズについて、少し古いが Steve 先生の調査がある。
 
-[Image Optimization, Part 4: Progressive JPEG...Hot or Not?](http://yuiblog.com/blog/2008/12/05/imageopt-4/)
+[Image Optimization, Part 4: Progressive JPEG...Hot or Not?](https://yuiblog.com/blog/2008/12/05/imageopt-4/)
 
 あらゆる画像を二つの形式で保存した場合、サイズがそれぞれどうなるかを検証している。
 

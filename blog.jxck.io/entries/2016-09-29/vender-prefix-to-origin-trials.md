@@ -85,7 +85,7 @@ HTML5 時代には、特に実装が早い webkit/moz あたりを取り上げ�
 
 Vender Prefix は、 **「変更や消滅がありえる」ということを使う側に強制することができなかった** ため、本来の目的を果たすためには弱い仕組みだったといえる。
 
-![warning message for vender prefix at devtools](vender-prefix-warning.png#570x194 "vender prefix warning")
+![Veder Prefix 付きの API が呼ばれているため DevTools に警告(warning)が出ている](vender-prefix-warning.png#570x194 "vender prefix warning")
 
 また、 Prefix が付いていたのが、ベンダの独自拡張であったとしても、それに依存するサイトは同様の理由で産まれた。
 
@@ -137,7 +137,7 @@ Origin Trials は、その名の通り「**特定のオリジンにだけ、実�
 
 ## 利用の流れ
 
-今回は、以下のガイドに沿って、ブラウザの持つ新しい機能を、筆者の持つ新機能実験用オリジンである [https://labs.jxck.io](https://labs.jxck.io) でのみ使えるように、実際に申請をしながら解説する。
+今回は、以下のガイドに沿って、ブラウザの持つ新しい機能を、筆者の持つ新機能実験用オリジンである [https\://labs.jxck.io](https://labs.jxck.io) でのみ使えるように、実際に申請をしながら解説する。
 
 [Origin Trials Guide for Web Developers](https://github.com/jpchase/OriginTrials/blob/gh-pages/developer-guide.md)
 
@@ -168,7 +168,7 @@ Origin Trials の対象となる機能は、執筆時点で以下のとおりで
 
 申請は以下のフォームから行う。
 
-[http://bit.ly/OriginTrialSignup](http://bit.ly/OriginTrialSignup)
+[http\://bit.ly/OriginTrialSignup](http://bit.ly/OriginTrialSignup)
 
 - 使用者のメールアドレス
 - 使用する機能 (Foreign Fetch)

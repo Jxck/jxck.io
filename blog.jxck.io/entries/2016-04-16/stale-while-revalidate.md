@@ -94,11 +94,7 @@ ETag
 
 Last-Modified
 
-: そのリソースが最後に更新されたタイムスタンプ
-
-この値を保存したブラウザは、同じ URL へのリクエストに、キャッシュしたリソースに付与されていた値を設定してサーバに問い合わせる。
-
-サーバは、リクエストされたリソースについて各値を検証する。
+: そのリソースが最後に更新されたタイムスタンプ。この値を保存したブラウザは、同じ URL へのリクエストに、キャッシュしたリソースに付与されていた値を設定してサーバに問い合わせる。 サーバは、リクエストされたリソースについて各値を検証する。
 
 If-Non-Match
 
@@ -106,19 +102,7 @@ If-Non-Match
 
 If-Modified-Since
 
-: Last-Modified で受け取った値を付与、サーバはリソースの最終更新日を比較
-
-これによって、ブラウザがキャッシュしたリソースが、まだ新鮮であるかどうかをサーバが判断できる。
-
-新鮮ならば `304 Not Modified` を返すことで、ブラウザにキャッシュが再利用できることを伝える。
-
-新鮮でなければ新しいリソースをレスポンスし、キャッシュは更新される。
-
-この仕組みは、キャッシュが有効と分かればレスポンスボディが空になるため、ペイロードサイズが大幅に減る。
-
-キャッシュが古い場合は、常に新しいリソースを提供できるため、更新が多いリソースで、最新のコンテンツを提供する場合に使用できる。
-
-ただし、あくまでサーバへの問い合わせ自体は発生するため、ラウンドトリップ自体の削減にはならない。
+: Last-Modified で受け取った値を付与、サーバはリソースの最終更新日を比較 これによって、ブラウザがキャッシュしたリソースが、まだ新鮮であるかどうかをサーバが判断できる。 新鮮ならば `304 Not Modified` を返すことで、ブラウザにキャッシュが再利用できることを伝える。 新鮮でなければ新しいリソースをレスポンスし、キャッシュは更新される。 この仕組みは、キャッシュが有効と分かればレスポンスボディが空になるため、ペイロードサイズが大幅に減る。 キャッシュが古い場合は、常に新しいリソースを提供できるため、更新が多いリソースで、最新のコンテンツを提供する場合に使用できる。 ただし、あくまでサーバへの問い合わせ自体は発生するため、ラウンドトリップ自体の削減にはならない。
 
 
 ## Stale-While-Revalidate
@@ -151,7 +135,7 @@ Cache-Control: max-age=3600;
 
 しかし、 3600s をすぎるとキャッシュは **stale** とみなされ破棄し、次のリクエストで fetch が走る。
 
-![max-age](max-age.svg#552x352 "max-age header")
+![max-age の期間はキャッシュがヒットし、期間を過ぎると取得し直す](max-age.svg#552x352 "max-age header flow")
 
 
 ### stale-while-revalidate
@@ -175,7 +159,7 @@ Cache-Control: max-age=3600, stale-while-revalidate=360
 
 したがって、この設定からであれば、導入はそこまで難しく無いと考えられる。
 
-![stale-while-revalidate](stale-while-revalidate.svg#552x352 "stale-while-revalidate header")
+![fresh で無くなってからも、 while-revalidate の期間は fetch に対し stale なキャッシュをヒットさせし、裏で更新する](stale-while-revalidate.svg#552x352 "stale-while-revalidate header flow")
 
 
 ### stale-if-error
@@ -197,18 +181,18 @@ Cache-Control: max-age=3600, stale-if-error=360
 
 もちろん、上記二つは組み合わせて使うことができる。
 
-![stale-if-error](stale-if-error.svg#552x352 "stale-if-erro header")
+![fresh で無くなってからも、オリジンがエラーを返す場合は stale なキャッシュをヒットさせる](stale-if-error.svg#552x352 "stale-if-erro header")
 
 
 ## SwR のデモ
 
 執筆時点では、実装ブラウザは Chrome のみであり、フラグを有効にすることで使用できる。
 
-[chrome://flags/#enable-stale-while-revalidate](chrome://flags/#enable-stale-while-revalidate)
+[chrome\://flags/#enable-stale-while-revalidate](chrome://flags/#enable-stale-while-revalidate)
 
 以下に用意したデモページを用意した。
 
-[https://labs.jxck.io/stale-while-revalidate/](https://labs.jxck.io/stale-while-revalidate/)
+[https\://labs.jxck.io/stale-while-revalidate/](https://labs.jxck.io/stale-while-revalidate/)
 
 サーバは、アクセスの度に異なるシーケンス番号、タイムスタンプ、ランダムな文字列を返すようになっている。
 
@@ -225,7 +209,7 @@ Cache-Control: max-age=5, stale-while-revalidate=10, stale-if-error=15
 
 サーバへのアクセスが発生し表示が更新されているが、全てキャッシュがヒットしていることが分かるだろう。
 
-![stale-while-revalidate-demo](stale-while-revalidate-demo.gif#1000x510 'stale-while-revalidate demo')
+![statle-while-revalidate の期間はキャッシュを利用し、裏で更新が行われている](stale-while-revalidate-demo.gif#1000x510 "stale-while-revalidate demo gif")
 
 
 ## SwR を用いたキャッシュ戦略の考察
@@ -280,7 +264,7 @@ Cache-Control: max-age=15768000, stale-while-revalidate=15768000
 
 両方を半年ずつ設定した場合、半年ずつ **fresh** / **stale** になる。
 
-この場合 `stale-while-revalidate` に ***対応していないブラウザ** でも、半年はキャッシュが効く。
+この場合 `stale-while-revalidate` に **対応していないブラウザ** でも、半年はキャッシュが効く。
 
 まだ `stale-while-revalidate` の実装が行き渡らないうちは、こうした両方での指定も考慮すべきだろう。
 

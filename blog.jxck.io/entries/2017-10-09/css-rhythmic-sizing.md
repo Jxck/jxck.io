@@ -28,7 +28,7 @@ Chrome にフラグ付きで実装されたこの仕様を用いて、本サイ�
 
 Vertical Rhythm の効果については、以下のように教えて頂いた。
 
-> Readability の研究からすると、Vertical Rhythm があたっていると、読むスピードが上がり、読後に質問すると内容を覚えていたり理解していたりする率が上がる、とされています。
+> Readability の研究からすると、 Vertical Rhythm があたっていると、読むスピードが上がり、読後に質問すると内容を覚えていたり理解していたりする率が上がる、とされています。
 
 つまり、本サイトのような、専門的な内容を扱うテキストを中心としたコンテンツでは、効果を期待できそうだ。
 
@@ -56,7 +56,7 @@ CSS の機能は Origin Trials ではないため、 [chrome://flags/#enable-exp
 
 例えば以下のようなページがあったとする。
 
-![single-no-rhythm](single-no-rhythm.png#500x600 'single column with no vertical rhythm')
+![Vertical Rhythm を適用しないシングルカラムでは、各行の高さ/余白のリズムが安定しない](single-no-rhythm.png#500x600 "single column with no vertical rhythm")
 
 ここでは、わかりやすくするため、 `font-size` を `16px` とし、 `<p>` のマージンは前後とも `24px` としている。
 
@@ -92,7 +92,7 @@ p {
 
 `<p>` のマージンは同じく(相殺含め) `24px` に揃っているので、表示は以下のようにグリッドに揃う。
 
-![single-with-rhythm](single-with-rhythm.png#500x600 'single column with vertical rhythm')
+![Vertical Rhythm を適用したシングルカラムでは、各行の高さ/余白が揃いリズムが安定する](single-with-rhythm.png#500x600 "single column with vertical rhythm")
 
 途中にある `<img>` もインライン要素なので、同じくリズムに載っていることがわかるだろう。
 
@@ -114,7 +114,7 @@ p {
 
 結果は以下である。
 
-![multi-with-rhythm](multi-with-rhythm.png#1680x700 'multi column with vertical rhythm')
+![Vertical Rhythm を適用したマルチカラムレイアウトでは、隣同士での高さも揃いリズムが安定する](multi-with-rhythm.png#1680x700 "multi column with vertical rhythm")
 
 
 ## Block Step
@@ -139,7 +139,7 @@ p {
 
 > 特に１カラムにおいては、厳密にすべてをリズムに載せる必要はなく、また特に日本語では良くないとされています。リズムは、次の行がリズムに乗っていることで次の行の行頭を探しやすくする、という目的ですので、大きなブロックや表はリズムに乗る必要がありません。
 
-> 原則、行幅が広い時には、行がラップするときに視線が右端から左端まで移動する距離が長くなるので、行間は広めに取ります。でもあまり広げると、かっこわるいし、スペースも無駄なので、Vertical Rhythm で視線移動を補完してあげる、ということなんです。
+> 原則、行幅が広い時には、行がラップするときに視線が右端から左端まで移動する距離が長くなるので、行間は広めに取ります。でもあまり広げると、かっこわるいし、スペースも無駄なので、 Vertical Rhythm で視線移動を補完してあげる、ということなんです。
 
 そこで、以下のような方針で適用する。
 

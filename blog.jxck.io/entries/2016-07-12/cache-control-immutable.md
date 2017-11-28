@@ -66,7 +66,7 @@ Cache-Control: max-age=10000, immutable
 執筆時点では、 Firefox Nightly(version 50.0a1) が https 通信限定で、この拡張をサポートしている。
 
 - [1267474 - Cache-Control: immutable](https://bugzilla.mozilla.org/show_bug.cgi?id=1267474)
-- [Bits Up!: Cache-Control: immutable](http://bitsup.blogspot.jp/2016/05/cache-control-immutable.html)
+- [Bits Up!: Cache-Control: immutable](https://bitsup.blogspot.jp/2016/05/cache-control-immutable.html)
 
 
 ## DEMO
@@ -79,7 +79,7 @@ Cache-Control: max-age=10000, immutable
 
 - [Cache Control Immutable DEMO \| labs.jxck.io](https://labs.jxck.io/cache-control-immutable/)
 
-![cache-control-immutable](cache-control-immutable.gif#759x555 'Firefox Nightly での Cache-Control Immutable のデモ')
+![Cache Control Immutable を有効にした場合はリロードでもキャッシュヒットしていることが Chrome DevTools で確認できる](cache-control-immutable.gif#759x555 "Firefox Nightly での Cache-Control Immutable の DEMO")
 
 
 ## リロードというユーザ操作

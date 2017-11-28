@@ -11,7 +11,7 @@
 
 まず HTML の仕様に従い、基本的なメタ情報を `<meta>` により定義した。
 
-[https://dev.w3.org/html5/spec-preview/the-meta-element.html](https://dev.w3.org/html5/spec-preview/the-meta-element.html)
+[https\://dev.w3.org/html5/spec-preview/the-meta-element.html](https://dev.w3.org/html5/spec-preview/the-meta-element.html)
 
 各要素は、テンプレート生成時に利用した値を埋め込んでいるため、 [本サイトの Atom RSS-feed](https://blog.jxck.io/entries/2016-02-09/atom-feed.html) などと同じ値である。
 

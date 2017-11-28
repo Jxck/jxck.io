@@ -85,7 +85,7 @@ Content-Security-Policy: default-src 'self'
 
 
 ```
-Content-Security-Policy-Report-Only: default-src 'self'; report-uri http://example.com/csp-report
+Content-Security-Policy-Report-Only: default-src 'self'; report-uri https://example.com/csp-report
 ```
 
 これによって、ポリシー違反があってもコンテンツをブロックしないため、サイトへの影響はほぼ無くなる。
@@ -121,7 +121,7 @@ CSP の違反レポートは以下のような JSON データである。
 
 このレポートの収集と解析を行うサービスとして、 report-uri.io というサービスが最近登場した。
 
-[Welcome to report-uri.io](http://report-uri.io/)
+[Welcome to report-uri.io](https://report-uri.io/)
 
 登録し、発行された URI を `report-uri` に指定するだけなので、導入は非常に楽である。
 

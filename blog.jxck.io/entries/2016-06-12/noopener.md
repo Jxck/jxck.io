@@ -11,9 +11,9 @@
 
 以下が今回注目する挙動である。
 
-![Window Opener DEMO](window-opener.gif#150x150 'window opener demo')
+![Opener によって別タブで開いた画面が元の画面を遷移させている](window-opener.gif#150x150 "window opener demo")
 
-このデモでは、 [https://labs.jxck.io/noopener](https://labs.jxck.io/noopener) から開いた [https://labs.jxck.io/noopener/opener-change.html](https://labs.jxck.io/noopener/opener-change.html) のページが別タブで開いた後、最初に開いたタブが勝手に [http://example.com](http://example.com) に遷移しているというものである。
+このデモでは、 [https\://labs.jxck.io/noopener](https://labs.jxck.io/noopener) から開いた [https\://labs.jxck.io/noopener/opener-change.html](https://labs.jxck.io/noopener/opener-change.html) のページが別タブで開いた後、最初に開いたタブが勝手に [http\://example.com](http://example.com) に遷移しているというものである。
 
 最初のページを Parent 、開いたタブを Child とする。
 
@@ -66,7 +66,7 @@ child で上記の JS が動くと、裏で勝手に parent が画面遷移し�
 
 ### 攻撃の概要
 
-![tab-nabbing.svg](tab-nabbing.svg#500x500 'tab-nabbing の解説図')
+![Opener を利用することで、元サイトとそっくりなログイン画面を用意し、そこに認証情報を入力させることで Tab Naving が成立する](tab-nabbing.svg#500x500 "tab-nabbing の解説図")
 
 `https://cgm.example.com` (左上) というサービスがあるとし、これは SNS やチームコラボレーション系サービスを想定する。
 

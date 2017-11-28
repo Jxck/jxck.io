@@ -64,7 +64,7 @@ Socket.IO は、ブラウザとサーバ両方のライブラリを有してい�
 
 2016 年現在、 IE11 以降のモダンブラウザは RFC に対応したプロトコルをしゃべる WebSocket API を実装済みであるため、この部分の心配は IE11 に依存すると言える。
 
-[WebSocket \| Can I use](http://caniuse.com/#search=websocket)
+[WebSocket \| Can I use](https://caniuse.com/#search=websocket)
 
 つまり RFC の WebSocket を実装したサーバと、モダンブラウザにある WebSocket API を直接使った実装で、十分 Interoperability が担保されているわけである。
 

@@ -147,7 +147,7 @@ function addEventListenerWithOptions(target, type, handler, options) {
 }
 ```
 
-[https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#feature-detection](https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#feature-detection)
+[https\://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#feature-detection](https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#feature-detection)
 
 
 ## DEMO
@@ -156,7 +156,7 @@ function addEventListenerWithOptions(target, type, handler, options) {
 
 ここに、 Passive オプション指定の有無による挙動の変化を試すことができる。
 
-- [Passive Event Uisteners DEMO](http://labs.jxck.io/passive-event-listeners/index.html)
+- [Passive Event Uisteners DEMO](https://labs.jxck.io/passive-event-listeners/index.html)
 
 ちょっと分かりにくいがキャプチャも載せておく。
 
@@ -165,14 +165,14 @@ function addEventListenerWithOptions(target, type, handler, options) {
 
 touchstart イベントに時間がかかっているため、スクロールが詰まる。
 
-![Passive False DEMO](passive-event-listeners-false.gif#1347x687)
+![リスナが Active であるため、スクロールが詰まる](passive-event-listeners-false.gif#1347x687 "Active Event Listener DEMO")
 
 
 ### Passive True
 
 スクロールが詰まらない。
 
-![Passive True DEMO](passive-event-listeners-true.gif#1347x687)
+![リスナが Passive であるため、スクロールが詰まらない](passive-event-listeners-true.gif#1347x687 "Passive Event Listener DEMO")
 
 
 ## 本サイトへの適用

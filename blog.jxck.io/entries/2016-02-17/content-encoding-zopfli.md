@@ -80,7 +80,7 @@ file.send-gzip: ON
 
 zopfli は Google が開発した圧縮アルゴリズム、およびその実装である。
 
-[https://github.com/google/zopfli](https://github.com/google/zopfli)
+[https\://github.com/google/zopfli](https://github.com/google/zopfli)
 
 **圧縮結果が gzip 互換**であるため、方式そのものは実質 gzip である。
 
@@ -134,7 +134,7 @@ $ time zopfli --i10 -c loading-css-over-http2.html
 
 ただ、開発用の Mac では少し違う結果が出たりもしたため、結果 `i=30` くらいに落ち着いた。
 
-また、 [WebP](//jxck.io/assets/img/jxck.webp) と [PNG](//jxck.io/assets/img/jxck.png) の画像ファイルでも検証したところ、以下のようになった。
+また、 [WebP](https://jxck.io/assets/img/jxck.webp) と [PNG](https://jxck.io/assets/img/jxck.png) の画像ファイルでも検証したところ、以下のようになった。
 
 |         file | size  |
 |:-------------|------:|
@@ -161,7 +161,7 @@ WebP はそもそも圧縮率が高いためか、オーバーヘッドが出て
 
 動作は、 HTTP ヘッダで確認できる。
 
-![Content-Encoding Support Before/After](zopfli.png#656x463 "Content-Encoding ヘッダの確認")
+![圧縮が有効である場合、 content-encoding: gzip が追加されていることを確認](zopfli.png#656x463 "Content-Encoding Support Before/After")
 
 また、一部は h2o の mruby-handler で動的な生成をしているが、 `gzip` ディレクティブの効果は未検証なので設定していない。
 
@@ -178,7 +178,7 @@ WebP はそもそも圧縮率が高いためか、オーバーヘッドが出て
 
 新しいフォーマットとして、 [IETF へのドラフトの提出](https://tools.ietf.org/html/draft-alakuijala-brotli-08) もなされている。
 
-現在は [Chrome が HTTPS のみでサポート](https://plus.google.com/u/0/+IlyaGrigorik/posts/X9ogn4fLtHL) していおり、 Canary で `chrome://flags#brotli` を有効にすると、 `Accept-Encoding: br` が追加されるので、サーバはこれを見て brotli で圧縮したファイルを返すことができる。
+現在は [Chrome が HTTPS のみでサポート](https://plus.google.com/u/0/+IlyaGrigorik/posts/X9ogn4fLtHL) していおり、 Canary で [chrome\://flags#brotli](chrome://flags#brotli) を有効にすると、 `Accept-Encoding: br` が追加されるので、サーバはこれを見て brotli で圧縮したファイルを返すことができる。
 
 ほとんどのブラウザが対応している gzip と違い、まだ対応ブラウザも少なく、 H2O も対応していないため `Accept-Encoding` での判断を自分でハンドラに書く必要がある。
 

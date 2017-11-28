@@ -62,15 +62,15 @@ footer.css が必要なのは、 HTML 中の `<footer>` をレンダリングす
 
 この問題に対応するため、以下のような JS を用いて CSS を非同期ロードする方法がある。
 
-[https://github.com/filamentgroup/loadCSS](https://github.com/filamentgroup/loadCSS)
+[https\://github.com/filamentgroup/loadCSS](https://github.com/filamentgroup/loadCSS)
 
 スタイルが当たってない状態で表示されてほしくないコンポーネントには、 `display: none` などをつけておき、ロードされたスタイルの中で表示されるようにする。
 
 この方法は、クリティカルレンダリングパスの改善方法の 1 つとして、多くのパフォーマンスエキスパートから推奨されている。
 
-- [https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery](https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery)
-- [https://www.filamentgroup.com/lab/performance-rwd.html](https://www.filamentgroup.com/lab/performance-rwd.html)
-- [http://www.lukew.com/ff/entry.asp?1756](http://www.lukew.com/ff/entry.asp?1756)
+- [https\://developers.google.com/speed/docs/insights/OptimizeCSSDelivery](https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery)
+- [https\://www.filamentgroup.com/lab/performance-rwd.html](https://www.filamentgroup.com/lab/performance-rwd.html)
+- [https\://www.lukew.com/ff/entry.asp?1756](https://www.lukew.com/ff/entry.asp?1756)
 
 ただし、この方法には JS のライブラリが必須となる。
 

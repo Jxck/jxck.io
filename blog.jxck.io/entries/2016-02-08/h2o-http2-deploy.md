@@ -9,7 +9,7 @@
 
 以前は nginx を使っていたけど、年末に旧ブログの方に書いた Cache-Aware Server Push を試したかったから。
 
-[HTTP/2 Push を Service Worker + Cache Aware Server Push で効率化したい話](http://jxck.hatenablog.com/entry/service-worker-casper)
+[HTTP/2 Push を Service Worker + Cache Aware Server Push で効率化したい話](https://jxck.hatenablog.com/entry/service-worker-casper)
 
 これは現在 httpbis にドラフトとして上がっており、議論が進んでいる。
 

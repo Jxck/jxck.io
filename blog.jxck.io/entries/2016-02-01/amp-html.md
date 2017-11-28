@@ -11,8 +11,8 @@ Google が推奨する仕様である [AMP HTML](https://www.ampproject.org/) �
 
 以下の記事が出たので、古かったフォーマットのアップデートと [JSON-LD によるメタデータの提供](https://blog.jxck.io/entries/2016-02-26/jsonld-opengraph.html) に対応した。
 
-- [Google モバイル検索が Accelerated Mobile Pages に対応しました](http://googledevjp.blogspot.jp/2016/02/google-accelerated-mobile-pages.html)
-- [AMP 対応 2016.02 版](http://ymotongpoo.hatenablog.com/entry/2016/02/25/224159)
+- [Google モバイル検索が Accelerated Mobile Pages に対応しました](https://googledevjp.blogspot.jp/2016/02/google-accelerated-mobile-pages.html)
+- [AMP 対応 2016.02 版](https://ymotongpoo.hatenablog.com/entry/2016/02/25/224159)
 
 
 ## Accelerated Mobile Pages
@@ -75,7 +75,7 @@ AMP は以下の三つの要素からなる。
 
 ### AMP-HTML
 
-本サイトの HTML は、 [HTML の省略によるサイズ最適化](/entries/2016-01-28/html-compression.html) に書いた通り、極力タグを省略した作りにしている。
+本サイトの HTML は、 [HTML の省略によるサイズ最適化](https://blog.jxck.io/entries/2016-01-28/html-compression.html) に書いた通り、極力タグを省略した作りにしている。
 
 しかし、 AMP の仕様では `<head>`, `<body>` などの記述は必須となっているため、追加した。
 
@@ -124,7 +124,7 @@ google analytics については後述するコンポーネントがあるため
 
 これは、別途対応した以下のコンポーネント単位の読み込みによる最適化と競合しているが、仕様なのでしかたがない。
 
-[HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について](/entries/2016-02-15/loading-css-over-http2.html)
+[HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について](https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html)
 
 
 ### amp-custom-element 対応

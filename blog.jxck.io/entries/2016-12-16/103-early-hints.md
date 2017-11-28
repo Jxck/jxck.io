@@ -2,7 +2,7 @@
 
 ## Intro
 
-これは、 [http2 Advent Calendar 2016](http://qiita.com/advent-calendar/2016/http2) の 16 日目の記事である。
+これは、 [http2 Advent Calendar 2016](https://qiita.com/advent-calendar/2016/http2) の 16 日目の記事である。
 
 HTTP に新しいステータスコード `103 Early Hints` が追加されようとしている。
 

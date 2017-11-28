@@ -116,7 +116,7 @@ TC39 の責任範囲は、 JS ファイル内に書かれる構文が中心で�
 
 パースが正しく終われば、依存を解決のために追加の Fetch を以下のように行う。
 
-![ブラウザによる ESM の依存解決](https://html.spec.whatwg.org/images/asyncdefer.svg#1000x245)
+![ブラウザによる ESM の依存解決と Parse/Fetch の順番](https://html.spec.whatwg.org/images/asyncdefer.svg#1000x245 "async-defer-module <script> parsing/fetching timeline")
 
 あとはそのまま実行するだけなので、問題なく使うことができる。
 

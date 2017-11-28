@@ -58,7 +58,7 @@ Node では EventEmitter が、メソッド名は違えど同等の役割を果�
 
 そこで、 Node における EventEmitter を用いた設計と同等のことを行うためには、 EventEmitter のポーティングなどが利用されていた。
 
-例えば browserify は [https://github.com/Gozala/events](https://github.com/Gozala/events) を使っており、筆者も[同じようなこと](https://github.com/jxck/events) をしたことがある。
+例えば browserify は [https\://github.com/Gozala/events](https://github.com/Gozala/events) を使っており、筆者も[同じようなこと](https://github.com/jxck/events) をしたことがある。
 
 しかし、こうした汎用的な処理をより効率よく実現するために、 EventTarget が継承可能となる仕様が追加された。
 

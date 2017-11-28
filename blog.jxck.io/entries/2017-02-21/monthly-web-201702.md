@@ -61,7 +61,7 @@
 
 ### V8
 
-- 2/6: [V8 Release 5.7](http://v8project.blogspot.jp/2017/02/v8-release-57.html)
+- 2/6: [V8 Release 5.7](https://v8project.blogspot.jp/2017/02/v8-release-57.html)
   - Native async functions as fast as promises
   - Continued ES2015 improvements
   - RegExp 15 % faster
@@ -228,10 +228,10 @@ Finding っていう資料が二つ出た。
 - 2/2: [URL.createObjectURL(stream) が廃止予定](https://www.fxsitecompat.com/ja/docs/2017/url-createobjecturl-stream-has-been-deprecated)
   - 古い WebRTC アプリが結構壊れそう
 
-- 2/2: [Selenium ライブラリの紹介](http://qiita.com/h_network21/items/a4cbff763b9ee8a7879a)
+- 2/2: [Selenium ライブラリの紹介](https://qiita.com/h_network21/items/a4cbff763b9ee8a7879a)
   - 各言語ごとに紹介
 
-- 2/2: [Using HTTP/2 Responsibly: Adapting for Users](http://alistapart.com/article/using-http-2-responsibly-adapting-for-users)
+- 2/2: [Using HTTP/2 Responsibly: Adapting for Users](https://alistapart.com/article/using-http-2-responsibly-adapting-for-users)
   - あとで
 
 - 2/3: [Road of the service worker response](https://docs.google.com/presentation/d/1qVj_RSs6EFQXI4RznqMzLk8PcrD0IREeBWnTbozFJXQ/edit#slide=id.g1c5ddbc764_0_531)
@@ -248,8 +248,8 @@ Finding っていう資料が二つ出た。
 - 2/5: [WordPress で複数の改ざん事例](http://d.hatena.ne.jp/Kango/20170205/1486314605)
   - けっこう色々やられてる模様
 
-- 2/6: [WordPress 4.7.2 脆弱性](http://www.ipa.go.jp/security/ciadr/vul/20170206-wordpress.html)
-  - [徳丸先生の検証](http://blog.tokumaru.org/2017/02/wordpress-4.7.1-Privilege-Escalation.html)
+- 2/6: [WordPress 4.7.2 脆弱性](https://www.ipa.go.jp/security/ciadr/vul/20170206-wordpress.html)
+  - [徳丸先生の検証](https://blog.tokumaru.org/2017/02/wordpress-4.7.1-Privilege-Escalation.html)
 
 - 2/6: [The Security Impact of HTTPS Interception](https://zakird.com/papers/https_interception.pdf)
   - HTTPS で MITM があった時のインパクトについての調査
@@ -301,7 +301,7 @@ Finding っていう資料が二つ出た。
 - 2/8: [Code Smells in CSS Revisited](https://csswizardry.com/2017/02/code-smells-in-css-revisited/)
   - 匂い大事
 
-- 2/9: [IPA の AppGoat に脆弱性](http://forest.watch.impress.co.jp/docs/news/1043501.html)
+- 2/9: [IPA の AppGoat に脆弱性](https://forest.watch.impress.co.jp/docs/news/1043501.html)
   - 脆弱性学習ツールの脆弱性
 
 - 2/9: [The Evergreen Web](https://w3ctag.github.io/evergreen-web/)
@@ -315,7 +315,7 @@ Finding っていう資料が二つ出た。
 
 - 2/9: [service-mocker](https://github.com/service-mocker/service-mocker)
   - Service Worker でモックサーバ
-  - [誰もが一度は考えるやつ](http://jxck.hatenablog.com/entry/response-injection)
+  - [誰もが一度は考えるやつ](https://jxck.hatenablog.com/entry/response-injection)
 
 - 2/9: [Wireshark の TLS1.3 対応 動いた](http://d.hatena.ne.jp/ASnoKaze/20170209/1486573451)
   - 動いたらしい
@@ -389,10 +389,10 @@ Finding っていう資料が二つ出た。
 - 2/17: [FRESH!における PC ブラウザの Flash 脱却](https://developers.cyberagent.co.jp/blog/archives/4283/)
   - HLS をどうするか
 
-- 2/19: [Firefox でレガシーなアドオンが使えるのは 2017 年 11 月半ばまで ](http://rockridge.hatenablog.com/entry/2017/02/19/231302)
+- 2/19: [Firefox でレガシーなアドオンが使えるのは 2017 年 11 月半ばまで ](https://rockridge.hatenablog.com/entry/2017/02/19/231302)
   - e10s と WebExtensions
 
-- 2/19: [サイトの「HTTPS 化」が世界的に進んで大きなターニングポイントを迎える](http://gigazine.net/news/20170218-https-adoption-tipping-point/)
+- 2/19: [サイトの「HTTPS 化」が世界的に進んで大きなターニングポイントを迎える](https://gigazine.net/news/20170218-https-adoption-tipping-point/)
   - 元ネタ [HTTPS adoption has reached the tipping point](https://www.troyhunt.com/https-adoption-has-reached-the-tipping-point/)
 
 - 2/20: [HLS の図解](http://did2memo.net/2017/02/20/http-live-streaming/)
@@ -406,4 +406,4 @@ Finding っていう資料が二つ出た。
 
 - 2/21: [CORS 用のトークンはいらない](https://scotthelme.co.uk/csrf-is-dead/)
   - SameSite Cookie を使えばいいのではという話
-  - [caniuse](http://caniuse.com/#search=SameSite)
+  - [caniuse](https://caniuse.com/#search=SameSite)

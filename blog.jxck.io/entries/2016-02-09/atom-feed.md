@@ -4,7 +4,7 @@
 
 このブログの Atom feed を吐くようにした。
 
-右上の [feed アイコン](//blog.jxck.io/feeds/atom.xml) から登録できる。
+右上の [feed アイコン](https://blog.jxck.io/feeds/atom.xml) から登録できる。
 
 
 ## RSS のフォーマット
@@ -60,7 +60,7 @@ RSS の主な仕様は三つある
  <link href="https://blog.jxck.io/entries/2016-01-27/new-blog-start.html" rel="alternate" />
  <id>tag:blog.jxck.io,2016:entry://2016-01-27</id>
  <updated>2016-01-27T00:00:00Z</updated>
- <summary>長いこと [はてな](http://jxck.hatenablog.com/) をメインにし、他にも [Qiita](http://qiita.com/jxck_) や [Tumblr](http://jxck.tumblr.com/) を使って色々書いて来たけど、そろそろ自分のドメインに全部集約していこうかなと思います。</summary>
+ <summary>長いこと [はてな](https://jxck.hatenablog.com/) をメインにし、他にも [Qiita](https://qiita.com/jxck_) や [Tumblr](http://jxck.tumblr.com/) を使って色々書いて来たけど、そろそろ自分のドメインに全部集約していこうかなと思います。</summary>
 </entry>
 
 </feed>

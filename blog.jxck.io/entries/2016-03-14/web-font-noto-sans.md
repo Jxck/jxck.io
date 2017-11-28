@@ -71,9 +71,9 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 
 収録されている、 JIS X 0208 は以下のようになっている。
 
-> JIS （日本工業規格）で定められた漢字の規格で、 JISX0208 に含まれる。日常で使用頻度の高い漢字を集め、コンピューターで利用するためにコード化したもの。 JIS 第 1 水準は 2965 字で、常用漢字 1945 字とその他の人名用漢字が含まれており、通常の文書であれば JIS 第 1 水準の文字だけで記述できるとされている。 JIS 第 2 水準は 3390 字で、 DTP で使用するフォントの多くは、 JIS 第 1 水準と JIS 第 2 水準を網羅している。 JIS 第 3 水準および JIS 第 4 水準は、業種によって必要になる特殊な記号などを集めたもので、 JISX0208 を拡張する別の規格である。
+> JIS (日本工業規格)で定められた漢字の規格で、 JISX0208 に含まれる。日常で使用頻度の高い漢字を集め、コンピューターで利用するためにコード化したもの。 JIS 第 1 水準は 2965 字で、常用漢字 1945 字とその他の人名用漢字が含まれており、通常の文書であれば JIS 第 1 水準の文字だけで記述できるとされている。 JIS 第 2 水準は 3390 字で、 DTP で使用するフォントの多くは、 JIS 第 1 水準と JIS 第 2 水準を網羅している。 JIS 第 3 水準および JIS 第 4 水準は、業種によって必要になる特殊な記号などを集めたもので、 JISX0208 を拡張する別の規格である。
 
-[http://yougo.ascii.jp/caltar/JIS 漢字水準](http://yougo.ascii.jp/caltar/JIS%E6%BC%A2%E5%AD%97%E6%B0%B4%E6%BA%96)
+[http\://yougo.ascii.jp/caltar/JIS 漢字水準](http://yougo.ascii.jp/caltar/JIS%E6%BC%A2%E5%AD%97%E6%B0%B4%E6%BA%96)
 
 しかし、このブログは **技術ブログ** であり、使われる漢字は非常に限定的だ。
 
@@ -254,7 +254,7 @@ p q r s t u v w x y z { | } ~
 
 常用漢字は文化庁が告示している。 2010 年に改定があった。
 
-[常用漢字表（平成 22 年内閣告示第 2 号）](http://kokugo.bunka.go.jp/kokugo_nihongo/joho/kijun/naikaku/kanji/)
+[常用漢字表(平成 22 年内閣告示第 2 号)](http://kokugo.bunka.go.jp/kokugo_nihongo/joho/kijun/naikaku/kanji/)
 
 > 一般の社会生活において現代の国語を書き表すための漢字使用の目安を、次の表のように定める。
 
@@ -366,24 +366,24 @@ p q r s t u v w x y z { | } ~
 
 まず、以下のツールを用い、この対象文字だけを抜き出したサブセットを作成する。
 
-[サブセットフォントメーカー](http://opentype.jp/subsetfontmk.htm)
+[サブセットフォントメーカー](https://opentype.jp/subsetfontmk.htm)
 
-- [NotoSansCJKjp-Jxck-Bold.otf](//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.otf) (473.2K)
-- [NotoSansCJKjp-Jxck-Regular.otf](//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.otf) (471.2K)
+- [NotoSansCJKjp-Jxck-Bold.otf](https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.otf) (473.2K)
+- [NotoSansCJKjp-Jxck-Regular.otf](https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.otf) (471.2K)
 
 
 ### Woff 変換
 
 この OTF ファイルを、以下のツールを用い、 Woff 形式に変換する。
 
-[WOFF コンバータ](http://opentype.jp/woffconv.htm)
+[WOFF コンバータ](https://opentype.jp/woffconv.htm)
 
 メタデータは一切付与しない。
 
 また IE はどうでもいいので、 IE に対応させるための EOT ファイルも作成し無い。
 
-- [NotoSansCJKjp-Jxck-Bold.woff](//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff) (379.7K)
-- [NotoSansCJKjp-Jxck-Regular.woff](//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff) (375.8K)
+- [NotoSansCJKjp-Jxck-Bold.woff](https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff) (379.7K)
+- [NotoSansCJKjp-Jxck-Regular.woff](https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff) (375.8K)
 
 
 ## 効果
@@ -431,7 +431,7 @@ p q r s t u v w x y z { | } ~
 
 現在 NotoSans は "NotoSansCJKjp-Bold.otf" という名前で配布されている。
 
-Android は ["NotoSansJP-Regular.otf" という名前で入っているらしい](http://toach.click/how-to-noto-sans-japanese/#Android_MarshmallowNoto_Sans_Japanese) ため、それも含めて以下のように設定する。
+Android は ["NotoSansJP-Regular.otf" という名前で入っているらしい](https://toach.click/how-to-noto-sans-japanese/#Android_MarshmallowNoto_Sans_Japanese) ため、それも含めて以下のように設定する。
 
 
 ```css
@@ -441,7 +441,7 @@ Android は ["NotoSansJP-Regular.otf" という名前で入っているらしい
   font-weight: 400;
   src: local("NotoSansCJKjp-Bold.otf"),
        local("NotoSansJP-Bold.otf"),
-       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=20160314") format("woff");
+       url("https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=20160314") format("woff");
 }
 
 @font-face {
@@ -450,7 +450,7 @@ Android は ["NotoSansJP-Regular.otf" という名前で入っているらしい
   font-weight: 700;
   src: local("NotoSansCJKjp-Bold.otf"),
        local("NotoSansJP-Bold.otf"),
-       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff?ver=20160314") format("woff");
+       url("https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff?ver=20160314") format("woff");
 }
 ```
 
@@ -502,7 +502,7 @@ Cache-Control: max-age=31536000
 
 
 ```html
-<link rel=preload as=font type=font/woff href=//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
+<link rel=preload as=font type=font/woff href=https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
 ```
 
 また、 AMP 対応ページでは `rel=preload` は許可されてないため指定するとエラーになったため、 AMP の方には指定していない。

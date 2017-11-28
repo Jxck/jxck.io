@@ -8,10 +8,10 @@
 
 画像最適化シリーズ第 4 回目のエントリである。
 
-+ [画像最適化戦略 PNG/JPEG 編](/entries/2016-03-24/optimize-image.html)
-+ [画像最適化戦略 Picture 編](/entries/2016-03-25/picture.html)
-+ [画像最適化戦略 WebP 編](/entries/2016-03-26/webp.html)
-+ [> 画像最適化戦略 SVG/Font 編](/entries/2016-03-27/svg-font-base-ui.html)
++ [画像最適化戦略 PNG/JPEG 編](https://blog.jxck.io/entries/2016-03-24/optimize-image.html)
++ [画像最適化戦略 Picture 編](https://blog.jxck.io/entries/2016-03-25/picture.html)
++ [画像最適化戦略 WebP 編](https://blog.jxck.io/entries/2016-03-26/webp.html)
++ [> 画像最適化戦略 SVG/Font 編](https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html)
 
 
 ## ベクタ画像とラスタ画像
@@ -28,13 +28,13 @@
 
 以下は元サイズの 2 倍に拡大した PNG 画像(**左**)と、同じ大きさで表示した SVG 画像(**右**)を比較したスクリーンショットである。 PNG は文字の周囲が荒れているのが分かるだろう。
 
-[![2 倍に拡大した PNG と同じ大きさの SVG の比較](png-svg.png#1038x212 "png-svg")](png-svg.png)
+![2 倍に拡大した PNG と同じ大きさの SVG の比較](png-svg.png#1038x212 "png-svg")
 
-このため、 [画像最適化戦略 Picture 編](/entries/2016-03-25/picture.html) で実施したようなデバイス解像度による複数画像の出し分けなども不要になる。
+このため、 [画像最適化戦略 Picture 編](https://blog.jxck.io/entries/2016-03-25/picture.html) で実施したようなデバイス解像度による複数画像の出し分けなども不要になる。
 
 本サイトでは、このメリットを活かし、 UI コンポーネントは基本的にベクタフォーマットである SVG および Font を用いて構築することとした。
 
-なお、現時点でほとんどのブラウザが  [SVG に対応](http://caniuse.com/#search=svg) している。
+なお、現時点でほとんどのブラウザが  [SVG に対応](https://caniuse.com/#search=svg) している。
 
 
 ## SVG
@@ -185,7 +185,7 @@ cacoo が吐いた SVG と比べれば 20% なので、以降基本的に UI ア
 
 それ以外で、削れそうな部分があれば今後も削っていく予定である。
 
-[labs.jxck.io/svg](//labs.jxck.io/svg)
+[https\://labs.jxck.io/svg](https\://labs.jxck.io/svg)
 
 SVG の弱点として、 HTML に埋め込んだ SVG でないと CSS で色を指定できないという問題がある。
 

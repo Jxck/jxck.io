@@ -37,7 +37,7 @@
 
 `<html>`、 `<head>`、 `<body>` は、タグ自体を書かなくても良い場合があり、仕様では以下に定義がある。
 
-[https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission](https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission)
+[https\://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission](https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission)
 
 > An html element's end tag may be omitted if the html element is not immediately followed by a comment.
 
@@ -69,7 +69,7 @@
 
 HTML には閉じタグの省略が許されているものがいくつかあり、仕様では以下に定義がある。
 
-[https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission](https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission)
+[https\://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission](https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission)
 
 例えば、 `</li>` は以下の条件なら省略が可能だ。
 
@@ -104,7 +104,7 @@ HTML には閉じタグの省略が許されているものがいくつかあり
 
 もう一つ、要素を囲む引用符(`'`, `"`) も省略可能な場合があり、仕様では以下に定義がある。
 
-[https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html](https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html)
+[https\://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html](https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html)
 
 > The attribute value can remain unquoted if it doesn't contain space characters or any of " ' ` = < or >. Otherwise, it has to be quoted using either single or double quotes.
 
@@ -184,7 +184,7 @@ jxck$ wc html-no-compression.html
 
 同様の検証が他にもあったので貼っておく。結論はほぼ同じだった。
 
-[「HTML のタグは一部省略可能」表示速度はどちらが早いのか調べてみた](http://leko.jp/archives/321)
+[「HTML のタグは一部省略可能」表示速度はどちらが早いのか調べてみた](https://blog.leko.jp/post/omit-close-tag-in-html)
 
 
 ### 方法

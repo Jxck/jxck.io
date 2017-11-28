@@ -50,11 +50,11 @@ mixed contents は URL バーが変化し、ユーザに注意を促す。
 
 具体的には、多くのブラウザが URL バーの表示を変更し、ユーザに注意を促すようになる。
 
-![url bar with mixed contents](./insecure-url-bar.png#800x160 'url bar changes green to gray even if valid tls certificate when mixed contents')
+![Mixed Contents があるため TLS が正しくとも URL バーがグレーになっている](insecure-url-bar.png#800x160 "url bar with mixed contents")
 
 mixed contents が無ければ本来は以下のようになる。
 
-![url bar without mixed contents](./secure-url-bar.png#800x160 'url bar became green when no mixed contents')
+![Mixed Contents が無いため URL バーがグリーンになっている](secure-url-bar.png#800x160 "url bar without mixed contents")
 
 証明書の設定が正しくとも、それが EV であろうとも、 URL バーが緑にならないことは、信頼が揺らいでいることを意味する。
 
@@ -177,7 +177,7 @@ mixed contents は、発生したこと自体を把握しにくかったとい�
 
 広告は入れ子の iframe で作られているものが多い。
 
-![典型的な nested iframe](iframe.png#600x451 'ディスプレイ広告の基礎とセキュリティ(P7) by Kenta Suzuki')
+![典型的な nested iframe](iframe.png#600x451 "ディスプレイ広告の基礎とセキュリティ(P7) by Kenta Suzuki")
 
 [ディスプレイ広告の基礎とセキュリティ(P7) by Kenta Suzuki](https://speakerdeck.com/suzuken/deisupureiguang-gao-falseji-chu-tosekiyuritei)
 

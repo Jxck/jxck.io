@@ -183,7 +183,6 @@ static get inputArguments() {
 これによって、 CSS で渡された引数が解析される。
 
 
-
 ### registerProperty()
 
 CSS で指定した debug フラグは、 `pain()` の引数ではなく、別のプロパティとして取得する。
@@ -304,6 +303,7 @@ paint(ctx, {width: w, height: h}, styleMap, [color]) {
 
 あとは、 `paint()` の中で要求を満たす二つの矩形を描画する処理を記述すれば良い。
 
+
 ```html
 <style>
 div {
@@ -341,6 +341,7 @@ CSS.registerProperty({
 CSS.paintWorklet.addModule('border-double-custom.js');
 </script>
 ```
+
 
 ```js
 registerPaint('border-double-custom', class {
@@ -401,7 +402,7 @@ registerPaint('border-double-custom', class {
 
 ## 動作イメージ
 
-![border-double-custom demo](./border-double-custom.png#667x401 'border-double-custom implemented by css paint api')
+![Houdini Paint API で色と間隔を変更可能な二重線を引くデモ](border-double-custom.png#667x401 "border-double-custom implemented by css paint api")
 
 
 ## DEMO
