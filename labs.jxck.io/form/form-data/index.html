@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Form Data DEMO">
+<title>Form Data DEMO | labs.jxck.io</title>
+
+<h1>Form Data DEMO</h1>
+
+<form id=login action=/login method=post>
+  <input id=username name=username value=username type=text>
+  <input id=password name=password value=password type=password>
+  <button type=submit>login</button>
+</form>
+
+<script>
+const $ = document.querySelector.bind(document)
+$('#login').onsubmit = (e) => {
+  e.preventDefault()
+  const formdata = new FormData(e.target)
+  console.log(formdata),
+  console.log(Array.from(formdata).reduce((o, [k, v]) => { o[k] = v; return o }, {}))
+  console.log(new Map(formdata))
+  console.log(new URLSearchParams(formdata).toString())
+  fetch('/', {method: 'post', body: formdata})
+}
+</script>
+
