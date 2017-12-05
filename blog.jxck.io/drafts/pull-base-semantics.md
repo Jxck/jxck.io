@@ -9,6 +9,8 @@
 
 
 
+- push: ClientHints で出し分け
+- pull: picture/sources
 
 
 
