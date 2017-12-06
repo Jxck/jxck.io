@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>ResizeObserver DEMO | labs.jxck.io</title>
+
+<style>
+textarea {
+  display: block;
+  background-color: rgb(255, 255, 255);
+}
+</style>
+
+<h1>ResizeObserver</h1>
+
+<p id=rect></p>
+<textarea>resize me</textarea>
+<script>
+const $rect = document.querySelector('#rect')
+const $area = document.querySelector('textarea')
+const resizeObserver = new ResizeObserver((entries) => {
+  entries.forEach(({contentRect}) => {
+    console.log(contentRect)
+    const r = contentRect.width % 255
+    const g = contentRect.height % 255
+    const b = (contentRect.right + contentRect.bottom) % 255
+    const color = `rgb(${r}, ${g}, ${b})`
+    $area.style.backgroundColor = color
+    $area.value = color
+    $rect.textContent = JSON.stringify(contentRect)
+  })
+})
+resizeObserver.observe($area)
+</script>
+
