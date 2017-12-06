@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Font-Display DEMO | labs.jxck.io</title>
+
+<style>
+@font-face {
+  font-family: "font-block";
+  font-style: normal;
+  font-display: block;
+  font-weight: 400;
+  src: url("NotoSansCJKjp-Bold.otf") format("woff");
+}
+
+@font-face {
+  font-family: "font-swap";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("NotoSansCJKjp-Bold.otf") format("woff");
+}
+
+@font-face {
+  font-family: "font-fallback";
+  font-style: normal;
+  font-display: fallback;
+  font-weight: 400;
+  src: url("NotoSansCJKjp-Bold.otf") format("woff");
+}
+
+@font-face {
+  font-family: "font-optional";
+  font-style: normal;
+  font-display: optional;
+  font-weight: 400;
+  src: url("NotoSansCJKjp-Bold.otf") format("woff");
+}
+
+.block {
+  font-family: "font-block", sans-serif;
+}
+
+.swap {
+  font-family: "font-swap", sans-serif;
+}
+
+.fallback {
+  font-family: "font-fallback", sans-serif;
+}
+
+.optional {
+  font-family: "font-optional", sans-serif;
+}
+</style>
+
+<h1>Font-Display DEMO</h1>
+
+<h2>NotoSansCJKjp-Bold (16.2MB)</h2>
+<p>(firefox: layout.css.font-display.enabled)
+<p>default behavior (no font-display)
+<p class=block   >block display until font downloaded (font-display: block)
+<p class=swap    >display available font and swap when downloaded (font-display: swap)
+<p class=fallback>download font, but if 100ms passed, display available font, and swap after downloaded (font-display: fallback)
+<p class=optional>download font, but if 100ms passed, give up download and use available font (font-display: optional)
