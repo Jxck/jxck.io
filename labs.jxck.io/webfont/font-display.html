@@ -5,6 +5,14 @@
 
 <style>
 @font-face {
+  font-family: "font-auto";
+  font-style: normal;
+  font-display: auto;
+  font-weight: 400;
+  src: url("NotoSansCJKjp-Bold.otf") format("woff");
+}
+
+@font-face {
   font-family: "font-block";
   font-style: normal;
   font-display: block;
@@ -36,6 +44,11 @@
   src: url("NotoSansCJKjp-Bold.otf") format("woff");
 }
 
+
+.auto {
+  font-family: "font-auto", sans-serif;
+}
+
 .block {
   font-family: "font-block", sans-serif;
 }
@@ -56,9 +69,9 @@
 <h1>Font-Display DEMO</h1>
 
 <h2>NotoSansCJKjp-Bold (16.2MB)</h2>
-<p>(firefox: layout.css.font-display.enabled)
-<p>default behavior (no font-display)
-<p class=block   >block display until font downloaded (font-display: block)
-<p class=swap    >display available font and swap when downloaded (font-display: swap)
-<p class=fallback>download font, but if 100ms passed, display available font, and swap after downloaded (font-display: fallback)
-<p class=optional>download font, but if 100ms passed, give up download and use available font (font-display: optional)
+<p>use network throttling &amp; disable cache in devtools (firefox flag: layout.css.font-display.enabled)
+<p class=auto    >browser default (font-display: auto)
+<p class=block   >block period = 1000ms, swap period = infinite
+<p class=fallback>block period =  100ms, swap period = 3000ms
+<p class=swap    >block period =    0ms, swap period = infinite
+<p class=optional>block period =  100ms, swap period = 0ms
