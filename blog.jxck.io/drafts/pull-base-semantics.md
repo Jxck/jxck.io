@@ -12,6 +12,7 @@
 - push: ClientHints で出し分け
 - pull: picture/sources
 
+google の Ajax クローラのために URL に `#!` を含める。(終了予定)
 
 
 

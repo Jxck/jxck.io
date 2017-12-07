@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang=ja itemscope itemtype=http://schema.org/BlogPosting>
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset=utf-8>
+    <!--
+    貴様、見ているな！！
+    このサイトの技術的なまとめはこちらをどうぞ。
+    https://labs.jxck.io/blog
+
+    by Jxck
+    -->
+    <link rel=canonical href="https://blog.jxck.io/entries/2017-12-06/font-display.html">
+    <link rel=amphtml href="https://blog.jxck.io/entries/2017-12-06/font-display.amp.html">
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+    <link rel=author href=//jxck.io/assets/humans.txt>
+    <link rel=manifest href=/manifest.json>
+    <link rel=preload as=font type=font/woff href="//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201608028" crossorigin>
+    <script async src=//jxck.io/assets/js/ga.js></script>
+    <script async src=//jxck.io/assets/js/highlight.min.js></script>
+    <script async src=//jxck.io/assets/js/sw.js></script>
+    <script async src=//jxck.io/assets/js/main.js></script>
+
+    <meta name="author" content="Jxck">
+    <meta name="description" content="Web Font 読み込み中の HTML 表示については、ブラウザデフォルトの挙動に依存していた。フォントファイルサイズが大きい場合は、 FOIT/FOUT の問題が顕著になり、 JS を用いた回避策が利用されることも多かった。これを解決するため、 CSS に `font-...">
+    <meta name="keywords" content="font-display,web font,performance,css">
+    <meta itemprop="image" content="https://jxck.io/assets/img/jxck.png">
+    <meta itemprop="name" content="blog.jxck.io">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jxck_">
+    <meta name="twitter:url" content="https://blog.jxck.io/entries/2017-12-06/font-display.html">
+    <meta name="twitter:title" content="Font Display プロパティを用いた FOIT/FOUT 最適化 | blog.jxck.io">
+    <meta name="twitter:description" content="Web Font 読み込み中の HTML 表示については、ブラウザデフォルトの挙動に依存していた。フォントファイルサイズが大きい場合は、 FOIT/FOUT の問題が顕著になり、 JS を用いた回避策が利用されることも多かった。これを解決するため、 CSS に `font-...">
+    <meta name="twitter:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://blog.jxck.io/entries/2017-12-06/font-display.html">
+    <meta property="og:title" content="Font Display プロパティを用いた FOIT/FOUT 最適化 | blog.jxck.io">
+    <meta property="og:site_name" content="blog.jxck.io">
+    <meta property="og:description" content="Web Font 読み込み中の HTML 表示については、ブラウザデフォルトの挙動に依存していた。フォントファイルサイズが大きい場合は、 FOIT/FOUT の問題が顕著になり、 JS を用いた回避策が利用されることも多かった。これを解決するため、 CSS に `font-...">
+    <meta property="og:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <link rel="icon" sizes="192x192" href="https://jxck.io/assets/img/jxck.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "Font Display プロパティを用いた FOIT/FOUT 最適化 | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2017-12-06T08:00:00+08:00",
+  "dateModified": "2017-12-07T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "Web Font 読み込み中の HTML 表示については、ブラウザデフォルトの挙動に依存していた。フォントファイルサイズが大きい場合は、 FOIT/FOUT の問題が顕著になり、 JS を用いた回避策が利用されることも多かった。これを解決するため、 CSS に `font-..."
+}
+</script>
+
+    <title>Font Display プロパティを用いた FOIT/FOUT 最適化 | blog.jxck.io</title>
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/body.css>
+  </head>
+  <body>
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/header.css>
+    <header>
+      <ul>
+        <li><a href=//blog.jxck.io><img class=logo alt=blog title="blog top" width=30 src=//jxck.io/assets/img/blog.svg></a>
+        <li><a href="/entries/2017-12-06/font-display.amp.html#development=1"><svg width=30 height=30><use xlink:href="/assets/img/amp.svg#main"/></svg></a>
+        <li><a href=.><img alt=up title="move to parent directory" width=30 src=//jxck.io/assets/img/up.svg></a>
+        <li><a href=/feeds/atom.xml><img alt=rss title="rss feed" width=30 src=//jxck.io/assets/img/rss.svg></a>
+        <li><a href=//jxck.io/humans.txt><img alt=humans title=huamns.txt width=30 src=//jxck.io/assets/img/humans.svg></a>
+        <li><a href=//jxck.io><img class=logo alt=jxck title="jxck logo" width=30 src=//jxck.io/assets/img/jxck.png></a>
+      </ul>
+    </header>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/markdown.css>
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/main.css>
+    <main>
+      <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/info.css>
+      <ul class=info>
+        <li>created_at: <time class=created_at datetime=2017-12-06>2017-12-06</time>
+        <li>updated_at: <time class=updated_at datetime=2017-12-07>2017-12-07</time>
+        <li class=tags>tags: [<a href='/tags/font-display.html'>font-display</a>,<a href='/tags/web%20font.html'>web font</a>,<a href='/tags/performance.html'>performance</a>,<a href='/tags/css.html'>css</a>]
+      </ul>
+
+      <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/article.css>
+  <article>
+    <h1><a href=/entries/2017-12-06/font-display.html>Font Display プロパティを用いた FOIT/FOUT 最適化</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>Web Font 読み込み中の HTML 表示については、ブラウザデフォルトの挙動に依存していた。
+      <p>フォントファイルサイズが大きい場合は、 FOIT/FOUT の問題が顕著になり、 JS を用いた回避策が利用されることも多かった。
+      <p>これを解決するため、 CSS に <code translate="no">font-display</code> プロパティが作成され、実装が進んでいる。
+      <p>各プロパティの違いと挙動、そして本サイトの適用について解説する。
+    </section>
+    <section>
+      <h2 id="Loading+Web+Font"><a href="#Loading+Web+Font">Loading Web Font</a></h2>
+      <p>Web Font は、特に日本語のように文字数が多い場合、ファイルが大きくなる。
+      <p>フォント取得中に、読み込み済みの HTML をどう表示するかについてはいくつかの方法があり、それによってユーザの体験は変わる。
+      <p>これまで、フォント読み込み中の挙動は、ブラウザのデフォルト実装に依存していた。
+      <p>これをコンテンツオーサが制御するために定義されたのが、 CSS の <code translate="no">font-display</code> プロパティである。
+    </section>
+    <section>
+      <h2 id="ブラウザデフォルト挙動"><a href="#ブラウザデフォルト挙動">ブラウザデフォルト挙動</a></h2>
+      <p>まず、ブラウザ内部での Web Font の扱いを確認する。
+      <p>基本的に、ブラウザは 3 つのチェックポイントを持つ。
+      <p><a href="https://drafts.csswg.org/css-fonts-4/#font-display-timeline">3.2. The Font Display Timeline | CSS Fonts Module Level 4</a>
+      <ul>
+        <li>block period
+        <li>swap period
+        <li>font failure period
+      </ul>
+      <p>まず、ブラウザはフォントの取得を開始したら <strong>block period</strong> の間はテキストを表示しない。
+      <p>(正確には、 <em>invisible-fallback font face</em> という、見えない文字でレンダリングする)
+      <p><strong>swap period</strong> に入ったら、代替フォントで表示を行う。
+      <p>しかし、フォントの取得は継続し、完了したら代替フォントと置き換える。
+      <p><strong>failure period</strong> に入っても取得が終わらなければ、フォントの取得は中断し代替フォントのままになる。
+      <p><img src=font-display.svg#1000x225 alt="block period の間は fallback font を表示、 swap period の間は fetch が終わると font を置き換え、 failure period に入ると fetch を中断" title="font rendering flow with block/swap/failure period in browser" width=1000 height=225>
+    </section>
+    <section>
+      <h2 id="FOIT/FOUT"><a href="#FOIT/FOUT">FOIT/FOUT</a></h2>
+      <p>ブラウザのこうした挙動は、 UX を著しく損ねる場合がある。
+      <p>特に、ネットワークが遅い場合や、フォントファイルサイズが大きい場合は、フォントの取得に時間がかかる。
+      <p>すると、以下のような現象が発生する。
+      <dl>
+        <dt>FOIT (Flash of Invisible Text)
+        <dd>ナビゲーション直後はテキストが表示されず、(block period 経過後)突然表示される現象
+        <dt>FOUT (Flash of Unstyled Text)
+        <dd>表示されているテキストのフォントが、(swap period 中)突然入れ替わる現象
+      </dl>
+      <p>こうした現象を防ぐためには、 JavaScript でフォントの読み込み/表示を制御するのライブラリが使われることが多い。
+      <ul>
+        <li><a href="https://github.com/typekit/webfontloader">https://github.com/typekit/webfontloader</a>
+        <li><a href="https://github.com/bramstein/fontfaceobserver">https://github.com/bramstein/fontfaceobserver</a>
+      </ul>
+    </section>
+    <section>
+      <h2 id="font-display"><a href="#font-display">font-display</a></h2>
+      <p>こうした挙動を、 CSS から明示的に指定できるように策定されたのが、 <code translate="no">font-display</code> プロパティである。
+      <p><code translate="no">font-display</code> は以下の 5 つの値をとる。
+      <ul>
+        <li>auto
+        <li>block
+        <li>fallback
+        <li>swap
+        <li>optional
+      </ul>
+      <p>各プロパティでは、 block/swap period の推奨時間が定義されており、ユースケースに応じて使い分けるための指針が示されている。
+      <p>Web Font 読み込み系のライブラリは、 <code translate="no">swap</code> や <code translate="no">fallback</code> などによって代替できる場合が多い。
+      <section>
+        <h3 id="auto"><a href="#auto">auto</a></h3>
+        <p>未指定の場合と同じ、 User-Agent のデフォルトの挙動となる。
+      </section>
+      <section>
+        <h3 id="block"><a href="#block">block</a></h3>
+        <p>block period を <code translate="no">3s</code> (推奨)、 swap period を <code translate="no">infinite</code> にする。
+        <p>主に、代替のフォントでの表示を避けたい場合に利用されるが、 block period が <code translate="no">infinit</code> になるわけではない点に注意。
+        <p>例えば、 <a href="http://fontawesome.io/">FontAwesome</a> のようにフォントファイルを UI Icon に利用しており、代替フォントでの表示が望ましくない場面で利用できる。
+      </section>
+      <section>
+        <h3 id="fallback"><a href="#fallback">fallback</a></h3>
+        <p>block period を <code translate="no">100ms</code> (推奨)、 swap period を <code translate="no">3s</code> (推奨) にする。
+        <p>最初にテキストが表示されない状態(FOIT)を極力避けるため、早めにフォールバックフォントを表示しながらも、フォントの取得を試みる。
+        <p>しかし、あまりにも回線状況が悪い場合は取得を諦めるため、意図した Web Font にならない場合がある。
+        <p>スタイルよりも内容が重要であり、フォールバックフォントでの表示も許容できる場合に利用できる。
+      </section>
+      <section>
+        <h3 id="swap"><a href="#swap">swap</a></h3>
+        <p>block period を <code translate="no">0</code>、 swap period を <code translate="no">infinite</code> にする。
+        <p>FOIT が実質無くなる代わりに、大きなフォントファイルでも最後まで取得を試みることができる。
+        <p>例えばロゴなどで、最終的には指定のフォントで表示される必要がある、などの場合に利用できる。
+      </section>
+      <section>
+        <h3 id="optional"><a href="#optional">optional</a></h3>
+        <p>block period を <code translate="no">100ms</code> 以下(推奨)、 swap period を <code translate="no">0s</code> にする。
+        <p>FOIT を極力避けつつも、 swap period が無いため block period を過ぎると FOUT も起こらない。
+        <p>しかし、ファイルの取得を完全に断念するかは UA が決め、非常に低い priority で取得を継続する場合がある。
+        <p>これにより、次回以降のアクセスでフォントがキャッシュされていれば、初回含め FOIT/FOUT 共に解決する
+        <p>つまり、 <code translate="no">optional</code> は、最初に訪れたユーザには素早くレンダリングすることを優先し、フォントの取得は UA の判断を尊重する。
+        <p>スタイルよりも内容を重要視しつつ、次回以降のアクセスで付加価値として Web Font での表示を提供するという方針に使うことができる。
+      </section>
+    </section>
+    <section>
+      <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
+      <p>本サイトは、パフォーマンスを意識しつつも、標準的な Web サイトの作りに合わせるため、鉄下駄として Web Font を導入している。
+      <p><a href="https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html#まとめ">Noto Sans の Web Font 対応とサブセットによる最適化</a>
+      <p>フォントのサイズはギリギリまで削っているが、それでも回線次第では FOIT/FOUT などの可能性は否定できない。
+      <p>しかし、やはり重要視したいのは内容であり、フォントによるスタイル自体の重要度は低く考えている。
+      <p>また、一旦取得されたフォントファイルには、 <code translate="no">immutable</code> キャッシュを指定しており、二回以降のアクセスでは Cache Hit が期待できる。
+      <p><a href="https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html">Cache-Control の Immutable 拡張によるリロード時のキャッシュ最適化</a>
+      <p>今日ではブラウザのキャッシュ領域は取り合いであり、<a href="https://code.facebook.com/posts/964122680272229/web-performance-cache-efficiency-exercise/">次回のアクセスでもキャッシュがヒットすることは期待しづらい</a>が、それでもページ遷移などでは Web Font を FOIT 無しで適用できる可能性もある。
+      <p>個人的には、ネットワークが著しく遅い環境で「ブラウザのフォント取得がどうなるか」や「別のページに遷移すると書体が変わる」という状況が、どういう UX になるかには興味があるため、実験の意味も含めて <code translate="no">font-display: optional</code> をページ全体に適用することとした。
+    </section>
+    <section>
+      <h2 id="DEMO"><a href="#DEMO">DEMO</a></h2>
+      <p>本サイトとは別に、大きいフォントファイルを、 4 つのプロパティで表示するデモを以下に用意した。
+      <p>DEMO: <a href="https://labs.jxck.io/webfont/font-display.html">https://labs.jxck.io/webfont/font-display.html</a>
+    </section>
+    <section>
+      <h2 id="Link"><a href="#Link">Link</a></h2>
+      <ul>
+        <li><a href="https://drafts.csswg.org/css-fonts-4/#font-display-desc">https://drafts.csswg.org/css-fonts-4/#font-display-desc</a>
+        <li><a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/webfont-optimization#customize_the_text_rendering_delay">https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/webfont-optimization#customize_the_text_rendering_delay</a>
+        <li><a href="https://font-display.glitch.me/">https://font-display.glitch.me/</a>
+      </ul>
+    </section>
+  </article>
+
+    </main>
+    <hr>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/footer.css>
+    <footer>
+      <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved. Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>google analytics</a>.</address>
+    </footer>
+  </body>
+</html>
