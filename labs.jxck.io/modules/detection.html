@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+
+<title>ES Modules Support Detection DEMO | labs.jxck.io</title>
+
+<h1>ES Modules Support Detection DEMO</h1>
+
+<p>see console
+
+<script type=module>
+  console.log('<script type=module>')
+</script>
+<script nomodule>
+  console.log('<script nomodule>')
+</script>
+
+<script>
+// Feature detect static imports.
+function supportsStaticImport() {
+  const script = document.createElement('script')
+  return 'noModule' in script
+}
+
+// Feature detect dynamic import().
+function supportsDynamicImport() {
+  try {
+    new Function('import("")')
+    return true
+  } catch (err) {
+    return false
+  }
+}
+
+console.log(" static import:", supportsStaticImport())
+console.log("dynamic import:", supportsDynamicImport())
+</script>
+
+<p>forked from: <a href=https://gist.github.com/ebidel/3201b36f59f26525eb606663f7b487d0>https://gist.github.com/ebidel/3201b36f59f26525eb606663f7b487d0</a>
+<p>see also
+<ul>
+  <li><a href=https://twitter.com/ebidel/status/933058397695459328>https://twitter.com/ebidel/status/933058397695459328</a>
+  <li><a href=https://twitter.com/ebidel/status/933080827830743040>https://twitter.com/ebidel/status/933080827830743040</a>
+</ul>
