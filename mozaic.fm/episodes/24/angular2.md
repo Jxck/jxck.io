@@ -1,4 +1,4 @@
-# [angular2][spa][javascript] ep24 Angular2
+# [angular2][spa][javascript][mozaic.fm] ep24 Angular2
 
 ## Info
 
