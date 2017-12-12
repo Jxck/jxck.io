@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang=ja itemscope itemtype=http://schema.org/BlogPosting>
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset=utf-8>
+    <!--
+    貴様、見ているな！！
+    このサイトの技術的なまとめはこちらをどうぞ。
+    https://labs.jxck.io/blog
+
+    by Jxck
+    -->
+    <link rel=canonical href="https://blog.jxck.io/entries/2017-12-12/whatwg-working-mode-changes.html">
+    <link rel=amphtml href="https://blog.jxck.io/entries/2017-12-12/whatwg-working-mode-changes.amp.html">
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+    <link rel=author href=//jxck.io/assets/humans.txt>
+    <link rel=manifest href=/manifest.json>
+    <link rel=preload as=font type=font/woff href="//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201608028" crossorigin>
+    <script async src=//jxck.io/assets/js/ga.js></script>
+    <script async src=//jxck.io/assets/js/highlight.min.js></script>
+    <script async src=//jxck.io/assets/js/sw.js></script>
+    <script async src=//jxck.io/assets/js/main.js></script>
+
+    <meta name="author" content="Jxck">
+    <meta name="description" content="WHATWG が IPR Policy と Governance Structure についての更新を発表した。おおまかな流れと、これによって引き起されそうな変化について解説する。...">
+    <meta name="keywords" content="w3c,whatwg">
+    <meta itemprop="image" content="https://jxck.io/assets/img/jxck.png">
+    <meta itemprop="name" content="blog.jxck.io">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jxck_">
+    <meta name="twitter:url" content="https://blog.jxck.io/entries/2017-12-12/whatwg-working-mode-changes.html">
+    <meta name="twitter:title" content="WHATWG の IPR Policy と Governance Structure | blog.jxck.io">
+    <meta name="twitter:description" content="WHATWG が IPR Policy と Governance Structure についての更新を発表した。おおまかな流れと、これによって引き起されそうな変化について解説する。...">
+    <meta name="twitter:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://blog.jxck.io/entries/2017-12-12/whatwg-working-mode-changes.html">
+    <meta property="og:title" content="WHATWG の IPR Policy と Governance Structure | blog.jxck.io">
+    <meta property="og:site_name" content="blog.jxck.io">
+    <meta property="og:description" content="WHATWG が IPR Policy と Governance Structure についての更新を発表した。おおまかな流れと、これによって引き起されそうな変化について解説する。...">
+    <meta property="og:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <link rel="icon" sizes="192x192" href="https://jxck.io/assets/img/jxck.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "WHATWG の IPR Policy と Governance Structure | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2017-12-12T08:00:00+08:00",
+  "dateModified": "2017-12-12T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "WHATWG が IPR Policy と Governance Structure についての更新を発表した。おおまかな流れと、これによって引き起されそうな変化について解説する。..."
+}
+</script>
+
+    <title>WHATWG の IPR Policy と Governance Structure | blog.jxck.io</title>
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/body.css>
+  </head>
+  <body>
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/header.css>
+    <header>
+      <ul>
+        <li><a href=//blog.jxck.io><img class=logo alt=blog title="blog top" width=30 src=//jxck.io/assets/img/blog.svg></a>
+        <li><a href="/entries/2017-12-12/whatwg-working-mode-changes.amp.html#development=1"><svg width=30 height=30><use xlink:href="/assets/img/amp.svg#main"/></svg></a>
+        <li><a href=.><img alt=up title="move to parent directory" width=30 src=//jxck.io/assets/img/up.svg></a>
+        <li><a href=/feeds/atom.xml><img alt=rss title="rss feed" width=30 src=//jxck.io/assets/img/rss.svg></a>
+        <li><a href=//jxck.io/humans.txt><img alt=humans title=huamns.txt width=30 src=//jxck.io/assets/img/humans.svg></a>
+        <li><a href=//jxck.io><img class=logo alt=jxck title="jxck logo" width=30 src=//jxck.io/assets/img/jxck.png></a>
+      </ul>
+    </header>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/markdown.css>
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/main.css>
+    <main>
+      <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/info.css>
+      <ul class=info>
+        <li>created_at: <time class=created_at datetime=2017-12-12>2017-12-12</time>
+        <li>updated_at: <time class=updated_at datetime=2017-12-12>2017-12-12</time>
+        <li class=tags>tags: [<a href='/tags/w3c.html'>w3c</a>,<a href='/tags/whatwg.html'>whatwg</a>]
+      </ul>
+
+      <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/article.css>
+  <article>
+    <h1><a href=/entries/2017-12-12/whatwg-working-mode-changes.html>WHATWG の IPR Policy と Governance Structure</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>WHATWG が IPR Policy と Governance Structure についての更新を発表した。
+      <p>おおまかな流れと、これによって引き起されそうな変化について解説する。
+    </section>
+    <section>
+      <h2 id="Working+Mode+Changes"><a href="#Working+Mode+Changes">Working Mode Changes</a></h2>
+      <p>昨夜(JST)、 WHATWG は以下のブログをポストした。
+      <p><a href="https://blog.whatwg.org/working-mode-changes">The WHATWG Blog - Further working mode changes</a>
+      <p>ブラウザベンダ各社もこれに賛同を表明している。
+      <ul>
+        <li>mozilla: <a href="https://twitter.com/mozhacks/status/940258410477604864">https://twitter.com/mozhacks/status/940258410477604864</a>
+        <li>chrome:  <a href="https://twitter.com/ChromiumDev/status/940253003587694593">https://twitter.com/ChromiumDev/status/940253003587694593</a>
+        <li>safari:  <a href="https://twitter.com/webkit/status/940254938092879874">https://twitter.com/webkit/status/940254938092879874</a>
+        <li>edge:    <a href="https://twitter.com/MSEdgeDev/status/940255204032765953">https://twitter.com/MSEdgeDev/status/940255204032765953</a>
+      </ul>
+      <p>W3C も、公式ブログでこれに言及している。
+      <p><a href="https://www.w3.org/blog/2017/12/whatwg-working-mode-changes/">WHATWG Working Mode Changes | W3C Blog</a>
+    </section>
+    <section>
+      <h2 id="WHATWG+と+W3C"><a href="#WHATWG+と+W3C">WHATWG と W3C</a></h2>
+      <p>現状 HTML の仕様については WHATWG が仕様を策定し、 W3C がそれをフォークしバージョニングして勧告している状態である。
+      <p>詳細は以下で解説している。
+      <p><a href="https://mozaic.fm/episodes/14/whatwg.html">ep14 WHATWG | mozaic.fm</a>
+      <p>簡単に言うと今から 20 年近く前、HTML4.01 の作業がひと段落した W3C は、当時盛り上がっていた XML ベースの仕様に舵を切るため XHTML の策定に注力し始めた。
+      <p>しかし、既存の HTML との互換性を重視するブラウザベンダとしては W3C の進め方に懸念があった。
+      <p>そこで Mozilla や Opera から、互換性重視での HTML の進化を望む旨を提言したが、 W3C はそれを相手にしなかった。
+      <p>結果、既存のスタックの更新を行うためのフォーラムとして WHATWG が作られ、他のブラウザベンダも参加した。
+      <p>そこから、既存の HTML の延長上にある仕様の策定が始まり、これがいわゆる HTML5 と呼ばれたものだった。
+      <p>その後、XML 路線を進めていた W3C は、結局それがうまくいかないことに気づき、互換を保つ HTML の策定への注力に舵を切り戻すことにした。
+      <p>そのベースの仕様として WHATWG の仕様に注目した。
+    </section>
+    <section>
+      <h2 id="2+つの+HTML"><a href="#2+つの+HTML">2 つの HTML</a></h2>
+      <p>WHATWG は、ブラウザベンダが中心になっているため互換性維持に対する思いが強い。
+      <p>Web において、互換性が壊れることはあってはならない。 だから、 Web は互換を保ったまま先に進むしかない。
+      <p>つまり <strong>Web にはバージョンが無い</strong>
+      <p>として、 HTML のスペックからバージョンを無くし、 Living Standard としてメンテナンスすることを選んだ。
+      <p>一方 W3C は、この仕様をある時点でスナップショットを取得し、各プロセスを経てバージョンを付与して勧告するという作業を行なっている。
+      <p>これが、 WHATWG と W3C がほぼ同じ仕様を別々に公開している現状に繋がる。
+      <p>両者が単なるコピーで片付くならまだよかったのだが、実際には微妙に違いがある。
+      <p>具体的には、 W3C は WHATWG からコピーする際に細かい部分に独自パッチを当てていることと、 W3C にはテントポリシーがある点だ。
+    </section>
+    <section>
+      <h2 id="Further+working+mode+changes"><a href="#Further+working+mode+changes">Further working mode changes</a></h2>
+      <p>W3C はロイヤリティフリーを基本とするパテントポリシーを持っているが、 WHATWG にはそれがない。
+      <p>それどころか、 WHATWG はその実態がコミュニティベースのグループのようなものであり、会員グループで法人格を持ち厳密なプロセスを走らせる W3C ほど盤石な組織といったものではない。
+      <p>これにより、 W3C で勧告された仕様は、特定の企業にとっては安心して実装できる部分がある。
+      <p>企業にとって特許問題は重要であり、ある意味でこの点が W3C が WHATWG の仕様をフォークしてでも、 W3C 側で勧告する意義だったと言っても良いだろう。
+      <p>(W3C 会員企業にとっては W3C 側でコンセンサスが取られた結果が入っていることも重要かもしれない、例えば a11y 的な観点などで WHATWG と diff があるのはこうした背景がある)
+      <p>今回の WHATWG の発表は、この WHATWG の体制を整備することと、 Patent Policy を導入するという点に注目すべきだろう。
+    </section>
+    <section>
+      <h2 id="Steering+Group"><a href="#Steering+Group">Steering Group</a></h2>
+      <p>基本的に、 WHATWG のやり方自体は今までと変わらないことが強調されている。
+      <p>つまり、コミュニティベースで Living Standard を策定していくというこれまでの流れだ。
+      <p>従来との大きな違いは、 Steering Group が設置されることだろう。
+      <p><a href="https://github.com/whatwg/sg">whatwg/sg: A place to raise issues with the WHATWG Steering Group</a>
+      <p>この組織の目的は、前述の通りこれまでのやり方を維持していくことに加え、 IPR Policy に関わる作業を担うこととされている。
+      <p>ここには Mozilla, Apple, Microsoft, Google が参加しており、先の W3C のポストでは <a href="https://www.w3.org/blog/2017/12/whatwg-working-mode-changes/">W3C も invite された</a> とある。
+    </section>
+    <section>
+      <h2 id="IPR+Policy"><a href="#IPR+Policy">IPR Policy</a></h2>
+      <p>WHATWG が導入した IPR Policy は以下にある。
+      <p><a href="https://whatwg.org/ipr-policy">The WHATWG Intellectual Property Rights Policy</a>
+      <p>ドキュメントの末尾にはこうある。
+      <blockquote>This document includes material derived from the W3C Patent Policy.</blockquote>
+      <p>W3C をベースにし、多くの標準化団体が行なっているそれと基本的には同じだとされている。
+      <p>具体的にはロイヤリティフリーを基本としたポリシーだ。
+      <p>今後は、 W3C が行なっていたような Patent 関連の調整を、このポリシーを元に Steering Group が行なっていくことになりそうだ。
+      <p>HTML は、過去に Apple が保有する Canvas の特許を巡るパテントの扱いで揉めたこともあったが、こうした問題も今後は減る/適切に対処されるだろう。
+    </section>
+    <section>
+      <h2 id="Contributor+and+Workstream+Participant+Agreement"><a href="#Contributor+and+Workstream+Participant+Agreement">Contributor and Workstream Participant Agreement</a></h2>
+      <p>関連する技術のロイヤリティフリーを保証して仕様を策定していくため、 OSS でいう CLA (Contributor License Agreement) に似た Agreement が用意された。
+      <p><a href="https://participate.whatwg.org/agreement">Contributor and Workstream Participant Agreement</a>
+      <p>今後 WHATWG HTML にコントリビュートする際には、これへの同意を求められるようだ。
+      <p>すでに Chrome(Google), Safari(Apple), Firefox(Mozilla), Edge(Microsoft) は、これに同意している。
+    </section>
+    <section>
+      <h2 id="なにが変わるか"><a href="#なにが変わるか">なにが変わるか</a></h2>
+      <p>その他、多くのポリシーが整備されており、 WHATWG の作業が明確にされている。
+      <p>これにより、一般の開発者、つまり仕様を参照し Web コンテンツ/サービスを開発する開発者にとって大きな変更があるかというと、あまりないだろう。
+      <p>一方で、 HTML の実装を持つ企業や、 W3C 会員として HTML に関わるメンバ、 WHATWG の HTML にコントリビュートする開発者には、多少変化があるだろう。
+      <p>一番大きいのは、ずっと懸念されていた WHATWG の特許関連がクリアになりそうだという点だろう。
+      <p>また、いよいよ W3C がフォークしている WHATWG の仕様に、特許の観点からのアドバンテージがなくなる。
+      <p>これによって、分離するモチベーションが W3C 自身にしかなくなれば、いよいよフォークがなくなる可能性があるかもしれない。
+      <p>(それでも、 W3C 内でのコンセンサスによる diff の行き場としてのこるかもしれないが、そこは Steering Group の手腕に期待したい)
+      <p>先日 HTML5.2 の PR を期に <a href="https://lists.w3.org/Archives/Public/public-html/2017Nov/0001.html">Travis Leithead, Arron Eicholz, Alex Danilo の 3 人がエディタから退いた</a> ことも記憶に新しい。
+      <p>TPAC では HTML5.3 の話も始まっていたが、来年の HTML どうなるだろうか。
+    </section>
+  </article>
+
+    </main>
+    <hr>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/footer.css>
+    <footer>
+      <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved. Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>google analytics</a>.</address>
+    </footer>
+  </body>
+</html>
