@@ -74,7 +74,7 @@ Monthly Web のモチベーションについては以下。
    - Implement and Ship: Constructible & Subclassable EventTarget
       - [https\://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/fKk4d_Vj080/Pu73nu90BQAJ](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/fKk4d_Vj080/Pu73nu90BQAJ)
       - EventTarget を継承できるようになり EventEmitter 的なことが DOM でできる
-      - [blog]([https\://blog.jxck.io/entries/2017-07-10/subclassible-eventtarget.html)](https://blog.jxck.io/entries/2017-07-10/subclassible-eventtarget.html))
+      - [blog](https\://blog.jxck.io/entries/2017-07-10/subclassible-eventtarget.html)
    - Implement and Ship: Numeric character reference fallback for file upload characters not representable in accept-charset
       - [https\://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/T11QWD2Jyyo/3oS5gCxYAQAJ](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/T11QWD2Jyyo/3oS5gCxYAQAJ)
    - Implement and Ship: Partial RTCRtpSynchronizationSource

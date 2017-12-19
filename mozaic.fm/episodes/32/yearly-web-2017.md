@@ -162,7 +162,7 @@ Monthly Web のモチベーションについては以下。
    - W3C と同様のロイヤリティフリーな IPR Policy
    - Steering Group の設置
    - Contributor and Workstream Participant Agreement を要求
-   - [blog]([https\://blog.jxck.io/entries/2017-12-12/whatwg-working-mode-changes.html)](https://blog.jxck.io/entries/2017-12-12/whatwg-working-mode-changes.html))
+   - [blog](https\://blog.jxck.io/entries/2017-12-12/whatwg-working-mode-changes.html)
    - FYI: domenic による html dups の解説 [https\://bit.ly/2z4LSyc](https://bit.ly/2z4LSyc)
 - A 'navigation-to' CSP directive
    - [https\://lists.w3.org/Archives/Public/public-webappsec/2017Dec/0000.html](https://lists.w3.org/Archives/Public/public-webappsec/2017Dec/0000.html)
