@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+
+<title>Image Decode Attribute DEMO | labs.jxck.io</title>
+
+<style>
+img {
+  width: 100px;
+}
+</style>
+
+<main>
+  <h1>Image Decode Attribute Labs</h1>
+  <section>
+    <h2>default</h2>
+    <p>default (auto Auto Indicates no preference in decoding mode))</p>
+    <img decoding=auto src=lenna.lossless.png>
+    <pre>
+      <code>
+        &lt;img src=lenna.lossless.png&gt;
+        &lt;img decoding=auto  src=lenna.lossless.png&gt;
+      </code>
+    </pre>
+
+    <hr>
+
+    <h2>Sync</h2>
+    <p>Sync Indicates a preference to decode this image synchronously for atomic presentation with other content.
+    <img decoding=sync  src=lenna.lossless.png>
+    <pre>
+      <code>
+        &lt;img decoding=sync  src=lenna.lossless.png&gt;
+      </code>
+    </pre>
+
+    <hr>
+
+    <h2>Async</h2>
+    <p>Async Indicates a preference to decode this image asynchronously to avoid delaying presentation of other content.
+    <img decoding=auto  src=lenna.lossless.png>
+    <pre>
+      <code>
+        &lt;img decoding=async src=lenna.lossless.png&gt;
+      </code>
+    </pre>
+  </section>
+</main>
