@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>onresize DEMO | labs.jxck.io</title>
+
+<style>
+textarea {
+  display: block;
+  background-color: rgb(255, 255, 255);
+}
+</style>
+
+<h1>onresize</h1>
+
+<p>resize Window</p>
+<p id=rect></p>
+<script>
+const $rect = document.querySelector('#rect')
+window.addEventListener('resize', (e) => {
+  console.log(e)
+})
+</script>
+
