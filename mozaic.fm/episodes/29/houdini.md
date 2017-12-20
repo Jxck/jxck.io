@@ -45,7 +45,7 @@ audio: https://files.mozaic.fm/mozaic-ep29.mp3
   - [CSS Parser API](https://drafts.css-houdini.org/css-parser-api/)
     - CSS パーサを export し CSS を解析した中間表現にアクセスできるように
     - まだ中身がほぼない
-    - use case: [https\://github.com/WICG/CSS-Parser-API](https://github.com/WICG/CSS-Parser-API)
+    - use case: [https://github.com/WICG/CSS-Parser-API](https://github.com/WICG/CSS-Parser-API)
   - [CSS Painting API Level 1](https://drafts.css-houdini.org/css-paint-api/)
     - ペイント領域に対して Canvas API サブセットで好きなように描画できる
   - [CSS Layout API Level 1](https://drafts.css-houdini.org/css-layout-api/)
@@ -61,7 +61,7 @@ audio: https://files.mozaic.fm/mozaic-ep29.mp3
   - [Part II: CSS Properties & Values, Custom Paint](https://lists.w3.org/Archives/Public/public-houdini/2017Aug/0002.html)
   - [Part III: Layout Worklets, Future Meetings](https://lists.w3.org/Archives/Public/public-houdini/2017Aug/0003.html)
 - レシピの中括弧
-  - [https\://wiki.csswg.org/planning/tokyo-2017#afternoon1](https://wiki.csswg.org/planning/tokyo-2017#afternoon1)
+  - [https://wiki.csswg.org/planning/tokyo-2017#afternoon1](https://wiki.csswg.org/planning/tokyo-2017#afternoon1)
   - [CSS Paint API での実装例](http://kojiishi.github.io/css-paint/curly-bracket.html)
 - TPAC 2017
   - [TPAC 2017](https://wiki.csswg.org/planning/tpac-2017)

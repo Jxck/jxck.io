@@ -24,22 +24,22 @@ Angular 自身、そしてそれを取り巻くエコシステムや標準化の
 - Angular2
   - [Angular 2.0.0 がリリースされました](https://ng2-info.github.io/2016/09/angular-2-final/)
 - module
-  - [https\://github.com/systemjs/systemjs](https://github.com/systemjs/systemjs)
-  - [https\://github.com/webpack/webpack](https://github.com/webpack/webpack)
+  - [https://github.com/systemjs/systemjs](https://github.com/systemjs/systemjs)
+  - [https://github.com/webpack/webpack](https://github.com/webpack/webpack)
 - observable
-  - [https\://github.com/ReactiveX/RxJS](https://github.com/ReactiveX/RxJS)
+  - [https://github.com/ReactiveX/RxJS](https://github.com/ReactiveX/RxJS)
   - [TAKING ADVANTAGE OF OBSERVABLES IN ANGULAR 2](http://blog.thoughtram.io/angular/2016/01/06/taking-advantage-of-observables-in-angular2.html)
 - decorator
-  - [https\://github.com/wycats/javascript-decorators](https://github.com/wycats/javascript-decorators)
-  - [https\://github.com/rbuckton/ReflectDecorators](https://github.com/rbuckton/ReflectDecorators)
+  - [https://github.com/wycats/javascript-decorators](https://github.com/wycats/javascript-decorators)
+  - [https://github.com/rbuckton/ReflectDecorators](https://github.com/rbuckton/ReflectDecorators)
 - change detection
   - [ANGULAR 2 CHANGE DETECTION EXPLAINED](http://blog.thoughtram.io/angular/2016/02/22/angular-2-change-detection-explained.html)
 - zone
-  - [https\://github.com/angular/zone.js](https://github.com/angular/zone.js)
+  - [https://github.com/angular/zone.js](https://github.com/angular/zone.js)
   - [UNDERSTANDING ZONES](http://blog.thoughtram.io/angular/2016/01/22/understanding-zones.html)
   - [ZONES IN ANGULAR 2](http://blog.thoughtram.io/angular/2016/02/01/zones-in-angular-2.html)
 - ssr
-  - [https\://github.com/angular/universal](https://github.com/angular/universal)
+  - [https://github.com/angular/universal](https://github.com/angular/universal)
 - イベント
   - [ng-japan Meetup with Angular Core Team](https://ngjapan.connpass.com/event/44765/)
   - [togetter](http://togetter.com/li/1058613)
