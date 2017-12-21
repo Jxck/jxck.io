@@ -13,7 +13,7 @@ mozaic.fm の v2 をリリースしました。 breaking change があるので�
 
 一番大きいのは、 feed の URL の変更です。新しい URL はこちらです。
 
-[http://feed.mozaic.fm](http://feed.mozaic.fm)
+<http://feed.mozaic.fm>
 
 
 ## Change Log
@@ -22,7 +22,7 @@ mozaic.fm の v2 をリリースしました。 breaking change があるので�
 
 以下が v2 の変更点です。
 
-- feed の URL が [http://feed.mozaic.fm](http://feed.mozaic.fm) に変わります。
+- feed の URL が <http://feed.mozaic.fm> に変わります。
   - feedburner をやめたかったので自分で生成するようにしました。
   - 現時点での全エピソードを feed に載せるようにしました。
   - 古い URL は feedburner のドメインなので、リダイレクトはできません。
