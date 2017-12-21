@@ -34,7 +34,7 @@ end
 
 # remove markdown link
 def unlink(str)
-  str.gsub(/\[(.*?)\]\(.*?\)/, '\1')
+  str.gsub(/\[(.*?)\]\(.*?\)/, '\1').gsub(/<(http.*?)>/, '\1')
 end
 
 # remove \n\r for online
