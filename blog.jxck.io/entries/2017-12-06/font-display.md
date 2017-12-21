@@ -65,8 +65,8 @@ FOUT (Flash of Unstyled Text)
 
 こうした現象を防ぐためには、 JavaScript でフォントの読み込み/表示を制御するのライブラリが使われることが多い。
 
-- [https\://github.com/typekit/webfontloader](https://github.com/typekit/webfontloader)
-- [https\://github.com/bramstein/fontfaceobserver](https://github.com/bramstein/fontfaceobserver)
+- <https://github.com/typekit/webfontloader>
+- <https://github.com/bramstein/fontfaceobserver>
 
 
 ## font-display
@@ -158,11 +158,11 @@ FOIT を極力避けつつも、 swap period が無いため block period を過
 
 本サイトとは別に、大きいフォントファイルを、 4 つのプロパティで表示するデモを以下に用意した。
 
-DEMO: [https\://labs.jxck.io/webfont/font-display.html](https://labs.jxck.io/webfont/font-display.html)
+DEMO: <https://labs.jxck.io/webfont/font-display.html>
 
 
 ## Link
 
-- [https\://drafts.csswg.org/css-fonts-4/#font-display-desc](https://drafts.csswg.org/css-fonts-4/#font-display-desc)
-- [https\://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/webfont-optimization#customize_the_text_rendering_delay](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/webfont-optimization#customize_the_text_rendering_delay)
-- [https\://font-display.glitch.me/](https://font-display.glitch.me/)
+- <https://drafts.csswg.org/css-fonts-4/#font-display-desc>
+- <https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/webfont-optimization#customize_the_text_rendering_delay>
+- <https://font-display.glitch.me/>

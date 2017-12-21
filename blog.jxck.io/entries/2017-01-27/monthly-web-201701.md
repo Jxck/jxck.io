@@ -63,7 +63,7 @@
   - cache-control: no-transform は無視するらしい(opt-in だからか)
 
 - [新しい Google の圧縮ライブラリ Draco と guetzli](https://opensource.googleblog.com/2017/01/introducing-draco-compression-for-3d.html)
-  - [https\://github.com/google/guetzli](https://github.com/google/guetzli)
+  - <https://github.com/google/guetzli>
   - WebVR 系コンテンツ特化とか
 
 - [Firefox に input type=date 系実装中](https://twitter.com/mozhacks/status/821005161602646016)
@@ -115,9 +115,9 @@
 
 - [Key Transparency](https://developers-jp.googleblog.com/2017/01/security-through-transparency.html?m=1)
   - GPG を整理的な?
-  - [https\://github.com/google/keytransparency/](https://github.com/google/keytransparency/)
-  - [https\://onename.com/](https://onename.com/)
-  - [https\://keybase.io/](https://keybase.io/)
+  - <https://github.com/google/keytransparency/>
+  - <https://onename.com/>
+  - <https://keybase.io/>
 
 - [HSTS meetup](https://docs.google.com/document/d/1d21wtTCQ-a6vN7yDwyhLkuBpgmLoJCKMI7aRrXNBIbI/edit)
   - 濃ゆい議論があった模様
@@ -129,7 +129,7 @@
   - 徳丸先生
 
 - [autofill で個人情報が意図せず送られる](https://gist.github.com/mala/a53e3f8a0c793a5c7bef2215dd951879)
-  - [http\://gigazine.net/news/20170106-browser-autofill-phishing/](http://gigazine.net/news/20170106-browser-autofill-phishing/)
+  - <http://gigazine.net/news/20170106-browser-autofill-phishing/>
   - input を隠しとく素朴なやりかた
   - UI でなんとかするらしい
 

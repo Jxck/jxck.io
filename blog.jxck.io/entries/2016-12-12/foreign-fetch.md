@@ -69,7 +69,7 @@ Service Worker に Foreign Fetch という機能が提案されている。
 
 これは 3rd Party にあたり、 CORS に対応している。
 
-[https\://labs.jxck.io/service-worker/foreign-fetch/index.html](https://labs.jxck.io/service-worker/foreign-fetch/index.html)
+<https://labs.jxck.io/service-worker/foreign-fetch/index.html>
 
 ページに読み込まれる `index.html` と `worker.js` は 1st Party Service Worker でキャッシュされており、オフライン対応されている。
 

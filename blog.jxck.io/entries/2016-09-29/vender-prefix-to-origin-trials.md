@@ -137,7 +137,7 @@ Origin Trials は、その名の通り「**特定のオリジンにだけ、実�
 
 ## 利用の流れ
 
-今回は、以下のガイドに沿って、ブラウザの持つ新しい機能を、筆者の持つ新機能実験用オリジンである [https\://labs.jxck.io](https://labs.jxck.io) でのみ使えるように、実際に申請をしながら解説する。
+今回は、以下のガイドに沿って、ブラウザの持つ新しい機能を、筆者の持つ新機能実験用オリジンである <https://labs.jxck.io> でのみ使えるように、実際に申請をしながら解説する。
 
 [Origin Trials Guide for Web Developers](https://github.com/jpchase/OriginTrials/blob/gh-pages/developer-guide.md)
 
@@ -168,7 +168,7 @@ Origin Trials の対象となる機能は、執筆時点で以下のとおりで
 
 申請は以下のフォームから行う。
 
-[http\://bit.ly/OriginTrialSignup](http://bit.ly/OriginTrialSignup)
+<http://bit.ly/OriginTrialSignup>
 
 - 使用者のメールアドレス
 - 使用する機能 (Foreign Fetch)

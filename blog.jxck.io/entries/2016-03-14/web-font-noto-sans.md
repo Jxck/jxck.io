@@ -73,7 +73,7 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 
 > JIS (日本工業規格)で定められた漢字の規格で、 JISX0208 に含まれる。日常で使用頻度の高い漢字を集め、コンピューターで利用するためにコード化したもの。 JIS 第 1 水準は 2965 字で、常用漢字 1945 字とその他の人名用漢字が含まれており、通常の文書であれば JIS 第 1 水準の文字だけで記述できるとされている。 JIS 第 2 水準は 3390 字で、 DTP で使用するフォントの多くは、 JIS 第 1 水準と JIS 第 2 水準を網羅している。 JIS 第 3 水準および JIS 第 4 水準は、業種によって必要になる特殊な記号などを集めたもので、 JISX0208 を拡張する別の規格である。
 
-[http\://yougo.ascii.jp/caltar/JIS 漢字水準](http://yougo.ascii.jp/caltar/JIS%E6%BC%A2%E5%AD%97%E6%B0%B4%E6%BA%96)
+<http://yougo.ascii.jp/caltar/JIS 漢字水準>
 
 しかし、このブログは **技術ブログ** であり、使われる漢字は非常に限定的だ。
 

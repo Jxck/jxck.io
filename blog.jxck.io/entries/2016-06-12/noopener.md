@@ -13,7 +13,7 @@
 
 ![Opener によって別タブで開いた画面が元の画面を遷移させている](window-opener.gif#150x150 "window opener demo")
 
-このデモでは、 [https\://labs.jxck.io/noopener](https://labs.jxck.io/noopener) から開いた [https\://labs.jxck.io/noopener/opener-change.html](https://labs.jxck.io/noopener/opener-change.html) のページが別タブで開いた後、最初に開いたタブが勝手に [http\://example.com](http://example.com) に遷移しているというものである。
+このデモでは、 <https://labs.jxck.io/noopener> から開いた <https://labs.jxck.io/noopener/opener-change.html> のページが別タブで開いた後、最初に開いたタブが勝手に <http://example.com> に遷移しているというものである。
 
 最初のページを Parent 、開いたタブを Child とする。
 

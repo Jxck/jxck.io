@@ -80,7 +80,7 @@ file.send-gzip: ON
 
 zopfli は Google が開発した圧縮アルゴリズム、およびその実装である。
 
-[https\://github.com/google/zopfli](https://github.com/google/zopfli)
+<https://github.com/google/zopfli>
 
 **圧縮結果が gzip 互換**であるため、方式そのものは実質 gzip である。
 

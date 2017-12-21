@@ -23,9 +23,9 @@ URL は非常によく使われる、 Web において重要なフォーマッ�
 
 それが以下である。
 
-原文: [https\://url.spec.whatwg.org](https://url.spec.whatwg.org)
+原文: <https://url.spec.whatwg.org>
 
-翻訳: [https\://triple-underscore.github.io/URL-ja.html](https://triple-underscore.github.io/URL-ja.html)
+翻訳: <https://triple-underscore.github.io/URL-ja.html>
 
 これによって、既存/新規 DOM API は、 URL を扱う際に、基本的にはこの仕様を参照することができるようになった。
 
@@ -57,7 +57,7 @@ DOM や JS の API として Export されていなかっただけで、ブラ�
 
 しかし、片手間な正規表現や、パーサを実装したライブラリを使わず、ブラウザに URL の解析を依頼するためには、従来以下のような方法しかなかった。
 
-[https\://gist.github.com/jlong/2428561](https://gist.github.com/jlong/2428561)
+<https://gist.github.com/jlong/2428561>
 
 ところが、 WHATWG のドラフトでは、前述した仕様が定義されたと同時に、それを提供する API が定義された。
 
@@ -104,7 +104,7 @@ Node v7.0.0 で実装された API は以下のように使うことができる
 
 なお、ブラウザの実装状況は caniuse に項目がまだ無い ([issue](https://github.com/Fyrd/caniuse/issues/1312)) ので MDN を貼っておく。
 
-[https\://developer.mozilla.org/en/docs/Web/API/URL/URL](https://developer.mozilla.org/en/docs/Web/API/URL/URL)
+<https://developer.mozilla.org/en/docs/Web/API/URL/URL>
 
 
 ## URLSearchParams オブジェクト
@@ -121,7 +121,7 @@ Node v7.0.0 で実装された API は以下のように使うことができる
 
 こちらは caniuse があるので、貼っておく。
 
-[https\://caniuse.com/#feat=urlsearchparams](https://caniuse.com/#feat=urlsearchparams)
+<https://caniuse.com/#feat=urlsearchparams>
 
 
 ## まとめ

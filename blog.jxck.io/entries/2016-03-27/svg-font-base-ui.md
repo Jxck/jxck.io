@@ -185,7 +185,7 @@ cacoo が吐いた SVG と比べれば 20% なので、以降基本的に UI ア
 
 それ以外で、削れそうな部分があれば今後も削っていく予定である。
 
-[https\://labs.jxck.io/svg](https\://labs.jxck.io/svg)
+<https://labs.jxck.io/svg>
 
 SVG の弱点として、 HTML に埋め込んだ SVG でないと CSS で色を指定できないという問題がある。
 

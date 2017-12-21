@@ -36,7 +36,7 @@ $ selects mtime, size, basename from './entries/**/*' where extname '==' '.md' a
 
 依存ライブラリは無く、 1 ファイルで完結しているので、パスの通った所に置いてもらえればすぐ使える。
 
-[https\://github.com/Jxck/dotfiles/blob/master/bin/selects](https://github.com/Jxck/dotfiles/blob/master/bin/selects)
+<https://github.com/Jxck/dotfiles/blob/master/bin/selects>
 
 
 ## Example
@@ -176,7 +176,7 @@ $ selects atime, basename from './entries/**/*' where atime '>' 2016-08-01 and d
 
 `select`, `where`, `order by` に使える属性なども、 ruby の File クラスのドキュメントを見てくれれば良い。
 
-[https\://docs.ruby-lang.org/ja/2.3.0/class/File.html](https://docs.ruby-lang.org/ja/2.3.0/class/File.html)
+<https://docs.ruby-lang.org/ja/2.3.0/class/File.html>
 
 裏に Ruby が透けて見えるため、 Ruby を知ってると「こうすれば動きそう」がそのまま動く。
 

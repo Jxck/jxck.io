@@ -15,10 +15,10 @@ WHATWG が IPR Policy と Governance Structure についての更新を発表し
 
 ブラウザベンダ各社もこれに賛同を表明している。
 
-- mozilla: [https\://twitter.com/mozhacks/status/940258410477604864](https://twitter.com/mozhacks/status/940258410477604864)
-- chrome:  [https\://twitter.com/ChromiumDev/status/940253003587694593](https://twitter.com/ChromiumDev/status/940253003587694593)
-- safari:  [https\://twitter.com/webkit/status/940254938092879874](https://twitter.com/webkit/status/940254938092879874)
-- edge:    [https\://twitter.com/MSEdgeDev/status/940255204032765953](https://twitter.com/MSEdgeDev/status/940255204032765953)
+- mozilla: <https://twitter.com/mozhacks/status/940258410477604864>
+- chrome:  <https://twitter.com/ChromiumDev/status/940253003587694593>
+- safari:  <https://twitter.com/webkit/status/940254938092879874>
+- edge:    <https://twitter.com/MSEdgeDev/status/940255204032765953>
 
 W3C も、公式ブログでこれに言及している。
 

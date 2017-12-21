@@ -9,7 +9,7 @@ Google の中の人からお声がけ頂き、 Google Developer Experts (GDE) �
 
 GDE は、簡単に言えば Google の技術についての啓蒙などを行う、社外アドボケート的な位置づけである。
 
-[https\://developers.google.com/experts/](https://developers.google.com/experts/)
+<https://developers.google.com/experts/>
 
 各自専門領域(Android, GCP etc)があるが、自分はやはり Web Technologies ということになる。
 

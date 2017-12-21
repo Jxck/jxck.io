@@ -147,7 +147,7 @@ function addEventListenerWithOptions(target, type, handler, options) {
 }
 ```
 
-[https\://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#feature-detection](https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#feature-detection)
+<https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#feature-detection>
 
 
 ## DEMO

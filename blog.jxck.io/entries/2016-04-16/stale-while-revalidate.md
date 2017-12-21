@@ -192,7 +192,7 @@ Cache-Control: max-age=3600, stale-if-error=360
 
 以下に用意したデモページを用意した。
 
-[https\://labs.jxck.io/stale-while-revalidate/](https://labs.jxck.io/stale-while-revalidate/)
+<https://labs.jxck.io/stale-while-revalidate/>
 
 サーバは、アクセスの度に異なるシーケンス番号、タイムスタンプ、ランダムな文字列を返すようになっている。
 
