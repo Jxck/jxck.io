@@ -7,14 +7,14 @@
 
 -include("../logger.hrl").
 
--define(PORT, 443).
+-define(PORT, 4443).
 
 %% サーバからの受信なので {active, true} で開く。
 %% 受信と送信が平行できるように受信は spawn し、制御プロセスを移譲する。
 main(_) ->
     ok = ?Log(ssl:start()),
     {ok, Socket} = ssl:connect({127,0,0,1}, ?PORT, [
-                                                    {ciphers, [{rsa,aes_128_cbc,sha256}]},
+                                                    {ciphers, [{ecdhe_rsa, aes_256_gcm, null, sha384}]},
                                                     {active, true},
                                                     binary
                                                    ]),

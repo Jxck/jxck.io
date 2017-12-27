@@ -7,14 +7,17 @@
 
 -include("../logger.hrl").
 
--define(PORT, 443).
+-define(PORT, 4443).
 -define(KEY,  "/keys/key.pem").
 -define(CERT, "/keys/cert.pem").
 
+% # TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (0xc030) TLSv1.2 Kx=ECDH Au=RSA Enc=AESGCM(256) Mac=AEAD
+% openssl s_client -no_ticket -connect localhost:4443 -msg -tls1_2 -cipher ECDHE-RSA-AES256-GCM-SHA384
 main(_) ->
     ok = ?Log(ssl:start()),
     {ok, Listen} = ssl:listen(?PORT, [
-                                      {ciphers, [{rsa,aes_128_cbc,sha256}]},
+                                      {ciphers, [{ecdhe_rsa, aes_256_gcm, null, sha384}]},
+                                      {eccs, [secp521r1]},
                                       {keyfile, ?KEY},
                                       {certfile, ?CERT},
                                       {reuseaddr, true},
