@@ -8,24 +8,24 @@
 -behaviour(gen_event).
 
 
+init(Args) ->
+    ?Log(Args),
+    {ok, Args}.
 
-init(_Args) ->
-    {ok, []}.
-
-handle_event(Msg, State) ->
-    ?Log(Msg, State),
-    {ok, State}.
+handle_event({K, V}, State) ->
+    ?Log({K, V}, State),
+    {ok, State#{K => V}}.
 
 handle_call(Msg, State) ->
-    ?Log(Msg),
+    ?Log(Msg, State),
     {noreply, State}.
 
 handle_info(Msg, State) ->
-    ?Log(Msg),
+    ?Log(Msg, State),
     {noreply, State}.
 
 code_change(OldVsn, State, Extra) ->
-    ?Log(OldVsn, Extra),
+    ?Log(OldVsn, State, Extra),
     {ok, State}.
 
 terminate(Reason, State) ->
@@ -33,7 +33,10 @@ terminate(Reason, State) ->
     ok.
 
 main(_) ->
-    gen_event:start_link({local, events}),
-    gen_event:add_handler(events, main, []),
-    gen_event:notify(events, no_reply),
+    ?Log(),
+    gen_event:start_link({local, events}, [{debug, [trace]}]),
+    gen_event:add_handler(events, main, #{}),
+    gen_event:notify(events, {a, 1}),
+    gen_event:notify(events, {b, 2}),
+    gen_event:notify(events, {c, 3}),
     gen_event:stop(events).

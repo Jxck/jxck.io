@@ -1,0 +1,25 @@
+#!/usr/bin/env escript
+-mode(compile).
+-compile(export_all).
+
+-include("../../logger.hrl").
+
+%% main
+start_link(Module, State) ->
+    ?Log(),
+    server:start(Module, State).
+
+save(PID, Key, Value) ->
+    ?Log(PID, Key, Value),
+    server:call(PID, {save, Key, Value}, [{timeout, 1000}]).
+
+take(PID, Key) ->
+    ?Log(),
+    server:call(PID, {take, Key}, [{timeout, 1000}]).
+
+main(_) ->
+    PID = start_link(store, [#{}]),
+    ?Log(save(PID, a, 10)),
+    ?Log(save(PID, b, 20)),
+    ?Log(take(PID, a)),
+    ?Log(take(PID, b)).
