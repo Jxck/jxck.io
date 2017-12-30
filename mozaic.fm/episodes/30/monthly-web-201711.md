@@ -157,6 +157,10 @@ Monthly Web のモチベーションについては以下。
    - Integrating the Payment Request API with a payment service provider
       - <https://medium.com/dev-channel/integrating-the-payment-request-api-with-a-payment-service-provider-b6a23aa44bd6>
       - Payment Request API の解説
+
+
+### Firefox 動向
+
 - These Weeks in Firefox:
    - Issue 27: <https://blog.nightly.mozilla.org/2017/11/07/these-weeks-in-firefox-issue-27/>
    - Issue 28: <https://blog.nightly.mozilla.org/2017/11/22/these-weeks-in-firefox-issue-28/>
@@ -288,6 +292,10 @@ Monthly Web のモチベーションについては以下。
       - <https://mozillagfx.wordpress.com/2017/11/06/webrender-newsletter-9/>
    - DASH playback of AV1 video in Firefox - Mozilla Hacks - the Web developer blog
       - <https://hacks.mozilla.org/2017/11/dash-playback-of-av1-video/>
+
+
+### Safari 動向
+
 - Safari Technology Preview 43
    - <https://webkit.org/blog/8016/release-notes-for-safari-technology-preview-43/>
    - Activated Cache Storage API by default
@@ -309,6 +317,10 @@ Monthly Web のモチベーションについては以下。
       - <https://lists.webkit.org/pipermail/webkit-dev/2017-November/029751.html>
       - Visual Viewport API の実装も発表
       - 実装しているのは Chrome のエンジニアらしい
+
+
+### Edge 動向
+
 - Introducing new JavaScript optimizations, WebAssembly, SharedArrayBuffer, and Atomics in EdgeHTML 16
    - <https://blogs.windows.com/msedgedev/2017/10/31/optimizations-webassembly-sharedarraybuffer-atomics-edgehtml-16/>
    - JavaScript optimizations
@@ -330,195 +342,202 @@ Monthly Web のモチベーションについては以下。
       - <https://blogs.technet.microsoft.com/jpieblog/2017/11/15/securityupdate201711/>
    - New and improved Event and CSS inspection for Microsoft Edge DevTools
       - <https://blogs.windows.com/msedgedev/2017/11/28/new-improved-event-css-inspection-microsoft-edge-devtools/>
-   - TPAC 2017
-      - <https://www.w3.org/2017/11/TPAC/>
-      - <https://www.w3.org/2017/11/TPAC/schedule.html>
-      - <https://www.w3.org/wiki/TPAC/2017>
-   - Last week's may be our best TPAC ever
-      - <https://www.w3.org/blog/2017/11/last-weeks-may-be-our-best-tpac-ever-w3c-strategic-highlights/>
-      - 過去最高の出席数だったらしい
-   - Web Platform WG
-      - Tue Nov 7 (Editing TF)
-         - Agenda: <https://github.com/w3c/WebPlatformWG/issues/93>
-         - Minutes: <https://www.w3.org/2017/11/07-editing-minutes.html>
-         - Input Event Lv2, ContentEditable, A11y etc
-      - Thu Nov 9 (WebPlat general)
-         - Agenda: <https://github.com/w3c/WebPlatformWG/issues/94>
-         - Minutes: <https://www.w3.org/2017/11/09-webplat-minutes.html>
-         - `<input type=email>`
-            - username に ascii しか使えない問題
-            - 消してしまえという話まで出た
-            - unicode 使えるようにする方向に一応して wider review
-         - Proposed HTML5.3 timeline
-            - <https://github.com/w3c/html/issues/1076>
-            - 5.2 がひと段落して 5.3 の話へ
-            - 来年の 8/23 での CR を目指して作業していく
-         - Entries API
-            - <https://wicg.github.io/entries-api/>
-            - Chrome が WebKit に入れたファイルシステム系のやつ
-            - Promise ベースの新しい API
-            - 他のブラウザも互換性のために入れ始めている
-         - Async Cookie API / Cookie Change Evnets
-            - <https://github.com/WICG/cookie-store/blob/gh-pages/explainer.md>
-            - <https://patrickkettner.github.io/cookie-change-events/>
-            - sw では非同期しかないから
-         - A11y, AOM
-            - <https://github.com/WICG/aom/blob/gh-pages/explainer.md>
-            - ARIA はマークアップのみで DOM から変えかつギャップを埋めたい
-            - DEMO:
-               - <https://tink.uk/playing-with-the-accessibility-object-model-aom/>
-               - <https://wicg.github.io/aom/demos/#21>
-         - IndexedDB 2.0
-            - 11/16 に PR になった
-            - <https://www.w3.org/TR/2017/PR-IndexedDB-2-20171116/>
-         - Intersection Observer
-            - <https://szager-chromium.github.io/io-v2/#index-defined-elsewhere>
-            - v2 の話が出ている
-            - visibility を考慮するように
-         - Other
-            - Pointer Lock, UI Events, GamePad API etc
-      - Fri Nov 10 (Web Components)
-         - Agenda: <https://github.com/w3c/WebPlatformWG/issues/95>
-         - Minutes: <https://www.w3.org/2017/11/10-webplat-minutes.html>
-         - Template instantiation
-         - proposal が直前でそこまで議論はすすまず
-         - F2F を別途やることに
-         - Shadow parts
-         -  ::part() , ::theme() で shadow tree の中身を外に出す提案
-         - Constructable style objects
-         - Shadow Selection API
-         - HTML Import replacement
-         - デザインそのものをどうするか
-         - F2F に持ち越し
-         - Declarative Syntax[b][c]
-         - Web Components
-            - <https://github.com/w3c/webcomponents/issues/641#issuecomment-341299861>
-            - implement a polyfill of template-instantiation before even considering to add the API natively to the platform
-               - <https://github.com/w3c/webcomponents/issues/702>
-               - まず polyfill を実装しようという話に
-            - WebPlatform Web Components F2F 2018
-               - <https://github.com/w3c/webcomponents/issues/713>
-               - 以下について F2F をもう一度やろうという話
-               - Template instantiation
-               - HTML modules
-      - Service Worker
-         - <https://github.com/w3c/ServiceWorker/issues/1206>
-         - minutes なし
-   - WebAppSec
-      - <https://bit.ly/webappsec-tpac-2017-agenda>
-      - Minutes
-         - <https://www.w3.org/2017/11/06-webappsec-minutes.html>
-         - <https://www.w3.org/2017/11/07-webappsec-minutes.html>
-      - Signature-based Resource Loading Restrictions
-         - <https://github.com/mikewest/signature-based-sri>
-         - FYI: signature-based SRI in W3C WebAppSec
-            - <https://lists.w3.org/Archives/Public/ietf-http-wg/2017OctDec/0275.html>
-      - HSTS Priming Implementation Report
-         - <https://docs.google.com/presentation/d/1-dR5p2G2MUge5lxtjcn8O_JpcPHENgBHSsL7XwPvCQY>
-      - Origin Policy
-         - <https://wicg.github.io/origin-policy/>
-   - WebPerf
-      - minutes: <https://bit.ly/webperf-tpac17>
-      - LongTask v1, Web Lifecycle
-         - <https://docs.google.com/presentation/d/1OAQMgmnLo03O9BUr-mPNeA_Py0QQNuLt1n88cxCgfYs>
-      - Time to Interactive
-         - Slide: <https://docs.google.com/presentation/d/1EnbHI5UlG8qgMq0gvTJOxICc4lH5A95Ud85kwze0ogc>
-         - Time to Interactive Explainer: <https://docs.google.com/document/d/1l50v3ljDeUmj9qBsfdPc3wKe_1CY5KFYI1baye2NhYk>
-         - Detecting network quietness: <https://docs.google.com/document/d/1y6NYcI2NyLMh88KVr2NaevdX2e-e03vL99Wn-gy_hVk>
-      - Web Lifecycle
-         - spanicker/web-lifecycle
-            - <https://github.com/spanicker/web-lifecycle/blob/master/README.md>
-         - A Lifecycle for the Web
-            - <https://docs.google.com/document/d/1UuS6ff4Fd4igZgL50LDS8MeROVrOfkN13RbiP2nTT9I>
-      - Paint Timing
-      - Device Memory
-      - User Timing L3
-         - <https://docs.google.com/presentation/d/1d64Y4rtLCxobGgljVySU2CJpMPK5ksaiZuv3ka1dCVA>
-      - Content policies
-         - TransferSize and PauseDocument
-            - <https://docs.google.com/presentation/d/12W0EwMsyaSQjbWu-RjT-1URSmdLSkWzzvKzi2CvK7uo>
-         - jkarlin/pause-document
-            - <https://github.com/jkarlin/pause-document/>
-         - WICG/transfer-size
-            - <https://github.com/WICG/transfer-size>
-      - Priority Hints
-         - <https://docs.google.com/presentation/d/1uqBberwDm9qZUEU8KGiH_7g8zhXQSA9NxTwKwWTcqY0>
-         - <https://github.com/WICG/priority-hints>
-         - <https://github.com/w3c/setImmediate/issues/3> (status 確認)
-      - Element Timing
-         - <https://docs.google.com/presentation/d/1Xha-RVH_bz5mzOHi1wI5BT8AEaLd-fSYW4BKpmJmy5A>
-      - WebPerf WG spec audit: blockers, next steps
-         - <https://docs.google.com/document/d/106fu-2acn7JexSadxyKrxQny78WROk6u-Vwlte2zpgg>
-   - Web Assembly
-      - WebAssembly/meetings
-         - <https://github.com/WebAssembly/meetings/blob/master/2017/TPAC.md>
-      - WebAssembly Proposals
-         - <https://docs.google.com/presentation/d/1uRpS79-kAoL3EoC7IxrJFU5G7V-Sxno9pm9rVjC20yE>
-      - WebAssembly Exception Handling
-         - <https://docs.google.com/presentation/d/1bny3a9OFxDoJQpQXz_ZVN_bCqrTPNGEnotLaubyXrxY>
-      - Host Bindings
-         - <https://docs.google.com/presentation/d/10vz6pldVOA8N3guv2jf4DCUujqz6jFmDnp37ax4SCc0>
-         - <https://github.com/WebAssembly/host-bindings/blob/master/proposals/host-bindings/Overview.md>
-   - Web of Things
-      - <https://www.w3.org/WoT/IG/wiki/F2F_meeting,_4-10_November_2017,_Burlingame,_CA,_USA#Agenda>
-   - Web Payments
-      - <https://www.w3.org/2017/11/06-wpwg-minutes.html>
-      - <https://www.w3.org/2017/11/07-wpwg-minutes.html>
-      - [NEW] ACTION: NickTR to help get Payment Method Manifest to call for consensus
-      - [NEW] ACTION: Max to look into getting resources for testing around payment method manifest
-      - Web Payments Working Group Patent Advisory Group (PAG)  が再立ち上げ
-         - <https://www.w3.org/2017/11/wpwg-pag/>
-         - Visa Europe が新しい patent claim を Web Payments 関連仕様に対して行った(2 回目)
-         - PAG で評価/検討する
-   - Web Real-Time Communications
-      - <https://www.w3.org/2011/04/webrtc/wiki/November_6_-_7_2017>
-      - <https://www.w3.org/2017/11/06-webrtc-minutes.html>
-      - WebRTC が CR になったので、残作業とこの先の話
-      - WebRTCWG-2017-TPAC
-         - <https://docs.google.com/presentation/d/1Sg_1TVCcKJvZ8Egz5oa0CP01TC2rNdv9HVu7W38Y4zA>
-      - QUIC: Add buffering support to RTCQuicStream
-         - <https://github.com/w3c/ortc/pull/795>
-      - RTCQuicTransport: Addition of createStream and onstream
-         - <https://github.com/w3c/ortc/pull/783>
-      - Status of QUIC API
-         - <https://github.com/w3c/ortc/issues/797>
-         - ORTC で QUIC をプロトコルと並行してやっていくことに
-   - Accessible Rich Internet Applications (ARIA)
-      - <https://www.w3.org/WAI/ARIA/wiki/Meetings/TPAC_2017>
-   - CSS (Houdini)
-      - Agenda, Minutes
-         - <https://wiki.csswg.org/planning/tpac-2017>
-         - <https://github.com/w3c/css-houdini-drafts/wiki/TPAC-F2F-November-2017>
-         - <https://www.w3.org/2017/11/06-css-minutes.html>
-      - How CSS Grid Changes Everything
-         - <https://speakerdeck.com/jensimmons/how-css-grid-changes-everything>
-         - CSS Grid のプレゼン
-      - Constructable Stylesheet Objects
-         - <https://tabatkins.github.io/specs/construct-stylesheets/>
-   - W3C Developer Meetup in San Francisco
-      - <https://www.w3.org/2017/11/Meetup/>
-      - TPAC の後に開催
-      - You're only supposed to blow the bloody doors off!
-         - <https://decks.tink.uk/2017/tpac/index.html>
-      - W3C wasm
-         - <https://docs.google.com/presentation/d/12jZRC1mBDkgUtIyHYO0a7HNMmOqtoLstApCZwvN0GN8>
-      - How CSS Grid Changes Everything
-         - <https://speakerdeck.com/jensimmons/how-css-grid-changes-everything>
-   - Other
-      - TPAC Plenary -- 8 Nov 2017
-         - <https://www.w3.org/2017/11/08-tpac-minutes.html>
-      - HTML meeting
-         - <https://www.w3.org/2017/11/14-html-minutes.html>
-      - HTML-AAM (a11y api mapping)
-         - <https://lists.w3.org/Archives/Public/public-html/2017Nov/0012.html>
-         - CR に向けて issue と test をやっていく
-      - MDN + W3C Breakout Session
-         - <https://docs.google.com/document/d/19AIdw6T2l_3IkptkPCUMTnMpl8VVqW1mCr6o__KtHzI>
-      - privacy.md
-         - <https://gist.github.com/mnot/96440a5ca74fcf328d23>
-         - Private Browsing とはどうあるべきかという話 by mnot
-      - TAG
-         - <https://github.com/w3ctag/meetings/tree/gh-pages/2017/11-SFO>
+
+
+### TPAC
+
+- TPAC 2017
+   - <https://www.w3.org/2017/11/TPAC/>
+   - <https://www.w3.org/2017/11/TPAC/schedule.html>
+   - <https://www.w3.org/wiki/TPAC/2017>
+- Last week's may be our best TPAC ever
+   - <https://www.w3.org/blog/2017/11/last-weeks-may-be-our-best-tpac-ever-w3c-strategic-highlights/>
+   - 過去最高の出席数だったらしい
+- Web Platform WG
+   - Tue Nov 7 (Editing TF)
+      - Agenda: <https://github.com/w3c/WebPlatformWG/issues/93>
+      - Minutes: <https://www.w3.org/2017/11/07-editing-minutes.html>
+      - Input Event Lv2, ContentEditable, A11y etc
+   - Thu Nov 9 (WebPlat general)
+      - Agenda: <https://github.com/w3c/WebPlatformWG/issues/94>
+      - Minutes: <https://www.w3.org/2017/11/09-webplat-minutes.html>
+      - `<input type=email>`
+         - username に ascii しか使えない問題
+         - 消してしまえという話まで出た
+         - unicode 使えるようにする方向に一応して wider review
+      - Proposed HTML5.3 timeline
+         - <https://github.com/w3c/html/issues/1076>
+         - 5.2 がひと段落して 5.3 の話へ
+         - 来年の 8/23 での CR を目指して作業していく
+      - Entries API
+         - <https://wicg.github.io/entries-api/>
+         - Chrome が WebKit に入れたファイルシステム系のやつ
+         - Promise ベースの新しい API
+         - 他のブラウザも互換性のために入れ始めている
+      - Async Cookie API / Cookie Change Evnets
+         - <https://github.com/WICG/cookie-store/blob/gh-pages/explainer.md>
+         - <https://patrickkettner.github.io/cookie-change-events/>
+         - sw では非同期しかないから
+      - A11y, AOM
+         - <https://github.com/WICG/aom/blob/gh-pages/explainer.md>
+         - ARIA はマークアップのみで DOM から変えかつギャップを埋めたい
+         - DEMO:
+            - <https://tink.uk/playing-with-the-accessibility-object-model-aom/>
+            - <https://wicg.github.io/aom/demos/#21>
+      - IndexedDB 2.0
+         - 11/16 に PR になった
+         - <https://www.w3.org/TR/2017/PR-IndexedDB-2-20171116/>
+      - Intersection Observer
+         - <https://szager-chromium.github.io/io-v2/#index-defined-elsewhere>
+         - v2 の話が出ている
+         - visibility を考慮するように
+      - Other
+         - Pointer Lock, UI Events, GamePad API etc
+   - Fri Nov 10 (Web Components)
+      - Agenda: <https://github.com/w3c/WebPlatformWG/issues/95>
+      - Minutes: <https://www.w3.org/2017/11/10-webplat-minutes.html>
+      - Template instantiation
+      - proposal が直前でそこまで議論はすすまず
+      - F2F を別途やることに
+      - Shadow parts
+      -  ::part() , ::theme() で shadow tree の中身を外に出す提案
+      - Constructable style objects
+      - Shadow Selection API
+      - HTML Import replacement
+      - デザインそのものをどうするか
+      - F2F に持ち越し
+      - Declarative Syntax[b][c]
+      - Web Components
+         - <https://github.com/w3c/webcomponents/issues/641#issuecomment-341299861>
+         - implement a polyfill of template-instantiation before even considering to add the API natively to the platform
+            - <https://github.com/w3c/webcomponents/issues/702>
+            - まず polyfill を実装しようという話に
+         - WebPlatform Web Components F2F 2018
+            - <https://github.com/w3c/webcomponents/issues/713>
+            - 以下について F2F をもう一度やろうという話
+            - Template instantiation
+            - HTML modules
+   - Service Worker
+      - <https://github.com/w3c/ServiceWorker/issues/1206>
+      - minutes なし
+- WebAppSec
+   - <https://bit.ly/webappsec-tpac-2017-agenda>
+   - Minutes
+      - <https://www.w3.org/2017/11/06-webappsec-minutes.html>
+      - <https://www.w3.org/2017/11/07-webappsec-minutes.html>
+   - Signature-based Resource Loading Restrictions
+      - <https://github.com/mikewest/signature-based-sri>
+      - FYI: signature-based SRI in W3C WebAppSec
+         - <https://lists.w3.org/Archives/Public/ietf-http-wg/2017OctDec/0275.html>
+   - HSTS Priming Implementation Report
+      - <https://docs.google.com/presentation/d/1-dR5p2G2MUge5lxtjcn8O_JpcPHENgBHSsL7XwPvCQY>
+   - Origin Policy
+      - <https://wicg.github.io/origin-policy/>
+- WebPerf
+   - minutes: <https://bit.ly/webperf-tpac17>
+   - LongTask v1, Web Lifecycle
+      - <https://docs.google.com/presentation/d/1OAQMgmnLo03O9BUr-mPNeA_Py0QQNuLt1n88cxCgfYs>
+   - Time to Interactive
+      - Slide: <https://docs.google.com/presentation/d/1EnbHI5UlG8qgMq0gvTJOxICc4lH5A95Ud85kwze0ogc>
+      - Time to Interactive Explainer: <https://docs.google.com/document/d/1l50v3ljDeUmj9qBsfdPc3wKe_1CY5KFYI1baye2NhYk>
+      - Detecting network quietness: <https://docs.google.com/document/d/1y6NYcI2NyLMh88KVr2NaevdX2e-e03vL99Wn-gy_hVk>
+   - Web Lifecycle
+      - spanicker/web-lifecycle
+         - <https://github.com/spanicker/web-lifecycle/blob/master/README.md>
+      - A Lifecycle for the Web
+         - <https://docs.google.com/document/d/1UuS6ff4Fd4igZgL50LDS8MeROVrOfkN13RbiP2nTT9I>
+   - Paint Timing
+   - Device Memory
+   - User Timing L3
+      - <https://docs.google.com/presentation/d/1d64Y4rtLCxobGgljVySU2CJpMPK5ksaiZuv3ka1dCVA>
+   - Content policies
+      - TransferSize and PauseDocument
+         - <https://docs.google.com/presentation/d/12W0EwMsyaSQjbWu-RjT-1URSmdLSkWzzvKzi2CvK7uo>
+      - jkarlin/pause-document
+         - <https://github.com/jkarlin/pause-document/>
+      - WICG/transfer-size
+         - <https://github.com/WICG/transfer-size>
+   - Priority Hints
+      - <https://docs.google.com/presentation/d/1uqBberwDm9qZUEU8KGiH_7g8zhXQSA9NxTwKwWTcqY0>
+      - <https://github.com/WICG/priority-hints>
+      - <https://github.com/w3c/setImmediate/issues/3> (status 確認)
+   - Element Timing
+      - <https://docs.google.com/presentation/d/1Xha-RVH_bz5mzOHi1wI5BT8AEaLd-fSYW4BKpmJmy5A>
+   - WebPerf WG spec audit: blockers, next steps
+      - <https://docs.google.com/document/d/106fu-2acn7JexSadxyKrxQny78WROk6u-Vwlte2zpgg>
+- Web Assembly
+   - WebAssembly/meetings
+      - <https://github.com/WebAssembly/meetings/blob/master/2017/TPAC.md>
+   - WebAssembly Proposals
+      - <https://docs.google.com/presentation/d/1uRpS79-kAoL3EoC7IxrJFU5G7V-Sxno9pm9rVjC20yE>
+   - WebAssembly Exception Handling
+      - <https://docs.google.com/presentation/d/1bny3a9OFxDoJQpQXz_ZVN_bCqrTPNGEnotLaubyXrxY>
+   - Host Bindings
+      - <https://docs.google.com/presentation/d/10vz6pldVOA8N3guv2jf4DCUujqz6jFmDnp37ax4SCc0>
+      - <https://github.com/WebAssembly/host-bindings/blob/master/proposals/host-bindings/Overview.md>
+- Web of Things
+   - <https://www.w3.org/WoT/IG/wiki/F2F_meeting,_4-10_November_2017,_Burlingame,_CA,_USA#Agenda>
+- Web Payments
+   - <https://www.w3.org/2017/11/06-wpwg-minutes.html>
+   - <https://www.w3.org/2017/11/07-wpwg-minutes.html>
+   - [NEW] ACTION: NickTR to help get Payment Method Manifest to call for consensus
+   - [NEW] ACTION: Max to look into getting resources for testing around payment method manifest
+   - Web Payments Working Group Patent Advisory Group (PAG)  が再立ち上げ
+      - <https://www.w3.org/2017/11/wpwg-pag/>
+      - Visa Europe が新しい patent claim を Web Payments 関連仕様に対して行った(2 回目)
+      - PAG で評価/検討する
+- Web Real-Time Communications
+   - <https://www.w3.org/2011/04/webrtc/wiki/November_6_-_7_2017>
+   - <https://www.w3.org/2017/11/06-webrtc-minutes.html>
+   - WebRTC が CR になったので、残作業とこの先の話
+   - WebRTCWG-2017-TPAC
+      - <https://docs.google.com/presentation/d/1Sg_1TVCcKJvZ8Egz5oa0CP01TC2rNdv9HVu7W38Y4zA>
+   - QUIC: Add buffering support to RTCQuicStream
+      - <https://github.com/w3c/ortc/pull/795>
+   - RTCQuicTransport: Addition of createStream and onstream
+      - <https://github.com/w3c/ortc/pull/783>
+   - Status of QUIC API
+      - <https://github.com/w3c/ortc/issues/797>
+      - ORTC で QUIC をプロトコルと並行してやっていくことに
+- Accessible Rich Internet Applications (ARIA)
+   - <https://www.w3.org/WAI/ARIA/wiki/Meetings/TPAC_2017>
+- CSS (Houdini)
+   - Agenda, Minutes
+      - <https://wiki.csswg.org/planning/tpac-2017>
+      - <https://github.com/w3c/css-houdini-drafts/wiki/TPAC-F2F-November-2017>
+      - <https://www.w3.org/2017/11/06-css-minutes.html>
+   - How CSS Grid Changes Everything
+      - <https://speakerdeck.com/jensimmons/how-css-grid-changes-everything>
+      - CSS Grid のプレゼン
+   - Constructable Stylesheet Objects
+      - <https://tabatkins.github.io/specs/construct-stylesheets/>
+- W3C Developer Meetup in San Francisco
+   - <https://www.w3.org/2017/11/Meetup/>
+   - TPAC の後に開催
+   - You're only supposed to blow the bloody doors off!
+      - <https://decks.tink.uk/2017/tpac/index.html>
+   - W3C wasm
+      - <https://docs.google.com/presentation/d/12jZRC1mBDkgUtIyHYO0a7HNMmOqtoLstApCZwvN0GN8>
+   - How CSS Grid Changes Everything
+      - <https://speakerdeck.com/jensimmons/how-css-grid-changes-everything>
+- Other
+   - TPAC Plenary -- 8 Nov 2017
+      - <https://www.w3.org/2017/11/08-tpac-minutes.html>
+   - HTML meeting
+      - <https://www.w3.org/2017/11/14-html-minutes.html>
+   - HTML-AAM (a11y api mapping)
+      - <https://lists.w3.org/Archives/Public/public-html/2017Nov/0012.html>
+      - CR に向けて issue と test をやっていく
+   - MDN + W3C Breakout Session
+      - <https://docs.google.com/document/d/19AIdw6T2l_3IkptkPCUMTnMpl8VVqW1mCr6o__KtHzI>
+   - privacy.md
+      - <https://gist.github.com/mnot/96440a5ca74fcf328d23>
+      - Private Browsing とはどうあるべきかという話 by mnot
+   - TAG
+      - <https://github.com/w3ctag/meetings/tree/gh-pages/2017/11-SFO>
+
+### WHATWG/W3C 標準動向
+
 - W3C Strategic Highlights
    - <https://www.w3.org/2017/11/w3c-highlights/>
    - <https://www.w3.org/blog/news/archives/6651>
@@ -599,6 +618,10 @@ Monthly Web のモチベーションについては以下。
       - <https://discourse.wicg.io/t/add-event-throttling-and-debouncing-to-addeventlisteneroptions/2436>
    -  Proposed Group: Art & Culture (Museums) On The Web Community Group
       - <https://www.w3.org/community/blog/2017/11/17/proposed-group-art-culture-museums-on-the-web-community-group/>
+
+
+### TC39 動向
+
 - Proposals Diff
    - 主に TC39 Nov 2017 での更新
    - <https://github.com/tc39/agendas/blob/master/2017/11.md>
@@ -625,6 +648,10 @@ Monthly Web のモチベーションについては以下。
    - <https://github.com/tc39/process-document/pull/15>
    - stage 4 になるための実装要件を明確にしたい人と、意図的に曖昧であるべきという議論
    - stage 5 を設けるという話も出た(が消えた)
+
+
+### IETF 動向
+
 - IETF100
    - 詳細は次回扱う
    - <https://www.ietf.org/meeting/100/index.html>
@@ -682,6 +709,9 @@ Monthly Web のモチベーションについては以下。
    - SRI and signatures
       - <https://lists.w3.org/Archives/Public/public-webappsec/2017Nov/0023.html>
       - signature-based-sri (公開鍵を使う SRI) の現状と今後を話したい、という話
+
+### 周辺動向
+
 - Please build websites for the web, not just Google Chrome. [i]
    - <https://thenextweb.com/dd/2017/11/28/please-build-websites-web-not-just-google-chrome/>
    - 古い iPhone で Airbnb がうまく使えない/表示されないことを問い合わせたユーザに
@@ -720,6 +750,10 @@ Monthly Web のモチベーションについては以下。
    - <https://amphtml.wordpress.com/2017/11/28/an-amp-paywall-and-subscription-model-for-all-publishers/>
    - AMP でマネタイズの話(LaterPay のブログ記事の転載)
    - amp-access-laterpay で LaterPay 経由で課金を実装できる話
+
+
+### イベント
+
 - 11 月
    - 11/6-10 TPAC 2017 San Francisco
       - see: WHATWG/W3C section
