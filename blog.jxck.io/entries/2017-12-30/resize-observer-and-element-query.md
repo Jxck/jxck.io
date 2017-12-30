@@ -1,4 +1,4 @@
-# ResizeObserver による変更検知と Element Query
+# [element query][resize observer][performance] ResizeObserver による変更検知と Element Query
 
 ## Intro
 
