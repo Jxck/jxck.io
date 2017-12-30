@@ -1,0 +1,158 @@
+# Bookmarklet という一番身近な自動化技術
+
+## Intro
+
+後輩が「そんな便利なことできたんですね、知りませんでした」と言ってた。
+
+感嘆の意を込めて、今更だれも解説しないであろう、 bookmarklet という技術についてもう一度書いておく。
+
+
+## Bookmarklet
+
+簡単に言えば、 JS を書き、それを Bookmark として登録すれば、クリックするだけで現在のページでそれが動くというもの。
+
+ブラウザ上で何かを自動化したいと思うなら、一番簡単に実現できる便利な技術だ。
+
+似たような手法ではブラウザの Extension などもあるが、 Bookmarklet の良いところは一切誰にも邪魔されないというところだ。
+
+開発者登録も、ストアへのアップロードも、難解なドキュメントを忖度して煩雑な設定ファイルを書く必要もない。
+
+開発者ツールで、「こんなことできないかな」と試し終わった時には、もうそれは完成していると言って良い。
+
+
+## チュートリアル
+
+1. 開発者ツールで、そのページに対して行いたい処理を書く(ここでは `alert("hello")` としておく)
+2. そのコードの最初に `javascript:` を付与する (`javascript:alert("hello")`)
+3. ブックマークを登録する処理を行い、 URL の欄にコードを追加する
+
+
+## 使用例
+
+用途がイメージしやすそうな例を書いておく。
+もちろん、ページの仕様が変われば動かなくなるが、雑に直しても誰にも迷惑がかからないのが良いところだ。
+
+
+### github pdf
+
+その後輩は、 github の markdown を PDF にして協力会社に送る(!!?)のに、ページごとに開発者ツールから周りの DOM をポチポチ消して整形していた。
+
+例えば、以下の README.md だった場合は、雑にやるとこんな感じでできそうだ。
+
+
+```javascript
+javascript: (() => {
+  const readme = document.querySelector('#readme');
+  document.body.innerHTML = "";
+  document.body.appendChild(readme);
+})()
+```
+
+整形したら印刷で PDF に保存すれば良い。
+
+ただ、そもそもの解決策が本当にこれなのかは疑問もあるが。
+
+
+### scroll
+
+ヘッダ要素が ID を持ってるので、ヘッダに対してリンクを貼りたいが、リンクになってないのでソースを見ないといけない場合。
+それをリンクに直して、遷移できるようにする。
+
+
+```javascript
+javascript: (() => {
+  let url = new URL(location.href);
+  for (let $h of document.querySelectorAll('h1, h2, h3, h4')) {
+    let $a = document.createElement('a');
+    $a.textContent = $h.textContent;
+    $h.textContent = '';
+    url.hash = $h.id;
+    $a.href = url.toString();
+    $a.style.color = getComputedStyle($h).color;
+    $h.appendChild($a);
+  };
+})();
+```
+
+
+### m3
+
+Google の検索結果は、「期間指定」ができるが「1ヶ月」の次が「1年」で、極端な指定しかできない。
+
+特に技術的な話などは、直近 3ヶ月くらいがちょうど良い。
+
+この期間選択は、検索結果の URL にクエリとして反映されているので、そこを置き換えると実現できる。
+
+例えば 1ヶ月を選ぶと以下が付与される。
+
+```
+&tbs=qdr:m
+```
+
+この `m` を `m3` にすると 3 ヶ月になる。
+
+
+```javascript
+javascript:location.href += '&tbs=qdr:m3'
+```
+
+### canonical
+
+綺麗な URL を取得したいのに、遷移元などの影響で不要なゴミクエリが付いているといった場合にそれを除去する。
+
+```javascript
+javascript:location.href = document.querySelector('link[rel="canonical"]').href
+```
+
+ところで、 Amazon の URL の canonical は以下のようになっている。
+
+```
+https://www.amazon.co.jp/商品名/dp/XXXXXXXX
+```
+
+ただ、商品名が長いとブログなどに貼る時に URL が見づらくなる。
+
+実際は dp 以降だけで良いので、商品名を削除してしまった方が使いやすかったりする。
+
+```javascript
+javascript:location.href = document.querySelector('link[rel="canonical"]').href.replace(/amazon.co.jp\/.*\/dp/, 'amazon.co.jp/dp');
+```
+
+## preslide
+
+ネットワークが重いところで slideshare を見ると、ページを進めるたびにローディングでストレスだったので書いたもの。
+
+一旦、最後のページまで自動で遷移させ、全ページ読み込みが終わったあたりで頭から読んでいる。
+
+最後のページまで読むと次のスライドに映るという悪仕様があるため、手前で止めている。
+
+```javascript
+javascript: function loop(n) {
+  if (n == 0) {return;}
+  setTimeout(function() {
+    document.querySelector("#svPlayerId > div.stage > div.rightpoint.pointly").click();
+    loop(n-1);
+  }, 100);
+}; loop(parseInt(document.querySelector('#total-slides').textContent)-2);
+```
+
+
+
+## safari picture-in-picture
+
+今の Safari は PinP に対応している。
+
+`<video>` タグで再生されていれば基本的に表示が可能だが、 UI がない場合は以下で再生中のビデオを PinP できる。
+
+```javascript
+javascript: document.querySelector('video').webkitSetPresentationMode('picture-in-picture')
+```
+
+## まとめ
+
+いくつか例は出したが、なによりも JS でできることはなんでもできるので、ちょっと面倒だと思ったら書いてみれば良いと思う。
+
+
+
+
+
