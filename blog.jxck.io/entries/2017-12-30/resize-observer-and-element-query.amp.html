@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html amp lang=ja>
+<head>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=https://blog.jxck.io/entries/2017-12-30/resize-observer-and-element-query.html>
+<meta name=viewport content="width=device-width,minimum-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+<link rel=author href=//jxck.io/assets/humans.txt>
+
+<meta name="author" content="Jxck">
+    <meta name="description" content="ResizeObserver の ship が進みつつある。この仕様の解説および、 ElementQuery / ContainerQuery について解説する。Resize Observer 1...">
+    <meta name="keywords" content="element query,resize observer,performance">
+    <meta itemprop="image" content="https://jxck.io/assets/img/jxck.png">
+    <meta itemprop="name" content="blog.jxck.io">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jxck_">
+    <meta name="twitter:url" content="https://blog.jxck.io/entries/2017-12-30/resize-observer-and-element-query.html">
+    <meta name="twitter:title" content="ResizeObserver による変更検知と Element Query | blog.jxck.io">
+    <meta name="twitter:description" content="ResizeObserver の ship が進みつつある。この仕様の解説および、 ElementQuery / ContainerQuery について解説する。Resize Observer 1...">
+    <meta name="twitter:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://blog.jxck.io/entries/2017-12-30/resize-observer-and-element-query.html">
+    <meta property="og:title" content="ResizeObserver による変更検知と Element Query | blog.jxck.io">
+    <meta property="og:site_name" content="blog.jxck.io">
+    <meta property="og:description" content="ResizeObserver の ship が進みつつある。この仕様の解説および、 ElementQuery / ContainerQuery について解説する。Resize Observer 1...">
+    <meta property="og:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <link rel="icon" sizes="192x192" href="https://jxck.io/assets/img/jxck.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "ResizeObserver による変更検知と Element Query | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2017-12-30T08:00:00+08:00",
+  "dateModified": "2017-12-31T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "ResizeObserver の ship が進みつつある。この仕様の解説および、 ElementQuery / ContainerQuery について解説する。Resize Observer 1..."
+}
+</script>
+
+<title>ResizeObserver による変更検知と Element Query | blog.jxck.io</title>
+<script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+<script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+<script async src=https://cdn.ampproject.org/v0.js></script>
+
+<style amp-custom>
+article section p {
+  margin-left: 0.8em;
+}
+
+article pre {
+  margin-left: 0.8em;
+}
+
+article table {
+  margin-left: 0.8em;
+}
+
+article img {
+  margin: 1em 0;
+  border: 1px solid #ccc;
+  box-sizing: content-box;
+}
+
+article ul, article ol {
+  margin-left: 0.8em;
+  font-family: monospace;
+  font-size: 1.2em;
+}
+
+article li {
+  margin-bottom: 0.4em;
+}
+
+article ul li ul {
+  margin: 0.2em 0 1.2em 1em;
+  font-size: 1em;
+}
+
+article ul li ul li {
+  margin-bottom: 0;
+}
+
+article dl {
+  margin: 1.4em 0 1.4em 0.8em;
+}
+
+@supports (line-height-step: 1px) {
+  article {
+    line-height: 1.5;
+    --grid: 1.5em;
+    line-height-step: var(--grid);
+  }
+
+  article h1,
+  article h2,
+  article h3,
+  article h4,
+  article h5,
+  article h6 {
+    display: inline-block;
+    width: 100%;
+    line-height-step: 0;
+    line-height: 1.2;
+    margin-bottom: 0;
+  }
+
+  article section {
+    /* grid for debug */
+    /*background-size: 100% var(--grid);*/
+    /*background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px);*/
+  }
+
+  article p {
+    margin-top: var(--grid);
+    margin-bottom: var(--grid);
+  }
+
+  article pre,
+  article table {
+    line-height-step: 0;
+    line-height: normal;
+  }
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=20160828") format("woff");
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 700;
+  font-display: optional;
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff?ver=20160828") format("woff");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+  color: #222;
+  background-color: #fefefe;
+}
+
+iframe {
+  display: block;
+  max-width: 100%;
+  margin: 1em 0;
+}
+
+.archive {
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.archive ul {
+  margin: 0;
+}
+
+.archive time {
+  padding-right: 0.5em;
+}
+
+.archive time::after {
+  content: ":";
+}
+
+.archive .tags {
+  font-size: 0.8em;
+  margin-left: 1em;
+}
+
+.tags a {
+  margin: 0 0.2em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+audio {
+  width: 70%;
+}
+
+@media screen and (max-device-width: 480px) {
+  audio {
+    width: 100%;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.info li {
+  margin-right: 1em;
+  list-style-type: none;
+}
+
+.info li::before {
+  content: none;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.4em;
+  background-color: #222;
+}
+
+header ul {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 80%;
+  margin: 0 auto;
+  padding: 4px;
+}
+
+header ul li {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  margin-left: 1em;
+}
+
+header ul li a {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+header ul li svg {
+  fill: #fff;
+}
+
+header ul li::before {
+  content: none;
+}
+
+header ul li:first-child {
+  flex-grow: 1;
+  margin-left: 0;
+}
+
+header .logo {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  pointer-events: none;
+  color: #222;
+}
+
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: #222;
+}
+
+h1 > a:hover:before,
+h2 > a:hover:before,
+h3 > a:hover:before,
+h4 > a:hover:before,
+h5 > a:hover:before,
+h6 > a:hover:before {
+  color: Brown;
+}
+
+h1 > a::before {
+  content: "# ";
+  pointer-events: all;
+}
+
+h2 > a::before {
+  content: "## ";
+  pointer-events: all;
+}
+
+h3 > a::before {
+  content: "### ";
+  pointer-events: all;
+}
+
+h4 > a::before {
+  content: "#### ";
+  pointer-events: all;
+}
+
+i::before, i::after {
+  content: "*";
+}
+
+strong::before, strong::after {
+  content: "**";
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+dl dt::after {
+  content: ":";
+}
+
+blockquote::before {
+  content: "> ";
+}
+
+code::before, code::after {
+  /* うざかった */
+  /* content: "`"; */
+}
+
+main {
+  display: block;
+  width: 80%;
+  margin: 1em auto;
+}
+
+@media screen and (max-device-width: 480px) {
+  main {
+    width: 94%;
+  }
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+}
+
+a {
+  color: RoyalBlue;
+}
+
+a:visited {
+  color: Brown;
+}
+
+ol, ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+ul, ol, dl {
+  margin: 1.4em 0;
+}
+
+dl dt {
+  font-weight: bold;
+}
+
+dl dd {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+blockquote {
+  display: block;
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  padding: 1em;
+  margin: 1.4em 0;
+}
+
+code {
+  border: 1px solid #ddd;
+  background-color: #efefef;
+  border-radius: 4px;
+  padding: 0.1em;
+  margin: 1.4em 0;
+}
+
+footer {
+  padding: 1em;
+}
+
+footer address,
+footer strong {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+}
+
+pre {
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: 1.2em;
+  margin: 1.4em 0 0 0;
+  border-radius: 4px;
+}
+
+pre::before {
+  content: "```" attr(class) "\A";
+}
+
+pre::after {
+  z-index: -1;
+  position: relative;
+  top: -1em;
+  content:"\A```";
+}
+
+pre > code {
+  overflow: auto;
+  display: block;
+  padding: 0.6em;
+  margin: 0;
+  border: none;
+  background-color: #efefef;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs,
+.hljs-subst ,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-name ,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition ,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-type,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-section,
+.hljs-meta,
+.hljs-meta-string,
+.hljs-emphasis {
+}
+
+table {
+  font-family: monospace;
+  margin: 2em 0;
+  border-spacing: 0 0.4em;
+}
+
+th {
+  padding: 0em 1.0em 0.6em;
+  border-left: 0.14em solid #222;
+  border-bottom: 2px dashed #222;
+}
+
+td {
+  padding: 0.4em 1.2em;
+  border-left: 0.14em solid #222;
+}
+
+th:last-child, td:last-child {
+  border-right: 0.14em solid #222;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+</style>
+</head>
+<body>
+<header>
+  <ul>
+    <li><a href=//blog.jxck.io><amp-img class=logo alt="blog top" width=30 height=30 src=//jxck.io/assets/img/blog.svg></a>
+    <li><a href=.><amp-img alt="move to parent directory" width=30 height=30 src=//jxck.io/assets/img/up.svg></a>
+    <li><a href=/feeds/atom.xml><amp-img alt="rss feed" width=30 height=30 src=//jxck.io/assets/img/rss.svg></a>
+    <li><a href=//jxck.io/humans.txt><amp-img alt="huamns.txt" width=30 height=30 src=//jxck.io/assets/img/humans.svg></a>
+    <li><a href=//jxck.io><amp-img class=logo alt="jxck logo" width=30 height=30 src=//jxck.io/assets/img/jxck.svg></a>
+  </ul>
+</header>
+<main>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2017-12-30>2017-12-30</time>
+    <li>updated_at: <time class=updated_at datetime=2017-12-31>2017-12-31</time>
+    <li class=tags>tags: [<a href='/tags/element%20query.html'>element query</a>,<a href='/tags/resize%20observer.html'>resize observer</a>,<a href='/tags/performance.html'>performance</a>]
+  </ul>
+
+
+  <article>
+    <h1><a href=/entries/2017-12-30/resize-observer-and-element-query.html>ResizeObserver による変更検知と Element Query</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>ResizeObserver の ship が進みつつある。
+      <p>この仕様の解説および、 ElementQuery / ContainerQuery について解説する。
+      <p><a href="https://wicg.github.io/ResizeObserver/">Resize Observer 1</a>
+    </section>
+    <section>
+      <h2 id="ResizeObserver"><a href="#ResizeObserver">ResizeObserver</a></h2>
+      <p>ResizeObserver は、最近増えつつある ObserverFamily の 1 つであり、要素のリサイズを検知するインタフェースである。
+      <p>リサイズを検知したい要素をターゲットに <code translate="no">observe()</code> すると、ターゲットと矩形情報が取得できる。
+      <pre class=javascript><code translate="no">const resizeObserver = new ResizeObserver((entries) =&gt; {
+  entries.forEach(({target, contentRect}) =&gt; {
+    console.log(target)
+    const {x, y, width, height, top, right, bottom, left} = contentRect
+    console.log(x)
+    console.log(y)
+    console.log(width)
+    console.log(height)
+    console.log(top)
+    console.log(right)
+    console.log(bottom)
+    console.log(left)
+  })
+})
+resizeObserver.observe(element)    // 検知開始
+resizeObserver.unobserve(element)  // 検知終了
+resizeObserver.disconnect(element) // 解放</code></pre>
+      <p>基本的な Observer のインタフェースのため、使い方もそこまで難しくない。
+      <p>DEMO: <a href="https://labs.jxck.io/resize-observer/basic.html">https://labs.jxck.io/resize-observer/basic.html</a>
+    </section>
+    <section>
+      <h2 id="onresize"><a href="#onresize">onresize</a></h2>
+      <p>レスポンシブ要件を満たす上で、 window のサイズが変更されたことを取得するため、 <code translate="no">resize</code> イベントが使われた。
+      <p>DEMO: <a href="https://labs.jxck.io/resize-observer/onresize.html">https://labs.jxck.io/resize-observer/onresize.html</a>
+      <p>これは window のみに発火するため、 window は不変のまま子要素の変更だけを取ることができなかった。
+      <p>そこで導入されたのが ResizeObserver であったわけだが、ではなぜ <code translate="no">resize</code> イベントを子要素に適用しなかったか。
+      <p><code translate="no">resize</code> イベントは、そもそも view-port に対して定義されており、さらに <strong>変更したこと</strong> だけを伝える仕様になっている。
+      <p><a href="https://drafts.csswg.org/cssom-view/#resizing-viewports">12.1. Resizing viewports | CSSOM View Module</a>
+      <p>つまり、 resize された結果を取得するためには、 <code translate="no">target</code> を辿りサイズを取得する必要が出る。
+      <pre class=javascript><code translate="no">window.addEventListener(&#039;resize&#039;, (e) =&gt; {
+  const width  = e.target.outerWidth
+  const height = e.target.outerHeight
+  console.log({width, height})
+})</code></pre>
+      <p>DEMO: <a href="https://labs.jxck.io/resize-observer/onresize.html">https://labs.jxck.io/resize-observer/onresize.html</a>
+      <p>また、これを子要素で適用した場合は、 <code translate="no">scrollTop</code>, <code translate="no">offset</code>, <code translate="no">getBoundingClientRect()</code> などを用いることになるだろう。
+      <p>これらは同期計算のため、 Forced Synchronous Layout を引き起こし、要素のリサイズ処理がガタつくことになってしまう。
+      <p>Observer を定義することにより、こうした処理を行わずに変更情報のセットを取得できるため、パフォーマンス上の問題を解決できる。
+      <p>こうしたコンセプトは、 IntersectionObserver が定義されたモチベーションと同じだと考えて良いだろう。
+      <p><a href="https://blog.jxck.io/entries/2016-06-25/intersection-observer.html">Intersection Observer を用いた要素出現検出の最適化 | blog.jxck.io</a>
+    </section>
+    <section>
+      <h2 id="resize+event+polyfill"><a href="#resize+event+polyfill">resize event polyfill</a></h2>
+      <p>仮に、 Observer のインタフェースを Event 側に寄せたいというのであれば、以下のように CustomEvent を定義することもできるだろう。
+      <p>必要に応じて <a href="https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html">Passive Event Listener</a> を検討する必要がある。
+      <pre class=javascript><code translate="no">const $target = document.querySelector(&#039;textarea&#039;)
+const resizeObserver = new ResizeObserver((entries) =&gt; {
+  for (const entry of entries) {
+    const resize = new CustomEvent(&#039;resize&#039;, { detail: entry });
+    $target.dispatchEvent(resize)
+  }
+})
+resizeObserver.observe($target)
+
+$target.addEventListener(&#039;resize&#039;, ({detail: entries}) =&gt; {
+  console.log(entries.contentRect)
+}, {passive: true})</code></pre>
+      <p>DEMO: <a href="https://labs.jxck.io/resize-observer/onresize-polyfill.html">https://labs.jxck.io/resize-observer/onresize-polyfill.html</a>
+    </section>
+    <section>
+      <h2 id="Element+Query"><a href="#Element+Query">Element Query</a></h2>
+      <p><a href="http://elementqueries.com/">ElementQuery</a> は MediaQuery の要素版といったコンセプトで作られたライブラリである。
+      <p>例えば以下のように、 <code translate="no">min-widht</code> を境に色を変えるといったことが可能になる。
+      <pre class=css><code translate="no">@element .minwidthpixels and (min-width: 500px) {
+  .minwidthpixels {
+    background: gold;
+  }
+}</code></pre>
+      <p>DEMO: <a href="http://elementqueries.com/#min-width-in-pixels">http://elementqueries.com/#min-width-in-pixels</a>
+      <p>この程度単純な用途であれば ResizeObserver のハンドラ内で CSS の class を toggle するくらいでも実現できる。
+      <p>しかし、 EQ はあくまでスタイル定義を CSS 側で完結させるためのライブラリであるため、 Media Query に習い Custom at-rule (<code translate="no">@element</code>) を定義している。
+      <p>これを実現するため、実装は以下のようなことを行なっている。
+      <ul>
+        <li>CSS の独自拡張
+        <li>CSS パース
+        <li>要素の変更検知
+      </ul>
+      <p>最後の変更検知は、ライブラリ内では Throttling 付きの <code translate="no">setInterval()</code> で行なっているため、 ResizeObserver を用いた実装でかなり効率化できるだろう。
+      <p>CSS に持ってくるには、 Houdini で策定中の <a href="https://drafts.css-houdini.org/css-parser-api/">CSS Parser API</a> と <a href="https://drafts.css-houdini.org/css-typed-om/#normalize-var">CSS Typed OM Level 1</a> あたりが実装されるとネイティブで <code translate="no">@lement</code> を Custom At-Rules として実装できるようになるだろう。
+    </section>
+    <section>
+      <h2 id="Container+Query"><a href="#Container+Query">Container Query</a></h2>
+      <p><a href="https://au.si/css-container-element-queries">Container Query</a> は Element Query と似ているが、文字通り対象を親要素に置いている。
+      <p>例えば、親要素のサイズに応じて子要素のレイアウトを変えたい場合は、 Element Query のスコープで以下のように定義ができる。
+      <pre class=css><code translate="no">@element &#039;#sidebar&#039; and (max-width: 300px) {
+  #sidebar .widget {
+    font-size: 10pt;
+  }
+}</code></pre>
+      <p>一方これを Pseudo Element で定義する提案もある。
+      <pre class=css><code translate="no">.element:container(width &gt;= 100px) {
+  /* If its container is at least 100px wide */
+}
+
+.element:container(height &gt; 100px &lt; 200px) {
+  /* If its container is between 100px and 200px high */
+}
+
+.element:container(text-align = right) {
+  /* If its container has a right text-align */
+}</code></pre>
+      <p>擬似要素で行う場合にも、同じように Houdini の API が揃うと、別途自前でパースする必要もなく実装が可能になるだろう。
+      <p>いずれも提案自体はかなり前からあるが、実装の改善がかのうになりそうだ。
+    </section>
+    <section>
+      <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
+      <p>ResizeObserver によって、単一要素のリサイズがとれるようになり、それを起点にしたよりレスポンシブなレイアウトが可能となった。
+      <p>ここに Parser API や Custom At-Rule, Custom Puesud Element が実装可能になれば、ライブラリとしての Element Query 実装もかなり改善されるだろう。
+      <p>より広範囲に渡るレイアウトについては、将来的には Layout API によって Worklet に落とした実装が可能なるかもしれないが、部分的な用途ではこうした方法も選択肢に入りそうだ。
+    </section>
+  </article>
+
+</main>
+<hr>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved. Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>google analytics</a>.</address>
+</footer>
+</body>
+</html>
+<amp-analytics type=googleanalytics id=analytics1>
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
