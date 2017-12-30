@@ -19,16 +19,16 @@ textarea {
 const $rect = document.querySelector('#rect')
 const $area = document.querySelector('textarea')
 const resizeObserver = new ResizeObserver((entries) => {
-  entries.forEach(({contentRect}) => {
-    console.log(contentRect)
+  for (const {target, contentRect} of entries) {
+    console.log(target, contentRect)
     const r = contentRect.width % 255
     const g = contentRect.height % 255
     const b = (contentRect.right + contentRect.bottom) % 255
     const color = `rgb(${r}, ${g}, ${b})`
-    $area.style.backgroundColor = color
-    $area.value = color
+    target.style.backgroundColor = color
+    target.value = color
     $rect.textContent = JSON.stringify(contentRect)
-  })
+  }
 })
 resizeObserver.observe($area)
 </script>
