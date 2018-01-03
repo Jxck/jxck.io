@@ -1,38 +1,185 @@
-# Form で Submit されたデータを SubmitEvent から取る
+# Form で submit されたデータの収拾と FormData / URLSearchParams
 
 ## Intro
 
 `<form>` の onsubmit をフックして、入力された値を `<input>` から集めて送るといった処理はよくある。
 
-このとき、 submit されたデータは、 `<input>` ではなく、 SubmitEvent から取得することができる。
+このとき、 submit されたデータの収拾方法はいくつかある。
 
-イベントが発生した時、そのイベントに付随する情報は、イベントオブジェクトに内包されていることを意識したコーディングについて解説する。
+submit に限らず、そのイベントに付随する情報は、基本的にイベントオブジェクトに内包されている。
 
-(なお、サンプルコードは最低限のコードで解説するため `<label>` などは省略している)
+Form を例に、イベントオブジェクトを意識したコーディングについて解説する。
 
 
 ## Form Submit
 
-例えばこういうコードがよく見られる。
+Form が Submit されたことをフックして、処理を挟む場面はよくある。
+
+HTML がこうであった場合。
 
 
-```html:form.html
+```html
+<form id=login action=/login method=post>
+  <fieldset form=login>
+    <legend>Login</legend>
+    <label for=username>Username</label>
+    <input type=text name=username id=username value=jxck>
+    <label for=password>Password</label>
+    <input type=password name=password id=password value=thisismypassword>
+    <button type=submit>login</button>
+  </fieldset>
+</form>
 ```
 
+JS は以下のように書かれる場合がある。
 
-
-##
-
-- https://labs.jxck.io/form/form-data/
 
 ```javascript
-$('#send').onsubmit = (e) => {
+document.querySelector('#login').onsubmit = (e) => {
   e.preventDefault()
-  const input = Array.from(new FormData(e.target)).reduce((o, [k, v]) => { o[k] = v; return o }, {})
-  console.log(new Map(new FormData(e.target)))
-  console.log(new URLSearchParams(new FormData(e.target)).toString())
+  const username = document.querySelector('#username')
+  const password = document.querySelector('#password')
+  process_input({username, password})
 }
 ```
+
+ここでは、取得するデータは 2 つしかないが、大きなフォームでは多数の `<input>` を探索する必要がある。
+
+この例を改善しつつ解説していく。
+
+
+## e.target
+
+最も簡単な改善は、 document からのクエリをやめることだ。
+
+`e.target` には、対象の DOM、ここでは `<form>` が入っている。
+
+`<input>` はその子要素なので、わざわざ `document` を起点にする必要はない。
+
+
+```javascript
+document.querySelector('#login').onsubmit = (e) => {
+  e.preventDefault()
+  const username = e.target.querySelector('#username')
+  const password = e.target.querySelector('#password')
+  process_input({username, password})
+}
+```
+
+
+## FormData
+
+Form で Submit されたデータは、 FormData を経由して取得することができる。
+
+つまり、 FormData に変換しさえすれば、 submit 対象のデータは全て手に入っている。
+
+<https://xhr.spec.whatwg.org/#formdata>
+
+このオブジェクトは、 `get()`、 `set()` など Map のようなインタフェースを持つ。
+
+(なお `new Map(form_data)` すれば、実際の Map にもなる)
+
+また、そのまま XHR や fetch を使ってそのまま POST することができる。
+
+
+```javascript
+document.querySelector('#login').onsubmit = (e) => {
+  e.preventDefault()
+  const form_data = new FormData(e.target)
+  validate_username(form_data.get('username'))
+  validate_password(form_data.get('password'))
+  fetch('/login', {
+    method: 'POST',
+    body: form_data
+  })
+}
+```
+
+ただし、注意点としてこのとき POST される Content-Type は `multipart/form-data` になる。
+
+つまり Body は以下のようなフォーマットだ。
+
+
+```
+// content-type:multipart/form-data; boundary=----WebKitFormBoundaryPfqUKvtarA1EFkbV
+
+
+------WebKitFormBoundaryPfqUKvtarA1EFkbV
+Content-Disposition: form-data; name="username"
+
+jxck
+------WebKitFormBoundaryPfqUKvtarA1EFkbV
+Content-Disposition: form-data; name="password"
+
+examplepassword
+------WebKitFormBoundaryPfqUKvtarA1EFkbV--
+```
+
+大抵のサーバは、これでも問題なく処理できるだろう。
+
+しかし、 File でもない限り HTML Form からは `application/form-url-encoded` で送られてくるという前提で実装されたものもあるだろう。
+
+
+## URLSearchParams
+
+URLSearchParams は、 URL の標準化の際に QueryString 部分をサポートするために導入された。
+
+しかし、これは FormData を引数にインスタンスを生成することができる。
+
+また、そのまま POST の Body にすれば、 `application/form-url-encoded` として送ることができる。
+
+
+```javascript
+document.querySelector('#login').onsubmit = (e) => {
+  e.preventDefault()
+  const form_data = new FormData(e.target)
+  const url_search_params = new URLSearchParams(form_data)
+  fetch('/login', {
+    method: 'POST',
+    body: url_search_params
+  })
+}
+```
+
+つまり Body は以下のようなフォーマットだ。
+
+
+```
+// content-type:application/x-www-form-urlencoded;charset=UTF-8
+
+username=jxck&password=thisismypassword
+```
+
+
+## JSON
+
+API バックエンドなどに対して JSON で送りたい場合もあるだろう。
+
+せっかく FormData までは取得できているので、これを Object に変換してからシリアライズすれば良い。
+
+ここでは FormData が iterable であるこを利用してオブジェクトを組み立ててみる。
+
+
+```javascript
+document.querySelector('#login').onsubmit = (e) => {
+  e.preventDefault()
+  const form_data = new FormData(e.target)
+  const object = Array.from(form_data).reduce((o, [k, v]) => { o[k] = v; return o }, {})
+  const json = JSON.stringify(object)
+  fetch('/login', {
+    method: 'POST',
+    body: json
+  })
+}
+```
+
+(ただし Form に `<select>` などが入る場合は修正が必要 <https://labs.jxck.io/form/input-type/>)
+
+
+## DEMO
+
+DEMO: <https://labs.jxck.io/form/form-data/>
+
 
 ## Links
 
