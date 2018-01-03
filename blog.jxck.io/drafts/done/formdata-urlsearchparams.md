@@ -1,4 +1,4 @@
-# Form で submit されたデータの収拾と FormData / URLSearchParams
+# Form で submit されたデータの収集と FormData & URLSearchParams
 
 ## Intro
 
@@ -185,4 +185,3 @@ DEMO: <https://labs.jxck.io/form/form-data/>
 
 - https://xhr.spec.whatwg.org/#interface-formdata
 - https://url.spec.whatwg.org/#interface-urlsearchparams
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map
