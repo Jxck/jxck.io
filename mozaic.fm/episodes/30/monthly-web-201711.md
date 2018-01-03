@@ -65,9 +65,9 @@ Monthly Web のモチベーションについては以下。
       - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/7aZGnBIlG5o/zkt8FPJPAAAJ>
    - Ship: Tighten `prefetch` mixed content checks
       - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/x0ROz-Io2bc/B9-sd6_dBwAJ>
-- Ship: Tighten secure context implementation in Workers
+   - Ship: Tighten secure context implementation in Workers
       - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/NNdqRpSfkow/nvCWkHtRAQAJ>
-- Implement and ship: disown opener in a targeted navigation when noopener is used
+   - Implement and ship: disown opener in a targeted navigation when noopener is used
       - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Ucy5woezBFY/gqSMJOpOBAAJ>
    - Implement and Ship: prevent scrolling in HTMLElement.focus()
       - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/55sC81ciQgY/7jAt5YpgBAAJ>
@@ -536,6 +536,7 @@ Monthly Web のモチベーションについては以下。
    - TAG
       - <https://github.com/w3ctag/meetings/tree/gh-pages/2017/11-SFO>
 
+
 ### WHATWG/W3C 標準動向
 
 - W3C Strategic Highlights
@@ -661,39 +662,38 @@ Monthly Web のモチベーションについては以下。
       - <https://tools.ietf.org/html/rfc8291>
    - RFC 8292 - Voluntary Application Server Identification (VAPID) for Web Push
       - <https://tools.ietf.org/html/rfc8292>
-- Draft
-   - IETF Last Call:
-      - The ORIGIN HTTP/2 Frame
-         - <https://lists.w3.org/Archives/Public/ietf-http-wg/2017OctDec/0278.html>
-   - WG Last Call:
-      - HTTP Random Access and Live Content
-         - <https://lists.w3.org/Archives/Public/ietf-http-wg/2017OctDec/0304.html>
-      - Using Early Data in HTTP
-         - <https://lists.w3.org/Archives/Public/ietf-http-wg/2017OctDec/0322.html>
-         - 425 (not 418) のまま LC になりそう
-   - Call for Adoption:
-      - Secondary Certificate Authentication in HTTP/2
-         - <https://tools.ietf.org/html/draft-bishop-httpbis-http2-additional-certs-05>
-      - Bootstrapping WebSockets with HTTP/2
-         - <https://lists.w3.org/Archives/Public/ietf-http-wg/2017OctDec/0305.html>
-   - I-D Action:
-      - draft-ietf-httpbis-header-structure-02.txt
-         - <https://lists.w3.org/Archives/Public/ietf-http-wg/2017OctDec/0339.html>
-   - Draft:
-      - Defining Well-Known Uniform Resource Identifiers (URIs)
-         - <https://tools.ietf.org/html/draft-nottingham-rfc5785bis-00>
-         - RFC5875 の更新
-         - HTTP 上の新プロトコルを示すために使うな、などの追記
-      - Relative JSON Pointers
-         - <https://tools.ietf.org/html/draft-handrews-relative-json-pointer-00>
-         - RFC6901 に JSON の値を root から示すクエリのようなものがある
-         - それの相対パス版
-      - JSON Schema: A Media Type for Describing JSON Documents
-         - <https://tools.ietf.org/html/draft-handrews-json-schema-00>
-         - JSON Schema を JSON どうしの参照やクエリで定義する?
-      - JSON Schema Validation: A Vocabulary for Structural Validation of JSON
-         - <https://tools.ietf.org/html/draft-handrews-json-schema-validation-00>
-         - JSON Schema で JSON を Validate するためのボキャブラリと手法
+- IETF Last Call:
+   - The ORIGIN HTTP/2 Frame
+      - <https://lists.w3.org/Archives/Public/ietf-http-wg/2017OctDec/0278.html>
+- WG Last Call:
+   - HTTP Random Access and Live Content
+      - <https://lists.w3.org/Archives/Public/ietf-http-wg/2017OctDec/0304.html>
+   - Using Early Data in HTTP
+      - <https://lists.w3.org/Archives/Public/ietf-http-wg/2017OctDec/0322.html>
+      - 425 (not 418) のまま LC になりそう
+- Call for Adoption:
+   - Secondary Certificate Authentication in HTTP/2
+      - <https://tools.ietf.org/html/draft-bishop-httpbis-http2-additional-certs-05>
+   - Bootstrapping WebSockets with HTTP/2
+      - <https://lists.w3.org/Archives/Public/ietf-http-wg/2017OctDec/0305.html>
+- I-D Action:
+   - draft-ietf-httpbis-header-structure-02.txt
+      - <https://lists.w3.org/Archives/Public/ietf-http-wg/2017OctDec/0339.html>
+- Draft:
+   - Defining Well-Known Uniform Resource Identifiers (URIs)
+      - <https://tools.ietf.org/html/draft-nottingham-rfc5785bis-00>
+      - RFC5875 の更新
+      - HTTP 上の新プロトコルを示すために使うな、などの追記
+   - Relative JSON Pointers
+      - <https://tools.ietf.org/html/draft-handrews-relative-json-pointer-00>
+      - RFC6901 に JSON の値を root から示すクエリのようなものがある
+      - それの相対パス版
+   - JSON Schema: A Media Type for Describing JSON Documents
+      - <https://tools.ietf.org/html/draft-handrews-json-schema-00>
+      - JSON Schema を JSON どうしの参照やクエリで定義する?
+   - JSON Schema Validation: A Vocabulary for Structural Validation of JSON
+      - <https://tools.ietf.org/html/draft-handrews-json-schema-validation-00>
+      - JSON Schema で JSON を Validate するためのボキャブラリと手法
 - Other
    - [TLS] PR#1091: Changes to provide middlebox robustness
       - <https://www.ietf.org/mail-archive/web/tls/current/msg24908.html>
@@ -709,6 +709,7 @@ Monthly Web のモチベーションについては以下。
    - SRI and signatures
       - <https://lists.w3.org/Archives/Public/public-webappsec/2017Nov/0023.html>
       - signature-based-sri (公開鍵を使う SRI) の現状と今後を話したい、という話
+
 
 ### 周辺動向
 
