@@ -129,7 +129,7 @@ $ ./hello_world 1> /dev/pts2 2> /dev/pts5
 $ tail -f access.log | tee >(grep 404 > /dev/pts/5) >(grep 500 > /dev/pts/6) >(grep 451 > /dev/pts/7)
 ```
 
-Logger のタグを使った分岐なんかも地味に便利だったりする。
+Logger のタグ (Info, Debug, Trace etc) を使った分岐なんかも地味に便利だったりする。
 
 
 ```sh
