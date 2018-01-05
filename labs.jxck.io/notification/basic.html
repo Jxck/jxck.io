@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+
+<title>Notification Basic DEMO | labs.jxck.io</title>
+
+<style>
+label {
+  display: inline-block;
+  width: 8em;
+}
+input {
+  display: inline-block;
+  width: 20em;
+}
+</style>
+<h1>Notification Basic DEMO (https only)</h1>
+
+<p>notification permission: <strong id=permission></strong>
+
+<form>
+  <div>
+    <label for=title>title:</label>
+    <input type=text id=title name=title value="title of notify" />
+  </div>
+
+  <div>
+    <label for=body>body:</label>
+    <input type=text id=body name=body value="body of notification" />
+  </div>
+
+  <div>
+    <label for=icon>icon:</label>
+    <input type=text id=icon name=icon value=https://logo.jxck.io/jxck.png />
+  </div>
+
+  <div>
+    <label for=image>image:</label>
+    <input type=text id=image name=image value=https://mozaic.fm/assets/img/mozaic.png />
+  </div>
+
+  <div>
+    <label for=badge>badge:</label>
+    <input type=text id=badge name=badge value=https://logo.jxck.io/jxck.png />
+  </div>
+
+  <div>
+    <label for=sound>sound:</label>
+    <input type=text id=sound name=sound />
+  </div>
+
+  <div>
+    <label for=lang>lang:</label>
+    <input type=text id=lang name=lang value="ja" />
+  </div>
+
+  <div>
+    <label for=tag>tag:</label>
+    <input type=text id=tag name=tag />
+  </div>
+
+  <div>
+    <label for=vibrate>vibrate:</label>
+    <input type=text id=vibrate name=vibrate value="[50, 100, 150]" />
+  </div>
+
+  <div>
+    <label for=timestamp>timestamp:</label>
+    <input type=text id=timestamp name=timestamp />
+  </div>
+
+  <div>
+    <label for=dir>dir:</label>
+    <select name=dir id=dir>
+      <option value=auto>auto</option>
+      <option value=ltr>ltr</option>
+      <option value=rtl>rtl</option>
+    </select>
+  </div>
+
+  <div>
+    <label for=requireInteraction>requireInteraction:</label>
+    <select name=requireInteraction id=requireInteraction>
+      <option value=false>false</option>
+      <option value=true>true</option>
+    </select>
+  </div>
+
+  <div>
+    <label for=silent>silent:</label>
+    <select name=silent id=silent>
+      <option value=false>false</option>
+      <option value=true>true</option>
+    </select>
+  </div>
+
+  <div>
+    <label for=renotify>renotify:</label>
+    <select name=renotify id=renotify>
+      <option value=false>false</option>
+      <option value=true>true</option>
+    </select>
+  </div>
+
+  <button type=submit disabled=true>notify</button>
+</form>
+
+<script>
+  async function main() {
+    const result = await Notification.requestPermission()
+    document.querySelector('#permission').textContent = result
+    if (result !== "granted") return
+
+    document.querySelector('button').disabled = false
+
+    document.querySelector('form').addEventListener('submit', async (e) => {
+      e.preventDefault()
+      const data  = new FormData(e.target)
+      const title = data.get('title')
+      const options  = {
+        body:               data.get('body'),
+        icon:               data.get('icon'),
+        image:              data.get('image'),
+        dir:                data.get('dir'),
+        lang:               data.get('lang'),
+        tag:                data.get('tag'),
+        badge:              data.get('badge'),
+        sound:              data.get('sound'),
+        timestamp:          data.get('timestamp'),
+        vibrate:            JSON.parse(data.get('vibrate')),
+        renotify:           JSON.parse(data.get('renotify')),
+        silent:             JSON.parse(data.get('silent')),
+        requireInteraction: JSON.parse(data.get('requireInteraction')),
+        data:               {foo: "bar"},
+
+
+        // only in ServiceWorkerRegistration.showNotification()
+        // actions:            [
+        //   {action: "foo", title: "bar", icon: "https://mozaic.fm/assets/img/mozaic.png"}
+        // ]
+      }
+      console.log(options)
+
+      const notification = new Notification(title, options);
+      notification.onerror = console.error.bind(console)
+      notification.onclick = (e) => {
+        console.log(e, e.data)
+      }
+    })
+  }
+main()
+</script>
