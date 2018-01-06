@@ -10,17 +10,16 @@ self.addEventListener('activate', (e) => {
 
 self.addEventListener('push', (e) => {
   console.info('push', e);
-  const message = e.data.text();
 
-  e.waitUntil(self.registration.showNotification('title', {
-    body: message,
-    icon: '/service-worker/push/jxck.png',
-    tag:  'push-demo',
-  }));
+  const {title, options}= e.data.json();
+
+  e.waitUntil(
+    self.registration.showNotification(title, options)
+  );
 });
 
 self.addEventListener('notificationclick', (e) => {
-  console.info('notificationclick', e.notification.tag);
+  console.info('notificationclick', e);
   e.notification.close();
   const URL = 'https://labs.jxck.io/service-worker/push/';
   e.waitUntil(clients.matchAll({
