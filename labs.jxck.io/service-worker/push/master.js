@@ -2,7 +2,15 @@
 let log = console.log.bind(console);
 
 // server vapid public key
-const publicKey = "BCy0bVkTnomzlkx76DslhE22JiOqsytkZJaQQ4lyct3HCDspcLh6eTfcSMzUacw6KBkkEUebNFYuMBYCoBRqWKM";
+const publicKey = "BEYQ1fBacZ0i49Cb8GZ_XQJ2q_Jg-shjjPghnNEzXcXnAGKUpasmJ8u2f9ibW_DdsluNvfKd1hVaaIi_U2816bU";
+
+function base64url(str) {
+  const base64 = str.replace(/-/g, '+').replace(/_/g, '/');
+  const raw    = atob(base64);
+  const arr    = Array.from(raw).map((c) => c.charCodeAt(0))
+  const bin    = new Uint8Array(arr)
+  return bin
+}
 
 (async function() {
   try {
@@ -17,7 +25,7 @@ const publicKey = "BCy0bVkTnomzlkx76DslhE22JiOqsytkZJaQQ4lyct3HCDspcLh6eTfcSMzUa
     }
 
     const subscription = await registration.pushManager.subscribe({
-      applicationServerKey: urlsafeBase64ToBinary(publicKey),
+      applicationServerKey: base64url(publicKey),
       userVisibleOnly:      true
     })
 
@@ -86,16 +94,3 @@ const publicKey = "BCy0bVkTnomzlkx76DslhE22JiOqsytkZJaQQ4lyct3HCDspcLh6eTfcSMzUa
     console.log(err)
   }
 })();
-
-
-const urlsafeBase64ToBinary = (urlsafeBase64) => {
-    const base64 = urlsafeBase64.replace(/-/g, '+').replace(/_/g, '/');
-    const raw    = window.atob(base64);
-    const binary = new Uint8Array(raw.length);
-
-    for (let i = 0, len = binary.length; i < len; i++) {
-        binary[i] = raw.charCodeAt(i);
-    }
-
-    return binary;
-};
