@@ -1,12 +1,12 @@
-'use strict';
-let log = console.log.bind(console);
+'use strict'
+let log = console.log.bind(console)
 
 // server vapid public key
-const publicKey = "BEYQ1fBacZ0i49Cb8GZ_XQJ2q_Jg-shjjPghnNEzXcXnAGKUpasmJ8u2f9ibW_DdsluNvfKd1hVaaIi_U2816bU";
+const publicKey = "BEYQ1fBacZ0i49Cb8GZ_XQJ2q_Jg-shjjPghnNEzXcXnAGKUpasmJ8u2f9ibW_DdsluNvfKd1hVaaIi_U2816bU"
 
 function base64url(str) {
-  const base64 = str.replace(/-/g, '+').replace(/_/g, '/');
-  const raw    = atob(base64);
+  const base64 = str.replace(/-/g, '+').replace(/_/g, '/')
+  const raw    = atob(base64)
   const arr    = Array.from(raw).map((c) => c.charCodeAt(0))
   const bin    = new Uint8Array(arr)
   return bin
@@ -29,12 +29,12 @@ function base64url(str) {
       userVisibleOnly:      true
     })
 
-    console.log(subscription);
+    console.log(subscription)
 
     // subscription values
-    const endpoint = subscription.endpoint;
-    const auth     = subscription.getKey('auth');
-    const p256dh   = subscription.getKey('p256dh');
+    const endpoint = subscription.endpoint
+    const auth     = subscription.getKey('auth')
+    const p256dh   = subscription.getKey('p256dh')
     const sub = {
       endpoint,
       keys: {
@@ -43,11 +43,9 @@ function base64url(str) {
       }
     }
 
-
     // check permission
     const result = await Notification.requestPermission()
     document.querySelector('#permission').textContent = result
-
 
     // form submit
     document.querySelector('form').addEventListener('submit', async (e) => {
@@ -70,17 +68,13 @@ function base64url(str) {
           renotify:           JSON.parse(data.get('renotify')),
           silent:             JSON.parse(data.get('silent')),
           requireInteraction: JSON.parse(data.get('requireInteraction')),
-          data:               {foo: "bar"},
-          actions:            [
-            {action: 'action1', title: 'action1'},
-            {action: 'action2', title: 'action2'},
-          ]
+          data:               JSON.parse(data.get('data')),
+          actions:            JSON.parse(data.get('actions')),
         }
         console.log(options)
 
         const body = JSON.stringify({ sub, title, options })
         const method = 'post'
-
 
         // send to server
         const res = await fetch('push.cgi', { method, body })
@@ -93,4 +87,4 @@ function base64url(str) {
   } catch (err) {
     console.log(err)
   }
-})();
+})()
