@@ -31,6 +31,7 @@ connection.onnegotiationneeded = async (e) => {
 
   // create offer
   const offer = await connection.createOffer()
+  console.log(offer.sdp)
   await connection.setLocalDescription(offer)
 
   ws.send(JSON.stringify({
@@ -120,6 +121,7 @@ ws.onmessage = async ({data}) => {
     if (type == 'offer') {
       window.peerid = message.from
 
+      console.log(message.data.sdp)
       await connection.setRemoteDescription(message.data)
 
       const stream = await navigator.mediaDevices.getUserMedia(constraint)
@@ -136,6 +138,7 @@ ws.onmessage = async ({data}) => {
       }
 
       await connection.setLocalDescription(await connection.createAnswer())
+      console.log(connection.localDescription.sdp)
 
       ws.send(JSON.stringify({
         id:   window.peerid,
@@ -149,6 +152,7 @@ ws.onmessage = async ({data}) => {
     }
 
     if (type == 'answer') {
+      console.log(message.data.sdp)
       await connection.setRemoteDescription(message.data)
     }
 
