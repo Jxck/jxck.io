@@ -6,6 +6,7 @@
 
 <h1>Houdini Layout API DEMO</h1>
 
+<p>Layout Worklet <strong id=support>unsupported</strong></p>
 <style>
 .container {
   /*
@@ -36,5 +37,9 @@
 </div>
 
 <script>
-  CSS.layoutWorklet.addModule('flex-box.js');
+if (CSS.layoutWorklet) {
+  document.querySelector('#support').textContent = 'supported'
+}
+
+CSS.layoutWorklet.addModule('flex-box.js');
 </script>

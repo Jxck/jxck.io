@@ -9,7 +9,7 @@ registerLayout('flex-box', class {
   *layout(space, children, styleMap, edges, breakToken) {
     const inlineSize = resolveInlineSize(space, styleMap)
     const availableInlineSize = inlineSize - edges.all.inline
-    const availableBlockSize  = resolveBlockSize(space, styleMap) - edges.all.block
+    const availableBlockSize = resolveBlockSize(space, styleMap) - edges.all.block
     const childConstraintSpace = new ConstraintSpace({
       inlineSize: availableInlineSize,
       blockSize: availableBlockSize,
@@ -25,7 +25,7 @@ registerLayout('flex-box', class {
 
     // Distribute spare space between children.
     const remainingSpace = Math.max(0, inlineSize - totalSize)
-    const extraSpace     = remainingSpace / children.length
+    const extraSpace = remainingSpace / children.length
 
     const childFragments = yield children.map((child, i) => {
       return child.layoutNextFragment(new ConstraintSpace({

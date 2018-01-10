@@ -6,6 +6,7 @@
 
 <h1>Houdini Paint API DEMO</h1>
 
+<p>Paint Worklet <strong id=support>unsupported</strong></p>
 <style>
 div {
   font-size: 30px;
@@ -50,6 +51,10 @@ div {
 <div class=paint4></div>
 
 <script>
+if (CSS.paintWorklet) {
+  document.querySelector('#support').textContent = 'supported'
+}
+
 // insert css to <div>
 for (let $div of document.querySelectorAll('div')) {
   if ($div.className === 'paint0') {
