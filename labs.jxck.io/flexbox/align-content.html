@@ -2,15 +2,17 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 
-<title>FlexBox justify-content DEMO | labs.jxck.io</title>
+<title>FlexBox align-content DEMO | labs.jxck.io</title>
 
 <style>
 .container {
   display: flex;
-  width:  500px;
-  height: 100px;
+  width:  200px;
+  height: 200px;
   border: solid 1px #333;
   padding: 1em;
+
+  flex-wrap: wrap;
 }
 
 .child {
@@ -19,14 +21,15 @@
   border: solid 1px #333;
 }
 
-.flex-start    { justify-content: flex-start;    }
-.flex-end      { justify-content: flex-end;      }
-.center        { justify-content: center;        }
-.space-between { justify-content: space-between; }
-.space-around  { justify-content: space-around;  }
+.flex-start    { align-content: flex-start;    }
+.flex-end      { align-content: flex-end;      }
+.center        { align-content: center;        }
+.space-between { align-content: space-between; }
+.space-around  { align-content: space-around;  }
+.stretch       { align-content: stretch;       }
 </style>
 
-<h1>FlexBox justify-content DEMO</h1>
+<h1>FlexBox align-content DEMO</h1>
 
 <h2>flex-start</h2>
 <div class="container flex-start">

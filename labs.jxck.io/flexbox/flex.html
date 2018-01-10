@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+
+<title>FlexBox flex-grow/shrink/basis DEMO | labs.jxck.io</title>
+
+<style>
+.container {
+  display: flex;
+  width:  500px;
+  height: 100px;
+  border: solid 1px #333;
+  padding: 1em;
+}
+
+.w200 {
+  width:  200px;
+}
+
+.child {
+  width: 80px;
+  background-color: #ccc;
+  border: solid 1px #333;
+}
+
+.grow1 { flex-grow: 1; }
+.grow2 { flex-grow: 2; }
+.grow3 { flex-grow: 3; }
+
+.shrink1 { flex-shrink: 1; }
+.shrink2 { flex-shrink: 4; }
+.shrink3 { flex-shrink: 8; }
+
+.basis1 { flex-basis: 110%; }
+.basis2 { flex-basis: auto; }
+.basis3 { flex-basis: 90px; }
+</style>
+
+<h1>FlexBox flex-grow/shrink/basis DEMO</h1>
+
+<h2>grow</h2>
+<div class="container">
+  <div class="child grow1">Child 1</div>
+  <div class="child grow2">Child 2</div>
+  <div class="child grow2">Child 3</div>
+</div>
+
+
+<h2>shrink</h2>
+<div class="container w200">
+  <div class="child shrink1">Child 1</div>
+  <div class="child shrink2">Child 2</div>
+  <div class="child shrink3">Child 3</div>
+</div>
+
+
+<h2>basis</h2>
+<div class="container">
+  <div class="child basis1">Child 1</div>
+  <div class="child basis2">Child 2</div>
+  <div class="child basis3">Child 3</div>
+</div>

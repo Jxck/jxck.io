@@ -2,7 +2,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 
-<title>FlexBox justify-content DEMO | labs.jxck.io</title>
+<title>FlexBox flex-flow DEMO | labs.jxck.io</title>
 
 <style>
 .container {
@@ -19,17 +19,16 @@
   border: solid 1px #333;
 }
 
-.flex-start    { justify-content: flex-start;    }
-.flex-end      { justify-content: flex-end;      }
-.center        { justify-content: center;        }
-.space-between { justify-content: space-between; }
-.space-around  { justify-content: space-around;  }
+.row            { flex-flow: row;            }
+.row-reverse    { flex-flow: row-reverse;    }
+.column         { flex-flow: column;         }
+.column-reverse { flex-flow: column-reverse; }
 </style>
 
-<h1>FlexBox justify-content DEMO</h1>
+<h1>FlexBox flex-flow DEMO</h1>
 
-<h2>flex-start</h2>
-<div class="container flex-start">
+<h2>row</h2>
+<div class="container row">
   <div class=child>Child 1</div>
   <div class=child>Child 2</div>
   <div class=child>Child 3</div>
@@ -37,8 +36,8 @@
 </div>
 
 
-<h2>flex-end</h2>
-<div class="container flex-end">
+<h2>row-reverse</h2>
+<div class="container row-reverse">
   <div class=child>Child 1</div>
   <div class=child>Child 2</div>
   <div class=child>Child 3</div>
@@ -46,8 +45,8 @@
 </div>
 
 
-<h2>center</h2>
-<div class="container center">
+<h2>colmun</h2>
+<div class="container column">
   <div class=child>Child 1</div>
   <div class=child>Child 2</div>
   <div class=child>Child 3</div>
@@ -55,17 +54,8 @@
 </div>
 
 
-<h2>space-between</h2>
-<div class="container space-between">
-  <div class=child>Child 1</div>
-  <div class=child>Child 2</div>
-  <div class=child>Child 3</div>
-  <div class=child>Child 4</div>
-</div>
-
-
-<h2>space-around</h2>
-<div class="container space-around">
+<h2>colmun-reverse</h2>
+<div class="container column-reverse">
   <div class=child>Child 1</div>
   <div class=child>Child 2</div>
   <div class=child>Child 3</div>

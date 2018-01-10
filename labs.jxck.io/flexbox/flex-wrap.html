@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+
+<title>FlexBox flex-wrap DEMO | labs.jxck.io</title>
+
+<style>
+.container {
+  display: flex;
+  width:  200px;
+  height: 100px;
+  border: solid 1px #333;
+  padding: 1em;
+}
+
+.child {
+  width: 80px;
+  background-color: #ccc;
+  border: solid 1px #333;
+}
+
+.no-wrap       { flex-wrap: no-wrap;      }
+.wrap          { flex-wrap: wrap;         }
+.wrap-reverse  { flex-wrap: wrap-reverse; }
+</style>
+
+<h1>FlexBox flex-wrap DEMO</h1>
+
+<h2>no-wrap</h2>
+<div class="container no-wrap">
+  <div class=child>Child 1</div>
+  <div class=child>Child 2</div>
+  <div class=child>Child 3</div>
+  <div class=child>Child 4</div>
+</div>
+
+
+<h2>wrap</h2>
+<div class="container wrap">
+  <div class=child>Child 1</div>
+  <div class=child>Child 2</div>
+  <div class=child>Child 3</div>
+  <div class=child>Child 4</div>
+</div>
+
+
+<h2>wrap-reverse</h2>
+<div class="container wrap-reverse">
+  <div class=child>Child 1</div>
+  <div class=child>Child 2</div>
+  <div class=child>Child 3</div>
+  <div class=child>Child 4</div>
+</div>
