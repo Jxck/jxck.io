@@ -23,6 +23,11 @@ document.querySelector('#peer').value = ''
 const ws = new WebSocket('wss://ws.jxck.io', ['broadcast', 'webrtc-stream-p2p-demo'])
 const connection = new RTCPeerConnection(Config)
 
+function log(name, value) {
+  const $log = document.querySelector('#log')
+  $log.value += `[${name}]\n${value}\n\n`
+}
+
 connection.onnegotiationneeded = async (e) => {
   console.log('******************* onnegotiationneeded *******************', e)
 
@@ -31,7 +36,7 @@ connection.onnegotiationneeded = async (e) => {
 
   // create offer
   const offer = await connection.createOffer()
-  console.log(offer.sdp)
+  log('offer', offer.sdp)
   await connection.setLocalDescription(offer)
 
   ws.send(JSON.stringify({
@@ -46,7 +51,7 @@ connection.onnegotiationneeded = async (e) => {
 }
 
 connection.onicecandidate = ({candidate}) => {
-  console.log('candidate', candidate)
+  log('candidate', JSON.stringify(candidate))
   if (candidate === null) return
 
   ws.send(JSON.stringify({
@@ -65,10 +70,10 @@ connection.ontrack = ({streams}) => {
   document.querySelector('#remote').srcObject = streams[0]
 }
 
-connection.onaddstream = ({stream}) => {
-  console.log('onaddstream', stream)
-  document.querySelector('#remote').srcObject = stream
-}
+// connection.onaddstream = ({stream}) => {
+//   console.log('onaddstream', stream)
+//   document.querySelector('#remote').srcObject = stream
+// }
 
 connection.onicecandidateerror = (e) => {
   console.error(e.type, e)
@@ -106,8 +111,8 @@ document.querySelector('#start').onsubmit = async (e) => {
       connection.addTrack(track, stream)
     })
   } else {
-    console.log('addStream')
-    connection.addStream(stream)
+    // console.log('addStream')
+    // connection.addStream(stream)
   }
 }
 
@@ -121,7 +126,7 @@ ws.onmessage = async ({data}) => {
     if (type == 'offer') {
       window.peerid = message.from
 
-      console.log(message.data.sdp)
+      log('offer', message.data.sdp)
       await connection.setRemoteDescription(message.data)
 
       const stream = await navigator.mediaDevices.getUserMedia(constraint)
@@ -152,11 +157,12 @@ ws.onmessage = async ({data}) => {
     }
 
     if (type == 'answer') {
-      console.log(message.data.sdp)
+      log('answer', message.data.sdp)
       await connection.setRemoteDescription(message.data)
     }
 
     if (type == 'candidate') {
+      log('candidate', JSON.stringify(message.data))
       await connection.addIceCandidate(message.data)
     }
   } catch (err) {
