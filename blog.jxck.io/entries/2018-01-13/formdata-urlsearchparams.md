@@ -1,4 +1,4 @@
-# Form で submit されたデータの収集と FormData & URLSearchParams
+# [urlsearchparams][formdata][form] Form で submit されたデータの収集と FormData & URLSearchParams
 
 ## Intro
 
@@ -176,6 +176,33 @@ document.querySelector('#login').onsubmit = (e) => {
 (ただし Form に `<select>` などが入る場合は修正が必要 <https://labs.jxck.io/form/input-type/>)
 
 
+## beforeSubmitCallback
+
+submit に callback を仕込む仕様の提案がかなり前に出ている。
+
+[Need callback for form submit data](https://github.com/w3c/webcomponents/issues/187)
+
+
+```javascript
+document.registerElement('input', {
+  prototype: {
+    proto: HTMLElement.prototype,
+      beforeSubmitCallback: function() {
+        switch (this.type) {
+        case 'checkbox':
+          if (this.checked) {
+            return this.value;
+          }
+          return undefined;
+        }
+      }
+  }
+});
+```
+
+進捗は微妙だが、もし実装されると、 JSON で Post したい場合に、 Fetch を使わずにフォーマットの変換だけでよくなるのかもしれない。
+
+
 ## DEMO
 
 DEMO: <https://labs.jxck.io/form/form-data/>
@@ -183,5 +210,5 @@ DEMO: <https://labs.jxck.io/form/form-data/>
 
 ## Links
 
-- https://xhr.spec.whatwg.org/#interface-formdata
-- https://url.spec.whatwg.org/#interface-urlsearchparams
+- <https://xhr.spec.whatwg.org/#interface-formdata>
+- <https://url.spec.whatwg.org/#interface-urlsearchparams>
