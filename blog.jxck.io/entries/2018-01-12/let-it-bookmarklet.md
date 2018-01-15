@@ -1,10 +1,10 @@
-# Bookmarklet という一番身近な自動化技術
+# [boolmarklet] Bookmarklet という一番身近な自動化技術
 
 ## Intro
 
 「毎回やるなら bookmarklet にでもすれば?」と言ったら、後輩が「そんな便利なことできたんですね、知りませんでした」と言ってた。
 
-感嘆の意を込めて、今更だれも解説しないであろう、 bookmarklet という技術についてもう一度書いておく。
+そんな時代にこそ、今更だれも解説しないであろう、 bookmarklet という技術についてもう一度書いておく。
 
 
 ## Bookmarklet
@@ -25,6 +25,8 @@
 1. 開発者ツールで、そのページに対して行いたい処理を書く(ここでは `alert("hello")` としておく)
 2. そのコードの最初に `javascript:` を付与する (`javascript:alert("hello")`)
 3. ブックマークを登録する処理を行い、 URL の欄にコードを追加する
+
+![screencast of adding bookmarklet to browser](bookmarklet.gif#832x539 'bookmarklet on firefox')
 
 
 ## 使用例
@@ -76,6 +78,22 @@ javascript: (() => {
 })();
 ```
 
+共有したい場合なども便利。
+
+
+### Twitter Colored Link
+
+Twitter のリンクが色も Underline も付かなくなって以降、 URL がどこにあるのかパッとわかりにくい。
+
+そこで、対象の `<a>` に色をつける。
+
+
+```javascript
+javascript:Array.from(document.querySelectorAll('.js-display-url')).forEach((a) => a.style.color="red")
+```
+
+それっぽい Class をなんとか探すのがポイント。
+
 
 ### m3
 
@@ -126,7 +144,7 @@ javascript:location.href = document.querySelector('link[rel="canonical"]').href.
 ```
 
 
-## preslide
+### preslide
 
 ネットワークが重いところで slideshare を見ると、ページを進めるたびにローディングでストレスだったので書いたもの。
 
@@ -146,7 +164,7 @@ javascript: function loop(n) {
 ```
 
 
-## safari picture-in-picture
+### safari picture-in-picture
 
 今の Safari は PinP に対応している。
 
@@ -157,8 +175,10 @@ javascript: function loop(n) {
 javascript: document.querySelector('video').webkitSetPresentationMode('picture-in-picture')
 ```
 
+新しい Mac は touch bar に UI があるので、無い機種で使ってる。
 
-## 代替手段
+
+### 代替手段
 
 Bookmarklet は、表示時に自動実行するといったことはできない。
 
@@ -177,4 +197,4 @@ Bookmarklet は、表示時に自動実行するといったことはできな�
 
 いくつか例は出したが、なによりも JS でできることはなんでもできるので、ちょっと面倒だと思ったら書いてみれば良いと思う。
 
-何かをインストールすることも、そのためにユーザ登録することもなく、最短で実行できるハックとして、知っておくと良いと思う。
+何かをインストールすることも、そのためにユーザ登録することもなく、最短で実行できるハックとして、知っておくと便利だ。

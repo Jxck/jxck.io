@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang=ja itemscope itemtype=http://schema.org/BlogPosting>
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset=utf-8>
+    <!--
+    貴様、見ているな！！
+    このサイトの技術的なまとめはこちらをどうぞ。
+    https://labs.jxck.io/blog
+
+    by Jxck
+    -->
+    <link rel=canonical href="https://blog.jxck.io/entries/2018-01-12/let-it-bookmarklet.html">
+    <link rel=amphtml href="https://blog.jxck.io/entries/2018-01-12/let-it-bookmarklet.amp.html">
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+    <link rel=author href=//jxck.io/assets/humans.txt>
+    <link rel=manifest href=/manifest.json>
+    <link rel=preload as=font type=font/woff href="//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201608028" crossorigin>
+    <script async src=//jxck.io/assets/js/ga.js></script>
+    <script async src=//jxck.io/assets/js/highlight.min.js></script>
+    <script async src=//jxck.io/assets/js/sw.js></script>
+    <script async src=//jxck.io/assets/js/main.js></script>
+
+    <meta name="author" content="Jxck">
+    <meta name="description" content="「毎回やるなら bookmarklet にでもすれば?」と言ったら、後輩が「そんな便利なことできたんですね、知りませんでした」と言ってた。そんな時代にこそ、今更だれも解説しないであろう、 bookmarklet という技術についてもう一度書いておく。...">
+    <meta name="keywords" content="boolmarklet">
+    <meta itemprop="image" content="https://jxck.io/assets/img/jxck.png">
+    <meta itemprop="name" content="blog.jxck.io">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jxck_">
+    <meta name="twitter:url" content="https://blog.jxck.io/entries/2018-01-12/let-it-bookmarklet.html">
+    <meta name="twitter:title" content="Bookmarklet という一番身近な自動化技術 | blog.jxck.io">
+    <meta name="twitter:description" content="「毎回やるなら bookmarklet にでもすれば?」と言ったら、後輩が「そんな便利なことできたんですね、知りませんでした」と言ってた。そんな時代にこそ、今更だれも解説しないであろう、 bookmarklet という技術についてもう一度書いておく。...">
+    <meta name="twitter:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://blog.jxck.io/entries/2018-01-12/let-it-bookmarklet.html">
+    <meta property="og:title" content="Bookmarklet という一番身近な自動化技術 | blog.jxck.io">
+    <meta property="og:site_name" content="blog.jxck.io">
+    <meta property="og:description" content="「毎回やるなら bookmarklet にでもすれば?」と言ったら、後輩が「そんな便利なことできたんですね、知りませんでした」と言ってた。そんな時代にこそ、今更だれも解説しないであろう、 bookmarklet という技術についてもう一度書いておく。...">
+    <meta property="og:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <link rel="icon" sizes="192x192" href="https://jxck.io/assets/img/jxck.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "Bookmarklet という一番身近な自動化技術 | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2018-01-12T08:00:00+08:00",
+  "dateModified": "2018-01-15T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "「毎回やるなら bookmarklet にでもすれば?」と言ったら、後輩が「そんな便利なことできたんですね、知りませんでした」と言ってた。そんな時代にこそ、今更だれも解説しないであろう、 bookmarklet という技術についてもう一度書いておく。..."
+}
+</script>
+
+    <title>Bookmarklet という一番身近な自動化技術 | blog.jxck.io</title>
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/body.css>
+  </head>
+  <body>
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/header.css>
+    <header>
+      <ul>
+        <li><a href=//blog.jxck.io><img class=logo alt=blog title="blog top" width=30 src=//jxck.io/assets/img/blog.svg></a>
+        <li><a href="/entries/2018-01-12/let-it-bookmarklet.amp.html#development=1"><svg width=30 height=30><use xlink:href="/assets/img/amp.svg#main"/></svg></a>
+        <li><a href=.><img alt=up title="move to parent directory" width=30 src=//jxck.io/assets/img/up.svg></a>
+        <li><a href=/feeds/atom.xml><img alt=rss title="rss feed" width=30 src=//jxck.io/assets/img/rss.svg></a>
+        <li><a href=//jxck.io/humans.txt><img alt=humans title=huamns.txt width=30 src=//jxck.io/assets/img/humans.svg></a>
+        <li><a href=//jxck.io><img class=logo alt=jxck title="jxck logo" width=30 src=//jxck.io/assets/img/jxck.png></a>
+      </ul>
+    </header>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/markdown.css>
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/main.css>
+    <main>
+      <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/info.css>
+      <ul class=info>
+        <li>created_at: <time class=created_at datetime=2018-01-12>2018-01-12</time>
+        <li>updated_at: <time class=updated_at datetime=2018-01-15>2018-01-15</time>
+        <li class=tags>tags: [<a href='/tags/boolmarklet.html'>boolmarklet</a>]
+      </ul>
+
+      <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/article.css>
+  <article>
+    <h1><a href=/entries/2018-01-12/let-it-bookmarklet.html>Bookmarklet という一番身近な自動化技術</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>「毎回やるなら bookmarklet にでもすれば?」と言ったら、後輩が「そんな便利なことできたんですね、知りませんでした」と言ってた。
+      <p>そんな時代にこそ、今更だれも解説しないであろう、 bookmarklet という技術についてもう一度書いておく。
+    </section>
+    <section>
+      <h2 id="Bookmarklet"><a href="#Bookmarklet">Bookmarklet</a></h2>
+      <p>簡単に言えば、 JS を書き、それを Bookmark として登録すれば、クリックするだけで現在のページでそれが動くというもの。
+      <p>ブラウザ上で何かを自動化したいと思うなら、一番簡単に実現できる便利な技術だ。
+      <p>似たような手法ではブラウザの Extension などもあるが、 Bookmarklet の良いところは一切誰にも邪魔されないというところだ。
+      <p>開発者登録も、ストアへのアップロードも、難解なドキュメントを忖度して煩雑な設定ファイルを書く必要もない。
+      <p>開発者ツールで、「こんなことできないかな」と試し終わった時には、もうそれは完成していると言って良い。
+    </section>
+    <section>
+      <h2 id="チュートリアル"><a href="#チュートリアル">チュートリアル</a></h2>
+      <ol>
+        <li>開発者ツールで、そのページに対して行いたい処理を書く(ここでは <code translate="no">alert(&quot;hello&quot;)</code> としておく)
+        <li>そのコードの最初に <code translate="no">javascript:</code> を付与する (<code translate="no">javascript:alert(&quot;hello&quot;)</code>)
+        <li>ブックマークを登録する処理を行い、 URL の欄にコードを追加する
+      </ol>
+      <p><picture>
+          <source type=image/webp srcset=bookmarklet.webp#832x539>
+          <img src=bookmarklet.gif#832x539 alt="screencast of adding bookmarklet to browser" title="bookmarklet on firefox">
+          </picture>
+    </section>
+    <section>
+      <h2 id="使用例"><a href="#使用例">使用例</a></h2>
+      <p>用途がイメージしやすそうな例を書いておく。
+      <p>もちろん、ページの仕様が変われば動かなくなるが、雑に直しても誰にも迷惑がかからないのが良いところだ。
+      <section>
+        <h3 id="github+pdf"><a href="#github+pdf">github pdf</a></h3>
+        <p>その後輩は、 github の markdown を PDF にして協力会社に送る(!!?)のに、ページごとに開発者ツールから周りの DOM をポチポチ消して整形していた。
+        <p>例えば、以下の README.md だった場合は、雑にやるとこんな感じでできそうだ。
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+        <pre class=javascript><code translate="no">javascript: (() =&gt; {
+  const readme = document.querySelector(&#039;#readme&#039;);
+  document.body.innerHTML = &quot;&quot;;
+  document.body.appendChild(readme);
+})()</code></pre>
+        <p>整形したら印刷で PDF に保存すれば良い。
+        <p>ただ、そもそもの解決策が本当にこれなのかは疑問もあるが。
+      </section>
+      <section>
+        <h3 id="header+id+link"><a href="#header+id+link">header id link</a></h3>
+        <p>ヘッダ要素が ID を持ってるので、ヘッダに対してリンクを貼りたいが、リンクになってないのでソースを見ないといけない場合。
+        <p>それをリンクに直して、遷移できるようにする。
+        <pre class=javascript><code translate="no">javascript: (() =&gt; {
+  let url = new URL(location.href);
+  for (let $h of document.querySelectorAll(&#039;h1, h2, h3, h4&#039;)) {
+    let $a = document.createElement(&#039;a&#039;);
+    $a.textContent = $h.textContent;
+    $h.textContent = &#039;&#039;;
+    url.hash = $h.id;
+    $a.href = url.toString();
+    $a.style.color = getComputedStyle($h).color;
+    $h.appendChild($a);
+  };
+})();</code></pre>
+        <p>共有したい場合なども便利。
+      </section>
+      <section>
+        <h3 id="Twitter+Colored+Link"><a href="#Twitter+Colored+Link">Twitter Colored Link</a></h3>
+        <p>Twitter のリンクが色も Underline も付かなくなって以降、 URL がどこにあるのかパッとわかりにくい。
+        <p>そこで、対象の <code translate="no">&lt;a&gt;</code> に色をつける。
+        <pre class=javascript><code translate="no">javascript:Array.from(document.querySelectorAll(&#039;.js-display-url&#039;)).forEach((a) =&gt; a.style.color=&quot;red&quot;)</code></pre>
+        <p>それっぽい Class をなんとか探すのがポイント。
+      </section>
+      <section>
+        <h3 id="m3"><a href="#m3">m3</a></h3>
+        <p>Google の検索結果は、「期間指定」ができるが「1ヶ月」の次が「1年」で、極端な指定しかできない。
+        <p>特に技術的な話などは、直近 3ヶ月くらいがちょうど良い。
+        <p>この期間選択は、検索結果の URL にクエリとして反映されているので、そこを置き換えると実現できる。
+        <p>例えば 1ヶ月を選ぶと以下が付与される。
+        <pre><code translate="no">&amp;tbs=qdr:m</code></pre>
+        <p>この <code translate="no">m</code> を <code translate="no">m3</code> にすると 3 ヶ月になる。
+        <pre class=javascript><code translate="no">javascript:location.href += &#039;&amp;tbs=qdr:m3&#039;</code></pre>
+      </section>
+      <section>
+        <h3 id="canonical"><a href="#canonical">canonical</a></h3>
+        <p>綺麗な URL を取得したいのに、遷移元などの影響で不要なゴミクエリが付いているといった場合にそれを除去する。
+        <pre class=javascript><code translate="no">javascript:location.href = document.querySelector(&#039;link[rel=&quot;canonical&quot;]&#039;).href</code></pre>
+        <p>ところで、 Amazon の URL の canonical は以下のようになっている。
+        <pre><code translate="no">https://www.amazon.co.jp/商品名/dp/XXXXXXXX</code></pre>
+        <p>ただ、商品名が長いとブログなどに貼る時に URL が見づらくなる。
+        <p>実際は dp 以降だけで良いので、商品名を削除してしまった方が使いやすかったりする。
+        <pre class=javascript><code translate="no">javascript:location.href = document.querySelector(&#039;link[rel=&quot;canonical&quot;]&#039;).href.replace(/amazon.co.jp\/.*\/dp/, &#039;amazon.co.jp/dp&#039;);</code></pre>
+      </section>
+      <section>
+        <h3 id="preslide"><a href="#preslide">preslide</a></h3>
+        <p>ネットワークが重いところで slideshare を見ると、ページを進めるたびにローディングでストレスだったので書いたもの。
+        <p>一旦、最後のページまで自動で遷移させ、全ページ読み込みが終わったあたりで頭から読んでいる。
+        <p>最後のページまで読むと次のスライドに映るという悪仕様があるため、手前で止めている。
+        <pre class=javascript><code translate="no">javascript: function loop(n) {
+  if (n == 0) {return;}
+  setTimeout(function() {
+    document.querySelector(&quot;#svPlayerId &gt; div.stage &gt; div.rightpoint.pointly&quot;).click();
+    loop(n-1);
+  }, 100);
+}; loop(parseInt(document.querySelector(&#039;#total-slides&#039;).textContent)-2);</code></pre>
+      </section>
+      <section>
+        <h3 id="safari+picture-in-picture"><a href="#safari+picture-in-picture">safari picture-in-picture</a></h3>
+        <p>今の Safari は PinP に対応している。
+        <p><code translate="no">&lt;video&gt;</code> タグで再生されていれば基本的に表示が可能だが、 UI がない場合は以下で再生中のビデオを PinP できる。
+        <pre class=javascript><code translate="no">javascript: document.querySelector(&#039;video&#039;).webkitSetPresentationMode(&#039;picture-in-picture&#039;)</code></pre>
+        <p>新しい Mac は touch bar に UI があるので、無い機種で使ってる。
+      </section>
+      <section>
+        <h3 id="代替手段"><a href="#代替手段">代替手段</a></h3>
+        <p>Bookmarklet は、表示時に自動実行するといったことはできない。
+        <p>かつて Chrome では User Script など、ブラウザそのものに仕込んで、指定したページで自動実行する技術もあったが、今はない。
+        <p>現在では、 Tampermonkey などを用いれば同等のことを行うことができる。
+        <p>頻繁に使うようなものであれば、それに特化したブラウザ拡張などの代替手段もあるだろう。
+        <p>逆に有用なものは、拡張にまとめて公開する、 Tampermonkey に公開するといった方法もある。
+        <p>一方、拡張は入れれば入れるほどブラウザが重くなるので、筆者は拡張を減らすために bookmarklet に戻したものも多い。
+      </section>
+    </section>
+    <section>
+      <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
+      <p>いくつか例は出したが、なによりも JS でできることはなんでもできるので、ちょっと面倒だと思ったら書いてみれば良いと思う。
+      <p>何かをインストールすることも、そのためにユーザ登録することもなく、最短で実行できるハックとして、知っておくと便利だ。
+    </section>
+  </article>
+
+    </main>
+    <hr>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/footer.css>
+    <footer>
+      <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved. Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>google analytics</a>.</address>
+    </footer>
+  </body>
+</html>
