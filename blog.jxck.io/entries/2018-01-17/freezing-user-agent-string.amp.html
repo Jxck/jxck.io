@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html amp lang=ja>
+<head>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=https://blog.jxck.io/entries/2018-01-17/freezing-user-agent-string.html>
+<meta name=viewport content="width=device-width,minimum-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+<link rel=author href=//jxck.io/assets/humans.txt>
+
+<meta name="author" content="Jxck">
+    <meta name="description" content="少し前に Safari Technology Preview 46 がリリースされた。https://webkit.org/blog/8042/release-notes-for-safari-technology-preview-46/Service Worker のアナ...">
+    <meta name="keywords" content="user-agent,safari">
+    <meta itemprop="image" content="https://jxck.io/assets/img/jxck.png">
+    <meta itemprop="name" content="blog.jxck.io">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jxck_">
+    <meta name="twitter:url" content="https://blog.jxck.io/entries/2018-01-17/freezing-user-agent-string.html">
+    <meta name="twitter:title" content="Safari による User-Agent 固定化と Web における Feature Detection | blog.jxck.io">
+    <meta name="twitter:description" content="少し前に Safari Technology Preview 46 がリリースされた。https://webkit.org/blog/8042/release-notes-for-safari-technology-preview-46/Service Worker のアナ...">
+    <meta name="twitter:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://blog.jxck.io/entries/2018-01-17/freezing-user-agent-string.html">
+    <meta property="og:title" content="Safari による User-Agent 固定化と Web における Feature Detection | blog.jxck.io">
+    <meta property="og:site_name" content="blog.jxck.io">
+    <meta property="og:description" content="少し前に Safari Technology Preview 46 がリリースされた。https://webkit.org/blog/8042/release-notes-for-safari-technology-preview-46/Service Worker のアナ...">
+    <meta property="og:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <link rel="icon" sizes="192x192" href="https://jxck.io/assets/img/jxck.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "Safari による User-Agent 固定化と Web における Feature Detection | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2018-01-17T08:00:00+08:00",
+  "dateModified": "2018-01-17T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "少し前に Safari Technology Preview 46 がリリースされた。https://webkit.org/blog/8042/release-notes-for-safari-technology-preview-46/Service Worker のアナ..."
+}
+</script>
+
+<title>Safari による User-Agent 固定化と Web における Feature Detection | blog.jxck.io</title>
+<script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+<script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+<script async src=https://cdn.ampproject.org/v0.js></script>
+
+<style amp-custom>
+article section p {
+  margin-left: 0.8em;
+}
+
+article pre {
+  margin-left: 0.8em;
+}
+
+article table {
+  margin-left: 0.8em;
+}
+
+article img {
+  margin: 1em 0;
+  border: 1px solid #ccc;
+  box-sizing: content-box;
+}
+
+article ul, article ol {
+  margin-left: 0.8em;
+  font-family: monospace;
+  font-size: 1.2em;
+}
+
+article li {
+  margin-bottom: 0.4em;
+}
+
+article ul li ul {
+  margin: 0.2em 0 1.2em 1em;
+  font-size: 1em;
+}
+
+article ul li ul li {
+  margin-bottom: 0;
+}
+
+article dl {
+  margin: 1.4em 0 1.4em 0.8em;
+}
+
+@supports (line-height-step: 1px) {
+  article {
+    line-height: 1.5;
+    --grid: 1.5em;
+    line-height-step: var(--grid);
+  }
+
+  article h1,
+  article h2,
+  article h3,
+  article h4,
+  article h5,
+  article h6 {
+    display: inline-block;
+    width: 100%;
+    line-height-step: 0;
+    line-height: 1.2;
+    margin-bottom: 0;
+  }
+
+  article section {
+    /* grid for debug */
+    /*background-size: 100% var(--grid);*/
+    /*background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px);*/
+  }
+
+  article p {
+    margin-top: var(--grid);
+    margin-bottom: var(--grid);
+  }
+
+  article pre,
+  article table {
+    line-height-step: 0;
+    line-height: normal;
+  }
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=20160828") format("woff");
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 700;
+  font-display: optional;
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff?ver=20160828") format("woff");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+  color: #222;
+  background-color: #fefefe;
+}
+
+iframe {
+  display: block;
+  max-width: 100%;
+  margin: 1em 0;
+}
+
+.archive {
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.archive ul {
+  margin: 0;
+}
+
+.archive time {
+  padding-right: 0.5em;
+}
+
+.archive time::after {
+  content: ":";
+}
+
+.archive .tags {
+  font-size: 0.8em;
+  margin-left: 1em;
+}
+
+.tags a {
+  margin: 0 0.2em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+audio {
+  width: 70%;
+}
+
+@media screen and (max-device-width: 480px) {
+  audio {
+    width: 100%;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.info li {
+  margin-right: 1em;
+  list-style-type: none;
+}
+
+.info li::before {
+  content: none;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.4em;
+  background-color: #222;
+}
+
+header ul {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 80%;
+  margin: 0 auto;
+  padding: 4px;
+}
+
+header ul li {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  margin-left: 1em;
+}
+
+header ul li a {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+header ul li svg {
+  fill: #fff;
+}
+
+header ul li::before {
+  content: none;
+}
+
+header ul li:first-child {
+  flex-grow: 1;
+  margin-left: 0;
+}
+
+header .logo {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  pointer-events: none;
+  color: #222;
+}
+
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: #222;
+}
+
+h1 > a:hover:before,
+h2 > a:hover:before,
+h3 > a:hover:before,
+h4 > a:hover:before,
+h5 > a:hover:before,
+h6 > a:hover:before {
+  color: Brown;
+}
+
+h1 > a::before {
+  content: "# ";
+  pointer-events: all;
+}
+
+h2 > a::before {
+  content: "## ";
+  pointer-events: all;
+}
+
+h3 > a::before {
+  content: "### ";
+  pointer-events: all;
+}
+
+h4 > a::before {
+  content: "#### ";
+  pointer-events: all;
+}
+
+i::before, i::after {
+  content: "*";
+}
+
+strong::before, strong::after {
+  content: "**";
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+dl dt::after {
+  content: ":";
+}
+
+blockquote::before {
+  content: "> ";
+}
+
+code::before, code::after {
+  /* うざかった */
+  /* content: "`"; */
+}
+
+main {
+  display: block;
+  width: 80%;
+  margin: 1em auto;
+}
+
+@media screen and (max-device-width: 480px) {
+  main {
+    width: 94%;
+  }
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+}
+
+a {
+  color: RoyalBlue;
+}
+
+a:visited {
+  color: Brown;
+}
+
+ol, ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+ul, ol, dl {
+  margin: 1.4em 0;
+}
+
+dl dt {
+  font-weight: bold;
+}
+
+dl dd {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+blockquote {
+  display: block;
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  padding: 1em;
+  margin: 1.4em 0;
+}
+
+code {
+  border: 1px solid #ddd;
+  background-color: #efefef;
+  border-radius: 4px;
+  padding: 0.1em;
+  margin: 1.4em 0;
+}
+
+footer {
+  padding: 1em;
+}
+
+footer address,
+footer strong {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+}
+
+pre {
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: 1.2em;
+  margin: 1.4em 0 0 0;
+  border-radius: 4px;
+}
+
+pre::before {
+  content: "```" attr(class) "\A";
+}
+
+pre::after {
+  z-index: -1;
+  position: relative;
+  top: -1em;
+  content:"\A```";
+}
+
+pre > code {
+  overflow: auto;
+  display: block;
+  padding: 0.6em;
+  margin: 0;
+  border: none;
+  background-color: #efefef;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs,
+.hljs-subst ,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-name ,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition ,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-type,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-section,
+.hljs-meta,
+.hljs-meta-string,
+.hljs-emphasis {
+}
+
+table {
+  font-family: monospace;
+  margin: 2em 0;
+  border-spacing: 0 0.4em;
+}
+
+th {
+  padding: 0em 1.0em 0.6em;
+  border-left: 0.14em solid #222;
+  border-bottom: 2px dashed #222;
+}
+
+td {
+  padding: 0.4em 1.2em;
+  border-left: 0.14em solid #222;
+}
+
+th:last-child, td:last-child {
+  border-right: 0.14em solid #222;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+</style>
+</head>
+<body>
+<header>
+  <ul>
+    <li><a href=//blog.jxck.io><amp-img class=logo alt="blog top" width=30 height=30 src=//jxck.io/assets/img/blog.svg></a>
+    <li><a href=.><amp-img alt="move to parent directory" width=30 height=30 src=//jxck.io/assets/img/up.svg></a>
+    <li><a href=/feeds/atom.xml><amp-img alt="rss feed" width=30 height=30 src=//jxck.io/assets/img/rss.svg></a>
+    <li><a href=//jxck.io/humans.txt><amp-img alt="huamns.txt" width=30 height=30 src=//jxck.io/assets/img/humans.svg></a>
+    <li><a href=//jxck.io><amp-img class=logo alt="jxck logo" width=30 height=30 src=//jxck.io/assets/img/jxck.svg></a>
+  </ul>
+</header>
+<main>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2018-01-17>2018-01-17</time>
+    <li>updated_at: <time class=updated_at datetime=2018-01-17>2018-01-17</time>
+    <li class=tags>tags: [<a href='/tags/user-agent.html'>user-agent</a>,<a href='/tags/safari.html'>safari</a>]
+  </ul>
+
+
+  <article>
+    <h1><a href=/entries/2018-01-17/freezing-user-agent-string.html>Safari による User-Agent 固定化と Web における Feature Detection</a></h1>
+    <section>
+      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <p>少し前に Safari Technology Preview 46 がリリースされた。
+      <p><a href="https://webkit.org/blog/8042/release-notes-for-safari-technology-preview-46/">https://webkit.org/blog/8042/release-notes-for-safari-technology-preview-46/</a>
+      <p>Service Worker のアナウンスに目がそちらに盗まれている一方、しれっと以下の一文がある。
+      <blockquote>Froze the user-agent string to reduce web compatibility risk and to prevent its use for fingerprinting</blockquote>
+      <p>すぐには無理だろうと思ったが、 TP47 でもこれを打ち消すアナウンスはなかったため、これを取り上げることにした。
+      <p>TP はあくまで Preview であり、これが <em>このままリリースされるとは限らない</em> 点に注意したい。
+      <p>今回は、これがそのままリリースされた場合の影響について考察するため、現在の User-Agent の使われ方を解説する。
+    </section>
+    <section>
+      <h2 id="Freeze+User+Agent"><a href="#Freeze+User+Agent">Freeze User Agent</a></h2>
+      <p>リリースノートの一文は、初見では何か違う意味かとも思ったが、これはやはり Safari の User-Agent を今後変更しないという意味のようだ。
+      <p>Safari 開発者の Tweet で、モチベーションが補足されている。
+      <p><a href="https://twitter.com/rmondello/status/943545865204989953">https://twitter.com/rmondello/status/943545865204989953</a>
+      <blockquote>STP 46 freezes Safari&#039;s user agent string. It will not change in the future. This fixes two issues:: Updating the string breaking websites sniffing for particular versions of Safari, It being used for fingerprinting. Don&#039;t UA sniff; detect features directly.</blockquote>
+      <p>ちなみに MacOS High Sierra の Safari TP46 と Safari 11.0.2 の UA は以下のようになっている
+      <pre><code translate="no">(TP46):   User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1 Safari/605.1.15
+(11.0.2): User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/604.4.7 (KHTML, like Gecko) Version/11.0.2 Safari/604.4.7</code></pre>
+      <p>(一応その次の TP47 でも値は変わっていないが、これまで TP Update で UA が変わっていたのかは未確認)
+      <p>実際の UA の用途はいくつかあるが、ここでは Tweet でも言及されている Finger Printing と Feature Detection の視点から見ていく。
+    </section>
+    <section>
+      <h2 id="Finger+Printing"><a href="#Finger+Printing">Finger Printing</a></h2>
+      <p>User-Agent 単体では大別しかできないが、そこに対して他の情報を組み合わせていけば、徐々に一意性が増してゆく。
+      <ul>
+        <li>IP Address
+        <li>Accept-Language
+        <li>Client Hints (DPR, Width, Device Memory)
+        <li>E-Tag
+        <li>HSTS
+        <li>etc
+      </ul>
+      <p>「それが誰であるか」は特定できなくとも、それが「さっきと同じ人である」がわかれば、それだけで Tracking が可能だ。
+      <p>もし 3rd Party Cookie を付与できれば確実だが、 Cookie 付与前、 Cookie 削除後、 Private Browse などでもユーザを特定したいというニーズはある。
+      <section>
+        <h3 id="Tracking+by+Fingerpirnt+?"><a href="#Tracking+by+Fingerpirnt+?">Tracking by Fingerpirnt ?</a></h3>
+        <p>Apple が実施する <strong>ITP</strong>(Intelligent Tracking Prevention) によって、 3rd Party Cookie が絶たれるため、広告プロバイダは Finger Printing などの代替技術に救いを求めるのは想像に難くない。
+        <p>特に広告関係では、ターゲットに対してパーソナライズするため、サービスをまたいでの識別、つまり追跡(Tracking)には、こうした固定情報が扱いやすい。
+        <p>Safari の今回の変更は、この Finger Printing の手段を断つのが目的と見ることができそうだ。
+        <p>(ちなみに、現在の Finger Printing はかなりの精度であるという話と、実際使って見るとそうでもないという話を両方聞く。パーソナライズの場合は、精度が低いと「自分へのおすすめが全く興味ないもので埋まる」といった結果になり得るため、 Finger Printing だけでの Tracking は厳しいらしい。)
+      </section>
+    </section>
+    <section>
+      <h2 id="User+Metrics"><a href="#User+Metrics">User Metrics</a></h2>
+      <p>サービスの Access Log や、 Analytics 系のツールでは、必ずと言って良いほど User Agent を収集しているだろう。
+      <p>これは、ユーザの傾向や、サポートブラウザの決定などに使われる重要なメトリクスとなっている。
+      <p>今回のように User Agent が Freeze すると、 <strong>"PC"</strong> の <strong>"MacOS"</strong> の <strong>"Safari"</strong> であることまではわかるが、それ以降の細かいバージョンまではわからなくなる。
+      <p>一方で Web の仕様が Living Standard になり、ブラウザの自動アップデートが普及しつつある現在では、細かいバージョンまでを見る用途も限定されてきている。
+      <p>このビジネスインパクトはそのメトリクスの用途によるが、ユーザの大まかな傾向は、どの <strong>デバイス</strong> の、どの <strong>OS</strong> の、どの <strong>ブラウザ</strong> かまでわかれば一般的な用途はカバーできそうだ。
+      <p>後述するがそもそも、サポートブラウザの決定は UA を元にすべきではない。
+      <p>ただし、特定のバージョンの脆弱性やバグに対して細かいハンドリングを余儀なくされるケースでは、他にそれをフックする変数がない限り難しくなる。
+      <p>本来、特定バージョンの実装不備については、ブラウザ側の速やかな自動バージョンアップによって解決されるべきなので、リリースサイクルが比較的長い Safari では、そこは少し懸念がありそうだ。
+    </section>
+    <section>
+      <h2 id="UserAgent+Detection"><a href="#UserAgent+Detection">UserAgent Detection</a></h2>
+      <p>UA のもう 1 つの用途として、利用したい機能をそのブラウザがサポートしているかで分岐する Feature Detection がある。
+      <p>同一実装に対する不備の場合わけとは少し違い、有無そのものを調べる用途だ。
+      <p>古くは、 CSS の実装が壊滅的だった IE だけ別の CSS を返すといった用途のため、 UA を解析するといったものだ。
+      <p>もっと古くは、サービスそのものが <strong>特定のブラウザしかサポートしない</strong> といったことが、普通に行われていた。
+      <p>当時 Netscape Navigator が、コードネームの <code translate="no">Mozilla</code> を UA に含んでおり、それを見て(Sniffing)処理を分岐していたサービスがあったようだ。
+      <p>サーバ側の疑似コードとしてはこのようなイメージだ。
+      <pre class=javascript><code translate="no">if (UserAgent.match(/Mozilla.*/)) {
+  // Netscape 用の処理
+}</code></pre>
+      <p>すると、競合だった IE は素直に <code translate="no">MSIE...</code> で始まる UA を送ると、そのサービスが動作せず、ユーザに「使えないブラウザ」と認定されてしまう。
+      <p>そこで、やむをえず IE も UA を <code translate="no">Mozilla...</code> で始まる文字として実装をした。
+      <p>その後、いわゆる HTML5 期、 IE を外した Chrome や Safari のみに提供するサービス実装も登場したため、後発の Edge は UA に <code translate="no">Chrome</code> や <code translate="no">Safari</code> を含むこととなった。
+      <p>現在、多くのブラウザが <code translate="no">Mozilla...</code> で始まり、他の実装名を含む、ぱっと見なんなのかわからない文字列となっているのは、こうした歴史的な経緯がある。
+      <p>つまり、「ブラウザを識別し処理を分岐したいサービス開発者」と「そうしたサービスと互換性を保持したいブラウザベンダ」のいたちごっこが原因と言える。
+      <p>こうしたことは、歴史が長いソフトウェアではよくある話だ、 Windows 9 が出なかった理由も同様の理由と言われている。
+      <p>ブラウザが独自実装による差別化で戦争をしていた時代ならまだしも、今から処理の分岐条件に UA を用いるのは、あまり良い手ではない。
+      <p>その時点でのブラウザが望む機能を持っていなかったとしても、リリースが進めば改善される可能性がある。
+      <p>基本的に、開発者は <strong>UA ではなく、依存したい機能そのものの有無を確認し、処理を分岐すべきである</strong> 。
+    </section>
+    <section>
+      <h2 id="Feature+Detection"><a href="#Feature+Detection">Feature Detection</a></h2>
+      <p>機能の有無による分岐は Feature Detection と呼ばれ、対象機能によりいくつかの方法がある。
+      <section>
+        <h3 id="JS"><a href="#JS">JS</a></h3>
+        <p>対象がプログラムであるため、比較的簡単に行える。
+        <p>多くの DOM API はクラスやプロパティの有無によって判断が可能だ。
+        <pre class=javascript><code translate="no">if (navigator.serviceWorker !== undefined) {
+  // service worker supported
+}</code></pre>
+        <p>ECMAScript API (JS native の機能)の場合もメソッドの場合は同様に prototype などで判断する。
+        <pre class=javascript><code translate="no">if (String.prototype.padStart !== undefined) {
+  // padStart supported
+}</code></pre>
+        <p>構文の場合は物によるが、例えば ES Module サポートをどうしても調べたいといった場合は以下のような手段が一応ある。
+        <pre class=javascript><code translate="no">function supportsStaticImport() {
+  const script = document.createElement(&#039;script&#039;)
+  return &#039;noModule&#039; in script
+}
+
+function supportsDynamicImport() {
+  try {
+    new Function(&#039;import(&quot;&quot;)&#039;)
+    return true
+  } catch (err) {
+    return false
+  }
+}</code></pre>
+        <p>それができたところでどうするかというのもあるので、移行期に必要な分岐は基本的に後述の modules/nomodule の方法の方が良いだろう。
+      </section>
+      <section>
+        <h3 id="CSS"><a href="#CSS">CSS</a></h3>
+        <p>CSS はいわゆるプログラミング言語ではないため、基本的には Detection をするよりも、 Progressive Enhancement で進めてきた。
+        <p>しかし、 CSS の API も複雑になってきたため最近では <code translate="no">@support</code> を用いた Detection がサポートされている。
+        <pre class=css><code translate="no">@supports (display: flex) {
+  /* flexbox supported */
+}</code></pre>
+        <p><code translate="no">and</code>, <code translate="no">or</code>, <code translate="no">not</code> などもあり、是非は別として複雑な Detection も可能となってきた。
+      </section>
+      <section>
+        <h3 id="HTML"><a href="#HTML">HTML</a></h3>
+        <p>コンテントネゴシエーションでは、基本はクライアントのヘッダ情報を元にサーバが選択するという方向になる。
+        <p>しかし、これではクライアントが全ての情報を事前に送りサイズが大きくなるか、サーバに情報提供を依頼し 1RTT 増えるかという選択になる。
+        <p>サーバから選択肢を提示し、クライアントがそこから選択するという方向を取れば、一度で解決する場合も多い。
+        <section>
+          <h4 id="Picture"><a href="#Picture">Picture</a></h4>
+          <p>例えば、 <code translate="no">&lt;picture&gt;</code> は、サーバが対応可能なフォーマットやサイズに関する情報を全て列挙することで、クライアントがそこから選択できる。
+          <p>また、 <code translate="no">&lt;picture&gt;</code> そのものに対応していなければ、 <code translate="no">&lt;img&gt;</code> にフォールバックできるため、 <code translate="no">&lt;picture&gt;</code> 対応を detection する必要もない。
+        </section>
+        <section>
+          <h4 id="modules/nomodule"><a href="#modules/nomodule">modules/nomodule</a></h4>
+          <p>同じように、 ES Modules も、 <code translate="no">&lt;input type=modules&gt;</code> によって、サーバ側に用意があることを伝え、 <code translate="no">&lt;input nomodule&gt;</code> でフォールバックが可能だ。
+          <p>そもそも、 ES Modules は MIME Type が従来の JS と同じになったため、クライアントが Accept Header に何かを追加して対応を伝えることができない。
+        </section>
+      </section>
+      <section>
+        <h3 id="Content+Negotiation"><a href="#Content+Negotiation">Content Negotiation</a></h3>
+        <p>通信やフォーマットに関わるものは HTTP ヘッダによるネゴシエーションが基本である。
+        <p>例えば、 Brotli や WebP のサポートなどは以下のように明示される場合がある。
+        <pre><code translate="no">Accept-Encoding: gzip, deflate, br
+Accept: image/webp,image/apng,image/*,*/*;q=0.8</code></pre>
+        <p>ヘッダのデフォルト情報は、それが使われるか使われないかに限らず、ブラウザからのリクエストの大半に付与されることになる。
+        <p>Brotli 対応が <code translate="no">, br</code> という 4byte であったとしても、メジャーブラウザが Web のスケールで使われると、無視できる数字ではない。
+        <p>既に普及しきった PNG や JPEG は <code translate="no">*</code> の中に丸め込まれているが、 WebP が普及しきったあと <code translate="no">image/webp</code> を消して <code translate="no">*</code> に丸め込まれたら、壊れるサイトも少なくないだろう。
+        <p>従って、ブラウザベンダは、ヘッダの追加には非常に慎重である。
+        <p>これは、新しいフォーマットが出るたびに、ヘッダの値が増えていくかというと、必ずしも期待できないことを意味する。
+        <p>最近では、デフォルトではない追加の情報については、サーバから Client Hints で要求することもできる。
+        <pre><code translate="no">// Previous Response
+Accept-CH: DPR, Viewport-Width
+
+// Next Request
+Viewport-Width: 1366
+DPR:1</code></pre>
+        <p>1RTT 必要になるため、メインリソースのレスポンスで返し、サブリソースで適用させるような用途が中心となる。
+      </section>
+      <section>
+        <h3 id="Protocol"><a href="#Protocol">Protocol</a></h3>
+        <p>HTTP2 や TLS1.3, QUIC その他プロトコルの対応は、基本的にはプロトコルレベルで解決される。
+        <p>多くの場合はハンドシェイクを行い、互いの対応を出し合って合意を取るか、一方が提示し相手が受け入れるか無視するかだ。
+        <p>拡張として追加される機能については、基本的に「対応してなければ無視される」という設計になる。
+        <p>従って、サーバ側で Feature Detection = Handshake なので、他の情報から機能の有無を類推するような方法はあまり取られない。
+        <p>一方このレイヤでは、ブラウザのバージョンというより、そのプロトコル実装そのもののバージョン(ex, openssl)が問題になる場合はある。
+      </section>
+      <section>
+        <h3 id="まとめ"><a href="#まとめ">まとめ</a></h3>
+        <p>現時点では、この変更に乗っかる別のブラウザは確認していないため、将来的に全てのブラウザのマイナーアップデートで UA が固定される世界が来るかは未知だ。
+        <p>しかし、Feature Detection の方法は UA に頼らずともかなり選択肢があり、よほど細かい部分の挙動差でもない限り、基本的にはカバーされている。
+        <p>Uaser-Agent を元にした Detection は、さらに未知の User Agent の User-Agent 文字列がどうなるのか予想ができないという点で、歴史的にも負債を残してきた。
+        <p>UA で分岐するような実装がある場合は本当にそれが妥当か見直すべきだろう。
+        <p>それを踏まえた上で、アップデートが自動化し、仕様も Living Standard になった現状、メジャーブラウザについて細かくバージョンを把握するニーズがどのくらいあるのかは、今一度考え直すタイミングかもしれない。
+      </section>
+    </section>
+  </article>
+
+</main>
+<hr>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved. Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>google analytics</a>.</address>
+</footer>
+</body>
+</html>
+<amp-analytics type=googleanalytics id=analytics1>
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
