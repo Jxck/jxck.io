@@ -15,7 +15,7 @@ Service Worker のアナウンスに目がそちらに盗まれている一方�
 
 TP はあくまで Preview であり、これが *このままリリースされるとは限らない* 点に注意したい。
 
-今回は、これがそのままリリースされた場合の影響について考察するため、現在の User-Agent の使われ方を考察する。
+今回は、これがそのままリリースされた場合の影響について考察するため、現在の User-Agent の使われ方を解説する。
 
 
 ## Freeze User Agent
@@ -26,10 +26,7 @@ Safari 開発者の Tweet で、モチベーションが補足されている。
 
 <https://twitter.com/rmondello/status/943545865204989953>
 
-> STP 46 freezes Safari’s user agent string. It will not change in the future. This fixes two issues:
-> - Updating the string breaking websites sniffing for particular versions of Safari
-> - It being used for fingerprinting
-> Don’t UA sniff; detect features directly.
+> STP 46 freezes Safari's user agent string. It will not change in the future. This fixes two issues:: Updating the string breaking websites sniffing for particular versions of Safari, It being used for fingerprinting. Don't UA sniff; detect features directly.
 
 ちなみに MacOS High Sierra の Safari TP46 と Safari 11.0.2 の UA は以下のようになっている
 
@@ -102,7 +99,7 @@ UA のもう 1 つの用途として、利用したい機能をそのブラウ�
 
 当時 Netscape Navigator が、コードネームの `Mozilla` を UA に含んでおり、それを見て(Sniffing)処理を分岐していたサービスがあったようだ。
 
-サーバ側の擬似コードとしてはこのようなイメージだ。
+サーバ側の疑似コードとしてはこのようなイメージだ。
 
 
 ```javascript
@@ -270,16 +267,12 @@ HTTP2 や TLS1.3, QUIC その他プロトコルの対応は、基本的にはプ
 
 ### まとめ
 
-このように Feature Detection の方法はかなり選択肢があり、よほど細かい部分の挙動差でもない限り、基本的にはカバーされている。
-
-Uaser-Agent を元にした Detection は、さらに未知の User Agent の User-Agent 文字列がどうなるのか予想ができないという点で、非常に貧弱な処理になり、歴史的にも負債しか残さない。
-
-すると、 UA の要素はメトリクスが中心になる。そこからユーザ傾向を想像するという目的があるが、ある程度実装がこなれたメインブラウザで、アップデートが自動化し、仕様も Living Standard になった現状、 デバイス, OS, ブラウザ、以上に細かいバージョンまで集めたところで、そこから何がわかるかというと疑問もある。
-
-一方で、こうした考察を行う上で、 Safari の更新間隔の長さはずっと気にかかるところでもある。
-
 現時点では、この変更に乗っかる別のブラウザは確認していないため、将来的に全てのブラウザのマイナーアップデートで UA が固定される世界が来るかは未知だ。
 
-しかし、 Chrome や Firefox 並の更新頻度であれば、もう少し懸念も減ったように個人的には思う。
+しかし、Feature Detection の方法は UA に頼らずともかなり選択肢があり、よほど細かい部分の挙動差でもない限り、基本的にはカバーされている。
 
-また、こうした動向の有無には関わらず、 UA で分岐するような実装がある場合は見直しておいた方が良いだろう。
+Uaser-Agent を元にした Detection は、さらに未知の User Agent の User-Agent 文字列がどうなるのか予想ができないという点で、歴史的にも負債を残してきた。
+
+UA で分岐するような実装がある場合は本当にそれが妥当か見直すべきだろう。
+
+それを踏まえた上で、アップデートが自動化し、仕様も Living Standard になった現状、メジャーブラウザについて細かくバージョンを把握するニーズがどのくらいあるのかは、今一度考え直すタイミングかもしれない。
