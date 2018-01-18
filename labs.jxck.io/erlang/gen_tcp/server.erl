@@ -17,6 +17,7 @@ main(_) ->
 %% 接続待ちのループ
 %% このプロセスで accept した socket へのメッセージは
 %% このプロセスに来てしまうので、制御プロセスを移譲する。
+%% (spawn が間に合わない場合は accept_loop の方を spawn する)
 accept_loop(Listen) ->
     {ok, Socket} = ?Log(gen_tcp:accept(Listen)),
     PID = spawn(fun() -> receive_loop(Socket) end),
