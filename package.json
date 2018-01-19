@@ -18,7 +18,7 @@
     "gzip":     "./compress.sh www.jxck.io blog.jxck.io mozaic.fm",
     "build":    "npm run blog && npm run gzip && gulp",
     "clean":    "selects path from './blog.jxck.io/**/*' where extname '=~' 'gz|br' | q | tee -a /dev/stderr | xargs -L 1 -P 4 rm",
-    "space":    "selects path from './blog.jxck.io/entries/**/*' where extname '==' '.md' | xargs -L 1 space.rb -ra",
+    "space":    "selects path from './blog.jxck.io/entries/**/*' where extname '==' '.md' | xargs -L 1 spacer",
     "singler":  "selects path from './blog.jxck.io/entries/**/*' where extname '==' '.md' | xargs -L 1 singler",
     "format":   "selects path from './blog.jxck.io/entries/**/*' where extname '==' '.md' | xargs -L 1 format.rb",
     "_start":   "sudo $DOTFILES/local/h2o/bin/h2o -m daemon -c h2o.conf",
