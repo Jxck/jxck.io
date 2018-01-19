@@ -210,7 +210,7 @@ CSS はいわゆるプログラミング言語ではないため、基本的に�
 
 #### modules/nomodule
 
-同じように、 ES Modules も、 `<input type=modules>` によって、サーバ側に用意があることを伝え、 `<input nomodule>` でフォールバックが可能だ。
+同じように、 ES Modules も、 `<script type=modules>` によって、サーバ側に用意があることを伝え、 `<script nomodule>` でフォールバックが可能だ。
 
 そもそも、 ES Modules は MIME Type が従来の JS と同じになったため、クライアントが Accept Header に何かを追加して対応を伝えることができない。
 
