@@ -4,6 +4,7 @@
 -mode(compile).
 -compile(export_all).
 
+-define(NUM_POOL, 10).
 -include("../logger.hrl").
 
 -behaviour(gen_server).
@@ -73,8 +74,13 @@ terminate(Reason, State) ->
 %% {active, false}: gen_tcp:recv() しないと、メッセージを取しない
 %% {active, once} : 1 つだけ受信し、処理が終わってから再度 inet:setopts すればまたメッセージが上がる
 main([]) ->
-    {ok, Listen} = ?Log(gen_tcp:listen(3000, [{reuseaddr, true}, {active, once}, binary])),
-    accept_loop(Listen).
+    % gen_tcp:controlling_process してからじゃないと取りこぼすので
+    % ここでは {active, false} にしておく
+    {ok, Listen} = ?Log(gen_tcp:listen(3000, [{reuseaddr, true}, {active, false}])),
+    [spawn(fun() -> accept_loop(Listen) end) || _ <- lists:seq(1, ?NUM_POOL)],
+    receive
+        stop -> gen_tcp:close(Listen)
+    end.
 
 %% 接続待ちのループ
 %% このプロセスで accept した socket へのメッセージは
@@ -84,6 +90,7 @@ accept_loop(Listen) ->
     {ok, Socket} = ?Log(gen_tcp:accept(Listen)),
     {ok, PID} = ?Log(start_link(Socket)),
     gen_tcp:controlling_process(Socket, PID),
+    ok = inet:setopts(Socket, [{active, once}, binary]),
     accept_loop(Listen).
 
 %% 複数起動できるように名前はつけない

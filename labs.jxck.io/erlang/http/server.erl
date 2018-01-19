@@ -7,74 +7,84 @@
 
 -include("../logger.hrl").
 
-% packet オプションはここでは指定しない
+-define(NUM_POOL, 10).
+
 main(_) ->
-    {ok, Listen} = ?Log(gen_tcp:listen(3000, [{reuseaddr, true}, {active, once}, {packet, http_bin}])),
-    spawn(fun() -> accept_loop(Listen) end),
+    % gen_tcp:controlling_process してからじゃないと取りこぼすので
+    % ここでは {active, false} にしておく
+    Options = [{reuseaddr, true}, {active, false}],
+    {ok, Listen} = ?Log(gen_tcp:listen(3000, Options)),
+
+    % accepter 自体も複数起動
+    [spawn(fun() -> accept_loop(Listen) end) || _ <- lists:seq(1, ?NUM_POOL)],
     receive
         stop -> gen_tcp:close(Listen)
     end.
 
 
-% 最初は packet, http_bin でパースを依頼する
 accept_loop(Listen) ->
     {ok, Socket} = ?Log(gen_tcp:accept(Listen)),
-    spawn(fun() -> accept_loop(Listen) end),
     State = {{}, #{}, <<>>}, % {Request, Header, Body}
-    receive_loop(Socket, State).
 
-% active, once で受信
+    % receiver をフォークして制御を移譲する
+    % ここのパケットを取りこぼさないように {active, false}
+    PID = spawn(fun() -> receive_loop(Socket, State) end),
+    gen_tcp:controlling_process(Socket, PID),
+    % 制御が移ってるので {active, once} で受信
+    % 最初は {packet, http_bin} でパースを依頼する
+    ok = inet:setopts(Socket, [{active, once}, {packet, http_bin}]),
+    accept_loop(Listen).
+
 receive_loop(Socket, {Req, Header, Body}=State) ->
-    ok = inet:setopts(Socket, [{active, once}]),
     receive
+        % First Line
+        {http, Socket, {http_request, Method, Uri, Version}} ->
+            % 以降はヘッダなので httph_bin
+            ok = inet:setopts(Socket, [{active, once}, {packet, httph_bin}]),
+
+            % first line
+            ?Log(Method, Uri, Version),
+            NextState = {{Method, Uri, Version}, Header, Body},
+            receive_loop(Socket, NextState);
+
+        % Header
+        {http, Socket, {http_header, _Len, Field, _ , Value}} ->
+            % ヘッダが終わるまでは httph_bin
+            ok = inet:setopts(Socket, [{active, once}, {packet, httph_bin}]),
+            NextState = {Req, Header#{Field => Value}, Body},
+            receive_loop(Socket, NextState);
+
+        % Header End
         {http, Socket, http_eoh} ->
-            NextState = handle_body(Socket, State),
+            % ここで header が終わるので body を raw binary で受け取る
+            % Content-Length 分だけ読むために active/false にして recv する。
+            ok = inet:setopts(Socket, [binary, {packet, raw}, {active, false}]),
+            Len = binary_to_integer(maps:get('Content-Length', Header, <<"0">>)),
+            {ok, Data} = case Len of
+                             0 -> {ok, <<>>};
+                             _ -> gen_tcp:recv(Socket, Len)
+                         end,
+
+            % 終わったら http_bin に戻す
+            ok = inet:setopts(Socket, [{packet, http_bin}, {active, once}]),
+            NextState = {Req, Header, <<Body/binary, Data/binary>>},
 
             % handler を呼ぶ
             handle_request(Socket, NextState),
 
             receive_loop(Socket, NextState);
-        {http, Socket, Data} ->
-            NextState = handle_header(Data, State),
-            receive_loop(Socket, NextState);
-        {tcp, Socket, Data} ->
-            receive_loop(Socket, State);
+
         {tcp_closed, Socket} ->
             ?Log({tcp_closed, Socket}),
             ?Log(gen_tcp:close(Socket));
+
         {tcp_error, Socket, Reason} ->
             ?Log({tcp_error, Socket, Reason}),
             ?Log(gen_tcp:close(Socket));
+
         Error ->
-            ?Log(Error),
-            receive_loop(Socket, State)
+            ?Log(Error)
     end.
-
-
-handle_header({http_request, Method, Uri, Version}, {Req, Header, Body}) ->
-    ?Log(Method, Uri, Version),
-    {{Method, Uri, Version}, Header, Body};
-
-handle_header({http_header, _Len, Field, _ , Value}, {Req, Header, Body}) ->
-    {Req, Header#{Field => Value}, Body};
-
-handle_header(A, B) ->
-    ?Log(A, B).
-
-
-handle_body(Socket, {Req, #{'Content-Length' := _Len}=Header, Body}) ->
-    Len = (binary_to_integer(_Len)),
-    % ここで header が終わるので body を raw binary で受け取る
-    % Content-Length 分だけ読むために active/false にして recv する。
-    ok = inet:setopts(Socket, [binary, {packet, raw}, {active, false}]),
-    {ok, Data} = gen_tcp:recv(Socket, Len),
-    ok = inet:setopts(Socket, [{packet, http_bin}, {active, once}]),
-    {Req, Header, <<Body/binary, Data/binary>>};
-
-handle_body(Socket, State) ->
-    ?Log(Socket, State),
-    State.
-
 
 
 handle_request(Socket, {{'GET', _, _}, _, _}=Req) ->
