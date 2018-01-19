@@ -178,7 +178,7 @@ WebP はそもそも圧縮率が高いためか、オーバーヘッドが出て
 
 新しいフォーマットとして、 [IETF へのドラフトの提出](https://tools.ietf.org/html/draft-alakuijala-brotli-08) もなされている。
 
-現在は [Chrome が HTTPS のみでサポート](https://plus.google.com/u/0/+IlyaGrigorik/posts/X9ogn4fLtHL) していおり、 Canary で [chrome\://flags#brotli](chrome://flags#brotli) を有効にすると、 `Accept-Encoding: br` が追加されるので、サーバはこれを見て brotli で圧縮したファイルを返すことができる。
+現在は [Chrome が HTTPS のみでサポート](https://plus.google.com/u/0/+IlyaGrigorik/posts/X9ogn4fLtHL) していおり、 Canary で [chrome://flags#brotli](chrome://flags#brotli) を有効にすると、 `Accept-Encoding: br` が追加されるので、サーバはこれを見て brotli で圧縮したファイルを返すことができる。
 
 ほとんどのブラウザが対応している gzip と違い、まだ対応ブラウザも少なく、 H2O も対応していないため `Accept-Encoding` での判断を自分でハンドラに書く必要がある。
 

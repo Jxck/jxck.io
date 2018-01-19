@@ -149,6 +149,6 @@ prefetch 可能なリソースのみからなるページならば、ページ�
 
 名前解決の方は確認が難しいので、後者のみ確認結果を載せる。
 
-Chrome の場合は Prerender の状況について [chrome\://net-internals](chrome\://net-internals) から確認できる。
+Chrome の場合は Prerender の状況について [chrome://net-internals](chrome://net-internals) から確認できる。
 
 ![chrome://net-internals#prerender による Prerender の状況確認](net-internals-prerender.png#1058x299 "chrome://net-internals#prerender")

@@ -188,7 +188,7 @@ Cache-Control: max-age=3600, stale-if-error=360
 
 執筆時点では、実装ブラウザは Chrome のみであり、フラグを有効にすることで使用できる。
 
-[chrome\://flags/#enable-stale-while-revalidate](chrome://flags/#enable-stale-while-revalidate)
+[chrome://flags/#enable-stale-while-revalidate](chrome://flags/#enable-stale-while-revalidate)
 
 以下に用意したデモページを用意した。
 
