@@ -1,5 +1,5 @@
 Proc.new do |env|
-  REPORT_URI = "https://jxck.report-uri.io/r/default/csp/reportOnly"
+  REPORT_URI = "https://report-uri.jxck.io"
   # No CSP for static text file
   if /(\.md\z|\.txt\z|\.xml\z|\.json\z)/.match(env["PATH_INFO"])
     next [399, {}, []]
@@ -14,7 +14,8 @@ Proc.new do |env|
       "https://jxck.io",
       "https://*.jxck.io",
       "https://www.google-analytics.com",
-      "https://cdn.ampproject.org",
+      "https://*.ampproject.org",
+      "https://*.ampproject.net",
       ";",
       "child-src",
       "https://www.youtube.com",
