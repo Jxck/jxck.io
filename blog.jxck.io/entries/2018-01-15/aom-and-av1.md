@@ -1,4 +1,4 @@
-# [WebRTC][AV1][AOM] Apple の AOM 加盟と AV1 への期待
+# [webrtc][AV1][AOM] Apple の AOM 加盟と AV1 への期待
 
 ## Intro
 
