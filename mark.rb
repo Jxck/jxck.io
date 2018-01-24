@@ -16,7 +16,7 @@ def to_html(md)
 end
 
 # html special chars
-def hsp(str)
+def hsc(str)
   str.gsub(/&/, "&amp;")
      .gsub(/</, "&lt;")
      .gsub(/>/, "&gt;")
@@ -184,10 +184,10 @@ class Markup
 
   # inline elements
   def codespan(node)
-    "<code translate=\"no\">#{hsp(node.value)}</code>"
+    "<code translate=\"no\">#{hsc(node.value)}</code>"
   end
   def blockquote(node)
-    "<blockquote>#{hsp(node.value)}</blockquote>\n"
+    "<blockquote>#{hsc(node.value)}</blockquote>\n"
   end
   def smart_quote(node)
     {
@@ -341,7 +341,7 @@ class Traverser
   end
 
   def enter(node)
-    # DEBUG: puts "enter: #{node.type}"
+    # puts "[##{__LINE__}] enter: #{node.type}"
 
     # enter では、 inline 属性を追加し
     # stack に詰むだけ
@@ -351,7 +351,7 @@ class Traverser
   end
 
   def leave(node)
-    # DEBUG: puts "leave: #{node.type} #{node.value}"
+    # puts "[##{__LINE__}] leave: #{node.type} #{node.value}"
 
     if node.type == :codeblock
       # コードを抜き取り、ここで id に置き換える
@@ -371,20 +371,20 @@ class Traverser
       node.value = "// #{@codes.length}"
     end
 
-    if node.value
-      # value があったら、 text とか
+    if [:text, :codeblock, :codespan, :smart_quote, :html_element, :typographic_sym, :entity].include?(node.type)
+      # value を直で入れるタイプ
 
       # pop して
       top = @stack.shift
       # 対応を確認
       if top.type != node.type
-        STDERR.puts __LINE__, "ERROR", top, node
+        STDERR.puts "[##{__LINE__}] ERROR #{top}, #{node}"
         exit(1)
       end
 
       # 閉じる
       unless @markup.respond_to?(node.type)
-        STDERR.puts __LINE__, "ERROR", top, node
+        STDERR.puts "[##{__LINE__}] ERROR #{top}, #{node}"
         exit(1)
       end
 
@@ -418,7 +418,7 @@ class Traverser
       # それを親タグで閉じる
       top = @stack.shift
       if top.type != node.type
-        STDERR.puts "ERROR", __LINE__, top, node
+        STDERR.puts "[##{__LINE__}] ERROR #{top}, #{node}"
         exit(1)
       end
 
@@ -644,7 +644,7 @@ class Article
   end
 
   def title
-    hsp @text.match(/^# \[.*\] (.*)/)[1]
+    hsc @text.match(/^# \[.*\] (.*)/)[1]
   end
 
   def tags
@@ -683,7 +683,7 @@ class Article
     # ここで pre に code を戻す
     # ついでにエスケープ
     traverser.codes.each.with_index {|code, i|
-      article.sub!("// #{i + 1}") { hsp(code) }
+      article.sub!("// #{i + 1}") { hsc(code) }
     }
 
     @article = article
@@ -783,7 +783,7 @@ class Episode < Article
   end
 
   def summary()
-    hsp unlink @text.sub(/#(.*?)## Theme/m, "# #{title}")
+    hsc unlink @text.sub(/#(.*?)## Theme/m, "# #{title}")
   end
 
   def theme_html()
@@ -972,15 +972,35 @@ if __FILE__ == $PROGRAM_NAME
   if ARGV.first == "-t"
     # test
     icon = "https://jxck.io/assets/img/jxck.png"
-    e = Entry.new("./blog.jxck.io/entries/2016-01-27/new-blog-start.md", icon)
-    blog(e)
+    entry = Entry.new("./test/test-blog.md", icon)
+    meta_template = File.read(".template/meta.html.erb") + File.read(".template/ld-json.html.erb")
+    blog_template = File.read(".template/blog.html.erb")
+
+    style = [
+      "./blog.jxck.io/assets/css/article.css",
+      "./blog.jxck.io/assets/css/body.css",
+      "./blog.jxck.io/assets/css/info.css",
+      "./blog.jxck.io/assets/css/header.css",
+      "./blog.jxck.io/assets/css/markdown.css",
+      "./blog.jxck.io/assets/css/main.css",
+      "./blog.jxck.io/assets/css/footer.css",
+      "./blog.jxck.io/assets/css/pre.css",
+      "./blog.jxck.io/assets/css/table.css",
+    ].map { |css| File.read(css) }.join("\n")
+
+    # blog
+    markup = Markup.new
+    entry.build(markup)
+    meta = ERB.new(meta_template).result(entry.instance_eval { binding }).strip
+    html = ERB.new(blog_template).result(binding).strip
+    File.write(entry.htmlfile, html)
+
+    # blog(entry)
   end
 
   if ARGV.first == "-tp"
     # test podcast
-    e = Episode.new("./mozaic.fm/episodes/1/webcomponents.md")
-    # podcast(e)
-    puts e.guests[0]
-    puts e.guests[1]
+    entry = Episode.new("./mozaic.fm/episodes/1/webcomponents.md")
+    # podcast(entry)
   end
 end
