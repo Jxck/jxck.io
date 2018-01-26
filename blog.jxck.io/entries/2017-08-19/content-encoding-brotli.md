@@ -33,8 +33,7 @@ LZ77 とハフマン符号化を合わせたものであり、元々は WOFF2 �
 Brotli は、以下の要領で構築した 122MB にもなる辞書を仕様に含み、これによって特に Web コンテンツにおいて高い圧縮率を実現している。
 
 > Unlike other algorithms compared here, brotli includes a static dictionary. It contains 13'504 words or syllables of English, Spanish, Chinese, Hindi, Russian and Arabic, as well as common phrases used in machine readable languages, particularly HTML and JavaScript. The total size of the static dictionary is 122'784 bytes. The static dictionary is extended by a mechanism of transforms that slightly change the words in the dictionary. A total of 1'633'984 sequences, although not all of them unique, can be constructed by using the 121 transforms. To reduce the amount of bias the static dictionary gives to the results, we used a multilingual web corpus of 93 different languages where only 122 of the 1285 documents (9.5 %) are in languages supported by our static dictionary.
-
-[Comparison of Brotli, Deflate, Zopfli, LZMA, LZHAM and Bzip2 Compression Algorithms](http://www.gstatic.com/b/brotlidocs/brotli-2015-09-22.pdf)
+> --- <cite>[Comparison of Brotli, Deflate, Zopfli, LZMA, LZHAM and Bzip2 Compression Algorithms](http://www.gstatic.com/b/brotlidocs/brotli-2015-09-22.pdf)</cite>
 
 なお、仕様には HexString で辞書の全体が記載されているが、これを Ascii に変換したものを以下に置いた。
 

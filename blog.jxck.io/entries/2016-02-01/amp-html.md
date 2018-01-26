@@ -152,6 +152,7 @@ AMP-HTML 内では、 `<iframe>` タグを直接書くことは禁止されて�
 ただし、このタグもまた制約が多い。一番大きいのは **位置** に対する制約だ。
 
 > They must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top
+> --- <cite><https://www.ampproject.org/docs/reference/components/amp-iframe></cite>
 
 要するに above-the-fold に iframe を入れたくないということだろう。これはコンテンツを作る時点で気にしておかないといけないし、自動で変換も難しい。
 

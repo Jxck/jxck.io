@@ -106,6 +106,7 @@ WHATWG が導入した IPR Policy は以下にある。
 ドキュメントの末尾にはこうある。
 
 > This document includes material derived from the W3C Patent Policy.
+> --- <cite>[The WHATWG Intellectual Property Rights Policy](https://whatwg.org/ipr-policy)</cite>
 
 W3C をベースにし、多くの標準化団体が行なっているそれと基本的には同じだとされている。
 

@@ -35,6 +35,7 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 ここに収録されている文字については、 [google fonts](https://www.google.com/fonts/earlyaccess#Noto+Sans+JP) の方に書かれていた。
 
 > Note: Noto Sans JP has been subsetted to 6,992 characters and contains most of the characters defined by JIS X 0208 and some additional characters from Shift_JIS.  The set includes 6,390 Kanji as well as 602 non Kanji characters such as Hiragana, Katakana (including half-width variants), ASCII and full-width and punctuations.
+> --- <cite><https://www.google.com/fonts/earlyaccess#Noto+Sans+JP></cite>
 
 このサブセットが含む JIS X 0208 とは、いわゆる JIS 漢字コード のことであり、 7000 字近い漢字がきっちり収録されている。
 
@@ -72,8 +73,7 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 収録されている、 JIS X 0208 は以下のようになっている。
 
 > JIS (日本工業規格)で定められた漢字の規格で、 JISX0208 に含まれる。日常で使用頻度の高い漢字を集め、コンピューターで利用するためにコード化したもの。 JIS 第 1 水準は 2965 字で、常用漢字 1945 字とその他の人名用漢字が含まれており、通常の文書であれば JIS 第 1 水準の文字だけで記述できるとされている。 JIS 第 2 水準は 3390 字で、 DTP で使用するフォントの多くは、 JIS 第 1 水準と JIS 第 2 水準を網羅している。 JIS 第 3 水準および JIS 第 4 水準は、業種によって必要になる特殊な記号などを集めたもので、 JISX0208 を拡張する別の規格である。
-
-<http://yougo.ascii.jp/caltar/JIS 漢字水準>
+> --- <cite><http://yougo.ascii.jp/caltar/JIS 漢字水準></cite>
 
 しかし、このブログは **技術ブログ** であり、使われる漢字は非常に限定的だ。
 
@@ -254,9 +254,9 @@ p q r s t u v w x y z { | } ~
 
 常用漢字は文化庁が告示している。 2010 年に改定があった。
 
-[常用漢字表(平成 22 年内閣告示第 2 号)](http://kokugo.bunka.go.jp/kokugo_nihongo/joho/kijun/naikaku/kanji/)
-
 > 一般の社会生活において現代の国語を書き表すための漢字使用の目安を、次の表のように定める。
+> --- <cite>[常用漢字表(平成 22 年内閣告示第 2 号)](http://kokugo.bunka.go.jp/kokugo_nihongo/joho/kijun/naikaku/kanji/)</cite>
+
 
 以下に一覧がある。
 

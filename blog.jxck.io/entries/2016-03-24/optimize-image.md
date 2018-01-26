@@ -74,15 +74,12 @@ JPEG は、大きい画像を送信する際に、ベースとなるデータを
 
 まず、前者のサイズについて、少し古いが Steve 先生の調査がある。
 
-[Image Optimization, Part 4: Progressive JPEG...Hot or Not?](https://yuiblog.com/blog/2008/12/05/imageopt-4/)
-
 あらゆる画像を二つの形式で保存した場合、サイズがそれぞれどうなるかを検証している。
 
 結果だけ引用する。
 
-> when your JPEG image is under 10K, it's better to be saved as baseline JPEG (estimated 75% chance it will be smaller)
-
-  for files over 10K the progressive JPEG will give you a better compression (in 94% of the cases)
+> when your JPEG image is under 10K, it's better to be saved as baseline JPEG (estimated 75% chance it will be smaller) for files over 10K the progressive JPEG will give you a better compression (in 94% of the cases)
+> --- <cite>[Image Optimization, Part 4: Progressive JPEG...Hot or Not?](https://yuiblog.com/blog/2008/12/05/imageopt-4/)</cite>
 
 素材のサイズが 10K を超えるかどうかで結果が変わるそうだ。そして必ずではないので、実際に両方で保存してみて試すしかないとのこと。
 
