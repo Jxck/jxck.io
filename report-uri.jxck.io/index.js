@@ -8,6 +8,11 @@ const http = require('http');
 const fs = require('fs');
 
 http.createServer((req, res) => {
+  if (req.headers['content-type'] !== 'application/csp-report') {
+    res.writeHead(400);
+    return res.end();
+  }
+
   let body = '';
   req.on('data', (chunk) => {
     body += chunk.toString();
@@ -38,7 +43,7 @@ http.createServer((req, res) => {
         console.error(err);
         status = 500;
       }
-      res.writeHead(status, {'Content-Type': 'text/plain'});
+      res.writeHead(status);
       res.end();
     });
   });
