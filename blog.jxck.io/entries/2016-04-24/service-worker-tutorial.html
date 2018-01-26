@@ -109,7 +109,7 @@
   <article>
     <h1><a href=/entries/2016-04-24/service-worker-tutorial.html>中級者向け Service Worker Tutorial</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>Service Worker の初心者向けのチュートリアルや、使ってみた系のエントリも増えてきました。
       <p>しかし、 Service Worker は通常のブラウザ用 JS の開発と少し経路が違い、慣れるまで開発やデバッグもなかなか難しいと思います。
       <p>そこで特に難しい部分、そして分かっていないと実際にデプロイした際に難しいと思う部分について、実際に動きを確認しながら解説したいと思います。
@@ -118,14 +118,26 @@
       <p>TODO になっている動画は、そのうち撮って追加します。
     </section>
     <section>
-      <h2 id="List"><a href="#List">List</a></h2>
+      <h2 id="list"><a href="#list">List</a></h2>
       <ol>
-        <li><a href="#claim">#claim</a>
-        <li><a href="#controllerchange">#controllerchange</a>
-        <li><a href="#updatefound">#updatefound</a>
-        <li><a href="#update()">#update()</a>
-        <li><a href="#backgroundsync">#backgroundsync</a>
-        <li><a href="#push">#push</a>
+        <li>
+          <a href="#claim">#claim</a>
+        </li>
+        <li>
+          <a href="#controllerchange">#controllerchange</a>
+        </li>
+        <li>
+          <a href="#updatefound">#updatefound</a>
+        </li>
+        <li>
+          <a href="#update()">#update()</a>
+        </li>
+        <li>
+          <a href="#backgroundsync">#backgroundsync</a>
+        </li>
+        <li>
+          <a href="#push">#push</a>
+        </li>
       </ol>
       <p>6-1. <a href="#1.+Google+Developer+Console">#1. Google Developer Console</a>
       <p>6-2. <a href="#2.master.js">#2.master.js</a>
@@ -252,7 +264,7 @@ self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
       <p>DEMO: <a href="https://labs.jxck.io/service-worker/updatefound/">https://labs.jxck.io/service-worker/updatefound/</a>
     </section>
     <section>
-      <h2 id="update()"><a href="#update()">update()</a></h2>
+      <h2 id="update"><a href="#update">update()</a></h2>
       <p><code translate="no">registration.update()</code> による worker の更新と、ブラウザキャッシュにヒットする場合の挙動。
       <iframe width="560" height="315" src="https://www.youtube.com/embed/7uRVh9PzV5o" allowfullscreen></iframe>
       <pre class=js><code translate="no">console.log(&#039;master&#039;);
@@ -333,7 +345,7 @@ self.addEventListener(&#039;sync&#039;, (e) =&gt; {
       <p>push に必要な情報とその取り方、投げ方。
       <p><strong>デモで作った API KEY は当たり前ですが無効にしてあります、全く同じ値を入れても動きません</strong>
       <section>
-        <h3 id="1.+Google+Developer+Console"><a href="#1.+Google+Developer+Console">1. Google Developer Console</a></h3>
+        <h3 id="1-google-developer-console"><a href="#1-google-developer-console">1. Google Developer Console</a></h3>
         <p>Console の UI はコロコロ変わります。以下の情報を頑張って探してください。
         <ul>
           <li>プロジェクトを作る
@@ -367,7 +379,7 @@ self.addEventListener(&#039;sync&#039;, (e) =&gt; {
 &lt;h1&gt;Push DEMO&lt;/h1&gt;</code></pre>
       </section>
       <section>
-        <h3 id="2.master.js"><a href="#2.master.js">2.master.js</a></h3>
+        <h3 id="2masterjs"><a href="#2masterjs">2.master.js</a></h3>
         <p><code translate="no">endpoint</code>, <code translate="no">userAuth</code>, <code translate="no">userPublickKey</code> をなんらかの方法でサーバに送ります。
         <iframe width="560" height="315" src="https://www.youtube.com/embed/f-ney12qAEI" allowfullscreen></iframe>
         <pre class=js><code translate="no">&#039;use strict&#039;;
@@ -395,7 +407,7 @@ navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt
 }).catch(console.error.bind(console));</code></pre>
       </section>
       <section>
-        <h3 id="3.worker.js"><a href="#3.worker.js">3.worker.js</a></h3>
+        <h3 id="3workerjs"><a href="#3workerjs">3.worker.js</a></h3>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/k939NlThH4E" allowfullscreen></iframe>
         <pre class=js><code translate="no">self.addEventListener(&#039;install&#039;, (e) =&gt; {
   console.info(&#039;install&#039;, e);
@@ -439,7 +451,7 @@ self.addEventListener(&#039;notificationclick&#039;, (e) =&gt; {
 });</code></pre>
       </section>
       <section>
-        <h3 id="4.push.js"><a href="#4.push.js">4.push.js</a></h3>
+        <h3 id="4pushjs"><a href="#4pushjs">4.push.js</a></h3>
         <p>使用したモジュール: <a href="https://github.com/web-push-libs/web-push">https://github.com/web-push-libs/web-push</a>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/hIliK4l4wqw" allowfullscreen></iframe>
         <pre class=js><code translate="no">&#039;use strict&#039;;
@@ -472,7 +484,7 @@ push.sendNotification(data.endpoint, {
     <section>
       <h2 id="図"><a href="#図">図</a></h2>
       <p>映像中で使用した図です
-      <p><img src=service-worker-lifecycle.svg#840x450 alt="service worker のライフサイクル (installing -> waiting -> active -> redundunt) の遷移図" title="service worker lifecycle" width=840 height=450>
+      <p><img src=service-worker-lifecycle.svg#840x450 alt="service worker のライフサイクル (installing -> waiting -> active -> redundunt) の遷移図" title="service worker lifecycle" width=840 height=450></p>
     </section>
   </article>
 

@@ -109,7 +109,7 @@
   <article>
     <h1><a href=/entries/2016-08-05/sql-for-file-search.html>SQL でファイル検索するコマンド selects を書いた話</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p><a href="http://mattn.kaoriya.net/software/lang/go/20160805190022.htm">UNIX コマンドを SQL で抽出できるツール qq を作った。</a> というエントリを読んで、そういえば似たようなものを作ってたなと思い出した。
       <p>自分の <a href="https://github.com/jxck/dotfiles">dotfiles</a> の中にある、便利コマンド集の中にある <a href="https://github.com/Jxck/dotfiles/blob/master/bin/selects">selects</a> についてである。
       <p>このコマンドは SQL という検索を記述的に表現する共通言語をファイル検索に応用し、 Ruby の動的言語として表現力を使って実装したものといえる。
@@ -136,7 +136,7 @@
       <p><a href="https://github.com/Jxck/dotfiles/blob/master/bin/selects">https://github.com/Jxck/dotfiles/blob/master/bin/selects</a>
     </section>
     <section>
-      <h2 id="Example"><a href="#Example">Example</a></h2>
+      <h2 id="example"><a href="#example">Example</a></h2>
       <p>まず例をいくつか示す。
       <section>
         <h3 id="ディレクトリ以下をごっそり"><a href="#ディレクトリ以下をごっそり">ディレクトリ以下をごっそり</a></h3>
@@ -151,7 +151,7 @@
 ....</code></pre>
       </section>
       <section>
-        <h3 id=".html+だけ"><a href="#.html+だけ">.html だけ</a></h3>
+        <h3 id="html-だけ"><a href="#html-だけ">.html だけ</a></h3>
         <pre><code translate="no">$ selects basename from &#039;./entries/**/*&#039; where extname == &#039;.html&#039;
 new-blog-start.amp.html
 new-blog-start.html
@@ -163,7 +163,7 @@ h2o-http2-deploy.amp.html
 ...</code></pre>
       </section>
       <section>
-        <h3 id="like+的な"><a href="#like+的な">like 的な</a></h3>
+        <h3 id="like-的な"><a href="#like-的な">like 的な</a></h3>
         <pre><code translate="no">$ selects basename from &#039;./entries/**/*&#039; where basename &#039;=~&#039; &#039;mozaic&#039;
 mozaicfm-v2.amp.html
 mozaicfm-v2.amp.html.gz
@@ -183,7 +183,7 @@ mozaicfm-v2.md.gz</code></pre>
 2016-08-05 22:42:14 +0900       2016-02-11</code></pre>
       </section>
       <section>
-        <h3 id="/dev+以下で+pipe+か+socket+か+symlink+だけを+ctime,+atime+の順で"><a href="#/dev+以下で+pipe+か+socket+か+symlink+だけを+ctime,+atime+の順で">/dev 以下で pipe か socket か symlink だけを ctime, atime の順で</a></h3>
+        <h3 id="dev-以下で-pipe-か-socket-か-symlink-だけを-ctime-atime-の順で"><a href="#dev-以下で-pipe-か-socket-か-symlink-だけを-ctime-atime-の順で">/dev 以下で pipe か socket か symlink だけを ctime, atime の順で</a></h3>
         <pre><code translate="no">$ selects socket?, pipe?, symlink? basename from &#039;/dev/*&#039; where pipe? == true or socket? == true or symlink? == true order by atime, ctime
 false   true    true    initctl
 false   false   true    dvd
@@ -236,14 +236,26 @@ false   false   true    core</code></pre>
     <section>
       <h2 id="細かいところ"><a href="#細かいところ">細かいところ</a></h2>
       <ul>
-        <li><code translate="no">selects</code> にしたのは既に <code translate="no">select</code> が linux にあるから。
+        <li>
+          <code translate="no">selects</code> にしたのは既に <code translate="no">select</code> が linux にあるから。
+        </li>
         <li>結果の頭にヘッダ(列名)を出してないのは、パイプしやすくするため。
-        <li>パイプ後の <code translate="no">cut</code> コマンドと相性が良いように、列はタブ区切りにしている。
-        <li><code translate="no">&#039;*&#039;</code>, <code translate="no">&#039;&lt;&#039;</code>,  <code translate="no">&#039;&gt;&#039;</code> は Shell で意味を持つのでクオートが必要。
-        <li>Ruby の <code translate="no">File</code> と <code translate="no">File::Stat</code> のメソッドを呼べるようにしている。
-        <li>SQL よりも Ruby に寄ってるので曖昧検索は <code translate="no">like</code> ではなく <code translate="no">where</code> で <code translate="no">basename =~ &#039;.*foo.*&#039;</code> などする。
+        <li>
+          パイプ後の <code translate="no">cut</code> コマンドと相性が良いように、列はタブ区切りにしている。
+        </li>
+        <li>
+          <code translate="no">&#039;*&#039;</code>, <code translate="no">&#039;&lt;&#039;</code>,  <code translate="no">&#039;&gt;&#039;</code> は Shell で意味を持つのでクオートが必要。
+        </li>
+        <li>
+          Ruby の <code translate="no">File</code> と <code translate="no">File::Stat</code> のメソッドを呼べるようにしている。
+        </li>
+        <li>
+          SQL よりも Ruby に寄ってるので曖昧検索は <code translate="no">like</code> ではなく <code translate="no">where</code> で <code translate="no">basename =~ &#039;.*foo.*&#039;</code> などする。
+        </li>
         <li>SQL の仕様は尊重しつつも、準拠よりあくまで裏の Ruby が透けて見える範囲で実装したい。
-        <li>まだ <code translate="no">group by</code> などは対応してないが、そのくらいはやっても良いかなと思っている。
+        <li>
+          まだ <code translate="no">group by</code> などは対応してないが、そのくらいはやっても良いかなと思っている。
+        </li>
         <li>動的に組み立てて実行しているため、上手くやれば任意の Ruby が実行できるかもしれない。是非探して遊んでみて欲しい。
       </ul>
     </section>

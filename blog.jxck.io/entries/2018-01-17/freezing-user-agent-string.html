@@ -109,21 +109,25 @@
   <article>
     <h1><a href=/entries/2018-01-17/freezing-user-agent-string.html>Safari による User-Agent 固定化と Web における Feature Detection</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>少し前に Safari Technology Preview 46 がリリースされた。
       <p><a href="https://webkit.org/blog/8042/release-notes-for-safari-technology-preview-46/">https://webkit.org/blog/8042/release-notes-for-safari-technology-preview-46/</a>
       <p>Service Worker のアナウンスに目がそちらに盗まれている一方、しれっと以下の一文がある。
-      <blockquote>Froze the user-agent string to reduce web compatibility risk and to prevent its use for fingerprinting</blockquote>
+      <blockquote>
+        <p>Froze the user-agent string to reduce web compatibility risk and to prevent its use for fingerprinting
+      </blockquote>
       <p>すぐには無理だろうと思ったが、 TP47 でもこれを打ち消すアナウンスはなかったため、これを取り上げることにした。
       <p>TP はあくまで Preview であり、これが <em>このままリリースされるとは限らない</em> 点に注意したい。
       <p>今回は、これがそのままリリースされた場合の影響について考察するため、現在の User-Agent の使われ方を解説する。
     </section>
     <section>
-      <h2 id="Freeze+User+Agent"><a href="#Freeze+User+Agent">Freeze User Agent</a></h2>
+      <h2 id="freeze-user-agent"><a href="#freeze-user-agent">Freeze User Agent</a></h2>
       <p>リリースノートの一文は、初見では何か違う意味かとも思ったが、これはやはり Safari の User-Agent を今後変更しないという意味のようだ。
       <p>Safari 開発者の Tweet で、モチベーションが補足されている。
       <p><a href="https://twitter.com/rmondello/status/943545865204989953">https://twitter.com/rmondello/status/943545865204989953</a>
-      <blockquote>STP 46 freezes Safari&#039;s user agent string. It will not change in the future. This fixes two issues:: Updating the string breaking websites sniffing for particular versions of Safari, It being used for fingerprinting. Don&#039;t UA sniff; detect features directly.</blockquote>
+      <blockquote>
+        <p>STP 46 freezes Safari&rsquo;s user agent string. It will not change in the future. This fixes two issues:: Updating the string breaking websites sniffing for particular versions of Safari, It being used for fingerprinting. Don&rsquo;t UA sniff; detect features directly.
+      </blockquote>
       <p>ちなみに MacOS High Sierra の Safari TP46 と Safari 11.0.2 の UA は以下のようになっている
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre><code translate="no">(TP46):   User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1 Safari/605.1.15
@@ -132,7 +136,7 @@
       <p>実際の UA の用途はいくつかあるが、ここでは Tweet でも言及されている Finger Printing と Feature Detection の視点から見ていく。
     </section>
     <section>
-      <h2 id="Finger+Printing"><a href="#Finger+Printing">Finger Printing</a></h2>
+      <h2 id="finger-printing"><a href="#finger-printing">Finger Printing</a></h2>
       <p>User-Agent 単体では大別しかできないが、そこに対して他の情報を組み合わせていけば、徐々に一意性が増してゆく。
       <ul>
         <li>IP Address
@@ -145,7 +149,7 @@
       <p>「それが誰であるか」は特定できなくとも、それが「さっきと同じ人である」がわかれば、それだけで Tracking が可能だ。
       <p>もし 3rd Party Cookie を付与できれば確実だが、 Cookie 付与前、 Cookie 削除後、 Private Browse などでもユーザを特定したいというニーズはある。
       <section>
-        <h3 id="Tracking+by+Fingerpirnt+?"><a href="#Tracking+by+Fingerpirnt+?">Tracking by Fingerpirnt ?</a></h3>
+        <h3 id="tracking-by-fingerpirnt-"><a href="#tracking-by-fingerpirnt-">Tracking by Fingerpirnt ?</a></h3>
         <p>Apple が実施する <strong>ITP</strong>(Intelligent Tracking Prevention) によって、 3rd Party Cookie が絶たれるため、広告プロバイダは Finger Printing などの代替技術に救いを求めるのは想像に難くない。
         <p>特に広告関係では、ターゲットに対してパーソナライズするため、サービスをまたいでの識別、つまり追跡(Tracking)には、こうした固定情報が扱いやすい。
         <p>Safari の今回の変更は、この Finger Printing の手段を断つのが目的と見ることができそうだ。
@@ -153,10 +157,10 @@
       </section>
     </section>
     <section>
-      <h2 id="User+Metrics"><a href="#User+Metrics">User Metrics</a></h2>
+      <h2 id="user-metrics"><a href="#user-metrics">User Metrics</a></h2>
       <p>サービスの Access Log や、 Analytics 系のツールでは、必ずと言って良いほど User Agent を収集しているだろう。
       <p>これは、ユーザの傾向や、サポートブラウザの決定などに使われる重要なメトリクスとなっている。
-      <p>今回のように User Agent が Freeze すると、 <strong>"PC"</strong> の <strong>"MacOS"</strong> の <strong>"Safari"</strong> であることまではわかるが、それ以降の細かいバージョンまではわからなくなる。
+      <p>今回のように User Agent が Freeze すると、 <strong>&ldquo;PC&rdquo;</strong> の <strong>&ldquo;MacOS&rdquo;</strong> の <strong>&ldquo;Safari&rdquo;</strong> であることまではわかるが、それ以降の細かいバージョンまではわからなくなる。
       <p>一方で Web の仕様が Living Standard になり、ブラウザの自動アップデートが普及しつつある現在では、細かいバージョンまでを見る用途も限定されてきている。
       <p>このビジネスインパクトはそのメトリクスの用途によるが、ユーザの大まかな傾向は、どの <strong>デバイス</strong> の、どの <strong>OS</strong> の、どの <strong>ブラウザ</strong> かまでわかれば一般的な用途はカバーできそうだ。
       <p>後述するがそもそも、サポートブラウザの決定は UA を元にすべきではない。
@@ -164,7 +168,7 @@
       <p>本来、特定バージョンの実装不備については、ブラウザ側の速やかな自動バージョンアップによって解決されるべきなので、リリースサイクルが比較的長い Safari では、そこは少し懸念がありそうだ。
     </section>
     <section>
-      <h2 id="UserAgent+Detection"><a href="#UserAgent+Detection">UserAgent Detection</a></h2>
+      <h2 id="useragent-detection"><a href="#useragent-detection">UserAgent Detection</a></h2>
       <p>UA のもう 1 つの用途として、利用したい機能をそのブラウザがサポートしているかで分岐する Feature Detection がある。
       <p>同一実装に対する不備の場合わけとは少し違い、有無そのものを調べる用途だ。
       <p>古くは、 CSS の実装が壊滅的だった IE だけ別の CSS を返すといった用途のため、 UA を解析するといったものだ。
@@ -185,10 +189,10 @@
       <p>基本的に、開発者は <strong>UA ではなく、依存したい機能そのものの有無を確認し、処理を分岐すべきである</strong> 。
     </section>
     <section>
-      <h2 id="Feature+Detection"><a href="#Feature+Detection">Feature Detection</a></h2>
+      <h2 id="feature-detection"><a href="#feature-detection">Feature Detection</a></h2>
       <p>機能の有無による分岐は Feature Detection と呼ばれ、対象機能によりいくつかの方法がある。
       <section>
-        <h3 id="JS"><a href="#JS">JS</a></h3>
+        <h3 id="js"><a href="#js">JS</a></h3>
         <p>対象がプログラムであるため、比較的簡単に行える。
         <p>多くの DOM API はクラスやプロパティの有無によって判断が可能だ。
         <pre class=javascript><code translate="no">if (navigator.serviceWorker !== undefined) {
@@ -215,7 +219,7 @@ function supportsDynamicImport() {
         <p>それができたところでどうするかというのもあるので、移行期に必要な分岐は基本的に後述の modules/nomodule の方法の方が良いだろう。
       </section>
       <section>
-        <h3 id="CSS"><a href="#CSS">CSS</a></h3>
+        <h3 id="css"><a href="#css">CSS</a></h3>
         <p>CSS はいわゆるプログラミング言語ではないため、基本的には Detection をするよりも、 Progressive Enhancement で進めてきた。
         <p>しかし、 CSS の API も複雑になってきたため最近では <code translate="no">@support</code> を用いた Detection がサポートされている。
         <pre class=css><code translate="no">@supports (display: flex) {
@@ -224,23 +228,23 @@ function supportsDynamicImport() {
         <p><code translate="no">and</code>, <code translate="no">or</code>, <code translate="no">not</code> などもあり、是非は別として複雑な Detection も可能となってきた。
       </section>
       <section>
-        <h3 id="HTML"><a href="#HTML">HTML</a></h3>
+        <h3 id="html"><a href="#html">HTML</a></h3>
         <p>コンテントネゴシエーションでは、基本はクライアントのヘッダ情報を元にサーバが選択するという方向になる。
         <p>しかし、これではクライアントが全ての情報を事前に送りサイズが大きくなるか、サーバに情報提供を依頼し 1RTT 増えるかという選択になる。
         <p>サーバから選択肢を提示し、クライアントがそこから選択するという方向を取れば、一度で解決する場合も多い。
         <section>
-          <h4 id="Picture"><a href="#Picture">Picture</a></h4>
+          <h4 id="picture"><a href="#picture">Picture</a></h4>
           <p>例えば、 <code translate="no">&lt;picture&gt;</code> は、サーバが対応可能なフォーマットやサイズに関する情報を全て列挙することで、クライアントがそこから選択できる。
           <p>また、 <code translate="no">&lt;picture&gt;</code> そのものに対応していなければ、 <code translate="no">&lt;img&gt;</code> にフォールバックできるため、 <code translate="no">&lt;picture&gt;</code> 対応を detection する必要もない。
         </section>
         <section>
-          <h4 id="modules/nomodule"><a href="#modules/nomodule">modules/nomodule</a></h4>
+          <h4 id="modulesnomodule"><a href="#modulesnomodule">modules/nomodule</a></h4>
           <p>同じように、 ES Modules も、 <code translate="no">&lt;script type=modules&gt;</code> によって、サーバ側に用意があることを伝え、 <code translate="no">&lt;script nomodule&gt;</code> でフォールバックが可能だ。
           <p>そもそも、 ES Modules は MIME Type が従来の JS と同じになったため、クライアントが Accept Header に何かを追加して対応を伝えることができない。
         </section>
       </section>
       <section>
-        <h3 id="Content+Negotiation"><a href="#Content+Negotiation">Content Negotiation</a></h3>
+        <h3 id="content-negotiation"><a href="#content-negotiation">Content Negotiation</a></h3>
         <p>通信やフォーマットに関わるものは HTTP ヘッダによるネゴシエーションが基本である。
         <p>例えば、 Brotli や WebP のサポートなどは以下のように明示される場合がある。
         <pre><code translate="no">Accept-Encoding: gzip, deflate, br
@@ -260,7 +264,7 @@ DPR:1</code></pre>
         <p>1RTT 必要になるため、メインリソースのレスポンスで返し、サブリソースで適用させるような用途が中心となる。
       </section>
       <section>
-        <h3 id="Protocol"><a href="#Protocol">Protocol</a></h3>
+        <h3 id="protocol"><a href="#protocol">Protocol</a></h3>
         <p>HTTP2 や TLS1.3, QUIC その他プロトコルの対応は、基本的にはプロトコルレベルで解決される。
         <p>多くの場合はハンドシェイクを行い、互いの対応を出し合って合意を取るか、一方が提示し相手が受け入れるか無視するかだ。
         <p>拡張として追加される機能については、基本的に「対応してなければ無視される」という設計になる。

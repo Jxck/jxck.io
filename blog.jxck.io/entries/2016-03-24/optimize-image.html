@@ -109,14 +109,22 @@
   <article>
     <h1><a href=/entries/2016-03-24/optimize-image.html>画像最適化戦略 PNG/JPEG 編</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>本サイトで使用している PNG/JPEG 画像に対し、メタデータ削除、減色、リサイズなど基本的な最適化処理の適用戦略と、その方法および結果について。
       <p>画像最適化シリーズ第 1 回目のエントリである。
       <ul>
-        <li><a href="https://blog.jxck.io/entries/2016-03-24/optimize-image.html">> 画像最適化戦略 PNG/JPEG 編</a>
-        <li><a href="https://blog.jxck.io/entries/2016-03-25/picture.html">画像最適化戦略 Picture 編</a>
-        <li><a href="https://blog.jxck.io/entries/2016-03-26/webp.html">画像最適化戦略 WebP 編</a>
-        <li><a href="https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html">画像最適化戦略 SVG/Font 編</a>
+        <li>
+          <a href="https://blog.jxck.io/entries/2016-03-24/optimize-image.html">&gt; 画像最適化戦略 PNG/JPEG 編</a>
+        </li>
+        <li>
+          <a href="https://blog.jxck.io/entries/2016-03-25/picture.html">画像最適化戦略 Picture 編</a>
+        </li>
+        <li>
+          <a href="https://blog.jxck.io/entries/2016-03-26/webp.html">画像最適化戦略 WebP 編</a>
+        </li>
+        <li>
+          <a href="https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html">画像最適化戦略 SVG/Font 編</a>
+        </li>
       </ul>
     </section>
     <section>
@@ -137,7 +145,9 @@
       <p>これらの情報が不要であれば消してしまうことで、データを削減できる。
       <p>そのためのツールはいくつかあるが、有名どころでは以下がある。
       <ul>
-        <li><a href="https://imageoptim.com">ImageOptim</a>
+        <li>
+          <a href="https://imageoptim.com">ImageOptim</a>
+        </li>
       </ul>
     </section>
     <section>
@@ -145,13 +155,19 @@
       <p>一点の色の情報を 24bit で表しているものを、例えば 8bit に変換することで、データ量を減らすことができる。
       <p>もちろん、表現できる色の数も減るため、人間が見た目で気になら無い範囲で行うことになる。
       <ul>
-        <li><a href="https://tinypng.com/">TinyPNG</a> (JPEG も対応している)
-        <li><a href="http://www.jpegmini.com/">JPEGMini</a> (有料)
-        <li><a href="https://pngquant.org/">pngquant</a> (CLI)
+        <li>
+          <a href="https://tinypng.com/">TinyPNG</a> (JPEG も対応している)
+        </li>
+        <li>
+          <a href="http://www.jpegmini.com/">JPEGMini</a> (有料)
+        </li>
+        <li>
+          <a href="https://pngquant.org/">pngquant</a> (CLI)
+        </li>
       </ul>
     </section>
     <section>
-      <h2 id="ベースライン/プログレッシブ"><a href="#ベースライン/プログレッシブ">ベースライン/プログレッシブ</a></h2>
+      <h2 id="ベースラインプログレッシブ"><a href="#ベースラインプログレッシブ">ベースライン/プログレッシブ</a></h2>
       <p>JPEG は、大きい画像を送信する際に、ベースとなるデータを先に送り、差分となるデータをあとから追加して画像を完成させることができる。方式は二つある。
       <ul>
         <li>ベースライン: 画像を上から順番に表示していく
@@ -166,15 +182,17 @@
       <section>
         <h3 id="方式によるサイズ"><a href="#方式によるサイズ">方式によるサイズ</a></h3>
         <p>まず、前者のサイズについて、少し古いが Steve 先生の調査がある。
-        <p><a href="https://yuiblog.com/blog/2008/12/05/imageopt-4/">Image Optimization, Part 4: Progressive JPEG...Hot or Not?</a>
+        <p><a href="https://yuiblog.com/blog/2008/12/05/imageopt-4/">Image Optimization, Part 4: Progressive JPEG&hellip;Hot or Not?</a>
         <p>あらゆる画像を二つの形式で保存した場合、サイズがそれぞれどうなるかを検証している。
         <p>結果だけ引用する。
-        <blockquote>when your JPEG image is under 10K, it&#039;s better to be saved as baseline JPEG (estimated 75% chance it will be smaller)</blockquote>
+        <blockquote>
+          <p>when your JPEG image is under 10K, it&rsquo;s better to be saved as baseline JPEG (estimated 75% chance it will be smaller)
+        </blockquote>
         <p>for files over 10K the progressive JPEG will give you a better compression (in 94% of the cases)
         <p>素材のサイズが 10K を超えるかどうかで結果が変わるそうだ。そして必ずではないので、実際に両方で保存してみて試すしかないとのこと。
       </section>
       <section>
-        <h3 id="UX"><a href="#UX">UX</a></h3>
+        <h3 id="ux"><a href="#ux">UX</a></h3>
         <p>細い回線で大きめの画像を表示した際、表示方式でユーザがどう感じるか、という点がある。
         <p>まず、個人的には同じサイトでも、サイズによってロードの仕方が変わるのはあまり好ましくないと感じる。
         <p>そして、このサイトでは JPEG 以外にも PNG/WebP/SVG を使う。
@@ -221,7 +239,7 @@ gulp.task(&#039;default&#039;, [&#039;image&#039;]);</code></pre>
 ✔ 2016-02-17/zopfli.png -&gt; before=77.52 KB after=49.29 KB reduced=28.23 KB(36.4%)
 ✔ 2016-03-04/before.png -&gt; before=253.06 KB after=100.73 KB reduced=152.33 KB(60.2%)
 ✔ 2016-03-04/after.png -&gt; before=253.31 KB after=99.47 KB reduced=153.84 KB(60.7%)</code></pre>
-      <p>全体でみると、 775.39KB => 452.57KB (42%) の削減になった。
+      <p>全体でみると、 775.39KB =&gt; 452.57KB (42%) の削減になった。
     </section>
   </article>
 

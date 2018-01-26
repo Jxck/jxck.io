@@ -109,19 +109,23 @@
   <article>
     <h1><a href=/entries/2017-08-15/universal-mjs-ecosystem.html>.mjs とは何か、またはモジュールベース JS とエコシステムの今後</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>長いこと議論になっていた ES Modules の Node における扱いに一応の決着が付き、 <code translate="no">.mjs</code> という拡張子が採択された。
       <p>この拡張子の意味と、今後ブラウザと合わせて Universal JS を実装していく上での作法が見えてきたことになる。
       <p>合わせてエコシステムが対応していくことで、長年の夢だった JS のモジュール化を進めていくことができるだろう。
     </section>
     <section>
-      <h2 id="ES+Modules"><a href="#ES+Modules">ES Modules</a></h2>
+      <h2 id="es-modules"><a href="#es-modules">ES Modules</a></h2>
       <p>徐々に揃いつつある ES Modules(ESM) の仕様は TC39 で行われており、その仕様については主に以下のような部分になる。
       <ul>
-        <li><code translate="no">import</code> や <code translate="no">export</code> と行った構文
+        <li>
+          <code translate="no">import</code> や <code translate="no">export</code> と行った構文
+        </li>
         <li>module 内はデフォルト strict mode
         <li>module でスコープを閉じる
-        <li>module 内の <code translate="no">this</code> は <code translate="no">undefined</code>
+        <li>
+          module 内の <code translate="no">this</code> は <code translate="no">undefined</code>
+        </li>
         <li>etc
       </ul>
       <p>逆に以下は TC39 での策定範囲外となる
@@ -134,7 +138,7 @@
       <p>実際にブラウザと Node.js で見ても、その扱いは大きく変わってくる。
     </section>
     <section>
-      <h2 id="ESM+/+CJS"><a href="#ESM+/+CJS">ESM / CJS</a></h2>
+      <h2 id="esm--cjs"><a href="#esm--cjs">ESM / CJS</a></h2>
       <p>そもそも ES modules(ESM) が CommonJS(CJS) とは違う構文を策定したのには理由がある。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre class=js><code translate="no">// commonjs
@@ -166,13 +170,13 @@ export default { message: &quot;hello world&quot; }</code></pre>
       <p>この実行しないでも良いという構文の利点は、静的解析ツールなどとも相性が良く、 CJS を置き換える非常に良い仕様となった。
     </section>
     <section>
-      <h2 id="実行環境における+ESM+の扱い"><a href="#実行環境における+ESM+の扱い">実行環境における ESM の扱い</a></h2>
+      <h2 id="実行環境における-esm-の扱い"><a href="#実行環境における-esm-の扱い">実行環境における ESM の扱い</a></h2>
       <p>TC39 の責任範囲は、 JS ファイル内に書かれる構文が中心であり、そのファイルが実際にどう扱われるかは、実行環境の責務となる。
       <p>特に実行環境がどう扱うかについて、もっとも重要なのが、 <strong>そもそもそのファイルが CJS か ESM か</strong> の判別である。
       <p>判別が正しく行えなければ、先述のデフォルト strict mode や、トップレベルの <code translate="no">this</code> を <code translate="no">undefined</code> と扱うと行った処理ができなくなるからである。
       <p>(ここでの CJS は、 <code translate="no">require()</code> や <code translate="no">module</code> を使っているかというよりも、単に ESM ではないという意味が強い)
       <section>
-        <h3 id="Modules+on+Browser"><a href="#Modules+on+Browser">Modules on Browser</a></h3>
+        <h3 id="modules-on-browser"><a href="#modules-on-browser">Modules on Browser</a></h3>
         <p>ブラウザにおける Module の扱いは、 HTML の範囲での仕様策定を伴う。
         <p>具体的には、 <code translate="no">&lt;script&gt;</code> タグの <code translate="no">type</code> 属性を用いて Script であるか Module であるかを判別することが可能だ。
         <pre class=html><code translate="no">&lt;script type=module src=module.js&gt;&lt;/script&gt;
@@ -182,30 +186,40 @@ export default { message: &quot;hello world&quot; }</code></pre>
         <p><a href="https://blog.jxck.io/entries/2017-06-21/nomodule-attribute.html">ES Modules への橋渡しとしての nomodule 属性</a>
         <p>このように、ブラウザは読み込む前にそのファイルを Script/Module どちらとしてパースするかを判断することができる。
         <p>パースが正しく終われば、依存を解決のために追加の Fetch を以下のように行う。
-        <p><img src=https://html.spec.whatwg.org/images/asyncdefer.svg#1000x245 alt="ブラウザによる ESM の依存解決と Parse/Fetch の順番" title="async-defer-module <script> parsing/fetching timeline" width=1000 height=245>
+        <p><img src=https://html.spec.whatwg.org/images/asyncdefer.svg#1000x245 alt="ブラウザによる ESM の依存解決と Parse/Fetch の順番" title="async-defer-module <script> parsing/fetching timeline" width=1000 height=245></p>
         <p>あとはそのまま実行するだけなので、問題なく使うことができる。
       </section>
     </section>
     <section>
-      <h2 id="Modules+on+Node.js"><a href="#Modules+on+Node.js">Modules on Node.js</a></h2>
+      <h2 id="modules-on-nodejs"><a href="#modules-on-nodejs">Modules on Node.js</a></h2>
       <p>Node.js においては、パース時にそのファイルが ESM/CJS どちらなかのかを判別する方法を長く議論していた。
       <p>いくつかの案があったが、代別すると 2 種類ある。
       <ul>
-        <li>パースする前にわかる<ul>
-          <li>package.json に module であることを書く
-          <li><code translate="no">.mjs</code> や <code translate="no">.m.js</code> などの拡張子にする
-        </ul>
-        <li>パースしてわかる<ul>
-          <li>ファイルの先頭に <code translate="no">&quot;use module;&quot;</code> と書く
-          <li>必ず <code translate="no">import</code> や <code translate="no">export default</code> を書く
-          <li>まず ESM としてパースしてだめなら CJS としてやり直す
-        </ul>
+        <li>
+          パースする前にわかる<ul>
+            <li>package.json に module であることを書く
+            <li>
+              <code translate="no">.mjs</code> や <code translate="no">.m.js</code> などの拡張子にする
+            </li>
+          </ul>
+        </li>
+        <li>
+          パースしてわかる<ul>
+            <li>
+              ファイルの先頭に <code translate="no">&quot;use module;&quot;</code> と書く
+            </li>
+            <li>
+              必ず <code translate="no">import</code> や <code translate="no">export default</code> を書く
+            </li>
+            <li>まず ESM としてパースしてだめなら CJS としてやり直す
+          </ul>
+        </li>
       </ul>
       <p>ブラウザと違い、ここでどれを採用するかの議論が紛糾し、長らく結論が出ずにいた。
       <p>その議論は <a href="https://github.com/nodejs/node-eps/issues/13">WRT PR #3 - ES module detection #13</a> などを参照。
     </section>
     <section>
-      <h2 id=".mjs+for+ESM"><a href="#.mjs+for+ESM">.mjs for ESM</a></h2>
+      <h2 id="mjs-for-esm"><a href="#mjs-for-esm">.mjs for ESM</a></h2>
       <p>結論として Node では <code translate="no">.mjs</code> という拡張子を採用することとなった。
       <p><a href="https://github.com/nodejs/node-eps/blob/master/002-es-modules.md#32-determining-if-source-is-an-es-module">3.2. Determining if source is an ES Module</a>
       <p>これにより、 <code translate="no">.js</code> を維持したまま先に進むことができ、二回パースといったオーバーヘッドもなく、 TC39 の仕様外の独自拡張を Node が勝手に持ち込むことも防ぐことができる。
@@ -244,7 +258,7 @@ export default { message: &quot;hello world&quot; }</code></pre>
       </section>
     </section>
     <section>
-      <h2 id="Universal+JS+の今後"><a href="#Universal+JS+の今後">Universal JS の今後</a></h2>
+      <h2 id="universal-js-の今後"><a href="#universal-js-の今後">Universal JS の今後</a></h2>
       <p>仕様策定側も、最終的にはモジュールベースの ESM が基本となっている正解を想定している。
       <p>特にブラウザが、複数の JS を同一スコープで連結するといった挙動も、黎明期の JS ではまだしも、十分発展した現在の JS においえては不要となりつつある。
       <p>よって、今後開発される JS は基本的に ESM を基本としていくべきである。

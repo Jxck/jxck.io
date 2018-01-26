@@ -109,21 +109,21 @@
   <article>
     <h1><a href=/entries/2016-06-09/passive-event-listeners.html>Passive Event Listeners によるスクロールの改善</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>DOM のイベントリスナの仕様に Passive Event Listeners というオプションが追加された。
       <p>このオプションは、主にモバイルなどでのスクロールの詰まり(Scroll Jank) を解決するために導入されたものである。
       <p>今回は、この仕様が解決する問題と、本サイトへの適用を解説する。
       <p><a href="https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md">Passive Event Listeners Spec</a>
     </section>
     <section>
-      <h2 id="Scroll+Event+の+PreventDefault()"><a href="#Scroll+Event+の+PreventDefault()">Scroll Event の PreventDefault()</a></h2>
+      <h2 id="scroll-event-の-preventdefault"><a href="#scroll-event-の-preventdefault">Scroll Event の PreventDefault()</a></h2>
       <p>画面のスクロールに合わせたインタラクションを実装する場合、 Scroll Event にイベントリスナを登録する。
       <p>典型的な例では <code translate="no">touchstart</code> や <code translate="no">touchend</code> をフックし、その中で DOM の操作などを実施するなどがある。
       <p>場合によってはイベントリスナ内で <code translate="no">preventDefault()</code> を呼ぶことで、スクロールそのものを止めることもできる。
       <p>実はこれが Scroll Jank の原因となることが非常に多いことがわかっている。
     </section>
     <section>
-      <h2 id="Scroll+Jank"><a href="#Scroll+Jank">Scroll Jank</a></h2>
+      <h2 id="scroll-jank"><a href="#scroll-jank">Scroll Jank</a></h2>
       <p>ブラウザは、単純なドキュメントであれば、そのスクロールがスムーズになるように最適化することができる。
       <p>しかし、 Scroll Event にイベントリスナが登録された場合、そのイベントリスナの中で <code translate="no">preventDefault()</code> が呼ばれる場合は、スクロールを止めなくてはいけない。
       <p>ところが、登録されたイベントリスナの中で <code translate="no">preventDefault()</code> が実行されるかどうかは、実際にイベントリスナを実行してみないとわからない。
@@ -135,13 +135,15 @@
       <p>イベントリスナを実際に実行し、その処理が終わるまで <code translate="no">preventDefault()</code> が呼ばれるかどうかわからないため、 Scroll Jank がおこる。
       <p>つまり、 Scroll Event に登録されたイベントリスナの実行時間が長ければ長いほど、 Scroll Jank の影響が大きくなる。
       <p>Chrome は現在、実行時間の長いリスナが登録された場合、以下のような警告を devtools に表示する。
-      <blockquote>explainer.md#the-problem:1 Deferred long-running timer task(s) to improve scrolling smoothness. See crbug.com/574343.</blockquote>
+      <blockquote>
+        <p>explainer.md#the-problem:1 Deferred long-running timer task(s) to improve scrolling smoothness. See crbug.com/574343.
+      </blockquote>
       <p>ただし、イベントリスナの実行自体にも多少のオーバーヘッドがあるため、空のイベントリスナを登録しただけでも、ブラウザのスクロール最適化を邪魔するには十分であり、影響がでることも確認されている。
       <p>仕様には Scroll Event にイベントリスナを登録したサイトの中で、実際に <code translate="no">preventDefault()</code> を呼ぶのは 20% 程度という調査結果が記載されている。
       <p>これは 80% のケースで、ブラウザがリスナの完了を待つことなくスクロールしても問題がなかったということを意味している。
     </section>
     <section>
-      <h2 id="Passive+Event+Listeners"><a href="#Passive+Event+Listeners">Passive Event Listeners</a></h2>
+      <h2 id="passive-event-listeners"><a href="#passive-event-listeners">Passive Event Listeners</a></h2>
       <p>もし、ブラウザがリスナを実行する前に、リスナが <code translate="no">preventDefault()</code> を呼ばないことを保障できればこの問題は解決する。
       <p>この <code translate="no">preventDefault()</code> を呼ばないリスナを <strong>Passive Listener</strong> と表現する。
       <p>そして、登録したリスナが <strong>Passive Listener</strong> であることを明示するのが、今回追加された <code translate="no">passive</code> フラグである。
@@ -178,7 +180,7 @@
       </table>
     </section>
     <section>
-      <h2 id="Event+Listener+Options"><a href="#Event+Listener+Options">Event Listener Options</a></h2>
+      <h2 id="event-listener-options"><a href="#event-listener-options">Event Listener Options</a></h2>
       <p><code translate="no">addEventListener</code> の第三引数は、既に <code translate="no">useCapture</code> として boolean が定義されている。
       <p>これが <code translate="no">true</code> の場合は、イベントはバブリングフェーズではなく、キャプチャリングフェーズで発火されることになる。
       <p>Event Listener Options 対応以降は、ここにオブジェクトを渡すことになるため、 <code translate="no">useCapture</code> フラグ相当は、 <code translate="no">{capture: true}</code> としてプロパティによる定義を行う。
@@ -191,7 +193,7 @@ document.addEventListener(&#039;touchstart&#039;, handler, {capture: true});</co
       <p>今後リスナに対する新たなオプション(ブラウザが実行前に知りたい内容)を追加する場合にも、同様に追加が可能となる。
     </section>
     <section>
-      <h2 id="Feature+Detection"><a href="#Feature+Detection">Feature Detection</a></h2>
+      <h2 id="feature-detection"><a href="#feature-detection">Feature Detection</a></h2>
       <p>引数をオブジェクトにした結果、 Passive 用に引数を追加するよりも柔軟な設計となったが、互換性の問題が発生してしまう結果となった。
       <p>これは <code translate="no">{passive: true}</code> は JS としては truthy であるため、第三引数が Event Listener Option に対応してないブラウザにおいて単に <code translate="no">useCapture</code> を有効にしたと解釈されてしまうためにおこる。
       <p>例えばキャプチャリングフェーズでの補足を <code translate="no">false</code> にする指定を Event Listener Options で指定した場合、古いブラウザでは意図に反して <code translate="no">useCapture</code> を <code translate="no">true</code> にしたと解釈されてしまうのである。
@@ -225,28 +227,34 @@ function addEventListenerWithOptions(target, type, handler, options) {
       <p><a href="https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#feature-detection">https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#feature-detection</a>
     </section>
     <section>
-      <h2 id="DEMO"><a href="#DEMO">DEMO</a></h2>
+      <h2 id="demo"><a href="#demo">DEMO</a></h2>
       <p>長いドキュメントで、 touchstart イベントにあえて遅延を入れたデモを用意した。
       <p>ここに、 Passive オプション指定の有無による挙動の変化を試すことができる。
       <ul>
-        <li><a href="https://labs.jxck.io/passive-event-listeners/index.html">Passive Event Uisteners DEMO</a>
+        <li>
+          <a href="https://labs.jxck.io/passive-event-listeners/index.html">Passive Event Uisteners DEMO</a>
+        </li>
       </ul>
       <p>ちょっと分かりにくいがキャプチャも載せておく。
       <section>
-        <h3 id="Passive+False"><a href="#Passive+False">Passive False</a></h3>
+        <h3 id="passive-false"><a href="#passive-false">Passive False</a></h3>
         <p>touchstart イベントに時間がかかっているため、スクロールが詰まる。
-        <p><picture>
+        <p>
+          <picture>
             <source type=image/webp srcset=passive-event-listeners-false.webp#1347x687>
             <img src=passive-event-listeners-false.gif#1347x687 alt="リスナが Active であるため、スクロールが詰まる" title="Active Event Listener DEMO">
-            </picture>
+          </picture>
+        </p>
       </section>
       <section>
-        <h3 id="Passive+True"><a href="#Passive+True">Passive True</a></h3>
+        <h3 id="passive-true"><a href="#passive-true">Passive True</a></h3>
         <p>スクロールが詰まらない。
-        <p><picture>
+        <p>
+          <picture>
             <source type=image/webp srcset=passive-event-listeners-true.webp#1347x687>
             <img src=passive-event-listeners-true.gif#1347x687 alt="リスナが Passive であるため、スクロールが詰まらない" title="Passive Event Listener DEMO">
-            </picture>
+          </picture>
+        </p>
       </section>
     </section>
     <section>
@@ -255,21 +263,27 @@ function addEventListenerWithOptions(target, type, handler, options) {
       <p>採用した場合はここを更新する。
     </section>
     <section>
-      <h2 id="Intersection+Observer"><a href="#Intersection+Observer">Intersection Observer</a></h2>
+      <h2 id="intersection-observer"><a href="#intersection-observer">Intersection Observer</a></h2>
       <p>Scroll にハンドラを補足するユースケースの一つに、画面のスクロール位置取得がある。
       <p>画面のどの分が表示されているかを <code translate="no">scrollTop</code> などを用いて測定するような場面では、 Passive Listener を指定する効果が予想される。
       <p>しかし、この場面により適した仕様として、要素の出現と位置をより効率的に取得する Intersection Observer という仕様が提案されている。
       <p>実装されれば、こちらを用いる方が Scroll を監視するよりも正確かつ効率の良い実装が可能となる。
       <p>本サイトでも追って解説を行う予定である。
       <ul>
-        <li><a href="https://github.com/WICG/IntersectionObserver/blob/gh-pages/explainer.md">Intersection Observers Explained</a>
+        <li>
+          <a href="https://github.com/WICG/IntersectionObserver/blob/gh-pages/explainer.md">Intersection Observers Explained</a>
+        </li>
       </ul>
     </section>
     <section>
-      <h2 id="Links"><a href="#Links">Links</a></h2>
+      <h2 id="links"><a href="#links">Links</a></h2>
       <ul>
-        <li><a href="https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md">Passive event listeners Explained</a>
-        <li><a href="https://blog.chromium.org/2016/05/new-apis-to-help-developers-improve.html">Chromium Blog: New APIs to help developers improve scroll performance</a>
+        <li>
+          <a href="https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md">Passive event listeners Explained</a>
+        </li>
+        <li>
+          <a href="https://blog.chromium.org/2016/05/new-apis-to-help-developers-improve.html">Chromium Blog: New APIs to help developers improve scroll performance</a>
+        </li>
       </ul>
     </section>
   </article>

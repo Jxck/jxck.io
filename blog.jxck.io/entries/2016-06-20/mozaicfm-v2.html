@@ -109,7 +109,7 @@
   <article>
     <h1><a href=/entries/2016-06-20/mozaicfm-v2.html>mozaic.fm の v2 のリリースと Podcast の実装と移行</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p><a href="https://mozaic.fm">mozaic.fm</a> をリニューアルし、 v2 としてリリースした。
       <p>今回の更新のモチベーションは大きく分けて 2 つある。
       <ul>
@@ -119,7 +119,7 @@
       <p>これによる breaking change 含む変更の内容と、実装のメモを記す。
     </section>
     <section>
-      <h2 id="Podcast+の仕組み"><a href="#Podcast+の仕組み">Podcast の仕組み</a></h2>
+      <h2 id="podcast-の仕組み"><a href="#podcast-の仕組み">Podcast の仕組み</a></h2>
       <p>そもそも Podcast の実体は、単なる RSS である。
       <p>音声やアイコンなどのリソース URL が適切にマークアップされた RSS 形式の XML を配布するだけで実装できる。
       <p>Podcast アプリは、このフィードを購読し、音声などを取得し、再生する feed reader の一種といえる。
@@ -128,7 +128,7 @@
       <p>サイト上でも音声は再生できるが、 Podcast 自体はアプリで聴くことが多いため、 RSS さえ生成すればサイト自体は必須では無い。
     </section>
     <section>
-      <h2 id="旧+mozaic.fm+の問題点"><a href="#旧+mozaic.fm+の問題点">旧 mozaic.fm の問題点</a></h2>
+      <h2 id="旧-mozaicfm-の問題点"><a href="#旧-mozaicfm-の問題点">旧 mozaic.fm の問題点</a></h2>
       <p>mozaic.fm は、  Web の技術について「<strong>今何がおこっているか</strong>」と「<strong>これからどうなっていくか</strong>」を議論する Podcast である。
       <p>必然的に、最新の Web の技術や、セキュリティ/パフォーマンスなどの周辺技術についても触れることが多い。
       <p>最近では特に HTTPS 化についての議論も多くあるが、 Tumblr はダッシュボード(編集画面)以外を暗号化することができない。
@@ -148,27 +148,45 @@
       <p>新しい <a href="https://mozaic.fm">https://mozaic.fm</a> は、本サイトのコピペをベースとしている。
     </section>
     <section>
-      <h2 id="RSS+実装"><a href="#RSS+実装">RSS 実装</a></h2>
+      <h2 id="rss-実装"><a href="#rss-実装">RSS 実装</a></h2>
       <p>RSS の仕様には、主に RSS1.0, RSS2.0, Atom の三つがある。
       <p>本サイト blog.jxck.io では最新である Atom を採用したが、 Podcast の RSS は <strong>RSS2.0</strong> を用いる必要があった。
       <p>RSS2.0 の仕様は以下にある。
       <p><a href="http://cyber.law.harvard.edu/rss/rss.html">http://cyber.law.harvard.edu/rss/rss.html</a>
       <p>また、 Apple は Podcast 向けの拡張ボキャブラリを追加しているため、それらも対応している。
       <ul>
-        <li><a href="https://help.apple.com/itc/podcasts_connect/#/itc1723472cb">https://help.apple.com/itc/podcasts_connect/#/itc1723472cb</a>
-        <li><a href="https://help.apple.com/itc/podcasts_connect/#/itca5b22233a">https://help.apple.com/itc/podcasts_connect/#/itca5b22233a</a>
-        <li><a href="https://help.apple.com/itc/podcasts_connect/#/itc2b3780e76">https://help.apple.com/itc/podcasts_connect/#/itc2b3780e76</a>
+        <li>
+          <a href="https://help.apple.com/itc/podcasts_connect/#/itc1723472cb">https://help.apple.com/itc/podcasts_connect/#/itc1723472cb</a>
+        </li>
+        <li>
+          <a href="https://help.apple.com/itc/podcasts_connect/#/itca5b22233a">https://help.apple.com/itc/podcasts_connect/#/itca5b22233a</a>
+        </li>
+        <li>
+          <a href="https://help.apple.com/itc/podcasts_connect/#/itc2b3780e76">https://help.apple.com/itc/podcasts_connect/#/itc2b3780e76</a>
+        </li>
       </ul>
       <p>基本的には RSS2.0 に加え <code translate="no">&lt;itunes:xxx&gt;</code> な名前空間のタグが拡張されている。
       <ul>
         <li>アートワークは 1400x1400 ~ 3000x3000 の間で 72dpi, JPEG/PNG (gzip 可)
         <li>音声形式は M4A, MP3, MOV, MP4, M4V, PDF, EPUB
-        <li><code translate="no">&lt;enclosure&gt;</code> でエピソードを囲む
-        <li><code translate="no">&lt;channel&gt;</code> <code translate="no">&lt;item&gt;</code> レベルの title, author, description が itunes search で使われる
-        <li><code translate="no">&lt;itunes:summary&gt;</code> 無ければ <code translate="no">&lt;description&gt;</code> に詳細、メディアフォーマット、スケジュールなど詳細を記す
-        <li><code translate="no">&lt;itunes:category&gt;</code> にサブカテゴリーを定義できる
-        <li><code translate="no">&lt;itunes:summary&gt;&lt;![CDATA[&lt;a href=&quot;http://www.apple.com&quot;&gt;Apple&lt;/a&gt;]]&gt;&lt;/itunes:summary&gt;</code> とコメント化し display issue を防ぐ
-        <li><code translate="no">&lt;item&gt;</code> を追加して行く、順番は <code translate="no">&lt;pubDate&gt;</code> で判断される。 24h 以内なら <code translate="no">&lt;itunes:order&gt;</code> で上書きもできる
+        <li>
+          <code translate="no">&lt;enclosure&gt;</code> でエピソードを囲む
+        </li>
+        <li>
+          <code translate="no">&lt;channel&gt;</code> <code translate="no">&lt;item&gt;</code> レベルの title, author, description が itunes search で使われる
+        </li>
+        <li>
+          <code translate="no">&lt;itunes:summary&gt;</code> 無ければ <code translate="no">&lt;description&gt;</code> に詳細、メディアフォーマット、スケジュールなど詳細を記す
+        </li>
+        <li>
+          <code translate="no">&lt;itunes:category&gt;</code> にサブカテゴリーを定義できる
+        </li>
+        <li>
+          <code translate="no">&lt;itunes:summary&gt;&lt;![CDATA[&lt;a href=&quot;http://www.apple.com&quot;&gt;Apple&lt;/a&gt;]]&gt;&lt;/itunes:summary&gt;</code> とコメント化し display issue を防ぐ
+        </li>
+        <li>
+          <code translate="no">&lt;item&gt;</code> を追加して行く、順番は <code translate="no">&lt;pubDate&gt;</code> で判断される。 24h 以内なら <code translate="no">&lt;itunes:order&gt;</code> で上書きもできる
+        </li>
       </ul>
       <p>音声の配信は、通常の HTTP サーバから行うことができる。
       <p>ただし、 Podcast は長い音声を再生するため、途中からの再生が可能なように HTTP の byte-range ヘッダをサポートする必要がある。
@@ -177,7 +195,7 @@
       <p>また RSS2.0 的には <code translate="no">&lt;enclosure&gt;</code> の url は http じゃないとだめらしい。
     </section>
     <section>
-      <h2 id="podcast+connect"><a href="#podcast+connect">podcast connect</a></h2>
+      <h2 id="podcast-connect"><a href="#podcast-connect">podcast connect</a></h2>
       <p>itunes は podcast connect という場所がわかりにくい画面から、 feed url を変えられる。
       <p><a href="https://podcastsconnect.apple.com/">https://podcastsconnect.apple.com/</a>
     </section>
@@ -190,8 +208,12 @@
         <li>tumblr 上で最後のエピソードを更新し、 feedburner のフィードに反映させる
         <li>DNS を変更し、 mozaic.fm を tumblr から新サイトへ向ける
         <li>feedburner が新サイトを見ないように、独自ドメインを剥がした tumblr に向ける
-        <li>mozaic.fm が自サーバを向いたので、 let's encrypt の certbot を走らせ <a href="https://mozaic.fm">https://mozaic.fm</a> を有効にする
-        <li><a href="http://mozaic.fm">http://mozaic.fm</a> を全て <a href="https://mozaic.fm">https://mozaic.fm</a> にリダイレクト
+        <li>
+          mozaic.fm が自サーバを向いたので、 let&rsquo;s encrypt の certbot を走らせ <a href="https://mozaic.fm">https://mozaic.fm</a> を有効にする
+        </li>
+        <li>
+          <a href="http://mozaic.fm">http://mozaic.fm</a> を全て <a href="https://mozaic.fm">https://mozaic.fm</a> にリダイレクト
+        </li>
         <li>旧エピソードの tumblr 自体の URL を、新 URL にリダイレクトする
         <li>itunes の podcast connect から itunes に登録された mozaic.fm の feed を新しいものにする
       </ol>
@@ -199,7 +221,7 @@
       <p>このため、移行後の最初のエピソードは、その旨の説明回とし、新旧両方のフィードに載せた。
     </section>
     <section>
-      <h2 id="v3+への展望"><a href="#v3+への展望">v3 への展望</a></h2>
+      <h2 id="v3-への展望"><a href="#v3-への展望">v3 への展望</a></h2>
       <p>今回の更新で <strong>脱 Tumblr</strong> と <strong>脱 feedburner</strong> という目標は達成した。
       <p>今後は、このサイト上だけで以下を完結可能な PWA なサイトにしていきたいと考えている。
       <ul>

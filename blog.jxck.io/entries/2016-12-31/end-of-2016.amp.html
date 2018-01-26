@@ -80,15 +80,15 @@ by Jxck
 
 <style amp-custom>
 article section p {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article pre {
-  margin-left: 0.8em;
+  margin: 0;
 }
 
 article table {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article img {
@@ -373,7 +373,7 @@ dl dt::after {
   content: ":";
 }
 
-blockquote::before {
+blockquote p::before {
   content: "> ";
 }
 
@@ -435,7 +435,7 @@ blockquote {
   border: solid 1px #ddd;
   border-radius: 4px;
   padding: 1em;
-  margin: 1.4em 0;
+  margin: 0;
 }
 
 code {
@@ -618,11 +618,11 @@ th:last-child, td:last-child {
   <article>
     <h1><a href=/entries/2016-12-31/end-of-2016.html>2016 年を振り返る</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>例年通り、今年を振り返る。
     </section>
     <section>
-      <h2 id="Blog+移行"><a href="#Blog+移行">Blog 移行</a></h2>
+      <h2 id="blog-移行"><a href="#blog-移行">Blog 移行</a></h2>
       <p>このブログを移行した。
       <p>Web に関する新しい技術についてエントリを書いておきながら、それをブログ自体が使ってないという片手落ち感をずっと感じていたので、これまで使っていた hatena blog や Qiita など、制限のある他のプラットフォームを離れることにした。
       <p>おかげで、 HTTP のヘッダや、 TLS の設定単位で自分の好きなことを試せるようになり、非常に良い検証環境となっている。
@@ -632,17 +632,25 @@ th:last-child, td:last-child {
       <p>下書きは溜まりに溜まってるが、まぁまぁだろうか。
     </section>
     <section>
-      <h2 id="mozaic.fm"><a href="#mozaic.fm">mozaic.fm</a></h2>
+      <h2 id="mozaicfm"><a href="#mozaicfm">mozaic.fm</a></h2>
       <p><a href="https://mozaic.fm">mozaic.fm</a> も移行した。
       <p>もともとは、この Podcast を移行するために、先立って Blog を移行するという順番だった。
       <p>一番大きな理由は Tubmlr が HTTPS 化できなかったところにある。
       <p>これを移行するために、今年の前半はあまりエピソードの収録がなかったが、移行して良かった。
       <p>公開したエピソードは 4 つ
       <ul>
-        <li><a href="https://mozaic.fm/episodes/21/mozaic-v2-release.html">ep21 mozaic.fm v2 release note</a>
-        <li><a href="https://mozaic.fm/episodes/22/amp.html">ep22 AMP</a>
-        <li><a href="https://mozaic.fm/episodes/23/lets-encrypt.html">ep23 Let's Encrypt</a>
-        <li><a href="https://mozaic.fm/episodes/24/angular2.html">ep24 Angular2</a>
+        <li>
+          <a href="https://mozaic.fm/episodes/21/mozaic-v2-release.html">ep21 mozaic.fm v2 release note</a>
+        </li>
+        <li>
+          <a href="https://mozaic.fm/episodes/22/amp.html">ep22 AMP</a>
+        </li>
+        <li>
+          <a href="https://mozaic.fm/episodes/23/lets-encrypt.html">ep23 Let&rsquo;s Encrypt</a>
+        </li>
+        <li>
+          <a href="https://mozaic.fm/episodes/24/angular2.html">ep24 Angular2</a>
+        </li>
       </ul>
       <p>出て頂いたみなさん、ありがとうございました。
     </section>
@@ -650,19 +658,27 @@ th:last-child, td:last-child {
       <h2 id="発表資料"><a href="#発表資料">発表資料</a></h2>
       <p>公開した主な発表資料
       <ul>
-        <li><a href="https://speakerdeck.com/jxck/aggressive-web-site-optimization-2016q1">Aggressive Web Site Optimization 2016Q1  #scripty5</a>
-        <li><a href="https://speakerdeck.com/jxck/service-worker-registration-and-lifecycle">Service Worker registration/lifecycle  #frontendmt</a>
-        <li><a href="https://speakerdeck.com/jxck/stream-between-nodejs-and-whatwg">Stream b/w node.js & whatwg  #tng22</a>
-        <li><a href="https://speakerdeck.com/jxck/web-over-https">Web over HTTPS  #devfest16</a>
+        <li>
+          <a href="https://speakerdeck.com/jxck/aggressive-web-site-optimization-2016q1">Aggressive Web Site Optimization 2016Q1  #scripty5</a>
+        </li>
+        <li>
+          <a href="https://speakerdeck.com/jxck/service-worker-registration-and-lifecycle">Service Worker registration/lifecycle  #frontendmt</a>
+        </li>
+        <li>
+          <a href="https://speakerdeck.com/jxck/stream-between-nodejs-and-whatwg">Stream b/w node.js &amp; whatwg  #tng22</a>
+        </li>
+        <li>
+          <a href="https://speakerdeck.com/jxck/web-over-https">Web over HTTPS  #devfest16</a>
+        </li>
       </ul>
     </section>
     <section>
-      <h2 id="GDE"><a href="#GDE">GDE</a></h2>
+      <h2 id="gde"><a href="#gde">GDE</a></h2>
       <p>GDE になった。
       <p><a href="https://blog.jxck.io/entries/2016-08-30/be-a-google-developer-experts.html">Google Developer Experts (GDE) になりました</a>
     </section>
     <section>
-      <h2 id="Erlang"><a href="#Erlang">Erlang</a></h2>
+      <h2 id="erlang"><a href="#erlang">Erlang</a></h2>
       <p>サーバを本格的に書くようになり Erlang に手を出したところ、非常にハマった。
       <p>Erlang はいい。
     </section>

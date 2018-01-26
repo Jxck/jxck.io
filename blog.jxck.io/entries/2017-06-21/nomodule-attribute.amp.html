@@ -80,15 +80,15 @@ by Jxck
 
 <style amp-custom>
 article section p {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article pre {
-  margin-left: 0.8em;
+  margin: 0;
 }
 
 article table {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article img {
@@ -373,7 +373,7 @@ dl dt::after {
   content: ":";
 }
 
-blockquote::before {
+blockquote p::before {
   content: "> ";
 }
 
@@ -435,7 +435,7 @@ blockquote {
   border: solid 1px #ddd;
   border-radius: 4px;
   padding: 1em;
-  margin: 1.4em 0;
+  margin: 0;
 }
 
 code {
@@ -618,13 +618,13 @@ th:last-child, td:last-child {
   <article>
     <h1><a href=/entries/2017-06-21/nomodule-attribute.html>ES Modules への橋渡しとしての nomodule 属性</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>ブラウザにおける新機能の利用においては、非対応ブラウザの考慮も必要となる。
       <p>ES Modules の利用においても、いかに非対応ブラウザでフォールバックの手段を提供するかが課題となっていた。
       <p>今回は、 Modules の対応/非対応を切り分けるための仕様である <code translate="no">nomodule</code> 属性を解説する。
     </section>
     <section>
-      <h2 id="script+type+module"><a href="#script+type+module">script type module</a></h2>
+      <h2 id="script-type-module"><a href="#script-type-module">script type module</a></h2>
       <p>classic script (module ではない JS) は、 <code translate="no">&lt;script&gt;</code> で指定すると、取得解析しそのまま実行される。
       <p>type は省略されることが多いが、その場合 <code translate="no">text/javascript</code> と解釈されている。
       <pre class=html><code translate="no">&lt;script type=text/javascript src=bundle.js&gt;&lt;/script&gt;</code></pre>
@@ -645,9 +645,15 @@ th:last-child, td:last-child {
       <p><a href="https://html.spec.whatwg.org/multipage/scripting.html#attr-script-nomodule">nomodule attribute</a>
       <p>例えば以下を考える。
       <ul>
-        <li>module script である <code translate="no">module.js</code> をベースとして提供する。
-        <li>ES Moduels 非対応ブラウザに対して WebPack などで bundle した classic script である <code translate="no">bundle.js</code> を提供する。
-        <li>どちらでも実行したい classic script の <code translate="no">analytics.js</code> を提供する。
+        <li>
+          module script である <code translate="no">module.js</code> をベースとして提供する。
+        </li>
+        <li>
+          ES Moduels 非対応ブラウザに対して WebPack などで bundle した classic script である <code translate="no">bundle.js</code> を提供する。
+        </li>
+        <li>
+          どちらでも実行したい classic script の <code translate="no">analytics.js</code> を提供する。
+        </li>
       </ul>
       <p>この場合、以下のように指定できる。
       <pre class=html><code translate="no">&lt;script type=module src=module.js&gt;&lt;/script&gt;
@@ -656,13 +662,13 @@ th:last-child, td:last-child {
       <p>挙動は ES Modules 対応/非対応によって以下のようになる。
     </section>
     <section>
-      <h2 id="ES+Modules+を実装していない場合"><a href="#ES+Modules+を実装していない場合">ES Modules を実装していない場合</a></h2>
+      <h2 id="es-modules-を実装していない場合"><a href="#es-modules-を実装していない場合">ES Modules を実装していない場合</a></h2>
       <p><code translate="no">type=module</code> と <code translate="no">nomodule</code> は知らないため無視され、以下と同等に解釈される。
       <pre class=html><code translate="no">&lt;script type=text/javascript src=bundle.js&gt;&lt;/script&gt;
 &lt;script type=text/javascript src=analytics.js&gt;&lt;/script&gt;</code></pre>
     </section>
     <section>
-      <h2 id="ES+Modules+を実装している場合"><a href="#ES+Modules+を実装している場合">ES Modules を実装している場合</a></h2>
+      <h2 id="es-modules-を実装している場合"><a href="#es-modules-を実装している場合">ES Modules を実装している場合</a></h2>
       <p>ES Modules を実装する場合は <code translate="no">nomodule</code> の解釈が必須とされている。
       <p>したがって ES Modules に対応したとされた場合は <code translate="no">nomodule</code> が理解されているとみなす。
       <p>この場合、 <code translate="no">type=module</code> と <code translate="no">nomodule</code> を解釈し、 module script を実行する代わりに <code translate="no">nomodule</code> が指定された classic script を無視する。

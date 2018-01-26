@@ -80,15 +80,15 @@ by Jxck
 
 <style amp-custom>
 article section p {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article pre {
-  margin-left: 0.8em;
+  margin: 0;
 }
 
 article table {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article img {
@@ -373,7 +373,7 @@ dl dt::after {
   content: ":";
 }
 
-blockquote::before {
+blockquote p::before {
   content: "> ";
 }
 
@@ -435,7 +435,7 @@ blockquote {
   border: solid 1px #ddd;
   border-radius: 4px;
   padding: 1em;
-  margin: 1.4em 0;
+  margin: 0;
 }
 
 code {
@@ -618,13 +618,13 @@ th:last-child, td:last-child {
   <article>
     <h1><a href=/entries/2017-01-10/mixed-contents.html>mixed contents 対応を促進する CSP ディレクティブ</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>HTTPS 移行の問題点の一つに、 mixed contents への対応がある。
       <p>逆に mixed contents の発生を恐れ、 HTTPS に移行できないサービスもあるだろう。
       <p>本エントリでは mixed contents の正しい理解と、その検出や解消に利用できる可能性のある、 CSP の <code translate="no">Upgrade-Insecure-Request</code> および、 <code translate="no">Block-All-Mixed-Contents</code> を解説する。
     </section>
     <section>
-      <h2 id="mixed+contents"><a href="#mixed+contents">mixed contents</a></h2>
+      <h2 id="mixed-contents"><a href="#mixed-contents">mixed contents</a></h2>
       <p>HTTPS で配信されたコンテンツが、サブリソースとして HTTP のコンテンツを含む場合、これを <strong>mixed contents</strong> という。
       <p>HTTPS は MITM に対する耐性があるが、 HTTP は MITM への耐性がないため、 mixed contents の状態ではサブリソースを起点にメインコンテンツへの改ざんが成立してしまう可能性がある。
       <p>このため HTTPS で配信されていても、 mixed contents がある場合は完全に安全とは言えず、ブラウザは通常ユーザに安全ではないことを警告する。
@@ -640,7 +640,7 @@ th:last-child, td:last-child {
       <p>これらの問題について、どういった対応手段があるかを解説していく。
     </section>
     <section>
-      <h2 id="mixed+contents+の挙動"><a href="#mixed+contents+の挙動">mixed contents の挙動</a></h2>
+      <h2 id="mixed-contents-の挙動"><a href="#mixed-contents-の挙動">mixed contents の挙動</a></h2>
       <p><a href="https://w3c.github.io/webappsec-mixed-content/">Mixed Content</a>
       <p>まず、 mixed contents 発生時のブラウザの挙動について再度確認する。
       <p>mixed contents は URL バーが変化し、ユーザに注意を促す。
@@ -648,15 +648,15 @@ th:last-child, td:last-child {
       <p>以下にデモを用意した。
       <p><a href="https://labs.jxck.io/mixed/mixed.html">DEMO: mixed contents</a>
       <section>
-        <h3 id="URL+バーの変化"><a href="#URL+バーの変化">URL バーの変化</a></h3>
+        <h3 id="url-バーの変化"><a href="#url-バーの変化">URL バーの変化</a></h3>
         <p>具体的には、多くのブラウザが URL バーの表示を変更し、ユーザに注意を促すようになる。
-        <p><amp-img layout=responsive src=insecure-url-bar.png#800x160 alt="Mixed Contents があるため TLS が正しくとも URL バーがグレーになっている" title="url bar with mixed contents" width=800 height=160>
+        <p><amp-img layout=responsive src=insecure-url-bar.png#800x160 alt="Mixed Contents があるため TLS が正しくとも URL バーがグレーになっている" title="url bar with mixed contents" width=800 height=160></p>
         <p>mixed contents が無ければ本来は以下のようになる。
-        <p><amp-img layout=responsive src=secure-url-bar.png#800x160 alt="Mixed Contents が無いため URL バーがグリーンになっている" title="url bar without mixed contents" width=800 height=160>
+        <p><amp-img layout=responsive src=secure-url-bar.png#800x160 alt="Mixed Contents が無いため URL バーがグリーンになっている" title="url bar without mixed contents" width=800 height=160></p>
         <p>証明書の設定が正しくとも、それが EV であろうとも、 URL バーが緑にならないことは、信頼が揺らいでいることを意味する。
       </section>
       <section>
-        <h3 id="Mixed+Active(Script)+Contents"><a href="#Mixed+Active(Script)+Contents">Mixed Active(Script) Contents</a></h3>
+        <h3 id="mixed-activescript-contents"><a href="#mixed-activescript-contents">Mixed Active(Script) Contents</a></h3>
         <p>以下のタグ、及びスクリプト等は、  <strong>Mixed Active Contents</strong> と呼ばれる。
         <pre class=html><code translate="no">&lt;script src&gt;
 &lt;link href&gt;
@@ -671,7 +671,7 @@ CSS 内の URL (@font-face, background-image etc)</code></pre>
         <p><a href="https://labs.jxck.io/mixed/mixed.html#active">DEMO: Mixed Active Contents</a>
       </section>
       <section>
-        <h3 id="Mixed+Passive(Display)+Contents"><a href="#Mixed+Passive(Display)+Contents">Mixed Passive(Display) Contents</a></h3>
+        <h3 id="mixed-passivedisplay-contents"><a href="#mixed-passivedisplay-contents">Mixed Passive(Display) Contents</a></h3>
         <p>以下のタグは、基本的にコンテンツを表示する目的で使われる。
         <pre class=html><code translate="no">&lt;img&gt;
 &lt;audio&gt;
@@ -685,10 +685,10 @@ CSS 内の URL (@font-face, background-image etc)</code></pre>
       </section>
     </section>
     <section>
-      <h2 id="CSP+による+Mixed+Contents+対策"><a href="#CSP+による+Mixed+Contents+対策">CSP による Mixed Contents 対策</a></h2>
+      <h2 id="csp-による-mixed-contents-対策"><a href="#csp-による-mixed-contents-対策">CSP による Mixed Contents 対策</a></h2>
       <p>Mixed Contents に対して、対策となりえる CSP のディレクティブを解説する。
       <section>
-        <h3 id="Upgrade-Insecure-Request"><a href="#Upgrade-Insecure-Request">Upgrade-Insecure-Request</a></h3>
+        <h3 id="upgrade-insecure-request"><a href="#upgrade-insecure-request">Upgrade-Insecure-Request</a></h3>
         <p><a href="https://w3c.github.io/webappsec-upgrade-insecure-requests/">Upgrade Insecure Requests</a>
         <p>CSP の <code translate="no">Upgrade-Insecure-Request</code> を付与した場合、ブラウザは HTTPS コンテンツに埋め込まれた <code translate="no">http://</code> スキームのリンクを、 <code translate="no">https://</code> に読み替えて発行する。
         <p>コンテンツからは HTTP のリクエストが発生しないため、どんなコンテンツであっても URL バーは安全であるという表示になる。
@@ -701,7 +701,7 @@ CSS 内の URL (@font-face, background-image etc)</code></pre>
         <p>理想はコンテンツ内の全てのリンクを修正したいところだ。
       </section>
       <section>
-        <h3 id="Block-All-Mixed-Contents"><a href="#Block-All-Mixed-Contents">Block-All-Mixed-Contents</a></h3>
+        <h3 id="block-all-mixed-contents"><a href="#block-all-mixed-contents">Block-All-Mixed-Contents</a></h3>
         <p><a href="https://w3c.github.io/webappsec-mixed-content/#strict-checking">4. Strict Mixed Content Checking</a>
         <p>たとえ Mixed Passive Contents であったとしても、 MITM により改ざんされることが多大な影響を及ぼす場合もあるだろう。
         <p>この場合は、 CSP の <code translate="no">Block-All-Mixed-Contents</code> を有効にすることで、 Passive でも Active 同様にブロックし、改ざんされたコンテンツが表示されることを防ぐことができる。
@@ -710,7 +710,7 @@ CSS 内の URL (@font-face, background-image etc)</code></pre>
         <p><a href="https://labs.jxck.io/mixed/mixed.html?block-all-mixed-content">DEMO: Block-All-Mixed-Contents</a>
       </section>
       <section>
-        <h3 id="mixed+contents+の発生状況を収集する"><a href="#mixed+contents+の発生状況を収集する">mixed contents の発生状況を収集する</a></h3>
+        <h3 id="mixed-contents-の発生状況を収集する"><a href="#mixed-contents-の発生状況を収集する">mixed contents の発生状況を収集する</a></h3>
         <p>mixed contents は、発生したこと自体を把握しにくかったという点が、対応の難しさを助長している場合がある。
         <p>把握できていない場所で mixed contents が発生するまま HTTPS に移行すると、広告が表示されないなどの問題が起こってしまう。
         <p>特にコンテンツが多いサービスでは、実際にどこで mixed contents が発生しているのかを知ることができれば、コンテンツの修正を進めることができ、 HTTPS 化を進める上でも役に立つだろう。
@@ -722,11 +722,11 @@ CSS 内の URL (@font-face, background-image etc)</code></pre>
       </section>
     </section>
     <section>
-      <h2 id="iframe+の中の+mixed+contents"><a href="#iframe+の中の+mixed+contents">iframe の中の mixed contents</a></h2>
+      <h2 id="iframe-の中の-mixed-contents"><a href="#iframe-の中の-mixed-contents">iframe の中の mixed contents</a></h2>
       <p><code translate="no">Block-All-Mixed-Contents</code> の report によって http で埋め込まれた iframe は検出することができるようになったが、これで全ての mixed contents が見つけられるわけではない。
       <p>一番厄介なのは iframe で読み込まれたドキュメントが含むサブリソースによる mixed contents である。
       <p>広告は入れ子の iframe で作られているものが多い。
-      <p><amp-img layout=responsive src=iframe.png#600x451 alt="典型的な nested iframe" title="ディスプレイ広告の基礎とセキュリティ(P7) by Kenta Suzuki" width=600 height=451>
+      <p><amp-img layout=responsive src=iframe.png#600x451 alt="典型的な nested iframe" title="ディスプレイ広告の基礎とセキュリティ(P7) by Kenta Suzuki" width=600 height=451></p>
       <p><a href="https://speakerdeck.com/suzuken/deisupureiguang-gao-falseji-chu-tosekiyuritei">ディスプレイ広告の基礎とセキュリティ(P7) by Kenta Suzuki</a>
       <p>iframe 自体を https で読み込んでいても、ネストした iframe 内に http で読み込まれるサブリソースがあると、大元のドキュメントは mixed contents 扱いになる。
       <p><a href="https://labs.jxck.io/mixed/iframe.html">DEMO: mixed iframe</a>

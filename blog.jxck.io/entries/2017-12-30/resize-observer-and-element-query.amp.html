@@ -80,15 +80,15 @@ by Jxck
 
 <style amp-custom>
 article section p {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article pre {
-  margin-left: 0.8em;
+  margin: 0;
 }
 
 article table {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article img {
@@ -373,7 +373,7 @@ dl dt::after {
   content: ":";
 }
 
-blockquote::before {
+blockquote p::before {
   content: "> ";
 }
 
@@ -435,7 +435,7 @@ blockquote {
   border: solid 1px #ddd;
   border-radius: 4px;
   padding: 1em;
-  margin: 1.4em 0;
+  margin: 0;
 }
 
 code {
@@ -618,13 +618,13 @@ th:last-child, td:last-child {
   <article>
     <h1><a href=/entries/2017-12-30/resize-observer-and-element-query.html>ResizeObserver による変更検知と Element Query</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>ResizeObserver の ship が進みつつある。
       <p>この仕様の解説および、 ElementQuery / ContainerQuery について解説する。
       <p><a href="https://wicg.github.io/ResizeObserver/">Resize Observer 1</a>
     </section>
     <section>
-      <h2 id="ResizeObserver"><a href="#ResizeObserver">ResizeObserver</a></h2>
+      <h2 id="resizeobserver"><a href="#resizeobserver">ResizeObserver</a></h2>
       <p>ResizeObserver は、最近増えつつある ObserverFamily の 1 つであり、要素のリサイズを検知するインタフェースである。
       <p>リサイズを検知したい要素をターゲットに <code translate="no">observe()</code> すると、ターゲットと矩形情報が取得できる。
       <pre class=javascript><code translate="no">const resizeObserver = new ResizeObserver((entries) =&gt; {
@@ -669,7 +669,7 @@ resizeObserver.disconnect(element) // 解放</code></pre>
       <p><a href="https://blog.jxck.io/entries/2016-06-25/intersection-observer.html">Intersection Observer を用いた要素出現検出の最適化 | blog.jxck.io</a>
     </section>
     <section>
-      <h2 id="resize+event+polyfill"><a href="#resize+event+polyfill">resize event polyfill</a></h2>
+      <h2 id="resize-event-polyfill"><a href="#resize-event-polyfill">resize event polyfill</a></h2>
       <p>仮に、 Observer のインタフェースを Event 側に寄せたいというのであれば、以下のように CustomEvent を定義することもできるだろう。
       <p>必要に応じて <a href="https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html">Passive Event Listener</a> を検討する必要がある。
       <pre class=javascript><code translate="no">const $target = document.querySelector(&#039;textarea&#039;)
@@ -687,7 +687,7 @@ $target.addEventListener(&#039;resize&#039;, ({detail: entries}) =&gt; {
       <p>DEMO: <a href="https://labs.jxck.io/resize-observer/onresize-polyfill.html">https://labs.jxck.io/resize-observer/onresize-polyfill.html</a>
     </section>
     <section>
-      <h2 id="Element+Query"><a href="#Element+Query">Element Query</a></h2>
+      <h2 id="element-query"><a href="#element-query">Element Query</a></h2>
       <p><a href="http://elementqueries.com/">ElementQuery</a> は MediaQuery の要素版といったコンセプトで作られたライブラリである。
       <p>例えば以下のように、 <code translate="no">min-widht</code> を境に色を変えるといったことが可能になる。
       <pre class=css><code translate="no">@element .minwidthpixels and (min-width: 500px) {
@@ -708,7 +708,7 @@ $target.addEventListener(&#039;resize&#039;, ({detail: entries}) =&gt; {
       <p>CSS に持ってくるには、 Houdini で策定中の <a href="https://drafts.css-houdini.org/css-parser-api/">CSS Parser API</a> と <a href="https://drafts.css-houdini.org/css-typed-om/#normalize-var">CSS Typed OM Level 1</a> あたりが実装されるとネイティブで <code translate="no">@lement</code> を Custom At-Rules として実装できるようになるだろう。
     </section>
     <section>
-      <h2 id="Container+Query"><a href="#Container+Query">Container Query</a></h2>
+      <h2 id="container-query"><a href="#container-query">Container Query</a></h2>
       <p><a href="https://au.si/css-container-element-queries">Container Query</a> は Element Query と似ているが、文字通り対象を親要素に置いている。
       <p>例えば、親要素のサイズに応じて子要素のレイアウトを変えたい場合は、 Element Query のスコープで以下のように定義ができる。
       <pre class=css><code translate="no">@element &#039;#sidebar&#039; and (max-width: 300px) {

@@ -109,7 +109,7 @@
   <article>
     <h1><a href=/entries/2017-09-27/example-local-test-domains.html>予約済みドメイン (.example, .localhost, .test) について</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>特別なドメインとして予約され、特定の用途で使用可能なドメインとして、 <code translate="no">.example</code> <code translate="no">.localhost</code> <code translate="no">.test</code> などがある。
       <p><code translate="no">localhost</code> の Draft や、  gTLD である <code translate="no">.dev</code> が Chrome で Preload HSTS になったなどの動きを踏まえ、これらの意味や用途を解説する。
     </section>
@@ -124,7 +124,7 @@
       <p>ドキュメントやテストで、適当に思いついたドメイン名を用いるのは問題がある。
     </section>
     <section>
-      <h2 id="「今は」無いドメイン"><a href="#「今は」無いドメイン">「今は」無いドメイン</a></h2>
+      <h2 id="今は無いドメイン"><a href="#今は無いドメイン">「今は」無いドメイン</a></h2>
       <p>もしローカルネットワークで使う用途で割り当てたドメインでも、外に出れば実際にそのドメインが取得されているかもしれない。
       <p>仮に今は取得されていなかったとしても、今後取得される可能性もある。
       <p>もっと言えば、 gTLD (global top level domain) ですら近年は色々と増えている。
@@ -139,17 +139,21 @@
       <p>他にも gTLD はどんどん増えているので、 <code translate="no">.dev</code> 以外にも注意が必要だ。
     </section>
     <section>
-      <h2 id="Reserved+Top+Level+DNS+Names"><a href="#Reserved+Top+Level+DNS+Names">Reserved Top Level DNS Names</a></h2>
+      <h2 id="reserved-top-level-dns-names"><a href="#reserved-top-level-dns-names">Reserved Top Level DNS Names</a></h2>
       <p>以上のことを踏まえれば、将来に渡って取得されないことが保証され、こうした用途に使えるメインがあるのが望ましい。
       <p>そこで RFC6761 (was RFC2606) には、 <strong>予約済みドメイン</strong> としていくつかのドメインとその用途が記されている。
       <ul>
-        <li><a href="https://tools.ietf.org/html/rfc6761">RFC6761 Special-Use Domain Names</a>
-        <li><a href="https://tools.ietf.org/html/rfc2606">RFC2606 Reserved Top Level DNS Names</a>
+        <li>
+          <a href="https://tools.ietf.org/html/rfc6761">RFC6761 Special-Use Domain Names</a>
+        </li>
+        <li>
+          <a href="https://tools.ietf.org/html/rfc2606">RFC2606 Reserved Top Level DNS Names</a>
+        </li>
       </ul>
       <p>用途を守れば、そのドメインを所有していなくても、安心して使うことができるのだ。
     </section>
     <section>
-      <h2 id="<code+translate=no>.example</code>"><a href="#<code+translate=no>.example</code>"><code translate="no">.example</code></a></h2>
+      <h2 id="example"><a href="#example"><code translate="no">.example</code></a></h2>
       <p>主にドキュメントなどの例示に使われる。
       <p>TLD としての <code translate="no">*.example</code> 以外に、以下の 3 つの STD も予約されており、同様に使うことができる。
       <p>(本サイトでは、ブログの例示には主にこれを使っている)
@@ -160,9 +164,15 @@
       </ul>
       <p>また、この 3 つは実際にインターネット上で HTTP をサーブしている。
       <ul>
-        <li><a href="http://example.com">http://example.com</a>
-        <li><a href="http://example.net">http://example.net</a>
-        <li><a href="http://example.org">http://example.org</a>
+        <li>
+          <a href="http://example.com">http://example.com</a>
+        </li>
+        <li>
+          <a href="http://example.net">http://example.net</a>
+        </li>
+        <li>
+          <a href="http://example.org">http://example.org</a>
+        </li>
       </ul>
       <p>ちなみに、これらのアドレスは実は結構便利な作りをしている。
       <ul>
@@ -176,7 +186,7 @@
       <p>管理しているのが ICANN なので、個人が取得したドメインと違い <strong>無くなっている可能性などを気にしないで良い</strong> ため、覚えておくと地味に便利だったりする。
     </section>
     <section>
-      <h2 id="<code+translate=no>.localhost</code>"><a href="#<code+translate=no>.localhost</code>"><code translate="no">.localhost</code></a></h2>
+      <h2 id="localhost"><a href="#localhost"><code translate="no">.localhost</code></a></h2>
       <p>主に開発で自ホストに解決される用途で使われる。
       <p>実際には、 OS が名前解決に使う hosts ファイルなどで、 <code translate="no">localhost</code> がループバックアドレスに指定されている。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
@@ -188,21 +198,21 @@
 ##
 127.0.0.1 localhost
 ::1             localhost</code></pre>
-      <p>もしこの設定がなければ、他のアドレス同様 DNS に問い合わせを行い、もし DNS が別のアドレスを返せば <code translate="no">localhost</code> は "localhost" ではなくなってしまう。
+      <p>もしこの設定がなければ、他のアドレス同様 DNS に問い合わせを行い、もし DNS が別のアドレスを返せば <code translate="no">localhost</code> は &ldquo;localhost&rdquo; ではなくなってしまう。
       <p>しかし、最近では HTTPS 必須のブラウザ機能が、 localhost だけは特別扱いするなどといった挙動になっている。
       <p>そこで、 <code translate="no">localhost</code> がループバックアドレスであることを保証するべきというドラフトが上がっている。
-      <p><a href="https://tools.ietf.org/html/draft-west-let-localhost-be-localhost-06">Let 'localhost' be localhost. draft-west-let-localhost-be-localhost-06</a>
+      <p><a href="https://tools.ietf.org/html/draft-west-let-localhost-be-localhost-06">Let &lsquo;localhost&rsquo; be localhost. draft-west-let-localhost-be-localhost-06</a>
       <p>これが RFC になれば、 <code translate="no">.localhost</code> は明確にループバックアドレスとして使われることになるだろう。
       <p>先ほどの <code translate="no">.dev</code> 同様に <code translate="no">.localhost</code> を別のアドレスで解決する環境を作っていたりする場合は、やはり問題が出るかもしれない。
     </section>
     <section>
-      <h2 id="<code+translate=no>.test</code>"><a href="#<code+translate=no>.test</code>"><code translate="no">.test</code></a></h2>
+      <h2 id="test"><a href="#test"><code translate="no">.test</code></a></h2>
       <p>主にテスト用途で使われる。
       <p>取得されないことと共に、他のネットワークでは別の名前に解決される可能性を前提とした上で、比較的自由に使える。
       <p>つまり前述のように、社内ネットワークのような環境で開発用ドメインを運用する際などに、利用できるだろう。
     </section>
     <section>
-      <h2 id="<code+translate=no>.invalid</code>"><a href="#<code+translate=no>.invalid</code>"><code translate="no">.invalid</code></a></h2>
+      <h2 id="invalid"><a href="#invalid"><code translate="no">.invalid</code></a></h2>
       <p>無効であることを明示する用途で使われる。
       <p>常に NXDOMAIN を返すと想定され、主に DNS の開発などに使うのだろうと思われる。
     </section>
@@ -217,13 +227,21 @@
         <li>example3.jp
         <li>example4.jp
         <li>example5.jp
-        <li>...
+        <li>
+          &hellip;
+        </li>
       </ul>
       <p>詳細は下記参照
       <ul>
-        <li><a href="https://www.iana.org/domains/reserved">https://www.iana.org/domains/reserved</a>
-        <li><a href="https://jprs.jp/doc/rule/wideusejp-reserved.html">https://jprs.jp/doc/rule/wideusejp-reserved.html</a>
-        <li><a href="https://jprs.jp/faq/use/">https://jprs.jp/faq/use/</a>
+        <li>
+          <a href="https://www.iana.org/domains/reserved">https://www.iana.org/domains/reserved</a>
+        </li>
+        <li>
+          <a href="https://jprs.jp/doc/rule/wideusejp-reserved.html">https://jprs.jp/doc/rule/wideusejp-reserved.html</a>
+        </li>
+        <li>
+          <a href="https://jprs.jp/faq/use/">https://jprs.jp/faq/use/</a>
+        </li>
       </ul>
     </section>
   </article>

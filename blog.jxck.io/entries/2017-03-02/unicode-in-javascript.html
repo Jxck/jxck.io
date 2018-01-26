@@ -109,7 +109,7 @@
   <article>
     <h1><a href=/entries/2017-03-02/unicode-in-javascript.html>JavaScript における文字コードと「文字数」の数え方</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>textarea などに入力された文字数を、 JS で数えたい場合がある。
       <p>ここで <code translate="no">.length</code> を数えるだけではダメな理由は、文字コードや JS の内部表現の話を理解する必要がある。
       <p>多言語や絵文字対応なども踏まえた上で、どう処理するべきなのか。
@@ -117,7 +117,7 @@
       <p>なお、文字コードの仕組みを詳解すること自体が目的では無いため、 BMP, UCS-2, Endian, 歴史的経緯など、この手の話題につき物な話の一部は省くこととする。
     </section>
     <section>
-      <h2 id="1+文字とは何か"><a href="#1+文字とは何か">1 文字とは何か</a></h2>
+      <h2 id="1-文字とは何か"><a href="#1-文字とは何か">1 文字とは何か</a></h2>
       <p>Unicode は全ての文字に ID を振ることを目的としている。
       <p>例えば 😭 (loudly crying face) なら <code translate="no">0x1F62D</code> だ。
       <p>1 つの文字に 1 つの ID が割り当てられているのだから、文字の数を数える場合は、この ID の数を数えれば良いと考えることができるだろう。おおよその場合はそれで良い。
@@ -149,7 +149,7 @@
       <p>例えば 😭 を送るには、 <code translate="no">0x1F62D</code> という Code Point が相手に伝われば良いのだ。
       <p>では、この値をどうやって送るのか。そこにはいくつかの方式がある。
       <section>
-        <h3 id="UTF-32"><a href="#UTF-32">UTF-32</a></h3>
+        <h3 id="utf-32"><a href="#utf-32">UTF-32</a></h3>
         <p>単純に考えれば、この Code Point をバイナリデータとしてそのまま送れば良いだろう。
         <p>Code Point はおおよそ 4byte あれば収まるので 32bit のデータとして送ることができる。
         <pre><code translate="no">[0x00, 0x01, 0xF6, 0x2D] // 😭
@@ -158,7 +158,7 @@
         <p>このように 1 Code Point を 32bit データとして表すという発想が、 UTF-32 と呼ばれる方式の中核である。
       </section>
       <section>
-        <h3 id="UTF-16"><a href="#UTF-16">UTF-16</a></h3>
+        <h3 id="utf-16"><a href="#utf-16">UTF-16</a></h3>
         <p>UTF-32 なら Code Point がそのまま入ってるので非常にシンプルだが、よく使う文字はそこまで大きな Code Point が振られてないため、ほとんどが 0 になる。
         <p>先の文字列では <code translate="no">野</code> や <code translate="no">で</code> という文字は Code Point が <code translate="no">0x91CE</code>、 <code translate="no">0x3067</code> なので、 32 bit だと先頭 2byte が 0 になる。
         <pre><code translate="no">[0x00, 0x00, 0x91, 0xCE] // 野
@@ -180,7 +180,7 @@
         <p>もし、幸運にも文字列の中にサロゲートペアが 1 つも入っていなければ、バイト列を単純に 2 で割れば文字数が出る。しかし 1 つでもサロゲートペアがあると、単純な割り算では本来よりも多くの文字数があるように見えてしまうのだ。
       </section>
       <section>
-        <h3 id="UTF-8"><a href="#UTF-8">UTF-8</a></h3>
+        <h3 id="utf-8"><a href="#utf-8">UTF-8</a></h3>
         <p>英数字(a-zA-Z0-9) など、いわゆるアスキー文字と呼ばれるものは、 Code Point の中でも小さい値が割り当てられている。
         <p>これら Code Point は 8bit の範囲に収まっているので、 16 bit で表すと無駄が出てくる。
         <pre><code translate="no">[0x00, 0x61] // a</code></pre>
@@ -189,17 +189,17 @@
 [0xC2, 0xA9]             // ©
 [0xE3, 0x81, 0x82]       // あ
 [0xF0, 0xA0, 0xAE, 0xB7] // 𠮷</code></pre>
-        <p>この 8bit を最小とし、それ以外を必要に応じて 2, 3, 4...byte と可変長で表す発想が UTF-8 と呼ばれる方式の中核だ。
+        <p>この 8bit を最小とし、それ以外を必要に応じて 2, 3, 4&hellip;byte と可変長で表す発想が UTF-8 と呼ばれる方式の中核だ。
       </section>
     </section>
     <section>
-      <h2 id="JS+の内部表現"><a href="#JS+の内部表現">JS の内部表現</a></h2>
+      <h2 id="js-の内部表現"><a href="#js-の内部表現">JS の内部表現</a></h2>
       <p>さて、 JS で以下の処理を実行した場合、代入した文字列データがメモリ上に保存されるわけだが、このデータは Code Point がそのまま保存されているわけではない。
       <pre class=js><code translate="no">char = &quot;😭&quot;</code></pre>
       <p>JS の内部表現は UTF-16 であるため、メモリに保存された値は絵文字 <code translate="no">😭</code> の Code Point である <code translate="no">0x1F62D</code> ではなく、それを UTF-16 にした <code translate="no">[0xD8, 0x3D, 0xDE, 0x2D]</code> だ。
       <p>ここで注意したいのは、ここで UTF-16 が選ばれるのは JS の仕様であって、 JS ファイルのエンコーディングとは関係ない点だ。
       <p>HTML/CSS/JS ファイルは UTF-8 を使うのがデファクトとなっているが、それによって JS の内部の表現が UTF-8 になったりはしない。
-      <p>イメージとしては、ブラウザは JS ファイルのレスポンスを受けた際、 Content-Encoding ヘッダなどによってファイルを解釈し、そこから Code Point を割り出す。代入された値が "😭" であることを知ったら、それをメモリ上に UTF-16 で保存する。 JS ファイルが Shift-JIS であっても同じだ。
+      <p>イメージとしては、ブラウザは JS ファイルのレスポンスを受けた際、 Content-Encoding ヘッダなどによってファイルを解釈し、そこから Code Point を割り出す。代入された値が &ldquo;😭&rdquo; であることを知ったら、それをメモリ上に UTF-16 で保存する。 JS ファイルが Shift-JIS であっても同じだ。
       <p>これを聞くと JS が UTF-16 であれば、その変換オーバーヘッドが無いのでは? と思うかもしれないが、レガシーシステムとの連携などを考えなければ、 UTF-8 以外を使う必要は基本的にないので気にしないで良い。
       <p><strong>JS が内部で持つ値は Code Point ではなく UTF-16 の値だ</strong> という点を踏まえた上で、 JS のプログラム上で文字列を数える処理について見ていく。
     </section>
@@ -271,7 +271,7 @@ codePoints.length // =&gt; 13</code></pre>
 &#039;𠮟られる&#039;.match(/./ug) // [&quot;𠮟&quot;, &quot;ら&quot;, &quot;れ&quot;, &quot;る&quot;]</code></pre>
     </section>
     <section>
-      <h2 id="for+in+/+for+of"><a href="#for+in+/+for+of">for in / for of</a></h2>
+      <h2 id="for-in--for-of"><a href="#for-in--for-of">for in / for of</a></h2>
       <p>繰り返し処理も注意が必要だ。特に文字列に対する添え字アクセスは、 UTF-16 配列に対するアクセスだとイメージするとわかりやすい。(ちなみに <code translate="no">charAt()</code> も同じだ)
       <pre class=js><code translate="no">&#039;鯖定食&#039;[0] === &quot;鯖&quot;
 &#039;鯖定食&#039;.charAt(0) === &quot;鯖&quot;
@@ -299,12 +299,12 @@ for (const i in str) console.log(str[i])
 // 食</code></pre>
     </section>
     <section>
-      <h2 id="Spread+Operator"><a href="#Spread+Operator">Spread Operator</a></h2>
+      <h2 id="spread-operator"><a href="#spread-operator">Spread Operator</a></h2>
       <p>Spread Operator を用いた分割も、 Code Point の単位で分割される。
       <pre class=js><code translate="no">((a, b, c) =&gt; console.log(a, b, c))(...&#039;𩸽定食&#039;) // 𩸽 定 食</code></pre>
     </section>
     <section>
-      <h2 id="Destructoring"><a href="#Destructoring">Destructoring</a></h2>
+      <h2 id="destructoring"><a href="#destructoring">Destructoring</a></h2>
       <p>いわゆる分割代入時の分割も Code Point が意識されている。
       <pre class=js><code translate="no">[a,b,c]=&#039;𩸽定食&#039;
 a // &quot;𩸽&quot;
@@ -312,13 +312,13 @@ b // &quot;定&quot;
 c // &quot;食&quot;</code></pre>
     </section>
     <section>
-      <h2 id="Array.of"><a href="#Array.of">Array.of</a></h2>
+      <h2 id="arrayof"><a href="#arrayof">Array.of</a></h2>
       <p>文字列から、文字の配列に分割するのは、 Spread operator と Array.of を合わせるのが一番簡単だろう。
       <pre class=js><code translate="no">Array.of(...&#039;叱られた😭&#039;)
 [ &#039;叱&#039;, &#039;ら&#039;, &#039;れ&#039;, &#039;た&#039;, &#039;😭&#039; ]</code></pre>
     </section>
     <section>
-      <h2 id="charCode/codePoint"><a href="#charCode/codePoint">charCode/codePoint</a></h2>
+      <h2 id="charcodecodepoint"><a href="#charcodecodepoint">charCode/codePoint</a></h2>
       <p><code translate="no">charCodeAt()</code> は文字コードを取り、 <code translate="no">fromCharCode()</code> はその逆を行う。
       <p>𩸽の方は前半のバイトしかないため、元に戻らない。
       <pre class=js><code translate="no">&#039;鯖定食&#039;.charCodeAt(0) === 0x9BD6
@@ -349,7 +349,7 @@ String.fromCodePoint(&#039;𩸽&#039;.codePointAt(0)) // &quot;𩸽&quot;</code>
       <p>1 つが 👨‍👩‍👧‍👦 だ。
       <pre class=js><code translate="no">Array.of(...&#039;👨‍👩‍👧‍👦&#039;)
 [&quot;👨&quot;, &quot;‍&quot;, &quot;👩&quot;, &quot;‍&quot;, &quot;👧&quot;, &quot;‍&quot;, &quot;👦&quot;]</code></pre>
-      <p>この絵文字は "family with mother father son daughter" という名前の文字で、 4 つの絵文字が合成されてできている。
+      <p>この絵文字は &ldquo;family with mother father son daughter&rdquo; という名前の文字で、 4 つの絵文字が合成されてできている。
       <p>家族は多様なので別の組み合わせもある。
       <p>いずれにせよ、先ほどの方法で分解すると、個々の顔の間に空の文字が見える。
       <p>これは、 👨‍👩‍👧‍👦 という絵文字自体が、👨, 👩, 👧, 👦 という 4 つの絵文字とそれを結合する制御文字でできているからである。

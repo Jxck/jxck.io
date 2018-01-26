@@ -16,7 +16,7 @@ by Jxck
 
 <meta name="author" content="Jxck">
     <meta name="description" content="Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要となるリソースを教える」ことで、投機的な取得を行う API 群である。https://w3c.github.io/resource-hints/主に以下がある。- dns-pref...">
-    <meta name="keywords" content="resouce hints,performance">
+    <meta name="keywords" content="resource hints,performance">
     <meta itemprop="image" content="https://jxck.io/assets/img/jxck.png">
     <meta itemprop="name" content="blog.jxck.io">
 
@@ -52,7 +52,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-02-11T08:00:00+08:00",
-  "dateModified": "2018-01-19T08:00:00+08:00",
+  "dateModified": "2018-01-26T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -80,15 +80,15 @@ by Jxck
 
 <style amp-custom>
 article section p {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article pre {
-  margin-left: 0.8em;
+  margin: 0;
 }
 
 article table {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article img {
@@ -373,7 +373,7 @@ dl dt::after {
   content: ":";
 }
 
-blockquote::before {
+blockquote p::before {
   content: "> ";
 }
 
@@ -435,7 +435,7 @@ blockquote {
   border: solid 1px #ddd;
   border-radius: 4px;
   padding: 1em;
-  margin: 1.4em 0;
+  margin: 0;
 }
 
 code {
@@ -610,23 +610,31 @@ th:last-child, td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-02-11>2016-02-11</time>
-    <li>updated_at: <time class=updated_at datetime=2018-01-19>2018-01-19</time>
-    <li class=tags>tags: [<a href='/tags/resouce%20hints.html'>resouce hints</a>,<a href='/tags/performance.html'>performance</a>]
+    <li>updated_at: <time class=updated_at datetime=2018-01-26>2018-01-26</time>
+    <li class=tags>tags: [<a href='/tags/resource%20hints.html'>resource hints</a>,<a href='/tags/performance.html'>performance</a>]
   </ul>
 
 
   <article>
     <h1><a href=/entries/2016-02-11/resource-hints.html>Resource Hints API でリソースの投機的取得</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要となるリソースを教える」ことで、投機的な取得を行う API 群である。
       <p><a href="https://w3c.github.io/resource-hints/">https://w3c.github.io/resource-hints/</a>
       <p>主に以下がある。
       <ul>
-        <li><a href="https://w3c.github.io/resource-hints/#dfn-dns-prefetch">dns-prefetch</a>
-        <li><a href="https://w3c.github.io/resource-hints/#dfn-preconnect">preconnect</a>
-        <li><a href="https://w3c.github.io/resource-hints/#dfn-prefetch">prefetch</a>
-        <li><a href="https://w3c.github.io/resource-hints/#dfn-prerender">prerender</a>
+        <li>
+          <a href="https://w3c.github.io/resource-hints/#dfn-dns-prefetch">dns-prefetch</a>
+        </li>
+        <li>
+          <a href="https://w3c.github.io/resource-hints/#dfn-preconnect">preconnect</a>
+        </li>
+        <li>
+          <a href="https://w3c.github.io/resource-hints/#dfn-prefetch">prefetch</a>
+        </li>
+        <li>
+          <a href="https://w3c.github.io/resource-hints/#dfn-prerender">prerender</a>
+        </li>
       </ul>
       <p>今回は本サイトでこれを適用した話。
     </section>
@@ -640,17 +648,21 @@ th:last-child, td:last-child {
         <li>追加の Image
         <li>追加の API アクセス
       </ul>
-      <p>それぞれを DNS 解決 -> TCP 接続 -> リソースのフェッチ、と繰り返していくと、イニシャル表示は必然的に時間がかかる。
+      <p>それぞれを DNS 解決 -&gt; TCP 接続 -&gt; リソースのフェッチ、と繰り返していくと、イニシャル表示は必然的に時間がかかる。
       <p>ところが、この遷移には以下の特徴がある。
       <ul>
-        <li><strong>ログインページの滞在時間は長い</strong>
-        <li><strong>同一サービス内なので、その次のメインページで必要なリソースは予測可能性が高い</strong>
+        <li>
+          <strong>ログインページの滞在時間は長い</strong>
+        </li>
+        <li>
+          <strong>同一サービス内なので、その次のメインページで必要なリソースは予測可能性が高い</strong>
+        </li>
       </ul>
       <p>であれば、ログインページでユーザが操作している間に必要なものを裏で取得しておければ、ログイン後の表示に必要なリソース収集は終わっているので表示が速くなる。
       <p>投機的な取得の代表シナリオはこんな感じになる。
     </section>
     <section>
-      <h2 id="Resource+Hints"><a href="#Resource+Hints">Resource Hints</a></h2>
+      <h2 id="resource-hints"><a href="#resource-hints">Resource Hints</a></h2>
       <p>Resource Hints はそうしたリソース取得のヒントをブラウザに伝える API 群であり、基本的には前のページ(上記ならログインページ)の中で、次のページ(上記ならメインページ)で使うリソースのヒントを HTML の Link タグで記述する。
       <p>現在は四種類ある
       <pre class=html><code translate="no">&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//example.com&quot;&gt;
@@ -707,9 +719,9 @@ th:last-child, td:last-child {
       </section>
     </section>
     <section>
-      <h2 id="API+選択フロー"><a href="#API+選択フロー">API 選択フロー</a></h2>
+      <h2 id="api-選択フロー"><a href="#api-選択フロー">API 選択フロー</a></h2>
       <p>どの API を選ぶフローは、接続するドメインが分かっている前提であれば、以下のように考えることができる。
-      <p><amp-img layout=responsive src=resource-hints.svg#546x608 alt="接続する URL まで決まっている N -> dns-prefetch, Y -> 静的リソースか、事前取得可能である N -> preconnect, Y -> prefetch 可能かリソースだけでなる N -> prefetch, Y -> prerender" title="Resource Hints API の選択フロー" width=546 height=608>
+      <p><amp-img layout=responsive src=resource-hints.svg#546x608 alt="接続する URL まで決まっている N -> dns-prefetch, Y -> 静的リソースか、事前取得可能である N -> preconnect, Y -> prefetch 可能かリソースだけでなる N -> prefetch, Y -> prerender" title="Resource Hints API の選択フロー" width=546 height=608></p>
     </section>
     <section>
       <h2 id="サイトへの適用"><a href="#サイトへの適用">サイトへの適用</a></h2>
@@ -726,7 +738,7 @@ th:last-child, td:last-child {
       </ul>
       <p>名前解決の方は確認が難しいので、後者のみ確認結果を載せる。
       <p>Chrome の場合は Prerender の状況について chrome://net-internals から確認できる。
-      <p><amp-img layout=responsive src=net-internals-prerender.png#1058x299 alt="chrome://net-internals#prerender による Prerender の状況確認" title="chrome://net-internals#prerender" width=1058 height=299>
+      <p><amp-img layout=responsive src=net-internals-prerender.png#1058x299 alt="chrome://net-internals#prerender による Prerender の状況確認" title="chrome://net-internals#prerender" width=1058 height=299></p>
     </section>
   </article>
 

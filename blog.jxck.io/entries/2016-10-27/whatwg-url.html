@@ -109,12 +109,12 @@
   <article>
     <h1><a href=/entries/2016-10-27/whatwg-url.html>Node v7 で入った WHATWG URL 実装について</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>Node v7.0.0 が公開され、今回のリリースで WHATWG URL の実装が Experimental として入った。
       <p>既に標準で含まれていた url module との違いや、 URL API などについて解説する。
     </section>
     <section>
-      <h2 id="WHATWG+URL"><a href="#WHATWG+URL">WHATWG URL</a></h2>
+      <h2 id="whatwg-url"><a href="#whatwg-url">WHATWG URL</a></h2>
       <p>URL は非常によく使われる、 Web において重要なフォーマットの一つだ。
       <p>ものによっては一見シンプルに見えるかもしれないが、その仕様はそれなりに大きい。
       <p>しかし、これまで DOM/JS はこれをパースする専用の API を持っていなかったため、例えば <code translate="no">&lt;input type=text&gt;</code> に入力された URL 文字列のパースは、片手間な正規表現で行われることも少なくなかった。
@@ -127,19 +127,23 @@
       <p>これによって、既存/新規 DOM API は、 URL を扱う際に、基本的にはこの仕様を参照することができるようになった。
     </section>
     <section>
-      <h2 id="IETF+URL"><a href="#IETF+URL">IETF URL</a></h2>
+      <h2 id="ietf-url"><a href="#ietf-url">IETF URL</a></h2>
       <p>そもそも URL は IETF の管理する RFC によって定義されている。
       <p>つまり、インターネットを行き交うネットワークプロトコルの用いるフォーマットとしての URL の定義だ。
       <p>にも関わらず、これを WHATWG が DOM のコンテキストで定義し直した理由についてはドラフトに書かれている。
       <p><a href="https://url.spec.whatwg.org/#goals">原文</a>
-      <blockquote>Align RFC 3986 and RFC 3987 with contemporary implementations and obsolete them in the process. (E.g., spaces, other &quot;illegal&quot; code points, query encoding, equality, canonicalization, are all concepts not entirely shared, or defined.) URL parsing needs to become as solid as HTML parsing. [RFC3986] [RFC3987]</blockquote>
+      <blockquote>
+        <p>Align RFC 3986 and RFC 3987 with contemporary implementations and obsolete them in the process. (E.g., spaces, other &ldquo;illegal&rdquo; code points, query encoding, equality, canonicalization, are all concepts not entirely shared, or defined.) URL parsing needs to become as solid as HTML parsing. [RFC3986] [RFC3987]
+      </blockquote>
       <p><a href="https://triple-underscore.github.io/URL-ja.html#goals">翻訳</a>
-      <blockquote>RFC 3986 と RFC 3987 を現今の実装に揃わせて、その過程の中でそれらを過去のものにする。 (例えば、空白類, 他の &quot;合法でない&quot; 符号位置, クエリの符号化方式, 同等性, 正準化, などの概念は、どれも完全には共有もしくは定義されていない。) URL の構文解析法は HTML の構文解析法と同程度に確定的になる必要がある。 [RFC3986] [RFC3987]</blockquote>
+      <blockquote>
+        <p>RFC 3986 と RFC 3987 を現今の実装に揃わせて、その過程の中でそれらを過去のものにする。 (例えば、空白類, 他の &ldquo;合法でない&rdquo; 符号位置, クエリの符号化方式, 同等性, 正準化, などの概念は、どれも完全には共有もしくは定義されていない。) URL の構文解析法は HTML の構文解析法と同程度に確定的になる必要がある。 [RFC3986] [RFC3987]
+      </blockquote>
       <p>平たく言えば、不完全だったところを補完したという感じだろうか。
       <p>ともあれ、これによって、広く言えば Web のコンテキスト、狭く言えば DOM のコンテキスト、中間で言うとブラウザのコンテキストでの <strong>正しい URL とは何か</strong> および <strong>その正しい処理方法は何か</strong> が定義されたと言うことができる。
     </section>
     <section>
-      <h2 id="URL+API"><a href="#URL+API">URL API</a></h2>
+      <h2 id="url-api"><a href="#url-api">URL API</a></h2>
       <p>DOM や JS の API として Export されていなかっただけで、ブラウザ自体はもちろん URL を正しくパースすることがこれまでもできた。
       <p>しかし、片手間な正規表現や、パーサを実装したライブラリを使わず、ブラウザに URL の解析を依頼するためには、従来以下のような方法しかなかった。
       <p><a href="https://gist.github.com/jlong/2428561">https://gist.github.com/jlong/2428561</a>
@@ -147,22 +151,26 @@
       <p>それが URL オブジェクトであり、メジャーなブラウザは既に実装が進んでいる。
     </section>
     <section>
-      <h2 id="Node+の+url+module+実装"><a href="#Node+の+url+module+実装">Node の url module 実装</a></h2>
+      <h2 id="node-の-url-module-実装"><a href="#node-の-url-module-実装">Node の url module 実装</a></h2>
       <p>Node は既に URL をパースするための <code translate="no">url</code> モジュールを標準でもっている。
       <p>しかし、これが実装されたのは URL Standard が定義される前なので、 <code translate="no">url</code> モジュールが準拠するのはもちろん RFC である。(それ自体が問題になること自体はほとんどない。)
       <p>しかし API についてみれば、先ほどの URLSearchParams も含めて WHATWG の定義とはかなり差異がある。
       <p>同じ JS であるにも関わらず、ブラウザと Node で API が違うというのは、 isomorphic/universal 化が進む昨今では決して嬉しいことではない。
       <p>そこで筆者はこの URL オブジェクトを実装していた時期があった。だいぶ実装は進んだが後述する punycode と unicode 周りの対応が面倒で途中で止まっていた。
       <ul>
-        <li><a href="https://github.com/jxck/url">URL</a>
-        <li><a href="https://github.com/jxck/urlsearchparams">URLSearchParams</a>
+        <li>
+          <a href="https://github.com/jxck/url">URL</a>
+        </li>
+        <li>
+          <a href="https://github.com/jxck/urlsearchparams">URLSearchParams</a>
+        </li>
       </ul>
       <p>ところが今年に入ってやっと、 Node の本体の url module に、この WHATWG の URL オブジェクトを追加するという形で実装が始まったのが以下の issue である。
       <p><a href="https://github.com/nodejs/node/pull/7448">url: adding WHATWG URL support #7448</a>
       <p>それが v7.0.0 で Experimental という形で <a href="https://nodejs.org/en/blog/release/v7.0.0/">ship</a> された。
     </section>
     <section>
-      <h2 id="URL+オブジェクト"><a href="#URL+オブジェクト">URL オブジェクト</a></h2>
+      <h2 id="url-オブジェクト"><a href="#url-オブジェクト">URL オブジェクト</a></h2>
       <p>Node v7.0.0 で実装された API は以下のように使うことができる。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre class=js><code translate="no">const URL = require(&#039;url&#039;).URL;
@@ -217,7 +225,7 @@ console.log(ja);
       <p><a href="https://developer.mozilla.org/en/docs/Web/API/URL/URL">https://developer.mozilla.org/en/docs/Web/API/URL/URL</a>
     </section>
     <section>
-      <h2 id="URLSearchParams+オブジェクト"><a href="#URLSearchParams+オブジェクト">URLSearchParams オブジェクト</a></h2>
+      <h2 id="urlsearchparams-オブジェクト"><a href="#urlsearchparams-オブジェクト">URLSearchParams オブジェクト</a></h2>
       <p>また、 query parameter を表現する URLSearchParams は別オブジェクトであるため、 query parameter の取得や生成もこのオブジェクトを利用できる。
       <p>一応 Node v7.0.0 にもコードはあるようだが、正しく動いてないようなので、完成予定の Chrome の結果を代わりに貼っておく。
       <pre class=js><code translate="no">const URL = require(&#039;url&#039;).URL;

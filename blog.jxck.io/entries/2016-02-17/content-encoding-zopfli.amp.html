@@ -80,15 +80,15 @@ by Jxck
 
 <style amp-custom>
 article section p {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article pre {
-  margin-left: 0.8em;
+  margin: 0;
 }
 
 article table {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article img {
@@ -373,7 +373,7 @@ dl dt::after {
   content: ":";
 }
 
-blockquote::before {
+blockquote p::before {
   content: "> ";
 }
 
@@ -435,7 +435,7 @@ blockquote {
   border: solid 1px #ddd;
   border-radius: 4px;
   padding: 1em;
-  margin: 1.4em 0;
+  margin: 0;
 }
 
 code {
@@ -618,17 +618,17 @@ th:last-child, td:last-child {
   <article>
     <h1><a href=/entries/2016-02-17/content-encoding-zopfli.html>zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>HTTP では <code translate="no">Accept-Encoding</code> と <code translate="no">Content-Encoding</code> でのネゴシエーションにより、 gz などで圧縮したコンテンツを転送することができる。本サイトでは zopfli を用いて gzip 形式の配信に対応した。
     </section>
     <section>
-      <h2 id="Accept-Encoding"><a href="#Accept-Encoding">Accept-Encoding</a></h2>
+      <h2 id="accept-encoding"><a href="#accept-encoding">Accept-Encoding</a></h2>
       <p>クライアントが <code translate="no">Accept-Encoding: gzip</code> を指定して来た場合、サーバは <code translate="no">Content-Encoding: gzip</code> を付与し、 URI に指定されたコンテンツを gzip 圧縮して送信することができる。
       <p>特にテキストベースの HTML, CSS, JS などは、この圧縮の効果が高く、ペイロードが小さくなるためパフォーマンスの向上が期待できる。
       <p>逆に、 PNG, JPEG など圧縮形式の画像などについては、オーバーヘッドが発生しサイズが増える可能性もあるため、対象フォーマットの選択には注意が必要である。
     </section>
     <section>
-      <h2 id="Transfer-Encoding"><a href="#Transfer-Encoding">Transfer-Encoding</a></h2>
+      <h2 id="transfer-encoding"><a href="#transfer-encoding">Transfer-Encoding</a></h2>
       <p>HTTP には、似た仕組みとして <code translate="no">TE: gzip</code> と <code translate="no">Transfer-Encoding: gzip</code> による、経路圧縮がある。
       <p>これは、前述の <code translate="no">Accept-Encoding</code> が End-To-End で圧縮したコンテンツを転送するのと違い、 Hop-by-Hop で経路上での圧縮を実施する点で、意味的に差異がある。
       <p>例えば HTML で言えば、前者は「コンテンツ自体が gzip された html である」のに対し、後者は「コンテンツはあくまで html だが、経路上では圧縮されている」ということになる。
@@ -645,21 +645,21 @@ th:last-child, td:last-child {
       </ul>
     </section>
     <section>
-      <h2 id="h2o+の設定"><a href="#h2o+の設定">h2o の設定</a></h2>
+      <h2 id="h2o-の設定"><a href="#h2o-の設定">h2o の設定</a></h2>
       <p>本サイトをデプロイしている h2o は、 <code translate="no">Content-Encoding: gzip</code> による転送を 2 つの方法でサポートしている。
       <section>
-        <h3 id="gzip+ディレクティブ"><a href="#gzip+ディレクティブ">gzip ディレクティブ</a></h3>
+        <h3 id="gzip-ディレクティブ"><a href="#gzip-ディレクティブ">gzip ディレクティブ</a></h3>
         <p>以下を設定すると、 h2o はコンテンツを on the fly (リクエストが来てから)圧縮し送信してくれる。
         <pre><code translate="no">gzip: ON</code></pre>
-        <p><a href="https://h2o.examp1e.net/configure/gzip_directives.html#gzip">Configure > Gzip Directives > "gzip"</a>
+        <p><a href="https://h2o.examp1e.net/configure/gzip_directives.html#gzip">Configure &gt; Gzip Directives &gt; &ldquo;gzip&rdquo;</a>
         <p>これにより、あらかじめ圧縮していないコンテンツや、バックエンドのアプリケーションが動的に生成したコンテンツを圧縮転送することができる。
         <p>圧縮時間分のオーバーヘッドは考えられるが、一般的に gzip の処理時間は小さく、転送量の削減によるネットワーク的メリットの方が高いため、この方法が採用されることが多い。
       </section>
       <section>
-        <h3 id="send-gzip+ディレクティブ"><a href="#send-gzip+ディレクティブ">send-gzip ディレクティブ</a></h3>
+        <h3 id="send-gzip-ディレクティブ"><a href="#send-gzip-ディレクティブ">send-gzip ディレクティブ</a></h3>
         <p>あらかじめコンテンツを gzip 圧縮した状態で <code translate="no">ファイル名.gz</code> で配置し、以下を設定すると、 h2o は自動的に圧縮済みファイルを転送してくれる。
         <pre><code translate="no">file.send-gzip: ON</code></pre>
-        <p><a href="https://h2o.examp1e.net/configure/file_directives.html#file.send-gzip">Configure > File Directives > "file.send-gzip"</a>
+        <p><a href="https://h2o.examp1e.net/configure/file_directives.html#file.send-gzip">Configure &gt; File Directives &gt; &ldquo;file.send-gzip&rdquo;</a>
         <p>事前に圧縮するため、レスポンスへのオーバーヘッドは無くなる。
         <p>しかし、バックエンドが動的に生成するレスポンスには適用できないため、事前に準備可能な静的ファイルへの適用に限定される。
       </section>
@@ -756,7 +756,8 @@ th:last-child, td:last-child {
               <td class=align-right>5156</td>
             </tr>
           </tbody>
-        </table><p>この結果だと <code translate="no">-i20</code> 以上は誤差のようである。
+        </table>
+        <p>この結果だと <code translate="no">-i20</code> 以上は誤差のようである。
         <p>ただ、開発用の Mac では少し違う結果が出たりもしたため、結果 <code translate="no">i=30</code> くらいに落ち着いた。
         <p>また、 <a href="https://jxck.io/assets/img/jxck.webp">WebP</a> と <a href="https://jxck.io/assets/img/jxck.png">PNG</a> の画像ファイルでも検証したところ、以下のようになった。
         <table>
@@ -784,21 +785,26 @@ th:last-child, td:last-child {
               <td class=align-right>1873</td>
             </tr>
           </tbody>
-        </table><p>WebP はそもそも圧縮率が高いためか、オーバーヘッドが出ている。
+        </table>
+        <p>WebP はそもそも圧縮率が高いためか、オーバーヘッドが出ている。
         <p>画像は、画像サイズ自体の最適化などの問題があるが、とりあえずは WebP 形式のみ除外することにした。除外対象は、定期的にサイズを確認し修正して行く。
       </section>
     </section>
     <section>
-      <h2 id="zopfli+++send-gzip"><a href="#zopfli+++send-gzip">zopfli + send-gzip</a></h2>
+      <h2 id="zopfli--send-gzip"><a href="#zopfli--send-gzip">zopfli + send-gzip</a></h2>
       <p>以上により、本サイトでは全静的コンテンツをデプロイプロセスで zopfli による圧縮を実施し、それを h2o の <code translate="no">send-gzip</code> ディレクティブで配信することにした。
       <p>検証の結果、このサイトでは以下の設定を採用した。
       <ul>
-        <li><code translate="no">i=30</code>
-        <li><code translate="no">send-gzip: ON</code>
+        <li>
+          <code translate="no">i=30</code>
+        </li>
+        <li>
+          <code translate="no">send-gzip: ON</code>
+        </li>
         <li>webp は対象外
       </ul>
       <p>動作は、 HTTP ヘッダで確認できる。
-      <p><amp-img layout=responsive src=zopfli.png#656x463 alt="圧縮が有効である場合、 content-encoding: gzip が追加されていることを確認" title="Content-Encoding Support Before/After" width=656 height=463>
+      <p><amp-img layout=responsive src=zopfli.png#656x463 alt="圧縮が有効である場合、 content-encoding: gzip が追加されていることを確認" title="Content-Encoding Support Before/After" width=656 height=463></p>
       <p>また、一部は h2o の mruby-handler で動的な生成をしているが、 <code translate="no">gzip</code> ディレクティブの効果は未検証なので設定していない。
       <p>本サイトの中で、 <code translate="no">.html</code>, <code translate="no">.css</code>, <code translate="no">.js</code> で終わるような URL は、 <code translate="no">.gz</code> を後ろに付けると zopfli 圧縮版が取得できるので、興味があれば試してみて欲しい。
       <p><a href="https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html.gz">この HTML の zopfli 圧縮版</a>

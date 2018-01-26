@@ -80,15 +80,15 @@ by Jxck
 
 <style amp-custom>
 article section p {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article pre {
-  margin-left: 0.8em;
+  margin: 0;
 }
 
 article table {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article img {
@@ -373,7 +373,7 @@ dl dt::after {
   content: ":";
 }
 
-blockquote::before {
+blockquote p::before {
   content: "> ";
 }
 
@@ -435,7 +435,7 @@ blockquote {
   border: solid 1px #ddd;
   border-radius: 4px;
   padding: 1em;
-  margin: 1.4em 0;
+  margin: 0;
 }
 
 code {
@@ -618,14 +618,14 @@ th:last-child, td:last-child {
   <article>
     <h1><a href=/entries/2017-12-06/font-display.html>Font Display プロパティを用いた FOIT/FOUT 最適化</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>Web Font 読み込み中の HTML 表示については、ブラウザデフォルトの挙動に依存していた。
       <p>フォントファイルサイズが大きい場合は、 FOIT/FOUT の問題が顕著になり、 JS を用いた回避策が利用されることも多かった。
       <p>これを解決するため、 CSS に <code translate="no">font-display</code> プロパティが作成され、実装が進んでいる。
       <p>各プロパティの違いと挙動、そして本サイトの適用について解説する。
     </section>
     <section>
-      <h2 id="Loading+Web+Font"><a href="#Loading+Web+Font">Loading Web Font</a></h2>
+      <h2 id="loading-web-font"><a href="#loading-web-font">Loading Web Font</a></h2>
       <p>Web Font は、特に日本語のように文字数が多い場合、ファイルが大きくなる。
       <p>フォント取得中に、読み込み済みの HTML をどう表示するかについてはいくつかの方法があり、それによってユーザの体験は変わる。
       <p>これまで、フォント読み込み中の挙動は、ブラウザのデフォルト実装に依存していた。
@@ -646,10 +646,10 @@ th:last-child, td:last-child {
       <p><strong>swap period</strong> に入ったら、代替フォントで表示を行う。
       <p>しかし、フォントの取得は継続し、完了したら代替フォントと置き換える。
       <p><strong>failure period</strong> に入っても取得が終わらなければ、フォントの取得は中断し代替フォントのままになる。
-      <p><amp-img layout=responsive src=font-display.svg#1000x225 alt="block period の間は fallback font を表示、 swap period の間は fetch が終わると font を置き換え、 failure period に入ると fetch を中断" title="font rendering flow with block/swap/failure period in browser" width=1000 height=225>
+      <p><amp-img layout=responsive src=font-display.svg#1000x225 alt="block period の間は fallback font を表示、 swap period の間は fetch が終わると font を置き換え、 failure period に入ると fetch を中断" title="font rendering flow with block/swap/failure period in browser" width=1000 height=225></p>
     </section>
     <section>
-      <h2 id="FOIT/FOUT"><a href="#FOIT/FOUT">FOIT/FOUT</a></h2>
+      <h2 id="foitfout"><a href="#foitfout">FOIT/FOUT</a></h2>
       <p>ブラウザのこうした挙動は、 UX を著しく損ねる場合がある。
       <p>特に、ネットワークが遅い場合や、フォントファイルサイズが大きい場合は、フォントの取得に時間がかかる。
       <p>すると、以下のような現象が発生する。
@@ -661,8 +661,12 @@ th:last-child, td:last-child {
       </dl>
       <p>こうした現象を防ぐためには、 JavaScript でフォントの読み込み/表示を制御するのライブラリが使われることが多い。
       <ul>
-        <li><a href="https://github.com/typekit/webfontloader">https://github.com/typekit/webfontloader</a>
-        <li><a href="https://github.com/bramstein/fontfaceobserver">https://github.com/bramstein/fontfaceobserver</a>
+        <li>
+          <a href="https://github.com/typekit/webfontloader">https://github.com/typekit/webfontloader</a>
+        </li>
+        <li>
+          <a href="https://github.com/bramstein/fontfaceobserver">https://github.com/bramstein/fontfaceobserver</a>
+        </li>
       </ul>
     </section>
     <section>
@@ -723,16 +727,22 @@ th:last-child, td:last-child {
       <p>個人的には、ネットワークが著しく遅い環境で「ブラウザのフォント取得がどうなるか」や「別のページに遷移すると書体が変わる」という状況が、どういう UX になるかには興味があるため、実験の意味も含めて <code translate="no">font-display: optional</code> をページ全体に適用することとした。
     </section>
     <section>
-      <h2 id="DEMO"><a href="#DEMO">DEMO</a></h2>
+      <h2 id="demo"><a href="#demo">DEMO</a></h2>
       <p>本サイトとは別に、大きいフォントファイルを、 4 つのプロパティで表示するデモを以下に用意した。
       <p>DEMO: <a href="https://labs.jxck.io/webfont/font-display.html">https://labs.jxck.io/webfont/font-display.html</a>
     </section>
     <section>
-      <h2 id="Link"><a href="#Link">Link</a></h2>
+      <h2 id="link"><a href="#link">Link</a></h2>
       <ul>
-        <li><a href="https://drafts.csswg.org/css-fonts-4/#font-display-desc">https://drafts.csswg.org/css-fonts-4/#font-display-desc</a>
-        <li><a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/webfont-optimization#customize_the_text_rendering_delay">https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/webfont-optimization#customize_the_text_rendering_delay</a>
-        <li><a href="https://font-display.glitch.me/">https://font-display.glitch.me/</a>
+        <li>
+          <a href="https://drafts.csswg.org/css-fonts-4/#font-display-desc">https://drafts.csswg.org/css-fonts-4/#font-display-desc</a>
+        </li>
+        <li>
+          <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/webfont-optimization#customize_the_text_rendering_delay">https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/webfont-optimization#customize_the_text_rendering_delay</a>
+        </li>
+        <li>
+          <a href="https://font-display.glitch.me/">https://font-display.glitch.me/</a>
+        </li>
       </ul>
     </section>
   </article>

@@ -80,15 +80,15 @@ by Jxck
 
 <style amp-custom>
 article section p {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article pre {
-  margin-left: 0.8em;
+  margin: 0;
 }
 
 article table {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article img {
@@ -373,7 +373,7 @@ dl dt::after {
   content: ":";
 }
 
-blockquote::before {
+blockquote p::before {
   content: "> ";
 }
 
@@ -435,7 +435,7 @@ blockquote {
   border: solid 1px #ddd;
   border-radius: 4px;
   padding: 1em;
-  margin: 1.4em 0;
+  margin: 0;
 }
 
 code {
@@ -618,15 +618,19 @@ th:last-child, td:last-child {
   <article>
     <h1><a href=/entries/2017-05-18/gen_statem.html>gen_fsm から gen_statem へ</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>Erlang/OTP 19 から、 gen_fsm の後継として gen_statem が導入された。
       <p>OTP の内部でも ssl などはすでに gen_statem に移行している。
       <p>このビヘイビアの概要について記す。
       <section>
         <h3 id="reference"><a href="#reference">reference</a></h3>
         <ul>
-          <li><a href="http://erlang.org/doc/man/gen_statem.html">gen_statem API</a>
-          <li><a href="http://erlang.org/doc/design_principles/statem.html">gen_statem Behavior</a>
+          <li>
+            <a href="http://erlang.org/doc/man/gen_statem.html">gen_statem API</a>
+          </li>
+          <li>
+            <a href="http://erlang.org/doc/design_principles/statem.html">gen_statem Behavior</a>
+          </li>
         </ul>
       </section>
       <section>
@@ -636,15 +640,15 @@ th:last-child, td:last-child {
       </section>
     </section>
     <section>
-      <h2 id="State+Machine"><a href="#State+Machine">State Machine</a></h2>
+      <h2 id="state-machine"><a href="#state-machine">State Machine</a></h2>
       <p>特にサーバのようなプログラムでは、状態の管理が重要になる。
-      <p>この状態の変化を、現在の状態(S)と発生したイベント(E)の組み合わせによって、実行する処理(A)と次の状態(S')とし、以下のようにモデル化する。
+      <p>この状態の変化を、現在の状態(S)と発生したイベント(E)の組み合わせによって、実行する処理(A)と次の状態(S&rsquo;)とし、以下のようにモデル化する。
       <pre><code translate="no">State(S) x Event(E) -&gt; Actions(A), State(S&#039;)</code></pre>
       <p>これを、状態(S)を関数名とし、イベント(E)をパターンマッチで明示的に表現する gen_fsm ビヘイビアを用いて実装されることが多かった。
       <p>gen_statem は、この gen_fsm を強化したものとなっている。
     </section>
     <section>
-      <h2 id="gen_fsm+to+gen_statem"><a href="#gen_fsm+to+gen_statem">gen_fsm to gen_statem</a></h2>
+      <h2 id="gen_fsm-to-gen_statem"><a href="#gen_fsm-to-gen_statem">gen_fsm to gen_statem</a></h2>
       <p>まず、ビヘイビアの callback API が整理されている。
       <p>gen_fsm と似ているものの互換性が保たれているわけではない。
       <p>その上で追加された機能には以下のようなものがある。
@@ -759,7 +763,7 @@ handle_event(#{data := []}, EventContent, State, Data) -&gt; ...;
 handle_event(#{data := [1,2,3]}, EventContent, State, Data) -&gt; ...;</code></pre>
     </section>
     <section>
-      <h2 id="State+Enter+Calls"><a href="#State+Enter+Calls">State Enter Calls</a></h2>
+      <h2 id="state-enter-calls"><a href="#state-enter-calls">State Enter Calls</a></h2>
       <p><code translate="no">callback_mode</code> で <code translate="no">state_enter</code> を追加すると、状態遷移時に一度実行される State Enter Call を実行できる。
       <pre class=erlang><code translate="no">callback_mode() -&gt;
     [state_functions, state_enter].
@@ -774,12 +778,12 @@ StateName(cast, OldState, Data) -&gt;
       <p>State Enter Call 以外で呼びだした <code translate="no">repeat_state</code> は <code translate="no">keep_state</code> と等価。
     </section>
     <section>
-      <h2 id="Timeout"><a href="#Timeout">Timeout</a></h2>
+      <h2 id="timeout"><a href="#timeout">Timeout</a></h2>
       <p>gen_statem の中でのタイムアウトは主に 3 つの方法がある。
       <p>サーバ実装などにおいては、相手からの応答のタイムアウトや、トークンの期限など、タイムアウトのモデルは非常に重要だ。
       <p>gen_fsm よりも強化されており、 gen_statem を使う大きなモチベーションの 1 つと感じる。
       <section>
-        <h3 id="Timeout+Event"><a href="#Timeout+Event">Timeout Event</a></h3>
+        <h3 id="timeout-event"><a href="#timeout-event">Timeout Event</a></h3>
         <p>以下のようなアクションを返すと、イベントタイムアウトが開始される。
         <pre class=erlang><code translate="no">{next_state, NextState, Data, 10000}
 {next_state, NextState, Data, [{timeout, 10000, EventContent}]}</code></pre>
@@ -788,7 +792,7 @@ StateName(cast, OldState, Data) -&gt;
         <p>どんなイベントが発生してもこのタイマーはキャンセルされる。
       </section>
       <section>
-        <h3 id="State+Timeout+Event"><a href="#State+Timeout+Event">State Timeout Event</a></h3>
+        <h3 id="state-timeout-event"><a href="#state-timeout-event">State Timeout Event</a></h3>
         <p>以下のようなアクションを返すと、ステートタイムアウトが開始される。
         <pre class=erlang><code translate="no">{next_state, NextState, Data, [{state_timeout, 10000, EventContent}]}</code></pre>
         <p>1000ms 以内にステートが遷移しなければ Timeout イベントが上がる。
@@ -796,7 +800,7 @@ StateName(cast, OldState, Data) -&gt;
         <p>どんな状態に遷移していもこのタイマーはキャンセルされる。
       </section>
       <section>
-        <h3 id="Erlang+Timer"><a href="#Erlang+Timer">Erlang Timer</a></h3>
+        <h3 id="erlang-timer"><a href="#erlang-timer">Erlang Timer</a></h3>
         <p>イベントやステートの変化などをまたぐ、独立したタイマーを自前で管理したい場合、ハンドラ内で erlang:start_timer/3 を用いてタイマーを作り、それを保持しておく。
         <pre class=erlang><code translate="no">Timer = erlang:start_timer(1000, self(), Data)</code></pre>
         <p>このタイマーのタイムアウトが発生すると、その時いるステートでタイムアウトイベントが上がる。
@@ -806,13 +810,13 @@ StateName(cast, OldState, Data) -&gt;
       </section>
     </section>
     <section>
-      <h2 id="Postponing"><a href="#Postponing">Postponing</a></h2>
+      <h2 id="postponing"><a href="#postponing">Postponing</a></h2>
       <p>発生したイベントを先送りすることができるアクション。
       <p>先送りしたイベントはキューに積まれ、状態が遷移したら再度順番に再生される。
       <pre class=erlang><code translate="no">{keep_state, Data, [postpone]}</code></pre>
     </section>
     <section>
-      <h2 id="Self+Generated+Events"><a href="#Self+Generated+Events">Self Generated Events</a></h2>
+      <h2 id="self-generated-events"><a href="#self-generated-events">Self Generated Events</a></h2>
       <p>ステートマシン内部から、自身に対してイベントを送信することができる。
       <p>gen_fsm では、イベントは gen_statem を用いて発行する以外になかったが、コールバック処理の結果別のイベントを発生したい場合がある。
       <p>gen_statem では、以下のような <code translate="no">next_event</code> アクションを返すことで、内部からイベントを発行できる。
@@ -820,14 +824,14 @@ StateName(cast, OldState, Data) -&gt;
       <p>call, info などすべての EventType は、 <code translate="no">next_event</code> で送ることができ、外部からのイベントと同じように扱うことができる。
     </section>
     <section>
-      <h2 id="internal+event"><a href="#internal+event">internal event</a></h2>
+      <h2 id="internal-event"><a href="#internal-event">internal event</a></h2>
       <p><code translate="no">internal</code> という EventType があり、これは <code translate="no">next_event</code> でしか送ることができないようになっている。
       <pre class=erlang><code translate="no">{keep_state, Data, [{reply, From, ok}, {next_event, internal, Arg}]};</code></pre>
       <p>逆をいえば、 <code translate="no">internal</code> は外部から送られてくることが無いため、内部で発生した Self Generated イベントであることが保証できる。
       <p>他の EventType は <code translate="no">next_event</code> で来たものか、外から来たものか区別ができないため、イベントを内部に閉じたい場合に利用することができる。
     </section>
     <section>
-      <h2 id="Module:format_status/2"><a href="#Module:format_status/2">Module:format_status/2</a></h2>
+      <h2 id="moduleformat_status2"><a href="#moduleformat_status2">Module:format_status/2</a></h2>
       <p>sys:get_status/1,2 や teminate 時のダンプなどで出力される State の値を、事前に加工できるフックが導入された。
       <p>オプションなので、 Export されていなくても良い。
       <p>状態が大きい場合に重要な情報だけに絞る、もしくは機密情報が出力されるのを防ぐ目的などで使われる。

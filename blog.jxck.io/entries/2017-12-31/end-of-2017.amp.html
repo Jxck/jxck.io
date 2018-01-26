@@ -80,15 +80,15 @@ by Jxck
 
 <style amp-custom>
 article section p {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article pre {
-  margin-left: 0.8em;
+  margin: 0;
 }
 
 article table {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article img {
@@ -373,7 +373,7 @@ dl dt::after {
   content: ":";
 }
 
-blockquote::before {
+blockquote p::before {
   content: "> ";
 }
 
@@ -435,7 +435,7 @@ blockquote {
   border: solid 1px #ddd;
   border-radius: 4px;
   padding: 1em;
-  margin: 1.4em 0;
+  margin: 0;
 }
 
 code {
@@ -618,13 +618,15 @@ th:last-child, td:last-child {
   <article>
     <h1><a href=/entries/2017-12-31/end-of-2017.html>2017 年を振り返る</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>例年通り、今年を振り返る。
     </section>
     <section>
-      <h2 id="Web+のスナップショットを取る"><a href="#Web+のスナップショットを取る">Web のスナップショットを取る</a></h2>
+      <h2 id="web-のスナップショットを取る"><a href="#web-のスナップショットを取る">Web のスナップショットを取る</a></h2>
       <p>これまでは、この blog にしても、 mozaic.fm や nextwebconf にしても
-      <blockquote>Web でいま何が起こっていて、これからどうなっていくのか</blockquote>
+      <blockquote>
+        <p>Web でいま何が起こっていて、これからどうなっていくのか
+      </blockquote>
       <p>に対して、 1 つのテーマを深掘りするスタイルを中心に行なってきた。
       <p>しかし、そこからこぼれ落ちる、テーマ立てしにくい細かくも重要な議論を、うまく扱えないかをずっと考えていた。
       <p>とはいえ、速報や単なるニュースまとめではなく、そこまでにあった <strong>流れ</strong> に対して、解釈を加えて保存する。
@@ -639,37 +641,61 @@ th:last-child, td:last-child {
       <p>試したいことはまだまだあるので、来年はそちらに振りたい。
     </section>
     <section>
-      <h2 id="mozaic.fm"><a href="#mozaic.fm">mozaic.fm</a></h2>
+      <h2 id="mozaicfm"><a href="#mozaicfm">mozaic.fm</a></h2>
       <p>定期更新が入ったため、今年は少し多めの 8 エピソードを公開した。
       <ul>
-        <li><a href="https://mozaic.fm/episodes/32/yearly-web-2017.html">ep32 Yearly Web 2017</a>
-        <li><a href="https://mozaic.fm/episodes/31/ietf.html">ep31 IETF</a>
-        <li><a href="https://mozaic.fm/episodes/30/monthly-web-201711.html">ep30 Monthly Web 201711</a>
-        <li><a href="https://mozaic.fm/episodes/29/houdini.html">ep29 Houdini</a>
-        <li><a href="https://mozaic.fm/episodes/28/monthly-web-201710.html">ep28 Monthly Web 201710</a>
-        <li><a href="https://mozaic.fm/episodes/27/monthly-web-201709.html">ep27 Monthly Web 201709</a>
-        <li><a href="https://mozaic.fm/episodes/26/monthly-web-201708.html">ep26 Monthly Web 201708</a>
-        <li><a href="https://mozaic.fm/episodes/25/monthly-web-201707.html">ep25 Monthly Web 201707</a>
+        <li>
+          <a href="https://mozaic.fm/episodes/32/yearly-web-2017.html">ep32 Yearly Web 2017</a>
+        </li>
+        <li>
+          <a href="https://mozaic.fm/episodes/31/ietf.html">ep31 IETF</a>
+        </li>
+        <li>
+          <a href="https://mozaic.fm/episodes/30/monthly-web-201711.html">ep30 Monthly Web 201711</a>
+        </li>
+        <li>
+          <a href="https://mozaic.fm/episodes/29/houdini.html">ep29 Houdini</a>
+        </li>
+        <li>
+          <a href="https://mozaic.fm/episodes/28/monthly-web-201710.html">ep28 Monthly Web 201710</a>
+        </li>
+        <li>
+          <a href="https://mozaic.fm/episodes/27/monthly-web-201709.html">ep27 Monthly Web 201709</a>
+        </li>
+        <li>
+          <a href="https://mozaic.fm/episodes/26/monthly-web-201708.html">ep26 Monthly Web 201708</a>
+        </li>
+        <li>
+          <a href="https://mozaic.fm/episodes/25/monthly-web-201707.html">ep25 Monthly Web 201707</a>
+        </li>
       </ul>
       <p>最初 Monthly Web をブログで試行したが、思ったことが実現できなかったため、 7 月から Podcast に移すことにした。
       <p>今年は、それを軌道に載せるのに費やしたが、来年は溜まっている通常回との並走をうまく軌道に乗せたい。
       <p>出て頂いたみなさん、そして、付き合ってくれた <a href="https://twitter.com/myakura">@myakura</a> さん、ありがとうございました。
     </section>
     <section>
-      <h2 id="HTTP2+Study"><a href="#HTTP2+Study">HTTP2 Study</a></h2>
+      <h2 id="http2-study"><a href="#http2-study">HTTP2 Study</a></h2>
       <ul>
-        <li><a href="https://http2study.connpass.com/event/48577/">QUIC meetup</a>
-        <li><a href="https://http2study.connpass.com/event/63998/">http2 勉強会 #11 (IETF, TLS1.3, QUIC)</a>
+        <li>
+          <a href="https://http2study.connpass.com/event/48577/">QUIC meetup</a>
+        </li>
+        <li>
+          <a href="https://http2study.connpass.com/event/63998/">http2 勉強会 #11 (IETF, TLS1.3, QUIC)</a>
+        </li>
       </ul>
       <p>特に QUIC meetup は、東京開催の Interim に上手く合わせられたので、かなり豪華な内容となった。
       <p>しかし、もう <strong>HTTP2</strong> Study という感じでもない(QUIC/TLS1.3 の話題しかしてない)ので、今後どうするかはそろそろ考えたいと思っている。
     </section>
     <section>
-      <h2 id="Web+Study+JP"><a href="#Web+Study+JP">Web Study JP</a></h2>
+      <h2 id="web-study-jp"><a href="#web-study-jp">Web Study JP</a></h2>
       <p>Web の勉強会が欲しかったので作った。
       <ul>
-        <li><a href="https://web-study.connpass.com/event/65267/">serviceworker_study</a>
-        <li><a href="https://web-study.connpass.com/event/65267/">html_modules_study</a>
+        <li>
+          <a href="https://web-study.connpass.com/event/65267/">serviceworker_study</a>
+        </li>
+        <li>
+          <a href="https://web-study.connpass.com/event/65267/">html_modules_study</a>
+        </li>
       </ul>
       <p>議論したいと思う細かいトピックに対して、最短最小で開催できる場所として、来年も続けられたらと思う。
     </section>
@@ -677,13 +703,19 @@ th:last-child, td:last-child {
       <h2 id="発表"><a href="#発表">発表</a></h2>
       <p>振り返ると、 Web Study JP や、 Node 学園での AMA みたいに、スライドを作らないタイプの発表が多かった。
       <ul>
-        <li><a href="https://speakerdeck.com/jxck/web-over-serviceworker">Web over Service Worker</a> @ <a href="http://inside-frontend.com/">#inside_fe</a>
-        <li><a href="https://speakerdeck.com/jxck/csp-a-powerful-security-steroid">CSP powerful security steroid</a> @ <a href="https://developers-jp.googleblog.com/2017/01/chrome-tech-talk-night-9.html">#chromejp</a>
-        <li><a href="https://speakerdeck.com/jxck/csp-and-real-world-reporting">CSP real world reporting</a> @ <a href="https://atnd.org/events/85028">#rtechnight</a>
+        <li>
+          <a href="https://speakerdeck.com/jxck/web-over-serviceworker">Web over Service Worker</a> @ <a href="http://inside-frontend.com/">#inside_fe</a>
+        </li>
+        <li>
+          <a href="https://speakerdeck.com/jxck/csp-a-powerful-security-steroid">CSP powerful security steroid</a> @ <a href="https://developers-jp.googleblog.com/2017/01/chrome-tech-talk-night-9.html">#chromejp</a>
+        </li>
+        <li>
+          <a href="https://speakerdeck.com/jxck/csp-and-real-world-reporting">CSP real world reporting</a> @ <a href="https://atnd.org/events/85028">#rtechnight</a>
+        </li>
       </ul>
     </section>
     <section>
-      <h2 id="Erlang"><a href="#Erlang">Erlang</a></h2>
+      <h2 id="erlang"><a href="#erlang">Erlang</a></h2>
       <p>今年は Erlang ばかり書いていた。
       <p>だいぶ書き慣れたが、やっぱりネットワークプロトコルを実装する上では非常に良い言語だと感じる。
       <p>構文含めて気に入っているので、 Elixir をやりたいとは一度も思わなかった。

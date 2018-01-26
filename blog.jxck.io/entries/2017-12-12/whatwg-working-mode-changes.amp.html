@@ -80,15 +80,15 @@ by Jxck
 
 <style amp-custom>
 article section p {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article pre {
-  margin-left: 0.8em;
+  margin: 0;
 }
 
 article table {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article img {
@@ -373,7 +373,7 @@ dl dt::after {
   content: ":";
 }
 
-blockquote::before {
+blockquote p::before {
   content: "> ";
 }
 
@@ -435,7 +435,7 @@ blockquote {
   border: solid 1px #ddd;
   border-radius: 4px;
   padding: 1em;
-  margin: 1.4em 0;
+  margin: 0;
 }
 
 code {
@@ -618,26 +618,34 @@ th:last-child, td:last-child {
   <article>
     <h1><a href=/entries/2017-12-12/whatwg-working-mode-changes.html>WHATWG の IPR Policy と Governance Structure</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>WHATWG が IPR Policy と Governance Structure についての更新を発表した。
       <p>おおまかな流れと、これによって引き起されそうな変化について解説する。
     </section>
     <section>
-      <h2 id="Working+Mode+Changes"><a href="#Working+Mode+Changes">Working Mode Changes</a></h2>
+      <h2 id="working-mode-changes"><a href="#working-mode-changes">Working Mode Changes</a></h2>
       <p>昨夜(JST)、 WHATWG は以下のブログをポストした。
       <p><a href="https://blog.whatwg.org/working-mode-changes">The WHATWG Blog - Further working mode changes</a>
       <p>ブラウザベンダ各社もこれに賛同を表明している。
       <ul>
-        <li>mozilla: <a href="https://twitter.com/mozhacks/status/940258410477604864">https://twitter.com/mozhacks/status/940258410477604864</a>
-        <li>chrome:  <a href="https://twitter.com/ChromiumDev/status/940253003587694593">https://twitter.com/ChromiumDev/status/940253003587694593</a>
-        <li>safari:  <a href="https://twitter.com/webkit/status/940254938092879874">https://twitter.com/webkit/status/940254938092879874</a>
-        <li>edge:    <a href="https://twitter.com/MSEdgeDev/status/940255204032765953">https://twitter.com/MSEdgeDev/status/940255204032765953</a>
+        <li>
+          mozilla: <a href="https://twitter.com/mozhacks/status/940258410477604864">https://twitter.com/mozhacks/status/940258410477604864</a>
+        </li>
+        <li>
+          chrome:  <a href="https://twitter.com/ChromiumDev/status/940253003587694593">https://twitter.com/ChromiumDev/status/940253003587694593</a>
+        </li>
+        <li>
+          safari:  <a href="https://twitter.com/webkit/status/940254938092879874">https://twitter.com/webkit/status/940254938092879874</a>
+        </li>
+        <li>
+          edge:    <a href="https://twitter.com/MSEdgeDev/status/940255204032765953">https://twitter.com/MSEdgeDev/status/940255204032765953</a>
+        </li>
       </ul>
       <p>W3C も、公式ブログでこれに言及している。
       <p><a href="https://www.w3.org/blog/2017/12/whatwg-working-mode-changes/">WHATWG Working Mode Changes | W3C Blog</a>
     </section>
     <section>
-      <h2 id="WHATWG+と+W3C"><a href="#WHATWG+と+W3C">WHATWG と W3C</a></h2>
+      <h2 id="whatwg-と-w3c"><a href="#whatwg-と-w3c">WHATWG と W3C</a></h2>
       <p>現状 HTML の仕様については WHATWG が仕様を策定し、 W3C がそれをフォークしバージョニングして勧告している状態である。
       <p>詳細は以下で解説している。
       <p><a href="https://mozaic.fm/episodes/14/whatwg.html">ep14 WHATWG | mozaic.fm</a>
@@ -650,7 +658,7 @@ th:last-child, td:last-child {
       <p>そのベースの仕様として WHATWG の仕様に注目した。
     </section>
     <section>
-      <h2 id="2+つの+HTML"><a href="#2+つの+HTML">2 つの HTML</a></h2>
+      <h2 id="2-つの-html"><a href="#2-つの-html">2 つの HTML</a></h2>
       <p>WHATWG は、ブラウザベンダが中心になっているため互換性維持に対する思いが強い。
       <p>Web において、互換性が壊れることはあってはならない。 だから、 Web は互換を保ったまま先に進むしかない。
       <p>つまり <strong>Web にはバージョンが無い</strong>
@@ -661,7 +669,7 @@ th:last-child, td:last-child {
       <p>具体的には、 W3C は WHATWG からコピーする際に細かい部分に独自パッチを当てていることと、 W3C にはパテントポリシーがある点だ。
     </section>
     <section>
-      <h2 id="Further+working+mode+changes"><a href="#Further+working+mode+changes">Further working mode changes</a></h2>
+      <h2 id="further-working-mode-changes"><a href="#further-working-mode-changes">Further working mode changes</a></h2>
       <p>W3C はロイヤリティフリーを基本とするパテントポリシーを持っているが、 WHATWG にはそれがない。
       <p>それどころか、 WHATWG はその実態がコミュニティベースのグループのようなものであり、会員グループで法人格を持ち厳密なプロセスを走らせる W3C ほど盤石な組織といったものではない。
       <p>これにより、 W3C で勧告された仕様は、特定の企業にとっては安心して実装できる部分がある。
@@ -670,7 +678,7 @@ th:last-child, td:last-child {
       <p>今回の WHATWG の発表は、この WHATWG の体制を整備することと、 Patent Policy を導入するという点に注目すべきだろう。
     </section>
     <section>
-      <h2 id="Steering+Group"><a href="#Steering+Group">Steering Group</a></h2>
+      <h2 id="steering-group"><a href="#steering-group">Steering Group</a></h2>
       <p>基本的に、 WHATWG のやり方自体は今までと変わらないことが強調されている。
       <p>つまり、コミュニティベースで Living Standard を策定していくというこれまでの流れだ。
       <p>従来との大きな違いは、 Steering Group が設置されることだろう。
@@ -679,18 +687,20 @@ th:last-child, td:last-child {
       <p>ここには Mozilla, Apple, Microsoft, Google が参加しており、先の W3C のポストでは <a href="https://www.w3.org/blog/2017/12/whatwg-working-mode-changes/">W3C も invite された</a> とある。
     </section>
     <section>
-      <h2 id="IPR+Policy"><a href="#IPR+Policy">IPR Policy</a></h2>
+      <h2 id="ipr-policy"><a href="#ipr-policy">IPR Policy</a></h2>
       <p>WHATWG が導入した IPR Policy は以下にある。
       <p><a href="https://whatwg.org/ipr-policy">The WHATWG Intellectual Property Rights Policy</a>
       <p>ドキュメントの末尾にはこうある。
-      <blockquote>This document includes material derived from the W3C Patent Policy.</blockquote>
+      <blockquote>
+        <p>This document includes material derived from the W3C Patent Policy.
+      </blockquote>
       <p>W3C をベースにし、多くの標準化団体が行なっているそれと基本的には同じだとされている。
       <p>具体的にはロイヤリティフリーを基本としたポリシーだ。
       <p>今後は、 W3C が行なっていたような Patent 関連の調整を、このポリシーを元に Steering Group が行なっていくことになりそうだ。
       <p>HTML は、過去に Apple が保有する Canvas の特許を巡るパテントの扱いで揉めたこともあったが、こうした問題も今後は減る/適切に対処されるだろう。
     </section>
     <section>
-      <h2 id="Contributor+and+Workstream+Participant+Agreement"><a href="#Contributor+and+Workstream+Participant+Agreement">Contributor and Workstream Participant Agreement</a></h2>
+      <h2 id="contributor-and-workstream-participant-agreement"><a href="#contributor-and-workstream-participant-agreement">Contributor and Workstream Participant Agreement</a></h2>
       <p>関連する技術のロイヤリティフリーを保証して仕様を策定していくため、 OSS でいう CLA (Contributor License Agreement) に似た Agreement が用意された。
       <p><a href="https://participate.whatwg.org/agreement">Contributor and Workstream Participant Agreement</a>
       <p>今後 WHATWG HTML にコントリビュートする際には、これへの同意を求められるようだ。

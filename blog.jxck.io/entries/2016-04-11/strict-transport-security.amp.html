@@ -80,15 +80,15 @@ by Jxck
 
 <style amp-custom>
 article section p {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article pre {
-  margin-left: 0.8em;
+  margin: 0;
 }
 
 article table {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article img {
@@ -373,7 +373,7 @@ dl dt::after {
   content: ":";
 }
 
-blockquote::before {
+blockquote p::before {
   content: "> ";
 }
 
@@ -435,7 +435,7 @@ blockquote {
   border: solid 1px #ddd;
   border-radius: 4px;
   padding: 1em;
-  margin: 1.4em 0;
+  margin: 0;
 }
 
 code {
@@ -618,23 +618,25 @@ th:last-child, td:last-child {
   <article>
     <h1><a href=/entries/2016-04-11/strict-transport-security.html>HTTP Strict Transport Security(HSTS) 対応</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>本サイトにて HTTP Strict Transport Security (HSTS) を有効化した。
       <p><code translate="no">includeSubdomains</code> を用いた <code translate="no">*.jxck.io</code> 全体への適用および、ブラウザへの Preload 登録も検討したが、本サイトの特性上それは見送った。
       <p>導入に必要な設定や、注意点についてまとめる。
     </section>
     <section>
-      <h2 id="HSTS"><a href="#HSTS">HSTS</a></h2>
+      <h2 id="hsts"><a href="#hsts">HSTS</a></h2>
       <p>本サイト (<a href="https://blog.jxck.io">blog.jxck.io</a>) では、フル HTTPS 化が完了しており、 HTTP へのリクエストは全て HTTPS へリダイレクトしている。
       <p>特に本サイトのタイトル自体が <code translate="no">blog.jxck.io</code> であり、ドメイン名と同じになっているため、これが Twitter などで <code translate="no">http://blog.jxck.io</code> へのリンクと解釈される場合が多く、そこからの HTTP アクセスも少なくはない。
       <p>しかし、 MITM の脅威への対策が可能な HTTPS でも、最初のリクエストが HTTP であると、そこに付け入る隙ができてしまう。
       <p>そこで、 「<code translate="no">blog.jxck.io</code> にアクセスするときは必ず HTTPS を用いる」ことをブラウザに覚えさせ、 <code translate="no">http://blog.jxck.io</code> のリンクを踏んでも、ブラウザが自動的に <code translate="no">https://blog.jxck.io</code> に置き換えてアクセスさせる仕組みが HSTS である。
       <ul>
-        <li><a href="https://tools.ietf.org/html/rfc6797">RFC 6797 - HTTP Strict Transport Security (HSTS)</a>
+        <li>
+          <a href="https://tools.ietf.org/html/rfc6797">RFC 6797 - HTTP Strict Transport Security (HSTS)</a>
+        </li>
       </ul>
     </section>
     <section>
-      <h2 id="Strict-Transport-Security+ヘッダ"><a href="#Strict-Transport-Security+ヘッダ">Strict-Transport-Security ヘッダ</a></h2>
+      <h2 id="strict-transport-security-ヘッダ"><a href="#strict-transport-security-ヘッダ">Strict-Transport-Security ヘッダ</a></h2>
       <p>以下のような HTTP ヘッダを追加することで、 HSTS を有効にすることができる。
       <pre><code translate="no">Strict-Transport-Security: max-age=7776000</code></pre>
       <p>このヘッダは、 HTTP ではなく HTTPS のレスポンスに付与する。
@@ -643,7 +645,7 @@ th:last-child, td:last-child {
     </section>
     <section>
       <h2 id="preload"><a href="#preload">preload</a></h2>
-      <p>ただし、 HSTS はレスポンスヘッダで指定された値を、ブラウザが保存したあと有効になる仕組みのため、少なくとも一番最初にアクセスするドメインでは、際は http -> https のリダイレクトを避けられない。
+      <p>ただし、 HSTS はレスポンスヘッダで指定された値を、ブラウザが保存したあと有効になる仕組みのため、少なくとも一番最初にアクセスするドメインでは、際は http -&gt; https のリダイレクトを避けられない。
       <p>この性質は <a href="https://blog.jxck.io/entries/2016-04-09/public-key-pinning.html">HPKP</a> 同様 <strong>TOFU</strong> (Trust of First Use) と呼ばれる。
       <p>そこで、ブラウザに HSTS 対象ドメインのリストをあらかじめ含んでおくことで、ユーザがまだアクセスしたことがないドメインについても、初回アクセス時から HTTS アクセスを強制する仕組みが HSTS Preload である。
       <p>Chrome の場合は、以下からドメインを申請すると、審査が実施され、条件を満たすものは Chrome のソースコード中にある preload hsts のリストに追加される。

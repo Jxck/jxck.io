@@ -109,14 +109,14 @@
   <article>
     <h1><a href=/entries/2018-01-15/aom-and-av1.html>Apple の AOM 加盟と AV1 への期待</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>Apple が Alliance for Open Media に加盟したという報道があった。
       <p>もし、このまま Safari が AV1 をサポートするまで至れば、 WebRTC のコーデック戦争に一旦の落ち着きが出ると思われる。
       <p><a href="https://www.cnet.com/news/apple-online-video-compression-av1/">Apple joins alliance to shrink your online videos - CNET</a>
       <p>この動向について解説する。
     </section>
     <section>
-      <h2 id="WebRTC+Codec+WAR"><a href="#WebRTC+Codec+WAR">WebRTC Codec WAR</a></h2>
+      <h2 id="webrtc-codec-war"><a href="#webrtc-codec-war">WebRTC Codec WAR</a></h2>
       <p>WebRTC によって、動画/音声をやり取りする際に、ブラウザはどのコーデックをサポートするべきかという問題があった。
       <p>特に動画については以下のような要件が求められる
       <ul>
@@ -130,8 +130,12 @@
       <p>しかし、各社とも自分が保有する技術に寄せたいという思惑もあり長いこと議論が行われた。
       <p>結果的に、音声は Opus でほぼ落ち着いていたが、動画は VP8 と H.264 という折衷案で折れることになった。
       <ul>
-        <li><a href="https://tools.ietf.org/html/rfc7742">RFC 7742 - WebRTC Video Processing and Codec Requirements</a>
-        <li><a href="https://tools.ietf.org/html/rfc7874">RFC 7874 - WebRTC Audio Codec and Processing Requirements</a>
+        <li>
+          <a href="https://tools.ietf.org/html/rfc7742">RFC 7742 - WebRTC Video Processing and Codec Requirements</a>
+        </li>
+        <li>
+          <a href="https://tools.ietf.org/html/rfc7874">RFC 7874 - WebRTC Audio Codec and Processing Requirements</a>
+        </li>
       </ul>
       <p>一方すでに、 H.265/VP9 が性能的にも更新しており、 H.264/VP8 だけをサポートして終わりともいかない。
     </section>
@@ -146,7 +150,7 @@
       <p>音声は Opus で良いとして、動画については H.264/H.265/VP8/VP9 という選択肢の幅は、多様性として受け入れるほど嬉しいと言い切れない現状がある。
     </section>
     <section>
-      <h2 id="AV1"><a href="#AV1">AV1</a></h2>
+      <h2 id="av1"><a href="#av1">AV1</a></h2>
       <p>こうした問題を解決することを目標として AOM (Alliance for Open Media) により開発されているのが AV1 である。
       <p>AV1 は、最初から H.265 や VP9 を置き換えることを目的としており、 Google も VP10 開発から舵を切りその成果を組み込んでいる。
       <p>もちろん、最初からロイヤリティフリーなコーデックであることを目指している。
@@ -156,7 +160,7 @@
       <p>つまり、 WebRTC 的に言えば「<strong>あと Apple だけ</strong>」だった。
     </section>
     <section>
-      <h2 id="Apple+joins+AOM"><a href="#Apple+joins+AOM">Apple joins AOM</a></h2>
+      <h2 id="apple-joins-aom"><a href="#apple-joins-aom">Apple joins AOM</a></h2>
       <p>そんな中、新年早々 Apple が AOM に join したというニュースが出た。
       <p><a href="https://www.cnet.com/news/apple-online-video-compression-av1/">Apple joins alliance to shrink your online videos - CNET</a>
       <p>このニュースのソースは、 AOM の公式アナウンス等ではなく、 AOM のトップページにメンバー欄に Apple が追加されたことを元にしているようだ。

@@ -80,15 +80,15 @@ by Jxck
 
 <style amp-custom>
 article section p {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article pre {
-  margin-left: 0.8em;
+  margin: 0;
 }
 
 article table {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article img {
@@ -373,7 +373,7 @@ dl dt::after {
   content: ":";
 }
 
-blockquote::before {
+blockquote p::before {
   content: "> ";
 }
 
@@ -435,7 +435,7 @@ blockquote {
   border: solid 1px #ddd;
   border-radius: 4px;
   padding: 1em;
-  margin: 1.4em 0;
+  margin: 0;
 }
 
 code {
@@ -618,156 +618,250 @@ th:last-child, td:last-child {
   <article>
     <h1><a href=/entries/2017-01-27/monthly-web-201701.html>Monthly Web 2017/01</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>月一メモ
     </section>
     <section>
-      <h2 id="Browser"><a href="#Browser">Browser</a></h2>
+      <h2 id="browser"><a href="#browser">Browser</a></h2>
       <ul>
-        <li><a href="https://developers.google.com/web/updates/2017/01/nic56">1/25 Chrome 56</a><ul>
-          <li>scroll イベントの passive 化
-          <li>webvr
-          <li>web bluetooth
-          <li>position: sticky
-          <li>writeable streams
-          <li>HTML5 default
-        </ul>
-        <li><a href="https://www.mozilla.org/en-US/firefox/51.0/releasenotes/">1/24 Firefox 51</a><ul>
-          <li>https://developer.mozilla.org/en-US/Firefox/Releases/51
-          <li>webgl default
-          <li>idb2
-        </ul>
-        <li><a href="https://developer.apple.com/library/prerelease/content/releasenotes/General/WhatsNewInSafari/Articles/Safari_10_1.html">1/23 Safari 10.1</a><ul>
-          <li>fetch
-          <li>idb2
-          <li>custom elements
-          <li>input events
-          <li>form validation
-          <li>async/await
-          <li>grid layout
-        </ul>
+        <li>
+          <a href="https://developers.google.com/web/updates/2017/01/nic56">1/25 Chrome 56</a><ul>
+            <li>scroll イベントの passive 化
+            <li>webvr
+            <li>web bluetooth
+            <li>position: sticky
+            <li>writeable streams
+            <li>HTML5 default
+          </ul>
+        </li>
+        <li>
+          <a href="https://www.mozilla.org/en-US/firefox/51.0/releasenotes/">1/24 Firefox 51</a><ul>
+            <li>https://developer.mozilla.org/en-US/Firefox/Releases/51
+            <li>webgl default
+            <li>idb2
+          </ul>
+        </li>
+        <li>
+          <a href="https://developer.apple.com/library/prerelease/content/releasenotes/General/WhatsNewInSafari/Articles/Safari_10_1.html">1/23 Safari 10.1</a><ul>
+            <li>fetch
+            <li>idb2
+            <li>custom elements
+            <li>input events
+            <li>form validation
+            <li>async/await
+            <li>grid layout
+          </ul>
+        </li>
       </ul>
     </section>
     <section>
-      <h2 id="News"><a href="#News">News</a></h2>
+      <h2 id="news"><a href="#news">News</a></h2>
       <ul>
-        <li><a href="https://blog.mozilla.org/opendesign/arrival/">Mozilla の new logo</a><ul>
-          <li>フォントも無料公開されるらしい
-        </ul>
-        <li><a href="http://internet.watch.impress.co.jp/docs/yajiuma/1039551.html">マイナンバーサイト 32bit IE/Safari + Java</a><ul>
-          <li>IC カード対応のため止むを得ずらしい
-        </ul>
-        <li><a href="https://medium.com/webpack/webpack-2-2-the-final-release-76c3d43bf144">webpack 2 系(2.2)正式リリース</a><ul>
-          <li>tree shaking が入った(uglify で消す)
-        </ul>
-        <li><a href="https://www.webcomponents.org/">webcomponents.org がリニューアル</a><ul>
-          <li>API バージョンを v1 にあげた
-        </ul>
+        <li>
+          <a href="https://blog.mozilla.org/opendesign/arrival/">Mozilla の new logo</a><ul>
+            <li>フォントも無料公開されるらしい
+          </ul>
+        </li>
+        <li>
+          <a href="http://internet.watch.impress.co.jp/docs/yajiuma/1039551.html">マイナンバーサイト 32bit IE/Safari + Java</a><ul>
+            <li>IC カード対応のため止むを得ずらしい
+          </ul>
+        </li>
+        <li>
+          <a href="https://medium.com/webpack/webpack-2-2-the-final-release-76c3d43bf144">webpack 2 系(2.2)正式リリース</a><ul>
+            <li>tree shaking が入った(uglify で消す)
+          </ul>
+        </li>
+        <li>
+          <a href="https://www.webcomponents.org/">webcomponents.org がリニューアル</a><ul>
+            <li>API バージョンを v1 にあげた
+          </ul>
+        </li>
       </ul>
     </section>
     <section>
-      <h2 id="API"><a href="#API">API</a></h2>
+      <h2 id="api"><a href="#api">API</a></h2>
       <ul>
-        <li><a href="https://lists.webkit.org/pipermail/webkit-dev/2017-January/028684.html">Safari が credential management api</a><ul>
-          <li>もっと使われるといい
-        </ul>
-        <li><a href="https://docs.google.com/document/d/1vjiWxwhg9D0GNNOYgw3AxMG0iKOC9I3jlID4GTgZsac/edit">Blink が ES Modules 実装頑張ってる</a><ul>
-          <li>期待
-        </ul>
-        <li><a href="https://rachelandrew.co.uk/archives/2017/01/24/the-end-of-the-clearfix-hack/">display: flow-root で clearfix hack はもういらない</a><ul>
-          <li><a href="https://drafts.csswg.org/css-display/#valdef-display-flow-root">CSS Display Module Level 3</a>
-        </ul>
-        <li><a href="https://trac.webkit.org/changeset/210942">WebKit に WebRTC のコードが</a><ul>
-          <li>Chrome のコードをもってきてる
-        </ul>
-        <li><a href="https://developers-jp.googleblog.com/2017/01/google-amp-cache-and-amp-lite.html">AMP Lite</a><ul>
-          <li>cache-control: no-transform は無視するらしい(opt-in だからか)
-        </ul>
-        <li><a href="https://opensource.googleblog.com/2017/01/introducing-draco-compression-for-3d.html">新しい Google の圧縮ライブラリ Draco と guetzli</a><ul>
-          <li><a href="https://github.com/google/guetzli">https://github.com/google/guetzli</a>
-          <li>WebVR 系コンテンツ特化とか
-        </ul>
-        <li><a href="https://twitter.com/mozhacks/status/821005161602646016">Firefox に input type=date 系実装中</a><ul>
-          <li>はやくカレンダーライブラリいらなくなれ
-        </ul>
-        <li><a href="https://www.mitsue.co.jp/knowledge/blog/frontend/201701/13_1201.html">Webmention が W3C 勧告</a><ul>
-          <li><a href="https://www.w3.org/TR/2017/REC-webmention-20170112/">REC-webmention-20170112</a>
-          <li>トラックバックの現代版
-        </ul>
-        <li><a href="https://hackernoon.com/compiling-rust-to-webassembly-guide-411066a69fde">Compiling Rust to WebAssembly Guide</a><ul>
-          <li>rustup 入れてからハローワールドまで
-        </ul>
-        <li><a href="https://blogs.windows.com/windowsexperience/2017/01/09/announcing-windows-10-insider-preview-build-15002-pc/">Win10 Insider Preview に WebPayments</a><ul>
-          <li><a href="https://blogs.windows.com/msedgedev/2016/12/15/payment-request-api-edge/#QSDAJIzUWKHR6b7s.97">Simpler web payments: Introducing the Payment Request API</a>
-        </ul>
-        <li><a href="http://www.2ality.com/2017/01/import-operator.html">ES proposal: import()</a><ul>
-          <li>どのモジュールが呼んだかを知るため関数ではなくオペレータ
-        </ul>
-        <li><a href="https://docs.google.com/document/d/11kwtjxXelqsIELtHfXDWLWVPrdGJGdy4yvHu-2mGyn4/edit#heading=h.t1ozsjau67fw">MiniApp: Why full screen scrolling web apps are so hard</a><ul>
-          <li>あとで読む
-        </ul>
-        <li><a href="https://github.com/tc39/proposal-cancelable-promises/issues/70">Promise の cancel が白紙に</a><ul>
-          <li><a href="https://medium.com/@benlesh/promise-cancellation-is-dead-long-live-promise-cancellation-c6601f1f5082#.8803mtmd3">canceling promise is dead</a>
-          <li>domenic 大丈夫かな...
-          <li><a href="https://github.com/whatwg/fetch/issues/447">Aborting a fetch: The Next Generation #447</a>
-          <li><a href="https://github.com/whatwg/fetch/issues/455">meeting があった</a>
-        </ul>
-        <li><a href="https://github.com/google/ngx_token_binding">google/ngx_token_binding</a><ul>
-          <li>token_binding 実装
-        </ul>
+        <li>
+          <a href="https://lists.webkit.org/pipermail/webkit-dev/2017-January/028684.html">Safari が credential management api</a><ul>
+            <li>もっと使われるといい
+          </ul>
+        </li>
+        <li>
+          <a href="https://docs.google.com/document/d/1vjiWxwhg9D0GNNOYgw3AxMG0iKOC9I3jlID4GTgZsac/edit">Blink が ES Modules 実装頑張ってる</a><ul>
+            <li>期待
+          </ul>
+        </li>
+        <li>
+          <a href="https://rachelandrew.co.uk/archives/2017/01/24/the-end-of-the-clearfix-hack/">display: flow-root で clearfix hack はもういらない</a><ul>
+            <li>
+              <a href="https://drafts.csswg.org/css-display/#valdef-display-flow-root">CSS Display Module Level 3</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="https://trac.webkit.org/changeset/210942">WebKit に WebRTC のコードが</a><ul>
+            <li>Chrome のコードをもってきてる
+          </ul>
+        </li>
+        <li>
+          <a href="https://developers-jp.googleblog.com/2017/01/google-amp-cache-and-amp-lite.html">AMP Lite</a><ul>
+            <li>cache-control: no-transform は無視するらしい(opt-in だからか)
+          </ul>
+        </li>
+        <li>
+          <a href="https://opensource.googleblog.com/2017/01/introducing-draco-compression-for-3d.html">新しい Google の圧縮ライブラリ Draco と guetzli</a><ul>
+            <li>
+              <a href="https://github.com/google/guetzli">https://github.com/google/guetzli</a>
+            </li>
+            <li>WebVR 系コンテンツ特化とか
+          </ul>
+        </li>
+        <li>
+          <a href="https://twitter.com/mozhacks/status/821005161602646016">Firefox に input type=date 系実装中</a><ul>
+            <li>はやくカレンダーライブラリいらなくなれ
+          </ul>
+        </li>
+        <li>
+          <a href="https://www.mitsue.co.jp/knowledge/blog/frontend/201701/13_1201.html">Webmention が W3C 勧告</a><ul>
+            <li>
+              <a href="https://www.w3.org/TR/2017/REC-webmention-20170112/">REC-webmention-20170112</a>
+            </li>
+            <li>トラックバックの現代版
+          </ul>
+        </li>
+        <li>
+          <a href="https://hackernoon.com/compiling-rust-to-webassembly-guide-411066a69fde">Compiling Rust to WebAssembly Guide</a><ul>
+            <li>rustup 入れてからハローワールドまで
+          </ul>
+        </li>
+        <li>
+          <a href="https://blogs.windows.com/windowsexperience/2017/01/09/announcing-windows-10-insider-preview-build-15002-pc/">Win10 Insider Preview に WebPayments</a><ul>
+            <li>
+              <a href="https://blogs.windows.com/msedgedev/2016/12/15/payment-request-api-edge/#QSDAJIzUWKHR6b7s.97">Simpler web payments: Introducing the Payment Request API</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.2ality.com/2017/01/import-operator.html">ES proposal: import()</a><ul>
+            <li>どのモジュールが呼んだかを知るため関数ではなくオペレータ
+          </ul>
+        </li>
+        <li>
+          <a href="https://docs.google.com/document/d/11kwtjxXelqsIELtHfXDWLWVPrdGJGdy4yvHu-2mGyn4/edit#heading=h.t1ozsjau67fw">MiniApp: Why full screen scrolling web apps are so hard</a><ul>
+            <li>あとで読む
+          </ul>
+        </li>
+        <li>
+          <a href="https://github.com/tc39/proposal-cancelable-promises/issues/70">Promise の cancel が白紙に</a><ul>
+            <li>
+              <a href="https://medium.com/@benlesh/promise-cancellation-is-dead-long-live-promise-cancellation-c6601f1f5082#.8803mtmd3">canceling promise is dead</a>
+            </li>
+            <li>
+              domenic 大丈夫かな&hellip;
+            </li>
+            <li>
+              <a href="https://github.com/whatwg/fetch/issues/447">Aborting a fetch: The Next Generation #447</a>
+            </li>
+            <li>
+              <a href="https://github.com/whatwg/fetch/issues/455">meeting があった</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="https://github.com/google/ngx_token_binding">google/ngx_token_binding</a><ul>
+            <li>token_binding 実装
+          </ul>
+        </li>
       </ul>
     </section>
     <section>
-      <h2 id="Security"><a href="#Security">Security</a></h2>
+      <h2 id="security"><a href="#security">Security</a></h2>
       <ul>
-        <li><a href="https://security.googleblog.com/2017/01/the-foundation-of-more-secure-web.html">Google も CA 参入</a><ul>
-          <li>Global Sign の一部を買っていたらしい
-          <li>最近の CA インシデントにしびれを切らしたんだろう
-        </ul>
-        <li><a href="https://f5.com/Portals/1/PDF/labs/R065%20-%20REPORT%20-%20The%202016%20TLS%20Telemetry%20Report.pdf">F5 の TLS レポート 2016</a><ul>
-          <li>濃ゆい
-        </ul>
-        <li><a href="https://emceeaich.dreamwidth.org/201211.html">bugzilla.mozilla.org が CSP 適用予定</a><ul>
-          <li>XSRF も対応できるって書いてあったけどこれは勘違い(修正済み)
-        </ul>
-        <li><a href="https://arstechnica.com/information-technology/2017/01/ars-announces-https-by-default-finally/">Ars が HTTPS 移行</a><ul>
-          <li>forum で起こる mixed-contents は許容という判断 (CGM の宿命か)
-        </ul>
-        <li><a href="https://blogs.akamai.com/2017/01/tls-13-ftw.html">Akamai が OpenSSL の TLS1.3 開発スポンサーに</a><ul>
-          <li>4 月の 1.1.0 に乗る予定
-        </ul>
-        <li><a href="https://developers-jp.googleblog.com/2017/01/security-through-transparency.html?m=1">Key Transparency</a><ul>
-          <li>GPG を整理的な?
-          <li><a href="https://github.com/google/keytransparency/">https://github.com/google/keytransparency/</a>
-          <li><a href="https://onename.com/">https://onename.com/</a>
-          <li><a href="https://keybase.io/">https://keybase.io/</a>
-        </ul>
-        <li><a href="https://docs.google.com/document/d/1d21wtTCQ-a6vN7yDwyhLkuBpgmLoJCKMI7aRrXNBIbI/edit">HSTS meetup</a><ul>
-          <li>濃ゆい議論があった模様
-        </ul>
-        <li><a href="http://neverssl.com/">HTTPS に移行しない Neverssl</a><ul>
-          <li>example.com あればいらない気もした
-        </ul>
-        <li><a href="http://blog.tokumaru.org/2017/01/godaddyssl8850.html?m=1">Godaddy の SSL 証明書にドメイン認証の脆弱性があり 8850 件の証明書が失効された</a><ul>
-          <li>徳丸先生
-        </ul>
-        <li><a href="https://gist.github.com/mala/a53e3f8a0c793a5c7bef2215dd951879">autofill で個人情報が意図せず送られる</a><ul>
-          <li><a href="http://gigazine.net/news/20170106-browser-autofill-phishing/">http://gigazine.net/news/20170106-browser-autofill-phishing/</a>
-          <li>input を隠しとく素朴なやりかた
-          <li>UI でなんとかするらしい
-        </ul>
-        <li><a href="https://open.blogs.nytimes.com/2017/01/10/https-on-nytimes-com/">HTTPS on NYTimes.com</a><ul>
-          <li>デカイ事例
-        </ul>
-        <li><a href="https://letsencrypt.org//2017/01/06/le-2016-in-review.html">Let's Encrypt 順調です</a><ul>
-          <li>パンクしないかちょっと心配
-        </ul>
-        <li><a href="https://www.amazontrust.com/">Amazon が CA 参入らしい</a><ul>
-          <li>CA 参入は流行りか
-        </ul>
-        <li><a href="https://blogs.windows.com/msedgedev/2016/12/20/introducing-brotli-compression/">Edge に Brotli</a><ul>
-          <li>transport-encoding: br がどのくらい増えるか
-        </ul>
+        <li>
+          <a href="https://security.googleblog.com/2017/01/the-foundation-of-more-secure-web.html">Google も CA 参入</a><ul>
+            <li>Global Sign の一部を買っていたらしい
+            <li>最近の CA インシデントにしびれを切らしたんだろう
+          </ul>
+        </li>
+        <li>
+          <a href="https://f5.com/Portals/1/PDF/labs/R065%20-%20REPORT%20-%20The%202016%20TLS%20Telemetry%20Report.pdf">F5 の TLS レポート 2016</a><ul>
+            <li>濃ゆい
+          </ul>
+        </li>
+        <li>
+          <a href="https://emceeaich.dreamwidth.org/201211.html">bugzilla.mozilla.org が CSP 適用予定</a><ul>
+            <li>XSRF も対応できるって書いてあったけどこれは勘違い(修正済み)
+          </ul>
+        </li>
+        <li>
+          <a href="https://arstechnica.com/information-technology/2017/01/ars-announces-https-by-default-finally/">Ars が HTTPS 移行</a><ul>
+            <li>forum で起こる mixed-contents は許容という判断 (CGM の宿命か)
+          </ul>
+        </li>
+        <li>
+          <a href="https://blogs.akamai.com/2017/01/tls-13-ftw.html">Akamai が OpenSSL の TLS1.3 開発スポンサーに</a><ul>
+            <li>4 月の 1.1.0 に乗る予定
+          </ul>
+        </li>
+        <li>
+          <a href="https://developers-jp.googleblog.com/2017/01/security-through-transparency.html?m=1">Key Transparency</a><ul>
+            <li>GPG を整理的な?
+            <li>
+              <a href="https://github.com/google/keytransparency/">https://github.com/google/keytransparency/</a>
+            </li>
+            <li>
+              <a href="https://onename.com/">https://onename.com/</a>
+            </li>
+            <li>
+              <a href="https://keybase.io/">https://keybase.io/</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="https://docs.google.com/document/d/1d21wtTCQ-a6vN7yDwyhLkuBpgmLoJCKMI7aRrXNBIbI/edit">HSTS meetup</a><ul>
+            <li>濃ゆい議論があった模様
+          </ul>
+        </li>
+        <li>
+          <a href="http://neverssl.com/">HTTPS に移行しない Neverssl</a><ul>
+            <li>example.com あればいらない気もした
+          </ul>
+        </li>
+        <li>
+          <a href="http://blog.tokumaru.org/2017/01/godaddyssl8850.html?m=1">Godaddy の SSL 証明書にドメイン認証の脆弱性があり 8850 件の証明書が失効された</a><ul>
+            <li>徳丸先生
+          </ul>
+        </li>
+        <li>
+          <a href="https://gist.github.com/mala/a53e3f8a0c793a5c7bef2215dd951879">autofill で個人情報が意図せず送られる</a><ul>
+            <li>
+              <a href="http://gigazine.net/news/20170106-browser-autofill-phishing/">http://gigazine.net/news/20170106-browser-autofill-phishing/</a>
+            </li>
+            <li>input を隠しとく素朴なやりかた
+            <li>UI でなんとかするらしい
+          </ul>
+        </li>
+        <li>
+          <a href="https://open.blogs.nytimes.com/2017/01/10/https-on-nytimes-com/">HTTPS on NYTimes.com</a><ul>
+            <li>デカイ事例
+          </ul>
+        </li>
+        <li>
+          <a href="https://letsencrypt.org//2017/01/06/le-2016-in-review.html">Let&rsquo;s Encrypt 順調です</a><ul>
+            <li>パンクしないかちょっと心配
+          </ul>
+        </li>
+        <li>
+          <a href="https://www.amazontrust.com/">Amazon が CA 参入らしい</a><ul>
+            <li>CA 参入は流行りか
+          </ul>
+        </li>
+        <li>
+          <a href="https://blogs.windows.com/msedgedev/2016/12/20/introducing-brotli-compression/">Edge に Brotli</a><ul>
+            <li>transport-encoding: br がどのくらい増えるか
+          </ul>
+        </li>
       </ul>
     </section>
   </article>

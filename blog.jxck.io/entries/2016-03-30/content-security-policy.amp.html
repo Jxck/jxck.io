@@ -80,15 +80,15 @@ by Jxck
 
 <style amp-custom>
 article section p {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article pre {
-  margin-left: 0.8em;
+  margin: 0;
 }
 
 article table {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article img {
@@ -373,7 +373,7 @@ dl dt::after {
   content: ":";
 }
 
-blockquote::before {
+blockquote p::before {
   content: "> ";
 }
 
@@ -435,7 +435,7 @@ blockquote {
   border: solid 1px #ddd;
   border-radius: 4px;
   padding: 1em;
-  margin: 1.4em 0;
+  margin: 0;
 }
 
 code {
@@ -618,24 +618,28 @@ th:last-child, td:last-child {
   <article>
     <h1><a href=/entries/2016-03-30/content-security-policy.html>Content Security Policy(CSP) 対応と report-uri.io でのレポート収集</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>本サイトにて Content Security Policy を有効化した。
       <p>まずは Report Only にて導入し、段階的にポリシーとコンテンツを修正していく方針をとる。
       <p>CSP Report については、 <a href="https://report-uri.io">report-uri.io</a> を用いて収集することにした。
       <p>導入に必要な設定や、注意点についてまとめる。
     </section>
     <section>
-      <h2 id="Content+Security+Policy"><a href="#Content+Security+Policy">Content Security Policy</a></h2>
+      <h2 id="content-security-policy"><a href="#content-security-policy">Content Security Policy</a></h2>
       <p>Content Security Policy(CSP) とは、 Web におけるセキュリティを向上させる非常に強力な仕組みである。
       <ul>
-        <li><a href="https://www.w3.org/TR/CSP/">Content Security Policy Level 2</a>
-        <li><a href="https://tools.ietf.org/html/draft-gondrom-websec-csp-header-00">draft-gondrom-websec-csp-header-00 - HTTP Header Content Security Policy</a>
+        <li>
+          <a href="https://www.w3.org/TR/CSP/">Content Security Policy Level 2</a>
+        </li>
+        <li>
+          <a href="https://tools.ietf.org/html/draft-gondrom-websec-csp-header-00">draft-gondrom-websec-csp-header-00 - HTTP Header Content Security Policy</a>
+        </li>
       </ul>
       <p>具体的には、コンテンツに対し Content-Security-Policy ヘッダを付加することにより、ブラウザに読み込を許可するコンテンツをホワイトリストにより制限することができる。
       <p>これによって、コンテンツ作成者が意図しない外部スクリプトや、インラインスクリプトを埋め込むことにより攻撃が実現するタイプの XSS を、ことごとく防ぐことが可能になる。
     </section>
     <section>
-      <h2 id="CSP+の設定"><a href="#CSP+の設定">CSP の設定</a></h2>
+      <h2 id="csp-の設定"><a href="#csp-の設定">CSP の設定</a></h2>
       <p>CSP を有効にするには、 Content-Security-Policy ヘッダを付与し、その引数にポリシーを指定する。
       <p>ポリシーは、コンテンツが読み込み可能なコンテンツについての制限であり、以下のような指定が可能である。
       <pre><code translate="no">Content-Security-Policy: default-src &#039;self&#039;</code></pre>
@@ -646,7 +650,7 @@ th:last-child, td:last-child {
       <p>このレポートを収集解析することで、攻撃の事実などを知ることができ、対策が可能となる。
     </section>
     <section>
-      <h2 id="CSP+の注意点"><a href="#CSP+の注意点">CSP の注意点</a></h2>
+      <h2 id="csp-の注意点"><a href="#csp-の注意点">CSP の注意点</a></h2>
       <p>もし、先ほど例示した設定をサイト全体に適用した場合、何がおこるかを考えてみる。
       <pre><code translate="no">Content-Security-Policy: default-src &#039;self&#039;</code></pre>
       <p>まず、この指定により、インラインスクリプトが全て無効になる。
@@ -659,7 +663,7 @@ th:last-child, td:last-child {
       <p>よって、ここに対してホワイトリストで、信頼するドメインの追加や、幾つかの挙動を例外的に許可する設定を足していくことになる。
     </section>
     <section>
-      <h2 id="Report+Only"><a href="#Report+Only">Report Only</a></h2>
+      <h2 id="report-only"><a href="#report-only">Report Only</a></h2>
       <p>脆弱性がなくても、コンテンツの挙動が少しでもポリシーに触れると、そのページが正常に動作しなくなる可能性がある。
       <p>したがって、いきなりポリシーを有効にするのはかなり難しいと思われる。
       <p>そこで、移行手段として Content-Security-Policy-Report-Only を利用することができる。
@@ -671,7 +675,7 @@ th:last-child, td:last-child {
       <p>修正が完了し、レポートが落ち着いたら Content-Security-Policy に移行するフローが導入しやすいだろう。
     </section>
     <section>
-      <h2 id="report-uri.io"><a href="#report-uri.io">report-uri.io</a></h2>
+      <h2 id="report-uriio"><a href="#report-uriio">report-uri.io</a></h2>
       <p>ブラウザは、 CSP に違反した実行を検出した場合、違反レポートを生成し <code translate="no">report-uri</code> に指定した URI に対して自動的に送信する。
       <p>CSP の違反レポートは以下のような JSON データである。
       <pre class=json><code translate="no">{
@@ -708,7 +712,9 @@ th:last-child, td:last-child {
         <li>*.jxck.io 間でコンテンツをリンクしている
         <li>AMP のカスタムタグを CDN より読み込んでいる
         <li>AMP のカスタムタグがインラインスタイルを使用していた
-        <li>YouTube の動画を <code translate="no">&lt;iframe&gt;</code> で埋め込んでいる
+        <li>
+          YouTube の動画を <code translate="no">&lt;iframe&gt;</code> で埋め込んでいる
+        </li>
         <li>Google Analytics を設定している
         <li>一部インラインスクリプト、インラインスタイルを使用していた
       </ul>

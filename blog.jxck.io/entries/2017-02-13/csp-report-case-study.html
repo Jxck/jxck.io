@@ -109,7 +109,7 @@
   <article>
     <h1><a href=/entries/2017-02-13/csp-report-case-study.html>CSP Report 収集と実レポートの考察</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>このブログで CSP レポートの収集を開始してもうすぐ 1 年になる。
       <p>現状、対象ドメイン内で <code translate="no">&lt;input&gt;</code> は一切提供しておらず、大半が静的に生成されたページであるが、この条件でも、かなり多くのレポートが集まった。
       <p>今回は、収集した実際のレポートを例に、攻撃ではないと思われるレポートとしてどういったものが送られて来たかを中心に、その内容やレポーティングサーバ、 CSP の運用に関する現時点の考察についてまとめる。
@@ -154,25 +154,27 @@
               https://www.youtube.com;
   connect-src wss://ws.jxck.io;
   report-uri https://jxck.report-uri.io/r/default/csp/reportOnly</code></pre>
-      <p>ポリシーは <code translate="no">default-src &#039;self&#039;</code> の設定を基本として、レポートを集めながら try & error で更新した。
+      <p>ポリシーは <code translate="no">default-src &#039;self&#039;</code> の設定を基本として、レポートを集めながら try &amp; error で更新した。
       <p>レポート送信のエンドポイントは <code translate="no">report-uri.io</code> を使っていたが、後述するように今は自前で立てたサーバに移行している。
     </section>
     <section>
       <h2 id="全体像"><a href="#全体像">全体像</a></h2>
       <p>以下が CSP をデプロイしてから、今月までのレポート発生のグラフである。
-      <p><picture>
+      <p>
+        <picture>
           <source type=image/webp srcset=graph-of-csp-report-12month.webp#2642x786>
           <img src=graph-of-csp-report-12month.png#2642x786 alt="report-uri.io で生成した過去 12 ヵ月の CSP レポートのグラフ" title="graph of csp report 12 month">
-          </picture>
+        </picture>
+      </p>
       <p>まず最初の期間は、コンテンツ自体の更新も多く、ポリシーを修正する期間だったためレポートが多い。
       <p>その後も、コンテンツの更新(AMP の対応、 YouTube 埋め込みの対応 etc) を行うたびに設定の更新が必要になるため、ところどころ山がある。
       <p>しかし、全体として、定常的にレポートが上がっており、コンテンツが安定ている今でも、レポートがなくなることは基本的には無いことが分かる。
     </section>
     <section>
-      <h2 id="Report+Case+Study"><a href="#Report+Case+Study">Report Case Study</a></h2>
+      <h2 id="report-case-study"><a href="#report-case-study">Report Case Study</a></h2>
       <p>次に個々のレポートを細かく見た結果、よく発生していたものについて紹介する。
       <section>
-        <h3 id="DOM+Change+by+User"><a href="#DOM+Change+by+User">DOM Change by User</a></h3>
+        <h3 id="dom-change-by-user"><a href="#dom-change-by-user">DOM Change by User</a></h3>
         <p>Bookmarklet などから DOM を変更することで、ページそのものをカスタマイズしたりするユーザや、 Devtools からこのサイト上で色々試したりするユーザもいるだろう。
         <p>一例として、以下のレポートは、 CSP の指定範囲外オリジンから jQuery を埋め込んだことによるレポートと思われる。
         <pre><code translate="no">{
@@ -192,7 +194,7 @@
         <p>こうしたレポートは非常に多い。
       </section>
       <section>
-        <h3 id="Extension"><a href="#Extension">Extension</a></h3>
+        <h3 id="extension"><a href="#extension">Extension</a></h3>
         <p>以下のレポートは、ブラウザ拡張がブロックされたであろうと想像される。
         <p>画像について何か改変をしているようだが、詳細はわからない。
         <pre class=js><code translate="no">{
@@ -215,14 +217,16 @@
         <p>しかし、これらも実装次第ではあると思うので、もっと幅広い検証が必要かもしれない。
       </section>
       <section>
-        <h3 id="Browser+Inline+Style"><a href="#Browser+Inline+Style">Browser Inline Style</a></h3>
+        <h3 id="browser-inline-style"><a href="#browser-inline-style">Browser Inline Style</a></h3>
         <p>本サイトでは記事の原稿を Markdown でも閲覧できる。また RSS feed は XML で提供し、 humand.txt や robot.txt は Text で提供している。
         <p>こうした <code translate="no">.md</code>, <code translate="no">.txt</code>, <code translate="no">.xml</code>, <code translate="no">.json</code> などのページをブラウザで表示すると、ブラウザによってはそれを内部的に HTML に整形して表示する。
         <p>このとき、 HTML の中にある Inline Style がポリシー違反と判定されるため、レポートが上がる。
-        <p><picture>
+        <p>
+          <picture>
             <source type=image/webp srcset=chrome-inline-style-violation.webp#1667x656>
             <img src=chrome-inline-style-violation.png#1667x656 alt="Chrome でテキストを表示すると、整形のために埋め込まれた HTML が CSP 違反を起こす" title="inline style violation for RSS feed in chrome">
-            </picture>
+          </picture>
+        </p>
         <pre class=js><code translate="no">{
   &quot;csp-report&quot;: {
   &quot;document-uri&quot;:        &quot;https://jxck.io/humans.txt&quot;,
@@ -239,18 +243,20 @@
         <p>これはもちろん悪意のあるポリシー違反でないため、本サイトではこの種のコンテントタイプのページへは CSP を適用しないこととした。
       </section>
       <section>
-        <h3 id="Firefox+view:source"><a href="#Firefox+view:source">Firefox view:source</a></h3>
+        <h3 id="firefox-viewsource"><a href="#firefox-viewsource">Firefox view:source</a></h3>
         <p>本サイトは技術者向けの内容が多いため、このサイト内の HTML ソースをブラウザで表示する閲覧者も多い。
         <p>Firefox ではソースを表示すると、オリジンが <code translate="no">view-source://~</code> となるため、このページが CSP 違反となりレポートが上がる。
         <p>Chrome でも同じくオリジンが変わるが、ここでレポートはあがらない実装になっているようだ。
-        <p><picture>
+        <p>
+          <picture>
             <source type=image/webp srcset=firefox-view-source-violation.webp#1674x824>
             <img src=firefox-view-source-violation.png#1674x824 alt="Firefox の view-source:// でソースを表示すると、整形のために埋め込まれた HTML が CSP 違反を起こす" title="view-source:// violates csp policy in firefox">
-            </picture>
+          </picture>
+        </p>
         <p>これは対応せず無視することとした。
       </section>
       <section>
-        <h3 id="about:blank_"><a href="#about:blank_">about:blank_</a></h3>
+        <h3 id="aboutblank_"><a href="#aboutblank_">about:blank_</a></h3>
         <p>なんらかの操作によって、コンテキストが <code translate="no">about://blank</code> になりオリジンの違反としてレポートがちょくちょく来る。
         <pre class=js><code translate="no">{
   &quot;csp-report&quot;: {
@@ -266,7 +272,7 @@
       </section>
     </section>
     <section>
-      <h2 id="Reporting+Server"><a href="#Reporting+Server">Reporting Server</a></h2>
+      <h2 id="reporting-server"><a href="#reporting-server">Reporting Server</a></h2>
       <p>CSP のレポート収集サービスとして、 <a href="https://report-uri.io">report-uri.io</a> がよく紹介され、本サイトでもこれを用いてレポートを収集していた。
       <p>無料で使うことができる点で導入の敷居が低いのは良かったが、現在は以下のような理由でもう使っていない。
       <ul>
@@ -280,9 +286,13 @@
       <p>それなりのサービスであれば、ログなどを解析/可視化する基盤(graphite, kibana, ES, BigQ, mackerel etc) があると思うので、エンドポイントを自分で立ててそこに流し込むのが良いだろう。
       <p>また、もし自分でエンドポイントを実装する際には、以下の点に注意して実装するのが良いと思われる。
       <ul>
-        <li>report-uri は非推奨なので、 <a href="http://wicg.github.io/reporting/">report-to</a> を前提として設計
+        <li>
+          report-uri は非推奨なので、 <a href="http://wicg.github.io/reporting/">report-to</a> を前提として設計
+        </li>
         <li>レポートには UA やタイムスタンプはないので、必ず HTTP ヘッダ(全体)を一緒に保存する
-        <li>意図しないリクエストを <code translate="no">content-type: csp-report</code> で間引きたくなるが、<a href="https://www.tollmanz.com/content-security-policy-report-samples/">準拠してないクライアント</a> もあるようなので注意が必要
+        <li>
+          意図しないリクエストを <code translate="no">content-type: csp-report</code> で間引きたくなるが、<a href="https://www.tollmanz.com/content-security-policy-report-samples/">準拠してないクライアント</a> もあるようなので注意が必要
+        </li>
       </ul>
       <p>report-uri から report-to への変更で、 CSP 以外も含めたレポート送信が Reporting API に統合される。
       <p>ここではヘッダ指定のしかたから、 Cookie の扱いなど色々変わりそうなので、本サイトで実装を終えたら追って解説しようと思う。
@@ -306,8 +316,12 @@
       <h2 id="参考"><a href="#参考">参考</a></h2>
       <p>この辺の話を発表した資料
       <ul>
-        <li><a href="https://speakerdeck.com/jxck/csp-and-real-world-reporting">CSP による防御とリアルワールドレポート収集</a>
-        <li><a href="https://speakerdeck.com/jxck/csp-a-powerful-security-steroid">CSP a Powerful Security Steroid (上の拡充版)</a>
+        <li>
+          <a href="https://speakerdeck.com/jxck/csp-and-real-world-reporting">CSP による防御とリアルワールドレポート収集</a>
+        </li>
+        <li>
+          <a href="https://speakerdeck.com/jxck/csp-a-powerful-security-steroid">CSP a Powerful Security Steroid (上の拡充版)</a>
+        </li>
       </ul>
     </section>
   </article>

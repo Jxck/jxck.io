@@ -80,15 +80,15 @@ by Jxck
 
 <style amp-custom>
 article section p {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article pre {
-  margin-left: 0.8em;
+  margin: 0;
 }
 
 article table {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article img {
@@ -373,7 +373,7 @@ dl dt::after {
   content: ":";
 }
 
-blockquote::before {
+blockquote p::before {
   content: "> ";
 }
 
@@ -435,7 +435,7 @@ blockquote {
   border: solid 1px #ddd;
   border-radius: 4px;
   padding: 1em;
-  margin: 1.4em 0;
+  margin: 0;
 }
 
 code {
@@ -616,16 +616,16 @@ th:last-child, td:last-child {
 
 
   <article>
-    <h1><a href=/entries/2018-01-13/formdata-urlsearchparams.html>Form で submit されたデータの収集と FormData & URLSearchParams</a></h1>
+    <h1><a href=/entries/2018-01-13/formdata-urlsearchparams.html>Form で submit されたデータの収集と FormData &amp; URLSearchParams</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p><code translate="no">&lt;form&gt;</code> の onsubmit をフックして、入力された値を <code translate="no">&lt;input&gt;</code> から集めて送るといった処理はよくある。
       <p>このとき、 submit されたデータの収拾方法はいくつかある。
       <p>submit に限らず、そのイベントに付随する情報は、基本的にイベントオブジェクトに内包されている。
       <p>Form を例に、イベントオブジェクトを意識したコーディングについて解説する。
     </section>
     <section>
-      <h2 id="Form+Submit"><a href="#Form+Submit">Form Submit</a></h2>
+      <h2 id="form-submit"><a href="#form-submit">Form Submit</a></h2>
       <p>Form が Submit されたことをフックして、処理を挟む場面はよくある。
       <p>HTML がこうであった場合。
       <pre class=html><code translate="no">&lt;form id=login action=/login method=post&gt;
@@ -649,7 +649,7 @@ th:last-child, td:last-child {
       <p>この例を改善しつつ解説していく。
     </section>
     <section>
-      <h2 id="e.target"><a href="#e.target">e.target</a></h2>
+      <h2 id="etarget"><a href="#etarget">e.target</a></h2>
       <p>最も簡単な改善は、 document からのクエリをやめることだ。
       <p><code translate="no">e.target</code> には、対象の DOM、ここでは <code translate="no">&lt;form&gt;</code> が入っている。
       <p><code translate="no">&lt;input&gt;</code> はその子要素なので、わざわざ <code translate="no">document</code> を起点にする必要はない。
@@ -661,7 +661,7 @@ th:last-child, td:last-child {
 }</code></pre>
     </section>
     <section>
-      <h2 id="FormData"><a href="#FormData">FormData</a></h2>
+      <h2 id="formdata"><a href="#formdata">FormData</a></h2>
       <p>Form で Submit されたデータは、 FormData を経由して取得することができる。
       <p>つまり、 FormData に変換しさえすれば、 submit 対象のデータは全て手に入っている。
       <p><a href="https://xhr.spec.whatwg.org/#formdata">https://xhr.spec.whatwg.org/#formdata</a>
@@ -696,7 +696,7 @@ examplepassword
       <p>しかし、 File でもない限り HTML Form からは <code translate="no">application/form-url-encoded</code> で送られてくるという前提で実装されたものもあるだろう。
     </section>
     <section>
-      <h2 id="URLSearchParams"><a href="#URLSearchParams">URLSearchParams</a></h2>
+      <h2 id="urlsearchparams"><a href="#urlsearchparams">URLSearchParams</a></h2>
       <p>URLSearchParams は、 URL の標準化の際に QueryString 部分をサポートするために導入された。
       <p>しかし、これは FormData を引数にインスタンスを生成することができる。
       <p>また、そのまま POST の Body にすれば、 <code translate="no">application/form-url-encoded</code> として送ることができる。
@@ -715,7 +715,7 @@ examplepassword
 username=jxck&amp;password=thisismypassword</code></pre>
     </section>
     <section>
-      <h2 id="JSON"><a href="#JSON">JSON</a></h2>
+      <h2 id="json"><a href="#json">JSON</a></h2>
       <p>API バックエンドなどに対して JSON で送りたい場合もあるだろう。
       <p>せっかく FormData までは取得できているので、これを Object に変換してからシリアライズすれば良い。
       <p>ここでは FormData が iterable であるこを利用してオブジェクトを組み立ててみる。
@@ -732,7 +732,7 @@ username=jxck&amp;password=thisismypassword</code></pre>
       <p>(ただし Form に <code translate="no">&lt;select&gt;</code> などが入る場合は修正が必要 <a href="https://labs.jxck.io/form/input-type/">https://labs.jxck.io/form/input-type/</a>)
     </section>
     <section>
-      <h2 id="beforeSubmitCallback"><a href="#beforeSubmitCallback">beforeSubmitCallback</a></h2>
+      <h2 id="beforesubmitcallback"><a href="#beforesubmitcallback">beforeSubmitCallback</a></h2>
       <p>submit に callback を仕込む仕様の提案がかなり前に出ている。
       <p><a href="https://github.com/w3c/webcomponents/issues/187">Need callback for form submit data</a>
       <pre class=javascript><code translate="no">document.registerElement(&#039;input&#039;, {
@@ -752,14 +752,18 @@ username=jxck&amp;password=thisismypassword</code></pre>
       <p>進捗は微妙だが、もし実装されると、 JSON で Post したい場合に、 Fetch を使わずにフォーマットの変換だけでよくなるのかもしれない。
     </section>
     <section>
-      <h2 id="DEMO"><a href="#DEMO">DEMO</a></h2>
+      <h2 id="demo"><a href="#demo">DEMO</a></h2>
       <p>DEMO: <a href="https://labs.jxck.io/form/form-data/">https://labs.jxck.io/form/form-data/</a>
     </section>
     <section>
-      <h2 id="Links"><a href="#Links">Links</a></h2>
+      <h2 id="links"><a href="#links">Links</a></h2>
       <ul>
-        <li><a href="https://xhr.spec.whatwg.org/#interface-formdata">https://xhr.spec.whatwg.org/#interface-formdata</a>
-        <li><a href="https://url.spec.whatwg.org/#interface-urlsearchparams">https://url.spec.whatwg.org/#interface-urlsearchparams</a>
+        <li>
+          <a href="https://xhr.spec.whatwg.org/#interface-formdata">https://xhr.spec.whatwg.org/#interface-formdata</a>
+        </li>
+        <li>
+          <a href="https://url.spec.whatwg.org/#interface-urlsearchparams">https://url.spec.whatwg.org/#interface-urlsearchparams</a>
+        </li>
       </ul>
     </section>
   </article>

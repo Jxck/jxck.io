@@ -109,10 +109,10 @@
   <article>
     <h1><a href=/entries/2016-01-28/html-compression.html>HTML の省略によるサイズ最適化</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>本サイト <a href="https://blog.jxck.io">blog.jxck.io</a> 以下については、 Markdown から静的ファイルを生成するスタイルで作成している。
       <p>この変換時に以前から思っていた <strong>HTML の最適化</strong> を実施することにした。
-      <p>しかし、 md->html 変換時にそれをできるツールが見当たらないため、 Markdown の AST から HTML を構築する過程で、省略を施すスクリプトを自作した。
+      <p>しかし、 md-&gt;html 変換時にそれをできるツールが見当たらないため、 Markdown の AST から HTML を構築する過程で、省略を施すスクリプトを自作した。
       <p>ただし、ソースはあくまで観賞用なので、インデントやコメントは残している。
       <p>チューニングではなく単なる実験としてサイト全体にこれを適用し、その結果を記す。
     </section>
@@ -130,12 +130,14 @@
       <p>あるとしても、それはスペース削除だけではないだろうか?
     </section>
     <section>
-      <h2 id="HTML+の省略記法"><a href="#HTML+の省略記法">HTML の省略記法</a></h2>
+      <h2 id="html-の省略記法"><a href="#html-の省略記法">HTML の省略記法</a></h2>
       <section>
         <h3 id="タグそのもの"><a href="#タグそのもの">タグそのもの</a></h3>
         <p><code translate="no">&lt;html&gt;</code>、 <code translate="no">&lt;head&gt;</code>、 <code translate="no">&lt;body&gt;</code> は、タグ自体を書かなくても良い場合があり、仕様では以下に定義がある。
         <p><a href="https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission">https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission</a>
-        <blockquote>An html element&#039;s end tag may be omitted if the html element is not immediately followed by a comment.</blockquote>
+        <blockquote>
+          <p>An html element&rsquo;s end tag may be omitted if the html element is not immediately followed by a comment.
+        </blockquote>
         <p>すぐ次がコメントでないなら、 <code translate="no">&lt;html&gt;</code> は省略しても良い。 <code translate="no">&lt;head&gt;</code> や <code translate="no">&lt;body&gt;</code> も同様だ。
         <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
         <pre class=html><code translate="no">&lt;!-- before --&gt;
@@ -160,10 +162,16 @@
         <p>HTML には閉じタグの省略が許されているものがいくつかあり、仕様では以下に定義がある。
         <p><a href="https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission">https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission</a>
         <p>例えば、 <code translate="no">&lt;/li&gt;</code> は以下の条件なら省略が可能だ。
-        <blockquote>An li element&#039;s end tag may be omitted if the li element is immediately followed by another li element or if there is no more content in the parent element.</blockquote>
+        <blockquote>
+          <p>An li element&rsquo;s end tag may be omitted if the li element is immediately followed by another li element or if there is no more content in the parent element.
+        </blockquote>
         <ul>
-          <li>その次にすぐ次の <code translate="no">&lt;li&gt;</code> がくる
-          <li>それ以上親 (<code translate="no">&lt;ul&gt;</code>, <code translate="no">&lt;ol&gt;</code>) に子要素が無い
+          <li>
+            その次にすぐ次の <code translate="no">&lt;li&gt;</code> がくる
+          </li>
+          <li>
+            それ以上親 (<code translate="no">&lt;ul&gt;</code>, <code translate="no">&lt;ol&gt;</code>) に子要素が無い
+          </li>
         </ul>
         <p>つまりこう書くことができる。
         <pre class=html><code translate="no">&lt;!-- before --&gt;
@@ -182,10 +190,12 @@
         <p>単純に閉じタグ 5byte x 3 = 15byte 分のサイズが減っていることになる。
       </section>
       <section>
-        <h3 id="attribute+value+の+quote"><a href="#attribute+value+の+quote">attribute value の quote</a></h3>
+        <h3 id="attribute-value-の-quote"><a href="#attribute-value-の-quote">attribute value の quote</a></h3>
         <p>もう一つ、要素を囲む引用符(<code translate="no">&#039;</code>, <code translate="no">&quot;</code>) も省略可能な場合があり、仕様では以下に定義がある。
         <p><a href="https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html">https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html</a>
-        <blockquote>The attribute value can remain unquoted if it doesn&#039;t contain space characters or any of &quot; &#039; ` = &lt; or &gt;. Otherwise, it has to be quoted using either single or double quotes.</blockquote>
+        <blockquote>
+          <p>The attribute value can remain unquoted if it doesn&rsquo;t contain space characters or any of &ldquo; &lsquo; ` = &lt; or &gt;. Otherwise, it has to be quoted using either single or double quotes.
+        </blockquote>
         <p>つまり、スペースや <code translate="no">&quot; &#039; ` = &lt; &gt;</code> が無ければ引用符はいらない。
         <pre class=html><code translate="no">&lt;!-- before --&gt;
 &lt;input name=&quot;address&quot; maxlength=&quot;200&quot;&gt;
@@ -196,7 +206,7 @@
       </section>
     </section>
     <section>
-      <h2 id="その最適化は現実的か?"><a href="#その最適化は現実的か?">その最適化は現実的か?</a></h2>
+      <h2 id="その最適化は現実的か"><a href="#その最適化は現実的か">その最適化は現実的か?</a></h2>
       <section>
         <h3 id="好き嫌い"><a href="#好き嫌い">好き嫌い</a></h3>
         <p>まず、こうした省略によって、例えば 「XML として崩れている」みたいなことを言う人もいる。

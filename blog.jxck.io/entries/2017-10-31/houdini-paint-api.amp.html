@@ -80,15 +80,15 @@ by Jxck
 
 <style amp-custom>
 article section p {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article pre {
-  margin-left: 0.8em;
+  margin: 0;
 }
 
 article table {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article img {
@@ -373,7 +373,7 @@ dl dt::after {
   content: ":";
 }
 
-blockquote::before {
+blockquote p::before {
   content: "> ";
 }
 
@@ -435,7 +435,7 @@ blockquote {
   border: solid 1px #ddd;
   border-radius: 4px;
   padding: 1em;
-  margin: 1.4em 0;
+  margin: 0;
 }
 
 code {
@@ -618,18 +618,26 @@ th:last-child, td:last-child {
   <article>
     <h1><a href=/entries/2017-10-31/houdini-paint-api.html>Houdini Paint API</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>Houdini で議論されている CSS Paint API が Chrome Canary で flag 付きで実装されている。
       <p>デモの実装を通して、関連仕様を含めた以下の 4 つのドラフトを解説する。
       <ul>
-        <li><a href="https://drafts.css-houdini.org/css-paint-api/">CSS Painting API Level 1</a>
-        <li><a href="https://drafts.css-houdini.org/css-properties-values-api/">CSS Properties and Values API Level 1</a>
-        <li><a href="https://drafts.css-houdini.org/css-typed-om-1/">CSS Typed OM Level 1</a>
-        <li><a href="https://drafts.css-houdini.org/worklets/">Worklets Level 1</a>
+        <li>
+          <a href="https://drafts.css-houdini.org/css-paint-api/">CSS Painting API Level 1</a>
+        </li>
+        <li>
+          <a href="https://drafts.css-houdini.org/css-properties-values-api/">CSS Properties and Values API Level 1</a>
+        </li>
+        <li>
+          <a href="https://drafts.css-houdini.org/css-typed-om-1/">CSS Typed OM Level 1</a>
+        </li>
+        <li>
+          <a href="https://drafts.css-houdini.org/worklets/">Worklets Level 1</a>
+        </li>
       </ul>
     </section>
     <section>
-      <h2 id="CSS+Paint+API"><a href="#CSS+Paint+API">CSS Paint API</a></h2>
+      <h2 id="css-paint-api"><a href="#css-paint-api">CSS Paint API</a></h2>
       <p>CSS Paint API は、特定の領域に対して任意の描画を行うことができる仕様である。
       <p><a href="https://drafts.css-houdini.org/css-paint-api/">CSS Painting API Level 1</a>
       <p>例えば、これまで <code translate="no">border</code> は、仕様に定義されたいくつかの種類の style から選び、無いものは画像で代替するのが基本だった。
@@ -643,7 +651,9 @@ th:last-child, td:last-child {
       <p>詳細は以下を参照。
       <p><a href="https://mozaic.fm/episodes/29/houdini.html">ep29 Houdini | mozaic.fm</a>
       <p>代わりにデモのネタを探していたところ <a href="https://twitter.com/yoshiko_pg">@yoshiko</a> から、
-      <blockquote>border double で、太さや間隔を自由に設定したい</blockquote>
+      <blockquote>
+        <p>border double で、太さや間隔を自由に設定したい
+      </blockquote>
       <p>という丁度いいユースケースをもらったので、これを実現しながら、関連する API の使い方について解説する。
     </section>
     <section>
@@ -660,7 +670,7 @@ th:last-child, td:last-child {
       <p>ここでは <code translate="no">&lt;div&gt;</code> の周囲に <code translate="no">10px</code> 分の領域が作られる。
     </section>
     <section>
-      <h2 id="paint()"><a href="#paint()">paint()</a></h2>
+      <h2 id="paint"><a href="#paint">paint()</a></h2>
       <p>作成する描画は <code translate="no">border-double-custom</code> という名前とし、これを CSS 内で <code translate="no">paint()</code> 関数に指定して呼び出す。
       <p><code translate="no">paint()</code> の第二引数以降は、処理に渡される引数となるため、今回は以下のように定義した。
       <pre class=css><code translate="no">paint(border-double-custom, outer-color, outer-width, inner-color, inner-width, margin)</code></pre>
@@ -689,7 +699,7 @@ th:last-child, td:last-child {
 }</code></pre>
     </section>
     <section>
-      <h2 id="paintWorklet"><a href="#paintWorklet">paintWorklet</a></h2>
+      <h2 id="paintworklet"><a href="#paintworklet">paintWorklet</a></h2>
       <p>Paint を始め Layout や Animation などの処理は、メインスレッドとは別に実行する必要がある。
       <p>また、例えば今回のように border を引く対象が多く存在する場合は、複数処理を並行して走らせる必要もある。
       <p>こうした用途では、 WebWorker などの Worker は用途として合わないため、 Houdini ではより限定した API で軽量な実行環境として Worklet という API が定義されている。
@@ -702,7 +712,7 @@ th:last-child, td:last-child {
       <p>これは、後述する Arguments か Property を経由して行う。
     </section>
     <section>
-      <h2 id="registerPaint()"><a href="#registerPaint()">registerPaint()</a></h2>
+      <h2 id="registerpaint"><a href="#registerpaint">registerPaint()</a></h2>
       <p>実際に <code translate="no">border-double-custom</code> を <code translate="no">addModule()</code> したファイルの中に実装していく。
       <p>大枠は <code translate="no">registerPaint()</code> に対して、名前とコールバックを渡すような形になる。
       <p>コールバックは、関数ではなく必要なプロパティを実装した class を渡す。
@@ -714,7 +724,7 @@ th:last-child, td:last-child {
 })</code></pre>
     </section>
     <section>
-      <h2 id="inputArguments()"><a href="#inputArguments()">inputArguments()</a></h2>
+      <h2 id="inputarguments"><a href="#inputarguments">inputArguments()</a></h2>
       <p>まず、 CSS で指定した線の色と幅、間隔の値を取得する必要がある。
       <p>CSS で渡した値の型がなんであるかを指定するために、 <code translate="no">inputArguments()</code> に引数の順に型の配列を指定する。
       <pre class=js><code translate="no">// paint(border-double-custom, orange, 3px, yellow, 5px, 1px);
@@ -731,7 +741,7 @@ static get inputArguments() {
       <p><a href="https://drafts.css-houdini.org/css-properties-values-api/#supported-syntax-strings">CSS Properties and Values API Level 1</a>
       <p>これによって、 CSS で渡された引数が解析される。
       <section>
-        <h3 id="registerProperty()"><a href="#registerProperty()">registerProperty()</a></h3>
+        <h3 id="registerproperty"><a href="#registerproperty">registerProperty()</a></h3>
         <p>CSS で指定した debug フラグは、 <code translate="no">pain()</code> の引数ではなく、別のプロパティとして取得する。
         <p>このためには、まず Worklet がアクセス可能なプロパティとして <code translate="no">--debug</code> をメインスレッド側で <code translate="no">registerProperty()</code> を用いて登録する。
         <p><a href="https://drafts.css-houdini.org/css-properties-values-api/#registering-custom-properties">CSS Properties and Values API Level 1</a>
@@ -744,7 +754,7 @@ static get inputArguments() {
 });</code></pre>
       </section>
       <section>
-        <h3 id="inputProperties()"><a href="#inputProperties()">inputProperties()</a></h3>
+        <h3 id="inputproperties"><a href="#inputproperties">inputProperties()</a></h3>
         <p><code translate="no">registerProperty()</code> で登録された値は、 Worklet 側で <code translate="no">inputProperties()</code> に、ホワイトリストとして指定しておくことで、クラス内に取り込むことができる。
         <pre class=js><code translate="no">static get inputProperties() {
   return [
@@ -755,31 +765,31 @@ static get inputArguments() {
       </section>
     </section>
     <section>
-      <h2 id="paint()"><a href="#paint()">paint()</a></h2>
+      <h2 id="paint-1"><a href="#paint-1">paint()</a></h2>
       <p><code translate="no">paint()</code> には Canvas Context と領域のサイズ、当たっているスタイル、先に解析した引数が渡る。
       <pre class=js><code translate="no">paint(ctx, size styleMap, arguments) {
   // paint with canvas api
 })</code></pre>
       <section>
-        <h3 id="Rendering+Context"><a href="#Rendering+Context">Rendering Context</a></h3>
+        <h3 id="rendering-context"><a href="#rendering-context">Rendering Context</a></h3>
         <p>第一引数は 2D のレンダリングコンテキストである。
         <p>ここから Canvas の API を呼ぶことで、実際の描画処理を行う。
         <p><code translate="no">moveTo()</code>, <code translate="no">lineTo()</code>, <code translate="no">strokeRect()</code>, <code translate="no">fillRect()</code> などといったおなじみの Canvas API が利用可能だ。
         <p>しかし、あくまでサブセットであり前述のように <code translate="no">strokeText()</code> などフォントスタックがないなど、使えないものもある。
       </section>
       <section>
-        <h3 id="Paint+Size"><a href="#Paint+Size">Paint Size</a></h3>
+        <h3 id="paint-size"><a href="#paint-size">Paint Size</a></h3>
         <p>第二引数は描画対象のサイズであり Width, Height を持つ単純なオブジェクトだ。
       </section>
       <section>
-        <h3 id="Style+Property+Map"><a href="#Style+Property+Map">Style Property Map</a></h3>
+        <h3 id="style-property-map"><a href="#style-property-map">Style Property Map</a></h3>
         <p>前述の <code translate="no">inputProperties()</code> で指定したプロパティが含まれた Map が渡される。
         <p>今回指定した <code translate="no">--debug</code> は、以下のように取得できる。
         <pre class=js><code translate="no">const DEBUG = styleMap.get(&#039;--debug&#039;).value</code></pre>
         <p>ただし、これは指定した型の都合上、文字列の <code translate="no">&quot;true&quot;</code> か <code translate="no">&quot;false&quot;</code> になっている。
       </section>
       <section>
-        <h3 id="Arguments"><a href="#Arguments">Arguments</a></h3>
+        <h3 id="arguments"><a href="#arguments">Arguments</a></h3>
         <p>前述の <code translate="no">inputArguments()</code> で指定した引数が配列で渡ってくる。
         <p>各値は、指定した型でパースされた Typed OM の形でアクセス可能だ。
         <p><a href="https://drafts.css-houdini.org/css-typed-om-1/">CSS Typed OM Level 1</a>
@@ -897,10 +907,10 @@ CSS.paintWorklet.addModule(&#039;border-double-custom.js&#039;);
     </section>
     <section>
       <h2 id="動作イメージ"><a href="#動作イメージ">動作イメージ</a></h2>
-      <p><amp-img layout=responsive src=border-double-custom.png#667x401 alt="Houdini Paint API で色と間隔を変更可能な二重線を引くデモ" title="border-double-custom implemented by css paint api" width=667 height=401>
+      <p><amp-img layout=responsive src=border-double-custom.png#667x401 alt="Houdini Paint API で色と間隔を変更可能な二重線を引くデモ" title="border-double-custom implemented by css paint api" width=667 height=401></p>
     </section>
     <section>
-      <h2 id="DEMO"><a href="#DEMO">DEMO</a></h2>
+      <h2 id="demo"><a href="#demo">DEMO</a></h2>
       <p>完成形は以下に公開した。
       <p>Chrome 64 Canary で chrome://flags/#enable-experimental-web-platform-features を有効にすると動作する。
       <p><a href="https://labs.jxck.io/houdini/paint/border-double-custom/">Houdini Paint API DEMO | labs.jxck.io</a>

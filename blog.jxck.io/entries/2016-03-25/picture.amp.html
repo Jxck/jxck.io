@@ -80,15 +80,15 @@ by Jxck
 
 <style amp-custom>
 article section p {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article pre {
-  margin-left: 0.8em;
+  margin: 0;
 }
 
 article table {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article img {
@@ -373,7 +373,7 @@ dl dt::after {
   content: ":";
 }
 
-blockquote::before {
+blockquote p::before {
   content: "> ";
 }
 
@@ -435,7 +435,7 @@ blockquote {
   border: solid 1px #ddd;
   border-radius: 4px;
   padding: 1em;
-  margin: 1.4em 0;
+  margin: 0;
 }
 
 code {
@@ -618,14 +618,22 @@ th:last-child, td:last-child {
   <article>
     <h1><a href=/entries/2016-03-25/picture.html>画像最適化戦略 Picture 編</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>本サイトで使用している PNG/JPEG 画像を、対応デバイスと、 Device Pixel Ratio に対して最適なサイズで出し分けるために、 <code translate="no">&lt;picture&gt;</code> 要素を適用した。
       <p>画像最適化シリーズ第 2 回目のエントリである。
       <ul>
-        <li><a href="https://blog.jxck.io/entries/2016-03-24/optimize-image.html">画像最適化戦略 PNG/JPEG 編</a>
-        <li><a href="https://blog.jxck.io/entries/2016-03-25/picture.html">> 画像最適化戦略 Picture 編</a>
-        <li><a href="https://blog.jxck.io/entries/2016-03-26/webp.html">画像最適化戦略 WebP 編</a>
-        <li><a href="https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html">画像最適化戦略 SVG/Font 編</a>
+        <li>
+          <a href="https://blog.jxck.io/entries/2016-03-24/optimize-image.html">画像最適化戦略 PNG/JPEG 編</a>
+        </li>
+        <li>
+          <a href="https://blog.jxck.io/entries/2016-03-25/picture.html">&gt; 画像最適化戦略 Picture 編</a>
+        </li>
+        <li>
+          <a href="https://blog.jxck.io/entries/2016-03-26/webp.html">画像最適化戦略 WebP 編</a>
+        </li>
+        <li>
+          <a href="https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html">画像最適化戦略 SVG/Font 編</a>
+        </li>
       </ul>
     </section>
     <section>
@@ -651,7 +659,7 @@ th:last-child, td:last-child {
         <p>これは、 <strong>Device Pixel</strong> と <strong>CSS Pixel</strong> のサイズが必ずしも同じとは限らないからである。
       </section>
       <section>
-        <h3 id="Device/CSS+Pixel+Size"><a href="#Device/CSS+Pixel+Size">Device/CSS Pixel Size</a></h3>
+        <h3 id="devicecss-pixel-size"><a href="#devicecss-pixel-size">Device/CSS Pixel Size</a></h3>
         <p>Retina ディスプレイは、通常のスクリーンよりも、スクリーン上に並ぶ正方形が小さいサイズになっている。
         <p>スクリーンが持つ 1x1 を描画するための四角は <strong>Device Pixel</strong> といい、これが小ほど <strong>画面密度(Device Pixel Ratio)</strong> が高いと表現する。
         <p>もし Device Pixel Size が通常の半分の Retina ディスプレイで 100x100 の画像を素直に表示すると、同じスクリーンサイズの非 Retina で表示した時の 50x50 の見た目、つまり小さくなってしまう。
@@ -668,13 +676,13 @@ th:last-child, td:last-child {
       </section>
     </section>
     <section>
-      <h2 id="<code+translate=no>&lt;picture&gt;</code>+による対応"><a href="#<code+translate=no>&lt;picture&gt;</code>+による対応"><code translate="no">&lt;picture&gt;</code> による対応</a></h2>
+      <h2 id="picture-による対応"><a href="#picture-による対応"><code translate="no">&lt;picture&gt;</code> による対応</a></h2>
       <p>今回は、デバイスのサイズや解像度などに応じて、適切なサイズの画像を出し分けられるようにする設定を考える。
       <p>そこで <code translate="no">&lt;picture&gt;</code> の <code translate="no">&lt;srcset&gt;</code> と <code translate="no">sizes</code> で DPR が大きい端末のための、大きいサイズの画像を指定することにした。
-      <p>基本的に Width-Height は変更しない前提であれば、 DPI が x2, x3... と増える場合にサイズが x2, x3... となる画像を提供することになる。
+      <p>基本的に Width-Height は変更しない前提であれば、 DPI が x2, x3&hellip; と増える場合にサイズが x2, x3&hellip; となる画像を提供することになる。
       <p>この指定方法はいくつか考えられる。
       <section>
-        <h3 id="Media+Query+の指定"><a href="#Media+Query+の指定">Media Query の指定</a></h3>
+        <h3 id="media-query-の指定"><a href="#media-query-の指定">Media Query の指定</a></h3>
         <p>Media Query を用いて DPR 値で分岐した場合以下のように指定できる。
         <pre class=html><code translate="no">&lt;picture&gt;
   &lt;source type=image/png srcset=300x300.png media=&quot;min-device-pixel-ratio: 2.5&quot;&gt;
@@ -685,7 +693,7 @@ th:last-child, td:last-child {
 &lt;/picture&gt;</code></pre>
       </section>
       <section>
-        <h3 id="sizes+の指定"><a href="#sizes+の指定">sizes の指定</a></h3>
+        <h3 id="sizes-の指定"><a href="#sizes-の指定">sizes の指定</a></h3>
         <p>sizes を用いて、画像のサイズを明示した場合以下のように指定できる。
         <pre class=html><code translate="no">&lt;picture&gt;
   &lt;source type=image/png sizes=100px
@@ -697,24 +705,28 @@ th:last-child, td:last-child {
 &lt;/picture&gt;</code></pre>
       </section>
       <section>
-        <h3 id="DEMO"><a href="#DEMO">DEMO</a></h3>
+        <h3 id="demo"><a href="#demo">DEMO</a></h3>
         <p>これらの指定のデモは、以下に掲載した。
         <p><a href="https://labs.jxck.io/picture/">labs.jxck.io/picture</a>
       </section>
       <section>
-        <h3 id="pros/cons"><a href="#pros/cons">pros/cons</a></h3>
+        <h3 id="proscons"><a href="#proscons">pros/cons</a></h3>
         <p>Media Query を用いた指定は、コンテンツ側が「この場合はこれ」とブラウザに指定していることになる。
         <p>ブラウザはそのクエリを評価し、その結果に忠実に画像を選択することになる。
         <p>sizes の指定は、コンテンツ側が「こういう選択肢がある」と提示し、ブラウザがそこから選択することになる。
         <p>srcset で画像の実際のサイズを <code translate="no">w</code> で指定し、それを表示したいサイズを <code translate="no">sizes</code> で指定している。
         <p>ブラウザは
-        <blockquote>DPI x2 のディスプレイなので 100px で表示するのに最適なのは 200w の画像だ</blockquote>
+        <blockquote>
+          <p>DPI x2 のディスプレイなので 100px で表示するのに最適なのは 200w の画像だ
+        </blockquote>
         <p>といった具合に画像を選択する。
         <p>両者の一番の違いは「<strong>ブラウザに考える余地があるかどうか</strong>」である。
         <p>もし、将来より大きい DPI や、今とは違う表示サイズや、表示形式から根本的に違うディスプレイが出て来た場合、後者はブラウザ自身がそれを考慮して適切な画像を選べるが、前者はクエリに手を入れて対応していく必要がある。
         <p>ブラウザに考える余地を与えるメリットは他にもある。
         <p>例えば、将来的にモバイル端末自身が
-        <blockquote>ネットワーク環境が悪いため、 DPI は x3 だがあえて 100w の画像を取得しよう</blockquote>
+        <blockquote>
+          <p>ネットワーク環境が悪いため、 DPI は x3 だがあえて 100w の画像を取得しよう
+        </blockquote>
         <p>といったこともできる可能性がある。
         <p>ブラウザや置かれた状況によって取得される画像が変わるというのは、コンテンツの種類によっては問題になるかもしれない。
         <p>しかし、本サイトでは、同じ画像の中から必要十分なサイズの画像をリクエストして欲しいだけなので、問題はない。

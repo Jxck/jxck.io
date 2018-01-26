@@ -80,15 +80,15 @@ by Jxck
 
 <style amp-custom>
 article section p {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article pre {
-  margin-left: 0.8em;
+  margin: 0;
 }
 
 article table {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article img {
@@ -373,7 +373,7 @@ dl dt::after {
   content: ":";
 }
 
-blockquote::before {
+blockquote p::before {
   content: "> ";
 }
 
@@ -435,7 +435,7 @@ blockquote {
   border: solid 1px #ddd;
   border-radius: 4px;
   padding: 1em;
-  margin: 1.4em 0;
+  margin: 0;
 }
 
 code {
@@ -618,11 +618,11 @@ th:last-child, td:last-child {
   <article>
     <h1><a href=/entries/2018-01-14/erlang-record-to-map.html>record to map in Erlang</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>Record を Map に変換するだけのマクロ
     </section>
     <section>
-      <h2 id="?RtoM"><a href="#?RtoM">?RtoM</a></h2>
+      <h2 id="rtom"><a href="#rtom">?RtoM</a></h2>
       <p><code translate="no">record_info()</code> を使ってキーを取るが、指定する record のタイプが動的には取れないので、マクロにして展開する。
       <pre class=erlang><code translate="no">-define(RtoM(Name, Record), lists:foldl(fun({I, E}, Acc) -&gt; Acc#{E =&gt; element(I, Record)} end, #{}, lists:zip(lists:seq(2, (record_info(size, Name))), (record_info(fields, Name))))).</code></pre>
       <p>使い方

@@ -109,7 +109,7 @@
   <article>
     <h1><a href=/entries/2016-04-09/public-key-pinning.html>Public Key Pinning for HTTP(HPKP) 対応と report-uri.io でのレポート収集</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>本サイトにて Public Key Pinning for HTTP を有効化した。
       <p><a href="https://blog.jxck.io/entries/2016-03-30/content-security-policy.html">CSP</a> 同様、まずは Report-Only を設定し、
       <p>HPKP Report についても、 <a href="https://report-uri.io">report-uri.io</a> を用いて収集することにした。
@@ -119,26 +119,32 @@
       <p>そちらも追って対応する予定である。
     </section>
     <section>
-      <h2 id="Public+Key+Pinning"><a href="#Public+Key+Pinning">Public Key Pinning</a></h2>
+      <h2 id="public-key-pinning"><a href="#public-key-pinning">Public Key Pinning</a></h2>
       <section>
         <h3 id="概要"><a href="#概要">概要</a></h3>
         <p>Public Key Pinning for HTTP(HPKP) とは、証明書の信頼性を向上させる仕組みである。
         <ul>
-          <li><a href="https://tools.ietf.org/html/rfc7469">RFC 7469 - Public Key Pinning Extension for HTTP</a>
+          <li>
+            <a href="https://tools.ietf.org/html/rfc7469">RFC 7469 - Public Key Pinning Extension for HTTP</a>
+          </li>
         </ul>
-        <p>本サイトは HTTPS を提供しており、証明書は証明機関(CA)より有料のワイルドカード証明書を購入して設定している。(Let's Encrypt ではない)
+        <p>本サイトは HTTPS を提供しており、証明書は証明機関(CA)より有料のワイルドカード証明書を購入して設定している。(Let&rsquo;s Encrypt ではない)
         <p>本ドメインの証明書の有効性は、この CA によって担保されており、この CA の信頼性は各デバイスにプリインストールされた CA の証明書(およびそこまでのチェイン)で担保されている。
         <p>この仕組み(PKI) は、デバイスが CA を信用していることが土台となっているため、例えば CA が危殆化するなどのインシデントが発生すると、基盤そのものが揺らぐことを意味する。
         <p>もし CA が攻撃され、偽の証明書が発行された場合、ユーザはその証明書が CA から発行された本物にしか見えないため、接続先が偽サイトだとしても信用してしまう。
         <p>仕組み上 CA の危殆化はあってはならない訳だが、証明書の価値が高まりつつあり、一方で多くの認証局が運用されている今、一部の CA では実際に攻撃による偽の証明書発行が発生している。
         <ul>
-          <li><a href="https://jp.globalsign.com/blog/2013/certificate_public_key_pinning.html">Pinning 年表</a> 参照
-          <li><a href="http://d.hatena.ne.jp/jovi0608/20140902/1409635279">1. 不正な SSL 証明書の脅威</a> 参照
+          <li>
+            <a href="https://jp.globalsign.com/blog/2013/certificate_public_key_pinning.html">Pinning 年表</a> 参照
+          </li>
+          <li>
+            <a href="http://d.hatena.ne.jp/jovi0608/20140902/1409635279">1. 不正な SSL 証明書の脅威</a> 参照
+          </li>
         </ul>
         <p>そこで、このリスクを低減するために考案されたのが HPKP である。
       </section>
       <section>
-        <h3 id="Public+Key+Pinning+for+HTTP"><a href="#Public+Key+Pinning+for+HTTP">Public Key Pinning for HTTP</a></h3>
+        <h3 id="public-key-pinning-for-http"><a href="#public-key-pinning-for-http">Public Key Pinning for HTTP</a></h3>
         <p>本サイト <code translate="no">jxck.io</code> の証明書については、管理者である筆者が把握している。
         <p>この証明書のハッシュを HTTP ヘッダに付与することで、ブラウザに保存させる。
         <p>ユーザが HTTPS 接続を確立する際に、取得した証明書のハッシュと、このヘッダのハッシュを比較することで、サーバの提示した証明書が筆者の把握している証明書と同じであることを検査する。
@@ -150,23 +156,27 @@
         <p>この仕組みは、近年発生している CA への攻撃による偽証明書の発行の発見に、大きく貢献している。
       </section>
       <section>
-        <h3 id="Preload+Public+Key+Pinning"><a href="#Preload+Public+Key+Pinning">Preload Public Key Pinning</a></h3>
+        <h3 id="preload-public-key-pinning"><a href="#preload-public-key-pinning">Preload Public Key Pinning</a></h3>
         <p>HTTP レスポンスヘッダでハッシュを提示する方法では、 最初のアクセス時から偽の証明書が使われていた場合は無力である。
         <p>あくまで、再訪問時への偽造にしか効果がなく、これを <strong>Trust on First Use (TOFU)</strong> という。
         <p>そこで、ブラウザにあらかじめ証明書のハッシュを登録する Preload Publick Key Pinning もある。
         <p>ただし、これは非常に重要なドメインにのみ提供されており、現状一般に向けた登録フローは公開されていない。
         <p>Chrome と Firefox への Preload Pins のリストは以下である。
         <ul>
-          <li><a href="https://src.chromium.org/viewvc/chrome/trunk/src/net/http/transport_security_state_static.json">[chrome] Contents of /trunk/src/net/http/transport_security_state_static.json</a>
-          <li><a href="https://mxr.mozilla.org/mozilla-central/source/security/manager/tools/PreloadedHPKPins.json">mozilla-central mozilla/security/manager/tools/PreloadedHPKPins.json</a>
+          <li>
+            <a href="https://src.chromium.org/viewvc/chrome/trunk/src/net/http/transport_security_state_static.json">[chrome] Contents of /trunk/src/net/http/transport_security_state_static.json</a>
+          </li>
+          <li>
+            <a href="https://mxr.mozilla.org/mozilla-central/source/security/manager/tools/PreloadedHPKPins.json">mozilla-central mozilla/security/manager/tools/PreloadedHPKPins.json</a>
+          </li>
         </ul>
         <p>したがって本サイトでは、 HTTP ヘッダでの対応を実施する。
       </section>
     </section>
     <section>
-      <h2 id="HPKP+の設定"><a href="#HPKP+の設定">HPKP の設定</a></h2>
+      <h2 id="hpkp-の設定"><a href="#hpkp-の設定">HPKP の設定</a></h2>
       <section>
-        <h3 id="Public-Key-Pins+ヘッダ"><a href="#Public-Key-Pins+ヘッダ">Public-Key-Pins ヘッダ</a></h3>
+        <h3 id="public-key-pins-ヘッダ"><a href="#public-key-pins-ヘッダ">Public-Key-Pins ヘッダ</a></h3>
         <p>HPKP を有効化するには、 Public-Key-Pins ヘッダを付与し、その引数にハッシュを指定する。
         <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
         <pre><code translate="no">Public-Key-Pins: pin-sha256=&quot;base64==&quot;; max-age=expireTime [; includeSubdomains][; report-uri=&quot;reportURI&quot;]</code></pre>
@@ -178,7 +188,7 @@
         <p>これは、有効な Pin を一つしか登録しない場合、証明書の危殆化や期限切れなどで、証明書を新しく更新すると必ず不一致が起こってしまうためである。
       </section>
       <section>
-        <h3 id="Subject+Public+Key+Information+(SPKI)"><a href="#Subject+Public+Key+Information+(SPKI)">Subject Public Key Information (SPKI)</a></h3>
+        <h3 id="subject-public-key-information-spki"><a href="#subject-public-key-information-spki">Subject Public Key Information (SPKI)</a></h3>
         <p>Pin の値は openssl コマンドを用いれば、公開鍵から SPKI の Base64 エンコードまで一括で行える。
         <p>手元に、 Key, CSR, CRT のいずれかがあればそれを用いることができ、 Web 経由で取得した公開鍵からも生成できる。
         <p>管理者がローカルで行うなら、何かあっても一番害のない CSR からの生成がよさそうと考える。
@@ -186,7 +196,7 @@
       </section>
     </section>
     <section>
-      <h2 id="report-uri.io"><a href="#report-uri.io">report-uri.io</a></h2>
+      <h2 id="report-uriio"><a href="#report-uriio">report-uri.io</a></h2>
       <p>ブラウザは、  Pin に一致しない証明書を検出した場合、違反レポートを生成し <code translate="no">report-uri</code> に指定した URI に対して自動的に送信する。
       <p>HPKP の違反レポートは以下のような JSON データである。
       <pre class=json><code translate="no">{
@@ -224,10 +234,10 @@
     <section>
       <h2 id="懸念点"><a href="#懸念点">懸念点</a></h2>
       <section>
-        <h3 id="証明書更新と+Max-Age"><a href="#証明書更新と+Max-Age">証明書更新と Max-Age</a></h3>
+        <h3 id="証明書更新と-max-age"><a href="#証明書更新と-max-age">証明書更新と Max-Age</a></h3>
         <p>HPKP の運用での一番の懸念は、証明書の更新だろう。
         <p>例えば今回は、現行の Pin(Pin1 とする)に加えてバックアップ Pin(Pin2 とする) を一つ登録したため、このバックアップ Pin2 にあたる証明書への更新までは問題ないだろう。
-        <p>しかし、問題はそのあとどうするかである。(その後更新する新しい証明書の Pin を Pin3, 4... とする)
+        <p>しかし、問題はそのあとどうするかである。(その後更新する新しい証明書の Pin を Pin3, 4&hellip; とする)
         <p>ブラウザが <code translate="no">[Pin1, Pin2]</code> を保存した状態なら、 Pin2 の証明書に更新されてもバックアップが効いているため問題はない。
         <p>次に証明書を Pin3 のものへ更新した時がポイントとなるだろう。
         <p>これは <code translate="no">[Pin1, Pin2]</code> を保存したまま、その後しばらく訪れず、 Pin3 の証明書に更新されてから訪れたら、持っている Pin と証明書がマッチせず接続できなくなるためである。
@@ -237,7 +247,7 @@
         <p>それを踏まえてか、以下のような中間証明書を Pin 留めするという運用もあるようなので、紹介する。
       </section>
       <section>
-        <h3 id="中間証明書の+Pin"><a href="#中間証明書の+Pin">中間証明書の Pin</a></h3>
+        <h3 id="中間証明書の-pin"><a href="#中間証明書の-pin">中間証明書の Pin</a></h3>
         <p>Github は現在 HPKP を運用しているため、 Pin の値を調べてみた。
         <p>Github では、 Leaf (<code translate="no">github.com</code> 自体の証明書) ではなく、そこから Root CA までの証明書チェインに入っている、中間証明書を Pin として設定していた。
         <p>OpenSSL の <code translate="no">-showcerts</code> コマンドを用いて、 Github の証明書を取得し Pin を計算してみる。
@@ -265,7 +275,7 @@ curl -sI https://github.com | grep Public-Key-Pins | ruby -nle &#039;puts $_.gsu
     <section>
       <h2 id="本サイトでの適用"><a href="#本サイトでの適用">本サイトでの適用</a></h2>
       <section>
-        <h3 id="Pin"><a href="#Pin">Pin</a></h3>
+        <h3 id="pin"><a href="#pin">Pin</a></h3>
         <p>まず現在の証明書から、現行の Pin を生成しそれを指定する。
         <p>本サイトでは、 2 年ごとに更新するワイルドカード証明書を購入して使用している。
         <p>つまり、全サブドメインで証明書は一つであり、期限も長いので、運用はそこまで難しくないだろうと考えている。

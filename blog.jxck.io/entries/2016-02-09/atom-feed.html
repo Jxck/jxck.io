@@ -109,12 +109,12 @@
   <article>
     <h1><a href=/entries/2016-02-09/atom-feed.html>Atom の RSS Feed 対応</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>このブログの Atom feed を吐くようにした。
       <p>右上の <a href="https://blog.jxck.io/feeds/atom.xml">feed アイコン</a> から登録できる。
     </section>
     <section>
-      <h2 id="RSS+のフォーマット"><a href="#RSS+のフォーマット">RSS のフォーマット</a></h2>
+      <h2 id="rss-のフォーマット"><a href="#rss-のフォーマット">RSS のフォーマット</a></h2>
       <p>RSS の主な仕様は三つある
       <ul>
         <li>RSS 1.0
@@ -126,7 +126,7 @@
       <p>中でも Atom は一番シンプルな仕様であるようなので、これで吐くことにした。
     </section>
     <section>
-      <h2 id="Atom"><a href="#Atom">Atom</a></h2>
+      <h2 id="atom"><a href="#atom">Atom</a></h2>
       <p>このサイトの、ここまでのエントリのフィードは以下のようになった。
       <section>
         <h3 id="完成型"><a href="#完成型">完成型</a></h3>
@@ -173,7 +173,7 @@
         <p>feed の id は、 feed を生成し直すたびに振るのかと思ったが、そうではなく、この feed 自体に一度振ったら二度と変えないらしい。
         <p>エントリの id は、エントリ自体に振る。エントリを更新しても振りなおしたりはしない。
         <p>どちらも URI でいいのでは? という気がするが、例えばエントリの id は、 URI が変わっても同じものを使うらしい。そのため、エントリの URI を変える可能性を考え、別途振ることが多いとのこと。
-        <p>そこで、 URI の一部や、 UUID などを織り交ぜ、 <a href="https://www.ietf.org/rfc/rfc4151.txt">The 'tag' URI Scheme</a> というフォーマットを使うことが多い。
+        <p>そこで、 URI の一部や、 UUID などを織り交ぜ、 <a href="https://www.ietf.org/rfc/rfc4151.txt">The &lsquo;tag&rsquo; URI Scheme</a> というフォーマットを使うことが多い。
         <p>ということで、このサイトの feed も、その辺を参考に作ってみた。
         <p>(もちろん URI は変わらない、というポリシーを貫ける場合は、 URI でも問題ない)
       </section>
@@ -189,7 +189,7 @@
       </section>
     </section>
     <section>
-      <h2 id="Outro"><a href="#Outro">Outro</a></h2>
+      <h2 id="outro"><a href="#outro">Outro</a></h2>
       <p>firefox がデフォルトで持っている feed reader や feedly, Live Dowango Reader などでチェックしたところ普通に動いている。
       <p>追加の属性については、必要に応じて足していく。
     </section>

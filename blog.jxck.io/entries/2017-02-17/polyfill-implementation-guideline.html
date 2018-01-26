@@ -109,14 +109,14 @@
   <article>
     <h1><a href=/entries/2017-02-17/polyfill-implementation-guideline.html>Polyfill のあり方と Web の進化と協調するためのガイドライン</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>W3C の TAG から、主にブラウザ API の Polyfill に関するドキュメントが公開された。
       <p><a href="https://w3ctag.github.io/polyfills/">Polyfills and the evolution of the Web</a>
       <p>Polyfill は便利な一方で、時として標準化の妨げになってしまう場合があるため、それを避けるために、 Polyfill 実装者、利用者、仕様策定者などが、どう振る舞うべきかという趣旨である。
       <p>今回はこの内容を元に、 Web の進化と協調する Polyfill のあり方について、主に「実装者」がどうすべきかに着目し記す。
     </section>
     <section>
-      <h2 id="Web+における+Breaking+Change"><a href="#Web+における+Breaking+Change">Web における Breaking Change</a></h2>
+      <h2 id="web-における-breaking-change"><a href="#web-における-breaking-change">Web における Breaking Change</a></h2>
       <p>Breaking Change は、簡単に言えば <strong>後方互換を失うことで既存のものが壊れる可能性がある変更</strong> のことを表す。
       <p>そして、 Web における Breaking Change (<strong>Break the Web</strong>)、具体的には Web の標準技術について、何か追加/変更を行なったことによって既存のコンテンツが壊れることは、基本的に許されない。
       <p>また Web 上には、更新されないまま残るコンテンツも多くあるため、壊れたコンテンツ側が変更に追従すれば良いという前提を取るのが難しい。
@@ -125,7 +125,7 @@
       <p>プラットフォームとしての Web にはバージョンが無いため、作った時に動いたものは、何か標準仕様に変更があっても動き続けることが求められるのだ。
     </section>
     <section>
-      <h2 id="Polyfill"><a href="#Polyfill">Polyfill</a></h2>
+      <h2 id="polyfill"><a href="#polyfill">Polyfill</a></h2>
       <p>Polyfill は W3C/WHATWG や ECMA などの策定によって、次々と登場する新しい API を先取りするために、既にある API を用いて、実装の無い新しい API を「擬似的に実装する」手法をさす。
       <p>しかし、良かれと思って作られた Polyfill も、仕様が確立していないものを、あまりに先行して実装してしまうと、標準化を妨げる厄介な問題をもたらす場合がある。
       <p>もし Polyfill を作るのであれば、まず最初にその仕様が標準化プロセスにおいて、どのようなステータスなのかを確認することが重要だ。
@@ -147,14 +147,14 @@
       <p>ただし、ここでは 4 が終わっているため、 Polyfill が実装する仕様は 6 の段階で各ブラウザが提供するものと同等であり、 6 の段階に至ったら「Polyfill 自体の読み込みをやめる」だけで、他のコードは一切変更せずにネイティブの API を呼び出して動くというのが理想的な流れだ。
     </section>
     <section>
-      <h2 id="Speculative+Polyfill"><a href="#Speculative+Polyfill">Speculative Polyfill</a></h2>
+      <h2 id="speculative-polyfill"><a href="#speculative-polyfill">Speculative Polyfill</a></h2>
       <p>問題を起こしやすいのは、 1 から 4 の段階、つまり仕様がきっちりと固まってない段階で、早まった API を実装した Polyfill を提供してしまうパターンだ。
-      <p>これは俗に Ponyfill/Prolyfill/Nottifill などと呼ばれて<a href="https://github.com/jonathantneal/document-promises/issues/4#issuecomment-256235909">分類</a> されることもあるが、いずれも問題をはらむ可能性があるということから TAG のドキュメントではこれらを総じて <strong>Speculative Polyfill</strong> としている。文意としては "先走った Polyfill" といったところか。
+      <p>これは俗に Ponyfill/Prolyfill/Nottifill などと呼ばれて<a href="https://github.com/jonathantneal/document-promises/issues/4#issuecomment-256235909">分類</a> されることもあるが、いずれも問題をはらむ可能性があるということから TAG のドキュメントではこれらを総じて <strong>Speculative Polyfill</strong> としている。文意としては &ldquo;先走った Polyfill&rdquo; といったところか。
       <p>策定中の API は、クラス/メソッド名などが確定しておらず、議論や試験実装を経てそれらを変更する可能性がある。
-      <p>しかし、 "先走った Polyfill" の実装が、仕様が固まる前に広まってしまい、固まる前のクラス/メッソド名が多くのコンテンツで使われてしまうと、仕様側でそれを変更するのが難しくなってしまう場合がある。
+      <p>しかし、 &ldquo;先走った Polyfill&rdquo; の実装が、仕様が固まる前に広まってしまい、固まる前のクラス/メッソド名が多くのコンテンツで使われてしまうと、仕様側でそれを変更するのが難しくなってしまう場合がある。
       <p>実際にこれが問題になった事例もいくつかある。
       <section>
-        <h3 id="Mootools+の+Array.prototype.contains"><a href="#Mootools+の+Array.prototype.contains">Mootools の Array.prototype.contains</a></h3>
+        <h3 id="mootools-の-arrayprototypecontains"><a href="#mootools-の-arrayprototypecontains">Mootools の Array.prototype.contains</a></h3>
         <p>現在 <code translate="no">Array.prototype.includes()</code> として定義/実装されているものは、最初 <code translate="no">contains()</code> という名前で提案されており、実際に実装まで行われたブラウザがあった。
         <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
         <pre class=js><code translate="no">[1, 2, 3].contains(2) // true</code></pre>
@@ -169,7 +169,7 @@
         <p>しかし、 <code translate="no">contains()</code> の実装を追加する前に <code translate="no">Array.prototype.contains</code> の存在をチェックし、存在したらスルーしていたため、そこにネイティブの実装が加わった時点で、最終的な独自の Array には、ネイティブ実装の <code translate="no">contains()</code> も Polyfill の <code translate="no">contains()</code> もない Array が提供されたというバグである。
       </section>
       <section>
-        <h3 id="createShadowRoot()"><a href="#createShadowRoot()">createShadowRoot()</a></h3>
+        <h3 id="createshadowroot"><a href="#createshadowroot">createShadowRoot()</a></h3>
         <p>TAG のドキュメントでは、 ShadowDOM の <code translate="no">createShadowRoot()</code> についても言及されている。
         <p>ShadowDOM の仕様は、これまでの DOM に新しい概念を持ち込むため仕様の策定が難しく、かなりの時間を要した。
         <p>API 自体も途中で更新され、更新後を v1 としてそれまでが v0 として扱われることとなった。
@@ -187,9 +187,9 @@ document.createElement(&#039;div&#039;).attachShadow({ mode: &#039;open&#039; })
       </section>
     </section>
     <section>
-      <h2 id="fantasy+override"><a href="#fantasy+override">fantasy override</a></h2>
+      <h2 id="fantasy-override"><a href="#fantasy-override">fantasy override</a></h2>
       <p>Polyfill が、ネイティブの実装と別の名前で提供されているなら、これらの問題を避けることができる。
-      <p>しかし、多くのコンテンツは、まだ仕様策定/実装が途中の機能を、将来使われるか、一部のブラウザだけが提供している仮の("fantasy")実装に寄せて使ってしまうため、依然問題となる。
+      <p>しかし、多くのコンテンツは、まだ仕様策定/実装が途中の機能を、将来使われるか、一部のブラウザだけが提供している仮の(&ldquo;fantasy&rdquo;)実装に寄せて使ってしまうため、依然問題となる。
       <p>例えば、以下のような記述はよく見られる。
       <pre class=js><code translate="no">requestAnimationFrame = requestAnimationFrame || webkitRequestAnimationFrame || polyfillRequestAnimationFrame;</code></pre>
       <p>もしこのコードを書いた時、最初の二つがなかった時は <code translate="no">polyfillRequestAnimationFrame</code> が使われるため、その挙動に依存した実装がされるだろう。
@@ -202,7 +202,7 @@ document.createElement(&#039;div&#039;).attachShadow({ mode: &#039;open&#039; })
       <p><a href="https://blog.jxck.io/entries/2016-09-29/vender-prefix-to-origin-trials.html">Web 標準化のフィードバックサイクルを円滑にする Origin Trials について</a>
     </section>
     <section>
-      <h2 id="Polyfill+を実装するタイミング"><a href="#Polyfill+を実装するタイミング">Polyfill を実装するタイミング</a></h2>
+      <h2 id="polyfill-を実装するタイミング"><a href="#polyfill-を実装するタイミング">Polyfill を実装するタイミング</a></h2>
       <p>では、いつどの時点での仕様を元に Polyfill を実装するのが良いかというと、これは一概には言えない。
       <p>仕様策定を追っている人であれば、仕様の成熟度合いやブラウザの実装状況などを踏まえた上で適切な時点を判断できるだろうが、そうでない場合は、その仕様の策定者や ML に提案を投げるのが一番安全だ。
       <p>もしそこからレスポンスが無いようであれば、おそらく実装すべきタイミングにそもそも至っていない。
@@ -210,8 +210,12 @@ document.createElement(&#039;div&#039;).attachShadow({ mode: &#039;open&#039; })
       <ul>
         <li>既に実装しているブラウザが複数あるか?
         <li>インタフェース仕様の変更が起こりそうな問題を解決済みで、コンセンサスが取れた仕様があるか
-        <li><a href="https://github.com/w3c/web-platform-tests">Test Suite</a> が存在するか
-        <li>メジャーなブラウザベンダから "Intent To Implement" がアナウンスされているか
+        <li>
+          <a href="https://github.com/w3c/web-platform-tests">Test Suite</a> が存在するか
+        </li>
+        <li>
+          メジャーなブラウザベンダから &ldquo;Intent To Implement&rdquo; がアナウンスされているか
+        </li>
       </ul>
     </section>
     <section>
@@ -224,7 +228,9 @@ document.createElement(&#039;div&#039;).attachShadow({ mode: &#039;open&#039; })
       <p>他細かい点では以下があげられる。
       <ul>
         <li>module 機構を使い、 global スコープやネイティブオブジェクトのプロトタイプを直接汚染しない
-        <li>ユーザが最新の実装に追従しやすいよう、 npm や CDN(<a href="https://cdnjs.com">cdnjs.com</a>, <a href="https://polyfill.io">polyfill.io</a>) などで提供する
+        <li>
+          ユーザが最新の実装に追従しやすいよう、 npm や CDN(<a href="https://cdnjs.com">cdnjs.com</a>, <a href="https://polyfill.io">polyfill.io</a>) などで提供する
+        </li>
         <li>Web Platform Test があったらパスすること
         <li>Polyfill の実装経験は貴重なので、気づいた点を仕様策定にフィードバックする
         <li>ネイティブ実装に移譲した場合はコンソールなどに Polyfill が不要であったことを知らせる

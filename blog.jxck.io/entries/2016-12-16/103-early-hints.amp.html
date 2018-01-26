@@ -80,15 +80,15 @@ by Jxck
 
 <style amp-custom>
 article section p {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article pre {
-  margin-left: 0.8em;
+  margin: 0;
 }
 
 article table {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article img {
@@ -373,7 +373,7 @@ dl dt::after {
   content: ":";
 }
 
-blockquote::before {
+blockquote p::before {
   content: "> ";
 }
 
@@ -435,7 +435,7 @@ blockquote {
   border: solid 1px #ddd;
   border-radius: 4px;
   padding: 1em;
-  margin: 1.4em 0;
+  margin: 0;
 }
 
 code {
@@ -618,14 +618,14 @@ th:last-child, td:last-child {
   <article>
     <h1><a href=/entries/2016-12-16/103-early-hints.html>HTTP の新しいステータスコード 103 Early Hints</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>これは、 <a href="https://qiita.com/advent-calendar/2016/http2">http2 Advent Calendar 2016</a> の 16 日目の記事である。
       <p>HTTP に新しいステータスコード <code translate="no">103 Early Hints</code> が追加されようとしている。
       <p>HTTP/1.1 および HTTP2 双方と関わり、リソース配信の最適化に利用することができる。
       <p>いったい何のために必要なのか、どういうメリットが考えられるかを解説する。
     </section>
     <section>
-      <h2 id="HTTP2+Push+の復習"><a href="#HTTP2+Push+の復習">HTTP2 Push の復習</a></h2>
+      <h2 id="http2-push-の復習"><a href="#http2-push-の復習">HTTP2 Push の復習</a></h2>
       <p>まず HTTP2 の Push について復習する。
       <p>H2 Push は、簡単に言えば PUSH_PROMISE フレームを用いて、レスポンスよりも先に依存するリソースを返すための仕様である。
       <p>例えば <code translate="no">/users</code> のレスポンスは <code translate="no">script.js</code> と <code translate="no">style.css</code> をサブリソースとして含んでいるとする。
@@ -639,7 +639,7 @@ th:last-child, td:last-child {
       <p>これが H2 Push の基本となる。
     </section>
     <section>
-      <h2 id="Reverse+Proxy"><a href="#Reverse+Proxy">Reverse Proxy</a></h2>
+      <h2 id="reverse-proxy"><a href="#reverse-proxy">Reverse Proxy</a></h2>
       <p>通常、サービスを提供する場合は、ロジックを持つ Origin Server の手前には Reverse Proxy などが立っている場合が多いだろう。
       <p>もし Origin が H2 を話し、 Reverse Proxy も H2 のままフォワードすれば、 H2 Push をそのままクライアントに届けることができる。
       <p>しかし、構成によっては Reverse Proxy が H2 を H1.1 に解いてフォワードする場合がある。
@@ -663,7 +663,7 @@ Link: &lt;/script.js&gt;; rel=preload
       <p>この制限のため、 H1.1 に翻訳する形で H2 を使う場合、 Push のポテンシャルを引き出すことができなかったのだ。
     </section>
     <section>
-      <h2 id="103+Early+Hints"><a href="#103+Early+Hints">103 Early Hints</a></h2>
+      <h2 id="103-early-hints"><a href="#103-early-hints">103 Early Hints</a></h2>
       <p>この問題に対応するために提案されたのが h2o の開発者である <a href="https://twitter.com/kazuho">@kazuho</a> さんが提案した、ステータスコード 103 だ。
       <p><a href="https://tools.ietf.org/html/draft-kazuho-early-hints-status-code">An HTTP Status Code for Indicating Hints</a>
       <p>103 は、ヘッダだけを送る目的で使われ、実際のレスポンスは後から来るというセマンティクスになっている。
@@ -684,7 +684,7 @@ Content-Type: text/html
       <p>これにより、 H2 Push の二つのメリットが、両方享受できるようになるわけである。
     </section>
     <section>
-      <h2 id="静的アセット+Push+の移譲"><a href="#静的アセット+Push+の移譲">静的アセット Push の移譲</a></h2>
+      <h2 id="静的アセット-push-の移譲"><a href="#静的アセット-push-の移譲">静的アセット Push の移譲</a></h2>
       <p>もし Reverse Proxy が H2 を解かず、 Origin が直接 Push を行えるとしても、 Early Hints は役に立つ。
       <p>通常、静的アセットファイルの送信は、 Origin ではなく Reverse Proxy がコンテンツサーバとなり、そこから配信されることが多いだろう。
       <p>そこで Origin がサブリソースを Push したい場合、直接そのアセットを body に含めた Push Promise を送るのではなく、 H2 のフレームで Early Hints にパスだけを指定して送信する。
@@ -692,7 +692,7 @@ Content-Type: text/html
       <p>これにより、従来の構成と同様に、 Origin が静的アセットファイルそのものを保持する必要がなくなるわけである。
     </section>
     <section>
-      <h2 id="H2+Push+以外の用途"><a href="#H2+Push+以外の用途">H2 Push 以外の用途</a></h2>
+      <h2 id="h2-push-以外の用途"><a href="#h2-push-以外の用途">H2 Push 以外の用途</a></h2>
       <p>HTTP の Link の用途は H2 Push だけではなく、 Resource Hints と呼ばれる仕様によって、次に利用するリソースの情報を提供する仕様がある。
       <p>こうした情報は、投機的にクライアントに与えられ消費されるわけだが、これもステータスコードの決定を待つ必要が無い場合が多い。
       <p>そこで、 Reverse Proxy の存在を前提とせずとも、直接クライアントに対して 103 を送り、消費させる構成も考えられるだろう。
@@ -705,7 +705,7 @@ Content-Type: text/html
       <p>H1.1 のセマンティクス上にありながら、そのペイロードフォーマットの制限を外すことにより、既存の資産を有効活用しながらも、 H1.1/H2 双方の新機能の恩恵を受ける上で、非常に重要な概念と言えるのではないだろうか。
     </section>
     <section>
-      <h2 id="Special+Thanks"><a href="#Special+Thanks">Special Thanks</a></h2>
+      <h2 id="special-thanks"><a href="#special-thanks">Special Thanks</a></h2>
       <p>この記事を書くにあたり <a href="https://twitter.com/kazuho">@kazuho</a> さんにアドバイスをいただきました。ありがとうございます。
     </section>
   </article>

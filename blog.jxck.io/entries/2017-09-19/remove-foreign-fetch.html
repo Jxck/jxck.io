@@ -109,13 +109,13 @@
   <article>
     <h1><a href=/entries/2017-09-19/remove-foreign-fetch.html>Foreign Fetch が削除されそうな理由と Cookie の double keying</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>以前、本ブログでも紹介した Foreign Fetch が、仕様から削除される方向で進んでいる。
       <p><a href="https://blog.jxck.io/entries/2016-12-12/foreign-fetch.html">Foreign Fetch による Micro Service Workers | blog.jxck.io</a>
       <p>これは、 Safari などが進めている Cookie の double keying が影響しているらしいので、現状についてまとめる。
     </section>
     <section>
-      <h2 id="Foreign+Fetch"><a href="#Foreign+Fetch">Foreign Fetch</a></h2>
+      <h2 id="foreign-fetch"><a href="#foreign-fetch">Foreign Fetch</a></h2>
       <p>Foreign Fetch は、簡単に言えば 3rd Party Origin の Service Worker が、その Origin に向けた Fetch をハンドルできるようにするという仕様である。
       <p>これによって、 Origin 単位での Service Worker の責務が分離できるため、以下のような設計が期待できた。
       <ul>
@@ -126,21 +126,27 @@
       <p><a href="https://github.com/w3c/ServiceWorker/issues/1188">Remove foreign fetch #1188</a>
     </section>
     <section>
-      <h2 id="Foreign+Fetch+Origin+Trial+results"><a href="#Foreign+Fetch+Origin+Trial+results">Foreign Fetch Origin Trial results</a></h2>
+      <h2 id="foreign-fetch-origin-trial-results"><a href="#foreign-fetch-origin-trial-results">Foreign Fetch Origin Trial results</a></h2>
       <p>そもそも Origin Trials が終わった時点で、結果があまり芳しくなかったようだ。
       <p>(筆者が書いた短いフィードバックまで結果に載っていることから、そもそも Trial Token を取得したユーザも少なかったのではないかと推測する)
       <ul>
-        <li><a href="https://docs.google.com/document/d/1G3XkRy972OkYEPNmBRvdWRWPNaiSPvnnnWyYNXnkWwU/edit">Foreign Fetch Origin Trial Results 2017-03-07</a>
-        <li><a href="https://groups.google.com/a/chromium.org/forum/?pli=1#!topic/blink-dev/pJ4PwgVcKjY">Foreign Fetch Origin Trial Results</a>
-        <li><a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/sIzHpZVhmBE/hHXlHP7wAAAJ">True Sadness - End of Experiment: Foreign Fetch</a>
+        <li>
+          <a href="https://docs.google.com/document/d/1G3XkRy972OkYEPNmBRvdWRWPNaiSPvnnnWyYNXnkWwU/edit">Foreign Fetch Origin Trial Results 2017-03-07</a>
+        </li>
+        <li>
+          <a href="https://groups.google.com/a/chromium.org/forum/?pli=1#!topic/blink-dev/pJ4PwgVcKjY">Foreign Fetch Origin Trial Results</a>
+        </li>
+        <li>
+          <a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/sIzHpZVhmBE/hHXlHP7wAAAJ">True Sadness - End of Experiment: Foreign Fetch</a>
+        </li>
       </ul>
       <p>しかし、実装のみではなく仕様からも消える大きなモチベーションとしてセキュリティがあるようだ。
       <p>ここには 3rd party cookie で行われる行動追跡に対応するための、 double keying という仕組みが関わっているらしい。
     </section>
     <section>
-      <h2 id="double+keying+cookie"><a href="#double+keying+cookie">double keying cookie</a></h2>
+      <h2 id="double-keying-cookie"><a href="#double-keying-cookie">double keying cookie</a></h2>
       <section>
-        <h3 id="3rd+party+cookie+tracking"><a href="#3rd+party+cookie+tracking">3rd party cookie tracking</a></h3>
+        <h3 id="3rd-party-cookie-tracking"><a href="#3rd-party-cookie-tracking">3rd party cookie tracking</a></h3>
         <p>まず、 3rd Party Cookie による行動追跡について簡単に解説する。
         <p>例えば、本サイト (jxck.io) が EC サイト(ec.example.com) の Ad などを埋め込んでいたとする。
         <p>すると、 jxck.io の閲覧者には ec.example.com からの <code translate="no">Set-Cookie</code> が送られ、保存される。
@@ -156,7 +162,7 @@ Cookie: history=jxck.io</code></pre>
       </section>
     </section>
     <section>
-      <h2 id="double+keying"><a href="#double+keying">double keying</a></h2>
+      <h2 id="double-keying"><a href="#double-keying">double keying</a></h2>
       <p>Cookie は、ブラウザ内で「<strong>どこから付与されたか</strong>」をキーとして保存されている。
       <p>したがって、閲覧しているサイトが jxck.io であれ mozaic.fm であれ、同じ ec.example.com にアクセスする際は、そこから取得した Cookie をつける。
       <p>このブラウザの挙動が、こうしたトラッキングを可能にしていた。
@@ -170,7 +176,7 @@ Cookie: history=jxck.io</code></pre>
       <p>このように、 2 つの情報をキーとして保存するのを double keying と言うらしい。
     </section>
     <section>
-      <h2 id="ITP+(Intelligent+Tracking+Prevention)"><a href="#ITP+(Intelligent+Tracking+Prevention)">ITP (Intelligent Tracking Prevention)</a></h2>
+      <h2 id="itp-intelligent-tracking-prevention"><a href="#itp-intelligent-tracking-prevention">ITP (Intelligent Tracking Prevention)</a></h2>
       <p>Mac OS は HiSierra から ITP というトラッキング防止の機能を追加する。
       <p>https://webkit.org/blog/7675/intelligent-tracking-prevention/
       <p>これにより、 Safari が保存する Cookie の保存に関するポリシーが変更される。
@@ -178,7 +184,7 @@ Cookie: history=jxck.io</code></pre>
       <p>この発表は 3rd Party Cookie を使っているアドや Analytics など、多くの実装に影響を与えサービスによっては株価への <a href="http://adworld.hatenablog.com/entry/2017/06/13/004208">影響</a> もある。
     </section>
     <section>
-      <h2 id="double+keying+と+foreign+fetch"><a href="#double+keying+と+foreign+fetch">double keying と foreign fetch</a></h2>
+      <h2 id="double-keying-と-foreign-fetch"><a href="#double-keying-と-foreign-fetch">double keying と foreign fetch</a></h2>
       <p>同じことを、 SW で考えてみる。
       <p>先の例で ec.example.com から付与される 3rd Party SW は、 jxck.io / mozaic.fm 両方からの ec.example.com への fetch をハンドルできる。
       <p>これは、 3rd Party Cookie と、本質的には同じ、もしくはそれ以上に柔軟な追跡ができる可能性がある。
@@ -188,7 +194,7 @@ Cookie: history=jxck.io</code></pre>
       <p>ところが、 SW も double keying されていると、 jxck.io が font.example.com から取得した WebFont と mozaic.fm が font.example.com から取得した WebFont は、例え同じファイルだったとしても別の領域に保存されてしまう。
     </section>
     <section>
-      <h2 id="3rd+Party+SW+のユースケース"><a href="#3rd+Party+SW+のユースケース">3rd Party SW のユースケース</a></h2>
+      <h2 id="3rd-party-sw-のユースケース"><a href="#3rd-party-sw-のユースケース">3rd Party SW のユースケース</a></h2>
       <p>3rd Party SW は、 SW で規模の大きいアプリを開発する際、必須になるだろうと筆者は考えていた。
       <ul>
         <li>SW の責務を分離した設計を行う

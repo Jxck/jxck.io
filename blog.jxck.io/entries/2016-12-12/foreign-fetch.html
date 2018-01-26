@@ -109,19 +109,19 @@
   <article>
     <h1><a href=/entries/2016-12-12/foreign-fetch.html>Foreign Fetch による Micro Service Workers</a></h1>
     <section>
-      <h2 id="Update"><a href="#Update">Update</a></h2>
+      <h2 id="update"><a href="#update">Update</a></h2>
       <p>Foreign Fetch は削除される方向で進んでいる。
       <p>別途エントリを上げたのでそちらを参照。
       <p><a href="https://blog.jxck.io/entries/2017-09-19/remove-foreign-fetch.html">Foreign Fetch が削除されそうな理由と Cookie の double keying | blog.jxck.io</a>
     </section>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>Service Worker に Foreign Fetch という機能が提案されている。
       <p>この機能があるとクロスオリジンへの fetch をフックできる Service Worker を、その対象オリジンから提供できるようになる。
       <p>一体どういう仕組みなのか、これによって何が可能になるのかについて、デモを交えて記す。
     </section>
     <section>
-      <h2 id="1st+Party+と+3rd+Party"><a href="#1st+Party+と+3rd+Party">1st Party と 3rd Party</a></h2>
+      <h2 id="1st-party-と-3rd-party"><a href="#1st-party-と-3rd-party">1st Party と 3rd Party</a></h2>
       <p>例えばこのブログであれば、筆者自身が Service Worker を登録することで、 Push などの機能を提供することができる。
       <p>ここではこれを、 1st Party の Service Worker とする。
       <p>またこのブログは、 3rd Party のサービスとして Google Analytics や Youtube などを利用している。
@@ -130,7 +130,7 @@
       <p>ところが、別オリジンから配布される JS/CSS のライブラリや、 Font/Image などのコンテンツ、地図やカレンダーなど、依存する 3rd Party サービスが増えてくれば、対応すべき対象は増えていくことになる。
     </section>
     <section>
-      <h2 id="1st+Party+Service+Worker+の限界"><a href="#1st+Party+Service+Worker+の限界">1st Party Service Worker の限界</a></h2>
+      <h2 id="1st-party-service-worker-の限界"><a href="#1st-party-service-worker-の限界">1st Party Service Worker の限界</a></h2>
       <p>そして、 1st Party と 3rd Party のサービスは基本的には Cross Origin の関係になるだろう。
       <p>この場合 3rd Party コンテンツへの fetch を 1st Party Service Worker でフックした場合、そのレスポンスは Opaque となり中身を見ることができない。 Cache API への単純な保存は可能だが、より細かい制御を必要とする場合、オリジンが異なることは大きな制限となる。
       <p>もし 3rd Party のサービスが CORS に対応しているなら、 Same Origin の Response と同じく中身を見ることができるため、この問題はない。
@@ -139,14 +139,14 @@
       <p>ましてやそれぞれ特性の違う 3rd Party のサービスを、全て適切にオフライン対応し、それら全てを 1 つの Service Worker にマージして、適切にアップデートしながら提供することは、かなり難しいことだろうと筆者は感じている。
     </section>
     <section>
-      <h2 id="3rd+Party+Service+Worker"><a href="#3rd+Party+Service+Worker">3rd Party Service Worker</a></h2>
+      <h2 id="3rd-party-service-worker"><a href="#3rd-party-service-worker">3rd Party Service Worker</a></h2>
       <p>3rd Party のサービスの特性は、そのサービスの提供者が一番よく把握している。
       <p>つまり、 3rd Party のサービスをオフライン対応するのであれば、その Service Worker のロジックは同じく 3rd Party のプロバイダがサービスと合わせて提供する方が合理的だと言えるだろう。
       <p>しかし、前述の通り 1 つのページに対しては、同時に 1 つの Service Worker しか controller になれない。
       <p>そこで、ページに対しては 1st Party Service Worker を登録し、それとは別に 3rd Party Service Worker を 3rd Party サービスに対して登録可能にするというのが、 foreign-fetch である。
     </section>
     <section>
-      <h2 id="foreign-fetch+の仕組み"><a href="#foreign-fetch+の仕組み">foreign-fetch の仕組み</a></h2>
+      <h2 id="foreign-fetch-の仕組み"><a href="#foreign-fetch-の仕組み">foreign-fetch の仕組み</a></h2>
       <p>さて、言葉での解説では想像しにくいと思うので、実際のデモを交えて解説をしていく。
       <p>以下は <code translate="no">https://labs.jxck.io</code> をオリジンとする 1 つだけボタンを持つページに遷移する。これが 1st Party にあたる。
       <p>ページ内のボタンは <code translate="no">https://api.jxck.io</code> という別オリジンの API を叩き、乱数を取得して表示するだけの簡単なものだ。
@@ -192,7 +192,7 @@ self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
       <p>これは、 1st Party とは別に 3rd Party の Service Worker が登録されているためである。
     </section>
     <section>
-      <h2 id="3rd+Party+Service+Worker+の登録"><a href="#3rd+Party+Service+Worker+の登録">3rd Party Service Worker の登録</a></h2>
+      <h2 id="3rd-party-service-worker-の登録"><a href="#3rd-party-service-worker-の登録">3rd Party Service Worker の登録</a></h2>
       <p>乱数の API は <code translate="no">https://api.jxck.io/random/number</code> への GET である。
       <p>実はこの API のレスポンスには、以下のようなヘッダが登録されている。
       <pre><code translate="no">Link: &lt;/random/worker.js&gt;; rel=&quot;serviceworker&quot;
@@ -241,7 +241,7 @@ self.addEventListener(&#039;foreignfetch&#039;, (e) =&gt; {
       <p>これにより、 1st Party の Service Worker は fetch が成功したかのように挙動するのである。
     </section>
     <section>
-      <h2 id="foreign-fetch+によるサービス間連携"><a href="#foreign-fetch+によるサービス間連携">foreign-fetch によるサービス間連携</a></h2>
+      <h2 id="foreign-fetch-によるサービス間連携"><a href="#foreign-fetch-によるサービス間連携">foreign-fetch によるサービス間連携</a></h2>
       <p>この 3rd Party Service Worker は、ページに紐づいている訳ではなく、イメージとしては API に紐づいている。
       <p>例えば、今回は <code translate="no">labs.jxck.io</code> から fetch していたが、別のオリジン/ページから同じ API を fetch しても、 Origin/Scope が範囲内であれば、同じ 3rd Party Service Worker が起動して処理を行う。
       <p>つまり、 3rd Party Service Worker は異なる 1st Party Service Worker 間で共有されるのだ。
@@ -251,7 +251,7 @@ self.addEventListener(&#039;foreignfetch&#039;, (e) =&gt; {
       <p>サービス連携のような使い方が可能になるのだ。
     </section>
     <section>
-      <h2 id="Micro+Serivce+Workers"><a href="#Micro+Serivce+Workers">Micro Serivce Workers</a></h2>
+      <h2 id="micro-serivce-workers"><a href="#micro-serivce-workers">Micro Serivce Workers</a></h2>
       <p>1st Party Service Worker で全ての処理を行う必要があったモデルには、かなり無理があった。
       <p>3rd Party が持つロジックを全て適切に 1st Party 内に実装するのは難しいし、そもそも 1st Party が必ずそれを行うことを前提とするのは非現実的だ。
       <p>3rd Party が API に Service Worker を含めて提供し、それが 1st Party から見れば透過的に動作するのは非常に自然かつ妥当であると言える。

@@ -80,15 +80,15 @@ by Jxck
 
 <style amp-custom>
 article section p {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article pre {
-  margin-left: 0.8em;
+  margin: 0;
 }
 
 article table {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article img {
@@ -373,7 +373,7 @@ dl dt::after {
   content: ":";
 }
 
-blockquote::before {
+blockquote p::before {
   content: "> ";
 }
 
@@ -435,7 +435,7 @@ blockquote {
   border: solid 1px #ddd;
   border-radius: 4px;
   padding: 1em;
-  margin: 1.4em 0;
+  margin: 0;
 }
 
 code {
@@ -618,13 +618,13 @@ th:last-child, td:last-child {
   <article>
     <h1><a href=/entries/2018-01-05/sdp-unified-plan.html>SDP の Unified Plan と Plan B</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>新年早々、 Blink Dev で Unified Plan の Intent to Implement という嬉しい知らせが届いた。
       <p><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Qgwfl-nD0Zs/u45qUqRHBwAJ">Intent to Implement: WebRTC Unified Plan SDP</a>
       <p>SDP の互換性についてインパクトの大きいこの変更について簡単に解説する。
     </section>
     <section>
-      <h2 id="SDP+Compatibility"><a href="#SDP+Compatibility">SDP Compatibility</a></h2>
+      <h2 id="sdp-compatibility"><a href="#sdp-compatibility">SDP Compatibility</a></h2>
       <p>SDP は、 WebRTC の通信開始前に、シグナリングで交換するデータである。
       <p>内容は、これから交換する映像/音声のコーデック他、セッションを確立するための様々な情報が含まれる。
       <p>もし WebRTC のセッションにおいて、複数の Audio/Video Stream を交換する場合は、各ストリームの情報を SDP に含める必要がある。
@@ -635,24 +635,24 @@ th:last-child, td:last-child {
       <p>Chrome がそこに対して Intent to Implement を出したことは、業界としては嬉しい知らせである。
     </section>
     <section>
-      <h2 id="Plan+B"><a href="#Plan+B">Plan B</a></h2>
+      <h2 id="plan-b"><a href="#plan-b">Plan B</a></h2>
       <p><a href="https://tools.ietf.org/html/draft-uberti-rtcweb-plan-00">Plan B: a proposal for signaling multiple media sources in WebRTC</a>
-      <p>例えば、複数のマイクからの音声を送る場合、 "m=" line をマイクごとに記述にする。
-      <p>しかし、各 "m=" line 対して別トランスポートを割り当てたいとは限らない。
+      <p>例えば、複数のマイクからの音声を送る場合、 &ldquo;m=&rdquo; line をマイクごとに記述にする。
+      <p>しかし、各 &ldquo;m=&rdquo; line 対して別トランスポートを割り当てたいとは限らない。
       <p>多重化する場合は、トランスポートは 1 つで良い。
-      <p>そこで、 "m=" 自体は
-      <p>トランスポートに対して "m=" line は 1 つにし、それを "envelope" とする。
-      <p>その中に、マイクごとの定義を、 "a=ssrc" で記述する。
+      <p>そこで、 &ldquo;m=&rdquo; 自体は
+      <p>トランスポートに対して &ldquo;m=&rdquo; line は 1 つにし、それを &ldquo;envelope&rdquo; とする。
+      <p>その中に、マイクごとの定義を、 &ldquo;a=ssrc&rdquo; で記述する。
       <pre><code translate="no">m=audio 49170 RTP/AVP 101
 a=ssrc:1 msid:left-mic
 a=ssrc:2 msid:center-mic
 a=ssrc:3 msid:right-mic</code></pre>
     </section>
     <section>
-      <h2 id="Plan+A+-+Unified+Plan"><a href="#Plan+A+-+Unified+Plan">Plan A - Unified Plan</a></h2>
+      <h2 id="plan-a---unified-plan"><a href="#plan-a---unified-plan">Plan A - Unified Plan</a></h2>
       <p><a href="https://tools.ietf.org/html/draft-roach-mmusic-unified-plan-00">A Unified Plan for Using SDP with Large Numbers of Media Flows</a>
-      <p>Plan A は、 "m=" line をメディアごとに書くというシンプルな方法である。
-      <p>もし多重化したい場合は、対象の "m=" line に対して BUNDLE を指定する。
+      <p>Plan A は、 &ldquo;m=&rdquo; line をメディアごとに書くというシンプルな方法である。
+      <p>もし多重化したい場合は、対象の &ldquo;m=&rdquo; line に対して BUNDLE を指定する。
       <p>この方式が WebRTC の標準として合意され、現在は Unified Plan として策定が進んでいる。
       <pre><code translate="no">...
 a=group:BUNDLE m1 m2 m3
@@ -671,11 +671,11 @@ a=mid:m3
 ...</code></pre>
     </section>
     <section>
-      <h2 id="SdpFormat"><a href="#SdpFormat">SdpFormat</a></h2>
+      <h2 id="sdpformat"><a href="#sdpformat">SdpFormat</a></h2>
       <p>Chrome は、まず WebRTCUnifiedPlan というフラグを用意するとしている。
       <p>このフラグを有効にすると、 RTCConfiguration に <code translate="no">&quot;SdpFormat&quot;</code> という独自プロパティを定義される。
       <p>デフォルトは <code translate="no">&quot;plan-b&quot;</code> であり、明示的に <code translate="no">&quot;unified-plan&quot;</code> を指定すれば切り替えられる。
-      <p>後にデフォルトを "unified-plan" に変更し、 <code translate="no">&quot;plan-b&quot;</code> が十分に減れば値自体が削除される。
+      <p>後にデフォルトを &ldquo;unified-plan&rdquo; に変更し、 <code translate="no">&quot;plan-b&quot;</code> が十分に減れば値自体が削除される。
       <pre class=javascript><code translate="no">new RTCPeerConnection({SdpFormat: &quot;unified-plan&quot;})</code></pre>
     </section>
     <section>

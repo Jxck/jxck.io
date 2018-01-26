@@ -77,8 +77,12 @@
       <p><audio preload=none src=https://files.mozaic.fm/mozaic-ep10.sideshow.mp3 controls></audio>
       <ul class=info>
         <li>published_at: <time datetime=2014-10-23>2014-10-23</time>
-        <li>guest: <a href="https://twitter.com/koichik">@koichik</a>
-        <li>guest: <a href="https://twitter.com/yosuke_furukawa">@yosuke_furukawa</a>
+        <li>
+          guest: <a href="https://twitter.com/koichik">@koichik</a>
+        </li>
+        <li>
+          guest: <a href="https://twitter.com/yosuke_furukawa">@yosuke_furukawa</a>
+        </li>
       </ul>
     </section>
     <section>
@@ -89,50 +93,118 @@
     <section>
       <h2>Show Note</h2>
       <ul>
-        <li>0:00 ~ : そもそもみんな Promise 好き?<ul>
-          <li><a href="http://people.mozilla.org/%7Ejorendorff/es6-draft.html%23sec-promise-objects">ES6 Promise</a>
-          <li><a href="http://try.buildwinjs.com/">WindJS</a>
-          <li><a href="http://ja.wikipedia.org/wiki/%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%25AB%25E3%2583%25BB%25E3%2583%2592%25E3%2583%25A5%25E3%2583%25BC%25E3%2582%25A4%25E3%2583%2583%25E3%2583%2588">カール・ヒューイット</a>
-        </ul>
-        <li>1:40 ~ : そもそもの Promise とは?<ul>
-          <li><a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Future.html">Java の Future</a>
-          <li><a href="http://www.haskell.org/haskellwiki/Thunk">Haskell の Thunk</a>
-        </ul>
-        <li>7:30 ~ : 本当に Promise は必要なのか?<ul>
-          <li><a href="http://www.scala-lang.org/api/current/scala/Option.html">Scala の Option</a>
-          <li><a href="http://api.jquery.com/category/deferred-object/">jQuery の Deffered</a>
-          <li><a href="https://dom.spec.whatwg.org/%23promises">DOM の Promise</a>
-        </ul>
-        <li>15:22 ~ : JS の Promise と Haskell の I/O モナド<ul>
-          <li><a href="http://www.haskell.org/haskellwiki/IO_inside%23Dark_side_of_IO_monad">Haskell の I/O monad</a>
-          <li><a href="http://en.wikibooks.org/wiki/Haskell/Syntactic_sugar%23Do_and_proc_notation">Haskell の do 記法</a>
-        </ul>
-        <li>18:45 ~ : genrator ってどうなの?<ul>
-          <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function%2A">function*</a>
-        </ul>
-        <li>20:50 ~ : generator と Go の groutine/channel<ul>
-          <li><a href="http://golang.org/ref/spec%23Channel_types">Go の Channel</a>
-          <li><a href="http://jxck.hatenablog.com/entry/2014-01-12/generator-screencaset">Generator のスクリーンキャスト</a>
-          <li><a href="http://koajs.com/%2522%2522">koa</a>
-          <li><a href="https://github.com/tj/co">co</a>
-        </ul>
-        <li>29:45 ~ : generator と Lua の coroutine<ul>
-          <li><a href="http://www.lua.org/manual/5.2/manual.html%232.6">Lua の coroutine</a>
-        </ul>
-        <li>33:10 ~ : generator と goroutine の決定的な違い<ul>
-          <li><a href="http://ja.wikipedia.org/wiki/%25E3%2583%258B%25E3%2582%25AF%25E3%2583%25A9%25E3%2582%25A6%25E3%2582%25B9%25E3%2583%25BB%25E3%2583%25B4%25E3%2582%25A3%25E3%2583%25AB%25E3%2583%2588">ニクラウス・ヴィルト</a>
-        </ul>
-        <li>40:43 ~ : Async/Await<ul>
-          <li><a href="http://msdn.microsoft.com/ja-jp/library/hh191443.aspx">C# async/await</a>
-          <li><a href="https://github.com/koajs/koa/issues/339">koa への issue</a>
-        </ul>
-        <li>43:00 ~ : Reactive Programming と RxJS<ul>
-          <li><a href="http://reactive-extensions.github.io/RxJS/">RxJS</a>
-          <li><a href="http://en.wikipedia.org/wiki/Functional_reactive_programming">Functional Reactive Programming</a>
-          <li><a href="https://www.meteor.com/">meteor</a>
-          <li><a href="https://cloudup.com/">cloudup</a>
-          <li><a href="https://www.npmjs.org/package/amqp">node-amqp</a>
-        </ul>
+        <li>
+          0:00 ~ : そもそもみんな Promise 好き?<ul>
+            <li>
+              <a href="http://people.mozilla.org/%7Ejorendorff/es6-draft.html%23sec-promise-objects">ES6 Promise</a>
+            </li>
+            <li>
+              <a href="http://try.buildwinjs.com/">WindJS</a>
+            </li>
+            <li>
+              <a href="http://ja.wikipedia.org/wiki/%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%25AB%25E3%2583%25BB%25E3%2583%2592%25E3%2583%25A5%25E3%2583%25BC%25E3%2582%25A4%25E3%2583%2583%25E3%2583%2588">カール・ヒューイット</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          1:40 ~ : そもそもの Promise とは?<ul>
+            <li>
+              <a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Future.html">Java の Future</a>
+            </li>
+            <li>
+              <a href="http://www.haskell.org/haskellwiki/Thunk">Haskell の Thunk</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          7:30 ~ : 本当に Promise は必要なのか?<ul>
+            <li>
+              <a href="http://www.scala-lang.org/api/current/scala/Option.html">Scala の Option</a>
+            </li>
+            <li>
+              <a href="http://api.jquery.com/category/deferred-object/">jQuery の Deffered</a>
+            </li>
+            <li>
+              <a href="https://dom.spec.whatwg.org/%23promises">DOM の Promise</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          15:22 ~ : JS の Promise と Haskell の I/O モナド<ul>
+            <li>
+              <a href="http://www.haskell.org/haskellwiki/IO_inside%23Dark_side_of_IO_monad">Haskell の I/O monad</a>
+            </li>
+            <li>
+              <a href="http://en.wikibooks.org/wiki/Haskell/Syntactic_sugar%23Do_and_proc_notation">Haskell の do 記法</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          18:45 ~ : genrator ってどうなの?<ul>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function%2A">function*</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          20:50 ~ : generator と Go の groutine/channel<ul>
+            <li>
+              <a href="http://golang.org/ref/spec%23Channel_types">Go の Channel</a>
+            </li>
+            <li>
+              <a href="http://jxck.hatenablog.com/entry/2014-01-12/generator-screencaset">Generator のスクリーンキャスト</a>
+            </li>
+            <li>
+              <a href="http://koajs.com/%2522%2522">koa</a>
+            </li>
+            <li>
+              <a href="https://github.com/tj/co">co</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          29:45 ~ : generator と Lua の coroutine<ul>
+            <li>
+              <a href="http://www.lua.org/manual/5.2/manual.html%232.6">Lua の coroutine</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          33:10 ~ : generator と goroutine の決定的な違い<ul>
+            <li>
+              <a href="http://ja.wikipedia.org/wiki/%25E3%2583%258B%25E3%2582%25AF%25E3%2583%25A9%25E3%2582%25A6%25E3%2582%25B9%25E3%2583%25BB%25E3%2583%25B4%25E3%2582%25A3%25E3%2583%25AB%25E3%2583%2588">ニクラウス・ヴィルト</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          40:43 ~ : Async/Await<ul>
+            <li>
+              <a href="http://msdn.microsoft.com/ja-jp/library/hh191443.aspx">C# async/await</a>
+            </li>
+            <li>
+              <a href="https://github.com/koajs/koa/issues/339">koa への issue</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          43:00 ~ : Reactive Programming と RxJS<ul>
+            <li>
+              <a href="http://reactive-extensions.github.io/RxJS/">RxJS</a>
+            </li>
+            <li>
+              <a href="http://en.wikipedia.org/wiki/Functional_reactive_programming">Functional Reactive Programming</a>
+            </li>
+            <li>
+              <a href="https://www.meteor.com/">meteor</a>
+            </li>
+            <li>
+              <a href="https://cloudup.com/">cloudup</a>
+            </li>
+            <li>
+              <a href="https://www.npmjs.org/package/amqp">node-amqp</a>
+            </li>
+          </ul>
+        </li>
       </ul>
     </section>
   </article>

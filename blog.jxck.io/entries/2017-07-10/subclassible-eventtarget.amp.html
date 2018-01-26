@@ -80,15 +80,15 @@ by Jxck
 
 <style amp-custom>
 article section p {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article pre {
-  margin-left: 0.8em;
+  margin: 0;
 }
 
 article table {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article img {
@@ -373,7 +373,7 @@ dl dt::after {
   content: ":";
 }
 
-blockquote::before {
+blockquote p::before {
   content: "> ";
 }
 
@@ -435,7 +435,7 @@ blockquote {
   border: solid 1px #ddd;
   border-radius: 4px;
   padding: 1em;
-  margin: 1.4em 0;
+  margin: 0;
 }
 
 code {
@@ -618,17 +618,17 @@ th:last-child, td:last-child {
   <article>
     <h1><a href=/entries/2017-07-10/subclassible-eventtarget.html>EventTarget の継承可能化による EventEmitter の代替</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p><a href="https://twitter.com/Jxck_/status/826004140211843072">念願</a> だった EventTarget の constructible/subclassable が DOM の仕様にマージされた。
       <p>これにより、いわゆる EventEmitter のブラウザ移植が不要になることが期待される。
       <p><a href="https://github.com/whatwg/dom/commit/c4c1c8b47340a1e5ecc1a07670927b831f240586">Allow constructing and subclassing EventTarget</a>
     </section>
     <section>
-      <h2 id="Update"><a href="#Update">Update</a></h2>
+      <h2 id="update"><a href="#update">Update</a></h2>
       <p>Chrome Canary 64 で実装が確認できたため、 DEMO を追加した。
     </section>
     <section>
-      <h2 id="EventTarget"><a href="#EventTarget">EventTarget</a></h2>
+      <h2 id="eventtarget"><a href="#eventtarget">EventTarget</a></h2>
       <p><a href="https://dom.spec.whatwg.org/#interface-eventtarget">EventTarget</a> には <code translate="no">addEventListener</code>, <code translate="no">removeEventListener</code>, <code translate="no">dispatchEvent</code> が定義されている。
       <p>これは、ブラウザが内部で生成する Event や、任意に生成された CustomEvent を発火/補足するために利用される。
       <pre class=js><code translate="no">callback = console.log.bind(console)
@@ -641,7 +641,7 @@ $div.removeEventListener(&#039;foo&#039;, callback)</code></pre>
       <p>同様に EventTarget を祖先に持つ要素では、このパターンのハンドリングが可能であるが、任意のクラスを EventTarget にすることができなかった。
     </section>
     <section>
-      <h2 id="EventEmitter"><a href="#EventEmitter">EventEmitter</a></h2>
+      <h2 id="eventemitter"><a href="#eventemitter">EventEmitter</a></h2>
       <p>Node では EventEmitter が、メソッド名は違えど同等の役割を果たしていると言える。
       <p>例えば <code translate="no">process</code> は EventEmitter を継承している。
       <pre class=js><code translate="no">callback = console.log.bind(console)
@@ -667,19 +667,23 @@ timer.on(&#039;tick&#039;, console.log.bind(console))</code></pre>
       <p>またこうしたイベントの抽象化の先に stream がある。
     </section>
     <section>
-      <h2 id="EventEmitter+porting"><a href="#EventEmitter+porting">EventEmitter porting</a></h2>
+      <h2 id="eventemitter-porting"><a href="#eventemitter-porting">EventEmitter porting</a></h2>
       <p>これまでは、ブラウザ上で任意の class を EventTarget にすることができなかった。
       <p>そこで、 Node における EventEmitter を用いた設計と同等のことを行うためには、 EventEmitter のポーティングなどが利用されていた。
       <p>例えば browserify は <a href="https://github.com/Gozala/events">https://github.com/Gozala/events</a> を使っており、筆者も <a href="https://github.com/jxck/events">同じようなこと</a> をしたことがある。
       <p>しかし、こうした汎用的な処理をより効率よく実現するために、 EventTarget が継承可能となる仕様が追加された。
       <ul>
-        <li><a href="https://github.com/whatwg/dom/commit/c4c1c8b47340a1e5ecc1a07670927b831f240586">Allow constructing and subclassing EventTarget</a>
-        <li><a href="https://github.com/whatwg/dom/issues/441">Make EventTarget subclassable #441</a>
+        <li>
+          <a href="https://github.com/whatwg/dom/commit/c4c1c8b47340a1e5ecc1a07670927b831f240586">Allow constructing and subclassing EventTarget</a>
+        </li>
+        <li>
+          <a href="https://github.com/whatwg/dom/issues/441">Make EventTarget subclassable #441</a>
+        </li>
       </ul>
       <p>実装されれば、メソッド名をすり合わせる目的以外で EventEmitter porting は不要となるだろう。
     </section>
     <section>
-      <h2 id="constructible/subclassable+EventTarget"><a href="#constructible/subclassable+EventTarget">constructible/subclassable EventTarget</a></h2>
+      <h2 id="constructiblesubclassable-eventtarget"><a href="#constructiblesubclassable-eventtarget">constructible/subclassable EventTarget</a></h2>
       <p>具体的には以下のようなコードが書けるようになる。
       <pre class=js><code translate="no">class Timer extends EventTarget {
   constructor(interval) {
@@ -715,7 +719,7 @@ timer.addEventListener(&#039;tick&#039;, console.log.bind(console))</code></pre>
       <p>その場合はネイティブの実装だけで足りるようになるため、実装が進むことに期待したい。
     </section>
     <section>
-      <h2 id="DEMO"><a href="#DEMO">DEMO</a></h2>
+      <h2 id="demo"><a href="#demo">DEMO</a></h2>
       <p>動作する DEMO を以下に用意した。
       <p><a href="http://labs.jxck.io/event-target/">EventTarget DEMO</a>
     </section>

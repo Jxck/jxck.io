@@ -80,15 +80,15 @@ by Jxck
 
 <style amp-custom>
 article section p {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article pre {
-  margin-left: 0.8em;
+  margin: 0;
 }
 
 article table {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article img {
@@ -373,7 +373,7 @@ dl dt::after {
   content: ":";
 }
 
-blockquote::before {
+blockquote p::before {
   content: "> ";
 }
 
@@ -435,7 +435,7 @@ blockquote {
   border: solid 1px #ddd;
   border-radius: 4px;
   padding: 1em;
-  margin: 1.4em 0;
+  margin: 0;
 }
 
 code {
@@ -618,13 +618,13 @@ th:last-child, td:last-child {
   <article>
     <h1><a href=/entries/2017-08-05/navigation-preload.html>Service Worker の Navigation Preload による表示遅延回避</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>Service Worker で Fetch を Proxy する場合、 Fetch 発生時に SW が起動していなければ、その起動を待つ必要が出る。
       <p>そして、この SW の起動には無視できない時間がかかる場合があった。
       <p>これを改善する Navigation Preload について解説する。
     </section>
     <section>
-      <h2 id="SW+Bootup"><a href="#SW+Bootup">SW Bootup</a></h2>
+      <h2 id="sw-bootup"><a href="#sw-bootup">SW Bootup</a></h2>
       <p>SW が <code translate="no">onfetch</code> をハンドルし、キャッシュから Response を返す場合は、ネットワークを使わない分、高速に画面をレンダリングできる。
       <p>しかし、 SW が <code translate="no">onfetch</code> をフックしていてもなお、実際にネットワークにリクエストを投げる場合は少なくない。
       <p>この場合、もしページのコントローラとなっている SW が起動していない場合は、 <code translate="no">onfetch</code> ハンドラを実行するために、 SW の起動を待つ必要が出てくる。
@@ -633,7 +633,7 @@ th:last-child, td:last-child {
       <p>これを解決するのが Navigation Preload である。
     </section>
     <section>
-      <h2 id="Navigation+Preload"><a href="#Navigation+Preload">Navigation Preload</a></h2>
+      <h2 id="navigation-preload"><a href="#navigation-preload">Navigation Preload</a></h2>
       <p>Navigation Preload を有効にすると、 SW が起動してない状態で発生したリクエストを、 SW をバイパスしてネットワーク側に送ることができる。
       <p>つまり、実際の Fetch の実施と、 SW の起動を並行して行うということだ。
       <p>しかし、それだけでは、 <code translate="no">onfetch</code> のハンドラ内でキャッシュ処理などを実行することができない。
@@ -642,9 +642,9 @@ th:last-child, td:last-child {
       <p>ここで発生するリクエストは Navigation Request と呼ばれ、ブラウザが生成するものであり、ページ構築中/後に JS から発行される XHR などは含まれていない。
     </section>
     <section>
-      <h2 id="API"><a href="#API">API</a></h2>
+      <h2 id="api"><a href="#api">API</a></h2>
       <section>
-        <h3 id="navigationPreload.enable()"><a href="#navigationPreload.enable()">navigationPreload.enable()</a></h3>
+        <h3 id="navigationpreloadenable"><a href="#navigationpreloadenable">navigationPreload.enable()</a></h3>
         <p><code translate="no">onfetch</code> に先立って有効化されている必要があるため、 <code translate="no">onactivate</code> で有効にする。
         <pre class=js><code translate="no">self.addEventListener(&#039;activate&#039;, (e) =&gt; {
   if (!self.registration.navigationPreload) {
@@ -656,7 +656,7 @@ th:last-child, td:last-child {
         <p>無効化は <code translate="no">disable()</code> を呼ぶ。
       </section>
       <section>
-        <h3 id="preloadResponse"><a href="#preloadResponse">preloadResponse</a></h3>
+        <h3 id="preloadresponse"><a href="#preloadresponse">preloadResponse</a></h3>
         <p>サーバが返したレスポンスは、 SW 起動後に <code translate="no">onfetch</code> ハンドラ内で取得できる。
         <p>Preload がある場合はそれを返し、なければ実際に fetch を走らせるコードは以下のようになる。
         <pre class=js><code translate="no">self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
@@ -675,7 +675,7 @@ th:last-child, td:last-child {
       </section>
     </section>
     <section>
-      <h2 id="Service-Worker-Navigation-Preload+Header"><a href="#Service-Worker-Navigation-Preload+Header">Service-Worker-Navigation-Preload Header</a></h2>
+      <h2 id="service-worker-navigation-preload-header"><a href="#service-worker-navigation-preload-header">Service-Worker-Navigation-Preload Header</a></h2>
       <p>Preload Response が発生した場合は、リクエストヘッダに以下が追加される。
       <pre><code translate="no">Service-Worker-Navigation-Preload: true</code></pre>
       <p>これにより、サーバ側は Preload リクエストであることを判別できる。
@@ -687,7 +687,7 @@ th:last-child, td:last-child {
   })</code></pre>
     </section>
     <section>
-      <h2 id="getState()"><a href="#getState()">getState()</a></h2>
+      <h2 id="getstate"><a href="#getstate">getState()</a></h2>
       <p>もし Navigation Preload を有効にした状態で、 preloadResponse を確認せずに fetch を実行した場合は、同じリクエストを重複して投げてしまう可能性があるため注意が必要である。
       <p>Navigation Preload が有効になっているかは、以下のように取得することができる。
       <p>また、同時に前述のヘッダに付与される値も取得が可能だ。
@@ -701,10 +701,12 @@ th:last-child, td:last-child {
   })</code></pre>
     </section>
     <section>
-      <h2 id="DEMO"><a href="#DEMO">DEMO</a></h2>
+      <h2 id="demo"><a href="#demo">DEMO</a></h2>
       <p>動作するサンプルを以下に用意した。
       <ul>
-        <li><a href="https://labs.jxck.io/service-worker/navigation-preload/">Service Worker: Navigation Preload DEMO</a>
+        <li>
+          <a href="https://labs.jxck.io/service-worker/navigation-preload/">Service Worker: Navigation Preload DEMO</a>
+        </li>
       </ul>
     </section>
   </article>

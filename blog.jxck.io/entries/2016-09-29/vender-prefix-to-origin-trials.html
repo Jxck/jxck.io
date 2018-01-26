@@ -109,12 +109,12 @@
   <article>
     <h1><a href=/entries/2016-09-29/vender-prefix-to-origin-trials.html>Web 標準化のフィードバックサイクルを円滑にする Origin Trials について</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>ブラウザに追加される新しい機能に対して、 Vender Prefix の代替となる Origin Trials の導入が徐々に始まっている。
       <p>今回は、これまでの Vender Prefix の問題点と、代替として提案された Origin Trials のデザインや導入方法などについて記す。
     </section>
     <section>
-      <h2 id="Avoid+Breaking+the+Web"><a href="#Avoid+Breaking+the+Web">Avoid Breaking the Web</a></h2>
+      <h2 id="avoid-breaking-the-web"><a href="#avoid-breaking-the-web">Avoid Breaking the Web</a></h2>
       <p>Web が壊れることは、避けねばならない。
       <p>Web に関する、特にブラウザが実装するような機能については、その仕様や実装を変更することにより、既存の資産の挙動が壊れることがある。
       <p>これを <em>Breaking the Web</em> といい、プロトコルにしても API にしても、標準化団体やブラウザベンダなどは、これを避けることを念頭に置いて作業を行っている。(セキュリティ的な理由など、例外は多く有る。)
@@ -123,7 +123,7 @@
       <p>そこで、かつてブラウザや端末のメーカが取った手法が Vender Prefix だった。
     </section>
     <section>
-      <h2 id="Vender+Prefix"><a href="#Vender+Prefix">Vender Prefix</a></h2>
+      <h2 id="vender-prefix"><a href="#vender-prefix">Vender Prefix</a></h2>
       <p>Vender Prefix とは、各ベンダが以下のような接頭辞を、標準プロパティの前に置くものをさす。
       <ul>
         <li>webkit (Chrome, Safari, newer versions of Opera.)
@@ -162,22 +162,28 @@
       <p>HTML5 時代には、特に実装が早い webkit/moz あたりを取り上げて「こう書けば動く」という形でコードが広まる結果となった。
       <p>特に、仕様の策定に時間がかかった機能は、 Vender Prefix 付きの実装が多くのプロダクトに根強く染み込んでしまった。
       <p>Vender Prefix は、 <strong>「変更や消滅がありえる」ということを使う側に強制することができなかった</strong> ため、本来の目的を果たすためには弱い仕組みだったといえる。
-      <p><picture>
+      <p>
+        <picture>
           <source type=image/webp srcset=vender-prefix-warning.webp#570x194>
           <img src=vender-prefix-warning.png#570x194 alt="Veder Prefix 付きの API が呼ばれているため DevTools に警告(warning)が出ている" title="vender prefix warning">
-          </picture>
+        </picture>
+      </p>
       <p>また、 Prefix が付いていたのが、ベンダの独自拡張であったとしても、それに依存するサイトは同様の理由で産まれた。
       <p>今年 Firefox が <a href="http://www.otsukare.info/2016/01/04/webkit-resolved-fixed">Prefix のついた webkit 独自拡張を見るようになった</a> のも、 Vender Prefix の性質を象徴する現象と言えると思う。
     </section>
     <section>
-      <h2 id="Doing+Science+On+The+Web"><a href="#Doing+Science+On+The+Web">Doing Science On The Web</a></h2>
+      <h2 id="doing-science-on-the-web"><a href="#doing-science-on-the-web">Doing Science On The Web</a></h2>
       <p>かといって新しい仕様の検討や実装をあきらめるわけにはいかない。
       <p>仮説と検証、実装とドックフーディング、机上の空論で終わらないためには、実際にシップしてフィードバックを集めるプロセスは欠かせない。
       <p><a href="https://infrequently.org/2015/08/doing-science-on-the-web/">Doing Science On The Web</a>
       <p>新しい機能の実装を、特定の開発者にのみ提供するのであれば、既に方法はいくつかある。
       <ul>
-        <li>about:flags によるフラグの有効化(<a href="chrome://flags/#enable-experimental-web-platform-features">#enable-experimental-web-platform-features</a> etc)
-        <li>ブラウザの起動フラグによる有効化(<a href="https://www.chromium.org/developers/how-tos/run-chromium-with-flags">es_staging</a> etc)
+        <li>
+          about:flags によるフラグの有効化(<a href="chrome://flags/#enable-experimental-web-platform-features">#enable-experimental-web-platform-features</a> etc)
+        </li>
+        <li>
+          ブラウザの起動フラグによる有効化(<a href="https://www.chromium.org/developers/how-tos/run-chromium-with-flags">&ndash;es_staging</a> etc)
+        </li>
         <li>beta, dev, canary ビルドの提供
         <li>devtools での有効化
       </ul>
@@ -187,7 +193,7 @@
       <p>そこで、新しく提案されたのが Origin Trials だ。
     </section>
     <section>
-      <h2 id="Origin+Trials"><a href="#Origin+Trials">Origin Trials</a></h2>
+      <h2 id="origin-trials"><a href="#origin-trials">Origin Trials</a></h2>
       <p>Origin Trials は、その名の通り「<strong>特定のオリジンにだけ、実験中の機能を、期限付きで提供する</strong>」仕組みである。
       <p><a href="https://github.com/jpchase/OriginTrials/blob/gh-pages/explainer.md">Motivation and Explainer</a>
       <p>開発者が Origin Trials の対象となっている機能を試したい場合、利用するオリジン(scheme + domain + port)へのトークンを申請する。
@@ -218,7 +224,7 @@
       </section>
       <section>
         <h3 id="申請"><a href="#申請">申請</a></h3>
-        <p>今回は、 "Foreign Fetch" の Origin Trials を申請してみることとする。
+        <p>今回は、 &ldquo;Foreign Fetch&rdquo; の Origin Trials を申請してみることとする。
         <p>申請は以下のフォームから行う。
         <p><a href="http://bit.ly/OriginTrialSignup">http://bit.ly/OriginTrialSignup</a>
         <ul>
@@ -230,11 +236,11 @@
       </section>
     </section>
     <section>
-      <h2 id="Origin+Trial+Token"><a href="#Origin+Trial+Token">Origin Trial Token</a></h2>
+      <h2 id="origin-trial-token"><a href="#origin-trial-token">Origin Trial Token</a></h2>
       <p>しばらくすると、メールでトークンが送られてくる。
       <p>このトークンを、 HTML か HTTP Header の中に仕込むことで、ブラウザが Origin Trials へのオプトインを認識し、申請した機能が使えるようになる。
       <section>
-        <h3 id="HTML+の場合"><a href="#HTML+の場合">HTML の場合</a></h3>
+        <h3 id="html-の場合"><a href="#html-の場合">HTML の場合</a></h3>
         <p>HTML ページがある場合は、 <code translate="no">&lt;meta&gt;</code> タグに埋め込むことで、ブラウザがそれを認識し、ページ上で機能が有効になる。
         <pre><code translate="no">&lt;meta
   http-equiv=&quot;origin-trial&quot;
@@ -243,18 +249,18 @@
   content=&quot;AjWBjwNj3D6ajLeOwcUojZHss8sYj1mPvbhnmUQRcdrLzXKs13uUlR4pXvlOB7e9R5oMUNZbngniw6X2SLHlXgYAAABXeyJvcmlnaW4iOiAiaHR0cHM6Ly9sYWJzLmp4Y2suaW86NDQzIiwgImZlYXR1cmUiOiAiRm9yZWlnbkZldGNoIiwgImV4cGlyeSI6IDE0Nzc1OTMwMDB9&quot;&gt;</code></pre>
       </section>
       <section>
-        <h3 id="HTTP+Header+の場合"><a href="#HTTP+Header+の場合">HTTP Header の場合</a></h3>
+        <h3 id="http-header-の場合"><a href="#http-header-の場合">HTTP Header の場合</a></h3>
         <p>HTTP ヘッダの <code translate="no">Origin-Trial</code> ヘッダに埋め込むこともできる。ページの無い API などの場合はこちらを使う。
         <pre><code translate="no">Origin-Trial: AjWBjwNj3D6ajLeOwcUojZHss8sYj1mPvbhnmUQRcdrLzXKs13uUlR4pXvlOB7e9R5oMUNZbngniw6X2SLHlXgYAAABXeyJvcmlnaW4iOiAiaHR0cHM6Ly9sYWJzLmp4Y2suaW86NDQzIiwgImZlYXR1cmUiOiAiRm9yZWlnbkZldGNoIiwgImV4cGlyeSI6IDE0Nzc1OTMwMDB9</code></pre>
       </section>
     </section>
     <section>
-      <h2 id="Tool"><a href="#Tool">Tool</a></h2>
+      <h2 id="tool"><a href="#tool">Tool</a></h2>
       <p>一応 Origin Trials が有効になっているかを知る Chrome Extension があるが、これは HTML の方しか見ていない模様。
       <p><a href="https://chrome.google.com/webstore/detail/origin-trials/abpmcigmbmlngkajkikaghaibaocdhkp/related">Origin Trials Chrome Extension</a>
     </section>
     <section>
-      <h2 id="Foreign+Fetch"><a href="#Foreign+Fetch">Foreign Fetch</a></h2>
+      <h2 id="foreign-fetch"><a href="#foreign-fetch">Foreign Fetch</a></h2>
       <p>次回は、この Origin-Trial token によって有効になった Foreign Fetch について、実際のデモを作成しながら解説する。
     </section>
   </article>

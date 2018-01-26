@@ -77,8 +77,12 @@
       <p><audio preload=none src=https://files.mozaic.fm/mozaic-ep10.mp3 controls></audio>
       <ul class=info>
         <li>published_at: <time datetime=2014-10-07>2014-10-07</time>
-        <li>guest: <a href="https://twitter.com/koichik">@koichik</a>
-        <li>guest: <a href="https://twitter.com/yosuke_furukawa">@yosuke_furukawa</a>
+        <li>
+          guest: <a href="https://twitter.com/koichik">@koichik</a>
+        </li>
+        <li>
+          guest: <a href="https://twitter.com/yosuke_furukawa">@yosuke_furukawa</a>
+        </li>
       </ul>
     </section>
     <section>
@@ -90,94 +94,232 @@
     <section>
       <h2>Show Note</h2>
       <ul>
-        <li>0:00 ~ : intro<ul>
-          <li><a href="http://yosuke-furukawa.hatenablog.com/entry/2014/09/09/174601">nodeconf.eu 渡航記</a>
-        </ul>
-        <li>2:45 ~ : Node を始めたきっかけ by yosuke_furukawa<ul>
-          <li><a href="http://nodejs.org">node.js</a>
-          <li><a href="http://www.nicovideo.jp/watch/1320664679">Guille のライブコーディング</a>
-          <li><a href="http://nodejs.org/docs/v0.11.14/api/all.html%23all_async_listeners">async listener</a>
-          <li><a href="http://github.com/jxck/assert">assert の移植</a>
-          <li><a href="http://nodejs.org/api/events.html">event emitter</a>
-        </ul>
-        <li>13:50 ~ : isomorphic<ul>
-          <li><a href="https://github.com/asyncly/EventEmitter2">EventEmitter2</a>
-        </ul>
-        <li>18:20 ~ : StrongLoop<ul>
-          <li><a href="http://strongloop.com/">StrongLoop</a>
-          <li><a href="http://strongloop.com/node-js/loopback/">Loop Back</a>
-          <li><a href="http://strongloop.com/node-js/videos/">StrongLoop の PV</a>
-        </ul>
-        <li>23:00 ~ : Node を始めたきっかけ by koichik<ul>
-          <li><a href="http://www.gwtproject.org/">GWT</a>
-        </ul>
-        <li>28:20 ~ : Node.js はなぜシングルスレッドのイベント駆動を選んだのか<ul>
-          <li><a href="http://www.hyuki.com/yukiwiki/wiki.cgi%3FTheC10kProblem">C10K 問題</a>
-          <li><a href="http://ja.wikipedia.org/wiki/Gopher">Gopher(golang じゃない方)</a>
-        </ul>
-        <li>36:16 ~ : そもそも非同期とは?<ul>
-          <li><a href="https://code.google.com/p/v8/">v8</a>
-          <li><a href="http://jxck.hatenablog.com/entry/for-with-eventloop">イベントループを止めてはいけない</a>
-        </ul>
-        <li>43:10 ~ : 本当に Callback Hell はあるのか?<ul>
-          <li><a href="https://github.com/caolan/async">async.js</a>
-          <li><a href="https://github.com/koichik/node-flowless">Flowless (koichik の flow control)</a>
-        </ul>
-        <li>50:18 ~ : Stream を制すものは Node を制す<ul>
-          <li><a href="http://nodejs.org/api/stream.html">stream</a>
-          <li><a href="http://jxck.hatenablog.com/entry/20111204/1322966453">stream を制すものは node を制す</a>
-          <li><a href="https://github.com/substack/stream-handbook">stream handbook</a>
-          <li><a href="https://github.com/dominictarr/event-stream">dominic tarr / event-stream</a>
-          <li><a href="https://github.com/dominictarr/through">dominic tarr / through</a>
-        </ul>
-        <li>01:00:00 ~ : Node の弱点とは?<ul>
-          <li><a href="http://www.slideshare.net/koichik/node8-let-it-crash">LET IT CRASH!?</a>
-          <li><a href="http://nodejs.org/api/domain.html">domain</a>
-          <li><a href="https://github.com/isaacs/cluster-master">izc / cluster_master</a>
-          <li><a href="http://nodejs.org/api/util.html%23util_util_inherits_constructor_superconstructor">util.inherit()</a>
-        </ul>
-        <li>01:10:35 ~ : libuv はなぜ生まれたのか<ul>
-          <li><a href="http://software.schmorp.de/pkg/libev.html">libev</a>
-          <li><a href="http://man7.org/linux/man-pages/man2/select.2.html">select</a>
-          <li><a href="http://man7.org/linux/man-pages/man7/epoll.7.html">epoll</a>
-          <li><a href="http://en.wikipedia.org/wiki/Kqueue">kqueue</a>
-          <li><a href="http://software.schmorp.de/pkg/libeio.html">libeio</a>
-          <li><a href="http://msdn.microsoft.com/en-us/library/aa365198%28VS.85%29.aspx">IOCP</a>
-        </ul>
-        <li>01:23:14 ~ : microservices<ul>
-          <li><a href="https://github.com/GraftJS/graft">graft</a>
-          <li><a href="https://github.com/GraftJS/jschan">jschan</a>
-          <li><a href="http://jxck.tumblr.com/post/11435831106/hook-io">位置透過性 椎名林檎</a>
-        </ul>
-        <li>01:34:30 ~ : Node は何に向いていたのか?<ul>
-          <li><a href="http://www.renderjs.org/">render</a>
-          <li><a href="http://www.slideshare.net/mshk/rendr">Rendr 入門: サーバサイドで(も)動かす、 Backbone.js</a>
-        </ul>
-        <li>01:42:00 ~ : 今のトレンド LevelDB + WebRTC + Microservices<ul>
-          <li><a href="http://meanjs.org/">MEAN</a>
-          <li><a href="https://github.com/google/leveldb">LevelDB</a>
-          <li><a href="http://www.bittorrent.com/">Bittrent</a>
-          <li><a href="https://jxta.kenai.com/">JXTA</a>
-        </ul>
-        <li>1:51:00 ~ : Node.js の未来<ul>
-          <li><a href="http://wiki.ecmascript.org/doku.php%3Fid%3Dharmony:modules">ES6 modules</a>
-          <li>ES6 promise
-          <li><a href="http://www.joyent.com/blog/walmart-node-js-memory-leak">Walmart 事件</a>
-          <li><a href="http://www.getboxer.com/">boxer</a>
-        </ul>
-        <li>2:06:20 ~ : 海外での TypeScript 事情?<ul>
-          <li><a href="https://github.com/google/traceur-compiler">traceur compiler</a>
-          <li><a href="https://developers.google.com/closure/compiler/%3Fhl%3Dja">closure compiler</a>
-        </ul>
-        <li>2:09:00 ~ : 日本の Node コミュニティの今後<ul>
-          <li><a href="https://docs.google.com/presentation/d/1IYwvHLAT0sFLAOmBGQ7dUyD7NKajwfkOgh8SAYvJa2c/edit%23slide%3Did.p">meso さんの引退宣言</a>
-          <li><a href="http://nodefest.jp/2014/">東京 Node 学園祭 2014</a>
-          <li><a href="http://hapijs.com/">hapi</a>
-        </ul>
-        <li>2:20:10 ~ : Node.js の今後(本題)<ul>
-          <li><a href="http://flatironjs.org/">flatiron</a>
-          <li><a href="http://blog.nodejitsu.com/scaling-isomorphic-javascript-code/">おそらく isomorphic の出典になった記事</a>
-        </ul>
+        <li>
+          0:00 ~ : intro<ul>
+            <li>
+              <a href="http://yosuke-furukawa.hatenablog.com/entry/2014/09/09/174601">nodeconf.eu 渡航記</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          2:45 ~ : Node を始めたきっかけ by yosuke_furukawa<ul>
+            <li>
+              <a href="http://nodejs.org">node.js</a>
+            </li>
+            <li>
+              <a href="http://www.nicovideo.jp/watch/1320664679">Guille のライブコーディング</a>
+            </li>
+            <li>
+              <a href="http://nodejs.org/docs/v0.11.14/api/all.html%23all_async_listeners">async listener</a>
+            </li>
+            <li>
+              <a href="http://github.com/jxck/assert">assert の移植</a>
+            </li>
+            <li>
+              <a href="http://nodejs.org/api/events.html">event emitter</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          13:50 ~ : isomorphic<ul>
+            <li>
+              <a href="https://github.com/asyncly/EventEmitter2">EventEmitter2</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          18:20 ~ : StrongLoop<ul>
+            <li>
+              <a href="http://strongloop.com/">StrongLoop</a>
+            </li>
+            <li>
+              <a href="http://strongloop.com/node-js/loopback/">Loop Back</a>
+            </li>
+            <li>
+              <a href="http://strongloop.com/node-js/videos/">StrongLoop の PV</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          23:00 ~ : Node を始めたきっかけ by koichik<ul>
+            <li>
+              <a href="http://www.gwtproject.org/">GWT</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          28:20 ~ : Node.js はなぜシングルスレッドのイベント駆動を選んだのか<ul>
+            <li>
+              <a href="http://www.hyuki.com/yukiwiki/wiki.cgi%3FTheC10kProblem">C10K 問題</a>
+            </li>
+            <li>
+              <a href="http://ja.wikipedia.org/wiki/Gopher">Gopher(golang じゃない方)</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          36:16 ~ : そもそも非同期とは?<ul>
+            <li>
+              <a href="https://code.google.com/p/v8/">v8</a>
+            </li>
+            <li>
+              <a href="http://jxck.hatenablog.com/entry/for-with-eventloop">イベントループを止めてはいけない</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          43:10 ~ : 本当に Callback Hell はあるのか?<ul>
+            <li>
+              <a href="https://github.com/caolan/async">async.js</a>
+            </li>
+            <li>
+              <a href="https://github.com/koichik/node-flowless">Flowless (koichik の flow control)</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          50:18 ~ : Stream を制すものは Node を制す<ul>
+            <li>
+              <a href="http://nodejs.org/api/stream.html">stream</a>
+            </li>
+            <li>
+              <a href="http://jxck.hatenablog.com/entry/20111204/1322966453">stream を制すものは node を制す</a>
+            </li>
+            <li>
+              <a href="https://github.com/substack/stream-handbook">stream handbook</a>
+            </li>
+            <li>
+              <a href="https://github.com/dominictarr/event-stream">dominic tarr / event-stream</a>
+            </li>
+            <li>
+              <a href="https://github.com/dominictarr/through">dominic tarr / through</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          01:00:00 ~ : Node の弱点とは?<ul>
+            <li>
+              <a href="http://www.slideshare.net/koichik/node8-let-it-crash">LET IT CRASH!?</a>
+            </li>
+            <li>
+              <a href="http://nodejs.org/api/domain.html">domain</a>
+            </li>
+            <li>
+              <a href="https://github.com/isaacs/cluster-master">izc / cluster_master</a>
+            </li>
+            <li>
+              <a href="http://nodejs.org/api/util.html%23util_util_inherits_constructor_superconstructor">util.inherit()</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          01:10:35 ~ : libuv はなぜ生まれたのか<ul>
+            <li>
+              <a href="http://software.schmorp.de/pkg/libev.html">libev</a>
+            </li>
+            <li>
+              <a href="http://man7.org/linux/man-pages/man2/select.2.html">select</a>
+            </li>
+            <li>
+              <a href="http://man7.org/linux/man-pages/man7/epoll.7.html">epoll</a>
+            </li>
+            <li>
+              <a href="http://en.wikipedia.org/wiki/Kqueue">kqueue</a>
+            </li>
+            <li>
+              <a href="http://software.schmorp.de/pkg/libeio.html">libeio</a>
+            </li>
+            <li>
+              <a href="http://msdn.microsoft.com/en-us/library/aa365198%28VS.85%29.aspx">IOCP</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          01:23:14 ~ : microservices<ul>
+            <li>
+              <a href="https://github.com/GraftJS/graft">graft</a>
+            </li>
+            <li>
+              <a href="https://github.com/GraftJS/jschan">jschan</a>
+            </li>
+            <li>
+              <a href="http://jxck.tumblr.com/post/11435831106/hook-io">位置透過性 椎名林檎</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          01:34:30 ~ : Node は何に向いていたのか?<ul>
+            <li>
+              <a href="http://www.renderjs.org/">render</a>
+            </li>
+            <li>
+              <a href="http://www.slideshare.net/mshk/rendr">Rendr 入門: サーバサイドで(も)動かす、 Backbone.js</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          01:42:00 ~ : 今のトレンド LevelDB + WebRTC + Microservices<ul>
+            <li>
+              <a href="http://meanjs.org/">MEAN</a>
+            </li>
+            <li>
+              <a href="https://github.com/google/leveldb">LevelDB</a>
+            </li>
+            <li>
+              <a href="http://www.bittorrent.com/">Bittrent</a>
+            </li>
+            <li>
+              <a href="https://jxta.kenai.com/">JXTA</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          1:51:00 ~ : Node.js の未来<ul>
+            <li>
+              <a href="http://wiki.ecmascript.org/doku.php%3Fid%3Dharmony:modules">ES6 modules</a>
+            </li>
+            <li>ES6 promise
+            <li>
+              <a href="http://www.joyent.com/blog/walmart-node-js-memory-leak">Walmart 事件</a>
+            </li>
+            <li>
+              <a href="http://www.getboxer.com/">boxer</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          2:06:20 ~ : 海外での TypeScript 事情?<ul>
+            <li>
+              <a href="https://github.com/google/traceur-compiler">traceur compiler</a>
+            </li>
+            <li>
+              <a href="https://developers.google.com/closure/compiler/%3Fhl%3Dja">closure compiler</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          2:09:00 ~ : 日本の Node コミュニティの今後<ul>
+            <li>
+              <a href="https://docs.google.com/presentation/d/1IYwvHLAT0sFLAOmBGQ7dUyD7NKajwfkOgh8SAYvJa2c/edit%23slide%3Did.p">meso さんの引退宣言</a>
+            </li>
+            <li>
+              <a href="http://nodefest.jp/2014/">東京 Node 学園祭 2014</a>
+            </li>
+            <li>
+              <a href="http://hapijs.com/">hapi</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          2:20:10 ~ : Node.js の今後(本題)<ul>
+            <li>
+              <a href="http://flatironjs.org/">flatiron</a>
+            </li>
+            <li>
+              <a href="http://blog.nodejitsu.com/scaling-isomorphic-javascript-code/">おそらく isomorphic の出典になった記事</a>
+            </li>
+          </ul>
+        </li>
       </ul>
     </section>
   </article>

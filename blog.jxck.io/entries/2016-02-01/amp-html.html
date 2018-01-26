@@ -59,7 +59,7 @@
     "width": 700
   },
   "datePublished": "2016-02-01T08:00:00+08:00",
-  "dateModified": "2017-11-29T08:00:00+08:00",
+  "dateModified": "2018-01-26T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -101,7 +101,7 @@
       <link rel=stylesheet property=stylesheet type=text/css href=//jxck.io/assets/css/info.css>
       <ul class=info>
         <li>created_at: <time class=created_at datetime=2016-02-01>2016-02-01</time>
-        <li>updated_at: <time class=updated_at datetime=2017-11-29>2017-11-29</time>
+        <li>updated_at: <time class=updated_at datetime=2018-01-26>2018-01-26</time>
         <li class=tags>tags: [<a href='/tags/amp.html'>amp</a>,<a href='/tags/html.html'>html</a>,<a href='/tags/performance.html'>performance</a>]
       </ul>
 
@@ -109,20 +109,24 @@
   <article>
     <h1><a href=/entries/2016-02-01/amp-html.html>AMP HTML 対応</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>Google が推奨する仕様である <a href="https://www.ampproject.org/">AMP HTML</a> に、このブログを対応した。
       <p>言いたいことは色々あるが、とりあえず非常に難しかったため、その対応方法や感想などを残す。
     </section>
     <section>
-      <h2 id="Update"><a href="#Update">Update</a></h2>
+      <h2 id="update"><a href="#update">Update</a></h2>
       <p>以下の記事が出たので、古かったフォーマットのアップデートと <a href="https://blog.jxck.io/entries/2016-02-26/jsonld-opengraph.html">JSON-LD によるメタデータの提供</a> に対応した。
       <ul>
-        <li><a href="https://googledevjp.blogspot.jp/2016/02/google-accelerated-mobile-pages.html">Google モバイル検索が Accelerated Mobile Pages に対応しました</a>
-        <li><a href="https://ymotongpoo.hatenablog.com/entry/2016/02/25/224159">AMP 対応 2016.02 版</a>
+        <li>
+          <a href="https://googledevjp.blogspot.jp/2016/02/google-accelerated-mobile-pages.html">Google モバイル検索が Accelerated Mobile Pages に対応しました</a>
+        </li>
+        <li>
+          <a href="https://ymotongpoo.hatenablog.com/entry/2016/02/25/224159">AMP 対応 2016.02 版</a>
+        </li>
       </ul>
     </section>
     <section>
-      <h2 id="Accelerated+Mobile+Pages"><a href="#Accelerated+Mobile+Pages">Accelerated Mobile Pages</a></h2>
+      <h2 id="accelerated-mobile-pages"><a href="#accelerated-mobile-pages">Accelerated Mobile Pages</a></h2>
       <p><a href="https://www.ampproject.org/">ACCELERATED MOBILE PAGES PROJECT</a>
       <p>タイトルは識別しやすいよう AMP HTML としたが、実際には AMP という仕様(方針)があり、 HTML 以外にも手を入れている。
       <p>AMP は、特にモバイル向けに <strong>静的コンテンツ</strong> を最適化し、表示を高速化することを目的としている。
@@ -132,9 +136,13 @@
         <p>AMP への対応は、実際には 「遅くなる原因」=「アンチパターン」が Invalid となる仕様を定義し、それを開発者に強制することで、必然的にボトルネックの少ないコンテンツにする仕様と言える。
         <p>具体的には以下のようなアンチパターンを排除する。
         <ul>
-          <li>JS の実行: 実際には <code translate="no">document.write</code> などによるブロックなどがネックになりやすいが、細かくいうと色々あるので、まるっと一括で禁止ししている
+          <li>
+            JS の実行: 実際には <code translate="no">document.write</code> などによるブロックなどがネックになりやすいが、細かくいうと色々あるので、まるっと一括で禁止している
+          </li>
           <li>外部 CSS: 全部 HTML 内にインラインで書かせることにより fetch や再描画を防ぐ
-          <li><code translate="no">&lt;img&gt;</code>: 画像の <code translate="no">width x height</code> を明示させ、 <code translate="no">&lt;amp-img&gt;</code> を代わりに使わせることで、画像を非同期に読み込み表示を最適化する
+          <li>
+            <code translate="no">&lt;img&gt;</code>: 画像の <code translate="no">width x height</code> を明示させ、 <code translate="no">&lt;amp-img&gt;</code> を代わりに使わせることで、画像を非同期に読み込み表示を最適化する
+          </li>
         </ul>
         <p>まあ、ほとんどが実際は <strong>粗悪なアド</strong> を縛るような仕様になっている。
         <p>アドの実装は開発者が手を出しにくいところであるため、こうした外部要因による強制力(AMP 対応が一般化したら、対応してないアドにとっては不利になる)があるのは良いだろう。
@@ -160,15 +168,15 @@
       </section>
     </section>
     <section>
-      <h2 id="HTML+対応"><a href="#HTML+対応">HTML 対応</a></h2>
+      <h2 id="html-対応"><a href="#html-対応">HTML 対応</a></h2>
       <section>
-        <h3 id="AMP-HTML"><a href="#AMP-HTML">AMP-HTML</a></h3>
+        <h3 id="amp-html"><a href="#amp-html">AMP-HTML</a></h3>
         <p>本サイトの HTML は、 <a href="https://blog.jxck.io/entries/2016-01-28/html-compression.html">HTML の省略によるサイズ最適化</a> に書いた通り、極力タグを省略した作りにしている。
         <p>しかし、 AMP の仕様では <code translate="no">&lt;head&gt;</code>, <code translate="no">&lt;body&gt;</code> などの記述は必須となっているため、追加した。
       </section>
     </section>
     <section>
-      <h2 id="discovery+(相互参照)"><a href="#discovery+(相互参照)">discovery (相互参照)</a></h2>
+      <h2 id="discovery-相互参照"><a href="#discovery-相互参照">discovery (相互参照)</a></h2>
       <p>本サイトでは、普通の HTML と AMP 対応の HTML は別にビルドしており、 URL の末尾が <code translate="no">.html</code> か <code translate="no">.amp.html</code> かで分けている。
       <p>こうした場合は <code translate="no">&lt;link&gt;</code> タグで、クローラなどに相互のページの参照を伝えることができる。
       <p>このサイトでは <code translate="no">.html</code> に AMP 対応があることを伝える以下を追記した。
@@ -178,7 +186,7 @@
       <pre class=html><code translate="no">&lt;link rel=canonical href=${path}.html&gt;</code></pre>
       <p>access_log で UA などを追えば、 amphtml を見るクローラが追えるかもしれない。
       <section>
-        <h3 id="JS"><a href="#JS">JS</a></h3>
+        <h3 id="js"><a href="#js">JS</a></h3>
         <p>JS は一切許されない。 JS が必要な表現などは AMP のライブラリとして用意されているカスタムエレメントを経由して実現する必要がある。
         <p>特に JS がレンダリングブロックなど、余計なことをしている場合にパフォーマンスへの影響が大きいための制限だろう。
         <p>このサイトは現時点では、コードスニペットのシンタックスハイライトと google analytics 以外には JS を使っていない。
@@ -186,14 +194,14 @@
         <p>google analytics については後述するコンポーネントがあるため、それを適用した。
       </section>
       <section>
-        <h3 id="CSS"><a href="#CSS">CSS</a></h3>
+        <h3 id="css"><a href="#css">CSS</a></h3>
         <p><code translate="no">&lt;link&gt;</code> による CSS の読み込みも禁止されている。
         <p>しかし、 <code translate="no">&lt;style&gt;</code> が禁止されているわけではないので、全ての CSS を結合して HTML 内に埋め込むようにした。
         <p>これは、別途対応した以下のコンポーネント単位の読み込みによる最適化と競合しているが、仕様なのでしかたがない。
         <p><a href="https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html">HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について</a>
       </section>
       <section>
-        <h3 id="amp-custom-element+対応"><a href="#amp-custom-element+対応">amp-custom-element 対応</a></h3>
+        <h3 id="amp-custom-element-対応"><a href="#amp-custom-element-対応">amp-custom-element 対応</a></h3>
       </section>
       <section>
         <h3 id="amp-img"><a href="#amp-img">amp-img</a></h3>
@@ -208,7 +216,9 @@
         <p>AMP-HTML 内では、 <code translate="no">&lt;iframe&gt;</code> タグを直接書くことは禁止されており、代わりに、 <code translate="no">&lt;amp-iframe&gt;</code> というカスタムタグを使用する。
         <p><a href="https://www.ampproject.org/docs/reference/extended/amp-iframe.html">amp-iframe</a>
         <p>ただし、このタグもまた制約が多い。一番大きいのは <strong>位置</strong> に対する制約だ。
-        <blockquote>They must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top</blockquote>
+        <blockquote>
+          <p>They must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top
+        </blockquote>
         <p>要するに above-the-fold に iframe を入れたくないということだろう。これはコンテンツを作る時点で気にしておかないといけないし、自動で変換も難しい。
         <p>このサイトは markdown からビルドしているため、 <code translate="no">&lt;iframe&gt;</code> を埋め込む場合は自分で直接タグを書くことになる。
         <p>なので、タグを埋め込む際は、その前に何かしらその埋め込むコンテンツへのリンクを貼っておくルールを強制することで、 AMP-HTML 内では <code translate="no">&lt;iframe&gt;</code> をまるっと消してしまうことにした。
@@ -245,7 +255,7 @@
       <p>AMP として正しい HTML かどうかは、 Chrome Developer Tools で調べることができる。
       <p>単に Tools を開けば、そのページの対応している AMP バージョンを知ることができるが、 URL に <code translate="no">#development=1</code> を付与することでより細かくエラーを見ることができる。
       <p>このページのデバッグフラグ付き AMP 対応ページの URL は以下になる。
-      <p><a href="amp-html.amp.html#development=1">amp-html.amp.html#development=1</a>
+      <p><a href="https://blog.jxck.io/entries/2016-02-01/amp-html.amp.html#development=1">https://blog.jxck.io/entries/2016-02-01/amp-html.amp.html#development=1</a>
       <p>分かりやすいように通常の HTML の右上に AMP のイメージもとである &#x26a1; を模したアイコンを追加し、そこに AMP 版へのリンクを追加した。
     </section>
     <section>

@@ -80,15 +80,15 @@ by Jxck
 
 <style amp-custom>
 article section p {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article pre {
-  margin-left: 0.8em;
+  margin: 0;
 }
 
 article table {
-  margin-left: 0.8em;
+  margin-left: 0;
 }
 
 article img {
@@ -373,7 +373,7 @@ dl dt::after {
   content: ":";
 }
 
-blockquote::before {
+blockquote p::before {
   content: "> ";
 }
 
@@ -435,7 +435,7 @@ blockquote {
   border: solid 1px #ddd;
   border-radius: 4px;
   padding: 1em;
-  margin: 1.4em 0;
+  margin: 0;
 }
 
 code {
@@ -618,24 +618,24 @@ th:last-child, td:last-child {
   <article>
     <h1><a href=/entries/2017-05-10/web-share.html>Web Share API</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p><a href="https://github.com/WICG/web-share">Web Share API</a> が Origin Trials を卒業したという知らせが届いた。
       <p>コンテンツを他のサービスなどと連携するこの API について紹介する。
     </section>
     <section>
-      <h2 id="Web+Share"><a href="#Web+Share">Web Share</a></h2>
+      <h2 id="web-share"><a href="#web-share">Web Share</a></h2>
       <p>ブラウザで開いている Web コンテンツを、他のサービスやアプリと連携するための方法は、以前から検討されていた。
       <p>主だったものとしては、すでに策定は止まっているが Android の Intent を参考にした <a href="https://www.w3.org/TR/web-intents/">Web Intents</a> が挙げられる。
       <p>Web Share API は、 Web コンテンツと SNS やメールなどとの連携を主目的とした、より簡素で軽量な API となっている。
     </section>
     <section>
-      <h2 id="DEMO"><a href="#DEMO">DEMO</a></h2>
+      <h2 id="demo"><a href="#demo">DEMO</a></h2>
       <p>DEMO を以下に公開している。
       <p>(まだ Origin Trials のトークンはそのままになっている)
       <p><a href="http://labs.jxck.io/web-share/">DEMO: web-share</a>
     </section>
     <section>
-      <h2 id="API"><a href="#API">API</a></h2>
+      <h2 id="api"><a href="#api">API</a></h2>
       <p>API は非常に簡素だ。
       <p>現状設定可能なパラメータは、 <code translate="no">title</code>, <code translate="no">text</code>, <code translate="no">url</code> のみである。
       <pre class=js><code translate="no">if (navigator.share !== undefined) {
@@ -662,7 +662,7 @@ navigator
       <p><a href="https://github.com/WICG/web-share/blob/master/docs/explainer.md">Web Share API Explained</a>
     </section>
     <section>
-      <h2 id="Origin+Trials+の卒業"><a href="#Origin+Trials+の卒業">Origin Trials の卒業</a></h2>
+      <h2 id="origin-trials-の卒業"><a href="#origin-trials-の卒業">Origin Trials の卒業</a></h2>
       <p>Web Share は Origin Trials を卒業したため、しばらくするとトークンなしでも機能が使えるようになる予定とのことだ。
       <p>しかし、これは仕様の策定が終わったことも、ブラウザの普及が進んだことも意味しない。
       <p>あくまで、仕様策定作業を開始するにあたっての WIP リクエストが、最低限のフィードバックを集めマージされたようなものだと考えるのが近いかもしれない。

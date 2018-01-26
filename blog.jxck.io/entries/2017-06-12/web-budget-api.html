@@ -109,13 +109,13 @@
   <article>
     <h1><a href=/entries/2017-06-12/web-budget-api.html>Web Budget API と Web に導入されつつある Budget と Cost の概念</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>PWA の普及により、バックグラウンド処理をいかに制限するかといった課題が生まれた。
       <p>その対策として、バックグラウンド処理における Budget と Cost の概念が提案され、それを扱う Budget API の策定が進んでいる。
       <p>基本概念と現時点での API 外観について解説する。
     </section>
     <section>
-      <h2 id="Budget+API"><a href="#Budget+API">Budget API</a></h2>
+      <h2 id="budget-api"><a href="#budget-api">Budget API</a></h2>
       <p>Push API と Background Fetch が入った事で、 Web アプリはユーザ操作への応答のみだけでなく、バックグラウンドでの動作の可能性が増えた。
       <p>しかし、これまでの Web のライフサイクルとの乖離が大きいため、潜在的な問題が露見する可能性もある。
       <p>そこで、例えば Chrome は Push API は必ず User Visible な通知(notification)を伴うものに制限していた。
@@ -124,7 +124,7 @@
       <p><a href="https://wicg.github.io/budget-api/">Web Budget API</a>
     </section>
     <section>
-      <h2 id="Cost+&+Budget"><a href="#Cost+&+Budget">Cost & Budget</a></h2>
+      <h2 id="cost--budget"><a href="#cost--budget">Cost &amp; Budget</a></h2>
       <p>Web Push は、現状ユーザに通知を表示する目的で使われている。
       <p>しかし、ユーザへの通知ではなく、例えばデータの同期等の処理をバックグラウンドで行うなど Silent Push のユースケースも考えられる。
       <p>Service Worker が登録されて、そこにユーザへの通知なく Push を自由に送ることができてしまうと、 Push が乱用される可能性がある。
@@ -133,11 +133,11 @@
       <p>例えば Silent Push の Cost が <code translate="no">2</code> であったとし、 Origin に付与された Budget が <code translate="no">6</code> だとしたら、 3 回しか Silent Push を送れないといったイメージだ。
     </section>
     <section>
-      <h2 id="Budget+API"><a href="#Budget+API">Budget API</a></h2>
+      <h2 id="budget-api-1"><a href="#budget-api-1">Budget API</a></h2>
       <p>Budget API は、この Budget と Cost を扱うための API である。
       <p>基本は <code translate="no">navigator.budget</code> に定義される。
       <section>
-        <h3 id="budget.getBudget()"><a href="#budget.getBudget()">budget.getBudget()</a></h3>
+        <h3 id="budgetgetbudget"><a href="#budgetgetbudget">budget.getBudget()</a></h3>
         <p>現在から、将来に渡り利用できる budget のリストを取得する。
         <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
         <pre class=js><code translate="no">navigator.budget.getBudget().then((budgets) =&gt; {
@@ -148,7 +148,7 @@
         <p>Budget の値は仕様では定義せず、 User Agent に委ねられている。これにより、 UA にヒューリスティックな値の算出や、ニーズに応じた増減などの余地を与えている。
       </section>
       <section>
-        <h3 id="budget.getCost()"><a href="#budget.getCost()">budget.getCost()</a></h3>
+        <h3 id="budgetgetcost"><a href="#budgetgetcost">budget.getCost()</a></h3>
         <p>処理の Cost を取得する。
         <p>引数には、対象となる処理の名前を与えるが、この値は仕様に定義される。
         <p>執筆時点では <code translate="no">&quot;silent-push&quot;</code> のみ定義されている。
@@ -159,7 +159,7 @@
         <p>例えば、デバイスが充電状態である場合、強い Wifi ネットワークに繋がっている場合などは、デバイスは Cost を下げることを許されている。
       </section>
       <section>
-        <h3 id="budget.reserve()"><a href="#budget.reserve()">budget.reserve()</a></h3>
+        <h3 id="budgetreserve"><a href="#budgetreserve">budget.reserve()</a></h3>
         <p>実際に処理を実行する際に、 Budget を Cost 分消費する。
         <p>戻る Promise は、コストが足りたかどうかを bool で解決する。
         <p><code translate="no">silent-push</code> の場合は、コストが足りればそのまま処理を進められ、足りなかった場合は notification によってユーザに通知する必要が出る。
@@ -177,12 +177,12 @@
 });</code></pre>
       </section>
       <section>
-        <h3 id="DEMO"><a href="#DEMO">DEMO</a></h3>
+        <h3 id="demo"><a href="#demo">DEMO</a></h3>
         <p>以下に、簡単な DEMO を用意した。
         <p><a href="https://labs.jxck.io/budget/basic.html">Budget API DEMO</a>
       </section>
       <section>
-        <h3 id="Budget+の導入と+Cost+管理"><a href="#Budget+の導入と+Cost+管理">Budget の導入と Cost 管理</a></h3>
+        <h3 id="budget-の導入と-cost-管理"><a href="#budget-の導入と-cost-管理">Budget の導入と Cost 管理</a></h3>
         <p>Budget のような概念が無いと、ユーザが気づかないうちに実行環境が乱用される可能性があるため、 PWA によってアーキテクチャが変わった Web にとっては、こうした制限はある程度必要だろう。
         <p>一方で、 Silent Push を積極的に利用して、バックグラウンドでデータの同期を行うといったアプリでは、ユーザの状態として考慮すべき状態変数が一つ増える結果となる。
         <p>今後定義されるバックグラウンド系の処理も、 Budget 管理の対象になる可能性があるため、 PWA を真剣にやる上では無視できないものになっていく可能性がある。

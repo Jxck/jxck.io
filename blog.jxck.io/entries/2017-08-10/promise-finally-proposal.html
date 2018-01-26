@@ -109,12 +109,12 @@
   <article>
     <h1><a href=/entries/2017-08-10/promise-finally-proposal.html>Promise.prototype.finally</a></h1>
     <section>
-      <h2 id="Intro"><a href="#Intro">Intro</a></h2>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>Promise.prototype.finally の仕様が TC39 stage 3 となり、 <a href="https://webkit.org/blog/7862/release-notes-for-safari-technology-preview-release-37/">Safari TP37</a> で先行実装が入った。
       <p><a href="https://github.com/tc39/proposal-promise-finally">tc39/proposal-promise-finally</a>
     </section>
     <section>
-      <h2 id="common+task+in+async+task"><a href="#common+task+in+async+task">common task in async task</a></h2>
+      <h2 id="common-task-in-async-task"><a href="#common-task-in-async-task">common task in async task</a></h2>
       <p>よくあるユースケースとして、 <code translate="no">fetch()</code> 中にスピナーを表示し、終わったら消すという場合。
       <p>スピナーは、 <code translate="no">fetch()</code> が成功(resolve) しようと失敗(reject)しようと消したいため、これまでの Promise では両方のハンドラに処理が必要だった。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
@@ -130,7 +130,7 @@ fetch()
   })</code></pre>
     </section>
     <section>
-      <h2 id="finally()"><a href="#finally()">finally()</a></h2>
+      <h2 id="finally"><a href="#finally">finally()</a></h2>
       <p><code translate="no">finally()</code> は、 resolve/reject どちらでも実行されるので、こう書くことができる。
       <pre class=js><code translate="no">showSpinner()
 fetch()
@@ -146,7 +146,7 @@ fetch()
       <p><code translate="no">finally()</code> には引数は渡って来ない。(来たとしても、それが resolve/reject どちらの結果か判別できないため)
     </section>
     <section>
-      <h2 id="finally()+の戻り値"><a href="#finally()+の戻り値">finally() の戻り値</a></h2>
+      <h2 id="finally-の戻り値"><a href="#finally-の戻り値">finally() の戻り値</a></h2>
       <p>また、 <code translate="no">finally()</code> はその前の Promise の結果をそのまま戻す。つまり、以下のように先に書いても問題ない。
       <pre class=js><code translate="no">showSpinner()
 fetch()
@@ -162,7 +162,7 @@ fetch()
       <p>これで、 response/error の処理に時間がかかるとしても、まず Snipper を消すという処理を完了させられる。
     </section>
     <section>
-      <h2 id="async/await"><a href="#async/await">async/await</a></h2>
+      <h2 id="asyncawait"><a href="#asyncawait">async/await</a></h2>
       <p>なお、 async/await を使った場合は、 try-catch-finally がそのまま使えるため、この仕様とは関係なく以下のように書ける。
       <pre class=js><code translate="no">(async () =&gt; {
   try {
@@ -176,9 +176,11 @@ fetch()
 })()</code></pre>
     </section>
     <section>
-      <h2 id="DEMO"><a href="#DEMO">DEMO</a></h2>
+      <h2 id="demo"><a href="#demo">DEMO</a></h2>
       <ul>
-        <li><a href="https://labs.jxck.io/promise">Promise DEMO</a>
+        <li>
+          <a href="https://labs.jxck.io/promise">Promise DEMO</a>
+        </li>
       </ul>
     </section>
   </article>

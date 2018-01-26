@@ -77,7 +77,9 @@
       <p><audio preload=none src=https://files.mozaic.fm/mozaic-ep29.mp3 controls></audio>
       <ul class=info>
         <li>published_at: <time datetime=2017-11-02>2017-11-02</time>
-        <li>guest: <a href="https://twitter.com/kojiishi">@kojiishi</a>
+        <li>
+          guest: <a href="https://twitter.com/kojiishi">@kojiishi</a>
+        </li>
       </ul>
     </section>
     <section>
@@ -89,77 +91,155 @@
     <section>
       <h2>Show Note</h2>
       <ul>
-        <li>Koji さんのドラフト<ul>
-          <li><a href="https://drafts.csswg.org/css-text-3/">CSS Text Module Level 3</a>
-          <li><a href="https://drafts.csswg.org/css-text-decor-3/">CSS Text Decoration Module Level 3</a>
-          <li><a href="https://drafts.csswg.org/css-inline/">CSS Inline Layout Module Level 3</a>
-          <li><a href="https://drafts.csswg.org/css-ruby/">CSS Ruby Layout Module Level 1</a>
-          <li><a href="https://drafts.csswg.org/css-writing-modes-3/">CSS Writing Modes Level 3</a>
-          <li><a href="https://drafts.csswg.org/css-line-grid/">CSS Line Grid Module Level 1</a>
-          <li><a href="https://drafts.csswg.org/css-rhythm/">CSS Rhythmic Sizing</a>
-          <li><a href="http://www.unicode.org/reports/tr50/">UAX #50: Unicode Vertical Text Layout</a>
-        </ul>
-        <li><a href="https://drafts.css-houdini.org/">CSS-TAG Houdini Editor Drafts</a> (<a href="https://github.com/w3c/css-houdini-drafts">github</a>)<ul>
-          <li><a href="https://drafts.css-houdini.org/worklets/">Worklets Level 1</a><ul>
-            <li>JS のメインスレッドとは別に実行される環境
-            <li>ハイレベル API で使用される定義される
-            <li>WebWorker とは違う。イベントベースですらない
-            <li>Class で適宜したハンドラを渡すと内部で実行される
+        <li>
+          Koji さんのドラフト<ul>
+            <li>
+              <a href="https://drafts.csswg.org/css-text-3/">CSS Text Module Level 3</a>
+            </li>
+            <li>
+              <a href="https://drafts.csswg.org/css-text-decor-3/">CSS Text Decoration Module Level 3</a>
+            </li>
+            <li>
+              <a href="https://drafts.csswg.org/css-inline/">CSS Inline Layout Module Level 3</a>
+            </li>
+            <li>
+              <a href="https://drafts.csswg.org/css-ruby/">CSS Ruby Layout Module Level 1</a>
+            </li>
+            <li>
+              <a href="https://drafts.csswg.org/css-writing-modes-3/">CSS Writing Modes Level 3</a>
+            </li>
+            <li>
+              <a href="https://drafts.csswg.org/css-line-grid/">CSS Line Grid Module Level 1</a>
+            </li>
+            <li>
+              <a href="https://drafts.csswg.org/css-rhythm/">CSS Rhythmic Sizing</a>
+            </li>
+            <li>
+              <a href="http://www.unicode.org/reports/tr50/">UAX #50: Unicode Vertical Text Layout</a>
+            </li>
           </ul>
-          <li><a href="https://drafts.css-houdini.org/css-properties-values-api/">CSS Properties and Values API Level 1</a><ul>
-            <li>name, syntax, inherits, init を指定して任意のプロパティを registerProperty する
+        </li>
+        <li>
+          <a href="https://drafts.css-houdini.org/">CSS-TAG Houdini Editor Drafts</a> (<a href="https://github.com/w3c/css-houdini-drafts">github</a>)<ul>
+            <li>
+              <a href="https://drafts.css-houdini.org/worklets/">Worklets Level 1</a><ul>
+                <li>JS のメインスレッドとは別に実行される環境
+                <li>ハイレベル API で使用される定義される
+                <li>WebWorker とは違う。イベントベースですらない
+                <li>Class で適宜したハンドラを渡すと内部で実行される
+              </ul>
+            </li>
+            <li>
+              <a href="https://drafts.css-houdini.org/css-properties-values-api/">CSS Properties and Values API Level 1</a><ul>
+                <li>name, syntax, inherits, init を指定して任意のプロパティを registerProperty する
+              </ul>
+            </li>
+            <li>
+              <a href="https://drafts.css-houdini.org/css-typed-om/">CSS Typed OM Level 1</a><ul>
+                <li>attributeStyleMap 経由で型と値を操作
+                <li>CSSXXXValue などで値を計算
+              </ul>
+            </li>
+            <li>
+              <a href="https://drafts.css-houdini.org/box-tree-api/">Box Tree API Level 1</a><ul>
+                <li>行の折り返しなどで生成される Fragment にアクセスできる API
+                <li>まだ中身があまりない
+              </ul>
+            </li>
+            <li>
+              <a href="https://drafts.css-houdini.org/css-parser-api/">CSS Parser API</a><ul>
+                <li>CSS パーサを export し CSS を解析した中間表現にアクセスできるように
+                <li>まだ中身がほぼない
+                <li>
+                  use case: <a href="https://github.com/WICG/CSS-Parser-API">https://github.com/WICG/CSS-Parser-API</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="https://drafts.css-houdini.org/css-paint-api/">CSS Painting API Level 1</a><ul>
+                <li>ペイント領域に対して Canvas API サブセットで好きなように描画できる
+              </ul>
+            </li>
+            <li>
+              <a href="https://drafts.css-houdini.org/css-layout-api/">CSS Layout API Level 1</a><ul>
+                <li>Style Tree で生成された Fragment をどう配置するかを決める
+                <li>OutPut として Box Tree を提供し、それをブラウザがペイントする
+                <li>Flexbox や Grid みたいなものを自分で定義できる
+              </ul>
+            </li>
+            <li>
+              <a href="https://drafts.css-houdini.org/font-metrics-api/">Font Metrics API Level 1</a><ul>
+                <li>baseline などレイアウトに必要なメトリクス情報を取得する
+              </ul>
+            </li>
           </ul>
-          <li><a href="https://drafts.css-houdini.org/css-typed-om/">CSS Typed OM Level 1</a><ul>
-            <li>attributeStyleMap 経由で型と値を操作
-            <li>CSSXXXValue などで値を計算
+        </li>
+        <li>
+          Paint API で StokeText できないと困る話<ul>
+            <li>
+              <a href="https://github.com/w3c/css-houdini-drafts/issues/478">why no fillText/strokeText ? Issue #478</a>
+            </li>
           </ul>
-          <li><a href="https://drafts.css-houdini.org/box-tree-api/">Box Tree API Level 1</a><ul>
-            <li>行の折り返しなどで生成される Fragment にアクセスできる API
-            <li>まだ中身があまりない
+        </li>
+        <li>
+          Minutes Paris F2F 2017-08-01<ul>
+            <li>
+              <a href="https://lists.w3.org/Archives/Public/public-houdini/2017Aug/0001.html">Part I: AnimationWorklet, TypedOM</a>
+            </li>
+            <li>
+              <a href="https://lists.w3.org/Archives/Public/public-houdini/2017Aug/0002.html">Part II: CSS Properties &amp; Values, Custom Paint</a>
+            </li>
+            <li>
+              <a href="https://lists.w3.org/Archives/Public/public-houdini/2017Aug/0003.html">Part III: Layout Worklets, Future Meetings</a>
+            </li>
           </ul>
-          <li><a href="https://drafts.css-houdini.org/css-parser-api/">CSS Parser API</a><ul>
-            <li>CSS パーサを export し CSS を解析した中間表現にアクセスできるように
-            <li>まだ中身がほぼない
-            <li>use case: <a href="https://github.com/WICG/CSS-Parser-API">https://github.com/WICG/CSS-Parser-API</a>
+        </li>
+        <li>
+          レシピの中括弧<ul>
+            <li>
+              <a href="https://wiki.csswg.org/planning/tokyo-2017#afternoon1">https://wiki.csswg.org/planning/tokyo-2017#afternoon1</a>
+            </li>
+            <li>
+              <a href="http://kojiishi.github.io/css-paint/curly-bracket.html">CSS Paint API での実装例</a>
+            </li>
           </ul>
-          <li><a href="https://drafts.css-houdini.org/css-paint-api/">CSS Painting API Level 1</a><ul>
-            <li>ペイント領域に対して Canvas API サブセットで好きなように描画できる
+        </li>
+        <li>
+          TPAC 2017<ul>
+            <li>
+              <a href="https://wiki.csswg.org/planning/tpac-2017">TPAC 2017</a>
+            </li>
+            <li>
+              <a href="https://github.com/w3c/css-houdini-drafts/wiki/TPAC-F2F-November-2017">TPAC F2F November 2017</a>
+            </li>
           </ul>
-          <li><a href="https://drafts.css-houdini.org/css-layout-api/">CSS Layout API Level 1</a><ul>
-            <li>Style Tree で生成された Fragment をどう配置するかを決める
-            <li>OutPut として Box Tree を提供し、それをブラウザがペイントする
-            <li>Flexbox や Grid みたいなものを自分で定義できる
+        </li>
+        <li>
+          各ベンダの最近の CSS エンジン改善<ul>
+            <li>
+              FF: <a href="https://wiki.mozilla.org/Quantum#Quantum_CSS">Quantum - MozillaWiki</a>
+            </li>
+            <li>
+              Edge: <a href="https://blogs.windows.com/msedgedev/2017/08/17/making-web-smoother-independent-rendering/">Making the web smoother with independent rendering - Microsoft Edge Dev Blog</a>
+            </li>
+            <li>
+              Chrome: <a href="https://chromium.googlesource.com/chromium/src/+/master/third_party/WebKit/Source/core/layout/ng/README.md">LayoutNG</a>, <a href="https://chromium.googlesource.com/chromium/src/+/master/third_party/WebKit/Source/core/paint/README.md#slimmingpaintv2-a_k_a_spv2">Sliming Paint V2</a>
+            </li>
           </ul>
-          <li><a href="https://drafts.css-houdini.org/font-metrics-api/">Font Metrics API Level 1</a><ul>
-            <li>baseline などレイアウトに必要なメトリクス情報を取得する
+        </li>
+        <li>
+          see also<ul>
+            <li>
+              <a href="https://github.com/GoogleChromeLabs/houdini-samples">GoogleChromeLabs/houdini-samples</a>
+            </li>
+            <li>
+              <a href="https://ishoudinireadyyet.com/">Is Houdini Ready Yet?</a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/watch?v=kQ03a6topCM&feature=youtu.be">BlinkOn 8: Line Layout Deep Dive</a>
+            </li>
           </ul>
-        </ul>
-        <li>Paint API で StokeText できないと困る話<ul>
-          <li><a href="https://github.com/w3c/css-houdini-drafts/issues/478">why no fillText/strokeText ? Issue #478</a>
-        </ul>
-        <li>Minutes Paris F2F 2017-08-01<ul>
-          <li><a href="https://lists.w3.org/Archives/Public/public-houdini/2017Aug/0001.html">Part I: AnimationWorklet, TypedOM</a>
-          <li><a href="https://lists.w3.org/Archives/Public/public-houdini/2017Aug/0002.html">Part II: CSS Properties & Values, Custom Paint</a>
-          <li><a href="https://lists.w3.org/Archives/Public/public-houdini/2017Aug/0003.html">Part III: Layout Worklets, Future Meetings</a>
-        </ul>
-        <li>レシピの中括弧<ul>
-          <li><a href="https://wiki.csswg.org/planning/tokyo-2017#afternoon1">https://wiki.csswg.org/planning/tokyo-2017#afternoon1</a>
-          <li><a href="http://kojiishi.github.io/css-paint/curly-bracket.html">CSS Paint API での実装例</a>
-        </ul>
-        <li>TPAC 2017<ul>
-          <li><a href="https://wiki.csswg.org/planning/tpac-2017">TPAC 2017</a>
-          <li><a href="https://github.com/w3c/css-houdini-drafts/wiki/TPAC-F2F-November-2017">TPAC F2F November 2017</a>
-        </ul>
-        <li>各ベンダの最近の CSS エンジン改善<ul>
-          <li>FF: <a href="https://wiki.mozilla.org/Quantum#Quantum_CSS">Quantum - MozillaWiki</a>
-          <li>Edge: <a href="https://blogs.windows.com/msedgedev/2017/08/17/making-web-smoother-independent-rendering/">Making the web smoother with independent rendering - Microsoft Edge Dev Blog</a>
-          <li>Chrome: <a href="https://chromium.googlesource.com/chromium/src/+/master/third_party/WebKit/Source/core/layout/ng/README.md">LayoutNG</a>, <a href="https://chromium.googlesource.com/chromium/src/+/master/third_party/WebKit/Source/core/paint/README.md#slimmingpaintv2-a_k_a_spv2">Sliming Paint V2</a>
-        </ul>
-        <li>see also<ul>
-          <li><a href="https://github.com/GoogleChromeLabs/houdini-samples">GoogleChromeLabs/houdini-samples</a>
-          <li><a href="https://ishoudinireadyyet.com/">Is Houdini Ready Yet?</a>
-          <li><a href="https://www.youtube.com/watch?v=kQ03a6topCM&feature=youtu.be">BlinkOn 8: Line Layout Deep Dive</a>
-        </ul>
+        </li>
       </ul>
     </section>
   </article>

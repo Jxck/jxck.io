@@ -32,7 +32,7 @@ AMP への対応は、実際には 「遅くなる原因」=「アンチパタ�
 
 具体的には以下のようなアンチパターンを排除する。
 
-- JS の実行: 実際には `document.write` などによるブロックなどがネックになりやすいが、細かくいうと色々あるので、まるっと一括で禁止ししている
+- JS の実行: 実際には `document.write` などによるブロックなどがネックになりやすいが、細かくいうと色々あるので、まるっと一括で禁止している
 - 外部 CSS: 全部 HTML 内にインラインで書かせることにより fetch や再描画を防ぐ
 - `<img>`: 画像の `width x height` を明示させ、 `<amp-img>` を代わりに使わせることで、画像を非同期に読み込み表示を最適化する
 
@@ -203,7 +203,7 @@ AMP として正しい HTML かどうかは、 Chrome Developer Tools で調べ�
 
 このページのデバッグフラグ付き AMP 対応ページの URL は以下になる。
 
-[amp-html.amp.html#development=1](amp-html.amp.html#development=1)
+<https://blog.jxck.io/entries/2016-02-01/amp-html.amp.html#development=1>
 
 分かりやすいように通常の HTML の右上に AMP のイメージもとである &#x26a1; を模したアイコンを追加し、そこに AMP 版へのリンクを追加した。
 
