@@ -264,7 +264,7 @@ Finding っていう資料が二つ出た。
 - 2/7: [Chrome VP9/SVG DEMO](https://sfu.medooze.com/svc/)
   - Chrome VP9/SVG のデモ
   - SVG のレイヤ選択を SFU に指示して違いを体感
-  - chrome --force-fieldtrials=WebRTC-SupportVP9SVC を有効にする必要
+  - chrome `--force-fieldtrials=WebRTC-SupportVP9SVC` を有効にする必要
 
 - 2/7: [Polyfills and the evolution of the web](https://w3ctag.github.io/polyfills/)
   - Web と共同する上で Polyfill がどうあるべきかという TAG のドキュメント

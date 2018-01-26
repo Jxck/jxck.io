@@ -77,7 +77,7 @@ Usage:
 
 まずは、デフォルトの 80 で比較していく。
 
-- [jxck.png ](https://jxck.io/assets/img/jxck.png) : 4061 byte
+- [jxck.png](https://jxck.io/assets/img/jxck.png) : 4061 byte
 - [jxck.webp](https://jxck.io/assets/img/jxck.webp): 1810 byte
 
 

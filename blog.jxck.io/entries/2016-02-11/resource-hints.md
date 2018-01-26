@@ -1,4 +1,4 @@
-# [resouce hints][performance] Resource Hints API でリソースの投機的取得
+# [resource hints][performance] Resource Hints API でリソースの投機的取得
 
 ## Intro
 
