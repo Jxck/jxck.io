@@ -52,7 +52,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-01-28T08:00:00+08:00",
-  "dateModified": "2017-12-21T08:00:00+08:00",
+  "dateModified": "2018-01-27T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -610,7 +610,7 @@ th:last-child, td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-01-28>2016-01-28</time>
-    <li>updated_at: <time class=updated_at datetime=2017-12-21>2017-12-21</time>
+    <li>updated_at: <time class=updated_at datetime=2018-01-27>2018-01-27</time>
     <li class=tags>tags: [<a href='/tags/html.html'>html</a>,<a href='/tags/performance.html'>performance</a>]
   </ul>
 
@@ -642,10 +642,10 @@ th:last-child, td:last-child {
       <h2 id="html-の省略記法"><a href="#html-の省略記法">HTML の省略記法</a></h2>
       <section>
         <h3 id="タグそのもの"><a href="#タグそのもの">タグそのもの</a></h3>
-        <p><code translate="no">&lt;html&gt;</code>、 <code translate="no">&lt;head&gt;</code>、 <code translate="no">&lt;body&gt;</code> は、タグ自体を書かなくても良い場合があり、仕様では以下に定義がある。
-        <p><a href="https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission">https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission</a>
+        <p><code translate="no">&lt;html&gt;</code>、 <code translate="no">&lt;head&gt;</code>、 <code translate="no">&lt;body&gt;</code> は、タグ自体を書かなくても良い場合があり、仕様に定義がある。
         <blockquote>
-          <p>An html element&rsquo;s end tag may be omitted if the html element is not immediately followed by a comment.
+          <p>An html element&rsquo;s end tag may be omitted if the html element is not immediately followed by a comment.<br>
+          &mdash; <cite><a href="https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission">https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission</a></cite>
         </blockquote>
         <p>すぐ次がコメントでないなら、 <code translate="no">&lt;html&gt;</code> は省略しても良い。 <code translate="no">&lt;head&gt;</code> や <code translate="no">&lt;body&gt;</code> も同様だ。
         <pre class=html><code translate="no">&lt;!-- before --&gt;
@@ -667,11 +667,11 @@ th:last-child, td:last-child {
       </section>
       <section>
         <h3 id="閉じタグ"><a href="#閉じタグ">閉じタグ</a></h3>
-        <p>HTML には閉じタグの省略が許されているものがいくつかあり、仕様では以下に定義がある。
-        <p><a href="https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission">https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission</a>
+        <p>HTML には閉じタグの省略が許されているものがいくつかあり、仕様に定義がある。
         <p>例えば、 <code translate="no">&lt;/li&gt;</code> は以下の条件なら省略が可能だ。
         <blockquote>
-          <p>An li element&rsquo;s end tag may be omitted if the li element is immediately followed by another li element or if there is no more content in the parent element.
+          <p>An li element&rsquo;s end tag may be omitted if the li element is immediately followed by another li element or if there is no more content in the parent element.<br>
+          &mdash; <cite><a href="https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission">https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission</a></cite>
         </blockquote>
         <ul>
           <li>
@@ -700,9 +700,9 @@ th:last-child, td:last-child {
       <section>
         <h3 id="attribute-value-の-quote"><a href="#attribute-value-の-quote">attribute value の quote</a></h3>
         <p>もう一つ、要素を囲む引用符(<code translate="no">&#039;</code>, <code translate="no">&quot;</code>) も省略可能な場合があり、仕様では以下に定義がある。
-        <p><a href="https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html">https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html</a>
         <blockquote>
-          <p>The attribute value can remain unquoted if it doesn&rsquo;t contain space characters or any of &ldquo; &lsquo; ` = &lt; or &gt;. Otherwise, it has to be quoted using either single or double quotes.
+          <p>The attribute value can remain unquoted if it doesn&rsquo;t contain space characters or any of &ldquo; &lsquo; ` = &lt; or &gt;. Otherwise, it has to be quoted using either single or double quotes.<br>
+          &mdash; <cite><a href="https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html">https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html</a></cite>
         </blockquote>
         <p>つまり、スペースや <code translate="no">&quot; &#039; ` = &lt; &gt;</code> が無ければ引用符はいらない。
         <pre class=html><code translate="no">&lt;!-- before --&gt;
