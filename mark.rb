@@ -87,7 +87,7 @@ class Markup
   end
   def wrap(value)
     # increase indent
-    "\n#{value}".gsub(/\n/m, "\n#{@indent}") + "\n"
+    "\n#{value.split("\n").map{|e| @indent + e}.join("\n")}\n"
   end
   def style(href)
     "<link rel=stylesheet property=stylesheet type=text/css href=#{href}>"
@@ -120,7 +120,8 @@ class Markup
       return %(<h#{level}><a href=#{@url}>#{@title}</a></h#{level}>\n)
     else
       # h2 以降は id を振る
-      return %(<h#{level} id="#{escape(node.value)}"><a href="##{escape(node.value)}">#{node.value}</a></h#{level}>\n)
+      id = node.attr["id"]
+      return %(<h#{level} id="#{id}"><a href="##{id}">#{node.value}</a></h#{level}>\n)
     end
   end
 
@@ -141,7 +142,7 @@ class Markup
   end
 
   def tabletag(node)
-    "<table>#{wrap(node.value)}</table>"
+    "<table>#{wrap(node.value)}</table>\n"
   end
   protected :tabletag
 
@@ -179,7 +180,11 @@ class Markup
     "<dd>#{node.value}\n"
   end
   def p(node)
-    "<p>#{node.value}\n"
+    if node.close
+      "<p>#{node.value}</p>\n"
+    else
+      "<p>#{node.value}\n"
+    end
   end
 
   # inline elements
@@ -187,18 +192,22 @@ class Markup
     "<code translate=\"no\">#{hsc(node.value)}</code>"
   end
   def blockquote(node)
-    "<blockquote>#{hsc(node.value)}</blockquote>\n"
+    "<blockquote>#{wrap(node.value)}</blockquote>\n"
   end
   def smart_quote(node)
     {
-      lsquo: %('),
-      rsquo: %('),
-      ldquo: %("),
-      rdquo: %("),
+      lsquo: "&lsquo;",
+      rsquo: "&rsquo;",
+      ldquo: "&ldquo;",
+      rdquo: "&rdquo;",
     }[node.value]
   end
   def li(node)
-    "<li>#{node.value}\n"
+    if node.close
+      "<li>#{wrap(node.value)}</li>\n"
+    else
+      "<li>#{node.value}\n"
+    end
   end
   def strong(node)
     "<strong>#{node.value}</strong>"
@@ -207,19 +216,23 @@ class Markup
     "<em>#{node.value}</em>"
   end
   def text(node)
-    node.value
+    node.value == "\n" ? "" : hsc(node.value)
   end
   def br(_node)
-    "<br>"
+    "<br>\n"
   end
   def hr(_node)
-    "<hr>"
+    "<hr>\n"
   end
   def entity(node)
     node.options.original
   end
   def typographic_sym(node)
-    "..." if node.value == :hellip
+    {
+      hellip: "&hellip;",
+      mdash:  "&mdash;",
+      ndash:  "&ndash;",
+    }[node.value]
   end
   def a(node)
     %(<a href="#{node.attr['href']}">#{node.value}</a>)
@@ -254,25 +267,22 @@ class Markup
 
     # No width-height for normal img
     return <<-EOS
-      <picture>
+
+  <picture>
     <source type=image/webp srcset=#{node.attr['src'].sub(/(.png|.gif|.jpg)/, '.webp')}>
     <img src=#{node.attr['src']} alt="#{node.attr['alt']}" title="#{node.attr['title']}">
-    </picture>
-    EOS
+  </picture>
+EOS
   end
 
   def html_element(node)
-    if node.value != "iframe"
-      STDERR.puts "unsupported html element #{node.value}"
-      exit(1)
-    end
-    attrs = node.attr.map {|key, value|
-      if value == ""
-        next key
-      end
+    attrs = node.attr&.map {|key, value|
+      next key if value == ""
       %(#{key}="#{value}")
-    }.join(" ")
-    "<#{node.value} #{attrs}></#{node.value}>\n"
+    }
+
+    attr = attrs.nil? ? "" : " " + attrs.join(" ")
+    "<#{node.tag}#{attr}>#{node.value}</#{node.tag}>\n"
   end
 end
 
@@ -330,24 +340,54 @@ end
 class Traverser
   attr_reader :codes
 
-  # 結果を入れるスタック
-  # push => unshift()
-  # pop  => shift()
-  # top  => [0]
   def initialize(markup)
-    @stack = []
     @codes = []
     @markup = markup
   end
 
+  def traverse(ast)
+    enter(ast)
+    ast.children = ast.children&.map { |child|
+      traverse(child)
+    }
+    leave(ast)
+  end
+
   def enter(node)
+    # 降りて行きながら、親子関係によって前処理を行う
     # puts "[##{__LINE__}] enter: #{node.type}"
 
-    # enter では、 inline 属性を追加し
-    # stack に詰むだけ
-    # 実際は、pop 側で整合検証くらいしか使ってない
+    if node.type == :html_element
+      # html element は value にタグ名が入ってる
+      # 子要素の連結結果を value に入れられるように
+      # :tag に移しておく
+      node.tag = node.value
+      node.value = ''
+    end
 
-    @stack.unshift(node)
+    if node.type == :li
+      # li の子には p が入るのでこれを除く
+      first = node.children.shift
+      if first.type == :p
+        first.children.reverse.each{|child|
+          node.children.unshift child
+        }
+      end
+
+      # 基本は li を閉じる
+      node.close = true
+      if node.children.size == 1 and node.children.first.type == :text
+        # もし li の子が :text 1 つだけなら閉じない
+        node.close = false
+      end
+    end
+
+    if node.type == :p and node.children
+      first = node.children.first
+      if first.type == :img
+        node.close = true
+      end
+    end
   end
 
   def leave(node)
@@ -355,105 +395,27 @@ class Traverser
 
     if node.type == :codeblock
       # コードを抜き取り、ここで id に置き換える
-      value = node.value
-      if value == ""
+      code = node.value
+      if code == ""
         # code が書かれてなかったらファイルから読む
         # ```js:main.js
         node.attr["class"], node.path = node.attr["class"].split(":")
         path = "./blog.jxck.io/#{@markup.baseurl}/#{node.path}"
-        value = File.read(path)
+        code = File.read(path)
       end
 
       # インデントを無視するため、全部組み上がったら後で差し込む。
-      @codes.push(value.chomp)
+      @codes.push(code.chomp)
 
       # あとで差し変えるため id として番号を入れておく
       node.value = "// #{@codes.length}"
     end
 
-    if [:text, :codeblock, :codespan, :smart_quote, :html_element, :typographic_sym, :entity].include?(node.type)
-      # value を直で入れるタイプ
-
-      # pop して
-      top = @stack.shift
-      # 対応を確認
-      if top.type != node.type
-        STDERR.puts "[##{__LINE__}] ERROR #{top}, #{node}"
-        exit(1)
-      end
-
-      # 閉じる
-      unless @markup.respond_to?(node.type)
-        STDERR.puts "[##{__LINE__}] ERROR #{top}, #{node}"
-        exit(1)
-      end
-
-      @stack.unshift({
-        tag:    :full,
-        val:    @markup.send(node.type, node),
-        inline?: node.inline?
-      })
-    else
-      # 完成している兄弟タグを集めてきて配列に並べる
-      vals = []
-
-      while @stack.first.tag == :full
-        top = @stack.shift
-
-        if top.inline? && vals.first && vals.first.inline?
-          # 取得したのが inline で、一個前も inline だったら
-          # inline どうしをくっつける
-          val = vals.shift
-          val.val = top.val + val.val
-          vals.unshift(val)
-        else
-          # そうで無ければただの兄弟要素
-          vals.unshift(top)
-        end
-      end
-
-      # タグを全部連結する
-      vals = vals.map(&:val).join.strip
-
-      # それを親タグで閉じる
-      top = @stack.shift
-      if top.type != node.type
-        STDERR.puts "[##{__LINE__}] ERROR #{top}, #{node}"
-        exit(1)
-      end
-
-      # 今見ているのが paragraph で
-      if node.type == :p
-        # その親が p いらないタグ だったら
-        if [:li, :blockquote].include?(@stack[0].type)
-          # p を消すために text に差し替える
-          # text はタグをつけない
-          node = { type: :text }
-        end
-      end
-
-      node.value = vals
-
-      unless @markup.respond_to?(node.type)
-        STDERR.puts "unsupported type", node.type
-      end
-
-      @stack.unshift({
-        tag:     :full,
-        val:     @markup.send(node.type, node),
-        inline?: node.inline?
-      })
+    if node.children
+      node.value = node.children.join
     end
-  end
-
-  def traverse(ast)
-    enter(ast)
-    return leave(ast) unless ast.children
-
-    ast.children = ast.children.map { |child|
-      next traverse(child)
-    }
-    leave(ast)
+    up = @markup.send(node.type, node)
+    up
   end
 end
 
@@ -671,13 +633,11 @@ class Article
 
     # parse ast
     ast = AST.new(no_tag)
+    # DEBUG: pp ast.ast
 
     # traverse
     traverser = Traverser.new(markup)
-    stack = traverser.traverse(ast.ast)
-
-    # 結果の <article> 結果
-    article = stack[0].val
+    article = traverser.traverse(ast.ast)
 
     # indent を無視するため
     # ここで pre に code を戻す
