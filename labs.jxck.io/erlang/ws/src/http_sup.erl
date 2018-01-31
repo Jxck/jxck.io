@@ -32,9 +32,9 @@ start_link() ->
 init([]) ->
     Children = [
                 {
-                 http_listener,
-                 { http_listener, start_link, [] },
-                 permanent, 5, worker, [http_listener]
+                 http_listener_sup,
+                 { http_listener_sup, start_link, [] },
+                 permanent, 5, worker, [http_listener_sup]
                 },
                 {
                  http_worker_sup,

@@ -77,6 +77,7 @@ main([]) ->
     % gen_tcp:controlling_process してからじゃないと取りこぼすので
     % ここでは {active, false} にしておく
     {ok, Listen} = ?Log(gen_tcp:listen(3000, [{reuseaddr, true}, {active, false}])),
+    % accepter を複数起動、本来は supervisor でやる
     [spawn(fun() -> accept_loop(Listen) end) || _ <- lists:seq(1, ?NUM_POOL)],
     receive
         stop -> gen_tcp:close(Listen)
