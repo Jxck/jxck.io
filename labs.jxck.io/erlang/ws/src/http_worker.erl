@@ -36,27 +36,31 @@ start_link(Socket) ->
 
 init(Parent, Socket) ->
     ?Log(Parent, Socket),
+
+    % 最初は {packet, http_bin} でパースを依頼する
+    ok = inet:setopts(Socket, [{active, false}, {packet, http_bin}]),
     Debug = sys:debug_options([]),
-    proc_lib:init_ack(Parent, {ok, self()}),
     State = {{}, #{}, <<>>}, % {Request, Header, Body}
+
+    % ACK を返してからループ
+    ?Log(proc_lib:init_ack(Parent, {ok, self()})),
+
     loop(Parent, Socket, Debug, State).
+
 
 loop(Parent, Socket, Debug, {Req, Header, Body}=State) ->
     case ?Log(gen_tcp:recv(Socket, 0)) of
         % First Line
         {ok, {http_request, Method, Uri, Version}} ->
             % 以降はヘッダなので httph_bin
-            ok = inet:setopts(Socket, [{active, false}, {packet, httph_bin}]),
-
-            % first line
-            ?Log(Method, Uri, Version),
+            ok = inet:setopts(Socket, [{packet, httph_bin}]),
             NextState = {{Method, Uri, Version}, Header, Body},
             loop(Parent, Socket, Debug, NextState);
 
         % Header
         {ok, {http_header, _Len, Field, _ , Value}} ->
             % ヘッダが終わるまでは httph_bin
-            ok = inet:setopts(Socket, [{active, false}, {packet, httph_bin}]),
+            ok = inet:setopts(Socket, [{packet, httph_bin}]),
             NextState = {Req, Header#{Field => Value}, Body},
             loop(Parent, Socket, Debug, NextState);
 
@@ -64,7 +68,7 @@ loop(Parent, Socket, Debug, {Req, Header, Body}=State) ->
         {ok, http_eoh} ->
             % ここで header が終わるので body を raw binary で受け取る
             % Content-Length 分だけ読むために active/false にして recv する。
-            ok = inet:setopts(Socket, [binary, {packet, raw}, {active, false}]),
+            ok = inet:setopts(Socket, [{packet, raw}]),
             Len = binary_to_integer(maps:get('Content-Length', Header, <<"0">>)),
             {ok, Data} = case Len of
                              0 -> {ok, <<>>};
@@ -72,7 +76,7 @@ loop(Parent, Socket, Debug, {Req, Header, Body}=State) ->
                          end,
 
             % 終わったら http_bin に戻す
-            ok = inet:setopts(Socket, [{packet, http_bin}, {active, false}]),
+            ok = inet:setopts(Socket, [{packet, http_bin}]),
             NextState = {Req, Header, <<Body/binary, Data/binary>>},
 
             % handler を呼ぶ
@@ -101,7 +105,7 @@ handle_request(Socket,
                    <<"Sec-Websocket-Version">> := <<"13">>
                  },
                 <<>>}=Req) ->
-
+    ?Log(handle, Req),
     GUID = <<"258EAFA5-E914-47DA-95CA-C5AB0DC85B11">>,
     Hash = base64:encode(crypto:hash(sha, <<Key/binary, GUID/binary>>)),
 
@@ -116,7 +120,6 @@ handle_request(Socket,
                               >>),
     {ok, Pid} = ws_worker_sup:start_child(Socket),
     ok = gen_tcp:controlling_process(Socket, Pid),
-    ?Log(inet:setopts(Socket, [binary, {active, once}])),
     upgrade;
 
 

@@ -21,9 +21,6 @@ start_link() ->
     ?Log(supervisor:start_link({local, ?MODULE}, ?MODULE, [])).
 
 start_child(Socket) ->
-    % 制御が移ってるので {active, once} で受信
-    % 最初は {packet, http_bin} でパースを依頼する
-    ok = inet:setopts(Socket, [{packet, http_bin}]),
     ?Log(supervisor:start_child(?MODULE, [Socket])).
 
 %%====================================================================

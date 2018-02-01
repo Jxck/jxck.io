@@ -1,9 +1,9 @@
 %%%-------------------------------------------------------------------
-%% @doc http listener supervisor
+%% @doc http acceptor supervisor
 %% @end
 %%%-------------------------------------------------------------------
 
--module(http_listener_sup).
+-module(http_acceptor_sup).
 
 -include("logger.hrl").
 
@@ -32,9 +32,10 @@ start_link() ->
 %% Child :: {Id,StartFunc,Restart,Shutdown,Type,Modules}
 init([]) ->
     Port = 3000,
-    NumAccepter = 10,
+    NumAccepter = 1,
     Options = [binary,
                inet6, % support both ipv4 and ipv6
+               {packet, raw},
                {active, false}, % buffer until delegate ctl to worker
                {reuseaddr, true}
               ],

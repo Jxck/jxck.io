@@ -37,18 +37,21 @@ start_link(Listen) ->
 init(Parent, Listen) ->
     ?Log(Parent, Listen),
     Debug = sys:debug_options([]),
-    proc_lib:init_ack(Parent, {ok, self()}),
+    ok = proc_lib:init_ack(Parent, {ok, self()}),
     loop(Parent, Listen, Debug).
 
 loop(Parent, Listen, Debug) ->
+    % ここで accept する
     case ?Log(gen_tcp:accept(Listen)) of
         {ok, Socket} ->
+            % accept した socket ごとに worker を起動
             {ok, Pid} = http_worker_sup:start_child(Socket),
-            gen_tcp:controlling_process(Socket, Pid);
+            % 制御を移譲する
+            ok = gen_tcp:controlling_process(Socket, Pid);
         {error, Reason} ->
             io:format("fail accept ~p~n", [Reason])
     end,
-    flush_message(Parent, Listen, Debug),
+    ok = flush_message(Parent, Listen, Debug),
     loop(Parent, Listen, Debug).
 
 flush_message(Parent, Listen, Debug) ->
