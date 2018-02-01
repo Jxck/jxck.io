@@ -29,6 +29,7 @@ start_child(Socket) ->
 
 %% Child :: {Id,StartFunc,Restart,Shutdown,Type,Modules}
 init([]) ->
+    ?Log(),
     Children = [
                 {
                  ws_worker,

@@ -76,9 +76,13 @@ loop(Parent, Socket, Debug, {Req, Header, Body}=State) ->
             NextState = {Req, Header, <<Body/binary, Data/binary>>},
 
             % handler を呼ぶ
-            handle_request(Socket, NextState),
-
-            loop(Parent, Socket, Debug, NextState);
+            case handle_request(Socket, NextState) of
+                ok ->
+                    loop(Parent, Socket, Debug, NextState);
+                upgrde ->
+                    ?Log(upgrade),
+                    ok
+            end;
 
         {error, closed} ->
             ?Log(gen_tcp:close(Socket));
@@ -86,6 +90,34 @@ loop(Parent, Socket, Debug, {Req, Header, Body}=State) ->
         Error ->
             ?Log(Error)
     end.
+
+
+
+handle_request(Socket,
+               {{'GET', {abs_path, <<"/">>}, {1,1}},
+                #{ 'Connection'                := <<"Upgrade">>,
+                   'Upgrade'                   := <<"websocket">>,
+                   <<"Sec-Websocket-Key">>     := Key,
+                   <<"Sec-Websocket-Version">> := <<"13">>
+                 },
+                <<>>}=Req) ->
+
+    GUID = <<"258EAFA5-E914-47DA-95CA-C5AB0DC85B11">>,
+    Hash = base64:encode(crypto:hash(sha, <<Key/binary, GUID/binary>>)),
+
+    %% websocket へのアップグレード
+    %% 101 を返したら ws_worker を起動し制御を移譲する。
+    ok = gen_tcp:send(Socket, <<
+                                "HTTP/1.1 101 Switching Protocols\r\n"
+                                "Upgrade: websocket\r\n"
+                                "Connection: Upgrade\r\n"
+                                "Sec-WebSocket-Accept: ", Hash/binary, "\r\n"
+                                "\r\n"
+                              >>),
+    {ok, Pid} = ws_worker_sup:start_child(Socket),
+    ok = gen_tcp:controlling_process(Socket, Pid),
+    ?Log(inet:setopts(Socket, [binary, {active, once}])),
+    upgrade;
 
 
 handle_request(Socket, {{'GET', _, _}, _, _}=Req) ->

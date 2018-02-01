@@ -26,13 +26,12 @@
 %%====================================================================
 
 start_link(Socket) ->
-    gen_server:start_link(?MODULE, Socket, []).
+    ?Log(inet:setopts(Socket, [binary, {active, once}])),
+    gen_server:start_link(?MODULE, Socket, [{debug, [trace]}]).
 
 init(Socket) ->
     ?Log(Socket),
     State = #{socket => Socket},
-    %% 制御を移譲されてから {active, true}にする
-    inet:setopts(Socket, [{active, true}]),
     {ok, State}.
 
 handle_call(Msg, From, State) ->
@@ -44,6 +43,7 @@ handle_cast(Msg, State) ->
     {noreply, State}.
 
 handle_info({tcp, Socket, Packet}, State) ->
+    ?Log(Packet),
     WS = ws:decode(Packet),
     ?Log(WS),
     Payload = maps:get(payload, WS),
