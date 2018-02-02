@@ -4,7 +4,7 @@
 
 The sys module has functions for simple debugging of processes implemented using behaviours. It also has functions that, together with functions in the proc_lib module, can be used to implement a special process that complies to the OTP design principles without using a standard behaviour. These functions can also be used to implement user-defined (non-standard) behaviours.
 
-SYS のモジュールは、 behaviour で実装されるプロセスの簡単なデバッグのための機能を持っています。また、 proc_lib モジュールの関数とともに、標準 behaviour を使用せずに OTP の設計原則に準拠する特別なプロセスを実装するために使用できる関数もあります。これらの関数は、ユーザー定義の(非標準)動作を実装するためにも使用できます。
+SYS のモジュールは、 behaviour で実装されるプロセスの簡単なデバッグのための機能を持っています。また、 proc_lib モジュールの関数とともに、標準 behaviour を使用せずに OTP の設計原則に準拠する special プロセスを実装するために使用できる関数もあります。これらの関数は、ユーザー定義の(非標準) behaviour を実装するためにも使用できます。
 
 Both sys and proc_lib belong to the STDLIB application.
 
@@ -15,7 +15,7 @@ sys と proc_lib はどちらも STDLIB アプリケーションに属します�
 
 The sys module has functions for simple debugging of processes implemented using behaviours. The code_lock example from gen_statem Behaviour is used to illustrate this:
 
-SYS のモジュールは、 behaviour を使用して実施されるプロセスの簡単なデバッグのための機能を持っています。 gen_statem Behavior の code_lock の 例を使ってこれを説明します:
+SYS のモジュールは、 behaviour を使用して実施されるプロセスの簡単なデバッグのための機能を持っています。 gen_statem behaviour の code_lock の 例を使ってこれを説明します:
 
 
 ```
@@ -85,9 +85,10 @@ This section describes how to write a process that complies to the OTP design pr
 - Support the sys debug facilities
 - Take care of system messages.
 
+
 - プロセスが監視ツリーに沿うように開始する
 - sys デバッグ機能をサポートする
-- システムメッセージを世話してください。
+- システムメッセージを処理する
 
 System messages are messages with a special meaning, used in the supervision tree. Typical system messages are requests for trace output, and requests to suspend or resume process execution (used during release handling). Processes implemented using standard behaviours automatically understand these messages.
 
@@ -98,7 +99,7 @@ System messages are messages with a special meaning, used in the supervision tre
 
 The simple server from Overview, implemented using sys and proc_lib so it fits into a supervision tree:
 
-sys と proc_lib を使用して実装されたシンプルなサーバーなので、監視ツリーに収まる:
+sys と proc_lib を使用して実装されたシンプルなサーバーなので、監視ツリーで扱えます:
 
 
 ```erlang
@@ -216,7 +217,7 @@ proc_lib モジュール内の関数を使用してプロセスを開始しま�
 
 A process started using one of these functions stores information (for example, about the ancestors and initial call) that is needed for a process in a supervision tree.
 
-これらの関数の 1 つを使用して開始されたプロセスは、プロセスに必要な情報(たとえば、祖先と初期呼び出しに関する情報)を監視ツリーに格納します。
+これらの関数の 1 つを使用して開始されたプロセスは、監視ツリーにあるプロセスが必要とする情報(たとえば、祖先と初期呼び出しに関する情報)を格納します。
 
 If the process terminates with another reason than normal or shutdown, a crash report is generated. For more information about the crash report, see the SASL User's Guide.
 
@@ -299,7 +300,7 @@ Here:
 
 handle_debug returns an updated debug structure Deb1.
 
-handle_debug が更新され、デバッグ構造 Deb1 を返します。
+handle_debug が更新したデバッグ構造 Deb1 を返します。
 
 In the example, handle_debug is called for each incoming and outgoing message. The format function Func is the function `ch4:write_debug/3`, which prints the message using `io:format/3`.
 
@@ -427,7 +428,7 @@ system_replace_state(StateFun, Chs) ->
 
 If the special process is set to trap exits and if the parent process terminates, the expected behavior is to terminate with the same reason:
 
-特別なプロセスが exit をトラップするように設定されていて、親プロセスが終了した場合、期待される動作は同じ理由で終了します。
+special process が exit をトラップするように設定されていて、親プロセスが終了した場合、期待される動作は同じ理由での終了です。
 
 
 ```erlang
@@ -457,7 +458,7 @@ To implement a user-defined behaviour, write code similar to code for a special 
 
 If the compiler is to warn for missing callback functions, as it does for the OTP behaviours, add -callback attributes in the behaviour module to describe the expected callbacks:
 
-コンパイラが欠落しているコールバック関数を警告する場合は、 OTP behaviour の場合と同様に、ビヘイビアモジュールに`-callback` 属性を追加して、予期されるコールバックを記述します。
+コンパイラが欠落しているコールバック関数を警告する場合は、 OTP behaviour の場合と同様に、 behaviour モジュールに`-callback` 属性を追加して、予期されるコールバックを記述します。
 
 
 ```erlang
@@ -508,7 +509,7 @@ where each {Name, Arity} specifies the name and arity of a callback function. Th
 
 When the compiler encounters the module attribute -behaviour(Behaviour). in a module Mod, it calls Behaviour:behaviour_info(callbacks) and compares the result with the set of functions actually exported from Mod, and issues a warning if any callback function is missing.
 
-コンパイラがモジュール属性 `-behaviour(Behaviour)` を検出したとき。モジュール Mod では `Behavior:behaviour_info(callbacks)` を呼び出し、その結果を Mod から実際にエクスポートされた関数のセットと比較し、コールバック関数がない場合に警告を出します。
+コンパイラがモジュール属性 `-behaviour(Behaviour)` を検出したとき。モジュール Mod では `Behaviour:behaviour_info(callbacks)` を呼び出し、その結果を Mod から実際にエクスポートされた関数のセットと比較し、コールバック関数がない場合に警告を出します。
 
 
 ```erlang
@@ -558,7 +559,7 @@ In a callback module:
 
 The contracts specified with -callback attributes in behaviour modules can be further refined by adding -spec attributes in callback modules. This can be useful as -callback contracts are usually generic. The same callback module with contracts for the callbacks:
 
-ビヘイビアモジュールの `-callback` 属性で指定されたコントラクトは、コールバックモジュールに `-spec` 属性を追加することでさらに洗練されます。これは、`-callback` コントラクトが通常は一般的なので便利です。コールバックの契約を持つ同じコールバックモジュール:
+behaviour モジュールの `-callback` 属性で指定されたコントラクトは、コールバックモジュールに `-spec` 属性を追加することでさらに洗練されます。これは、`-callback` コントラクトが通常は一般的なので便利です。コールバックの契約を持つ同じコールバックモジュール:
 
 
 ```erlang

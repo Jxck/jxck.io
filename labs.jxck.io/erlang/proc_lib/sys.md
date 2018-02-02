@@ -33,7 +33,7 @@ The functions make references to a debug structure. The debug structure is a lis
 
 ## System Messages
 
-Processes that are not implemented as one of the standard behaviors must still understand system messages. The following three messages must be understood:
+Processes that are not implemented as one of the standard behaviour must still understand system messages. The following three messages must be understood:
 
 標準 behaviour として実装されていないプロセスでも、システムメッセージを理解する必要があります。次の 3 つのメッセージは理解必須です。
 
@@ -172,7 +172,7 @@ install(Name, FuncSpec, Timeout) -> ok
 
 Enables installation of alternative debug functions. An example of such a function is a trigger, a function that waits for some special event and performs some action when the event is generated. For example, turning on low-level tracing.
 
-代替のデバッグ機能のインストールを有効にします。このような関数の例としては、特殊なイベントを待ってイベントが生成されたときに何らかのアクションを実行するトリガーがあります。たとえば、低レベルのトレースをオンにします。
+代替のデバッグ機能のインストールを有効にします。このような関数の例としては、 special event を待ってイベントが生成されたときに何らかのアクションを実行するトリガーがあります。たとえば、低レベルのトレースをオンにします。
 
 Func is called whenever a system event is generated. This function is to return done, or a new Func state. In the first case, the function is removed. It is also removed if the function fails.
 
@@ -295,7 +295,7 @@ If the callback module's function system_replace_state/2 crashes or throws an ex
 
 Function system_replace_state/2 is primarily useful for user-defined behaviors and modules that implement OTP special processes. The OTP behavior modules gen_server, gen_statem, and gen_event export this function, so callback modules for those behaviors need not to supply their own.
 
-関数 `system_replace_state/2` は、主に OTP 特殊プロセスを実装するユーザ定義のビヘイビアとモジュールに役立ちます。 OTP ビヘイビアモジュール gen_server, gen_statem, および gen_event は この関数をエキスポートするので、それらのビヘイビアのコールバックモジュールは独自のものを提供する必要はありません。
+関数 `system_replace_state/2` は、主に OTP special process を実装するユーザ定義のビヘイビアとモジュールに役立ちます。 OTP ビヘイビアモジュール gen_server, gen_statem, および gen_event は この関数をエキスポートするので、それらのビヘイビアのコールバックモジュールは独自のものを提供する必要はありません。
 
 
 ```

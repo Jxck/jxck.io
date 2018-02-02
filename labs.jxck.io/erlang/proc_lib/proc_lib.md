@@ -16,7 +16,7 @@ OTP 設計原則に準拠したプロセスの非同期および同期起動の�
 
 This module is used to start processes adhering to the OTP Design Principles. Specifically, the functions in this module are used by the OTP standard behaviors (for example, gen_server and gen_statem) when starting new processes. The functions can also be used to start special processes, user-defined processes that comply to the OTP design principles. For an example, see section sys and proc_lib in OTP Design Principles.
 
-このモジュールは、 OTP 設計原則に準拠したプロセスを開始するために使用されます。特に、このモジュールの関数は、新しいプロセスを開始するときに OTP 標準動作(gen_server や gen_statem など)によって使用されます。この機能は、 OTP の設計原則に準拠した特別なプロセス、ユーザー定義のプロセスを開始するためにも使用できます。例については、 "OTP 設計原則" の sys と proc_lib の節を参照してください。
+このモジュールは、 OTP 設計原則に準拠したプロセスを開始するために使用されます。特に、このモジュールの関数は、新しいプロセスを開始するときに OTP 標準動作(gen_server や gen_statem など)によって使用されます。この機能は、 OTP の設計原則に準拠した special process 、ユーザー定義のプロセスを開始するためにも使用できます。例については、 "OTP 設計原則" の sys と proc_lib の節を参照してください。
 
 Some useful information is initialized when a process starts. The registered names, or the process identifiers, of the parent process, and the parent ancestors, are stored together with information about the function initially called in the process.
 
