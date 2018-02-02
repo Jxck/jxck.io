@@ -154,15 +154,17 @@ initial_call(Process) -> {Module, Function, Args} | false
 
 Extracts the initial call of a process that was started using one of the spawn or start functions in this module. Process can either be a pid, an integer tuple (from which a pid can be created), or the process information of a process Pid fetched through an erlang:process_info(Pid) function call.
 
-このモジュールの spawn 関数または start 関数のいずれかを使用して開始されたプロセスの最初の呼び出しを抽出します。 プロセスは、 pid 、整数タプル(pid を作成することができる)、または `erlang:process_info(Pid)` 関数呼び出しによってフェッチされ たプロセス Pid のプロセス情報のいずれかです。
+このモジュールの spawn 関数または start 関数のいずれかを使用して開始されたプロセスの最初の呼び出しを抽出します。 プロセスは、 pid 、整数タプル(pid を作成することができる)、または `erlang:process_info(Pid)` 関数呼び出しによってフェッチされたプロセス Pid のプロセス情報のいずれかです。
+
 
 The list Args no longer contains the arguments, but the same number of atoms as the number of arguments; the first atom is 'Argument__1', the second 'Argument__2', and so on. The reason is that the argument list could waste a significant amount of memory, and if the argument list contained funs, it could be impossible to upgrade the code for the module.
 
 リスト Args には引数はなく、引数の数と同じ数のアトムが含まれています。最初のアトムは `'Argument__1'`、 2 番目の `'Argument__2'`などです。その理由は、引数リストがかなりの量のメモリを浪費し、引数リストに fun が含まれていると、モジュールのコードをアップグレードすることができない可能性があるからです。
 
+
 If the process was spawned using a fun, initial_call/1 no longer returns the fun, but the module, function for the local function implementing the fun, and the arity, for example, {some_module,-work/3-fun-0-,0} (meaning that the fun was created in function some_module:work/3). The reason is that keeping the fun would prevent code upgrade for the module, and that a significant amount of memory could be wasted.
 
-プロセスが fun を使って生成された場合、`initial_call/1` は fun を返さなくなりましたが、モジュール、 fun を実装するローカル関数の関数、および `{some_module,-work/3-fun-0-,0}` (fun は関数 `some_module:work/3` で作成されたことを意味します)。その理由は、楽しいままにすると、モジュールのコードのアップグレードが妨げられ、大量のメモリが無駄になるからです。
+プロセスが fun を使って生成された場合、`initial_call/1` は fun を返さずモジュールを返します、 fun を実装するローカル関数の関数、および `{some_module,-work/3-fun-0-,0}` (fun は関数 `some_module:work/3` で作成されたことを意味します)。その理由は、 fun のままにすると、モジュールのコードのアップグレードが妨げられ、大量のメモリが無駄になるからです。
 
 
 ```
@@ -174,7 +176,7 @@ spawn(Node, Module, Function, Args) -> pid()
 
 Spawns a new process and initializes it as described in the beginning of this manual page. The process is spawned using the spawn BIFs.
 
-このマニュアルページの冒頭で説明したように、新しいプロセスを生成して初期化します。プロセスはスポーン BIF を使用して 生成されます。
+このマニュアルページの冒頭で説明したように、新しいプロセスを生成して初期化します。プロセスは spawn BIF を使用して 生成されます。
 
 
 ```
@@ -202,7 +204,7 @@ Spawns a new process and initializes it as described in the beginning of this ma
 
 Using spawn option monitor is not allowed. It causes the function to fail with reason badarg.
 
-スポーンオプションモニタを使用することはできません。それは理由 badarg で機能を失敗させ ます。
+spawn option monitor は使用することはできません。それは reason badarg で失敗します。
 
 
 ```
@@ -216,23 +218,23 @@ start_link(Module, Function, Args, Time, SpawnOpts) -> Ret
 
 Starts a new process synchronously. Spawns the process and waits for it to start. When the process has started, it must call init_ack(Parent, Ret) or init_ack(Ret), where Parent is the process that evaluates this function. At this time, Ret is returned.
 
-新しいプロセスを同期して開始します。プロセスを開始し、開始するのを待ちます。プロセスが開始されたとき、それが なければなりません呼び出す `init_ack(Parent, Ret)` または `init_ack(Ret)`、親はこの機能を評価するプロセスです。この時点で Ret が返されます。
+新しいプロセスを同期して開始します。プロセスを開始し、開始するのを待ちます。プロセスが開始されたとき、 `init_ack(Parent, Ret)` または `init_ack(Ret)` を呼ばなくてはなりません。 Parent はこの関数を評価するプロセスです。この時点で Ret が返されます。
 
 If function start_link/3,4,5 is used and the process crashes before it has called init_ack/1,2, {error, Reason} is returned if the calling process traps exits.
 
-関数場合 `start_link/3,4,5` は、それが呼び出される前に使用され、プロセスがクラッシュしている `init_ack/1,2`, `{error, Reason}` 呼び出しプロセストラップ終了場合に返されます。
+関数 `start_link/3,4,5` が呼ばれ、 `init_ack/1,2` を呼ぶ前にクラッシュした場合、呼び出し側が trap exits していれば `{error, Reason}` が返されます。
 
 If Time is specified as an integer, this function waits for Time milliseconds for the new process to call init_ack, or {error, timeout} is returned, and the process is killed.
 
-場合時間を整数として指定され、この関数は待つ時間新しいプロセスがコールするためミリ秒 init_ack 、または `{error, timeout}` 戻され、プロセスが殺されます。
+Time を整数として指定した場合、この関数は Time ミリ時間 init_ack を待ち、来なければ `{error, timeout}` が戻され、プロセスが殺されます。
 
 Argument SpawnOpts, if specified, is passed as the last argument to the spawn_opt/2,3,4,5 BIF.
 
-引数 SpawnOpts(指定されている場合)は、最後の引数として`spawn_opt/2,3,4,5` BIF に渡されます。
+引数 SpawnOpts(指定されている場合)は、最後の引数として `spawn_opt/2,3,4,5` BIF に渡されます。
 
 Using spawn option monitor is not allowed. It causes the function to fail with reason badarg.
 
-スポーンオプションモニタを使用することはできません。それは理由 badarg で機能を失敗させ ます。
+spawn option monitor は使用することはできません。それは reason badarg で失敗します。
 
 
 ```
@@ -254,7 +256,7 @@ Orders the process to exit with the specified Reason and waits for it to termina
 
 Returns ok if the process exits with the specified Reason within Timeout milliseconds.
 
-返し OK プロセスが指定されて終了した場合の理由の中のタイムアウト(ミリ秒)。
+プロセスがタイムアウトなしで終了した場合、 ok を返します。
 
 If the call times out, a timeout exception is raised.
 
@@ -275,7 +277,7 @@ translate_initial_call(Process) -> {Module, Function, Arity}
 
 This function is used by functions c:i/0 and c:regs/0 to present process information.
 
-この関数は、関数 `c:i/0` と `c:regs/0` によってプロセス情報を表示するために使用されます 。
+この関数は、関数 `c:i/0` と `c:regs/0` によってプロセス情報を表示するために使用されます。
 
 This function extracts the initial call of a process that was started using one of the spawn or start functions in this module, and translates it to more useful information. Process can either be a pid, an integer tuple (from which a pid can be created), or the process information of a process Pid fetched through an erlang:process_info(Pid) function call.
 

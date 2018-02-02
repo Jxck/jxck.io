@@ -1,4 +1,6 @@
 
+TODO: http://erlangcentral.org/wiki/index.php/Building_a_Non-blocking_TCP_server_using_OTP_principles
+TODO: https://erlangcentral.org/wiki/Building_a_Non-blocking_TCP_server_using_OTP_principles
 
 ## special process
 
@@ -122,6 +124,7 @@ init(Parent, Listen) ->
 
 
 
+
 ## Debugging
 
 sys は標準デバッグ機能を持っており、対象の Pid や registered name がわかれば、外から情報を取り出せる。
@@ -129,14 +132,14 @@ sys は標準デバッグ機能を持っており、対象の Pid や registered
 ```erlang
 sys:trace(Pid, true). % trace を有効にする
 
-
-
 sys:statistics(Pid, true). % statistics を有効にする
 % ...しばらく処理
 sys:statistics(Pid, get).
-% {ok,[{start_time,{{2003,6,13},{9,47,5}}},
-%      {current_time,{{2003,6,13},{9,47,56}}},
-%      {reductions,109},
-%      {messages_in,2},
-%      {messages_out,1}]}
+% {ok, [{start_time,   {{2003,6,13},{9,47,5}}},
+%       {current_time, {{2003,6,13},{9,47,56}}},
+%       {reductions,   109},
+%       {messages_in,  2},
+%       {messages_out, 1}]}
+
+
 ```
