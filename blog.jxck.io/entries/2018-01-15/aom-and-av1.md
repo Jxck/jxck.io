@@ -79,7 +79,10 @@ Alliance のメンバーには AMD, ARM, Intel, NVIDIA などが名を連ね、�
 
 [Apple joins alliance to shrink your online videos - CNET](https://www.cnet.com/news/apple-online-video-compression-av1/)
 
-このニュースのソースは、 AOM の公式アナウンス等ではなく、 AOM のトップページにメンバー欄に Apple が追加されたことを元にしているようだ。
+このニュースのソースは、 AOM の公式アナウンス等ではなく、 [AOM のページ](http://aomedia.org/about-us/) のメンバー欄に Apple が追加されたことを元にしているようだ。
+
+- [before](https://web.archive.org/web/20180104174428/http://aomedia.org/about-us/)
+- [after](https://web.archive.org/web/20171226184721/http://aomedia.org/about-us/)
 
 この大きな更新に、即アナウンスが出ないのもちょっと気にかかるが、それでも参画したのであればある程度の進展が期待できるのでは無いかと個人的には考えている。
 
