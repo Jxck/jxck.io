@@ -5,7 +5,8 @@
 -export([
          start_link/0,
          init/1,
-         debug/3
+         debug/3,
+         main/1
         ]).
 
 % sys callback
@@ -51,7 +52,7 @@ loop(Parent, Debug, State) ->
 
 %% sys:handle_debug() が呼ぶコールバック
 debug(Device, Event, Extra) ->
-    io:format(Device, "[~p] ~p~n", [Event, Extra]).
+    io:format(Device, ">>>>>> [~p] ~p~n", [Event, Extra]).
 
 %% http://erlang.org/doc/man/sys.html#Module:system_code_change-4
 system_code_change(State, _Module, _OldVsn, _Extra) ->
@@ -71,7 +72,7 @@ system_get_state(State) ->
 %% http://erlang.org/doc/man/sys.html#Module:system_replace_state-2
 system_replace_state(StateFun, Misc) ->
     ?Log(StateFun, Misc),
-    {ok, NState, NMisc}.
+    {ok, StateFun(Misc), Misc}.
 
 %% http://erlang.org/doc/man/sys.html#Module:system_terminate-4
 system_terminate(Reason, _Parent, _Debug, _State) ->

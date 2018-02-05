@@ -121,6 +121,60 @@ init(Parent, Listen) ->
 初期化で失敗した場合は `exit()` すれば親にもそれが伝わる。
 
 
+## System Message
+
+標準 behaviour は system message のハンドリング実装が含まれている。
+
+Special Process を実装する場合は、同等のコードを実装し、 system message をきちんとハンドリングする必要が有る。
+
+plain system message は `{system, From, Msg}` として受信する。
+
+これをハンドリングするためには `handle_system_msg/6` を呼ぶ。
+
+```erlang
+sys:handle_system_msg(Msg, From, Parent, Module, Debug, State) -> no_return()
+```
+
+この関数は戻らず、メッセージを処理した結果が Module の `system_continue/3` か `system_terminate/4` を呼びます。
+
+他にも `get_state`, `replace_state`, `code_change` に対応するコールバックも実装する。
+
+
+```erlang
+system_continue(Parent, Debug, State) ->
+    loop(Parent, Debug, State).
+
+system_terminate(Reason, _Parent, _Debug, _State) ->
+    exit(Reason).
+
+system_get_state(State) ->
+    {ok, State}.
+
+system_replace_state(StateFun, Misc) ->
+    {ok, StateFun(Misc), Misc}.
+
+system_code_change(State, _Module, _OldVsn, _Extra) ->
+    {ok, State}.
+```
+
+shutdown message は `{'EXIT', Parent, Reason}` として supervisor から送られる。
+
+この場合は、通常親と同じ Reason で、自身を terminate する。
+
+
+```erlang
+receive
+  {'EXIT', Parent, Reason} ->
+    % cleanup
+    exit(Reason);
+end
+```
+
+
+
+(TODO: CodeChange)
+
+
 
 
 ## Debugging
@@ -139,5 +193,19 @@ sys:statistics(Pid, get).
 %       {messages_in,  2},
 %       {messages_out, 1}]}
 
-
+sys:get_status(Pid).
+{status,<0.30.0>,
+        {module,ch4},
+        [[{'$ancestors',[<0.25.0>]},{'$initial_call',{ch4,init,[<0.25.0>]}}],
+         running,<0.25.0>,[],
+         [ch1,ch2,ch3]]}
 ```
+
+
+
+
+
+これに対応するためには `sys:debug_options/1` と `sys:handle_debug/3` を使います。
+
+
+

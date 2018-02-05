@@ -18,7 +18,7 @@ The sys module has functions for simple debugging of processes implemented using
 SYS のモジュールは、 behaviour を使用して実施されるプロセスの簡単なデバッグのための機能を持っています。 gen_statem behaviour の code_lock の 例を使ってこれを説明します:
 
 
-```
+```erlang
 Erlang/OTP 20 [DEVELOPMENT] [erts-9.0] [source-5ace45e] [64-bit] [smp:8:8] [ds:8:8:10] [async-threads:10] [hipe] [kernel-poll:false]
 
 Eshell V9.0  (abort with ^G)

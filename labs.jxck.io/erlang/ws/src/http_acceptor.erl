@@ -44,11 +44,13 @@ loop(Parent, Listen, Debug) ->
     % ここで accept する
     case ?Log(gen_tcp:accept(Listen)) of
         {ok, Socket} ->
+            ?Log(sys:handle_debug(Debug, fun ?MODULE:format_debug/3, ?MODULE, {accept, Socket})),
             % accept した socket ごとに worker を起動
             {ok, Pid} = http_worker_sup:start_child(Socket),
             % 制御を移譲する
             ok = gen_tcp:controlling_process(Socket, Pid);
         {error, Reason} ->
+            ?Log(sys:handle_debug(Debug, fun ?MODULE:format_debug/3, ?MODULE, {error, Reason})),
             io:format("fail accept ~p~n", [Reason])
     end,
     ok = flush_message(Parent, Listen, Debug),
@@ -56,6 +58,8 @@ loop(Parent, Listen, Debug) ->
 
 flush_message(Parent, Listen, Debug) ->
     receive
+        {system, From, Request} ->
+            sys:handle_system_msg(Request, From, Parent, ?MODULE, Debug, Listen);
         Message ->
             ?Log("Unexpected Message", Message),
             flush_message(Parent, Listen, Debug)
@@ -63,28 +67,23 @@ flush_message(Parent, Listen, Debug) ->
               ok
     end.
 
+format_debug(Device, Event, Extra) ->
+    io:format(Device, ">>>>>> [~p] ~p~n", [Event, Extra]).
 
 
 
+system_continue(Parent, Listen, Debug) ->
+    loop(Parent, Listen, Debug).
 
-% receive_message(Parent, Listen, Debug) ->
-%     receive
-%         {system, From, Request} ->
-%             sys:handle_system_msg(Request, From, Parent, ?MODULE, Debug, Listen)
-%     end.
-% 
-% system_continue(Parent, Listen, Debug) ->
-%     loop(Parent, Listen, Debug).
-% 
-% system_terminate(Reason, _Parent, _Debug, _Listen) ->
-%     exit(Reason).
-% 
-% system_get_state(Listen) ->
-%     {ok, Listen}.
-% 
-% system_replace_state(StateFun, Chs) ->
-%     NChs = StateFun(Chs),
-%     {ok, NChs, NChs}.
-% 
-% write_debug(Dev, Event, Name) ->
-%     io:format(Dev, "~p event = ~p~n", [Name, Event]).
+system_terminate(Reason, _Parent, _Debug, _Listen) ->
+    exit(Reason).
+
+system_code_change(State, _Module, _OldVsn, _Extra) ->
+    {ok, State}.
+
+system_get_state(Listen) ->
+    {ok, Listen}.
+
+system_replace_state(StateFun, Chs) ->
+    NChs = StateFun(Chs),
+    {ok, NChs, NChs}.
