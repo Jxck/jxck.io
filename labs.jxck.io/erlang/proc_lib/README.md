@@ -1,6 +1,4 @@
-
-TODO: http://erlangcentral.org/wiki/index.php/Building_a_Non-blocking_TCP_server_using_OTP_principles
-TODO: https://erlangcentral.org/wiki/Building_a_Non-blocking_TCP_server_using_OTP_principles
+# OTP Design Principle
 
 ## special process
 
