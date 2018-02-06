@@ -21,6 +21,8 @@ Special Process は STDLIB にある sys/proc_lib を用い、いくつかのル
 
 Accept は Listener Socket を `gen_tcp:accept()` でブロックするループとなる。
 
+(prim_inet もあるが、 un-documented な API なため、ここでは扱わない)
+
 Accept に成功したら、 Worker を Spown し、ソケットの制御を移譲したら再起する。
 
 つまり以下のような処理となる。
@@ -41,7 +43,7 @@ accept_loop(Listen) ->
     accept_loop(Listen).
 ```
 
-このプロセス自体は単純なループで構成でき、 gen_server などにしようとしてもうまくいかない。
+このプロセス自体は単純なループで構成され、メッセージングではなく同期 API を呼んでいるため、 gen_server などとは相性が悪い。
 
 
 ```erlang
@@ -62,7 +64,7 @@ gen_server の場合は init の中で再起することになるが、これで
 
 これは gen_server の実装として不適切だ。
 
-むりやり timeout させるというハックも有るが、 gen_server でありながら特にイベントを受けるわけでもないのであまり意味がない。
+無理やり timeout させるというハックも有るが、 gen_server でありながら特にイベントを受けるわけでもないのであまり意味がない。
 
 Accept のように、 Pull 型のインタフェースの場合は、 gen_server は相性が悪い。
 
@@ -87,9 +89,9 @@ Special Proces とは、以下のような条件を満たす
 
 ## proc_lib:init_ack
 
-まず起動だが、コールバックとして呼ばれる init について考える。
+まず、起動時にコールバックとして呼ばれる init について考える。
 
-init は、 start_link などで spawn される際に呼び出される関数だが、ここでループをしたいため値を返せない。
+init は、 start_link などで spawn される際に呼び出される関数だが、ここでループするため値を返せない。
 
 そこで、親側はこのプロセスを `proc_lib:start_link` で起動し、起動された子プロセスは `proc_lib:init_ack` で応答するという流れをとる。
 
@@ -129,24 +131,52 @@ Special Process を実装する場合は、同等のコードを実装し、 sys
 
 plain system message は `{system, From, Msg}` として受信する。
 
-これをハンドリングするためには `handle_system_msg/6` を呼ぶ。
+このイベントは、直接処理を行うのではなく `sys:handle_system_msg/6` に処理を移譲する。
 
 ```erlang
-sys:handle_system_msg(Msg, From, Parent, Module, Debug, State) -> no_return()
+loop(State, Parent) ->
+    receive
+        {system, From, Request} ->
+            Debug = [],
+            sys:handle_system_msg(Request, From, Parent, ?MODULE, Debug, State);
+    end.
 ```
 
-この関数は戻らず、メッセージを処理した結果が Module の `system_continue/3` か `system_terminate/4` を呼びます。
+この関数は戻らないため、例えばここで sys 側がブロックすることで suspend ができる。
+
+resume など、ループに戻る/継続する場合は `system_continue/3` が呼ばれるため、ここにループを再開する処理を書く。
+
+terminate する場合は `system_terminate/4` が呼ばれるため、ここに終了処理を書く。
+
+
+```erlang
+system_continue(Parent, Debug, State) ->
+    cleanup(State),
+    loop(Parent, Debug, State).
+
+system_terminate(Reason, _Parent, _Debug, _State) ->
+    exit(Reason).
+```
+
+
+`trap_exit` している場合は、 shutdown message である `{'EXIT', Parent, Reason}` が supervisor から送られるため、これも対応する必要がある。
+
+通常親と同じ Reason で、自身を terminate する。
+
+
+```erlang
+receive
+  {'EXIT', Parent, Reason} ->
+    cleanup(State),
+    exit(Reason);
+end
+```
+
 
 他にも `get_state`, `replace_state`, `code_change` に対応するコールバックも実装する。
 
 
 ```erlang
-system_continue(Parent, Debug, State) ->
-    loop(Parent, Debug, State).
-
-system_terminate(Reason, _Parent, _Debug, _State) ->
-    exit(Reason).
-
 system_get_state(State) ->
     {ok, State}.
 
@@ -156,24 +186,6 @@ system_replace_state(StateFun, Misc) ->
 system_code_change(State, _Module, _OldVsn, _Extra) ->
     {ok, State}.
 ```
-
-shutdown message は `{'EXIT', Parent, Reason}` として supervisor から送られる。
-
-この場合は、通常親と同じ Reason で、自身を terminate する。
-
-
-```erlang
-receive
-  {'EXIT', Parent, Reason} ->
-    % cleanup
-    exit(Reason);
-end
-```
-
-
-
-(TODO: CodeChange)
-
 
 
 
