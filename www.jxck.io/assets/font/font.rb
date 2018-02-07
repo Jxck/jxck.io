@@ -8,9 +8,9 @@
 current = Dir.glob("../../../blog.jxck.io/entries/**/*.md").select {|file|
   file != "../../../blog.jxck.io/entries/2016-03-14/web-font-noto-sans.md"
 }.map {|file|
-  File.read(file).gsub(/(.)/, '\\1\n')
+  File.read(file).gsub("\n", "").gsub(/(.)/, '\\1\n')
 }.join("").split('\n').sort.uniq
 
-all = File.read("./All.txt").split('\n')
+all = File.read("./All.txt").split("\n")
 
-puts(current - all - ["", " ", '\t'])
+p (current - all - ["", " ", "\t"])
