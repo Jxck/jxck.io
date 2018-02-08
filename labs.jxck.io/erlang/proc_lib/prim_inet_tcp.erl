@@ -36,7 +36,7 @@ accept_loop(ListenSocket, Ref, Timeout) ->
             % set Socket Module same as Listening Socket
             true = inet_db:register_socket(Socket, Mod),
 
-            %% accept_opts(ListenSocket, Socket),
+            % getopts of Listening Socket
             {ok, SockOpt} = ?Log(prim_inet:getopts(ListenSocket, [active, nodelay, keepalive, delay_send, priority, tos])),
             ok = prim_inet:setopts(Socket, SockOpt),
 

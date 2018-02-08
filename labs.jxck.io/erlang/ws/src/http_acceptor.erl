@@ -4,6 +4,7 @@
 %%%-------------------------------------------------------------------
 
 -module(http_acceptor).
+-behaviour(gen_server).
 
 -include("logger.hrl").
 
@@ -13,77 +14,94 @@
         ]).
 
 -export([
-         init/2,
-         loop/3
-         % system_continue/3,
-         % system_terminate/4,
-         % system_get_state/1,
-         % system_replace_state/2
+         init/1,
+         handle_call/3,
+         handle_cast/2,
+         handle_info/2,
+         code_change/3,
+         terminate/2
         ]).
 
 
 %%====================================================================
 %% API functions
 %%====================================================================
-
-start_link(Listen) ->
-    proc_lib:start_link(?MODULE, init, [self(), Listen]).
-
+start_link(ListenSocket) ->
+    ?Log(ListenSocket),
+    Debug = {debug, [trace]},
+    gen_server:start_link(?MODULE, [ListenSocket], [Debug]).
 
 %%====================================================================
 %% Internal functions
 %%====================================================================
 
-init(Parent, Listen) ->
-    ?Log(Parent, Listen),
-    Debug = sys:debug_options([]),
-    ok = proc_lib:init_ack(Parent, {ok, self()}),
-    loop(Parent, Listen, Debug).
-
-loop(Parent, Listen, Debug) ->
-    % ここで accept する
-    case ?Log(gen_tcp:accept(Listen)) of
-        {ok, Socket} ->
-            ?Log(sys:handle_debug(Debug, fun ?MODULE:format_debug/3, ?MODULE, {accept, Socket})),
-            % accept した socket ごとに worker を起動
-            {ok, Pid} = http_worker_sup:start_child(Socket),
-            % 制御を移譲する
-            ok = gen_tcp:controlling_process(Socket, Pid);
-        {error, Reason} ->
-            ?Log(sys:handle_debug(Debug, fun ?MODULE:format_debug/3, ?MODULE, {error, Reason})),
-            io:format("fail accept ~p~n", [Reason])
-    end,
-    ok = flush_message(Parent, Listen, Debug),
-    loop(Parent, Listen, Debug).
-
-flush_message(Parent, Listen, Debug) ->
-    receive
-        {system, From, Request} ->
-            sys:handle_system_msg(Request, From, Parent, ?MODULE, Debug, Listen);
-        Message ->
-            ?Log("Unexpected Message", Message),
-            flush_message(Parent, Listen, Debug)
-    after 0 ->
-              ok
-    end.
-
-format_debug(Device, Event, Extra) ->
-    io:format(Device, ">>>>>> [~p] ~p~n", [Event, Extra]).
-
-
-
-system_continue(Parent, Listen, Debug) ->
-    loop(Parent, Listen, Debug).
-
-system_terminate(Reason, _Parent, _Debug, _Listen) ->
-    exit(Reason).
-
-system_code_change(State, _Module, _OldVsn, _Extra) ->
+%% Callback
+% gen_server module            Callback module
+% -----------------            ---------------
+% gen_server:start
+% gen_server:start_link -----> Module:init/1
+%
+% gen_server:stop       -----> Module:terminate/2
+%
+% gen_server:call
+% gen_server:multi_call -----> Module:handle_call/3
+%
+% gen_server:cast
+% gen_server:abcast     -----> Module:handle_cast/2
+%
+% -                     -----> Module:handle_info/2
+%
+% -                     -----> Module:terminate/2
+%
+% -                     -----> Module:code_change/3
+init([ListenSocket]) ->
+    ?Log(ListenSocket),
+    {ok, Ref} = ?Log(prim_inet:async_accept(ListenSocket, -1)),
+    State = {ListenSocket, Ref},
     {ok, State}.
 
-system_get_state(Listen) ->
-    {ok, Listen}.
 
-system_replace_state(StateFun, Chs) ->
-    NChs = StateFun(Chs),
-    {ok, NChs, NChs}.
+handle_call(Msg, From, State) ->
+    ?Log(Msg, From,  State),
+    {reply, ok, State}.
+
+handle_cast(Msg, State) ->
+    ?Log(Msg),
+    {noreply, State}.
+
+handle_info({inet_async, ListenSocket, Ref, {ok, Socket}}, {ListenSocket, Ref}=State) ->
+    ?Log(accept, Socket, State),
+
+    % get Listening Socket Module
+    {ok, Mod} = ?Log(inet_db:lookup_socket(ListenSocket)),
+
+    % set Socket Module same as Listening Socket
+    true = inet_db:register_socket(Socket, Mod),
+
+    % getopts of Listening Socket
+    Opts = [active, nodelay, keepalive, delay_send, priority, tos],
+    {ok, SockOpt} = ?Log(prim_inet:getopts(ListenSocket, Opts)),
+    ok = prim_inet:setopts(Socket, SockOpt),
+
+    % start worker
+    {ok, Pid} = ?Log(http_worker_sup:start_child(Socket)),
+
+    % delegate socket controle
+    ok = gen_tcp:controlling_process(Socket, Pid),
+
+    {ok, NextRef} = (prim_inet:async_accept(ListenSocket, -1)),
+    NextState = {ListenSocket, NextRef},
+
+    {noreply, NextState};
+
+handle_info(Msg, State) ->
+    ?Log(Msg),
+    {noreply, State}.
+
+code_change(OldVsn, State, Extra) ->
+    ?Log(OldVsn, Extra),
+    {ok, State}.
+
+terminate(Reason, State) ->
+    ?Log(Reason, State),
+    ok.

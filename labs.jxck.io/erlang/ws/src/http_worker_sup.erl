@@ -21,6 +21,7 @@ start_link() ->
     ?Log(supervisor:start_link({local, ?MODULE}, ?MODULE, [])).
 
 start_child(Socket) ->
+    ?Log(Socket),
     ?Log(supervisor:start_child(?MODULE, [Socket])).
 
 %%====================================================================

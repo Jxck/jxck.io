@@ -13,12 +13,16 @@
         ]).
 
 -export([
-         init/2,
-         loop/4
-         % system_continue/3,
-         % system_terminate/4,
-         % system_get_state/1,
-         % system_replace_state/2
+         init/1,
+         callback_mode/0,
+
+         header/3,
+         extended_length/3,
+         mask/3,
+         body/3,
+
+         code_change/4,
+         terminate/3
         ]).
 
 
@@ -26,89 +30,177 @@
 %% API functions
 %%====================================================================
 start_link(Socket) ->
-    proc_lib:start_link(?MODULE, init, [self(), Socket]).
-
+    ?Log(Socket),
+    Debug = {},
+    %Debug = {debug, [trace]},
+    gen_statem:start_link(?MODULE, Socket, [Debug]).
 
 %%====================================================================
 %% Internal functions
 %%====================================================================
-init(Parent, Socket) ->
-    ?Log(Parent, Socket),
-    ok = inet:setopts(Socket, [{active, false}, {packet, raw}]),
-    Debug = sys:debug_options([]),
-    State = #{state => header},
 
-    % ACK を返してからループ
-    ?Log(proc_lib:init_ack(Parent, {ok, self()})),
+%% Callback
+% gen_statem module            Callback module
+% -----------------            ---------------
+% gen_statem:start
+% gen_statem:start_link -----> Module:init/1
+%
+% Server start or code change
+%                       -----> Module:callback_mode/0
+%
+% gen_statem:stop       -----> Module:terminate/3
+%
+% gen_statem:call
+% gen_statem:cast
+% erlang:send
+% erlang:'!'            -----> Module:StateName/3
+%                              Module:handle_event/4
+%
+% -                     -----> Module:terminate/3
+%
+% -                     -----> Module:code_change/4
+callback_mode() ->
+    [state_functions, state_enter].
 
-    loop(Parent, Socket, Debug, State).
 
+% State#{
+%   socket,
+%   ref,
+%   fin,
+%   rsv1,
+%   rsv2,
+%   rsv3,
+%   opcode,
+%   mask,
+%   masking_key,
+%   length
+%  }.
+init(Socket) ->
+    process_flag(trap_exit, true),
+    ?Log(Socket),
+    ok = inet:setopts(Socket, [{packet, raw}]),
+    State = #{socket => Socket, ref => undefined},
+    {ok, header, State}.
 
-loop(Parent, Socket, Debug, #{state := header}=State) ->
-    case ?Log(gen_tcp:recv(Socket, 2)) of
-        {ok, <<FIN:1, RSV1:1, RSV2:1, RSV3:1, OP:4, Mask:1, Len:7>>} ->
-            Length = case Len of
-                         126 ->
-                             {ok, <<L:16>>} = (gen_tcp:recv(Socket, 2)),
-                             L;
-                         127 ->
-                             {ok, <<L:64>>} = (gen_tcp:recv(Socket, 8)),
-                             L;
-                         L   ->
-                             L
-                     end,
+header(enter, _HeaderOrBody, #{socket := Socket}=State) ->
+    ?Log(enter, header, Socket),
+    {ok, Ref} = (prim_inet:async_recv(Socket, 2, -1)),
+    {keep_state, State#{ref := Ref}};
 
-            ?Log(FIN, RSV1, RSV2, RSV3, OP, Mask, Length),
-            NextState = #{
-              state  => mask,
-              fin    => FIN,
-              rsv1   => RSV1,
-              rsv2   => RSV2,
-              rsv3   => RSV3,
-              opcode => opcode(OP),
-              mask   => Mask,
-              length => Length
-             },
-            ?Log(NextState),
-            loop(Parent, Socket, Debug, NextState);
+header(info, {inet_async, Socket, Ref, {error, closed}}, #{socket := Socket, ref := Ref}=State) ->
+    ok = gen_tcp:close(Socket),
+    {stop, normal};
 
-        {error, closed} ->
-            ?Log(gen_tcp:close(Socket));
+% Length with 7bit
+header(info, {inet_async, Socket, Ref, {ok, <<FIN:1, RSV1:1, RSV2:1, RSV3:1, OP:4, Mask:1, Len:7>>}}, #{socket := Socket, ref := Ref}=State) ->
+    ?Log(State),
+    NextState = State#{
+                  fin         => FIN,
+                  rsv1        => RSV1,
+                  rsv2        => RSV2,
+                  rsv3        => RSV3,
+                  opcode      => opcode(OP),
+                  mask        => Mask,
+                  length      => Len,
+                  masking_key => <<>>
+                 },
+    ?Log(NextState),
 
-        Error ->
-            ?Log(Error)
-    end;
-
-loop(Parent, Socket, Debug, #{state := mask, mask := 0}=State) ->
-    loop(Parent, Socket, Debug, State#{state => body, masking_key => <<>>});
-
-loop(Parent, Socket, Debug, #{state := mask, mask := 1}=State) ->
-    case ?Log(gen_tcp:recv(Socket, 4)) of
-        {ok, <<MaskingKey:4/binary>>} ->
-            ?Log(MaskingKey),
-            loop(Parent, Socket, Debug, State#{state => body, masking_key => MaskingKey});
-
-        {error, closed} ->
-            ?Log(gen_tcp:close(Socket));
-
-        Error ->
-            ?Log(Error)
-    end;
-
-loop(Parent, Socket, Debug, #{state := body, length := Length, masking_key := MaskingKey}=State) ->
-    case ?Log(gen_tcp:recv(Socket, Length)) of
-        {ok, Payload} ->
-            Body = ?Log(unmask(Payload, MaskingKey)),
-            ?Log(byte_size(Body)),
-
-            loop(Parent, Socket, Debug, #{state => header});
-        {error, closed} ->
-            ?Log(gen_tcp:close(Socket));
-
-        Error ->
-            ?Log(Error)
+    case Len of
+        126 ->
+            {ok, NextRef} = (prim_inet:async_recv(Socket, 2, -1)),
+            {next_state, extended_length, NextState#{ref :=NextRef}};
+        127 ->
+            {ok, NextRef} = (prim_inet:async_recv(Socket, 8, -1)),
+            {next_state, extended_length, NextState#{ref :=NextRef}};
+        _ ->
+            {next_state, mask, NextState}
     end.
 
+
+extended_length(enter, header, State) ->
+    keep_state_and_data;
+
+extended_length(info, {inet_async, Socket, Ref, {error, closed}}, #{socket := Socket, ref := Ref}=State) ->
+    {stop, normal};
+
+extended_length(info, {inet_async, Socket, Ref, {ok, <<Len:16>>}}, #{socket := Socket, ref := Ref, length := 126}=State) ->
+    {next_state, mask, State#{length := Len}};
+
+extended_length(info, {inet_async, Socket, Ref, {ok, <<Len:64>>}}, #{socket := Socket, ref := Ref, length := 127}=State) ->
+    {next_state, mask, State#{length := Len}}.
+
+
+mask(enter, _HeaderOrMask, #{socket := Socket, mask := 1}=State) ->
+    {ok, Ref} = ?Log(prim_inet:async_recv(Socket, 4, -1)),
+    {keep_state, State#{ref := Ref}};
+
+mask(info, {inet_async, Socket, Ref, {error, closed}}, #{socket := Socket, ref := Ref}=State) ->
+    ok = ?Log(gen_tcp:close(Socket)),
+    {stop, normal};
+
+mask(info, {inet_async, Socket, Ref, {ok, <<MaskingKey:4/binary>>}}, #{socket := Socket, ref := Ref, length := Len}=State) ->
+    {ok, NextRef} = ?Log(prim_inet:async_recv(Socket, Len, -1)),
+    {next_state, body, State#{ref := NextRef, masking_key := MaskingKey}}.
+
+
+body(enter, mask, State) ->
+    ?Log(State),
+    keep_state_and_data;
+
+body(info, {inet_async, Socket, Ref, {error, closed}}, #{socket := Socket, ref := Ref}=State) ->
+    ok = ?Log(gen_tcp:close(Socket)),
+    {stop, normal};
+
+
+
+
+body(info, {inet_async, Socket, Ref, {ok, Payload}}, #{socket := Socket, ref := Ref, masking_key := MaskingKey, opcode := Op}=State) ->
+    ?Log(State),
+    Req = unmask(Payload, MaskingKey),
+    ?Log(request_size, byte_size(Req)),
+
+    Res = handle(Op, Req),
+    ok = send(Socket, Res),
+    {next_state, header, #{socket => Socket, ref => undefined}}. % free state
+
+
+terminate(Reason, State, Data) ->
+    ?Log(terminate, Reason, State, Data),
+    ok.
+
+code_change(_Vsn, State, Data, _Extra) ->
+    {ok, State, Data}.
+
+
+handle(Op, Req) ->
+    encode(opcode(Op), Req).
+
+send(Socket, Packet) ->
+    ok = gen_tcp:send(Socket, Packet).
+
+encode(Op, Plain) ->
+    Mask = 0,
+    Len = byte_size(Plain),
+    ?Log(Len),
+
+    First = <<1:1, % FIN
+              0:1, % RSV
+              0:1, % RSV
+              0:1, % RSV
+              Op:4
+            >>,
+
+    Second = case Len of
+                 Len when Len =< 125     -> <<Mask:1, Len:7>>;
+                 Len when Len =< 16#FFFF -> <<Mask:1, 126:7, Len:16>>;
+                 Len                     -> <<Mask:1, 127:7, Len:64>>
+             end,
+    <<
+      First/binary,
+      Second/binary,
+      Plain/binary
+    >>.
 
 
 opcode(16#00)   -> continuation_frame;
@@ -127,6 +219,22 @@ opcode(16#0C)   -> reserved_control_frames2;
 opcode(16#0D)   -> reserved_control_frames3;
 opcode(16#0E)   -> reserved_control_frames4;
 opcode(16#0F)   -> reserved_control_frames5;
+opcode(continuation_frame      ) -> 16#00;
+opcode(text_frame              ) -> 16#01;
+opcode(binary_frame            ) -> 16#02;
+opcode(reserved_non_control1   ) -> 16#03;
+opcode(reserved_non_control2   ) -> 16#04;
+opcode(reserved_non_control3   ) -> 16#05;
+opcode(reserved_non_control4   ) -> 16#06;
+opcode(reserved_non_control5   ) -> 16#07;
+opcode(connection_close        ) -> 16#08;
+opcode(ping                    ) -> 16#09;
+opcode(pong                    ) -> 16#0A;
+opcode(reserved_control_frames1) -> 16#0B;
+opcode(reserved_control_frames2) -> 16#0C;
+opcode(reserved_control_frames3) -> 16#0D;
+opcode(reserved_control_frames4) -> 16#0E;
+opcode(reserved_control_frames5) -> 16#0F;
 opcode(Unknown) -> Unknown.
 
 
@@ -150,28 +258,4 @@ unmask(<<Head:8, Rest/binary>>, <<Key:8, _/binary>>=MaskingKey, Acc) ->
     unmask(Rest, MaskingKey, <<Acc/binary, Unmask:8>>);
 
 unmask(<<>>, _, Acc) ->
-    ?Log(Acc).
-
-
-
-% receive_message(Parent, Socket, Debug) ->
-%     receive
-%         {system, From, Request} ->
-%             sys:handle_system_msg(Request, From, Parent, ?MODULE, Debug, Socket)
-%     end.
-%
-% system_continue(Parent, Socket, Debug) ->
-%     loop(Parent, Socket, Debug).
-%
-% system_terminate(Reason, _Parent, _Debug, _Socket) ->
-%     exit(Reason).
-%
-% system_get_state(Socket) ->
-%     {ok, Socket}.
-%
-% system_replace_state(StateFun, Chs) ->
-%     NChs = StateFun(Chs),
-%     {ok, NChs, NChs}.
-%
-% write_debug(Dev, Event, Name) ->
-%     io:format(Dev, "~p event = ~p~n", [Name, Event]).
+    Acc.

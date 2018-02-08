@@ -34,8 +34,7 @@ init([]) ->
     Port = 3000,
     NumAccepter = 1,
     Options = [binary,
-               inet6, % support both ipv4 and ipv6
-               {packet, raw},
+               {packet, http_bin},
                {active, false}, % buffer until delegate ctl to worker
                {reuseaddr, true}
               ],
