@@ -304,3 +304,39 @@ sys:get_status(Pid).
          running,<0.25.0>,[],
          [ch1,ch2,ch3]]}
 ```
+
+
+## blocking loop
+
+gen_tcp:accept のようにブロックする API を再起で呼びつつも、システムメッセージを処理するために。
+
+以下のように、 after と timeout を使って、ループを止めないように素早く回す。
+
+
+```erlang
+accept_loop(Parent, Debug, #{listensocket := ListenSocket}=State) ->
+    receive
+        {system, From, Request} ->
+            sys:handle_debug(Debug, fun ?MODULE:debug/3, ?MODULE, {system, From, Request}),
+            sys:handle_system_msg(Request, From, Parent, ?MODULE, Debug, State);
+        {'EXIT', Parent, Reason} ->
+            sys:handle_debug(Debug, fun ?MODULE:debug/3, ?MODULE, {'EXIT', Parent, Reason}),
+            ?MODULE:cleanup(State),
+            exit(Reason);
+        Message ->
+            ?Log("Unexpected Message", Message),
+            sys:handle_debug(Debug, fun ?MODULE:debug/3, ?MODULE, {unexpected, Message})
+    after 0 ->
+              case gen_tcp:accept(ListenSocket, 0) of
+                  {ok, Socket} ->
+                      ?Log(spawn_link(?MODULE, recv_loop, [Socket]));
+                  {error, timeout} ->
+                      ok
+              end,
+              ?MODULE:accept_loop(Parent, Debug, State)
+    end.
+```
+
+timeout が無いとできない。
+
+prim_inet などで async_accept ができると話は早いが、非公開 API なので、むりやり gen_tcp でやるとこうなる。
