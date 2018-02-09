@@ -152,9 +152,6 @@ body(info, {inet_async, Socket, Ref, {error, closed}}, #{socket := Socket, ref :
     ok = ?Log(gen_tcp:close(Socket)),
     {stop, normal};
 
-
-
-
 body(info, {inet_async, Socket, Ref, {ok, Payload}}, #{socket := Socket, ref := Ref, masking_key := MaskingKey, opcode := Op}=State) ->
     ?Log(State),
     Req = unmask(Payload, MaskingKey),
@@ -203,33 +200,33 @@ encode(Op, Plain) ->
     >>.
 
 
-opcode(16#00)   -> continuation_frame;
-opcode(16#01)   -> text_frame;
-opcode(16#02)   -> binary_frame;
-opcode(16#03)   -> reserved_non_control1;
-opcode(16#04)   -> reserved_non_control2;
-opcode(16#05)   -> reserved_non_control3;
-opcode(16#06)   -> reserved_non_control4;
-opcode(16#07)   -> reserved_non_control5;
-opcode(16#08)   -> connection_close;
-opcode(16#09)   -> ping;
-opcode(16#0A)   -> pong;
-opcode(16#0B)   -> reserved_control_frames1;
-opcode(16#0C)   -> reserved_control_frames2;
-opcode(16#0D)   -> reserved_control_frames3;
-opcode(16#0E)   -> reserved_control_frames4;
-opcode(16#0F)   -> reserved_control_frames5;
-opcode(continuation_frame      ) -> 16#00;
-opcode(text_frame              ) -> 16#01;
-opcode(binary_frame            ) -> 16#02;
-opcode(reserved_non_control1   ) -> 16#03;
-opcode(reserved_non_control2   ) -> 16#04;
-opcode(reserved_non_control3   ) -> 16#05;
-opcode(reserved_non_control4   ) -> 16#06;
-opcode(reserved_non_control5   ) -> 16#07;
-opcode(connection_close        ) -> 16#08;
-opcode(ping                    ) -> 16#09;
-opcode(pong                    ) -> 16#0A;
+opcode(16#00) -> continuation_frame;
+opcode(16#01) -> text_frame;
+opcode(16#02) -> binary_frame;
+opcode(16#03) -> reserved_non_control1;
+opcode(16#04) -> reserved_non_control2;
+opcode(16#05) -> reserved_non_control3;
+opcode(16#06) -> reserved_non_control4;
+opcode(16#07) -> reserved_non_control5;
+opcode(16#08) -> connection_close;
+opcode(16#09) -> ping;
+opcode(16#0A) -> pong;
+opcode(16#0B) -> reserved_control_frames1;
+opcode(16#0C) -> reserved_control_frames2;
+opcode(16#0D) -> reserved_control_frames3;
+opcode(16#0E) -> reserved_control_frames4;
+opcode(16#0F) -> reserved_control_frames5;
+opcode(continuation_frame)       -> 16#00;
+opcode(text_frame)               -> 16#01;
+opcode(binary_frame)             -> 16#02;
+opcode(reserved_non_control1)    -> 16#03;
+opcode(reserved_non_control2)    -> 16#04;
+opcode(reserved_non_control3)    -> 16#05;
+opcode(reserved_non_control4)    -> 16#06;
+opcode(reserved_non_control5)    -> 16#07;
+opcode(connection_close)         -> 16#08;
+opcode(ping)                     -> 16#09;
+opcode(pong)                     -> 16#0A;
 opcode(reserved_control_frames1) -> 16#0B;
 opcode(reserved_control_frames2) -> 16#0C;
 opcode(reserved_control_frames3) -> 16#0D;

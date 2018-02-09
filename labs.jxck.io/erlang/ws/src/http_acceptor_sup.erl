@@ -32,7 +32,7 @@ start_link() ->
 %% Child :: {Id,StartFunc,Restart,Shutdown,Type,Modules}
 init([]) ->
     Port = 3000,
-    NumAccepter = 1,
+    NumAccepter = 10,
     Options = [binary,
                {packet, http_bin},
                {active, false}, % buffer until delegate ctl to worker
