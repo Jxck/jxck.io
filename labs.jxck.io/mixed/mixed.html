@@ -34,11 +34,11 @@ img, audio, video, iframe, object {
     <dt>img</dt>
     <dd><img src=http://labs.jxck.io/assets/jxck.png width=100 height=100></img></dd>
 
-    <dt>audio</dt>
-    <dd><audio controls src=http://labs.jxck.io/assets/audio.mp3></audio></dd>
+    <dt>audio: <a href=https://github.com/w3c/web-platform-tests/blob/master/fetch/api/request/destination/resources/dummy_audio.mp3>dummy_audio.mp3</a></dt>
+    <dd><audio controls src=http://labs.jxck.io/assets/dummy_audio.mp3></audio></dd>
 
-    <dt>video</dt>
-    <dd><video controls src=http://labs.jxck.io/assets/video.mp4></video></dd>
+    <dt>video: <a href=https://github.com/w3c/web-platform-tests/blob/master/fetch/api/request/destination/resources/dummy_video.mp4>dummy_video.mp4</a></dt>
+    <dd><video controls src=http://labs.jxck.io/assets/dummy_video.mp4></video></dd>
 
     <!-- TODO: <object> with requesting subresource with http -->
   </dl>
@@ -52,8 +52,8 @@ img, audio, video, iframe, object {
     <dt>iframe</dt>
     <dd><iframe src=http://labs.jxck.io/></iframe></dd>
 
-    <dt>object</dt>
-    <dd><object data=http://labs.jxck.io/assets/demo.swf type=application/x-shockwave-flash width=300 height=150></object></dd>
+    <dt>object (<a href=https://github.com/w3c/web-platform-tests/blob/56ea52b8668ceee63ec196c59dd11ad7797e4f0d/content-security-policy/support/media/flash.swf>flash.swf</a>)</dt>
+    <dd><object data=http://labs.jxck.io/assets/flash.swf type=application/x-shockwave-flash width=300 height=150></object></dd>
 
     <dt>stylesheet</dt>
     <dd><link href=http://labs.jxck.io/assets/style.css rel=stylesheet></link></dd>
@@ -65,6 +65,7 @@ img, audio, video, iframe, object {
     <dd>
       <style>
         body {
+          /* https://commons.wikimedia.org/wiki/File:1x1.png */
           background-image: url(http://labs.jxck.io/assets/1x1.png);
         }
       </style>
@@ -127,9 +128,8 @@ img, audio, video, iframe, object {
 <h2 id=contents><a href=#contents>Ackknowledge/License for Contents</a></h2>
 
 <ul>
-  <li>Sample Audio/Video from <a href=http://www.sample-videos.com/>samle-videos.com</a>
-  <li>Sample Image from <a href=https://commons.wikimedia.org/wiki/File:1x1.png>commons.wikimedia.org</a>
-  <li>Sample Flash from <a href=https://github.com/mozilla/shumway/tree/master/examples/Box2DFlashAS3>github.com/mozilla/shumway</a>
+  <li>Sample Audio/Video/Flash from <a href=https://github.com/w3c/web-platform-tests>https://github.com/w3c/web-platform-tests</a>
+  <li>Sample Image from <a href=https://commons.wikimedia.org/wiki/File:1x1.png>https://commons.wikimedia.org/wiki/File:1x1.png</a>
 </ul>
 
 <script>
