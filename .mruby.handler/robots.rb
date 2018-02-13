@@ -1,6 +1,7 @@
 robots =<<-EOS
 User-agent: *
 Disallow: /*.mp3$
+Disallow: /*.md$
 EOS
 
 Proc.new do |env|
