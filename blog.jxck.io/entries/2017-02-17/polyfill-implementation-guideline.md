@@ -96,7 +96,7 @@ MooTools は早い段階から `contains()` を実装していたのだが、そ
 しかし、 `contains()` の実装を追加する前に `Array.prototype.contains` の存在をチェックし、存在したらスルーしていたため、そこにネイティブの実装が加わった時点で、最終的な独自の Array には、ネイティブ実装の `contains()` も Polyfill の `contains()` もない Array が提供されたというバグである。
 
 
-### createShadowRoot()
+### Shadow DOM
 
 TAG のドキュメントでは、 ShadowDOM の `createShadowRoot()` についても言及されている。
 
