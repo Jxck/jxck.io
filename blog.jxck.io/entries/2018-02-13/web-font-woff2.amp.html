@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html amp lang=ja>
+<head>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=https://blog.jxck.io/entries/2018-02-13/web-font-woff2.html>
+<meta name=viewport content="width=device-width,minimum-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+<link rel=author href=//jxck.io/assets/humans.txt>
+
+<meta name="author" content="Jxck">
+    <meta name="description" content="Safari 10.0 から WOFF2 がサポートされており、これをもって IE 以外のメジャーブラウザではサポートが揃いつつある。本サイトは WOFF 形式での Web Font を提供しているが、 WOFF2 形式では WOFF よりも 12% 程度圧縮率が高いため、...">
+    <meta name="keywords" content="woff2,web font,performance">
+    <meta itemprop="image" content="https://jxck.io/assets/img/jxck.png">
+    <meta itemprop="name" content="blog.jxck.io">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jxck_">
+    <meta name="twitter:url" content="https://blog.jxck.io/entries/2018-02-13/web-font-woff2.html">
+    <meta name="twitter:title" content="WebFont の WOFF2 対応によるサイズ最適化 | blog.jxck.io">
+    <meta name="twitter:description" content="Safari 10.0 から WOFF2 がサポートされており、これをもって IE 以外のメジャーブラウザではサポートが揃いつつある。本サイトは WOFF 形式での Web Font を提供しているが、 WOFF2 形式では WOFF よりも 12% 程度圧縮率が高いため、...">
+    <meta name="twitter:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://blog.jxck.io/entries/2018-02-13/web-font-woff2.html">
+    <meta property="og:title" content="WebFont の WOFF2 対応によるサイズ最適化 | blog.jxck.io">
+    <meta property="og:site_name" content="blog.jxck.io">
+    <meta property="og:description" content="Safari 10.0 から WOFF2 がサポートされており、これをもって IE 以外のメジャーブラウザではサポートが揃いつつある。本サイトは WOFF 形式での Web Font を提供しているが、 WOFF2 形式では WOFF よりも 12% 程度圧縮率が高いため、...">
+    <meta property="og:image" content="https://jxck.io/assets/img/jxck.png">
+
+    <link rel="icon" sizes="192x192" href="https://jxck.io/assets/img/jxck.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "WebFont の WOFF2 対応によるサイズ最適化 | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2018-02-13T08:00:00+08:00",
+  "dateModified": "2018-02-13T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "Safari 10.0 から WOFF2 がサポートされており、これをもって IE 以外のメジャーブラウザではサポートが揃いつつある。本サイトは WOFF 形式での Web Font を提供しているが、 WOFF2 形式では WOFF よりも 12% 程度圧縮率が高いため、..."
+}
+</script>
+
+<title>WebFont の WOFF2 対応によるサイズ最適化 | blog.jxck.io</title>
+<script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+<script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+<script async src=https://cdn.ampproject.org/v0.js></script>
+
+<style amp-custom>
+article section p {
+  margin-left: 0;
+}
+
+article pre {
+  margin: 0;
+}
+
+article table {
+  margin-left: 0;
+}
+
+article img {
+  margin: 1em 0;
+  border: 1px solid #ccc;
+  box-sizing: content-box;
+}
+
+article ul, article ol {
+  margin-left: 0.8em;
+  font-family: monospace;
+  font-size: 1.2em;
+}
+
+article li {
+  margin-bottom: 0.4em;
+}
+
+article ul li ul {
+  margin: 0.2em 0 1.2em 1em;
+  font-size: 1em;
+}
+
+article ul li ul li {
+  margin-bottom: 0;
+}
+
+article dl {
+  margin: 1.4em 0 1.4em 0.8em;
+}
+
+@supports (line-height-step: 1px) {
+  article {
+    line-height: 1.5;
+    --grid: 1.5em;
+    line-height-step: var(--grid);
+  }
+
+  article h1,
+  article h2,
+  article h3,
+  article h4,
+  article h5,
+  article h6 {
+    display: inline-block;
+    width: 100%;
+    line-height-step: 0;
+    line-height: 1.2;
+    margin-bottom: 0;
+  }
+
+  article section {
+    /* grid for debug */
+    /*background-size: 100% var(--grid);*/
+    /*background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px);*/
+  }
+
+  article p {
+    margin-top: var(--grid);
+    margin-bottom: var(--grid);
+  }
+
+  article pre,
+  article table {
+    line-height-step: 0;
+    line-height: normal;
+  }
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular-201802.woff2") format("woff");
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 700;
+  font-display: optional;
+  src: local("NotoSansCJKjp-Bold.otf"),
+       local("NotoSansJP-Bold.otf"),
+       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold-201802.woff2") format("woff");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+  color: #222;
+  background-color: #fefefe;
+}
+
+code {
+  font-family: monospace, "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+}
+
+iframe {
+  display: block;
+  max-width: 100%;
+  margin: 1em 0;
+}
+
+.archive {
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.archive ul {
+  margin: 0;
+}
+
+.archive time {
+  padding-right: 0.5em;
+}
+
+.archive time::after {
+  content: ":";
+}
+
+.archive .tags {
+  font-size: 0.8em;
+  margin-left: 1em;
+}
+
+.tags a {
+  margin: 0 0.2em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+audio {
+  width: 70%;
+}
+
+@media screen and (max-device-width: 480px) {
+  audio {
+    width: 100%;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.info li {
+  margin-right: 1em;
+  list-style-type: none;
+}
+
+.info li::before {
+  content: none;
+}
+
+header {
+  z-index: 1;
+  position: sticky;
+  top: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.4em;
+  background-color: #222;
+}
+
+header ul {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 80%;
+  margin: 0 auto;
+  padding: 4px;
+}
+
+header ul li {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  margin-left: 1em;
+}
+
+header ul li a {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+header ul li svg {
+  fill: #fff;
+}
+
+header ul li::before {
+  content: none;
+}
+
+header ul li:first-child {
+  flex-grow: 1;
+  margin-left: 0;
+}
+
+header .logo {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  pointer-events: none;
+  color: #222;
+}
+
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: #222;
+}
+
+h1 > a:hover:before,
+h2 > a:hover:before,
+h3 > a:hover:before,
+h4 > a:hover:before,
+h5 > a:hover:before,
+h6 > a:hover:before {
+  color: Brown;
+}
+
+h1 > a::before {
+  content: "# ";
+  pointer-events: all;
+}
+
+h2 > a::before {
+  content: "## ";
+  pointer-events: all;
+}
+
+h3 > a::before {
+  content: "### ";
+  pointer-events: all;
+}
+
+h4 > a::before {
+  content: "#### ";
+  pointer-events: all;
+}
+
+i::before, i::after {
+  content: "*";
+}
+
+strong::before, strong::after {
+  content: "**";
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+dl dt::after {
+  content: ":";
+}
+
+blockquote p::before {
+  content: "> ";
+}
+
+code::before, code::after {
+  /* うざかった */
+  /* content: "`"; */
+}
+
+main {
+  display: block;
+  width: 80%;
+  margin: 1em auto;
+}
+
+@media screen and (max-device-width: 480px) {
+  main {
+    width: 94%;
+  }
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+}
+
+a {
+  color: RoyalBlue;
+}
+
+a:visited {
+  color: Brown;
+}
+
+ol, ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+ul, ol, dl {
+  margin: 1.4em 0;
+}
+
+dl dt {
+  font-weight: bold;
+}
+
+dl dd {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+blockquote {
+  display: block;
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  padding: 1em;
+  margin: 0;
+}
+
+code {
+  border: 1px solid #ddd;
+  background-color: #efefef;
+  border-radius: 4px;
+  padding: 0.1em;
+  margin: 1.4em 0;
+}
+
+footer {
+  padding: 1em;
+}
+
+footer address,
+footer strong {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+}
+
+pre {
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: 1.2em;
+  margin: 1.4em 0 0 0;
+  border-radius: 4px;
+}
+
+pre::before {
+  content: "```" attr(class) "\A";
+}
+
+pre::after {
+  z-index: -1;
+  position: relative;
+  top: -1em;
+  content:"\A```";
+}
+
+pre > code {
+  overflow: auto;
+  display: block;
+  padding: 0.6em;
+  margin: 0;
+  border: none;
+  background-color: #efefef;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs,
+.hljs-subst ,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-name ,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition ,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-type,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-section,
+.hljs-meta,
+.hljs-meta-string,
+.hljs-emphasis {
+}
+
+table {
+  font-family: monospace;
+  margin: 2em 0;
+  border-spacing: 0 0.4em;
+}
+
+th {
+  padding: 0em 1.0em 0.6em;
+  border-left: 0.14em solid #222;
+  border-bottom: 2px dashed #222;
+}
+
+td {
+  padding: 0.4em 1.2em;
+  border-left: 0.14em solid #222;
+}
+
+th:last-child, td:last-child {
+  border-right: 0.14em solid #222;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+</style>
+</head>
+<body>
+<header>
+  <ul>
+    <li><a href=//blog.jxck.io><amp-img class=logo alt="blog top" width=30 height=30 src=//jxck.io/assets/img/blog.svg></a>
+    <li><a href=.><amp-img alt="move to parent directory" width=30 height=30 src=//jxck.io/assets/img/up.svg></a>
+    <li><a href=/feeds/atom.xml><amp-img alt="rss feed" width=30 height=30 src=//jxck.io/assets/img/rss.svg></a>
+    <li><a href=//jxck.io/humans.txt><amp-img alt="huamns.txt" width=30 height=30 src=//jxck.io/assets/img/humans.svg></a>
+    <li><a href=//jxck.io><amp-img class=logo alt="jxck logo" width=30 height=30 src=//jxck.io/assets/img/jxck.svg></a>
+  </ul>
+</header>
+<main>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2018-02-13>2018-02-13</time>
+    <li>updated_at: <time class=updated_at datetime=2018-02-13>2018-02-13</time>
+    <li class=tags>tags: [<a href='/tags/woff2.html'>woff2</a>,<a href='/tags/web%20font.html'>web font</a>,<a href='/tags/performance.html'>performance</a>]
+  </ul>
+
+
+  <article>
+    <h1><a href=/entries/2018-02-13/web-font-woff2.html>WebFont の WOFF2 対応によるサイズ最適化</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p>Safari 10.0 から WOFF2 がサポートされており、これをもって IE 以外のメジャーブラウザではサポートが揃いつつある。
+      <p>本サイトは WOFF 形式での Web Font を提供しているが、 WOFF2 形式では WOFF よりも 12% 程度圧縮率が高いため、本サイトでも WOFF2 に移行することとした。
+      <p>フォーマット変更による効果について解説する。
+    </section>
+    <section>
+      <h2 id="woff-file-format-20"><a href="#woff-file-format-20">WOFF File Format 2.0</a></h2>
+      <p>本サイトでは、 Noto Sans CJK から必要なフォントのみを抽出したサブセットを、 WOFF 形式で読み込む構成を取っている。
+      <p><a href="https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html">Noto Sans の Web Font 対応とサブセットによる最適化 | blog.jxck.io</a>
+      <p>その後、必要な文字が増えフォントファイルを更新することにしたが、当時対応していなかった Safari が WOFF2 対応を始めていることもあり、これを機に更新することとした。
+      <p><a href="https://developer.apple.com/library/content/releasenotes/General/WhatsNewInSafari/Articles/Safari_10_0.html">What&rsquo;s New in Safari 10.0</a>
+      <p>WOFF2 の仕様は以下に有る。
+      <p><a href="https://w3c.github.io/woff/woff2">https://w3c.github.io/woff/woff2</a>
+      <p>WOFF2 は WOFF よりも圧縮率が高いとされている。
+      <p>これは、 WOFF2 が圧縮アルゴリズムとして Brotli を採用していることが大きい。
+      <p>そもそも、 Brotli はもともと WOFF2 の圧縮率を上げるために仕様に含まれていたアルゴリズムを、汎用圧縮形式として取り出したものである。
+      <p>本サイトは既に brotli を採用している。
+      <p><a href="https://blog.jxck.io/entries/2017-08-19/content-encoding-brotli.html">Brotli を用いた静的コンテンツ配信最適化と Accept-Encoding: br について | blog.jxck.io</a>
+    </section>
+    <section>
+      <h2 id="圧縮効果"><a href="#圧縮効果">圧縮効果</a></h2>
+      <p>全てのエントリで利用している文字を再調査したところ、以下を収録する必要があることがわかった。
+      <p>(<a href="https://blog.jxck.io/entries/2017-03-02/unicode-in-javascript.html">Unicode を解説する記事</a> や <a href="https://blog.jxck.io/entries/2017-10-31/houdini-paint-api.html">突然の死</a> を書いたことによる影響が大きい)
+      <pre><code translate="no">© 乖 忖 揉 汲 牢 矩 舵 蒙 謳 辿 鯖 黎 ＜ ＞ ＿ ￣ 𠮟 𠮷 𩸽</code></pre>
+      <p>なお、本当は Emoji についての言及もしたため、 <a href="https://www.google.com/get/noto/help/emoji/">Noto Color Emoji</a> からの追加も考えたが、非常に少ないため、運用負荷を下げるため Emoji はシステムフォントに任せることとした。
+      <p>結果、今回作成するフォントセットは以下の 全エントリの利用文字 - (Emojio x 5 + ZWJ) = 2416 文字である
+      <p><a href="https://jxck.io/assets/font/All.txt">All.txt</a>
+      <p>ここから、 <a href="https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html">以前解説した方法</a> でサブセット化し、 WOFF と WOFF2 を生成してサイズを比較する。
+    </section>
+    <section>
+      <h2 id="サイズ比較"><a href="#サイズ比較">サイズ比較</a></h2>
+      <p>同じサブセットから、 WOFF/WOFF2 を生成し、それぞれサイズを確認する。
+      <table>
+        <thead>
+          <tr>
+            <th class=align-right>size</th>
+            <th class=align-center>format</th>
+            <th class=align-left>file</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class=align-right>498.8K</td>
+            <td class=align-center>otf</td>
+            <td class=align-left>NotoSansCJKjp-Jxck-Regular-201802.otf</td>
+          </tr>
+          <tr>
+            <td class=align-right>391.6K</td>
+            <td class=align-center>woff</td>
+            <td class=align-left>NotoSansCJKjp-Jxck-Regular-201802.woff</td>
+          </tr>
+          <tr>
+            <td class=align-right>345.7K</td>
+            <td class=align-center>woff2</td>
+            <td class=align-left>NotoSansCJKjp-Jxck-Regular-201802.woff2</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>woff と woff2 を比べると 12% ほど圧縮されている。
+      <p>bold についても同様の結果が得られた。
+    </section>
+    <section>
+      <h2 id="圧縮"><a href="#圧縮">圧縮</a></h2>
+      <p>本サイトでは、基本的に静的コンテンツを <a href="https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html">zopfli</a> と <a href="https://blog.jxck.io/entries/2017-08-19/content-encoding-brotli.html">brotli</a> で圧縮してレスポンスしている。
+      <p>WOFF2 は既に brotli を用いた圧縮をしているため、もし経路上の圧縮が必要でないのであれば、圧縮プロセスから外す必要が出るため、確認する。
+      <table>
+        <thead>
+          <tr>
+            <th class=align-right>size</th>
+            <th class=align-center>format</th>
+            <th class=align-left>file</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class=align-right>345.7K</td>
+            <td class=align-center>-</td>
+            <td class=align-left>NotoSansCJKjp-Jxck-Regular-201802.woff2</td>
+          </tr>
+          <tr>
+            <td class=align-right>345.7K</td>
+            <td class=align-center>brotli</td>
+            <td class=align-left>NotoSansCJKjp-Jxck-Regular-201802.woff2.br</td>
+          </tr>
+          <tr>
+            <td class=align-right>345.8K</td>
+            <td class=align-center>zopfli</td>
+            <td class=align-left>NotoSansCJKjp-Jxck-Regular-201802.woff2.gz</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>予想通り、追加の圧縮は無意味、もしくは逆効果であるため、 WOFF2 は圧縮プロセスから外すこととする。
+    </section>
+    <section>
+      <h2 id="対応"><a href="#対応">対応</a></h2>
+      <p>WOFF2 は、 IE や一部ブラウザではサポートされていないが、システムフォントにフォールバックするだけなので、表示フォントに対してセンシティブではない本サイトでは問題とは捉えない。
+      <p>そこで本サイトでは、ストレージを節約するためにも WOFF のサポートを止め、 WOFF2 のみを提供することとした。
+    </section>
+  </article>
+
+</main>
+<hr>
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved. Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>google analytics</a>.</address>
+</footer>
+</body>
+</html>
+<amp-analytics type=googleanalytics id=analytics1>
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
