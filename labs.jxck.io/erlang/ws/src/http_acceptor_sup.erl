@@ -10,7 +10,7 @@
 -behaviour(supervisor).
 
 %% API
--export([start_link/0]).
+-export([start_link/1]).
 
 %% Supervisor callbacks
 -export([init/1]).
@@ -21,8 +21,8 @@
 %% API functions
 %%====================================================================
 
-start_link() ->
-    ?Log(supervisor:start_link({local, ?SERVER}, ?MODULE, [])).
+start_link(#{port := Port, num_acceptor := NumAccepter}=State) ->
+    ?Log(supervisor:start_link({local, ?SERVER}, ?MODULE, State)).
 
 
 %%====================================================================
@@ -30,9 +30,7 @@ start_link() ->
 %%====================================================================
 
 %% Child :: {Id,StartFunc,Restart,Shutdown,Type,Modules}
-init([]) ->
-    Port = 3000,
-    NumAccepter = 10,
+init(#{port := Port, num_acceptor := NumAccepter}=State) ->
     Options = [binary,
                {packet, http_bin},
                {active, false}, % buffer until delegate ctl to worker

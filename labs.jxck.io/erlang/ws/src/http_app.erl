@@ -16,8 +16,8 @@
 %% API
 %%====================================================================
 
-start(_StartType, _StartArgs) ->
-    ?Log(http_sup:start_link()).
+start(normal, #{port := Port, num_acceptor := NumAccepter}=State) ->
+    ?Log(http_sup:start_link(State)).
 
 %%--------------------------------------------------------------------
 stop(_State) ->

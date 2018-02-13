@@ -56,63 +56,59 @@ start_link(Socket) ->
 init([Socket]) ->
     ?Log(Socket),
     process_flag(trap_exit, true),
-    {ok, Ref} = (prim_inet:async_recv(Socket, 0, -1)),
+    Request = {{}, #{}, <<>>},
     State = #{
-      socket     => Socket,
-      ref        => Ref,
-      first_line => [],
-      headers    => #{}
+      socket  => Socket,
+      request => Request
      },
     {ok, State}.
 
 
-
-handle_info({inet_async, Socket, Ref, {ok, {http_request, Method, Path, Version}}}, #{socket := Socket, ref := Ref}=State) ->
-    ?Log(Method, Path, Version),
-    ok = inet:setopts(Socket, [{packet, httph_bin}]),
-    {ok, NextRef} = (prim_inet:async_recv(Socket, 0, -1)),
-    NextState = State#{
-                  ref        := NextRef,
-                  first_line := {Method, Path, Version}
-                 },
+% First Line
+handle_info({http, Socket, {http_request, Method, Uri, Version}}, #{socket := Socket, request := {Req, Header, Body}}=State) ->
+    % 以降はヘッダなので httph_bin
+    ok = inet:setopts(Socket, [{active, once}, {packet, httph_bin}]),
+    NextState = State#{request := {{Method, Uri, Version}, Header, Body}},
+    ?Log(NextState),
     {noreply, NextState};
 
-handle_info({inet_async, Socket, Ref, {ok, {http_header, _, Field, _, Value}}}, #{socket := Socket, ref := Ref, headers := Headers}=State) ->
-    ?Log({Field, Value}),
-    {ok, NextRef} = (prim_inet:async_recv(Socket, 0, -1)),
-    NextState = State#{
-                  ref     := NextRef,
-                  headers := Headers#{Field => Value}
-                 },
+
+% Header
+handle_info({http, Socket, {http_header, _Len, Field, _ , Value}}, #{socket := Socket, request := {Req, Header, Body}}=State) ->
+    ?Log(Field, Value),
+    % ヘッダが終わるまでは httph_bin
+    ok = inet:setopts(Socket, [{active, once}, {packet, httph_bin}]),
+    NextState = State#{request := {Req, Header#{Field => Value}, Body}},
     {noreply, NextState};
 
-handle_info({inet_async, Socket, Ref, {ok, http_eoh}}, #{socket := Socket, ref := Ref, headers := Headers}=State) ->
-    ?Log(http_eoh),
-    Len = binary_to_integer(maps:get('Content-Length', Headers, <<"0">>)),
-    case Len of
-        0 ->
-            ?Log(handle_http(State)),
-            {stop, normal, []};
-        Len ->
-            % body を raw で受信
-            ok = inet:setopts(Socket, [{packet, raw}]),
-            {ok, NextRef} = (prim_inet:async_recv(Socket, Len, -1)),
-            NextState = State#{
-                          ref  := NextRef,
-                          body => <<>>
-                         },
-            {noreply, NextState}
-    end;
 
-handle_info({inet_async, Socket, Ref, {ok, Body}}, #{socket := Socket, ref := Ref, body := <<>>}=State) ->
-    ?Log(Body),
-    ?Log(handle_http(State#{body := Body})),
-    {stop, normal, []};
+% Header End
+handle_info({http, Socket, http_eoh}, #{socket := Socket, request := {Req, Header, Body}}=State) ->
+    % ここで header が終わるので body を raw binary で受け取る
+    % Content-Length 分だけ読むために active/false にして recv する。
+    ok = inet:setopts(Socket, [binary, {packet, raw}, {active, false}]),
+    Len = binary_to_integer(maps:get('Content-Length', Header, <<"0">>)),
+    {ok, Data} = case Len of
+                     0 -> {ok, <<>>}; % Length が無い
+                     _ -> gen_tcp:recv(Socket, Len)
+                 end,
+    % 終わったら http_bin に戻す
+    ok = inet:setopts(Socket, [{packet, http_bin}, {active, once}]),
+    Request = {Req, Header, <<Body/binary, Data/binary>>},
+    ?Log(Request),
+
+    % handler を呼ぶ
+    {Response, _} = http_handler:handle(Request, State),
+    gen_tcp:send(Socket, Response),
+
+    NextState = State#{request => {{}, #{}, <<>>}},
+
+    {noreply, NextState};
+
 
 handle_info(Msg, State) ->
     ?Log(Msg),
     {noreply, State}.
-
 
 
 handle_http(#{ socket     := Socket,
@@ -139,11 +135,45 @@ handle_http(#{ socket     := Socket,
     ok = gen_tcp:controlling_process(Socket, Pid);
 
 handle_http(#{socket := Socket}) ->
-    ok = ?Log(gen_tcp:send(Socket, <<
-                                     "HTTP/1.1 200 OK\r\n"
-                                     "Content-Length: 0\r\n"
-                                     "\r\n"
-                                   >>)),
+    Body = <<
+             "<!DOCTYPE html>\n"
+             "<meta charset=utf-8>\n"
+             "<meta name=viewport content='width=device-width,initial-scale=1'>\n"
+             "\n"
+             "<title>DEMO</title>\n"
+             "<h1>Test</h1>\n"
+             "<script>\n"
+             "'use strict';\n"
+             "let log = console.log.bind(console);\n"
+             "\n"
+             "let ws = new WebSocket('ws://localhost:3000', [])\n"
+             "ws.onmessage = ({data}) => {\n"
+             "    if (data instanceof Blob) {\n"
+             "        console.log('<< recv', data.size)\n"
+             "    } else {\n"
+             "        console.log('<< recv', data.length)\n"
+             "    }\n"
+             "}\n"
+             "ws.onopen = (e) => {\n"
+             "  let blob = new Blob(new Array(2**16-1).fill(1))\n"
+             "  let text = 'aaaaaaaa'.repeat(16)\n"
+             "  console.log('>> send', blob.size)\n"
+             "  console.log('>> send', text.length)\n"
+             "  ws.send(blob)\n"
+             "  ws.send(text)\n"
+             "}\n"
+             "</script>\n"
+           >>,
+    ContentLength = integer_to_binary(byte_size(Body)),
+
+    Response = <<
+                 "HTTP/1.1 200 OK\r\n"
+                 "Content-Length: ", ContentLength/binary, "\r\n"
+                 "\r\n",
+                 Body/binary
+               >>,
+
+    ok = ?Log(gen_tcp:send(Socket, Response)),
     ?Log(prim_inet:close(Socket)).
 
 

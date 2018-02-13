@@ -2,7 +2,10 @@
  [{description, "An OTP application"},
   {vsn, "0.1.0"},
   {registered, []},
-  {mod, { http_app, []}},
+  {mod, { http_app, #{ port => 3000,
+                       num_acceptor => 10
+                     }
+        }},
   {applications,
    [kernel,
     stdlib

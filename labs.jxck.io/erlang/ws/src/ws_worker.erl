@@ -76,9 +76,10 @@ callback_mode() ->
 %   length
 %  }.
 init(Socket) ->
-    process_flag(trap_exit, true),
     ?Log(Socket),
-    ok = inet:setopts(Socket, [{packet, raw}]),
+    process_flag(trap_exit, true),
+    % change to active false
+    ok = inet:setopts(Socket, [{packet, raw}, {active, false}]),
     State = #{socket => Socket, ref => undefined},
     {ok, header, State}.
 

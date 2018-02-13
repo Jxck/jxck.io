@@ -89,6 +89,9 @@ handle_info({inet_async, ListenSocket, Ref, {ok, Socket}}, {ListenSocket, Ref}=S
     % delegate socket controle
     ok = gen_tcp:controlling_process(Socket, Pid),
 
+    % change to active once
+    ok = inet:setopts(Socket, [{active, once}]),
+
     {ok, NextRef} = (prim_inet:async_accept(ListenSocket, -1)),
     NextState = {ListenSocket, NextRef},
 

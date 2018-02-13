@@ -4,7 +4,7 @@
 
 run() ->
     eprof:start_profiling(processes()),
-    http_sup:start_link(),
+    http_sup:start_link(#{port => 3000, num_acceptor => 10}),
 
     timer:sleep(10 * 1000),
 
