@@ -8,10 +8,10 @@ do
 
   echo
   echo "zopfli ${1}"
-  selects path from "./${1}/**/*" where path '!~' 'drafts' and extname '=~' '[^.gz|.br|.webp|.rb]' | q | xargs -P 4 zopfli --i30
+  selects path from "./${1}/**/*" where path '!~' 'drafts' and extname '=~' '[^.gz|.br|.webp|.rb|.md|.woff2]' | q | xargs -P 4 zopfli --i30
 
   echo
   echo "brotli ${1}"
-  selects path from "./${1}/**/*" where path '!~' 'drafts' and extname '=~' '[^.gz|.br|.webp|.rb]' | q | xargs -P 4 -IXXX bro --quality 10 --input XXX --output XXX.br
+  selects path from "./${1}/**/*" where path '!~' 'drafts' and extname '=~' '[^.gz|.br|.webp|.rb|.md|.woff2]' | q | xargs -P 4 -IXXX brotli -v XXX
   shift
 done
