@@ -2,39 +2,37 @@
 %% @doc http top level supervisor.
 %% @end
 %%%-------------------------------------------------------------------
-
 -module(http_sup).
-
+-behaviour(supervisor).
 -include("logger.hrl").
 
--behaviour(supervisor).
-
 %% API
--export([start_link/1]).
+-export([
+         start_link/1
+        ]).
 
 %% Supervisor callbacks
--export([init/1]).
+-export([
+         init/1
+        ]).
 
--define(SERVER, ?MODULE).
 
 %%====================================================================
 %% API functions
 %%====================================================================
-
 start_link(#{port := Port, num_acceptor := NumAccepter}=State) ->
-    ?Log(supervisor:start_link({local, ?SERVER}, ?MODULE, State)).
+    ?Log(supervisor:start_link({local, ?MODULE}, ?MODULE, State)).
+
 
 %%====================================================================
 %% Supervisor callbacks
 %%====================================================================
-
-%% Child :: {Id,StartFunc,Restart,Shutdown,Type,Modules}
 init(#{port := Port, num_acceptor := NumAccepter}=State) ->
     Children = [
                 {
                  http_acceptor_sup,
                  { http_acceptor_sup, start_link, [State]},
-                 permanent, 5, worker, [http_acceptor_sup]
+                 permanent, 5, supervisor, [http_acceptor_sup]
                 },
                 {
                  http_worker_sup,
@@ -48,6 +46,7 @@ init(#{port := Port, num_acceptor := NumAccepter}=State) ->
                 }
                ],
     {ok, { {one_for_all, 0, 1}, Children} }.
+
 
 %%====================================================================
 %% Internal functions

@@ -2,9 +2,8 @@
 %% @doc ws connection worker
 %% @end
 %%%-------------------------------------------------------------------
-
 -module(ws_worker).
-
+-behaviour(gen_statem).
 -include("logger.hrl").
 
 %% Supervisor callbacks
@@ -12,22 +11,22 @@
          start_link/1
         ]).
 
+%% Gen Statem callbacks
 -export([
          init/1,
          callback_mode/0,
+         code_change/4,
+         terminate/3,
 
          header/3,
          extended_length/3,
          mask/3,
-         body/3,
-
-         code_change/4,
-         terminate/3
+         body/3
         ]).
 
 
 %%====================================================================
-%% API functions
+%% Gen Statem callbacks
 %%====================================================================
 start_link(Socket) ->
     ?Log(Socket),
@@ -35,9 +34,6 @@ start_link(Socket) ->
     %Debug = {debug, [trace]},
     gen_statem:start_link(?MODULE, Socket, [Debug]).
 
-%%====================================================================
-%% Internal functions
-%%====================================================================
 
 %% Callback
 % gen_statem module            Callback module
@@ -171,6 +167,9 @@ code_change(_Vsn, State, Data, _Extra) ->
     {ok, State, Data}.
 
 
+%%====================================================================
+%% Internal functions
+%%====================================================================
 handle(Op, Req) ->
     encode(opcode(Op), Req).
 

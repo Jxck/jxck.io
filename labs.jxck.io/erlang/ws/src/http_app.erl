@@ -2,24 +2,24 @@
 %% @doc http public API
 %% @end
 %%%-------------------------------------------------------------------
-
 -module(http_app).
-
+-behaviour(application).
 -include("logger.hrl").
 
--behaviour(application).
-
 %% Application callbacks
--export([start/2, stop/1]).
+-export([
+         start/2,
+         stop/1
+        ]).
+
 
 %%====================================================================
 %% API
 %%====================================================================
-
 start(normal, #{port := Port, num_acceptor := NumAccepter}=State) ->
     ?Log(http_sup:start_link(State)).
 
-%%--------------------------------------------------------------------
+
 stop(_State) ->
     ok.
 
