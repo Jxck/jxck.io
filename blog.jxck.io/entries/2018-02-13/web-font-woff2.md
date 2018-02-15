@@ -49,7 +49,7 @@ WOFF2 は WOFF よりも圧縮率が高いとされている。
 
 結果、今回作成するフォントセットは以下の 全エントリの利用文字 - (Emojio x 5 + ZWJ) = 2416 文字である
 
-[All.txt](https://jxck.io/assets/font/All.txt)
+[All.txt](All.txt)
 
 ここから、 [以前解説した方法](https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html) でサブセット化し、 WOFF と WOFF2 を生成してサイズを比較する。
 
