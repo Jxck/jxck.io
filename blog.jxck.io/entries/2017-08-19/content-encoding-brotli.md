@@ -131,7 +131,7 @@ zopfli と比べて、 4 point 圧縮率が向上している。
 
 ### JS
 
-[highlight.min.js](https://www.jxck.io/assets/js/highlight.min.js)
+[highlight.min.js](https://jxck.io/assets/js/highlight.min.js)
 
 | file type | size  | ratio |
 |:----------|------:|------:|
@@ -147,7 +147,7 @@ zopfli と比べて、 1 point 圧縮率が向上している。
 
 ### CSS
 
-[mozaic.css](https://www.jxck.io/assets/css/mozaic.css)
+[mozaic.css](https://jxck.io/assets/css/mozaic.css)
 
 | file type | size  | ratio |
 |:----------|------:|------:|
@@ -165,7 +165,7 @@ zopfli と比べて、 7 point 圧縮率が向上している。
 
 [本サイト用にビルド](https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html) したフォントファイルを採用する。
 
-[NotoSansCJKjp-Jxck-Regular.woff](https://www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff)
+[NotoSansCJKjp-Jxck-Regular.woff](https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff)
 
 | file type | size   | ratio |
 |:----------|-------:|------:|
@@ -174,7 +174,7 @@ zopfli と比べて、 7 point 圧縮率が向上している。
 | .otf.br   | 344003 |   71% |
 
 
-[NotoSansCJKjp-Jxck-Regular.otf](https://www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.otf)
+[NotoSansCJKjp-Jxck-Regular.otf](https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.otf)
 
 | file type | size   | ratio |
 |:----------|-------:|------:|
@@ -190,7 +190,7 @@ OTF は圧縮効果が高いが、 WoFF は逆効果となっている。
 
 ### PNG
 
-[mozaic.png](https://www.jxck.io/assets/img/mozaic.png)
+[mozaic.png](https://jxck.io/assets/img/mozaic.png)
 
 | file type | size  | ratio |
 |:----------|------:|------:|
@@ -204,7 +204,7 @@ OTF は圧縮効果が高いが、 WoFF は逆効果となっている。
 
 ### WebP
 
-[mozaic.webp](https://www.jxck.io/assets/img/mozaic.webp)
+[mozaic.webp](https://jxck.io/assets/img/mozaic.webp)
 
 | file type | size  | ratio |
 |:----------|------:|------:|
@@ -220,7 +220,7 @@ WebP も圧縮済みのフォーマットであるため、圧縮が逆効果と
 
 ### SVG
 
-[mozaic.svg](https://www.jxck.io/assets/img/mozaic.svg)
+[mozaic.svg](https://jxck.io/assets/img/mozaic.svg)
 
 | file type | size  | ratio |
 |:----------|------:|------:|
