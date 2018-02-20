@@ -18,10 +18,11 @@
          code_change/4,
          terminate/3,
 
-         header/3,
-         extended_length/3,
+         first/3,
+         second/3,
+         ext_len/3,
          mask/3,
-         body/3
+         payload/3
         ]).
 
 
@@ -30,9 +31,9 @@
 %%====================================================================
 start_link(Socket) ->
     ?Log(Socket),
-    Debug = {},
-    %Debug = {debug, [trace]},
-    gen_statem:start_link(?MODULE, Socket, [Debug]).
+    Log = {},
+    %Log = {debug, [trace]},
+    gen_statem:start_link(?MODULE, Socket, [Log]).
 
 
 %% Callback
@@ -56,107 +57,107 @@ start_link(Socket) ->
 %
 % -                     -----> Module:code_change/4
 callback_mode() ->
-    [state_functions, state_enter].
+    state_functions.
 
-
-% State#{
-%   socket,
-%   ref,
-%   fin,
-%   rsv1,
-%   rsv2,
-%   rsv3,
-%   opcode,
-%   mask,
-%   masking_key,
-%   length
-%  }.
 init(Socket) ->
-    ?Log(Socket),
-    process_flag(trap_exit, true),
-    % change to active false
-    ok = inet:setopts(Socket, [{packet, raw}, {active, false}]),
-    State = #{socket => Socket, ref => undefined},
-    {ok, header, State}.
+    ok = inet:setopts(Socket, [{packet, raw}, {active, once}]),
+    NextState = {<<>>, #{}, Socket},
+    {ok, first, NextState}.
 
-header(enter, _HeaderOrBody, #{socket := Socket}=State) ->
-    ?Log(enter, header, Socket),
-    {ok, Ref} = (prim_inet:async_recv(Socket, 2, -1)),
-    {keep_state, State#{ref := Ref}};
 
-header(info, {inet_async, Socket, Ref, {error, closed}}, #{socket := Socket, ref := Ref}=State) ->
-    ok = gen_tcp:close(Socket),
+first(info, {tcp_closed, Socket}, {_, _, Socket}) ->
+    ?Log(tcp_closed),
     {stop, normal};
 
-% Length with 7bit
-header(info, {inet_async, Socket, Ref, {ok, <<FIN:1, RSV1:1, RSV2:1, RSV3:1, OP:4, Mask:1, Len:7>>}}, #{socket := Socket, ref := Ref}=State) ->
-    ?Log(State),
-    NextState = State#{
-                  fin         => FIN,
-                  rsv1        => RSV1,
-                  rsv2        => RSV2,
-                  rsv3        => RSV3,
-                  opcode      => opcode(OP),
-                  mask        => Mask,
-                  length      => Len,
-                  masking_key => <<>>
-                 },
-    ?Log(NextState),
-
-    case Len of
-        126 ->
-            {ok, NextRef} = (prim_inet:async_recv(Socket, 2, -1)),
-            {next_state, extended_length, NextState#{ref :=NextRef}};
-        127 ->
-            {ok, NextRef} = (prim_inet:async_recv(Socket, 8, -1)),
-            {next_state, extended_length, NextState#{ref :=NextRef}};
-        _ ->
-            {next_state, mask, NextState}
+first(info, {tcp, Socket, Packet}, {Buffer, Acc, Socket}) ->
+    ?Log(Acc, Packet),
+    case <<Buffer/binary, Packet/binary>> of
+        <<Fin:1, 0:1, 0:1, 0:1, Opcode:4, Rest/binary>> ->
+            NextState = {Rest, Acc#{fin => Fin, opcode => opcode(Opcode)}, Socket},
+            {next_state, second, NextState, [{next_event, info, {tcp, Socket, <<>>}}]};
+        B ->
+            ?Log(B),
+            ok = inet:setopts(Socket, [{active, once}]),
+            {keep_state, {B, Acc, Socket}}
     end.
 
 
-extended_length(enter, header, State) ->
-    keep_state_and_data;
-
-extended_length(info, {inet_async, Socket, Ref, {error, closed}}, #{socket := Socket, ref := Ref}=State) ->
-    {stop, normal};
-
-extended_length(info, {inet_async, Socket, Ref, {ok, <<Len:16>>}}, #{socket := Socket, ref := Ref, length := 126}=State) ->
-    {next_state, mask, State#{length := Len}};
-
-extended_length(info, {inet_async, Socket, Ref, {ok, <<Len:64>>}}, #{socket := Socket, ref := Ref, length := 127}=State) ->
-    {next_state, mask, State#{length := Len}}.
-
-
-mask(enter, _HeaderOrMask, #{socket := Socket, mask := 1}=State) ->
-    {ok, Ref} = ?Log(prim_inet:async_recv(Socket, 4, -1)),
-    {keep_state, State#{ref := Ref}};
-
-mask(info, {inet_async, Socket, Ref, {error, closed}}, #{socket := Socket, ref := Ref}=State) ->
-    ok = ?Log(gen_tcp:close(Socket)),
-    {stop, normal};
-
-mask(info, {inet_async, Socket, Ref, {ok, <<MaskingKey:4/binary>>}}, #{socket := Socket, ref := Ref, length := Len}=State) ->
-    {ok, NextRef} = ?Log(prim_inet:async_recv(Socket, Len, -1)),
-    {next_state, body, State#{ref := NextRef, masking_key := MaskingKey}}.
+second(info, {tcp, Socket, Packet}, {Buffer, Acc, Socket}) ->
+    ?Log(Acc, Packet),
+    case <<Buffer/binary, Packet/binary>> of
+        <<Mask:1, Length:7, Rest/binary>> ->
+            NextState = {Rest, Acc#{length => Length, mask => Mask}, Socket},
+            {next_state, ext_len, NextState, [{next_event, info, {tcp, Socket, <<>>}}]};
+        B ->
+            ok = inet:setopts(Socket, [{active, once}]),
+            {keep_state, {B, Acc, Socket}}
+    end.
 
 
-body(enter, mask, State) ->
-    ?Log(State),
-    keep_state_and_data;
+ext_len(info, {tcp, Socket, Packet}, {Buffer, #{length := 126}=Acc, Socket}) ->
+    ?Log(Acc, Packet),
+    case <<Buffer/binary, Packet/binary>> of
+        <<Length:16, Rest/binary>> ->
+            NextState = {Rest, Acc#{length => Length}, Socket},
+            {next_state, mask, NextState, [{next_event, info, {tcp, Socket, <<>>}}]};
+        B ->
+            ok = inet:setopts(Socket, [{active, once}]),
+            {keep_state, {B, Acc, Socket}}
+    end;
 
-body(info, {inet_async, Socket, Ref, {error, closed}}, #{socket := Socket, ref := Ref}=State) ->
-    ok = ?Log(gen_tcp:close(Socket)),
-    {stop, normal};
+ext_len(info, {tcp, Socket, Packet}, {Buffer, #{length := 127}=Acc, Socket}) ->
+    ?Log(Acc, Packet),
+    case <<Buffer/binary, Packet/binary>> of
+        <<Length:64, Rest/binary>> ->
+            NextState = {Rest, Acc#{length => Length}, Socket},
+            {next_state, mask, NextState, [{next_event, info, {tcp, Socket, <<>>}}]};
+        B ->
+            ok = inet:setopts(Socket, [{active, once}]),
+            {keep_state, {B, Acc, Socket}}
+    end;
 
-body(info, {inet_async, Socket, Ref, {ok, Payload}}, #{socket := Socket, ref := Ref, masking_key := MaskingKey, opcode := Op}=State) ->
-    ?Log(State),
-    Req = unmask(Payload, MaskingKey),
-    ?Log(request_size, byte_size(Req)),
+ext_len(info, {tcp, Socket, Packet}, {Buffer, Acc, Socket}=NextState) ->
+    ?Log(Acc, Packet),
+    {next_state, mask, NextState, [{next_event, info, {tcp, Socket, <<>>}}]}.
 
-    Res = handle(Op, Req),
-    ok = send(Socket, Res),
-    {next_state, header, #{socket => Socket, ref => undefined}}. % free state
+
+mask(info, {tcp, Socket, Packet}, {Buffer, #{mask := 1}=Acc, Socket}) ->
+    ?Log(Acc, Packet),
+    case <<Buffer/binary, Packet/binary>> of
+        <<MaskingKey:4/binary, Rest/binary>> ->
+            NextState = {Rest, Acc#{masking_key => MaskingKey}, Socket},
+            {next_state, payload, NextState, [{next_event, info, {tcp, Socket, <<>>}}]};
+        B ->
+            ok = inet:setopts(Socket, [{active, once}]),
+            {keep_state, {B, Acc, Socket}}
+    end;
+
+mask(info, {tcp, Socket, Packet}, {Buffer, #{mask := 0}=Acc, Socket}) ->
+    ?Log(Acc, Packet),
+    NextState = {Buffer, Acc#{masking_key => <<>>}, Socket},
+    {next_state, payload, NextState, [{next_event, info, {tcp, Socket, <<>>}}]}.
+
+
+payload(info, {tcp, Socket, Packet}, {Buffer, #{length := Length, masking_key := MaskingKey}=Acc, Socket}) ->
+    ?Log(Acc, Packet),
+    case <<Buffer/binary, Packet/binary>> of
+        <<Payload:Length/binary, Rest/binary>> ->
+            Plain = unmask(Payload, MaskingKey),
+
+            ok = handle(Acc, Plain, Socket),
+
+            case Acc of
+                #{opcode := connection_close} ->
+                    ok = ?Log(gen_tcp:close(Socket)),
+                    {stop, normal};
+                _ ->
+                    NextState = {Rest, #{}, Socket},
+                    {next_state, first, NextState, [{next_event, info, {tcp, Socket, <<>>}}]}
+            end;
+        B ->
+            ok = inet:setopts(Socket, [{active, once}]),
+            {keep_state, {B, Acc, Socket}}
+    end.
 
 
 terminate(Reason, State, Data) ->
@@ -170,34 +171,26 @@ code_change(_Vsn, State, Data, _Extra) ->
 %%====================================================================
 %% Internal functions
 %%====================================================================
-handle(Op, Req) ->
-    encode(opcode(Op), Req).
+handle(Acc, Plain, Socket) ->
+    ?Log("============================"),
+    ?Log(handle, Acc, (Plain)), % handle !!
 
-send(Socket, Packet) ->
-    ok = gen_tcp:send(Socket, Packet).
+    Res = encode(Acc#{payload => Plain}),
+    ?Log(Res),
+    gen_tcp:send(Socket, Res).
 
-encode(Op, Plain) ->
+encode(#{opcode := Opcode, payload := Payload}) ->
+    Fin = 1,
     Mask = 0,
-    Len = byte_size(Plain),
-    ?Log(Len),
 
-    First = <<1:1, % FIN
-              0:1, % RSV
-              0:1, % RSV
-              0:1, % RSV
-              Op:4
-            >>,
-
-    Second = case Len of
+    Length = case byte_size(Payload) of
                  Len when Len =< 125     -> <<Mask:1, Len:7>>;
                  Len when Len =< 16#FFFF -> <<Mask:1, 126:7, Len:16>>;
                  Len                     -> <<Mask:1, 127:7, Len:64>>
              end,
-    <<
-      First/binary,
-      Second/binary,
-      Plain/binary
-    >>.
+
+    <<Fin:1, 0:3, (opcode(Opcode)):4, Length/binary, Payload/binary>>.
+
 
 
 opcode(16#00) -> continuation_frame;
