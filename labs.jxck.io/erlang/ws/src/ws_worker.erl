@@ -32,7 +32,6 @@
 start_link(Socket) ->
     ?Log(Socket),
     Log = {},
-    %Log = {debug, [trace]},
     gen_statem:start_link(?MODULE, Socket, [Log]).
 
 
@@ -82,6 +81,10 @@ first(info, {tcp, Socket, Packet}, {Buffer, Acc, Socket}) ->
     end.
 
 
+second(info, {tcp_closed, Socket}, {_, _, Socket}) ->
+    ?Log(tcp_closed),
+    {stop, normal};
+
 second(info, {tcp, Socket, Packet}, {Buffer, Acc, Socket}) ->
     ?Log(Acc, Packet),
     case <<Buffer/binary, Packet/binary>> of
@@ -93,6 +96,10 @@ second(info, {tcp, Socket, Packet}, {Buffer, Acc, Socket}) ->
             {keep_state, {B, Acc, Socket}}
     end.
 
+
+ext_len(info, {tcp_closed, Socket}, {_, _, Socket}) ->
+    ?Log(tcp_closed),
+    {stop, normal};
 
 ext_len(info, {tcp, Socket, Packet}, {Buffer, #{length := 126}=Acc, Socket}) ->
     ?Log(Acc, Packet),
@@ -121,6 +128,10 @@ ext_len(info, {tcp, Socket, Packet}, {Buffer, Acc, Socket}=NextState) ->
     {next_state, mask, NextState, [{next_event, info, {tcp, Socket, <<>>}}]}.
 
 
+mask(info, {tcp_closed, Socket}, {_, _, Socket}) ->
+    ?Log(tcp_closed),
+    {stop, normal};
+
 mask(info, {tcp, Socket, Packet}, {Buffer, #{mask := 1}=Acc, Socket}) ->
     ?Log(Acc, Packet),
     case <<Buffer/binary, Packet/binary>> of
@@ -138,19 +149,25 @@ mask(info, {tcp, Socket, Packet}, {Buffer, #{mask := 0}=Acc, Socket}) ->
     {next_state, payload, NextState, [{next_event, info, {tcp, Socket, <<>>}}]}.
 
 
+payload(info, {tcp_closed, Socket}, {_, _, Socket}) ->
+    ?Log(tcp_closed),
+    {stop, normal};
+
 payload(info, {tcp, Socket, Packet}, {Buffer, #{length := Length, masking_key := MaskingKey}=Acc, Socket}) ->
     ?Log(Acc, Packet),
     case <<Buffer/binary, Packet/binary>> of
         <<Payload:Length/binary, Rest/binary>> ->
             Plain = unmask(Payload, MaskingKey),
-
-            ok = handle(Acc, Plain, Socket),
-
             case Acc of
                 #{opcode := connection_close} ->
                     ok = ?Log(gen_tcp:close(Socket)),
                     {stop, normal};
+                #{opcode := ping} ->
+                    pong(Socket),
+                    NextState = {Rest, #{}, Socket},
+                    {next_state, first, NextState, [{next_event, info, {tcp, Socket, <<>>}}]};
                 _ ->
+                    ok = handle(Acc, Plain, Socket),
                     NextState = {Rest, #{}, Socket},
                     {next_state, first, NextState, [{next_event, info, {tcp, Socket, <<>>}}]}
             end;
@@ -171,6 +188,10 @@ code_change(_Vsn, State, Data, _Extra) ->
 %%====================================================================
 %% Internal functions
 %%====================================================================
+pong(Socket) ->
+    ?Log("Pong"),
+    gen_tcp:send(Socket, <<16#8a, 16#00>>).
+
 handle(Acc, Plain, Socket) ->
     ?Log("============================"),
     ?Log(handle, Acc, (Plain)), % handle !!
