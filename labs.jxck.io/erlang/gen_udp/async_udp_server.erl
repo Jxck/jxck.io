@@ -33,15 +33,20 @@ reuseport() ->
 -define(C, 4).
 
 main(_) ->
-    ?Log([ (spawn(fun() -> open() end)) || _ <- lists:seq(1, ?C) ]),
+    Sockets = (open(?C)),
+
+    lists:map(fun(Socket) ->
+                      PID = spawn_link(fun() -> receive_loop(Socket) end),
+                      ?Log(PID),
+                      ok = gen_udp:controlling_process(Socket, PID)
+              end, Sockets),
     receive
         stop -> ok
     end.
 
-open() ->
-    {ok, Socket} = (gen_udp:open(3000, [inet, binary, {active, true}, {reuseaddr, true}, reuseport()])),
-    ?Log(Socket),
-    receive_loop(Socket).
+open(N) ->
+    Open = [ gen_udp:open(3000, [inet, binary, {active, true}, {reuseaddr, true}, reuseport()]) || _ <- lists:seq(1, N) ],
+    [Socket || {ok, Socket} <- Open].
 
 receive_loop(Socket) ->
     receive
