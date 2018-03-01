@@ -6,7 +6,7 @@
 
 しかし HPKP は、同等と問題を解決する別の仕様として Expect-CT の策定/実装が進んでいる。
 
-本サイトの Expect-CT 対応は、 h2o の実装待ちだが、せっかくなので CT の仕組みについて解説する。
+本サイトの Expect-CT 対応は、 h2o の実装待ちだが、 nginx での検証と CT の仕組みについて解説する。
 
 
 ## 「CA は信用できるのか?」問題
@@ -142,7 +142,6 @@ SCT は証明書そのものの値をハッシュのシードとして含んで�
 従って SCT を検証するブラウザが、おかしいことに気づくことができる。
 
 
-
 ## Expect-CT Header
 
 そもそも SCT を必須とするブラウザでない場合は、このケースは満たされない。
@@ -162,7 +161,7 @@ Expect-CT のディレクティブはシンプルだ。基本的には CSP と�
 
 - `enforce`:  SCT のチェックをブラウザに強制させる
 - `report-uri`: CSP レポートの送信先
-- `maz-age`: 有効期限
+- `max-age`: 有効期限
 
 
 重要な点は、 **Expect-CT 自体が SCT の値を含むわけではない** ということだ。
@@ -175,6 +174,69 @@ Expect-CT のディレクティブはシンプルだ。基本的には CSP と�
 
 
 これにより、証明書が変わってもヘッダの値は変わらないため、 HPKP と比べて運用負荷が大きく下がる。
+
+また、他の CSP のように `Expect-CT-Report-Only` は定義されておらず、 `enforce` を付けずに `report-uri` のみとすれば、レポートだけが飛ぶ。
+
+
+## Let's Encrypt の対応
+
+## SCT in Cert
+
+SCT は、証明書を Logger に登録した際に発行されるため、証明書を発行してからでないと取得できない。
+
+つまり、 CA は一旦証明書(プレ証明書)を生成し、 SCT を取得し、それを埋め込んだ新たな証明書を生成し、それを発行する必要が出る。
+
+Let's Encrypt では、この機能について SCT receipts in certificates
+ETA: February, 2018
+
+<https://letsencrypt.org/upcoming-features/>
+
+
+
+## SCT in OCSP
+
+OCSP に SCT の値が埋め込まれていると、運用としてはかなり楽になりそうだ。
+
+しかし、 Let's Encrypt ではこれも現在対応中だ。
+
+<https://github.com/letsencrypt/boulder/issues/2244>
+
+ただ、これはそれなりに短いスパンで実現しそうな雰囲気ではある。
+
+
+## SCT in TLS Handshake
+
+SCT の値が手元にあれば、 ServerHello の signed_certificate_timestamp 拡張に埋め込むことで、クライアントに提供できる。
+
+しかし、 h2o はまだこれに対応しておらず、ハンドシェイクレベルなため、 mruby のハンドラでも手が出せなさそうだ。
+
+
+## SCT of Let's Encrypt
+
+そもそも
+
+
+
+
+Let's Encrypt は、証明書発行の際に CT Logger への登録は行っているようだ。
+しかし、この値はどこにも出てこない。
+
+
+そのあたいは
+
+
+
+
+## 本サイトでの適用
+
+本サイトの証明書は Let's Encrypt で発行しているが、発行した DV 証明書にも、 OCSP にも SCT が埋め込まれていない。
+
+つまり、取得した SCT を TLS ハンドシェイク(Server Hello の SCT Extension)に埋め込むようサーバに設定する必要がある。
+
+本サイトで使用している h2o は、まだ Expect-CT に対応していないため、プラグインが提供されている Nginx を用いた検証を行った。
+
+
+### SCT の取得
 
 
 
