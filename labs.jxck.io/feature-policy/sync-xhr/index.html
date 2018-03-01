@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>DEMO | labs.jxck.io</title>
+
+
+<h1>Feature-Policy: sync-xhr 'none'</h1>
+
+<button>sync xhr</button>
+
+<script>
+  document.querySelector('button').onclick = (e) => {
+    console.log(e)
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', '/', false);
+    xhr.send();
+  }
+
+</script>
+
