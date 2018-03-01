@@ -1,6 +1,11 @@
 # [user-agent][safari] Safari による User-Agent 固定化と Web における Feature Detection
 
 
+## Update
+
+- 2018/3/1: Safari 11.0.3 の UA を追記
+
+
 ## Intro
 
 少し前に Safari Technology Preview 46 がリリースされた。
@@ -9,7 +14,6 @@ Service Worker のアナウンスに目がそちらに盗まれている一方�
 
 > Froze the user-agent string to reduce web compatibility risk and to prevent its use for fingerprinting
 > --- <cite>[Release Notes for Safari Technology Preview 46](https://webkit.org/blog/8042/release-notes-for-safari-technology-preview-46/)</cite>
-
 
 すぐには無理だろうと思ったが、 TP47 でもこれを打ち消すアナウンスはなかったため、これを取り上げることにした。
 
@@ -25,15 +29,16 @@ TP はあくまで Preview であり、これが *このままリリースされ
 Safari 開発者の Tweet で、モチベーションが補足されている。
 
 > STP 46 freezes Safari's user agent string. It will not change in the future. This fixes two issues:: Updating the string breaking websites sniffing for particular versions of Safari, It being used for fingerprinting. Don't UA sniff; detect features directly.
+
 > --- <cite><https://twitter.com/rmondello/status/943545865204989953></cite>
 
-
-ちなみに MacOS High Sierra の Safari TP46 と Safari 11.0.2 の UA は以下のようになっている
+ちなみに MacOS High Sierra の Safari TP46 と Safari 11.0.2 の UA は以下のようになっている(Update: Safari 11.0.3 を追加)
 
 
 ```
 (TP46):   User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1 Safari/605.1.15
 (11.0.2): User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/604.4.7 (KHTML, like Gecko) Version/11.0.2 Safari/604.4.7
+(11.0.3): User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/604.5.6 (KHTML, like Gecko) Version/11.0.3 Safari/604.5.6
 ```
 
 (一応その次の TP47 でも値は変わっていないが、これまで TP Update で UA が変わっていたのかは未確認)
