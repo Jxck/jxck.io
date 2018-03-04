@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <!--
+  貴様、見ているな！！
+  このサイトの技術的なまとめはこちらをどうぞ。
+  https://labs.jxck.io/blog
+
+  by Jxck
+  -->
+  <link rel=canonical href=https://mozaic.fm/episodes/35/security-bugbounty.html>
+  <meta name=viewport content=width=device-width,initial-scale=1>
+  <link rel=alternate type=application/rss+xml title=mozaic.fm href=http://feed.mozaic.fm>
+  <link rel=author href=https://jxck.io/assets/humans.txt>
+  <script async src=https://jxck.io/assets/js/ga.mozaic.js></script>
+  <script async src=https://jxck.io/assets/js/highlight.min.js></script>
+  <script src=https://jxck.io/assets/js/mozaic.js></script>
+
+  <meta name="author" content="Jxck">
+    <meta name="description" content="第 35 回のテーマは Security の Bug Bounty 編です。今回は、脆弱性報奨金制度(Bug Bounty)のしくみについて、 Bug Hunter として報告をする側である @kinugawamasato さんと、報告を受け付ける側である @k2wanko...">
+    <meta name="keywords" content="bugbounty,security,mozaic.fm">
+    <meta itemprop="image" content="https://mozaic.fm/assets/img/mozaic.png">
+    <meta itemprop="name" content="mozaic.fm">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jxck_">
+    <meta name="twitter:url" content="https://mozaic.fm/episodes/35/security-bugbounty.html">
+    <meta name="twitter:title" content="ep35 Security (Bug Bounty) | mozaic.fm">
+    <meta name="twitter:description" content="第 35 回のテーマは Security の Bug Bounty 編です。今回は、脆弱性報奨金制度(Bug Bounty)のしくみについて、 Bug Hunter として報告をする側である @kinugawamasato さんと、報告を受け付ける側である @k2wanko...">
+    <meta name="twitter:image" content="https://mozaic.fm/assets/img/mozaic.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://mozaic.fm/episodes/35/security-bugbounty.html">
+    <meta property="og:title" content="ep35 Security (Bug Bounty) | mozaic.fm">
+    <meta property="og:site_name" content="mozaic.fm">
+    <meta property="og:description" content="第 35 回のテーマは Security の Bug Bounty 編です。今回は、脆弱性報奨金制度(Bug Bounty)のしくみについて、 Bug Hunter として報告をする側である @kinugawamasato さんと、報告を受け付ける側である @k2wanko...">
+    <meta property="og:image" content="https://mozaic.fm/assets/img/mozaic.png">
+
+    <link rel="icon" sizes="192x192" href="https://mozaic.fm/assets/img/mozaic.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="https://mozaic.fm/assets/img/mozaic.png">
+
+  <title>ep35 Security (Bug Bounty) | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/34/monthly-web-201802.html>
+  
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/body.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/header.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/main.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/article.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/footer.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/mozaic.css>
+</head>
+<body>
+
+<header>
+  <ul>
+    <li><a href=/><img class=logo alt=top width=50 src=https://jxck.io/assets/img/mozaic.svg></a>
+    <!--li><a><img alt="receive push notification" width="50" src="//jxck.io/assets/img/push.svg"></a-->
+    <li><a href=http://feed.mozaic.fm><img alt="rss feed" width=50 src=https://jxck.io/assets/img/podcast.svg></a>
+    <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495><img alt=itunes width=50 src=https://jxck.io/assets/img/itunes.svg></a>
+    <li><a href=https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd><img alt=huamns.txt width=50 src=https://jxck.io/assets/img/twitter.svg></a>
+    <li><a href=https://jxck.io><img class=logo alt="jxck logo" width=50 src=https://jxck.io/assets/img/jxck.svg></a>
+  </ul>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/34/monthly-web-201802.html">ep34 Monthly Web 201802</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+
+  <article>
+    <h1><a href=/episodes/35/security-bugbounty.html>ep35 Security (Bug Bounty)</a></h1>
+    <section>
+      <h2>Info</h2>
+      <p><audio preload=none src=https://files.mozaic.fm/mozaic-ep35.mp3 controls></audio>
+      <ul class=info>
+        <li>published_at: <time datetime=2018-03-05>2018-03-05</time>
+        <li>
+          guest: <a href="https://twitter.com/kinugawamasato">@kinugawamasato</a>
+        </li>
+        <li>
+          guest: <a href="https://twitter.com/k2wanko">@k2wanko</a>
+        </li>
+        <li>
+          guest: <a href="https://github.com/hnagatomo">@hnagatomo</a>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2>Theme</h2>
+      <p>第 35 回のテーマは Security の Bug Bounty 編です。
+      <p>今回は、脆弱性報奨金制度(Bug Bounty)のしくみについて、 Bug Hunter として報告をする側である <a href="https://twitter.com/kinugawamasato">@kinugawamasato</a> さんと、報告を受け付ける側である <a href="https://twitter.com/k2wanko">@k2wanko</a> さんと、 <a href="https://github.com/hnagatomo">@hnagatomo</a> さんをお呼びして議論しました。
+      <ul>
+        <li>
+          報告する側<ul>
+            <li>ハンターは何を見ているか
+            <li>ハンターにとっての報告制度
+            <li>報告しやすさ
+            <li>CSP と脆弱性
+            <li>バグハントを始めたい人へ
+          </ul>
+        </li>
+        <li>
+          報告される側<ul>
+            <li>なぜ報奨金制度を行うのか
+            <li>プラットフォームと自前運営
+            <li>評価の難しさと CVSS
+            <li>成立するが CSP でブロックされるバグはどう扱うか
+            <li>報奨金制度を始めたい人へ
+          </ul>
+        </li>
+      </ul>
+      <p>これらを踏まえ、 Web セキュリティで <strong>今何が起きているのか</strong>、 <strong>これからどうなっていくのか</strong> について議論しました。
+    </section>
+    <section>
+      <h2>Show Note</h2>
+      <ul>
+        <li>
+          <a href="https://cybozu.co.jp/products/bug-bounty/">脆弱性報奨金制度 | サイボウズ株式会社</a>
+        </li>
+        <li>
+          <a href="https://bugbounty.linecorp.com/ja/">LINE Security Bug Bounty Program</a>
+        </li>
+        <li>
+          <a href="http://tech.nikkeibp.co.jp/it/atcl/column/16/040600081/040700001/">先進 2 社が語るバグ報奨金制度、「やはり社内でも反対意見はありました」</a>
+        </li>
+        <li>
+          <a href="https://bugbounty.jp/">bugbounty.jp</a>
+        </li>
+        <li>
+          <a href="https://www.hackerone.com/">hackerone</a>
+        </li>
+        <li>
+          <a href="http://www.security-camp.org/">セキュリティ・キャンプ実施協議会</a>
+        </li>
+        <li>
+          <a href="https://engineering.linecorp.com/ja/blog/detail/255">2017 年 LINE Security Bug Bounty Program の結果について : LINE Engineering Blog</a>
+        </li>
+        <li>
+          <a href="http://blog.cybozu.io/entry/2017/11/15/120000">「サイボウズ バグハン合宿 2017」 開催報告 - Cybozu Inside Out | サイボウズエンジニアのブログ</a>
+        </li>
+        <li>
+          <a href="https://www.slideshare.net/linecorp/1-bug-bounty-program-88148396">セキュリティ未経験だったけど入社 1 年目から Bug Bounty Program 運営に参加してみた</a>
+        </li>
+        <li>
+          <a href="https://www.ipa.go.jp/security/vuln/CVSS.html">共通脆弱性評価システム CVSS 概説:IPA 独立行政法人 情報処理推進機構</a>
+        </li>
+        <li>
+          <a href="http://masatokinugawa.l0.cm/2013/09/xss.benesse.html">Masato Kinugawa Security Blog: たぶん XSS が理由でインターネットがとまった</a>
+        </li>
+        <li>
+          <a href="https://www.ipa.go.jp/security/vuln/report/">脆弱性関連情報の届出受付:IPA 独立行政法人 情報処理推進機構 </a>
+        </li>
+        <li>
+          <a href="https://blog.jxck.io/entries/2017-02-13/csp-report-case-study.html">CSP Report 収集と実レポートの考察 | blog.jxck.io</a>
+        </li>
+        <li>
+          <a href="https://githubengineering.com/githubs-post-csp-journey/">GitHub&rsquo;s post-CSP journey</a>
+        </li>
+        <li>
+          <a href="https://tools.ietf.org/html/draft-foudil-securitytxt">https://tools.ietf.org/html/draft-foudil-securitytxt</a>
+        </li>
+        <li>
+          <a href="https://securitytxt.org/">https://securitytxt.org/</a>
+        </li>
+      </ul>
+    </section>
+  </article>
+
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/34/monthly-web-201802.html">ep34 Monthly Web 201802</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <address class=copyright>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed. Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>google analytics</a>.</address>
+  <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong>
+</footer>
+</body>
+</html>
