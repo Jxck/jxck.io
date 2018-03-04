@@ -10,11 +10,14 @@
 
 <script>
   document.querySelector('button').onclick = (e) => {
-    console.log(e)
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', '/', false);
-    xhr.send();
+    let xhr = new XMLHttpRequest()
+    xhr.open('GET', '/', false)
+    try {
+      xhr.send()
+    } catch (e) {
+      console.log(e.name, e.message)
+      console.error(e)
+    }
   }
-
 </script>
 
