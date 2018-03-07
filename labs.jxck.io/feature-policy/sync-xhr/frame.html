@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>frame DEMO | labs.jxck.io</title>
+
+<h1>frame with sync xhr</h1>
+
+<button>sync xhr</button>
+
+<script>
+  document.querySelector('button').onclick = (e) => {
+    console.log(e)
+    let xhr = new XMLHttpRequest()
+    xhr.open('GET', '/', false)
+    try {
+      xhr.send()
+      console.log('done')
+    } catch (e) {
+      console.log(e.name, e.message)
+      console.error(e)
+    }
+  }
+</script>
