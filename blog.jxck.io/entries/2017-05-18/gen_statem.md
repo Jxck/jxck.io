@@ -201,29 +201,18 @@ gen_fsm では、ステートには atom で名前をつけるスタイルをと
 
 しかし、なんらかのデータコンテナの値などをステートとして扱いたい場合 atom ではなくそのパターンマッチをそのままステートとして持つ方が便利な場合もある。
 
-callback_mode/0 で `handle_event_function` を返すと、ステート名を atom 以外の任意の値にすることができる。
+callback_mode/0 で `handle_event_function` を返すと、状態を任意の値で表現することができる。
 
 
 ```erlang
 callback_mode() -> handle_event_function.
 ```
 
-コールバックは `handle_event` 1 種類になり、この関数の引数のマッチでステートを表す。
+コールバックは `handle_event` 1 種類になり、この関数の引数のマッチだけで分離しながら扱うことができる。
 
 
 ```erlang
 handle_event(EventType, EventContent, State, Data)
-```
-
-これにより Map や record などを用いたデータへのパターンマッチなどを使って複雑な状態を表現することができる。
-
-
-```erlang
-% data が空という状態
-handle_event(#{data := []}, EventContent, State, Data) -> ...;
-
-% data が [1,2,3] という状態
-handle_event(#{data := [1,2,3]}, EventContent, State, Data) -> ...;
 ```
 
 
