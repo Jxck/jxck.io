@@ -8,6 +8,22 @@
 <updated>2016-01-28T18:30:02Z</updated>
 
   <entry>
+   <title>Feature Policy による Permission Delegation</title>
+   <link href="https://blog.jxck.io/entries/2018-03-08/feature-policy-permission-delegation.html" rel="alternate" />
+   <id>tag:blog.jxck.io,2016:entry://2018-03-08</id>
+   <updated>2018-03-08T00:00:00Z</updated>
+   <summary>ブラウザの機能を制限する Feature Policy の実装が進みつつある。
+
+Feature Policy は、ブラウザが持つ機能について選択的に許可/制限を行う API だ。
+
+AMP のように特定の機能を制限する目的にも使えるが、クロスオリジン iframe に対する権限移譲のための API としても使用される。
+
+Feature Policy のモチベーションおよび適用方法について、類似する CSP や iframe sandbox と合わせて解説する。
+
+なお、今回解説する内容は、まだブラウザの実装に反映されていない部分があるため、注意されたい。</summary>
+  </entry>
+
+  <entry>
    <title>WebFont の WOFF2 対応によるサイズ最適化</title>
    <link href="https://blog.jxck.io/entries/2018-02-13/web-font-woff2.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-02-13</id>
@@ -30,7 +46,6 @@ Service Worker のアナウンスに目がそちらに盗まれている一方�
 
 &gt; Froze the user-agent string to reduce web compatibility risk and to prevent its use for fingerprinting
 &gt; --- &lt;cite&gt;Release Notes for Safari Technology Preview 46&lt;/cite&gt;
-
 
 すぐには無理だろうと思ったが、 TP47 でもこれを打ち消すアナウンスはなかったため、これを取り上げることにした。
 
