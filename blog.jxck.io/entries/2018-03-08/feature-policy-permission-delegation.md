@@ -1,4 +1,4 @@
-# [performance][xhr][feature-policy] Feature Policy による Permission Delegation
+# [feature-policy][permission][performance][security] Feature Policy による Permission Delegation
 
 
 ## Intro
