@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Geolocation Basic DEMO | labs.jxck.io</title>
+
+<h1>Geolocation Basic DEMO</h1>
+
+<style>#loading { visibility: hidden }</style>
+
+<button id=start>start</button> <span id=loading>loading...</span>
+<ul>
+  <li>latitude: <span id=latitude></span>
+  <li>longitude: <span id=longitude></span>
+</ul>
+
+
+<script>
+function currentPosition() {
+  return new Promise((done, fail) => {
+    navigator.geolocation.getCurrentPosition(done, fail)
+  })
+}
+
+document.querySelector('#start').addEventListener('click', (e) => {
+  document.querySelector('#loading').style.visibility = 'visible'
+  currentPosition().then((c) => {
+    console.log(c)
+    document.querySelector('#loading').style.visibility = 'hidden'
+
+    const latitude = c.coords.latitude
+    const longitude = c.coords.longitude
+
+    document.querySelector('#latitude').textContent = latitude
+    document.querySelector('#longitude').textContent = longitude
+  }).catch((e) => {
+    console.error(e)
+  })
+})
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
