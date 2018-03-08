@@ -11,6 +11,8 @@ AMP のように特定の機能を制限する目的にも使えるが、クロ�
 
 Feature Policy のモチベーションおよび適用方法について、類似する CSP や iframe sandbox と合わせて解説する。
 
+なお、今回解説する内容は、まだブラウザの実装に反映されていない部分があるため、注意されたい。
+
 
 ## Motivation
 
@@ -67,7 +69,9 @@ iframe では強力な API が実行されるため、ユーザに許可を求�
 
 そして、この **機能の制限** および **権限の移譲** は Feature Policy を用いて行うこととなった。
 
-また、類似する API として、 iframe sandbox とその CSP 版についても、合わせて解説する。
+**ただし、まだ方針がきまりつつある段階であり、実装がその通りにされているわけではない。**
+
+それを踏まえた上で、類似する API である iframe sandbox とその CSP 版も合わせて、これら API について解説する。
 
 
 ## iframe sandbox
@@ -210,14 +214,14 @@ Feature-Policy: geolocation 'self' https://example.com
 
 (執筆時点では、この Prompt はまだ 「example.com が現在位置の取得を求めている」という表示になっているが、この表示はいずれ変更されるようだ)
 
-
 もし Geolocation API の呼び出しを全オリジンに対して許可したい場合は以下のように指定することも可能だ。
+
 
 ```
 Feature-Policy: geolocation *
 ```
 
-DEMO:
+DEMO: <https://labs.jxck.io/feature-policy/geolocation/basic.html>
 
 
 ### with iframe sandbox
@@ -240,10 +244,9 @@ Content-Security-Policy: sandbox allow-scripts;
 Feature-Policy: sync-xhr 'none'; geolocation https://example.com;
 ```
 
+(執筆時点では、この組み合わせは想定通りの挙動をしないため、報告中である。)
 
-## DEMO
-
-DEMO: <https://labs.jxck.io/feature-policy/>
+DEMO: <https://labs.jxck.io/feature-policy/geolocation/sandbox.html>
 
 
 ## Feature 一覧
@@ -277,8 +280,6 @@ Feature Policy には 2 つの側面がある
 
 そもそも 1st Party でブロックされていてはどうしようもないという点で、プロンプトで許可を求める UX は、さらに一層慎重になるべきだろう。
 
-また、上手く使えば 1st Party におけるパフォーマンスやセキュリティの面でも、効果を出すことができそうだ。
+上手く使えば 1st Party におけるパフォーマンスやセキュリティの面でも、効果を出すことができそうだ。
 
-本サイトにおいては、現時点でユースケースを持たないが、リアルワールドのレポート収集を行いたいため、まずは Report-Only の実装を待つつもりだ。
-
-また今後も、 Policy の実装は増えていくと予想されるため、それに合わせてデプロイの面から知見を貯めていきたい。
+まだ、ブラウザの実装が整っていないため、そこを注視しつつ、今後実装される Policy やリアルワールドレポートの知見を貯めていきたい。
