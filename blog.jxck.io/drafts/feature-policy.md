@@ -1,28 +1,74 @@
-# [performance][xhr][feature-policy] Feature Policy と iframe sandbox による機能制限と選択的許可
+# [performance][xhr][feature-policy] Feature Policy による Permission Delegation
 
 
 ## Intro
 
-ブラウザの機能を制限する Feature Policy の策定が進みつつある。
+ブラウザの機能を制限する Feature Policy の実装が進みつつある。
 
 Feature Policy は、ブラウザが持つ機能について選択的に許可/制限を行う API だ。
 
-似たモチベーションの iframe sandbox よりも、汎用的な設計がされている。
+AMP のように特定の機能を制限する目的にも使えるが、クロスオリジン iframe に対する権限移譲のための API としても使用される。
 
-Feature Policy のモチベーションおよび適用方法について解説する。
+Feature Policy のモチベーションおよび適用方法について、類似する CSP や iframe sandbox と合わせて解説する。
 
 
-## 機能制限のニーズ
+## Motivation
+
+まず Feature Policy のモチベーションとして、 **機能の制限** (禁止)と **権限の移譲** という二つのニーズを解説する。
+
+
+### 機能の制限
 
 パフォーマンスやセキュリティの観点から、実装はあるが、使用する上で制限を設けたい機能がいくつか存在する。
 
 例えば、同期 XHR や `document.write()` は、レンダリングを阻害するため、使用は避けるのが望ましい。
 
-fullScreen, payment, geolocation などは、 クロスオリジン iframe などからユーザの意図しない実行がなされると問題になる場合もある。
-
 しかし、ブラウザのデフォルト挙動が、一律でこうした機能を制限しては互換性を保つことができない(すでに動いているサイトが動かなくなる)。
 
-そこで、 HTTP や HTML などから明示的に設定し、機能を許可/制限する方法が長いこと模索されていた。
+AMP は、最初から機能が制限されたサブセットの仕様を定義し、それを強制することでこうした問題にアプローチした。
+
+同等のことを、 HTTP や HTML などから明示的に設定し、機能を許可/制限する方法が長いこと模索されていた。
+
+
+### 権限の移譲
+
+geolocation, getusermedia など、強力な API についてはユーザに対して権限を求めるようになっている。
+
+一方で、こうした権限を iframe に読み込んだクロスオリジンのコンテンツに対していかに付与するかという方法についも、長いこと議論されてきた。
+
+例えば、 <https://jxck.io> の中で <https://example.com> をクロスオリジン iframe で埋め込んでいたとする。
+
+- jxck.io の画面上に `「example.com が xxx の権限を求めている」` とプロンプトが出ても、その意味がユーザに伝わるか。
+- 仮に権限が付与されたとして、別のページが同じように example.com を埋め込んでいた場合、その権限はどうすべきか。
+- iframe が複数埋め込まれていた場合に、複数プロンプトを出すことの UX はどうか
+- ユーザが権限を削除したいと考えた時、 example.com の権限を削除すれば良いと言うことは、どのように気づかせることができるか。
+
+こうした問題について、実際に検証した結果は以下に報告されている。
+
+- [Permission Delegation Proposal](https://docs.google.com/document/d/1x5QejvpyQ71LPWhMLsaM1lWCfSsBsSQ8Dap9kJ6uLv0)
+- [Understanding Permission Requests From Iframes](https://docs.google.com/presentation/d/1suzMhtvMtA11jxPUdH1jL1oPh-82rTymCnslgR3ehEE)
+
+そして、このドキュメントのタイトルのように、結論としては以下のようなモデルが採用されることとなった。
+
+- iframe 内では、強力な機能の権限を [デフォルトでオフにする](https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/mG6vL09JMOQ)
+- ユーザは基本的に URL バーに表示された <https://jxck.io> を信頼の対象とする
+- permission ui は、 `「このサイトに権限を許可するか」` をユーザに問う
+- 権限を付与された <https://jxck.io> は <https://example.com> へ、その **権限を移譲** できる
+
+例えば、 Payment のために 3rd Party iframe を埋め込んだサイトがある場合、ユーザが信頼するかどうかを決めるのはあくまでその **サイト自体** ということだ。
+
+埋め込まれた Payment 用の iframe を選定したのはそのサイトであり、そこを含めてユーザはそのサイトを信頼するかどうかを決めるべきという方針である。
+
+もし既にサイト自体に権限があれば、サイトはプロンプト無しに iframe に許可を移譲できる。
+
+サイトに権限がなければ、 iframe が権限を必要とした時点で、サイト自体に権限を与えるかを決めるプロンプトが出て、サイトはそれを移譲する。
+
+
+### Feature Policy
+
+Feature Policy は、この **機能の制限** および **権限の移譲** を実現するための API と言うことができる。
+
+また、類似する API として、 iframe sandbox とその CSP 版についても、合わせて解説する。
 
 
 ## iframe sandbox
@@ -32,6 +78,8 @@ iframe sandbox は、 iframe 内に展開したコンテンツにおいて、機
 これは、信頼の無いコンテンツを安全に読み込む場合などに利用できる。
 
 <https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-sandbox>
+
+iframe sandbox の特徴は、何をブロックするのかが先に決まっているという点だ。
 
 もし制限を緩める場合は、許可する機能を明示的に指定するホワイトリスト方式を採用している。
 
@@ -85,6 +133,8 @@ Content-Security-Policy: sandbox
 仕様に機能制限が追加されると、古い仕様で `sandbox` を検証した際に動いていた別の機能が、ブラウザのアップデートで急に動かなくなってしまう可能性があるからだ。
 
 つまり、 `sandbox` は **互換性のリスクなしに拡張することが実質できない**。
+
+CSP のように、ブラックリスト方式を取っていれば、禁止したい項目を増やし、オプトインで適用していけるため、拡張に対して開いた設計となるのは、後から判明したのだろう。
 
 DEMO: <http://labs.jxck.io/content-security-policy/sandbox.html>
 
@@ -143,20 +193,20 @@ sync-xhr の場合は、もともとブラウザで有効になっている機�
 
 Feature Policy は、こうした機能に対して許可を与えるための機能という側面もある。
 
-例えば、現在 Chrome では iframe から Web MIDI API を呼び出すことはデフォルトで制限されている。
+例えば、現在 Chrome では iframe から Geolocation を呼び出すことはデフォルトで制限されている。
 
 これを、特定のドメインにのみ許可したい場合は、以下のように指定する。
 
 
 ```
-Feature-Policy: midi 'self' https://example.com
+Feature-Policy: geolocation 'self' https://example.com
 ```
 
-もし Web MIDI API の呼び出しを全オリジンに対して許可したい場合は以下のように指定することも可能だ。
+もし Geolocation API の呼び出しを全オリジンに対して許可したい場合は以下のように指定することも可能だ。
 
 
 ```
-Feature-Policy: midi *
+Feature-Policy: geolocation *
 ```
 
 
@@ -164,21 +214,22 @@ Feature-Policy: midi *
 
 前述のように iframe sandbox は制限事項の追加拡張に対して閉じている。
 
-そこで、 iframe に対して sandbox に入っていない機能を、追加でに無効化する用途でも Feature Policy が使用可能だ。
+そこで、 iframe に対して sandbox に入っていない機能を、追加で無効化する用途でも Feature Policy を用いる。
 
 Feature Policy は **sandbox が制限する機能は重複して持たず** sandbox と組み合わせて利用することが想定されている。
 
 設定する際は、 CSP の sandbox を基準とし、許可したいものを `allow-*` で、追加で制限したいものを Feature Policy で行うことになるだろう。
 
-例として、 iframe Sandbox を有効にしつつ、 Web MIDI API を許可したい場合は、 JS の実行を許可する必要がある。
+例として、 iframe Sandbox を有効にしつつ、 Geolocation API を許可したい場合は、 JS の実行を許可する必要がある。
 
 が、それによって sycn-xhr が行われるのは制限したいといった場合は以下のようになるだろう。
 
 
 ```
 Content-Security-Policy: sandbox allow-scripts;
-Feature-Policy: sync-xhr 'none'; midi https://example.com;
+Feature-Policy: sync-xhr 'none'; geolocation https://example.com;
 ```
+
 
 ## DEMO
 
@@ -205,25 +256,19 @@ Feature Policy には執筆時点で Reporting の仕様が無い。
 <https://github.com/WICG/feature-policy/issues/142>
 
 
-## Feature Policy と Permission
+## Outro
 
-許可という側面で言えば、 Feature Policy は iframe に対して明示的に許可を与えることで安全側に倒すという側面がある。
+Feature Policy には 2 つの側面がある
 
-しかし、これはあくまでページ自体での機能の利用がユーザによって許可されていることが前提となる。
+- 機能の制限
+- 権限の移譲
 
-例えば、 iframe に Feature Policy で Web MIDI API を許可する前提として、ユーザが Web MIDI API を許可している必要がある。
+3rd Party への Permission Delegation の側面は、今後強力な機能を安全に活用していく上で、非常に重要だ。
 
-この場合、 Feature Policy は、その権限を iframe (および top level)に対して移譲する API と見ることができるだろう。
+そもそも 1st Party でブロックされていてはどうしようもないという点で、プロンプトで許可を求める UX は、さらに一層慎重になるべきだろう。
 
+また、上手く使えば 1st Party におけるパフォーマンスやセキュリティの面でも、効果を出すことができそうだ。
 
-## 今後
+本サイトにおいては、現時点でユースケースを持たないが、リアルワールドのレポート収集を行いたいため、まずは Report-Only の実装を待つつもりだ。
 
-品質の低い埋め込み広告などでは、いまだに同期処理を実行することで他のレンダリングを阻害することで、クリックを稼ぐといったことが行われる場合もある。
-
-こうした iframe に埋め込む、手出しできない 3rd Party のコンテンツに対して、明示的な制限を化すことは、 AMP と同様にパフォーマンス的なメリットに繋がる可能性はあるだろう。
-
-また、 CSP とは違い、 Script の実行を許しつつ影響の大きい機能の呼び出しだけを防ぐことができるため、セキュリティ的には二次的な予防策として期待できそうだ。
-
-Report Only が実装されれば、潰しきれていない sync-xhr を発見するといった用途も考えられる。
-
-今後も、 Policy の実装は増えていくと予想されるため、それに合わせて使い方を模索していきたい。
+また今後も、 Policy の実装は増えていくと予想されるため、それに合わせてデプロイの面から知見を貯めていきたい。
