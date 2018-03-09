@@ -234,19 +234,15 @@ Feature Policy は **sandbox が制限する機能は重複して持たず** san
 
 設定する際は、 CSP の sandbox を基準とし、許可したいものを `allow-*` で、追加で制限したいものを Feature Policy で行うことになるだろう。
 
-例として、 iframe Sandbox を有効にしつつ、 Geolocation API を許可したい場合は、 JS の実行を許可する必要がある。
-
-が、それによって sycn-xhr が行われるのは制限したいといった場合は以下のようになるだろう。
+例として、 iframe Sandbox を有効にしつつ、 script の実行を許可するが、それによって sycn-xhr が行われるのは制限したいといった場合は以下のようになるだろう。
 
 
 ```
 Content-Security-Policy: sandbox allow-scripts;
-Feature-Policy: sync-xhr 'none'; geolocation https://example.com;
+Feature-Policy: sync-xhr 'none'
 ```
 
-(執筆時点では、この組み合わせは想定通りの挙動をしないため、報告中である。)
-
-DEMO: <https://labs.jxck.io/feature-policy/geolocation/sandbox.html>
+DEMO: <https://labs.jxck.io/feature-policy/sync-xhr/sandbox.html>
 
 
 ## Feature 一覧

@@ -52,7 +52,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2018-03-08T08:00:00+08:00",
-  "dateModified": "2018-03-08T08:00:00+08:00",
+  "dateModified": "2018-03-09T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -615,7 +615,7 @@ th:last-child, td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2018-03-08>2018-03-08</time>
-    <li>updated_at: <time class=updated_at datetime=2018-03-08>2018-03-08</time>
+    <li>updated_at: <time class=updated_at datetime=2018-03-09>2018-03-09</time>
     <li class=tags>tags: [<a href='/tags/feature-policy.html'>feature-policy</a>,<a href='/tags/permission.html'>permission</a>,<a href='/tags/performance.html'>performance</a>,<a href='/tags/security.html'>security</a>]
   </ul>
 
@@ -775,12 +775,10 @@ th:last-child, td:last-child {
         <p>そこで、 iframe に対して sandbox に入っていない機能を、追加で無効化する用途でも Feature Policy を用いる。
         <p>Feature Policy は <strong>sandbox が制限する機能は重複して持たず</strong> sandbox と組み合わせて利用することが想定されている。
         <p>設定する際は、 CSP の sandbox を基準とし、許可したいものを <code translate="no">allow-*</code> で、追加で制限したいものを Feature Policy で行うことになるだろう。
-        <p>例として、 iframe Sandbox を有効にしつつ、 Geolocation API を許可したい場合は、 JS の実行を許可する必要がある。
-        <p>が、それによって sycn-xhr が行われるのは制限したいといった場合は以下のようになるだろう。
+        <p>例として、 iframe Sandbox を有効にしつつ、 script の実行を許可するが、それによって sycn-xhr が行われるのは制限したいといった場合は以下のようになるだろう。
         <pre><code translate="no">Content-Security-Policy: sandbox allow-scripts;
-Feature-Policy: sync-xhr &#039;none&#039;; geolocation https://example.com;</code></pre>
-        <p>(執筆時点では、この組み合わせは想定通りの挙動をしないため、報告中である。)
-        <p>DEMO: <a href="https://labs.jxck.io/feature-policy/geolocation/sandbox.html">https://labs.jxck.io/feature-policy/geolocation/sandbox.html</a>
+Feature-Policy: sync-xhr &#039;none&#039;</code></pre>
+        <p>DEMO: <a href="https://labs.jxck.io/feature-policy/sync-xhr/sandbox.html">https://labs.jxck.io/feature-policy/sync-xhr/sandbox.html</a>
       </section>
     </section>
     <section>
