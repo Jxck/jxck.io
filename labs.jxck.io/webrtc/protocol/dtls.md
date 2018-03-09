@@ -12,10 +12,6 @@ tls を udp 上で行う。
 
 ## Loss Insensitive Messaging
 
-- stream cipher を禁止
-- 明示的 sequence number を導入
-
-
 ```
 Client                                   Server
 ------                                   ------
@@ -114,7 +110,7 @@ ClientHello (seq=1)  ------>
 [Rest of handshake]
 ```
 
-DTLS 実装は(概念的に) `next-receive-seq-counter` を持つことになる。
+DTLS 実装は(概念的に)、 msgseq の値を管理する `next-receive-seq-counter` を持つことになる。
 
 初期値はゼロで、受信したメッセージの msgseq が同じならパケットを処理する。
 
