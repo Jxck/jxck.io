@@ -138,7 +138,7 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/fxsrVALo0R8/wsHpHaTWAwAJ>
   - Ship: CSS Typed OM
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/6ai8np0DSOA/XJak-Nw0AgAJ>
-    - [blog](https://blog.jxck.io/entries/2018-10-31/houdini-paint-api.html)
+    - [blog](https://blog.jxck.io/entries/2017-10-31/houdini-paint-api.html)
   - Ship: justify-items: legacy; Deprecate and Remove: justify-items: auto
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/wP4NWLgbIpA/P1rebd9ZAgAJ>
   - Create V8 contexts from snapshot by default
