@@ -1,5 +1,10 @@
 # [noto sans][web font][performance] Noto Sans の Web Font 対応とサブセットによる最適化
 
+## Update
+
+- 2018-02-13: [WebFont の WOFF2 対応によるサイズ最適化 \| blog.jxck.io](https://blog.jxck.io/entries/2018-02-13/web-font-woff2.html)
+
+
 ## Intro
 
 このサイトのフォントに Web Font を適用することにした。
@@ -41,13 +46,13 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 
 そして font-weight (太さ) が 100~900 まで 7 段階提供されており、それぞれサイズは以下となっている。(やはり太いとデカい)
 
-- 100 NotoSansJP-Thin.otf       (4.0M)
-- 300 NotoSansJP-Light.otf      (4.2M)
-- 350 NotoSansJP-DemiLight.otf  (4.3M)
-- 400 NotoSansJP-Regular.otf    (4.3M)
-- 500 NotoSansJP-Medium.otf     (4.3M)
-- 700 NotoSansJP-Bold.otf       (4.4M)
-- 900 NotoSansJP-Black.otf      (4.6M)
+- 100 NotoSansJP-Thin.otf      (4.0M)
+- 300 NotoSansJP-Light.otf     (4.2M)
+- 350 NotoSansJP-DemiLight.otf (4.3M)
+- 400 NotoSansJP-Regular.otf   (4.3M)
+- 500 NotoSansJP-Medium.otf    (4.3M)
+- 700 NotoSansJP-Bold.otf      (4.4M)
+- 900 NotoSansJP-Black.otf     (4.6M)
 
 ここまでがデフォルトの状態である。ここから削って行く。
 
@@ -62,8 +67,8 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 
 この時点で 8.7MB ある。
 
-- 400 NotoSansJP-Regular.otf    (4.3M)
-- 700 NotoSansJP-Bold.otf       (4.4M)
+- 400 NotoSansJP-Regular.otf (4.3M)
+- 700 NotoSansJP-Bold.otf    (4.4M)
 
 ここからさらに絞っていく。
 
@@ -257,7 +262,6 @@ p q r s t u v w x y z { | } ~
 > 一般の社会生活において現代の国語を書き表すための漢字使用の目安を、次の表のように定める。
 > --- <cite>[常用漢字表(平成 22 年内閣告示第 2 号)](http://kokugo.bunka.go.jp/kokugo_nihongo/joho/kijun/naikaku/kanji/)</cite>
 
-
 以下に一覧がある。
 
 [常用漢字 2136 文字](http://kanji.jitenon.jp/cat/joyo.html)
@@ -368,8 +372,8 @@ p q r s t u v w x y z { | } ~
 
 [サブセットフォントメーカー](https://opentype.jp/subsetfontmk.htm)
 
-- [NotoSansCJKjp-Jxck-Bold.otf](https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.otf) (473.2K)
-- [NotoSansCJKjp-Jxck-Regular.otf](https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.otf) (471.2K)
+- NotoSansCJKjp-Jxck-Bold.otf    (473.2K)
+- NotoSansCJKjp-Jxck-Regular.otf (471.2K)
 
 
 ### Woff 変換
@@ -380,10 +384,10 @@ p q r s t u v w x y z { | } ~
 
 メタデータは一切付与しない。
 
-また IE はどうでもいいので、 IE に対応させるための EOT ファイルも作成し無い。
+また IE はどうでもいいので、 IE に対応させるための EOT ファイルも作成しない。
 
-- [NotoSansCJKjp-Jxck-Bold.woff](https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff) (379.7K)
-- [NotoSansCJKjp-Jxck-Regular.woff](https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff) (375.8K)
+- NotoSansCJKjp-Jxck-Bold.woff    (379.7K)
+- NotoSansCJKjp-Jxck-Regular.woff (375.8K)
 
 
 ## 効果
@@ -441,7 +445,7 @@ Android は ["NotoSansJP-Regular.otf" という名前で入っているらしい
   font-weight: 400;
   src: local("NotoSansCJKjp-Bold.otf"),
        local("NotoSansJP-Bold.otf"),
-       url("https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=20160314") format("woff");
+       url("https://path-to-font/NotoSansCJKjp-Jxck-Regular.woff") format("woff");
 }
 
 @font-face {
@@ -450,7 +454,7 @@ Android は ["NotoSansJP-Regular.otf" という名前で入っているらしい
   font-weight: 700;
   src: local("NotoSansCJKjp-Bold.otf"),
        local("NotoSansJP-Bold.otf"),
-       url("https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff?ver=20160314") format("woff");
+       url("https://path-to-font/NotoSansCJKjp-Jxck-Bold.woff") format("woff");
 }
 ```
 
@@ -483,7 +487,7 @@ body {
 
 
 ```
-url("/assets/font/NotoSansCJKjp-Jxck.Bold.woff?ver=201603014") format("woff");
+url("/paht-to-font/NotoSansCJKjp-Jxck.Bold.woff?ver=201603014") format("woff");
 ```
 
 ここでは max-age を一年とし、フォントを作り直した場合はバージョンを変える
@@ -502,7 +506,7 @@ Cache-Control: max-age=31536000
 
 
 ```html
-<link rel=preload as=font type=font/woff href=https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
+<link rel=preload as=font type=font/woff href=https://path-to-font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
 ```
 
 また、 AMP 対応ページでは `rel=preload` は許可されてないため指定するとエラーになったため、 AMP の方には指定していない。
