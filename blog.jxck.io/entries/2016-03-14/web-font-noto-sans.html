@@ -59,7 +59,7 @@
     "width": 700
   },
   "datePublished": "2016-03-14T08:00:00+08:00",
-  "dateModified": "2018-01-27T08:00:00+08:00",
+  "dateModified": "2018-03-13T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -101,13 +101,21 @@
       <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
       <ul class=info>
         <li>created_at: <time class=created_at datetime=2016-03-14>2016-03-14</time>
-        <li>updated_at: <time class=updated_at datetime=2018-01-27>2018-01-27</time>
+        <li>updated_at: <time class=updated_at datetime=2018-03-13>2018-03-13</time>
         <li class=tags>tags: [<a href='/tags/noto%20sans.html'>noto sans</a>,<a href='/tags/web%20font.html'>web font</a>,<a href='/tags/performance.html'>performance</a>]
       </ul>
 
       <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/article.css>
   <article>
     <h1><a href=/entries/2016-03-14/web-font-noto-sans.html>Noto Sans の Web Font 対応とサブセットによる最適化</a></h1>
+    <section>
+      <h2 id="update"><a href="#update">Update</a></h2>
+      <ul>
+        <li>
+          2018-02-13: <a href="https://blog.jxck.io/entries/2018-02-13/web-font-woff2.html">WebFont の WOFF2 対応によるサイズ最適化 | blog.jxck.io</a>
+        </li>
+      </ul>
+    </section>
     <section>
       <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>このサイトのフォントに Web Font を適用することにした。
@@ -136,13 +144,13 @@
       <p>このサブセットが含む JIS X 0208 とは、いわゆる JIS 漢字コード のことであり、 7000 字近い漢字がきっちり収録されている。
       <p>そして font-weight (太さ) が 100~900 まで 7 段階提供されており、それぞれサイズは以下となっている。(やはり太いとデカい)
       <ul>
-        <li>100 NotoSansJP-Thin.otf       (4.0M)
-        <li>300 NotoSansJP-Light.otf      (4.2M)
-        <li>350 NotoSansJP-DemiLight.otf  (4.3M)
-        <li>400 NotoSansJP-Regular.otf    (4.3M)
-        <li>500 NotoSansJP-Medium.otf     (4.3M)
-        <li>700 NotoSansJP-Bold.otf       (4.4M)
-        <li>900 NotoSansJP-Black.otf      (4.6M)
+        <li>100 NotoSansJP-Thin.otf      (4.0M)
+        <li>300 NotoSansJP-Light.otf     (4.2M)
+        <li>350 NotoSansJP-DemiLight.otf (4.3M)
+        <li>400 NotoSansJP-Regular.otf   (4.3M)
+        <li>500 NotoSansJP-Medium.otf    (4.3M)
+        <li>700 NotoSansJP-Bold.otf      (4.4M)
+        <li>900 NotoSansJP-Black.otf     (4.6M)
       </ul>
       <p>ここまでがデフォルトの状態である。ここから削って行く。
     </section>
@@ -153,8 +161,8 @@
       <p>したがって、 Regular と Bold のみ使用する。
       <p>この時点で 8.7MB ある。
       <ul>
-        <li>400 NotoSansJP-Regular.otf    (4.3M)
-        <li>700 NotoSansJP-Bold.otf       (4.4M)
+        <li>400 NotoSansJP-Regular.otf (4.3M)
+        <li>700 NotoSansJP-Bold.otf    (4.4M)
       </ul>
       <p>ここからさらに絞っていく。
     </section>
@@ -390,12 +398,8 @@ p q r s t u v w x y z { | } ~</code></pre>
         <p>まず、以下のツールを用い、この対象文字だけを抜き出したサブセットを作成する。
         <p><a href="https://opentype.jp/subsetfontmk.htm">サブセットフォントメーカー</a>
         <ul>
-          <li>
-            <a href="https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.otf">NotoSansCJKjp-Jxck-Bold.otf</a> (473.2K)
-          </li>
-          <li>
-            <a href="https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.otf">NotoSansCJKjp-Jxck-Regular.otf</a> (471.2K)
-          </li>
+          <li>NotoSansCJKjp-Jxck-Bold.otf    (473.2K)
+          <li>NotoSansCJKjp-Jxck-Regular.otf (471.2K)
         </ul>
       </section>
       <section>
@@ -403,14 +407,10 @@ p q r s t u v w x y z { | } ~</code></pre>
         <p>この OTF ファイルを、以下のツールを用い、 Woff 形式に変換する。
         <p><a href="https://opentype.jp/woffconv.htm">WOFF コンバータ</a>
         <p>メタデータは一切付与しない。
-        <p>また IE はどうでもいいので、 IE に対応させるための EOT ファイルも作成し無い。
+        <p>また IE はどうでもいいので、 IE に対応させるための EOT ファイルも作成しない。
         <ul>
-          <li>
-            <a href="https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff">NotoSansCJKjp-Jxck-Bold.woff</a> (379.7K)
-          </li>
-          <li>
-            <a href="https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff">NotoSansCJKjp-Jxck-Regular.woff</a> (375.8K)
-          </li>
+          <li>NotoSansCJKjp-Jxck-Bold.woff    (379.7K)
+          <li>NotoSansCJKjp-Jxck-Regular.woff (375.8K)
         </ul>
       </section>
     </section>
@@ -483,7 +483,7 @@ p q r s t u v w x y z { | } ~</code></pre>
   font-weight: 400;
   src: local(&quot;NotoSansCJKjp-Bold.otf&quot;),
        local(&quot;NotoSansJP-Bold.otf&quot;),
-       url(&quot;https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=20160314&quot;) format(&quot;woff&quot;);
+       url(&quot;https://path-to-font/NotoSansCJKjp-Jxck-Regular.woff&quot;) format(&quot;woff&quot;);
 }
 
 @font-face {
@@ -492,7 +492,7 @@ p q r s t u v w x y z { | } ~</code></pre>
   font-weight: 700;
   src: local(&quot;NotoSansCJKjp-Bold.otf&quot;),
        local(&quot;NotoSansJP-Bold.otf&quot;),
-       url(&quot;https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold.woff?ver=20160314&quot;) format(&quot;woff&quot;);
+       url(&quot;https://path-to-font/NotoSansCJKjp-Jxck-Bold.woff&quot;) format(&quot;woff&quot;);
 }</code></pre>
       </section>
       <section>
@@ -511,7 +511,7 @@ p q r s t u v w x y z { | } ~</code></pre>
       <h2 id="キャッシュ設定"><a href="#キャッシュ設定">キャッシュ設定</a></h2>
       <p>フォントは、基本的には変更が非常に少ないファイルであるため、積極的にキャッシュをしていきたい。
       <p>ただし、今回のような作り方の場合には、フォントの追加によるファイルの更新が皆無ではないため、 URL にバージョンを忘れずに入れる。(font-face の指定参照)
-      <pre><code translate="no">url(&quot;/assets/font/NotoSansCJKjp-Jxck.Bold.woff?ver=201603014&quot;) format(&quot;woff&quot;);</code></pre>
+      <pre><code translate="no">url(&quot;/paht-to-font/NotoSansCJKjp-Jxck.Bold.woff?ver=201603014&quot;) format(&quot;woff&quot;);</code></pre>
       <p>ここでは max-age を一年とし、フォントを作り直した場合はバージョンを変える
       <pre><code translate="no">Cache-Control: max-age=31536000</code></pre>
     </section>
@@ -519,7 +519,7 @@ p q r s t u v w x y z { | } ~</code></pre>
       <h2 id="preload"><a href="#preload">Preload</a></h2>
       <p><a href="https://blog.jxck.io/entries/2016-03-04/preload.html">Preload を用いたリソースプリローディングの最適化</a> で解説した <code translate="no">&lt;link rel=preload&gt;</code> でフォントを適用した。
       <p>ただし、影響が大きい Regular のみにした。
-      <pre class=html><code translate="no">&lt;link rel=preload as=font type=font/woff href=https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin&gt;</code></pre>
+      <pre class=html><code translate="no">&lt;link rel=preload as=font type=font/woff href=https://path-to-font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin&gt;</code></pre>
       <p>また、 AMP 対応ページでは <code translate="no">rel=preload</code> は許可されてないため指定するとエラーになったため、 AMP の方には指定していない。
     </section>
     <section>
