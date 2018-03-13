@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>display: contents with flexbox DEMO | labs.jxck.io</title>
+
+<h1>display: contents with flexbox DEMO</h1>
+
+<style>
+.container {
+  display: flex;
+  width:  500px;
+  height: 100px;
+  border: solid 1px #333;
+  padding: 1em;
+}
+
+.child {
+  width: 80px;
+  background-color: #ccc;
+  border: solid 1px #333;
+}
+
+.space-around  { justify-content: space-around;  }
+
+.child-container {
+  display: contents;
+}
+</style>
+
+<h2>nested box</h2>
+<div class="container space-around">
+  <div class=child>Child 1</div>
+  <div class=child-container>
+    <div class=child>Child 2</div>
+    <div class=child>Child 3</div>
+  </div>
+  <div class=child>Child 4</div>
+</div>
