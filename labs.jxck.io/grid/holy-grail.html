@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Holy Grail Grid Layout DEMO | labs.jxck.io</title>
+
+<style>
+body {
+  display: grid;
+
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+
+  grid-template-columns: 100px 1fr 200px;
+  grid-template-rows: 150px 1fr 100px;
+  grid-template-areas:
+    "header header header"
+    "left main right"
+    "footer footer footer"
+}
+header {
+  grid-area: header;
+  background-color: #0CC;
+}
+main {
+  grid-area: main;
+  background-color: #CCC;
+}
+aside.left {
+  grid-area: left;
+  background-color: #CC0;
+}
+aside.right {
+  grid-area: right;
+  background-color: #0C0;
+}
+footer {
+  grid-area: footer;
+  background-color: #C0C;
+}
+</style>
+
+<body>
+  <header>Header <h1>Holy Grail Grid Layout DEMO</h1></header>
+  <main>Main</main>
+  <aside class=left>Left</aside>
+  <aside class=right>Right</aside>
+  <footer>Footer</footer>
+</body>
