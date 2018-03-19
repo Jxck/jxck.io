@@ -504,23 +504,4 @@ proto           DCCP/TLS/RTP/SAVPF           [RFC5764]
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 参考: https://www.cisco.com/c/en/us/about/security-center/securing-voip.html
-

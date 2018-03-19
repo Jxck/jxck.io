@@ -39,4 +39,3 @@ export class WS extends WebSocket {
     this.send(message)
   }
 }
-

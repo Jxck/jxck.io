@@ -30,8 +30,4 @@ new Promise((done, fail) => {
     }
   };
 
-
-
-
 }).catch(console.error.bind(console));
-

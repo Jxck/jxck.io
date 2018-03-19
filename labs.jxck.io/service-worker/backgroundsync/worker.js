@@ -11,4 +11,3 @@ self.addEventListener('activate', (e) => {
 self.addEventListener('sync', (e) => {
   console.log('sync', e);
 });
-
