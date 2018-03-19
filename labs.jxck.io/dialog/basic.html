@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Show Modal Dialog DEMO | labs.jxck.io</title>
+
+<style>
+p {
+  padding: 0;
+  margin: 0;
+}
+dialog {
+  padding: 0;
+  border: 0;
+  border-radius: 0.6rem;
+  box-shadow: 0 0 1em black;
+}
+dialog::backdrop {
+  /* 背景を透過に */
+  background: rgba(200, 200, 200, 0.50);
+}
+dialog div {
+  padding: 1em;
+  border: 0;
+  border-radius: 0.6rem;
+  box-shadow: 0 0 1em black;
+}
+</style>
+
+<h1>Show Modal Dialog DEMO</h1>
+
+<button id=show>show dialog</button>
+
+<dialog>
+  <div>
+    <p>this is message inside dialog</p>
+    <button id=close>close</button>
+  </div>
+</dialog>
+
+<script>
+  document.querySelector('#show').onclick = (e) => {
+    const dialog = document.querySelector('dialog')
+    dialog.showModal()
+
+    dialog.onclick = (e) => {
+      // dialog 背景含めて全体がフック対象
+      // その中に子要素をフィットさせておく
+      if (e.target === dialog) {
+        // target が dialog 自身なのは dialog の外側のみになる
+        dialog.close()
+      }
+    }
+    dialog.oncancel = (e) => {
+      console.log(e.type)
+      console.log(dialog.returnValue)
+    }
+    dialog.onclose = (e) => {
+      console.log(e.type)
+      console.log(dialog.returnValue)
+    }
+    document.querySelector('#close').onclick = (e) => {
+      dialog.close('message for modal')
+    }
+  }
+</script>
