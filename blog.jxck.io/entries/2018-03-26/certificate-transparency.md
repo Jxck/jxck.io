@@ -1,4 +1,4 @@
-# [expect-ct][hpkp][ct][security] CT の仕組みと HPKP から Expect-CT への移行
+# [expect-ct][hpkp][ct][security] Certificate Transparency の仕組みと HPKP から Expect-CT への移行
 
 ## Intro
 
@@ -19,8 +19,6 @@ HTTPS 化が前提として定着した昨今、トラストアンカーとし�
 
 しかし、最近 CA が **証明書を誤発行する** などといった、この安全の前提を崩すような事態が複数発生している。
 
-コンテンツベンダがいかに努力して HTTPS への以降を進めても、その努力を泡と化す可能性があるのだ。
-
 (ここでは、ドメインオーナーの知らないところでそのドメインの証明書が発行されることを、理由/方法によらず誤発行と言うことにする。)
 
 
@@ -37,7 +35,7 @@ Eve は MITM を成立させたら、 `https://google.com` のレスポンスを
 Eve の持つ秘密鍵は Google のそれとは違うが、証明書には「本物」と同等の効力があることが原因だ。
 
 
-```
+```text
 +------------+                       +-----------+
 |            |  valid        valid   |           |
 |   Google   |--------->| |--------->|  Browser  |
@@ -57,16 +55,16 @@ Google は、 CA を信じ自分の知らないところで `google.com` の証�
 
 Google が CA から発行を受けた証明書と、 Eve が CA に誤発行させた証明書は、同等ではあるが byte 単位では別のものである。
 
-つまり、ハッシュを取得すれば 2 つの値は変わるはずだ。
+つまり、 Hash を取得すれば 2 つの値は変わるはずだ。
 
-そこで、 Google は自身が所有する証明書のハッシュ値をレスポンスヘッダに付与し、ブラウザに確認させる方法を考えた。
+そこで、 Google は自身が所有する証明書の Hash 値をレスポンスヘッダに付与し、ブラウザに確認させる方法を考えた。
 
-MITM によってすり替えられたレスポンスに使用された証明書は、 Google が付与したハッシュと合わない。
+MITM によってすり替えられたレスポンスに使用された証明書は、 Google が付与した Hash と合わない。
 
 これにより、ブラウザは証明書が意図したものと違うことに気づくことができる。
 
 
-```
+```text
                       HPKP:xxx
 +------------+                       +-----------+
 |            |  hash:xxx    hash:yyy |           |
@@ -78,15 +76,17 @@ MITM によってすり替えられたレスポンスに使用された証明書
                    +-----------+
 ```
 
-これが HPKP (HTTP Public Key Pinning) の基本的な考え方であった。
+これが **HPKP (HTTP Public Key Pinning)** の基本的な考え方であった。
 
 本サイトも、実験的にこれを適用していた。
 
 [Public Key Pinning for HTTP(HPKP) 対応と report-uri.io でのレポート収集](https://blog.jxck.io/entries/2016-04-09/public-key-pinning.html)
 
-しかし、このヘッダは証明書の失効/更新時に、ハッシュが不整合を起こすのを防ぐため、先にバックアップハッシュを付与しておくなど、運用負荷が高かった。
+しかし、このヘッダは証明書の失効/更新時に、 Hash が不整合を起こすのを防ぐため、先にバックアップ Hash を付与しておくなど、運用負荷が高かった。
 
-そこで、並行して提案されていた **CertificateTransparency(CT)** という仕組みを応用し、より運用負荷が低い形で同等のことを実現する方法が提案された。
+(本サイトでも、しばらく前からヘッダ自体を付与していない)
+
+そこで HPKP の代替として、並行して議論されていた **CertificateTransparency(CT)** という仕組みを応用し、より運用負荷が低い形で同等のことを実現する方法が提案された。
 
 それが Expect-CT ヘッダである。
 
@@ -103,15 +103,15 @@ Chrome は既に、 HPKP を Deprecate し Expect-CT への移行を促してい
 
 ここでは、一番イメージしやすい例で以下のように整理し、図示する。
 
-- CA: 証明書を発行しログを登録する
-- Log: ログを保存しパブリックに公開する
-- Monitor: ログを監視する
-- Auditor: ログを検証する
+- CA: 証明書を発行し Log を登録する
+- Log: 証明書を Merkle Hash Tree で保存しパブリックに公開する
+- Monitor: Log を監視する
+- Auditor: Log を検証する
 
 ここではわかりやすく Monitor が Google で Auditor はブラウザだとしておく。
 
 
-```
+```text
     +--------------+                     +--------------+
     |              |     Submit Log      |              |
     |              |-------------------->|              |
@@ -141,7 +141,7 @@ Chrome は既に、 HPKP を Deprecate し Expect-CT への移行を促してい
 
 全ての CT Log Server は、パブリックな URL で公開され、 HTTPS でアクセスし登録や監視が行える。
 
-Google は Monitor として CT Log Server を監視することで、 `google.com` が登録されたかを知ることができる。
+Google は Monitor として CT Log Server を監視することで、 `google.com` が登録されたことを知ることができる。
 
 先の例で、 Google が恐れていたのは「自分たちが知らないところで `google.com` の証明書が発行されること」だ。
 
@@ -151,7 +151,7 @@ Google は Monitor として CT Log Server を監視することで、 `google.c
 
 つまり、 Monitor である Google の視点で言えば「**CA を監視する技術**」と言えなくもない。
 
-発行されたログが必ず登録されていることや、そのログが改ざんされていないことは、どう保証するのかは後述する。
+発行された Log が必ず登録されていることや、その Log が改ざんされていないことは、どう保証するのかは後述する。
 
 
 ## SCT(Signed Certificate Timestamp)
@@ -171,10 +171,18 @@ CA は一旦証明書(プレ証明書)を生成し、 SCT を取得し、それ�
 
 このため、 CA 内部の運用への影響が多少あるが、もし対応されれば、コンテンツプロバイダからすると運用が一番楽だろう。
 
+Let's Encrypt は、対応を予定している。
+
+[Upcoming Features - Let's Encrypt](https://letsencrypt.org/upcoming-features/)
+
 
 ### OCSP
 
 OCSP の情報に SCT を含む方式。これも CA 側の対応が必要。
+
+Let's Encrypt は、証明書の方で対応する予定なので、こちらのプライオリティは低くなった。
+
+[Include SCT receipts in OCSP responses #592](https://github.com/letsencrypt/boulder/issues/592#issuecomment-262036049)
 
 
 ### TLS Extension
@@ -182,6 +190,8 @@ OCSP の情報に SCT を含む方式。これも CA 側の対応が必要。
 TLS ハンドシェイクで、 ServerHello の `signed_certificate_timestamp` 拡張に埋め込む方式。
 
 自分で CT Log に登録し、取得した SCT を埋め込めばよいので、唯一 CA が対応していなくても、コンテンツプロバイダだけで対応ができる方法。
+
+対応しているサーバはまだ少ない。
 
 
 ## ユースケース
@@ -196,7 +206,7 @@ Google は、 `google.com` の EV 証明書が、自分たちの知らないと�
 したがって、 Eve が誤発行に成功しても、 Log サーバに Log が登録されれば、誤発行を発見し対策が行える。
 
 
-```
+```text
     +--------------+                     +--------------+
     |              |     Submit Log      |              |
     |              |-------------------->|              |
@@ -205,7 +215,7 @@ Google は、 `google.com` の EV 証明書が、自分たちの知らないと�
     |              |                     |              |
     +--------------+                     +--------------+
         |                                      ^
-        | 誤発行                                |
+        | 誤発行                               |
         |                                      |
         V                                      |
        Eve               Monitoring            |
@@ -223,14 +233,14 @@ Google は、 `google.com` の EV 証明書が、自分たちの知らないと�
 ```
 
 
-### 証明書が誤発行され、 Log が登録されたが、後からログを改ざんした
+### 証明書が誤発行され、 Log が登録されたが、後から Log を改ざんした
 
-CT Log は Merkle Tree Hashes を用いているため、ログを改ざんすると不整合が発生する。
+CT Log は Merkle Tree Hashes を用いているため、 Log を改ざんすると不整合が発生する。
 
-Monitor/Auditor はログの整合性を監視/検証しているので、計算が合わないことで改ざんに気づくことができる。
+Monitor/Auditor は Log の整合性を監視/検証しているので、計算が合わないことで改ざんに気づくことができる。
 
 
-```
+```text
     +--------------+                     +--------------+   改ざん
     |              |                     |              | <------- Eve
     |              |                     |              |
@@ -238,16 +248,16 @@ Monitor/Auditor はログの整合性を監視/検証しているので、計算
     |              |                     |              |
     |              |                     |              |
     +--------------+                     +--------------+
-                                               ^  ^
-                                               |  | 整合性を検証することで
-                                               |  | 改ざんに気づくことができる
-                                               |  |
-                         Monitoring            |  |
-             +---------------------------------+  | Audit
-             |                                    |
-             |                                    |
-             |                                    |
-             |                                    |
+                                                 ^
+                                                 | 整合性を検証することで
+                                                 | 改ざんに気づくことができる
+                                                 |
+                         Monitoring              |
+             +-----------------------------------+
+             |                                   |
+             |                                   | Audit
+             |                                   |
+             |                                   |
     +--------+-----+                     +--------+-----+
     |              |                     |              |
     |   Monitor    |                     |   Auditor    |
@@ -259,12 +269,12 @@ Monitor/Auditor はログの整合性を監視/検証しているので、計算
 
 ### 証明書が誤発行されたが、 Log を登録せず、証明書には別の SCT を埋め込んだ
 
-CT Log は、証明書そのものの値をハッシュのシードとして含んでいる。
+CT Log は、証明書そのものの値を Hash のシードとして含んでいる。
 
 従って、ブラウザ(Auditor) が証明書に含まれた SCT の正当性を Log Server に問い合わせる際に、おかしいことに気づくことができる。
 
 
-```
+```text
     +--------------+                     +--------------+
     |              |                     |              |
     |              |                     |              |
@@ -277,7 +287,7 @@ CT Log は、証明書そのものの値をハッシュのシードとして含�
                |                                  |
                |                                  | 受け取ったSCT を
                |                                  | Log Server に
-               | 誤発行                            | 問い合わせると
+               | 誤発行                           | 問い合わせると
                +-------------+                    | 整合しないことに気づく
                              |                    |
                              |                    |
@@ -295,9 +305,11 @@ CT Log は、証明書そのものの値をハッシュのシードとして含�
 
 CA の署名がない証明書は、 CT 関係なくブラウザで弾かれるため、 SCT をみるまでもない。
 
-仮に、そうした証明書が CT Log に登録されていたとしても、単なるハッシュの 1 つとして使われるだけだ。
+仮に、そうした証明書が CT Log に登録されていたとしても、単なる Hash の 1 つとして使われるだけだ。
 
-Monitor からすれば関心はないため無視されるだけであり、他の証明書の Audit にも特に影響はない。
+Monitor の関心あるドメインであれば、誤発行と同じように対応され、関心がなければ無視される。
+
+他の証明書の Audit にも特に影響はない。
 
 
 ### 証明書が誤発行されたが、 Log を登録せず、証明書には SCT を埋め込まない
@@ -308,10 +320,8 @@ SCT が証明書になければ、ブラウザはその証明書が誤発行さ�
 
 そこで **Chrome は EV については SCT を必須** とし、 SCT がなければその時点で Invalid とみなすという方向にした。
 
-その他の証明書については、後述する HTTP の Expect-CT ヘッダで、コンテンツベンダがオプトインすることができる。
 
-
-```
+```text
     +--------------+                     +--------------+
     |              |                     |              |
     |              |                     |              |
@@ -339,19 +349,19 @@ SCT が証明書になければ、ブラウザはその証明書が誤発行さ�
 
 自社の発行する EV が Chrome では使えないという状況を防ぐために、 CA は EV を発行する際に必ず CT Log を登録せざるをえなくなる。
 
-こうして証明書の誤発行を監視するエコシステムの形成が、 Google 先導で進められている。
+こうして CA に CT 対応を実質的に強制することで、証明書の誤発行を監視するエコシステムの形成が、 Google 先導で進められている。
+
+EV 以外の証明書については、後述する HTTP の Expect-CT ヘッダで、コンテンツベンダがオプトインすることができる。
 
 
 ## CT の活用
 
-もし、 CA が SCT 付き証明書に対応しており、取得するのが EV で、対象が Chrome であれば、暗黙的に活用していることになるだろう。
-
-それ以外の場合でも、自分でこのエコシステムにオプトインすることもできる。
+DV 証明書などを使っている場合も、自分でこのエコシステムにオプトインすることもできる。
 
 
 ### SCT を自分で取得する
 
-CT Log Server への登録は、だれでもできる。
+CT Log Server への登録は、誰でもできる。
 
 つまり、 CA が登録をしていなくても、自分で証明書を登録すれば、 SCT を取得することができる。
 
@@ -359,7 +369,7 @@ CT Log Server への登録は、だれでもできる。
 
 可用性のためにも、 Log は複数のサーバに登録することが望ましいとされている。
 
-現在運用されているログサーバの一覧は以下にある。
+現在運用されている Log Server の一覧は以下にある。
 
 [Known Logs - Certificate Transparency](https://www.certificate-transparency.org/known-logs)
 
@@ -389,27 +399,50 @@ CT Log を監視することで、自身の保有するドメインの証明書�
 
 ここに、監視したいドメインを登録すると、 CT Log 登録時に通知が来るので、手軽に監視ができる。
 
-こうした監視ができるのは、 CT Log がオープンだからだ、逆を言えばどんなドメインが登録されたのかは全て知ることができる。
+CT Log はパブリックなため、認証などはなく、任意のドメインの登録を監視できる。
 
 ここから、 CT Log を通して公開されてない製品/サービスの推測などが懸念されており、別途議論が進んでいる点も把握しておきたい。
 
 
 ### Expect-CT Header による強制
 
-Chrome は EV について SCT を必須とするが、それ以外の証明書(OV, DV)や、 SCT を必須としないブラウザでは、 CT は機能しない。
+誤発行に成功した証明書に置き換えられた場合、 Chrome での EV のように SCT のチェックが必須でない場合は、正しい証明書として通っていまう。
 
-もし CT Log を登録せずに誤発行させた証明書は、 SCT を添えなければ使えてしまう。
+
+```text
++------------+                       +-----------+
+|            |  DV+SCT        DV     |           | ブラウザが SCT のチェックを
+|   Google   |--------->| |---------x|  Browser  | しなければ、普通の証明書
+|            |          | |          |           |
++------------+          | |          +-----------+
+                   +-----------+
+                   | Eve(MITM) |
+                   +-----------+
+```
 
 そこで、「**このコンテンツは CT に対応した証明書で提供される**」ということを明示する方法が提案された。
 
 これが `Expect-CT` ヘッダだ。
+
+
+```text
+                 Expect-CT: enforce
++------------+                       +-----------+
+|            |  DV+SCT        DV     |           | Expect-CT 対応ブラウザは
+|   Google   |--------->| |---------x|  Browser  | SCT を必ずチェックする
+|            |          | |          |           |
++------------+          | |          +-----------+
+                   +-----------+
+                   | Eve(MITM) |
+                   +-----------+
+```
 
 [Expect-CT Extension for HTTP](https://tools.ietf.org/html/draft-ietf-httpbis-expect-ct)
 
 Expect-CT のディレクティブは、基本的に CSP と同じような設計になっている。
 
 
-```
+```http
 Expect-CT: max-age=86400, enforce, report-uri="https://foo.example/report"
 ```
 
@@ -417,14 +450,14 @@ Expect-CT: max-age=86400, enforce, report-uri="https://foo.example/report"
 - `report-uri`: CSP レポートの送信先
 - `max-age`: 有効期限
 
-重要な点は、 **Expect-CT 自体が SCT の値を含むわけではない** ということだ。
+なお **Expect-CT 自体が SCT の値を含むわけではない** 点に注意したい。
 
 これにより、証明書が変わってもヘッダの値は変わらないため、 HPKP と比べて運用負荷が大きく下がる。
 
 また、他の CSP のように `Expect-CT-Report-Only` は定義されておらず、 `enforce` を付けずに `report-uri` のみとすれば、レポートだけが飛ぶ。
 
 
-```
+```http
 Expect-CT: max-age=86400, report-uri="https://foo.example/report"
 ```
 
@@ -445,7 +478,7 @@ CT Log は、 Merkle Tree という構造で保存されている。
 CT では Hash に SHA256 を使用する。
 
 
-```
+```text
               Sign
       Root  -------->  STH
      /   \
@@ -460,8 +493,6 @@ a = sha256(0x00 || d0)
 i = sha256(0x01 || a || b)
 ```
 
-[Figure 1](https://www.certificate-transparency.org/log-proofs-work/ct_hash_1.png)
-
 Log Server は、この Root となる Hash に署名をする。これを Signed Tree Head(STH) と呼ぶ。
 
 Leaf の値が 1 つでも変わると、計算結果が STH と合わなくなる。また、 STH そのものは署名によって守られている。
@@ -471,21 +502,21 @@ Leaf の値が 1 つでも変わると、計算結果が STH と合わなくな�
 この構造を踏まえて、基本的な処理を見ていく。
 
 
-## ログの追加
+## Log の追加
 
 CT Log Server には多くのの登録依頼が届き、定期的に既存の Tree に追加登録を行う。
 
 このため CT 登録にはラグがあり、その最大値は Maximum Merge Delay (MMD)として提示されている。
 
-この場合、追加分の証明書(d4, d5)だけで Tree を作り、その Root と既存の Root のハッシュを取り、署名して新たな STH とすれば良い。
+この場合、追加分の証明書(d4, d5)だけで Tree を作り、その Root(k) と既存の Root(m) の Hash を取り、署名して新たな STH とすれば良い。
 
 
-```
+```text
                        Sign
            New Root  -------->  STH
          /          \
         /            \
-      [m]             k
+      [m]            [k]
      /   \          /   \
     /     \        /     \
    i       j      e       f
@@ -507,7 +538,7 @@ Log が少ないうちに STH まで検証しておけば、あとはその STH 
 先の図に d6, d7 を追加した結果が以下のようになっていたとする。
 
 
-```
+```text
                       Sign
               Root  --------->  STH
          /           \
@@ -534,20 +565,20 @@ d0  d1  d2  d3  d4  d5  d6  d7
 こうして、 CT Log は Merkle Hashe Tree を用いて **追記** しか出来ないことが暗号的に保証されている。
 
 
-### ログの存在検証 (Merkle Audit Proofs)
+### Log の存在検証 (Merkle Audit Proofs)
 
-ある証明書が、ログに含まれていることを検証する。
+ある証明書が、 Log に含まれていることを検証する。
 
-証明書はリーフなので、このハッシュと他の証明書のハッシュを組み合わせて計算を進めた結果が Root Hash と一致するかどうかを検証すれば良い。
+証明書は Leaf なので、この Hash と他の証明書の Hash を組み合わせて計算を進めた結果が Root Hash と一致するかどうかを検証すれば良い。
 
 しかし、全ての証明書データを並べて計算するには、サイズが大きすぎる。
 
-そこで、リーフからルートを辿る間に必要な、最小のノードのハッシュのみを取得することで計算を枝刈りできる。
+そこで、 Leaf から Root を辿る間に必要な、最小の Node の Hash のみを取得することで計算を枝刈りできる。
 
 以下の場合、 d3 の存在を調べるのに必要なのは c, i, n のみである。
 
 
-```
+```text
                       Sign
               Root  --------->  STH
          /           \
@@ -562,16 +593,18 @@ d0  d1  d2  d3  d4  d5  d6  d7
 d0  d1  d2 [d3] d4  d5  d6  d7
 ```
 
-これにより、実際のハッシュの計算は、全証明書が 1000 万個あったとしても、 24 個あれば足りることになる。(`10M < 2^24`)
+これにより、実際の Hash の計算は、全証明書が 1000 万個あったとしても、 24 個あれば足りることになる。(`10M < 2^24`)
 
-もし、結果がルートと違えば、その証明書は **ログの中に無い** ことがわかる。
+もし、結果が Root と違えば、その証明書は **Log の中に無い** ことがわかる。
 
-これは、主にブラウザが証明書の提供を受けた時に、それがログに存在するかを確認し、なければ否認するという用途に利用できる。
+これは、主にブラウザが証明書の提供を受けた時に、それが Log に存在するかを確認し、なければ否認するという用途に利用できる。
 
 
 ## CT Log Server へのリクエスト
 
 では、実際に CT Log への HTTP リクエストを通して、ここまでの挙動を確認する。
+
+[RFC 6962 - Certificate Transparency](https://tools.ietf.org/html/rfc6962)
 
 なお、以下のコード例は、実際に本サイトで使用している証明書を用いたリクエストを書いているが、読者はこれをそのまま実行しても問題ない。
 
@@ -585,7 +618,7 @@ d0  d1  d2 [d3] d4  d5  d6  d7
 本サイトの証明書は Let's Encrypt で発行しており、 fullchain.pem の証明書チェインは 2 つから成り立っている。
 
 
-```
+```bash
 $ cat /etc/letsencrypt/live/jxck.io/fullchain.pem
 -----BEGIN CERTIFICATE-----
 MIIFvTCCBKWgAwIBAgISA6/EsoaosazyV8VTiLTZMzBzMA0GCSqGSIb3DQEBCwUA
@@ -652,7 +685,7 @@ KOqkqm57TH2H3eDJAkSnh6/DNFu0Qg==
 これを登録するリクエストは以下のようになる。
 
 
-```
+```bash
 $ curl -H 'Content-Type:application/json' \
        -d '{
          "chain": [
@@ -665,7 +698,7 @@ $ curl -H 'Content-Type:application/json' \
 すると SCT(timestamp) を含む JSON が返る。
 
 
-```
+```json
 {
   "sct_version": 0,
   "id": "pLkJkLQYWBSHuxOizGdwCjw1mAT5G9+443fNDsgN3BA=",
@@ -685,7 +718,7 @@ $ curl -H 'Content-Type:application/json' \
 まず、現時点での tree_size を取得する。
 
 
-```
+```bash
 $ curl 'https://ct.googleapis.com/pilot/ct/v1/get-sth' | jq .
 {
   "tree_size": 237390491,
@@ -695,10 +728,14 @@ $ curl 'https://ct.googleapis.com/pilot/ct/v1/get-sth' | jq .
 }
 ```
 
-SCT から計算したハッシュと、 tree_size をパラメータにし、リクエストを投げると結果が返る。
+SCT から計算した Hash と、 tree_size をパラメータにし、リクエストを投げると結果が返る。
+
+Hash はバイナリ演算が必要なため、書き捨てのスクリプトで行ったものを参考までに貼っておく。
+
+[ct.rb](./ct.rb)
 
 
-```
+```bash
 $ curl 'https://ct.googleapis.com/pilot/ct/v1/get-proof-by-hash?hash=odRjuexWzJ36zh8XavhDEZaUhoAv9yxRF4zEyKZiVVg%3D&tree_size=237363285' | jq .
 {
   "leaf_index": 229437452,
@@ -735,11 +772,11 @@ $ curl 'https://ct.googleapis.com/pilot/ct/v1/get-proof-by-hash?hash=odRjuexWzJ3
 }
 ```
 
-この leaf_index は、証明書が leaf のどこにあるかを示し、 audit_path は leaf から root までに通る Node Hash だ。
+この `leaf_index` は、証明書が Leaf のどこにあるかを示し、 `audit_path` は Leaf から Root までに通る Node Hash だ。
 
-ハッシュが合っていなければ、エラーが返る。つまり、 CT Log を信用するならこのレスポンスをもって、証明書は存在すると言えるだろう。
+Hash が合っていなければ、エラーが返る。つまり、 CT Log を信用するならこのレスポンスをもって、証明書は存在すると言えるだろう。
 
-もし、 CT Log を鵜呑みにしない場合は、レスポンスの結果から Root までハッシュを計算し、最終的に Root と同じになるかを検証する。
+自身で検証を行う場合は、自分の証明書に対して `audit_path` の順に Root まで計算し、 STH と一致することを確認すれば良い。
 
 
 ## 日本語訳について
@@ -761,14 +798,14 @@ Chrome では、 Certificate Transparency の情報を日本語で表示する�
 
 ## 本サイトでの適用
 
-本サイトの証明書は Let's Encrypt で発行しているが、発行した DV 証明書にも、 OCSP にも SCT が埋め込まれていない。
+本サイトは h2o で配信しているが、 TLS への SCT はまだ対応していない。
 
-つまり、取得した SCT を TLS ハンドシェイク(Server Hello の SCT Extension)に埋め込むようサーバに設定する必要がある。
+一方、 Let's Encrypt の SCT 埋め込み証明書の対応は 2018 Q1 とされているが、執筆時点でまだ対応されていない。
 
-本サイトで使用している h2o は、まだ Expect-CT に対応していないため、プラグインが提供されている Nginx を用いた検証を行った。
+そこで、デプロイに先行して本記事だけ先に公開することとした。
 
-https://tools.ietf.org/html/draft-ietf-httpbis-expect-ct-02
+SCT が埋め込まれるようになったら、 Expect-CT を適用し、レポートなどを収集することで知見を集めつつ、本記事に追記したい。
 
-TODO: https://blog.appsecco.com/certificate-transparency-part-2-the-bright-side-c0b99ebf31a8
-
-TODO: https://transparencyreport.google.com/https/certificates/gZWyBsDsQ9gck3QB3vZDCN9atVbQneiNSU20zXdLdDA%3D
+- [Add support for signed_certificate_timestamp TLS extension #448](https://github.com/h2o/h2o/issues/448)
+- [Signed Certificate Timestamps embedded in certificates - API Announcements - Let's Encrypt Community Support](https://community.letsencrypt.org/t/signed-certificate-timestamps-embedded-in-certificates/57187)
+- [Certificate Transparency in Chrome - Change to Enforcement Date](https://groups.google.com/a/chromium.org/forum/#!msg/ct-policy/sz_3W_xKBNY/6jq2ghJXBAAJ)

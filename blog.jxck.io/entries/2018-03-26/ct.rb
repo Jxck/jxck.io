@@ -6,6 +6,9 @@ require "openssl"
 require "pp"
 require "uri"
 
+# ./ct.rb ct.googleapis.com/pilot ./path-to-letsencrypt-live/fullchain.pem
+main(*ARGV)
+
 def get_proof_by_hash(host, cert, tree_size, timestamp)
   der = cert.to_der
 
@@ -99,5 +102,3 @@ def main(host = "ct.googleapis.com/pilot", pemfile)
   puts ""
   get_proof_by_hash(host, chain[0], tree_size, timestamp)
 end
-
-main(*ARGV)
