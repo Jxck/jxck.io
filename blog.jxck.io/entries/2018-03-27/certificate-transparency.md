@@ -1,5 +1,11 @@
 # [expect-ct][hpkp][ct][security] Certificate Transparency の仕組みと HPKP から Expect-CT への移行
 
+
+## Update
+
+- 2018/3/30: Let's Encrypt が SCT 埋め込みに対応したため、 [本サイトでの適用](#本サイトでの適用) を更新した。
+
+
 ## Intro
 
 本サイトは HPKP (public-key-pins-report-only) に対応していた。
@@ -92,7 +98,8 @@ MITM によってすり替えられたレスポンスに使用された証明書
 
 Chrome は既に、 HPKP を Deprecate し Expect-CT への移行を促している
 
-[Intent To Deprecate And Remove: Public Key Pinning](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/he9tr7p3rZ8/eNMwKPmUBAAJ)
+- [Intent To Deprecate And Remove: Public Key Pinning](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/he9tr7p3rZ8/eNMwKPmUBAAJ)
+- [Certificate Transparency in Chrome - Change to Enforcement Date](https://groups.google.com/a/chromium.org/forum/#!msg/ct-policy/sz_3W_xKBNY/6jq2ghJXBAAJ)
 
 まず、前提としての CT のエコシステムについて解説する。
 
@@ -378,7 +385,7 @@ CT Log Server への登録は、誰でもできる。
 
 CA に頼らず SCT を自分で提供する場合は、 TLS Handshake の `signed_certificate_timestamp` 拡張を用いる。
 
-しかし、現在これに対応してるサーバは少なく、本サイトで使用している h2o もまだこれに対応していない。
+しかし、現在これに対応してるサーバは少なく、本サイトで使用している h2o は [執筆時では未対応](https://github.com/h2o/h2o/issues/448) である。
 
 (ハンドシェイクレベルなため mruby のハンドラでも手が出せない)
 
@@ -798,14 +805,21 @@ Chrome では、 Certificate Transparency の情報を日本語で表示する�
 
 ## 本サイトでの適用
 
-本サイトは h2o で配信しているが、 TLS への SCT はまだ対応していない。
+Let's Encrypt の SCT 埋め込みがサポートされた。
 
-一方、 Let's Encrypt の SCT 埋め込み証明書の対応は 2018 Q1 とされているが、執筆時点でまだ対応されていない。
+[Signed Certificate Timestamps embedded in certificates - API Announcements - Let's Encrypt Community Support](https://community.letsencrypt.org/t/signed-certificate-timestamps-embedded-in-certificates/57187/2)
 
-そこで、デプロイに先行して本記事だけ先に公開することとした。
+本サイトでは証明書を再発行し SCT が埋め込まれた証明書を取得した。
 
-SCT が埋め込まれるようになったら、 Expect-CT を適用し、レポートなどを収集することで知見を集めつつ、本記事に追記したい。
+![Chrome DevTools の Security タブで本サイトの証明書に埋め込まれた SCT を確認する](sct-in-chrome-devtools.png#938x498 "certificate transparency sct check in chrome devtools security tab")
 
-- [Add support for signed_certificate_timestamp TLS extension #448](https://github.com/h2o/h2o/issues/448)
-- [Signed Certificate Timestamps embedded in certificates - API Announcements - Let's Encrypt Community Support](https://community.letsencrypt.org/t/signed-certificate-timestamps-embedded-in-certificates/57187)
-- [Certificate Transparency in Chrome - Change to Enforcement Date](https://groups.google.com/a/chromium.org/forum/#!msg/ct-policy/sz_3W_xKBNY/6jq2ghJXBAAJ)
+また、 `jxck.io` および `blog.jxck.io` に Expect-CT ヘッダを Enforce 無し(Report-Only 相当) で適用した。
+
+
+```
+Expect-Ct: max-age=31536000, report-uri https://report-uri.example.com
+```
+
+HPKP をデプロイした時も、レポートなど来ないだろうと思っていたが、ある特定のサービスからレポートが頻繁に来ていた。
+
+Expect-CT も、実際にどういうレポートが発生するのか未知であるため、知見を貯めていきたい。
