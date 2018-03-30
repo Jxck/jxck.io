@@ -1,4 +1,5 @@
 certbot-auto certonly \
+  # --force-renewal \
   --manual \
   --email admin@jxck.io \
   --agree-tos \
