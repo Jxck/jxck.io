@@ -27,6 +27,7 @@ Proc.new do |env|
       "report-uri #{REPORT_URI}"
     ]
     headers["Content-Security-Policy-Report-Only"] = csp.join(" ")
+    headers["Expect-CT"] = "max-age=31536000, report-uri https://report-uri.jxck.io;"
   else
     # CSP for Normal Page
     csp = [
@@ -49,6 +50,7 @@ Proc.new do |env|
       "report-uri #{REPORT_URI}"
     ]
     headers["Content-Security-Policy-Report-Only"] = csp.join(" ")
+    headers["Expect-CT"] = "max-age=31536000, report-uri https://report-uri.jxck.io;"
   end
   [399, headers, []]
 end
