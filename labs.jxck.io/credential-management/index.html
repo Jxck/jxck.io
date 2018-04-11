@@ -21,24 +21,51 @@
   <button type=submit>ok</button>
 </form>
 
+<p><a id=signin href=/>signin</a>
+<p><a id=signout href=/>signout</a>
+
 <script>
-let $form = document.querySelector("#login")
-$form.addEventListener("submit", (e) => {
-  console.log(e.target)
-  e.preventDefault()
+  document.addEventListener('DOMContentLoaded', async () => {
+    if (navigator.credentials === undefined) return console.log('navigator.credentials unsupported')
 
-  if (navigator.credentials) {
-    let credential = new PasswordCredential(e.target)
-    navigator
-      .credentials
-      .store(credential)
-      .then((e) => {
+    const $form = document.querySelector("#login")
+    $form.addEventListener("submit", async (e) => {
+      console.log(e.target)
+      e.preventDefault()
+
+      const credential = new PasswordCredential(e.target)
+
+      try {
+        const e = await navigator.credentials.store(credential)
         console.log(e)
-      })
-      .catch((err) => {
+      } catch (err) {
         console.log(err)
-      })
-  }
-});
+      } finally {
+        console.log('signin')
+      }
+    })
+  })
 
+  document.addEventListener('DOMContentLoaded', async () => {
+    const $signin = document.querySelector('#signin')
+    $signin.addEventListener('click', async (e) => {
+      e.preventDefault()
+
+      const cred = await navigator.credentials.get({
+        password: true
+      })
+      console.log(cred)
+    })
+  })
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    const $signout = document.querySelector('#signout')
+    $signout.addEventListener('click', async (e) => {
+      e.preventDefault()
+      navigator.credentials.preventSilentAccess()
+    })
+  })
+
+  // prevent SilentAccess すると、状態が保存できるので
+  // mediate を指定するよりもこっちの方が保存しやすい
 </script>
