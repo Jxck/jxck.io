@@ -32,13 +32,14 @@ Safari 開発者の Tweet で、モチベーションが補足されている。
 
 > --- <cite><https://twitter.com/rmondello/status/943545865204989953></cite>
 
-ちなみに MacOS High Sierra の Safari TP46 と Safari 11.0.2 の UA は以下のようになっている(Update: Safari 11.0.3 を追加)
+ちなみに MacOS High Sierra の Safari TP46 と Safari 11.0.2 の UA は以下のようになっている(Update: Safari 11.0.3, 11.1 を追加)
 
 
 ```
 (TP46):   User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1 Safari/605.1.15
 (11.0.2): User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/604.4.7 (KHTML, like Gecko) Version/11.0.2 Safari/604.4.7
 (11.0.3): User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/604.5.6 (KHTML, like Gecko) Version/11.0.3 Safari/604.5.6
+(11.1)  : User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1 Safari/605.1.15
 ```
 
 (一応その次の TP47 でも値は変わっていないが、これまで TP Update で UA が変わっていたのかは未確認)
