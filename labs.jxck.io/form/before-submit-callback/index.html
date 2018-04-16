@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>DEMO | labs.jxck.io</title>
+
+<style>
+</style>
+
+<h1>Test</h1>
+
+<form method=get action=".">
+  <input type=text name=name value=test />
+  <button type=submit>submit</button>
+</form>
+
+<script>
+  const $form = document.querySelector('form')
+  $form.addEventListener('formdata', (e) => {
+    const data = e.formData
+    data.append('csrf-token', 'xxxxxxxxxxxx')
+    console.log(JSON.stringify(Array.from(data)))
+  })
+  $form.addEventListener('submit', (e) => {
+    const data = new FormData(e.target)
+    console.log(JSON.stringify(Array.from(data)))
+  })
+</script>
