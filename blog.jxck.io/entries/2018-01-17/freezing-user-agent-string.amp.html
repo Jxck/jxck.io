@@ -52,7 +52,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2018-01-17T08:00:00+08:00",
-  "dateModified": "2018-04-16T08:00:00+08:00",
+  "dateModified": "2018-04-17T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -97,7 +97,8 @@ article img {
   box-sizing: content-box;
 }
 
-article ul, article ol {
+article ul,
+article ol {
   margin-left: 0.8em;
   font-family: monospace;
   font-size: 1.2em;
@@ -122,8 +123,8 @@ article dl {
 
 @supports (line-height-step: 1px) {
   article {
-    line-height: 1.5;
     --grid: 1.5em;
+    line-height: 1.5;
     line-height-step: var(--grid);
   }
 
@@ -142,8 +143,8 @@ article dl {
 
   article section {
     /* grid for debug */
-    /*background-size: 100% var(--grid);*/
-    /*background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px);*/
+    /* background-size: 100% var(--grid); */
+    /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
   }
 
   article p {
@@ -163,9 +164,10 @@ article dl {
   font-style: normal;
   font-weight: 400;
   font-display: optional;
-  src: local("NotoSansCJKjp-Bold.otf"),
-       local("NotoSansJP-Bold.otf"),
-       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular-201802.woff2") format("woff");
+  src:
+    local("NotoSansCJKjp-Bold.otf"),
+    local("NotoSansJP-Bold.otf"),
+    url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular-201802.woff2") format("woff");
 }
 
 @font-face {
@@ -173,9 +175,10 @@ article dl {
   font-style: normal;
   font-weight: 700;
   font-display: optional;
-  src: local("NotoSansCJKjp-Bold.otf"),
-       local("NotoSansJP-Bold.otf"),
-       url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold-201802.woff2") format("woff");
+  src:
+    local("NotoSansCJKjp-Bold.otf"),
+    local("NotoSansJP-Bold.otf"),
+    url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold-201802.woff2") format("woff");
 }
 
 html {
@@ -269,13 +272,12 @@ header {
   background-color: #222;
 }
 
-/** sticky header に合わせて link scroll をずらす **/
-h2:target,
 h2:target,
 h3:target,
 h4:target,
 h5:target,
 h6:target {
+  /* sticky header に合わせて link scroll をずらす */
   margin-top: calc(-50px - 0.2em);
   padding-top: calc(50px + 0.2em);
 }
@@ -340,15 +342,6 @@ h6 > a:visited {
   color: #222;
 }
 
-h1 > a:hover:before,
-h2 > a:hover:before,
-h3 > a:hover:before,
-h4 > a:hover:before,
-h5 > a:hover:before,
-h6 > a:hover:before {
-  color: Brown;
-}
-
 h1 > a::before {
   content: "# ";
   pointer-events: all;
@@ -369,11 +362,22 @@ h4 > a::before {
   pointer-events: all;
 }
 
-i::before, i::after {
+h1 > a:hover::before,
+h2 > a:hover::before,
+h3 > a:hover::before,
+h4 > a:hover::before,
+h5 > a:hover::before,
+h6 > a:hover::before {
+  color: Brown;
+}
+
+i::before,
+i::after {
   content: "*";
 }
 
-strong::before, strong::after {
+strong::before,
+strong::after {
   content: "**";
 }
 
@@ -398,7 +402,8 @@ blockquote p::before {
   content: "> ";
 }
 
-code::before, code::after {
+code::before,
+code::after {
   /* うざかった */
   /* content: "`"; */
 }
@@ -418,9 +423,6 @@ main {
 a {
   word-wrap: break-word;
   text-decoration: none;
-}
-
-a {
   color: RoyalBlue;
 }
 
@@ -428,7 +430,8 @@ a:visited {
   color: Brown;
 }
 
-ol, ul {
+ol,
+ul {
   list-style: none;
   padding-left: 0;
 }
@@ -438,7 +441,9 @@ li {
   word-wrap: break-word;
 }
 
-ul, ol, dl {
+ul,
+ol,
+dl {
   margin: 1.4em 0;
 }
 
@@ -494,7 +499,7 @@ pre::after {
   z-index: -1;
   position: relative;
   top: -1em;
-  content:"\A```";
+  content: "\A```";
 }
 
 pre > code {
@@ -554,17 +559,17 @@ pre > code::after {
 .hljs-strong {
   font-weight: bold;
 }
-
+/*
 .hljs,
-.hljs-subst ,
+.hljs-subst,
 .hljs-attribute,
 .hljs-selector-tag,
 .hljs-meta-keyword,
 .hljs-doctag,
-.hljs-name ,
+.hljs-name,
 .hljs-bullet,
 .hljs-code,
-.hljs-addition ,
+.hljs-addition,
 .hljs-symbol,
 .hljs-variable,
 .hljs-template-variable,
@@ -582,6 +587,7 @@ pre > code::after {
 .hljs-meta-string,
 .hljs-emphasis {
 }
+*/
 
 table {
   font-family: monospace;
@@ -590,7 +596,7 @@ table {
 }
 
 th {
-  padding: 0em 1.0em 0.6em;
+  padding: 0 1em 0.6em;
   border-left: 0.14em solid #222;
   border-bottom: 2px dashed #222;
 }
@@ -600,7 +606,8 @@ td {
   border-left: 0.14em solid #222;
 }
 
-th:last-child, td:last-child {
+th:last-child,
+td:last-child {
   border-right: 0.14em solid #222;
 }
 
@@ -631,7 +638,7 @@ th:last-child, td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2018-01-17>2018-01-17</time>
-    <li>updated_at: <time class=updated_at datetime=2018-04-16>2018-04-16</time>
+    <li>updated_at: <time class=updated_at datetime=2018-04-17>2018-04-17</time>
     <li class=tags>tags: [<a href='/tags/user-agent.html'>user-agent</a>,<a href='/tags/safari.html'>safari</a>]
   </ul>
 
@@ -661,10 +668,8 @@ th:last-child, td:last-child {
       <p>リリースノートの一文は、初見では何か違う意味かとも思ったが、これはやはり Safari の User-Agent を今後変更しないという意味のようだ。
       <p>Safari 開発者の Tweet で、モチベーションが補足されている。
       <blockquote>
-        <p>STP 46 freezes Safari&rsquo;s user agent string. It will not change in the future. This fixes two issues:: Updating the string breaking websites sniffing for particular versions of Safari, It being used for fingerprinting. Don&rsquo;t UA sniff; detect features directly.
-      </blockquote>
-      <blockquote>
-        <p>&mdash; <cite><a href="https://twitter.com/rmondello/status/943545865204989953">https://twitter.com/rmondello/status/943545865204989953</a></cite>
+        <p>STP 46 freezes Safari&rsquo;s user agent string. It will not change in the future. This fixes two issues:: Updating the string breaking websites sniffing for particular versions of Safari, It being used for fingerprinting. Don&rsquo;t UA sniff; detect features directly.<br>
+        &mdash; <cite><a href="https://twitter.com/rmondello/status/943545865204989953">https://twitter.com/rmondello/status/943545865204989953</a></cite>
       </blockquote>
       <p>ちなみに MacOS High Sierra の Safari TP46 と Safari 11.0.2 の UA は以下のようになっている(Update: Safari 11.0.3, 11.1 を追加)
       <pre><code translate="no">(TP46):   User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1 Safari/605.1.15
