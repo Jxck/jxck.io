@@ -16,7 +16,8 @@ article img {
   box-sizing: content-box;
 }
 
-article ul, article ol {
+article ul,
+article ol {
   margin-left: 0.8em;
   font-family: monospace;
   font-size: 1.2em;
@@ -41,8 +42,8 @@ article dl {
 
 @supports (line-height-step: 1px) {
   article {
-    line-height: 1.5;
     --grid: 1.5em;
+    line-height: 1.5;
     line-height-step: var(--grid);
   }
 
@@ -61,8 +62,8 @@ article dl {
 
   article section {
     /* grid for debug */
-    /*background-size: 100% var(--grid);*/
-    /*background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px);*/
+    /* background-size: 100% var(--grid); */
+    /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
   }
 
   article p {
