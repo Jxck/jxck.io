@@ -29,7 +29,6 @@ TP はあくまで Preview であり、これが *このままリリースされ
 Safari 開発者の Tweet で、モチベーションが補足されている。
 
 > STP 46 freezes Safari's user agent string. It will not change in the future. This fixes two issues:: Updating the string breaking websites sniffing for particular versions of Safari, It being used for fingerprinting. Don't UA sniff; detect features directly.
-
 > --- <cite><https://twitter.com/rmondello/status/943545865204989953></cite>
 
 ちなみに MacOS High Sierra の Safari TP46 と Safari 11.0.2 の UA は以下のようになっている(Update: Safari 11.0.3, 11.1 を追加)
