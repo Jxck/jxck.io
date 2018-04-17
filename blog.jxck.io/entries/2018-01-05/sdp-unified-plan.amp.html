@@ -178,6 +178,10 @@ article dl {
        url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold-201802.woff2") format("woff");
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -257,11 +261,23 @@ audio {
 header {
   z-index: 1;
   position: sticky;
+  position: -webkit-sticky;
   top: 0;
   box-sizing: border-box;
   margin: 0;
   padding: 0.4em;
   background-color: #222;
+}
+
+/** sticky header に合わせて link scroll をずらす **/
+h2:target,
+h2:target,
+h3:target,
+h4:target,
+h5:target,
+h6:target {
+  margin-top: calc(-50px - 0.2em);
+  padding-top: calc(50px + 0.2em);
 }
 
 header ul {
