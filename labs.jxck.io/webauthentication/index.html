@@ -2,55 +2,33 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 
-<title>WebAuthentication API DEMO | labs.jxck.io</title>
+<title>Web Authentication Labs | labs.jxck.io</title>
 
-<style>
-</style>
+<link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/body.css>
 
-<h1>WebAuthentication API DEMO</h1>
+<link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/header.css>
+<header>
+  <ul>
+    <li><a href=https://jxck.io><img class=logo alt="jxck logo" width=30 src=https://jxck.io/assets/img/jxck.svg></a>
+  </li>
+</header>
 
-<script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    if (!window.PublicKeyCredential) return;
+<link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/markdown.css>
+<link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/main.css>
+<main role=main class=archive>
+  <h1 id=labs><a href=#labs>Web Authentication Labs</a></h1>
+  <section>
+    <h2 id=contents><a href=#contents>contents</a></h2>
+    <ul>
+      <li><a href=basic>Basic DEMO</a>
+    </ul>
+  </section>
+</main>
 
-    const publicKey = {
-      // The challenge must be produced by the server, see the Security Considerations
-      challenge: crypto.getRandomValues(new Uint8Array(32)),
+<hr>
 
-      // Relying Party:
-      rp: {
-        name: "labs.jxck.io"
-      },
-
-      // User:
-      user: {
-        id: new TextEncoder("utf-8").encode("jxck@example.com"),
-        name: "jxck <jxck@example.com>",
-        displayName: "Jxck",
-      },
-
-      // This Relying Party will accept either an ES256 or RS256 credential, but
-      // prefers an ES256 credential.
-      pubKeyCredParams: [
-        {
-          type: "public-key",
-          alg: -7 // "ES256" as registered in the IANA COSE Algorithms registry
-        }
-      ],
-
-      timeout: 60000,  // 1 minute
-      excludeCredentials: [], // No exclude list of PKCredDescriptors
-      extensions: {}  // Include location information
-      // in attestation
-    }
-
-    // Note: The following call will cause the authenticator to display UI.
-    try {
-      console.log(publicKey)
-      const cred = await navigator.credentials.create({ publicKey })
-      console.log(cred)
-    } catch (err) {
-      console.error(cred)
-    }
-  })
-</script>
+<link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/footer.css>
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small></p>
+</footer>
+<script src=https://jxck.io/assets/js/ga.js></script>
