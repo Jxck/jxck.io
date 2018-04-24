@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Storage Access API Basic DEMO | labs.jxck.io</title>
+
+
+<h1>Storage Access API Basic DEMO</h1>
+<p>see devtools console</p>
+
+<script>
+  document.hasStorageAccess().then((hasAccess) => {
+    // Boolean hasAccess says whether the document has access or not.
+    console.log(hasAccess)
+  }).catch((reason) => {
+    // Promise was rejected for some reason.
+    console.error(reason)
+  })
+
+  document.requestStorageAccess().then(() => {
+    console.log('granted')
+  }).catch(() => {
+    console.error('denied')
+  })
+</script>

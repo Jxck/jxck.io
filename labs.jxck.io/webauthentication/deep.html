@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+
+<title>WebAuthentication API DEMO | labs.jxck.io</title>
+
+<style>
+</style>
+
+<h1>WebAuthentication API DEMO</h1>
+
+<script src=https://webauthn.bin.coffee/cbor.js></script>
+
+https://www.slideshare.net/FIDOAlliance/webauthn-tutorial
+
+<script>
+  function b64enc(uint8array, opt={urlsafe:false}) {
+    const str = btoa(String.fromCharCode(...uint8array))
+    if (opt.urlsafe) {
+      return str
+        .replace(/\+/g, "-")
+        .replace(/\//g, "_")
+        .replace(/=/g, "");
+    }
+    return str
+  }
+
+  function b64dec(b64str, opt={urlsafe:false}) {
+    if (opt.urlsafe) {
+      const len = b64str.length
+      b64str = b64str
+        .replace(/-/g, "+")
+        .replace(/_/g, "/")
+        .padEnd(len+((4-len%4)%4), "=")
+    }
+    return new Uint8Array([...atob(b64str)].map((e) => e.charCodeAt(0)))
+  }
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    if (!window.PublicKeyCredential) return alert("window.PublicKeyCredential not supported");
+
+    console.log("PublicKeyCredential supported")
+
+    const dialog = document.querySelector('dialog')
+
+    // The challenge must be produced by the server, see the Security Considerations
+    const challenge = crypto.getRandomValues(new Uint8Array(16))
+
+    console.log("challenge", challenge)
+
+    const cose_alg_ECDSA_w_SHA256 = -7
+    const publicKey = {
+      challenge,
+
+      // Relying Party:
+      rp: {
+        name: "labs.jxck.io" // @required
+      },
+
+      // User:
+      user: {
+        id: new TextEncoder("utf-8").encode("jxck@example.com"), // @required
+        displayName: "Jxck", // @required
+        name: "jxck <jxck@example.com>", // TODO: not required?
+      },
+
+      // This Relying Party will accept either an ES256 or RS256 credential, but
+      // prefers an ES256 credential.
+      pubKeyCredParams: [
+        {
+          type: "public-key",
+          alg: -7 // "ES256" signature algo (as registered in the IANA COSE Algorithms registry)
+        }
+      ],
+
+      // TODO
+      // authenticatorSelection: {
+      //   authenticatorAttachment: "cross-platform",
+      //   requireResidentKey: false,
+      //   userVerification: "preferred"
+      // },
+
+      timeout: 10000,  // shorten for easy debugging
+      excludeCredentials: [], // No exclude list of PKCredDescriptors
+      extensions: {
+        // "exts": true
+      }  // Include location information
+      // in attestation
+    }
+
+    // Note: The following call will cause the authenticator to display UI.
+    try {
+      console.log(publicKey)
+
+      dialog.showModal()
+
+      const credential = await navigator.credentials.create({ publicKey })
+      console.dir(credential)
+
+      const {attestationObject} = credential.response
+      console.log(attestationObject)
+
+      const {fmt, attStmt, authData}= CBOR.decode(attestationObject)
+      console.log(fmt, attStmt, authData)
+
+      const rpidHash  = authData.slice( 0, 32)
+      const flags     = authData.slice(32, 33)
+      const signCount = authData.slice(33, 37)
+
+      console.log("rpidHash",  rpidHash)
+      console.log("flags",     flags)
+      console.log("signCount", signCount)
+
+      // flag = [ED, AT, 0, 0, 0, UV, 0, UP] https://w3c.github.io/webauthn/#flags
+      const UP = (flags & (2**0)) >> 0 // UserPresent
+      const UV = (flags & (2**2)) >> 2 // UserVerified
+      const AT = (flags & (2**6)) >> 6 // AttestedCredentialData
+      const ED = (flags & (2**7)) >> 7 // Extension data included
+
+      console.log(UP, UV, AT, ED)
+
+      if (AT) {
+
+        const aaguid              = authData.slice(37, 53);
+        const credentialIdLength  = (authData[53] << 8) + authData[54];
+        const credentialId        = authData.slice(55, 55 + credentialIdLength);
+        const credentialPublicKey = CBOR.decode(authData.slice(55 + credentialIdLength).buffer);
+
+        console.log({
+          aaguid,
+          credentialIdLength,
+          credentialId,
+          credentialPublicKey
+        })
+
+        // const pubKeyBytes = assemblePublicKeyBytesData(pubkeyObj[cose_crv_x], pubkeyObj[cose_crv_y]);
+        const kty = credentialPublicKey[1]
+        const alg = credentialPublicKey[3]
+        const crv = credentialPublicKey[-1]
+        const x   = credentialPublicKey[-2]
+        const y   = credentialPublicKey[-3]
+
+        console.log({
+          kty,
+          alg,
+          crv,
+          x,
+          y
+        })
+
+        // [0x40, xcoord, ycoord] https://w3c.github.io/webauthn/#fido-u2f-attestation
+        const publickKeyU2F = new Uint8Array(1 + x.length + y.length)
+        publickKeyU2F[0] = 0x04
+        publickKeyU2F.set(x, 1)
+        publickKeyU2F.set(y, 1+x.length)
+
+        const b64 = b64enc(publickKeyU2F, {urlsafe:true})
+        console.log(b64)
+
+
+
+        const jwk = {
+          kty: "EC",
+          crv: "P-256",
+          x:   b64enc(x, {urlsafe:true}),
+          y:   b64enc(y, {urlsafe:true})
+        }
+        const cryptoKey = await crypto.subtle.importKey("jwk", jwk, {name: "ECDSA", namedCurve: "P-256"}, true, ["verify"])
+        console.log(cryptoKey)
+
+
+        // Check RP ID Hash Validation
+        const digest = await crypto.subtle.digest("SHA-256", new TextEncoder("utf-8").encode("labs.jxck.io"))
+        console.log("rpidHash",  rpidHash)
+        console.log("digest  ", new Uint8Array(digest))
+
+        ///////////////////////////////////////////////// create credential
+
+        ///////////////////////////////////////////////// get assertion
+
+
+        const newCredential = {
+          type: "public-key",
+          id: new Uint8Array(credential.rawId),
+          transports: ["usb", "nfc", "ble"],
+        }
+        console.log("New Credential: ", newCredential);
+
+        const challengeBytes = new Uint8Array(16);
+        window.crypto.getRandomValues(challengeBytes);
+
+        const publicKeyRequest = {
+          challenge:        challengeBytes,
+          timeout:          60000,
+          allowCredentials: [newCredential],
+          userVerification: "preferred",
+          extensions:       { "txAuthSimple": "Execute order 66." }
+        }
+
+        const pub = await navigator.credentials.get({publicKey: publicKeyRequest})
+      }
+
+
+
+
+      dialog.close('dialog close')
+    } catch (err) {
+      console.error(err)
+    }
+  })
+</script>
+
+<dialog>
+  <p>please touch !!
+</dialog>
+
+
+
+<article>
+  <h2>12.1. Registration</h2>
+This is the first-time flow, in which a new credential is created and registered with the server. In this flow, the Relying Party does not have a preference for platform authenticator or roaming authenticators.
+
+これが初めてのフローで、新しい資格証明が作成され、サーバーに登録されます。この流れでは、 Relying Party は、プラットフォームオーセンティケータまたはローミングオーセンティケータを優先しない。
+
+1. The user visits example.com, which serves up a script. At this point, the user may already be logged in using a legacy username and password, or additional authenticator, or other means acceptable to the Relying Party. Or the user may be in the process of creating a new account.
+1. ユーザはスクリプトを提供する example.com にアクセスします。この時点で、ユーザーは、従来のユーザー名とパスワード、または追加の認証装置、または RP が受け入れ可能な他の手段を使用して、すでにログインしている可能性があります。または、ユーザーが新しいアカウントを作成中である可能性があります。
+
+2. The Relying Party script runs the code snippet below.
+2. RP のスクリプトは、以下のコードを実行します。
+
+3. The client platform searches for and locates the authenticator.
+3. クライアントプラットフォームは、オーセンティケータを検索して探し出す。
+
+4. The client platform connects to the authenticator, performing any pairing actions if necessary.
+4. クライアントプラットフォームはオーセンティケータに接続し、必要に応じて任意のペアリングアクションを実行します。
+
+5. The authenticator shows appropriate UI for the user to select the authenticator on which the new credential will be created, and obtains a biometric or other authorization gesture from the user.
+5. オーセンティケータは、新しいクレデンシャルが作成されるオーセンティケータを選択するためのユーザに対する適切な UI を示し、ユーザからバイオメトリックまたは他の認可ジェスチャを取得する。
+
+6. The authenticator returns a response to the client platform, which in turn returns a response to the Relying Party script. If the user declined to select an authenticator or provide authorization, an appropriate error is returned.
+6.  オーセンティケータは、クライアントプラットフォームへの応答を返します。クライアントプラットフォームは、依拠当事者のスクリプトに応答を返します。ユーザがオーセンティケータを選択することを拒否した場合、またはオーソライゼーションを提供した場合、適切なエラーが返されます。
+
+7. If a new credential was created,
+7. 新しい資格が作成された場合
+
+  - The Relying Party script sends the newly generated credential public key to the server, along with additional information such as attestation regarding the provenance and characteristics of the authenticator.
+  - PR のスクリプトは、新しく生成された送信資格情報公開鍵など、オーセンティケータの出所及び特性に関する認証などの追加情報とともに、サーバへ送信。
+
+  - The server stores the credential public key in its database and associates it with the user as well as with the characteristics of authentication indicated by attestation, also storing a friendly name for later use.
+  - サーバーは、データベースに credential public key を保管し、それをユーザーに関連付けます。また、証明書で示された認証の特性と関連付け、後で使用するためにフレンドリーな名前も保管します。
+
+  - The script may store data such as the credential ID in local storage, to improve future UX by narrowing the choice of credential for the user.
+  - スクリプトは、ユーザーの資格情報の選択肢を絞り込んで将来の UX を改善するために、資格情報 ID などのデータをローカルストレージに格納することができます。
+
+
+<h2>12.3. Authentication</h2>
+
+This is the flow when a user with an already registered credential visits a website and wants to authenticate using the credential.
+
+1. The user visits example.com, which serves up a script.
+1. ユーザはスクリプトを提供する example.com にアクセスします。
+
+2. The script asks the client platform for an Authentication Assertion, providing as much information as possible to narrow the choice of acceptable credentials for the user. This can be obtained from the data that was stored locally after registration, or by other means such as prompting the user for a username.
+2. スクリプトは、クライアントプラットフォームに認証アサーションを要求し、できるだけ多くの情報を提供して、ユーザーの受け入れ可能な資格情報の選択肢を絞り込みます。これは、登録後にローカルに保存されたデータ、またはユーザーにユーザー名の入力を促すなどの他の手段によって取得できます。
+
+3. The Relying Party script runs one of the code snippets below.
+3. 依拠当事者のスクリプトは、以下のコードスニペットのいずれかを実行します。
+
+4. The client platform searches for and locates the authenticator.
+4. クライアントプラットフォームは、オーセンティケータを検索して探し出す。
+
+5. The client platform connects to the authenticator, performing any pairing actions if necessary.
+5. クライアントプラットフォームはオーセンティケータに接続し、必要に応じて任意のペアリングアクションを実行します。
+
+6. The authenticator presents the user with a notification that their attention is needed. On opening the notification, the user is shown a friendly selection menu of acceptable credentials using the account information provided when creating the credentials, along with some information on the origin that is requesting these keys.
+6. オーセンティケータは、注意が必要であるという通知をユーザに提示する。通知を開くと、資格情報の作成時に提供されたアカウント情報と、これらのキーを要求しているオリジンに関する情報を使用して、受け入れ可能な資格情報のフレンドリな選択メニューが表示されます。
+
+7. The authenticator obtains a biometric or other authorization gesture from the user.
+7. オーセンティケータは、ユーザからバイオメトリックまたは他の認可ジェスチャを取得する。
+
+8. The authenticator returns a response to the client platform, which in turn returns a response to the Relying Party script. If the user declined to select a credential or provide an authorization, an appropriate error is returned.
+8. オーセンティケータは、クライアントプラットフォームへの応答を返します。クライアントプラットフォームは、依拠当事者のスクリプトに応答を返します。ユーザーが信任状を選択することを拒否した場合、または許可を提供した場合、適切なエラーが戻されます。
+
+9. If an assertion was successfully generated and returned,
+9. アサーションが正常に生成されて返された場合、
+
+  - The script sends the assertion to the server.
+  - スクリプトはアサーションをサーバーに送信します。
+
+  - The server examines the assertion, extracts the credential ID, looks up the registered credential public key it is database, and verifies the assertion’s authentication signature. If valid, it looks up the identity associated with the assertion’s credential ID; that identity is now authenticated. If the credential ID is not recognized by the server (e.g., it has been deregistered due to inactivity) then the authentication has failed; each Relying Party will handle this in its own way.
+  - サーバは、アサーションを調べ、クレデンシャルIDを抽出し、それがデータベースである登録済みのクレデンシャル公開鍵を検索し、アサーションの認証署名を検証する。有効な場合は、アサーションのクレデンシャルIDに関連付けられているIDを検索します。そのアイデンティティーは認証されました。信任状IDがサーバーによって認識されない場合（たとえば、非アクティブのために登録抹消された場合）、認証は失敗しました。それぞれの依拠当事者が独自の方法でこれを処理します。
+
+  - The server now does whatever it would otherwise do upon successful authentication -- return a success page, set authentication cookies, etc.
+  - サーバーは認証が成功したときに何をしても成功します。成功ページを返し、認証Cookieを設定します。
+
+</article>
