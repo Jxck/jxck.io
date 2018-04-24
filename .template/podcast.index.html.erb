@@ -68,8 +68,8 @@
       <h2><a href="<%= e.url %>"><%= e.title %></a></h2>
       <%= e.theme_html %>
       <ul class=info>
-        <li>published_at: <time datetime=<%= e.datetime %>><%= e.datetime %></time>
-        <% e.guests.each do |guest| %><li>guest: <%= to_html(guest[0]).gsub("<p>", "").gsub("</p>", "") %><% end %>
+        <li>published_at: <time datetime=<%= e.datetime %>><%= e.datetime %></time><% e.guests.each do |guest| %>
+        <li>guest: <%= to_html(guest[0]).gsub("<p>", "").gsub("</p>", "") %><% end %>
       </ul>
     </li>
 <% end %>
