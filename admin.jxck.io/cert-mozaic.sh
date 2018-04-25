@@ -4,6 +4,8 @@ certbot-auto certonly \
   --agree-tos \
   --email admin@mozaic.fm \
   -w ../mozaic.fm \
+  --expand \
   -d mozaic.fm \
   -d files.mozaic.fm \
-  -d feed.mozaic.fm
+  -d feed.mozaic.fm \
+  -d labs.mozaic.fm
