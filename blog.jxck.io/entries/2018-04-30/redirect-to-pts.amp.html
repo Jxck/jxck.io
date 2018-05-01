@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html amp lang=ja>
+<head>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=https://blog.jxck.io/entries/2018-04-30/redirect-to-pts.html>
+<meta name=viewport content="width=device-width,minimum-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+<link rel=author href=https://jxck.io/assets/humans.txt>
+
+<meta name=author content=Jxck>
+  <meta name=description content="tmux, screen, termina のタブなど、 shell を複数起動する方法はいくつかある。Linux では、 pts を経由すれば、ある shell の出力を簡単に別の shell で表示することができる。これを応用すると、簡易ダッシュボードを作り色々便利に使...">
+  <meta name=keywords content="pty,tmux,tips">
+  <meta itemprop=image content="https://jxck.io/assets/img/jxck.png">
+  <meta itemprop=name content="blog.jxck.io">
+
+  <meta name=twitter:card content=summary>
+  <meta name=twitter:site content=@jxck_>
+  <meta name=twitter:url content="https://blog.jxck.io/entries/2018-04-30/redirect-to-pts.html">
+  <meta name=twitter:title content="Linux で出力を別の shell に pts 経由で表示する | blog.jxck.io">
+  <meta name=twitter:description content="tmux, screen, termina のタブなど、 shell を複数起動する方法はいくつかある。Linux では、 pts を経由すれば、ある shell の出力を簡単に別の shell で表示することができる。これを応用すると、簡易ダッシュボードを作り色々便利に使...">
+  <meta name=twitter:image content="https://jxck.io/assets/img/jxck.png">
+
+  <meta property=og:type content=article>
+  <meta property=og:url content="https://blog.jxck.io/entries/2018-04-30/redirect-to-pts.html">
+  <meta property=og:title content="Linux で出力を別の shell に pts 経由で表示する | blog.jxck.io">
+  <meta property=og:site_name content="blog.jxck.io">
+  <meta property=og:description content="tmux, screen, termina のタブなど、 shell を複数起動する方法はいくつかある。Linux では、 pts を経由すれば、ある shell の出力を簡単に別の shell で表示することができる。これを応用すると、簡易ダッシュボードを作り色々便利に使...">
+  <meta property=og:image content="https://jxck.io/assets/img/jxck.png">
+
+  <link rel=icon sizes=256x256 href="https://jxck.io/assets/img/jxck.png">
+  <link rel="shortcut icon" href="https://jxck.io/assets/img/jxck.png">
+  <link rel=apple-touch-icon sizes=256x256 href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "Linux で出力を別の shell に pts 経由で表示する | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2018-04-30T08:00:00+08:00",
+  "dateModified": "2018-05-01T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "tmux, screen, termina のタブなど、 shell を複数起動する方法はいくつかある。Linux では、 pts を経由すれば、ある shell の出力を簡単に別の shell で表示することができる。これを応用すると、簡易ダッシュボードを作り色々便利に使..."
+}
+</script>
+
+<title>Linux で出力を別の shell に pts 経由で表示する | blog.jxck.io</title>
+<script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+<script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+<script async src=https://cdn.ampproject.org/v0.js></script>
+
+<style amp-custom>
+article section p {
+  margin-left: 0;
+}
+
+article pre {
+  margin: 0;
+}
+
+article table {
+  margin-left: 0;
+}
+
+article img {
+  margin: 1em 0;
+  border: 1px solid #ccc;
+  box-sizing: content-box;
+}
+
+article ul,
+article ol {
+  margin-left: 0.8em;
+  font-family: monospace;
+  font-size: 1.2em;
+}
+
+article li {
+  margin-bottom: 0.4em;
+}
+
+article ul li ul {
+  margin: 0.2em 0 1.2em 1em;
+  font-size: 1em;
+}
+
+article ul li ul li {
+  margin-bottom: 0;
+}
+
+article dl {
+  margin: 1.4em 0 1.4em 0.8em;
+}
+
+@supports (line-height-step: 1px) {
+  article {
+    --grid: 1.5em;
+    line-height: 1.5;
+    line-height-step: var(--grid);
+  }
+
+  article h1,
+  article h2,
+  article h3,
+  article h4,
+  article h5,
+  article h6 {
+    display: inline-block;
+    width: 100%;
+    line-height-step: 0;
+    line-height: 1.2;
+    margin-bottom: 0;
+  }
+
+  article section {
+    /* grid for debug */
+    /* background-size: 100% var(--grid); */
+    /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
+  }
+
+  article p {
+    margin-top: var(--grid);
+    margin-bottom: var(--grid);
+  }
+
+  article pre,
+  article table {
+    line-height-step: 0;
+    line-height: normal;
+  }
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src:
+    local("NotoSansCJKjp-Bold.otf"),
+    local("NotoSansJP-Bold.otf"),
+    url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular-201802.woff2") format("woff");
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 700;
+  font-display: optional;
+  src:
+    local("NotoSansCJKjp-Bold.otf"),
+    local("NotoSansJP-Bold.otf"),
+    url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold-201802.woff2") format("woff");
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+  color: #222;
+  background-color: #fefefe;
+}
+
+code {
+  font-family: monospace, "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+}
+
+iframe {
+  display: block;
+  max-width: 100%;
+  margin: 1em 0;
+}
+
+.archive {
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.archive ul {
+  margin: 0;
+}
+
+.archive time {
+  padding-right: 0.5em;
+}
+
+.archive time::after {
+  content: ":";
+}
+
+.archive .tags {
+  font-size: 0.8em;
+  margin-left: 1em;
+}
+
+.tags a {
+  margin: 0 0.2em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+audio {
+  width: 70%;
+}
+
+@media screen and (max-device-width: 480px) {
+  audio {
+    width: 100%;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.info li {
+  margin-right: 1em;
+  list-style-type: none;
+}
+
+.info li::before {
+  content: none;
+}
+
+header {
+  z-index: 1;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.4em;
+  background-color: #222;
+}
+
+h2:target,
+h3:target,
+h4:target,
+h5:target,
+h6:target {
+  /* sticky header に合わせて link scroll をずらす */
+  margin-top: calc(-50px - 0.2em);
+  padding-top: calc(50px + 0.2em);
+}
+
+header ul {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 80%;
+  margin: 0 auto;
+  padding: 4px;
+}
+
+header ul li {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  margin-left: 1em;
+}
+
+header ul li a {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+header ul li svg {
+  fill: #fff;
+}
+
+header ul li::before {
+  content: none;
+}
+
+header ul li:first-child {
+  flex-grow: 1;
+  margin-left: 0;
+}
+
+header .logo {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  pointer-events: none;
+  color: #222;
+}
+
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: #222;
+}
+
+h1 > a::before {
+  content: "# ";
+  pointer-events: all;
+}
+
+h2 > a::before {
+  content: "## ";
+  pointer-events: all;
+}
+
+h3 > a::before {
+  content: "### ";
+  pointer-events: all;
+}
+
+h4 > a::before {
+  content: "#### ";
+  pointer-events: all;
+}
+
+h1 > a:hover::before,
+h2 > a:hover::before,
+h3 > a:hover::before,
+h4 > a:hover::before,
+h5 > a:hover::before,
+h6 > a:hover::before {
+  color: Brown;
+}
+
+i::before,
+i::after {
+  content: "*";
+}
+
+strong::before,
+strong::after {
+  content: "**";
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+dl dt::after {
+  content: ":";
+}
+
+blockquote p::before {
+  content: "> ";
+}
+
+code::before,
+code::after {
+  /* うざかった */
+  /* content: "`"; */
+}
+
+main {
+  display: block;
+  width: 80%;
+  margin: 1em auto;
+}
+
+@media screen and (max-device-width: 480px) {
+  main {
+    width: 94%;
+  }
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+  color: RoyalBlue;
+}
+
+a:visited {
+  color: Brown;
+}
+
+ol,
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+ul,
+ol,
+dl {
+  margin: 1.4em 0;
+}
+
+dl dt {
+  font-weight: bold;
+}
+
+dl dd {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+blockquote {
+  display: block;
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  padding: 1em;
+  margin: 0;
+}
+
+code {
+  border: 1px solid #ddd;
+  background-color: #efefef;
+  border-radius: 4px;
+  padding: 0.1em;
+  margin: 1.4em 0;
+}
+
+footer {
+  padding: 1em;
+}
+
+footer strong,
+footer .copyright {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  font-style: italic;
+  font-size: small;
+}
+
+
+pre {
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: 1.2em;
+  margin: 1.4em 0 0 0;
+  border-radius: 4px;
+}
+
+pre::before {
+  content: "```" attr(class) "\A";
+}
+
+pre::after {
+  z-index: -1;
+  position: relative;
+  top: -1em;
+  content: "\A```";
+}
+
+pre > code {
+  overflow: auto;
+  display: block;
+  padding: 0.6em;
+  margin: 0;
+  border: none;
+  background-color: #efefef;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+/*
+.hljs,
+.hljs-subst,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-name,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-type,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-section,
+.hljs-meta,
+.hljs-meta-string,
+.hljs-emphasis {
+}
+*/
+
+table {
+  font-family: monospace;
+  margin: 2em 0;
+  border-spacing: 0 0.4em;
+}
+
+th {
+  padding: 0 1em 0.6em;
+  border-left: 0.14em solid #222;
+  border-bottom: 2px dashed #222;
+}
+
+td {
+  padding: 0.4em 1.2em;
+  border-left: 0.14em solid #222;
+}
+
+th:last-child,
+td:last-child {
+  border-right: 0.14em solid #222;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+</style>
+</head>
+<body>
+<header>
+  <ul>
+    <li><a href=https://blog.jxck.io><amp-img class=logo alt="blog top" width=30 height=30 src=https://jxck.io/assets/img/blog.svg></a>
+    <li><a href=.><amp-img alt="move to parent directory" width=30 height=30 src=https://jxck.io/assets/img/up.svg></a>
+    <li><a href=/feeds/atom.xml><amp-img alt="rss feed" width=30 height=30 src=https://jxck.io/assets/img/rss.svg></a>
+    <li><a href=https://jxck.io/humans.txt><amp-img alt="huamns.txt" width=30 height=30 src=https://jxck.io/assets/img/humans.svg></a>
+    <li><a href=https://jxck.io><amp-img class=logo alt="jxck logo" width=30 height=30 src=https://jxck.io/assets/img/jxck.svg></a>
+  </ul>
+</header>
+<main>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2018-04-30>2018-04-30</time>
+    <li>updated_at: <time class=updated_at datetime=2018-05-01>2018-05-01</time>
+    <li class=tags>tags: [<a href='/tags/pty.html'>pty</a>,<a href='/tags/tmux.html'>tmux</a>,<a href='/tags/tips.html'>tips</a>]
+  </ul>
+
+
+  <article>
+    <h1><a href=/entries/2018-04-30/redirect-to-pts.html>Linux で出力を別の shell に pts 経由で表示する</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p>tmux, screen, termina のタブなど、 shell を複数起動する方法はいくつかある。
+      <p>Linux では、 pts を経由すれば、ある shell の出力を簡単に別の shell で表示することができる。
+      <p>これを応用すると、簡易ダッシュボードを作り色々便利に使うことができる。
+    </section>
+    <section>
+      <h2 id="stdoutstderr"><a href="#stdoutstderr">stdout/stderr</a></h2>
+      <p>代表例として、 tmux で pane を分割し、コマンドの出力を stdout/stderr で分けて pane ごとに表示するケースで解説する。
+      <p>まず、以下のようにランダムにエラー出力を吐くプログラムを実行する。
+      <pre class=js><code translate="no">#!/usr/bin/env ruby
+
+while true do
+  if rand(0..1) == 0 then
+    STDERR.print &quot;hello\n&quot;
+  else
+    STDERR.puts &quot;world\n&quot;
+  end
+  sleep(1)
+end</code></pre>
+      <p>ターミナル上では stdout/stderror の出力は同じ画面上に出る。
+      <pre class=sh><code translate="no">$ ./hello_world
+hello
+world
+hello
+world
+world
+world
+world
+hello
+world</code></pre>
+      <p>tmux で別のペインで表示したい場合に、例えば一旦別のファイルに追記し、ペインごとに <code translate="no">tail -f</code> することもできる。
+      <pre class=sh><code translate="no">$ ./hello_world 1&gt; ./success.log 2&gt; ./error.log</code></pre>
+      <pre class=sh><code translate="no"># pane1 for stdout
+$ tail -f access.log</code></pre>
+      <pre class=sh><code translate="no"># pane2 for stderr
+$ tail -f error.log</code></pre>
+      <p>この一時ファイルに相当するものとして pts を代用できる。
+    </section>
+    <section>
+      <h2 id="devpts"><a href="#devpts">/dev/pts</a></h2>
+      <p>tmux で pane を開いた状態で、 <code translate="no">tty</code> コマンドで紐付いた pts を確認する。
+      <p>(<code translate="no">ps</code> で確認することもできる)
+      <pre class=sh><code translate="no">$ tty
+/dev/pts/2
+...</code></pre>
+      <p>紐付いている pts の実態は <code translate="no">/dev/pts/2</code> である。
+      <p>試しに、別の pane からこの pts に対して書き込みをすると、結果が表示されることがわかるだろう。
+      <pre class=sh><code translate="no">## 別の pane
+$ echo hello &gt; /dev/pts/2</code></pre>
+      <pre class=sh><code translate="no"># pane1 for stdout
+$ hello # 表示される</code></pre>
+      <p>逆に、別の pane から cat で読み出すと、入力された値を奪い取ることもできる。
+      <pre class=sh><code translate="no">## 別の pane
+$ cat /dev/pts/2
+# 入力が表示される</code></pre>
+      <pre class=sh><code translate="no">$ # ここでの入力は奪われる</code></pre>
+      <p>つまり、 pts への書き込みは pane に表示され、 pane への入力は pts から読み出せる。
+      <p>pts は疑似端末であり、 tmux と shell に間に挟まった中継役のようなものだと思えば良い。
+      <p>例えば、実行結果の stdout を pane1 に、 stderr を pane2 に分岐して出力したい場合。
+      <p>もし pane1 が <code translate="no">/dev/pts2/</code> に、 pane2 が <code translate="no">/dev/pts5/</code> に紐づくとすると。
+      <pre class=sh><code translate="no">$ ./hello_world 1&gt; /dev/pts2 2&gt; /dev/pts5</code></pre>
+      <p>これで、結果を 2 つの pane に分けて出力することができる。
+    </section>
+    <section>
+      <h2 id="応用"><a href="#応用">応用</a></h2>
+      <p><code translate="no">tee</code> コマンドと、プロセス置換を使うと、出力を自由にフィルタし分岐することができる。
+      <p>その分岐先を、複数の pane にわけて指定すれば、簡易ダッシュボードを作ることができる。
+      <p>例えば access_log をステータスコードごとに出す場合は以下のようになる。
+      <pre class=sh><code translate="no">$ tail -f access.log | tee &gt;(grep 404 &gt; /dev/pts/5) &gt;(grep 500 &gt; /dev/pts/6) &gt;(grep 451 &gt; /dev/pts/7)</code></pre>
+      <p>Logger のタグ (Info, Debug, Trace etc) を使った分岐なんかも地味に便利だったりする。
+      <pre class=sh><code translate="no">$ tail -f debug.log | tee &gt;(grep Info &gt; /dev/pts/5) &gt;(grep Debug &gt; /dev/pts/6) &gt;(grep Trace &gt; /dev/pts/7)</code></pre>
+    </section>
+  </article>
+
+</main>
+<hr>
+<footer>
+  <p><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small> Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>google analytics</a>.</p>
+</footer>
+</body>
+</html>
+<amp-analytics type=googleanalytics id=analytics1>
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>

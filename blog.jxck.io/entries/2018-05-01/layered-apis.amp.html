@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html amp lang=ja>
+<head>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=https://blog.jxck.io/entries/2018-05-01/layered-apis.html>
+<meta name=viewport content="width=device-width,minimum-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+<link rel=author href=https://jxck.io/assets/humans.txt>
+
+<meta name=author content=Jxck>
+  <meta name=description content="Extensible Manifest 以降、標準化作業は Low Level API にフォーカスし、一定の成果が出ている。そこで、これらをベースとし、よりアプリレイヤの需要を満たすための High Level API をどう標準化するか、という点について指針が提案された...">
+  <meta name=keywords content="async local storage,layered api,extensible web,whatwg">
+  <meta itemprop=image content="https://jxck.io/assets/img/jxck.png">
+  <meta itemprop=name content="blog.jxck.io">
+
+  <meta name=twitter:card content=summary>
+  <meta name=twitter:site content=@jxck_>
+  <meta name=twitter:url content="https://blog.jxck.io/entries/2018-05-01/layered-apis.html">
+  <meta name=twitter:title content="Layered APIs と High Level API の標準化指針 | blog.jxck.io">
+  <meta name=twitter:description content="Extensible Manifest 以降、標準化作業は Low Level API にフォーカスし、一定の成果が出ている。そこで、これらをベースとし、よりアプリレイヤの需要を満たすための High Level API をどう標準化するか、という点について指針が提案された...">
+  <meta name=twitter:image content="https://jxck.io/assets/img/jxck.png">
+
+  <meta property=og:type content=article>
+  <meta property=og:url content="https://blog.jxck.io/entries/2018-05-01/layered-apis.html">
+  <meta property=og:title content="Layered APIs と High Level API の標準化指針 | blog.jxck.io">
+  <meta property=og:site_name content="blog.jxck.io">
+  <meta property=og:description content="Extensible Manifest 以降、標準化作業は Low Level API にフォーカスし、一定の成果が出ている。そこで、これらをベースとし、よりアプリレイヤの需要を満たすための High Level API をどう標準化するか、という点について指針が提案された...">
+  <meta property=og:image content="https://jxck.io/assets/img/jxck.png">
+
+  <link rel=icon sizes=256x256 href="https://jxck.io/assets/img/jxck.png">
+  <link rel="shortcut icon" href="https://jxck.io/assets/img/jxck.png">
+  <link rel=apple-touch-icon sizes=256x256 href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "Layered APIs と High Level API の標準化指針 | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2018-05-01T08:00:00+08:00",
+  "dateModified": "2018-05-01T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "Extensible Manifest 以降、標準化作業は Low Level API にフォーカスし、一定の成果が出ている。そこで、これらをベースとし、よりアプリレイヤの需要を満たすための High Level API をどう標準化するか、という点について指針が提案された..."
+}
+</script>
+
+<title>Layered APIs と High Level API の標準化指針 | blog.jxck.io</title>
+<script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+<script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+<script async src=https://cdn.ampproject.org/v0.js></script>
+
+<style amp-custom>
+article section p {
+  margin-left: 0;
+}
+
+article pre {
+  margin: 0;
+}
+
+article table {
+  margin-left: 0;
+}
+
+article img {
+  margin: 1em 0;
+  border: 1px solid #ccc;
+  box-sizing: content-box;
+}
+
+article ul,
+article ol {
+  margin-left: 0.8em;
+  font-family: monospace;
+  font-size: 1.2em;
+}
+
+article li {
+  margin-bottom: 0.4em;
+}
+
+article ul li ul {
+  margin: 0.2em 0 1.2em 1em;
+  font-size: 1em;
+}
+
+article ul li ul li {
+  margin-bottom: 0;
+}
+
+article dl {
+  margin: 1.4em 0 1.4em 0.8em;
+}
+
+@supports (line-height-step: 1px) {
+  article {
+    --grid: 1.5em;
+    line-height: 1.5;
+    line-height-step: var(--grid);
+  }
+
+  article h1,
+  article h2,
+  article h3,
+  article h4,
+  article h5,
+  article h6 {
+    display: inline-block;
+    width: 100%;
+    line-height-step: 0;
+    line-height: 1.2;
+    margin-bottom: 0;
+  }
+
+  article section {
+    /* grid for debug */
+    /* background-size: 100% var(--grid); */
+    /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
+  }
+
+  article p {
+    margin-top: var(--grid);
+    margin-bottom: var(--grid);
+  }
+
+  article pre,
+  article table {
+    line-height-step: 0;
+    line-height: normal;
+  }
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src:
+    local("NotoSansCJKjp-Bold.otf"),
+    local("NotoSansJP-Bold.otf"),
+    url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular-201802.woff2") format("woff");
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 700;
+  font-display: optional;
+  src:
+    local("NotoSansCJKjp-Bold.otf"),
+    local("NotoSansJP-Bold.otf"),
+    url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold-201802.woff2") format("woff");
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+  color: #222;
+  background-color: #fefefe;
+}
+
+code {
+  font-family: monospace, "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+}
+
+iframe {
+  display: block;
+  max-width: 100%;
+  margin: 1em 0;
+}
+
+.archive {
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.archive ul {
+  margin: 0;
+}
+
+.archive time {
+  padding-right: 0.5em;
+}
+
+.archive time::after {
+  content: ":";
+}
+
+.archive .tags {
+  font-size: 0.8em;
+  margin-left: 1em;
+}
+
+.tags a {
+  margin: 0 0.2em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+audio {
+  width: 70%;
+}
+
+@media screen and (max-device-width: 480px) {
+  audio {
+    width: 100%;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.info li {
+  margin-right: 1em;
+  list-style-type: none;
+}
+
+.info li::before {
+  content: none;
+}
+
+header {
+  z-index: 1;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.4em;
+  background-color: #222;
+}
+
+h2:target,
+h3:target,
+h4:target,
+h5:target,
+h6:target {
+  /* sticky header に合わせて link scroll をずらす */
+  margin-top: calc(-50px - 0.2em);
+  padding-top: calc(50px + 0.2em);
+}
+
+header ul {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 80%;
+  margin: 0 auto;
+  padding: 4px;
+}
+
+header ul li {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  margin-left: 1em;
+}
+
+header ul li a {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+header ul li svg {
+  fill: #fff;
+}
+
+header ul li::before {
+  content: none;
+}
+
+header ul li:first-child {
+  flex-grow: 1;
+  margin-left: 0;
+}
+
+header .logo {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  pointer-events: none;
+  color: #222;
+}
+
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: #222;
+}
+
+h1 > a::before {
+  content: "# ";
+  pointer-events: all;
+}
+
+h2 > a::before {
+  content: "## ";
+  pointer-events: all;
+}
+
+h3 > a::before {
+  content: "### ";
+  pointer-events: all;
+}
+
+h4 > a::before {
+  content: "#### ";
+  pointer-events: all;
+}
+
+h1 > a:hover::before,
+h2 > a:hover::before,
+h3 > a:hover::before,
+h4 > a:hover::before,
+h5 > a:hover::before,
+h6 > a:hover::before {
+  color: Brown;
+}
+
+i::before,
+i::after {
+  content: "*";
+}
+
+strong::before,
+strong::after {
+  content: "**";
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+dl dt::after {
+  content: ":";
+}
+
+blockquote p::before {
+  content: "> ";
+}
+
+code::before,
+code::after {
+  /* うざかった */
+  /* content: "`"; */
+}
+
+main {
+  display: block;
+  width: 80%;
+  margin: 1em auto;
+}
+
+@media screen and (max-device-width: 480px) {
+  main {
+    width: 94%;
+  }
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+  color: RoyalBlue;
+}
+
+a:visited {
+  color: Brown;
+}
+
+ol,
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+ul,
+ol,
+dl {
+  margin: 1.4em 0;
+}
+
+dl dt {
+  font-weight: bold;
+}
+
+dl dd {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+blockquote {
+  display: block;
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  padding: 1em;
+  margin: 0;
+}
+
+code {
+  border: 1px solid #ddd;
+  background-color: #efefef;
+  border-radius: 4px;
+  padding: 0.1em;
+  margin: 1.4em 0;
+}
+
+footer {
+  padding: 1em;
+}
+
+footer strong,
+footer .copyright {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  font-style: italic;
+  font-size: small;
+}
+
+
+pre {
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: 1.2em;
+  margin: 1.4em 0 0 0;
+  border-radius: 4px;
+}
+
+pre::before {
+  content: "```" attr(class) "\A";
+}
+
+pre::after {
+  z-index: -1;
+  position: relative;
+  top: -1em;
+  content: "\A```";
+}
+
+pre > code {
+  overflow: auto;
+  display: block;
+  padding: 0.6em;
+  margin: 0;
+  border: none;
+  background-color: #efefef;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+/*
+.hljs,
+.hljs-subst,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-name,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-type,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-section,
+.hljs-meta,
+.hljs-meta-string,
+.hljs-emphasis {
+}
+*/
+
+table {
+  font-family: monospace;
+  margin: 2em 0;
+  border-spacing: 0 0.4em;
+}
+
+th {
+  padding: 0 1em 0.6em;
+  border-left: 0.14em solid #222;
+  border-bottom: 2px dashed #222;
+}
+
+td {
+  padding: 0.4em 1.2em;
+  border-left: 0.14em solid #222;
+}
+
+th:last-child,
+td:last-child {
+  border-right: 0.14em solid #222;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+</style>
+</head>
+<body>
+<header>
+  <ul>
+    <li><a href=https://blog.jxck.io><amp-img class=logo alt="blog top" width=30 height=30 src=https://jxck.io/assets/img/blog.svg></a>
+    <li><a href=.><amp-img alt="move to parent directory" width=30 height=30 src=https://jxck.io/assets/img/up.svg></a>
+    <li><a href=/feeds/atom.xml><amp-img alt="rss feed" width=30 height=30 src=https://jxck.io/assets/img/rss.svg></a>
+    <li><a href=https://jxck.io/humans.txt><amp-img alt="huamns.txt" width=30 height=30 src=https://jxck.io/assets/img/humans.svg></a>
+    <li><a href=https://jxck.io><amp-img class=logo alt="jxck logo" width=30 height=30 src=https://jxck.io/assets/img/jxck.svg></a>
+  </ul>
+</header>
+<main>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2018-05-01>2018-05-01</time>
+    <li>updated_at: <time class=updated_at datetime=2018-05-01>2018-05-01</time>
+    <li class=tags>tags: [<a href='/tags/async%20local%20storage.html'>async local storage</a>,<a href='/tags/layered%20api.html'>layered api</a>,<a href='/tags/extensible%20web.html'>extensible web</a>,<a href='/tags/whatwg.html'>whatwg</a>]
+  </ul>
+
+
+  <article>
+    <h1><a href=/entries/2018-05-01/layered-apis.html>Layered APIs と High Level API の標準化指針</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p>Extensible Manifest 以降、標準化作業は Low Level API にフォーカスし、一定の成果が出ている。
+      <p>そこで、これらをベースとし、よりアプリレイヤの需要を満たすための High Level API をどう標準化するか、という点について指針が提案された。
+      <p>基本は、 Low Level API を元に Polyfill を作り、そこからのフィードバックにより策定を進めるという方針だ。
+      <p>合わせて ES Module の Import を用いて、 pollyfill とネイティブ実装をスムーズに切り替える拡張が合わせて提案されている。
+      <p>本記事では Layered APIs (LAPIs) と呼ばれる、この一連の枠組みについて、実例を交えて解説する。
+      <p>また、同等の話を <a href="https://nodejs.connpass.com/event/83639/">東京 Node 学園 #tng30</a> で行った資料は以下である。
+      <p><a href="https://speakerdeck.com/jxck/web-over-layered-apis">Web over Layered APIs</a>
+    </section>
+    <section>
+      <h2 id="standarize-low-level-api"><a href="#standarize-low-level-api">Standarize Low Level API</a></h2>
+      <p>Extensible Manifest 以降、標準化の場面では Low Level な Primitive の策定に注力してきた。
+      <p><a href="https://extensiblewebmanifesto.org/ja">Extensible Web Manifesto</a>
+      <p>これにより、多様化する開発者のニーズを標準化のタイムラインから解放し、開発者自身がある程度の裁量を持って機能を実装できることを目的とした。
+      <p>Low Level API の整備は、関連する他の API との整合性にも良い影響を与え、結果として一定の成果を出したと言って良いだろう。
+      <p>例として、ブラウザが内部で行っていることを表に出すという点で、以下のような API が整備された。
+      <ul>
+        <li>
+          <a href="https://encoding.spec.whatwg.org/">Encoding Standard</a>
+        </li>
+        <li>
+          <a href="https://url.spec.whatwg.org/">URL Standard</a>
+        </li>
+        <li>
+          <a href="https://streams.spec.whatwg.org/">Streams Standard</a>
+        </li>
+        <li>
+          <a href="https://fetch.spec.whatwg.org/">Fetch Standard</a>
+        </li>
+        <li>etc
+      </ul>
+      <p>また、 CustomElement など、ユーザが任意の拡張を行うことができる仕様も、こうした動きを加速させている。
+      <p>しかし、実際にアプリケーションを開発する上では、その Low Level API の上に被せたライブラリや、それを束ねるフレームワークのコードが増える一方だった。
+      <p>ブラウザが読み込むコードの総量は増え、ネットワークコストやブラウザでの実行コストも無視できないものとなる。
+      <p>ブラウザがネイティブに実装していれば、そうしたコストの大部分は削減されるため、当然のように High Level API も標準化要求は増える。
+      <p>こうした High Level API の要求を、 Low Level API にこそ注力すべきだと無視し続けることもできない。
+      <p>Low Level API の整備が軌道に乗った今こそ、 High Level API に対して標準化の側面からどういう態度を取るか、を考える時期でもある。
+    </section>
+    <section>
+      <h2 id="standarize-high-level-api"><a href="#standarize-high-level-api">Standarize High Level API</a></h2>
+      <p>High Level API を標準化するといっても、闇雲に採用し実装するわけにもいかない。
+      <p>新しい実装によるバグ、セキュリティホール、オーバーヘッド、技術的負債の発生を、いかに防ぐかを考える必要がある。
+      <p>また、策定しても実装されるまでの間は、 Polyfill を利用するだろう。これが安全に行われなければ、 Ever Green な Web を作るのは難しい。
+      <p>global namespace に追加される何かは、それがなんであれメンテし続けるか、絶大な努力と慎重なプロセスと膨大な時間を用いて deprecate していくことになる。いずれも望ましいことではない。
+      <p>そこで、 Polyfill によるユーザランドの実装を積極的に許容し、標準化プロセスからブラウザへの実装と相互にフィードバックさせ、緩やかにネイティブ実装へと移行していくパスを用意する。
+      <p>これを目指すのが Layered API の基本的なモチベーションと言って良いだろう。
+      <ul>
+        <li>
+          <a href="https://docs.google.com/document/d/1VbU4z7xtU_kzuLAcj38KKL5qoOr2UYNUJW8vZB2AcWc">Layered Web APIs Design Doc</a>
+        </li>
+        <li>
+          <a href="https://github.com/drufball/layered-apis">drufball/layered-apis: A new standards effort for collaborating on high-level features</a>
+        </li>
+        <li>
+          <a href="https://docs.google.com/presentation/d/1_5EVAiuragdEqop8V9b1hJkOW38y4EsXYgNBKdpSHmA">Layered APIs: an overview and update</a>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 id="layered-apis"><a href="#layered-apis">Layered APIs</a></h2>
+      <p>Layered API(LAPIs) の所以は、単に High Level API を定義する上で、それは必ず現在定義されている Low Level API の上に成り立つように定義するというだけの話だ。
+      <p>別に難しいことではないが、これによりいくつかのメリットがある。
+      <ul>
+        <li>ブラウザが既に実装している Low Level API を使って Polyfill が可能
+        <li>既にレビューを通った Low Leve API だけに依存するため、新たなプライバシー/セキュリティリスクを産みにくい
+      </ul>
+      <p>逆にもし Polyfill が不可能であれば、新たな Low Level API の可能性(Use Case)がそこに存在するとし、そちらを先に定義することになるだろう。
+      <p>ここでは例として Async Local Storage (Local Storage の非同期版) を例に解説していく。
+    </section>
+    <section>
+      <h2 id="layered-apis-fallback-syntax"><a href="#layered-apis-fallback-syntax">Layered APIs fallback syntax</a></h2>
+      <p>これまで Polyfill へのフォールバックは、様々な方法で行われてきた。
+      <p>例えば以下のような例を考える。
+      <pre class=js><code translate="no">if (window.AsyncLocalStorage=== undefined) {
+  // polyfill for async local storage
+}
+
+window.AsyncLocalStorage // native or polyfill</code></pre>
+      <p>この例では、あらかじめ polyfill のコードを読み込んでおき、 Global における関数の有無を用いてどちらの実装を使うかを切り分けている。
+      <p>この場合、もしブラウザが API を実装していても、使われない Polyfill のコードは依然として読み込まれることになる。
+      <p>また、新しい API を global に追加していくことは、影響もメンテナンスコストも大きい。
+      <p>そこで、 ES Module の API を用いて、以下のように読み込む構文拡張が提案されている。
+      <pre class=js><code translate="no">import { storage } from &quot;std:async-local-storage&quot;;</code></pre>
+      <p>現行の仕様では <code translate="no">from</code> の後ろには module への URL が書かれるが、ここに <code translate="no">std:</code> で始まるラベルを書くと、ブラウザの実装する標準 API を読み込むことができる。
+      <p>これは Opt-In で読み込むことになるため、 Global を汚染せずに新しい API を Ship できるというメリットがある。
+      <p>また以下のように書くと、もしブラウザが実装していなかった場合に、後半に書いた polyfill へフォールバックすることができる。
+      <pre class=js><code translate="no">import { storage } from &quot;std:async-local-storage|https://cdn.example.com/async-local-storage.js&quot;;</code></pre>
+      <p>これにより、もしブラウザに実装があれば、 polyfill のコードは読み込む必要がなくなり、ネットワークコストが削減される。
+      <p>また、最初からこの形で書いておけば、ブラウザの実装の差を低いコストで埋め、そのまま放置されてもネイティブのコードで置き換わるため、移行コストを低く抑えることができる。
+      <p>同じことは、 HTML Element の実装においても利用が想定されている。
+      <pre class=html><code translate="no">&lt;script type=module src=&quot;std:infinite-list|https://some.cdn.com/infinite-list.js&quot;&gt;&lt;/script&gt;
+&lt;infinite-list&gt;&lt;/infinite-list&gt;</code></pre>
+      <p>いずれも、まだ提案段階の仕様である。
+      <ul>
+        <li>
+          <a href="https://docs.google.com/document/d/1jRQjQP8DmV7RL75u_67ps3SB1sjfa1bFZmbCMfJCvrM">Layered web APIs fallback syntax</a>
+        </li>
+        <li>
+          <a href="https://github.com/drufball/layered-apis/blob/master/spec.md">Layered APIs Proto-spec</a>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 id="proposals"><a href="#proposals">proposals</a></h2>
+      <p>Layered API での仕様策定の候補として、以下の 3 つがある。
+      <ul>
+        <li>
+          <a href="https://github.com/domenic/async-local-storage">domenic/async-local-storage</a><ul>
+            <li>promise base の非同期 local storage
+          </ul>
+        </li>
+        <li>
+          <a href="https://github.com/domenic/infinite-list-study-group">domenic/infinite-list-study-group</a><ul>
+            <li>ページネーションなどで使われる無限読み込みリスト
+          </ul>
+        </li>
+        <li>
+          <a href="https://github.com/GoogleChromeLabs/tasklets">GoogleChromeLabs/tasklets</a><ul>
+            <li>task を別 worker で実装するための API
+          </ul>
+        </li>
+      </ul>
+      <p>内容を見ても、まだ始まったばかりであることがよくわかるだろう。
+    </section>
+    <section>
+      <h2 id="premature-polyfill"><a href="#premature-polyfill">premature-polyfill</a></h2>
+      <p>まだまだ始まったばかりの提案ではあるが、 Polyfill の効果的な使い方に注力するこの仕様は、現状の Polyfill の問題をそのまま引きずる。
+      <p>Polyfill のあり方については、過去に TAG によってプラクティスがまとめられており、本ブログでも解説している。
+      <ul>
+        <li>
+          <a href="https://w3ctag.github.io/polyfills/">Polyfills and the evolution of the Web</a>
+        </li>
+        <li>
+        
+        </li>
+      </ul>
+      <p>例えば、以下の場合 polyfill とブラウザの実装で API が異なる場合は、ブラウザアップデートでアプリが壊れることになる。
+      <pre class=js><code translate="no">import { storage } from &quot;std:async-local-storage|https://cdn.example.com/async-local-storage.js&quot;;</code></pre>
+      <p>もし十分に API が議論される前に「先走った Polyfill」が作られるとその問題は必ず起こる。
+      <p>また、経験上 <code translate="no">std:xxx</code> のタグは取り合いになるだろう。同じタグを記述するサイトでも、全然別の API を元に作られている状態も容易に想像できる。
+      <p>現時点でおこなわれている polyfilling でも同じことは起こっているため、何も変わってないと言えば変わってないし、 Module を使うことでマシにはなっている。
+      <p>一方、そうした Polyfill の存在が、標準側で API を変更する際に足を引っ張ることは目に見えているわけだが、この問題へのアドレスは一切ない。
+      <p>なにより、 Layered API は Polyfill が先に作られることをこそ是としているため、こうした問題に対する何らかの事前策が無くて良いのかとも思う。
+      <ul>
+        <li>
+          <a href="https://github.com/drufball/layered-apis/issues/12">Risks of premature polyfilling #12</a>
+        </li>
+      </ul>
+      <p>Layered API はすでに TAG の design review がリクエストされているため、もしかしたら同じ話がでるかもしれない。
+      <ul>
+        <li>
+          <a href="https://github.com/w3ctag/design-reviews/issues/276">Layered APIs Issue #276 w3ctag/design-reviews</a>
+        </li>
+      </ul>
+      <p>一方、 Chrome では、すでに Layered API の import 周りの実装について Intents が出されている。
+      <p><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MFbJuzA5tH4/t6Q-LZHpAgAJ">Intent to implement: Layered API infrastructure</a>
+      <p>この辺を注視しながら、標準化の作業がどのように進んでいくのか、そして <a href="https://discourse.wicg.io/t/asynclocalstorage/1554/13">過去に提案</a> しつつも誰も相手にしてくれなかった <a href="https://domenic.github.io/async-local-storage/">AsyncLocalStorage</a> が今後どうなるか、注視していきたい。
+    </section>
+  </article>
+
+</main>
+<hr>
+<footer>
+  <p><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small> Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>google analytics</a>.</p>
+</footer>
+</body>
+</html>
+<amp-analytics type=googleanalytics id=analytics1>
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
