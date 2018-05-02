@@ -12,15 +12,15 @@
    <link href="https://blog.jxck.io/entries/2018-05-01/layered-apis.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-05-01</id>
    <updated>2018-05-01T00:00:00Z</updated>
-   <summary>Extensible Manifest 以降、標準化作業は Low Level API にフォーカスし、一定の成果が出ている。
+   <summary>Extensible Web Manifest 以降、標準化作業は Low Level API にフォーカスし、一定の成果が出ている。
 
 そこで、これらをベースとし、よりアプリレイヤの需要を満たすための High Level API をどう標準化するか、という点について指針が提案された。
 
 基本は、 Low Level API を元に Polyfill を作り、そこからのフィードバックにより策定を進めるという方針だ。
 
-合わせて ES Module の Import を用いて、 pollyfill とネイティブ実装をスムーズに切り替える拡張が合わせて提案されている。
+合わせて ES Modules の Import を用いて、 pollyfill とネイティブ実装をスムーズに切り替える拡張が提案されている。
 
-本記事では Layered APIs (LAPIs) と呼ばれる、この一連の枠組みについて、実例を交えて解説する。
+本記事では Layered APIs (LAPIs) と呼ばれる、この一連の枠組みについて解説する。
 
 また、同等の話を 東京 Node 学園 #tng30 で行った資料は以下である。
 
@@ -32,7 +32,7 @@ Web over Layered APIs</summary>
    <link href="https://blog.jxck.io/entries/2018-04-30/redirect-to-pts.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-04-30</id>
    <updated>2018-04-30T00:00:00Z</updated>
-   <summary>tmux, screen, termina のタブなど、 shell を複数起動する方法はいくつかある。
+   <summary>tmux, screen, terminal のタブなど、 shell を複数起動する方法はいくつかある。
 
 Linux では、 pts を経由すれば、ある shell の出力を簡単に別の shell で表示することができる。
 
