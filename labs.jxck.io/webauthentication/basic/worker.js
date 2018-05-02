@@ -12,9 +12,14 @@ importScripts(
 
 self.users = {}
 
+self.addEventListener('install', (e) => {
+  info('> nstall', e);
+  e.waitUntil(self.skipWaiting());
+});
+
 self.addEventListener('activate', (e) => {
   info('> activate', e);
-  // e.waitUntil(self.clients.claim());
+  e.waitUntil(self.clients.claim());
 });
 
 self.addEventListener('fetch', async (e) => {
@@ -25,11 +30,13 @@ self.addEventListener('fetch', async (e) => {
   if (path.endsWith('/register')) {
     e.respondWith(new Promise(async (done, fail) => {
       try {
+        // username を受け取り、対応する乱数を返す
         const {username}= await e.request.json()
 
         const id = b64enc(new TextEncoder('utf-8').encode(username))
         const challenge = b64enc(crypto.getRandomValues(new Uint8Array(32)))
 
+        // サーバから提供する情報
         const publicKeyOpt = {
           challenge: challenge,
           rp: {
@@ -44,7 +51,7 @@ self.addEventListener('fetch', async (e) => {
             { type: "public-key", alg: -7 } // "ES256" IANA COSE Algorithms registry
           ],
           attestation: 'direct',
-          timeout: 3000, // short for debugging
+          timeout: 10000, // short for debugging
         }
 
         const header = {
@@ -58,6 +65,7 @@ self.addEventListener('fetch', async (e) => {
   } else if (path.endsWith('/credential')) {
     e.respondWith(new Promise(async (done, fail) => {
       try {
+        // クライアントで生成した credential を受け取り処理する
         const json = await e.request.json()
         console.log(json)
         const {id, type, rawId, response} = json
@@ -135,25 +143,45 @@ self.addEventListener('fetch', async (e) => {
           const digest = await crypto.subtle.digest("SHA-256", new TextEncoder("utf-8").encode("labs.jxck.io"))
           console.log("rpidHash",  rpidHash)
           console.log("digest  ", new Uint8Array(digest))
+
+          // 計算結果が一致するか確認
+          console.assert(btoa(rpidHash), btoa(new Uint8Array(digest)))
         }
 
 
-
-
-
-
-        const aaa = {
-          attestation: 'direct',
-          timeout: 3000,
+        // 登録完了
+        const body = {
+          registered: "ok"
         }
 
         const header = {
           headers: { 'Content-Type': 'application/json' }
         }
-        done(new Response(JSON.stringify(aaa), header));
+        done(new Response(JSON.stringify(body), header));
       } catch (err) {
         fail(err)
       }
+    }))
+  } else if (path.endsWith('/login')) {
+    e.respondWith(new Promise(async (done, fail) => {
+      const json = await e.request.json()
+      console.log(json)
+
+
+      const challenge = b64enc(crypto.getRandomValues(new Uint8Array(32)))
+
+      const body = {
+        challenge,
+        timeout: 60000,
+        allowCredentials: [
+          {type: "public-key"}
+        ]
+      }
+      const header = {
+        headers: { 'Content-Type': 'application/json' }
+      }
+
+      done(new Response(JSON.stringify(body), header))
     }))
   }
   return;
