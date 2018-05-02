@@ -3,15 +3,15 @@
 
 ## Intro
 
-Extensible Manifest 以降、標準化作業は Low Level API にフォーカスし、一定の成果が出ている。
+[Extensible Web Manifest](https://extensiblewebmanifesto.org/) 以降、標準化作業は Low Level API にフォーカスし、一定の成果が出ている。
 
 そこで、これらをベースとし、よりアプリレイヤの需要を満たすための High Level API をどう標準化するか、という点について指針が提案された。
 
 基本は、 Low Level API を元に Polyfill を作り、そこからのフィードバックにより策定を進めるという方針だ。
 
-合わせて ES Module の Import を用いて、 pollyfill とネイティブ実装をスムーズに切り替える拡張が合わせて提案されている。
+合わせて ES Modules の Import を用いて、 pollyfill とネイティブ実装をスムーズに切り替える拡張が提案されている。
 
-本記事では Layered APIs (LAPIs) と呼ばれる、この一連の枠組みについて、実例を交えて解説する。
+本記事では Layered APIs (LAPIs) と呼ばれる、この一連の枠組みについて解説する。
 
 また、同等の話を [東京 Node 学園 #tng30](https://nodejs.connpass.com/event/83639/) で行った資料は以下である。
 
@@ -20,7 +20,7 @@ Extensible Manifest 以降、標準化作業は Low Level API にフォーカス
 
 ## Standarize Low Level API
 
-Extensible Manifest 以降、標準化の場面では Low Level な Primitive の策定に注力してきた。
+Extensible Web Manifest 以降、標準化の場面では Low Level な Primitive の策定に注力してきた。
 
 [Extensible Web Manifesto](https://extensiblewebmanifesto.org/ja)
 
@@ -70,7 +70,7 @@ global namespace に追加される何かは、それがなんであれメンテ
 
 ## Layered APIs
 
-Layered API(LAPIs) の所以は、単に High Level API を定義する上で、それは必ず現在定義されている Low Level API の上に成り立つように定義するというだけの話だ。
+Layered API(LAPIs) は、簡単に言えば High Level API を定義する上で、それは必ず現在定義されている Low Level API の上に成り立つように定義するということだ。
 
 別に難しいことではないが、これによりいくつかのメリットがある。
 
@@ -160,7 +160,7 @@ Layered API での仕様策定の候補として、以下の 3 つがある。
 Polyfill のあり方については、過去に TAG によってプラクティスがまとめられており、本ブログでも解説している。
 
 - [Polyfills and the evolution of the Web](https://w3ctag.github.io/polyfills/)
-- [Polyfill のあり方と Web の進化と協調するためのガイドライン | blog.jxck.io](https://blog.jxck.io/entries/2017-02-17/polyfill-implementation-guideline.html)
+- [Polyfill のあり方と Web の進化と協調するためのガイドライン \| blog.jxck.io](https://blog.jxck.io/entries/2017-02-17/polyfill-implementation-guideline.html)
 
 例えば、以下の場合 polyfill とブラウザの実装で API が異なる場合は、ブラウザアップデートでアプリが壊れることになる。
 
@@ -187,6 +187,6 @@ Layered API はすでに TAG の design review がリクエストされている
 
 一方、 Chrome では、すでに Layered API の import 周りの実装について Intents が出されている。
 
-[Intent to implement: Layered API infrastructure](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MFbJuzA5tH4/t6Q-LZHpAgAJ)
+- [Intent to implement: Layered API infrastructure](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MFbJuzA5tH4/t6Q-LZHpAgAJ)
 
 この辺を注視しながら、標準化の作業がどのように進んでいくのか、そして [過去に提案](https://discourse.wicg.io/t/asynclocalstorage/1554/13) しつつも誰も相手にしてくれなかった [AsyncLocalStorage](https://domenic.github.io/async-local-storage/) が今後どうなるか、注視していきたい。
