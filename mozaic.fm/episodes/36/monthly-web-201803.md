@@ -10,7 +10,7 @@ audio: https://files.mozaic.fm/mozaic-ep36.mp3
 
 ## Theme
 
-第 35 回のテーマは 2018 年 3 月の Monthly Web です。
+第 36 回のテーマは 2018 年 3 月の Monthly Web です。
 
 
 ## Show Note
