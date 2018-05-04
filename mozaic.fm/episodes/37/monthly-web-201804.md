@@ -494,6 +494,8 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
 - 4 月
   - 18-19: BlinkOn 9
 - 5 月
+  - 7-9: Microsoft Build
+    - <https://developer.microsoft.com/en-us/events/build>
   - 8-10: Google I/O 2018
     - <https://events.google.com/io/>
   - 10-11: Web5G Workshop
