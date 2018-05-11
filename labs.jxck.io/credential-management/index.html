@@ -11,61 +11,47 @@
 
 <form id=login method=POST>
   <label for=id>id</label>
-  <input id=id type=text name=id placeholder=username autocomplete=username />
+  <input id=id type=text name=id placeholder=username autocomplete=username value=deaddeef />
 
   <label for=password>password</label>
-  <input id=password type=password name=password placeholder=current-password autocomplete=current-password />
-
-  <input type=hidden name=csrf_token value="******" />
+  <input id=password type=password name=password placeholder=password autocomplete=current-password value=qwerty />
 
   <button type=submit>ok</button>
 </form>
 
-<p><a id=signin href=/>signin</a>
-<p><a id=signout href=/>signout</a>
+<p><a id=silentLogin href=/>silentLogin</a>
+<p><a id=preventSilent href=/>preventSilent</a>
 
 <script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    if (navigator.credentials === undefined) return console.log('navigator.credentials unsupported')
+  document.addEventListener("DOMContentLoaded", async () => {
+    if (navigator.credentials === undefined) return console.error("navigator.credentials unsupported")
 
     const $form = document.querySelector("#login")
     $form.addEventListener("submit", async (e) => {
-      console.log(e.target)
       e.preventDefault()
+      console.log(e.target)
 
       const credential = new PasswordCredential(e.target)
-
-      try {
-        const e = await navigator.credentials.store(credential)
-        console.log(e)
-      } catch (err) {
-        console.log(err)
-      } finally {
-        console.log('signin')
-      }
+      await navigator.credentials.store(credential)
     })
-  })
 
-  document.addEventListener('DOMContentLoaded', async () => {
-    const $signin = document.querySelector('#signin')
-    $signin.addEventListener('click', async (e) => {
+    const $silentLogin = document.querySelector("#silentLogin")
+    $silentLogin.addEventListener("click", async (e) => {
       e.preventDefault()
 
       const cred = await navigator.credentials.get({
-        password: true
+        mediation: "silent",
+        password:  true,
       })
       console.log(cred)
-    })
-  })
 
-  document.addEventListener('DOMContentLoaded', async () => {
-    const $signout = document.querySelector('#signout')
-    $signout.addEventListener('click', async (e) => {
+      // fetch() to server
+    })
+
+    const $preventSilent = document.querySelector("#preventSilent")
+    $preventSilent.addEventListener("click", async (e) => {
       e.preventDefault()
       navigator.credentials.preventSilentAccess()
     })
   })
-
-  // prevent SilentAccess すると、状態が保存できるので
-  // mediate を指定するよりもこっちの方が保存しやすい
 </script>
