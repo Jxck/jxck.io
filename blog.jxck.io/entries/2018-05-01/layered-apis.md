@@ -189,4 +189,4 @@ Layered API はすでに TAG の design review がリクエストされている
 
 - [Intent to implement: Layered API infrastructure](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MFbJuzA5tH4/t6Q-LZHpAgAJ)
 
-この辺を注視しながら、標準化の作業がどのように進んでいくのか、そして [過去に提案](https://discourse.wicg.io/t/asynclocalstorage/1554/13) しつつも誰も相手にしてくれなかった [AsyncLocalStorage](https://domenic.github.io/async-local-storage/) が今後どうなるか、注視していきたい。
+この辺をふまえ、標準化の作業がどのように進んでいくのか、そして [過去に提案](https://discourse.wicg.io/t/asynclocalstorage/1554/13) しつつも誰も相手にしてくれなかった [AsyncLocalStorage](https://domenic.github.io/async-local-storage/) が今後どうなるか、注視していきたい。
