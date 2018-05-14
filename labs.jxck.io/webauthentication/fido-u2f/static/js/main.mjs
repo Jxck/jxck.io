@@ -41,6 +41,7 @@ document.querySelector("#register").addEventListener("submit", async (e) => {
     method:      "GET",
     credentials: "include",
   })
+  console.log(option)
 
   // deserialize base64url to buffer
   option.challenge = b64dec(option.challenge)
@@ -72,6 +73,7 @@ document.querySelector("#register").addEventListener("submit", async (e) => {
     headers:     {"Content-Type": "application/json"},
     body:        JSON.stringify(body),
   })
+  console.log(registered)
 
 
   // GET /session
@@ -79,6 +81,7 @@ document.querySelector("#register").addEventListener("submit", async (e) => {
     method:      "GET",
     credentials: "include",
   })
+  console.log(session)
 
   document.querySelector("#status").textContent = `login as ${session.username}`
 })
@@ -103,7 +106,7 @@ document.querySelector("#login").addEventListener("submit", async (e) => {
     method:      "GET",
     credentials: "include",
   })
-  // console.log(option)
+  console.log(option)
 
   // deserialize base64url to buffer
   option.challenge = b64dec(option.challenge)
@@ -140,13 +143,14 @@ document.querySelector("#login").addEventListener("submit", async (e) => {
     headers:     {"Content-Type": "application/json"},
     body:        JSON.stringify(body)
   })
-  // console.log(authResult)
+  console.log(authResult)
 
   // GET /session
   const session = await fetchJSON("session", {
     method:      "GET",
     credentials: "include"
   })
+  console.log(session)
 
   document.querySelector("#status").textContent = `logged in as ${session.username}`
 })

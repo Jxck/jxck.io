@@ -6,12 +6,11 @@ import crypto        from "crypto"
 import cbor          from "cbor"
 import { b64enc, b64dec } from "./static/js/base64"
 
-const RPID    = process.env.RPID   || "labs.jxck.io"
-const ORIGIN  = process.env.ORIGIN || "https://labs.jxck.io"
-const PORT    = process.env.PORT   || 9000
+const RPID    = process.env.RPID
+const ORIGIN  = process.env.ORIGIN
+const PORT    = process.env.PORT
 const app     = express()
 const storage = new Map()
-
 
 // middleware
 app.use(cookieParser())
@@ -259,8 +258,7 @@ app.post("/credential", async (req, res) => {
   //     If registration is requested for a credential that is already registered to a different user,
   //     the Relying Party SHOULD fail this registration ceremony,
   //     or it MAY decide to accept the registration,
-
-  // TODO: ストレージの中に credential id が無いか確認
+  // TODO:
 
 
   // 18. If the attestation statement attStmt verified successfully
@@ -270,6 +268,7 @@ app.post("/credential", async (req, res) => {
   //     by associating it with the credentialId and credentialPublicKey
   //     in the attestedCredentialData in authData,
   //     as appropriate for the Relying Party's system.
+  // TODO:
 
   const credentialId = b64enc(authenticatorData.attestedCredentialData.credentialId)
   const publicKey    = b64enc(authenticatorData.attestedCredentialData.publicKeyU2F) // use publickKeyU2F instead of raw credentialPublicKey
@@ -285,7 +284,7 @@ app.post("/credential", async (req, res) => {
   const userinfo = storage.get(username)
   userinfo.authenticators.set(credentialId, authenticatorInfo)
   storage.set(username, userinfo)
-  res.json({ status: "ok" })
+  res.json({ status: "registered" })
 })
 
 
@@ -452,33 +451,19 @@ app.post("/session", (req, res) => {
 
   // 17. If the signature counter value authData.signCount is nonzero
   //     or the value stored in conjunction with credential's id attribute is nonzero,
-  //     then run the following sub-step:
-  // console.log(signCount, authenticate.counter)
+  if (signCount !== 0 && authenticate.counter !== 0) {
+    // TODO:  then run the following sub-step:
+    console.log(signCount, authenticate.counter)
+  }
 
   delete req.session.challenge
 
-  res.json({status: "ok"})
+  res.json({status: "authenticated"})
 })
 
 
 app.listen(PORT)
 console.log("server start\n\n")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // https://w3c.github.io/webauthn/#verification-procedure
