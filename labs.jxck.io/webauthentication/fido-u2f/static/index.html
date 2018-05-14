@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Web Authentication API (FIDO-U2F) DEMO | labs.jxck.io</title>
+
+
+<h1>Web Authn API (FIDO-U2F) DEMO</h1>
+<h2>status: <strong id=status></strong></h2>
+
+<form id=register>
+  <fieldset>
+    <legend>register</legend>
+    <label for=username>username</label>
+    <input type=text name=username required=true placeholder=username value=deadbeef>
+    <input type=submit value=register>
+  </fieldset>
+</form>
+
+<form id=login>
+  <fieldset>
+    <legend>login</legend>
+    <label for=username>username</label>
+    <input type=text name=username required=true placeholder=username value=deadbeef>
+    <input type=submit value=login>
+  </fieldset>
+</form>
+
+<form id=logout>
+  <button type=submit id=logout>logout</button>
+</form>
+
+<script type=module src=js/base64.mjs></script>
+<script type=module src=js/main.mjs></script>
