@@ -13,7 +13,7 @@ Web Authentication(WebAuthN) API の策定と実装が進んでいる。
 
 ## DEMO
 
-動作する DEMO を以下に用意した。YubiKey での動作のみ確認している。
+動作する DEMO を以下に用意した。 YubiKey での動作のみ確認している。
 
 <https://labs.jxck.io/webauthentication/fido-u2f/>
 
@@ -174,14 +174,14 @@ fmt の値によって、署名をどのように検証するかの処理は変�
 
 - rpidHash (32byte)
 - flags    (1byte)
-  0. UserPresent
-  1. Reserved
-  2. UserVerified
-  3. Reserved
-  4. Reserved
-  5. Reserved
-  6. AttestedCredentialData,
-  7. ExtensionDataIncluded,
+  - UserPresent
+  - Reserved
+  - UserVerified
+  - Reserved
+  - Reserved
+  - Reserved
+  - AttestedCredentialData,
+  - ExtensionDataIncluded,
 - sigCount (4byte)
 - attestedCredentialData (var)
 - extensions (var)
@@ -387,14 +387,14 @@ userHandle は今回使わないので無視する。
 
 - rpidHash (32byte)
 - flags    (1byte)
-  0. UserPresent
-  1. Reserved
-  2. UserVerified
-  3. Reserved
-  4. Reserved
-  5. Reserved
-  6. AttestedCredentialData,
-  7. ExtensionDataIncluded,
+  - UserPresent
+  - Reserved
+  - UserVerified
+  - Reserved
+  - Reserved
+  - Reserved
+  - AttestedCredentialData,
+  - ExtensionDataIncluded,
 - sigCount (4byte)
 - attestedCredentialData (var)
 - extensions (var)
@@ -455,10 +455,8 @@ const verified = crypto
 
 ## まとめ
 
-YubiKey を用いてパスワードを用いない認証が Web でも可能になった。
+WebAuthentication API により、 FIDO U2F を用いた認証が Web 標準でも可能になった。
 
 色々と細かい処理はあれど、基本の流れは鍵ペアの生成と交換、その検証からなる流れということがわかる。
 
-パスワードと合わせた二要素化や、 YubiKey 以外の対応、セキュリティ的な作り込みなど、考慮点はまだまだ多い。
-
-よって、実際にサービスに導入する際には、ライブラリやサービスに頼るべきだと思うが、今回のようにラフな実装で仕様をを眺めると、理解の助けになるだろう。
+実際にサービスに導入する際には、ライブラリやサービスに頼るべきだと思うが、今回のようにラフな実装で仕様を眺めると、理解の助けになるだろう。
