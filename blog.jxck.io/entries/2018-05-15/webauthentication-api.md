@@ -1,27 +1,31 @@
-# [tag] Web Authentication API で FIDO U2F(YubiKey) 認証
+# [fido-u2f][web authentication api] Web Authentication API で FIDO U2F(YubiKey) 認証
 
 ## Intro
 
 Web Authentication(WebAuthN) API の策定と実装が進んでいる。
 
-これを用いると、従来の Password 認証に加えて、他の認証方式を導入することが可能になる。
-
-例えば FIDO(Fast IDentity Online) U2F(Universal Second Factor) 認証として YubiKey を用いた認証を Web で利用可能になる。
+これを用いると、 FIDO(Fast IDentity Online) U2F(Universal Second Factor) 認証が可能になる。
 
 今回は YubiKey 認証の実装を通じて、ブラウザ API の呼び出しと、サーバ側で必要な処理について解説する。
 
+<https://w3c.github.io/webauthn/>
 
-## 公開鍵暗号方式
 
-先に、ざっくりとした流れを解説する。
+## DEMO
 
-今回行うのは、パスワードの代わりに公開鍵暗号を使う方式である。
+動作する DEMO を以下に用意した。YubiKey での動作のみ確認している。
 
-ユーザはまず YubiKey を用いて公開/秘密鍵のペアを生成し、公開鍵をサービスに登録する。
+<https://labs.jxck.io/webauthentication/fido-u2f/>
 
-認証時には、サービスが生成した乱数(challenge)を秘密鍵で署名してサービスに送り返す。
+コードは以下にあり、今回の解説もここから抜粋している。
 
-この署名をサービス側に保存した公開鍵で検証できれば、サービスはユーザを認証することができる。
+(あくまで API の流れを解説するためのものであるため、飛ばした処理もあり、本番利用に耐えうるものではない。)
+
+<https://github.com/Jxck/jxck.io/tree/master/labs.jxck.io/webauthentication/fido-u2f>
+
+動作イメージは以下。
+
+<div><video controls muted width="50%" src="yubikey-login.mp4"></video></div>
 
 
 ## WebAuthentication API
@@ -33,13 +37,11 @@ WebAuthentication API は、 Credential Management API の拡張になってい�
 
 JS API としては、 Credential Management API をそのまま使う。
 
-しかし、使用するのが `PasswordCredential` ではなく、この API によりブラウザが YubiKey に接続し公開鍵の生成を行う。
+しかし、ユーザが入力する PasswordCredential ではなく、 FIDO U2F で生成する PublicKeyCredential を使う。
 
-従って、基本的にユーザは Authenticator が YubiKey であることを意識する必要はなく、 FIDO U2F 対応であれば同じコードで動かすことができる。
+従って、基本的には YubiKey に限らず、 FIDO U2F 対応の Authenticator であれば同じコードで動かすことができる。
 
-ブラウザで生成した公開鍵を含む情報をサーバに送ったら、サーバはそれを検証し、認証を行う。
-
-そのフローも WebAuthentication API の使用として定義されている。
+この時ブラウザから Authenticator を起動する API と、その結果をサーバで処理する方法がこの仕様に定義されている。
 
 サーバ/ブラウザ間でやり取りするバイナリは、なんらかの方法でシリアライズして送る。
 
@@ -48,6 +50,19 @@ JS API としては、 Credential Management API をそのまま使う。
 また、 Authenticator が生成する情報は一部 [CBOR](https://tools.ietf.org/html/rfc7049) が利用されているが、その解説は省略する。
 
 実際に仕様に基づき、コードの流れを解説する。サーバも JS に揃えるため Node で実装している。
+
+
+## 公開鍵暗号方式
+
+先に、ざっくりとした流れを解説する。
+
+ユーザはまず Registration フェーズとして YubiKey を用いて公開/秘密鍵のペアを生成しサービスに登録する。
+
+ログインは Authentication フェーズとして、認サービスが生成した乱数(challenge)を秘密鍵で署名してサービスに送り返す。
+
+この署名をサービス側に保存した公開鍵で検証できれば、サービスはユーザを認証することができる。
+
+以降 Registration/Authentication フェーズ 2 つに分けて解説する。
 
 
 ## Registration
@@ -155,15 +170,18 @@ fmt の値によって、署名をどのように検証するかの処理は変�
 
 次に authData はバイナリで以下のような構造になっている。
 
+![Authenticator data layout](https://w3c.github.io/webauthn/images/fido-signature-formats-figure1.svg#200x200)
+
 - rpidHash (32byte)
 - flags    (1byte)
-  1. UserPresent
-  1. UserVerified,
+  0. UserPresent
   1. Reserved
-  1. Reserved
-  1. Reserved
-  1. AttestedCredentialData,
-  1. ExtensionDataIncluded,
+  2. UserVerified
+  3. Reserved
+  4. Reserved
+  5. Reserved
+  6. AttestedCredentialData,
+  7. ExtensionDataIncluded,
 - sigCount (4byte)
 - attestedCredentialData (var)
 - extensions (var)
@@ -180,8 +198,6 @@ sigCount は署名をした回数で、認証時に利用するため、保存�
 #### authData
 
 flag の AttestedCredentialData が 1 なので、 sigCount より後ろを AttestedCredentialData としてパースする。
-
-![Authenticator data layout](https://w3c.github.io/webauthn/images/fido-signature-formats-figure1.svg)
 
 - aaguid (16byte)
 - credentialIdLength (2byte)
@@ -269,12 +285,14 @@ const certificatePublicKeyPEM = [
 ].join("\n")
 ```
 
-ということで署名する。
+これを用いて検証する。
 
 
 ```javascript
 const verified = crypto.createVerify("sha256").update(verificationData).verify(certificatePublicKeyPEM, sig)
 ```
+
+これが成功したら、証明書のチェインをルートまで確認する。(TODO)
 
 ここまで成功すれば、ユーザが送ってきたデータが
 
@@ -305,6 +323,7 @@ storage["username"] = {
 
 
 ## Authentication
+
 
 ### 1. サービスに対して challenge (乱数)の発行を要求する
 
@@ -339,6 +358,7 @@ req.session.username  = username // CAUTION!! this is only a sample
 
 YubiKey を刺している場合は、ここでタッチを求められ、タッチすると Resolve される。
 
+
 ```javascript
 // get() PublicKeyCredential
 const credential = await navigator.credentials.get({publicKey: option})
@@ -349,8 +369,6 @@ const { type, authenticatorData, signature, userHandle, clientDataJSON } // type
 
 なお、 credential.rawId は credential.id の base64url なので、 id の方だけそのまま送れば良い。
 
-TODO:
-
 
 ### 3. サービスは中身を確認し、ユーザを認証する
 
@@ -360,28 +378,26 @@ userHandle は今回使わないので無視する。
 
 次に clientDataJSON を JSON としてパースし、以下を確認する。
 
-
 - clientData.type が `webauthn.get` である
 - clientData.challenge(base64) が最初に送った(session に保存した) challenge である
 - clientData.origin がサービスの ORIGIN と一致する
 - clientData.tokenBinding が正しい(今回は使ってない)
 
-
 次に authenticatorData をパースする。フォーマットは registration で行ったのと同じ。
 
 - rpidHash (32byte)
 - flags    (1byte)
-  1. UserPresent
-  1. UserVerified,
+  0. UserPresent
   1. Reserved
-  1. Reserved
-  1. Reserved
-  1. AttestedCredentialData,
-  1. ExtensionDataIncluded,
+  2. UserVerified
+  3. Reserved
+  4. Reserved
+  5. Reserved
+  6. AttestedCredentialData,
+  7. ExtensionDataIncluded,
 - sigCount (4byte)
 - attestedCredentialData (var)
 - extensions (var)
-
 
 rpidHash が、 Registration 時にサーバの提示した RPID の SHA-256 と同じことを確認する。
 
@@ -399,6 +415,7 @@ const hash = crypto.createHash("sha256").update(clientDataJSON).digest()
 ここで使う PublicKey は、 Registration でユーザに紐付けて保存した PublicKey だが、これを PEM にする場合は少しいじる必要が有る。
 
 結論から言うと、以下のようなメタデータを付与する必要があり、それ以外は先の方法と同じく base64 を 64bit ごとに折り返せば良い。
+
 (ここが一番ハマった)
 
 
@@ -423,6 +440,7 @@ const publickKeyPEM = Buffer.concat([
 
 この鍵で署名を確認する。
 
+
 ```javascript
 const verified = crypto
                     .createVerify("sha256")
@@ -433,3 +451,14 @@ const verified = crypto
 最後に、ここで取得した signCount が、保存しているものよりも大きいことを確認する。
 
 ここまで成功すれば、認証が完了したとみなすことができる。
+
+
+## まとめ
+
+YubiKey を用いてパスワードを用いない認証が Web でも可能になった。
+
+色々と細かい処理はあれど、基本の流れは鍵ペアの生成と交換、その検証からなる流れということがわかる。
+
+パスワードと合わせた二要素化や、 YubiKey 以外の対応、セキュリティ的な作り込みなど、考慮点はまだまだ多い。
+
+よって、実際にサービスに導入する際には、ライブラリやサービスに頼るべきだと思うが、今回のようにラフな実装で仕様をを眺めると、理解の助けになるだろう。
