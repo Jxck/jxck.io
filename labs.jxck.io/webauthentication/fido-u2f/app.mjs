@@ -6,9 +6,9 @@ import crypto        from "crypto"
 import cbor          from "cbor"
 import { b64enc, b64dec } from "./static/js/base64"
 
-const RPID    = "labs.jxck.io" // TODO
-const ORIGIN  = "https://labs.jxck.io" // TODO
-const PORT    = 9000
+const RPID    = process.env.RPID   || "labs.jxck.io"
+const ORIGIN  = process.env.ORIGIN || "https://labs.jxck.io"
+const PORT    = process.env.PORT   || 9000
 const app     = express()
 const storage = new Map()
 
