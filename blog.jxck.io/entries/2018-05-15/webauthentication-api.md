@@ -23,7 +23,7 @@ Web Authentication(WebAuthN) API の策定と実装が進んでいる。
 
 <https://github.com/Jxck/jxck.io/tree/master/labs.jxck.io/webauthentication/fido-u2f>
 
-動作イメージは以下。
+YubiKey Login の動作イメージは以下。
 
 <div><video controls muted width="50%" src="yubikey-login.mp4"></video></div>
 
@@ -75,7 +75,7 @@ JS API としては、 Credential Management API をそのまま使う。
 (ここではそのまま `navigatore.credentials.create()` に渡せる形でサーバから返している)
 
 
-```javascript
+```js
 // https://w3c.github.io/webauthn/#dictionary-makecredentialoptions
 const clientCredentialOption = {
   rp: {
@@ -100,7 +100,7 @@ const clientCredentialOption = {
 従って、これはセッションなどに保存しておく必要がある。
 
 
-```javascript
+```js
 req.session.challenge = challenge
 req.session.username  = username // CAUTION!! this is only a sample
 ```
@@ -113,7 +113,7 @@ req.session.username  = username // CAUTION!! this is only a sample
 YubiKey を刺している場合は、ここでタッチを求められ、タッチすると Resolve される。
 
 
-```javascript
+```js
 // create() PublicKeyCredential
 const credential = await navigator.credentials.create({publicKey: option})
 
@@ -136,7 +136,7 @@ response の中がそうした値になっており、 attestationObject は CBO
 
 以下を確認する
 
-- clientData.type が `webauthn.create` である
+- clientData.type が "webauthn.create" である
 - clientData.challenge(base64) が最初に送った(session に保存した) challenge である
 - clientData.origin がサービスの ORIGIN と一致する
 - clientData.tokenBinding が正しいこと(今回は使ってない)
@@ -146,7 +146,7 @@ response の中がそうした値になっており、 attestationObject は CBO
 ここには以下のようなデータが入っている。
 
 
-```javascript
+```js
 {
   fmt,      // attestation statement format
   authData, // authenticator data
@@ -157,7 +157,7 @@ response の中がそうした値になっており、 attestationObject は CBO
 ここまで確認したら、 clientDataJSON (バイナリ) を元に SHA-256 を取得しておく。
 
 
-```javascript
+```js
 const clientDataHash = crypto.createHash("sha256").update(clientDataJSON).digest()
 ```
 
@@ -170,7 +170,7 @@ fmt の値によって、署名をどのように検証するかの処理は変�
 
 次に authData はバイナリで以下のような構造になっている。
 
-![Authenticator data layout](https://w3c.github.io/webauthn/images/fido-signature-formats-figure1.svg#200x200)
+![Authenticator data layout](https://w3c.github.io/webauthn/images/fido-signature-formats-figure1.svg#1000x217)
 
 - rpidHash (32byte)
 - flags    (1byte)
@@ -211,7 +211,7 @@ credentialPublicKey は、さらに COSE という形式でエンコードされ
 CBOR でパースすると以下のように数字がキーのオブジェクトが得られる。
 
 
-```javascript
+```js
 {
   1: kty=2,  // EC2 key type
   3: alg=-7, // ES256 signature algorithm
@@ -243,7 +243,7 @@ u2fStmtFormat = {
 x5c には Attestation Certificate が仕様上、丁度 1 つだけ入っている。
 
 
-```javascript
+```js
 attCert = x5c[0]
 ```
 
@@ -277,7 +277,7 @@ x5c は ANSI X9.62 Public Key Format というバイナリ形式で、 Node で�
 これは base64 でシリアライズし 64 文字で改行し、ヘッダとフッタをつければ一応 PEM になる。
 
 
-```javascript
+```js
 const certificatePublicKeyPEM = [
   "-----BEGIN CERTIFICATE-----",
   ...(attCert.toString("base64").match(/.{1,64}/g)),
@@ -288,7 +288,7 @@ const certificatePublicKeyPEM = [
 これを用いて検証する。
 
 
-```javascript
+```js
 const verified = crypto.createVerify("sha256").update(verificationData).verify(certificatePublicKeyPEM, sig)
 ```
 
@@ -310,7 +310,7 @@ const verified = crypto.createVerify("sha256").update(verificationData).verify(c
 同じユーザが複数の認証デバイスを登録することも想定するなら、以下のようになる。
 
 
-```javascript
+```js
 storage["username"] = {
   id,
   authenticators: [
@@ -332,7 +332,7 @@ registration 同様、サーバに username を送り、認証に必要な以下
 (ここではそのまま `navigatore.credentials.get()` に渡せる形でサーバから返している)
 
 
-```javascript
+```js
 {
   challenge: crypto.randomBytes(32),
   allowCredentials: [
@@ -346,7 +346,7 @@ allowCredentials は、サーバに保存した、ログイン対象のユーザ
 challenge は登録時と同じくランダムな値。これもセッションなどに保存しておき、実際の認証で使う。
 
 
-```javascript
+```js
 req.session.challenge = challenge
 req.session.username  = username // CAUTION!! this is only a sample
 ```
@@ -359,7 +359,7 @@ req.session.username  = username // CAUTION!! this is only a sample
 YubiKey を刺している場合は、ここでタッチを求められ、タッチすると Resolve される。
 
 
-```javascript
+```js
 // get() PublicKeyCredential
 const credential = await navigator.credentials.get({publicKey: option})
 
@@ -406,7 +406,7 @@ flag も同じだが、今回は AttestedCredentialData も無いため、 UserP
 次に ClientDataJSON の SHA-256 ハッシュを取得する。
 
 
-```javascript
+```js
 const hash = crypto.createHash("sha256").update(clientDataJSON).digest()
 ```
 
@@ -419,7 +419,7 @@ const hash = crypto.createHash("sha256").update(clientDataJSON).digest()
 (ここが一番ハマった)
 
 
-```javascript
+```js
 // https://github.com/fido-alliance/webauthn-demo/blob/master/utils.js
 // https://stackoverflow.com/questions/45131935/export-an-elliptic-curve-key-from-ios-to-work-with-openssl
 //
@@ -441,7 +441,7 @@ const publickKeyPEM = Buffer.concat([
 この鍵で署名を確認する。
 
 
-```javascript
+```js
 const verified = crypto
                     .createVerify("sha256")
                     .update(Buffer.concat([authenticatorData, hash]))
