@@ -290,6 +290,10 @@ app.post("/credential", async (req, res) => {
 
 app.get("/session/new", (req, res) => {
   const username = req.query.username
+  if (!storage.has(username)) {
+    return res.status(404).json({})
+  }
+
   const challenge = b64enc(crypto.randomBytes(32))
 
   const authenticators = storage.get(username).authenticators
