@@ -117,7 +117,7 @@ app.post("/credential", async (req, res) => {
   //    for the TLS connection over which the assertion was obtained.
   //    If Token Binding was used on that TLS connection,
   //    also verify that C.tokenBinding.id matches the base64url encoding of the Token Binding ID for the connection.
-  console.assert(C.tokenBinding.status === "not-supported", "invalid token binding status")
+  if (C.tokenBinding) console.assert(C.tokenBinding.status === "not-supported", "invalid token binding status")
 
   // 7. Compute the hash of response.clientDataJSON using SHA-256.
   const clientDataHash = crypto.createHash("sha256").update(clientDataJSON).digest()
