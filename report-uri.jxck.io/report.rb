@@ -24,7 +24,11 @@ reporting = Proc.new do |req, res|
     res.status = 400
   else
     begin
-      report = JSON.generate(JSON.parse(req.body)) + "\n"
+      header = req.header.map{|k,v| [k, v.join(",")]}.to_h
+      body = JSON.parse(req.body)
+      body["header"] = header
+      body["data"] = Time.now
+      report = JSON.generate(body) + "\n"
       append(FILE_CSP, report)
       res.status = 201
     rescue => e
