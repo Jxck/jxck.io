@@ -17,6 +17,7 @@ Proc.new do |env|
       "https://*.ampproject.org",
       "https://*.ampproject.net",
       "https://html.spec.whatwg.org",
+      "https://w3c.github.io",
       ";",
       "frame-src",
       "https://www.youtube.com",
@@ -36,6 +37,7 @@ Proc.new do |env|
       "https://*.jxck.io",
       "https://www.google-analytics.com",
       "https://html.spec.whatwg.org",
+      "https://w3c.github.io",
       ";",
       "worker-src",
       "https://blog.jxck.io", # service-worker
