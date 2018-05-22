@@ -373,7 +373,7 @@ app.post("/session", (req, res) => {
   //     Token Binding for the TLS connection over which the attestation was obtained.
   //     If Token Binding was used on that TLS connection,
   //     also verify that C.tokenBinding.id matches the base64url encoding of the Token Binding ID for the connection.
-  console.assert(C.tokenBinding.status === "not-supported", "invalid token binding status")
+  if (C.tokenBinding) console.assert(C.tokenBinding.status === "not-supported", "invalid token binding status")
 
 
   // +------------------------------------------+
@@ -465,6 +465,11 @@ app.post("/session", (req, res) => {
   res.json({status: "authenticated"})
 })
 
+
+app.use((err, req, res, next) => {
+  console.error(`==============\n${erro}\n==============\n`)
+  res.status(500)
+})
 
 app.listen(PORT)
 console.log("server start\n\n")
