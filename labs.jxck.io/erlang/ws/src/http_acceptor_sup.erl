@@ -2,34 +2,31 @@
 %% @doc http acceptor supervisor
 %% @end
 %%%-------------------------------------------------------------------
-
 -module(http_acceptor_sup).
-
+-behaviour(supervisor).
 -include("logger.hrl").
 
--behaviour(supervisor).
-
 %% API
--export([start_link/1]).
+-export([
+         start_link/1
+        ]).
 
 %% Supervisor callbacks
--export([init/1]).
+-export([
+         init/1
+        ]).
 
--define(SERVER, ?MODULE).
 
 %%====================================================================
 %% API functions
 %%====================================================================
-
 start_link(#{port := Port, num_acceptor := NumAccepter}=State) ->
-    ?Log(supervisor:start_link({local, ?SERVER}, ?MODULE, State)).
+    ?Log(supervisor:start_link({local, ?MODULE}, ?MODULE, State)).
 
 
 %%====================================================================
 %% Internal functions
 %%====================================================================
-
-%% Child :: {Id,StartFunc,Restart,Shutdown,Type,Modules}
 init(#{port := Port, num_acceptor := NumAccepter}=State) ->
     Options = [binary,
                {packet, http_bin},

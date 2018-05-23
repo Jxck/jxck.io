@@ -2,10 +2,8 @@
 %% @doc http acceptor
 %% @end
 %%%-------------------------------------------------------------------
-
 -module(http_acceptor).
 -behaviour(gen_server).
-
 -include("logger.hrl").
 
 %% Supervisor callbacks
@@ -13,6 +11,7 @@
          start_link/1
         ]).
 
+%% Gen Server callbacks
 -export([
          init/1,
          handle_call/3,
@@ -31,10 +30,10 @@ start_link(ListenSocket) ->
     Debug = {debug, [trace]},
     gen_server:start_link(?MODULE, [ListenSocket], [Debug]).
 
-%%====================================================================
-%% Internal functions
-%%====================================================================
 
+%%====================================================================
+%% Gen Server Callbacks
+%%====================================================================
 %% Callback
 % gen_server module            Callback module
 % -----------------            ---------------
@@ -108,3 +107,8 @@ code_change(OldVsn, State, Extra) ->
 terminate(Reason, State) ->
     ?Log(Reason, State),
     ok.
+
+
+%%====================================================================
+%% Internal functions
+%%====================================================================

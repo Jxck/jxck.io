@@ -3,15 +3,13 @@
 %% @end
 %%%-------------------------------------------------------------------
 -module(http_handler).
+-include("logger.hrl").
 
 %% API
 -export([
          handle/2,
          'GET'/2
-
         ]).
-
--include("logger.hrl").
 
 
 %%====================================================================
@@ -30,7 +28,7 @@ content_type(Path) ->
         ".ico"  -> "image/vnd.microsoft.icon"
     end.
 
-handle({{Method, {abs_path, URL}, {1,1}}, Header, Body}, #{socket := Socket}=State) ->
+handle({{Method, {abs_path, URL}, {1, 1}}, Header, Body}, #{socket := Socket}=State) ->
     % メソッドを元にハンドラを呼び出す
     {Response, NextState} = apply(?MODULE, Method, [{binary_to_list(URL), Header, Body}, State]),
     handle_response(Response, NextState).
@@ -42,11 +40,11 @@ handle_response(<<>>, State) ->
     % 実際には何も送られない
     {<<>>, State};
 
-handle_response(#{body := Body, headers := _Headers}=Response, State) ->
+handle_response(#{body := Body, headers := Headers}=Response, State) ->
     DefaultHeader = #{
       "Content-Length" => integer_to_list(byte_size(Body))
      },
-    Headers = maps:merge(DefaultHeader, _Headers),
+    Headers = maps:merge(DefaultHeader, Headers),
     ResponsePacket = encode(maps:put(headers, Headers, Response)),
     {ResponsePacket, State}.
 
@@ -77,26 +75,26 @@ encode(#{method := Method, target := URL, headers := Headers, body := Body}) ->
  <<"Sec-Websocket-Version">> := <<"13">>
 }, _Body}, #{socket := Socket}=State) ->
 
-  GUID = <<"258EAFA5-E914-47DA-95CA-C5AB0DC85B11">>,
-  Hash = base64:encode(crypto:hash(sha, <<Key/binary, GUID/binary>>)),
-  Response = #{status  => "101",
-               headers => #{
-                 "Upgrade"              => "websocket",
-                 "Connection"           => "Upgrade",
-                 "Sec-WebSocket-Accept" => Hash
+    GUID = <<"258EAFA5-E914-47DA-95CA-C5AB0DC85B11">>,
+    Hash = base64:encode(crypto:hash(sha, <<Key/binary, GUID/binary>>)),
+    Response = #{status  => "101",
+                 headers => #{
+                   "Upgrade"              => "websocket",
+                   "Connection"           => "Upgrade",
+                   "Sec-WebSocket-Accept" => Hash
+                  },
+                 body => <<>>
                 },
-               body => <<>>
-              },
 
-  %% websocket へのアップグレード
-  %% 101 を返したら ws_worker を起動し制御を移譲する。
-  ok = gen_tcp:send(Socket, encode(Response)),
-  {ok, Pid} = ws_worker_sup:start_child(Socket),
-  ok = gen_tcp:controlling_process(Socket, Pid),
+    %% websocket へのアップグレード
+    %% 101 を返したら ws_worker を起動し制御を移譲する。
+    ok = gen_tcp:send(Socket, encode(Response)),
+    {ok, Pid} = ws_worker_sup:start_child(Socket),
+    ok = gen_tcp:controlling_process(Socket, Pid),
 
-  % HTTP サーバからは <<>> を send する
-  % 実際にはパケットは飛ばない
-  {<<>>, maps:remove(socket, State)};
+    % HTTP サーバからは <<>> を send する
+    % 実際にはパケットは飛ばない
+    {<<>>, maps:remove(socket, State)};
 
 
 %% TODO: fixme with Directory Traversal
