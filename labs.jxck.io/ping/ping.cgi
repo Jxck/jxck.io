@@ -3,7 +3,6 @@
 const fs = require('fs');
 const FILE = `${process.cwd()}/ping.log`;
 
-console.error(process.env)
 const content_length = process.env['CONTENT_LENGTH'];
 const content_type   = process.env['CONTENT_TYPE'];
 const ping_from      = process.env['HTTP_PING_FROM'];
