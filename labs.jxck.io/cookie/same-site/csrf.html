@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>CSRF DEMO | labs.jxck.io</title>
+
+<h1>CSRF</h1>
+
+<style>
+input {
+  display: block
+}
+textarea {
+  display: block
+}
+button {
+  display: block
+}
+</style>
+
+<form method=post action=https://labs.jxck.io/cookie/same-site/sns.cgi>
+  <label for=name>name</label>
+  <input id=name type=text name=name value="test">
+  <label for=article>article</label>
+  <textarea id=article name=article>test test test</textarea>
+  <button type=submit>post</button>
+</form>
+
