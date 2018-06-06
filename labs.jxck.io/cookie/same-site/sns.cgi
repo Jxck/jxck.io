@@ -7,6 +7,8 @@ const content_length = process.env["CONTENT_LENGTH"]
 const content_type   = process.env["CONTENT_TYPE"]
 const request_method = process.env["REQUEST_METHOD"]
 
+// TODO: SameSite Cookie のための CSRF デモのための SNS もどきアプリを作ってる途中
+
 // console.error(process.env)
 
 process.stdin.setEncoding("utf-8")
