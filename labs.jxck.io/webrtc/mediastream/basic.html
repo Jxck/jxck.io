@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>MediaStream Basic DEMO | labs.jxck.io</title>
+
+<style>
+video {
+  border: 1px solid black;
+}
+</style>
+
+<h1>Basic DEMO</h1>
+
+<video id=video autoplay></video>
+<div>
+  <input id=audio type=checkbox value=audio />
+  <label for=audio>audio</label>
+
+  <input id=fake type=checkbox />
+  <label for=fake>fake</label>
+
+  <button id=start>start</button>
+  <button id=stop>stop</button>
+</div>
+
+<script>
+  const $video = document.querySelector('#video')
+  const $audio = document.querySelector('#audio')
+  const $fake  = document.querySelector('#fake')
+  document.querySelector('#start').addEventListener('click', async () => {
+    const constraint = {
+      video: true,
+      audio: $audio.checked,
+      fake:  $fake.checked,
+    }
+    const stream = await navigator.mediaDevices.getUserMedia(constraint)
+    $video.srcObject = stream
+  })
+  document.querySelector('#stop').addEventListener('click', async () => {
+    const stream = $video.srcObject
+    stream.getTracks().map((track) => track.stop())
+  })
+</script>

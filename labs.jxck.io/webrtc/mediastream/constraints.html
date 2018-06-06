@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>DEMO | labs.jxck.io</title>
+
+<style>
+caption {
+  font-size: 1.4em;
+  font-weight: bold;
+  text-align: left;
+}
+table, tbody, thead {
+  border: 1px solid black;
+  table-layout: fixed;
+  width: 100%;
+}
+th {
+  border: 1px solid black;
+  text-align: left;
+}
+td {
+  border: 1px solid black;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.select {
+  width: 1.8em;
+}
+.kind {
+  width: 7em;
+}
+</style>
+
+<h1>Constraints</h1>
+
+<table>
+  <caption>enumerateDevices</caption>
+  <thead>
+    <tr>
+      <th class=select  ></th>
+      <th class=kind    >kind</th>
+      <th class=label   >label</th>
+      <th class=deviceId>deviceId</th>
+      <th class=groupId >groupId</th>
+    </tr>
+  </thead>
+  <tbody>
+    <template id=devices>
+      <tr>
+        <td class=select  ><input type=radio name=select /></td>
+        <td class=kind    ></td>
+        <td class=label   ></td>
+        <td class=deviceId></td>
+        <td class=groupId ></td>
+      </tr>
+    </template>
+  </tbody>
+</table>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    // enumerateDevices()
+    const supportedConstraints = navigator.mediaDevices.getSupportedConstraints();
+    console.log(supportedConstraints)
+  })
+
+  async function enumerateDevices() {
+    const $template = document.querySelector('#devices');
+    const $devices = document.querySelector('tbody');
+
+    const devices = await navigator.mediaDevices.enumerateDevices()
+    devices.forEach((device) => {
+      const $tr = document.importNode($template.content, true);
+      ['deviceId','kind','label','groupId'].map((prop) => {
+        $tr.querySelector(`.${prop}`).textContent = device[prop]
+        $tr.querySelector('.select > input').name = device.kind
+      })
+      $devices.appendChild($tr)
+    })
+  }
+</script>
