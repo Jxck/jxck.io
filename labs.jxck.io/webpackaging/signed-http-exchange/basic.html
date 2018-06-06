@@ -10,3 +10,36 @@
 <p>Using Chrome 68~ with enabling <a href=chrome://flags/#enable-signed-http-exchange>chrome://flags/#enable-signed-http-exchange</a>
 
 <p><a href=mozaic.sxg>clike me for signed https://mozaic.fm (mozaic.sxg)</a>
+
+<pre>
+// リクエスト
+GET /webpackaging/signed-http-exchange/mozaic.sxg HTTP/1.1
+Host: labs.jxck.io
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b0
+
+// レスポンスとして
+HTTP/1.1 200 OK
+Content-Length: 43366
+content-type: application/signed-exchange;v=b0
+
+// sxg の中身
+Request URL: https://mozaic.fm/index.html
+Request method: GET
+Response code: 200
+Response headers:
+  content-encoding: mi-sha256
+  content-type: text/html; charset=utf-8
+  mi: mi-sha256=4Bi141BMM68cSyYm52FK5KYZHtusvmiXG7GqAkc__Pk
+  signature:
+    label;
+    integrity="mi";
+    certUrl="https://labs.jxck.io/webpackaging/signed-http-exchange/cert.pem.msg";
+    validityUrl="https://labs.jxck.io/webpackaging/signed-http-exchange/cert.pem.msg";
+    date=1528195982;
+    expires=1528282382;
+    sig=*TdISeN+/aHsypECdMlmp4cqssiusAo4wbchWJ/8x/o32QBCFMmF/0wpurZp0xtLmWkIynwTWrbsb9qPyrq1onCR/Fer6S1nnEhINPhUzO6seH8m8Zuy88wdcpL31dwvhMzLgZJhfJ1H8iorPwymj7M7u7dxN7s/gP/KR5S3AxlC4a4TqXXkogQF/ftRA8twpKCJriawb1K6B6bMmNjgqcuYOqfKojfXAqCBdKTocRtoll4t2zALJatgtBQqUivLsBp1vkVuMDBCJiXIyGrk1sfbNZYTCq/7NT1L3RwpUfMyUsIzUyiSevTAxCSHQmc4eKPvvcUlHN2my3hwQhk3R2g;
+    certSha256=*sOY3SzQsuUDMHL+KCCeKWlOd/Akywt11kcjLM48Uqn0
+
+// certurl も見に行く
+https://labs.jxck.io/webpackaging/signed-http-exchange/cert.pem.msg
+</pre>
