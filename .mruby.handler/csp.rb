@@ -25,7 +25,9 @@ Proc.new do |env|
       "style-src",
       "'unsafe-inline'",
       ";",
-      "report-uri #{REPORT_URI}"
+      "report-uri #{REPORT_URI}",
+      ";",
+      "report-to default"
     ]
     headers["Content-Security-Policy-Report-Only"] = csp.join(" ")
   else
@@ -49,7 +51,9 @@ Proc.new do |env|
       "wss://ws.jxck.io",
       "https://www.google-analytics.com",
       ";",
-      "report-uri #{REPORT_URI}"
+      "report-uri #{REPORT_URI}",
+      ";",
+      "report-to default"
     ]
     headers["Content-Security-Policy-Report-Only"] = csp.join(" ")
   end
