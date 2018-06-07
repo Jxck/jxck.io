@@ -24,60 +24,258 @@ td {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+textarea {
+  width: 50%;
+  height: 10em;
+}
 .select {
   width: 1.8em;
 }
 .kind {
   width: 7em;
 }
+.index {
+  width: 10em;
+}
+.bold {
+  font-weight: bold;
+  color: green;
+}
+hr {
+  margin-bottom: 3em;
+}
+textarea, button {
+  display:block;
+}
 </style>
 
-<h1>Constraints</h1>
+<h1>Video</h1>
+<video id=video autoplay></video>
 
-<table>
-  <caption>enumerateDevices</caption>
-  <thead>
-    <tr>
-      <th class=select  ></th>
-      <th class=kind    >kind</th>
-      <th class=label   >label</th>
-      <th class=deviceId>deviceId</th>
-      <th class=groupId >groupId</th>
-    </tr>
-  </thead>
-  <tbody>
-    <template id=devices>
+<textarea>WIP....</textarea>
+
+<hr>
+
+<form>
+
+  <label for=videoinput>video</label>
+  <input id=videoinput type=checkbox name=video value=true />
+
+  <label for=audioinput>audio</label>
+  <input id=audioinput type=checkbox name=audio value=true />
+
+  <label for=fakeinput>fake</label>
+  <input id=fakeinput type=checkbox name=fake value=true />
+
+  <button id=start type=submit>start</button>
+
+  <table id=mediaDeviceInfo>
+    <caption>MediaDeviceInfo</caption>
+    <thead>
       <tr>
-        <td class=select  ><input type=radio name=select /></td>
-        <td class=kind    ></td>
-        <td class=label   ></td>
-        <td class=deviceId></td>
-        <td class=groupId ></td>
+        <th class=select  ></th>
+        <th class=kind    >kind</th>
+        <th class=label   >label</th>
+        <th class=deviceId>deviceId</th>
+        <th class=groupId >groupId</th>
       </tr>
-    </template>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <template>
+        <tr>
+          <td class=select  ><input type=radio name=select /></td>
+          <td class=kind    ></td>
+          <td class=label   ></td>
+          <td class=deviceId></td>
+          <td class=groupId ></td>
+        </tr>
+      </template>
+    </tbody>
+  </table>
+
+  <hr>
+
+  <table id=setting>
+    <caption>Setting</caption>
+    <thead>
+      <tr>
+        <th class=type >type </th>
+        <th class=value>value</th>
+        <th class=ideal>ideal</th>
+        <th class=exact>exact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=type >facing mode</td>
+        <td class=value>
+          <select name=facingMode>
+            <option value=           >-           </option>
+            <option value=default    >default     </option>
+            <option value=user       >user        </option>
+            <option value=environment>environment </option>
+            <option value=left       >left        </option>
+            <option value=right      >right       </option>
+          </select>
+        </td>
+        <td class=ideal><input name=facingMode type=checkbox></td>
+        <td class=exact><input name=facingMode type=checkbox></td>
+      </tr>
+      <tr>
+        <td class=type>video.width</td>
+        <td class=value><input name=video.width.value type=number min=100 max=200 step=10></td>
+        <td class=ideal><input name=video.width.ideal type=checkbox></td>
+        <td class=exact><input name=video.width.exact type=checkbox></td>
+      </tr>
+      <tr>
+        <td class=type>video.height</td>
+        <td class=value><input name=video.height.value type=number min=100 max=200 step=10></td>
+        <td class=ideal><input name=video.height.ideal type=checkbox></td>
+        <td class=exact><input name=video.height.exact type=checkbox></td>
+      </tr>
+      <tr>
+        <td class=type>video.latency</td>
+        <td class=value><input name=video.latecy.value type=number min=0 max=100 step=10></td>
+        <td class=ideal><input name=video.latecy.ideal type=checkbox></td>
+        <td class=exact><input name=video.latecy.exact type=checkbox></td>
+      </tr>
+      <tr>
+        <td class=type>video.frameRate</td>
+        <td class=value><input name=video.frameRate.value type=number min=0 max=60 step=10></td>
+        <td class=ideal><input name=video.frameRate.ideal type=checkbox></td>
+        <td class=exact><input name=video.frameRate.exact type=checkbox></td>
+      </tr>
+      <tr>
+        <td class=type>video.aspectRatio</td>
+        <td class=value><input name=video.aspectRatio.value type=number min=0 max=3 step=0.1></td>
+        <td class=ideal><input name=video.aspectRatio.ideal type=checkbox></td>
+        <td class=exact><input name=video.aspectRatio.exact type=checkbox></td>
+      </tr>
+      <tr>
+        <td class=type>audio.volume</td>
+        <td class=value><input name=audio.volume.value type=number min=0 max=1 step=0.1></td>
+        <td class=ideal><input name=audio.volume.ideal type=checkbox></td>
+        <td class=exact><input name=audio.volume.exact type=checkbox></td>
+      </tr>
+      <tr>
+        <td class=type>audio.sampleRate</td>
+        <td class=value><input name=audio.sampleRate.value type=number min=0 max=9600 step=1000></td>
+        <td class=ideal><input name=audio.sampleRate.ideal type=checkbox></td>
+        <td class=exact><input name=audio.sampleRate.exact type=checkbox></td>
+      </tr>
+      <tr>
+        <td class=type>audio.sampleSize</td>
+        <td class=value><input name=audio.sampleSize.value type=number min=16 max=32 step=16></td>
+        <td class=ideal><input name=audio.sampleSize.ideal type=checkbox></td>
+        <td class=exact><input name=audio.sampleSize.exact type=checkbox></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr>
+
+  <table id=track>
+    <caption>Track</caption>
+    <thead>
+      <tr>
+        <th>label</th>
+        <th class=index>index</th>
+        <th class=value>value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <template>
+        <tr>
+          <td class=index></td>
+          <td class=value></td>
+        </tr>
+      </template>
+    </tbody>
+  </table>
+
+  <hr>
+
+  <table id=capabilities>
+    <caption>Capabilities</caption>
+    <thead>
+      <tr>
+        <th>label</th>
+        <th class=index>index</th>
+        <th class=value>value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <template>
+        <tr>
+          <td class=index></td>
+          <td class=value></td>
+        </tr>
+      </template>
+    </tbody>
+  </table>
+
+  <hr>
+
+  <table id=constraints>
+    <caption>Constraints</caption>
+    <thead>
+      <tr>
+        <th>label</th>
+        <th class=index>index</th>
+        <th class=value>value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <template>
+        <tr>
+          <td class=index></td>
+          <td class=value></td>
+        </tr>
+      </template>
+    </tbody>
+  </table>
+  <hr>
+
+  <table id=settings>
+    <caption>Settings</caption>
+    <thead>
+      <tr>
+        <th>label</th>
+        <th class=index>index</th>
+        <th class=value>value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <template>
+        <tr>
+          <td class=index></td>
+          <td class=value></td>
+        </tr>
+      </template>
+    </tbody>
+  </table>
+
+  <hr>
+
+  <table id=supportedConstraints>
+    <caption>SupportedConstraints(<span class=bold>spec defined</span>)</caption>
+    <thead>
+      <tr>
+        <th class=index>index</th>
+        <th class=value>value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <template>
+        <tr>
+          <td class=index></td>
+          <td class=value></td>
+        </tr>
+      </template>
+    </tbody>
+  </table>
 
 
-<script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    // enumerateDevices()
-    const supportedConstraints = navigator.mediaDevices.getSupportedConstraints();
-    console.log(supportedConstraints)
-  })
+</form>
 
-  async function enumerateDevices() {
-    const $template = document.querySelector('#devices');
-    const $devices = document.querySelector('tbody');
-
-    const devices = await navigator.mediaDevices.enumerateDevices()
-    devices.forEach((device) => {
-      const $tr = document.importNode($template.content, true);
-      ['deviceId','kind','label','groupId'].map((prop) => {
-        $tr.querySelector(`.${prop}`).textContent = device[prop]
-        $tr.querySelector('.select > input').name = device.kind
-      })
-      $devices.appendChild($tr)
-    })
-  }
-</script>
+<script src=constraints.js></script>
