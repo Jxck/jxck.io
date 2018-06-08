@@ -10,7 +10,7 @@ document.querySelector('#peer').value = ''
 
 ///////////////////////////////////////////////////////////
 console.info('RTCPeerConnection を生成')
-const connection = new RTCPeerConnection()
+const connection = new RTCPeerConnection(Config)
 console.log(connection)
 
 
@@ -124,12 +124,6 @@ ws.onopen = async () => {
     document.querySelector('#remote').srcObject = streams[0]
   }
 
-  connection.onaddstream = ({stream}) => {
-    ///////////////////////////////////////////////////////////
-    console.log('stream を受信', stream)
-    document.querySelector('#remote').srcObject = stream
-  }
-
   connection.onicecandidateerror = (e) => {
     console.error(e.type, e)
   }
@@ -177,14 +171,9 @@ ws.onopen = async () => {
 
     ///////////////////////////////////////////////////////////
     console.info('Stream を追加')
-    if (connection.addTrack) {
-      stream.getTracks().forEach((track) => {
-        console.log('addTrack', track)
-        connection.addTrack(track, stream)
-      })
-    } else {
-      console.log('addStream', stream)
-      connection.addStream(stream)
-    }
+    stream.getTracks().forEach((track) => {
+      console.log('addTrack', track)
+      connection.addTrack(track, stream)
+    })
   }
 }

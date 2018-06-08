@@ -23,8 +23,8 @@ document.querySelector('#peer').value = ''
 const ws = new WebSocket('wss://ws.jxck.io', ['broadcast', 'webrtc-stream-p2p-demo'])
 const connection = new RTCPeerConnection(Config)
 
+const $log = document.querySelector('#log')
 function log(name, value) {
-  const $log = document.querySelector('#log')
   $log.value += `[${name}]\n${value}\n\n`
 }
 
@@ -152,4 +152,18 @@ ws.addEventListener('message', async ({data}) => {
     log('candidate', JSON.stringify(message.data))
     await connection.addIceCandidate(message.data)
   }
+})
+
+const $stats = document.querySelector('#stats')
+$stats.addEventListener('click', async () => {
+  connection.getSenders().forEach(async (sender) => {
+    const stats = await sender.getStats()
+    console.log(stats)
+    console.table(stats)
+  })
+  connection.getReceivers().forEach(async (receiver) => {
+    const stats = await receiver.getStats()
+    console.log(stats)
+    console.table(stats)
+  })
 })
