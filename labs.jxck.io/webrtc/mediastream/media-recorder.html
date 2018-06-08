@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>MediaRecorder DEMO | labs.jxck.io</title>
+
+<style>
+video {
+  border: 1px solid black;
+  width: 200px;
+}
+</style>
+
+<h1>MediaRecorder</h1>
+
+<video id=original autoplay></video>
+<video id=copy autoplay></video>
+
+<button id=play>play</button>
+
+<button id=start>start capture</button>
+<button id=stop>stop capture</button>
+
+<script>
+  const $video = document.querySelector('#original')
+  const $copy= document.querySelector('#copy')
+
+  document.querySelector('#play').addEventListener('click', async (e) => {
+    console.log(e.type)
+    const stream = await navigator.mediaDevices.getUserMedia({video: true})
+    $video.srcObject = stream
+  })
+
+  document.querySelector('#start').addEventListener('click', async (e) => {
+    console.log(e.type)
+    const stream = $video.srcObject
+    const recorder = new MediaRecorder(stream)
+    recorder.addEventListener('dataavailable', (e) => {
+      console.log(e.type)
+      $copy.src = window.URL.createObjectURL(e.data)
+
+      const blob = new Blob([e.data], {type: 'video/webm'})
+      const bloburl = window.URL.createObjectURL(blob)
+      const $a = document.createElement('a')
+      $a.style.display = 'none'
+      $a.href = bloburl
+      $a.download = 'record.webm'
+      document.body.appendChild($a)
+      $a.click()
+    })
+    document.querySelector('#stop').addEventListener('click', async (e) => {
+      console.log(e.type)
+      recorder.stop()
+    })
+    recorder.start()
+  })
+</script>
