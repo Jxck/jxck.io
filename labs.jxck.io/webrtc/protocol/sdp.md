@@ -298,3 +298,62 @@ a=setup:actpass
 
 
 RFC4145 に記載。
+
+
+## plan B
+
+https://tools.ietf.org/html/draft-uberti-rtcweb-plan-00
+
+例えば、複数のマイクからの音声を送る場合、 "m=" line をマイクごとに記述にする。
+
+しかし、各 "m=" line 対して別トランスポートを割り当てたいとは限らない。
+
+多重化する場合は、トランスポートは 1 つで良い。
+
+そこで、トランスポートに対して "m=" line は 1 つにし、それを "envelope" とする。
+
+その中に、マイクごとの定義を、 "a=ssrc" で記述する。
+
+```
+m=audio 49170 RTP/AVP 101
+a=ssrc:1 msid:left-mic
+a=ssrc:2 msid:center-mic
+a=ssrc:3 msid:right-mic
+```
+
+
+## Plan A - Unified Plan
+
+https://tools.ietf.org/html/draft-roach-mmusic-unified-plan-00
+
+Plan A は、 "m=" line をメディアごとに書くというシンプルな方法。
+
+もし多重化したい場合は、対象の "m=" line に対して BUNDLE を指定する。
+
+この方式が WebRTC の標準として合意され、現在は Unified Plan として策定が進んでいる。
+
+```
+...
+a=group:BUNDLE m1 m2 m3
+...
+m=audio 56600 RTP/SAVPF 0 109
+a=msid:left-mic
+a=mid:m1
+...
+m=video 56601 RTP/SAVPF 99 120
+a=msid:center-mic
+a=mid:m2
+...
+m=video 56602 RTP/SAVPF 99 120
+a=msid:right-mic
+a=mid:m3
+...
+```
+
+
+chrome は B から unified plan に移行中
+
+```javascript
+new RTCPeerConnection({SdpFormat: "unified-plan"})
+```
+
