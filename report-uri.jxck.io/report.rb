@@ -27,7 +27,7 @@ reporting = Proc.new do |req, res|
       header = req.header.map{|k,v| [k, v.join(",")]}.to_h
       body = JSON.parse(req.body)
       body["header"] = header
-      body["data"] = Time.now
+      body["date"] = Time.now
       report = JSON.generate(body) + "\n"
       append(FILE_CSP, report)
       res.status = 201
