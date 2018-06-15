@@ -1,11 +1,9 @@
-# go get github.com/nyaxt/webpackage/go/signedexchange/cmd/gen-certurl
-# go get github.com/nyaxt/webpackage/go/signedexchange/cmd/gen-signedexchange
-# mv ./nyaxt/bin/* .
-# rm -rf ./nyaxt
+go get github.com/nyaxt/webpackage/go/signedexchange/cmd/gen-certurl
+go get github.com/nyaxt/webpackage/go/signedexchange/cmd/gen-signedexchange
 
-./gen-certurl /etc/letsencrypt/live/mozaic.fm/cert.pem  > cert.pem.msg
+./bin/gen-certurl /etc/letsencrypt/live/mozaic.fm/cert.pem  > cert.pem.msg
 
-./gen-signedexchange \
+./bin/gen-signedexchange \
   -uri https://mozaic.fm/index.html \
   -content /home/jxck/server/jxck.io/mozaic.fm/index.html \
   -certificate /etc/letsencrypt/live/mozaic.fm/cert.pem \
