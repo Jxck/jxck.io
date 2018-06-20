@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>&lt;output&gt; DEMO | labs.jxck.io</title>
+
+<style>
+</style>
+
+<h1>&lt;output&gt;</h1>
+
+<form id=calc>
+  <input type=number id=x name=x value=10>
+  +
+  <input type=number id=y name=y value=20>
+  <button type=submit>=</button>
+  <output id=answer for="x y"></output>
+</form>
+<script>
+  document.querySelector('#calc').addEventListener('submit', (e) => {
+    e.preventDefault()
+    const x = e.target.querySelector('#x').valueAsNumber
+    const y = e.target.querySelector('#y').valueAsNumber
+    document.querySelector('#answer').value = x + y
+  })
+</script>
