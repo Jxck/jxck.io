@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>&lt;details&gt; DEMO | labs.jxck.io</title>
+
+<style>
+</style>
+
+<h1>&lt;details&gt; </h1>
+
+<details>
+  <summary>summary</summary>
+  <p>this is a details tag
+  <ul>
+    <li>aaaaa
+    <li>bbbbb
+    <li>ccccc
+    <li>ddddd
+  </ul>
+</details>
+
+<script>
+  document.querySelector('details').addEventListener('toggle', (e) => {
+    console.log(e)
+    console.log('open', e.target.open)
+  })
+</script>
