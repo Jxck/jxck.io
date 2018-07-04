@@ -467,7 +467,7 @@ app.post("/session", (req, res) => {
 
 
 app.use((err, req, res, next) => {
-  console.error(`==============\n${erro}\n==============\n`)
+  console.error(`==============\n${err}\n==============\n`)
   res.status(500)
 })
 
