@@ -26,37 +26,34 @@
 </div>
 
 <script>
-const log = console.log.bind(console)
-const $ = document.querySelector.bind(document)
+  document.querySelector('#connect').addEventListener('submit', (e) => {
+    e.preventDefault()
+    let data = new FormData(e.target)
+    let url = data.get('url')
+    let subprotocol = data.get('subprotocol').split(',')
 
-$('#connect').addEventListener('submit', (e) => {
-  e.preventDefault();
-  let data = new FormData(e.target)
-  let url = data.get('url')
-  let subprotocol = data.get('subprotocol').split(',')
+    const ws = new WebSocket(url, subprotocol)
 
-  const ws = new WebSocket(url, subprotocol)
+    const $messages = document.querySelector('#messages')
+    const $input    = document.querySelector('#input')
+    const $send     = document.querySelector('#send')
 
-  const $messages = $('#messages')
-  const $input    = $('#input')
-  const $send     = $('#send')
-
-  ws.onopen = (e) => {
-    log(e)
+    ws.onopen = (e) => {
+      console.log(e)
       $send.disabled = false
 
       $send.onclick = () => {
         const value = $input.value
-          ws.send(value)
+        ws.send(value)
       }
 
-    ws.onmessage = (e) => {
-      log(e)
+      ws.onmessage = (e) => {
+        console.log(e)
         const value = e.data
         const $li = document.createElement('li')
         $li.textContent = value
         $messages.appendChild($li)
+      }
     }
-  }
-});
+  })
 </script>

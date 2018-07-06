@@ -21,9 +21,9 @@ const log = console.log.bind(console)
 const ws = new WebSocket('wss://ws.jxck.io', ['broadcast', 'chat'])
 
 const $messages = document.querySelector('#messages')
-const $input = document.querySelector('#input')
-const $send = document.querySelector('#send')
-const $form = document.querySelector('#form')
+const $input    = document.querySelector('#input')
+const $send     = document.querySelector('#send')
+const $form     = document.querySelector('#form')
 
 ws.onopen = (e) => {
   log(e)
