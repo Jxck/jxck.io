@@ -118,6 +118,13 @@
       <p>SDP の互換性についてインパクトの大きいこの変更について簡単に解説する。
     </section>
     <section>
+      <h2 id="update"><a href="#update">Update</a></h2>
+      <p>実装が進み <code translate="no">SdpFormat</code> は <code translate="no">sdpSemantics</code> に変わったため、記事を修正。
+      <p><a href="https://groups.google.com/forum/#!topic/discuss-webrtc/x8lcqHRlWmA">PSA: Unified Plan SDP testing flag is now available on Canary</a>
+      <p>なお、以下のフラグを付けて起動するとデフォルトで有効にできる。
+      <p><code translate="no">--enable-blink-features=RTCUnifiedPlanByDefault</code>
+    </section>
+    <section>
       <h2 id="sdp-compatibility"><a href="#sdp-compatibility">SDP Compatibility</a></h2>
       <p>SDP は、 WebRTC の通信開始前に、シグナリングで交換するデータである。
       <p>内容は、これから交換する映像/音声のコーデック他、セッションを確立するための様々な情報が含まれる。
@@ -165,12 +172,12 @@ a=mid:m3
 ...</code></pre>
     </section>
     <section>
-      <h2 id="sdpformat"><a href="#sdpformat">SdpFormat</a></h2>
+      <h2 id="sdpsemantics"><a href="#sdpsemantics">SdpSemantics</a></h2>
       <p>Chrome は、まず WebRTCUnifiedPlan というフラグを用意するとしている。
-      <p>このフラグを有効にすると、 RTCConfiguration に <code translate="no">&quot;SdpFormat&quot;</code> という独自プロパティを定義される。
+      <p>このフラグを有効にすると、 RTCConfiguration に <code translate="no">&quot;sdpSemantics&quot;</code> という独自プロパティを定義される。
       <p>デフォルトは <code translate="no">&quot;plan-b&quot;</code> であり、明示的に <code translate="no">&quot;unified-plan&quot;</code> を指定すれば切り替えられる。
       <p>後にデフォルトを &ldquo;unified-plan&rdquo; に変更し、 <code translate="no">&quot;plan-b&quot;</code> が十分に減れば値自体が削除される。
-      <pre class=javascript><code translate="no">new RTCPeerConnection({SdpFormat: &quot;unified-plan&quot;})</code></pre>
+      <pre class=javascript><code translate="no">new RTCPeerConnection({sdpSemantics: &quot;unified-plan&quot;})</code></pre>
     </section>
     <section>
       <h2 id="影響"><a href="#影響">影響</a></h2>
