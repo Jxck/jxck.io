@@ -9,6 +9,17 @@
 SDP の互換性についてインパクトの大きいこの変更について簡単に解説する。
 
 
+## Update
+
+実装が進み `SdpFormat` は `sdpSemantics` に変わったため、記事を修正。
+
+[PSA: Unified Plan SDP testing flag is now available on Canary](https://groups.google.com/forum/#!topic/discuss-webrtc/x8lcqHRlWmA)
+
+なお、以下のフラグを付けて起動するとデフォルトで有効にできる。
+
+`--enable-blink-features=RTCUnifiedPlanByDefault`
+
+
 ## SDP Compatibility
 
 SDP は、 WebRTC の通信開始前に、シグナリングで交換するデータである。
@@ -81,11 +92,11 @@ a=mid:m3
 ```
 
 
-## SdpFormat
+## SdpSemantics
 
 Chrome は、まず WebRTCUnifiedPlan というフラグを用意するとしている。
 
-このフラグを有効にすると、 RTCConfiguration に `"SdpFormat"` という独自プロパティを定義される。
+このフラグを有効にすると、 RTCConfiguration に `"sdpSemantics"` という独自プロパティを定義される。
 
 デフォルトは `"plan-b"` であり、明示的に `"unified-plan"` を指定すれば切り替えられる。
 
@@ -93,7 +104,7 @@ Chrome は、まず WebRTCUnifiedPlan というフラグを用意するとして
 
 
 ```javascript
-new RTCPeerConnection({SdpFormat: "unified-plan"})
+new RTCPeerConnection({sdpSemantics: "unified-plan"})
 ```
 
 
