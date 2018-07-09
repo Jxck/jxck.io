@@ -15,7 +15,7 @@ window.peerid = ''
 
 const rand = () => btoa(Math.floor(Math.random()*10000)).replace(/=/g, "").toLowerCase()
 const id = location.hash ? location.hash : rand()
-const constraint = {video:true}
+const constraint = {video:true, audio:true}
 
 document.querySelector('#id').textContent = id
 document.querySelector('#peer').value = ''
@@ -28,6 +28,14 @@ function log(name, value) {
   $log.value += `[${name}]\n${value}\n\n`
 }
 
+function sdp(sdp) {
+  return sdp
+    .replace("mozilla...THIS_IS_SDPARTA-60.0.2", "-")
+    .replace(/a=rtcp-fb:.*\r\n/g, "")
+    .replace(/a=extmap:.*\r\n/g, "")
+    .replace(/a=fmtp:.*\r\n/g, "")
+}
+
 connection.addEventListener('negotiationneeded', async (e) => {
   console.log('******************* onnegotiationneeded *******************', e)
 
@@ -36,7 +44,9 @@ connection.addEventListener('negotiationneeded', async (e) => {
 
   // create offer
   const offer = await connection.createOffer()
-  log('offer', offer.sdp)
+  offer.sdp = sdp(offer.sdp)
+
+  log('send offer', offer.sdp)
   await connection.setLocalDescription(offer)
 
   ws.send(JSON.stringify({
@@ -51,7 +61,7 @@ connection.addEventListener('negotiationneeded', async (e) => {
 })
 
 connection.addEventListener('icecandidate', ({candidate}) => {
-  log('candidate', JSON.stringify(candidate))
+  log('send candidate', JSON.stringify(candidate))
   if (candidate === null) return
 
   ws.send(JSON.stringify({
@@ -65,11 +75,14 @@ connection.addEventListener('icecandidate', ({candidate}) => {
   }))
 })
 
-connection.addEventListener('track', ({streams}) => {
-  console.log('====================== ontrack ========================', streams)
-  const $video = document.createElement('video')
-  $video.srcObject = streams[0]
-  $video.play()
+connection.addEventListener('track', (e) => {
+  console.log('====================== ontrack ========================', e)
+  const $video = document.querySelector('#remote')
+  if ($video.srcObject) {
+    $video.srcObject.addTrack(e.track)
+  } else {
+    $video.srcObject = e.streams[0]
+  }
   document.querySelector('#videos').appendChild($video)
 })
 
@@ -118,7 +131,7 @@ ws.addEventListener('message', async ({data}) => {
   if (type === 'offer') {
     window.peerid = message.from
 
-    log('offer', message.data.sdp)
+    log('recv offer', message.data.sdp)
     await connection.setRemoteDescription(message.data)
 
     const stream = await navigator.mediaDevices.getUserMedia(constraint)
@@ -129,8 +142,10 @@ ws.addEventListener('message', async ({data}) => {
       connection.addTrack(track, stream)
     })
 
-    await connection.setLocalDescription(await connection.createAnswer())
-    console.log(connection.localDescription.sdp)
+    const answer = await connection.createAnswer()
+    answer.sdp = sdp(answer.sdp)
+    await connection.setLocalDescription(answer)
+    log('send answer', connection.localDescription.sdp)
 
     ws.send(JSON.stringify({
       id:   window.peerid,
@@ -144,12 +159,12 @@ ws.addEventListener('message', async ({data}) => {
   }
 
   if (type === 'answer') {
-    log('answer', message.data.sdp)
+    log('recv answer', message.data.sdp)
     await connection.setRemoteDescription(message.data)
   }
 
   if (type === 'candidate') {
-    log('candidate', JSON.stringify(message.data))
+    log('recv candidate', JSON.stringify(message.data))
     await connection.addIceCandidate(message.data)
   }
 })

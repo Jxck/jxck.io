@@ -354,6 +354,5 @@ a=mid:m3
 chrome は B から unified plan に移行中
 
 ```javascript
-new RTCPeerConnection({SdpFormat: "unified-plan"})
+new RTCPeerConnection({SdpSemantics: "unified-plan"})
 ```
-
