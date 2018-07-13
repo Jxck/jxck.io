@@ -30,10 +30,11 @@ function log(name, value) {
 
 function sdp(sdp) {
   return sdp
-    .replace("mozilla...THIS_IS_SDPARTA-60.0.2", "-")
-    .replace(/a=rtcp-fb:.*\r\n/g, "")
-    .replace(/a=extmap:.*\r\n/g, "")
-    .replace(/a=fmtp:.*\r\n/g, "")
+  //return sdp
+  //  .replace("mozilla...THIS_IS_SDPARTA-60.0.2", "-")
+  //  .replace(/a=rtcp-fb:.*\r\n/g, "")
+  //  .replace(/a=extmap:.*\r\n/g, "")
+  //  .replace(/a=fmtp:.*\r\n/g, "")
 }
 
 connection.addEventListener('negotiationneeded', async (e) => {

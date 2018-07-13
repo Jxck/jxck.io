@@ -40,16 +40,6 @@ class Track {
 
 class Stream {
   static getUserMedia(constraint) {
-    // polyfill
-    navigator.mediaDevices.getUserMedia = navigator.mediaDevices.getUserMedia || function(conf) {
-      navigator.getUserMedia = navigator.getUserMedia ||
-        navigator.webkitGetUserMedia ||
-        navigator.mozGetUserMedia ||
-        navigator.msGetUserMedia
-      return new Promise((resolve, reject) => {
-        navigator.getUserMedia(conf, resolve, reject)
-      })
-    }
     return navigator.mediaDevices.getUserMedia(constraint).then((stream) => {
       return Promise.resolve(new Stream(stream, constraint))
     })
@@ -66,18 +56,11 @@ class Stream {
   get active() {
     return this.stream.active
   }
-  get src() {
-    return URL.createObjectURL(this.stream)
-  }
 
   tracks() {
     return this.stream
       .getTracks()
       .map((track) => new Track(track))
-  }
-
-  objectURL() {
-    return URL.createObjectURL(this.stream)
   }
 
   stop() {
@@ -143,12 +126,11 @@ class Tracks extends React.Component {
 
 class Video extends React.Component {
   componentDidUpdate() {
-    // FIXME: if React supports srcObject
-    // this.video.srcObject = this.props.stream
   }
 
   bindVideo(video) {
     this.video = video
+    this.video.srcObject = this.props.stream.stream
   }
 
   render() {
@@ -163,7 +145,7 @@ class Video extends React.Component {
           <span>stream.active:</span><strong>{stream.active ? 'active': 'innactive'} </strong>
           <span>stream.id:</span><strong>{stream.id}</strong>
         </p>
-        <video autoPlay controls src={stream.objectURL()} ref={this.bindVideo.bind(this)}></video>
+        <video autoPlay controls ref={this.bindVideo.bind(this)}></video>
       </div>
     )
   }
