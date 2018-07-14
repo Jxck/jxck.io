@@ -58,12 +58,9 @@ Chrome は Intents や Blog など、アウトプットが充実しているの�
 
 また、他のベンダと比べても、投入するリソースやバジェットが多いためか、アップデートも多く出てくるので Monthly Web の中では自然と扱う量が増える。
 
-ブログは後に日本語翻訳されることもあるが、原典で扱っているない。
-
 大きなイベントとしては、 Google I/O や Chrome Dev Summit があるが、 Web はプロダクトではないため、初めて聞く話はあまりない。
 
 Chrome の Stable は 6~8 週間程度でリリースされるため、 Montly Web には入らない月もある。
-
 
 
 ### Intents
@@ -72,7 +69,7 @@ Chrome の Stable は 6~8 週間程度でリリースされるため、 Montly W
 
 <https://groups.google.com/a/chromium.org/forum/#!forum/blink-dev>
 
-例えばある機能 A を実装に着手する場合は "Intent to Implement A" という投稿があるといった具合だ。
+例えばある機能 A の実装に着手する場合は "Intent to Implement A" という投稿があるといった具合だ。
 
 Intents は以下のようなバリエーションがある。
 
@@ -89,22 +86,20 @@ Intents のまとめは以下にある。
 <https://bit.ly/blinkintents>
 
 
-Intents を追うことで、「この機能はそろそろ試せるな」とか「この機能は実装できるところまで仕様が仕上がったんだな」「Origin Trials 始まったな」などといった部分がわかる。
+Intents を追うことで、「この機能はそろそろ試せるな」とか「この機能は実装できるところまで仕様が仕上がったんだな」「Origin Trials 始まったな」などといった進捗がわかる。
 
 また、本文にはモチベーションや仕様へのリンク、他ブラウザのシグナルなどもまとまっており、フィードバックのレスもつくため、議論も追いやすい。
 
-(シグナルの中には他のブラウザ以外に developers という項目が有るが、この部分は雰囲気で勝手に書いてるだけだと思われるのであまり好きではない)
+(シグナルの中には他のブラウザ以外に developers という項目が有るが、基準がよくわからないのであまり好きではない)
 
-よって、コミットログをつぶさに追わなくとも、仕様と実装のチェックポイントが把握できるため、追う負荷が下がる。
+Intents の存在によって、コミットログをつぶさに追わなくとも、仕様と実装のチェックポイントが把握できるため、負荷が下がる。
 
 
 ### Team Weekly Snippet
 
 Blink の開発は、スコープごとにいくつかのチームに分かれている。
 
-チームによっては、週報的なものを投稿している場合があり、そこを見るとどんな仕様/実装に取り組んでいるかが伺える。
-
-(自主的な運用のようなので、投稿はまばらで来ない週も多い)
+チームによっては、 [blink-dev の ML](https://groups.google.com/a/chromium.org/d/forum/blink-dev) に週報的なものを投稿している場合があり、そこを見るとどんな仕様/実装に取り組んでいるかが伺える。
 
 最近はこの辺を眺めている。
 
@@ -114,6 +109,8 @@ Blink の開発は、スコープごとにいくつかのチームに分かれ�
 - Layout Team
 
 例えば WebPackagin の進行状況などは Loading Team を見てるとなんとなくわかり、コミットまで追わなくてもよくなる。
+
+(自主的な運用のようなので、投稿はまばらで来ない週も多い)
 
 
 ### Release Blog
@@ -129,28 +126,44 @@ Beta あたりまで来ると、アップデートエントリが Chromium の�
 
 - https://blog.chromium.org/
 
-ここで、 Intent to Ship の結果、次の Stable に入るおおよその変更が把握できる。
+ここで、 Intents の結果、次の Stable に入るおおよその変更が把握できる。
 
 Stable リリースのタイミングでは、 "New in Chrome" と "Deprecation Removable" エントリが Google Developers Blog に上がる。
 
 - https://developers.google.com
 
-(Intents から追っていると、数カ月間その議論を追うことになり、気づくととっくに使えるものと錯覚してしまうことがあるため、 Stabel リリースで認識を補正する必要がある)
+(Intents から追っていると、数カ月間その議論を追うことになり、無意識のうちにとっくに使えるものと錯覚してしまうことがあるため、 Stabel リリースで認識を補正する必要がある)
 
 
 その他、新しい機能の解説や、挙動の変更などに関するエントリも上がるため、それらもフォローしておく。
 
 
+### Events
+
+Google の大きめのイベントとしては、年 1 回の Google I/O と Chrome Developer Summit の 2 つがある。
+
+Web 自体は製品ではないため、そこで初めて知る内容は Chrome の機能などの方が多い。
+
+最近、 Android や GCP など大きめなトピックは、 Google I/O とは別に独自の Summit をやるようになり始めた。
+
+Web も同様に、細かい話は Chrome Developer Summit の方が多く感じる。
+
+今、 Google が推したい分野がどこなのか(AMP, PWA, WebPackaging etc)がわかるという役割が強い。
+
+
 ### V8
 
-関連して V8 のブログも追っておく。
+V8 も、アップデートのタイミングでブログがあがるため、これも含めている。
+
+- <https://v8project.blogspot.jp/>
 
 ES の仕様の実装状況だけでなく、内部のパフォーマンス改善などの解説も面白い。
 
-https://v8project.blogspot.jp/
-
 
 ## Other
+
+他にも気になるものがあれば Other にまとめている。
+AMP や Firebase でも、気になるアップデートがある場合は混ぜることもある。
 
 - https://developers-jp.googleblog.com/
 - https://www.chromestatus.com/features
@@ -158,27 +171,23 @@ https://v8project.blogspot.jp/
 - https://www.chromestatus.com/features/schedule
 - https://www.chromium.org/developers/calendar
 - https://chromereleases.googleblog.com/
-- https://chromereleases.googleblog.com/search/label/Stable%20updates
 - http://feeds.feedburner.com/GoogleOnlineSecurityBlog
 - https://chromestatusdeck.com/
 - https://www.chromium.org/getting-involved/dev-channel
-
-
-AMP もアップデートがある場合は混ぜることもある。
-
 - https://amphtml.wordpress.com/
 
 
 
 ## Firefox 動向
 
-Chrome についでアウトプットが多い。
+Chrome に次いでアウトプットが多い。
 
-Intents もあるがカバー率は多少低く感じる。
+Bugzilla の流量が多いが、全部追うのは時間的に厳しいため、 Intents や Release Note でカバーしている。
 
-ブログは Web だけでなく Internet の話題、例えば NetNewtrarity なども積極的に出してくるが、政治や法律などの話題はここでは省いている。
+Intents は Chrome と似た運用だが、カバー率が低く Intents なしでリリースされることもあるように思う。
 
-一番流量が多いのは Bugzilla だが、ここを全部追うのは時間的に厳しいため、以下でカバーしている。
+ブログでは Web だけでなく Internet の話題、例えば NetNewtrarity なども積極的に出してくるが、政治や法律などレイヤの高い話題は Monthly Web では省いている。
+
 
 
 ### Intents
@@ -187,45 +196,59 @@ Chrome と同じような Intents が運用されている。
 
 Intents のカバー率は低いように感じるが、やはりそこが一番手軽だ。
 
-https://groups.google.com/forum/#!msg/mozilla.dev.platform/
+- https://groups.google.com/forum/#!msg/mozilla.dev.platform/
 
+
+Experimental な機能は以下にまとまっている。
+
+- https://developer.mozilla.org/en-US/Firefox/Experimental_features
+- https://platform-status.mozilla.org/
 
 ### Release Blog
 
+リリースのスケジュールなどは以下にある。
 
-
-Stable:
-Updates
 - https://www.mozilla.org/en-US/firefox/releases/
-- https://blog.nightly.mozilla.org/
-- https://hacks.mozilla.org/
-- https://developer.mozilla.org/en-US/Firefox/Releases
 - https://wiki.mozilla.org/RapidRelease/Calendar
-- https://developer.mozilla.org/en-US/Firefox/Experimental_features
+
+リリースノートは以下にある
+
+- https://developer.mozilla.org/en-US/Firefox/Releases
+
+
+メジャーアップデートなどは、以下のブログにエントリが出る
+
+- https://blog.mozilla.org/
+- https://hacks.mozilla.org/
+
+
+Nightly News には、 "These Weeks in Firefox: Issue NN" というシリーズのエントリが上がる。
+
+ここでは Nightly で進行している実装の進捗などがまとまっている。
+
+濃く長いことが多いため、全部読めない月も多いが、 Highlight を眺めるだけでも次の Stable で入りそうな変更などが伺える。
+
+- https://blog.nightly.mozilla.org/
+
 
 
 ### Site Compat
 
-互換性に関わる変更については sitecompat がある。
-
-ボランティアベースではあるが、 Intent to Remove 系との関わりや影響が確認できる。
-
-実際は、古くからある機能が消える時「そんな機能あったのか」と知ることの方が多い。
-
+互換性に関わる変更がある場合 sitecompat というサイトが更新される。
 
 - <https://www.fxsitecompat.com>
 
+ボランティアベースではあるが、 Intent to Remove 系との関わりや影響が確認できる。
+
+古くからある機能や挙動が変わる時「そんな機能あったのか」と知ることが多い。
 
 
+### Event
 
+- https://mozillafestival.org/
 
 
 ### Other
-
-blog
-https://blog.mozilla.org/
-platform status
-https://platform-status.mozilla.org/
 
 
 最近、新しい仕様などに対して Mozilla がどういうスタンスを取るのかという表明がまとまったページができた。
@@ -237,9 +260,7 @@ https://platform-status.mozilla.org/
 Github に issue を上げると、それについて表明を追加してくれるため、「あの機能はどうなんだろ」と思ったら投げて見ると良い。
 
 
-
-
-
+他にも Mozilla は広い視点で示唆に富んだブログが上がることがおおいため、必要に応じてフォローしている。
 
 
 
@@ -247,7 +268,7 @@ Github に issue を上げると、それについて表明を追加してくれ
 
 ### Overview
 
-Safari 自体のメジャーアップデートが年 2 回しかないため、基本は Technology Preview を追う感じになる。
+Safari 自体のメジャーアップデートが年 2 回しかないため、基本は Technology Preview を追う感ことになる。
 
 普段のアウトプットが Chrome などと比べて少ない分、 WWDC なども面白いセッションがぽろっと出たりする。
 
@@ -256,10 +277,24 @@ Safari 自体のメジャーアップデートが年 2 回しかないため、�
 
 Technology Preview は、不定期(月0~3回程度?)にリリースされ、そのブログが主な情報源となる。
 
-TP では、仕様の早い段階の実装が突然入ったり、ドラフトすらない実装ががいきなり入ったりと、若干ハイコンテキストなときがある。
+- https://webkit.org/blog/
+- https://developer.apple.com/safari/technology-preview/release-notes/
+- https://developer.apple.com/library/archive/releasenotes/General/WhatsNewInSafari/Introduction/Introduction.html
+
+TP では、仕様の早い段階の実装が突然入ったり、ドラフトすらない実装ががいきなり入ったりと、若干ハイコンテキストなときもある。
+
 (Cross-Origin-Resource-Policy など)
 
-チェンジセットへのリンクなどがあるため、そこをフォローすると流れがなんとなく見える。
+気になるところは、チェンジセットへのリンクを辿ることで補完できるため、チェンジセットをつぶさに追う負荷が減る。
+
+
+## ChangeSet
+
+Intents などが細かく出ないため、チェンジセットを追う必要がある場合もある。
+
+気になる機能の動向は、担当している人を把握し、その人のアクティビティを追う感じになるだろう。
+
+- https://trac.webkit.org/timeline
 
 
 ## Blog
@@ -268,7 +303,7 @@ Safari 特有の実装や、割と細かい機能解説、中の人がみなぎ�
 
 逆を言えば ITP などは、このブログくらいしか表立ったアウトプットが無く、その次はソースコードレベルとなる場合もある。
 
-
+Chrome ほどガイドライン的なドキュメントが整備されていないので、ブログの重要度は高い。
 
 
 
