@@ -178,7 +178,7 @@ V8 も、アップデートのタイミングでブログがあがるため、�
 ES の仕様の実装状況だけでなく、内部のパフォーマンス改善などの解説も面白い。
 
 
-## Other
+### Other
 
 他にも気になるものがあれば Other にまとめている。
 AMP や Firebase でも、気になるアップデートがある場合は混ぜることもある。
@@ -296,7 +296,7 @@ Safari 自体のメジャーアップデートが年 2 回しかないため、�
 Technology Preview よりももう一段粒度の細かい Intents 的なアウトプットがあると助かるなとは思うが、そうなるとコミットログを全部追うしかいない。
 
 
-## Safari Technology Preview NN
+### Safari Technology Preview NN
 
 Technology Preview は、不定期(月0~3回程度?)にリリースされ、そのブログが主な情報源となる。
 
@@ -311,7 +311,7 @@ TP では、仕様の早い段階の実装が突然入ったり、ドラフト�
 気になるところは、チェンジセットへのリンクを辿ることで補完できるため、チェンジセットをつぶさに追う負荷が減る。
 
 
-## ChangeSet
+### ChangeSet
 
 Intents などが細かく出ないため、チェンジセットを追う必要がある場合もある。
 
@@ -320,7 +320,7 @@ Intents などが細かく出ないため、チェンジセットを追う必要
 - https://trac.webkit.org/timeline
 
 
-## Blog
+### Blog
 
 Safari 特有の実装や、割と細かい機能解説、中の人がみなぎった結果出てきた論文のような文書など、色々とブログが上がるので参考になる。
 
@@ -335,7 +335,7 @@ Chrome ほどガイドライン的なドキュメントが整備されていな�
 そのため、派生した議論が Twitter に散らばり、ここを追うのが面倒だったりする。
 
 
-## Event
+### Event
 
 中心は WWDC になり、他のイベントにくらべて一番注目されているように思う。
 
@@ -346,7 +346,7 @@ Web にかかわるアウトプットは少ないが、 Safari のアップデ�
 他に Apple 主催で Web に関わるようなイベントは把握していない。
 
 
-## Other
+### Other
 
 主催イベントやアウトプットの場、アドボケートのようなアウトプットを専門タスクとする人が少ないため、アウトプットが少ない。
 
@@ -421,7 +421,7 @@ Intents が無い代わりに、現時点での Status がまとまったペー�
 ちなみに、実装されていない機能については、ここから Vote することで要望できる。
 
 
-## Build Changelog
+### Build Changelog
 
 Edge は Windows の Build に紐づいており、 Windows の build は以下からビルド番号で追う。
 
@@ -485,7 +485,7 @@ Edge の中の人の、新しい機能へ追従するモチベーションは高
 Edge の追い方については未だに慣れない。
 
 
-### WHATWG/W3C 動向
+## WHATWG/W3C 動向
 
 
 ### Overview
@@ -537,7 +537,7 @@ W3C のドラフトには以下のようなステージがある。
 - [xhrstandard](https://twitter.com/xhrstandard)
 
 
-## Mailing List
+### Mailing List
 
 Working Group は非常に多く、その全てを追うことは難しい。
 
@@ -622,7 +622,7 @@ triple underscore 氏の翻訳は、独自の UI が付いており、原文を�
 氏の興味分野が Web だったことは、日本の Web にとって幸運だったとしか言いようがない。
 
 
-## Event
+### Event
 
 基本は ML で議論されるが、年一回集まる TPAC が大きく、ここでの議論は Minutes として各 ML などに投稿される。
 
@@ -633,7 +633,7 @@ triple underscore 氏の翻訳は、独自の UI が付いており、原文を�
 他にも色々なイベントが催されおり、 News Blog を見て入れば知ることができる。
 
 
-## Othre
+### Othre
 
 W3C は歴史も長く、組織もかなり枯れているため、かなりシステマチックだ。
 
@@ -646,18 +646,18 @@ W3C は歴史も長く、組織もかなり枯れているため、かなりシ�
 
 
 
-### TC39 動向
+## TC39 動向
 
-#### Overview
+### Overview
 
 基本的には提出された Proposal を議論し、奇数月に実施される Meeting で Stage が上がる Stage 制を取っている。
 
 新しい Proposal を把握しておき、 Meeting ごとの Stage の変化を追っていく感じになる。
 
-Github だけで、おおよそが把握できる。
+Github が中心の文化だ。
 
 
-#### Stage
+### Stage
 
 Stage は 0~4 があり、大まかに以下のよう意味を持つ。
 
@@ -671,7 +671,7 @@ Stage は 0~4 があり、大まかに以下のよう意味を持つ。
 4. Finished (ECMA262 に正式に取り込まれ、実装も Ship される)
 
 
-#### Stage 0
+### Stage 0
 
 Stage 0 は以下にある、毎月このリストの差分を見ることで、新しい提案を知ることができる。
 
@@ -683,7 +683,7 @@ Stage 0 は以下にある、毎月このリストの差分を見ることで、
 stage 0 で終わるものもある。
 
 
-#### meeting
+### Meeting
 
 Meeting は奇数月の月末に実施され、そこで Proposal に対して議論が行われる。
 
@@ -694,7 +694,7 @@ Minutes が出るのは翌月になることが多いので、 Monthly Web で�
 Minutes は長いが、 Proposal に対する Slide などがまとめられるため、その辺を見ておくだけでもだいぶ流れがわかる。
 
 
-#### Stage 移行
+### Stage Update
 
 Stage のリストは以下にまとまっている。
 
@@ -709,13 +709,29 @@ Stage のリストは以下にまとまっている。
 Meeting が無い月は、変更はあまりない。
 
 
+### Event
 
-### IETF 動向
+Event は基本 Meeting になる。
 
 
-#### Overview
+### Other
 
-かなり枯れたプロセスをもっているため、慣れが必要だが、慣れるとわかりやすい。
+proposal はかなりカジュアルに提出され、 proposal ごのとのリポジトリで議論が行われることもある。
+
+その proposal の出現は、先に twitter などでアナウンスされているようなので、その出現は気づきにくいものもある。
+
+しかし、最終的に tc39 のリポジトリに集約されるため、そこを追っておけば良いという点で、追うのは非常に楽だ。
+
+Minutes も整理されているので助かる。
+
+
+
+## IETF 動向
+
+
+### Overview
+
+かなり枯れたプロセスをもっているため、慣れが必要だが、慣れるまで時間はかかるかもしれない。
 
 基本は ML の議論と、 Draft のアップデート、年三回開催される IETF 会議での Minutes を追う。
 
@@ -724,7 +740,7 @@ WG ごとの F2F や Interop もよくあるため、そのへんも含めると
 基本が Internet (物理層以上)全般を扱う場所であるため、 Monthly Web には httpwg や quicwg などに絞って載せている。
 
 
-#### Draft
+### Draft
 
 IETF ではドラフトの提出が通知される RSS がある。
 
@@ -745,17 +761,17 @@ IETF ではドラフトの提出が通知される RSS がある。
 
 WG は多岐にわたるが、 Web に関連するようなものは、以下のような WG から採用することが多い。
 
-- https://tools.ietf.org/wg/httpbis
-- https://tools.ietf.org/wg/quic
-- https://tools.ietf.org/wg/tls
-- https://tools.ietf.org/wg/rtcweb/
-- https://tools.ietf.org/wg/acme/
-- https://tools.ietf.org/wg/oauth/
-- https://tools.ietf.org/wg/doh/
+- <https://tools.ietf.org/wg/httpbis>
+- <https://tools.ietf.org/wg/quic>
+- <https://tools.ietf.org/wg/tls>
+- <https://tools.ietf.org/wg/rtcweb/>
+- <https://tools.ietf.org/wg/acme/>
+- <https://tools.ietf.org/wg/oauth/>
+- <https://tools.ietf.org/wg/doh/>
 
 
 
-### セキュリティ動向
+## セキュリティ動向
 
 このセクションは、次項の周辺動向の中で、セキュリティ系の話題が多くなってしまったため分離したものである。
 
@@ -769,14 +785,14 @@ WG は多岐にわたるが、 Web に関連するようなものは、以下の
 他にも、気になるものについては上げているが、特にソースを固定はしていない。
 
 
-### 周辺動向
+## 周辺動向
 
 ここまでで入らなかったもので、ソースも固定せず、気になったものを上げている。
 
 色々な場所で発生した議論や、気になる blog など、いわゆるその他である。
 
 
-### イベント
+## イベント
 
 Web に関わる大きめのイベントをリストしている。
 
