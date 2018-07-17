@@ -23,11 +23,11 @@ mozaic.fm は、 Web について「**今何が起こっているのか**」「*
 
 最初の公開で、当時のモチベーションをまとめている。
 
-
 [ep25 Monthly Web 201707 \| mozaic.fm](https://mozaic.fm/episodes/25/monthly-web-201707.html)
 
+ゲストは [@myakura](https://twitter.com/myakura) にお願いし、毎月付き合ってもらっている。
 
-
+こうした内容で頼める人はなかなかいないため、感謝しかない。
 
 
 ## 対象
@@ -36,10 +36,9 @@ mozaic.fm は、 Web について「**今何が起こっているのか**」「*
 
 仕様は IETF, WHATWG, TC39 を主とし、実装は Chrome, Firefox, Safari, Edge の 4 ブラウザを主とした。
 
-それ以外の情報は、周辺動向として適宜まとめた。このように雑多に入れられる項目は負荷を下げる上で重要だ。
+それ以外の情報は、周辺動向として適宜まとめた。
 
 周辺動向の中で、特にセキュリティ系(インシデント, CVE, 新しいヘッダや API etc) の話題が多く感じられたので、途中でセキュリティ動向にわけることにした。
-
 
 - 実装の変化
   - Chrome
@@ -47,7 +46,7 @@ mozaic.fm は、 Web について「**今何が起こっているのか**」「*
   - Safari
   - Edge
 - 仕様の変化
-  - WHATWG/WC3
+  - WHATWG/W3C
   - IETF
   - TC39
 - セキュリティ動向
@@ -57,8 +56,8 @@ mozaic.fm は、 Web について「**今何が起こっているのか**」「*
 各動向のまとめ方などについて記す。
 
 
-
 ## Chrome 動向
+
 
 ### Overview
 
@@ -93,7 +92,6 @@ Intents のまとめは以下にある。
 
 <https://bit.ly/blinkintents>
 
-
 Intents を追うことで、「この機能は実装できるところまで仕様が仕上がったんだな」「Origin Trials 始まったな」「そろそろリリースか」などといった部分がわかる。
 
 また、本文にはモチベーションや仕様へのリンク、他ブラウザのシグナルなどもまとまっており、フィードバックのレスもつくため、議論も追いやすい。
@@ -122,7 +120,6 @@ Blink の開発は、スコープごとにいくつかのチームに分かれ�
   - 最近全然更新が無いが、 HTML Tag の実装や WebComponents 系をやっていた気がする。
   - どこかに移って続いてるのだろうか?
 
-
 ここでは主に blink-dev を中心に見ているが、 [ML](https://www.chromium.org/developers/technical-discussion-groups) 自体が複数あるため、他のチームも他の ML で snippet を出してるかもしれない。
 
 (自主的な運用のようなので、投稿はまばらで来ない週も多い)
@@ -136,7 +133,6 @@ Blink の開発は、スコープごとにいくつかのチームに分かれ�
 
 - https://www.chromestatus.com/features/schedule
 
-
 Beta あたりまで来ると、アップデートエントリが Chromium のブログに来る。
 
 - https://blog.chromium.org/
@@ -147,13 +143,11 @@ Stable リリースのタイミングでは、 "New in Chrome" と "Deprecation 
 
 - https://developers.google.com
 
-
 (Intents から追っていると、数カ月間その議論を追うことになり、知らぬ間に「もう普通に使えるもの」と錯覚してしまうことがあるため、 Stabel リリースで認識を補正する必要がある)
 
 ここまでは、主に標準よりの実装に注目しているため Chrome 自体の新しい機能の解説や、挙動の変更などに関しては、エントリでフォローしておく。
 
 ブログは後に日本語翻訳されることもあるが、原典で扱っているため含めていない。
-
 
 
 ### Events
@@ -181,6 +175,7 @@ ES の仕様の実装状況だけでなく、内部のパフォーマンス改�
 ### Other
 
 他にも気になるものがあれば Other にまとめている。
+
 AMP や Firebase でも、気になるアップデートがある場合は混ぜることもある。
 
 - https://developers-jp.googleblog.com/
@@ -195,7 +190,6 @@ AMP や Firebase でも、気になるアップデートがある場合は混ぜ
 - https://amphtml.wordpress.com/
 
 
-
 ## Firefox 動向
 
 Chrome に次いでアウトプットが多い。
@@ -207,7 +201,6 @@ Intents は Chrome と似た運用だが、カバー率が低く Intents なし�
 ブログでは Web だけでなく Internet の話題、例えば NetNewtrarity なども積極的に出してくるが、政治や法律などレイヤの高い話題は Monthly Web では省いている。
 
 
-
 ### Intents
 
 Chrome と同じような Intents が運用されている。
@@ -216,11 +209,11 @@ Intents のカバー率は低いように感じるが、やはりそこが一番
 
 - https://groups.google.com/forum/#!msg/mozilla.dev.platform/
 
-
 Experimental な機能は以下にまとまっている。
 
 - https://developer.mozilla.org/en-US/Firefox/Experimental_features
 - https://platform-status.mozilla.org/
+
 
 ### Release Blog
 
@@ -233,12 +226,10 @@ Experimental な機能は以下にまとまっている。
 
 - https://developer.mozilla.org/en-US/Firefox/Releases
 
-
 メジャーアップデートなどは、以下のブログにエントリが出る
 
 - https://blog.mozilla.org/
 - https://hacks.mozilla.org/
-
 
 Nightly News には、 "These Weeks in Firefox: Issue NN" というシリーズのエントリが上がる。
 
@@ -247,7 +238,6 @@ Nightly News には、 "These Weeks in Firefox: Issue NN" というシリーズ�
 濃く長いことが多いため、全部読めない月も多いが、 Highlight を眺めるだけでも次の Stable で入りそうな変更などが伺える。
 
 - https://blog.nightly.mozilla.org/
-
 
 
 ### Site Compat
@@ -271,6 +261,10 @@ Web に限らず Decentrarization や Net Neutrality といった、レイヤの
 
 Web についても、 Web Literacy や HTTPS Everywhere のような啓蒙が多いイメージがある。
 
+Update は medium で行われている。
+
+- <https://medium.com/mozilla-festival>
+
 
 ### Other
 
@@ -287,6 +281,7 @@ Github に issue を上げると、それについて表明を追加してくれ
 
 ## Safari 動向
 
+
 ### Overview
 
 Safari 自体のメジャーアップデートが年 2 回しかないため、基本は Technology Preview を追うことになる。
@@ -298,7 +293,7 @@ Technology Preview よりももう一段粒度の細かい Intents 的なアウ�
 
 ### Safari Technology Preview NN
 
-Technology Preview は、不定期(月0~3回程度?)にリリースされ、そのブログが主な情報源となる。
+Technology Preview は、不定期(月 0~3 回程度?)にリリースされ、そのブログが主な情報源となる。
 
 - https://webkit.org/blog/
 - https://developer.apple.com/safari/technology-preview/release-notes/
@@ -308,7 +303,7 @@ TP では、仕様の早い段階の実装が突然入ったり、ドラフト�
 
 (Cross-Origin-Resource-Policy など)
 
-気になるところは、チェンジセットへのリンクを辿ることで補完できるため、チェンジセットをつぶさに追う負荷が減る。
+気になるところは、チェンジセットへのリンクを辿ることで補完できるため、チェンジセットをつぶさに追う負荷が下がる。
 
 
 ### ChangeSet
@@ -353,8 +348,8 @@ Web にかかわるアウトプットは少ないが、 Safari のアップデ�
 しかし逆を言えば、 Technology Preview や Blog に集約される点で、追う場所が限定的なため、そこを見て入れば良いという部分はある。
 
 
-
 ## Edge 動向
+
 
 ### Overview
 
@@ -377,17 +372,14 @@ EdgeHTML のアップデートは、 Dev Guide というページの What's New 
 
 - <https://docs.microsoft.com/en-us/microsoft-edge/dev-guide>
 
-
 古いバージョンは What's New の中にバージョン付きのリンクができる。
 
 - <https://docs.microsoft.com/en-us/microsoft-edge/dev-guide/whats-new/edgehtml-16>
-
 
 これでは、最新のものに Deep Link が貼れないが、以下の短縮 URL は目的のものにリダイレクトされるため、これを使っている。
 
 - <https://aka.ms/devguide_edgehtml_17>
 - <https://aka.ms/devguide_edgehtml_16>
-
 
 ここでは、アップデートに関する解説と、 Preview Build ごとの API 単位の変更を Code Pen で埋め込んで表示している。
 
@@ -399,7 +391,6 @@ EdgeHTML のアップデートは、 Dev Guide というページの What's New 
 Intents が無い代わりに、現時点での Status がまとまったページがある。
 
 - <https://status.microsoftedge.com/>
-
 
 ステータスは以下がブラウザごとに書かれている。
 
@@ -414,7 +405,7 @@ Intents が無い代わりに、現時点での Status がまとまったペー�
 
 (おそらく、細かく変更を追う人よりも、今の時点で使えるのか使えないのかを知りたい、というユーザが多いのでは無いかと推測)
 
-幸いにも、ここのソースが github で管理されているため、 Monthly Web では更新を1ヶ月分出してまとめている。
+幸いにも、ここのソースが github で管理されているため、 Monthly Web では更新を 1 ヶ月分出してまとめている。
 
 - <https://github.com/MicrosoftEdge/Status/compare/production@{2018-07-01}...production@{2018-08-01}>
 
@@ -434,6 +425,7 @@ build 番号を選ぶと、その先のページで、 Edge に関する更新�
 > Learn more about this release on the Windows blog
 
 ここから build ごとのリンクに飛ぶと、より細かく書かれている場合がある。
+
 (かならずあるとは限らない)
 
 そのブログのトップは Windows Experience Blog になっている。
@@ -467,9 +459,10 @@ Monthly Web のソースの中で、唯一の日本語ソースである。
 例えば、このエントリの一文を抜粋しよう。
 
 > 昨今では各ベンダーより様々なブラウザーが開発され、ユーザーが利用するブラウザーの大半が Internet Explorer だという時代は残念ながら過ぎ去ってしまっています。
-> このような背景から、最近では Web サイトにおいても「相互運用性」という点が非常に重要になってきました。
-> 「相互運用性」とは、どのブラウザーで閲覧しても、同じように表示する、同じように動作する、同じような体験ができる、というようなことを言います。
 
+> このような背景から、最近では Web サイトにおいても「相互運用性」という点が非常に重要になってきました。
+
+> 「相互運用性」とは、どのブラウザーで閲覧しても、同じように表示する、同じように動作する、同じような体験ができる、というようなことを言います。
 
 
 ### Other
@@ -509,13 +502,17 @@ W3C のドラフトには以下のようなステージがある。
 - Working Draft
 - First Public Working Draft
 
-
 ステージが変わるとアナウンスが出る。
 
 - <https://www.w3.org/blog/news>
 
-
 一方 WHATWG で Living Standard としてメンテナンスされているものは、ステージを持たないため、コミットを見ることになる。
+
+WHATWG 側で作業されいるスペックは基本的に以下にまとまっている。
+
+- <https://spec.whatwg.org/>
+
+ML ではなく github が使われている場合が多いため、気になるスペックのにある github へのリンクされているリポジトリ追いかければ良い。
 
 全てのリポジトリのコミットを見ると github の通知が辛いため、 RSS で見るか、最近はそれを垂れ流すだけの Twitter アカウントもあるので、それを見るのが良いのかもしれない。
 
@@ -555,10 +552,9 @@ Working Group は非常に多く、その全てを追うことは難しい。
 - [www-style](http://lists.w3.org/Archives/Public/www-style)
 - [ietf-http-wg](http://lists.w3.org/Archives/Public/ietf-http-wg)
 
-
 ML には標準化に関する提案、議論、 Meeting の Minutes などが上がるため、ここが全てとも言える。
 
-public-webauthn のように、 Github のアクティビティを連携して流す ML もあるが、単に流量が多くなるだけなので、個人的にはやめてほしい。
+public-webauthn や public-ortc のように、 Github のアクティビティを連携して流す ML もあるが、単に流量が多くなるだけなので、個人的にはやめてほしい。
 
 
 ### News Blog
@@ -572,7 +568,6 @@ W3C 全体での出来事については以下のブログが更新される。
 たまに W3C 自体が特定の問題や動向などについてエントリを出すこともあるが、ここを見て入ればそういう情報も入ってくる。
 
 
-
 ### Tag Review
 
 W3C には、選挙によって選ばれる TAG というグループがある。
@@ -583,43 +578,11 @@ TAG は、各 WG が議論した仕様について、 Web 全体の互換性や�
 
 - <https://github.com/w3ctag/design-reviews/issues>
 
-
 新しく提案されている仕様に対するセカンドオピニオンが見られるため、仕様をより深く理解できる。
 
 どう考えても量に対して TAG が足りて無い気もするが、こうした作業ができるエキスパートも限られているため、止む無いところがある。
 
 TAG の選挙権は W3C 会員にしか無いが、日本の W3C 会員は選挙に対して無関心な票もあるようなので、ここを見てその票の重要性に気づくと良いかと思う。
-
-
-## WHATWG
-
-whatwg 側で作業されいるスペックは基本的に以下にまとまっている。
-
-- <https://spec.whatwg.org/>
-
-ML ではなく github が使われている場合が多いため、気になるスペックのにある github へのリンクされているリポジトリ追いかければ良い。
-
-余談だが、今ではほとんどのスペックに、筆者が敬愛する triple underscore 氏謹製の翻訳がリンクされている。
-
-triple undersocre 氏の翻訳は、世にある技術翻訳の中で群を抜いて多機能だ。
-
-もし、翻訳文だけが公開される場合、以下のような場合がある
-
-- 翻訳が間違っている可能性があり、原文をすぐに確かめたい
-- 例えば "Origin" について書かれた部分をページ内検索した場合、 "Origin" なのか "オリジン" なのか "生成源" なのかわからない
-- そもそも筆者は、翻訳をだいたいどの辺に書かれているか知るインデックスとして使い、見つけたらあとは原文を読みたい
-
-triple underscore 氏の翻訳は、独自の UI が付いており、原文を併記することができる。
-
-また、翻訳粒度を「英語主体(origin)」「カナ主体(オリジン)」「漢字主体(生成源)」と切り替えることができる。
-
-他にも、一文が長い英語の訳を、視覚上わかりやすく表示したりなど、細かいところも良き届いている。
-
-なにより、作業量がすごく、翻訳精度も抜群で筆者も何度も助けられた。
-
-個人的には、全ての翻訳がこうあってほしいと思ってしまうが、これは氏にしかできないだろう。
-
-氏の興味分野が Web だったことは、日本の Web にとって幸運だったとしか言いようがない。
 
 
 ### Event
@@ -642,11 +605,8 @@ W3C は歴史も長く、組織もかなり枯れているため、かなりシ�
 最近では github などに議論の場を移しているものもあるが、基本は気になる ML を探してそれを見て入れば良い。
 
 
-
-
-
-
 ## TC39 動向
+
 
 ### Overview
 
@@ -663,20 +623,15 @@ Stage は 0~4 があり、大まかに以下のよう意味を持つ。
 
 (詳細: <https://tc39.github.io/process-document/>)
 
-
-0. Strawman (最初の提案、アイデアレベルでも良く割とカジュアルに提出できる)
-1. Proposal (ユースケースやモチベーションなどを詰め、 Polyfill などが作られる)
-2. Draft (仕様のフォーマットを整え、ブラウザの Experimental 実装などが求められる)
-3. Candidate (仕様が固まり、実装者からのフィードバックなどで細部を慎重に詰める)
-4. Finished (ECMA262 に正式に取り込まれ、実装も Ship される)
-
-
-### Stage 0
+- 0: Strawman (最初の提案、アイデアレベルでも良く割とカジュアルに提出できる)
+- 1: Proposal (ユースケースやモチベーションなどを詰め、 Polyfill などが作られる)
+- 2: Draft (仕様のフォーマットを整え、ブラウザの Experimental 実装などが求められる)
+- 3: Candidate (仕様が固まり、実装者からのフィードバックなどで細部を慎重に詰める)
+- 4: Finished (ECMA262 に正式に取り込まれ、実装も Ship される)
 
 Stage 0 は以下にある、毎月このリストの差分を見ることで、新しい提案を知ることができる。
 
-細部が無いかわりに、趣旨が把握しやすいため、かなり多岐に渡るので、単純に面白い。
-
+細部が無いかわりに、趣旨が把握しやすく、内容も多岐に渡るので単純に面白い。
 
 - <https://github.com/tc39/proposals/blob/master/stage-0-proposals.md>
 
@@ -687,11 +642,11 @@ stage 0 で終わるものもある。
 
 Meeting は奇数月の月末に実施され、そこで Proposal に対して議論が行われる。
 
-Minutes が出るのは翌月になることが多いので、 Monthly Web では偶数月に前の月の meeting を扱っている。
+Minutes が出るのは翌月になることが多いので、 Monthly Web では偶数月に前月の Meeting を扱っている。
 
 - <https://github.com/tc39/agendas>
 
-Minutes は長いが、 Proposal に対する Slide などがまとめられるため、その辺を見ておくだけでもだいぶ流れがわかる。
+Minutes は長いが、 Proposal に対する Slide などがまとめられるため、その辺を見ておくだけでもだいぶ動きがわかる。
 
 
 ### Stage Update
@@ -700,11 +655,9 @@ Stage のリストは以下にまとまっている。
 
 - <https://github.com/tc39/proposals>
 
-
 なので、一ヶ月分の履歴を見ると、その推移がわかる。
 
 - <https://github.com/tc39/proposals/compare/master@{2018-01-01}...master@{2018-02-01}>
-
 
 Meeting が無い月は、変更はあまりない。
 
@@ -716,14 +669,13 @@ Event は基本 Meeting になる。
 
 ### Other
 
-proposal はかなりカジュアルに提出され、 proposal ごのとのリポジトリで議論が行われることもある。
+Proposal はかなりカジュアルに提出され、 Proposal ごのとのリポジトリで議論が行われることもある。
 
-その proposal の出現は、先に twitter などでアナウンスされているようなので、その出現は気づきにくいものもある。
+その Proposal の出現は、先に twitter などでアナウンスされているようなので、その出現は気づきにくいものもある。
 
-しかし、最終的に tc39 のリポジトリに集約されるため、そこを追っておけば良いという点で、追うのは非常に楽だ。
+しかし、最終的に tc39 のリポジトリに集約されるため、そこを見ておけば良いという点で、追うのは非常に楽だ。
 
 Minutes も整理されているので助かる。
-
 
 
 ## IETF 動向
@@ -731,7 +683,7 @@ Minutes も整理されているので助かる。
 
 ### Overview
 
-かなり枯れたプロセスをもっているため、慣れが必要だが、慣れるまで時間はかかるかもしれない。
+かなり枯れたプロセスをもっているため、慣れが必要。
 
 基本は ML の議論と、 Draft のアップデート、年三回開催される IETF 会議での Minutes を追う。
 
@@ -757,6 +709,7 @@ IETF ではドラフトの提出が通知される RSS がある。
 - I-D Action
 - Draft
 
+
 ### ML
 
 WG は多岐にわたるが、 Web に関連するようなものは、以下のような WG から採用することが多い。
@@ -769,6 +722,9 @@ WG は多岐にわたるが、 Web に関連するようなものは、以下の
 - <https://tools.ietf.org/wg/oauth/>
 - <https://tools.ietf.org/wg/doh/>
 
+最近は draft のリポジトリの方でも議論がある。
+
+しかし、ある程度進むと issue へのリンクと議論のサマリが ML 側に再投稿されることもあり、やはり ML が中心と言える。
 
 
 ## セキュリティ動向
@@ -780,6 +736,7 @@ WG は多岐にわたるが、 Web に関連するようなものは、以下の
 - CA insident や証明書周りの動向
 - Browser/Openssl など実装脆弱性 (CVE)
 - セキュリティ対策ヘッダ(CSP etc)
+- セキュリティやプライバシーによるブラウザの挙動変化
 - etc
 
 他にも、気になるものについては上げているが、特にソースを固定はしていない。
@@ -797,3 +754,21 @@ WG は多岐にわたるが、 Web に関連するようなものは、以下の
 Web に関わる大きめのイベントをリストしている。
 
 もともとは、あとでフォローするのを忘れないようにやっていたが、ここの更新は気まぐれになりがちなところがある。
+
+
+## Yearly Web
+
+せっかくなので、年末は一年分の振り返りを簡単におこなってみようと、去年の 12 月は Yearly Web として収録した。
+
+- [ep32 Yearly Web 2017](https://mozaic.fm/episodes/32/yearly-web-2017.html)
+
+2017 年の年末は、12 月分とその年の振り返りを両方混ぜて収録した。
+
+本当は、もう少し細かく振り返りながら別で収録するのも良いかもしれないが、年末は忙しいのでどうやるかは試行錯誤中でもある。
+
+
+## まとめ
+
+月一回の定期タスクができたために、更新頻度は上がったが、通常回のスケジューリングが難しくなったところもある。
+
+来年以降、そこのバランスを取りつつ、できる範囲で続けられたらと思う。
