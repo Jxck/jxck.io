@@ -15,27 +15,21 @@ window.peerid = ''
 
 const rand = () => btoa(Math.floor(Math.random()*10000)).replace(/=/g, "").toLowerCase()
 const id = location.hash ? location.hash : rand()
-const constraint = {video:true, audio:true}
+const constraint = {video:true, audio:false}
 
 document.querySelector('#id').textContent = id
 document.querySelector('#peer').value = ''
 
 const ws = new WebSocket('wss://ws.jxck.io', ['broadcast', 'webrtc-stream-p2p-demo'])
+console.log(Config)
 const connection = new RTCPeerConnection(Config)
 
 const $log = document.querySelector('#log')
-function log(name, value) {
-  $log.value += `[${name}]\n${value}\n\n`
-}
+const log = console.log.bind(console)
+// function log(name, value) {
+//   $log.value += `[${name}]\n${value}\n\n`
+// }
 
-function sdp(sdp) {
-  return sdp
-  //return sdp
-  //  .replace("mozilla...THIS_IS_SDPARTA-60.0.2", "-")
-  //  .replace(/a=rtcp-fb:.*\r\n/g, "")
-  //  .replace(/a=extmap:.*\r\n/g, "")
-  //  .replace(/a=fmtp:.*\r\n/g, "")
-}
 
 connection.addEventListener('negotiationneeded', async (e) => {
   console.log('******************* onnegotiationneeded *******************', e)
@@ -45,7 +39,6 @@ connection.addEventListener('negotiationneeded', async (e) => {
 
   // create offer
   const offer = await connection.createOffer()
-  offer.sdp = sdp(offer.sdp)
 
   log('send offer', offer.sdp)
   await connection.setLocalDescription(offer)
@@ -84,7 +77,6 @@ connection.addEventListener('track', (e) => {
   } else {
     $video.srcObject = e.streams[0]
   }
-  document.querySelector('#videos').appendChild($video)
 })
 
 connection.addEventListener('icecandidateerror', (e) => {
@@ -114,6 +106,11 @@ document.querySelector('#start').addEventListener('submit', async (e) => {
   window.peerid = document.querySelector('#peer').value
   if (window.peerid === '') return alert('input peerid')
 
+  const checked = document.querySelector('input[name="deviceid"]:checked')
+  if (checked) {
+    const deviceId = checked.id
+    constraint.video = {deviceId}
+  }
   const stream = await navigator.mediaDevices.getUserMedia(constraint)
   document.querySelector('#local').srcObject = stream
 
@@ -135,6 +132,11 @@ ws.addEventListener('message', async ({data}) => {
     log('recv offer', message.data.sdp)
     await connection.setRemoteDescription(message.data)
 
+    const checked = document.querySelector('input[name="deviceid"]:checked')
+    if (checked) {
+      const deviceId = checked.id
+      constraint.video = {deviceId}
+    }
     const stream = await navigator.mediaDevices.getUserMedia(constraint)
     document.querySelector('#local').srcObject = stream
 
@@ -144,7 +146,6 @@ ws.addEventListener('message', async ({data}) => {
     })
 
     const answer = await connection.createAnswer()
-    answer.sdp = sdp(answer.sdp)
     await connection.setLocalDescription(answer)
     log('send answer', connection.localDescription.sdp)
 
@@ -182,4 +183,34 @@ $stats.addEventListener('click', async () => {
     console.log(stats)
     console.table(stats)
   })
-})
+});
+
+
+// device id
+(async () => {
+  const devices = await navigator.mediaDevices.enumerateDevices()
+  console.log(devices)
+  devices.filter((d) => {
+    return (d.kind === 'videoinput')
+  }).forEach((d) => {
+    const id = d.deviceId
+    const label = d.label
+    console.log(id, label)
+
+    const $li = document.createElement('li')
+
+    const $radio = document.createElement('input')
+    $radio.id = id
+    $radio.type = "radio"
+    $radio.name = "deviceid"
+
+    const $label = document.createElement('label')
+    $label.htmlFor = id
+    $label.textContent = label
+
+    $li.appendChild($radio)
+    $li.appendChild($label)
+
+    document.querySelector('#devices').appendChild($li)
+  })
+})()
