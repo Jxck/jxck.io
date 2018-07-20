@@ -98,6 +98,27 @@ class EventEmitter extends EventTarget {
 }
 ```
 
+もしくは、多くの要素が EventTarget を継承していることを利用して、以下のようなこともできる。
+
+
+```js
+EventTarget.prototype.on  = EventTarget.prototype.addEventListener
+EventTarget.prototype.off = EventTarget.prototype.removeEventListener
+
+EventTarget.prototype.emit = function(name, detail) {
+  this.dispatchEvent(new CustomEvent(name, {detail}))
+}
+```
+
+これで、例えば Button 要素にも `on` などが生える。
+
+
+```js
+document.querySelector('button').on('click', (e) => {
+  console.log('click')
+})
+```
+
 ただし、 EventEmitter は EventTarget よりも機能が多く、例えば `listeners()` や `eventNames()` などは、 EventTarget への移譲だけでは実装できない。
 
 それらが必要な場合は、別途イベントとリスナの管理が必要になるだろう。こうした機能が必要な場合は、要するに EventEmitter そのものを必要としてるということなので、 porting は依然必要になる。
