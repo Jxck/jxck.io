@@ -9,29 +9,29 @@ https://labs.jxck.io/blog
 
 by Jxck
 -->
-<link rel=canonical href=https://blog.jxck.io/entries/2017-07-10/subclassible-eventtarget.html>
+<link rel=canonical href=https://blog.jxck.io/entries/2018-07-20/toggle-attribute.html>
 <meta name=viewport content="width=device-width,minimum-scale=1">
 <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
 <link rel=author href=https://jxck.io/assets/humans.txt>
 
 <meta name=author content=Jxck>
-  <meta name=description content="念願 だった EventTarget の constructible/subclassable が DOM の仕様にマージされた。これにより、いわゆる EventEmitter のブラウザ移植が不要になることが期待される。Allow constructing and sub...">
-  <meta name=keywords content="event target,event emitter">
+  <meta name=description content="非常にシンプルかつミッシングピースだった Element.toggleAttribute という仕様が提案された。最近になって各ブラウザが一斉に実装を進め、リリースに向けたアナウンスが出始めている。この仕様について解説する。...">
+  <meta name=keywords content="dom,html">
   <meta itemprop=image content="https://jxck.io/assets/img/jxck.png">
   <meta itemprop=name content="blog.jxck.io">
 
   <meta name=twitter:card content=summary>
   <meta name=twitter:site content=@jxck_>
-  <meta name=twitter:url content="https://blog.jxck.io/entries/2017-07-10/subclassible-eventtarget.html">
-  <meta name=twitter:title content="EventTarget の継承可能化による EventEmitter の代替 | blog.jxck.io">
-  <meta name=twitter:description content="念願 だった EventTarget の constructible/subclassable が DOM の仕様にマージされた。これにより、いわゆる EventEmitter のブラウザ移植が不要になることが期待される。Allow constructing and sub...">
+  <meta name=twitter:url content="https://blog.jxck.io/entries/2018-07-20/toggle-attribute.html">
+  <meta name=twitter:title content="Element.toggleAttribute | blog.jxck.io">
+  <meta name=twitter:description content="非常にシンプルかつミッシングピースだった Element.toggleAttribute という仕様が提案された。最近になって各ブラウザが一斉に実装を進め、リリースに向けたアナウンスが出始めている。この仕様について解説する。...">
   <meta name=twitter:image content="https://jxck.io/assets/img/jxck.png">
 
   <meta property=og:type content=article>
-  <meta property=og:url content="https://blog.jxck.io/entries/2017-07-10/subclassible-eventtarget.html">
-  <meta property=og:title content="EventTarget の継承可能化による EventEmitter の代替 | blog.jxck.io">
+  <meta property=og:url content="https://blog.jxck.io/entries/2018-07-20/toggle-attribute.html">
+  <meta property=og:title content="Element.toggleAttribute | blog.jxck.io">
   <meta property=og:site_name content="blog.jxck.io">
-  <meta property=og:description content="念願 だった EventTarget の constructible/subclassable が DOM の仕様にマージされた。これにより、いわゆる EventEmitter のブラウザ移植が不要になることが期待される。Allow constructing and sub...">
+  <meta property=og:description content="非常にシンプルかつミッシングピースだった Element.toggleAttribute という仕様が提案された。最近になって各ブラウザが一斉に実装を進め、リリースに向けたアナウンスが出始めている。この仕様について解説する。...">
   <meta property=og:image content="https://jxck.io/assets/img/jxck.png">
 
   <link rel=icon sizes=256x256 href="https://jxck.io/assets/img/jxck.png">
@@ -45,14 +45,14 @@ by Jxck
     "@type":"WebPage",
     "@id":"https://blog.jxck.io"
   },
-  "headline": "EventTarget の継承可能化による EventEmitter の代替 | blog.jxck.io",
+  "headline": "Element.toggleAttribute | blog.jxck.io",
   "image": {
     "@type": "ImageObject",
     "url": "https://jxck.io/assets/img/jxck.png",
     "height": 700,
     "width": 700
   },
-  "datePublished": "2017-07-10T08:00:00+08:00",
+  "datePublished": "2018-07-20T08:00:00+08:00",
   "dateModified": "2018-07-20T08:00:00+08:00",
   "author": {
     "@type": "Person",
@@ -69,11 +69,11 @@ by Jxck
       "width": 257
     }
   },
-  "description": "念願 だった EventTarget の constructible/subclassable が DOM の仕様にマージされた。これにより、いわゆる EventEmitter のブラウザ移植が不要になることが期待される。Allow constructing and sub..."
+  "description": "非常にシンプルかつミッシングピースだった Element.toggleAttribute という仕様が提案された。最近になって各ブラウザが一斉に実装を進め、リリースに向けたアナウンスが出始めている。この仕様について解説する。..."
 }
 </script>
 
-<title>EventTarget の継承可能化による EventEmitter の代替 | blog.jxck.io</title>
+<title>Element.toggleAttribute | blog.jxck.io</title>
 <script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
 <script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
 <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
@@ -643,130 +643,128 @@ td:last-child {
 </header>
 <main>
   <ul class=info>
-    <li>created_at: <time class=created_at datetime=2017-07-10>2017-07-10</time>
+    <li>created_at: <time class=created_at datetime=2018-07-20>2018-07-20</time>
     <li>updated_at: <time class=updated_at datetime=2018-07-20>2018-07-20</time>
-    <li class=tags>tags: [<a href='/tags/event%20target.html'>event target</a>,<a href='/tags/event%20emitter.html'>event emitter</a>]
+    <li class=tags>tags: [<a href='/tags/dom.html'>dom</a>,<a href='/tags/html.html'>html</a>]
   </ul>
 
 
   <article>
-    <h1><a href=/entries/2017-07-10/subclassible-eventtarget.html>EventTarget の継承可能化による EventEmitter の代替</a></h1>
+    <h1><a href=/entries/2018-07-20/toggle-attribute.html>Element.toggleAttribute</a></h1>
     <section>
       <h2 id="intro"><a href="#intro">Intro</a></h2>
-      <p><a href="https://twitter.com/Jxck_/status/826004140211843072">念願</a> だった EventTarget の constructible/subclassable が DOM の仕様にマージされた。
-      <p>これにより、いわゆる EventEmitter のブラウザ移植が不要になることが期待される。
-      <p><a href="https://github.com/whatwg/dom/commit/c4c1c8b47340a1e5ecc1a07670927b831f240586">Allow constructing and subclassing EventTarget</a>
+      <p>非常にシンプルかつミッシングピースだった Element.toggleAttribute という仕様が提案された。
+      <p>最近になって各ブラウザが一斉に実装を進め、リリースに向けたアナウンスが出始めている。
+      <p>この仕様について解説する。
     </section>
     <section>
-      <h2 id="update"><a href="#update">Update</a></h2>
-      <p>Chrome Canary 64 で実装が確認できたため、 DEMO を追加した。
-    </section>
-    <section>
-      <h2 id="eventtarget"><a href="#eventtarget">EventTarget</a></h2>
-      <p><a href="https://dom.spec.whatwg.org/#interface-eventtarget">EventTarget</a> には <code translate="no">addEventListener</code>, <code translate="no">removeEventListener</code>, <code translate="no">dispatchEvent</code> が定義されている。
-      <p>これは、ブラウザが内部で生成する Event や、任意に生成された CustomEvent を発火/補足するために利用される。
-      <pre class=js><code translate="no">callback = console.log.bind(console)
-$div = document.createElement(&#039;div&#039;)
-$div.addEventListener(&#039;foo&#039;, callback)
-$div.dispatchEvent(new CustomEvent(&#039;foo&#039;, {detail:&#039;bar&#039;}))
-// CustomEvent {type: &quot;foo&quot;, detail: &#039;bar&#039;...
-$div.removeEventListener(&#039;foo&#039;, callback)</code></pre>
-      <p>この場合、 <code translate="no">$div</code> は <code translate="no">Element &lt; Node &lt; EventTarget</code> と、祖先に EventTarget を持っている。
-      <p>同様に EventTarget を祖先に持つ要素では、このパターンのハンドリングが可能であるが、任意のクラスを EventTarget にすることができなかった。
-    </section>
-    <section>
-      <h2 id="eventemitter"><a href="#eventemitter">EventEmitter</a></h2>
-      <p>Node では EventEmitter が、メソッド名は違えど同等の役割を果たしていると言える。
-      <p>例えば <code translate="no">process</code> は EventEmitter を継承している。
-      <pre class=js><code translate="no">callback = console.log.bind(console)
-process.on(&#039;foo&#039;, callback)
-process.emit(&#039;foo&#039;, &#039;bar&#039;)
-// bar
-process.removeListener(&#039;foo&#039;, callback)</code></pre>
-      <p>大きな違いは、 EventEmitter が任意のクラスで継承できる点だ。
-      <p>したがって、非同期処理をクラスに閉じ込め、加工したイベントとして外に公開するといった設計が可能になる。
-      <p>以下は <code translate="no">setInterval</code> を抽象化したタイマの例だ。
-      <pre class=js><code translate="no">EventEmitter = require(&#039;events&#039;)
-class Timer extends EventEmitter {
-  constructor(interval) {
-    super()
-    setInterval(() =&gt; {
-      this.emit(&#039;tick&#039;, &#039;tick&#039;)
-    }, interval)
-  }
-}
-
-timer = new Timer(100)
-timer.on(&#039;tick&#039;, console.log.bind(console))</code></pre>
-      <p>またこうしたイベントの抽象化の先に stream がある。
-    </section>
-    <section>
-      <h2 id="eventemitter-porting"><a href="#eventemitter-porting">EventEmitter porting</a></h2>
-      <p>これまでは、ブラウザ上で任意の class を EventTarget にすることができなかった。
-      <p>そこで、 Node における EventEmitter を用いた設計と同等のことを行うためには、 EventEmitter のポーティングなどが利用されていた。
-      <p>例えば browserify は <a href="https://github.com/Gozala/events">https://github.com/Gozala/events</a> を使っており、筆者も <a href="https://github.com/jxck/events">同じようなこと</a> をしたことがある。
-      <p>しかし、こうした汎用的な処理をより効率よく実現するために、 EventTarget が継承可能となる仕様が追加された。
+      <h2 id="boolean-attributes"><a href="#boolean-attributes">Boolean Attributes</a></h2>
+      <p>Boolean Attribute とは、属性の存在によって真偽となる属性である。
       <ul>
         <li>
-          <a href="https://github.com/whatwg/dom/commit/c4c1c8b47340a1e5ecc1a07670927b831f240586">Allow constructing and subclassing EventTarget</a>
-        </li>
-        <li>
-          <a href="https://github.com/whatwg/dom/issues/441">Make EventTarget subclassable #441</a>
+          <a href="https://html.spec.whatwg.org/#boolean-attribute">https://html.spec.whatwg.org/#boolean-attribute</a>
         </li>
       </ul>
-      <p>実装されれば、メソッド名をすり合わせる目的以外で EventEmitter porting は不要となるだろう。
+      <p>例えば button の disabled を例にとるとこうなる。
+      <p>button を disabled にする場合は、仕様上は以下の 3 つの書き方がある。
+      <pre class=html><code translate="no">&lt;!-- 属性のみを書く --&gt;
+&lt;button id=target disabled&gt;toggle target&lt;/button&gt;
+
+&lt;!-- 値をempty string にする --&gt;
+&lt;button id=target disabled=&quot;&quot;&gt;toggle target&lt;/button&gt;
+
+&lt;!-- 属性名と同じにする --&gt;
+&lt;button id=target disabled=disabled&gt;toggle target&lt;/button&gt;</code></pre>
+      <p>値に <code translate="no">true</code>, <code translate="no">false</code> などを設定することで有効無効が切り替わるわけではなく、仕様上は許可されていない点に注意したい。
+      <p>disabled 属性自体は JS から真偽値で操作できる。
+      <pre class=js><code translate="no">target.disabled = true
+target.disabled = false</code></pre>
+      <p>しかし、他の boolean attribute も含め、属性自体を汎用的に操作する場合は以下のようになる。
+      <pre class=js><code translate="no">target.setAttribute(&quot;disabled&quot;, &quot;&quot;);
+target.removeAttribute(&quot;disabled&quot;);
+
+target.setAttribute(&quot;disabled&quot;, false); // 無効になるわけではない</code></pre>
+      <p>無効にする場合は、属性自体を消す(omit)という点は、直感に反するところもあるかもしれない。
+      <p>これをもう少し直感的にするために、引数を boolean にできる API があっても良いのではとして提案されたのが始まりだ。
     </section>
     <section>
-      <h2 id="constructiblesubclassable-eventtarget"><a href="#constructiblesubclassable-eventtarget">constructible/subclassable EventTarget</a></h2>
-      <p>具体的には以下のようなコードが書けるようになる。
-      <pre class=js><code translate="no">class Timer extends EventTarget {
-  constructor(interval) {
-    super()
-    setInterval(() =&gt; {
-      this.dispatchEvent(new CustomEvent(&#039;tick&#039;))
-    }, interval)
-  }
-}
+      <h2 id="elementtoggleattribute-1"><a href="#elementtoggleattribute-1">Element.toggleAttribute</a></h2>
+      <p>結果的には以下のような API に落ち着いた。
+      <p>属性名を指定して toggleAttribute を呼べば、 ture/false を切り替えられる。
+      <p>(値は empty string が採用された)
+      <pre class=js><code translate="no">// target = &lt;button id=target&gt;toggle target&lt;/button&gt;
 
-timer = new Timer(100)
-timer.addEventListener(&#039;tick&#039;, console.log.bind(console))</code></pre>
-      <p>EventTarget を元に EventEmitter とメソッド名をすり合わせた shim を書く場合は以下のような感じだろうか。
-      <pre class=js><code translate="no">class EventEmitter extends EventTarget {
-  constructor() {
-    // snip
-  }
+target.toggleAttribute(&quot;disabled&quot;) // =&gt; &lt;button id=&quot;target&quot; disabled=&quot;&quot;&gt;toggle target&lt;/button&gt;
+console.log(target.disabled) // true
 
-  on(type, listener) {
-    this.addEventListener(type, listener)
-  }
+target.toggleAttribute(&quot;disabled&quot;) // =&gt; &lt;button id=&quot;target&quot;&gt;toggle target&lt;/button&gt;
+console.log(target.disabled) // false
 
+target.toggleAttribute(&quot;disabled&quot;) // =&gt; &lt;button id=&quot;target&quot; disabled=&quot;&quot;&gt;toggle target&lt;/button&gt;
+console.log(target.disabled) // true</code></pre>
+      <p>第二引数を指定すると、現在の値に関わらず、第二引数の値に変更する。
+      <pre class=js><code translate="no">// 今が true であれ false であれ true にする
+target.toggleAttribute(&quot;disabled&quot;, true)
+console.log(target.disabled) // true
 
-  emit(type, val) {
-    this.dispatchEvent(new CustomEvent(type, {detail: val}));
-  }
-
-  // ... and more
-}</code></pre>
-      <p>もしくは、多くの要素が EventTarget を継承していることを利用して、以下のようなこともできる。
-      <pre class=js><code translate="no">EventTarget.prototype.on  = EventTarget.prototype.addEventListener
-EventTarget.prototype.off = EventTarget.prototype.removeEventListener
-
-EventTarget.prototype.emit = function(name, detail) {
-  this.dispatchEvent(new CustomEvent(name, {detail}))
-}</code></pre>
-      <p>これで、例えば Button 要素にも <code translate="no">on</code> などが生える。
-      <pre class=js><code translate="no">document.querySelector(&#039;button&#039;).on(&#039;click&#039;, (e) =&gt; {
-  console.log(&#039;click&#039;)
-})</code></pre>
-      <p>ただし、 EventEmitter は EventTarget よりも機能が多く、例えば <code translate="no">listeners()</code> や <code translate="no">eventNames()</code> などは、 EventTarget への移譲だけでは実装できない。
-      <p>それらが必要な場合は、別途イベントとリスナの管理が必要になるだろう。こうした機能が必要な場合は、要するに EventEmitter そのものを必要としてるということなので、 porting は依然必要になる。
-      <p>しかし、 EventTarget 相当を実現するためだけに EventEmitter を導入していた場合は、 EventTarget が継承できるだけで十分な場合も少なくはないだろう。
-      <p>その場合はネイティブの実装だけで足りるようになるため、実装が進むことに期待したい。
+// 今が true であれ false であれ false にする
+target.toggleAttribute(&quot;disabled&quot;, false)
+console.log(target.disabled) // false</code></pre>
     </section>
     <section>
       <h2 id="demo"><a href="#demo">DEMO</a></h2>
-      <p>動作する DEMO を以下に用意した。
-      <p><a href="http://labs.jxck.io/event-target/">EventTarget DEMO</a>
+      <p>動作するデモを以下に用意した。
+      <ul>
+        <li>
+          <a href="https://labs.jxck.io/toggleAttribute/index.html">https://labs.jxck.io/toggleAttribute/index.html</a>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 id="proposal"><a href="#proposal">Proposal</a></h2>
+      <p>この機能の提案は 2017/5/23 に以下の issue で行われた。
+      <p><a href="https://github.com/whatwg/dom/issues/461">Consider boolean interface for properties - Issue #461 - whatwg/dom</a>
+      <p>Boolean 専用の setAttribute が欲しいというところから始まり、議論の末に名前などが代わり 5 月のうちにはおよそ今の形におちついた。
+      <p>その後 Anne が <code translate="no">needs implementer interest</code> というラベルをつけて、そこから一年間は反応がなかった。
+      <p>先月(2018/6)に入って、 Firefox, Chrome, Edge あたりが positive な反応を示し、同時に DOM の仕様への PR が作られる。
+      <p><a href="https://github.com/whatwg/dom/pull/656">Add toggleAttribute to Element. by jonathanKingston - Pull Request #656 - whatwg/dom</a>
+      <p>そこから一気に実装が始まった。
+    </section>
+    <section>
+      <h2 id="implementation"><a href="#implementation">Implementation</a></h2>
+      <p>Firefox は 61 をターゲットに intents を出している
+      <ul>
+        <li>
+          <a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/wwU0TW80u1g/X_V3091yCAAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/wwU0TW80u1g/X_V3091yCAAJ</a>
+        </li>
+        <li>
+          <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1469592">https://bugzilla.mozilla.org/show_bug.cgi?id=1469592</a>
+        </li>
+      </ul>
+      <p>Chrome は intent to implement が出ており canary には入ってる。
+      <ul>
+        <li>
+          <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mAWBTaANvmE/OgaCRH04BAAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mAWBTaANvmE/OgaCRH04BAAJ</a>
+        </li>
+        <li>
+          <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=854960">https://bugs.chromium.org/p/chromium/issues/detail?id=854960</a>
+        </li>
+      </ul>
+      <p>safari は TP61 に入った
+      <ul>
+        <li>
+          <a href="https://webkit.org/blog/8365/release-notes-for-safari-technology-preview-61/">https://webkit.org/blog/8365/release-notes-for-safari-technology-preview-61/</a>
+        </li>
+        <li>
+          <a href="https://trac.webkit.org/changeset/233475/webkit/">https://trac.webkit.org/changeset/233475/webkit/</a>
+        </li>
+      </ul>
+      <p>Edge もやっていると思われるが、トラックできるソースは見つからなかった。
+    </section>
+    <section>
+      <h2 id="outro"><a href="#outro">Outro</a></h2>
+      <p>jQuery を始めとするライブラリなどにはよく実装されていたが、標準の範囲においてミッシングピースではあった。
+      <p>今回は単純な機能なためか、かなりの速さで策定と実装が進み、先月くらいから立て続けにアナウンスが出てきたので、スピード感があったため印象に残っている。
     </section>
   </article>
 
