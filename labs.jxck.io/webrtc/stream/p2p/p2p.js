@@ -21,18 +21,20 @@ document.querySelector('#id').textContent = id
 document.querySelector('#peer').value = ''
 
 const ws = new WebSocket('wss://ws.jxck.io', ['broadcast', 'webrtc-stream-p2p-demo'])
-console.log(Config)
+
+console.log(JSON.stringify(Config, ' ', ' '))
+
 const connection = new RTCPeerConnection(Config)
 
-const $log = document.querySelector('#log')
-const log = console.log.bind(console)
+//const $log = document.querySelector('#log')
+//const log = console.log.bind(console)
 // function log(name, value) {
 //   $log.value += `[${name}]\n${value}\n\n`
 // }
 
 
 connection.addEventListener('negotiationneeded', async (e) => {
-  console.log('******************* onnegotiationneeded *******************', e)
+  console.log('=================== onnegotiationneeded ===================')
 
   // chrome fires onnegotiationneeded in answere side
   if (connection.signalingState === 'have-remote-offer') return
@@ -40,7 +42,7 @@ connection.addEventListener('negotiationneeded', async (e) => {
   // create offer
   const offer = await connection.createOffer()
 
-  log('send offer', offer.sdp)
+  console.log('send offer', offer.sdp)
   await connection.setLocalDescription(offer)
 
   ws.send(JSON.stringify({
@@ -55,7 +57,7 @@ connection.addEventListener('negotiationneeded', async (e) => {
 })
 
 connection.addEventListener('icecandidate', ({candidate}) => {
-  log('send candidate', JSON.stringify(candidate))
+  console.log('send candidate', JSON.stringify(candidate, ' ', ' '))
   if (candidate === null) return
 
   ws.send(JSON.stringify({
@@ -84,19 +86,19 @@ connection.addEventListener('icecandidateerror', (e) => {
 })
 
 connection.addEventListener('signalingstatechange', (e) => {
-  console.log(e.type, connection.signalingState)
+  console.debug(e.type, connection.signalingState)
 })
 
 connection.addEventListener('iceconnectionstatechange', (e) => {
-  console.log(e.type, connection.iceConnectionState)
+  console.debug(e.type, connection.iceConnectionState)
 })
 
 connection.addEventListener('icegatheringstatechange', (e) => {
-  console.log(e.type, connection.signalingState)
+  console.debug(e.type, connection.signalingState)
 })
 
 connection.addEventListener('connectionstatechange', (e) => {
-  console.log(e.type, connection.connectionState)
+  console.debug(e.type, connection.connectionState)
 })
 
 document.querySelector('#start').addEventListener('submit', async (e) => {
@@ -121,7 +123,7 @@ document.querySelector('#start').addEventListener('submit', async (e) => {
 })
 
 ws.addEventListener('message', async ({data}) => {
-  console.log('>>>>>>>>>>>>', data)
+  console.debug('recv data', data)
   const {type, message} = JSON.parse(data)
   if (message.to !== id) return
   console.log(type, message)
@@ -129,7 +131,7 @@ ws.addEventListener('message', async ({data}) => {
   if (type === 'offer') {
     window.peerid = message.from
 
-    log('recv offer', message.data.sdp)
+    console.log('recv offer', message.data.sdp)
     await connection.setRemoteDescription(message.data)
 
     const checked = document.querySelector('input[name="deviceid"]:checked')
@@ -140,14 +142,14 @@ ws.addEventListener('message', async ({data}) => {
     const stream = await navigator.mediaDevices.getUserMedia(constraint)
     document.querySelector('#local').srcObject = stream
 
-    console.log('addTrack')
     stream.getTracks().forEach((track) => {
+      console.debug('addTrack')
       connection.addTrack(track, stream)
     })
 
     const answer = await connection.createAnswer()
     await connection.setLocalDescription(answer)
-    log('send answer', connection.localDescription.sdp)
+    console.log('send answer', connection.localDescription.sdp)
 
     ws.send(JSON.stringify({
       id:   window.peerid,
@@ -161,12 +163,12 @@ ws.addEventListener('message', async ({data}) => {
   }
 
   if (type === 'answer') {
-    log('recv answer', message.data.sdp)
+    console.log('recv answer', message.data.sdp)
     await connection.setRemoteDescription(message.data)
   }
 
   if (type === 'candidate') {
-    log('recv candidate', JSON.stringify(message.data))
+    console.log('recv candidate', JSON.stringify(message.data, ' ', ' '))
     await connection.addIceCandidate(message.data)
   }
 })
@@ -175,12 +177,10 @@ const $stats = document.querySelector('#stats')
 $stats.addEventListener('click', async () => {
   connection.getSenders().forEach(async (sender) => {
     const stats = await sender.getStats()
-    console.log(stats)
     console.table(stats)
   })
   connection.getReceivers().forEach(async (receiver) => {
     const stats = await receiver.getStats()
-    console.log(stats)
     console.table(stats)
   })
 });
@@ -189,13 +189,13 @@ $stats.addEventListener('click', async () => {
 // device id
 (async () => {
   const devices = await navigator.mediaDevices.enumerateDevices()
-  console.log(devices)
+  console.debug(devices)
   devices.filter((d) => {
     return (d.kind === 'videoinput')
   }).forEach((d) => {
     const id = d.deviceId
     const label = d.label
-    console.log(id, label)
+    console.debug(id, label)
 
     const $li = document.createElement('li')
 
