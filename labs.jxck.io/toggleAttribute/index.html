@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Element.toggleAttribute DEMO | labs.jxck.io</title>
+
+<style>
+input {
+  width: 30em;
+}
+section {
+  margin: 4%;
+}
+</style>
+
+<h1>Element.toggleAttribute DEMO</h1>
+
+<section>
+  <button id=target>toggle target</button>
+  <input type=text id=inner></input>
+</section>
+
+<section>
+  <button id="disabled">toggleAttribute("disabled")</button>
+  <button id="disabled-true">toggleAttribute("disabled", true)</button>
+  <button id="disabled-false">toggleAttribute("disabled", false)</button>
+</section>
+
+
+<script>
+  const target = document.querySelector("#target")
+  const inner = document.querySelector("#inner")
+  inner.value = target.outerHTML
+
+  document.querySelector("#disabled").addEventListener("click", (e) => {
+    console.log(target.toggleAttribute("disabled"))
+    inner.value = target.outerHTML
+  })
+
+  document.querySelector("#disabled-true").addEventListener("click", (e) => {
+    console.log(target.toggleAttribute("disabled", true))
+    inner.value = target.outerHTML
+  })
+
+  document.querySelector("#disabled-false").addEventListener("click", (e) => {
+    console.log(target.toggleAttribute("disabled", false))
+    inner.value = target.outerHTML
+  })
+</script>
