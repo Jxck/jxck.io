@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>EventTarget to EventEmitter DEMO | labs.jxck.io</title>
+
+<style>
+</style>
+
+<h1>EventTarget to EventEmitter DEMO</h1>
+
+<button id=button>click</button>
+
+<script>
+EventTarget.prototype.on  = EventTarget.prototype.addEventListener
+EventTarget.prototype.off = EventTarget.prototype.removeEventListener
+
+EventTarget.prototype.emit = function(name, detail) {
+  this.dispatchEvent(new CustomEvent(name, {detail}))
+}
+
+
+let button = document.querySelector('#button')
+button.on('click', (e) => {
+  button.emit('foo', 'bar')
+})
+button.on('foo', (e) => {
+  console.log(e.type, e.detail, e)
+})
+</script>
