@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang=ja itemscope itemtype=http://schema.org/BlogPosting>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <!--
+  貴様、見ているな！！
+  このサイトの技術的なまとめはこちらをどうぞ。
+  https://labs.jxck.io/blog
+
+  by Jxck
+  -->
+  <link rel=canonical href="https://blog.jxck.io/entries/2018-07-24/clear-site-data.html">
+  <link rel=amphtml href="https://blog.jxck.io/entries/2018-07-24/clear-site-data.amp.html">
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+  <link rel=author href=https://jxck.io/assets/humans.txt>
+  <link rel=manifest href=/manifest.json>
+  <link rel=preload as=font type=font/woff href=https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular-201802.woff2 crossorigin>
+  <script async src=https://jxck.io/assets/js/ga.js></script>
+  <script async src=https://jxck.io/assets/js/highlight.min.js></script>
+  <script async src=https://jxck.io/assets/js/sw.js></script>
+  <script async src=https://jxck.io/assets/js/main.js></script>
+
+  <meta name=author content=Jxck>
+  <meta name=description content="Clear-Site-Data Header の実装が進んでいる。このヘッダについて解説する。...">
+  <meta name=keywords content="cache,cookie,security,http">
+  <meta itemprop=image content="https://jxck.io/assets/img/jxck.png">
+  <meta itemprop=name content="blog.jxck.io">
+
+  <meta name=twitter:card content=summary>
+  <meta name=twitter:site content=@jxck_>
+  <meta name=twitter:url content="https://blog.jxck.io/entries/2018-07-24/clear-site-data.html">
+  <meta name=twitter:title content="Clear-Site-Data Header | blog.jxck.io">
+  <meta name=twitter:description content="Clear-Site-Data Header の実装が進んでいる。このヘッダについて解説する。...">
+  <meta name=twitter:image content="https://jxck.io/assets/img/jxck.png">
+
+  <meta property=og:type content=article>
+  <meta property=og:url content="https://blog.jxck.io/entries/2018-07-24/clear-site-data.html">
+  <meta property=og:title content="Clear-Site-Data Header | blog.jxck.io">
+  <meta property=og:site_name content="blog.jxck.io">
+  <meta property=og:description content="Clear-Site-Data Header の実装が進んでいる。このヘッダについて解説する。...">
+  <meta property=og:image content="https://jxck.io/assets/img/jxck.png">
+
+  <link rel=icon sizes=256x256 href="https://jxck.io/assets/img/jxck.png">
+  <link rel="shortcut icon" href="https://jxck.io/assets/img/jxck.png">
+  <link rel=apple-touch-icon sizes=256x256 href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "Clear-Site-Data Header | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2018-07-24T08:00:00+08:00",
+  "dateModified": "2018-07-24T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "Clear-Site-Data Header の実装が進んでいる。このヘッダについて解説する。..."
+}
+</script>
+
+  <title>Clear-Site-Data Header | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/body.css>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/header.css>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io><img class=logo alt=blog title="blog top" width=30 src=https://jxck.io/assets/img/blog.svg></a>
+        <li><a href="/entries/2018-07-24/clear-site-data.amp.html#development=1"><svg width=30 height=30><use xlink:href="/assets/img/amp.svg#main"/></svg></a>
+        <li><a href=.><img alt=up title="move to parent directory" width=30 src=https://jxck.io/assets/img/up.svg></a>
+        <li><a href=/feeds/atom.xml><img alt=rss title="rss feed" width=30 src=https://jxck.io/assets/img/rss.svg></a>
+        <li><a href=https://jxck.io/humans.txt><img alt=humans title=huamns.txt width=30 src=https://jxck.io/assets/img/humans.svg></a>
+        <li><a href=https://jxck.io><img class=logo alt=jxck title="jxck logo" width=30 src=https://jxck.io/assets/img/jxck.png></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/markdown.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/main.css>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
+    <ul class=info>
+      <li>created_at: <time class=created_at datetime=2018-07-24>2018-07-24</time>
+      <li>updated_at: <time class=updated_at datetime=2018-07-24>2018-07-24</time>
+      <li class=tags>tags: [<a href='/tags/cache.html'>cache</a>,<a href='/tags/cookie.html'>cookie</a>,<a href='/tags/security.html'>security</a>,<a href='/tags/http.html'>http</a>]
+    </ul>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/article.css>
+  <article>
+    <h1><a href=/entries/2018-07-24/clear-site-data.html>Clear-Site-Data Header</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p>Clear-Site-Data Header の実装が進んでいる。
+      <p>このヘッダについて解説する。
+    </section>
+    <section>
+      <h2 id="clear-site-data"><a href="#clear-site-data">Clear-Site-Data</a></h2>
+      <p>例えばログアウト処理を実施する場合は、レスポンスヘッダで Cookie を無効にするといった形で実現されるだろう。
+      <p>しかし、最近では Cookie 以外にも多くのストレージがあり、アカウント特有のデータが保存されていることが多い。
+      <ul>
+        <li>local storage
+        <li>session storage
+        <li>indexed db
+        <li>service worker
+        <li>cache api
+      </ul>
+      <p>これらを、ログアウト処理の中で各 API を適切に呼び出し、全て確実に削除するのは簡単ではない。
+      <p>また、 httponly の Cookie や browser cache などは、 JS からの削除もできない。
+      <p>SPA のように実装されている場合は、その状態を含めて初期化しないと不整合が発生する場合もある。
+      <p>こうした問題に対して策定されたのが、 Clear-Site-Data Header である。
+      <ul>
+        <li>
+          <a href="https://w3c.github.io/webappsec-clear-site-data/#http-headerdef-clear-site-data">https://w3c.github.io/webappsec-clear-site-data/#http-headerdef-clear-site-data</a>
+        </li>
+      </ul>
+      <p>ブラウザにあるデータ削除機能が、 API として出たというイメージだ。
+      <p>ページを遷移しなくても、 <code translate="no">fetch()</code> などで受信したレスポンスヘッダに含まれれば、そのコンテキストで削除が実施される。
+    </section>
+    <section>
+      <h2 id="claer-site-data-header"><a href="#claer-site-data-header">Claer-Site-Data Header</a></h2>
+      <p>ヘッダの値に Type を列挙するだけである。
+      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+      <pre><code translate="no">Clear-Site-Data: &quot;cache&quot;
+Clear-Site-Data: &quot;cache&quot;, &quot;cookies&quot;, &quot;storage&quot;, &quot;executionContexts&quot;
+Clear-Site-Data: &quot;*&quot;</code></pre>
+      <p>Type は現時点では以下が定義されている。
+      <ul>
+        <li>
+          <code translate="no">cookies</code>
+        </li>
+        <li>
+          <code translate="no">cache</code>
+        </li>
+        <li>
+          <code translate="no">storage</code>
+        </li>
+        <li>
+          <code translate="no">executionContexts</code>
+        </li>
+        <li>
+          <code translate="no">*</code>
+        </li>
+      </ul>
+      <p>各 Type で解説する。
+      <section>
+        <h3 id="cookies"><a href="#cookies">cookies</a></h3>
+        <p>httponly, secure の有無に関わらず、全ての Cookie が消える。
+        <p>(<code translate="no">document.cookie</code> や <a href="https://wicg.github.io/cookie-store/explainer.html">Cookie Store API</a> も全て同じ Cookie を見ているため、 storage ではなく cookie である)
+        <p>また Basic Auth の Authorization Header や TLS の Channel ID、 Token Binding なども対象になっている。
+      </section>
+      <section>
+        <h3 id="cache"><a href="#cache">cache</a></h3>
+        <p>ブラウザキャッシュのみであり、 Cache API は storage 扱いとなる。
+      </section>
+      <section>
+        <h3 id="storage"><a href="#storage">storage</a></h3>
+        <p>対象は以下
+        <ul>
+          <li>localStorage
+          <li>sessionStorage
+          <li>indexedDB
+          <li>service worker
+          <li>cache api
+          <li>file system api (未確認)
+          <li>web sql db (未確認)
+          <li>application cache (未確認)
+          <li>flash plugin data (未確認)
+        </ul>
+        <p>例えば service worker だけは残したい、といった細かい調節はできない。
+      </section>
+      <section>
+        <h3 id="executioncontext"><a href="#executioncontext">executionContext</a></h3>
+        <p>実行コンテキストをクリアする、つまりリロードを行う。
+        <p>挙動は <code translate="no">location.reload()</code> を実行するのと同等だが <strong>開いてる他のタブも全てリロード</strong> される。
+        <p>これにより、メモリ上の値なども全てクリアされるため、アプリケーションが持つステートなどを初期化できる。
+        <p>挙動がわかりにくいところがあるが、執筆時点で唯一実装している Firefox Nightly 63.0a1 では、遷移したページがこれを返すと無限にリロードしてしまう。
+        <p>JS でリクエストした場合は、そうはならないので、提供方法は注意が必要だろう。
+      </section>
+      <section>
+        <h3 id="-all"><a href="#-all">* (all)</a></h3>
+        <p>全てを消す。
+        <p>しかし、将来に Type が追加された場合は、それらを全て含むことになる。
+        <p>よって、ショートハンドとして安易に <code translate="no">*</code> を使うと、前方互換性が保たれない可能性がある。
+        <p>それを踏まえてホワイトリストを選択するべきかは考慮が必要となる。
+      </section>
+    </section>
+    <section>
+      <h2 id="user-case"><a href="#user-case">User Case</a></h2>
+      <p>一番わかりやすい例は Logout の処理だろう。
+      <p>ヘッダは以下のように提供できる。
+      <ul>
+        <li>logout ページに遷移する際のヘッダに載せる
+        <li>logout 用の API を JS からリクエストする
+      </ul>
+      <p>Type は <code translate="no">cache, cookie, storage, executionContext</code> を全て載せることになるだろう。
+      <p>executionContext は他の Tab を含めて対応するために
+      <p>他にも、脆弱性が判明した場合に、開いてるタブなども含め確実に修正版を表示させるといった用途にも使える。
+      <p>強制的なログアウトが可能な運用をしている場合は、そのタイミングで提供できるだろう。
+    </section>
+    <section>
+      <h2 id="js-api"><a href="#js-api">JS API</a></h2>
+      <p>現状削除されているが、もともとは JS の API も合わせて定義されていた。
+      <pre class=js><code translate="no">navigator.storage.clear(&quot;cache&quot;)</code></pre>
+      <p>しかし、 <code translate="no">navigator.storage.clear(&quot;executionContexts&quot;)</code> を実行した場合、開いてる全てのタブにおいて <code translate="no">location.reload()</code> 相当が実行されるという API の設計に疑問が出た。
+      <ul>
+        <li>
+          <a href="https://github.com/w3c/webappsec-clear-site-data/issues/21">storage.clear(&ldquo;executionContexts&rdquo;) ends up doing a reload across tabs - Issue #21 - w3c/webappsec-clear-site-data</a>
+        </li>
+      </ul>
+      <p>結果、一旦これは Drop され、ニーズがあれば再度議論することとなった。
+    </section>
+    <section>
+      <h2 id="demo"><a href="#demo">DEMO</a></h2>
+      <p>動作する DEMO は以下に用意した。
+      <ul>
+        <li>
+          <a href="https://labs.jxck.io/clear-site-data/index.html">https://labs.jxck.io/clear-site-data/index.html</a>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 id="link"><a href="#link">Link</a></h2>
+      <ul>
+        <li>
+          <a href="https://github.com/mozilla/standards-positions/issues/90">https://github.com/mozilla/standards-positions/issues/90</a>
+        </li>
+        <li>
+          <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1268889">https://bugzilla.mozilla.org/show_bug.cgi?id=1268889</a>
+        </li>
+        <li>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Clear-Site-Data">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Clear-Site-Data</a>
+        </li>
+      </ul>
+    </section>
+  </article>
+
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/footer.css>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small><small>Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>Google Analytics</a> and <a href=https://w3c.github.io/ServiceWorker/>Service Worker</a>.</small></p>
+  </footer>
+</body>
+</html>
