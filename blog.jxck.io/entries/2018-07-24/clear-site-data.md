@@ -157,4 +157,3 @@ navigator.storage.clear("cache")
 - <https://github.com/mozilla/standards-positions/issues/90>
 - <https://bugzilla.mozilla.org/show_bug.cgi?id=1268889>
 - <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Clear-Site-Data>
-- <https://twitter.com/mikewest/status/817391771508502529>
