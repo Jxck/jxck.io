@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>clear-site-data DEMO | labs.jxck.io</title>
+
+<style>
+</style>
+
+<h1>clear-site-data DEMO</h1>
+
+<ul>
+  <li><button id=cache>clear "cache"</button>
+  <li><button id=cookies>clear "cookies"</button>
+  <li><button id=storage>clear "storage"</button>
+  <li><button id=executionContexts>clear "executionContexts"</button>
+  <li><button id=all>clear "*"</button>
+</ul>
+
+
+<a href=/clear-site-data/executionContexts>executionContexts</a>
+
+
+<script>
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+  window.TEST = Math.random()
+  console.log(TEST)
+  const $ = document.querySelector.bind(document)
+  const key = "keeeeeeeeeey"
+  const value = "valueeeeeeeeeeeee"
+  const version = "v1"
+
+  console.log("register Cookie")
+  document.cookie = `${key}=${value}`
+
+  console.log("register Local Storage")
+  localStorage.setItem(key, value)
+
+  console.log("register Session Storage")
+  sessionStorage.setItem(key, value)
+
+  // TODO: WebSQL
+  // TODO: FileSystem
+
+  console.log("register Cache Storage")
+  caches.open(version).then((cache) => cache.add('/'))
+
+  console.log("register Indexed DB")
+  const req = indexedDB.open(version)
+  req.on("upgradeneeded", (e) => {
+    console.log(e)
+    const db = e.target.result
+    db.createObjectStore('store', {keyPath : 'key'})
+  })
+  req.on("success", (e) => {
+    console.log(e)
+    const db = e.target.result
+    db.transaction('store', 'readwrite')
+      .objectStore('store')
+      .put({key, value})
+      .on('success', (e) => {
+        console.log(e)
+      })
+  })
+
+  console.log("register Service Worker")
+  navigator.serviceWorker.register('worker.js').then((registration) => {
+    console.log(registration)
+  })
+
+
+  // request clear-site-data
+  ;[
+    "cache",
+    "cookies",
+    "storage",
+    "executionContexts",
+    "all",
+  ].forEach((type) => {
+    $(`#${type}`).on("click", async (e) => {
+      const res = await fetch(`/clear-site-data/clear?${type}`)
+      console.log(res)
+    })
+  })
+</script>
