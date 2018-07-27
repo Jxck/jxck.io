@@ -12,7 +12,7 @@ audio: https://files.mozaic.fm/mozaic-ep22.mp3
 
 第 22 回のテーマは AMP(Accelerated Mobile Pages) です。
 
-今回は [@ymotongpoo](https://twitter.com/ymotongpoo) さんをお迎えして、 AMP の登場背景やそこから見える今の Web の問題点、導入や普及、今後の展望などをふまえ、 AMP が登場した意味、そして AMP が Web にもたらす影響などを通して 「**今何がおこっているのか**」と「**これからどうなっていくのか**」を議論しました。
+今回は [@ymotongpoo](https://twitter.com/ymotongpoo) さんをお迎えして、 AMP の登場背景やそこから見える今の Web の問題点、導入や普及、今後の展望などをふまえ、 AMP が登場した意味、そして AMP が Web にもたらす影響などを通して 「*今何がおこっているのか*」と「*これからどうなっていくのか*」を議論しました。
 
 
 ## Show Note

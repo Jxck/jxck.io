@@ -19,13 +19,13 @@ audio: https://files.mozaic.fm/mozaic-ep39.mp3
 
 - Stable: 67
 - Updates
-  - **Chromium Blog: Chrome 68 Beta: add to home screen, payment handler, page lifecycle**
+  - *Chromium Blog: Chrome 68 Beta: add to home screen, payment handler, page lifecycle*
     - <https://blog.chromium.org/2018/06/chrome-68-beta-add-to-home-screen.html>
-    - **beforeinstallprompt**
-    - **Payment Handler API**
-    - **iframe で top-level navigation する際に gesture を要求**
-    - **The Page Lifecycle API (freeze/resume event, wasDiscared)**
-    - **New customElements.upgrade()**
+    - *beforeinstallprompt*
+    - *Payment Handler API*
+    - *iframe で top-level navigation する際に gesture を要求*
+    - *The Page Lifecycle API (freeze/resume event, wasDiscared)*
+    - *New customElements.upgrade()*
     - Accept two values in the CSS overflow shorthand
     - CSS position values with three parts
     - Support 'x' as a resolution unit in CSS
@@ -44,12 +44,12 @@ audio: https://files.mozaic.fm/mozaic-ep39.mp3
     - Remove document.createTouch
     - Remove Document.selectedStylesheetSet and Document.preferredStylesheetSet
     - WEBGL_compressed_texture_atc
-  - **Fresher service workers, by default**
+  - *Fresher service workers, by default*
     - <https://developers.google.com/web/updates/2018/06/fresher-sw>
     - SW がデフォルトで HTTP Cache を無視するように
     - `register()` で updateViaCache パラメータを取るように
     - importScripts 含めどうするか制御できる
-  - **Changes to Add to Home Screen Behavior**
+  - *Changes to Add to Home Screen Behavior*
     - <https://developers.google.com/web/updates/2018/06/a2hs-updates>
     - onbeforeinstsllprompt のハンドラなしにはプロンプトが出なくなる
     - 何もしてないサイトでは、インストールする?と聞かれなくなる
@@ -66,21 +66,21 @@ audio: https://files.mozaic.fm/mozaic-ep39.mp3
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/z4CWYor4UpQ/CVS65qLrAgAJ>
   - Ship: Symbol.prototype.description
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/DR7OAQ1hiSA/XAh8LHZUAQAJ>
-  - **Ship: Keyboard Map API**
+  - *Ship: Keyboard Map API*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/V2xR7cucnOA/slvSxt-KAQAJ>
     - KeyboardEvent.code をキーボードの文字列に戻す API
-  - **Ship: Picture-in-Picture (PiP)**
+  - *Ship: Picture-in-Picture (PiP)*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ibVPbqBQapU/rUZIrPPLAQAJ>
     - macOS では OS の PiP を使ってない模様
   - Ship: OffscreenCanvas and DedicatedWorker.requestAnimationFrame
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hRZ_P2o-aEk/oPEmHWFLAwAJ>
-  - **Ship: Notification Inline Replies**
+  - *Ship: Notification Inline Replies*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/PNTQCliD2oA/daIyhTskCQAJ>
     - Notification のダイアログでそのままリプライを書いたりできる
-  - **Ship: Display Cutout & CSS Environment Variables**
+  - *Ship: Display Cutout & CSS Environment Variables*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Fim-KmT08PE/LIHNNXALBAAJ>
     - safe-area-inset など
-  - **Ship: Web Locks API**
+  - *Ship: Web Locks API*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/e2fg_-Ha-AE/nheenHnXBgAJ>
   - Ship: Background tab loading throttling with ResourceLoadScheduler
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ATZkiHQVAqQ/uA112TCqCAAJ>
@@ -88,24 +88,24 @@ audio: https://files.mozaic.fm/mozaic-ep39.mp3
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/tkN-r119eNc/s5R9F2YzAwAJ>
   - Implement and Ship: High priority for one-off input events
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/SFFW9AhASHc/ISZg-Fh4AQAJ>
-  - **Implement and Ship: Nested dedicated workers**
+  - *Implement and Ship: Nested dedicated workers*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/KZx0i3e5nZM/I7txb1mmAgAJ>
     - Worker から worker を起動する仕様
     - Edge と Firefox は ship 済み
-  - **Implement and Ship: ES Modules for dedicated workers ('module' type option)**
+  - *Implement and Ship: ES Modules for dedicated workers ('module' type option)*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hnIOyxASKFU/nBkzXbvuAQAJ>
     - `new Worker('a.js', {type: 'module'})` できる
-  - **Implement and Ship: Disallow Sync XHR in Page Dismissal**
+  - *Implement and Ship: Disallow Sync XHR in Page Dismissal*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/LnqwTCiT9Gs/tO0IBO4PAwAJ>
     - beforeunload などで sync xhr を禁止
     - sendBeacon や fetch keepalive を利用すべき
   - Implement and Ship: RTCRtpParameters.headerExtensions
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Bi5qIIRraJo/vXXaRff9AgAJ>
-  - **Implement and Ship: Element.toggleAttribute**
+  - *Implement and Ship: Element.toggleAttribute*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mAWBTaANvmE/OgaCRH04BAAJ>
   - Implement: WebGL 2.0 Compute
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/bPD47wqY-r8/5DzgvEwFBAAJ>
-  - **Implement: 'unsafe-hashes' in CSP3**
+  - *Implement: 'unsafe-hashes' in CSP3*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/4dohVXDfEI4/tO6rhuv4AwAJ>
     - unsafe-inline ではなく hash で許可できるように
   - Implement: Gamepad Button and Axis Events
@@ -117,17 +117,17 @@ audio: https://files.mozaic.fm/mozaic-ep39.mp3
   - Implement: GetDisplayMedia
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/j7k2nI_9nng/OE6IvgJyAQAJ>
     - スクリーン共有などに使用
-  - **Implement: WebAssembly worker-based Threads**
+  - *Implement: WebAssembly worker-based Threads*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/GMZIcOoFFqw/dFy06FAxBwAJ>
   - Implement: Support codec and container switching with MSE using SourceBuffer.changeType()
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/atNyZDs-WXY/0nZgRGwfBAAJ>
-  - **Implement: Stale-While-Revalidate**
+  - *Implement: Stale-While-Revalidate*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/P8bZxeA84Z4/gGWF1_4JBAAJ>
     - [blog](https://blog.jxck.io/entries/2016-04-16/stale-while-revalidate.html)
-  - **Experiment: EventTiming**
+  - *Experiment: EventTiming*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/wybNlFUskig/l04GcYwVAgAJ>
     - Performance Observer での Event Observe
-  - **Experiment: Cookie Store API**
+  - *Experiment: Cookie Store API*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/pdxkBoURmaA/vOTkwUBCBAAJ>
     - service worker に向けた Async API
     - M69 で OriginTrials
@@ -159,7 +159,7 @@ audio: https://files.mozaic.fm/mozaic-ep39.mp3
   - Concurrent marking in V8
     - <https://v8project.blogspot.com/2018/06/concurrent-marking.html>
 - Other
-  - **New in AMP: Q2, 2018 Edition**
+  - *New in AMP: Q2, 2018 Edition*
     - <https://amphtml.wordpress.com/2018/06/06/2058/>
     - Monetization support for AMP stories
     - New user control tools in AMP
@@ -169,7 +169,7 @@ audio: https://files.mozaic.fm/mozaic-ep39.mp3
     - Ability to upload files
   - Improving extension transparency for users
     - <https://blog.chromium.org/2018/06/improving-extension-transparency-for.html>
-  - **Using JavaScript modules on the web**
+  - *Using JavaScript modules on the web*
     - <https://developers.google.com/web/fundamentals/primers/modules>
   - The Shadow Reader, Improved
     - <https://amphtml.wordpress.com/2018/06/19/the-shadow-reader-improved/>
@@ -195,7 +195,7 @@ audio: https://files.mozaic.fm/mozaic-ep39.mp3
 
 - Stable: 61
 - Updates
-  - **New Firefox Releases Now Available**
+  - *New Firefox Releases Now Available*
     - <https://blog.mozilla.org/blog/2018/06/26/new-firefox-releases-now-available-2/>
     - Add Search Engines
     - Tab Warming
@@ -209,7 +209,7 @@ audio: https://files.mozaic.fm/mozaic-ep39.mp3
 - Intents
   - Ship: New AltGr key behavior on Windows
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/YVh04PSDcz4/66yE0v17AQAJ>
-  - **Ship: Retained Display Lists (rollout plan)**
+  - *Ship: Retained Display Lists (rollout plan)*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/lz3H5sitJCY/4xaUXpwNBgAJ>
   - Ship: navigator.storage on Firefox for Android (Fennec)
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/IUQBiW8wDrs/Urt2rnmlAwAJ>
@@ -222,10 +222,10 @@ audio: https://files.mozaic.fm/mozaic-ep39.mp3
   - Ship: `inset-*` logical properties.
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/PHuJizg8gMc/pG245dyTCAAJ>
     - offset- からリネーム
-  - **Ship: Element.toggleAttribute**
+  - *Ship: Element.toggleAttribute*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/wwU0TW80u1g/X_V3091yCAAJ>
   - Implement and Ship:
-  - **Implement: Clear-Site-Data header**
+  - *Implement: Clear-Site-Data header*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/aDRU2iM0X-k/yTH1g65BBgAJ>
   - Experiment:
   - Change:
@@ -241,7 +241,7 @@ audio: https://files.mozaic.fm/mozaic-ep39.mp3
 - Site Compat
   - @-moz-document url-prefix() CSS hack will no longer work (Affecting)
     - <https://www.fxsitecompat.com/en-CA/docs/2018/moz-document-url-prefix-css-hack-will-no-longer-work/>
-  - **Flash plug-in support will be removed in 2020 (Affecting)**
+  - *Flash plug-in support will be removed in 2020 (Affecting)*
     - <https://www.fxsitecompat.com/en-CA/docs/2018/flash-plug-in-support-will-be-removed-in-2020/>
   - Symantec, GeoTrust, RapidSSL, Thawte, Verisign certificates will all be distrusted in October 2018 (Affecting)
     - <https://www.fxsitecompat.com/en-CA/docs/2018/symantec-geotrust-rapidssl-thawte-verisign-certificates-will-all-be-distrusted-in-october-2018/>
@@ -276,7 +276,7 @@ audio: https://files.mozaic.fm/mozaic-ep39.mp3
 - WWDC
   - What's New in Safari 12
     - <https://developer.apple.com/safari/whats-new/>
-  - **Strategies for Securing Web Content**
+  - *Strategies for Securing Web Content*
     - <https://developer.apple.com/videos/play/wwdc2018/207>
   - What's New in Safari and WebKit
     - <https://developer.apple.com/videos/play/wwdc2018/234>
@@ -297,31 +297,31 @@ audio: https://files.mozaic.fm/mozaic-ep39.mp3
 - Safari Technology Preview 58, with Safari 12 Features, is Now Available
   - <https://webkit.org/blog/8327/safari-technology-preview-58-with-safari-12-features-is-now-available/>
   - <https://developer.apple.com/safari/whats-new/>
-  - **Password AutoFill**
+  - *Password AutoFill*
     - passwordrules (ルールに基づいて自動生成)
     - one-time-code (SMS から数字部分だけ持って来て autocomplete)
     - <https://developer.apple.com/password-rules/>
   - Media
     - 3D & AR Model Viewer on iOS
-    - **Fullscreen API on iOS for iPad**
+    - *Fullscreen API on iOS for iPad*
   - CSS and Text Features
     - Font Collections
     - OpenType SVG
     - font-display
     - Updated HSL and HSLA Syntax
-  - **Security and Privacy**
-    - **Intelligent Tracking Prevention 2.0**
+  - *Security and Privacy*
+    - *Intelligent Tracking Prevention 2.0*
     - cross-origin-window-policy
     - cross-origin-resource-policy
     - Updated X-Frame-Options and CSP
   - Icons in Tabs
-    - **favicon が tab に**
+    - *favicon が tab に*
     - ただし設定が必要
 - Safari Technology Preview NN
   - Release Notes for Safari Technology Preview 59
     - <https://webkit.org/blog/8332/release-notes-for-safari-technology-preview-59/>
 - Other
-  - **Intelligent Tracking Prevention 2.0**
+  - *Intelligent Tracking Prevention 2.0*
     - <https://webkit.org/blog/8311/intelligent-tracking-prevention-2-0/>
   - Web Animations in WebKit
     - <https://webkit.org/blog/8343/web-animations-in-webkit/>
@@ -344,7 +344,7 @@ audio: https://files.mozaic.fm/mozaic-ep39.mp3
   - Not currently planned
     - display: contents
 - EdgeHTML
-  - **Improved JavaScript and WebAssembly performance in EdgeHTML 17**
+  - *Improved JavaScript and WebAssembly performance in EdgeHTML 17*
     - <https://blogs.windows.com/msedgedev/2018/06/19/improved-javascript-webassembly-performance-edgehtml-17/>
     - (Re-)defer parsing for arrow functions and object literals methods
     - RegExp bytecode refactoring
@@ -356,7 +356,7 @@ audio: https://files.mozaic.fm/mozaic-ep39.mp3
 - Chakra
   - Release ChakraCore v1.8.5
     - <https://github.com/Microsoft/ChakraCore/releases/tag/v1.8.5>
-  - **Release ChakraCore v1.10.0**
+  - *Release ChakraCore v1.10.0*
     - <https://github.com/Microsoft/ChakraCore/releases/tag/v1.10.0>
     - <https://github.com/Microsoft/ChakraCore/wiki/Roadmap#v1100>
     - Intl/ICU
@@ -368,16 +368,16 @@ audio: https://files.mozaic.fm/mozaic-ep39.mp3
     - performance optimization
     - etc
 - Other
-  - **Bing announces Bing AMP viewer & JSON-LD support in Bing Webmaster Tools - Search Engine Land**
+  - *Bing announces Bing AMP viewer & JSON-LD support in Bing Webmaster Tools - Search Engine Land*
     - <https://searchengineland.com/bing-announces-bing-amp-viewer-json-ld-support-in-bing-webmaster-tools-300037>
   - Announcing Windows 10 Insider Preview Build 17692
     - <https://blogs.windows.com/windowsexperience/2018/06/14/announcing-windows-10-insider-preview-build-17692>
   - Enhancing automated testing in Microsoft Edge with new WebDriver capabilities, W3C protocol support, and automatic updates
     - <https://blogs.windows.com/msedgedev/2018/06/14/webdriver-w3c-recommendation-feature-on-demand/>
-  - **Chakra documentation is joining MDN web docs**
+  - *Chakra documentation is joining MDN web docs*
     - <https://blogs.windows.com/msedgedev/2018/06/26/chakra-docs-mdn-web-docs/#3fu0s76bDRXxfSAP.97>
     - Chakra のドキュメントも MDN に
-  - **Preloading HSTS for TLDs across browsers**
+  - *Preloading HSTS for TLDs across browsers*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/hsts-discuss/XzMpDMqtkKc/PDUICTieAwAJ>
     - IE と Edge も Chrome の HSTS Preload List を読むように
 
@@ -387,11 +387,11 @@ audio: https://files.mozaic.fm/mozaic-ep39.mp3
 - Recommendation
   - WebDriver
     - <https://www.w3.org/blog/news/archives/7081>
-  - **Web Content Accessibility Guidelines (WCAG) 2.1**
+  - *Web Content Accessibility Guidelines (WCAG) 2.1*
     - <https://www.w3.org/blog/news/archives/7061>
   - CSS Basic User Interface Module Level 3 (CSS3 UI)
     - <https://www.w3.org/blog/news/archives/7108>
-- **Edited Recommendation**
+- *Edited Recommendation*
   - CSS Color Module Level 3
     - <https://www.w3.org/blog/news/archives/7093>
     - <https://www.w3.org/2018/Process-20180201/#RecsW3C>
@@ -401,7 +401,7 @@ audio: https://files.mozaic.fm/mozaic-ep39.mp3
 - Candidate Recommendation
   - Accessible Name and Description Computation 1.1
     - <https://www.w3.org/blog/news/archives/7095>
-  - **WebRTC 1.0: Real-time Communication Between Browsers**
+  - *WebRTC 1.0: Real-time Communication Between Browsers*
     - <https://www.w3.org/blog/news/archives/7110>
   - Timed Text Markup Language 2 (TTML2)
     - <https://www.w3.org/blog/news/archives/7126>
@@ -419,7 +419,7 @@ audio: https://files.mozaic.fm/mozaic-ep39.mp3
   - Proposed W3C Charters: APA/ARIA Working Group
     - <https://lists.w3.org/Archives/Public/public-new-work/2018Jun/0003.html>
 - Other
-  - **W3C Strategic Highlights - May 2018**
+  - *W3C Strategic Highlights - May 2018*
     - <https://www.w3.org/2018/05/w3c-highlights/>
     - 2018 春時点での W3C での動きのまとめ
     - WOFF2 (Web Open Font Format) is now a W3C Recommendation.
@@ -432,28 +432,28 @@ audio: https://files.mozaic.fm/mozaic-ep39.mp3
     - <https://docs.google.com/document/d/1valj1gBZ2eMhAHSKOhFOWIRymnntWi7xKUeESvN4VxI/>
   - WebRTCWG-2018-06-19
     - <https://docs.google.com/presentation/d/17BVuVX4c3dPaNe_PzD54UiwUcP6FnKwsevUaVRGNi00/edit#slide=id.p>
-  - **Do Not Track and the GDPR**
+  - *Do Not Track and the GDPR*
     - <https://www.w3.org/blog/2018/06/do-not-track-and-the-gdpr/>
-  - **TPAC 2018 registration now open**
+  - *TPAC 2018 registration now open*
     - <https://lists.w3.org/Archives/Public/public-webappsec/2018Jun/0002.html>
   - W3C Staff Kaz Ashimura wins TTC award for Information Communication Technology
     - <https://www.w3.org/blog/news/archives/7098>
   - W3C offers Diversity Scholarships
     - <https://www.w3.org/blog/news/archives/7102>
-  - **Touch ID platform authenticator in Chrome**
+  - *Touch ID platform authenticator in Chrome*
     - <https://lists.w3.org/Archives/Public/public-webauthn/2018Jun/0472.html>
     - Mac の Touch ID が WebAuthn 対応
-  - **First set of Review Drafts published**
+  - *First set of Review Drafts published*
     - <https://blog.whatwg.org/first-review-drafts>
     - 特許用のドラフトを半年ごとに出す
-  - **W3C Strategic Highlights for Spring 2018 and Advisory Committee Meeting**
+  - *W3C Strategic Highlights for Spring 2018 and Advisory Committee Meeting*
     - <https://www.w3.org/blog/2018/06/w3c-strategic-highlights-for-spring-2018-and-advisory-committee-meeting/>
     - WHATWG Review Drafts の背景(Our partnership with WHATWG のところ)
 
 
 ### TC39 動向
 
-- **TC39 Meetings Notes**
+- *TC39 Meetings Notes*
   - 5 末の TC39 ミーティングノート
   - <https://github.com/rwaldron/tc39-notes/blob/master/es9/2018-05/toc.md>
   - <https://github.com/rwaldron/tc39-notes/blob/master/es9/2018-05/may-22.md>
@@ -487,10 +487,10 @@ audio: https://files.mozaic.fm/mozaic-ep39.mp3
 - Call for Adoption
 - I-D Action
 - Draft
-  - **Bundled HTTP Exchanges**
+  - *Bundled HTTP Exchanges*
     - <https://tools.ietf.org/html/draft-yasskin-wpack-bundled-exchanges-00>
     - WebPackaging の bundling もドラフト化された
-  - **Deprecating TLSv1.0 and TLSv1.1**
+  - *Deprecating TLSv1.0 and TLSv1.1*
     - <https://tools.ietf.org/html/draft-moriarty-tls-oldversions-diediedie-00>
     - 1.2, 1.3 以前を無くして行きたい
   - IDNA2008 and Unicode 11.0.0
@@ -502,27 +502,27 @@ audio: https://files.mozaic.fm/mozaic-ep39.mp3
     - <https://tools.ietf.org/html/draft-ietf-emu-rfc5448bis-00>
   - Layered Exported Authenticators in TLS
     - <https://tools.ietf.org/html/draft-hoyland-tls-layered-exported-authenticator-00>
-  - **CDN Loop Prevention**
+  - *CDN Loop Prevention*
     - <https://tools.ietf.org/html/draft-cdn-loop-prevention-00>
     - CDN の設定で意図せずループしてしまう場合がある
     - cdn-id ヘッダを足してそれを防ごうという話
-  - **Origin Validation Signaling**
+  - *Origin Validation Signaling*
     - <https://tools.ietf.org/html/draft-ymbk-sidrops-ov-signal-00>
   - Using Multicast DNS to protect privacy when exposing ICE candidates
     - <https://tools.ietf.org/html/draft-mdns-ice-candidates-00>
-  - **HTTP/2 Server Push Use Cases**
+  - *HTTP/2 Server Push Use Cases*
     - <https://tools.ietf.org/html/draft-bishop-httpbis-push-cases-00>
     - Push するリソースのタイプ、 Push の目的、ブラウザ以外のケースなどの整理
   - Analysis and Problem Statements for Interworking between 5G Network Slicing and Transport Network
     - <https://tools.ietf.org/html/draft-mink-5g-ns-transport-ps-00>
-  - **TLS 1.3 Authentication and Integrity only Ciphersuites**
+  - *TLS 1.3 Authentication and Integrity only Ciphersuites*
     - <https://tools.ietf.org/html/draft-camwinget-tls-ts13-macciphersuites-00>
-  - **OAuth 2.0 Incremental Authorization**
+  - *OAuth 2.0 Incremental Authorization*
     - <https://tools.ietf.org/html/draft-ietf-oauth-incremental-authz-00>
   - TCP Encapsulation Considerations
     - <https://tools.ietf.org/html/draft-pauly-tcp-encapsulation-00>
 - Other
-  - **[TLS] Enforcing Protocol Invariants**
+  - *[TLS] Enforcing Protocol Invariants*
     - <https://www.ietf.org/mail-archive/web/tls/current/msg26385.html>
     - TLS の ossification (硬化) を防ぐ GREASE 的なことをもっとやっていこうという話
     - Chrome はバージョンナンバーなどを定期的に変えていくことを計画
@@ -534,7 +534,7 @@ audio: https://files.mozaic.fm/mozaic-ep39.mp3
   - <https://toyokeizai.net/articles/amp/223696?page=3>
   - Google の記事の翻訳にある記述が、かなりネガティブに誤訳されていた
   - <http://www.itmedia.co.jp/news/articles/1806/08/news065.html>
-- **仮想通貨マイニング (Coinhive) で家宅捜索を受けた話**
+- *仮想通貨マイニング (Coinhive) で家宅捜索を受けた話*
   - <https://doocts.com/3403>
   - アドをなくすために Coinhive を使ったデザイナが神奈川県警に家宅捜索された
   - 法的な根拠、違法性、操作のやり方など議論に
@@ -548,31 +548,31 @@ audio: https://files.mozaic.fm/mozaic-ep39.mp3
   - <https://www.nccgroup.trust/us/our-research/technical-advisory-return-of-the-hidden-number-problem/>
   - 攻撃難易度は高く openssl では対応済みとのこと
   - <https://twitter.com/jovi0608/status/1007104277351784450>
-- **Chrome 拡張「5000 兆円コンバーター」に XSS 脆弱性**
+- *Chrome 拡張「5000 兆円コンバーター」に XSS 脆弱性*
   - <http://www.itmedia.co.jp/news/articles/1806/15/news108.html>
   - <https://github.com/nekowen/5000-trillion-yen-converter/issues/2>
   - 複数のメディアで報じられてた模様
   - 「5000 兆」を変換する拡張だが、文字列の近くにある `<script>` タグなどが実行される
-- **Setting arbitrary request headers in Chromium via CRLF injection**
+- *Setting arbitrary request headers in Chromium via CRLF injection*
   - <https://blog.bentkowski.info/2018/06/setting-arbitrary-request-headers-in.html>
   - JS 経由で CSP 属性に改行入れるとヘッダインジェクションができた
   - 実装されてから結構長い期間有効だった模様
-- **GitHub's post-CSP journey**
+- *GitHub's post-CSP journey*
   - <https://githubengineering.com/githubs-post-csp-journey/>
   - github のデプロイする CSP の運用知見
 - I discovered a browser bug - JakeArchibald.com
   - <https://jakearchibald.com/2018/i-discovered-a-browser-bug/>
   - Service Worker + CORS + Range で起こる脆弱性
   - Range のブラウザでの挙動がきちんと標準化されてない問題
-- **Web Platform Security PhD Summit @ Google Munich**
+- *Web Platform Security PhD Summit @ Google Munich*
   - <https://speakerdeck.com/mikewest/web-platform-security-phd-summit-at-google-munich>
   - Web Platform のセキュリティについての良いまとめ
 - Hijacking the control flow of a WebAssembly program
   - <https://www.fastly.com/blog/hijacking-control-flow-webassembly-program>
-- **Serve websites over HTTPS (always) - NCSC Site**
+- *Serve websites over HTTPS (always) - NCSC Site*
   - <https://www.ncsc.gov.uk/blog-post/serve-websites-over-https-always>
   - 英国サイバーセキュリティセンターが HTTPS always を推奨
-- **Implementing HTTPS for Secure Web Connections: Information Technology Policy Implementation Notice (ITPIN) - Canada.ca**
+- *Implementing HTTPS for Secure Web Connections: Information Technology Policy Implementation Notice (ITPIN) - Canada.ca*
   - <https://www.canada.ca/en/treasury-board-secretariat/services/information-technology/policy-implementation-notices/implementing-https-secure-web-connections-itpin.html>
   - <https://twitter.com/ibash_10/status/1012142587627671553>
   - カナダ政府のサイトが HTTPS を必須にするお達し
@@ -583,12 +583,12 @@ audio: https://files.mozaic.fm/mozaic-ep39.mp3
 
 ### 周辺動向
 
-- **5G 策定完了**
+- *5G 策定完了*
   - <https://www.theverge.com/2017/12/20/16803326/5g-network-specification-standard-3gpp-nr-official>
   - <https://www.nttdocomo.co.jp/info/news_release/2018/06/14_00.html>
 - Inside Firefox's DOH engine
   - <https://daniel.haxx.se/blog/2018/06/03/inside-firefoxs-doh-engine/>
-- **Towards ever faster websites with early hints and priority hints**
+- *Towards ever faster websites with early hints and priority hints*
   - <https://www.fastly.com/blog/towards-ever-faster-websites-early-hints-and-priority-hints>
   - Fastly の Andrew による Priority Hints と Erly Hints
 

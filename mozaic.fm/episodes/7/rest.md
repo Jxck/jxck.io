@@ -15,7 +15,7 @@ audio: https://files.mozaic.fm/mozaic-ep7.mp3
 
 今回は [@yohei](https://twitter.com/yohei) さんと、 [@t_wada](https://twitter.com/t_wada) さんをお迎えし、 REST をテーマに 「もういちど REST とは何か、ちゃんと話そう」という議論を皮切りに「今なにが起こっているのか?」「これからどうなっていくのか?」また、「Web を支える技術を改訂するとしたら?」をたっぷり議論しました。
 
-エピソード中にも出てきましたが、 **「Web を支える技術」を改訂する際に「こういうことを載せて欲しい」** という [@yohei](https://twitter.com/yohei) さんへの要望があれば [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) をつけて、是非つぶやいてください。
+エピソード中にも出てきましたが、 *「Web を支える技術」を改訂する際に「こういうことを載せて欲しい」* という [@yohei](https://twitter.com/yohei) さんへの要望があれば [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) をつけて、是非つぶやいてください。
 
 今回は、居酒屋トークの録音なので周囲の雑音が多いですがご了承ください。
 

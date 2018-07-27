@@ -10,7 +10,7 @@ audio: https://files.mozaic.fm/mozaic-ep9.mp3
 
 ## Theme
 
-第 9 回のテーマは Socket.IO です。**全編英語**です。
+第 9 回のテーマは Socket.IO です。*全編英語*です。
 
 今回は [Socket.IO@1.0](http://socket.io) 公開を記念して、日本で開催した [Socket.IO Meetup](http://connpass.com/event/6911/) で来日した、開発者である [@rauchg](https://twitter.com/rauchg) さんをお迎えし、 Socket.IO をテーマに 「Socket.IO を作ったモチベーション」から、「Socket.IO@1.0 での変更点」や「Socket.IO@2.0 の話」などをしました。
 

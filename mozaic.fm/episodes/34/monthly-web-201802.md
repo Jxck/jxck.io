@@ -20,7 +20,7 @@ audio: https://files.mozaic.fm/mozaic-ep34.mp3
 
 - Stable: 64
 - Updates
-  - **Chrome 65 Beta: CSS Paint API and the ServerTiming API**
+  - *Chrome 65 Beta: CSS Paint API and the ServerTiming API*
     - <https://blog.chromium.org/2018/02/chrome-65-beta-css-paint-api-and.html>
     - CSS Paint API [blog](https://blog.jxck.io/entries/2017-10-31/houdini-paint-api.html)
     - Server Timing API
@@ -31,7 +31,7 @@ audio: https://files.mozaic.fm/mozaic-ep34.mp3
     - sync-xhr feature policy
   - Deprecations and removals in Chrome 65
     - <https://developers.google.com/web/updates/2018/02/chrome-65-deprecations>
-    - **Chrome no longer trusting certain Symantec certificates**
+    - *Chrome no longer trusting certain Symantec certificates*
     - Block cross-origin `<a download>`
     - Document.all is no longer replaceable
   - What's New In DevTools (Chrome 66)
@@ -52,12 +52,12 @@ audio: https://files.mozaic.fm/mozaic-ep34.mp3
 - Intents
   - Ship: Payment Handler
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/fVxkGlKpDbU/GJD6RgkbCAAJ>
-  - **Ship: add InputMode attribute**
+  - *Ship: add InputMode attribute*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MAHQkH4vvUQ/i0yCobrMCQAJ>
     - `<input inputmode=tel>` など
     - 既に intent を一回出しているが、ロケール関係の問題があったのでそこを省いて出す
     - contenteditable でもサポート
-  - **Ship: `String.prototype.trimStart` / `String.prototype.trimEnd`**
+  - *Ship: `String.prototype.trimStart` / `String.prototype.trimEnd`*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Mx3Goj6pai4/CoJbFCDcCAAJ>
     - `String.prototype.{trimLeft,trimRight}` があったがこれは非標準に
     - 相対方向にするため、 Start/End にし、 Left/Right は互換のための alias に
@@ -70,7 +70,7 @@ audio: https://files.mozaic.fm/mozaic-ep34.mp3
     - サブセットのやつ
     - <https://www.tbray.org/ongoing/When/201x/2016/08/20/Fixing-JSON>
     - <https://www.tbray.org/ongoing/When/201x/2017/12/14/RFC-8259-STD-90>
-  - **Ship: Slots in flat tree**
+  - *Ship: Slots in flat tree*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/6UNwnk97lrE/LmW0ni0NCwAJ>
     - `<slot>` を falt tree に `display: contents` で参加させる
     - incremental shadow dom でも必要
@@ -98,24 +98,24 @@ audio: https://files.mozaic.fm/mozaic-ep34.mp3
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/irhrlr6n5YQ/LOS8xSGsBwAJ>
     - style を `<style>` や `<link>` ではなく、 `new CSSStyleSheet()` で生成できるように
     - パースコストを減らしつつ、再利用などの最適化余地を与える
-  - **Implement :is()**
+  - *Implement :is()*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/BLBHKKG90DM/MxokOGuaBwAJ>
     - specificity-adjustment pseudo-class の実装(名前はまだ議論中?)
     - 擬似セレクタで定義されたスタイルの優先度を zero にするためのもの
     - オーバーライドしやすくする
-  - **Implement: WebSockets over HTTP/2**
+  - *Implement: WebSockets over HTTP/2*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/TQN4jWHydTk/52JwsCJ8CgAJ>
     - <https://tools.ietf.org/html/draft-ietf-httpbis-h2-websockets-00>
     - <https://docs.google.com/document/d/1ZxaHz4j2BDMa1aI5CQHMjtFI3UxGT459pjYv4To9rFY/edit#heading=h.pmjel961espf>
     - 昔あった議論を再度
   - Implement: RTCPeerConnection.id (with origin trial)
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/9ghkSda3_ng/exVsESrQBwAJ>
-  - **Implement: srcset and imgsizes attributes on link rel=preload**
+  - *Implement: srcset and imgsizes attributes on link rel=preload*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8tVgAyS47y0/e9L-NbatBwAJ>
     - `<img>` と同じ srcset/imgsizes を `<link>` に追加
     - `sizes` ではなく `imgsizes` なのは、すでに `rel=icon` で使われているから。
   - Experiment:
-    - **Web Locks API**
+    - *Web Locks API*
       - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/apdn-NbyZJg/RqHUfq3aCQAJ>
       - tab/worker 間での mutex
     - Intent to Experiment: Animation Worklet
@@ -136,19 +136,19 @@ audio: https://files.mozaic.fm/mozaic-ep34.mp3
   - Loading Team
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/GZG4fH9t5lA/jIxW5VgPBAAJ>
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/39cFFt94LZA/TCkf5E_9BwAJ>
-      - **WebPackaging のアサインが増えている**
+      - *WebPackaging のアサインが増えている*
       - <https://www.slideshare.net/kinukox/web-packaging-use-cases-and-loading-88966832>
       - <https://www.slideshare.net/yuki-f/web-packaging-ietf-88727804>
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/G1q-RiQISB0/zHnWL4XxCgAJ>
   - Layout Team
     - <https://groups.google.com/a/chromium.org/forum/#!msg/layout-dev/fXWeBS80XyM/8J4Z15R9AQAJ>
 - v8
-  - **V8 release v6.5**
+  - *V8 release v6.5*
     - <https://v8project.blogspot.jp/2018/02/v8-release-65.html>
     - Streaming compilation for WebAssembly code
     - String.prototype.indexOf 10x perf improve
     - Array.prototype.reduce/reduceRight/find/findIndex/some/every inlining
-  - **V8 JavaScript Engine: Lazy deserialization**
+  - *V8 JavaScript Engine: Lazy deserialization*
     - <https://v8project.blogspot.jp/2018/02/lazy-deserialization.html>
     - isolate (タブごとの領域)生成時にロードされる初期状態がどんどん増えてる
     - 無駄なものも多いので、デシリアライズを遅延するようにした
@@ -161,7 +161,7 @@ audio: https://files.mozaic.fm/mozaic-ep34.mp3
   - AMP stories: Bringing visual storytelling to the open web
     - <https://developers.googleblog.com/2018/02/amp-stories-bringing-visual.html>
     - AMP Stories
-  - **AMP for Email**
+  - *AMP for Email*
     - <https://www.blog.google/products/g-suite/bringing-power-amp-gmail/>
     - `<html ⚡ 4email>` という要素なドキュメントをメールに埋め込む
     - 専用の MIME で attach する
@@ -176,14 +176,14 @@ audio: https://files.mozaic.fm/mozaic-ep34.mp3
 - Other
   - Variations Safe Mode
     - <https://groups.google.com/a/chromium.org/forum/#!msg/net-dev/M0TkRc-BEiM/r_f5ZlpaBQAJ>
-  - **Meltdown/Spectre**
+  - *Meltdown/Spectre*
     - <https://developers.google.com/web/updates/2018/02/meltdown-spectre>
     - <https://speakerdeck.com/sat/tu-jie-dewakaruspectretomeltdown>
     - まとめが出た
     - 各ブラウザ開発の現場には大きな影響が出ているらしい
     - 新しい機能実装などが後回しになる可能性が
     - sAB が無くなって WASM のマルチスレッドが、、
-  - **A secure web is here to stay**
+  - *A secure web is here to stay*
     - <https://security.googleblog.com/2018/02/a-secure-web-is-here-to-stay.html>
     - <https://webmaster-ja.googleblog.com/2018/02/a-secure-web-is-here-to-stay.html>
     - 2018/7 の Chrome 68 から HTTP の not-secure 表示を始めるよというリマインダ
@@ -198,7 +198,7 @@ audio: https://files.mozaic.fm/mozaic-ep34.mp3
 
 - Stable: 58
 - Updates
-  - **Firefox 58 for developers**
+  - *Firefox 58 for developers*
     - <https://developer.mozilla.org/en-US/Firefox/Releases/58>
     - font-display
     - `Promise.prototype.finally()`
@@ -213,7 +213,7 @@ audio: https://files.mozaic.fm/mozaic-ep34.mp3
     - HTMLMediaElement.srcObject
     - worker-src CSP
     - "Add to home screen" is now supported in Firefox for Android
-  - **Firefox 59 for developers**
+  - *Firefox 59 for developers*
     - <https://developer.mozilla.org/en-US/Firefox/Releases/59>
     - autocomplete in `<textarea>`
     - overscroll-behavior
@@ -221,7 +221,7 @@ audio: https://files.mozaic.fm/mozaic-ep34.mp3
     - The EventTarget() constructor has been implemented
     - Top-level navigation to data: URIs has been blocked
     - position sticky is now supported on appropriate HTML table parts (e.g. `<th>` elements)
-  - **Firefox 60 for developers**
+  - *Firefox 60 for developers*
     - <https://developer.mozilla.org/en-US/Firefox/Releases/60>
     - Stylo enabled in Firefox for Android
     - `Array.prototype.values()` added (again)
@@ -242,7 +242,7 @@ audio: https://files.mozaic.fm/mozaic-ep34.mp3
       - ship というよりは implement な intent
   - Ship: macOS sandbox filesystem write restrictions
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/oKcttSh2MgA/rv0Ct9NgCgAJ>
-  - **Ship experimental Mixed Content upgrading (Nightly only)**
+  - *Ship experimental Mixed Content upgrading (Nightly only)*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/xjZQq0kEauM/w8OKXv7EAQAJ>
     - Passive Mixed Contents を HTTPS に自動で upgrade
   - Ship: setting keyCode value of punctuation keys (if US keyboard layout) to non-zero
@@ -271,7 +271,7 @@ audio: https://files.mozaic.fm/mozaic-ep34.mp3
     - トラッキング系に限定する必要はないし、フォアグラウンドでそれをすると悪影響が出るとわかったので、トラッキング系スクリプトだけに提供されるこの機能が必要ないと判断、削除へ
   - Intent to stop dispatching "keypress" event for non-printable keys and key combinations in Nightly and early Beta
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/wW9el-i5mtA/fvU19KGgAQAJ>
-  - **Intent to enable `<div>` as default paragraph separator of contenteditable/designMode editor by default**
+  - *Intent to enable `<div>` as default paragraph separator of contenteditable/designMode editor by default*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/X2bhfUG49RE/p5057EnwCQAJ>
     - これまでは `<br>` だったのを揃えた
 - Site Compat
@@ -322,7 +322,7 @@ audio: https://files.mozaic.fm/mozaic-ep34.mp3
   - <https://webkit.org/blog/8090/workers-at-your-service/>
   - Service Worker 周りの紹介
   - ITP との関連や、 API Quota などについて
-- **Introducing Storage Access API**
+- *Introducing Storage Access API*
   - <https://webkit.org/blog/8124/introducing-storage-access-api/>
   - ITP により 3rd Party は Cookie が別領域に格納(double keying)される
   - First Party Cookie には 24h しかアクセスできない
@@ -341,7 +341,7 @@ audio: https://files.mozaic.fm/mozaic-ep34.mp3
     - <https://blogs.windows.com/msedgedev/2018/02/06/welcoming-progressive-web-apps-edge-windows-10/>
   - Announcing Windows 10 Insider Preview Build 17093 for PC - Windows Experience BlogWindows Experience Blog
     - <https://blogs.windows.com/windowsexperience/2018/02/07/announcing-windows-10-insider-preview-build-17093-pc/>
-  - **ショートカット キーの抑止について**
+  - *ショートカット キーの抑止について*
     - <https://blogs.technet.microsoft.com/jpieblog/2018/02/09/ie11-shortcut-key/>
     - 「ショートカットキーを抑止したい」という要望に対するアンサー
     - onkeydown の e.keycode が readonly という標準に準拠している
@@ -354,7 +354,7 @@ audio: https://files.mozaic.fm/mozaic-ep34.mp3
   - <https://github.com/Microsoft/ChakraCore/wiki/Roadmap#v181>
   - securityupdates include spector
 - Other
-  - **An Update on Office 365 Requiring TLS 1.2**
+  - *An Update on Office 365 Requiring TLS 1.2*
     - <https://blogs.technet.microsoft.com/exchange/2018/02/09/an-update-on-office-365-requiring-tls-1-2/>
     - TLS 1.0 / TLS 1.1 のサポート終了を 2018/3/1 から 2018/10/31 に延期
     - 先月話したやつ。やっぱりダメだった。
@@ -406,10 +406,10 @@ audio: https://files.mozaic.fm/mozaic-ep34.mp3
     - 母数が少ないが集計結果がおもしろい
     - <https://docs.google.com/forms/d/1YVKqVU_ziCYtp8RGGnwB8WcQWDhkXe-mOmaSkFTdJm8/viewanalytics>
     - Q: API が変更できるとしたら、どうなって欲しいですか?
-    - A: **複雑になってもいいから小さく細かい API が欲しい**
+    - A: *複雑になってもいいから小さく細かい API が欲しい*
   - CFC: Incorporate Custom Elements in HTML
     - <https://lists.w3.org/Archives/Public/public-html/2018Feb/0013.html>
-  - **text-decoration-skip-ink auto should continue past behavior - 30+ years of underline behavior changed by latest CSS draft**
+  - *text-decoration-skip-ink auto should continue past behavior - 30+ years of underline behavior changed by latest CSS draft*
     - <https://lists.w3.org/Archives/Public/www-style/2018Feb/0020.html>
     - <https://medium.com/@iamhiwelo/improving-text-readability-for-dyslexic-users-with-skip-ink-underlines-bf52a2f3426b>
     - text-decoration-skip-ink のデフォルト挙動が変わったことについて想像通りの混乱
@@ -427,12 +427,12 @@ audio: https://files.mozaic.fm/mozaic-ep34.mp3
         - <https://drafts.csswg.org/css-text-decor-3/#text-underline-position-property>
       - text-underline-offset
         - <https://drafts.csswg.org/css-text-decor-4/#underline-offset>
-  - **Summary of "What would you like to see in WebRTC next?"**
+  - *Summary of "What would you like to see in WebRTC next?"*
     - <https://lists.w3.org/Archives/Public/public-webrtc/2018Feb/0060.html>
     - WebRTC NV での次の話について集めた要望のサマリ
     - おおよそ予想通りのユースケースと、既出でカバーできる API 要望だった
     - このまま粛々とやりそう
-  - **Add heading-focused outlines and :heading by annevk**
+  - *Add heading-focused outlines and :heading by annevk*
     - <https://github.com/whatwg/html/pull/3499>
     - これまで実装されてなかったアウトラインアルゴリズムをなんとかする
       - <https://github.com/whatwg/html/issues/83#issuecomment-359871505>
@@ -503,7 +503,7 @@ audio: https://files.mozaic.fm/mozaic-ep34.mp3
 
 - IETF101(3/17~23)
   - <https://datatracker.ietf.org/meeting/101/agenda.html>
-  - **httpwg/wg-materials**
+  - *httpwg/wg-materials*
     - <https://github.com/httpwg/wg-materials/blob/gh-pages/ietf101/agenda.md>
     - BCP56bis
     - Bootstrapping WebSockets
@@ -546,7 +546,7 @@ audio: https://files.mozaic.fm/mozaic-ep34.mp3
 
 ### 周辺動向
 
-- **12 best practices for user account, authorization and password management**
+- *12 best practices for user account, authorization and password management*
   - <https://cloudplatform.googleblog.com/2018/01/12-best-practices-for-user-account.html>
   - サービスで認証を行う場合のパスワードの扱いなど 12 のプラクティス
   - 1, パスワードはハッシュ化
@@ -565,7 +565,7 @@ audio: https://files.mozaic.fm/mozaic-ep34.mp3
   - <https://www.b-list.org/weblog/2018/feb/11/usernames/>
   - こちらはユーザ名の話で、良い記事だった
   - Username で一意性の確保や事故防止が難しいという話
-- **Third party CSS is not safe - JakeArchibald.com**
+- *Third party CSS is not safe - JakeArchibald.com*
   - <https://jakearchibald.com/2018/third-party-css-is-not-safe/>
   - 3rd Party CSS はキーロガーを作ったり色々できる可能性があるという話
   - SRI や CSP connect to などが有効だが、基本ログイン画面などでは使わない方が良い

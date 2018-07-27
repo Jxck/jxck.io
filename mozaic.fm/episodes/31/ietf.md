@@ -14,7 +14,7 @@ audio: https://files.mozaic.fm/mozaic-ep31.mp3
 
 今回は、ゲストとして IETF をウォッチし [ASnoKaze blog](http://asnokaze.hatenablog.com/) で知見を公開している [@flano_yuki](https://twitter.com/flano_yuki) をお呼びし、日頃行なっている IETF のウォッチや、直前に行われた IETF100 の参加などについて。
 
-そして、 IETF における標準化動向の追いかけ方や、標準化への参加方法をはじめとする「**IETF の歩き方**」について議論しました。
+そして、 IETF における標準化動向の追いかけ方や、標準化への参加方法をはじめとする「*IETF の歩き方*」について議論しました。
 
 
 ## Show Note

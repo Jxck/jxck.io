@@ -63,19 +63,19 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
     - getSenders()
   - What's New In DevTools (Chrome 65)
     - <https://developers.google.com/web/updates/2018/01/devtools>
-    - **Local Overrides**
+    - *Local Overrides*
       - new in 64 で紹介されていたはずが、消されてここで再紹介
       - 機能も一旦隠されていた
-    - **New accessibility tools**
+    - *New accessibility tools*
       - Accessibility pane
       - Contrast ratio in the Color Picker
-    - **The Changes tab**
+    - *The Changes tab*
       - local overrides の差分が見える
     - New performance and SEO audits
-    - **Multiple recordings in the Performance panel**
+    - *Multiple recordings in the Performance panel*
       - 直近 5 件の測定結果を保存し比較できる
     - Reliable code stepping with workers and asynchronous code
-  - **An update on Better Ads**
+  - *An update on Better Ads*
     - <https://developers.google.com/web/updates/2017/12/better-ads>
     - Better Ads Standards を 2018 からサポート
     - Starting on February 15
@@ -86,45 +86,45 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
     - New SEO audits
     - New, manual accessibility audits
     - Updates to the WebP audit
-  - **Improving URLs for AMP pages**
+  - *Improving URLs for AMP pages*
     - <https://amphtml.wordpress.com/2018/01/09/improving-urls-for-amp-pages/>
     - <https://github.com/WICG/webpackage/blob/master/explainer.md>
     - AMP を Web Packaging ベースにしてゆく
     - Google のオリジンからの配布される現状を変えられる予定
-  - **AMP letter**
+  - *AMP letter*
     - <http://ampletter.org/>
     - AMP の仕組みは良いとして、検索で優先しすぎるのはどうか、という嘆願
     - Speed Index などを用いて、公平な仕組みでサーチランクに加点してほしい
     - URL については、前述の WebPackage で解決するはず
   - AMP'ing Up The AMP Framework
     - <https://amphtml.wordpress.com/2018/01/19/amping-up-the-amp-framework/>
-  - **Using page speed in mobile search ranking**
+  - *Using page speed in mobile search ranking*
     - <http://webmasters.googleblog.com/2018/01/using-page-speed-in-mobile-search.html>
     - 上記に呼応するかのように Speed Index をサーチランクに
   - Measuring AMP Performance
     - <https://amphtml.wordpress.com/2018/01/17/measuring-amp-performance/>
   - Real-world data in PageSpeed Insights
     - <https://developers.googleblog.com/2018/01/real-world-data-in-pagespeed-insights.html>
-  - **CSS Paint API**
+  - *CSS Paint API*
     - <https://developers.google.com/web/updates/2018/01/paintapi>
     - [blog](https://blog.jxck.io/entries/2017-10-31/houdini-paint-api.html)
   - Using DevTools Features Without Opening DevTools
     - <https://developers.google.com/web/updates/2018/01/devtools-without-devtools>
     - DevTools の機能を Puppeteer (DevTools Protocol) から使う話
-  - **Site Isolation Status - Availability, field trials, improved support in Chrome 64**
+  - *Site Isolation Status - Availability, field trials, improved support in Chrome 64*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/9muOIl2boUs/A0uxQK1uAgAJ>
   - Chrome User Experience Report: New country dimension
     - <https://developers.google.com/web/updates/2018/01/crux>
-  - **Chrome welcomes Speedometer 2.0!**
+  - *Chrome welcomes Speedometer 2.0!*
     - <https://v8project.blogspot.jp/2018/01/speedometer-2.html>
     - JavaScript フレームワークを使った Web アプリを使いパフォーマンスをチェックする
     - Apple がつくったものだが、他のブラウザにも受け入れられて、 2.0 のアップデートには Chrome チームも関わった
   - PSA: `replaceTrack()` shipping in M65
     - <https://groups.google.com/forum/#!msg/discuss-webrtc/C6Z5XstxHhc/E9HPASujAAAJ>
 - Intents
-  - **Ship: display: contents**
+  - *Ship: display: contents*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/XzdNrEvn4Qk/650SpqXTBAAJ>
-  - **Ship: Fetch API: keepalive**
+  - *Ship: Fetch API: keepalive*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8vqcABTnDF4/2kZzScnzBgAJ>
     - その後色々あった模様
   - Ship: More spec conformant SendBeacon quota
@@ -143,7 +143,7 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/wP4NWLgbIpA/P1rebd9ZAgAJ>
   - Create V8 contexts from snapshot by default
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/llHBIsHBb8M/EjBFxvu0AAAJ>
-  - **Implement and Ship: Fetch API Cancellation (AbortController and AbortSignal)**
+  - *Implement and Ship: Fetch API Cancellation (AbortController and AbortSignal)*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/9vNZh4fhV2U/ZVxD2iQACgAJ>
     - <https://docs.google.com/document/d/1OuoCG2uiijbAwbCw9jaS7tHEO0LBO_4gMNio1ox0qlY/edit>
   - Implement and Ship: Feature Policies for the Device Orientation API
@@ -158,7 +158,7 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Qc-bOSyU0FQ/tczXROBoCQAJ>
   - Implement and Ship: PerformanceObserver takeRecords()
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/xEXD9C48c1k/HRCCs311CgAJ>
-  - **Implement and Ship: Feature Policy control over Synchronous XHR**
+  - *Implement and Ship: Feature Policy control over Synchronous XHR*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/RWWG6ZJYDhc/VBKxlCuVAgAJ>
   - Implement and Ship: Send "input" Event on activation behavior for radio and file type
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/o9Pnen-jNcI/8thpmgMHAwAJ>
@@ -190,19 +190,19 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/R5HQheg5P9k/spR1Wa4xBwAJ>
   - Implement: window.focus() exits HTML5 fullscreen
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8Z36QLPkCd0/xrGkjvLcAAAJ>
-  - **Implement: CSS Layout API**
+  - *Implement: CSS Layout API*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/layout-dev/cr8lEkYwEQ4/Kt25Q-hsAQAJ>
   - Implement: Permission Delegation
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/irAY53rSXIE/p0oZ5j4mAgAJ>
     - Permission Delegation Proposal
       - <https://docs.google.com/document/d/1x5QejvpyQ71LPWhMLsaM1lWCfSsBsSQ8Dap9kJ6uLv0/>
-  - **Implement: Origin-Signed <HTTP Exchanges (Part of Web Packaging)**>
+  - *Implement: Origin-Signed <HTTP Exchanges (Part of Web Packaging)*>
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/n7cZXSTwBTY/l7rXucIwBAAJ>
     - Signature をヘッダに乗せてレスポンスに署名する
-  - **Implement: Picture-in-Picture (PiP)**
+  - *Implement: Picture-in-Picture (PiP)*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/U8Apo-WLBm4/03sO4ITYAQAJ>
     - Safari は macOS/iOS の PiP 導入時に違う API を接頭辞付きで実装
-  - **Implement: Lazily load below-the-fold iframes and images**
+  - *Implement: Lazily load below-the-fold iframes and images*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/czmmZUd4Vww/1-H6j-zdAwAJ>
     - speedindex が 18% 、ページサイズが 35% 削減の見込み
     - below-the-fold な画像を自動的に lazyload できないか
@@ -220,14 +220,14 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
   - Experiment: EME Extension - Policy Check
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ITzZ_yx4bF8/jpEQNzgnBAAJ>
     - HDCP(High-bandwidth Digital Content Protection) などのチェックを行う
-  - **Experiment: Signature-based Resource Loading Restrictions**
+  - *Experiment: Signature-based Resource Loading Restrictions*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/sWa31BxDO0g/fHNukicyAgAJ>
     - SRI に署名も追加するという提案
   - Continue Experimenting: WebVR 1.1
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/-s4pWwshKhI/md53uVDRBgAJ>
   - Extend Origin Trial - Media Capabilities: decoding
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Dpw4IJ0hQdg/BAPNQsJgAQAJ>
-  - **Disabling SharedArrayBuffer**
+  - *Disabling SharedArrayBuffer*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/wvV42Hxct3g/ziKAQOB4EQAJ>
 - Team Weekly Snippet
   - Loading Team
@@ -238,12 +238,12 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/B4ThhCi8hQ0/DboWBhEkAgAJ>
   - OWP Storage Team
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/4ou3k2xhKXs/iNEOPqNfBQAJ>
-    - **Async Cookie**
-    - **Locks API**
+    - *Async Cookie*
+    - *Locks API*
   - Layout Team
     - <https://groups.google.com/a/chromium.org/forum/#!msg/layout-dev/Zr65LgYQ5P4/9HO_tsBUAgAJ>
 - V8
-  - **V8 JavaScript Engine: V8 release v6.4**
+  - *V8 JavaScript Engine: V8 release v6.4*
     - <https://v8project.blogspot.jp/2017/12/v8-release-64.html>
     - 高速化 (web tooling bench)
       - instanceof が 3.6 倍
@@ -285,17 +285,17 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
     - CSS font-display [blog](https://blog.jxck.io/entries/2017-12-06/font-display.html)
     - Promise.finally()
     - Add to Home screen available on Firefox for Android
-  - **This year in web-platform-tests**
+  - *This year in web-platform-tests*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/t0m_cRisNQw/d-cnG4M-CgAJ>
-  - **Next year in web-platform-tests**
+  - *Next year in web-platform-tests*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/W7Oi6-rSiIc/dxNFUYg-CgAJ>
       - W3C の Web 関連 API に使われる web-platform-tests について、 Mozilla の今年の展望
       - Web で使われる機能については基本的に wpt を使うようにしたい、など
   - Mozilla Made the Web Better for Developers in 2017
     - <https://medium.com/mozilla-tech/mozilla-made-the-web-better-for-developers-in-2017-3e4cf9224776>
-  - **Enable Custom elements v1 on Nightly by default**
+  - *Enable Custom elements v1 on Nightly by default*
     - <https://bugzilla.mozilla.org/show_bug.cgi?id=1406825>
-  - **Secure Contexts Everywhere**
+  - *Secure Contexts Everywhere*
     - <https://blog.mozilla.org/security/2018/01/15/secure-contexts-everywhere/>
     - Describe when features should be limited to secure contexts - w3ctag/design-principles
       - <https://github.com/w3ctag/design-principles/pull/75>
@@ -308,7 +308,7 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
   - Latest Firefox Quantum release available with faster, always-on privacy with opt-in Tracking Protection and new features
     - <https://blog.mozilla.org/blog/2018/01/23/latest-firefox-quantum-release-now-available-with-new-features/>
 - Intents
-  - **Ship: Support already-enrolled U2F devices with Google Accounts for Web Authentication**
+  - *Ship: Support already-enrolled U2F devices with Google Accounts for Web Authentication*
     - <https://groups.google.com/forum/#!topic/mozilla.dev.platform/Uiu3fwnA2xw>
     - WebAuthN が Firefox 60 でくるが、 Google アカウントで使ってる旧式の FIDO U2F に対応したものも期限付きで実装したい
     - 5 年くらいと考えているという話に、長すぎないかという指摘など
@@ -336,7 +336,7 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
   - Data URLs are now treated as unique origins (Affecting)
     - <https://www.fxsitecompat.com/en-CA/docs/2018/data-urls-are-now-treated-as-unique-origins/>
 - Other
-  - **Actual Input Latency: cross-browser measurement and the Hasal testing framework**
+  - *Actual Input Latency: cross-browser measurement and the Hasal testing framework*
     - <https://hacks.mozilla.org/2017/12/actual-input-latency-and-the-hasal-testing-framework/>
     - <https://calendar.perfplanet.com/2017/input-latency-hasal-testing-framework/>
     - key/mouse event から screen change までの時間指標とそれを測るツール
@@ -348,7 +348,7 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/oMUvorKmYYc/UKmOdzZDCAAJ>
   - New flexbox guides on MDN
     - <https://hacks.mozilla.org/2018/01/new-flexbox-guides-on-mdn/>
-  - **Provide a way for users to deny permission prompts by default in about:preferences**
+  - *Provide a way for users to deny permission prompts by default in about:preferences*
     - <https://bugzilla.mozilla.org/show_bug.cgi?id=1368744>
     - permission prompt が出る前に設定で消す
     - user visible push がいよいよ届かなくなるかも
@@ -357,7 +357,7 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
     - <https://philna.sh/blog/2018/01/08/permissions-on-the-web-suck/>
   - Mozilla Files Suit Against FCC to Protect Net Neutrality
     - <https://blog.mozilla.org/blog/2018/01/16/mozilla-files-suit-fcc-protect-net-neutrality/>
-  - **Introducing the MDN Product Advisory Board: actions and impressions from our first meeting**
+  - *Introducing the MDN Product Advisory Board: actions and impressions from our first meeting*
     - <https://hacks.mozilla.org/2018/01/introducing-the-mdn-product-advisory-board/>
     - MDN がクロスベンダーなプロジェクトになった際に Advisory Board ができ
     - その初めての F2F があり、展望などを話した
@@ -368,7 +368,7 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
       - 現在は手入力のデータが多いが、 wpt を使って自動化できたら、とも
   - Improving privacy without breaking the web
     - <https://blog.mozilla.org/data/2018/01/26/improving-privacy-without-breaking-the-web/>
-  - **CSS 2018 Priorities**
+  - *CSS 2018 Priorities*
     - <https://wiki.mozilla.org/CSS#2018_Priorities>
     - (High) Containment
     - (High) Media Queries 4
@@ -384,9 +384,9 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
 
 - Safari Technology Preview 46
   - <https://webkit.org/blog/8042/release-notes-for-safari-technology-preview-46/>
-  - **Service Workers enabled by default**
+  - *Service Workers enabled by default*
   - img decoding="sync", decoding="async"
-  - **Froze the user-agent string to reduce web compatibility risk and to prevent its use for fingerprinting**
+  - *Froze the user-agent string to reduce web compatibility risk and to prevent its use for fingerprinting*
     - `TP46-8: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1 Safari/605.1.15`
     - `11.0.2: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/604.4.7 (KHTML, like Gecko) Version/11.0.2 Safari/604.4.7`
     - `11.0.3: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/604.5.6 (KHTML, like Gecko) Version/11.0.3 Safari/604.5.6`
@@ -397,20 +397,20 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
   - Storage Access API
 - Safari Technology Preview 48
   - <https://webkit.org/blog/8084/release-notes-for-safari-technology-preview-48/>
-  - **Disabled Automatic Password AutoFill**
+  - *Disabled Automatic Password AutoFill*
   - Enabled the Storage Access API by default
-  - **Added CSP support to Service Workers**
+  - *Added CSP support to Service Workers*
   - Implemented createImageBitmap(ImageBitmap)
   - Implemented Cache API partitioning based on ClientOrigin
   - Added support for JSX (React) syntax highlighting
-  - **Implemented the updated CSS3 Speech for the speak and speak-as properties**
+  - *Implemented the updated CSS3 Speech for the speak and speak-as properties*
     - 音声用の CSS プロパティの実装を更新
     - speak: 音声版 display プロパティみたいなもの
     - speak-as: 数値や文字列をスペル通りに読ませたい場合などに使う
-- **Highlights of Safari 11.1**
+- *Highlights of Safari 11.1*
   - <https://developer.apple.com/library/content/releasenotes/General/WhatsNewInSafari/Articles/Safari_11_1.html>
-  - **Service Workers**
-  - **Payment Request**
+  - *Service Workers*
+  - *Payment Request*
   - Security Improvements
   - Web Inspector Updates
   - `HTMLImageElement.decode()`
@@ -434,7 +434,7 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
 
 ### Edge 動向
 
-- **EdgeHTML16 DevTools Improvements (Win 10 Fall Creators Update)**
+- *EdgeHTML16 DevTools Improvements (Win 10 Fall Creators Update)*
   - <https://blogs.windows.com/msedgedev/2018/01/17/devtools-console-improvements-edgehtml-16/>
   - Log message consolidation and UX improvements
     - 同じログの集約
@@ -447,10 +447,10 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
     - keys(object) command
     - values(object) command
     - $x(xpath expression) selector
-- **Microsoft Edge build 17063 changelog**
+- *Microsoft Edge build 17063 changelog*
   - <https://developer.microsoft.com/en-us/microsoft-edge/platform/changelog/desktop/17063/>
   - <https://blogs.windows.com/windowsexperience/2017/12/19/announcing-windows-10-insider-preview-build-17063-pc/>
-  - **Service Worker, Push API, Cache API, Fetch API**
+  - *Service Worker, Push API, Cache API, Fetch API*
   - CSS backdrop-filter
     - 背景にだけ filter をかける
   - Subresource integrity
@@ -458,7 +458,7 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
   - Precision Touch Pad Pointer Events: with a pointerType of `touch`
   - Added support for minlength on `<textarea>` and `<input>`
   - Web Media Extensions package for Microsoft Edge (OGG Vorbis and Theora)
-- **Microsoft Edge build 17074 changelog**
+- *Microsoft Edge build 17074 changelog*
   - <https://developer.microsoft.com/en-us/microsoft-edge/platform/changelog/desktop/17074-2/>
   - <https://blogs.windows.com/windowsexperience/2018/01/16/announcing-windows-server-insider-preview-build-17074/>
   - Autofill card information on web forms
@@ -475,23 +475,23 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
     - <https://blogs.windows.com/windowsexperience/2018/01/24/microsoft-introduces-new-privacy-tools-ahead-of-data-privacy-day/>
   - Announcing Windows 10 Insider Preview Build 17083 for PC
     - <https://blogs.windows.com/windowsexperience/2018/01/24/announcing-windows-10-insider-preview-build-17083-for-pc/>
-  - **Microsoft is blocking browsers using TLS 1.0 and TLS 1.1 from Office 365 on 2018-03-01**
+  - *Microsoft is blocking browsers using TLS 1.0 and TLS 1.1 from Office 365 on 2018-03-01*
     - <https://support.microsoft.com/en-us/help/4057306/preparing-for-tls-1-2-in-office-365>
     - 1.2 を使えという話
 
 
 ### WHATWG/W3C 動向
 
-- **Roadmap of Web Applications on Mobile**
+- *Roadmap of Web Applications on Mobile*
   - <https://www.w3.org/blog/news/archives/6758>
   - <https://www.w3.org/2018/01/web-roadmaps/mobile/>
   - モバイル Web に重要な技術要素について、対応する仕様がここ何年でどう進んだかのまとめ
 - Recommendation
-  - **HTML5.2**
+  - *HTML5.2*
     - <https://lists.w3.org/Archives/Public/public-html/2017Dec/0014.html>
     - <https://www.w3.org/blog/news/archives/6696>
     - 変更点: <https://www.w3.org/TR/html52/changes.html>
-  - **WAI-ARIA 1.1**
+  - *WAI-ARIA 1.1*
     - 新しい属性や role が数多く追加されている
     - <https://www.w3.org/TR/2017/REC-wai-aria-1.1-20171214/#changelog>
   - Core-AAM 1.1
@@ -554,7 +554,7 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
   - CSS UI Level 4
     - <https://lists.w3.org/Archives/Public/www-style/2017Dec/0059.html>
 - First Public Working Draft
-  - **HTML5.3**
+  - *HTML5.3*
     - <https://lists.w3.org/Archives/Public/public-html/2017Dec/0016.html>
   - CSS Timing Functions (late announce)
     - <https://lists.w3.org/Archives/Public/www-style/2017Dec/0048.html>
@@ -605,12 +605,12 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
   - Upcoming Workshop: Data Privacy Controls and Vocabularies
     - <https://www.w3.org/blog/news/archives/6797>
 - Other
-  - **Async DOM**
+  - *Async DOM*
     - Async DOM working session summary & outcomes
       - <https://docs.google.com/document/d/17LQtUzxNj31ElYCk_Ozgn4kJqQktrK8m6I8e1i7948I/edit>
     - chrishtr/async-dom
       -  <https://github.com/chrishtr/async-dom/>
-  - **Storage Access API**
+  - *Storage Access API*
     - <https://lists.w3.org/Archives/Public/public-webappsec/2018Jan/0002.html>
     - <https://github.com/whatwg/dom/issues/560>
     - Third Party Frame に対して First Party の Cookie にアクセスする API
@@ -664,11 +664,11 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
       - <https://lists.w3.org/Archives/Public/public-webrtc/2018Jan/0179.html>
     - Introduce 'webrtc-src'
       - <https://github.com/w3c/webappsec-csp/pull/287>
-  - **What would you like to see in WebRTC next? A low-level API?**
+  - *What would you like to see in WebRTC next? A low-level API?*
     - <https://lists.w3.org/Archives/Public/public-webrtc/2018Jan/0196.html>
     - WebRTC 1.0 CR を経て WebRTC NV を考える良い機会
     - 今一度開発者から、 WebRTC (low level) API への要望を募っている
-  - **Circularity and Container Queries**
+  - *Circularity and Container Queries*
     - <https://github.com/WICG/cq-usecases>
     - <https://github.com/WICG/cq-usecases/wiki/Circularity-and-Container-Queries>
     - Container Query のユースケースを集めている
@@ -688,7 +688,7 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
 
 ### TC39 動向
 
-- **ECMAScript 2018: the final feature set**
+- *ECMAScript 2018: the final feature set*
   - <http://2ality.com/2017/02/ecmascript-2018.html>
   - 1 月の meeting で stage 4 になったもの
   - すでに 4 (finished) になっている proposal
@@ -711,15 +711,15 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
     - String.prototype.{trimStart,trimEnd}
     - String.prototype.matchAll
   - 3->4
-    - **Object rest/spread**
-    - **Promise.prototype.finally**
-    - **Async iteration**
+    - *Object rest/spread*
+    - *Promise.prototype.finally*
+    - *Async iteration*
   - finished
-    - **Lifting template literal restriction**
-    - **s (dotAll) flag for regular expressions**
-    - **RegExp named capture groups**
-    - **lookbehind assertions**
-    - **unicode property escapes**
+    - *Lifting template literal restriction*
+    - *s (dotAll) flag for regular expressions*
+    - *RegExp named capture groups*
+    - *lookbehind assertions*
+    - *unicode property escapes*
   - inactivate
     - typed-object:
       - <https://github.com/tc39/ecma262/commit/02455e5e2964f62b13818c6fd23289381ecafdf8>
@@ -753,7 +753,7 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
     - `3_px` が `_px(Object.freeze({number: 3, string, "3"}))`
     - CSSOM 用の構文糖衣
 - Other
-  - **How to Read the ECMAScript Specification**
+  - *How to Read the ECMAScript Specification*
     - <https://timothygu.me/es-howto/>
     - w3c spec 風に書かれた ES Spec の読み方
   - Optional Chaining Operator - Updates
@@ -768,7 +768,7 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
 
 ### IETF 動向
 
-- **RFC 8297 on An HTTP Status Code for Indicating Hints**
+- *RFC 8297 on An HTTP Status Code for Indicating Hints*
   - <https://lists.w3.org/Archives/Public/ietf-http-wg/2017OctDec/0425.html>
   - <https://tools.ietf.org/html/rfc8297>
   - kazuho さんの提案した 103 Early Hints
@@ -784,18 +784,18 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
     - <https://lists.w3.org/Archives/Public/ietf-http-wg/2017OctDec/0419.html>
     - <https://tools.ietf.org/html/draft-ietf-httpbis-h2-websockets-00>
 - I-D Action
-  - **'The ORIGIN <HTTP/2 Frame' to Proposed Standard (draft-ietf-httpbis-origin-frame-06.txt)**>
+  - *'The ORIGIN <HTTP/2 Frame' to Proposed Standard (draft-ietf-httpbis-origin-frame-06.txt)*>
     - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/0040.html>
     - HTTP2 のコネクションを使いまわせる Origin のリストを入れる仕様
     - 使い回せない場合は 421 Misdirected Request を返す
 - Draft
   - Finding HTTP Alternative Services via the Domain Name Service
     - <https://tools.ietf.org/html/draft-schwartz-httpbis-dns-alt-svc-01>
-  - **The Archive and Packaging Pointer system**
+  - *The Archive and Packaging Pointer system*
     - <https://tools.ietf.org/html/draft-soilandreyes-app-00>
     - アーカイブ/パッケージのための `app:` プロトコルスキーマ
     - w3c で同様の提案があるので IANA には登録しない予定らしい
-  - **The Archive and Packaging (arcp) URI scheme**
+  - *The Archive and Packaging (arcp) URI scheme*
     - <https://tools.ietf.org/html/draft-soilandreyes-arcp-00>
     - `arcp:`
   - Unbound Server Push (USP) for HTTP/QUIC
@@ -818,9 +818,9 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
 
 ### 周辺動向
 
-- **The State of JavaScript 2017**
+- *The State of JavaScript 2017*
   - <https://stateofjs.com/2017/introduction/>
-- **The State of JavaScript Frameworks, 2017**
+- *The State of JavaScript Frameworks, 2017*
   - Part 1: Front-End Frameworks:
     - <https://www.npmjs.com/npm/state-of-javascript-frameworks-2017-part-1>
     - シェアは React だが Vue の伸びが強い
@@ -831,7 +831,7 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
     - <https://www.npmjs.com/npm/the-state-of-javascript-frameworks-2017-part-3-back-end-frameworks>
     - 未だ Express 一強
     - 多くのツールを置いて webpack 中心に
-    - **npm はバックエンドではなくフロントエンドエコシステムの中心になりつつある**
+    - *npm はバックエンドではなくフロントエンドエコシステムの中心になりつつある*
 - Remove my password from lists so hackers won't be able to hack me
   - <https://github.com/danielmiessler/SecLists/pull/155>
 - WebAIM: Screen Reader User Survey #7 Results
@@ -857,7 +857,7 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
   - [blog](https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html)
 - Chrome is turning into the new Internet Explorer 6
   - <https://www.theverge.com/2018/1/4/16805216/google-chrome-only-sites-internet-explorer-6-web-standards>
-- **Staging endpoint for ACME v2**
+- *Staging endpoint for ACME v2*
   - <https://community.letsencrypt.org/t/staging-endpoint-for-acme-v2/49605>
   - WildCard Support を含む v2 のエンドポイントが開発者向けに公開された
   - ACME クライアント開発者などはここでテストできる
@@ -867,18 +867,18 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
 - Front-End Performance Checklist 2018
   - <https://www.smashingmagazine.com/2018/01/front-end-performance-checklist-2018-pdf-pages/>
   - 最初の項目が *"Establish a performance culture"*
-- **Apple joins alliance to shrink your online videos**
+- *Apple joins alliance to shrink your online videos*
   - <https://www.cnet.com/news/apple-online-video-compression-av1/>
   - Apple が AOM に加入したらしい(1/3 にサイトが更新され名前が載ったとのこと)
   - AV1 にブラウザ 4 社が揃う。
   - 特許の問題が解決し WebRTC のコーデック問題も + Opus で決着しそう
   - [blog](https://blog.jxck.io/entries/2018-01-15/aom-and-av1.html)
-- **MS Paint**
+- *MS Paint*
   - <http://jspaint.ml>
   - MS Paint の Web 実装
 - Top 10 JavaScript errors from 1000+ projects (and how to avoid them)
   - <https://rollbar.com/blog/top-10-javascript-errors/>
-- **Instagram PWA**
+- *Instagram PWA*
   - <https://twitter.com/HenrikJoreteg/status/954937188973666304>
 
 

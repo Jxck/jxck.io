@@ -25,10 +25,10 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
     - <https://webmasters.googleblog.com/2018/05/google-io-2018-sessions-SEOs.html>
   - Schedule
     - <https://events.google.com/io/schedule/?section=may-8&topic=web&type=sessions>
-  - **The web: state of the union**
+  - *The web: state of the union*
     - <https://www.youtube.com/watch?v=Ay-mdLMDtbs>
     - overview としてはこのへん
-  - **Building a seamless web**
+  - *Building a seamless web*
     - <https://www.youtube.com/watch?v=Wi_PhaFdjlo>
     - WebPackaging, Feature Policy, Layered APIs, Portals など
     - <https://github.com/KenjiBaheux/portals/blob/master/explainer.md>
@@ -48,7 +48,7 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
     - bigint
   - Deprecations and removals in Chrome 67
     - <https://developers.google.com/web/updates/2018/04/chrome-67-deps-rems>
-    - **Deprecate HTTP-Based Public Key Pinning**
+    - *Deprecate HTTP-Based Public Key Pinning*
       - Expect-CT に移行し HPKP は 69 で削除
       - [blog](https://blog.jxck.io/entries/2018-03-27/certificate-transparency.html)
     - Deprecate AppCache on Non-secure Contexts
@@ -73,7 +73,7 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
     - BigInt support
     - Adding property paths to the Watch pane
     - "Show timestamps" moved to Settings.
-  - **Announcing Lighthouse 3.0**
+  - *Announcing Lighthouse 3.0*
     - <https://developers.google.com/web/updates/2018/05/lighthouse3>
     - csv/json 出力サポート
     - First Contentful Paint
@@ -81,7 +81,7 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
     - etc
   - BigInt: arbitrary-precision integers in JavaScript
     - <https://developers.google.com/web/updates/2018/05/bigint>
-  - **Google URL Shortener から Firebase Dynamic Links へ**
+  - *Google URL Shortener から Firebase Dynamic Links へ*
     - <https://developers-jp.googleblog.com/2018/05/transitioning-google-url-shortener.html>
     - goo.gl の URL はもう作れんない、既存のものは存続
     - Firebase の API で *.app.goo.gl が作れる
@@ -94,7 +94,7 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
     - Win, Mac, Linux などは対応中
   - Using Lighthouse To Improve Page Load Performance
     - <https://developers.google.com/web/updates/2018/05/lighthouse>
-  - **First Input Delay**
+  - *First Input Delay*
     - <https://developers.google.com/web/updates/2018/05/first-input-delay>
     - インタラクションしてから、実際に操作が開始できるまでの時間という指針
     - ユーザの実際の不満や苦痛を反映しやすい
@@ -102,11 +102,11 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
     - CrUX にも FID の項目を追加したい
     - などなど
     - <https://github.com/GoogleChromeLabs/first-input-delay>
-  - **Enabling Strong Authentication with WebAuthn**
+  - *Enabling Strong Authentication with WebAuthn*
     - <https://developers.google.com/web/updates/2018/05/webauthn>
     - Credential Management API の拡張で FIDO U2F 対応
     - [blog](https://blog.jxck.io/entries/2018-05-15/webauthentication-api.html)
-  - **Chromium Blog: Evolving Chrome's security indicators**
+  - *Chromium Blog: Evolving Chrome's security indicators*
     - <https://blog.chromium.org/2018/05/evolving-chromes-security-indicators.html>
     - Chrom 70 から HTTPS を緑にするのではなく、 HTTP を赤(form input 時)にする
   - Beyond SPAs: alternative architectures for your PWA
@@ -114,7 +114,7 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
 - Intents
   - Ship: Keyboard lock
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/isXS3f3Tqo8/GPIQi_8oCAAJ>
-  - **Ship: WebRTC Unified Plan SDP format control flag**
+  - *Ship: WebRTC Unified Plan SDP format control flag*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/B1Yr62txfwQ/5DINeHoSCAAJ>
     - <https://groups.google.com/forum/#!msg/discuss-webrtc/x8lcqHRlWmA/FPBK41WaBgAJ>
     - RTCPeerConnection に "Unified Plan" / "JSEP" で SPD を切り替える
@@ -122,14 +122,14 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/TZDJbwjov3Q/S30I4RJtCAAJ>
   - Ship: CSS Scroll Snap
     - <https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/K4m85YRD1II>
-  - **Ship: Reporting and Network Error Logging**
+  - *Ship: Reporting and Network Error Logging*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/nNji_u7BRxo/Zh8Y9hRlBAAJ>
     - NEL Response Header でネットワーク関係のエラーを Reporting に載せられる
   - Ship: Add referrerpolicy attribute support to `<script>` elements
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/jfd4knvCiio/qcf5uaspBQAJ>
   - Ship: Page Lifecycle - to enable system initiated Discarding & Freezing
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Na7aTFJOpWs/_tpdtav8CAAJ>
-  - **Ship: Array.prototype.{flat,flatMap}**
+  - *Ship: Array.prototype.{flat,flatMap}*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8R9-KS3aVls/0jhMp-RBCQAJ>
     - smooshgate に決着がついた
   - Ship: Double-position gradient color stop syntax
@@ -146,31 +146,31 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/lzBoa1EAQpI/strfpNczAwAJ>
   - Implement and Ship: Don't allow popups during page unload
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MkA0A1YKSw4/QM106OZyBAAJ>
-  - **Implement and Ship: CSS Logical Properties and Values**
+  - *Implement and Ship: CSS Logical Properties and Values*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/48OwfwZrbvI/yIElvmbkCQAJ>
     - 絶対方向ではなく、相対方向にすることで R2L 言語にも対応
-  - **Implement: IntersectionObserver V2 -- Occlusion Reporting**
+  - *Implement: IntersectionObserver V2 -- Occlusion Reporting*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/tudxAHN9-AY/vz91o_aNDwAJ>
     - isVisible が追加された
-  - **Implement: `<virtual-list>` element layered API**
+  - *Implement: `<virtual-list>` element layered API*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/5411pauM9e8/aX4K4wz6DgAJ>
     - Lapis の high level custom element
-  - **Implement: async local storage layered API**
+  - *Implement: async local storage layered API*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/suT7pB2M9L0/ZuA8AQz6DgAJ>
     - Lapis の high level api
   - Implement: Gamepad Touchpad
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/PqEt_hXm9us/cG_LT9ZHAwAJ>
   - Implement: Picking echo canceller for getUserMedia
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/97mHVQ5x3F0/NCIDY0i_BAAJ>
-  - **Implement: WebGPU**
+  - *Implement: WebGPU*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/dxqWTSvyhDg/1UDaFD17AQAJ>
     - WebGL よりも低レベルで、より直接的に GPU を使うための API
     - 仕様のディスカッションをしてる CG は Apple が昨年提案
       - <https://webkit.org/blog/7380/next-generation-3d-graphics-on-the-web/>
-  - **Implement: Layered API infrastructure**
+  - *Implement: Layered API infrastructure*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MFbJuzA5tH4/t6Q-LZHpAgAJ>
     - import の URL で pipe を使ってフォールバックできるように
-  - **Implement: Intervention reports**
+  - *Implement: Intervention reports*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/83uwiEBHMGc/jF8BDFIrCAAJ>
     - intervention が発生したことを Reporting API や Reporting Observer で取得する
     - intervention: ユーザのためにブラウザが意図して挙動を変えること
@@ -179,12 +179,12 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
     - <https://docs.google.com/presentation/d/1yD5nmmzQGAbV6Zn3aiuEOAFccgbWjXomLCDFM4dYMF4>
   - Implement: RTCQuicTransport & RTCIceTransport
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/iRJ3as8AYy4/97rywT_2CAAJ>
-  - **Implement: Scroll to CSS selector**
+  - *Implement: Scroll to CSS selector*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/aKI6doxffgQ/7dzrVvo4CAAJ>
     - id だけではなくセレクタでリンクを貼れる
   - Implement: TextEncoderStream and TextDecoderStream APIs
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Va5xWNoBOeE/1pQGezNpCAAJ>
-  - **Implement: The `Sec-Metadata` HTTP request header.**
+  - *Implement: The `Sec-Metadata` HTTP request header.*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/tNwA_l_o9lc/5wug6BcmCQAJ>
   - Experiment: Kaby Lake VP8 acceleration on ChromeOS
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/vbYCDv5ve5w/pq-uV_QRAwAJ>
@@ -255,7 +255,7 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
     - <https://medium.com/dev-channel/variable-fonts-and-the-digital-revolution-9b31cb910d7c>
   - Google Developers Japan: セーフ ブラウジングで WebView を保護
     - <https://developers-jp.googleblog.com/2018/05/protecting-webview-with-safe-browsing.html>
-  - **Web Notifications API Support Now Available in FCM Send v1 API**
+  - *Web Notifications API Support Now Available in FCM Send v1 API*
     - <https://developers.googleblog.com/2018/05/web-notifications-api-support-now.html>
     - Firebase Cloud Messaging で Web Push
   - [blog](https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html) この話が canary に入った
@@ -270,7 +270,7 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
     - <https://hacks.mozilla.org/2018/05/firefox-60-modules-and-more/>
   - New in Firefox 61: Developer Edition
     - <https://hacks.mozilla.org/2018/05/new-in-firefox-61-developer-edition/>
-  - **These Weeks in Firefox: Issue 37 - Firefox Nightly News**
+  - *These Weeks in Firefox: Issue 37 - Firefox Nightly News*
     - <https://blog.nightly.mozilla.org/2018/05/01/these-weeks-in-firefox-issue-37/>
     - Our implementation of Same Site Cookies landed and was uplifted to Firefox 60.
     - Web Payments: The team has completed 58% of the Milestones 1 - 3 Backlog.
@@ -314,7 +314,7 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
   - Explore: A declarative low level graphics API that has a simple mapping to CSS
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/e92LXgutMtw/A6ETpZPABAAJ>
 - Site Compat
-  - **Service workers and push notifications are disabled on Firefox 60 ESR**
+  - *Service workers and push notifications are disabled on Firefox 60 ESR*
     - <https://www.fxsitecompat.com/en-CA/docs/2018/service-workers-and-push-notifications-are-disabled-on-firefox-60-esr/>
     - ESR では Service Worker は off になる
     - アーキテクチャの変更が安定してないので ESR にはまだ入れないという判断
@@ -346,7 +346,7 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
     - <https://www.fxsitecompat.com/en-CA/docs/2018/application-cache-can-no-longer-be-used-on-insecure-sites/>
   - ::selection pseudo-element has been unprefixed
     - <https://www.fxsitecompat.com/en-CA/docs/2018/selection-pseudo-element-has-been-unprefixed/>
-  - **navigator.registerProtocolHandler() can no longer be used on insecure sites**
+  - *navigator.registerProtocolHandler() can no longer be used on insecure sites*
     - <https://www.fxsitecompat.com/en-CA/docs/2018/navigator-registerprotocolhandler-can-no-longer-be-used-on-insecure-sites/>
     - カスタムプロトコルの紐付けが https のみ
   - CSSStyleDeclaration.getPropertyCSSValue() and related interfaces have been removed
@@ -364,7 +364,7 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/6AOd0v5_uBA/Bay7PIOQAwAJ>
   - Performance profiling improvements
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/iOzGFBLXGXw/38QCgyPRBAAJ>
-  - **CDN, BCD, and SVG: MDN Changelog for April 2018**
+  - *CDN, BCD, and SVG: MDN Changelog for April 2018*
     - <https://hacks.mozilla.org/2018/05/cdn-bcd-and-svg-mdn-changelog-for-april-2018/>
   - Creating Web Things with Python, Node.js, and Java
     - <https://hacks.mozilla.org/2018/05/creating-web-things-with-python-node-js-and-java/>
@@ -382,16 +382,16 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
     - <https://blog.mozilla.org/blog/2018/05/08/we-asked-people-how-they-feel-about-facebook-heres-what-they-said/>
   - Debugging Modern Web Applications
     - <https://hacks.mozilla.org/2018/05/debugging-modern-web-applications/>
-  - **GDPR**
+  - *GDPR*
     - <https://blog.mozilla.org/blog/2018/05/23/the-general-data-protection-regulation-and-firefox/>
     - Changeset 232226 - WebKit
     - European General Data Protection Regulation
-  - **A cartoon intro to DNS over HTTPS**
+  - *A cartoon intro to DNS over HTTPS*
     - <https://hacks.mozilla.org/2018/05/a-cartoon-intro-to-dns-over-https/>
     - DoH の概要と DNS を暗号化する意味、 1.1.1.1 についてなど
   - Baby's First Rust+WebAssembly module: Say hi to JSConf EU!
     - <https://hacks.mozilla.org/2018/06/babys-first-rustwebassembly-module-say-hi-to-jsconf-eu/>
-  - **Shadow DOM was activated in Nightly today**
+  - *Shadow DOM was activated in Nightly today*
     - <https://bugzilla.mozilla.org/1460069>
     - <https://twitter.com/FirefoxNightly/status/1001104178146611202>
     - Shadow DOM が NIghtly で有効に
@@ -408,19 +408,19 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
   - <https://webkit.org/blog/8296/release-notes-for-safari-technology-preview-56/>
   - Implemented Intl.PluralRules
   - Added support for stream APIs
-  - Added support for the WHATWG proposed **From-Origin:same** and **From-Origin:same-site** response headers with nested frame origin checking as an off by default experimental feature
+  - Added support for the WHATWG proposed *From-Origin:same* and *From-Origin:same-site* response headers with nested frame origin checking as an off by default experimental feature
 - Release Notes for Safari Technology Preview 57
   - <https://webkit.org/blog/8307/release-notes-for-safari-technology-preview-57/>
-  - **no longer run on macOS Sierra**
-  - Added initial support for the **Cross-Origin-Options** HTTP response header (was From-Origin)
+  - *no longer run on macOS Sierra*
+  - Added initial support for the *Cross-Origin-Options* HTTP response header (was From-Origin)
     - Migrate From-Origin to Cross-Origin-Resource-Policy:
       - <https://trac.webkit.org/changeset/232217/webkit>
-    - Rename **"Cross-Origin-Options"** HTTP header to "Cross-Origin-Window-Policy"
+    - Rename *"Cross-Origin-Options"* HTTP header to "Cross-Origin-Window-Policy"
       - <https://trac.webkit.org/changeset/232499/webkit>
       - 収録くらいのタイミングでまた名前が変わってた
   - Enabled the modern EME API by default
 - Other
-  - **Visualizing Layers in Web Inspector**
+  - *Visualizing Layers in Web Inspector*
     - <https://webkit.org/blog/8262/visualizing-layers-in-web-inspector/>
   - Changeset 232226 - WebKit - [JSC] Rename Array#flatten to flat
     - <https://trac.webkit.org/changeset/232226/webkit>
@@ -454,9 +454,9 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
 - Status Updates
   - <https://github.com/MicrosoftEdge/Status/compare/production@{2018-05-01}...production@{2018-06-01}>
   - In development
-    - **Credential Management API**
+    - *Credential Management API*
     - iframe[srcdoc] attribute
-    - **WebP image format**
+    - *WebP image format*
   - Shipped
     - CSP upgrade-insecure-requests directive
     - Web Application Manifest
@@ -494,9 +494,9 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
     - <https://blogs.windows.com/msedgedev/2018/05/11/introducing-edge-devtools-protocol/>
   - 2018 年 5 月の Internet Explorer / Microsoft Edge の累積的なセキュリティ更新プログラムを公開しました
     - <https://blogs.technet.microsoft.com/jpieblog/2018/05/17/securityupdate201805/>
-  - **Previewing support for same-site cookies in Microsoft Edge**
+  - *Previewing support for same-site cookies in Microsoft Edge*
     - <https://blogs.windows.com/msedgedev/2018/05/17/samesite-cookies-microsoft-edge-internet-explorer/>
-  - **Get started with web push notifications**
+  - *Get started with web push notifications*
     - <https://blogs.windows.com/msedgedev/2018/05/22/get-started-web-push-notifications-tutorial-demo/>
   - New features for extensions in the Windows 10 April 2018 Update - Microsoft Edge Dev Blog
     - <https://blogs.windows.com/msedgedev/2018/05/24/new-extension-features-april-2018-update-notifications-inprivate/>
@@ -544,7 +544,7 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
     - <https://www.w3.org/blog/news/archives/7006>
   - W3C opens Advisory Board (AB) election
     - <https://www.w3.org/blog/news/archives/6995>
-  - **New mailing list for discussing web packaging**
+  - *New mailing list for discussing web packaging*
     - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018AprJun/0131.html>
   - Interlinear Text Layout Community Group Proposed from Do Not Reply
     - <https://lists.w3.org/Archives/Public/public-new-work/2018May/0002.html>
@@ -555,12 +555,12 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
     - 表題の通り、ユースケースを模索
   - W3C WAI Website and Resources Redesigned
     - <https://www.w3.org/blog/news/archives/7031>
-  - **[翻訳] 忙しい人のための W3C プロセス入門**
+  - *[翻訳] 忙しい人のための W3C プロセス入門*
     - W3C Process for Busy People の翻訳
     - <https://github.com/w3c/wg-effectiveness/blob/master/process_jp.md>
   - W3C Workshop Report: Data Privacy Controls and Vocabularies
     - <https://www.w3.org/blog/news/archives/7053>
-  - **W3C Advisory Committee Elects Advisory Board**
+  - *W3C Advisory Committee Elects Advisory Board*
     - <https://www.w3.org/blog/news/archives/7049>
     - AB の Election 結果
     - Michael Champion (Microsoft)
@@ -617,7 +617,7 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
     - <https://github.com/rbuckton/proposal-class-access-expressions>
     - `class C { static f(){} g(){ class.f(); }}`
     - 自身の Class の static メソッドを呼ぶために class という構文を入れる
-  - **matching**
+  - *matching*
     - <https://github.com/tc39/proposal-pattern-matching>
     - パターンマッチ
   - regex-offsets
@@ -628,7 +628,7 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
   - Intl.DateTimeFormat.prototype.formatRange
     - <https://github.com/fabalbon/proposal-intl-DateTimeFormat-formatRange>
 - Other
-  - **approving a replacement name for Array.prototype.flatten (not smoosh)**
+  - *approving a replacement name for Array.prototype.flatten (not smoosh)*
     - <https://github.com/tc39/agendas/pull/359>
     - 5 月のミーティングで flatten は flat になった
     - <https://github.com/tc39/proposals/commit/3e2539404469c2db2bdfa9b28200d922f6e17639>
@@ -650,7 +650,7 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
 - Call for Adoption
 - I-D Action
 - Draft
-  - **The QUIC Latency Spin Bit**
+  - *The QUIC Latency Spin Bit*
     - <https://tools.ietf.org/html/draft-ietf-quic-spin-exp-00>
     - <https://devae.re/f/eth/quic/spinbit_report/>
     - 全部暗号化されていると RTT の最適化などができない
@@ -663,13 +663,13 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
     - <https://tools.ietf.org/html/draft-ietf-dnssd-mdns-relay-00>
   - TLS Downgrade protection extension for TLS DNSSEC Authentication Chain Extension
     - <https://tools.ietf.org/html/draft-asmithee-tls-dnssec-downprot-00>
-  - **JSON Canonicalization Scheme (JCS)**
+  - *JSON Canonicalization Scheme (JCS)*
     - <https://tools.ietf.org/html/draft-rundgren-json-canonicalization-scheme-00>
     - JSON 文字列から Hash をとったりする際に順番が変わるとまずい
     - Key のソートや White Space などのルールを決める提案
   - QPACK: Header Compression for HTTP over QUIC
     - <https://tools.ietf.org/html/draft-ietf-quic-qpack-00>
-  - **GREASE for HTTP/2**
+  - *GREASE for HTTP/2*
     - <https://tools.ietf.org/html/draft-bishop-httpbis-grease-00>
     - Frame Type や Setting に対してグリス
     - 知らない値をちゃんと無視するかどうか
@@ -694,13 +694,13 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
   - <https://jovi0608.hatenablog.com/entry/2018/05/09/213703>
   - 大津さんのアンサー、間違いの指摘や X25519 253bit が適用外という点を指摘
   - HTTPS 周りの話も混ざっているがその辺も微妙
-- **EFAIL**
+- *EFAIL*
   - <https://efail.de/>
   - PGP などで暗号化されたペイロードを HTML メールの `<img>` タグのパスに埋めておく
   - メーラが暗号化を複合した結果を `<img>` の fetch で外に投げてしまう
   - 色々な複合技だけど、抜本的な解決は HTML 無効くらいしかなさそう
   - そうなると AMP for Email どうなるか
-- **ADV180012 | Microsoft Guidance for Speculative Store Bypass**
+- *ADV180012 | Microsoft Guidance for Speculative Store Bypass*
   - <https://portal.msrc.microsoft.com/en-US/security-guidance/advisory/ADV180012>
   - Spectre/Meltdown の亜種である CVE-2018-3639 が発見される
   - 最近 SameSite/SecMetadata/From-Origin などが動き始めてるのはやっぱりこのためなんだろうか。
@@ -714,7 +714,7 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
 
 - Grid Level 2 and Subgrid
   - <https://www.rachelandrew.co.uk/archives/2018/04/27/grid-level-2-and-subgrid/>
-- **Custom domains on GitHub Pages gain support for HTTPS**
+- *Custom domains on GitHub Pages gain support for HTTPS*
   - <https://blog.github.com/2018-05-01-github-pages-custom-domains-https/>
   - Github Pages でカスタムドメイン HTTPS
 - The Front-End Tooling Survey 2018 - Results - AshleyNolan.co.uk - Blog and Portfolio for Ashley Nolan
@@ -729,11 +729,11 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
 - QUIC
   - Google's QUIC protocol: moving the web from TCP to UDP
     - <https://ma.ttias.be/googles-quic-protocol-moving-web-tcp-udp/>
-- **The headers we don't want**
+- *The headers we don't want*
   - <https://www.fastly.com/blog/headers-we-dont-want>
-- **The headers we want**
+- *The headers we want*
   - <https://www.fastly.com/blog/headers-we-want>
-- **How do we Stop Spilling the Beans Across Origins?**
+- *How do we Stop Spilling the Beans Across Origins?*
   - <https://www.arturjanc.com/cross-origin-infoleaks.pdf>
 - <https://twitter.com/johnwilander/status/1000792369258639360>
   - Apple のセキュリティエンジニアが`<ad>`要素はどうかなあとツイート

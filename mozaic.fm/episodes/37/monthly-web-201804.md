@@ -19,7 +19,7 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
 
 - Stable: 66
 - Updates
-  - **New in Chrome 66**
+  - *New in Chrome 66*
     - <https://developers.google.com/web/updates/2018/04/nic66>
     - CSS Typed Object Model
     - Async Clipboard API
@@ -27,7 +27,7 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
     - autocomplete in TextArea and Select
     - autocapitalize for form (compat with safari)
     - trimStart() and trimEnd()
-  - **What's New In DevTools (Chrome 67)**
+  - *What's New In DevTools (Chrome 67)*
     - <https://developers.google.com/web/updates/2018/04/devtools>
     - Search across all network headers
     - Copy as fetch
@@ -42,10 +42,10 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
     - <https://developers.google.com/web/updates/2018/04/present-web-pages-to-secondary-attached-displays>
   - Loading WebAssembly modules efficiently
     - <https://developers.google.com/web/updates/2018/04/loading-wasm>
-  - **Enabling publishers to implement user controls on AMP pages**
+  - *Enabling publishers to implement user controls on AMP pages*
     - <https://amphtml.wordpress.com/2018/04/02/enabling-publishers-to-implement-user-controls-on-amp-pages/>
     - AMP でユーザ制御 (Cookie 仕様の許可ダイアログなど) を実装できるように
-- **Blink on 9**
+- *Blink on 9*
   -  LT List
     - <https://docs.google.com/spreadsheets/d/1DovPnWWSXuG8PRyN-HT7R9gZ4PLihly5ZepqZJ3vmAc/edit#gid=0>
   - Tricium (code analyzer for chromium)
@@ -59,7 +59,7 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
     - <https://docs.google.com/presentation/d/1fjuAcjopk726cXKmmKOUl_IQQ3_2Ih_Vt15tgjcr4jU/edit>
   - Server Push
     - <https://docs.google.com/presentation/d/1O-hZEewKwPHPrcucLUE2MRQhBiekhMtWm-eHS49XVhs/edit>
-  - **Layered APIs**
+  - *Layered APIs*
     - Layered APIs: an overview and update
       - <https://docs.google.com/presentation/d/1_5EVAiuragdEqop8V9b1hJkOW38y4EsXYgNBKdpSHmA/edit>
     - [blog](https://blog.jxck.io/entries/2018-05-01/layered-apis.html)
@@ -70,13 +70,13 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/4ZKccJozMuU/So_uEJbLCgAJ>
   - Ship: Provide network quality estimates to web servers via Client Hints
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/G_rkd0yo2AM/IGXDxRl9CwAJ>
-  - **Ship: fetch() credentials default to "same-origin"**
+  - *Ship: fetch() credentials default to "same-origin"*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/WOAtshyL2As/wITX3abkAQAJ>
     - fetch の cookie 付与などのデフォルトが same-origin になり、送られるようになった
     - 送られたくない人は明示的に omit する必要
   - Implement and Ship: WebAudio: Selectable automation rate for AudioParam
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/extLjVzLw7s/9XUZvQqcBQAJ>
-  - **Implement and Ship: Cross-Origin Read Blocking (CORB)**
+  - *Implement and Ship: Cross-Origin Read Blocking (CORB)*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hnAWBzq1qys/DhyRSDKKBQAJ>
     - <https://chromium.googlesource.com/chromium/src/+/master/services/network/cross_origin_read_blocking_explainer.md>
     - <https://anforowicz.github.io/xsdb-demo/index.html>
@@ -94,7 +94,7 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/-2AyrUFwXvY/Q_wCUmKSAgAJ>
   - Implement: customElements.upgrade()
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/zCQe7UkR07w/8In0oinBAgAJ>
-  - **Implement: Event Timing**
+  - *Implement: Event Timing*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/QNE6TVQve-0/y3KfnxOaBAAJ>
   - Implement: Wake Lock API based on Promise
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/KMNZmMF1_H4/U6EGekDrBwAJ>
@@ -102,12 +102,12 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/m0OOlPJGNTY/Mofa0PzxBwAJ>
   - Implement: Add FullscreenOptions
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/XdRp1DXmUFs/5vda0YM6CAAJ>
-  - **Implement: User Timing L3**
+  - *Implement: User Timing L3*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/T-DgYf79sFU/Kuu6Ltt6CAAJ>
   - Implement: WebUSB on Web Workers
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MReOVYgRpKk/1jY8MiyACQAJ>
     - USB のヘビーな I/O をワーカに
-  - **Implement: Priority Hints API**
+  - *Implement: Priority Hints API*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/65lfM2f0eeM/-1ttGbZmCQAJ>
     - critical, high, medium, low, unimportant で優先度付け
     - H2 の dependency/weight に反映するなど
@@ -128,10 +128,10 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/eIVnLFD_tPM/4tZUiyyBAwAJ>
   - Deprecate and Remove: 'stalled' events for HTMLMediaElements using MediaSource
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/x54XtrTyOP8/4-5QZlZzDAAJ>
-  - **Deprecate: Nonsecurely delivered cookies.**
+  - *Deprecate: Nonsecurely delivered cookies.*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/r0UBdUAyrLk/Pqg-fu6WBAAJ>
     - 平文で Cookie を送る場合、その Cookie が古いものなら消してしまうという提案
-  - **Request to Deprecate and Remove: Trust in existing Korean GPKI certificates**
+  - *Request to Deprecate and Remove: Trust in existing Korean GPKI certificates*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ujIKn9HUCF4/sRruM1LeBAAJ>
     - 韓国の GPKI も色々やらかしてるから symantec みたいに外してくれというリクエスト
   - Site Isolation Status - Making progress towards M67
@@ -149,12 +149,12 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
   - V8 JavaScript Engine: Improved code caching
     - <https://v8project.blogspot.jp/2018/04/improved-code-caching.html>
 - Other
-  - **Official Google Webmaster Central Blog: Distrust of the Symantec PKI: Immediate action needed by site operators**
+  - *Official Google Webmaster Central Blog: Distrust of the Symantec PKI: Immediate action needed by site operators*
     - <https://webmasters.googleblog.com/2018/04/distrust-of-symantec-pki-immediate.html>
     - <https://developers-jp.googleblog.com/2018/04/distrust-of-symantec-pki-immediate.html>
     - Chrome 66: 2018/4/17 に 2016/6 以前の証明書が無効
     - Chrome 70: 2018/10/16 に全て無効
-  - **Migrate a GCM Client App for Android to Firebase Cloud Messaging**
+  - *Migrate a GCM Client App for Android to Firebase Cloud Messaging*
     - <https://developers.google.com/cloud-messaging/android/android-migrate-fcm>
     - GCM での Push は 2018/4/10 で deprecate 2019/4/11 で remove
   - Bookmarklet: Chrome DevTools trace page
@@ -181,18 +181,18 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/4vy-a5_a35o/FH_KnQFGBQAJ>
   - Ship: DOMPoint interface from its latest spec
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/jwmkVmU4DNM/IpF5K5epBAAJ>
-  - **Ship: PerformanceServerTiming**
+  - *Ship: PerformanceServerTiming*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/MSzaY7_4mvg/hGpUlTzxAgAJ>
-  - **Implement and ship: same-site cookies**
+  - *Implement and ship: same-site cookies*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/7hOKZDuO3qI/w9FVLatSAAAJ>
-    - **収録中 Jxck が "CORS" と言ってるのは "CSRF" の間違いです**
+    - *収録中 Jxck が "CORS" と言ってるのは "CSRF" の間違いです*
   - Implement: CSS subgrid
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/-1SfS4jWqd8/D6aJ7XprBQAJ>
   - Implement: Early, experimental support for application/javascript+binast
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/1ZrtZlcI888/jOr1cTRHBQAJ>
   - Unship nsIDOMEvent:
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/5qNZRTZrhLE/TkTRLIHHBwAJ>
-  - **Unship: URL.createObjectURL(MediaStream)**
+  - *Unship: URL.createObjectURL(MediaStream)*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/o_0RoYoCmM4/vpspAxCVCAAJ>
   - Unship constructors on SVGNumber
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/1jEXK-Ctbng/T_AOEyyRCAAJ>
@@ -203,9 +203,9 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
   - Deprecate: JS-Implemented WebIDL
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/0GE0VDS1RNg/WDBaAehxAgAJ>
 - Site Compat
-  - **Basic auth credentials are now encoded in UTF-8 instead of ISO-8859-1 (Affecting)**
+  - *Basic auth credentials are now encoded in UTF-8 instead of ISO-8859-1 (Affecting)*
     - <https://www.fxsitecompat.com/en-CA/docs/2018/basic-auth-credentials-are-now-encoded-in-utf-8-instead-of-iso-8859-1/>
-  - **URL.createObjectURL() no longer accepts MediaStream as argument**
+  - *URL.createObjectURL() no longer accepts MediaStream as argument*
     - <https://www.fxsitecompat.com/en-CA/docs/2018/url-createobjecturl-no-longer-accepts-mediastream-as-argument/>
   - SVGViewElement.prototype.viewTarget has been removed
     - <https://www.fxsitecompat.com/en-CA/docs/2018/svgviewelement-prototype-viewtarget-has-been-removed/>
@@ -216,10 +216,10 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
 - Other
   - JavaScript to Rust and Back Again: A wasm-bindgen Tale
     - <https://hacks.mozilla.org/2018/04/javascript-to-rust-and-back-again-a-wasm-bindgen-tale/>
-  - **Compatibility/Unshippables**
+  - *Compatibility/Unshippables*
     - <https://wiki.mozilla.org/Compatibility/Unshippables>
     - ship すると web の互換性が壊れる機能のリスト
-  - **MDN Changelog for March 2018**
+  - *MDN Changelog for March 2018*
     - <https://hacks.mozilla.org/2018/04/mdn-changelog-for-march-2018/>
     - Brotli を使う実験をしてみたら圧縮率は高かったけど時間がかかるという結果に
       - エンコードのレベルなどを変えて向上はした
@@ -228,16 +228,16 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
     - Brotli については Akamai や Cloudflare も過去に実験している
       - <https://blog.cloudflare.com/results-experimenting-brotli/>
       - <https://blogs.akamai.com/2016/02/understanding-brotlis-potential.html>
-  - **A new video series: Web Demystified**
+  - *A new video series: Web Demystified*
     - <https://hacks.mozilla.org/2018/04/a-new-video-series-web-demystified/>
     - Web の基礎技術を解説するビデオシリーズ
-  - **Hello wasm-pack!**
+  - *Hello wasm-pack!*
     - <https://hacks.mozilla.org/2018/04/hello-wasm-pack/>
     - WASM と JS をいい感じ混ぜて使うツール
     - Rust (Cargo) と Node (NPM) を透過的に使えるように
   - Testing Strategies for React and Redux
     - <https://hacks.mozilla.org/2018/04/testing-strategies-for-react-and-redux/>
-  - **Sneak Peek at WebAssembly Studio**
+  - *Sneak Peek at WebAssembly Studio*
     - <https://hacks.mozilla.org/2018/04/sneak-peek-at-webassembly-studio/>
     - <https://webassembly.studio/>
 
@@ -245,13 +245,13 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
 ### Safari 動向
 
 - Stable: 11.1
-- **New WebKit Features in Safari 11.1**
+- *New WebKit Features in Safari 11.1*
   - <https://webkit.org/blog/8216/new-webkit-features-in-safari-11-1/>
-- **Release Notes for Safari Technology Preview 53**
+- *Release Notes for Safari Technology Preview 53*
   - <https://webkit.org/blog/8179/release-notes-for-safari-technology-preview-53/>
   - Added Fullscreen API as an Experimental Feature (r229680)
   - Added support for VCP encoder on macOS and iOS (r229920)
-- **Release Notes for Safari Technology Preview 54**
+- *Release Notes for Safari Technology Preview 54*
   - <https://webkit.org/blog/8232/release-notes-for-safari-technology-preview-54/>
   - Fixing Clipboard API
   - Fixing Beacon API
@@ -259,11 +259,11 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
   - Fixing WebRTC
   - Fixing Web Inspector
 - Other
-  - **Introducing the Payment Request API for Apple Pay**
+  - *Introducing the Payment Request API for Apple Pay*
     - <https://webkit.org/blog/8182/introducing-the-payment-request-api-for-apple-pay/>
   - Web Inspector Styles Sidebar Improvements
     - <https://webkit.org/blog/8239/web-inspector-styles-sidebar-improvements/>
-  - **Safari の UA 文字列が固定されて固定されなくなったおはなし \- fragmentary**
+  - *Safari の UA 文字列が固定されて固定されなくなったおはなし \- fragmentary*
     - <https://myakura.hatenablog.com/entry/2018/04/16/083000>
   - itp_study
     - <https://web-study.connpass.com/event/84158/>
@@ -288,10 +288,10 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
     - <https://www.neowin.net/news/first-wave-of-progressive-web-apps-hits-the-microsoft-store>
   - 2018 年 4 月の Internet Explorer / Microsoft Edge の累積的なセキュリティ更新プログラムを公開しました - Japan IE Support Team Blog
     - <https://blogs.technet.microsoft.com/jpieblog/2018/04/11/securityupdate201804/>
-  - **Introducing sonarwhal v1: The linting tool for the web**
+  - *Introducing sonarwhal v1: The linting tool for the web*
     - <https://blogs.windows.com/msedgedev/2018/04/19/sonarwhal-v1-linting-tool-for-web/>
     - Web を lint するツールの v1 がリリース
-  - **Introducing the Microsoft Edge DevTools Preview app**
+  - *Introducing the Microsoft Edge DevTools Preview app*
     - <https://blogs.windows.com/msedgedev/2018/04/25/introducing-the-microsoft-edge-devtools-preview-app/>
 
 
@@ -318,7 +318,7 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
 - First Public Working Draft
   - Web of Things Protocol Binding Templates; updated WoT drafts
     - <https://www.w3.org/blog/news/archives/6945>
-  - **CSS Layout API Level 1**
+  - *CSS Layout API Level 1*
     - <https://www.w3.org/blog/news/archives/6953>
 - Chartering
   - Work in Progress on Web Fonts Working Group Charter
@@ -333,34 +333,34 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
     - <https://lists.w3.org/Archives/Public/public-new-work/2018Apr/0003.html>
   - Proposed W3C Charter: Web Real-Time Communications Working Group
     - <https://lists.w3.org/Archives/Public/public-new-work/2018Apr/0008.html>
-- **TAG Review**
-  - **CSS Layout API**
+- *TAG Review*
+  - *CSS Layout API*
     - <https://github.com/w3ctag/design-reviews/issues/224>
-  - **Signed Exchanges**
+  - *Signed Exchanges*
     - <https://github.com/w3ctag/design-reviews/issues/235>
-  - **Web Components Guidelines Doc?**
+  - *Web Components Guidelines Doc?*
     - <https://github.com/w3ctag/design-reviews/issues/227>
-  - **Find-in-page API(s)**
+  - *Find-in-page API(s)*
     - <https://github.com/w3ctag/design-reviews/issues/236>
 - Other
-  - **TAG の election で Intel の @kennethrohde が Join**
+  - *TAG の election で Intel の @kennethrohde が Join*
     - <https://twitter.com/w3cdevs/status/981159615013498880>
     - <https://www.w3.org/2018/03/05-tag-nominations>
     - <https://www.w3.org/blog/news/archives/6939>
-  - **Proposal: <https://example.com/.well-known/modify-credentials**>
+  - *Proposal: <https://example.com/.well-known/modify-credentials*>
     - <https://lists.w3.org/Archives/Public/public-webappsec/2018Apr/0003.html>
   - Audio Description Community Group Proposed
     - <https://lists.w3.org/Archives/Public/public-new-work/2018Apr/0001.html>
     - To create an open standard file format to support audio description all the way from scripting to mixing
-  - **Requirements for Secondary Certificates**
+  - *Requirements for Secondary Certificates*
     - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018AprJun/0052.html>
-  - **`Accept-CH` header is weird · Issue #206 · w3ctag/design-reviews**
+  - *`Accept-CH` header is weird · Issue #206 · w3ctag/design-reviews*
     - <https://github.com/w3ctag/design-reviews/issues/206#issuecomment-379422513>
     - 先月話した Client Hints 、 TAG 的にはやってくことになった
-  - **CSS2 maintenance proposal · Issue #2553 · w3c/csswg-drafts**
+  - *CSS2 maintenance proposal · Issue #2553 · w3c/csswg-drafts*
     - <https://github.com/w3c/csswg-drafts/issues/2553>
     - CSSWG の F2F で、 CSS Level 2 仕様の現状まとめと今後のメンテ計画について議論
-  - **A short update on the web-platform-test project invitation**
+  - *A short update on the web-platform-test project invitation*
     - <https://www.w3.org/blog/2018/04/a-short-update-on-the-web-platform-test-project-invitation/>
     - WTP の organization を移した話
 
@@ -368,7 +368,7 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
 ### TC39 動向
 
 - minutes
-  - **3 月の minutes**
+  - *3 月の minutes*
   - <https://github.com/tc39/tc39-notes/tree/master/es9/2018-03>
 - Proposals Diff
   - <https://github.com/tc39/proposals/compare/master@{2018-01-01}...master@{2018-02-01}>
@@ -378,7 +378,7 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
   - 3->4: N/A
 - New Proposals
 - Other
-  - **「TC39 のリリースは 5-10 年サイクルに戻した方がいいのかもなぁ」 by @awbjs**
+  - *「TC39 のリリースは 5-10 年サイクルに戻した方がいいのかもなぁ」 by @awbjs*
     - <https://twitter.com/awbjs/status/984546160277794816>
     - TC39 の大きなゴールが無い問題
 
@@ -395,12 +395,12 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
 - Call for Adoption
 - I-D Action
 - Draft
-  - **HTTP Server *ush**
+  - *HTTP Server *ush*
     - <https://tools.ietf.org/html/draft-pardue-server-ush-00>
     - April Fools' Draft
   - HTTP Representation Variants
     - <https://tools.ietf.org/html/draft-ietf-httpbis-variants-00>
-  - **HTTPtre: HTTP の改定が各仕様でドラフトに**
+  - *HTTPtre: HTTP の改定が各仕様でドラフトに*
     - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018AprJun/0024.html>
     - Authentication
       - <https://tools.ietf.org/html/draft-ietf-httpbis-auth-00>
@@ -414,7 +414,7 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
       - <https://tools.ietf.org/html/draft-ietf-httpbis-semantics-00>
     - Message Syntax and Routing
       - <https://tools.ietf.org/html/draft-ietf-httpbis-messaging-00>
-  - **The 'payto' URI scheme for payments**
+  - *The 'payto' URI scheme for payments*
     - <https://tools.ietf.org/html/draft-dold-payto-01>
     - 支払いのための URI scheme の提案
     - `payto://sepa/CH9300762011623852957?amount=EUR:200.0&message=hello`
@@ -425,7 +425,7 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
     - <https://tools.ietf.org/html/draft-worley-nvo3-geneve-misc-00>
   - Too Many Requests Response Code for the Constrained Application Protocol
     - <https://tools.ietf.org/html/draft-ietf-core-too-many-reqs-00>
-  - **Signed HTTP Exchanges Implementation Checkpoints**
+  - *Signed HTTP Exchanges Implementation Checkpoints*
     - <https://tools.ietf.org/html/draft-yasskin-httpbis-origin-signed-exchanges-impl-00#section-3.1.1>
   - Usage of SPAKE with TLS 1.3
     - <https://tools.ietf.org/html/draft-barnes-tls-pake-00>
@@ -447,7 +447,7 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
 
 ### 周辺動向
 
-- **Announcing 1.1.1.1: the fastest, privacy-first consumer DNS service**
+- *Announcing 1.1.1.1: the fastest, privacy-first consumer DNS service*
   - <https://blog.cloudflare.com/announcing-1111/>
   - <https://labs.apnic.net/?p=1127>
   - <https://1.1.1.1/>
@@ -458,7 +458,7 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
 - Submit final certs to CT logs (#3640)
   - <https://github.com/letsencrypt/boulder/commit/1271a15be79b9717ee5b98e707b76e7ac86a9a0e>
   - SCT を埋め込んだ証明書も Submit するように
-- **ブロッキング騒動に対する声明**
+- *ブロッキング騒動に対する声明*
   - ISOC-JP
     - 著作権侵害サイトに対するブロッキングについて
     - <https://www.isoc.jp/wiki.cgi?page=20180412_Blocking_Statement>
@@ -475,7 +475,7 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
   - mangamura.org で言えば、 Cloudflare を使ってるので DNS A レコード削除で対応
   - ISP なら、外の DNS を設定してる人にもブロックを適用できる
   - 外 DNS を DoH で使うとブロックできないので、 DoH 普及するとこの方法はできなさそう
-- **Wizard Bible**
+- *Wizard Bible*
   - <http://wizardbible.org/>
   - セキュリティ系の情報まとめサイトが閉鎖された。
   - 警察/検察からの圧力があったらしい
@@ -485,7 +485,7 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
 - April 22, 1993: Mosaic Browser Lights Up Web With Color, Creativity | WIRED
   - <https://www.wired.com/2010/04/0422mosaic-web-browser/>
   - Mosaic 1.0 リリースから 25 年
-- **Yahoo! Japan が TLS1.0, TLS1.1 を 2018 年 6 月 1 日で切る**
+- *Yahoo! Japan が TLS1.0, TLS1.1 を 2018 年 6 月 1 日で切る*
   - <https://security.yahoo.co.jp/news/tls12.html>
 
 
