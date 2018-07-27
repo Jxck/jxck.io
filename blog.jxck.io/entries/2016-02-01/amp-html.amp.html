@@ -53,7 +53,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-02-01T08:00:00+08:00",
-  "dateModified": "2018-01-27T08:00:00+08:00",
+  "dateModified": "2018-07-27T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -372,9 +372,18 @@ h6 > a:hover::before {
   color: Brown;
 }
 
-i::before,
-i::after {
+em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+em::before,
+em::after {
   content: "*";
+}
+
+strong {
+  color: red;
 }
 
 strong::before,
@@ -644,7 +653,7 @@ td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-02-01>2016-02-01</time>
-    <li>updated_at: <time class=updated_at datetime=2018-01-27>2018-01-27</time>
+    <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
     <li class=tags>tags: [<a href='/tags/amp.html'>amp</a>,<a href='/tags/html.html'>html</a>,<a href='/tags/performance.html'>performance</a>]
   </ul>
 
@@ -672,8 +681,8 @@ td:last-child {
       <h2 id="accelerated-mobile-pages"><a href="#accelerated-mobile-pages">Accelerated Mobile Pages</a></h2>
       <p><a href="https://www.ampproject.org/">ACCELERATED MOBILE PAGES PROJECT</a>
       <p>タイトルは識別しやすいよう AMP HTML としたが、実際には AMP という仕様(方針)があり、 HTML 以外にも手を入れている。
-      <p>AMP は、特にモバイル向けに <strong>静的コンテンツ</strong> を最適化し、表示を高速化することを目的としている。
-      <p>実際は、高速化するというより、 <strong>遅くなる原因を排除する</strong> という制約を課す仕様という作りになっている。
+      <p>AMP は、特にモバイル向けに <em>静的コンテンツ</em> を最適化し、表示を高速化することを目的としている。
+      <p>実際は、高速化するというより、 <em>遅くなる原因を排除する</em> という制約を課す仕様という作りになっている。
       <section>
         <h3 id="対応のメリット"><a href="#対応のメリット">対応のメリット</a></h3>
         <p>AMP への対応は、実際には 「遅くなる原因」=「アンチパターン」が Invalid となる仕様を定義し、それを開発者に強制することで、必然的にボトルネックの少ないコンテンツにする仕様と言える。
@@ -687,7 +696,7 @@ td:last-child {
             <code translate="no">&lt;img&gt;</code>: 画像の <code translate="no">width x height</code> を明示させ、 <code translate="no">&lt;amp-img&gt;</code> を代わりに使わせることで、画像を非同期に読み込み表示を最適化する
           </li>
         </ul>
-        <p>まあ、ほとんどが実際は <strong>粗悪なアド</strong> を縛るような仕様になっている。
+        <p>まあ、ほとんどが実際は <em>粗悪なアド</em> を縛るような仕様になっている。
         <p>アドの実装は開発者が手を出しにくいところであるため、こうした外部要因による強制力(AMP 対応が一般化したら、対応してないアドにとっては不利になる)があるのは良いだろう。
         <p>もちろん、アドが貼れないという訳ではない。
         <p>他にも禁止している <code translate="no">&lt;iframe&gt;</code> やアナリティクス、その他 JS がないと実現できない UI 効果などは <code translate="no">&lt;amp-x&gt;</code> というコンポーネントによって実現できるようになっている。
@@ -757,7 +766,7 @@ td:last-child {
         <h3 id="amp-iframe"><a href="#amp-iframe">amp-iframe</a></h3>
         <p>AMP-HTML 内では、 <code translate="no">&lt;iframe&gt;</code> タグを直接書くことは禁止されており、代わりに、 <code translate="no">&lt;amp-iframe&gt;</code> というカスタムタグを使用する。
         <p><a href="https://www.ampproject.org/docs/reference/extended/amp-iframe.html">amp-iframe</a>
-        <p>ただし、このタグもまた制約が多い。一番大きいのは <strong>位置</strong> に対する制約だ。
+        <p>ただし、このタグもまた制約が多い。一番大きいのは <em>位置</em> に対する制約だ。
         <blockquote>
           <p>They must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top<br>
           &mdash; <cite><a href="https://www.ampproject.org/docs/reference/components/amp-iframe">https://www.ampproject.org/docs/reference/components/amp-iframe</a></cite>

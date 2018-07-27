@@ -60,7 +60,7 @@
     "width": 700
   },
   "datePublished": "2017-02-17T08:00:00+08:00",
-  "dateModified": "2018-02-13T08:00:00+08:00",
+  "dateModified": "2018-07-27T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -104,7 +104,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
     <ul class=info>
       <li>created_at: <time class=created_at datetime=2017-02-17>2017-02-17</time>
-      <li>updated_at: <time class=updated_at datetime=2018-02-13>2018-02-13</time>
+      <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
       <li class=tags>tags: [<a href='/tags/polyfill.html'>polyfill</a>,<a href='/tags/TAG.html'>TAG</a>,<a href='/tags/w3c.html'>w3c</a>]
     </ul>
 
@@ -120,8 +120,8 @@
     </section>
     <section>
       <h2 id="web-における-breaking-change"><a href="#web-における-breaking-change">Web における Breaking Change</a></h2>
-      <p>Breaking Change は、簡単に言えば <strong>後方互換を失うことで既存のものが壊れる可能性がある変更</strong> のことを表す。
-      <p>そして、 Web における Breaking Change (<strong>Break the Web</strong>)、具体的には Web の標準技術について、何か追加/変更を行なったことによって既存のコンテンツが壊れることは、基本的に許されない。
+      <p>Breaking Change は、簡単に言えば <em>後方互換を失うことで既存のものが壊れる可能性がある変更</em> のことを表す。
+      <p>そして、 Web における Breaking Change (<em>Break the Web</em>)、具体的には Web の標準技術について、何か追加/変更を行なったことによって既存のコンテンツが壊れることは、基本的に許されない。
       <p>また Web 上には、更新されないまま残るコンテンツも多くあるため、壊れたコンテンツ側が変更に追従すれば良いという前提を取るのが難しい。
       <p>実際にはブラウザやコンテンツの実装、セキュリティ的な理由、なんらかの問題により deprecate される API もあり、壊れるコンテンツはある。
       <p>しかし、少なくとも仕様策定が原因で発生することは無いように作業は進められる。
@@ -152,7 +152,7 @@
     <section>
       <h2 id="speculative-polyfill"><a href="#speculative-polyfill">Speculative Polyfill</a></h2>
       <p>問題を起こしやすいのは、 1 から 4 の段階、つまり仕様がきっちりと固まってない段階で、早まった API を実装した Polyfill を提供してしまうパターンだ。
-      <p>これは俗に Ponyfill/Prolyfill/Nottifill などと呼ばれて<a href="https://github.com/jonathantneal/document-promises/issues/4#issuecomment-256235909">分類</a> されることもあるが、いずれも問題をはらむ可能性があるということから TAG のドキュメントではこれらを総じて <strong>Speculative Polyfill</strong> としている。文意としては &ldquo;先走った Polyfill&rdquo; といったところか。
+      <p>これは俗に Ponyfill/Prolyfill/Nottifill などと呼ばれて<a href="https://github.com/jonathantneal/document-promises/issues/4#issuecomment-256235909">分類</a> されることもあるが、いずれも問題をはらむ可能性があるということから TAG のドキュメントではこれらを総じて <em>Speculative Polyfill</em> としている。文意としては &ldquo;先走った Polyfill&rdquo; といったところか。
       <p>策定中の API は、クラス/メソッド名などが確定しておらず、議論や試験実装を経てそれらを変更する可能性がある。
       <p>しかし、 &ldquo;先走った Polyfill&rdquo; の実装が、仕様が固まる前に広まってしまい、固まる前のクラス/メッソド名が多くのコンテンツで使われてしまうと、仕様側でそれを変更するのが難しくなってしまう場合がある。
       <p>実際にこれが問題になった事例もいくつかある。

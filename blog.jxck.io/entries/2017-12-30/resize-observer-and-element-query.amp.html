@@ -53,7 +53,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2017-12-30T08:00:00+08:00",
-  "dateModified": "2017-12-31T08:00:00+08:00",
+  "dateModified": "2018-07-27T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -372,9 +372,18 @@ h6 > a:hover::before {
   color: Brown;
 }
 
-i::before,
-i::after {
+em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+em::before,
+em::after {
   content: "*";
+}
+
+strong {
+  color: red;
 }
 
 strong::before,
@@ -644,7 +653,7 @@ td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2017-12-30>2017-12-30</time>
-    <li>updated_at: <time class=updated_at datetime=2017-12-31>2017-12-31</time>
+    <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
     <li class=tags>tags: [<a href='/tags/element%20query.html'>element query</a>,<a href='/tags/resize%20observer.html'>resize observer</a>,<a href='/tags/performance.html'>performance</a>]
   </ul>
 
@@ -687,7 +696,7 @@ resizeObserver.disconnect(element) // 解放</code></pre>
       <p>DEMO: <a href="https://labs.jxck.io/resize-observer/onresize.html">https://labs.jxck.io/resize-observer/onresize.html</a>
       <p>これは window のみに発火するため、 window は不変のまま子要素の変更だけを取ることができなかった。
       <p>そこで導入されたのが ResizeObserver であったわけだが、ではなぜ <code translate="no">resize</code> イベントを子要素に適用しなかったか。
-      <p><code translate="no">resize</code> イベントは、そもそも view-port に対して定義されており、さらに <strong>変更したこと</strong> だけを伝える仕様になっている。
+      <p><code translate="no">resize</code> イベントは、そもそも view-port に対して定義されており、さらに <em>変更したこと</em> だけを伝える仕様になっている。
       <p><a href="https://drafts.csswg.org/cssom-view/#resizing-viewports">12.1. Resizing viewports | CSSOM View Module</a>
       <p>つまり、 resize された結果を取得するためには、 <code translate="no">target</code> を辿りサイズを取得する必要が出る。
       <pre class=javascript><code translate="no">window.addEventListener(&#039;resize&#039;, (e) =&gt; {

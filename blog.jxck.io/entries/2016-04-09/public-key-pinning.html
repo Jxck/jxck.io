@@ -60,7 +60,7 @@
     "width": 700
   },
   "datePublished": "2016-04-09T08:00:00+08:00",
-  "dateModified": "2017-11-29T08:00:00+08:00",
+  "dateModified": "2018-07-27T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -104,7 +104,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
     <ul class=info>
       <li>created_at: <time class=created_at datetime=2016-04-09>2016-04-09</time>
-      <li>updated_at: <time class=updated_at datetime=2017-11-29>2017-11-29</time>
+      <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
       <li class=tags>tags: [<a href='/tags/hpkp.html'>hpkp</a>,<a href='/tags/security.html'>security</a>]
     </ul>
 
@@ -117,7 +117,7 @@
       <p><a href="https://blog.jxck.io/entries/2016-03-30/content-security-policy.html">CSP</a> 同様、まずは Report-Only を設定し、
       <p>HPKP Report についても、 <a href="https://report-uri.io">report-uri.io</a> を用いて収集することにした。
       <p>導入に必要な設定や、注意点についてまとめる。
-      <p>なお、本サイトへの導入はあくまで <strong>実験</strong> である。運用や影響も踏まえると、一般サービスへの安易な導入は推奨しない。
+      <p>なお、本サイトへの導入はあくまで <em>実験</em> である。運用や影響も踏まえると、一般サービスへの安易な導入は推奨しない。
       <p>また、本来は HSTS と併用することが推奨されている。(必須ではない)
       <p>そちらも追って対応する予定である。
     </section>
@@ -161,7 +161,7 @@
       <section>
         <h3 id="preload-public-key-pinning"><a href="#preload-public-key-pinning">Preload Public Key Pinning</a></h3>
         <p>HTTP レスポンスヘッダでハッシュを提示する方法では、 最初のアクセス時から偽の証明書が使われていた場合は無力である。
-        <p>あくまで、再訪問時への偽造にしか効果がなく、これを <strong>Trust on First Use (TOFU)</strong> という。
+        <p>あくまで、再訪問時への偽造にしか効果がなく、これを <em>Trust on First Use (TOFU)</em> という。
         <p>そこで、ブラウザにあらかじめ証明書のハッシュを登録する Preload Publick Key Pinning もある。
         <p>ただし、これは非常に重要なドメインにのみ提供されており、現状一般に向けた登録フローは公開されていない。
         <p>Chrome と Firefox への Preload Pins のリストは以下である。

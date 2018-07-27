@@ -53,7 +53,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2017-08-15T08:00:00+08:00",
-  "dateModified": "2017-11-29T08:00:00+08:00",
+  "dateModified": "2018-07-27T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -372,9 +372,18 @@ h6 > a:hover::before {
   color: Brown;
 }
 
-i::before,
-i::after {
+em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+em::before,
+em::after {
   content: "*";
+}
+
+strong {
+  color: red;
 }
 
 strong::before,
@@ -644,7 +653,7 @@ td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2017-08-15>2017-08-15</time>
-    <li>updated_at: <time class=updated_at datetime=2017-11-29>2017-11-29</time>
+    <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
     <li class=tags>tags: [<a href='/tags/es%20modules.html'>es modules</a>,<a href='/tags/tc39.html'>tc39</a>,<a href='/tags/javascript.html'>javascript</a>]
   </ul>
 
@@ -714,7 +723,7 @@ export default { message: &quot;hello world&quot; }</code></pre>
     <section>
       <h2 id="実行環境における-esm-の扱い"><a href="#実行環境における-esm-の扱い">実行環境における ESM の扱い</a></h2>
       <p>TC39 の責任範囲は、 JS ファイル内に書かれる構文が中心であり、そのファイルが実際にどう扱われるかは、実行環境の責務となる。
-      <p>特に実行環境がどう扱うかについて、もっとも重要なのが、 <strong>そもそもそのファイルが CJS か ESM か</strong> の判別である。
+      <p>特に実行環境がどう扱うかについて、もっとも重要なのが、 <em>そもそもそのファイルが CJS か ESM か</em> の判別である。
       <p>判別が正しく行えなければ、先述のデフォルト strict mode や、トップレベルの <code translate="no">this</code> を <code translate="no">undefined</code> と扱うと行った処理ができなくなるからである。
       <p>(ここでの CJS は、 <code translate="no">require()</code> や <code translate="no">module</code> を使っているかというよりも、単に ESM ではないという意味が強い)
       <section>

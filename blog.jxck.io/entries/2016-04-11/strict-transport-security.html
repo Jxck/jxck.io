@@ -60,7 +60,7 @@
     "width": 700
   },
   "datePublished": "2016-04-11T08:00:00+08:00",
-  "dateModified": "2017-08-10T08:00:00+08:00",
+  "dateModified": "2018-07-27T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -104,7 +104,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
     <ul class=info>
       <li>created_at: <time class=created_at datetime=2016-04-11>2016-04-11</time>
-      <li>updated_at: <time class=updated_at datetime=2017-08-10>2017-08-10</time>
+      <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
       <li class=tags>tags: [<a href='/tags/hsts.html'>hsts</a>,<a href='/tags/security.html'>security</a>]
     </ul>
 
@@ -141,7 +141,7 @@
     <section>
       <h2 id="preload"><a href="#preload">preload</a></h2>
       <p>ただし、 HSTS はレスポンスヘッダで指定された値を、ブラウザが保存したあと有効になる仕組みのため、少なくとも一番最初にアクセスするドメインでは、際は http -&gt; https のリダイレクトを避けられない。
-      <p>この性質は <a href="https://blog.jxck.io/entries/2016-04-09/public-key-pinning.html">HPKP</a> 同様 <strong>TOFU</strong> (Trust of First Use) と呼ばれる。
+      <p>この性質は <a href="https://blog.jxck.io/entries/2016-04-09/public-key-pinning.html">HPKP</a> 同様 <em>TOFU</em> (Trust of First Use) と呼ばれる。
       <p>そこで、ブラウザに HSTS 対象ドメインのリストをあらかじめ含んでおくことで、ユーザがまだアクセスしたことがないドメインについても、初回アクセス時から HTTS アクセスを強制する仕組みが HSTS Preload である。
       <p>Chrome の場合は、以下からドメインを申請すると、審査が実施され、条件を満たすものは Chrome のソースコード中にある preload hsts のリストに追加される。
       <p><a href="https://hstspreload.appspot.com/">HSTS Preload Submission</a>
@@ -152,9 +152,9 @@
       <p>しかし、本ドメインには <a href="https://labs.jxck.io">labs.jxck.io</a> という実験用のサブドメインがある。
       <p>ここでは、平文 HTTP との比較や、 Mixed Contents の挙動のテストなど、様々な実験を行うために、 HTTP もリダイレクトせずサーブしている。
       <p>ここを HSTS に含んでしてしまうと、実験ができなくなってしまうため、除外する必要がある。
-      <p>結果として、本ドメインでは <strong><code translate="no">includeSubDomains</code> の指定はせず</strong>、ドメインごとに個別に指定することとした。
+      <p>結果として、本ドメインでは <em><code translate="no">includeSubDomains</code> の指定はせず</em>、ドメインごとに個別に指定することとした。
       <p>また、 Chrome の Preload 登録の条件には、 <code translate="no">includeSubDomains</code> の適用が含まれている。
-      <p>したがって同様の理由から、止むを得ず <strong>preload 登録は見送る</strong> こととした。
+      <p>したがって同様の理由から、止むを得ず <em>preload 登録は見送る</em> こととした。
       <p>結果、現時点では <a href="https://jxck.io">jxck.io</a> 及び <a href="https://blog.jxck.io">blog.jxck.io</a> に対して、以下のヘッダを付与した。
       <pre><code translate="no">Strict-Transport-Security: max-age=31536000</code></pre>
     </section>

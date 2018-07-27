@@ -53,7 +53,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2017-12-06T08:00:00+08:00",
-  "dateModified": "2017-12-21T08:00:00+08:00",
+  "dateModified": "2018-07-27T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -372,9 +372,18 @@ h6 > a:hover::before {
   color: Brown;
 }
 
-i::before,
-i::after {
+em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+em::before,
+em::after {
   content: "*";
+}
+
+strong {
+  color: red;
 }
 
 strong::before,
@@ -644,7 +653,7 @@ td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2017-12-06>2017-12-06</time>
-    <li>updated_at: <time class=updated_at datetime=2017-12-21>2017-12-21</time>
+    <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
     <li class=tags>tags: [<a href='/tags/font-display.html'>font-display</a>,<a href='/tags/web%20font.html'>web font</a>,<a href='/tags/performance.html'>performance</a>,<a href='/tags/css.html'>css</a>]
   </ul>
 
@@ -675,11 +684,11 @@ td:last-child {
         <li>swap period
         <li>font failure period
       </ul>
-      <p>まず、ブラウザはフォントの取得を開始したら <strong>block period</strong> の間はテキストを表示しない。
+      <p>まず、ブラウザはフォントの取得を開始したら <em>block period</em> の間はテキストを表示しない。
       <p>(正確には、 <em>invisible-fallback font face</em> という、見えない文字でレンダリングする)
-      <p><strong>swap period</strong> に入ったら、代替フォントで表示を行う。
+      <p><em>swap period</em> に入ったら、代替フォントで表示を行う。
       <p>しかし、フォントの取得は継続し、完了したら代替フォントと置き換える。
-      <p><strong>failure period</strong> に入っても取得が終わらなければ、フォントの取得は中断し代替フォントのままになる。
+      <p><em>failure period</em> に入っても取得が終わらなければ、フォントの取得は中断し代替フォントのままになる。
       <p><amp-img layout=responsive src=font-display.svg#1000x225 alt="block period の間は fallback font を表示、 swap period の間は fetch が終わると font を置き換え、 failure period に入ると fetch を中断" title="font rendering flow with block/swap/failure period in browser" width=1000 height=225></p>
     </section>
     <section>

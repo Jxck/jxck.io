@@ -53,7 +53,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2017-01-10T08:00:00+08:00",
-  "dateModified": "2017-11-29T08:00:00+08:00",
+  "dateModified": "2018-07-27T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -372,9 +372,18 @@ h6 > a:hover::before {
   color: Brown;
 }
 
-i::before,
-i::after {
+em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+em::before,
+em::after {
   content: "*";
+}
+
+strong {
+  color: red;
 }
 
 strong::before,
@@ -644,7 +653,7 @@ td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2017-01-10>2017-01-10</time>
-    <li>updated_at: <time class=updated_at datetime=2017-11-29>2017-11-29</time>
+    <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
     <li class=tags>tags: [<a href='/tags/csp.html'>csp</a>,<a href='/tags/mixed%20contents.html'>mixed contents</a>,<a href='/tags/upgrade-insecure-request.html'>upgrade-insecure-request</a>,<a href='/tags/block-all-mixed-contents.html'>block-all-mixed-contents</a>]
   </ul>
 
@@ -659,7 +668,7 @@ td:last-child {
     </section>
     <section>
       <h2 id="mixed-contents"><a href="#mixed-contents">mixed contents</a></h2>
-      <p>HTTPS で配信されたコンテンツが、サブリソースとして HTTP のコンテンツを含む場合、これを <strong>mixed contents</strong> という。
+      <p>HTTPS で配信されたコンテンツが、サブリソースとして HTTP のコンテンツを含む場合、これを <em>mixed contents</em> という。
       <p>HTTPS は MITM に対する耐性があるが、 HTTP は MITM への耐性がないため、 mixed contents の状態ではサブリソースを起点にメインコンテンツへの改ざんが成立してしまう可能性がある。
       <p>このため HTTPS で配信されていても、 mixed contents がある場合は完全に安全とは言えず、ブラウザは通常ユーザに安全ではないことを警告する。
       <p>近年の HTTPS 化の流れで、これまで HTTP で作られていたコンテンツを HTTPS に移行する際に、 mixed contents の問題が顕在化するのはよくある話だ。
@@ -691,7 +700,7 @@ td:last-child {
       </section>
       <section>
         <h3 id="mixed-activescript-contents"><a href="#mixed-activescript-contents">Mixed Active(Script) Contents</a></h3>
-        <p>以下のタグ、及びスクリプト等は、  <strong>Mixed Active Contents</strong> と呼ばれる。
+        <p>以下のタグ、及びスクリプト等は、  <em>Mixed Active Contents</em> と呼ばれる。
         <pre class=html><code translate="no">&lt;script src&gt;
 &lt;link href&gt;
 &lt;iframe src&gt;
@@ -767,7 +776,7 @@ CSS 内の URL (@font-face, background-image etc)</code></pre>
       <p>もし大元のコンテンツに <code translate="no">Upgrade-Insecure-Request</code> をつければ、 iframe 内のサブリソースも全て https に読み替えられるため、サーバが対応していればそれで済む。
       <p><a href="https://labs.jxck.io/mixed/iframe.html?upgrade-insecure-request">DEMO: upgrade insecure request iframe</a>
       <p>また、 <code translate="no">Block-All-Mixed-Contents</code> をつければ、 iframe 内のサブリソースはブロックされるため、 mixed contents を回避することはできる。
-      <p>しかし、 <strong>ネストした iframe 内の mixed contents をブロックしても report は発生しない</strong>。
+      <p>しかし、 <em>ネストした iframe 内の mixed contents をブロックしても report は発生しない</em>。
       <p>もし iframe の内側の mixed contents まで report ができてしまうと、その内容を把握できる可能性などセキュリティ上問題があるからだ。
       <p><a href="https://labs.jxck.io/mixed/iframe.html?block-all-mixed-content">DEMO: block all mixed contents iframe</a>
       <p>つまり広告配信プラットフォームが提供する広告用の iframe 自体が https に対応していても、そこの入稿される広告コンテンツ本体のどこかに一つでも https 非対応なものがあれば、 mixed contents は避けられない。

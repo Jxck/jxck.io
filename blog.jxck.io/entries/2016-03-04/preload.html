@@ -60,7 +60,7 @@
     "width": 700
   },
   "datePublished": "2016-03-04T08:00:00+08:00",
-  "dateModified": "2017-11-29T08:00:00+08:00",
+  "dateModified": "2018-07-27T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -104,7 +104,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
     <ul class=info>
       <li>created_at: <time class=created_at datetime=2016-03-04>2016-03-04</time>
-      <li>updated_at: <time class=updated_at datetime=2017-11-29>2017-11-29</time>
+      <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
       <li class=tags>tags: [<a href='/tags/preload.html'>preload</a>,<a href='/tags/performance.html'>performance</a>]
     </ul>
 
@@ -157,13 +157,13 @@
     </section>
     <section>
       <h2 id="クリティカルリソースの先行取得"><a href="#クリティカルリソースの先行取得">クリティカルリソースの先行取得</a></h2>
-      <p>ナビゲーション終了後、レスポンスを取得したブラウザは、 HTML のパースを開始し、必要なサブリソースの取得( <strong>Preload</strong> )を開始する。
+      <p>ナビゲーション終了後、レスポンスを取得したブラウザは、 HTML のパースを開始し、必要なサブリソースの取得(<em>Preload</em>)を開始する。
       <p>しかし、必要なリソースが全て HTML に <code translate="no">&lt;img&gt;</code> や <code translate="no">&lt;script&gt;</code>, <code translate="no">&lt;link&gt;</code> などで書かれているとは限らず、取得した CSS や JS に記述されている場合がある。
       <p>さらに CSS で指定されていて、 Preloader がそれを見つけていたとしても、実際にそのセレクタが使われるまでは、本当にそのイメージが必要かを判定することはできない。
       <p>例えば、 Above the Fold に表示される Hero Image が CSS の <code translate="no">div.hero { background-image: url(&quot;hero-image.png&quot;) }</code> で指定されていた場合は、実際の取得は HTML で <code translate="no">&lt;div class=hero&gt;&lt;/div&gt;</code> が出現してからになる。
       <p>もっと酷い例として、後から取得された Web Font でテキストが全て置き換わった場合、これをなるべく早く(かつ高い優先度で)取得したいと思うのが自然だろう。
       <p>重要なリソースがサブリソースに隠されている場合、どうしても取得までにラグが発生してしまい、画像を反映するには再レイアウトが発生し UX を損ねる場合がある。
-      <p><code translate="no">&lt;link rel=preload&gt;</code> を記述すれば、こうした「 <strong>後から取得されるが、レイアウト上重要なリソース</strong> 」を Preload 段階で取得するようにブラウザに指示することができる。
+      <p><code translate="no">&lt;link rel=preload&gt;</code> を記述すれば、こうした「<em>後から取得されるが、レイアウト上重要なリソース</em>」を Preload 段階で取得するようにブラウザに指示することができる。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
       <pre class=html><code translate="no">&lt;link rel=preload as=image href=hero-image.png&gt;</code></pre>
       <p>Web Font の場合はこうなる。
@@ -174,7 +174,7 @@
     </section>
     <section>
       <h2 id="遅延実行"><a href="#遅延実行">遅延実行</a></h2>
-      <p>Preload を使うことで、「<strong>取得しておきたいけど実行はしたくない</strong>」というスクリプトの取得ができる。
+      <p>Preload を使うことで、「<em>取得しておきたいけど実行はしたくない</em>」というスクリプトの取得ができる。
       <p>後から <code translate="no">&lt;script&gt;</code> を差し込むことで、 JS の「取得と実行」を遅延させることはこれまでもできたが、「取得」だけを先に行うことはできなかった。
       <p>また、取得を XHR で行い保存しておいたものをあとで <code translate="no">eval</code> することもできるが、 Preload を使うことで実行を <code translate="no">&lt;script&gt;</code> で行え、ブラウザの Preloader に取得させるため、再利用が効く。
       <p>まず「取得」を Preload で行う、これは HTML に書いておいても良いし、それ自体も遅延したければ好きなタイミングで以下のようにノードを作れば良い。
@@ -192,7 +192,7 @@ document.body.appendChild(script);</code></pre>
     <section>
       <h2 id="非同期ローダ"><a href="#非同期ローダ">非同期ローダ</a></h2>
       <p><code translate="no">&lt;link rel=preload&gt;</code> は自身で <code translate="no">onload</code> を発火する。
-      <p>これを利用すると、 HTML と少しの JS で <strong>非同期ローダ</strong> を実現することができる。
+      <p>これを利用すると、 HTML と少しの JS で <em>非同期ローダ</em> を実現することができる。
       <p>例えば CSS の場合はこうなる。
       <pre class=html><code translate="no">&lt;link rel=preload as=style href=style.css onload=&quot;this.rel=&#039;stylesheet&#039;&quot;&gt;</code></pre>
       <p>同じことは JS でも応用できる。

@@ -53,7 +53,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2017-09-27T08:00:00+08:00",
-  "dateModified": "2017-12-21T08:00:00+08:00",
+  "dateModified": "2018-07-27T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -372,9 +372,18 @@ h6 > a:hover::before {
   color: Brown;
 }
 
-i::before,
-i::after {
+em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+em::before,
+em::after {
   content: "*";
+}
+
+strong {
+  color: red;
 }
 
 strong::before,
@@ -644,7 +653,7 @@ td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2017-09-27>2017-09-27</time>
-    <li>updated_at: <time class=updated_at datetime=2017-12-21>2017-12-21</time>
+    <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
     <li class=tags>tags: [<a href='/tags/dns.html'>dns</a>,<a href='/tags/domain.html'>domain</a>]
   </ul>
 
@@ -684,7 +693,7 @@ td:last-child {
     <section>
       <h2 id="reserved-top-level-dns-names"><a href="#reserved-top-level-dns-names">Reserved Top Level DNS Names</a></h2>
       <p>以上のことを踏まえれば、将来に渡って取得されないことが保証され、こうした用途に使えるメインがあるのが望ましい。
-      <p>そこで RFC6761 (was RFC2606) には、 <strong>予約済みドメイン</strong> としていくつかのドメインとその用途が記されている。
+      <p>そこで RFC6761 (was RFC2606) には、 <em>予約済みドメイン</em> としていくつかのドメインとその用途が記されている。
       <ul>
         <li>
           <a href="https://tools.ietf.org/html/rfc6761">RFC6761 Special-Use Domain Names</a>
@@ -726,7 +735,7 @@ td:last-child {
         <li>コンテンツがほぼ更新されない
       </ul>
       <p>筆者は Wifi の認証など HTTP のアドレスが欲しい時や、余計な邪魔のないページで devtool をいじりたいとき、単なる疎通確認など色々な場面で使っている。
-      <p>管理しているのが ICANN なので、個人が取得したドメインと違い <strong>無くなっている可能性などを気にしないで良い</strong> ため、覚えておくと地味に便利だったりする。
+      <p>管理しているのが ICANN なので、個人が取得したドメインと違い <em>無くなっている可能性などを気にしないで良い</em> ため、覚えておくと地味に便利だったりする。
     </section>
     <section>
       <h2 id="localhost"><a href="#localhost"><code translate="no">.localhost</code></a></h2>

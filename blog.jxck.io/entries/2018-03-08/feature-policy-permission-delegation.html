@@ -60,7 +60,7 @@
     "width": 700
   },
   "datePublished": "2018-03-08T08:00:00+08:00",
-  "dateModified": "2018-03-10T08:00:00+08:00",
+  "dateModified": "2018-07-27T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -104,7 +104,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
     <ul class=info>
       <li>created_at: <time class=created_at datetime=2018-03-08>2018-03-08</time>
-      <li>updated_at: <time class=updated_at datetime=2018-03-10>2018-03-10</time>
+      <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
       <li class=tags>tags: [<a href='/tags/feature-policy.html'>feature-policy</a>,<a href='/tags/permission.html'>permission</a>,<a href='/tags/performance.html'>performance</a>,<a href='/tags/security.html'>security</a>]
     </ul>
 
@@ -121,7 +121,7 @@
     </section>
     <section>
       <h2 id="motivation"><a href="#motivation">Motivation</a></h2>
-      <p>まず Feature Policy のモチベーションとして、 <strong>機能の制限</strong> と <strong>権限の移譲</strong> という二つのニーズを解説する。
+      <p>まず Feature Policy のモチベーションとして、 <em>機能の制限</em> と <em>権限の移譲</em> という二つのニーズを解説する。
       <section>
         <h3 id="機能の制限"><a href="#機能の制限">機能の制限</a></h3>
         <p>パフォーマンスやセキュリティの観点から、実装はあるが、使用する上で制限を設けたい機能がいくつか存在する。
@@ -138,7 +138,7 @@
         <p>iframe では強力な API が実行されるため、ユーザに許可を求める必要がある。
         <ul>
           <li>
-            <strong>jxck.io の画面上</strong> に <strong>「example.com が xxx の許可を求めている」</strong> とプロンプトが出ても、その意味がユーザに伝わるか。
+            <em>jxck.io の画面上</em> に <em>「example.com が xxx の許可を求めている」</em> とプロンプトが出ても、その意味がユーザに伝わるか。
           </li>
           <li>仮に権限が付与されたとして、別のページが同じように example.com を埋め込んでいた場合、その権限はどうすべきか。
           <li>iframe が複数埋め込まれていた場合に、複数プロンプトを出すことの UX はどうか
@@ -165,15 +165,15 @@
             permission ui は、 <code translate="no">「このサイトに権限を許可するか」</code> をユーザに問う
           </li>
           <li>
-            権限を付与された <a href="https://jxck.io">https://jxck.io</a> は <a href="https://example.com">https://example.com</a> へ、その <strong>権限を移譲</strong> できる
+            権限を付与された <a href="https://jxck.io">https://jxck.io</a> は <a href="https://example.com">https://example.com</a> へ、その <em>権限を移譲</em> できる
           </li>
         </ul>
-        <p>例えば、 Payment のために 3rd Party iframe を埋め込んだサイトがある場合、ユーザが信頼するかどうかを決めるのはあくまでその <strong>サイト自体</strong> ということだ。
+        <p>例えば、 Payment のために 3rd Party iframe を埋め込んだサイトがある場合、ユーザが信頼するかどうかを決めるのはあくまでその <em>サイト自体</em> ということだ。
         <p>埋め込まれた Payment 用の iframe を選定したのはそのサイトであり、そこを含めてユーザはそのサイトを信頼するかどうかを決めるべきという方針である。
         <p>もし既にサイト自体に権限があれば、サイトはプロンプト無しに iframe に権限を移譲できる。
-        <p>サイトが権限を得る前ならば、 iframe が権限を必要とした時点で、 <strong>サイト自体に権限を与えるか</strong> のプロンプトが出る。
-        <p>そして、この <strong>機能の制限</strong> および <strong>権限の移譲</strong> は Feature Policy を用いて行うこととなった。
-        <p><strong>ただし、まだ方針がきまりつつある段階であり、実装がその通りにされているわけではない。</strong>
+        <p>サイトが権限を得る前ならば、 iframe が権限を必要とした時点で、 <em>サイト自体に権限を与えるか</em> のプロンプトが出る。
+        <p>そして、この <em>機能の制限</em> および <em>権限の移譲</em> は Feature Policy を用いて行うこととなった。
+        <p><em>ただし、まだ方針がきまりつつある段階であり、実装がその通りにされているわけではない。</em>
         <p>それを踏まえた上で、類似する API である iframe sandbox とその CSP 版も合わせて、これら API について解説する。
       </section>
     </section>
@@ -215,7 +215,7 @@
       <p>もし Report-Only で適用した場合は、単に無視されることになる。
       <p>また、ホワイトリスト方式では、サンドボックス対象のブロックしたい機能を増やした場合に問題になる。
       <p>仕様に機能制限が追加されると、古い仕様で sandbox を検証した際に動いていた別の機能が、ブラウザのアップデートで急に動かなくなってしまう可能性があるからだ。
-      <p>つまり、 sandbox は <strong>互換性のリスクなしに拡張することが実質できない</strong>。
+      <p>つまり、 sandbox は <em>互換性のリスクなしに拡張することが実質できない</em>。
       <p>CSP のように、ブラックリスト方式を取っていれば、制限したい項目を増やしオプトインで適用していけるため、拡張に対して開いた設計となるのは、後から判明したのだろう。
       <p>DEMO: <a href="http://labs.jxck.io/content-security-policy/sandbox.html">http://labs.jxck.io/content-security-policy/sandbox.html</a>
     </section>
@@ -263,7 +263,7 @@
         <h3 id="with-iframe-sandbox"><a href="#with-iframe-sandbox">with iframe sandbox</a></h3>
         <p>前述のように iframe sandbox は制限事項の追加拡張に対して閉じている。
         <p>そこで、 iframe に対して sandbox に入っていない機能を、追加で無効化する用途でも Feature Policy を用いる。
-        <p>Feature Policy は <strong>sandbox が制限する機能は重複して持たず</strong> sandbox と組み合わせて利用することが想定されている。
+        <p>Feature Policy は <em>sandbox が制限する機能は重複して持たず</em> sandbox と組み合わせて利用することが想定されている。
         <p>設定する際は、 CSP の sandbox を基準とし、許可したいものを <code translate="no">allow-*</code> で、追加で制限したいものを Feature Policy で行うことになるだろう。
         <p>例として、 iframe Sandbox を有効にしつつ、 script の実行を許可するが、それによって sycn-xhr が行われるのは制限したいといった場合は以下のようになるだろう。
         <pre><code translate="no">Content-Security-Policy: sandbox allow-scripts;

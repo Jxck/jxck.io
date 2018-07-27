@@ -53,7 +53,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2017-02-13T08:00:00+08:00",
-  "dateModified": "2017-11-29T08:00:00+08:00",
+  "dateModified": "2018-07-27T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -372,9 +372,18 @@ h6 > a:hover::before {
   color: Brown;
 }
 
-i::before,
-i::after {
+em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+em::before,
+em::after {
   content: "*";
+}
+
+strong {
+  color: red;
 }
 
 strong::before,
@@ -644,7 +653,7 @@ td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2017-02-13>2017-02-13</time>
-    <li>updated_at: <time class=updated_at datetime=2017-11-29>2017-11-29</time>
+    <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
     <li class=tags>tags: [<a href='/tags/csp.html'>csp</a>,<a href='/tags/security.html'>security</a>]
   </ul>
 
@@ -662,7 +671,7 @@ td:last-child {
       <p>CSP の基本は、意図しないリソースの読み込みや、 Inline Script の実行を防ぐことにある。
       <p>例えば、エスケープ漏れにより XSS が発生し、悪意のある Inline Script が埋め込まれた場合でも、 Inline Script を禁止するポリシーを適用したページでは、その実行はブラウザによって Violation(違反)と判断されブロックされる。
       <p>これによって、対策漏れにより発生してした XSS の発動を水際で防ぐことが可能となる。
-      <p>しかし、本質的な CSP の責務は「<strong>ポリシーに照らし合わせた違反のブロック</strong>」であり、その「<strong>ポリシーの違反が攻撃とは限らない</strong>」という点には注意が必要だ。
+      <p>しかし、本質的な CSP の責務は「<em>ポリシーに照らし合わせた違反のブロック</em>」であり、その「<em>ポリシーの違反が攻撃とは限らない</em>」という点には注意が必要だ。
       <p>例えば、 Web を閲覧するユーザの中には、以下に挙げるような方法で、 DOM を変更し自分にあった閲覧環境を実現している場合がある。
       <ul>
         <li>ブックマークレット
@@ -675,7 +684,7 @@ td:last-child {
       <p>しかし、実際どういったポリシーがどういったユーザに不便を強いる可能性があるのかは、 CSP をデプロイしてみないとわからない。
       <p>そこで、比較的に技術リテラシーの高いユーザが閲覧していると予想される本サイトに対して、去年の 3 月から CSP を適用しレポートの収集を実施することにした。
       <p><a href="https://blog.jxck.io/entries/2016-03-30/content-security-policy.html">Content Security Policy(CSP) 対応と report-uri.io でのレポート収集 | blog.jxck.io</a>
-      <p>なにより重要なのは、 <strong>このサイトはほとんど全てが静的に生成されており、かつ <code translate="no">&lt;input&gt;</code> フォームが無い</strong> という点である。
+      <p>なにより重要なのは、 <em>このサイトはほとんど全てが静的に生成されており、かつ <code translate="no">&lt;input&gt;</code> フォームが無い</em> という点である。
       <p>この条件で XSS に準ずる攻撃を成立されるのは難しいだろう。できたとしても、それをするメリットはかなり低いし、実際に攻撃は観測していない。
       <p>つまり、このサイトで収集した CSP 違反のレポートは、ほとんどが設定ミスかユーザの閲覧環境に起因するものであるだろうと推測できるため、ここから、リアルワールドにおいて本質的に攻撃では無いポリシー違反がどの程度発生するのかを知る上で参考になると考える。
       <p>今回はそのレポート収取の結果と、運用に当たって気づいたノウハウについて紹介する。

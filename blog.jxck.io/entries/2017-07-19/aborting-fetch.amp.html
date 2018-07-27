@@ -53,7 +53,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2017-07-19T08:00:00+08:00",
-  "dateModified": "2017-10-24T08:00:00+08:00",
+  "dateModified": "2018-07-27T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -372,9 +372,18 @@ h6 > a:hover::before {
   color: Brown;
 }
 
-i::before,
-i::after {
+em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+em::before,
+em::after {
   content: "*";
+}
+
+strong {
+  color: red;
 }
 
 strong::before,
@@ -644,7 +653,7 @@ td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2017-07-19>2017-07-19</time>
-    <li>updated_at: <time class=updated_at datetime=2017-10-24>2017-10-24</time>
+    <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
     <li class=tags>tags: [<a href='/tags/fetch.html'>fetch</a>,<a href='/tags/promise.html'>promise</a>]
   </ul>
 
@@ -724,7 +733,7 @@ td:last-child {
       <p><a href="https://dom.spec.whatwg.org/#aborting-ongoing-activities">Aborting ongoing activities</a>
       <p>実際に、同じ問題を持っていた WebUSB API などの周辺仕様の反応も良好なようだ。
       <p>つまり、この方法が今後の Web における一般的な方法として使われていき、 Promise を繋いで非同期処理を行う上での頻出パターンの一つとなる可能性がある。
-      <p>そうなったときのためにも、 <strong>現状の提案を把握し異論があれば発言をする大事なタイミング</strong> だと思われるため、この API を解説する。
+      <p>そうなったときのためにも、 <em>現状の提案を把握し異論があれば発言をする大事なタイミング</em> だと思われるため、この API を解説する。
       <p>作業中の仕様であるため変更される可能性はあり、まだ実装したブラウザも確認してない。
     </section>
     <section>

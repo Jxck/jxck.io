@@ -60,7 +60,7 @@
     "width": 700
   },
   "datePublished": "2018-03-27T08:00:00+08:00",
-  "dateModified": "2018-03-30T08:00:00+08:00",
+  "dateModified": "2018-07-27T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -104,7 +104,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
     <ul class=info>
       <li>created_at: <time class=created_at datetime=2018-03-27>2018-03-27</time>
-      <li>updated_at: <time class=updated_at datetime=2018-03-30>2018-03-30</time>
+      <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
       <li class=tags>tags: [<a href='/tags/expect-ct.html'>expect-ct</a>,<a href='/tags/hpkp.html'>hpkp</a>,<a href='/tags/ct.html'>ct</a>,<a href='/tags/security.html'>security</a>]
     </ul>
 
@@ -130,7 +130,7 @@
       <h2 id="ca-は信用できるのか問題"><a href="#ca-は信用できるのか問題">「CA は信用できるのか?」問題</a></h2>
       <p>HTTPS 化が前提として定着した昨今、トラストアンカーとしての CA の責務は増している。
       <p>我々が依存する PKI は、 「CA は信用できる」という前提のもとに成り立っており、 CA はその信用を担保するために堅牢なシステムを構築することを求められる。
-      <p>しかし、最近 CA が <strong>証明書を誤発行する</strong> などといった、この安全の前提を崩すような事態が複数発生している。
+      <p>しかし、最近 CA が <em>証明書を誤発行する</em> などといった、この安全の前提を崩すような事態が複数発生している。
       <p>(ここでは、ドメインオーナーの知らないところでそのドメインの証明書が発行されることを、理由/方法によらず誤発行と言うことにする。)
     </section>
     <section>
@@ -168,12 +168,12 @@
                    +-----------+
                    | Eve(MITM) |
                    +-----------+</code></pre>
-      <p>これが <strong>HPKP (HTTP Public Key Pinning)</strong> の基本的な考え方であった。
+      <p>これが <em>HPKP (HTTP Public Key Pinning)</em> の基本的な考え方であった。
       <p>本サイトも、実験的にこれを適用していた。
       <p><a href="https://blog.jxck.io/entries/2016-04-09/public-key-pinning.html">Public Key Pinning for HTTP(HPKP) 対応と report-uri.io でのレポート収集</a>
       <p>しかし、このヘッダは証明書の失効/更新時に、 Hash が不整合を起こすのを防ぐため、先にバックアップ Hash を付与しておくなど、運用負荷が高かった。
       <p>(本サイトでも、しばらく前からヘッダ自体を付与していない)
-      <p>そこで HPKP の代替として、並行して議論されていた <strong>CertificateTransparency(CT)</strong> という仕組みを応用し、より運用負荷が低い形で同等のことを実現する方法が提案された。
+      <p>そこで HPKP の代替として、並行して議論されていた <em>CertificateTransparency(CT)</em> という仕組みを応用し、より運用負荷が低い形で同等のことを実現する方法が提案された。
       <p>それが Expect-CT ヘッダである。
       <p>Chrome は既に、 HPKP を Deprecate し Expect-CT への移行を促している
       <ul>
@@ -226,7 +226,7 @@
       <p>先の例で、 Google が恐れていたのは「自分たちが知らないところで <code translate="no">google.com</code> の証明書が発行されること」だ。
       <p>自分たちが把握している発行が Log に登録されるのはもちろん問題ないし、把握していない Log が登録されれば、攻撃などで CA が誤発行を起こしたことがすぐにわかる。
       <p>攻撃は、発生していることがわかれば、対応ができる。これは、わからなかったころと比べるとかなりの進歩だ。
-      <p>つまり、 Monitor である Google の視点で言えば「<strong>CA を監視する技術</strong>」と言えなくもない。
+      <p>つまり、 Monitor である Google の視点で言えば「<em>CA を監視する技術</em>」と言えなくもない。
       <p>発行された Log が必ず登録されていることや、その Log が改ざんされていないことは、どう保証するのかは後述する。
     </section>
     <section>
@@ -353,7 +353,7 @@
         <h3 id="証明書が誤発行されたが-log-を登録せず証明書には-sct-を埋め込まない"><a href="#証明書が誤発行されたが-log-を登録せず証明書には-sct-を埋め込まない">証明書が誤発行されたが、 Log を登録せず、証明書には SCT を埋め込まない</a></h3>
         <p>SCT が証明書になければ、ブラウザはその証明書が誤発行されたものかどうかを確認することができない。
         <p>単に SCT に対応してない証明書である、と扱うことになってしまう。
-        <p>そこで <strong>Chrome は EV については SCT を必須</strong> とし、 SCT がなければその時点で Invalid とみなすという方向にした。
+        <p>そこで <em>Chrome は EV については SCT を必須</em> とし、 SCT がなければその時点で Invalid とみなすという方向にした。
         <pre class=text><code translate="no">    +--------------+                     +--------------+
     |              |                     |              |
     |              |                     |              |
@@ -423,7 +423,7 @@
                    +-----------+
                    | Eve(MITM) |
                    +-----------+</code></pre>
-        <p>そこで、「<strong>このコンテンツは CT に対応した証明書で提供される</strong>」ということを明示する方法が提案された。
+        <p>そこで、「<em>このコンテンツは CT に対応した証明書で提供される</em>」ということを明示する方法が提案された。
         <p>これが <code translate="no">Expect-CT</code> ヘッダだ。
         <pre class=text><code translate="no">                 Expect-CT: enforce
 +------------+                       +-----------+
@@ -448,7 +448,7 @@
             <code translate="no">max-age</code>: 有効期限
           </li>
         </ul>
-        <p>なお <strong>Expect-CT 自体が SCT の値を含むわけではない</strong> 点に注意したい。
+        <p>なお <em>Expect-CT 自体が SCT の値を含むわけではない</em> 点に注意したい。
         <p>これにより、証明書が変わってもヘッダの値は変わらないため、 HPKP と比べて運用負荷が大きく下がる。
         <p>また、他の CSP のように <code translate="no">Expect-CT-Report-Only</code> は定義されておらず、 <code translate="no">enforce</code> を付けずに <code translate="no">report-uri</code> のみとすれば、レポートだけが飛ぶ。
         <pre class=http><code translate="no">Expect-CT: max-age=86400, report-uri=&quot;https://foo.example/report&quot;</code></pre>
@@ -524,7 +524,7 @@ d0  d1  d2  d3  d4  d5  d6  d7</code></pre>
       </ul>
       <p>つまり、計算に必要なのは m, k g, h だけで済む。
       <p>第三者がこれを検証し続ければ、 Tree のどこかが意図的に書き換えられていないことが保証できる。
-      <p>こうして、 CT Log は Merkle Hashe Tree を用いて <strong>追記</strong> しか出来ないことが暗号的に保証されている。
+      <p>こうして、 CT Log は Merkle Hashe Tree を用いて <em>追記</em> しか出来ないことが暗号的に保証されている。
       <section>
         <h3 id="log-の存在検証-merkle-audit-proofs"><a href="#log-の存在検証-merkle-audit-proofs">Log の存在検証 (Merkle Audit Proofs)</a></h3>
         <p>ある証明書が、 Log に含まれていることを検証する。
@@ -545,7 +545,7 @@ d0  d1  d2  d3  d4  d5  d6  d7</code></pre>
  |   |   |   |   |   |   |   |
 d0  d1  d2 [d3] d4  d5  d6  d7</code></pre>
         <p>これにより、実際の Hash の計算は、全証明書が 1000 万個あったとしても、 24 個あれば足りることになる。(<code translate="no">10M &lt; 2^24</code>)
-        <p>もし、結果が Root と違えば、その証明書は <strong>Log の中に無い</strong> ことがわかる。
+        <p>もし、結果が Root と違えば、その証明書は <em>Log の中に無い</em> ことがわかる。
         <p>これは、主にブラウザが証明書の提供を受けた時に、それが Log に存在するかを確認し、なければ否認するという用途に利用できる。
       </section>
     </section>
@@ -693,12 +693,12 @@ KOqkqm57TH2H3eDJAkSnh6/DNFu0Qg==
     </section>
     <section>
       <h2 id="日本語訳について"><a href="#日本語訳について">日本語訳について</a></h2>
-      <p>Chrome では、 Certificate Transparency の情報を日本語で表示すると「<strong>証明書の透明性</strong>」と訳しており、意味的にもそれが適しているだろう。
+      <p>Chrome では、 Certificate Transparency の情報を日本語で表示すると「<em>証明書の透明性</em>」と訳しており、意味的にもそれが適しているだろう。
       <p>しかし、 CT を「証明書透かし」や「透かし入り証明書」と訳す文書もあるようだ。
       <p>恐らく Transparency を「透かし」と安直に訳したのでは無いかと筆者は想像している。
       <p>百歩譲って、 SCT を「透かし」と捉えることもできなくはないかもしれないが、 SCT は証明書に埋め込むだけでなく、ハンドシェイクや OCSP で渡しても良い。
       <p>また、 CT の仕組み自体は SCT を発行するだけでなく、誤発行を検知することも含め、広く「CA がやっていることの透明性を高めよう(監視しよう)」というスコープだ。
-      <p>以上より、もし訳すのであれば「証明書透かし」や「透かし入り証明書」ではなく「<strong>証明書の透明性</strong>」とするのが妥当だと考える。
+      <p>以上より、もし訳すのであれば「証明書透かし」や「透かし入り証明書」ではなく「<em>証明書の透明性</em>」とするのが妥当だと考える。
       <p>(また、普通「電子透かし」は Digital Wartermarking で、 Transparency とは言わないかと思う)
     </section>
     <section>

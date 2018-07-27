@@ -60,7 +60,7 @@
     "width": 700
   },
   "datePublished": "2017-06-12T08:00:00+08:00",
-  "dateModified": "2017-06-12T08:00:00+08:00",
+  "dateModified": "2018-07-27T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -104,7 +104,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
     <ul class=info>
       <li>created_at: <time class=created_at datetime=2017-06-12>2017-06-12</time>
-      <li>updated_at: <time class=updated_at datetime=2017-06-12>2017-06-12</time>
+      <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
       <li class=tags>tags: [<a href='/tags/web%20budget%20api.html'>web budget api</a>,<a href='/tags/service%20worker.html'>service worker</a>,<a href='/tags/pwa.html'>pwa</a>]
     </ul>
 
@@ -132,7 +132,7 @@
       <p>しかし、ユーザへの通知ではなく、例えばデータの同期等の処理をバックグラウンドで行うなど Silent Push のユースケースも考えられる。
       <p>Service Worker が登録されて、そこにユーザへの通知なく Push を自由に送ることができてしまうと、 Push が乱用される可能性がある。
       <p>Silent Push が乱用されると、ユーザの知らないところで著しくバッテリーが消費されるなどのリスクもあるため、何らかの方法で制限をかける必要がある。
-      <p>そこで、バックグラウンド実行できる処理それぞれに対して <strong>Cost</strong> を割り当て、その Origin が実行できる <strong>Budget</strong> を定義することで、 Budget の範囲内でしか処理できないように制限する方式が提案されている。
+      <p>そこで、バックグラウンド実行できる処理それぞれに対して <em>Cost</em> を割り当て、その Origin が実行できる <em>Budget</em> を定義することで、 Budget の範囲内でしか処理できないように制限する方式が提案されている。
       <p>例えば Silent Push の Cost が <code translate="no">2</code> であったとし、 Origin に付与された Budget が <code translate="no">6</code> だとしたら、 3 回しか Silent Push を送れないといったイメージだ。
     </section>
     <section>
