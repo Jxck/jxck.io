@@ -28,7 +28,7 @@ HTTP には、似た仕組みとして `TE: gzip` と `Transfer-Encoding: gzip` 
 
 そのため、 HTTP/1.1 対応のサーバでも `Transfer-Encoding: gzip` に対応したものは少なく、 h2o も対応していない。(`Transfer-Encoding: chunked` は対応している)
 
-また、このヘッダは **コネクションに対する設定** であるが、 HTTP2 ではこうしたコネクションに対する設定は、代わりに **SETTINGS Frame** を利用することになったため、こうしたヘッダは設定不可とされている。
+また、このヘッダは *コネクションに対する設定* であるが、 HTTP2 ではこうしたコネクションに対する設定は、代わりに *SETTINGS Frame* を利用することになったため、こうしたヘッダは設定不可とされている。
 
 [8.1.2.2.  Connection-Specific Header Fields](https://tools.ietf.org/html/rfc7540#section-8.1.2.2)
 
@@ -82,7 +82,7 @@ zopfli は Google が開発した圧縮アルゴリズム、およびその実�
 
 <https://github.com/google/zopfli>
 
-**圧縮結果が gzip 互換**であるため、方式そのものは実質 gzip である。
+*圧縮結果が gzip 互換* であるため、方式そのものは実質 gzip である。
 
 
 ### 圧縮率の優先

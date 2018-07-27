@@ -21,9 +21,9 @@ Google が推奨する仕様である [AMP HTML](https://www.ampproject.org/) �
 
 タイトルは識別しやすいよう AMP HTML としたが、実際には AMP という仕様(方針)があり、 HTML 以外にも手を入れている。
 
-AMP は、特にモバイル向けに **静的コンテンツ** を最適化し、表示を高速化することを目的としている。
+AMP は、特にモバイル向けに *静的コンテンツ* を最適化し、表示を高速化することを目的としている。
 
-実際は、高速化するというより、 **遅くなる原因を排除する** という制約を課す仕様という作りになっている。
+実際は、高速化するというより、 *遅くなる原因を排除する* という制約を課す仕様という作りになっている。
 
 
 ### 対応のメリット
@@ -36,7 +36,7 @@ AMP への対応は、実際には 「遅くなる原因」=「アンチパタ�
 - 外部 CSS: 全部 HTML 内にインラインで書かせることにより fetch や再描画を防ぐ
 - `<img>`: 画像の `width x height` を明示させ、 `<amp-img>` を代わりに使わせることで、画像を非同期に読み込み表示を最適化する
 
-まあ、ほとんどが実際は **粗悪なアド** を縛るような仕様になっている。
+まあ、ほとんどが実際は *粗悪なアド* を縛るような仕様になっている。
 
 アドの実装は開発者が手を出しにくいところであるため、こうした外部要因による強制力(AMP 対応が一般化したら、対応してないアドにとっては不利になる)があるのは良いだろう。
 
@@ -149,7 +149,7 @@ AMP-HTML 内では、 `<iframe>` タグを直接書くことは禁止されて�
 
 [amp-iframe](https://www.ampproject.org/docs/reference/extended/amp-iframe.html)
 
-ただし、このタグもまた制約が多い。一番大きいのは **位置** に対する制約だ。
+ただし、このタグもまた制約が多い。一番大きいのは *位置* に対する制約だ。
 
 > They must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top
 > --- <cite><https://www.ampproject.org/docs/reference/components/amp-iframe></cite>

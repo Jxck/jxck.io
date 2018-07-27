@@ -11,7 +11,7 @@ HTTPS 移行の問題点の一つに、 mixed contents への対応がある。
 
 ## mixed contents
 
-HTTPS で配信されたコンテンツが、サブリソースとして HTTP のコンテンツを含む場合、これを **mixed contents** という。
+HTTPS で配信されたコンテンツが、サブリソースとして HTTP のコンテンツを含む場合、これを *mixed contents* という。
 
 HTTPS は MITM に対する耐性があるが、 HTTP は MITM への耐性がないため、 mixed contents の状態ではサブリソースを起点にメインコンテンツへの改ざんが成立してしまう可能性がある。
 
@@ -61,7 +61,7 @@ mixed contents が無ければ本来は以下のようになる。
 
 ### Mixed Active(Script) Contents
 
-以下のタグ、及びスクリプト等は、  **Mixed Active Contents** と呼ばれる。
+以下のタグ、及びスクリプト等は、  *Mixed Active Contents* と呼ばれる。
 
 
 ```html
@@ -191,7 +191,7 @@ iframe 自体を https で読み込んでいても、ネストした iframe 内�
 
 また、 `Block-All-Mixed-Contents` をつければ、 iframe 内のサブリソースはブロックされるため、 mixed contents を回避することはできる。
 
-しかし、 **ネストした iframe 内の mixed contents をブロックしても report は発生しない**。
+しかし、 *ネストした iframe 内の mixed contents をブロックしても report は発生しない*。
 
 もし iframe の内側の mixed contents まで report ができてしまうと、その内容を把握できる可能性などセキュリティ上問題があるからだ。
 

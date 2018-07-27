@@ -51,7 +51,7 @@ DEMO: <https://labs.jxck.io/resize-observer/onresize.html>
 
 そこで導入されたのが ResizeObserver であったわけだが、ではなぜ `resize` イベントを子要素に適用しなかったか。
 
-`resize` イベントは、そもそも view-port に対して定義されており、さらに **変更したこと** だけを伝える仕様になっている。
+`resize` イベントは、そもそも view-port に対して定義されており、さらに *変更したこと* だけを伝える仕様になっている。
 
 [12.1. Resizing viewports \| CSSOM View Module](https://drafts.csswg.org/cssom-view/#resizing-viewports)
 

@@ -34,15 +34,15 @@ Web Font は、特に日本語のように文字数が多い場合、ファイ�
 - swap period
 - font failure period
 
-まず、ブラウザはフォントの取得を開始したら **block period** の間はテキストを表示しない。
+まず、ブラウザはフォントの取得を開始したら *block period* の間はテキストを表示しない。
 
 (正確には、 _invisible-fallback font face_ という、見えない文字でレンダリングする)
 
-**swap period** に入ったら、代替フォントで表示を行う。
+*swap period* に入ったら、代替フォントで表示を行う。
 
 しかし、フォントの取得は継続し、完了したら代替フォントと置き換える。
 
-**failure period** に入っても取得が終わらなければ、フォントの取得は中断し代替フォントのままになる。
+*failure period* に入っても取得が終わらなければ、フォントの取得は中断し代替フォントのままになる。
 
 ![block period の間は fallback font を表示、 swap period の間は fetch が終わると font を置き換え、 failure period に入ると fetch を中断](font-display.svg#1000x225 "font rendering flow with block/swap/failure period in browser")
 

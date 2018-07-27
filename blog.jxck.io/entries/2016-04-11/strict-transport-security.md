@@ -42,7 +42,7 @@ Strict-Transport-Security: max-age=7776000
 
 ただし、 HSTS はレスポンスヘッダで指定された値を、ブラウザが保存したあと有効になる仕組みのため、少なくとも一番最初にアクセスするドメインでは、際は http -> https のリダイレクトを避けられない。
 
-この性質は [HPKP](https://blog.jxck.io/entries/2016-04-09/public-key-pinning.html) 同様 **TOFU** (Trust of First Use) と呼ばれる。
+この性質は [HPKP](https://blog.jxck.io/entries/2016-04-09/public-key-pinning.html) 同様 *TOFU* (Trust of First Use) と呼ばれる。
 
 そこで、ブラウザに HSTS 対象ドメインのリストをあらかじめ含んでおくことで、ユーザがまだアクセスしたことがないドメインについても、初回アクセス時から HTTS アクセスを強制する仕組みが HSTS Preload である。
 
@@ -61,11 +61,11 @@ Chrome の場合は、以下からドメインを申請すると、審査が実�
 
 ここを HSTS に含んでしてしまうと、実験ができなくなってしまうため、除外する必要がある。
 
-結果として、本ドメインでは **`includeSubDomains` の指定はせず**、ドメインごとに個別に指定することとした。
+結果として、本ドメインでは *`includeSubDomains` の指定はせず*、ドメインごとに個別に指定することとした。
 
 また、 Chrome の Preload 登録の条件には、 `includeSubDomains` の適用が含まれている。
 
-したがって同様の理由から、止むを得ず **preload 登録は見送る** こととした。
+したがって同様の理由から、止むを得ず *preload 登録は見送る* こととした。
 
 結果、現時点では [jxck.io](https://jxck.io) 及び [blog.jxck.io](https://blog.jxck.io) に対して、以下のヘッダを付与した。
 

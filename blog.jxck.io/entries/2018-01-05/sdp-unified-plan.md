@@ -29,9 +29,9 @@ SDP は、 WebRTC の通信開始前に、シグナリングで交換するデ�
 
 もし WebRTC のセッションにおいて、複数の Audio/Video Stream を交換する場合は、各ストリームの情報を SDP に含める必要がある。
 
-この **複数ストリーム情報の記述形式** を巡っては、 2 つの Plan があった。
+この *複数ストリーム情報の記述形式* を巡っては、 2 つの Plan があった。
 
-それが **Plan A** と **Plan B** であり、結論としては **標準は Plan A を採用** し、それを **Unified Plan** と呼ぶことにした。
+それが *Plan A* と *Plan B* であり、結論としては *標準は Plan A を採用* し、それを *Unified Plan* と呼ぶことにした。
 
 Firefox は Unified Plan に対応しているのだが、 Chrome/Safari/Edge は Plan B に対応し今に至る。
 

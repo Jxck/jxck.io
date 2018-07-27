@@ -73,7 +73,7 @@ Cookie: history=jxck.io
 
 ## double keying
 
-Cookie は、ブラウザ内で「**どこから付与されたか**」をキーとして保存されている。
+Cookie は、ブラウザ内で「*どこから付与されたか*」をキーとして保存されている。
 
 したがって、閲覧しているサイトが jxck.io であれ mozaic.fm であれ、同じ ec.example.com にアクセスする際は、そこから取得した Cookie をつける。
 

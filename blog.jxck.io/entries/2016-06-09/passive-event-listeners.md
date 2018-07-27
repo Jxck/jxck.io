@@ -58,11 +58,11 @@ explainer.md#the-problem:1 Deferred long-running timer task(s) to improve scroll
 
 もし、ブラウザがリスナを実行する前に、リスナが `preventDefault()` を呼ばないことを保障できればこの問題は解決する。
 
-この `preventDefault()` を呼ばないリスナを **Passive Listener** と表現する。
+この `preventDefault()` を呼ばないリスナを *Passive Listener* と表現する。
 
-そして、登録したリスナが **Passive Listener** であることを明示するのが、今回追加された `passive` フラグである。
+そして、登録したリスナが *Passive Listener* であることを明示するのが、今回追加された `passive` フラグである。
 
-この値は、同じく今回追加された `addEventListener()` の第三引数に渡す **Event Listener Options** で指定する。
+この値は、同じく今回追加された `addEventListener()` の第三引数に渡す *Event Listener Options* で指定する。
 
 
 ```js

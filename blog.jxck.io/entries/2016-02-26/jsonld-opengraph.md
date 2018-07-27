@@ -100,7 +100,7 @@ JSON-LD と紛らわしいものに [LD-JSON (Line Delimitered JSON)](https://en
 
 それだけなら、実際全く関係ない仕様なのでまあ問題ない。
 
-しかし、 JSON-LD の HTML 内の記述は script type が **application/ld+json** なのが微妙に引っかかる。
+しかし、 JSON-LD の HTML 内の記述は script type が *application/ld+json* なのが微妙に引っかかる。
 
 
 ## Open Graph

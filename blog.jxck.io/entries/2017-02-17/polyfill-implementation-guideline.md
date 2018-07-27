@@ -13,9 +13,9 @@ Polyfill は便利な一方で、時として標準化の妨げになってし�
 
 ## Web における Breaking Change
 
-Breaking Change は、簡単に言えば **後方互換を失うことで既存のものが壊れる可能性がある変更** のことを表す。
+Breaking Change は、簡単に言えば *後方互換を失うことで既存のものが壊れる可能性がある変更* のことを表す。
 
-そして、 Web における Breaking Change (**Break the Web**)、具体的には Web の標準技術について、何か追加/変更を行なったことによって既存のコンテンツが壊れることは、基本的に許されない。
+そして、 Web における Breaking Change (*Break the Web*)、具体的には Web の標準技術について、何か追加/変更を行なったことによって既存のコンテンツが壊れることは、基本的に許されない。
 
 また Web 上には、更新されないまま残るコンテンツも多くあるため、壊れたコンテンツ側が変更に追従すれば良いという前提を取るのが難しい。
 
@@ -59,7 +59,7 @@ TAG のドキュメントでは、大まかな流れが以下のように紹介�
 
 問題を起こしやすいのは、 1 から 4 の段階、つまり仕様がきっちりと固まってない段階で、早まった API を実装した Polyfill を提供してしまうパターンだ。
 
-これは俗に Ponyfill/Prolyfill/Nottifill などと呼ばれて[分類](https://github.com/jonathantneal/document-promises/issues/4#issuecomment-256235909) されることもあるが、いずれも問題をはらむ可能性があるということから TAG のドキュメントではこれらを総じて **Speculative Polyfill** としている。文意としては "先走った Polyfill" といったところか。
+これは俗に Ponyfill/Prolyfill/Nottifill などと呼ばれて[分類](https://github.com/jonathantneal/document-promises/issues/4#issuecomment-256235909) されることもあるが、いずれも問題をはらむ可能性があるということから TAG のドキュメントではこれらを総じて *Speculative Polyfill* としている。文意としては "先走った Polyfill" といったところか。
 
 策定中の API は、クラス/メソッド名などが確定しておらず、議論や試験実装を経てそれらを変更する可能性がある。
 

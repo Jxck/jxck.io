@@ -59,7 +59,7 @@ fetch('foo.txt').then((res) => {
 - `foo.txt` が大きかった場合、 fetch を中断(キャンセル)する。
 - `foo.txt` が大きかった場合、ダウンロードの進捗(プログレス)を得る。
 
-現在の Promise の仕様では、非同期処理に対してあくまで **fullfilled(完了した)** か **rejected(失敗した)** の二つの状態を返すことしかできない。
+現在の Promise の仕様では、非同期処理に対してあくまで *fullfilled(完了した)* か *rejected(失敗した)* の二つの状態を返すことしかできない。
 
 このため、その途中の状態に処理を挟む余地がないためである。
 
@@ -70,7 +70,7 @@ fetch('foo.txt').then((res) => {
 
 - [Streams Spec](https://streams.spec.whatwg.org/)
 
-Stream は、 I/O 処理を chunk ごとに返し、非同期処理の **途中** に処理を挟むための仕様である。
+Stream は、 I/O 処理を chunk ごとに返し、非同期処理の *途中* に処理を挟むための仕様である。
 
 先の例を Stream で取得する場合、以下のように書くことができる。
 
@@ -212,7 +212,7 @@ fetch を含めて Promise を返す API は増加しつつあるため、 Cance
 
 ## 結論
 
-Stream での progress と cancel は可能になったが、まだ **ブラウザが実装しているか** という問題もある。
+Stream での progress と cancel は可能になったが、まだ *ブラウザが実装しているか* という問題もある。
 
 - [Fetch \| canuise](https://caniuse.com/#feat=fetch)
 

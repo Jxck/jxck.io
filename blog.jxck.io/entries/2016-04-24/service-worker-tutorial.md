@@ -292,7 +292,7 @@ DEMO: <https://labs.jxck.io/service-worker/backgroundsync/>
 
 push に必要な情報とその取り方、投げ方。
 
-**デモで作った API KEY は当たり前ですが無効にしてあります、全く同じ値を入れても動きません**
+*デモで作った API KEY は当たり前ですが無効にしてあります、全く同じ値を入れても動きません*
 
 
 ### 1. Google Developer Console
