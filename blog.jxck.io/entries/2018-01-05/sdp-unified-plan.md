@@ -13,7 +13,8 @@ SDP の互換性についてインパクトの大きいこの変更について�
 
 実装が進み `SdpFormat` は `sdpSemantics` に変わったため、記事を修正。
 
-[PSA: Unified Plan SDP testing flag is now available on Canary](https://groups.google.com/forum/#!topic/discuss-webrtc/x8lcqHRlWmA)
+- [PSA: Unified Plan SDP testing flag is now available on Canary](https://groups.google.com/forum/#!topic/discuss-webrtc/x8lcqHRlWmA)
+- [PSA: RTCRtpTransceiver shipping in M69 behind sdpSemantics:'unified-plan'](https://groups.google.com/forum/#!msg/discuss-webrtc/zMB1aL6eZ1Q/gVVQ_4rSBAAJ)
 
 なお、以下のフラグを付けて起動するとデフォルトで有効にできる。
 
