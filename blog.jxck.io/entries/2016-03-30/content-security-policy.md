@@ -149,7 +149,7 @@ CSP の違反レポートは以下のような JSON データである。
 
 一通りエラーを見て回ったところ、以下の点で修正が必要だった。
 
-- *.jxck.io 間でコンテンツをリンクしている
+- <*.jxck.io> 間でコンテンツをリンクしている
 - AMP のカスタムタグを CDN より読み込んでいる
 - AMP のカスタムタグがインラインスタイルを使用していた
 - YouTube の動画を `<iframe>` で埋め込んでいる
@@ -162,14 +162,11 @@ CSP の違反レポートは以下のような JSON データである。
 
 かといって、全体としてスタイルに `'unsafe-inline'` を許容するのもはばかられたため、 AMP ページのみスタイルの `'unsafe-inline'` を許可した。
 
-よって、通常のページと AMP 対応ページでは以下の出し分けをしている。
+よって、通常のページ(上)と AMP 対応ページ(下)では以下の出し分けをしている。
 
 
 ```http
-# normal page
 content-security-policy-report-only: default-src 'self' https://*.jxck.io https://www.google-analytics.com ; child-src https://www.youtube.com ; report-uri https://xxx.report-uri.io/r/default/csp/reportOnly
-
-# amp page
 content-security-policy-report-only: default-src 'self' https://*.jxck.io https://www.google-analytics.com https://cdn.ampproject.org ; style-src 'unsafe-inline' ; report-uri https://xxx.report-uri.io/r/default/csp/reportOnly
 ```
 
