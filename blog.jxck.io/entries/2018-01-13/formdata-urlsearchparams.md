@@ -34,7 +34,7 @@ HTML がこうであった場合。
 JS は以下のように書かれる場合がある。
 
 
-```javascript
+```js
 document.querySelector('#login').onsubmit = (e) => {
   e.preventDefault()
   const username = document.querySelector('#username')
@@ -57,7 +57,7 @@ document.querySelector('#login').onsubmit = (e) => {
 `<input>` はその子要素なので、わざわざ `document` を起点にする必要はない。
 
 
-```javascript
+```js
 document.querySelector('#login').onsubmit = (e) => {
   e.preventDefault()
   const username = e.target.querySelector('#username')
@@ -82,7 +82,7 @@ Form で Submit されたデータは、 FormData を経由して取得するこ
 また、そのまま XHR や fetch を使ってそのまま POST することができる。
 
 
-```javascript
+```js
 document.querySelector('#login').onsubmit = (e) => {
   e.preventDefault()
   const form_data = new FormData(e.target)
@@ -100,7 +100,7 @@ document.querySelector('#login').onsubmit = (e) => {
 つまり Body は以下のようなフォーマットだ。
 
 
-```
+```http
 // content-type:multipart/form-data; boundary=----WebKitFormBoundaryPfqUKvtarA1EFkbV
 
 
@@ -129,7 +129,7 @@ URLSearchParams は、 URL の標準化の際に QueryString 部分をサポー�
 また、そのまま POST の Body にすれば、 `application/form-url-encoded` として送ることができる。
 
 
-```javascript
+```js
 document.querySelector('#login').onsubmit = (e) => {
   e.preventDefault()
   const form_data = new FormData(e.target)
@@ -144,7 +144,7 @@ document.querySelector('#login').onsubmit = (e) => {
 つまり Body は以下のようなフォーマットだ。
 
 
-```
+```http
 // content-type:application/x-www-form-urlencoded;charset=UTF-8
 
 username=jxck&password=thisismypassword
@@ -160,7 +160,7 @@ API バックエンドなどに対して JSON で送りたい場合もあるだ�
 ここでは FormData が iterable であるこを利用してオブジェクトを組み立ててみる。
 
 
-```javascript
+```js
 document.querySelector('#login').onsubmit = (e) => {
   e.preventDefault()
   const form_data = new FormData(e.target)
@@ -183,7 +183,7 @@ submit に callback を仕込む仕様の提案がかなり前に出ている。
 [Need callback for form submit data](https://github.com/w3c/webcomponents/issues/187)
 
 
-```javascript
+```js
 document.registerElement('input', {
   prototype: {
     proto: HTMLElement.prototype,

@@ -30,7 +30,7 @@ CSP を有効にするには、 Content-Security-Policy ヘッダを付与し、
 ポリシーは、コンテンツが読み込み可能なコンテンツについての制限であり、以下のような指定が可能である。
 
 
-```
+```http
 Content-Security-Policy: default-src 'self'
 ```
 
@@ -50,7 +50,7 @@ Content-Security-Policy: default-src 'self'
 もし、先ほど例示した設定をサイト全体に適用した場合、何がおこるかを考えてみる。
 
 
-```
+```http
 Content-Security-Policy: default-src 'self'
 ```
 
@@ -84,7 +84,7 @@ Content-Security-Policy: default-src 'self'
 以下のように、ポリシーに `report-uri` ディレクティブでレポート先 uri を指定する。
 
 
-```
+```http
 Content-Security-Policy-Report-Only: default-src 'self'; report-uri https://example.com/csp-report
 ```
 
@@ -165,7 +165,7 @@ CSP の違反レポートは以下のような JSON データである。
 よって、通常のページと AMP 対応ページでは以下の出し分けをしている。
 
 
-```
+```http
 # normal page
 content-security-policy-report-only: default-src 'self' https://*.jxck.io https://www.google-analytics.com ; child-src https://www.youtube.com ; report-uri https://xxx.report-uri.io/r/default/csp/reportOnly
 

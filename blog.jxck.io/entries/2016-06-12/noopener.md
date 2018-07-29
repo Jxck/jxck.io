@@ -20,7 +20,7 @@
 child 側では以下のような JS が書かれており、 parent 側の location を変えて、任意の URL に遷移されることが可能である。
 
 
-```
+```js
 window.opener.location = http://example.com
 ```
 

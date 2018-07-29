@@ -51,7 +51,7 @@ Foreign Fetch は、簡単に言えば 3rd Party Origin の Service Worker が�
 すると、 jxck.io の閲覧者には ec.example.com からの `Set-Cookie` が送られ、保存される。
 
 
-```
+```http
 // response-from: ec.example.com
 Set-Cookie: history=jxck.io
 ```
@@ -61,7 +61,7 @@ Set-Cookie: history=jxck.io
 ユーザが mozaic.fm を閲覧すると、 Ad を取得する時に以下のように Cookie が送られる。
 
 
-```
+```http
 // request-for: ec.example.com
 Cookie: history=jxck.io
 ```

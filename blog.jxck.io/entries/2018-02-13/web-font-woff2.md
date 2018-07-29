@@ -41,7 +41,7 @@ WOFF2 は WOFF よりも圧縮率が高いとされている。
 ([Unicode を解説する記事](https://blog.jxck.io/entries/2017-03-02/unicode-in-javascript.html) や [突然の死](https://blog.jxck.io/entries/2017-10-31/houdini-paint-api.html) を書いたことによる影響が大きい)
 
 
-```
+```text
 © 乖 忖 揉 汲 牢 矩 舵 蒙 謳 辿 鯖 黎 ＜ ＞ ＿ ￣ 𠮟 𠮷 𩸽
 ```
 

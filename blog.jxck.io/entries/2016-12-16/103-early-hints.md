@@ -53,7 +53,7 @@ Push されたリソースはブラウザのキャッシュに入り、 `/users`
 テキストベースプロトコルである HTTP/1.1 のレスポンスはこうなっている。
 
 
-```
+```http
 200 OK
 Content-Length: 100
 Content-Type: text/html
@@ -81,7 +81,7 @@ Link: </script.js>; rel=preload
 先の例の場合、 DB を引いてる最中に Link だけを 103 で送り、残りは後から送る。
 
 
-```
+```http
 103 Early Hints
 Link: </style.css>; rel=preload
 Link: </script.js>; rel=preload

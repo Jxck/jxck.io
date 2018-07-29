@@ -61,7 +61,7 @@ body を親要素とすれば、そこからの offset 位置はドキュメン�
 これは、要素自体が持っている。
 
 
-```
+```js
 let target = document.querySelector('.target');
 // target.offsetTop;
 // target.offsetHeight;
@@ -79,7 +79,7 @@ let target = document.querySelector('.target');
 これは、対象 DOM の `getBoundingClientRect()` で取れる。
 
 
-```
+```js
 let rect = target.getBoundingClientRect();
 // rect.top;
 // rect.bottom;

@@ -57,7 +57,7 @@ CSP は全て Report-Only で HTTP ヘッダから適応しており、 CSP レ�
 現状は以下である。(まだ改善点はある)
 
 
-```
+```http
 content-security-policy-report-only:
   default-src 'self'
               https://jxck.io
@@ -99,7 +99,7 @@ Bookmarklet などから DOM を変更することで、ページそのものを
 一例として、以下のレポートは、 CSP の指定範囲外オリジンから jQuery を埋め込んだことによるレポートと思われる。
 
 
-```
+```json
 {
   "csp-report": {
     "document-uri":        "https://blog.jxck.io/entries/...",

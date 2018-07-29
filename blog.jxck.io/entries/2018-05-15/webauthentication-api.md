@@ -233,7 +233,7 @@ ExtensionDataIncluded は今回 0 なので拡張は無し。
 [8.6. FIDO U2F Attestation Statement Format](https://w3c.github.io/webauthn/#fido-u2f-attestation)
 
 
-```
+```js
 u2fStmtFormat = {
                   x5c: [ attestnCert: bytes ],
                   sig: bytes
@@ -259,14 +259,14 @@ sig は Attestation Signature の値だ。
 <https://w3c.github.io/webauthn/#fido-u2f-attestation>
 
 
-```
+```js
 PublicKeyU2F = 0x04 || x || y
 ```
 
 これと、 rpidHash, clientDataHash, credentialId を連結し、先頭に 0x00 を加えると、署名対象のデータが得られる。
 
 
-```
+```js
 verificationData = 0x00 || rpIdHash || clientDataHash || credentialId || publicKeyU2F
 ```
 

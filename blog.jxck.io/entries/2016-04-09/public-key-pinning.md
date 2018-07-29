@@ -89,7 +89,7 @@ Chrome と Firefox への Preload Pins のリストは以下である。
 HPKP を有効化するには、 Public-Key-Pins ヘッダを付与し、その引数にハッシュを指定する。
 
 
-```
+```http
 Public-Key-Pins: pin-sha256="base64=="; max-age=expireTime [; includeSubdomains][; report-uri="reportURI"]
 ```
 
@@ -262,7 +262,7 @@ HPKP が有効になっていることは、 [chrome://net-internals/#hsts](chro
 max-age は、とりあえず 3600s と短い値から始めることにした。
 
 
-```
+```http
 Public-Key-Pins:
   max-age=3600;
   pin-sha256="7JT7NhX2St/VBBkRi4BO427M7ytLy7p3CRYPtHpSm7c=";
@@ -273,7 +273,7 @@ Public-Key-Pins:
 Report-Only は、 `max-age` が不要になる。また report-uri.io では、 Report-Only 用に URI が変わるので、それを設定している。
 
 
-```
+```http
 Public-Key-Pins-Report-Only:
   pin-sha256="7JT7NhX2St/VBBkRi4BO427M7ytLy7p3CRYPtHpSm7c=";
   pin-sha256="+WpRHNpAId2FIOvVgwmS3HsG+eJtERKC4/qM1tQaeRk=";

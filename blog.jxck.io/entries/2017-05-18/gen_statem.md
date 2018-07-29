@@ -29,7 +29,7 @@ OTP の内部でも ssl などはすでに gen_statem に移行している。
 この状態の変化を、現在の状態(S)と発生したイベント(E)の組み合わせによって、実行する処理(A)と次の状態(S')とし、以下のようにモデル化する。
 
 
-```
+```text
 State(S) x Event(E) -> Actions(A), State(S')
 ```
 
@@ -60,7 +60,7 @@ gen_fsm と似ているものの互換性が保たれているわけではない
 gen_fsm と gen_statem の behavior を比較する。
 
 
-```
+```text
 gen_fsm module                    Callback module
 --------------                    ---------------
 gen_fsm:start
@@ -84,7 +84,7 @@ gen_fsm:sync_send_all_state_event -----> Module:handle_sync_event/4
 ```
 
 
-```
+```text
 gen_statem module                        Callback module
 -----------------                        ---------------
 gen_statem:start

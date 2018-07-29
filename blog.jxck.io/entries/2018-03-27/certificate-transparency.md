@@ -816,7 +816,7 @@ Let's Encrypt の SCT 埋め込みがサポートされた。
 また、 `jxck.io` および `blog.jxck.io` に Expect-CT ヘッダを Enforce 無し(Report-Only 相当) で適用した。
 
 
-```
+```http
 Expect-Ct: max-age=31536000, report-uri https://report-uri.example.com
 ```
 

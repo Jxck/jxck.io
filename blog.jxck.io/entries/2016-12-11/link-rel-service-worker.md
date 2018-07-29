@@ -55,7 +55,7 @@ Service Worker は、その処理(ここでいう `sw.js` の中身)をインラ
 (`registrer()` の引数相当は、 HTTP Header の attribute で表現する)
 
 
-```
+```http
 Link: <sw.js>; rel="serviceworker"; scope="/"
 ```
 

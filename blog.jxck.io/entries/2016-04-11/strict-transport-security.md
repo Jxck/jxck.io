@@ -27,7 +27,7 @@
 以下のような HTTP ヘッダを追加することで、 HSTS を有効にすることができる。
 
 
-```
+```http
 Strict-Transport-Security: max-age=7776000
 ```
 
@@ -70,6 +70,6 @@ Chrome の場合は、以下からドメインを申請すると、審査が実�
 結果、現時点では [jxck.io](https://jxck.io) 及び [blog.jxck.io](https://blog.jxck.io) に対して、以下のヘッダを付与した。
 
 
-```
+```http
 Strict-Transport-Security: max-age=31536000
 ```

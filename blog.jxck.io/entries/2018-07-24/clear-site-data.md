@@ -39,7 +39,7 @@ SPA のように実装されている場合は、その状態を含めて初期�
 ヘッダの値に Type を列挙するだけである。
 
 
-```
+```http
 Clear-Site-Data: "cache"
 Clear-Site-Data: "cache", "cookies", "storage", "executionContexts"
 Clear-Site-Data: "*"

@@ -16,7 +16,7 @@ ResizeObserver は、最近増えつつある ObserverFamily の 1 つであり�
 リサイズを検知したい要素をターゲットに `observe()` すると、ターゲットと矩形情報が取得できる。
 
 
-```javascript
+```js
 const resizeObserver = new ResizeObserver((entries) => {
   entries.forEach(({target, contentRect}) => {
     console.log(target)
@@ -58,7 +58,7 @@ DEMO: <https://labs.jxck.io/resize-observer/onresize.html>
 つまり、 resize された結果を取得するためには、 `target` を辿りサイズを取得する必要が出る。
 
 
-```javascript
+```js
 window.addEventListener('resize', (e) => {
   const width  = e.target.outerWidth
   const height = e.target.outerHeight
@@ -86,7 +86,7 @@ Observer を定義することにより、こうした処理を行わずに変�
 必要に応じて [Passive Event Listener](https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html) を検討する必要がある。
 
 
-```javascript
+```js
 const $target = document.querySelector('textarea')
 const resizeObserver = new ResizeObserver((entries) => {
   for (const entry of entries) {

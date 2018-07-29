@@ -127,7 +127,7 @@ If-Modified-Since
 まず、従来の方法で以下のヘッダがあった場合を考える。
 
 
-```
+```http
 Cache-Control: max-age=3600;
 ```
 
@@ -143,7 +143,7 @@ Cache-Control: max-age=3600;
 `Cache-Control` に `stale-while-revalidate` を指定する。
 
 
-```
+```http
 Cache-Control: max-age=3600, stale-while-revalidate=360
 ```
 
@@ -169,7 +169,7 @@ Cache-Control: max-age=3600, stale-while-revalidate=360
 同じく `Cache-Control` に指定する。
 
 
-```
+```http
 Cache-Control: max-age=3600, stale-if-error=360
 ```
 
@@ -201,7 +201,7 @@ Cache-Control: max-age=3600, stale-if-error=360
 (Chrome はリロードではキャッシュを無視する場合があるため、画面に用意したリンクを踏むこと)
 
 
-```
+```http
 Cache-Control: max-age=5, stale-while-revalidate=10, stale-if-error=15
 ```
 
@@ -222,7 +222,7 @@ Cache-Control: max-age=5, stale-while-revalidate=10, stale-if-error=15
 ### 1 year fresh cache
 
 
-```
+```http
 Cache-Control: max-age=31536000
 ```
 
@@ -238,7 +238,7 @@ Cache-Control: max-age=31536000
 ### 1 year stale cache
 
 
-```
+```http
 Cache-Control: max-age=1, stale-while-revalidate=3153600
 ```
 
@@ -258,7 +258,7 @@ Cache-Control: max-age=1, stale-while-revalidate=3153600
 ### 1 year fresh/stale cache
 
 
-```
+```http
 Cache-Control: max-age=15768000, stale-while-revalidate=15768000
 ```
 
@@ -316,7 +316,7 @@ Cache-Control: max-age=15768000, stale-while-revalidate=15768000
 - SiE=1day : その日のうちは、エラーの代替表示として stale cache を利用
 
 
-```
+```http
 Cache-Control: max-age=1, stale-while-revalidate=600, stale-if-error=864000
 ```
 

@@ -55,7 +55,7 @@ Chrome がそこに対して Intent to Implement を出したことは、業界�
 その中に、マイクごとの定義を、 "a=ssrc" で記述する。
 
 
-```
+```sdp
 m=audio 49170 RTP/AVP 101
 a=ssrc:1 msid:left-mic
 a=ssrc:2 msid:center-mic
@@ -74,7 +74,7 @@ Plan A は、 "m=" line をメディアごとに書くというシンプルな�
 この方式が WebRTC の標準として合意され、現在は Unified Plan として策定が進んでいる。
 
 
-```
+```sdp
 ...
 a=group:BUNDLE m1 m2 m3
 ...
@@ -104,7 +104,7 @@ Chrome は、まず WebRTCUnifiedPlan というフラグを用意するとして
 後にデフォルトを "unified-plan" に変更し、 `"plan-b"` が十分に減れば値自体が削除される。
 
 
-```javascript
+```js
 new RTCPeerConnection({sdpSemantics: "unified-plan"})
 ```
 

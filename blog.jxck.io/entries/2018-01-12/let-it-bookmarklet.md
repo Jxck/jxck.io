@@ -43,7 +43,7 @@
 例えば、以下の README.md だった場合は、雑にやるとこんな感じでできそうだ。
 
 
-```javascript
+```js
 javascript: (() => {
   const readme = document.querySelector('#readme');
   document.body.innerHTML = "";
@@ -63,7 +63,7 @@ javascript: (() => {
 それをリンクに直して、遷移できるようにする。
 
 
-```javascript
+```js
 javascript: (() => {
   let url = new URL(location.href);
   for (let $h of document.querySelectorAll('h1, h2, h3, h4')) {
@@ -88,7 +88,7 @@ Twitter のリンクが色も Underline も付かなくなって以降、 URL �
 そこで、対象の `<a>` に色をつける。
 
 
-```javascript
+```js
 javascript:Array.from(document.querySelectorAll('.js-display-url')).forEach((a) => a.style.color="red")
 ```
 
@@ -106,14 +106,14 @@ Google の検索結果は、「期間指定」ができるが「1ヶ月」の次
 例えば 1ヶ月を選ぶと以下が付与される。
 
 
-```
+```url
 &tbs=qdr:m
 ```
 
 この `m` を `m3` にすると 3 ヶ月になる。
 
 
-```javascript
+```js
 javascript:location.href += '&tbs=qdr:m3'
 ```
 
@@ -123,14 +123,14 @@ javascript:location.href += '&tbs=qdr:m3'
 綺麗な URL を取得したいのに、遷移元などの影響で不要なゴミクエリが付いているといった場合にそれを除去する。
 
 
-```javascript
+```js
 javascript:location.href = document.querySelector('link[rel="canonical"]').href
 ```
 
 ところで、 Amazon の URL の canonical は以下のようになっている。
 
 
-```
+```url
 https://www.amazon.co.jp/商品名/dp/XXXXXXXX
 ```
 
@@ -139,7 +139,7 @@ https://www.amazon.co.jp/商品名/dp/XXXXXXXX
 実際は dp 以降だけで良いので、商品名を削除してしまった方が使いやすかったりする。
 
 
-```javascript
+```js
 javascript:location.href = document.querySelector('link[rel="canonical"]').href.replace(/amazon.co.jp\/.*\/dp/, 'amazon.co.jp/dp');
 ```
 
@@ -153,7 +153,7 @@ javascript:location.href = document.querySelector('link[rel="canonical"]').href.
 最後のページまで読むと次のスライドに映るという悪仕様があるため、手前で止めている。
 
 
-```javascript
+```js
 javascript: function loop(n) {
   if (n == 0) {return;}
   setTimeout(function() {
@@ -171,7 +171,7 @@ javascript: function loop(n) {
 `<video>` タグで再生されていれば基本的に表示が可能だが、 UI がない場合は以下で再生中のビデオを PinP できる。
 
 
-```javascript
+```js
 javascript: document.querySelector('video').webkitSetPresentationMode('picture-in-picture')
 ```
 

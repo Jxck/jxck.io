@@ -57,14 +57,14 @@ Zopfli が gzip 互換であり既存のブラウザでもそのまま利用で�
 これまで、多くのブラウザは以下のような値を返していた。
 
 
-```
+```http
 Accept-Encoding: gzip, deflate
 ```
 
 ここに、 `br` があれば Brotli に対応しているため、 Brotli で圧縮したファイルをレスポンスできる。
 
 
-```
+```http
 Accept-Encoding: gzip, deflate, br
 ```
 
@@ -239,7 +239,7 @@ WebP も圧縮済みのフォーマットであるため、圧縮が逆効果と
 圧縮対象は、 html/js/css/png/txt/md など 890 ファイルである。
 
 
-```
+```text
 zopfli: 190.33s user 2.77s system 98% cpu 3:15.28  total
 brotli:  22.44s user 1.42s system 99% cpu   24.014 total
 ```

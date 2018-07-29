@@ -117,7 +117,7 @@ HTML に埋め込む sanbox 属性は、埋め込んだ iframe にしか適用�
 これを HTTP ヘッダで適用できるように、 CSP2 では sandbox ディレクティブが追加された。
 
 
-```
+```http
 Content-Security-Policy: sandbox
 ```
 
@@ -162,7 +162,7 @@ Feature Policy はレスポンスヘッダに付与し、対象機能の制限/�
 `none` は、全てのオリジンに対して制限を適用する。つまりこれでページ上全ての同期 XHR が制限される。
 
 
-```
+```http
 Feature-Policy: sync-xhr 'none'
 ```
 
@@ -174,7 +174,7 @@ Feature-Policy: sync-xhr 'none'
 iframe があった場合も、同一オリジンなら許可されるが、クロスオリジンでは制限される。
 
 
-```
+```http
 Feature-Policy: sync-xhr 'self'
 ```
 
@@ -186,7 +186,7 @@ Feature-Policy: sync-xhr 'self'
 例えば以下のようにすれば、同一オリジンに加え、 iframe 内の example.com では許可される。
 
 
-```
+```http
 Feature-Policy: sync-xhr 'self' https://example.com
 ```
 
@@ -202,7 +202,7 @@ sync-xhr の場合は、もともとブラウザで有効になっている機�
 これを、特定のドメインにのみ許可したい場合は、以下のように指定する。
 
 
-```
+```http
 Feature-Policy: geolocation 'self' https://example.com
 ```
 
@@ -217,7 +217,7 @@ Feature-Policy: geolocation 'self' https://example.com
 もし Geolocation API の呼び出しを全オリジンに対して許可したい場合は以下のように指定することも可能だ。
 
 
-```
+```http
 Feature-Policy: geolocation *
 ```
 
@@ -237,7 +237,7 @@ Feature Policy は *sandbox が制限する機能は重複して持たず* sandb
 例として、 iframe Sandbox を有効にしつつ、 script の実行を許可するが、それによって sycn-xhr が行われるのは制限したいといった場合は以下のようになるだろう。
 
 
-```
+```http
 Content-Security-Policy: sandbox allow-scripts;
 Feature-Policy: sync-xhr 'none'
 ```

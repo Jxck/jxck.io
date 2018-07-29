@@ -188,7 +188,7 @@ Origin Trials の対象となる機能は、執筆時点で以下のとおりで
 HTML ページがある場合は、 `<meta>` タグに埋め込むことで、ブラウザがそれを認識し、ページ上で機能が有効になる。
 
 
-```
+```html
 <meta
   http-equiv="origin-trial"
   data-feature="Foreign Fetch"
@@ -202,7 +202,7 @@ HTML ページがある場合は、 `<meta>` タグに埋め込むことで、�
 HTTP ヘッダの `Origin-Trial` ヘッダに埋め込むこともできる。ページの無い API などの場合はこちらを使う。
 
 
-```
+```http
 Origin-Trial: AjWBjwNj3D6ajLeOwcUojZHss8sYj1mPvbhnmUQRcdrLzXKs13uUlR4pXvlOB7e9R5oMUNZbngniw6X2SLHlXgYAAABXeyJvcmlnaW4iOiAiaHR0cHM6Ly9sYWJzLmp4Y2suaW86NDQzIiwgImZlYXR1cmUiOiAiRm9yZWlnbkZldGNoIiwgImV4cGlyeSI6IDE0Nzc1OTMwMDB9
 ```
 

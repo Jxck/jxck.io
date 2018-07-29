@@ -42,12 +42,10 @@ Safari 開発者の Tweet で、モチベーションが補足されている。
 ちなみに MacOS High Sierra の Safari TP46 と Safari 11.0.2 の UA は以下のようになっている(Update: Safari 11.0.3, 11.1 を追加)
 
 
-```
-(TP46):   User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1 Safari/605.1.15
-(11.0.2): User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/604.4.7 (KHTML, like Gecko) Version/11.0.2 Safari/604.4.7
-(11.0.3): User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/604.5.6 (KHTML, like Gecko) Version/11.0.3 Safari/604.5.6
-(11.1)  : User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1 Safari/605.1.15
-```
+- (TP46 ) : User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1 Safari/605.1.15
+- (11.0.2): User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/604.4.7 (KHTML, like Gecko) Version/11.0.2 Safari/604.4.7
+- (11.0.3): User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/604.5.6 (KHTML, like Gecko) Version/11.0.3 Safari/604.5.6
+- (11.1 ) : User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1 Safari/605.1.15
 
 (一応その次の TP47 でも値は変わっていないが、これまで TP Update で UA が変わっていたのかは未確認)
 
@@ -115,7 +113,7 @@ UA のもう 1 つの用途として、利用したい機能をそのブラウ�
 サーバ側の疑似コードとしてはこのようなイメージだ。
 
 
-```javascript
+```js
 if (UserAgent.match(/Mozilla.*/)) {
   // Netscape 用の処理
 }
@@ -152,7 +150,7 @@ if (UserAgent.match(/Mozilla.*/)) {
 多くの DOM API はクラスやプロパティの有無によって判断が可能だ。
 
 
-```javascript
+```js
 if (navigator.serviceWorker !== undefined) {
   // service worker supported
 }
@@ -161,7 +159,7 @@ if (navigator.serviceWorker !== undefined) {
 ECMAScript API (JS native の機能)の場合もメソッドの場合は同様に prototype などで判断する。
 
 
-```javascript
+```js
 if (String.prototype.padStart !== undefined) {
   // padStart supported
 }
@@ -170,7 +168,7 @@ if (String.prototype.padStart !== undefined) {
 構文の場合は物によるが、例えば ES Module サポートをどうしても調べたいといった場合は以下のような手段が一応ある。
 
 
-```javascript
+```js
 function supportsStaticImport() {
   const script = document.createElement('script')
   return 'noModule' in script
@@ -235,7 +233,7 @@ CSS はいわゆるプログラミング言語ではないため、基本的に�
 例えば、 Brotli や WebP のサポートなどは以下のように明示される場合がある。
 
 
-```
+```http
 Accept-Encoding: gzip, deflate, br
 Accept: image/webp,image/apng,image/*,*/*;q=0.8
 ```
@@ -253,11 +251,11 @@ Brotli 対応が `, br` という 4byte であったとしても、メジャー�
 最近では、デフォルトではない追加の情報については、サーバから Client Hints で要求することもできる。
 
 
-```
-// Previous Response
+```http
+# Previous Response
 Accept-CH: DPR, Viewport-Width
 
-// Next Request
+# Next Request
 Viewport-Width: 1366
 DPR:1
 ```

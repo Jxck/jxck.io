@@ -89,7 +89,7 @@ self.addEventListener('fetch', (e) => {
 Preload Response が発生した場合は、リクエストヘッダに以下が追加される。
 
 
-```
+```http
 Service-Worker-Navigation-Preload: true
 ```
 

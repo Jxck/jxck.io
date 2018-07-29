@@ -161,7 +161,7 @@ Preload は、同じセマンティクスを HTTP Header にも適用できる�
 つまりここまでマークアップで示してきた例は、(onload hack など除き)基本的に全て HTTP Response Header で行うことができる。
 
 
-```
+```http
 Link: <script.js>;rel="preload";as="script"
 
 Link: <font.woff2>;rel="preload";as="font";crossorigin
@@ -218,7 +218,7 @@ Push が既にブラウザにキャッシュされているリソースを考慮
 なお、 HTTP2 の Push はさせずブラウザに Fetch で Preload させたい場合は、 `nopush` を付けることで Opt-Out することができる。
 
 
-```
+```http
 Link: </app/style.css>; rel=preload; as=style; nopush
 ```
 
@@ -247,7 +247,7 @@ Link: </app/style.css>; rel=preload; as=style; nopush
 そこで、ページで共通するサブリソースについて、 HTML のトップレベルへの `<link>` タグで指定することにした。
 
 
-```
+```html
 <link rel=preload as=script src=/assets/js/highlight.min.js>
 <link rel=preload as=script src=//jxck.io/assets/js/ga.js>
 ```

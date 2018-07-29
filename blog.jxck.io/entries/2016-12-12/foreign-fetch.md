@@ -91,7 +91,7 @@ Service Worker に Foreign Fetch という機能が提案されている。
 実はこの API のレスポンスには、以下のようなヘッダが登録されている。
 
 
-```
+```http
 Link: </random/worker.js>; rel="serviceworker"
 Origin-Trial: Ai32KiE0NsOIRPR/NxvUwEpcM4hYyo6RPRvkG8liNEIX...
 ```

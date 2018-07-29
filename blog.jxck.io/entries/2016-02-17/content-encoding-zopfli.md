@@ -49,7 +49,7 @@ HTTP には、似た仕組みとして `TE: gzip` と `Transfer-Encoding: gzip` 
 以下を設定すると、 h2o はコンテンツを on the fly (リクエストが来てから)圧縮し送信してくれる。
 
 
-```
+```http
 gzip: ON
 ```
 
@@ -65,7 +65,7 @@ gzip: ON
 あらかじめコンテンツを gzip 圧縮した状態で `ファイル名.gz` で配置し、以下を設定すると、 h2o は自動的に圧縮済みファイルを転送してくれる。
 
 
-```
+```http
 file.send-gzip: ON
 ```
 
