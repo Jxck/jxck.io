@@ -60,7 +60,7 @@
     "width": 700
   },
   "datePublished": "2018-05-15T08:00:00+08:00",
-  "dateModified": "2018-07-27T08:00:00+08:00",
+  "dateModified": "2018-07-29T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -104,7 +104,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
     <ul class=info>
       <li>created_at: <time class=created_at datetime=2018-05-15>2018-05-15</time>
-      <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
+      <li>updated_at: <time class=updated_at datetime=2018-07-29>2018-07-29</time>
       <li class=tags>tags: [<a href='/tags/fido-u2f.html'>fido-u2f</a>,<a href='/tags/web%20authentication%20api.html'>web authentication api</a>]
     </ul>
 
@@ -276,7 +276,7 @@ const {attestationObject, clientDataJSON} = response</code></pre>
         <h3 id="attstmt"><a href="#attstmt">attStmt</a></h3>
         <p>今回の fmt では attStmt は以下の構造になる。
         <p><a href="https://w3c.github.io/webauthn/#fido-u2f-attestation">8.6. FIDO U2F Attestation Statement Format</a>
-        <pre><code translate="no">u2fStmtFormat = {
+        <pre class=js><code translate="no">u2fStmtFormat = {
                   x5c: [ attestnCert: bytes ],
                   sig: bytes
                 }</code></pre>
@@ -289,9 +289,9 @@ const {attestationObject, clientDataJSON} = response</code></pre>
         <h3 id="verification-procedure"><a href="#verification-procedure">Verification Procedure</a></h3>
         <p>先程 COSE から取得した x と y を連結し、先頭に 0x04 を加えると PublicKey になる。
         <p><a href="https://w3c.github.io/webauthn/#fido-u2f-attestation">https://w3c.github.io/webauthn/#fido-u2f-attestation</a>
-        <pre><code translate="no">PublicKeyU2F = 0x04 || x || y</code></pre>
+        <pre class=js><code translate="no">PublicKeyU2F = 0x04 || x || y</code></pre>
         <p>これと、 rpidHash, clientDataHash, credentialId を連結し、先頭に 0x00 を加えると、署名対象のデータが得られる。
-        <pre><code translate="no">verificationData = 0x00 || rpIdHash || clientDataHash || credentialId || publicKeyU2F</code></pre>
+        <pre class=js><code translate="no">verificationData = 0x00 || rpIdHash || clientDataHash || credentialId || publicKeyU2F</code></pre>
         <p>これを x5c から取り出した attCert で署名した結果が sig と同じになるかを確認すれば良い。
         <p>x5c は ANSI X9.62 Public Key Format というバイナリ形式で、 Node では PEM でないと扱いにくい。
         <p>これは base64 でシリアライズし 64 文字で改行し、ヘッダとフッタをつければ一応 PEM になる。

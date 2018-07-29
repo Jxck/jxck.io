@@ -53,7 +53,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2017-12-30T08:00:00+08:00",
-  "dateModified": "2018-07-27T08:00:00+08:00",
+  "dateModified": "2018-07-29T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -499,7 +499,6 @@ footer .copyright {
 pre {
   word-break: break-all;
   word-wrap: break-word;
-  font-size: 1.2em;
   margin: 1.4em 0 0 0;
   border-radius: 4px;
 }
@@ -572,14 +571,32 @@ pre > code::after {
 .hljs-strong {
   font-weight: bold;
 }
-/*
-.hljs,
-.hljs-subst,
-.hljs-attribute,
-.hljs-selector-tag,
+
+.hljs-attribute {
+  font-weight: bold;
+}
+
+.hljs-meta {
+  color: #4f80e5;
+}
+
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-pseudo {
+  color: #6f42c1;
+}
+
+.hljs-selector-tag {
+  color: #22863a;
+}
+
+.hljs-subst {
+  font-weight: bold;
+}
+
+/**.hljs,**/
 .hljs-meta-keyword,
 .hljs-doctag,
-.hljs-name,
 .hljs-bullet,
 .hljs-code,
 .hljs-addition,
@@ -588,19 +605,16 @@ pre > code::after {
 .hljs-template-variable,
 .hljs-link,
 .hljs-selector-attr,
-.hljs-selector-pseudo,
 .hljs-type,
-.hljs-selector-id,
-.hljs-selector-class,
 .hljs-quote,
 .hljs-template-tag,
 .hljs-deletion,
 .hljs-section,
-.hljs-meta,
 .hljs-meta-string,
 .hljs-emphasis {
+  /** if you find element applyed this style, please tell me https://github.com/jxck/jxck.io/issues **/
+  font-size: 100em;
 }
-*/
 
 table {
   font-family: monospace;
@@ -653,7 +667,7 @@ td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2017-12-30>2017-12-30</time>
-    <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
+    <li>updated_at: <time class=updated_at datetime=2018-07-29>2018-07-29</time>
     <li class=tags>tags: [<a href='/tags/element%20query.html'>element query</a>,<a href='/tags/resize%20observer.html'>resize observer</a>,<a href='/tags/performance.html'>performance</a>]
   </ul>
 
@@ -670,7 +684,7 @@ td:last-child {
       <h2 id="resizeobserver"><a href="#resizeobserver">ResizeObserver</a></h2>
       <p>ResizeObserver は、最近増えつつある ObserverFamily の 1 つであり、要素のリサイズを検知するインタフェースである。
       <p>リサイズを検知したい要素をターゲットに <code translate="no">observe()</code> すると、ターゲットと矩形情報が取得できる。
-      <pre class=javascript><code translate="no">const resizeObserver = new ResizeObserver((entries) =&gt; {
+      <pre class=js><code translate="no">const resizeObserver = new ResizeObserver((entries) =&gt; {
   entries.forEach(({target, contentRect}) =&gt; {
     console.log(target)
     const {x, y, width, height, top, right, bottom, left} = contentRect
@@ -699,7 +713,7 @@ resizeObserver.disconnect(element) // 解放</code></pre>
       <p><code translate="no">resize</code> イベントは、そもそも view-port に対して定義されており、さらに <em>変更したこと</em> だけを伝える仕様になっている。
       <p><a href="https://drafts.csswg.org/cssom-view/#resizing-viewports">12.1. Resizing viewports | CSSOM View Module</a>
       <p>つまり、 resize された結果を取得するためには、 <code translate="no">target</code> を辿りサイズを取得する必要が出る。
-      <pre class=javascript><code translate="no">window.addEventListener(&#039;resize&#039;, (e) =&gt; {
+      <pre class=js><code translate="no">window.addEventListener(&#039;resize&#039;, (e) =&gt; {
   const width  = e.target.outerWidth
   const height = e.target.outerHeight
   console.log({width, height})
@@ -715,7 +729,7 @@ resizeObserver.disconnect(element) // 解放</code></pre>
       <h2 id="resize-event-polyfill"><a href="#resize-event-polyfill">resize event polyfill</a></h2>
       <p>仮に、 Observer のインタフェースを Event 側に寄せたいというのであれば、以下のように CustomEvent を定義することもできるだろう。
       <p>必要に応じて <a href="https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html">Passive Event Listener</a> を検討する必要がある。
-      <pre class=javascript><code translate="no">const $target = document.querySelector(&#039;textarea&#039;)
+      <pre class=js><code translate="no">const $target = document.querySelector(&#039;textarea&#039;)
 const resizeObserver = new ResizeObserver((entries) =&gt; {
   for (const entry of entries) {
     const resize = new CustomEvent(&#039;resize&#039;, { detail: entry });

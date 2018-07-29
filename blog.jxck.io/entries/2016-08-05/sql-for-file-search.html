@@ -60,7 +60,7 @@
     "width": 700
   },
   "datePublished": "2016-08-05T08:00:00+08:00",
-  "dateModified": "2018-07-27T08:00:00+08:00",
+  "dateModified": "2018-07-29T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -104,7 +104,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
     <ul class=info>
       <li>created_at: <time class=created_at datetime=2016-08-05>2016-08-05</time>
-      <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
+      <li>updated_at: <time class=updated_at datetime=2018-07-29>2018-07-29</time>
       <li class=tags>tags: [<a href='/tags/selects.html'>selects</a>,<a href='/tags/sql.html'>sql</a>,<a href='/tags/linux.html'>linux</a>]
     </ul>
 
@@ -122,7 +122,7 @@
       <h2 id="selects"><a href="#selects">selects</a></h2>
       <p>結論からいうとこういうコマンドだ。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre><code translate="no">$ selects mtime, size, basename from &#039;./entries/**/*&#039; where extname &#039;==&#039; &#039;.md&#039; and size &#039;&gt;&#039; 1000 order by mtime
+      <pre class=sh><code translate="no">$ selects mtime, size, basename from &#039;./entries/**/*&#039; where extname &#039;==&#039; &#039;.md&#039; and size &#039;&gt;&#039; 1000 order by mtime
 
 2016-07-06 22:45:44 +0900	18437	web-font-noto-sans.md
 2016-07-07 23:54:19 +0900	11236	amp-html.md
@@ -143,7 +143,7 @@
       <p>まず例をいくつか示す。
       <section>
         <h3 id="ディレクトリ以下をごっそり"><a href="#ディレクトリ以下をごっそり">ディレクトリ以下をごっそり</a></h3>
-        <pre><code translate="no">$ selects &#039;*&#039; from &#039;./entries/**/*&#039;
+        <pre class=sh><code translate="no">$ selects &#039;*&#039; from &#039;./entries/**/*&#039;
 2016-08-05 22:42:14 +0900	4096	2016-01-27
 2016-08-05 22:40:44 +0900	12499	new-blog-start.amp.html
 2016-08-05 22:41:32 +0900	3756	new-blog-start.amp.html.gz
@@ -155,7 +155,7 @@
       </section>
       <section>
         <h3 id="html-だけ"><a href="#html-だけ">.html だけ</a></h3>
-        <pre><code translate="no">$ selects basename from &#039;./entries/**/*&#039; where extname == &#039;.html&#039;
+        <pre class=sh><code translate="no">$ selects basename from &#039;./entries/**/*&#039; where extname == &#039;.html&#039;
 new-blog-start.amp.html
 new-blog-start.html
 html-compression.amp.html
@@ -167,7 +167,7 @@ h2o-http2-deploy.amp.html
       </section>
       <section>
         <h3 id="like-的な"><a href="#like-的な">like 的な</a></h3>
-        <pre><code translate="no">$ selects basename from &#039;./entries/**/*&#039; where basename &#039;=~&#039; &#039;mozaic&#039;
+        <pre class=sh><code translate="no">$ selects basename from &#039;./entries/**/*&#039; where basename &#039;=~&#039; &#039;mozaic&#039;
 mozaicfm-v2.amp.html
 mozaicfm-v2.amp.html.gz
 mozaicfm-v2.html
@@ -177,7 +177,7 @@ mozaicfm-v2.md.gz</code></pre>
       </section>
       <section>
         <h3 id="属性で絞る"><a href="#属性で絞る">属性で絞る</a></h3>
-        <pre><code translate="no">$ selects atime, basename from &#039;./entries/**/*&#039; where atime &#039;&gt;&#039; 2016-08-01 and directory? == true
+        <pre class=sh><code translate="no">$ selects atime, basename from &#039;./entries/**/*&#039; where atime &#039;&gt;&#039; 2016-08-01 and directory? == true
 2016-08-05 22:42:14 +0900       2016-01-27
 2016-08-05 22:42:14 +0900       2016-01-28
 2016-08-05 22:42:14 +0900       2016-02-01
@@ -187,7 +187,7 @@ mozaicfm-v2.md.gz</code></pre>
       </section>
       <section>
         <h3 id="dev-以下で-pipe-か-socket-か-symlink-だけを-ctime-atime-の順で"><a href="#dev-以下で-pipe-か-socket-か-symlink-だけを-ctime-atime-の順で">/dev 以下で pipe か socket か symlink だけを ctime, atime の順で</a></h3>
-        <pre><code translate="no">$ selects socket?, pipe?, symlink? basename from &#039;/dev/*&#039; where pipe? == true or socket? == true or symlink? == true order by atime, ctime
+        <pre class=sh><code translate="no">$ selects socket?, pipe?, symlink? basename from &#039;/dev/*&#039; where pipe? == true or socket? == true or symlink? == true order by atime, ctime
 false   true    true    initctl
 false   false   true    dvd
 false   false   true    cdrom
@@ -210,7 +210,7 @@ false   false   true    core</code></pre>
    .map(&#039;抽出したファイルから select 句にあたる属性を取り出す&#039;)</code></pre>
       <p>各 Proc は引数として受け取ったトークンを元に Ruby のメソッドチェインを組み立てている。
       <p>例えば
-      <pre><code translate="no">where size &gt; 1000</code></pre>
+      <pre class=sql><code translate="no">where size &gt; 1000</code></pre>
       <p>は
       <pre class=ruby><code translate="no">File.size(file) &gt; 100</code></pre>
       <p>になれば良い。
@@ -222,7 +222,7 @@ false   false   true    core</code></pre>
   .call(100)</code></pre>
       <p>この仕組みを踏まえた上でもう一度クエリを見てみて欲しい。
       <p>もはや Ruby のメソッドチェインにしか見えないのではないだろうか?
-      <pre><code translate="no">$ selects atime, basename from &#039;./entries/**/*&#039; where atime &#039;&gt;&#039; 2016-08-01 and directory? == true</code></pre>
+      <pre class=sh><code translate="no">$ selects atime, basename from &#039;./entries/**/*&#039; where atime &#039;&gt;&#039; 2016-08-01 and directory? == true</code></pre>
       <p><code translate="no">select</code>, <code translate="no">where</code>, <code translate="no">order by</code> に使える属性なども、 ruby の File クラスのドキュメントを見てくれれば良い。
       <p><a href="https://docs.ruby-lang.org/ja/2.3.0/class/File.html">https://docs.ruby-lang.org/ja/2.3.0/class/File.html</a>
       <p>裏に Ruby が透けて見えるため、 Ruby を知ってると「こうすれば動きそう」がそのまま動く。

@@ -60,7 +60,7 @@
     "width": 700
   },
   "datePublished": "2018-01-17T08:00:00+08:00",
-  "dateModified": "2018-07-27T08:00:00+08:00",
+  "dateModified": "2018-07-29T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -104,7 +104,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
     <ul class=info>
       <li>created_at: <time class=created_at datetime=2018-01-17>2018-01-17</time>
-      <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
+      <li>updated_at: <time class=updated_at datetime=2018-07-29>2018-07-29</time>
       <li class=tags>tags: [<a href='/tags/user-agent.html'>user-agent</a>,<a href='/tags/safari.html'>safari</a>]
     </ul>
 
@@ -146,11 +146,12 @@
         &mdash; <cite><a href="https://twitter.com/rmondello/status/943545865204989953">https://twitter.com/rmondello/status/943545865204989953</a></cite>
       </blockquote>
       <p>ちなみに MacOS High Sierra の Safari TP46 と Safari 11.0.2 の UA は以下のようになっている(Update: Safari 11.0.3, 11.1 を追加)
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre><code translate="no">(TP46):   User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1 Safari/605.1.15
-(11.0.2): User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/604.4.7 (KHTML, like Gecko) Version/11.0.2 Safari/604.4.7
-(11.0.3): User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/604.5.6 (KHTML, like Gecko) Version/11.0.3 Safari/604.5.6
-(11.1)  : User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1 Safari/605.1.15</code></pre>
+      <ul>
+        <li>(TP46 ) : User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1 Safari/605.1.15
+        <li>(11.0.2): User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/604.4.7 (KHTML, like Gecko) Version/11.0.2 Safari/604.4.7
+        <li>(11.0.3): User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/604.5.6 (KHTML, like Gecko) Version/11.0.3 Safari/604.5.6
+        <li>(11.1 ) : User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1 Safari/605.1.15
+      </ul>
       <p>(一応その次の TP47 でも値は変わっていないが、これまで TP Update で UA が変わっていたのかは未確認)
       <p>実際の UA の用途はいくつかあるが、ここでは Tweet でも言及されている Finger Printing と Feature Detection の視点から見ていく。
     </section>
@@ -194,7 +195,8 @@
       <p>もっと古くは、サービスそのものが <em>特定のブラウザしかサポートしない</em> といったことが、普通に行われていた。
       <p>当時 Netscape Navigator が、コードネームの <code translate="no">Mozilla</code> を UA に含んでおり、それを見て(Sniffing)処理を分岐していたサービスがあったようだ。
       <p>サーバ側の疑似コードとしてはこのようなイメージだ。
-      <pre class=javascript><code translate="no">if (UserAgent.match(/Mozilla.*/)) {
+      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+      <pre class=js><code translate="no">if (UserAgent.match(/Mozilla.*/)) {
   // Netscape 用の処理
 }</code></pre>
       <p>すると、競合だった IE は素直に <code translate="no">MSIE...</code> で始まる UA を送ると、そのサービスが動作せず、ユーザに「使えないブラウザ」と認定されてしまう。
@@ -214,15 +216,15 @@
         <h3 id="js"><a href="#js">JS</a></h3>
         <p>対象がプログラムであるため、比較的簡単に行える。
         <p>多くの DOM API はクラスやプロパティの有無によって判断が可能だ。
-        <pre class=javascript><code translate="no">if (navigator.serviceWorker !== undefined) {
+        <pre class=js><code translate="no">if (navigator.serviceWorker !== undefined) {
   // service worker supported
 }</code></pre>
         <p>ECMAScript API (JS native の機能)の場合もメソッドの場合は同様に prototype などで判断する。
-        <pre class=javascript><code translate="no">if (String.prototype.padStart !== undefined) {
+        <pre class=js><code translate="no">if (String.prototype.padStart !== undefined) {
   // padStart supported
 }</code></pre>
         <p>構文の場合は物によるが、例えば ES Module サポートをどうしても調べたいといった場合は以下のような手段が一応ある。
-        <pre class=javascript><code translate="no">function supportsStaticImport() {
+        <pre class=js><code translate="no">function supportsStaticImport() {
   const script = document.createElement(&#039;script&#039;)
   return &#039;noModule&#039; in script
 }
@@ -266,7 +268,7 @@ function supportsDynamicImport() {
         <h3 id="content-negotiation"><a href="#content-negotiation">Content Negotiation</a></h3>
         <p>通信やフォーマットに関わるものは HTTP ヘッダによるネゴシエーションが基本である。
         <p>例えば、 Brotli や WebP のサポートなどは以下のように明示される場合がある。
-        <pre><code translate="no">Accept-Encoding: gzip, deflate, br
+        <pre class=http><code translate="no">Accept-Encoding: gzip, deflate, br
 Accept: image/webp,image/apng,image/*,*/*;q=0.8</code></pre>
         <p>ヘッダのデフォルト情報は、それが使われるか使われないかに限らず、ブラウザからのリクエストの大半に付与されることになる。
         <p>Brotli 対応が <code translate="no">, br</code> という 4byte であったとしても、メジャーブラウザが Web のスケールで使われると、無視できる数字ではない。
@@ -274,10 +276,10 @@ Accept: image/webp,image/apng,image/*,*/*;q=0.8</code></pre>
         <p>従って、ブラウザベンダは、ヘッダの追加には非常に慎重である。
         <p>これは、新しいフォーマットが出るたびに、ヘッダの値が増えていくかというと、必ずしも期待できないことを意味する。
         <p>最近では、デフォルトではない追加の情報については、サーバから Client Hints で要求することもできる。
-        <pre><code translate="no">// Previous Response
+        <pre class=http><code translate="no"># Previous Response
 Accept-CH: DPR, Viewport-Width
 
-// Next Request
+# Next Request
 Viewport-Width: 1366
 DPR:1</code></pre>
         <p>1RTT 必要になるため、メインリソースのレスポンスで返し、サブリソースで適用させるような用途が中心となる。

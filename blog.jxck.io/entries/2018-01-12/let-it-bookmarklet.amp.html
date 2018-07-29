@@ -53,7 +53,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2018-01-12T08:00:00+08:00",
-  "dateModified": "2018-07-27T08:00:00+08:00",
+  "dateModified": "2018-07-29T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -499,7 +499,6 @@ footer .copyright {
 pre {
   word-break: break-all;
   word-wrap: break-word;
-  font-size: 1.2em;
   margin: 1.4em 0 0 0;
   border-radius: 4px;
 }
@@ -572,14 +571,32 @@ pre > code::after {
 .hljs-strong {
   font-weight: bold;
 }
-/*
-.hljs,
-.hljs-subst,
-.hljs-attribute,
-.hljs-selector-tag,
+
+.hljs-attribute {
+  font-weight: bold;
+}
+
+.hljs-meta {
+  color: #4f80e5;
+}
+
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-pseudo {
+  color: #6f42c1;
+}
+
+.hljs-selector-tag {
+  color: #22863a;
+}
+
+.hljs-subst {
+  font-weight: bold;
+}
+
+/**.hljs,**/
 .hljs-meta-keyword,
 .hljs-doctag,
-.hljs-name,
 .hljs-bullet,
 .hljs-code,
 .hljs-addition,
@@ -588,19 +605,16 @@ pre > code::after {
 .hljs-template-variable,
 .hljs-link,
 .hljs-selector-attr,
-.hljs-selector-pseudo,
 .hljs-type,
-.hljs-selector-id,
-.hljs-selector-class,
 .hljs-quote,
 .hljs-template-tag,
 .hljs-deletion,
 .hljs-section,
-.hljs-meta,
 .hljs-meta-string,
 .hljs-emphasis {
+  /** if you find element applyed this style, please tell me https://github.com/jxck/jxck.io/issues **/
+  font-size: 100em;
 }
-*/
 
 table {
   font-family: monospace;
@@ -653,7 +667,7 @@ td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2018-01-12>2018-01-12</time>
-    <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
+    <li>updated_at: <time class=updated_at datetime=2018-07-29>2018-07-29</time>
     <li class=tags>tags: [<a href='/tags/boolmarklet.html'>boolmarklet</a>]
   </ul>
 
@@ -694,7 +708,7 @@ td:last-child {
         <h3 id="github-pdf"><a href="#github-pdf">github pdf</a></h3>
         <p>その後輩は、 github の markdown を PDF にして協力会社に送る(!!?)のに、ページごとに開発者ツールから周りの DOM をポチポチ消して整形していた。
         <p>例えば、以下の README.md だった場合は、雑にやるとこんな感じでできそうだ。
-        <pre class=javascript><code translate="no">javascript: (() =&gt; {
+        <pre class=js><code translate="no">javascript: (() =&gt; {
   const readme = document.querySelector(&#039;#readme&#039;);
   document.body.innerHTML = &quot;&quot;;
   document.body.appendChild(readme);
@@ -706,7 +720,7 @@ td:last-child {
         <h3 id="header-id-link"><a href="#header-id-link">header id link</a></h3>
         <p>ヘッダ要素が ID を持ってるので、ヘッダに対してリンクを貼りたいが、リンクになってないのでソースを見ないといけない場合。
         <p>それをリンクに直して、遷移できるようにする。
-        <pre class=javascript><code translate="no">javascript: (() =&gt; {
+        <pre class=js><code translate="no">javascript: (() =&gt; {
   let url = new URL(location.href);
   for (let $h of document.querySelectorAll(&#039;h1, h2, h3, h4&#039;)) {
     let $a = document.createElement(&#039;a&#039;);
@@ -724,7 +738,7 @@ td:last-child {
         <h3 id="twitter-colored-link"><a href="#twitter-colored-link">Twitter Colored Link</a></h3>
         <p>Twitter のリンクが色も Underline も付かなくなって以降、 URL がどこにあるのかパッとわかりにくい。
         <p>そこで、対象の <code translate="no">&lt;a&gt;</code> に色をつける。
-        <pre class=javascript><code translate="no">javascript:Array.from(document.querySelectorAll(&#039;.js-display-url&#039;)).forEach((a) =&gt; a.style.color=&quot;red&quot;)</code></pre>
+        <pre class=js><code translate="no">javascript:Array.from(document.querySelectorAll(&#039;.js-display-url&#039;)).forEach((a) =&gt; a.style.color=&quot;red&quot;)</code></pre>
         <p>それっぽい Class をなんとか探すのがポイント。
       </section>
       <section>
@@ -733,26 +747,26 @@ td:last-child {
         <p>特に技術的な話などは、直近 3ヶ月くらいがちょうど良い。
         <p>この期間選択は、検索結果の URL にクエリとして反映されているので、そこを置き換えると実現できる。
         <p>例えば 1ヶ月を選ぶと以下が付与される。
-        <pre><code translate="no">&amp;tbs=qdr:m</code></pre>
+        <pre class=url><code translate="no">&amp;tbs=qdr:m</code></pre>
         <p>この <code translate="no">m</code> を <code translate="no">m3</code> にすると 3 ヶ月になる。
-        <pre class=javascript><code translate="no">javascript:location.href += &#039;&amp;tbs=qdr:m3&#039;</code></pre>
+        <pre class=js><code translate="no">javascript:location.href += &#039;&amp;tbs=qdr:m3&#039;</code></pre>
       </section>
       <section>
         <h3 id="canonical"><a href="#canonical">canonical</a></h3>
         <p>綺麗な URL を取得したいのに、遷移元などの影響で不要なゴミクエリが付いているといった場合にそれを除去する。
-        <pre class=javascript><code translate="no">javascript:location.href = document.querySelector(&#039;link[rel=&quot;canonical&quot;]&#039;).href</code></pre>
+        <pre class=js><code translate="no">javascript:location.href = document.querySelector(&#039;link[rel=&quot;canonical&quot;]&#039;).href</code></pre>
         <p>ところで、 Amazon の URL の canonical は以下のようになっている。
-        <pre><code translate="no">https://www.amazon.co.jp/商品名/dp/XXXXXXXX</code></pre>
+        <pre class=url><code translate="no">https://www.amazon.co.jp/商品名/dp/XXXXXXXX</code></pre>
         <p>ただ、商品名が長いとブログなどに貼る時に URL が見づらくなる。
         <p>実際は dp 以降だけで良いので、商品名を削除してしまった方が使いやすかったりする。
-        <pre class=javascript><code translate="no">javascript:location.href = document.querySelector(&#039;link[rel=&quot;canonical&quot;]&#039;).href.replace(/amazon.co.jp\/.*\/dp/, &#039;amazon.co.jp/dp&#039;);</code></pre>
+        <pre class=js><code translate="no">javascript:location.href = document.querySelector(&#039;link[rel=&quot;canonical&quot;]&#039;).href.replace(/amazon.co.jp\/.*\/dp/, &#039;amazon.co.jp/dp&#039;);</code></pre>
       </section>
       <section>
         <h3 id="preslide"><a href="#preslide">preslide</a></h3>
         <p>ネットワークが重いところで slideshare を見ると、ページを進めるたびにローディングでストレスだったので書いたもの。
         <p>一旦、最後のページまで自動で遷移させ、全ページ読み込みが終わったあたりで頭から読んでいる。
         <p>最後のページまで読むと次のスライドに映るという悪仕様があるため、手前で止めている。
-        <pre class=javascript><code translate="no">javascript: function loop(n) {
+        <pre class=js><code translate="no">javascript: function loop(n) {
   if (n == 0) {return;}
   setTimeout(function() {
     document.querySelector(&quot;#svPlayerId &gt; div.stage &gt; div.rightpoint.pointly&quot;).click();
@@ -764,7 +778,7 @@ td:last-child {
         <h3 id="safari-picture-in-picture"><a href="#safari-picture-in-picture">safari picture-in-picture</a></h3>
         <p>今の Safari は PinP に対応している。
         <p><code translate="no">&lt;video&gt;</code> タグで再生されていれば基本的に表示が可能だが、 UI がない場合は以下で再生中のビデオを PinP できる。
-        <pre class=javascript><code translate="no">javascript: document.querySelector(&#039;video&#039;).webkitSetPresentationMode(&#039;picture-in-picture&#039;)</code></pre>
+        <pre class=js><code translate="no">javascript: document.querySelector(&#039;video&#039;).webkitSetPresentationMode(&#039;picture-in-picture&#039;)</code></pre>
         <p>新しい Mac は touch bar に UI があるので、無い機種で使ってる。
       </section>
       <section>

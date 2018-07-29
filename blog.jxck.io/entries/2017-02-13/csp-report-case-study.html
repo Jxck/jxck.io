@@ -60,7 +60,7 @@
     "width": 700
   },
   "datePublished": "2017-02-13T08:00:00+08:00",
-  "dateModified": "2018-07-27T08:00:00+08:00",
+  "dateModified": "2018-07-29T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -104,7 +104,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
     <ul class=info>
       <li>created_at: <time class=created_at datetime=2017-02-13>2017-02-13</time>
-      <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
+      <li>updated_at: <time class=updated_at datetime=2018-07-29>2018-07-29</time>
       <li class=tags>tags: [<a href='/tags/csp.html'>csp</a>,<a href='/tags/security.html'>security</a>]
     </ul>
 
@@ -148,7 +148,7 @@
       <p>CSP は全て Report-Only で HTTP ヘッダから適応しており、 CSP レポートを収集している。
       <p>現状は以下である。(まだ改善点はある)
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre><code translate="no">content-security-policy-report-only:
+      <pre class=http><code translate="no">content-security-policy-report-only:
   default-src &#039;self&#039;
               https://jxck.io
               https://*.jxck.io
@@ -180,7 +180,7 @@
         <h3 id="dom-change-by-user"><a href="#dom-change-by-user">DOM Change by User</a></h3>
         <p>Bookmarklet などから DOM を変更することで、ページそのものをカスタマイズしたりするユーザや、 Devtools からこのサイト上で色々試したりするユーザもいるだろう。
         <p>一例として、以下のレポートは、 CSP の指定範囲外オリジンから jQuery を埋め込んだことによるレポートと思われる。
-        <pre><code translate="no">{
+        <pre class=json><code translate="no">{
   &quot;csp-report&quot;: {
     &quot;document-uri&quot;:        &quot;https://blog.jxck.io/entries/...&quot;,
     &quot;referrer&quot;:            &quot;https://blog.jxck.io/&quot;,

@@ -53,7 +53,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2018-01-13T08:00:00+08:00",
-  "dateModified": "2018-07-27T08:00:00+08:00",
+  "dateModified": "2018-07-29T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -499,7 +499,6 @@ footer .copyright {
 pre {
   word-break: break-all;
   word-wrap: break-word;
-  font-size: 1.2em;
   margin: 1.4em 0 0 0;
   border-radius: 4px;
 }
@@ -572,14 +571,32 @@ pre > code::after {
 .hljs-strong {
   font-weight: bold;
 }
-/*
-.hljs,
-.hljs-subst,
-.hljs-attribute,
-.hljs-selector-tag,
+
+.hljs-attribute {
+  font-weight: bold;
+}
+
+.hljs-meta {
+  color: #4f80e5;
+}
+
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-pseudo {
+  color: #6f42c1;
+}
+
+.hljs-selector-tag {
+  color: #22863a;
+}
+
+.hljs-subst {
+  font-weight: bold;
+}
+
+/**.hljs,**/
 .hljs-meta-keyword,
 .hljs-doctag,
-.hljs-name,
 .hljs-bullet,
 .hljs-code,
 .hljs-addition,
@@ -588,19 +605,16 @@ pre > code::after {
 .hljs-template-variable,
 .hljs-link,
 .hljs-selector-attr,
-.hljs-selector-pseudo,
 .hljs-type,
-.hljs-selector-id,
-.hljs-selector-class,
 .hljs-quote,
 .hljs-template-tag,
 .hljs-deletion,
 .hljs-section,
-.hljs-meta,
 .hljs-meta-string,
 .hljs-emphasis {
+  /** if you find element applyed this style, please tell me https://github.com/jxck/jxck.io/issues **/
+  font-size: 100em;
 }
-*/
 
 table {
   font-family: monospace;
@@ -653,7 +667,7 @@ td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2018-01-13>2018-01-13</time>
-    <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
+    <li>updated_at: <time class=updated_at datetime=2018-07-29>2018-07-29</time>
     <li class=tags>tags: [<a href='/tags/urlsearchparams.html'>urlsearchparams</a>,<a href='/tags/formdata.html'>formdata</a>,<a href='/tags/form.html'>form</a>]
   </ul>
 
@@ -682,7 +696,7 @@ td:last-child {
   &lt;/fieldset&gt;
 &lt;/form&gt;</code></pre>
       <p>JS は以下のように書かれる場合がある。
-      <pre class=javascript><code translate="no">document.querySelector(&#039;#login&#039;).onsubmit = (e) =&gt; {
+      <pre class=js><code translate="no">document.querySelector(&#039;#login&#039;).onsubmit = (e) =&gt; {
   e.preventDefault()
   const username = document.querySelector(&#039;#username&#039;)
   const password = document.querySelector(&#039;#password&#039;)
@@ -696,7 +710,7 @@ td:last-child {
       <p>最も簡単な改善は、 document からのクエリをやめることだ。
       <p><code translate="no">e.target</code> には、対象の DOM、ここでは <code translate="no">&lt;form&gt;</code> が入っている。
       <p><code translate="no">&lt;input&gt;</code> はその子要素なので、わざわざ <code translate="no">document</code> を起点にする必要はない。
-      <pre class=javascript><code translate="no">document.querySelector(&#039;#login&#039;).onsubmit = (e) =&gt; {
+      <pre class=js><code translate="no">document.querySelector(&#039;#login&#039;).onsubmit = (e) =&gt; {
   e.preventDefault()
   const username = e.target.querySelector(&#039;#username&#039;)
   const password = e.target.querySelector(&#039;#password&#039;)
@@ -711,7 +725,7 @@ td:last-child {
       <p>このオブジェクトは、 <code translate="no">get()</code>、 <code translate="no">set()</code> など Map のようなインタフェースを持つ。
       <p>(なお <code translate="no">new Map(form_data)</code> すれば、実際の Map にもなる)
       <p>また、そのまま XHR や fetch を使ってそのまま POST することができる。
-      <pre class=javascript><code translate="no">document.querySelector(&#039;#login&#039;).onsubmit = (e) =&gt; {
+      <pre class=js><code translate="no">document.querySelector(&#039;#login&#039;).onsubmit = (e) =&gt; {
   e.preventDefault()
   const form_data = new FormData(e.target)
   validate_username(form_data.get(&#039;username&#039;))
@@ -723,7 +737,7 @@ td:last-child {
 }</code></pre>
       <p>ただし、注意点としてこのとき POST される Content-Type は <code translate="no">multipart/form-data</code> になる。
       <p>つまり Body は以下のようなフォーマットだ。
-      <pre><code translate="no">// content-type:multipart/form-data; boundary=----WebKitFormBoundaryPfqUKvtarA1EFkbV
+      <pre class=http><code translate="no">// content-type:multipart/form-data; boundary=----WebKitFormBoundaryPfqUKvtarA1EFkbV
 
 
 ------WebKitFormBoundaryPfqUKvtarA1EFkbV
@@ -743,7 +757,7 @@ examplepassword
       <p>URLSearchParams は、 URL の標準化の際に QueryString 部分をサポートするために導入された。
       <p>しかし、これは FormData を引数にインスタンスを生成することができる。
       <p>また、そのまま POST の Body にすれば、 <code translate="no">application/form-url-encoded</code> として送ることができる。
-      <pre class=javascript><code translate="no">document.querySelector(&#039;#login&#039;).onsubmit = (e) =&gt; {
+      <pre class=js><code translate="no">document.querySelector(&#039;#login&#039;).onsubmit = (e) =&gt; {
   e.preventDefault()
   const form_data = new FormData(e.target)
   const url_search_params = new URLSearchParams(form_data)
@@ -753,7 +767,7 @@ examplepassword
   })
 }</code></pre>
       <p>つまり Body は以下のようなフォーマットだ。
-      <pre><code translate="no">// content-type:application/x-www-form-urlencoded;charset=UTF-8
+      <pre class=http><code translate="no">// content-type:application/x-www-form-urlencoded;charset=UTF-8
 
 username=jxck&amp;password=thisismypassword</code></pre>
     </section>
@@ -762,7 +776,7 @@ username=jxck&amp;password=thisismypassword</code></pre>
       <p>API バックエンドなどに対して JSON で送りたい場合もあるだろう。
       <p>せっかく FormData までは取得できているので、これを Object に変換してからシリアライズすれば良い。
       <p>ここでは FormData が iterable であるこを利用してオブジェクトを組み立ててみる。
-      <pre class=javascript><code translate="no">document.querySelector(&#039;#login&#039;).onsubmit = (e) =&gt; {
+      <pre class=js><code translate="no">document.querySelector(&#039;#login&#039;).onsubmit = (e) =&gt; {
   e.preventDefault()
   const form_data = new FormData(e.target)
   const object = Array.from(form_data).reduce((o, [k, v]) =&gt; { o[k] = v; return o }, {})
@@ -778,7 +792,7 @@ username=jxck&amp;password=thisismypassword</code></pre>
       <h2 id="beforesubmitcallback"><a href="#beforesubmitcallback">beforeSubmitCallback</a></h2>
       <p>submit に callback を仕込む仕様の提案がかなり前に出ている。
       <p><a href="https://github.com/w3c/webcomponents/issues/187">Need callback for form submit data</a>
-      <pre class=javascript><code translate="no">document.registerElement(&#039;input&#039;, {
+      <pre class=js><code translate="no">document.registerElement(&#039;input&#039;, {
   prototype: {
     proto: HTMLElement.prototype,
       beforeSubmitCallback: function() {

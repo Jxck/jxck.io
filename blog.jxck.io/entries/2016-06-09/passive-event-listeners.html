@@ -60,7 +60,7 @@
     "width": 700
   },
   "datePublished": "2016-06-09T08:00:00+08:00",
-  "dateModified": "2018-07-27T08:00:00+08:00",
+  "dateModified": "2018-07-29T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -104,7 +104,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
     <ul class=info>
       <li>created_at: <time class=created_at datetime=2016-06-09>2016-06-09</time>
-      <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
+      <li>updated_at: <time class=updated_at datetime=2018-07-29>2018-07-29</time>
       <li class=tags>tags: [<a href='/tags/rendering.html'>rendering</a>,<a href='/tags/performance.html'>performance</a>]
     </ul>
 
@@ -139,7 +139,7 @@
       <p>つまり、 Scroll Event に登録されたイベントリスナの実行時間が長ければ長いほど、 Scroll Jank の影響が大きくなる。
       <p>Chrome は現在、実行時間の長いリスナが登録された場合、以下のような警告を devtools に表示する。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre><code translate="no">explainer.md#the-problem:1 Deferred long-running timer task(s) to improve scrolling smoothness. See crbug.com/574343.</code></pre>
+      <pre class=text><code translate="no">explainer.md#the-problem:1 Deferred long-running timer task(s) to improve scrolling smoothness. See crbug.com/574343.</code></pre>
       <p>ただし、イベントリスナの実行自体にも多少のオーバーヘッドがあるため、空のイベントリスナを登録しただけでも、ブラウザのスクロール最適化を邪魔するには十分であり、影響がでることも確認されている。
       <p>仕様には Scroll Event にイベントリスナを登録したサイトの中で、実際に <code translate="no">preventDefault()</code> を呼ぶのは 20% 程度という調査結果が記載されている。
       <p>これは 80% のケースで、ブラウザがリスナの完了を待つことなくスクロールしても問題がなかったということを意味している。

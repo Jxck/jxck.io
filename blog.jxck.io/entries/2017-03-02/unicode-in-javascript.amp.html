@@ -53,7 +53,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2017-03-02T08:00:00+08:00",
-  "dateModified": "2018-07-27T08:00:00+08:00",
+  "dateModified": "2018-07-29T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -499,7 +499,6 @@ footer .copyright {
 pre {
   word-break: break-all;
   word-wrap: break-word;
-  font-size: 1.2em;
   margin: 1.4em 0 0 0;
   border-radius: 4px;
 }
@@ -572,14 +571,32 @@ pre > code::after {
 .hljs-strong {
   font-weight: bold;
 }
-/*
-.hljs,
-.hljs-subst,
-.hljs-attribute,
-.hljs-selector-tag,
+
+.hljs-attribute {
+  font-weight: bold;
+}
+
+.hljs-meta {
+  color: #4f80e5;
+}
+
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-pseudo {
+  color: #6f42c1;
+}
+
+.hljs-selector-tag {
+  color: #22863a;
+}
+
+.hljs-subst {
+  font-weight: bold;
+}
+
+/**.hljs,**/
 .hljs-meta-keyword,
 .hljs-doctag,
-.hljs-name,
 .hljs-bullet,
 .hljs-code,
 .hljs-addition,
@@ -588,19 +605,16 @@ pre > code::after {
 .hljs-template-variable,
 .hljs-link,
 .hljs-selector-attr,
-.hljs-selector-pseudo,
 .hljs-type,
-.hljs-selector-id,
-.hljs-selector-class,
 .hljs-quote,
 .hljs-template-tag,
 .hljs-deletion,
 .hljs-section,
-.hljs-meta,
 .hljs-meta-string,
 .hljs-emphasis {
+  /** if you find element applyed this style, please tell me https://github.com/jxck/jxck.io/issues **/
+  font-size: 100em;
 }
-*/
 
 table {
   font-family: monospace;
@@ -653,7 +667,7 @@ td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2017-03-02>2017-03-02</time>
-    <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
+    <li>updated_at: <time class=updated_at datetime=2018-07-29>2018-07-29</time>
     <li class=tags>tags: [<a href='/tags/utf-16.html'>utf-16</a>,<a href='/tags/unicode.html'>unicode</a>,<a href='/tags/javascript.html'>javascript</a>]
   </ul>
 
@@ -674,7 +688,7 @@ td:last-child {
       <p>例えば 😭 (loudly crying face) なら <code translate="no">0x1F62D</code> だ。
       <p>1 つの文字に 1 つの ID が割り当てられているのだから、文字の数を数える場合は、この ID の数を数えれば良いと考えることができるだろう。おおよその場合はそれで良い。
       <p>例えば <code translate="no">𠮷野屋で𩸽頼んで𠮟られる😭</code> という文字列を、それぞれ ID の配列に変換するとこうなる。
-      <pre><code translate="no">str = &quot;𠮷野屋で𩸽頼んで𠮟られる😭&quot;;
+      <pre class=js><code translate="no">str = &quot;𠮷野屋で𩸽頼んで𠮟られる😭&quot;;
 
 [
   0x20BB7, // 𠮷
@@ -703,7 +717,7 @@ td:last-child {
         <h3 id="utf-32"><a href="#utf-32">UTF-32</a></h3>
         <p>単純に考えれば、この Code Point をバイナリデータとしてそのまま送れば良いだろう。
         <p>Code Point はおおよそ 4byte あれば収まるので 32bit のデータとして送ることができる。
-        <pre><code translate="no">[0x00, 0x01, 0xF6, 0x2D] // 😭
+        <pre class=js><code translate="no">[0x00, 0x01, 0xF6, 0x2D] // 😭
 // 0x1F62D を二進数にし、 32 桁になるまで先頭に 0 を追加してから 8 bit づつ区切った配列</code></pre>
         <p>受け取った側は、データを 32bit づつ Code Point とみなして文字に置き換えていけば良いし、受け取ったバイト数を 4 で割れば文字の数もわかる。
         <p>このように 1 Code Point を 32bit データとして表すという発想が、 UTF-32 と呼ばれる方式の中核である。
@@ -712,16 +726,16 @@ td:last-child {
         <h3 id="utf-16"><a href="#utf-16">UTF-16</a></h3>
         <p>UTF-32 なら Code Point がそのまま入ってるので非常にシンプルだが、よく使う文字はそこまで大きな Code Point が振られてないため、ほとんどが 0 になる。
         <p>先の文字列では <code translate="no">野</code> や <code translate="no">で</code> という文字は Code Point が <code translate="no">0x91CE</code>、 <code translate="no">0x3067</code> なので、 32 bit だと先頭 2byte が 0 になる。
-        <pre><code translate="no">[0x00, 0x00, 0x91, 0xCE] // 野
+        <pre class=js><code translate="no">[0x00, 0x00, 0x91, 0xCE] // 野
 [0x00, 0x00, 0x30, 0x67] // で</code></pre>
         <p>そこで、 Code Point を 32bit ではなく、半分の 16bit で表せば、半分のサイズで送ることができる。
-        <pre><code translate="no">[0x91, 0xCE] // 野
+        <pre class=js><code translate="no">[0x91, 0xCE] // 野
 [0x30, 0x67] // で</code></pre>
         <p>このように 1 Code Point を 16bit データとして表すという発想が、 UTF-16 と呼ばれる方式の中核である。
         <p>ところが、 <code translate="no">𠮷</code> (0x20BB7), <code translate="no">𩸽</code> (0x29E3D), <code translate="no">𠮟</code> (0x20B9F), <code translate="no">😭</code> (0x1F62D) の 4 文字は 2byte では収まらない。
         <p>そこで、 UTF-16 では、こうした 2byte では収まらない文字について、倍の 32bit で表す。
         <p>この 16bit x2 で表される文字を、 <em>サロゲートペア</em> と呼ぶ。
-        <pre><code translate="no">[0xD8, 0x67, 0xDE, 0x3D] // 𠮷
+        <pre class=js><code translate="no">[0xD8, 0x67, 0xDE, 0x3D] // 𠮷
 [0xD8, 0x42, 0xDF, 0xB7] // 𩸽
 [0xD8, 0x42, 0xDF, 0x9F] // 𠮟
 [0xD8, 0x3D, 0xDE, 0x2D] // 😭</code></pre>
@@ -734,9 +748,9 @@ td:last-child {
         <h3 id="utf-8"><a href="#utf-8">UTF-8</a></h3>
         <p>英数字(a-zA-Z0-9) など、いわゆるアスキー文字と呼ばれるものは、 Code Point の中でも小さい値が割り当てられている。
         <p>これら Code Point は 8bit の範囲に収まっているので、 16 bit で表すと無駄が出てくる。
-        <pre><code translate="no">[0x00, 0x61] // a</code></pre>
+        <pre class=js><code translate="no">[0x00, 0x61] // a</code></pre>
         <p>そこで、 8bit で表せる Code Point は 8bit で、足らないものは 16bit で、さらに足らないものは 24bit で、、と「小さい Code Point はより小さく」表せば、英語のみのテキストなどはさらに小さく表すことができる。
-        <pre><code translate="no">[0x61]                   // a
+        <pre class=js><code translate="no">[0x61]                   // a
 [0xC2, 0xA9]             // ©
 [0xE3, 0x81, 0x82]       // あ
 [0xF0, 0xA0, 0xAE, 0xB7] // 𠮷</code></pre>
@@ -759,7 +773,7 @@ td:last-child {
       <p>length は文字数ではなく、単にこの UTF-16 配列の長さだ。
       <p>だから、 1 文字に 16bit が 2 つ必要なサロゲートペアは length が 2 となってしまう。
       <p>つまり、内部で保持されているデータはこうなっている。
-      <pre><code translate="no">str = `𠮷野屋で𩸽頼んで𠮟られる😭`;
+      <pre class=js><code translate="no">str = `𠮷野屋で𩸽頼んで𠮟られる😭`;
 [
   0xD842, 0xDFB7 // 𠮷
   0x91CE         // 野

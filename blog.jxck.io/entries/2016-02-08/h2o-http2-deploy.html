@@ -60,7 +60,7 @@
     "width": 700
   },
   "datePublished": "2016-02-08T08:00:00+08:00",
-  "dateModified": "2018-07-27T08:00:00+08:00",
+  "dateModified": "2018-07-29T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -104,7 +104,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
     <ul class=info>
       <li>created_at: <time class=created_at datetime=2016-02-08>2016-02-08</time>
-      <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
+      <li>updated_at: <time class=updated_at datetime=2018-07-29>2018-07-29</time>
       <li class=tags>tags: [<a href='/tags/h2o.html'>h2o</a>,<a href='/tags/http2.html'>http2</a>]
     </ul>
 
@@ -147,7 +147,7 @@
       <p>例えば、 <code translate="no">favicon.ico</code> だとか <code translate="no">robots.txt</code> は、特定の URL に対して特定のファイルを割り当てる。
       <p>これがこう書けると嬉しい。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre><code translate="no">paths:
+      <pre class=yaml><code translate="no">paths:
   &quot;/favicon.ico&quot;:
      file.dir: /some/path/to/favicon.ico
   &quot;/&quot;:
@@ -155,7 +155,7 @@
       <p>しかし、実際は paths へはディレクトリしか紐づけられない。
       <p>やるなら mruby.handler を使うしかない。
       <p>(399 は、 fallthroug の独自ルールになっているらしい)
-      <pre><code translate="no">&quot;/&quot;:
+      <pre class=yaml><code translate="no">&quot;/&quot;:
   mruby.handler: |
     Proc.new do |env|
       if env[&quot;PATH_INFO&quot;] == &quot;/favicon.ico&quot;

@@ -53,7 +53,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2017-08-05T08:00:00+08:00",
-  "dateModified": "2018-07-27T08:00:00+08:00",
+  "dateModified": "2018-07-29T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -499,7 +499,6 @@ footer .copyright {
 pre {
   word-break: break-all;
   word-wrap: break-word;
-  font-size: 1.2em;
   margin: 1.4em 0 0 0;
   border-radius: 4px;
 }
@@ -572,14 +571,32 @@ pre > code::after {
 .hljs-strong {
   font-weight: bold;
 }
-/*
-.hljs,
-.hljs-subst,
-.hljs-attribute,
-.hljs-selector-tag,
+
+.hljs-attribute {
+  font-weight: bold;
+}
+
+.hljs-meta {
+  color: #4f80e5;
+}
+
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-pseudo {
+  color: #6f42c1;
+}
+
+.hljs-selector-tag {
+  color: #22863a;
+}
+
+.hljs-subst {
+  font-weight: bold;
+}
+
+/**.hljs,**/
 .hljs-meta-keyword,
 .hljs-doctag,
-.hljs-name,
 .hljs-bullet,
 .hljs-code,
 .hljs-addition,
@@ -588,19 +605,16 @@ pre > code::after {
 .hljs-template-variable,
 .hljs-link,
 .hljs-selector-attr,
-.hljs-selector-pseudo,
 .hljs-type,
-.hljs-selector-id,
-.hljs-selector-class,
 .hljs-quote,
 .hljs-template-tag,
 .hljs-deletion,
 .hljs-section,
-.hljs-meta,
 .hljs-meta-string,
 .hljs-emphasis {
+  /** if you find element applyed this style, please tell me https://github.com/jxck/jxck.io/issues **/
+  font-size: 100em;
 }
-*/
 
 table {
   font-family: monospace;
@@ -653,7 +667,7 @@ td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2017-08-05>2017-08-05</time>
-    <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
+    <li>updated_at: <time class=updated_at datetime=2018-07-29>2018-07-29</time>
     <li class=tags>tags: [<a href='/tags/navigation%20preload.html'>navigation preload</a>,<a href='/tags/service%20worker.html'>service worker</a>,<a href='/tags/performance.html'>performance</a>]
   </ul>
 
@@ -720,7 +734,7 @@ td:last-child {
     <section>
       <h2 id="service-worker-navigation-preload-header"><a href="#service-worker-navigation-preload-header">Service-Worker-Navigation-Preload Header</a></h2>
       <p>Preload Response が発生した場合は、リクエストヘッダに以下が追加される。
-      <pre><code translate="no">Service-Worker-Navigation-Preload: true</code></pre>
+      <pre class=http><code translate="no">Service-Worker-Navigation-Preload: true</code></pre>
       <p>これにより、サーバ側は Preload リクエストであることを判別できる。
       <p>値の <code translate="no">true</code> はデフォルト値であり、以下のように任意の値に変更できる。
       <pre class=js><code translate="no">navigator.serviceWorker.register(&#039;worker.js&#039;)

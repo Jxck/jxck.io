@@ -53,7 +53,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-02-08T08:00:00+08:00",
-  "dateModified": "2018-07-27T08:00:00+08:00",
+  "dateModified": "2018-07-29T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -499,7 +499,6 @@ footer .copyright {
 pre {
   word-break: break-all;
   word-wrap: break-word;
-  font-size: 1.2em;
   margin: 1.4em 0 0 0;
   border-radius: 4px;
 }
@@ -572,14 +571,32 @@ pre > code::after {
 .hljs-strong {
   font-weight: bold;
 }
-/*
-.hljs,
-.hljs-subst,
-.hljs-attribute,
-.hljs-selector-tag,
+
+.hljs-attribute {
+  font-weight: bold;
+}
+
+.hljs-meta {
+  color: #4f80e5;
+}
+
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-pseudo {
+  color: #6f42c1;
+}
+
+.hljs-selector-tag {
+  color: #22863a;
+}
+
+.hljs-subst {
+  font-weight: bold;
+}
+
+/**.hljs,**/
 .hljs-meta-keyword,
 .hljs-doctag,
-.hljs-name,
 .hljs-bullet,
 .hljs-code,
 .hljs-addition,
@@ -588,19 +605,16 @@ pre > code::after {
 .hljs-template-variable,
 .hljs-link,
 .hljs-selector-attr,
-.hljs-selector-pseudo,
 .hljs-type,
-.hljs-selector-id,
-.hljs-selector-class,
 .hljs-quote,
 .hljs-template-tag,
 .hljs-deletion,
 .hljs-section,
-.hljs-meta,
 .hljs-meta-string,
 .hljs-emphasis {
+  /** if you find element applyed this style, please tell me https://github.com/jxck/jxck.io/issues **/
+  font-size: 100em;
 }
-*/
 
 table {
   font-family: monospace;
@@ -653,7 +667,7 @@ td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-02-08>2016-02-08</time>
-    <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
+    <li>updated_at: <time class=updated_at datetime=2018-07-29>2018-07-29</time>
     <li class=tags>tags: [<a href='/tags/h2o.html'>h2o</a>,<a href='/tags/http2.html'>http2</a>]
   </ul>
 
@@ -695,7 +709,7 @@ td:last-child {
       <p>h2o の設定でちょっとハマったのがパスとファイルの紐付けができないところ。
       <p>例えば、 <code translate="no">favicon.ico</code> だとか <code translate="no">robots.txt</code> は、特定の URL に対して特定のファイルを割り当てる。
       <p>これがこう書けると嬉しい。
-      <pre><code translate="no">paths:
+      <pre class=yaml><code translate="no">paths:
   &quot;/favicon.ico&quot;:
      file.dir: /some/path/to/favicon.ico
   &quot;/&quot;:
@@ -703,7 +717,7 @@ td:last-child {
       <p>しかし、実際は paths へはディレクトリしか紐づけられない。
       <p>やるなら mruby.handler を使うしかない。
       <p>(399 は、 fallthroug の独自ルールになっているらしい)
-      <pre><code translate="no">&quot;/&quot;:
+      <pre class=yaml><code translate="no">&quot;/&quot;:
   mruby.handler: |
     Proc.new do |env|
       if env[&quot;PATH_INFO&quot;] == &quot;/favicon.ico&quot;

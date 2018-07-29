@@ -60,7 +60,7 @@
     "width": 700
   },
   "datePublished": "2018-01-05T08:00:00+08:00",
-  "dateModified": "2018-07-27T08:00:00+08:00",
+  "dateModified": "2018-07-29T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -104,7 +104,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
     <ul class=info>
       <li>created_at: <time class=created_at datetime=2018-01-05>2018-01-05</time>
-      <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
+      <li>updated_at: <time class=updated_at datetime=2018-07-29>2018-07-29</time>
       <li class=tags>tags: [<a href='/tags/webrtc.html'>webrtc</a>,<a href='/tags/sdp.html'>sdp</a>]
     </ul>
 
@@ -151,7 +151,7 @@
       <p>そこで、トランスポートに対して &ldquo;m=&rdquo; line は 1 つにし、それを &ldquo;envelope&rdquo; とする。
       <p>その中に、マイクごとの定義を、 &ldquo;a=ssrc&rdquo; で記述する。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre><code translate="no">m=audio 49170 RTP/AVP 101
+      <pre class=sdp><code translate="no">m=audio 49170 RTP/AVP 101
 a=ssrc:1 msid:left-mic
 a=ssrc:2 msid:center-mic
 a=ssrc:3 msid:right-mic</code></pre>
@@ -162,7 +162,7 @@ a=ssrc:3 msid:right-mic</code></pre>
       <p>Plan A は、 &ldquo;m=&rdquo; line をメディアごとに書くというシンプルな方法である。
       <p>もし多重化したい場合は、対象の &ldquo;m=&rdquo; line に対して BUNDLE を指定する。
       <p>この方式が WebRTC の標準として合意され、現在は Unified Plan として策定が進んでいる。
-      <pre><code translate="no">...
+      <pre class=sdp><code translate="no">...
 a=group:BUNDLE m1 m2 m3
 ...
 m=audio 56600 RTP/SAVPF 0 109
@@ -184,7 +184,7 @@ a=mid:m3
       <p>このフラグを有効にすると、 RTCConfiguration に <code translate="no">&quot;sdpSemantics&quot;</code> という独自プロパティを定義される。
       <p>デフォルトは <code translate="no">&quot;plan-b&quot;</code> であり、明示的に <code translate="no">&quot;unified-plan&quot;</code> を指定すれば切り替えられる。
       <p>後にデフォルトを &ldquo;unified-plan&rdquo; に変更し、 <code translate="no">&quot;plan-b&quot;</code> が十分に減れば値自体が削除される。
-      <pre class=javascript><code translate="no">new RTCPeerConnection({sdpSemantics: &quot;unified-plan&quot;})</code></pre>
+      <pre class=js><code translate="no">new RTCPeerConnection({sdpSemantics: &quot;unified-plan&quot;})</code></pre>
     </section>
     <section>
       <h2 id="影響"><a href="#影響">影響</a></h2>

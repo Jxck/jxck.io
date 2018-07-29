@@ -60,7 +60,7 @@
     "width": 700
   },
   "datePublished": "2017-08-19T08:00:00+08:00",
-  "dateModified": "2018-07-27T08:00:00+08:00",
+  "dateModified": "2018-07-29T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -104,7 +104,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
     <ul class=info>
       <li>created_at: <time class=created_at datetime=2017-08-19>2017-08-19</time>
-      <li>updated_at: <time class=updated_at datetime=2018-07-27>2018-07-27</time>
+      <li>updated_at: <time class=updated_at datetime=2018-07-29>2018-07-29</time>
       <li class=tags>tags: [<a href='/tags/brotli.html'>brotli</a>,<a href='/tags/zopfli.html'>zopfli</a>,<a href='/tags/http.html'>http</a>,<a href='/tags/performance.html'>performance</a>]
     </ul>
 
@@ -148,9 +148,9 @@
       <p>ブラウザが対応している形式については、ブラウザが Accept-Encoding ヘッダにそれを記載し、サーバとネゴシエーションする方法が取られる。
       <p>これまで、多くのブラウザは以下のような値を返していた。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre><code translate="no">Accept-Encoding: gzip, deflate</code></pre>
+      <pre class=http><code translate="no">Accept-Encoding: gzip, deflate</code></pre>
       <p>ここに、 <code translate="no">br</code> があれば Brotli に対応しているため、 Brotli で圧縮したファイルをレスポンスできる。
-      <pre><code translate="no">Accept-Encoding: gzip, deflate, br</code></pre>
+      <pre class=http><code translate="no">Accept-Encoding: gzip, deflate, br</code></pre>
       <p>現状、 Chrome などは HTTPS でしか Brotli を許可せず、またコンテンツによっては Brotli を許可しないフォーマットなどもあるかもしれない。
       <p>しかし、それら例外を除けば、単純にテキストベースで <em>大半のリクエストのサイズが 4 byte 増える</em> ことを意味する。
       <p>この変更は、 Web 全体のトラフィックで考えるとかなり大きいと言えるだろう。
@@ -432,7 +432,7 @@
       <h2 id="速度比較"><a href="#速度比較">速度比較</a></h2>
       <p>同じパラメータで、本サイト全体の圧縮タスクの実行時間を比較した。
       <p>圧縮対象は、 html/js/css/png/txt/md など 890 ファイルである。
-      <pre><code translate="no">zopfli: 190.33s user 2.77s system 98% cpu 3:15.28  total
+      <pre class=text><code translate="no">zopfli: 190.33s user 2.77s system 98% cpu 3:15.28  total
 brotli:  22.44s user 1.42s system 99% cpu   24.014 total</code></pre>
       <p>測定ミスではなく、圧倒的に brotli の方が速い。
       <p>単発で試しているうちから圧倒的に速いことは認識しており、サンプルを増やしたため歴然とした差となった。
