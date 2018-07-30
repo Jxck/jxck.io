@@ -41,10 +41,8 @@ URL は非常によく使われる、 Web において重要なフォーマッ�
 > Align RFC 3986 and RFC 3987 with contemporary implementations and obsolete them in the process. (E.g., spaces, other "illegal" code points, query encoding, equality, canonicalization, are all concepts not entirely shared, or defined.) URL parsing needs to become as solid as HTML parsing. [RFC3986] [RFC3987]
 > --- <cite>[原文](https://url.spec.whatwg.org/#goals)</cite>
 
-
 > RFC 3986 と RFC 3987 を現今の実装に揃わせて、その過程の中でそれらを過去のものにする。 (例えば、空白類, 他の "合法でない" 符号位置, クエリの符号化方式, 同等性, 正準化, などの概念は、どれも完全には共有もしくは定義されていない。) URL の構文解析法は HTML の構文解析法と同程度に確定的になる必要がある。 [RFC3986] [RFC3987]
 > --- <cite>[翻訳](https://triple-underscore.github.io/URL-ja.html#goals)</cite>
-
 
 平たく言えば、不完全だったところを補完したという感じだろうか。
 

@@ -23,21 +23,19 @@ TODO になっている動画は、そのうち撮って追加します。
 4. [#update()](#update())
 5. [#backgroundsync](#backgroundsync)
 6. [#push](#push)
-
-6-1. [#1. Google Developer Console](#1.+Google+Developer+Console)
-
-6-2. [#2.master.js](#2.master.js)
-
-6-3. [#3.worker.js](#3.worker.js)
-
-6-4. [#4.push.js](#4.push.js)
+    1. [#1. Google Developer Console](#1.+Google+Developer+Console)
+    2. [#2.master.js](#2.master.js)
+    3. [#3.worker.js](#3.worker.js)
+    4. [#4.push.js](#4.push.js)
 
 
 ## claim
 
 controller とは何か、いつ controller になるか、 `claim()` で何が起こるのかなどについて。
 
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/m6qBg4M3RTA" allowfullscreen></iframe>
+
 
 
 ```html
@@ -93,7 +91,9 @@ DEMO: <https://labs.jxck.io/service-worker/claim/index.html>
 
 register が終わった後、「新しく登録された controller が使えるようになったら」または「既に登録されている controller が使えるようになったら」という状態をとる方法と `controllerchange` イベント。
 
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/XoI0FPDV8Xo" allowfullscreen></iframe>
+
 
 
 ```js
@@ -146,7 +146,9 @@ Service Worker が更新される際の動きと、 `skipWaiting()` が何をス
 
 `install`, `activate` イベントの用途。
 
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/AMbQ7d9rjao" allowfullscreen></iframe>
+
 
 
 ```js
@@ -193,7 +195,9 @@ DEMO: <https://labs.jxck.io/service-worker/updatefound/>
 
 `registration.update()` による worker の更新と、ブラウザキャッシュにヒットする場合の挙動。
 
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/7uRVh9PzV5o" allowfullscreen></iframe>
+
 
 
 ```js
@@ -250,7 +254,9 @@ DEMO: <https://labs.jxck.io/service-worker/update/>
 
 sync の発火タイミングと fetch を sync で送る場合の考え方。
 
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/b7ZM7uzkykA" allowfullscreen></iframe>
+
 
 
 ```js
@@ -304,7 +310,9 @@ Console の UI はコロコロ変わります。以下の情報を頑張って�
 - Google Cloud Messaging の API Key を探す
 - manifest.json を作って HTML にリンクスする
 
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/MlCZWVvUiXM" allowfullscreen></iframe>
+
 
 
 ```json
@@ -343,7 +351,9 @@ Console の UI はコロコロ変わります。以下の情報を頑張って�
 
 `endpoint`, `userAuth`, `userPublickKey` をなんらかの方法でサーバに送ります。
 
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/f-ney12qAEI" allowfullscreen></iframe>
+
 
 
 ```js
@@ -375,7 +385,9 @@ navigator.serviceWorker.register('worker.js').then((registration) => {
 
 ### 3.worker.js
 
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/k939NlThH4E" allowfullscreen></iframe>
+
 
 
 ```js
@@ -426,7 +438,9 @@ self.addEventListener('notificationclick', (e) => {
 
 使用したモジュール: <https://github.com/web-push-libs/web-push>
 
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/hIliK4l4wqw" allowfullscreen></iframe>
+
 
 
 ```js

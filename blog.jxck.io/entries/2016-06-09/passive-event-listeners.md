@@ -43,6 +43,7 @@ DOM のイベントリスナの仕様に Passive Event Listeners というオプ
 
 Chrome は現在、実行時間の長いリスナが登録された場合、以下のような警告を devtools に表示する。
 
+
 ```text
 explainer.md#the-problem:1 Deferred long-running timer task(s) to improve scrolling smoothness. See crbug.com/574343.
 ```

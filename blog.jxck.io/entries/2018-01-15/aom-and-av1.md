@@ -22,7 +22,6 @@ WebRTC によって、動画/音声をやり取りする際に、ブラウザは
 - ハードウェアエンコーダサポート
 - 普及率
 
-
 パフォーマンス要件は確かに無視できないが、 Web において最も重要なのはやはりパテントの問題である。
 
 そこで、パテントフリーを謳う新たなコーデックの開発も行われ、度々候補として提案されてきた。
@@ -30,7 +29,6 @@ WebRTC によって、動画/音声をやり取りする際に、ブラウザは
 しかし、各社とも自分が保有する技術に寄せたいという思惑もあり長いこと議論が行われた。
 
 結果的に、音声は Opus でほぼ落ち着いていたが、動画は VP8 と H.264 という折衷案で折れることになった。
-
 
 - [RFC 7742 - WebRTC Video Processing and Codec Requirements](https://tools.ietf.org/html/rfc7742)
 - [RFC 7874 - WebRTC Audio Codec and Processing Requirements](https://tools.ietf.org/html/rfc7874)
@@ -75,7 +73,6 @@ Alliance のメンバーには AMD, ARM, Intel, NVIDIA などが名を連ね、�
 ## Apple joins AOM
 
 そんな中、新年早々 Apple が AOM に join したというニュースが出た。
-
 
 [Apple joins alliance to shrink your online videos - CNET](https://www.cnet.com/news/apple-online-video-compression-av1/)
 

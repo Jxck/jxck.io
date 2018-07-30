@@ -8,7 +8,9 @@
 - 2018/5/1 : OS のバージョンは固定されなくなった件を追記
 
 2 月に方針が変更され、 OS のバージョンは固定されなくなった。
+
 このため、iOS のバージョンアップにより発生するバグなどを回避する道は残されたことになる。
+
 一方 Webkit のバージョンは(予定では `605.1.15` に)固定されることになりそうだ。詳細は、以下を参照。
 
 [SafariのUA文字列が固定されて固定されなくなったおはなし \- fragmentary](https://myakura.hatenablog.com/entry/2018/04/16/083000)
@@ -40,7 +42,6 @@ Safari 開発者の Tweet で、モチベーションが補足されている。
 > --- <cite><https://twitter.com/rmondello/status/943545865204989953></cite>
 
 ちなみに MacOS High Sierra の Safari TP46 と Safari 11.0.2 の UA は以下のようになっている(Update: Safari 11.0.3, 11.1 を追加)
-
 
 - (TP46 ) : User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1 Safari/605.1.15
 - (11.0.2): User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/604.4.7 (KHTML, like Gecko) Version/11.0.2 Safari/604.4.7

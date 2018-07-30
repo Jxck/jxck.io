@@ -91,7 +91,9 @@ Chrome は、現在の Stable では Webkit と同じだが、 Canary では Fir
 
 こうした Content-Shifting の問題は、広告が後から次々に表示されるページなどで多く発生し、[フラストレーションがたまった経験](https://www.youtube.com/watch?v=uPnEZd6wCtk) は誰にでもあるだろう。
 
+
 <iframe sandbox="allow-scripts allow-same-origin" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/uPnEZd6wCtk" allowfullscreen></iframe>
+
 
 本来なら、最初に見える部分="Above the fold" を最適化したいわけだが、それがどの要素で成り立つかは viewwport に依存する。
 

@@ -40,7 +40,6 @@
 > An html element's end tag may be omitted if the html element is not immediately followed by a comment.
 > --- <cite><https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission></cite>
 
-
 すぐ次がコメントでないなら、 `<html>` は省略しても良い。 `<head>` や `<body>` も同様だ。
 
 
@@ -102,7 +101,6 @@ HTML には閉じタグの省略が許されているものがいくつかあり
 ### attribute value の quote
 
 もう一つ、要素を囲む引用符(`'`, `"`) も省略可能な場合があり、仕様では以下に定義がある。
-
 
 > The attribute value can remain unquoted if it doesn't contain space characters or any of " ' ` = < or >. Otherwise, it has to be quoted using either single or double quotes.
 > --- <cite><https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html></cite>
