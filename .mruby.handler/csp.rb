@@ -50,6 +50,7 @@ Proc.new do |env|
       "connect-src",
       "wss://ws.jxck.io",
       "https://www.google-analytics.com",
+      "https://report-uri.jxck.io",
       ";",
       "report-uri #{REPORT_URI}",
       ";",
