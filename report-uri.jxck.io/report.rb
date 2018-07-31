@@ -20,21 +20,17 @@ end
 server = WEBrick::HTTPServer.new(config)
 
 reporting = Proc.new do |req, res|
-  if req&.header["content-type"]&.first != "application/csp-report"
-    res.status = 400
-  else
-    begin
-      header = req.header.map{|k,v| [k, v.join(",")]}.to_h
-      body = JSON.parse(req.body)
-      body["header"] = header
-      body["date"] = Time.now
-      report = JSON.generate(body) + "\n"
-      append(FILE_CSP, report)
-      res.status = 201
-    rescue => e
-      STDERR.puts e
-      res.status = 500
-    end
+  begin
+    header = req.header.map{|k,v| [k, v.join(",")]}.to_h
+    body = JSON.parse(req.body)
+    body["header"] = header
+    body["date"] = Time.now
+    report = JSON.generate(body) + "\n"
+    append(FILE_CSP, report)
+    res.status = 201
+  rescue => e
+    STDERR.puts e
+    res.status = 500
   end
 end
 
