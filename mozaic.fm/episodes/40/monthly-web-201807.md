@@ -1,0 +1,613 @@
+# [monthly-web][mozaic.fm] ep40 Monthly Web 201807
+
+## Info
+
+audio: https://files.mozaic.fm/mozaic-ep40.mp3
+
+- published_at: 2018-08-04
+- guest: [@myakura](https://twitter.com/myakura)
+
+
+## Theme
+
+第 40 回のテーマは 2018 年 7 月の Monthly Web です。
+
+
+## Show Note
+
+
+### Chrome 動向
+
+- Stable: 68
+- Updates
+  - New in Chrome 68
+    - <https://developers.google.com/web/updates/2018/07/nic68>
+    - Add to Home Screen changes: beforeinstallprompt
+    - Page Lifecycle API
+    - Payment Handler API
+    - etc
+  - *A milestone for Chrome security: marking HTTP as "not secure"*
+    - <https://www.blog.google/products/chrome/milestone-chrome-security-marking-http-not-secure/>
+    - Not Secure for `http://`
+- Intents
+  - *Ship: Intervention Reports*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/sQrAZpTA8WI/EWC7W6GOCwAJ>
+    - Reporting Observer で取得できる
+  - Ship: WebUSB on Dedicated Workers
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/dKj0z6n6n5s/ywA3DNEMBgAJ>
+  - *Ship: WebSockets over HTTP/2*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/net-dev/pDXxVVx7hUs/Yt7utjS-CgAJ>
+    - <https://docs.google.com/document/d/1ZxaHz4j2BDMa1aI5CQHMjtFI3UxGT459pjYv4To9rFY/edit>
+  - Implement and Ship: 'left' and 'right' values for 'text-underline-position'
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/gXXMY1grZ-o/b0y3ENIaCQAJ>
+  - Implement and Ship: RTCRtpSender / RTCRtpReceiver.getCapabilities()
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_ktwAuFRUAg/mh_ECO41AQAJ>
+  - Implement and Ship: ImageCapture support for exposureTime constrainable property
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ls3wQSoHOUY/zIyEeFOqBgAJ>
+  - Implement and Ship: ImageCapture support for focusDistance constrainable property
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/oNxzXaFY9c8/WVYXPB-qBgAJ>
+  - *Implement and Ship: queueMicrotask*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/-CYu9jVflMw/-_IVvtODBQAJ>
+  - Implement and Ship: Update behavior of CSS Grid Layout percentage row tracks and gutters
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/CJgcT4hR7Rk/58WfZNbWBQAJ>
+  - Implement and Ship: rename Intl.DateTimeFormat.prototype.formatToParts type "dayperiod" to "dayPeriod"
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/7yWM-y_2j9k/m3-RpCVABgAJ>
+  - Implement and ship: fractional PointerEvents.offsetX/Y
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/tl2sOodhtCs/oe0ZMNXPCAAJ>
+  - Implement: Window postMessage with options
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/xACYBou4f9A/Ft0-QlFMAQAJ>
+  - Implement: PaymentResponse.prototype.retry()
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/wayZGnuBkrI/SCLOTxCACwAJ>
+  - *Implement: Feature policy to disable parser-blocking script execution*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/b7f_K30MBYo/T9iXfP4fBgAJ>
+    - `sync-script`
+  - *Implement: Portals*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/SgsbpO08AeI/ZyDL6r5FBgAJ>
+    - `<portal>` Tag により、 embed content とシームレスに遷移
+  - *Implement: Feature Policy control over sandbox features*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/WLuXgLp2WWY/WvzMRIjdAgAJ>
+    - "forms"
+    - "modals"
+    - "orientation-lock"
+    - "plugins"
+    - "pointer-lock"
+    - "popups"
+    - "presentation"
+    - "scripts"
+    - "top-navigation"
+  - Implement: WebSocket: permit connection reuse for auth
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/KHSDQyr1ggA/f5kLDYPeAwAJ>
+  - *Implement: Shadow DOM imperative distributed API*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/IVjeSC9tk64/u1kIxBFiBQAJ>
+    - TODO[a]
+  - Experiment:
+  - Change:
+  - Remove:
+  - *Deprecate & Remove: Android build number in user-agent identification*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/nJ7Izi0QNAQ/5F8ELQuOAQAJ>
+    - Android の build number を UA から削除する
+    - Firefox: doesn't include OS build numbers.
+    - Safari: Mobile does include the iOS build number as part of the "Mobile" token.
+    - Edge: doesn't include the Windows build number.
+  - Deprecate and Remove: PPAPI (Pepper) WebSocket
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/3NYHaxhRs14/XOdUJBvHAwAJ>
+  - *Deprecate and Remove: Shadow DOM V0, Custom Elements V0, HTML Imports*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/h-JwMiPUnuU/sl79aLoLBQAJ>
+    - 2019Q1 で deprecate 、ただし *Origin Trials での延命* を許可
+    - 2020Q1 で Origin Trials の受付を終了
+    - 2020Q2 で Origin Trials も終了
+  - Extend Origin Trial: Web Locks API
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/dgmf_goI_S0/YyVOB2lQAQAJ>
+  - Experiment: Stale-While-Revalidate
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/k0jK4JIhiYk/tKePgtllBgAJ>
+    - 前回 implement だった
+    - implement の議論は結構伸びた
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/P8bZxeA84Z4/gGWF1_4JBAAJ>
+  - *Experiment: Feature Policy JavaScript API*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/pQZopKWaQIk/Z-XD1hvwBQAJ>
+    - `document.policy`
+- Team Weekly Snippet
+  - Platform Architecture Snippet
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/SsU24YU1fnc/6uSug2U7BAAJ>
+- v8
+- Other
+  - Current status: display locking
+    - <https://groups.google.com/a/chromium.org/d/msg/async-dom/wi-i1YwMiWk/JwMnpB0fCQAJ>
+    - <https://drive.google.com/file/d/1xM7EvzF3Wk7nIsnHLmXxGDg6fCCWPNRW/view>
+    - async-dom の文脈だった
+    - デモ動画がわかりやすい
+  - Using page speed in mobile search ranking
+    - <https://webmasters.googleblog.com/2018/01/using-page-speed-in-mobile-search.html>
+    - <https://webmaster-ja.googleblog.com/2018/01/using-page-speed-in-mobile-search.html>
+    - 1 月にアナウンスされたこれが 7/9 にロールアウトされた
+    - ページの読み込み速度をモバイル検索のランキング要素として使用する
+  - Life of a Pixel 2018
+    - <https://docs.google.com/presentation/d/1boPxbgNrTU0ddsc144rcXayGA_WF53k96imRH8Mp34Y/edit#slide=id.p>
+    - blink 内での描画 (layout - paint - composition) の流れを解説
+  - We are planning on deprecate and remove Shadow DOM v0 and Custom Elements v0 from Blink.
+    - <https://twitter.com/shadow_hayato/status/1016911248863080448>
+    - They are only available on Google Chrome. NOT *Web*
+  - *Cross-Origin Read Blocking for Web Developers*
+    - <https://www.chromium.org/Home/chromium-security/corb-for-developers>
+  - Track development with the new AMP Roadmap
+    - <https://amphtml.wordpress.com/2018/07/19/track-development-with-the-new-amp-roadmap/>
+  - *Chrome の左上に謎のスイッチ*
+    - <https://togetter.com/li/1248313>
+    - <https://bugs.chromium.org/p/chromium/issues/detail?id=865253>
+  - *Introduction to Feature Policy*
+    - <https://developers.google.com/web/updates/2018/06/feature-policy>
+    - [blog](https://blog.jxck.io/entries/2018-03-08/feature-policy-permission-delegation.html)
+  - More native echo cancellation!
+    - <https://developers.google.com/web/updates/2018/06/more-native-echo-cancellation>
+  - AudioWorklet Design Pattern
+    - <https://developers.google.com/web/updates/2018/06/audio-worklet-design-pattern>
+  - Experimenting with First Input Delay in the Chrome UX Report
+    - <https://developers.google.com/web/updates/2018/07/first-input-delay-in-crux>
+    - Chrome UX Report に FID が載って検索できるように
+  - PWACompat: the Web App Manifest for all browsers
+    - <https://developers.google.com/web/updates/2018/07/pwacompat>
+  - Introducing NoState Prefetch
+    - <https://developers.google.com/web/updates/2018/07/nostate-prefetch>
+  - *Page Lifecycle API*
+    - <https://developers.google.com/web/updates/2018/07/page-lifecycle-api>
+  - Speed is now a landing page factor for Google Search and Ads
+    - <https://developers.google.com/web/updates/2018/07/search-ads-speed>
+  - *Site Isolation for web developers*
+    - <https://developers.google.com/web/updates/2018/07/site-isolation>
+  - *Site Isolation*
+    - Justin Schuh 😑さんのツイート: "I want to tweet more, because this is just such a big event. It's the culmination of a 6-year effort (or for Charlie Reis, 10 years, starting with his Ph.D. thesis) where the team took a groundbreaking idea from the bleeding edge of academic research and made it a reality."
+      - <https://twitter.com/justinschuh/status/1017090324592652288>
+    - Kinuko Yasuda さんのツイート: "6 年越しの一大セキュリティプロジェクト Site isolation が Chrome M67 でローンチされて🎉、 Bug bounty の New feature special rewards の対象になってるようです(賞金お高め!)。 3 連休はみなさんバグハンティングいかがでしょう
+      - <https://twitter.com/kinu/status/1017683220735750144>
+  - ReportingObserver: know your code health
+    - <https://developers.google.com/web/updates/2018/07/reportingobserver>
+    - 導入してるけど Report が JSON serializable ではないので報告中[b]
+
+
+### Firefox 動向
+
+- Stable: 61
+- Updates
+  - These Weeks in Firefox: Issue 40
+    - <https://blog.nightly.mozilla.org/2018/07/06/these-weeks-in-firefox-issue-40/>
+  - These Weeks in Firefox: Issue 41
+    - <https://blog.nightly.mozilla.org/2018/07/17/these-weeks-in-firefox-issue-41/>
+- Intents
+  - Ship: Microsoft JhengHei as default Traditional Chinese locale font of sans serif on Windows
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/3pJeDky_VC4/l_-yzqT1BwAJ>
+    - 中国語フォントのデフォルトが変わる?
+  - Ship: Logical properties in computed style objects
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/LrdjybDefP4/HxXU-5DtBwAJ>
+  - Ship: block audible autoplay media intervention
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/39Q3fW3zl1E/MDjdhensBwAJ>
+  - Ship: Changes to how offset*, client*, scroll* behave on tables
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/d_tiOkSyH_M/LEVu3V_7CQAJ>
+  - Ship: Web Animations core interfaces
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/fcFctnUjs7A/mWv9pLMbBgAJ>
+  - *Ship: Clear-Site-Data header*
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/YzuvitvaFbY/CsIPdgDXBgAJ>
+    - [blog](https://blog.jxck.io/entries/2018-07-24/clear-site-data.html)
+    - 63 からデフォルト有効
+  - Ship: Change the effect of noopener window feature on other window features in window.open
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/6cTk_b1l6LE/CmAZKu8cCAAJ>
+  - *Implement and ship: Image decoding attribute*
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/bxyc26iatiQ/7FurvkSfCAAJ>
+  - *Implement and ship: CSS prefers-reduced-motion media feature for Windows and MacOSX*
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/faQvST2piv4/prtBa7rCBwAJ>
+  - Implement and ship: HTMLMediaElement.allowedToPlay
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/BPZHwDp_Ciw/Blo-G1tqCQAJ>
+  - *Implement and ship: WebXR Device API in Firefox Nightly*
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/K-i_WXuZ_bY/1-XAkm6wCQAJ>
+  - *Implement: Visual Viewport API*
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/gchNtWfv_bk/kQEfdc0LBgAJ>
+  - Implement: Scrollbar color properties
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/X_tv4aH4NxQ/w497k6J7CQAJ>
+    - scrollbar-face-color/scrollbar-track-color
+    - `::-webkit-scrollbar-*` をもっと良くして標準化したもの
+  - Unship: explicit `<angle>` values in image-orientation
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/A1aaENcsR6k/fPB1AvyaCAAJ>
+  - Unship: Web animations composite modes on keyframes
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/4QgtCF1-Q74/nNi6PiwcBgAJ>
+  - Unship: display: -moz-box and display: -moz-inline-box from content pages.
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/C83tct9EPAk/yHCj-Fm_BQAJ>
+  - Remove: the 'Memory usage of Subprocesses' table from about:performance
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/DEJsPnsUtYk/XJ6cc8xPCgAJ>
+    - パフォーマンスに影響がある一方、わかったところでできることが少ないので消す。
+  - Disable Metadata
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/qE-MCVzSkxQ/9U84ErLtBwAJ>
+- Site Compat
+- Other
+  - Dark Theme Darkening: Better Theming for Firefox Quantum
+    - <https://hacks.mozilla.org/2018/07/dark-theme-darkening-better-theming-for-firefox-quantum/>
+  - Introducing Firefox's First Mobile Test Pilot Experiments: Lockbox and Notes
+    - <https://blog.mozilla.org/blog/2018/07/10/introducing-firefoxs-first-mobile-test-pilot-experiments-lockbox-and-notes/>
+  - *Progressive Web Apps in the HTTP Archive*
+    - <https://medium.com/dev-channel/progressive-web-apps-in-the-http-archive-614d4bcf81fe>
+    - HTTP Archive が PWA 対応したのかと思ったら違った
+    - HTTP Archive から PWA 対応サイトのデータを取り出す Big Query の解説
+  - Modern codecs like AV1 can bring better quality video to the open web
+    - <https://blog.mozilla.org/blog/2018/07/11/royalty-free-web-video-codecs/>
+    - <https://people.xiph.org/~xiphmont/demo/av1/demo1.shtml>
+    - <https://hacks.mozilla.org/2018/06/av1-next-generation-video-the-constrained-directional-enhancement-filter/>
+    - AV1 に関する話が色々
+  - PSA: Automated code analysis now also in Phabricator
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/5oNzD8btCgg/3s6RvoEMBgAJ>
+  - 360 ° Images on the Web, the Easy Way
+    - <https://hacks.mozilla.org/2018/07/360-images-on-the-web-the-easy-way/>
+  - Firefox Performance Update #10
+    - <https://mikeconley.ca/blog/2018/07/24/firefox-performance-update-10/>
+  - *Developer Outreach - Web Platform Research and Recommendations*[c]
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/snwaIh0VxUo/2lBj3iBjCAAJ>
+  - *Web Replay landed in Firefox nightly*
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/0C2ZgpP1JTQ/5x3V-CBqCQAJ>
+  - *mozilla-central: changeset 429458:647fdd384a5e - Bug 1461465 - Implement async Clipboard APIs, r=nika,r=enndeakin*
+    - <https://hg.mozilla.org/mozilla-central/rev/647fdd384a5e>
+  - mozilla-inbound: changeset 427436:7d8ce14346a3 - Bug 1476853 - Enable block autoplay on Nightly only on desktop. r=jya
+    - <https://hg.mozilla.org/integration/mozilla-inbound/rev/7d8ce14346a3>
+    - ビデオの autoplay 無効化が入った
+  - mozilla-inbound: changeset 427757:62fd708ed9d9 - Bug 1470111 - Enable Clear-Site-Data header by default, r=ckerschb
+    - <https://hg.mozilla.org/integration/mozilla-inbound/rev/62fd708ed9d9>
+  - mozilla-inbound: changeset 427926:bc2538dade14 - Bug 1365045 - Introduce keywords for prefers-reduced-motion. r=heycam
+    - <https://hg.mozilla.org/integration/mozilla-inbound/rev/bc2538dade14>
+    - Media Queries Lv5 の prefers-reduced-motion
+  - *Evolving the Firefox Brand - Mozilla Open Design*
+    - <https://blog.mozilla.org/opendesign/evolving-the-firefox-brand/>
+    - ロゴ検討中(1,2 比較案)
+  - *Update on the Distrust of Symantec TLS Certificates*
+    - <https://blog.mozilla.org/security/2018/07/30/update-on-the-distrust-of-symantec-tls-certificates/>
+    - <https://support.apple.com/en-us/HT208860>
+    - Beta - September 5
+    - Release - October 23
+
+
+### Safari 動向
+
+- Stable: 11.1
+- Safari Technology Preview 60
+  - <https://webkit.org/blog/8361/release-notes-for-safari-technology-preview-60/>
+  - こまかめ
+- *Safari Technology Preview 61*
+  - <https://webkit.org/blog/8365/release-notes-for-safari-technology-preview-61/>
+  - Enabled Link Preload by default in the Experimental Features menu (r233263)
+  - Implemented support for Element.toggleAttribute (r233475) [blog](https://blog.jxck.io/entries/2018-07-20/toggle-attribute.html)
+  - Made fetch() use "same-origin" credentials by default (r233720)
+- Other
+
+
+### Edge 動向
+
+- Stable: 17
+- Status Updates
+  - <https://github.com/MicrosoftEdge/Status/compare/production@{2018-07-01}...production@{2018-08-01}>
+  - WebAuthN Shipped
+- EdgeHTML
+- Build Changelog
+  - Announcing Windows 10 Insider Preview Build 17723 and Build 18204
+    - <https://blogs.windows.com/windowsexperience/2018/07/25/announcing-windows-10-insider-preview-build-17723-and-build-18204/>
+    - *XSS Filter が終了する*
+    - Filter のせいで XSS が発生したりと潜在的な危険性もあった
+    - 作った人が Google に行っちゃったり、メンテできる人も少なそう
+    - 更新されてないし、 CSP もあるから消されたっぽい
+    - でも段階的な緩和や事前アナウンスなしでいきなりはどうなの?
+    - MS の独自機能史上もっともクソな機能だったと思う
+- Chakra
+  - v1.10.1
+    - <https://github.com/Microsoft/ChakraCore/wiki/Roadmap#v1101>
+- Other
+  - Upcoming changes to Exchange Web Services (EWS) API for Office 365
+    - <https://blogs.technet.microsoft.com/exchange/2018/07/03/upcoming-changes-to-exchange-web-services-ews-api-for-office-365/>
+  - Windows 10 Tip: Yikes, stop that sound! Mute-a-tab in Microsoft Edge
+    - <https://blogs.windows.com/windowsexperience/2018/07/02/windows-10-tip-yikes-stop-that-sound-mute-a-tab-in-microsoft-edge/>
+  - Getting started with IndexedDB inspection in the Microsoft Edge DevTools
+    - <https://blogs.windows.com/msedgedev/2018/07/11/indexeddb-inspection-in-the-microsoft-edge-devtools/>
+  - 2018 年 7 月の Internet Explorer / Microsoft Edge の累積的なセキュリティ更新プログラムを公開しました
+    - <https://blogs.technet.microsoft.com/jpieblog/2018/07/11/securityupdate201807/>
+  - *Internet Explorer の今後について*
+    - <https://blogs.technet.microsoft.com/jpieblog/2018/07/18/internet-explorer-support/>
+  - *Introducing Web Authentication in Microsoft Edge*
+    - <https://blogs.windows.com/msedgedev/2018/07/30/introducing-web-authentication-microsoft-edge>
+
+
+### WHATWG/W3C 動向
+
+- *TAG Meeting*
+  - <https://github.com/w3ctag/meetings/tree/gh-pages/2018/07-seattle>
+- Recommendation
+- Proposed Recommendation
+- Candidate Recommendation
+  - W3C Invites Implementations of Identifiers for WebRTC's Statistics API
+    - <https://www.w3.org/blog/news/archives/7136>
+  - W3C Invites Implementations of CSS Text Decoration Module Level 3
+    - <https://www.w3.org/blog/news/archives/7134>
+    - <https://lists.w3.org/Archives/Public/www-style/2018Jul/0003.html>
+  - Payment Request API
+    - <https://www.w3.org/blog/news/archives/7160>
+  - User Timing Level 2
+    - <https://www.w3.org/blog/news/archives/7162>
+  - TTML Profiles for Internet Media Subtitles and Captions 1.1
+    - <https://www.w3.org/blog/news/archives/7215>
+- Working Draft
+  - ACT Rules Format 1.0 Final Working Draft
+    - <https://www.w3.org/blog/news/archives/7154>
+  - Draft update to Inaccessibility of CAPTCHA
+    - <https://www.w3.org/blog/news/archives/7143>
+  - Updated WD of the CSS Overflow Module Level 3
+    - <https://lists.w3.org/Archives/Public/www-style/2018Jul/0040.html>
+- First Public Working Draft
+  - First Public Working Drafts: WebRTC DSCP Control API; MediaStreamTrack Content Hints
+    - <https://www.w3.org/blog/news/archives/7131>
+  - First Public Working Drafts: WAI-ARIA 1.2, Core-AAM 1.2, and ARIA Practices 1.2
+    - <https://www.w3.org/blog/news/archives/7200>
+- Chartering
+  - Proposed W3C Charter: Web Performance Working Group
+    - <https://lists.w3.org/Archives/Public/public-new-work/2018Jul/0002.html>
+- Other
+  - Changes to WebPlat editors from L é onie Watson
+    - <https://lists.w3.org/Archives/Public/public-html/2018Jul/0004.html>
+    - HTML Accessibility API Mappings と W3C HTML5 仕様の Editor が幾人か入れ替わる
+  - W3C launches Internationalization Initiative
+    - <https://www.w3.org/blog/news/archives/7156>
+    - <https://www.w3.org/2018/07/pressrelease-i18n-initiative.html.en>
+    - <https://www.w3.org/2018/07/pressrelease-i18n-initiative.html.ja>
+    - <https://www.w3.org/blog/International/2018/07/10/w3c-launches-internationalization-initiative/>
+    - i18n の作業を行う Internationalization Activity が Initiative に格上げ
+  - Web Authentication WG Meeting Agenda
+    - <https://lists.w3.org/Archives/Public/public-webauthn/2018Jul/0345.html>
+  - W3C Workshop Report: Web5G: Aligning evolutions of network and Web technologies
+    - <https://www.w3.org/blog/news/archives/7179>
+  - [Houdini] Minutes Sydney F2F 2018-07-02 Part I: Properties and Values, Layout API
+    - <https://lists.w3.org/Archives/Public/www-style/2018Jul/0015.html>
+  - [Houdini] Minutes Sydney F2F 2018-07-02 Part II: Layout API, Typed OM, Custom Paint
+    - <https://lists.w3.org/Archives/Public/www-style/2018Jul/0016.html>
+  - PSA: RTCRtpTransceiver shipping in M69 behind sdpSemantics:'unified-plan'
+    - <https://groups.google.com/forum/#!msg/discuss-webrtc/zMB1aL6eZ1Q/gVVQ_4rSBAAJ>
+    - Chrome の Unified Plan 対応の続報
+  - *W3C Workshop on Permissions and User Consent*
+    - <https://www.w3.org/Privacy/permissions-ws-2018/cfp.html>
+    - 面白そうなワークショップ
+  - *[css-nesting] request to pick up the css-nesting proposal*
+    - <https://github.com/w3c/csswg-drafts/issues/2701#issuecomment-402392212>
+    - Sass みたいなブロックのネストをする nesting プロポーザルがなぜか突如 ED になることに
+
+
+### TC39 動向
+
+- Meeting
+  - agenda
+    - <https://github.com/tc39/agendas/blob/master/2018/07.md>
+- Proposals Diff
+  - <https://github.com/tc39/proposals/compare/master@{2018-07-01}...master@{2018-08-01}>
+  - 0->1
+    - Explicit Resource Management
+      - <https://github.com/rbuckton/proposal-using-statement>
+      - 明示的なリソース(memory, I/O) の解放
+    - Dynamic Modules
+      - <https://github.com/guybedford/proposal-dynamic-modules>
+    - JavaScript Standard Library
+      - <https://github.com/msaboff/JavaScript-Standard-Library>
+  - 1->2
+    - ArrayBuffer.prototype.transfer
+      - <https://github.com/domenic/proposal-arraybuffer-transfer/>
+    - Intl.DateFormat.prototype.formatRange (ecma402)
+      - <https://github.com/fabalbon/proposal-intl-DateTimeFormat-formatRange>
+    - RegExp Match array offsets
+      - <https://github.com/rbuckton/proposal-regexp-match-offsets>
+  - 2->3
+    - Object.fromEntries
+      - <https://github.com/bakkot/object-from-entries>
+  - 3->4
+- New Proposals
+  - Promise.allSettled
+    - <https://github.com/jasonwilliams/proposal-promise-allSettled>
+    - resolve/reject どっちでもいいから全部終わったら結果を配列で返す
+  - *msaboff/JavaScript-Standard-Library*
+    - <https://github.com/msaboff/JavaScript-Standard-Library>
+    - std:xxxx で標準ライブラリを定義する
+- Other
+  - *npm Joins ECMA International and TC39*
+    - <https://blog.npmjs.org/post/175722319045/npm-joins-ecma-international-and-tc39>
+  - *The Future of JS*
+    - <https://docs.google.com/presentation/d/179v41LMaEXDxaD-piSgYVi6btFJoNoeYVncXe0172GM/edit#slide=id.p>
+    - 現状の ES Proposals 全部を実装したらどうなるかというまとめ
+    - 提案は簡単だが実装は大変だ、という話
+    - 記号の取り合い問題
+
+
+### IETF 動向
+
+- IETF 102
+  - IETF 102 preliminary & interim materials
+    - <https://datatracker.ietf.org/meeting/102/materials/>
+  - HTTP WG
+    - <https://datatracker.ietf.org/meeting/102/materials/agenda-102-httpbis-05>
+    - <https://datatracker.ietf.org/meeting/102/materials/minutes-102-httpbis-00>
+    - <https://github.com/httpwg/wg-materials/tree/gh-pages/ietf102>
+      - <https://twitter.com/mnot/status/1020081206023663616>
+      - A really big week in @http_wg!
+      - @estark37's Expect-CT shipped to the IESG
+      - @igrigorik's Client Hints is in WGLC
+      - @johnwilander joined @mikewest to edit the Cookie spec
+      - @grittygrease presented CDN-Loop
+      - @jreschke and @fielding continued work on HTTP's core.
+      - Great progress.
+  - QUIC WG
+    - <https://datatracker.ietf.org/meeting/102/materials/agenda-102-quic-07>
+    - <https://datatracker.ietf.org/meeting/102/materials/minutes-102-quic-00>
+    - <https://github.com/quicwg/wg-materials/tree/master/ietf102>
+  - TLS WG
+    - <https://datatracker.ietf.org/meeting/102/materials/agenda-102-tls-06>
+    - <https://datatracker.ietf.org/meeting/102/materials/minutes-102-tls-00>
+  - Web Packaging Agenda
+    - <https://github.com/WICG/webpackage/wiki/IETF-102-Agenda>
+    - <https://docs.google.com/presentation/d/1AgfatnOnKICLRcf9ct9ZzWKpG_68R-mw0DXgu84wHvM/edit>
+- RFC
+  - RFC 5289 - TLS Elliptic Curve Cipher Suites with SHA-256/384 and AES Galois Counter Mode (GCM)
+    - <https://tools.ietf.org/html/rfc5289>
+  - RFC 8417 - Security Event Token (SET)
+    - <https://tools.ietf.org/html/rfc8417>
+  - RFC 8445 - Interactive Connectivity Establishment (ICE)
+    - <https://tools.ietf.org/html/rfc8445>
+- IETF Last Call
+  - Expect-CT Extension for HTTP to Experimental RFC
+    - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018JulSep/0154.html>
+- WG Last Call
+  - draft-ietf-httpbis-client-hints-06
+    - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018JulSep/0124.html>
+- Call for Adoption
+- I-D Action
+  - I-D Action: draft-ietf-httpbis-cache-02.txt
+    - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018JulSep/0023.html>
+  - I-D Action: draft-ietf-httpbis-semantics-02.txt
+    - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018JulSep/0022.html>
+  - I-D Action: draft-ietf-httpbis-messaging-02.txt
+    - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018JulSep/0021.html>
+- Draft
+  - ACME Challenges Using an Authority Token
+    - <https://tools.ietf.org/html/draft-ietf-acme-authority-token-00>
+  - The Open Trust Protocol (OTrP)
+    - <https://tools.ietf.org/html/draft-ietf-teep-opentrustprotocol-01>
+  - Bundle Protocol Agent Application Data Model
+    - <https://tools.ietf.org/html/draft-birrane-dtn-adm-ion-bpadmin-00>
+  - Bundle Protocol Security Application Data Model
+    - <https://tools.ietf.org/html/draft-birrane-dtn-adm-bpsec-01>
+  - Concise Identities
+    - <https://tools.ietf.org/html/draft-birkholz-core-coid-00>
+  - Babel Cryptographic Authentification
+    - <https://tools.ietf.org/html/draft-do-babel-hmac-00>
+  - DNS Privacy Considerations
+    - <https://tools.ietf.org/html/draft-bortzmeyer-dprive-rfc7626-bis-00>
+  - DOH Digests
+    - <https://tools.ietf.org/html/draft-nottingham-doh-digests-00>
+  - Ed25519 and Ed 448 public key algorithms for the Secure Shell (SSH) protocol
+    - <https://tools.ietf.org/html/draft-ietf-curdle-ssh-ed25519-ed448-01>
+  - Network Time Protocol: Secure Network Time
+    - <https://tools.ietf.org/html/draft-stenn-ntp-secure-network-time-00>
+  - Network Time Protocol: TCP Services
+    - <https://tools.ietf.org/html/draft-stenn-ntp-tcp-services-00>
+  - Network Time Protocol: TCP Services: Key Exchange
+    - <https://tools.ietf.org/html/draft-stenn-ntp-tcp-services-keyexchange-00>
+  - Roadmap to a Networkless World
+    - <https://tools.ietf.org/html/draft-liu-nmrg-networkless-roadmap-00>
+  - Network Monitoring Protocol (NMP)
+    - <https://tools.ietf.org/html/draft-gu-network-monitoring-protocol-00>
+  - Implementation notes for RFC 7991, "The 'xml2rfc' Version 3 Vocabulary"
+    - <https://tools.ietf.org/html/draft-levkowetz-xml2rfc-v3-implementation-notes-00>
+  - Transport Network aware Mobility for 5G
+    - <https://tools.ietf.org/html/draft-clt-dmm-tn-aware-mobility-00>
+  - AR/VR and ICN
+    - <https://tools.ietf.org/html/draft-westphal-icnrg-arvr-icn-00>
+  - Captive-Portal Identification in DHCP / RA
+    - <https://tools.ietf.org/html/draft-ekwk-capport-rfc7710bis-00>
+  - Flexible Session Protocol
+    - <https://tools.ietf.org/html/draft-gao-flexible-session-protocol-00>
+  - OAuth 2.0 Token Revocation List
+    - <https://tools.ietf.org/html/draft-gpujol-oauth-atrl-00>
+  - Alternatives to the RFC++ "Switch Labels" Proposal
+    - <https://tools.ietf.org/html/draft-klensin-rfcplusplus-alternatives-00>
+  - DoHPE: DoH with Privacy Enhancements
+    - <https://tools.ietf.org/html/draft-dickinson-doh-dohpe-00>
+  - Subject Identifiers for Security Event Tokens
+    - <https://tools.ietf.org/html/draft-ietf-secevent-subject-identifiers-00>
+  - Human Rights as a Service (HRaaS)
+    - <https://tools.ietf.org/html/draft-rutkowski-hrpc-hraas-00>
+  - *Encrypted Server Name Indication for TLS 1.3*
+    - <https://tools.ietf.org/html/draft-rescorla-tls-esni-00>
+  - TLS 1.3 Extension for Certificate-based Authentication with an External Pre-Shared Key
+    - <https://tools.ietf.org/html/draft-housley-tls-tls13-cert-with-extern-psk-00>
+  - Security for 5G
+    - <https://tools.ietf.org/html/draft-naresh-mptcp-security-for-5g-00>
+- Other
+  - everyRFC
+    - <https://everyrfc.org/>
+    - RFC の検索サービス
+  - *mnot's blog: How to Read an RFC*
+    - <https://www.mnot.net/blog/2018/07/31/read_rfc>
+    - RFC の読み方
+    - RFC というフォーマットをどう読み解くかなどが書かれている
+
+
+### セキュリティ動向
+
+- HTTP Security Headers Analysis of Top One Million Websites
+  - <https://ccdcoe.org/sites/default/files/multimedia/pdf/Art%2018%20HTTP%20Security%20Headers%20Analysis%20of%20Top%20One%20Million%20Websites.pdf>
+  - alexa top 1 million でセキュリティ系ヘッダを調査
+  - HSTS は https 対応サイトのうち 38%、全体では 17.5%
+  - CSP は全体で 1.6%
+  - httponly cookie は http: 55.4% https: 42.7%
+  - secure cookie は 19.3%
+  - etc
+- 内閣サイバー(注意・警戒情報)さんの注意喚起
+  - <https://twitter.com/nisc_forecast/status/1016246248649605121>
+  - 00000JAPAN は暗号化されてないので注意して使ってほしい
+- Incident report: npm, Inc. operations incident of July 12, 2018
+  - <https://blog.npmjs.org/post/175824896885/incident-report-npm-inc-operations-incident-of>
+  - npm のパッケージに npmrc を盗み出すコードが含まれていた
+  - 特定のバージョンの webpack などを入れている人が影響
+  - 2 要素認証などを有効にしておくべき
+- Into the Borg - SSRF inside Google production network
+  - <https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/>
+
+
+### 周辺動向
+
+- A2O, a converter from iOS app to web app, is now open source
+  - <https://blog.tombo.io/a2o-a-converter-from-ios-app-to-web-app-is-now-open-source-ff001fb8dcc5>
+  - 先月忘れてたやつ (PWA じゃなかった)
+- インド首相の Narendra Modi が自分サイトが PWA 対応したことをツイート
+  - <https://twitter.com/narendramodi/status/1015771441533476864>
+- Feature Policy Kitchen Sink
+  - <https://feature-policy-demos.appspot.com/>
+  - Feature Policy のデモページ
+- *How to drop 10 million packets per second*
+  - <https://blog.cloudflare.com/how-to-drop-10-million-packets/>
+  - Cloudflare による、 DDoS 対策にパケットを落とす方法
+- Web Architecture 101 - VideoBlocks Product & Engineering
+  - <https://engineering.videoblocks.com/web-architecture-101-a3224e126947>
+- The CSS Paint API
+  - <https://css-tricks.com/the-css-paint-api/>
+  - Paint API の解説
+- *EFF to Japan: Reject Website Blocking*
+  - <https://www.eff.org/deeplinks/2018/07/eff-japan-reject-website-blocking>
+  - 電子フロンティア財団からブロッキングの取り下げるべきという声明
+- *Chris Peterson さんのツイート: "YouTube page load is 5x slower in Firefox and Edge than in Chrome because YouTube's Polymer redesign relies on the deprecated Shadow DOM v0 API only implemented in Chrome. You can restore YouTube's faster pre-Polymer design with this Firefox extension:"*
+  - <https://twitter.com/cpeterso/status/1021626510296285185>
+  - YouTube が Chrome 以外で遅い問題
+  - Chrome 以外は Shadow DOM v0 がないから Polyfill が使われるのが原因
+  - Progressive Enhancement ではあるが、影響が大きすぎた
+  - とはいえ v1 が出た今から他のブラウザが v0 実装する必要はない
+  - YouTube の Polymer も 1 系だったし YouTube の方針転換もちょっと微妙だったかも
+- dietrich ayala さんのツイート: "How big is the API surface of the web - HTML, JS, CSS, APIs … ??? ✨✨ 8173 ✨✨ According to MDN engineer @floscholz, who counted up the @MozDevNet compatibility data (which is 76% complete at this time). <https://t.co/vXsHcbNj2H">
+  - <https://twitter.com/dietrich/status/998978915912663040>
+  - *Web には 9K 近くの API がある。* (そのうち 76% が MDN に載ってる)
+- *Removing Babel's Stage Presets*
+  - <https://babeljs.io/blog/2018/07/27/removing-babels-stage-presets>
+  - ES のプロポーザルのステージごとに用意された Babel プラグインのプリセットを廃止
+  - Stage 0 などの早すぎるプロポーザルのプラグインへの危惧("BabelScript"化)や、 Stage 3 から 4 になる際にプラグインを抜く関係で breaking change が起こるなど、メンテナンスの問題も
+- The Road to QUIC
+  - <https://blog.cloudflare.com/the-road-to-quic/>
+- What are the pain points for web designers?
+  - <https://medium.com/dev-channel/what-are-the-pain-points-for-web-designers-4165bd052ba>
+- The death of a TLD
+  - <https://blog.benjojo.co.uk/post/the-death-of-a-tld>
+  - Sony が .xperia を持ってたんだけど消したとのこと
+  - 他にも結構な TLD が過去に消えているらしい
+
+
+### イベント
+
+- 7 月
+  - 14-20: IETF 102
+- 8 月
+- 9 月
+  - 18-19: W3C Digital Publication Layout and Presentation (from Manga to Magazines)
+    - <https://www.w3.org/blog/news/archives/7124>
+  - 25-26: AMP Contributor Summit
+    - <https://amphtml.wordpress.com/2018/06/28/announcing-the-amp-contributor-summit/>
+- 10 月
+  - 22-26: TPAC 2018 Lyon
+    - <https://www.w3.org/2018/10/TPAC/Overview.html>
+    - <https://www.w3.org/2018/10/TPAC/schedule.html>
+  - webkit contributors summit
+- 11 月
+- 12-14: Chrome Dev Summit
+  - <https://developer.chrome.com/devsummit/>
