@@ -123,7 +123,7 @@ Firefox は 61 をターゲットに intents を出している
 - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/wwU0TW80u1g/X_V3091yCAAJ>
 - <https://bugzilla.mozilla.org/show_bug.cgi?id=1469592>
 
-Chrome は intent to implement が出ており canary には入ってる。
+Chrome は intent to implement が出ており canary には入っている。
 
 - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mAWBTaANvmE/OgaCRH04BAAJ>
 - <https://bugs.chromium.org/p/chromium/issues/detail?id=854960>

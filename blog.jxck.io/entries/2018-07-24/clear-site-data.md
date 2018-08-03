@@ -91,7 +91,7 @@ httponly, secure の有無に関わらず、全ての Cookie が消える。
 
 実行コンテキストをクリアする、つまりリロードを行う。
 
-挙動は `location.reload()` を実行するのと同等だが *開いてる他のタブも全てリロード* される。
+挙動は `location.reload()` を実行するのと同等だが *開いている他のタブも全てリロード* される。
 
 これにより、メモリ上の値なども全てクリアされるため、アプリケーションが持つステートなどを初期化できる。
 
@@ -108,7 +108,7 @@ JS でリクエストした場合は、そうはならないので、提供方�
 
 よって、ショートハンドとして安易に `*` を使うと、前方互換性が保たれない可能性がある。
 
-それを踏まえてホワイトリストを選択するべきかは考慮が必要となる。
+それを踏まえて、ホワイトリストを選択するべきかどうかは考慮が必要となる。
 
 
 ## User Case
@@ -124,7 +124,7 @@ Type は `cache, cookie, storage, executionContext` を全て載せることに�
 
 executionContext は他の Tab を含めて対応するために
 
-他にも、脆弱性が判明した場合に、開いてるタブなども含め確実に修正版を表示させるといった用途にも使える。
+他にも、脆弱性が判明した場合に、開いているタブなども含め確実に修正版を表示させるといった用途にも使える。
 
 強制的なログアウトが可能な運用をしている場合は、そのタイミングで提供できるだろう。
 
@@ -138,7 +138,7 @@ executionContext は他の Tab を含めて対応するために
 navigator.storage.clear("cache")
 ```
 
-しかし、 `navigator.storage.clear("executionContexts")` を実行した場合、開いてる全てのタブにおいて `location.reload()` 相当が実行されるという API の設計に疑問が出た。
+しかし、 `navigator.storage.clear("executionContexts")` を実行した場合、開いている全てのタブにおいて `location.reload()` 相当が実行されるという API の設計に疑問が出た。
 
 - [storage.clear("executionContexts") ends up doing a reload across tabs - Issue #21 - w3c/webappsec-clear-site-data](https://github.com/w3c/webappsec-clear-site-data/issues/21)
 

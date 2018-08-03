@@ -122,7 +122,7 @@ Blink の開発は、スコープごとにいくつかのチームに分かれ�
   - Houdini 周りや LayoutNG などに取り組んでいるはずだが、最近アップデートが無く寂しい
 - HTML/DOM Team(blink-dev)
   - 最近全然更新が無いが、 HTML Tag の実装や WebComponents 系をやっていた気がする
-  - どこかに移って続いてるのだろうか?
+  - どこかに移って続いているのだろうか?
 
 ここでは主に blink-dev を中心に見ているが、 [ML 自体が複数ある](https://www.chromium.org/developers/technical-discussion-groups) ため、他のチームも他の ML で snippet を出しているかもしれない。
 
@@ -203,7 +203,7 @@ Intents は Chrome と似た運用だが、カバー率が低く Intents なし�
 
 - <https://wiki.mozilla.org/RapidRelease/Calendar>
 
-ブログでは Web だけでなく Internet の話題、例えば NetNewtrarity なども積極的に出してくるが、政治や法律などレイヤの高い話題は Monthly Web では省いている。
+ブログでは Web だけでなく Internet の話題、例えば NetNeutrarity なども積極的に出してくるが、政治や法律などレイヤの高い話題は Monthly Web では省いている。
 
 
 ### Intents
@@ -304,7 +304,7 @@ Technology Preview は、不定期(月 0~3 回程度?)にリリースされ、�
 - <https://developer.apple.com/safari/technology-preview/release-notes>
 - <https://developer.apple.com/library/archive/releasenotes/General/WhatsNewInSafari/Introduction/Introduction.html>
 
-TP では、仕様の早い段階の実装が突然入ったり、ドラフトすらない実装ががいきなり入ったりと、若干ハイコンテキストなときもある。
+TP では、仕様の早い段階の実装が突然入ったり、ドラフトすらない実装がいきなり入ったりと、若干ハイコンテキストなときもある。
 
 (Cross-Origin-Resource-Policy など)
 
@@ -822,7 +822,7 @@ IETF は、チケットさえ買えばだれでも参加できるという点で
 
 ## まとめ
 
-自分が普段読み流してたものを、こうして体系立ててまとめることによって、過不足や見えていなかった関係性、流れが可視化されるようになった。
+自分が普段読み流していたものを、こうして体系立ててまとめることによって、過不足や見えていなかった関係性、流れが可視化されるようになった。
 
 それでも、 Monthly Web に入れ忘れて読み流す話が結構あるので、まだまだ完全に習慣になったとは言えないのだろう。
 
