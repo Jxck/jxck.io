@@ -60,7 +60,7 @@
     "width": 700
   },
   "datePublished": "2018-07-24T08:00:00+08:00",
-  "dateModified": "2018-07-29T08:00:00+08:00",
+  "dateModified": "2018-08-04T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -104,7 +104,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
     <ul class=info>
       <li>created_at: <time class=created_at datetime=2018-07-24>2018-07-24</time>
-      <li>updated_at: <time class=updated_at datetime=2018-07-29>2018-07-29</time>
+      <li>updated_at: <time class=updated_at datetime=2018-08-04>2018-08-04</time>
       <li class=tags>tags: [<a href='/tags/cache.html'>cache</a>,<a href='/tags/cookie.html'>cookie</a>,<a href='/tags/security.html'>security</a>,<a href='/tags/http.html'>http</a>]
     </ul>
 
@@ -194,7 +194,7 @@ Clear-Site-Data: &quot;*&quot;</code></pre>
       <section>
         <h3 id="executioncontext"><a href="#executioncontext">executionContext</a></h3>
         <p>実行コンテキストをクリアする、つまりリロードを行う。
-        <p>挙動は <code translate="no">location.reload()</code> を実行するのと同等だが <em>開いてる他のタブも全てリロード</em> される。
+        <p>挙動は <code translate="no">location.reload()</code> を実行するのと同等だが <em>開いている他のタブも全てリロード</em> される。
         <p>これにより、メモリ上の値なども全てクリアされるため、アプリケーションが持つステートなどを初期化できる。
         <p>挙動がわかりにくいところがあるが、執筆時点で唯一実装している Firefox Nightly 63.0a1 では、遷移したページがこれを返すと無限にリロードしてしまう。
         <p>JS でリクエストした場合は、そうはならないので、提供方法は注意が必要だろう。
@@ -204,7 +204,7 @@ Clear-Site-Data: &quot;*&quot;</code></pre>
         <p>全てを消す。
         <p>しかし、将来に Type が追加された場合は、それらを全て含むことになる。
         <p>よって、ショートハンドとして安易に <code translate="no">*</code> を使うと、前方互換性が保たれない可能性がある。
-        <p>それを踏まえてホワイトリストを選択するべきかは考慮が必要となる。
+        <p>それを踏まえて、ホワイトリストを選択するべきかどうかは考慮が必要となる。
       </section>
     </section>
     <section>
@@ -217,14 +217,14 @@ Clear-Site-Data: &quot;*&quot;</code></pre>
       </ul>
       <p>Type は <code translate="no">cache, cookie, storage, executionContext</code> を全て載せることになるだろう。
       <p>executionContext は他の Tab を含めて対応するために
-      <p>他にも、脆弱性が判明した場合に、開いてるタブなども含め確実に修正版を表示させるといった用途にも使える。
+      <p>他にも、脆弱性が判明した場合に、開いているタブなども含め確実に修正版を表示させるといった用途にも使える。
       <p>強制的なログアウトが可能な運用をしている場合は、そのタイミングで提供できるだろう。
     </section>
     <section>
       <h2 id="js-api"><a href="#js-api">JS API</a></h2>
       <p>現状削除されているが、もともとは JS の API も合わせて定義されていた。
       <pre class=js><code translate="no">navigator.storage.clear(&quot;cache&quot;)</code></pre>
-      <p>しかし、 <code translate="no">navigator.storage.clear(&quot;executionContexts&quot;)</code> を実行した場合、開いてる全てのタブにおいて <code translate="no">location.reload()</code> 相当が実行されるという API の設計に疑問が出た。
+      <p>しかし、 <code translate="no">navigator.storage.clear(&quot;executionContexts&quot;)</code> を実行した場合、開いている全てのタブにおいて <code translate="no">location.reload()</code> 相当が実行されるという API の設計に疑問が出た。
       <ul>
         <li>
           <a href="https://github.com/w3c/webappsec-clear-site-data/issues/21">storage.clear(&ldquo;executionContexts&rdquo;) ends up doing a reload across tabs - Issue #21 - w3c/webappsec-clear-site-data</a>
