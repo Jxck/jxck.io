@@ -9,6 +9,21 @@ PWA の普及により、バックグラウンド処理をいかに制限する�
 基本概念と現時点での API 外観について解説する。
 
 
+## Update
+
+提案されて以降長いことアップデートがなかったが、 Mozilla Standard Position をリクエストしたところ、仕様が消えていたことがわかった。
+
+- <https://github.com/mozilla/standards-positions/issues/73#issuecomment-373681407>
+
+元のリポジトリに Issue で現状を問い合わせたところ、結局開発者からの支持が得られず、 Obsolute されたとのこと。
+
+Chrome からも該当のコードは削除されていたようだ。
+
+- <https://github.com/WICG/budget-api/issues/23>
+
+Silent Push 含め今後どうしていくかは、別途議論となる。
+
+
 ## Budget API
 
 Push API と Background Fetch が入った事で、 Web アプリはユーザ操作への応答のみだけでなく、バックグラウンドでの動作の可能性が増えた。
