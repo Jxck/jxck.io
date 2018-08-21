@@ -17,9 +17,10 @@ PWA の普及により、バックグラウンド処理をいかに制限する�
 
 元のリポジトリに Issue で現状を問い合わせたところ、結局開発者からの支持が得られず、 Obsolute されたとのこと。
 
-Chrome からも該当のコードは削除されていたようだ。
+blink-dev では Intent to Remove も出て、削除のパッチも上がっている。
 
 - <https://github.com/WICG/budget-api/issues/23>
+- <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/18r3whCBv0I/b8qrtFTsDAAJ>
 
 Silent Push 含め今後どうしていくかは、別途議論となる。
 
