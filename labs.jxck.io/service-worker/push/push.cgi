@@ -12,14 +12,14 @@ process.stdin.on('readable', async (e) => {
     const req = process.stdin.read(content_length)
     if (req === null)  return
 
-    console.error('req', JSON.parse(req));
+    // console.error('req', JSON.parse(req));
 
     const {sub, title, options} = JSON.parse(req)
 
     const payload = JSON.stringify({ title, options })
 
     const response = await webpush.sendNotification(sub, payload)
-    console.error('response', response)
+    // console.error('response', response)
 
     console.log('Content-type: text/plain');
     console.log('');
