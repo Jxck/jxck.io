@@ -5,4 +5,21 @@
 
 <h1>iframe sandbox DEMO</h1>
 
-<iframe sandbox="" src="frame.html"></iframe>
+<iframe sandbox="" height=200px src="child.html"></iframe>
+
+<p id='msg'></p>
+
+<button id=ping>ping</button>
+
+<script>
+  EventTarget.prototype.on  = EventTarget.prototype.addEventListener
+  EventTarget.prototype.off = EventTarget.prototype.removeEventListener
+  const $ = document.querySelector.bind(document)
+
+  $('#ping').on('click', (e) => {
+    $('iframe')
+      .contentDocument
+      .querySelector('#msg')
+      .textContent += 'ping'
+  })
+</script>

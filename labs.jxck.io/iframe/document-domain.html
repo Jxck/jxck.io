@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<title>iframe DEMO | labs.jxck.io</title>
+<title>document domain iframe DEMO | labs.jxck.io</title>
 
-<h1>iframe DEMO</h1>
+<h1>document.domain iframe DEMO</h1>
 
-<iframe height=200px src="child.html"></iframe>
+<iframe src="//lab2.jxck.io/iframe/document-domain-child.html"></iframe>
 
 <p id='msg'></p>
 
@@ -15,6 +15,8 @@
   EventTarget.prototype.on  = EventTarget.prototype.addEventListener
   EventTarget.prototype.off = EventTarget.prototype.removeEventListener
   const $ = document.querySelector.bind(document)
+
+  document.domain = "jxck.io"
 
   $('#ping').on('click', (e) => {
     $('iframe')

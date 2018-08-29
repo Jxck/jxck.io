@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<title>iframe DEMO | labs.jxck.io</title>
+<title>document.domain child DEMO | labs.jxck.io</title>
 
-<h1>iframe DEMO</h1>
-
-<iframe height=200px src="child.html"></iframe>
+<h1>document.domain child DEMO</h1>
 
 <p id='msg'></p>
 
-<button id=ping>ping</button>
+<button id=pong>pong</button>
 
 <script>
   EventTarget.prototype.on  = EventTarget.prototype.addEventListener
   EventTarget.prototype.off = EventTarget.prototype.removeEventListener
   const $ = document.querySelector.bind(document)
 
-  $('#ping').on('click', (e) => {
-    $('iframe')
-      .contentDocument
+  document.domain = "jxck.io"
+
+  $('#pong').on('click', (e) => {
+    window
+      .parent
+      .document
       .querySelector('#msg')
-      .textContent += 'ping'
+      .textContent += 'pong'
   })
 </script>

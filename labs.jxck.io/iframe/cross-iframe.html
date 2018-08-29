@@ -5,4 +5,21 @@
 
 <h1>cross origin iframe DEMO</h1>
 
-<iframe src="//lab2.jxck.io/iframe/frame.html"></iframe>
+<iframe src="//lab2.jxck.io/iframe/child.html"></iframe>
+
+<p id='msg'></p>
+
+<button id=ping>ping</button>
+
+<script>
+  EventTarget.prototype.on  = EventTarget.prototype.addEventListener
+  EventTarget.prototype.off = EventTarget.prototype.removeEventListener
+  const $ = document.querySelector.bind(document)
+
+  $('#ping').on('click', (e) => {
+    $('iframe')
+      .contentDocument
+      .querySelector('#msg')
+      .textContent += 'ping'
+  })
+</script>
