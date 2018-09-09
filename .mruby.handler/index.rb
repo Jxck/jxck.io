@@ -20,14 +20,18 @@ def list(dir, path)
 end
 
 Proc.new do |env|
-  path = env["PATH_INFO"]
-  dir = "./blog.jxck.io"
+  begin
+    path = env["PATH_INFO"]
+    dir = "./blog.jxck.io"
 
-  if path == "/entries" || path == "/entries/"
-    [200, {"content-type" => "text/html"}, [list(dir, "entries")]]
-  elsif path =~ /\/entries\/(\d{4}-\d{2}-\d{2})(\/{0,1})$/
-    [200, {"content-type" => "text/html"}, [list(dir, "entries/#{$1}")]]
-  else
-    [399, {}, []]
+    if path == "/entries" || path == "/entries/"
+      [200, {"content-type" => "text/html"}, [list(dir, "entries")]]
+    elsif path =~ /\/entries\/(\d{4}-\d{2}-\d{2})(\/{0,1})$/
+      [200, {"content-type" => "text/html"}, [list(dir, "entries/#{$1}")]]
+    else
+      [399, {}, []]
+    end
+  rescue Errno::ENOENT
+    [404, {}, []]
   end
 end
