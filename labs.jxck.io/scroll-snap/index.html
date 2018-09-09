@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Scroll Snap DEMO | labs.jxck.io</title>
+
+
+<h1>Scroll Snap DEMO</h1>
+
+<hr>
+
+<h2>horizonal</h2>
+
+<style>
+.horizonal main {
+  scroll-snap-type: x mandatory;
+  border: 1px solid blue;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+
+.horizonal section {
+  border: solid 1px red;
+  margin-right: 1em;
+  min-width: 75%;
+  min-height: 95%;
+}
+
+.horizonal .start section {
+  scroll-snap-align: none start;
+}
+
+.horizonal .center section {
+  scroll-snap-align: none center;
+}
+
+.horizonal .end section {
+  scroll-snap-align: none end;
+}
+</style>
+
+<section class=horizonal>
+  <h3>start</h3>
+  <main class=start>
+    <section>aaa</section>
+    <section>bbb</section>
+    <section>ccc</section>
+    <section>ddd</section>
+    <section>eee</section>
+    <section>fff</section>
+    <section>ggg</section>
+  </main>
+
+  <h3>center</h3>
+  <main class=center>
+    <section>aaa</section>
+    <section>bbb</section>
+    <section>ccc</section>
+    <section>ddd</section>
+    <section>eee</section>
+    <section>fff</section>
+    <section>ggg</section>
+  </main>
+
+  <h3>end</h3>
+  <main class=end>
+    <section>aaa</section>
+    <section>bbb</section>
+    <section>ccc</section>
+    <section>ddd</section>
+    <section>eee</section>
+    <section>fff</section>
+    <section>ggg</section>
+  </main>
+</section>
+
+
+<hr>
+
+
+<h2>vertical</h2>
+
+<style>
+.vertical main {
+  scroll-snap-type: y mandatory;
+  border: 1px solid blue;
+  width: 100px;
+  height: 200px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.vertical section {
+  border: solid 1px red;
+  margin-right: 1em;
+  min-height: 80%;
+}
+
+.vertical .start section {
+  scroll-snap-align: start none;
+}
+
+.vertical .center section {
+  scroll-snap-align: center none;
+}
+
+.vertical .end section {
+  scroll-snap-align: end none;
+}
+</style>
+
+<section class=vertical>
+  <h3>start</h3>
+  <main class=start>
+    <section>aaa</section>
+    <section>bbb</section>
+    <section>ccc</section>
+    <section>ddd</section>
+    <section>eee</section>
+    <section>fff</section>
+    <section>ggg</section>
+  </main>
+
+  <h3>center</h3>
+  <main class=center>
+    <section>aaa</section>
+    <section>bbb</section>
+    <section>ccc</section>
+    <section>ddd</section>
+    <section>eee</section>
+    <section>fff</section>
+    <section>ggg</section>
+  </main>
+
+  <h3>end</h3>
+  <main class=end>
+    <section>aaa</section>
+    <section>bbb</section>
+    <section>ccc</section>
+    <section>ddd</section>
+    <section>eee</section>
+    <section>fff</section>
+    <section>ggg</section>
+  </main>
+</section>
