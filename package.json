@@ -3,37 +3,37 @@
   "version": "0.0.1",
   "description": "jxck.io",
   "dependencies": {
-    "sqlite3": "^4.0.0",
-    "web-push": "^3.3.1",
+    "sqlite3": "^4.0.2",
+    "web-push": "^3.3.2",
     "websocket": "^1.0.26"
   },
   "devDependencies": {
-    "gulp":       "^3.9.1",
+    "gulp": "^3.9.1",
     "gulp-image": "^4.3.0"
   },
   "scripts": {
-    "blog":     "bundle exec ruby ./mark.rb blog",
-    "podcast":  "bundle exec ruby ./mark.rb podcast",
-    "gzip":     "./compress.sh www.jxck.io blog.jxck.io mozaic.fm",
-    "build":    "npm run blog && npm run gzip && gulp",
-    "clean":    "selects path from './blog.jxck.io/**/*' where extname '=~' 'gz|br' | q | tee -a /dev/stderr | xargs -L 1 -P 4 rm",
-    "space":    "selects path from './blog.jxck.io/entries/**/*' where extname '==' '.md' | xargs -L 1 spacer",
-    "singler":  "selects path from './blog.jxck.io/entries/**/*' where extname '==' '.md' | xargs -L 1 singler",
-    "format":   "selects path from './blog.jxck.io/entries/**/*' where extname '==' '.md' | xargs -L 1 format.rb",
-    "_start":   "sudo $DOTFILES/local/h2o/bin/h2o -m daemon -c h2o.conf",
-    "_stop":    "sudo kill -TERM `cat ../pid/h2o.pid`",
+    "blog": "bundle exec ruby ./mark.rb blog",
+    "podcast": "bundle exec ruby ./mark.rb podcast",
+    "gzip": "./compress.sh www.jxck.io blog.jxck.io mozaic.fm",
+    "build": "npm run blog && npm run gzip && gulp",
+    "clean": "selects path from './blog.jxck.io/**/*' where extname '=~' 'gz|br' | q | tee -a /dev/stderr | xargs -L 1 -P 4 rm",
+    "space": "selects path from './blog.jxck.io/entries/**/*' where extname '==' '.md' | xargs -L 1 spacer",
+    "singler": "selects path from './blog.jxck.io/entries/**/*' where extname '==' '.md' | xargs -L 1 singler",
+    "format": "selects path from './blog.jxck.io/entries/**/*' where extname '==' '.md' | xargs -L 1 format.rb",
+    "_start": "sudo $DOTFILES/local/h2o/bin/h2o -m daemon -c h2o.conf",
+    "_stop": "sudo kill -TERM `cat ../pid/h2o.pid`",
     "_restart": "npm run _stop && npm run _start",
-    "start":    "sudo systemctl start h2o",
-    "stop":     "sudo systemctl stop h2o",
-    "kill":     "sudo systemctl kill h2o",
-    "restart":  "sudo systemctl restart h2o",
-    "reload":   "sudo systemctl reload h2o",
-    "test":     "$DOTFILES/local/h2o/bin/h2o -t -c h2o.conf | cat",
-    "cron":     "sudo crontab -u root .crontab/* && sudo crontab -u root -l"
+    "start": "sudo systemctl start h2o",
+    "stop": "sudo systemctl stop h2o",
+    "kill": "sudo systemctl kill h2o",
+    "restart": "sudo systemctl restart h2o",
+    "reload": "sudo systemctl reload h2o",
+    "test": "$DOTFILES/local/h2o/bin/h2o -t -c h2o.conf | cat",
+    "cron": "sudo crontab -u root .crontab/* && sudo crontab -u root -l"
   },
   "repository": {
     "type": "git",
-    "url":  "git+https://github.com/jxck/jxck.io.git"
+    "url": "git+https://github.com/jxck/jxck.io.git"
   },
   "author": "Jxck",
   "bugs": {
