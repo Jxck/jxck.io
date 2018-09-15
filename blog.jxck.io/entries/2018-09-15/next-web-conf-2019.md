@@ -35,7 +35,6 @@
 この趣旨に賛同してくださった、各分野のプロフェッショナルに協力頂き、「*次世代 Web カンファレンス*」として、開催させていただくことになりました。
 
 
-
 ## やること
 
 やることはシンプルです。
@@ -111,63 +110,95 @@
 ## Speaker
 
 
-### A11y ([#nwc_a11y](https://twitter.com/search?q=%23nwc_a11y))
+### A11y
 
 - [@tokimariri](https://twitter.com/tokimariri)
 - [@ma10](https://twitter.com/ma10)
 - [@magi1125](https://twitter.com/magi1125)
 - [@sukoyakarizumu](https://twitter.com/sukoyakarizumu)
 
+hashtag: [#nwc_a11y](https://twitter.com/search?q=%23nwc_a11y)
 
-### Performance ([#nwc_perf](https://twitter.com/search?q=%23nwc_perf))
+togetter: [#nwc_a11y](https://togetter.com/li/1267057)
+
+
+### Performance
 
 - [@1000ch](https://twitter.com/1000ch)
 - [@_likr](http://twitter.com/_likr)
 - [@sisidovski](https://twitter.com/sisidovski)
 
+hashtag: [#nwc_perf](https://twitter.com/search?q=%23nwc_perf)
 
-### WebXR ([#nwc_webxr](https://twitter.com/search?q=%23nwc_webxr))
+togetter: [#nwc_perf](https://togetter.com/li/1267058)
+
+
+### WebXR
 
 - [@edo_m18](https://twitter.com/edo_m18)
 - [@h_doxas](https://twitter.com/h_doxas)
 - [@yomotsu](https://twitter.com/yomotsu)
 
+hashtag: [#nwc_webxr](https://twitter.com/search?q=%23nwc_webxr)
 
-### Security ([#nwc_sec](https://twitter.com/search?q=%23nwc_sec))
+togetter: [#nwc_webxr](https://togetter.com/li/1267059)
+
+
+### Security
 
 - [@k2wanko](https://twitter.com/k2wanko)
 - [@bulkneets](https://twitter.com/bulkneets)
 - [@ockeghem](https://twitter.com/ockeghem)
 - [@yagihashoo](https://twitter.com/yagihashoo)
 
+hashtag: [#nwc_sec](https://twitter.com/search?q=%23nwc_sec)
 
-### Ad ([#nwc_ad](https://twitter.com/search?q=%23nwc_ad))
+togetter: [#nwc_sec](https://togetter.com/li/1267061)
+
+
+### Ad
 
 - [@suzu_v](https://twitter.com/suzu_v)
 - [@yamaz](https://twitter.com/yamaz)
 - xxj
 
+hashtag: [#nwc_ad](https://twitter.com/search?q=%23nwc_ad)
 
-### AuthN/Z ([#nwc_auth](https://twitter.com/search?q=%23nwc_auth))
+togetter: [#nwc_ad](https://togetter.com/li/1267063)
+
+
+### AuthN/Z
 
 - [@kura_lab](https://twitter.com/kura_lab)
 - [@komatak](https://twitter.com/komatak)
 - [@phr_eidentity](https://twitter.com/phr_eidentity)
 - [@agektmr](https://twitter.com/agektmr)
 
+hashtag: [#nwc_auth](https://twitter.com/search?q=%23nwc_auth)
 
-### Microservices ([#nwc_micro](https://twitter.com/search?q=%23nwc_micro))
+togetter: [#nwc_auth](https://togetter.com/li/1267064)
+
+
+### Microservices
 
 - [@tagomoris](https://twitter.com/tagomoris)
 - [@fujiwara](https://twitter.com/fujiwara)
 - [@tokuhirom](https://twitter.com/tokuhirom)
 
+hashtag: [#nwc_micro](https://twitter.com/search?q=%23nwc_micro)
 
-### SRE ([#nwc_sre](https://twitter.com/search?q=%23nwc_sre))
+togetter: [#nwc_micro](https://togetter.com/li/1267066)
+
+
+### SRE
 
 - [@kani_b](https://twitter.com/kani_b)
 - [@deeeet](https://twitter.com/deeeet)
 - [@y_uuk1](https://twitter.com/y_uuk1)
+
+hashtag: [#nwc_sre](https://twitter.com/search?q=%23nwc_sre)
+
+togetter: [#nwc_sre](https://togetter.com/li/1267067)
 
 
 ### 調整中
