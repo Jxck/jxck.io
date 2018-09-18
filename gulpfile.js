@@ -12,6 +12,7 @@ const imageOption = {
   mozjpeg:        true,
   gifsicle:       true,
   svgo:           true,
+  concurrent:     4,
 }
 
 gulp.task('image', () => {
