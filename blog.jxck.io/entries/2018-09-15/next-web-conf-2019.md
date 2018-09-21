@@ -124,7 +124,7 @@ togetter: [#nwc_a11y](https://togetter.com/li/1267057)
 ### Performance
 
 - [@1000ch](https://twitter.com/1000ch)
-- [@_likr](http://twitter.com/_likr)
+- likr
 - [@sisidovski](https://twitter.com/sisidovski)
 
 hashtag: [#nwc_perf](https://twitter.com/search?q=%23nwc_perf)
@@ -193,28 +193,43 @@ hashtag: [#nwc_sre](https://twitter.com/search?q=%23nwc_sre)
 togetter: [#nwc_sre](https://togetter.com/li/1267067)
 
 
+### QUIC
 
-### 調整中
+- [@flano_yuki](https://twitter.com/flano_yuki)
+- [@kazuho](https://twitter.com/kazuho)
+- [@\_\_kaname\_\_](https://twitter.com/__kaname__)
+- [@ysnysnysn](https://twitter.com/ysnysnysn)
 
-
-### 調整中
-
-
-### 調整中
-
-
-### 調整中
+hashtag: [#nwc_quic](https://twitter.com/search?q=%23nwc_quic)
+togetter: [#nwc_quic](https://togetter.com/li/1268790)
 
 
-### 調整中
+### Frontend
+
+- [@koba04](https://twitter.com/koba04)
+- [@laco2net](https://twitter.com/laco2net)
+- [@kazu_pon](https://twitter.com/kazu_pon)
+- [@takanoripe](https://twitter.com/takanoripe)
+
+hashtag: [#nwc_front](https://twitter.com/search?q=%23nwc_front)
+togetter: [#nwc_front](https://togetter.com/li/1268792)
 
 
-###  調整中
+### HTTPS
+
+- [@jxck](https://twitter.com/jxck_)
+- [@jovi0608](https://twitter.com/jovi0608)
+- [@kjur](https://twitter.com/kjur)
+- [@4ma_](https://twitter.com/4ma_)
+
+hashtag: [#nwc_https](https://twitter.com/search?q=%23nwc_https)
+togetter: [#nwc_https](https://togetter.com/li/1268794)
 
 
 ### 録画配信
 
 - [@mizuman_](https://twitter.com/mizuman_)
+- [@wks](https://twitter.com/wks)
 
 
 ## 今後の予定
