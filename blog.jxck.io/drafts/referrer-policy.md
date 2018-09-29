@@ -82,13 +82,32 @@ https://ticket.orange.example.com/{社員名}/issue/xxxxxx/あれが壊れてい
 
 
 
+### Referer による検証
+
+
+
+
 
 
 ## Referer が載る条件
 
+
+
+## Referer 制御の観点
+
+
+Referer を制御する際には、以下の 3 つの観点が考えられる。
+
+- Origin / URL
+- Dowgrade / Upgrade
+- 載せる条件
+
+
+
+
 ## Referrer-Policy
 
-Referrer-Policy ヘッダは、そのページからの遷移に伴う Referer ヘッダを制御するためのヘッダである。
+Referrer-Policy は、ヘッダもしくは HTML の特定の要素、そのページからの遷移に伴う Referer ヘッダを制御するためのヘッダである。
 
 - <https://w3c.github.io/webappsec-referrer-policy/>
 
@@ -111,27 +130,142 @@ Referrer-Policy: no-referrer
 - `unsafe-url`
 - `""`
 
-それぞれ解説していく。
+
+ポリシーの違いを見極める観点としてはまず載せる値がある。
+
+ヘッダに URL が載る場合、例えばこのページでは以下のようになる。
+
+
+```http
+Referer: https://blog.jxck.io/entries/2018-09-22/referrer-policy.html
+```
+
+ポリシーによっては、この URL の詳細度を下げるため、 Origin のみを送るものがある。
+
+```http
+Referer: https://blog.jxck.io/
+```
+
+これなら、どのサイトから来たかはわかるが、どのパスから来たかまではわからないという状態になる。
+
+特に Origin ヘッダが付与される場合は、これと同等の情報が載るため、 Origin ヘッダが送信される状況では Referer を禁止してもこの情報は送信されていることは認識しておきたい。
+
+
+これを踏まえて、それぞれ解説していく。
+
+
 
 
 ### no-referrer
 
-Referer ヘッダそのものが無くなり、一切送信されなくなる。
+送る条件: 一切送らない
+
+
+Referer ヘッダそのものが省かれるため、情報の漏洩の観点から言うと一番安全ではある。
+
+しかし、同じサイト内でも送られなくなるため、 Referer をベースとした検証がどこかに入っている場合は問題になる。
+
+社内ドメイン内の遷移でも送られなくなるので、内部での遷移についてもメトリクスを取りたい場合を考えると制限が強い。
 
 
 
-# no-referrer
-# no-referrer-when-downgrade
-# same-origin
-# origin
-# strict-origin
-# origin-when-cross-origin
-# strict-origin-when-cross-origin
-# unsafe-url
+### unsafe-url
 
-# 空文字列
+送る条件: 必ず送る
+送る値: URL 全体
+
+Referer ヘッダに URL 全体を載せ、必ず送る。
 
 
+### same-origin
+
+送る条件: Same Origin のみ
+送る値: URL 全体
+
+Same Origin なので、 http -> http / https -> https となり、 Downgrade/Upgrade では送られない。
+
+
+
+### origin
+
+送る条件: 必ず送る
+送る値: Origin のみ
+
+
+送る対象は全ての遷移なので、パス情報を秘匿したいが Origin だけは知りたいといった用途で利用できる。
+
+ただし、 Downgrade しても送られるため、 MITM などで書き換えられるリスクがあるため、検証要素としては弱いと考えるべきだろう。
+
+
+### strict-origin
+
+送る条件: Downgrade 以外
+送る値: Origin のみ
+
+
+全てのドメインに対して
+
+- https -> https であれば送る。
+- https -> http であれば送らない。
+- http -> https/http は送る。
+
+
+つまり、ダウングレードだけを警戒した `origin` ということになる。
+
+送る内容は前述と同じ Origin のみである。
+
+
+### no-referrer-when-downgrade (default)
+
+送る条件: Downgrade 以外
+送る値: URL 全体
+
+
+http 間や、 https 間では送られるが、 https -> http だけ送られない。
+
+これがブラウザのデフォルトの挙動になる。
+
+
+
+### origin-when-cross-origin
+
+送る条件: Cross Origin の場合
+送る値: Origin のみ
+
+送る条件: Same Origin の場合
+送る値: URL 全体
+
+
+内部遷移では URL 全体を送るが、外に出る場合は Origin のみを送る挙動になる。
+
+https -> http も Cross Origin 扱いになるため、 Origin のみ送られる。
+
+
+
+### strict-origin-when-cross-origin
+
+送る条件: Downgrade の場合
+送る値: 無し
+
+送る条件: Cross Origin の場合
+送る値: Origin のみ
+
+送る条件: Same Origin の場合
+送る値: URL 全体
+
+
+`orign-when-cross-origin` にダウングレードでの送信禁止を追加した挙動となる。
+
+ダウングレードでは送りたいくない、内部ではパスが欲しいが、外部にはオリジンだけに制限したいという用途になる。
+
+
+
+
+### 空文字列
+
+Policy を指定しないことを意味する。
+
+より上位の指定内容か、 User Agent のデフォルトが反映される。
 
 
 
