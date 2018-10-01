@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <!--
+  貴様、見ているな！！
+  このサイトの技術的なまとめはこちらをどうぞ。
+  https://labs.jxck.io/blog
+
+  by Jxck
+  -->
+  <link rel=canonical href=https://mozaic.fm/episodes/43/permission.html>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <link rel=alternate type=application/rss+xml title=mozaic.fm href=http://feed.mozaic.fm>
+  <link rel=author href=https://jxck.io/assets/humans.txt>
+  <script async src=https://jxck.io/assets/js/ga.mozaic.js></script>
+  <script async src=https://jxck.io/assets/js/highlight.min.js></script>
+  <script src=https://jxck.io/assets/js/mozaic.js></script>
+
+  <meta name=author content=Jxck>
+  <meta name=description content="第 43 回のテーマは Permission です。今回は @toyoshim をお呼びし、今議論中の Web における Permission について、何が問題/課題であり、現状どうなっているのか。実装と仕様の両方の側面から議論し、 Web における Permission...">
+  <meta name=keywords content="permission,mozaic.fm">
+  <meta itemprop=image content="https://mozaic.fm/assets/img/mozaic.png">
+  <meta itemprop=name content="mozaic.fm">
+
+  <meta name=twitter:card content=summary>
+  <meta name=twitter:site content=@jxck_>
+  <meta name=twitter:url content="https://mozaic.fm/episodes/43/permission.html">
+  <meta name=twitter:title content="ep43 Permission | mozaic.fm">
+  <meta name=twitter:description content="第 43 回のテーマは Permission です。今回は @toyoshim をお呼びし、今議論中の Web における Permission について、何が問題/課題であり、現状どうなっているのか。実装と仕様の両方の側面から議論し、 Web における Permission...">
+  <meta name=twitter:image content="https://mozaic.fm/assets/img/mozaic.png">
+
+  <meta property=og:type content=article>
+  <meta property=og:url content="https://mozaic.fm/episodes/43/permission.html">
+  <meta property=og:title content="ep43 Permission | mozaic.fm">
+  <meta property=og:site_name content="mozaic.fm">
+  <meta property=og:description content="第 43 回のテーマは Permission です。今回は @toyoshim をお呼びし、今議論中の Web における Permission について、何が問題/課題であり、現状どうなっているのか。実装と仕様の両方の側面から議論し、 Web における Permission...">
+  <meta property=og:image content="https://mozaic.fm/assets/img/mozaic.png">
+
+  <link rel=icon sizes=256x256 href="https://mozaic.fm/assets/img/mozaic.png">
+  <link rel="shortcut icon" href="https://mozaic.fm/assets/img/mozaic.png">
+  <link rel=apple-touch-icon sizes=256x256 href="https://mozaic.fm/assets/img/mozaic.png">
+
+  <title>ep43 Permission | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/42/monthly-web-201809.html>
+  
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/body.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/header.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/main.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/article.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/footer.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/mozaic.css>
+</head>
+<body>
+
+<header>
+  <nav>
+    <ul>
+      <li><a href=/><img class=logo alt=top width=50 src=https://jxck.io/assets/img/mozaic.svg></a>
+      <!--li><a><img alt="receive push notification" width="50" src="//jxck.io/assets/img/push.svg"></a-->
+      <li><a href=http://feed.mozaic.fm><img alt="rss feed" width=50 src=https://jxck.io/assets/img/podcast.svg></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495><img alt=itunes width=50 src=https://jxck.io/assets/img/itunes.svg></a>
+      <li><a href=https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D><img alt=itunes width=50 src=https://jxck.io/assets/img/google-podcast.svg></a>
+      <li><a href="https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd"><img alt=huamns.txt width=50 src=https://jxck.io/assets/img/twitter.svg></a>
+      <li><a href=https://jxck.io><img class=logo alt="jxck logo" width=50 src=https://jxck.io/assets/img/jxck.svg></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/42/monthly-web-201809.html">ep42 Monthly Web 201809</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+
+  <article>
+    <h1><a href=/episodes/43/permission.html>ep43 Permission</a></h1>
+    <section>
+      <h2>Info</h2>
+      <p><audio preload=none src=https://files.mozaic.fm/mozaic-ep43.mp3 controls></audio>
+      <ul class=info>
+        <li>published_at: <time datetime=2018-09-30>2018-09-30</time>
+        <li>
+          guest: <a href="https://twitter.com/toyoshim">@toyoshim</a>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2>Theme</h2>
+      <p>第 43 回のテーマは Permission です。
+      <p>今回は <a href="https://twitter.com/toyoshim">@toyoshim</a> をお呼びし、今議論中の Web における Permission について、何が問題/課題であり、現状どうなっているのか。
+      <p>実装と仕様の両方の側面から議論し、 Web における Permission の扱いが Web をどのように変えていくのかについて議論しました。
+    </section>
+    <section>
+      <h2>Show Note</h2>
+      <ul>
+        <li>
+          <a href="http://webaudio.github.io/web-midi-api/">Web MIDI API</a>
+        </li>
+        <li>
+          <a href="https://webaudio.github.io/web-audio-api/">Web Audio API</a>
+        </li>
+        <li>
+          <a href="https://wicg.github.io/webusb/">Web USB API</a><ul>
+            <li>
+              <a href="https://github.com/mozilla/standards-positions/issues/100">https://github.com/mozilla/standards-positions/issues/100</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="https://webbluetoothcg.github.io/web-bluetooth/">Web Bluetooth</a>
+        </li>
+        <li>
+          <a href="https://www.w3.org/Privacy/permissions-ws-2018/cfp.html">W3C Workshop on Permissions and User Consent</a><ul>
+            <li>2014 年いらい 2 回目の開催
+          </ul>
+        </li>
+        <li>
+          <a href="https://youtu.be/_LzSBr99kkw">builderscon 2018</a><ul>
+            <li>builderscon 2018 での発表
+          </ul>
+        </li>
+        <li>
+          <a href="https://w3c.github.io/permissions/">Permissions API</a><ul>
+            <li>permission api には push がある
+            <li>chrome が web push で問い合わせるのは notification の permission
+            <li>chrome の site settings 一覧には notification の permission は無い
+          </ul>
+        </li>
+        <li>
+          <a href="https://wicg.github.io/feature-policy/">Feature Policy</a><ul>
+            <li>許可の付与以外に、 iframe 内への権限委譲にも使われる
+            <li>
+              <a href="https://blog.jxck.io/entries/2018-03-08/feature-policy-permission-delegation.html">https://blog.jxck.io/entries/2018-03-08/feature-policy-permission-delegation.html</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="https://github.com/gpuweb/gpuweb">gpuweb/gpuweb: Where the GPU on the Web work happens!</a><ul>
+            <li>apple が提案しているため Metal ベース
+          </ul>
+        </li>
+        <li>
+          <a href="https://github.com/WICG/writable-files/blob/master/EXPLAINER.md">Writable Files API</a><ul>
+            <li>セキュリティモデルについては TODO のまま
+          </ul>
+        </li>
+        <li>
+          <a href="https://wicg.github.io/budget-api/">Web Budget API</a><ul>
+            <li>すでに作業は終わり、ブラウザからも消され始めている
+            <li>
+              <a href="https://blog.jxck.io/entries/2017-06-12/web-budget-api.html">https://blog.jxck.io/entries/2017-06-12/web-budget-api.html</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=883038">883038 - Feedback: Eliding www/m subdomains - chromium - Monorail</a><ul>
+            <li>
+              chrome69 で <code translate="no">www.</code>, <code translate="no">m.</code> のサブドメインを非表示にする変更が一度入った
+            </li>
+            <li>フィードバックを元に 70 で改善予定とのこと
+          </ul>
+        </li>
+        <li>
+          <a href="https://tools.ietf.org/id/draft-yasskin-http-origin-signed-responses-02.html">Signed HTTP Exchanges</a>
+        </li>
+        <li>
+          <a href="https://mozilla.github.io/standards-positions/">Mozilla Specification Positions</a><ul>
+            <li>各 API に対する mozilla の態度を示すページ
+            <li>現時点で signed http exchange のみ harmful となっている
+          </ul>
+        </li>
+        <li>
+          <a href="https://tools.ietf.org/html/draft-nottingham-how-did-that-get-into-the-repo-00">draft-nottingham-how-did-that-get-into-the-repo-00 - The secret-token URI Scheme</a><ul>
+            <li>Cookie を再設計したい話
+          </ul>
+        </li>
+        <li>
+          <a href="https://www.w3.org/TR/raw-sockets/">TCP and UDP Socket API</a>
+        </li>
+      </ul>
+    </section>
+  </article>
+
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/42/monthly-web-201809.html">ep42 Monthly Web 201809</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small> Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>Google Analytics</a>.</p>
+  <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong>
+</footer>
+</body>
+</html>
