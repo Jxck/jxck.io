@@ -67,22 +67,22 @@ CSRF 対策の 1 つとして Referer を確認するという方法がある。
 
 ただし、 Origin ヘッダにしても Referer ヘッダにしても、値が予測可能なため、任意のヘッダを含むことが可能な脆弱性が Extension や Plugin で見つかるとバイパスが可能となる。
 
-そうした脆弱性は、 [最近でも見つかっている](https://insert-script.blogspot.com/2018/05/adobe-reader-pdf-client-side-request.html) ため、いまだに Token ベースの制御が行われている。
+そうした脆弱性は、残念ながら [最近でも見つかっている](https://insert-script.blogspot.com/2018/05/adobe-reader-pdf-client-side-request.html) ため、いまだに Token ベースの制御が行われている。
 
 (SameSite Cookie などが普及すればこの部分はもっと変わって行くだろうと思われるが、今回は触れない)
 
-一方で、どんなに Token が正しくても Referer が明らかにおかしければ攻撃の可能性もあるため、やはり補助的な情報としての利用は可能だろう。
+一方で、どんなに Token が正しくても Referer が明らかにおかしければ攻撃の可能性もあるため、やはり補助的な情報として採用は可能だ。
 
 
 ### 盗用防止
 
 画像などのサブリソースが直リンクによって無断転載されることを防ぐために、 Referer が他のサイトからのものであればブロックするといった使われ方が存在する。
 
-前述の理由から確実に盗用を防ぐことはできず、あくまで補助的な効果となる。
+確実に盗用を防ぐことはできず、あくまで補助的な効果となる。
 
 逆に、 Referer を必須にしてしまうと、 Referer を送らないユーザには、意図したページ上でも画像が表示されないことになるため注意が必要だ。
 
-Origin ヘッダはサブリソースへの GET には付与されないため、代替はできない。
+Origin ヘッダはサブリソースへの GET には [付与されない](https://wiki.mozilla.org/Security/Origin#When_Origin_is_served_.28and_when_it_is_.22null.22.29) ため、代替はできない。
 
 
 ## Referer による情報漏洩
@@ -97,13 +97,11 @@ URL が知られることを望まない例としては大きく以下がある�
 
 ### 限定共有 URL の漏洩
 
-特にそのページを作るとプラットフォーム上にはインデックスが現れないが、 URL さえ共有すればアクセスできるタイプのサービスがよくある。
+身近な例として Private Gist のように、 URL さえ共有すればアクセスできるタイプのサービスがよくある。
 
 こうしたサービは、検索エンジンのクローラなどに対しては robots.txt などで index を拒否している場合が多い。
 
 しかし、 Referer を制御しないと、リンク先に URL が送られ、意図しない人からアクセスされる可能性がある。
-
-身近な例として Private Gist は、これに対応するため後述する Referrer Policy の制御を実施している。
 
 
 ### イントラ情報の漏洩
@@ -125,7 +123,8 @@ https://orange.trac.example.com/
 
 
 ```url
-https://ticket.orange.example.com/{社員名}/issue/xxxxxx/[社外秘]1月11日のプレスリリース原稿
+https://ticket.orange.example.com/%7B%E7%A4%BE%E5%93%A1%E5%90%8D%7D/issue/xxxxxx/[%E7%A4%BE%E5%A4%96%E7%A7%98]1%E6%9C%8811%E6%97%A5%E3%81%AE%E3%83%97%E3%83%AC%E3%82%B9%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E5%8E%9F%E7%A8%BF
+// https://ticket.orange.example.com/{社員名}/issue/xxxxxx/[社外秘]1月11日のプレスリリース原稿
 ```
 
 他にも、キーワード検索の結果から外部のページに飛べる場合、検索したキーワードが残る場合もある。
@@ -219,7 +218,9 @@ Referer: https://blog.jxck.io/
 
 ### no-referrer
 
-送る条件: 一切送らない
+送る条件
+
+:  一切送らない
 
 Referer ヘッダそのものが省かれるため、情報の漏洩の観点から言うと一番安全ではある。
 
@@ -227,12 +228,18 @@ Referer ヘッダそのものが省かれるため、情報の漏洩の観点か
 
 社内ドメイン内の遷移でも送られなくなるので、内部での遷移についてもメトリクスを取りたい場合を考えると制限が強い。
 
+また、 Referer ヘッダは消えるが Origin ヘッダは残る点は意識しておきたい。
+
 
 ### unsafe-url
 
-送る条件: 必ず送る
+送る条件
 
-送る値: URL 全体
+:  必ず送る
+
+送る値
+
+:  URL 全体
 
 Referer ヘッダに URL 全体を載せ、必ず送る。
 
@@ -243,9 +250,13 @@ Referer ヘッダに URL 全体を載せ、必ず送る。
 
 ### origin
 
-送る条件: 必ず送る
+送る条件
 
-送る値: Origin のみ
+:  必ず送る
+
+送る値
+
+:  Origin のみ
 
 unsafe-url と同じ条件だが、送る値が Origin のみになる。
 
@@ -254,9 +265,13 @@ Path 以下の情報が送られない点で、漏洩の観点からは情報が
 
 ### same-origin
 
-送る条件: Same Origin のみ
+送る条件
 
-送る値: URL 全体
+:  Same Origin のみ
+
+送る値
+
+:  URL 全体
 
 Origin が一致した場合だけ URL 全体を送る。
 
@@ -267,25 +282,26 @@ Origin が一致した場合だけ URL 全体を送る。
 
 ### strict-origin
 
-送る条件: Downgrade 以外
+送る条件
 
-送る値: Origin のみ
+:  Downgrade 以外
+
+送る値
+
+:  Origin のみ
 
 `origin` と同じく Origin の情報のみを送るが、 Downgrade の場合だけ送らない。
-
-つまり以下のようになる。
-
-- https -> https: 送る
-- https -> http : 送らない
-- http  -> https: 送る
-- http  -> htto : 送る
 
 
 ### no-referrer-when-downgrade (default)
 
-送る条件: Downgrade 以外
+送る条件
 
-送る値: URL 全体
+:  Downgrade 以外
+
+送る値
+
+:  URL 全体
 
 条件は strict-origin と同じだが、 URL 全体を送る。
 
@@ -294,13 +310,21 @@ Origin が一致した場合だけ URL 全体を送る。
 
 ### origin-when-cross-origin
 
-送る条件: Cross Origin の場合
+送る条件
 
-送る値: Origin のみ
+:  Cross Origin の場合
 
-送る条件: Same Origin の場合
+送る値
 
-送る値: URL 全体
+:  Origin のみ
+
+送る条件
+
+:  Same Origin の場合
+
+送る値
+
+:  URL 全体
 
 内部遷移では URL 全体を送るが、外に出る場合は Origin のみを送る挙動になる。
 
@@ -309,17 +333,29 @@ Down/Upgrade も Cross Origin 扱いになるため、 Origin のみ送られる
 
 ### strict-origin-when-cross-origin
 
-送る条件: Downgrade の場合
+送る条件
 
-送る値: 無し
+:  Downgrade の場合
 
-送る条件: Cross Origin の場合
+送る値
 
-送る値: Origin のみ
+:  無し
 
-送る条件: Same Origin の場合
+送る条件
 
-送る値: URL 全体
+:  Cross Origin の場合
+
+送る値
+
+:  Origin のみ
+
+送る条件
+
+:  Same Origin の場合
+
+送る値
+
+:  URL 全体
 
 `orign-when-cross-origin` に Downgrade での送信禁止を追加した挙動となる。
 
@@ -337,6 +373,26 @@ Policy を指定しないことを意味する。
 より上位の指定内容か、 User Agent のデフォルトが反映される。
 
 
+### Policy のまとめ
+
+表にまとめるとこうなる
+
+
+| Policy                           | Condition       | Value   |
+|:---------------------------------|----------------:|--------:|
+| noreferrer                       | 必ず            | 無し    |
+| unsafe-url                       | 必ず            | URL     |
+| origin                           | 必ず            | Origin  |
+| same-origin                      | Same Origin     | URL     |
+| strict-origin                    | Downgrade 以外  | Origin  |
+| no-referrer-when-downgrade       | Downgrade 以外  | URL     |
+| origin-when-cross-origin         | Cross Origin    | Origin  |
+| origin-when-cross-origin         | Same Origin     | URL     |
+| strict-origin-when-cross-origin  | Downgrade       | 無し    |
+| strict-origin-when-cross-origin  | Cross Origin    | Origin  |
+| strict-origin-when-cross-origin  | SameO rigin     | URL     |
+
+
 ## Referrer-Policy の適用方法
 
 Policy を適用する方法は 4 つある。
@@ -348,7 +404,7 @@ Policy を適用する方法は 4 つある。
 1. `<meta>` の referrer 属性
 1. HTTP の Referrer-Policy ヘッダ
 
-<https://html.spec.whatwg.org/multipage/urls-and-fetching.html#referrer-policy-attribute>
+仕様: <https://html.spec.whatwg.org/multipage/urls-and-fetching.html#referrer-policy-attribute>
 
 
 ### `<a>`, `<area>` の `rel=noreferrer`
@@ -380,7 +436,7 @@ Policy を適用する方法は 4 つある。
 
 と同じ挙動となる。
 
-参考: [リンクのへの rel=noopener 付与による Tabnabbing 対策 | blog.jxck.io](https://blog.jxck.io/entries/2016-06-12/noopener.html)
+参考: [リンクのへの rel=noopener 付与による Tabnabbing 対策 \| blog.jxck.io](https://blog.jxck.io/entries/2016-06-12/noopener.html)
 
 
 ### referrerpolicy 属性
@@ -400,7 +456,7 @@ Policy を適用する方法は 4 つある。
 
 `<a>` には必ずこの属性をつけるが、 Policy 自体はページ全体のものに準拠したいといった場合は、属性を `""` (空文字) にすれば良い。
 
-<https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-delivery-referrer-attribute>
+仕様: <https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-delivery-referrer-attribute>
 
 
 ### `<meta>` の referrer 属性
@@ -416,7 +472,7 @@ Policy を適用する方法は 4 つある。
 
 なお、 `never` / `default` / `always` といった古い仕様が存在したため、対応表を元に新しい値を指定することが望ましい。
 
-<https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer>
+仕様: <https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer>
 
 
 ### HTTP Header
@@ -430,7 +486,7 @@ Referrer-Policy: no-referrer
 
 コンテンツに手を入れられない場合や、漏れなく全てのレスポンスに適用したい場合などに利用できる。
 
-<https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-header-dfn>
+仕様: <https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-header-dfn>
 
 
 ## DEMO
@@ -444,12 +500,12 @@ Referrer-Policy: no-referrer
 
 本サイトには漏れて困る URL はない。
 
-また、技術ブログという性質上、外部のリソースを参考としてリンクすることはよくある。
+また、技術ブログという性質上、外部のリソースを参考としてリンクすることはよくあり、それらリンク先のサイトに対して、どのページからリンクされているのかを隠すつもりは無い。
 
-それらリンク先のサイトに対して、どのページからリンクされているのかを隠すつもりもない。
+Cross Origin で URL 全体を送るのは `unsafe-url` か `no-referrer-when-downgrade` であり、その差は Downgrade の扱いになる。
 
-本サイトは HSTS 対応済みであるため、デフォルトの `no-referrer-when-downgrade` では、 HTTP しか提供していないサイトに対しては Referrer が飛ばないことになる。
+本サイトは HSTS 対応済みであるため、 `no-referrer-when-downgrade` では、 HTTP しか提供していないサイトに対しては Referrer が飛ばないことになる。
 
-外部へのリクエストが POST などを利用することもないため、実験も兼ねて `https://blog.jxck.io` の Origin については HTTP ヘッダで `unsafe-url` を適用し様子を観察することとした。
+しかし、近年の動向からも、リンクする先が HTTPS に対応している方が本サイトとしても望ましいため、 `no-referrer-when-downgrade` を採用することにした。
 
-問題があれば、ヘッダを削除することで、デフォルトに戻すこととする。
+この Policy はブラウザのデフォルトとされているため、明示的な Referrer-Policy Header の追加は行わないこととする。
