@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Referrer-Pocliy DEMO | labs.jxck.io</title>
+
+<h1>Referrer-Pocliy DEMO</h1>
+
+<p>these links has referrer policy, see the network log in devtools
+
+<p>this page itself has no referrer-policy so fallbacks to <code>origin-when-cross-origin</code>
+
+<ul>
+  <li>From <a href=http://labs.jxck.io/referrer-policy/basic.html>http://labs.jxck.io/referrer-policy/basic.html</a>
+  <li>From <a href=https://labs.jxck.io/referrer-policy/basic.html>https://labs.jxck.io/referrer-policy/basic.html</a>
+</ul>
+
+<h2>TO https://example.com</h2>
+<ul>
+  <li><a href=https://example.com referrerpolicy=no-referrer                    >no-referrer                    </a>
+  <li><a href=https://example.com referrerpolicy=no-referrer-when-downgrade     >no-referrer-when-downgrade     </a>
+  <li><a href=https://example.com referrerpolicy=same-origin                    >same-origin                    </a>
+  <li><a href=https://example.com referrerpolicy=origin                         >origin                         </a>
+  <li><a href=https://example.com referrerpolicy=strict-origin                  >strict-origin                  </a>
+  <li><a href=https://example.com referrerpolicy=origin-when-cross-origin       >origin-when-cross-origin       </a>
+  <li><a href=https://example.com referrerpolicy=strict-origin-when-cross-origin>strict-origin-when-cross-origin</a>
+  <li><a href=https://example.com referrerpolicy=unsafe-url                     >unsafe-url                     </a>
+  <li><a href=https://example.com referrerpolicy=""                             >""                             </a>
+</ul>
+
+<h2>TO http://example.com</h2>
+<ul>
+  <li><a href=http://example.com referrerpolicy=no-referrer                    >no-referrer                    </a>
+  <li><a href=http://example.com referrerpolicy=no-referrer-when-downgrade     >no-referrer-when-downgrade     </a>
+  <li><a href=http://example.com referrerpolicy=same-origin                    >same-origin                    </a>
+  <li><a href=http://example.com referrerpolicy=origin                         >origin                         </a>
+  <li><a href=http://example.com referrerpolicy=strict-origin                  >strict-origin                  </a>
+  <li><a href=http://example.com referrerpolicy=origin-when-cross-origin       >origin-when-cross-origin       </a>
+  <li><a href=http://example.com referrerpolicy=strict-origin-when-cross-origin>strict-origin-when-cross-origin</a>
+  <li><a href=http://example.com referrerpolicy=unsafe-url                     >unsafe-url                     </a>
+  <li><a href=http://example.com referrerpolicy=""                             >""                             </a>
+</ul>
