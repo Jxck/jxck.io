@@ -53,7 +53,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2018-05-15T08:00:00+08:00",
-  "dateModified": "2018-07-30T08:00:00+08:00",
+  "dateModified": "2018-10-04T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -669,7 +669,7 @@ td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2018-05-15>2018-05-15</time>
-    <li>updated_at: <time class=updated_at datetime=2018-07-30>2018-07-30</time>
+    <li>updated_at: <time class=updated_at datetime=2018-10-04>2018-10-04</time>
     <li class=tags>tags: [<a href='/tags/fido-u2f.html'>fido-u2f</a>,<a href='/tags/web%20authentication%20api.html'>web authentication api</a>]
   </ul>
 
@@ -716,8 +716,8 @@ td:last-child {
     <section>
       <h2 id="公開鍵暗号方式"><a href="#公開鍵暗号方式">公開鍵暗号方式</a></h2>
       <p>先に、ざっくりとした流れを解説する。
-      <p>ユーザはまず Registration フェーズとして YubiKey を用いて公開/秘密鍵のペアを生成しサービスに登録する。
-      <p>ログインは Authentication フェーズとして、認サービスが生成した乱数(challenge)を秘密鍵で署名してサービスに送り返す。
+      <p>ユーザはまず Registration フェーズとして、 YubiKey を用いて公開/秘密鍵のペアを生成しサービスに登録する。
+      <p>ログインは Authentication フェーズとして、サービスが生成した乱数(challenge)を秘密鍵で署名してサービスに送り返す。
       <p>この署名をサービス側に保存した公開鍵で検証できれば、サービスはユーザを認証することができる。
       <p>以降 Registration/Authentication フェーズ 2 つに分けて解説する。
     </section>

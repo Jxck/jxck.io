@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html amp lang=ja>
+<head>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=https://blog.jxck.io/entries/2018-10-08/referrer-policy.html>
+<meta name=viewport content="width=device-width,minimum-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+<link rel=author href=https://jxck.io/assets/humans.txt>
+
+<meta name=author content=Jxck>
+  <meta name=description content="リファラはリンクなどでページを遷移する際に、遷移元の URL をリクエストの Referer ヘッダに載せる仕様である。この付与はブラウザが自動で行うため、場合によっては非公開として扱っている URL が意図せず漏れることがある。この挙動を制御することができる、 Refer...">
+  <meta name=keywords content="tag">
+  <meta itemprop=image content="https://jxck.io/assets/img/jxck.png">
+  <meta itemprop=name content="blog.jxck.io">
+
+  <meta name=twitter:card content=summary>
+  <meta name=twitter:site content=@jxck_>
+  <meta name=twitter:url content="https://blog.jxck.io/entries/2018-10-08/referrer-policy.html">
+  <meta name=twitter:title content="Referrer-Policy によるリファラ制御 | blog.jxck.io">
+  <meta name=twitter:description content="リファラはリンクなどでページを遷移する際に、遷移元の URL をリクエストの Referer ヘッダに載せる仕様である。この付与はブラウザが自動で行うため、場合によっては非公開として扱っている URL が意図せず漏れることがある。この挙動を制御することができる、 Refer...">
+  <meta name=twitter:image content="https://jxck.io/assets/img/jxck.png">
+
+  <meta property=og:type content=article>
+  <meta property=og:url content="https://blog.jxck.io/entries/2018-10-08/referrer-policy.html">
+  <meta property=og:title content="Referrer-Policy によるリファラ制御 | blog.jxck.io">
+  <meta property=og:site_name content="blog.jxck.io">
+  <meta property=og:description content="リファラはリンクなどでページを遷移する際に、遷移元の URL をリクエストの Referer ヘッダに載せる仕様である。この付与はブラウザが自動で行うため、場合によっては非公開として扱っている URL が意図せず漏れることがある。この挙動を制御することができる、 Refer...">
+  <meta property=og:image content="https://jxck.io/assets/img/jxck.png">
+
+  <link rel=icon sizes=256x256 href="https://jxck.io/assets/img/jxck.png">
+  <link rel="shortcut icon" href="https://jxck.io/assets/img/jxck.png">
+  <link rel=apple-touch-icon sizes=256x256 href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "Referrer-Policy によるリファラ制御 | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2018-10-08T08:00:00+08:00",
+  "dateModified": "2018-10-08T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "リファラはリンクなどでページを遷移する際に、遷移元の URL をリクエストの Referer ヘッダに載せる仕様である。この付与はブラウザが自動で行うため、場合によっては非公開として扱っている URL が意図せず漏れることがある。この挙動を制御することができる、 Refer..."
+}
+</script>
+
+<title>Referrer-Policy によるリファラ制御 | blog.jxck.io</title>
+<script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+<script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+<script async src=https://cdn.ampproject.org/v0.js></script>
+
+<style amp-custom>
+article section p {
+  margin-left: 0;
+}
+
+article pre {
+  margin: 0;
+}
+
+article table {
+  margin-left: 0;
+}
+
+article img {
+  margin: 1em 0;
+  border: 1px solid #ccc;
+  box-sizing: content-box;
+}
+
+article ul,
+article ol {
+  margin-left: 0.8em;
+  font-family: monospace;
+  font-size: 1.2em;
+}
+
+article li {
+  margin-bottom: 0.4em;
+}
+
+article ul li ul,
+article ol li ol {
+  margin: 0.2em 0 1.2em 1em;
+  font-size: 1em;
+}
+
+article ol li ol li,
+article ul li ul li {
+  margin-bottom: 0;
+}
+
+article dl {
+  margin: 1.4em 0 1.4em 0.8em;
+}
+
+@supports (line-height-step: 1px) {
+  article {
+    --grid: 1.5em;
+    line-height: 1.5;
+    line-height-step: var(--grid);
+  }
+
+  article h1,
+  article h2,
+  article h3,
+  article h4,
+  article h5,
+  article h6 {
+    display: inline-block;
+    width: 100%;
+    line-height-step: 0;
+    line-height: 1.2;
+    margin-bottom: 0;
+  }
+
+  article section {
+    /* grid for debug */
+    /* background-size: 100% var(--grid); */
+    /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
+  }
+
+  article p {
+    margin-top: var(--grid);
+    margin-bottom: var(--grid);
+  }
+
+  article pre,
+  article table {
+    line-height-step: 0;
+    line-height: normal;
+  }
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src:
+    local("NotoSansCJKjp-Bold.otf"),
+    local("NotoSansJP-Bold.otf"),
+    url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular-201802.woff2") format("woff");
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 700;
+  font-display: optional;
+  src:
+    local("NotoSansCJKjp-Bold.otf"),
+    local("NotoSansJP-Bold.otf"),
+    url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold-201802.woff2") format("woff");
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+  color: #222;
+  background-color: #fefefe;
+}
+
+code {
+  font-family: "Consolas", "Courier New", "Menlo", Monaco, monospace;
+}
+
+iframe {
+  display: block;
+  max-width: 100%;
+  margin: 1em 0;
+}
+
+.archive {
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.archive ul {
+  margin: 0;
+}
+
+.archive time {
+  padding-right: 0.5em;
+}
+
+.archive time::after {
+  content: ":";
+}
+
+.archive .tags {
+  font-size: 0.8em;
+  margin-left: 1em;
+}
+
+.tags a {
+  margin: 0 0.2em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+audio {
+  width: 70%;
+}
+
+@media screen and (max-device-width: 480px) {
+  audio {
+    width: 100%;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.info li {
+  margin-right: 1em;
+  list-style-type: none;
+}
+
+.info li::before {
+  content: none;
+}
+
+header {
+  z-index: 1;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.4em;
+  background-color: #222;
+}
+
+h2:target,
+h3:target,
+h4:target,
+h5:target,
+h6:target {
+  /* sticky header に合わせて link scroll をずらす */
+  margin-top: calc(-50px - 0.2em);
+  padding-top: calc(50px + 0.2em);
+}
+
+header ul {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 80%;
+  margin: 0 auto;
+  padding: 4px;
+}
+
+header ul li {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  margin-left: 1em;
+}
+
+header ul li a {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+header ul li svg {
+  fill: #fff;
+}
+
+header ul li::before {
+  content: none;
+}
+
+header ul li:first-child {
+  flex-grow: 1;
+  margin-left: 0;
+}
+
+header .logo {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  pointer-events: none;
+  color: #222;
+}
+
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: #222;
+}
+
+h1 > a::before {
+  content: "# ";
+  pointer-events: all;
+}
+
+h2 > a::before {
+  content: "## ";
+  pointer-events: all;
+}
+
+h3 > a::before {
+  content: "### ";
+  pointer-events: all;
+}
+
+h4 > a::before {
+  content: "#### ";
+  pointer-events: all;
+}
+
+h1 > a:hover::before,
+h2 > a:hover::before,
+h3 > a:hover::before,
+h4 > a:hover::before,
+h5 > a:hover::before,
+h6 > a:hover::before {
+  color: Brown;
+}
+
+em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+em::before,
+em::after {
+  content: "*";
+}
+
+strong {
+  color: red;
+}
+
+strong::before,
+strong::after {
+  content: "**";
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+dl dt::after {
+  content: ":";
+}
+
+blockquote p::before {
+  content: "> ";
+}
+
+code {
+  border: 1px solid #bfbfbf;
+  background-color: #efefef;
+  border-radius: 4px;
+  padding: 0 1px 0;
+}
+
+code::before,
+code::after {
+  /* うざかった */
+  content: "`";
+}
+
+
+blockquote {
+  display: block;
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  padding: 1em;
+  margin: 0;
+}
+
+main {
+  display: block;
+  width: 80%;
+  margin: 1em auto;
+}
+
+@media screen and (max-device-width: 480px) {
+  main {
+    width: 94%;
+  }
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+  color: RoyalBlue;
+}
+
+a:visited {
+  color: Brown;
+}
+
+ol,
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+ul,
+ol,
+dl {
+  margin: 1.4em 0;
+}
+
+dl dt {
+  font-weight: bold;
+}
+
+dl dd {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+footer {
+  padding: 1em;
+}
+
+footer strong,
+footer .copyright {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  font-style: italic;
+  font-size: small;
+}
+
+
+pre {
+  word-break: break-all;
+  word-wrap: break-word;
+  margin: 1.4em 0 0 0;
+  border-radius: 4px;
+}
+
+pre::before {
+  content: "```" attr(class) "\A";
+}
+
+pre::after {
+  z-index: -1;
+  position: relative;
+  top: -1em;
+  content: "\A```";
+}
+
+pre > code {
+  overflow: auto;
+  display: block;
+  padding: 0.6em;
+  margin: 0;
+  border: none;
+  background-color: #efefef;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-attribute {
+  font-weight: bold;
+}
+
+.hljs-meta {
+  color: #4f80e5;
+}
+
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-pseudo {
+  color: #6f42c1;
+}
+
+.hljs-selector-tag {
+  color: #22863a;
+}
+
+.hljs-subst {
+  font-weight: bold;
+}
+
+/**.hljs,**/
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-type,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-section,
+.hljs-meta-string,
+.hljs-emphasis {
+  /** if you find element applyed this style, please tell me https://github.com/jxck/jxck.io/issues **/
+  font-size: 100em;
+}
+
+table {
+  font-family: monospace;
+  margin: 2em 0;
+  border-spacing: 0 0.4em;
+}
+
+th {
+  padding: 0 1em 0.6em;
+  border-left: 0.14em solid #222;
+  border-bottom: 2px dashed #222;
+}
+
+td {
+  padding: 0.4em 1.2em;
+  border-left: 0.14em solid #222;
+}
+
+th:last-child,
+td:last-child {
+  border-right: 0.14em solid #222;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+</style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://blog.jxck.io><amp-img class=logo alt="blog top" width=30 height=30 src=https://jxck.io/assets/img/blog.svg></a>
+      <li><a href=.><amp-img alt="move to parent directory" width=30 height=30 src=https://jxck.io/assets/img/up.svg></a>
+      <li><a href=/feeds/atom.xml><amp-img alt="rss feed" width=30 height=30 src=https://jxck.io/assets/img/rss.svg></a>
+      <li><a href=https://jxck.io/humans.txt><amp-img alt="huamns.txt" width=30 height=30 src=https://jxck.io/assets/img/humans.svg></a>
+      <li><a href=https://jxck.io><amp-img class=logo alt="jxck logo" width=30 height=30 src=https://jxck.io/assets/img/jxck.svg></a>
+    </ul>
+  </nav>
+</header>
+<main>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2018-10-08>2018-10-08</time>
+    <li>updated_at: <time class=updated_at datetime=2018-10-08>2018-10-08</time>
+    <li class=tags>tags: [<a href='/tags/tag.html'>tag</a>]
+  </ul>
+
+
+  <article>
+    <h1><a href=/entries/2018-10-08/referrer-policy.html>Referrer-Policy によるリファラ制御</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p>リファラはリンクなどでページを遷移する際に、遷移元の URL をリクエストの Referer ヘッダに載せる仕様である。
+      <p>この付与はブラウザが自動で行うため、場合によっては非公開として扱っている URL が意図せず漏れることがある。
+      <p>この挙動を制御することができる、 Referrer-Policy ヘッダについて解説する。
+    </section>
+    <section>
+      <h2 id="referer-or-referrer"><a href="#referer-or-referrer">Referer or Referrer</a></h2>
+      <p>本来の英語としては <em>RefeRRer</em> が正しいが、 HTTP Header ではスペルミスした <em>RefeRer</em> が互換性を保つためそのまま使われている。
+      <p>しかし、新しく定義された Referre-Policy は、正しいスペルが採用されている。
+    </section>
+    <section>
+      <h2 id="referer-ヘッダ"><a href="#referer-ヘッダ">Referer ヘッダ</a></h2>
+      <p>例えば <code translate="no">https://example.com/index.html</code> に貼られたリンクから <code translate="no">https://blog.jxck.io</code> に遷移する場合を考える。
+      <p>そのリクエストには、条件次第で以下のように HTTP Referer ヘッダが含まれる。
+      <pre class=http><code translate="no">GET / HTTP/1.1
+Host: blog.jxck.io
+Referer: https://example.com/index.html</code></pre>
+      <p><code translate="no">blog.jxck.io</code> の管理者は、このリファラを見ることで、 <code translate="no">example.com</code> に自分のサイトへのリンクが貼られていることを知ることができる。
+      <p>その性質上、個人情報の観点からこれを好まないユーザもおり、ブラウザには古くから Referer の送信を行わない設定が実装されていることが多い。
+      <p>また、別途提供される拡張や、今回紹介する Referer Policy によっても、無効に設定することができる。
+      <p>したがって、 Application Logic の観点からは、 Referer はあくまで補助的な情報として使われること(無くても動く)が望ましい。
+      <p>用途によっては、別途定義されている Origin ヘッダを見る方が良い場合もある。
+    </section>
+    <section>
+      <h2 id="referer-の用途"><a href="#referer-の用途">Referer の用途</a></h2>
+      <section>
+        <h3 id="簡易トラックバック"><a href="#簡易トラックバック">簡易トラックバック</a></h3>
+        <p>簡易的なトラックバックとして機能するため、アクセスログにこの情報を含むことで、流入元を解析するための情報源として使うのがメジャーなユースケースだろう。
+        <p>例えば、検索エンジンの検索結果が検索キーワードを URL に含んでいれば、サイトオーナーはどういう検索結果からユーザが遷移してきたかを知ることができる。
+        <pre class=http><code translate="no">Referer: https://search.example.com/q=http+referer+policy</code></pre>
+        <p>Referer が送信された時だけ、そこから付加的な情報を得ることになる。
+      </section>
+      <section>
+        <h3 id="csrf-対策"><a href="#csrf-対策">CSRF 対策</a></h3>
+        <p>CSRF 対策の 1 つとして Referer を確認するという方法がある。
+        <p>しかし、この場合も前述の通り、あくまでも補助的な効果しか得られない場合もある。
+        <p>また、 Form からの POST を対象とする場合は Origin ヘッダの方が用途として適しているだろう。
+        <p>ただし、 Origin ヘッダにしても Referer ヘッダにしても、値が予測可能なため、任意のヘッダを含むことが可能な脆弱性が Extension や Plugin で見つかるとバイパスが可能となる。
+        <p>そうした脆弱性は、残念ながら <a href="https://insert-script.blogspot.com/2018/05/adobe-reader-pdf-client-side-request.html">最近でも見つかっている</a> ため、いまだに Token ベースの制御が行われている。
+        <p>(SameSite Cookie などが普及すればこの部分はもっと変わって行くだろうと思われるが、今回は触れない)
+        <p>一方で、どんなに Token が正しくても Referer が明らかにおかしければ攻撃の可能性もあるため、やはり補助的な情報として採用は可能だ。
+      </section>
+      <section>
+        <h3 id="盗用防止"><a href="#盗用防止">盗用防止</a></h3>
+        <p>画像などのサブリソースが直リンクによって無断転載されることを防ぐために、 Referer が他のサイトからのものであればブロックするといった使われ方が存在する。
+        <p>確実に盗用を防ぐことはできず、あくまで補助的な効果となる。
+        <p>逆に、 Referer を必須にしてしまうと、 Referer を送らないユーザには、意図したページ上でも画像が表示されないことになるため注意が必要だ。
+        <p>Origin ヘッダはサブリソースへの GET には <a href="https://wiki.mozilla.org/Security/Origin#When_Origin_is_served_.28and_when_it_is_.22null.22.29">付与されない</a> ため、代替はできない。
+      </section>
+    </section>
+    <section>
+      <h2 id="referer-による情報漏洩"><a href="#referer-による情報漏洩">Referer による情報漏洩</a></h2>
+      <p>ブラウザが Referer を自動で付与する挙動を意識していないと、意図せず非公開として扱っていた URL が漏れる場合がある。
+      <p>URL が知られることを望まない例としては大きく以下があるだろう。
+      <ul>
+        <li>URL を知っている人だけアクセス可能な限定共有 URL
+        <li>イントラ(企業内など)に閉じた非公開 URL
+      </ul>
+      <section>
+        <h3 id="限定共有-url-の漏洩"><a href="#限定共有-url-の漏洩">限定共有 URL の漏洩</a></h3>
+        <p>身近な例として Private Gist のように、 URL さえ共有すればアクセスできるタイプのサービスがよくある。
+        <p>こうしたサービは、検索エンジンのクローラなどに対しては robots.txt などで index を拒否している場合が多い。
+        <p>しかし、 Referer を制御しないと、リンク先に URL が送られ、意図しない人からアクセスされる可能性がある。
+      </section>
+      <section>
+        <h3 id="イントラ情報の漏洩"><a href="#イントラ情報の漏洩">イントラ情報の漏洩</a></h3>
+        <p>例として、架空の <em>Example</em> 社が <em>Orange</em> という新プロジェクトを開始した場合を考える。
+        <p>Orange については、商標の関係もありプレスリリースまでは名前含め非公開だ。
+        <p>Example 社は社内で Orange プロジェクトに関する情報共有のために、社内ブログやチケット管理などを運用している。
+        <p>ここで、社内ブログやチケットに誰かのブログへのリンクが貼ってあった場合、そのリンクを踏んだブラウザからのリクエストに、このドメイン名が入った Referer が付与される。
+        <pre class=url><code translate="no">https://orange.trac.example.com/</code></pre>
+        <p>ドメインだけで無く URL エンコードされている日本語が入っている場合もある。
+        <pre class=url><code translate="no">https://ticket.orange.example.com/%7B%E7%A4%BE%E5%93%A1%E5%90%8D%7D/issue/xxxxxx/[%E7%A4%BE%E5%A4%96%E7%A7%98]1%E6%9C%8811%E6%97%A5%E3%81%AE%E3%83%97%E3%83%AC%E3%82%B9%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E5%8E%9F%E7%A8%BF
+// https://ticket.orange.example.com/{社員名}/issue/xxxxxx/[社外秘]1月11日のプレスリリース原稿</code></pre>
+        <p>他にも、キーワード検索の結果から外部のページに飛べる場合、検索したキーワードが残る場合もある。
+        <pre class=url><code translate="no">https://intra.orange.example.com/search?q=Apache+CVExxxxx</code></pre>
+        <p>リンクされたブログの持ち主は、たとえそのリンクを辿ってアクセスができないとしても、 Example 社が Orange というプロジェクトをやっていることや、付随する情報が推測できる可能性がある。
+        <p>よく設計された URL は情報量が多く、多弁だ。
+      </section>
+    </section>
+    <section>
+      <h2 id="referer-の制御"><a href="#referer-の制御">Referer の制御</a></h2>
+      <p>こうした理由から、コンテンツに応じて、何らかの形でリファラを制御するといったことは、古くから行われている。
+      <section>
+        <h3 id="ブラウザ設定"><a href="#ブラウザ設定">ブラウザ設定</a></h3>
+        <p>Firefox の about:config や、 Chrome のコマンドラインオプションなど、リファラの送信を制限するオプションを提供するブラウザもある。
+        <p>また、それらを実現する拡張も存在する。
+        <p>これは、組織からの情報漏洩以前に、個人情報の観点から、ユーザの選択肢として古くから実装されていると筆者は認識している。
+      </section>
+      <section>
+        <h3 id="社内-proxy"><a href="#社内-proxy">社内 Proxy</a></h3>
+        <p>社内ネットワークに Proxy を立てている場合は、その Proxy で Referer ヘッダを落とす/書き換えるといった運用方法もある。
+        <p>この場合、 Referer に社内のドメインがある場合だけ落とすといった実装が可能なため、社外にあるサービスに対しての不具合は少ないだろう。
+        <p>しかし、 HTTPS 化が進んでいる昨今、実質的に MITM を行なっているこの方法は限界と言える。
+        <p>証明書の運用次第では暗号化を解くこともできなくないかもしれないが、運用は難しだろう。
+      </section>
+      <section>
+        <h3 id="referrer-policy"><a href="#referrer-policy">Referrer Policy</a></h3>
+        <p>そもそもブラウザが自動的に Referer を送るという挙動が、コンテンツに合わせて制御できれば、こうした問題は解決する。
+        <p>そこで、提案されたのが Referrer Policy である。
+        <p>社内で HTTP サーバを立てる際に、このヘッダを適切に設定することで、意図しない漏洩のリスクを軽減できるだろう。
+        <p>また、 Origin を軸としたいくつかの設定が可能なため、単純に Referrer を一切無効にすることによる不具合などを防ぐこともできる。
+      </section>
+    </section>
+    <section>
+      <h2 id="referrer-policy-1"><a href="#referrer-policy-1">Referrer-Policy</a></h2>
+      <p>Referrer-Policy は、ヘッダもしくは HTML の特定の要素に指定し、そのページからの遷移に伴う Referer ヘッダを制御するための Policy である。
+      <ul>
+        <li>
+          <a href="https://w3c.github.io/webappsec-referrer-policy/">https://w3c.github.io/webappsec-referrer-policy/</a>
+        </li>
+      </ul>
+      <p>執筆時点で、仕様には以下の Policy が定義されている。
+      <ul>
+        <li>
+          <code translate="no">no-referrer</code>
+        </li>
+        <li>
+          <code translate="no">no-referrer-when-downgrade</code>
+        </li>
+        <li>
+          <code translate="no">same-origin</code>
+        </li>
+        <li>
+          <code translate="no">origin</code>
+        </li>
+        <li>
+          <code translate="no">strict-origin</code>
+        </li>
+        <li>
+          <code translate="no">origin-when-cross-origin</code>
+        </li>
+        <li>
+          <code translate="no">strict-origin-when-cross-origin</code>
+        </li>
+        <li>
+          <code translate="no">unsafe-url</code>
+        </li>
+        <li>
+          <code translate="no">&quot;&quot;</code>
+        </li>
+      </ul>
+      <p>ポリシーの違いを見極める観点としてはまず載せる値がある。
+      <p>ヘッダに URL が載る場合、例えばこのページでは以下のようになる。
+      <pre class=http><code translate="no">Referer: https://blog.jxck.io/entries/2018-10-08/referrer-policy.html</code></pre>
+      <p>ポリシーによっては、 URL 全体ではなく Origin のみを送るものがある。
+      <pre class=http><code translate="no">Referer: https://blog.jxck.io/</code></pre>
+      <p>どのサイトから来たかはわかるが、それ以上の情報は載らないという状態になる。
+      <p>これは Origin ヘッダが付与する情報と同等であり、 <em>Origin ヘッダが送信される状況では Referer を禁止しても同等の情報が送信されている</em> ことは認識しておきたい。
+      <p>以上を踏まえて、それぞれ解説していく。
+      <section>
+        <h3 id="no-referrer"><a href="#no-referrer">no-referrer</a></h3>
+        <dl>
+          <dt>送る条件
+          <dd>一切送らない
+        </dl>
+        <p>Referer ヘッダそのものが省かれるため、情報の漏洩の観点から言うと一番安全ではある。
+        <p>しかし、同じサイト内でも送られなくなるため、 Referer をベースとした検証がどこかに入っている場合は問題になる。
+        <p>社内ドメイン内の遷移でも送られなくなるので、内部での遷移についてもメトリクスを取りたい場合を考えると制限が強い。
+        <p>また、 Referer ヘッダは消えるが Origin ヘッダは残る点は意識しておきたい。
+      </section>
+      <section>
+        <h3 id="unsafe-url"><a href="#unsafe-url">unsafe-url</a></h3>
+        <dl>
+          <dt>送る条件
+          <dd>必ず送る
+          <dt>送る値
+          <dd>URL 全体
+        </dl>
+        <p>Referer ヘッダに URL 全体を載せ、必ず送る。
+        <p>これを unsafe と言う理由は、 http -&gt; http や https -&gt; http(Downgrade) でも送られるところにある。
+        <p>平文通信の場合は、先ほどの Proxy のように MITM で削除したり、改ざんすることが可能であるためだ。
+      </section>
+      <section>
+        <h3 id="origin"><a href="#origin">origin</a></h3>
+        <dl>
+          <dt>送る条件
+          <dd>必ず送る
+          <dt>送る値
+          <dd>Origin のみ
+        </dl>
+        <p>unsafe-url と同じ条件だが、送る値が Origin のみになる。
+        <p>Path 以下の情報が送られない点で、漏洩の観点からは情報が絞られているが、平文通信でも送られる点はそのままだ。
+      </section>
+      <section>
+        <h3 id="same-origin"><a href="#same-origin">same-origin</a></h3>
+        <dl>
+          <dt>送る条件
+          <dd>Same Origin のみ
+          <dt>送る値
+          <dd>URL 全体
+        </dl>
+        <p>Origin が一致した場合だけ URL 全体を送る。
+        <p>つまり Downgrade では送られないが、 Upgrade でも送られない。
+        <p>さらに、 http -&gt; http では送られるということになる。
+      </section>
+      <section>
+        <h3 id="strict-origin"><a href="#strict-origin">strict-origin</a></h3>
+        <dl>
+          <dt>送る条件
+          <dd>Downgrade 以外
+          <dt>送る値
+          <dd>Origin のみ
+        </dl>
+        <p><code translate="no">origin</code> と同じく Origin の情報のみを送るが、 Downgrade の場合だけ送らない。
+      </section>
+      <section>
+        <h3 id="no-referrer-when-downgrade-default"><a href="#no-referrer-when-downgrade-default">no-referrer-when-downgrade (default)</a></h3>
+        <dl>
+          <dt>送る条件
+          <dd>Downgrade 以外
+          <dt>送る値
+          <dd>URL 全体
+        </dl>
+        <p>条件は strict-origin と同じだが、 URL 全体を送る。
+        <p>これがブラウザのデフォルトの挙動とされている。
+      </section>
+      <section>
+        <h3 id="origin-when-cross-origin"><a href="#origin-when-cross-origin">origin-when-cross-origin</a></h3>
+        <dl>
+          <dt>送る条件
+          <dd>Cross Origin の場合
+          <dt>送る値
+          <dd>Origin のみ
+          <dt>送る条件
+          <dd>Same Origin の場合
+          <dt>送る値
+          <dd>URL 全体
+        </dl>
+        <p>内部遷移では URL 全体を送るが、外に出る場合は Origin のみを送る挙動になる。
+        <p>Down/Upgrade も Cross Origin 扱いになるため、 Origin のみ送られる。
+      </section>
+      <section>
+        <h3 id="strict-origin-when-cross-origin"><a href="#strict-origin-when-cross-origin">strict-origin-when-cross-origin</a></h3>
+        <dl>
+          <dt>送る条件
+          <dd>Downgrade の場合
+          <dt>送る値
+          <dd>無し
+          <dt>送る条件
+          <dd>Cross Origin の場合
+          <dt>送る値
+          <dd>Origin のみ
+          <dt>送る条件
+          <dd>Same Origin の場合
+          <dt>送る値
+          <dd>URL 全体
+        </dl>
+        <p><code translate="no">orign-when-cross-origin</code> に Downgrade での送信禁止を追加した挙動となる。
+        <p>改ざんを避けつつ、内部では URL を送り、外部には Origin だけに制限する。
+        <p>多くの場合は、この設定が適用できるのが理想だろう。
+        <p>なお、前述した Private Gist はこれを適用している。
+      </section>
+      <section>
+        <h3 id="空文字列"><a href="#空文字列">空文字列</a></h3>
+        <p>Policy を指定しないことを意味する。
+        <p>より上位の指定内容か、 User Agent のデフォルトが反映される。
+      </section>
+      <section>
+        <h3 id="policy-のまとめ"><a href="#policy-のまとめ">Policy のまとめ</a></h3>
+        <p>表にまとめるとこうなる
+        <table>
+          <thead>
+            <tr>
+              <th class=align-left>Policy</th>
+              <th class=align-right>Condition</th>
+              <th class=align-right>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class=align-left>noreferrer</td>
+              <td class=align-right>必ず</td>
+              <td class=align-right>無し</td>
+            </tr>
+            <tr>
+              <td class=align-left>unsafe-url</td>
+              <td class=align-right>必ず</td>
+              <td class=align-right>URL</td>
+            </tr>
+            <tr>
+              <td class=align-left>origin</td>
+              <td class=align-right>必ず</td>
+              <td class=align-right>Origin</td>
+            </tr>
+            <tr>
+              <td class=align-left>same-origin</td>
+              <td class=align-right>Same Origin</td>
+              <td class=align-right>URL</td>
+            </tr>
+            <tr>
+              <td class=align-left>strict-origin</td>
+              <td class=align-right>Downgrade 以外</td>
+              <td class=align-right>Origin</td>
+            </tr>
+            <tr>
+              <td class=align-left>no-referrer-when-downgrade</td>
+              <td class=align-right>Downgrade 以外</td>
+              <td class=align-right>URL</td>
+            </tr>
+            <tr>
+              <td class=align-left>origin-when-cross-origin</td>
+              <td class=align-right>Cross Origin</td>
+              <td class=align-right>Origin</td>
+            </tr>
+            <tr>
+              <td class=align-left>origin-when-cross-origin</td>
+              <td class=align-right>Same Origin</td>
+              <td class=align-right>URL</td>
+            </tr>
+            <tr>
+              <td class=align-left>strict-origin-when-cross-origin</td>
+              <td class=align-right>Downgrade</td>
+              <td class=align-right>無し</td>
+            </tr>
+            <tr>
+              <td class=align-left>strict-origin-when-cross-origin</td>
+              <td class=align-right>Cross Origin</td>
+              <td class=align-right>Origin</td>
+            </tr>
+            <tr>
+              <td class=align-left>strict-origin-when-cross-origin</td>
+              <td class=align-right>SameO rigin</td>
+              <td class=align-right>URL</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+    <section>
+      <h2 id="referrer-policy-の適用方法"><a href="#referrer-policy-の適用方法">Referrer-Policy の適用方法</a></h2>
+      <p>Policy を適用する方法は 4 つある。
+      <p>優先度順に並べると以下だ。
+      <ol>
+        <li>
+          <code translate="no">rel=noreferrer</code>
+        </li>
+        <li>referrerpolicy 属性
+        <li>
+          <code translate="no">&lt;meta&gt;</code> の referrer 属性
+        </li>
+        <li>HTTP の Referrer-Policy ヘッダ
+      </ol>
+      <p>仕様: <a href="https://html.spec.whatwg.org/multipage/urls-and-fetching.html#referrer-policy-attribute">https://html.spec.whatwg.org/multipage/urls-and-fetching.html#referrer-policy-attribute</a>
+      <section>
+        <h3 id="a-area-の-relnoreferrer"><a href="#a-area-の-relnoreferrer"><code translate="no">&lt;a&gt;</code>, <code translate="no">&lt;area&gt;</code> の <code translate="no">rel=noreferrer</code></a></h3>
+        <p><code translate="no">&lt;a&gt;</code> と <code translate="no">&lt;area&gt;</code> には <code translate="no">rel=noreferrer</code> をつけることで、その遷移のリクエストを <code translate="no">no-referrer</code> の挙動とすることができる。
+        <pre class=html><code translate="no">&lt;a href=&quot;https://example.com&quot; rel=&quot;noreferrer&quot;&gt;</code></pre>
+        <p>値が違うのは Referrer-Policy が策定される前の仕様だからであり、ここに適用できる値は <code translate="no">noreferrer</code> のみだ。
+        <p>なお、この時 <code translate="no">target=&quot;_blank&quot;</code> を使用すると別タブが開き、これは Opener を生成しない。
+        <p>つまり
+        <pre class=html><code translate="no">&lt;a href=&quot;https://example.com&quot; rel=&quot;noreferrer&quot; target=&quot;_blank&quot;&gt;</code></pre>
+        <p>は
+        <pre class=html><code translate="no">&lt;a href=&quot;https://example.com&quot; rel=&quot;noreferrer noopener&quot; target=&quot;_blank&quot;&gt;</code></pre>
+        <p>と同じ挙動となる。
+        <p>参考: <a href="https://blog.jxck.io/entries/2016-06-12/noopener.html">リンクのへの rel=noopener 付与による Tabnabbing 対策 | blog.jxck.io</a>
+      </section>
+      <section>
+        <h3 id="referrerpolicy-属性"><a href="#referrerpolicy-属性">referrerpolicy 属性</a></h3>
+        <p><code translate="no">&lt;a&gt;</code> などに対して referrerpolicy 属性を付与することができる。
+        <pre class=html><code translate="no">&lt;a href=&quot;http://example.com&quot; referrerpolicy=&quot;origin&quot;&gt;</code></pre>
+        <p>値は前述した policy から選んで適用できる。
+        <p>後述するページ全体への設定より優先されるため、特定のリンクだけ挙動を変えると言った使い方ができる。
+        <p>つまり、 markdown から html に変換する CMS などを使っている場合は、ビルド時に外部へのリンクだけ policy をつけると言った使い方ができる。
+        <p><code translate="no">&lt;a&gt;</code> には必ずこの属性をつけるが、 Policy 自体はページ全体のものに準拠したいといった場合は、属性を <code translate="no">&quot;&quot;</code> (空文字) にすれば良い。
+        <p>仕様: <a href="https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-delivery-referrer-attribute">https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-delivery-referrer-attribute</a>
+      </section>
+      <section>
+        <h3 id="meta-の-referrer-属性"><a href="#meta-の-referrer-属性"><code translate="no">&lt;meta&gt;</code> の referrer 属性</a></h3>
+        <p><code translate="no">&lt;meta&gt;</code> タグを利用することでページ全体に Policy を適用できる。
+        <pre><code translate="no">&lt;meta name=&quot;referrer&quot; content=&quot;origin-when-cross-origin&quot;&gt;</code></pre>
+        <p>サーバ指定だと影響範囲が大きい場合に CMS のテンプレートに追加するといった適用が考えられる。
+        <p>なお、 <code translate="no">never</code> / <code translate="no">default</code> / <code translate="no">always</code> といった古い仕様が存在したため、対応表を元に新しい値を指定することが望ましい。
+        <p>仕様: <a href="https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer">https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer</a>
+      </section>
+      <section>
+        <h3 id="http-header"><a href="#http-header">HTTP Header</a></h3>
+        <p>レスポンスの HTTP ヘッダで指定することにより、ページ全体に Policy を適用できる。
+        <pre class=http><code translate="no">Referrer-Policy: no-referrer</code></pre>
+        <p>コンテンツに手を入れられない場合や、漏れなく全てのレスポンスに適用したい場合などに利用できる。
+        <p>仕様: <a href="https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-header-dfn">https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-header-dfn</a>
+      </section>
+    </section>
+    <section>
+      <h2 id="demo"><a href="#demo">DEMO</a></h2>
+      <p>動作する DEMO を以下に用意した。
+      <ul>
+        <li>
+          <a href="https://labs.jxck.io/referrer-policy">https://labs.jxck.io/referrer-policy</a>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
+      <p>本サイトには漏れて困る URL はない。
+      <p>また、技術ブログという性質上、外部のリソースを参考としてリンクすることはよくあり、それらリンク先のサイトに対して、どのページからリンクされているのかを隠すつもりは無い。
+      <p>Cross Origin で URL 全体を送るのは <code translate="no">unsafe-url</code> か <code translate="no">no-referrer-when-downgrade</code> であり、その差は Downgrade の扱いになる。
+      <p>本サイトは HSTS 対応済みであるため、 <code translate="no">no-referrer-when-downgrade</code> では、 HTTP しか提供していないサイトに対しては Referrer が飛ばないことになる。
+      <p>しかし、近年の動向からも、リンクする先が HTTPS に対応している方が本サイトとしても望ましいため、 <code translate="no">no-referrer-when-downgrade</code> を採用することにした。
+      <p>この Policy はブラウザのデフォルトとされているため、明示的な Referrer-Policy Header の追加は行わないこととする。
+    </section>
+  </article>
+
+</main>
+<hr>
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small><small>Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>Google Analytics</a> and <a href=https://w3c.github.io/ServiceWorker/>Service Worker</a>.</small></p>
+</footer>
+</body>
+</html>
+<amp-analytics type=googleanalytics id=analytics1>
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
