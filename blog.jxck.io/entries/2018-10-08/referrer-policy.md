@@ -1,4 +1,4 @@
-# [tag] Referrer-Policy によるリファラ制御
+# [referrer-policy][referer][http] Referrer-Policy によるリファラ制御
 
 ## Intro
 
