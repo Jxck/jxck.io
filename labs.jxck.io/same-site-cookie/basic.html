@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>CSRF DEMO | labs.jxck.io</title>
+
+<h1>post form</h1>
+
+<p id=msg>
+
+<form id=form action="https://labs.jxck.io/same-site-cookie/post" method=post>
+  <input type=text name=foo value=bar>
+  <button type=submit>ok</button>
+</form>
+
+<p>change origin from below
+
+<ul>
+  <li><a href=https://labs.jxck.io/same-site-cookie/basic.html>https://labs.jxck.io/</a>
+  <li><a href=https://labs.mozaic.fm/same-site-cookie/basic.html>https://labs.mozaic.fm/</a>
+</ul>
+
+<script>
+  document.addEventListener('DOMContentLoaded', (e) => {
+    const origin = location.origin
+    const action = document.querySelector('#form').action
+    const cookie = "write=deadbeef"
+
+    document.querySelector('#msg').innerHTML = `
+    <p>your origin is <strong>${origin}</strong> now
+    <p>you received Same-Site-Cookie of <strong>${cookie}</strong>
+    <p>form below sends POST request to <strong>${action}</strong>
+    <p>see the response whether cookie sends or not
+    `
+  })
+</script>
