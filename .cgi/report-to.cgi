@@ -10,8 +10,18 @@ const FILE = `${process.cwd()}/report.log`;
 process.stdin.setEncoding('utf-8')
 process.stdin.on('readable', async (e) => {
   try {
-    const req = process.stdin.read(content_length)
-    if (req === null)  return
+    const body = process.stdin.read(content_length)
+    if (body === null)  return
+
+
+    const header = {}
+    Object.keys(process.env).filter((k) => k.startsWith("HTTP_")).forEach((k) => {
+      header[k.toLowerCase().replace("http_", "")] = process.env[k]
+    })
+    const req = JSON.stringify({
+      body: JSON.parse(body),
+      header: header,
+    })
 
     fs.appendFile(FILE, req+'\r\n', (err) => {
       let status = 201;
