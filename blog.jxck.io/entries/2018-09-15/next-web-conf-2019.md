@@ -236,7 +236,27 @@ hashtag: [#nwc_css](https://twitter.com/search?q=%23nwc_css)
 togetter: [#nwc_css](https://togetter.com/li/1270529)
 
 
-### 録画配信
+## WebMusic ([#nwc_music](https://twitter.com/search?q=%23nwc_music))
+
+- [@okunokentaro](https://twitter.com/okunokentaro)
+- [@ryoyakawai](https://twitter.com/ryoyakawai)
+- [@toyoshim](https://twitter.com/toyoshim)
+
+hashtag: [#nwc_music](https://twitter.com/search?q=%23nwc_music)
+togetter: [#nwc_music](https://togetter.com/li/1277061)
+
+
+## Design ([#nwc_design](https://twitter.com/search?q=%23nwc_design))
+
+- [@nobsato](https://twitter.com/nobsato)
+- [@ktrszk](https://twitter.com/ktrszk)
+- [@yhassy](https://twitter.com/yhassy)
+
+hashtag: [#nwc_design](https://twitter.com/search?q=%23nwc_design)
+togetter: [#nwc_design](https://togetter.com/li/1278305)
+
+
+## 録画配信
 
 - [@mizuman_](https://twitter.com/mizuman_)
 - [@wks](https://twitter.com/wks)
@@ -244,9 +264,9 @@ togetter: [#nwc_css](https://togetter.com/li/1270529)
 
 ## 今後の予定
 
-- 2018/9/15: ブログ公開
-- 2018/10/1: Connpass 募集開始
+- 2018/9/15:  ブログ公開
+- 2018/10/1:  Connpass 募集開始
 - 2018/10/15: 抽選結果発表
-- 2019/1/13: 次世代 Web カンファレンス(9:00 開場 10:00 開演 17:30 終演)
+- 2019/1/13:  次世代 Web カンファレンス(9:00 開場 10:00 開演 17:30 終演)
 
 Jxck
