@@ -1,4 +1,4 @@
-# [same-site-cookie][cookie][csrf][security] Same-Site Cookie とは何か、または Token に代わる CSRF 対策
+# [same-site-cookie][cookie][csrf][security] SameSite Cookie とは何か、または Token に代わる CSRF 対策
 
 ## Intro
 
@@ -47,7 +47,7 @@ CSRF(Cross Site Request Forgery) は、ブラウザが保存している Cookie 
 
 Referer Header には、どの URL からのリクエストであるかが記載される。
 
-この値により、自サイトから発生したリクエストであるかは判断できそうだが、いくつか問題がある。
+この値により、想定した URL から発生したリクエストであるかは判断できるが、いくつか問題がある。
 
 まず、 Referer はいくつかの要因によって送信されない場合がある。
 
@@ -72,8 +72,6 @@ Origin Header は「どの Origin からのリクエストであるか」を相�
 
 しかし、この方法は、任意のヘッダを追加できるという脆弱性があった場合、それを CSRF に組み合わせられると容易に突破できてしまう。
 
-また、同じ Origin 内から発生した意図しないリクエスト(XSS などで仕込まれた Form など)からのリクエストだった場合は判別できない。
-
 実際にそうした脆弱性が報告されてしまったため、追加の対策が求められるようになった。
 
 [Security/Origin - MozillaWiki](https://wiki.mozilla.org/Security/Origin)
@@ -83,36 +81,36 @@ Origin Header は「どの Origin からのリクエストであるか」を相�
 
 任意のヘッダが付与できるとしても、付与すべき Valid な値を攻撃者が取得できなければ、対策の有効性が増す。
 
-そこで、サーバから暗号的に安全な乱数を、短命な One Time Token (nonce という場合もある) として付与し、それを POST のリクエストに含むことを求める方法が考えられる。
+そこで、サーバから暗号的に安全な乱数を、短命な One Time Token として付与する方法がよく使われる。
 
-これを、独自の HTTP Header で受け渡しするか、 HTML Form に hidden で隠し、リクエストの Body に載せる方法が主流だろう。
+これを Form に hidden で隠し、リクエストの Body に載せサーバ側で確認すれば、意図したフォームからのリクエストであることが確認できる。
 
 現在では、主要なフレームワークは、 CSRF 対策として何らかの形でこうした手法をサポートしている。
 
 
-### Same Site 属性の付与
+### SameSite 属性の付与
 
-ここまでの手法はいずれもリクエストの中身から、想定されたコンテキストでのリクエストかを判断することで、攻撃を防ぐという手法である。
+ここまでの手法は、いずれもリクエストの中身から、想定されたコンテキストでのリクエストかを判断することで、攻撃を防ぐという手法である。
 
 しかし、そもそも「*他のサイトからのリクエストでも、 Cookie が自動で付与される*」という挙動を制御できれば、追加のロジックが無くとも POST 自体を否認することができるだろう。
 
-そこで、「この Cookie は他のサイトからのリクエストには付与してはならない」ということを明示的にブラウザに知らせるのが Same Site Cookie である。
+そこで、「この Cookie は他のサイトからのリクエストには付与してはならない」ということを明示的にブラウザに知らせるのが SameSite Cookie である。
 
-CSRF のために設置された罠サイトからリクエストが発生できたとしても、そこには SameSite 指定した Cookie が付与されないため、他のヘッダのチェックも無くサービスはそのリクエストを受け付けずに済む。
+CSRF のために設置された罠サイトからリクエストが発生できたとしても、そこに SameSite 指定した Cookie は付与されないため、他のヘッダのチェックも無くサービスはそのリクエストを受け付けずに済む。
 
 Cookie 属性に付与することのポイントは、別のヘッダによる総合的な判断では無く、 Cookie の有無そのものを制御できるため、仮に「任意のヘッダを付与できる脆弱性」があったとしても、影響を受けにくいことだ。
 
 もし全てのブラウザが対応すれば、理想的には CSRF 対策のための One Time Token は不要となることが期待される。
 
-逆を言えば、それまでは、既存の手法(One Time Token)との並行運用などが必要となる。
+逆に、対応してないブラウザは属性を無視するため、しばらくは既存の手法(One Time Token)との並行運用などが必要となる。
 
 
-## Same Site Cookie
+## SameSite Cookie
 
-Same Site Cookie は、 Set-Cookie ヘッダに付与する新しい属性であり、現状 2 つの値を取る。
+SameSite Cookie は、 Set-Cookie ヘッダに付与する新しい属性であり、現状 2 つの値を取る。
 
 
-```
+```http
 Set-Cookie: key=value; SameSite=Strict
 Set-Cookie: key=value; SameSite=Lax
 ```
@@ -122,16 +120,18 @@ Set-Cookie: key=value; SameSite=Lax
 
 ### Strict
 
-Same-Site のリクエスト以外では一切 Cookie を送らなくなる。
+SameSite 以外からの全てのリクエストで一切 Cookie を送らなくなる。
 
 これは CSRF 対策の観点からはかなり強い制限である。
 
-しかし、単に Session Cookie にこの属性を付与すると、例えば別の Origin からリンクで遷移した場合に、 Cookie が送られないため、ログイン状態にならなくなる。
+しかし、単に Session Cookie にこの属性を付与すると、例えば別の Origin からリンクで遷移した場合にも Cookie が送られなくなる。
+
+すると、別のサイトから遷移する場合は、毎回ログインが必要となるため、 Session Cookie に付与することは難しい。
 
 
 ### Lax
 
-Cross Site のリクエストでも、 HTTP Method が Safe (GET, HEAD etc) である場合のみ Cookie を送る。
+CrossSite のリクエストでも、 HTTP Method が Safe (GET, HEAD etc) である場合のみ Cookie を送る。
 
 別のサイトにあるリンクから遷移した場合は GET であるため Cookie が付与され、ログイン状態が維持できる。
 
@@ -185,20 +185,21 @@ Set-Cookie: write=asdf; Path=/; Secure; HttpOnly; SameSite=Strict
 
 ## CSRF 対策以外の効果
 
-今回は Same Site Cookie のわかりやすい効果として CSRF 対策を例として解説した。
+今回は SameSite Cookie のわかりやすい効果として CSRF 対策を例として解説した。
 
 しかし、その効果は CSRF 対策がシンプルになるというだけのものでは無い。
+
 現在の Web のセキュリティは、 Origin を基礎としたセキュリティモデルの上に立脚している。
 
 しかし、 Cookie はより古くから使われている仕様であるため、 Origin の枠に収まっていない。
 
 後から Domain, Secure 属性などを付与することである程度の改善が試みられたが、いずれも十分とは言えない仕様だった。
 
-Same Site Cookie は、この点をある程度カバーするための仕様であり、単純に言えば「意図しない場面で送られない」という制約を課す仕様と言える。
+SameSite Cookie は、この点をある程度カバーするための仕様であり、単純に言えば「意図しない場面で送られない」という制約を課す仕様と言える。
 
 「意図しない場面で送られる」代表例として CSRF があるが、他にも今年話題になった Spectore/Meltdown のようなサイドチャネルアタックについても同じことが言える。
 
-他にも、最近 NTT と早稲田の研究者によって報告された Twitter の Silhouette (シルエット) という攻撃についても、 Same Site Cookie は有効と報告されている。
+他にも、最近 NTT と早稲田の研究者によって報告された Twitter の Silhouette (シルエット) という攻撃についても、 SameSite Cookie は有効と報告されている。
 
 [Protecting user identity against Silhouette](https://blog.twitter.com/engineering/en_us/topics/insights/2018/twitter_silhouette.html)
 
@@ -209,7 +210,7 @@ Same Site Cookie は、この点をある程度カバーするための仕様で
 
 ## Cookie の改善
 
-Cookie の仕様に問題があるという認識は共通しており、 Same Site のような属性の付与では無く根本的に設計し直そうという話もある。
+Cookie の仕様に問題があるという認識は共通しており、 SameSite のような属性の付与では無く根本的に設計し直そうという話もある。
 
 [mikewest/http-state-tokens: Incrementally better HTTP state management](https://github.com/mikewest/http-state-tokens)
 
