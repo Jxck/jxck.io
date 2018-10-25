@@ -33,7 +33,7 @@ locked(enter, _OldState, #{code := Code} = Data) ->
     {keep_state, Data#{remaining => Code, buf => []}};
 
 %% timeout イベントのハンドラ
-locked(timeout, _, #{code := Code, remaining := _Remaining} = Data) ->
+locked(timeout, expired, #{code := Code, remaining := _Remaining} = Data) ->
     ?Log(locked, timeout),
     {keep_state, Data#{remaining := Code}};
 
@@ -45,7 +45,7 @@ locked(cast, {button, Digit}, #{code := Code, remaining := Remaining} = Data) ->
             {next_state, open, Data};
         [Digit | Rest] ->
             % locked で 1s 経つと timeout イベントが上がる
-            {keep_state, Data#{remaining := Rest}, 3000};
+            {keep_state, Data#{remaining := Rest}, [{timeout, 1000, expired}]};
         [_ | _] ->
             {keep_state, Data#{remaining := Code}}
     end;
@@ -67,7 +67,7 @@ open(enter, _OldState, _Data) ->
     ?Log(open, enter),
     do_unlock(),
     % open に 3s とどまると state_timeout イベントが上がる
-    {keep_state_and_data, [{state_timeout, 5000, lock}]};
+    {keep_state_and_data, [{state_timeout, 3000, lock}]};
 
 %% state_timeout イベントのハンドラ
 open(state_timeout, lock, Data) ->
