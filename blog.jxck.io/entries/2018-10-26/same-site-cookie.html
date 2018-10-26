@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang=ja itemscope itemtype=http://schema.org/BlogPosting>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <!--
+  貴様、見ているな！！
+  このサイトの技術的なまとめはこちらをどうぞ。
+  https://labs.jxck.io/blog
+
+  by Jxck
+  -->
+  <link rel=canonical href="https://blog.jxck.io/entries/2018-10-26/same-site-cookie.html">
+  <link rel=amphtml href="https://blog.jxck.io/entries/2018-10-26/same-site-cookie.amp.html">
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+  <link rel=author href=https://jxck.io/assets/humans.txt>
+  <link rel=manifest href=/manifest.json>
+  <link rel=preload as=font type=font/woff href=https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular-201802.woff2 crossorigin>
+  <script async src=https://jxck.io/assets/js/ga.js></script>
+  <script async src=https://jxck.io/assets/js/highlight.min.js></script>
+  <script async src=https://jxck.io/assets/js/sw.js></script>
+  <script async src=https://jxck.io/assets/js/main.js></script>
+
+  <meta name=author content=Jxck>
+  <meta name=description content="Cookie はブラウザによって保存され、紐づいたドメインへのリクエストに自動で付与される。この挙動によって Web におけるセッション管理が実現されている一方、これを悪用した攻撃方法として、 CSRF や Timing Attack などが数多く知られており、個別に対策が...">
+  <meta name=keywords content="same-site-cookie,cookie,csrf,security">
+  <meta itemprop=image content="https://jxck.io/assets/img/jxck.png">
+  <meta itemprop=name content="blog.jxck.io">
+
+  <meta name=twitter:card content=summary>
+  <meta name=twitter:site content=@jxck_>
+  <meta name=twitter:url content="https://blog.jxck.io/entries/2018-10-26/same-site-cookie.html">
+  <meta name=twitter:title content="Cookie の性質を利用した攻撃と Same Site Cookie の効果 | blog.jxck.io">
+  <meta name=twitter:description content="Cookie はブラウザによって保存され、紐づいたドメインへのリクエストに自動で付与される。この挙動によって Web におけるセッション管理が実現されている一方、これを悪用した攻撃方法として、 CSRF や Timing Attack などが数多く知られており、個別に対策が...">
+  <meta name=twitter:image content="https://jxck.io/assets/img/jxck.png">
+
+  <meta property=og:type content=article>
+  <meta property=og:url content="https://blog.jxck.io/entries/2018-10-26/same-site-cookie.html">
+  <meta property=og:title content="Cookie の性質を利用した攻撃と Same Site Cookie の効果 | blog.jxck.io">
+  <meta property=og:site_name content="blog.jxck.io">
+  <meta property=og:description content="Cookie はブラウザによって保存され、紐づいたドメインへのリクエストに自動で付与される。この挙動によって Web におけるセッション管理が実現されている一方、これを悪用した攻撃方法として、 CSRF や Timing Attack などが数多く知られており、個別に対策が...">
+  <meta property=og:image content="https://jxck.io/assets/img/jxck.png">
+
+  <link rel=icon sizes=256x256 href="https://jxck.io/assets/img/jxck.png">
+  <link rel="shortcut icon" href="https://jxck.io/assets/img/jxck.png">
+  <link rel=apple-touch-icon sizes=256x256 href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "Cookie の性質を利用した攻撃と Same Site Cookie の効果 | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2018-10-26T08:00:00+08:00",
+  "dateModified": "2018-10-26T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "Cookie はブラウザによって保存され、紐づいたドメインへのリクエストに自動で付与される。この挙動によって Web におけるセッション管理が実現されている一方、これを悪用した攻撃方法として、 CSRF や Timing Attack などが数多く知られており、個別に対策が..."
+}
+</script>
+
+  <title>Cookie の性質を利用した攻撃と Same Site Cookie の効果 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/body.css>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/header.css>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io><img class=logo alt=blog title="blog top" width=30 src=https://jxck.io/assets/img/blog.svg></a>
+        <li><a href="/entries/2018-10-26/same-site-cookie.amp.html#development=1"><svg width=30 height=30><use xlink:href="/assets/img/amp.svg#main"/></svg></a>
+        <li><a href=.><img alt=up title="move to parent directory" width=30 src=https://jxck.io/assets/img/up.svg></a>
+        <li><a href=/feeds/atom.xml><img alt=rss title="rss feed" width=30 src=https://jxck.io/assets/img/rss.svg></a>
+        <li><a href=https://jxck.io/humans.txt><img alt=humans title=huamns.txt width=30 src=https://jxck.io/assets/img/humans.svg></a>
+        <li><a href=https://jxck.io><img class=logo alt=jxck title="jxck logo" width=30 src=https://jxck.io/assets/img/jxck.png></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/markdown.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/main.css>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
+    <ul class=info>
+      <li>created_at: <time class=created_at datetime=2018-10-26>2018-10-26</time>
+      <li>updated_at: <time class=updated_at datetime=2018-10-26>2018-10-26</time>
+      <li class=tags>tags: [<a href='/tags/same-site-cookie.html'>same-site-cookie</a>,<a href='/tags/cookie.html'>cookie</a>,<a href='/tags/csrf.html'>csrf</a>,<a href='/tags/security.html'>security</a>]
+    </ul>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/article.css>
+  <article>
+    <h1><a href=/entries/2018-10-26/same-site-cookie.html>Cookie の性質を利用した攻撃と Same Site Cookie の効果</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p>Cookie はブラウザによって保存され、紐づいたドメインへのリクエストに自動で付与される。
+      <p>この挙動によって Web におけるセッション管理が実現されている一方、これを悪用した攻撃方法として、 CSRF や Timing Attack などが数多く知られており、個別に対策がなされてきた。
+      <p>現在、提案実装されている SameSite Cookie は、そもそもの Cookie の挙動を変更し、こうした問題を根本的に解決すると期待されている。
+      <p>Cookie の挙動とそれを用いた攻撃、そして Same Site Cookie について解説する。
+    </section>
+    <section>
+      <h2 id="cookie-の挙動"><a href="#cookie-の挙動">Cookie の挙動</a></h2>
+      <p>Cookie は、 Set-Cookie によって提供したドメインと紐づけてブラウザに保存され、同じドメインへのリクエストに自動的に付与される。
+      <p>最も使われる場面は、ユーザの識別子となるランダムな値を SessionID として付与し、その有無によってセッション(=ログイン状態)を維持するという用途だろう。
+      <p>もし SessionID が盗まれれば成りすましが可能となるため、セキュリティのコンテキストでは Cookie 自体が <em>Credential</em> として扱われることもある。
+      <p>そして今回注目するのは、 Cookie が「<em>ドメインをまたぐリクエストにも自動で付与される</em>」という挙動だ。
+      <p>もし同じドメイン内でしか付与されなければ、例えば Site A から Site B に遷移した時に、必ず B のログイン画面が出てしまい、一旦リロード(B から B への遷移)するとログイン済みになるという挙動になってしまう。
+      <p>まず、この Cookie の仕様を利用した攻撃方法について解説し、その後 SameSite Cookie について解説する。
+    </section>
+    <section>
+      <h2 id="cookie-の挙動を利用した攻撃"><a href="#cookie-の挙動を利用した攻撃">Cookie の挙動を利用した攻撃</a></h2>
+      <p>「自動的に付与される」という挙動を利用した攻撃方法はいくつか存在する。
+      <p>例として、 <code translate="no">https://sns.example.com</code> という SNS の Session Cookie がブラウザに保存されていたとする。
+      <p>ブラウザは <code translate="no">https://sns.example.com</code> へのリクエストには、その Cookie を自動で付与する。
+      <section>
+        <h3 id="csrf"><a href="#csrf">CSRF</a></h3>
+        <p>CSRF は、この SNS の場合、別の罠サイトを用意し SNS への正規の投稿と同じリクエストを作り出すことで、ユーザに対して意図しない投稿を行わせるといった攻撃である。
+        <p>例えば、正規の投稿はログイン状態で <code translate="no">https://sns.example.com/posts/new</code> にある以下の form から行うものであったとする。
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+        <pre class=html><code translate="no">&lt;form action=/posts method=post&gt;
+  &lt;textarea name=msg&gt;hello&lt;/textarea&gt;
+  &lt;button type=submit&gt;post&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+        <p>この form を submit した時に送信される HTTP Request の概観は以下のようになるだろう
+        <pre class=http><code translate="no">POST /posts HTTP/1.1
+Host: sns.example.com
+Cookie: deadbeef
+Origin: https://sns.example.com
+Referer: https://sns.example.com/posts/new
+
+msg=hello</code></pre>
+        <p>サーバは、 Cookie の正当性を確認し、正ければ投稿を受け付ける。
+        <p>ここで、攻撃者は <code translate="no">https://darkside.jxck.io/csrf</code> に以下のような HTML を仕込んだ罠ページを用意する。
+        <pre class=html><code translate="no">&lt;form action=https://sns.example.com/posts/new method=post&gt;
+  &lt;textarea name=msg&gt;こんにちはこんにちは&lt;/textarea&gt;
+  &lt;button type=submit&gt;post&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+        <p>Form の action に URL 全体を入れている点に注目したい。
+        <p>そして、 <code translate="no">https://sns.example.com</code> にログイン済みのユーザをこのページに誘導し、なんらかの方法で submit させる。もしくは Form を隠して JS で強制的に submit してもよい。
+        <p>ここで生成される HTTP Request は以下のようになるだろう。
+        <pre class=http><code translate="no">POST /posts HTTP/1.1
+Host: sns.example.com
+Cookie: deadbeef
+Origin: https://darkside.jxck.io/csrf
+Referer: https://darkside.jxck.io/
+
+msg=こんにちはこんにちは</code></pre>
+        <p>このとき Cookie は sns.example.com で取得したものが自動で付与される。
+        <p>つまり、サービスが Cookie だけを検証しているならば、このリクエストは正しいものとして受け入れられ、ユーザが意図しない投稿が成功してしまうのである。
+        <p>これが、商品の購入や送金、パスワードの変更だった場合は、さらに被害が大きくなるだろう。
+        <p>対策としては、まず Origin ヘッダや Referer ヘッダの確認が思いつく。
+        <p>ところが、 Referer を送らないように設定するユーザもいることが知られており、 Referer が無かったらリクエストを弾くという実装は現実的ではない。
+        <p>罠サイトは Referrer Policy を用いることで、 Referer が送らないように設定できるため、 Referer をベースとした対策は万全とは言い難い。
+        <p>Origin ヘッダは、そもそもが生成元の Origin を通知するためのものなので、この検証用途で使うには妥当と言える。
+        <p>しかし、 valid な値が推測可能なため、もしブラウザからのリクエストに <em>任意のヘッダを追加できる脆弱性</em> が別で存在した場合には、簡単に偽装できてしまう。
+        <p>そして、残念ながら近年も <a href="https://insert-script.blogspot.jp/2018/05/adobe-reader-pdf-client-side-request.html">そうした脆弱性</a> が見つかっているため、追加で別の対策が求められているのが現状だ。
+        <p><a href="https://blog.jxck.io/entries/2018-10-08/referrer-policy.html">参考: Referrer-Policy によるリファラ制御 | blog.jxck.io</a>
+        <p>結果として、暗号論的に安全な乱数を One Time Token として生成し、それを Form に hidden で隠して、<em>意図した Form からのリクエスト</em> かを検証する方法が主流となっている。
+        <pre class=html><code translate="no">&lt;form action=https://sns.example.com/posts/new method=post&gt;
+  &lt;textarea name=msg&gt;こんにちはこんにちは&lt;/textarea&gt;
+  &lt;input type=hidden name=csrf_token value=asdfqwerzxcv&gt;
+  &lt;button type=submit&gt;post&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+        <pre class=http><code translate="no">POST /posts HTTP/1.1
+Host: sns.example.com
+Cookie: deadbeef
+Origin: https://darkside.jxck.io/csrf
+Referer: https://darkside.jxck.io/
+
+msg=こんにちはこんにちは&amp;csrf_token=asdfqwerzxcv</code></pre>
+        <p>ここまでの内容は POST で解説したが、現実には「足跡」や「既読」機能のように GET が副作用を持つ設計の場合も、同じように攻撃が可能だ。
+        <p>その場合は、単にリンクを設置して踏ませるだけで良いので、攻撃はシンプルだが対策は難しい。
+        <p>元をたどれば、罠サイトからの偽装されたリクエストに Cookie が付与されなければ、この攻撃は防ぐことができる。
+      </section>
+      <section>
+        <h3 id="timing-attack"><a href="#timing-attack">Timing Attack</a></h3>
+        <p>Timing Attack は、古くから存在する手法であり、その方法も対象も様々なものがある。
+        <p>Web のコンテキストで共通するのは、罠サイトから対象のサービスに向けて XHR などでリクエストを投げさせるというものだろう。
+        <p>この時、実際にレスポンスを取得することができなくてもよく、リクエストにかかる時間を計測し、リクエストを変化させた時のレスポンスタイムの変化から機密情報を推測するというシナリオだ。
+        <p>例えば先の SNS でユーザのページへリクエストする場合、 block していなければプロフィールページが表示されるが、 block していなければ定型文が返るためレスポンスが速いとする。
+        <pre class=js><code translate="no">function timing_attack() {
+  img = new Image()
+  t1 = performance.now()
+
+  img.onerror = () =&gt; {
+    t2 = performance.now()
+
+    // block されていれば速く
+    // block されてなければ遅い
+    console.log(t2-t1)
+  }
+
+  img.src = &quot;https://sns.example.com/jxck&quot;
+}</code></pre>
+        <p>これを利用して、対象者が誰を block しているか推測するといった攻撃が考えられる。
+        <p>直近では Twitter に報告された Silhouette (シルエット攻撃)が、まさしくこれにあたる。
+        <p><a href="https://blog.twitter.com/engineering/en_us/topics/insights/2018/twitter_silhouette.html">Protecting user identity against Silhouette</a>
+        <p>こうした攻撃の推測制度を下げるため、 performance.now の精度を落とすという施策がブラウザベンダによってなされることもある。
+        <p>しかしこの場合も、罠サイトからのリクエストに Cookie 送信されなければ、毎回ログインページのレスポンスが返ることになり攻撃が成立しない。
+      </section>
+      <section>
+        <h3 id="side-channel-attack"><a href="#side-channel-attack">Side Channel Attack</a></h3>
+        <p>CRIME/BEAST/BREACH は、 TLS の暗号化や圧縮に関わるロジックを逆手に取り、ペイロードを推測していく Side Channel Attack の亜種である。
+        <p>こうした攻撃は TLS のプロトコルレベルでの解決(暗号方式の変更や圧縮の無効など)によって防ぐことが基本となるうえ、攻撃が成立した場合 Cookie 以外の情報も抜くことは可能である。
+        <p>しかし、代表的な攻撃シナリオはやはり、ターゲットを罠サイトなどに誘導し、微妙にペイロードを操作しながら連続でリクエストを発生し、自動で付与される Cookie を推測するというものが多い。
+        <p>例えば CRIME の場合は、 Cookie の値が一致すれば圧縮が効きパケットが小さくなることを観測するだけでよい、イメージとしては以下のような感じだ。
+        <pre class=js><code translate="no">for(...) {
+  word = `ここを変えて行く`
+  await fetch(&quot;https://sns.example.com/&quot;, {
+    body: `Cookie: ${word}`
+  })
+}</code></pre>
+        <p>今後、類似する未知の攻撃があったとしても、そもそも Cookie が付与されていなければ推測できない場合は、攻撃を未然に防げる可能性もある。
+      </section>
+      <section>
+        <h3 id="xssi"><a href="#xssi">XSSI</a></h3>
+        <p>XSSI は JSONP のエンドポイントから取得できる情報を、罠サイトで横取りする脆弱性である。
+        <p>これも Cookie が自動で送られなければと言いたいところだ(そうした解説もある)が、 JSONP を使っていることの方が問題なので、解説は割愛する。
+      </section>
+    </section>
+    <section>
+      <h2 id="same-site-cookie"><a href="#same-site-cookie">Same Site Cookie</a></h2>
+      <p>そもそも「<em>他のドメインからのリクエストでも、 Cookie が自動で付与される</em>」という挙動を制御できれば、多くの脆弱性に有効な対策になることがわかっただろう。
+      <p>そこで、「この Cookie は他のサイトからのリクエストには <em>付与してはならない</em>」ということを明示的にブラウザに知らせるのが SameSite Cookie である。
+      <p>SameSite Cookie は、 Set-Cookie ヘッダに付与する新しい属性であり、現状 2 つの値を取る。
+      <pre class=http><code translate="no">Set-Cookie: key=value; SameSite=Strict
+Set-Cookie: key=value; SameSite=Lax</code></pre>
+      <p><a href="https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis-02#section-5.3.7">https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis-02#section-5.3.7</a>
+      <section>
+        <h3 id="strict"><a href="#strict">Strict</a></h3>
+        <p>SameSite 以外からの全てのリクエストで一切 Cookie を送らなくなる。
+        <p>これを適用できれば、かなりの問題が解決する強い制限である。
+        <p>しかし、単に Session Cookie にこの属性を付与すると、例えば別のサイトからリンクで遷移した場合にも Cookie が送られなくなる。
+        <p>すると、別のサイトから遷移する場合は、毎回ログインが必要となるため、ユーザの利便性も考えると難しい。
+      </section>
+      <section>
+        <h3 id="lax"><a href="#lax">Lax</a></h3>
+        <p>CrossSite のリクエストでは、 Top Level Navigation 以外は Cookie を送らない。
+        <p>これにより、別サイトからの遷移でもログイン状態が維持できるため、既存の Session 管理にも導入しやすい。
+        <p>POST では Cookie が送られないため、後述する CSRF のような攻撃への耐性が高まる。
+        <p>また、 XHR/fetch() や <code translate="no">&lt;img&gt;</code> を用いて発生させる GET は Top Level Navigation ではないため Cookie がつかない。
+        <p>従って、 JS からリクエストを生成し、時間を測るタイプの攻撃への耐性もある。
+        <p>しかし、 Popup Window や <code translate="no">&lt;link rel=prerender&gt;</code> などは Top Level Navigation となるため、いくつかの攻撃には依然として耐性が無い点に注意したい。
+        <p>Lax で送られるかどうかをまとめると以下のようになる。
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/table.css>
+        <table>
+          <thead>
+            <tr>
+              <th class=align-left>Type</th>
+              <th class=align-left>Code</th>
+              <th class=align-default>Lax</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class=align-left>Link</td>
+              <td class=align-left><code translate="no">&lt;a href=&quot;...&quot;&gt;&lt;/a&gt;</code></td>
+              <td class=align-default>o</td>
+            </tr>
+            <tr>
+              <td class=align-left>Perender</td>
+              <td class=align-left><code translate="no">&lt;link rel=&quot;prerender&quot; href=&quot;..&quot;/&gt;</code></td>
+              <td class=align-default>o</td>
+            </tr>
+            <tr>
+              <td class=align-left>Form GET</td>
+              <td class=align-left><code translate="no">&lt;form method=&quot;GET&quot; action=&quot;...&quot;&gt;</code></td>
+              <td class=align-default>o</td>
+            </tr>
+            <tr>
+              <td class=align-left>Form POST</td>
+              <td class=align-left><code translate="no">&lt;form method=&quot;POST&quot; action=&quot;...&quot;&gt;</code></td>
+              <td class=align-default>x</td>
+            </tr>
+            <tr>
+              <td class=align-left>iframe</td>
+              <td class=align-left><code translate="no">&lt;iframe src=&quot;...&quot;&gt;&lt;/iframe&gt;</code></td>
+              <td class=align-default>x</td>
+            </tr>
+            <tr>
+              <td class=align-left>AJAX</td>
+              <td class=align-left><code translate="no">$.get(&quot;...&quot;)</code></td>
+              <td class=align-default>x</td>
+            </tr>
+            <tr>
+              <td class=align-left>Image</td>
+              <td class=align-left><code translate="no">&lt;img src=&quot;...&quot;&gt;</code></td>
+              <td class=align-default>x</td>
+            </tr>
+          </tbody>
+        </table>
+        <p><a href="https://www.sjoerdlangkemper.nl/2016/04/14/preventing-csrf-with-samesite-cookie-attribute/">https://www.sjoerdlangkemper.nl/2016/04/14/preventing-csrf-with-samesite-cookie-attribute/</a>
+      </section>
+    </section>
+    <section>
+      <h2 id="samesite-cookie-の導入"><a href="#samesite-cookie-の導入">SameSite Cookie の導入</a></h2>
+      <p>実際に Same Site Cookie の導入する方法は、大きく 2 つある。
+      <section>
+        <h3 id="既存の-cookie-に対する-lax-の付与"><a href="#既存の-cookie-に対する-lax-の付与">既存の Cookie に対する Lax の付与</a></h3>
+        <p>既存のセッション管理が単体の Session Cookie で運用されている場合、そこに Strict を付けるのは難しい。
+        <p>他のサイトから遷移した場合に毎回ログインを要求してしまうため、利便性の観点から問題が出る。
+        <p>そこで、互換性を崩さずに導入するためには、すでに運用されている Session Cookie に lax を付与するのが安全かつ導入しやすいだろう。
+        <p>これにより、典型的な POST での CSRF や一部の Timing Attack は防ぐことができる。
+        <p>しかし、 Top Level Navigation を用いた攻撃があった場合は効果がない。
+      </section>
+      <section>
+        <h3 id="readwrite-cookie-の分離運用"><a href="#readwrite-cookie-の分離運用">Read/Write Cookie の分離運用</a></h3>
+        <p>より根本的に安全性を高めるのであれば、副作用のある操作は全て Strict にするのが望ましい。
+        <p>そこで、 RFC では Cookie を Read Cookie と Write Cookie の 2 つにわける構成が言及されている。
+        <p><a href="https://tools.ietf.org/html/draft-west-first-party-cookies-07#section-5.2">https://tools.ietf.org/html/draft-west-first-party-cookies-07#section-5.2</a>
+        <dl>
+          <dt>Read Cookie
+          <dd>ユーザのセッション維持するための Cookie 。これが送られればユーザがログイン状態と見なされる。しかし、それ以上の操作についてはこの Cookie では許可されない。
+          <dt>Write Cookie
+          <dd>書き込みを許可する Cookie 。例えばパスワードの変更や、投稿、購入、キャンセル、送金など、副作用を伴う操作の許可に使われる。
+        </dl>
+        <p>この 2 つに Cookie を分離し、 Write Cookie に Strict を適用すれば、より堅牢な設計となる。
+        <p>Read Cookie は、副作用を起こす能力がなくなっているのであれば、 Lax でも SameSite 無しでも良い。
+        <pre class=http><code translate="no">Set-Cookie: read=zxcv; Path=/; Secure; HttpOnly;
+Set-Cookie: write=asdf; Path=/; Secure; HttpOnly; SameSite=Strict</code></pre>
+        <p>もし新規の開発や改修が可能であるならば、こうした構成も可能かもしれないが、既存のサービスのほとんどはここまで手を入れるのは難しだろう。
+        <p>また、 HTTP Method に関わらず、副作用を起こす操作を全て Strict にしているため、例えば前述の足跡や既読のように、別ドメインからの Top Level Navigation で遷移しただけで副作用を起こす設計では、この構成は難しい。
+        <p>例えば、既読を write cookie にしか許さない場合、ユーザページのリンクを別のサイトで踏んで遷移してきたユーザの既読がつかない。
+        <p>Redirect を挟むのは Write Cookie を分けた意味がないため、一旦別のページを挟んでリンクを踏ませるなどし、 Same Site Request に誘導してやる必要がある。
+        <p>そもそも、副作用は POST/PUT/DELETE などでしか起こさないという設計になっているのであれば、 Lax で十分であるため、ここまでの設計は不要な場合が多そうだと筆者は考えている。
+      </section>
+    </section>
+    <section>
+      <h2 id="cookie-の改善"><a href="#cookie-の改善">Cookie の改善</a></h2>
+      <p>この Cookie の仕様に問題があるという認識は共通しており、 SameSite のような属性の付与では無く、根本的に設計し直そうという話もある。
+      <p><a href="https://github.com/mikewest/http-state-tokens">mikewest/http-state-tokens: Incrementally better HTTP state management</a>
+      <p>また、ちょうど Read/Write の Cookie 分離を仕様レベルで行う提案が出たりもしている。
+      <p><a href="https://lists.w3.org/Archives/Public/public-webappsec/2018Oct/0029.html">[CSP3] Suggestion for COOKIE directive</a>
+      <p>他にも類似する問題(Cookie に限らず)は、 Cross Origin Info Leaks という文脈で議論されることが多いが、長くなるのでここではこれ以上言及しない。
+    </section>
+    <section>
+      <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
+      <p>本サイトでは Google Analytics 以外に Cookie は使っていないため、適用は無い。
+    </section>
+    <section>
+      <h2 id="demo"><a href="#demo">DEMO</a></h2>
+      <p>動作する DEMO は以下に用意した
+      <p><a href="https://labs.mozaic.fm/same-site-cookie/">https://labs.mozaic.fm/same-site-cookie/</a>
+    </section>
+  </article>
+
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/footer.css>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small><small>Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>Google Analytics</a> and <a href=https://w3c.github.io/ServiceWorker/>Service Worker</a>.</small></p>
+  </footer>
+</body>
+</html>
