@@ -2,196 +2,302 @@
 <meta charset=utf-8>
 <meta name=viewport content='width=device-width,initial-scale=1'>
 
+<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
+
 <title>Audio API DEMO | labs.jxck.io</title>
 <style>
-  div {
-    border: 1px solid #ccc;
-    width: 100%;
-    height: 30px;
+
+  time, progress {
+    display: inline;
   }
 
-  progress {
+  #wrapper {
+    background: #eee;
+    border-radius: 1em;
+    padding: 1em;
+    box-sizing: border-box;
+  }
+
+
+  #progress-line {
+    display: inline-flex;
+    justify-content: stretch;
     width: 100%;
+  }
+
+  #current {
+    margin-right: 0.6em;
+  }
+
+  #progress {
+    width: 100%;
+  }
+
+  #duration {
+    margin-left: 0.6em;
+  }
+
+  button {
+    border: none;
+    background-color: initial;
+  }
+  #playpause {
   }
 </style>
 
 <h1>Audio API DEMO</h1>
 
-<div><audio id=audio preload=metadata src=/assets/dummy_audio.mp3 controls></audio>
+<div id=wrapper>
+  <audio id=audio preload=metadata src="../assets/dummy_audio.mp3" type=audio/mp3></audio>
 
-<div>
-  <audio id=audio preload=metadata src=/assets/dummy_audio.mp3></audio>
-  <div>
-  <time id=duration></time>
+  <div id=progress-line>
+    <time id=current>00:00:00</time>
+    <progress id=progress></progress>
+    <time id=duration></time>
   </div>
 
   <div>
-  <progress id=progress></progress>
-  </div>
+    <button id=playpause disabled><i class="fas fa-play"></i></button>
+    <button id=bb data-delta=-10><i class="fas fa-backward"></i></button>
+    <button id=ff data-delta=+30><i class="fas fa-forward"></i></button>
 
-  <div>
-  <button id=play>play</button>
-  <button id=pause>stop</button>
+    <span>
+      <i class="fas fa-volume-down"></i>
+      <input id=volume type=range>
+      <i class="fas fa-volume-up"></i>
+     </span>
 
-  <button id=volup>+</button>
-  <button id=voldown>-</button>
-
-  <button id=bb>&lt;&lt;</button>
-  <button id=b>&lt;</button>
-  <button id=f>&gt;</button>
-  <button id=ff>&gt;&gt;</button>
+    <select id=playbackRate>
+      <option value=0.6>x0.6</option>
+      <option value=0.8>x0.8</option>
+      <option value=1.0 selected>x1.0</option>
+      <option value=1.2>x1.2</option>
+      <option value=1.4>x1.4</option>
+      <option value=1.6>x1.6</option>
+      <option value=1.8>x1.8</option>
+      <option value=2.0>x2.0</option>
+      <option value=2.2>x2.2</option>
+      <option value=2.4>x2.4</option>
+      <option value=2.6>x2.6</option>
+      <option value=2.8>x2.8</option>
+      <option value=3.0>x3.0</option>
+    </select>
   </div>
 </div>
 
 <script>
-let $ = document.querySelector.bind(document)
-let $audio = $('#audio')
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+  const $ = document.querySelector.bind(document)
+  const $audio = $('#audio')
+  console.log($audio)
 
-$('#play').addEventListener('click', () => {
-  console.log('play()')
-  $audio.play()
-})
+  $('#playpause').on('click', ({target}) => {
+    if ($audio.paused) {
+      console.log('play()')
+      $audio.play()
+      $('#playpause i').classList = ['fas', 'fa-pause']
+    } else {
+      console.log('pause()')
+      $audio.pause()
+      $('#playpause i').classList = ['fas', 'fa-pause']
+    }
+  })
 
-$('#pause').addEventListener('click', () => {
-  console.log('pause()')
-  $audio.pause()
-})
+  $('#bb').on('click', (e) => {
+    console.log('bb()')
+    const delta = parseInt(e.target.dataset.delta)
+    $audio.currentTime += delta
+  })
 
-$('#volup').addEventListener('click', () => {
-  console.log('volup()')
-  $audio.volume += 0.01
-  console.log($audio.volume)
-})
+  $('#ff').on('click', (e) => {
+    console.log('ff()')
+    const delta = parseInt(e.target.dataset.delta)
+    $audio.currentTime += delta
+  })
 
-$('#voldown').addEventListener('click', () => {
-  console.log('voldown()')
-  $audio.volume -= 0.01
-  console.log($audio.volume)
-})
+  $('#volume').on('input', (e) => {
+    const value = parseFloat(e.target.value)/100
+    console.log(e.type, value)
+    $audio.volume = value
+  })
 
-$('#bb').addEventListener('click', () => {
-  console.log('bb()')
-  $audio.currentTime -= 30
-})
-
-$('#b').addEventListener('click', () => {
-  console.log('b()')
-  $audio.currentTime -= 10
-})
-
-$('#f').addEventListener('click', () => {
-  console.log('f()')
-  $audio.currentTime += 10
-})
-
-$('#ff').addEventListener('click', () => {
-  console.log('ff()')
-  $audio.currentTime += 30
-})
+  $('#playbackRate').on('change', (e) => {
+    const value = parseFloat(e.target.value)
+    console.log(e.type, value)
+    $audio.playbackRate = value
+  })
 
 
+  function seek(e) {
+    const percent      = e.offsetX / e.target.offsetWidth
+    const duration     = $audio.duration
+    const currentTime  = duration * percent
+    $audio.currentTime = currentTime
+    console.log(currentTime)
+  }
 
-$audio.addEventListener('abort', (e) => {
-  console.log('abort', e)
-})
+  $('#progress').on('mousedown', (e) => {
+    e.target.dragging = true
+    seek(e)
+  })
 
-$audio.addEventListener('canplay', (e) => {
-  console.log('canplay', e)
-})
+  $('#progress').on('mousemove', (e) => {
+    if(!e.target.dragging) return
+    seek(e) // seek if dragging
+  })
 
-$audio.addEventListener('canplaythrough', (e) => {
-  console.log('canplaythrough', e)
-})
+  $('#progress').on('mouseup', (e) => {
+    e.target.dragging = false
+  })
 
-$audio.addEventListener('durationchange', (e) => {
-  console.log('durationchange', e)
-})
+  $('#progress').on('mouseout', (e) => {
+    e.target.dragging = false
+  })
 
-$audio.addEventListener('emptied', (e) => {
-  console.log('emptied', e)
-})
 
-$audio.addEventListener('ended', (e) => {
-  console.log('ended', e)
-})
+  $audio.on('abort', (e) => {
+    console.log(e.type, e)
+  })
 
-$audio.addEventListener('error', (e) => {
-  console.log('error', e)
-})
+  $audio.on('canplay', (e) => {
+    console.log(e.type, e)
+    $('#playpause').removeAttribute('disabled')
+  })
 
-$audio.addEventListener('loadeddata', (e) => {
-  console.log('loadeddata', e)
-})
+  $audio.on('canplaythrough', (e) => {
+    console.log(e.type, e)
+  })
 
-$audio.addEventListener('loadedmetadata', (e) => {
-  console.log('loadedmetadata', e)
-  const duration = $audio.duration
-  const currentTime = $audio.currentTime
-  const h = ~~(duration / 3600)
-  const m = ('0'+~~(duration % 3600 / 60)).slice(-2)
-  const s = ('0'+~~(duration % 60)).slice(-2)
-  $('#progress').max = duration
-  $('#progress').value = currentTime
-  $('#duration').textContent = `${h}:${m}:${s}`
-})
+  $audio.on('durationchange', (e) => {
+    console.log(e.type, e)
+  })
 
-$audio.addEventListener('loadstart', (e) => {
-  console.log('loadstart', e)
-})
+  $audio.on('emptied', (e) => {
+    console.log(e.type, e)
+  })
 
-$audio.addEventListener('pause', (e) => {
-  console.log('pause', e)
-})
+  $audio.on('ended', (e) => {
+    console.log(e.type, e)
+  })
 
-$audio.addEventListener('play', (e) => {
-  console.log('play', e)
-  let $progress = $('#progress')
-  let $audio = $('#audio')
-  setInterval(() => {
-    $progress.value = $audio.currentTime
-  }, 1000)
-})
+  $audio.on('error', (e) => {
+    console.log(e.type, e)
+  })
 
-$audio.addEventListener('playing', (e) => {
-  console.log('playing', e)
-})
+  $audio.on('loadeddata', (e) => {
+    console.log(e.type, e)
+  })
 
-$audio.addEventListener('progress', (e) => {
-  console.log('progress', e)
-})
+  function timeFormat(time) {
+    const h = (~~(time / 3600)).toString().padStart(2, 0)
+    const m = (~~(time % 3600 / 60)).toString().padStart(2, 0)
+    const s = (~~(time % 60)).toString().padStart(2, 0)
 
-$audio.addEventListener('ratechange', (e) => {
-  console.log('ratechange', e)
-})
+    //const m = ('0'+~~(time % 3600 / 60)).slice(-2)
+    //const s = ('0'+~~(time % 60)).slice(-2)
+    return `${h}:${m}:${s}`
+  }
 
-$audio.addEventListener('seeked', (e) => {
-  console.log('seeked', e)
-  let $progress = $('#progress')
-  let $audio = $('#audio')
-  $progress.value = $audio.currentTime
-})
+  $audio.on('loadedmetadata', (e) => {
+    console.log(e.type, e)
+    const duration    = $audio.duration
+    const currentTime = $audio.currentTime
+    console.log(duration, currentTime)
 
-$audio.addEventListener('seeking', (e) => {
-  console.log('seeking', e)
-})
+    $('#progress').value       = currentTime
+    $('#progress').max         = duration
+    $('#duration').textContent = timeFormat(duration)
+  })
 
-$audio.addEventListener('stalled', (e) => {
-  console.log('stalled', e)
-})
+  $audio.on('timeupdate', (e) => {
+    const currentTime = $audio.currentTime
+    console.log('timeupdate', currentTime)
+    $('#progress').value      = currentTime
+    $('#current').textContent = timeFormat(currentTime)
+  })
 
-$audio.addEventListener('suspend', (e) => {
-  console.log('suspend', e)
-})
+  $audio.on('loadstart', (e) => {
+    console.log(e.type, e)
+  })
 
-$audio.addEventListener('timeupdate', (e) => {
-  console.log('timeupdate', e.timeStamp, $audio.currentTime)
-})
+  $audio.on('pause', (e) => {
+    console.log(e.type, e)
+    $('#playpause i').classList = ['fas', 'fa-pause']
+  })
 
-$audio.addEventListener('volumechange', (e) => {
-  console.log('volumechange', e)
-})
+  $audio.on('play', (e) => {
+    console.log(e.type, e)
+  })
 
-$audio.addEventListener('waiting', (e) => {
-  console.log('waiting', e)
-})
+  $audio.on('playing', (e) => {
+    console.log(e.type, e)
+  })
+
+  $audio.on('progress', (e) => {
+    console.log(e.type, e)
+  })
+
+  $audio.on('ratechange', (e) => {
+    console.log(e.type, e)
+  })
+
+  $audio.on('seeked', (e) => {
+    console.log(e.type, e)
+    $('#progress').value = $audio.currentTime
+  })
+
+  $audio.on('seeking', (e) => {
+    console.log(e.type, e)
+    $('#progress').value = $audio.currentTime
+  })
+
+  $audio.on('stalled', (e) => {
+    console.log(e.type, e)
+  })
+
+  $audio.on('suspend', (e) => {
+    console.log(e.type, e)
+  })
+
+  $audio.on('volumechange', (e) => {
+    console.log(e.type, e)
+  })
+
+  $audio.on('waiting', (e) => {
+    console.log(e.type, e)
+  })
+
+
+  document.on('keydown', ({key}) => {
+    console.log({key})
+    console.log(document.activeElement)
+
+    if (document.activeElement.nodeName !== "BODY") return
+
+    switch(key) {
+      case ' ':
+        console.log('play/pause')
+        $('#playpause').dispatchEvent(new Event('click'))
+        break
+      case 'ArrowLeft':
+        console.log('bb')
+        $('#bb').dispatchEvent(new Event('click'))
+        break
+      case 'ArrowRight':
+        console.log('ff')
+        $('#ff').dispatchEvent(new Event('click'))
+        break
+      case 'ArrowUp':
+        console.log('volume up')
+        $('#volume').stepUp()
+        $('#volume').dispatchEvent(new Event('input'))
+        break
+      case 'ArrowDown':
+        console.log('volume down')
+        $('#volume').stepDown()
+        $('#volume').dispatchEvent(new Event('input'))
+        break
+    }
+  })
 </script>
