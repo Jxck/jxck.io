@@ -3,82 +3,16 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <title>WebComponents DEMO | labs.jxck.io</title>
 
+<style>
+  h2[is=custom-h2] {
+    width: 80%;
+  }
+</style>
+
 <h1>WebComponents DEMO</h1>
 
 <h2>this is original h2 with css</h2>
 
 <h2 is=custom-h2 color=navy>this is custom h2 with webcomponets</h2>
 
-<script>
-  document.querySelector('h2[is=custom-h2]').style.display = 'none'
-  customElements.whenDefined('custom-h2').then((e) => {
-    document.querySelector('h2[is=custom-h2]').style.display = 'block'
-  })
-
-  class CustomH2 extends HTMLHeadingElement {
-    static get observedAttributes() {
-      return ['color'];
-    }
-
-    get color() {
-      return this.getAttribute('color')
-    }
-
-    set color(value) {
-      return this.setAttribute('color', value)
-    }
-
-    constructor() {
-      super()
-      console.log(this, 'created')
-      this.attachShadow({ mode: 'open' });
-      this.render()
-    }
-
-    render() {
-      this.shadowRoot.innerHTML = this.template;
-    }
-
-    get template() {
-      return `
-        <style>
-        :host {
-          --theme-color: ${this.color};
-        }
-        h2 {
-          font-weight: bold;
-          font-style: italic;
-          color: var(--theme-color);
-          border-left: solid 6px var(--theme-color);
-          border-bottom: solid 1px var(--theme-color);
-          padding-left: 0.6rem;
-        }
-        </style>
-        <h2><slot></slot></h2>
-      `
-    }
-
-    connectedCallback() {
-      console.log(this, 'added')
-    }
-
-    disconnectedCallback() {
-      console.log(this, 'disconnected')
-    }
-
-    attributeChangedCallback(name, from, to) {
-      console.log(this, `changed ${name}="${from}" to ${name}="${to}"`)
-      this.shadowRoot.innerHTML = this.template;
-    }
-
-    adoptedCallback() {
-      console.log(this, 'adopted')
-    }
-  }
-
-  customElements.define('custom-h2', CustomH2, {extends: 'h2'});
-
-  setTimeout(() => {
-    document.querySelector('h2[is=custom-h2]').setAttribute('color', 'red')
-  }, 1000)
-</script>
+<script type=module src=main.mjs></script>
