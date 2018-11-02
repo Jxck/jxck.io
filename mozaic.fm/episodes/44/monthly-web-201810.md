@@ -1,8 +1,19 @@
-the Monthly Web Note
-- filename: mozaic-epNN.myakura.m4a
-- Top Priority, Second Priority, Meta Annotation
+# [monthly-web][mozaic.fm] ep42 Monthly Web 201810
 
-## Mozaic.fm EP44 201810 Monthly Web
+## Info
+
+audio: https://files.mozaic.fm/mozaic-ep44.mp3
+
+- published_at: 2018-11-03
+- guest: [@myakura](https://twitter.com/myakura)
+
+
+## Theme
+
+第 44 回のテーマは 2018 年 10 月の Monthly Web です。
+
+
+## Show Note
 
 
 ### Chrome 動向
@@ -174,6 +185,7 @@ the Monthly Web Note
   - *chromium/src - cf7ed613af - TaskWorklet prototype*
     - <https://chromium.googlesource.com/chromium/src/+/cf7ed613af7b01f2e64929f969d3737067e28083>
 
+
 ### Firefox 動向
 
 - Stable: 63
@@ -299,6 +311,7 @@ the Monthly Web Note
     - <https://hg.mozilla.org/integration/mozilla-inbound/rev/d0b577458d53>
     - いまのところ構文のみらしい
 
+
 ### Safari 動向
 
 - Stable: 12.0.1
@@ -364,6 +377,7 @@ the Monthly Web Note
   - Canvas Debugging
     - <https://webkit.org/blog/8452/canvas-debugging/>
 
+
 ### Edge 動向
 
 - Stable: Edge 44, EdgeHTML 18
@@ -410,6 +424,7 @@ the Monthly Web Note
     - <https://github.com/MicrosoftEdge/Status/commit/f1b8f6c045da693bf219d9dd682236fd92e373ed>
   - 2018 年 10 月の Internet Explorer / Microsoft Edge の累積的なセキュリティ更新プログラムを公開しました - Japan IE Support Team Blog
     - <https://blogs.technet.microsoft.com/jpieblog/2018/10/11/securityupdate201810/>
+
 
 ### WHATWG/W3C 動向
 
@@ -493,8 +508,7 @@ the Monthly Web Note
       - <https://sylph01.hatenablog.jp/entry/20181005/1538727120>
       - 前提として機能の低レイヤ化だけでなく Cambridge Analytica や GDPR も
       - 「機能への許諾」と「データへの許諾」でいうとほぼ前者だったらしい
-      - > Geolocation や通知 API の存在自体がユーザーが Web への信頼を損なう結果になってしまった原因かもしれない。「Web がこれやるべきなの?」みたいな議論をする場が必要。
-      - > Web が scary capability を必要としている理由には「Web が Android 化している」、 Web に walled garden ができるようになってきているから、というのがあるが、一方で Web に capability を追加するのを急ぐことは「村を守るために村を焼く」ことにほかならないのでは?
+      - 結論めいたものよりも、要望や現状の共有といった模様
   - Proposal for Audio Track Worklet API: github.com/alvestrand/audio-worklet
     - <https://lists.w3.org/Archives/Public/public-webrtc/2018Oct/0033.html>
   - Web Developer Representation in W3C · An A List Apart Article
@@ -515,6 +529,7 @@ the Monthly Web Note
     - WPWG の現在の charter が年末まで延長
     - WHATWG との話し合い中なので、その期間中に W3C 版の仕様は出さない
 
+
 ### TC39 動向
 
 - Meeting
@@ -533,6 +548,7 @@ the Monthly Web Note
   - 1 -> inactive
     -  `Date.parse` fallback semantics
 - New Proposals
+
 
 ### IETF 動向
 
@@ -638,6 +654,7 @@ the Monthly Web Note
   - *Identifying our deliverables*
     - <https://mailarchive.ietf.org/arch/msg/quic/RLRs4nB1lwFCZ_7k0iuz0ZBa35s>
 
+
 ### セキュリティ動向
 
 - *Remove TLS1.0/1.1*
@@ -700,6 +717,7 @@ the Monthly Web Note
   - <https://blog.cloudflare.com/webassembly-on-cloudflare-workers/>
 - *Serverless Rust with Cloudflare Workers*
   - <https://blog.cloudflare.com/cloudflare-workers-as-a-serverless-rust-platform/>
+
 
 ### イベント
 
