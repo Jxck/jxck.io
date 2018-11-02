@@ -7,68 +7,68 @@
 
 <title>Audio API DEMO | labs.jxck.io</title>
 <style>
-
-  time, progress {
-    display: inline;
+  button {
+    border: none;
+    padding: 0;
+    background-color: initial;
   }
 
-  #wrapper {
+  .wrapper {
     background: #eee;
-    border-radius: 1em;
     padding: 1em;
-    box-sizing: border-box;
+    border-radius: 1em;
   }
 
-
-  #progress-line {
+  .progress-line {
     display: inline-flex;
-    justify-content: stretch;
     width: 100%;
   }
 
-  #current {
+  .current {
     margin-right: 0.6em;
   }
 
-  #progress {
+  .progress {
     width: 100%;
   }
 
-  #duration {
+  .duration {
     margin-left: 0.6em;
   }
 
-  button {
-    border: none;
-    background-color: initial;
+  .control-line {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
-  #playpause {
+
+  input[type=range] {
+    margin: 0;
   }
 </style>
 
 <h1>Audio API DEMO</h1>
 
-<div id=wrapper>
-  <audio id=audio preload=metadata src="../assets/dummy_audio.mp3" type=audio/mp3></audio>
+<div class=wrapper>
+  <audio class=audio preload=metadata src="../assets/Japanese/female1.wav" type=audio/wave></audio>
 
-  <div id=progress-line>
-    <time id=current>00:00:00</time>
-    <progress id=progress></progress>
-    <time id=duration></time>
+  <div class=progress-line>
+    <time class=current>00:00:00</time>
+    <progress class=progress></progress>
+    <time class=duration>00:00:00</time>
   </div>
 
-  <div>
-    <button id=playpause disabled><i class="fas fa-play"></i></button>
-    <button id=bb data-delta=-10><i class="fas fa-backward"></i></button>
-    <button id=ff data-delta=+30><i class="fas fa-forward"></i></button>
+  <div class=control-line>
+    <button class="bb fa" data-delta=-10>&#xf04a;</button>
+    <button class="playpause fa">&#xf04b;</button>
+    <button class="ff fa" data-delta=+30>&#xf04e;</button>
 
-    <span>
-      <i class="fas fa-volume-down"></i>
-      <input id=volume type=range>
-      <i class="fas fa-volume-up"></i>
-     </span>
+    <span class=fa>&#xf027;</span>
+    <input class=volume type=range>
+    <span class=fa>&#xf028;</span>
 
-    <select id=playbackRate>
+    <select class=playbackRate>
       <option value=0.6>x0.6</option>
       <option value=0.8>x0.8</option>
       <option value=1.0 selected>x1.0</option>
@@ -89,40 +89,41 @@
 <script>
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
   const $ = document.querySelector.bind(document)
-  const $audio = $('#audio')
-  console.log($audio)
+  const $audio = $('.audio')
 
-  $('#playpause').on('click', ({target}) => {
+  $('.playpause').on('click', ({target}) => {
     if ($audio.paused) {
       console.log('play()')
       $audio.play()
-      $('#playpause i').classList = ['fas', 'fa-pause']
+      $('.playpause').innerHTML = "&#xf04c;"
     } else {
       console.log('pause()')
       $audio.pause()
-      $('#playpause i').classList = ['fas', 'fa-pause']
+      $('.playpause').innerHTML = "&#xf04b;"
     }
   })
 
-  $('#bb').on('click', (e) => {
+  $('.bb').on('click', (e) => {
     console.log('bb()')
     const delta = parseInt(e.target.dataset.delta)
+    console.log($audio.currentTime, delta)
     $audio.currentTime += delta
   })
 
-  $('#ff').on('click', (e) => {
+  $('.ff').on('click', (e) => {
     console.log('ff()')
     const delta = parseInt(e.target.dataset.delta)
+    console.log($audio.currentTime, delta)
     $audio.currentTime += delta
   })
 
-  $('#volume').on('input', (e) => {
+  $('.volume').on('input', (e) => {
     const value = parseFloat(e.target.value)/100
     console.log(e.type, value)
     $audio.volume = value
   })
 
-  $('#playbackRate').on('change', (e) => {
+  $('.playbackRate').on('change', (e) => {
     const value = parseFloat(e.target.value)
     console.log(e.type, value)
     $audio.playbackRate = value
@@ -137,23 +138,26 @@
     console.log(currentTime)
   }
 
-  $('#progress').on('mousedown', (e) => {
+  $('.progress').on('mousedown', (e) => {
     e.target.dragging = true
     seek(e)
   })
 
-  $('#progress').on('mousemove', (e) => {
+  $('.progress').on('mousemove', (e) => {
     if(!e.target.dragging) return
     seek(e) // seek if dragging
   })
 
-  $('#progress').on('mouseup', (e) => {
+  $('.progress').on('mouseup', (e) => {
     e.target.dragging = false
   })
 
-  $('#progress').on('mouseout', (e) => {
+  $('.progress').on('mouseout', (e) => {
     e.target.dragging = false
   })
+
+
+
 
 
   $audio.on('abort', (e) => {
@@ -162,7 +166,7 @@
 
   $audio.on('canplay', (e) => {
     console.log(e.type, e)
-    $('#playpause').removeAttribute('disabled')
+    $('.playpause').removeAttribute('disabled')
   })
 
   $audio.on('canplaythrough', (e) => {
@@ -205,16 +209,16 @@
     const currentTime = $audio.currentTime
     console.log(duration, currentTime)
 
-    $('#progress').value       = currentTime
-    $('#progress').max         = duration
-    $('#duration').textContent = timeFormat(duration)
+    $('.progress').value       = currentTime
+    $('.progress').max         = duration
+    $('.duration').textContent = timeFormat(duration)
   })
 
   $audio.on('timeupdate', (e) => {
     const currentTime = $audio.currentTime
     console.log('timeupdate', currentTime)
-    $('#progress').value      = currentTime
-    $('#current').textContent = timeFormat(currentTime)
+    $('.progress').value      = currentTime
+    $('.current').textContent = timeFormat(currentTime)
   })
 
   $audio.on('loadstart', (e) => {
@@ -223,7 +227,7 @@
 
   $audio.on('pause', (e) => {
     console.log(e.type, e)
-    $('#playpause i').classList = ['fas', 'fa-pause']
+    $('.playpause').classList.replace('fa-pause', 'fa-play')
   })
 
   $audio.on('play', (e) => {
@@ -244,12 +248,12 @@
 
   $audio.on('seeked', (e) => {
     console.log(e.type, e)
-    $('#progress').value = $audio.currentTime
+    $('.progress').value = $audio.currentTime
   })
 
   $audio.on('seeking', (e) => {
     console.log(e.type, e)
-    $('#progress').value = $audio.currentTime
+    $('.progress').value = $audio.currentTime
   })
 
   $audio.on('stalled', (e) => {
@@ -278,25 +282,25 @@
     switch(key) {
       case ' ':
         console.log('play/pause')
-        $('#playpause').dispatchEvent(new Event('click'))
+        $('.playpause').dispatchEvent(new Event('click'))
         break
       case 'ArrowLeft':
         console.log('bb')
-        $('#bb').dispatchEvent(new Event('click'))
+        $('.bb').dispatchEvent(new Event('click'))
         break
       case 'ArrowRight':
         console.log('ff')
-        $('#ff').dispatchEvent(new Event('click'))
+        $('.ff').dispatchEvent(new Event('click'))
         break
       case 'ArrowUp':
         console.log('volume up')
-        $('#volume').stepUp()
-        $('#volume').dispatchEvent(new Event('input'))
+        $('.volume').stepUp()
+        $('.volume').dispatchEvent(new Event('input'))
         break
       case 'ArrowDown':
         console.log('volume down')
-        $('#volume').stepDown()
-        $('#volume').dispatchEvent(new Event('input'))
+        $('.volume').stepDown()
+        $('.volume').dispatchEvent(new Event('input'))
         break
     }
   })
