@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>DEMO | labs.jxck.io</title>
+
+<div class="container">
+  <div class=symbol>+</div>
+  <div class=range><input type="range" min="0" max="1" step="0.1"></div>
+</div>
+
+<style>
+:root {
+  --range-width: 20px;
+  --range-height: 200px;
+}
+
+.container {
+  text-align: center;
+  width: var(--range-width);
+}
+
+.range {
+  display: none;
+  height: var(--range-height);
+}
+
+input[type="range"] {
+  position: relative;
+  cursor: pointer;
+
+  transform: rotate(90deg);
+
+  top:    calc((var(--range-height) - var(--range-width))/2);
+  right:  calc((var(--range-height) - var(--range-width))/2);
+  width:  var(--range-height);
+  height: var(--range-width);
+
+  margin: 0;
+  padding: 0;
+}
+</style>
+
+<script>
+  document.querySelector('.container').addEventListener('mouseover', (e) => {
+    document.querySelector('.range').style.display = 'block'
+  })
+  document.querySelector('.container').addEventListener('mouseout', (e) => {
+    document.querySelector('.range').style.display = 'none'
+  })
+</script>

@@ -2,10 +2,11 @@
 import MozaicPlayer from './mozaic-player.mjs'
 console.log(MozaicPlayer)
 
-if (window.matchMedia( "(max-width: 800px)" ).matches) {
-  // スマホの UI は デフォルトの controls が一番使いやすい気がする
-  document.querySelector('audio').controls = true
-} else {
+//if (window.matchMedia( "(max-width: 800px)" ).matches) {
+//  // スマホの UI は デフォルトの controls が一番使いやすい気がする
+//  document.querySelector('audio').controls = true
+//} else {
+if (true) {
   customElements.define('mozaic-player', MozaicPlayer);
 
   // main
