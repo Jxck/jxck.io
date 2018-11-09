@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Timer | labs.jxck.io</title>
+
+
+<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+
+
+<style>
+html {
+  width: 100%;
+  height: 100%;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+time {
+  font-family: 'PT Mono', monospace;
+  font-size: 10vw;
+}
+
+audio {
+  display: none
+}
+</style>
+
+<body>
+  <time>00:00:00:00</time>
+
+  <audio></audio>
+</body>
+
+<script>
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  // format to hh:mm:ss:ms
+  function format(n) {
+    let hh  = ((~~(n/(60*60*1000)))%24).toString().padStart(2,0)
+    let mm  = ((~~(n/   (60*1000)))%60).toString().padStart(2,0)
+    let ss  = ((~~(n/       1000)) %60).toString().padStart(2,0)
+    let ms = (    n             %1000).toString().padStart(3,0)
+
+    return `${hh}:${mm}:${ss}:${ms}`
+  }
+
+
+  // Audio Setup
+  const basenote = 220  // -1 A
+  const context = new AudioContext()
+  const osc = context.createOscillator()
+  const gain = context.createGain()
+
+  osc.frequency.value = basenote
+  gain.gain.value = 0
+  osc.connect(gain).connect(context.destination)
+  osc.start()
+
+
+  function sound(n) {
+    // click sound every 1sec
+    if (n%1000 === 0) {
+      const now = context.currentTime
+      gain.gain.setValueAtTime(1, now)
+      gain.gain.setTargetAtTime(0, now + 0.05, 0)
+
+      if (n%60000 === 0) {
+        // return to base note every 1min
+        osc.detune.value = 0
+      } else {
+        // +1 note
+        osc.detune.value += 100
+      }
+    }
+  }
+
+
+
+  const $time = $('time')
+  let n = 0
+
+  document.addEventListener('DOMContentLoaded', () => {
+    setInterval(() => {
+      n += 10
+
+      // calculate and update <time>
+      $time.textContent = format(n)
+
+      // play sound
+      // sound(n)
+    }, 10)
+  })
+
+
+  const files = [
+    "female1.wav",
+    "male1.wav",
+    "female2.wav",
+    "male2.wav",
+    "female3.wav",
+    "male3.wav"
+  ]
+
+
+  function play(files) {
+    console.log(files)
+
+    const file = files.shift()
+    console.log(file)
+
+    files.push(file)
+
+    $('audio').oncanplay = (e) => {
+      console.log(e)
+      $('audio').play() // wait until canplay
+    }
+
+    $('audio').onended = (e) => {
+      console.log(e)
+      play(files) // next
+    }
+
+    $('audio').src = `//labs.jxck.io/assets/Japanese/${file}`
+  }
+  play(files)
+
+</script>
