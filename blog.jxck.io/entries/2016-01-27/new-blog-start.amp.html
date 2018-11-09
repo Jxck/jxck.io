@@ -53,7 +53,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-01-27T08:00:00+08:00",
-  "dateModified": "2018-07-29T08:00:00+08:00",
+  "dateModified": "2017-11-29T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -184,16 +184,45 @@ article dl {
     url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold-201802.woff2") format("woff");
 }
 
+:root {
+  --background-color: #fefefe;
+  --font-color: #222;
+  --header-color: #222;
+
+  --anchor-color: RoyalBlue;
+  --anchor-visited-color: Brown;
+
+  --code-block: #efefef;
+  --code-block-font: #222;
+
+  --block-quote: #ddd;
+  --table-border: #222;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #010101;
+    --font-color: #eee;
+
+    --anchor-color: CornflowerBlue;
+    --anchor-visited-color: RosyBrown;
+
+    --code-block: #efefef;
+
+    --table-border: #eee;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
+  font-family: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+  background-color: var(--background-color);
+  color: var(--font-color);
   margin: 0;
   padding: 0;
-  font-family: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
-  color: #222;
-  background-color: #fefefe;
 }
 
 code {
@@ -272,7 +301,7 @@ header {
   box-sizing: border-box;
   margin: 0;
   padding: 0.4em;
-  background-color: #222;
+  background-color: var(--header-color);
 }
 
 h2:target,
@@ -309,7 +338,7 @@ header ul li a {
 }
 
 header ul li svg {
-  fill: #fff;
+  fill: var(--background-color);
 }
 
 header ul li::before {
@@ -322,7 +351,7 @@ header ul li:first-child {
 }
 
 header .logo {
-  border: 1px solid #ccc;
+  border: 1px solid #fff;
   box-sizing: border-box;
 }
 
@@ -333,7 +362,7 @@ h4 > a,
 h5 > a,
 h6 > a {
   pointer-events: none;
-  color: #222;
+  color: var(--font-color);
 }
 
 h1 > a:visited,
@@ -342,7 +371,7 @@ h3 > a:visited,
 h4 > a:visited,
 h5 > a:visited,
 h6 > a:visited {
-  color: #222;
+  color: var(--font-color);
 }
 
 h1 > a::before {
@@ -415,24 +444,23 @@ blockquote p::before {
 }
 
 code {
-  border: 1px solid #bfbfbf;
-  background-color: #efefef;
+  background-color: var(--code-block);
+  color: var(--code-block-font);
   border-radius: 4px;
   padding: 0 1px 0;
 }
 
 code::before,
 code::after {
-  /* うざかった */
   content: "`";
 }
 
 
 blockquote {
   display: block;
-  border: solid 1px #ddd;
+  border: solid 1px var(--block-quote);
   border-radius: 4px;
-  padding: 1em;
+  padding: 0.4em 1em;
   margin: 0;
 }
 
@@ -451,11 +479,11 @@ main {
 a {
   word-wrap: break-word;
   text-decoration: none;
-  color: RoyalBlue;
+  color: var(--anchor-color);
 }
 
 a:visited {
-  color: Brown;
+  color: var(--anchor-visited-color);
 }
 
 ol,
@@ -522,7 +550,6 @@ pre > code {
   padding: 0.6em;
   margin: 0;
   border: none;
-  background-color: #efefef;
 }
 
 pre > code::before,
@@ -626,18 +653,18 @@ table {
 
 th {
   padding: 0 1em 0.6em;
-  border-left: 0.14em solid #222;
-  border-bottom: 2px dashed #222;
+  border-left: 0.14em solid var(--table-border);
+  border-bottom: 2px dashed var(--table-border);
 }
 
 td {
   padding: 0.4em 1.2em;
-  border-left: 0.14em solid #222;
+  border-left: 0.14em solid var(--table-border);
 }
 
 th:last-child,
 td:last-child {
-  border-right: 0.14em solid #222;
+  border-right: 0.14em solid var(--table-border);
 }
 
 .align-center {
@@ -669,7 +696,7 @@ td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-01-27>2016-01-27</time>
-    <li>updated_at: <time class=updated_at datetime=2018-07-29>2018-07-29</time>
+    <li>updated_at: <time class=updated_at datetime=2017-11-29>2017-11-29</time>
     <li class=tags>tags: [<a href='/tags/web.html'>web</a>,<a href='/tags/blog.html'>blog</a>]
   </ul>
 
