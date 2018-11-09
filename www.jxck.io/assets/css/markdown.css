@@ -5,7 +5,7 @@ h4 > a,
 h5 > a,
 h6 > a {
   pointer-events: none;
-  color: #222;
+  color: var(--font-color);
 }
 
 h1 > a:visited,
@@ -14,7 +14,7 @@ h3 > a:visited,
 h4 > a:visited,
 h5 > a:visited,
 h6 > a:visited {
-  color: #222;
+  color: var(--font-color);
 }
 
 h1 > a::before {
@@ -87,23 +87,22 @@ blockquote p::before {
 }
 
 code {
-  border: 1px solid #bfbfbf;
-  background-color: #efefef;
+  background-color: var(--code-block);
+  color: var(--code-block-font);
   border-radius: 4px;
   padding: 0 1px 0;
 }
 
 code::before,
 code::after {
-  /* うざかった */
   content: "`";
 }
 
 
 blockquote {
   display: block;
-  border: solid 1px #ddd;
+  border: solid 1px var(--block-quote);
   border-radius: 4px;
-  padding: 1em;
+  padding: 0.4em 1em;
   margin: 0;
 }
