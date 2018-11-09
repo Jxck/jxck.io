@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>DEMO | labs.jxck.io</title>
+
+<style>
+</style>
+
+<h1>Test</h1>
+
+
+<h2>orig</h2>
+<video id=orig loop controls src="https://labs.jxck.io/assets/dummy_video.mp4"></video>
+
+<h2>copy</h2>
+<video id=copy loop controls></video>
+
+
+<script>
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  const stream = $('#orig').captureStream(60)
+  $('#copy').srcObject = stream
+  $('#copy').play()
+</script>
