@@ -1,5 +1,11 @@
+'use strict';
+const $  = document.querySelector.bind(document)
+const $$ = document.querySelectorAll.bind(document)
+const stringify = function(e) { return JSON.stringify(e, '  ', '  ') }
+EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
 async function enumerateDevices() {
-  const $mediaDeviceInfo = document.querySelector('#mediaDeviceInfo')
+  const $mediaDeviceInfo = $('#mediaDeviceInfo')
   const $template        = $mediaDeviceInfo.querySelector('template')
   const keys             = ['deviceId', 'kind', 'label', 'groupId']
 
@@ -11,15 +17,18 @@ async function enumerateDevices() {
       $tr.querySelector('.select > input').name = device.kind
       $tr.querySelector('.select > input').value = device.deviceId
     })
+    if (device.kind.endsWith('output')) {
+      $tr.querySelector('.select > input').disabled = true
+    }
     $mediaDeviceInfo.appendChild($tr)
   })
 }
 
 async function getTracks(track) {
-  const $track    = document.querySelector('#track')
+  const $track    = $('#track')
   const $template = $track.querySelector('template')
   const $tbody    = $track.querySelector('tbody')
-  const keys      = [ 'kind', 'id', 'label', 'enabled', 'muted', ]
+  const keys      = ['kind', 'id', 'label', 'enabled', 'muted']
 
   keys.forEach((key, i) => {
     const $tr = document.importNode($template.content, true).querySelector('tr')
@@ -36,7 +45,7 @@ async function getTracks(track) {
 }
 
 async function getCapabilities(track) {
-  const $track    = document.querySelector('#capabilities')
+  const $track    = $('#capabilities')
   const $template = $track.querySelector('template')
   const $tbody    = $track.querySelector('tbody')
   // Capabilities: not in Firefox
@@ -45,7 +54,7 @@ async function getCapabilities(track) {
   Object.entries(keys).forEach(([key, value], i, j) => {
     const $tr = document.importNode($template.content, true).querySelector('tr')
     $tr.querySelector('.index').textContent = key
-    $tr.querySelector('.value').textContent = JSON.stringify(value)
+    $tr.querySelector('.value').textContent = stringify(value)
     if (i === 0) {
       const $td = document.createElement('td')
       $td.rowSpan = j.length
@@ -57,7 +66,7 @@ async function getCapabilities(track) {
 }
 
 async function getConstraints(track) {
-  const $track    = document.querySelector('#constraints')
+  const $track    = $('#constraints')
   const $template = $track.querySelector('template')
   const $tbody    = $track.querySelector('tbody')
   const keys      = track.getConstraints()
@@ -66,7 +75,7 @@ async function getConstraints(track) {
   Object.entries(keys).forEach(([key, value], i, j) => {
     const $tr = document.importNode($template.content, true).querySelector('tr')
     $tr.querySelector('.index').textContent = key
-    $tr.querySelector('.value').textContent = JSON.stringify(value)
+    $tr.querySelector('.value').textContent = stringify(value)
     if (i === 0) {
       const $td = document.createElement('td')
       $td.rowSpan = j.length
@@ -78,7 +87,7 @@ async function getConstraints(track) {
 }
 
 async function getSettings(track) {
-  const $track    = document.querySelector('#settings')
+  const $track    = $('#settings')
   const $template = $track.querySelector('template')
   const $tbody    = $track.querySelector('tbody')
   const keys      = track.getSettings()
@@ -87,7 +96,7 @@ async function getSettings(track) {
   Object.entries(track.getSettings()).forEach(([key, value], i, j) => {
     const $tr = document.importNode($template.content, true).querySelector('tr')
     $tr.querySelector('.index').textContent = key
-    $tr.querySelector('.value').textContent = JSON.stringify(value)
+    $tr.querySelector('.value').textContent = stringify(value)
     if (i === 0) {
       const $td = document.createElement('td')
       $td.rowSpan = j.length
@@ -99,7 +108,7 @@ async function getSettings(track) {
 }
 
 async function getSupportedConstraints() {
-  const $supportedConstraints = document.querySelector('#supportedConstraints tbody')
+  const $supportedConstraints = $('#supportedConstraints tbody')
   const $template = $supportedConstraints.querySelector('template')
 
   const keys = [ 'width', 'height', 'aspectRatio', 'frameRate', 'facingMode', 'resizeMode', 'volume', 'sampleRate', 'sampleSize', 'echoCancellation', 'autoGainControl', 'noiseSuppression', 'latency', 'channelCount', 'deviceId', 'groupId', ]
@@ -118,20 +127,48 @@ async function getSupportedConstraints() {
 
 async function getUserMedia(constraints) {
   const stream = await navigator.mediaDevices.getUserMedia(constraints)
-  const $video = document.querySelector('video')
+  const $video = $('video')
   $video.srcObject = stream
   return stream
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
+
+document.on('DOMContentLoaded', async () => {
   enumerateDevices()
   getSupportedConstraints()
 
-  const $textarea = document.querySelector('textarea')
-  const $button = document.querySelector('button')
+  const $textarea = $('textarea')
+  const $button = $('button')
 
-  document.querySelector('form').addEventListener('submit', async (e) => {
+  $textarea.value = stringify({audio:{}, video:{}})
+
+  function updateValue(k1, k2, v) {
+    const value = JSON.parse($textarea.value)
+    value[k1][k2] = v
+    $textarea.value = stringify(value)
+  }
+
+
+  $('form').on('change', async ({target}) => {
+    console.log(target)
+    switch (target.name) {
+      case 'audioinput':
+        updateValue('audio', 'deviceId', target.value)
+        break;
+      case 'videoinput':
+        updateValue('video', 'deviceId', target.value)
+        break;
+      default:
+        console.log('noop')
+    }
+  })
+
+  $('form').on('submit', async (e) => {
     e.preventDefault()
+
+    const form_data = new FormData(e.target)
+    const object = Array.from(form_data).reduce((o, [k, v]) => { o[k] = v; return o }, {})
+    console.log(stringify(object, '  ', '  '))
 
     // Edge が FormData 対応していないので動かない。
 
