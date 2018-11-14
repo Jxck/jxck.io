@@ -53,7 +53,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2016-01-27T08:00:00+08:00",
-  "dateModified": "2017-11-29T08:00:00+08:00",
+  "dateModified": "2018-11-14T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -674,7 +674,7 @@ td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2016-01-27>2016-01-27</time>
-    <li>updated_at: <time class=updated_at datetime=2017-11-29>2017-11-29</time>
+    <li>updated_at: <time class=updated_at datetime=2018-11-14>2018-11-14</time>
     <li class=tags>tags: [<a href='/tags/web.html'>web</a>,<a href='/tags/blog.html'>blog</a>]
   </ul>
 
@@ -691,6 +691,190 @@ td:last-child {
       <p>しかし、別に PV を稼ぐためにブログを書いているわけでもないので、むしろ技術的にも自分で色々試せる自由な環境を持ち、特定のサービスに依存せずやってみるのも良いと考える。
       <p>むしろ、ドメイン自体は結構前に取っていたので、遅すぎるくらいなのだが、やっと重い腰を上げた。
       <p>まだ作り途中であり、一気に移行するのは難しいが、徐々に作りながらやっていこうと思う。
+    </section>
+    <section>
+      <h2 id="test-section"><a href="#test-section">test section</a></h2>
+      <p>以降は、本サイトのマークアップやスタイルをテストするためのセクションである。
+      <p>対応している記法を列挙し、挙動を確認する。
+      <section>
+        <h3 id="headding-section-3"><a href="#headding-section-3">headding section 3</a></h3>
+        <p>ここは <code translate="no">&lt;h3&gt;</code> セクションである。
+        <section>
+          <h4 id="headding-section-4"><a href="#headding-section-4">headding section 4</a></h4>
+          <p>ここは <code translate="no">&lt;h4&gt;</code> セクションである。
+        </section>
+      </section>
+      <section>
+        <h3 id="リストスタイル"><a href="#リストスタイル">リストスタイル</a></h3>
+        <p>リストスタイルは 2 つある
+        <ol>
+          <li>ordered list
+          <li>un-ordered list
+        </ol>
+        <p>それぞれは使うタグが違う
+        <ul>
+          <li>ここはリストスタイルである
+          <li>
+            unordered list は <code translate="no">&lt;ul&gt;</code> を用いて表現する
+          </li>
+          <li>
+            <code translate="no">&lt;li&gt;</code> の前には markdown と同じく <code translate="no">-</code> を表示する<ul>
+              <li>入れ子にも対応している
+            </ul>
+          </li>
+          <li>しかし 2 段階以上の深さは使わないようにする
+        </ul>
+      </section>
+      <section>
+        <h3 id="定義リスト"><a href="#定義リスト">定義リスト</a></h3>
+        <p>定義リストは <code translate="no">&lt;dl&gt;</code> を用いて表現する
+        <dl>
+          <dt>定義リスト(description list)
+          <dd><code translate="no">&lt;dl&gt;</code> を用いる
+          <dt>定義(description term)
+          <dd><code translate="no">&lt;dt&gt;</code> を用いる
+          <dt>説明(description details)
+          <dd><code translate="no">&lt;dd&gt;</code> を用いる
+        </dl>
+      </section>
+      <section>
+        <h3 id="サンプルコード"><a href="#サンプルコード">サンプルコード</a></h3>
+        <p>インラインの場合は <code translate="no">&lt;code&gt;</code> タグを用いて表現する。
+        <p>コードブロックの場合は <code translate="no">&lt;pre&gt;</code> と <code translate="no">&lt;code&gt;</code> を用いて表現する。
+        <pre class=js><code translate="no">if (&#039;ServiceWorkerGlobalScope&#039; in self &amp;&amp; self instanceof ServiceWorkerGlobalScope) {
+  [&#039;install&#039;, &#039;activate&#039;, &#039;beforeevicted&#039;, &#039;evicted&#039;, &#039;fetch&#039;, &#039;message&#039;, &#039;push&#039;].forEach((e) =&gt; {
+    self.addEventListener(e, (ev) =&gt; {
+      console.log(e, ev);
+    });
+  });
+
+  self.addEventListener(&#039;install&#039;, (ev) =&gt; {
+    ev.waitUntil(self.skipWaiting());
+  });
+
+  self.addEventListener(&#039;activate&#039;, (ev) =&gt; {
+    ev.waitUntil(self.clients.claim());
+    console.log(&#039;claimed&#039;);
+  });
+}
+
+if (typeof window !== &#039;undefined&#039;) {
+  if (!(&#039;serviceWorker&#039; in navigator)) {
+    alert(&#039;service worker not supported&#039;);
+  }
+
+  navigator.serviceWorker.getRegistration().then((worker) =&gt; {
+    console.log(&#039;getRegistration&#039;, worker);
+  }).catch(console.error.bind(console));
+
+  navigator.serviceWorker.register(&#039;worker.js&#039;, { scope: &#039;.&#039; }).then((worker) =&gt; {
+    console.log(&#039;register success&#039;, worker);
+
+    // return navigator.serviceWorker.ready;
+    return new Promise((resolve) =&gt; {
+      // controllerchange after claimed
+      navigator.serviceWorker.addEventListener(&#039;controllerchange&#039;, resolve);
+    });
+  }).then(() =&gt; {
+    console.log(&#039;controlled?&#039;, navigator.serviceWorker.controller);
+  }).catch(console.error.bind(console));
+}</code></pre>
+      </section>
+    </section>
+    <section>
+      <h2 id="引用"><a href="#引用">引用</a></h2>
+      <p>引用は <code translate="no">&lt;blockquote&gt;</code> を用いて表現する。
+      <blockquote>
+        <p>他のサイトなどから引用する場合は、本文を <code translate="no">&lt;blockquote&gt;</code> を用いて表現する。<br>
+        
+        引用元の URL は <code translate="no">&lt;cite&gt;</code> を用いてマークアップする<br>
+        &mdash; <cite><a href="https://example.com">example.com</a></cite>
+      </blockquote>
+    </section>
+    <section>
+      <h2 id="テーブル"><a href="#テーブル">テーブル</a></h2>
+      <p>テーブルは <code translate="no">&lt;table&gt;</code> タグを用いて表現する。
+      <table>
+        <thead>
+          <tr>
+            <th class=align-left>範囲</th>
+            <th class=align-right>文字数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class=align-left>基本ラテン文字</td>
+            <td class=align-right>94</td>
+          </tr>
+          <tr>
+            <td class=align-left>CJK 記号と句読点</td>
+            <td class=align-right>11</td>
+          </tr>
+          <tr>
+            <td class=align-left>ひらがな</td>
+            <td class=align-right>81</td>
+          </tr>
+          <tr>
+            <td class=align-left>カタカナ</td>
+            <td class=align-right>83</td>
+          </tr>
+          <tr>
+            <td class=align-left>半角形と全角形</td>
+            <td class=align-right>0</td>
+          </tr>
+          <tr>
+            <td class=align-left>常用漢字</td>
+            <td class=align-right>2136</td>
+          </tr>
+          <tr>
+            <td class=align-left>記号</td>
+            <td class=align-right>1</td>
+          </tr>
+          <tr>
+            <td class=align-left>不要文字</td>
+            <td class=align-right>- 23</td>
+          </tr>
+          <tr>
+            <td class=align-left>追加更新</td>
+            <td class=align-right>13</td>
+          </tr>
+          <tr>
+            <td class=align-left>合計</td>
+            <td class=align-right>2396</td>
+          </tr>
+        </tbody>
+      </table>
+      <table>
+        <thead>
+          <tr>
+            <th class=align-left>file type</th>
+            <th class=align-right>size</th>
+            <th class=align-right>ratio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class=align-left>.webp</td>
+            <td class=align-right>9474</td>
+            <td class=align-right>100%</td>
+          </tr>
+          <tr>
+            <td class=align-left>.webp.gz</td>
+            <td class=align-right>2609</td>
+            <td class=align-right>28%</td>
+          </tr>
+          <tr>
+            <td class=align-left>.webp.br</td>
+            <td class=align-right>2544</td>
+            <td class=align-right>27%</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2 id="イメージ"><a href="#イメージ">イメージ</a></h2>
+      <p>イメージは <code translate="no">&lt;img&gt;</code> タグを用いて表現する。
+      <p><amp-img layout=responsive src=https://logo.jxck.io/jxck.png#256x256 alt="jxck logo" title="" width=256 height=256></p>
     </section>
   </article>
 
