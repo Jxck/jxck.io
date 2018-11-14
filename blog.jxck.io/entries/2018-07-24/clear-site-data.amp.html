@@ -53,7 +53,7 @@ by Jxck
     "width": 700
   },
   "datePublished": "2018-07-24T08:00:00+08:00",
-  "dateModified": "2018-08-04T08:00:00+08:00",
+  "dateModified": "2018-11-14T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -126,9 +126,9 @@ article dl {
 
 @supports (line-height-step: 1px) {
   article {
-    --grid: 1.5em;
+    --grid-rhythm: 1.5em;
     line-height: 1.5;
-    line-height-step: var(--grid);
+    line-height-step: var(--grid-rhythm);
   }
 
   article h1,
@@ -146,13 +146,13 @@ article dl {
 
   article section {
     /* grid for debug */
-    /* background-size: 100% var(--grid); */
+    /* background-size: 100% var(--grid-rhythm); */
     /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
   }
 
   article p {
-    margin-top: var(--grid);
-    margin-bottom: var(--grid);
+    margin-top: var(--grid-rhythm);
+    margin-bottom: var(--grid-rhythm);
   }
 
   article pre,
@@ -233,28 +233,6 @@ iframe {
   display: block;
   max-width: 100%;
   margin: 1em 0;
-}
-
-.archive {
-  font-size: 1.2em;
-  line-height: 2em;
-}
-
-.archive ul {
-  margin: 0;
-}
-
-.archive time {
-  padding-right: 0.5em;
-}
-
-.archive time::after {
-  content: ":";
-}
-
-.archive .tags {
-  font-size: 0.8em;
-  margin-left: 1em;
 }
 
 .tags a {
@@ -696,7 +674,7 @@ td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2018-07-24>2018-07-24</time>
-    <li>updated_at: <time class=updated_at datetime=2018-08-04>2018-08-04</time>
+    <li>updated_at: <time class=updated_at datetime=2018-11-14>2018-11-14</time>
     <li class=tags>tags: [<a href='/tags/cache.html'>cache</a>,<a href='/tags/cookie.html'>cookie</a>,<a href='/tags/security.html'>security</a>,<a href='/tags/http.html'>http</a>]
   </ul>
 
@@ -760,7 +738,7 @@ Clear-Site-Data: &quot;*&quot;</code></pre>
         <h3 id="cookies"><a href="#cookies">cookies</a></h3>
         <p>httponly, secure の有無に関わらず、全ての Cookie が消える。
         <p>(<code translate="no">document.cookie</code> や <a href="https://wicg.github.io/cookie-store/explainer.html">Cookie Store API</a> も全て同じ Cookie を見ているため、 storage ではなく cookie である)
-        <p>また Basic Auth の Authorization Header や TLS の Channel ID、 Token Binding なども対象になっている。
+        <p>また Basic Auth の Authorization Header や TLS の Channel ID 、 Token Binding なども対象になっている。
       </section>
       <section>
         <h3 id="cache"><a href="#cache">cache</a></h3>
