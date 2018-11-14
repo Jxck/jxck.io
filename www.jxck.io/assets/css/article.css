@@ -44,9 +44,9 @@ article dl {
 
 @supports (line-height-step: 1px) {
   article {
-    --grid: 1.5em;
+    --grid-rhythm: 1.5em;
     line-height: 1.5;
-    line-height-step: var(--grid);
+    line-height-step: var(--grid-rhythm);
   }
 
   article h1,
@@ -64,13 +64,13 @@ article dl {
 
   article section {
     /* grid for debug */
-    /* background-size: 100% var(--grid); */
+    /* background-size: 100% var(--grid-rhythm); */
     /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
   }
 
   article p {
-    margin-top: var(--grid);
-    margin-bottom: var(--grid);
+    margin-top: var(--grid-rhythm);
+    margin-bottom: var(--grid-rhythm);
   }
 
   article pre,
