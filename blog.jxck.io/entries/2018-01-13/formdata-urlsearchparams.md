@@ -52,7 +52,7 @@ document.querySelector('#login').onsubmit = (e) => {
 
 最も簡単な改善は、 document からのクエリをやめることだ。
 
-`e.target` には、対象の DOM、ここでは `<form>` が入っている。
+`e.target` には、対象の DOM 、ここでは `<form>` が入っている。
 
 `<input>` はその子要素なので、わざわざ `document` を起点にする必要はない。
 

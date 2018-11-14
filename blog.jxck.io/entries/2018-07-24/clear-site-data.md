@@ -62,7 +62,7 @@ httponly, secure の有無に関わらず、全ての Cookie が消える。
 
 (`document.cookie` や [Cookie Store API](https://wicg.github.io/cookie-store/explainer.html) も全て同じ Cookie を見ているため、 storage ではなく cookie である)
 
-また Basic Auth の Authorization Header や TLS の Channel ID、 Token Binding なども対象になっている。
+また Basic Auth の Authorization Header や TLS の Channel ID 、 Token Binding なども対象になっている。
 
 
 ### cache
