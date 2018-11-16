@@ -26,7 +26,14 @@ td {
 }
 textarea {
   width: 50%;
-  height: 10em;
+  height: 20em;
+  display:block;
+}
+form {
+  padding-top: 1em;
+}
+button {
+  margin-bottom: 1em;
 }
 .select {
   width: 1.8em;
@@ -41,12 +48,6 @@ textarea {
   font-weight: bold;
   color: green;
 }
-hr {
-  margin-bottom: 3em;
-}
-textarea, button {
-  display:block;
-}
 </style>
 
 <h1>Video</h1>
@@ -57,16 +58,8 @@ textarea, button {
 <hr>
 
 <form>
-  <label for=videoinput>video</label>
-  <input id=videoinput type=checkbox name=video value=true>
-
-  <label for=audioinput>audio</label>
-  <input id=audioinput type=checkbox name=audio value=true>
-
-  <label for=fakeinput>fake</label>
-  <input id=fakeinput type=checkbox name=fake value=true>
-
-  <button id=start type=submit>start</button>
+  <button type=submit>start</button>
+  <button type=reset>reset</button>
 
   <table id=mediaDeviceInfo>
     <caption>MediaDeviceInfo</caption>
@@ -92,6 +85,9 @@ textarea, button {
     </tbody>
   </table>
 
+  <label for=fake>fake</label>
+  <input type=checkbox name=fake>
+
   <hr>
 
   <table id=setting>
@@ -106,9 +102,9 @@ textarea, button {
     </thead>
     <tbody>
       <tr>
-        <td class=type >facing mode</td>
+        <td class=type >video.facingMode</td>
         <td class=value>
-          <select name=facingMode>
+          <select name=video.facingMode.value>
             <option value=           >-          </option>
             <option value=default    >default    </option>
             <option value=user       >user       </option>
@@ -117,54 +113,86 @@ textarea, button {
             <option value=right      >right      </option>
           </select>
         </td>
-        <td class=ideal><input name=facingMode type=checkbox></td>
-        <td class=exact><input name=facingMode type=checkbox></td>
+        <td class=ideal><input name=video.facingMode.ideal type=checkbox></td>
+        <td class=exact><input name=video.facingMode.exact type=checkbox></td>
       </tr>
       <tr>
         <td class=type>video.width</td>
-        <td class=value><input name=video.width.value type=number min=100 max=200 step=10></td>
+        <td class=value>
+          <input name=video.width.min   type=number min=100 max=200 step=10 placeholder=min>
+          <input name=video.width.value type=number min=100 max=200 step=10 placeholder=value>
+          <input name=video.width.max   type=number min=100 max=200 step=10 placeholder=max>
+        </td>
         <td class=ideal><input name=video.width.ideal type=checkbox></td>
         <td class=exact><input name=video.width.exact type=checkbox></td>
       </tr>
       <tr>
         <td class=type>video.height</td>
-        <td class=value><input name=video.height.value type=number min=100 max=200 step=10></td>
+        <td class=value>
+          <input name=video.height.min   type=number min=100 max=200 step=10 placeholder=min>
+          <input name=video.height.value type=number min=100 max=200 step=10 placeholder=value>
+          <input name=video.height.max   type=number min=100 max=200 step=10 placeholder=max>
+        </td>
         <td class=ideal><input name=video.height.ideal type=checkbox></td>
         <td class=exact><input name=video.height.exact type=checkbox></td>
       </tr>
       <tr>
         <td class=type>video.latency</td>
-        <td class=value><input name=video.latecy.value type=number min=0 max=100 step=10></td>
-        <td class=ideal><input name=video.latecy.ideal type=checkbox></td>
-        <td class=exact><input name=video.latecy.exact type=checkbox></td>
+        <td class=value>
+          <input name=video.latency.min   type=number min=100 max=200 step=10 placeholder=min>
+          <input name=video.latency.value type=number min=100 max=200 step=10 placeholder=value>
+          <input name=video.latency.max   type=number min=100 max=200 step=10 placeholder=max>
+        </td>
+        <td class=ideal><input name=video.latency.ideal type=checkbox></td>
+        <td class=exact><input name=video.latency.exact type=checkbox></td>
       </tr>
       <tr>
         <td class=type>video.frameRate</td>
-        <td class=value><input name=video.frameRate.value type=number min=0 max=60 step=10></td>
+        <td class=value>
+          <input name=video.frameRate.min   type=number min=100 max=200 step=10 placeholder=min>
+          <input name=video.frameRate.value type=number min=100 max=200 step=10 placeholder=value>
+          <input name=video.frameRate.max   type=number min=100 max=200 step=10 placeholder=max>
+        </td>
         <td class=ideal><input name=video.frameRate.ideal type=checkbox></td>
         <td class=exact><input name=video.frameRate.exact type=checkbox></td>
       </tr>
       <tr>
         <td class=type>video.aspectRatio</td>
-        <td class=value><input name=video.aspectRatio.value type=number min=0 max=3 step=0.1></td>
+        <td class=value>
+          <input name=video.aspectRatio.min   type=number min=100 max=200 step=10 placeholder=min>
+          <input name=video.aspectRatio.value type=number min=100 max=200 step=10 placeholder=value>
+          <input name=video.aspectRatio.max   type=number min=100 max=200 step=10 placeholder=max>
+        </td>
         <td class=ideal><input name=video.aspectRatio.ideal type=checkbox></td>
         <td class=exact><input name=video.aspectRatio.exact type=checkbox></td>
       </tr>
       <tr>
         <td class=type>audio.volume</td>
-        <td class=value><input name=audio.volume.value type=number min=0 max=1 step=0.1></td>
+        <td class=value>
+          <input name=audio.volume.min   type=number min=100 max=200 step=10 placeholder=min>
+          <input name=audio.volume.value type=number min=100 max=200 step=10 placeholder=value>
+          <input name=audio.volume.max   type=number min=100 max=200 step=10 placeholder=max>
+        </td>
         <td class=ideal><input name=audio.volume.ideal type=checkbox></td>
         <td class=exact><input name=audio.volume.exact type=checkbox></td>
       </tr>
       <tr>
         <td class=type>audio.sampleRate</td>
-        <td class=value><input name=audio.sampleRate.value type=number min=0 max=9600 step=1000></td>
+        <td class=value>
+          <input name=audio.sampleRate.min   type=number min=100 max=200 step=10 placeholder=min>
+          <input name=audio.sampleRate.value type=number min=100 max=200 step=10 placeholder=value>
+          <input name=audio.sampleRate.max   type=number min=100 max=200 step=10 placeholder=max>
+        </td>
         <td class=ideal><input name=audio.sampleRate.ideal type=checkbox></td>
         <td class=exact><input name=audio.sampleRate.exact type=checkbox></td>
       </tr>
       <tr>
         <td class=type>audio.sampleSize</td>
-        <td class=value><input name=audio.sampleSize.value type=number min=16 max=32 step=16></td>
+        <td class=value>
+          <input name=audio.sampleSize.min   type=number min=100 max=200 step=10 placeholder=min>
+          <input name=audio.sampleSize.value type=number min=100 max=200 step=10 placeholder=value>
+          <input name=audio.sampleSize.max   type=number min=100 max=200 step=10 placeholder=max>
+        </td>
         <td class=ideal><input name=audio.sampleSize.ideal type=checkbox></td>
         <td class=exact><input name=audio.sampleSize.exact type=checkbox></td>
       </tr>
