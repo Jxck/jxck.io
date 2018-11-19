@@ -5,133 +5,109 @@ const stringify = function(e) { return JSON.stringify(e, '  ', '  ') }
 EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
 async function enumerateDevices() {
-  const $mediaDeviceInfo = $('#mediaDeviceInfo')
-  const $template        = $mediaDeviceInfo.querySelector('template')
+  const $tbody = $('#mediaDeviceInfo tbody')
   const keys             = ['deviceId', 'kind', 'label', 'groupId']
 
   const devices = await navigator.mediaDevices.enumerateDevices()
   devices.forEach((device) => {
-    const $tr = document.importNode($template.content, true).querySelector('tr')
-    keys.map((prop) => {
-      $tr.querySelector(`.${prop}`).textContent = device[prop]
-      $tr.querySelector('.select > input').name = device.kind.replace('input', '.deviceId.value')
-      $tr.querySelector('.select > input').value = device.deviceId
+    const $tr = document.createElement('tr')
+    const name = device.kind.replace('input', '.deviceId.value')
+    const disabled = device.kind.endsWith('output') ? 'disabled' : ''
+    $tr.innerHTML = `
+      <tr>
+        <td><input type=radio value=${device.deviceId} name=${name} ${disabled}></td>
+        <td>${device.kind     }</td>
+        <td>${device.label    }</td>
+        <td>${device.deviceId}</td>
+        <td>${device.groupId  }</td>
+      </tr>
+    `
+    $tbody.appendChild($tr)
+  })
+}
+
+function displayConstraints(supportedConstraints) {
+  // spec defined keys
+  const defined = ['width', 'height', 'aspectRatio', 'frameRate', 'facingMode', 'resizeMode', 'volume', 'sampleRate', 'sampleSize', 'echoCancellation', 'autoGainControl', 'noiseSuppression', 'latency', 'channelCount', 'deviceId', 'groupId']
+  const $tbody = $('#supportedConstraints tbody')
+  $tbody.innerHTML = ""
+  Object.entries(supportedConstraints)
+    .forEach(([k, v]) => {
+      const $tr = document.createElement('tr')
+      $tr.innerHTML = `
+        <td class=${defined.includes(k) && "bold"}>${k}</td>
+        <td>${v.supported    ? JSON.stringify(v.supported)   : "" } </td>
+        <td>${v.constraints  ? JSON.stringify(v.constraints) : "" } </td>
+        <td>${v.capabilities ? JSON.stringify(v.capabilities): "" } </td>
+        <td>${v.settings     ? JSON.stringify(v.settings)    : "" } </td>
+      `
+      $tbody.appendChild($tr)
     })
-    if (device.kind.endsWith('output')) {
-      $tr.querySelector('.select > input').disabled = true
-    }
-    $mediaDeviceInfo.appendChild($tr)
-  })
 }
 
-async function getTracks(track) {
-  const $track    = $('#track')
-  const $template = $track.querySelector('template')
-  const $tbody    = $track.querySelector('tbody')
-  const keys      = ['kind', 'id', 'label', 'enabled', 'muted']
 
-  keys.forEach((key, i) => {
-    const $tr = document.importNode($template.content, true).querySelector('tr')
-    $tr.querySelector('.index').textContent = key
-    $tr.querySelector('.value').textContent = track[key]
-    if (i === 0) {
-      const $td = document.createElement('td')
-      $td.rowSpan = keys.length
-      $td.textContent = track.label
-      $tr.insertBefore($td, $tr.querySelector('.index'))
-    }
-    $tbody.appendChild($tr)
-  })
+// class
+class Track {
+  constructor(track) {
+    this.track = track
+  }
+
+  get kind      () { return this.track.kind       }
+  get id        () { return this.track.id         }
+  get label     () { return this.track.label      }
+  get enabled   () { return this.track.enabled    }
+  get muted     () { return this.track.muted      }
+  get readyState() { return this.track.readyState }
+
+  getConstraints() {
+    const support = !!MediaStreamTrack.prototype.getConstraints
+    return support ? this.track.getConstraints() : {}
+  }
+
+  getCapabilities() {
+    const support = !!MediaStreamTrack.prototype.getCapabilities
+    return support ? this.track.getCapabilities() : {}
+  }
+
+  getSettings() {
+    const support = !!MediaStreamTrack.prototype.getSettings
+    return support ? this.track.getSettings() : {}
+  }
+
+  stop() {
+    return this.track.stop()
+  }
 }
 
-async function getCapabilities(track) {
-  const $track    = $('#capabilities')
-  const $template = $track.querySelector('template')
-  const $tbody    = $track.querySelector('tbody')
-  // Capabilities: not in Firefox
-  const keys      = track.getCapabilities ? track.getCapabilities() : []
+class Stream {
+  static async getUserMedia(constraint) {
+    const stream = await navigator.mediaDevices.getUserMedia(constraint)
+    return new Stream(stream, constraint)
+  }
 
-  Object.entries(keys).forEach(([key, value], i, j) => {
-    const $tr = document.importNode($template.content, true).querySelector('tr')
-    $tr.querySelector('.index').textContent = key
-    $tr.querySelector('.value').textContent = stringify(value)
-    if (i === 0) {
-      const $td = document.createElement('td')
-      $td.rowSpan = j.length
-      $td.textContent = track.label
-      $tr.insertBefore($td, $tr.querySelector('.index'))
-    }
-    $tbody.appendChild($tr)
-  })
+  constructor(stream, constraint) {
+    this.stream = stream
+    this.constraint = constraint
+  }
+
+  get id() {
+    return this.stream.id
+  }
+  get active() {
+    return this.stream.active
+  }
+
+  tracks() {
+    return this
+      .stream
+      .getTracks()
+      .map((track) => new Track(track))
+  }
+
+  stop() {
+    this.tracks().forEach((track) => track.stop())
+  }
 }
-
-async function getConstraints(track) {
-  const $track    = $('#constraints')
-  const $template = $track.querySelector('template')
-  const $tbody    = $track.querySelector('tbody')
-  const keys      = track.getConstraints()
-
-  // Constraints
-  Object.entries(keys).forEach(([key, value], i, j) => {
-    const $tr = document.importNode($template.content, true).querySelector('tr')
-    $tr.querySelector('.index').textContent = key
-    $tr.querySelector('.value').textContent = stringify(value)
-    if (i === 0) {
-      const $td = document.createElement('td')
-      $td.rowSpan = j.length
-      $td.textContent = track.label
-      $tr.insertBefore($td, $tr.querySelector('.index'))
-    }
-    $track.appendChild($tr)
-  })
-}
-
-async function getSettings(track) {
-  const $track    = $('#settings')
-  const $template = $track.querySelector('template')
-  const $tbody    = $track.querySelector('tbody')
-  const keys      = track.getSettings()
-
-  // Settings
-  Object.entries(track.getSettings()).forEach(([key, value], i, j) => {
-    const $tr = document.importNode($template.content, true).querySelector('tr')
-    $tr.querySelector('.index').textContent = key
-    $tr.querySelector('.value').textContent = stringify(value)
-    if (i === 0) {
-      const $td = document.createElement('td')
-      $td.rowSpan = j.length
-      $td.textContent = track.label
-      $tr.insertBefore($td, $tr.querySelector('.index'))
-    }
-    $track.appendChild($tr)
-  })
-}
-
-async function getSupportedConstraints() {
-  const $supportedConstraints = $('#supportedConstraints tbody')
-  const $template = $supportedConstraints.querySelector('template')
-
-  const keys = [ 'width', 'height', 'aspectRatio', 'frameRate', 'facingMode', 'resizeMode', 'volume', 'sampleRate', 'sampleSize', 'echoCancellation', 'autoGainControl', 'noiseSuppression', 'latency', 'channelCount', 'deviceId', 'groupId', ]
-  const supportedConstraints = navigator.mediaDevices.getSupportedConstraints()
-
-  Object.entries(supportedConstraints).forEach(([key, value]) => {
-    const $tr = document.importNode($template.content, true)
-    $tr.querySelector(`.index`).textContent = key
-    $tr.querySelector('.value').textContent = value
-    if (keys.includes(key)) {
-      $tr.querySelector(`.index`).classList.add('bold')
-    }
-    $supportedConstraints.appendChild($tr)
-  })
-}
-
-async function getUserMedia(constraints) {
-  const stream = await navigator.mediaDevices.getUserMedia(constraints)
-  const $video = $('video')
-  $video.srcObject = stream
-  return stream
-}
-
 
 class Store {
   constructor(form) {
@@ -231,7 +207,6 @@ class FacingModeValue {
   }
 
   set(key, value) {
-    console.log(key, value)
     if (key === 'value') {
       this.mode = value
     }
@@ -320,7 +295,7 @@ class Value {
 
 document.on('DOMContentLoaded', async () => {
   await enumerateDevices()
-  await getSupportedConstraints()
+  displayConstraints(navigator.mediaDevices.getSupportedConstraints())
 
   const store = new Store($('form'))
   store.load()
@@ -331,24 +306,64 @@ document.on('DOMContentLoaded', async () => {
   })
 
   $('form').on('change', async ({target}) => {
-    const store = new Store($('form'))
+    store.sync()
     store.display()
     store.save()
   })
 
   $('form').on('submit', async (e) => {
     e.preventDefault()
+    const constraint = JSON.parse(JSON.stringify(store))
+    const stream = await Stream.getUserMedia(constraint)
 
-    // Edge が FormData 対応していないので動かない。
+    $('#video').srcObject = stream.stream
 
-    //const stream = await getUserMedia(constraints)
+    const $tracks   = $('#tracks')
+    const keys      = ["kind", "label", "enabled", "muted", "readyState"]
 
-    //stream.getTracks().forEach((track) => {
-    //  getTracks(track)
-    //  getCapabilities(track)
-    //  getConstraints(track)
-    //  getSettings(track)
-    //})
+    $('#tracks tbody').innerHTML = ""
+    stream.tracks().forEach((track) => {
+      const $tr = document.createElement('tr')
+      $tr.innerHTML = `
+        <td class=kind      >${track.kind       }</td>
+        <td class=label     >${track.label      }</td>
+        <td class=enabled   >${track.enabled    }</td>
+        <td class=muted     >${track.muted      }</td>
+        <td class=readyState>${track.readyState }</td>
+      `
+      $('#tracks tbody').appendChild($tr)
 
+      const constraints  = track.getConstraints()
+      const capabilities = track.getCapabilities()
+      const settings     = track.getSettings()
+
+      const supportedConstraints = Object
+        .entries(navigator.mediaDevices.getSupportedConstraints())
+        .reduce((acc, [k, v]) => {
+          acc[k] = {supported: v}
+          return acc
+        }, {})
+
+      Object.entries(constraints).forEach(([k,v]) => {
+        if (typeof supportedConstraints[k] === 'boolean') {
+          supportedConstraints[k] = {}
+        }
+        supportedConstraints[k]["constraints"] = v
+      })
+      Object.entries(capabilities).forEach(([k,v]) => {
+        if (typeof supportedConstraints[k] === 'boolean') {
+          supportedConstraints[k] = {}
+        }
+        supportedConstraints[k]["capabilities"] = v
+      })
+      Object.entries(settings).forEach(([k,v]) => {
+        if (typeof supportedConstraints[k] === 'boolean') {
+          supportedConstraints[k] = {}
+        }
+        supportedConstraints[k]["settings"] = v
+      })
+
+      displayConstraints(supportedConstraints)
+    })
   })
 })
