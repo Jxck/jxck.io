@@ -83,33 +83,6 @@ audio {
   }
 
 
-
-  const $time = $('time')
-  let n = 0
-
-  document.addEventListener('DOMContentLoaded', () => {
-    setInterval(() => {
-      n += 10
-
-      // calculate and update <time>
-      $time.textContent = format(n)
-
-      // play sound
-      // sound(n)
-    }, 10)
-  })
-
-
-  const files = [
-    "female1.wav",
-    "male1.wav",
-    "female2.wav",
-    "male2.wav",
-    "female3.wav",
-    "male3.wav"
-  ]
-
-
   function play(files) {
     console.log(files)
 
@@ -130,6 +103,27 @@ audio {
 
     $('audio').src = `//labs.jxck.io/assets/Japanese/${file}`
   }
-  play(files)
 
+  document.addEventListener('click', () => {
+    const $time = $('time')
+    const files = [
+      "female1.wav",
+      "male1.wav",
+      "female2.wav",
+      "male2.wav",
+      "female3.wav",
+      "male3.wav"
+    ]
+
+    let n = 0
+
+
+    play(files)
+
+    setInterval(() => {
+      n += 10
+      // calculate and update <time>
+      $time.textContent = format(n)
+    }, 10)
+  })
 </script>
