@@ -8,7 +8,7 @@ macOS Mojava は OS レベルで Dark Mode に対応した。
 
 [Safari TP69](https://webkit.org/blog/8475/release-notes-for-safari-technology-preview-68/) では、これにメディアクエリで対応するための `prefers-color-scheme` が実装された。
 
-これを用いた DarkMode 対応と、本ブログの DarkMode 対応、および策定中の User Preference Media Features のについて解説する。
+これを用いた DarkMode 対応と、本ブログの DarkMode 対応、および策定中の User Preference Media Features について解説する。
 
 
 ## Dark Mode
