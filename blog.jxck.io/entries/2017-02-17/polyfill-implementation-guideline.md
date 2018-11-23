@@ -1,4 +1,4 @@
-# [polyfill][TAG][w3c] Polyfill のあり方と Web の進化と協調するためのガイドライン
+# [polyfill][w3c] Polyfill のあり方と Web の進化と協調するためのガイドライン
 
 ## Intro
 
