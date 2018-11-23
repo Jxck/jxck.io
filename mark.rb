@@ -262,7 +262,7 @@ class Markup
 
     # SVG should specify width-height
     if File.extname(URI.parse(node.attr["src"]).path) == ".svg"
-      return %(<img src=#{node.attr['src']} alt="#{node.attr['alt']}" title="#{node.attr['title']}" #{width} #{height}>)
+      return %(<img lazyload src=#{node.attr['src']} alt="#{node.attr['alt']}" title="#{node.attr['title']}" #{width} #{height}>)
     end
 
     # No width-height for normal img
@@ -270,7 +270,7 @@ class Markup
 
   <picture>
     <source type=image/webp srcset=#{node.attr['src'].sub(/(.png|.gif|.jpg)/, '.webp')}>
-    <img src=#{node.attr['src']} alt="#{node.attr['alt']}" title="#{node.attr['title']}">
+    <img lazyload src=#{node.attr['src']} alt="#{node.attr['alt']}" title="#{node.attr['title']}">
   </picture>
 EOS
   end
