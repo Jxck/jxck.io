@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Portals DEMO | labs.jxck.io</title>
+
+<style>
+</style>
+
+<h1>Portals DEMO</h1>
+
+<portal id=portal src=https://example.com></portal>
+
+<button id=activate>activate</button>
+
+<script>
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener;
+
+  $('#activate').on('click', () => {
+    $('#portal').activate()
+  })
+</script>
