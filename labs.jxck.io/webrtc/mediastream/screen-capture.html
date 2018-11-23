@@ -4,20 +4,23 @@
 <title>Screen Capture DEMO | labs.jxck.io</title>
 
 <style>
+video {
+  border: 1px solid black;
+  width: 300px;
+}
 </style>
 
 <h1><a href="https://www.w3.org/TR/screen-capture/">Screen Capture</a></h1>
 
-
-<video autoplay></video>
-
+<video autoplay controls></video>
+<button id=start>start capture</button>
 
 <script>
   const $  = document.querySelector.bind(document)
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
-  document.on('DOMContentLoaded', async (e) => {
+  $('#start').on('click', async (e) => {
     console.log(e)
     const stream = await navigator.mediaDevices.getDisplayMedia({ video: true })
     console.log(stream)

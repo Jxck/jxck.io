@@ -1,5 +1,9 @@
 'use strict'
 
+const $  = document.querySelector.bind(document)
+const $$ = document.querySelectorAll.bind(document)
+EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
 // Signaling Protocol
 // ws.send(JSON.stringify({
 //   id:   'peerid',
@@ -17,8 +21,8 @@ const rand = () => btoa(Math.floor(Math.random()*10000)).replace(/=/g, "").toLow
 const id = location.hash ? location.hash : rand()
 const constraint = {video:true, audio:false}
 
-document.querySelector('#id').textContent = id
-document.querySelector('#peer').value = ''
+$('#id').textContent = id
+$('#peer').value = ''
 
 const ws = new WebSocket('wss://ws.jxck.io', ['broadcast', 'webrtc-stream-p2p-demo'])
 
@@ -26,14 +30,7 @@ console.log(JSON.stringify(Config, ' ', ' '))
 
 const connection = new RTCPeerConnection(Config)
 
-//const $log = document.querySelector('#log')
-//const log = console.log.bind(console)
-// function log(name, value) {
-//   $log.value += `[${name}]\n${value}\n\n`
-// }
-
-
-connection.addEventListener('negotiationneeded', async (e) => {
+connection.on('negotiationneeded', async (e) => {
   console.log('=================== onnegotiationneeded ===================')
 
   // chrome fires onnegotiationneeded in answere side
@@ -56,7 +53,7 @@ connection.addEventListener('negotiationneeded', async (e) => {
   }))
 })
 
-connection.addEventListener('icecandidate', ({candidate}) => {
+connection.on('icecandidate', ({candidate}) => {
   console.log('send candidate', JSON.stringify(candidate, ' ', ' '))
   if (candidate === null) return
 
@@ -71,9 +68,9 @@ connection.addEventListener('icecandidate', ({candidate}) => {
   }))
 })
 
-connection.addEventListener('track', (e) => {
+connection.on('track', (e) => {
   console.log('====================== ontrack ========================', e)
-  const $video = document.querySelector('#remote')
+  const $video = $('#remote')
   if ($video.srcObject) {
     $video.srcObject.addTrack(e.track)
   } else {
@@ -81,40 +78,124 @@ connection.addEventListener('track', (e) => {
   }
 })
 
-connection.addEventListener('icecandidateerror', (e) => {
+connection.on('icecandidateerror', (e) => {
   console.error(e.type, e)
 })
 
-connection.addEventListener('signalingstatechange', (e) => {
+connection.on('signalingstatechange', (e) => {
   console.debug(e.type, connection.signalingState)
 })
 
-connection.addEventListener('iceconnectionstatechange', (e) => {
+connection.on('iceconnectionstatechange', (e) => {
   console.debug(e.type, connection.iceConnectionState)
 })
 
-connection.addEventListener('icegatheringstatechange', (e) => {
+connection.on('icegatheringstatechange', (e) => {
   console.debug(e.type, connection.signalingState)
 })
 
-connection.addEventListener('connectionstatechange', (e) => {
+connection.on('connectionstatechange', (e) => {
   console.debug(e.type, connection.connectionState)
 })
 
-document.querySelector('#start').addEventListener('submit', async (e) => {
+async function getStream(constraint) {
+  if (constraint.video.deviceId === "dummy") {
+
+    const color = `rgb(${~~(Math.random()*255)}, ${~~(Math.random()*255)}, ${~~(Math.random()*255)})`
+    async function canvasStream() {
+      const $canvas = document.createElement('canvas')
+
+      // format to hh:mm:ss:ms
+      function format(n) {
+        let hh = ((~~(n/(60*60*1000)))%24).toString().padStart(2,0)
+        let mm = ((~~(n/   (60*1000)))%60).toString().padStart(2,0)
+        let ss = ((~~(n/       1000)) %60).toString().padStart(2,0)
+        let ms = (    n             %1000).toString().padStart(3,0)
+
+        return `${hh}:${mm}:${ss}:${ms}`
+      }
+
+      // canvas
+      const ctx = $canvas.getContext('2d')
+      ctx.font = "45px monospace"
+
+      // Timer
+      let n = 0
+      setInterval(() => {
+        ctx.fillStyle = "#ffffff"
+        ctx.fillRect(0, 0, 300, 150);
+
+        // calculate and update time
+        ctx.fillStyle = color
+        ctx.fillText(format(n+=10), 15, 90);
+
+        // sound(n)
+      }, 10)
+
+      return $canvas.captureStream(60)
+    }
+
+    async function audioStream() {
+      const files = [
+        "female1.wav",
+        "male1.wav",
+        "female2.wav",
+        "male2.wav",
+        "female3.wav",
+        "male3.wav"
+      ]
+      const url = `https://labs.jxck.io/assets/Japanese/${files[(~~(Math.random()*files.length))-1]}`
+
+      const context = new AudioContext();
+      const source = context.createBufferSource();
+      const destination = context.createMediaStreamDestination()
+
+      const res = await fetch(url)
+      const buf = await res.arrayBuffer()
+
+      context.decodeAudioData(buf, (decoded) => {
+        source.buffer = decoded
+        source.loop = true
+        source.connect(destination)
+        source.start(0)
+      })
+
+      return destination.stream
+    }
+
+
+    const mediaStream = new MediaStream()
+    const streams = [
+      (await canvasStream()),
+      (await audioStream())
+    ];
+
+    streams.forEach((stream) => {
+      stream.getTracks().forEach((track) => mediaStream.addTrack(track));
+    })
+    return mediaStream
+  } else {
+    const stream = await navigator.mediaDevices.getUserMedia(constraint)
+    return stream
+  }
+}
+
+$('#start').on('submit', async (e) => {
   e.preventDefault()
   console.log('start')
 
-  window.peerid = document.querySelector('#peer').value
+  window.peerid = $('#peer').value
   if (window.peerid === '') return alert('input peerid')
 
-  const checked = document.querySelector('input[name="deviceid"]:checked')
+  const checked = $('input[name="deviceid"]:checked')
   if (checked) {
     const deviceId = checked.id
     constraint.video = {deviceId}
   }
-  const stream = await navigator.mediaDevices.getUserMedia(constraint)
-  document.querySelector('#local').srcObject = stream
+  console.error(constraint)
+
+  const stream = await getStream(constraint)
+  $('#local').srcObject = stream
 
   console.log('addTrack')
   stream.getTracks().forEach((track) => {
@@ -122,7 +203,7 @@ document.querySelector('#start').addEventListener('submit', async (e) => {
   })
 })
 
-ws.addEventListener('message', async ({data}) => {
+ws.on('message', async ({data}) => {
   console.debug('recv data', data)
   const {type, message} = JSON.parse(data)
   if (message.to !== id) return
@@ -134,13 +215,13 @@ ws.addEventListener('message', async ({data}) => {
     console.log('recv offer', message.data.sdp)
     await connection.setRemoteDescription(message.data)
 
-    const checked = document.querySelector('input[name="deviceid"]:checked')
+    const checked = $('input[name="deviceid"]:checked')
     if (checked) {
       const deviceId = checked.id
       constraint.video = {deviceId}
     }
-    const stream = await navigator.mediaDevices.getUserMedia(constraint)
-    document.querySelector('#local').srcObject = stream
+    const stream = await getStream(constraint)
+    $('#local').srcObject = stream
 
     stream.getTracks().forEach((track) => {
       console.debug('addTrack')
@@ -173,8 +254,8 @@ ws.addEventListener('message', async ({data}) => {
   }
 })
 
-const $stats = document.querySelector('#stats')
-$stats.addEventListener('click', async () => {
+const $stats = $('#stats')
+$stats.on('click', async () => {
   connection.getSenders().forEach(async (sender) => {
     const stats = await sender.getStats()
     console.table(stats)
@@ -189,6 +270,7 @@ $stats.addEventListener('click', async () => {
 // device id
 (async () => {
   const devices = await navigator.mediaDevices.enumerateDevices()
+  devices.push({deviceId: "dummy", label: "dummy", kind: "videoinput"})
   console.debug(devices)
   devices.filter((d) => {
     return (d.kind === 'videoinput')
@@ -200,17 +282,19 @@ $stats.addEventListener('click', async () => {
     const $li = document.createElement('li')
 
     const $radio = document.createElement('input')
-    $radio.id = id
-    $radio.type = "radio"
-    $radio.name = "deviceid"
+    $radio.id    = id
+    $radio.type  = "radio"
+    $radio.name  = "deviceid"
 
-    const $label = document.createElement('label')
-    $label.htmlFor = id
+    if(id === 'dummy') $radio.checked = true
+
+    const $label       = document.createElement('label')
+    $label.htmlFor     = id
     $label.textContent = label
 
     $li.appendChild($radio)
     $li.appendChild($label)
 
-    document.querySelector('#devices').appendChild($li)
+    $('#devices').appendChild($li)
   })
 })()

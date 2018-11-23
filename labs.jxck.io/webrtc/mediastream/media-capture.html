@@ -4,23 +4,142 @@
 <title>DEMO | labs.jxck.io</title>
 
 <style>
+section {
+  display: flex;
+}
+figcaption {
+  font-size: 2em;
+}
+
+video {
+  border: solid 1px #ccc;
+  width: 320px;
+  height: 240px;
+}
+
+canvas {
+  border: solid 1px #ccc;
+}
+
 </style>
 
 <h1><a href="https://www.w3.org/TR/mediacapture-fromelement/">Media Capture from DOM Elements</a></h1>
 
-<h2>orig</h2>
-<video id=orig loop controls src="https://labs.jxck.io/assets/dummy_video.mp4"></video>
+<section id=video>
+  <figure>
+    <figcaption>video</figcaption>
+    <video class=orig loop controls src="https://labs.jxck.io/assets/dummy_video.mp4"></video>
+  </figure>
 
-<h2>copy</h2>
-<video id=copy loop controls></video>
+  <figure>
+    <figcaption>copy</figcaption>
+    <video class=copy controls></video>
+  </figure>
+</section>
+
+<section id=canvas>
+  <figure>
+    <figcaption>canvas</figcaption>
+    <canvas class=orig></canvas>
+    <button id=start>start</button>
+  </figure>
+
+  <figure>
+    <figcaption>copy</figcaption>
+    <video class=copy controls></video>
+  </figure>
+</section>
+
 
 
 <script>
   const $  = document.querySelector.bind(document)
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
+</script>
+<script>
+  // capture video
+  $('#video .copy').srcObject = $('#video .orig').captureStream(60)
+  $('#video .copy').play()
+</script>
+<script>
+  // capture canvas/audio
 
-  const stream = $('#orig').captureStream(60)
-  $('#copy').srcObject = stream
-  $('#copy').play()
+  // ここに  canvas と Audio を集約
+  const mediaStream = new MediaStream()
+
+  const color = `rgb(${~~(Math.random()*255)}, ${~~(Math.random()*255)}, ${~~(Math.random()*255)})`
+  async function canvasStream($canvas) {
+    // format to hh:mm:ss:ms
+    function format(n) {
+      let hh = ((~~(n/(60*60*1000)))%24).toString().padStart(2,0)
+      let mm = ((~~(n/   (60*1000)))%60).toString().padStart(2,0)
+      let ss = ((~~(n/       1000)) %60).toString().padStart(2,0)
+      let ms = (    n             %1000).toString().padStart(3,0)
+
+      return `${hh}:${mm}:${ss}:${ms}`
+    }
+
+    // canvas
+    const ctx = $canvas.getContext('2d')
+    ctx.font = "45px monospace"
+
+    // Timer
+    let n = 0
+    setInterval(() => {
+      ctx.fillStyle = "#ffffff"
+      ctx.fillRect(0, 0, 300, 150);
+
+      // calculate and update time
+      ctx.fillStyle = color
+      ctx.fillText(format(n+=10), 15, 90);
+
+      // sound(n)
+    }, 10)
+
+    return $canvas.captureStream(60)
+  }
+
+
+  async function audioStream() {
+    const files = [
+      "female1.wav",
+      "male1.wav",
+      "female2.wav",
+      "male2.wav",
+      "female3.wav",
+      "male3.wav"
+    ]
+    const url = `https://labs.jxck.io/assets/Japanese/${files[0]}`
+
+    const context = new AudioContext();
+    const source = context.createBufferSource();
+    const destination = context.createMediaStreamDestination()
+
+    const res = await fetch(url)
+    const buf = await res.arrayBuffer()
+
+    context.decodeAudioData(buf, (decoded) => {
+      source.buffer = decoded
+      source.loop = true
+      source.connect(destination)
+      source.start(0)
+    })
+
+    return destination.stream
+  }
+
+  $('#start').on('click', async () => {
+    const streams = [
+      (await canvasStream($('#canvas .orig'))),
+      (await audioStream())
+    ];
+
+    streams.forEach((stream) => {
+      stream.getTracks().forEach((track) => mediaStream.addTrack(track));
+    });
+
+    $('#canvas .copy').srcObject = mediaStream
+    $('#canvas .copy').play()
+  })
 </script>
