@@ -34,7 +34,7 @@ TODO になっている動画は、そのうち撮って追加します。
 controller とは何か、いつ controller になるか、 `claim()` で何が起こるのかなどについて。
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/m6qBg4M3RTA" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/m6qBg4M3RTA" allowfullscreen lazyload></iframe>
 
 
 
@@ -92,7 +92,7 @@ DEMO: <https://labs.jxck.io/service-worker/claim/index.html>
 register が終わった後、「新しく登録された controller が使えるようになったら」または「既に登録されている controller が使えるようになったら」という状態をとる方法と `controllerchange` イベント。
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/XoI0FPDV8Xo" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XoI0FPDV8Xo" allowfullscreen lazyload></iframe>
 
 
 
@@ -147,7 +147,7 @@ Service Worker が更新される際の動きと、 `skipWaiting()` が何をス
 `install`, `activate` イベントの用途。
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/AMbQ7d9rjao" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/AMbQ7d9rjao" allowfullscreen lazyload></iframe>
 
 
 
@@ -196,7 +196,7 @@ DEMO: <https://labs.jxck.io/service-worker/updatefound/>
 `registration.update()` による worker の更新と、ブラウザキャッシュにヒットする場合の挙動。
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/7uRVh9PzV5o" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7uRVh9PzV5o" allowfullscreen lazyload></iframe>
 
 
 
@@ -255,7 +255,7 @@ DEMO: <https://labs.jxck.io/service-worker/update/>
 sync の発火タイミングと fetch を sync で送る場合の考え方。
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/b7ZM7uzkykA" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/b7ZM7uzkykA" allowfullscreen lazyload></iframe>
 
 
 
@@ -311,7 +311,7 @@ Console の UI はコロコロ変わります。以下の情報を頑張って�
 - manifest.json を作って HTML にリンクスする
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/MlCZWVvUiXM" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/MlCZWVvUiXM" allowfullscreen lazyload></iframe>
 
 
 
@@ -352,7 +352,7 @@ Console の UI はコロコロ変わります。以下の情報を頑張って�
 `endpoint`, `userAuth`, `userPublickKey` をなんらかの方法でサーバに送ります。
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/f-ney12qAEI" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/f-ney12qAEI" allowfullscreen lazyload></iframe>
 
 
 
@@ -386,7 +386,7 @@ navigator.serviceWorker.register('worker.js').then((registration) => {
 ### 3.worker.js
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/k939NlThH4E" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/k939NlThH4E" allowfullscreen lazyload></iframe>
 
 
 
@@ -439,7 +439,7 @@ self.addEventListener('notificationclick', (e) => {
 使用したモジュール: <https://github.com/web-push-libs/web-push>
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/hIliK4l4wqw" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hIliK4l4wqw" allowfullscreen lazyload></iframe>
 
 
 
