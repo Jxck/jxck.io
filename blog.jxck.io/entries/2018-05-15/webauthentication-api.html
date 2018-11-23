@@ -60,7 +60,7 @@
     "width": 700
   },
   "datePublished": "2018-05-15T08:00:00+08:00",
-  "dateModified": "2018-10-04T08:00:00+08:00",
+  "dateModified": "2018-11-21T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -104,7 +104,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
     <ul class=info>
       <li>created_at: <time class=created_at datetime=2018-05-15>2018-05-15</time>
-      <li>updated_at: <time class=updated_at datetime=2018-10-04>2018-10-04</time>
+      <li>updated_at: <time class=updated_at datetime=2018-11-21>2018-11-21</time>
       <li class=tags>tags: [<a href='/tags/fido-u2f.html'>fido-u2f</a>,<a href='/tags/web%20authentication%20api.html'>web authentication api</a>]
     </ul>
 
@@ -126,7 +126,7 @@
       <p>(あくまで API の流れを解説するためのものであるため、飛ばした処理もあり、本番利用に耐えうるものではない。)
       <p><a href="https://github.com/Jxck/jxck.io/tree/master/labs.jxck.io/webauthentication/fido-u2f">https://github.com/Jxck/jxck.io/tree/master/labs.jxck.io/webauthentication/fido-u2f</a>
       <p>YubiKey Login の動作イメージは以下。
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/XL94v1t2aWk" allowfullscreen></iframe>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/XL94v1t2aWk" allowfullscreen lazyload></iframe>
     </section>
     <section>
       <h2 id="webauthentication-api"><a href="#webauthentication-api">WebAuthentication API</a></h2>
@@ -225,7 +225,7 @@ const {attestationObject, clientDataJSON} = response</code></pre>
           <h4 id="fmt"><a href="#fmt">fmt</a></h4>
           <p>fmt の値によって、署名をどのように検証するかの処理は変わってくる。今回は <code translate="no">&quot;fido-u2f&quot;</code> で解説する。
           <p>次に authData はバイナリで以下のような構造になっている。
-          <p><img src=https://w3c.github.io/webauthn/images/fido-signature-formats-figure1.svg#1000x217 alt="Authenticator data layout" title="" width=1000 height=217></p>
+          <p><img lazyload src=https://w3c.github.io/webauthn/images/fido-signature-formats-figure1.svg#1000x217 alt="Authenticator data layout" title="" width=1000 height=217></p>
           <ul>
             <li>rpidHash (32byte)
             <li>
