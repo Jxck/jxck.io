@@ -124,6 +124,15 @@ article dl {
   margin: 1.4em 0 1.4em 0.8em;
 }
 
+article blockquote {
+  padding: 1em;
+}
+
+article blockquote p {
+  line-height: 1;
+  margin: 0;
+}
+
 @supports (line-height-step: 1px) {
   article {
     --grid-rhythm: 1.5em;
@@ -705,12 +714,12 @@ td:last-child {
       <p>つまり、インターネットを行き交うネットワークプロトコルの用いるフォーマットとしての URL の定義だ。
       <p>にも関わらず、これを WHATWG が DOM のコンテキストで定義し直した理由についてはドラフトに書かれている。
       <blockquote>
-        <p>Align RFC 3986 and RFC 3987 with contemporary implementations and obsolete them in the process. (E.g., spaces, other &ldquo;illegal&rdquo; code points, query encoding, equality, canonicalization, are all concepts not entirely shared, or defined.) URL parsing needs to become as solid as HTML parsing. [RFC3986] [RFC3987]<br>
-        &mdash; <cite><a href="https://url.spec.whatwg.org/#goals">原文</a></cite>
+        <p>Align RFC 3986 and RFC 3987 with contemporary implementations and obsolete them in the process. (E.g., spaces, other &ldquo;illegal&rdquo; code points, query encoding, equality, canonicalization, are all concepts not entirely shared, or defined.) URL parsing needs to become as solid as HTML parsing. [RFC3986] [RFC3987]
+        <p>&mdash; <cite><a href="https://url.spec.whatwg.org/#goals">原文</a></cite>
       </blockquote>
       <blockquote>
-        <p>RFC 3986 と RFC 3987 を現今の実装に揃わせて、その過程の中でそれらを過去のものにする。 (例えば、空白類, 他の &ldquo;合法でない&rdquo; 符号位置, クエリの符号化方式, 同等性, 正準化, などの概念は、どれも完全には共有もしくは定義されていない。) URL の構文解析法は HTML の構文解析法と同程度に確定的になる必要がある。 [RFC3986] [RFC3987]<br>
-        &mdash; <cite><a href="https://triple-underscore.github.io/URL-ja.html#goals">翻訳</a></cite>
+        <p>RFC 3986 と RFC 3987 を現今の実装に揃わせて、その過程の中でそれらを過去のものにする。 (例えば、空白類, 他の &ldquo;合法でない&rdquo; 符号位置, クエリの符号化方式, 同等性, 正準化, などの概念は、どれも完全には共有もしくは定義されていない。) URL の構文解析法は HTML の構文解析法と同程度に確定的になる必要がある。 [RFC3986] [RFC3987]
+        <p>&mdash; <cite><a href="https://triple-underscore.github.io/URL-ja.html#goals">翻訳</a></cite>
       </blockquote>
       <p>平たく言えば、不完全だったところを補完したという感じだろうか。
       <p>ともあれ、これによって、広く言えば Web のコンテキスト、狭く言えば DOM のコンテキスト、中間で言うとブラウザのコンテキストでの <em>正しい URL とは何か</em> および <em>その正しい処理方法は何か</em> が定義されたと言うことができる。

@@ -124,6 +124,15 @@ article dl {
   margin: 1.4em 0 1.4em 0.8em;
 }
 
+article blockquote {
+  padding: 1em;
+}
+
+article blockquote p {
+  line-height: 1;
+  margin: 0;
+}
+
 @supports (line-height-step: 1px) {
   article {
     --grid-rhythm: 1.5em;
@@ -758,8 +767,8 @@ td:last-child {
         <p>あらゆる画像を二つの形式で保存した場合、サイズがそれぞれどうなるかを検証している。
         <p>結果だけ引用する。
         <blockquote>
-          <p>when your JPEG image is under 10K, it&rsquo;s better to be saved as baseline JPEG (estimated 75% chance it will be smaller) for files over 10K the progressive JPEG will give you a better compression (in 94% of the cases)<br>
-          &mdash; <cite><a href="https://yuiblog.com/blog/2008/12/05/imageopt-4/">Image Optimization, Part 4: Progressive JPEG&hellip;Hot or Not?</a></cite>
+          <p>when your JPEG image is under 10K, it&rsquo;s better to be saved as baseline JPEG (estimated 75% chance it will be smaller) for files over 10K the progressive JPEG will give you a better compression (in 94% of the cases)
+          <p>&mdash; <cite><a href="https://yuiblog.com/blog/2008/12/05/imageopt-4/">Image Optimization, Part 4: Progressive JPEG&hellip;Hot or Not?</a></cite>
         </blockquote>
         <p>素材のサイズが 10K を超えるかどうかで結果が変わるそうだ。そして必ずではないので、実際に両方で保存してみて試すしかないとのこと。
       </section>

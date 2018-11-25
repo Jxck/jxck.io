@@ -124,6 +124,15 @@ article dl {
   margin: 1.4em 0 1.4em 0.8em;
 }
 
+article blockquote {
+  padding: 1em;
+}
+
+article blockquote p {
+  line-height: 1;
+  margin: 0;
+}
+
 @supports (line-height-step: 1px) {
   article {
     --grid-rhythm: 1.5em;
@@ -789,8 +798,8 @@ td:last-child {
         <p><a href="https://www.ampproject.org/docs/reference/extended/amp-iframe.html">amp-iframe</a>
         <p>ただし、このタグもまた制約が多い。一番大きいのは <em>位置</em> に対する制約だ。
         <blockquote>
-          <p>They must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top<br>
-          &mdash; <cite><a href="https://www.ampproject.org/docs/reference/components/amp-iframe">https://www.ampproject.org/docs/reference/components/amp-iframe</a></cite>
+          <p>They must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top
+          <p>&mdash; <cite><a href="https://www.ampproject.org/docs/reference/components/amp-iframe">https://www.ampproject.org/docs/reference/components/amp-iframe</a></cite>
         </blockquote>
         <p>要するに above-the-fold に iframe を入れたくないということだろう。これはコンテンツを作る時点で気にしておかないといけないし、自動で変換も難しい。
         <p>このサイトは markdown からビルドしているため、 <code translate="no">&lt;iframe&gt;</code> を埋め込む場合は自分で直接タグを書くことになる。
