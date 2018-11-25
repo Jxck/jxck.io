@@ -20,6 +20,19 @@ window.peerid = ''
 const rand = () => btoa(Math.floor(Math.random()*10000)).replace(/=/g, "").toLowerCase()
 const id = location.hash ? location.hash : rand()
 const constraint = {video:true, audio:false}
+const [LEFT, RIGHT] = [-1, 1]
+
+
+const files = [
+  {file: "female1.wav", desc: "彼は鮎を釣る名人です    "},
+  {file: "female2.wav", desc: "読書の楽しさを          "},
+  {file: "female3.wav", desc: "人々の屏風絵と如来像    "},
+  {file: "male1.wav"  , desc: "彼女を説得しようとしても"},
+  {file: "male2.wav"  , desc: "近頃の子どもたちは      "},
+  {file: "male3.wav"  , desc: "彼は以前から科学技術の  "},
+]
+const FILE = files[(~~(Math.random()*files.length))]
+
 
 $('#id').textContent = id
 $('#peer').value = ''
@@ -31,7 +44,7 @@ console.log(JSON.stringify(Config, ' ', ' '))
 const connection = new RTCPeerConnection(Config)
 
 connection.on('negotiationneeded', async (e) => {
-  console.log('=================== onnegotiationneeded ===================')
+  console.log('=================== onnegotiationneeded ===================', connection.signalingState, e)
 
   // chrome fires onnegotiationneeded in answere side
   if (connection.signalingState === 'have-remote-offer') return
@@ -135,44 +148,39 @@ async function getStream(constraint) {
       return $canvas.captureStream(60)
     }
 
-    async function audioStream() {
-      const files = [
-        "female1.wav",
-        "male1.wav",
-        "female2.wav",
-        "male2.wav",
-        "female3.wav",
-        "male3.wav"
-      ]
-      const url = `https://labs.jxck.io/assets/Japanese/${files[(~~(Math.random()*files.length))-1]}`
+    async function audioStream(file, pan) {
+      const url = `https://labs.jxck.io/assets/Japanese/${file}`
 
-      const context = new AudioContext();
-      const source = context.createBufferSource();
+      const context = new AudioContext()
+      const source = context.createBufferSource()
+      const panner = context.createStereoPanner()
       const destination = context.createMediaStreamDestination()
 
       const res = await fetch(url)
       const buf = await res.arrayBuffer()
+      //debugger
+      panner.panningModel = "equalpower"
+      panner.pan.value = pan
 
       context.decodeAudioData(buf, (decoded) => {
         source.buffer = decoded
         source.loop = true
-        source.connect(destination)
+        source.connect(panner)
+        panner.connect(destination)
         source.start(0)
       })
 
       return destination.stream
     }
 
+    const mediaStream = new MediaStream([
+      ...(await canvasStream()).getTracks(),
 
-    const mediaStream = new MediaStream()
-    const streams = [
-      (await canvasStream()),
-      (await audioStream())
-    ];
+      // 音声を一緒に贈ろうとすると onnegotiationneeded が二回発火する
+      // ブラウザの組み合わせによって微妙によくわからない挙動をするのでペンディング
+      //...(await audioStream(constraint.file, constraint.pan)).getTracks()
+    ])
 
-    streams.forEach((stream) => {
-      stream.getTracks().forEach((track) => mediaStream.addTrack(track));
-    })
     return mediaStream
   } else {
     const stream = await navigator.mediaDevices.getUserMedia(constraint)
@@ -192,8 +200,9 @@ $('#start').on('submit', async (e) => {
     const deviceId = checked.id
     constraint.video = {deviceId}
   }
-  console.error(constraint)
 
+  constraint.pan = LEFT
+  constraint.file = FILE.file
   const stream = await getStream(constraint)
   $('#local').srcObject = stream
 
@@ -220,6 +229,8 @@ ws.on('message', async ({data}) => {
       const deviceId = checked.id
       constraint.video = {deviceId}
     }
+    constraint.pan = RIGHT
+    constraint.file = FILE.file
     const stream = await getStream(constraint)
     $('#local').srcObject = stream
 
@@ -270,7 +281,7 @@ $stats.on('click', async () => {
 // device id
 (async () => {
   const devices = await navigator.mediaDevices.enumerateDevices()
-  devices.push({deviceId: "dummy", label: "dummy", kind: "videoinput"})
+  devices.push({deviceId: "dummy", label: `dummy (${FILE.desc}...)`, kind: "videoinput"})
   console.debug(devices)
   devices.filter((d) => {
     return (d.kind === 'videoinput')
