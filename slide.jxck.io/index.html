@@ -14,27 +14,13 @@
 
 <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/markdown.css>
 <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/main.css>
+<link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/archive.css>
 <main class=archive>
   <h1><a href=#slides>Slides</a></h1>
 </main>
 
-<template id=section_template>
-  <section>
-    <h2><a href=""></a></h2>
-    <ul></ul>
-  </section>
-</template>
-
-<template id=item_template>
-  <li><time datetime=""></time><a class=slide href=""></a> @ <a class=event href=""></a><span id="tag"></span>
-</template>
-
-<template id=tag_template>
-  <span class=tags>[<a href=""></a></span>
-</template>
-
 <script>
-var entries = {
+const entries = {
   2018: [
     {
       date: "2018-08-21",
@@ -709,41 +695,57 @@ var entries = {
       }
     }
   ]
-};
+}
 </script>
+
+<template id=section_template>
+  <section>
+    <h2><a href=""></a></h2>
+    <ul></ul>
+  </section>
+</template>
+
+<template id=item_template>
+  <li><time datetime=""></time><a class=slide href=""></a> @ <a class=event href=""></a>
+</template>
+
 <script>
-let item_template = document.getElementById('item_template');
-let section_template = document.getElementById('section_template');
-let tag_template = document.getElementById('section_template');
-let $archive = document.querySelector('.archive');
+const $  = document.querySelector.bind(document)
+const $$ = document.querySelectorAll.bind(document)
+EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+const item_template    = $('#item_template')
+const section_template = $('#section_template')
+const $archive         = $('.archive')
 
 Object.keys(entries).sort().reverse().forEach((key) => {
-  let $section = document.importNode(section_template.content, true);
-  {
-    $a = $section.querySelector('h2 a');
-    $a.href = `#{key}`;
-    $a.textContent = key;
-  }
+  const $section = document.importNode(section_template.content, true)
+  const $a = $section.querySelector('h2 a')
+  $a.href = `#{key}`
+  $a.textContent = key
 
-  let $ul = $section.querySelector('ul')
-  entries[key].map((entry) => {
-    let $item = document.importNode(item_template.content, true);
+  const $ul = $section.querySelector('ul')
+  entries[key].forEach((entry) => {
+    const $item = document.importNode(item_template.content, true)
 
-    $item.querySelector('time').textContent = entry.date;
-    $item.querySelector('time').setAttribute('datetime', entry.date);
+    const $time = $item.querySelector('time')
+    $time.setAttribute('datetime', entry.date)
+    $time.textContent   = entry.date
 
-    $item.querySelector('.slide').textContent = entry.slide.title;
-    $item.querySelector('.slide').href = entry.slide.url;
+    const $slide = $item.querySelector('.slide')
+    $slide.textContent = entry.slide.title
+    $slide.href        = entry.slide.url
 
-    $item.querySelector('.event').textContent = entry.event.tag;
-    $item.querySelector('.event').title = entry.event.title;
-    $item.querySelector('.event').href = entry.event.url;
+    const $event = $item.querySelector('.event')
+    $event.textContent = entry.event.tag
+    $event.title       = entry.event.title
+    $event.href        = entry.event.url
 
-    $ul.appendChild($item);
-  });
+    $ul.appendChild($item)
+  })
 
-  $archive.appendChild($section);
-});
+  $archive.appendChild($section)
+})
 </script>
 <hr>
 
