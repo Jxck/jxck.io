@@ -729,7 +729,7 @@ td:last-child {
     <section>
       <h2 id="claim"><a href="#claim">claim</a></h2>
       <p>controller とは何か、いつ controller になるか、 <code translate="no">claim()</code> で何が起こるのかなどについて。
-      <amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/m6qBg4M3RTA" allowfullscreen lazyload></amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive">
+      <amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/m6qBg4M3RTA" allowfullscreen></amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive">
       <pre class=html><code translate="no">&lt;!DOCTYPE html&gt;
 &lt;meta charset=utf-8&gt;
 &lt;title&gt;Service Worker&lt;/title&gt;
@@ -770,7 +770,7 @@ self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
     <section>
       <h2 id="controllerchange"><a href="#controllerchange">controllerchange</a></h2>
       <p>register が終わった後、「新しく登録された controller が使えるようになったら」または「既に登録されている controller が使えるようになったら」という状態をとる方法と <code translate="no">controllerchange</code> イベント。
-      <amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/XoI0FPDV8Xo" allowfullscreen lazyload></amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive">
+      <amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/XoI0FPDV8Xo" allowfullscreen></amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive">
       <pre class=js><code translate="no">console.log(&#039;master&#039;);
 
 let controllerChange = new Promise((resolve, reject) =&gt; {
@@ -811,7 +811,7 @@ self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
       <h2 id="updatefound"><a href="#updatefound">updatefound</a></h2>
       <p>Service Worker が更新される際の動きと、 <code translate="no">skipWaiting()</code> が何をスキップするのか?
       <p><code translate="no">install</code>, <code translate="no">activate</code> イベントの用途。
-      <amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/AMbQ7d9rjao" allowfullscreen lazyload></amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive">
+      <amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/AMbQ7d9rjao" allowfullscreen></amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive">
       <pre class=js><code translate="no">console.log(&#039;master&#039;);
 
 navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt; {
@@ -847,7 +847,7 @@ self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
     <section>
       <h2 id="update"><a href="#update">update()</a></h2>
       <p><code translate="no">registration.update()</code> による worker の更新と、ブラウザキャッシュにヒットする場合の挙動。
-      <amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/7uRVh9PzV5o" allowfullscreen lazyload></amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive">
+      <amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/7uRVh9PzV5o" allowfullscreen></amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive">
       <pre class=js><code translate="no">console.log(&#039;master&#039;);
 
 navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt; {
@@ -893,7 +893,7 @@ self.addEventListener(&#039;push&#039;, () =&gt; {
     <section>
       <h2 id="backgroundsync"><a href="#backgroundsync">backgroundsync</a></h2>
       <p>sync の発火タイミングと fetch を sync で送る場合の考え方。
-      <amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/b7ZM7uzkykA" allowfullscreen lazyload></amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive">
+      <amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/b7ZM7uzkykA" allowfullscreen></amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive">
       <pre class=js><code translate="no">// master.js
 navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt; {
   return navigator.serviceWorker.ready;
@@ -934,7 +934,7 @@ self.addEventListener(&#039;sync&#039;, (e) =&gt; {
           <li>Google Cloud Messaging の API Key を探す
           <li>manifest.json を作って HTML にリンクスする
         </ul>
-        <amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/MlCZWVvUiXM" allowfullscreen lazyload></amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive">
+        <amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/MlCZWVvUiXM" allowfullscreen></amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive">
         <pre class=json><code translate="no">{
   &quot;name&quot;: &quot;labs.jxck.io push demo&quot;,
   &quot;short_name&quot;: &quot;labs.jxck.io&quot;,
@@ -962,7 +962,7 @@ self.addEventListener(&#039;sync&#039;, (e) =&gt; {
       <section>
         <h3 id="2masterjs"><a href="#2masterjs">2.master.js</a></h3>
         <p><code translate="no">endpoint</code>, <code translate="no">userAuth</code>, <code translate="no">userPublickKey</code> をなんらかの方法でサーバに送ります。
-        <amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/f-ney12qAEI" allowfullscreen lazyload></amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive">
+        <amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/f-ney12qAEI" allowfullscreen></amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive">
         <pre class=js><code translate="no">&#039;use strict&#039;;
 let p = console.log.bind(console);
 
@@ -989,7 +989,7 @@ navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt
       </section>
       <section>
         <h3 id="3workerjs"><a href="#3workerjs">3.worker.js</a></h3>
-        <amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/k939NlThH4E" allowfullscreen lazyload></amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive">
+        <amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/k939NlThH4E" allowfullscreen></amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive">
         <pre class=js><code translate="no">self.addEventListener(&#039;install&#039;, (e) =&gt; {
   console.info(&#039;install&#039;, e);
   e.waitUntil(self.skipWaiting());
@@ -1034,7 +1034,7 @@ self.addEventListener(&#039;notificationclick&#039;, (e) =&gt; {
       <section>
         <h3 id="4pushjs"><a href="#4pushjs">4.push.js</a></h3>
         <p>使用したモジュール: <a href="https://github.com/web-push-libs/web-push">https://github.com/web-push-libs/web-push</a>
-        <amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/hIliK4l4wqw" allowfullscreen lazyload></amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive">
+        <amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive" width="560" height="315" src="https://www.youtube.com/embed/hIliK4l4wqw" allowfullscreen></amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive">
         <pre class=js><code translate="no">&#039;use strict&#039;;
 
 let push = require(&#039;web-push&#039;);
