@@ -55,7 +55,7 @@
 
 定義リスト(description list)
 
-:  `<dl>` を用いる
+: `<dl>` を用いる
 
 定義(description term)
 
@@ -90,28 +90,11 @@ if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalSco
     console.log('claimed');
   });
 }
+```
 
-if (typeof window !== 'undefined') {
-  if (!('serviceWorker' in navigator)) {
-    alert('service worker not supported');
-  }
+ファイルからコードを読むこともできる。
 
-  navigator.serviceWorker.getRegistration().then((worker) => {
-    console.log('getRegistration', worker);
-  }).catch(console.error.bind(console));
-
-  navigator.serviceWorker.register('worker.js', { scope: '.' }).then((worker) => {
-    console.log('register success', worker);
-
-    // return navigator.serviceWorker.ready;
-    return new Promise((resolve) => {
-      // controllerchange after claimed
-      navigator.serviceWorker.addEventListener('controllerchange', resolve);
-    });
-  }).then(() => {
-    console.log('controlled?', navigator.serviceWorker.controller);
-  }).catch(console.error.bind(console));
-}
+```js:sample.js
 ```
 
 
@@ -119,7 +102,8 @@ if (typeof window !== 'undefined') {
 
 引用は `<blockquote>` を用いて表現する。
 
-> 他のサイトなどから引用する場合は、本文を `<blockquote>` を用いて表現する。
+> 他のサイトなどから引用する場合は `<blockquote>` を用いて表現する。
+> 複数行あると `<p>` に展開される
 > 引用元の URL は `<cite>` を用いてマークアップする
 > --- <cite>[example.com](https://example.com)</cite>
 
