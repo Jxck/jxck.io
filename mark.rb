@@ -366,6 +366,27 @@ class Traverser
       node.value = ''
     end
 
+    if node.type == :blockquote
+      # 小要素が 1 つの <p> で行を <br> にして入っている
+      p = node.children[0]
+
+      # <br> を複数の <p> に分けつつ余計な改行を消す
+      children = p.children.reduce([{type: :p, children: []}]) {|acc, e|
+        if e.type === :text and e.value.start_with?("\n")
+          e.value.gsub!("\n", "")
+        end
+
+        if e.type === :br
+          acc << {type: :p, children: []}
+        else
+          acc.last.children << e
+        end
+        acc
+      }
+
+      node.children = children
+    end
+
     if node.type == :li
       # li の子には p が入るのでこれを除く
       first = node.children.shift
