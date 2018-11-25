@@ -315,6 +315,7 @@ class AMP < Markup
     value = super(node)
     if value.match(/<iframe.*/)
       value.gsub!(/iframe/, 'amp-iframe sandbox="allow-scripts allow-same-origin allow-presentation" layout="responsive"')
+      value.gsub!(/ lazyload/, '')
     end
     value
   end
