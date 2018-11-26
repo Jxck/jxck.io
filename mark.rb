@@ -936,6 +936,29 @@ if __FILE__ == $PROGRAM_NAME
     File.write("./mozaic.fm/index.html", archive)
   end
 
+
+  ########################
+  # TEST
+  ########################
+  if ARGV.include? "-t"
+    puts "test builing blog"
+    icon = "https://jxck.io/assets/img/jxck.png"
+    file = "./blog.jxck.io/entries/2016-01-27/new-blog-start.md"
+    e = Entry.new(file, icon)
+    blog(e)
+    exit 0
+  end
+
+  if ARGV.include? "-tp"
+    # test podcast
+    entry = Episode.new("./mozaic.fm/episodes/1/webcomponents.md")
+    # podcast(entry)
+  end
+
+
+  ########################
+  # Main
+  ########################
   # $ mark.rb blog feed
   if ARGV.include? "blog"
     blogfeed(ARGV.include?("feed"))
@@ -949,40 +972,5 @@ if __FILE__ == $PROGRAM_NAME
   if ARGV.include? "full"
     blogfeed(true)
     podcastfeed(true)
-  end
-
-  if ARGV.first == "-t"
-    # test
-    icon = "https://jxck.io/assets/img/jxck.png"
-    entry = Entry.new("./test/test-blog.md", icon)
-    meta_template = File.read(".template/meta.html.erb") + File.read(".template/ld-json.html.erb")
-    blog_template = File.read(".template/blog.html.erb")
-
-    style = [
-      "./blog.jxck.io/assets/css/article.css",
-      "./blog.jxck.io/assets/css/body.css",
-      "./blog.jxck.io/assets/css/info.css",
-      "./blog.jxck.io/assets/css/header.css",
-      "./blog.jxck.io/assets/css/markdown.css",
-      "./blog.jxck.io/assets/css/main.css",
-      "./blog.jxck.io/assets/css/footer.css",
-      "./blog.jxck.io/assets/css/pre.css",
-      "./blog.jxck.io/assets/css/table.css",
-    ].map { |css| File.read(css) }.join("\n")
-
-    # blog
-    markup = Markup.new
-    entry.build(markup)
-    meta = ERB.new(meta_template).result(entry.instance_eval { binding }).strip
-    html = ERB.new(blog_template).result(binding).strip
-    File.write(entry.htmlfile, html)
-
-    # blog(entry)
-  end
-
-  if ARGV.first == "-tp"
-    # test podcast
-    entry = Episode.new("./mozaic.fm/episodes/1/webcomponents.md")
-    # podcast(entry)
   end
 end
