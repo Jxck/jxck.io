@@ -12,7 +12,12 @@ pre {
 
 <h1>SXG DEMO</h1>
 
-<p>open google chrome with option</p>
+<p>open google chrome with option and flags</p>
+
+<ul>
+  <li><a href=chrome://flags/#enable-signed-http-exchange>chrome://flags/#enable-signed-http-exchange</a>
+  <li><a href=chrome://flags/#allow-sxg-certs-without-extension>chrome://flags/#allow-sxg-certs-without-extension</a>
+</ul>
 
 <pre>
 <code>
@@ -21,11 +26,8 @@ open -a Google\ Chrome\ Canary --args --ignore-certificate-errors-spki-list=Vo+Y
 </code>
 </pre>
 
-<p>then click link below</p>
+<p>then click link below, navigate to <a href=https://mozaic.fm/index.html>https://mozaic.fm/index.html</a> but not access to mozaic.fm origin server</p>
+<a href="mozaic.sxg">link to mozaic.sxg</a>
 
-<!-- prefetch the sample.sxg -->
+<p>also prefetch sxg, see the console</p>
 <link rel="prefetch" href="mozaic.sxg">
-
-<!-- clicking the link below should make Chrome navigate to the inner
-     response of sample.sxg (and the prefetched SXG is used) -->
-<a href="mozaic.sxg">Signed Mozaic.fm index</a>
