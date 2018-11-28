@@ -82,6 +82,14 @@ dl dt::after {
   content: ":";
 }
 
+blockquote {
+  display: block;
+  border: solid 1px var(--block-quote);
+  border-radius: 4px;
+  padding: 0.4em 1em;
+  margin: 0;
+}
+
 blockquote p::before {
   content: "> ";
 }
@@ -90,19 +98,10 @@ code {
   background-color: var(--code-block);
   color: var(--code-block-font);
   border-radius: 4px;
-  padding: 0 1px 0;
+  padding: 4px;
 }
 
 code::before,
 code::after {
   content: "`";
-}
-
-
-blockquote {
-  display: block;
-  border: solid 1px var(--block-quote);
-  border-radius: 4px;
-  padding: 0.4em 1em;
-  margin: 0;
 }
