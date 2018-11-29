@@ -19,15 +19,28 @@ pre {
   <li><a href=chrome://flags/#allow-sxg-certs-without-extension>chrome://flags/#allow-sxg-certs-without-extension</a>
 </ul>
 
-<pre>
-<code>
+<pre><code></code></pre>
+<script>
+  (async () => {
+    const res = await fetch('cert_base64.txt')
+    const base64 = await res.text()
+    console.log(base64)
+    document.querySelector('code').textContent = `
 # mac
-open -a Google\ Chrome\ Canary --args --ignore-certificate-errors-spki-list=Vo+YAKKK9Utuup4kUpgDIfqj4h0uIuwU51iGfuMm/F8=
-</code>
-</pre>
+$ open -a Google\ Chrome\ Canary --args --ignore-certificate-errors-spki-list=${base64}
+
+# linux
+$ google-chrome-unsgtable --args --ignore-certificate-errors-spki-list=${base64}
+`
+  })()
+</script>
+
+
 
 <p>then click link below, navigate to <a href=https://mozaic.fm/index.html>https://mozaic.fm/index.html</a> but not access to mozaic.fm origin server</p>
 <a href="mozaic.sxg">link to mozaic.sxg</a>
 
+<!--
 <p>also prefetch sxg, see the console</p>
 <link rel="prefetch" href="mozaic.sxg">
+-->
