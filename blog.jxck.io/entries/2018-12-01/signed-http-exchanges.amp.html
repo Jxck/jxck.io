@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html amp lang=ja>
+<head>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=https://blog.jxck.io/entries/2018-12-01/signed-http-exchanges.html>
+<meta name=viewport content="width=device-width,minimum-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+<link rel=author href=https://jxck.io/assets/humans.txt>
+
+<meta name=author content=Jxck>
+  <meta name=description content="WebPackaging は以下の 3 つの仕様を組み合わせたユースケースである。- Signed HTTP Exchanges: Signing (コンテンツに署名する)- Bundled HTTP Exchanges: Bundling (コンテンツを 1 つにまとめる...">
+  <meta name=keywords content="webpackaging,signed-http-exchange">
+  <meta itemprop=image content="https://jxck.io/assets/img/jxck.png">
+  <meta itemprop=name content="blog.jxck.io">
+
+  <meta name=twitter:card content=summary>
+  <meta name=twitter:site content=@jxck_>
+  <meta name=twitter:url content="https://blog.jxck.io/entries/2018-12-01/signed-http-exchanges.html">
+  <meta name=twitter:title content="WebPackaging の Signed HTTP Exchanges | blog.jxck.io">
+  <meta name=twitter:description content="WebPackaging は以下の 3 つの仕様を組み合わせたユースケースである。- Signed HTTP Exchanges: Signing (コンテンツに署名する)- Bundled HTTP Exchanges: Bundling (コンテンツを 1 つにまとめる...">
+  <meta name=twitter:image content="https://jxck.io/assets/img/jxck.png">
+
+  <meta property=og:type content=article>
+  <meta property=og:url content="https://blog.jxck.io/entries/2018-12-01/signed-http-exchanges.html">
+  <meta property=og:title content="WebPackaging の Signed HTTP Exchanges | blog.jxck.io">
+  <meta property=og:site_name content="blog.jxck.io">
+  <meta property=og:description content="WebPackaging は以下の 3 つの仕様を組み合わせたユースケースである。- Signed HTTP Exchanges: Signing (コンテンツに署名する)- Bundled HTTP Exchanges: Bundling (コンテンツを 1 つにまとめる...">
+  <meta property=og:image content="https://jxck.io/assets/img/jxck.png">
+
+  <link rel=icon sizes=256x256 href="https://jxck.io/assets/img/jxck.png">
+  <link rel="shortcut icon" href="https://jxck.io/assets/img/jxck.png">
+  <link rel=apple-touch-icon sizes=256x256 href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "WebPackaging の Signed HTTP Exchanges | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2018-12-01T08:00:00+08:00",
+  "dateModified": "2018-12-01T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "WebPackaging は以下の 3 つの仕様を組み合わせたユースケースである。- Signed HTTP Exchanges: Signing (コンテンツに署名する)- Bundled HTTP Exchanges: Bundling (コンテンツを 1 つにまとめる..."
+}
+</script>
+
+<title>WebPackaging の Signed HTTP Exchanges | blog.jxck.io</title>
+<script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+<script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+<script async src=https://cdn.ampproject.org/v0.js></script>
+
+<style amp-custom>
+article section p {
+  margin-left: 0;
+}
+
+article pre {
+  margin: 0;
+}
+
+article table {
+  margin-left: 0;
+}
+
+article img {
+  margin: 1em 0;
+  border: 1px solid #ccc;
+  box-sizing: content-box;
+}
+
+article ul,
+article ol {
+  margin-left: 0.8em;
+  font-family: monospace;
+  font-size: 1.2em;
+}
+
+article li {
+  margin-bottom: 0.4em;
+}
+
+article ul li ul,
+article ol li ol {
+  margin: 0.2em 0 1.2em 1em;
+  font-size: 1em;
+}
+
+article ol li ol li,
+article ul li ul li {
+  margin-bottom: 0;
+}
+
+article dl {
+  margin: 1.4em 0 1.4em 0.8em;
+}
+
+article blockquote {
+  padding: 1em;
+}
+
+article blockquote p {
+  line-height: 1;
+  margin: 0;
+}
+
+@supports (line-height-step: 1px) {
+  article {
+    --grid-rhythm: 1.5em;
+    line-height: 1.5;
+    line-height-step: var(--grid-rhythm);
+  }
+
+  article h1,
+  article h2,
+  article h3,
+  article h4,
+  article h5,
+  article h6 {
+    display: inline-block;
+    width: 100%;
+    line-height-step: 0;
+    line-height: 1.2;
+    margin-bottom: 0;
+  }
+
+  article section {
+    /* grid for debug */
+    /* background-size: 100% var(--grid-rhythm); */
+    /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
+  }
+
+  article p {
+    margin-top: var(--grid-rhythm);
+    margin-bottom: var(--grid-rhythm);
+  }
+
+  article pre,
+  article table {
+    line-height-step: 0;
+    line-height: normal;
+  }
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src:
+    local("NotoSansCJKjp-Bold.otf"),
+    local("NotoSansJP-Bold.otf"),
+    url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular-201802.woff2") format("woff");
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 700;
+  font-display: optional;
+  src:
+    local("NotoSansCJKjp-Bold.otf"),
+    local("NotoSansJP-Bold.otf"),
+    url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold-201802.woff2") format("woff");
+}
+
+:root {
+  --background-color: #fefefe;
+  --font-color: #222;
+  --header-color: #222;
+
+  --anchor-color: RoyalBlue;
+  --anchor-visited-color: Brown;
+
+  --code-block: #efefef;
+  --code-block-font: #222;
+
+  --block-quote: #ddd;
+  --table-border: #222;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #010101;
+    --font-color: #eee;
+
+    --anchor-color: CornflowerBlue;
+    --anchor-visited-color: RosyBrown;
+
+    --code-block: #efefef;
+
+    --table-border: #eee;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+  background-color: var(--background-color);
+  color: var(--font-color);
+  margin: 0;
+  padding: 0;
+}
+
+p > code {
+  font-family: monospace;
+}
+
+pre > code {
+  font-family: "Consolas", "Courier New", "Menlo", Monaco, monospace;
+}
+
+iframe {
+  display: block;
+  max-width: 100%;
+  margin: 1em 0;
+}
+
+.tags a {
+  margin: 0 0.2em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+audio {
+  width: 70%;
+}
+
+@media screen and (max-device-width: 480px) {
+  audio {
+    width: 100%;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.info li {
+  margin-right: 1em;
+  list-style-type: none;
+}
+
+.info li::before {
+  content: none;
+}
+
+header {
+  z-index: 1;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.4em;
+  background-color: var(--header-color);
+}
+
+h2:target,
+h3:target,
+h4:target,
+h5:target,
+h6:target {
+  /* sticky header に合わせて link scroll をずらす */
+  margin-top: calc(-50px - 0.2em);
+  padding-top: calc(50px + 0.2em);
+}
+
+header ul {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 80%;
+  margin: 0 auto;
+  padding: 4px;
+}
+
+header ul li {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  margin-left: 1em;
+}
+
+header ul li a {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+header ul li svg {
+  fill: var(--background-color);
+}
+
+header ul li::before {
+  content: none;
+}
+
+header ul li:first-child {
+  flex-grow: 1;
+  margin-left: 0;
+}
+
+header .logo {
+  border: 1px solid #fff;
+  box-sizing: border-box;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  pointer-events: none;
+  color: var(--font-color);
+}
+
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: var(--font-color);
+}
+
+h1 > a::before {
+  content: "# ";
+  pointer-events: all;
+}
+
+h2 > a::before {
+  content: "## ";
+  pointer-events: all;
+}
+
+h3 > a::before {
+  content: "### ";
+  pointer-events: all;
+}
+
+h4 > a::before {
+  content: "#### ";
+  pointer-events: all;
+}
+
+h1 > a:hover::before,
+h2 > a:hover::before,
+h3 > a:hover::before,
+h4 > a:hover::before,
+h5 > a:hover::before,
+h6 > a:hover::before {
+  color: Brown;
+}
+
+em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+em::before,
+em::after {
+  content: "*";
+}
+
+strong {
+  color: red;
+}
+
+strong::before,
+strong::after {
+  content: "**";
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+dl dt::after {
+  content: ":";
+}
+
+blockquote {
+  display: block;
+  border: solid 1px var(--block-quote);
+  border-radius: 4px;
+  padding: 0.4em 1em;
+  margin: 0;
+}
+
+blockquote p::before {
+  content: "> ";
+}
+
+code {
+  background-color: var(--code-block);
+  color: var(--code-block-font);
+  border-radius: 4px;
+  padding: 0 4px;
+}
+
+code::before,
+code::after {
+  content: "`";
+}
+
+main {
+  display: block;
+  width: 80%;
+  margin: 1em auto;
+}
+
+@media screen and (max-device-width: 480px) {
+  main {
+    width: 94%;
+  }
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+  color: var(--anchor-color);
+}
+
+a:visited {
+  color: var(--anchor-visited-color);
+}
+
+ol,
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+ul,
+ol,
+dl {
+  margin: 1.4em 0;
+}
+
+dl dt {
+  font-weight: bold;
+}
+
+dl dd {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+  margin-left: 1.2em;
+}
+
+footer {
+  padding: 1em;
+}
+
+footer strong,
+footer .copyright {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  font-style: italic;
+  font-size: small;
+}
+
+
+pre {
+  word-break: break-all;
+  word-wrap: break-word;
+  margin: 1.4em 0 0 0;
+  border-radius: 4px;
+}
+
+pre::before {
+  content: "```" attr(class) "\A";
+}
+
+pre::after {
+  z-index: -1;
+  position: relative;
+  top: -1em;
+  content: "\A```";
+}
+
+pre > code {
+  overflow: auto;
+  display: block;
+  padding: 0.6em;
+  margin: 0;
+  border: none;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-attribute {
+  font-weight: bold;
+}
+
+.hljs-meta {
+  color: #4f80e5;
+}
+
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-pseudo {
+  color: #6f42c1;
+}
+
+.hljs-selector-tag {
+  color: #22863a;
+}
+
+.hljs-subst {
+  font-weight: bold;
+}
+
+.hljs-variable {
+  color: #a71d5d;
+}
+
+/**.hljs,**/
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition,
+.hljs-symbol,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-type,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-section,
+.hljs-meta-string,
+.hljs-emphasis {
+  /** if you find element applyed this style, please tell me https://github.com/jxck/jxck.io/issues **/
+  font-size: 100em;
+}
+
+table {
+  font-family: monospace;
+  margin: 2em 0;
+  border-spacing: 0 0.4em;
+}
+
+th {
+  padding: 0 1em 0.6em;
+  border-left: 0.14em solid var(--table-border);
+  border-bottom: 2px dashed var(--table-border);
+}
+
+td {
+  padding: 0.4em 1.2em;
+  border-left: 0.14em solid var(--table-border);
+}
+
+th:last-child,
+td:last-child {
+  border-right: 0.14em solid var(--table-border);
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+</style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://blog.jxck.io><amp-img class=logo alt="blog top" width=30 height=30 src=https://jxck.io/assets/img/blog.svg></a>
+      <li><a href=.><amp-img alt="move to parent directory" width=30 height=30 src=https://jxck.io/assets/img/up.svg></a>
+      <li><a href=/feeds/atom.xml><amp-img alt="rss feed" width=30 height=30 src=https://jxck.io/assets/img/rss.svg></a>
+      <li><a href=https://jxck.io/humans.txt><amp-img alt="huamns.txt" width=30 height=30 src=https://jxck.io/assets/img/humans.svg></a>
+      <li><a href=https://jxck.io><amp-img class=logo alt="jxck logo" width=30 height=30 src=https://jxck.io/assets/img/jxck.svg></a>
+    </ul>
+  </nav>
+</header>
+<main>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2018-12-01>2018-12-01</time>
+    <li>updated_at: <time class=updated_at datetime=2018-12-01>2018-12-01</time>
+    <li class=tags>tags: [<a href='/tags/webpackaging.html'>webpackaging</a>,<a href='/tags/signed-http-exchange.html'>signed-http-exchange</a>]
+  </ul>
+
+
+  <article>
+    <h1><a href=/entries/2018-12-01/signed-http-exchanges.html>WebPackaging の Signed HTTP Exchanges</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p><a href="https://github.com/WICG/webpackage">WebPackaging</a> は以下の 3 つの仕様を組み合わせたユースケースである。
+      <ul>
+        <li>
+          <a href="https://tools.ietf.org/html/draft-yasskin-http-origin-signed-responses-04">Signed HTTP Exchanges</a>: Signing (コンテンツに署名する)
+        </li>
+        <li>
+          <a href="https://tools.ietf.org/html/draft-yasskin-wpack-bundled-exchanges-00">Bundled HTTP Exchanges</a>: Bundling (コンテンツを 1 つにまとめる)
+        </li>
+        <li>
+          <a href="https://wicg.github.io/webpackage/loading.html">Loading Signed Exchanges</a>: Loading (そのコンテンツをロードする)
+        </li>
+      </ul>
+      <p>本エントリでは、各仕様を Signing/Bundling/Loading と記す。
+      <p>現状、 Signing および Loading の仕様策定が進んでおり、 Chrome は Experimental な実装を行っている。
+      <p>全体的に仕様が大きく、今後も変更される可能性が高いため、今回は実装が進んでいる Signing に絞り、ユースケース、仕様、および本ブログへの適用を中心に解説する。
+    </section>
+    <section>
+      <h2 id="signing-signed-http-exchanges"><a href="#signing-signed-http-exchanges">Signing (Signed HTTP Exchanges)</a></h2>
+      <p>Signing は、簡単に言えば Web コンテンツに署名を行う仕様である。
+      <p>今回は対象として mozaic.fm ドメインにある以下のコンテンツについて考える。
+      <ul>
+        <li>https://mozaic.fm/index.html
+      </ul>
+      <p>mozaic.fm の管理者は、保有する秘密鍵を用いて、このコンテンツの Request/Response に対して署名をする。
+      <p>単にファイルを署名するのではなく、 Request/Response が対象であるため、 Method/URL/Status/Header なども含まれる点が重要だ。
+      <p>署名した結果 <code translate="no">mozaicfm-index.sxg</code> というファイルを生成する。
+      <p>一般的に電子署名の効果は、「否認」「改ざん」「なりすまし」などへの耐性であり、それは Signing においても同様だ。
+      <p>一度署名すれば、コンテンツの所有者が mozaic.fm であり、誰かが成りすまして作ったものではなく、署名以降改ざんされていない、ということが保証される。
+      <p>この署名をコンテンツに対して行う一連の流れが Signing の仕様だ。
+    </section>
+    <section>
+      <h2 id="bundling-bundled-http-exchanges"><a href="#bundling-bundled-http-exchanges">Bundling (Bundled HTTP Exchanges)</a></h2>
+      <p>Siging は、単一の Request/Response に対する署名を行う。
+      <p>つまり index.html に署名をしても、そこに読み込まれる JS や CSS といったサブリソースは含まれない。
+      <p>そこで署名の前に、サブリソースなどを 1 つにまとめる仕様が Bundling だ。
+      <p>Bundling は、もう少し仕様と実装が進んだら改めて解説したい。
+    </section>
+    <section>
+      <h2 id="loading-loading-http-exchanges"><a href="#loading-loading-http-exchanges">Loading (Loading HTTP Exchanges)</a></h2>
+      <p>次に jxck.io ドメインには CDN 機能があるとし、先の署名した sxg ファイルをここから配信したとする。
+      <ul>
+        <li>https://cdn.jxck.io/mozaicfm-index.sxg
+      </ul>
+      <p>通常、この URL を fetch したブラウザは、 Origin を <code translate="no">https://cdn.jxck.io</code> として扱う。
+      <p>仮に、このファイルがそのまま表示できるとすれば、 URL バーにはこのアドレスが表示されるだろう。
+      <p>しかし、このファイルは Response URL 情報を含み、署名されている。
+      <p>署名を検証することで、内容が改ざんされていないことが保証できるため、ブラウザはこのコンテンツを mozaic.fm から取得したかのように扱うことができる。
+      <p>具体的には URL バーに、オリジナルの URL である以下を表示できる。
+      <ul>
+        <li>https://mozaic.fm/index.html
+      </ul>
+      <p>Signing で署名された sxg を読み込んだブラウザが、署名を確認しこのように挙動する流れが Loading の仕様だ。
+    </section>
+    <section>
+      <h2 id="physical--logical-url"><a href="#physical--logical-url">Physical / Logical URL</a></h2>
+      <p>Signing(Signed HTTP Exchange) によって起こる大きな変化は、 Logical URL と Physical URL の分離である。
+      <p>(この名前は、最近では inner/outer URL と呼ばれてもいるようだが、その辺ははっきりしないので、本エントリでは Logical/Physical を採用する)
+      <p>先の例で言えば、以下のようになる。
+      <ul>
+        <li>Logical URL: https://mozaic.fm/index.html
+        <li>Physical URL: https://cdn.jxck.io/mozaicfm-index.sxg
+      </ul>
+      <p>実際に mozaic.fm のオリジンサーバから取得したわけではないが、署名によってそのように扱うことができる。
+      <p>展開される Origin は mozaic.fm のものになり、ここから遷移する際に付与される Referer や Origin ヘッダも全て mozaic.fm になる。
+      <p><amp-img layout=responsive src=signed-http-exchange.svg#748x561 alt="signed http exchange 概観" title="signed http exchange" width=748 height=561></p>
+    </section>
+    <section>
+      <h2 id="use-case"><a href="#use-case">Use Case</a></h2>
+      <p>これにより可能になるユースケースを解説する。
+      <section>
+        <h3 id="amp"><a href="#amp">AMP</a></h3>
+        <p>AMP は、 Origin サーバにある AMP Valid なコンテンツを  AMP Cache に置き、そこから代理で配信する構成になっている。
+        <p>構成はいわゆる CDN だが、あらゆるドメインを対象とするため、 Cache 自体は Google のドメインのままだ。したがってモバイルで Google 検索した結果 AMP コンテンツを取得した場合、 URL バーに表示されるのは Google の URL となる。
+        <p>例えばこの記事の AMP 対応 URL は以下だが、 AMP キャッシュの URL は以下になる。
+        <ul>
+          <li>https://blog.jxck.io/entries/2018-12-01/signed-http-exchange.amp.html
+          <li>https://www.google.co.jp/amp/s/blog.jxck.io/entries/2018-12-01/signed-http-exchange.amp.html
+        </ul>
+        <p>この挙動は、 AMP の仕組みを疑問視するユーザが指摘するポイントの 1 つだった。
+        <ul>
+          <li>
+            <a href="http://ampletter.org/?lang=ja">AMP letter</a>
+          </li>
+        </ul>
+        <p>ここで AMP が Signed HTTP Exchange に対応すると、 Google 検索の結果 AMP キャッシュからコンテンツを取得しても、元の URL を URL バーに表示できる。
+        <p>AMP チームはすでに WebPackaging への対応をかなり早い段階でアナウンスしている。
+        <ul>
+          <li>
+            <a href="https://amphtml.wordpress.com/2018/11/13/developer-preview-of-better-amp-urls-in-google-search/">Developer Preview of better AMP URLs in Google Search - Accelerated Mobile Pages Project</a>
+          </li>
+        </ul>
+        <p>また、 Cloudflare は AMP Cache に対して sxg を提供する部分のサポートをアナウンスしている。
+        <ul>
+          <li>
+            <a href="https://blog.cloudflare.com/real-urls-for-amp-cached-content-using-cloudflare-workers/">Real URLs for AMP Cached Content Using Cloudflare Workers</a>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="subresource-cdn"><a href="#subresource-cdn">Subresource CDN</a></h3>
+        <p>AMP キャッシュと同じことが、一般の CDN でも可能になる。
+        <p>これまで CDN を入れる場合は Edge を同じドメインにするのが一般的だったが、 Edge がどのドメインであっても問題ない場合もでるだろう。
+        <p>逆に考えると、自分のドメインから他ドメインのコンテンツを配信することも可能になる。
+        <p>例えば、 bundle が一般化した今はわからないが、かつて jquery は自分のドメインからではなく CDN から取得する構成が推奨された。
+        <pre class=html><code translate="no">&lt;script src=https://code.jquery.com/jquery-3.3.1.js&gt;&lt;/script&gt;</code></pre>
+        <p>この URL を使うと、もし他のサービスが同じ URL で取得しキャッシュしていれば、それがそのままキャッシュヒットするからである。
+        <p>多くのサービスが同じ URL を使えば使うほど、そのメリットは増える。
+        <p>もし jQuery が sxg を配布したら、そのファイルを自分のサーバから配布しつつ、 展開後の URL は同じになるため、キャッシュは同じになるということが可能になる。
+        <p>ただし sxg への URL を src に書くと、取得する際にキャッシュが有ってもヒットされることができない。
+        <pre class=html><code translate="no">&lt;script src=https://cdn.example.com/jquery-3.3.1.js.sxg&gt;&lt;/script&gt;
+&lt;!-- これだと https://code.jquery.com/jquery-3.3.1.js のキャッシュがあってもヒットしない --&gt;</code></pre>
+        <p>そこで logicalsrc/physicalsrc を両方書く方法が提案されている。
+        <pre class=html><code translate="no">&lt;script logicalsrc=https://code.jquery.com/jquery-3.3.1.js
+        physicalsrc=https://cdn.example.com/jquery-3.3.1.js.sxg&gt;&lt;/script&gt;</code></pre>
+        <p><a href="https://tools.ietf.org/html/draft-yasskin-http-origin-signed-responses-04#appendix-A.2">A.2. Explicit use of a content distributor for subresources</a>
+      </section>
+      <section>
+        <h3 id="cross-origin-server-push"><a href="#cross-origin-server-push">Cross Origin Server Push</a></h3>
+        <p>例えば index.html のレスポンスより前に jquery.js を HTTP2 Push する場合は、 jquery.js は同じ Origin からである必要があった。
+        <p>しかし、内容の検証を sxg が担うため、 sxg を Push すれば jquery.js を jquery.com からの CORS Push として送ることが可能になる。
+        <ul>
+          <li>HTTP2 Push に対応してない 3rd Party Contents を代理で Push する
+          <li>Origin が張った接続に 3rd Party コンテンツを相乗りする
+        </ul>
+      </section>
+      <section>
+        <h3 id="subresource-integrity"><a href="#subresource-integrity">Subresource Integrity</a></h3>
+        <p>Subresource Integrity (SRI) とは、 Subresouce が想定したものであることを確認し、改ざん等によって意図しないものに差し替えられることを防ぐ仕組みである。
+        <p>以下は、 integrity 属性に jquery 全体の sha-256 ハッシュを含むことで、異なる jquery が実行されることを防ぐ。
+        <pre class=html><code translate="no">&lt;script src=https://code.jquery.com/jquery-3.3.1.js
+        integrity=sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=&gt;&lt;/script&gt;</code></pre>
+        <p>WebAppSec はこの SRI に、単なるハッシュではなく、署名を取り入れる方法について議論している。
+        <ul>
+          <li>
+            <a href="https://github.com/mikewest/signature-based-sri">mikewest/signature-based-sri: Signature-based Resource Loading Restrictions</a>
+          </li>
+        </ul>
+        <p>これは、まさしく Signing がやっていることと類似している。
+        <p>同様に、 TLS のような経路の暗号化だけでは足らず、コンテンツの完全性について保証が欲しい仕様で応用が可能になるだろう。
+      </section>
+      <section>
+        <h3 id="web-archive"><a href="#web-archive">Web Archive</a></h3>
+        <p><a href="https://web.archive.org/">Internet Archive</a> や <a href="https://megalodon.jp/">Web 魚拓</a> のように、クロールした結果を保存するサービスが存在する。
+        <p>しかし、これらのサービスが保存しているコンテンツが、オリジナルのものから改ざんされていないことは保証できない(運営への信頼によって成り立っている)。
+        <p>ここで、こうしたサービスが sxg を収集するようになれば、改ざんされていないことが検証可能になる。
+        <p>もっと言えば、成りすましも否認も出来ないため、アーカイブされているものに対して「見に覚えがない」と白をきることもできなくなる。
+        <p>こうして、アーカイブされたコンテンツの信頼性が担保できるようになると、利用の幅が広がるだろう。
+      </section>
+      <section>
+        <h3 id="local-sharing"><a href="#local-sharing">Local Sharing</a></h3>
+        <p>CDN よりももっと積極的に、あらゆる場所でキャッシュすることが可能になる。
+        <p>例えば、隣の端末が取得済みのコンテンツをローカルネットワークで転送したり、ダウンロードしておいたものをチャットで共有することも可能だ。。
+        <p>並行して、署名の前に複数のコンテンツを束ねる bundling が実現すれば、例えば Offline 状態で隣の端末から bluetooth でもらった PWA をインストールするといった利用も想定されている。
+        <p>(しかし、現時点では後述の理由により offline での利用は出来ない)
+        <p>やりかたはいくらでも有るが、より積極的なキャッシュが可能になるというイメージだ。
+      </section>
+    </section>
+    <section>
+      <h2 id="導入方法"><a href="#導入方法">導入方法</a></h2>
+      <p>実際にコンテンツを署名し、別オリジンから配布して表示するまでの流れをまとめる。
+      <p>Origin Trial 、拡張付き証明書、フラグつき起動の Chrome Canary など必要なため多少敷居が高いが、ここからもまだ仕様/実装ともに作業途中の技術であることがわかるだろう。
+      <p>署名には、リファレンス実装として提供されている Go 製の以下のツールを利用する。
+      <p><a href="https://github.com/WICG/webpackage/tree/master/go/signedexchange">https://github.com/WICG/webpackage/tree/master/go/signedexchange</a>
+      <section>
+        <h3 id="証明書"><a href="#証明書">証明書</a></h3>
+        <p>Signing には CanSignHttpExchanges 拡張を含む X.509 証明書が必要だ。
+        <p>現状これを試すための選択肢は 3 つある
+        <ol>
+          <li>現状 DigiCert のみが拡張に対応した証明書を発行するので、そこから購入する
+          <li>通常の証明書を利用し、 Chrome の &lt;chrome://flags/#allow-sxg-certs-without-extension&gt; を有効にする
+          <li>拡張を含む自己証明書を作成する
+        </ol>
+        <p>今回は DEMO 用に 3 を採用する。
+        <p>まず、署名を行う mozaic.fm ドメイン用に、 CanSignHttpExchanges 拡張の入った自己証明書を以下のように作成する。
+        <pre class=sh><code translate="no">#! /bin/sh
+
+# prime256v1 ecdsa の秘密鍵を生成
+openssl ecparam -out priv.key -name prime256v1 -genkey
+
+# 鍵に対する証明書のリクエストを作成、ドメインは mozaic.fm とする
+openssl req -new -sha256 -key priv.key -out cert.csr -subj &#039;/CN=mozaic.fm/O=Test/C=US&#039;
+
+# 拡張を指定した CSR を生成する
+echo &quot;1.3.6.1.4.1.11129.2.1.22 = ASN1:NULL\nsubjectAltName=DNS:mozaic.fm&quot; &gt; ext
+openssl x509 -req -days 360 -in cert.csr -signkey priv.key -out cert.pem -extfile ext
+
+# 証明書を生成する
+openssl x509 -req -days 360 -in cert.csr -signkey priv.key -out cert.pem</code></pre>
+      </section>
+      <section>
+        <h3 id="証明書チェーン"><a href="#証明書チェーン">証明書チェーン</a></h3>
+        <p>Signing の検証に必要な証明書チェーンを生成する。
+        <p>フィルは CBOR 形式で、証明書チェーン、 OCSP 、 SCT を含む必要がある。
+        <p>生成には、リファレンス実装の gen-certurl を使用する。
+        <p><a href="https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-certurl">https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-certurl</a>
+        <pre class=sh><code translate="no">#! /bin/sh
+
+# gen-certurl の取得
+go get -u github.com/WICG/webpackage/go/signedexchange/cmd/gen-certurl
+
+# 本来は ocsp の指定が必要だが、自己証明書なので適当な値を指定する
+echo &quot;ocsp&quot; &gt; tmp
+./bin/gen-certurl -pem cert.pem -ocsp tmp &gt; cert.cbor</code></pre>
+        <p>生成した cert.cbor は、 <code translate="no">Content-Type: application/cert-chain+cbor</code> で、 CDN から配布する必要がある。
+        <p>ここでは、以下の URL から配布することとする。
+        <p><a href="https://labs.jxck.io/webpackaging/signed-http-exchange-b2/cert.cbor">https://labs.jxck.io/webpackaging/signed-http-exchange-b2/cert.cbor</a>
+      </section>
+    </section>
+    <section>
+      <h2 id="検証データ"><a href="#検証データ">検証データ</a></h2>
+      <p>仕様上は、証明書の期限が切れていた場合に、証明書を再度取得し直すための Validity Data を生成し validity-url に置く必要がある。
+      <p>しかし、まだツールには実装されておらず、 Chrome もこの値を見ていないようだ。
+      <p>したがって、今回は適当な validity-url だけ決めて、 validity data の生成は飛ばす。
+      <p>(ただし、ここの運用は色々考えて設計する必要がありそうに感じている)
+      <section>
+        <h3 id="署名"><a href="#署名">署名</a></h3>
+        <p>ここまでに用意した材料を用いて、コンテンツに署名する。
+        <p>署名には、リファレンス実装の gen-signedexchange を使用する。
+        <p><a href="https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-signedexchange">https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-signedexchange</a>
+        <pre class=sh><code translate="no">#! /bin/sh
+
+# gen-signedexchange の取得
+go get -u github.com/WICG/webpackage/go/signedexchange/cmd/gen-signedexchange
+
+# mozaic.fm/index.html を署名
+./bin/gen-signedexchange \
+  -uri         https://mozaic.fm/index.html \ # ブラウザが表示する URL
+  -content     ../mozaic.fm/index.html \ # 対象コンテンツ
+  -certificate cert.pem \ # 証明書
+  -privateKey  priv.key \ # 秘密鍵
+  -certUrl     https://labs.jxck.io/webpackaging/signed-http-exchange-b2/cert.cbor \ # 証明書チェーンの URL
+  -validityUrl https://labs.jxck.io/webpackaging/signed-http-exchange-b2/validity-data \ # 検証用の URL
+  -o           mozaic.sxg # 成果物</code></pre>
+        <p>生成した mozaic.sxg は、 <code translate="no">Content-Type: application/signed-exchange;v=b2</code> で CDN から配布する。
+      </section>
+      <section>
+        <h3 id="experimental-features"><a href="#experimental-features">Experimental Features</a></h3>
+        <p>現状 Chrome では、 sxg を表示するには 2 つの方法がある。
+        <ul>
+          <li>Signed HTTP Exchange の Origin Trials に登録する
+          <li>Chrome の chrome://flags/#enable-signed-http-exchange を有効にする
+        </ul>
+        <p>つまり、 Origin Trials に登録し、正規の拡張付き証明書を使っていれば、 Chrome Canary などではそのまま表示できるだろう。
+        <p>自己署名証明書の場合には、 Chrome にその証明書に関するエラーを無視させる必要がある。
+        <p>cert.pem を以下のように base64 形式に変換し、それを <code translate="no">--ignore-certificate-errors-spki-list</code> に指定する。
+        <pre class=sh><code translate="no"># 証明書の base64 の生成
+export BASE64 = openssl x509 -noout -pubkey -in cert.pem | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | base64
+
+# Mac で Canary を起動する場合
+open -a Google\ Chrome\ Canary --args --ignore-certificate-errors-spki-list=$BASE64</code></pre>
+      </section>
+      <section>
+        <h3 id="demo"><a href="#demo">DEMO</a></h3>
+        <p>動作するデモを以下に用意した。
+        <p>ただし
+        <ul>
+          <li>生成された sxg は expire している可能性があるため、時間が経つとアクセスしても表示できない
+          <li>自己証明書であるため、遷移先に書かれたフラグをつけて Chrome を起動する必用がある
+          <li>Origin Trials には Opt-In している
+        </ul>
+        <p><a href="https://labs.jxck.io/webpackaging/signed-http-exchange-b2/">https://labs.jxck.io/webpackaging/signed-http-exchange-b2/</a>
+        <p>まず遷移先のページは以下だ。
+        <p><amp-img layout=responsive src=1-index.png#748x457 alt="sxg へ遷移する前のページ" title="index page" width=748 height=457></p>
+        <p>ページ下部のリンクから sxg に遷移する。
+        <ul>
+          <li>https://labs.jxck.io/webpackaging/signed-http-exchange-b2/mozaic.sxg
+        </ul>
+        <p>このファイルに Origin-Trial Token を付与しており、 content-type は application/signed-exchange;v=b2 である。
+        <p><amp-img layout=responsive src=2-sxg-response.png#748x457 alt="sxg のレスポンスヘッダ" title="sxg response" width=748 height=457></p>
+        <p>このファイルを展開したブラウザは、ファイルをパースし、必要な情報を取得する。
+        <p>オリジナルの URL やコンテンツ、署名と証明書などが確認できる。
+        <p><amp-img layout=responsive src=3-sxg-signing-detail.png#748x457 alt="sxg の署名部分の詳細" title="sxg signing detail" width=748 height=457></p>
+        <p>ここで取得した Certificate URL から証明書を取得する。
+        <p>cbor は <code translate="no">application/cert-chain+cbor</code> で配布する。
+        <p><amp-img layout=responsive src=4-cert-chain-cbor.png#748x457 alt="証明書チェインの詳細" title="cert chain cbor" width=748 height=457></p>
+        <p>これを用いて署名の検証が完了したら、ブラウザは Original の URL でコンテンツを表示する。
+        <p><amp-img layout=responsive src=5-rendered-contents.png#748x457 alt="Logical URL で表示された HTML" title="" width=748 height=457></p>
+        <p>内部的には改めてリクエストが発生しているように見えるが、サーバにはリクエストは飛んでいない。
+        <p>また、ブラウザの URL バーには mozaic.fm として表示されていることがわかる。
+        <p>ただし、今回 Signing の対象は index.html だけであり、サブリソースは署名していない。したがって CSS や JS などは実際のサーバにリクエストが発生している。
+        <p>これらを対象に含むには、サブリソース全体を bundling で 1 つにまとめ、その結果に signing で署名することになる。そちらは、いずれ実装が進んだら解説したい。
+      </section>
+    </section>
+    <section>
+      <h2 id="signed-http-exchange-format"><a href="#signed-http-exchange-format">Signed HTTP Exchange Format</a></h2>
+      <p>Signed HTTP Exchange のフォーマットについて解説する。
+      <section>
+        <h3 id="requestresponse"><a href="#requestresponse">Request/Response</a></h3>
+        <p>Signing の対象は、単にファイルに署名するのではなく、そのファイルの Request/Response 全体に対して署名を行う。
+        <p>今回の場合は、 HTML の Body を含め以下の Request/Response が対象となる。
+        <pre class=http><code translate="no">GET /index.html HTTP/1.1
+Host: mozaic.fm
+
+
+HTTP/1.1 200
+Digest: mi-sha256-03=QoknwRIxGYJmcmv9frzldV13WWirCG5zY4DyU2eu5n8=
+Content-Type: text/html; charset=utf-8
+Content-Encoding: mi-sha256-03
+
+&lt;!doctype html&gt;\r\n&lt;html&gt;...</code></pre>
+      </section>
+      <section>
+        <h3 id="digest-header"><a href="#digest-header">Digest Header</a></h3>
+        <p>Digest ヘッダは、コンテンツのダイジェストが含まれる。
+        <p>この場合 Digest のアルゴリズムは Content-Encoding で指定された <code translate="no">mi-sha256-03</code> となっている。
+        <p>これは Merkle Integrity Content Encoding のドラフトを指しており、仕様上 <code translate="no">mi-sha256</code> は実装必須となっている。
+        <p><a href="https://tools.ietf.org/html/draft-thomson-http-mice-03">draft-thomson-http-mice-03 - Merkle Integrity Content Encoding</a>
+        <p>Digest のアルゴリズムは既にあるが、それらは基本的にコンテンツが全て揃わないと Digest を生成することができない。そこで、 Partial Fragment ごとに Digest が計算できるように Merkle Integrity を用いた方法として提案されているのがこの仕様だ。
+      </section>
+      <section>
+        <h3 id="signature-header"><a href="#signature-header">Signature Header</a></h3>
+        <p>Signature Header は、実際の署名および関連するパラメータが含まれる。
+        <ul>
+          <li>sig: パラメータとヘッダを含んだ署名
+          <li>integrity: レスポンスの完全性を保証するダイジェストを含むヘッダの名前とアルゴリズムの組
+          <li>cert-url: 証明書への URL
+          <li>cert-sha256: cert-url で取得した証明書チェーンの最初の証明書の sha256 ハッシュ
+          <li>ed25519key: Ed25519 公開鍵
+          <li>validity-url: 証明書の期限が切れた後に、新しい証明書を取得する方法が得られる URL
+          <li>date: 生成時間の Unixtime
+          <li>expires: 期限時間の Unixtime
+        </ul>
+        <pre class=http><code translate="no">Signature: label;
+  sig=*MEUCICiUdi2JhgJwmzPfWu8PVIC/eBOeHMkAcUN5aetK9PxZAiEAgOF6IajUh6TIHYLZk7cin1bLXLKc6jkKA6RIR6cJOEE=*;
+  integrity=&quot;digest/mi-sha256-03&quot;;
+  cert-url=&quot;https://labs.jxck.io/webpackaging/signed-http-exchange-b2/cert.cbor&quot;;
+  cert-sha256=*Wiqh2cLTl2rVqZCuAH0OBJoXs7ZRv4w9aV771Balils=*;
+  validity-url=&quot;https://labs.jxck.io/webpackaging/signed-http-exchange-b2/validity-data&quot;;
+  date=1543482268;
+  expires=1543568668</code></pre>
+        <p>基本は sig の値を cert-url にある証明書チェーンで検証することになる。
+        <p>cert-url の証明書が Expire した場合は、新たなる証明書を validity-url に対して取得しに行く。
+        <p>すると新たなる Signature の値が取得でき、同じ label (ここでは <code translate="no">label</code>) の値を置き換える。
+        <p>これにより、コンテンツがそのまま利用できる場合は、署名のみを更新することが可能になる。
+        <p>update は、新たなるコンテンツがある場合に、そのサイズを示している。
+        <p>もし signature が無く、 update しかない場合は、コンテンツを更新する必要がある。
+        <p>両方存在する場合は、 update の size などを考慮して、コンテンツを継続利用するか更新するかを選べる。
+        <pre class=http><code translate="no">{
+  &quot;signatures&quot;: [
+    &#039;label; &#039;
+    &#039;sig=*MEQCIC/I9Q+7BZFP6cSDsWx43pBAL0ujTbON/+7RwKVk+ba5AiB3FSFLZqpzmDJ0NumNwN04pqgJZE99fcK86UjkPbj4jw; &#039;
+    &#039;validity-url&#039;=&quot;https://labs.jxck.io/webpackaging/signed-http-exchange-b2/cert.cbor&quot;;
+    &#039;integrity&#039;=&quot;digest/mi-sha256-03&quot;;
+    &#039;cert-url&#039;=&quot;https://labs.jxck.io/webpackaging/signed-http-exchange-b2/cert.cbor&quot;;
+    &#039;certSha256=*J/lEm9kNRODdCmINbvitpvdYKNQ+YgBj99DlYp4fEXw; &#039;
+    &#039;date=1511733180; expires=1512337980&#039;
+  ],
+  &quot;update&quot;: {
+    &quot;size&quot;: 5557452
+  }
+}</code></pre>
+      </section>
+    </section>
+    <section>
+      <h2 id="課題"><a href="#課題">課題</a></h2>
+      <p>SignedHTTPExchange はまだいくつかの課題がある。筆者が把握している範囲で記録する。
+      <section>
+        <h3 id="offline-対応"><a href="#offline-対応">offline 対応</a></h3>
+        <p>現時点では certURL と validitiURL にアクセスし、署名を検証できなければいけない。
+        <p>つまり、 sxg 自体がオフラインで共有できても、署名検証が offline で実施できない。
+        <p>これについては、まだ作業中だと認識している。
+      </section>
+      <section>
+        <h3 id="cansignhttpexchanges"><a href="#cansignhttpexchanges">CanSignHttpExchanges</a></h3>
+        <p>Mozilla は少し前に Standard Position の中で、 Signed HTTP Exchange を considered harmful と表明した。
+        <ul>
+          <li>[https://mozilla.github.io/standards-positions/]
+        </ul>
+        <p>簡単に言えば、証明書が漏洩した場合、それを取得した攻撃者は自由に Origin を語れるということに対する懸念によるものだが、ユースケース自体は認めており、仕様のセキュリティモデルが改善すれば、この表明は見直されるだろうと考えられる。
+        <p>具体的には、サーバが利用する HTTPS 用の証明書をそのまま sxg の署名に使うといった、運用の変更の隙間に、漏洩の懸念が生まれるため、基本的には HTTPS とは別の証明書を用意させる方が安全だろうという議論になっている。
+        <p>結果、 sxg には「既存の証明書を利用させない」ために、新しい拡張を定義し、その拡張が入ったものでなければ利用できないように仕様を変更した。ここで X.509 の拡張として導入されたのが CanSignHttpExchanges である。
+        <p>現時点で、この拡張に対応した証明書を発行する CA は、現時点では DigiCert のみだ。
+        <ul>
+          <li>
+            <a href="https://www.digicert.com/account/ietf/http-signed-exchange.php">Adding CanSignHttpExchanges Extension :: DigiCert</a>
+          </li>
+        </ul>
+        <p>DigiCert の証明書はもちろん有料であるため、無料で試すには自己証明書しかない。
+        <p>Let&rsquo;s Encrypt や他の商用 CA がどの程度この拡張に対応するのかは未定だが、個人的には Let&rsquo;s Encrypt に期待したい。
+        <p>また、この拡張によって、既存の発行済証明書は sxg では使えないが、逆に CanSignHttpExchanges がある証明書がサイトの HTTPS 化のための証明書として使えないかと言うと、そうではないという理解だ。
+        <p>つまり Let&rsquo;s Encrypt で発行した証明書が拡張を含むと、利便性の観点から HTTPS / sxg 両方に使われると思うが、そのリスクは運用側ということになる。
+        <p>CanSignHttpExchanges がある証明書は、 HTTPS のために使えないようなサーバの実装が普及するのか、単に啓蒙として併用の抑止を訴えるのか、などといった流れは、まだ把握できてないので、普及フェーズに入ったら注視したい。
+      </section>
+      <section>
+        <h3 id="access-log"><a href="#access-log">Access Log</a></h3>
+        <p>Physical URL と Logical URL が分離されたことにより、実際にオリジンサーバにアクセスする必要が無くなる。
+        <p>これは同時に、コンテンツのアクセスログがオリジンサーバで収集できなくなることを意味する。
+        <p>sxg を代理配信する CDN がログを提供するなら良いが、現状の仕様では配布する CDN を制限することは出来ないように思う。
+        <p>したがって、野良 CDN や単純なファイル共有などで表示された場合は完全に収集することは出来ないだろう。
+        <p>署名を検証する際に、 cert_url や validity_url へのアクセスが発生するために、ここにパラメータを含むことで収集できそうな気もするが、オフライン対応やパフォーマンス改善のためにキャッシュの仕組みが入るだろうことを考えると難しそうだ。
+        <p>これは、従来の AMP でも発生していたことなので、同様にコンテンツ自体に Analytics を導入するか、自前で <code translate="no">&lt;img&gt;</code> や Beacon を用いた収集行われるかもしれない。
+        <p>筆者は、 <a href="https://discourse.wicg.io/t/proposal-html-ping-for-navigation/2839">Navigation 時に Reporting で Ping を行うような仕様</a> があれば Opt-Out も可能な状態でアクセスログ収集ができるのではと思っている。
+      </section>
+      <section>
+        <h3 id="validity-url-の運用"><a href="#validity-url-の運用">Validity URL の運用</a></h3>
+        <p>コンテンツが更新された場合に、キャッシュされた sxg を更新させるために、 Certificate に有効期限を設ける仕様になっている。
+        <p>そして、期限が切れた場合に Validity URL にアクセスすることで、新たな Certificate だけを取得してコンテンツは継続して使うか、コンテンツそのものを更新するかを選択させる。
+        <p>コンテンツが頻繁に更新するのは sxg のメリットを損ねるため、なるべくなら継続してコンテンツを使わせたいのが普通だろう。
+        <p>しかし、キャッシュ済みのコンテンツにバグなどがあった場合は、できるだけ素早く更新をして欲しい。
+        <p>つまり、従来の時間ベースのキャッシュヘッダだけでなく、証明書も含めてコンテンツのフレッシュネスを管理する必要があるのだ。
+        <p>検証に失敗したら、実際にオリジンサーバにアクセスするだけなので、オンラインであったり、 AMP のように、静的な作りに限定するのであれば、まだ問題は少なそうだ。
+        <p>しかし、 PWA のオフラインインストールのような用途で利用が始まると考えることが増えそうだ。
+        <p>その辺は、まったく想像できてないので、今後考えていきたい。
+      </section>
+    </section>
+    <section>
+      <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
+      <p>この記事を書き始めた時は、 DigiCert で証明書を買って全ページの SXG を配布しようと考えていたが、以下の理由から見送った。
+      <ul>
+        <li>証明書がちょっと高い(一番の理由)
+        <li>Validity URL をどうするのかよくわからない
+        <li>expire が短時間しか設定できないため、継続した配布をどうするか考えて手を入れる必要がある
+        <li>アクセスログの集め方が定まってない
+        <li>etc
+      </ul>
+      <p>全部解決するまでブログの公開を遅らせるといつになるかわらないので、デモだけ作り先に記事を公開することとした。
+      <p>引き続き色々考え、実装ができたら本サイトに適用したい。
+    </section>
+    <section>
+      <h2 id="link"><a href="#link">Link</a></h2>
+      <ul>
+        <li>
+          draft-yasskin-http-origin-signed-responses-04 - Signed HTTP Exchanges<ul>
+            <li>
+              <a href="https://tools.ietf.org/html/draft-yasskin-http-origin-signed-responses-04">https://tools.ietf.org/html/draft-yasskin-http-origin-signed-responses-04</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          draft-yasskin-wpack-bundled-exchanges-00 - Bundled HTTP Exchanges<ul>
+            <li>
+              <a href="https://tools.ietf.org/html/draft-yasskin-wpack-bundled-exchanges-00">https://tools.ietf.org/html/draft-yasskin-wpack-bundled-exchanges-00</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Loading Signed Exchanges<ul>
+            <li>
+              <a href="https://wicg.github.io/webpackage/loading.html">https://wicg.github.io/webpackage/loading.html</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Signed HTTP Exchanges | Web | Google Developers<ul>
+            <li>
+              <a href="https://developers.google.com/web/updates/2018/11/signed-exchanges">https://developers.google.com/web/updates/2018/11/signed-exchanges</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Signed Exchanges · Issue #235 · w3ctag/design-reviews<ul>
+            <li>
+              <a href="https://github.com/w3ctag/design-reviews/issues/235">https://github.com/w3ctag/design-reviews/issues/235</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          draft-yasskin-httpbis-origin-signed-exchanges-impl-02 - Signed HTTP Exchanges Implementation Checkpoints<ul>
+            <li>
+              <a href="https://tools.ietf.org/html/draft-yasskin-httpbis-origin-signed-exchanges-impl-02">https://tools.ietf.org/html/draft-yasskin-httpbis-origin-signed-exchanges-impl-02</a>
+            </li>
+            <li>
+              <a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/att-0212/HTTP_Signed_Exchange_side_meeting_notes.txt">https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/att-0212/HTTP_Signed_Exchange_side_meeting_notes.txt</a>
+            </li>
+            <li>
+              <a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/att-0212/HTTP_Signed_Exchange_side_meeting_notes.txt">https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/att-0212/HTTP_Signed_Exchange_side_meeting_notes.txt</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Intent to Implement: Origin-Signed HTTP Exchanges (Part of Web Packaging)<ul>
+            <li>
+              <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/n7cZXSTwBTY/l7rXucIwBAAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/n7cZXSTwBTY/l7rXucIwBAAJ</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Intent to Experiment: Signed HTTP Exchanges<ul>
+            <li>
+              <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MKHe54W996c/1E51GLbvAQAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MKHe54W996c/1E51GLbvAQAJ</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          WICG/webpackage: Web packaging format<ul>
+            <li>
+              <a href="https://github.com/WICG/webpackage">https://github.com/WICG/webpackage</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          sxg/ - Code Search<ul>
+            <li>
+              <a href="https://cs.chromium.org/chromium/src/content/test/data/sxg/">https://cs.chromium.org/chromium/src/content/test/data/sxg/</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Web OverPackaging<ul>
+            <li>
+              <a href="https://speakerdeck.com/jxck/web-over-packaging">https://speakerdeck.com/jxck/web-over-packaging</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </article>
+
+</main>
+<hr>
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small><small>Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>Google Analytics</a> and <a href=https://w3c.github.io/ServiceWorker/>Service Worker</a>.</small></p>
+</footer>
+</body>
+</html>
+<amp-analytics type=googleanalytics id=analytics1>
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
