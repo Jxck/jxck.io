@@ -83,9 +83,7 @@ Signing(Signed HTTP Exchange) によって起こる大きな変化は、 Logical
 
 展開される Origin は mozaic.fm のものになり、ここから遷移する際に付与される Referer や Origin ヘッダも全て mozaic.fm になる。
 
-
 ![signed http exchange 概観](signed-http-exchange.svg#748x561 "signed http exchange")
-
 
 
 ## Use Case
@@ -226,6 +224,7 @@ Origin Trial 、拡張付き証明書、フラグつき起動の Chrome Canary �
 
 <https://github.com/WICG/webpackage/tree/master/go/signedexchange>
 
+
 ### 証明書
 
 Signing には CanSignHttpExchanges 拡張を含む X.509 証明書が必要だ。
@@ -269,6 +268,7 @@ Signing の検証に必要な証明書チェーンを生成する。
 
 <https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-certurl>
 
+
 ```sh
 #! /bin/sh
 
@@ -306,6 +306,7 @@ echo "ocsp" > tmp
 
 <https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-signedexchange>
 
+
 ```sh
 #! /bin/sh
 
@@ -324,8 +325,6 @@ go get -u github.com/WICG/webpackage/go/signedexchange/cmd/gen-signedexchange
 ```
 
 生成した mozaic.sxg は、 `Content-Type: application/signed-exchange;v=b2` で CDN から配布する。
-
-
 
 
 ### Experimental Features
@@ -362,7 +361,6 @@ open -a Google\ Chrome\ Canary --args --ignore-certificate-errors-spki-list=$BAS
 - Origin Trials には Opt-In している
 
 <https://labs.jxck.io/webpackaging/signed-http-exchange-b2/>
-
 
 まず遷移先のページは以下だ。
 
@@ -600,7 +598,7 @@ sxg を代理配信する CDN がログを提供するなら良いが、現状�
   - <https://wicg.github.io/webpackage/loading.html>
 - Signed HTTP Exchanges \| Web \| Google Developers
   - <https://developers.google.com/web/updates/2018/11/signed-exchanges>
-- Signed Exchanges ·Issue #235 ·w3ctag/design-reviews
+- Signed Exchanges · Issue #235 · w3ctag/design-reviews
   - <https://github.com/w3ctag/design-reviews/issues/235>
 - draft-yasskin-httpbis-origin-signed-exchanges-impl-02 - Signed HTTP Exchanges Implementation Checkpoints
   - <https://tools.ietf.org/html/draft-yasskin-httpbis-origin-signed-exchanges-impl-02>
