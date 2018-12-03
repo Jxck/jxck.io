@@ -99,8 +99,8 @@ AMP は、 Origin サーバにある AMP Valid なコンテンツを  AMP Cache 
 
 例えばこの記事の AMP 対応 URL は以下だが、 AMP キャッシュの URL は以下になる。
 
-- https://blog.jxck.io/entries/2018-12-01/signed-http-exchange.amp.html
-- https://www.google.co.jp/amp/s/blog.jxck.io/entries/2018-12-01/signed-http-exchange.amp.html
+- https://blog.jxck.io/entries/2018-12-01/signed-http-exchanges.amp.html
+- https://www.google.co.jp/amp/s/blog.jxck.io/entries/2018-12-01/signed-http-exchanges.amp.html
 
 この挙動は、 AMP の仕組みを疑問視するユーザが指摘するポイントの 1 つだった。
 
