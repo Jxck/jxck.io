@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>DEMO | labs.jxck.io</title>
+
+<h1>Test</h1>
+
+<mozaic-player>
+  <audio
+    slot=audio
+    data-forward=+30
+    data-back=-10
+    src="../assets/Japanese/female1.wav"
+    type="audio/wave"
+    preload=metadata
+    ></audio>
+</mozaic-player>
+
+<style>
+@font-face {
+  font-family: "FontAwesome5Free";
+  font-style: normal;
+  font-weight: 900;
+  src: url(https://use.fontawesome.com/releases/v5.0.6/webfonts/fa-solid-900.ttf) format("truetype");
+}
+
+mozaic-player {
+  margin: 0 auto;
+  display: block;
+
+  background: #eee;
+  padding: 1em;
+  border-radius: 1em;
+}
+
+@media screen and (max-width: 800px) {
+  audio {
+    width: 100%;
+  }
+  mozaic-player {
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+
+    background: initial;
+    padding: 0;
+    border-radius: 0;
+  }
+}
+</style>
+<script type=module src=main.mjs></script>

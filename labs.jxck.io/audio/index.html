@@ -1,307 +1,35 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
-<meta name=viewport content='width=device-width,initial-scale=1'>
+<meta name=viewport content="width=device-width,initial-scale=1">
 
-<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+<title>Audio Labs | labs.jxck.io</title>
 
+<link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/body.css>
 
-<title>Audio API DEMO | labs.jxck.io</title>
-<style>
-  button {
-    border: none;
-    padding: 0;
-    background-color: initial;
-  }
+<link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/header.css>
+<header>
+  <ul>
+    <li><a href=https://jxck.io><img class=logo alt="jxck logo" width=30 src=https://jxck.io/assets/img/jxck.svg></a>
+  </li>
+</header>
 
-  .wrapper {
-    background: #eee;
-    padding: 1em;
-    border-radius: 1em;
-  }
+<link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/markdown.css>
+<link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/main.css>
+<main role=main class=archive>
+  <h1 id=labs><a href=#labs>Audio Labs</a></h1>
+  <section>
+    <h2 id=contents><a href=#contents>contents</a></h2>
+    <ul>
+      <li><a href=player.html>player</a>
+      <li><a href=mozaic-player.html>mozaic-player</a>
+    </ul>
+  </section>
+</main>
 
-  .progress-line {
-    display: inline-flex;
-    width: 100%;
-  }
+<hr>
 
-  .current {
-    margin-right: 0.6em;
-  }
-
-  .progress {
-    width: 100%;
-  }
-
-  .duration {
-    margin-left: 0.6em;
-  }
-
-  .control-line {
-    width: 30%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  input[type=range] {
-    margin: 0;
-  }
-</style>
-
-<h1>Audio API DEMO</h1>
-
-<div class=wrapper>
-  <audio class=audio preload=metadata src="../assets/Japanese/female1.wav" type=audio/wave></audio>
-
-  <div class=progress-line>
-    <time class=current>00:00:00</time>
-    <progress class=progress></progress>
-    <time class=duration>00:00:00</time>
-  </div>
-
-  <div class=control-line>
-    <button class="bb fa" data-delta=-10>&#xf04a;</button>
-    <button class="playpause fa">&#xf04b;</button>
-    <button class="ff fa" data-delta=+30>&#xf04e;</button>
-
-    <span class=fa>&#xf027;</span>
-    <input class=volume type=range>
-    <span class=fa>&#xf028;</span>
-
-    <select class=playbackRate>
-      <option value=0.6>x0.6</option>
-      <option value=0.8>x0.8</option>
-      <option value=1.0 selected>x1.0</option>
-      <option value=1.2>x1.2</option>
-      <option value=1.4>x1.4</option>
-      <option value=1.6>x1.6</option>
-      <option value=1.8>x1.8</option>
-      <option value=2.0>x2.0</option>
-      <option value=2.2>x2.2</option>
-      <option value=2.4>x2.4</option>
-      <option value=2.6>x2.6</option>
-      <option value=2.8>x2.8</option>
-      <option value=3.0>x3.0</option>
-    </select>
-  </div>
-</div>
-
-<script>
-  EventTarget.prototype.on = EventTarget.prototype.addEventListener
-  const $ = document.querySelector.bind(document)
-  const $audio = $('.audio')
-
-  $('.playpause').on('click', ({target}) => {
-    if ($audio.paused) {
-      console.log('play()')
-      $audio.play()
-      $('.playpause').innerHTML = "&#xf04c;"
-    } else {
-      console.log('pause()')
-      $audio.pause()
-      $('.playpause').innerHTML = "&#xf04b;"
-    }
-  })
-
-  $('.bb').on('click', (e) => {
-    console.log('bb()')
-    const delta = parseInt(e.target.dataset.delta)
-    console.log($audio.currentTime, delta)
-    $audio.currentTime += delta
-  })
-
-  $('.ff').on('click', (e) => {
-    console.log('ff()')
-    const delta = parseInt(e.target.dataset.delta)
-    console.log($audio.currentTime, delta)
-    $audio.currentTime += delta
-  })
-
-  $('.volume').on('input', (e) => {
-    const value = parseFloat(e.target.value)/100
-    console.log(e.type, value)
-    $audio.volume = value
-  })
-
-  $('.playbackRate').on('change', (e) => {
-    const value = parseFloat(e.target.value)
-    console.log(e.type, value)
-    $audio.playbackRate = value
-  })
-
-
-  function seek(e) {
-    const percent      = e.offsetX / e.target.offsetWidth
-    const duration     = $audio.duration
-    const currentTime  = duration * percent
-    $audio.currentTime = currentTime
-    console.log(currentTime)
-  }
-
-  $('.progress').on('mousedown', (e) => {
-    e.target.dragging = true
-    seek(e)
-  })
-
-  $('.progress').on('mousemove', (e) => {
-    if(!e.target.dragging) return
-    seek(e) // seek if dragging
-  })
-
-  $('.progress').on('mouseup', (e) => {
-    e.target.dragging = false
-  })
-
-  $('.progress').on('mouseout', (e) => {
-    e.target.dragging = false
-  })
-
-
-
-
-
-  $audio.on('abort', (e) => {
-    console.log(e.type, e)
-  })
-
-  $audio.on('canplay', (e) => {
-    console.log(e.type, e)
-    $('.playpause').removeAttribute('disabled')
-  })
-
-  $audio.on('canplaythrough', (e) => {
-    console.log(e.type, e)
-  })
-
-  $audio.on('durationchange', (e) => {
-    console.log(e.type, e)
-  })
-
-  $audio.on('emptied', (e) => {
-    console.log(e.type, e)
-  })
-
-  $audio.on('ended', (e) => {
-    console.log(e.type, e)
-  })
-
-  $audio.on('error', (e) => {
-    console.log(e.type, e)
-  })
-
-  $audio.on('loadeddata', (e) => {
-    console.log(e.type, e)
-  })
-
-  function timeFormat(time) {
-    const h = (~~(time / 3600)).toString().padStart(2, 0)
-    const m = (~~(time % 3600 / 60)).toString().padStart(2, 0)
-    const s = (~~(time % 60)).toString().padStart(2, 0)
-
-    //const m = ('0'+~~(time % 3600 / 60)).slice(-2)
-    //const s = ('0'+~~(time % 60)).slice(-2)
-    return `${h}:${m}:${s}`
-  }
-
-  $audio.on('loadedmetadata', (e) => {
-    console.log(e.type, e)
-    const duration    = $audio.duration
-    const currentTime = $audio.currentTime
-    console.log(duration, currentTime)
-
-    $('.progress').value       = currentTime
-    $('.progress').max         = duration
-    $('.duration').textContent = timeFormat(duration)
-  })
-
-  $audio.on('timeupdate', (e) => {
-    const currentTime = $audio.currentTime
-    console.log('timeupdate', currentTime)
-    $('.progress').value      = currentTime
-    $('.current').textContent = timeFormat(currentTime)
-  })
-
-  $audio.on('loadstart', (e) => {
-    console.log(e.type, e)
-  })
-
-  $audio.on('pause', (e) => {
-    console.log(e.type, e)
-    $('.playpause').classList.replace('fa-pause', 'fa-play')
-  })
-
-  $audio.on('play', (e) => {
-    console.log(e.type, e)
-  })
-
-  $audio.on('playing', (e) => {
-    console.log(e.type, e)
-  })
-
-  $audio.on('progress', (e) => {
-    console.log(e.type, e)
-  })
-
-  $audio.on('ratechange', (e) => {
-    console.log(e.type, e)
-  })
-
-  $audio.on('seeked', (e) => {
-    console.log(e.type, e)
-    $('.progress').value = $audio.currentTime
-  })
-
-  $audio.on('seeking', (e) => {
-    console.log(e.type, e)
-    $('.progress').value = $audio.currentTime
-  })
-
-  $audio.on('stalled', (e) => {
-    console.log(e.type, e)
-  })
-
-  $audio.on('suspend', (e) => {
-    console.log(e.type, e)
-  })
-
-  $audio.on('volumechange', (e) => {
-    console.log(e.type, e)
-  })
-
-  $audio.on('waiting', (e) => {
-    console.log(e.type, e)
-  })
-
-
-  document.on('keydown', ({key}) => {
-    console.log({key})
-    console.log(document.activeElement)
-
-    if (document.activeElement.nodeName !== "BODY") return
-
-    switch(key) {
-      case ' ':
-        console.log('play/pause')
-        $('.playpause').dispatchEvent(new Event('click'))
-        break
-      case 'ArrowLeft':
-        console.log('bb')
-        $('.bb').dispatchEvent(new Event('click'))
-        break
-      case 'ArrowRight':
-        console.log('ff')
-        $('.ff').dispatchEvent(new Event('click'))
-        break
-      case 'ArrowUp':
-        console.log('volume up')
-        $('.volume').stepUp()
-        $('.volume').dispatchEvent(new Event('input'))
-        break
-      case 'ArrowDown':
-        console.log('volume down')
-        $('.volume').stepDown()
-        $('.volume').dispatchEvent(new Event('input'))
-        break
-    }
-  })
-</script>
+<link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/footer.css>
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small></p>
+</footer>
+<script src=https://jxck.io/assets/js/ga.js></script>
