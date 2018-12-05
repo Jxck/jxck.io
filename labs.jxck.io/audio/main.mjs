@@ -1,45 +1,45 @@
 // add mozaic player
 import MozaicPlayer from './mozaic-player.mjs'
-console.log(MozaicPlayer)
 
-if (window.matchMedia( "(max-width: 800px)" ).matches) {
+// Enable debug log adding #debug into url
+const log = location.hash === "#debug" ? console.log.bind(console) : () => {}
+
+if (window.matchMedia( "(max-width: 800px)" ).matches || window.customElements === undefined) {
   // スマホの UI は デフォルトの controls が一番使いやすい気がする
-  document.querySelector('audio').controls = true
-} else if (window.customElements === undefined) {
-  // custom element 無い場合も contrls
+  // custom element 無い場合も controls
   document.querySelector('audio').controls = true
   document.querySelector('audio').style.width = '100%'
 } else {
+  log(MozaicPlayer)
   customElements.define('mozaic-player', MozaicPlayer);
 
   // main
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
   const $ = document.querySelector.bind(document)
   document.on('keydown', ({key}) => {
-    console.log({key})
-    console.log(document.activeElement)
+    log(key, document.activeElement)
 
     if (document.activeElement.nodeName !== "BODY") return
 
     switch(key) {
       case ' ':
-        console.log('play/pause')
+        log('play/pause')
         $('mozaic-player').play()
         break
       case 'ArrowLeft':
-        console.log('back')
+        log('back')
         $('mozaic-player').back()
         break
       case 'ArrowRight':
-        console.log('forward')
+        log('forward')
         $('mozaic-player').forward()
         break
       case 'ArrowUp':
-        console.log('volume up')
+        log('volume up')
         $('mozaic-player').volumeup()
         break
       case 'ArrowDown':
-        console.log('volume down')
+        log('volume down')
         $('mozaic-player').volumedown()
         break
     }
