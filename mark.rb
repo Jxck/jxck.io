@@ -727,7 +727,7 @@ class Episode < Article
 
   def article
     super
-      .sub(/audio: (.*)/, "<audio preload=none src=#{audio} controls></audio>")
+      .sub(/audio: (.*)/, "<mozaic-player><audio slot=audio data-forward=+30 data-back=-10 type=audio/mp3 src=#{audio}></audio></mozaic-player>")
       .sub(/<ul>(.*?)<li>published_at:/m, '<ul class=info>\1<li>published_at:')
       .sub(/published_at: (.*)/, "published_at: <time datetime=#{datetime}>#{datetime}</time>")
   end

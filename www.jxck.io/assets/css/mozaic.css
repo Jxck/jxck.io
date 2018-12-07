@@ -137,3 +137,38 @@ nav {
 nav > span {
   color: #333;
 }
+
+
+
+
+/* mozaic-player */
+@font-face {
+  font-family: "FontAwesome5Free";
+  font-style: normal;
+  font-weight: 900;
+  src: url(https://use.fontawesome.com/releases/v5.0.6/webfonts/fa-solid-900.ttf) format("truetype");
+}
+
+mozaic-player {
+  margin: 0 auto;
+  display: block;
+  background: #333;
+  color: #fff;
+  padding: 1em;
+  border-radius: 1em;
+}
+
+@media screen and (max-width: 800px) {
+  audio {
+    width: 100%;
+  }
+  mozaic-player {
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+
+    background: initial;
+    padding: 0;
+    border-radius: 0;
+  }
+}
