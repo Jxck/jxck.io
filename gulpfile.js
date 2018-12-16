@@ -1,7 +1,7 @@
 'use strict';
 
-let gulp = require('gulp');
-let image = require('gulp-image');
+const gulp  = require('gulp');
+const image = require('gulp-image');
 
 const imageOption = {
   pngquant:       true,
@@ -15,8 +15,11 @@ const imageOption = {
   concurrent:     4,
 }
 
-gulp.task('default', () => {
-  gulp.src('blog.jxck.io/entries/**/*.+(png|jpeg|svg|webp)')
+gulp.task('image', (done) => {
+  gulp.src('blog.jxck.io/entries/**/*.+(png|jpeg|svg)')
     .pipe(image(imageOption))
-    .pipe(gulp.dest('blog.jxck.io/entries/'));
-});
+    .pipe(gulp.dest('blog.jxck.io/entries/'))
+    .on('end', done)
+})
+
+gulp.task('default', gulp.series('image'))
