@@ -15,10 +15,8 @@ const imageOption = {
   concurrent:     4,
 }
 
-gulp.task('image', () => {
+gulp.task('default', () => {
   gulp.src('blog.jxck.io/entries/**/*.+(png|jpeg|svg|webp)')
     .pipe(image(imageOption))
     .pipe(gulp.dest('blog.jxck.io/entries/'));
 });
-
-gulp.task('default', ['image']);
