@@ -35,6 +35,8 @@ audio: https://files.mozaic.fm/mozaic-ep46.mp3
 - Microsoft Edge: Explainers
   - <https://github.com/MicrosoftEdge/MSEdgeExplainers>
   - Edge チームからの貢献内容についてのまとめ場所
+- Hummingbird: Building Flutter for the Web - Flutter
+  - <https://medium.com/flutter-io/hummingbird-building-flutter-for-the-web-e687c2a023a8>
 
 
 ### 2018 年のキーワード
