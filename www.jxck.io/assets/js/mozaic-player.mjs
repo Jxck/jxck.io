@@ -308,13 +308,13 @@ export default class MozaicPlayer extends HTMLElement {
   saveVolume() {
     const volume = this.audio.volume
     log('saveVolume', volume)
-    localStorage.setItem(`${this.src}:volume`, volume)
+    localStorage.setItem(`mozaic.fm:volume`, volume)
   }
 
   savePlaybackRate() {
     const playbackRate = this.audio.playbackRate
     log('savePlaybackRate', playbackRate)
-    localStorage.setItem(`${this.src}:playbackRate`, playbackRate)
+    localStorage.setItem(`mozaic.fm:playbackRate`, playbackRate)
   }
 
 
@@ -328,14 +328,14 @@ export default class MozaicPlayer extends HTMLElement {
   }
 
   loadVolume() {
-    const volume = parseFloat(localStorage.getItem(`${this.src}:volume`) || '0.5')
+    const volume = parseFloat(localStorage.getItem(`mozaic.fm:volume`) || '0.5')
     log('loadVolume', volume)
     this.audio.volume = volume
     this.shadowRoot.querySelector('.volume').value = volume*100
   }
 
   loadPlaybackRate() {
-    const playbackRate = parseFloat(localStorage.getItem(`${this.src}:playbackRate`) || '1.0')
+    const playbackRate = parseFloat(localStorage.getItem(`mozaic.fm:playbackRate`) || '1.0')
     log('loadPlabackRate', playbackRate)
     this.audio.playbackRate = playbackRate
     this.shadowRoot.querySelector('.playbackRate').value = playbackRate
