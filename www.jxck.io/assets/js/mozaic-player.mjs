@@ -11,13 +11,10 @@ const ICON = {
 const log = location.hash === "#debug" ? console.log.bind(console) : () => {}
 
 export default class MozaicPlayer extends HTMLElement {
-  static get observedAttributes() { return ['src', 'type'] }
+  static get observedAttributes() { return ['src'] }
 
   get src()      { return this.querySelector('audio').src }
   set src(value) { return this.querySelector('audio').src = value }
-
-  get type()      { return this.querySelector('auido').getAttribute('type') }
-  set type(value) { return this.querySelector('auido').setAttribute('type', value) }
 
   get template() {
     const template = document.createElement('template')
