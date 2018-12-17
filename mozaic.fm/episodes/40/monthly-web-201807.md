@@ -576,7 +576,7 @@ audio: https://files.mozaic.fm/mozaic-ep40.mp3
   - Progressive Enhancement ではあるが、影響が大きすぎた
   - とはいえ v1 が出た今から他のブラウザが v0 実装する必要はない
   - YouTube の Polymer も 1 系だったし YouTube の方針転換もちょっと微妙だったかも
-- dietrich ayala さんのツイート: "How big is the API surface of the web - HTML, JS, CSS, APIs … ??? ✨✨ 8173 ✨✨ According to MDN engineer @floscholz, who counted up the @MozDevNet compatibility data (which is 76% complete at this time). <https://t.co/vXsHcbNj2H">
+- dietrich ayala さんのツイート: "How big is the API surface of the web - HTML, JS, CSS, APIs … ??? ✨✨ 8173 ✨✨ According to MDN engineer @floscholz, who counted up the @MozDevNet compatibility data (which is 76% complete at this time).
   - <https://twitter.com/dietrich/status/998978915912663040>
   - *Web には 9K 近くの API がある。* (そのうち 76% が MDN に載ってる)
 - *Removing Babel's Stage Presets*
