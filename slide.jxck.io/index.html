@@ -721,7 +721,7 @@ const $archive         = $('.archive')
 Object.keys(entries).sort().reverse().forEach((key) => {
   const $section = document.importNode(section_template.content, true)
   const $a = $section.querySelector('h2 a')
-  $a.href = `#{key}`
+  $a.href = `#${key}`
   $a.textContent = key
 
   const $ul = $section.querySelector('ul')
