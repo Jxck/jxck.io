@@ -91,7 +91,7 @@ Signing(Signed HTTP Exchange) によって起こる大きな変化は、 Logical
 これにより可能になるユースケースを解説する。
 
 
-### AMP
+### AMP Cache
 
 AMP は、 Origin サーバにある AMP Valid なコンテンツを  AMP Cache に置き、そこから代理で配信する構成になっている。
 
