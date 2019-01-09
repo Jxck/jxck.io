@@ -5,7 +5,7 @@
 
 const fs = require('fs');
 const content_length = process.env['CONTENT_LENGTH'];
-const FILE = `${process.cwd()}/report.log`;
+const FILE = `${process.cwd()}/beacon.log`;
 
 process.stdin.setEncoding('utf-8')
 process.stdin.on('readable', async (e) => {
@@ -21,6 +21,7 @@ process.stdin.on('readable', async (e) => {
     const req = JSON.stringify({
       body: JSON.parse(body),
       header: header,
+      date: new Date()
     })
 
     fs.appendFile(FILE, req+'\r\n', (err) => {
