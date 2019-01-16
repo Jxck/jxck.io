@@ -9,9 +9,9 @@
 - 日時: 2019/1/13(日) 9:00-17:30
 - 場所: [法政大学富士見ゲート 4F](http://www.hoseikyoiku.jp/facilities/fujimigate.html#fa_li) 401, 402, 403
 - 後援: [法政大学情報科学部](http://cis.k.hosei.ac.jp/)
+- 配信: [Youtube](https://www.youtube.com/channel/UCFq8UHBXg8YNHCeaGmtSFEw)
+- 募集: [Connpass](https://nextwebconf.connpass.com/event/103056/)
 - 参加費: 無料
-- ハッシュタグ(全体): [#nwc_all](https://twitter.com/search?q=%23nwc_all)
-- 配信: TBD
 
 (参考) 2015 年実施のログは以下です。
 
@@ -95,16 +95,6 @@
 - 主催・登壇者に内々に問い合わせても参加枠などは融通できません。
 - トーク中の移動は議論を妨げになるので控えてください。
 - 実施形態に納得できない場合は参加しないでください。
-
-
-## TimeTable
-
-後日公開
-
-- トーク内容は事前には決めないため、トークの概要といったものはありません。
-- 昼食は、休憩時間に校内・教室で食べることもできます。学校の 1 階にセブンイレブン、近くにほっともっとがあります。
-- 学校の Wifi が借りれます。
-- 一部座席には電源があります。
 
 
 ## Speaker
