@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html amp lang=ja>
+<head>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=https://blog.jxck.io/entries/2019-01-19/cache-digest-status.html>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+<link rel=author href=https://jxck.io/assets/humans.txt>
+
+<meta name=author content=Jxck>
+  <meta name=description content="httpbis のチェアである mnot から、 Cache Digest についての現状確認が ML に投稿された。もしこのまま反応がなければ、 Cache Digest は終わり、対ブラウザキャッシュの Server Push は現実的ではなくなる。...">
+  <meta name=keywords content="cache digest,server push,http2">
+  <meta itemprop=image content="https://jxck.io/assets/img/jxck.png">
+  <meta itemprop=name content="blog.jxck.io">
+
+  <meta name=twitter:card content=summary>
+  <meta name=twitter:site content=@jxck_>
+  <meta name=twitter:url content="https://blog.jxck.io/entries/2019-01-19/cache-digest-status.html">
+  <meta name=twitter:title content="Cache Digest と HTTP2 Server Push の現状 | blog.jxck.io">
+  <meta name=twitter:description content="httpbis のチェアである mnot から、 Cache Digest についての現状確認が ML に投稿された。もしこのまま反応がなければ、 Cache Digest は終わり、対ブラウザキャッシュの Server Push は現実的ではなくなる。...">
+  <meta name=twitter:image content="https://jxck.io/assets/img/jxck.png">
+
+  <meta property=og:type content=article>
+  <meta property=og:url content="https://blog.jxck.io/entries/2019-01-19/cache-digest-status.html">
+  <meta property=og:title content="Cache Digest と HTTP2 Server Push の現状 | blog.jxck.io">
+  <meta property=og:site_name content="blog.jxck.io">
+  <meta property=og:description content="httpbis のチェアである mnot から、 Cache Digest についての現状確認が ML に投稿された。もしこのまま反応がなければ、 Cache Digest は終わり、対ブラウザキャッシュの Server Push は現実的ではなくなる。...">
+  <meta property=og:image content="https://jxck.io/assets/img/jxck.png">
+
+  <link rel=icon sizes=256x256 href="https://jxck.io/assets/img/jxck.png">
+  <link rel="shortcut icon" href="https://jxck.io/assets/img/jxck.png">
+  <link rel=apple-touch-icon sizes=256x256 href="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "Cache Digest と HTTP2 Server Push の現状 | blog.jxck.io",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jxck.io/assets/img/jxck.png",
+    "height": 700,
+    "width": 700
+  },
+  "datePublished": "2019-01-19T08:00:00+08:00",
+  "dateModified": "2019-01-19T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jxck.io/assets/img/jxck.png",
+      "height": 60,
+      "width": 257
+    }
+  },
+  "description": "httpbis のチェアである mnot から、 Cache Digest についての現状確認が ML に投稿された。もしこのまま反応がなければ、 Cache Digest は終わり、対ブラウザキャッシュの Server Push は現実的ではなくなる。..."
+}
+</script>
+
+<title>Cache Digest と HTTP2 Server Push の現状 | blog.jxck.io</title>
+<script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+<script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+<script async src=https://cdn.ampproject.org/v0.js></script>
+
+<style amp-custom>
+article section p {
+  margin-left: 0;
+}
+
+article pre {
+  margin: 0;
+}
+
+article table {
+  margin-left: 0;
+}
+
+article img {
+  margin: 1em 0;
+  border: 1px solid #ccc;
+  box-sizing: content-box;
+  background-color: #fff;
+}
+
+article ul,
+article ol {
+  margin-left: 0.8em;
+  font-family: monospace;
+  font-size: 1.2em;
+}
+
+article li {
+  margin-bottom: 0.2em;
+}
+
+article ul li ul,
+article ol li ol {
+  margin: 0.2em 0 0.2em 1em;
+  font-size: 1em;
+}
+
+article ol li ol li,
+article ul li ul li {
+  margin-bottom: 0;
+}
+
+article dl {
+  margin: 1.4em 0 1.4em 0.8em;
+}
+
+article blockquote {
+  padding: 1em;
+}
+
+article blockquote p {
+  line-height: 1;
+  margin: 0;
+}
+
+@supports (line-height-step: 1px) {
+  article {
+    --grid-rhythm: 1.5em;
+    line-height: 1.5;
+    line-height-step: var(--grid-rhythm);
+  }
+
+  article h1,
+  article h2,
+  article h3,
+  article h4,
+  article h5,
+  article h6 {
+    display: inline-block;
+    width: 100%;
+    line-height-step: 0;
+    line-height: 1.2;
+    margin-bottom: 0;
+  }
+
+  article section {
+    /* grid for debug */
+    /* background-size: 100% var(--grid-rhythm); */
+    /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
+  }
+
+  article p {
+    margin-top: var(--grid-rhythm);
+    margin-bottom: var(--grid-rhythm);
+  }
+
+  article pre,
+  article table {
+    line-height-step: 0;
+    line-height: normal;
+  }
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src:
+    local("NotoSansCJKjp-Bold.otf"),
+    local("NotoSansJP-Bold.otf"),
+    url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular-201802.woff2") format("woff");
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 700;
+  font-display: optional;
+  src:
+    local("NotoSansCJKjp-Bold.otf"),
+    local("NotoSansJP-Bold.otf"),
+    url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold-201802.woff2") format("woff");
+}
+
+:root {
+  --background-color: #fefefe;
+  --font-color: #222;
+  --header-color: #222;
+
+  --anchor-color: RoyalBlue;
+  --anchor-visited-color: Brown;
+
+  --code-block: #efefef;
+  --code-block-font: #222;
+
+  --block-quote: #ddd;
+  --table-border: #222;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #010101;
+    --font-color: #eee;
+
+    --anchor-color: CornflowerBlue;
+    --anchor-visited-color: RosyBrown;
+
+    --code-block: #efefef;
+
+    --table-border: #eee;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+  background-color: var(--background-color);
+  color: var(--font-color);
+  margin: 0;
+  padding: 0;
+}
+
+p > code {
+  font-family: monospace;
+}
+
+pre > code {
+  font-family: "Consolas", "Courier New", "Menlo", Monaco, monospace;
+}
+
+iframe {
+  display: block;
+  max-width: 100%;
+  margin: 1em 0;
+}
+
+.tags a {
+  margin: 0 0.2em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+audio {
+  width: 70%;
+}
+
+@media screen and (max-device-width: 480px) {
+  audio {
+    width: 100%;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.info li {
+  margin-right: 1em;
+  list-style-type: none;
+}
+
+.info li::before {
+  content: none;
+}
+
+header {
+  z-index: 1;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.4em;
+  background-color: var(--header-color);
+}
+
+h2:target,
+h3:target,
+h4:target,
+h5:target,
+h6:target {
+  /* sticky header に合わせて link scroll をずらす */
+  margin-top: calc(-50px - 0.2em);
+  padding-top: calc(50px + 0.2em);
+}
+
+header ul {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 80%;
+  margin: 0 auto;
+  padding: 4px;
+}
+
+header ul li {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  margin-left: 1em;
+}
+
+header ul li a {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+header ul li svg {
+  fill: var(--background-color);
+}
+
+header ul li::before {
+  content: none;
+}
+
+header ul li:first-child {
+  flex-grow: 1;
+  margin-left: 0;
+}
+
+header .logo {
+  border: 1px solid #fff;
+  box-sizing: border-box;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  pointer-events: none;
+  color: var(--font-color);
+}
+
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: var(--font-color);
+}
+
+h1 > a::before {
+  content: "# ";
+  pointer-events: all;
+}
+
+h2 > a::before {
+  content: "## ";
+  pointer-events: all;
+}
+
+h3 > a::before {
+  content: "### ";
+  pointer-events: all;
+}
+
+h4 > a::before {
+  content: "#### ";
+  pointer-events: all;
+}
+
+h1 > a:hover::before,
+h2 > a:hover::before,
+h3 > a:hover::before,
+h4 > a:hover::before,
+h5 > a:hover::before,
+h6 > a:hover::before {
+  color: Brown;
+}
+
+em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+em::before,
+em::after {
+  content: "*";
+}
+
+strong {
+  color: red;
+}
+
+strong::before,
+strong::after {
+  content: "**";
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+dl dt::after {
+  content: ":";
+}
+
+blockquote {
+  display: block;
+  border: solid 1px var(--block-quote);
+  border-radius: 4px;
+  padding: 0.4em 1em;
+  margin: 0;
+}
+
+blockquote p::before {
+  content: "> ";
+}
+
+code {
+  background-color: var(--code-block);
+  color: var(--code-block-font);
+  border-radius: 4px;
+  padding: 0 4px;
+}
+
+code::before,
+code::after {
+  content: "`";
+}
+
+main {
+  display: block;
+  width: 80%;
+  margin: 1em auto;
+}
+
+@media screen and (max-device-width: 480px) {
+  main {
+    width: 94%;
+  }
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+  color: var(--anchor-color);
+}
+
+a:visited {
+  color: var(--anchor-visited-color);
+}
+
+ol,
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+ul,
+ol,
+dl {
+  margin: 1.4em 0;
+}
+
+dl dt {
+  font-weight: bold;
+}
+
+dl dd {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+  margin-left: 1.2em;
+}
+
+footer {
+  padding: 1em;
+}
+
+footer strong,
+footer .copyright {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  font-style: italic;
+  font-size: small;
+}
+
+
+pre {
+  word-break: break-all;
+  word-wrap: break-word;
+  margin: 1.4em 0 0 0;
+  border-radius: 4px;
+}
+
+pre::before {
+  content: "```" attr(class) "\A";
+}
+
+pre::after {
+  z-index: -1;
+  position: relative;
+  top: -1em;
+  content: "\A```";
+}
+
+pre > code {
+  overflow: auto;
+  display: block;
+  padding: 0.6em;
+  margin: 0;
+  border: none;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-attribute {
+  font-weight: bold;
+}
+
+.hljs-meta {
+  color: #4f80e5;
+}
+
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-pseudo {
+  color: #6f42c1;
+}
+
+.hljs-selector-tag {
+  color: #22863a;
+}
+
+.hljs-subst {
+  font-weight: bold;
+}
+
+.hljs-variable {
+  color: #a71d5d;
+}
+
+.hljs-symbol {
+  font-weight: bold;
+}
+
+/**.hljs,**/
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-type,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-section,
+.hljs-meta-string,
+.hljs-emphasis {
+  /** if you find element applyed this style, please tell me https://github.com/jxck/jxck.io/issues **/
+  font-size: 100em;
+}
+
+table {
+  font-family: monospace;
+  margin: 2em 0;
+  border-spacing: 0 0.4em;
+}
+
+th {
+  padding: 0 1em 0.6em;
+  border-left: 0.14em solid var(--table-border);
+  border-bottom: 2px dashed var(--table-border);
+}
+
+td {
+  padding: 0.4em 1.2em;
+  border-left: 0.14em solid var(--table-border);
+}
+
+th:last-child,
+td:last-child {
+  border-right: 0.14em solid var(--table-border);
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+</style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://blog.jxck.io><amp-img class=logo alt="blog top" width=30 height=30 src=https://jxck.io/assets/img/blog.svg></a>
+      <li><a href=.><amp-img alt="move to parent directory" width=30 height=30 src=https://jxck.io/assets/img/up.svg></a>
+      <li><a href=/feeds/atom.xml><amp-img alt="rss feed" width=30 height=30 src=https://jxck.io/assets/img/rss.svg></a>
+      <li><a href=https://jxck.io/humans.txt><amp-img alt="huamns.txt" width=30 height=30 src=https://jxck.io/assets/img/humans.svg></a>
+      <li><a href=https://jxck.io><amp-img class=logo alt="jxck logo" width=30 height=30 src=https://jxck.io/assets/img/jxck.svg></a>
+    </ul>
+  </nav>
+</header>
+<main>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2019-01-19>2019-01-19</time>
+    <li>updated_at: <time class=updated_at datetime=2019-01-19>2019-01-19</time>
+    <li class=tags>tags: [<a href='/tags/cache%20digest.html'>cache digest</a>,<a href='/tags/server%20push.html'>server push</a>,<a href='/tags/http2.html'>http2</a>]
+  </ul>
+
+
+  <article>
+    <h1><a href=/entries/2019-01-19/cache-digest-status.html>Cache Digest と HTTP2 Server Push の現状</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p>httpbis のチェアである mnot から、 Cache Digest についての現状確認が ML に投稿された。
+      <p>もしこのまま反応がなければ、 Cache Digest は終わり、対ブラウザキャッシュの Server Push は現実的ではなくなる。
+    </section>
+    <section>
+      <h2 id="http2-push"><a href="#http2-push">HTTP2 Push</a></h2>
+      <p>HTTP2 の仕様策定時に盛り込まれた新機能として、 Server Push があった。
+      <p>これは、例えば RPC 的な用途で双方向性のある通信を可能にした。
+      <p>Web においては、リクエストが来る前にレスポンスを返しキャッシュに入れ込むことで、 RTT を減らすという効果が期待されていた。
+      <p>ところが、コンテントネゴシエーションをせずに、一方的にキャッシュを送り込むこの仕組みは、ブラウザが既にキャッシュをしている場合にはむしろ無駄な通信になる。
+      <p>そこで、なんとかして「ブラウザがなるべくキャッシュしてなさそうなものを Push する」ために <a href="https://twitter.com/kazuho">@kazuho</a> さんが考案したのが、 Cache Digest である。
+    </section>
+    <section>
+      <h2 id="cache-digest"><a href="#cache-digest">Cache Digest</a></h2>
+      <p>Cache Digest は以下のドラフトであり、現状 -05 である。
+      <p><a href="https://tools.ietf.org/html/draft-ietf-httpbis-cache-digest-05">draft-ietf-httpbis-cache-digest-05 - Cache Digests for HTTP/2</a>
+      <p>究極には、ブラウザが保存しているコンテンツのリストを送ってくれば、正確に Push が可能だが、その方法は問題しかない。
+      <p>現代の Web でそれをやるとサイズが大きすぎるし、 Fingerprint などの問題も懸念される。
+      <p>そこで、 Filtercuckoo Filter という Bloom Filter に似た確率的データ構造を用いるのがこの提案だ。
+      <p>「このコンテンツは絶対にキャッシュされてない」ことはわかるので、その場合は Push を行う。
+      <p>「このコンテンツはキャッシュされているかもしれないが、されてないかもしれない」こともわかるので、その場合は Push しない。
+      <p>これにより、もし後者で実際にはキャッシュがなかった場合は、ブラウザが普段通り Fetch すればよいため、「無駄な Push は無くせる」という効果が期待された。
+      <p>現実的には、「<em>これが無かったら対ブラウザの HTTP2 Push は正直使い物にならない</em>」というくらい重要なミッシングピースだったと筆者は考えており、使える日を心待ちにしていた。
+    </section>
+    <section>
+      <h2 id="cache-digest-status"><a href="#cache-digest-status">Cache Digest Status</a></h2>
+      <p>Cache Digest は、どちらかというと実装待ちのフェーズだった。
+      <p>直近の IETF 103 の minutes でも、「実装さえあれば WGLC にできる、無いんだけど」というログのみが残っている。
+      <p><a href="https://github.com/httpwg/wg-materials/blob/gh-pages/ietf103/minutes.md#cache-digests-for-http2">HTTP Working Group Minutes - IETF103 Bangkok</a>
+      <p>あるブラウザの開発者から「実装が難しすぎる」という話をちょっと聞いたことがあったが、やはり内部のキャッシュを総ざらいしてハッシュを付与するという実装は、負荷が高かったのかもしれない。
+      <p>実際、主なブラウザにおいて積極的な実装のシグナルは確認できておらず、仕様は中に浮いた状態だっという印象だ。
+      <p>そして、先日 httpwg の mnot から、以下の投稿が ML にあった。
+      <p><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2019JanMar/0033.html">Cache Digests status from Mark Nottingham</a>
+      <p>要約するとこうだ。
+      <ul>
+        <li>標準化するに足るほど実装が普及してるとはいえない
+        <li>
+          このままではプロセスに従って仕様を &ldquo;dead&rdquo; とみなす必要がある
+        </li>
+        <li>もし見落としてる実装や動きがあれば教えて欲しい
+      </ul>
+      <p>そして、数日経過した今でも、他の議論が盛り上がるのに流されるように、この ML の返答は誰からも無い。恐らくそれが答えなのだろう。
+    </section>
+    <section>
+      <h2 id="alternative"><a href="#alternative">Alternative</a></h2>
+      <p>ブラウザにおける Server Push では、同じく kazuho さんが提案し RFC になっている Early Hints がある。
+      <p><a href="https://blog.jxck.io/entries/2016-12-16/103-early-hints.html">HTTP の新しいステータスコード 103 Early Hints | blog.jxck.io</a>
+      <p>簡単に言えば、 Main Resource の Status Code が決定する前に、確定している Sub Resource を Status Code 103 として送るための仕組みだ。
+      <p>これは、 Push を CDN に移譲したりといった一部のユースケースを満たすが、依然として Client が何を Cache しているかはわからない。
+      <p>もう一つ、ちょうど先月提案されたのが Prefer-Push という仕組みだ。
+      <ul>
+        <li>
+          <a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2018OctDec/0144.html">Prefer-Push, a HTTP extension</a>
+        </li>
+        <li>
+          <a href="https://github.com/evert/push-please/">evert/push-please: A proposal for a HTTP-client suggested push by link-relation</a>
+        </li>
+      </ul>
+      <p>これは、 Client 自身が Push してほしいリソースをヘッダで送るというものだ。
+      <p>もし、サブリソースのリストがわかってればそれも可能だが、例えば前のページで次のページのそれがわかっている状況は prefetch などで代用できそうにも思う。
+      <p>当然そういった指摘が ML でなされているようで、あまり追ってないが盛り上がっている感じではなさそうに見える。
+      <p>もともとの Push は最初の Request に対する Response の前に送る仕様になっているが、これを Request が来る前に送ってしまうという仕様も flano_yuki によって提案されている。
+      <p><a href="https://tools.ietf.org/html/draft-goto-httpbis-preload-frame-02">The PRELOAD Frame Extension</a>
+      <p>モチベーションとしてローディングの最適化があるようだが、これもブラウザが実装するかどうかというと難しそうだ。
+    </section>
+    <section>
+      <h2 id="push-on-chrome"><a href="#push-on-chrome">Push on Chrome</a></h2>
+      <p>現状 Chrome では HTTP2 セッションのうち 0.04% が Push を行っているらしい。
+      <p><a href="https://datatracker.ietf.org/meeting/102/materials/slides-102-httpbis-chromes-view-on-push-01">Chrome&rsquo;s view on Push IETF 102, httpbis Brad Lassey</a>
+      <p>現実的な用途が見出されず、利用も広まらないのであれば、このままブラウザがメンテを続ける必要も無くなるかもしれない。
+      <p>ただ、 Service Worker における Server Push や WebSocket など、内部での別の通信が Push を含めた HTTP2 Stack を使うことは十分にありえると思うので、すぐに Push ごとなくすということはなさそうに思う。
+    </section>
+    <section>
+      <h2 id="back-to-client-initiate"><a href="#back-to-client-initiate">Back to Client Initiate</a></h2>
+      <p>クライアントが取得する必要の有るものを、サーバが送るというのが本来の Request/Response の世界だ。
+      <p>これをキャッシュのレイヤに落として、クライアントが持っているキャッシュを伝えることでサーバが不足を補うというユースケースが Server Push にはあった。
+      <p>しかし、やはりサーバは選択肢を出して、クライアントが自分の保持するキャッシュと照らしあわせて取得することになる。
+      <p>そこを最適化するのは「選択肢をなるべく早めに提示する」ための Prefetch, Preload, Prerender であり、そこを超えたければ自分で Service Worker を使ってやるということになりそうだ。
+    </section>
+    <section>
+      <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
+      <p>Cache Digest が実装されず、仕様が文字通り瀕死の状態だ。
+      <p>このまま実装が進まなければ、対ブラウザの Push は、かなり狭い範囲でしか使えない。実質使い物にならないだろうと筆者は考える。
+      <p>他のプロトコルなどのためのスタックとしての用途は残るかもしれないが、 h2 が最初にユースケースで上げていた話では使いにくくなる。
+      <p>Client Initiate な negotiation を経ずに Server が何かするということ自体がやはり限界で、対ブラウザの Push は夢のまま終わりそうだ。
+    </section>
+    <section>
+      <h2 id="special-thanks"><a href="#special-thanks">Special Thanks</a></h2>
+      <p>この記事を書くにあたり <a href="https://twitter.com/kazuho">@kazuho</a> さんにアドバイスをいただきました。ありがとうございます。
+    </section>
+  </article>
+
+</main>
+<hr>
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small><small>Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>Google Analytics</a> and <a href=https://w3c.github.io/ServiceWorker/>Service Worker</a>.</small></p>
+</footer>
+</body>
+</html>
+<amp-analytics type=googleanalytics id=analytics1>
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
