@@ -7,12 +7,10 @@
     "@id":"https://<%= host %>"
   },
   "headline": "<%= title %> | <%= host %>",
-  "image": {
-    "@type": "ImageObject",
-    "url": "<%= icon %>",
-    "height": 700,
-    "width": 700
-  },
+  "image": [
+    "https://jxck.io/assets/img/jxck.png",
+    "https://logo.jxck.io/jxck.1200x1200.png"
+  ],
   "datePublished": "<%= created_at %>T08:00:00+08:00",
   "dateModified": "<%= updated_at %>T08:00:00+08:00",
   "author": {
@@ -20,14 +18,14 @@
     "name": "Jxck",
     "image": "<%= icon %>"
   },
-   "publisher": {
+  "publisher": {
     "@type": "Organization",
     "name": "Jxck",
     "logo": {
       "@type": "ImageObject",
-      "url": "<%= icon %>",
+      "url": "https://logo.jxck.io/jxck.60x60.png",
       "height": 60,
-      "width": 257
+      "width": 60
     }
   },
   "description": "<%= short hsc description %>"
