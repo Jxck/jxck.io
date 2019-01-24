@@ -153,10 +153,10 @@ m=audio 9 UDP/TLS/RTP/SAVPF 111 103 104 9 0 8 106 105 13 110 112 113 126
 
 内訳は以下
 
-- media:  audio (webrtc では video か audio)
-- port:   9 (このポートにメディアが送信される、 9 は Discard Protocol で破棄されるポート)
-- proto:  UDP/TLS/RTP/SAVPF (プロトコル)
-- fmt:    111 103 104 9 0 8 106 105 13 110 112 113 126 (RTP/SAVP の場合、ペイロードタイプ番号が指定され、以降の `a=rtpmap:`, `a=fmtp:` にマップされる。
+- media: audio (webrtc では video か audio)
+- port:  9 (このポートにメディアが送信される、 9 は Discard Protocol で破棄されるポート)
+- proto: UDP/TLS/RTP/SAVPF (プロトコル)
+- fmt:   111 103 104 9 0 8 106 105 13 110 112 113 126 (RTP/SAVP の場合、ペイロードタイプ番号が指定され、以降の `a=rtpmap:`, `a=fmtp:` にマップされる。
 
 
 fmt で、例えば最初の `111` は以下に紐づく。
@@ -166,6 +166,13 @@ a=rtpmap:111 opus/48000/2
 a=rtcp-fb:111 transport-cc
 a=fmtp:111 minptime=10;useinbandfec=1
 ```
+
+### SAVPF
+
+- AVP: Audio-Visual Profile
+- AVPF: AVP Feedback
+- SAVP: Secure AVP
+- SAVPF: SAVP Feedback
 
 
 ## SDP 属性
@@ -238,13 +245,14 @@ https://tools.ietf.org/html/draft-ietf-mmusic-sdp-bundle-negotiation に定義
 a=msid-semantic: WMS 1vmCULJy1eti8vXBcbg12mvz6GSOreOKHoDK
 ```
 
-WMS (webrtc media stream) の ID
+PeerConnection 中の WMS (webrtc media stream) の ID
+
+該当の SSRC が、同じ MediaStream に属する Track であることを示す。
+
 
 https://tools.ietf.org/html/draft-ietf-mmusic-msid に定義
 
 (https://webrtchacks.com/wp-content/themes/parament/custom-pages/sdp/6.html)
-
-
 
 
 ## ICE
@@ -289,11 +297,8 @@ a=setup:actpass
 値は以下の 4 つがある。
 
 - active: 接続要求を出す
-
 - passive: 接続を受け入れる
-
 - actpass: active/passive どちらにもなる
-
 - holdconn: 一時的にコネクションの確率を望まない
 
 
