@@ -7,6 +7,12 @@ httpbis のチェアである mnot から、 Cache Digest についての現状�
 もしこのまま反応がなければ、 Cache Digest は終わり、対ブラウザキャッシュの Server Push は現実的ではなくなる。
 
 
+## Update
+
+- mozilla standard position に RFP を上げたところ「実装はしないが仕様については *non-harmful*」となりそうだ。
+  - [PFP: Cache Digest Issue #131 mozilla/standards-positions](https://github.com/mozilla/standards-positions/issues/131)
+
+
 ## HTTP2 Push
 
 HTTP2 の仕様策定時に盛り込まれた新機能として、 Server Push があった。
