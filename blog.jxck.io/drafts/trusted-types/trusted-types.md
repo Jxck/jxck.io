@@ -2,9 +2,9 @@
 
 ## Intro
 
-XSS の原因となる DOM 操作の代表例として `elem.innerHTML` や `location.href` などが既に知られている。
+脆弱性の原因となる DOM 操作の代表例として `elem.innerHTML` や `location.href` などが既に知られている。
 
-こうした操作対象(sink) に対して、文字列ベースの代入処理をする際に、一律して検証をかけることができれば、脆弱性の発見や防止に役立つだろう。
+こうした操作対象(sink) に対して、文字列ベースの代入処理を行う際に、一律して検証をかけることができれば、脆弱性の発見や防止に役立つだろう。
 
 そこで処理前の文字列に対し、処理後の文字列を安全であるとして明示的に型付ける TrustedTypes という提案がされている。
 
@@ -13,91 +13,132 @@ XSS の原因となる DOM 操作の代表例として `elem.innerHTML` や `loc
 
 ## Sink
 
-XSS の原因となる DOM 操作として、 DOM に直接文字列を展開する処理がある。
+XSS などの原因となる DOM 操作として、 DOM に直接文字列を展開する処理がある。
 
 - `element.innderHTML`
 - `location.href`
 - `script.src`
-- `script.innerHTML`
+- `script.textContent`
 
 こうした API は WebIDL でいう DOMString を許容しており、おおよそ任意の文字列を受け入れる。
 
 そこで、開発者は意図しない文字列が代入されないように、エスケープなど事前処理を行う必要がある。
 
-しかし、適切な前処理はあくまで開発者側が担保するものなので、往往にして抜けが出る。
+しかし、適切な前処理はあくまで開発者側が担保するものなので、往々にして抜けが出る。
 
 規模が大きければ、レビューなどを行なっても、それらを見つけ出すことは難しい。
 
-
 これらの API を利用する場合は、意図しない文字列が代入されても良いように、適切な事前処理を行う必要がある。
-
 
 規模が大きくなれば、テストやセキュリティレビューで全てをあぶりだすことも難しい。
 
 最近では、そもそもの DOM 処理をフレームワークに任せるか、型による検証を通して抜け漏れを防ぐといった工夫がなされている。
 
-
 Trusted Types は、ブラウザ自体に型を認識させ、処理をフックすることで、意図しない処理を見つけ出すことが目的とされている。
 
 
+## CSP trusted-types
+
+TrustedTypes は CSP により Opt-In で利用する。
 
 
-## Trusted Types
+```http
+Content-Security-Policy: trusted-types
+```
 
-Trusted Types は、安全に処理されたことを型として定義し、それをブラウザが認識することで、安全で無い処理を防ぐことを目的としている。
+これにより、現時点では以下のような処理がエラーとなる。
 
-具体的には、現時点では DOM に以下の型を追加している。
+- `element.innderHTML`
+- `location.href`
+- `script.src`
+- `script.textContent`
+
+
+```js
+const $ = document.querySelector.bind(document);
+
+// Uncaught TypeError: Failed to set the 'innerHTML' property on 'Element': This document requires `TrustedHTML` assignment.
+$('div').innerHTML = '<img src=/ onerror="alert(10)">'
+
+// Uncaught TypeError: Failed to set the 'href' property on 'Location': This document requires `TrustedURL` assignment.
+location.href = 'https://fishing.example.com';
+
+// Uncaught TypeError: Failed to set the 'src' property on 'HTMLScriptElement': This document requires `TrustedScriptURL` assignment.
+const $script = document.createElement('script')
+$script.src = 'https://attack.example.com/script.js'
+
+// Uncaught TypeError: Failed to set the 'textContent' property on 'Node': This document requires `TrustedScript` assignment.
+$('script').textContent = 'alert(0)'
+```
+
+エラーを見るとわかるように、それぞれの処理は単なる文字列、 WebIDL でいう DOMString ではなく、それぞれ以下の型を要求していることがわかる。
 
 - TrustedHTML
 - TrustedURL
 - TrustedScriptURL
 - TrustedScript
 
-これらの型は、特定の前処理を経てしか生成できない。
+各処理は、 DOMString をこの型に変換してからでないと行えないようになった。
 
-前処理は用途に応じて複数定義できるよう、ポリシーという形で定義する。
 
-ここでは HTML Special Chars を処理する `escape` というポリシー `createHTML` に対して定義する。
+## Trusted Types
+
+DOMString を TrustedTypes に変換するには、まず TrustedTypePolicy を生成する必要がある。
+
+これは、以下のように `createPolicy()` を用いて生成する。
+
 
 ```js
-const createHTMLPolicy = TrustedTypes.createPolicy('escape', {
+const policy = TrustedTypes.createPolicy('application-policy', {
+  createHTML:      (unsafe) => {/*..*/},
+  createURL:       (unsafe) => {/*..*/},
+  createScriptURL: (unsafe) => {/*..*/}
+  createScript:    (unsafe) => {/*..*/}
+})
+```
+
+例えば `innerHTML` できる TrustedHTML は、この Policy に定義した `createHTML()` を通して取得することができる。
+
+
+```js
+const trustedHTML = escapePolicy.createHTML('<img src=/ onerror="alert(10)">')
+$('div').innerHTML = trustedHTML
+```
+
+つまり、 `innerHTML` の前には HTML Special Chars のエスケープを必須としたいという場合は、 `createPolicy()` の引数に渡す関数にその処理を入れれば良い。
+
+
+```js
+const policy = TrustedTypes.createPolicy('application-policy', {
   createHTML: (unsafe) => {
-    // escape html special chars
-    return str.replace(/&/g, '&amp;')
-              .replace(/</g, '&lt;')
-              .replace(/>/g, '&gt;')
-              .replace(/"/g, '&quot;')
-              .replace(/'/g, '&#039;');
+    return unsafe
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
   }
-});
+})
+
+const trustedHTML = escapePolicy.createHTML('<img src=/ onerror="alert(10)">')
+$('div').innerHTML = trustedHTML // html special chars escaped
 ```
 
-このポリシーを用いると、 innerHTML に渡せる TrustedHTML オブジェクトを得ることができる。
+これで全ての innerHTML は確実にエスケープされていることを保証できる。
+
+このように Trusted Types は、安全に処理されたことを型として定義し、それをブラウザが認識することで、安全で無い処理を防ぐことを目的としている。
 
 
-```js
-const trustedHTML = createHTMLPolicy.createHTML('<img src=/ onerror="alert(10)">')
-document.querySelector('div').innerHTML = trustedHTML
-```
+## Opt-In Policy
 
-最後に、ブラウザに対して CSP によって *型の検証* とこの *Policy の利用* を知らせることで、有効にできる。
+先のように `createPolicy('application-policy')` で定義した Policy を利用するためには、必ず CSP に「利用を許可する Policy の名前」の指定が必要だ。
+
+これをしなければポリシーを利用した時点で CSP エラーとなる。
 
 
 ```http
-"Content-Security-Policy: trusted-types escape
+Content-Security-Policy: trusted-types application-policy
 ```
-
-これにより trustedHTML は、ほぼただの文字列だが、ブラウザはその型を認識するため、もし以下のように TrustedTypes でない文字列を入れると例外が上がる。
-
-```js
-document.querySelector('body').innerHTML = '<img src=/ onerror="alert(10)">'
-// Uncaught TypeError: Failed to set the 'innerHTML' property on 'Element': This document requires `TrustedHTML` assignment.
-```
-
-
-## Policy
-
-ポリシーは、複数定義できるが、利用するものは CSP で指定する必要がある。
 
 これは Policy から `createHTML` すれば型としては TrustedType であるため、なんらかの方法で Policy も仕込まれてしまうことを防ぐ目的もある。
 
@@ -112,32 +153,173 @@ const trustedHTML = dummyPolicy.createHTML('<img src=/ onerror="alert(10)">')
 document.querySelector('div').innerHTML = trustedHTML
 ```
 
-
-また、
-
+ここで定義した Policy 名の `dummy` は、 CSP で指定されていないため使うことができない。
 
 
-## Trusted Types
+## 名前空間
+
+Policy オブジェクトは戻り値でしか取得できないため、広く参照される場合は expose によって明示的に公開することができる。
 
 
+```js
+TrustedTypes.createPolicy('escape', {
+  createHTML: (unsafe) => {/*...*/}
+}, true); // expose = true
+```
 
-## Performance
+expose された Policy は `getExposedPolicy(name)` で取得が可能だ。
 
-## 効果
+
+```js
+const escapePolicy = TrustedTypes.getExposedPolicy('escape')
+const escapedValue = escapePolicy.createHTML('<b>escape me</b>');
+```
+
+Global に Policy が定義されるため、名前が衝突する再定義はエラーになる。
+
+基本は expose せずに閉じた範囲で利用し、ライブラリなどによって提供される Policy の場合は Prefix をつけるなどした方が良さそうだ。
+
+
+## Example
+
+アプリケーション全体で共通するポリシー例を考察する。
+
+- createHTML:      HTML Special Chars をエスケープする
+- createURL:       同じオリジンでない場合はエラーとする
+- createScriptURL: ホワイトリストに無いオリジンはエラーとする
+- createScript:    定義しないことで利用そのものをエラーとする
+
+
+```js
+TrustedTypes.createPolicy('https://labs.jxck.io', {
+  createHTML: (unsafe) => {
+    console.log('createHTML')
+    return unsafe
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  },
+  createURL: (unsafe) => {
+    console.log('createURL')
+    const unsafeurl = new URL(unsafe)
+    const currenturl = new URL(location.href)
+
+    if (unsafeurl.origin !== currenturl.origin) {
+      throw new Error('url of unexpected origin')
+    }
+    return unsafeurl
+  },
+  createScriptURL: (unsafe) => {
+    console.log('createScriptURL')
+    const unsafeurl = new URL(unsafe)
+    const currenturl = new URL(location.href)
+
+    const whitelist = [
+      currenturl.origin,
+      'https://unpkg.com',
+      'https://www.google-analytics.com',
+    ]
+
+    if (whitelist.includes(unsafeurl.origin) === false) {
+      throw new Error('url of unexpected origin')
+    }
+
+    return unsafe
+  },
+  /* not define createScript */
+}, true);
+```
+
+
+## 考察
+
+
+### 何もしない、はできない。
+
+意図しないものを省くために、エスケープのように強制的に変換できれば良いが、意図しない場合は明示的にエラーを投げるか、定義しないことでエラーを発生させるしか方法が無い。
+
+エラーにできることもメリットであるが、エラー処理に悩まされるくらいなら操作を無視できた方が良い場合もありそうだ。
+
+例えば `createURL()` で `null` や `undefined` を返しても、 `location.href` へ代入は行われてしまい、遷移がおこる。
+
+せっかくなら、何もしないということがうまく表現できると、エラー処理を気にせずにいられるので良さそうだ。
+
+
+### expose が boolean
+
+`createPolicy()` の第三引数の expose が、現時点では boolean で定義されている。
+
+
+```js
+TrustedTypePolicy createPolicy(DOMString policyName, TrustedTypeInnerPolicy policy, optional boolean expose = false);
+```
+
+これでは、仮にもう一つオプションを増やしたいという場合に、拡張に対して閉じてしまっている。
+
+同じことは [PassiveEventListener](https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html#feature-detection) でもあったため、基本的に最後のオプションはオブジェクトの方が良いだろう。
+
+これは、 [issue](https://github.com/WICG/trusted-types/issues/123) を上げておいた。
+
+
+### Performance
+
+CSP で有効にした時点で、対象となる全ての処理にフックが入る設計となっている。
+
+まだ Experimental であるため、性能を測る段階では無いが、オーバーヘッドが気になってくるところでもある。
+
+
+### Reporting
+
+現時点では Reporting API の対応は入っていないようだが、 Intents を見ると under consideration であるようだ。
+
+
+### CSP 無効での利用
+
+CSP によって有効になるのは、型が違う場合にエラーをあげることだけだ。
+
+つまり Pocliy のメソッドを経由して DOMString を TrustedTypes に変換することは、 CSP で有効にしなくても可能だ。
+
+これだけでも以下の二つのメリットが考えられる
+
+- 標準化された型があることにより、 WebIDL を参考に TypeScript などに導入し、型の検証に利用することができる。
+- これまで設計に依存していたエスケープの所在が標準化され、フレームワークやライブラリとの間で、安全な設計を考える共通言語ができる。
+
+エスケープを強制する規約を設けたり、そこに型を与えて静的に解析することで、 TrustedTypes と同等のことを自前でやっている場面は少なく無いだろう。
+
+そこに共通の作法が生まれるだけでも、現実的なメリットはあるように筆者は感じる。
+
+
+### 効果
 
 開発の場面でフレームワークを使うことが一般的となり、今回解説したような Sink を直接操作する機会はかなり減ってきた。
-逆を言えば、直接操作せず FW に任せることにより、安全性を担保し、特に innerHTML に起因する典型的な XSS については滅多に発生しない状況まできていると筆者は考える。
 
-しかし、それでも `location.href` など、画面自体に関わらない部分では少し気を抜くことで突破口となる場面は今でも少なくない。
+直接操作せず FW に任せることにより、安全性を担保し、特に innerHTML に起因する典型的な XSS については滅多に発生しない状況まできていると筆者は考える。
 
-TrustedTypes は、デプロイ時に有効にして XSS 発生時に防ぐというよりは、開発時に「未検証の操作が無いか」を検出することで、穴を未然に防ぐ形で使う方が現実的に思う。
+しかし、それでも画面に関わらない `location.href` などはフレームワークの対象になっていないことも多く、少し気を抜くことで突破口となる場面は今でも少なくない。
 
-特に TypeScript など、既に静的な型付けが行われている環境であれば、同じことが既に行われているかもしれない。
+これまで設計に依存していたエスケープの所在が標準化され、それがブラウザと統合されることは、フレームワークやライブラリとの間で、安全な設計を考える上での共通言語ができるのは良いことだろう。
 
-その場合は TrustedTypes を DOM 側の WebIDL から導入することで、ビルド時にも使える。
+一方、他の CSP と同様、 TrustedTypes をデプロイすることは、多くの拡張や bookmarklet などの DOM への介入を一括して阻害する可能性がある。
+
+従って他の CSP と同様に、開発時に「未検証の操作が無いか」を Reporting などで検出することで、穴を未然に防ぐ形で様子を見るのがしばらくは良さそうに感じた。
+
+他にも [Mozilla Standard Position](https://github.com/mozilla/standards-positions/issues/20) ではまだ結論が出ていないので、それらも注視しつつ、検証とフィードバックができればと考えている。
 
 
+## DEMO
 
-また、これまで設計に依存していたエスケープの所在が標準化され、それがブラウザと統合されることにより、安全な設計を考える上での共通言語ができるのは良いことかもしれない。
+以下に DEMO を用意した。
+
+動作は Chrome Canary 74.0.3684.0 で確認している。
+
+[TrustedTypes Labs \| labs.jxck.io](https://labs.jxck.io/trusted-types/)
 
 
+## Links
+
+- [WICG/trusted-types: Polyfill implementation of Trusted Types - a proposal to get rid of DOM XSS vulnerabilities in the web platform.](https://github.com/WICG/trusted-types)
+- [Intent to Experiment: Trusted Types](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/I9To21DXcLo/NrU9P0M4EAAJ)
+- [Trusted Types issue #20 mozilla/standards-positions](https://github.com/mozilla/standards-positions/issues/20)
+- [Trusted Types issue #198 w3ctag/design-reviews](https://github.com/w3ctag/design-reviews/issues/198)
