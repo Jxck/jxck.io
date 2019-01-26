@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <title>Trusted Types with Policy DEMO | labs.jxck.io</title>
+
+  <meta http-equiv=Content-Security-Policy content="trusted-types https://labs.jxck.io">
+</head>
+<body>
+  <h1>Trusted Types with Policy DEMO</h1>
+
+  <div></div>
+
+  <script>
+    const $ = document.querySelector.bind(document);
+
+    // Create application policy
+    TrustedTypes.createPolicy('https://labs.jxck.io', {
+      createHTML: (unsafe) => {
+        console.log('createHTML')
+        return unsafe
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      },
+      createURL: (unsafe) => {
+        console.log('createURL')
+        const unsafeurl = new URL(unsafe)
+        const currenturl = new URL(location.href)
+
+        if (unsafeurl.origin !== currenturl.origin) {
+          throw new Error('url of unexpected origin')
+        }
+        return unsafeurl
+      },
+      createScriptURL: (unsafe) => {
+        console.log('createScriptURL')
+        const unsafeurl = new URL(unsafe)
+        const currenturl = new URL(location.href)
+
+        const whitelist = [
+          currenturl.origin,
+          'https://unpkg.com',
+          'https://www.google-analytics.com',
+        ]
+
+        if (whitelist.includes(unsafeurl.origin) === false) {
+          throw new Error('url of unexpected origin')
+        }
+
+        return unsafe
+      },
+      /* not define createScript */
+    }, true);
+
+    const policy = TrustedTypes.getExposedPolicy('https://labs.jxck.io')
+
+    $('div').innerHTML = policy.createHTML('<img src=/ onerror="alert(10)">')
+
+    try {
+      location.href = policy.createURL('https://example.com');
+    } catch(err) {
+      console.error(err)
+    }
+
+    try {
+      const $script = document.createElement('script')
+      $script.src = policy.createScriptURL('https://example.com/script.js')
+    } catch(err) {
+      console.error(err)
+    }
+
+    try {
+      $('script').textContent = 'alert(0)'
+    } catch(err) {
+      console.error(err)
+    }
+  </script>
+</body>
