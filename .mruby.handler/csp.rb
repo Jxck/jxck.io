@@ -54,6 +54,8 @@ Proc.new do |env|
       ";",
       "report-uri #{REPORT_URI}",
       ";",
+      "trusted-types",
+      ";",
       "report-to default"
     ]
     headers["Content-Security-Policy-Report-Only"] = csp.join(" ")
