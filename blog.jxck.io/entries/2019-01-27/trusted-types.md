@@ -10,6 +10,9 @@
 
 まだ未解決の部分が多い提案だが、現時点での仕様と実装を元に、このアイデアについて解説する。
 
+- [WICG/trusted-types](https://github.com/WICG/trusted-types)
+- [Intent to Experiment: Trusted Types](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/I9To21DXcLo/NrU9P0M4EAAJ)
+
 
 ## Sink
 
