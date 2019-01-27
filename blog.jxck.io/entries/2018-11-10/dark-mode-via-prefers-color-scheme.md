@@ -11,6 +11,14 @@ macOS Mojava は OS レベルで Dark Mode に対応した。
 これを用いた DarkMode 対応と、本ブログの DarkMode 対応、および策定中の User Preference Media Features について解説する。
 
 
+## Update
+
+2019/1 に Chrome の Intents が出された。
+
+- [Intent to Implement: Media Queries: prefers-color-scheme feature](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Muw0N43ntSw/WZZZI7w7DQAJ)
+- [Intent to Implement and Ship: CSS prefers-reduced-motion media query](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/NZ3c9d4ivA8/BIHFbOj6DAAJ)
+
+
 ## Dark Mode
 
 多くのディスプレイコンテンツは、背景を白、文字を黒にしたデザイン(Light Mode)が多い。
