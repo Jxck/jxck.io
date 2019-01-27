@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <!--
+  貴様、見ているな！！
+  このサイトの技術的なまとめはこちらをどうぞ。
+  https://labs.jxck.io/blog
+
+  by Jxck
+  -->
+  <link rel=canonical href="https://blog.jxck.io/entries/2019-01-27/trusted-types.html">
+  <link rel=amphtml href="https://blog.jxck.io/entries/2019-01-27/trusted-types.amp.html">
+  <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+  <link rel=author href=https://jxck.io/assets/humans.txt>
+  <link rel=manifest href=/manifest.json>
+  <link rel=preload as=font type=font/woff href=https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular-201802.woff2 crossorigin>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <script async src=https://jxck.io/assets/js/ga.js></script>
+  <script async src=https://jxck.io/assets/js/highlight.min.js></script>
+  <script async src=https://jxck.io/assets/js/sw.js></script>
+  <script async src=https://jxck.io/assets/js/main.js></script>
+
+  <meta name=author content=Jxck>
+  <meta name=description content="脆弱性の原因となる DOM 操作の代表例として `elem.innerHTML` や `location.href` などが既に知られている。こうした操作対象(sink) に対して、文字列ベースの代入処理を行う際に、一律して検証をかけることができれば、脆弱性の発見や防止に役...">
+  <meta name=keywords content="xss,trusted types,security">
+
+  <meta name=twitter:card content=summary>
+  <meta name=twitter:site content=@jxck_>
+  <meta name=twitter:url content="https://blog.jxck.io/entries/2019-01-27/trusted-types.html">
+  <meta name=twitter:title content="安全な文字列であると型で検証する Trusted Types について | blog.jxck.io">
+  <meta name=twitter:description content="脆弱性の原因となる DOM 操作の代表例として `elem.innerHTML` や `location.href` などが既に知られている。こうした操作対象(sink) に対して、文字列ベースの代入処理を行う際に、一律して検証をかけることができれば、脆弱性の発見や防止に役...">
+  <meta name=twitter:image content="https://jxck.io/assets/img/jxck.png">
+
+  <meta property=og:type content=article>
+  <meta property=og:url content="https://blog.jxck.io/entries/2019-01-27/trusted-types.html">
+  <meta property=og:title content="安全な文字列であると型で検証する Trusted Types について | blog.jxck.io">
+  <meta property=og:site_name content="blog.jxck.io">
+  <meta property=og:description content="脆弱性の原因となる DOM 操作の代表例として `elem.innerHTML` や `location.href` などが既に知られている。こうした操作対象(sink) に対して、文字列ベースの代入処理を行う際に、一律して検証をかけることができれば、脆弱性の発見や防止に役...">
+  <meta property=og:image content="https://jxck.io/assets/img/jxck.png">
+
+  <link rel="shortcut icon" href="https://jxck.io/assets/img/jxck.png">
+  <link rel=icon sizes=256x256 href="https://jxck.io/assets/img/jxck.png">
+  <link rel=icon sizes=60x60 href="https://logo.jxck.io/jxck.60x60.png">
+  <link rel=icon sizes=1200x1200 href="https://logo.jxck.io/jxck.1200x1200.png">
+  <link rel=apple-touch-icon sizes=256x256 href="https://jxck.io/assets/img/jxck.png">
+  <link rel=apple-touch-icon sizes=60x60 href="https://logo.jxck.io/jxck.1200x1200.png">
+  <link rel=apple-touch-icon sizes=1200x1200 href="https://logo.jxck.io/jxck.1200x1200.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "安全な文字列であると型で検証する Trusted Types について | blog.jxck.io",
+  "image": [
+    "https://jxck.io/assets/img/jxck.png",
+    "https://logo.jxck.io/jxck.1200x1200.png"
+  ],
+  "datePublished": "2019-01-27T08:00:00+08:00",
+  "dateModified": "2019-01-27T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://logo.jxck.io/jxck.60x60.png",
+      "height": 60,
+      "width": 60
+    }
+  },
+  "description": "脆弱性の原因となる DOM 操作の代表例として `elem.innerHTML` や `location.href` などが既に知られている。こうした操作対象(sink) に対して、文字列ベースの代入処理を行う際に、一律して検証をかけることができれば、脆弱性の発見や防止に役..."
+}
+</script>
+
+  <title>安全な文字列であると型で検証する Trusted Types について | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/body.css>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/header.css>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io><img class=logo alt=blog title="blog top" width=30 src=https://jxck.io/assets/img/blog.svg></a>
+        <li><a href="/entries/2019-01-27/trusted-types.amp.html#development=1" aria-label="amp version"><svg width=30 height=30><use xlink:href="/assets/img/amp.svg#main"/></svg></a>
+        <li><a href=.><img alt=up title="move to parent directory" width=30 src=https://jxck.io/assets/img/up.svg></a>
+        <li><a href=/feeds/atom.xml><img alt=rss title="rss feed" width=30 src=https://jxck.io/assets/img/rss.svg></a>
+        <li><a href=https://jxck.io/humans.txt><img alt=humans title=huamns.txt width=30 src=https://jxck.io/assets/img/humans.svg></a>
+        <li><a href=https://jxck.io><img class=logo alt=jxck title="jxck logo" width=30 src=https://jxck.io/assets/img/jxck.png></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/markdown.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/main.css>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
+    <ul class=info>
+      <li>created_at: <time class=created_at datetime=2019-01-27>2019-01-27</time>
+      <li>updated_at: <time class=updated_at datetime=2019-01-27>2019-01-27</time>
+      <li class=tags>tags: [<a href='/tags/xss.html'>xss</a>,<a href='/tags/trusted%20types.html'>trusted types</a>,<a href='/tags/security.html'>security</a>]
+    </ul>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/article.css>
+  <article>
+    <h1><a href=/entries/2019-01-27/trusted-types.html>安全な文字列であると型で検証する Trusted Types について</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p>脆弱性の原因となる DOM 操作の代表例として <code translate="no">elem.innerHTML</code> や <code translate="no">location.href</code> などが既に知られている。
+      <p>こうした操作対象(sink) に対して、文字列ベースの代入処理を行う際に、一律して検証をかけることができれば、脆弱性の発見や防止に役立つだろう。
+      <p>そこで処理前の文字列に対し、処理後の文字列を安全であるとして明示的に型付ける TrustedTypes という提案がされている。
+      <p>まだ未解決の部分が多い提案だが、現時点での仕様と実装を元に、このアイデアについて解説する。
+    </section>
+    <section>
+      <h2 id="sink"><a href="#sink">Sink</a></h2>
+      <p>XSS などの原因となる DOM 操作として、 DOM に直接文字列を展開する処理がある。
+      <ul>
+        <li>
+          <code translate="no">element.innderHTML</code>
+        </li>
+        <li>
+          <code translate="no">location.href</code>
+        </li>
+        <li>
+          <code translate="no">script.src</code>
+        </li>
+        <li>
+          <code translate="no">script.textContent</code>
+        </li>
+      </ul>
+      <p>こうした API は WebIDL でいう DOMString を許容しており、おおよそ任意の文字列を受け入れる。
+      <p>そこで、開発者は意図しない文字列が代入されないように、エスケープなど事前処理を行う必要がある。
+      <p>しかし、適切な前処理はあくまで開発者側が担保するものなので、往々にして抜けが出る。
+      <p>規模が大きければ、レビューなどを行なっても、それらを見つけ出すことは難しい。
+      <p>これらの API を利用する場合は、意図しない文字列が代入されても良いように、適切な事前処理を行う必要がある。
+      <p>規模が大きくなれば、テストやセキュリティレビューで全てをあぶりだすことも難しい。
+      <p>最近では、そもそもの DOM 処理をフレームワークに任せるか、型による検証を通して抜け漏れを防ぐといった工夫がなされている。
+      <p>Trusted Types は、ブラウザ自体に型を認識させ、処理をフックすることで、意図しない処理を見つけ出すことが目的とされている。
+    </section>
+    <section>
+      <h2 id="csp-trusted-types"><a href="#csp-trusted-types">CSP trusted-types</a></h2>
+      <p>TrustedTypes は CSP により Opt-In で利用する。
+      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+      <pre class=http><code translate="no">Content-Security-Policy: trusted-types</code></pre>
+      <p>これにより、現時点では以下のような処理がエラーとなる。
+      <ul>
+        <li>
+          <code translate="no">element.innderHTML</code>
+        </li>
+        <li>
+          <code translate="no">location.href</code>
+        </li>
+        <li>
+          <code translate="no">script.src</code>
+        </li>
+        <li>
+          <code translate="no">script.textContent</code>
+        </li>
+      </ul>
+      <pre class=js><code translate="no">const $ = document.querySelector.bind(document);
+
+// Uncaught TypeError: Failed to set the &#039;innerHTML&#039; property on &#039;Element&#039;: This document requires `TrustedHTML` assignment.
+$(&#039;div&#039;).innerHTML = &#039;&lt;img src=/ onerror=&quot;alert(10)&quot;&gt;&#039;
+
+// Uncaught TypeError: Failed to set the &#039;href&#039; property on &#039;Location&#039;: This document requires `TrustedURL` assignment.
+location.href = &#039;https://fishing.example.com&#039;;
+
+// Uncaught TypeError: Failed to set the &#039;src&#039; property on &#039;HTMLScriptElement&#039;: This document requires `TrustedScriptURL` assignment.
+const $script = document.createElement(&#039;script&#039;)
+$script.src = &#039;https://attack.example.com/script.js&#039;
+
+// Uncaught TypeError: Failed to set the &#039;textContent&#039; property on &#039;Node&#039;: This document requires `TrustedScript` assignment.
+$(&#039;script&#039;).textContent = &#039;alert(0)&#039;</code></pre>
+      <p>エラーを見るとわかるように、それぞれの処理は単なる文字列、 WebIDL でいう DOMString ではなく、それぞれ以下の型を要求していることがわかる。
+      <ul>
+        <li>TrustedHTML
+        <li>TrustedURL
+        <li>TrustedScriptURL
+        <li>TrustedScript
+      </ul>
+      <p>各処理は、 DOMString をこの型に変換してからでないと行えないようになった。
+    </section>
+    <section>
+      <h2 id="trusted-types"><a href="#trusted-types">Trusted Types</a></h2>
+      <p>DOMString を TrustedTypes に変換するには、まず TrustedTypePolicy を生成する必要がある。
+      <p>これは、以下のように <code translate="no">createPolicy()</code> を用いて生成する。
+      <pre class=js><code translate="no">const policy = TrustedTypes.createPolicy(&#039;application-policy&#039;, {
+  createHTML:      (unsafe) =&gt; {/*..*/},
+  createURL:       (unsafe) =&gt; {/*..*/},
+  createScriptURL: (unsafe) =&gt; {/*..*/}
+  createScript:    (unsafe) =&gt; {/*..*/}
+})</code></pre>
+      <p>例えば <code translate="no">innerHTML</code> できる TrustedHTML は、この Policy に定義した <code translate="no">createHTML()</code> を通して取得することができる。
+      <pre class=js><code translate="no">const trustedHTML = escapePolicy.createHTML(&#039;&lt;img src=/ onerror=&quot;alert(10)&quot;&gt;&#039;)
+$(&#039;div&#039;).innerHTML = trustedHTML</code></pre>
+      <p>つまり、 <code translate="no">innerHTML</code> の前には HTML Special Chars のエスケープを必須としたいという場合は、 <code translate="no">createPolicy()</code> の引数に渡す関数にその処理を入れれば良い。
+      <pre class=js><code translate="no">const policy = TrustedTypes.createPolicy(&#039;application-policy&#039;, {
+  createHTML: (unsafe) =&gt; {
+    return unsafe
+      .replace(/&amp;/g, &quot;&amp;amp;&quot;)
+      .replace(/&lt;/g, &quot;&amp;lt;&quot;)
+      .replace(/&gt;/g, &quot;&amp;gt;&quot;)
+      .replace(/&quot;/g, &quot;&amp;quot;&quot;)
+      .replace(/&#039;/g, &quot;&amp;#039;&quot;);
+  }
+})
+
+const trustedHTML = escapePolicy.createHTML(&#039;&lt;img src=/ onerror=&quot;alert(10)&quot;&gt;&#039;)
+$(&#039;div&#039;).innerHTML = trustedHTML // html special chars escaped</code></pre>
+      <p>これで全ての innerHTML は確実にエスケープされていることを保証できる。
+      <p>このように Trusted Types は、安全に処理されたことを型として定義し、それをブラウザが認識することで、安全で無い処理を防ぐことを目的としている。
+    </section>
+    <section>
+      <h2 id="opt-in-policy"><a href="#opt-in-policy">Opt-In Policy</a></h2>
+      <p>先のように <code translate="no">createPolicy(&#039;application-policy&#039;)</code> で定義した Policy を利用するためには、必ず CSP に「利用を許可する Policy の名前」の指定が必要だ。
+      <p>これをしなければポリシーを利用した時点で CSP エラーとなる。
+      <pre class=http><code translate="no">Content-Security-Policy: trusted-types application-policy</code></pre>
+      <p>これは Policy から <code translate="no">createHTML</code> すれば型としては TrustedType であるため、なんらかの方法で Policy も仕込まれてしまうことを防ぐ目的もある。
+      <pre class=js><code translate="no">const dummyPolicy = TrustedTypes.createPolicy(&#039;dummy&#039;, {
+  createHTML: (unsafe) =&gt; unsafe
+})
+
+// CSP で dummuy が定義されていなければ使えない
+const trustedHTML = dummyPolicy.createHTML(&#039;&lt;img src=/ onerror=&quot;alert(10)&quot;&gt;&#039;)
+document.querySelector(&#039;div&#039;).innerHTML = trustedHTML</code></pre>
+      <p>ここで定義した Policy 名の <code translate="no">dummy</code> は、 CSP で指定されていないため使うことができない。
+    </section>
+    <section>
+      <h2 id="名前空間"><a href="#名前空間">名前空間</a></h2>
+      <p>Policy オブジェクトは戻り値でしか取得できないため、広く参照される場合は expose によって明示的に公開することができる。
+      <pre class=js><code translate="no">TrustedTypes.createPolicy(&#039;escape&#039;, {
+  createHTML: (unsafe) =&gt; {/*...*/}
+}, true); // expose = true</code></pre>
+      <p>expose された Policy は <code translate="no">getExposedPolicy(name)</code> で取得が可能だ。
+      <pre class=js><code translate="no">const escapePolicy = TrustedTypes.getExposedPolicy(&#039;escape&#039;)
+const escapedValue = escapePolicy.createHTML(&#039;&lt;b&gt;escape me&lt;/b&gt;&#039;);</code></pre>
+      <p>Global に Policy が定義されるため、名前が衝突する再定義はエラーになる。
+      <p>基本は expose せずに閉じた範囲で利用し、ライブラリなどによって提供される Policy の場合は Prefix をつけるなどした方が良さそうだ。
+    </section>
+    <section>
+      <h2 id="example"><a href="#example">Example</a></h2>
+      <p>アプリケーション全体で共通するポリシー例を考察する。
+      <ul>
+        <li>createHTML:      HTML Special Chars をエスケープする
+        <li>createURL:       同じオリジンでない場合はエラーとする
+        <li>createScriptURL: ホワイトリストに無いオリジンはエラーとする
+        <li>createScript:    定義しないことで利用そのものをエラーとする
+      </ul>
+      <pre class=js><code translate="no">TrustedTypes.createPolicy(&#039;https://labs.jxck.io&#039;, {
+  createHTML: (unsafe) =&gt; {
+    console.log(&#039;createHTML&#039;)
+    return unsafe
+      .replace(/&amp;/g, &quot;&amp;amp;&quot;)
+      .replace(/&lt;/g, &quot;&amp;lt;&quot;)
+      .replace(/&gt;/g, &quot;&amp;gt;&quot;)
+      .replace(/&quot;/g, &quot;&amp;quot;&quot;)
+      .replace(/&#039;/g, &quot;&amp;#039;&quot;);
+  },
+  createURL: (unsafe) =&gt; {
+    console.log(&#039;createURL&#039;)
+    const unsafeurl = new URL(unsafe)
+    const currenturl = new URL(location.href)
+
+    if (unsafeurl.origin !== currenturl.origin) {
+      throw new Error(&#039;url of unexpected origin&#039;)
+    }
+    return unsafeurl
+  },
+  createScriptURL: (unsafe) =&gt; {
+    console.log(&#039;createScriptURL&#039;)
+    const unsafeurl = new URL(unsafe)
+    const currenturl = new URL(location.href)
+
+    const whitelist = [
+      currenturl.origin,
+      &#039;https://unpkg.com&#039;,
+      &#039;https://www.google-analytics.com&#039;,
+    ]
+
+    if (whitelist.includes(unsafeurl.origin) === false) {
+      throw new Error(&#039;url of unexpected origin&#039;)
+    }
+
+    return unsafe
+  },
+  /* not define createScript */
+}, true);</code></pre>
+    </section>
+    <section>
+      <h2 id="考察"><a href="#考察">考察</a></h2>
+      <section>
+        <h3 id="何もしないはできない"><a href="#何もしないはできない">何もしない、はできない。</a></h3>
+        <p>意図しないものを省くために、エスケープのように強制的に変換できれば良いが、意図しない場合は明示的にエラーを投げるか、定義しないことでエラーを発生させるしか方法が無い。
+        <p>エラーにできることもメリットであるが、エラー処理に悩まされるくらいなら操作を無視できた方が良い場合もありそうだ。
+        <p>例えば <code translate="no">createURL()</code> で <code translate="no">null</code> や <code translate="no">undefined</code> を返しても、 <code translate="no">location.href</code> へ代入は行われてしまい、遷移がおこる。
+        <p>せっかくなら、何もしないということがうまく表現できると、エラー処理を気にせずにいられるので良さそうだ。
+      </section>
+      <section>
+        <h3 id="同期処理のみ"><a href="#同期処理のみ">同期処理のみ</a></h3>
+        <p>Policy に定義する関数は同期処理しかできない。
+        <p>これは <code translate="no">innerHTML</code> などの API がそもそも同期(代入)なのでしかたがない。
+        <p>しかし、例えば URL の WhiteList を IndexedDB や fetch で取得する、といった処理は書けないため、そのあたりはコード側で工夫する必要がある。
+      </section>
+      <section>
+        <h3 id="expose-が-boolean"><a href="#expose-が-boolean">expose が boolean</a></h3>
+        <p><code translate="no">createPolicy()</code> の第三引数の expose が、現時点では boolean で定義されている。
+        <pre class=js><code translate="no">TrustedTypePolicy createPolicy(DOMString policyName, TrustedTypeInnerPolicy policy, optional boolean expose = false);</code></pre>
+        <p>これでは、仮にもう一つオプションを増やしたいという場合に、拡張に対して閉じてしまっている。
+        <p>同じことは <a href="https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html#feature-detection">PassiveEventListener</a> でもあったため、基本的に最後のオプションはオブジェクトの方が良いだろう。
+        <p>これは、 <a href="https://github.com/WICG/trusted-types/issues/123">issue</a> を上げておいた。
+      </section>
+      <section>
+        <h3 id="performance"><a href="#performance">Performance</a></h3>
+        <p>CSP で有効にした時点で、対象となる全ての処理にフックが入る設計となっている。
+        <p>まだ Experimental であるため、性能を測る段階では無いが、オーバーヘッドが気になってくるところでもある。
+      </section>
+      <section>
+        <h3 id="reporting"><a href="#reporting">Reporting</a></h3>
+        <p>現時点では Reporting API の対応は入っていないようだが、 Intents を見ると under consideration であるようだ。
+        <p>対応すれば、 CSP Report Only でもデプロイできるようになることが想像されるため、導入の敷居は下がるだろう。
+      </section>
+      <section>
+        <h3 id="csp-無効での利用"><a href="#csp-無効での利用">CSP 無効での利用</a></h3>
+        <p>CSP によって有効になるのは、型が違う場合にエラーをあげることだけだ。
+        <p>つまり Pocliy のメソッドを経由して DOMString を TrustedTypes に変換することは、 CSP で有効にしなくても可能だ。
+        <p>これだけでも以下の二つのメリットが考えられる
+        <ul>
+          <li>標準化された型があることにより、 WebIDL を参考に TypeScript などに導入し、型の検証に利用することができる。
+          <li>これまで設計に依存していたエスケープの所在が標準化され、フレームワークやライブラリとの間で、安全な設計を共有する共通言語ができる。
+        </ul>
+        <p>エスケープを強制する規約を設けたり、そこに型を与えて静的に解析することで、 TrustedTypes と同等のことを自前でやっている場面は少なく無いだろう。
+        <p>そこに共通の作法が生まれることは、現実的なメリットがあるように感じる。
+      </section>
+      <section>
+        <h3 id="懸念点"><a href="#懸念点">懸念点</a></h3>
+        <p>他の CSP と同様 TrustedTypes をデプロイすることは、多くの拡張や bookmarklet などの DOM への介入を一括して阻害する可能性がある。
+        <p>もちろん拡張などに対して Policy を expose すればいいが、対応する方のコストは現実的では無い。
+        <p>従って他の CSP と同様に、テストやステージングで有効にし、違反が無いかを Reporting などで検出する、対応したら Report-Only でデプロイすることで様子を見るのがしばらくは良さそうに感じた。
+      </section>
+    </section>
+    <section>
+      <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
+      <p>開発の場面でフレームワークを使うことが一般的となり、今回解説したような Sink を直接操作する機会はかなり減ってきた。
+      <p>直接操作せず FW に任せることにより、安全性を担保し、特に innerHTML に起因する典型的な XSS については滅多に発生しない状況まできていると筆者は考える。
+      <p>(それでも <code translate="no">location.href</code> などは FW のスコープ外にあり、穴が開きやすいところでもあるとは思う)
+      <p>その点では、現状でこの API に注目できる程度に対策が行えているプロジェクトにおいて、導入するコストに対して堅牢性がどの程度向上するかは、なんとも言えなさそうだというのが最初の印象だ。
+      <p>特にユーザが拡張等を利用できなくなることは、脆弱性以上のデメリットをもたらす可能性もあるだろう。
+      <p>一方、エスケープの所在の標準化や、標準型の導入による静的解析の支援などは、標準化に至ればエコシステムの共通言語として使われる可能性は無くはなさそうだ。
+      <p>それを踏まえて、現状の設計を見直す際に、参考にするのは現状の適切な距離の取り方かもしれない。
+      <p>あとは、ビルド時の静的な型検査、ステージングなどでのランタイム検査の恩恵を受ければ、 CSP Report Only や off  でデプロイでも一定の効果は予想され、当面はそこが現実的な気もする。
+      <p>実際に TrustedTypes を使うかどうかを別としても、「型によるランタイム検証」の方針は W3C では新しい試みなので、この波が今後の API 設計にどう影響していくかは興味がある。
+      <p>それらを踏まえ、検証とフィードバックが行なっていければと考える。
+    </section>
+    <section>
+      <h2 id="demo"><a href="#demo">DEMO</a></h2>
+      <p>以下に DEMO を用意した。
+      <p>動作は Chrome Canary 74.0.3684.0 で確認している。
+      <p><a href="https://labs.jxck.io/trusted-types/">TrustedTypes Labs | labs.jxck.io</a>
+    </section>
+    <section>
+      <h2 id="本サイトの適用"><a href="#本サイトの適用">本サイトの適用</a></h2>
+      <p>本サイトは JS による DOM 操作を行なっていない。
+      <p>また、閲覧者の拡張による変更を許容したいため、適用はしない。
+    </section>
+    <section>
+      <h2 id="links"><a href="#links">Links</a></h2>
+      <ul>
+        <li>
+          <a href="https://github.com/WICG/trusted-types">WICG/trusted-types: Polyfill implementation of Trusted Types - a proposal to get rid of DOM XSS vulnerabilities in the web platform.</a>
+        </li>
+        <li>
+          <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/I9To21DXcLo/NrU9P0M4EAAJ">Intent to Experiment: Trusted Types</a>
+        </li>
+        <li>
+          <a href="https://github.com/mozilla/standards-positions/issues/20">Trusted Types issue #20 mozilla/standards-positions</a>
+        </li>
+        <li>
+          <a href="https://github.com/w3ctag/design-reviews/issues/198">Trusted Types issue #198 w3ctag/design-reviews</a>
+        </li>
+      </ul>
+    </section>
+  </article>
+
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/footer.css>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small><small>Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>Google Analytics</a> and <a href=https://w3c.github.io/ServiceWorker/>Service Worker</a>.</small></p>
+  </footer>
+</body>
+</html>

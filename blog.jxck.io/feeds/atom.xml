@@ -8,6 +8,20 @@
 <updated>2016-01-28T18:30:02Z</updated>
 
   <entry>
+   <title>安全な文字列であると型で検証する Trusted Types について</title>
+   <link href="https://blog.jxck.io/entries/2019-01-27/trusted-types.html" rel="alternate" />
+   <id>tag:blog.jxck.io,2016:entry://2019-01-27</id>
+   <updated>2019-01-27T00:00:00Z</updated>
+   <summary>脆弱性の原因となる DOM 操作の代表例として `elem.innerHTML` や `location.href` などが既に知られている。
+
+こうした操作対象(sink) に対して、文字列ベースの代入処理を行う際に、一律して検証をかけることができれば、脆弱性の発見や防止に役立つだろう。
+
+そこで処理前の文字列に対し、処理後の文字列を安全であるとして明示的に型付ける TrustedTypes という提案がされている。
+
+まだ未解決の部分が多い提案だが、現時点での仕様と実装を元に、このアイデアについて解説する。</summary>
+  </entry>
+
+  <entry>
    <title>Cache Digest と HTTP2 Server Push の現状</title>
    <link href="https://blog.jxck.io/entries/2019-01-19/cache-digest-status.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-01-19</id>
