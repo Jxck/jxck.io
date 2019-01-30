@@ -60,7 +60,7 @@
     "https://logo.jxck.io/jxck.1200x1200.png"
   ],
   "datePublished": "2017-08-05T08:00:00+08:00",
-  "dateModified": "2018-07-29T08:00:00+08:00",
+  "dateModified": "2019-01-30T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -104,7 +104,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
     <ul class=info>
       <li>created_at: <time class=created_at datetime=2017-08-05>2017-08-05</time>
-      <li>updated_at: <time class=updated_at datetime=2018-07-29>2018-07-29</time>
+      <li>updated_at: <time class=updated_at datetime=2019-01-30>2019-01-30</time>
       <li class=tags>tags: [<a href='/tags/navigation%20preload.html'>navigation preload</a>,<a href='/tags/service%20worker.html'>service worker</a>,<a href='/tags/performance.html'>performance</a>]
     </ul>
 
@@ -119,7 +119,7 @@
     </section>
     <section>
       <h2 id="sw-bootup"><a href="#sw-bootup">SW Bootup</a></h2>
-      <p>SW が <code translate="no">onfetch</code> をハンドルし、キャッシュから Response を返す場合は、ネットワークを使わない分、高速に画面をレンダリングできる。
+      <p>SW が <code translate="no">onfetch</code> をハンドルし、キャッシュから Response を返す場合は、ネットワーク I/O をせずに画面をレンダリングできる。
       <p>しかし、 SW が <code translate="no">onfetch</code> をフックしていてもなお、実際にネットワークにリクエストを投げる場合は少なくない。
       <p>この場合、もしページのコントローラとなっている SW が起動していない場合は、 <code translate="no">onfetch</code> ハンドラを実行するために、 SW の起動を待つ必要が出てくる。
       <p>SW の起動には、もちろん実行環境によるところが大きいが、 <a href="https://developers.google.com/web/updates/2017/02/navigation-preload">50~500ms</a> 程度の時間がかかるとされている。
