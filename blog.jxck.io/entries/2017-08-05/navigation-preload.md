@@ -11,7 +11,7 @@ Service Worker で Fetch を Proxy する場合、 Fetch 発生時に SW が起�
 
 ## SW Bootup
 
-SW が `onfetch` をハンドルし、キャッシュから Response を返す場合は、ネットワークを使わない分、高速に画面をレンダリングできる。
+SW が `onfetch` をハンドルし、キャッシュから Response を返す場合は、ネットワーク I/O をせずに画面をレンダリングできる。
 
 しかし、 SW が `onfetch` をフックしていてもなお、実際にネットワークにリクエストを投げる場合は少なくない。
 
