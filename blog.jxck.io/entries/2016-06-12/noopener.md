@@ -7,6 +7,13 @@
 このプロパティの意味と、これが無い場合のフィッシング詐欺攻撃の可能性について解説する。
 
 
+## Update
+
+- Firefox で noopener をデフォルトにする Intents が出た
+  - Intent to Ship: implicit ref=noopener for `target=_blank` on anchor and area elements
+  - https://groups.google.com/forum/#!msg/mozilla.dev.platform/DDQP5xIKYiY/3ppe9V-ZCgAJ
+
+
 ## window.opener
 
 以下が今回注目する挙動である。
