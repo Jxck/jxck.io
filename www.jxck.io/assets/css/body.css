@@ -47,6 +47,17 @@
 
     --table-border: #eee;
   }
+
+  p > code,
+  pre > code {
+    filter: invert(100%);
+  }
+  article img {
+    filter: grayscale(100%);
+  }
+  article img[src*=svg] {
+    filter: invert(100%);
+  }
 }
 
 html {
