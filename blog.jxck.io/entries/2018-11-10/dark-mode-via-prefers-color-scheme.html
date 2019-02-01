@@ -60,7 +60,7 @@
     "https://logo.jxck.io/jxck.1200x1200.png"
   ],
   "datePublished": "2018-11-10T08:00:00+08:00",
-  "dateModified": "2019-01-27T08:00:00+08:00",
+  "dateModified": "2019-02-01T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -104,7 +104,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
     <ul class=info>
       <li>created_at: <time class=created_at datetime=2018-11-10>2018-11-10</time>
-      <li>updated_at: <time class=updated_at datetime=2019-01-27>2019-01-27</time>
+      <li>updated_at: <time class=updated_at datetime=2019-02-01>2019-02-01</time>
       <li class=tags>tags: [<a href='/tags/media%20query.html'>media query</a>,<a href='/tags/dark%20mode.html'>dark mode</a>,<a href='/tags/css.html'>css</a>]
     </ul>
 
@@ -120,13 +120,18 @@
     </section>
     <section>
       <h2 id="update"><a href="#update">Update</a></h2>
-      <p>2019/1 に Chrome の Intents が出された。
       <ul>
+        <li>画像の対応について追記した
+        <li>Code Block の対応について追記した
         <li>
-          <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Muw0N43ntSw/WZZZI7w7DQAJ">Intent to Implement: Media Queries: prefers-color-scheme feature</a>
-        </li>
-        <li>
-          <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/NZ3c9d4ivA8/BIHFbOj6DAAJ">Intent to Implement and Ship: CSS prefers-reduced-motion media query</a>
+          2019/1 に Chrome の Intents が出された。<ul>
+            <li>
+              <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Muw0N43ntSw/WZZZI7w7DQAJ">Intent to Implement: Media Queries: prefers-color-scheme feature</a>
+            </li>
+            <li>
+              <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/NZ3c9d4ivA8/BIHFbOj6DAAJ">Intent to Implement and Ship: CSS prefers-reduced-motion media query</a>
+            </li>
+          </ul>
         </li>
       </ul>
     </section>
@@ -170,6 +175,67 @@ body {
   background-color: var(--them-base);
   font: var(--them-font);
   strong: var(--them-accent);
+}</code></pre>
+    </section>
+    <section>
+      <h2 id="画像"><a href="#画像">画像</a></h2>
+      <p>CSS で色を付けているものは解決するが、問題は <code translate="no">&lt;img&gt;</code> タグの画像だった。
+      <p>ページをダークモードにしても、画像が元のままだと浮いてしまうという問題があった。
+      <p>画像には大きく二つの種類がある。
+      <ul>
+        <li>スクショなどの写真画像(png, jpg, webp)
+        <li>ツールで書いた図(svg)
+      </ul>
+      <p>SVG は最悪作り直すことも可能だが、コストがかかるため難しい。
+      <p>そこで、これらは CSS Filter で対応することにした。
+      <section>
+        <h3 id="ラスタ画像png-jpg-webp"><a href="#ラスタ画像png-jpg-webp">ラスタ画像(png, jpg, webp)</a></h3>
+        <p>Dark Mode 時の画像がどうあるべきかを考えると難しい。
+        <p>背景と文字については反転しているわけだが、画像の反転での <code translate="no">invert()</code> はネガのようになりより見にくくなってしまう。
+        <p>そもそも Mode があるのは、なんらかの理由で「見やすさ」を切り替える目的があると考える。
+        <p>Light Mode に対し Dark Mode があるのは、 Light Mode が「明るすぎる」「眩しい」という理由が挙げられるだろう。
+        <p>すると、 Dark Mode 時の画像は、 Light Mode に対して暗くなっているべきだと考えられる。
+        <p>そこで <code translate="no">grayscale()</code> を適用し、暗くする方法を取ることにした。
+        <p>この <code translate="no">grayscale()</code> は引数を取り、 100% が完全な白黒になる。
+        <p>注釈や赤線を引いたスクショもあるため、それらの色が認識でき、かつ明るさを抑えて先の dark mode の CSS デザインと混じる値を探す。
+        <p>結果、以下に落ち着いた。
+        <pre class=css><code translate="no">article img {
+  filter: grayscale(50%);
+}</code></pre>
+      </section>
+      <section>
+        <h3 id="ベクタ画像svg"><a href="#ベクタ画像svg">ベクタ画像(svg)</a></h3>
+        <p>ベクタは、基本白背景に対して黒の線や文字で作り、一部色を入れている。
+        <p>これは、 <code translate="no">invert()</code> で反転させることで黒背景にすることが可能なので、黒背景にした dark mode とも合う。
+        <p>しかし、そのままではやはり色が強くなりがちなので、ラスタと同じように <code translate="no">grayscale()</code> を適用することにした。
+        <p>結果、以下に落ち着いた。
+        <pre class=css><code translate="no">article img[src*=svg] {
+  filter: invert(100%) grayscale(50%);
+}</code></pre>
+      </section>
+      <section>
+        <h3 id="画像についての備考"><a href="#画像についての備考">画像についての備考</a></h3>
+        <p>本サイトが、そのそもモノクロデザインであるため、画像もモノクロにしてしまっても、なんとなくそれっぽく見える。
+        <pre class=css><code translate="no">article img[src*=svg] {
+  filter: invert(100%) grayscale(100%);
+}
+
+article img {
+  filter: grayscale(100%);
+}</code></pre>
+        <p>しかし、それは本サイトがたまたまそうだっただけで、テーマカラーのあるサイトではそうはならないだろう。
+        <p>そこで、ここまでの極端な設定は一旦避けて、前述のようにした。
+        <p>画像については、今後も色々値を変えつつ試していきたい。
+      </section>
+    </section>
+    <section>
+      <h2 id="code-block"><a href="#code-block">Code Block</a></h2>
+      <p>本サイトでは、コードスニペットにシンタックスハイライトを入れている。
+      <p>ハイライト用のテーマを dark 用に用意するのも良いが、大変そうだったのでここも CSS filter を使うことにした。
+      <p>ハイライト用に作ったカラーテーマは、そのまま <code translate="no">invert()</code> してもそれなりに違和感がなかったため、これを適用した。
+      <pre class=css><code translate="no">p &gt; code,
+pre &gt; code {
+  filter: invert(100%);
 }</code></pre>
     </section>
     <section>
