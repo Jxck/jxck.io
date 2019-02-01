@@ -13,10 +13,11 @@ macOS Mojava は OS レベルで Dark Mode に対応した。
 
 ## Update
 
-2019/1 に Chrome の Intents が出された。
-
-- [Intent to Implement: Media Queries: prefers-color-scheme feature](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Muw0N43ntSw/WZZZI7w7DQAJ)
-- [Intent to Implement and Ship: CSS prefers-reduced-motion media query](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/NZ3c9d4ivA8/BIHFbOj6DAAJ)
+- 画像の対応について追記した
+- Code Block の対応について追記した
+- 2019/1 に Chrome の Intents が出された。
+  - [Intent to Implement: Media Queries: prefers-color-scheme feature](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Muw0N43ntSw/WZZZI7w7DQAJ)
+  - [Intent to Implement and Ship: CSS prefers-reduced-motion media query](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/NZ3c9d4ivA8/BIHFbOj6DAAJ)
 
 
 ## Dark Mode
@@ -73,6 +74,107 @@ body {
   background-color: var(--them-base);
   font: var(--them-font);
   strong: var(--them-accent);
+}
+```
+
+
+## 画像
+
+CSS で色を付けているものは解決するが、問題は `<img>` タグの画像だった。
+
+ページをダークモードにしても、画像が元のままだと浮いてしまうという問題があった。
+
+画像には大きく二つの種類がある。
+
+- スクショなどの写真画像(png, jpg, webp)
+- ツールで書いた図(svg)
+
+SVG は最悪作り直すことも可能だが、コストがかかるため難しい。
+
+そこで、これらは CSS Filter で対応することにした。
+
+
+### ラスタ画像(png, jpg, webp)
+
+Dark Mode 時の画像がどうあるべきかを考えると難しい。
+
+背景と文字については反転しているわけだが、画像の反転での `invert()` はネガのようになりより見にくくなってしまう。
+
+そもそも Mode があるのは、なんらかの理由で「見やすさ」を切り替える目的があると考える。
+
+Light Mode に対し Dark Mode があるのは、 Light Mode が「明るすぎる」「眩しい」という理由が挙げられるだろう。
+
+すると、 Dark Mode 時の画像は、 Light Mode に対して暗くなっているべきだと考えられる。
+
+そこで `grayscale()` を適用し、暗くする方法を取ることにした。
+
+この `grayscale()` は引数を取り、 100% が完全な白黒になる。
+
+注釈や赤線を引いたスクショもあるため、それらの色が認識でき、かつ明るさを抑えて先の dark mode の CSS デザインと混じる値を探す。
+
+結果、以下に落ち着いた。
+
+
+```css
+article img {
+  filter: grayscale(50%);
+}
+```
+
+
+### ベクタ画像(svg)
+
+ベクタは、基本白背景に対して黒の線や文字で作り、一部色を入れている。
+
+これは、 `invert()` で反転させることで黒背景にすることが可能なので、黒背景にした dark mode とも合う。
+
+しかし、そのままではやはり色が強くなりがちなので、ラスタと同じように `grayscale()` を適用することにした。
+
+結果、以下に落ち着いた。
+
+
+```css
+article img[src*=svg] {
+  filter: invert(100%) grayscale(50%);
+}
+```
+
+
+### 画像についての備考
+
+本サイトが、そのそもモノクロデザインであるため、画像もモノクロにしてしまっても、なんとなくそれっぽく見える。
+
+
+```css
+article img[src*=svg] {
+  filter: invert(100%) grayscale(100%);
+}
+
+article img {
+  filter: grayscale(100%);
+}
+```
+
+しかし、それは本サイトがたまたまそうだっただけで、テーマカラーのあるサイトではそうはならないだろう。
+
+そこで、ここまでの極端な設定は一旦避けて、前述のようにした。
+
+画像については、今後も色々値を変えつつ試していきたい。
+
+
+## Code Block
+
+本サイトでは、コードスニペットにシンタックスハイライトを入れている。
+
+ハイライト用のテーマを dark 用に用意するのも良いが、大変そうだったのでここも CSS filter を使うことにした。
+
+ハイライト用に作ったカラーテーマは、そのまま `invert()` してもそれなりに違和感がなかったため、これを適用した。
+
+
+```css
+p > code,
+pre > code {
+  filter: invert(100%);
 }
 ```
 
