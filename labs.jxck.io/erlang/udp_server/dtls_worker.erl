@@ -1,23 +1,26 @@
-#!/usr/bin/env escript
--module(gen_udp_server).
+-module(dtls_worker).
 -behaviour(gen_server).
 -mode(compile).
 -compile(export_all).
--include("../logger.hrl").
+-include("logger.hrl").
 
 %%====================================================================
 %% API functions
 %%====================================================================
-%% 複数起動できるように名前はつけない
-start_link(Socket) ->
-    gen_server:start_link(?MODULE, Socket, []).
+start_link(#{socket := Socket}=State) ->
+    % process name from port
+    Name = main:name_from_port(?MODULE, Socket),
+    gen_server:start_link({local, Name}, ?MODULE, State, []).
+
+stop() ->
+    gen_server:stop(?MODULE).
 
 
 %%====================================================================
 %% Behaviour callbacks
 %%====================================================================
-init(Socket) ->
-    ?Log(Socket),
+init(#{socket := Socket}) ->
+    process_flag(trap_exit, true),
     State = #{socket => Socket},
     {ok, State}.
 
@@ -30,29 +33,16 @@ handle_cast(Msg, State) ->
     {noreply, State}.
 
 handle_info({udp, Socket, IP, Port, Packet}, #{socket := Socket}=State) ->
-    ?Log(Packet, State),
+    ?Log(IP, Port, Packet),
     ok = inet:setopts(Socket, [{active, once}, binary]),
     {noreply, State}.
 
-code_change(OldVsn, State, Extra) ->
-    ?Log(OldVsn, Extra),
-    {ok, State}.
 
 terminate(Reason, State) ->
     ?Log(Reason, State),
-    ok.
+    shutdown.
 
 
 %%====================================================================
 %% Internal functions
 %%====================================================================
-main([]) ->
-    % gen_tcp:controlling_process してからじゃないと取りこぼすので
-    % ここでは {active, false} にしておく
-    {ok, Socket} = ?Log(gen_udp:open(3000, [{reuseaddr, true}, {active, false}])),
-    {ok, PID} = ?Log(start_link(Socket)),
-    ok = gen_tcp:controlling_process(Socket, PID),
-    ok = inet:setopts(Socket, [{active, once}, binary]),
-    receive
-        stop -> gen_tcp:close(Socket)
-    end.

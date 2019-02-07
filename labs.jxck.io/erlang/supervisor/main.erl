@@ -3,26 +3,27 @@
 
 -mode(compile).
 -compile(export_all).
-
--define(Log(A),                (fun(P) -> io:format("[~p:~p#~p] ~p~n",     [?MODULE, ?FUNCTION_NAME, ?LINE, P]), P end)(A)).
--define(Log(A, B),             io:format("[~p:~p#~p] ~p ~p~n",             [?MODULE, ?FUNCTION_NAME, ?LINE, A, B            ])).
--define(Log(A, B, C),          io:format("[~p:~p#~p] ~p ~p ~p~n",          [?MODULE, ?FUNCTION_NAME, ?LINE, A, B, C         ])).
--define(Log(A, B, C, D),       io:format("[~p:~p#~p] ~p ~p ~p ~p~n",       [?MODULE, ?FUNCTION_NAME, ?LINE, A, B, C, D      ])).
--define(Log(A, B, C, D, E),    io:format("[~p:~p#~p] ~p ~p ~p ~p ~p~n",    [?MODULE, ?FUNCTION_NAME, ?LINE, A, B, C, D, E   ])).
--define(Log(A, B, C, D, E, F), io:format("[~p:~p#~p] ~p ~p ~p ~p ~p ~p~n", [?MODULE, ?FUNCTION_NAME, ?LINE, A, B, C, D, E, F])).
+-include("../logger.hrl").
 
 main(_) ->
-    ?Log(sup:start_link(#{count => 0})),
-    {ok, Worker} = ?Log(sup:start_child(#{delta => 2})),
+    ?Log(service_sup:start_link(#{count => 0})),
+    {ok, Worker1} = ?Log(service_sup:start_child(#{delta => 2})),
+    {ok, Worker2} = ?Log(service_sup:start_child(#{delta => 3})),
 
-    ?Log(gen_server:cast(Worker, incr)),
-    ?Log(gen_server:cast(Worker, incr)),
-    ?Log(gen_server:cast(Worker, incr)),
-    ?Log(gen_server:cast(Worker, stop)),
+    dump_process(),
+
+    ?Log(gen_server:cast(Worker1, incr)),
+    ?Log(gen_server:cast(Worker1, incr)),
+
+    ?Log(gen_server:cast(Worker2, incr)),
+    ?Log(gen_server:cast(Worker2, incr)),
+
+    ?Log(service_worker:stop(Worker1)),
+    ?Log(service_worker:stop(Worker2)),
+
+    receive ok -> ok end.
 
 
-    ?Log(ok),
-    timer:sleep(1000),
-    receive
-        ok -> ok
-    end.
+
+dump_process() ->
+    io:format("~s~n", [(lists:join("\n", lists:sort([atom_to_list(P) || P <- registered()])))]).

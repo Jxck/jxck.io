@@ -1,1 +1,1 @@
-rm *.dump *.beam && erlc worker.erl && erlc sup.erl && ./main.erl
+\rm -rf *.dump *.beam && erlc service_worker.erl && erlc service_sup.erl && ./main.erl
