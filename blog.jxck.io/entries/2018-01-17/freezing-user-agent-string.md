@@ -253,12 +253,14 @@ Brotli 対応が `, br` という 4byte であったとしても、メジャー�
 
 
 ```http
-# Previous Response
 Accept-CH: DPR, Viewport-Width
+```
 
-# Next Request
+レスポンスに要求した値が載ってくる。
+
+```http
 Viewport-Width: 1366
-DPR:1
+DPR: 1
 ```
 
 1RTT 必要になるため、メインリソースのレスポンスで返し、サブリソースで適用させるような用途が中心となる。
