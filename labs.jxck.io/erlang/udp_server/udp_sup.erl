@@ -7,45 +7,40 @@
 %%====================================================================
 %% API functions
 %%====================================================================
-start_link({}, #{socket := Socket}=State) ->
-    Name = main:name_from_port(udp_sup, Socket),
-    (supervisor:start_link({local, Name}, ?MODULE, State)).
-
-stop() ->
-    gen_server:stop(?MODULE).
+start_link(#{}=State) ->
+    (supervisor:start_link({local, ?MODULE}, ?MODULE, State)).
 
 
 %%====================================================================
 %% Behaviour callbacks
 %%====================================================================
-init(#{socket := Socket}=State) ->
-    ?Log(Socket),
+init(#{}) ->
     SupFlags = #{
-      strategy  => one_for_all,
-      intensity => 0,
-      period    => 1
+      strategy  => one_for_one,
+      intensity => 1,
+      period    => 5
      },
     Children = [
-                #{ id       => udp_worker,
-                   start    => {udp_worker, start_link, [State]},
-                   restart  => temporary,
-                   shutdown => 5,
-                   type     => worker,
-                   modules  => [udp_worker]
+                #{ id       => udp_listener_sup,
+                   start    => {udp_listener_sup, start_link, [#{}]},
+                   restart  => permanent,
+                   shutdown => infinity,
+                   type     => supervisor,
+                   modules  => [udp_listener_sup]
                  },
-                #{ id       => dtls_worker,
-                   start    => {dtls_worker, start_link, [State]},
-                   restart  => temporary,
-                   shutdown => 5,
-                   type     => worker,
-                   modules  => [dtls_worker]
+                #{ id       => dtls_worker_sup,
+                   start    => {dtls_worker_sup, start_link, [#{}]},
+                   restart  => permanent,
+                   shutdown => infinity,
+                   type     => supervisor,
+                   modules  => [dtls_worker_sup]
                  },
-                #{ id       => srtp_worker,
-                   start    => {srtp_worker, start_link, [State]},
-                   restart  => temporary,
-                   shutdown => 5,
-                   type     => worker,
-                   modules  => [srtp_worker]
+                #{ id       => srtp_worker_sup,
+                   start    => {srtp_worker_sup, start_link, [#{}]},
+                   restart  => permanent,
+                   shutdown => infinity,
+                   type     => supervisor,
+                   modules  => [srtp_worker_sup]
                  }
                ],
     ({ok, {SupFlags, Children}}).

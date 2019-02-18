@@ -1,46 +1,54 @@
 -module(srtp_worker).
--behaviour(gen_server).
+-behaviour(gen_statem).
 -mode(compile).
 -compile(export_all).
--include("logger.hrl").
+-include("../logger.hrl").
+
+-define(TIMEOUT, 3000).
 
 %%====================================================================
 %% API functions
 %%====================================================================
-start_link(#{socket := Socket}=State) ->
-    % process name from port
+start_link(#{}, #{socket := Socket}) ->
+    ?Log(Socket),
     Name = main:name_from_port(?MODULE, Socket),
-    gen_server:start_link({local, Name}, ?MODULE, State, []).
+    ?Log(gen_statem:start_link({local, Name}, ?MODULE, #{socket => Socket}, [])).
 
-stop() ->
-    gen_server:stop(?MODULE).
+stop(Pid) ->
+    ?Log(gen_statem:stop(Pid)).
 
 
 %%====================================================================
 %% Behaviour callbacks
 %%====================================================================
-init(#{socket := Socket}) ->
+init(State) ->
     process_flag(trap_exit, true),
-    State = #{socket => Socket},
-    {ok, State}.
+    ?Log(State),
+    {ok, listening, State}.
 
-handle_call(Msg, From, State) ->
-    ?Log(Msg, From, State),
-    {reply, Msg, State}.
+callback_mode() ->
+    state_functions.
 
-handle_cast(Msg, State) ->
+
+listening(timeout, ?TIMEOUT, State) ->
+    {stop, {shutdown, timeout}};
+
+listening(cast, <<"srtp\n">>, State) ->
+    ?Log(received, srtp),
+    {keep_state_and_data, ?TIMEOUT};
+
+
+listening(cast, srtp, State) ->
+    ?Log(received, srtp),
+    keep_state_and_data;
+
+listening(cast, Msg, State) ->
     ?Log(Msg, State),
-    {noreply, State}.
+    keep_state_and_data.
 
-handle_info({udp, Socket, IP, Port, Packet}, #{socket := Socket}=State) ->
-    ?Log(IP, Port, Packet),
-    ok = inet:setopts(Socket, [{active, once}, binary]),
-    {noreply, State}.
-
-
-terminate(Reason, State) ->
-    ?Log(Reason, State),
-    shutdown.
+terminate(Reason, StateName, State) ->
+    ?Log(Reason, StateName, State),
+    ok.
 
 
 %%====================================================================

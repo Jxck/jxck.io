@@ -5,23 +5,25 @@
 -include("logger.hrl").
 
 main([]) ->
-    {ok, _}      = sfu_sup:start_link({}),
-    {ok, Socket}   = gen_udp:open(3000, [{reuseaddr, true}, {active, false}]),
-    {ok, _} = sfu_sup:start_child(#{socket => Socket}),
+    ?Log(udp_sup:start_link(#{})),
 
-    PID = whereis(name_from_port(udp_worker, Socket)),
-    ok  = gen_tcp:controlling_process(Socket, PID),
-    ok  = inet:setopts(Socket, [{active, once}, binary]),
-
-    dump_process(),
-
-    % send udp packet to server and timeout
-    timer:sleep(5000),
+    {ok, Socket} = gen_udp:open(3000, [{reuseaddr, true}, {active, false}]),
+    {ok, UDP} = ?Log(udp_listener_sup:start_child(#{socket => Socket})),
+    ok = gen_tcp:controlling_process(Socket, UDP),
+    ok = inet:setopts(Socket, [{active, once}, binary]),
 
     dump_process(),
+
+    loop(),
 
     % block
     receive ok -> ok end.
+
+
+loop() ->
+    timer:sleep(1000),
+    dump_process(),
+    loop().
 
 
 

@@ -1,4 +1,4 @@
--module(service_sup).
+-module(srtp_worker_sup).
 -behaviour(supervisor).
 -mode(compile).
 -compile(export_all).
@@ -7,26 +7,26 @@
 %%====================================================================
 %% API functions
 %%====================================================================
-start_link(#{count := C}=State) ->
-    ?Log(supervisor:start_link({local, ?MODULE}, ?MODULE, State)).
+start_link(#{}=State) ->
+    (supervisor:start_link({local, ?MODULE}, ?MODULE, State)).
 
-start_child(#{delta := D}=State) ->
-    ?Log(D),
-    ?Log(supervisor:start_child(?MODULE, [State])).
+start_child(#{}=State) ->
+    (supervisor:start_child(?MODULE, [State])).
 
+terminate_child(PID) ->
+    (supervisor:terminate_child(?MODULE, PID)).
 
 %%====================================================================
 %% Behaviour callbacks
 %%====================================================================
-init(#{count := C}=State) ->
-    ?Log(init),
+init(#{}=State) ->
     Children = [
-                #{id       => service_worker,
-                  start    => {service_worker, start_link, [State]},
+                #{id       => srtp_worker,
+                  start    => {srtp_worker, start_link, [State]},
                   restart  => temporary,
                   shutdown => brutal_kill,
                   type     => worker,
-                  modules  => [service_worker]
+                  modules  => [srtp_worker]
                  }
                ],
     ({ok, {{simple_one_for_one, 0, 1}, Children}}).
