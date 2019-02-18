@@ -49,10 +49,11 @@ end
 formatter = LongHTML.new #Inao.new
 
 
-js = formatter.format(Rouge::Lexers::Javascript.new.lex(File.read('script.js')))
-css = formatter.format(Rouge::Lexers::CSS.new.lex(File.read('style.css')))
-html = formatter.format(Rouge::Lexers::HTML.new.lex(File.read('sample.html')))
-ruby = formatter.format(Rouge::Lexers::Ruby.new.lex(File.read('mono.rb')))
+js   = formatter.format(Rouge::Lexers::Javascript.new.lex(File.read('demo/script.js')))
+css  = formatter.format(Rouge::Lexers::CSS.new.lex(       File.read('demo/style.css')))
+html = formatter.format(Rouge::Lexers::HTML.new.lex(      File.read('demo/sample.html')))
+http = formatter.format(Rouge::Lexers::HTTP.new.lex(      File.read('demo/http')))
+ruby = formatter.format(Rouge::Lexers::Ruby.new.lex(      File.read('mono.rb')))
 
 
 out = <<EOF
@@ -70,6 +71,7 @@ out = <<EOF
 <pre class="highlight css">#{css}</pre>
 <pre class="highlight html">#{html}</pre>
 <pre class="highlight js">#{ruby}</pre>
+<pre class="highlight http">#{http}</pre>
 EOF
 
 open("index.html", "w") {|io| io.write(out)}
