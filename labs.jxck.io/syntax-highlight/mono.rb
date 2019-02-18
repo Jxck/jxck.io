@@ -55,6 +55,7 @@ css   = formatter.format(Rouge::Lexers::CSS.new.lex(       File.read('demo/style
 html  = formatter.format(Rouge::Lexers::HTML.new.lex(      File.read('demo/sample.html')))
 http  = formatter.format(Rouge::Lexers::HTTP.new.lex(      File.read('demo/http')))
 nginx = formatter.format(Rouge::Lexers::Nginx.new.lex(     File.read('demo/nginx.conf')))
+java  = formatter.format(Rouge::Lexers::Java.new.lex(      File.read('demo/sample.java')))
 
 
 out = <<EOF
@@ -74,6 +75,7 @@ out = <<EOF
 <pre class="highlight js">#{ruby}</pre>
 <pre class="highlight http">#{http}</pre>
 <pre class="highlight nginx">#{nginx}</pre>
+<pre class="highlight java">#{java}</pre>
 EOF
 
 open("index.html", "w") {|io| io.write(out)}
