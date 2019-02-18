@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>DEMO</title>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+
+<link rel=stylesheet href=mono.css>
+
+
+<pre class="highlight js"><span class="Keyword">import</span> <span class="Other">file</span> <span class="Keyword">from</span> <span class="Other">fs</span>
+
+<span class="Declaration">function</span> <span class="Other">callback</span><span class="Punctuation">(</span><span class="Other">err</span><span class="Punctuation">,</span> <span class="Other">file</span><span class="Punctuation">)</span> <span class="Punctuation">{</span>
+  <span class="Keyword">if</span> <span class="Punctuation">(</span><span class="Other">err</span><span class="Punctuation">)</span> <span class="Keyword">return</span> <span class="Other">console</span><span class="Punctuation">.</span><span class="Other">error</span><span class="Punctuation">(</span><span class="Other">err</span><span class="Punctuation">);</span>
+
+  <span class="Multiline">/* ここで色々する */</span>
+<span class="Punctuation">};</span>
+
+<span class="Other">file</span><span class="Punctuation">.</span><span class="Other">open</span><span class="Punctuation">(</span><span class="Other">callback</span><span class="Punctuation">);</span>
+
+<span class="Declaration">class</span> <span class="Other">Test</span> <span class="Declaration">extends</span> <span class="Other">EventEmitter</span> <span class="Punctuation">{</span>
+  <span class="Declaration">constructor</span><span class="Punctuation">(</span><span class="Other">data</span><span class="Punctuation">)</span> <span class="Punctuation">{</span>
+    <span class="Keyword">this</span><span class="Punctuation">.</span><span class="Other">data</span> <span class="Operator">=</span> <span class="Other">data</span>
+  <span class="Punctuation">}</span>
+
+  <span class="Other">jquery</span><span class="Punctuation">()</span> <span class="Punctuation">{</span>
+    <span class="Other">$</span><span class="Punctuation">(</span><span class="Single">'body'</span><span class="Punctuation">).</span><span class="Other">innerHTML</span> <span class="Operator">=</span> <span class="Double">"alert('xss')"</span>
+  <span class="Punctuation">}</span>
+
+  <span class="Other">promise</span><span class="Punctuation">()</span> <span class="Punctuation">{</span>
+    <span class="Keyword">return</span> <span class="Builtin">Promise</span><span class="Punctuation">.</span><span class="Other">resolve</span><span class="Punctuation">(</span><span class="Single">'foo'</span><span class="Punctuation">)</span>
+  <span class="Punctuation">}</span>
+<span class="Punctuation">}</span>
+
+<span class="Declaration">const</span> <span class="Other">test</span> <span class="Operator">=</span> <span class="Keyword">new</span> <span class="Other">Test</span><span class="Punctuation">()</span>
+<span class="Other">test</span><span class="Punctuation">.</span><span class="Other">promise</span><span class="Punctuation">().</span><span class="Other">then</span><span class="Punctuation">((</span><span class="Other">e</span><span class="Punctuation">)</span> <span class="Operator">=&gt;</span> <span class="Punctuation">{</span>
+  <span class="Other">console</span><span class="Punctuation">.</span><span class="Other">log</span><span class="Punctuation">(</span><span class="Other">e</span><span class="Punctuation">)</span>
+<span class="Punctuation">})</span>
+
+<span class="Keyword">export</span> <span class="Other">module</span><span class="Punctuation">;</span>
+</pre>
+<pre class="highlight css"><span class="Tag">strong</span><span class="Decorator">::before</span><span class="Operator">,</span>
+<span class="Tag">strong</span><span class="Decorator">::after</span> <span class="Punctuation">{</span>
+  <span class="Label">content</span><span class="Punctuation">:</span> <span class="Single">"**"</span><span class="Punctuation">;</span>
+<span class="Punctuation">}</span>
+
+<span class="Tag">ul</span> <span class="Tag">li</span><span class="Decorator">::before</span> <span class="Punctuation">{</span>
+  <span class="Label">content</span><span class="Punctuation">:</span> <span class="Single">"- "</span><span class="Punctuation">;</span>
+<span class="Punctuation">}</span>
+
+<span class="Tag">ol</span> <span class="Punctuation">{</span>
+  <span class="Label">counter-reset</span><span class="Punctuation">:</span> <span class="Name">list</span><span class="Punctuation">;</span>
+<span class="Punctuation">}</span>
+
+<span class="Tag">ol</span> <span class="Tag">li</span><span class="Decorator">::before</span> <span class="Punctuation">{</span>
+  <span class="Label">counter-increment</span><span class="Punctuation">:</span> <span class="Name">list</span><span class="Punctuation">;</span>
+  <span class="Label">content</span><span class="Punctuation">:</span> <span class="Name">counter</span><span class="Punctuation">(</span><span class="Name">list</span><span class="Punctuation">)</span> <span class="Single">". "</span><span class="Punctuation">;</span>
+<span class="Punctuation">}</span>
+
+<span class="Tag">dl</span> <span class="Tag">dt</span><span class="Decorator">::after</span> <span class="Punctuation">{</span>
+  <span class="Label">content</span><span class="Punctuation">:</span> <span class="Single">":"</span><span class="Punctuation">;</span>
+<span class="Punctuation">}</span>
+
+<span class="Tag">blockquote</span> <span class="Punctuation">{</span>
+  <span class="Label">display</span><span class="Punctuation">:</span> <span class="Builtin">block</span><span class="Punctuation">;</span>
+  <span class="Label">border</span><span class="Punctuation">:</span> <span class="Builtin">solid</span> <span class="Number">1px</span> <span class="Name">var</span><span class="Punctuation">(</span><span class="Name">--block-quote</span><span class="Punctuation">);</span>
+  <span class="Label">border-radius</span><span class="Punctuation">:</span> <span class="Number">4px</span><span class="Punctuation">;</span>
+  <span class="Label">padding</span><span class="Punctuation">:</span> <span class="Number">0.4em</span> <span class="Number">1em</span><span class="Punctuation">;</span>
+  <span class="Label">margin</span><span class="Punctuation">:</span> <span class="Number">0</span><span class="Punctuation">;</span>
+<span class="Punctuation">}</span>
+
+</pre>
+<pre class="highlight html"><span class="Preproc">&lt;!DOCTYPE html&gt;</span>
+<span class="Tag">&lt;meta</span> <span class="Attribute">charset=</span><span class="String">utf-8</span><span class="Tag">&gt;</span>
+<span class="Tag">&lt;meta</span> <span class="Attribute">name=</span><span class="String">viewport</span> <span class="Attribute">content=</span><span class="String">"width=device-width,initial-scale=1"</span><span class="Tag">&gt;</span>
+<span class="Tag">&lt;title&gt;</span>DEMO | labs.jxck.io<span class="Tag">&lt;/title&gt;</span>
+
+<span class="Tag">&lt;style&gt;</span>
+<span class="Tag">&lt;/style&gt;</span>
+
+<span class="Tag">&lt;h1&gt;</span>Test<span class="Tag">&lt;/h1&gt;</span>
+<span class="Tag">&lt;p&gt;</span>this is <span class="Tag">&lt;strong&gt;</span>sample<span class="Tag">&lt;/strong&gt;</span> text<span class="Tag">&lt;/p&gt;</span>
+
+<span class="Tag">&lt;div&gt;</span>
+  <span class="Tag">&lt;video</span> <span class="Attribute">src=</span><span class="String">"some.mp4"</span><span class="Tag">&gt;</span>
+  <span class="Tag">&lt;img</span> <span class="Attribute">src=</span><span class="String">some.webp</span> <span class="Attribute">label=</span><span class="String">"good picture"</span><span class="Tag">&gt;</span>
+
+  <span class="Tag">&lt;form</span> <span class="Attribute">action=</span><span class="String">/login</span> <span class="Attribute">method=</span><span class="String">post</span><span class="Tag">&gt;</span>
+    <span class="Tag">&lt;input</span> <span class="Attribute">type=</span><span class="String">text</span> <span class="Attribute">name=</span><span class="String">username</span><span class="Tag">&gt;</span>
+    <span class="Tag">&lt;input</span> <span class="Attribute">type=</span><span class="String">password</span> <span class="Attribute">name=</span><span class="String">password</span><span class="Tag">&gt;</span>
+    <span class="Tag">&lt;button</span> <span class="Attribute">type=</span><span class="String">submit</span><span class="Tag">&gt;</span>ok<span class="Tag">&lt;/button&gt;</span>
+  <span class="Tag">&lt;/form&gt;</span>
+<span class="Tag">&lt;/div&gt;</span>
+</pre>
+<pre class="highlight js"><span class="Single">#!/usr/bin/env ruby</span>
+
+<span class="Builtin">require</span> <span class="Single">'rouge'</span>
+
+<span class="Constant">TABLE_FOR_ESCAPE_HTML</span> <span class="Operator">=</span> <span class="Punctuation">{</span>
+  <span class="Single">'&amp;'</span> <span class="Operator">=&gt;</span> <span class="Single">'&amp;amp;'</span><span class="Punctuation">,</span>
+  <span class="Single">'&lt;'</span> <span class="Operator">=&gt;</span> <span class="Single">'&amp;lt;'</span><span class="Punctuation">,</span>
+  <span class="Single">'&gt;'</span> <span class="Operator">=&gt;</span> <span class="Single">'&amp;gt;'</span><span class="Punctuation">,</span>
+<span class="Punctuation">}</span>
+
+<span class="Keyword">class</span> <span class="Class">Inao</span> <span class="Operator">&lt;</span> <span class="Constant">Rouge</span><span class="Operator">::</span><span class="Constant">Formatters</span><span class="Operator">::</span><span class="Constant">Null</span>
+  <span class="Single"># @yield the html output.</span>
+  <span class="Keyword">def</span> <span class="Function">stream</span><span class="Punctuation">(</span><span class="Name">tokens</span><span class="Punctuation">,</span> <span class="Operator">&amp;</span><span class="Name">b</span><span class="Punctuation">)</span>
+    <span class="Name">tokens</span><span class="Punctuation">.</span><span class="Function">each</span> <span class="Punctuation">{</span> <span class="Operator">|</span><span class="Name">token</span><span class="Punctuation">,</span> <span class="Name">val</span><span class="Operator">|</span> <span class="Keyword">yield</span> <span class="Name">span</span><span class="Punctuation">(</span><span class="Name">token</span><span class="Punctuation">,</span> <span class="Name">val</span><span class="Punctuation">)</span> <span class="Punctuation">}</span>
+  <span class="Keyword">end</span>
+
+  <span class="Keyword">def</span> <span class="Function">span</span><span class="Punctuation">(</span><span class="Name">token</span><span class="Punctuation">,</span> <span class="Name">val</span><span class="Punctuation">)</span>
+    <span class="Name">safe_span</span><span class="Punctuation">(</span><span class="Name">token</span><span class="Punctuation">,</span> <span class="Name">val</span><span class="Punctuation">.</span><span class="Function">gsub</span><span class="Punctuation">(</span><span class="Regex">/[&amp;&lt;&gt;]/</span><span class="Punctuation">,</span> <span class="Constant">TABLE_FOR_ESCAPE_HTML</span><span class="Punctuation">))</span>
+  <span class="Keyword">end</span>
+
+  <span class="Keyword">def</span> <span class="Function">safe_span</span><span class="Punctuation">(</span><span class="Name">token</span><span class="Punctuation">,</span> <span class="Name">safe_val</span><span class="Punctuation">)</span>
+    <span class="Keyword">if</span> <span class="Name">token</span> <span class="Operator">==</span> <span class="Constant">Rouge</span><span class="Operator">::</span><span class="Constant">Token</span><span class="Operator">::</span><span class="Constant">Tokens</span><span class="Operator">::</span><span class="Constant">Text</span>
+      <span class="Keyword">if</span> <span class="Name">safe_val</span> <span class="Operator">==</span> <span class="Double">"</span><span class="Escape">\n\n\n</span><span class="Double">"</span>
+        <span class="Double">"</span><span class="Escape">\n</span><span class="Double">&lt;ParaStyle:半行アキ&gt;</span><span class="Escape">\n</span><span class="Double">&lt;ParaStyle:半行アキ&gt;</span><span class="Escape">\n</span><span class="Double">"</span>
+      <span class="Keyword">elsif</span> <span class="Name">safe_val</span> <span class="Operator">==</span> <span class="Double">"</span><span class="Escape">\n\n</span><span class="Double">"</span>
+        <span class="Double">"</span><span class="Escape">\n</span><span class="Double">&lt;ParaStyle:半行アキ&gt;</span><span class="Escape">\n</span><span class="Double">"</span>
+      <span class="Keyword">elsif</span> <span class="Name">safe_val</span><span class="Punctuation">.</span><span class="Function">start_with?</span><span class="Punctuation">(</span><span class="Double">"</span><span class="Escape">\n</span><span class="Double"> "</span><span class="Punctuation">)</span>
+        <span class="Name">safe_val</span><span class="Punctuation">.</span><span class="Function">sub</span><span class="Punctuation">(</span><span class="Double">"</span><span class="Escape">\n</span><span class="Double">"</span><span class="Punctuation">,</span> <span class="Double">"</span><span class="Escape">\n</span><span class="Double">&lt;ParaStyle:リスト&gt;"</span><span class="Punctuation">)</span>
+      <span class="Keyword">else</span>
+        <span class="Name">safe_val</span>
+      <span class="Keyword">end</span>
+    <span class="Keyword">else</span>
+      <span class="Double">"&lt;CharStyle:</span><span class="Interpol">#{</span><span class="Name">token</span><span class="Punctuation">.</span><span class="Function">name</span><span class="Interpol">}</span><span class="Double">&gt;</span><span class="Interpol">#{</span><span class="Name">safe_val</span><span class="Interpol">}</span><span class="Double">&lt;CharStyle:&gt;"</span>
+    <span class="Keyword">end</span>
+  <span class="Keyword">end</span>
+<span class="Keyword">end</span>
+
+<span class="Keyword">class</span> <span class="Class">LongHTML</span> <span class="Operator">&lt;</span> <span class="Constant">Rouge</span><span class="Operator">::</span><span class="Constant">Formatters</span><span class="Operator">::</span><span class="Constant">HTML</span>
+  <span class="Keyword">def</span> <span class="Function">safe_span</span><span class="Punctuation">(</span><span class="Name">tok</span><span class="Punctuation">,</span> <span class="Name">safe_val</span><span class="Punctuation">)</span>
+    <span class="Keyword">if</span> <span class="Name">tok</span> <span class="Operator">==</span> <span class="Constant">Rouge</span><span class="Operator">::</span><span class="Constant">Token</span><span class="Operator">::</span><span class="Constant">Tokens</span><span class="Operator">::</span><span class="Constant">Text</span>
+      <span class="Name">safe_val</span>
+    <span class="Keyword">else</span>
+      <span class="Double">"&lt;span class=</span><span class="Escape">\"</span><span class="Interpol">#{</span><span class="Name">tok</span><span class="Punctuation">.</span><span class="Function">name</span><span class="Interpol">}</span><span class="Escape">\"</span><span class="Double">&gt;</span><span class="Interpol">#{</span><span class="Name">safe_val</span><span class="Interpol">}</span><span class="Double">&lt;/span&gt;"</span>
+    <span class="Keyword">end</span>
+  <span class="Keyword">end</span>
+<span class="Keyword">end</span>
+
+<span class="Single">#formatter = Rouge::Formatters::HTML.new #Inao.new</span>
+<span class="Name">formatter</span> <span class="Operator">=</span> <span class="Constant">LongHTML</span><span class="Punctuation">.</span><span class="Function">new</span> <span class="Single">#Inao.new</span>
+
+
+<span class="Name">js</span> <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Function">format</span><span class="Punctuation">(</span><span class="Constant">Rouge</span><span class="Operator">::</span><span class="Constant">Lexers</span><span class="Operator">::</span><span class="Constant">Javascript</span><span class="Punctuation">.</span><span class="Function">new</span><span class="Punctuation">.</span><span class="Function">lex</span><span class="Punctuation">(</span><span class="Constant">File</span><span class="Punctuation">.</span><span class="Function">read</span><span class="Punctuation">(</span><span class="Single">'script.js'</span><span class="Punctuation">)))</span>
+<span class="Name">css</span> <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Function">format</span><span class="Punctuation">(</span><span class="Constant">Rouge</span><span class="Operator">::</span><span class="Constant">Lexers</span><span class="Operator">::</span><span class="Constant">CSS</span><span class="Punctuation">.</span><span class="Function">new</span><span class="Punctuation">.</span><span class="Function">lex</span><span class="Punctuation">(</span><span class="Constant">File</span><span class="Punctuation">.</span><span class="Function">read</span><span class="Punctuation">(</span><span class="Single">'style.css'</span><span class="Punctuation">)))</span>
+<span class="Name">html</span> <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Function">format</span><span class="Punctuation">(</span><span class="Constant">Rouge</span><span class="Operator">::</span><span class="Constant">Lexers</span><span class="Operator">::</span><span class="Constant">HTML</span><span class="Punctuation">.</span><span class="Function">new</span><span class="Punctuation">.</span><span class="Function">lex</span><span class="Punctuation">(</span><span class="Constant">File</span><span class="Punctuation">.</span><span class="Function">read</span><span class="Punctuation">(</span><span class="Single">'sample.html'</span><span class="Punctuation">)))</span>
+<span class="Name">ruby</span> <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Function">format</span><span class="Punctuation">(</span><span class="Constant">Rouge</span><span class="Operator">::</span><span class="Constant">Lexers</span><span class="Operator">::</span><span class="Constant">Ruby</span><span class="Punctuation">.</span><span class="Function">new</span><span class="Punctuation">.</span><span class="Function">lex</span><span class="Punctuation">(</span><span class="Constant">File</span><span class="Punctuation">.</span><span class="Function">read</span><span class="Punctuation">(</span><span class="Single">'mono.rb'</span><span class="Punctuation">)))</span>
+
+
+<span class="Name">out</span> <span class="Operator">=</span> <span class="Operator">&lt;&lt;</span><span class="Constant">EOF</span><span class="Heredoc">
+&lt;!DOCTYPE html&gt;
+&lt;meta charset=utf-8&gt;
+&lt;meta name=viewport content="width=device-width,initial-scale=1"&gt;
+&lt;title&gt;DEMO&lt;/title&gt;
+
+&lt;link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet"&gt;
+
+&lt;link rel=stylesheet href=mono.css&gt;
+
+
+&lt;pre class="highlight js"&gt;</span><span class="Interpol">#{</span><span class="Name">js</span><span class="Interpol">}</span><span class="Heredoc">&lt;/pre&gt;
+&lt;pre class="highlight css"&gt;</span><span class="Interpol">#{</span><span class="Name">css</span><span class="Interpol">}</span><span class="Heredoc">&lt;/pre&gt;
+&lt;pre class="highlight html"&gt;</span><span class="Interpol">#{</span><span class="Name">html</span><span class="Interpol">}</span><span class="Heredoc">&lt;/pre&gt;
+&lt;pre class="highlight js"&gt;</span><span class="Interpol">#{</span><span class="Name">ruby</span><span class="Interpol">}</span><span class="Heredoc">&lt;/pre&gt;
+</span><span class="Constant">EOF</span>
+
+<span class="Builtin">open</span><span class="Punctuation">(</span><span class="Double">"index.html"</span><span class="Punctuation">,</span> <span class="Double">"w"</span><span class="Punctuation">)</span> <span class="Punctuation">{</span><span class="Operator">|</span><span class="Name">io</span><span class="Operator">|</span> <span class="Name">io</span><span class="Punctuation">.</span><span class="Function">write</span><span class="Punctuation">(</span><span class="Name">out</span><span class="Punctuation">)}</span>
+</pre>

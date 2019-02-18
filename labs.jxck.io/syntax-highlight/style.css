@@ -1,0 +1,30 @@
+strong::before,
+strong::after {
+  content: "**";
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+dl dt::after {
+  content: ":";
+}
+
+blockquote {
+  display: block;
+  border: solid 1px var(--block-quote);
+  border-radius: 4px;
+  padding: 0.4em 1em;
+  margin: 0;
+}
+
