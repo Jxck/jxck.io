@@ -150,6 +150,7 @@
 <span class="Name">http</span>  <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Function">format</span><span class="Punctuation">(</span><span class="Constant">Rouge</span><span class="Operator">::</span><span class="Constant">Lexers</span><span class="Operator">::</span><span class="Constant">HTTP</span><span class="Punctuation">.</span><span class="Function">new</span><span class="Punctuation">.</span><span class="Function">lex</span><span class="Punctuation">(</span>      <span class="Constant">File</span><span class="Punctuation">.</span><span class="Function">read</span><span class="Punctuation">(</span><span class="Single">'demo/http'</span><span class="Punctuation">)))</span>
 <span class="Name">nginx</span> <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Function">format</span><span class="Punctuation">(</span><span class="Constant">Rouge</span><span class="Operator">::</span><span class="Constant">Lexers</span><span class="Operator">::</span><span class="Constant">Nginx</span><span class="Punctuation">.</span><span class="Function">new</span><span class="Punctuation">.</span><span class="Function">lex</span><span class="Punctuation">(</span>     <span class="Constant">File</span><span class="Punctuation">.</span><span class="Function">read</span><span class="Punctuation">(</span><span class="Single">'demo/nginx.conf'</span><span class="Punctuation">)))</span>
 <span class="Name">java</span>  <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Function">format</span><span class="Punctuation">(</span><span class="Constant">Rouge</span><span class="Operator">::</span><span class="Constant">Lexers</span><span class="Operator">::</span><span class="Constant">Java</span><span class="Punctuation">.</span><span class="Function">new</span><span class="Punctuation">.</span><span class="Function">lex</span><span class="Punctuation">(</span>      <span class="Constant">File</span><span class="Punctuation">.</span><span class="Function">read</span><span class="Punctuation">(</span><span class="Single">'demo/sample.java'</span><span class="Punctuation">)))</span>
+<span class="Name">make</span>  <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Function">format</span><span class="Punctuation">(</span><span class="Constant">Rouge</span><span class="Operator">::</span><span class="Constant">Lexers</span><span class="Operator">::</span><span class="Constant">Make</span><span class="Punctuation">.</span><span class="Function">new</span><span class="Punctuation">.</span><span class="Function">lex</span><span class="Punctuation">(</span>      <span class="Constant">File</span><span class="Punctuation">.</span><span class="Function">read</span><span class="Punctuation">(</span><span class="Single">'demo/Makefile'</span><span class="Punctuation">)))</span>
 
 
 <span class="Name">out</span> <span class="Operator">=</span> <span class="Operator">&lt;&lt;</span><span class="Constant">EOF</span><span class="Heredoc">
@@ -170,6 +171,7 @@
 &lt;pre class="highlight http"&gt;</span><span class="Interpol">#{</span><span class="Name">http</span><span class="Interpol">}</span><span class="Heredoc">&lt;/pre&gt;
 &lt;pre class="highlight nginx"&gt;</span><span class="Interpol">#{</span><span class="Name">nginx</span><span class="Interpol">}</span><span class="Heredoc">&lt;/pre&gt;
 &lt;pre class="highlight java"&gt;</span><span class="Interpol">#{</span><span class="Name">java</span><span class="Interpol">}</span><span class="Heredoc">&lt;/pre&gt;
+&lt;pre class="highlight make"&gt;</span><span class="Interpol">#{</span><span class="Name">make</span><span class="Interpol">}</span><span class="Heredoc">&lt;/pre&gt;
 </span><span class="Constant">EOF</span>
 
 <span class="Builtin">open</span><span class="Punctuation">(</span><span class="Double">"index.html"</span><span class="Punctuation">,</span> <span class="Double">"w"</span><span class="Punctuation">)</span> <span class="Punctuation">{</span><span class="Operator">|</span><span class="Name">io</span><span class="Operator">|</span> <span class="Name">io</span><span class="Punctuation">.</span><span class="Function">write</span><span class="Punctuation">(</span><span class="Name">out</span><span class="Punctuation">)}</span>
@@ -281,4 +283,18 @@
         <span class="Keyword">return</span> <span class="Name">octalNumber</span><span class="Operator">;</span>
     <span class="Operator">}</span>
 <span class="Operator">}</span>
+</pre>
+<pre class="highlight make"><span class="Comment"># Makefile
+</span><span class="Label">.PHONY</span><span class="Operator">:</span> <span class="Function">all</span>
+<span class="Label">all</span><span class="Operator">:</span> <span class="Function">main</span>
+
+<span class="Label">main</span><span class="Operator">:</span> <span class="Function">main.o</span>
+	gcc <span class="Tag">-o</span> main main.o
+
+<span class="Label">main.o</span><span class="Operator">:</span> <span class="Function">main.c</span>
+	gcc <span class="Tag">-c</span> main.c
+
+<span class="Label">.PHONY</span><span class="Operator">:</span> <span class="Function">clean</span>
+<span class="Label">clean</span><span class="Operator">:</span>
+	<span class="Builtin">rm</span> <span class="Tag">-rf</span> main main.o
 </pre>
