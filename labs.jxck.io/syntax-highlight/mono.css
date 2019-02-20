@@ -16,8 +16,8 @@
 
 
   /** background **/
-  --bg-light:  rgb(230, 230, 230);
-  --bg-white:  rgb(255, 255, 255);
+  --bg-light: rgb(230, 230, 230);
+  --bg-white: rgb(255, 255, 255);
 }
 
 body.dark pre {
@@ -33,32 +33,37 @@ pre {
   padding:     1em;
   border:      1px solid black;
 
+  /* base */
   font-weight: var(--thin);
   color:       var(--silver);
 }
 
-/* bold-black */
+/* bold-gray */
+.BoldGray,
 .Name {
   color:       var(--gray);
   font-weight: var(--bold);
 }
 
-/* bold-gray */
+/* bold-black */
+.BoldBlack,
 .Keyword,
+.Label,
 .Tag {
   color:       var(--black);
   font-weight: var(--bold);
 }
 
-/* 数値と演算子 */
+/* regular-dark */
+.RegularDark,
 .Number,
 .Operator {
   color:       var(--dark);
   font-weight: var(--regular);
 }
 
-/* Comment と String (含む regex) */
-.Preproc,
+/* regular silver italic */
+.RegularSilverItalic,
 .Comment,
 .String {
   font-style:  italic;

@@ -37,13 +37,25 @@ end
 
 class LongHTML < Rouge::Formatters::HTML
   def safe_span(tok, safe_val)
-    if tok == Rouge::Token::Tokens::Text
-      safe_val
-    else
-      classes = tok.qualname.split(".").join(" ")
-      p classes
-      "<span class=\"#{classes}\">#{safe_val}</span>"
-    end
+    return safe_val if tok == Rouge::Token::Tokens::Text
+
+    classes = tok.qualname.split(".")
+
+    return "<span class=\"#{self.classname(classes)}\">#{safe_val}</span>"
+  end
+
+  def classname(classes)
+    return "RegularSilverItalic" if classes.include?("Comment")
+    return "RegularSilverItalic" if classes.include?("String")
+    return "RegularDark"         if classes.include?("Number")
+    return "RegularDark"         if classes.include?("Operator")
+    return "BoldBlack"           if classes.include?("Label")
+    return "BoldBlack"           if classes.include?("Tag")
+    return "BoldGray"            if classes.include?("Name")
+    return "BoldBlack"           if classes.include?("Keyword")
+
+    p classes
+    classes.join(" ")
   end
 end
 
@@ -75,6 +87,14 @@ out = <<EOF
 
 <body class=white>
   <button id=toggle>toggle</button>
+
+  <pre>
+    <span>this is thin & silver (他のスタイルが当たらない場合のベース、中括弧やセミコロンなど)</span>
+    <span class=RegularDark>this is regular & dark (数値と演算子)</span>
+    <span class=RegularSilverItalic>this is regular & silver & italic (コメントと文字列)</span>
+    <span class=BoldBlack>this is bold & black (構文キーワードなど)</span>
+    <span class=BoldGray>this is bold & gray (変数関数クラス名など)</span>
+  </pre>
 
   <pre class="highlight js">#{js}</pre>
   <pre class="highlight css">#{css}</pre>

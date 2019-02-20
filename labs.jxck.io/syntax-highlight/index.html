@@ -10,264 +10,283 @@
 <body class=white>
   <button id=toggle>toggle</button>
 
-  <pre class="highlight js"><span class="Keyword">import</span> <span class="Name Other">file</span> <span class="Keyword">from</span> <span class="Name Other">fs</span>
+  <pre>
+    <span>this is thin & silver (他のスタイルが当たらない場合のベース、中括弧やセミコロンなど)</span>
+    <span class=RegularDark>this is regular & dark (数値と演算子)</span>
+    <span class=RegularSilverItalic>this is regular & silver & italic (コメントと文字列)</span>
+    <span class=BoldBlack>this is bold & black (構文キーワードなど)</span>
+    <span class=BoldGray>this is bold & gray (変数関数クラス名など)</span>
+  </pre>
 
-<span class="Keyword Declaration">function</span> <span class="Name Other">callback</span><span class="Punctuation">(</span><span class="Name Other">err</span><span class="Punctuation">,</span> <span class="Name Other">file</span><span class="Punctuation">)</span> <span class="Punctuation">{</span>
-  <span class="Keyword">if</span> <span class="Punctuation">(</span><span class="Name Other">err</span><span class="Punctuation">)</span> <span class="Keyword">return</span> <span class="Name Other">console</span><span class="Punctuation">.</span><span class="Name Other">error</span><span class="Punctuation">(</span><span class="Name Other">err</span><span class="Punctuation">);</span>
+  <pre class="highlight js"><span class="BoldBlack">import</span> <span class="BoldGray">file</span> <span class="BoldBlack">from</span> <span class="BoldGray">fs</span>
 
-  <span class="Comment Multiline">/* ここで色々する */</span>
+<span class="BoldBlack">function</span> <span class="BoldGray">callback</span><span class="Punctuation">(</span><span class="BoldGray">err</span><span class="Punctuation">,</span> <span class="BoldGray">file</span><span class="Punctuation">)</span> <span class="Punctuation">{</span>
+  <span class="BoldBlack">if</span> <span class="Punctuation">(</span><span class="BoldGray">err</span><span class="Punctuation">)</span> <span class="BoldBlack">return</span> <span class="BoldGray">console</span><span class="Punctuation">.</span><span class="BoldGray">error</span><span class="Punctuation">(</span><span class="BoldGray">err</span><span class="Punctuation">);</span>
+
+  <span class="RegularSilverItalic">/* ここで色々する */</span>
 <span class="Punctuation">};</span>
 
-<span class="Name Other">file</span><span class="Punctuation">.</span><span class="Name Other">open</span><span class="Punctuation">(</span><span class="Name Other">callback</span><span class="Punctuation">);</span>
+<span class="BoldGray">file</span><span class="Punctuation">.</span><span class="BoldGray">open</span><span class="Punctuation">(</span><span class="BoldGray">callback</span><span class="Punctuation">);</span>
 
-<span class="Keyword Declaration">class</span> <span class="Name Other">Test</span> <span class="Keyword Declaration">extends</span> <span class="Name Other">EventEmitter</span> <span class="Punctuation">{</span>
-  <span class="Keyword Declaration">constructor</span><span class="Punctuation">(</span><span class="Name Other">data</span><span class="Punctuation">)</span> <span class="Punctuation">{</span>
-    <span class="Keyword">this</span><span class="Punctuation">.</span><span class="Name Other">data</span> <span class="Operator">=</span> <span class="Name Other">data</span>
+<span class="BoldBlack">class</span> <span class="BoldGray">Test</span> <span class="BoldBlack">extends</span> <span class="BoldGray">EventEmitter</span> <span class="Punctuation">{</span>
+  <span class="BoldBlack">constructor</span><span class="Punctuation">(</span><span class="BoldGray">data</span><span class="Punctuation">)</span> <span class="Punctuation">{</span>
+    <span class="BoldBlack">this</span><span class="Punctuation">.</span><span class="BoldGray">data</span> <span class="RegularDark">=</span> <span class="BoldGray">data</span>
   <span class="Punctuation">}</span>
 
-  <span class="Name Other">jquery</span><span class="Punctuation">()</span> <span class="Punctuation">{</span>
-    <span class="Name Other">$</span><span class="Punctuation">(</span><span class="Literal String Single">'body'</span><span class="Punctuation">).</span><span class="Name Other">innerHTML</span> <span class="Operator">=</span> <span class="Literal String Double">"alert('xss')"</span>
+  <span class="BoldGray">jquery</span><span class="Punctuation">()</span> <span class="Punctuation">{</span>
+    <span class="BoldGray">$</span><span class="Punctuation">(</span><span class="RegularSilverItalic">'body'</span><span class="Punctuation">).</span><span class="BoldGray">innerHTML</span> <span class="RegularDark">=</span> <span class="RegularSilverItalic">"alert('xss')"</span>
   <span class="Punctuation">}</span>
 
-  <span class="Name Other">promise</span><span class="Punctuation">()</span> <span class="Punctuation">{</span>
-    <span class="Keyword">return</span> <span class="Name Builtin">Promise</span><span class="Punctuation">.</span><span class="Name Other">resolve</span><span class="Punctuation">(</span><span class="Literal String Single">'foo'</span><span class="Punctuation">)</span>
+  <span class="BoldGray">promise</span><span class="Punctuation">()</span> <span class="Punctuation">{</span>
+    <span class="BoldBlack">return</span> <span class="BoldGray">Promise</span><span class="Punctuation">.</span><span class="BoldGray">resolve</span><span class="Punctuation">(</span><span class="RegularSilverItalic">'foo'</span><span class="Punctuation">)</span>
   <span class="Punctuation">}</span>
 <span class="Punctuation">}</span>
 
-<span class="Keyword Declaration">const</span> <span class="Name Other">test</span> <span class="Operator">=</span> <span class="Keyword">new</span> <span class="Name Other">Test</span><span class="Punctuation">()</span>
-<span class="Name Other">test</span><span class="Punctuation">.</span><span class="Name Other">promise</span><span class="Punctuation">().</span><span class="Name Other">then</span><span class="Punctuation">((</span><span class="Name Other">e</span><span class="Punctuation">)</span> <span class="Operator">=&gt;</span> <span class="Punctuation">{</span>
-  <span class="Name Other">console</span><span class="Punctuation">.</span><span class="Name Other">log</span><span class="Punctuation">(</span><span class="Name Other">e</span><span class="Punctuation">)</span>
+<span class="BoldBlack">const</span> <span class="BoldGray">test</span> <span class="RegularDark">=</span> <span class="BoldBlack">new</span> <span class="BoldGray">Test</span><span class="Punctuation">()</span>
+<span class="BoldGray">test</span><span class="Punctuation">.</span><span class="BoldGray">promise</span><span class="Punctuation">().</span><span class="BoldGray">then</span><span class="Punctuation">((</span><span class="BoldGray">e</span><span class="Punctuation">)</span> <span class="RegularDark">=&gt;</span> <span class="Punctuation">{</span>
+  <span class="BoldGray">console</span><span class="Punctuation">.</span><span class="BoldGray">log</span><span class="Punctuation">(</span><span class="BoldGray">e</span><span class="Punctuation">)</span>
 <span class="Punctuation">})</span>
 
-<span class="Keyword">export</span> <span class="Name Other">module</span><span class="Punctuation">;</span>
+<span class="BoldBlack">export</span> <span class="BoldGray">module</span><span class="Punctuation">;</span>
 </pre>
-  <pre class="highlight css"><span class="Name Tag">strong</span><span class="Name Decorator">::before</span><span class="Operator">,</span>
-<span class="Name Tag">strong</span><span class="Name Decorator">::after</span> <span class="Punctuation">{</span>
-  <span class="Name Label">content</span><span class="Punctuation">:</span> <span class="Literal String Single">"**"</span><span class="Punctuation">;</span>
+  <pre class="highlight css"><span class="BoldBlack">strong</span><span class="BoldGray">::before</span><span class="RegularDark">,</span>
+<span class="BoldBlack">strong</span><span class="BoldGray">::after</span> <span class="Punctuation">{</span>
+  <span class="BoldBlack">content</span><span class="Punctuation">:</span> <span class="RegularSilverItalic">"**"</span><span class="Punctuation">;</span>
 <span class="Punctuation">}</span>
 
-<span class="Name Tag">ul</span> <span class="Name Tag">li</span><span class="Name Decorator">::before</span> <span class="Punctuation">{</span>
-  <span class="Name Label">content</span><span class="Punctuation">:</span> <span class="Literal String Single">"- "</span><span class="Punctuation">;</span>
+<span class="BoldBlack">ul</span> <span class="BoldBlack">li</span><span class="BoldGray">::before</span> <span class="Punctuation">{</span>
+  <span class="BoldBlack">content</span><span class="Punctuation">:</span> <span class="RegularSilverItalic">"- "</span><span class="Punctuation">;</span>
 <span class="Punctuation">}</span>
 
-<span class="Name Tag">ol</span> <span class="Punctuation">{</span>
-  <span class="Name Label">counter-reset</span><span class="Punctuation">:</span> <span class="Name">list</span><span class="Punctuation">;</span>
+<span class="BoldBlack">ol</span> <span class="Punctuation">{</span>
+  <span class="BoldBlack">counter-reset</span><span class="Punctuation">:</span> <span class="BoldGray">list</span><span class="Punctuation">;</span>
 <span class="Punctuation">}</span>
 
-<span class="Name Tag">ol</span> <span class="Name Tag">li</span><span class="Name Decorator">::before</span> <span class="Punctuation">{</span>
-  <span class="Name Label">counter-increment</span><span class="Punctuation">:</span> <span class="Name">list</span><span class="Punctuation">;</span>
-  <span class="Name Label">content</span><span class="Punctuation">:</span> <span class="Name">counter</span><span class="Punctuation">(</span><span class="Name">list</span><span class="Punctuation">)</span> <span class="Literal String Single">". "</span><span class="Punctuation">;</span>
+<span class="BoldBlack">ol</span> <span class="BoldBlack">li</span><span class="BoldGray">::before</span> <span class="Punctuation">{</span>
+  <span class="BoldBlack">counter-increment</span><span class="Punctuation">:</span> <span class="BoldGray">list</span><span class="Punctuation">;</span>
+  <span class="BoldBlack">content</span><span class="Punctuation">:</span> <span class="BoldGray">counter</span><span class="Punctuation">(</span><span class="BoldGray">list</span><span class="Punctuation">)</span> <span class="RegularSilverItalic">". "</span><span class="Punctuation">;</span>
 <span class="Punctuation">}</span>
 
-<span class="Name Tag">dl</span> <span class="Name Tag">dt</span><span class="Name Decorator">::after</span> <span class="Punctuation">{</span>
-  <span class="Name Label">content</span><span class="Punctuation">:</span> <span class="Literal String Single">":"</span><span class="Punctuation">;</span>
+<span class="BoldBlack">dl</span> <span class="BoldBlack">dt</span><span class="BoldGray">::after</span> <span class="Punctuation">{</span>
+  <span class="BoldBlack">content</span><span class="Punctuation">:</span> <span class="RegularSilverItalic">":"</span><span class="Punctuation">;</span>
 <span class="Punctuation">}</span>
 
-<span class="Name Tag">blockquote</span> <span class="Punctuation">{</span>
-  <span class="Name Label">display</span><span class="Punctuation">:</span> <span class="Name Builtin">block</span><span class="Punctuation">;</span>
-  <span class="Name Label">border</span><span class="Punctuation">:</span> <span class="Name Builtin">solid</span> <span class="Literal Number">1px</span> <span class="Name">var</span><span class="Punctuation">(</span><span class="Name">--block-quote</span><span class="Punctuation">);</span>
-  <span class="Name Label">border-radius</span><span class="Punctuation">:</span> <span class="Literal Number">4px</span><span class="Punctuation">;</span>
-  <span class="Name Label">padding</span><span class="Punctuation">:</span> <span class="Literal Number">0.4em</span> <span class="Literal Number">1em</span><span class="Punctuation">;</span>
-  <span class="Name Label">margin</span><span class="Punctuation">:</span> <span class="Literal Number">0</span><span class="Punctuation">;</span>
+<span class="BoldBlack">blockquote</span> <span class="Punctuation">{</span>
+  <span class="BoldBlack">display</span><span class="Punctuation">:</span> <span class="BoldGray">block</span><span class="Punctuation">;</span>
+  <span class="BoldBlack">border</span><span class="Punctuation">:</span> <span class="BoldGray">solid</span> <span class="RegularDark">1px</span> <span class="BoldGray">var</span><span class="Punctuation">(</span><span class="BoldGray">--block-quote</span><span class="Punctuation">);</span>
+  <span class="BoldBlack">border-radius</span><span class="Punctuation">:</span> <span class="RegularDark">4px</span><span class="Punctuation">;</span>
+  <span class="BoldBlack">padding</span><span class="Punctuation">:</span> <span class="RegularDark">0.4em</span> <span class="RegularDark">1em</span><span class="Punctuation">;</span>
+  <span class="BoldBlack">margin</span><span class="Punctuation">:</span> <span class="RegularDark">0</span><span class="Punctuation">;</span>
 <span class="Punctuation">}</span>
 
 </pre>
-  <pre class="highlight html"><span class="Comment Preproc">&lt;!DOCTYPE html&gt;</span>
-<span class="Name Tag">&lt;meta</span> <span class="Name Attribute">charset=</span><span class="Literal String">utf-8</span><span class="Name Tag">&gt;</span>
-<span class="Name Tag">&lt;meta</span> <span class="Name Attribute">name=</span><span class="Literal String">viewport</span> <span class="Name Attribute">content=</span><span class="Literal String">"width=device-width,initial-scale=1"</span><span class="Name Tag">&gt;</span>
-<span class="Name Tag">&lt;title&gt;</span>DEMO | labs.jxck.io<span class="Name Tag">&lt;/title&gt;</span>
+  <pre class="highlight html"><span class="RegularSilverItalic">&lt;!DOCTYPE html&gt;</span>
+<span class="BoldBlack">&lt;meta</span> <span class="BoldGray">charset=</span><span class="RegularSilverItalic">utf-8</span><span class="BoldBlack">&gt;</span>
+<span class="BoldBlack">&lt;meta</span> <span class="BoldGray">name=</span><span class="RegularSilverItalic">viewport</span> <span class="BoldGray">content=</span><span class="RegularSilverItalic">"width=device-width,initial-scale=1"</span><span class="BoldBlack">&gt;</span>
+<span class="BoldBlack">&lt;title&gt;</span>DEMO | labs.jxck.io<span class="BoldBlack">&lt;/title&gt;</span>
 
-<span class="Name Tag">&lt;style&gt;</span>
-<span class="Name Tag">&lt;/style&gt;</span>
+<span class="BoldBlack">&lt;style&gt;</span>
+<span class="BoldBlack">&lt;/style&gt;</span>
 
-<span class="Name Tag">&lt;h1&gt;</span>Test<span class="Name Tag">&lt;/h1&gt;</span>
-<span class="Name Tag">&lt;p&gt;</span>this is <span class="Name Tag">&lt;strong&gt;</span>sample<span class="Name Tag">&lt;/strong&gt;</span> text<span class="Name Tag">&lt;/p&gt;</span>
+<span class="BoldBlack">&lt;h1&gt;</span>Test<span class="BoldBlack">&lt;/h1&gt;</span>
+<span class="BoldBlack">&lt;p&gt;</span>this is <span class="BoldBlack">&lt;strong&gt;</span>sample<span class="BoldBlack">&lt;/strong&gt;</span> text<span class="BoldBlack">&lt;/p&gt;</span>
 
-<span class="Name Tag">&lt;div&gt;</span>
-  <span class="Name Tag">&lt;video</span> <span class="Name Attribute">src=</span><span class="Literal String">"some.mp4"</span><span class="Name Tag">&gt;</span>
-  <span class="Name Tag">&lt;img</span> <span class="Name Attribute">src=</span><span class="Literal String">some.webp</span> <span class="Name Attribute">label=</span><span class="Literal String">"good picture"</span><span class="Name Tag">&gt;</span>
+<span class="BoldBlack">&lt;div&gt;</span>
+  <span class="BoldBlack">&lt;video</span> <span class="BoldGray">src=</span><span class="RegularSilverItalic">"some.mp4"</span><span class="BoldBlack">&gt;</span>
+  <span class="BoldBlack">&lt;img</span> <span class="BoldGray">src=</span><span class="RegularSilverItalic">some.webp</span> <span class="BoldGray">label=</span><span class="RegularSilverItalic">"good picture"</span><span class="BoldBlack">&gt;</span>
 
-  <span class="Name Tag">&lt;form</span> <span class="Name Attribute">action=</span><span class="Literal String">/login</span> <span class="Name Attribute">method=</span><span class="Literal String">post</span><span class="Name Tag">&gt;</span>
-    <span class="Name Tag">&lt;input</span> <span class="Name Attribute">type=</span><span class="Literal String">text</span> <span class="Name Attribute">name=</span><span class="Literal String">username</span><span class="Name Tag">&gt;</span>
-    <span class="Name Tag">&lt;input</span> <span class="Name Attribute">type=</span><span class="Literal String">password</span> <span class="Name Attribute">name=</span><span class="Literal String">password</span><span class="Name Tag">&gt;</span>
-    <span class="Name Tag">&lt;button</span> <span class="Name Attribute">type=</span><span class="Literal String">submit</span><span class="Name Tag">&gt;</span>ok<span class="Name Tag">&lt;/button&gt;</span>
-  <span class="Name Tag">&lt;/form&gt;</span>
-<span class="Name Tag">&lt;/div&gt;</span>
+  <span class="BoldBlack">&lt;form</span> <span class="BoldGray">action=</span><span class="RegularSilverItalic">/login</span> <span class="BoldGray">method=</span><span class="RegularSilverItalic">post</span><span class="BoldBlack">&gt;</span>
+    <span class="BoldBlack">&lt;input</span> <span class="BoldGray">type=</span><span class="RegularSilverItalic">text</span> <span class="BoldGray">name=</span><span class="RegularSilverItalic">username</span><span class="BoldBlack">&gt;</span>
+    <span class="BoldBlack">&lt;input</span> <span class="BoldGray">type=</span><span class="RegularSilverItalic">password</span> <span class="BoldGray">name=</span><span class="RegularSilverItalic">password</span><span class="BoldBlack">&gt;</span>
+    <span class="BoldBlack">&lt;button</span> <span class="BoldGray">type=</span><span class="RegularSilverItalic">submit</span><span class="BoldBlack">&gt;</span>ok<span class="BoldBlack">&lt;/button&gt;</span>
+  <span class="BoldBlack">&lt;/form&gt;</span>
+<span class="BoldBlack">&lt;/div&gt;</span>
 </pre>
-  <pre class="highlight http"><span class="Name Function">POST</span> <span class="Name Namespace">/demo/submit/</span> <span class="Keyword">HTTP</span><span class="Operator">/</span><span class="Literal Number">1.1</span>
-<span class="Name Attribute">Host</span><span class="Punctuation">:</span> <span class="Literal String">rouge.jneen.net</span>
-<span class="Name Attribute">Cache-Control</span><span class="Punctuation">:</span> <span class="Literal String">max-age=0</span>
-<span class="Name Attribute">Origin</span><span class="Punctuation">:</span> <span class="Literal String">http://rouge.jayferd.us</span>
-<span class="Name Attribute">User-Agent</span><span class="Punctuation">:</span> <span class="Literal String">Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2)</span>
-<span class="Literal String">    AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.63 Safari/535.7</span>
-<span class="Name Attribute">Content-Type</span><span class="Punctuation">:</span> <span class="Literal String">application/json</span>
-<span class="Name Attribute">Accept</span><span class="Punctuation">:</span> <span class="Literal String">text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span>
-<span class="Name Attribute">Referer</span><span class="Punctuation">:</span> <span class="Literal String">http://pygments.org/</span>
-<span class="Name Attribute">Accept-Encoding</span><span class="Punctuation">:</span> <span class="Literal String">gzip,deflate,sdch</span>
-<span class="Name Attribute">Accept-Language</span><span class="Punctuation">:</span> <span class="Literal String">en-US,en;q=0.8</span>
-<span class="Name Attribute">Accept-Charset</span><span class="Punctuation">:</span> <span class="Literal String">windows-949,utf-8;q=0.7,*;q=0.3</span>
+  <pre class="highlight http"><span class="BoldGray">POST</span> <span class="BoldGray">/demo/submit/</span> <span class="BoldBlack">HTTP</span><span class="RegularDark">/</span><span class="RegularDark">1.1</span>
+<span class="BoldGray">Host</span><span class="Punctuation">:</span> <span class="RegularSilverItalic">rouge.jneen.net</span>
+<span class="BoldGray">Cache-Control</span><span class="Punctuation">:</span> <span class="RegularSilverItalic">max-age=0</span>
+<span class="BoldGray">Origin</span><span class="Punctuation">:</span> <span class="RegularSilverItalic">http://rouge.jayferd.us</span>
+<span class="BoldGray">User-Agent</span><span class="Punctuation">:</span> <span class="RegularSilverItalic">Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.63 Safari/535.7</span>
+<span class="BoldGray">Content-Type</span><span class="Punctuation">:</span> <span class="RegularSilverItalic">application/json</span>
+<span class="BoldGray">Accept</span><span class="Punctuation">:</span> <span class="RegularSilverItalic">text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span>
+<span class="BoldGray">Referer</span><span class="Punctuation">:</span> <span class="RegularSilverItalic">http://pygments.org/</span>
+<span class="BoldGray">Accept-Encoding</span><span class="Punctuation">:</span> <span class="RegularSilverItalic">gzip,deflate,sdch</span>
+<span class="BoldGray">Accept-Language</span><span class="Punctuation">:</span> <span class="RegularSilverItalic">en-US,en;q=0.8</span>
+<span class="BoldGray">Accept-Charset</span><span class="Punctuation">:</span> <span class="RegularSilverItalic">windows-949,utf-8;q=0.7,*;q=0.3</span>
 
-<span class="Punctuation">{</span><span class="Literal String Double">"name"</span><span class="Punctuation">:</span><span class="Literal String Double">"test"</span><span class="Punctuation">,</span><span class="Literal String Double">"lang"</span><span class="Punctuation">:</span><span class="Literal String Double">"text"</span><span class="Punctuation">,</span><span class="Literal String Double">"boring"</span><span class="Punctuation">:</span><span class="Keyword Constant">true</span><span class="Punctuation">}</span><span class="Text Whitespace">
+<span class="Punctuation">{</span><span class="RegularSilverItalic">"name"</span><span class="Punctuation">:</span><span class="RegularSilverItalic">"test"</span><span class="Punctuation">,</span><span class="RegularSilverItalic">"lang"</span><span class="Punctuation">:</span><span class="RegularSilverItalic">"text"</span><span class="Punctuation">,</span><span class="RegularSilverItalic">"boring"</span><span class="Punctuation">:</span><span class="BoldBlack">true</span><span class="Punctuation">}</span><span class="Text Whitespace">
 </span></pre>
-  <pre class="highlight nginx"><span class="Keyword">user</span>       <span class="Literal String">www</span> <span class="Literal String">www</span><span class="Punctuation">;</span>  <span class="Comment Single">## Default: nobody
-</span><span class="Keyword">worker_processes</span>  <span class="Literal Number Integer">5</span><span class="Punctuation">;</span>  <span class="Comment Single">## Default: 1
-</span><span class="Keyword">error_log</span>  <span class="Name Class">logs/error</span><span class="Literal String">.log</span><span class="Punctuation">;</span>
-<span class="Keyword">pid</span>        <span class="Name Class">logs/nginx</span><span class="Literal String">.pid</span><span class="Punctuation">;</span>
-<span class="Keyword">worker_rlimit_nofile</span> <span class="Literal Number Integer">8192</span><span class="Punctuation">;</span>
+  <pre class="highlight nginx"><span class="BoldBlack">user</span>       <span class="RegularSilverItalic">www</span> <span class="RegularSilverItalic">www</span><span class="Punctuation">;</span>  <span class="RegularSilverItalic">## Default: nobody
+</span><span class="BoldBlack">worker_processes</span>  <span class="RegularDark">5</span><span class="Punctuation">;</span>  <span class="RegularSilverItalic">## Default: 1
+</span><span class="BoldBlack">error_log</span>  <span class="BoldGray">logs/error</span><span class="RegularSilverItalic">.log</span><span class="Punctuation">;</span>
+<span class="BoldBlack">pid</span>        <span class="BoldGray">logs/nginx</span><span class="RegularSilverItalic">.pid</span><span class="Punctuation">;</span>
+<span class="BoldBlack">worker_rlimit_nofile</span> <span class="RegularDark">8192</span><span class="Punctuation">;</span>
 
-<span class="Keyword">events</span> <span class="Punctuation">{</span>
-  <span class="Keyword Namespace">worker_connections</span>  <span class="Literal Number Integer">4096</span><span class="Punctuation">;</span>  <span class="Comment Single">## Default: 1024
+<span class="BoldBlack">events</span> <span class="Punctuation">{</span>
+  <span class="BoldBlack">worker_connections</span>  <span class="RegularDark">4096</span><span class="Punctuation">;</span>  <span class="RegularSilverItalic">## Default: 1024
 </span><span class="Punctuation">}</span>
 
-<span class="Keyword">http</span> <span class="Punctuation">{</span>
-  <span class="Keyword Namespace">include</span>    <span class="Name Class">conf/mime</span><span class="Literal String">.types</span><span class="Punctuation">;</span>
-  <span class="Keyword Namespace">include</span>    <span class="Name">/etc/nginx/proxy.conf</span><span class="Punctuation">;</span>
-  <span class="Keyword Namespace">include</span>    <span class="Name">/etc/nginx/fastcgi.conf</span><span class="Punctuation">;</span>
-  <span class="Keyword Namespace">index</span>    <span class="Literal String">index.html</span> <span class="Literal String">index.htm</span> <span class="Literal String">index.php</span><span class="Punctuation">;</span>
+<span class="BoldBlack">http</span> <span class="Punctuation">{</span>
+  <span class="BoldBlack">include</span>    <span class="BoldGray">conf/mime</span><span class="RegularSilverItalic">.types</span><span class="Punctuation">;</span>
+  <span class="BoldBlack">include</span>    <span class="BoldGray">/etc/nginx/proxy.conf</span><span class="Punctuation">;</span>
+  <span class="BoldBlack">include</span>    <span class="BoldGray">/etc/nginx/fastcgi.conf</span><span class="Punctuation">;</span>
+  <span class="BoldBlack">index</span>    <span class="RegularSilverItalic">index.html</span> <span class="RegularSilverItalic">index.htm</span> <span class="RegularSilverItalic">index.php</span><span class="Punctuation">;</span>
 
-  <span class="Keyword Namespace">default_type</span> <span class="Name Class">application/octet-stream</span><span class="Punctuation">;</span>
-  <span class="Keyword Namespace">log_format</span>   <span class="Literal String">main</span> <span class="Literal String">'</span><span class="Name Variable">$remote_addr</span> <span class="Literal String">-</span> <span class="Name Variable">$remote_user</span> <span class="Literal String">[</span><span class="Name Variable">$time_local</span><span class="Literal String">]</span>  <span class="Name Variable">$status</span> <span class="Literal String">'</span>
-    <span class="Literal String">'"</span><span class="Name Variable">$request</span><span class="Literal String">"</span> <span class="Name Variable">$body_bytes_sent</span> <span class="Literal String">"</span><span class="Name Variable">$http_referer</span><span class="Literal String">"</span> <span class="Literal String">'</span>
-    <span class="Literal String">'"</span><span class="Name Variable">$http_user_agent</span><span class="Literal String">"</span> <span class="Literal String">"</span><span class="Name Variable">$http_x_forwarded_for</span><span class="Literal String">"'</span><span class="Punctuation">;</span>
-  <span class="Keyword Namespace">access_log</span>   <span class="Name Class">logs/access</span><span class="Literal String">.log</span>  <span class="Literal String">main</span><span class="Punctuation">;</span>
-  <span class="Keyword Namespace">sendfile</span>     <span class="Name Constant">on</span><span class="Punctuation">;</span>
-  <span class="Keyword Namespace">tcp_nopush</span>   <span class="Name Constant">on</span><span class="Punctuation">;</span>
-  <span class="Keyword Namespace">server_names_hash_bucket_size</span> <span class="Literal Number Integer">128</span><span class="Punctuation">;</span> <span class="Comment Single"># this seems to be required for some vhosts
+  <span class="BoldBlack">default_type</span> <span class="BoldGray">application/octet-stream</span><span class="Punctuation">;</span>
+  <span class="BoldBlack">log_format</span>   <span class="RegularSilverItalic">main</span> <span class="RegularSilverItalic">'</span><span class="BoldGray">$remote_addr</span> <span class="RegularSilverItalic">-</span> <span class="BoldGray">$remote_user</span> <span class="RegularSilverItalic">[</span><span class="BoldGray">$time_local</span><span class="RegularSilverItalic">]</span>  <span class="BoldGray">$status</span> <span class="RegularSilverItalic">'</span>
+    <span class="RegularSilverItalic">'"</span><span class="BoldGray">$request</span><span class="RegularSilverItalic">"</span> <span class="BoldGray">$body_bytes_sent</span> <span class="RegularSilverItalic">"</span><span class="BoldGray">$http_referer</span><span class="RegularSilverItalic">"</span> <span class="RegularSilverItalic">'</span>
+    <span class="RegularSilverItalic">'"</span><span class="BoldGray">$http_user_agent</span><span class="RegularSilverItalic">"</span> <span class="RegularSilverItalic">"</span><span class="BoldGray">$http_x_forwarded_for</span><span class="RegularSilverItalic">"'</span><span class="Punctuation">;</span>
+  <span class="BoldBlack">access_log</span>   <span class="BoldGray">logs/access</span><span class="RegularSilverItalic">.log</span>  <span class="RegularSilverItalic">main</span><span class="Punctuation">;</span>
+  <span class="BoldBlack">sendfile</span>     <span class="BoldGray">on</span><span class="Punctuation">;</span>
+  <span class="BoldBlack">tcp_nopush</span>   <span class="BoldGray">on</span><span class="Punctuation">;</span>
+  <span class="BoldBlack">server_names_hash_bucket_size</span> <span class="RegularDark">128</span><span class="Punctuation">;</span> <span class="RegularSilverItalic"># this seems to be required for some vhosts
 </span>
-  <span class="Keyword Namespace">server</span> <span class="Punctuation">{</span> <span class="Comment Single"># php/fastcgi
-</span>    <span class="Keyword Namespace">listen</span>       <span class="Literal Number Integer">80</span><span class="Punctuation">;</span>
-    <span class="Keyword Namespace">server_name</span>  <span class="Literal String">domain1.com</span> <span class="Literal String">www.domain1.com</span><span class="Punctuation">;</span>
-    <span class="Keyword Namespace">access_log</span>   <span class="Name Class">logs/domain</span><span class="Literal Number Integer">1</span><span class="Literal String">.access.log</span>  <span class="Literal String">main</span><span class="Punctuation">;</span>
-    <span class="Keyword Namespace">root</span>         <span class="Literal String">html</span><span class="Punctuation">;</span>
+  <span class="BoldBlack">server</span> <span class="Punctuation">{</span> <span class="RegularSilverItalic"># php/fastcgi
+</span>    <span class="BoldBlack">listen</span>       <span class="RegularDark">80</span><span class="Punctuation">;</span>
+    <span class="BoldBlack">server_name</span>  <span class="RegularSilverItalic">domain1.com</span> <span class="RegularSilverItalic">www.domain1.com</span><span class="Punctuation">;</span>
+    <span class="BoldBlack">access_log</span>   <span class="BoldGray">logs/domain</span><span class="RegularDark">1</span><span class="RegularSilverItalic">.access.log</span>  <span class="RegularSilverItalic">main</span><span class="Punctuation">;</span>
+    <span class="BoldBlack">root</span>         <span class="RegularSilverItalic">html</span><span class="Punctuation">;</span>
 
-    <span class="Keyword Namespace">location</span> <span class="Punctuation">~</span> <span class="Literal String Regex">\.php$</span> <span class="Punctuation">{</span>
-      <span class="Keyword Namespace">fastcgi_pass</span>   <span class="Name Function">127.0.0.1</span><span class="Punctuation">:</span><span class="Literal Number Integer">1025</span><span class="Punctuation">;</span>
+    <span class="BoldBlack">location</span> <span class="Punctuation">~</span> <span class="RegularSilverItalic">\.php$</span> <span class="Punctuation">{</span>
+      <span class="BoldBlack">fastcgi_pass</span>   <span class="BoldGray">127.0.0.1</span><span class="Punctuation">:</span><span class="RegularDark">1025</span><span class="Punctuation">;</span>
     <span class="Punctuation">}</span>
   <span class="Punctuation">}</span>
 
-  <span class="Keyword Namespace">server</span> <span class="Punctuation">{</span> <span class="Comment Single"># simple reverse-proxy
-</span>    <span class="Keyword Namespace">listen</span>       <span class="Literal Number Integer">80</span><span class="Punctuation">;</span>
-    <span class="Keyword Namespace">server_name</span>  <span class="Literal String">domain2.com</span> <span class="Literal String">www.domain2.com</span><span class="Punctuation">;</span>
-    <span class="Keyword Namespace">access_log</span>   <span class="Name Class">logs/domain</span><span class="Literal Number Integer">2</span><span class="Literal String">.access.log</span>  <span class="Literal String">main</span><span class="Punctuation">;</span>
+  <span class="BoldBlack">server</span> <span class="Punctuation">{</span> <span class="RegularSilverItalic"># simple reverse-proxy
+</span>    <span class="BoldBlack">listen</span>       <span class="RegularDark">80</span><span class="Punctuation">;</span>
+    <span class="BoldBlack">server_name</span>  <span class="RegularSilverItalic">domain2.com</span> <span class="RegularSilverItalic">www.domain2.com</span><span class="Punctuation">;</span>
+    <span class="BoldBlack">access_log</span>   <span class="BoldGray">logs/domain</span><span class="RegularDark">2</span><span class="RegularSilverItalic">.access.log</span>  <span class="RegularSilverItalic">main</span><span class="Punctuation">;</span>
 
-    <span class="Comment Single"># serve static files
-</span>    <span class="Keyword Namespace">location</span> <span class="Punctuation">~</span> <span class="Literal String Regex">^/(images|javascript|js|css|flash|media|static)/</span>  <span class="Punctuation">{</span>
-      <span class="Keyword Namespace">root</span>    <span class="Name">/var/www/virtual/big.server.com/htdocs</span><span class="Punctuation">;</span>
-      <span class="Keyword Namespace">expires</span> <span class="Literal String">30d</span><span class="Punctuation">;</span>
+    <span class="RegularSilverItalic"># serve static files
+</span>    <span class="BoldBlack">location</span> <span class="Punctuation">~</span> <span class="RegularSilverItalic">^/(images|javascript|js|css|flash|media|static)/</span>  <span class="Punctuation">{</span>
+      <span class="BoldBlack">root</span>    <span class="BoldGray">/var/www/virtual/big.server.com/htdocs</span><span class="Punctuation">;</span>
+      <span class="BoldBlack">expires</span> <span class="RegularSilverItalic">30d</span><span class="Punctuation">;</span>
     <span class="Punctuation">}</span>
 
-    <span class="Comment Single"># pass requests for dynamic content to rails/turbogears/zope, et al
-</span>    <span class="Keyword Namespace">location</span> <span class="Name">/</span> <span class="Punctuation">{</span>
-      <span class="Keyword Namespace">proxy_pass</span>      <span class="Literal String">http://127.0.0.1:8080</span><span class="Punctuation">;</span>
+    <span class="RegularSilverItalic"># pass requests for dynamic content to rails/turbogears/zope, et al
+</span>    <span class="BoldBlack">location</span> <span class="BoldGray">/</span> <span class="Punctuation">{</span>
+      <span class="BoldBlack">proxy_pass</span>      <span class="RegularSilverItalic">http://127.0.0.1:8080</span><span class="Punctuation">;</span>
     <span class="Punctuation">}</span>
   <span class="Punctuation">}</span>
 
-  <span class="Keyword Namespace">upstream</span> <span class="Literal String">big_server_com</span> <span class="Punctuation">{</span>
-    <span class="Keyword Namespace">server</span> <span class="Name Function">127.0.0.3</span><span class="Punctuation">:</span><span class="Literal Number Integer">8000</span> <span class="Literal String">weight=5</span><span class="Punctuation">;</span>
-    <span class="Keyword Namespace">server</span> <span class="Name Function">127.0.0.3</span><span class="Punctuation">:</span><span class="Literal Number Integer">8001</span> <span class="Literal String">weight=5</span><span class="Punctuation">;</span>
-    <span class="Keyword Namespace">server</span> <span class="Name Function">192.168.0.1</span><span class="Punctuation">:</span><span class="Literal Number Integer">8000</span><span class="Punctuation">;</span>
-    <span class="Keyword Namespace">server</span> <span class="Name Function">192.168.0.1</span><span class="Punctuation">:</span><span class="Literal Number Integer">8001</span><span class="Punctuation">;</span>
+  <span class="BoldBlack">upstream</span> <span class="RegularSilverItalic">big_server_com</span> <span class="Punctuation">{</span>
+    <span class="BoldBlack">server</span> <span class="BoldGray">127.0.0.3</span><span class="Punctuation">:</span><span class="RegularDark">8000</span> <span class="RegularSilverItalic">weight=5</span><span class="Punctuation">;</span>
+    <span class="BoldBlack">server</span> <span class="BoldGray">127.0.0.3</span><span class="Punctuation">:</span><span class="RegularDark">8001</span> <span class="RegularSilverItalic">weight=5</span><span class="Punctuation">;</span>
+    <span class="BoldBlack">server</span> <span class="BoldGray">192.168.0.1</span><span class="Punctuation">:</span><span class="RegularDark">8000</span><span class="Punctuation">;</span>
+    <span class="BoldBlack">server</span> <span class="BoldGray">192.168.0.1</span><span class="Punctuation">:</span><span class="RegularDark">8001</span><span class="Punctuation">;</span>
   <span class="Punctuation">}</span>
 
-  <span class="Keyword Namespace">server</span> <span class="Punctuation">{</span> <span class="Comment Single"># simple load balancing
-</span>    <span class="Keyword Namespace">listen</span>          <span class="Literal Number Integer">80</span><span class="Punctuation">;</span>
-    <span class="Keyword Namespace">server_name</span>     <span class="Literal String">big.server.com</span><span class="Punctuation">;</span>
-    <span class="Keyword Namespace">access_log</span>      <span class="Name Class">logs/big</span><span class="Literal String">.server.access.log</span> <span class="Literal String">main</span><span class="Punctuation">;</span>
+  <span class="BoldBlack">server</span> <span class="Punctuation">{</span> <span class="RegularSilverItalic"># simple load balancing
+</span>    <span class="BoldBlack">listen</span>          <span class="RegularDark">80</span><span class="Punctuation">;</span>
+    <span class="BoldBlack">server_name</span>     <span class="RegularSilverItalic">big.server.com</span><span class="Punctuation">;</span>
+    <span class="BoldBlack">access_log</span>      <span class="BoldGray">logs/big</span><span class="RegularSilverItalic">.server.access.log</span> <span class="RegularSilverItalic">main</span><span class="Punctuation">;</span>
 
-    <span class="Keyword Namespace">location</span> <span class="Name">/</span> <span class="Punctuation">{</span>
-      <span class="Keyword Namespace">proxy_pass</span>      <span class="Literal String">http://big_server_com</span><span class="Punctuation">;</span>
+    <span class="BoldBlack">location</span> <span class="BoldGray">/</span> <span class="Punctuation">{</span>
+      <span class="BoldBlack">proxy_pass</span>      <span class="RegularSilverItalic">http://big_server_com</span><span class="Punctuation">;</span>
     <span class="Punctuation">}</span>
   <span class="Punctuation">}</span>
 </pre>
-  <pre class="highlight java"><span class="Keyword Declaration">public</span> <span class="Keyword Declaration">class</span> <span class="Name Class">DecimalOctal</span> <span class="Operator">{</span>
+  <pre class="highlight java"><span class="BoldBlack">public</span> <span class="BoldBlack">class</span> <span class="BoldGray">DecimalOctal</span> <span class="RegularDark">{</span>
 
-    <span class="Keyword Declaration">public</span> <span class="Keyword Declaration">static</span> <span class="Keyword Type">void</span> <span class="Name Function">main</span><span class="Operator">(</span><span class="Name">String</span><span class="Operator">[]</span> <span class="Name">args</span><span class="Operator">)</span> <span class="Operator">{</span>
-        <span class="Keyword Type">int</span> <span class="Name">decimal</span> <span class="Operator">=</span> <span class="Literal Number Integer">78</span><span class="Operator">;</span>
-        <span class="Keyword Type">int</span> <span class="Name">octal</span> <span class="Operator">=</span> <span class="Name">convertDecimalToOctal</span><span class="Operator">(</span><span class="Name">decimal</span><span class="Operator">);</span>
-        <span class="Name">System</span><span class="Operator">.</span><span class="Name Attribute">out</span><span class="Operator">.</span><span class="Name Attribute">printf</span><span class="Operator">(</span><span class="Literal String">"%d in decimal = %d in octal"</span><span class="Operator">,</span> <span class="Name">decimal</span><span class="Operator">,</span> <span class="Name">octal</span><span class="Operator">);</span>
-    <span class="Operator">}</span>
+    <span class="BoldBlack">public</span> <span class="BoldBlack">static</span> <span class="BoldBlack">void</span> <span class="BoldGray">main</span><span class="RegularDark">(</span><span class="BoldGray">String</span><span class="RegularDark">[]</span> <span class="BoldGray">args</span><span class="RegularDark">)</span> <span class="RegularDark">{</span>
+        <span class="BoldBlack">int</span> <span class="BoldGray">decimal</span> <span class="RegularDark">=</span> <span class="RegularDark">78</span><span class="RegularDark">;</span>
+        <span class="BoldBlack">int</span> <span class="BoldGray">octal</span> <span class="RegularDark">=</span> <span class="BoldGray">convertDecimalToOctal</span><span class="RegularDark">(</span><span class="BoldGray">decimal</span><span class="RegularDark">);</span>
+        <span class="BoldGray">System</span><span class="RegularDark">.</span><span class="BoldGray">out</span><span class="RegularDark">.</span><span class="BoldGray">printf</span><span class="RegularDark">(</span><span class="RegularSilverItalic">"%d in decimal = %d in octal"</span><span class="RegularDark">,</span> <span class="BoldGray">decimal</span><span class="RegularDark">,</span> <span class="BoldGray">octal</span><span class="RegularDark">);</span>
+    <span class="RegularDark">}</span>
 
-    <span class="Keyword Declaration">public</span> <span class="Keyword Declaration">static</span> <span class="Keyword Type">int</span> <span class="Name Function">convertDecimalToOctal</span><span class="Operator">(</span><span class="Keyword Type">int</span> <span class="Name">decimal</span><span class="Operator">)</span>
-    <span class="Operator">{</span>
-        <span class="Keyword Type">int</span> <span class="Name">octalNumber</span> <span class="Operator">=</span> <span class="Literal Number Integer">0</span><span class="Operator">,</span> <span class="Name">i</span> <span class="Operator">=</span> <span class="Literal Number Integer">1</span><span class="Operator">;</span>
+    <span class="BoldBlack">public</span> <span class="BoldBlack">static</span> <span class="BoldBlack">int</span> <span class="BoldGray">convertDecimalToOctal</span><span class="RegularDark">(</span><span class="BoldBlack">int</span> <span class="BoldGray">decimal</span><span class="RegularDark">)</span>
+    <span class="RegularDark">{</span>
+        <span class="BoldBlack">int</span> <span class="BoldGray">octalNumber</span> <span class="RegularDark">=</span> <span class="RegularDark">0</span><span class="RegularDark">,</span> <span class="BoldGray">i</span> <span class="RegularDark">=</span> <span class="RegularDark">1</span><span class="RegularDark">;</span>
 
-        <span class="Keyword">while</span> <span class="Operator">(</span><span class="Name">decimal</span> <span class="Operator">!=</span> <span class="Literal Number Integer">0</span><span class="Operator">)</span>
-        <span class="Operator">{</span>
-            <span class="Name">octalNumber</span> <span class="Operator">+=</span> <span class="Operator">(</span><span class="Name">decimal</span> <span class="Operator">%</span> <span class="Literal Number Integer">8</span><span class="Operator">)</span> <span class="Operator">*</span> <span class="Name">i</span><span class="Operator">;</span>
-            <span class="Name">decimal</span> <span class="Operator">/=</span> <span class="Literal Number Integer">8</span><span class="Operator">;</span>
-            <span class="Name">i</span> <span class="Operator">*=</span> <span class="Literal Number Integer">10</span><span class="Operator">;</span>
-        <span class="Operator">}</span>
+        <span class="BoldBlack">while</span> <span class="RegularDark">(</span><span class="BoldGray">decimal</span> <span class="RegularDark">!=</span> <span class="RegularDark">0</span><span class="RegularDark">)</span>
+        <span class="RegularDark">{</span>
+            <span class="BoldGray">octalNumber</span> <span class="RegularDark">+=</span> <span class="RegularDark">(</span><span class="BoldGray">decimal</span> <span class="RegularDark">%</span> <span class="RegularDark">8</span><span class="RegularDark">)</span> <span class="RegularDark">*</span> <span class="BoldGray">i</span><span class="RegularDark">;</span>
+            <span class="BoldGray">decimal</span> <span class="RegularDark">/=</span> <span class="RegularDark">8</span><span class="RegularDark">;</span>
+            <span class="BoldGray">i</span> <span class="RegularDark">*=</span> <span class="RegularDark">10</span><span class="RegularDark">;</span>
+        <span class="RegularDark">}</span>
 
-        <span class="Keyword">return</span> <span class="Name">octalNumber</span><span class="Operator">;</span>
-    <span class="Operator">}</span>
-<span class="Operator">}</span>
+        <span class="BoldBlack">return</span> <span class="BoldGray">octalNumber</span><span class="RegularDark">;</span>
+    <span class="RegularDark">}</span>
+<span class="RegularDark">}</span>
 </pre>
-  <pre class="highlight ruby"><span class="Comment Single">#!/usr/bin/env ruby</span>
+  <pre class="highlight ruby"><span class="RegularSilverItalic">#!/usr/bin/env ruby</span>
 
-<span class="Name Builtin">require</span> <span class="Literal String Single">'rouge'</span>
+<span class="BoldGray">require</span> <span class="RegularSilverItalic">'rouge'</span>
 
-<span class="Name Constant">TABLE_FOR_ESCAPE_HTML</span> <span class="Operator">=</span> <span class="Punctuation">{</span>
-  <span class="Literal String Single">'&amp;'</span> <span class="Operator">=&gt;</span> <span class="Literal String Single">'&amp;amp;'</span><span class="Punctuation">,</span>
-  <span class="Literal String Single">'&lt;'</span> <span class="Operator">=&gt;</span> <span class="Literal String Single">'&amp;lt;'</span><span class="Punctuation">,</span>
-  <span class="Literal String Single">'&gt;'</span> <span class="Operator">=&gt;</span> <span class="Literal String Single">'&amp;gt;'</span><span class="Punctuation">,</span>
+<span class="BoldGray">TABLE_FOR_ESCAPE_HTML</span> <span class="RegularDark">=</span> <span class="Punctuation">{</span>
+  <span class="RegularSilverItalic">'&amp;'</span> <span class="RegularDark">=&gt;</span> <span class="RegularSilverItalic">'&amp;amp;'</span><span class="Punctuation">,</span>
+  <span class="RegularSilverItalic">'&lt;'</span> <span class="RegularDark">=&gt;</span> <span class="RegularSilverItalic">'&amp;lt;'</span><span class="Punctuation">,</span>
+  <span class="RegularSilverItalic">'&gt;'</span> <span class="RegularDark">=&gt;</span> <span class="RegularSilverItalic">'&amp;gt;'</span><span class="Punctuation">,</span>
 <span class="Punctuation">}</span>
 
-<span class="Keyword">class</span> <span class="Name Class">Inao</span> <span class="Operator">&lt;</span> <span class="Name Constant">Rouge</span><span class="Operator">::</span><span class="Name Constant">Formatters</span><span class="Operator">::</span><span class="Name Constant">Null</span>
-  <span class="Comment Single"># @yield the html output.</span>
-  <span class="Keyword">def</span> <span class="Name Function">stream</span><span class="Punctuation">(</span><span class="Name">tokens</span><span class="Punctuation">,</span> <span class="Operator">&amp;</span><span class="Name">b</span><span class="Punctuation">)</span>
-    <span class="Name">tokens</span><span class="Punctuation">.</span><span class="Name Function">each</span> <span class="Punctuation">{</span> <span class="Operator">|</span><span class="Name">token</span><span class="Punctuation">,</span> <span class="Name">val</span><span class="Operator">|</span> <span class="Keyword">yield</span> <span class="Name">span</span><span class="Punctuation">(</span><span class="Name">token</span><span class="Punctuation">,</span> <span class="Name">val</span><span class="Punctuation">)</span> <span class="Punctuation">}</span>
-  <span class="Keyword">end</span>
+<span class="BoldBlack">class</span> <span class="BoldGray">Inao</span> <span class="RegularDark">&lt;</span> <span class="BoldGray">Rouge</span><span class="RegularDark">::</span><span class="BoldGray">Formatters</span><span class="RegularDark">::</span><span class="BoldGray">Null</span>
+  <span class="RegularSilverItalic"># @yield the html output.</span>
+  <span class="BoldBlack">def</span> <span class="BoldGray">stream</span><span class="Punctuation">(</span><span class="BoldGray">tokens</span><span class="Punctuation">,</span> <span class="RegularDark">&amp;</span><span class="BoldGray">b</span><span class="Punctuation">)</span>
+    <span class="BoldGray">tokens</span><span class="Punctuation">.</span><span class="BoldGray">each</span> <span class="Punctuation">{</span> <span class="RegularDark">|</span><span class="BoldGray">token</span><span class="Punctuation">,</span> <span class="BoldGray">val</span><span class="RegularDark">|</span> <span class="BoldBlack">yield</span> <span class="BoldGray">span</span><span class="Punctuation">(</span><span class="BoldGray">token</span><span class="Punctuation">,</span> <span class="BoldGray">val</span><span class="Punctuation">)</span> <span class="Punctuation">}</span>
+  <span class="BoldBlack">end</span>
 
-  <span class="Keyword">def</span> <span class="Name Function">span</span><span class="Punctuation">(</span><span class="Name">token</span><span class="Punctuation">,</span> <span class="Name">val</span><span class="Punctuation">)</span>
-    <span class="Name">safe_span</span><span class="Punctuation">(</span><span class="Name">token</span><span class="Punctuation">,</span> <span class="Name">val</span><span class="Punctuation">.</span><span class="Name Function">gsub</span><span class="Punctuation">(</span><span class="Literal String Regex">/[&amp;&lt;&gt;]/</span><span class="Punctuation">,</span> <span class="Name Constant">TABLE_FOR_ESCAPE_HTML</span><span class="Punctuation">))</span>
-  <span class="Keyword">end</span>
+  <span class="BoldBlack">def</span> <span class="BoldGray">span</span><span class="Punctuation">(</span><span class="BoldGray">token</span><span class="Punctuation">,</span> <span class="BoldGray">val</span><span class="Punctuation">)</span>
+    <span class="BoldGray">safe_span</span><span class="Punctuation">(</span><span class="BoldGray">token</span><span class="Punctuation">,</span> <span class="BoldGray">val</span><span class="Punctuation">.</span><span class="BoldGray">gsub</span><span class="Punctuation">(</span><span class="RegularSilverItalic">/[&amp;&lt;&gt;]/</span><span class="Punctuation">,</span> <span class="BoldGray">TABLE_FOR_ESCAPE_HTML</span><span class="Punctuation">))</span>
+  <span class="BoldBlack">end</span>
 
-  <span class="Keyword">def</span> <span class="Name Function">safe_span</span><span class="Punctuation">(</span><span class="Name">token</span><span class="Punctuation">,</span> <span class="Name">safe_val</span><span class="Punctuation">)</span>
-    <span class="Keyword">if</span> <span class="Name">token</span> <span class="Operator">==</span> <span class="Name Constant">Rouge</span><span class="Operator">::</span><span class="Name Constant">Token</span><span class="Operator">::</span><span class="Name Constant">Tokens</span><span class="Operator">::</span><span class="Name Constant">Text</span>
-      <span class="Keyword">if</span> <span class="Name">safe_val</span> <span class="Operator">==</span> <span class="Literal String Double">"</span><span class="Literal String Escape">\n\n\n</span><span class="Literal String Double">"</span>
-        <span class="Literal String Double">"</span><span class="Literal String Escape">\n</span><span class="Literal String Double">&lt;ParaStyle:半行アキ&gt;</span><span class="Literal String Escape">\n</span><span class="Literal String Double">&lt;ParaStyle:半行アキ&gt;</span><span class="Literal String Escape">\n</span><span class="Literal String Double">"</span>
-      <span class="Keyword">elsif</span> <span class="Name">safe_val</span> <span class="Operator">==</span> <span class="Literal String Double">"</span><span class="Literal String Escape">\n\n</span><span class="Literal String Double">"</span>
-        <span class="Literal String Double">"</span><span class="Literal String Escape">\n</span><span class="Literal String Double">&lt;ParaStyle:半行アキ&gt;</span><span class="Literal String Escape">\n</span><span class="Literal String Double">"</span>
-      <span class="Keyword">elsif</span> <span class="Name">safe_val</span><span class="Punctuation">.</span><span class="Name Function">start_with?</span><span class="Punctuation">(</span><span class="Literal String Double">"</span><span class="Literal String Escape">\n</span><span class="Literal String Double"> "</span><span class="Punctuation">)</span>
-        <span class="Name">safe_val</span><span class="Punctuation">.</span><span class="Name Function">sub</span><span class="Punctuation">(</span><span class="Literal String Double">"</span><span class="Literal String Escape">\n</span><span class="Literal String Double">"</span><span class="Punctuation">,</span> <span class="Literal String Double">"</span><span class="Literal String Escape">\n</span><span class="Literal String Double">&lt;ParaStyle:リスト&gt;"</span><span class="Punctuation">)</span>
-      <span class="Keyword">else</span>
-        <span class="Name">safe_val</span>
-      <span class="Keyword">end</span>
-    <span class="Keyword">else</span>
-      <span class="Literal String Double">"&lt;CharStyle:</span><span class="Literal String Interpol">#{</span><span class="Name">token</span><span class="Punctuation">.</span><span class="Name Function">name</span><span class="Literal String Interpol">}</span><span class="Literal String Double">&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">safe_val</span><span class="Literal String Interpol">}</span><span class="Literal String Double">&lt;CharStyle:&gt;"</span>
-    <span class="Keyword">end</span>
-  <span class="Keyword">end</span>
-<span class="Keyword">end</span>
+  <span class="BoldBlack">def</span> <span class="BoldGray">safe_span</span><span class="Punctuation">(</span><span class="BoldGray">token</span><span class="Punctuation">,</span> <span class="BoldGray">safe_val</span><span class="Punctuation">)</span>
+    <span class="BoldBlack">if</span> <span class="BoldGray">token</span> <span class="RegularDark">==</span> <span class="BoldGray">Rouge</span><span class="RegularDark">::</span><span class="BoldGray">Token</span><span class="RegularDark">::</span><span class="BoldGray">Tokens</span><span class="RegularDark">::</span><span class="BoldGray">Text</span>
+      <span class="BoldBlack">if</span> <span class="BoldGray">safe_val</span> <span class="RegularDark">==</span> <span class="RegularSilverItalic">"</span><span class="RegularSilverItalic">\n\n\n</span><span class="RegularSilverItalic">"</span>
+        <span class="RegularSilverItalic">"</span><span class="RegularSilverItalic">\n</span><span class="RegularSilverItalic">&lt;ParaStyle:半行アキ&gt;</span><span class="RegularSilverItalic">\n</span><span class="RegularSilverItalic">&lt;ParaStyle:半行アキ&gt;</span><span class="RegularSilverItalic">\n</span><span class="RegularSilverItalic">"</span>
+      <span class="BoldBlack">elsif</span> <span class="BoldGray">safe_val</span> <span class="RegularDark">==</span> <span class="RegularSilverItalic">"</span><span class="RegularSilverItalic">\n\n</span><span class="RegularSilverItalic">"</span>
+        <span class="RegularSilverItalic">"</span><span class="RegularSilverItalic">\n</span><span class="RegularSilverItalic">&lt;ParaStyle:半行アキ&gt;</span><span class="RegularSilverItalic">\n</span><span class="RegularSilverItalic">"</span>
+      <span class="BoldBlack">elsif</span> <span class="BoldGray">safe_val</span><span class="Punctuation">.</span><span class="BoldGray">start_with?</span><span class="Punctuation">(</span><span class="RegularSilverItalic">"</span><span class="RegularSilverItalic">\n</span><span class="RegularSilverItalic"> "</span><span class="Punctuation">)</span>
+        <span class="BoldGray">safe_val</span><span class="Punctuation">.</span><span class="BoldGray">sub</span><span class="Punctuation">(</span><span class="RegularSilverItalic">"</span><span class="RegularSilverItalic">\n</span><span class="RegularSilverItalic">"</span><span class="Punctuation">,</span> <span class="RegularSilverItalic">"</span><span class="RegularSilverItalic">\n</span><span class="RegularSilverItalic">&lt;ParaStyle:リスト&gt;"</span><span class="Punctuation">)</span>
+      <span class="BoldBlack">else</span>
+        <span class="BoldGray">safe_val</span>
+      <span class="BoldBlack">end</span>
+    <span class="BoldBlack">else</span>
+      <span class="RegularSilverItalic">"&lt;CharStyle:</span><span class="RegularSilverItalic">#{</span><span class="BoldGray">token</span><span class="Punctuation">.</span><span class="BoldGray">name</span><span class="RegularSilverItalic">}</span><span class="RegularSilverItalic">&gt;</span><span class="RegularSilverItalic">#{</span><span class="BoldGray">safe_val</span><span class="RegularSilverItalic">}</span><span class="RegularSilverItalic">&lt;CharStyle:&gt;"</span>
+    <span class="BoldBlack">end</span>
+  <span class="BoldBlack">end</span>
+<span class="BoldBlack">end</span>
 
-<span class="Keyword">class</span> <span class="Name Class">LongHTML</span> <span class="Operator">&lt;</span> <span class="Name Constant">Rouge</span><span class="Operator">::</span><span class="Name Constant">Formatters</span><span class="Operator">::</span><span class="Name Constant">HTML</span>
-  <span class="Keyword">def</span> <span class="Name Function">safe_span</span><span class="Punctuation">(</span><span class="Name">tok</span><span class="Punctuation">,</span> <span class="Name">safe_val</span><span class="Punctuation">)</span>
-    <span class="Keyword">if</span> <span class="Name">tok</span> <span class="Operator">==</span> <span class="Name Constant">Rouge</span><span class="Operator">::</span><span class="Name Constant">Token</span><span class="Operator">::</span><span class="Name Constant">Tokens</span><span class="Operator">::</span><span class="Name Constant">Text</span>
-      <span class="Name">safe_val</span>
-    <span class="Keyword">else</span>
-      <span class="Name">classes</span> <span class="Operator">=</span> <span class="Name">tok</span><span class="Punctuation">.</span><span class="Name Function">qualname</span><span class="Punctuation">.</span><span class="Name Function">split</span><span class="Punctuation">(</span><span class="Literal String Double">"."</span><span class="Punctuation">).</span><span class="Name Function">join</span><span class="Punctuation">(</span><span class="Literal String Double">" "</span><span class="Punctuation">)</span>
-      <span class="Name Builtin">p</span> <span class="Name">classes</span>
-      <span class="Literal String Double">"&lt;span class=</span><span class="Literal String Escape">\"</span><span class="Literal String Interpol">#{</span><span class="Name">classes</span><span class="Literal String Interpol">}</span><span class="Literal String Escape">\"</span><span class="Literal String Double">&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">safe_val</span><span class="Literal String Interpol">}</span><span class="Literal String Double">&lt;/span&gt;"</span>
-    <span class="Keyword">end</span>
-  <span class="Keyword">end</span>
-<span class="Keyword">end</span>
+<span class="BoldBlack">class</span> <span class="BoldGray">LongHTML</span> <span class="RegularDark">&lt;</span> <span class="BoldGray">Rouge</span><span class="RegularDark">::</span><span class="BoldGray">Formatters</span><span class="RegularDark">::</span><span class="BoldGray">HTML</span>
+  <span class="BoldBlack">def</span> <span class="BoldGray">safe_span</span><span class="Punctuation">(</span><span class="BoldGray">tok</span><span class="Punctuation">,</span> <span class="BoldGray">safe_val</span><span class="Punctuation">)</span>
+    <span class="BoldBlack">return</span> <span class="BoldGray">safe_val</span> <span class="BoldBlack">if</span> <span class="BoldGray">tok</span> <span class="RegularDark">==</span> <span class="BoldGray">Rouge</span><span class="RegularDark">::</span><span class="BoldGray">Token</span><span class="RegularDark">::</span><span class="BoldGray">Tokens</span><span class="RegularDark">::</span><span class="BoldGray">Text</span>
 
-<span class="Comment Single">#formatter = Rouge::Formatters::HTML.new #Inao.new</span>
-<span class="Name">formatter</span> <span class="Operator">=</span> <span class="Name Constant">LongHTML</span><span class="Punctuation">.</span><span class="Name Function">new</span> <span class="Comment Single">#Inao.new</span>
+    <span class="BoldGray">classes</span> <span class="RegularDark">=</span> <span class="BoldGray">tok</span><span class="Punctuation">.</span><span class="BoldGray">qualname</span><span class="Punctuation">.</span><span class="BoldGray">split</span><span class="Punctuation">(</span><span class="RegularSilverItalic">"."</span><span class="Punctuation">)</span>
+
+    <span class="BoldBlack">return</span> <span class="RegularSilverItalic">"&lt;span class=</span><span class="RegularSilverItalic">\"</span><span class="RegularSilverItalic">#{</span><span class="BoldGray">self</span><span class="Punctuation">.</span><span class="BoldGray">classname</span><span class="Punctuation">(</span><span class="BoldGray">classes</span><span class="Punctuation">)</span><span class="RegularSilverItalic">}</span><span class="RegularSilverItalic">\"</span><span class="RegularSilverItalic">&gt;</span><span class="RegularSilverItalic">#{</span><span class="BoldGray">safe_val</span><span class="RegularSilverItalic">}</span><span class="RegularSilverItalic">&lt;/span&gt;"</span>
+  <span class="BoldBlack">end</span>
+
+  <span class="BoldBlack">def</span> <span class="BoldGray">classname</span><span class="Punctuation">(</span><span class="BoldGray">classes</span><span class="Punctuation">)</span>
+    <span class="BoldBlack">return</span> <span class="RegularSilverItalic">"RegularSilverItalic"</span> <span class="BoldBlack">if</span> <span class="BoldGray">classes</span><span class="Punctuation">.</span><span class="BoldGray">include?</span><span class="Punctuation">(</span><span class="RegularSilverItalic">"Comment"</span><span class="Punctuation">)</span>
+    <span class="BoldBlack">return</span> <span class="RegularSilverItalic">"RegularSilverItalic"</span> <span class="BoldBlack">if</span> <span class="BoldGray">classes</span><span class="Punctuation">.</span><span class="BoldGray">include?</span><span class="Punctuation">(</span><span class="RegularSilverItalic">"String"</span><span class="Punctuation">)</span>
+    <span class="BoldBlack">return</span> <span class="RegularSilverItalic">"RegularDark"</span>         <span class="BoldBlack">if</span> <span class="BoldGray">classes</span><span class="Punctuation">.</span><span class="BoldGray">include?</span><span class="Punctuation">(</span><span class="RegularSilverItalic">"Number"</span><span class="Punctuation">)</span>
+    <span class="BoldBlack">return</span> <span class="RegularSilverItalic">"RegularDark"</span>         <span class="BoldBlack">if</span> <span class="BoldGray">classes</span><span class="Punctuation">.</span><span class="BoldGray">include?</span><span class="Punctuation">(</span><span class="RegularSilverItalic">"Operator"</span><span class="Punctuation">)</span>
+    <span class="BoldBlack">return</span> <span class="RegularSilverItalic">"BoldBlack"</span>           <span class="BoldBlack">if</span> <span class="BoldGray">classes</span><span class="Punctuation">.</span><span class="BoldGray">include?</span><span class="Punctuation">(</span><span class="RegularSilverItalic">"Label"</span><span class="Punctuation">)</span>
+    <span class="BoldBlack">return</span> <span class="RegularSilverItalic">"BoldBlack"</span>           <span class="BoldBlack">if</span> <span class="BoldGray">classes</span><span class="Punctuation">.</span><span class="BoldGray">include?</span><span class="Punctuation">(</span><span class="RegularSilverItalic">"Tag"</span><span class="Punctuation">)</span>
+    <span class="BoldBlack">return</span> <span class="RegularSilverItalic">"BoldGray"</span>            <span class="BoldBlack">if</span> <span class="BoldGray">classes</span><span class="Punctuation">.</span><span class="BoldGray">include?</span><span class="Punctuation">(</span><span class="RegularSilverItalic">"Name"</span><span class="Punctuation">)</span>
+    <span class="BoldBlack">return</span> <span class="RegularSilverItalic">"BoldBlack"</span>           <span class="BoldBlack">if</span> <span class="BoldGray">classes</span><span class="Punctuation">.</span><span class="BoldGray">include?</span><span class="Punctuation">(</span><span class="RegularSilverItalic">"Keyword"</span><span class="Punctuation">)</span>
+
+    <span class="BoldGray">p</span> <span class="BoldGray">classes</span>
+    <span class="BoldGray">classes</span><span class="Punctuation">.</span><span class="BoldGray">join</span><span class="Punctuation">(</span><span class="RegularSilverItalic">" "</span><span class="Punctuation">)</span>
+  <span class="BoldBlack">end</span>
+<span class="BoldBlack">end</span>
+
+<span class="RegularSilverItalic">#formatter = Rouge::Formatters::HTML.new #Inao.new</span>
+<span class="BoldGray">formatter</span> <span class="RegularDark">=</span> <span class="BoldGray">LongHTML</span><span class="Punctuation">.</span><span class="BoldGray">new</span> <span class="RegularSilverItalic">#Inao.new</span>
 
 
-<span class="Name">ruby</span>  <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Name Function">format</span><span class="Punctuation">(</span><span class="Name Constant">Rouge</span><span class="Operator">::</span><span class="Name Constant">Lexers</span><span class="Operator">::</span><span class="Name Constant">Ruby</span><span class="Punctuation">.</span><span class="Name Function">new</span><span class="Punctuation">.</span><span class="Name Function">lex</span><span class="Punctuation">(</span>      <span class="Name Constant">File</span><span class="Punctuation">.</span><span class="Name Function">read</span><span class="Punctuation">(</span><span class="Literal String Single">'mono.rb'</span><span class="Punctuation">)))</span>
+<span class="BoldGray">ruby</span>  <span class="RegularDark">=</span> <span class="BoldGray">formatter</span><span class="Punctuation">.</span><span class="BoldGray">format</span><span class="Punctuation">(</span><span class="BoldGray">Rouge</span><span class="RegularDark">::</span><span class="BoldGray">Lexers</span><span class="RegularDark">::</span><span class="BoldGray">Ruby</span><span class="Punctuation">.</span><span class="BoldGray">new</span><span class="Punctuation">.</span><span class="BoldGray">lex</span><span class="Punctuation">(</span>      <span class="BoldGray">File</span><span class="Punctuation">.</span><span class="BoldGray">read</span><span class="Punctuation">(</span><span class="RegularSilverItalic">'mono.rb'</span><span class="Punctuation">)))</span>
 
-<span class="Name">js</span>    <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Name Function">format</span><span class="Punctuation">(</span><span class="Name Constant">Rouge</span><span class="Operator">::</span><span class="Name Constant">Lexers</span><span class="Operator">::</span><span class="Name Constant">Javascript</span><span class="Punctuation">.</span><span class="Name Function">new</span><span class="Punctuation">.</span><span class="Name Function">lex</span><span class="Punctuation">(</span><span class="Name Constant">File</span><span class="Punctuation">.</span><span class="Name Function">read</span><span class="Punctuation">(</span><span class="Literal String Single">'demo/script.js'</span><span class="Punctuation">)))</span>
-<span class="Name">css</span>   <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Name Function">format</span><span class="Punctuation">(</span><span class="Name Constant">Rouge</span><span class="Operator">::</span><span class="Name Constant">Lexers</span><span class="Operator">::</span><span class="Name Constant">CSS</span><span class="Punctuation">.</span><span class="Name Function">new</span><span class="Punctuation">.</span><span class="Name Function">lex</span><span class="Punctuation">(</span>       <span class="Name Constant">File</span><span class="Punctuation">.</span><span class="Name Function">read</span><span class="Punctuation">(</span><span class="Literal String Single">'demo/style.css'</span><span class="Punctuation">)))</span>
-<span class="Name">html</span>  <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Name Function">format</span><span class="Punctuation">(</span><span class="Name Constant">Rouge</span><span class="Operator">::</span><span class="Name Constant">Lexers</span><span class="Operator">::</span><span class="Name Constant">HTML</span><span class="Punctuation">.</span><span class="Name Function">new</span><span class="Punctuation">.</span><span class="Name Function">lex</span><span class="Punctuation">(</span>      <span class="Name Constant">File</span><span class="Punctuation">.</span><span class="Name Function">read</span><span class="Punctuation">(</span><span class="Literal String Single">'demo/sample.html'</span><span class="Punctuation">)))</span>
-<span class="Name">http</span>  <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Name Function">format</span><span class="Punctuation">(</span><span class="Name Constant">Rouge</span><span class="Operator">::</span><span class="Name Constant">Lexers</span><span class="Operator">::</span><span class="Name Constant">HTTP</span><span class="Punctuation">.</span><span class="Name Function">new</span><span class="Punctuation">.</span><span class="Name Function">lex</span><span class="Punctuation">(</span>      <span class="Name Constant">File</span><span class="Punctuation">.</span><span class="Name Function">read</span><span class="Punctuation">(</span><span class="Literal String Single">'demo/http'</span><span class="Punctuation">)))</span>
-<span class="Name">nginx</span> <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Name Function">format</span><span class="Punctuation">(</span><span class="Name Constant">Rouge</span><span class="Operator">::</span><span class="Name Constant">Lexers</span><span class="Operator">::</span><span class="Name Constant">Nginx</span><span class="Punctuation">.</span><span class="Name Function">new</span><span class="Punctuation">.</span><span class="Name Function">lex</span><span class="Punctuation">(</span>     <span class="Name Constant">File</span><span class="Punctuation">.</span><span class="Name Function">read</span><span class="Punctuation">(</span><span class="Literal String Single">'demo/nginx.conf'</span><span class="Punctuation">)))</span>
-<span class="Name">java</span>  <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Name Function">format</span><span class="Punctuation">(</span><span class="Name Constant">Rouge</span><span class="Operator">::</span><span class="Name Constant">Lexers</span><span class="Operator">::</span><span class="Name Constant">Java</span><span class="Punctuation">.</span><span class="Name Function">new</span><span class="Punctuation">.</span><span class="Name Function">lex</span><span class="Punctuation">(</span>      <span class="Name Constant">File</span><span class="Punctuation">.</span><span class="Name Function">read</span><span class="Punctuation">(</span><span class="Literal String Single">'demo/sample.java'</span><span class="Punctuation">)))</span>
-<span class="Name">go</span>    <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Name Function">format</span><span class="Punctuation">(</span><span class="Name Constant">Rouge</span><span class="Operator">::</span><span class="Name Constant">Lexers</span><span class="Operator">::</span><span class="Name Constant">Go</span><span class="Punctuation">.</span><span class="Name Function">new</span><span class="Punctuation">.</span><span class="Name Function">lex</span><span class="Punctuation">(</span>        <span class="Name Constant">File</span><span class="Punctuation">.</span><span class="Name Function">read</span><span class="Punctuation">(</span><span class="Literal String Single">'demo/sample.go'</span><span class="Punctuation">)))</span>
-<span class="Name">make</span>  <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Name Function">format</span><span class="Punctuation">(</span><span class="Name Constant">Rouge</span><span class="Operator">::</span><span class="Name Constant">Lexers</span><span class="Operator">::</span><span class="Name Constant">Make</span><span class="Punctuation">.</span><span class="Name Function">new</span><span class="Punctuation">.</span><span class="Name Function">lex</span><span class="Punctuation">(</span>      <span class="Name Constant">File</span><span class="Punctuation">.</span><span class="Name Function">read</span><span class="Punctuation">(</span><span class="Literal String Single">'demo/Makefile'</span><span class="Punctuation">)))</span>
+<span class="BoldGray">js</span>    <span class="RegularDark">=</span> <span class="BoldGray">formatter</span><span class="Punctuation">.</span><span class="BoldGray">format</span><span class="Punctuation">(</span><span class="BoldGray">Rouge</span><span class="RegularDark">::</span><span class="BoldGray">Lexers</span><span class="RegularDark">::</span><span class="BoldGray">Javascript</span><span class="Punctuation">.</span><span class="BoldGray">new</span><span class="Punctuation">.</span><span class="BoldGray">lex</span><span class="Punctuation">(</span><span class="BoldGray">File</span><span class="Punctuation">.</span><span class="BoldGray">read</span><span class="Punctuation">(</span><span class="RegularSilverItalic">'demo/script.js'</span><span class="Punctuation">)))</span>
+<span class="BoldGray">css</span>   <span class="RegularDark">=</span> <span class="BoldGray">formatter</span><span class="Punctuation">.</span><span class="BoldGray">format</span><span class="Punctuation">(</span><span class="BoldGray">Rouge</span><span class="RegularDark">::</span><span class="BoldGray">Lexers</span><span class="RegularDark">::</span><span class="BoldGray">CSS</span><span class="Punctuation">.</span><span class="BoldGray">new</span><span class="Punctuation">.</span><span class="BoldGray">lex</span><span class="Punctuation">(</span>       <span class="BoldGray">File</span><span class="Punctuation">.</span><span class="BoldGray">read</span><span class="Punctuation">(</span><span class="RegularSilverItalic">'demo/style.css'</span><span class="Punctuation">)))</span>
+<span class="BoldGray">html</span>  <span class="RegularDark">=</span> <span class="BoldGray">formatter</span><span class="Punctuation">.</span><span class="BoldGray">format</span><span class="Punctuation">(</span><span class="BoldGray">Rouge</span><span class="RegularDark">::</span><span class="BoldGray">Lexers</span><span class="RegularDark">::</span><span class="BoldGray">HTML</span><span class="Punctuation">.</span><span class="BoldGray">new</span><span class="Punctuation">.</span><span class="BoldGray">lex</span><span class="Punctuation">(</span>      <span class="BoldGray">File</span><span class="Punctuation">.</span><span class="BoldGray">read</span><span class="Punctuation">(</span><span class="RegularSilverItalic">'demo/sample.html'</span><span class="Punctuation">)))</span>
+<span class="BoldGray">http</span>  <span class="RegularDark">=</span> <span class="BoldGray">formatter</span><span class="Punctuation">.</span><span class="BoldGray">format</span><span class="Punctuation">(</span><span class="BoldGray">Rouge</span><span class="RegularDark">::</span><span class="BoldGray">Lexers</span><span class="RegularDark">::</span><span class="BoldGray">HTTP</span><span class="Punctuation">.</span><span class="BoldGray">new</span><span class="Punctuation">.</span><span class="BoldGray">lex</span><span class="Punctuation">(</span>      <span class="BoldGray">File</span><span class="Punctuation">.</span><span class="BoldGray">read</span><span class="Punctuation">(</span><span class="RegularSilverItalic">'demo/http'</span><span class="Punctuation">)))</span>
+<span class="BoldGray">nginx</span> <span class="RegularDark">=</span> <span class="BoldGray">formatter</span><span class="Punctuation">.</span><span class="BoldGray">format</span><span class="Punctuation">(</span><span class="BoldGray">Rouge</span><span class="RegularDark">::</span><span class="BoldGray">Lexers</span><span class="RegularDark">::</span><span class="BoldGray">Nginx</span><span class="Punctuation">.</span><span class="BoldGray">new</span><span class="Punctuation">.</span><span class="BoldGray">lex</span><span class="Punctuation">(</span>     <span class="BoldGray">File</span><span class="Punctuation">.</span><span class="BoldGray">read</span><span class="Punctuation">(</span><span class="RegularSilverItalic">'demo/nginx.conf'</span><span class="Punctuation">)))</span>
+<span class="BoldGray">java</span>  <span class="RegularDark">=</span> <span class="BoldGray">formatter</span><span class="Punctuation">.</span><span class="BoldGray">format</span><span class="Punctuation">(</span><span class="BoldGray">Rouge</span><span class="RegularDark">::</span><span class="BoldGray">Lexers</span><span class="RegularDark">::</span><span class="BoldGray">Java</span><span class="Punctuation">.</span><span class="BoldGray">new</span><span class="Punctuation">.</span><span class="BoldGray">lex</span><span class="Punctuation">(</span>      <span class="BoldGray">File</span><span class="Punctuation">.</span><span class="BoldGray">read</span><span class="Punctuation">(</span><span class="RegularSilverItalic">'demo/sample.java'</span><span class="Punctuation">)))</span>
+<span class="BoldGray">go</span>    <span class="RegularDark">=</span> <span class="BoldGray">formatter</span><span class="Punctuation">.</span><span class="BoldGray">format</span><span class="Punctuation">(</span><span class="BoldGray">Rouge</span><span class="RegularDark">::</span><span class="BoldGray">Lexers</span><span class="RegularDark">::</span><span class="BoldGray">Go</span><span class="Punctuation">.</span><span class="BoldGray">new</span><span class="Punctuation">.</span><span class="BoldGray">lex</span><span class="Punctuation">(</span>        <span class="BoldGray">File</span><span class="Punctuation">.</span><span class="BoldGray">read</span><span class="Punctuation">(</span><span class="RegularSilverItalic">'demo/sample.go'</span><span class="Punctuation">)))</span>
+<span class="BoldGray">make</span>  <span class="RegularDark">=</span> <span class="BoldGray">formatter</span><span class="Punctuation">.</span><span class="BoldGray">format</span><span class="Punctuation">(</span><span class="BoldGray">Rouge</span><span class="RegularDark">::</span><span class="BoldGray">Lexers</span><span class="RegularDark">::</span><span class="BoldGray">Make</span><span class="Punctuation">.</span><span class="BoldGray">new</span><span class="Punctuation">.</span><span class="BoldGray">lex</span><span class="Punctuation">(</span>      <span class="BoldGray">File</span><span class="Punctuation">.</span><span class="BoldGray">read</span><span class="Punctuation">(</span><span class="RegularSilverItalic">'demo/Makefile'</span><span class="Punctuation">)))</span>
 
 
-<span class="Name">out</span> <span class="Operator">=</span> <span class="Operator">&lt;&lt;</span><span class="Name Constant">EOF</span><span class="Literal String Heredoc">
+<span class="BoldGray">out</span> <span class="RegularDark">=</span> <span class="RegularDark">&lt;&lt;</span><span class="BoldGray">EOF</span><span class="RegularSilverItalic">
 &lt;!DOCTYPE html&gt;
 &lt;meta charset=utf-8&gt;
 &lt;meta name=viewport content="width=device-width,initial-scale=1"&gt;
@@ -280,15 +299,23 @@
 &lt;body class=white&gt;
   &lt;button id=toggle&gt;toggle&lt;/button&gt;
 
-  &lt;pre class="highlight js"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">js</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
-  &lt;pre class="highlight css"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">css</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
-  &lt;pre class="highlight html"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">html</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
-  &lt;pre class="highlight http"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">http</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
-  &lt;pre class="highlight nginx"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">nginx</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
-  &lt;pre class="highlight java"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">java</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
-  &lt;pre class="highlight ruby"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">ruby</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
-  &lt;pre class="highlight go"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">go</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
-  &lt;pre class="highlight make"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">make</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
+  &lt;pre&gt;
+    &lt;span&gt;this is thin &amp; silver (他のスタイルが当たらない場合のベース、中括弧やセミコロンなど)&lt;/span&gt;
+    &lt;span class=RegularDark&gt;this is regular &amp; dark (数値と演算子)&lt;/span&gt;
+    &lt;span class=RegularSilverItalic&gt;this is regular &amp; silver &amp; italic (コメントと文字列)&lt;/span&gt;
+    &lt;span class=BoldBlack&gt;this is bold &amp; black (構文キーワードなど)&lt;/span&gt;
+    &lt;span class=BoldGray&gt;this is bold &amp; gray (変数関数クラス名など)&lt;/span&gt;
+  &lt;/pre&gt;
+
+  &lt;pre class="highlight js"&gt;</span><span class="RegularSilverItalic">#{</span><span class="BoldGray">js</span><span class="RegularSilverItalic">}</span><span class="RegularSilverItalic">&lt;/pre&gt;
+  &lt;pre class="highlight css"&gt;</span><span class="RegularSilverItalic">#{</span><span class="BoldGray">css</span><span class="RegularSilverItalic">}</span><span class="RegularSilverItalic">&lt;/pre&gt;
+  &lt;pre class="highlight html"&gt;</span><span class="RegularSilverItalic">#{</span><span class="BoldGray">html</span><span class="RegularSilverItalic">}</span><span class="RegularSilverItalic">&lt;/pre&gt;
+  &lt;pre class="highlight http"&gt;</span><span class="RegularSilverItalic">#{</span><span class="BoldGray">http</span><span class="RegularSilverItalic">}</span><span class="RegularSilverItalic">&lt;/pre&gt;
+  &lt;pre class="highlight nginx"&gt;</span><span class="RegularSilverItalic">#{</span><span class="BoldGray">nginx</span><span class="RegularSilverItalic">}</span><span class="RegularSilverItalic">&lt;/pre&gt;
+  &lt;pre class="highlight java"&gt;</span><span class="RegularSilverItalic">#{</span><span class="BoldGray">java</span><span class="RegularSilverItalic">}</span><span class="RegularSilverItalic">&lt;/pre&gt;
+  &lt;pre class="highlight ruby"&gt;</span><span class="RegularSilverItalic">#{</span><span class="BoldGray">ruby</span><span class="RegularSilverItalic">}</span><span class="RegularSilverItalic">&lt;/pre&gt;
+  &lt;pre class="highlight go"&gt;</span><span class="RegularSilverItalic">#{</span><span class="BoldGray">go</span><span class="RegularSilverItalic">}</span><span class="RegularSilverItalic">&lt;/pre&gt;
+  &lt;pre class="highlight make"&gt;</span><span class="RegularSilverItalic">#{</span><span class="BoldGray">make</span><span class="RegularSilverItalic">}</span><span class="RegularSilverItalic">&lt;/pre&gt;
 &lt;/body&gt;
 
 &lt;script&gt;
@@ -302,67 +329,67 @@ document.querySelector('button').addEventListener('click', (e) =&gt; {
 })
 &lt;/script&gt;
 
-</span><span class="Name Constant">EOF</span>
+</span><span class="BoldGray">EOF</span>
 
-<span class="Name Builtin">open</span><span class="Punctuation">(</span><span class="Literal String Double">"index.html"</span><span class="Punctuation">,</span> <span class="Literal String Double">"w"</span><span class="Punctuation">)</span> <span class="Punctuation">{</span><span class="Operator">|</span><span class="Name">io</span><span class="Operator">|</span> <span class="Name">io</span><span class="Punctuation">.</span><span class="Name Function">write</span><span class="Punctuation">(</span><span class="Name">out</span><span class="Punctuation">)}</span>
+<span class="BoldGray">open</span><span class="Punctuation">(</span><span class="RegularSilverItalic">"index.html"</span><span class="Punctuation">,</span> <span class="RegularSilverItalic">"w"</span><span class="Punctuation">)</span> <span class="Punctuation">{</span><span class="RegularDark">|</span><span class="BoldGray">io</span><span class="RegularDark">|</span> <span class="BoldGray">io</span><span class="Punctuation">.</span><span class="BoldGray">write</span><span class="Punctuation">(</span><span class="BoldGray">out</span><span class="Punctuation">)}</span>
 </pre>
-  <pre class="highlight go"><span class="Keyword">package</span><span class="Other"> </span><span class="Name">main</span><span class="Other">
+  <pre class="highlight go"><span class="BoldBlack">package</span><span class="Other"> </span><span class="BoldGray">main</span><span class="Other">
 
-</span><span class="Keyword">import</span><span class="Other"> </span><span class="Punctuation">(</span><span class="Other">
-	</span><span class="Literal String">"fmt"</span><span class="Other">
-	</span><span class="Literal String">"math"</span><span class="Other">
+</span><span class="BoldBlack">import</span><span class="Other"> </span><span class="Punctuation">(</span><span class="Other">
+	</span><span class="RegularSilverItalic">"fmt"</span><span class="Other">
+	</span><span class="RegularSilverItalic">"math"</span><span class="Other">
 </span><span class="Punctuation">)</span><span class="Other">
 
-</span><span class="Keyword">type</span><span class="Other"> </span><span class="Name">Abser</span><span class="Other"> </span><span class="Keyword">interface</span><span class="Other"> </span><span class="Punctuation">{</span><span class="Other">
-	</span><span class="Name">Abs</span><span class="Punctuation">()</span><span class="Other"> </span><span class="Keyword Type">float64</span><span class="Other">
+</span><span class="BoldBlack">type</span><span class="Other"> </span><span class="BoldGray">Abser</span><span class="Other"> </span><span class="BoldBlack">interface</span><span class="Other"> </span><span class="Punctuation">{</span><span class="Other">
+	</span><span class="BoldGray">Abs</span><span class="Punctuation">()</span><span class="Other"> </span><span class="BoldBlack">float64</span><span class="Other">
 </span><span class="Punctuation">}</span><span class="Other">
 
-</span><span class="Keyword">func</span><span class="Other"> </span><span class="Name">main</span><span class="Punctuation">()</span><span class="Other"> </span><span class="Punctuation">{</span><span class="Other">
-	</span><span class="Keyword">var</span><span class="Other"> </span><span class="Name">a</span><span class="Other"> </span><span class="Name">Abser</span><span class="Other">
-	</span><span class="Name">f</span><span class="Other"> </span><span class="Operator">:=</span><span class="Other"> </span><span class="Name">MyFloat</span><span class="Punctuation">(</span><span class="Operator">-</span><span class="Name">math</span><span class="Operator">.</span><span class="Name">Sqrt2</span><span class="Punctuation">)</span><span class="Other">
-	</span><span class="Name">v</span><span class="Other"> </span><span class="Operator">:=</span><span class="Other"> </span><span class="Name">Vertex</span><span class="Punctuation">{</span><span class="Literal Number">3</span><span class="Punctuation">,</span><span class="Other"> </span><span class="Literal Number">4</span><span class="Punctuation">}</span><span class="Other">
+</span><span class="BoldBlack">func</span><span class="Other"> </span><span class="BoldGray">main</span><span class="Punctuation">()</span><span class="Other"> </span><span class="Punctuation">{</span><span class="Other">
+	</span><span class="BoldBlack">var</span><span class="Other"> </span><span class="BoldGray">a</span><span class="Other"> </span><span class="BoldGray">Abser</span><span class="Other">
+	</span><span class="BoldGray">f</span><span class="Other"> </span><span class="RegularDark">:=</span><span class="Other"> </span><span class="BoldGray">MyFloat</span><span class="Punctuation">(</span><span class="RegularDark">-</span><span class="BoldGray">math</span><span class="RegularDark">.</span><span class="BoldGray">Sqrt2</span><span class="Punctuation">)</span><span class="Other">
+	</span><span class="BoldGray">v</span><span class="Other"> </span><span class="RegularDark">:=</span><span class="Other"> </span><span class="BoldGray">Vertex</span><span class="Punctuation">{</span><span class="RegularDark">3</span><span class="Punctuation">,</span><span class="Other"> </span><span class="RegularDark">4</span><span class="Punctuation">}</span><span class="Other">
 
-	</span><span class="Name">a</span><span class="Other"> </span><span class="Operator">=</span><span class="Other"> </span><span class="Name">f</span><span class="Other">  </span><span class="Comment">// a MyFloat implements Abser</span><span class="Other">
-	</span><span class="Name">a</span><span class="Other"> </span><span class="Operator">=</span><span class="Other"> </span><span class="Operator">&amp;</span><span class="Name">v</span><span class="Other"> </span><span class="Comment">// a *Vertex implements Abser</span><span class="Other">
+	</span><span class="BoldGray">a</span><span class="Other"> </span><span class="RegularDark">=</span><span class="Other"> </span><span class="BoldGray">f</span><span class="Other">  </span><span class="RegularSilverItalic">// a MyFloat implements Abser</span><span class="Other">
+	</span><span class="BoldGray">a</span><span class="Other"> </span><span class="RegularDark">=</span><span class="Other"> </span><span class="RegularDark">&amp;</span><span class="BoldGray">v</span><span class="Other"> </span><span class="RegularSilverItalic">// a *Vertex implements Abser</span><span class="Other">
 
-	</span><span class="Comment">// In the following line, v is a Vertex (not *Vertex)</span><span class="Other">
-	</span><span class="Comment">// and does NOT implement Abser.</span><span class="Other">
-	</span><span class="Name">a</span><span class="Other"> </span><span class="Operator">=</span><span class="Other"> </span><span class="Name">v</span><span class="Other">
+	</span><span class="RegularSilverItalic">// In the following line, v is a Vertex (not *Vertex)</span><span class="Other">
+	</span><span class="RegularSilverItalic">// and does NOT implement Abser.</span><span class="Other">
+	</span><span class="BoldGray">a</span><span class="Other"> </span><span class="RegularDark">=</span><span class="Other"> </span><span class="BoldGray">v</span><span class="Other">
 
-	</span><span class="Name">fmt</span><span class="Operator">.</span><span class="Name">Println</span><span class="Punctuation">(</span><span class="Name">a</span><span class="Operator">.</span><span class="Name">Abs</span><span class="Punctuation">())</span><span class="Other">
+	</span><span class="BoldGray">fmt</span><span class="RegularDark">.</span><span class="BoldGray">Println</span><span class="Punctuation">(</span><span class="BoldGray">a</span><span class="RegularDark">.</span><span class="BoldGray">Abs</span><span class="Punctuation">())</span><span class="Other">
 </span><span class="Punctuation">}</span><span class="Other">
 
-</span><span class="Keyword">type</span><span class="Other"> </span><span class="Name">MyFloat</span><span class="Other"> </span><span class="Keyword Type">float64</span><span class="Other">
+</span><span class="BoldBlack">type</span><span class="Other"> </span><span class="BoldGray">MyFloat</span><span class="Other"> </span><span class="BoldBlack">float64</span><span class="Other">
 
-</span><span class="Keyword">func</span><span class="Other"> </span><span class="Punctuation">(</span><span class="Name">f</span><span class="Other"> </span><span class="Name">MyFloat</span><span class="Punctuation">)</span><span class="Other"> </span><span class="Name">Abs</span><span class="Punctuation">()</span><span class="Other"> </span><span class="Keyword Type">float64</span><span class="Other"> </span><span class="Punctuation">{</span><span class="Other">
-	</span><span class="Keyword">if</span><span class="Other"> </span><span class="Name">f</span><span class="Other"> </span><span class="Operator">&lt;</span><span class="Other"> </span><span class="Literal Number">0</span><span class="Other"> </span><span class="Punctuation">{</span><span class="Other">
-		</span><span class="Keyword">return</span><span class="Other"> </span><span class="Keyword Type">float64</span><span class="Punctuation">(</span><span class="Operator">-</span><span class="Name">f</span><span class="Punctuation">)</span><span class="Other">
+</span><span class="BoldBlack">func</span><span class="Other"> </span><span class="Punctuation">(</span><span class="BoldGray">f</span><span class="Other"> </span><span class="BoldGray">MyFloat</span><span class="Punctuation">)</span><span class="Other"> </span><span class="BoldGray">Abs</span><span class="Punctuation">()</span><span class="Other"> </span><span class="BoldBlack">float64</span><span class="Other"> </span><span class="Punctuation">{</span><span class="Other">
+	</span><span class="BoldBlack">if</span><span class="Other"> </span><span class="BoldGray">f</span><span class="Other"> </span><span class="RegularDark">&lt;</span><span class="Other"> </span><span class="RegularDark">0</span><span class="Other"> </span><span class="Punctuation">{</span><span class="Other">
+		</span><span class="BoldBlack">return</span><span class="Other"> </span><span class="BoldBlack">float64</span><span class="Punctuation">(</span><span class="RegularDark">-</span><span class="BoldGray">f</span><span class="Punctuation">)</span><span class="Other">
 	</span><span class="Punctuation">}</span><span class="Other">
-	</span><span class="Keyword">return</span><span class="Other"> </span><span class="Keyword Type">float64</span><span class="Punctuation">(</span><span class="Name">f</span><span class="Punctuation">)</span><span class="Other">
+	</span><span class="BoldBlack">return</span><span class="Other"> </span><span class="BoldBlack">float64</span><span class="Punctuation">(</span><span class="BoldGray">f</span><span class="Punctuation">)</span><span class="Other">
 </span><span class="Punctuation">}</span><span class="Other">
 
-</span><span class="Keyword">type</span><span class="Other"> </span><span class="Name">Vertex</span><span class="Other"> </span><span class="Keyword">struct</span><span class="Other"> </span><span class="Punctuation">{</span><span class="Other">
-	</span><span class="Name">X</span><span class="Punctuation">,</span><span class="Other"> </span><span class="Name">Y</span><span class="Other"> </span><span class="Keyword Type">float64</span><span class="Other">
+</span><span class="BoldBlack">type</span><span class="Other"> </span><span class="BoldGray">Vertex</span><span class="Other"> </span><span class="BoldBlack">struct</span><span class="Other"> </span><span class="Punctuation">{</span><span class="Other">
+	</span><span class="BoldGray">X</span><span class="Punctuation">,</span><span class="Other"> </span><span class="BoldGray">Y</span><span class="Other"> </span><span class="BoldBlack">float64</span><span class="Other">
 </span><span class="Punctuation">}</span><span class="Other">
 
-</span><span class="Keyword">func</span><span class="Other"> </span><span class="Punctuation">(</span><span class="Name">v</span><span class="Other"> </span><span class="Operator">*</span><span class="Name">Vertex</span><span class="Punctuation">)</span><span class="Other"> </span><span class="Name">Abs</span><span class="Punctuation">()</span><span class="Other"> </span><span class="Keyword Type">float64</span><span class="Other"> </span><span class="Punctuation">{</span><span class="Other">
-	</span><span class="Keyword">return</span><span class="Other"> </span><span class="Name">math</span><span class="Operator">.</span><span class="Name">Sqrt</span><span class="Punctuation">(</span><span class="Name">v</span><span class="Operator">.</span><span class="Name">X</span><span class="Operator">*</span><span class="Name">v</span><span class="Operator">.</span><span class="Name">X</span><span class="Other"> </span><span class="Operator">+</span><span class="Other"> </span><span class="Name">v</span><span class="Operator">.</span><span class="Name">Y</span><span class="Operator">*</span><span class="Name">v</span><span class="Operator">.</span><span class="Name">Y</span><span class="Punctuation">)</span><span class="Other">
+</span><span class="BoldBlack">func</span><span class="Other"> </span><span class="Punctuation">(</span><span class="BoldGray">v</span><span class="Other"> </span><span class="RegularDark">*</span><span class="BoldGray">Vertex</span><span class="Punctuation">)</span><span class="Other"> </span><span class="BoldGray">Abs</span><span class="Punctuation">()</span><span class="Other"> </span><span class="BoldBlack">float64</span><span class="Other"> </span><span class="Punctuation">{</span><span class="Other">
+	</span><span class="BoldBlack">return</span><span class="Other"> </span><span class="BoldGray">math</span><span class="RegularDark">.</span><span class="BoldGray">Sqrt</span><span class="Punctuation">(</span><span class="BoldGray">v</span><span class="RegularDark">.</span><span class="BoldGray">X</span><span class="RegularDark">*</span><span class="BoldGray">v</span><span class="RegularDark">.</span><span class="BoldGray">X</span><span class="Other"> </span><span class="RegularDark">+</span><span class="Other"> </span><span class="BoldGray">v</span><span class="RegularDark">.</span><span class="BoldGray">Y</span><span class="RegularDark">*</span><span class="BoldGray">v</span><span class="RegularDark">.</span><span class="BoldGray">Y</span><span class="Punctuation">)</span><span class="Other">
 </span><span class="Punctuation">}</span><span class="Other">
 
 </span></pre>
-  <pre class="highlight make"><span class="Comment"># Makefile
-</span><span class="Name Label">.PHONY</span><span class="Operator">:</span> <span class="Name Function">all</span>
-<span class="Name Label">all</span><span class="Operator">:</span> <span class="Name Function">main</span>
+  <pre class="highlight make"><span class="RegularSilverItalic"># Makefile
+</span><span class="BoldBlack">.PHONY</span><span class="RegularDark">:</span> <span class="BoldGray">all</span>
+<span class="BoldBlack">all</span><span class="RegularDark">:</span> <span class="BoldGray">main</span>
 
-<span class="Name Label">main</span><span class="Operator">:</span> <span class="Name Function">main.o</span>
-	gcc <span class="Name Tag">-o</span> main main.o
+<span class="BoldBlack">main</span><span class="RegularDark">:</span> <span class="BoldGray">main.o</span>
+	gcc <span class="BoldBlack">-o</span> main main.o
 
-<span class="Name Label">main.o</span><span class="Operator">:</span> <span class="Name Function">main.c</span>
-	gcc <span class="Name Tag">-c</span> main.c
+<span class="BoldBlack">main.o</span><span class="RegularDark">:</span> <span class="BoldGray">main.c</span>
+	gcc <span class="BoldBlack">-c</span> main.c
 
-<span class="Name Label">.PHONY</span><span class="Operator">:</span> <span class="Name Function">clean</span>
-<span class="Name Label">clean</span><span class="Operator">:</span>
-	<span class="Name Builtin">rm</span> <span class="Name Tag">-rf</span> main main.o
+<span class="BoldBlack">.PHONY</span><span class="RegularDark">:</span> <span class="BoldGray">clean</span>
+<span class="BoldBlack">clean</span><span class="RegularDark">:</span>
+	<span class="BoldGray">rm</span> <span class="BoldBlack">-rf</span> main main.o
 </pre>
 </body>
 
