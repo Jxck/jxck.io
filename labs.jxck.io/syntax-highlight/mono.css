@@ -9,31 +9,20 @@
   /** font-color **/
   --black:  rgb(0, 0, 0);
   --dark:   rgb(50, 50, 50);
-  --light:  rgb(100, 100, 100);
+  --gray:   rgb(100, 100, 100);
   --silver: rgb(150, 150, 150);
-  --gray:   rgb(230, 230, 230); /** background **/
+  --light:  rgb(230, 230, 230); /** background **/
   --white:  rgb(255, 255, 255); /* white */
-
-  /*
-   * black          rgb(0,0,0)
-   * darkslategray  rgb(47,79,79)
-   * dimgray        rgb(105,105,105)
-   * gray           rgb(128,128,128)
-   * darkgray       rgb(169,169,169)
-   * silver         rgb(192,192,192)
-   * lightgray      rgb(211,211,211)
-   * gainsboro      rgb(220,220,220)
-   */
 }
 
 pre {
   font-family: 'Roboto Mono', monospace;
-  border:      1px solid black;
   padding:     1em;
+  border:      1px solid black;
 
   background-color: var(--white);
-  color:       #888;
-  font-weight: var(--thin);
+  font-weight:      var(--thin);
+  color:            var(--silver);
 }
 
 /*
@@ -49,31 +38,40 @@ pre.html {
   font-weight: var(--medium);
 }
 
-/* */
-.Attribute,
+/* bold-black */
+.Builtin,
 .Declaration,
 .Function,
 .Keyword,
 .Tag {
-  color:       #333;
+  color:       var(--black);
   font-weight: var(--bold);
 }
 
-/* */
+/* bold-gray */
+.Attribute,
 .Class,
 .Constant,
+.Decorator,
 .Label,
 .Name,
 .Namespace,
 .Other {
-  color:       #666;
+  color:       var(--gray);
   font-weight: var(--bold);
+}
+
+
+.Type {
+  color:       var(--gray);
+  font-weight: var(--regular);
 }
 
 /* 数値と演算子 */
 .Integer,
+.Number,
 .Operator {
-  color:       #333;
+  color:       var(--dark);
   font-weight: var(--regular);
 }
 
@@ -81,11 +79,12 @@ pre.html {
 .Double,
 .Heredoc,
 .Multiline,
+.Comment,
 .Single,
 .String {
   font-style:  italic;
-  color:       #888;
-  font-weight: var(--regular);
+  color:       var(--gray);
+  font-weight: var(--medium);
 }
 
 .Regex {
