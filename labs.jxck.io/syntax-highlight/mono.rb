@@ -41,6 +41,7 @@ class LongHTML < Rouge::Formatters::HTML
       safe_val
     else
       classes = tok.qualname.split(".").join(" ")
+      p classes
       "<span class=\"#{classes}\">#{safe_val}</span>"
     end
   end

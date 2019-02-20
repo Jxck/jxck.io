@@ -39,55 +39,28 @@ pre.html {
 }
 
 /* bold-black */
-.Builtin,
-.Declaration,
-.Function,
-.Keyword,
-.Tag {
-  color:       var(--black);
+.Name {
+  color:       var(--gray);
   font-weight: var(--bold);
 }
 
 /* bold-gray */
-.Attribute,
-.Class,
-.Constant,
-.Decorator,
-.Label,
-.Name,
-.Namespace,
-.Other {
-  color:       var(--gray);
+.Keyword {
+  color:       var(--black);
   font-weight: var(--bold);
 }
 
-
-.Type {
-  color:       var(--gray);
-  font-weight: var(--regular);
-}
-
 /* 数値と演算子 */
-.Integer,
 .Number,
 .Operator {
   color:       var(--dark);
   font-weight: var(--regular);
 }
 
-/* コメントと String */
-.Double,
-.Heredoc,
-.Multiline,
+/* Comment と String (含む regex) */
 .Comment,
-.Single,
 .String {
   font-style:  italic;
-  color:       var(--gray);
+  color:       var(--silver);
   font-weight: var(--medium);
-}
-
-.Regex {
-  font-style:  italic;
-  font-weight: var(--regular);
 }
