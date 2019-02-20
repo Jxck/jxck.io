@@ -1,9 +1,9 @@
 :root {
   /** font-weight **/
   --thin:    100;
-  --light:   300;
+  /*--light:   300;*/
   --regular: 400;
-  --medium:  500;
+  /*--medium:  500;*/
   --bold:    700;
 
   /** font-color **/
@@ -11,31 +11,27 @@
   --dark:   rgb(50, 50, 50);
   --gray:   rgb(100, 100, 100);
   --silver: rgb(150, 150, 150);
-  --light:  rgb(230, 230, 230); /** background **/
+
+
+  --light:  rgb(230, 230, 230); /* background */
   --white:  rgb(255, 255, 255); /* white */
 }
+
+body.dark pre {
+  background-color: var(--light);
+}
+body.white pre {
+  background-color: var(--white);
+}
+
 
 pre {
   font-family: 'Roboto Mono', monospace;
   padding:     1em;
   border:      1px solid black;
 
-  background-color: var(--white);
   font-weight:      var(--thin);
   color:            var(--silver);
-}
-
-/*
-pre.html {
-  color: #444;
-}
-*/
-
-
-/* HTML の doctype */
-.Preproc {
-  font-style:  italic;
-  font-weight: var(--medium);
 }
 
 /* bold-black */
@@ -45,7 +41,8 @@ pre.html {
 }
 
 /* bold-gray */
-.Keyword {
+.Keyword,
+.Tag {
   color:       var(--black);
   font-weight: var(--bold);
 }
@@ -58,9 +55,10 @@ pre.html {
 }
 
 /* Comment と String (含む regex) */
+.Preproc,
 .Comment,
 .String {
   font-style:  italic;
   color:       var(--silver);
-  font-weight: var(--medium);
+  font-weight: var(--regular);
 }

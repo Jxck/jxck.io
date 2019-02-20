@@ -73,15 +73,31 @@ out = <<EOF
 
 <link rel=stylesheet href=mono.css>
 
-<pre class="highlight js">#{js}</pre>
-<pre class="highlight css">#{css}</pre>
-<pre class="highlight html">#{html}</pre>
-<pre class="highlight http">#{http}</pre>
-<pre class="highlight nginx">#{nginx}</pre>
-<pre class="highlight java">#{java}</pre>
-<pre class="highlight ruby">#{ruby}</pre>
-<pre class="highlight go">#{go}</pre>
-<pre class="highlight make">#{make}</pre>
+<body class=white>
+  <button id=toggle>toggle</button>
+
+  <pre class="highlight js">#{js}</pre>
+  <pre class="highlight css">#{css}</pre>
+  <pre class="highlight html">#{html}</pre>
+  <pre class="highlight http">#{http}</pre>
+  <pre class="highlight nginx">#{nginx}</pre>
+  <pre class="highlight java">#{java}</pre>
+  <pre class="highlight ruby">#{ruby}</pre>
+  <pre class="highlight go">#{go}</pre>
+  <pre class="highlight make">#{make}</pre>
+</body>
+
+<script>
+document.querySelector('button').addEventListener('click', (e) => {
+  const value = document.body.classList.value
+  if (value === 'white') {
+    document.body.classList.value = 'dark'
+  } else {
+    document.body.classList.value = 'white'
+  }
+})
+</script>
+
 EOF
 
 open("index.html", "w") {|io| io.write(out)}

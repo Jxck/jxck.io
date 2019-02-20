@@ -7,7 +7,10 @@
 
 <link rel=stylesheet href=mono.css>
 
-<pre class="highlight js"><span class="Keyword">import</span> <span class="Name Other">file</span> <span class="Keyword">from</span> <span class="Name Other">fs</span>
+<body class=white>
+  <button id=toggle>toggle</button>
+
+  <pre class="highlight js"><span class="Keyword">import</span> <span class="Name Other">file</span> <span class="Keyword">from</span> <span class="Name Other">fs</span>
 
 <span class="Keyword Declaration">function</span> <span class="Name Other">callback</span><span class="Punctuation">(</span><span class="Name Other">err</span><span class="Punctuation">,</span> <span class="Name Other">file</span><span class="Punctuation">)</span> <span class="Punctuation">{</span>
   <span class="Keyword">if</span> <span class="Punctuation">(</span><span class="Name Other">err</span><span class="Punctuation">)</span> <span class="Keyword">return</span> <span class="Name Other">console</span><span class="Punctuation">.</span><span class="Name Other">error</span><span class="Punctuation">(</span><span class="Name Other">err</span><span class="Punctuation">);</span>
@@ -38,7 +41,7 @@
 
 <span class="Keyword">export</span> <span class="Name Other">module</span><span class="Punctuation">;</span>
 </pre>
-<pre class="highlight css"><span class="Name Tag">strong</span><span class="Name Decorator">::before</span><span class="Operator">,</span>
+  <pre class="highlight css"><span class="Name Tag">strong</span><span class="Name Decorator">::before</span><span class="Operator">,</span>
 <span class="Name Tag">strong</span><span class="Name Decorator">::after</span> <span class="Punctuation">{</span>
   <span class="Name Label">content</span><span class="Punctuation">:</span> <span class="Literal String Single">"**"</span><span class="Punctuation">;</span>
 <span class="Punctuation">}</span>
@@ -69,7 +72,7 @@
 <span class="Punctuation">}</span>
 
 </pre>
-<pre class="highlight html"><span class="Comment Preproc">&lt;!DOCTYPE html&gt;</span>
+  <pre class="highlight html"><span class="Comment Preproc">&lt;!DOCTYPE html&gt;</span>
 <span class="Name Tag">&lt;meta</span> <span class="Name Attribute">charset=</span><span class="Literal String">utf-8</span><span class="Name Tag">&gt;</span>
 <span class="Name Tag">&lt;meta</span> <span class="Name Attribute">name=</span><span class="Literal String">viewport</span> <span class="Name Attribute">content=</span><span class="Literal String">"width=device-width,initial-scale=1"</span><span class="Name Tag">&gt;</span>
 <span class="Name Tag">&lt;title&gt;</span>DEMO | labs.jxck.io<span class="Name Tag">&lt;/title&gt;</span>
@@ -91,7 +94,7 @@
   <span class="Name Tag">&lt;/form&gt;</span>
 <span class="Name Tag">&lt;/div&gt;</span>
 </pre>
-<pre class="highlight http"><span class="Name Function">POST</span> <span class="Name Namespace">/demo/submit/</span> <span class="Keyword">HTTP</span><span class="Operator">/</span><span class="Literal Number">1.1</span>
+  <pre class="highlight http"><span class="Name Function">POST</span> <span class="Name Namespace">/demo/submit/</span> <span class="Keyword">HTTP</span><span class="Operator">/</span><span class="Literal Number">1.1</span>
 <span class="Name Attribute">Host</span><span class="Punctuation">:</span> <span class="Literal String">rouge.jneen.net</span>
 <span class="Name Attribute">Cache-Control</span><span class="Punctuation">:</span> <span class="Literal String">max-age=0</span>
 <span class="Name Attribute">Origin</span><span class="Punctuation">:</span> <span class="Literal String">http://rouge.jayferd.us</span>
@@ -106,7 +109,7 @@
 
 <span class="Punctuation">{</span><span class="Literal String Double">"name"</span><span class="Punctuation">:</span><span class="Literal String Double">"test"</span><span class="Punctuation">,</span><span class="Literal String Double">"lang"</span><span class="Punctuation">:</span><span class="Literal String Double">"text"</span><span class="Punctuation">,</span><span class="Literal String Double">"boring"</span><span class="Punctuation">:</span><span class="Keyword Constant">true</span><span class="Punctuation">}</span><span class="Text Whitespace">
 </span></pre>
-<pre class="highlight nginx"><span class="Keyword">user</span>       <span class="Literal String">www</span> <span class="Literal String">www</span><span class="Punctuation">;</span>  <span class="Comment Single">## Default: nobody
+  <pre class="highlight nginx"><span class="Keyword">user</span>       <span class="Literal String">www</span> <span class="Literal String">www</span><span class="Punctuation">;</span>  <span class="Comment Single">## Default: nobody
 </span><span class="Keyword">worker_processes</span>  <span class="Literal Number Integer">5</span><span class="Punctuation">;</span>  <span class="Comment Single">## Default: 1
 </span><span class="Keyword">error_log</span>  <span class="Name Class">logs/error</span><span class="Literal String">.log</span><span class="Punctuation">;</span>
 <span class="Keyword">pid</span>        <span class="Name Class">logs/nginx</span><span class="Literal String">.pid</span><span class="Punctuation">;</span>
@@ -176,7 +179,7 @@
     <span class="Punctuation">}</span>
   <span class="Punctuation">}</span>
 </pre>
-<pre class="highlight java"><span class="Keyword Declaration">public</span> <span class="Keyword Declaration">class</span> <span class="Name Class">DecimalOctal</span> <span class="Operator">{</span>
+  <pre class="highlight java"><span class="Keyword Declaration">public</span> <span class="Keyword Declaration">class</span> <span class="Name Class">DecimalOctal</span> <span class="Operator">{</span>
 
     <span class="Keyword Declaration">public</span> <span class="Keyword Declaration">static</span> <span class="Keyword Type">void</span> <span class="Name Function">main</span><span class="Operator">(</span><span class="Name">String</span><span class="Operator">[]</span> <span class="Name">args</span><span class="Operator">)</span> <span class="Operator">{</span>
         <span class="Keyword Type">int</span> <span class="Name">decimal</span> <span class="Operator">=</span> <span class="Literal Number Integer">78</span><span class="Operator">;</span>
@@ -199,7 +202,7 @@
     <span class="Operator">}</span>
 <span class="Operator">}</span>
 </pre>
-<pre class="highlight ruby"><span class="Comment Single">#!/usr/bin/env ruby</span>
+  <pre class="highlight ruby"><span class="Comment Single">#!/usr/bin/env ruby</span>
 
 <span class="Name Builtin">require</span> <span class="Literal String Single">'rouge'</span>
 
@@ -274,20 +277,36 @@
 
 &lt;link rel=stylesheet href=mono.css&gt;
 
-&lt;pre class="highlight js"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">js</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
-&lt;pre class="highlight css"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">css</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
-&lt;pre class="highlight html"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">html</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
-&lt;pre class="highlight http"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">http</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
-&lt;pre class="highlight nginx"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">nginx</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
-&lt;pre class="highlight java"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">java</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
-&lt;pre class="highlight ruby"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">ruby</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
-&lt;pre class="highlight go"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">go</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
-&lt;pre class="highlight make"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">make</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
+&lt;body class=white&gt;
+  &lt;button id=toggle&gt;toggle&lt;/button&gt;
+
+  &lt;pre class="highlight js"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">js</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
+  &lt;pre class="highlight css"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">css</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
+  &lt;pre class="highlight html"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">html</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
+  &lt;pre class="highlight http"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">http</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
+  &lt;pre class="highlight nginx"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">nginx</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
+  &lt;pre class="highlight java"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">java</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
+  &lt;pre class="highlight ruby"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">ruby</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
+  &lt;pre class="highlight go"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">go</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
+  &lt;pre class="highlight make"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">make</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
+&lt;/body&gt;
+
+&lt;script&gt;
+document.querySelector('button').addEventListener('click', (e) =&gt; {
+  const value = document.body.classList.value
+  if (value === 'white') {
+    document.body.classList.value = 'dark'
+  } else {
+    document.body.classList.value = 'white'
+  }
+})
+&lt;/script&gt;
+
 </span><span class="Name Constant">EOF</span>
 
 <span class="Name Builtin">open</span><span class="Punctuation">(</span><span class="Literal String Double">"index.html"</span><span class="Punctuation">,</span> <span class="Literal String Double">"w"</span><span class="Punctuation">)</span> <span class="Punctuation">{</span><span class="Operator">|</span><span class="Name">io</span><span class="Operator">|</span> <span class="Name">io</span><span class="Punctuation">.</span><span class="Name Function">write</span><span class="Punctuation">(</span><span class="Name">out</span><span class="Punctuation">)}</span>
 </pre>
-<pre class="highlight go"><span class="Keyword">package</span><span class="Other"> </span><span class="Name">main</span><span class="Other">
+  <pre class="highlight go"><span class="Keyword">package</span><span class="Other"> </span><span class="Name">main</span><span class="Other">
 
 </span><span class="Keyword">import</span><span class="Other"> </span><span class="Punctuation">(</span><span class="Other">
 	</span><span class="Literal String">"fmt"</span><span class="Other">
@@ -331,7 +350,7 @@
 </span><span class="Punctuation">}</span><span class="Other">
 
 </span></pre>
-<pre class="highlight make"><span class="Comment"># Makefile
+  <pre class="highlight make"><span class="Comment"># Makefile
 </span><span class="Name Label">.PHONY</span><span class="Operator">:</span> <span class="Name Function">all</span>
 <span class="Name Label">all</span><span class="Operator">:</span> <span class="Name Function">main</span>
 
@@ -345,3 +364,16 @@
 <span class="Name Label">clean</span><span class="Operator">:</span>
 	<span class="Name Builtin">rm</span> <span class="Name Tag">-rf</span> main main.o
 </pre>
+</body>
+
+<script>
+document.querySelector('button').addEventListener('click', (e) => {
+  const value = document.body.classList.value
+  if (value === 'white') {
+    document.body.classList.value = 'dark'
+  } else {
+    document.body.classList.value = 'white'
+  }
+})
+</script>
+
