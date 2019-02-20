@@ -7,263 +7,264 @@
 
 <link rel=stylesheet href=mono.css>
 
+<pre class="highlight js"><span class="Keyword">import</span> <span class="Name Other">file</span> <span class="Keyword">from</span> <span class="Name Other">fs</span>
 
-<pre class="highlight js"><span class="Keyword">import</span> <span class="Other">file</span> <span class="Keyword">from</span> <span class="Other">fs</span>
+<span class="Keyword Declaration">function</span> <span class="Name Other">callback</span><span class="Punctuation">(</span><span class="Name Other">err</span><span class="Punctuation">,</span> <span class="Name Other">file</span><span class="Punctuation">)</span> <span class="Punctuation">{</span>
+  <span class="Keyword">if</span> <span class="Punctuation">(</span><span class="Name Other">err</span><span class="Punctuation">)</span> <span class="Keyword">return</span> <span class="Name Other">console</span><span class="Punctuation">.</span><span class="Name Other">error</span><span class="Punctuation">(</span><span class="Name Other">err</span><span class="Punctuation">);</span>
 
-<span class="Declaration">function</span> <span class="Other">callback</span><span class="Punctuation">(</span><span class="Other">err</span><span class="Punctuation">,</span> <span class="Other">file</span><span class="Punctuation">)</span> <span class="Punctuation">{</span>
-  <span class="Keyword">if</span> <span class="Punctuation">(</span><span class="Other">err</span><span class="Punctuation">)</span> <span class="Keyword">return</span> <span class="Other">console</span><span class="Punctuation">.</span><span class="Other">error</span><span class="Punctuation">(</span><span class="Other">err</span><span class="Punctuation">);</span>
-
-  <span class="Multiline">/* ここで色々する */</span>
+  <span class="Comment Multiline">/* ここで色々する */</span>
 <span class="Punctuation">};</span>
 
-<span class="Other">file</span><span class="Punctuation">.</span><span class="Other">open</span><span class="Punctuation">(</span><span class="Other">callback</span><span class="Punctuation">);</span>
+<span class="Name Other">file</span><span class="Punctuation">.</span><span class="Name Other">open</span><span class="Punctuation">(</span><span class="Name Other">callback</span><span class="Punctuation">);</span>
 
-<span class="Declaration">class</span> <span class="Other">Test</span> <span class="Declaration">extends</span> <span class="Other">EventEmitter</span> <span class="Punctuation">{</span>
-  <span class="Declaration">constructor</span><span class="Punctuation">(</span><span class="Other">data</span><span class="Punctuation">)</span> <span class="Punctuation">{</span>
-    <span class="Keyword">this</span><span class="Punctuation">.</span><span class="Other">data</span> <span class="Operator">=</span> <span class="Other">data</span>
+<span class="Keyword Declaration">class</span> <span class="Name Other">Test</span> <span class="Keyword Declaration">extends</span> <span class="Name Other">EventEmitter</span> <span class="Punctuation">{</span>
+  <span class="Keyword Declaration">constructor</span><span class="Punctuation">(</span><span class="Name Other">data</span><span class="Punctuation">)</span> <span class="Punctuation">{</span>
+    <span class="Keyword">this</span><span class="Punctuation">.</span><span class="Name Other">data</span> <span class="Operator">=</span> <span class="Name Other">data</span>
   <span class="Punctuation">}</span>
 
-  <span class="Other">jquery</span><span class="Punctuation">()</span> <span class="Punctuation">{</span>
-    <span class="Other">$</span><span class="Punctuation">(</span><span class="Single">'body'</span><span class="Punctuation">).</span><span class="Other">innerHTML</span> <span class="Operator">=</span> <span class="Double">"alert('xss')"</span>
+  <span class="Name Other">jquery</span><span class="Punctuation">()</span> <span class="Punctuation">{</span>
+    <span class="Name Other">$</span><span class="Punctuation">(</span><span class="Literal String Single">'body'</span><span class="Punctuation">).</span><span class="Name Other">innerHTML</span> <span class="Operator">=</span> <span class="Literal String Double">"alert('xss')"</span>
   <span class="Punctuation">}</span>
 
-  <span class="Other">promise</span><span class="Punctuation">()</span> <span class="Punctuation">{</span>
-    <span class="Keyword">return</span> <span class="Builtin">Promise</span><span class="Punctuation">.</span><span class="Other">resolve</span><span class="Punctuation">(</span><span class="Single">'foo'</span><span class="Punctuation">)</span>
+  <span class="Name Other">promise</span><span class="Punctuation">()</span> <span class="Punctuation">{</span>
+    <span class="Keyword">return</span> <span class="Name Builtin">Promise</span><span class="Punctuation">.</span><span class="Name Other">resolve</span><span class="Punctuation">(</span><span class="Literal String Single">'foo'</span><span class="Punctuation">)</span>
   <span class="Punctuation">}</span>
 <span class="Punctuation">}</span>
 
-<span class="Declaration">const</span> <span class="Other">test</span> <span class="Operator">=</span> <span class="Keyword">new</span> <span class="Other">Test</span><span class="Punctuation">()</span>
-<span class="Other">test</span><span class="Punctuation">.</span><span class="Other">promise</span><span class="Punctuation">().</span><span class="Other">then</span><span class="Punctuation">((</span><span class="Other">e</span><span class="Punctuation">)</span> <span class="Operator">=&gt;</span> <span class="Punctuation">{</span>
-  <span class="Other">console</span><span class="Punctuation">.</span><span class="Other">log</span><span class="Punctuation">(</span><span class="Other">e</span><span class="Punctuation">)</span>
+<span class="Keyword Declaration">const</span> <span class="Name Other">test</span> <span class="Operator">=</span> <span class="Keyword">new</span> <span class="Name Other">Test</span><span class="Punctuation">()</span>
+<span class="Name Other">test</span><span class="Punctuation">.</span><span class="Name Other">promise</span><span class="Punctuation">().</span><span class="Name Other">then</span><span class="Punctuation">((</span><span class="Name Other">e</span><span class="Punctuation">)</span> <span class="Operator">=&gt;</span> <span class="Punctuation">{</span>
+  <span class="Name Other">console</span><span class="Punctuation">.</span><span class="Name Other">log</span><span class="Punctuation">(</span><span class="Name Other">e</span><span class="Punctuation">)</span>
 <span class="Punctuation">})</span>
 
-<span class="Keyword">export</span> <span class="Other">module</span><span class="Punctuation">;</span>
+<span class="Keyword">export</span> <span class="Name Other">module</span><span class="Punctuation">;</span>
 </pre>
-<pre class="highlight css"><span class="Tag">strong</span><span class="Decorator">::before</span><span class="Operator">,</span>
-<span class="Tag">strong</span><span class="Decorator">::after</span> <span class="Punctuation">{</span>
-  <span class="Label">content</span><span class="Punctuation">:</span> <span class="Single">"**"</span><span class="Punctuation">;</span>
+<pre class="highlight css"><span class="Name Tag">strong</span><span class="Name Decorator">::before</span><span class="Operator">,</span>
+<span class="Name Tag">strong</span><span class="Name Decorator">::after</span> <span class="Punctuation">{</span>
+  <span class="Name Label">content</span><span class="Punctuation">:</span> <span class="Literal String Single">"**"</span><span class="Punctuation">;</span>
 <span class="Punctuation">}</span>
 
-<span class="Tag">ul</span> <span class="Tag">li</span><span class="Decorator">::before</span> <span class="Punctuation">{</span>
-  <span class="Label">content</span><span class="Punctuation">:</span> <span class="Single">"- "</span><span class="Punctuation">;</span>
+<span class="Name Tag">ul</span> <span class="Name Tag">li</span><span class="Name Decorator">::before</span> <span class="Punctuation">{</span>
+  <span class="Name Label">content</span><span class="Punctuation">:</span> <span class="Literal String Single">"- "</span><span class="Punctuation">;</span>
 <span class="Punctuation">}</span>
 
-<span class="Tag">ol</span> <span class="Punctuation">{</span>
-  <span class="Label">counter-reset</span><span class="Punctuation">:</span> <span class="Name">list</span><span class="Punctuation">;</span>
+<span class="Name Tag">ol</span> <span class="Punctuation">{</span>
+  <span class="Name Label">counter-reset</span><span class="Punctuation">:</span> <span class="Name">list</span><span class="Punctuation">;</span>
 <span class="Punctuation">}</span>
 
-<span class="Tag">ol</span> <span class="Tag">li</span><span class="Decorator">::before</span> <span class="Punctuation">{</span>
-  <span class="Label">counter-increment</span><span class="Punctuation">:</span> <span class="Name">list</span><span class="Punctuation">;</span>
-  <span class="Label">content</span><span class="Punctuation">:</span> <span class="Name">counter</span><span class="Punctuation">(</span><span class="Name">list</span><span class="Punctuation">)</span> <span class="Single">". "</span><span class="Punctuation">;</span>
+<span class="Name Tag">ol</span> <span class="Name Tag">li</span><span class="Name Decorator">::before</span> <span class="Punctuation">{</span>
+  <span class="Name Label">counter-increment</span><span class="Punctuation">:</span> <span class="Name">list</span><span class="Punctuation">;</span>
+  <span class="Name Label">content</span><span class="Punctuation">:</span> <span class="Name">counter</span><span class="Punctuation">(</span><span class="Name">list</span><span class="Punctuation">)</span> <span class="Literal String Single">". "</span><span class="Punctuation">;</span>
 <span class="Punctuation">}</span>
 
-<span class="Tag">dl</span> <span class="Tag">dt</span><span class="Decorator">::after</span> <span class="Punctuation">{</span>
-  <span class="Label">content</span><span class="Punctuation">:</span> <span class="Single">":"</span><span class="Punctuation">;</span>
+<span class="Name Tag">dl</span> <span class="Name Tag">dt</span><span class="Name Decorator">::after</span> <span class="Punctuation">{</span>
+  <span class="Name Label">content</span><span class="Punctuation">:</span> <span class="Literal String Single">":"</span><span class="Punctuation">;</span>
 <span class="Punctuation">}</span>
 
-<span class="Tag">blockquote</span> <span class="Punctuation">{</span>
-  <span class="Label">display</span><span class="Punctuation">:</span> <span class="Builtin">block</span><span class="Punctuation">;</span>
-  <span class="Label">border</span><span class="Punctuation">:</span> <span class="Builtin">solid</span> <span class="Number">1px</span> <span class="Name">var</span><span class="Punctuation">(</span><span class="Name">--block-quote</span><span class="Punctuation">);</span>
-  <span class="Label">border-radius</span><span class="Punctuation">:</span> <span class="Number">4px</span><span class="Punctuation">;</span>
-  <span class="Label">padding</span><span class="Punctuation">:</span> <span class="Number">0.4em</span> <span class="Number">1em</span><span class="Punctuation">;</span>
-  <span class="Label">margin</span><span class="Punctuation">:</span> <span class="Number">0</span><span class="Punctuation">;</span>
+<span class="Name Tag">blockquote</span> <span class="Punctuation">{</span>
+  <span class="Name Label">display</span><span class="Punctuation">:</span> <span class="Name Builtin">block</span><span class="Punctuation">;</span>
+  <span class="Name Label">border</span><span class="Punctuation">:</span> <span class="Name Builtin">solid</span> <span class="Literal Number">1px</span> <span class="Name">var</span><span class="Punctuation">(</span><span class="Name">--block-quote</span><span class="Punctuation">);</span>
+  <span class="Name Label">border-radius</span><span class="Punctuation">:</span> <span class="Literal Number">4px</span><span class="Punctuation">;</span>
+  <span class="Name Label">padding</span><span class="Punctuation">:</span> <span class="Literal Number">0.4em</span> <span class="Literal Number">1em</span><span class="Punctuation">;</span>
+  <span class="Name Label">margin</span><span class="Punctuation">:</span> <span class="Literal Number">0</span><span class="Punctuation">;</span>
 <span class="Punctuation">}</span>
 
 </pre>
-<pre class="highlight html"><span class="Preproc">&lt;!DOCTYPE html&gt;</span>
-<span class="Tag">&lt;meta</span> <span class="Attribute">charset=</span><span class="String">utf-8</span><span class="Tag">&gt;</span>
-<span class="Tag">&lt;meta</span> <span class="Attribute">name=</span><span class="String">viewport</span> <span class="Attribute">content=</span><span class="String">"width=device-width,initial-scale=1"</span><span class="Tag">&gt;</span>
-<span class="Tag">&lt;title&gt;</span>DEMO | labs.jxck.io<span class="Tag">&lt;/title&gt;</span>
+<pre class="highlight html"><span class="Comment Preproc">&lt;!DOCTYPE html&gt;</span>
+<span class="Name Tag">&lt;meta</span> <span class="Name Attribute">charset=</span><span class="Literal String">utf-8</span><span class="Name Tag">&gt;</span>
+<span class="Name Tag">&lt;meta</span> <span class="Name Attribute">name=</span><span class="Literal String">viewport</span> <span class="Name Attribute">content=</span><span class="Literal String">"width=device-width,initial-scale=1"</span><span class="Name Tag">&gt;</span>
+<span class="Name Tag">&lt;title&gt;</span>DEMO | labs.jxck.io<span class="Name Tag">&lt;/title&gt;</span>
 
-<span class="Tag">&lt;style&gt;</span>
-<span class="Tag">&lt;/style&gt;</span>
+<span class="Name Tag">&lt;style&gt;</span>
+<span class="Name Tag">&lt;/style&gt;</span>
 
-<span class="Tag">&lt;h1&gt;</span>Test<span class="Tag">&lt;/h1&gt;</span>
-<span class="Tag">&lt;p&gt;</span>this is <span class="Tag">&lt;strong&gt;</span>sample<span class="Tag">&lt;/strong&gt;</span> text<span class="Tag">&lt;/p&gt;</span>
+<span class="Name Tag">&lt;h1&gt;</span>Test<span class="Name Tag">&lt;/h1&gt;</span>
+<span class="Name Tag">&lt;p&gt;</span>this is <span class="Name Tag">&lt;strong&gt;</span>sample<span class="Name Tag">&lt;/strong&gt;</span> text<span class="Name Tag">&lt;/p&gt;</span>
 
-<span class="Tag">&lt;div&gt;</span>
-  <span class="Tag">&lt;video</span> <span class="Attribute">src=</span><span class="String">"some.mp4"</span><span class="Tag">&gt;</span>
-  <span class="Tag">&lt;img</span> <span class="Attribute">src=</span><span class="String">some.webp</span> <span class="Attribute">label=</span><span class="String">"good picture"</span><span class="Tag">&gt;</span>
+<span class="Name Tag">&lt;div&gt;</span>
+  <span class="Name Tag">&lt;video</span> <span class="Name Attribute">src=</span><span class="Literal String">"some.mp4"</span><span class="Name Tag">&gt;</span>
+  <span class="Name Tag">&lt;img</span> <span class="Name Attribute">src=</span><span class="Literal String">some.webp</span> <span class="Name Attribute">label=</span><span class="Literal String">"good picture"</span><span class="Name Tag">&gt;</span>
 
-  <span class="Tag">&lt;form</span> <span class="Attribute">action=</span><span class="String">/login</span> <span class="Attribute">method=</span><span class="String">post</span><span class="Tag">&gt;</span>
-    <span class="Tag">&lt;input</span> <span class="Attribute">type=</span><span class="String">text</span> <span class="Attribute">name=</span><span class="String">username</span><span class="Tag">&gt;</span>
-    <span class="Tag">&lt;input</span> <span class="Attribute">type=</span><span class="String">password</span> <span class="Attribute">name=</span><span class="String">password</span><span class="Tag">&gt;</span>
-    <span class="Tag">&lt;button</span> <span class="Attribute">type=</span><span class="String">submit</span><span class="Tag">&gt;</span>ok<span class="Tag">&lt;/button&gt;</span>
-  <span class="Tag">&lt;/form&gt;</span>
-<span class="Tag">&lt;/div&gt;</span>
+  <span class="Name Tag">&lt;form</span> <span class="Name Attribute">action=</span><span class="Literal String">/login</span> <span class="Name Attribute">method=</span><span class="Literal String">post</span><span class="Name Tag">&gt;</span>
+    <span class="Name Tag">&lt;input</span> <span class="Name Attribute">type=</span><span class="Literal String">text</span> <span class="Name Attribute">name=</span><span class="Literal String">username</span><span class="Name Tag">&gt;</span>
+    <span class="Name Tag">&lt;input</span> <span class="Name Attribute">type=</span><span class="Literal String">password</span> <span class="Name Attribute">name=</span><span class="Literal String">password</span><span class="Name Tag">&gt;</span>
+    <span class="Name Tag">&lt;button</span> <span class="Name Attribute">type=</span><span class="Literal String">submit</span><span class="Name Tag">&gt;</span>ok<span class="Name Tag">&lt;/button&gt;</span>
+  <span class="Name Tag">&lt;/form&gt;</span>
+<span class="Name Tag">&lt;/div&gt;</span>
 </pre>
-<pre class="highlight http"><span class="Function">POST</span> <span class="Namespace">/demo/submit/</span> <span class="Keyword">HTTP</span><span class="Operator">/</span><span class="Number">1.1</span>
-<span class="Attribute">Host</span><span class="Punctuation">:</span> <span class="String">rouge.jneen.net</span>
-<span class="Attribute">Cache-Control</span><span class="Punctuation">:</span> <span class="String">max-age=0</span>
-<span class="Attribute">Origin</span><span class="Punctuation">:</span> <span class="String">http://rouge.jayferd.us</span>
-<span class="Attribute">User-Agent</span><span class="Punctuation">:</span> <span class="String">Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2)</span>
-<span class="String">    AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.63 Safari/535.7</span>
-<span class="Attribute">Content-Type</span><span class="Punctuation">:</span> <span class="String">application/json</span>
-<span class="Attribute">Accept</span><span class="Punctuation">:</span> <span class="String">text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span>
-<span class="Attribute">Referer</span><span class="Punctuation">:</span> <span class="String">http://pygments.org/</span>
-<span class="Attribute">Accept-Encoding</span><span class="Punctuation">:</span> <span class="String">gzip,deflate,sdch</span>
-<span class="Attribute">Accept-Language</span><span class="Punctuation">:</span> <span class="String">en-US,en;q=0.8</span>
-<span class="Attribute">Accept-Charset</span><span class="Punctuation">:</span> <span class="String">windows-949,utf-8;q=0.7,*;q=0.3</span>
+<pre class="highlight http"><span class="Name Function">POST</span> <span class="Name Namespace">/demo/submit/</span> <span class="Keyword">HTTP</span><span class="Operator">/</span><span class="Literal Number">1.1</span>
+<span class="Name Attribute">Host</span><span class="Punctuation">:</span> <span class="Literal String">rouge.jneen.net</span>
+<span class="Name Attribute">Cache-Control</span><span class="Punctuation">:</span> <span class="Literal String">max-age=0</span>
+<span class="Name Attribute">Origin</span><span class="Punctuation">:</span> <span class="Literal String">http://rouge.jayferd.us</span>
+<span class="Name Attribute">User-Agent</span><span class="Punctuation">:</span> <span class="Literal String">Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2)</span>
+<span class="Literal String">    AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.63 Safari/535.7</span>
+<span class="Name Attribute">Content-Type</span><span class="Punctuation">:</span> <span class="Literal String">application/json</span>
+<span class="Name Attribute">Accept</span><span class="Punctuation">:</span> <span class="Literal String">text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span>
+<span class="Name Attribute">Referer</span><span class="Punctuation">:</span> <span class="Literal String">http://pygments.org/</span>
+<span class="Name Attribute">Accept-Encoding</span><span class="Punctuation">:</span> <span class="Literal String">gzip,deflate,sdch</span>
+<span class="Name Attribute">Accept-Language</span><span class="Punctuation">:</span> <span class="Literal String">en-US,en;q=0.8</span>
+<span class="Name Attribute">Accept-Charset</span><span class="Punctuation">:</span> <span class="Literal String">windows-949,utf-8;q=0.7,*;q=0.3</span>
 
-<span class="Punctuation">{</span><span class="Double">"name"</span><span class="Punctuation">:</span><span class="Double">"test"</span><span class="Punctuation">,</span><span class="Double">"lang"</span><span class="Punctuation">:</span><span class="Double">"text"</span><span class="Punctuation">,</span><span class="Double">"boring"</span><span class="Punctuation">:</span><span class="Constant">true</span><span class="Punctuation">}</span><span class="Whitespace">
+<span class="Punctuation">{</span><span class="Literal String Double">"name"</span><span class="Punctuation">:</span><span class="Literal String Double">"test"</span><span class="Punctuation">,</span><span class="Literal String Double">"lang"</span><span class="Punctuation">:</span><span class="Literal String Double">"text"</span><span class="Punctuation">,</span><span class="Literal String Double">"boring"</span><span class="Punctuation">:</span><span class="Keyword Constant">true</span><span class="Punctuation">}</span><span class="Text Whitespace">
 </span></pre>
-<pre class="highlight nginx"><span class="Keyword">user</span>       <span class="String">www</span> <span class="String">www</span><span class="Punctuation">;</span>  <span class="Single">## Default: nobody
-</span><span class="Keyword">worker_processes</span>  <span class="Integer">5</span><span class="Punctuation">;</span>  <span class="Single">## Default: 1
-</span><span class="Keyword">error_log</span>  <span class="Class">logs/error</span><span class="String">.log</span><span class="Punctuation">;</span>
-<span class="Keyword">pid</span>        <span class="Class">logs/nginx</span><span class="String">.pid</span><span class="Punctuation">;</span>
-<span class="Keyword">worker_rlimit_nofile</span> <span class="Integer">8192</span><span class="Punctuation">;</span>
+<pre class="highlight nginx"><span class="Keyword">user</span>       <span class="Literal String">www</span> <span class="Literal String">www</span><span class="Punctuation">;</span>  <span class="Comment Single">## Default: nobody
+</span><span class="Keyword">worker_processes</span>  <span class="Literal Number Integer">5</span><span class="Punctuation">;</span>  <span class="Comment Single">## Default: 1
+</span><span class="Keyword">error_log</span>  <span class="Name Class">logs/error</span><span class="Literal String">.log</span><span class="Punctuation">;</span>
+<span class="Keyword">pid</span>        <span class="Name Class">logs/nginx</span><span class="Literal String">.pid</span><span class="Punctuation">;</span>
+<span class="Keyword">worker_rlimit_nofile</span> <span class="Literal Number Integer">8192</span><span class="Punctuation">;</span>
 
 <span class="Keyword">events</span> <span class="Punctuation">{</span>
-  <span class="Namespace">worker_connections</span>  <span class="Integer">4096</span><span class="Punctuation">;</span>  <span class="Single">## Default: 1024
+  <span class="Keyword Namespace">worker_connections</span>  <span class="Literal Number Integer">4096</span><span class="Punctuation">;</span>  <span class="Comment Single">## Default: 1024
 </span><span class="Punctuation">}</span>
 
 <span class="Keyword">http</span> <span class="Punctuation">{</span>
-  <span class="Namespace">include</span>    <span class="Class">conf/mime</span><span class="String">.types</span><span class="Punctuation">;</span>
-  <span class="Namespace">include</span>    <span class="Name">/etc/nginx/proxy.conf</span><span class="Punctuation">;</span>
-  <span class="Namespace">include</span>    <span class="Name">/etc/nginx/fastcgi.conf</span><span class="Punctuation">;</span>
-  <span class="Namespace">index</span>    <span class="String">index.html</span> <span class="String">index.htm</span> <span class="String">index.php</span><span class="Punctuation">;</span>
+  <span class="Keyword Namespace">include</span>    <span class="Name Class">conf/mime</span><span class="Literal String">.types</span><span class="Punctuation">;</span>
+  <span class="Keyword Namespace">include</span>    <span class="Name">/etc/nginx/proxy.conf</span><span class="Punctuation">;</span>
+  <span class="Keyword Namespace">include</span>    <span class="Name">/etc/nginx/fastcgi.conf</span><span class="Punctuation">;</span>
+  <span class="Keyword Namespace">index</span>    <span class="Literal String">index.html</span> <span class="Literal String">index.htm</span> <span class="Literal String">index.php</span><span class="Punctuation">;</span>
 
-  <span class="Namespace">default_type</span> <span class="Class">application/octet-stream</span><span class="Punctuation">;</span>
-  <span class="Namespace">log_format</span>   <span class="String">main</span> <span class="String">'</span><span class="Variable">$remote_addr</span> <span class="String">-</span> <span class="Variable">$remote_user</span> <span class="String">[</span><span class="Variable">$time_local</span><span class="String">]</span>  <span class="Variable">$status</span> <span class="String">'</span>
-    <span class="String">'"</span><span class="Variable">$request</span><span class="String">"</span> <span class="Variable">$body_bytes_sent</span> <span class="String">"</span><span class="Variable">$http_referer</span><span class="String">"</span> <span class="String">'</span>
-    <span class="String">'"</span><span class="Variable">$http_user_agent</span><span class="String">"</span> <span class="String">"</span><span class="Variable">$http_x_forwarded_for</span><span class="String">"'</span><span class="Punctuation">;</span>
-  <span class="Namespace">access_log</span>   <span class="Class">logs/access</span><span class="String">.log</span>  <span class="String">main</span><span class="Punctuation">;</span>
-  <span class="Namespace">sendfile</span>     <span class="Constant">on</span><span class="Punctuation">;</span>
-  <span class="Namespace">tcp_nopush</span>   <span class="Constant">on</span><span class="Punctuation">;</span>
-  <span class="Namespace">server_names_hash_bucket_size</span> <span class="Integer">128</span><span class="Punctuation">;</span> <span class="Single"># this seems to be required for some vhosts
+  <span class="Keyword Namespace">default_type</span> <span class="Name Class">application/octet-stream</span><span class="Punctuation">;</span>
+  <span class="Keyword Namespace">log_format</span>   <span class="Literal String">main</span> <span class="Literal String">'</span><span class="Name Variable">$remote_addr</span> <span class="Literal String">-</span> <span class="Name Variable">$remote_user</span> <span class="Literal String">[</span><span class="Name Variable">$time_local</span><span class="Literal String">]</span>  <span class="Name Variable">$status</span> <span class="Literal String">'</span>
+    <span class="Literal String">'"</span><span class="Name Variable">$request</span><span class="Literal String">"</span> <span class="Name Variable">$body_bytes_sent</span> <span class="Literal String">"</span><span class="Name Variable">$http_referer</span><span class="Literal String">"</span> <span class="Literal String">'</span>
+    <span class="Literal String">'"</span><span class="Name Variable">$http_user_agent</span><span class="Literal String">"</span> <span class="Literal String">"</span><span class="Name Variable">$http_x_forwarded_for</span><span class="Literal String">"'</span><span class="Punctuation">;</span>
+  <span class="Keyword Namespace">access_log</span>   <span class="Name Class">logs/access</span><span class="Literal String">.log</span>  <span class="Literal String">main</span><span class="Punctuation">;</span>
+  <span class="Keyword Namespace">sendfile</span>     <span class="Name Constant">on</span><span class="Punctuation">;</span>
+  <span class="Keyword Namespace">tcp_nopush</span>   <span class="Name Constant">on</span><span class="Punctuation">;</span>
+  <span class="Keyword Namespace">server_names_hash_bucket_size</span> <span class="Literal Number Integer">128</span><span class="Punctuation">;</span> <span class="Comment Single"># this seems to be required for some vhosts
 </span>
-  <span class="Namespace">server</span> <span class="Punctuation">{</span> <span class="Single"># php/fastcgi
-</span>    <span class="Namespace">listen</span>       <span class="Integer">80</span><span class="Punctuation">;</span>
-    <span class="Namespace">server_name</span>  <span class="String">domain1.com</span> <span class="String">www.domain1.com</span><span class="Punctuation">;</span>
-    <span class="Namespace">access_log</span>   <span class="Class">logs/domain</span><span class="Integer">1</span><span class="String">.access.log</span>  <span class="String">main</span><span class="Punctuation">;</span>
-    <span class="Namespace">root</span>         <span class="String">html</span><span class="Punctuation">;</span>
+  <span class="Keyword Namespace">server</span> <span class="Punctuation">{</span> <span class="Comment Single"># php/fastcgi
+</span>    <span class="Keyword Namespace">listen</span>       <span class="Literal Number Integer">80</span><span class="Punctuation">;</span>
+    <span class="Keyword Namespace">server_name</span>  <span class="Literal String">domain1.com</span> <span class="Literal String">www.domain1.com</span><span class="Punctuation">;</span>
+    <span class="Keyword Namespace">access_log</span>   <span class="Name Class">logs/domain</span><span class="Literal Number Integer">1</span><span class="Literal String">.access.log</span>  <span class="Literal String">main</span><span class="Punctuation">;</span>
+    <span class="Keyword Namespace">root</span>         <span class="Literal String">html</span><span class="Punctuation">;</span>
 
-    <span class="Namespace">location</span> <span class="Punctuation">~</span> <span class="Regex">\.php$</span> <span class="Punctuation">{</span>
-      <span class="Namespace">fastcgi_pass</span>   <span class="Function">127.0.0.1</span><span class="Punctuation">:</span><span class="Integer">1025</span><span class="Punctuation">;</span>
+    <span class="Keyword Namespace">location</span> <span class="Punctuation">~</span> <span class="Literal String Regex">\.php$</span> <span class="Punctuation">{</span>
+      <span class="Keyword Namespace">fastcgi_pass</span>   <span class="Name Function">127.0.0.1</span><span class="Punctuation">:</span><span class="Literal Number Integer">1025</span><span class="Punctuation">;</span>
     <span class="Punctuation">}</span>
   <span class="Punctuation">}</span>
 
-  <span class="Namespace">server</span> <span class="Punctuation">{</span> <span class="Single"># simple reverse-proxy
-</span>    <span class="Namespace">listen</span>       <span class="Integer">80</span><span class="Punctuation">;</span>
-    <span class="Namespace">server_name</span>  <span class="String">domain2.com</span> <span class="String">www.domain2.com</span><span class="Punctuation">;</span>
-    <span class="Namespace">access_log</span>   <span class="Class">logs/domain</span><span class="Integer">2</span><span class="String">.access.log</span>  <span class="String">main</span><span class="Punctuation">;</span>
+  <span class="Keyword Namespace">server</span> <span class="Punctuation">{</span> <span class="Comment Single"># simple reverse-proxy
+</span>    <span class="Keyword Namespace">listen</span>       <span class="Literal Number Integer">80</span><span class="Punctuation">;</span>
+    <span class="Keyword Namespace">server_name</span>  <span class="Literal String">domain2.com</span> <span class="Literal String">www.domain2.com</span><span class="Punctuation">;</span>
+    <span class="Keyword Namespace">access_log</span>   <span class="Name Class">logs/domain</span><span class="Literal Number Integer">2</span><span class="Literal String">.access.log</span>  <span class="Literal String">main</span><span class="Punctuation">;</span>
 
-    <span class="Single"># serve static files
-</span>    <span class="Namespace">location</span> <span class="Punctuation">~</span> <span class="Regex">^/(images|javascript|js|css|flash|media|static)/</span>  <span class="Punctuation">{</span>
-      <span class="Namespace">root</span>    <span class="Name">/var/www/virtual/big.server.com/htdocs</span><span class="Punctuation">;</span>
-      <span class="Namespace">expires</span> <span class="String">30d</span><span class="Punctuation">;</span>
+    <span class="Comment Single"># serve static files
+</span>    <span class="Keyword Namespace">location</span> <span class="Punctuation">~</span> <span class="Literal String Regex">^/(images|javascript|js|css|flash|media|static)/</span>  <span class="Punctuation">{</span>
+      <span class="Keyword Namespace">root</span>    <span class="Name">/var/www/virtual/big.server.com/htdocs</span><span class="Punctuation">;</span>
+      <span class="Keyword Namespace">expires</span> <span class="Literal String">30d</span><span class="Punctuation">;</span>
     <span class="Punctuation">}</span>
 
-    <span class="Single"># pass requests for dynamic content to rails/turbogears/zope, et al
-</span>    <span class="Namespace">location</span> <span class="Name">/</span> <span class="Punctuation">{</span>
-      <span class="Namespace">proxy_pass</span>      <span class="String">http://127.0.0.1:8080</span><span class="Punctuation">;</span>
+    <span class="Comment Single"># pass requests for dynamic content to rails/turbogears/zope, et al
+</span>    <span class="Keyword Namespace">location</span> <span class="Name">/</span> <span class="Punctuation">{</span>
+      <span class="Keyword Namespace">proxy_pass</span>      <span class="Literal String">http://127.0.0.1:8080</span><span class="Punctuation">;</span>
     <span class="Punctuation">}</span>
   <span class="Punctuation">}</span>
 
-  <span class="Namespace">upstream</span> <span class="String">big_server_com</span> <span class="Punctuation">{</span>
-    <span class="Namespace">server</span> <span class="Function">127.0.0.3</span><span class="Punctuation">:</span><span class="Integer">8000</span> <span class="String">weight=5</span><span class="Punctuation">;</span>
-    <span class="Namespace">server</span> <span class="Function">127.0.0.3</span><span class="Punctuation">:</span><span class="Integer">8001</span> <span class="String">weight=5</span><span class="Punctuation">;</span>
-    <span class="Namespace">server</span> <span class="Function">192.168.0.1</span><span class="Punctuation">:</span><span class="Integer">8000</span><span class="Punctuation">;</span>
-    <span class="Namespace">server</span> <span class="Function">192.168.0.1</span><span class="Punctuation">:</span><span class="Integer">8001</span><span class="Punctuation">;</span>
+  <span class="Keyword Namespace">upstream</span> <span class="Literal String">big_server_com</span> <span class="Punctuation">{</span>
+    <span class="Keyword Namespace">server</span> <span class="Name Function">127.0.0.3</span><span class="Punctuation">:</span><span class="Literal Number Integer">8000</span> <span class="Literal String">weight=5</span><span class="Punctuation">;</span>
+    <span class="Keyword Namespace">server</span> <span class="Name Function">127.0.0.3</span><span class="Punctuation">:</span><span class="Literal Number Integer">8001</span> <span class="Literal String">weight=5</span><span class="Punctuation">;</span>
+    <span class="Keyword Namespace">server</span> <span class="Name Function">192.168.0.1</span><span class="Punctuation">:</span><span class="Literal Number Integer">8000</span><span class="Punctuation">;</span>
+    <span class="Keyword Namespace">server</span> <span class="Name Function">192.168.0.1</span><span class="Punctuation">:</span><span class="Literal Number Integer">8001</span><span class="Punctuation">;</span>
   <span class="Punctuation">}</span>
 
-  <span class="Namespace">server</span> <span class="Punctuation">{</span> <span class="Single"># simple load balancing
-</span>    <span class="Namespace">listen</span>          <span class="Integer">80</span><span class="Punctuation">;</span>
-    <span class="Namespace">server_name</span>     <span class="String">big.server.com</span><span class="Punctuation">;</span>
-    <span class="Namespace">access_log</span>      <span class="Class">logs/big</span><span class="String">.server.access.log</span> <span class="String">main</span><span class="Punctuation">;</span>
+  <span class="Keyword Namespace">server</span> <span class="Punctuation">{</span> <span class="Comment Single"># simple load balancing
+</span>    <span class="Keyword Namespace">listen</span>          <span class="Literal Number Integer">80</span><span class="Punctuation">;</span>
+    <span class="Keyword Namespace">server_name</span>     <span class="Literal String">big.server.com</span><span class="Punctuation">;</span>
+    <span class="Keyword Namespace">access_log</span>      <span class="Name Class">logs/big</span><span class="Literal String">.server.access.log</span> <span class="Literal String">main</span><span class="Punctuation">;</span>
 
-    <span class="Namespace">location</span> <span class="Name">/</span> <span class="Punctuation">{</span>
-      <span class="Namespace">proxy_pass</span>      <span class="String">http://big_server_com</span><span class="Punctuation">;</span>
+    <span class="Keyword Namespace">location</span> <span class="Name">/</span> <span class="Punctuation">{</span>
+      <span class="Keyword Namespace">proxy_pass</span>      <span class="Literal String">http://big_server_com</span><span class="Punctuation">;</span>
     <span class="Punctuation">}</span>
   <span class="Punctuation">}</span>
 </pre>
-<pre class="highlight java"><span class="Declaration">public</span> <span class="Declaration">class</span> <span class="Class">DecimalOctal</span> <span class="Operator">{</span>
+<pre class="highlight java"><span class="Keyword Declaration">public</span> <span class="Keyword Declaration">class</span> <span class="Name Class">DecimalOctal</span> <span class="Operator">{</span>
 
-    <span class="Declaration">public</span> <span class="Declaration">static</span> <span class="Type">void</span> <span class="Function">main</span><span class="Operator">(</span><span class="Name">String</span><span class="Operator">[]</span> <span class="Name">args</span><span class="Operator">)</span> <span class="Operator">{</span>
-        <span class="Type">int</span> <span class="Name">decimal</span> <span class="Operator">=</span> <span class="Integer">78</span><span class="Operator">;</span>
-        <span class="Type">int</span> <span class="Name">octal</span> <span class="Operator">=</span> <span class="Name">convertDecimalToOctal</span><span class="Operator">(</span><span class="Name">decimal</span><span class="Operator">);</span>
-        <span class="Name">System</span><span class="Operator">.</span><span class="Attribute">out</span><span class="Operator">.</span><span class="Attribute">printf</span><span class="Operator">(</span><span class="String">"%d in decimal = %d in octal"</span><span class="Operator">,</span> <span class="Name">decimal</span><span class="Operator">,</span> <span class="Name">octal</span><span class="Operator">);</span>
+    <span class="Keyword Declaration">public</span> <span class="Keyword Declaration">static</span> <span class="Keyword Type">void</span> <span class="Name Function">main</span><span class="Operator">(</span><span class="Name">String</span><span class="Operator">[]</span> <span class="Name">args</span><span class="Operator">)</span> <span class="Operator">{</span>
+        <span class="Keyword Type">int</span> <span class="Name">decimal</span> <span class="Operator">=</span> <span class="Literal Number Integer">78</span><span class="Operator">;</span>
+        <span class="Keyword Type">int</span> <span class="Name">octal</span> <span class="Operator">=</span> <span class="Name">convertDecimalToOctal</span><span class="Operator">(</span><span class="Name">decimal</span><span class="Operator">);</span>
+        <span class="Name">System</span><span class="Operator">.</span><span class="Name Attribute">out</span><span class="Operator">.</span><span class="Name Attribute">printf</span><span class="Operator">(</span><span class="Literal String">"%d in decimal = %d in octal"</span><span class="Operator">,</span> <span class="Name">decimal</span><span class="Operator">,</span> <span class="Name">octal</span><span class="Operator">);</span>
     <span class="Operator">}</span>
 
-    <span class="Declaration">public</span> <span class="Declaration">static</span> <span class="Type">int</span> <span class="Function">convertDecimalToOctal</span><span class="Operator">(</span><span class="Type">int</span> <span class="Name">decimal</span><span class="Operator">)</span>
+    <span class="Keyword Declaration">public</span> <span class="Keyword Declaration">static</span> <span class="Keyword Type">int</span> <span class="Name Function">convertDecimalToOctal</span><span class="Operator">(</span><span class="Keyword Type">int</span> <span class="Name">decimal</span><span class="Operator">)</span>
     <span class="Operator">{</span>
-        <span class="Type">int</span> <span class="Name">octalNumber</span> <span class="Operator">=</span> <span class="Integer">0</span><span class="Operator">,</span> <span class="Name">i</span> <span class="Operator">=</span> <span class="Integer">1</span><span class="Operator">;</span>
+        <span class="Keyword Type">int</span> <span class="Name">octalNumber</span> <span class="Operator">=</span> <span class="Literal Number Integer">0</span><span class="Operator">,</span> <span class="Name">i</span> <span class="Operator">=</span> <span class="Literal Number Integer">1</span><span class="Operator">;</span>
 
-        <span class="Keyword">while</span> <span class="Operator">(</span><span class="Name">decimal</span> <span class="Operator">!=</span> <span class="Integer">0</span><span class="Operator">)</span>
+        <span class="Keyword">while</span> <span class="Operator">(</span><span class="Name">decimal</span> <span class="Operator">!=</span> <span class="Literal Number Integer">0</span><span class="Operator">)</span>
         <span class="Operator">{</span>
-            <span class="Name">octalNumber</span> <span class="Operator">+=</span> <span class="Operator">(</span><span class="Name">decimal</span> <span class="Operator">%</span> <span class="Integer">8</span><span class="Operator">)</span> <span class="Operator">*</span> <span class="Name">i</span><span class="Operator">;</span>
-            <span class="Name">decimal</span> <span class="Operator">/=</span> <span class="Integer">8</span><span class="Operator">;</span>
-            <span class="Name">i</span> <span class="Operator">*=</span> <span class="Integer">10</span><span class="Operator">;</span>
+            <span class="Name">octalNumber</span> <span class="Operator">+=</span> <span class="Operator">(</span><span class="Name">decimal</span> <span class="Operator">%</span> <span class="Literal Number Integer">8</span><span class="Operator">)</span> <span class="Operator">*</span> <span class="Name">i</span><span class="Operator">;</span>
+            <span class="Name">decimal</span> <span class="Operator">/=</span> <span class="Literal Number Integer">8</span><span class="Operator">;</span>
+            <span class="Name">i</span> <span class="Operator">*=</span> <span class="Literal Number Integer">10</span><span class="Operator">;</span>
         <span class="Operator">}</span>
 
         <span class="Keyword">return</span> <span class="Name">octalNumber</span><span class="Operator">;</span>
     <span class="Operator">}</span>
 <span class="Operator">}</span>
 </pre>
-<pre class="highlight ruby"><span class="Single">#!/usr/bin/env ruby</span>
+<pre class="highlight ruby"><span class="Comment Single">#!/usr/bin/env ruby</span>
 
-<span class="Builtin">require</span> <span class="Single">'rouge'</span>
+<span class="Name Builtin">require</span> <span class="Literal String Single">'rouge'</span>
 
-<span class="Constant">TABLE_FOR_ESCAPE_HTML</span> <span class="Operator">=</span> <span class="Punctuation">{</span>
-  <span class="Single">'&amp;'</span> <span class="Operator">=&gt;</span> <span class="Single">'&amp;amp;'</span><span class="Punctuation">,</span>
-  <span class="Single">'&lt;'</span> <span class="Operator">=&gt;</span> <span class="Single">'&amp;lt;'</span><span class="Punctuation">,</span>
-  <span class="Single">'&gt;'</span> <span class="Operator">=&gt;</span> <span class="Single">'&amp;gt;'</span><span class="Punctuation">,</span>
+<span class="Name Constant">TABLE_FOR_ESCAPE_HTML</span> <span class="Operator">=</span> <span class="Punctuation">{</span>
+  <span class="Literal String Single">'&amp;'</span> <span class="Operator">=&gt;</span> <span class="Literal String Single">'&amp;amp;'</span><span class="Punctuation">,</span>
+  <span class="Literal String Single">'&lt;'</span> <span class="Operator">=&gt;</span> <span class="Literal String Single">'&amp;lt;'</span><span class="Punctuation">,</span>
+  <span class="Literal String Single">'&gt;'</span> <span class="Operator">=&gt;</span> <span class="Literal String Single">'&amp;gt;'</span><span class="Punctuation">,</span>
 <span class="Punctuation">}</span>
 
-<span class="Keyword">class</span> <span class="Class">Inao</span> <span class="Operator">&lt;</span> <span class="Constant">Rouge</span><span class="Operator">::</span><span class="Constant">Formatters</span><span class="Operator">::</span><span class="Constant">Null</span>
-  <span class="Single"># @yield the html output.</span>
-  <span class="Keyword">def</span> <span class="Function">stream</span><span class="Punctuation">(</span><span class="Name">tokens</span><span class="Punctuation">,</span> <span class="Operator">&amp;</span><span class="Name">b</span><span class="Punctuation">)</span>
-    <span class="Name">tokens</span><span class="Punctuation">.</span><span class="Function">each</span> <span class="Punctuation">{</span> <span class="Operator">|</span><span class="Name">token</span><span class="Punctuation">,</span> <span class="Name">val</span><span class="Operator">|</span> <span class="Keyword">yield</span> <span class="Name">span</span><span class="Punctuation">(</span><span class="Name">token</span><span class="Punctuation">,</span> <span class="Name">val</span><span class="Punctuation">)</span> <span class="Punctuation">}</span>
+<span class="Keyword">class</span> <span class="Name Class">Inao</span> <span class="Operator">&lt;</span> <span class="Name Constant">Rouge</span><span class="Operator">::</span><span class="Name Constant">Formatters</span><span class="Operator">::</span><span class="Name Constant">Null</span>
+  <span class="Comment Single"># @yield the html output.</span>
+  <span class="Keyword">def</span> <span class="Name Function">stream</span><span class="Punctuation">(</span><span class="Name">tokens</span><span class="Punctuation">,</span> <span class="Operator">&amp;</span><span class="Name">b</span><span class="Punctuation">)</span>
+    <span class="Name">tokens</span><span class="Punctuation">.</span><span class="Name Function">each</span> <span class="Punctuation">{</span> <span class="Operator">|</span><span class="Name">token</span><span class="Punctuation">,</span> <span class="Name">val</span><span class="Operator">|</span> <span class="Keyword">yield</span> <span class="Name">span</span><span class="Punctuation">(</span><span class="Name">token</span><span class="Punctuation">,</span> <span class="Name">val</span><span class="Punctuation">)</span> <span class="Punctuation">}</span>
   <span class="Keyword">end</span>
 
-  <span class="Keyword">def</span> <span class="Function">span</span><span class="Punctuation">(</span><span class="Name">token</span><span class="Punctuation">,</span> <span class="Name">val</span><span class="Punctuation">)</span>
-    <span class="Name">safe_span</span><span class="Punctuation">(</span><span class="Name">token</span><span class="Punctuation">,</span> <span class="Name">val</span><span class="Punctuation">.</span><span class="Function">gsub</span><span class="Punctuation">(</span><span class="Regex">/[&amp;&lt;&gt;]/</span><span class="Punctuation">,</span> <span class="Constant">TABLE_FOR_ESCAPE_HTML</span><span class="Punctuation">))</span>
+  <span class="Keyword">def</span> <span class="Name Function">span</span><span class="Punctuation">(</span><span class="Name">token</span><span class="Punctuation">,</span> <span class="Name">val</span><span class="Punctuation">)</span>
+    <span class="Name">safe_span</span><span class="Punctuation">(</span><span class="Name">token</span><span class="Punctuation">,</span> <span class="Name">val</span><span class="Punctuation">.</span><span class="Name Function">gsub</span><span class="Punctuation">(</span><span class="Literal String Regex">/[&amp;&lt;&gt;]/</span><span class="Punctuation">,</span> <span class="Name Constant">TABLE_FOR_ESCAPE_HTML</span><span class="Punctuation">))</span>
   <span class="Keyword">end</span>
 
-  <span class="Keyword">def</span> <span class="Function">safe_span</span><span class="Punctuation">(</span><span class="Name">token</span><span class="Punctuation">,</span> <span class="Name">safe_val</span><span class="Punctuation">)</span>
-    <span class="Keyword">if</span> <span class="Name">token</span> <span class="Operator">==</span> <span class="Constant">Rouge</span><span class="Operator">::</span><span class="Constant">Token</span><span class="Operator">::</span><span class="Constant">Tokens</span><span class="Operator">::</span><span class="Constant">Text</span>
-      <span class="Keyword">if</span> <span class="Name">safe_val</span> <span class="Operator">==</span> <span class="Double">"</span><span class="Escape">\n\n\n</span><span class="Double">"</span>
-        <span class="Double">"</span><span class="Escape">\n</span><span class="Double">&lt;ParaStyle:半行アキ&gt;</span><span class="Escape">\n</span><span class="Double">&lt;ParaStyle:半行アキ&gt;</span><span class="Escape">\n</span><span class="Double">"</span>
-      <span class="Keyword">elsif</span> <span class="Name">safe_val</span> <span class="Operator">==</span> <span class="Double">"</span><span class="Escape">\n\n</span><span class="Double">"</span>
-        <span class="Double">"</span><span class="Escape">\n</span><span class="Double">&lt;ParaStyle:半行アキ&gt;</span><span class="Escape">\n</span><span class="Double">"</span>
-      <span class="Keyword">elsif</span> <span class="Name">safe_val</span><span class="Punctuation">.</span><span class="Function">start_with?</span><span class="Punctuation">(</span><span class="Double">"</span><span class="Escape">\n</span><span class="Double"> "</span><span class="Punctuation">)</span>
-        <span class="Name">safe_val</span><span class="Punctuation">.</span><span class="Function">sub</span><span class="Punctuation">(</span><span class="Double">"</span><span class="Escape">\n</span><span class="Double">"</span><span class="Punctuation">,</span> <span class="Double">"</span><span class="Escape">\n</span><span class="Double">&lt;ParaStyle:リスト&gt;"</span><span class="Punctuation">)</span>
+  <span class="Keyword">def</span> <span class="Name Function">safe_span</span><span class="Punctuation">(</span><span class="Name">token</span><span class="Punctuation">,</span> <span class="Name">safe_val</span><span class="Punctuation">)</span>
+    <span class="Keyword">if</span> <span class="Name">token</span> <span class="Operator">==</span> <span class="Name Constant">Rouge</span><span class="Operator">::</span><span class="Name Constant">Token</span><span class="Operator">::</span><span class="Name Constant">Tokens</span><span class="Operator">::</span><span class="Name Constant">Text</span>
+      <span class="Keyword">if</span> <span class="Name">safe_val</span> <span class="Operator">==</span> <span class="Literal String Double">"</span><span class="Literal String Escape">\n\n\n</span><span class="Literal String Double">"</span>
+        <span class="Literal String Double">"</span><span class="Literal String Escape">\n</span><span class="Literal String Double">&lt;ParaStyle:半行アキ&gt;</span><span class="Literal String Escape">\n</span><span class="Literal String Double">&lt;ParaStyle:半行アキ&gt;</span><span class="Literal String Escape">\n</span><span class="Literal String Double">"</span>
+      <span class="Keyword">elsif</span> <span class="Name">safe_val</span> <span class="Operator">==</span> <span class="Literal String Double">"</span><span class="Literal String Escape">\n\n</span><span class="Literal String Double">"</span>
+        <span class="Literal String Double">"</span><span class="Literal String Escape">\n</span><span class="Literal String Double">&lt;ParaStyle:半行アキ&gt;</span><span class="Literal String Escape">\n</span><span class="Literal String Double">"</span>
+      <span class="Keyword">elsif</span> <span class="Name">safe_val</span><span class="Punctuation">.</span><span class="Name Function">start_with?</span><span class="Punctuation">(</span><span class="Literal String Double">"</span><span class="Literal String Escape">\n</span><span class="Literal String Double"> "</span><span class="Punctuation">)</span>
+        <span class="Name">safe_val</span><span class="Punctuation">.</span><span class="Name Function">sub</span><span class="Punctuation">(</span><span class="Literal String Double">"</span><span class="Literal String Escape">\n</span><span class="Literal String Double">"</span><span class="Punctuation">,</span> <span class="Literal String Double">"</span><span class="Literal String Escape">\n</span><span class="Literal String Double">&lt;ParaStyle:リスト&gt;"</span><span class="Punctuation">)</span>
       <span class="Keyword">else</span>
         <span class="Name">safe_val</span>
       <span class="Keyword">end</span>
     <span class="Keyword">else</span>
-      <span class="Double">"&lt;CharStyle:</span><span class="Interpol">#{</span><span class="Name">token</span><span class="Punctuation">.</span><span class="Function">name</span><span class="Interpol">}</span><span class="Double">&gt;</span><span class="Interpol">#{</span><span class="Name">safe_val</span><span class="Interpol">}</span><span class="Double">&lt;CharStyle:&gt;"</span>
+      <span class="Literal String Double">"&lt;CharStyle:</span><span class="Literal String Interpol">#{</span><span class="Name">token</span><span class="Punctuation">.</span><span class="Name Function">name</span><span class="Literal String Interpol">}</span><span class="Literal String Double">&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">safe_val</span><span class="Literal String Interpol">}</span><span class="Literal String Double">&lt;CharStyle:&gt;"</span>
     <span class="Keyword">end</span>
   <span class="Keyword">end</span>
 <span class="Keyword">end</span>
 
-<span class="Keyword">class</span> <span class="Class">LongHTML</span> <span class="Operator">&lt;</span> <span class="Constant">Rouge</span><span class="Operator">::</span><span class="Constant">Formatters</span><span class="Operator">::</span><span class="Constant">HTML</span>
-  <span class="Keyword">def</span> <span class="Function">safe_span</span><span class="Punctuation">(</span><span class="Name">tok</span><span class="Punctuation">,</span> <span class="Name">safe_val</span><span class="Punctuation">)</span>
-    <span class="Keyword">if</span> <span class="Name">tok</span> <span class="Operator">==</span> <span class="Constant">Rouge</span><span class="Operator">::</span><span class="Constant">Token</span><span class="Operator">::</span><span class="Constant">Tokens</span><span class="Operator">::</span><span class="Constant">Text</span>
+<span class="Keyword">class</span> <span class="Name Class">LongHTML</span> <span class="Operator">&lt;</span> <span class="Name Constant">Rouge</span><span class="Operator">::</span><span class="Name Constant">Formatters</span><span class="Operator">::</span><span class="Name Constant">HTML</span>
+  <span class="Keyword">def</span> <span class="Name Function">safe_span</span><span class="Punctuation">(</span><span class="Name">tok</span><span class="Punctuation">,</span> <span class="Name">safe_val</span><span class="Punctuation">)</span>
+    <span class="Keyword">if</span> <span class="Name">tok</span> <span class="Operator">==</span> <span class="Name Constant">Rouge</span><span class="Operator">::</span><span class="Name Constant">Token</span><span class="Operator">::</span><span class="Name Constant">Tokens</span><span class="Operator">::</span><span class="Name Constant">Text</span>
       <span class="Name">safe_val</span>
     <span class="Keyword">else</span>
-      <span class="Double">"&lt;span class=</span><span class="Escape">\"</span><span class="Interpol">#{</span><span class="Name">tok</span><span class="Punctuation">.</span><span class="Function">name</span><span class="Interpol">}</span><span class="Escape">\"</span><span class="Double">&gt;</span><span class="Interpol">#{</span><span class="Name">safe_val</span><span class="Interpol">}</span><span class="Double">&lt;/span&gt;"</span>
+      <span class="Name">classes</span> <span class="Operator">=</span> <span class="Name">tok</span><span class="Punctuation">.</span><span class="Name Function">qualname</span><span class="Punctuation">.</span><span class="Name Function">split</span><span class="Punctuation">(</span><span class="Literal String Double">"."</span><span class="Punctuation">).</span><span class="Name Function">join</span><span class="Punctuation">(</span><span class="Literal String Double">" "</span><span class="Punctuation">)</span>
+      <span class="Name Builtin">p</span> <span class="Name">classes</span>
+      <span class="Literal String Double">"&lt;span class=</span><span class="Literal String Escape">\"</span><span class="Literal String Interpol">#{</span><span class="Name">classes</span><span class="Literal String Interpol">}</span><span class="Literal String Escape">\"</span><span class="Literal String Double">&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">safe_val</span><span class="Literal String Interpol">}</span><span class="Literal String Double">&lt;/span&gt;"</span>
     <span class="Keyword">end</span>
   <span class="Keyword">end</span>
 <span class="Keyword">end</span>
 
-<span class="Single">#formatter = Rouge::Formatters::HTML.new #Inao.new</span>
-<span class="Name">formatter</span> <span class="Operator">=</span> <span class="Constant">LongHTML</span><span class="Punctuation">.</span><span class="Function">new</span> <span class="Single">#Inao.new</span>
+<span class="Comment Single">#formatter = Rouge::Formatters::HTML.new #Inao.new</span>
+<span class="Name">formatter</span> <span class="Operator">=</span> <span class="Name Constant">LongHTML</span><span class="Punctuation">.</span><span class="Name Function">new</span> <span class="Comment Single">#Inao.new</span>
 
 
-<span class="Name">ruby</span>  <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Function">format</span><span class="Punctuation">(</span><span class="Constant">Rouge</span><span class="Operator">::</span><span class="Constant">Lexers</span><span class="Operator">::</span><span class="Constant">Ruby</span><span class="Punctuation">.</span><span class="Function">new</span><span class="Punctuation">.</span><span class="Function">lex</span><span class="Punctuation">(</span>      <span class="Constant">File</span><span class="Punctuation">.</span><span class="Function">read</span><span class="Punctuation">(</span><span class="Single">'mono.rb'</span><span class="Punctuation">)))</span>
+<span class="Name">ruby</span>  <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Name Function">format</span><span class="Punctuation">(</span><span class="Name Constant">Rouge</span><span class="Operator">::</span><span class="Name Constant">Lexers</span><span class="Operator">::</span><span class="Name Constant">Ruby</span><span class="Punctuation">.</span><span class="Name Function">new</span><span class="Punctuation">.</span><span class="Name Function">lex</span><span class="Punctuation">(</span>      <span class="Name Constant">File</span><span class="Punctuation">.</span><span class="Name Function">read</span><span class="Punctuation">(</span><span class="Literal String Single">'mono.rb'</span><span class="Punctuation">)))</span>
 
-<span class="Name">js</span>    <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Function">format</span><span class="Punctuation">(</span><span class="Constant">Rouge</span><span class="Operator">::</span><span class="Constant">Lexers</span><span class="Operator">::</span><span class="Constant">Javascript</span><span class="Punctuation">.</span><span class="Function">new</span><span class="Punctuation">.</span><span class="Function">lex</span><span class="Punctuation">(</span><span class="Constant">File</span><span class="Punctuation">.</span><span class="Function">read</span><span class="Punctuation">(</span><span class="Single">'demo/script.js'</span><span class="Punctuation">)))</span>
-<span class="Name">css</span>   <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Function">format</span><span class="Punctuation">(</span><span class="Constant">Rouge</span><span class="Operator">::</span><span class="Constant">Lexers</span><span class="Operator">::</span><span class="Constant">CSS</span><span class="Punctuation">.</span><span class="Function">new</span><span class="Punctuation">.</span><span class="Function">lex</span><span class="Punctuation">(</span>       <span class="Constant">File</span><span class="Punctuation">.</span><span class="Function">read</span><span class="Punctuation">(</span><span class="Single">'demo/style.css'</span><span class="Punctuation">)))</span>
-<span class="Name">html</span>  <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Function">format</span><span class="Punctuation">(</span><span class="Constant">Rouge</span><span class="Operator">::</span><span class="Constant">Lexers</span><span class="Operator">::</span><span class="Constant">HTML</span><span class="Punctuation">.</span><span class="Function">new</span><span class="Punctuation">.</span><span class="Function">lex</span><span class="Punctuation">(</span>      <span class="Constant">File</span><span class="Punctuation">.</span><span class="Function">read</span><span class="Punctuation">(</span><span class="Single">'demo/sample.html'</span><span class="Punctuation">)))</span>
-<span class="Name">http</span>  <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Function">format</span><span class="Punctuation">(</span><span class="Constant">Rouge</span><span class="Operator">::</span><span class="Constant">Lexers</span><span class="Operator">::</span><span class="Constant">HTTP</span><span class="Punctuation">.</span><span class="Function">new</span><span class="Punctuation">.</span><span class="Function">lex</span><span class="Punctuation">(</span>      <span class="Constant">File</span><span class="Punctuation">.</span><span class="Function">read</span><span class="Punctuation">(</span><span class="Single">'demo/http'</span><span class="Punctuation">)))</span>
-<span class="Name">nginx</span> <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Function">format</span><span class="Punctuation">(</span><span class="Constant">Rouge</span><span class="Operator">::</span><span class="Constant">Lexers</span><span class="Operator">::</span><span class="Constant">Nginx</span><span class="Punctuation">.</span><span class="Function">new</span><span class="Punctuation">.</span><span class="Function">lex</span><span class="Punctuation">(</span>     <span class="Constant">File</span><span class="Punctuation">.</span><span class="Function">read</span><span class="Punctuation">(</span><span class="Single">'demo/nginx.conf'</span><span class="Punctuation">)))</span>
-<span class="Name">java</span>  <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Function">format</span><span class="Punctuation">(</span><span class="Constant">Rouge</span><span class="Operator">::</span><span class="Constant">Lexers</span><span class="Operator">::</span><span class="Constant">Java</span><span class="Punctuation">.</span><span class="Function">new</span><span class="Punctuation">.</span><span class="Function">lex</span><span class="Punctuation">(</span>      <span class="Constant">File</span><span class="Punctuation">.</span><span class="Function">read</span><span class="Punctuation">(</span><span class="Single">'demo/sample.java'</span><span class="Punctuation">)))</span>
-<span class="Name">go</span>    <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Function">format</span><span class="Punctuation">(</span><span class="Constant">Rouge</span><span class="Operator">::</span><span class="Constant">Lexers</span><span class="Operator">::</span><span class="Constant">Go</span><span class="Punctuation">.</span><span class="Function">new</span><span class="Punctuation">.</span><span class="Function">lex</span><span class="Punctuation">(</span>        <span class="Constant">File</span><span class="Punctuation">.</span><span class="Function">read</span><span class="Punctuation">(</span><span class="Single">'demo/sample.go'</span><span class="Punctuation">)))</span>
-<span class="Name">make</span>  <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Function">format</span><span class="Punctuation">(</span><span class="Constant">Rouge</span><span class="Operator">::</span><span class="Constant">Lexers</span><span class="Operator">::</span><span class="Constant">Make</span><span class="Punctuation">.</span><span class="Function">new</span><span class="Punctuation">.</span><span class="Function">lex</span><span class="Punctuation">(</span>      <span class="Constant">File</span><span class="Punctuation">.</span><span class="Function">read</span><span class="Punctuation">(</span><span class="Single">'demo/Makefile'</span><span class="Punctuation">)))</span>
+<span class="Name">js</span>    <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Name Function">format</span><span class="Punctuation">(</span><span class="Name Constant">Rouge</span><span class="Operator">::</span><span class="Name Constant">Lexers</span><span class="Operator">::</span><span class="Name Constant">Javascript</span><span class="Punctuation">.</span><span class="Name Function">new</span><span class="Punctuation">.</span><span class="Name Function">lex</span><span class="Punctuation">(</span><span class="Name Constant">File</span><span class="Punctuation">.</span><span class="Name Function">read</span><span class="Punctuation">(</span><span class="Literal String Single">'demo/script.js'</span><span class="Punctuation">)))</span>
+<span class="Name">css</span>   <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Name Function">format</span><span class="Punctuation">(</span><span class="Name Constant">Rouge</span><span class="Operator">::</span><span class="Name Constant">Lexers</span><span class="Operator">::</span><span class="Name Constant">CSS</span><span class="Punctuation">.</span><span class="Name Function">new</span><span class="Punctuation">.</span><span class="Name Function">lex</span><span class="Punctuation">(</span>       <span class="Name Constant">File</span><span class="Punctuation">.</span><span class="Name Function">read</span><span class="Punctuation">(</span><span class="Literal String Single">'demo/style.css'</span><span class="Punctuation">)))</span>
+<span class="Name">html</span>  <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Name Function">format</span><span class="Punctuation">(</span><span class="Name Constant">Rouge</span><span class="Operator">::</span><span class="Name Constant">Lexers</span><span class="Operator">::</span><span class="Name Constant">HTML</span><span class="Punctuation">.</span><span class="Name Function">new</span><span class="Punctuation">.</span><span class="Name Function">lex</span><span class="Punctuation">(</span>      <span class="Name Constant">File</span><span class="Punctuation">.</span><span class="Name Function">read</span><span class="Punctuation">(</span><span class="Literal String Single">'demo/sample.html'</span><span class="Punctuation">)))</span>
+<span class="Name">http</span>  <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Name Function">format</span><span class="Punctuation">(</span><span class="Name Constant">Rouge</span><span class="Operator">::</span><span class="Name Constant">Lexers</span><span class="Operator">::</span><span class="Name Constant">HTTP</span><span class="Punctuation">.</span><span class="Name Function">new</span><span class="Punctuation">.</span><span class="Name Function">lex</span><span class="Punctuation">(</span>      <span class="Name Constant">File</span><span class="Punctuation">.</span><span class="Name Function">read</span><span class="Punctuation">(</span><span class="Literal String Single">'demo/http'</span><span class="Punctuation">)))</span>
+<span class="Name">nginx</span> <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Name Function">format</span><span class="Punctuation">(</span><span class="Name Constant">Rouge</span><span class="Operator">::</span><span class="Name Constant">Lexers</span><span class="Operator">::</span><span class="Name Constant">Nginx</span><span class="Punctuation">.</span><span class="Name Function">new</span><span class="Punctuation">.</span><span class="Name Function">lex</span><span class="Punctuation">(</span>     <span class="Name Constant">File</span><span class="Punctuation">.</span><span class="Name Function">read</span><span class="Punctuation">(</span><span class="Literal String Single">'demo/nginx.conf'</span><span class="Punctuation">)))</span>
+<span class="Name">java</span>  <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Name Function">format</span><span class="Punctuation">(</span><span class="Name Constant">Rouge</span><span class="Operator">::</span><span class="Name Constant">Lexers</span><span class="Operator">::</span><span class="Name Constant">Java</span><span class="Punctuation">.</span><span class="Name Function">new</span><span class="Punctuation">.</span><span class="Name Function">lex</span><span class="Punctuation">(</span>      <span class="Name Constant">File</span><span class="Punctuation">.</span><span class="Name Function">read</span><span class="Punctuation">(</span><span class="Literal String Single">'demo/sample.java'</span><span class="Punctuation">)))</span>
+<span class="Name">go</span>    <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Name Function">format</span><span class="Punctuation">(</span><span class="Name Constant">Rouge</span><span class="Operator">::</span><span class="Name Constant">Lexers</span><span class="Operator">::</span><span class="Name Constant">Go</span><span class="Punctuation">.</span><span class="Name Function">new</span><span class="Punctuation">.</span><span class="Name Function">lex</span><span class="Punctuation">(</span>        <span class="Name Constant">File</span><span class="Punctuation">.</span><span class="Name Function">read</span><span class="Punctuation">(</span><span class="Literal String Single">'demo/sample.go'</span><span class="Punctuation">)))</span>
+<span class="Name">make</span>  <span class="Operator">=</span> <span class="Name">formatter</span><span class="Punctuation">.</span><span class="Name Function">format</span><span class="Punctuation">(</span><span class="Name Constant">Rouge</span><span class="Operator">::</span><span class="Name Constant">Lexers</span><span class="Operator">::</span><span class="Name Constant">Make</span><span class="Punctuation">.</span><span class="Name Function">new</span><span class="Punctuation">.</span><span class="Name Function">lex</span><span class="Punctuation">(</span>      <span class="Name Constant">File</span><span class="Punctuation">.</span><span class="Name Function">read</span><span class="Punctuation">(</span><span class="Literal String Single">'demo/Makefile'</span><span class="Punctuation">)))</span>
 
 
-<span class="Name">out</span> <span class="Operator">=</span> <span class="Operator">&lt;&lt;</span><span class="Constant">EOF</span><span class="Heredoc">
+<span class="Name">out</span> <span class="Operator">=</span> <span class="Operator">&lt;&lt;</span><span class="Name Constant">EOF</span><span class="Literal String Heredoc">
 &lt;!DOCTYPE html&gt;
 &lt;meta charset=utf-8&gt;
 &lt;meta name=viewport content="width=device-width,initial-scale=1"&gt;
@@ -273,35 +274,34 @@
 
 &lt;link rel=stylesheet href=mono.css&gt;
 
+&lt;pre class="highlight js"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">js</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
+&lt;pre class="highlight css"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">css</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
+&lt;pre class="highlight html"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">html</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
+&lt;pre class="highlight http"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">http</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
+&lt;pre class="highlight nginx"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">nginx</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
+&lt;pre class="highlight java"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">java</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
+&lt;pre class="highlight ruby"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">ruby</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
+&lt;pre class="highlight go"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">go</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
+&lt;pre class="highlight make"&gt;</span><span class="Literal String Interpol">#{</span><span class="Name">make</span><span class="Literal String Interpol">}</span><span class="Literal String Heredoc">&lt;/pre&gt;
+</span><span class="Name Constant">EOF</span>
 
-&lt;pre class="highlight js"&gt;</span><span class="Interpol">#{</span><span class="Name">js</span><span class="Interpol">}</span><span class="Heredoc">&lt;/pre&gt;
-&lt;pre class="highlight css"&gt;</span><span class="Interpol">#{</span><span class="Name">css</span><span class="Interpol">}</span><span class="Heredoc">&lt;/pre&gt;
-&lt;pre class="highlight html"&gt;</span><span class="Interpol">#{</span><span class="Name">html</span><span class="Interpol">}</span><span class="Heredoc">&lt;/pre&gt;
-&lt;pre class="highlight http"&gt;</span><span class="Interpol">#{</span><span class="Name">http</span><span class="Interpol">}</span><span class="Heredoc">&lt;/pre&gt;
-&lt;pre class="highlight nginx"&gt;</span><span class="Interpol">#{</span><span class="Name">nginx</span><span class="Interpol">}</span><span class="Heredoc">&lt;/pre&gt;
-&lt;pre class="highlight java"&gt;</span><span class="Interpol">#{</span><span class="Name">java</span><span class="Interpol">}</span><span class="Heredoc">&lt;/pre&gt;
-&lt;pre class="highlight ruby"&gt;</span><span class="Interpol">#{</span><span class="Name">ruby</span><span class="Interpol">}</span><span class="Heredoc">&lt;/pre&gt;
-&lt;pre class="highlight go"&gt;</span><span class="Interpol">#{</span><span class="Name">go</span><span class="Interpol">}</span><span class="Heredoc">&lt;/pre&gt;
-&lt;pre class="highlight make"&gt;</span><span class="Interpol">#{</span><span class="Name">make</span><span class="Interpol">}</span><span class="Heredoc">&lt;/pre&gt;
-</span><span class="Constant">EOF</span>
-
-<span class="Builtin">open</span><span class="Punctuation">(</span><span class="Double">"index.html"</span><span class="Punctuation">,</span> <span class="Double">"w"</span><span class="Punctuation">)</span> <span class="Punctuation">{</span><span class="Operator">|</span><span class="Name">io</span><span class="Operator">|</span> <span class="Name">io</span><span class="Punctuation">.</span><span class="Function">write</span><span class="Punctuation">(</span><span class="Name">out</span><span class="Punctuation">)}</span>
+<span class="Name Builtin">open</span><span class="Punctuation">(</span><span class="Literal String Double">"index.html"</span><span class="Punctuation">,</span> <span class="Literal String Double">"w"</span><span class="Punctuation">)</span> <span class="Punctuation">{</span><span class="Operator">|</span><span class="Name">io</span><span class="Operator">|</span> <span class="Name">io</span><span class="Punctuation">.</span><span class="Name Function">write</span><span class="Punctuation">(</span><span class="Name">out</span><span class="Punctuation">)}</span>
 </pre>
 <pre class="highlight go"><span class="Keyword">package</span><span class="Other"> </span><span class="Name">main</span><span class="Other">
 
 </span><span class="Keyword">import</span><span class="Other"> </span><span class="Punctuation">(</span><span class="Other">
-	</span><span class="String">"fmt"</span><span class="Other">
-	</span><span class="String">"math"</span><span class="Other">
+	</span><span class="Literal String">"fmt"</span><span class="Other">
+	</span><span class="Literal String">"math"</span><span class="Other">
 </span><span class="Punctuation">)</span><span class="Other">
 
 </span><span class="Keyword">type</span><span class="Other"> </span><span class="Name">Abser</span><span class="Other"> </span><span class="Keyword">interface</span><span class="Other"> </span><span class="Punctuation">{</span><span class="Other">
-	</span><span class="Name">Abs</span><span class="Punctuation">()</span><span class="Other"> </span><span class="Type">float64</span><span class="Other">
+	</span><span class="Name">Abs</span><span class="Punctuation">()</span><span class="Other"> </span><span class="Keyword Type">float64</span><span class="Other">
 </span><span class="Punctuation">}</span><span class="Other">
 
 </span><span class="Keyword">func</span><span class="Other"> </span><span class="Name">main</span><span class="Punctuation">()</span><span class="Other"> </span><span class="Punctuation">{</span><span class="Other">
 	</span><span class="Keyword">var</span><span class="Other"> </span><span class="Name">a</span><span class="Other"> </span><span class="Name">Abser</span><span class="Other">
 	</span><span class="Name">f</span><span class="Other"> </span><span class="Operator">:=</span><span class="Other"> </span><span class="Name">MyFloat</span><span class="Punctuation">(</span><span class="Operator">-</span><span class="Name">math</span><span class="Operator">.</span><span class="Name">Sqrt2</span><span class="Punctuation">)</span><span class="Other">
-	</span><span class="Name">v</span><span class="Other"> </span><span class="Operator">:=</span><span class="Other"> </span><span class="Name">Vertex</span><span class="Punctuation">{</span><span class="Number">3</span><span class="Punctuation">,</span><span class="Other"> </span><span class="Number">4</span><span class="Punctuation">}</span><span class="Other">
+	</span><span class="Name">v</span><span class="Other"> </span><span class="Operator">:=</span><span class="Other"> </span><span class="Name">Vertex</span><span class="Punctuation">{</span><span class="Literal Number">3</span><span class="Punctuation">,</span><span class="Other"> </span><span class="Literal Number">4</span><span class="Punctuation">}</span><span class="Other">
 
 	</span><span class="Name">a</span><span class="Other"> </span><span class="Operator">=</span><span class="Other"> </span><span class="Name">f</span><span class="Other">  </span><span class="Comment">// a MyFloat implements Abser</span><span class="Other">
 	</span><span class="Name">a</span><span class="Other"> </span><span class="Operator">=</span><span class="Other"> </span><span class="Operator">&amp;</span><span class="Name">v</span><span class="Other"> </span><span class="Comment">// a *Vertex implements Abser</span><span class="Other">
@@ -313,35 +313,35 @@
 	</span><span class="Name">fmt</span><span class="Operator">.</span><span class="Name">Println</span><span class="Punctuation">(</span><span class="Name">a</span><span class="Operator">.</span><span class="Name">Abs</span><span class="Punctuation">())</span><span class="Other">
 </span><span class="Punctuation">}</span><span class="Other">
 
-</span><span class="Keyword">type</span><span class="Other"> </span><span class="Name">MyFloat</span><span class="Other"> </span><span class="Type">float64</span><span class="Other">
+</span><span class="Keyword">type</span><span class="Other"> </span><span class="Name">MyFloat</span><span class="Other"> </span><span class="Keyword Type">float64</span><span class="Other">
 
-</span><span class="Keyword">func</span><span class="Other"> </span><span class="Punctuation">(</span><span class="Name">f</span><span class="Other"> </span><span class="Name">MyFloat</span><span class="Punctuation">)</span><span class="Other"> </span><span class="Name">Abs</span><span class="Punctuation">()</span><span class="Other"> </span><span class="Type">float64</span><span class="Other"> </span><span class="Punctuation">{</span><span class="Other">
-	</span><span class="Keyword">if</span><span class="Other"> </span><span class="Name">f</span><span class="Other"> </span><span class="Operator">&lt;</span><span class="Other"> </span><span class="Number">0</span><span class="Other"> </span><span class="Punctuation">{</span><span class="Other">
-		</span><span class="Keyword">return</span><span class="Other"> </span><span class="Type">float64</span><span class="Punctuation">(</span><span class="Operator">-</span><span class="Name">f</span><span class="Punctuation">)</span><span class="Other">
+</span><span class="Keyword">func</span><span class="Other"> </span><span class="Punctuation">(</span><span class="Name">f</span><span class="Other"> </span><span class="Name">MyFloat</span><span class="Punctuation">)</span><span class="Other"> </span><span class="Name">Abs</span><span class="Punctuation">()</span><span class="Other"> </span><span class="Keyword Type">float64</span><span class="Other"> </span><span class="Punctuation">{</span><span class="Other">
+	</span><span class="Keyword">if</span><span class="Other"> </span><span class="Name">f</span><span class="Other"> </span><span class="Operator">&lt;</span><span class="Other"> </span><span class="Literal Number">0</span><span class="Other"> </span><span class="Punctuation">{</span><span class="Other">
+		</span><span class="Keyword">return</span><span class="Other"> </span><span class="Keyword Type">float64</span><span class="Punctuation">(</span><span class="Operator">-</span><span class="Name">f</span><span class="Punctuation">)</span><span class="Other">
 	</span><span class="Punctuation">}</span><span class="Other">
-	</span><span class="Keyword">return</span><span class="Other"> </span><span class="Type">float64</span><span class="Punctuation">(</span><span class="Name">f</span><span class="Punctuation">)</span><span class="Other">
+	</span><span class="Keyword">return</span><span class="Other"> </span><span class="Keyword Type">float64</span><span class="Punctuation">(</span><span class="Name">f</span><span class="Punctuation">)</span><span class="Other">
 </span><span class="Punctuation">}</span><span class="Other">
 
 </span><span class="Keyword">type</span><span class="Other"> </span><span class="Name">Vertex</span><span class="Other"> </span><span class="Keyword">struct</span><span class="Other"> </span><span class="Punctuation">{</span><span class="Other">
-	</span><span class="Name">X</span><span class="Punctuation">,</span><span class="Other"> </span><span class="Name">Y</span><span class="Other"> </span><span class="Type">float64</span><span class="Other">
+	</span><span class="Name">X</span><span class="Punctuation">,</span><span class="Other"> </span><span class="Name">Y</span><span class="Other"> </span><span class="Keyword Type">float64</span><span class="Other">
 </span><span class="Punctuation">}</span><span class="Other">
 
-</span><span class="Keyword">func</span><span class="Other"> </span><span class="Punctuation">(</span><span class="Name">v</span><span class="Other"> </span><span class="Operator">*</span><span class="Name">Vertex</span><span class="Punctuation">)</span><span class="Other"> </span><span class="Name">Abs</span><span class="Punctuation">()</span><span class="Other"> </span><span class="Type">float64</span><span class="Other"> </span><span class="Punctuation">{</span><span class="Other">
+</span><span class="Keyword">func</span><span class="Other"> </span><span class="Punctuation">(</span><span class="Name">v</span><span class="Other"> </span><span class="Operator">*</span><span class="Name">Vertex</span><span class="Punctuation">)</span><span class="Other"> </span><span class="Name">Abs</span><span class="Punctuation">()</span><span class="Other"> </span><span class="Keyword Type">float64</span><span class="Other"> </span><span class="Punctuation">{</span><span class="Other">
 	</span><span class="Keyword">return</span><span class="Other"> </span><span class="Name">math</span><span class="Operator">.</span><span class="Name">Sqrt</span><span class="Punctuation">(</span><span class="Name">v</span><span class="Operator">.</span><span class="Name">X</span><span class="Operator">*</span><span class="Name">v</span><span class="Operator">.</span><span class="Name">X</span><span class="Other"> </span><span class="Operator">+</span><span class="Other"> </span><span class="Name">v</span><span class="Operator">.</span><span class="Name">Y</span><span class="Operator">*</span><span class="Name">v</span><span class="Operator">.</span><span class="Name">Y</span><span class="Punctuation">)</span><span class="Other">
 </span><span class="Punctuation">}</span><span class="Other">
 
 </span></pre>
 <pre class="highlight make"><span class="Comment"># Makefile
-</span><span class="Label">.PHONY</span><span class="Operator">:</span> <span class="Function">all</span>
-<span class="Label">all</span><span class="Operator">:</span> <span class="Function">main</span>
+</span><span class="Name Label">.PHONY</span><span class="Operator">:</span> <span class="Name Function">all</span>
+<span class="Name Label">all</span><span class="Operator">:</span> <span class="Name Function">main</span>
 
-<span class="Label">main</span><span class="Operator">:</span> <span class="Function">main.o</span>
-	gcc <span class="Tag">-o</span> main main.o
+<span class="Name Label">main</span><span class="Operator">:</span> <span class="Name Function">main.o</span>
+	gcc <span class="Name Tag">-o</span> main main.o
 
-<span class="Label">main.o</span><span class="Operator">:</span> <span class="Function">main.c</span>
-	gcc <span class="Tag">-c</span> main.c
+<span class="Name Label">main.o</span><span class="Operator">:</span> <span class="Name Function">main.c</span>
+	gcc <span class="Name Tag">-c</span> main.c
 
-<span class="Label">.PHONY</span><span class="Operator">:</span> <span class="Function">clean</span>
-<span class="Label">clean</span><span class="Operator">:</span>
-	<span class="Builtin">rm</span> <span class="Tag">-rf</span> main main.o
+<span class="Name Label">.PHONY</span><span class="Operator">:</span> <span class="Name Function">clean</span>
+<span class="Name Label">clean</span><span class="Operator">:</span>
+	<span class="Name Builtin">rm</span> <span class="Name Tag">-rf</span> main main.o
 </pre>

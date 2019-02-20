@@ -40,7 +40,8 @@ class LongHTML < Rouge::Formatters::HTML
     if tok == Rouge::Token::Tokens::Text
       safe_val
     else
-      "<span class=\"#{tok.name}\">#{safe_val}</span>"
+      classes = tok.qualname.split(".").join(" ")
+      "<span class=\"#{classes}\">#{safe_val}</span>"
     end
   end
 end
@@ -70,8 +71,6 @@ out = <<EOF
 <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
 
 <link rel=stylesheet href=mono.css>
-
-<pre class="highlight">#{sample} </pre>
 
 <pre class="highlight js">#{js}</pre>
 <pre class="highlight css">#{css}</pre>
