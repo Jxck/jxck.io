@@ -1,17 +1,39 @@
-pre {
+:root {
+  /** font-weight **/
+  --thin:    100;
+  --light:   300;
+  --regular: 400;
+  --medium:  500;
+  --bold:    700;
+
+  /** font-color **/
+  --black:  rgb(0, 0, 0);
+  --dark:   rgb(50, 50, 50);
+  --light:  rgb(100, 100, 100);
+  --silver: rgb(150, 150, 150);
+  --gray:   rgb(230, 230, 230); /** background **/
+  --white:  rgb(255, 255, 255); /* white */
+
   /*
-   * Thin:    100
-   * Light:   300
-   * Regular: 400
-   * Medium:  500
-   * Bold:    700
+   * black          rgb(0,0,0)
+   * darkslategray  rgb(47,79,79)
+   * dimgray        rgb(105,105,105)
+   * gray           rgb(128,128,128)
+   * darkgray       rgb(169,169,169)
+   * silver         rgb(192,192,192)
+   * lightgray      rgb(211,211,211)
+   * gainsboro      rgb(220,220,220)
    */
+}
+
+pre {
   font-family: 'Roboto Mono', monospace;
   border:      1px solid black;
-  background-color: rgb(230, 230, 230);
   padding:     1em;
-  color:       #555;
-  font-weight: 300;
+
+  background-color: var(--white);
+  color:       #888;
+  font-weight: var(--thin);
 }
 
 /*
@@ -20,20 +42,24 @@ pre.html {
 }
 */
 
+
+/* HTML の doctype */
 .Preproc {
-  font-weight: 500;
   font-style:  italic;
+  font-weight: var(--medium);
 }
 
+/* */
 .Attribute,
 .Declaration,
 .Function,
 .Keyword,
 .Tag {
   color:       #333;
-  font-weight: 700;
+  font-weight: var(--bold);
 }
 
+/* */
 .Class,
 .Constant,
 .Label,
@@ -41,15 +67,17 @@ pre.html {
 .Namespace,
 .Other {
   color:       #666;
-  font-weight: 700;
+  font-weight: var(--bold);
 }
 
-
+/* 数値と演算子 */
 .Integer,
 .Operator {
   color:       #333;
-  font-weight: 400;
+  font-weight: var(--regular);
 }
+
+/* コメントと String */
 .Double,
 .Heredoc,
 .Multiline,
@@ -57,5 +85,10 @@ pre.html {
 .String {
   font-style:  italic;
   color:       #888;
-  font-weight: 400;
+  font-weight: var(--regular);
+}
+
+.Regex {
+  font-style:  italic;
+  font-weight: var(--regular);
 }

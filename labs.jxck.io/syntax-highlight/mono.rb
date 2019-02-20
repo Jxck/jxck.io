@@ -50,12 +50,14 @@ formatter = LongHTML.new #Inao.new
 
 
 ruby  = formatter.format(Rouge::Lexers::Ruby.new.lex(      File.read('mono.rb')))
+
 js    = formatter.format(Rouge::Lexers::Javascript.new.lex(File.read('demo/script.js')))
 css   = formatter.format(Rouge::Lexers::CSS.new.lex(       File.read('demo/style.css')))
 html  = formatter.format(Rouge::Lexers::HTML.new.lex(      File.read('demo/sample.html')))
 http  = formatter.format(Rouge::Lexers::HTTP.new.lex(      File.read('demo/http')))
 nginx = formatter.format(Rouge::Lexers::Nginx.new.lex(     File.read('demo/nginx.conf')))
 java  = formatter.format(Rouge::Lexers::Java.new.lex(      File.read('demo/sample.java')))
+go    = formatter.format(Rouge::Lexers::Go.new.lex(        File.read('demo/sample.go')))
 make  = formatter.format(Rouge::Lexers::Make.new.lex(      File.read('demo/Makefile')))
 
 
@@ -69,14 +71,16 @@ out = <<EOF
 
 <link rel=stylesheet href=mono.css>
 
+<pre class="highlight">#{sample} </pre>
 
 <pre class="highlight js">#{js}</pre>
 <pre class="highlight css">#{css}</pre>
 <pre class="highlight html">#{html}</pre>
-<pre class="highlight js">#{ruby}</pre>
 <pre class="highlight http">#{http}</pre>
 <pre class="highlight nginx">#{nginx}</pre>
 <pre class="highlight java">#{java}</pre>
+<pre class="highlight ruby">#{ruby}</pre>
+<pre class="highlight go">#{go}</pre>
 <pre class="highlight make">#{make}</pre>
 EOF
 
