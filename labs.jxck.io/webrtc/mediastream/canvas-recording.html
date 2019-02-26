@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>DEMO | labs.jxck.io</title>
+
+<style>
+
+video {
+  border: solid 1px #ccc;
+  width: 320px;
+  height: 240px;
+}
+
+canvas {
+  border: solid 1px #ccc;
+}
+
+</style>
+
+<section id=canvas>
+  <canvas class=orig></canvas>
+  <button id=start>start</button>
+  <button id=stop>stop</button>
+
+  <video class=copy controls></video>
+</section>
+
+
+<script>
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+</script>
+
+<script>
+  // Canvas に適当に描画
+  async function canvasStream($canvas) {
+    // canvas
+    const ctx = $canvas.getContext('2d')
+    ctx.font = "45px monospace"
+
+    // Timer
+    let n = 0
+    setInterval((e) => {
+      // 一度白くする
+      ctx.fillStyle = "#ffffff"
+      ctx.fillRect(0, 0, 300, 150);
+
+      // 黒で書く
+      ctx.fillStyle = 'black'
+      ctx.fillText(Date.now(), 5, 90);
+    }, 10)
+
+    // canvas から mediastream を取得
+    return $canvas.captureStream(60)
+  }
+
+  $('#start').on('click', async () => {
+    // canvs に描画してる mediastream
+    const stream = await canvasStream($('#canvas .orig'));
+
+    // video に表示できる
+    $('#canvas .copy').srcObject = stream
+    $('#canvas .copy').play()
+
+    // recording
+    const recorder = new MediaRecorder(stream)
+    recorder.addEventListener('dataavailable', (e) => {
+      // 録画停止後にデータが上がってくる
+      console.log(e.type)
+
+      // webm に変換
+      const blob = new Blob([e.data], {type: 'video/webm'})
+
+      // ダウンロード用の URL を生成
+      const bloburl = window.URL.createObjectURL(blob)
+
+      // 見えない <a download=record.webm> を作りクリックして自動でダウンロード
+      const $a = document.createElement('a')
+      $a.style.display = 'none'
+      $a.href = bloburl
+      $a.download = 'record.webm'
+      document.body.appendChild($a)
+      $a.click()
+    })
+    // 録画を停止
+    $('#stop').addEventListener('click', async (e) => {
+      console.log(e.type)
+      recorder.stop()
+    })
+    // 自動で録画開始
+    recorder.start()
+
+  })
+</script>
