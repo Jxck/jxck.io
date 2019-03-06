@@ -65,15 +65,18 @@ Safari TP 69 では、 `prefers-color-scheme` を用いて Media Query でテー
 }
 
 @media (prefers-color-scheme: dark) {
-  --theme-base: white;
-  --theme-font: black;
-  --theme-accent: red;
+  --theme-base: black;
+  --theme-font: white;
+  --theme-accent: pink;
 }
 
 body {
   background-color: var(--them-base);
-  font: var(--them-font);
-  strong: var(--them-accent);
+  color: var(--them-font);
+}
+
+strong {
+  color: var(--them-accent);
 }
 ```
 
