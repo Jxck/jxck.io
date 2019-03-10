@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Private Class Field DEMO | labs.jxck.io</title>
+
+<style>
+</style>
+
+<h1>Private Class Field</h1>
+
+<script type=module>
+  console.log("using public field with constructor")
+  class Counter {
+    constructor() {
+      this.count = 0
+    }
+    increment() {
+      this.count ++
+    }
+    decrement() {
+      this.count --
+    }
+    display() {
+      console.log(this.count)
+    }
+  }
+
+  const c = new Counter()
+  c.increment()
+  c.increment()
+  c.increment()
+  c.display()
+  console.log(c.count)
+</script>
+
+<script type=module>
+  console.log("using public class field")
+  class Counter {
+    count = 0
+    increment() {
+      this.count ++
+    }
+    decrement() {
+      this.count --
+    }
+    display() {
+      console.log(this.count)
+    }
+  }
+
+  const c = new Counter()
+  c.increment()
+  c.increment()
+  c.increment()
+  c.display()
+  console.log(c.count)
+</script>
+
+<script type=module>
+  console.log("using private class field")
+  class Counter {
+    #count = 0
+    increment() {
+      this.#count ++
+    }
+    decrement() {
+      this.#count --
+    }
+    display() {
+      console.log(this.#count)
+    }
+  }
+
+  const c = new Counter()
+  c.increment()
+  c.increment()
+  c.increment()
+  c.display()
+  // console.log(c.#count)
+</script>
