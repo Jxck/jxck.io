@@ -57,6 +57,29 @@
 </script>
 
 <script type=module>
+  console.log("using public class field with _")
+  class Counter {
+    _count = 0
+    increment() {
+      this._count ++
+    }
+    decrement() {
+      this._count --
+    }
+    display() {
+      console.log(this._count)
+    }
+  }
+
+  const c = new Counter()
+  c.increment()
+  c.increment()
+  c.increment()
+  c.display()
+  console.log(c._count)
+</script>
+
+<script type=module>
   console.log("using private class field")
   class Counter {
     #count = 0
@@ -76,5 +99,133 @@
   c.increment()
   c.increment()
   c.display()
-  // console.log(c.#count)
+  //console.log(c.#count)
+</script>
+
+<script type=module>
+console.log("using symbol")
+
+const Counter = (function() {
+  const count = Symbol("count");
+  return class {
+    constructor() {
+      this[count] = 0;
+    }
+    increment() {
+      this[count] ++
+    }
+    decrement() {
+      this[count] --
+    }
+    display() {
+      console.log(this[count])
+    }
+  }
+})()
+const c = new Counter()
+c.increment()
+c.increment()
+c.increment()
+c.display()
+console.log(c, Object.getOwnPropertySymbols(c))
+console.log(c[Object.getOwnPropertySymbols(c).pop()]) // 3
+</script>
+
+<script type=module>
+//const Person = (function(){
+//  const privates = new WeakMap;
+//  let ids = 0;
+//  return class Person {
+//    constructor(name, makeGreeting) {
+//      this.name = name;
+//      let id = ids++
+//      console.log(id, name)
+//      privates.set(this, {id: id, makeGreeting});
+//    }
+//    equals(otherPerson) {
+//      let id1 = privates.get(this).id
+//      let id2 = privates.get(otherPerson).id;
+//      return id1 === id2
+//    }
+//    greet(otherPerson) {
+//      return privates.get(this).makeGreeting(otherPerson.name);
+//    }
+//  }
+//})();
+//let alice = new Person('Alice', name => `Hello, ${name}!`);
+//let bob = new Person('Bob', name => `Hi, ${name}.`);
+////console.log(alice.equals(bob)); // false
+////console.log(alice.greet(bob)); // === 'Hello, Bob!'
+//
+//let mallory = new Person('Mallory', function(name) {
+//console.log(this)
+//  this.id = 0;
+//  return `o/ ${name}`;
+//});
+//console.log(mallory)
+//console.log(mallory.greet(bob)); // === 'o/ Bob'
+//console.log(mallory.equals(alice)); // true. Oops!
+//console.log(mallory.equals(bob)); // true. Oops!
+</script>
+
+<script type=module>
+  console.log("using WeakMap")
+  const Counter = (function() {
+    const privates = new WeakMap();
+    return class {
+      constructor() {
+        const count = 0
+        privates.set(this, {count})
+      }
+      increment() {
+        const count = privates.get(this).count ++
+        privates.set(this, {count})
+      }
+      decrement() {
+        const count = privates.get(this).count --
+        privates.set(this, {count})
+      }
+      display() {
+        console.log(privates.get(this).count)
+      }
+
+      equals(other) {
+        return privates.get(this).count == privates.get(other).count
+      }
+    }
+  })()
+
+  const c = new Counter()
+  c.increment()
+  c.increment()
+  c.increment()
+  c.display()
+  console.log(c)
+  console.log(c.count)
+
+
+  const c1 = new Counter()
+  const c2 = new Counter()
+  console.log(c1.equals(c2))
+</script>
+
+
+<script type=module>
+class Point {
+  #x;
+  #y;
+
+  constructor(x, y) {
+    this.#x = x;
+    this.#y = y;
+  }
+
+  equals(other) {
+    return this.#x === other.#x && this.#y === other.#y;
+  }
+}
+
+const p1 = new Point(10, 20)
+const p2 = new Point(10, 20)
+console.log(p1.equals(p2))
 </script>
