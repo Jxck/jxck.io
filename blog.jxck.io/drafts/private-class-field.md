@@ -267,9 +267,24 @@ class Counter {
 
 これで良ければ何の問題もなかったが、これではいくつか問題がある。
 
-まず、以下のように private と同じ名前の public なフィールドが定義された場合の挙動に曖昧さが残る。
+まず、 3 で書いたように、以下のようなコードを考える。
 
-前述の通り、 private count が定義されている場合に public な count の定義をエラーにすると、 private に count があることがわかってしまう。
+もし other も Counter であれば、その private フィールドを返す必要があるが、もし other が別のクラスだったら、単に public なフィールドを返す必要がある。
+
+```js
+class Counter {
+  equals(other) {
+    // other の型が Counter かどうかを調べる
+    // Counter なら private count
+    // 他のクラスなら public count を返す
+    return this.count === other.count
+  }
+}
+```
+
+これは、 Private を使ってない既存のコードを含めて、全体的にオーバーヘッドが増えそうなことが、想像に難くないだろう。
+
+また、以下のように private と同じ名前の public なフィールドが定義できてしまうことは、コード自体の誤認をおこしやすい。
 
 ```js
 class Counter {
@@ -279,37 +294,177 @@ class Counter {
   }
 }
 c = new Counter()
-c.count = 10 // ?
+c.count = 10 // 実際には public
 ```
 
-例えば同じことを Java でやると、コンパイルでエラーになる。
+これらと同じことを Java でやると、コンパイルの段階で、型が何であるかが判別されため、エラーにするといった処理ができる。
 
-JS はコンパイルが無いから、挙動が複雑になってしまうのだ。
+JS はコンパイルが無く、動的に任意のプロパティが定義できるため、定義の段階で private というキーワードが使えたとしても、アクセスする部分で毎回判定が必要になってしまうため、実装が複雑になってしまうのだ。
 
 
-また、 3 で書いたように、以下のようなコードで同じクラスなのかの判別が難しくなる。
 
-もし other も Counter であれば、その private フィールドを返す必要がある。
+## Syntax の導入
 
-しかし、もし other が別のクラスだったら、単に public なフィールドを返す必要がある。
+Private フィールドを導入しつつ、既存のコードに影響を与えないパフォーマンスやセマンティクスを実現する方法として、構文の拡張が考えられる。
+
+そこで、結果として `#` を prefix としたこの構文になった。
+
 
 ```js
 class Counter {
-  equals(other) {
-    return this.count === other.count
+  // private field
+  #count = 0
+  increment() {
+    this.#count ++
+  }
+  decrement() {
+    this.#count --
+  }
+  display() {
+    console.log(this.#count)
+  }
+}
+
+const c = new Counter()
+c.increment()
+c.increment()
+c.increment()
+c.display() // 3
+console.log(c.#count) // SyntaxError
+```
+
+この構文の特徴は、 JS では最後の `c.#count` といった記法は許可されず Syntax Error になるということだ。
+
+これは、外から Private Field にアクセスする方法が構文レベルでエラーになるため、絶対にできないということを意味する。
+
+そして、クラス内部では `#count` と、必ず `#` をつけてフィールドを定義させることにより、 Public なフィールドと名前がかぶることがないため、 `c.count` が定義されてもなんの問題もなくなる。
+
+結果として、外から private field があるかどうかを知ることも、ソースを構文解析でもしない限りできなくなる。
+
+また `this.#count` でアクセスすれば、少なくとも private field にアクセスしようとしていること自体は自明なため、アクセス可能なクラスのインスタンスかだけを判定すれば良くなる。
+
+まとめると、 *従来エラーだった構文を導入して Private の定義およびアクセスが自明になるように拡張した* 結果できたのがこの構文ということになる。
+
+
+## 記号の選定
+
+実際には、上述の条件が満たせれば、記号自体はなんでもよい。
+
+しかし、 UTF8 で任意の文字を許容するといったことをしなければ、 ASCII で残っている文字は少ない。
+
+すでに使われている演算子を除いた候補の議論も FAQ にまとまっている。
+
+[Why was the sigil # chosen, among all the Unicode code points?](https://github.com/tc39/proposal-class-fields/blob/master/PRIVATE_SYNTAX_FAQ.md#why-was-the-sigil--chosen-among-all-the-unicode-code-points)
+
+
+- `@`: 一番良さそうだが Decorator が既に利用している。 Decorator との入れ替えも検討したがトランスパイラで先走って使っているユーザも多く諦めた。
+- `_`: 既に変数に付けられているコードが多い。
+- `%`: 使えそうで使えない。
+
+`%` は、中置演算子としては使われるが接頭辞には使われてないので、使えそうではあった。
+
+しかし、以下のようなコードを考える。
+
+```js
+class Counter {
+  %x;
+  method() {
+    calculate().my().value()
+    %x.print()
   }
 }
 ```
 
-これも Java のように型があれば、コンパイルが通った時点で other がどのクラスのインスタンスかがわかるため、問題にならない。
+このようにセミコロンを省略すると、前の行との mod 演算になってしまう。
 
-まとめると、動的な言語で private キーワードを使って定義を許した瞬間、全てのプロパティアクセスが「private なのか public なのか?」といった識別をする場面が出てくる。
+こうした問題を ASI(Auto Semicolon Insertion) Hazard という。
 
-これは、 Private を使ってない既存のコードを含めて、全体的にオーバーヘッドが増えそうなことが、想像に難くないだろう。
-
-
+結果として、残っている記号が `#` しかなかったため、それが採用された。
 
 
+## Short Hand
+
+現在、以下のコードで `this.#count` の `this` を省略することはできない。
+
+```js
+class Counter {
+  #count = 0
+  increment() {
+    this.#count ++
+  }
+}
+```
+
+将来的にはこれは省略するショートハンドを定義する余地は残っている。
+
+実現すればこう書けるだろう。
+
+
+```js
+class Counter {
+  #count = 0
+  increment() {
+    #count ++
+  }
+}
+```
+
+ちなみに、この余地を残すために却下された提案として、 `#` の前にドットを置かない記法もあった。
+
+[Why not use obj#prop instead obj.#prop ? #39](https://github.com/tc39/proposal-private-fields/issues/39)
+
+これがあれば `this#count` や `c#count` と書ける。
+
+しかし、これを許すと、ショートハンドが入った際に問題が出る。
+
+```js
+class X {
+  #y
+  z() {
+    w()
+    #y()
+  }
+}
+```
+
+このようなコードが `w();#y()` に見えて `w()#y()` になり、 `w()` の結果への Private Access になってしまう(ASI Hazard)。
+
+以上より、ドットアクセスでショートハンドは future work となった。
+
+
+## Dynamic Access
+
+`this.#x` を `this.["#x"]` と書くことはできない。
+
+まず、動的なアクセスの場合は `["#x"]` は今の JS でも valid だ。
+
+```js
+o = {}
+o["#x"] = 10
+o // {"#x": 10}
+```
+
+これは既存のコードでもあり得るが、 `.#x` でアクセスするコードは既存にはないので両方を許さなければ競合はしない。
+
+また、動的に Private にアクセスできるとうことは、以下のようなことができてしまうことを意味する。
+
+
+```js
+class Dict {
+  #secret = 'secret values'
+  add(key, value) {
+    this[key] = value;
+  }
+  get(key) {
+    return this[key];
+  }
+}
+
+const dict = new Dict()
+dict.get('#secret'); // secret values
+```
+
+これでは意味がない。
 
 
 

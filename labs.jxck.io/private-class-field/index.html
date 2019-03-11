@@ -9,7 +9,7 @@
 <h1>Private Class Field</h1>
 
 <script type=module>
-  console.log("using public field with constructor")
+  console.group("using public field with constructor")
   class Counter {
     constructor() {
       this.count = 0
@@ -31,10 +31,11 @@
   c.increment()
   c.display()
   console.log(c.count)
+  console.groupEnd()
 </script>
 
 <script type=module>
-  console.log("using public class field")
+  console.group("using public class field")
   class Counter {
     count = 0
     increment() {
@@ -54,10 +55,11 @@
   c.increment()
   c.display()
   console.log(c.count)
+  console.groupEnd()
 </script>
 
 <script type=module>
-  console.log("using public class field with _")
+  console.group("using public class field with _")
   class Counter {
     _count = 0
     increment() {
@@ -77,10 +79,11 @@
   c.increment()
   c.display()
   console.log(c._count)
+  console.groupEnd()
 </script>
 
 <script type=module>
-  console.log("using private class field")
+  console.group("using private class field")
   class Counter {
     #count = 0
     increment() {
@@ -92,6 +95,10 @@
     display() {
       console.log(this.#count)
     }
+    equals(other) {
+      console.log(other.#count)
+      return this.#count == other.#count
+    }
   }
 
   const c = new Counter()
@@ -100,76 +107,80 @@
   c.increment()
   c.display()
   //console.log(c.#count)
+  console.log(c.equals(new Counter()))
+  console.groupEnd()
 </script>
 
 <script type=module>
-console.log("using symbol")
+  console.group("using symbol")
 
-const Counter = (function() {
-  const count = Symbol("count");
-  return class {
-    constructor() {
-      this[count] = 0;
+  const Counter = (function() {
+    const count = Symbol("count");
+    return class {
+      constructor() {
+        this[count] = 0;
+      }
+      increment() {
+        this[count] ++
+      }
+      decrement() {
+        this[count] --
+      }
+      display() {
+        console.log(this[count])
+      }
     }
-    increment() {
-      this[count] ++
-    }
-    decrement() {
-      this[count] --
-    }
-    display() {
-      console.log(this[count])
-    }
-  }
-})()
-const c = new Counter()
-c.increment()
-c.increment()
-c.increment()
-c.display()
-console.log(c, Object.getOwnPropertySymbols(c))
-console.log(c[Object.getOwnPropertySymbols(c).pop()]) // 3
+  })()
+  const c = new Counter()
+  c.increment()
+  c.increment()
+  c.increment()
+  c.display()
+  console.log(c, Object.getOwnPropertySymbols(c))
+  console.log(c[Object.getOwnPropertySymbols(c).pop()]) // 3
+  console.groupEnd()
 </script>
 
 <script type=module>
-//const Person = (function(){
-//  const privates = new WeakMap;
-//  let ids = 0;
-//  return class Person {
-//    constructor(name, makeGreeting) {
-//      this.name = name;
-//      let id = ids++
-//      console.log(id, name)
-//      privates.set(this, {id: id, makeGreeting});
-//    }
-//    equals(otherPerson) {
-//      let id1 = privates.get(this).id
-//      let id2 = privates.get(otherPerson).id;
-//      return id1 === id2
-//    }
-//    greet(otherPerson) {
-//      return privates.get(this).makeGreeting(otherPerson.name);
-//    }
-//  }
-//})();
-//let alice = new Person('Alice', name => `Hello, ${name}!`);
-//let bob = new Person('Bob', name => `Hi, ${name}.`);
-////console.log(alice.equals(bob)); // false
-////console.log(alice.greet(bob)); // === 'Hello, Bob!'
-//
-//let mallory = new Person('Mallory', function(name) {
-//console.log(this)
-//  this.id = 0;
-//  return `o/ ${name}`;
-//});
-//console.log(mallory)
-//console.log(mallory.greet(bob)); // === 'o/ Bob'
-//console.log(mallory.equals(alice)); // true. Oops!
-//console.log(mallory.equals(bob)); // true. Oops!
+  //const Person = (function(){
+  //  const privates = new WeakMap;
+  //  let ids = 0;
+  //  return class Person {
+  //    constructor(name, makeGreeting) {
+  //      this.name = name;
+  //      let id = ids++
+  //      console.log(id, name)
+  //      privates.set(this, {id: id, makeGreeting});
+  //    }
+  //    equals(otherPerson) {
+  //      let id1 = privates.get(this).id
+  //      let id2 = privates.get(otherPerson).id;
+  //      return id1 === id2
+  //    }
+  //    greet(otherPerson) {
+  //      return privates.get(this).makeGreeting(otherPerson.name);
+  //    }
+  //  }
+  //})();
+  //let alice = new Person('Alice', name => `Hello, ${name}!`);
+  //let bob = new Person('Bob', name => `Hi, ${name}.`);
+  ////console.log(alice.equals(bob)); // false
+  ////console.log(alice.greet(bob)); // === 'Hello, Bob!'
+  //
+  //let mallory = new Person('Mallory', function(name) {
+  //console.log(this)
+  //  this.id = 0;
+  //  return `o/ ${name}`;
+  //});
+  //console.log(mallory)
+  //console.log(mallory.greet(bob)); // === 'o/ Bob'
+  //console.log(mallory.equals(alice)); // true. Oops!
+  //console.log(mallory.equals(bob)); // true. Oops!
+  //console.groupEnd()
 </script>
 
 <script type=module>
-  console.log("using WeakMap")
+  console.group("using WeakMap")
   const Counter = (function() {
     const privates = new WeakMap();
     return class {
@@ -207,25 +218,36 @@ console.log(c[Object.getOwnPropertySymbols(c).pop()]) // 3
   const c1 = new Counter()
   const c2 = new Counter()
   console.log(c1.equals(c2))
+console.groupEnd()
 </script>
 
 
 <script type=module>
-class Point {
-  #x;
-  #y;
+  console.group('private declaration')
+  class Point {
+    #x;
+    #y;
 
-  constructor(x, y) {
-    this.#x = x;
-    this.#y = y;
+    constructor(x, y) {
+      this.#x = x;
+      this.#y = y;
+    }
+
+    equals(other) {
+      return this.#x === other.#x && this.#y === other.#y;
+    }
   }
 
-  equals(other) {
-    return this.#x === other.#x && this.#y === other.#y;
-  }
-}
+  const p1 = new Point(10, 20)
+  const p2 = new Point(10, 20)
+  console.log(p1.equals(p2))
+  console.groupEnd()
+</script>
 
-const p1 = new Point(10, 20)
-const p2 = new Point(10, 20)
-console.log(p1.equals(p2))
+<script type=module>
+  console.group('feature detection')
+  console.log(eval(`
+    class X { #x; }
+  `))
+  console.groupEnd()
 </script>
