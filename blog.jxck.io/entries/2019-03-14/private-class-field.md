@@ -558,3 +558,10 @@ class Point {
 ```
 
 構文そのものが拡張される機会は減り、今後は Decorator まみれな JS になっていく可能性はありそうだ。
+
+
+## DEMO
+
+動作するデモを以下に用意した
+
+- [private class field demo](https://labs.jxck.io/private-class-field/)
