@@ -17,9 +17,6 @@
     increment() {
       this.count ++
     }
-    decrement() {
-      this.count --
-    }
     display() {
       console.log(this.count)
     }
@@ -40,9 +37,6 @@
     count = 0
     increment() {
       this.count ++
-    }
-    decrement() {
-      this.count --
     }
     display() {
       console.log(this.count)
@@ -65,9 +59,6 @@
     increment() {
       this._count ++
     }
-    decrement() {
-      this._count --
-    }
     display() {
       console.log(this._count)
     }
@@ -89,9 +80,6 @@
     increment() {
       this.#count ++
     }
-    decrement() {
-      this.#count --
-    }
     display() {
       console.log(this.#count)
     }
@@ -106,8 +94,8 @@
   c.increment()
   c.increment()
   c.display()
-  //console.log(c.#count)
   console.log(c.equals(new Counter()))
+  //console.log(c.#count)
   console.groupEnd()
 </script>
 
@@ -122,9 +110,6 @@
       }
       increment() {
         this[count] ++
-      }
-      decrement() {
-        this[count] --
       }
       display() {
         console.log(this[count])
@@ -142,44 +127,6 @@
 </script>
 
 <script type=module>
-  //const Person = (function(){
-  //  const privates = new WeakMap;
-  //  let ids = 0;
-  //  return class Person {
-  //    constructor(name, makeGreeting) {
-  //      this.name = name;
-  //      let id = ids++
-  //      console.log(id, name)
-  //      privates.set(this, {id: id, makeGreeting});
-  //    }
-  //    equals(otherPerson) {
-  //      let id1 = privates.get(this).id
-  //      let id2 = privates.get(otherPerson).id;
-  //      return id1 === id2
-  //    }
-  //    greet(otherPerson) {
-  //      return privates.get(this).makeGreeting(otherPerson.name);
-  //    }
-  //  }
-  //})();
-  //let alice = new Person('Alice', name => `Hello, ${name}!`);
-  //let bob = new Person('Bob', name => `Hi, ${name}.`);
-  ////console.log(alice.equals(bob)); // false
-  ////console.log(alice.greet(bob)); // === 'Hello, Bob!'
-  //
-  //let mallory = new Person('Mallory', function(name) {
-  //console.log(this)
-  //  this.id = 0;
-  //  return `o/ ${name}`;
-  //});
-  //console.log(mallory)
-  //console.log(mallory.greet(bob)); // === 'o/ Bob'
-  //console.log(mallory.equals(alice)); // true. Oops!
-  //console.log(mallory.equals(bob)); // true. Oops!
-  //console.groupEnd()
-</script>
-
-<script type=module>
   console.group("using WeakMap")
   const Counter = (function() {
     const privates = new WeakMap();
@@ -192,14 +139,9 @@
         const count = privates.get(this).count ++
         privates.set(this, {count})
       }
-      decrement() {
-        const count = privates.get(this).count --
-        privates.set(this, {count})
-      }
       display() {
         console.log(privates.get(this).count)
       }
-
       equals(other) {
         return privates.get(this).count == privates.get(other).count
       }
@@ -214,13 +156,11 @@
   console.log(c)
   console.log(c.count)
 
-
   const c1 = new Counter()
   const c2 = new Counter()
   console.log(c1.equals(c2))
 console.groupEnd()
 </script>
-
 
 <script type=module>
   console.group('private declaration')
@@ -240,6 +180,43 @@ console.groupEnd()
 
   const p1 = new Point(10, 20)
   const p2 = new Point(10, 20)
+  console.log(p1.equals(p2))
+  console.groupEnd()
+</script>
+
+
+<script type=module>
+  console.group('private declaration subclass')
+  class Point2D {
+    #x;
+    #y;
+
+    constructor(x, y) {
+      this.#x = x;
+      this.#y = y;
+    }
+
+    equals(other) {
+      return this.#x === other.#x && this.#y === other.#y;
+    }
+  }
+
+  class Point3D extends Point2D {
+    #z;
+    constructor(x, y, z) {
+      super(x, y)
+      this.#z = z
+    }
+
+    equals(other) {
+      // return this.#x === other.#x && this.#y === other.#y && this.#z === other.#z; // SyntaxErro
+      return super.equals(other) && this.#z === other.#z;
+    }
+  }
+
+  const p1 = new Point2D(10, 20, 30)
+  const p2 = new Point3D(10, 20, 30)
+  console.log(p1.display())
   console.log(p1.equals(p2))
   console.groupEnd()
 </script>
