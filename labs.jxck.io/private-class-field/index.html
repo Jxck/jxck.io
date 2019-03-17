@@ -211,7 +211,8 @@ console.groupEnd()
     }
 
     equals(other) {
-      // return this.#x === other.#x && this.#y === other.#y && this.#z === other.#z; // SyntaxErro
+      // return  this.#x === other.#x &&  this.#y === other.#y && this.#z === other.#z; // SyntaxError
+      // return super.#x === other.#x && super.#y === other.#y && this.#z === other.#z; // SyntaxError
       return super.equals(other) && this.#z === other.#z;
     }
   }
