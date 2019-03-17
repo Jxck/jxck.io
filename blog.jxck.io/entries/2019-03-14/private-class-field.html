@@ -60,7 +60,7 @@
     "https://logo.jxck.io/jxck.1200x1200.png"
   ],
   "datePublished": "2019-03-14T08:00:00+08:00",
-  "dateModified": "2019-03-14T08:00:00+08:00",
+  "dateModified": "2019-03-17T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -104,7 +104,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
     <ul class=info>
       <li>created_at: <time class=created_at datetime=2019-03-14>2019-03-14</time>
-      <li>updated_at: <time class=updated_at datetime=2019-03-14>2019-03-14</time>
+      <li>updated_at: <time class=updated_at datetime=2019-03-17>2019-03-17</time>
       <li class=tags>tags: [<a href='/tags/private.html'>private</a>,<a href='/tags/javascript.html'>javascript</a>]
     </ul>
 
@@ -138,28 +138,8 @@ const c = new Counter()
 c.increment()
 c.increment()
 c.increment()
-c.display() class Counter {
-  // private field
-  #count = 0
-  increment() {
-    this.#count ++
-  }
-  display() {
-    console.log(this.#count)
-  }
-  equals(other) {
-    return this.#count === other.#count
-  }
-}
-
-const c = new Counter()
-c.increment()
-c.increment()
-c.increment()
-c.display() // 3
-c.equals(new Counter()) // false
-console.log(c.#count) // SyntaxError
-console.log(c.count) // 3</code></pre>
+c.display() // -&gt; 3
+console.log(c.count) // -&gt; 3</code></pre>
       <p>ここでコンストラクタを介さず、フィールドを定義し初期化する構文が提案されている。
       <p><a href="https://github.com/tc39/proposal-class-fields">tc39/proposal-class-fields</a>
       <p>これが実装されると、以下のように書くことができる。
@@ -181,7 +161,27 @@ console.log(c.count) // 3</code></pre>
       <p>中でも Private フィールドについては、他のクラス指向オブジェクト指向の言語では標準であることが多く、これを入れるために議論が行われた。
       <p>現在は、先の class-fields の仕様にマージされ、先に結論を言うと、現状の仕様は以下のようになり、ブラウザの実装が進みつつある。
       <p><a href="https://github.com/tc39/proposal-class-fields">tc39/proposal-class-fields: Orthogonally-informed combination of public and private fields proposals</a>
-      <pre class=js><code translate="no">// 3</code></pre>
+      <pre class=js><code translate="no">class Counter {
+  // private field
+  #count = 0
+  increment() {
+    this.#count ++
+  }
+  display() {
+    console.log(this.#count)
+  }
+  equals(other) {
+    return this.#count === other.#count
+  }
+}
+
+const c = new Counter()
+c.increment()
+c.increment()
+c.increment()
+c.display() // 3
+c.equals(new Counter()) // false
+console.log(c.#count) // SyntaxError</code></pre>
       <p>挙動としては見ての通りだ。
       <ul>
         <li>
@@ -283,19 +283,28 @@ console.log(c.count) // undefined</code></pre>
       <p>もし Soft Private で良いのであれば、 Symbol や <a href="https://github.com/tc39/proposal-private-fields/blob/master/DECORATORS.md">Decorator</a> などである程度実現可能であり、構文を拡張してまでやる必要があまりない。
       <p>結果としては、 WeakMap で実現したような挙動を、構文レベルでサポートすることにより、より手軽に Hard Private を実現することがこの仕様のゴールとなった。
       <p>具体的に求められる挙動は <a href="https://github.com/tc39/proposal-class-fields/blob/master/PRIVATE_SYNTAX_FAQ.md#what-do-you-mean-by-encapsulation--hard-private">以下</a> のようになる。
-      <ol>
-        <li>Private フィールドにアクセスする方法が一切ない
-        <li>Reflection など、迂回する方法も提供しない
-        <li>それがテストであっても例外は無し
-        <li>Private フィールドがあることが外からわからない
-        <li>getOwnPropertyNames などで取得する方法も提供しない
-        <li>Private フィールドと同じ Public フィールドが定義できる、これをエラーにすると存在がわかる
-        <li>継承した子クラスや親クラスからもアクセスできない
-        <li>ただし同じクラスの別のインスタンスではアクセスが可能
-        <li>以上を一定のパフォーマンスで実装できる
-        <li>Private へのアクセスが遅くない
-        <li>Public なアクセスや Obejct の生成など既存の挙動にに影響が極力無い
-      </ol>
+      <ul>
+        <li>
+          Private フィールドにアクセスする方法が一切ない<ul>
+            <li>Reflection など、迂回する方法も提供しない
+            <li>それがテストであっても例外は無し
+          </ul>
+        </li>
+        <li>
+          Private フィールドがあることが外からわからない<ul>
+            <li>getOwnPropertyNames などで取得する方法も提供しない
+            <li>Private フィールドと同じ Public フィールドが定義できる、これをエラーにすると存在がわかる
+            <li>継承した子クラスや親クラスからもアクセスできない
+            <li>ただし同じクラスの別のインスタンスではアクセスが可能
+          </ul>
+        </li>
+        <li>
+          以上を一定のパフォーマンスで実装できる<ul>
+            <li>Private へのアクセスが遅くない
+            <li>Public なアクセスや Obejct の生成など既存の挙動にに影響が極力無い
+          </ul>
+        </li>
+      </ul>
       <p>これを満たす構文を定義することになる。
     </section>
     <section>
@@ -305,7 +314,7 @@ console.log(c.count) // undefined</code></pre>
   private count = 0
 }</code></pre>
       <p>これで良ければ何の問題もなかったが、これではいくつか問題がある。
-      <p>まず、 3 で書いたように、以下のようなコードを考える。
+      <p>まず、以下のようなコードを考える。
       <p>もし other も Counter であれば、その Private フィールドを返す必要があるが、もし other が別のクラスだったら、単に public なフィールドを返す必要がある。
       <pre class=js><code translate="no">class Counter {
   private count = 0
@@ -481,7 +490,8 @@ class Point3D extends Point2D {
   }
 
   equals(other) {
-    // return this.#x === other.#x &amp;&amp; this.#y === other.#y &amp;&amp; this.#z === other.#z; // SyntaxErro
+    // return  this.#x === other.#x &amp;&amp;  this.#y === other.#y &amp;&amp; this.#z === other.#z; // SyntaxError
+    // return super.#x === other.#x &amp;&amp; super.#y === other.#y &amp;&amp; this.#z === other.#z; // SyntaxError
     return super.equals(other) &amp;&amp; this.#z === other.#z;
   }
 }
