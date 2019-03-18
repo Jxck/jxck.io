@@ -8,6 +8,7 @@ require "time"
 require "pathname"
 require "kramdown"
 
+
 # html
 def to_html(md)
   Kramdown::Document
@@ -342,7 +343,7 @@ class Traverser
   attr_reader :codes
 
   def initialize(markup)
-    @codes = []
+    @codes = {}
     @markup = markup
   end
 
@@ -426,11 +427,12 @@ class Traverser
         code = File.read(path)
       end
 
-      # インデントを無視するため、全部組み上がったら後で差し込む。
-      @codes.push(code.chomp)
+      # インデントを無視するため、退避しておき全部組み上がったら後で差し込む。
+      hash = code.chomp.hash
+      @codes[hash] = code.chomp
 
       # あとで差し変えるため id として番号を入れておく
-      node.value = "// #{@codes.length}"
+      node.value = "// #{hash}"
     end
 
     if node.children
@@ -664,8 +666,8 @@ class Article
     # indent を無視するため
     # ここで pre に code を戻す
     # ついでにエスケープ
-    traverser.codes.each.with_index {|code, i|
-      article.sub!("// #{i + 1}") { hsc(code) }
+    traverser.codes.each {|key, value|
+      article.gsub!("// #{key}") { hsc(value) }
     }
 
     @article = article
