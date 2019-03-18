@@ -33,8 +33,8 @@ const c = new Counter()
 c.increment()
 c.increment()
 c.increment()
-c.display() // -> 3
-console.log(c.count) // -> 3
+c.display() // 3
+console.log(c.count) // 3
 ```
 
 ここでコンストラクタを介さず、フィールドを定義し初期化する構文が提案されている。
