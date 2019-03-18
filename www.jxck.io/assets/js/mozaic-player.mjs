@@ -120,17 +120,17 @@ export default class MozaicPlayer extends HTMLElement {
         <div class=control-line>
 
           <div class=grid-left>
-            <span>&#xf027;</span><input class=volume type=range value=0.5><span>&#xf028;</span>
+            <span>&#xf027;</span><input class=volume type=range title=volume value=0.5><span>&#xf028;</span>
           </div>
 
           <div class=grid-center>
-            <button class="back">&#xf04a;</button>
-            <button class="play">&#xf04b;</button>
-            <button class="forward">&#xf04e;</button>
+            <button class=back title="back 10s">&#xf04a;</button>
+            <button class=play title=play>&#xf04b;</button>
+            <button class=forward title="forward 30s">&#xf04e;</button>
           </div>
 
           <div class=grid-right>
-            <input class=playbackRate type=range min=0.6 max=3.0 step=0.2 value=1.0 list=playbackRate><output class=rate>x1.0</output>
+            <input class=playbackRate type=range title=speed min=0.6 max=3.0 step=0.2 value=1.0 list=playbackRate><output class=rate>x1.0</output>
           </div>
           <datalist id=playbackRate>
             <option value=0.6 label="x0.6">

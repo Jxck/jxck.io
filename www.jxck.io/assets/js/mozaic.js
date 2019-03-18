@@ -1,5 +1,5 @@
 // add mozaic player
-import MozaicPlayer from 'https://mozaic.fm/assets/js/mozaic-player.mjs'
+import MozaicPlayer from '/assets/js/mozaic-player.mjs'
 
 // Enable debug log adding #debug into url
 const log = location.hash === "#debug" ? console.log.bind(console) : () => {}
