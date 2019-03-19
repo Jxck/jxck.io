@@ -60,7 +60,7 @@ audio: https://files.mozaic.fm/mozaic-ep49.mp3
   - *Get Ready for Priority Hints*
     - <https://developers.google.com/web/updates/2019/02/priority-hints>
     - M73 から priority hints の origin trial が始まった
-    - そもそも h2 priority のきんとした実装は難しい
+    - そもそも h2 priority のきちんとした実装は難しい
     - CDN での実装具合のテスト結果も出ている
       - <https://github.com/andydavies/http2-prioritization-issues#current-status>
   - Replacing a hot path in your app's JavaScript with WebAssembly
