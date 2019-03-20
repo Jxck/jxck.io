@@ -241,17 +241,17 @@ ECMAScript が Private フィールドを定義する上で、目指すのは So
 
 具体的に求められる挙動は [以下](https://github.com/tc39/proposal-class-fields/blob/master/PRIVATE_SYNTAX_FAQ.md#what-do-you-mean-by-encapsulation--hard-private) のようになる。
 
-- Private フィールドにアクセスする方法が一切ない
-  - Reflection など、迂回する方法も提供しない
-  - それがテストであっても例外は無し
-- Private フィールドがあることが外からわからない
-  - getOwnPropertyNames などで取得する方法も提供しない
-  - Private フィールドと同じ Public フィールドが定義できる、これをエラーにすると存在がわかる
-  - 継承した子クラスや親クラスからもアクセスできない
-  - ただし同じクラスの別のインスタンスではアクセスが可能
-- 以上を一定のパフォーマンスで実装できる
-  - Private へのアクセスが遅くない
-  - Public なアクセスや Obejct の生成など既存の挙動にに影響が極力無い
+1. Private フィールドにアクセスする方法が一切ない
+   1. Reflection など、迂回する方法も提供しない
+   2. それがテストであっても例外は無し
+2. Private フィールドがあることが外からわからない
+   1. getOwnPropertyNames などで取得する方法も提供しない
+   2. Private フィールドと同じ Public フィールドが定義できる、これをエラーにすると存在がわかる
+   3. 継承した子クラスや親クラスからもアクセスできない
+   4. ただし同じクラスの別のインスタンスではアクセスが可能
+3. 以上を一定のパフォーマンスで実装できる
+   1. Private へのアクセスが遅くない
+   2. Public なアクセスや Obejct の生成など既存の挙動にに影響が極力無い
 
 これを満たす構文を定義することになる。
 
