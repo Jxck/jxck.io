@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>DEMO | labs.jxck.io</title>
+
+<style>
+</style>
+
+<h1>Test</h1>
+
+<ul>
+  <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2Yo590-USNo/7Da9scWwBwAJ">Intent to Implement: Display Locking - Google グループ</a>
+ <li><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=882663">882663 - Implement display locking - chromium - Monorail</a>
+</ul>
+
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  document.on('DOMContentLoaded', async (e) => {
+
+    let container = document.createElement("div");
+    await container.displayLock.acquire({ timeout: Infinity })
+
+    let child = document.createElement("div");
+    child.id = "child";
+
+    container.appendChild(child);
+    container.id = "container";
+    document.body.appendChild(container);
+
+    await container.displayLock.commit()
+
+  })
+</script>
+
