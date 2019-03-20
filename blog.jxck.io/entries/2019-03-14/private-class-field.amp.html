@@ -53,7 +53,7 @@ by Jxck
     "https://logo.jxck.io/jxck.1200x1200.png"
   ],
   "datePublished": "2019-03-14T08:00:00+08:00",
-  "dateModified": "2019-03-18T08:00:00+08:00",
+  "dateModified": "2019-03-20T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -782,7 +782,7 @@ td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2019-03-14>2019-03-14</time>
-    <li>updated_at: <time class=updated_at datetime=2019-03-18>2019-03-18</time>
+    <li>updated_at: <time class=updated_at datetime=2019-03-20>2019-03-20</time>
     <li class=tags>tags: [<a href='/tags/private.html'>private</a>,<a href='/tags/javascript.html'>javascript</a>]
   </ul>
 
@@ -960,28 +960,28 @@ console.log(c.count) // undefined</code></pre>
       <p>もし Soft Private で良いのであれば、 Symbol や <a href="https://github.com/tc39/proposal-private-fields/blob/master/DECORATORS.md">Decorator</a> などである程度実現可能であり、構文を拡張してまでやる必要があまりない。
       <p>結果としては、 WeakMap で実現したような挙動を、構文レベルでサポートすることにより、より手軽に Hard Private を実現することがこの仕様のゴールとなった。
       <p>具体的に求められる挙動は <a href="https://github.com/tc39/proposal-class-fields/blob/master/PRIVATE_SYNTAX_FAQ.md#what-do-you-mean-by-encapsulation--hard-private">以下</a> のようになる。
-      <ul>
+      <ol>
         <li>
-          Private フィールドにアクセスする方法が一切ない<ul>
+          Private フィールドにアクセスする方法が一切ない<ol>
             <li>Reflection など、迂回する方法も提供しない
             <li>それがテストであっても例外は無し
-          </ul>
+          </ol>
         </li>
         <li>
-          Private フィールドがあることが外からわからない<ul>
+          Private フィールドがあることが外からわからない<ol>
             <li>getOwnPropertyNames などで取得する方法も提供しない
             <li>Private フィールドと同じ Public フィールドが定義できる、これをエラーにすると存在がわかる
             <li>継承した子クラスや親クラスからもアクセスできない
             <li>ただし同じクラスの別のインスタンスではアクセスが可能
-          </ul>
+          </ol>
         </li>
         <li>
-          以上を一定のパフォーマンスで実装できる<ul>
+          以上を一定のパフォーマンスで実装できる<ol>
             <li>Private へのアクセスが遅くない
             <li>Public なアクセスや Obejct の生成など既存の挙動にに影響が極力無い
-          </ul>
+          </ol>
         </li>
-      </ul>
+      </ol>
       <p>これを満たす構文を定義することになる。
     </section>
     <section>
