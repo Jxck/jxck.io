@@ -46,6 +46,19 @@ if (window.matchMedia( "(max-width: 800px)" ).matches || window.customElements =
   })
 }
 
+if (navigator.share) {
+  const $share = document.querySelector('#share')
+  $share.style.display = 'block'
+  $share.addEventListener('click', (e) => {
+    console.log(e)
+    navigator.share({
+      url:   location.href,
+      title: document.title,
+      text:  document.title
+    })
+  })
+}
+
 if (window.ReportingObserver) {
   (new ReportingObserver((reports, observer) => {
     reports.map((report) => {
