@@ -54,7 +54,8 @@ if (navigator.share) {
     navigator.share({
       url:   location.href,
       title: document.title,
-      text:  document.title
+      text:  document.querySelector('section:nth-of-type(2) p').textContent
+
     })
   })
 }
