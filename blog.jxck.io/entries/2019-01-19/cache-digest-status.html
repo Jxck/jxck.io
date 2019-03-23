@@ -60,7 +60,7 @@
     "https://logo.jxck.io/jxck.1200x1200.png"
   ],
   "datePublished": "2019-01-19T08:00:00+08:00",
-  "dateModified": "2019-01-26T08:00:00+08:00",
+  "dateModified": "2019-03-23T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -104,7 +104,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
     <ul class=info>
       <li>created_at: <time class=created_at datetime=2019-01-19>2019-01-19</time>
-      <li>updated_at: <time class=updated_at datetime=2019-01-26>2019-01-26</time>
+      <li>updated_at: <time class=updated_at datetime=2019-03-23>2019-03-23</time>
       <li class=tags>tags: [<a href='/tags/cache%20digest.html'>cache digest</a>,<a href='/tags/server%20push.html'>server push</a>,<a href='/tags/http2.html'>http2</a>]
     </ul>
 
@@ -146,6 +146,7 @@
       <p>「このコンテンツは絶対にキャッシュされてない」ことはわかるので、その場合は Push を行う。
       <p>「このコンテンツはキャッシュされているかもしれないが、されてないかもしれない」こともわかるので、その場合は Push しない。
       <p>これにより、もし後者で実際にはキャッシュがなかった場合は、ブラウザが普段通り Fetch すればよいため、「無駄な Push は無くせる」という効果が期待された。
+      <p>つまりこれは Push という Server to Client なプロトコルを、 Client 起点のリクエストのセマンティクスに馴染ませるための橋渡しだったと言えるだろう。
       <p>現実的には、「<em>これが無かったら対ブラウザの HTTP2 Push は正直使い物にならない</em>」というくらい重要なミッシングピースだったと筆者は考えており、使える日を心待ちにしていた。
     </section>
     <section>
@@ -199,8 +200,9 @@
     <section>
       <h2 id="back-to-client-initiate"><a href="#back-to-client-initiate">Back to Client Initiate</a></h2>
       <p>クライアントが取得する必要の有るものを、サーバが送るというのが本来の Request/Response の世界だ。
-      <p>これをキャッシュのレイヤに落として、クライアントが持っているキャッシュを伝えることでサーバが不足を補うというユースケースが Server Push にはあった。
-      <p>しかし、やはりサーバは選択肢を出して、クライアントが自分の保持するキャッシュと照らしあわせて取得することになる。
+      <p>これをキャッシュのレイヤに落として、クライアントが持っているキャッシュを伝えることでサーバが不足を補うというユースケースが Cache Digest にはあった。
+      <p>つまりこれは Push という Server to Client なプロトコルを、 Client 起点のリクエストのセマンティクスに馴染ませるための橋渡しだったと言えるだろう。
+      <p>Cache Digest が無ければ、やはりサーバは選択肢を出して、クライアントが自分の保持するキャッシュと照らしあわせて取得することになる。
       <p>そこを最適化するのは「選択肢をなるべく早めに提示する」ための Prefetch, Preload, Prerender であり、そこを超えたければ自分で Service Worker を使ってやるということになりそうだ。
     </section>
     <section>
