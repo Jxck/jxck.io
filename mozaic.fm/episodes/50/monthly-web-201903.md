@@ -494,7 +494,7 @@ audio: https://files.mozaic.fm/mozaic-ep50.mp3
 
 ### セキュリティ動向
 
-- Monsters in the Middleboxes: Introducing Two New Tools for Detecting HTTPS Interception[a]
+- Monsters in the Middleboxes: Introducing Two New Tools for Detecting HTTPS Interception
   - <https://blog.cloudflare.com/monsters-in-the-middleboxes/>
   - MITMEngine
   - MALCOLM

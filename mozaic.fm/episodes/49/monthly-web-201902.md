@@ -602,7 +602,7 @@ audio: https://files.mozaic.fm/mozaic-ep49.mp3
   - Priority Hints 以前の preload や async/defer の priority の話
 
 
-### イベント(要編集)
+### イベント
 
 - 3 月
   - 23-29: IETF 104 Prague
