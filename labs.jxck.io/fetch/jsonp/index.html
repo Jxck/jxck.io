@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>JSONP DEMO | labs.jxck.io</title>
+
+<style>
+</style>
+
+<h1>JSONP DEOMO</h1>
+
+<script src=https://labs.mozaic.fm/fetch/jsonp/data.js></script>
+<script>
+  console.log(data)
+</script>
+
+<script>
+  function callback(data) {
+    console.log(data)
+
+  }
+
+  const $script = document.createElement('script')
+  $script.src = "https://labs.mozaic.fm/fetch/jsonp/callback.js"
+  document.body.appendChild($script)
+</script>
