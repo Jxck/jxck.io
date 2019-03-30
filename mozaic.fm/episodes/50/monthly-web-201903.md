@@ -119,6 +119,7 @@ audio: https://files.mozaic.fm/mozaic-ep50.mp3
     - CSS の background-image などで貼った画像に alt をつける
     - content タグに書いた文字が alt として扱われる予定
     - Safari は別の名前 (`-webkit-alt` プロパティ) としてサポート済み
+    - 質問した <https://github.com/w3ctag/design-reviews/issues/351>
   - Implement: ElementTiming for text
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/9B7OHgwwEzs/jnmdgx_7DAAJ>
   - Implement: Native Caret Browsing
@@ -353,6 +354,8 @@ audio: https://files.mozaic.fm/mozaic-ep50.mp3
     - <https://docs.google.com/document/d/1kOLu53dYzwElJZ6JBgMR137-Rdj8cDc_rX2YkPFYUsY/edit>
     - Add first-class support for differential script loading · Issue #4432 · whatwg/html
     - <https://github.com/whatwg/html/issues/4432>
+    - syntax 属性を追加して、 ECMA 2019 などのバージョンで読み込むスクリプトを変えられるようにする提案
+    - babel などで変換する粒度を変えられる
   - *Upcoming: W3C Workshop on Web Games, 27-28 June*
     - <https://lists.w3.org/Archives/Public/public-new-work/2019Mar/0007.html>
     - <https://www.w3.org/blog/news/archives/7666>
