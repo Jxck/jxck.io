@@ -112,9 +112,9 @@ export default class MozaicPlayer extends HTMLElement {
         <slot name=audio></slot>
 
         <div class=progress-line>
-          <time class=current>00:00:00</time>
+          <time class=current datetime=00:00:00>00:00:00</time>
           <progress class=progress value=0></progress>
-          <time class=duration>00:00:00</time>
+          <time class=duration datetime=00:00:00>00:00:00</time>
         </div>
 
         <div class=control-line>
@@ -283,6 +283,7 @@ export default class MozaicPlayer extends HTMLElement {
     log('duration', duration)
     this.shadowRoot.querySelector('.progress').max         = duration
     this.shadowRoot.querySelector('.duration').textContent = this.timeFormat(duration)
+    this.shadowRoot.querySelector('.duration').dateTime    = this.timeFormat(duration)
   }
 
   setTime() {
@@ -290,6 +291,7 @@ export default class MozaicPlayer extends HTMLElement {
     log('currentTime', currentTime)
     this.shadowRoot.querySelector('.progress').value      = currentTime
     this.shadowRoot.querySelector('.current').textContent = this.timeFormat(currentTime)
+    this.shadowRoot.querySelector('.current').dateTime    = this.timeFormat(currentTime)
   }
 
 
