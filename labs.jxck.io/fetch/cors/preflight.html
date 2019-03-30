@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<title>CORS DEMO | labs.jxck.io</title>
+<title>CORS with Preflight DEMO | labs.jxck.io</title>
 
 <style>
 </style>
 
-<h1>CORS DEMO</h1>
+<h1>CORS with Preflight DEMO</h1>
+
+<p>see the source &amp; console</p>
 
 <form method=post action=/fetch/api>
   <input type=text value=foo>
@@ -15,10 +17,6 @@
 
 <script>
   'use strict';
-  const $  = document.querySelector.bind(document)
-  const $$ = document.querySelectorAll.bind(document)
-  EventTarget.prototype.on = EventTarget.prototype.addEventListener
-
   document.on('DOMContentLoaded', async (e) => {
     const res = await fetch('http://labs.mozaic.fm/fetch/api', { method: "POST" })
     console.log(res)

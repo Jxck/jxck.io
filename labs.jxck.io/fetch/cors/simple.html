@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>CORS Simple Request DEMO | labs.jxck.io</title>
+
+<style>
+</style>
+
+<h1>CORS Simple Request DEMO</h1>
+
+<p>see the source &amp; console</p>
+
+<script>
+  document.on('DOMContentLoaded', async (e) => {
+    const res = await fetch('http://labs.mozaic.fm/fetch/cors')
+    console.log(res)
+    console.log(await res.text())
+  })
+</script>

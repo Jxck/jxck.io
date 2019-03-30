@@ -8,15 +8,18 @@
 
 <h1>JSONP DEOMO</h1>
 
+<p>see the source &amp; console</p>
+
 <script src=https://labs.mozaic.fm/fetch/jsonp/data.js></script>
 <script>
+  // cross origin data comes here
   console.log(data)
 </script>
 
 <script>
   function callback(data) {
+    // cross origin data comes here
     console.log(data)
-
   }
 
   const $script = document.createElement('script')
