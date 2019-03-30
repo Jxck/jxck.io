@@ -194,20 +194,31 @@ export default class MozaicPlayer extends HTMLElement {
     this.audio.addEventListener('volumechange',   this.onAudioVolumechange.bind(this))
     this.audio.addEventListener('waiting',        this.onAudioWaiting.bind(this))
 
+    // caching dom
+    this.$play         = this.shadowRoot.querySelector('.play')
+    this.$forward      = this.shadowRoot.querySelector('.forward')
+    this.$back         = this.shadowRoot.querySelector('.back')
+    this.$volume       = this.shadowRoot.querySelector('.volume')
+    this.$playbackRate = this.shadowRoot.querySelector('.playbackRate')
+    this.$current      = this.shadowRoot.querySelector('.current')
+    this.$progress     = this.shadowRoot.querySelector('.progress')
+    this.$duration     = this.shadowRoot.querySelector('.duration')
+    this.$outputRate   = this.shadowRoot.querySelector('output.rate')
+
+
     // tooltip event bindings
-    this.shadowRoot.querySelector('.play'        ).addEventListener('click', this.onPlay.bind(this))
-    this.shadowRoot.querySelector('.forward'     ).addEventListener('click', this.onForward.bind(this))
-    this.shadowRoot.querySelector('.back'        ).addEventListener('click', this.onBack.bind(this))
-    this.shadowRoot.querySelector('.volume'      ).addEventListener('input', this.onVolume.bind(this))
-    this.shadowRoot.querySelector('.playbackRate').addEventListener('input', this.onPlaybackrate.bind(this))
+    this.$play        .addEventListener('click', this.onPlay.bind(this))
+    this.$forward     .addEventListener('click', this.onForward.bind(this))
+    this.$back        .addEventListener('click', this.onBack.bind(this))
+    this.$volume      .addEventListener('input', this.onVolume.bind(this))
+    this.$playbackRate.addEventListener('input', this.onPlaybackrate.bind(this))
 
     // dragging progress bar
     this.dragging = false
-    const progress = this.shadowRoot.querySelector('.progress')
-    progress.addEventListener('mouseup',   this.onMouseup.bind(this))
-    progress.addEventListener('mousedown', this.onMousedown.bind(this))
-    progress.addEventListener('mousemove', this.onMousemove.bind(this))
-    progress.addEventListener('mouseout',  this.onMouseout.bind(this))
+    this.$progress.addEventListener('mouseup',   this.onMouseup.bind(this))
+    this.$progress.addEventListener('mousedown', this.onMousedown.bind(this))
+    this.$progress.addEventListener('mousemove', this.onMousemove.bind(this))
+    this.$progress.addEventListener('mouseout',  this.onMouseout.bind(this))
 
     // load the audio
     this.audio.load()
@@ -238,25 +249,25 @@ export default class MozaicPlayer extends HTMLElement {
   // Public Interface
   ///////////////////////////
   play() {
-    this.shadowRoot.querySelector('.play').dispatchEvent(new Event('click'))
+    this.$play.dispatchEvent(new Event('click'))
   }
 
   forward() {
-    this.shadowRoot.querySelector('.forward').dispatchEvent(new Event('click'))
+    this.$forward.dispatchEvent(new Event('click'))
   }
 
   back() {
-    this.shadowRoot.querySelector('.back').dispatchEvent(new Event('click'))
+    this.$back.dispatchEvent(new Event('click'))
   }
 
   volumeup() {
-    this.shadowRoot.querySelector('.volume').stepUp()
-    this.shadowRoot.querySelector('.volume').dispatchEvent(new Event('input'))
+    this.$volume.stepUp()
+    this.$volume.dispatchEvent(new Event('input'))
   }
 
   volumedown() {
-    this.shadowRoot.querySelector('.volume').stepDown()
-    this.shadowRoot.querySelector('.volume').dispatchEvent(new Event('input'))
+    this.$volume.stepDown()
+    this.$volume.dispatchEvent(new Event('input'))
   }
 
 
@@ -281,17 +292,17 @@ export default class MozaicPlayer extends HTMLElement {
   setDuration() {
     const duration = this.audio.duration
     log('duration', duration)
-    this.shadowRoot.querySelector('.progress').max         = duration
-    this.shadowRoot.querySelector('.duration').textContent = this.timeFormat(duration)
-    this.shadowRoot.querySelector('.duration').dateTime    = this.timeFormat(duration)
+    this.$progress.max         = duration
+    this.$duration.textContent = this.timeFormat(duration)
+    this.$duration.dateTime    = this.timeFormat(duration)
   }
 
   setTime() {
     const currentTime = this.audio.currentTime
     log('currentTime', currentTime)
-    this.shadowRoot.querySelector('.progress').value      = currentTime
-    this.shadowRoot.querySelector('.current').textContent = this.timeFormat(currentTime)
-    this.shadowRoot.querySelector('.current').dateTime    = this.timeFormat(currentTime)
+    this.$progress.value      = currentTime
+    this.$current.textContent = this.timeFormat(currentTime)
+    this.$current.dateTime    = this.timeFormat(currentTime)
   }
 
 
@@ -330,15 +341,15 @@ export default class MozaicPlayer extends HTMLElement {
     const volume = parseFloat(localStorage.getItem(`mozaic.fm:volume`) || '0.5')
     log('loadVolume', volume)
     this.audio.volume = volume
-    this.shadowRoot.querySelector('.volume').value = volume*100
+    this.$volume.value = volume*100
   }
 
   loadPlaybackRate() {
     const playbackRate = parseFloat(localStorage.getItem(`mozaic.fm:playbackRate`) || '1.0')
     log('loadPlabackRate', playbackRate)
-    this.audio.playbackRate = playbackRate
-    this.shadowRoot.querySelector('.playbackRate').value = playbackRate
-    this.shadowRoot.querySelector('output.rate').textContent = `x${playbackRate}`
+    this.audio.playbackRate      = playbackRate
+    this.$playbackRate.value     = playbackRate
+    this.$outputRate.textContent = `x${playbackRate}`
   }
 
 
@@ -398,7 +409,7 @@ export default class MozaicPlayer extends HTMLElement {
 
   onAudioPause(e) {
     log(e.type, e)
-    this.shadowRoot.querySelector('.play').innerHTML = ICON.PLAY
+    this.$play.innerHTML = ICON.PLAY
   }
 
   onAudioPlay(e) {
@@ -478,7 +489,7 @@ export default class MozaicPlayer extends HTMLElement {
     const playbackRate = parseFloat(e.target.value)
     log(e.type, playbackRate)
     this.audio.playbackRate = playbackRate
-    this.shadowRoot.querySelector('output.rate').textContent = `x${playbackRate}`
+    this.$outputRate.textContent = `x${playbackRate}`
     this.savePlaybackRate()
   }
 
