@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>RTCPeerConnection.generateCertificate DEMO | labs.jxck.io</title>
+
+<style>
+</style>
+
+<h1>RTCPeerConnection.generateCertificate DEMO</h1>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  document.on('DOMContentLoaded', async (e) => {
+    if (RTCCertificate.getSupportedAlgorithms) {
+      const supported = RTCCertificate.getSupportedAlgorithms()
+      console.log(supported)
+    } else {
+      console.error('RTCCertificate.getSupportedAlgorithms', 'not supported')
+    }
+
+    try {
+      const cert = await RTCPeerConnection.generateCertificate({name:'ECDSA', namedCurve: 'P-256'})
+      console.log(cert)
+    } catch (err) {
+      console.error(err)
+    }
+  })
+</script>
