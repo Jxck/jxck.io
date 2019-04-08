@@ -15,23 +15,25 @@ main(_) ->
     ok = ?Log(ssl:start()),
     {ok, Socket} = ssl:connect({127,0,0,1}, ?PORT, [
                                                     {ciphers, [{ecdhe_rsa, aes_256_gcm, null, sha384}]},
-                                                    {active, true},
+                                                    {active, false},
                                                     binary
                                                    ]),
 
     PID = spawn(fun() -> receive_loop(Socket) end),
-    ssl:controlling_process(Socket, PID),
+    ok = ssl:controlling_process(Socket, PID),
 
     send_loop(Socket).
 
 %% コンソールから入力を受け取り送信
 send_loop(Socket) ->
     {ok, [Msg]} = io:fread("> ", "~s"),
-    ssl:send(Socket, Msg),
+    ?Log(Msg),
+    ok = ssl:send(Socket, Msg),
     send_loop(Socket).
 
 %% 受信
 receive_loop(Socket) ->
+    ?Log(ssl:setopts(Socket, [{active, once}])),
     receive
         {ssl, Socket, Data} ->
             ?Log(Data),
@@ -39,8 +41,8 @@ receive_loop(Socket) ->
         {ssl_closed, Socket} ->
             ?Log({ssl_closed, Socket}),
             ?Log(ssl:close(Socket));
-        {ssl_error, {sslsocket, _, From}=Socket, Reason} ->
-            ?Log({ssl_error, From, Reason}),
+        {ssl_error, Socket, Reason} ->
+            ?Log({ssl_error, Reason, ssl:peername(Socket), Socket}),
             ?Log(ssl:close(Socket));
         Error ->
             ?Log(Error)

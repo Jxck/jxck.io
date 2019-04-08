@@ -3,16 +3,19 @@
 -compile(export_all).
 -include("../logger.hrl").
 
--define(PORT, 3000).
+-define(PORT, 4443).
 -define(KEY,  "/keys/key.pem").
 -define(CERT, "/keys/cert.pem").
 
+
+%% curl -k -i https://localhost:4443
 main(_) ->
     ok = ?Log(ssl:start()),
-    Opts = [binary,
-            {packet,    http_bin},
+    Opts = [
             {active,    false},
-            {reuseaddr, true}
+            {reuseaddr, true},
+            {packet,    http_bin},
+            binary
            ],
     {ok, ListenSocket} = ?Log(gen_tcp:listen(?PORT, Opts)),
     accept_loop(ListenSocket).
@@ -39,22 +42,24 @@ accept_loop(ListenSocket) ->
             PID = spawn(fun() -> receive_loop(SSLSocket) end),
             ?Log(ssl:controlling_process(SSLSocket, PID)),
             ?Log(ssl:setopts(SSLSocket, [{active, once}])),
-            accept_loop(ListenSocket)
+            accept_loop(ListenSocket);
+        X ->
+            ?Log(X)
     end.
 
 
 receive_loop(Socket) ->
     ?Log(Socket),
     receive
-        {ssl, {sslsocket, _, From}, {http_request, Method, Path, {1,1}}} ->
+        {ssl, Socket, {http_request, Method, Path, {1,1}}} ->
             ?Log(Method, Path),
             ssl:setopts(Socket, [{active, once}]),
             receive_loop(Socket);
-        {ssl, {sslsocket, _, From}, {http_header, _,Key,_,Value}} ->
+        {ssl, Socket, {http_header, _,Key,_,Value}} ->
             ?Log(Key, Value),
             ssl:setopts(Socket, [{active, once}]),
             receive_loop(Socket);
-        {ssl, {sslsocket, _, From}, http_eoh}=Msg ->
+        {ssl, Socket, http_eoh}=Msg ->
             ?Log(http_eoh),
             ok = ssl:send(Socket, <<
                                     "HTTP/1.1 200 OK\r\n"
@@ -64,16 +69,16 @@ receive_loop(Socket) ->
                                   >>),
             ssl:setopts(Socket, [{active, once}]),
             receive_loop(Socket);
-        {ssl, {sslsocket, _, From}=Socket, Data} ->
-            ?Log(Data, from, From),
+        {ssl, Socket, Data} ->
+            ?Log(Data, from, Socket),
             ok = ssl:send(Socket, Data),
             ssl:setopts(Socket, [{active, once}]),
             receive_loop(Socket);
-        {ssl_closed, {sslsocket, _, From}=Socket} ->
-            ?Log({ssl_closed, From}),
+        {ssl_closed, Socket} ->
+            ?Log({ssl_closed, Socket}),
             ?Log(ssl:close(Socket));
-        {ssl_error, {sslsocket, _, From}=Socket, Reason} ->
-            ?Log({ssl_error, From, Reason}),
+        {ssl_error, Socket, Reason} ->
+            ?Log({ssl_error, Socket, Reason}),
             ?Log(ssl:close(Socket));
         Error ->
             ?Log(Error)
