@@ -2,18 +2,22 @@
 
 require "socket"
 
+socket = TCPSocket.open("127.0.0.1", 3000)
+
 message = <<EOS
 GET / HTTP/1.1\r
 Host: localhost:3000\r
 \r
 EOS
 
-socket = TCPSocket.open("127.0.0.1", 3000)
-socket.write(message)
+p message
+
+p socket.write(message)
 
 while recv = socket.readline
   p recv
+
+  break if recv == "\r\n"
 end
 
-
-socket.close
+p socket.close
