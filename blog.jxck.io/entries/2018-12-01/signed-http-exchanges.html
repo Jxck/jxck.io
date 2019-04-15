@@ -177,7 +177,7 @@
       </ul>
       <p>実際に mozaic.fm のオリジンサーバから取得したわけではないが、署名によってそのように扱うことができる。
       <p>展開される Origin は mozaic.fm のものになり、ここから遷移する際に付与される Referer や Origin ヘッダも全て mozaic.fm になる。
-      <p><img lazyload src=signed-http-exchange.svg#748x561 alt="signed http exchange 概観" title="signed http exchange" width=748 height=561></p>
+      <p><img loading=lazy src=signed-http-exchange.svg#748x561 alt="signed http exchange 概観" title="signed http exchange" width=748 height=561></p>
     </section>
     <section>
       <h2 id="use-case"><a href="#use-case">Use Case</a></h2>
@@ -379,7 +379,7 @@ open -a Google\ Chrome\ Canary --args --ignore-certificate-errors-spki-list=$BAS
         <p>
           <picture>
             <source type=image/webp srcset=1-index.webp#748x457>
-            <img lazyload src=1-index.png#748x457 alt="sxg へ遷移する前のページ" title="index page">
+            <img loading=lazy src=1-index.png#748x457 alt="sxg へ遷移する前のページ" title="index page">
           </picture>
         </p>
         <p>ページ下部のリンクから sxg に遷移する。
@@ -390,7 +390,7 @@ open -a Google\ Chrome\ Canary --args --ignore-certificate-errors-spki-list=$BAS
         <p>
           <picture>
             <source type=image/webp srcset=2-sxg-response.webp#748x457>
-            <img lazyload src=2-sxg-response.png#748x457 alt="sxg のレスポンスヘッダ" title="sxg response">
+            <img loading=lazy src=2-sxg-response.png#748x457 alt="sxg のレスポンスヘッダ" title="sxg response">
           </picture>
         </p>
         <p>このファイルを展開したブラウザは、ファイルをパースし、必要な情報を取得する。
@@ -398,7 +398,7 @@ open -a Google\ Chrome\ Canary --args --ignore-certificate-errors-spki-list=$BAS
         <p>
           <picture>
             <source type=image/webp srcset=3-sxg-signing-detail.webp#748x457>
-            <img lazyload src=3-sxg-signing-detail.png#748x457 alt="sxg の署名部分の詳細" title="sxg signing detail">
+            <img loading=lazy src=3-sxg-signing-detail.png#748x457 alt="sxg の署名部分の詳細" title="sxg signing detail">
           </picture>
         </p>
         <p>ここで取得した Certificate URL から証明書を取得する。
@@ -406,14 +406,14 @@ open -a Google\ Chrome\ Canary --args --ignore-certificate-errors-spki-list=$BAS
         <p>
           <picture>
             <source type=image/webp srcset=4-cert-chain-cbor.webp#748x457>
-            <img lazyload src=4-cert-chain-cbor.png#748x457 alt="証明書チェインの詳細" title="cert chain cbor">
+            <img loading=lazy src=4-cert-chain-cbor.png#748x457 alt="証明書チェインの詳細" title="cert chain cbor">
           </picture>
         </p>
         <p>これを用いて署名の検証が完了したら、ブラウザは Original の URL でコンテンツを表示する。
         <p>
           <picture>
             <source type=image/webp srcset=5-rendered-contents.webp#748x457>
-            <img lazyload src=5-rendered-contents.png#748x457 alt="Logical URL で表示された HTML" title="">
+            <img loading=lazy src=5-rendered-contents.png#748x457 alt="Logical URL で表示された HTML" title="">
           </picture>
         </p>
         <p>内部的には改めてリクエストが発生しているように見えるが、サーバにはリクエストは飛んでいない。
