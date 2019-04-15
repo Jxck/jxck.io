@@ -316,7 +316,7 @@ class AMP < Markup
     value = super(node)
     if value.match(/<iframe.*/)
       value.gsub!(/iframe/, 'amp-iframe')
-      value.gsub!(/ lazyload/, '')
+      value.gsub!(/ loading="lazy"/, '')
     end
     value
   end
