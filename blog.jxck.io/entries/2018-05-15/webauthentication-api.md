@@ -26,7 +26,7 @@ Web Authentication(WebAuthN) API の策定と実装が進んでいる。
 YubiKey Login の動作イメージは以下。
 
 
-<iframe src="https://www.youtube.com/embed/XL94v1t2aWk" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen lazyload></iframe>
+<iframe src="https://www.youtube.com/embed/XL94v1t2aWk" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
 
 
 
