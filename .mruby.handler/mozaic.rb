@@ -29,7 +29,7 @@ Proc.new do |env|
   }
   path = env["PATH_INFO"]
   if url_mapping[path]
-    next [301, { "Content-Type" => "text/html", "Location" => url_mapping[path] }, []]
+    next [308, { "Content-Type" => "text/html", "Location" => url_mapping[path] }, []]
   end
   [399, {}, []]
 end
