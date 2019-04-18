@@ -110,7 +110,6 @@ while true
   Thread.start(server.accept) do |socket|
     pp socket
 
-
     p first_line = socket.readline
     while recv = socket.readline
       p recv
