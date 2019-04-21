@@ -3,6 +3,8 @@ import MozaicPlayer from '/assets/js/mozaic-player.mjs'
 
 // Enable debug log adding #debug into url
 const log = location.hash === "#debug" ? console.log.bind(console) : () => {}
+EventTarget.prototype.on = EventTarget.prototype.addEventListener
+const $ = document.querySelector.bind(document)
 
 if (window.matchMedia( "(max-width: 800px)" ).matches || window.customElements === undefined) {
   // スマホの UI は デフォルトの controls が一番使いやすい気がする
@@ -14,8 +16,6 @@ if (window.matchMedia( "(max-width: 800px)" ).matches || window.customElements =
   customElements.define('mozaic-player', MozaicPlayer);
 
   // main
-  EventTarget.prototype.on = EventTarget.prototype.addEventListener
-  const $ = document.querySelector.bind(document)
   document.on('keydown', ({key}) => {
     log(key, document.activeElement)
 
@@ -68,3 +68,29 @@ if (window.ReportingObserver) {
     console.log(reports)
   })).observe()
 }
+
+document.on('DOMContentLoaded', (e) => {
+  if (window.HTMLDialogElement) {
+    // <dialog> があったら検索 Form を <dialog> で出す
+    const searchDiag = document.importNode($('#search_diag').content, true)
+    document.body.appendChild(searchDiag)
+
+    $('.search').on('click', (e) => {
+      log(e)
+      e.preventDefault()
+      const $dialog = $('.dialog')
+      $dialog.on('click', (e) => {
+        if (e.target === $dialog) {
+          $dialog.close()
+        }
+      })
+      $dialog.on('cancel', (e) => {
+        log(e.type, $dialog.returnValue)
+      })
+      $dialog.on('close', (e) => {
+        log(e.type, $dialog.returnValue)
+      })
+      $dialog.showModal()
+    })
+  }
+})
