@@ -376,7 +376,7 @@ audio: https://files.mozaic.fm/mozaic-ep48.mp3
 
 - *ES2019 Final Feature Set*
   - <https://github.com/tc39/proposals/blob/master/finished-proposals.md>
-  - http://2ality.com/2018/02/ecmascript-2019.html
+  - <http://2ality.com/2018/02/ecmascript-2019.html>
   - ES2019 に入る 8 つの機能(現 Stage 4)が確定
     - Optional catch binding
     - JSON superset
@@ -428,7 +428,7 @@ audio: https://files.mozaic.fm/mozaic-ep48.mp3
     - Promise.any: 一個でも resolve したら終わり、全部だめだったらエラー配列で reject
 - Other
   - *Future JavaScript: what is still missing?*
-    - http://2ality.com/2019/01/future-js.html
+    - <http://2ality.com/2019/01/future-js.html>
   - *Justin Fagnani on Twitter: "JavaScript class fields are so, so, very broken 😥"*
     - <https://twitter.com/justinfagnani/status/1090732607615029248>
     - class fields の設計がうれしくないという指摘

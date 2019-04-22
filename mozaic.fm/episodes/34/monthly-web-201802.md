@@ -445,7 +445,7 @@ audio: https://files.mozaic.fm/mozaic-ep34.mp3
 - rwaldron/tc39-notes
   - <https://github.com/tc39/tc39-notes/blob/master/es8/2018-01/summary.md>
 - Feature watch: ECMAScript 2019
-  - http://2ality.com/2018/02/ecmascript-2019.html
+  - <http://2ality.com/2018/02/ecmascript-2019.html>
 - Proposals Diff
   - <https://github.com/tc39/proposals/compare/master@{2018-02-01}...master{2018-03-01}>
   - 0->1: N/A

@@ -483,7 +483,7 @@ audio: https://files.mozaic.fm/mozaic-ep45.mp3
   - <https://medium.com/dev-channel/a-netflix-web-performance-case-study-c0bcde26a9d9>
 - *National Center for Supercomputing Applications (NCSA) at the University of Illinois*
   - <https://twitter.com/MIT_CSAIL/status/1061637673536770048>
-  - http://www.ncsa.illinois.edu/enabling/mosaic/versions
+  - <http://www.ncsa.illinois.edu/enabling/mosaic/versions>
   - NCSA Mosaic 25 周年
 - *Cloud Computing without Containers*
   - <https://blog.cloudflare.com/cloud-computing-without-containers/>

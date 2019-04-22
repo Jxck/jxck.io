@@ -514,12 +514,12 @@ audio: https://files.mozaic.fm/mozaic-ep42.mp3
 - *AV1 のテストを YouTube や Netflix などが開始*
   - <https://www.youtube.com/playlist?list=PLyqf6gJt7KuHBmeVzZteZUlNUQAVLwrZS>
     - YouTube が AV1 をベータ提供しテストを開始
-    - http://youtube.com/testtube から opt-in し Chrome 70 か Firefox Nightly build
+    - <http://youtube.com/testtube> から opt-in し Chrome 70 か Firefox Nightly build
   - AV1 Video Samples Now Available on YouTube & Netflix
     - <https://www.cnx-software.com/2018/09/17/av1-video-samples-youtube-netflix/>
   - Netflix public AV1 test streams
     - <https://twitter.com/cconcolato/status/1039656215725277185>
-    - http://download.opencontent.netflix.com/?prefix=AV1/
+    - <http://download.opencontent.netflix.com/?prefix=AV1/>
   - *Star Trek はどうやって異星人間でビデオコーデックのネゴシエーションをしているのか*
     - <https://twitter.com/jdrosen2/status/1042952371494629376>
     - CISCO CTO のジョークレス

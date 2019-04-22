@@ -335,8 +335,8 @@ audio: https://files.mozaic.fm/mozaic-ep49.mp3
     - という記事を engadget 英語版が紹介した
     - これをさらに日本語にしたらこうなるらしい(原文の引用すらない)
     - <https://japanese.engadget.com/2019/02/08/internet-explorer-ie/>
-  - マイクロソフトも使用やめるよう声明 国会で Internet Explorer 論争 - ライブドアニュース
-    - http://news.livedoor.com/article/detail/16079565/
+  - マイクロソフトも使用やめるよう声明 国会で Internet Explorer 論争
+    - <http://news.livedoor.com/article/detail/16079565/>
   - *MicrosoftEdge/wptest*
     - <https://github.com/MicrosoftEdge/wptest>
     - <https://wptest.center/#/new>
@@ -358,21 +358,21 @@ audio: https://files.mozaic.fm/mozaic-ep49.mp3
   - CSS Scroll Snap Module Level 1
     - <https://www.w3.org/blog/news/archives/7541>
   - Update CR of CSS Contain L1
-    - http://lists.w3.org/Archives/Public/www-style/2019Feb/0000.html
+    - <http://lists.w3.org/Archives/Public/www-style/2019Feb/0000.html>
   - Updated CR of CSS Scroll Snap
-    - http://lists.w3.org/Archives/Public/www-style/2019Jan/0017.html
+    - <http://lists.w3.org/Archives/Public/www-style/2019Jan/0017.html>
   - Updated CR of CSS Values and Units Level 3
-    - http://lists.w3.org/Archives/Public/www-style/2019Jan/0016.html
+    - <http://lists.w3.org/Archives/Public/www-style/2019Jan/0016.html>
 - Call for Exclusions: CSS Values and Units Module Level 3
-  - http://lists.w3.org/Archives/Public/www-style/2019Jan/0019.html
+  - <http://lists.w3.org/Archives/Public/www-style/2019Jan/0019.html>
 - Call for Exclusions: CSS Scroll Snap Module Level 1
-  - http://lists.w3.org/Archives/Public/www-style/2019Jan/0018.html
+  - <http://lists.w3.org/Archives/Public/www-style/2019Jan/0018.html>
 - Working Draft
 - First Public Working Draft
   - First Public Working Draft: WebXR Device API
     - <https://www.w3.org/blog/news/archives/7548>
   - CSS Shadow Parts Level 1
-    - http://lists.w3.org/Archives/Public/www-style/2019Feb/0001.html
+    - <http://lists.w3.org/Archives/Public/www-style/2019Feb/0001.html>
 - Chartering
   - Secure Web Payments Interest Group
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/dulMPXxHRGQ/jb3DWVu3FgAJ>
@@ -588,7 +588,7 @@ audio: https://files.mozaic.fm/mozaic-ep49.mp3
 ### 周辺動向
 
 - *1991: A SERVER-SIDE WEB FRAMEWORK WRITTEN IN FORTH*
-  - http://www.1-9-9-1.com/?fbclid=IwAR3hGJKPTF-JPo6Y2ZZBEYAhaQ6Dy1SGGTzVQmVPG6q3dX-RzxA48FaOuWQ
+  - <http://www.1-9-9-1.com/?fbclid=IwAR3hGJKPTF-JPo6Y2ZZBEYAhaQ6Dy1SGGTzVQmVPG6q3dX-RzxA48FaOuWQ>
   - Forth という言語で書かれたフレームワーク
 - DeskGap
   - <https://deskgap.com/>
