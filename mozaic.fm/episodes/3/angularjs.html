@@ -53,22 +53,23 @@
   <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/article.css>
   <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/footer.css>
   <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/mozaic.css>
+
+  <template id=search_diag>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/dialog.css>
+    <dialog>
+      <form method=get action=https://google.co.jp/search>
+        <fieldset>
+          <legend>search via google</legend>
+          <label for=keywords>keyword:</label>
+          <input type=search name=q id=keywords placeholder=keywords>
+          <input type=hidden name=q value=site:mozaic.fm/episodes>
+          <button type=submit>go</button>
+        </fieldset>
+      </form>
+    </dialog>
+  </template>
 </head>
 <body>
-
-<template id=search_diag>
-  <dialog class=dialog>
-    <div>
-      <p>search via google</p>
-      <form method=get action=https://google.co.jp/search>
-        <input type=hidden name=q value=site:mozaic.fm/episodes>
-        <input height=10 type=search name=q placeholder=keywords>
-        <button type=submit>go</button>
-      </form>
-    </div>
-  </dialog>
-</template>
-
 <header>
   <nav>
     <ul>
