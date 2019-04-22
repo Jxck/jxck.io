@@ -113,7 +113,7 @@ export default class MozaicPlayer extends HTMLElement {
 
         <div class=progress-line>
           <time class=current datetime=00:00:00>00:00:00</time>
-          <progress class=progress value=0></progress>
+          <progress class=progress value=0 tabindex=0></progress>
           <time class=duration datetime=00:00:00>00:00:00</time>
         </div>
 

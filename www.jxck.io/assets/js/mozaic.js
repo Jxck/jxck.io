@@ -16,15 +16,16 @@ if (window.matchMedia( "(max-width: 800px)" ).matches || window.customElements =
   customElements.define('mozaic-player', MozaicPlayer);
 
   // main
-  document.on('keydown', ({key}) => {
-    log(key, document.activeElement)
+  document.on('keydown', (e) => {
+    log(e.key, document.activeElement)
 
-    if (document.activeElement.nodeName !== "BODY") return
+    if ([e.target, document.body].includes(document.activeElement) === false) return
 
-    switch(key) {
+    switch(e.key) {
       case ' ':
         log('play/pause')
         $('mozaic-player').play()
+        e.preventDefault()
         break
       case 'ArrowLeft':
         log('back')
@@ -34,14 +35,14 @@ if (window.matchMedia( "(max-width: 800px)" ).matches || window.customElements =
         log('forward')
         $('mozaic-player').forward()
         break
-      case 'ArrowUp':
-        log('volume up')
-        $('mozaic-player').volumeup()
-        break
-      case 'ArrowDown':
-        log('volume down')
-        $('mozaic-player').volumedown()
-        break
+        // case 'ArrowUp':
+        //   log('volume up')
+        //   $('mozaic-player').volumeup()
+        //   break
+        // case 'ArrowDown':
+        //   log('volume down')
+        //   $('mozaic-player').volumedown()
+        //   break
     }
   })
 }
