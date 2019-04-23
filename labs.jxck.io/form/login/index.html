@@ -4,13 +4,42 @@
 
 <title>Login Form DEMO | labs.jxck.io</title>
 
+<style>
+/*
+input:required {
+  border-color: yellow;
+}
+input:optional {
+  border-color: gray;
+}
+input:valid {
+  border-color: lime;
+}
+input:invalid {
+  border-color: red;
+}
+*/
+</style>
+
 <form id=login action=/login method=post>
   <fieldset form=login>
     <legend>Login</legend>
-    <label for=username>Username</label>
-    <input type=text name=username id=username value=jxck>
-    <label for=password>Password</label>
-    <input type=password name=password id=password value=thisismypassword>
+
+    <label for=username>Username <abbr title=required>*</abbr></label>
+    <input type=email
+           id=username
+           name=username
+           autocomplete=username
+           required
+           autofocus>
+
+    <label for=password>Password  <abbr title=required>*</abbr></label>
+    <input type=password
+           id=password
+           name=password
+           autocomplete=current-password
+           required>
+
     <button type=submit>login</button>
   </fieldset>
 </form>
