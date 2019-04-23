@@ -29,15 +29,7 @@ XSS などの原因となる DOM 操作として、 DOM に直接文字列を展
 
 しかし、適切な前処理はあくまで開発者側が担保するものなので、往々にして抜けが出る。
 
-規模が大きければ、レビューなどを行なっても、それらを見つけ出すことは難しい。
-
-これらの API を利用する場合は、意図しない文字列が代入されても良いように、適切な事前処理を行う必要がある。
-
-規模が大きくなれば、テストやセキュリティレビューで全てをあぶりだすことも難しい。
-
-最近では、そもそもの DOM 処理をフレームワークに任せるか、型による検証を通して抜け漏れを防ぐといった工夫がなされている。
-
-Trusted Types は、ブラウザ自体に型を認識させ、処理をフックすることで、意図しない処理を見つけ出すことが目的とされている。
+Trusted Types は、文字列を「処理済み」と型付けし、ブラウザ自体にその型を認識させることで、処理の漏れを見つけ出すことが目的とされている。
 
 
 ## CSP trusted-types
@@ -81,7 +73,9 @@ $('script').textContent = 'alert(0)'
 - TrustedScriptURL
 - TrustedScript
 
-各処理は、 DOMString をこの型に変換してからでないと行えないようになった。
+各処理は、対象の DOMString をこれらの型に変換してから行う必要がある。
+
+逆に変更されてない DOMString は TypeError になるため、未処理の文字列が sink に流れるのを防ぐことができるのだ。
 
 
 ## Trusted Types
@@ -92,11 +86,11 @@ DOMString を TrustedTypes に変換するには、まず TrustedTypePolicy を�
 
 
 ```js
-const policy = TrustedTypes.createPolicy('application-policy', {
+const escapePolicy = TrustedTypes.createPolicy('application-policy', {
   createHTML:      (unsafe) => {/*..*/},
   createURL:       (unsafe) => {/*..*/},
-  createScriptURL: (unsafe) => {/*..*/}
-  createScript:    (unsafe) => {/*..*/}
+  createScriptURL: (unsafe) => {/*..*/},
+  createScript:    (unsafe) => {/*..*/},
 })
 ```
 
@@ -112,14 +106,14 @@ $('div').innerHTML = trustedHTML
 
 
 ```js
-const policy = TrustedTypes.createPolicy('application-policy', {
+const escapePolicy = TrustedTypes.createPolicy('application-policy', {
   createHTML: (unsafe) => {
     return unsafe
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
+      .replace(/'/g, "&#039;")
   }
 })
 
@@ -241,11 +235,14 @@ TrustedTypes.createPolicy('https://labs.jxck.io', {
 
 ### 何もしない、はできない。
 
-意図しないものを省くために、エスケープのように強制的に変換できれば良いが、意図しない場合は明示的にエラーを投げるか、定義しないことでエラーを発生させるしか方法が無い。
 
-エラーにできることもメリットであるが、エラー処理に悩まされるくらいなら操作を無視できた方が良い場合もありそうだ。
+たとえば location.href への代入が型エラーになったら、代入を無視するということはできない。
 
 例えば `createURL()` で `null` や `undefined` を返しても、 `location.href` へ代入は行われてしまい、遷移がおこる。
+
+エスケープのように強制的に変換できれば良いが、意図しない場合は明示的にエラーを投げるか、定義しないことでエラーを発生させるしか方法が無い。
+
+エラーにできることもメリットであるが、エラー処理に悩まされるくらいなら操作を無視できた方が良い場合もありそうだ。
 
 せっかくなら、何もしないということがうまく表現できると、エラー処理を気にせずにいられるので良さそうだ。
 
@@ -334,7 +331,7 @@ CSP によって有効になるのは、型が違う場合にエラーをあげ�
 
 実際に TrustedTypes を使うかどうかを別としても、「型によるランタイム検証」の方針は W3C では新しい試みなので、この波が今後の API 設計にどう影響していくかは興味がある。
 
-それらを踏まえ、検証とフィードバックが行なっていければと考える。
+それらを踏まえ、検証とフィードバックが行っていければと考える。
 
 
 ## DEMO
