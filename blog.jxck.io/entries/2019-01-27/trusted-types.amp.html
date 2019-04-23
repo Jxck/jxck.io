@@ -53,7 +53,7 @@ by Jxck
     "https://logo.jxck.io/jxck.1200x1200.png"
   ],
   "datePublished": "2019-01-27T08:00:00+08:00",
-  "dateModified": "2019-01-27T08:00:00+08:00",
+  "dateModified": "2019-04-25T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -782,7 +782,7 @@ td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2019-01-27>2019-01-27</time>
-    <li>updated_at: <time class=updated_at datetime=2019-01-27>2019-01-27</time>
+    <li>updated_at: <time class=updated_at datetime=2019-04-25>2019-04-25</time>
     <li class=tags>tags: [<a href='/tags/xss.html'>xss</a>,<a href='/tags/trusted%20types.html'>trusted types</a>,<a href='/tags/security.html'>security</a>]
   </ul>
 
@@ -824,11 +824,7 @@ td:last-child {
       <p>こうした API は WebIDL でいう DOMString を許容しており、おおよそ任意の文字列を受け入れる。
       <p>そこで、開発者は意図しない文字列が代入されないように、エスケープなど事前処理を行う必要がある。
       <p>しかし、適切な前処理はあくまで開発者側が担保するものなので、往々にして抜けが出る。
-      <p>規模が大きければ、レビューなどを行なっても、それらを見つけ出すことは難しい。
-      <p>これらの API を利用する場合は、意図しない文字列が代入されても良いように、適切な事前処理を行う必要がある。
-      <p>規模が大きくなれば、テストやセキュリティレビューで全てをあぶりだすことも難しい。
-      <p>最近では、そもそもの DOM 処理をフレームワークに任せるか、型による検証を通して抜け漏れを防ぐといった工夫がなされている。
-      <p>Trusted Types は、ブラウザ自体に型を認識させ、処理をフックすることで、意図しない処理を見つけ出すことが目的とされている。
+      <p>Trusted Types は、文字列を「処理済み」と型付けし、ブラウザ自体にその型を認識させることで、処理の漏れを見つけ出すことが目的とされている。
     </section>
     <section>
       <h2 id="csp-trusted-types"><a href="#csp-trusted-types">CSP trusted-types</a></h2>
@@ -870,30 +866,31 @@ $(&#039;script&#039;).textContent = &#039;alert(0)&#039;</code></pre>
         <li>TrustedScriptURL
         <li>TrustedScript
       </ul>
-      <p>各処理は、 DOMString をこの型に変換してからでないと行えないようになった。
+      <p>各処理は、対象の DOMString をこれらの型に変換してから行う必要がある。
+      <p>逆に変更されてない DOMString は TypeError になるため、未処理の文字列が sink に流れるのを防ぐことができるのだ。
     </section>
     <section>
       <h2 id="trusted-types"><a href="#trusted-types">Trusted Types</a></h2>
       <p>DOMString を TrustedTypes に変換するには、まず TrustedTypePolicy を生成する必要がある。
       <p>これは、以下のように <code translate="no">createPolicy()</code> を用いて生成する。
-      <pre class=js><code translate="no">const policy = TrustedTypes.createPolicy(&#039;application-policy&#039;, {
+      <pre class=js><code translate="no">const escapePolicy = TrustedTypes.createPolicy(&#039;application-policy&#039;, {
   createHTML:      (unsafe) =&gt; {/*..*/},
   createURL:       (unsafe) =&gt; {/*..*/},
-  createScriptURL: (unsafe) =&gt; {/*..*/}
-  createScript:    (unsafe) =&gt; {/*..*/}
+  createScriptURL: (unsafe) =&gt; {/*..*/},
+  createScript:    (unsafe) =&gt; {/*..*/},
 })</code></pre>
       <p>例えば <code translate="no">innerHTML</code> できる TrustedHTML は、この Policy に定義した <code translate="no">createHTML()</code> を通して取得することができる。
       <pre class=js><code translate="no">const trustedHTML = escapePolicy.createHTML(&#039;&lt;img src=/ onerror=&quot;alert(10)&quot;&gt;&#039;)
 $(&#039;div&#039;).innerHTML = trustedHTML</code></pre>
       <p>つまり、 <code translate="no">innerHTML</code> の前には HTML Special Chars のエスケープを必須としたいという場合は、 <code translate="no">createPolicy()</code> の引数に渡す関数にその処理を入れれば良い。
-      <pre class=js><code translate="no">const policy = TrustedTypes.createPolicy(&#039;application-policy&#039;, {
+      <pre class=js><code translate="no">const escapePolicy = TrustedTypes.createPolicy(&#039;application-policy&#039;, {
   createHTML: (unsafe) =&gt; {
     return unsafe
       .replace(/&amp;/g, &quot;&amp;amp;&quot;)
       .replace(/&lt;/g, &quot;&amp;lt;&quot;)
       .replace(/&gt;/g, &quot;&amp;gt;&quot;)
       .replace(/&quot;/g, &quot;&amp;quot;&quot;)
-      .replace(/&#039;/g, &quot;&amp;#039;&quot;);
+      .replace(/&#039;/g, &quot;&amp;#039;&quot;)
   }
 })
 
@@ -982,9 +979,10 @@ const escapedValue = escapePolicy.createHTML(&#039;&lt;b&gt;escape me&lt;/b&gt;&
       <h2 id="考察"><a href="#考察">考察</a></h2>
       <section>
         <h3 id="何もしないはできない"><a href="#何もしないはできない">何もしない、はできない。</a></h3>
-        <p>意図しないものを省くために、エスケープのように強制的に変換できれば良いが、意図しない場合は明示的にエラーを投げるか、定義しないことでエラーを発生させるしか方法が無い。
-        <p>エラーにできることもメリットであるが、エラー処理に悩まされるくらいなら操作を無視できた方が良い場合もありそうだ。
+        <p>たとえば location.href への代入が型エラーになったら、代入を無視するということはできない。
         <p>例えば <code translate="no">createURL()</code> で <code translate="no">null</code> や <code translate="no">undefined</code> を返しても、 <code translate="no">location.href</code> へ代入は行われてしまい、遷移がおこる。
+        <p>エスケープのように強制的に変換できれば良いが、意図しない場合は明示的にエラーを投げるか、定義しないことでエラーを発生させるしか方法が無い。
+        <p>エラーにできることもメリットであるが、エラー処理に悩まされるくらいなら操作を無視できた方が良い場合もありそうだ。
         <p>せっかくなら、何もしないということがうまく表現できると、エラー処理を気にせずにいられるので良さそうだ。
       </section>
       <section>
@@ -1041,7 +1039,7 @@ const escapedValue = escapePolicy.createHTML(&#039;&lt;b&gt;escape me&lt;/b&gt;&
       <p>それを踏まえて、現状の設計を見直す際に、参考にするのは現状の適切な距離の取り方かもしれない。
       <p>あとは、ビルド時の静的な型検査、ステージングなどでのランタイム検査の恩恵を受ければ、 CSP Report Only や off  でデプロイでも一定の効果は予想され、当面はそこが現実的な気もする。
       <p>実際に TrustedTypes を使うかどうかを別としても、「型によるランタイム検証」の方針は W3C では新しい試みなので、この波が今後の API 設計にどう影響していくかは興味がある。
-      <p>それらを踏まえ、検証とフィードバックが行なっていければと考える。
+      <p>それらを踏まえ、検証とフィードバックが行っていければと考える。
     </section>
     <section>
       <h2 id="demo"><a href="#demo">DEMO</a></h2>

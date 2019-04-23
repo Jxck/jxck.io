@@ -53,7 +53,7 @@ by Jxck
     "https://logo.jxck.io/jxck.1200x1200.png"
   ],
   "datePublished": "2019-03-14T08:00:00+08:00",
-  "dateModified": "2019-04-22T08:00:00+08:00",
+  "dateModified": "2019-04-25T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -782,7 +782,7 @@ td:last-child {
 <main>
   <ul class=info>
     <li>created_at: <time class=created_at datetime=2019-03-14>2019-03-14</time>
-    <li>updated_at: <time class=updated_at datetime=2019-04-22>2019-04-22</time>
+    <li>updated_at: <time class=updated_at datetime=2019-04-25>2019-04-25</time>
     <li class=tags>tags: [<a href='/tags/private.html'>private</a>,<a href='/tags/javascript.html'>javascript</a>]
   </ul>
 
@@ -835,7 +835,7 @@ console.log(c.count) // 3</code></pre>
       <h2 id="private-field"><a href="#private-field">Private Field</a></h2>
       <p>JavaScript に Class 構文が導入されたのはかなり最近のことだ。
       <p>しかし、初期の提案に全てを詰め込むことはせず、いくつかの機能(前述の class field/static/private etc)は、 Future Work になっていた。
-      <p>中でも Private フィールドについては、他のクラス指向オブジェクト指向の言語では標準であることが多く、これを入れるために議論が行われた。
+      <p>中でも Private フィールドについては、他のクラスベースオブジェクト指向の言語では標準であることが多く、これを入れるために議論が行われた。
       <p>現在は、先の class-fields の仕様にマージされ、先に結論を言うと、現状の仕様は以下のようになり、ブラウザの実装が進みつつある。
       <p><a href="https://github.com/tc39/proposal-class-fields">tc39/proposal-class-fields: Orthogonally-informed combination of public and private fields proposals</a>
       <pre class=js><code translate="no">class Counter {
@@ -870,7 +870,7 @@ console.log(c.#count) // SyntaxError</code></pre>
     </section>
     <section>
       <h2 id="なぜこの構文になったのか"><a href="#なぜこの構文になったのか">なぜこの構文になったのか</a></h2>
-      <p>かなり珍しい構文に落ち着いたこともあり、どうして <code translate="no">#</code> なのかは FAQ であり、本家のリポジトリにおおよそ書いてある。
+      <p>かなり珍しい構文に落ち着いたこともあり、どうして <code translate="no">#</code> なのかは FAQ であり、本家のリポジトリにおおよそ書かれている。
       <p><a href="https://github.com/tc39/proposal-class-fields/blob/master/PRIVATE_SYNTAX_FAQ.md">proposal-class-fields/PRIVATE_SYNTAX_FAQ.md</a>
       <p>ここでは、 JS における Private がどう挙動すべきかを含めた議論の過程を見ていく。
     </section>
@@ -978,7 +978,7 @@ console.log(c.count) // undefined</code></pre>
         <li>
           以上を一定のパフォーマンスで実装できる<ol>
             <li>Private へのアクセスが遅くない
-            <li>Public なアクセスや Obejct の生成など既存の挙動にに影響が極力無い
+            <li>Public なアクセスや Obejct の生成など既存の挙動に影響が極力無い
           </ol>
         </li>
       </ol>
@@ -1016,9 +1016,10 @@ console.log(c.count) // undefined</code></pre>
 c = new Counter()
 c.count = 10 // 実際には public</code></pre>
       <p>Java などの言語では、コンパイルの段階で型が何であるかといった判別がなされるため、実行する前にエラーにするといった処理ができる。
-      <p>しかし JS はコンパイルが無く、動的に任意のプロパティが定義できるため、定義の段階で <code translate="no">private</code> というキーワードが使えたとしても、アクセスする部分で毎回判定が必要になってしまうため、実装が複雑になってしまう。
+      <p>しかし JS はコンパイルが無く、動的に任意のプロパティが定義できる。
+      <p>したがって、仮に定義の段階で <code translate="no">private</code> というキーワードが使えたとしても、アクセスする部分で毎回判定が必要になってしまい、実装が複雑になってしまう。
       <p>残念ながら、将来のために残されていた <code translate="no">private</code> という予約語は、今後も予約されたまま使われることはなさそうだ。
-      <p>仕様は 3~4 年議論されており、おおよそ出尽くしたので、この記法を覆せる提案を出すのは難しそうだ。
+      <p>仕様は 3~4 年議論されており、おおよそ出尽くしたので、この記法を覆す提案を出すのは難しいだろう。
     </section>
     <section>
       <h2 id="syntax-の導入"><a href="#syntax-の導入">Syntax の導入</a></h2>
@@ -1046,7 +1047,7 @@ console.log(c.#count) // syntax error</code></pre>
       <p>この構文の特徴は、 JS では最後の <code translate="no">c.#count</code> という記法が許可されず Syntax Error になるということだ。
       <p>これは、外から Private フィールドにアクセスする方法が構文レベルでエラーになるため、絶対にできないということを意味する。
       <p>そして、クラス内部では <code translate="no">#count</code> と、必ず <code translate="no">#</code> をつけてフィールドを定義させることにより、 Public なフィールドと名前がかぶることがないため、 <code translate="no">c.count</code> が定義されてもなんの問題もなくなる。
-      <p>結果として、外から Private フィールドがあるかどうかを知ることも、ソースを構文解析でもしない限りできなくなる。
+      <p>結果として、外から Private フィールドがあるかどうかを知ることは、ソースを構文解析でもしない限りできなくなる。
       <p>また <code translate="no">this.#count</code> でアクセスすれば、少なくとも Private フィールドにアクセスしようとしていること自体は自明なため、オーバーヘッドも減らせる。
       <p>まとめると、 <em>従来エラーだった構文を導入して Private の定義およびアクセスが自明になるように拡張した</em> 結果できたのがこの構文ということになる。
     </section>
@@ -1079,7 +1080,7 @@ console.log(c.#count) // syntax error</code></pre>
       <p>JS エンジンはセミコロンが省略された場合、それを補ってコードを解釈をする。これを ASI(Auto Semicolon Insertion) という。
       <p>上の例は、セミコロンが <code translate="no">value()</code> の後ろに補われるように見えて、実際は <code translate="no">print()</code> の後だけに補われ、 <code translate="no">%x</code> の <code translate="no">%</code> は前の行との mod 演算と解釈される。
       <p>今更セミコロンを必須にすることはできないので、この目的で <code translate="no">%</code> を使うことはできない。こうした問題を ASI Hazard と言う。
-      <p>結果として、残っている記号が <code translate="no">#</code> しかなかったため、これが採用された。
+      <p>結果として、残っている記号が <code translate="no">#</code> しかなかった。それ以外選択肢が無かったため、これが採用されたのだ。
     </section>
     <section>
       <h2 id="short-hand"><a href="#short-hand">Short Hand</a></h2>
@@ -1180,7 +1181,7 @@ console.log(p1.display())</code></pre>
     </section>
     <section>
       <h2 id="今後の構文拡張"><a href="#今後の構文拡張">今後の構文拡張</a></h2>
-      <p>ここまでの作業からもわかるように、 JavaScript を構文的に拡張する上で使える「記号」はほぼ枯渇している。
+      <p>ここまでの議論からもわかるように、 JavaScript を構文的に拡張する上で使える「記号」はほぼ枯渇している。
       <p>Pipeline Operator のように複数の記号を組み合わせていくか、 Unicode 全体まで範囲を広げるといった方向しかない。
       <p>そこで、今後の拡張は Decorator ベースでやっていくのが良いのではないかと言う提案が出ている。
       <p><a href="https://github.com/littledan/proposal-reserved-decorator-like-syntax">littledan/proposal-reserved-decorator-like-syntax: Reserved decorator-like syntax as an extension point for future JavaScript syntax</a>
@@ -1192,7 +1193,7 @@ class Point {
   @[type(float64)]
   #y;
 }</code></pre>
-      <p>構文そのものが拡張される機会は減り、今後は Decorator まみれな JS になっていく可能性はありそうだ。
+      <p>構文拡張をベースとした ES の進化もそろそろ終焉を迎え、今後は Decorator まみれな JS になっていく可能性がありそうだ。
     </section>
     <section>
       <h2 id="demo"><a href="#demo">DEMO</a></h2>
