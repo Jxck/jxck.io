@@ -40,8 +40,10 @@ function playerKeybind(e) {
 if (window.matchMedia( "(max-width: 800px)" ).matches || window.customElements === undefined) {
   // スマホの UI は デフォルトの controls が一番使いやすい気がする
   // custom element 無い場合も controls
-  document.querySelector('audio').controls = true
-  document.querySelector('audio').style.width = '100%'
+  const $audio = $('audio')
+  if ($audio === null) return
+  $audio.controls = true
+  $audio.style.width = '100%'
 } else {
   log(MozaicPlayer)
   customElements.define('mozaic-player', MozaicPlayer);
@@ -50,7 +52,8 @@ if (window.matchMedia( "(max-width: 800px)" ).matches || window.customElements =
 }
 
 if (navigator.share) {
-  const $share = document.querySelector('#share')
+  const $share = $('#share')
+  if ($share === null) return
   $share.style.display = 'block'
   $share.addEventListener('click', (e) => {
     console.log(e)
