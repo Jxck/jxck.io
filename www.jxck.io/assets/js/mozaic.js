@@ -7,6 +7,15 @@ EventTarget.prototype.on  = EventTarget.prototype.addEventListener
 EventTarget.prototype.off = EventTarget.prototype.removeEventListener
 const $ = document.querySelector.bind(document)
 
+if (window.ReportingObserver) {
+  (new ReportingObserver((reports, observer) => {
+    reports.map((report) => {
+      navigator.sendBeacon("https://report-uri.jxck.io/report-to.cgi", JSON.stringify(report))
+    })
+    console.log(reports)
+  })).observe()
+}
+
 // keybind
 function playerKeybind(e) {
   log(e.key, e.target, document.activeElement)
@@ -37,45 +46,45 @@ function playerKeybind(e) {
       //   break
   }
 }
-if (window.matchMedia( "(max-width: 800px)" ).matches || window.customElements === undefined) {
-  // スマホの UI は デフォルトの controls が一番使いやすい気がする
-  // custom element 無い場合も controls
-  const $audio = $('audio')
-  if ($audio === null) return
-  $audio.controls = true
-  $audio.style.width = '100%'
-} else {
-  log(MozaicPlayer)
-  customElements.define('mozaic-player', MozaicPlayer);
-
-  document.on('keydown', playerKeybind)
-}
-
-if (navigator.share) {
-  const $share = $('#share')
-  if ($share === null) return
-  $share.style.display = 'block'
-  $share.addEventListener('click', (e) => {
-    console.log(e)
-    navigator.share({
-      url:   location.href,
-      title: document.title,
-      text:  document.querySelector('section:nth-of-type(2) p').textContent
-
-    })
-  })
-}
-
-if (window.ReportingObserver) {
-  (new ReportingObserver((reports, observer) => {
-    reports.map((report) => {
-      navigator.sendBeacon("https://report-uri.jxck.io/report-to.cgi", JSON.stringify(report))
-    })
-    console.log(reports)
-  })).observe()
-}
 
 document.on('DOMContentLoaded', (e) => {
+
+  // Enable Mozaic Player
+  if (window.matchMedia( "(max-width: 800px)" ).matches || window.customElements === undefined) {
+    // スマホの UI は デフォルトの controls が一番使いやすい気がする
+    // custom element 無い場合も controls
+    const $audio = $('audio')
+    if ($audio !== null) {
+      $audio.controls = true
+      $audio.style.width = '100%'
+    }
+  } else {
+    log(MozaicPlayer)
+    customElements.define('mozaic-player', MozaicPlayer);
+
+    document.on('keydown', playerKeybind)
+  }
+
+
+  // Enable Web Share
+  if (navigator.share) {
+    const $share = $('#share')
+    if ($share !== null) {
+      $share.style.display = 'block'
+      $share.addEventListener('click', (e) => {
+        console.log(e)
+        navigator.share({
+          url:   location.href,
+          title: document.title,
+          text:  document.querySelector('section:nth-of-type(2) p').textContent
+
+        })
+      })
+    }
+  }
+
+
+  // Enable Search Dialog
   if (window.HTMLDialogElement) {
     // <dialog> があったら検索 Form を <dialog> で出す
     const searchDiag = document.importNode($('#search_diag').content, true)
