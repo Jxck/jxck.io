@@ -18,6 +18,7 @@
 ## Log
 
 | session     | youtube                              | togetter                                  |
+| #nwc_all    | -                                    | [まとめ](https://togetter.com/li/1267054) |
 | #nwc_sre    | [録画](https://youtu.be/HR1pcyQ_i3I) | [まとめ](https://togetter.com/li/1267067) |
 | #nwc_perf   | [録画](https://youtu.be/nXvHsb3uCIw) | [まとめ](https://togetter.com/li/1267058) |
 | #nwc_a11y   | [録画](https://youtu.be/omOFlnPUJIk) | [まとめ](https://togetter.com/li/1267057) |
