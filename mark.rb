@@ -7,6 +7,7 @@ require "json"
 require "time"
 require "pathname"
 require "kramdown"
+require 'kramdown-parser-gfm'
 
 
 # html
@@ -374,7 +375,7 @@ class Traverser
       # <br> を複数の <p> に分けつつ余計な改行を消す
       children = p.children.reduce([{type: :p, children: []}]) {|acc, e|
         if e.type === :text and e.value.start_with?("\n")
-          e.value.gsub!("\n", "")
+          e.value = e.value.gsub("\n", "")
         end
 
         if e.type === :br
