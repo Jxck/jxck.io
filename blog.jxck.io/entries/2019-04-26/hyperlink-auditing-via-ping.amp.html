@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html amp lang=ja>
+<head>
+<meta charset=utf-8>
+<!--
+貴様、見ているな！！
+このサイトの技術的なまとめはこちらをどうぞ。
+https://labs.jxck.io/blog
+
+by Jxck
+-->
+<link rel=canonical href=https://blog.jxck.io/entries/2019-04-26/hyperlink-auditing-via-ping.html>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+<link rel=author href=https://jxck.io/assets/humans.txt>
+
+<meta name=author content=Jxck>
+  <meta name=description content="「ユーザが意図する挙動」とは何か。技術的に可能であるが「やらない方が良いこと」は、誰がどう決めるのか。Web には仕様、実装、デプロイ、そしてユーザの利用とフィードバックによって、そうした合意がゆるやかに形成されていく仕組みがあると筆者は考えている。しかし、これは明文化され...">
+  <meta name=keywords content="ping,ecosystem,web">
+
+  <meta name=twitter:card content=summary>
+  <meta name=twitter:site content=@jxck_>
+  <meta name=twitter:url content="https://blog.jxck.io/entries/2019-04-26/hyperlink-auditing-via-ping.html">
+  <meta name=twitter:title content="Web における技術の解釈とエコシステムによる合意形成プロセスについて | blog.jxck.io">
+  <meta name=twitter:description content="「ユーザが意図する挙動」とは何か。技術的に可能であるが「やらない方が良いこと」は、誰がどう決めるのか。Web には仕様、実装、デプロイ、そしてユーザの利用とフィードバックによって、そうした合意がゆるやかに形成されていく仕組みがあると筆者は考えている。しかし、これは明文化され...">
+  <meta name=twitter:image content="https://jxck.io/assets/img/jxck.png">
+
+  <meta property=og:type content=article>
+  <meta property=og:url content="https://blog.jxck.io/entries/2019-04-26/hyperlink-auditing-via-ping.html">
+  <meta property=og:title content="Web における技術の解釈とエコシステムによる合意形成プロセスについて | blog.jxck.io">
+  <meta property=og:site_name content="blog.jxck.io">
+  <meta property=og:description content="「ユーザが意図する挙動」とは何か。技術的に可能であるが「やらない方が良いこと」は、誰がどう決めるのか。Web には仕様、実装、デプロイ、そしてユーザの利用とフィードバックによって、そうした合意がゆるやかに形成されていく仕組みがあると筆者は考えている。しかし、これは明文化され...">
+  <meta property=og:image content="https://jxck.io/assets/img/jxck.png">
+
+  <link rel="shortcut icon" href="https://jxck.io/assets/img/jxck.png">
+  <link rel=icon sizes=256x256 href="https://jxck.io/assets/img/jxck.png">
+  <link rel=icon sizes=60x60 href="https://logo.jxck.io/jxck.60x60.png">
+  <link rel=icon sizes=1200x1200 href="https://logo.jxck.io/jxck.1200x1200.png">
+  <link rel=apple-touch-icon sizes=256x256 href="https://jxck.io/assets/img/jxck.png">
+  <link rel=apple-touch-icon sizes=60x60 href="https://logo.jxck.io/jxck.1200x1200.png">
+  <link rel=apple-touch-icon sizes=1200x1200 href="https://logo.jxck.io/jxck.1200x1200.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "Web における技術の解釈とエコシステムによる合意形成プロセスについて | blog.jxck.io",
+  "image": [
+    "https://jxck.io/assets/img/jxck.png",
+    "https://logo.jxck.io/jxck.1200x1200.png"
+  ],
+  "datePublished": "2019-04-26T08:00:00+08:00",
+  "dateModified": "2019-04-27T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://logo.jxck.io/jxck.60x60.png",
+      "height": 60,
+      "width": 60
+    }
+  },
+  "description": "「ユーザが意図する挙動」とは何か。技術的に可能であるが「やらない方が良いこと」は、誰がどう決めるのか。Web には仕様、実装、デプロイ、そしてユーザの利用とフィードバックによって、そうした合意がゆるやかに形成されていく仕組みがあると筆者は考えている。しかし、これは明文化され..."
+}
+</script>
+
+<title>Web における技術の解釈とエコシステムによる合意形成プロセスについて | blog.jxck.io</title>
+<script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+<script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+<script async src=https://cdn.ampproject.org/v0.js></script>
+
+<style amp-custom>
+article section p {
+  margin-left: 0;
+}
+
+article pre {
+  margin: 0;
+}
+
+article table {
+  margin-left: 0;
+}
+
+article img {
+  margin: 1em 0;
+  border: 1px solid #ccc;
+  box-sizing: content-box;
+  background-color: #fff;
+}
+
+article ul,
+article ol {
+  margin-left: 0.8em;
+  font-family: monospace;
+  font-size: 1.2em;
+}
+
+article li {
+  margin-bottom: 0.2em;
+}
+
+article ul li ul,
+article ol li ol {
+  margin: 0.2em 0 0.2em 1em;
+  font-size: 1em;
+}
+
+article ol li ol li,
+article ul li ul li {
+  margin-bottom: 0;
+}
+
+article dl {
+  margin: 1.4em 0 1.4em 0.8em;
+}
+
+article blockquote {
+  padding: 1em;
+}
+
+article blockquote p {
+  line-height: 1;
+  margin: 0;
+}
+
+@supports (line-height-step: 1px) {
+  article {
+    --grid-rhythm: 1.5em;
+    line-height: 1.5;
+    line-height-step: var(--grid-rhythm);
+  }
+
+  article h1,
+  article h2,
+  article h3,
+  article h4,
+  article h5,
+  article h6 {
+    display: inline-block;
+    width: 100%;
+    line-height-step: 0;
+    line-height: 1.2;
+    margin-bottom: 0;
+  }
+
+  article section {
+    /* grid for debug */
+    /* background-size: 100% var(--grid-rhythm); */
+    /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
+  }
+
+  article p {
+    margin-top: var(--grid-rhythm);
+    margin-bottom: var(--grid-rhythm);
+  }
+
+  article pre,
+  article table {
+    line-height-step: 0;
+    line-height: normal;
+  }
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src:
+    local("NotoSansCJKjp-Bold.otf"),
+    local("NotoSansJP-Bold.otf"),
+    url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular-201902.woff2") format("woff");
+}
+
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 700;
+  font-display: optional;
+  src:
+    local("NotoSansCJKjp-Bold.otf"),
+    local("NotoSansJP-Bold.otf"),
+    url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold-201902.woff2") format("woff");
+}
+
+:root {
+  --background-color: #fefefe;
+  --font-color: #222;
+  --header-color: #222;
+
+  --anchor-color: RoyalBlue;
+  --anchor-visited-color: Brown;
+
+  --code-block: #efefef;
+  --code-block-font: #222;
+
+  --block-quote: #ddd;
+  --table-border: #222;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #010101;
+    --font-color: #eee;
+
+    --anchor-color: CornflowerBlue;
+    --anchor-visited-color: RosyBrown;
+
+    --code-block: #efefef;
+
+    --table-border: #eee;
+  }
+
+  article img {
+    filter: grayscale(50%);
+  }
+  article img[src*=svg] {
+    filter: invert(100%) grayscale(50%);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+  background-color: var(--background-color);
+  color: var(--font-color);
+  margin: 0;
+  padding: 0;
+}
+
+p > code {
+  font-family: monospace;
+}
+
+pre > code {
+  font-family: "Consolas", "Courier New", "Menlo", Monaco, monospace;
+}
+
+iframe {
+  display: block;
+  max-width: 100%;
+  margin: 1em 0;
+}
+
+.tags a {
+  margin: 0 0.2em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+audio {
+  width: 70%;
+}
+
+@media screen and (max-device-width: 480px) {
+  audio {
+    width: 100%;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.info li {
+  margin-right: 1em;
+  list-style-type: none;
+}
+
+.info li::before {
+  content: none;
+}
+
+header {
+  z-index: 1;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.4em;
+  background-color: var(--header-color);
+}
+
+h2:target,
+h3:target,
+h4:target,
+h5:target,
+h6:target {
+  /* sticky header に合わせて link scroll をずらす */
+  margin-top: calc(-50px - 0.2em);
+  padding-top: calc(50px + 0.2em);
+}
+
+header ul {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 80%;
+  margin: 0 auto;
+  padding: 4px;
+}
+
+header ul li {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  margin-left: 1em;
+}
+
+header ul li a {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+header ul li svg {
+  fill: var(--background-color);
+}
+
+header ul li::before {
+  content: none;
+}
+
+header ul li:first-child {
+  flex-grow: 1;
+  margin-left: 0;
+}
+
+header .logo {
+  border: 1px solid #fff;
+  box-sizing: border-box;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  pointer-events: none;
+  color: var(--font-color);
+}
+
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: var(--font-color);
+}
+
+h1 > a::before {
+  content: "# ";
+  pointer-events: all;
+}
+
+h2 > a::before {
+  content: "## ";
+  pointer-events: all;
+}
+
+h3 > a::before {
+  content: "### ";
+  pointer-events: all;
+}
+
+h4 > a::before {
+  content: "#### ";
+  pointer-events: all;
+}
+
+h1 > a:hover::before,
+h2 > a:hover::before,
+h3 > a:hover::before,
+h4 > a:hover::before,
+h5 > a:hover::before,
+h6 > a:hover::before {
+  color: Brown;
+}
+
+em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+em::before,
+em::after {
+  content: "*";
+}
+
+strong {
+  color: red;
+}
+
+strong::before,
+strong::after {
+  content: "**";
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+dl dt::after {
+  content: ":";
+}
+
+blockquote {
+  display: block;
+  border: solid 1px var(--block-quote);
+  border-radius: 4px;
+  padding: 0.4em 1em;
+  margin: 0;
+}
+
+blockquote p::before {
+  content: "> ";
+}
+
+code {
+  background-color: var(--code-block);
+  color: var(--code-block-font);
+  border-radius: 4px;
+  padding: 0 4px;
+}
+
+code::before,
+code::after {
+  content: "`";
+}
+
+main {
+  display: block;
+  width: 80%;
+  margin: 1em auto;
+}
+
+@media screen and (max-device-width: 480px) {
+  main {
+    width: 94%;
+  }
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+  color: var(--anchor-color);
+}
+
+a:visited {
+  color: var(--anchor-visited-color);
+}
+
+ol,
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+ul,
+ol,
+dl {
+  margin: 1.4em 0;
+}
+
+dl dt {
+  font-weight: bold;
+}
+
+dl dd {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+  margin-left: 1.2em;
+}
+
+footer {
+  padding: 1em;
+}
+
+footer strong,
+footer .copyright {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  font-style: italic;
+  font-size: small;
+}
+
+
+pre {
+  word-break: break-all;
+  word-wrap: break-word;
+  margin: 1.4em 0 0 0;
+  border-radius: 4px;
+}
+
+pre::before {
+  content: "```" attr(class) "\A";
+}
+
+pre::after {
+  z-index: -1;
+  position: relative;
+  top: -1em;
+  content: "\A```";
+}
+
+pre > code {
+  overflow: auto;
+  display: block;
+  padding: 0.6em;
+  margin: 0;
+  border: none;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-attribute {
+  font-weight: bold;
+}
+
+.hljs-meta {
+  color: #4f80e5;
+}
+
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-pseudo {
+  color: #6f42c1;
+}
+
+.hljs-selector-tag {
+  color: #22863a;
+}
+
+.hljs-subst {
+  font-weight: bold;
+}
+
+.hljs-variable {
+  color: #a71d5d;
+}
+
+.hljs-symbol {
+  font-weight: bold;
+}
+
+.hljs-selector-attr {
+  color: #6f42c1;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  .hljs-keyword {
+    color: #000;
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  .hljs-number {
+    color: var(--code-block-font);
+  }
+
+  .hljs-built_in {
+    color: #000;
+    font-weight: bold;
+  }
+
+  .hljs-literal {
+    color: var(--code-block-font);
+    font-weight: bold;
+  }
+
+  .hljs-regexp {
+    color: var(--code-block-font);
+  }
+
+  .hljs-comment {
+    color: #888;
+  }
+
+  .hljs-tag {
+    color: var(--code-block-font);
+    font-weight: bold;
+  }
+
+  .hljs-strong {
+    font-weight: bold;
+  }
+
+  .hljs-attribute {
+  }
+
+  .hljs-attr {
+    color: var(--code-block-font);
+    font-weight: bold;
+  }
+
+  .hljs-selector-tag {
+    color: var(--code-block-font);
+  }
+
+  .hljs-subst {
+    font-weight: bold;
+  }
+  .hljs-symbol {
+    font-weight: bold;
+  }
+
+
+  .hljs-meta,
+  .hljs-selector-id,
+  .hljs-selector-class,
+  .hljs-selector-pseudo,
+  .hljs-variable,
+  .hljs-title,
+  .hljs-string,
+  .hljs-name,
+  .hljs-selector-attr {
+    color: var(--code-block-font);
+  }
+}
+
+
+
+
+
+
+
+/**.hljs,**/
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition,
+.hljs-template-variable,
+.hljs-link,
+.hljs-type,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-section,
+.hljs-meta-string,
+.hljs-emphasis {
+  /** if you find element applyed this style, please tell me https://github.com/jxck/jxck.io/issues **/
+  font-size: 100em;
+}
+
+table {
+  font-family: monospace;
+  margin: 2em 0;
+  border-spacing: 0 0.4em;
+}
+
+th {
+  padding: 0 1em 0.6em;
+  border-left: 0.14em solid var(--table-border);
+  border-bottom: 2px dashed var(--table-border);
+}
+
+td {
+  padding: 0.4em 1.2em;
+  border-left: 0.14em solid var(--table-border);
+}
+
+th:last-child,
+td:last-child {
+  border-right: 0.14em solid var(--table-border);
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+</style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://blog.jxck.io><amp-img class=logo alt="blog top" width=30 height=30 src=https://jxck.io/assets/img/blog.svg></a>
+      <li><a href=.><amp-img alt="move to parent directory" width=30 height=30 src=https://jxck.io/assets/img/up.svg></a>
+      <li><a href=/feeds/atom.xml><amp-img alt="rss feed" width=30 height=30 src=https://jxck.io/assets/img/rss.svg></a>
+      <li><a href=https://jxck.io/humans.txt><amp-img alt="huamns.txt" width=30 height=30 src=https://jxck.io/assets/img/humans.svg></a>
+      <li><a href=https://jxck.io><amp-img class=logo alt="jxck logo" width=30 height=30 src=https://jxck.io/assets/img/jxck.svg></a>
+    </ul>
+  </nav>
+</header>
+<main>
+  <ul class=info>
+    <li>created_at: <time class=created_at datetime=2019-04-26>2019-04-26</time>
+    <li>updated_at: <time class=updated_at datetime=2019-04-27>2019-04-27</time>
+    <li class=tags>tags: [<a href='/tags/ping.html'>ping</a>,<a href='/tags/ecosystem.html'>ecosystem</a>,<a href='/tags/web.html'>web</a>]
+  </ul>
+
+
+  <article>
+    <h1><a href=/entries/2019-04-26/hyperlink-auditing-via-ping.html>Web における技術の解釈とエコシステムによる合意形成プロセスについて</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p>「ユーザが意図する挙動」とは何か。技術的に可能であるが「やらない方が良いこと」は、誰がどう決めるのか。
+      <p>Web には仕様、実装、デプロイ、そしてユーザの利用とフィードバックによって、そうした合意がゆるやかに形成されていく仕組みがあると筆者は考えている。
+      <p>しかし、これは明文化されているわけでもなく、その全体像を把握するのは一般には難しいだろう。
+      <p>今回は、ちょうど何度目かの議論が再発している ping 属性を例に、この合意形成の概観について解説を試みる。
+    </section>
+    <section>
+      <h2 id="リンクの-ping-属性"><a href="#リンクの-ping-属性">リンクの ping 属性</a></h2>
+      <p><code translate="no">&lt;a&gt;</code> には ping という属性があり、以下のように URL を指定する。
+      <pre class=html><code translate="no">&lt;a href=https:example.com ping=/path/to/report&gt;example.com&lt;/a&gt;</code></pre>
+      <p><a href="https://html.spec.whatwg.org/#ping">HTML Standard - ping Attribute</a>
+      <p>このリンクは、クリックすると https://example.com に遷移するが、ブラウザは遷移すると同時に <code translate="no">/path/to/report</code> に対して、おおよそ以下のようなリクエストを投げる。
+      <pre class=http><code translate="no">POST /path/to/report HTTP/1.1
+Content-Type: text/ping
+Ping-From: http://labs.jxck.io/ping/
+Ping-To: http://labs.jxck.io/ping/
+
+PING</code></pre>
+      <p><a href="https://html.spec.whatwg.org/#hyperlink-auditing">HTML Standard - 4.6.5.1 Hyperlink auditing</a>
+      <p>このリクエストには <code translate="no">Ping-From</code> / <code translate="no">Ping-To</code> ヘッダが含まれ、それぞれの値は遷移元/遷移先の URL となる。
+      <p>したがって ping リクエストを収集することにより、ユーザが「<em>どのページからどのページに遷移したか</em>」を取得することができるのだ。
+      <p>従来も HTTP の Referer ヘッダを見れば「そのユーザがどこから遷移して来たか」を取ることができた。
+      <p>ping 属性はこれに加え「どこに遷移して行ったか」を標準仕様だけで取ることを可能にし、より精度の高いユーザの行動解析を可能にするものだ。
+      <p>身近な ping の導入事例としては、 Google の検索結果がある。 ping を実装したブラウザでリンクを踏むともれなく ping が飛んでいることだろう。
+    </section>
+    <section>
+      <h2 id="ping-と-privacy"><a href="#ping-と-privacy">Ping と Privacy</a></h2>
+      <p>もし、この仕様を知らなかった人であれば、以下のような感想を最初に持つかもしれない。
+      <ul>
+        <li>「リンクをクリックしただけで遷移先が取得されるのは気持ち悪い」
+        <li>「プライバシーの侵害ではないのか」
+        <li>「トラッキングのための機能が標準仕様に入っているのは問題だ」
+      </ul>
+      <p>その感想自体を否定するつもりはない。
+      <p>結果として「<em>気持ち悪い機能だから標準から削除された方が良い</em>」と言いたくなる気持ちもわかる。
+      <p>しかし、本当にそれが気持ち悪さの根本にある問題を解決しているのかというと、そうとは言い切れないし、かなり長い間議論されているが実際には消えていないという現状がある。
+      <p>ましてや、標準仕様でありながら「ユーザの意図しない挙動」であると捉えられ、新たな悲劇が起こるといったことも、笑い話ではないご時世だ。
+      <p>そこで、この仕様について交わされてきた議論の経緯を踏まえることで、 Web はこのユーザの持つ「気持ち悪さ」にどうアプローチし、ユーザをどう守るのか、なぜ今この仕様が消えていないのかについて解説する。
+    </section>
+    <section>
+      <h2 id="hyperlink-auditing"><a href="#hyperlink-auditing">Hyperlink Auditing</a></h2>
+      <p>Web はハイパーリンクで繋がるモデルを採用し、それによって多くのページ/サイトが連携を成してきた。
+      <p>ユースケースによっては「ユーザがどこから来た」や「どこに出て行ったか」を知りたいというニーズは普遍的にある。
+      <p>それぞれの取得は、技術的には複数の方法がすでにあり、使用されている。
+      <ul>
+        <li>
+          流入(どこからきたか)<ul>
+            <li>Referer
+            <li>Tracking Cookie
+            <li>URL パラメータ
+          </ul>
+        </li>
+        <li>
+          流出(どこにいくか)<ul>
+            <li>JS でフックし送る
+            <li>リダイレクトを挟む
+            <li>ping 属性
+          </ul>
+        </li>
+      </ul>
+      <p>ここでの問題は流出先の収集方法だ。
+    </section>
+    <section>
+      <h2 id="流出先の収集"><a href="#流出先の収集">流出先の収集</a></h2>
+      <section>
+        <h3 id="js"><a href="#js">JS</a></h3>
+        <p>最も想像しやすい手法は、 JS を用いた実装だろう。
+        <p><code translate="no">onclick</code>, <code translate="no">onunload</code>, などをフックし、遷移の前に必要な情報を載せたリクエストをサーバに飛ばす方法だ。
+        <p>XHR で飛ばすこともできるが、非同期だと送り終わる前にページが遷移してしまうなどの理由により、あえて同期の XHR でリクエストを投げ、終わるまで処理を止めてるという場合もある。
+        <pre class=js><code translate="no">window.addEventListener(&#039;unload&#039;, (e) =&gt; {
+  const xhr = new XMLHttpRequest()
+  xhr.open(&#039;post&#039;, &#039;https://beacon.example/&#039;, false) // sync xhr
+  xhr.send(data) // 必要な情報を収集する
+})</code></pre>
+        <p>最近は Off The Main Thread の流れもあり、同期の XHR は徐々に無くしていく方向になっているため、標準化されている Beacon API や Keep Alive Fetch などを利用するのが理想的だ。
+        <pre class=js><code translate="no">window.addEventListener(&#039;unload&#039;, (e) =&gt; {
+  fetch(&#039;https://beacon.example/&#039;, {
+    keepalive: true,
+    method: &#039;post&#039;,
+    body: data // 必要な情報を収集する
+  })
+})</code></pre>
+        <p>JS で行えば、収集する情報もタイミングも、柔軟に設定できることは容易に想像できるだろう。
+      </section>
+      <section>
+        <h3 id="リダイレクト"><a href="#リダイレクト">リダイレクト</a></h3>
+        <p>もう一つ、広く採用されている方法にリダイレクトがある。
+        <p>例えば SNS や Chat などで URL を共有すると、以下のように URL が表示されるが、 href は別の URL に差し替えられている、という場合がある。
+        <pre class=html><code translate="no">&lt;a href=https://redirect.example?to=https://hello.example.com/world.html&gt;https://hello.example.com/world.html&lt;/a&gt;</code></pre>
+        <p>この場合、実際の遷移先のパラメータを入れておくことで、リダイレクト先で流出先を収集し、その後すぐリダイレクトをかけるというものだ。
+        <p>Referer をとるか、 from をクエリに追加すれば、 <code translate="no">Ping-From</code>, <code translate="no">Ping-To</code> 同等の情報が得られる。
+      </section>
+    </section>
+    <section>
+      <h2 id="画面遷移の-ux"><a href="#画面遷移の-ux">画面遷移の UX</a></h2>
+      <p>実装方法は色々あるが、いずれにせよ「流出先を知りたい」と思うサービスは、なんらかの方法でそれを実現しており、ユーザは日常的に収集されていると思って良いだろう。
+      <p>その結果、画面遷移の前のリダイレクトやブロッキングスクリプトの実行などにより、単なるリンクのクリックの裏では追加の処理が発生し、パフォーマンスを損ねているものもある。
+      <p>収集されている情報も、遷移先だけとは限らない。そこに識別子など追加の情報を含めることも実装次第で可能だ。
+      <p>標準がないために実装方法はサービスに依存し、実際に何が起こっているのかを正確に把握するのは、非常に難しい。
+    </section>
+    <section>
+      <h2 id="標準化された手法"><a href="#標準化された手法">標準化された手法</a></h2>
+      <p>ping 属性が標準化され、ブラウザに実装され、サービスが独自に実装する代わりにそれを利用すると、大きく 3 つのことが期待される。
+      <section>
+        <h3 id="挙動の改善"><a href="#挙動の改善">挙動の改善</a></h3>
+        <p>もし、サービスが標準の ping 属性を用いていれば、追加の JS を実行することも、同期 XHR でレンダリングをブロックすることもない。
+        <p>Beacon や Keep-Alive Fetch を投げるための JS を追加で取得する必要も、複数のリダイレクトを繰り返され、真っ白な画面を待つ必要もない。
+        <p>ユーザは、リンクをクリックしたら画面が遷移する、という普通のことをオーバーヘッドほとんどなしで行うことができる。
+        <p>API が使われれば使われるほど、ブラウザの最適化も進み、パフォーマンス、セキュリティ、 a11y などの非機能要件が改善するサイクルも期待できる。
+        <p>つまり、 UX を損ねることなく同等の要件が達成できる。
+      </section>
+      <section>
+        <h3 id="privacy-の担保"><a href="#privacy-の担保">Privacy の担保</a></h3>
+        <p>標準化された API であるということは、送られる情報も仕様に定義されているため、把握することができる。
+        <p>今の仕様では、 Referer は付与さず、 Ping-To に遷移先 URL 、 Ping-From に遷移元が載るのが基本だ。
+        <p>(ただし、 ping を送る URL が Origin をまたぐ場合や HTTPS でない場合は Ping-From は削除される)
+        <p>現在の仕様では ping に情報を追加する API は無いため、ブラウザが独自拡張をしない限り「何が送られるのか」を把握することができる。
+      </section>
+      <section>
+        <h3 id="opt-outableuser-visible"><a href="#opt-outableuser-visible">Opt-Outable/User-Visible</a></h3>
+        <p>前述の 2 つにも増して最も強調したいのは、ブラウザの設定により「ユーザがコントロールできる余地が生まれる」ことだ。
+        <p>まず、 ping の仕様には以下が記述されている。
+        <blockquote>
+          <p>User agents should allow the user to adjust this behavior, for example in conjunction with a setting that disables the sending of HTTP <code translate="no">Referer</code> (sic) headers. Based on the user&rsquo;s preferences, UAs may either ignore the ping attribute altogether, or selectively ignore URLs in the list (e.g. ignoring any third-party URLs); this is explicitly accounted for in the steps above.
+          <p>&mdash; <cite><a href="https://html.spec.whatwg.org/multipage/links.html#hyperlink-auditing">HTML Standard</a></cite>
+        </blockquote>
+        <p>つまり、この機能はブラウザの設定による無効化や、送られる情報の制限といった、ユーザコントロールの余地を盛り込むことが可能なのだ。
+        <p>JS による収集は、究極的には JS を無効にしなければ Opt-Out できない。
+        <p>リダイレクトも同様、仮に無効にすると Web の通常利用もままならなくなるだろう。
+        <p>各サービスが独自の実装の代わりに標準機能を利用すると、その機能をどう提供するか、どこまでをユーザがコントロール可能にするか、などといった裁量が、サービスからブラウザとユーザに移る。
+        <p>また、こうも書かれている。
+        <blockquote>
+          <p>When the ping attribute is present, user agents should clearly indicate to the user that following the hyperlink will also cause secondary requests to be sent in the background, possibly including listing the actual target URLs.
+          <p>&mdash; <cite><a href="https://html.spec.whatwg.org/multipage/links.html#hyperlink-auditing">HTML Standard</a></cite>
+        </blockquote>
+        <p>各サービスが情報収集を行なっている場合、規約などに書かれているかもしれないが、実際に何がいつ送られたかまではユーザは知らされない。
+        <p>あくまで JS が裏で走っているか、リダイレクトを繰り返しているだけであり、タイミングも画面遷移が伴っていることもあって、ここを indicate しているサービスを筆者は見たことがない。
+        <p>しかし、ブラウザに実装された機能を使うならば、ブラウザはなんらかの方法で UI 上に通知することも不可能ではない。
+        <p>実際にそれを行っているブラウザはまだないが、 ping 属性がなければ、ユーザはいつまでも選択肢を得ることすらできなかったのだ。
+      </section>
+    </section>
+    <section>
+      <h2 id="標準と実装と合意形成"><a href="#標準と実装と合意形成">標準と実装と合意形成</a></h2>
+      <p>「意図しない動作」かどうかは個人の主観だというのが筆者の意見だ。
+      <p>遷移先の収集を「意図しない動作」だと思うも、別に気にしないのも、サービス改善のために積極的に提供したいと思うのも自由だ。
+      <p>しかし、現状はサービスに対して自身の選択を反映させることができないという現状がある。あってもサービスを使わないといった極端なものだ。
+      <p>ping を標準化し、 User-Agent が実装し、サービスが独自の実装を捨ててそちらに移行することは、標準を通じてユーザが「自身の閲覧環境は自身が選択する」というもっとも根本的な権利を取り戻すことに繋がる。
+      <p>仮に ping が一般に認知され「サービスは ping を使い、ユーザは設定でその挙動をコントロールできる」という合意が形成されたとしよう。
+      <p>するとユーザは、そのコントロールの有無によって、使用するブラウザを選択したり、拡張などによるカスタマイズを行うことができる。
+      <p>ping 属性を無視し独自実装を続けるサービスは、ユーザから非難されたり、専門家が啓蒙するいったフェーズに移る。
+      <p>ここまできてはじめて、従来の実装は <em>情報の収集を望まないユーザ</em> が <em>自身の設定した選択が正しく反映されない</em> という「意図しない動作」であると判断されるにたる、合意形成ができたといえるのではないだろうか。
+    </section>
+    <section>
+      <h2 id="合意とエコシステム"><a href="#合意とエコシステム">合意とエコシステム</a></h2>
+      <p>ping に限った話ではなく、 Cookie, Referer, Permission, Pop-Up Blocker, ITP, Private Mode なども、個々に性質や結果は違えど、同じような経緯を辿り今に至っていると言っていいだろう。
+      <p>今問題になっているマイニングも、こういうプロセスを経ることで、より健全な形で運用することも、本来はできたはずである。
+      <p>例えば、無尽蔵にリソースを消費されるのが問題ならば、ユーザがマイナーとネゴシエーションし、その制限を付与するといった選択肢が考えられる。
+      <p>それが Permission API や QuotaManagement API の延長に標準化され、ブラウザはその CPU 利用などを UI 上で表示したり、一切を無効にする設定を加えることも不可能では無いだろう。
+      <p>サービスは、ユーザの明示的な許可を得てそれを行い、ViewPort を埋め込み広告で汚すことなくマネタイズ手段を確保するという選択肢を得られたかもしれないし、ユーザはマイニングを拒否することも、広告の代わりにマイニングを選択することもできたはずだ。
+      <p>そこまで合意が形成されれば、そのエコシステムを完全に無視して、無尽蔵なマイニングを行うスクリプトを走らせたサービスを「意図しない挙動だ」と言って非難することに、違和感は無いだろう。
+      <p>しかし、日本では早い段階でこのプロセスにその仕組みを理解しないコンテキストからの権力が介入し、勝手に「意図しない挙動を」定義してしまった。
+      <p>これは、「広告が表示されるくらいならマイニングされる方が良い」というユーザの選択肢や、「広告以外の方法でマネタイズができるかもしれない」というコンテンツの可能性を奪うだけでなく、あまつさえ「その合意形成のプロセスに積極的に参加する」ことすらを罪としてしまった。
+      <p>罪の根拠としてプロセスの参加者が誰も納得しない別の合意が提示されたようだが、本来それが妥当かどうかを検証するプロセスが毀損されているのだから、それ自体が矛盾しているとしか筆者には見えない。
+      <p>もちろん、合意の形成はゆるやかに行われるものだ、その間にユーザが危険にされされる可能性もあるだろう。
+      <p>ちょうど先月、 Firefox の safe browsing の <a href="https://github.com/mozilla-services/shavar-prod-lists/blob/7eaadac98bc9dcc95ce917eff7bbb21cb71484ec/disconnect-blacklist.json">black list</a> が更新され、マイニングの URL が追加された。
+      <p>これは、ようやくプロセス自体が周り始める兆しだったと見ることもできただろう。
+      <p>他のブラウザの動き、マイニングサービスからのフィードバック、サービスの検証、ユーザの反応、標準化への提案。
+      <p>その結果、完全悪になることもあるかもしれない、より建設的ななにかにたどり着くかもしれない。
+      <p>今となっては、少なくとも日本ではこのプロセスに参加することはもうできないだろう。
+      <p>どうあるべきかを議論することすらできなくなる現状は、大変な機会損失では無いだろうか。
+    </section>
+    <section>
+      <h2 id="ping-の実装の現状"><a href="#ping-の実装の現状">ping の実装の現状</a></h2>
+      <p>話を戻すと、 ping はまだこうした合意形成の途中と言える。
+      <p>いまだに Privacy を懸念する声があがることもあり、<a href="https://github.com/w3c/html/issues/369">情報を追加するための API</a> を求める声もある。
+      <p>実装についても、現時点ではまだ各ブラウザで差がある。
+      <ul>
+        <li>Chrome: 実装済みデフォルトで有効
+        <li>Safari: 実装済みデフォルトで有効
+        <li>Firefox: 実装はあるがフラグで無効化
+        <li>Edge: Chromium ベースの実装を継承
+        <li>IE: 未実装
+      </ul>
+      <p><a href="https://caniuse.com/#feat=ping">Can I use - ping</a>
+      <p>ユーザコントロールについては、 Chrome は無効にすることが可能になっている。
+      <p>しかし、いわゆるメニュー画面ではなく、 chrome://flags であるため、開発者向けの色合いが強い。
+      <p>Safari は、最近この件について態度を表明した。
+      <p>メニューからは無効にできないが、トラッキングから Opt-Out する手段として Content-Blocker を提供するというものだ。
+      <p>あまりに簡単に Opt-Out できると結局サービスが ping を使わなくなるため、デフォルトで 1st Party での収集を許可し ITP 同様 3rd Party の収集を厳しくする方針だ。
+      <p>これは理想と現実のバランスを非常によくとった提案の一つだと筆者には思える。
+      <p><a href="https://webkit.org/blog/8821/link-click-analytics-and-privacy/">Link Click Analytics and Privacy - WebKit</a>
+      <p>Firefox は有効にするには <code translate="no">browser.send_pings</code> が必要だ。
+      <p><a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/LXzY4gwaZFU/fVJIr55OAwAJ">Intent to implement and ship: ping, rel, referrerPolicy, relList, hreflang, type and text properties on SVG elements</a>
+      <p>各ブラウザの態度は、仕様の議論からも透けて見える。
+      <ul>
+        <li>
+          <a href="https://github.com/w3c/html/issues/369">Add text for the ping attribute - Issue #369 - w3c/html</a>
+        </li>
+        <li>
+          <a href="https://github.com/w3c/html/issues/1456">Privacy concern with ping attribute - Issue #1456 - w3c/html</a>
+        </li>
+        <li>
+          <a href="https://github.com/whatwg/html/issues/3718">Privacy concern with ping attribute - Issue #3718 - whatwg/html</a>
+        </li>
+      </ul>
+      <p>この先どのような合意が形成されるかは未知だが、 Safari がブログで態度を表明したことは、この流れに少なからず影響するだろう。
+      <p>次の Edge も Chromium が実装済みの ping を継承しているため、その UI をどうするかという議論には参加することになるだろう。
+      <p>平成で決着がつかなかったが、令和元年は何かしら進展のある年になりそうなので、主にブラウザの UI 周りの動きを注視していくつもりだ。
+      <p>そしてなによりも、「Web のエコシステムによる合意形成プロセス」がこれ以上毀損されないことを願いたい。
+    </section>
+  </article>
+
+</main>
+<hr>
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small><small>Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>Google Analytics</a> and <a href=https://w3c.github.io/ServiceWorker/>Service Worker</a>.</small></p>
+</footer>
+</body>
+</html>
+<amp-analytics type=googleanalytics id=analytics1>
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
