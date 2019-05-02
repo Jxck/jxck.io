@@ -17,9 +17,18 @@
 
 <script>
   'use strict';
-  document.on('DOMContentLoaded', async (e) => {
-    const res = await fetch('http://labs.mozaic.fm/fetch/api', { method: "POST" })
+  document.addEventListener('DOMContentLoaded', async (e) => {
+    const res = await fetch('http://labs.mozaic.fm/fetch/api', {
+      method: "POST",
+      headers: {"content-type": "application/json"},
+      body: JSON.stringify({a:10})
+    })
     console.log(res)
     console.log(await res.text())
   })
 </script>
+
+<form method='post' action="https://example.com">
+  <input type=text name=name value=foo>
+  <input type=submit value=ok>
+</form>

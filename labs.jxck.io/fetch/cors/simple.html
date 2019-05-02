@@ -11,8 +11,8 @@
 <p>see the source &amp; console</p>
 
 <script>
-  document.on('DOMContentLoaded', async (e) => {
-    const res = await fetch('http://labs.mozaic.fm/fetch/cors')
+  document.addEventListener('DOMContentLoaded', async (e) => {
+    const res = await fetch('http://labs.mozaic.fm/fetch/api')
     console.log(res)
     console.log(await res.text())
   })
