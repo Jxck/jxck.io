@@ -22,7 +22,7 @@ audio: https://files.mozaic.fm/mozaic-ep52.mp3
 - Updates
   - New in Chrome 74
     - <https://developers.google.com/web/updates/2019/04/nic74>
-    - Private class fields [blog](https://blog.jxck.io/entries/2019-03-14/private-class-field.html)
+    - Private class fields [[blog](https://blog.jxck.io/entries/2019-03-14/private-class-field.html)]
     - prefers-reduced-motion
     - CSS transition events
     - Feature Policy API updates
@@ -56,11 +56,11 @@ audio: https://files.mozaic.fm/mozaic-ep52.mp3
   - Schedule
     - <https://docs.google.com/spreadsheets/d/1M9lsx7VXVY3cF7e6PbSdhFR9YYHuTOhb1IEhGsIWN-E>
   - LiveStream
-    - day1: https://www.youtube.com/watch?v=s56cYOXiUb8
-    - day2: https://www.youtube.com/watch?v=XZ08w8wIo3I
+    - day1: <https://www.youtube.com/watch?v=s56cYOXiUb8>
+    - day2: <https://www.youtube.com/watch?v=XZ08w8wIo3I>
   - LT
-    - day1: https://docs.google.com/presentation/d/1ls7QfRl5s-C9mdX28Sf5MEfLJulmUG5IgmmPMWsR0uo
-    - day2: https://docs.google.com/presentation/d/1qUV_DkJTGNhTsAFLAb-0cwOcue84WLJm-wYbkzFEH4k
+    - day1: <https://docs.google.com/presentation/d/1ls7QfRl5s-C9mdX28Sf5MEfLJulmUG5IgmmPMWsR0uo>
+    - day2: <https://docs.google.com/presentation/d/1qUV_DkJTGNhTsAFLAb-0cwOcue84WLJm-wYbkzFEH4k>
   - Portals
     - <https://docs.google.com/presentation/d/1zuuKMe8SPyiZQf9dmj8xL7EbL6IQnrE8bpZdytH3JIs>
     - 概要 API の紹介、現状
@@ -703,9 +703,9 @@ audio: https://files.mozaic.fm/mozaic-ep52.mp3
   - <https://wapm.io/> にホスト
   - うまくいくと NPM 以上に使われるかも
 - The new ECMAScript module support in Node.js 12
-  - http://2ality.com/2019/04/nodejs-esm-impl.html
+  - <http://2ality.com/2019/04/nodejs-esm-impl.html>
 - jQuery 3.4.0 Released
-  - http://blog.jquery.com/2019/04/10/jquery-3-4-0-released/
+  - <http://blog.jquery.com/2019/04/10/jquery-3-4-0-released/>
   - Selectors API が充分に普及したので jQuery 4.0 で Sizzle を削除する予定
   - そのため jQuery 独自のセレクタを deprecate した
 - A history of the HTML slot element - Component Kitchen
