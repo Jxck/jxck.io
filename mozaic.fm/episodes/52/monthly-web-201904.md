@@ -1,0 +1,742 @@
+# [monthly-web][mozaic.fm] ep52 Monthly Web 201904
+
+## Info
+
+audio: https://files.mozaic.fm/mozaic-ep52.mp3
+
+- published_at: 2019-05-06
+- guest: [@myakura](https://twitter.com/myakura)
+
+
+## Theme
+
+第 52 回のテーマは 2019 年 4 月の Monthly Web です。
+
+
+## Show Note
+
+
+### Chrome 動向
+
+- Stable: 74
+- Updates
+  - New in Chrome 74
+    - <https://developers.google.com/web/updates/2019/04/nic74>
+    - Private class fields [blog](https://blog.jxck.io/entries/2019-03-14/private-class-field.html)
+    - prefers-reduced-motion
+    - CSS transition events
+    - Feature Policy API updates
+  - Deprecations and removals in Chrome 74
+    - <https://developers.google.com/web/updates/2019/03/chrome-74-deps-rems>
+    - Remove PaymentAddress's languageCode property
+    - Don't allow popups during page unload
+    - Deprecate drive-by downloads in sandboxed iframes
+  - *The Chromium Chronicle: Task Scheduling Best Practices*
+    - <https://developers.google.com/web/updates/2019/04/chromium-chronicle-1>
+    - Chrome チームが始めた Chromium 開発者のためのシリーズ
+    - Code Health, Unittesting, Tooling などを開発者が月刊で紹介していく
+    - 初回はタスクスケジューリング
+  - *What's New In DevTools (Chrome 75)*
+    - <https://developers.google.com/web/updates/2019/04/devtools>
+    - Meaningful preset values when autocompleting CSS functions
+    - Clear site data from the Command Menu
+    - View all IndexedDB databases
+    - View a resource's uncompressed size on hover
+    - Inline breakpoints in the breakpoint pane
+    - IndexedDB and Cache resource counts
+    - Setting for disabling the detailed inspect tooltip
+    - Setting for toggling tab indentation in the Sources panel editor
+  - *Chromium Blog: Data Saver is now Lite mode*
+    - <https://blog.chromium.org/2019/04/data-saver-is-now-lite-mode.html>
+    - Data Saver が通信量だけでなくメモリ消費量やパフォーマンスを向上させるようになったので名前を変更した
+    - テキストや画像が最初に表示されるまで 5 秒以上かかるなら、自動的に Lite pages をダウンロードするようにも
+      - 仕組みはまた改めて公開予定とのこと
+    - Android 版 Chrome のみに。デスクトップ版の Data Saver 拡張は廃止
+- BlinkOn 10
+  - Schedule
+    - <https://docs.google.com/spreadsheets/d/1M9lsx7VXVY3cF7e6PbSdhFR9YYHuTOhb1IEhGsIWN-E>
+  - LiveStream
+    - day1: https://www.youtube.com/watch?v=s56cYOXiUb8
+    - day2: https://www.youtube.com/watch?v=XZ08w8wIo3I
+  - LT
+    - day1: https://docs.google.com/presentation/d/1ls7QfRl5s-C9mdX28Sf5MEfLJulmUG5IgmmPMWsR0uo
+    - day2: https://docs.google.com/presentation/d/1qUV_DkJTGNhTsAFLAb-0cwOcue84WLJm-wYbkzFEH4k
+  - Portals
+    - <https://docs.google.com/presentation/d/1zuuKMe8SPyiZQf9dmj8xL7EbL6IQnrE8bpZdytH3JIs>
+    - 概要 API の紹介、現状
+  - BlinkOn 10 "Decision Making": `<script>`+modules roadmap planning
+    - <https://docs.google.com/presentation/d/1zuuKMe8SPyiZQf9dmj8xL7EbL6IQnrE8bpZdytH3JIs>
+    - スクリプト読み込み関連の機能がいっぱいあるのでリスト化＆オーナーを決めるなどのディスカッション記録
+  - Off Main Thread CSS Paint
+    - <https://docs.google.com/presentation/d/1WrzDN_PiKBfOVUrrbOV8gHQO-ODN0gdCpWE4xMYv29c/>
+    - Paint Worklet 専用のスレッドと、アニメーションの Compositor での処理を検討中という話
+  - Microsoft Edge: Adopting and contributing to Chromium
+    - Edge の Chromium 採用について
+    - すでに公開されているモチベーションや貢献範囲などの(再)共有
+    - ビルド環境や PlayReady DRM の実装、開発内部の話も
+    - Google のサービスに依存した機能の置き換えなども
+  - Writing Secure JavaScript Is Hard: War Stories from Blink's Streams Implementation
+    - <https://docs.google.com/presentation/d/1xszf-auCws84g298BOuhzSjZnjQl-V4qC99idZmEk4k/edit>
+    - V8 Extras で実装した Streams API の問題について
+    - C++ から JavaScript のコードを叩くことからパフォーマンスに影響
+    - スレッドの終了で JavaScript の実行が失敗するなどのクラッシュが発生
+    - セキュリティの問題もあり C++ での再実装へ
+  - Long-term Browser Mitigations for Spectre
+    - <https://docs.google.com/presentation/d/1xszf-auCws84g298BOuhzSjZnjQl-V4qC99idZmEk4k/edit>
+    - 昨年導入された Site Isolation がまだ一部のデータしか守れていない
+    - 現状の CORB は HTML, XML, JSON などドキュメントに対してしか有効でない
+    - セーフリストや CORS-only モードなど、追加の対策について検討
+  - PWAs State of the Union
+    - <https://docs.google.com/presentation/d/1hdlVAyrj9HcPhpOLmB2vU0tt8gGrZd3fRO5oBfS31uc/edit>
+    - PWA の概要
+    - デスクトップ PWA と実験中の Tabbed application mode という、アプリ固有のウインドウについて紹介
+    - Fugu とそのロードマップも
+  - Desiloing files on the web
+    - <https://docs.google.com/presentation/d/1o751xGhXzCdPk25faAiGPw4OQ5SErfQEVvFy2nhZOwc/edit>
+    - Web Share まわりの現状と、検討中の File Handling について紹介
+  - The Interop Update \| The Chrome Gap \| BlinkOn 10
+    - <https://docs.google.com/presentation/d/1_On7g2EAUrVumIZr0PC-_iZszKyGT2_u1HbieThXjKA/edit>
+    - web-platform-tests まわりの話や、ブラウザ間の機能の差がどれくらい広がっているかなどの調査
+  - Feature Policies for a Better Web
+    - <https://docs.google.com/presentation/d/16Ae9JJNZt3zSZtRoztTqfruStmv1vKoSkMVnSgJKc3M/>
+    - Feature Policy で定義されているポリシーの大まかなまとめ
+    - ソースには 41 個定義されていて、うち 16 個が ship 、 experimental なものが 8 個、などなど
+  - Fonts Update
+    - <https://docs.google.com/presentation/d/1aRpvVhX8Q3wgMbg1S3gwJaFvBMzIiZbU_KKvVVqpois>
+  - New Speed Metrics
+    - <https://docs.google.com/presentation/d/1WtXMsHzTTr5za2X9fD8L7lzjtPVs7NQ8NQW3QsT2f3g/>
+    - First Input Delay だけではなく、 Layout Stability(どれくらい読み込み中にコンテンツが動いたか)、 Largest Content Paint(最も大きな画像やテキストが表示されるまでの時間)などを検討している
+- AMP Conf 2019
+  - AMP Conf 2019: Successful web experiences for everyone
+    - <https://blog.amp.dev/2019/04/17/amp-conf-2019-successful-web-experiences-for-everyone/>
+- Intents
+  - Ship: Animation constructor
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/UMxgGkxhdCo/CHZ2H9DsBgAJ>
+  - Ship: AnimationEffect and KeyframeEffect (except composite/iterationComposite)
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/1EQKF7il48U/BJWTPiqwBgAJ>
+  - *Ship: Web Share Level 2*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Cr7Jrb9XMgE/lja4PhCtBgAJ>
+    - ファイルをシェアできるようになる
+    - シェアできるコンテンツのチェックのために canShare() の追加
+  - Ship: `Sec-Fetch-{Mode,Site,User}` request headers.
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/yQgJlq5PEOQ/erexYRWHBgAJ>
+  - Ship: Web Share Target Level 2
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/gETVpeiayNE/H7_YDB61BQAJ>
+  - Ship: DateTimeFormat dateStyle & timeStyle options
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/nQ5Rd08Tfv0/kNVOPvqzBQAJ>
+  - *Ship: User Timing L3*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/CWN34Qo8icI/cpHrV7GPBgAJ>
+    - mark と mesure に引数が追加
+    - 例えば CPU busy で click からハンドラ実行まで時間がかかる場合正確に測れない
+    - start に e.timeStamp を渡せるようにし開始を正確にできる
+    - detail などのメタデータを拡充
+  - *Ship: Lazily load below-the-fold images and iframes*
+    - <https://groups.google.com/a/chromium.org/d/topic/blink-dev/jxiJvQc-gVg/discussion>
+    - loading 属性を img と iframe に追加
+    - 値に lazy, eager, auto (default) のいずれかをとる。 lazy は lazy loading に opt-in 、 eager は opt-out 。
+  - *Ship: WebAssembly Bulk Memory operations*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_TN1EsRyT_s/4c0CZ3s_BwAJ>
+    - memset, memcopy 的なものができる
+  - Ship: Storage Quota Usage Details
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/lq83adC8QRo/Vcr9NfGpCgAJ>
+  - Ship: Async Clipboard read/write with image support
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/TssvWe8TzBc/ewO5G9TCCAAJ>
+  - Ship: Promise.allSettled
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/uvxWW1vTPY0/aM7Wx3b9CgAJ>
+  - Ship 'white-space: break-spaces'
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/66BSOtd7jYc/md5JrQsSCgAJ>
+  - Ship: Promise.{all, race, allSettled} optimization
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/-wE-mbdFOEw/a2V-sjfMCwAJ>
+- Implement and Ship: CSS pseudo-class ":picture-in-picture"
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X-qPSmdSR_g/Yd0xweofBgAJ>
+    - PinP した時に有効になる擬似クラス
+    - :fullscreen などと同じ
+- *Implement and Ship: Support for SVG in favicons*
+    - <https://groups.google.com/a/chromium.org/d/topic/blink-dev/IKe_SAgdNAA/discussion>
+  - *Implement and Ship : Support "noreferrer" for window.open()*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/K8_-u7mK688/rK7FrIOLBQAJ>
+  - Implement and Ship: CSS containment: Remove style from strict and content
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/fKtqaykk4Bs/SOAvgeOyCwAJ>
+- Implement: MSE in Workers
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/CNRywDqgKjY/F0nnA4tTAwAJ>
+- Implement: Media Capabilities: encoding
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/3bwYuLy-Nn4/KL6xvsO4BQAJ>
+- *Implement: Gamepad light indicator API*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/GzllP8DToqw/evfBnu58BQAJ>
+- Implement: Concurrent Marking in Oilpan
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_YMAZR3bbnI/Hk_WfoNFBQAJ>
+- Implement & Ship: RTCRtpTransceiver.stop()
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/dAeG7K7HPG8/WKMpjYfzBwAJ>
+- *Implement: SMS OTP Retriever API*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Drmmb_t4eE8/z_k9l09gCgAJ>
+- Implement: WebXR plane detection API
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/0fCZESiIY0Y/FcWeKGOzCAAJ>
+- Implement: PaymentRequestEvent.changePaymentMethod()
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/-ObfNnnJjLo/pPsUD8CUCAAJ>
+  - Implement: Blink Editing Rearchitecture with TextCursor
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2F2QSxjZQNM/OjzaCe_yCwAJ>
+- Experiment: Allow to set Jitter Buffer Target Delay
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Tgm4qiNepJc/GDFkt9S4BQAJ>
+- Extend Origin Trial: Picking echo canceller for getUserMedia
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/1JLFXz3HX_s/B-R9DvadAwAJ>
+- *Extend Origin Trial: EventTiming*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/WwszZpavn6U/x9pyllbZCQAJ>
+    - First Input Delay などが取れる
+- *Extend Origin Trial: Priority Hints*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/oRp0lYze0oA/nsB1TGUaCwAJ>
+    - importance 属性
+- Change:
+- Unship:
+- Remove:
+  - PSA - AppCache: Cross-origin resource size padding
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/rz1yxzsjM78/xgohbUeEBQAJ>
+  - PSA: You can now view screenshots of failing reftests on wpt.fyi
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/nol2VFi889U/octRc9Z7BQAJ>
+  - <https://bit.ly/blinkintents>
+  - <https://groups.google.com/a/chromium.org/forum/#!forum/blink-dev>
+- Team Weekly Snippet
+- v8
+  - v8 blog
+    - <https://blog.jxck.io/entries/2019-03-14/private-class-field.html>
+- Other
+  - App like animation experiences in AMP
+    - <https://blog.amp.dev/2019/03/28/app-like-animation-experiences-in-amp/>
+  - Building the future of email with AMP
+    - <https://blog.amp.dev/2019/03/26/building-the-future-of-email-with-amp/>
+  - Encouraging More Voices in AMP
+    - <https://blog.amp.dev/2019/03/06/encouraging-more-voices-in-amp/>
+  - AMP on the Times of India
+    - <https://blog.amp.dev/2019/04/04/amp-on-the-times-of-india/>
+  - AMPproject.org moves to amp.dev!
+    - <https://blog.amp.dev/2019/04/02/ampproject-org-moves-to-amp-dev/>
+  - Guest Post: AMP Email
+    - <https://blog.amp.dev/2019/04/01/guest-post-amp-email/>
+  - Support JPEG2000
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/3CUPIGIKfOQ/zzPakR6lBgAJ>
+  - *chromium/src - 3ee9f7924f - Add Reiwa era to date input calendarPicker*
+    - <https://chromium.googlesource.com/chromium/src/+/3ee9f7924f>
+    - 日付系 input の元号に令和追加
+  - Official Google Webmaster Central Blog: Instant-loading AMP pages from your own domain
+    - <https://webmasters.googleblog.com/2019/04/instant-loading-amp-pages-from-your-own.html>
+  - AMP Conf 2019: Successful web experiences for everyone - The AMP Blog
+    - <https://blog.amp.dev/2019/04/17/amp-conf-2019-successful-web-experiences-for-everyone/>
+    - amp-script の Origin Trial
+    - Next.js での AMP サポート
+    - Google Search での Signed Exchange 展開
+    - Google に AMP Stories の専用 UI が追加される
+    - AMP Email が Gmail の Dynamic mail として登場、 Outlook なども検討中
+    - AMP コンポーネントを AMP 外で使えるようにする Bento AMP プロジェクトの発表
+      - リアーキテクチャが必要になるとのことで特に詳細はなし
+  - *isInputPending: Facebook's first browser API contribution - Facebook Code*
+    - <https://code.fb.com/developer-tools/isinputpending-api/>
+    - `isInputPending()` を Facebook が Chromium に実装
+    - Chrome 74 から Origin Trial 開始
+  - *Announcing AMP Real URL*
+    - <https://blog.cloudflare.com/announcing-amp-real-url/>
+    - Cloudflare がホストしている AMP ページの Signed package を AMP Real URL というブランディングで無料で提供する
+  - Presenting search app and browser options to Android users in Europe
+    - <https://www.blog.google/around-the-globe/google-europe/presenting-search-app-and-browser-options-android-users-europe/>
+    - ヨーロッパで展開する Android 端末で表示される、ブラウザと検索エンジンの選択・インストール画面について
+
+
+### Firefox 動向
+
+- Stable: 66
+- Updates
+  - *Protections Against Fingerprinting and Cryptocurrency Mining Available in Firefox Nightly and Beta - Future Releases*
+    - <https://blog.mozilla.org/futurereleases/2019/04/09/protections-against-fingerprinting-and-cryptocurrency-mining-available-in-firefox-nightly-and-beta/>
+    - Fingerprinting と cryptomining のブロック機能を Nightly と Beta に展開
+  - These Weeks in Firefox: Issue 57
+    - <https://blog.nightly.mozilla.org/2019/04/20/these-weeks-in-firefox-issue-57/>
+  - These Weeks in Firefox: Issue 56
+    - <https://blog.nightly.mozilla.org/2019/04/05/these-weeks-in-firefox-issue-56/>
+  - Scroll Anchoring in Firefox 66 - Mozilla Hacks - the Web developer blog
+    - <https://hacks.mozilla.org/2019/03/scroll-anchoring-in-firefox-66/>
+  - *Backward-Compatibility FIDO U2F support shipping soon in Firefox*
+    - <https://blog.mozilla.org/security/2019/04/04/shipping-fido-u2f-api-support-in-firefox/>
+    - WebAuthn をサポートしたが、 Google アカウントでは FIDO U2F API しかサポートしないので互換性のため一部ドメインで有効にする
+  - *DNS-over-HTTPS (DoH) Update - Recent Testing Results and Next Steps - Future Releases
+    - <https://blog.mozilla.org/futurereleases/2019/04/02/dns-over-https-doh-update-recent-testing-results-and-next-steps/>
+    - 2018 年 11 月に行った DoH のテストの結果
+    - 75 パーセンタイルでパフォーマンスに影響はない、もしくは向上も
+    - 4 月 1 日から US の一部のユーザーに対して、リリース版で DoH をテストする
+  - *Reducing Notification Permission Prompt Spam in Firefox*
+    - <https://blog.nightly.mozilla.org/2019/04/01/reducing-notification-permission-prompt-spam-in-firefox/>
+    - Web Push のプロンプトについて 2018 年 12 月 25 日からひと月調査した
+    - 1800 万以上のプロンプトが表示され、許可されたのが 3 ％未満、表示されたら即離脱したケースが 19 ％も
+    - カメラの許可が 85 ％以上なので、これは多すぎる
+    - 4 月の 1 ヶ月間、 Nightly でユーザージェスチャーのないプロンプトを拒否する実験をする
+    - リリース版においても、プロンプトに関する情報を限定的に集めるとも
+  - Stop videos from automatically playing with new autoplay controls from Firefox
+    - <https://blog.mozilla.org/firefox/block-autoplay/>
+  - Firefox Front-End Performance Update #16 | Mike Conley's Blog
+    - <https://mikeconley.ca/blog/2019/04/08/firefox-front-end-performance-update-16/>
+  - Firefox Front-End Performance Update #17 | Mike Conley's Blog
+    - <https://mikeconley.ca/blog/2019/04/24/firefox-front-end-performance-update-17/>
+- Intents
+  - *Implement and Ship: add `preventScroll` option to HTMLElement's, SVGElement's and XULElement's `focus` method*
+    - <https://groups.google.com/d/topic/mozilla.dev.platform/bF2yaNQ1rWs/discussion>
+  - Implement and Ship: `<link rel="stylesheet" disabled>`, reflected by HTMLLinkElement.disabled
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/BdgNaChHnpY/mhXzCBwSCgAJ>
+  - Implement and Ship: Document.cookie
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/Tif4dhPtpGw/dg8FDEwLCgAJ>
+  - *Implement and ship: Support "noreferrer" feature for window.open()*
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/eTt1nd1Ia_Y/x-8JIf2TCwAJ>
+  - Implement: Delegated Credentials for TLS 1.3
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/NupI0zbdd2U/skQEhq6oCgAJ>
+  - Implementing a new tracking blocking mechanism using a separate nsIPrincipal for cookie jar access: StoragePrincipal
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/b8A8LrQGOYs/zfeXEK7lCwAJ>
+  - Unship: -moz-block-height value for line-height
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/XA2mqBeNrk4/_Y_3OUiTAwAJ>
+  - Unship: CSP "require-sri-for" Support
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/TKFsYlh9pr8/o_Vq_1s7BwAJ>
+  - Unship: DH algorithm support for WebCrypto
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/Ut3-eQmUdWg/O9w1et1aBgAJ>
+  - Unship: XMLDocument.load and XMLDocument.async APIs
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/0T4l3yaP3g4/RUxdczw1DAAJ>
+  - User-Initiated Picture-in-Picture enabled on Windows, Nightly only for now
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/V2UFoG0t65I/KJoMyCaWCgAJ>
+    - PiP API の実装ではなく、コンテキストメニューから PiP を実行できるようにする
+- Site Compat
+  - <https://www.fxsitecompat.com>
+- Other
+  - *Standardizing WASI: A system interface to run WebAssembly outside the web*
+    - <https://hacks.mozilla.org/2019/03/standardizing-wasi-a-webassembly-system-interface/>
+  - Firefox Lockbox Now on Android, Keeping your Passwords Safe
+    - <https://blog.mozilla.org/blog/2019/03/26/firefox-lockbox-now-on-android-keeping-your-passwords-safe/>
+  - DNS-over-HTTPS Policy Requirements for Resolvers | Mozilla Security Blog
+    - <https://blog.mozilla.org/security/2019/04/09/dns-over-https-policy-requirements-for-resolvers/>
+
+
+### Safari 動向
+
+- Stable: 12.1
+- New WebKit Features in Safari 12.1 | WebKit
+  - <https://webkit.org/blog/8718/new-webkit-features-in-safari-12-1/>
+  - STP 59-76 の更新が反映されている
+  - Dark Mode for the Web
+    - supported-color-schemes
+    - prefers-color-scheme
+  - Intelligent Tracking Prevention 2.1
+  - Payment Request API
+  - WebRTC Improvements
+  - Modern Encrypted Media Extensions API
+  - Change Codecs and Containers in MSE
+  - Intersection Observer
+  - Web Share API
+  - Color Input
+  - Data Lists
+  - Better Text Decorations
+    - text-underline-offset
+    - text-decoration-thickness
+    - from-font
+  - Web Inspector Improvements
+- *Release Notes for Safari Technology Preview 79*
+  - <https://webkit.org/blog/8706/release-notes-for-safari-technology-preview-79/>
+  - Implemented FIDO AppID extension (r243193)
+  - Implemented support for new meter ARIA role (r243198)
+  - Changed to use a ServiceWorker process per registrable domain (r242905)
+  - Blocked all plugins smaller than 5px × 5px (r242949)
+  - Changed to use smaller default storage quotas for third-party frames (r243247)
+- *Release Notes for Safari Technology Preview 80*
+  - <https://webkit.org/blog/8825/release-notes-for-safari-technology-preview-80/>
+  - Implemented ResizeObserver (r243643)
+  - Added support for "noreferrer" window feature to window.open() (r243705)
+  - Added support for `<object>`.contentWindow (r243638)
+  - Added support for muting screen capture and camera/microphone independently (r243899)
+  - Implemented white-space: break-spaces value (r244036)
+  - Legacy Safari Extensions (.safariextz files) are no longer supported.
+- Other
+  - Introducing the JetStream 2 Benchmark Suite | WebKit
+    - <https://webkit.org/blog/8685/introducing-the-jetstream-2-benchmark-suite/>
+  - *Intelligent Tracking Prevention 2.2*
+    - <https://webkit.org/blog/8828/intelligent-tracking-prevention-2-2/>
+    - QueryParameter でトラッキングしているっぽい場合
+    - JS で付与された Cookie は 1 日で消える
+    - (2.1 では document.cookie は 7 日になった)
+    - SSO は ID Provider の 1st party Cookie が Header から出ていれば大丈夫ということか
+  - *Link Click Analytics and Privacy*
+    - <https://webkit.org/blog/8821/link-click-analytics-and-privacy/>
+    - [blog](https://blog.jxck.io/entries/2019-04-26/hyperlink-auditing-via-ping.html)
+    - ping 属性を無効にする設定を入れないのか、という質問に対する回答
+    - Safari は Privacy by Default である
+      - partition third-party data storage and ServiceWorkers by default
+      - partition HTTP caches by default
+      - ITP is on by default
+    - コンテンツの互換性に影響があるかもしれないが、より強い保護を求めるユーザもいるために以下の機能がある
+      - Private Mode
+      - Content Blocker
+    - Link Click Analytics の方法はいくつかある
+      - Synchronous XHR (XMLHttpRequest).
+      - Asynchronous XHR or Fetch, with a delay.
+      - First-party bounce tracking.
+      - The Beacon API.
+      - The Ping attribute.
+    - Beacon と ping 以外は UX (パフォーマンス)に悪影響
+      - だから Beacon と ping を無効にしたらより悪い方法が使われるだけ
+      - この二つを無効にしてもプライバシーの問題は解決しないどころか悪くなる
+      - この二つを無効にするかどうかは、プライバシーの問題だけでは済まない
+    - Safari はどうしているか
+      - 全ての手法でリクエストが 3rd party に送られる場合はリファラや Cookie を消す
+      - 3rd party tracking に使われることを防ぎ、 1st party のクリック解析は許可
+      - これがちょうど良いバランスだと考えている
+    - それでも ping させたくなければ
+      - Content Blocker を使えば良い
+    - 実装の詳細
+      - Apple Platform では Use Defaults メカニズムが使われている
+      - そのセッティングは Safari のメニューにはない
+      - しかし開発者には問題の切り分けなどのため、デフォルトを上書きする手段があるものもある
+      - ここに最近まで ping 属性を無効にするフラグも入っていた
+      - しかし Safari のメニューに出す意図はなかった
+      - 代替手段があるのに、標準機能の無効を可能にすると誤った方向に導いてしまう
+      - 代わりに ITP や Content Blocker がある。
+
+
+### Edge 動向
+
+- Stable: Edge 44/EdgeHTML 18
+- Dev/Canary: 75.0
+  - Microsoft Edge Insider
+    - <https://www.microsoftedgeinsider.com/>
+  - Microsoft Edge preview builds: The next step in our OSS journey | Windows Experience Blog
+    - <https://blogs.windows.com/windowsexperience/2019/04/08/microsoft-edge-preview-builds-the-next-step-in-our-oss-journey/>
+  - What to expect in the new Microsoft Edge Insider Channels - Microsoft Edge Blog
+    - <https://blogs.windows.com/msedgedev/2019/04/08/microsoft-edge-preview-channel-details/>
+  - Chromium ベースの Microsoft Edge の Dev と Canary ビルドが公開
+  - 公開時点では Beta / Stable はなし、プラットフォームも Windows 10 のみ
+  - UA 文字列のトークンに "Edg/version" が追加
+    - Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.48 Safari/537.36 Edg/74.1.96.24
+    - EdgeHTML 版と区別するためにあえて "Edg" らしい
+    - すでに公開されている Android/iOS 版 Edge もそうなっているらしい
+  - Chromium 74 ベースっぽい
+    - しかし全ての機能(API)があるわけではなさそう
+    - Sec-Fetch-* なども飛んでない
+    - DevTools はほぼそのまま
+    - edge:// に設定がある(edge://flags, edge://edge-urls etc)
+  - ソースコード
+    - Github にはリポジトリがあるがコードが無い
+    - <https://github.com/MicrosoftEdge/MSEdge>
+    - Redmond の住所に＄ 5 払ったらコード送るよ的なことが edge://terms に書いてある
+    - > Source code for portions of Microsoft Edge is available free of charge from <https://thirdpartysource.microsoft.com> under the third party open source license terms provided at <http://aka.ms/thirdpartynotices> and in Microsoft Edge at edge://credits after installation. Or to obtain this source code you may send a check or money order for US $5.00, including the Edge version number, to: [住所]
+    - でもダウンロードリンクが出回っていて普通に取得できる
+    - [3.7G] <https://thirdpartysource.microsoft.com/download/Microsoft%20Edge/75.0.121.1/Windows%20x64/chromium.zip>
+- Status Updates
+  - <https://github.com/MicrosoftEdge/Status/compare/production@{2019-04-01}...production@{2019-05-01}>
+  - <https://social.msdn.microsoft.com/Forums/ja-JP/home?forum=edgeiesupportteamja>
+- EdgeHTML
+  - <https://aka.ms/devguide_edgehtml_18>
+- Build Changelog
+  - <https://developer.microsoft.com/en-us/microsoft-edge/platform/changelog/>
+- Chakra
+  - Release ChakraCore v1.11.8 - Microsoft/ChakraCore
+    - <https://github.com/Microsoft/ChakraCore/releases/tag/v1.11.8>
+- Other
+  - windowsinsider - Mixer
+    - <https://mixer.com/windowsinsider>
+    - Edge チームが配信はじめたらしい
+  - *Microsoft Edge での EV 証明書の信頼 (EV Trust Badge) 表示について*
+    - <https://social.msdn.microsoft.com/Forums/ja-JP/bfe59a95-e0fb-403a-9041-02ae3bbbc4a1/microsoft-edge-1239112398-ev-353882612626360123982044938972-ev-trust-badge?forum=edgeiesupportteamja>
+
+
+### WHATWG/W3C 動向
+
+- Recommendation
+  - Pointer Events Level 2 is a W3C Recommendation
+    - <https://www.w3.org/blog/news/archives/7681>
+- Proposed Recommendation
+- Candidate Recommendation
+  - W3C Invites Implementations of WebVTT: The Web Video Text Tracks Format
+    - <https://www.w3.org/blog/news/archives/7683>
+  - W3C Invites Implementations of Verifiable Credentials Data Model 1.0
+    - <https://www.w3.org/blog/news/archives/7675>
+  - W3C Invites Implementations of Payment Request API
+    - <https://www.w3.org/blog/news/archives/7701>
+  - W3C Invites Implementations of Accessibility Conformance Testing (ACT) Rules Format 1.0
+    - <https://www.w3.org/blog/news/archives/7709>
+- Working Draft
+- First Public Working Draft
+  - *First Public Working Draft: Feature Policy*
+    - <https://www.w3.org/blog/news/archives/7699>
+  - *First Public Working Draft: CSS Spatial Navigation Level 1*
+    - <https://www.w3.org/blog/news/archives/7719>
+- Chartering
+  - *[PROPOSED] Media Working Group Charter*
+    - <https://www.w3.org/2019/04/media-charter-draft.html>
+    - <https://lists.w3.org/Archives/Public/public-new-work/2019Apr/0003.html>
+    - MSE や EME 、 PiP などメディア関連の仕様を策定する新たな WG が提案
+  - [PROPOSED] Web & Networks Interest Group Charter
+    - <https://www.w3.org/2019/03/web-networks-charter-draft.html>
+    - <https://lists.w3.org/Archives/Public/public-new-work/2019Mar/0009.html>
+  - Graph Standardization Business Group Proposed
+    - <https://lists.w3.org/Archives/Public/public-new-work/2019Apr/0005.html>
+  - *Proposed W3C Charters: HTML Working Group; Internationalization (i18n) Working Group and Interest Group (until 2019-05-03)*
+    - <https://lists.w3.org/Archives/Public/public-new-work/2019Apr/0004.html>
+  - ACT Rules Community Group created
+    - <https://lists.w3.org/Archives/Public/public-new-work/2019Apr/0002.html>
+  - *Web Application Security Working Group Revised Charter Approved; Call for Participation*
+    - <https://lists.w3.org/Archives/Public/public-new-work/2019Apr/0000.html>
+  - SPARQL
+    - <https://lists.w3.org/Archives/Public/public-new-work/2019Mar/0013.html>
+  - Verifiable Claims Working Group Charter Extended until 30 September 2019
+    - <https://lists.w3.org/Archives/Public/public-new-work/2019Mar/0011.html>
+  - Functional Knowledge Graph Community Group created
+    - <https://lists.w3.org/Archives/Public/public-new-work/2019Apr/0007.html>
+  - EMVCo, FIDO Alliance, and W3C Form Interest Group to Enhance Security and Interoperability of Web Payments
+    - <https://www.w3.org/blog/news/archives/7703>
+    - <https://lists.w3.org/Archives/Public/public-new-work/2019Apr/0008.html>
+  - Proposed W3C Charter: Media and Entertainment Interest Group
+    - <https://lists.w3.org/Archives/Public/public-new-work/2019Apr/0009.html>
+- Other
+  - *DRAFT Memorandum of Understanding Between W3C and WHATWG*
+    - <https://www.w3.org/2019/04/WHATWG-W3C-MOU.html>
+    - HTML と DOM 仕様を WHATWG で策定し、 W3C がその Review Drafts を REC に持って行くという方針のドラフト
+  - Idiosyncrancies of the HTML parser - The HTML Parser Book
+    - <https://htmlparser.info/>
+    - <https://leanpub.com/html-parser-book/>
+    - Simon Pieters(元 Opera 、現 Bocoup)による HTML の parser についての書籍
+  - Proposal: Comments element - HTML - WICG
+    - <https://discourse.wicg.io/t/proposal-comments-element/3483>
+  - *W3C honored with a second Technology & Engineering Emmy ® Award*
+    - <https://www.w3.org/blog/news/archives/7690>
+    - W3C が standardize a Full TV Experience on the Web で Emmy 賞
+  - *Avoiding Built-In Tracking in Signed Packages · Issue #422 · WICG/webpackage*
+    - <https://github.com/WICG/webpackage/issues/422>
+    - Apple の John Wilander による Signed Exchange のプライバシーにおける考察
+    - リソースのないニュースサイトにアドテクが Signed Exchange を提供するようになるとどうなるか?
+      - トラッキング入りの個別の Signed package を送られやしないか?
+  - W3C Strategic Highlights, Spring 2019
+    - <https://www.w3.org/blog/news/archives/7724>
+
+
+### TC39 動向
+
+- TC39
+  - <https://github.com/rwaldron/tc39-notes/tree/master/es9/2018-03>
+  - Open-ended discussion: How should we evolve the JavaScript standard library over time?
+    - <https://github.com/rwaldron/tc39-notes/blob/master/es9/2018-03/mar-20.md#9iv-open-ended-discussion-how-should-we-evolve-the-javascript-standard-library-over-time>
+    - <https://docs.google.com/presentation/d/1QSwQYJz4c1VESEKTWPqrAPbDn_y9lTBBjaWRjej1c-w/>
+    - 標準ライブラリをどういうデザイン/粒度で入れていくか
+  - Update on Array.prototype.flatten web incompatibility
+    - <https://github.com/rwaldron/tc39-notes/blob/master/es9/2018-03/mar-20.md#10ig-update-on-arrayprototypeflatten-web-incompatibility>
+    - smooshgate の反省とアップデート
+  - Follow up: Champions will pick a name and bring one or several to the committee
+    - <https://github.com/rwaldron/tc39-notes/blob/master/es9/2018-03/mar-22.md#10ig-update-on-arrayprototypeflatten-web-incompatibility>
+  - Update on WASM ES modules
+    - <https://github.com/rwaldron/tc39-notes/blob/master/es9/2018-03/mar-20.md#10ih-update-on-wasm-es-modules>
+    - <https://linclark.github.io/wasm-es-modules/slides/2018-03-06/#/0>
+  - Update on improved TC39 documentation efforts
+    - <https://github.com/rwaldron/tc39-notes/blob/master/es9/2018-03/mar-20.md#10ii-update-on-improved-tc39-documentation-efforts>
+  - What does 1JS mean in a world of transpilers?
+    - <https://github.com/rwaldron/tc39-notes/blob/master/es9/2018-03/mar-21.md#12iiib-what-does-1js-mean-in-a-world-of-transpilers>
+  - Test262 Status Updates with a short summary from the latest work.
+    - <https://github.com/rwaldron/tc39-notes/blob/master/es9/2018-03/mar-22.md#7iv-Test262-status-updates-15m>
+  - Summarize classes
+    - <https://github.com/rwaldron/tc39-notes/blob/master/es9/2018-03/mar-22.md#summarize-classes>
+- Proposals Diff
+  - <https://github.com/tc39/proposals/compare/master@{2019-04-01}...master@{2019-05-01}>
+    - stage 1 のファイルの分離された
+  - 0->1
+    - Promise.any (3 月)
+  - 1->2
+    - String.replaceAll (3 月)
+  - 2->3
+    - Promise.allSettled (3 月)
+    - Static class fields and private static methods (3 月)
+  - 3->4
+- New Proposals
+  - isTemplateObject (3 月)
+    - <https://github.com/mikesamuel/proposal-array-is-template-object>
+    - 取りこぼし
+  - mikesamuel/evalable
+    - <https://github.com/mikesamuel/evalable>
+  - mikesamuel/proposal-hostensurecancompilestrings-passthru
+    - <https://github.com/mikesamuel/proposal-hostensurecancompilestrings-passthru>
+    - HostEnsureCanCompileStrings
+    - 2 つを組み合わせて TrustedTypes の JS 版 TrustedScript 的なものを入れる
+    - eval の仕様を変えずに XSS リスクを減らす
+- Other
+
+
+### IETF 動向
+
+- IETF
+  - wg-materials/minutes.md at gh-pages · httpwg/wg-materials
+    - <https://github.com/httpwg/wg-materials/blob/gh-pages/ietf104/minutes.md>
+    - Client Hints
+      - <https://github.com/httpwg/wg-materials/blob/gh-pages/ietf104/client-hints.pdf>
+      - Fingerprint で議論が平行線
+    - HTTPS-over-QUIC
+      - <https://github.com/httpwg/wg-materials/blob/gh-pages/ietf104/HTTPS-over-QUIC.pdf>
+    - SecondaryCerts
+      - <https://github.com/httpwg/wg-materials/blob/gh-pages/ietf104/SecondaryCerts.pdf>
+      - Client の証明書が欲しいが Renegotiation ができないので拡張フレーム
+      - CA 誤発行があった場合のことなのでもめてる
+    - Origin-Signed Exchanges
+      - <https://github.com/httpwg/wg-materials/blob/gh-pages/ietf104/signed-exchanges.pdf>
+  - HTTPWorkshop/workshop2019
+    - <https://github.com/HTTPWorkshop/workshop2019/tree/master/talks>
+  - Minutes from the April 11 meeting
+    - <https://lists.w3.org/Archives/Public/public-webrtc/2019Apr/0053.html>
+  - *workshop2019/Thomson-hx.pdf at master · HTTPWorkshop/workshop2019*
+    - <https://github.com/HTTPWorkshop/workshop2019/blob/master/talks/Thomson-hx.pdf>
+    - なんかまたすごそうなの出てきた
+- RFC
+  - (Joke)  RFC 8565 - Hypertext Jeopardy Protocol
+    - <https://tools.ietf.org/html/rfc8565>
+  - RFC 8586 - Loop Detection in Content Delivery Networks (CDNs)
+    - <https://tools.ietf.org/html/rfc8586>
+- IETF Last Call
+- WG Last Call
+- Call for Adoption
+- I-D Action
+- Draft
+  - OAuth 2.0 Demonstration of Proof-of-Possession at the Application Layer
+    - <https://tools.ietf.org/html/draft-fett-oauth-dpop-00>
+  - OAuth 2.0 for Browser-Based Apps
+    - <https://tools.ietf.org/html/draft-ietf-oauth-browser-based-apps-01>
+  - Suppressing Intermediate Certificates in TLS
+    - <https://tools.ietf.org/html/draft-thomson-tls-sic-00>
+  - COSE and JOSE Registrations for WebAuthn Algorithms
+    - <https://tools.ietf.org/html/draft-ietf-cose-webauthn-algorithms-00>
+  - *HTTP State Tokens*
+    - <https://tools.ietf.org/html/draft-west-http-state-tokens-00>
+  - TLS Authentication using IEEE 1609.2 certificates
+    - <https://tools.ietf.org/html/draft-msahli-ipwave-ieee1609-00>
+  - ACME Client Extension
+    - <https://tools.ietf.org/html/draft-moriarty-acme-client-00>
+  - JSON Template Language
+    - <https://tools.ietf.org/html/draft-jonas-json-template-language-01>
+  - Using TLS 1.3 with HTTP/2
+    - <https://tools.ietf.org/html/draft-davidben-http2-tls13-00>
+  - TLS Authentication using IEEE 1609.2 certificates
+    - <https://tools.ietf.org/html/draft-msahli-ipwave-extension-ieee1609-00>
+  - Address-bound Token for QUIC
+    - <https://tools.ietf.org/html/draft-kazuho-quic-address-bound-token-00>
+  - An HTTP/2 extension for bidirectional messaging communication
+    - <https://tools.ietf.org/html/draft-xie-bidirectional-messaging-01>
+  - Recording Well-Known URI Capability in the URI Scheme Registry
+    - <https://tools.ietf.org/html/draft-bormann-wk-uri-00>
+  - *The QUIC Loss Bits*
+    - <https://tools.ietf.org/html/draft-ferrieuxhamchaoui-quic-lossbits-00>
+    - <https://tools.ietf.org/html/draft-ferrieux-hamchaoui-quic-lossbits-00>
+  - YANG Groupings for HTTP Clients and HTTP Servers
+    - <https://tools.ietf.org/html/draft-kwatsen-netconf-http-client-server-01>
+  - YANG Groupings for TCP Clients and TCP Servers
+    - <https://tools.ietf.org/html/draft-kwatsen-netconf-tcp-client-server-01>
+  - Using SSRC with WebRTC Simulcast
+    - <https://tools.ietf.org/html/draft-alvestrand-mmusic-simulcast-ssrc-00>
+  - Using GitHub at the IETF
+    - <https://tools.ietf.org/html/draft-ietf-git-using-github-00>
+  - JSON Web Token (JWT) Profile for OAuth 2.0 Access Tokens
+    - <https://tools.ietf.org/html/draft-ietf-oauth-access-token-jwt-00>
+- Other
+  - *HTTP Testing Resources - httpwg/wiki Wiki*
+    - <https://github.com/httpwg/wiki/wiki/HTTP-Testing-Resources>
+  - HTTP/2 and TLS 1.3 post-handshake authenication
+    - <https://lists.w3.org/Archives/Public/ietf-http-wg/2019AprJun/0001.html>
+  - Formalizing the HTTP State Tokens proposal.
+    - <https://lists.w3.org/Archives/Public/ietf-http-wg/2019JanMar/0249.html>
+
+
+### セキュリティ動向
+
+- Colm MacC á rthaigh on Twitter: "I think right around this minute is just about exactly 5 years since the Heartbleed vulnerability in OpenSSL became public. I remember the day vividly, and if you're interested, allow me to tell you about how the day, and the subsequent months, and years unfolded ...…
+  - <https://twitter.com/colmmacc/status/1114944298246660100>
+  - Heartbleed からちょうど 5 年(4/8)
+  - 当時の Amazon 内での動きなどの回顧録
+- コインハイブ事件のご報告とこれからのこと
+  - <https://note.mu/morois/n/n7210db925aa1>
+- コインハイブ事件控訴のお知らせとクラウドファンディングのお願い #JHA_Coinhive
+  - <https://note.mu/morois/n/nbd7a1b5991d7>
+- Apache Tomcat Patches Important Remote Code Execution Flaw
+  - <https://thehackernews.com/2019/04/apache-tomcat-security-flaw.html>
+- *Transitioning to ISRG's Root - Let's Encrypt - Free SSL/TLS Certificates*
+  - <https://letsencrypt.org/2019/04/15/transitioning-to-isrg-root.html>
+  - Let's Encrypt の証明書は IdenTrust の CrossRoot だった
+  - Let's Encrypt を運用している ISRG の証明書が広く普及した
+  - 2019/7/8 からは CrossRoot ではなく ISRG Root X1 で証明書を配布するようになる
+  - 多くのユーザは特に何もしなくても更新のタイミングで新しくなる
+  - もし古いデバイスをサポートしたければ 2021/9/29 までは CrossRoot を使うこともできる
+- *Content Security Policy: A successful mess between hardening and mitigation*
+  - <https://speakerdeck.com/mikispag/content-security-policy-a-successful-mess-between-hardening-and-mitigation>
+  - Google における CSP の導入
+  - XSS は未だに多く、 Google ドメインは広く CSP でカバーしている
+  - 60% の XSS は CSP でブロックできている
+  - Whitelist 形式はバイパスが可能なので Level 3 の nonce ベースに移行している
+  - 緩和策を講じながら最終的に nonce only に移行していく
+  - 7 割くらい CSP をデプロイし、 nonce only は 1  割程度までデプロイ済み
+
+
+### 周辺動向
+
+- <https://docs.google.com/document/d/1TD3fwGVKifHtwT7rGtrbYC0ka0aRGbbU9Nu3p3o8suk/edit>
+- Supercharging Server Timing with HTTP trailers
+  - <https://www.fastly.com/blog/supercharging-server-timing-http-trailers>
+- *Announcing Lucet: Fastly's native WebAssembly compiler and runtime*
+  - <https://www.fastly.com/blog/announcing-lucet-fastly-native-webassembly-compiler-runtime>
+  - <https://github.com/CraneStation/cranelift>
+  - Mozilla 製 cranelift 上に作られている
+  - WASI サポート
+  - VLC に変わって edge 上で動き色々できるように
+- *Introducing Warp: Fixing Mobile Internet Performance and Security*
+  - <https://blog.cloudflare.com/1111-warp-better-vpn/>
+  - Cloudflare が新しく無料の VPN サービス Warp をアナウンス
+  - 4/1 だがエイプリルフールネタじゃない模様
+  - 受付中で 7 月末に提供開始
+  - 図を見ると日本にも 2 箇所サーバがあるっぽい(Tokyo/Osaka ?)
+  - [neumob](https://www.cloudflare.com/press-releases/2017/cloudflare-acquires-neumob-to-supercharge-the-network-experience-end-to-end/) の買収によって始まった
+  - OpenVPN ではなく WireGuard ベースでバッテリーや熱効率も良い
+  - DNS 同様、ロギングや広告もなし
+  - 有料サービス Warp+ も提供予定でそっちでマネタイズ
+  - Warp+ は Argo (輻輳最適化)の組み合わせでより早くなるっぽい
+- Understanding and exploring Feature Policy
+  - <https://www.fastly.com/blog/feature-policy-webs-missing-guardrails>
+- Can I Stop
+  - <https://canistop.net/>
+  - IE11 の国別シェアを見せるサイト
+- *メルカリの懐かしほ〜むぺ〜じ*
+  - <https://mercari-special.jp/~natsukashi/>
+  - 古い Web サイトの再現
+- *Announcing WAPM: The WebAssembly Package Manager*
+  - <https://medium.com/wasmer/announcing-wapm-the-webassembly-package-manager-18d52fae0eea>
+  - WASM のパッケージマネージャー
+  - <https://wapm.io/> にホスト
+  - うまくいくと NPM 以上に使われるかも
+- The new ECMAScript module support in Node.js 12
+  - http://2ality.com/2019/04/nodejs-esm-impl.html
+- jQuery 3.4.0 Released
+  - http://blog.jquery.com/2019/04/10/jquery-3-4-0-released/
+  - Selectors API が充分に普及したので jQuery 4.0 で Sizzle を削除する予定
+  - そのため jQuery 独自のセレクタを deprecate した
+- A history of the HTML slot element - Component Kitchen
+  - <https://component.kitchen/blog/posts/a-history-of-the-html-slot-element>
+  - Shadow DOM v1 の slot について、そうなった歴史
+
+
+### イベント
+
+- 4 月
+  - 9-10: BlinkOn 10 Canada
+    - <https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/5K4WbTlD9rI>
+    - 3min LT 大会が復活したらしい
+  - 17-18: AMP Conf 2019: Tokyo
+    - <https://amphtml.wordpress.com/2019/01/08/announcing-amp-conf-2019-tokyo/>
+  - 25-26:  Web Components F2F
+    - <https://github.com/w3c/webcomponents/issues/802>
+- 5 月
+  - 6-8: MS Build
+    - <https://www.microsoft.com/en-us/build>
+  - 7-9: Google I/O
+    - <https://events.google.com/io/transmission>
+  - 29-30: de:code 2019
+    - <https://www.microsoft.com/ja-jp/events/decode/2019/default.aspx>
+- 6 月
+  - 1-2: JSConf EU
+    - <https://2019.jsconf.eu/>
+    - <https://ietf.org/how/meetings/105/>
+- 7 月
+  - 20-26: IETF 105 Montreal
+- 8 月
+- 9 月
+  - 16-20: W3C TPAC 2019 (Fukuoka)
+    - <https://www.w3.org/wiki/TPAC/2019>
