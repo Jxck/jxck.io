@@ -4,8 +4,11 @@
 
 audio: https://files.mozaic.fm/mozaic-ep30.mp3
 
-- published_at: 2017-12-05
-- guest: [@myakura](https://twitter.com/myakura)
+published_at
+: 2017-12-05
+
+guest
+: [@myakura](https://twitter.com/myakura)
 
 
 ## Theme

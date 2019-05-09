@@ -4,8 +4,11 @@
 
 audio: https://files.mozaic.fm/mozaic-ep28.mp3
 
-- published_at: 2017-11-01
-- guest: [@myakura](https://twitter.com/myakura)
+published_at
+: 2017-11-01
+
+guest
+: [@myakura](https://twitter.com/myakura)
 
 
 ## Theme

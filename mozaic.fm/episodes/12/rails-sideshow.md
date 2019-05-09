@@ -4,8 +4,11 @@
 
 audio: https://files.mozaic.fm/mozaic-ep12.sideshow.mp3
 
-- published_at: 2014-12-12
-- guest: [@a_matsuda](https://twitter.com/a_matsuda)
+published_at
+: 2014-12-12
+
+guest
+: [@a_matsuda](https://twitter.com/a_matsuda)
 
 
 ## Theme

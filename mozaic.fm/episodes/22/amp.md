@@ -4,8 +4,11 @@
 
 audio: https://files.mozaic.fm/mozaic-ep22.mp3
 
-- published_at: 2016-07-05
-- guest: [@ymotongpoo](https://twitter.com/ymotongpoo)
+published_at
+: 2016-07-05
+
+guest
+: [@ymotongpoo](https://twitter.com/ymotongpoo)
 
 
 ## Theme

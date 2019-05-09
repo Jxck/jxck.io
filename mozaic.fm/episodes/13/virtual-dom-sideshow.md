@@ -4,8 +4,11 @@
 
 audio: https://files.mozaic.fm/mozaic-ep13.sideshow.mp3
 
-- published_at: 2014-12-31
-- guest: [@mizchi](https://twitter.com/mizchi)
+published_at
+: 2014-12-31
+
+guest
+: [@mizchi](https://twitter.com/mizchi)
 
 
 ## Theme

@@ -4,9 +4,14 @@
 
 audio: https://files.mozaic.fm/mozaic-ep15.mp3
 
-- published_at: 2015-01-19
-- guest: [@myakura](https://twitter.com/myakura)
-- guest: [@nunnun](https://twitter.com/nunnun)
+published_at
+: 2015-01-19
+
+guest
+: [@myakura](https://twitter.com/myakura)
+
+guest
+: [@nunnun](https://twitter.com/nunnun)
 
 
 ## Theme

@@ -4,8 +4,11 @@
 
 audio: https://files.mozaic.fm/mozaic-ep48.mp3
 
-- published_at: 2019-02-04
-- guest: [@myakura](https://twitter.com/myakura)
+published_at
+: 2019-02-04
+
+guest
+: [@myakura](https://twitter.com/myakura)
 
 
 ## Theme

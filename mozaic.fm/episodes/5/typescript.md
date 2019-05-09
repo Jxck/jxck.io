@@ -4,8 +4,11 @@
 
 audio: https://files.mozaic.fm/mozaic-ep5.mp3
 
-- published_at: 2014-06-16
-- guest: [@vvakame](https://twitter.com/vvakame)
+published_at
+: 2014-06-16
+
+guest
+: [@vvakame](https://twitter.com/vvakame)
 
 
 ## Theme

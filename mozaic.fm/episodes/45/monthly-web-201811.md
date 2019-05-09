@@ -4,8 +4,11 @@
 
 audio: https://files.mozaic.fm/mozaic-ep45.mp3
 
-- published_at: 2018-12-05
-- guest: [@myakura](https://twitter.com/myakura)
+published_at
+: 2018-12-05
+
+guest
+: [@myakura](https://twitter.com/myakura)
 
 
 ## Theme

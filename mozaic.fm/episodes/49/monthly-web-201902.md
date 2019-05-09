@@ -4,8 +4,11 @@
 
 audio: https://files.mozaic.fm/mozaic-ep49.mp3
 
-- published_at: 2019-03-05
-- guest: [@sisidovski](https://twitter.com/sisidovski)
+published_at
+: 2019-03-05
+
+guest
+: [@sisidovski](https://twitter.com/sisidovski)
 
 
 ## Theme

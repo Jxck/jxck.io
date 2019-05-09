@@ -4,8 +4,11 @@
 
 audio: https://files.mozaic.fm/mozaic-ep16.mp3
 
-- published_at: 2015-03-27
-- guest: [@hasegawayosuke](https://twitter.com/hasegawayosuke)
+published_at
+: 2015-03-27
+
+guest
+: [@hasegawayosuke](https://twitter.com/hasegawayosuke)
 
 
 ## Theme

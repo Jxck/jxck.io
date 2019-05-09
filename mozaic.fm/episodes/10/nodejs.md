@@ -4,9 +4,14 @@
 
 audio: https://files.mozaic.fm/mozaic-ep10.mp3
 
-- published_at: 2014-10-07
-- guest: [@koichik](https://twitter.com/koichik)
-- guest: [@yosuke_furukawa](https://twitter.com/yosuke_furukawa)
+published_at
+: 2014-10-07
+
+guest
+: [@koichik](https://twitter.com/koichik)
+
+guest
+: [@yosuke_furukawa](https://twitter.com/yosuke_furukawa)
 
 
 ## Theme

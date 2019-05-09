@@ -4,8 +4,11 @@
 
 audio: https://files.mozaic.fm/mozaic-ep41.mp3
 
-- published_at: 2018-09-09
-- guest: [@myakura](https://twitter.com/myakura)
+published_at
+: 2018-09-09
+
+guest
+: [@myakura](https://twitter.com/myakura)
 
 
 ## Theme

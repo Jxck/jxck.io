@@ -4,9 +4,14 @@
 
 audio: https://files.mozaic.fm/mozaic-ep1.mp3
 
-- published_at: 2014-04-07
-- guest: [@hokaccha](https://twitter.com/hokaccha)
-- guest: [@ahomu](https://twitter.com/ahomu)
+published_at
+: 2014-04-07
+
+guest
+: [@hokaccha](https://twitter.com/hokaccha)
+
+guest
+: [@ahomu](https://twitter.com/ahomu)
 
 
 ## Theme

@@ -4,9 +4,14 @@
 
 audio: https://files.mozaic.fm/mozaic-ep7.mp3
 
-- published_at: 2014-08-19
-- guest: [@yohei](https://twitter.com/yohei)
-- guest: [@t_wada](https://twitter.com/t_wada)
+published_at
+: 2014-08-19
+
+guest
+: [@yohei](https://twitter.com/yohei)
+
+guest
+: [@t_wada](https://twitter.com/t_wada)
 
 
 ## Theme

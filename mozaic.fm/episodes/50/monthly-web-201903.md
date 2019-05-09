@@ -4,8 +4,11 @@
 
 audio: https://files.mozaic.fm/mozaic-ep50.mp3
 
-- published_at: 2019-03-30
-- guest: [@myakura](https://twitter.com/myakura)
+published_at
+: 2019-03-30
+
+guest
+: [@myakura](https://twitter.com/myakura)
 
 
 ## Theme

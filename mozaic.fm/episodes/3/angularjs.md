@@ -4,9 +4,14 @@
 
 audio: https://files.mozaic.fm/mozaic-ep3.mp3
 
-- published_at: 2014-05-31
-- guest: [@can_i_do_web](https://twitter.com/can_i_do_web)
-- guest: [@konpyu](https://twitter.com/konpyu)
+published_at
+: 2014-05-31
+
+guest
+: [@can_i_do_web](https://twitter.com/can_i_do_web)
+
+guest
+: [@konpyu](https://twitter.com/konpyu)
 
 
 ## Theme

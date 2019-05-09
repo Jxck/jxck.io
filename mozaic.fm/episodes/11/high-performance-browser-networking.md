@@ -4,8 +4,11 @@
 
 audio: https://files.mozaic.fm/mozaic-ep11.mp3
 
-- published_at: 2014-11-10
-- guest: [@igrigorik](https://twitter.com/igrigorik)
+published_at
+: 2014-11-10
+
+guest
+: [@igrigorik](https://twitter.com/igrigorik)
 
 
 ## Theme

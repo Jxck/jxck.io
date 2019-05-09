@@ -4,8 +4,11 @@
 
 audio: https://files.mozaic.fm/mozaic-ep23.mp3
 
-- published_at: 2016-09-06
-- guest: 先生(匿名)
+published_at
+: 2016-09-06
+
+guest
+: 先生(匿名)
 
 
 ## Theme

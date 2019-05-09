@@ -4,9 +4,14 @@
 
 audio: https://files.mozaic.fm/mozaic-ep6.mp3
 
-- published_at: 2014-08-04
-- guest: [@komasshu](https://twitter.com/komasshu)
-- guest: [@Tukimikage](https://twitter.com/Tukimikage)
+published_at
+: 2014-08-04
+
+guest
+: [@komasshu](https://twitter.com/komasshu)
+
+guest
+: [@Tukimikage](https://twitter.com/Tukimikage)
 
 
 ## Theme

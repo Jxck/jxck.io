@@ -4,8 +4,11 @@
 
 audio: https://files.mozaic.fm/mozaic-ep43.mp3
 
-- published_at: 2018-09-30
-- guest: [@toyoshim](https://twitter.com/toyoshim)
+published_at
+: 2018-09-30
+
+guest
+: [@toyoshim](https://twitter.com/toyoshim)
 
 
 ## Theme

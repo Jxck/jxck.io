@@ -4,8 +4,11 @@
 
 audio: https://files.mozaic.fm/mozaic-ep34.mp3
 
-- published_at: 2018-03-04
-- guest: [@myakura](https://twitter.com/myakura)
+published_at
+: 2018-03-04
+
+guest
+: [@myakura](https://twitter.com/myakura)
 
 
 ## Theme

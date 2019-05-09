@@ -4,7 +4,8 @@
 
 audio: https://files.mozaic.fm/mozaic-ep0.mp3
 
-- published_at: 2014-03-31
+published_at
+: 2014-03-31
 
 
 ## Theme

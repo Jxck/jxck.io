@@ -4,10 +4,17 @@
 
 audio: https://files.mozaic.fm/mozaic-ep35.mp3
 
-- published_at: 2018-03-05
-- guest: [@kinugawamasato](https://twitter.com/kinugawamasato)
-- guest: [@k2wanko](https://twitter.com/k2wanko)
-- guest: [@hnagatomo](https://github.com/hnagatomo)
+published_at
+: 2018-03-05
+
+guest
+: [@kinugawamasato](https://twitter.com/kinugawamasato)
+
+guest
+: [@k2wanko](https://twitter.com/k2wanko)
+
+guest
+: [@hnagatomo](https://github.com/hnagatomo)
 
 
 ## Theme
