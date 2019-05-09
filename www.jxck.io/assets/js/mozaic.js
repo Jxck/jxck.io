@@ -20,10 +20,10 @@ if (window.ReportingObserver) {
 function playerKeybind(e) {
   log(e.key, e.target, document.activeElement)
 
-  if ([e.target, document.body].includes(document.activeElement) === false) return
-
   switch(e.key) {
-    case ' ':
+    case 'Enter':
+      // document body 以外の Enter は、コントロールが必要かもしれないので無視
+      if (document.activeElement !== document.body) return
       log('play/pause')
       $('mozaic-player').play()
       e.preventDefault()
