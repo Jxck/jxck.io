@@ -32,7 +32,7 @@
 
   <template id=search_diag>
     <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/dialog.css>
-    <dialog>
+    <dialog class=search>
       <form method=get action=https://google.co.jp/search>
         <fieldset>
           <legend>search via google</legend>
@@ -42,6 +42,23 @@
           <button type=submit>go</button>
         </fieldset>
       </form>
+    </dialog>
+  </template>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
     </dialog>
   </template>
 </head>

@@ -36,14 +36,11 @@ function playerKeybind(e) {
       log('forward')
       $('mozaic-player').forward()
       break
-      // case 'ArrowUp':
-      //   log('volume up')
-      //   $('mozaic-player').volumeup()
-      //   break
-      // case 'ArrowDown':
-      //   log('volume down')
-      //   $('mozaic-player').volumedown()
-      //   break
+    case '/':
+      log('shortcut')
+      const $dialog = $('dialog.shortcut')
+      $dialog.showModal()
+      break
   }
 }
 
@@ -97,7 +94,7 @@ document.on('DOMContentLoaded', (e) => {
       // player が使ってるキーバインドを一旦外す
       document.off('keydown', playerKeybind)
 
-      const $dialog = $('dialog')
+      const $dialog = $('dialog.search')
       $dialog.on('click', (e) => {
         console.log(e.target, $dialog)
         if (e.target === $dialog) {
@@ -115,5 +112,12 @@ document.on('DOMContentLoaded', (e) => {
       })
       $dialog.showModal()
     })
+  }
+
+  // Enable ShortCut Dialog
+  if (window.HTMLDialogElement) {
+    // <dialog> があったら shortcut を <dialog> で出す
+    const searchDiag = document.importNode($('#shortcut_diag').content, true)
+    document.body.appendChild(searchDiag)
   }
 })
