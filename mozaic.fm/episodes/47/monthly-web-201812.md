@@ -73,7 +73,7 @@ audio: https://files.mozaic.fm/mozaic-ep47.mp3
     - Microsoft UI Automation (UIA) をマッピングし、 Assistive Technology (AT) などができることを増やす
   - Implement and Ship: CSS: Use the response URL for base URL and response type for security decisions
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/7OSy00oxVpk/siufiQVBBwAJ>
-  - Implement and ship: Feature Policy JS Introspection API
+  - Implement and Ship: Feature Policy JS Introspection API
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/qwLRSNFsfUQ/ZhxYYusjCAAJ>
   - *Implement: Scroll Timeline for Web Animations (JS only)*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8V4ixKVmNY4/vJQdo9GCBgAJ>
@@ -161,9 +161,9 @@ audio: https://files.mozaic.fm/mozaic-ep47.mp3
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/jXpEKnsUCuU/vHyoxhOZBgAJ>
   - Implement and Ship: break-before, break-after, break-inside CSS properties
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/pZBNiEwBhyA/KMjTYg6zBQAJ>
-  - Implement and ship: forced case-sensitive attribute selector matching
+  - Implement and Ship: forced case-sensitive attribute selector matching
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/NMpix5gqXlY/dbvk94zuBgAJ>
-  - *Implement and ship: Overflow media queries*
+  - *Implement and Ship: Overflow media queries*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/0XQjow3t5vY/tmgRdojAAgAJ>
   - Implement: TextEncoder.encodeInto() - UTF-8 encode into caller-provided buffer
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/gyzIVfQD_PA/XI3Cb934CQAJ>

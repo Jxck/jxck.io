@@ -100,7 +100,7 @@ Monthly Web のモチベーションについては以下。
   - Aborting fetch
     - <https://developers.google.com/web/updates/2017/09/abortable-fetch>
     - [ブログ](https://blog.jxck.io/entries/2017-07-19/aborting-fetch.html)
-- Intent to
+- Intents
   - Ship: JavaScript module import()
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ut-Mr0jt5X8/Q8B4F3wxBQAJ>
   - Ship: Async Iteration / Async Generators
@@ -111,9 +111,9 @@ Monthly Web のモチベーションについては以下。
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Pp4CqxTJKjo/XR9gff92BAAJ>
   - Implement and Ship MediaStreamTrack.applyConstraints()
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/D2va-gTcmvA/haBswl-lAwAJ>
-  - Implement and ship HTMLTextAreaElement / HTMLSelectElement. autoComplete
+  - Implement and Ship HTMLTextAreaElement / HTMLSelectElement. autoComplete
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2tutRHmhwTE/X0UX8G5eBgAJ>
-  - Implement and ship: CSP exemptions for content injected by privileged callers
+  - Implement and Ship: CSP exemptions for content injected by privileged callers
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/EVKMSAY__lA/8b1ctuJgBwAJ>
   - Implement: Trusted Types for DOM Manipulation
     - <https://github.com/mikewest/trusted-types>
@@ -183,12 +183,12 @@ Monthly Web のモチベーションについては以下。
   - 今後
     - Quantum Render (GPU-optimized rendering pipeline WebRender by Servo)
     - Quantum DOM (scheduler)
-- Intent to:
-  - implement: RTCRtpTransceiver
+- Intents:
+  - Implement: RTCRtpTransceiver
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/QTD7S9kAkGM/wDSHoKwJAQAJ>
     - ORTC の成果からフィードバックして WebRTC に入った後発の API
     - 詳細は略
-  - ship: WebVR on macOS
+  - Ship: WebVR on macOS
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/MCSJOhbqSVE/ce6sF7JkAAAJ>
 - Other
   - Adding More Policy Firepower to the Mozilla Network

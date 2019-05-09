@@ -261,7 +261,7 @@ audio: https://files.mozaic.fm/mozaic-ep41.mp3
   - *Ship: Shadow DOM and Custom Elements*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/RcanREo7hU0/TCS3Un6aBwAJ>
     - 63 からベータで入る
-  - Implement and ship: flow-relative values for resize property
+  - Implement and Ship: flow-relative values for resize property
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/MQph7NaIYmM/cViEVLg0BwAJ>
   - Implement: Motion Path Module Level 1
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/hWuUoeDVPQo/TNIspBwICQAJ>

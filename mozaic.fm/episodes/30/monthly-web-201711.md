@@ -67,7 +67,7 @@ Monthly Web のモチベーションについては以下。
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/x0ROz-Io2bc/B9-sd6_dBwAJ>
   - Ship: Tighten secure context implementation in Workers
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/NNdqRpSfkow/nvCWkHtRAQAJ>
-  - Implement and ship: disown opener in a targeted navigation when noopener is used
+  - Implement and Ship: disown opener in a targeted navigation when noopener is used
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Ucy5woezBFY/gqSMJOpOBAAJ>
   - Implement and Ship: prevent scrolling in HTMLElement.focus()
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/55sC81ciQgY/7jAt5YpgBAAJ>
@@ -106,7 +106,7 @@ Monthly Web のモチベーションについては以下。
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/3DjSQKQzKz8/FI9qbxHhAwAJ>
   - Implement and Ship: webVTT positionAlign and lineAlign
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/KRAyvMD4QZs/ABBp-5aLBAAJ>
-  - Intent to Implement: Feature Policy for Autoplay
+  - Implement: Feature Policy for Autoplay
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/KTLndMOFLLA/VykZ7bg8BgAJ>
     - cross origin iframe の autoplay を許可するかの policy
   - Change: Geolocation maximum age

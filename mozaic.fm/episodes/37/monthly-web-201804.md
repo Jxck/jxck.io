@@ -183,7 +183,7 @@ audio: https://files.mozaic.fm/mozaic-ep37.mp3
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/jwmkVmU4DNM/IpF5K5epBAAJ>
   - *Ship: PerformanceServerTiming*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/MSzaY7_4mvg/hGpUlTzxAgAJ>
-  - *Implement and ship: same-site cookies*
+  - *Implement and Ship: same-site cookies*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/7hOKZDuO3qI/w9FVLatSAAAJ>
     - *収録中 Jxck が "CORS" と言ってるのは "CSRF" の間違いです*
   - Implement: CSS subgrid

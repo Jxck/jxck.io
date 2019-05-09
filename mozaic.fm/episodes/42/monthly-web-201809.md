@@ -239,7 +239,7 @@ audio: https://files.mozaic.fm/mozaic-ep42.mp3
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/YtuN54Fi-84/6CuLmKxODAAJ>
   - *Implement and Ship: New cookie jar policy to block storage access from tracking resources*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/oFZivEmLC40/1rHs3IuICQAJ>
-  - Implement and ship: getDisplayMedia()
+  - Implement and Ship: getDisplayMedia()
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/20EhEy_ahKg/2OWJTbGeCgAJ>
   - *Implement: Storage Access API*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/l8bV4RFgAc4/MKl9jbJpBQAJ>

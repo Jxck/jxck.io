@@ -52,7 +52,7 @@ audio: https://files.mozaic.fm/mozaic-ep40.mp3
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/CJgcT4hR7Rk/58WfZNbWBQAJ>
   - Implement and Ship: rename Intl.DateTimeFormat.prototype.formatToParts type "dayperiod" to "dayPeriod"
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/7yWM-y_2j9k/m3-RpCVABgAJ>
-  - Implement and ship: fractional PointerEvents.offsetX/Y
+  - Implement and Ship: fractional PointerEvents.offsetX/Y
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/tl2sOodhtCs/oe0ZMNXPCAAJ>
   - Implement: Window postMessage with options
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/xACYBou4f9A/Ft0-QlFMAQAJ>
@@ -190,13 +190,13 @@ audio: https://files.mozaic.fm/mozaic-ep40.mp3
     - 63 からデフォルト有効
   - Ship: Change the effect of noopener window feature on other window features in window.open
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/6cTk_b1l6LE/CmAZKu8cCAAJ>
-  - *Implement and ship: Image decoding attribute*
+  - *Implement and Ship: Image decoding attribute*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/bxyc26iatiQ/7FurvkSfCAAJ>
-  - *Implement and ship: CSS prefers-reduced-motion media feature for Windows and MacOSX*
+  - *Implement and Ship: CSS prefers-reduced-motion media feature for Windows and MacOSX*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/faQvST2piv4/prtBa7rCBwAJ>
-  - Implement and ship: HTMLMediaElement.allowedToPlay
+  - Implement and Ship: HTMLMediaElement.allowedToPlay
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/BPZHwDp_Ciw/Blo-G1tqCQAJ>
-  - *Implement and ship: WebXR Device API in Firefox Nightly*
+  - *Implement and Ship: WebXR Device API in Firefox Nightly*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/K-i_WXuZ_bY/1-XAkm6wCQAJ>
   - *Implement: Visual Viewport API*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/gchNtWfv_bk/kQEfdc0LBgAJ>

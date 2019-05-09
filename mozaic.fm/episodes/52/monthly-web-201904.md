@@ -147,47 +147,47 @@ audio: https://files.mozaic.fm/mozaic-ep52.mp3
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/66BSOtd7jYc/md5JrQsSCgAJ>
   - Ship: Promise.{all, race, allSettled} optimization
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/-wE-mbdFOEw/a2V-sjfMCwAJ>
-- Implement and Ship: CSS pseudo-class ":picture-in-picture"
+  - Implement and Ship: CSS pseudo-class ":picture-in-picture"
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X-qPSmdSR_g/Yd0xweofBgAJ>
     - PinP した時に有効になる擬似クラス
     - :fullscreen などと同じ
-- *Implement and Ship: Support for SVG in favicons*
+  - *Implement and Ship: Support for SVG in favicons*
     - <https://groups.google.com/a/chromium.org/d/topic/blink-dev/IKe_SAgdNAA/discussion>
   - *Implement and Ship : Support "noreferrer" for window.open()*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/K8_-u7mK688/rK7FrIOLBQAJ>
   - Implement and Ship: CSS containment: Remove style from strict and content
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/fKtqaykk4Bs/SOAvgeOyCwAJ>
-- Implement: MSE in Workers
+  - Implement: MSE in Workers
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/CNRywDqgKjY/F0nnA4tTAwAJ>
-- Implement: Media Capabilities: encoding
+  - Implement: Media Capabilities: encoding
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/3bwYuLy-Nn4/KL6xvsO4BQAJ>
-- *Implement: Gamepad light indicator API*
+  - *Implement: Gamepad light indicator API*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/GzllP8DToqw/evfBnu58BQAJ>
-- Implement: Concurrent Marking in Oilpan
+  - Implement: Concurrent Marking in Oilpan
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_YMAZR3bbnI/Hk_WfoNFBQAJ>
-- Implement & Ship: RTCRtpTransceiver.stop()
+  - Implement & Ship: RTCRtpTransceiver.stop()
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/dAeG7K7HPG8/WKMpjYfzBwAJ>
-- *Implement: SMS OTP Retriever API*
+  - *Implement: SMS OTP Retriever API*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Drmmb_t4eE8/z_k9l09gCgAJ>
-- Implement: WebXR plane detection API
+  - Implement: WebXR plane detection API
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/0fCZESiIY0Y/FcWeKGOzCAAJ>
-- Implement: PaymentRequestEvent.changePaymentMethod()
+  - Implement: PaymentRequestEvent.changePaymentMethod()
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/-ObfNnnJjLo/pPsUD8CUCAAJ>
   - Implement: Blink Editing Rearchitecture with TextCursor
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2F2QSxjZQNM/OjzaCe_yCwAJ>
-- Experiment: Allow to set Jitter Buffer Target Delay
+  - Experiment: Allow to set Jitter Buffer Target Delay
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Tgm4qiNepJc/GDFkt9S4BQAJ>
-- Extend Origin Trial: Picking echo canceller for getUserMedia
+  - Extend Origin Trial: Picking echo canceller for getUserMedia
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/1JLFXz3HX_s/B-R9DvadAwAJ>
-- *Extend Origin Trial: EventTiming*
+  - *Extend Origin Trial: EventTiming*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/WwszZpavn6U/x9pyllbZCQAJ>
     - First Input Delay などが取れる
-- *Extend Origin Trial: Priority Hints*
+  - *Extend Origin Trial: Priority Hints*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/oRp0lYze0oA/nsB1TGUaCwAJ>
     - importance 属性
-- Change:
-- Unship:
-- Remove:
+  - Change:
+  - Unship:
+  - Remove:
   - PSA - AppCache: Cross-origin resource size padding
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/rz1yxzsjM78/xgohbUeEBQAJ>
   - PSA: You can now view screenshots of failing reftests on wpt.fyi
@@ -280,7 +280,7 @@ audio: https://files.mozaic.fm/mozaic-ep52.mp3
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/BdgNaChHnpY/mhXzCBwSCgAJ>
   - Implement and Ship: Document.cookie
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/Tif4dhPtpGw/dg8FDEwLCgAJ>
-  - *Implement and ship: Support "noreferrer" feature for window.open()*
+  - *Implement and Ship: Support "noreferrer" feature for window.open()*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/eTt1nd1Ia_Y/x-8JIf2TCwAJ>
   - Implement: Delegated Credentials for TLS 1.3
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/NupI0zbdd2U/skQEhq6oCgAJ>

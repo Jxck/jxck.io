@@ -57,7 +57,7 @@ Monthly Web のモチベーションについては以下。
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8QacQMv6oAY/v3wxZi1WAQAJ>
   - Experiment: Disable Hardware Noise Suppression
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8QacQMv6oAY/QSA_cD4fAwAJ>
-  - Deprecate and remove: SharedArrayBuffer.isView
+  - Deprecate and Remove: SharedArrayBuffer.isView
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/RgnCOL61Mzg/NiueyofYCQAJ>
   - Deprecate and Remove: Remove Content Type Sniffing for Worker Scripts
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/35t5cJQ3J_Q/FH45dl0vAwAJ>

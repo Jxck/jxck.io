@@ -103,7 +103,7 @@ Monthly Web のモチベーションについては以下。
   - Implement and Ship: Adding new MHTML headers to support sharing of MHTML pages
     - <https://groups.google.com/a/chromium.org/d/msg/blink-dev/GkAQbgmElK8/zx8KPu8WCgAJ>
     - <https://docs.google.com/document/d/1FvmYUC0S0BkdkR7wZsg0hLdKc_qjGnGahBwwa0CdnHE/edit>
-  - Implement and ship: Fractional coordinates in PointerEvents of type mouse
+  - Implement and Ship: Fractional coordinates in PointerEvents of type mouse
     - <https://groups.google.com/a/chromium.org/d/msg/blink-dev/ssfd-_V26Ls/YwcZTqyqBgAJ>
     - マウスポインタのイベントを小数に?
   - Implement and Ship: WebAudio: AudioParam Setter is setValueAtTime
@@ -111,10 +111,10 @@ Monthly Web のモチベーションについては以下。
   - Implement and Ship: Parse floats/decimals in CSS RGB and RGBA functions
     - <https://groups.google.com/a/chromium.org/d/msg/blink-dev/zH51Atd-Vag/BMY1tOGaBAAJ>
     - `rgb()` 内の数値はこれまで整数だったんだけど小数もとれるように
-  - Intent to implement and ship: import.meta.url
+  - Implement and Ship: import.meta.url
     - <https://groups.google.com/a/chromium.org/d/msg/blink-dev/Hq3cVNto74c/x7tNhmZUBQAJ>
     - ちゃんと入ってた
-  - Implement and ship: HTTP/2 push header validation
+  - Implement and Ship: HTTP/2 push header validation
     - <https://groups.google.com/a/chromium.org/d/msg/blink-dev/5_aP_stqndw/jlvJjoOEBQAJ>
     - Push 時に Vary や Range をちゃんとみるように
   - Implement: image async attribute
@@ -128,7 +128,7 @@ Monthly Web のモチベーションについては以下。
     - <https://groups.google.com/a/chromium.org/d/msg/blink-dev/1WFVPbRL640/TPPG9gs5AwAJ>
   - Implement and Experiment: Single buffered canvas
     - <https://groups.google.com/a/chromium.org/d/msg/blink-dev/DCPyE6rPFpA/sqZwKAWXBAAJ>
-  - Intent to Implement: Fetch API: keepalive
+  - Implement: Fetch API: keepalive
     - <https://groups.google.com/a/chromium.org/d/msg/blink-dev/AUAIHVF63SM/naGVAnoBAwAJ>
     - <https://docs.google.com/document/d/1iHJtFa3jOo5n9QXHb6Ok5nK8kavXSk2DrLoubPWi9ys/edit>
     - Beacon API は POST のみだが、 GET (analytics) や HEAD (ads) のニーズが
@@ -233,7 +233,7 @@ Monthly Web のモチベーションについては以下。
     - <https://groups.google.com/d/msg/mozilla.dev.platform/RPELgLHAhjM/gmkupELMAgAJ>
   - Implement and Ship: PerformanceResourceTiming.workerStart
     - <https://groups.google.com/d/msg/mozilla.dev.platform/lw0ylqXLil0/PjYSsoHkAAAJ>
-  - Implement and ship: CSP exemptions for content injected by privileged callers
+  - Implement and Ship: CSP exemptions for content injected by privileged callers
     - <https://groups.google.com/d/msg/mozilla.dev.platform/EVKMSAY__lA/8b1ctuJgBwAJ>
   - Implement: CSS media queries, interaction media features
     - <https://groups.google.com/d/msg/mozilla.dev.platform/WhXB19qGVkI/J5rGuFydCAAJ>

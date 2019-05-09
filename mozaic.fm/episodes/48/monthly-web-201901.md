@@ -50,109 +50,109 @@ audio: https://files.mozaic.fm/mozaic-ep48.mp3
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/xSD0PYiZq9U/Af87U7wWDAAJ>
     - <https://tc39.github.io/proposal-hashbang/> の実装
     - Shebang/Hashbang を許容するようにし、 CLI 向けのコードがそのまま動くように
-- Implement: Media Queries: prefers-color-scheme feature
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Muw0N43ntSw/WZZZI7w7DQAJ>
-- Implement and Ship: OverconstrainedErrorEvent
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/QwFpOPom5HQ/pJh1YSQ0EQAJ>
-- *Implement and Ship: CSS prefers-reduced-motion media query*
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/NZ3c9d4ivA8/BIHFbOj6DAAJ>
-- *Implement and Ship: Cross-Origin Resource Policy*
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/TBNHorRPhZk/4_gfRjfzDgAJ>
-- Implement and Ship: RTCError, RTCErrorEvent, RTCErrorEventInit
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/TsJA1XX7mTE/nlQ0FFjSDgAJ>
-- Implement and Ship: Prevent downloads in sandboxed iframes without user activation
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/JdAQ6HNoZvk/WQZfXIMADgAJ>
-- Implement and Ship: `|type|` in PerformanceObserverInit
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/IPl_CSXhMbw/F0rSlAvzDQAJ>
-- Implement and Ship: CSS property font-optical-sizing
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Y3lhEykjfV0/FKa0H8zwDQAJ>
-- Implement and Ship: RTCRtpEncodingParameters.scaleResolutionDownBy & RTCRtpEncodingParameters.maxFramerate
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/SV8evGSU_dw/DIrx9XzvDQAJ>
-- *Implement and Ship: CSS Transition Events*
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/L5J1DUzfQIw/3SSWuKkaDAAJ>
-  - `transitionrun`, `transitionstart`, `transitionend`, `transitioncancel` が仕様にはある
-  - Blink は `transitionend` しか実装してない、他はわりと実装している
-  - これを実装すると、いつアニメーションしてるのかとかわかる。
-- Implement and Ship: Make RTCIceCandidate/RTCIceCandidateInit spec compliant
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/T6zlVFZhRVY/-bOrMI_rDQAJ>
-- Implement: back-forward cache
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/OVROmzNUng0/1gTmi-I3EQAJ>
-- Implement: Web Share Level 2
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/AiKgWvv3cq0/xAsjfSfMDQAJ>
-- *Implement: HTML Modules*
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ewfRSdqcOd8/w_Fr6rJ3DQAJ>
-  - Chromium の intents だが MS Edge の人から出ている
-  - かなりよく書かれた intents
-- *Implement: `Sec-CH-UA-` Client Hints.*
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/WQ0eC_Gf8bw/dhWMhCYYDwAJ>
-  - User-Agent ヘッダのエントロピーが高く、ほとんど無駄なのに fingerprint に使える
-  - 減らしたいので Client-Hints で opt-in にしたい
-  - そこで Sec-CH-UA-Arch, Sec-CH-UA-Platform などにわける
-- *Implement: APIs for Main Thread Scheduling*
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/eLq8t56CbaQ/KdbOY7ZHCwAJ>
-  - スケジューリングのプリミティブを JS に出す
-  - TaskQueue API を追加する
-- *Implement: High Contrast support*
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/N77UCHle_rw/omPE8XRzFQAJ>
-  - MSEdge チームから、 Windows にあったコントラスト系の API を出したい模様
-  - Media Queries lv5 の prefers-contrast とは違う
-  - ブラウザがデフォルトでハイコントラストを提供し、コンテンツがオプトアウトするための仕組み、らしい。
-  - 下の supported-color-schemes meta tag と被ってそう?
-- *Implement: supported-color-schemes meta tag*
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8NsJruvDJIw/xgtAfWJoDAAJ>
-  - コンテンツがサポートしている Color Scheme をメタタグに明示する
-  - UA はそれを元に、何がサポートされているのかを知ることができる
-  - この有無により、 UA による自動変換での Color Scheme 変更などをコントロールしたい
-  - `<meta name="supported-color-schemes" content="[light? || dark? || <ident>?]* || only?">`
-  - light dark: UA はユーザのセッティングによってリストから選んで適用、いいのがなかったら自動変換できる
-  - light dark only: UA はリストから選ぶ。自動変換はしない
-  - なし: UA は自動変換できる
-- Implement: MediaCapabilities: encrypted (EME) decodingInfo()
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/bBUZGuJ4VfY/yBfMs4d0DAAJ>
-- *Experiment: ElementTiming for Images*
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/9LV2L8sDgPY/5-PSyCOkBwAJ>
-  - Performance Observer の Element Timing で Image の表示完了をとる
-- *Experiment: Feature Policy Reporting*
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2aHJE8YNXE0/9oo5x3s2EQAJ>
-  - 待っていたやつ
-- Experiment: [Web Perf] Layout Jank API
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/QRK6RbAwsb4/L6s-XUAvEQAJ>
-  - PerformanceObserver で取れるように
-- Experiment: Handle retransmission in WebRTC audio jitter buffer
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/A31F88qhQLQ/TZYAm2dIEAAJ>
-- *Experiment: Trusted Types*
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/I9To21DXcLo/NrU9P0M4EAAJ>
-  - [blog](https://blog.jxck.io/entries/2019-01-27/trusted-types.html)
-- Experiment: getInstalledRelatedApps()
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hi1RKJcdplo/T_BvnpHhDgAJ>
-- *Experiment: Priority Hints*
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/jpeSdM897Xw/CY6tothSDgAJ>
-- Experiment: Per-method quota for PaymentRequest.canMakePayment()
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/-h-_ecsReLg/Cm11b3juDQAJ>
-- Experiment: Contact API
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/GBgoS_eCmzM/Ot7ePqCbCgAJ>
-- *Experiment: Auto Picture-in-Picture*
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/eFZ3h_A3VTY/NuXabBbQDQAJ>
-  - タブを変えたりした時に自動で PinP すると、ビデオ会議とかで便利な場合がある
-- Extend Origin Trial: EventTiming
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/sJ4lxamz2V0/YSRPP3SwBgAJ>
-- Extend Origin Trial: lowLatency canvas contexts (AGAIN)
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MasDDXg75Jc/bbylvOtrFQAJ>
-- Change:
-- Unship:
-- Deprecate and Remove: Web MIDI use on insecure origins
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_2XZt3yInCI/d98O63x7CgAJ>
-- Deprecate and Remove: googHotword constraint.
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/WlIzSK6-xq0/E1bm3vdwCgAJ>
-- *Deprecate and Remove: Shadow DOM V0, Custom Elements V0, HTML Imports*
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/h-JwMiPUnuU/RgmCstxKDwAJ>
-  - WebComponents v0 仕様の deprecation が Chrome 74 に延期(従来は 73 を予定していた)
-  - Chrome 内部のコードで v0 を使っているものなどのマイグレーションがうまくいかなかった
-- *Temporarily Remove: link rel=preload types 'audio' and 'video'*
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/QnwPuiiYuQE/or9tagG4DAAJ>
-  - 音声/映像の preload と要素での再取得によって、二回ダウンロードすることがある
-  - 実装によって曖昧なことが WPT で判明したっぽい
-  - Fetch でのキャッシュの挙動が仕様/実装共に直るまではおいておく
+  - Implement: Media Queries: prefers-color-scheme feature
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Muw0N43ntSw/WZZZI7w7DQAJ>
+  - Implement and Ship: OverconstrainedErrorEvent
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/QwFpOPom5HQ/pJh1YSQ0EQAJ>
+  - *Implement and Ship: CSS prefers-reduced-motion media query*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/NZ3c9d4ivA8/BIHFbOj6DAAJ>
+  - *Implement and Ship: Cross-Origin Resource Policy*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/TBNHorRPhZk/4_gfRjfzDgAJ>
+  - Implement and Ship: RTCError, RTCErrorEvent, RTCErrorEventInit
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/TsJA1XX7mTE/nlQ0FFjSDgAJ>
+  - Implement and Ship: Prevent downloads in sandboxed iframes without user activation
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/JdAQ6HNoZvk/WQZfXIMADgAJ>
+  - Implement and Ship: `|type|` in PerformanceObserverInit
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/IPl_CSXhMbw/F0rSlAvzDQAJ>
+  - Implement and Ship: CSS property font-optical-sizing
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Y3lhEykjfV0/FKa0H8zwDQAJ>
+  - Implement and Ship: RTCRtpEncodingParameters.scaleResolutionDownBy & RTCRtpEncodingParameters.maxFramerate
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/SV8evGSU_dw/DIrx9XzvDQAJ>
+  - *Implement and Ship: CSS Transition Events*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/L5J1DUzfQIw/3SSWuKkaDAAJ>
+    - `transitionrun`, `transitionstart`, `transitionend`, `transitioncancel` が仕様にはある
+    - Blink は `transitionend` しか実装してない、他はわりと実装している
+    - これを実装すると、いつアニメーションしてるのかとかわかる。
+  - Implement and Ship: Make RTCIceCandidate/RTCIceCandidateInit spec compliant
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/T6zlVFZhRVY/-bOrMI_rDQAJ>
+  - Implement: back-forward cache
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/OVROmzNUng0/1gTmi-I3EQAJ>
+  - Implement: Web Share Level 2
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/AiKgWvv3cq0/xAsjfSfMDQAJ>
+  - *Implement: HTML Modules*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ewfRSdqcOd8/w_Fr6rJ3DQAJ>
+    - Chromium の intents だが MS Edge の人から出ている
+    - かなりよく書かれた intents
+  - *Implement: `Sec-CH-UA-` Client Hints.*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/WQ0eC_Gf8bw/dhWMhCYYDwAJ>
+    - User-Agent ヘッダのエントロピーが高く、ほとんど無駄なのに fingerprint に使える
+    - 減らしたいので Client-Hints で opt-in にしたい
+    - そこで Sec-CH-UA-Arch, Sec-CH-UA-Platform などにわける
+  - *Implement: APIs for Main Thread Scheduling*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/eLq8t56CbaQ/KdbOY7ZHCwAJ>
+    - スケジューリングのプリミティブを JS に出す
+    - TaskQueue API を追加する
+  - *Implement: High Contrast support*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/N77UCHle_rw/omPE8XRzFQAJ>
+    - MSEdge チームから、 Windows にあったコントラスト系の API を出したい模様
+    - Media Queries lv5 の prefers-contrast とは違う
+    - ブラウザがデフォルトでハイコントラストを提供し、コンテンツがオプトアウトするための仕組み、らしい。
+    - 下の supported-color-schemes meta tag と被ってそう?
+  - *Implement: supported-color-schemes meta tag*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8NsJruvDJIw/xgtAfWJoDAAJ>
+    - コンテンツがサポートしている Color Scheme をメタタグに明示する
+    - UA はそれを元に、何がサポートされているのかを知ることができる
+    - この有無により、 UA による自動変換での Color Scheme 変更などをコントロールしたい
+    - `<meta name="supported-color-schemes" content="[light? || dark? || <ident>?]* || only?">`
+    - light dark: UA はユーザのセッティングによってリストから選んで適用、いいのがなかったら自動変換できる
+    - light dark only: UA はリストから選ぶ。自動変換はしない
+    - なし: UA は自動変換できる
+  - Implement: MediaCapabilities: encrypted (EME) decodingInfo()
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/bBUZGuJ4VfY/yBfMs4d0DAAJ>
+  - *Experiment: ElementTiming for Images*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/9LV2L8sDgPY/5-PSyCOkBwAJ>
+    - Performance Observer の Element Timing で Image の表示完了をとる
+  - *Experiment: Feature Policy Reporting*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2aHJE8YNXE0/9oo5x3s2EQAJ>
+    - 待っていたやつ
+  - Experiment: [Web Perf] Layout Jank API
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/QRK6RbAwsb4/L6s-XUAvEQAJ>
+    - PerformanceObserver で取れるように
+  - Experiment: Handle retransmission in WebRTC audio jitter buffer
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/A31F88qhQLQ/TZYAm2dIEAAJ>
+  - *Experiment: Trusted Types*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/I9To21DXcLo/NrU9P0M4EAAJ>
+    - [blog](https://blog.jxck.io/entries/2019-01-27/trusted-types.html)
+  - Experiment: getInstalledRelatedApps()
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hi1RKJcdplo/T_BvnpHhDgAJ>
+  - *Experiment: Priority Hints*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/jpeSdM897Xw/CY6tothSDgAJ>
+  - Experiment: Per-method quota for PaymentRequest.canMakePayment()
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/-h-_ecsReLg/Cm11b3juDQAJ>
+  - Experiment: Contact API
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/GBgoS_eCmzM/Ot7ePqCbCgAJ>
+  - *Experiment: Auto Picture-in-Picture*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/eFZ3h_A3VTY/NuXabBbQDQAJ>
+    - タブを変えたりした時に自動で PinP すると、ビデオ会議とかで便利な場合がある
+  - Extend Origin Trial: EventTiming
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/sJ4lxamz2V0/YSRPP3SwBgAJ>
+  - Extend Origin Trial: lowLatency canvas contexts (AGAIN)
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MasDDXg75Jc/bbylvOtrFQAJ>
+  - Change:
+  - Unship:
+  - Deprecate and Remove: Web MIDI use on insecure origins
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_2XZt3yInCI/d98O63x7CgAJ>
+  - Deprecate and Remove: googHotword constraint.
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/WlIzSK6-xq0/E1bm3vdwCgAJ>
+  - *Deprecate and Remove: Shadow DOM V0, Custom Elements V0, HTML Imports*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/h-JwMiPUnuU/RgmCstxKDwAJ>
+    - WebComponents v0 仕様の deprecation が Chrome 74 に延期(従来は 73 を予定していた)
+    - Chrome 内部のコードで v0 を使っているものなどのマイグレーションがうまくいかなかった
+  - *Temporarily Remove: link rel=preload types 'audio' and 'video'*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/QnwPuiiYuQE/or9tagG4DAAJ>
+    - 音声/映像の preload と要素での再取得によって、二回ダウンロードすることがある
+    - 実装によって曖昧なことが WPT で判明したっぽい
+    - Fetch でのキャッシュの挙動が仕様/実装共に直るまではおいておく
 - Team Weekly Snippet
 - v8
   - v8 blog
@@ -242,10 +242,10 @@ audio: https://files.mozaic.fm/mozaic-ep48.mp3
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/SSDCEvyqAAE/gEFqO9jSDQAJ>
   - Implement and Ship: CSS padding-block and padding-inline shorthands
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/gpubhXTxI6o/8CzbtxK7DQAJ>
-  - Implement and Ship: CSS inset/inset-block/inset-inline shorthands - Google Groups
+  - Implement and Ship: CSS inset/inset-block/inset-inline shorthands
     - <https://groups.google.com/forum/#!topic/mozilla.dev.platform/8dvTjUpgcqU>
     - top, right, bottom, right の logical 版
-  - Implement and Ship: CSS border-{block,inline}-{color,style,width} and border-{block,inline} shorthands - Google Groups
+  - Implement and Ship: CSS border-{block,inline}-{color,style,width} and border-{block,inline} shorthands
     - <https://groups.google.com/forum/#!topic/mozilla.dev.platform/WjKAMVeKb7o>
   - Implement and Ship: The border-{start,end}-{start,end}-radius CSS properties
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/Pjf2a6t-sFA/M8uHtP4vEgAJ>

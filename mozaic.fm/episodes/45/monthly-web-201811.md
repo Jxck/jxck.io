@@ -93,7 +93,7 @@ audio: https://files.mozaic.fm/mozaic-ep45.mp3
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/lxHPNYoaEU8/0JFwF0ipCQAJ>
   - Implement and Ship: RTCRtpReceiver.getParameters()
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/LXJUzctTVfM/p4J-WrzbBgAJ>
-  - Implement and ship: DOMMatrixReadOnly.scaleNonUniform()
+  - Implement and Ship: DOMMatrixReadOnly.scaleNonUniform()
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/BJJKDby5p7w/vxmb9bnGAgAJ>
   - Implement and Ship: Additional encodings.networkPriority field in RtpSender[Get|Set]Parameters
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/bVNynDp9PHo/4D96etzMAAAJ>
@@ -211,21 +211,21 @@ audio: https://files.mozaic.fm/mozaic-ep45.mp3
     - CDN は一番近い Edge を DNS で解決するが、 DoH だとそれがうまくいかない
     - これをどうするか、 Akamai と協力して Firefox でテストしていくことに
 - Intents
-  - Intent to ship: window.event
+  - Ship: window.event
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/riVG9FqN9iM/U4PZJb0NBQAJ>
-  - Intent to ship: set keyCode or charCode of "keypress" event to the other's non-zero value
+  - Ship: set keyCode or charCode of "keypress" event to the other's non-zero value
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/IWLLJmoGroA/Im3fQSoNBQAJ>
-  - Intent to ship: stop dispatching "keypress" events when pressed key (key combination) does not introduce text input
+  - Ship: stop dispatching "keypress" events when pressed key (key combination) does not introduce text input
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/E8DyIJBhu1g/dggFj14MBQAJ>
-  - Intent to ship: dispatching "keydown" and "keyup" events during IME composition
+  - Ship: dispatching "keydown" and "keyup" events during IME composition
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/DrYa0gDxI5Q/5odWBZcLBQAJ>
-  - *Implement and ship: CSS environment variables*
+  - *Implement and Ship: CSS environment variables*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/EVKyR1B87T0/_l-_qK8SAAAJ>
-  - Iimplement and ship: Unprefix -moz-user-select, unship mozilla-specific values.
+  - Implement and Ship: Unprefix -moz-user-select, unship mozilla-specific values.
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/XfKl9Jt7ZQ8/2-wcUBEzBwAJ>
-  - Implement and ship: overflow-wrap: anywhere
+  - Implement and Ship: overflow-wrap: anywhere
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/B36jo-tK9Wk/tssG8exBBgAJ>
-  - Implement and ship: img decode API support
+  - Implement and Ship: img decode API support
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/7l8FJCEwdaI/-C9kVDXzBQAJ>
   - Implement: Support Referrer Policy for `<script>` elements
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/eeyxS9WDCOs/M1dLpEFfDAAJ>

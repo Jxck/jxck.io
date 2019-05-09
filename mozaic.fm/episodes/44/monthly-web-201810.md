@@ -99,7 +99,7 @@ audio: https://files.mozaic.fm/mozaic-ep44.mp3
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ulyuFI9aMig/zCegnl22CQAJ>
   - Implement: Per-method quota for PaymentRequest.canMakePayment()
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/pmq3VLPiw5E/3BUpoVm0CQAJ>
-  - *Experiment: Signed HTTP Exchanges - Google Groups*
+  - *Experiment: Signed HTTP Exchanges
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MKHe54W996c/1E51GLbvAQAJ>
     - M71 で実験
   - Experiment: lowLatency canvas contexts
@@ -230,13 +230,13 @@ audio: https://files.mozaic.fm/mozaic-ep44.mp3
 - Intents
   - Ship: unprefixed max-content and min-content for css sizing properties
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/vyCAurCC2DI/CHEpTZ8KAQAJ>
-  - Implement and ship: Referrer Policy for CSS
+  - Implement and Ship: Referrer Policy for CSS
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/QzONW_Ufn1w/cgqhpX_eAQAJ>
-  - *Implement and ship: WebP image support*
+  - *Implement and Ship: WebP image support*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/ywu0gzoQfRY/1xMM1bfUAwAJ>
-  - Implement and ship: text-transform: full-size-kana
+  - Implement and Ship: text-transform: full-size-kana
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/4YB3SM_8Neo/zsiE8d9mBAAJ>
-  - *Implement and ship: HTMLMarqueeElement*
+  - *Implement and Ship: HTMLMarqueeElement*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/9eCOHGvZIB0/zKIvxo8qBAAJ>
     - HTMLDivElement with in-content XBL で今は実装されている
     - HTMLMarqueeElement にして in-context XBL を消す

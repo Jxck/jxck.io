@@ -99,25 +99,25 @@ audio: https://files.mozaic.fm/mozaic-ep49.mp3
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/dOFRO8eC850/e23_XCAxBQAJ>
   - Ship: Intl.Locale
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/9-bs9zZ2A84/KTKFrB4xBQAJ>
-- Implement and Ship: PaymentRequest.hasEnrolledInstrument()
+  - Implement and Ship: PaymentRequest.hasEnrolledInstrument()
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/6rZ7kBLwmhg/lqEpsHLiDgAJ>
-- Implement and Ship: Remove [NoInterfaceObject] from Geolocation API interfaces
+  - Implement and Ship: Remove [NoInterfaceObject] from Geolocation API interfaces
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Xig9oewsQMA/eyC7dbtiAAAJ>
-- Implement and Ship: Remove [NoInterfaceObject] from DeviceOrientation Event interfaces
+  - Implement and Ship: Remove [NoInterfaceObject] from DeviceOrientation Event interfaces
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/pyLg_jGqOQg/uiVaKF0QEAAJ>
-- *Implement and Ship: CSP violation reports observable by ReportingObserver*
+  - *Implement and Ship: CSP violation reports observable by ReportingObserver*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/dBc_epXL-r4/XhhajwQVBQAJ>
     - reporting api に送ると ReportingObserver に送られないのを修正
-- Implement and Ship: User Activation Delegation through postMessages
+  - Implement and Ship: User Activation Delegation through postMessages
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/1twTm3WCwgQ/FRYZ9Cs0AgAJ>
-- *Implement and Ship: Simulcast with PeerConnection AddTranceiver API in WebRTC*
+  - *Implement and Ship: Simulcast with PeerConnection AddTranceiver API in WebRTC*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/N31xFKvgbck/h5G0a9RqAQAJ>
     - SDP をいじらず AddTranceiver することで Simulcast できるように
-- Implement and Ship: SctpTransport in WebRTC
+  - Implement and Ship: SctpTransport in WebRTC
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hs0xuxTrvrc/7hv3P0ZBAQAJ>
-- Intent to Implement: Async Clipboard read/write with image support
+  - Implement: Async Clipboard read/write with image support
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/NcLn2-BpBd0/ItPPTEZPBAAJ>
-- *Implement: Unified V8 & Blink Garbage Collection (aka Unified Heap)*
+  - *Implement: Unified V8 & Blink Garbage Collection (aka Unified Heap)*
     - <https://groups.google.com/a/chromium.org/forum/#!searchin/blink-dev/oilpan%7Csort:date/blink-dev/tg2rXkjHw9g/e1TuqxfoFgAJ>
     - V8 と Blink の GC 統合 Oilpan が Finch で入り始めた
     - M74 で Wrapper つきで入った
@@ -138,17 +138,17 @@ audio: https://files.mozaic.fm/mozaic-ep49.mp3
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/fXwI0c6m0lE/roX_vAlxAAAJ>
   - Implement: Improved Js Java interaction for Android WebView
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/AByG9B_Y8Vg/mvsx_UkABAAJ>
-- Implement and Experiment: Skip Ad in Picture-in-Picture window
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/l6sW0G4jzhE/lB-ex7hKFgAJ>
-- Implement and Experiment: Unoptimized images policies
+  - Implement and Experiment: Skip Ad in Picture-in-Picture window
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/l6sW0G4jzhE/lB-ex7hKFgAJ>
+  - Implement and Experiment: Unoptimized images policies
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/d5f7djVL5H0/7HX9Dl5ABAAJ>
-- Extend Origin Trial: EventTiming
+  - Extend Origin Trial: EventTiming
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/1Tqsa-0I04E/wXKUtUiqGAAJ>
-- Extend experimentation Wasm Threads/Atomics
+  - Extend experimentation Wasm Threads/Atomics
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/q2frKdhLe4s/-0N-QM9aAAAJ>
-- Change:
-- Unship:
-- Remove: Insecure usage of DeviceOrientationEvent and DeviceMotionEvent
+  - Change:
+  - Unship:
+  - Remove: Insecure usage of DeviceOrientationEvent and DeviceMotionEvent
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/5yqfAXibz1I/5S6PCTPLDwAJ>
   - Remove : Nonsecure usage of MediaDevices, getUserMedia(), getDisplayMedia(), enumerateDevices() and related types
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/SGWYHfR5CyY/uyUBJZAqBwAJ>
@@ -203,7 +203,7 @@ audio: https://files.mozaic.fm/mozaic-ep49.mp3
     - 1 月に v8 も intents が出ている
   - *Implement and Ship: CSS 'prefers-color-scheme' media feature*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/VnJ49XN6flE/rKSza-TyGQAJ>
-  - Implement and ship: InputEvent.data and InputEvent.dataTransfer
+  - Implement and Ship: InputEvent.data and InputEvent.dataTransfer
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/To_1vtUtCN0/HW3s0k-hGgAJ>
   - Implement and Ship: Gamepad Extensions `multi touch` and `light indicator`
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/75GrJSPHAu0/V3DZcKyxBQAJ>

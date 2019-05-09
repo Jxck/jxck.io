@@ -88,13 +88,13 @@ audio: https://files.mozaic.fm/mozaic-ep36.mp3
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/W3InszDnV2k/AuJg4aAMDQAJ>
   - Implement and Ship: Allow `PaymentRequest.show()` to take optional detailsPromise
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Lc2qCQgqqqk/NKOqwNweBQAJ>
-  - *Implement and ship: CSP 'navigate-to' directive*
+  - *Implement and Ship: CSP 'navigate-to' directive*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/EJ4xF_DwZyk/i6qz7FSnBQAJ>
     - 許可された以外に navigation しない
     - form-action が指定された場合は無視される
   - Implement and Ship: WebUSB Interface Class Filtering
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/LZXocaeCwDw/GLfAffGLAAAJ>
-  - Intent to Implement & Ship: RTCRtpSender/RTCRtpReceiver.getStats()
+  - Implement and Ship: RTCRtpSender/RTCRtpReceiver.getStats()
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2mGY257k4-M/7vMxsIPLBAAJ>
   - Implement :focus-visible pseudo class.
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/-wN72ESFsyo/leH6DuuhAwAJ>
@@ -202,7 +202,7 @@ audio: https://files.mozaic.fm/mozaic-ep36.mp3
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/eSbmcrTpckk/PbrR4FK0AAAJ>
     - 管理者がいくつかの機能などを集中管理できる仕組みが入るらしい
     - ESR 60 から
-  - Implement and ship: spec compliance Promise microtask behavior
+  - Implement and Ship: spec compliance Promise microtask behavior
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/bGFs5G8E_NI/CJVEjHyzAQAJ>
   - Stop dispatching "keypress" event for non-printable keys and key combinations in Nightly and early Beta
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/wW9el-i5mtA/fvU19KGgAQAJ>

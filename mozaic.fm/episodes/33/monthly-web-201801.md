@@ -173,7 +173,7 @@ audio: https://files.mozaic.fm/mozaic-ep33.mp3
     - grid-row-gap => row-gap
     - grid-column-gap => column-gap
     - 古いのは alias として残る
-  - Implement and ship: New CSS Value 'legacy" for the alignment behavior of HTML's element
+  - Implement and Ship: New CSS Value 'legacy" for the alignment behavior of HTML's element
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/QDhDKXJqKVE/SVeKgDw4AgAJ>
   - Implement and Ship: Reading Blob URL for invalid/nonexistent Blob should end with a network error
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/zm0ZUCINXBk/2uFi9MvPAwAJ>

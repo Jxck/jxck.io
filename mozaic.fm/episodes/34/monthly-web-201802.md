@@ -90,7 +90,7 @@ audio: https://files.mozaic.fm/mozaic-ep34.mp3
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/h4sCuIqb_78/oU_pAXVDCAAJ>
   - Implement and Ship: Throttling background dedicated workers
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8xpEA-iNHwg/efk7cSE4CAAJ>
-  - Implement and ship: aligning U2F attestation with webauthn
+  - Implement and Ship: aligning U2F attestation with webauthn
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ACm00_XFI7s/8FuWw2oPCAAJ>
   - Implement and Ship: dtmf attribute of RTCRtpSender
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/bTSMCMbBb00/RjbaJTxkBwAJ>
@@ -114,14 +114,13 @@ audio: https://files.mozaic.fm/mozaic-ep34.mp3
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8tVgAyS47y0/e9L-NbatBwAJ>
     - `<img>` と同じ srcset/imgsizes を `<link>` に追加
     - `sizes` ではなく `imgsizes` なのは、すでに `rel=icon` で使われているから。
-  - Experiment:
-    - *Web Locks API*
+  - Experiment: *Web Locks API*
       - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/apdn-NbyZJg/RqHUfq3aCQAJ>
       - tab/worker 間での mutex
-    - Intent to Experiment: Animation Worklet
+  - Experiment: Animation Worklet
       - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/AZ-PYPMS7EA/DEqbe2u5BQAJ>
   - Change:
-  - Intent to unship: rowspan=0
+  - Unship: rowspan=0
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/d0DartbUFQY/L9sx2kqHAQAJ>
   - Extend Origin Trial: Disable Hardware Noise Suppression
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/u_rIEijazPk/YPDI2lIhCwAJ>

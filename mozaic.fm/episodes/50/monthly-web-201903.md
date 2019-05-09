@@ -82,15 +82,15 @@ audio: https://files.mozaic.fm/mozaic-ep50.mp3
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ERkU6ysNVz4/ush9rOJVBgAJ>
   - Ship: lowLatency canvas contexts (now: `|desynchronized|`)
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/nxjWgMIeC1Q/LyC1sle2BQAJ>
-- Implement and Ship: Backdrop Filter
+  - Implement and Ship: Backdrop Filter
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/GRl1_Qy97jM/h7v1qIDsBwAJ>
-- Implement and Ship: ImageCapture support for Pan/Tilt
+  - Implement and Ship: ImageCapture support for Pan/Tilt
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/j-Q08QgBipM/F3a5sau1BwAJ>
-- *Implement and Ship: HTMLVideoElement.playsInline*
+  - *Implement and Ship: HTMLVideoElement.playsInline*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/0TJyePKiegs/24w8YsCQCAAJ>
     - mobile で fullscreen にならないための属性
     - iPhone Safari の独自だったもの
-- *Implement: line-break: anywhere*
+  - *Implement: line-break: anywhere*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/r7PkIqQDvlU/X0aocVo9BQAJ>
     - 単語の途中などでも任意の Character Unit で折り返しする
   - *Implement: Impl threaded scrollbar scrolling*
@@ -126,13 +126,13 @@ audio: https://files.mozaic.fm/mozaic-ep50.mp3
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ZEEwLuKlmcw/Nrj2wFkJAwAJ>
   - *Implement: requestPostAnimationFrame*
     - <https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/m-UwqK3cdjA>
-- Remove: overflow: -webkit-paged-x , overflow: -webkit-paged-y
+  - Remove: overflow: -webkit-paged-x , overflow: -webkit-paged-y
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_UhJEz04sqA/aCcX58-mBwAJ>
-- Deprecate: Prevent download in ad frame without user activation
+  - Deprecate: Prevent download in ad frame without user activation
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/tXKnmZD3P9o/WXBYboSXCwAJ>
-- Deprecate and Remove: aria-help
+  - Deprecate and Remove: aria-help
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/LS5I962Wlnk/wwIjHS-bCwAJ>
-- PSA: Layered API/built-in modules experimental flag renamed
+  - PSA: Layered API/built-in modules experimental flag renamed
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Rtv6BM6pLyc/cGxsG6RxBgAJ>
   - PSA: Fast Flat Tree Traversal enabled on trunk
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2SsgfcYYE1U/4qyqdjsZCwAJ>
@@ -215,15 +215,15 @@ audio: https://files.mozaic.fm/mozaic-ep50.mp3
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/7tsOBwlpgw0/_NaqDRJGCQAJ>
   - *Ship: Backward-Compatibility FIDO U2F support for Google Accounts*
     - <https://groups.google.com/forum/#!topic/mozilla.dev.platform/q5cj38hGTEA>
-  - *Implement and ship the CSS Scroll Snap Module Level 1 and unship old scroll snap properties*
+  - *Implement and Ship the CSS Scroll Snap Module Level 1 and unship old scroll snap properties*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/s0rMvOBnO_4/AFjL0qHpAwAJ>
   - *Implement and Ship: CSS revert keyword.*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/AvR6VqGeSJs/HgWB907xCAAJ>
-  - *Implement and ship: CSS ::marker pseudo-element*
+  - *Implement and Ship: CSS ::marker pseudo-element*
     - <https://groups.google.com/forum/#!topic/mozilla.dev.platform/PSbIck_Jj4s>
-  - Implement and ship: built-in CSS counter 'list-item'
+  - Implement and Ship: built-in CSS counter 'list-item'
     - <https://groups.google.com/forum/#!topic/mozilla.dev.platform/5V37Xg997Mg>
-  - Implement and ship: CSS counter-set property
+  - Implement and Ship: CSS counter-set property
     - <https://groups.google.com/forum/#!topic/mozilla.dev.platform/vOGqau_-5qo>
   - Implement: Trim the Referer header sent to third-party tracking resources to origin by default through modifying the default referrer policy
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/pCZkdNluLTk/GW-QWJ_VAwAJ>
@@ -240,7 +240,7 @@ audio: https://files.mozaic.fm/mozaic-ep50.mp3
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/ATbLAQpWLXE/naA1CZreAwAJ>
   - Disabling document.createEvent("TouchEvent"), document.createTouch* and ontouch* event handlers on desktop
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/dwRNENReBuU/81z1N78zAwAJ>
-  - *Implement and experiment: Require user interaction for notification permission prompts*
+  - *Implement and Experiment: Require user interaction for notification permission prompts*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/15s-U_wXHeA/cekU32UyBwAJ>
   - *Unship: Some Shadow DOM v0 APIs*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/zFwps4VTiXw/mT44PT8dBgAJ>

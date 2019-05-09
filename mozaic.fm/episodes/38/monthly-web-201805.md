@@ -293,7 +293,7 @@ audio: https://files.mozaic.fm/mozaic-ep38.mp3
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/EtjfqRd9FI0/30DfQ3c6DgAJ>
   - Implement: Async Clipboard API
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/skHoHwfapEY/VQZZXvNxAQAJ>
-  - Implement and ship: import.meta in ES6 modules
+  - Implement and Ship: import.meta in ES6 modules
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/ASfzHokKin0/-EpzV-GeCwAJ>
   - Experiment:
   - Change:
