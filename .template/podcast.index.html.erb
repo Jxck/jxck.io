@@ -102,10 +102,12 @@
     <li>
       <h2><a href=<%= e.url %>><%= e.title %></a></h2>
       <%= e.theme_html %>
-      <ul class=info>
-        <li>published_at: <time datetime=<%= e.datetime %>><%= e.datetime %></time><% e.guests.each do |guest| %>
-        <li>guest: <%= to_html(guest[0]).gsub("<p>", "").gsub("</p>", "") %><% end %>
-      </ul>
+      <dl class=info>
+        <dt>published_at<dt>
+        <dd><time datetime=<%= e.datetime %>><%= e.datetime %></time></dd><% e.guests.each do |guest| %>
+        <dt>guest</dt>
+        <dd><%= to_html(guest[0]).gsub("<p>", "").gsub("</p>", "") %><% end %>
+      </dl>
     </li>
 <% end %>
   </ol>
