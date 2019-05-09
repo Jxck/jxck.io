@@ -731,7 +731,7 @@ class Episode < Article
   def article
     super
       .sub(/audio: (.*)/, "<mozaic-player><audio slot=audio data-forward=+30 data-back=-10 src=#{audio}></audio></mozaic-player>")
-      .sub(/<ul>(.*?)<li>published_at:/m, '<ul class=info>\1<li>published_at:')
+      .sub(/<dl>(.*?)<dt>published_at/m, '<dl class=info>\1<dt>published_at')
       .sub(/published_at: (.*)/, "published_at: <time datetime=#{datetime}>#{datetime}</time>")
   end
 
@@ -752,7 +752,7 @@ class Episode < Article
   end
 
   def guests
-    @info.scan(/guest: (.*)/) || []
+    @info.scan(/guest\n: (.*)/) || []
   end
 
   def file
@@ -760,7 +760,7 @@ class Episode < Article
   end
 
   def datetime
-    @info.match(/published_at: (.*)/)[1]
+    @info.match(/published_at\n: (.*)/)[1]
   end
 
   def pubDate
