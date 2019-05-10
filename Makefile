@@ -75,10 +75,20 @@ $(PHTML):
 $(BAMP):
 	$(MARK) --blogamp ./$(@:.amp.html=.md)
 
+# feed
+blogfeed:
+	$(MARK) --blogfeed
+
+podcastfeed:
+	$(MARK) --podcastfeed
+
 
 blog: $(BHTML) $(BAMP)
+	$(MARK) --blogindex
 
 podcast: $(PHTML)
+	$(MARK) --podcastindex
+
 
 ##########################
 # Optimize Image
