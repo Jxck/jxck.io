@@ -806,10 +806,10 @@ class Episode < Article
   end
 end
 
-def blog(path)
+## 渡されたパスの配列を全部ビルドする
+## 1 つしかなければ 1 つだけ
+def blog(paths)
   icon  = "https://jxck.io/assets/img/jxck.png"
-  entry = Entry.new(path, icon)
-
   meta_template = File.read(".template/meta.html.erb") + File.read(".template/ld-json.html.erb")
   blog_template = File.read(".template/blog.html.erb")
   amp_template  = File.read(".template/amp.html.erb")
@@ -826,19 +826,24 @@ def blog(path)
     "./blog.jxck.io/assets/css/table.css",
   ].map {|css| File.read(css)}.join("\n")
 
-  # blog
-  markup = Markup.new
-  entry.build(markup)
-  meta = ERB.new(meta_template).result(entry.instance_eval { binding }).strip
-  html = ERB.new(blog_template).result(binding).strip
-  File.write(entry.htmlfile, html)
+  paths.each{|path|
+    p path
+    entry = Entry.new(path, icon)
 
-  # amp
-  amp = AMP.new
-  entry.build(amp)
-  meta = ERB.new(meta_template).result(entry.instance_eval { binding }).strip
-  html = ERB.new(amp_template).result(binding).strip
-  File.write(entry.ampfile, html)
+    # blog
+    markup = Markup.new
+    entry.build(markup)
+    meta = ERB.new(meta_template).result(entry.instance_eval { binding }).strip
+    html = ERB.new(blog_template).result(binding).strip
+    File.write(entry.htmlfile, html)
+
+    # amp
+    amp = AMP.new
+    entry.build(amp)
+    meta = ERB.new(meta_template).result(entry.instance_eval { binding }).strip
+    html = ERB.new(amp_template).result(binding).strip
+    File.write(entry.ampfile, html)
+  }
 end
 
 # blog feed
@@ -891,20 +896,20 @@ def blogfeed(feed = false)
   end
 end
 
+## ビルド時に前後のエントリへのリンクを貼る
+## そこで一旦全体を見る必要があるの
+## 引数は nil なら全体をビルド
+## ファイルパスを渡すとそれだけをビルド
 def podcast(path)
+  dir  = "./mozaic.fm/episodes/**/*.md"
   icon = "https://mozaic.fm/assets/img/mozaic.png"
-  dir  = "./mozaic.fm/episodes/**/*"
   meta_template    = File.read(".template/meta.html.erb")
   podcast_template = File.read(".template/podcast.html.erb")
-
-  # どうせ全部作るのここでは episode を作らな
-  # episode = Episode.new(path)
 
   # prev/next のリンクを貼るために一度全部をたどる必要がある
   # (sideshow があるためディレクトリの番号では足らない)
   episodes = Dir.glob(dir)
-    .select {|path| path.match(/.*.md\z/)}
-    .map {|path| Episode.new(path)}
+    .map {|path| Episode.new(path)} #.map(&method(Episode.new))
     .sort
     .reverse
     .map.with_index {|ep, i|
@@ -913,19 +918,28 @@ def podcast(path)
       ep
     }
 
-  # 自分を探す
-  episode = episodes.select{|e| e.path == path}.first
+  # 前後関係を設定
+  episodes.each.with_index {|e, i|
+    e.prev = episodes[i+1] if i < episodes.size
+    e.next = episodes[i-1] if i > 0
+  }
 
-  # 自分の前後に設定
-  episode.prev = episodes[episode.order+1] if episode.order < episodes.size
-  episode.next = episodes[episode.order-1] if episode.order > 0
+  # もし Path があったらその一つに絞る
+  if path
+    episodes = episodes.select{|e| e.path == path}.first
+  end
 
-  # entry
-  markup = Podcast.new
-  episode.build(markup)
-  meta = ERB.new(meta_template).result(episode.instance_eval { binding }).strip
-  html = ERB.new(podcast_template).result(binding).strip
-  File.write(episode.htmlfile, html)
+  # ビルドする
+  episodes.each{|episode|
+    p episode.path
+    # entry
+    markup = Podcast.new
+    episode.build(markup)
+    meta = ERB.new(meta_template).result(episode.instance_eval { binding }).strip
+    html = ERB.new(podcast_template).result(binding).strip
+    File.write(episode.htmlfile, html)
+  }
+
 end
 
 def podcastfeed(feed = false)
@@ -967,10 +981,14 @@ if __FILE__ == $PROGRAM_NAME
 
   # Markdown to HTML
   opt.on("-b path/to/entry", "--blog ./path/to/entry.md") {|path|
-    blog(path)
+    blog([path])
   }
   opt.on("-p path/to/episode", "--podcast ./path/to/episode.md") {|path|
     podcast(path)
+  }
+  opt.on("--full") {
+    blog(Dir.glob("./blog.jxck.io/entries/**/*.md"))
+    podcast(nil)
   }
 
 
