@@ -249,10 +249,10 @@ class Markup
     if size
       size = size.split("x")
       if size.size == 1
-        width = "width=#{size[0]}"
+        width = size[0]
       elsif size.size == 2
-        width = "width=#{size[0]}"
-        height = "height=#{size[1]}"
+        width = size[0]
+        height = size[1]
       end
     end
     return width, height
@@ -264,7 +264,7 @@ class Markup
 
     # SVG should specify width-height
     if File.extname(URI.parse(node.attr["src"]).path) == ".svg"
-      return %(<img loading=lazy src=#{node.attr['src']} alt="#{node.attr['alt']}" title="#{node.attr['title']}" #{width} #{height}>)
+      return %(<img loading=lazy src=#{node.attr['src']} alt="#{node.attr['alt']}" title="#{node.attr['title']}" width=#{width} height=#{height} intrinsicsize=#{width}x#{height}>)
     end
 
     # No width-height for normal img
@@ -272,7 +272,7 @@ class Markup
 
   <picture>
     <source type=image/webp srcset=#{node.attr['src'].sub(/(.png|.gif|.jpg)/, '.webp')}>
-    <img loading=lazy src=#{node.attr['src']} alt="#{node.attr['alt']}" title="#{node.attr['title']}">
+    <img loading=lazy src=#{node.attr['src']} alt="#{node.attr['alt']}" title="#{node.attr['title']}" intrinsicsize=#{width}x#{height}>
   </picture>
 EOS
   end
@@ -311,7 +311,7 @@ class AMP < Markup
       STDERR.puts("no width x height for img")
       exit(1)
     end
-    %(<amp-img layout=responsive src=#{node.attr['src']} alt="#{node.attr['alt']}" title="#{node.attr['title']}" #{width} #{height}>)
+    %(<amp-img layout=responsive src=#{node.attr['src']} alt="#{node.attr['alt']}" title="#{node.attr['title']}" width=#{width} height=#{height}>)
   end
   def html_element(node)
     value = super(node)
