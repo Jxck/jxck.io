@@ -103,7 +103,6 @@ remove:
 	@rm -fv $(BHTML)
 	@rm -fv $(PHTML)
 	@rm -fv $(BAMP)
-	@rm -fv $(PAMP)
 
 blogtest:
 	$(MARK) --blogtest
