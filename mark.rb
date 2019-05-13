@@ -5,9 +5,10 @@ require "uri"
 require "erb"
 require "json"
 require "time"
+require "optparse"
 require "pathname"
 require "kramdown"
-require 'kramdown-parser-gfm'
+require "kramdown-parser-gfm"
 
 
 # html
@@ -23,7 +24,7 @@ def hsc(str)
      .gsub(/</, "&lt;")
      .gsub(/>/, "&gt;")
      .gsub(/"/, "&quot;")
-     .gsub(/'/, '&#039;')
+     .gsub(/'/, "&#039;")
 end
 
 # trim to 140 word for html meta description
@@ -316,8 +317,8 @@ class AMP < Markup
   def html_element(node)
     value = super(node)
     if value.match(/<iframe.*/)
-      value.gsub!(/iframe/, 'amp-iframe')
-      value.gsub!(/ loading="lazy"/, '')
+      value.gsub!(/iframe/, "amp-iframe")
+      value.gsub!(/ loading="lazy"/, "")
     end
     value
   end
@@ -365,7 +366,7 @@ class Traverser
       # 子要素の連結結果を value に入れられるように
       # :tag に移しておく
       node.tag = node.value
-      node.value = ''
+      node.value = ""
     end
 
     if node.type == :blockquote
@@ -731,7 +732,7 @@ class Episode < Article
   def article
     super
       .sub(/audio: (.*)/, "<mozaic-player><audio slot=audio data-forward=+30 data-back=-10 src=#{audio}></audio></mozaic-player>")
-      .sub(/<dl>(.*?)<dt>published_at/m, '<dl class=info>\1<dt>published_at')
+      .sub(/<dl>(.*?)<dt>published_at/m, "<dl class=info>\1<dt>published_at")
       .sub(/published_at: (.*)/, "published_at: <time datetime=#{datetime}>#{datetime}</time>")
   end
 
@@ -805,66 +806,64 @@ class Episode < Article
   end
 end
 
-if __FILE__ == $PROGRAM_NAME
+def blog(path, amp)
+  icon  = "https://jxck.io/assets/img/jxck.png"
+  entry = Entry.new(path, icon)
 
-  def blog(entry)
-    meta_template = File.read(".template/meta.html.erb") + File.read(".template/ld-json.html.erb")
-    blog_template = File.read(".template/blog.html.erb")
-    amp_template = File.read(".template/amp.html.erb")
+  meta_template = File.read(".template/meta.html.erb") + File.read(".template/ld-json.html.erb")
+  blog_template = File.read(".template/blog.html.erb")
+  amp_template  = File.read(".template/amp.html.erb")
 
-    style = [
-      "./blog.jxck.io/assets/css/article.css",
-      "./blog.jxck.io/assets/css/body.css",
-      "./blog.jxck.io/assets/css/info.css",
-      "./blog.jxck.io/assets/css/header.css",
-      "./blog.jxck.io/assets/css/markdown.css",
-      "./blog.jxck.io/assets/css/main.css",
-      "./blog.jxck.io/assets/css/footer.css",
-      "./blog.jxck.io/assets/css/pre.css",
-      "./blog.jxck.io/assets/css/table.css",
-    ].map { |css| File.read(css) }.join("\n")
+  style = [
+    "./blog.jxck.io/assets/css/article.css",
+    "./blog.jxck.io/assets/css/body.css",
+    "./blog.jxck.io/assets/css/info.css",
+    "./blog.jxck.io/assets/css/header.css",
+    "./blog.jxck.io/assets/css/markdown.css",
+    "./blog.jxck.io/assets/css/main.css",
+    "./blog.jxck.io/assets/css/footer.css",
+    "./blog.jxck.io/assets/css/pre.css",
+    "./blog.jxck.io/assets/css/table.css",
+  ].map {|css| File.read(css)}.join("\n")
 
-    # blog
-    markup = Markup.new
-    entry.build(markup)
-    meta = ERB.new(meta_template).result(entry.instance_eval { binding }).strip
-    html = ERB.new(blog_template).result(binding).strip
-    File.write(entry.htmlfile, html)
-
+  if (amp)
     # amp
     amp = AMP.new
     entry.build(amp)
     meta = ERB.new(meta_template).result(entry.instance_eval { binding }).strip
     html = ERB.new(amp_template).result(binding).strip
     File.write(entry.ampfile, html)
+  else
+    # blog
+    markup = Markup.new
+    entry.build(markup)
+    meta = ERB.new(meta_template).result(entry.instance_eval { binding }).strip
+    html = ERB.new(blog_template).result(binding).strip
+    File.write(entry.htmlfile, html)
   end
+end
 
-  # blog feed
-  def blogfeed(feed = false)
-    puts "build blog"
+# blog feed
+def blogfeed(feed = false)
+  puts "build blog"
 
-    # entries
-    dir = "./blog.jxck.io/entries/**/*"
-    icon = "https://jxck.io/assets/img/jxck.png"
-    entries = Dir.glob(dir)
-                 .select { |path| path.match(/.*.md\z/) }
-                 .map { |path| Entry.new(path, icon) }
-                 .sort
-                 .reverse
+  # entries
+  dir  = "./blog.jxck.io/entries/**/*"
+  icon = "https://jxck.io/assets/img/jxck.png"
+  entries = Dir.glob(dir)
+    .select {|path| path.match(/.*.md\z/)}
+    .map {|path| Entry.new(path, icon)}
+    .sort
+    .reverse
 
-    if feed
-      puts "build blog feed & sitemap"
-      xml = ERB.new(File.read(".template/atom.xml.erb")).result(binding)
-      File.write("./blog.jxck.io/feeds/atom.xml", xml)
+  if feed
+    puts "build blog feed & sitemap"
+    xml = ERB.new(File.read(".template/atom.xml.erb")).result(binding)
+    File.write("./blog.jxck.io/feeds/atom.xml", xml)
 
-      xml = ERB.new(File.read(".template/sitemap.xml.erb")).result(binding)
-      File.write("./blog.jxck.io/feeds/sitemap.xml", xml)
-    end
-
-    entries.each {|e|
-      blog(e)
-    }
-
+    xml = ERB.new(File.read(".template/sitemap.xml.erb")).result(binding)
+    File.write("./blog.jxck.io/feeds/sitemap.xml", xml)
+  else
     puts "build archive page"
     archive = ERB.new(File.read(".template/archive.html.erb")).result(binding)
     File.write("./blog.jxck.io/index.html", archive)
@@ -875,7 +874,7 @@ if __FILE__ == $PROGRAM_NAME
         acc.merge({tag => [entry]})
       }
     }.reduce {|acc, entry|
-      acc.merge(entry) { |_key, old, new| new + old }
+      acc.merge(entry) {|_key, old, new| new + old}
     }
 
     tag = "Tags"
@@ -892,88 +891,124 @@ if __FILE__ == $PROGRAM_NAME
       File.write("./blog.jxck.io/tags/#{tag}.html", html)
     }
   end
+end
 
-  def podcast(episode)
-    icon = "https://mozaic.fm/assets/img/mozaic.png"
-    meta_template = File.read(".template/meta.html.erb")
-    podcast_template = File.read(".template/podcast.html.erb")
+def podcast(path)
+  icon = "https://mozaic.fm/assets/img/mozaic.png"
+  dir  = "./mozaic.fm/episodes/**/*"
+  meta_template    = File.read(".template/meta.html.erb")
+  podcast_template = File.read(".template/podcast.html.erb")
 
-    # entry
-    markup = Podcast.new
-    episode.build(markup)
-    meta = ERB.new(meta_template).result(episode.instance_eval { binding }).strip
-    html = ERB.new(podcast_template).result(binding).strip
-    File.write(episode.htmlfile, html)
-  end
+  # どうせ全部作るのここでは episode を作らな
+  # episode = Episode.new(path)
 
-  def podcastfeed(feed = false)
-    puts "build podcast"
-    dir = "./mozaic.fm/episodes/**/*"
-    host = "mozaic.fm"
+  # prev/next のリンクを貼るために一度全部をたどる必要がある
+  # (sideshow があるためディレクトリの番号では足らない)
+  episodes = Dir.glob(dir)
+    .select {|path| path.match(/.*.md\z/)}
+    .map {|path| Episode.new(path)}
+    .sort
+    .reverse
+    .map.with_index {|ep, i|
+      # 連番を振る
+      ep.order = i
+      ep
+    }
 
-    # episodes
-    episodes = Dir.glob(dir)
-                  .select { |path| path.match(/.*.md\z/) }
-                  .map { |path| Episode.new(path) }
-                  .sort
-                  .reverse
-                  .map.with_index {|ep, i|
-                    ep.order = i
-                    ep
-                  }
+  # 自分を探す
+  episode = episodes.select{|e| e.path == path}.first
 
-    if feed
-      puts "build podcast feed"
-      xml = ERB.new(File.read(".template/rss2.xml.erb")).result(binding)
-      File.write("./feed.mozaic.fm/index.xml", xml)
-    end
+  # 自分の前後に設定
+  episode.prev = episodes[episode.order+1] if episode.order < episodes.size
+  episode.next = episodes[episode.order-1] if episode.order > 0
 
+  # entry
+  markup = Podcast.new
+  episode.build(markup)
+  meta = ERB.new(meta_template).result(episode.instance_eval { binding }).strip
+  html = ERB.new(podcast_template).result(binding).strip
+  File.write(episode.htmlfile, html)
+end
+
+def podcastfeed(feed = false)
+  puts "build podcast"
+
+  # episodes
+  dir  = "./mozaic.fm/episodes/**/*"
+  host = "mozaic.fm"
+
+  episodes = Dir.glob(dir)
+    .select {|path| path.match(/.*.md\z/)}
+    .map {|path| Episode.new(path)}
+    .sort
+    .reverse
+    .map.with_index {|ep, i|
+      ep.order = i
+      ep
+    }
+
+  if feed
+    puts "build podcast feed"
+    xml = ERB.new(File.read(".template/rss2.xml.erb")).result(binding)
+    File.write("./feed.mozaic.fm/index.xml", xml)
+  else
     episodes.each.with_index {|e, i|
       e.prev = episodes[i+1] if i < episodes.size
       e.next = episodes[i-1] if i > 0
-      podcast(e)
     }
 
     puts "build index.html"
     archive = ERB.new(File.read(".template/podcast.index.html.erb")).result(binding)
     File.write("./mozaic.fm/index.html", archive)
   end
+end
 
 
-  ########################
-  # TEST
-  ########################
-  if ARGV.include? "-t"
-    puts "test builing blog"
-    icon = "https://jxck.io/assets/img/jxck.png"
-    file = "./blog.jxck.io/entries/2016-01-27/new-blog-start.md"
-    e = Entry.new(file, icon)
-    blog(e)
-    exit 0
-  end
+if __FILE__ == $PROGRAM_NAME
+  opt = OptionParser.new
 
-  if ARGV.include? "-tp"
-    # test podcast
-    entry = Episode.new("./mozaic.fm/episodes/1/webcomponents.md")
-    # podcast(entry)
-  end
+  # Markdown to HTML
+  opt.on("-b path/to/entry", "--blog ./path/to/entry.md") {|path|
+    blog(path, false)
+  }
+  opt.on("-ba path/to/entry", "--blogamp ./path/to/entry.md") {|path|
+    blog(path, true)
+  }
+  opt.on("-p path/to/episode", "--podcast ./path/to/episode.md") {|path|
+    podcast(path)
+  }
 
 
-  ########################
-  # Main
-  ########################
-  # $ mark.rb blog feed
-  if ARGV.include? "blog"
-    blogfeed(ARGV.include?("feed"))
-  end
+  # Update Index/Archive/Tags
+  opt.on("--blogindex") {|v|
+    blogfeed(false)
+  }
+  opt.on("--podcastindex") {|v|
+    podcastfeed(false)
+  }
 
-  # $ mark.rb podcast feed
-  if ARGV.include? "podcast"
-    podcastfeed(ARGV.include?("feed"))
-  end
 
-  if ARGV.include? "full"
+  ## Update Feed
+  opt.on("--blogfeed") {|v|
     blogfeed(true)
+  }
+  opt.on("--podcastfeed") {|v|
     podcastfeed(true)
-  end
+  }
+
+
+  ## Test
+  opt.on("--blogtest") {|v|
+    puts "test builing blog"
+    path = "./blog.jxck.io/entries/2016-01-27/new-blog-start.md"
+    blog(path)
+ }
+  opt.on("--podcasttest") {|v|
+    puts "test building podcast"
+    # path = "./mozaic.fm/episodes/0/introduction-of-mozaicfm.md"
+    path = "./mozaic.fm/episodes/1/webcomponents.md"
+    podcast(path)
+  }
+
+  opt.parse!(ARGV)
 end

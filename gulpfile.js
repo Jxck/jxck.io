@@ -15,10 +15,13 @@ const imageOption = {
   concurrent:     4,
 }
 
+// gulp image --path ./path/to/image.png
 gulp.task('image', (done) => {
-  gulp.src('blog.jxck.io/entries/**/*.+(png|jpeg|svg)')
+  const path = process.argv[4]
+  const dir  = require('path').parse(path).dir
+  gulp.src(path)
     .pipe(image(imageOption))
-    .pipe(gulp.dest('blog.jxck.io/entries/'))
+    .pipe(gulp.dest(dir))
     .on('end', done)
 })
 
