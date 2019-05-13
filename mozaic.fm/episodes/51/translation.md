@@ -30,15 +30,15 @@ guest
 
 - ウェブ関連仕様 日本語訳
   - <https://triple-underscore.github.io>
-- Infra（日本語訳）
+- Infra(日本語訳)
   - <https://triple-underscore.github.io/infra-ja.html>
-- Feature Policy （日本語訳）
+- Feature Policy (日本語訳)
   - <https://triple-underscore.github.io/feature-policy-ja.html>
-- CSS Exclusions Module Level 1 （日本語訳）
+- CSS Exclusions Module Level 1 (日本語訳)
   - <https://triple-underscore.github.io/css-exclusions-ja.html>
 - Portals
   - <https://github.com/WICG/portals/blob/master/explainer.md>
-- DeviceOrientation Event Specification （日本語訳）
+- DeviceOrientation Event Specification (日本語訳)
   - <https://triple-underscore.github.io/deviceorientation-ja.html>
 - Picture-in-Picture
   - <https://wicg.github.io/picture-in-picture/>
