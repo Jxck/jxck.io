@@ -2,10 +2,9 @@
 .SUFFIXES: .html .md .amp .amp.html
 
 build:
-	make remove
-	make clean
-	make blog
-	make podcast
+	make full
+	make blogfeed
+	make podcastfeed
 	make image
 	make comp
 
@@ -24,7 +23,7 @@ TARGET = $(WWW) $(BLO) $(MOZ)
 GZ = $(addsuffix .gz, $(TARGET))
 BR = $(addsuffix .br, $(TARGET))
 
-comp: $(GZ) $(BR)
+comp: $(BR) $(GZ)
 
 gz:$(GZ)
 
@@ -75,6 +74,7 @@ full:
 	$(MARK) --full
 	$(MARK) --blogindex
 	$(MARK) --podcastindex
+
 
 # feed
 blogfeed:
