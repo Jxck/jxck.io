@@ -806,7 +806,7 @@ class Episode < Article
   end
 end
 
-def blog(path, amp)
+def blog(path)
   icon  = "https://jxck.io/assets/img/jxck.png"
   entry = Entry.new(path, icon)
 
@@ -826,21 +826,19 @@ def blog(path, amp)
     "./blog.jxck.io/assets/css/table.css",
   ].map {|css| File.read(css)}.join("\n")
 
-  if (amp)
-    # amp
-    amp = AMP.new
-    entry.build(amp)
-    meta = ERB.new(meta_template).result(entry.instance_eval { binding }).strip
-    html = ERB.new(amp_template).result(binding).strip
-    File.write(entry.ampfile, html)
-  else
-    # blog
-    markup = Markup.new
-    entry.build(markup)
-    meta = ERB.new(meta_template).result(entry.instance_eval { binding }).strip
-    html = ERB.new(blog_template).result(binding).strip
-    File.write(entry.htmlfile, html)
-  end
+  # blog
+  markup = Markup.new
+  entry.build(markup)
+  meta = ERB.new(meta_template).result(entry.instance_eval { binding }).strip
+  html = ERB.new(blog_template).result(binding).strip
+  File.write(entry.htmlfile, html)
+
+  # amp
+  amp = AMP.new
+  entry.build(amp)
+  meta = ERB.new(meta_template).result(entry.instance_eval { binding }).strip
+  html = ERB.new(amp_template).result(binding).strip
+  File.write(entry.ampfile, html)
 end
 
 # blog feed
@@ -969,10 +967,7 @@ if __FILE__ == $PROGRAM_NAME
 
   # Markdown to HTML
   opt.on("-b path/to/entry", "--blog ./path/to/entry.md") {|path|
-    blog(path, false)
-  }
-  opt.on("-ba path/to/entry", "--blogamp ./path/to/entry.md") {|path|
-    blog(path, true)
+    blog(path)
   }
   opt.on("-p path/to/episode", "--podcast ./path/to/episode.md") {|path|
     podcast(path)

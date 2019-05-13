@@ -40,6 +40,11 @@ clean:
 	@rm -fv $(GZ)
 	@rm -fv $(BR)
 
+remove:
+	@rm -fv $(BHTML)
+	@rm -fv $(BHTML:.html=.amp.html)
+	@rm -fv $(PHTML)
+
 
 ##########################
 # BUILD Markdown
@@ -54,26 +59,18 @@ PMD := $(shell find ./mozaic.fm/episodes/**/*.md)
 BHTML = $(BMD:.md=.html)
 PHTML = $(PMD:.md=.html)
 
-# .amp.html
-BAMP  = $(BMD:.md=.amp.html)
-
-# .png/.jpg/.svg
-IMAGES := $(shell find ./blog.jxck.io/entries/**/* \
-	-name *.png -or \
-	-name *.jpg -or \
-	-name *.svg)
-
-
 # .md -> .html
-$(BHTML):
-	$(MARK) --blog ./$*.md
+.md.html:
+	$(MARK) $(if $(findstring blog.jxck.io, $*), --blog, --podcast) ./$*.md
 
-$(PHTML):
-	$(MARK) --podcast ./$*.md
 
-# .md -> .amp.html
-$(BAMP):
-	$(MARK) --blogamp ./$(@:.amp.html=.md)
+# build
+blog: $(BHTML)
+	$(MARK) --blogindex
+
+podcast: $(PHTML)
+	$(MARK) --podcastindex
+
 
 # feed
 blogfeed:
@@ -83,27 +80,7 @@ podcastfeed:
 	$(MARK) --podcastfeed
 
 
-blog: $(BHTML) $(BAMP)
-	$(MARK) --blogindex
-
-podcast: $(PHTML)
-	$(MARK) --podcastindex
-
-
-##########################
-# Optimize Image
-##########################
-# optimize all image
-image:
-	@for target in $(IMAGES); do \
-		gulp image --path $$target; \
-	done
-
-remove:
-	@rm -fv $(BHTML)
-	@rm -fv $(PHTML)
-	@rm -fv $(BAMP)
-
+# test
 blogtest:
 	$(MARK) --blogtest
 
@@ -111,10 +88,25 @@ podcasttest:
 	$(MARK) --podcasttest
 
 
+##########################
+# Optimize Image
+##########################
+# .png/.jpg/.svg
+IMAGES := $(shell find ./blog.jxck.io/entries/**/* \
+	-name *.png -or \
+	-name *.jpg -or \
+	-name *.svg)
+
+# optimize all image
+image:
+	@for target in $(IMAGES); do \
+		gulp image --path $$target; \
+	done
 
 
-
-
+##########################
+# formatter
+##########################
 space:
 	selects path from './blog.jxck.io/entries/**/*' where extname '==' '.md' | xargs -L 1 spacer
 	selects path from './mozaic.fm/episodes/**/*'   where extname '==' '.md' | xargs -L 1 spacer
@@ -126,7 +118,6 @@ singler:
 format:
 	selects path from './blog.jxck.io/entries/**/*' where extname '==' '.md' | xargs -L 1 format.rb
 	selects path from './mozaic.fm/episodes/**/*'   where extname '==' '.md' | xargs -L 1 format.rb
-
 
 
 ##########################
