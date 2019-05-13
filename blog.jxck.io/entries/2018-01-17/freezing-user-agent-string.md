@@ -258,6 +258,7 @@ Accept-CH: DPR, Viewport-Width
 
 レスポンスに要求した値が載ってくる。
 
+
 ```http
 Viewport-Width: 1366
 DPR: 1

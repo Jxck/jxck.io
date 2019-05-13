@@ -235,7 +235,6 @@ TrustedTypes.createPolicy('https://labs.jxck.io', {
 
 ### 何もしない、はできない。
 
-
 たとえば location.href への代入が型エラーになったら、代入を無視するということはできない。
 
 例えば `createURL()` で `null` や `undefined` を返しても、 `location.href` へ代入は行われてしまい、遷移がおこる。

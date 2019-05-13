@@ -377,7 +377,6 @@ Policy を指定しないことを意味する。
 
 表にまとめるとこうなる
 
-
 | Policy                           | Condition       | Value   |
 |:---------------------------------|----------------:|--------:|
 | noreferrer                       | 必ず            | 無し    |
@@ -391,6 +390,7 @@ Policy を指定しないことを意味する。
 | strict-origin-when-cross-origin  | Downgrade       | 無し    |
 | strict-origin-when-cross-origin  | Cross Origin    | Origin  |
 | strict-origin-when-cross-origin  | SameO rigin     | URL     |
+
 
 
 ## Referrer-Policy の適用方法

@@ -94,6 +94,7 @@ if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalSco
 
 ファイルからコードを読むこともできる。
 
+
 ```js:sample.js
 ```
 
