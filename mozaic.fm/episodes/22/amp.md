@@ -51,4 +51,4 @@ guest
 - カルーセル
   - 以下のように横にスライドする表示形式のこと。
 
-![carousel sample](carousel.png "google top news carousel sample")
+![carousel sample](carousel.png#640x1136 "google top news carousel sample")
