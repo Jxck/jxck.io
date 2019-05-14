@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>DEMO</title>
+
+<style>
+pre {
+  height: 40em;
+  width: 30em;
+}
+portal {
+  width:  50em;
+  height: 50em;
+  border: solid 1px black;
+}
+</style>
+
+<h1>Child</h1>
+
+<a href=host.html>to host</a>
+<button>ok</button>
+
+<pre></pre>
+
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  const $pre = $('pre')
+  if (window.portalHost) {
+    $pre.textContent += "I'm in <portal>\n"
+  }
+
+  if (window.portalHost) {
+    window.portalHost.addEventListener('message', (e) => {
+      $pre.textContent += `${e.data.message}\n`
+    })
+  }
+
+  window.addEventListener('portalactivate', (e) => {
+    $pre.textContent += `${e.type}\n`
+    let predecessor = e.adoptPredecessor(document);
+    console.assert(predecessor instanceof HTMLPortalElement);
+    document.body.appendChild(predecessor);
+
+    $('button').on('click', (e) => {
+      predecessor.postMessage({message: 'ping'})
+    })
+    predecessor.on('click', (e) => {
+      predecessor.activate()
+    })
+  });
+
+  document.on('DOMContentLoaded', (e) => {
+    console.log(e)
+    $pre.textContent += `${e.type}\n`
+  })
+  window.on('load', (e) => {
+    console.log(e)
+    $pre.textContent += `${e.type}\n`
+  })
+</script>
+

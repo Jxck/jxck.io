@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Portals DEMO | labs.jxck.io</title>
+
+<style>
+portal {
+  border:   solid 1px black;
+  position: fixed;
+  bottom:   10px;
+  right:    10px;
+  width:    100%;
+  height:   100%;
+  transform:  scale(0.4);
+  transition: transform 0.3s;
+  transform-origin: right bottom;
+}
+portal:hover {
+  transform: scale(0.8);
+}
+portal.activate {
+  bottom:     0px;
+  right:      0px;
+  transform:  scale(1.0);
+}
+</style>
+
+<h1>Portals DEMO</h1>
+
+<h2>hover 1s over links below, then click portals</h2>
+
+<ul>
+  <li><a href=https://example.com>secure example.com</a>
+  <!--
+    :authority: example.com
+    :method: GET
+    :path: /
+    :scheme: https
+    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3
+    accept-encoding: gzip, deflate, br
+    accept-language: ja,en-US;q=0.9,en;q=0.8
+    cache-control: no-cache
+    pragma: no-cache
+    sec-ch-ua: Google Chrome 76
+    sec-fetch-dest: document
+    sec-fetch-mode: navigate
+    sec-fetch-site: cross-site
+    sec-origin-policy: 0
+    upgrade-insecure-requests: 1
+    user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3793.0 Safari/537.36
+  -->
+  <li><a href=http://example.com>insecure example.com</a>
+  <!--
+    GET / HTTP/1.1
+    Host: example.com
+    Connection: keep-alive
+    Pragma: no-cache
+    Cache-Control: no-cache
+    Upgrade-Insecure-Requests: 1
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3793.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3
+    Accept-Encoding: gzip, deflate
+    Accept-Language: ja,en-US;q=0.9,en;q=0.8
+  -->
+  <li><a href=/iframe/x-frame-options.html>x-frame-options: deny</a>
+  <li><a href=https://yahoo.co.jp>yahooj</a>
+</ul>
+<portal id=portal></portal>
+
+<script>
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener;
+
+  function enablePortal() {
+    if (window.HTMLPortalElement === undefined) return
+    const $portal = $('#portal')
+
+    $$('a').forEach(($a) => {
+      let timer;
+      $a.on('mouseover', (e) => {
+        timer = setTimeout(() => {
+          $portal.src = e.target.href
+        }, 1000)
+      })
+
+      $a.on('mouseout', (e) => {
+        clearTimeout(timer)
+      })
+    })
+
+    $portal.on('click', (e) => {
+      $portal.classList.add('activate')
+      $portal.on('transitionend', (e) => {
+        $portal.activate()
+      })
+    })
+  }
+
+  enablePortal()
+</script>
