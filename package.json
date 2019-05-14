@@ -11,27 +11,6 @@
     "gulp": "^4.0.2",
     "gulp-image": "^4.4.1"
   },
-  "scripts": {
-    "blog":     "bundle exec ruby ./mark.rb blog",
-    "blogtest": "bundle exec ruby ./mark.rb blog -t",
-    "podcast":  "bundle exec ruby ./mark.rb podcast",
-    "build":    "npm run clean && npm run blog && npm run gzip && gulp",
-    "gzip":     "./compress.sh www.jxck.io blog.jxck.io mozaic.fm",
-    "clean":    "./cleanup.sh  www.jxck.io blog.jxck.io mozaic.fm",
-    "space":    "selects path from './blog.jxck.io/entries/**/*' where extname '==' '.md' | xargs -L 1 spacer",
-    "singler":  "selects path from './blog.jxck.io/entries/**/*' where extname '==' '.md' | xargs -L 1 singler",
-    "format":   "selects path from './blog.jxck.io/entries/**/*' where extname '==' '.md' | xargs -L 1 format.rb",
-    "_start":   "sudo $DOTFILES/local/h2o/bin/h2o -m daemon -c h2o.conf",
-    "_stop":    "sudo kill -TERM `cat ../pid/h2o.pid`",
-    "_restart": "npm run _stop && npm run _start",
-    "start":    "sudo systemctl start   h2o",
-    "stop":     "sudo systemctl stop    h2o",
-    "kill":     "sudo systemctl kill    h2o",
-    "restart":  "sudo systemctl restart h2o",
-    "reload":   "sudo systemctl reload  h2o",
-    "test":     "$DOTFILES/local/h2o/bin/h2o -t -c h2o.conf | cat",
-    "cron":     "sudo crontab -u root .crontab/* && sudo crontab -u root -l"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jxck/jxck.io.git"
