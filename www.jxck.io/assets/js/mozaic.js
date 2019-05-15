@@ -5,7 +5,8 @@ import MozaicPlayer from '/assets/js/mozaic-player.mjs'
 const log = location.hash === "#debug" ? console.log.bind(console) : () => {}
 EventTarget.prototype.on  = EventTarget.prototype.addEventListener
 EventTarget.prototype.off = EventTarget.prototype.removeEventListener
-const $ = document.querySelector.bind(document)
+const $  = document.querySelector.bind(document)
+const $$ = document.querySelectorAll.bind(document)
 
 if (window.ReportingObserver) {
   (new ReportingObserver((reports, observer) => {
@@ -42,6 +43,35 @@ function playerKeybind(e) {
       $dialog.showModal()
       break
   }
+}
+
+function enablePortal($portal) {
+  const $shownote = Array.from($$('h2')).filter((e) => e.textContent === 'Show Note')[0]
+  const $links = $shownote.parentElement.querySelectorAll('a')
+
+  $links.forEach(($a) => {
+    let timer;
+    $a.on('mouseover', (e) => {
+      log(e)
+      timer = setTimeout(() => {
+        $portal.src = e.target.href
+      }, 1000)
+    })
+
+    $a.on('mouseout', (e) => {
+      log(e)
+      clearTimeout(timer)
+    })
+  })
+  $portal.on('click', (e) => {
+    log(e)
+    if ($portal.src === "") return
+    $portal.classList.add('activate')
+    $portal.on('transitionend', (e) => {
+      log(e)
+      $portal.activate()
+    })
+  })
 }
 
 document.on('DOMContentLoaded', (e) => {
@@ -119,5 +149,10 @@ document.on('DOMContentLoaded', (e) => {
     // <dialog> があったら shortcut を <dialog> で出す
     const searchDiag = document.importNode($('#shortcut_diag').content, true)
     document.body.appendChild(searchDiag)
+  }
+
+  if (window.HTMLPortalElement && $('portal#preview')) {
+    $('portal#preview').style.display = 'block'
+    enablePortal($('portal#preview'))
   }
 })
