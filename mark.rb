@@ -925,13 +925,10 @@ def podcast(path)
   }
 
   # もし Path があったらその一つに絞る
-  if path
-    episodes = episodes.select{|e| e.path == path}.first
-  end
+  episodes = episodes.select{|e| e.path == path} if path
 
   # ビルドする
   episodes.each{|episode|
-    p episode.path
     # entry
     markup = Podcast.new
     episode.build(markup)
