@@ -810,7 +810,8 @@ end
 ## 1 つしかなければ 1 つだけ
 def blog(paths)
   icon  = "https://jxck.io/assets/img/jxck"
-  meta_template = File.read(".template/meta.html.erb") + File.read(".template/favicon.html.erb") + File.read(".template/ld-json.html.erb")
+  fav_template  = File.read(".template/favicon.html.erb")
+  meta_template = File.read(".template/meta.html.erb") + File.read(".template/ld-json.html.erb")
   blog_template = File.read(".template/blog.html.erb")
   amp_template  = File.read(".template/amp.html.erb")
 
@@ -833,6 +834,7 @@ def blog(paths)
     # blog
     markup = Markup.new
     entry.build(markup)
+    fav  = ERB.new(fav_template).result(entry.instance_eval { binding }).strip
     meta = ERB.new(meta_template).result(entry.instance_eval { binding }).strip
     html = ERB.new(blog_template).result(binding).strip
     File.write(entry.htmlfile, html)
@@ -840,6 +842,7 @@ def blog(paths)
     # amp
     amp = AMP.new
     entry.build(amp)
+    fav  = ERB.new(fav_template).result(entry.instance_eval { binding }).strip
     meta = ERB.new(meta_template).result(entry.instance_eval { binding }).strip
     html = ERB.new(amp_template).result(binding).strip
     File.write(entry.ampfile, html)
@@ -903,7 +906,8 @@ end
 def podcast(path)
   dir  = "./mozaic.fm/episodes/**/*.md"
   icon = "https://mozaic.fm/assets/img/mozaic"
-  meta_template    = File.read(".template/meta.html.erb") + File.read(".template/favicon.html.erb")
+  fav_template     = File.read(".template/favicon.html.erb")
+  meta_template    = File.read(".template/meta.html.erb")
   podcast_template = File.read(".template/podcast.html.erb")
 
   # prev/next のリンクを貼るために一度全部をたどる必要がある
@@ -932,6 +936,7 @@ def podcast(path)
     # entry
     markup = Podcast.new
     episode.build(markup)
+    fav  = ERB.new(fav_template).result(episode.instance_eval { binding }).strip
     meta = ERB.new(meta_template).result(episode.instance_eval { binding }).strip
     html = ERB.new(podcast_template).result(binding).strip
     File.write(episode.htmlfile, html)
