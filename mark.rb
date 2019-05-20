@@ -809,7 +809,7 @@ end
 ## 渡されたパスの配列を全部ビルドする
 ## 1 つしかなければ 1 つだけ
 def blog(paths)
-  icon  = "https://jxck.io/assets/img/jxck.png"
+  icon  = "https://jxck.io/assets/img/jxck"
   meta_template = File.read(".template/meta.html.erb") + File.read(".template/ld-json.html.erb")
   blog_template = File.read(".template/blog.html.erb")
   amp_template  = File.read(".template/amp.html.erb")
@@ -852,7 +852,7 @@ def blogfeed(feed = false)
 
   # entries
   dir  = "./blog.jxck.io/entries/**/*"
-  icon = "https://jxck.io/assets/img/jxck.png"
+  icon = "https://jxck.io/assets/img/jxck"
   entries = Dir.glob(dir)
     .select {|path| path.match(/.*.md\z/)}
     .map {|path| Entry.new(path, icon)}
@@ -902,7 +902,7 @@ end
 ## ファイルパスを渡すとそれだけをビルド
 def podcast(path)
   dir  = "./mozaic.fm/episodes/**/*.md"
-  icon = "https://mozaic.fm/assets/img/mozaic.png"
+  icon = "https://mozaic.fm/assets/img/mozaic"
   meta_template    = File.read(".template/meta.html.erb")
   podcast_template = File.read(".template/podcast.html.erb")
 
