@@ -13,7 +13,7 @@ if (window.ReportingObserver) {
     reports.map((report) => {
       navigator.sendBeacon("https://report-uri.jxck.io/report-to.cgi", JSON.stringify(report))
     })
-    console.log(reports)
+    console.log(reports, JSON.stringify(reports))
   })).observe()
 }
 
@@ -46,8 +46,7 @@ function playerKeybind(e) {
 }
 
 function enablePortal($portal) {
-  const $shownote = Array.from($$('h2')).filter((e) => e.textContent === 'Show Note')[0]
-  const $links = $shownote.parentElement.querySelectorAll('a')
+  const $links = document.querySelectorAll('section:nth-of-type(3) a')
 
   $links.forEach(($a) => {
     let timer;
@@ -99,13 +98,12 @@ document.on('DOMContentLoaded', (e) => {
     if ($share !== null) {
       $share.style.display = 'block'
       $share.addEventListener('click', (e) => {
-        console.log(e)
-        navigator.share({
-          url:   location.href,
-          title: document.title,
-          text:  document.querySelector('section:nth-of-type(2) p').textContent
-
-        })
+        log(e)
+        const url    = location.href
+        const title  = document.title
+        const $theme = document.querySelector('section:nth-of-type(2) p')
+        const text   = $theme ? $theme.textContent : title
+        navigator.share({url, title, text})
       })
     }
   }
@@ -126,7 +124,7 @@ document.on('DOMContentLoaded', (e) => {
 
       const $dialog = $('dialog.search')
       $dialog.on('click', (e) => {
-        console.log(e.target, $dialog)
+        log(e.target, $dialog)
         if (e.target === $dialog) {
           $dialog.close()
         }
