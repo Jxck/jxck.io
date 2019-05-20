@@ -856,6 +856,7 @@ def blogfeed(feed = false)
   # entries
   dir  = "./blog.jxck.io/entries/**/*"
   icon = "https://jxck.io/assets/img/jxck"
+
   entries = Dir.glob(dir)
     .select {|path| path.match(/.*.md\z/)}
     .map {|path| Entry.new(path, icon)}
@@ -871,6 +872,7 @@ def blogfeed(feed = false)
     File.write("./blog.jxck.io/feeds/sitemap.xml", xml)
   else
     puts "build archive page"
+    fav     = ERB.new(File.read(".template/favicon.html.erb")).result(binding).strip
     archive = ERB.new(File.read(".template/archive.html.erb")).result(binding)
     File.write("./blog.jxck.io/index.html", archive)
 
@@ -884,16 +886,15 @@ def blogfeed(feed = false)
     }
 
     tag = "Tags"
-    tags_template = File.read(".template/tags.html.erb")
-    template = ERB.new(tags_template).result(binding).strip
-    html = ERB.new(template).result(binding)
+    fav      = ERB.new(File.read(".template/favicon.html.erb")).result(binding).strip
+    template = ERB.new(File.read(".template/tags.html.erb")).result(binding).strip
+    html     = ERB.new(template).result(binding)
     File.write("./blog.jxck.io/tags/index.html", html)
 
     tags.each {|tag, v|
       tags = { tag => v }
-      tags_template = File.read(".template/tags.html.erb")
-      template = ERB.new(tags_template).result(binding).strip
-      html = ERB.new(template).result(binding)
+      template      = ERB.new(File.read(".template/tags.html.erb")).result(binding).strip
+      html          = ERB.new(template).result(binding)
       File.write("./blog.jxck.io/tags/#{tag}.html", html)
     }
   end
@@ -973,6 +974,7 @@ def podcastfeed(feed = false)
     }
 
     puts "build index.html"
+    fav     = ERB.new(File.read(".template/favicon.html.erb")).result(binding).strip
     archive = ERB.new(File.read(".template/podcast.index.html.erb")).result(binding)
     File.write("./mozaic.fm/index.html", archive)
   end
