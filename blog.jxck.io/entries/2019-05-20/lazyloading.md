@@ -34,7 +34,7 @@
 
 
 ```html
-<img src="example.jpg" lazyload="1" />
+<img src="example.jpg" lazyload="1">
 ```
 
 - [lazyload attribute \| lazyload property (Internet Explorer)](http://web.archive.org/web/20160313082908/https://msdn.microsoft.com/library/dn369270(v=vs.85).aspx)
@@ -123,7 +123,7 @@ Chrome がこの仕様の着手として Intent to Implement をアナウンス�
 
 `loading=lazy` の場合は、全ての画像に対して Range Request で先頭 2.0KB のみを取得するリクエストを投げる。
 
-レスポンスは 206 で画像のヘッダ部分取得され、そこには大抵サイズの情報が入っているため、`<img>` タグのサイズが決定できる。
+レスポンスは 206 で画像のヘッダ分取得され、そこには大抵サイズの情報が入っているため、`<img>` タグのサイズが決定できる。
 
 次に Above the fold だけ画像全体を取得している。
 
