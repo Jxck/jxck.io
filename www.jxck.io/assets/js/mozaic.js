@@ -101,8 +101,7 @@ document.on('DOMContentLoaded', (e) => {
         log(e)
         const url    = location.href
         const title  = document.title
-        const $theme = document.querySelector('section:nth-of-type(2) p')
-        const text   = $theme ? $theme.textContent : title
+        const text   = document.querySelector('meta[property="og:description"]').content
         navigator.share({url, title, text})
       })
     }
