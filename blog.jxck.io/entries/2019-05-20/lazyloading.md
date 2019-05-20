@@ -1,4 +1,4 @@
-# [lazyload][img] 画像最適化戦略 Lazy Loading 編
+# [lazyload][image][performance] 画像最適化戦略 Lazy Loading 編
 
 ## Intro
 
@@ -19,7 +19,7 @@
 
 特に縦に長いページでは、最初にユーザが見えている領域 (Above the Fold) では表示されている必要があるが、スクロールしないと見えない領域 (Below the Fold) では、スクロールするまで読み込みを遅延することで、初期表示の高速化につなげる手法が求められていた。
 
-このように、必要になるまで読み込まない方法は "Lazy Loading" と呼ばれ、従来は JS による onscroll や、 IntersectionObserver で実装されることが多かった。
+このように、必要になるまで読み込まない方法は *Lazy Loading* と呼ばれ、従来は onscroll や IntersectionObserver で監視する JS で実装されることが多かった。
 
 この機能を、 HTML の仕様に取り込み、 `<img>` や `<iframe>` タグに属性を記述するだけで、ブラウザが遅延読み込みを実現してくれるのが LazyLoading の提案である。
 
@@ -69,12 +69,12 @@ Chrome がこの仕様の着手として Intent to Implement をアナウンス�
 
 ## loading=lazy
 
-色々あり、今の最新の仕様は以下にある。
+[色々あり](https://github.com/whatwg/html/pull/3752#issuecomment-472181420) 、 lazyload 属性は [loading 属性](https://github.com/whatwg/html/pull/3752#issuecomment-478200976) に変わり、今の最新の仕様は以下にある。
 
 - [Blink LazyLoad Design Doc (public)](https://docs.google.com/document/d/1e8ZbVyUwgIkQMvJma3kKUDg8UUkLRRdANStqKuOIvHg/edit#)
 - [scott-little/lazyload](https://github.com/scott-little/lazyload)
 
-新しく loading 属性が追加され、現時点では以下の値が定義されている。
+現時点では以下の値が定義されている。
 
 - lazy: 遅延ロード可能であることを示す
 - eager: 遅延ロード可能ではないことを示す
@@ -148,7 +148,11 @@ Chrome がこの仕様の着手として Intent to Implement をアナウンス�
 
 まだ Canary での検証であり、実装および最適化は今後進んでいくだろうと期待できるため、 *現時点の挙動に深く依存するのは推奨しない* 。
 
-というのを踏まえた上で、現時点の挙動について記録しておく。
+Blink での実装については一部が以下に書かれている。
+
+[Blink LazyImages (public)](https://docs.google.com/document/d/1jF1eSOhqTEt0L1WBCccGwH9chxLd9d1Ez0zo11obj14/)
+
+これらを踏まえた上で、現時点の挙動について記録しておく。
 
 
 ### Range + Full request RTT
@@ -157,16 +161,20 @@ Chrome がこの仕様の着手として Intent to Implement をアナウンス�
 
 これは Above / Blow 関係なく発生しているため、もし全ての画像が Above the Fold に収まっていた場合は、 Lazy をつけると無駄に RTT が増えるだけであるとを意味する。
 
-
-### Lazy for small img
-
-画像によらず最初に 2.0KB のリクエストを投げるが、画像全体が 2.0KB 以下の場合を検証したところ、最初の Range Request で全体が取得済みにもかかわらず、やはり 2 回取得している。
-
-本来、最初の Range Response を結合して 200 のキャッシュのようにヒットさせることができるはずだが、そこがまだ実装されてないように思える。
+仮に、最初の Range で取得した 2.0KB のレスポンスに合成するために 2.0KB 以降から If-Range などで Conditional GET し、結合するという実装も考えられなくはないが、そうはなっていないようだ。
 
 [RFC 7233 - Hypertext Transfer Protocol (HTTP/1.1): Range Requests 4.3 Combining Ranges](https://tools.ietf.org/html/rfc7233#section-4.3)
 
-また、 If-Range などを用いた Conditional GET を行えば、画像が変更されてない場合に 2.0KB 以降のみを取得して結合するということもできるが、そうした対応もまだなさそうだ。
+
+### Lazy for small img
+
+画像によらず最初に 2.0KB のリクエストを投げるため、画像全体が 2.0KB 以下の場合を検証した。
+
+Above the Fold の画像は、最初の Range Request で全体が取得済みにもかかわらず、直後に 2 回目の取得をしている。
+
+Below the Fold の画像は、キャッシュがヒットしている、というよりは最初に取得された画像がすでに表示されているように見える。
+
+ここは、実装次第では Above the Fold も最初のリクエストで充足できそうに思える。
 
 
 ### Above the Fold
@@ -184,7 +192,13 @@ Chrome がこの仕様の着手として Intent to Implement をアナウンス�
 
 ### 2.0KB Request
 
-2.0KB の取得は、画像のヘッダを取得することにより、 `<img>` のサイズを確定したいのではないかと推測するが、 2.0KB は、決して小さくない。
+最初のリクエストが 2.0KB である理由については以下に書かれている。
+
+[Design Doc: Image Replacement in Blink (public)](https://docs.google.com/document/d/1691W7yFDI1FJv69N2MEtaSzpnqO2EqkgGD3T0O-pQ08/)
+
+2.0KB 分、画像のヘッダを取得することにより、画像のサイズ情報が取得できるため、 `<img>` のサイズが決まるということだ。
+
+しかし、 2.0KB は、決して小さくない。
 
 これをどこまで小さくできるは事前にはわからず、小さく取得してほしい情報が入っていなければ無駄足になる。
 
@@ -221,6 +235,25 @@ HTML に手を入れずに HTTP Header で挙動を指定できるように、 F
 - [loading-frame-default-eager](https://github.com/w3c/webappsec-feature-policy/blob/master/policies/loading-frame-default-eager.md)
 - [Feature Policy: lazyload - Issue #193](https://github.com/w3c/webappsec-feature-policy/issues/193)
 
+一括で挙動を変えると、 Analytics で動的に埋め込む `<img>` でリクエストが二回発生し、測定がずれるといった問題も想像される。
+
+Blink では、こうしたケースを [ヒューリスティックに解析し回避する](https://docs.google.com/document/d/1jF1eSOhqTEt0L1WBCccGwH9chxLd9d1Ez0zo11obj14/edit#heading=h.cx8y0v73akfi) といったことも書かれているが、結果は実装に依存するだろう。
+
+
+## Priority Hints
+
+`loading=lazy` が取得の遅延であることに対して、優先度を下げるための Priority Hints が別途提案されている。
+
+- [Priority Hints](https://wicg.github.io/priority-hints/)
+
+これは、 HTTP2 の Stream Priority の分配などに対してヒントを与える提案である。
+
+実際に遅延を行うと onload の発火タイミングが変わるといった挙動の大きな変化が発生するが、 Priority Hints は実装によってはそうした変化が少ないことが期待される。
+
+既存のコンテンツの性質や相性によっては、こちらの方が入れやすい可能性もあるため、合わせて考慮することもできるだろう。
+
+この仕様について、詳細は別のエントリに記す。
+
 
 ## Loading 属性の導入
 
@@ -249,6 +282,6 @@ loading 属性が仕様に入ったことは、ブラウザが従来の挙動に
 
 HTML を AMP 用に変換して運用しているが、ここは lazyload 時代から不要なものとされているため、無視してくれれば良いものをわざわざ削っている。
 
-[lazyload for `<amp-iframe>`](ampproject/amphtml https://github.com/ampproject/amphtml/issues/19443)
+- [lazyload for `<amp-iframe>`](ampproject/amphtml https://github.com/ampproject/amphtml/issues/19443)
 
 この状態で、今後も挙動を検証していくこととする。
