@@ -944,6 +944,7 @@ def podcastfeed(feed = false)
 
   # episodes
   dir  = "./mozaic.fm/episodes/**/*"
+  icon = "https://mozaic.fm/assets/img/mozaic"
   host = "mozaic.fm"
 
   episodes = Dir.glob(dir)
