@@ -97,7 +97,7 @@ article img {
 article ul,
 article ol {
   margin-left: 0.8em;
-  font-family: monospace;
+  font-family: var(--mono-font);
   font-size: 1.2em;
 }
 
@@ -121,11 +121,11 @@ article dl {
 }
 
 article blockquote {
+  font-family: var(--mono-font);
   padding: 1em;
 }
 
 article blockquote p {
-  line-height: 1;
   margin: 0;
 }
 
@@ -167,6 +167,7 @@ article blockquote p {
   }
 }
 
+/* normal regular */
 @font-face {
   font-family: "NotoSansCJKjp-Jxck";
   font-style: normal;
@@ -175,9 +176,9 @@ article blockquote p {
   src:
     local("NotoSansCJKjp-Bold.otf"),
     local("NotoSansJP-Bold.otf"),
-    url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular-201905.woff2") format("woff");
+    url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular-201905.woff2") format("woff2");
 }
-
+/* normal bold */
 @font-face {
   font-family: "NotoSansCJKjp-Jxck";
   font-style: normal;
@@ -186,8 +187,29 @@ article blockquote p {
   src:
     local("NotoSansCJKjp-Bold.otf"),
     local("NotoSansJP-Bold.otf"),
-    url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold-201905.woff2") format("woff");
+    url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold-201905.woff2") format("woff2");
 }
+
+
+/* mono regular */
+@font-face {
+  font-family: "NotoSansMonoCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url("//jxck.io/assets/font/NotoSansMonoCJKjp-Jxck-Regular-201905.woff2") format("woff2");
+}
+/* mono bold */
+@font-face {
+  font-family: "NotoSansMonoCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    url("//jxck.io/assets/font/NotoSansMonoCJKjp-Jxck-Bold-201905.woff2") format("woff2");
+}
+
 
 :root {
   --background-color: #fefefe;
@@ -202,6 +224,9 @@ article blockquote p {
 
   --block-quote: #ddd;
   --table-border: #222;
+
+  --regular-font: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+  --mono-font: Menlo, Consolas, Liberation, Mono, Courier, "NotoSansMonoCJKjp-Jxck";
 }
 
 @media (prefers-color-scheme: dark) {
@@ -230,19 +255,15 @@ html {
 }
 
 body {
-  font-family: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+  font-family: var(--regular-font);
   background-color: var(--background-color);
   color: var(--font-color);
   margin: 0;
   padding: 0;
 }
 
-p > code {
-  font-family: monospace;
-}
-
-pre > code {
-  font-family: "Consolas", "Courier New", "Menlo", Monaco, monospace;
+code {
+  font-family: var(--mono-font);
 }
 
 iframe {
@@ -728,7 +749,7 @@ pre > code::after {
 }
 
 table {
-  font-family: monospace;
+  font-family: var(--mono-font);
   margin: 2em 0;
   border-spacing: 0 0.4em;
 }
