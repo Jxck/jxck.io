@@ -5,9 +5,11 @@
 audio: https://files.mozaic.fm/mozaic-ep53.mp3
 
 published_at
+
 : 2019-05-26
 
 guest
+
 : [@myakura](https://twitter.com/myakura)
 
 
@@ -25,6 +27,8 @@ guest
   - <https://blog.jxck.io/entries/2019-05-12/mozaic-bootcamp-2019.html>
 - lmozaic bootcamp に行ってきました - isyumi_net ブログ
   - <https://blog.isyumi.net/entry/2019/05/03/134854>
+- mozaic bootcamp に参加して気づいた、自分に欠けていた Web 技術の知識メモ - ninjinkun's diary
+  - <https://ninjinkun.hatenablog.com/entry/mozaic-bootcamp>
 
 
 ### Chrome 動向
