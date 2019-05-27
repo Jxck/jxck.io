@@ -174,7 +174,7 @@ function timing_attack() {
 
 [Protecting user identity against Silhouette](https://blog.twitter.com/engineering/en_us/topics/insights/2018/twitter_silhouette.html)
 
-こうした攻撃の推測制度を下げるため、 performance.now の精度を落とすという施策がブラウザベンダによってなされることもある。
+こうした攻撃の推測精度を下げるため、 performance.now の精度を落とすという施策がブラウザベンダによってなされることもある。
 
 しかしこの場合も、罠サイトからのリクエストに Cookie 送信されなければ、毎回ログインページのレスポンスが返ることになり攻撃が成立しない。
 
