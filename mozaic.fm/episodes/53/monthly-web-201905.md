@@ -5,11 +5,9 @@
 audio: https://files.mozaic.fm/mozaic-ep53.mp3
 
 published_at
-
 : 2019-05-26
 
 guest
-
 : [@myakura](https://twitter.com/myakura)
 
 
@@ -104,22 +102,22 @@ guest
   - *Ship: Feature Policy 'focus-without-user-activation'*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/pnUiTrLHHmw/CDN1s3F1BQAJ>
     - JS で `focus()` するのを防ぐ FP
-- Implement and Ship: IDBCursor request
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/o6mUiI09BUc/25khjTHYAAAJ>
-- Implement and Ship: Animation.pending
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Gstf0GA7cbg/711ymCKKAAAJ>
-- Implement and Ship: Escape key is not a user activation
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/dFAIZHeNpSs/4WO6f-tcDQAJ>
-- Implement and Ship: Scroll Snap Stop
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/bkUwigYHJDM/Bzvm8tkHAgAJ>
-- Implement and Ship: Redact address in PaymentRequest.onshippingaddresschange event
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/69dw-4Myc_A/cZRnDjvtBAAJ>
-- Implement and Ship: Animation.updatePlaybackRate
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/lTYK1HT47Qk/hmwmGm1ZBAAJ>
-- Implement and Ship: RTCRtpSender.setStreams()
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/g5Grj_VtF8Q/pEaGHWVnBAAJ>
-- Implement and ship: createOffer/createAnswer constraint to enable RTCPeerConnection simulcast
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/phMAiUN3nco/-6rsfDv8AgAJ>
+  - Implement and Ship: IDBCursor request
+      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/o6mUiI09BUc/25khjTHYAAAJ>
+  - Implement and Ship: Animation.pending
+      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Gstf0GA7cbg/711ymCKKAAAJ>
+  - Implement and Ship: Escape key is not a user activation
+      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/dFAIZHeNpSs/4WO6f-tcDQAJ>
+  - Implement and Ship: Scroll Snap Stop
+      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/bkUwigYHJDM/Bzvm8tkHAgAJ>
+  - Implement and Ship: Redact address in PaymentRequest.onshippingaddresschange event
+      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/69dw-4Myc_A/cZRnDjvtBAAJ>
+  - Implement and Ship: Animation.updatePlaybackRate
+      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/lTYK1HT47Qk/hmwmGm1ZBAAJ>
+  - Implement and Ship: RTCRtpSender.setStreams()
+      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/g5Grj_VtF8Q/pEaGHWVnBAAJ>
+  - Implement and ship: createOffer/createAnswer constraint to enable RTCPeerConnection simulcast
+      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/phMAiUN3nco/-6rsfDv8AgAJ>
   - Implement and Ship: Enter Key Hint
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Hfe5xktjSV8/Re-SMF3wAwAJ>
   - *Implement and Ship: form.requestSubmit()*
@@ -127,68 +125,68 @@ guest
     - `<form>` の `submit()` と `<button type=submit>` を `click()` したのでは挙動が違う
     - interactive validation, submit events etc
     - `<button type=submit>` を作って `click()` したかのように挙動させる API
-- Implement and Ship: Entering fullscreen consumes user activation
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Y58tbs-TSgE/MDg7F2uRBQAJ>
-- Implement and Ship: Synthetic Modules
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/0UWEnR_rV9E/SOM8xOgfBQAJ>
-- Implement: IFrame execution/freezing feature policy
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/VytOh5dHdDo/THj8cgZeDQAJ>
-- *Implement: Periodic Background Sync*
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/61yC4_xbZRA/mpB5rMBTDwAJ>
-    - Background Sync を定期実行するための API
-    - 時間設定が厳守されるわけではなく、ネットワーク状況などに応じて
-- Implement: JS Self-Profiling API
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/cl_WCx9OEcg/9b-6_7DPDAAJ>
-- *Implement: Picture-in-Picture for arbitrary content*
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/uK0hyACy_fg/XXFsm_4kDAAJ>
-    - PinP で Video 以外に任意のコンテンツを再生できるように
-- *Implement (meta): Bundled HTTP Exchanges*
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hVszlf4l2_E/1K_ZgQ4lBQAJ>
-    - Chrome Tokyo チームから
-- Implement: High-risk insecure download blocking in secure contexts
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mALJa0JM13I/-jxMlOyrBAAJ>
-- Implement: "numberingSystem" option for Intl.NumberFormat / "calendar" and "numberingSystem" option for Intl.DateTimeFormat
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/HFOWIjSBKWQ/GkoCkNCrAQAJ>
-- Implement: Pause Worklets and Dedicated Workers Execution on document freeze
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/KwDF6Eavfek/Qb48J5ceAwAJ>
-- Implement: CSS Color Adjust: color-scheme property
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/xXVJlqlDL_k/pxwluzwSAwAJ>
-- Implement: Intl.DisplayNames API Proposal
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/muRQBwyzzPw/FgdwgcbnAgAJ>
+  - Implement and Ship: Entering fullscreen consumes user activation
+      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Y58tbs-TSgE/MDg7F2uRBQAJ>
+  - Implement and Ship: Synthetic Modules
+      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/0UWEnR_rV9E/SOM8xOgfBQAJ>
+  - Implement: IFrame execution/freezing feature policy
+      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/VytOh5dHdDo/THj8cgZeDQAJ>
+  - *Implement: Periodic Background Sync*
+      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/61yC4_xbZRA/mpB5rMBTDwAJ>
+      - Background Sync を定期実行するための API
+      - 時間設定が厳守されるわけではなく、ネットワーク状況などに応じて
+  - Implement: JS Self-Profiling API
+      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/cl_WCx9OEcg/9b-6_7DPDAAJ>
+  - *Implement: Picture-in-Picture for arbitrary content*
+      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/uK0hyACy_fg/XXFsm_4kDAAJ>
+      - PinP で Video 以外に任意のコンテンツを再生できるように
+  - *Implement (meta): Bundled HTTP Exchanges*
+      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hVszlf4l2_E/1K_ZgQ4lBQAJ>
+      - Chrome Tokyo チームから
+  - Implement: High-risk insecure download blocking in secure contexts
+      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mALJa0JM13I/-jxMlOyrBAAJ>
+  - Implement: "numberingSystem" option for Intl.NumberFormat / "calendar" and "numberingSystem" option for Intl.DateTimeFormat
+      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/HFOWIjSBKWQ/GkoCkNCrAQAJ>
+  - Implement: Pause Worklets and Dedicated Workers Execution on document freeze
+      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/KwDF6Eavfek/Qb48J5ceAwAJ>
+  - Implement: CSS Color Adjust: color-scheme property
+      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/xXVJlqlDL_k/pxwluzwSAwAJ>
+  - Implement: Intl.DisplayNames API Proposal
+      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/muRQBwyzzPw/FgdwgcbnAgAJ>
   - Implement: Intl.NumberFormat Unified API Proposal
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/q3U7sPOG1uo/M7XZU7fxAwAJ>
   - Implement: Add dayPeriod option for Intl.DateTimeFormat
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/wn5zah2EYXg/kvIhiOPqBQAJ>
   - Implement: Add quarter option for Intl.DateTimeFormat
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/t5vlp94AI5g/va9WtczoBQAJ>
-- Extend Origin Trial: HrefTranslate HTMLAnchor attribute
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/LpE_bzcSv5Y/mLEg7wMLDAAJ>
-- Extend Origin Trial: Badging API
+  - Extend Origin Trial: HrefTranslate HTMLAnchor attribute
+      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/LpE_bzcSv5Y/mLEg7wMLDAAJ>
+  - Extend Origin Trial: Badging API
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/VqoLPVSXE4g/7N5veAaeBAAJ>
   - Experiment: Origin Trial: WebXR Device API
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/nlMUxXEqMgg/fmiVVcKqAwAJ>
   - QUIC API Original Trial extended to support datagrams
     - <https://lists.w3.org/Archives/Public/public-ortc/2019May/0000.html>
-- Change:
-- Unship:
-- Remove:
-- Deprecate and Remove: "_current" special window name
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/gVAExzsgjXk/l6yONONQAwAJ>
-- PSA: History Manipulation Intervention
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/T8d4_BRb2xQ/WSdOiOFcBAAJ>
-- PSA: Media Capabilities enabled in Workers
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/AJCkCrsauAk/sUpNU8ylAQAJ>
-- PSA: blink::UseCounter changes
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/j7007MhubK4/c1Wm-5Z3AwAJ>
-- *PSA: Turning on LayoutNG*
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/88RzfOIZFi8/sB8BmhblBQAJ>
-  - LayoutNG が Chrome 76 から有効に
-  - Float, Writing Mode, RTL, Text Layout など様々が更新される
-  - ページも更新された
-  - <https://www.chromium.org/blink/layoutng>
-  - <https://docs.google.com/document/d/1uxbDh4uONFQOiGuiumlJBLGgO4KDWB8ZEkp7Rd47fw4>
-- FYI: LayoutNG enabled on clusterfuzz & perf bots
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hfJa8eEvjb8/EQgF6BgiAwAJ>
+  - Change:
+  - Unship:
+  - Remove:
+  - Deprecate and Remove: "_current" special window name
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/gVAExzsgjXk/l6yONONQAwAJ>
+  - PSA: History Manipulation Intervention
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/T8d4_BRb2xQ/WSdOiOFcBAAJ>
+  - PSA: Media Capabilities enabled in Workers
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/AJCkCrsauAk/sUpNU8ylAQAJ>
+  - PSA: blink::UseCounter changes
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/j7007MhubK4/c1Wm-5Z3AwAJ>
+  - *PSA: Turning on LayoutNG*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/88RzfOIZFi8/sB8BmhblBQAJ>
+    - LayoutNG が Chrome 76 から有効に
+    - Float, Writing Mode, RTL, Text Layout など様々が更新される
+    - ページも更新された
+    - <https://www.chromium.org/blink/layoutng>
+    - <https://docs.google.com/document/d/1uxbDh4uONFQOiGuiumlJBLGgO4KDWB8ZEkp7Rd47fw4>
+  - FYI: LayoutNG enabled on clusterfuzz & perf bots
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hfJa8eEvjb8/EQgF6BgiAwAJ>
 - Team Weekly Snippet
   - Loading (blink-dev)
   - Storage (blink-dev)
@@ -326,7 +324,7 @@ guest
     - `supported-color-scheme` が `color-scheme` に
     - `requestAnimationFrame()` が次のフレームの前に実行されるように
     - Ad Click Attribution(後述)
-    -    * *Release Notes for Safari Technology Preview 82*
+  - *Release Notes for Safari Technology Preview 82*
     - <https://webkit.org/blog/8921/release-notes-for-safari-technology-preview-82/>
     - Fetch API の keep-alive が有効に
 - Other
