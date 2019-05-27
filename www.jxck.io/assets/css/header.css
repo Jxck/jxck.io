@@ -5,7 +5,7 @@ header {
   top: 0;
   box-sizing: border-box;
   margin: 0;
-  padding: 0.4em;
+  padding: calc(var(--grid)/2);
   background-color: var(--header-color);
 }
 
@@ -15,25 +15,23 @@ h4:target,
 h5:target,
 h6:target {
   /* sticky header に合わせて link scroll をずらす */
-  margin-top: calc(-50px - 0.2em);
-  padding-top: calc(50px + 0.2em);
+  margin-top:  calc((var(--icon-size) + var(--grid)) * -1);
+  padding-top: calc((var(--icon-size) + var(--grid)));
 }
 
 header ul {
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  width: 80%;
+  width: var(--width);
   margin: 0 auto;
-  padding: 4px;
 }
 
 header ul li {
   width:  var(--icon-size);
   height: var(--icon-size);
   padding: 0;
-  margin: 0;
-  margin-left: 1em;
+  margin: 0 0 0 var(--grid);
 }
 
 header ul li a {
