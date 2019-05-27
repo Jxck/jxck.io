@@ -299,13 +299,13 @@ audio {
   padding: 0;
 }
 
-.info li {
-  margin-right: 1em;
-  list-style-type: none;
+.info dt::after {
+  content: ":";
+  margin-right: 0.2em;
 }
 
-.info li::before {
-  content: none;
+.info dd {
+  margin: 0 1em 0 0;
 }
 
 header {
@@ -798,9 +798,9 @@ td:last-child {
 </header>
 <main>
   <ul class=info>
-    <li>created_at: <time class=created_at datetime=2019-05-12>2019-05-12</time>
-    <li>updated_at: <time class=updated_at datetime=2019-05-13>2019-05-13</time>
-    <li class=tags>tags: [<a href='/tags/bootcamp.html'>bootcamp</a>,<a href='/tags/mozaic.fm.html'>mozaic.fm</a>,<a href='/tags/web.html'>web</a>]
+    <dt>created_at</dt><dd><time class=created_at datetime=2019-05-12>2019-05-12</time></dd>
+    <dt>updated_at</dt><dd><time class=updated_at datetime=2019-05-13>2019-05-13</time></dd>
+    <dt class=tags>tags</dt><dd>[<a href='/tags/bootcamp.html'>bootcamp</a>,<a href='/tags/mozaic.fm.html'>mozaic.fm</a>,<a href='/tags/web.html'>web</a>]</dd>
   </ul>
 
 
