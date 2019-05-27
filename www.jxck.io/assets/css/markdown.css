@@ -4,7 +4,6 @@ h3 > a,
 h4 > a,
 h5 > a,
 h6 > a {
-  pointer-events: none;
   color: var(--font-color);
 }
 
@@ -19,22 +18,18 @@ h6 > a:visited {
 
 h1 > a::before {
   content: "# ";
-  pointer-events: all;
 }
 
 h2 > a::before {
   content: "## ";
-  pointer-events: all;
 }
 
 h3 > a::before {
   content: "### ";
-  pointer-events: all;
 }
 
 h4 > a::before {
   content: "#### ";
-  pointer-events: all;
 }
 
 h1 > a:hover::before,
@@ -43,7 +38,7 @@ h3 > a:hover::before,
 h4 > a:hover::before,
 h5 > a:hover::before,
 h6 > a:hover::before {
-  color: Brown;
+  color: var(--anchor-visited-color);
 }
 
 em {
