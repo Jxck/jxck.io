@@ -6,11 +6,13 @@
 
 ここでは、特に画像 `<img>` に注目し、 Lazyloading の議論の変遷を踏まえた上で現状を解説する。
 
-+ [画像最適化戦略 PNG/JPEG 編](https://blog.jxck.io/entries/2016-03-24/optimize-image.html)
-+ [画像最適化戦略 Picture 編](https://blog.jxck.io/entries/2016-03-25/picture.html)
-+ [画像最適化戦略 WebP 編](https://blog.jxck.io/entries/2016-03-26/webp.html)
-+ [画像最適化戦略 SVG/Font 編](https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html)
-+ [> 画像最適化戦略 Lazy Loading 編](https://blog.jxck.io/entries/2019-04-26/lazyloading.html)
+画像最適化シリーズ第 5 回目のエントリである。
+
+1. [画像最適化戦略 PNG/JPEG 編](https://blog.jxck.io/entries/2016-03-24/optimize-image.html)
+1. [画像最適化戦略 Picture 編](https://blog.jxck.io/entries/2016-03-25/picture.html)
+1. [画像最適化戦略 WebP 編](https://blog.jxck.io/entries/2016-03-26/webp.html)
+1. [画像最適化戦略 SVG/Font 編](https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html)
+1. [> 画像最適化戦略 Lazy Loading 編](https://blog.jxck.io/entries/2019-04-26/lazyloading.html)
 
 
 ## Lazyloading
