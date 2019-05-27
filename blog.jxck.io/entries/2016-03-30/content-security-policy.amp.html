@@ -210,7 +210,7 @@ article blockquote p {
     url("//jxck.io/assets/font/NotoSansMonoCJKjp-Jxck-Bold-201905.woff2") format("woff2");
 }
 
-
+/* Light Mode Theme */
 :root {
   --background-color: #fefefe;
   --font-color: #222;
@@ -227,8 +227,16 @@ article blockquote p {
 
   --regular-font: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
   --mono-font: Menlo, Consolas, Liberation, Mono, Courier, "NotoSansMonoCJKjp-Jxck";
+
+  --icon-size: 30px;
+
+  --width: 80vw;
+  --grid: 1vw;
+
+  --radius: 4px;
 }
 
+/* Dark Mode Theme */
 @media (prefers-color-scheme: dark) {
   :root {
     --background-color: #010101;
@@ -266,26 +274,18 @@ code {
   font-family: var(--mono-font);
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 iframe {
   display: block;
   max-width: 100%;
   margin: 1em 0;
 }
 
-.tags a {
-  margin: 0 0.2em;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-audio {
-  width: 70%;
-}
-
-@media screen and (max-device-width: 480px) {
+@media screen and (max-device-width: 800px) {
   audio {
     width: 100%;
   }
@@ -308,6 +308,10 @@ audio {
   margin: 0 1em 0 0;
 }
 
+dt.tags + dd > a {
+  margin: 0 calc(var(--grid)/2);
+}
+
 header {
   z-index: 1;
   position: sticky;
@@ -315,7 +319,7 @@ header {
   top: 0;
   box-sizing: border-box;
   margin: 0;
-  padding: 0.4em;
+  padding: calc(var(--grid)/2);
   background-color: var(--header-color);
 }
 
@@ -325,31 +329,29 @@ h4:target,
 h5:target,
 h6:target {
   /* sticky header に合わせて link scroll をずらす */
-  margin-top: calc(-50px - 0.2em);
-  padding-top: calc(50px + 0.2em);
+  margin-top:  calc((var(--icon-size) + var(--grid)) * -1);
+  padding-top: calc((var(--icon-size) + var(--grid)));
 }
 
 header ul {
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  width: 80%;
+  width: var(--width);
   margin: 0 auto;
-  padding: 4px;
 }
 
 header ul li {
+  width:  var(--icon-size);
+  height: var(--icon-size);
   padding: 0;
-  margin: 0;
-  width: 30px;
-  height: 30px;
-  margin-left: 1em;
+  margin: 0 0 0 var(--grid);
 }
 
 header ul li a {
-  width: 30px;
-  height: 30px;
   display: block;
+  width:  var(--icon-size);
+  height: var(--icon-size);
 }
 
 header ul li svg {
@@ -376,7 +378,6 @@ h3 > a,
 h4 > a,
 h5 > a,
 h6 > a {
-  pointer-events: none;
   color: var(--font-color);
 }
 
@@ -391,22 +392,18 @@ h6 > a:visited {
 
 h1 > a::before {
   content: "# ";
-  pointer-events: all;
 }
 
 h2 > a::before {
   content: "## ";
-  pointer-events: all;
 }
 
 h3 > a::before {
   content: "### ";
-  pointer-events: all;
 }
 
 h4 > a::before {
   content: "#### ";
-  pointer-events: all;
 }
 
 h1 > a:hover::before,
@@ -415,7 +412,7 @@ h3 > a:hover::before,
 h4 > a:hover::before,
 h5 > a:hover::before,
 h6 > a:hover::before {
-  color: Brown;
+  color: var(--anchor-visited-color);
 }
 
 em {
@@ -457,7 +454,7 @@ dl dt::after {
 blockquote {
   display: block;
   border: solid 1px var(--block-quote);
-  border-radius: 4px;
+  border-radius: var(--radius);
   padding: 0.4em 1em;
   margin: 0;
 }
@@ -469,7 +466,7 @@ blockquote p::before {
 code {
   background-color: var(--code-block);
   color: var(--code-block-font);
-  border-radius: 4px;
+  border-radius: var(--radius);
   padding: 0 4px;
 }
 
@@ -480,13 +477,13 @@ code::after {
 
 main {
   display: block;
-  width: 80%;
+  width: var(--width);
   margin: 1em auto;
 }
 
-@media screen and (max-device-width: 480px) {
+@media screen and (max-device-width: 800) {
   main {
-    width: 94%;
+    width: 94vw;
   }
 }
 
@@ -534,18 +531,17 @@ footer {
 footer strong,
 footer .copyright {
   display: block;
-  width: 80%;
+  width: var(--width);
   margin: 0 auto;
   font-style: italic;
   font-size: small;
 }
 
-
 pre {
   word-break: break-all;
   word-wrap: break-word;
   margin: 1.4em 0 0 0;
-  border-radius: 4px;
+  border-radius: var(--radius);
 }
 
 pre::before {
@@ -560,11 +556,10 @@ pre::after {
 }
 
 pre > code {
-  overflow: auto;
+  overflow: scroll auto;
   display: block;
   padding: 0.6em;
   margin: 0;
-  border: none;
 }
 
 pre > code::before,
@@ -609,7 +604,7 @@ pre > code::after {
 }
 
 .hljs-name {
-  color: #222;
+  color: #222222;
 }
 
 .hljs-strong {
