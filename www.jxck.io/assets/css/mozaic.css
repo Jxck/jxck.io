@@ -41,14 +41,15 @@ main > ol > li {
 main > ol > li {
   margin: 1em 0;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: var(--radius);
   background-color: var(--background-color);
 }
 
 main > ol > li h2 {
   margin: 0;
   padding: 0.4em 0.6em;
-  border-radius: 4px 4px 0 0;
+  border-top-left-radius:  calc(var(--radius) - 1px);
+  border-top-right-radius: calc(var(--radius) - 1px);
   font-weight: normal;
   color: var(--font-color);
   background-color: var(--heading-back-color);
@@ -103,14 +104,15 @@ main > ol li p {
 
 article {
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: var(--radius);
   background-color: var(--background-color);
 }
 
 article h1 {
   margin: 0;
   padding: 0.4em 0.6em;
-  border-radius: 4px 4px 0 0;
+  border-top-left-radius:  calc(var(--radius) - 1px);
+  border-top-right-radius: calc(var(--radius) - 1px);
   font-weight: normal;
   color: var(--font-color);
   background-color: var(--heading-back-color);
