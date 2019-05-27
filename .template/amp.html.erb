@@ -41,9 +41,9 @@
 </header>
 <main>
   <ul class=info>
-    <li>created_at: <time class=created_at datetime=<%= entry.created_at %>><%= entry.created_at %></time>
-    <li>updated_at: <time class=updated_at datetime=<%= entry.updated_at %>><%= entry.updated_at %></time>
-    <li class=tags>tags: [<%= entry.tags.map{|tag| "<a href='/tags/#{tag.gsub(' ', '%20')}.html'>#{tag}</a>" }.join(",") %>]
+    <dt>created_at</dt><dd><time class=created_at datetime=<%= entry.created_at %>><%= entry.created_at %></time></dd>
+    <dt>updated_at</dt><dd><time class=updated_at datetime=<%= entry.updated_at %>><%= entry.updated_at %></time></dd>
+    <dt class=tags>tags</dt><dd>[<%= entry.tags.map{|tag| "<a href='/tags/#{tag.gsub(' ', '%20')}.html'>#{tag}</a>" }.join(",") %>]</dd>
   </ul>
 
 <%= entry.article %>
