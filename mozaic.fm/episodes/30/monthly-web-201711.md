@@ -624,7 +624,6 @@ Monthly Web のモチベーションについては以下。
     - <https://www.w3.org/community/blog/2017/11/17/proposed-group-art-culture-museums-on-the-web-community-group/>
 
 
-
 ### TC39 動向
 
 - Proposals Diff

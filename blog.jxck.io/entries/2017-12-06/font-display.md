@@ -56,11 +56,9 @@ Web Font は、特に日本語のように文字数が多い場合、ファイ�
 すると、以下のような現象が発生する。
 
 FOIT (Flash of Invisible Text)
-
 : ナビゲーション直後はテキストが表示されず、(block period 経過後)突然表示される現象
 
 FOUT (Flash of Unstyled Text)
-
 : 表示されているテキストのフォントが、(swap period 中)突然入れ替わる現象
 
 こうした現象を防ぐためには、 JavaScript でフォントの読み込み/表示を制御するのライブラリが使われることが多い。

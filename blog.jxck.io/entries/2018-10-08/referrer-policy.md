@@ -219,8 +219,7 @@ Referer: https://blog.jxck.io/
 ### no-referrer
 
 送る条件
-
-:  一切送らない
+: 一切送らない
 
 Referer ヘッダそのものが省かれるため、情報の漏洩の観点から言うと一番安全ではある。
 
@@ -234,12 +233,10 @@ Referer ヘッダそのものが省かれるため、情報の漏洩の観点か
 ### unsafe-url
 
 送る条件
-
-:  必ず送る
+: 必ず送る
 
 送る値
-
-:  URL 全体
+: URL 全体
 
 Referer ヘッダに URL 全体を載せ、必ず送る。
 
@@ -251,12 +248,10 @@ Referer ヘッダに URL 全体を載せ、必ず送る。
 ### origin
 
 送る条件
-
-:  必ず送る
+: 必ず送る
 
 送る値
-
-:  Origin のみ
+: Origin のみ
 
 unsafe-url と同じ条件だが、送る値が Origin のみになる。
 
@@ -266,12 +261,10 @@ Path 以下の情報が送られない点で、漏洩の観点からは情報が
 ### same-origin
 
 送る条件
-
-:  Same Origin のみ
+: Same Origin のみ
 
 送る値
-
-:  URL 全体
+: URL 全体
 
 Origin が一致した場合だけ URL 全体を送る。
 
@@ -283,12 +276,10 @@ Origin が一致した場合だけ URL 全体を送る。
 ### strict-origin
 
 送る条件
-
-:  Downgrade 以外
+: Downgrade 以外
 
 送る値
-
-:  Origin のみ
+: Origin のみ
 
 `origin` と同じく Origin の情報のみを送るが、 Downgrade の場合だけ送らない。
 
@@ -296,12 +287,10 @@ Origin が一致した場合だけ URL 全体を送る。
 ### no-referrer-when-downgrade (default)
 
 送る条件
-
-:  Downgrade 以外
+: Downgrade 以外
 
 送る値
-
-:  URL 全体
+: URL 全体
 
 条件は strict-origin と同じだが、 URL 全体を送る。
 
@@ -311,20 +300,16 @@ Origin が一致した場合だけ URL 全体を送る。
 ### origin-when-cross-origin
 
 送る条件
-
-:  Cross Origin の場合
+: Cross Origin の場合
 
 送る値
-
-:  Origin のみ
+: Origin のみ
 
 送る条件
-
-:  Same Origin の場合
+: Same Origin の場合
 
 送る値
-
-:  URL 全体
+: URL 全体
 
 内部遷移では URL 全体を送るが、外に出る場合は Origin のみを送る挙動になる。
 
@@ -334,28 +319,22 @@ Down/Upgrade も Cross Origin 扱いになるため、 Origin のみ送られる
 ### strict-origin-when-cross-origin
 
 送る条件
-
-:  Downgrade の場合
+: Downgrade の場合
 
 送る値
-
-:  無し
+: 無し
 
 送る条件
-
-:  Cross Origin の場合
+: Cross Origin の場合
 
 送る値
-
-:  Origin のみ
+: Origin のみ
 
 送る条件
-
-:  Same Origin の場合
+: Same Origin の場合
 
 送る値
-
-:  URL 全体
+: URL 全体
 
 `orign-when-cross-origin` に Downgrade での送信禁止を追加した挙動となる。
 

@@ -18,6 +18,7 @@ guest
 
 ## Show Note
 
+
 ### Chrome 動向
 
 - Stable: 66

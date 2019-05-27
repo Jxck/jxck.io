@@ -54,15 +54,12 @@
 定義リストは `<dl>` を用いて表現する
 
 定義リスト(description list)
-
 : `<dl>` を用いる
 
 定義(description term)
-
 : `<dt>` を用いる
 
 説明(description details)
-
 : `<dd>` を用いる
 
 
