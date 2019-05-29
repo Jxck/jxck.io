@@ -98,7 +98,6 @@ article ul,
 article ol {
   margin-left: 0.8em;
   font-family: var(--mono-font);
-  font-size: 1.2em;
 }
 
 article li {
@@ -236,6 +235,18 @@ article blockquote p {
   --radius: 4px;
 }
 
+
+/* Mobile Theme */
+@media screen and (max-device-width: 800px) {
+  :root {
+    --width: 94vw;
+  }
+
+  audio {
+    width: 100%;
+  }
+}
+
 /* Dark Mode Theme */
 @media (prefers-color-scheme: dark) {
   :root {
@@ -285,12 +296,6 @@ iframe {
   margin: 1em 0;
 }
 
-@media screen and (max-device-width: 800px) {
-  audio {
-    width: 100%;
-  }
-}
-
 .info {
   display: flex;
   flex-direction: row;
@@ -321,6 +326,12 @@ header {
   margin: 0;
   padding: calc(var(--grid)/2);
   background-color: var(--header-color);
+}
+
+@media screen and (max-device-width: 800px) {
+  header {
+    padding: calc(var(--grid)*4);
+  }
 }
 
 h2:target,
@@ -481,12 +492,6 @@ main {
   margin: 1em auto;
 }
 
-@media screen and (max-device-width: 800) {
-  main {
-    width: 94vw;
-  }
-}
-
 a {
   word-wrap: break-word;
   text-decoration: none;
@@ -538,8 +543,6 @@ footer .copyright {
 }
 
 pre {
-  word-break: break-all;
-  word-wrap: break-word;
   margin: 1.4em 0 0 0;
   border-radius: var(--radius);
 }
@@ -556,7 +559,7 @@ pre::after {
 }
 
 pre > code {
-  overflow: scroll auto;
+  overflow: auto;
   display: block;
   padding: 0.6em;
   margin: 0;
