@@ -175,7 +175,7 @@ article blockquote p {
   src:
     local("NotoSansCJKjp-Bold.otf"),
     local("NotoSansJP-Bold.otf"),
-    url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular-201905.woff2") format("woff2");
+    url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular-201906.woff2") format("woff2");
 }
 /* normal bold */
 @font-face {
@@ -186,7 +186,7 @@ article blockquote p {
   src:
     local("NotoSansCJKjp-Bold.otf"),
     local("NotoSansJP-Bold.otf"),
-    url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold-201905.woff2") format("woff2");
+    url("//jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold-201906.woff2") format("woff2");
 }
 
 
@@ -197,7 +197,7 @@ article blockquote p {
   font-weight: 400;
   font-display: swap;
   src:
-    url("//jxck.io/assets/font/NotoSansMonoCJKjp-Jxck-Regular-201905.woff2") format("woff2");
+    url("//jxck.io/assets/font/NotoSansMonoCJKjp-Jxck-Regular-201906.woff2") format("woff2");
 }
 /* mono bold */
 @font-face {
@@ -206,7 +206,7 @@ article blockquote p {
   font-weight: 700;
   font-display: swap;
   src:
-    url("//jxck.io/assets/font/NotoSansMonoCJKjp-Jxck-Bold-201905.woff2") format("woff2");
+    url("//jxck.io/assets/font/NotoSansMonoCJKjp-Jxck-Bold-201906.woff2") format("woff2");
 }
 
 /* Light Mode Theme */
@@ -225,7 +225,8 @@ article blockquote p {
   --table-border: #222;
 
   --regular-font: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
-  --mono-font: Menlo, Consolas, Liberation, Mono, Courier, "NotoSansMonoCJKjp-Jxck";
+  --mono-font: "NotoSansMonoCJKjp-Jxck";
+  --code-font: Menlo, Consolas, Liberation, Mono, Courier, "NotoSansMonoCJKjp-Jxck";
 
   --icon-size: 30px;
 
@@ -559,6 +560,7 @@ pre::after {
 }
 
 pre > code {
+  font-family: var(--code-font);
   overflow: auto;
   display: block;
   padding: 0.6em;
