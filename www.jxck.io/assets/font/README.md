@@ -1,6 +1,8 @@
 - font.rb を実行すると、現時点のエントリの中から All.txt に入ってない文字だけを出す。
 - この出力を All.txt に入れてフォントセットを作り直す。
-- https://noto-website.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip をベースに
+- https://www.google.com/get/noto/#sans-jpan
+  - https://noto-website.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip
+  - https://noto-website-2.storage.googleapis.com/pkgs/NotoSansMono-unhinted.zip
 - http://opentype.jp/subsetfontmk.htm を使って生成し
 - http://opentype.jp/woffconv.htm で woff にする
 - バージョンをつけてデプロイする。
