@@ -132,20 +132,6 @@ article section {
   padding: 0 2em;
 }
 
-@media screen and (max-device-width: 800px) {
-  article section {
-    padding: 0 1em;
-  }
-
-  main {
-    width: 100%;
-  }
-
-  nav {
-    font-size: 0.7em;
-  }
-}
-
 article ul,
 article ol {
   margin: 1em;
@@ -161,7 +147,7 @@ article ol {
 }
 
 article li {
-  margin: 0.2em 0 0.2em 1em;
+  margin: var(--grid) 0 var(--grid) calc(var(--grid)*2);
 }
 
 article ul > li > ul,
@@ -199,15 +185,27 @@ mozaic-player {
 }
 
 @media screen and (max-device-width: 800px) {
+  article section {
+    padding: var(--grid);
+  }
+
+  main {
+    width: 100%;
+  }
+
+  nav {
+    font-size: 0.7em;
+  }
+
   audio {
     width: 100%;
   }
+
   mozaic-player {
-    width: 100%;
     margin: 0 auto;
     display: block;
 
-    background: initial;
+    background-color: initial;
     padding: 0;
     border-radius: 0;
   }

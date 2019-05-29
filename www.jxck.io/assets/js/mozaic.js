@@ -82,7 +82,6 @@ document.on('DOMContentLoaded', (e) => {
     const $audio = $('audio')
     if ($audio !== null) {
       $audio.controls = true
-      $audio.style.width = '100%'
     }
   } else {
     log(MozaicPlayer)

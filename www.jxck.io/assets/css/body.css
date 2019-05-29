@@ -67,6 +67,18 @@
   --radius: 4px;
 }
 
+
+/* Mobile Theme */
+@media screen and (max-device-width: 800px) {
+  :root {
+    --width: 94vw;
+  }
+
+  audio {
+    width: 100%;
+  }
+}
+
 /* Dark Mode Theme */
 @media (prefers-color-scheme: dark) {
   :root {
@@ -114,10 +126,4 @@ iframe {
   display: block;
   max-width: 100%;
   margin: 1em 0;
-}
-
-@media screen and (max-device-width: 800px) {
-  audio {
-    width: 100%;
-  }
 }
