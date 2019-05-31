@@ -960,7 +960,7 @@ Referer: https://example.com/index.html</code></pre>
       <section>
         <h3 id="no-referrer"><a href="#no-referrer">no-referrer</a></h3>
         <dl>
-          <dt>送る条件
+          <dt>送る条件</dt>
           <dd>一切送らない
         </dl>
         <p>Referer ヘッダそのものが省かれるため、情報の漏洩の観点から言うと一番安全ではある。
@@ -971,9 +971,9 @@ Referer: https://example.com/index.html</code></pre>
       <section>
         <h3 id="unsafe-url"><a href="#unsafe-url">unsafe-url</a></h3>
         <dl>
-          <dt>送る条件
+          <dt>送る条件</dt>
           <dd>必ず送る
-          <dt>送る値
+          <dt>送る値</dt>
           <dd>URL 全体
         </dl>
         <p>Referer ヘッダに URL 全体を載せ、必ず送る。
@@ -983,9 +983,9 @@ Referer: https://example.com/index.html</code></pre>
       <section>
         <h3 id="origin"><a href="#origin">origin</a></h3>
         <dl>
-          <dt>送る条件
+          <dt>送る条件</dt>
           <dd>必ず送る
-          <dt>送る値
+          <dt>送る値</dt>
           <dd>Origin のみ
         </dl>
         <p>unsafe-url と同じ条件だが、送る値が Origin のみになる。
@@ -994,9 +994,9 @@ Referer: https://example.com/index.html</code></pre>
       <section>
         <h3 id="same-origin"><a href="#same-origin">same-origin</a></h3>
         <dl>
-          <dt>送る条件
+          <dt>送る条件</dt>
           <dd>Same Origin のみ
-          <dt>送る値
+          <dt>送る値</dt>
           <dd>URL 全体
         </dl>
         <p>Origin が一致した場合だけ URL 全体を送る。
@@ -1006,9 +1006,9 @@ Referer: https://example.com/index.html</code></pre>
       <section>
         <h3 id="strict-origin"><a href="#strict-origin">strict-origin</a></h3>
         <dl>
-          <dt>送る条件
+          <dt>送る条件</dt>
           <dd>Downgrade 以外
-          <dt>送る値
+          <dt>送る値</dt>
           <dd>Origin のみ
         </dl>
         <p><code translate="no">origin</code> と同じく Origin の情報のみを送るが、 Downgrade の場合だけ送らない。
@@ -1016,9 +1016,9 @@ Referer: https://example.com/index.html</code></pre>
       <section>
         <h3 id="no-referrer-when-downgrade-default"><a href="#no-referrer-when-downgrade-default">no-referrer-when-downgrade (default)</a></h3>
         <dl>
-          <dt>送る条件
+          <dt>送る条件</dt>
           <dd>Downgrade 以外
-          <dt>送る値
+          <dt>送る値</dt>
           <dd>URL 全体
         </dl>
         <p>条件は strict-origin と同じだが、 URL 全体を送る。
@@ -1027,13 +1027,13 @@ Referer: https://example.com/index.html</code></pre>
       <section>
         <h3 id="origin-when-cross-origin"><a href="#origin-when-cross-origin">origin-when-cross-origin</a></h3>
         <dl>
-          <dt>送る条件
+          <dt>送る条件</dt>
           <dd>Cross Origin の場合
-          <dt>送る値
+          <dt>送る値</dt>
           <dd>Origin のみ
-          <dt>送る条件
+          <dt>送る条件</dt>
           <dd>Same Origin の場合
-          <dt>送る値
+          <dt>送る値</dt>
           <dd>URL 全体
         </dl>
         <p>内部遷移では URL 全体を送るが、外に出る場合は Origin のみを送る挙動になる。
@@ -1042,17 +1042,17 @@ Referer: https://example.com/index.html</code></pre>
       <section>
         <h3 id="strict-origin-when-cross-origin"><a href="#strict-origin-when-cross-origin">strict-origin-when-cross-origin</a></h3>
         <dl>
-          <dt>送る条件
+          <dt>送る条件</dt>
           <dd>Downgrade の場合
-          <dt>送る値
+          <dt>送る値</dt>
           <dd>無し
-          <dt>送る条件
+          <dt>送る条件</dt>
           <dd>Cross Origin の場合
-          <dt>送る値
+          <dt>送る値</dt>
           <dd>Origin のみ
-          <dt>送る条件
+          <dt>送る条件</dt>
           <dd>Same Origin の場合
-          <dt>送る値
+          <dt>送る値</dt>
           <dd>URL 全体
         </dl>
         <p><code translate="no">orign-when-cross-origin</code> に Downgrade での送信禁止を追加した挙動となる。
