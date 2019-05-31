@@ -5,19 +5,38 @@
 
 2019/1/13(日) に、「*次世代 Web カンファレンス*」を開催します。
 
-- 名称: 次世代 Web カンファレンス
-- 日時: 2019/1/13(日) 9:00-17:30
-- 場所: [法政大学富士見ゲート 4F](http://www.hoseikyoiku.jp/facilities/fujimigate.html#fa_li) 401, 402, 403
-- 後援: [法政大学情報科学部](http://cis.k.hosei.ac.jp/)
-- 配信: [Youtube](https://www.youtube.com/channel/UCFq8UHBXg8YNHCeaGmtSFEw)
-- 募集: [Connpass](https://nextwebconf.connpass.com/event/103056/)
-- 参加費: 無料
+名称
+: 次世代 Web カンファレンス
+
+日時
+: 2019/1/13(日) 9:00-17:30
+
+場所
+: [法政大学富士見ゲート 4F](http://www.hoseikyoiku.jp/facilities/fujimigate.html#fa_li) 401, 402, 403
+
+後援
+: [法政大学情報科学部](http://cis.k.hosei.ac.jp/)
+
+配信
+: [Youtube](https://www.youtube.com/channel/UCFq8UHBXg8YNHCeaGmtSFEw)
+
+募集
+: [Connpass](https://nextwebconf.connpass.com/event/103056/)
+
+参加費
+: 無料
+
 
 (参考) 2015 年実施のログは以下です。
 
-- blog: <http://jxck.hatenablog.com/entry/next-web-conf-2915>
-- connpass: <https://nextwebconf.connpass.com/event/19699/>
-- 録画: [405](https://youtu.be/mkpuJnjNK90), [406](https://youtu.be/KgytEe1u4wM), [407](https://youtu.be/dxFa055NtTo)
+blog
+: <http://jxck.hatenablog.com/entry/next-web-conf-2915>
+
+connpass
+: <https://nextwebconf.connpass.com/event/19699/>
+
+録画
+: [405](https://youtu.be/mkpuJnjNK90), [406](https://youtu.be/KgytEe1u4wM), [407](https://youtu.be/dxFa055NtTo)
 
 
 ## Motivation
@@ -102,161 +121,225 @@
 
 ### A11y
 
-- [@tokimariri](https://twitter.com/tokimariri)
-- [@ma10](https://twitter.com/ma10)
-- [@magi1125](https://twitter.com/magi1125)
-- [@sukoyakarizumu](https://twitter.com/sukoyakarizumu)
+speaker
+: [@tokimariri](https://twitter.com/tokimariri)
+: [@ma10](https://twitter.com/ma10)
+: [@magi1125](https://twitter.com/magi1125)
+: [@sukoyakarizumu](https://twitter.com/sukoyakarizumu)
 
-hashtag: [#nwc_a11y](https://twitter.com/search?q=%23nwc_a11y)
-togetter: [#nwc_a11y](https://togetter.com/li/1267057)
+hashtag
+: [#nwc_a11y](https://twitter.com/search?q=%23nwc_a11y)
+
+togetter
+: [#nwc_a11y](https://togetter.com/li/1267057)
 
 
 ### Performance
 
-- [@1000ch](https://twitter.com/1000ch)
-- likr
-- [@sisidovski](https://twitter.com/sisidovski)
+speaker
+: [@1000ch](https://twitter.com/1000ch)
+: likr
+: [@sisidovski](https://twitter.com/sisidovski)
 
-hashtag: [#nwc_perf](https://twitter.com/search?q=%23nwc_perf)
-togetter: [#nwc_perf](https://togetter.com/li/1267058)
+hashtag
+: [#nwc_perf](https://twitter.com/search?q=%23nwc_perf)
+
+togetter
+: [#nwc_perf](https://togetter.com/li/1267058)
 
 
 ### WebXR
 
-- [@edo_m18](https://twitter.com/edo_m18)
-- [@h_doxas](https://twitter.com/h_doxas)
-- [@yomotsu](https://twitter.com/yomotsu)
+speaker
+: [@edo_m18](https://twitter.com/edo_m18)
+: [@h_doxas](https://twitter.com/h_doxas)
+: [@yomotsu](https://twitter.com/yomotsu)
 
-hashtag: [#nwc_webxr](https://twitter.com/search?q=%23nwc_webxr)
-togetter: [#nwc_webxr](https://togetter.com/li/1267059)
+hashtag
+: [#nwc_webxr](https://twitter.com/search?q=%23nwc_webxr)
+
+togetter
+: [#nwc_webxr](https://togetter.com/li/1267059)
 
 
 ### Security
 
-- [@k2wanko](https://twitter.com/k2wanko)
-- [@bulkneets](https://twitter.com/bulkneets)
-- [@ockeghem](https://twitter.com/ockeghem)
-- [@yagihashoo](https://twitter.com/yagihashoo)
+speaker
+: [@k2wanko](https://twitter.com/k2wanko)
+: [@bulkneets](https://twitter.com/bulkneets)
+: [@ockeghem](https://twitter.com/ockeghem)
+: [@yagihashoo](https://twitter.com/yagihashoo)
 
-hashtag: [#nwc_sec](https://twitter.com/search?q=%23nwc_sec)
-togetter: [#nwc_sec](https://togetter.com/li/1267061)
+hashtag
+: [#nwc_sec](https://twitter.com/search?q=%23nwc_sec)
+
+togetter
+: [#nwc_sec](https://togetter.com/li/1267061)
 
 
 ### Ad
 
-- [@suzu_v](https://twitter.com/suzu_v)
-- [@yamaz](https://twitter.com/yamaz)
-- xxj
+speaker
+: [@suzu_v](https://twitter.com/suzu_v)
+: [@yamaz](https://twitter.com/yamaz)
+: xxj
 
-hashtag: [#nwc_ad](https://twitter.com/search?q=%23nwc_ad)
-togetter: [#nwc_ad](https://togetter.com/li/1267063)
+hashtag
+: [#nwc_ad](https://twitter.com/search?q=%23nwc_ad)
+
+togetter
+: [#nwc_ad](https://togetter.com/li/1267063)
 
 
 ### AuthN/Z
 
-- [@kura_lab](https://twitter.com/kura_lab)
-- [@komatak](https://twitter.com/komatak)
-- [@phr_eidentity](https://twitter.com/phr_eidentity)
-- [@agektmr](https://twitter.com/agektmr)
+speaker
+: [@kura_lab](https://twitter.com/kura_lab)
+: [@komatak](https://twitter.com/komatak)
+: [@phr_eidentity](https://twitter.com/phr_eidentity)
+: [@agektmr](https://twitter.com/agektmr)
 
-hashtag: [#nwc_auth](https://twitter.com/search?q=%23nwc_auth)
-togetter: [#nwc_auth](https://togetter.com/li/1267064)
+hashtag
+: [#nwc_auth](https://twitter.com/search?q=%23nwc_auth)
+
+togetter
+: [#nwc_auth](https://togetter.com/li/1267064)
 
 
 ### Microservices
 
-- [@tagomoris](https://twitter.com/tagomoris)
-- [@fujiwara](https://twitter.com/fujiwara)
-- [@tokuhirom](https://twitter.com/tokuhirom)
+speaker
+: [@tagomoris](https://twitter.com/tagomoris)
+: [@fujiwara](https://twitter.com/fujiwara)
+: [@tokuhirom](https://twitter.com/tokuhirom)
 
-hashtag: [#nwc_micro](https://twitter.com/search?q=%23nwc_micro)
-togetter: [#nwc_micro](https://togetter.com/li/1267066)
+hashtag
+: [#nwc_micro](https://twitter.com/search?q=%23nwc_micro)
+
+togetter
+: [#nwc_micro](https://togetter.com/li/1267066)
 
 
 ### SRE
 
-- [@kani_b](https://twitter.com/kani_b)
-- [@deeeet](https://twitter.com/deeeet)
-- [@y_uuk1](https://twitter.com/y_uuk1)
+speaker
+: [@kani_b](https://twitter.com/kani_b)
+: [@deeeet](https://twitter.com/deeeet)
+: [@y_uuk1](https://twitter.com/y_uuk1)
 
-hashtag: [#nwc_sre](https://twitter.com/search?q=%23nwc_sre)
-togetter: [#nwc_sre](https://togetter.com/li/1267067)
+hashtag
+: [#nwc_sre](https://twitter.com/search?q=%23nwc_sre)
+
+togetter
+: [#nwc_sre](https://togetter.com/li/1267067)
 
 
 ### QUIC
 
-- [@flano_yuki](https://twitter.com/flano_yuki)
-- [@kazuho](https://twitter.com/kazuho)
-- [@\_\_kaname\_\_](https://twitter.com/__kaname__)
-- [@ysnysnysn](https://twitter.com/ysnysnysn)
+speaker
+: [@flano_yuki](https://twitter.com/flano_yuki)
+: [@kazuho](https://twitter.com/kazuho)
+: [@\_\_kaname\_\_](https://twitter.com/__kaname__)
+: [@ysnysnysn](https://twitter.com/ysnysnysn)
 
-hashtag: [#nwc_quic](https://twitter.com/search?q=%23nwc_quic)
-togetter: [#nwc_quic](https://togetter.com/li/1268790)
+hashtag
+: [#nwc_quic](https://twitter.com/search?q=%23nwc_quic)
+
+togetter
+: [#nwc_quic](https://togetter.com/li/1268790)
 
 
 ### Frontend
 
-- [@koba04](https://twitter.com/koba04)
-- [@laco2net](https://twitter.com/laco2net)
-- [@kazu_pon](https://twitter.com/kazu_pon)
-- [@takanoripe](https://twitter.com/takanoripe)
+speaker
+: [@koba04](https://twitter.com/koba04)
+: [@laco2net](https://twitter.com/laco2net)
+: [@kazu_pon](https://twitter.com/kazu_pon)
+: [@takanoripe](https://twitter.com/takanoripe)
 
-hashtag: [#nwc_front](https://twitter.com/search?q=%23nwc_front)
-togetter: [#nwc_front](https://togetter.com/li/1268792)
+hashtag
+: [#nwc_front](https://twitter.com/search?q=%23nwc_front)
+
+togetter
+: [#nwc_front](https://togetter.com/li/1268792)
 
 
 ### HTTPS
 
-- [@jxck](https://twitter.com/jxck_)
-- [@jovi0608](https://twitter.com/jovi0608)
-- [@kjur](https://twitter.com/kjur)
-- [@4ma_](https://twitter.com/4ma_)
+speaker
+: [@jxck](https://twitter.com/jxck_)
+: [@jovi0608](https://twitter.com/jovi0608)
+: [@kjur](https://twitter.com/kjur)
+: [@4ma_](https://twitter.com/4ma_)
 
-hashtag: [#nwc_https](https://twitter.com/search?q=%23nwc_https)
-togetter: [#nwc_https](https://togetter.com/li/1268794)
+hashtag
+: [#nwc_https](https://twitter.com/search?q=%23nwc_https)
+
+togetter
+: [#nwc_https](https://togetter.com/li/1268794)
 
 
 ### CSS
 
-- [@yoshiko_pg](https://twitter.com/yoshiko_pg)
-- [@morishitter_](https://twitter.com/morishitter_)
-- [@geckotang](https://twitter.com/geckotang)
+speaker
+: [@yoshiko_pg](https://twitter.com/yoshiko_pg)
+: [@morishitter_](https://twitter.com/morishitter_)
+: [@geckotang](https://twitter.com/geckotang)
 
-hashtag: [#nwc_css](https://twitter.com/search?q=%23nwc_css)
-togetter: [#nwc_css](https://togetter.com/li/1270529)
+hashtag
+: [#nwc_css](https://twitter.com/search?q=%23nwc_css)
+
+togetter
+: [#nwc_css](https://togetter.com/li/1270529)
 
 
 ## WebMusic ([#nwc_music](https://twitter.com/search?q=%23nwc_music))
 
-- [@okunokentaro](https://twitter.com/okunokentaro)
-- [@ryoyakawai](https://twitter.com/ryoyakawai)
-- [@toyoshim](https://twitter.com/toyoshim)
+speaker
+: [@okunokentaro](https://twitter.com/okunokentaro)
+: [@ryoyakawai](https://twitter.com/ryoyakawai)
+: [@toyoshim](https://twitter.com/toyoshim)
 
-hashtag: [#nwc_music](https://twitter.com/search?q=%23nwc_music)
-togetter: [#nwc_music](https://togetter.com/li/1277061)
+hashtag
+: [#nwc_music](https://twitter.com/search?q=%23nwc_music)
+
+togetter
+: [#nwc_music](https://togetter.com/li/1277061)
 
 
 ## Design ([#nwc_design](https://twitter.com/search?q=%23nwc_design))
 
-- [@nobsato](https://twitter.com/nobsato)
-- [@ktrszk](https://twitter.com/ktrszk)
-- [@yhassy](https://twitter.com/yhassy)
+speaker
+: [@nobsato](https://twitter.com/nobsato)
+: [@ktrszk](https://twitter.com/ktrszk)
+: [@yhassy](https://twitter.com/yhassy)
 
-hashtag: [#nwc_design](https://twitter.com/search?q=%23nwc_design)
-togetter: [#nwc_design](https://togetter.com/li/1278305)
+hashtag
+: [#nwc_design](https://twitter.com/search?q=%23nwc_design)
+
+togetter
+: [#nwc_design](https://togetter.com/li/1278305)
 
 
 ## 録画配信
 
-- [@mizuman_](https://twitter.com/mizuman_)
-- [@wks](https://twitter.com/wks)
+speaker
+: [@mizuman_](https://twitter.com/mizuman_)
+: [@wks](https://twitter.com/wks)
 
 
 ## 今後の予定
 
-- 2018/9/15:  ブログ公開
-- 2018/10/1:  Connpass 募集開始
-- 2018/10/15: 抽選結果発表
-- 2019/1/13:  次世代 Web カンファレンス(9:00 開場 10:00 開演 17:30 終演)
+2018/09/15
+:  ブログ公開
+
+2018/10/1
+:  Connpass 募集開始
+
+2018/10/15
+: 抽選結果発表
+
+2019/01/13
+:  次世代 Web カンファレンス(9:00 開場 10:00 開演 17:30 終演)
 
 Jxck
