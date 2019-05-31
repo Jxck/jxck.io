@@ -100,8 +100,11 @@ SVG は拡大しても問題はない。
 
 なお、 PNG と cacoo で書き出した時点での SVG のサイズの比較は以下の通りである。
 
-- PNG: 3860byte
-- SVG: 1430byte
+PNG
+: 3860byte
+
+SVG
+: 1430byte
 
 
 ## SVGGo による最適化
@@ -139,8 +142,11 @@ cacoo で吐いたままの SVG には、不要なメタ情報などが含まれ
 </svg>
 ```
 
-- before: 3860byte
-- after :  638byte
+before
+: 3860byte
+
+after
+:  638byte
 
 
 ## 手書き
@@ -170,8 +176,12 @@ SVG が Valid であることは以下で確認している。
 
 手書きと SVGGo で最適化した cacoo の SVG を比較した結果が以下である。
 
-- svggo: 638byte
-- vim: 291byte
+svggo
+: 638byte
+
+vim
+: 291byte
+
 
 cacoo が吐いた SVG と比べれば 20% なので、以降基本的に UI アイコンの SVG は最初から手で書くことにした。
 

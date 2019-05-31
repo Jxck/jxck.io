@@ -21,9 +21,15 @@
 
 一般的には以下のような使い分けが行われている。
 
-- PNG : 主に UI アイコンなど色変化の少ない画像
-- JPEG: 主に写真など色変化が多い画像
-- GIF : 主に GIF アニメメーション
+PNG
+: 主に UI アイコンなど色変化の少ない画像
+
+JPEG
+: 主に写真など色変化が多い画像
+
+GIF
+: 主に GIF アニメメーション
+
 
 WebP は Google が開発した画像フォーマットであり、これら三つの用途全てに適した上で、さらに小さいサイズに圧縮できる場合が多い。
 
@@ -78,8 +84,11 @@ Usage:
 
 まずは、デフォルトの 80 で比較していく。
 
-- [jxck.png](https://jxck.io/assets/img/jxck.png) : 4061 byte
-- [jxck.webp](https://jxck.io/assets/img/jxck.webp): 1810 byte
+[jxck.png](https://jxck.io/assets/img/jxck.png)
+: 4061 byte
+
+[jxck.webp](https://jxck.io/assets/img/jxck.webp)
+: 1810 byte
 
 
 ## `<picture>` での WebP の指定

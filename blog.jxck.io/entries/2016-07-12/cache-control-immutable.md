@@ -24,9 +24,14 @@ Cache-Control に max-age を指定することで、ブラウザにリソース
 
 リロードやスーパーリロードの場合は、 max-age 内のキャッシュであっても、扱いが変わる。
 
-- ナビゲート(link, redirect):  fresh なキャッシュはヒットする
-- リロード(F5, cmd+r etc):  fresh であっても無視し、 Conditional GET を行う
-- スーパーリロード(shift + reload etc):  fresh あっても無視し、 GET を行う。
+ナビゲート(link, redirect)
+: fresh なキャッシュはヒットする
+
+リロード(F5, cmd+r etc)
+: fresh であっても無視し、 Conditional GET を行う
+
+スーパーリロード(shift + reload etc)
+: fresh あっても無視し、 GET を行う。
 
 
 ## 不必要な Conditional GET

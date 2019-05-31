@@ -160,9 +160,15 @@ HTML の仕様には、ページのレンダリングが CSS によりどうブ�
 
 しかし、実際にブラウザはそれぞれの方法でそれを許容している。
 
-- Chrome, Safari: `<link rel=stylesheet>` があるとロードされるまで、直ちにレンダリングを止める。このため、 `<link>` より *上* の要素も、レンダリング途中で止まる場合がよくある。
-- Firefox: `<head>` に `<link rel=stylesheet>` があるとブロックするが、 `<body>` では `<head>` の CSS がブロックしていない限りはブロックしない。これは FOUC(flash of unstyled content) を引き起こす。
-- IE/Edge: CSS が読み込み終わるまでパーサをブロックする、しかし、 `<link>` 前のコンテンツはレンダリングする。
+Chrome, Safari
+: `<link rel=stylesheet>` があるとロードされるまで、直ちにレンダリングを止める。このため、 `<link>` より *上* の要素も、レンダリング途中で止まる場合がよくある。
+
+Firefox
+: `<head>` に `<link rel=stylesheet>` があるとブロックするが、 `<body>` では `<head>` の CSS がブロックしていない限りはブロックしない。これは FOUC(flash of unstyled content) を引き起こす。
+
+IE/Edge
+: CSS が読み込み終わるまでパーサをブロックする、しかし、 `<link>` 前のコンテンツはレンダリングする。
+
 
 Chrome は IE/Edge の方式に移ることを検討している。これにより Progressive Rendering パターンが可能になる。
 
