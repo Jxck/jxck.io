@@ -39,7 +39,16 @@ article ul li ul li {
 }
 
 article dl {
-  margin: 1.4em 0 1.4em 0.8em;
+  display: grid;
+  grid-template-columns: minmax(auto, max-content);
+  grid-column-gap: 1rem;
+}
+
+article dl dt {
+  grid-column: 1 / 2;
+}
+article dl dd {
+  grid-column: 2 / 2;
 }
 
 article blockquote {
