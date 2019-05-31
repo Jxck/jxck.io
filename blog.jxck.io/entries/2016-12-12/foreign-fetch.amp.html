@@ -88,25 +88,22 @@ article table {
 }
 
 article img {
-  margin: 1em 0;
+  margin: var(--grid) 0;
   border: 1px solid #ccc;
   box-sizing: content-box;
   background-color: #fff;
 }
 
 article ul,
-article ol {
-  margin-left: 0.8em;
+article ol,
+article dl {
+  margin-left: var(--grid);
   font-family: var(--mono-font);
-}
-
-article li {
-  margin-bottom: 0.2em;
 }
 
 article ul li ul,
 article ol li ol {
-  margin: 0.2em 0 0.2em 1em;
+  margin: 0 0 0 calc(var(--grid)*2);
   font-size: 1em;
 }
 
@@ -116,7 +113,16 @@ article ul li ul li {
 }
 
 article dl {
-  margin: 1.4em 0 1.4em 0.8em;
+  display: grid;
+  grid-template-columns: minmax(auto, max-content);
+  grid-column-gap: 1rem;
+}
+
+article dl dt {
+  grid-column: 1 / 2;
+}
+article dl dd {
+  grid-column: 2 / 2;
 }
 
 article blockquote {
@@ -514,20 +520,13 @@ li {
   word-wrap: break-word;
 }
 
-ul,
-ol,
-dl {
-  margin: 1.4em 0;
-}
-
 dl dt {
   font-weight: bold;
+  margin: 0;
 }
 
 dl dd {
-  margin-top: 0.4em;
-  margin-bottom: 0.4em;
-  margin-left: 1.2em;
+  margin: 0;
 }
 
 footer {
