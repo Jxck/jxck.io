@@ -56,7 +56,7 @@
     "https://logo.jxck.io/jxck.1200x1200.png"
   ],
   "datePublished": "2016-03-27T08:00:00+08:00",
-  "dateModified": "2019-05-27T08:00:00+08:00",
+  "dateModified": "2019-05-31T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -101,7 +101,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
     <ul class=info>
       <dt>created_at</dt><dd><time class=created_at datetime=2016-03-27>2016-03-27</time></dd>
-      <dt>updated_at</dt><dd><time class=updated_at datetime=2019-05-27>2019-05-27</time></dd>
+      <dt>updated_at</dt><dd><time class=updated_at datetime=2019-05-31>2019-05-31</time></dd>
       <dt class=tags>tags</dt><dd>[<a href='/tags/svg.html'>svg</a>,<a href='/tags/image.html'>image</a>,<a href='/tags/performance.html'>performance</a>]</dd>
     </ul>
 
@@ -198,10 +198,12 @@
       <p>PNG の方は拡大すると、特にフォント部分がぼやけているのが分かるだろう。
       <p>SVG は拡大しても問題はない。
       <p>なお、 PNG と cacoo で書き出した時点での SVG のサイズの比較は以下の通りである。
-      <ul>
-        <li>PNG: 3860byte
-        <li>SVG: 1430byte
-      </ul>
+      <dl>
+        <dt>PNG</dt>
+        <dd>3860byte
+        <dt>SVG</dt>
+        <dd>1430byte
+      </dl>
     </section>
     <section>
       <h2 id="svggo-による最適化"><a href="#svggo-による最適化">SVGGo による最適化</a></h2>
@@ -230,10 +232,12 @@
     &lt;/text&gt;
   &lt;/g&gt;
 &lt;/svg&gt;</code></pre>
-      <ul>
-        <li>before: 3860byte
-        <li>after :  638byte
-      </ul>
+      <dl>
+        <dt>before</dt>
+        <dd>3860byte
+        <dt>after</dt>
+        <dd>638byte
+      </dl>
     </section>
     <section>
       <h2 id="手書き"><a href="#手書き">手書き</a></h2>
@@ -251,10 +255,12 @@
       <p>SVG が Valid であることは以下で確認している。
       <p><a href="https://validator.w3.org/dev/tests/">Markup Validation Service</a>
       <p>手書きと SVGGo で最適化した cacoo の SVG を比較した結果が以下である。
-      <ul>
-        <li>svggo: 638byte
-        <li>vim: 291byte
-      </ul>
+      <dl>
+        <dt>svggo</dt>
+        <dd>638byte
+        <dt>vim</dt>
+        <dd>291byte
+      </dl>
       <p>cacoo が吐いた SVG と比べれば 20% なので、以降基本的に UI アイコンの SVG は最初から手で書くことにした。
       <p>また、 PNG と比べると実に 93% サイズを削減している。
     </section>

@@ -56,7 +56,7 @@
     "https://logo.jxck.io/jxck.1200x1200.png"
   ],
   "datePublished": "2016-02-15T08:00:00+08:00",
-  "dateModified": "2019-04-15T08:00:00+08:00",
+  "dateModified": "2019-05-31T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -101,7 +101,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
     <ul class=info>
       <dt>created_at</dt><dd><time class=created_at datetime=2016-02-15>2016-02-15</time></dd>
-      <dt>updated_at</dt><dd><time class=updated_at datetime=2019-04-15>2019-04-15</time></dd>
+      <dt>updated_at</dt><dd><time class=updated_at datetime=2019-05-31>2019-05-31</time></dd>
       <dt class=tags>tags</dt><dd>[<a href='/tags/css.html'>css</a>,<a href='/tags/http2.html'>http2</a>,<a href='/tags/performance.html'>performance</a>]</dd>
     </ul>
 
@@ -230,17 +230,14 @@
       <p>HTML の仕様には、ページのレンダリングが CSS によりどうブロックされるかについては、明確に書かれていない。
       <p>また、仕様では <code translate="no">&lt;body&gt;</code> への <code translate="no">&lt;link rel=stylesheet&gt;</code> の記述も推奨されていない。
       <p>しかし、実際にブラウザはそれぞれの方法でそれを許容している。
-      <ul>
-        <li>
-          Chrome, Safari: <code translate="no">&lt;link rel=stylesheet&gt;</code> があるとロードされるまで、直ちにレンダリングを止める。このため、 <code translate="no">&lt;link&gt;</code> より <em>上</em> の要素も、レンダリング途中で止まる場合がよくある。
-        </li>
-        <li>
-          Firefox: <code translate="no">&lt;head&gt;</code> に <code translate="no">&lt;link rel=stylesheet&gt;</code> があるとブロックするが、 <code translate="no">&lt;body&gt;</code> では <code translate="no">&lt;head&gt;</code> の CSS がブロックしていない限りはブロックしない。これは FOUC(flash of unstyled content) を引き起こす。
-        </li>
-        <li>
-          IE/Edge: CSS が読み込み終わるまでパーサをブロックする、しかし、 <code translate="no">&lt;link&gt;</code> 前のコンテンツはレンダリングする。
-        </li>
-      </ul>
+      <dl>
+        <dt>Chrome, Safari</dt>
+        <dd><code translate="no">&lt;link rel=stylesheet&gt;</code> があるとロードされるまで、直ちにレンダリングを止める。このため、 <code translate="no">&lt;link&gt;</code> より <em>上</em> の要素も、レンダリング途中で止まる場合がよくある。
+        <dt>Firefox</dt>
+        <dd><code translate="no">&lt;head&gt;</code> に <code translate="no">&lt;link rel=stylesheet&gt;</code> があるとブロックするが、 <code translate="no">&lt;body&gt;</code> では <code translate="no">&lt;head&gt;</code> の CSS がブロックしていない限りはブロックしない。これは FOUC(flash of unstyled content) を引き起こす。
+        <dt>IE/Edge</dt>
+        <dd>CSS が読み込み終わるまでパーサをブロックする、しかし、 <code translate="no">&lt;link&gt;</code> 前のコンテンツはレンダリングする。
+      </dl>
       <p>Chrome は IE/Edge の方式に移ることを検討している。これにより Progressive Rendering パターンが可能になる。
       <p>合わせて <a href="https://github.com/whatwg/html/pull/616"><code translate="no">&lt;body&gt;</code>内の<code translate="no">&lt;link&gt;</code>を許可する仕様</a> の策定を進めている。
       <p>この変更は、後方互換であり、必要になるまでレンダリングされないだけである。

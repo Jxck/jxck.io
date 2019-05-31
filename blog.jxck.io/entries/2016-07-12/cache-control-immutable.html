@@ -56,7 +56,7 @@
     "https://logo.jxck.io/jxck.1200x1200.png"
   ],
   "datePublished": "2016-07-12T08:00:00+08:00",
-  "dateModified": "2017-11-29T08:00:00+08:00",
+  "dateModified": "2019-05-31T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -101,7 +101,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/info.css>
     <ul class=info>
       <dt>created_at</dt><dd><time class=created_at datetime=2016-07-12>2016-07-12</time></dd>
-      <dt>updated_at</dt><dd><time class=updated_at datetime=2017-11-29>2017-11-29</time></dd>
+      <dt>updated_at</dt><dd><time class=updated_at datetime=2019-05-31>2019-05-31</time></dd>
       <dt class=tags>tags</dt><dd>[<a href='/tags/cache.html'>cache</a>,<a href='/tags/http.html'>http</a>,<a href='/tags/performance.html'>performance</a>]</dd>
     </ul>
 
@@ -124,11 +124,14 @@
       <h2 id="reload"><a href="#reload">Reload</a></h2>
       <p>しかし、現在のブラウザでは fresh なキャッシュがそのままヒットするのは、ナビゲート(遷移)時のみである。
       <p>リロードやスーパーリロードの場合は、 max-age 内のキャッシュであっても、扱いが変わる。
-      <ul>
-        <li>ナビゲート(link, redirect):  fresh なキャッシュはヒットする
-        <li>リロード(F5, cmd+r etc):  fresh であっても無視し、 Conditional GET を行う
-        <li>スーパーリロード(shift + reload etc):  fresh あっても無視し、 GET を行う。
-      </ul>
+      <dl>
+        <dt>ナビゲート(link, redirect)</dt>
+        <dd>fresh なキャッシュはヒットする
+        <dt>リロード(F5, cmd+r etc)</dt>
+        <dd>fresh であっても無視し、 Conditional GET を行う
+        <dt>スーパーリロード(shift + reload etc)</dt>
+        <dd>fresh あっても無視し、 GET を行う。
+      </dl>
     </section>
     <section>
       <h2 id="不必要な-conditional-get"><a href="#不必要な-conditional-get">不必要な Conditional GET</a></h2>

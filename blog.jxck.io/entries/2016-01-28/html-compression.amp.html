@@ -49,7 +49,7 @@
     "https://logo.jxck.io/jxck.1200x1200.png"
   ],
   "datePublished": "2016-01-28T08:00:00+08:00",
-  "dateModified": "2018-07-30T08:00:00+08:00",
+  "dateModified": "2019-05-31T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -320,9 +320,6 @@ iframe {
   margin: 0 1em 0 0;
 }
 
-dt.tags + dd > a {
-  margin: 0 calc(var(--grid)/2);
-}
 
 header {
   z-index: 1;
@@ -798,7 +795,7 @@ td:last-child {
 <main>
   <ul class=info>
     <dt>created_at</dt><dd><time class=created_at datetime=2016-01-28>2016-01-28</time></dd>
-    <dt>updated_at</dt><dd><time class=updated_at datetime=2018-07-30>2018-07-30</time></dd>
+    <dt>updated_at</dt><dd><time class=updated_at datetime=2019-05-31>2019-05-31</time></dd>
     <dt class=tags>tags</dt><dd>[<a href='/tags/html.html'>html</a>,<a href='/tags/performance.html'>performance</a>]</dd>
   </ul>
 
@@ -929,10 +926,12 @@ jxck$ wc html-no-compression.html
      141     417    9417 html-no-compression.html</code></pre>
         <p>また Chrome の devtools で二つのファイルをレンダリングし、 Timeline から <em>Parse HTML</em> の時間を確認した。
         <p>10 回平均した結果がこうだ。
-        <ul>
-          <li>省略有: 約 80ms
-          <li>省略無: 約 90ms
-        </ul>
+        <dl>
+          <dt>省略有</dt>
+          <dd>約 80ms
+          <dt>省略無</dt>
+          <dd>約 90ms
+        </dl>
         <p>また、何回かやると 有 が 100ms を超える場合や 無 が 70ms を切るような場合もあった。
         <p>この程度の速度差であれば体感は難しいので、もはや誤差といえる。
         <p>しかし、これは逆に、 <em>省略がパースを著しく遅くする、といった影響はない</em> と言えるだろう。

@@ -49,7 +49,7 @@
     "https://logo.jxck.io/jxck.1200x1200.png"
   ],
   "datePublished": "2016-03-24T08:00:00+08:00",
-  "dateModified": "2019-05-27T08:00:00+08:00",
+  "dateModified": "2019-05-31T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -320,9 +320,6 @@ iframe {
   margin: 0 1em 0 0;
 }
 
-dt.tags + dd > a {
-  margin: 0 calc(var(--grid)/2);
-}
 
 header {
   z-index: 1;
@@ -798,7 +795,7 @@ td:last-child {
 <main>
   <ul class=info>
     <dt>created_at</dt><dd><time class=created_at datetime=2016-03-24>2016-03-24</time></dd>
-    <dt>updated_at</dt><dd><time class=updated_at datetime=2019-05-27>2019-05-27</time></dd>
+    <dt>updated_at</dt><dd><time class=updated_at datetime=2019-05-31>2019-05-31</time></dd>
     <dt class=tags>tags</dt><dd>[<a href='/tags/image.html'>image</a>,<a href='/tags/performance.html'>performance</a>]</dd>
   </ul>
 
@@ -869,10 +866,12 @@ td:last-child {
     <section>
       <h2 id="ベースラインプログレッシブ"><a href="#ベースラインプログレッシブ">ベースライン/プログレッシブ</a></h2>
       <p>JPEG は、大きい画像を送信する際に、ベースとなるデータを先に送り、差分となるデータをあとから追加して画像を完成させることができる。方式は二つある。
-      <ul>
-        <li>ベースライン: 画像を上から順番に表示していく
-        <li>プログレッシブ: 解像度の低い画像から表示され、徐々に鮮明になっていく
-      </ul>
+      <dl>
+        <dt>ベースライン</dt>
+        <dd>画像を上から順番に表示していく
+        <dt>プログレッシブ</dt>
+        <dd>解像度の低い画像から表示され、徐々に鮮明になっていく
+      </dl>
       <p>なお、 PNG ではベースライン相当の形式をインタレースと呼ぶ。
       <p>どちらを使うかは、二つの観点がある。
       <ul>
