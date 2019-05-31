@@ -1,8 +1,0 @@
-- https://www.w3.org/support/
-- https://donate.mozilla.org/en-US/
-- https://letsencrypt.org/donate
-- https://www.owasp.org/index.php/Donate
-- https://jquery.org/donate/
-- http://www.apache.org/foundation/contributing.html
-- http://webfoundation.org/get-involved/fundraising-team/
-- https://supporters.eff.org/donate/support-work-on-certbot
