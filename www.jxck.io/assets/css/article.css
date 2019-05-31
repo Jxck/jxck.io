@@ -11,25 +11,22 @@ article table {
 }
 
 article img {
-  margin: 1em 0;
+  margin: var(--grid) 0;
   border: 1px solid #ccc;
   box-sizing: content-box;
   background-color: #fff;
 }
 
 article ul,
-article ol {
-  margin-left: 0.8em;
+article ol,
+article dl {
+  margin-left: var(--grid);
   font-family: var(--mono-font);
-}
-
-article li {
-  margin-bottom: 0.2em;
 }
 
 article ul li ul,
 article ol li ol {
-  margin: 0.2em 0 0.2em 1em;
+  margin: 0 0 0 calc(var(--grid)*2);
   font-size: 1em;
 }
 
