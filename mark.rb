@@ -177,7 +177,7 @@ class Markup
     "<dl>#{wrap(node.value)}</dl>\n"
   end
   def dt(node)
-    "<dt>#{node.value}\n"
+    "<dt>#{node.value}</dt>\n"
   end
   def dd(node)
     "<dd>#{node.value}\n"
