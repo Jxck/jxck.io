@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Element Display Locking DEMO | labs.jxck.io</title>
+
+<h1>Element Display Locking DEMO</h1>
+
+<p>asyncAppend with <em>element</em> locking</p>
+
+<form id=form>
+  <fieldset>
+    <legend>lock</legend>
+    <label>off: <input type=radio name=lock value=off checked></label>
+    <label>on:  <input type=radio name=lock value=on></label>
+  </fieldset>
+
+  <button type=submit>start</button>
+</form>
+
+<ul id=container></ul>
+
+<style>
+#container li {
+  contain: style layout;
+}
+</style>
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  async function* scheduler(interval) {
+    let counter = 0
+    while(true) {
+      await new Promise(done => setTimeout(done, interval))
+      yield counter ++
+    }
+  }
+
+  $('#form').on('submit', async (e) => {
+    e.preventDefault()
+    const data = new FormData(e.target)
+    const LOCK = data.get('lock') === 'on'
+
+    for await (const t of scheduler(100)) {
+      if (t > 10) break
+      const child = document.createElement("li")
+      child.textContent = btoa(Math.random())
+      if(LOCK) await child.displayLock.acquire({timeout: Infinity})
+      container.appendChild(child)
+    }
+    container.querySelectorAll('li').forEach(async (child) => {
+      if (LOCK && child.displayLock.locked) {
+        await child.displayLock.update()
+        await child.displayLock.commit()
+      }
+    })
+  })
+</script>
