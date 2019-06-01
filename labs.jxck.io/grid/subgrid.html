@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+
+<title>SubGrid Basic DEMO | labs.jxck.io</title>
+
+<style>
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.card {
+  grid-row: auto / span 3;
+  border: 1px solid rgb(0,48,90);
+  border-radius: 5px;
+  display: grid;
+  grid-template-rows: subgrid;
+}
+
+header, footer {
+  background-color: rgb(0,48,90);
+  color: #fff;
+  padding: 10px;
+}
+
+.content {
+  padding: 10px;
+}
+</style>
+
+<h1>SubGrid Basic DEMO</h1>
+
+<div class=cards>
+  <article class=card>
+    <header>This is a header</header>
+    <div class=content>This is my content.</div>
+    <footer>This is my footer</footer>
+  </article>
+
+  <article class=card>
+    <header>This is a header which is much longer than other headers.</header>
+    <div class=content>This is my content.</div>
+    <footer>This is my footer</footer>
+  </article>
+
+  <article class=card>
+    <header>This is a header</header>
+    <div class=content>This is my content. I have a lot to say in this card so I have added much more content.</div>
+    <footer>This is my footer</footer>
+  </article>
+
+  <article class=card>
+    <header>This is a header</header>
+    <div class=content>This is my content.</div>
+    <footer>This is my footer</footer>
+  </article>
+
+  <article class=card>
+    <header>This is a header</header>
+    <div class=content>This is my content.</div>
+    <footer>This is my footer</footer>
+  </article>
+
+  <article class=card>
+    <header>This is a header</header>
+    <div class=content>This is my content.</div>
+    <footer>This is my footer, it has a lot of content and so will be larger than other footers.</footer>
+  </article>
+
+  <article class=card>
+    <header>This is a header</header>
+    <div class=content>This is my content.</div>
+    <footer>This is my footer</footer>
+  </article>
+
+  <article class=card>
+    <header>This is a header which is much longer than other headers.</header>
+    <div class=content>This is my content.</div>
+    <footer>This is my footer</footer>
+  </article>
+
+  <article class=card>
+    <header>This is a header</header>
+    <div class=content>This is my content. I have a lot to say in this card so I have added much more content.</div>
+    <footer>This is my footer</footer>
+  </article>
+
+  <article class=card>
+    <header>This is a header</header>
+    <div class=content>This is my content.</div>
+    <footer>This is my footer</footer>
+  </article>
+
+  <article class=card>
+    <header>This is a header</header>
+    <div class=content>This is my content.</div>
+    <footer>This is my footer</footer>
+  </article>
+
+  <article class=card>
+    <header>This is a header</header>
+    <div class=content>This is my content.</div>
+    <footer>This is my footer, it has a lot of content and so will be larger than other footers.</footer>
+  </article>
+</div>
