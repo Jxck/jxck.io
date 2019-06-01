@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Generator DEMO</title>
+
+<h1>Generator DEMO</h1>
+<p>see console</p>
+
+<script>
+(() => {
+  function* gen(n, max) {
+    while(true) {
+      if (n === max) return
+      yield n++
+    }
+  }
+
+  const g = gen(0, 4)
+  for (let o of g) {
+    console.log(o)
+  }
+  console.log(g.next())
+})()
+console.log('==================')
+</script>
+
+<script>
+(() => {
+  function* gen() {
+    let x = 1
+    while(true) {
+      x += yield x // next の引数が戻る
+    }
+  }
+
+  const g = gen()
+  for(let i=0 ; i < 10; i++) {
+    console.log(g.next(i).value)
+  }
+})()
+console.log('==================')
+</script>
+
+<script>
+(() => {
+  function* gen(n, max) {
+    while(true) {
+      if (n === max) return
+      yield n++
+    }
+  }
+  function* gen2(n, max) {
+    yield* gen(0, 3) // 移譲
+    yield* [4,5,6]
+    yield 7
+    yield 8
+  }
+
+  const g = gen2()
+  for(let i of g) {
+    console.log(i)
+  }
+})()
+console.log('==================')
+</script>

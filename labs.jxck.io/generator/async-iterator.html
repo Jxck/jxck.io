@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Async Iterator DEMO</title>
+
+<h1>Async Iterator DEMO</h1>
+
+<script>
+  async function* scheduler(interval) {
+    let counter = 0
+    while(true) {
+      await new Promise(done => setTimeout(done, interval));
+      yield counter ++
+    }
+  }
+
+  (async() => {
+    for await (let t of scheduler(100)) {
+      if (t > 9) break
+      console.log(t)
+    }
+  })()
+</script>
