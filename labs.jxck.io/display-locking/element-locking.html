@@ -47,7 +47,7 @@
       if (t > 10) break
       const child = document.createElement("li")
       child.textContent = btoa(Math.random())
-      if(LOCK) await child.displayLock.acquire({timeout: Infinity})
+      if(LOCK) await child.displayLock.acquire({timeout: Infinity, activatable: true})
       container.appendChild(child)
     }
     container.querySelectorAll('li').forEach(async (child) => {

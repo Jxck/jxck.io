@@ -44,7 +44,7 @@
     const LOCK = data.get('lock') === 'on'
 
     const container = document.querySelector("#container")
-    if(LOCK) await container.displayLock.acquire({ timeout: Infinity })
+    if(LOCK) await container.displayLock.acquire({ timeout: Infinity, activatable: true })
 
     for await (const t of scheduler(100)) {
       if (t > 10) break
