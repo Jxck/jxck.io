@@ -1,21 +1,32 @@
-# [async dom][virtual dom] Async DOM (Virtual DOM を置き換える 4 つの提案)について
+# [display locking][dom] Display Locking によるレンダリングの制御
+
+- [Proposal: Display Locking - APIs - WICG](https://discourse.wicg.io/t/proposal-display-locking/2905)
+- [WICG/display-locking: A repository for the Display Locking spec](https://github.com/WICG/display-locking)
+- [882663 - Implement display locking (meta bug) - chromium - Monorail](https://bugs.chromium.org/p/chromium/issues/detail?id=882663)
+- [Intent to Implement: Display Locking - Google グループ](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2Yo590-USNo/7Da9scWwBwAJ)
+
+
+
+
+- [Intent to Implement: Searchable Invisible DOM \- Google グループ](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Icw_sU6PqVA/8hwXw0jTDwAJ)
+    - これもマージされた
 
 ## Intro
 
-React をはじめとする Virtual DOM の概念を参考に、現在の DOM API に足りてないものを検討し、導入すると言う提案が検討されている。
+Virtual DOM などの登場により、本来ブラウザがやるような最適化が、ライブラリによって提供されている。
 
-現状 API の提案は 4 種類あり、それらを元に作業をするための ML が開設された。
+これは見方を変えれば、現在の標準 API には、規模が大きく処理が複雑なアプリケーションを開発する際に足りてないものがあると考えることが可能だ。
 
-まだ、具体的な成果が出て来ているわけではないが、これらの提案を元に、今日の DOM には何が足りていないのか、を考察する。
+特に、現状の DOM の処理が同期であるという点に着目し、 Async DOM という文脈でいくつかの提案が行われた。
 
-(Virtual DOM からの知見は活きるが、 React の実装そのものを標準にするという議論ではないという点は先に強調しておく)
+今回は、その提案の 1 つであり、 Chrome で実装が進んでいる Display Locking について現状を解説する。
 
 
 ## DOM 更新の局所最適化
 
 そもそもなぜ Virtual DOM が使われているのかを振り返る。
 
-SPA 的な構成では、ステートとしてデータを保持し、ライフサイクルの中でステートが更新され、そのステートを DOM に反映する。
+SPA 的な構成では、ステートとしてデータを保持し、ライフサイクルの中でステートが更新され、その更新を DOM に反映する。
 
 非常に簡単な例としては以下のようなモデルだ
 
@@ -59,11 +70,13 @@ Virtual DOM が白眉だった点は、この DOM の更新箇所を差分から
 
 しかし、ブラウザの API は、こうした方向性では定義されていない。
 
-プロパティを代入すれば素直に同期で更新されるし、 AppendChild すれば素直に同期で子要素が追加される。
+プロパティを代入すれば素直に同期で更新されるし、 appendChild すれば素直に同期で子要素が追加される。
 
-その各操作によって Layout や Paint といった処理が発生するため、回数が多ければ無視できない。
+その各操作によって Style - Layout - Paint - Conposit といった処理が発生するため、回数や範囲が多ければ無視できないものとなる。
 
 メインスレッドで同期処理が起こるということは、他の処理への影響もある、応答性の問題が出る。
+
+また、次々と DOM が追加されればレイアウトジャンクも発生する。
 
 特に大きな変更を適用し、それが Grid/Flexbox/Table などでレイアウトされるとなると、なおさら時間がかかる。
 
