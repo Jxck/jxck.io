@@ -1,5 +1,5 @@
 pre {
-  margin: 1.4em 0 0 0;
+  margin: var(--grid) 0;
   border-radius: var(--radius);
 }
 
@@ -10,7 +10,7 @@ pre::before {
 pre::after {
   z-index: -1;
   position: relative;
-  top: -1em;
+  top: -1rem;
   content: "\A```";
 }
 
@@ -18,7 +18,7 @@ pre > code {
   font-family: var(--code-font);
   overflow: auto;
   display: block;
-  padding: 0.6em;
+  padding: 0.5rem;
   margin: 0;
 }
 
