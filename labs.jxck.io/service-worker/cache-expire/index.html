@@ -6,4 +6,13 @@
 
 <h1>Service Worker: Cache Expire DEMO</h1>
 
+<p>cache from sw doesn't respect cache-control header
+
+<ul>
+  <li>response for ./ has max-age=5
+  <li>response for ./ added to caches
+  <li>every request hits caches in onfetch
+  <li>cache.match() doesn't respect max-age
+</ul>
+
 <script src=master.js></script>

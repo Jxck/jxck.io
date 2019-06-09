@@ -1,9 +1,17 @@
-console.log('master');
+'use strict';
+const $  = document.querySelector.bind(document)
+const $$ = document.querySelectorAll.bind(document)
+EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
-document.getElementById('button').addEventListener('click', () => {
-  fetch('/service-worker/claim/test');
-});
+document.on('DOMContentLoaded', async (e) => {
+  console.log(e)
 
-navigator.serviceWorker.register('worker.js').then((registration) => {
-  console.log(registration);
-});
+  $('#button').on('click', async () => {
+    const res  = await fetch('/service-worker/claim/test')
+    const body = await res.text()
+    console.log(body)
+  })
+
+  const registration = await navigator.serviceWorker.register('worker.js')
+  await navigator.serviceWorker.ready
+})

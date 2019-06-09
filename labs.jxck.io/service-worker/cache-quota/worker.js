@@ -1,20 +1,23 @@
-console.info('worker');
+console.info('worker')
+
+const KEY  = 'cache-quota'
 
 self.addEventListener('install', (e) => {
-  console.info('install', e);
-});
-
-self.addEventListener('message', (message) => {
-  const m = 10;
-  const n = JSON.parse(message.data).n;
-  const key = '/service-worker/random';
-  return caches.open(key).then((cache) => {
-    let urls = Array.from(Array(m).keys()).map((i) => `${key}?${i+m*n}`);
-    console.info(`cache ${m*n} requests`);
-    return cache.addAll(urls);
-  });
-});
+  console.info('install', e)
+  e.waitUntil(skipWaiting())
+})
 
 self.addEventListener('activate', (e) => {
-  return self.clients.claim();
-});
+  e.waitUntil(async function() {
+    // remove old cache
+    // await caches.delete(KEY)
+    // console.log('clear cache')
+    return self.clients.claim()
+  }())
+})
+
+self.addEventListener('message', async (e) => {
+  const cache = await caches.open(KEY)
+  const URL   = `https://labs.jxck.io/assets/dummy_video.mp4?${Date.now()}`
+  await cache.addAll([URL])
+})
