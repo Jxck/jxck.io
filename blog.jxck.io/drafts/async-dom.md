@@ -8,9 +8,6 @@
 
 
 
-- [Intent to Implement: Searchable Invisible DOM \- Google グループ](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Icw_sU6PqVA/8hwXw0jTDwAJ)
-    - これもマージされた
-
 ## Intro
 
 React や LitElement などにより、 DOM 操作の抽象化に加えて最適化が提供されることが増えた。   TODO: lit-element ? あとこれも virtual dom ? 挙動は？
@@ -54,10 +51,10 @@ TODO:
 
 TODO: link check
 - [proposals](https://github.com/chrishtr/async-dom/blob/master/current-proposals.md)
-  - Display Locking
   - asyncAppend
-  - DOM ChangeList
   - WokerNode
+  - DOM ChangeList
+  - Display Locking
 
 これらをベースに、 Async DOM はどうあるべきかを考え、標準化を考えていこうという動きが去年くらいに始まった。
 
@@ -69,6 +66,7 @@ ML ができたあたりから議論がどう進むか楽しみにしていた�
 
 ## asyncAppend
 
+## Worker Node
 
 ## DOM ChangeList
 
@@ -82,7 +80,6 @@ Worker 内で操作できる DOM Tree を作り、結果をメインスレッド
 
 
 
-## Worker Node
 
 
 
@@ -167,25 +164,28 @@ Lock 中に行われる `appendChild` は、メモリ上で DOM の処理を行�
 
 ## activatable
 
-絶対にライブラリでは実現できない、この API が標準で提供されるメリットの 1 つが activatable だと筆者は考える。
+ライブラリでは実現が難しい、この API が標準で提供されるメリットの 1 つが activatable だろう。
 
 (レンダリングだけであれば、 display: block して終わったら外すなどでもできなくはなさそうだ)
 
-activatable は、 DOM 上にあるがレンダリングされてない要素に対して、 UI からアクセスできるようにするオプションだ。
+activatable は、メモリ上にあるがレンダリングされてない DOM に対して、 UI からアクセスできるようにするオプションだ。
 
-例えば、先の `<li>` の数が多く、ページの下部まで伸びていた場合、 below the fold は commit しないでおくということも考えられる。
-
-しかし、画面に表示されていなければ、例えば「ページ内検索」でヒットする文字列を含む `<li>` があっても、それが表示されていなければ UI は結果を表示できない。
-
-ところが activatable で取得された lock の場合は、まだ commit されていない `<li>` にも UI はアクセスでき、もし検索でヒットすれば、そこにフォーカスしたタイミングで `commit()` してレンダリングすることができるのだ。
-
-これはページ検索だけでなく、 `<a>` や `<input>` などのフォーカスも同じように可能なため、表示しないことによってアクセスができなくなることを防げる。
-
-Infinit Scroll も、少しづつ裏で DOM に挿しておいて、検索にヒットさせるといった実装が見えてくるだろう。
+説明よりも見た方が早いので以下にデモを示す。
 
 
+TODO: gif
 
+このデモでは、ランダムな文字列を `<li>` に入れ、ロックをとった `<ul>` に追加し commit してない状態で止めている。
 
+ここで、 CTL+F で「ページ内検索」を行い、ランダムな文字列にヒットするように検索をすると、レンダリングが走り遷移していることがわかるだろう。
+
+ブラウザは、まだメモリ上にありレンダリングされてない要素を、検索やフォーカス移動などの対象に含み、必要に応じて commit することができるのだ。
+
+これを利用すると、 Infinit Scroll で、少しづつ裏で DOM に挿しつつレンダリングは遅延させていても、検索にはヒットするといった実装が可能になる。
+
+もともと、単体のドラフトであったものが、この仕様にマージされた結果になっている。
+
+- [Intent to Implement: Searchable Invisible DOM \- Google グループ](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Icw_sU6PqVA/8hwXw0jTDwAJ)
 
 
 
