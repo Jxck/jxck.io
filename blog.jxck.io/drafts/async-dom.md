@@ -1,4 +1,4 @@
-# [display locking][dom] Display Locking によるレンダリングの制御
+# [display locking][async][dom] Display Locking によるレンダリングの最適化と Async DOM
 
 - [Proposal: Display Locking - APIs - WICG](https://discourse.wicg.io/t/proposal-display-locking/2905)
 - [WICG/display-locking: A repository for the Display Locking spec](https://github.com/WICG/display-locking)
@@ -13,13 +13,240 @@
 
 ## Intro
 
-Virtual DOM などの登場により、本来ブラウザがやるような最適化が、ライブラリによって提供されている。
+React や LitElement などにより、 DOM 操作の抽象化に加えて最適化が提供されることが増えた。   TODO: lit-element ? あとこれも virtual dom ? 挙動は？
 
-これは見方を変えれば、現在の標準 API には、規模が大きく処理が複雑なアプリケーションを開発する際に足りてないものがあると考えることが可能だ。
+見方を変えれば、本来ブラウザがやるような最適化を、ライブラリが肩代わりしていると捉えることもできる。
 
-特に、現状の DOM の処理が同期であるという点に着目し、 Async DOM という文脈でいくつかの提案が行われた。
+これは、現在の標準 API には、規模が大きく処理が複雑なアプリケーションを開発する際に、足りてないものがあると考えることが可能だ。
+
+そこで、特に現状の DOM 操作が同期処理であるという点に着目し、 Async DOM という文脈でいくつかの提案が行われた。
 
 今回は、その提案の 1 つであり、 Chrome で実装が進んでいる Display Locking について現状を解説する。
+
+
+## 同期 DOM 操作
+
+特に DOM が増減する `appendChild` や `removeChild` といった操作は、メインスレッド上で同期処理として行われる。
+
+メインスレッド上であるということは、 JS の実行などと一緒であるため、時間がかかる場合はそれらをブロックすることを意味する。
+
+従って、変更範囲の大きい処理、例えば大きな領域への追加削除や細かい変更の多発は、様々な影響を発生し画面の Junk などとしてユーザに知覚されることになる。
+
+
+
+TODO:
+
+
+
+
+## Virtual DOM による最適化
+
+広義の Virtual DOM があるとすれば、基本的には DOM の処理を事前にメモリ上で行い、構築を終えてから結果を実際の DOM に反映し、画面を更新するものと言えるだろう。
+
+狭義の Virtual DOM として React の実装は、このメモリ上での DOM の処理を JSX を変換したコマンドで行い、最後の反映に差分計算による局所最適化を入れている。
+
+開発者から見れば、前者の JSX による抽象化で State の DOM への展開が抽象化されており、 State の更新に集中できる点が非常にでかいが、そこを乱暴に行えるのも、裏で同期である DOM の処理を最小限に留め、メインスレッドの占有を防いでいる恩恵と言える。
+
+前者はあくまでライブラリの UX の範疇だが、後者は標準 API によりブラウザが担保し、ベンダが実装によって最適化する余地があるだろう。
+
+当然同じことを考える人は多く、おおよそ 4 つの異なるアプローチによる仕様があり、それらは Async DOM という文脈でまとめられていた。
+
+
+TODO: link check
+- [proposals](https://github.com/chrishtr/async-dom/blob/master/current-proposals.md)
+  - Display Locking
+  - asyncAppend
+  - DOM ChangeList
+  - WokerNode
+
+これらをベースに、 Async DOM はどうあるべきかを考え、標準化を考えていこうという動きが去年くらいに始まった。
+
+[Async DOM working session summary & outcomes](https://docs.google.com/document/d/17LQtUzxNj31ElYCk_Ozgn4kJqQktrK8m6I8e1i7948I/edit)
+
+
+ML ができたあたりから議論がどう進むか楽しみにしていたが、結局アクティブな議論は起こらず、結果として Display Locking だけが進んでいると言えそうだが、せっかくなので残りの 3 つも軽く触れておく。
+
+
+## asyncAppend
+
+
+## DOM ChangeList
+
+Worker 内で操作できる DOM Tree を作り、結果をメインスレッドに転送して、 DOM に一発で反映できるようにする提案だ。
+
+操作の Off The Main Thread 化と、メインスレッドへの影響が少ない DOM のバッチ処理を組み合わせたアプローチと見ることができる。
+
+前者については最近 [Worker DOM](TODO) としてライブラリ実装があるが、後者は標準 API が無いと難しい。
+
+そして、バッチ処理があれば DOM の操作が Worker でなくてもメリットがあると思われるので、この文脈で本質的には後者が重要と言えるだろう。
+
+
+
+## Worker Node
+
+
+
+
+
+
+## Display Locking
+
+DOM の操作が即座にレンダリングプロセス(Style - Layout - Paint - Composit)を発生し、画面に表示されてしまうと、 Junk を防ぐことが難しい。
+
+そこで、変更前に対象の DOM に Lock をかけ、 DOM 操作を DOM Tree の変更だけにとどめ、 Lock を解放したタイミングでレンダリングするとう提案だ。
+
+DOM の操作とレンダリングを切り離し、レンダリングコストを払っても良い場面を指定することで、メインスレッドへの影響をコントロールするという API になっている。
+
+まだ Chrome しか実装を進めておらず、他のブラウザのシグナルは TODO:
+
+そして、 AsyncDOM の中でなぜこの提案だけが実装に進んだのかはよくわかっていないが、おそらく後述する activatable かと思われる。
+
+
+
+## API
+
+TODO: displayLock はどこに生えるのか？ Element?
+
+Display Locking が実装されると、 HTMLElement に displayLock というプロパティが生える。
+
+ここには 4 つのメソッドがあり、それぞれ以下の役割がある。
+
+acquire()
+: ロックの取得
+
+update()
+: TODO
+
+commit()
+: ロックの解除(レンダリング開始)
+
+updateAndCommit()
+: update + commit
+
+
+それぞれが Promise を返す非同期な処理となっている。
+
+
+
+## Example
+
+例として、すでに DOM 上にある `<ul>` に、複数の `<li>` を追加する処理を考える。
+
+```js
+const $ul = document.querySelector('$ul')
+for (const i = 0; i < 100; i ++) {
+  const $li = document.createElement("li")
+  $li.textContent = "deadbeef"
+  $ul.appendChild($li)
+}
+```
+
+この `appendChild` が毎回レンダリングを発生していることは明白だろう。
+
+そこで、 `<ul>` のロックを取得し、全ての `<li>` が追加されてから一気にレンダリングする場合以下のように書ける。
+
+
+```js
+const $ul = document.querySelector('$ul')
+
+// Lock
+await $ul.displayLock.acquire({ timeout: Infinity, activatable: true })
+
+for (let i = 0; i < 100; i ++) {
+  const $li = document.createElement("li")
+  $li.textContent = "deadbeef"
+  $ul.appendChild($li)
+}
+
+// Unlock
+await container.displayLock.updateAndCommit()
+```
+
+Lock 中に行われる `appendChild` は、メモリ上で DOM の処理を行うだけになる。
+
+
+## activatable
+
+絶対にライブラリでは実現できない、この API が標準で提供されるメリットの 1 つが activatable だと筆者は考える。
+
+(レンダリングだけであれば、 display: block して終わったら外すなどでもできなくはなさそうだ)
+
+activatable は、 DOM 上にあるがレンダリングされてない要素に対して、 UI からアクセスできるようにするオプションだ。
+
+例えば、先の `<li>` の数が多く、ページの下部まで伸びていた場合、 below the fold は commit しないでおくということも考えられる。
+
+しかし、画面に表示されていなければ、例えば「ページ内検索」でヒットする文字列を含む `<li>` があっても、それが表示されていなければ UI は結果を表示できない。
+
+ところが activatable で取得された lock の場合は、まだ commit されていない `<li>` にも UI はアクセスでき、もし検索でヒットすれば、そこにフォーカスしたタイミングで `commit()` してレンダリングすることができるのだ。
+
+これはページ検索だけでなく、 `<a>` や `<input>` などのフォーカスも同じように可能なため、表示しないことによってアクセスができなくなることを防げる。
+
+Infinit Scroll も、少しづつ裏で DOM に挿しておいて、検索にヒットさせるといった実装が見えてくるだろう。
+
+
+
+
+
+
+
+
+
+
+
+## acquire()
+
+`acquire()` は引数に以下の 3 つをとる。
+
+timeout
+: この時間をすぎると自動で commit されるため、コミット忘れや例外で commit にたどり着けない場面を防げる。
+: 完全に自分でタイミングを管理したい場合は、 Infinity にすれば自動ではされなくなる。
+
+activatable
+: 
+
+
+
+
+
+
+
+
+
+これは locked という値を持っており、これを確認することで lock されているかどうかを
+
+
+
+
+
+
+
+
+
+## DEMO
+
+動作する DEMO を以下に用意した。
+
+- TODO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## DOM 更新の局所最適化
@@ -181,8 +408,6 @@ widgetRoot.requestLock(updateWidgetContents).then(readyToUnlock);
 
 
 
-## Async Append
-
 
 
 
@@ -195,15 +420,6 @@ Worker 内で変更し、それをメインスレッドに転送して、一発�
 このため、 Element と Node への変更処理をサポートしつつ、転送可能な DOM Tree の SuperSet を作る。
 
 さらに、メインスレッド上の他の処理を邪魔せずに反映できるようにする API を作る。
-
-
-
-
-
-
-
-
-
 
 
 
