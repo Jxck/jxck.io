@@ -10,8 +10,8 @@
 <form id=form>
   <fieldset>
     <legend>lock</legend>
-    <label>off: <input type=radio name=lock value=off checked></label>
-    <label>on:  <input type=radio name=lock value=on></label>
+    <label>on:     <input type=checkbox name=lock   value=on checked></label>
+    <label>commit: <input type=checkbox name=commit value=on checked></label>
   </fieldset>
 
   <button type=submit>start</button>
@@ -41,7 +41,8 @@
   $('#form').on('submit', async (e) => {
     e.preventDefault()
     const data = new FormData(e.target)
-    const LOCK = data.get('lock') === 'on'
+    const LOCK   = data.get('lock')   === 'on'
+    const COMMIT = data.get('commit') === 'on'
 
     const container = document.querySelector("#container")
     if(LOCK) await container.displayLock.acquire({ timeout: Infinity, activatable: true })
@@ -49,11 +50,14 @@
     for await (const t of scheduler(100)) {
       if (t > 10) break
       const child = document.createElement("li")
+      console.log(child)
       child.textContent = btoa(Math.random())
       container.appendChild(child)
     }
 
-    if(LOCK) await container.displayLock.update()
-    if(LOCK) await container.displayLock.commit()
+    if (COMMIT && container.displayLock.locked) {
+      await container.displayLock.update()
+      await container.displayLock.commit()
+    }
   })
 </script>
