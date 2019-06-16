@@ -25,7 +25,7 @@
 }
 </style>
 <script>
-  'use strict';
+  "use strict";
   const $  = document.querySelector.bind(document)
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
@@ -38,11 +38,11 @@
     }
   }
 
-  $('#form').on('submit', async (e) => {
+  $("#form").on("submit", async (e) => {
     e.preventDefault()
     const data = new FormData(e.target)
-    const LOCK   = data.get('lock')   === 'on'
-    const COMMIT = data.get('commit') === 'on'
+    const LOCK   = data.get("lock")   === "on"
+    const COMMIT = data.get("commit") === "on"
 
     for await (const t of scheduler(100)) {
       if (t > 10) break
@@ -52,7 +52,7 @@
       if(LOCK) await child.displayLock.acquire({timeout: Infinity, activatable: true})
       container.appendChild(child)
     }
-    container.querySelectorAll('li').forEach(async (child) => {
+    container.querySelectorAll("li").forEach(async (child) => {
       if (COMMIT && child.displayLock.locked) {
         await child.displayLock.update()
         await child.displayLock.commit()
