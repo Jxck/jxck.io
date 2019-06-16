@@ -15,7 +15,7 @@ React や lit-html などにより、 DOM 操作の抽象化に加えて最適�
 
 ## 現状の DOM 操作の課題
 
-例えば以下のような処理を考える。
+まず、以下のような処理を考える。
 
 
 ```html
@@ -32,13 +32,13 @@ DOM Tree の更新が終わったら、レンダリング処理(style -> layout 
 
 もしこの appendChild した `$div` がものすごく大きかった場合は、そこでメインループをブロックし、 JS の実行もユーザのインタラクションもブロックされる。
 
-結果応答が悪くなり、 User Experience が阻害されてしまう。
+結果、応答性能が悪くなり、 User Experience が阻害されてしまう。
 
 メインループをブロックする処理はご法度であることが常識でありながら、 DOM API は基本的に同期しかない。
 
 また、ブロックを発生するような同期処理は Worker に落とすのが常套手段だが、 DOM は Worker から触ることができない。
 
-結果、この `$div` に隠れている更新処理を、なるべく細かいタスクに分割し、 requestIdleCallback などで他に配慮しながら行うなどの工夫が、開発者によってなされることになる。
+現状は、この `$div` に隠れている更新処理を、なるべく細かいタスクに分割し、 requestIdleCallback などで他に配慮しながら行うなどの工夫が、開発者によってなされることになる。
 
 しかし、規模の大きい SPA では、 State の DOM への展開ごとにそれを自前でやるのは現実的ではない。
 
@@ -47,11 +47,11 @@ DOM Tree の更新が終わったら、レンダリング処理(style -> layout 
 
 ### ライブラリによる最適化
 
-React や lit-element は、この State の DOM への展開をライブラリで抽象化し、更新コストのコントロールを提供している。
+React や lit-html は、この State の DOM への展開をライブラリで抽象化し、更新コストのコントロールを提供している。
 
 実装はそれぞれ違うが、簡単にいえば既に展開されている DOM から、更新結果の DOM までの間を、最小限の操作で変化できる方法を割り出すという点では共通しているだろう。
 
-React は Virtual DOM による差分更新、 lit-element は Tagged Template Literal で割り出した Strict/Dynamic Part の識別によりこれを行なっている。
+React は Virtual DOM による差分更新、 lit-html は Tagged Template Literal で割り出した Strict/Dynamic Part の識別によりこれを行なっている。
 
 少し違うアプローチとして Worker DOM は、 DOM の処理を Woker で実行しているように見せているが、実際には当然 Window にコマンドを発行し DOM API を呼ぶ。
 
@@ -59,16 +59,16 @@ React は Virtual DOM による差分更新、 lit-element は Tagged Template L
 
 そこには、標準 API によりブラウザが担保し、ベンダが実装によって最適化する余地があるだろう。
 
-当然同じことを考える人は多く、おおよそ 4 つの異なるアプローチによる仕様があり、それらは Async DOM という文脈でまとめられていた。
+当然同じことを考える人は多く、おおよそ 4 つの異なるアプローチによる提案がなされ、それらは Async DOM という文脈でまとめられていた。
 
 
 ### Async DOM の提案
 
 同時期に出てきたというよりは、常に誰かが何かしら提案していた DOM API の改善提案が、 3~4 年くらい前から AsyncDOM としてまとめられた。
 
-- [proposals](https://github.com/chrishtr/async-dom/blob/master/current-proposals.md)
+- [async-dom/current-proposals.md at master - chrishtr/async-dom](https://github.com/chrishtr/async-dom/blob/master/current-proposals.md)
 
-これを議論するための Mailing List ができたため、できてから 2 年くらいずっと気にかけていたのだが、全くと言っていいほど盛り上がらなかった。
+これを議論するための Mailing List ができたため、できてから 2 年くらいずっと気にかけていたのだが、特に大きな動きはなかった。
 
 - [async-dom - Google グループ](https://groups.google.com/a/chromium.org/forum/#!forum/async-dom)
 
@@ -79,23 +79,20 @@ React は Virtual DOM による差分更新、 lit-element は Tagged Template L
 
 それを踏まえて簡単にそれぞれを解説する。
 
-- asyncAppend
-    - https://github.com/WICG/async-append
+- [asyncAppend](https://github.com/WICG/async-append)
     - 非同期版 Append を生やす
     - 単体 Append だけではなく、 DOM 処理の Batch 化もする
-- WokerNode
-    - https://github.com/drufball/worker-node/
+- [WokerNode](https://github.com/drufball/worker-node/)
     - Worker と行き来できる DOM 更新命令をまとめたオブジェクトの提案
     - そのオブジェクトの適用には asyncAppend を使う
-- DOM ChangeList
-    - https://github.com/whatwg/dom/issues/270
+- [DOM ChangeList](https://github.com/whatwg/dom/issues/270)
     - DOM の更新命令をまとめるオブジェクトを提案
     - それを適用すると一気に処理が走る、 VirtualDOM に似てる
     - エンジンが最適化できるため
-- Display Locking
+- [Display Locking](https://github.com/WICG/display-locking)
     - 今回の本題なので後述
 
-結論から言えば Display Locking 以外だれも作業してないからというのが実際のところだ。
+Display Locking 以外は、特に作業がされていない。
 
 
 ## Display Locking
@@ -111,7 +108,7 @@ Async DOM の実装の中で、もっとも作業が進み、 Chrome で実装�
 
 この仕様の状況としては、まず Intetns で [positive feedback from ReactJS and Polymer](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2Yo590-USNo/7Da9scWwBwAJ) と書かれているため、なんらかのやり取りはあったようだ。
 
-しかし、 Mozilla は [Standard Pisition](https://github.com/mozilla/standards-positions/issues/135) でこれを *harmful 寄り* としており、同じスレッドで Apple も [hat we do not support this proposal](https://github.com/mozilla/standards-positions/issues/135#issuecomment-476952851) と言っている。
+しかし、 Mozilla は [Standard Pisition](https://github.com/mozilla/standards-positions/issues/135) でこれを *harmful 寄り* としており、同じスレッドで Apple も [we do not support this proposal](https://github.com/mozilla/standards-positions/issues/135#issuecomment-476952851) と言っている。
 
 ただし、どちらも現状の仕様の持つ課題に対する態度であり、前述したような現状の DOM API については共通の問題意識を持っており、 Display Locking の作業が全て無駄だという割り切りというわけでもない。
 
@@ -161,7 +158,7 @@ for (const i = 0; i < 100; i ++) {
 
 わかりやすいように、 `appendChild` に `setTimeout` を仕込んだ例は以下のように挙動する。
 
-![lock を取らず普通に appendChild する例](display-no-locking.gif 'display with no locking')
+![lock を取らず普通に appendChild する例](display-no-locking.gif#825x968 'display with no locking')
 
 そこで、 `<ul>` のロックを取得し、全ての `<li>` が追加されてから一気にレンダリングする場合以下のように書ける。
 
@@ -184,7 +181,7 @@ await container.displayLock.updateAndCommit()
 
 こちらも、わかりやすいように `setTimeout` を仕込んだ例は以下のように挙動する。
 
-![ul の lock を取り追加が終わってから commit する例](display-locking.gif 'display with locking')
+![ul の lock を取り追加が終わってから commit する例](display-locking.gif#825x968 'display with locking')
 
 Lock 中に行われる `appendChild` は、メモリ上で DOM の処理を行うだけになり、 `commit()` でレンダリングが一度に走っていることがわかるだろう。
 
@@ -218,13 +215,11 @@ Display Lock は、その性質を利用して、事前にブラウザに style 
 
 この API が標準で提供されるメリットの 1 つが `activatable` だろう。
 
-(レンダリングだけであれば、 display: block して終わったら外すなどでもできなくはなさそうだ)
-
 activatable は、メモリ上にあるがレンダリングされてない DOM に対して、 UI からアクセスできるようにするオプションだ。
 
 説明よりも見た方が早いので以下にデモを示す。
 
-![commit してない要素が画面内検索で一致した際にレンダリングされる例](display-locking-activatable.gif 'find in page commits activatable element')
+![commit してない要素が画面内検索で一致した際にレンダリングされる例](display-locking-activatable.gif#825x968 'find in page commits activatable element')
 
 このデモでは、ランダムな文字列を `<li>` に入れ、ロックをとった `<ul>` に追加し commit してない状態で止めている。
 
@@ -234,7 +229,7 @@ activatable は、メモリ上にあるがレンダリングされてない DOM 
 
 これを利用すると、 Infinit Scroll で、少しづつ裏で DOM に挿しつつレンダリングは遅延させていても、検索にはヒットするといった実装が可能になる。
 
-そのものずばりなユースケースは、 Layered API の文脈で議論されている Virtual Scroll のニーズとも一致している。
+そのものずばりなユースケースとして、 Layered API の文脈で議論されている Virtual Scroll のニーズとも一致している。
 
 - [WICG/virtual-scroller](https://github.com/WICG/virtual-scroller)
 
@@ -284,7 +279,7 @@ AsyncDOM の他の提案が、 Append の非同期化や Worker への以降な�
 
 仮に Display Locking がそのまま改善を含めて進んだとしても、レイヤの低い API であるため、そのまま開発者が触ることは少ないだろう。
 
-React や lite-html が提供しているのは DOM の更新だけではないため、 Display Locking があればそうしたライブライが不要になるというものではない。
+React や lit-html が提供しているのは DOM の更新だけではないため、 Display Locking があればそうしたライブライが不要になるというものではない。
 
 特に SPA では State を DOM に展開する部分のコードが、いかに抽象化されているかも Developer Experience として重要だ。
 
