@@ -45,7 +45,7 @@ DOM Tree の更新が終わったら、レンダリング処理(style -> layout 
 そこで、この更新のコストをコントロールすることが、近年のフロントエンド開発の関心の 1 つとなっている。
 
 
-## ライブラリによる最適化
+### ライブラリによる最適化
 
 React や lit-element は、この State の DOM への展開をライブラリで抽象化し、更新コストのコントロールを提供している。
 
@@ -62,7 +62,7 @@ React は Virtual DOM による差分更新、 lit-element は Tagged Template L
 当然同じことを考える人は多く、おおよそ 4 つの異なるアプローチによる仕様があり、それらは Async DOM という文脈でまとめられていた。
 
 
-## Async DOM の提案
+### Async DOM の提案
 
 同時期に出てきたというよりは、常に誰かが何かしら提案していた DOM API の改善提案が、 3~4 年くらい前から AsyncDOM としてまとめられた。
 
@@ -147,12 +147,12 @@ updateAndCommit()
 それぞれが Promise を返す非同期な処理となっている。
 
 
-## Example
+### Example
 
-例として、すでに DOM 上にある `<ul>` に、複数の `<li>` を追加する処理を考える。
+簡単な例として、すでに DOM 上にある `<ul>` に、複数の `<li>` を追加する処理を考える。
 
 ```js
-const $ul = document.querySelector('$ul')
+const $ul = document.querySelector("$ul")
 for (const i = 0; i < 100; i ++) {
   const $li = document.createElement("li")
   $li.textContent = "deadbeef"
@@ -160,16 +160,16 @@ for (const i = 0; i < 100; i ++) {
 }
 ```
 
-この `appendChild` が毎回レンダリングを発生していることは明白だろう。
+この `appendChild` が毎回レンダリングを発生している。
 
 そこで、 `<ul>` のロックを取得し、全ての `<li>` が追加されてから一気にレンダリングする場合以下のように書ける。
 
 
 ```js
-const $ul = document.querySelector('$ul')
+const $ul = document.querySelector("$ul")
 
 // Lock
-await $ul.displayLock.acquire({ timeout: Infinity, activatable: true })
+await $ul.displayLock.acquire({ timeout: Infinity })
 
 for (let i = 0; i < 100; i ++) {
   const $li = document.createElement("li")
@@ -181,12 +181,34 @@ for (let i = 0; i < 100; i ++) {
 await container.displayLock.updateAndCommit()
 ```
 
-Lock 中に行われる `appendChild` は、メモリ上で DOM の処理を行うだけになる。
+Lock 中に行われる `appendChild` は、メモリ上で DOM の処理を行うだけになり、 commit() でレンダリングが一度に走る。
 
 
-## activatable
 
-ライブラリでは実現が難しい、この API が標準で提供されるメリットの 1 つが activatable だろう。
+
+### acquire()
+
+`acquire()` はロックを取得する。オプションに 3 つの値をとる。
+
+timeout
+: タイムアウトすると commit されるため、 commit 漏れを防ぐことができる。
+: 完全に JS でコントロールしたい場合は、 Infinity を渡す。
+
+sizes
+: commit 後のサイズを指定することで、その領域を確保しておくことができる。
+: 先にサイズがわかっている場合に指定する。
+
+activatable
+: 後述
+
+
+### CSS Containment
+
+
+
+### activatable
+
+この API が標準で提供されるメリットの 1 つが `activatable` だろう。
 
 (レンダリングだけであれば、 display: block して終わったら外すなどでもできなくはなさそうだ)
 
@@ -215,7 +237,7 @@ TODO: gif
 
 
 
-## acquire()
+### acquire()
 
 `acquire()` は引数に以下の 3 つをとる。
 
@@ -244,7 +266,7 @@ activatable
 
 
 
-## DEMO
+### DEMO
 
 動作する DEMO を以下に用意した。
 
