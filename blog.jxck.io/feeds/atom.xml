@@ -8,6 +8,22 @@
 <updated>2016-01-28T18:30:02Z</updated>
 
   <entry>
+   <title>Display Locking によるレンダリングの最適化と Async DOM</title>
+   <link href="https://blog.jxck.io/entries/2019-06-16/display-locking.html" rel="alternate" />
+   <id>tag:blog.jxck.io,2016:entry://2019-06-16</id>
+   <updated>2019-06-16T00:00:00Z</updated>
+   <summary>React や lit-html などにより、 DOM 操作の抽象化に加えて最適化が提供されることが一般的となった。
+
+見方を変えれば、本来ブラウザがやるような最適化を、ライブラリが肩代わりしていると捉えることもできる。
+
+これは、現在の標準 API には、規模が大きく処理が複雑なアプリケーションを開発する際に、足りてないものがあると考えることが可能だ。
+
+課題の 1 つとして「DOM 操作が同期処理である」という点に着目し、 Async DOM という文脈でいくつかの提案が行われた。
+
+今回は、その提案の 1 つであり Chrome で実装が進んでいる Display Locking について現状を解説する。</summary>
+  </entry>
+
+  <entry>
    <title>画像最適化戦略 Lazy Loading 編</title>
    <link href="https://blog.jxck.io/entries/2019-05-20/lazyloading.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-05-20</id>
@@ -183,19 +199,38 @@ Cookie の挙動とそれを用いた攻撃、そして Same Site Cookie につ�
    <updated>2018-09-15T00:00:00Z</updated>
    <summary>2019/1/13(日) に、「*次世代 Web カンファレンス*」を開催します。
 
-- 名称: 次世代 Web カンファレンス
-- 日時: 2019/1/13(日) 9:00-17:30
-- 場所: 法政大学富士見ゲート 4F 401, 402, 403
-- 後援: 法政大学情報科学部
-- 配信: Youtube
-- 募集: Connpass
-- 参加費: 無料
+名称
+: 次世代 Web カンファレンス
+
+日時
+: 2019/1/13(日) 9:00-17:30
+
+場所
+: 法政大学富士見ゲート 4F 401, 402, 403
+
+後援
+: 法政大学情報科学部
+
+配信
+: Youtube
+
+募集
+: Connpass
+
+参加費
+: 無料
+
 
 (参考) 2015 年実施のログは以下です。
 
-- blog: http://jxck.hatenablog.com/entry/next-web-conf-2915
-- connpass: https://nextwebconf.connpass.com/event/19699/
-- 録画: 405, 406, 407</summary>
+blog
+: http://jxck.hatenablog.com/entry/next-web-conf-2915
+
+connpass
+: https://nextwebconf.connpass.com/event/19699/
+
+録画
+: 405, 406, 407</summary>
   </entry>
 
   <entry>
