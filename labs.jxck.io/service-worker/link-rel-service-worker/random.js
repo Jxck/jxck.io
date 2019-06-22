@@ -11,19 +11,18 @@ self.addEventListener('activate', (e) => {
 self.addEventListener('fetch', (e) => {
   console.info('fetch', e)
 
-  let url = new URL(e.request.url)
+  const url = new URL(e.request.url)
   if (!url.pathname.endsWith('/random')) {
     return
   }
-  e.respondWith(
-    fetch(e.request)
-      .then((response) => {
-        console.log('online response')
-        return response
-      })
-      .catch(() => {
-        console.log('offline response')
-        return new Response(Math.floor(Math.random()*100))
-      })
-  )
+  e.respondWith(async () => {
+    try {
+      const res = await fetch(e.request)
+      console.log('online response')
+      return res
+    } catch(err) => {
+      console.log('offline response', err)
+      return new Response(Math.floor(Math.random()*100))
+    }
+  }())
 })

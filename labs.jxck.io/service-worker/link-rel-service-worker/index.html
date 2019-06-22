@@ -16,16 +16,20 @@
 <button id=button>fetch</button>
 
 <script>
-var $button = document.getElementById('button');
-$button.addEventListener('click', () => {
-  console.log('click');
-  fetch('./random')
-    .then((res) => res.text())
-    .then((text) => {
-      console.log(text);
-      document.getElementById('random').textContent = text;
-    })
-  .catch(console.log.bind(console));
-});
-$button.dispatchEvent(new Event('click'));
+'use strict';
+const $  = document.querySelector.bind(document)
+const $$ = document.querySelectorAll.bind(document)
+EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+document.on('DOMContentLoaded', async (e) => {
+  console.log(e)
+
+  $('#button').on('click', async () => {
+    const res  = await fetch('./random')
+    const text = await res.text()
+    console.log(text)
+    $('#random').textContent = text
+  })
+  $('#button').dispatchEvent(new Event('click'));
+})
 </script>
