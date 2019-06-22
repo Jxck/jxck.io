@@ -71,4 +71,4 @@
       e.waitUntil(self.clients.claim());
     });
   }
-})();
+}) // TODO: currently disabled ();

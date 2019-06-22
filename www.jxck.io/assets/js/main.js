@@ -29,3 +29,8 @@ if (window.ReportingObserver) {
 
   observer.observe()
 }
+
+(async function() {
+  // cleanup sw
+  console.log(await Promise.all((await navigator.serviceWorker.getRegistrations()).map(sw => sw.unregister())))
+})()
