@@ -9,13 +9,22 @@
 <input type=button id=button value=button>
 
 <script>
-console.log('next');
+'use strict';
+const $  = document.querySelector.bind(document)
+const $$ = document.querySelectorAll.bind(document)
+EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
-navigator.serviceWorker.register('worker2.js', { scope: './next.html' }).then((registration) => {
-  return navigator.serviceWorker.ready;
-});
+console.log('next')
 
-document.getElementById('button').addEventListener('click', () => {
-  fetch('test').then((res) => res.text()).then(console.log.bind(console));
-});
+document.on('DOMContentLoaded', async (e) => {
+  console.log(e)
+  await navigator.serviceWorker.register('worker2.js', { scope: './next.html' })
+  await navigator.serviceWorker.ready
+})
+
+$('#button').on('click', async () => {
+  const res  = await fetch('test')
+  const text = await res.text()
+  console.log(text)
+})
 </script>

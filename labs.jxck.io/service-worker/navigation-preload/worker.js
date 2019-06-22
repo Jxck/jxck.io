@@ -11,13 +11,12 @@ self.addEventListener('activate', (e) => {
 self.addEventListener('fetch', (e) => {
   console.log('url', e.request.url)
 
-  e.respondWith((() => {
-    return e.preloadResponse.then((res) => {
-      console.info('preload res', res)
-      if (res) return res
+  e.respondWith((async () => {
+    const res = await e.preloadResponse
+    console.info('preload res', res)
+    if (res) return res
 
-      console.log('fetch')
-      return fetch(e.request)
-    });
+    console.log('fetch')
+    return fetch(e.request)
   })())
 })

@@ -1,17 +1,17 @@
-console.log('master');
+'use strict';
+const $  = document.querySelector.bind(document)
+const $$ = document.querySelectorAll.bind(document)
+EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
-navigator.serviceWorker.register('worker.js')
-  .then((registration) => {
-    const ID = btoa(Math.random());
-    console.log(ID);
-    return registration.navigationPreload.setHeaderValue(ID).then(() => {
-      return Promise.resolve(registration)
-    })
-  })
-  .then((registration) => {
-    return registration.navigationPreload.getState()
-  })
-  .then((state) => {
-    console.log(state.enabled)
-    console.log(state.headerValue)
-  })
+document.on('DOMContentLoaded', async (e) => {
+  console.log(e)
+
+  const registration = await navigator.serviceWorker.register('worker.js')
+  const ID = btoa(Math.random())
+  console.log(ID)
+
+  await registration.navigationPreload.setHeaderValue(ID)
+  const state = await registration.navigationPreload.getState()
+  console.log(state.enabled)
+  console.log(state.headerValue)
+})
