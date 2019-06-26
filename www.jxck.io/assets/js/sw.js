@@ -1,74 +1,74 @@
-(function() {
-  'use strict';
-  const DEBUG = true;
-  const VERSION='ver=2';
+(async () => {
+  'use strict'
+  EventTarget.prototype.on  = EventTarget.prototype.addEventListener
+  EventTarget.prototype.off = EventTarget.prototype.removeEventListener
+  const DEBUG   = true
+  const VERSION = 'v0'
+  const log = DEBUG ? console.log.bind(console) : () => {}
+  log('sw.js')
 
-  let log = DEBUG ? console.log.bind(console) : () => {};
+  // Window
+  if (typeof window !== 'undefined' && location.hash === "#sw") {
+    async function master() {
+      log('mastert()')
+      const controllerChange = new Promise((resolve, reject) => {
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+          resolve(navigator.serviceWorker.controller)
+        })
+      })
 
-  // window
-  if (typeof window !== 'undefined') {
-    let registerPush = ((registration) => {
-      registration.pushManager.subscribe({userVisibleOnly: true}).then((subscription) => {
-        const endpoint = subscription.endpoint;
-        const auth = subscription.getKey('auth');
-        const p256dh = subscription.getKey('p256dh');
-
-        const userAuth = btoa(String.fromCharCode(...new Uint8Array(auth)));
-        const userPublicKey = btoa(String.fromCharCode(...new Uint8Array(p256dh)));
-
-        const body = JSON.stringify({ endpoint, userAuth, userPublicKey });
-        console.log(JSON.stringify(subscription, ' ', ' '));
-        console.log(body);
-
-        const url = 'wss://ws.jxck.io';
-        const protocol = 'push_register';
-        let ws = new WebSocket(url, protocol);
-
-        ws.addEventListener('message', (e) => {
-          console.log('message', e);
-        });
-        ws.addEventListener('open', () => {
-          ws.send(body);
-        });
-        ws.addEventListener('error', (e) => {
-          console.error(e);
-        });
-      });
-    });
-
-    let controllerChange = new Promise((resolve, reject) => {
-      navigator.serviceWorker.addEventListener('controllerchange', () => {
-        resolve(navigator.serviceWorker.controller);
-      });
-    });
-
-    navigator.serviceWorker.register(`/assets/js/sw.js?${VERSION}`, { scope: '/' }).then((registration) => {
-      return navigator.serviceWorker.ready;
-    }).then((registration) => {
-      // TODO: disable push while WIP
-      // registerPush(registration);
-      if (navigator.serviceWorker.controller) {
-        return navigator.serviceWorker.controller;
-      }
-      return controllerChange;
-    }).then((controller) => {
-      log('controller', controller);
-    }).catch(console.error.bind(console));
+      const registration = await navigator.serviceWorker.register(`/assets/js/sw.js`, { scope: '/' })
+      console.log(await navigator.serviceWorker.ready)
+    }
+    master()
   }
 
-  // service worker
+  // Service Worker
   if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalScope) {
-    // TODO: disable push while WIP
-    // importScripts(`sw.push.js?${VERSION}`);
+    async function worker() {
+      log('worker()', self)
 
-    self.addEventListener('install', (e) => {
-      log('install > skipWaiting', e);
-      e.waitUntil(skipWaiting());
-    });
+      self.on('install', async (e) => {
+        log('install > skipWaiting', e)
+        async function installing() {
+          const cache = await caches.open(VERSION)
+          await cache.addAll([
+            '/assets/font/NotoSansCJKjp-Jxck-Regular-201906.woff2',
+            '/assets/font/NotoSansCJKjp-Jxck-Bold-201906.woff2',
+            '/assets/font/NotoSansMonoCJKjp-Jxck-Regular-201906.woff2',
+            '/assets/font/NotoSansMonoCJKjp-Jxck-Bold-201906.woff2',
+            '/assets/js/highlight.min.js',
+          ])
+          return skipWaiting()
+        }
+        e.waitUntil(installing())
+      })
 
-    self.addEventListener('activate', (e) => {
-      log('activate > claim', e);
-      e.waitUntil(self.clients.claim());
-    });
+      self.on('activate', async (e) => {
+        log('activate > claim', e)
+        async function clean_cache() {
+          const keys = await caches.keys()
+          log('version', VERSION)
+          const old_keys = keys.filter((key) => key !== VERSION)
+          await Promise.all(old_keys.map((key) => {
+            log('remove cache', key)
+            return caches.delete(key)
+          }))
+          return self.clients.claim()
+        }
+        e.waitUntil(clean_cache())
+      })
+
+      self.on('fetch', async (e) => {
+        // log(e.request)
+        async function fetching(req) {
+          const res = await caches.match(req)
+          // log('cache hit', res)
+          return res || fetch(req)
+        }
+        e.respondWith(fetching(e.request))
+      })
+    }
+    worker()
   }
-}) // TODO: currently disabled ();
+})()
