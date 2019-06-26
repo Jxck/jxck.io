@@ -3,16 +3,13 @@
 ## Registration
 
 ここでスクリプトを取得し、登録する。
-既に登録されていれば何も起こらないので、気にしないで良い。
 
-```
-console.log('master');
-navigator.serviceWorker.register('worker.js').then((registration) => {
-  console.log('registration');
-}).catch(console.error.bind(console));
+```js
+const registration = await navigator.serviceWorker.register('worker.js')
+console.log(registration);
 ```
 
-```
+```js
 console.log('worker');
 ```
 
@@ -25,15 +22,17 @@ console.log('worker');
 console.info(' worker');
 
 self.addEventListener('fetch', (e) => {
-  let path = new URL(e.request.url).pathname;
-  if (path === '/registration/test') {
+  const path = new URL(e.request.url).pathname;
+  if (path.endsWith('./test')) {
+    // レスポンスを生成して返す
     e.respondWith(new Response('test'));
   }
+  // 実際にサーバにリクエストを投げる
   return;
 });
 ```
 
-存在しないページへのリクエストで、 SW からレスポンスが返る。
+存在しないページへのリクエストでも、 SW からレスポンスが返る。
 
 ```html
 <a href=test>test</a>
@@ -43,15 +42,14 @@ self.addEventListener('fetch', (e) => {
 
 ```html
 <a href=test>test</a>
-<input id=test type=button value=test />
+<button id=test value=test></button>
 ```
 
 ```js
-document.getElementById('test').addEventListener('click', () => {
-  fetch('test').then((e) => {
-    console.log(e);
-  });
-});
+$('test').on('click', () => {
+  const res = await fetch('test')
+  console.log(res)
+})
 ```
 
 SPA などで引っかかりやすい。
@@ -63,14 +61,14 @@ SPA などで引っかかりやすい。
 install と active イベントがある。
 
 ```js
-console.info(' worker');
+console.info(' worker')
 
-self.addEventListener('install', (e) => {
-  console.info(' install', e);
+self.on('install', (e) => {
+  console.info(e.type)
 });
 
-self.addEventListener('activate', (e) => {
-  console.info(' activate', e);
+self.on('activate', (e) => {
+  console.info(e.type);
 });
 ```
 
@@ -90,7 +88,7 @@ active イベントの発火直後に controller にしたいなら
 claim() を呼ぶ
 
 ```js
-self.addEventListener('activate', (e) => {
+self.on('activate', (e) => {
   console.info(' activate', e);
   e.waitUntil(self.clients.claim());
 });
@@ -106,11 +104,9 @@ self.addEventListener('activate', (e) => {
 しかし、 controller の設定はそれよりも遅れるので、これではできない。
 
 ```js
-navigator.serviceWorker.register('worker.js').then((registration) => {
-  return navigator.serviceWorker.ready;
-}).then(() => {
-  return fetch('test'); // 404
-});
+const registration = await navigator.serviceWorker.register('worker.js')
+await navigator.serviceWorker.ready;
+fetch('test'); // 404
 ```
 
 
@@ -118,7 +114,7 @@ fetch が proxy されるのは、 controller が設定されてから。
 つまり controller change イベントがおこってから。
 
 ```js
-navigator.serviceWorker.addEventListener('controllerchange', () => {
+navigator.serviceWorker.on('controllerchange', () => {
   fetch('test'); // 200
 });
 ```
@@ -134,23 +130,21 @@ navigator.serviceWorker.addEventListener('controllerchange', () => {
 
 
 ```js
-let controller = new Promise((resolve, reject) => {
-  navigator.serviceWorker.addEventListener('controllerchange', resolve);
-});
+const registration = await navigator.serviceWorker.register(KEY)
+console.log(await navigator.serviceWorker.ready)
 
-navigator.serviceWorker.register('worker.js').then((registration) => {
-  return navigator.serviceWorker.ready;
-}).then(() => {
-  if (navigator.serviceWorker.controller) {
-    return navigator.serviceWorker.controller;
-  }
-  return controller;
-}).then((controller) => {
-  return fetch('test');
-}).then((res) => {
-  console.log(res);
-}).catch(console.error.bind(console));
+// controller があればそのまま、なければ controllerchange を待つ
+if (!navigator.serviceWorker.controller) {
+  await new Promise((done) => {
+    navigator.serviceWorker.addEventListener('controllerchange', done)
+  })
+}
+console.log(navigator.serviceWorker.controller)
 ```
+
+
+ただし、更新した場合はここは通らない。
+
 
 
 ## 更新
@@ -160,25 +154,20 @@ navigator.serviceWorker.register('worker.js').then((registration) => {
 master.js はいくら更新しても変わらないが、 worker.js が 1byte でも変わると
 register 時に sw のアップデートプロセスが走る。
 
-例えば、 v1 でインストールしておく。
+仮に v1 から v2 にアップデートするとする
 
 ```js
-const v = 1;
-console.info(` worker${v}`);
-
 self.addEventListener('install', (e) => {
-  console.info(` install${v}`);
+  console.info(e.type)
   e.waitUntil(skipWaiting());
 });
 
 self.addEventListener('activate', (e) => {
-  console.info(` activate${v}`);
+  console.info(e.type)
 });
 ```
 
-1byte 変更して v2 に変える。
-
-リロードすると、 install2 が発火するが activate2 はすぐには発火しない。
+リロードすると、 install が発火するが activate はすぐには発火しない。
 
 実はこの時点では v1 が active で v2 は waiting の状態。
 
@@ -186,21 +175,16 @@ self.addEventListener('activate', (e) => {
 
 そこで、ページを閉じて次に開いたとき、完全に置き換えて大丈夫なタイミングで置きかわる。
 
-
-skipWaiting() を使うと、一気に activate2 までいける。
+`skipWaiting()` を使うと、一気に v2 を activate できる。
 
 ```js
-console.info(' worker');
-const v = 2;
-console.info(` worker${v}`);
-
 self.addEventListener('install', (e) => {
-  console.info(` install${v}`);
+  console.info(`install`);
   e.waitUntil(skipWaiting());
 });
 
 self.addEventListener('activate', (e) => {
-  console.info(` activate${v}`);
+  console.info(`activate`);
 });
 ```
 
@@ -268,10 +252,12 @@ setTimeout(() => {
 }, 3000);
 ```
 
+24h ごとに確実にサーバに問い合わせるために、 24h すぎて発生する更新確認はブラウザのキャッシュをバイパスする。
+
+
+
 以前は update を呼べば強制できたが、今はそういうことができなくなった。
 
-一番簡単なのは `?ver=1` などのクエリをつける。
-キャッシュが切れて updatefound される。
 
 ## Cache
 
