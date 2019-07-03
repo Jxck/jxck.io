@@ -98,7 +98,7 @@ guest
 - *Implement: Cross-Origin-Resource-Policy-Policy (the name will be changed)*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/oS94Kp3BOOU/sj6lcwYIBgAJ>
     - Cross-Origin-Embedder-Policy になりそう
-- Implement: Support step timing functions jump-start|end|both|none
+- Implement: Support step timing functions jump-start/end/both/none
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/u65DesVOzmY/htUnPfFcBgAJ>
 - Implement: PushSubscriptionChangeEvent & PushManager.refreshSubscription
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/rzNq9b5QSDc/p66EeehZBgAJ>
@@ -379,7 +379,7 @@ guest
   - Introducing Sign In with Apple - WWDC 2019 - Videos - Apple Developer
     - <https://developer.apple.com/videos/play/wwdc2019/706/>
 - Updates
-  - Safari 13 Beta Release Notes | Apple Developer Documentation
+  - Safari 13 Beta Release Notes
     - <https://developer.apple.com/documentation/safari_release_notes/safari_13_beta_release_notes>
   - *Release Notes for Safari Technology Preview 83*
     - <https://webkit.org/blog/8967/release-notes-for-safari-technology-preview-83/>
@@ -525,7 +525,7 @@ guest
     - <https://github.com/whatwg/html/pull/3752#issuecomment-498114767>
     - kinu さんが loading=lazy で Range リクエストを投げる提案についてコメント
     - 実装の複雑さが増すことや、 Service Worker で 206 をうまく扱えないことへの懸念
-  - Cake or death: AMP and the worrying power dynamics of the web | Andrew Betts
+  - Cake or death: AMP and the worrying power dynamics of the web
     - <https://trib.tv/2019/05/28/cake-or-death-amp-and-the-worrying-power-dynamics-of-the-web/>
   - A report from the AMP Advisory Committee Meeting - Terence Eden's Blog
     - <https://shkspr.mobi/blog/2019/05/a-report-from-the-amp-advisory-committee-meeting/>
@@ -642,18 +642,18 @@ guest
 ### 周辺動向
 
 - (載せ忘れ) Standards.REST
-  - http://standards.rest/
+  - <https://standards.rest/>
   - RESTful API 作る上での関連仕様
-- (載せ忘れ) My Internet Explorer | Internet Explorer Browser Collection
+- (載せ忘れ) My Internet Explorer
   - <https://www.my-internet-explorer.com/>
   - 歴代の IE の画像や歴史一覧
 - PCC: Performance-oriented Congestion Control
-  - http://pccproject.net/
+  - <http://pccproject.net/>
   - 機械学習を用いたオンライン輻輳制御
 - [WIP] experimental fetch by MylesBorins
   - <https://github.com/nodejs/node/pull/27979>
   - fetch を node に入れるかどうかの議論
-- Employing QUIC Protocol to Optimize Uber's App Performance | Uber Engineering Blog
+- Employing QUIC Protocol to Optimize Uber's App Performance
   - <https://eng.uber.com/employing-quic-protocol/>
 - The Web Conference 2019 参加レポート - LINE ENGINEERING
   - <https://engineering.linecorp.com/ja/blog/the-web-conference-2019-report/>
@@ -701,7 +701,7 @@ guest
   - New Fetches
   - Miscellaneous Improvements
   - LTS Support for 1.9 Features
-- *Google to reimplement curl in libcrurl | daniel.haxx.se*
+- *Google to reimplement curl in libcrurl*
   - <https://daniel.haxx.se/blog/2019/06/19/google-to-reimplement-curl-in-libcrurl/>
 - *The State of CSS 2019*
   - <https://2019.stateofcss.com/>
@@ -716,7 +716,7 @@ guest
   - CSS Tricks を読み、 Stackoverflow で調べる
   - CSS は Easy to Learn 寄りで、 Evolving は普通で、書いてて超楽しい
   - Container Queries と Parent Selector が早く欲しい
-- New - UDP Load Balancing for Network Load Balancer | AWS News Blog
+- New - UDP Load Balancing for Network Load Balancer
   - <https://aws.amazon.com/jp/blogs/aws/new-udp-load-balancing-for-network-load-balancer/>
 - Today is the last day to register a .uk domain
   - <https://www.techradar.com/news/today-is-the-last-day-to-register-a-uk-domain>
@@ -725,7 +725,7 @@ guest
   - 全体を bgcolor white の div で覆い、 mix-blend-mode: difference で反転する
   - <https://dev.to/wgao19/night-mode-with-mix-blend-mode-difference-23lm>
   - この記事で紹介されて手法をライブラリ化したもの
-- June 2019 Web Server Survey | Netcraft
+- June 2019 Web Server Survey
   - <https://news.netcraft.com/archives/2019/06/17/june-2019-web-server-survey.html>
   - <https://news.mynavi.jp/article/20190621-846088/>
   - Nginx のシェアがどんどん増え、 Web の 1/3 で使われている
@@ -775,7 +775,7 @@ guest
   - 11-12: Chrome Dev Summit 2019
     - <https://developer.chrome.com/devsummit/>
   - 14-15: BlinkOn 11 in Sunnyvale California
-    - http://bit.ly/blinkon11-faq
+    - <http://bit.ly/blinkon11-faq>
   - 30-1: JSConf JP
     - <https://www.jsconf.jp>
 - 12 月
