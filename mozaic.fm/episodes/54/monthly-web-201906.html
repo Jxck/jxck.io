@@ -1,0 +1,2220 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <!--
+  貴様、見ているな！！
+  このサイトの技術的なまとめはこちらをどうぞ。
+  https://labs.jxck.io/blog
+
+  by Jxck
+  -->
+  <link rel=canonical href=https://mozaic.fm/episodes/54/monthly-web-201906.html>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <link rel=alternate type=application/rss+xml title=mozaic.fm href=http://feed.mozaic.fm>
+  <link rel=author href=https://jxck.io/assets/humans.txt>
+  <script async src=/assets/js/ga.mozaic.js></script>
+  <script async src=/assets/js/highlight.min.js></script>
+  <script type=module src=/assets/js/mozaic.js></script>
+  <script type=module src=/assets/js/sw.js></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon type=image/png sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.png>
+  <link rel=apple-touch-icon type=image/png sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.png>
+
+  <meta name=author content=Jxck>
+  <meta name=description content="第 54 回のテーマは 2019 年 6 月の Monthly Web です。...">
+  <meta name=keywords content="monthly-web,mozaic.fm">
+
+  <meta name=twitter:card content=summary>
+  <meta name=twitter:site content=@jxck_>
+  <meta name=twitter:url content="https://mozaic.fm/episodes/54/monthly-web-201906.html">
+  <meta name=twitter:title content="ep54 Monthly Web 201906 | mozaic.fm">
+  <meta name=twitter:description content="第 54 回のテーマは 2019 年 6 月の Monthly Web です。...">
+  <meta name=twitter:image content="https://mozaic.fm/assets/img/mozaic.png">
+
+  <meta property=og:type content=article>
+  <meta property=og:url content="https://mozaic.fm/episodes/54/monthly-web-201906.html">
+  <meta property=og:title content="ep54 Monthly Web 201906 | mozaic.fm">
+  <meta property=og:site_name content="mozaic.fm">
+  <meta property=og:description content="第 54 回のテーマは 2019 年 6 月の Monthly Web です。...">
+  <meta property=og:image content="https://mozaic.fm/assets/img/mozaic.png">
+
+  <title>ep54 Monthly Web 201906 | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/53/monthly-web-201905.html>
+  
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css>
+
+  <template id=search_diag>
+    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/dialog.css>
+    <dialog class=search>
+      <form method=get action=https://google.co.jp/search>
+        <fieldset>
+          <legend>search via google</legend>
+          <label for=keywords>keyword:</label>
+          <input type=search name=q id=keywords placeholder=keywords>
+          <input type=hidden name=q value=site:mozaic.fm/episodes>
+          <button type=submit>go</button>
+        </fieldset>
+      </form>
+    </dialog>
+  </template>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=/                                                                            ><img alt=top              width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/mozaic.svg class=logo></a>
+      <li><a                                                                                   ><img alt=share id=share   width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/share.svg></a>
+      <li><a href=https://www.google.co.jp/search?q=site%3Amozaic.fm%2Fepisodes class=search   ><img alt=search           width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/search.svg></a>
+      <li><a href=http://feed.mozaic.fm                                                        ><img alt="rss feed"       width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/podcast.svg></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495                    ><img alt=itunes           width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/itunes.svg></a>
+      <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D"    ><img alt="google podcast" width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/google-podcast.svg></a>
+      <li><a href="https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd"><img alt=huamns.txt       width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/twitter.svg></a>
+      <li><a href=https://jxck.io                                                              ><img alt="jxck logo"      width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/jxck.svg class=logo></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/53/monthly-web-201905.html">ep53 Monthly Web 201905</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+
+  <article>
+    <h1><a href=/episodes/54/monthly-web-201906.html>ep54 Monthly Web 201906</a></h1>
+    <section>
+      <h2>Info</h2>
+      <p><mozaic-player><audio slot=audio data-forward=+30 data-back=-10 src=https://files.mozaic.fm/mozaic-ep54.mp3></audio></mozaic-player>
+      <dl class=info>
+        <dt>published_at</dt>
+        <dd>2019-07-03
+        <dt>guest</dt>
+        <dd><a href="https://twitter.com/myakura">@myakura</a>
+      </dl>
+    </section>
+    <section>
+      <h2>Theme</h2>
+      <p>第 54 回のテーマは 2019 年 6 月の Monthly Web です。
+    </section>
+    <section>
+      <h2>Show Note</h2>
+      <section>
+        <h3>Chrome 動向</h3>
+        <ul>
+          <li>Stable: 75
+          <li>
+            Updates<ul>
+              <li>
+                <em>New in Chrome 75</em><ul>
+                  <li>
+                    <a href="https://developers.google.com/web/updates/2019/06/nic75">https://developers.google.com/web/updates/2019/06/nic75</a>
+                  </li>
+                  <li>Hint for low latency canvas contexts
+                  <li>Share files with the Web Share API
+                  <li>Numeric literals
+                </ul>
+              </li>
+              <li>
+                What&rsquo;s New In DevTools (Chrome 76)<ul>
+                  <li>
+                    <a href="https://developers.google.com/web/updates/2019/05/devtools">https://developers.google.com/web/updates/2019/05/devtools</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <em>Chromium Blog: Chrome 76 Beta: dark mode, payments, new PWA features and more</em><ul>
+                  <li>
+                    <a href="https://blog.chromium.org/2019/06/chrome-76-beta-dark-mode-payments-new.html">https://blog.chromium.org/2019/06/chrome-76-beta-dark-mode-payments-new.html</a>
+                  </li>
+                  <li>Dark Mode
+                  <li>Payments API Updates
+                  <li>Install Progressive Web Apps on the desktop with ease
+                  <li>Control the Add to Home Screen mini-infobar
+                  <li>Updating WebAPKs more frequently
+                  <li>Async clipboard: read and write images
+                  <li>Escape key is not a user activation
+                  <li>Fetch Metadata
+                  <li>form.requestSubmit()
+                  <li>IndexedDB transaction explicit commit API call
+                  <li>Media capabilities in workers
+                  <li>Promise.allSettled
+                  <li>white-space: break-spaces
+                  <li>Remove feature policy: lazyload
+                </ul>
+              </li>
+              <li>
+                Deprecations and removals in Chrome 76<ul>
+                  <li>
+                    <a href="https://developers.google.com/web/updates/2019/06/chrome-76-deps-rems">https://developers.google.com/web/updates/2019/06/chrome-76-deps-rems</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Intents<ul>
+              <li>
+                Ship: Add charLength Attribute to SpeechSynthesisEvent<ul>
+                  <li>
+                    <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/wXbIl5mq4eo/GSyt-hXeBQAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/wXbIl5mq4eo/GSyt-hXeBQAJ</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Ship: Intl.NumberFormat Unified API Proposal<ul>
+                  <li>
+                    <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/pI2T2q1fCK4/gNJt9-O9BgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/pI2T2q1fCK4/gNJt9-O9BgAJ</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Ship: New TextMetrics API in Canvas<ul>
+                  <li>
+                    <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/dTL2nW5mhGc/Rfp52LCnBgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/dTL2nW5mhGc/Rfp52LCnBgAJ</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Ship: Throw on invalid &ldquo;basic-card&rdquo; data<ul>
+                  <li>
+                    <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mKytaPCs8ZE/S-D8r4GjAgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mKytaPCs8ZE/S-D8r4GjAgAJ</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <em>Ship: Animation Worklet</em><ul>
+                  <li>
+                    <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/aRKT0BkrF-8/G-KuTnMBBgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/aRKT0BkrF-8/G-KuTnMBBgAJ</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Ship: Add [Exposed=Window,Worker] to PaymentManager<ul>
+                  <li>
+                    <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8WnMLRKeaog/VL4eBEJHAwAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8WnMLRKeaog/VL4eBEJHAwAJ</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <em>Implement and Ship: Cookies with SameSite by default</em><ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/AknSSyQTGYs/SSB1rTEkBgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/AknSSyQTGYs/SSB1rTEkBgAJ</a>
+              </li>
+              <li>Chrome 77 での ship を計画していたが、 macOS/iOS の CFNetwork にバグがあった。
+              <li>SameSite=None (や他の未知の値)が SameSite=Strict として解釈されるため Chrome 80 まで延期
+            </ul>
+          </li>
+          <li>
+            Implement and Ship: Freeze task queues in background (desktop)<ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Ik4vvlOg0jc/-EYx9IdxBAAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Ik4vvlOg0jc/-EYx9IdxBAAJ</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Implement and Ship: Let all early errors be SyntaxErrors<ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/VizkBlcoy3M/7g4YAY88BgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/VizkBlcoy3M/7g4YAY88BgAJ</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <em>Implement and Ship: Limit <code translate="no">Referer</code> header&rsquo;s length to 4k</em><ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/lckJ5OAkUNo/ooVNdvhLAgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/lckJ5OAkUNo/ooVNdvhLAgAJ</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Implement and Ship: CSS font-size: xxx-large<ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ucEUTqoi4Nc/wx3q-B7tAQAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ucEUTqoi4Nc/wx3q-B7tAQAJ</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Implement and Ship: Stop action for Media Session<ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/xMxKEmIgUug/Se7BBGGoAgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/xMxKEmIgUug/Se7BBGGoAgAJ</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Implement and Ship: Web Bluetooth getAvailability()<ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/093IZbeZ6RA/PdhQFP6NAgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/093IZbeZ6RA/PdhQFP6NAgAJ</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Implement and Ship: RTCPeerConnection::onicecandidateerror<ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/fs-Y4awdYj0/1UOKRxzmBQAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/fs-Y4awdYj0/1UOKRxzmBQAJ</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Implement and Ship: Discard input events targeting recently-moved iframes<ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MzXscv7fT0w/ygq7qc6sBQAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MzXscv7fT0w/ygq7qc6sBQAJ</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <em>Implement and Ship: SRI support for link preloads</em><ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/F0IiHq9EHyc/F4qC3QCQCwAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/F0IiHq9EHyc/F4qC3QCQCwAJ</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <em>Implement and Ship: Error structured serialization</em><ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/f8JngIi8qYs/QR6GTJTACwAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/f8JngIi8qYs/QR6GTJTACwAJ</a>
+              </li>
+              <li>Worker とやり取りできるように Error をシリアライズ可能に
+              <li>Transferable Stream がモチベーション
+            </ul>
+          </li>
+          <li>
+            <em>Implement and Ship: CSS min(), max() and clamp()</em><ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/7FaMtRBfTBU/-Sm3s-gFAwAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/7FaMtRBfTBU/-Sm3s-gFAwAJ</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Implement and Ship: Overscroll Behavior logical longhands<ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/V86fOkIaEQA/7bbQ4rP8AgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/V86fOkIaEQA/7bbQ4rP8AgAJ</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <em>Implement: Largest contentful paint</em><ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/WVqgYtyaGJk/q-TGbeExBgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/WVqgYtyaGJk/q-TGbeExBgAJ</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Implement: Add millisecondDigits option to Intl.DateTimeFormat<ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/WXd9nh03a1M/z7QeIMgrBgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/WXd9nh03a1M/z7QeIMgrBgAJ</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <em>Implement: Cross-Origin-Resource-Policy-Policy (the name will be changed)</em><ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/oS94Kp3BOOU/sj6lcwYIBgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/oS94Kp3BOOU/sj6lcwYIBgAJ</a>
+              </li>
+              <li>Cross-Origin-Embedder-Policy になりそう
+            </ul>
+          </li>
+          <li>
+            Implement: Support step timing functions jump-start/end/both/none<ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/u65DesVOzmY/htUnPfFcBgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/u65DesVOzmY/htUnPfFcBgAJ</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Implement: PushSubscriptionChangeEvent &amp; PushManager.refreshSubscription<ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/rzNq9b5QSDc/p66EeehZBgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/rzNq9b5QSDc/p66EeehZBgAJ</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <em>Implement: Cross-Origin-Opener-Policy</em><ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/RN0PfhoxdHI/ASzdxxoMBgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/RN0PfhoxdHI/ASzdxxoMBgAJ</a>
+              </li>
+              <li>opener の一括制限
+            </ul>
+          </li>
+          <li>
+            Implement: JavaScript Memory API<ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/cdUOyBAtWzo/MRmGAURjBQAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/cdUOyBAtWzo/MRmGAURjBQAJ</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <em>Implement: Toast UI element</em><ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Gl7FIKM5IFw/tA70X9ZIBQAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Gl7FIKM5IFw/tA70X9ZIBQAJ</a>
+              </li>
+              <li>
+                <code translate="no">&lt;std-toast&gt;</code>
+              </li>
+              <li>intent プロセスや Chrome チームのやりかた、機能に対して解決する問題、 toast という名前などいろんな観点で燃えている
+            </ul>
+          </li>
+          <li>
+            <em>Implement: Toggle switch control element</em><ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/kP556piqDR8/XHuly9HMAwAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/kP556piqDR8/XHuly9HMAwAJ</a>
+              </li>
+              <li>
+                <code translate="no">&lt;std-switch&gt;</code>
+              </li>
+              <li>
+                <em>Implement: Content Index API</em><ul>
+                  <li>
+                    <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/qERxZjYu6SE/JGd_lkyXBQAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/qERxZjYu6SE/JGd_lkyXBQAJ</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Extend Origin Trial: lowLatency canvas contexts (through end of M74)<ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hqhrB2BIIr0/q7TfR2I1BgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hqhrB2BIIr0/q7TfR2I1BgAJ</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Extend Origin Trial: per-method quota for hasEnrolledInstrument()<ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/y4yesvnPC4Q/P4s53eZeBgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/y4yesvnPC4Q/P4s53eZeBgAJ</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Extend Origin Trial: Feature Policy Reporting<ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/PyYXyqBI3fk/2SBwjUPkBgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/PyYXyqBI3fk/2SBwjUPkBgAJ</a>
+              </li>
+              <li>
+                Continue Experimenting: Badging API<ul>
+                  <li>
+                    <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/fHVltld3KLc/xnsC7tztCQAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/fHVltld3KLc/xnsC7tztCQAJ</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Experiment: MediaCapabilities: encrypted (EME) decodingInfo()<ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/eA9uG98td5U/Dhko1AcGAwAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/eA9uG98td5U/Dhko1AcGAwAJ</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Experiment: Scroll To Text Fragment<ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/NySZyk6UMEs/XGquAepZAwAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/NySZyk6UMEs/XGquAepZAwAJ</a>
+              </li>
+              <li>テキストの内容に対してリンクを張れる
+              <li>
+                <code translate="no">https://example.com#targetText=prefix-,startText,endText,-suffix</code>
+              </li>
+            </ul>
+          </li>
+          <li>Change:
+          <li>Unship:
+          <li>Remove:
+          <li>
+            Deprecate and Remove: volume property.<ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8-Qn7pu41Kk/BWl_CjilBAAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8-Qn7pu41Kk/BWl_CjilBAAJ</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Deprecate: GCM-based subscriptions for Web Push Notifications<ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_3Q0vj7kQiM/qLCU2nf_BAAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_3Q0vj7kQiM/qLCU2nf_BAAJ</a>
+              </li>
+              <li>GCM から VAPID へ
+              <li>
+                PSA: converting HTTP authentication prompts to committed interstitials<ul>
+                  <li>
+                    <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/6_U3G2eD07o/Ij4JnzL0BQAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/6_U3G2eD07o/Ij4JnzL0BQAJ</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Users of U2F APIs should migrate to Webauthn<ul>
+                  <li>
+                    <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/SdceviqfKJo/zIMMWWoLBgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/SdceviqfKJo/zIMMWWoLBgAJ</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            v8<ul>
+              <li>
+                Code caching for WebAssembly developers - V8<ul>
+                  <li>
+                    <a href="https://v8.dev/blog/wasm-code-caching">https://v8.dev/blog/wasm-code-caching</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <em>V8 release v7.6 · V8</em><ul>
+                  <li>
+                    <a href="https://v8.dev/blog/v8-release-76">https://v8.dev/blog/v8-release-76</a>
+                  </li>
+                  <li>chrome 76 に入る
+                  <li>JSON.parse improvements
+                  <li>Frozen/sealed array improvements
+                  <li>Promise.allSettled
+                  <li>Improved BigInt support
+                  <li>etc
+                </ul>
+              </li>
+              <li>
+                <em>The cost of JavaScript in 2019 · V8</em><ul>
+                  <li>
+                    <a href="https://v8.dev/blog/cost-of-javascript-2019">https://v8.dev/blog/cost-of-javascript-2019</a>
+                  </li>
+                  <li>JS の fetch/parse/compile/cache などにつて
+                  <li>JS の object 記法より JSON.parse() の方が速いという話が話題
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            AMP<ul>
+              <li>
+                Debunking Common AMP Myths<ul>
+                  <li>
+                    <a href="https://blog.amp.dev/2019/05/23/debunking-common-amp-myths/">https://blog.amp.dev/2019/05/23/debunking-common-amp-myths/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Innovation in navigation on the web platform<ul>
+                  <li>
+                    <a href="https://blog.amp.dev/2019/06/05/innovation-in-navigation-on-the-web-platform/">https://blog.amp.dev/2019/06/05/innovation-in-navigation-on-the-web-platform/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <em>Learn web development with AMP!</em><ul>
+                  <li>
+                    <a href="https://blog.amp.dev/2019/06/20/learn-web-development-with-amp/">https://blog.amp.dev/2019/06/20/learn-web-development-with-amp/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <em>Introducing Cloudflare AMP Real URL</em><ul>
+                  <li>
+                    <a href="https://blog.amp.dev/2019/06/17/introducing-cloudflare-amp-real-url/">https://blog.amp.dev/2019/06/17/introducing-cloudflare-amp-real-url/</a>
+                  </li>
+                  <li>Cloudflare の SXG
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Other<ul>
+              <li>
+                Chromium Blog: Taking Action on Deceptive Installation Tactics<ul>
+                  <li>
+                    <a href="https://blog.chromium.org/2019/05/taking-action-on-deceptive-installation.html">https://blog.chromium.org/2019/05/taking-action-on-deceptive-installation.html</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <em>Web Feature Deprecation: A Case Study for Chrome</em><ul>
+                  <li>
+                    <a href="https://ai.google/research/pubs/pub47833">https://ai.google/research/pubs/pub47833</a>
+                  </li>
+                  <li>Chrome でなにか機能を deprecate したい場合において行っていること
+                </ul>
+              </li>
+              <li>
+                <em>Fixing HTTPS Misconfigurations at Scale: An Experiment with Security Notifications - Google AI</em><ul>
+                  <li>
+                    <a href="https://ai.google/research/pubs/pub48162">https://ai.google/research/pubs/pub48162</a>
+                  </li>
+                  <li>TLS 設定の問題をサイトオーナーにどう伝えたらいいのかを Google が実験
+                  <li>サーチコンソールでの通知や WHOIS のコンタクト先にメールを送るなど、様々な組み合わせで実験した
+                </ul>
+              </li>
+              <li>
+                <em>Chrome Enterprise release notes - Google Chrome Enterprise Help</em><ul>
+                  <li>
+                    <a href="https://support.google.com/chrome/a/answer/7679408">https://support.google.com/chrome/a/answer/7679408</a>
+                  </li>
+                  <li>エンタープライズポリシーについて
+                  <li>Flash blocked by default in Chrome 76 についても書かれている
+                </ul>
+              </li>
+              <li>
+                <em>Chromium Blog: Web Request and Declarative Net Request: Explaining the impact on Extensions in Manifest V3</em><ul>
+                  <li>
+                    <a href="https://blog.chromium.org/2019/06/web-request-and-declarative-net-request.html">https://blog.chromium.org/2019/06/web-request-and-declarative-net-request.html</a>
+                  </li>
+                  <li>Declarative にして制限を強くすることにより Google がアドブロッカーを締め出そうとしているという懸念に対する解説ポスト
+                </ul>
+              </li>
+              <li>
+                <em>Google Earth</em><ul>
+                  <li>
+                    How we&rsquo;re bringing Google Earth to the Web<ul>
+                      <li>
+                        <a href="https://web.dev/earth-webassembly/">https://web.dev/earth-webassembly/</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    Chromium Blog: WebAssembly brings Google Earth to more browsers<ul>
+                      <li>
+                        <a href="https://blog.chromium.org/2019/06/webassembly-brings-google-earth-to-more.html">https://blog.chromium.org/2019/06/webassembly-brings-google-earth-to-more.html</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>Google Earth の WASM 版正式リリース
+                </ul>
+              </li>
+              <li>
+                <em>How do I notify users that my PWA is installable?</em>
+              </li>
+              <li>
+                <a href="https://developers.google.com/web/updates/2019/06/pwa-install-patterns">https://developers.google.com/web/updates/2019/06/pwa-install-patterns</a>
+              </li>
+              <li>
+                Chrome 76 で beforeinstallprompt イベントを <code translate="no">preventDefault()</code> するとミニバーが表示されなくなる
+              </li>
+              <li>PWA なこと、インストール可能なことをどう表現するか
+              <li>
+                <em>Bringing service workers to Google Search</em>
+              </li>
+              <li>
+                <a href="https://web.dev/google-search-sw">https://web.dev/google-search-sw</a>
+              </li>
+              <li>Google Search に SW を入れた苦労話
+              <li>Navigation Preload によるオーバーヘッド削減
+              <li>Scope の苦労
+              <li>ユーザごとの生成
+              <li>Cookie の PostMessage でのやりとり
+              <li>Cache の期限
+              <li>etc
+              <li>
+                <em>Reader Mode flag</em><ul>
+                  <li>
+                    <a href="https://chromium.googlesource.com/chromium/src/+/766c2ad9b387457c4538cc702d4a0e5c73dc83f2">https://chromium.googlesource.com/chromium/src/+/766c2ad9b387457c4538cc702d4a0e5c73dc83f2</a>
+                  </li>
+                  <li>
+                    <a href="https://japan.cnet.com/article/35138001/">https://japan.cnet.com/article/35138001/</a>
+                  </li>
+                  <li>
+                    <a href="https://crbug.com/925965">https://crbug.com/925965</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                fix FileSystemAPI anti detect incognite<ul>
+                  <li>
+                    <a href="https://9to5google.com/2019/06/13/google-chrome-76-beta/">https://9to5google.com/2019/06/13/google-chrome-76-beta/</a>
+                  </li>
+                  <li>
+                    <a href="https://chromium.googlesource.com/chromium/src/+/52b1b1e94dba734bda175cf96596f0a1d65e0b81">https://chromium.googlesource.com/chromium/src/+/52b1b1e94dba734bda175cf96596f0a1d65e0b81</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Making JavaScript and Google Search work together<ul>
+                  <li>
+                    <a href="https://web.dev/javascript-and-google-search-io-2019/">https://web.dev/javascript-and-google-search-io-2019/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <em>The Layout Instability API</em><ul>
+                  <li>
+                    <a href="https://web.dev/layout-instability-api/">https://web.dev/layout-instability-api/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Updates to the Web Payments APIs<ul>
+                  <li>
+                    <a href="https://web.dev/web-payments-updates/">https://web.dev/web-payments-updates/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Web components: the secret ingredient helping power the web<ul>
+                  <li>
+                    <a href="https://web.dev/web-components-io-2019/">https://web.dev/web-components-io-2019/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <em>Image policies for fast load times and more</em><ul>
+                  <li>
+                    <a href="https://web.dev/image-policies/">https://web.dev/image-policies/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Chromium Blog: New Chrome Protections from Deception<ul>
+                  <li>
+                    <a href="https://blog.chromium.org/2019/06/new-chrome-protections-from-deception.html">https://blog.chromium.org/2019/06/new-chrome-protections-from-deception.html</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                The Chromium Chronicle: Code Coverage in Gerrit<ul>
+                  <li>
+                    <a href="https://developers.google.com/web/updates/2019/06/chromium-chronicle-3">https://developers.google.com/web/updates/2019/06/chromium-chronicle-3</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Updating WebAPKs More Frequently<ul>
+                  <li>
+                    <a href="https://developers.google.com/web/updates/2019/06/webapk-update-frequency">https://developers.google.com/web/updates/2019/06/webapk-update-frequency</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Address Bar Install for Progressive Web Apps on the Desktop<ul>
+                  <li>
+                    <a href="https://developers.google.com/web/updates/2019/06/pwa-install-addressbar">https://developers.google.com/web/updates/2019/06/pwa-install-addressbar</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                LayoutNG<ul>
+                  <li>
+                    <a href="https://developers.google.com/web/updates/2019/06/layoutNG">https://developers.google.com/web/updates/2019/06/layoutNG</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Hello Darkness, My Old Friend<ul>
+                  <li>
+                    <a href="https://web.dev/prefers-color-scheme/">https://web.dev/prefers-color-scheme/</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3>Firefox 動向</h3>
+        <ul>
+          <li>Stable: 67
+          <li>
+            Updates<ul>
+              <li>
+                <em>When it comes to privacy, default settings matter!</em><ul>
+                  <li>
+                    <a href="https://blog.mozilla.org/blog/2019/06/04/when-it-comes-to-privacy-default-settings-matter/">https://blog.mozilla.org/blog/2019/06/04/when-it-comes-to-privacy-default-settings-matter/</a>
+                  </li>
+                  <li>新規インストールされた Firefox でトラッキング抑止機能がデフォルトで有効に
+                </ul>
+              </li>
+              <li>
+                These Weeks in Firefox: Issue 59<ul>
+                  <li>
+                    <a href="https://blog.nightly.mozilla.org/2019/06/10/these-weeks-in-firefox-issue-59-2/">https://blog.nightly.mozilla.org/2019/06/10/these-weeks-in-firefox-issue-59-2/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <em>Security vulnerabilities fixed in Firefox 67.0.3 and Firefox ESR 60.7.1</em><ul>
+                  <li>
+                    <a href="https://www.mozilla.org/en-US/security/advisories/mfsa2019-18/">https://www.mozilla.org/en-US/security/advisories/mfsa2019-18/</a>
+                  </li>
+                  <li>CVE-2019-11707: Type confusion in Array.pop
+                  <li>Array.pop に脆弱性があり、これを利用した標的型攻撃を確認している
+                  <li>Firefox 67.0.3 と Firefox ESR 60.7.1 を緊急リリース
+                </ul>
+              </li>
+              <li>
+                <em>Reinventing Firefox for Android: a Preview - Future Releases</em><ul>
+                  <li>
+                    <a href="https://blog.mozilla.org/futurereleases/2019/06/27/reinventing-firefox-for-android-a-preview/">https://blog.mozilla.org/futurereleases/2019/06/27/reinventing-firefox-for-android-a-preview/</a>
+                  </li>
+                  <li>GeckoView ベースの新しい Android 版 Firefox (Fenix) のプレビューが公開
+                </ul>
+              </li>
+              <li>
+                <em>GeckoView in 2019 - Mozilla Hacks - the Web developer blog</em><ul>
+                  <li>
+                    <a href="https://hacks.mozilla.org/2019/06/geckoview-in-2019/">https://hacks.mozilla.org/2019/06/geckoview-in-2019/</a>
+                  </li>
+                  <li>GeckoView と使われているブラウザについて
+                </ul>
+              </li>
+              <li>
+                <em>won&rsquo;t fix: New Firefox Preview for Android</em><ul>
+                  <li>
+                    <a href="https://wontfix.blogspot.com/2019/06/new-firefox-preview-for-android.html">https://wontfix.blogspot.com/2019/06/new-firefox-preview-for-android.html</a>
+                  </li>
+                  <li>GeckoView の概要と Fenix などで使われている Androdid Components について
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Intents<ul>
+              <li>
+                <em>Ship: JavaScript public fields</em><ul>
+                  <li>
+                    <a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/GhSNChVLgZQ/rA2Ytc0TAgAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/GhSNChVLgZQ/rA2Ytc0TAgAJ</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <em>Ship: @supports selector()</em><ul>
+                  <li>
+                    <a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/xeODJ3-0jH4/RAz3vmY-CQAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/xeODJ3-0jH4/RAz3vmY-CQAJ</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <em>Implement: CSS text-underline-offset</em><ul>
+                  <li>
+                    <a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/iwkhLi-2mxw/2aJPi80TAgAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/iwkhLi-2mxw/2aJPi80TAgAJ</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Implement: CSS text-decoration-width<ul>
+                  <li>
+                    <a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/VWcV5QUzJF0/O9hET80TAgAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/VWcV5QUzJF0/O9hET80TAgAJ</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <em>Implement: Cookie SameSite=lax by default and SameSite=none only if secure</em>
+              </li>
+              <li>
+                <a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/nx2uP0CzA9k/BNVPWDHsAQAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/nx2uP0CzA9k/BNVPWDHsAQAJ</a>
+              </li>
+              <li>
+                <em>Implement and ship: queueMicrotask</em><ul>
+                  <li>
+                    <a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/QFSmwlof1_I/lHLmiFw7AgAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/QFSmwlof1_I/lHLmiFw7AgAJ</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Implement and ship: Document.open/close/write/writeln<ul>
+                  <li>
+                    <a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/7-yXFPe6oMw/3nGNnIUXAgAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/7-yXFPe6oMw/3nGNnIUXAgAJ</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Implement and ship: Document.domain<ul>
+                  <li>
+                    <a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/VF05AdSgxAc/mfHsqCEXAgAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/VF05AdSgxAc/mfHsqCEXAgAJ</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Implement and Ship: Editing APIs on Document<ul>
+                  <li>
+                    <a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/zDHANYt_LDI/5NhUCGA2AwAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/zDHANYt_LDI/5NhUCGA2AwAJ</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Implement and ship: overflow-block and overflow-inline CSS properties<ul>
+                  <li>
+                    <a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/-xbC8eAcy7k/6k8CsZ3xAQAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/-xbC8eAcy7k/6k8CsZ3xAQAJ</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Implement and ship: webkitURL<ul>
+                  <li>
+                    <a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/i71d0e4EWow/Rwsti6OhBAAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/i71d0e4EWow/Rwsti6OhBAAJ</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Implement and ship: Exposure of Geometry Interfaces to Workers<ul>
+                  <li>
+                    <a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/d00fuC4qwzs/mZ5krQBMAwAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/d00fuC4qwzs/mZ5krQBMAwAJ</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Implement and ship: Document colour properties<ul>
+                  <li>
+                    <a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/BrE5XnufrHs/1aOts40UAAAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/BrE5XnufrHs/1aOts40UAAAJ</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <em>Implement and ship: Resize Observer API</em><ul>
+                  <li>
+                    <a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/WXeYAj_ji8I/ighAqJ3DAQAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/WXeYAj_ji8I/ighAqJ3DAQAJ</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Implement and ship: break-spaces value of the white-space property<ul>
+                  <li>
+                    <a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/RB8dwZ3_DeA/ZCaq16JxAQAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/RB8dwZ3_DeA/ZCaq16JxAQAJ</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Implement and ship: blob.text(), blob.arrayBuffer(), blob.stream()<ul>
+                  <li>
+                    <a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/26MI90sjjSY/BX_TWFfwAAAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/26MI90sjjSY/BX_TWFfwAAAJ</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Implement and ship: AbstractRange and StaticRange<ul>
+                  <li>
+                    <a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/S8WEan1uLGo/iRzqpVdPAwAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/S8WEan1uLGo/iRzqpVdPAwAJ</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Unship: DOMError<ul>
+                  <li>
+                    <a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/6yQtQoNeR-s/CrfdcbZEAwAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/6yQtQoNeR-s/CrfdcbZEAwAJ</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Unship: <keygen></keygen>
+                <ul>
+                  <li>
+                    <a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/SAh1b1R5lrY/UUHU2UNHAgAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/SAh1b1R5lrY/UUHU2UNHAgAJ</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Experiment: infer aspect-ratio from width and height attributes in images<ul>
+                  <li>
+                    <a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/axGM9N0-jZk/SG3bRYlyCQAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/axGM9N0-jZk/SG3bRYlyCQAJ</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Site Compat<ul>
+              <li>
+                XHR moz-chunked-arraybuffer response type is no longer supported<ul>
+                  <li>
+                    <a href="https://www.fxsitecompat.com/en-CA/docs/2019/xhr-moz-chunked-arraybuffer-response-type-is-no-longer-supported/">https://www.fxsitecompat.com/en-CA/docs/2019/xhr-moz-chunked-arraybuffer-response-type-is-no-longer-supported/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Non-standard String generics have been removed<ul>
+                  <li>
+                    <a href="https://www.fxsitecompat.com/en-CA/docs/2019/non-standard-string-generics-have-been-removed/">https://www.fxsitecompat.com/en-CA/docs/2019/non-standard-string-generics-have-been-removed/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Legacy CSS Scroll Snap syntax support has been dropped<ul>
+                  <li>
+                    <a href="https://www.fxsitecompat.com/en-CA/docs/2019/legacy-css-scroll-snap-syntax-support-has-been-dropped/">https://www.fxsitecompat.com/en-CA/docs/2019/legacy-css-scroll-snap-syntax-support-has-been-dropped/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                line-height:-moz-block-height is no longer supported<ul>
+                  <li>
+                    <a href="https://www.fxsitecompat.com/en-CA/docs/2019/line-height-moz-block-height-is-no-longer-supported/">https://www.fxsitecompat.com/en-CA/docs/2019/line-height-moz-block-height-is-no-longer-supported/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                MouseEvent.mozPressure has been deprecated<ul>
+                  <li>
+                    <a href="https://www.fxsitecompat.com/en-CA/docs/2019/mouseevent-mozpressure-has-been-deprecated/">https://www.fxsitecompat.com/en-CA/docs/2019/mouseevent-mozpressure-has-been-deprecated/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                getUserMedia() and enumerateDevices() can no longer be used on insecure sites (Affecting)<ul>
+                  <li>
+                    <a href="https://www.fxsitecompat.com/en-CA/docs/2019/getusermedia-and-enumeratedevices-can-no-longer-be-used-on-insecure-sites/">https://www.fxsitecompat.com/en-CA/docs/2019/getusermedia-and-enumeratedevices-can-no-longer-be-used-on-insecure-sites/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                XMLDocument.load() and XMLDocument.async have been removed (Affecting)<ul>
+                  <li>
+                    <a href="https://www.fxsitecompat.com/en-CA/docs/2019/xmldocument-load-and-xmldocument-async-have-been-removed/">https://www.fxsitecompat.com/en-CA/docs/2019/xmldocument-load-and-xmldocument-async-have-been-removed/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                typemustmatch attribute has been dropped from<ul>
+                  <li>
+                    <a href="https://www.fxsitecompat.com/en-CA/docs/2019/typemustmatch-attribute-has-been-dropped-from-object/">https://www.fxsitecompat.com/en-CA/docs/2019/typemustmatch-attribute-has-been-dropped-from-object/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Setting cookies with is no longer allowed<ul>
+                  <li>
+                    <a href="https://www.fxsitecompat.com/en-CA/docs/2019/setting-cookies-with-meta-http-equiv-is-no-longer-allowed/">https://www.fxsitecompat.com/en-CA/docs/2019/setting-cookies-with-meta-http-equiv-is-no-longer-allowed/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                hasExtension() has been removed from some SVG interfaces<ul>
+                  <li>
+                    <a href="https://www.fxsitecompat.com/en-CA/docs/2019/hasextension-has-been-removed-from-some-svg-interfaces/">https://www.fxsitecompat.com/en-CA/docs/2019/hasextension-has-been-removed-from-some-svg-interfaces/</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Other<ul>
+              <li>
+                <em>Mozilla Position on Web Packaging</em><ul>
+                  <li>
+                    <a href="https://docs.google.com/document/d/1ha00dSGKmjoEh2mRiG8FIA5sJ1KihTuZe-AXX1r8P-8">https://docs.google.com/document/d/1ha00dSGKmjoEh2mRiG8FIA5sJ1KihTuZe-AXX1r8P-8</a>
+                  </li>
+                  <li>Mozilla の Web Packaging に対するポジション
+                  <li>WebPackaging が Web Platform にもたらす変更は大く、影響も大きい
+                  <li>解決されるかもしれないが、懸念点もある
+                  <li>どうなのかを判断するにも、まだ知見が足らなすぎる
+                  <li>本当にコストを払うだけの価値があるのかをちゃんと判断したい
+                  <li>もっと情報が集まるまでは harmful のスタンスは変わらない
+                  <li>Workshop で Feedback を集めるなどをもう少しやる必要がある
+                  <li>7/18-19 https://www.iab.org/activities/workshops/escape-workshop/
+                  <li>Exploring Synergy between Content Aggregation and the Publisher Ecosystem (ESCAPE) Workshop 2019
+                </ul>
+              </li>
+              <li>
+                <em>CSS Grid subgrid lands in Firefox Nightly</em><ul>
+                  <li>
+                    <a href="https://www.rachelandrew.co.uk/archives/2019/05/23/css-grid-subgrid-lands-in-firefox-nightly/">https://www.rachelandrew.co.uk/archives/2019/05/23/css-grid-subgrid-lands-in-firefox-nightly/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                CSS Grid Level 2 - subgrid is coming to Firefox<ul>
+                  <li>
+                    <a href="https://hacks.mozilla.org/2019/06/css-grid-level-2-subgrid-is-coming-to-firefox/">https://hacks.mozilla.org/2019/06/css-grid-level-2-subgrid-is-coming-to-firefox/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Pathfinder: a first look at the best fonts and vector graphics on VR/AR<ul>
+                  <li>
+                    <a href="https://blog.mozvr.com/pathfinder-a-first-look/">https://blog.mozvr.com/pathfinder-a-first-look/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                JavaScript and evidence-based language design<ul>
+                  <li>
+                    <a href="https://hacks.mozilla.org/2019/05/javascript-and-evidence-based-language-design/">https://hacks.mozilla.org/2019/05/javascript-and-evidence-based-language-design/</a>
+                  </li>
+                  <li>JS をデザインする上での調査として、 JS に関する調査をやっている
+                  <li>どっちの書き方が読みやすいか、あなたならどう書くか、みたいなやつ
+                  <li>pipeline operator 周りの話が出る選択肢もある模様
+                </ul>
+              </li>
+              <li>
+                <em>Firefox Now Available with Enhanced Tracking Protection by Default Plus Updates to Facebook Container, Firefox Monitor and Lockwise</em><ul>
+                  <li>
+                    <a href="https://blog.mozilla.org/blog/2019/06/04/firefox-now-available-with-enhanced-tracking-protection-by-default/">https://blog.mozilla.org/blog/2019/06/04/firefox-now-available-with-enhanced-tracking-protection-by-default/</a>
+                  </li>
+                  <li>トラッキング抑止デフォルト化のほか、パスワードマネージャの Lockwise や Firefox Monitor など、セキュリティやプライバシーに関する取り組みの紹介
+                  <li>Facebook Container 拡張は Share や Like ボタン経由のトラッキングも新たにブロックするようになった
+                </ul>
+              </li>
+              <li>
+                <em>Next steps in privacy-preserving Telemetry with Prio</em><ul>
+                  <li>
+                    <a href="https://blog.mozilla.org/security/2019/06/06/next-steps-in-privacy-preserving-telemetry-with-prio/">https://blog.mozilla.org/security/2019/06/06/next-steps-in-privacy-preserving-telemetry-with-prio/</a>
+                  </li>
+                  <li>トラッキング抑止機能がデフォルトで有効になったが、迂回もされるだろう
+                  <li>迂回されたことを知りたいが、プライバシーを尊重するかたちでデータを集めなければいけない
+                  <li>スタンフォード大の研究者が開発した Prio というプライバシーアウェアなデータ取得システムをベースに Firefox Origin Telemetry を開発
+                  <li>Firefox 69 から Nightly のごく一部のユーザーを対象にテストをはじめる
+                </ul>
+              </li>
+              <li>
+                Firefox: The Evolution Of A Brand - Mozilla Open Design<ul>
+                  <li>
+                    <a href="https://blog.mozilla.org/opendesign/firefox-the-evolution-of-a-brand/">https://blog.mozilla.org/opendesign/firefox-the-evolution-of-a-brand/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                View Source 5 comes to Amsterdam<ul>
+                  <li>
+                    <a href="https://hacks.mozilla.org/2019/06/view-source-5-comes-to-amsterdam/">https://hacks.mozilla.org/2019/06/view-source-5-comes-to-amsterdam/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                1490661 - Support enterkeyhint and deprecate mozactionhint<ul>
+                  <li>
+                    <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1490661">https://bugzilla.mozilla.org/show_bug.cgi?id=1490661</a>
+                  </li>
+                  <li>enter の挙動
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3>Safari 動向</h3>
+        <ul>
+          <li>Stable: 12.1.1
+          <li>
+            WWDC<ul>
+              <li>
+                <em>What&rsquo;s New in Authentication - WWDC 2019 - Videos - Apple Developer</em><ul>
+                  <li>
+                    <a href="https://developer.apple.com/videos/play/wwdc2019/516">https://developer.apple.com/videos/play/wwdc2019/516</a>
+                  </li>
+                  <li>
+                    Configuring Your Webpage for Sign In with Apple<ul>
+                      <li>
+                        <a href="https://developer.apple.com/documentation/signinwithapplejs/configuring_your_webpage_for_sign_in_with_apple">https://developer.apple.com/documentation/signinwithapplejs/configuring_your_webpage_for_sign_in_with_apple</a>
+                      </li>
+                      <li>SignIn With Apple JS
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <em>Introducing Desktop-class Browsing on iPad - WWDC 2019 - Videos - Apple Developer</em><ul>
+                  <li>
+                    <a href="https://developer.apple.com/videos/play/wwdc2019/203/">https://developer.apple.com/videos/play/wwdc2019/203/</a>
+                  </li>
+                  <li>
+                    iPadOS の Safari は基本デスクトップ版の Safari に<ul>
+                      <li>iPad mini やスプリットモードなどではモバイルになることも
+                      <li>WebView などはカスタマイズできる
+                    </ul>
+                  </li>
+                  <li>Pointer Events サポート
+                </ul>
+              </li>
+              <li>
+                <em>Introducing Low-Latency HLS - WWDC 2019 - Videos - Apple Developer</em><ul>
+                  <li>
+                    <a href="https://developer.apple.com/videos/play/wwdc2019/502/">https://developer.apple.com/videos/play/wwdc2019/502/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Introducing Sign In with Apple - WWDC 2019 - Videos - Apple Developer<ul>
+                  <li>
+                    <a href="https://developer.apple.com/videos/play/wwdc2019/706/">https://developer.apple.com/videos/play/wwdc2019/706/</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Updates<ul>
+              <li>
+                Safari 13 Beta Release Notes<ul>
+                  <li>
+                    <a href="https://developer.apple.com/documentation/safari_release_notes/safari_13_beta_release_notes">https://developer.apple.com/documentation/safari_release_notes/safari_13_beta_release_notes</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <em>Release Notes for Safari Technology Preview 83</em><ul>
+                  <li>
+                    <a href="https://webkit.org/blog/8967/release-notes-for-safari-technology-preview-83/">https://webkit.org/blog/8967/release-notes-for-safari-technology-preview-83/</a>
+                  </li>
+                  <li>
+                    <em>Enabled WebAuthN by default on macOS (r245589)</em>
+                  </li>
+                  <li>Implemented line-break: anywhere (r245275)
+                  <li>
+                    Implemented a modern &ldquo;clearfix&rdquo; with display: flow-root (r245494)
+                  </li>
+                  <li>Implemented page-break-* and -webkit-column-break-* as legacy-shorthands. (r245276)
+                  <li>
+                    <em>Limited the number of prefetches of a given page (r245171)</em>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Safari Technology Preview 84, with Safari 13 Features, is Now Available<ul>
+                  <li>
+                    <a href="https://webkit.org/blog/9170/safari-technology-preview-84-with-safari-13-features-is-now-available/">https://webkit.org/blog/9170/safari-technology-preview-84-with-safari-13-features-is-now-available/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <em>Release Notes for Safari Technology Preview 85</em><ul>
+                  <li>
+                    <a href="https://webkit.org/blog/9281/release-notes-for-safari-technology-preview-85/">https://webkit.org/blog/9281/release-notes-for-safari-technology-preview-85/</a>
+                  </li>
+                  <li>Added support for Attestation Conveyance Preference (r245638)
+                  <li>Fixed inserting a newline in contenteditable add one character, not two (r245912, r245980)
+                  <li>Added an option to mute audio capture automatically when page is not visible (r246002)
+                  <li>Fixed createAnswer() SDP Rejected by setLocalDescription() (r245829)
+                  <li>
+                    <em>Implemented feature policy self, none, and * parsing (r245625)</em>
+                  </li>
+                  <li>
+                    <em>Implemented imagesrcset and imagesizes attributes on link rel=preload (r246045)</em>
+                  </li>
+                  <li>
+                    <em>Implemented Promise.allSettled (r245869)</em>
+                  </li>
+                  <li>
+                    <em>Implemented support for Numeric Separators (r245655)</em>
+                  </li>
+                  <li>Implemented opwide16 and opwide32 and introduced 16-bit version bytecode (r245906)
+                  <li>Implemented property resolver (r245680, r245722)
+                </ul>
+              </li>
+              <li>
+                <em>Release Notes for Safari Technology Preview 86</em><ul>
+                  <li>
+                    <a href="https://webkit.org/blog/9375/release-notes-for-safari-technology-preview-86/">https://webkit.org/blog/9375/release-notes-for-safari-technology-preview-86/</a>
+                  </li>
+                  <li>Added support for chorded button interactions (r246103, r246149)
+                  <li>Added support for String.prototype.matchAll (r246567))
+                  <li>Added support for Anyref tables, Table.get and Table.set for Anyref only (r246139)
+                  <li>Added support for multiple tables (r246571)
+                  <li>Added support for Table.size, grow and fill instructions (r246577)
+                  <li>Implemented tab-size with units (r246193)
+                  <li>Added wildcard to Access-Control-Allow-Methods and Access-Control-Allow-Headers (r246238)
+                  <li>Experimental Web Shading Language (WHLSL)
+                  <li>Added support for respecting case sensitive or regex global settings when searching in a resource (r246502)
+                  <li>
+                    Added support for multiline keys when using &ldquo;Copy Path to Property&rdquo; (r246271)
+                  </li>
+                </ul>
+              </li>
+              <li>
+                A New Bytecode Format for JavaScriptCore<ul>
+                  <li>
+                    <a href="https://webkit.org/blog/9329/a-new-bytecode-format-for-javascriptcore/">https://webkit.org/blog/9329/a-new-bytecode-format-for-javascriptcore/</a>
+                  </li>
+                  <li>JSC が新しい bytecode format を導入
+                  <li>50% メモリ使用量削減
+                  <li>Safari 12.1 と TP で有効に
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Other<ul>
+              <li>
+                <em>Audits in Web Inspector</em><ul>
+                  <li>
+                    <a href="https://webkit.org/blog/8935/audits-in-web-inspector/">https://webkit.org/blog/8935/audits-in-web-inspector/</a>
+                  </li>
+                  <li>Audit で a11y チェックを実行できる。
+                  <li>同じようなことを、 JSON で設定することで任意のツールで実行できる。
+                  <li>eslint のサンプルが紹介されている
+                  <li>
+                    実行は、 JS の <code translate="no">test</code> プロパティに JS ワンライナーで書く
+                  </li>
+                  <li>eslint.js を fetch して eval (Function()) してる
+                  <li>公開されている設定 JSON を雑に入れると危なそう
+                </ul>
+              </li>
+              <li>
+                Creating Web Inspector Audits<ul>
+                  <li>
+                    <a href="https://webkit.org/blog/8937/creating-web-inspector-audits/">https://webkit.org/blog/8937/creating-web-inspector-audits/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                CPU Timeline in Web Inspector<ul>
+                  <li>
+                    <a href="https://webkit.org/blog/8993/cpu-timeline-in-web-inspector/">https://webkit.org/blog/8993/cpu-timeline-in-web-inspector/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                What&rsquo;s New in the Payment Request API for Apple Pay<ul>
+                  <li>
+                    <a href="https://webkit.org/blog/9167/whats-new-in-the-payment-request-api-for-apple-pay/">https://webkit.org/blog/9167/whats-new-in-the-payment-request-api-for-apple-pay/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <em>Did Apple remove dashboard in MacOS Catalina? - Appleosophy</em><ul>
+                  <li>
+                    <a href="https://appleosophy.com/2019/06/04/did-apple-kill-the-dashboard-in-macos-catalina/">https://appleosophy.com/2019/06/04/did-apple-kill-the-dashboard-in-macos-catalina/</a>
+                  </li>
+                  <li>Dashboard が macOS Catalina で削除
+                  <li>Canvas や HTML5 の原点
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3>Edge 動向</h3>
+        <ul>
+          <li>Stable: Edge 43? / EdgeHTML 18? (Preview 77)
+          <li>
+            Status Updates<ul>
+              <li>
+                Introducing Microsoft Edge preview builds for Windows 7, Windows 8, and Windows 8.1<ul>
+                  <li>
+                    <a href="https://blogs.windows.com/msedgedev/2019/06/19/introducing-microsoft-edge-preview-builds-for-windows-7-windows-8-and-windows-8-1/">https://blogs.windows.com/msedgedev/2019/06/19/introducing-microsoft-edge-preview-builds-for-windows-7-windows-8-and-windows-8-1/</a>
+                  </li>
+                  <li>古い Windows 版の Edge Dev/Canary がリリース
+                </ul>
+              </li>
+              <li>
+                Building hybrid applications with the WebView2 developer preview - Microsoft Edge Blog<ul>
+                  <li>
+                    <a href="https://blogs.windows.com/msedgedev/2019/06/18/building-hybrid-applications-with-the-webview2-developer-preview/">https://blogs.windows.com/msedgedev/2019/06/18/building-hybrid-applications-with-the-webview2-developer-preview/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <em>Introducing tracking prevention, now available in Microsoft Edge preview builds</em><ul>
+                  <li>
+                    <a href="https://blogs.windows.com/msedgedev/2019/06/27/tracking-prevention-microsoft-edge-preview/">https://blogs.windows.com/msedgedev/2019/06/27/tracking-prevention-microsoft-edge-preview/</a>
+                  </li>
+                  <li>悪意あるトラッカーをブロックする設定がフラグ付きで導入された
+                  <li>Trust Protection Lists というのにサイトの情報があり、それをもとにサイトがトラッカーかどうかを判断
+                  <li>TLD+4 までチェック＋現在の URL のサブドメインをチェックする模様
+                  <li>ストレージアクセスの制限、リソースのブロックなどが行われる
+                </ul>
+              </li>
+              <li>
+                <a href="https://github.com/MicrosoftEdge/Status/compare/production@{2019-06-01}...production@{2019-07-01}">https://github.com/MicrosoftEdge/Status/compare/production@{2019-06-01}...production@{2019-07-01}</a>
+              </li>
+              <li>
+                <a href="https://social.msdn.microsoft.com/Forums/ja-JP/home?forum=edgeiesupportteamja">https://social.msdn.microsoft.com/Forums/ja-JP/home?forum=edgeiesupportteamja</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            EdgeHTML<ul>
+              <li>
+                <a href="https://aka.ms/devguide_edgehtml_18">https://aka.ms/devguide_edgehtml_18</a>
+              </li>
+              <li>
+                <a href="https://developer.microsoft.com/en-us/microsoft-edge/platform/changelog/">https://developer.microsoft.com/en-us/microsoft-edge/platform/changelog/</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Build Changelog<ul>
+              <li>
+                <a href="https://developer.microsoft.com/en-us/microsoft-edge/platform/changelog/">https://developer.microsoft.com/en-us/microsoft-edge/platform/changelog/</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Chakra<ul>
+              <li>
+                Release ChakraCore v1.11.10<ul>
+                  <li>
+                    <a href="https://github.com/microsoft/ChakraCore/releases/tag/v1.11.10">https://github.com/microsoft/ChakraCore/releases/tag/v1.11.10</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Other<ul>
+              <li>
+                <a href="https://social.msdn.microsoft.com/Forums/ja-JP/home?forum=edgeiesupportteamja">https://social.msdn.microsoft.com/Forums/ja-JP/home?forum=edgeiesupportteamja</a>
+              </li>
+              <li>
+                Highlight API Explained<ul>
+                  <li>
+                    <a href="https://discourse.wicg.io/t/proposal-highlight-api/3679">https://discourse.wicg.io/t/proposal-highlight-api/3679</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/master/highlight/explainer.md">https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/master/highlight/explainer.md</a>
+                  </li>
+                  <li>これの再議論
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3>WHATWG/W3C 動向</h3>
+        <ul>
+          <li>Recommendation
+          <li>Proposed Recommendation
+          <li>
+            Candidate Recommendation<ul>
+              <li>
+                W3C Invites Implementations of CSS Values and Units Module Level 3<ul>
+                  <li>
+                    <a href="https://www.w3.org/blog/news/archives/7776">https://www.w3.org/blog/news/archives/7776</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Working Draft
+          <li>
+            First Public Working Draft<ul>
+              <li>
+                First Public Working Draft: Web Authentication: An API for accessing Public Key Credentials Level 2<ul>
+                  <li>
+                    <a href="https://www.w3.org/blog/news/archives/7769">https://www.w3.org/blog/news/archives/7769</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                First Public Working Draft: CSS Overscroll Behavior Module Level 1<ul>
+                  <li>
+                    <a href="https://www.w3.org/blog/news/archives/7779">https://www.w3.org/blog/news/archives/7779</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                First Public Working Draft: Audiobook Profile for Web Publications<ul>
+                  <li>
+                    <a href="https://www.w3.org/blog/news/archives/7824">https://www.w3.org/blog/news/archives/7824</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                First Public Working Draft: CSS Animation Worklet API<ul>
+                  <li>
+                    <a href="https://www.w3.org/blog/news/archives/7830">https://www.w3.org/blog/news/archives/7830</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                First Public Working Draft: Fetch Metadata Request Headers<ul>
+                  <li>
+                    <a href="https://www.w3.org/blog/news/archives/7838">https://www.w3.org/blog/news/archives/7838</a>
+                  </li>
+                  <li>Call for Exclusions: Fetch Metadata Request Headers
+                  <li>
+                    <a href="https://lists.w3.org/Archives/Public/public-webappsec/2019Jun/0013.html">https://lists.w3.org/Archives/Public/public-webappsec/2019Jun/0013.html</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Chartering<ul>
+              <li>
+                Media Working Group Charter Approved; Call for Participation<ul>
+                  <li>
+                    <a href="https://lists.w3.org/Archives/Public/public-new-work/2019May/0005.html">https://lists.w3.org/Archives/Public/public-new-work/2019May/0005.html</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Graph Standardization Business Group<ul>
+                  <li>
+                    <a href="https://lists.w3.org/Archives/Public/public-new-work/2019May/0006.html">https://lists.w3.org/Archives/Public/public-new-work/2019May/0006.html</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <em>HTML Working Group Charter</em><ul>
+                  <li>
+                    <a href="https://www.w3.org/2019/06/htmlwg-charter.html">https://www.w3.org/2019/06/htmlwg-charter.html</a>
+                  </li>
+                  <li>WHATWG HTML / DOM を W3C 勧告として公開する新しい HTML WG の charter が承認
+                  <li>12 ヶ月に一度は WHATWG の Review Draft をそのまま REC にする
+                  <li>内容に反対がある場合、解決に向けて注力する。できないことがある場合は、当該の 機能に関する対して issue を立てる/ reopen する
+                </ul>
+              </li>
+              <li>
+                Digital Identity Community Group created<ul>
+                  <li>
+                    <a href="https://lists.w3.org/Archives/Public/public-new-work/2019Jun/0007.html">https://lists.w3.org/Archives/Public/public-new-work/2019Jun/0007.html</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Upcoming: W3C Workshop on Data Models for Transportation, 12-13 September<ul>
+                  <li>
+                    <a href="https://lists.w3.org/Archives/Public/public-new-work/2019Jun/0006.html">https://lists.w3.org/Archives/Public/public-new-work/2019Jun/0006.html</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Semantic Industries Community Group created<ul>
+                  <li>
+                    <a href="https://lists.w3.org/Archives/Public/public-new-work/2019Jun/0005.html">https://lists.w3.org/Archives/Public/public-new-work/2019Jun/0005.html</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Entity Reconciliation Community Group created<ul>
+                  <li>
+                    <a href="https://lists.w3.org/Archives/Public/public-new-work/2019Jun/0004.html">https://lists.w3.org/Archives/Public/public-new-work/2019Jun/0004.html</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Entity Reconciliation Community Group Proposed<ul>
+                  <li>
+                    <a href="https://lists.w3.org/Archives/Public/public-new-work/2019Jun/0003.html">https://lists.w3.org/Archives/Public/public-new-work/2019Jun/0003.html</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Digital Identity Community Group Proposed<ul>
+                  <li>
+                    <a href="https://lists.w3.org/Archives/Public/public-new-work/2019Jun/0002.html">https://lists.w3.org/Archives/Public/public-new-work/2019Jun/0002.html</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Third Patent Advisory Group for Web Payments Working Group Launched<ul>
+                  <li>
+                    <a href="https://www.w3.org/blog/news/archives/7818">https://www.w3.org/blog/news/archives/7818</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                zot protocol Community Group created<ul>
+                  <li>
+                    <a href="https://lists.w3.org/Archives/Public/public-new-work/2019Jun/0008.html">https://lists.w3.org/Archives/Public/public-new-work/2019Jun/0008.html</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Other<ul>
+              <li>
+                <em>W3C and WHATWG to work together to advance the open Web platform</em><ul>
+                  <li>
+                    <a href="https://www.w3.org/blog/2019/05/w3c-and-whatwg-to-work-together-to-advance-the-open-web-platform/">https://www.w3.org/blog/2019/05/w3c-and-whatwg-to-work-together-to-advance-the-open-web-platform/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <em>Lazyload images and iframes by bengreenstein · Pull Request #3752 · whatwg/html</em><ul>
+                  <li>
+                    <a href="https://github.com/whatwg/html/pull/3752#issuecomment-498114767">https://github.com/whatwg/html/pull/3752#issuecomment-498114767</a>
+                  </li>
+                  <li>kinu さんが loading=lazy で Range リクエストを投げる提案についてコメント
+                  <li>実装の複雑さが増すことや、 Service Worker で 206 をうまく扱えないことへの懸念
+                </ul>
+              </li>
+              <li>
+                Cake or death: AMP and the worrying power dynamics of the web<ul>
+                  <li>
+                    <a href="https://trib.tv/2019/05/28/cake-or-death-amp-and-the-worrying-power-dynamics-of-the-web/">https://trib.tv/2019/05/28/cake-or-death-amp-and-the-worrying-power-dynamics-of-the-web/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                A report from the AMP Advisory Committee Meeting - Terence Eden&rsquo;s Blog<ul>
+                  <li>
+                    <a href="https://shkspr.mobi/blog/2019/05/a-report-from-the-amp-advisory-committee-meeting/">https://shkspr.mobi/blog/2019/05/a-report-from-the-amp-advisory-committee-meeting/</a>
+                  </li>
+                  <li>5 月の取りこぼし
+                </ul>
+              </li>
+              <li>
+                <em>W3C Advisory Committee Elects Advisory Board</em><ul>
+                  <li>
+                    <a href="https://www.w3.org/blog/news/archives/7762">https://www.w3.org/blog/news/archives/7762</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <em>Introducing new HTML elements that are polyfillable</em><ul>
+                  <li>
+                    <a href="https://github.com/whatwg/html/issues/4696">https://github.com/whatwg/html/issues/4696</a>
+                  </li>
+                  <li>
+                    <code translate="no">&lt;std-xxx&gt;</code> が進んでいる一方、本当にその名前でいいのか?がまた議論に
+                  </li>
+                  <li>
+                    <code translate="no">&lt;std_toast&gt;</code> は最終的に <code translate="no">&lt;toast&gt;</code> になることを狙ってるのか問題
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <em>W3C Workshop Report: Permissions and User Consent</em><ul>
+                  <li>
+                    <a href="https://www.w3.org/blog/news/archives/7797">https://www.w3.org/blog/news/archives/7797</a>
+                  </li>
+                  <li>
+                    <a href="https://www.w3.org/Privacy/permissions-ws-2018/report.html">https://www.w3.org/Privacy/permissions-ws-2018/report.html</a>
+                  </li>
+                  <li>2018/9 のワークショップの Report がでた
+                  <li>ここからの派生で Permission を設計するガイドラインのようなものができた
+                  <li>
+                    Adding another permission? A guide<ul>
+                      <li>
+                        <a href="https://github.com/w3cping/adding-permissions/blob/master/README.md">https://github.com/w3cping/adding-permissions/blob/master/README.md</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Upcoming: W3C Workshop on Data Models for Transportation<ul>
+                  <li>
+                    <a href="https://www.w3.org/blog/news/archives/7784">https://www.w3.org/blog/news/archives/7784</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Updated: Inaccessibility of CAPTCHA, alternatives to Visual Turing Tests on the Web<ul>
+                  <li>
+                    <a href="https://www.w3.org/blog/news/archives/7834">https://www.w3.org/blog/news/archives/7834</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <em>Adactio: Journal-Toast</em><ul>
+                  <li>
+                    <a href="https://adactio.com/journal/15357">https://adactio.com/journal/15357</a>
+                  </li>
+                  <li>toast に対してあった批判についてのまとめ
+                </ul>
+              </li>
+              <li>
+                <em>Privacy Anti-Patterns in Standards</em><ul>
+                  <li>
+                    <a href="https://www.w3.org/blog/2019/06/privacy-anti-patterns-in-standards/">https://www.w3.org/blog/2019/06/privacy-anti-patterns-in-standards/</a>
+                  </li>
+                  <li>Privacy Interest Group (PING)
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3>TC39 動向</h3>
+        <ul>
+          <li>
+            Proposals Diff<ul>
+              <li>
+                <a href="https://github.com/tc39/proposals/compare/master@{2019-06-01}...master@{2019-07-01}">https://github.com/tc39/proposals/compare/master@{2019-06-01}...master@{2019-07-01}</a>
+              </li>
+              <li>
+                <a href="https://tc39.github.io/beta/">https://tc39.github.io/beta/</a>
+              </li>
+              <li>
+                0-&gt;1<ul>
+                  <li>
+                    Emitter<ul>
+                      <li>
+                        <a href="https://github.com/pemrouz/proposal-emitter">https://github.com/pemrouz/proposal-emitter</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    dynamic-code-brand-checks<ul>
+                      <li>
+                        <a href="https://github.com/tc39-transfer/dynamic-code-brand-checks">https://github.com/tc39-transfer/dynamic-code-brand-checks</a>
+                      </li>
+                      <li>evalable と host-passthru がマージされてできた
+                      <li>Trusted Types の JS バージョンみたいなやつ
+                      <li>eval の危険性を制御したい
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                1-&gt;2<ul>
+                  <li>for-in mechanics
+                  <li>Array.isTemplateObject
+                  <li>
+                    Optional Chaining<ul>
+                      <li>
+                        <a href="https://github.com/tc39/proposal-optional-chaining">https://github.com/tc39/proposal-optional-chaining</a>
+                      </li>
+                      <li>a.b?.c?.d
+                    </ul>
+                  </li>
+                  <li>
+                    Nullish coalescing Operator<ul>
+                      <li>
+                        <a href="https://github.com/tc39/proposal-nullish-coalescing">https://github.com/tc39/proposal-nullish-coalescing</a>
+                      </li>
+                      <li>a?.b ?? default
+                    </ul>
+                  </li>
+                  <li>Intl.DisplayNames (ecma402)
+                </ul>
+              </li>
+              <li>
+                2-&gt;3<ul>
+                  <li>Top-level await
+                  <li>WeakRefs
+                </ul>
+              </li>
+              <li>
+                3-&gt;4<ul>
+                  <li>dynamic import
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>New Proposals
+          <li>
+            Other<ul>
+              <li>
+                cyclic-imports.md<ul>
+                  <li>
+                    <a href="https://gist.github.com/rauschma/8443b5eb3a3e00ca52e174e909cd5e21">https://gist.github.com/rauschma/8443b5eb3a3e00ca52e174e909cd5e21</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3>IETF 動向</h3>
+        <ul>
+          <li>IETF
+          <li>
+            RFC<ul>
+              <li>
+                RFC 8601 - Message Header Field for Indicating Message Authentication Status<ul>
+                  <li>
+                    <a href="https://tools.ietf.org/html/rfc8601">https://tools.ietf.org/html/rfc8601</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>IETF Last Call
+          <li>WG Last Call
+          <li>Call for Adoption
+          <li>I-D Action
+          <li>
+            Draft<ul>
+              <li>
+                <em>Resource Digests for HTTP</em><ul>
+                  <li>
+                    <a href="https://tools.ietf.org/html/draft-polli-resource-digests-http-00">https://tools.ietf.org/html/draft-polli-resource-digests-http-00</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Hypertext Transfer Protocol (HTTP/1.1): Activity Identifiers<ul>
+                  <li>
+                    <a href="https://tools.ietf.org/html/draft-activity-identifiers-01">https://tools.ietf.org/html/draft-activity-identifiers-01</a>
+                  </li>
+                  <li>2016 年に提案されたものが更新
+                </ul>
+              </li>
+              <li>
+                Intermediate Exchange in the IKEv2 Protocol<ul>
+                  <li>
+                    <a href="https://tools.ietf.org/html/draft-ietf-ipsecme-ikev2-intermediate-00">https://tools.ietf.org/html/draft-ietf-ipsecme-ikev2-intermediate-00</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <em>RFC Publication of Errata of Standards Track Documents Considered Harmful</em><ul>
+                  <li>
+                    <a href="https://tools.ietf.org/html/draft-klensin-newtrk-8540style-harmful-00">https://tools.ietf.org/html/draft-klensin-newtrk-8540style-harmful-00</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                IETF Meeting Network Requirements<ul>
+                  <li>
+                    <a href="https://tools.ietf.org/html/draft-odonoghue-netrqmts-00">https://tools.ietf.org/html/draft-odonoghue-netrqmts-00</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                An HTTPS-based Transport for Configured Subscriptions<ul>
+                  <li>
+                    <a href="https://tools.ietf.org/html/draft-mahesh-netconf-https-notif-00">https://tools.ietf.org/html/draft-mahesh-netconf-https-notif-00</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Other
+        </ul>
+      </section>
+      <section>
+        <h3>セキュリティ動向</h3>
+        <ul>
+          <li>
+            <em>(取りこぼし) [1905.01051] Browser Fingerprinting: A survey</em><ul>
+              <li>
+                <a href="https://arxiv.org/abs/1905.01051">https://arxiv.org/abs/1905.01051</a>
+              </li>
+              <li>ブラウザ fingerprinting に関する研究報告
+            </ul>
+          </li>
+          <li>
+            Certificate Transparency (CT) Logs - Let&rsquo;s Encrypt - Free SSL/TLS Certificates<ul>
+              <li>
+                <a href="https://letsencrypt.org/docs/ct-logs/">https://letsencrypt.org/docs/ct-logs/</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <em>自宅サーバーで Twitter 連携サービスを運営してたら家宅捜索された件 - Qiita</em><ul>
+              <li>
+                <a href="https://qiita.com/204504bySE/items/1ffc94d1866d96da4793">https://qiita.com/204504bySE/items/1ffc94d1866d96da4793</a>
+              </li>
+              <li>Twitter 連携サービスを運用していたら神奈川県警に家宅捜索された
+              <li>連携しているユーザの違反画像投稿の投稿主だと勘違いされた模様
+            </ul>
+          </li>
+          <li>
+            <em>Surprise: Undead Session Cookies</em><ul>
+              <li>
+                <a href="https://textslashplain.com/2019/06/24/surprise-undead-session-cookies/">https://textslashplain.com/2019/06/24/surprise-undead-session-cookies/</a>
+              </li>
+              <li>Firefox/Chrome/Edge76+ には session を復元する設定がある
+              <li>ブラウザを閉じても session cookie や session storage を消さない
+              <li>1 年にした Persistent Cookie よりも長生きする可能性もある
+            </ul>
+          </li>
+          <li>
+            <em>mnot&rsquo;s blog: Moving Control to the Endpoints</em><ul>
+              <li>
+                <a href="https://www.mnot.net/blog/2019/06/11/endpoint_control">https://www.mnot.net/blog/2019/06/11/endpoint_control</a>
+              </li>
+              <li>プロトコルの暗号化によって中間者が介入できなくなった
+              <li>これは中間者がサービス提供する人か、攻撃者かが区別できないから
+              <li>制御をエンドポイントに移し、ユーザが介入を自覚し制御できるようにすべき
+              <li>現状は OS などに、明示的に介入を許す方法が足りてない
+              <li>この流れを進めていくためには、ネットワークの全レイヤの人たちが協力しないといけない
+            </ul>
+          </li>
+          <li>
+            Defend against credential stuffing attacks with proof of work<ul>
+              <li>
+                <a href="https://www.fastly.com/blog/defend-against-credential-stuffing-attacks-proof-of-work">https://www.fastly.com/blog/defend-against-credential-stuffing-attacks-proof-of-work</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            decalage2/awesome-security-hardening: A collection of awesome security hardening guides, tools and other resources<ul>
+              <li>
+                <a href="https://github.com/decalage2/awesome-security-hardening">https://github.com/decalage2/awesome-security-hardening</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3>周辺動向</h3>
+        <ul>
+          <li>
+            (載せ忘れ) Standards.REST<ul>
+              <li>
+                <a href="https://standards.rest/">https://standards.rest/</a>
+              </li>
+              <li>RESTful API 作る上での関連仕様
+            </ul>
+          </li>
+          <li>
+            (載せ忘れ) My Internet Explorer<ul>
+              <li>
+                <a href="https://www.my-internet-explorer.com/">https://www.my-internet-explorer.com/</a>
+              </li>
+              <li>歴代の IE の画像や歴史一覧
+            </ul>
+          </li>
+          <li>
+            PCC: Performance-oriented Congestion Control<ul>
+              <li>
+                <a href="http://pccproject.net/">http://pccproject.net/</a>
+              </li>
+              <li>機械学習を用いたオンライン輻輳制御
+            </ul>
+          </li>
+          <li>
+            [WIP] experimental fetch by MylesBorins<ul>
+              <li>
+                <a href="https://github.com/nodejs/node/pull/27979">https://github.com/nodejs/node/pull/27979</a>
+              </li>
+              <li>fetch を node に入れるかどうかの議論
+            </ul>
+          </li>
+          <li>
+            Employing QUIC Protocol to Optimize Uber&rsquo;s App Performance<ul>
+              <li>
+                <a href="https://eng.uber.com/employing-quic-protocol/">https://eng.uber.com/employing-quic-protocol/</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            The Web Conference 2019 参加レポート - LINE ENGINEERING<ul>
+              <li>
+                <a href="https://engineering.linecorp.com/ja/blog/the-web-conference-2019-report/">https://engineering.linecorp.com/ja/blog/the-web-conference-2019-report/</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Yahoo! JAPAN トップで見るウェブデザインの歴史<ul>
+              <li>
+                <a href="https://techblog.yahoo.co.jp/entry/20190530678295/">https://techblog.yahoo.co.jp/entry/20190530678295/</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            curl user survey 2019 analysis<ul>
+              <li>
+                <a href="https://daniel.haxx.se/blog/2019/06/04/curl-user-survey-2019-analysis/">https://daniel.haxx.se/blog/2019/06/04/curl-user-survey-2019-analysis/</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <em>閉鎖した「サークル K ・サンクス」公式サイト、中古ドメインが売られる 入札殺到し 6 日間で 50 万円に - ITmedia NEWS</em><ul>
+              <li>
+                <a href="https://www.itmedia.co.jp/news/articles/1906/06/news123.html">https://www.itmedia.co.jp/news/articles/1906/06/news123.html</a>
+              </li>
+              <li>circleksunkus.jp が保持されず競売にかけられている
+              <li>
+                <a href="https://www.onamae.com/auc/jp/detail/91346">https://www.onamae.com/auc/jp/detail/91346</a>
+              </li>
+              <li>60,000,300 円(6 千万)で落札
+            </ul>
+          </li>
+          <li>
+            <em>Online Tracking and Publishers&rsquo; Revenues:An Empirical Analysis (PDF)</em><ul>
+              <li>
+                <a href="https://weis2019.econinfosec.org/wp-content/uploads/sites/6/2019/05/WEIS_2019_paper_38.pdf">https://weis2019.econinfosec.org/wp-content/uploads/sites/6/2019/05/WEIS_2019_paper_38.pdf</a>
+              </li>
+              <li>トラッキングによってパブリッシャーにもたらされるレベニューが 4 ％増にしかならないという研究
+              <li>先月話題になった Wall Street Journal の記事のソース
+              <li>Behavioral Ad Targeting Not Paying Off for Publishers, Study Suggests - WSJ https://www.wsj.com/articles/behavioral-ad-targeting-not-paying-off-for-publishers-study-suggests-11559167195
+            </ul>
+          </li>
+          <li>
+            <em>Pika CDN - Pika</em><ul>
+              <li>
+                <a href="https://www.pika.dev/cdn">https://www.pika.dev/cdn</a>
+              </li>
+              <li>CDN for modern JavaScript
+              <li>NPM 上の esm 対応モジュールだけ配布する CDN
+              <li>UA に応じたトランスパイルして出し分けている
+            </ul>
+          </li>
+          <li>
+            When should you be using Web Workers?<ul>
+              <li>
+                <a href="https://dassur.ma/things/when-workers/">https://dassur.ma/things/when-workers/</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <em>HAProxy 2.0 and Beyond - HAProxy Technologies</em><ul>
+              <li>
+                <a href="https://www.haproxy.com/blog/haproxy-2-0-and-beyond/">https://www.haproxy.com/blog/haproxy-2-0-and-beyond/</a>
+              </li>
+              <li>Cloud-Native Threading &amp; Logging
+              <li>HTTP Representation (HTX)
+              <li>End-to-End HTTP/2
+              <li>gRPC
+              <li>Layer 7 Retries
+              <li>Data Plane API
+              <li>Process Manager
+              <li>Polyglot Extensibility
+              <li>Traffic Shadowing
+              <li>Kubernetes Ingress Controller
+              <li>Prometheus Exporter
+              <li>Peers &amp; Stick Tables Improvements
+              <li>Power of Two Random Choices Algorithm
+              <li>Log Distribution &amp; Sampling
+              <li>Built-in Automatic Profiling
+              <li>Enhanced TCP Fast Open
+              <li>New Request Actions
+              <li>New Converters
+              <li>New Fetches
+              <li>Miscellaneous Improvements
+              <li>LTS Support for 1.9 Features
+            </ul>
+          </li>
+          <li>
+            <em>Google to reimplement curl in libcrurl</em><ul>
+              <li>
+                <a href="https://daniel.haxx.se/blog/2019/06/19/google-to-reimplement-curl-in-libcrurl/">https://daniel.haxx.se/blog/2019/06/19/google-to-reimplement-curl-in-libcrurl/</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <em>The State of CSS 2019</em><ul>
+              <li>
+                <a href="https://2019.stateofcss.com/">https://2019.stateofcss.com/</a>
+              </li>
+              <li>Flexbox や calc はもうほとんど一般的になっている
+              <li>rem の利用が増えてきた
+              <li>sass は相変わらず強いが、 PostCSS が追い上げてる
+              <li>bootstrap は相変わらず強いが Bulma/PureCSS/Tailwind などが追い上げてる
+              <li>BEM は強いし、みんな割と満足してる
+              <li>Styled Components/CSS Modules が人気で Emotion などが気になってる
+              <li>Desktop の VSCode で書き Chrome でみる。
+              <li>Print 対応はだいぶまれ
+              <li>CSS Tricks を読み、 Stackoverflow で調べる
+              <li>CSS は Easy to Learn 寄りで、 Evolving は普通で、書いてて超楽しい
+              <li>Container Queries と Parent Selector が早く欲しい
+            </ul>
+          </li>
+          <li>
+            New - UDP Load Balancing for Network Load Balancer<ul>
+              <li>
+                <a href="https://aws.amazon.com/jp/blogs/aws/new-udp-load-balancing-for-network-load-balancer/">https://aws.amazon.com/jp/blogs/aws/new-udp-load-balancing-for-network-load-balancer/</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Today is the last day to register a .uk domain<ul>
+              <li>
+                <a href="https://www.techradar.com/news/today-is-the-last-day-to-register-a-uk-domain">https://www.techradar.com/news/today-is-the-last-day-to-register-a-uk-domain</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <em>Dark Mode.js</em><ul>
+              <li>
+                <a href="https://darkmodejs.learn.uno/">https://darkmodejs.learn.uno/</a>
+              </li>
+              <li>全体を bgcolor white の div で覆い、 mix-blend-mode: difference で反転する
+              <li>
+                <a href="https://dev.to/wgao19/night-mode-with-mix-blend-mode-difference-23lm">https://dev.to/wgao19/night-mode-with-mix-blend-mode-difference-23lm</a>
+              </li>
+              <li>この記事で紹介されて手法をライブラリ化したもの
+            </ul>
+          </li>
+          <li>
+            June 2019 Web Server Survey<ul>
+              <li>
+                <a href="https://news.netcraft.com/archives/2019/06/17/june-2019-web-server-survey.html">https://news.netcraft.com/archives/2019/06/17/june-2019-web-server-survey.html</a>
+              </li>
+              <li>
+                <a href="https://news.mynavi.jp/article/20190621-846088/">https://news.mynavi.jp/article/20190621-846088/</a>
+              </li>
+              <li>Nginx のシェアがどんどん増え、 Web の 1/3 で使われている
+              <li>Apache は徐々に減り、来年にも Nginx が上回る可能性も
+            </ul>
+          </li>
+          <li>
+            <em>Building the most inaccessible site possible with a perfect Lighthouse score - Manuel Matuzovi ć</em><ul>
+              <li>
+                <a href="https://www.matuzo.at/blog/building-the-most-inaccessible-site-possible-with-a-perfect-lighthouse-score/">https://www.matuzo.at/blog/building-the-most-inaccessible-site-possible-with-a-perfect-lighthouse-score/</a>
+              </li>
+              <li>Lighthouse で 100 点がとれるもっともアクセシブルではないサイトの作り方
+              <li>~ もっとも遅いサイトの作り方、にインスパイアされた
+              <li>Lighthouse 内部の ax-core のルールを理解し、 CSS などでハックしていく
+            </ul>
+          </li>
+          <li>
+            Official Google Webmaster Central Blog: Bye Bye Preferred Domain setting<ul>
+              <li>
+                <a href="https://webmasters.googleblog.com/2019/06/bye-bye-preferred-domain-setting.html">https://webmasters.googleblog.com/2019/06/bye-bye-preferred-domain-setting.html</a>
+              </li>
+              <li>
+                <code translate="no">www</code> ありなしで同じページを運用する場合、どちらを正とするかの設定がサーチコンソールでできたがそれがなくなる
+              </li>
+              <li>canonical を設定するようにとのこと
+            </ul>
+          </li>
+          <li>
+            Official Google Webmaster Central Blog: Mobile-First Indexing by default for new domains<ul>
+              <li>
+                <a href="https://webmasters.googleblog.com/2019/05/mobile-first-indexing-by-default-for.html">https://webmasters.googleblog.com/2019/05/mobile-first-indexing-by-default-for.html</a>
+              </li>
+              <li>7 月 1 日よりモバイルファーストなインデックスが新規サイトに対して適用される
+            </ul>
+          </li>
+          <li>
+            pipeline operator<ul>
+              <li>Ruby に入ったおかげで、 JS の Pipeline Operator とかがちょっと引き合いに出されたり云々
+            </ul>
+          </li>
+          <li>
+            <em>Introducing time.cloudflare.com</em><ul>
+              <li>
+                <a href="https://blog.cloudflare.com/secure-time/">https://blog.cloudflare.com/secure-time/</a>
+              </li>
+              <li>CloudFlare が NTP を始めた
+            </ul>
+          </li>
+          <li>
+            Troy Hunt: Project Svalbard: The Future of Have I Been Pwned<ul>
+              <li>
+                <a href="https://www.troyhunt.com/project-svalbard-the-future-of-have-i-been-pwned/">https://www.troyhunt.com/project-svalbard-the-future-of-have-i-been-pwned/</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            HTML is the Web ~ Pete Lambert<ul>
+              <li>
+                <a href="https://www.petelambert.com/journal/html-is-the-web/">https://www.petelambert.com/journal/html-is-the-web/</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3>イベント</h3>
+        <ul>
+          <li>
+            6 月<ul>
+              <li>
+                1-2: JSConf EU<ul>
+                  <li>
+                    <a href="https://2019.jsconf.eu/">https://2019.jsconf.eu/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                3-7: WWDC<ul>
+                  <li>
+                    <a href="https://developer.apple.com/wwdc19/">https://developer.apple.com/wwdc19/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                TC39 Meeting<ul>
+                  <li>
+                    <a href="https://github.com/tc39/agendas/blob/master/2019/06.md">https://github.com/tc39/agendas/blob/master/2019/06.md</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            7 月<ul>
+              <li>
+                18-19: Exploring Synergy between Content Aggregation and the Publisher Ecosystem Workshop 2019<ul>
+                  <li>
+                    <a href="https://www.iab.org/activities/workshops/escape-workshop/">https://www.iab.org/activities/workshops/escape-workshop/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                20-26: IETF 105 Montreal<ul>
+                  <li>
+                    <a href="https://ietf.org/how/meetings/105/">https://ietf.org/how/meetings/105/</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>8 月
+          <li>
+            9 月<ul>
+              <li>
+                16-20: W3C TPAC 2019 (Fukuoka)<ul>
+                  <li>
+                    <a href="https://www.w3.org/wiki/TPAC/2019">https://www.w3.org/wiki/TPAC/2019</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            10 月<ul>
+              <li>
+                8-10: AMP Contributor Summit 2019<ul>
+                  <li>
+                    <a href="https://blog.amp.dev/2019/06/03/save-the-date-amp-contributor-summit-2019/">https://blog.amp.dev/2019/06/03/save-the-date-amp-contributor-summit-2019/</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            11 月<ul>
+              <li>
+                11-12: Chrome Dev Summit 2019<ul>
+                  <li>
+                    <a href="https://developer.chrome.com/devsummit/">https://developer.chrome.com/devsummit/</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                14-15: BlinkOn 11 in Sunnyvale California<ul>
+                  <li>
+                    <a href="http://bit.ly/blinkon11-faq">http://bit.ly/blinkon11-faq</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                30-1: JSConf JP<ul>
+                  <li>
+                    <a href="https://www.jsconf.jp">https://www.jsconf.jp</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            12 月<ul>
+              <li>末: Yearly Web
+            </ul>
+          </li>
+          <li>
+            1 月<ul>
+              <li>末: 12-1 の Monthly Web
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </section>
+  </article>
+
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/53/monthly-web-201905.html">ep53 Monthly Web 201905</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small> Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>Google Analytics</a>.</p>
+  <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong>
+</footer>
+</body>
+</html>
