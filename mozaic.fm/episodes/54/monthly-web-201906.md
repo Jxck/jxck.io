@@ -638,6 +638,9 @@ guest
   - この流れを進めていくためには、ネットワークの全レイヤの人たちが協力しないといけない
 - Defend against credential stuffing attacks with proof of work
   - <https://www.fastly.com/blog/defend-against-credential-stuffing-attacks-proof-of-work>
+- decalage2/awesome-security-hardening: A collection of awesome security hardening guides, tools and other resources
+  - <https://github.com/decalage2/awesome-security-hardening>
+
 
 ### 周辺動向
 
@@ -749,6 +752,9 @@ guest
   - CloudFlare が NTP を始めた
 - Troy Hunt: Project Svalbard: The Future of Have I Been Pwned
   - <https://www.troyhunt.com/project-svalbard-the-future-of-have-i-been-pwned/>
+- HTML is the Web ~ Pete Lambert
+  - <https://www.petelambert.com/journal/html-is-the-web/>
+
 
 ### イベント
 
