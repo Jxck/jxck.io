@@ -2,15 +2,25 @@
   'use strict'
   EventTarget.prototype.on  = EventTarget.prototype.addEventListener
   EventTarget.prototype.off = EventTarget.prototype.removeEventListener
-  const DEBUG   = true
-  const VERSION = 'v0'
+  const DEBUG   = location.hash === '#debug'
+  const VERSION = 'v0.2'
   const log = DEBUG ? console.log.bind(console) : () => {}
   log('sw.js')
 
   // Window
-  if (typeof window !== 'undefined' && location.hash === "#sw") {
+  if (typeof window !== 'undefined') {
     async function master() {
       log('mastert()')
+
+      if (location.hash === "#clear") {
+        const registrations = await navigator.serviceWorker.getRegistrations()
+        registrations.forEach(async (registration) => {
+          console.log(registration)
+          await registration.unregister()
+        })
+        return
+      }
+
       const controllerChange = new Promise((resolve, reject) => {
         navigator.serviceWorker.addEventListener('controllerchange', () => {
           resolve(navigator.serviceWorker.controller)
@@ -28,17 +38,20 @@
     async function worker() {
       log('worker()', self)
 
+      const ASSETS = [
+        'https://mozaic.fm/assets/font/NotoSansCJKjp-Jxck-Regular-201906.woff2',
+        'https://mozaic.fm/assets/font/NotoSansCJKjp-Jxck-Bold-201906.woff2',
+        'https://mozaic.fm/assets/font/NotoSansMonoCJKjp-Jxck-Regular-201906.woff2',
+        'https://mozaic.fm/assets/font/NotoSansMonoCJKjp-Jxck-Bold-201906.woff2',
+        'https://mozaic.fm/assets/js/highlight.min.js',
+        'https://use.fontawesome.com/releases/v5.0.6/webfonts/fa-solid-900.ttf',
+      ]
+
       self.on('install', async (e) => {
         log('install > skipWaiting', e)
         async function installing() {
           const cache = await caches.open(VERSION)
-          await cache.addAll([
-            '/assets/font/NotoSansCJKjp-Jxck-Regular-201906.woff2',
-            '/assets/font/NotoSansCJKjp-Jxck-Bold-201906.woff2',
-            '/assets/font/NotoSansMonoCJKjp-Jxck-Regular-201906.woff2',
-            '/assets/font/NotoSansMonoCJKjp-Jxck-Bold-201906.woff2',
-            '/assets/js/highlight.min.js',
-          ])
+          await cache.addAll(ASSETS)
           return skipWaiting()
         }
         e.waitUntil(installing())
@@ -60,13 +73,20 @@
       })
 
       self.on('fetch', async (e) => {
-        // log(e.request)
-        async function fetching(req) {
-          const res = await caches.match(req)
-          // log('cache hit', res)
-          return res || fetch(req)
+        const req = e.request
+        log(req)
+        if (ASSETS.includes(req.url)) {
+          async function fetching(req) {
+            // safari は fetch(req) が Range だと
+            // mp3 の duration が取れず Infinity になり壊れる
+            // そこでここをホワイトリストにした
+            const res = await caches.match(req)
+            log('cache match', res)
+            return res || fetch(req)
+          }
+          e.respondWith(fetching(req))
         }
-        e.respondWith(fetching(e.request))
+        return
       })
     }
     worker()
