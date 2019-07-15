@@ -26,13 +26,36 @@
     console.log(e)
     const option = {
       env: {
-        abort: function() {}
+        abort: () => console.log("Abort!")
+      },
+      index: {
+        log: console.log
       }
-    }
-    const module = await load("build/optimized.wasm", option)
-    const {add} = module.instance.exports;
+    };
 
-    console.log(add(40,20))
+    const wasmModule = await load("./build/optimized.wasm", option);
+
+    // Get our exports object, with all of our exported Wasm Properties
+    const exports = wasmModule.instance.exports;
+
+    // Get our memory object from the exports
+    const memory = exports.memory;
+
+    // Create a Uint8Array to give us access to Wasm Memory
+    const u8a = new Uint8Array(memory.buffer);
+    console.log(u8a)
+
+    // Let's read index zero from JS, to make sure Wasm wrote to
+    // wasm memory, and JS can read the "passed" value from Wasm
+    console.log("Read from JS index Zero: " + u8a[0]); // Should Log "24".
+
+    // Next let's write to index one, to make sure we can
+    // write wasm memory, and Wasm can read the "passed" value from JS
+    u8a[1] = 25;
+
+    console.log("Read from Wasm index one:", exports.readWasmMemoryAndReturnIndexOne()); // Should Log "25"
+
+    console.log(exports.add(10, 20))
   })
 </script>
 
