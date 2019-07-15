@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>DEMO</title>
+
+<style>
+</style>
+
+<h1>Test</h1>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  async function load(path, option) {
+    const response = await fetch(path)
+    const buffer   = await response.arrayBuffer()
+    const module   = await WebAssembly.instantiate(buffer, option)
+    console.log(module)
+    return module
+  }
+
+  document.on('DOMContentLoaded', async (e) => {
+    console.log(e)
+    const option = {
+      env: {
+        abort: function() {}
+      }
+    }
+    const module = await load("build/optimized.wasm", option)
+    const {add} = module.instance.exports;
+
+    console.log(add(40,20))
+  })
+</script>
+
