@@ -75,18 +75,20 @@
       self.on('fetch', async (e) => {
         const req = e.request
         log(req)
-        if (ASSETS.includes(req.url)) {
-          async function fetching(req) {
-            // safari は fetch(req) が Range だと
-            // mp3 の duration が取れず Infinity になり壊れる
-            // そこでここをホワイトリストにした
-            const res = await caches.match(req)
-            log('cache match', res)
-            return res || fetch(req)
-          }
-          e.respondWith(fetching(req))
+
+        // Cache のリストになかった場合はブラウザにフォールバック
+        if (!ASSETS.includes(req.url)) return
+
+        // cache then fetch
+        async function fetching(req) {
+          // safari は fetch(req) が Range だと
+          // mp3 の duration が取れず Infinity になり壊れる
+          // そこでここをホワイトリストにした
+          const res = await caches.match(req)
+          log('cache match', res)
+          return res || fetch(req)
         }
-        return
+        e.respondWith(fetching(req))
       })
     }
     worker()
