@@ -177,7 +177,7 @@ class Markup
     "<dl>#{wrap(node.value)}</dl>\n"
   end
   def dt(node)
-    "<dt>#{node.value}</dt>\n"
+    "<dt>#{node.value}\n"
   end
   def dd(node)
     "<dd>#{node.value}\n"
@@ -188,6 +188,9 @@ class Markup
     else
       "<p>#{node.value}\n"
     end
+  end
+  def div(node)
+    "<div>#{wrap(node.value)}</div>\n"
   end
 
   # inline elements
@@ -478,11 +481,24 @@ class AST
   def dling(dl)
     # <dd><p>hoge</dd> の <p> を消したい
 
-    dl.children = dl.children.map{ |c|
+    dl.children = dl.children.map {|c|
       next c if c.type == :dt
 
       c.children = c.children.first.children
       next c
+    }
+
+    i = 0
+    dl.children = dl.children.group_by {|c|
+      if c.type == :dt
+        next i
+      elsif c.type == :dd
+        j = i
+        i = i+1
+        next j
+      end
+    }.map{|k, c|
+      {:type => :div, :children => c}
     }
     dl
   end
