@@ -44,7 +44,7 @@
         'https://mozaic.fm/assets/font/NotoSansMonoCJKjp-Jxck-Regular-201906.woff2',
         'https://mozaic.fm/assets/font/NotoSansMonoCJKjp-Jxck-Bold-201906.woff2',
         'https://mozaic.fm/assets/js/highlight.min.js',
-        'https://use.fontawesome.com/releases/v5.0.6/webfonts/fa-solid-900.ttf',
+        'https://use.fontawesome.com/releases/v5.9.0/webfonts/fa-solid-900.ttf',
       ]
 
       self.on('install', async (e) => {
