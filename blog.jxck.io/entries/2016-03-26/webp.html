@@ -99,11 +99,11 @@
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
   <main>
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
-    <ul class=info>
-      <dt>created_at</dt><dd><time class=created_at datetime=2016-03-26>2016-03-26</time></dd>
-      <dt>updated_at</dt><dd><time class=updated_at datetime=2019-05-31>2019-05-31</time></dd>
-      <dt class=tags>tags</dt><dd>[<a href='/tags/webp.html'>webp</a>,<a href='/tags/image.html'>image</a>,<a href='/tags/performance.html'>performance</a>]</dd>
-    </ul>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2016-03-26>2016-03-26</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2019-05-31>2019-05-31</time></dd></div>
+      <div><dt class=tags>tags</dt><dd>[<a href='/tags/webp.html'>webp</a>,<a href='/tags/image.html'>image</a>,<a href='/tags/performance.html'>performance</a>]</dd></div>
+    </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
   <article>
@@ -136,12 +136,18 @@
       <p>従来の Web において、画像は用途毎に PNG/JPEG/GIF などを使い分けていた。
       <p>一般的には以下のような使い分けが行われている。
       <dl>
-        <dt>PNG</dt>
-        <dd>主に UI アイコンなど色変化の少ない画像
-        <dt>JPEG</dt>
-        <dd>主に写真など色変化が多い画像
-        <dt>GIF</dt>
-        <dd>主に GIF アニメメーション
+        <div>
+          <dt>PNG
+          <dd>主に UI アイコンなど色変化の少ない画像
+        </div>
+        <div>
+          <dt>JPEG
+          <dd>主に写真など色変化が多い画像
+        </div>
+        <div>
+          <dt>GIF
+          <dd>主に GIF アニメメーション
+        </div>
       </dl>
       <p>WebP は Google が開発した画像フォーマットであり、これら三つの用途全てに適した上で、さらに小さいサイズに圧縮できる場合が多い。
       <p>また、 WebP は動画フォーマットである WebM の 1 フレームに相当するため、 WebP アニメーションは簡易 WebM と言っても良い。
@@ -176,10 +182,14 @@ Usage:
       <p>基本的には <code translate="no">-q</code> の調整になるが、これは画像ごとに結果をみながらやるしかない。
       <p>まずは、デフォルトの 80 で比較していく。
       <dl>
-        <dt><a href="https://jxck.io/assets/img/jxck.png">jxck.png</a></dt>
-        <dd>4061 byte
-        <dt><a href="https://jxck.io/assets/img/jxck.webp">jxck.webp</a></dt>
-        <dd>1810 byte
+        <div>
+          <dt><a href="https://jxck.io/assets/img/jxck.png">jxck.png</a>
+          <dd>4061 byte
+        </div>
+        <div>
+          <dt><a href="https://jxck.io/assets/img/jxck.webp">jxck.webp</a>
+          <dd>1810 byte
+        </div>
       </dl>
     </section>
     <section>

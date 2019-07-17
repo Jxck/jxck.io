@@ -816,12 +816,18 @@ td:last-child {
       <p>しかし、現在のブラウザでは fresh なキャッシュがそのままヒットするのは、ナビゲート(遷移)時のみである。
       <p>リロードやスーパーリロードの場合は、 max-age 内のキャッシュであっても、扱いが変わる。
       <dl>
-        <dt>ナビゲート(link, redirect)</dt>
-        <dd>fresh なキャッシュはヒットする
-        <dt>リロード(F5, cmd+r etc)</dt>
-        <dd>fresh であっても無視し、 Conditional GET を行う
-        <dt>スーパーリロード(shift + reload etc)</dt>
-        <dd>fresh あっても無視し、 GET を行う。
+        <div>
+          <dt>ナビゲート(link, redirect)
+          <dd>fresh なキャッシュはヒットする
+        </div>
+        <div>
+          <dt>リロード(F5, cmd+r etc)
+          <dd>fresh であっても無視し、 Conditional GET を行う
+        </div>
+        <div>
+          <dt>スーパーリロード(shift + reload etc)
+          <dd>fresh あっても無視し、 GET を行う。
+        </div>
       </dl>
     </section>
     <section>

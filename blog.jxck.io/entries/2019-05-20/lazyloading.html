@@ -99,11 +99,11 @@
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
   <main>
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
-    <ul class=info>
-      <dt>created_at</dt><dd><time class=created_at datetime=2019-05-20>2019-05-20</time></dd>
-      <dt>updated_at</dt><dd><time class=updated_at datetime=2019-05-31>2019-05-31</time></dd>
-      <dt class=tags>tags</dt><dd>[<a href='/tags/lazyload.html'>lazyload</a>,<a href='/tags/image.html'>image</a>,<a href='/tags/performance.html'>performance</a>]</dd>
-    </ul>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2019-05-20>2019-05-20</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2019-05-31>2019-05-31</time></dd></div>
+      <div><dt class=tags>tags</dt><dd>[<a href='/tags/lazyload.html'>lazyload</a>,<a href='/tags/image.html'>image</a>,<a href='/tags/performance.html'>performance</a>]</dd></div>
+    </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
   <article>
@@ -162,10 +162,14 @@
       </ul>
       <p>この時点では、 lazyload 以外に postpone も定義されており、以下のような使い分けだった。
       <dl>
-        <dt>lazyload</dt>
-        <dd>ネットワーク専有の優先度を下げる(ネットワークが空けばロードはされる)
-        <dt>postpone</dt>
-        <dd>表示が必要になるまでダウンロードしない
+        <div>
+          <dt>lazyload
+          <dd>ネットワーク専有の優先度を下げる(ネットワークが空けばロードはされる)
+        </div>
+        <div>
+          <dt>postpone
+          <dd>表示が必要になるまでダウンロードしない
+        </div>
       </dl>
       <p>なお、この時点では Boolean Attribute になっていたため、値を書くだけで有効になる。
       <p>(この使い分けで言うと、今の loading=lazy の挙動は postpone に近く、 lazyload は別途提案されている importance 属性による priority hints の方が近そうだ)
@@ -193,12 +197,18 @@
       </ul>
       <p>現時点では以下の値が定義されている。
       <dl>
-        <dt>lazy</dt>
-        <dd>遅延ロード可能であることを示す
-        <dt>eager</dt>
-        <dd>遅延ロード可能ではないことを示す
-        <dt>auto</dt>
-        <dd>デフォルト、ブラウザに判断を委ねる
+        <div>
+          <dt>lazy
+          <dd>遅延ロード可能であることを示す
+        </div>
+        <div>
+          <dt>eager
+          <dd>遅延ロード可能ではないことを示す
+        </div>
+        <div>
+          <dt>auto
+          <dd>デフォルト、ブラウザに判断を委ねる
+        </div>
       </dl>
       <p>省略時は auto とみなされる。
       <p>この仕様について注意したいのは、ブラウザの裁量が大きいことだ。

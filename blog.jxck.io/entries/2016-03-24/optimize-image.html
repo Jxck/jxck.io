@@ -99,11 +99,11 @@
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
   <main>
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
-    <ul class=info>
-      <dt>created_at</dt><dd><time class=created_at datetime=2016-03-24>2016-03-24</time></dd>
-      <dt>updated_at</dt><dd><time class=updated_at datetime=2019-05-31>2019-05-31</time></dd>
-      <dt class=tags>tags</dt><dd>[<a href='/tags/image.html'>image</a>,<a href='/tags/performance.html'>performance</a>]</dd>
-    </ul>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2016-03-24>2016-03-24</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2019-05-31>2019-05-31</time></dd></div>
+      <div><dt class=tags>tags</dt><dd>[<a href='/tags/image.html'>image</a>,<a href='/tags/performance.html'>performance</a>]</dd></div>
+    </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
   <article>
@@ -173,10 +173,14 @@
       <h2 id="ベースラインプログレッシブ"><a href="#ベースラインプログレッシブ">ベースライン/プログレッシブ</a></h2>
       <p>JPEG は、大きい画像を送信する際に、ベースとなるデータを先に送り、差分となるデータをあとから追加して画像を完成させることができる。方式は二つある。
       <dl>
-        <dt>ベースライン</dt>
-        <dd>画像を上から順番に表示していく
-        <dt>プログレッシブ</dt>
-        <dd>解像度の低い画像から表示され、徐々に鮮明になっていく
+        <div>
+          <dt>ベースライン
+          <dd>画像を上から順番に表示していく
+        </div>
+        <div>
+          <dt>プログレッシブ
+          <dd>解像度の低い画像から表示され、徐々に鮮明になっていく
+        </div>
       </dl>
       <p>なお、 PNG ではベースライン相当の形式をインタレースと呼ぶ。
       <p>どちらを使うかは、二つの観点がある。

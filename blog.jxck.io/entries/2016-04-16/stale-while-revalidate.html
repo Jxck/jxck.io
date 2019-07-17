@@ -99,11 +99,11 @@
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
   <main>
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
-    <ul class=info>
-      <dt>created_at</dt><dd><time class=created_at datetime=2016-04-16>2016-04-16</time></dd>
-      <dt>updated_at</dt><dd><time class=updated_at datetime=2019-05-27>2019-05-27</time></dd>
-      <dt class=tags>tags</dt><dd>[<a href='/tags/swr.html'>swr</a>,<a href='/tags/http.html'>http</a>,<a href='/tags/cache.html'>cache</a>,<a href='/tags/performance.html'>performance</a>]</dd>
-    </ul>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2016-04-16>2016-04-16</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2019-05-27>2019-05-27</time></dd></div>
+      <div><dt class=tags>tags</dt><dd>[<a href='/tags/swr.html'>swr</a>,<a href='/tags/http.html'>http</a>,<a href='/tags/cache.html'>cache</a>,<a href='/tags/performance.html'>performance</a>]</dd></div>
+    </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
   <article>
@@ -166,14 +166,22 @@
         <p>これは、「<em>既に保持しているキャッシュが今でも有効かどうか</em>」をサーバに問い合わせる方法である。
         <p>具体的には、サーバは <code translate="no">ETag</code>, <code translate="no">Last-Modified</code> などのヘッダをレスポンスに付与することで、リソースに関する情報をサーバに伝える。
         <dl>
-          <dt>ETag</dt>
-          <dd>そのリソースを一意に特定する値、要するにリソースのハッシュ値
-          <dt>Last-Modified</dt>
-          <dd>そのリソースが最後に更新されたタイムスタンプ。この値を保存したブラウザは、同じ URL へのリクエストに、キャッシュしたリソースに付与されていた値を設定してサーバに問い合わせる。 サーバは、リクエストされたリソースについて各値を検証する。
-          <dt>If-Non-Match</dt>
-          <dd>ETag で受け取った値を付与、サーバはその値と現在のリソースの値を比較
-          <dt>If-Modified-Since</dt>
-          <dd>Last-Modified で受け取った値を付与、サーバはリソースの最終更新日を比較 これによって、ブラウザがキャッシュしたリソースが、まだ新鮮であるかどうかをサーバが判断できる。 新鮮ならば <code translate="no">304 Not Modified</code> を返すことで、ブラウザにキャッシュが再利用できることを伝える。 新鮮でなければ新しいリソースをレスポンスし、キャッシュは更新される。 この仕組みは、キャッシュが有効と分かればレスポンスボディが空になるため、ペイロードサイズが大幅に減る。 キャッシュが古い場合は、常に新しいリソースを提供できるため、更新が多いリソースで、最新のコンテンツを提供する場合に使用できる。 ただし、あくまでサーバへの問い合わせ自体は発生するため、ラウンドトリップ自体の削減にはならない。
+          <div>
+            <dt>ETag
+            <dd>そのリソースを一意に特定する値、要するにリソースのハッシュ値
+          </div>
+          <div>
+            <dt>Last-Modified
+            <dd>そのリソースが最後に更新されたタイムスタンプ。この値を保存したブラウザは、同じ URL へのリクエストに、キャッシュしたリソースに付与されていた値を設定してサーバに問い合わせる。 サーバは、リクエストされたリソースについて各値を検証する。
+          </div>
+          <div>
+            <dt>If-Non-Match
+            <dd>ETag で受け取った値を付与、サーバはその値と現在のリソースの値を比較
+          </div>
+          <div>
+            <dt>If-Modified-Since
+            <dd>Last-Modified で受け取った値を付与、サーバはリソースの最終更新日を比較 これによって、ブラウザがキャッシュしたリソースが、まだ新鮮であるかどうかをサーバが判断できる。 新鮮ならば <code translate="no">304 Not Modified</code> を返すことで、ブラウザにキャッシュが再利用できることを伝える。 新鮮でなければ新しいリソースをレスポンスし、キャッシュは更新される。 この仕組みは、キャッシュが有効と分かればレスポンスボディが空になるため、ペイロードサイズが大幅に減る。 キャッシュが古い場合は、常に新しいリソースを提供できるため、更新が多いリソースで、最新のコンテンツを提供する場合に使用できる。 ただし、あくまでサーバへの問い合わせ自体は発生するため、ラウンドトリップ自体の削減にはならない。
+          </div>
         </dl>
       </section>
     </section>

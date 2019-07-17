@@ -99,11 +99,11 @@
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
   <main>
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
-    <ul class=info>
-      <dt>created_at</dt><dd><time class=created_at datetime=2016-03-27>2016-03-27</time></dd>
-      <dt>updated_at</dt><dd><time class=updated_at datetime=2019-05-31>2019-05-31</time></dd>
-      <dt class=tags>tags</dt><dd>[<a href='/tags/svg.html'>svg</a>,<a href='/tags/image.html'>image</a>,<a href='/tags/performance.html'>performance</a>]</dd>
-    </ul>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2016-03-27>2016-03-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2019-05-31>2019-05-31</time></dd></div>
+      <div><dt class=tags>tags</dt><dd>[<a href='/tags/svg.html'>svg</a>,<a href='/tags/image.html'>image</a>,<a href='/tags/performance.html'>performance</a>]</dd></div>
+    </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
   <article>
@@ -199,10 +199,14 @@
       <p>SVG は拡大しても問題はない。
       <p>なお、 PNG と cacoo で書き出した時点での SVG のサイズの比較は以下の通りである。
       <dl>
-        <dt>PNG</dt>
-        <dd>3860byte
-        <dt>SVG</dt>
-        <dd>1430byte
+        <div>
+          <dt>PNG
+          <dd>3860byte
+        </div>
+        <div>
+          <dt>SVG
+          <dd>1430byte
+        </div>
       </dl>
     </section>
     <section>
@@ -233,10 +237,14 @@
   &lt;/g&gt;
 &lt;/svg&gt;</code></pre>
       <dl>
-        <dt>before</dt>
-        <dd>3860byte
-        <dt>after</dt>
-        <dd>638byte
+        <div>
+          <dt>before
+          <dd>3860byte
+        </div>
+        <div>
+          <dt>after
+          <dd>638byte
+        </div>
       </dl>
     </section>
     <section>
@@ -256,10 +264,14 @@
       <p><a href="https://validator.w3.org/dev/tests/">Markup Validation Service</a>
       <p>手書きと SVGGo で最適化した cacoo の SVG を比較した結果が以下である。
       <dl>
-        <dt>svggo</dt>
-        <dd>638byte
-        <dt>vim</dt>
-        <dd>291byte
+        <div>
+          <dt>svggo
+          <dd>638byte
+        </div>
+        <div>
+          <dt>vim
+          <dd>291byte
+        </div>
       </dl>
       <p>cacoo が吐いた SVG と比べれば 20% なので、以降基本的に UI アイコンの SVG は最初から手で書くことにした。
       <p>また、 PNG と比べると実に 93% サイズを削減している。

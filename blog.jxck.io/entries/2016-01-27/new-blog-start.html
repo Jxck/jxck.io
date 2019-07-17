@@ -99,11 +99,11 @@
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
   <main>
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
-    <ul class=info>
-      <dt>created_at</dt><dd><time class=created_at datetime=2016-01-27>2016-01-27</time></dd>
-      <dt>updated_at</dt><dd><time class=updated_at datetime=2019-05-27>2019-05-27</time></dd>
-      <dt class=tags>tags</dt><dd>[<a href='/tags/web.html'>web</a>,<a href='/tags/blog.html'>blog</a>]</dd>
-    </ul>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2016-01-27>2016-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2019-05-27>2019-05-27</time></dd></div>
+      <div><dt class=tags>tags</dt><dd>[<a href='/tags/web.html'>web</a>,<a href='/tags/blog.html'>blog</a>]</dd></div>
+    </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
   <article>
@@ -156,12 +156,18 @@
         <h3 id="定義リスト"><a href="#定義リスト">定義リスト</a></h3>
         <p>定義リストは <code translate="no">&lt;dl&gt;</code> を用いて表現する
         <dl>
-          <dt>定義リスト(description list)</dt>
-          <dd><code translate="no">&lt;dl&gt;</code> を用いる
-          <dt>定義(description term)</dt>
-          <dd><code translate="no">&lt;dt&gt;</code> を用いる
-          <dt>説明(description details)</dt>
-          <dd><code translate="no">&lt;dd&gt;</code> を用いる
+          <div>
+            <dt>定義リスト(description list)
+            <dd><code translate="no">&lt;dl&gt;</code> を用いる
+          </div>
+          <div>
+            <dt>定義(description term)
+            <dd><code translate="no">&lt;dt&gt;</code> を用いる
+          </div>
+          <div>
+            <dt>説明(description details)
+            <dd><code translate="no">&lt;dd&gt;</code> を用いる
+          </div>
         </dl>
       </section>
       <section>

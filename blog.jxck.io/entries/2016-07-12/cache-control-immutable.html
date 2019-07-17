@@ -99,11 +99,11 @@
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
   <main>
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
-    <ul class=info>
-      <dt>created_at</dt><dd><time class=created_at datetime=2016-07-12>2016-07-12</time></dd>
-      <dt>updated_at</dt><dd><time class=updated_at datetime=2019-05-31>2019-05-31</time></dd>
-      <dt class=tags>tags</dt><dd>[<a href='/tags/cache.html'>cache</a>,<a href='/tags/http.html'>http</a>,<a href='/tags/performance.html'>performance</a>]</dd>
-    </ul>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2016-07-12>2016-07-12</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2019-05-31>2019-05-31</time></dd></div>
+      <div><dt class=tags>tags</dt><dd>[<a href='/tags/cache.html'>cache</a>,<a href='/tags/http.html'>http</a>,<a href='/tags/performance.html'>performance</a>]</dd></div>
+    </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
   <article>
@@ -125,12 +125,18 @@
       <p>しかし、現在のブラウザでは fresh なキャッシュがそのままヒットするのは、ナビゲート(遷移)時のみである。
       <p>リロードやスーパーリロードの場合は、 max-age 内のキャッシュであっても、扱いが変わる。
       <dl>
-        <dt>ナビゲート(link, redirect)</dt>
-        <dd>fresh なキャッシュはヒットする
-        <dt>リロード(F5, cmd+r etc)</dt>
-        <dd>fresh であっても無視し、 Conditional GET を行う
-        <dt>スーパーリロード(shift + reload etc)</dt>
-        <dd>fresh あっても無視し、 GET を行う。
+        <div>
+          <dt>ナビゲート(link, redirect)
+          <dd>fresh なキャッシュはヒットする
+        </div>
+        <div>
+          <dt>リロード(F5, cmd+r etc)
+          <dd>fresh であっても無視し、 Conditional GET を行う
+        </div>
+        <div>
+          <dt>スーパーリロード(shift + reload etc)
+          <dd>fresh あっても無視し、 GET を行う。
+        </div>
       </dl>
     </section>
     <section>

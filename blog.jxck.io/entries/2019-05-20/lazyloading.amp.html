@@ -852,10 +852,14 @@ td:last-child {
       </ul>
       <p>この時点では、 lazyload 以外に postpone も定義されており、以下のような使い分けだった。
       <dl>
-        <dt>lazyload</dt>
-        <dd>ネットワーク専有の優先度を下げる(ネットワークが空けばロードはされる)
-        <dt>postpone</dt>
-        <dd>表示が必要になるまでダウンロードしない
+        <div>
+          <dt>lazyload
+          <dd>ネットワーク専有の優先度を下げる(ネットワークが空けばロードはされる)
+        </div>
+        <div>
+          <dt>postpone
+          <dd>表示が必要になるまでダウンロードしない
+        </div>
       </dl>
       <p>なお、この時点では Boolean Attribute になっていたため、値を書くだけで有効になる。
       <p>(この使い分けで言うと、今の loading=lazy の挙動は postpone に近く、 lazyload は別途提案されている importance 属性による priority hints の方が近そうだ)
@@ -883,12 +887,18 @@ td:last-child {
       </ul>
       <p>現時点では以下の値が定義されている。
       <dl>
-        <dt>lazy</dt>
-        <dd>遅延ロード可能であることを示す
-        <dt>eager</dt>
-        <dd>遅延ロード可能ではないことを示す
-        <dt>auto</dt>
-        <dd>デフォルト、ブラウザに判断を委ねる
+        <div>
+          <dt>lazy
+          <dd>遅延ロード可能であることを示す
+        </div>
+        <div>
+          <dt>eager
+          <dd>遅延ロード可能ではないことを示す
+        </div>
+        <div>
+          <dt>auto
+          <dd>デフォルト、ブラウザに判断を委ねる
+        </div>
       </dl>
       <p>省略時は auto とみなされる。
       <p>この仕様について注意したいのは、ブラウザの裁量が大きいことだ。

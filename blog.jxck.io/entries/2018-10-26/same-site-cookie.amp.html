@@ -1015,10 +1015,14 @@ Set-Cookie: key=value; SameSite=Lax</code></pre>
         <p>そこで、 RFC では Cookie を Read Cookie と Write Cookie の 2 つにわける構成が言及されている。
         <p><a href="https://tools.ietf.org/html/draft-west-first-party-cookies-07#section-5.2">https://tools.ietf.org/html/draft-west-first-party-cookies-07#section-5.2</a>
         <dl>
-          <dt>Read Cookie</dt>
-          <dd>ユーザのセッション維持するための Cookie 。これが送られればユーザがログイン状態と見なされる。しかし、それ以上の操作についてはこの Cookie では許可されない。
-          <dt>Write Cookie</dt>
-          <dd>書き込みを許可する Cookie 。例えばパスワードの変更や、投稿、購入、キャンセル、送金など、副作用を伴う操作の許可に使われる。
+          <div>
+            <dt>Read Cookie
+            <dd>ユーザのセッション維持するための Cookie 。これが送られればユーザがログイン状態と見なされる。しかし、それ以上の操作についてはこの Cookie では許可されない。
+          </div>
+          <div>
+            <dt>Write Cookie
+            <dd>書き込みを許可する Cookie 。例えばパスワードの変更や、投稿、購入、キャンセル、送金など、副作用を伴う操作の許可に使われる。
+          </div>
         </dl>
         <p>この 2 つに Cookie を分離し、 Write Cookie に Strict を適用すれば、より堅牢な設計となる。
         <p>Read Cookie は、副作用を起こす能力がなくなっているのであれば、 Lax でも SameSite 無しでも良い。

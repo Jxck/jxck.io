@@ -836,10 +836,14 @@ td:last-child {
       <p>特に、ネットワークが遅い場合や、フォントファイルサイズが大きい場合は、フォントの取得に時間がかかる。
       <p>すると、以下のような現象が発生する。
       <dl>
-        <dt>FOIT (Flash of Invisible Text)</dt>
-        <dd>ナビゲーション直後はテキストが表示されず、(block period 経過後)突然表示される現象
-        <dt>FOUT (Flash of Unstyled Text)</dt>
-        <dd>表示されているテキストのフォントが、(swap period 中)突然入れ替わる現象
+        <div>
+          <dt>FOIT (Flash of Invisible Text)
+          <dd>ナビゲーション直後はテキストが表示されず、(block period 経過後)突然表示される現象
+        </div>
+        <div>
+          <dt>FOUT (Flash of Unstyled Text)
+          <dd>表示されているテキストのフォントが、(swap period 中)突然入れ替わる現象
+        </div>
       </dl>
       <p>こうした現象を防ぐためには、 JavaScript でフォントの読み込み/表示を制御するのライブラリが使われることが多い。
       <ul>

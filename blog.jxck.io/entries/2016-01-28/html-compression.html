@@ -99,11 +99,11 @@
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
   <main>
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
-    <ul class=info>
-      <dt>created_at</dt><dd><time class=created_at datetime=2016-01-28>2016-01-28</time></dd>
-      <dt>updated_at</dt><dd><time class=updated_at datetime=2019-05-31>2019-05-31</time></dd>
-      <dt class=tags>tags</dt><dd>[<a href='/tags/html.html'>html</a>,<a href='/tags/performance.html'>performance</a>]</dd>
-    </ul>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2016-01-28>2016-01-28</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2019-05-31>2019-05-31</time></dd></div>
+      <div><dt class=tags>tags</dt><dd>[<a href='/tags/html.html'>html</a>,<a href='/tags/performance.html'>performance</a>]</dd></div>
+    </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
   <article>
@@ -234,10 +234,14 @@ jxck$ wc html-no-compression.html
         <p>また Chrome の devtools で二つのファイルをレンダリングし、 Timeline から <em>Parse HTML</em> の時間を確認した。
         <p>10 回平均した結果がこうだ。
         <dl>
-          <dt>省略有</dt>
-          <dd>約 80ms
-          <dt>省略無</dt>
-          <dd>約 90ms
+          <div>
+            <dt>省略有
+            <dd>約 80ms
+          </div>
+          <div>
+            <dt>省略無
+            <dd>約 90ms
+          </div>
         </dl>
         <p>また、何回かやると 有 が 100ms を超える場合や 無 が 70ms を切るような場合もあった。
         <p>この程度の速度差であれば体感は難しいので、もはや誤差といえる。

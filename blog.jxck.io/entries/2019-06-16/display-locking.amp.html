@@ -915,14 +915,22 @@ td:last-child {
         <p>Display Locking が実装されると、 Element に displayLock というプロパティが生える。
         <p>ここには 4 つのメソッドがあり、それぞれ以下の役割がある。
         <dl>
-          <dt><code translate="no">acquire()</code></dt>
-          <dd>ロックの取得
-          <dt><code translate="no">update()</code></dt>
-          <dd>getComputedStyle, offsetTop で必要な計算(forced update)などを計算する
-          <dt><code translate="no">commit()</code></dt>
-          <dd>ロックの解除(レンダリング開始)
-          <dt><code translate="no">updateAndCommit()</code></dt>
-          <dd>update + commit
+          <div>
+            <dt><code translate="no">acquire()</code>
+            <dd>ロックの取得
+          </div>
+          <div>
+            <dt><code translate="no">update()</code>
+            <dd>getComputedStyle, offsetTop で必要な計算(forced update)などを計算する
+          </div>
+          <div>
+            <dt><code translate="no">commit()</code>
+            <dd>ロックの解除(レンダリング開始)
+          </div>
+          <div>
+            <dt><code translate="no">updateAndCommit()</code>
+            <dd>update + commit
+          </div>
         </dl>
         <p>それぞれが Promise を返す非同期な処理となっている。
       </section>
@@ -960,12 +968,18 @@ await container.displayLock.updateAndCommit()</code></pre>
         <h3 id="acquire-option"><a href="#acquire-option">acquire option</a></h3>
         <p><code translate="no">acquire()</code> はオプション値をとる。
         <dl>
-          <dt>timeout</dt>
-          <dd>タイムアウトすると commit されるため、 commit 漏れを防ぐことができる。
-          <dt>sizes</dt>
-          <dd>commit 後のサイズを指定することで、その領域を確保しておくことができる。
-          <dt>activatable</dt>
-          <dd>後述
+          <div>
+            <dt>timeout
+            <dd>タイムアウトすると commit されるため、 commit 漏れを防ぐことができる。
+          </div>
+          <div>
+            <dt>sizes
+            <dd>commit 後のサイズを指定することで、その領域を確保しておくことができる。
+          </div>
+          <div>
+            <dt>activatable
+            <dd>後述
+          </div>
         </dl>
       </section>
       <section>
