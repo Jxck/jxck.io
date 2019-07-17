@@ -1,4 +1,4 @@
-.info {
+dl.info {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -6,16 +6,17 @@
   padding: 0;
 }
 
-.info dt {
-  font-weight: bold;
+dl.info div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
 
-.info dt::after {
+dl.info dt::after {
   content: ":";
-  margin-right: var(--grid);
+  margin-right: calc(var(--grid)/2);
 }
 
-.info dd {
+dl.info dd {
   margin: 0 var(--grid) 0 0;
 }
-
