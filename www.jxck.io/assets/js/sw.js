@@ -3,7 +3,7 @@
   EventTarget.prototype.on  = EventTarget.prototype.addEventListener
   EventTarget.prototype.off = EventTarget.prototype.removeEventListener
   const DEBUG   = location.hash === '#debug'
-  const VERSION = 'v0.2.2'
+  const VERSION = 'v0.2.4'
   const log = DEBUG ? console.log.bind(console) : () => {}
   log('sw.js')
 
@@ -51,7 +51,13 @@
         log('install > skipWaiting', e)
         async function installing() {
           const cache = await caches.open(VERSION)
-          await cache.addAll(ASSETS)
+          // キャッシュされた URL の一覧
+          const urls = Array.from(await cache.keys()).map((req) => req.url)
+          console.log('exists', urls)
+          // キャッシュされてない ASSETS 一覧
+          const diff = ASSETS.filter((asset) => !urls.includes(asset))
+          console.log('diff', diff)
+          await cache.addAll(diff)
           return skipWaiting()
         }
         e.waitUntil(installing())
@@ -60,13 +66,28 @@
       self.on('activate', async (e) => {
         log('activate > claim', e)
         async function clean_cache() {
-          const keys = await caches.keys()
           log('version', VERSION)
-          const old_keys = keys.filter((key) => key !== VERSION)
-          await Promise.all(old_keys.map((key) => {
-            log('remove cache', key)
-            return caches.delete(key)
-          }))
+
+          // 不要なストアの抽出
+          const stores        = await caches.keys()
+          const old_stores    = stores.filter((store) => store !== VERSION)
+          const stores_remove = old_stores.map((store) => {
+            console.log('remove cache table', store)
+            return caches.delete(store)
+          })
+
+          // 不要なエントリの抽出
+          const cache           = await caches.open(VERSION)
+          const requests        = await cache.keys()
+          const old_requests    = requests.filter((req) => !ASSETS.includes(req.url))
+          const requests_remove = old_requests.map((req) => {
+            console.log('remove cache', req.url)
+            return cache.delete(req)
+          })
+
+          // 一斉に削除
+          await Promise.all(stores_remove.concat(requests_remove))
+
           return self.clients.claim()
         }
         e.waitUntil(clean_cache())
