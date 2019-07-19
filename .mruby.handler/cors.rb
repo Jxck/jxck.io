@@ -5,8 +5,8 @@ Proc.new do |env|
   # logger.p(origin)
 
   if origin.nil?
-    # should always have A-C-A-O
-    next [403, {}, []]
+    # no origin headers are allowed
+    next [399, {}, []]
   end
 
   unless origin.end_with?("jxck.io") || origin.end_with?("mozaic.fm")
