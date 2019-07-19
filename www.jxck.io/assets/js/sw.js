@@ -3,7 +3,7 @@
   EventTarget.prototype.on  = EventTarget.prototype.addEventListener
   EventTarget.prototype.off = EventTarget.prototype.removeEventListener
   const DEBUG   = location.hash === '#debug'
-  const VERSION = 'v0.2'
+  const VERSION = 'v0.2.1'
   const log = DEBUG ? console.log.bind(console) : () => {}
   log('sw.js')
 
@@ -39,11 +39,11 @@
       log('worker()', self)
 
       const ASSETS = [
-        'https://mozaic.fm/assets/font/NotoSansCJKjp-Jxck-Regular-201906.woff2',
-        'https://mozaic.fm/assets/font/NotoSansCJKjp-Jxck-Bold-201906.woff2',
-        'https://mozaic.fm/assets/font/NotoSansMonoCJKjp-Jxck-Regular-201906.woff2',
-        'https://mozaic.fm/assets/font/NotoSansMonoCJKjp-Jxck-Bold-201906.woff2',
-        'https://mozaic.fm/assets/js/highlight.min.js',
+        'https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular-201906.woff2',
+        'https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold-201906.woff2',
+        'https://jxck.io/assets/font/NotoSansMonoCJKjp-Jxck-Regular-201906.woff2',
+        'https://jxck.io/assets/font/NotoSansMonoCJKjp-Jxck-Bold-201906.woff2',
+        //'https://jxck.io/assets/js/highlight.min.js',
         'https://use.fontawesome.com/releases/v5.9.0/webfonts/fa-solid-900.ttf',
       ]
 
