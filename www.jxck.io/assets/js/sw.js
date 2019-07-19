@@ -43,7 +43,7 @@
         'https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold-201906.woff2',
         'https://jxck.io/assets/font/NotoSansMonoCJKjp-Jxck-Regular-201906.woff2',
         'https://jxck.io/assets/font/NotoSansMonoCJKjp-Jxck-Bold-201906.woff2',
-        //'https://jxck.io/assets/js/highlight.min.js',
+        'https://jxck.io/assets/js/highlight.pack.js',
         'https://use.fontawesome.com/releases/v5.9.0/webfonts/fa-solid-900.ttf',
       ]
 
