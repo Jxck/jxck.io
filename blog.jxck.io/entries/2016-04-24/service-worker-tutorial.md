@@ -291,7 +291,7 @@ self.addEventListener('sync', (e) => {
 });
 ```
 
-DEMO: <https://labs.jxck.io/service-worker/backgroundsync/>
+DEMO: <https://labs.jxck.io/service-worker/background-sync/>
 
 
 ## push
