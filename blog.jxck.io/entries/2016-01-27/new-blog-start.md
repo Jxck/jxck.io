@@ -136,4 +136,4 @@ if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalSco
 
 イメージは `<img>` タグを用いて表現する。
 
-![jxck logo](https://logo.jxck.io/jxck.png#256x256)
+![jxck](https://logo.jxck.io/jxck.png#256x256 'jxck logo')
