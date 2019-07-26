@@ -8,6 +8,11 @@ if (window.ReportingObserver) {
   console.log('ReportingObserver');
   const observer = new ReportingObserver((reports, observer) => {
     for (const report of reports) {
+
+      // Bug:
+      // https://bugs.chromium.org/p/chromium/issues/detail?id=917945#c9
+      console.log(JSON.stringify(report)) // '{}'
+
       console.log(report.type, report.url, report.body)
 
       const r = {
