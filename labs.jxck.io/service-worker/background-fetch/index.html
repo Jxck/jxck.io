@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Background Fetch DEMO</title>
+
+<style>
+a { font-size: 4em }
+</style>
+
+<h1>Background Fetch DEMO</h1>
+
+https://storage.googleapis.com/http-203-podcast/episode-20.mp3
+
+
+<a id=download href=https://storage.googleapis.com/http-203-podcast/episode-20.mp3>download</a>
+
+<a id=fetch href=https://storage.googleapis.com/http-203-podcast/episode-20.mp3>download</a>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  document.on('DOMContentLoaded', async (e) => {
+    console.log(await navigator.serviceWorker.register('worker.js'))
+
+
+    $('#download').addEventListener('click', async (e) => {
+      e.preventDefault()
+      const url = e.target.href
+      console.log(url)
+
+      const registration = await navigator.serviceWorker.ready
+      console.log(registration)
+
+      const task = await registration.backgroundFetch.fetch(url, [url])
+      console.log(task)
+
+      task.addEventListener('progress', (e) => {
+        // Update the UI some more.
+        console.log(e.type, e.target.downloaded, e)
+      })
+    })
+
+    $('#fetch').addEventListener('click', async (e) => {
+      e.preventDefault()
+      const url = e.target.href
+      console.log(url)
+      const res = await fetch(url)
+      console.log(res)
+    })
+  })
+</script>
