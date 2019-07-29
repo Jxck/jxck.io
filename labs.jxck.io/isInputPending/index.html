@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+
+<title>DEMO</title>
+
+<style>
+textarea {
+  height: 30em;
+  width: 30em;
+}
+</style>
+
+<h1>Test</h1>
+
+<button id=start>start task</button>
+<button id=stop>stop task</button>
+<p>status: <span id=status>false</span></p>
+
+<textarea></textarea>
+
+
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  const $status = $('#status')
+  const types   = ['click', 'keydown', 'wheel']
+
+  document.on('DOMContentLoaded', async (e) => {
+    console.log(navigator.scheduling);
+
+    var RUN = false
+
+    types.forEach((type) => {
+      if (navigator.scheduling.canCheckInputPending) console.log(type)
+    })
+
+    function tarai(x, y, z) {
+      if (x <= y) return y
+      return tarai(
+        tarai(x-1, y, z),
+        tarai(y-1, z, x),
+        tarai(z-1, x, y)
+      )
+    }
+
+    function* gen() {
+      while(true) {
+        yield tarai(10, 3, 0)
+      }
+    }
+    const g = gen()
+
+    function task() {
+      console.log('task')
+
+      if (RUN === false) return
+
+      console.log(g.next().value)
+
+      const pending = navigator.scheduling.isInputPending(['click', 'keydown'])
+      console.log(pending.toString())
+      $status.textContent = ''
+      $status.textContent = pending.toString()
+      if (pending) {
+        setTimeout(task, 1000)
+      } else {
+        task()
+      }
+    }
+
+    $('#start').on('click', () => {
+      console.log('start task')
+      RUN = true
+      task()
+    })
+    $('#stop').on('click', () => {
+      console.log('stop task')
+      RUN = false
+    })
+  })
+</script>
