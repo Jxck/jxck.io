@@ -13,4 +13,8 @@ current = Dir.glob("../../../blog.jxck.io/entries/**/*.md").select {|file|
 
 all = File.read("./All.txt").split("\n")
 
-p (current - all - ["", " ", "\t"])
+diff = (current - all - ["", " ", "\t"])
+
+diff.each{|char|
+  puts "#{char}: #{char.codepoints}"
+}
