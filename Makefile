@@ -15,9 +15,9 @@ build:
 # 探索は www/blog/mozaic のみ
 # .webp, .rb, .md, .txt は対象外
 # これを brotli/zopfli で圧縮する
-WWW := $(shell selects path from "./www.jxck.io/**/*"  where path "!~" "drafts" and path "!~" "tags" and extname "=~" "[^.gz|.br|.webp|.rb|.md|.txt]")
-BLO := $(shell selects path from "./blog.jxck.io/**/*" where path "!~" "drafts" and path "!~" "tags" and extname "=~" "[^.gz|.br|.webp|.rb|.md|.txt]")
-MOZ := $(shell selects path from "./mozaic.fm/**/*"    where path "!~" "drafts" and path "!~" "tags" and extname "=~" "[^.gz|.br|.webp|.rb|.md|.txt]")
+WWW := $(shell selects path from "./www.jxck.io/**/*"  where path "!~" "drafts" and path "!~" "tags" and extname "=~" "[^.gz|.br|.webp|.rb|.md|.txt|.woff2]")
+BLO := $(shell selects path from "./blog.jxck.io/**/*" where path "!~" "drafts" and path "!~" "tags" and extname "=~" "[^.gz|.br|.webp|.rb|.md|.txt|.woff2]")
+MOZ := $(shell selects path from "./mozaic.fm/**/*"    where path "!~" "drafts" and path "!~" "tags" and extname "=~" "[^.gz|.br|.webp|.rb|.md|.txt|.woff2]")
 TARGET = $(WWW) $(BLO) $(MOZ)
 
 GZ = $(addsuffix .gz, $(TARGET))
