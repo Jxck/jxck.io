@@ -10,7 +10,7 @@
 1. [> 画像最適化戦略 Picture 編](https://blog.jxck.io/entries/2016-03-25/picture.html)
 1. [画像最適化戦略 WebP 編](https://blog.jxck.io/entries/2016-03-26/webp.html)
 1. [画像最適化戦略 SVG/Font 編](https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html)
-1. [画像最適化戦略 Lazy Loading 編](https://blog.jxck.io/entries/2019-04-26/lazyloading.html)
+1. [画像最適化戦略 Lazy Loading 編](https://blog.jxck.io/entries/2019-05-20/lazyloading.html)
 
 
 ## 画像の出し分け
