@@ -377,11 +377,11 @@ guest
   - *W3C TAG Ethical Web Principles*
     - <https://www.w3.org/2001/tag/doc/ethical-web-principles/>
   - Call for Exclusions: WebAssembly Web API
-    - http://lists.w3.org/Archives/Public/public-webassembly/2019Jul/0003.html
+    - <https://lists.w3.org/Archives/Public/public-webassembly/2019Jul/0003.html>
   - Call for Exclusions: WebAssembly Core Specification
-    - http://lists.w3.org/Archives/Public/public-webassembly/2019Jul/0002.html
+    - <https://lists.w3.org/Archives/Public/public-webassembly/2019Jul/0002.html>
   - Call for Exclusions: WebAssembly JavaScript Interface
-    - http://lists.w3.org/Archives/Public/public-webassembly/2019Jul/0001.html
+    - <https://lists.w3.org/Archives/Public/public-webassembly/2019Jul/0001.html>
 
 
 ### TC39 動向
@@ -437,7 +437,7 @@ guest
     - <https://github.com/httpwg/wg-materials/blob/gh-pages/ietf105/agenda.md>
     - <https://github.com/httpwg/wg-materials/blob/gh-pages/ietf105/minutes.md>
     - Kazuho's Weblog: HTTP のプライオリティが大きく変わろうとしている話(その他 IETF 105 雑感)
-    - http://blog.kazuhooku.com/2019/07/http-ietf-105.html
+    - <http://blog.kazuhooku.com/2019/07/http-ietf-105.html>
     - H2 Priority の実装が少なく、そのまま H3 に持っていくのではなく HTTP Header ベースに変えていく
     - *The Priority HTTP Header Field*
       - <https://tools.ietf.org/html/draft-kazuho-httpbis-priority-00>
@@ -658,7 +658,7 @@ guest
   - 11-12: Chrome Dev Summit 2019
     - <https://developer.chrome.com/devsummit/>
   - 14-15: BlinkOn 11 in Sunnyvale California
-    - http://bit.ly/blinkon11-faq
+    - <https://bit.ly/blinkon11-faq>
   - 30-1: JSConf JP
     - <https://www.jsconf.jp>
 - 12 月
