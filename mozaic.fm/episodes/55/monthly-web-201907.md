@@ -75,10 +75,10 @@ guest
   - *Implement and Ship: WebRTC Perfect Negotiation APIs*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/OqPfCpC5RYU/SjapegYYAgAJ>
     - WebRTC の細かい問題に対処する 4 つの API 更新のこと
-    - 1. restartIce()
-    - 2. setRemoteDescription() with "rollback"
-    - 3. setLocalDescription() that implicitly creates the offer or answer
-    - 4. Stopping and stopped transceivers
+    1. restartIce()
+    2. setRemoteDescription() with "rollback"
+    3. setLocalDescription() that implicitly creates the offer or answer
+    4. Stopping and stopped transceivers
 - Implement and Ship: Percentage opacity
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/SdPIaBdhzAQ/f26Mp_3REAAJ>
 - Implement: Dynamic Delegation of Autoplay Capability
@@ -450,8 +450,8 @@ guest
       - <https://tools.ietf.org/html/draft-peon-httpbis-h2-priority-one-less-00>
       - 使いたい場合に明示的に知らせる SETTINGS frame
       - SETTINGS_ENABLE_HTTP2_PRIORITIES
-    -    * [Wpack] [wpack] Minutes from the IETF105 side meeting
-    - <https://mailarchive.ietf.org/arch/msg/wpack/OPwVCRvGrlFQCul-lRQNHwzJg3A>
+    - [Wpack] [wpack] Minutes from the IETF105 side meeting
+      - <https://mailarchive.ietf.org/arch/msg/wpack/OPwVCRvGrlFQCul-lRQNHwzJg3A>
 - RFC
   - RFC 8620: The JSON Meta Application Protocol (JMAP)
     - <https://www.rfc-editor.org/rfc/rfc8620.html>
