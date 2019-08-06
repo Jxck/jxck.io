@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Promise.allSettled/race DEMO | labs.jxck.io</title>
+
+<h1>Promise.allSettled/race DEMO</h1>
+
+<p>see the console</p>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+
+  document.on('DOMContentLoaded', async (e) => {
+    console.log(e);
+
+    (async function all() {
+      const fetches = [
+        fetch("./abort"),
+        fetch("./async-await"),
+        fetch("./finally"),
+        fetch("./index.html"),
+        new Promise((done, fail) => {
+          setTimeout(() => fail('abort'), 10)
+        })
+      ]
+
+      try {
+        console.log(await Promise.all(fetches))
+      } catch(err) {
+        console.error(err) // abort
+      }
+    })();
+
+    (async function allSettled() {
+      const fetches = [
+        fetch("./abort"),
+        fetch("./async-await"),
+        fetch("./finally"),
+        fetch("./index.html"),
+        new Promise((done, fail) => {
+          setTimeout(() => fail('abort'), 10)
+        })
+      ]
+
+      try {
+        console.log(await Promise.allSettled(fetches))
+        // 0: {status: "fulfilled", value: Response}
+        // 1: {status: "fulfilled", value: Response}
+        // 2: {status: "fulfilled", value: Response}
+        // 3: {status: "fulfilled", value: Response}
+        // 4: {status: "rejected", reason: "abort"}
+      } catch(err) {
+        console.error(err)
+      }
+    })();
+
+
+    (async function race() {
+      const fetches = [
+        fetch("./abort"),
+        fetch("./async-await"),
+        fetch("./finally"),
+        fetch("./index.html"),
+        new Promise((done, fail) => {
+          setTimeout(() => fail('abort'), 10)
+        })
+      ]
+
+      try {
+        console.log(await Promise.race(fetches))
+      } catch(err) {
+        console.error(err) // abort
+      }
+    })();
+
+    (async function any() {
+      const fetches = [
+        fetch("./abort"),
+        fetch("./async-await"),
+        fetch("./finally"),
+        fetch("./index.html"),
+        new Promise((done, fail) => {
+          setTimeout(() => fail('abort'), 10)
+        })
+      ]
+
+      try {
+        console.log(await Promise.any(fetches))
+      } catch(err) {
+        console.error(err) // abort
+      }
+    })();
+
+  })
+</script>
+
