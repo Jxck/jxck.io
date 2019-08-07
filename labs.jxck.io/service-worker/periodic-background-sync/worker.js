@@ -12,14 +12,12 @@ self.addEventListener('activate', (e) => {
 
 self.addEventListener('periodicsync', (e) => {
   console.log('periodicsync', e)
-  if (e.tag == 'new-episode') {
-    e.waitUntil(async function() {
-      const res   = await fetch('./feed.txt')
-      const date  = res.headers.get('date')
-      const url   = new URL(res.url)
-      url.search = date
-      const cache = await caches.open('periodic-background-sync')
-      return cache.put(url, res)
-    }())
-  }
+  e.waitUntil(async function() {
+    const res   = await fetch('./feed.txt')
+    const date  = res.headers.get('date')
+    const url   = new URL(res.url)
+    url.search  = date
+    const cache = await caches.open('periodic-background-sync')
+    return cache.put(url, res)
+  }())
 })

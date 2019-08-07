@@ -18,19 +18,6 @@
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
-  function timestamp() {
-    const now  = new Date();
-    const yyyy = now.getFullYear(),
-            mm = now.getMonth(),
-            dd = now.getDate(),
-             h = now.getHours(),
-             m = now.getMinutes(),
-             s = now.getSeconds();
-    const datetime = `${yyyy}/${mm}/${dd}-${h}:${m}:${s}`
-    console.log(datetime)
-    return datetime
-  }
-
   document.on('DOMContentLoaded', async (e) => {
     console.log(await navigator.serviceWorker.register('worker.js'))
 
@@ -40,21 +27,21 @@
     $('#detect').textContent = !!registration.periodicSync
     if (registration.periodicSync) {
       console.log(registration.periodicSync)
-      registration.periodicSync.register('new-episode', {
-        minInterval: 1000*60*10 // 10min
+      await registration.periodicSync.register('new-episode', {
+        minInterval: 24 * 60 * 60 * 1000
       })
+      console.log(await registration.periodicSync.getTags())
     }
 
-
-    const cache = await caches.open('periodic-background-sync')
-    const keys = await cache.keys()
-    const $ul  = $('ul')
-    keys.forEach(async (key) => {
-      const res  = await cache.match(key)
-      const date = res.headers.get('date')
-      const $li  = document.createElement('li')
-      $li.textContent = date
-      $ul.appendChild($li)
-    })
+    // const cache = await caches.open('periodic-background-sync')
+    // const keys = await cache.keys()
+    // const $ul  = $('ul')
+    // keys.forEach(async (key) => {
+    //   const res  = await cache.match(key)
+    //   const date = res.headers.get('date')
+    //   const $li  = document.createElement('li')
+    //   $li.textContent = date
+    //   $ul.appendChild($li)
+    // })
   })
 </script>
