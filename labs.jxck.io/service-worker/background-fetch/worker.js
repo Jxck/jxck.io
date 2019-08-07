@@ -71,7 +71,7 @@ self.addEventListener('backgroundfetchclick', (e) => {
 // ダウンロードしたものを返す
 self.addEventListener('fetch', (e) => {
   const url = e.request.url
-  if (!url.endsWith('mp3')) return
+  if (!url.endsWith('.zip')) return
   console.log(url)
 
   e.respondWith(async function() {

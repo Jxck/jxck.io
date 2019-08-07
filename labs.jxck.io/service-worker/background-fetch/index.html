@@ -9,12 +9,9 @@ a { font-size: 4em }
 
 <h1>Background Fetch DEMO</h1>
 
-https://storage.googleapis.com/http-203-podcast/episode-20.mp3
 
-
-<a id=download href=https://storage.googleapis.com/http-203-podcast/episode-20.mp3>download</a>
-
-<a id=fetch href=https://storage.googleapis.com/http-203-podcast/episode-20.mp3>download</a>
+<a id=download href=./Noto-hinted.zip>download</a>
+<a id=fetch    href=./Noto-hinted.zip>fetch</a>
 
 <script>
   'use strict';
@@ -24,7 +21,6 @@ https://storage.googleapis.com/http-203-podcast/episode-20.mp3
 
   document.on('DOMContentLoaded', async (e) => {
     console.log(await navigator.serviceWorker.register('worker.js'))
-
 
     $('#download').addEventListener('click', async (e) => {
       e.preventDefault()
