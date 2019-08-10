@@ -4,47 +4,74 @@
 <title>Background Fetch DEMO</title>
 
 <style>
-a { font-size: 4em }
+a {
+  font-size: 4em
+}
+
+circle-progress {
+  display: inline-block;
+  width: 50px
+}
 </style>
 
 <h1>Background Fetch DEMO</h1>
 
+<div>
+  <circle-progress max=100 value=0></circle-progress>
+  <a class=download href=./Noto-hinted.zip>download zip</a>
+</div>
+  <!--
+  <li><a class=download href=./episode-20.mp3>download mp3</a>
+  <li><a class=download href=./dummy_video.mp4>download mp4</a>
+  <li><a class=fetch    href=./dummy_video.mp4>fetch mp4</a>
+  <li><a class=fetch    href=./Noto-hinted.zip>fetch zip</a>
+  -->
 
-<a id=download href=./Noto-hinted.zip>download</a>
-<a id=fetch    href=./Noto-hinted.zip>fetch</a>
-
-<script>
+<script type=module>
   'use strict';
   const $  = document.querySelector.bind(document)
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
+  import CircleProgress from '../../webcomponents/circle-progress.mjs'
+  customElements.define('circle-progress', CircleProgress)
+
   document.on('DOMContentLoaded', async (e) => {
     console.log(await navigator.serviceWorker.register('worker.js'))
 
-    $('#download').addEventListener('click', async (e) => {
+    const $circle = $('circle-progress')
+    $('.download').addEventListener('click', async (e) => {
       e.preventDefault()
       const url = e.target.href
-      console.log(url)
 
       const registration = await navigator.serviceWorker.ready
       console.log(registration)
 
-      const task = await registration.backgroundFetch.fetch(url, [url])
+      const head          = await fetch(url, {method: 'head'})
+      const downloadTotal = head.headers.get('content-length')
+      console.dir(downloadTotal)
+      $circle.setAttribute('max', downloadTotal)
+
+      // Promise<BackgroundFetchRegistration>
+      // fetch(DOMString id,
+      //       (RequestInfo or sequence<RequestInfo>) requests,
+      //       optional BackgroundFetchOptions options);
+
+      const task = await registration.backgroundFetch.fetch(url, [url], {downloadTotal})
       console.log(task)
 
       task.addEventListener('progress', (e) => {
-        // Update the UI some more.
-        console.log(e.type, e.target.downloaded, e)
+        console.log(task.downloaded)
+        $circle.setAttribute('value', task.downloaded)
       })
     })
 
-    $('#fetch').addEventListener('click', async (e) => {
-      e.preventDefault()
-      const url = e.target.href
-      console.log(url)
-      const res = await fetch(url)
-      console.log(res)
-    })
+    //$('.fetch').addEventListener('click', async (e) => {
+    //  e.preventDefault()
+    //  const url = e.target.href
+    //  console.log(url)
+    //  const res = await fetch(url)
+    //  console.log(res)
+    //})
   })
 </script>

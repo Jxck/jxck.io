@@ -17,15 +17,15 @@ self.addEventListener('backgroundfetchsuccess', (e) => {
     try {
       console.log(e.registration.id)
 
-      const cache    = await caches.open(e.registration.id)
+      const cache = await caches.open(e.registration.id)
       console.log(cache)
 
-      const records  = await e.registration.matchAll()
+      const records = await e.registration.matchAll()
       console.log(records)
 
       const promises = records.map(async (record) => {
         const response = await record.responseReady
-        console.error(response)
+        console.log(response)
         await cache.put(record.request, response)
       })
 
