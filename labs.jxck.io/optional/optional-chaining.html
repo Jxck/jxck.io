@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Optional DEMO</title>
+
+<style>
+</style>
+
+<h1>Optional DEMO</h1>
+
+<p>see the console</p>
+
+<script>
+  'use strict';
+
+  document.on('DOMContentLoaded', (e) => {
+    console.log(e)
+
+    a?.b   // a == null ? undefined : a.b
+    a?.[x] // a == null ? undefined : a[x]
+    a?.b() // a == null ? undefined : a.b()
+    a?.()  // a == null ? undefined : a()
+
+    const none = document.querySelector('.none')?.textContent
+    console.log(none)
+
+    console.log(window.bar?.())
+  })
+</script>
+
