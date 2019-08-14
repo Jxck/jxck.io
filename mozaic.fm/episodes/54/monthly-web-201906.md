@@ -233,6 +233,7 @@ guest
   - Hello Darkness, My Old Friend
     - <https://web.dev/prefers-color-scheme/>
 
+
 ### Firefox 動向
 
 - Stable: 67
@@ -359,6 +360,7 @@ guest
     - <https://bugzilla.mozilla.org/show_bug.cgi?id=1490661>
     - enter の挙動
 
+
 ### Safari 動向
 
 - Stable: 12.1.1
@@ -439,6 +441,7 @@ guest
     - Dashboard が macOS Catalina で削除
     - Canvas や HTML5 の原点
 
+
 ### Edge 動向
 
 - Stable: Edge 43? / EdgeHTML 18? (Preview 77)
@@ -470,6 +473,7 @@ guest
     - <https://discourse.wicg.io/t/proposal-highlight-api/3679>
     - <https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/master/highlight/explainer.md>
     - これの再議論
+
 
 ### WHATWG/W3C 動向
 
@@ -554,6 +558,7 @@ guest
     - <https://www.w3.org/blog/2019/06/privacy-anti-patterns-in-standards/>
     - Privacy Interest Group (PING)
 
+
 ### TC39 動向
 
 - Proposals Diff
@@ -587,6 +592,7 @@ guest
   - cyclic-imports.md
     - <https://gist.github.com/rauschma/8443b5eb3a3e00ca52e174e909cd5e21>
 
+
 ### IETF 動向
 
 - IETF
@@ -612,6 +618,7 @@ guest
   - An HTTPS-based Transport for Configured Subscriptions
     - <https://tools.ietf.org/html/draft-mahesh-netconf-https-notif-00>
 - Other
+
 
 ### セキュリティ動向
 
