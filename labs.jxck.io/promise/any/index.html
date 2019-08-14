@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
 <meta name=viewport content='width=device-width,initial-scale=1'>
-<title>Promise.allSettled DEMO | labs.jxck.io</title>
+<title>Promise.any DEMO | labs.jxck.io</title>
 
-<h1>Promise.allSettled DEMO</h1>
+<h1>Promise.any DEMO</h1>
 
 <p>see the console</p>
 
@@ -16,7 +16,7 @@
   document.on('DOMContentLoaded', async (e) => {
     console.log(e);
 
-    (async function all() {
+    (async function race() {
       const fetches = [
         fetch('../abort'),
         fetch('../async-await'),
@@ -28,13 +28,13 @@
       ]
 
       try {
-        console.log(await Promise.all(fetches))
+        console.log(await Promise.race(fetches))
       } catch(err) {
         console.error(err) // abort
       }
     })();
 
-    (async function allSettled() {
+    (async function any() {
       const fetches = [
         fetch('../abort'),
         fetch('../async-await'),
@@ -46,14 +46,9 @@
       ]
 
       try {
-        console.log(await Promise.allSettled(fetches))
-        // 0: {status: 'fulfilled', value: Response}
-        // 1: {status: 'fulfilled', value: Response}
-        // 2: {status: 'fulfilled', value: Response}
-        // 3: {status: 'fulfilled', value: Response}
-        // 4: {status: 'rejected', reason: 'abort'}
+        console.log(await Promise.any(fetches))
       } catch(err) {
-        console.error(err)
+        console.error(err) // abort
       }
     })();
   })

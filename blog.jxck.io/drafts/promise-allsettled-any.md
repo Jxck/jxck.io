@@ -189,3 +189,4 @@ Fulfilled か Rejected どちらかになった状態、つまり成功失敗に
 動作するデモを以下に用意した。
 
 - <https://labs.jxck.io/promise/allsettled>
+- <https://labs.jxck.io/promise/any>
