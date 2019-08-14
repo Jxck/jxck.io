@@ -18,6 +18,7 @@
 
 all は全ての Promise が Resolve したら Resolve し、 race はどれか 1 つでも Resolve したら Resolve する Promise をそれぞれ返す。
 
+
 ```js
 const fetches = [
   fetch('./page1.html'),
@@ -42,6 +43,7 @@ all/race ともに、そのうちの一部が Reject した場合を考えると
 ### all + reject
 
 all は、その中の一つでも Reject すると、全体が Reject してしまう。
+
 
 ```js
 try {
@@ -73,6 +75,7 @@ try {
 ## allSettled
 
 allSettled は、 all とは違い、個々が Resolve/Reject どちらになっても、最後までとにかく全て実行する。
+
 実行した結果を配列として Resolve するため、基本的に allSettled 自体は Reject しない。
 
 
@@ -109,6 +112,7 @@ try {
 
 race の場合は、最初の一つが Resolve する前に Reject した Promise があると、そこで全体が Reject してしまう。
 
+
 ```js
 const fetches = [
   fetch('./page1.html'),
@@ -130,11 +134,12 @@ try {
 従って、「*最初に Resolve する Promise を待ちたい*」という要件を満たす場合は、リトライする必要がある。
 
 
-
 ## any
 
 any は rece とは違い、 Resolve する前に Reject する Promise があっても無視し、最初にいずれかが Resolve するまで待つ。
+
 そして、全ての Promise が Reject した場合にのみ全体を Reject する。
+
 
 ```js
 const fetches = [
