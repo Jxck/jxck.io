@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html amp lang=ja>
+<head>
+  <meta charset=utf-8>
+  <!--
+  貴様、見ているな！！
+  このサイトの技術的なまとめはこちらをどうぞ。
+  https://labs.jxck.io/blog
+
+  by Jxck
+  -->
+  <link rel=canonical href=https://blog.jxck.io/entries/2019-08-14/nullish-coalescing-optional-chaining.html>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+  <link rel=author href=https://jxck.io/assets/humans.txt>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type=image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+
+  <meta name=author content=Jxck>
+  <meta name=description content="JS における null/undefined の扱い改善するための 2 つの機能が提案されている。- Nullish Coalescing Operator (stage 3)- Optional Chaining Operator (stage 3)いずれも Stage ...">
+  <meta name=keywords content="tc39,javascript">
+
+  <meta name=twitter:card content=summary>
+  <meta name=twitter:site content=@jxck_>
+  <meta name=twitter:url content="https://blog.jxck.io/entries/2019-08-14/nullish-coalescing-optional-chaining.html">
+  <meta name=twitter:title content="Nullish Coalescing と Optional Chaining | blog.jxck.io">
+  <meta name=twitter:description content="JS における null/undefined の扱い改善するための 2 つの機能が提案されている。- Nullish Coalescing Operator (stage 3)- Optional Chaining Operator (stage 3)いずれも Stage ...">
+  <meta name=twitter:image content="https://jxck.io/assets/img/jxck.png">
+
+  <meta property=og:type content=article>
+  <meta property=og:url content="https://blog.jxck.io/entries/2019-08-14/nullish-coalescing-optional-chaining.html">
+  <meta property=og:title content="Nullish Coalescing と Optional Chaining | blog.jxck.io">
+  <meta property=og:site_name content="blog.jxck.io">
+  <meta property=og:description content="JS における null/undefined の扱い改善するための 2 つの機能が提案されている。- Nullish Coalescing Operator (stage 3)- Optional Chaining Operator (stage 3)いずれも Stage ...">
+  <meta property=og:image content="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "Nullish Coalescing と Optional Chaining | blog.jxck.io",
+  "image": [
+    "https://jxck.io/assets/img/jxck.png",
+    "https://logo.jxck.io/jxck.1200x1200.png"
+  ],
+  "datePublished": "2019-08-14T08:00:00+08:00",
+  "dateModified": "2019-08-14T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://logo.jxck.io/jxck.60x60.png",
+      "height": 60,
+      "width": 60
+    }
+  },
+  "description": "JS における null/undefined の扱い改善するための 2 つの機能が提案されている。- Nullish Coalescing Operator (stage 3)- Optional Chaining Operator (stage 3)いずれも Stage ..."
+}
+</script>
+
+  <title>Nullish Coalescing と Optional Chaining | blog.jxck.io</title>
+  <script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+  <script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src=https://cdn.ampproject.org/v0.js></script>
+<style amp-custom>
+article section p {
+  margin-left: 0;
+}
+
+article table {
+  margin-left: 0;
+}
+
+article img {
+  margin: var(--grid) 0;
+  border: 1px solid #ccc;
+  box-sizing: content-box;
+  background-color: #fff;
+}
+
+article ul,
+article ol,
+article dl {
+  margin-left: var(--grid);
+  font-family: var(--mono-font);
+}
+
+article ul li ul,
+article ol li ol {
+  margin: 0 0 0 calc(var(--grid)*2);
+  font-size: 1rem;
+}
+
+article ol li ol li,
+article ul li ul li {
+  margin-bottom: 0;
+}
+
+article dl {
+  display: grid;
+  grid-template-columns: minmax(auto, max-content);
+  grid-column-gap: var(--grid);
+}
+
+article dl div {
+  display: contents;
+}
+
+article dl dt {
+  grid-column: 1 / 2;
+}
+article dl dd {
+  grid-column: 2 / 2;
+}
+
+article blockquote {
+  font-family: var(--mono-font);
+}
+
+article blockquote p {
+  margin: 0;
+}
+
+@supports (line-height-step: 1px) {
+  article {
+    --grid-rhythm: 1.5em;
+    line-height: 1.5;
+    line-height-step: var(--grid-rhythm);
+  }
+
+  article h1,
+  article h2,
+  article h3,
+  article h4,
+  article h5,
+  article h6 {
+    display: inline-block;
+    width: 100%;
+    line-height-step: 0;
+    line-height: 1.2;
+    margin-bottom: 0;
+  }
+
+  article section {
+    /* grid for debug */
+    /* background-size: 100% var(--grid-rhythm); */
+    /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
+  }
+
+  article p {
+    margin-top: var(--grid-rhythm);
+    margin-bottom: var(--grid-rhythm);
+  }
+
+  article pre,
+  article table {
+    line-height-step: 0;
+    line-height: normal;
+  }
+}
+
+/* normal regular */
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src:
+    local("NotoSansCJKjp-Bold.otf"),
+    local("NotoSansJP-Bold.otf"),
+    url("https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular-201907.woff2") format("woff2");
+}
+/* normal bold */
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 700;
+  font-display: optional;
+  src:
+    local("NotoSansCJKjp-Bold.otf"),
+    local("NotoSansJP-Bold.otf"),
+    url("https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold-201907.woff2") format("woff2");
+}
+
+
+/* mono regular */
+@font-face {
+  font-family: "NotoSansMonoCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url("https://jxck.io/assets/font/NotoSansMonoCJKjp-Jxck-Regular-201907.woff2") format("woff2");
+}
+/* mono bold */
+@font-face {
+  font-family: "NotoSansMonoCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    url("https://jxck.io/assets/font/NotoSansMonoCJKjp-Jxck-Bold-201907.woff2") format("woff2");
+}
+
+/* Light Mode Theme */
+:root {
+  --background-color: #fefefe;
+  --font-color: #222;
+  --header-color: #222;
+
+  --anchor-color: RoyalBlue;
+  --anchor-visited-color: Brown;
+
+  --code-block: #efefef;
+  --code-block-font: #222;
+
+  --block-quote: #ddd;
+  --table-border: #222;
+
+  --regular-font: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+  --mono-font: "NotoSansMonoCJKjp-Jxck";
+  --code-font: Menlo, Consolas, Liberation, Mono, Courier, "NotoSansMonoCJKjp-Jxck";
+
+  --icon-size: 30px;
+
+  --width: 80vw;
+  --grid: 1rem;
+
+  --radius: 4px;
+}
+
+
+/* Mobile Theme */
+@media screen and (max-device-width: 800px) {
+  :root {
+    --width: 94vw;
+  }
+
+  audio {
+    width: 100%;
+  }
+}
+
+/* Dark Mode Theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #010101;
+    --font-color: #eee;
+
+    --anchor-color: CornflowerBlue;
+    --anchor-visited-color: RosyBrown;
+
+    --code-block: #efefef;
+
+    --table-border: #eee;
+  }
+
+  article img {
+    filter: grayscale(50%);
+  }
+  article img[src*=svg] {
+    filter: invert(100%) grayscale(50%);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--regular-font);
+  background-color: var(--background-color);
+  color: var(--font-color);
+  margin: 0;
+  padding: 0;
+}
+
+code {
+  font-family: var(--mono-font);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+hr {
+  margin: 0;
+  padding: 0;
+}
+
+iframe {
+  display: block;
+  max-width: 100%;
+  margin: var(--grid) 0;
+}
+
+dl.info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+dl.info div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+dl.info dt::after {
+  content: ":";
+  margin-right: calc(var(--grid)/2);
+}
+
+dl.info dd {
+  margin: 0 var(--grid) 0 0;
+}
+
+header {
+  z-index: 1;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: calc(var(--grid)/2);
+  background-color: var(--header-color);
+}
+
+h2:target,
+h3:target,
+h4:target,
+h5:target,
+h6:target {
+  /* sticky header に合わせて link scroll をずらす */
+  margin-top:  calc((var(--icon-size) + var(--grid)) * -1);
+  padding-top: calc((var(--icon-size) + var(--grid)));
+}
+
+header ul {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: var(--width);
+  margin: 0 auto;
+}
+
+header ul li {
+  width:  var(--icon-size);
+  height: var(--icon-size);
+  padding: 0;
+  margin: 0 0 0 var(--grid);
+}
+
+header ul li a {
+  display: block;
+  width:  var(--icon-size);
+  height: var(--icon-size);
+}
+
+header ul li svg {
+  fill: var(--background-color);
+}
+
+header ul li::before {
+  content: none;
+}
+
+header ul li:first-child {
+  flex-grow: 1;
+  margin-left: 0;
+}
+
+header .logo {
+  border: 1px solid #fff;
+  box-sizing: border-box;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  color: var(--font-color);
+}
+
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: var(--font-color);
+}
+
+h1 > a::before {
+  content: "# ";
+}
+
+h2 > a::before {
+  content: "## ";
+}
+
+h3 > a::before {
+  content: "### ";
+}
+
+h4 > a::before {
+  content: "#### ";
+}
+
+h1 > a:hover::before,
+h2 > a:hover::before,
+h3 > a:hover::before,
+h4 > a:hover::before,
+h5 > a:hover::before,
+h6 > a:hover::before {
+  color: var(--anchor-visited-color);
+}
+
+em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+em::before,
+em::after {
+  content: "*";
+}
+
+strong {
+  color: red;
+}
+
+strong::before,
+strong::after {
+  content: "**";
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+dl dt::after {
+  content: ":";
+}
+
+blockquote {
+  display: block;
+  border: solid 1px var(--block-quote);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin: 0;
+}
+
+blockquote p::before {
+  content: "> ";
+}
+
+code {
+  background-color: var(--code-block);
+  color: var(--code-block-font);
+  border-radius: var(--radius);
+  padding: 0 4px;
+}
+
+code::before,
+code::after {
+  content: "`";
+}
+
+main {
+  display: block;
+  width: var(--width);
+  margin: 1em auto;
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+  color: var(--anchor-color);
+}
+
+a:visited {
+  color: var(--anchor-visited-color);
+}
+
+ol,
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+dl dt {
+  font-weight: bold;
+  margin: 0;
+}
+
+dl dd {
+  margin: 0;
+}
+
+footer {
+  padding: var(--grid);
+}
+
+footer strong,
+footer .copyright {
+  display: block;
+  width: var(--width);
+  margin: 0 auto;
+  font-style: italic;
+}
+
+pre {
+  margin: var(--grid) 0;
+  border-radius: var(--radius);
+}
+
+pre::before {
+  content: "```" attr(class) "\A";
+}
+
+pre::after {
+  z-index: -1;
+  position: relative;
+  top: -1em;
+  content: "\A```";
+}
+
+pre > code {
+  font-family: var(--code-font);
+  overflow: auto;
+  display: block;
+  padding: 0.5rem;
+  margin: 0;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-attribute {
+  font-weight: bold;
+}
+
+.hljs-meta {
+  color: #4f80e5;
+}
+
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-pseudo {
+  color: #6f42c1;
+}
+
+.hljs-selector-tag {
+  color: #22863a;
+}
+
+.hljs-subst {
+  font-weight: bold;
+}
+
+.hljs-variable {
+  color: #a71d5d;
+}
+
+.hljs-symbol {
+  font-weight: bold;
+}
+
+.hljs-selector-attr {
+  color: #6f42c1;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  .hljs-keyword {
+    color: #000;
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  .hljs-number {
+    color: var(--code-block-font);
+  }
+
+  .hljs-built_in {
+    color: #000;
+    font-weight: bold;
+  }
+
+  .hljs-literal {
+    color: var(--code-block-font);
+    font-weight: bold;
+  }
+
+  .hljs-regexp {
+    color: var(--code-block-font);
+  }
+
+  .hljs-comment {
+    color: #888;
+  }
+
+  .hljs-tag {
+    color: var(--code-block-font);
+    font-weight: bold;
+  }
+
+  .hljs-strong {
+    font-weight: bold;
+  }
+
+  .hljs-attribute {
+  }
+
+  .hljs-attr {
+    color: var(--code-block-font);
+    font-weight: bold;
+  }
+
+  .hljs-selector-tag {
+    color: var(--code-block-font);
+  }
+
+  .hljs-subst {
+    font-weight: bold;
+  }
+  .hljs-symbol {
+    font-weight: bold;
+  }
+
+  .hljs-section {
+  }
+
+  .hljs-meta,
+  .hljs-selector-id,
+  .hljs-selector-class,
+  .hljs-selector-pseudo,
+  .hljs-variable,
+  .hljs-title,
+  .hljs-string,
+  .hljs-name,
+  .hljs-selector-attr {
+    color: var(--code-block-font);
+  }
+}
+
+
+
+
+
+
+
+/**.hljs,**/
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition,
+.hljs-template-variable,
+.hljs-link,
+.hljs-type,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-meta-string,
+.hljs-emphasis {
+  /** if you find element applyed this style, please tell me https://github.com/jxck/jxck.io/issues **/
+  font-size: 100em;
+}
+
+table {
+  font-family: var(--mono-font);
+  margin: var(--grid) 0;
+  border-spacing: 0 0.4rem;
+}
+
+th {
+  padding: 0 var(--grid) calc(var(--grid)/2) var(--grid);
+  border-left: 2px solid var(--table-border);
+  border-bottom: 2px dashed var(--table-border);
+}
+
+td {
+  padding: calc(var(--grid)/2) var(--grid);
+  border-left: 2px solid var(--table-border);
+}
+
+th:last-child,
+td:last-child {
+  border-right: 2px solid var(--table-border);
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+</style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://blog.jxck.io      ><amp-img width=30 height=30 src=https://jxck.io/assets/img/blog.svg   alt ="blog top" class=logo     ></a>
+      <li><a href=.                         ><amp-img width=30 height=30 src=https://jxck.io/assets/img/up.svg     alt ="move to parent directory"></a>
+      <li><a href=/feeds/atom.xml           ><amp-img width=30 height=30 src=https://jxck.io/assets/img/rss.svg    alt ="rss feed"                ></a>
+      <li><a href=https://jxck.io/humans.txt><amp-img width=30 height=30 src=https://jxck.io/assets/img/humans.svg alt ="huamns.txt"              ></a>
+      <li><a href=https://jxck.io           ><amp-img width=30 height=30 src=https://jxck.io/assets/img/jxck.svg   alt ="jxck logo" class=logo    ></a>
+    </ul>
+  </nav>
+</header>
+<main>
+  <ul class=info>
+    <dt>created_at</dt><dd><time class=created_at datetime=2019-08-14>2019-08-14</time></dd>
+    <dt>updated_at</dt><dd><time class=updated_at datetime=2019-08-14>2019-08-14</time></dd>
+    <dt class=tags>tags</dt><dd>[<a href='/tags/tc39.html'>tc39</a>,<a href='/tags/javascript.html'>javascript</a>]</dd>
+  </ul>
+
+
+  <article>
+    <h1><a href=/entries/2019-08-14/nullish-coalescing-optional-chaining.html>Nullish Coalescing と Optional Chaining</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p>JS における null/undefined の扱い改善するための 2 つの機能が提案されている。
+      <ul>
+        <li>
+          <a href="https://github.com/tc39/proposal-nullish-coalescing">Nullish Coalescing Operator (stage 3)</a>
+        </li>
+        <li>
+          <a href="https://github.com/TC39/proposal-optional-chaining">Optional Chaining Operator (stage 3)</a>
+        </li>
+      </ul>
+      <p>いずれも Stage 3 に進み、実装も始まっているので、現時点での解説を行う。
+    </section>
+    <section>
+      <h2 id="nullish-coalescing"><a href="#nullish-coalescing">Nullish Coalescing</a></h2>
+      <p>対象が null/undefined だった場合にデフォルト値を返したいといった場合を考える。
+      <pre class=js><code translate="no">function main(option) {
+  option.param = option.param || &#039;default&#039;
+}
+
+main({param : &#039;hello&#039;})</code></pre>
+      <p>しかし、この場合は null/undefined 以外にも param が <code translate="no">0</code>, <code translate="no">false</code>, <code translate="no">&#039;&#039;</code> など falsy な値の場合も上書きされてしまう。
+      <pre class=js><code translate="no">var param;
+
+param = 100
+param = param || &#039;default&#039; // 100
+
+param = null
+param = param || &#039;default&#039; // &#039;default&#039;
+
+param = undefined
+param = param || &#039;default&#039; // &#039;default&#039;
+
+param = 0
+param = param || &#039;default&#039; // &#039;default&#039;
+
+param = false
+param = param || &#039;default&#039; // &#039;default&#039;
+
+param = &#039;&#039;
+param = param || &#039;default&#039; // &#039;default&#039;</code></pre>
+      <p>つまり、本来は null/undefined の厳密な判定を行わなくてはいけないわけだが、プロパティごとにそれを行うのは面倒だ。
+      <p>そこで提案されたのが <code translate="no">??</code> という Null Coalescing Operator だ。(日本語だと Null 結合演算子になるのだろうか?)
+      <p>これを使うと、 null/undefined であった場合のみ上書きができる。(名前に反して null だけではない点に注意)
+      <pre class=js><code translate="no">var param;
+
+param = 100
+param = param ?? &#039;default&#039; // 100
+
+param = null
+param = param ?? &#039;default&#039; // &#039;default&#039;
+
+param = undefined
+param = param ?? &#039;default&#039; // &#039;default&#039;
+
+param = 0
+param = param ?? &#039;default&#039; // 0
+
+param = false
+param = param ?? &#039;default&#039; // false
+
+param = &#039;&#039;
+param = param ?? &#039;default&#039; // &#039;&#039;</code></pre>
+      <p>パラメータの初期化などで、 null/undefined 以外の falsy な値を尊重しつつデフォルトを決めるといったケースに使うことができる。
+      <pre class=js><code translate="no">function main(option) {
+  option.message  = option.message ?? &#039;default message&#039;
+  option.timeout  = option.timeout ?? 100
+  option.flag     = option.flag    ?? true
+  option.logging  = {debug: true}
+
+  cosnole.log(option)
+}
+
+main({
+ message: &#039;&#039;,
+ timeout: 0,
+ flag:    false,
+})</code></pre>
+    </section>
+    <section>
+      <h2 id="optional-chaining"><a href="#optional-chaining">Optional Chaining</a></h2>
+      <p>null に対するプロパティアクセスはエラーとなるため、それを防ぐためには一度チェックを行う必要がある。
+      <pre class=js><code translate="no">if (a !== null) {
+  a.b()
+}</code></pre>
+      <p>アクセスできない場合 undefined を返すように三項演算子で書くとこうなる。
+      <pre class=js><code translate="no">const result = (a !== null) ? a.b() : undefined</code></pre>
+      <p>このショートハンドとしてアクセサの直前に <code translate="no">?</code> を書くことができるようなるのがこの提案だ。
+      <pre class=js><code translate="no">a?.b   // a == null ? undefined : a.b
+a?.b() // a == null ? undefined : a.b()
+a?.[x] // a == null ? undefined : a[x]</code></pre>
+      <p>プロパティ以外にも、単体の関数を呼ぶ場合も利用可能だ。
+      <pre class=js><code translate="no">a?.() // a == null ? undefined : a()</code></pre>
+    </section>
+    <section>
+      <h2 id="short-circuiting"><a href="#short-circuiting">Short Circuiting</a></h2>
+      <p>以下のように Chain しても、途中で undefined に対する呼び出しになってエラーになったりはしない。
+      <pre class=js><code translate="no">a = null
+a?.b?.c() // a? で undefined になるが、後続の .b? がエラーになるわけではない</code></pre>
+      <p>これは <code translate="no">?.</code> の左側(left-hand side)が null/undefined と評価された時点で全体の評価が決定し、 <code translate="no">?.</code> の右側(right-hand side) は評価されていないからだ。
+      <p>したがって、以下のように副作用のある処理も実行されない。
+      <pre class=js><code translate="no">a = null
+a?.b[x++] // ?. より右は実行されず x は増えない</code></pre>
+      <p>この挙動を Short Circuting と言う。
+      <p>もし Short Circuit を止めて、評価を実行したい場合は、対象を括弧でくくればその範囲のみに限定することもできる。
+      <pre class=js><code translate="no">(a?.b).c // a が null でも .c は実行される</code></pre>
+    </section>
+    <section>
+      <h2 id="nullable-と-optional"><a href="#nullable-と-optional">nullable と optional</a></h2>
+      <p>こんなコードを考えてみる。
+      <pre class=html><code translate="no">&lt;body&gt;
+  &lt;code class=&#039;highlight language-js&#039;&gt;
+    console.log(&#039;hello&#039;)
+  &lt;/code&gt;
+&lt;/body&gt;
+&lt;script&gt;
+const lang = document.querySelector(&#039;code&#039;) // &lt;code&gt;
+                     .classList             // [highlight, language-js]
+                     .item(1)               // language-js
+                     .split(&#039;-&#039;)[1]         // [language, js][1]
+                     .toUpperCase()         // JS
+
+console.log(lang) // JS
+&lt;/script&gt;</code></pre>
+      <p>このコードをそのままブラウザで走らせれば、 JS が期待している DOM が確実にあるため問題なく動くだろう。
+      <p>しかし、型を厳密に考えると <code translate="no">querySelector()</code> や <code translate="no">item()</code> は nullable であり、配列の範囲外の添字アクセスは undefined を返す。
+      <p>したがって、チェインのどこかが null/undefined になれば破綻するため、そこをケアするには各段階で確認する必要がある。
+      <p>色々書き方はあるが、雑に書くとこういうことだ。
+      <pre class=html><code translate="no">&lt;body&gt;
+  &lt;code class=&#039;highlight language-js&#039;&gt;
+    console.log(&#039;hello&#039;)
+  &lt;/code&gt;
+&lt;/body&gt;
+&lt;script&gt;
+const $code = document.querySelector(&#039;code&#039;) // &lt;code&gt;
+if ($code) {
+  const secondClass = $code.classList.item(1) // language-js
+  if (secondClass) {
+    const lowerLanguage = secondClass.split(&#039;-&#039;)[1] // js
+    if (lowerLanguage) {
+      const lang = lowerLanguage.toUpperCase() // JS
+      console.log(lang)
+    }
+  }
+}
+&lt;/script&gt;</code></pre>
+      <p>なお、本来は全ての <code translate="no">if</code> に対し、前提が崩れていた際の <code translate="no">else</code> が必要であるが、ここでは省略している。
+      <p>大抵の DOM 操作はこの <code translate="no">else</code> 部分はもとより、 <code translate="no">if</code> 部分すら書かず、暗黙の前提を置いている場合も多い。
+      <p>しかし、 TypeScript を使うと、この <code translate="no">if</code> を通して null を剥がさないとエラーになるため、これを書く場合も増えてきた。
+      <p>しかし <code translate="no">else</code> は、書いたところでできることが少ない場合が多く、共通のエラーを表示する程度な場合が多いだろう。
+      <p>Optional Chaining を使うと以下のようになる。
+      <pre class=html><code translate="no">&lt;body&gt;
+  &lt;code class=&#039;highlight language-js&#039;&gt;
+    console.log(&#039;hello&#039;)
+  &lt;/code&gt;
+&lt;/body&gt;
+&lt;script&gt;
+const lang = document.querySelector(&#039;code&#039;)? // node が無ければ null
+                     .classList.item(1)?     // 2 つめの class が無ければ null
+                     .split(&#039;-&#039;)[1]?         // 2 つめの 分割結果が無ければ undefined
+                     .toUpperCase()
+
+if (lang === undefined) {
+  cosnole.error(&#039;something wrong&#039;)
+} else {
+  console.log(lang)
+}
+&lt;/script&gt;</code></pre>
+      <p>最後の <code translate="no">lang</code> は全ての前提が揃った場合に <code translate="no">&quot;JS&quot;</code> が入り、どこかが破綻すると <code translate="no">undefined</code> になる。
+      <p>ここでの <code translate="no">undefined</code> の処理は、前述の <code translate="no">if</code> 版で省略されている <code translate="no">else</code> の処理にあたる。
+      <p>つまり、 Optional Chaining は、こうした null を考慮すべき処理の連続を、全て if-else で分岐しつつケアする代わりに、一連の処理をつなげ結果を期待した値 or undefined に丸め込んで結果を検証するといった書き方を可能とする。
+      <p>もしこのケースで、存在しない場合の lang をデフォルトで <code translate="no">txt</code> にしたい場合は、前述の Nullish Coalescing と組み合わせると以下のように書ける。
+      <pre class=js><code translate="no">const lang = document.querySelector(&#039;code&#039;)? // node が無ければ null
+                     .classList.item(1)?     // 2 つめの class が無ければ null
+                     .split(&#039;-&#039;)[1]?         // 2 つめの 分割結果が無ければ undefined
+                     .toUpperCase()          // どこかで失敗していれば undefined
+                     ?? &#039;txt&#039;               // undefined だった場合のデフォルト値
+
+console.log(lang) // value or `txt`</code></pre>
+      <p>どこまでを一連の Optional でくくるか、途中の処理の結果の型は何か、といった設計に注意すればかなり便利に使えるだろう。
+      <p>他の言語で、何かしら似たような、そしておそらくもっと高機能な機能と比べれば至らないものも多いかもしれないが、無いことろ比べればだいぶマシになりそうだ。
+    </section>
+    <section>
+      <h2 id="実装"><a href="#実装">実装</a></h2>
+      <p>どちらもトランスパイルしやすい仕様なので、各ツールでは以前から実装されており、探せば色々出てくるだろう。
+      <p>ブラウザについては以下だ。
+      <section>
+        <h3 id="nullish-coalescing-1"><a href="#nullish-coalescing-1">Nullish Coalescing</a></h3>
+        <p>Safari TP89 に入っているが、有効にするには Runtime Flag が必要だった。
+        <ul>
+          <li>
+            <a href="https://webkit.org/blog/9497/release-notes-for-safari-technology-preview-89/">Release Notes for Safari Technology Preview 89</a>
+          </li>
+        </ul>
+        <p>Mac の場合 JSC のフラグは以下のように付与する。
+        <pre class=sh><code translate="no">$ __XPC_JSC_useNullishCoalescing=true open -a &#039;Safari Technology Preview&#039;</code></pre>
+      </section>
+      <section>
+        <h3 id="optional-chaining-1"><a href="#optional-chaining-1">Optional Chaining</a></h3>
+        <p>Intents は出ているが現時点の Chrome Canary では動かなかった。
+        <ul>
+          <li>
+            <a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/M8-Qp_LydJc/bOl5uQ8RAAAJ">Intent to Implement: JavaScript Optional Chaining</a>
+          </li>
+        </ul>
+        <p>Safari もパッチはあるが、 TP にも入っていない。
+      </section>
+    </section>
+    <section>
+      <h2 id="demo"><a href="#demo">DEMO</a></h2>
+      <p>動作するデモを以下に用意した。
+      <ul>
+        <li>
+          <a href="https://labs.jxck.io/optional/nullish-coalescing.html">Nullish Coalescing</a>
+        </li>
+        <li>
+          <a href="https://labs.jxck.io/optional/optional-chaining.html">Optional Chaining</a>
+        </li>
+      </ul>
+    </section>
+  </article>
+
+</main>
+<hr>
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small><small>Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>Google Analytics</a> and <a href=https://w3c.github.io/ServiceWorker/>Service Worker</a>.</small></p>
+</footer>
+</body>
+</html>
+<amp-analytics type=googleanalytics id=analytics1>
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>

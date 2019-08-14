@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <!--
+  貴様、見ているな！！
+  このサイトの技術的なまとめはこちらをどうぞ。
+  https://labs.jxck.io/blog
+
+  by Jxck
+  -->
+  <link rel=canonical href="https://blog.jxck.io/entries/2019-08-14/nullish-coalescing-optional-chaining.html">
+  <link rel=amphtml href="https://blog.jxck.io/entries/2019-08-14/nullish-coalescing-optional-chaining.amp.html">
+  <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+  <link rel=author href=https://jxck.io/assets/humans.txt>
+  <link rel=manifest href=/manifest.json>
+  <link rel=preload as=font type=font/woff href=https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular-201907.woff2 crossorigin>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <script defer src=/assets/js/main.js></script>
+  <script defer src=/assets/js/ga.js></script>
+  <script defer src=https://jxck.io/assets/js/highlight.pack.js></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type=image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+
+  <meta name=author content=Jxck>
+  <meta name=description content="JS における null/undefined の扱い改善するための 2 つの機能が提案されている。- Nullish Coalescing Operator (stage 3)- Optional Chaining Operator (stage 3)いずれも Stage ...">
+  <meta name=keywords content="tc39,javascript">
+
+  <meta name=twitter:card content=summary>
+  <meta name=twitter:site content=@jxck_>
+  <meta name=twitter:url content="https://blog.jxck.io/entries/2019-08-14/nullish-coalescing-optional-chaining.html">
+  <meta name=twitter:title content="Nullish Coalescing と Optional Chaining | blog.jxck.io">
+  <meta name=twitter:description content="JS における null/undefined の扱い改善するための 2 つの機能が提案されている。- Nullish Coalescing Operator (stage 3)- Optional Chaining Operator (stage 3)いずれも Stage ...">
+  <meta name=twitter:image content="https://jxck.io/assets/img/jxck.png">
+
+  <meta property=og:type content=article>
+  <meta property=og:url content="https://blog.jxck.io/entries/2019-08-14/nullish-coalescing-optional-chaining.html">
+  <meta property=og:title content="Nullish Coalescing と Optional Chaining | blog.jxck.io">
+  <meta property=og:site_name content="blog.jxck.io">
+  <meta property=og:description content="JS における null/undefined の扱い改善するための 2 つの機能が提案されている。- Nullish Coalescing Operator (stage 3)- Optional Chaining Operator (stage 3)いずれも Stage ...">
+  <meta property=og:image content="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "Nullish Coalescing と Optional Chaining | blog.jxck.io",
+  "image": [
+    "https://jxck.io/assets/img/jxck.png",
+    "https://logo.jxck.io/jxck.1200x1200.png"
+  ],
+  "datePublished": "2019-08-14T08:00:00+08:00",
+  "dateModified": "2019-08-14T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://logo.jxck.io/jxck.60x60.png",
+      "height": 60,
+      "width": 60
+    }
+  },
+  "description": "JS における null/undefined の扱い改善するための 2 つの機能が提案されている。- Nullish Coalescing Operator (stage 3)- Optional Chaining Operator (stage 3)いずれも Stage ..."
+}
+</script>
+
+  <title>Nullish Coalescing と Optional Chaining | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/blog.svg   title=blog   alt="blog top" class=logo></a>
+        <li><a href="/entries/2019-08-14/nullish-coalescing-optional-chaining.amp.html#development=1" aria-label="amp version">
+                                               <img width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/amp.svg    title=blog   alt="amp version"></a>
+        <li><a href=.                         ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/up.svg     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/rss.svg    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/humans.svg title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/jxck.svg   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/markdown.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2019-08-14>2019-08-14</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2019-08-14>2019-08-14</time></dd></div>
+      <div><dt class=tags>tags</dt><dd>[<a href='/tags/tc39.html'>tc39</a>,<a href='/tags/javascript.html'>javascript</a>]</dd></div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+  <article>
+    <h1><a href=/entries/2019-08-14/nullish-coalescing-optional-chaining.html>Nullish Coalescing と Optional Chaining</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p>JS における null/undefined の扱い改善するための 2 つの機能が提案されている。
+      <ul>
+        <li>
+          <a href="https://github.com/tc39/proposal-nullish-coalescing">Nullish Coalescing Operator (stage 3)</a>
+        </li>
+        <li>
+          <a href="https://github.com/TC39/proposal-optional-chaining">Optional Chaining Operator (stage 3)</a>
+        </li>
+      </ul>
+      <p>いずれも Stage 3 に進み、実装も始まっているので、現時点での解説を行う。
+    </section>
+    <section>
+      <h2 id="nullish-coalescing"><a href="#nullish-coalescing">Nullish Coalescing</a></h2>
+      <p>対象が null/undefined だった場合にデフォルト値を返したいといった場合を考える。
+      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+      <pre class=js><code translate="no">function main(option) {
+  option.param = option.param || &#039;default&#039;
+}
+
+main({param : &#039;hello&#039;})</code></pre>
+      <p>しかし、この場合は null/undefined 以外にも param が <code translate="no">0</code>, <code translate="no">false</code>, <code translate="no">&#039;&#039;</code> など falsy な値の場合も上書きされてしまう。
+      <pre class=js><code translate="no">var param;
+
+param = 100
+param = param || &#039;default&#039; // 100
+
+param = null
+param = param || &#039;default&#039; // &#039;default&#039;
+
+param = undefined
+param = param || &#039;default&#039; // &#039;default&#039;
+
+param = 0
+param = param || &#039;default&#039; // &#039;default&#039;
+
+param = false
+param = param || &#039;default&#039; // &#039;default&#039;
+
+param = &#039;&#039;
+param = param || &#039;default&#039; // &#039;default&#039;</code></pre>
+      <p>つまり、本来は null/undefined の厳密な判定を行わなくてはいけないわけだが、プロパティごとにそれを行うのは面倒だ。
+      <p>そこで提案されたのが <code translate="no">??</code> という Null Coalescing Operator だ。(日本語だと Null 結合演算子になるのだろうか?)
+      <p>これを使うと、 null/undefined であった場合のみ上書きができる。(名前に反して null だけではない点に注意)
+      <pre class=js><code translate="no">var param;
+
+param = 100
+param = param ?? &#039;default&#039; // 100
+
+param = null
+param = param ?? &#039;default&#039; // &#039;default&#039;
+
+param = undefined
+param = param ?? &#039;default&#039; // &#039;default&#039;
+
+param = 0
+param = param ?? &#039;default&#039; // 0
+
+param = false
+param = param ?? &#039;default&#039; // false
+
+param = &#039;&#039;
+param = param ?? &#039;default&#039; // &#039;&#039;</code></pre>
+      <p>パラメータの初期化などで、 null/undefined 以外の falsy な値を尊重しつつデフォルトを決めるといったケースに使うことができる。
+      <pre class=js><code translate="no">function main(option) {
+  option.message  = option.message ?? &#039;default message&#039;
+  option.timeout  = option.timeout ?? 100
+  option.flag     = option.flag    ?? true
+  option.logging  = {debug: true}
+
+  cosnole.log(option)
+}
+
+main({
+ message: &#039;&#039;,
+ timeout: 0,
+ flag:    false,
+})</code></pre>
+    </section>
+    <section>
+      <h2 id="optional-chaining"><a href="#optional-chaining">Optional Chaining</a></h2>
+      <p>null に対するプロパティアクセスはエラーとなるため、それを防ぐためには一度チェックを行う必要がある。
+      <pre class=js><code translate="no">if (a !== null) {
+  a.b()
+}</code></pre>
+      <p>アクセスできない場合 undefined を返すように三項演算子で書くとこうなる。
+      <pre class=js><code translate="no">const result = (a !== null) ? a.b() : undefined</code></pre>
+      <p>このショートハンドとしてアクセサの直前に <code translate="no">?</code> を書くことができるようなるのがこの提案だ。
+      <pre class=js><code translate="no">a?.b   // a == null ? undefined : a.b
+a?.b() // a == null ? undefined : a.b()
+a?.[x] // a == null ? undefined : a[x]</code></pre>
+      <p>プロパティ以外にも、単体の関数を呼ぶ場合も利用可能だ。
+      <pre class=js><code translate="no">a?.() // a == null ? undefined : a()</code></pre>
+    </section>
+    <section>
+      <h2 id="short-circuiting"><a href="#short-circuiting">Short Circuiting</a></h2>
+      <p>以下のように Chain しても、途中で undefined に対する呼び出しになってエラーになったりはしない。
+      <pre class=js><code translate="no">a = null
+a?.b?.c() // a? で undefined になるが、後続の .b? がエラーになるわけではない</code></pre>
+      <p>これは <code translate="no">?.</code> の左側(left-hand side)が null/undefined と評価された時点で全体の評価が決定し、 <code translate="no">?.</code> の右側(right-hand side) は評価されていないからだ。
+      <p>したがって、以下のように副作用のある処理も実行されない。
+      <pre class=js><code translate="no">a = null
+a?.b[x++] // ?. より右は実行されず x は増えない</code></pre>
+      <p>この挙動を Short Circuting と言う。
+      <p>もし Short Circuit を止めて、評価を実行したい場合は、対象を括弧でくくればその範囲のみに限定することもできる。
+      <pre class=js><code translate="no">(a?.b).c // a が null でも .c は実行される</code></pre>
+    </section>
+    <section>
+      <h2 id="nullable-と-optional"><a href="#nullable-と-optional">nullable と optional</a></h2>
+      <p>こんなコードを考えてみる。
+      <pre class=html><code translate="no">&lt;body&gt;
+  &lt;code class=&#039;highlight language-js&#039;&gt;
+    console.log(&#039;hello&#039;)
+  &lt;/code&gt;
+&lt;/body&gt;
+&lt;script&gt;
+const lang = document.querySelector(&#039;code&#039;) // &lt;code&gt;
+                     .classList             // [highlight, language-js]
+                     .item(1)               // language-js
+                     .split(&#039;-&#039;)[1]         // [language, js][1]
+                     .toUpperCase()         // JS
+
+console.log(lang) // JS
+&lt;/script&gt;</code></pre>
+      <p>このコードをそのままブラウザで走らせれば、 JS が期待している DOM が確実にあるため問題なく動くだろう。
+      <p>しかし、型を厳密に考えると <code translate="no">querySelector()</code> や <code translate="no">item()</code> は nullable であり、配列の範囲外の添字アクセスは undefined を返す。
+      <p>したがって、チェインのどこかが null/undefined になれば破綻するため、そこをケアするには各段階で確認する必要がある。
+      <p>色々書き方はあるが、雑に書くとこういうことだ。
+      <pre class=html><code translate="no">&lt;body&gt;
+  &lt;code class=&#039;highlight language-js&#039;&gt;
+    console.log(&#039;hello&#039;)
+  &lt;/code&gt;
+&lt;/body&gt;
+&lt;script&gt;
+const $code = document.querySelector(&#039;code&#039;) // &lt;code&gt;
+if ($code) {
+  const secondClass = $code.classList.item(1) // language-js
+  if (secondClass) {
+    const lowerLanguage = secondClass.split(&#039;-&#039;)[1] // js
+    if (lowerLanguage) {
+      const lang = lowerLanguage.toUpperCase() // JS
+      console.log(lang)
+    }
+  }
+}
+&lt;/script&gt;</code></pre>
+      <p>なお、本来は全ての <code translate="no">if</code> に対し、前提が崩れていた際の <code translate="no">else</code> が必要であるが、ここでは省略している。
+      <p>大抵の DOM 操作はこの <code translate="no">else</code> 部分はもとより、 <code translate="no">if</code> 部分すら書かず、暗黙の前提を置いている場合も多い。
+      <p>しかし、 TypeScript を使うと、この <code translate="no">if</code> を通して null を剥がさないとエラーになるため、これを書く場合も増えてきた。
+      <p>しかし <code translate="no">else</code> は、書いたところでできることが少ない場合が多く、共通のエラーを表示する程度な場合が多いだろう。
+      <p>Optional Chaining を使うと以下のようになる。
+      <pre class=html><code translate="no">&lt;body&gt;
+  &lt;code class=&#039;highlight language-js&#039;&gt;
+    console.log(&#039;hello&#039;)
+  &lt;/code&gt;
+&lt;/body&gt;
+&lt;script&gt;
+const lang = document.querySelector(&#039;code&#039;)? // node が無ければ null
+                     .classList.item(1)?     // 2 つめの class が無ければ null
+                     .split(&#039;-&#039;)[1]?         // 2 つめの 分割結果が無ければ undefined
+                     .toUpperCase()
+
+if (lang === undefined) {
+  cosnole.error(&#039;something wrong&#039;)
+} else {
+  console.log(lang)
+}
+&lt;/script&gt;</code></pre>
+      <p>最後の <code translate="no">lang</code> は全ての前提が揃った場合に <code translate="no">&quot;JS&quot;</code> が入り、どこかが破綻すると <code translate="no">undefined</code> になる。
+      <p>ここでの <code translate="no">undefined</code> の処理は、前述の <code translate="no">if</code> 版で省略されている <code translate="no">else</code> の処理にあたる。
+      <p>つまり、 Optional Chaining は、こうした null を考慮すべき処理の連続を、全て if-else で分岐しつつケアする代わりに、一連の処理をつなげ結果を期待した値 or undefined に丸め込んで結果を検証するといった書き方を可能とする。
+      <p>もしこのケースで、存在しない場合の lang をデフォルトで <code translate="no">txt</code> にしたい場合は、前述の Nullish Coalescing と組み合わせると以下のように書ける。
+      <pre class=js><code translate="no">const lang = document.querySelector(&#039;code&#039;)? // node が無ければ null
+                     .classList.item(1)?     // 2 つめの class が無ければ null
+                     .split(&#039;-&#039;)[1]?         // 2 つめの 分割結果が無ければ undefined
+                     .toUpperCase()          // どこかで失敗していれば undefined
+                     ?? &#039;txt&#039;               // undefined だった場合のデフォルト値
+
+console.log(lang) // value or `txt`</code></pre>
+      <p>どこまでを一連の Optional でくくるか、途中の処理の結果の型は何か、といった設計に注意すればかなり便利に使えるだろう。
+      <p>他の言語で、何かしら似たような、そしておそらくもっと高機能な機能と比べれば至らないものも多いかもしれないが、無いことろ比べればだいぶマシになりそうだ。
+    </section>
+    <section>
+      <h2 id="実装"><a href="#実装">実装</a></h2>
+      <p>どちらもトランスパイルしやすい仕様なので、各ツールでは以前から実装されており、探せば色々出てくるだろう。
+      <p>ブラウザについては以下だ。
+      <section>
+        <h3 id="nullish-coalescing-1"><a href="#nullish-coalescing-1">Nullish Coalescing</a></h3>
+        <p>Safari TP89 に入っているが、有効にするには Runtime Flag が必要だった。
+        <ul>
+          <li>
+            <a href="https://webkit.org/blog/9497/release-notes-for-safari-technology-preview-89/">Release Notes for Safari Technology Preview 89</a>
+          </li>
+        </ul>
+        <p>Mac の場合 JSC のフラグは以下のように付与する。
+        <pre class=sh><code translate="no">$ __XPC_JSC_useNullishCoalescing=true open -a &#039;Safari Technology Preview&#039;</code></pre>
+      </section>
+      <section>
+        <h3 id="optional-chaining-1"><a href="#optional-chaining-1">Optional Chaining</a></h3>
+        <p>Intents は出ているが現時点の Chrome Canary では動かなかった。
+        <ul>
+          <li>
+            <a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/M8-Qp_LydJc/bOl5uQ8RAAAJ">Intent to Implement: JavaScript Optional Chaining</a>
+          </li>
+        </ul>
+        <p>Safari もパッチはあるが、 TP にも入っていない。
+      </section>
+    </section>
+    <section>
+      <h2 id="demo"><a href="#demo">DEMO</a></h2>
+      <p>動作するデモを以下に用意した。
+      <ul>
+        <li>
+          <a href="https://labs.jxck.io/optional/nullish-coalescing.html">Nullish Coalescing</a>
+        </li>
+        <li>
+          <a href="https://labs.jxck.io/optional/optional-chaining.html">Optional Chaining</a>
+        </li>
+      </ul>
+    </section>
+  </article>
+
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small><small>Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>Google Analytics</a> and <a href=https://w3c.github.io/ServiceWorker/>Service Worker</a>.</small></p>
+  </footer>
+</body>
+</html>
