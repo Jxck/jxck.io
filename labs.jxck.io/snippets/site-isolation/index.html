@@ -1,0 +1,28 @@
+<!doctype html>
+
+<h4>Enter secret to be read</h4>
+
+<p>https://github.com/cgvwzq/spectre</p>
+
+<form>
+  <input id=secret type=text required>
+  <button id=start type=submit>start</button>
+</form>
+<pre id=progress></pre>
+
+<script src=spectre.js></script>
+<script>
+  const $ = document.querySelector.bind(document)
+
+  if (window.SharedArrayBuffer === undefined) {
+    alert("SharedArrayBuffer unsupported")
+  }
+
+  $('form').addEventListener('submit', (e) => {
+    e.preventDefault()
+    const input = $("#secret").value
+    const arr = Array.from(input).map((e) => e.charCodeAt(0))
+    console.log(arr)
+    main(arr)
+  })
+</script>
