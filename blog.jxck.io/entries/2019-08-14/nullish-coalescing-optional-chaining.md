@@ -295,7 +295,7 @@ $ __XPC_JSC_useNullishCoalescing=true open -a 'Safari Technology Preview'
 
 Intents は出ているが現時点の Chrome Canary では動かなかった。
 
-- [Intent to Implement: JavaScript Optional Chaining](https://groups.google.com/a/chromium.org/forum/#!searchin/blink-dev/optional|sort:date/blink-dev/M8-Qp_LydJc/y4QOcrHVAQAJ)
+- [Intent to Implement: JavaScript Optional Chaining](https://groups.google.com/a/chromium.org/d/msg/blink-dev/M8-Qp_LydJc/bOl5uQ8RAAAJ)
 
 Safari もパッチはあるが、 TP にも入っていない。
 
