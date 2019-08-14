@@ -1,13 +1,13 @@
-# [promise] Promise.allSettled 及び Promise.any について
+# [promise][tc39][js] Promise.allSettled と Promise.any
 
 ## Intro
 
 `Promise.allSettled()` と `Promise.any()` の仕様策定が進んでいる。
 
-なお、近いレイヤの仕様では有るが、作業の進捗には差がある。
+両者は近いレイヤの仕様では有るが、作業の進捗には差がある。
 
-- [allSettled](https://github.com/tc39/proposal-promise-allSettled) は Stage 4 であり、 Chrome や Safari TP には実装もされている
-- [any](https://github.com/tc39/proposal-promise-any) は Stage 2 であり、まだ実装はない
+- [Promise.allSettled](https://github.com/tc39/proposal-promise-allSettled) は Stage 4 であり、 Chrome や Safari TP には実装もされている
+- [Promise.any](https://github.com/tc39/proposal-promise-any) は Stage 2 であり、実装はまだない
 
 ここでは、これらがあると何が嬉しいのかを `Promise.all()`, `Promise.race()` の特徴を踏まえて解説する。
 
@@ -20,11 +20,11 @@ all は全ての Promise が Resolve したら Resolve し、 race はどれか 
 
 ```js
 const fetches = [
-  fetch("./page1.html"),
-  fetch("./page2.html"),
-  fetch("./page3.html"),
-  fetch("./page4.html"),
-  fetch("./page5.html"),
+  fetch('./page1.html'),
+  fetch('./page2.html'),
+  fetch('./page3.html'),
+  fetch('./page4.html'),
+  fetch('./page5.html'),
 ]
 
 // 全ての fetch が Resolve したら Resolve する
@@ -46,12 +46,12 @@ all は、その中の一つでも Reject すると、全体が Reject してし
 ```js
 try {
   const fetches = [
-    fetch("./page1.html"),
-    fetch("./page2.html"),
-    fetch("./page3.html"),
-    fetch("./page4.html"),
+    fetch('./page1.html'),
+    fetch('./page2.html'),
+    fetch('./page3.html'),
+    fetch('./page4.html'),
     new Promise((done, fail) => {
-    setTimeout(() => fail('abort'), 10)
+      setTimeout(() => fail('abort'), 10)
     })
   ]
 
@@ -78,10 +78,10 @@ allSettled は、 all とは違い、個々が Resolve/Reject どちらになっ
 
 ```js
 const fetches = [
-  fetch("./page1.html"),
-  fetch("./page2.html"),
-  fetch("./page3.html"),
-  fetch("./page4.html"),
+  fetch('./page1.html'),
+  fetch('./page2.html'),
+  fetch('./page3.html'),
+  fetch('./page4.html'),
   new Promise((done, fail) => {
     setTimeout(() => fail('abort'), 10)
   })
@@ -89,18 +89,18 @@ const fetches = [
 
 try {
   console.log(await Promise.allSettled(fetches))
-  // 0: {status: "fulfilled", value: Response}
-  // 1: {status: "fulfilled", value: Response}
-  // 2: {status: "fulfilled", value: Response}
-  // 3: {status: "fulfilled", value: Response}
-  // 4: {status: "rejected", reason: "abort"}
+  // 0: {status: 'fulfilled', value: Response}
+  // 1: {status: 'fulfilled', value: Response}
+  // 2: {status: 'fulfilled', value: Response}
+  // 3: {status: 'fulfilled', value: Response}
+  // 4: {status: 'rejected', reason: 'abort'}
 } catch(err) {
   // 基本的に reject はしない
   console.error(err)
 }
 ```
 
-したがって、 `status: "rejected"` な結果だけをリトライすれば良い。
+したがって、 `status: 'rejected'` な結果だけをリトライすれば良い。
 
 完了したものを無駄にせず、効率よく簡単に実装することができるだろう。
 
@@ -111,10 +111,10 @@ race の場合は、最初の一つが Resolve する前に Reject した Promis
 
 ```js
 const fetches = [
-  fetch("./abort"),
-  fetch("./async-await"),
-  fetch("./finally"),
-  fetch("./index.html"),
+  fetch('./page1.html'),
+  fetch('./page2.html'),
+  fetch('./page3.html'),
+  fetch('./page4.html'),
   new Promise((done, fail) => {
     setTimeout(() => fail('abort'), 10)
   })
@@ -138,10 +138,10 @@ any は rece とは違い、 Resolve する前に Reject する Promise があ�
 
 ```js
 const fetches = [
-  fetch("./abort"),
-  fetch("./async-await"),
-  fetch("./finally"),
-  fetch("./index.html"),
+  fetch('./page1.html'),
+  fetch('./page2.html'),
+  fetch('./page3.html'),
+  fetch('./page4.html'),
   new Promise((done, fail) => {
     setTimeout(() => fail('abort'), 10)
   })
@@ -159,17 +159,33 @@ try {
 
 ## 補足
 
-Promise が Resolved/Rejected のどちらかになった状態、つまり成功失敗に関わらず「処理が終わった状態」を Settled と言う。
+Promise が Resolve した状態を Fulfilled, Reject した状態を Rejected と言う。
 
-そして、まだ処理中の Promise が有っても、中断して全体を Settled させることを Short-Circuit と言う。
+Fulfilled か Rejected どちらかになった状態、つまり成功失敗に関わらず「処理が終わった状態」を *Settled* と言う。
+
+そして、 Promise の配列を取る API で、まだ処理中の Promise がいても、中断して全体を Settled にすることを Short-Circuit と言う。
 
 これを踏まえて分類すると、以下のようになる。
 
-- Promise.all: 一つでも reject すると Short-Circuit する
-- Promise.allSettled: 全部 Settled になるまで続けるので Short-Circuit しない
-- Promise.race: 一つでも settled すると Short-Circuit する
-- Promise.any: 一つでも resolved すると Short-Circuit する
+- `Promise.all`:        全部 Fulfilled になるまで続け、 1 つでも Rejected になると Short-Circuit する
+- `Promise.allSettled`: 全部 Settled になるまで続け、 Short-Circuit しない
+- `Promise.any`:        1 つでも Fulfilled になると Short-Circuit する
+- `Promise.race`:       1 つでも Settled になると Short-Circuit する
 
 つまり、終わる条件が Settled なのかどうかで分類できることがわかる。
 
-(race は [anySettled](https://github.com/tc39/proposal-promise-any/issues/10#issuecomment-459134703) ということになる)
+この分類で行くと race はそもそも [anySettled](https://github.com/tc39/proposal-promise-any/issues/10#issuecomment-459134703) だったと言うことになる。
+
+同じようにもし今名前を変えても良いのであれば、こうするとわかりやすいだろう。
+
+- `Promise.allFulfilled`: (Promise.all)
+- `Promise.allSettled`:   (Promise.allSettled)
+- `Promise.anyFulfilled`: (Promise.any)
+- `Promise.anySettled`:   (Promise.race)
+
+
+## DEMO
+
+動作するデモを以下に用意した。
+
+- <https://labs.jxck.io/promise/allsettled>
