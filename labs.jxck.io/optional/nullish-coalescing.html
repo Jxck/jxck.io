@@ -10,22 +10,4 @@
 
 <p>see the console</p>
 
-<script>
-  'use strict';
-
-  document.on('DOMContentLoaded', (e) => {
-    console.log(e)
-
-    const o = {
-      nul:   null,
-      undef: undefined,
-      text:  'foo bar'
-    }
-
-    console.log(o.nul   ?? 'alternate')
-    console.log(o.undef ?? 'alternate')
-    console.log(o.xxx   ?? 'alternate')
-    console.log(o.text  ?? 'alternate')
-  })
-</script>
-
+<script src=nullish-coalescing.js></script>
