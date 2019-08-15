@@ -11,11 +11,11 @@
   <button id=toggle>toggle</button>
 
   <pre>
-    <span>this is thin & silver (他のスタイルが当たらない場合のベース、中括弧やセミコロンなど)</span>
-    <span class=RegularDark>this is regular & dark (数値と演算子)</span>
-    <span class=RegularSilverItalic>this is regular & silver & italic (コメントと文字列)</span>
-    <span class=BoldBlack>this is bold & black (構文キーワードなど)</span>
-    <span class=BoldGray>this is bold & gray (変数関数クラス名など)</span>
+    <span>this is thin &amp; silver (他のスタイルが当たらない場合のベース、中括弧やセミコロンなど)</span>
+    <span class=RegularDark>this is regular &amp; dark (数値と演算子)</span>
+    <span class=RegularSilverItalic>this is regular &amp; silver &amp; italic (コメントと文字列)</span>
+    <span class=BoldBlack>this is bold &amp; black (構文キーワードなど)</span>
+    <span class=BoldGray>this is bold &amp; gray (変数関数クラス名など)</span>
   </pre>
 
   <pre class="highlight js"><span class="BoldBlack">import</span> <span class="BoldGray">file</span> <span class="BoldBlack">from</span> <span class="BoldGray">fs</span>
@@ -187,26 +187,23 @@
   <span class="Punctuation">}</span>
 </pre>
   <pre class="highlight java"><span class="BoldBlack">public</span> <span class="BoldBlack">class</span> <span class="BoldGray">DecimalOctal</span> <span class="RegularDark">{</span>
+  <span class="BoldBlack">public</span> <span class="BoldBlack">static</span> <span class="BoldBlack">void</span> <span class="BoldGray">main</span><span class="RegularDark">(</span><span class="BoldGray">String</span><span class="RegularDark">[]</span> <span class="BoldGray">args</span><span class="RegularDark">)</span> <span class="RegularDark">{</span>
+    <span class="BoldBlack">int</span> <span class="BoldGray">decimal</span> <span class="RegularDark">=</span> <span class="RegularDark">78</span><span class="RegularDark">;</span>
+    <span class="BoldBlack">int</span> <span class="BoldGray">octal</span> <span class="RegularDark">=</span> <span class="BoldGray">convertDecimalToOctal</span><span class="RegularDark">(</span><span class="BoldGray">decimal</span><span class="RegularDark">);</span>
+    <span class="BoldGray">System</span><span class="RegularDark">.</span><span class="BoldGray">out</span><span class="RegularDark">.</span><span class="BoldGray">printf</span><span class="RegularDark">(</span><span class="RegularSilverItalic">"%d in decimal = %d in octal"</span><span class="RegularDark">,</span> <span class="BoldGray">decimal</span><span class="RegularDark">,</span> <span class="BoldGray">octal</span><span class="RegularDark">);</span>
+  <span class="RegularDark">}</span>
 
-    <span class="BoldBlack">public</span> <span class="BoldBlack">static</span> <span class="BoldBlack">void</span> <span class="BoldGray">main</span><span class="RegularDark">(</span><span class="BoldGray">String</span><span class="RegularDark">[]</span> <span class="BoldGray">args</span><span class="RegularDark">)</span> <span class="RegularDark">{</span>
-        <span class="BoldBlack">int</span> <span class="BoldGray">decimal</span> <span class="RegularDark">=</span> <span class="RegularDark">78</span><span class="RegularDark">;</span>
-        <span class="BoldBlack">int</span> <span class="BoldGray">octal</span> <span class="RegularDark">=</span> <span class="BoldGray">convertDecimalToOctal</span><span class="RegularDark">(</span><span class="BoldGray">decimal</span><span class="RegularDark">);</span>
-        <span class="BoldGray">System</span><span class="RegularDark">.</span><span class="BoldGray">out</span><span class="RegularDark">.</span><span class="BoldGray">printf</span><span class="RegularDark">(</span><span class="RegularSilverItalic">"%d in decimal = %d in octal"</span><span class="RegularDark">,</span> <span class="BoldGray">decimal</span><span class="RegularDark">,</span> <span class="BoldGray">octal</span><span class="RegularDark">);</span>
+  <span class="BoldBlack">public</span> <span class="BoldBlack">static</span> <span class="BoldBlack">int</span> <span class="BoldGray">convertDecimalToOctal</span><span class="RegularDark">(</span><span class="BoldBlack">int</span> <span class="BoldGray">decimal</span><span class="RegularDark">)</span> <span class="RegularDark">{</span>
+    <span class="BoldBlack">int</span> <span class="BoldGray">octalNumber</span> <span class="RegularDark">=</span> <span class="RegularDark">0</span><span class="RegularDark">,</span> <span class="BoldGray">i</span> <span class="RegularDark">=</span> <span class="RegularDark">1</span><span class="RegularDark">;</span>
+
+    <span class="BoldBlack">while</span> <span class="RegularDark">(</span><span class="BoldGray">decimal</span> <span class="RegularDark">!=</span> <span class="RegularDark">0</span><span class="RegularDark">)</span> <span class="RegularDark">{</span>
+      <span class="BoldGray">octalNumber</span> <span class="RegularDark">+=</span> <span class="RegularDark">(</span><span class="BoldGray">decimal</span> <span class="RegularDark">%</span> <span class="RegularDark">8</span><span class="RegularDark">)</span> <span class="RegularDark">*</span> <span class="BoldGray">i</span><span class="RegularDark">;</span>
+      <span class="BoldGray">decimal</span> <span class="RegularDark">/=</span> <span class="RegularDark">8</span><span class="RegularDark">;</span>
+      <span class="BoldGray">i</span> <span class="RegularDark">*=</span> <span class="RegularDark">10</span><span class="RegularDark">;</span>
     <span class="RegularDark">}</span>
 
-    <span class="BoldBlack">public</span> <span class="BoldBlack">static</span> <span class="BoldBlack">int</span> <span class="BoldGray">convertDecimalToOctal</span><span class="RegularDark">(</span><span class="BoldBlack">int</span> <span class="BoldGray">decimal</span><span class="RegularDark">)</span>
-    <span class="RegularDark">{</span>
-        <span class="BoldBlack">int</span> <span class="BoldGray">octalNumber</span> <span class="RegularDark">=</span> <span class="RegularDark">0</span><span class="RegularDark">,</span> <span class="BoldGray">i</span> <span class="RegularDark">=</span> <span class="RegularDark">1</span><span class="RegularDark">;</span>
-
-        <span class="BoldBlack">while</span> <span class="RegularDark">(</span><span class="BoldGray">decimal</span> <span class="RegularDark">!=</span> <span class="RegularDark">0</span><span class="RegularDark">)</span>
-        <span class="RegularDark">{</span>
-            <span class="BoldGray">octalNumber</span> <span class="RegularDark">+=</span> <span class="RegularDark">(</span><span class="BoldGray">decimal</span> <span class="RegularDark">%</span> <span class="RegularDark">8</span><span class="RegularDark">)</span> <span class="RegularDark">*</span> <span class="BoldGray">i</span><span class="RegularDark">;</span>
-            <span class="BoldGray">decimal</span> <span class="RegularDark">/=</span> <span class="RegularDark">8</span><span class="RegularDark">;</span>
-            <span class="BoldGray">i</span> <span class="RegularDark">*=</span> <span class="RegularDark">10</span><span class="RegularDark">;</span>
-        <span class="RegularDark">}</span>
-
-        <span class="BoldBlack">return</span> <span class="BoldGray">octalNumber</span><span class="RegularDark">;</span>
-    <span class="RegularDark">}</span>
+    <span class="BoldBlack">return</span> <span class="BoldGray">octalNumber</span><span class="RegularDark">;</span>
+  <span class="RegularDark">}</span>
 <span class="RegularDark">}</span>
 </pre>
   <pre class="highlight ruby"><span class="RegularSilverItalic">#!/usr/bin/env ruby</span>
@@ -300,11 +297,11 @@
   &lt;button id=toggle&gt;toggle&lt;/button&gt;
 
   &lt;pre&gt;
-    &lt;span&gt;this is thin &amp; silver (他のスタイルが当たらない場合のベース、中括弧やセミコロンなど)&lt;/span&gt;
-    &lt;span class=RegularDark&gt;this is regular &amp; dark (数値と演算子)&lt;/span&gt;
-    &lt;span class=RegularSilverItalic&gt;this is regular &amp; silver &amp; italic (コメントと文字列)&lt;/span&gt;
-    &lt;span class=BoldBlack&gt;this is bold &amp; black (構文キーワードなど)&lt;/span&gt;
-    &lt;span class=BoldGray&gt;this is bold &amp; gray (変数関数クラス名など)&lt;/span&gt;
+    &lt;span&gt;this is thin &amp;amp; silver (他のスタイルが当たらない場合のベース、中括弧やセミコロンなど)&lt;/span&gt;
+    &lt;span class=RegularDark&gt;this is regular &amp;amp; dark (数値と演算子)&lt;/span&gt;
+    &lt;span class=RegularSilverItalic&gt;this is regular &amp;amp; silver &amp;amp; italic (コメントと文字列)&lt;/span&gt;
+    &lt;span class=BoldBlack&gt;this is bold &amp;amp; black (構文キーワードなど)&lt;/span&gt;
+    &lt;span class=BoldGray&gt;this is bold &amp;amp; gray (変数関数クラス名など)&lt;/span&gt;
   &lt;/pre&gt;
 
   &lt;pre class="highlight js"&gt;</span><span class="RegularSilverItalic">#{</span><span class="BoldGray">js</span><span class="RegularSilverItalic">}</span><span class="RegularSilverItalic">&lt;/pre&gt;
@@ -375,7 +372,6 @@ document.querySelector('button').addEventListener('click', (e) =&gt; {
 </span><span class="BoldBlack">func</span><span class="Other"> </span><span class="Punctuation">(</span><span class="BoldGray">v</span><span class="Other"> </span><span class="RegularDark">*</span><span class="BoldGray">Vertex</span><span class="Punctuation">)</span><span class="Other"> </span><span class="BoldGray">Abs</span><span class="Punctuation">()</span><span class="Other"> </span><span class="BoldBlack">float64</span><span class="Other"> </span><span class="Punctuation">{</span><span class="Other">
 	</span><span class="BoldBlack">return</span><span class="Other"> </span><span class="BoldGray">math</span><span class="RegularDark">.</span><span class="BoldGray">Sqrt</span><span class="Punctuation">(</span><span class="BoldGray">v</span><span class="RegularDark">.</span><span class="BoldGray">X</span><span class="RegularDark">*</span><span class="BoldGray">v</span><span class="RegularDark">.</span><span class="BoldGray">X</span><span class="Other"> </span><span class="RegularDark">+</span><span class="Other"> </span><span class="BoldGray">v</span><span class="RegularDark">.</span><span class="BoldGray">Y</span><span class="RegularDark">*</span><span class="BoldGray">v</span><span class="RegularDark">.</span><span class="BoldGray">Y</span><span class="Punctuation">)</span><span class="Other">
 </span><span class="Punctuation">}</span><span class="Other">
-
 </span></pre>
   <pre class="highlight make"><span class="RegularSilverItalic"># Makefile
 </span><span class="BoldBlack">.PHONY</span><span class="RegularDark">:</span> <span class="BoldGray">all</span>
