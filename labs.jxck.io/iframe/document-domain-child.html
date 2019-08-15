@@ -16,11 +16,16 @@
 
   document.domain = "jxck.io"
 
-  $('#pong').on('click', (e) => {
-    window
-      .parent
-      .document
-      .querySelector('#msg')
-      .textContent += 'pong'
+  window.on('load', (e) => {
+
+    console.log(window.parent.document.querySelector('h1'))
+
+    $('#pong').on('click', (e) => {
+      window
+        .parent
+        .document
+        .querySelector('#msg')
+        .textContent += 'pong'
+    })
   })
 </script>

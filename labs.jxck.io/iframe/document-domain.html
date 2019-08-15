@@ -18,10 +18,15 @@
 
   document.domain = "jxck.io"
 
-  $('#ping').on('click', (e) => {
-    $('iframe')
-      .contentDocument
-      .querySelector('#msg')
-      .textContent += 'ping'
+  window.on('load', (e) => {
+
+    console.log(window.frames[0].document.querySelector('h1'))
+
+    $('#ping').on('click', (e) => {
+      $('iframe')
+        .contentDocument
+        .querySelector('#msg')
+        .textContent += 'ping'
+    })
   })
 </script>
