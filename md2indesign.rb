@@ -1011,7 +1011,7 @@ if __FILE__ == $PROGRAM_NAME
   if ARGV.include? "-t"
     puts "test builing blog"
     icon = "https://jxck.io/assets/img/jxck.png"
-    file = "./blog.jxck.io/entries/2016-01-27/new-blog-start.md"
+    file = "./labs.jxck.io/syntax-highlight/sample.md"
     e = Entry.new(file, icon)
     blog(e)
     exit 0
