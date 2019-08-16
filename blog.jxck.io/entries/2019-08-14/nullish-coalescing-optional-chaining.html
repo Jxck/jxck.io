@@ -55,7 +55,7 @@
     "https://logo.jxck.io/jxck.1200x1200.png"
   ],
   "datePublished": "2019-08-14T08:00:00+08:00",
-  "dateModified": "2019-08-14T08:00:00+08:00",
+  "dateModified": "2019-08-17T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -100,7 +100,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-08-14>2019-08-14</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2019-08-14>2019-08-14</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2019-08-17>2019-08-17</time></dd></div>
       <div><dt class=tags>tags</dt><dd>[<a href='/tags/tc39.html'>tc39</a>,<a href='/tags/javascript.html'>javascript</a>]</dd></div>
     </dl>
 
@@ -193,7 +193,7 @@ main({
       <pre class=js><code translate="no">if (a !== null) {
   a.b()
 }</code></pre>
-      <p>アクセスできない場合 undefined を返すように三項演算子で書くとこうなる。
+      <p>アクセスできない場合 <code translate="no">undefined</code> を返すように三項演算子で書くとこうなる。
       <pre class=js><code translate="no">const result = (a !== null) ? a.b() : undefined</code></pre>
       <p>このショートハンドとしてアクセサの直前に <code translate="no">?</code> を書くことができるようなるのがこの提案だ。
       <pre class=js><code translate="no">a?.b   // a == null ? undefined : a.b
@@ -204,7 +204,7 @@ a?.[x] // a == null ? undefined : a[x]</code></pre>
     </section>
     <section>
       <h2 id="short-circuiting"><a href="#short-circuiting">Short Circuiting</a></h2>
-      <p>以下のように Chain しても、途中で undefined に対する呼び出しになってエラーになったりはしない。
+      <p>以下のように Chain しても、途中で <code translate="no">undefined</code> に対する呼び出しになってエラーになったりはしない。
       <pre class=js><code translate="no">a = null
 a?.b?.c() // a? で undefined になるが、後続の .b? がエラーになるわけではない</code></pre>
       <p>これは <code translate="no">?.</code> の左側(left-hand side)が null/undefined と評価された時点で全体の評価が決定し、 <code translate="no">?.</code> の右側(right-hand side) は評価されていないからだ。
@@ -233,7 +233,7 @@ const lang = document.querySelector(&#039;code&#039;) // &lt;code&gt;
 console.log(lang) // JS
 &lt;/script&gt;</code></pre>
       <p>このコードをそのままブラウザで走らせれば、 JS が期待している DOM が確実にあるため問題なく動くだろう。
-      <p>しかし、型を厳密に考えると <code translate="no">querySelector()</code> や <code translate="no">item()</code> は nullable であり、配列の範囲外の添字アクセスは undefined を返す。
+      <p>しかし、型を厳密に考えると <code translate="no">querySelector()</code> や <code translate="no">item()</code> は nullable であり、配列の範囲外の添字アクセスは <code translate="no">undefined</code> を返す。
       <p>したがって、チェインのどこかが null/undefined になれば破綻するため、そこをケアするには各段階で確認する必要がある。
       <p>色々書き方はあるが、雑に書くとこういうことだ。
       <pre class=html><code translate="no">&lt;body&gt;
@@ -256,8 +256,8 @@ if ($code) {
 &lt;/script&gt;</code></pre>
       <p>なお、本来は全ての <code translate="no">if</code> に対し、前提が崩れていた際の <code translate="no">else</code> が必要であるが、ここでは省略している。
       <p>大抵の DOM 操作はこの <code translate="no">else</code> 部分はもとより、 <code translate="no">if</code> 部分すら書かず、暗黙の前提を置いている場合も多い。
-      <p>しかし、 TypeScript を使うと、この <code translate="no">if</code> を通して null を剥がさないとエラーになるため、これを書く場合も増えてきた。
-      <p>しかし <code translate="no">else</code> は、書いたところでできることが少ない場合が多く、共通のエラーを表示する程度な場合が多いだろう。
+      <p>TypeScript を使うと、この <code translate="no">if</code> を通して <code translate="no">null</code> を剥がさないとエラーになるため、これを書く場合も増えてきた。
+      <p>しかし <code translate="no">else</code> は、書いたところでできることが少なく、共通のエラーを表示する程度な場合も多いだろう。
       <p>Optional Chaining を使うと以下のようになる。
       <pre class=html><code translate="no">&lt;body&gt;
   &lt;code class=&#039;highlight language-js&#039;&gt;
@@ -278,17 +278,17 @@ if (lang === undefined) {
 &lt;/script&gt;</code></pre>
       <p>最後の <code translate="no">lang</code> は全ての前提が揃った場合に <code translate="no">&quot;JS&quot;</code> が入り、どこかが破綻すると <code translate="no">undefined</code> になる。
       <p>ここでの <code translate="no">undefined</code> の処理は、前述の <code translate="no">if</code> 版で省略されている <code translate="no">else</code> の処理にあたる。
-      <p>つまり、 Optional Chaining は、こうした null を考慮すべき処理の連続を、全て if-else で分岐しつつケアする代わりに、一連の処理をつなげ結果を期待した値 or undefined に丸め込んで結果を検証するといった書き方を可能とする。
-      <p>もしこのケースで、存在しない場合の lang をデフォルトで <code translate="no">txt</code> にしたい場合は、前述の Nullish Coalescing と組み合わせると以下のように書ける。
+      <p>つまり、 Optional Chaining は、こうした <code translate="no">null</code> を考慮すべき処理の連続を、全て if-else で分岐しつつケアする代わりに、一連の処理をつなげ結果を期待した値 or <code translate="no">undefined</code> に丸め込んで結果を検証するといった書き方を可能とする。
+      <p>もしこのケースで、存在しない場合の lang をデフォルトで <code translate="no">&quot;TEXT&quot;</code> にしたい場合は、前述の Nullish Coalescing と組み合わせると以下のように書ける。
       <pre class=js><code translate="no">const lang = document.querySelector(&#039;code&#039;)? // node が無ければ null
                      .classList.item(1)?     // 2 つめの class が無ければ null
                      .split(&#039;-&#039;)[1]?         // 2 つめの 分割結果が無ければ undefined
                      .toUpperCase()          // どこかで失敗していれば undefined
-                     ?? &#039;txt&#039;               // undefined だった場合のデフォルト値
+                     ?? &#039;TEXT&#039;               // undefined だった場合のデフォルト値
 
-console.log(lang) // value or `txt`</code></pre>
+console.log(lang) // &quot;JS&quot; or &quot;TEXT&quot;</code></pre>
       <p>どこまでを一連の Optional でくくるか、途中の処理の結果の型は何か、といった設計に注意すればかなり便利に使えるだろう。
-      <p>他の言語で、何かしら似たような、そしておそらくもっと高機能な機能と比べれば至らないものも多いかもしれないが、無いことろ比べればだいぶマシになりそうだ。
+      <p>他の言語で、何かしら似たような、そしておそらくもっと高機能な機能と比べれば至らない部分も多だろうが、無いことろ比べればだいぶマシになりそうだ。
     </section>
     <section>
       <h2 id="実装"><a href="#実装">実装</a></h2>
