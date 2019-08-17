@@ -901,16 +901,16 @@ def blogfeed(feed = false)
       acc.merge(entry) {|_key, old, new| new + old}
     }
 
-    tag = "Tags"
+    tag      = "Tags"
     fav      = ERB.new(File.read(".template/favicon.html.erb")).result(binding).strip
     template = ERB.new(File.read(".template/tags.html.erb")).result(binding).strip
     html     = ERB.new(template).result(binding)
     File.write("./blog.jxck.io/tags/index.html", html)
 
     tags.each {|tag, v|
-      tags = { tag => v }
-      template      = ERB.new(File.read(".template/tags.html.erb")).result(binding).strip
-      html          = ERB.new(template).result(binding)
+      tags     = { tag => v }
+      template = ERB.new(File.read(".template/tags.html.erb")).result(binding).strip
+      html     = ERB.new(template).result(binding)
       File.write("./blog.jxck.io/tags/#{tag}.html", html)
     }
   end
