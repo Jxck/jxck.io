@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html amp lang=ja>
+<head>
+  <meta charset=utf-8>
+  <!--
+  貴様、見ているな！！
+  このサイトの技術的なまとめはこちらをどうぞ。
+  https://labs.jxck.io/blog
+
+  by Jxck
+  -->
+  <link rel=canonical href=https://blog.jxck.io/entries/2019-08-18/webtransport-and-webcodecs.html>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+  <link rel=author href=https://jxck.io/assets/humans.txt>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type=image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+
+  <meta name=author content=Jxck>
+  <meta name=description content="Transport として HTTP over TCP を基本としていた Web のあり方は大きく代わり、転送するメディアも HTML だけに止まらなくなってきた。その対角線上にあるユースケースとして、 UDP でバイナリデータを双方向にやり取りする「ゲーム」があるだろう。...">
+  <meta name=keywords content="webtransport,webcodecs">
+
+  <meta name=twitter:card content=summary>
+  <meta name=twitter:site content=@jxck_>
+  <meta name=twitter:url content="https://blog.jxck.io/entries/2019-08-18/webtransport-and-webcodecs.html">
+  <meta name=twitter:title content="WebTransport と WebCodecs そして Web はどこまで &quot;ゲーム化&quot; するか | blog.jxck.io">
+  <meta name=twitter:description content="Transport として HTTP over TCP を基本としていた Web のあり方は大きく代わり、転送するメディアも HTML だけに止まらなくなってきた。その対角線上にあるユースケースとして、 UDP でバイナリデータを双方向にやり取りする「ゲーム」があるだろう。...">
+  <meta name=twitter:image content="https://jxck.io/assets/img/jxck.png">
+
+  <meta property=og:type content=article>
+  <meta property=og:url content="https://blog.jxck.io/entries/2019-08-18/webtransport-and-webcodecs.html">
+  <meta property=og:title content="WebTransport と WebCodecs そして Web はどこまで &quot;ゲーム化&quot; するか | blog.jxck.io">
+  <meta property=og:site_name content="blog.jxck.io">
+  <meta property=og:description content="Transport として HTTP over TCP を基本としていた Web のあり方は大きく代わり、転送するメディアも HTML だけに止まらなくなってきた。その対角線上にあるユースケースとして、 UDP でバイナリデータを双方向にやり取りする「ゲーム」があるだろう。...">
+  <meta property=og:image content="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "WebTransport と WebCodecs そして Web はどこまで &quot;ゲーム化&quot; するか | blog.jxck.io",
+  "image": [
+    "https://jxck.io/assets/img/jxck.png",
+    "https://logo.jxck.io/jxck.1200x1200.png"
+  ],
+  "datePublished": "2019-08-18T08:00:00+08:00",
+  "dateModified": "2019-08-18T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://logo.jxck.io/jxck.60x60.png",
+      "height": 60,
+      "width": 60
+    }
+  },
+  "description": "Transport として HTTP over TCP を基本としていた Web のあり方は大きく代わり、転送するメディアも HTML だけに止まらなくなってきた。その対角線上にあるユースケースとして、 UDP でバイナリデータを双方向にやり取りする「ゲーム」があるだろう。..."
+}
+</script>
+
+  <title>WebTransport と WebCodecs そして Web はどこまで &quot;ゲーム化&quot; するか | blog.jxck.io</title>
+  <script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+  <script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src=https://cdn.ampproject.org/v0.js></script>
+<style amp-custom>
+article section p {
+  margin-left: 0;
+}
+
+article table {
+  margin-left: 0;
+}
+
+article img {
+  margin: var(--grid) 0;
+  border: 1px solid #ccc;
+  box-sizing: content-box;
+  background-color: #fff;
+}
+
+article ul,
+article ol,
+article dl {
+  margin-left: var(--grid);
+  font-family: var(--mono-font);
+}
+
+article ul li ul,
+article ol li ol {
+  margin: 0 0 0 calc(var(--grid)*2);
+  font-size: 1rem;
+}
+
+article ol li ol li,
+article ul li ul li {
+  margin-bottom: 0;
+}
+
+article dl {
+  display: grid;
+  grid-template-columns: minmax(auto, max-content);
+  grid-column-gap: var(--grid);
+}
+
+article dl div {
+  display: contents;
+}
+
+article dl dt {
+  grid-column: 1 / 2;
+}
+article dl dd {
+  grid-column: 2 / 2;
+}
+
+article blockquote {
+  font-family: var(--mono-font);
+}
+
+article blockquote p {
+  margin: 0;
+}
+
+@supports (line-height-step: 1px) {
+  article {
+    --grid-rhythm: 1.5em;
+    line-height: 1.5;
+    line-height-step: var(--grid-rhythm);
+  }
+
+  article h1,
+  article h2,
+  article h3,
+  article h4,
+  article h5,
+  article h6 {
+    display: inline-block;
+    width: 100%;
+    line-height-step: 0;
+    line-height: 1.2;
+    margin-bottom: 0;
+  }
+
+  article section {
+    /* grid for debug */
+    /* background-size: 100% var(--grid-rhythm); */
+    /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
+  }
+
+  article p {
+    margin-top: var(--grid-rhythm);
+    margin-bottom: var(--grid-rhythm);
+  }
+
+  article pre,
+  article table {
+    line-height-step: 0;
+    line-height: normal;
+  }
+}
+
+/* normal regular */
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src:
+    local("NotoSansCJKjp-Bold.otf"),
+    local("NotoSansJP-Bold.otf"),
+    url("https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular-201907.woff2") format("woff2");
+}
+/* normal bold */
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 700;
+  font-display: optional;
+  src:
+    local("NotoSansCJKjp-Bold.otf"),
+    local("NotoSansJP-Bold.otf"),
+    url("https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold-201907.woff2") format("woff2");
+}
+
+
+/* mono regular */
+@font-face {
+  font-family: "NotoSansMonoCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url("https://jxck.io/assets/font/NotoSansMonoCJKjp-Jxck-Regular-201907.woff2") format("woff2");
+}
+/* mono bold */
+@font-face {
+  font-family: "NotoSansMonoCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    url("https://jxck.io/assets/font/NotoSansMonoCJKjp-Jxck-Bold-201907.woff2") format("woff2");
+}
+
+/* Light Mode Theme */
+:root {
+  --background-color: #fefefe;
+  --font-color: #222;
+  --header-color: #222;
+
+  --anchor-color: RoyalBlue;
+  --anchor-visited-color: Brown;
+
+  --code-block: #efefef;
+  --code-block-font: #222;
+
+  --block-quote: #ddd;
+  --table-border: #222;
+
+  --regular-font: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+  --mono-font: "NotoSansMonoCJKjp-Jxck";
+  --code-font: Menlo, Consolas, Liberation, Mono, Courier, "NotoSansMonoCJKjp-Jxck";
+
+  --icon-size: 30px;
+
+  --width: 80vw;
+  --grid: 1rem;
+
+  --radius: 4px;
+}
+
+
+/* Mobile Theme */
+@media screen and (max-device-width: 800px) {
+  :root {
+    --width: 94vw;
+  }
+
+  audio {
+    width: 100%;
+  }
+}
+
+/* Dark Mode Theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #010101;
+    --font-color: #eee;
+
+    --anchor-color: CornflowerBlue;
+    --anchor-visited-color: RosyBrown;
+
+    --code-block: #efefef;
+
+    --table-border: #eee;
+  }
+
+  article img {
+    filter: grayscale(50%);
+  }
+  article img[src*=svg] {
+    filter: invert(100%) grayscale(50%);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--regular-font);
+  background-color: var(--background-color);
+  color: var(--font-color);
+  margin: 0;
+  padding: 0;
+}
+
+code {
+  font-family: var(--mono-font);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+hr {
+  margin: 0;
+  padding: 0;
+}
+
+iframe {
+  display: block;
+  max-width: 100%;
+  margin: var(--grid) 0;
+}
+
+dl.info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+dl.info div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+dl.info dt::after {
+  content: ":";
+  margin-right: calc(var(--grid)/2);
+}
+
+dl.info dd {
+  margin: 0 var(--grid) 0 0;
+}
+
+header {
+  z-index: 1;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: calc(var(--grid)/2);
+  background-color: var(--header-color);
+}
+
+h2:target,
+h3:target,
+h4:target,
+h5:target,
+h6:target {
+  /* sticky header に合わせて link scroll をずらす */
+  margin-top:  calc((var(--icon-size) + var(--grid)) * -1);
+  padding-top: calc((var(--icon-size) + var(--grid)));
+}
+
+header ul {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: var(--width);
+  margin: 0 auto;
+}
+
+header ul li {
+  width:  var(--icon-size);
+  height: var(--icon-size);
+  padding: 0;
+  margin: 0 0 0 var(--grid);
+}
+
+header ul li a {
+  display: block;
+  width:  var(--icon-size);
+  height: var(--icon-size);
+}
+
+header ul li svg {
+  fill: var(--background-color);
+}
+
+header ul li::before {
+  content: none;
+}
+
+header ul li:first-child {
+  flex-grow: 1;
+  margin-left: 0;
+}
+
+header .logo {
+  border: 1px solid #fff;
+  box-sizing: border-box;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  color: var(--font-color);
+}
+
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: var(--font-color);
+}
+
+h1 > a::before {
+  content: "# ";
+}
+
+h2 > a::before {
+  content: "## ";
+}
+
+h3 > a::before {
+  content: "### ";
+}
+
+h4 > a::before {
+  content: "#### ";
+}
+
+h1 > a:hover::before,
+h2 > a:hover::before,
+h3 > a:hover::before,
+h4 > a:hover::before,
+h5 > a:hover::before,
+h6 > a:hover::before {
+  color: var(--anchor-visited-color);
+}
+
+em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+em::before,
+em::after {
+  content: "*";
+}
+
+strong {
+  color: red;
+}
+
+strong::before,
+strong::after {
+  content: "**";
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+dl dt::after {
+  content: ":";
+}
+
+blockquote {
+  display: block;
+  border: solid 1px var(--block-quote);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin: 0;
+}
+
+blockquote p::before {
+  content: "> ";
+}
+
+code {
+  background-color: var(--code-block);
+  color: var(--code-block-font);
+  border-radius: var(--radius);
+  padding: 0 4px;
+}
+
+code::before,
+code::after {
+  content: "`";
+}
+
+main {
+  display: block;
+  width: var(--width);
+  margin: 1em auto;
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+  color: var(--anchor-color);
+}
+
+a:visited {
+  color: var(--anchor-visited-color);
+}
+
+ol,
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+dl dt {
+  font-weight: bold;
+  margin: 0;
+}
+
+dl dd {
+  margin: 0;
+}
+
+footer {
+  padding: var(--grid);
+}
+
+footer strong,
+footer .copyright {
+  display: block;
+  width: var(--width);
+  margin: 0 auto;
+  font-style: italic;
+}
+
+pre {
+  margin: var(--grid) 0;
+  border-radius: var(--radius);
+}
+
+pre::before {
+  content: "```" attr(class) "\A";
+}
+
+pre::after {
+  z-index: -1;
+  position: relative;
+  top: -1em;
+  content: "\A```";
+}
+
+pre > code {
+  font-family: var(--code-font);
+  overflow: auto;
+  display: block;
+  padding: 0.5rem;
+  margin: 0;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-attribute {
+  font-weight: bold;
+}
+
+.hljs-meta {
+  color: #4f80e5;
+}
+
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-pseudo {
+  color: #6f42c1;
+}
+
+.hljs-selector-tag {
+  color: #22863a;
+}
+
+.hljs-subst {
+  font-weight: bold;
+}
+
+.hljs-variable {
+  color: #a71d5d;
+}
+
+.hljs-symbol {
+  font-weight: bold;
+}
+
+.hljs-selector-attr {
+  color: #6f42c1;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  .hljs-keyword {
+    color: #000;
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  .hljs-number {
+    color: var(--code-block-font);
+  }
+
+  .hljs-built_in {
+    color: #000;
+    font-weight: bold;
+  }
+
+  .hljs-literal {
+    color: var(--code-block-font);
+    font-weight: bold;
+  }
+
+  .hljs-regexp {
+    color: var(--code-block-font);
+  }
+
+  .hljs-comment {
+    color: #888;
+  }
+
+  .hljs-tag {
+    color: var(--code-block-font);
+    font-weight: bold;
+  }
+
+  .hljs-strong {
+    font-weight: bold;
+  }
+
+  .hljs-attribute {
+  }
+
+  .hljs-attr {
+    color: var(--code-block-font);
+    font-weight: bold;
+  }
+
+  .hljs-selector-tag {
+    color: var(--code-block-font);
+  }
+
+  .hljs-subst {
+    font-weight: bold;
+  }
+  .hljs-symbol {
+    font-weight: bold;
+  }
+
+  .hljs-section {
+  }
+
+  .hljs-meta,
+  .hljs-selector-id,
+  .hljs-selector-class,
+  .hljs-selector-pseudo,
+  .hljs-variable,
+  .hljs-title,
+  .hljs-string,
+  .hljs-name,
+  .hljs-selector-attr {
+    color: var(--code-block-font);
+  }
+}
+
+
+
+
+
+
+
+/**.hljs,**/
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition,
+.hljs-template-variable,
+.hljs-link,
+.hljs-type,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-meta-string,
+.hljs-emphasis {
+  /** if you find element applyed this style, please tell me https://github.com/jxck/jxck.io/issues **/
+  font-size: 100em;
+}
+
+table {
+  font-family: var(--mono-font);
+  margin: var(--grid) 0;
+  border-spacing: 0 0.4rem;
+}
+
+th {
+  padding: 0 var(--grid) calc(var(--grid)/2) var(--grid);
+  border-left: 2px solid var(--table-border);
+  border-bottom: 2px dashed var(--table-border);
+}
+
+td {
+  padding: calc(var(--grid)/2) var(--grid);
+  border-left: 2px solid var(--table-border);
+}
+
+th:last-child,
+td:last-child {
+  border-right: 2px solid var(--table-border);
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+</style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://blog.jxck.io      ><amp-img width=30 height=30 src=https://jxck.io/assets/img/blog.svg   alt ="blog top" class=logo     ></a>
+      <li><a href=.                         ><amp-img width=30 height=30 src=https://jxck.io/assets/img/up.svg     alt ="move to parent directory"></a>
+      <li><a href=/feeds/atom.xml           ><amp-img width=30 height=30 src=https://jxck.io/assets/img/rss.svg    alt ="rss feed"                ></a>
+      <li><a href=https://jxck.io/humans.txt><amp-img width=30 height=30 src=https://jxck.io/assets/img/humans.svg alt ="huamns.txt"              ></a>
+      <li><a href=https://jxck.io           ><amp-img width=30 height=30 src=https://jxck.io/assets/img/jxck.svg   alt ="jxck logo" class=logo    ></a>
+    </ul>
+  </nav>
+</header>
+<main>
+  <ul class=info>
+    <dt>created_at</dt><dd><time class=created_at datetime=2019-08-18>2019-08-18</time></dd>
+    <dt>updated_at</dt><dd><time class=updated_at datetime=2019-08-18>2019-08-18</time></dd>
+    <dt class=tags>tags</dt><dd>[<a href='/tags/webtransport.html'>webtransport</a>,<a href='/tags/webcodecs.html'>webcodecs</a>]</dd>
+  </ul>
+
+
+  <article>
+    <h1><a href=/entries/2019-08-18/webtransport-and-webcodecs.html>WebTransport と WebCodecs そして Web はどこまで &ldquo;ゲーム化&rdquo; するか</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p>Transport として HTTP over TCP を基本としていた Web のあり方は大きく代わり、転送するメディアも HTML だけに止まらなくなってきた。
+      <p>その対角線上にあるユースケースとして、 UDP でバイナリデータを双方向にやり取りする「ゲーム」があるだろう。
+      <p>WebScoket/MSE/WebRTC/WASM など、 Web で Game を行うためのパーツは徐々に揃いつつあり、過去に比べればだいぶ状況は改善してきていると言える。
+      <p>しかし、できることが増えればこそ、それぞれのパーツの不足する部分が浮き彫りになる。
+      <p>WebTransport と WebCodecs は、主にそんな Web Game の需要から「本当に必要としているもの」を再考した結果をまとめた提案と言えるだろう。
+      <p>これが、単に Web Game 開発の需要を満たすだけで終わるものか、ゲーム以外の Web の開発にどこまで影響を及ぼすか。
+      <p>現状の仕様の提案とそのモチベーションを元に、考察していく。
+    </section>
+    <section>
+      <h2 id="webtransport"><a href="#webtransport">WebTransport</a></h2>
+      <section>
+        <h3 id="motivation"><a href="#motivation">Motivation</a></h3>
+        <p>Web の基本的な通信が、画面の遷移とサブリソースの取得だけだった時代と比べれば、今は様々な API が用意されている。
+        <ul>
+          <li>fetch (http)
+          <li>SSE
+          <li>WebSocket
+          <li>MSE (MPEG-DASH/HLS)
+          <li>WebRTC (ice/dtls/srtp)
+          <li>UDP Socket API (draft)
+        </ul>
+        <p>これらは、おおよそ「何かしらのユースケース」が想定され、その要件を満たすうような形で標準化されてきた。もちろんそのスコープにゲーム開発のようなケースも、度々あげられていた。
+        <p>しかし、本当にゲームを作るために最適なパーツとしてこれらが使えるのかというと、必ずしもそうではないというのが、ゲームを作る側からの意見だ。
+      </section>
+      <section>
+        <h3 id="requirements"><a href="#requirements">Requirements</a></h3>
+        <p>例えば WebSocket/MSE/WebRTC を例に、それぞれをゲームを作るという視点から見てみる。
+        <ul>
+          <li>
+            WebSocket<ul>
+              <li>
+                Pros<ul>
+                  <li>Client-Server 型
+                  <li>バイナリも送れる
+                  <li>シンプルな API
+                  <li>CORS が考慮されている
+                </ul>
+              </li>
+              <li>
+                Cons<ul>
+                  <li>TCP で Head-of-Line-Blocking(HoLB) がある
+                  <li>UDP を選べない
+                  <li>API が古い
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            MSE<ul>
+              <li>
+                Pros<ul>
+                  <li>HTTP で LiveStreaming する方法がやっと標準化された(HLS/DASH)
+                </ul>
+              </li>
+              <li>
+                Cons<ul>
+                  <li>それに特化していて他には使いにくい
+                  <li>制御できる箇所が少ない
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            WebRTC<ul>
+              <li>
+                Pros<ul>
+                  <li>UDP でかつ DTLS によりセキュア
+                  <li>P2P を考慮した Hole Punch などの対応
+                  <li>DataChannel で任意のデータも送れる
+                </ul>
+              </li>
+              <li>
+                Cons<ul>
+                  <li>Client-Server で使いにくい
+                  <li>事前処理(セレモニー/ダンス)が長い
+                  <li>前提としているユースケースと外れると複雑なだけで使いにくい
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            UDP Socket API<ul>
+              <li>
+                Pros<ul>
+                  <li>生 UDP が送れる
+                  <li>CORS などは考慮されている
+                </ul>
+              </li>
+              <li>
+                Cons<ul>
+                  <li>暗号化が仕様に含まれてない
+                  <li>輻輳制御も含まれてない
+                  <li>まだ標準化途中でどうなるかも怪しい
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p>要するに本当に欲しいのはこういう通信手段だ
+        <ul>
+          <li>
+            Architecture<ul>
+              <li>Client-Server でデプロイ
+              <li>UDP + Binary
+              <li>Low Latency 輻輳制御
+              <li>HoLB がない
+              <li>Reliable / Unreliable が選択できる
+              <li>TCP も選択できると良さそう
+            </ul>
+          </li>
+          <li>
+            Security<ul>
+              <li>暗号化必須
+              <li>CORS などにも配慮
+            </ul>
+          </li>
+          <li>
+            API<ul>
+              <li>WebSocket 並みに簡単な API
+              <li>かつモダンな API
+              <li>Back Pressure も対応
+            </ul>
+          </li>
+        </ul>
+        <p>それができるように提案されたのが WebTransport だと思って良さそうだ。
+        <p>そして、今はこれを実現するベースとして使えるパーツが揃いつつある。
+      </section>
+      <section>
+        <h3 id="protocol"><a href="#protocol">Protocol</a></h3>
+        <p>まずプロトコルとしては、 UDP 上にまた一からスタックを積む必要はなく、仕様策定や実装が進んでいるものが使える。
+        <p>すでに WebRTC は DTLS - SRTP/SCTP で実現しており、ブラウザはそれを積んでいるが、 WebRTC も TLS1.3 - QUIC の取り込みを議論しており、 HTTP/3 も進んでいるため、最初から QUIC/HTTP3 で進めるのが妥当だろう。
+        <p>もし将来より良いプロトコルが登場すれば、それを取り込める余地も残したい。
+        <p>そこで、ドラフトとして WebTransport のベースとなる仕様に加え、その over QUIC と over HTTP3 の 2 つが提案されている。
+        <ul>
+          <li>
+            Protocol<ul>
+              <li>
+                The WebTransport Protocol Framework<ul>
+                  <li>
+                    <a href="https://tools.ietf.org/html/draft-vvv-webtransport-overview-00">https://tools.ietf.org/html/draft-vvv-webtransport-overview-00</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                WebTransport over HTTP/3<ul>
+                  <li>
+                    <a href="https://tools.ietf.org/html/draft-vvv-webtransport-http3-00">https://tools.ietf.org/html/draft-vvv-webtransport-http3-00</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                WebTransport over QUIC<ul>
+                  <li>
+                    <a href="https://tools.ietf.org/html/draft-vvv-webtransport-quic-00">https://tools.ietf.org/html/draft-vvv-webtransport-quic-00</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p>Overview では以下のような共通機能について定義されている。
+        <ul>
+          <li>Datagrams
+          <li>Uni/Bi-directional Streams
+          <li>Bandwidth Prediction
+        </ul>
+        <p>加えて以下の 4 つがオプションとして用意されており、 2 つのプロトコルのサポートは以下のようになる。
+        <table>
+          <thead>
+            <tr>
+              <th class=align-default></th>
+              <th class=align-center>QUIC</th>
+              <th class=align-center>HTTP3</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class=align-default>Stream independence</td>
+              <td class=align-center>o</td>
+              <td class=align-center>o</td>
+            </tr>
+            <tr>
+              <td class=align-default>Partial reliability</td>
+              <td class=align-center>o</td>
+              <td class=align-center>o</td>
+            </tr>
+            <tr>
+              <td class=align-default>Pooling support</td>
+              <td class=align-center>x</td>
+              <td class=align-center>o</td>
+            </tr>
+            <tr>
+              <td class=align-default>Connection mobility</td>
+              <td class=align-center>o</td>
+              <td class=align-center>o</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section>
+        <h3 id="alternatives"><a href="#alternatives">Alternatives</a></h3>
+        <p>結局 WebSocket が TCP に縛られていなければ良いのではという点に注目すると、 WebSocket over HTTP/3 が実現できれば HoLB などの問題は解決しそうだ。
+        <p>しかし、仮にそこに複数のストリームを束ねようとしても、 WS の特徴上ストリームごとに 1RTT のハンドシェイクが必要となる。また、サーバから Stream を開始することができない(本当にそれが必要なのかは疑問だが)という問題があげられている。
+        <p>また、 WebRTC の文脈で進んでいる RTCQuicTransport が、非常にというかあるケースではほぼ同じことを提供することになる点が指摘される。(策定者も同じ)
+        <p>これもやはり、 WebRTC が P2P 前提の仕様でスタートした点と Client-Server ユースケースとの乖離をベースに説明されており、すでに RTCQuicTransport の下のレイヤに WebTransport の仕様が参照される形で更新されている。
+      </section>
+      <section>
+        <h3 id="api"><a href="#api">API</a></h3>
+        <p>前述のように抽象化された複数のプロトコルが、同一の API から WebSocket のような手軽さで利用できるように設計されている。
+        <p>というか、そう設計したいという意思が伺える。
+        <p>仕様の IDL や Example は、まだまだ初期段階なため、そこまで仕上がってはいない。(そういう時期でもない)
+        <p>したがって、これをもとにサンプルコードを起こして紹介するのもまだ早いと判断し、ここでは具体的なコードは載せない。
+        <p>(もう少し作業が落ち着いたら、型矛盾の修正やサンプルの改善など、邪魔にならない程度に送っておきたい)
+        <p>ただ、以下のような気持ちは汲み取る。
+        <ul>
+          <li>Promise/Stream をきちんと導入しモダンに仕上げる
+          <li>Stream による backpressure も対応する
+          <li>Uni/Bi-Directional / Datagram はそのまま対応
+          <li>Transport Interface で具体的なプロトコルを抽象化
+        </ul>
+      </section>
+      <section>
+        <h3 id="websocketstream"><a href="#websocketstream">WebSocketStream</a></h3>
+        <p>最近 WebTransport の横で WebSocketStream という WebSocket の API 改善作業が始まった。
+        <ul>
+          <li>
+            Intent to Implement: WebSocketStream<ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X7rWpAkMCyg/j6K7mEEwAgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X7rWpAkMCyg/j6K7mEEwAgAJ</a>
+              </li>
+              <li>
+                <a href="https://github.com/ricea/websocketstream-explainer/blob/master/README.md">https://github.com/ricea/websocketstream-explainer/blob/master/README.md</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p>WebSocket の API は、 Promise や Stream が定義される前に策定されたため、それらに対応していない。
+        <p>特に、 Stream に対応すれば、 WebTransport の問題意識の一つである、 backpressure にも対応可能であるため、よりモダンな API に再設計出来れば、単にコードの見た目以上のメリットも出てくる。
+        <p>これを行うために、 WebSocket を Stream 対応する仕様策定と実装が WebSocketStream であり、現在 Chrome チームにより進められている。
+        <p>プロトコルに手を入れる訳ではないため、 WebSocketStream が WebTransport のユースケースをカバーできる訳ではないが、 API 的には非常に近いため、先行して進む WebSocketStream の作業は WebTransport や今後出てくる API にも少なからず影響するだろう。
+        <p>せっかく新しく作るので、これらがうまく連携し、 ES が培った機能をうまく取り込んで洗練された API 設計に落ち着いて欲しい。
+      </section>
+    </section>
+    <section>
+      <h2 id="webcodecs"><a href="#webcodecs">WebCodecs</a></h2>
+      <section>
+        <h3 id="motivation-1"><a href="#motivation-1">Motivation</a></h3>
+        <p>メディアを扱うためのコンテナ/コーデックは数多くあり、一部はブラウザに実装されている。
+        <p>しかし、それらをコントロールできる API は、ある程度ユースケースに紐づいており、自由度が必ずしも高くはない。
+        <ul>
+          <li>
+            HTMLMediaElement<ul>
+              <li>
+                <code translate="no">&lt;video&gt;</code>, <code translate="no">&lt;audio&gt;</code> による再生
+              </li>
+              <li>基本は src に URL を指定する前提
+              <li>srcObject, createObjectURL などで拡張も
+            </ul>
+          </li>
+          <li>
+            MediaStream API<ul>
+              <li>
+                <code translate="no">getUserMedia()</code>, <code translate="no">getDisplayMedia()</code> etc
+              </li>
+              <li>主にデバイスからの取得と MediaElement へのつなぎ
+            </ul>
+          </li>
+          <li>
+            WebAudio<ul>
+              <li>decodeAudioData etc
+            </ul>
+          </li>
+          <li>
+            WebRTC<ul>
+              <li>vp8/9, h.264/265, opus など対応は多い
+              <li>あくまで通信(RTP)に特化している
+              <li>それ以外の用途に柔軟性がない
+            </ul>
+          </li>
+          <li>
+            MSE<ul>
+              <li>映像/音声のストリーミング配信に特化している
+              <li>それ以外の用途に柔軟性がない
+            </ul>
+          </li>
+        </ul>
+        <p>用途に合わない場合はバイナリまで落とし、 WASM でエンコードしたライブラリを導入するといった必要がある。
+        <p>SIMD や Worker Thread など、 WASM 自体の改善も進みつつあるが、せっかくブラウザがコーデック/コンテナの実装を積んでいるにも関わらず、追加で大きなライブラリをダウンロードするのは非効率だ。
+        <p>仮に導入しても、ブラウザ自体がネイティブで行うパフォーマンス最適化の恩恵などが受けられないのは、非常に勿体無い。
+      </section>
+      <section>
+        <h3 id="requirements-1"><a href="#requirements-1">Requirements</a></h3>
+        <p>基本的にはブラウザの持つコーデック/コンテナの実装に対する API が提供されることを目的とする。
+        <p>これにより、ライブラリを不要とし、パフォーマンスやバッテリー効率の面で恩恵を得る。
+        <section>
+          <h4 id="goals"><a href="#goals">Goals</a></h4>
+          <ul>
+            <li>streaming 処理できる
+            <li>clock のズレを制御できる
+            <li>UA や OS の持つハードウェアエンコーダなどを効率よく利用できる
+            <li>encode/decode を off the main thread できる
+            <li>他の API とうまく繋がる(WHATWGStream, WASM, WebTransport etc)
+            <li>回復処理
+            <li>様々なユースケースをカバーする(hard/soft/non real-time)
+            <li>Encode/Decode の API が対象である
+          </ul>
+        </section>
+        <section>
+          <h4 id="non-goals"><a href="#non-goals">Non-Goals</a></h4>
+          <ul>
+            <li>コンテナを直接触る API
+            <li>Raw Video を触る API
+            <li>JS/WASM でコーデックそのものを実装する
+          </ul>
+        </section>
+      </section>
+      <section>
+        <h3 id="api-1"><a href="#api-1">API</a></h3>
+        <p>基本はブラウザが内部で持っているコーデック/コンテナの実装に対する API を提供する。
+        <p>各要素ごとに WHATWG Stream ベースの API とし、終端が MediaStreamTrack となることで、他の API(WebTransport, WebRTC, Audio/Video Element etc) と接続する。
+        <p>音声は AudioPackets 、映像は VideoFrames を最小単位とし、 Encoder/Decoder が TransferStream として提供される。
+        <p>MediaStreamTrack との繋ぎは、 TrackReader/Writer が提供され、 Stream を流していけば他と繋がるという設計だ。
+        <p>例えば、映像の送受信は Camera -&gt; Encode -&gt; Transport -&gt; Decode -&gt; VideoElement となるため、以下のようになる。
+        <pre class=js><code translate="no">/**
+ * カメラから取得して送信する
+ */
+
+const stream      = await navigator.mediaDevices.getUserMedia({video:true})
+const videoTracks = await stream.getVideoTrack()
+
+// MediaStreamTrack を DecodedVideoFrame の ReadableStream に変換
+const videoTrackReader = new VideoTrackReader(videoTracks[0]);
+// DecodedVideoFrame を EncodedVideoFrame にする TransferStream
+const videoEncoder = new VideoEncoder({
+  codec:         &quot;vp8&quot;,
+  bitsPerSecond: 1000000
+});
+
+// Pipe で変換し Transport で送信
+videoTrackReader.readable
+                .pipeThrough(videoEncoder)
+                .pipeTo(transport.writable);</code></pre>
+        <pre class=js><code translate="no">/**
+ * 受信して Video タグに出す
+ */
+
+// EncodedVideoFrame を DecodedVideoFrame にする TransferStream
+const videoDecoder = new VideoDecoder({codec: &quot;vp8&quot;});
+// DecodedVideoFrame の WritableStream を MediaStreamTrack に変換
+const videoTrackWriter = new VideoTrackWriter();
+transport.readable
+         .pipeThrough(videoDecoder)
+         .pipeTo(videoTrackWriter.writable);
+
+const mediaStream = new MediaStream([videoTrackWriter.track]);
+videoElem.srcObject = mediaStream;</code></pre>
+        <p>最終的に MediaStreamTrack と繋がることで、 WebTransport 以外の用途にも応用できるため、 WebRTC や MSE などの既存の API を用いたアプリで手が届かなかったところの改善や、 Web Music や Web VJ といった Codec 要件のシビアなメディアアート系にも応用が効くだろう。
+        <p>コーデックやコンテナの対応が Feature Detection できれば、実装がない場合だけ WASM にフォールバックするといった作りにすれば、ある程度の範囲をカバーしつつ WebCodecs の実装がある場合だけパフォーマンスメリットが得られる状況を作れそうだ。
+        <p>また、サンプルには Video の Simulcast Encoding (レイヤのパラメータ指定)が含まれているため、現状微妙な API になっている WebRTC の Simulcast 周りの改善なども期待できそうだ。
+      </section>
+    </section>
+    <section>
+      <h2 id="考察"><a href="#考察">考察</a></h2>
+      <section>
+        <h3 id="webrtc-の次のフェーズとしての-webtransport"><a href="#webrtc-の次のフェーズとしての-webtransport">WebRTC の次のフェーズとしての WebTransport</a></h3>
+        <p>そしてちょうど先日、 2011 年から WebRTC に関する作業を続けてきた Working Group である <a href="https://mailarchive.ietf.org/arch/msg/rtcweb/4cj95edGFtfjZkUjozTybOJiMcA">RTCWEB が Close するアナウンス</a> が舞い込んだ。
+        <p>仕様を提案している 3 人は、いずれもこの RTCWEB で WebRTC や ORTC の仕様策定に関わってきた人達だ。
+        <p>WebRTC の作業が終わったわけでは無いが、おそらく彼らは今後 WebTransport の方に注力していくことになるのだろう。
+        <p>なかでも中心である Peter Thatcher は Googler で、彼の Explainer には Game を Cloud Gaming と書いている部分も多い。
+        <p>「Stadia を WebRTC/QUIC ベースでやるのが大変だったんだろうな」が、 6 月にあった <a href="https://www.w3.org/2018/12/games-workshop/report.html#webtransport">Web Games Workshop</a> での <a href="https://vimeo.com/350908362">Peter のトーク</a> を見た筆者の最初の感想だった。
+        <p>確かに WebRTC は Web に UDP の API を初めてもたらしたが、その前提が P2P でのビデオチャットに寄りすぎており、ブラウザ持つコーデックで音声/映像が送れることを重視している。
+        <p>DTLS - SRTP というツギハギな仕組みも、もう少しスッキリすればなと個人的にも思う。
+        <p>DataChannel で任意のバイナリをやりとりできるとしても、前提として Client-Server で提供したいという要求がある以上、インピーダンスミスマッチが産まれるのは想像に難くない。
+        <p>WebRTC の Peer をサーバに実装し Global IP を降れば、 Client-Server のようにデプロイすることも可能だが、やりたいことに対してやるべきことが複雑すぎる結果となる。
+        <p>かといって、直接 RawSocket を触りたいという TCP/UDP Socket API を入れたとしても、その上に必要なスタックは自前で実装することになる。せっかくアクティブにメンテされる枯れた実装がブラウザ内部あるのに、必要なプロトコルとコーデックを WASM でビルドすればいいと言われても、片手落ちだろう。
+        <p>そうした全ての、ある程度ユースケースが前提とされ始まった各仕様を一旦フラットにし、ここまでの経験(これは振り返って失敗と見えるかもしれないが、振り返る前は成功だった)を踏まえて再スタートするという点で、野心的だと言える。
+      </section>
+      <section>
+        <h3 id="web-はどこまでゲーム化するか"><a href="#web-はどこまでゲーム化するか">Web はどこまでゲーム化するか</a></h3>
+        <p>筆者としては、この仕様が「Cloud Gaming というユースケースに最適化された N+1 個目の用途特化仕様ができるだけ」なのかどうか、という点に一番興味がある。
+        <p>「この仕様が Cloud Game 以外の開発で使われるか?」を考える観点はまず 3 つ思いつく。
+        <ol>
+          <li>前述のような既存仕様(WebRTC, MSE, etc)との関連
+          <li>WASI の求める汎用 Socket / Codec API との関連
+          <li>Game ではない一般 Web 開発への影響
+        </ol>
+        <p>1 つ目は、完全に独立した仕様ではなく、既存 API に対する Low Level API として参照できるかという点だ。これはすでに意識されているし、 TAG Review などで指摘されていくだろうと考えると特に問題はないだろう。
+        <p>ここがうまくいけば、少なくとも現状その上位 API を使っている場面では、恩恵が受けられるだろう。
+        <p>2 つ目は、 WASI が Networking を含めたシステム API の策定を始めている点との関わりだ。
+        <p>WASI はブラウザ以外のプラットフォームを視野に入れているが、 API としてはどちらもネットワークを低めのレイヤで叩くため、ある程度ケースでは同じように使えることもあるだろう。
+        <p>例えば、新規に WASI ベースでネットワーククライアントを作るとして、それが WebTransport 向けにビルドできれば、用途が広がると考えることは想像に難くない。
+        <p>そこをカバーすれば、単に「ゲーム開発のため」という枠を超えた汎用 Socket API 的な立ち位置になりえそうだが、今の所 WebTransport の文脈で WASI の話はあまり見当たらない。
+        <p>WASI もまだ始まったばかりで、かつより低いレイヤを視野に入れているため、双方ニアミス感があるが、そのへんをお互いどう考えている(いく)のかは、少し気になっている。
+        <p>3 つ目は、要するに汎用性だ。
+        <p>WebTransport の反省にもあるように WebRTC や MSE は映像を配信すること自体が目的でないと導入することは無いだろう。
+        <p>同様に、 WebTransport/WebCodecs が「ゲームを作るときにしか使わない」ものになるという、同じ轍を踏むかどうかという点は、そのエコシステムの成長に大きく影響すると考える。
+        <p>逆にそちらのエコシステムが成長すれば、それが Web 開発の側へ影響することもありえるだろう。
+        <p>例えば、既に Web はドキュメントの枠を超えてアプリ化した先で、 SPA でクライアントが状態を持つことが一般的になった。
+        <p>データもドキュメントの転送(REST 的な世界観)を捨てて POST/200 で土管化した fetch の上に GraphQL を流している。
+        <p>見方によっては、すでに Web はアプリ開発の文脈よりも、ゲーム開発に近いことを行い始めており、汎用的な(というか余計なルールが無く自由がきく)表示と転送があれば便利だと思っている開発者も少なからずいるように思う。
+        <p>もし、ここのニーズとマッチし、デプロイも API も敷居が低ければ、例えば Store の更新をリアルタイムでサーバに送り同期したり、複雑な描画は DOM で行わず、サーバでレンダリングしたバイナリを送って部分的に Canvas に表示するといった、よりゲームのような開発手法を加速する可能性もあるのかもしれない。
+      </section>
+    </section>
+    <section>
+      <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
+      <p>仕様はなにかしらユースケースをモチベーションとして提案される。
+      <p>ときに仕様はそのユースケースに縛られ続けるが、そのユースケースを超えて周りを巻き込みながら思わぬ方向に成長していくものがまれにある。
+      <p>そうなるかどうかは、仕様策定者の意図だけで決まるものではない。色々な要素が絡んだ結果、有り体に言うなら偶然で、よく言えば時代のニーズというやつなのだろう。
+      <p>WebTransport や WebCodecs が、 Stadia を展開するために必要な穴を埋める何かで終わるか、今の Web 開発の前提を変えるナニカになるか、注目したい。
+    </section>
+    <section>
+      <h2 id="links"><a href="#links">links</a></h2>
+      <section>
+        <h3 id="webtransport-1"><a href="#webtransport-1">WebTransport</a></h3>
+        <ul>
+          <li>
+            Protocol<ul>
+              <li>
+                The WebTransport Protocol Framework<ul>
+                  <li>
+                    <a href="https://tools.ietf.org/html/draft-vvv-webtransport-overview-00">https://tools.ietf.org/html/draft-vvv-webtransport-overview-00</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                WebTransport over HTTP/3<ul>
+                  <li>
+                    <a href="https://tools.ietf.org/html/draft-vvv-webtransport-http3-00">https://tools.ietf.org/html/draft-vvv-webtransport-http3-00</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                WebTransport over QUIC<ul>
+                  <li>
+                    <a href="https://tools.ietf.org/html/draft-vvv-webtransport-quic-00">https://tools.ietf.org/html/draft-vvv-webtransport-quic-00</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            API<ul>
+              <li>
+                WebTransport<ul>
+                  <li>
+                    <a href="https://wicg.github.io/web-transport/">https://wicg.github.io/web-transport/</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            WICG<ul>
+              <li>
+                Thread<ul>
+                  <li>
+                    <a href="https://discourse.wicg.io/t/webtransport-proposal/3508">https://discourse.wicg.io/t/webtransport-proposal/3508</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Repo<ul>
+                  <li>
+                    <a href="https://github.com/WICG/web-transport">https://github.com/WICG/web-transport</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Explainer<ul>
+                  <li>
+                    <a href="https://github.com/wicg/web-transport/blob/master/explainer.md">https://github.com/wicg/web-transport/blob/master/explainer.md</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+              
+              </li>
+              <li>
+                QUIC Interim<ul>
+                  <li>
+                    <a href="https://github.com/quicwg/wg-materials/blob/master/interim-19-05/webtransport-20190522.pdf">https://github.com/quicwg/wg-materials/blob/master/interim-19-05/webtransport-20190522.pdf</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                IETF 105<ul>
+                  <li>
+                    <a href="https://datatracker.ietf.org/meeting/105/materials/slides-105-dispatch-webtransport-00">https://datatracker.ietf.org/meeting/105/materials/slides-105-dispatch-webtransport-00</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                W3C Web Games Workshop<ul>
+                  <li>
+                    <a href="https://www.w3.org/2018/12/games-workshop/report.html#webtransport">https://www.w3.org/2018/12/games-workshop/report.html#webtransport</a>
+                  </li>
+                  <li>
+                    <a href="https://docs.google.com/presentation/d/13hX5p8opMD8SrmCHwcdqn_mNkHjQBjI32jvq_gIDubM/edit">https://docs.google.com/presentation/d/13hX5p8opMD8SrmCHwcdqn_mNkHjQBjI32jvq_gIDubM/edit</a>
+                  </li>
+                  <li>
+                    Minutes から<ul>
+                      <li>Sony/BBC などが強い賛同を示している
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Mailing List<ul>
+              <li>
+                webtransport<ul>
+                  <li>
+                    <a href="https://mailarchive.ietf.org/arch/browse/webtransport/">https://mailarchive.ietf.org/arch/browse/webtransport/</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Intent to Implement: WebSocketStream<ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X7rWpAkMCyg/j6K7mEEwAgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X7rWpAkMCyg/j6K7mEEwAgAJ</a>
+              </li>
+              <li>
+                <a href="https://github.com/ricea/websocketstream-explainer/blob/master/README.md">https://github.com/ricea/websocketstream-explainer/blob/master/README.md</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="webcodecs-1"><a href="#webcodecs-1">WebCodecs</a></h3>
+        <ul>
+          <li>
+            Explainer<ul>
+              <li>
+                <a href="https://github.com/pthatcherg/web-codecs/blob/master/explainer.md">https://github.com/pthatcherg/web-codecs/blob/master/explainer.md</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            WICG Tread<ul>
+              <li>
+                <a href="https://discourse.wicg.io/t/webcodecs-proposal/3662">https://discourse.wicg.io/t/webcodecs-proposal/3662</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </section>
+  </article>
+
+</main>
+<hr>
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small><small>Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>Google Analytics</a> and <a href=https://w3c.github.io/ServiceWorker/>Service Worker</a>.</small></p>
+</footer>
+</body>
+</html>
+<amp-analytics type=googleanalytics id=analytics1>
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
