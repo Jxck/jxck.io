@@ -49,7 +49,7 @@
     "https://logo.jxck.io/jxck.1200x1200.png"
   ],
   "datePublished": "2019-08-18T08:00:00+08:00",
-  "dateModified": "2019-08-18T08:00:00+08:00",
+  "dateModified": "2019-08-19T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -797,7 +797,7 @@ td:last-child {
 <main>
   <ul class=info>
     <dt>created_at</dt><dd><time class=created_at datetime=2019-08-18>2019-08-18</time></dd>
-    <dt>updated_at</dt><dd><time class=updated_at datetime=2019-08-18>2019-08-18</time></dd>
+    <dt>updated_at</dt><dd><time class=updated_at datetime=2019-08-19>2019-08-19</time></dd>
     <dt class=tags>tags</dt><dd>[<a href='/tags/webtransport.html'>webtransport</a>,<a href='/tags/webcodecs.html'>webcodecs</a>]</dd>
   </ul>
 
@@ -827,7 +827,7 @@ td:last-child {
           <li>WebRTC (ice/dtls/srtp)
           <li>UDP Socket API (draft)
         </ul>
-        <p>これらは、おおよそ「何かしらのユースケース」が想定され、その要件を満たすうような形で標準化されてきた。もちろんそのスコープにゲーム開発のようなケースも、度々あげられていた。
+        <p>これらは、おおよそ「何かしらのユースケース」が想定され、その要件を満たすような形で標準化されてきた。もちろんそのスコープにゲーム開発も、度々あげられていた。
         <p>しかし、本当にゲームを作るために最適なパーツとしてこれらが使えるのかというと、必ずしもそうではないというのが、ゲームを作る側からの意見だ。
       </section>
       <section>
@@ -896,8 +896,8 @@ td:last-child {
               </li>
               <li>
                 Cons<ul>
-                  <li>暗号化が仕様に含まれてない
-                  <li>輻輳制御も含まれてない
+                  <li>暗号化が仕様に含まれていない
+                  <li>輻輳制御も含まれていない
                   <li>まだ標準化途中でどうなるかも怪しい
                 </ul>
               </li>
@@ -1009,7 +1009,7 @@ td:last-child {
         <h3 id="alternatives"><a href="#alternatives">Alternatives</a></h3>
         <p>結局 WebSocket が TCP に縛られていなければ良いのではという点に注目すると、 WebSocket over HTTP/3 が実現できれば HoLB などの問題は解決しそうだ。
         <p>しかし、仮にそこに複数のストリームを束ねようとしても、 WS の特徴上ストリームごとに 1RTT のハンドシェイクが必要となる。また、サーバから Stream を開始することができない(本当にそれが必要なのかは疑問だが)という問題があげられている。
-        <p>また、 WebRTC の文脈で進んでいる RTCQuicTransport が、非常にというかあるケースではほぼ同じことを提供することになる点が指摘される。(策定者も同じ)
+        <p>また、 WebRTC の文脈で進んでいる <a href="https://w3c.github.io/webrtc-quic/">RTCQuicTransport</a> が、非常にというかあるケースではほぼ同じことを提供することになる点が指摘される。(策定者も同じ)
         <p>これもやはり、 WebRTC が P2P 前提の仕様でスタートした点と Client-Server ユースケースとの乖離をベースに説明されており、すでに RTCQuicTransport の下のレイヤに WebTransport の仕様が参照される形で更新されている。
       </section>
       <section>
@@ -1125,7 +1125,7 @@ td:last-child {
       <section>
         <h3 id="api-1"><a href="#api-1">API</a></h3>
         <p>基本はブラウザが内部で持っているコーデック/コンテナの実装に対する API を提供する。
-        <p>各要素ごとに WHATWG Stream ベースの API とし、終端が MediaStreamTrack となることで、他の API(WebTransport, WebRTC, Audio/Video Element etc) と接続する。
+        <p>要素ごとに WHATWG Stream ベースの API とし、終端が MediaStreamTrack となることで、他の API(WebTransport, WebRTC, Audio/Video Element etc) と接続する。
         <p>音声は AudioPackets 、映像は VideoFrames を最小単位とし、 Encoder/Decoder が TransferStream として提供される。
         <p>MediaStreamTrack との繋ぎは、 TrackReader/Writer が提供され、 Stream を流していけば他と繋がるという設計だ。
         <p>例えば、映像の送受信は Camera -&gt; Encode -&gt; Transport -&gt; Decode -&gt; VideoElement となるため、以下のようになる。
@@ -1171,11 +1171,11 @@ videoElem.srcObject = mediaStream;</code></pre>
       <h2 id="考察"><a href="#考察">考察</a></h2>
       <section>
         <h3 id="webrtc-の次のフェーズとしての-webtransport"><a href="#webrtc-の次のフェーズとしての-webtransport">WebRTC の次のフェーズとしての WebTransport</a></h3>
-        <p>そしてちょうど先日、 2011 年から WebRTC に関する作業を続けてきた Working Group である <a href="https://mailarchive.ietf.org/arch/msg/rtcweb/4cj95edGFtfjZkUjozTybOJiMcA">RTCWEB が Close するアナウンス</a> が舞い込んだ。
+        <p>ちょうど先日、 2011 年から WebRTC に関する作業を続けてきた Working Group である <a href="https://mailarchive.ietf.org/arch/msg/rtcweb/4cj95edGFtfjZkUjozTybOJiMcA">RTCWEB が Close するアナウンス</a> が舞い込んだ。
         <p>仕様を提案している 3 人は、いずれもこの RTCWEB で WebRTC や ORTC の仕様策定に関わってきた人達だ。
         <p>WebRTC の作業が終わったわけでは無いが、おそらく彼らは今後 WebTransport の方に注力していくことになるのだろう。
         <p>なかでも中心である Peter Thatcher は Googler で、彼の Explainer には Game を Cloud Gaming と書いている部分も多い。
-        <p>「Stadia を WebRTC/QUIC ベースでやるのが大変だったんだろうな」が、 6 月にあった <a href="https://www.w3.org/2018/12/games-workshop/report.html#webtransport">Web Games Workshop</a> での <a href="https://vimeo.com/350908362">Peter のトーク</a> を見た筆者の最初の感想だった。
+        <p>時期的にも「Stadia を WebRTC/QUIC ベースでやるのが大変だったんだろうな」が、 6 月にあった <a href="https://www.w3.org/2018/12/games-workshop/report.html#webtransport">Web Games Workshop</a> での <a href="https://vimeo.com/350908362">Peter のトーク</a> を見た最初の感想だった。
         <p>確かに WebRTC は Web に UDP の API を初めてもたらしたが、その前提が P2P でのビデオチャットに寄りすぎており、ブラウザ持つコーデックで音声/映像が送れることを重視している。
         <p>DTLS - SRTP というツギハギな仕組みも、もう少しスッキリすればなと個人的にも思う。
         <p>DataChannel で任意のバイナリをやりとりできるとしても、前提として Client-Server で提供したいという要求がある以上、インピーダンスミスマッチが産まれるのは想像に難くない。
@@ -1189,11 +1189,11 @@ videoElem.srcObject = mediaStream;</code></pre>
         <p>「この仕様が Cloud Game 以外の開発で使われるか?」を考える観点はまず 3 つ思いつく。
         <ol>
           <li>前述のような既存仕様(WebRTC, MSE, etc)との関連
-          <li>WASI の求める汎用 Socket / Codec API との関連
+          <li>WASI の求める汎用 Socket API との関連
           <li>Game ではない一般 Web 開発への影響
         </ol>
-        <p>1 つ目は、完全に独立した仕様ではなく、既存 API に対する Low Level API として参照できるかという点だ。これはすでに意識されているし、 TAG Review などで指摘されていくだろうと考えると特に問題はないだろう。
-        <p>ここがうまくいけば、少なくとも現状その上位 API を使っている場面では、恩恵が受けられるだろう。
+        <p>1 つ目は、完全に独立した仕様ではなく、既存 API に対する Low Level API として参照できるかという点だ。これはすでに意識されているし、 TAG Review などで指摘されていくと期待される。
+        <p>ここがうまくいけば、少なくとも現状その上位 API を使っている場面では、恩恵が受けられるはずだ。
         <p>2 つ目は、 WASI が Networking を含めたシステム API の策定を始めている点との関わりだ。
         <p>WASI はブラウザ以外のプラットフォームを視野に入れているが、 API としてはどちらもネットワークを低めのレイヤで叩くため、ある程度ケースでは同じように使えることもあるだろう。
         <p>例えば、新規に WASI ベースでネットワーククライアントを作るとして、それが WebTransport 向けにビルドできれば、用途が広がると考えることは想像に難くない。
@@ -1202,10 +1202,10 @@ videoElem.srcObject = mediaStream;</code></pre>
         <p>3 つ目は、要するに汎用性だ。
         <p>WebTransport の反省にもあるように WebRTC や MSE は映像を配信すること自体が目的でないと導入することは無いだろう。
         <p>同様に、 WebTransport/WebCodecs が「ゲームを作るときにしか使わない」ものになるという、同じ轍を踏むかどうかという点は、そのエコシステムの成長に大きく影響すると考える。
-        <p>逆にそちらのエコシステムが成長すれば、それが Web 開発の側へ影響することもありえるだろう。
+        <p>逆にエコシステムが成長すれば、ゲーム以外の Web 開発へ影響することも十分ありえるだろう。
         <p>例えば、既に Web はドキュメントの枠を超えてアプリ化した先で、 SPA でクライアントが状態を持つことが一般的になった。
         <p>データもドキュメントの転送(REST 的な世界観)を捨てて POST/200 で土管化した fetch の上に GraphQL を流している。
-        <p>見方によっては、すでに Web はアプリ開発の文脈よりも、ゲーム開発に近いことを行い始めており、汎用的な(というか余計なルールが無く自由がきく)表示と転送があれば便利だと思っている開発者も少なからずいるように思う。
+        <p>見方によっては、すでに Web はアプリ開発の文脈よりも、ゲーム開発に近いことを行い始めており、汎用的な(というか余計なルールが無く自由がきく)表示と転送があれば便利だと思っている開発者も、少なからずいるように思う。
         <p>もし、ここのニーズとマッチし、デプロイも API も敷居が低ければ、例えば Store の更新をリアルタイムでサーバに送り同期したり、複雑な描画は DOM で行わず、サーバでレンダリングしたバイナリを送って部分的に Canvas に表示するといった、よりゲームのような開発手法を加速する可能性もあるのかもしれない。
       </section>
     </section>
