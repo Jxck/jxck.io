@@ -31,7 +31,7 @@ Web の基本的な通信が、画面の遷移とサブリソースの取得だ�
 - WebRTC (ice/dtls/srtp)
 - UDP Socket API (draft)
 
-これらは、おおよそ「何かしらのユースケース」が想定され、その要件を満たすうような形で標準化されてきた。もちろんそのスコープにゲーム開発のようなケースも、度々あげられていた。
+これらは、おおよそ「何かしらのユースケース」が想定され、その要件を満たすような形で標準化されてきた。もちろんそのスコープにゲーム開発も、度々あげられていた。
 
 しかし、本当にゲームを作るために最適なパーツとしてこれらが使えるのかというと、必ずしもそうではないというのが、ゲームを作る側からの意見だ。
 
@@ -70,8 +70,8 @@ Web の基本的な通信が、画面の遷移とサブリソースの取得だ�
     - 生 UDP が送れる
     - CORS などは考慮されている
   - Cons
-    - 暗号化が仕様に含まれてない
-    - 輻輳制御も含まれてない
+    - 暗号化が仕様に含まれていない
+    - 輻輳制御も含まれていない
     - まだ標準化途中でどうなるかも怪しい
 
 要するに本当に欲しいのはこういう通信手段だ
@@ -137,7 +137,7 @@ Overview では以下のような共通機能について定義されている�
 
 しかし、仮にそこに複数のストリームを束ねようとしても、 WS の特徴上ストリームごとに 1RTT のハンドシェイクが必要となる。また、サーバから Stream を開始することができない(本当にそれが必要なのかは疑問だが)という問題があげられている。
 
-また、 WebRTC の文脈で進んでいる RTCQuicTransport が、非常にというかあるケースではほぼ同じことを提供することになる点が指摘される。(策定者も同じ)
+また、 WebRTC の文脈で進んでいる [RTCQuicTransport](https://w3c.github.io/webrtc-quic/) が、非常にというかあるケースではほぼ同じことを提供することになる点が指摘される。(策定者も同じ)
 
 これもやはり、 WebRTC が P2P 前提の仕様でスタートした点と Client-Server ユースケースとの乖離をベースに説明されており、すでに RTCQuicTransport の下のレイヤに WebTransport の仕様が参照される形で更新されている。
 
@@ -244,7 +244,7 @@ SIMD や Worker Thread など、 WASM 自体の改善も進みつつあるが、
 
 基本はブラウザが内部で持っているコーデック/コンテナの実装に対する API を提供する。
 
-各要素ごとに WHATWG Stream ベースの API とし、終端が MediaStreamTrack となることで、他の API(WebTransport, WebRTC, Audio/Video Element etc) と接続する。
+要素ごとに WHATWG Stream ベースの API とし、終端が MediaStreamTrack となることで、他の API(WebTransport, WebRTC, Audio/Video Element etc) と接続する。
 
 音声は AudioPackets 、映像は VideoFrames を最小単位とし、 Encoder/Decoder が TransferStream として提供される。
 
@@ -305,7 +305,7 @@ videoElem.srcObject = mediaStream;
 
 ### WebRTC の次のフェーズとしての WebTransport
 
-そしてちょうど先日、 2011 年から WebRTC に関する作業を続けてきた Working Group である [RTCWEB が Close するアナウンス](https://mailarchive.ietf.org/arch/msg/rtcweb/4cj95edGFtfjZkUjozTybOJiMcA) が舞い込んだ。
+ちょうど先日、 2011 年から WebRTC に関する作業を続けてきた Working Group である [RTCWEB が Close するアナウンス](https://mailarchive.ietf.org/arch/msg/rtcweb/4cj95edGFtfjZkUjozTybOJiMcA) が舞い込んだ。
 
 仕様を提案している 3 人は、いずれもこの RTCWEB で WebRTC や ORTC の仕様策定に関わってきた人達だ。
 
@@ -313,7 +313,7 @@ WebRTC の作業が終わったわけでは無いが、おそらく彼らは今�
 
 なかでも中心である Peter Thatcher は Googler で、彼の Explainer には Game を Cloud Gaming と書いている部分も多い。
 
-「Stadia を WebRTC/QUIC ベースでやるのが大変だったんだろうな」が、 6 月にあった [Web Games Workshop](https://www.w3.org/2018/12/games-workshop/report.html#webtransport) での [Peter のトーク](https://vimeo.com/350908362) を見た筆者の最初の感想だった。
+時期的にも「Stadia を WebRTC/QUIC ベースでやるのが大変だったんだろうな」が、 6 月にあった [Web Games Workshop](https://www.w3.org/2018/12/games-workshop/report.html#webtransport) での [Peter のトーク](https://vimeo.com/350908362) を見た最初の感想だった。
 
 確かに WebRTC は Web に UDP の API を初めてもたらしたが、その前提が P2P でのビデオチャットに寄りすぎており、ブラウザ持つコーデックで音声/映像が送れることを重視している。
 
@@ -335,12 +335,12 @@ WebRTC の Peer をサーバに実装し Global IP を降れば、 Client-Server
 「この仕様が Cloud Game 以外の開発で使われるか?」を考える観点はまず 3 つ思いつく。
 
 1. 前述のような既存仕様(WebRTC, MSE, etc)との関連
-2. WASI の求める汎用 Socket / Codec API との関連
+2. WASI の求める汎用 Socket API との関連
 3. Game ではない一般 Web 開発への影響
 
-1 つ目は、完全に独立した仕様ではなく、既存 API に対する Low Level API として参照できるかという点だ。これはすでに意識されているし、 TAG Review などで指摘されていくだろうと考えると特に問題はないだろう。
+1 つ目は、完全に独立した仕様ではなく、既存 API に対する Low Level API として参照できるかという点だ。これはすでに意識されているし、 TAG Review などで指摘されていくと期待される。
 
-ここがうまくいけば、少なくとも現状その上位 API を使っている場面では、恩恵が受けられるだろう。
+ここがうまくいけば、少なくとも現状その上位 API を使っている場面では、恩恵が受けられるはずだ。
 
 2 つ目は、 WASI が Networking を含めたシステム API の策定を始めている点との関わりだ。
 
@@ -358,13 +358,13 @@ WebTransport の反省にもあるように WebRTC や MSE は映像を配信す
 
 同様に、 WebTransport/WebCodecs が「ゲームを作るときにしか使わない」ものになるという、同じ轍を踏むかどうかという点は、そのエコシステムの成長に大きく影響すると考える。
 
-逆にそちらのエコシステムが成長すれば、それが Web 開発の側へ影響することもありえるだろう。
+逆にエコシステムが成長すれば、ゲーム以外の Web 開発へ影響することも十分ありえるだろう。
 
 例えば、既に Web はドキュメントの枠を超えてアプリ化した先で、 SPA でクライアントが状態を持つことが一般的になった。
 
 データもドキュメントの転送(REST 的な世界観)を捨てて POST/200 で土管化した fetch の上に GraphQL を流している。
 
-見方によっては、すでに Web はアプリ開発の文脈よりも、ゲーム開発に近いことを行い始めており、汎用的な(というか余計なルールが無く自由がきく)表示と転送があれば便利だと思っている開発者も少なからずいるように思う。
+見方によっては、すでに Web はアプリ開発の文脈よりも、ゲーム開発に近いことを行い始めており、汎用的な(というか余計なルールが無く自由がきく)表示と転送があれば便利だと思っている開発者も、少なからずいるように思う。
 
 もし、ここのニーズとマッチし、デプロイも API も敷居が低ければ、例えば Store の更新をリアルタイムでサーバに送り同期したり、複雑な描画は DOM で行わず、サーバでレンダリングしたバイナリを送って部分的に Canvas に表示するといった、よりゲームのような開発手法を加速する可能性もあるのかもしれない。
 
