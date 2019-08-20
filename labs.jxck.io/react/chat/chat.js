@@ -26,7 +26,7 @@ class Controller extends React.Component {
 class Messages extends React.Component {
   render() {
     const {messages} = this.props
-    const $li = messages.map((message) => <li>{message}</li>)
+    const $li = messages.map((message, key) => <li key={key}>{message}</li>)
     return (
       <section>
         <h2>messages</h2>
@@ -66,5 +66,5 @@ class Root extends React.Component {
 
 ReactDOM.render(
   <Root />,
-  document.getElementById('root')
+  document.querySelector('#root')
 )
