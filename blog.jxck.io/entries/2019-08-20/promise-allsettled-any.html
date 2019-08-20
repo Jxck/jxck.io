@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <!--
+  貴様、見ているな！！
+  このサイトの技術的なまとめはこちらをどうぞ。
+  https://labs.jxck.io/blog
+
+  by Jxck
+  -->
+  <link rel=canonical href="https://blog.jxck.io/entries/2019-08-20/promise-allsettled-any.html">
+  <link rel=amphtml href="https://blog.jxck.io/entries/2019-08-20/promise-allsettled-any.amp.html">
+  <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+  <link rel=author href=https://jxck.io/assets/humans.txt>
+  <link rel=manifest href=/manifest.json>
+  <link rel=preload as=font type=font/woff href=https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular-201907.woff2 crossorigin>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <script defer src=/assets/js/main.js></script>
+  <script defer src=/assets/js/ga.js></script>
+  <script defer src=https://jxck.io/assets/js/highlight.pack.js></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type=image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+
+  <meta name=author content=Jxck>
+  <meta name=description content="`Promise.allSettled()` と `Promise.any()` の仕様策定が進んでいる。両者は近いレイヤの仕様では有るが、作業の進捗には差がある。- Promise.allSettled は Stage 4 であり、 Chrome や Safari TP ...">
+  <meta name=keywords content="promise,tc39,javascript">
+
+  <meta name=twitter:card content=summary>
+  <meta name=twitter:site content=@jxck_>
+  <meta name=twitter:url content="https://blog.jxck.io/entries/2019-08-20/promise-allsettled-any.html">
+  <meta name=twitter:title content="Promise.allSettled と Promise.any | blog.jxck.io">
+  <meta name=twitter:description content="`Promise.allSettled()` と `Promise.any()` の仕様策定が進んでいる。両者は近いレイヤの仕様では有るが、作業の進捗には差がある。- Promise.allSettled は Stage 4 であり、 Chrome や Safari TP ...">
+  <meta name=twitter:image content="https://jxck.io/assets/img/jxck.png">
+
+  <meta property=og:type content=article>
+  <meta property=og:url content="https://blog.jxck.io/entries/2019-08-20/promise-allsettled-any.html">
+  <meta property=og:title content="Promise.allSettled と Promise.any | blog.jxck.io">
+  <meta property=og:site_name content="blog.jxck.io">
+  <meta property=og:description content="`Promise.allSettled()` と `Promise.any()` の仕様策定が進んでいる。両者は近いレイヤの仕様では有るが、作業の進捗には差がある。- Promise.allSettled は Stage 4 であり、 Chrome や Safari TP ...">
+  <meta property=og:image content="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "Promise.allSettled と Promise.any | blog.jxck.io",
+  "image": [
+    "https://jxck.io/assets/img/jxck.png",
+    "https://logo.jxck.io/jxck.1200x1200.png"
+  ],
+  "datePublished": "2019-08-20T08:00:00+08:00",
+  "dateModified": "2019-08-20T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://logo.jxck.io/jxck.60x60.png",
+      "height": 60,
+      "width": 60
+    }
+  },
+  "description": "`Promise.allSettled()` と `Promise.any()` の仕様策定が進んでいる。両者は近いレイヤの仕様では有るが、作業の進捗には差がある。- Promise.allSettled は Stage 4 であり、 Chrome や Safari TP ..."
+}
+</script>
+
+  <title>Promise.allSettled と Promise.any | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/blog.svg   title=blog   alt="blog top" class=logo></a>
+        <li><a href="/entries/2019-08-20/promise-allsettled-any.amp.html#development=1" aria-label="amp version">
+                                               <img width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/amp.svg    title=blog   alt="amp version"></a>
+        <li><a href=.                         ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/up.svg     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/rss.svg    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/humans.svg title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/jxck.svg   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/markdown.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2019-08-20>2019-08-20</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2019-08-20>2019-08-20</time></dd></div>
+      <div><dt class=tags>tags</dt><dd>[<a href='/tags/promise.html'>promise</a>,<a href='/tags/tc39.html'>tc39</a>,<a href='/tags/javascript.html'>javascript</a>]</dd></div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+  <article>
+    <h1><a href=/entries/2019-08-20/promise-allsettled-any.html>Promise.allSettled と Promise.any</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p><code translate="no">Promise.allSettled()</code> と <code translate="no">Promise.any()</code> の仕様策定が進んでいる。
+      <p>両者は近いレイヤの仕様では有るが、作業の進捗には差がある。
+      <ul>
+        <li>
+          <a href="https://github.com/tc39/proposal-promise-allSettled">Promise.allSettled</a> は Stage 4 であり、 Chrome や Safari TP には実装もされている
+        </li>
+        <li>
+          <a href="https://github.com/tc39/proposal-promise-any">Promise.any</a> は Stage 2 であり、実装はまだない
+        </li>
+      </ul>
+      <p>ここでは、これらがあると何が嬉しいのかを <code translate="no">Promise.all()</code>, <code translate="no">Promise.race()</code> の特徴を踏まえて解説する。
+    </section>
+    <section>
+      <h2 id="promiseallrace"><a href="#promiseallrace">Promise.all()/race()</a></h2>
+      <p><code translate="no">Promise.all()</code>, <code translate="no">Promise.race()</code> は、いずれも複数の Promise をまとめて処理する Utility Method のようなものである。
+      <p>all は全ての Promise が Resolve したら Resolve し、 race はどれか 1 つでも Resolve したら Resolve する Promise をそれぞれ返す。
+      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+      <pre class=js><code translate="no">const fetches = [
+  fetch(&#039;./page1.html&#039;),
+  fetch(&#039;./page2.html&#039;),
+  fetch(&#039;./page3.html&#039;),
+  fetch(&#039;./page4.html&#039;),
+  fetch(&#039;./page5.html&#039;),
+]
+
+// 全ての fetch が Resolve したら Resolve する
+await Promise.all(fetched)
+
+// 最初の一つが Resolve したら Resolve する
+await Promise.all(fetched)</code></pre>
+      <p>ただし、それは全ての Promise が Resolve することを前提とした場合である。
+      <p>all/race ともに、そのうちの一部が Reject した場合を考えると意外と面倒くさい。
+      <section>
+        <h3 id="all--reject"><a href="#all--reject">all + reject</a></h3>
+        <p>all は、その中の一つでも Reject すると、全体が Reject してしまう。
+        <pre class=js><code translate="no">try {
+  const fetches = [
+    fetch(&#039;./page1.html&#039;),
+    fetch(&#039;./page2.html&#039;),
+    fetch(&#039;./page3.html&#039;),
+    fetch(&#039;./page4.html&#039;),
+    new Promise((done, fail) =&gt; {
+      setTimeout(() =&gt; fail(&#039;abort&#039;), 10)
+    })
+  ]
+
+  // 全ての fetch が Resolve したら Resolve する
+  await Promise.all(fetched)
+} catch(err) {
+  // 一つでも Reject すると Reject する
+  cosnole.error(err) // abort
+}</code></pre>
+        <p>すると、「<em>全ての処理が完了してほしい</em>」という要件を満たすためには、リトライする必要がある。
+        <p>しかし、上で言う catch された err は Reject されたエラーしか入ってないため、どこまでが成功しているのかはわからない。
+        <p>そこで、どこまで成功したかがわかるように設計するか、諦めて全部やり直すなどを行う必要がある。
+      </section>
+    </section>
+    <section>
+      <h2 id="allsettled"><a href="#allsettled">allSettled</a></h2>
+      <p>allSettled は、 all とは違い、個々が Resolve/Reject どちらになっても、最後までとにかく全て実行する。
+      <p>実行した結果を配列として Resolve するため、基本的に allSettled 自体は Reject しない。
+      <pre class=js><code translate="no">const fetches = [
+  fetch(&#039;./page1.html&#039;),
+  fetch(&#039;./page2.html&#039;),
+  fetch(&#039;./page3.html&#039;),
+  fetch(&#039;./page4.html&#039;),
+  new Promise((done, fail) =&gt; {
+    setTimeout(() =&gt; fail(&#039;abort&#039;), 10)
+  })
+]
+
+try {
+  console.log(await Promise.allSettled(fetches))
+  // 0: {status: &#039;fulfilled&#039;, value: Response}
+  // 1: {status: &#039;fulfilled&#039;, value: Response}
+  // 2: {status: &#039;fulfilled&#039;, value: Response}
+  // 3: {status: &#039;fulfilled&#039;, value: Response}
+  // 4: {status: &#039;rejected&#039;, reason: &#039;abort&#039;}
+} catch(err) {
+  // 基本的に reject はしない
+  console.error(err)
+}</code></pre>
+      <p>したがって、 <code translate="no">status: &#039;rejected&#039;</code> な結果だけをリトライすれば良い。
+      <p>完了したものを無駄にせず、効率よく簡単に実装することができるだろう。
+    </section>
+    <section>
+      <h2 id="race--reject"><a href="#race--reject">race + reject</a></h2>
+      <p>race の場合は、最初の一つが Resolve する前に Reject した Promise があると、そこで全体が Reject してしまう。
+      <pre class=js><code translate="no">const fetches = [
+  fetch(&#039;./page1.html&#039;),
+  fetch(&#039;./page2.html&#039;),
+  fetch(&#039;./page3.html&#039;),
+  fetch(&#039;./page4.html&#039;),
+  new Promise((done, fail) =&gt; {
+    setTimeout(() =&gt; fail(&#039;abort&#039;), 10)
+  })
+]
+
+try {
+  console.log(await Promise.race(fetches))
+} catch(err) {
+  console.error(err) // abort
+}</code></pre>
+      <p>従って、「<em>最初に Resolve する Promise を待ちたい</em>」という要件を満たす場合は、リトライする必要がある。
+    </section>
+    <section>
+      <h2 id="any"><a href="#any">any</a></h2>
+      <p>any は rece とは違い、 Resolve する前に Reject する Promise があっても無視し、最初にいずれかが Resolve するまで待つ。
+      <p>そして、全ての Promise が Reject した場合にのみ全体を Reject する。
+      <pre class=js><code translate="no">const fetches = [
+  fetch(&#039;./page1.html&#039;),
+  fetch(&#039;./page2.html&#039;),
+  fetch(&#039;./page3.html&#039;),
+  fetch(&#039;./page4.html&#039;),
+  new Promise((done, fail) =&gt; {
+    setTimeout(() =&gt; fail(&#039;abort&#039;), 10)
+  })
+]
+
+try {
+  console.log(await Promise.any(fetches)) // Response
+} catch(err) {
+  console.error(err) // 全部 reject した場合
+}</code></pre>
+      <p>従って、「<em>最初に Resolve する Promise を待ちたい</em>」という要件を満たす場合は、 any を使えばそれだけで良い。
+    </section>
+    <section>
+      <h2 id="補足"><a href="#補足">補足</a></h2>
+      <p>Promise が Resolve した状態を Fulfilled, Reject した状態を Rejected と言う。
+      <p>Fulfilled か Rejected どちらかになった状態、つまり成功失敗に関わらず「処理が終わった状態」を <em>Settled</em> と言う。
+      <p>そして、 Promise の配列を取る API で、まだ処理中の Promise がいても、中断して全体を Settled にすることを Short-Circuit と言う。
+      <p>これを踏まえて分類すると、以下のようになる。
+      <ul>
+        <li>
+          <code translate="no">Promise.all</code>:        全部 Fulfilled になるまで続け、 1 つでも Rejected になると Short-Circuit する
+        </li>
+        <li>
+          <code translate="no">Promise.allSettled</code>: 全部 Settled になるまで続け、 Short-Circuit しない
+        </li>
+        <li>
+          <code translate="no">Promise.any</code>:        1 つでも Fulfilled になると Short-Circuit する
+        </li>
+        <li>
+          <code translate="no">Promise.race</code>:       1 つでも Settled になると Short-Circuit する
+        </li>
+      </ul>
+      <p>つまり、終わる条件が Settled なのかどうかで分類できることがわかる。
+      <p>この分類で行くと race はそもそも <a href="https://github.com/tc39/proposal-promise-any/issues/10#issuecomment-459134703">anySettled</a> だったと言うことになる。
+      <p>同じようにもし今名前を変えても良いのであれば、こうするとわかりやすいだろう。
+      <ul>
+        <li>
+          <code translate="no">Promise.allFulfilled</code>: (Promise.all)
+        </li>
+        <li>
+          <code translate="no">Promise.allSettled</code>:   (Promise.allSettled)
+        </li>
+        <li>
+          <code translate="no">Promise.anyFulfilled</code>: (Promise.any)
+        </li>
+        <li>
+          <code translate="no">Promise.anySettled</code>:   (Promise.race)
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 id="demo"><a href="#demo">DEMO</a></h2>
+      <p>動作するデモを以下に用意した。
+      <ul>
+        <li>
+          <a href="https://labs.jxck.io/promise/allsettled">https://labs.jxck.io/promise/allsettled</a>
+        </li>
+        <li>
+          <a href="https://labs.jxck.io/promise/any">https://labs.jxck.io/promise/any</a>
+        </li>
+      </ul>
+    </section>
+  </article>
+
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small><small>Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>Google Analytics</a> and <a href=https://w3c.github.io/ServiceWorker/>Service Worker</a>.</small></p>
+  </footer>
+</body>
+</html>

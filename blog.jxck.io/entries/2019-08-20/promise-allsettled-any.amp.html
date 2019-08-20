@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html amp lang=ja>
+<head>
+  <meta charset=utf-8>
+  <!--
+  貴様、見ているな！！
+  このサイトの技術的なまとめはこちらをどうぞ。
+  https://labs.jxck.io/blog
+
+  by Jxck
+  -->
+  <link rel=canonical href=https://blog.jxck.io/entries/2019-08-20/promise-allsettled-any.html>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+  <link rel=author href=https://jxck.io/assets/humans.txt>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type=image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+
+  <meta name=author content=Jxck>
+  <meta name=description content="`Promise.allSettled()` と `Promise.any()` の仕様策定が進んでいる。両者は近いレイヤの仕様では有るが、作業の進捗には差がある。- Promise.allSettled は Stage 4 であり、 Chrome や Safari TP ...">
+  <meta name=keywords content="promise,tc39,javascript">
+
+  <meta name=twitter:card content=summary>
+  <meta name=twitter:site content=@jxck_>
+  <meta name=twitter:url content="https://blog.jxck.io/entries/2019-08-20/promise-allsettled-any.html">
+  <meta name=twitter:title content="Promise.allSettled と Promise.any | blog.jxck.io">
+  <meta name=twitter:description content="`Promise.allSettled()` と `Promise.any()` の仕様策定が進んでいる。両者は近いレイヤの仕様では有るが、作業の進捗には差がある。- Promise.allSettled は Stage 4 であり、 Chrome や Safari TP ...">
+  <meta name=twitter:image content="https://jxck.io/assets/img/jxck.png">
+
+  <meta property=og:type content=article>
+  <meta property=og:url content="https://blog.jxck.io/entries/2019-08-20/promise-allsettled-any.html">
+  <meta property=og:title content="Promise.allSettled と Promise.any | blog.jxck.io">
+  <meta property=og:site_name content="blog.jxck.io">
+  <meta property=og:description content="`Promise.allSettled()` と `Promise.any()` の仕様策定が進んでいる。両者は近いレイヤの仕様では有るが、作業の進捗には差がある。- Promise.allSettled は Stage 4 であり、 Chrome や Safari TP ...">
+  <meta property=og:image content="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "Promise.allSettled と Promise.any | blog.jxck.io",
+  "image": [
+    "https://jxck.io/assets/img/jxck.png",
+    "https://logo.jxck.io/jxck.1200x1200.png"
+  ],
+  "datePublished": "2019-08-20T08:00:00+08:00",
+  "dateModified": "2019-08-20T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://logo.jxck.io/jxck.60x60.png",
+      "height": 60,
+      "width": 60
+    }
+  },
+  "description": "`Promise.allSettled()` と `Promise.any()` の仕様策定が進んでいる。両者は近いレイヤの仕様では有るが、作業の進捗には差がある。- Promise.allSettled は Stage 4 であり、 Chrome や Safari TP ..."
+}
+</script>
+
+  <title>Promise.allSettled と Promise.any | blog.jxck.io</title>
+  <script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+  <script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src=https://cdn.ampproject.org/v0.js></script>
+<style amp-custom>
+article section p {
+  margin-left: 0;
+}
+
+article table {
+  margin-left: 0;
+}
+
+article img {
+  margin: var(--grid) 0;
+  border: 1px solid #ccc;
+  box-sizing: content-box;
+  background-color: #fff;
+}
+
+article ul,
+article ol,
+article dl {
+  margin-left: var(--grid);
+  font-family: var(--mono-font);
+}
+
+article ul li ul,
+article ol li ol {
+  margin: 0 0 0 calc(var(--grid)*2);
+  font-size: 1rem;
+}
+
+article ol li ol li,
+article ul li ul li {
+  margin-bottom: 0;
+}
+
+article dl {
+  display: grid;
+  grid-template-columns: minmax(auto, max-content);
+  grid-column-gap: var(--grid);
+}
+
+article dl div {
+  display: contents;
+}
+
+article dl dt {
+  grid-column: 1 / 2;
+}
+article dl dd {
+  grid-column: 2 / 2;
+}
+
+article blockquote {
+  font-family: var(--mono-font);
+}
+
+article blockquote p {
+  margin: 0;
+}
+
+@supports (line-height-step: 1px) {
+  article {
+    --grid-rhythm: 1.5em;
+    line-height: 1.5;
+    line-height-step: var(--grid-rhythm);
+  }
+
+  article h1,
+  article h2,
+  article h3,
+  article h4,
+  article h5,
+  article h6 {
+    display: inline-block;
+    width: 100%;
+    line-height-step: 0;
+    line-height: 1.2;
+    margin-bottom: 0;
+  }
+
+  article section {
+    /* grid for debug */
+    /* background-size: 100% var(--grid-rhythm); */
+    /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
+  }
+
+  article p {
+    margin-top: var(--grid-rhythm);
+    margin-bottom: var(--grid-rhythm);
+  }
+
+  article pre,
+  article table {
+    line-height-step: 0;
+    line-height: normal;
+  }
+}
+
+/* normal regular */
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src:
+    local("NotoSansCJKjp-Bold.otf"),
+    local("NotoSansJP-Bold.otf"),
+    url("https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular-201907.woff2") format("woff2");
+}
+/* normal bold */
+@font-face {
+  font-family: "NotoSansCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 700;
+  font-display: optional;
+  src:
+    local("NotoSansCJKjp-Bold.otf"),
+    local("NotoSansJP-Bold.otf"),
+    url("https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold-201907.woff2") format("woff2");
+}
+
+
+/* mono regular */
+@font-face {
+  font-family: "NotoSansMonoCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url("https://jxck.io/assets/font/NotoSansMonoCJKjp-Jxck-Regular-201907.woff2") format("woff2");
+}
+/* mono bold */
+@font-face {
+  font-family: "NotoSansMonoCJKjp-Jxck";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    url("https://jxck.io/assets/font/NotoSansMonoCJKjp-Jxck-Bold-201907.woff2") format("woff2");
+}
+
+/* Light Mode Theme */
+:root {
+  --background-color: #fefefe;
+  --font-color: #222;
+  --header-color: #222;
+
+  --anchor-color: RoyalBlue;
+  --anchor-visited-color: Brown;
+
+  --code-block: #efefef;
+  --code-block-font: #222;
+
+  --block-quote: #ddd;
+  --table-border: #222;
+
+  --regular-font: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
+  --mono-font: "NotoSansMonoCJKjp-Jxck";
+  --code-font: Menlo, Consolas, Liberation, Mono, Courier, "NotoSansMonoCJKjp-Jxck";
+
+  --icon-size: 30px;
+
+  --width: 80vw;
+  --grid: 1rem;
+
+  --radius: 4px;
+}
+
+
+/* Mobile Theme */
+@media screen and (max-device-width: 800px) {
+  :root {
+    --width: 94vw;
+  }
+
+  audio {
+    width: 100%;
+  }
+}
+
+/* Dark Mode Theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #010101;
+    --font-color: #eee;
+
+    --anchor-color: CornflowerBlue;
+    --anchor-visited-color: RosyBrown;
+
+    --code-block: #efefef;
+
+    --table-border: #eee;
+  }
+
+  article img {
+    filter: grayscale(50%);
+  }
+  article img[src*=svg] {
+    filter: invert(100%) grayscale(50%);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--regular-font);
+  background-color: var(--background-color);
+  color: var(--font-color);
+  margin: 0;
+  padding: 0;
+}
+
+code {
+  font-family: var(--mono-font);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+hr {
+  margin: 0;
+  padding: 0;
+}
+
+iframe {
+  display: block;
+  max-width: 100%;
+  margin: var(--grid) 0;
+}
+
+dl.info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+dl.info div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+dl.info dt::after {
+  content: ":";
+  margin-right: calc(var(--grid)/2);
+}
+
+dl.info dd {
+  margin: 0 var(--grid) 0 0;
+}
+
+header {
+  z-index: 1;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: calc(var(--grid)/2);
+  background-color: var(--header-color);
+}
+
+h2:target,
+h3:target,
+h4:target,
+h5:target,
+h6:target {
+  /* sticky header に合わせて link scroll をずらす */
+  margin-top:  calc((var(--icon-size) + var(--grid)) * -1);
+  padding-top: calc((var(--icon-size) + var(--grid)));
+}
+
+header ul {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: var(--width);
+  margin: 0 auto;
+}
+
+header ul li {
+  width:  var(--icon-size);
+  height: var(--icon-size);
+  padding: 0;
+  margin: 0 0 0 var(--grid);
+}
+
+header ul li a {
+  display: block;
+  width:  var(--icon-size);
+  height: var(--icon-size);
+}
+
+header ul li svg {
+  fill: var(--background-color);
+}
+
+header ul li::before {
+  content: none;
+}
+
+header ul li:first-child {
+  flex-grow: 1;
+  margin-left: 0;
+}
+
+header .logo {
+  border: 1px solid #fff;
+  box-sizing: border-box;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  color: var(--font-color);
+}
+
+h1 > a:visited,
+h2 > a:visited,
+h3 > a:visited,
+h4 > a:visited,
+h5 > a:visited,
+h6 > a:visited {
+  color: var(--font-color);
+}
+
+h1 > a::before {
+  content: "# ";
+}
+
+h2 > a::before {
+  content: "## ";
+}
+
+h3 > a::before {
+  content: "### ";
+}
+
+h4 > a::before {
+  content: "#### ";
+}
+
+h1 > a:hover::before,
+h2 > a:hover::before,
+h3 > a:hover::before,
+h4 > a:hover::before,
+h5 > a:hover::before,
+h6 > a:hover::before {
+  color: var(--anchor-visited-color);
+}
+
+em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+em::before,
+em::after {
+  content: "*";
+}
+
+strong {
+  color: red;
+}
+
+strong::before,
+strong::after {
+  content: "**";
+}
+
+ul li::before {
+  content: "- ";
+}
+
+ol {
+  counter-reset: list;
+}
+
+ol li::before {
+  counter-increment: list;
+  content: counter(list) ". ";
+}
+
+dl dt::after {
+  content: ":";
+}
+
+blockquote {
+  display: block;
+  border: solid 1px var(--block-quote);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin: 0;
+}
+
+blockquote p::before {
+  content: "> ";
+}
+
+code {
+  background-color: var(--code-block);
+  color: var(--code-block-font);
+  border-radius: var(--radius);
+  padding: 0 4px;
+}
+
+code::before,
+code::after {
+  content: "`";
+}
+
+main {
+  display: block;
+  width: var(--width);
+  margin: 1em auto;
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+  color: var(--anchor-color);
+}
+
+a:visited {
+  color: var(--anchor-visited-color);
+}
+
+ol,
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+dl dt {
+  font-weight: bold;
+  margin: 0;
+}
+
+dl dd {
+  margin: 0;
+}
+
+footer {
+  padding: var(--grid);
+}
+
+footer strong,
+footer .copyright {
+  display: block;
+  width: var(--width);
+  margin: 0 auto;
+  font-style: italic;
+}
+
+pre {
+  margin: var(--grid) 0;
+  border-radius: var(--radius);
+}
+
+pre::before {
+  content: "```" attr(class) "\A";
+}
+
+pre::after {
+  z-index: -1;
+  position: relative;
+  top: -1em;
+  content: "\A```";
+}
+
+pre > code {
+  font-family: var(--code-font);
+  overflow: auto;
+  display: block;
+  padding: 0.5rem;
+  margin: 0;
+}
+
+pre > code::before,
+pre > code::after {
+  content: none;
+}
+
+.hljs-keyword {
+  color: #a71d5d;
+}
+
+.hljs-title {
+  color: #795da3;
+}
+
+.hljs-string {
+  color: #183691;
+}
+
+.hljs-number {
+  color: #0086b3;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-literal {
+  color: #0086b3;
+}
+
+.hljs-regexp {
+  color: #183691;
+}
+
+.hljs-comment {
+  color: #4f80e5;
+}
+
+.hljs-tag {
+  color: #a71d5d;
+}
+
+.hljs-name {
+  color: #222222;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-attribute {
+  font-weight: bold;
+}
+
+.hljs-meta {
+  color: #4f80e5;
+}
+
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-pseudo {
+  color: #6f42c1;
+}
+
+.hljs-selector-tag {
+  color: #22863a;
+}
+
+.hljs-subst {
+  font-weight: bold;
+}
+
+.hljs-variable {
+  color: #a71d5d;
+}
+
+.hljs-symbol {
+  font-weight: bold;
+}
+
+.hljs-selector-attr {
+  color: #6f42c1;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  .hljs-keyword {
+    color: #000;
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  .hljs-number {
+    color: var(--code-block-font);
+  }
+
+  .hljs-built_in {
+    color: #000;
+    font-weight: bold;
+  }
+
+  .hljs-literal {
+    color: var(--code-block-font);
+    font-weight: bold;
+  }
+
+  .hljs-regexp {
+    color: var(--code-block-font);
+  }
+
+  .hljs-comment {
+    color: #888;
+  }
+
+  .hljs-tag {
+    color: var(--code-block-font);
+    font-weight: bold;
+  }
+
+  .hljs-strong {
+    font-weight: bold;
+  }
+
+  .hljs-attribute {
+  }
+
+  .hljs-attr {
+    color: var(--code-block-font);
+    font-weight: bold;
+  }
+
+  .hljs-selector-tag {
+    color: var(--code-block-font);
+  }
+
+  .hljs-subst {
+    font-weight: bold;
+  }
+  .hljs-symbol {
+    font-weight: bold;
+  }
+
+  .hljs-section {
+  }
+
+  .hljs-meta,
+  .hljs-selector-id,
+  .hljs-selector-class,
+  .hljs-selector-pseudo,
+  .hljs-variable,
+  .hljs-title,
+  .hljs-string,
+  .hljs-name,
+  .hljs-selector-attr {
+    color: var(--code-block-font);
+  }
+}
+
+
+
+
+
+
+
+/**.hljs,**/
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition,
+.hljs-template-variable,
+.hljs-link,
+.hljs-type,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion,
+.hljs-meta-string,
+.hljs-emphasis {
+  /** if you find element applyed this style, please tell me https://github.com/jxck/jxck.io/issues **/
+  font-size: 100em;
+}
+
+table {
+  font-family: var(--mono-font);
+  margin: var(--grid) 0;
+  border-spacing: 0 0.4rem;
+}
+
+th {
+  padding: 0 var(--grid) calc(var(--grid)/2) var(--grid);
+  border-left: 2px solid var(--table-border);
+  border-bottom: 2px dashed var(--table-border);
+}
+
+td {
+  padding: calc(var(--grid)/2) var(--grid);
+  border-left: 2px solid var(--table-border);
+}
+
+th:last-child,
+td:last-child {
+  border-right: 2px solid var(--table-border);
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+</style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://blog.jxck.io      ><amp-img width=30 height=30 src=https://jxck.io/assets/img/blog.svg   alt ="blog top" class=logo     ></a>
+      <li><a href=.                         ><amp-img width=30 height=30 src=https://jxck.io/assets/img/up.svg     alt ="move to parent directory"></a>
+      <li><a href=/feeds/atom.xml           ><amp-img width=30 height=30 src=https://jxck.io/assets/img/rss.svg    alt ="rss feed"                ></a>
+      <li><a href=https://jxck.io/humans.txt><amp-img width=30 height=30 src=https://jxck.io/assets/img/humans.svg alt ="huamns.txt"              ></a>
+      <li><a href=https://jxck.io           ><amp-img width=30 height=30 src=https://jxck.io/assets/img/jxck.svg   alt ="jxck logo" class=logo    ></a>
+    </ul>
+  </nav>
+</header>
+<main>
+  <ul class=info>
+    <dt>created_at</dt><dd><time class=created_at datetime=2019-08-20>2019-08-20</time></dd>
+    <dt>updated_at</dt><dd><time class=updated_at datetime=2019-08-20>2019-08-20</time></dd>
+    <dt class=tags>tags</dt><dd>[<a href='/tags/promise.html'>promise</a>,<a href='/tags/tc39.html'>tc39</a>,<a href='/tags/javascript.html'>javascript</a>]</dd>
+  </ul>
+
+
+  <article>
+    <h1><a href=/entries/2019-08-20/promise-allsettled-any.html>Promise.allSettled と Promise.any</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p><code translate="no">Promise.allSettled()</code> と <code translate="no">Promise.any()</code> の仕様策定が進んでいる。
+      <p>両者は近いレイヤの仕様では有るが、作業の進捗には差がある。
+      <ul>
+        <li>
+          <a href="https://github.com/tc39/proposal-promise-allSettled">Promise.allSettled</a> は Stage 4 であり、 Chrome や Safari TP には実装もされている
+        </li>
+        <li>
+          <a href="https://github.com/tc39/proposal-promise-any">Promise.any</a> は Stage 2 であり、実装はまだない
+        </li>
+      </ul>
+      <p>ここでは、これらがあると何が嬉しいのかを <code translate="no">Promise.all()</code>, <code translate="no">Promise.race()</code> の特徴を踏まえて解説する。
+    </section>
+    <section>
+      <h2 id="promiseallrace"><a href="#promiseallrace">Promise.all()/race()</a></h2>
+      <p><code translate="no">Promise.all()</code>, <code translate="no">Promise.race()</code> は、いずれも複数の Promise をまとめて処理する Utility Method のようなものである。
+      <p>all は全ての Promise が Resolve したら Resolve し、 race はどれか 1 つでも Resolve したら Resolve する Promise をそれぞれ返す。
+      <pre class=js><code translate="no">const fetches = [
+  fetch(&#039;./page1.html&#039;),
+  fetch(&#039;./page2.html&#039;),
+  fetch(&#039;./page3.html&#039;),
+  fetch(&#039;./page4.html&#039;),
+  fetch(&#039;./page5.html&#039;),
+]
+
+// 全ての fetch が Resolve したら Resolve する
+await Promise.all(fetched)
+
+// 最初の一つが Resolve したら Resolve する
+await Promise.all(fetched)</code></pre>
+      <p>ただし、それは全ての Promise が Resolve することを前提とした場合である。
+      <p>all/race ともに、そのうちの一部が Reject した場合を考えると意外と面倒くさい。
+      <section>
+        <h3 id="all--reject"><a href="#all--reject">all + reject</a></h3>
+        <p>all は、その中の一つでも Reject すると、全体が Reject してしまう。
+        <pre class=js><code translate="no">try {
+  const fetches = [
+    fetch(&#039;./page1.html&#039;),
+    fetch(&#039;./page2.html&#039;),
+    fetch(&#039;./page3.html&#039;),
+    fetch(&#039;./page4.html&#039;),
+    new Promise((done, fail) =&gt; {
+      setTimeout(() =&gt; fail(&#039;abort&#039;), 10)
+    })
+  ]
+
+  // 全ての fetch が Resolve したら Resolve する
+  await Promise.all(fetched)
+} catch(err) {
+  // 一つでも Reject すると Reject する
+  cosnole.error(err) // abort
+}</code></pre>
+        <p>すると、「<em>全ての処理が完了してほしい</em>」という要件を満たすためには、リトライする必要がある。
+        <p>しかし、上で言う catch された err は Reject されたエラーしか入ってないため、どこまでが成功しているのかはわからない。
+        <p>そこで、どこまで成功したかがわかるように設計するか、諦めて全部やり直すなどを行う必要がある。
+      </section>
+    </section>
+    <section>
+      <h2 id="allsettled"><a href="#allsettled">allSettled</a></h2>
+      <p>allSettled は、 all とは違い、個々が Resolve/Reject どちらになっても、最後までとにかく全て実行する。
+      <p>実行した結果を配列として Resolve するため、基本的に allSettled 自体は Reject しない。
+      <pre class=js><code translate="no">const fetches = [
+  fetch(&#039;./page1.html&#039;),
+  fetch(&#039;./page2.html&#039;),
+  fetch(&#039;./page3.html&#039;),
+  fetch(&#039;./page4.html&#039;),
+  new Promise((done, fail) =&gt; {
+    setTimeout(() =&gt; fail(&#039;abort&#039;), 10)
+  })
+]
+
+try {
+  console.log(await Promise.allSettled(fetches))
+  // 0: {status: &#039;fulfilled&#039;, value: Response}
+  // 1: {status: &#039;fulfilled&#039;, value: Response}
+  // 2: {status: &#039;fulfilled&#039;, value: Response}
+  // 3: {status: &#039;fulfilled&#039;, value: Response}
+  // 4: {status: &#039;rejected&#039;, reason: &#039;abort&#039;}
+} catch(err) {
+  // 基本的に reject はしない
+  console.error(err)
+}</code></pre>
+      <p>したがって、 <code translate="no">status: &#039;rejected&#039;</code> な結果だけをリトライすれば良い。
+      <p>完了したものを無駄にせず、効率よく簡単に実装することができるだろう。
+    </section>
+    <section>
+      <h2 id="race--reject"><a href="#race--reject">race + reject</a></h2>
+      <p>race の場合は、最初の一つが Resolve する前に Reject した Promise があると、そこで全体が Reject してしまう。
+      <pre class=js><code translate="no">const fetches = [
+  fetch(&#039;./page1.html&#039;),
+  fetch(&#039;./page2.html&#039;),
+  fetch(&#039;./page3.html&#039;),
+  fetch(&#039;./page4.html&#039;),
+  new Promise((done, fail) =&gt; {
+    setTimeout(() =&gt; fail(&#039;abort&#039;), 10)
+  })
+]
+
+try {
+  console.log(await Promise.race(fetches))
+} catch(err) {
+  console.error(err) // abort
+}</code></pre>
+      <p>従って、「<em>最初に Resolve する Promise を待ちたい</em>」という要件を満たす場合は、リトライする必要がある。
+    </section>
+    <section>
+      <h2 id="any"><a href="#any">any</a></h2>
+      <p>any は rece とは違い、 Resolve する前に Reject する Promise があっても無視し、最初にいずれかが Resolve するまで待つ。
+      <p>そして、全ての Promise が Reject した場合にのみ全体を Reject する。
+      <pre class=js><code translate="no">const fetches = [
+  fetch(&#039;./page1.html&#039;),
+  fetch(&#039;./page2.html&#039;),
+  fetch(&#039;./page3.html&#039;),
+  fetch(&#039;./page4.html&#039;),
+  new Promise((done, fail) =&gt; {
+    setTimeout(() =&gt; fail(&#039;abort&#039;), 10)
+  })
+]
+
+try {
+  console.log(await Promise.any(fetches)) // Response
+} catch(err) {
+  console.error(err) // 全部 reject した場合
+}</code></pre>
+      <p>従って、「<em>最初に Resolve する Promise を待ちたい</em>」という要件を満たす場合は、 any を使えばそれだけで良い。
+    </section>
+    <section>
+      <h2 id="補足"><a href="#補足">補足</a></h2>
+      <p>Promise が Resolve した状態を Fulfilled, Reject した状態を Rejected と言う。
+      <p>Fulfilled か Rejected どちらかになった状態、つまり成功失敗に関わらず「処理が終わった状態」を <em>Settled</em> と言う。
+      <p>そして、 Promise の配列を取る API で、まだ処理中の Promise がいても、中断して全体を Settled にすることを Short-Circuit と言う。
+      <p>これを踏まえて分類すると、以下のようになる。
+      <ul>
+        <li>
+          <code translate="no">Promise.all</code>:        全部 Fulfilled になるまで続け、 1 つでも Rejected になると Short-Circuit する
+        </li>
+        <li>
+          <code translate="no">Promise.allSettled</code>: 全部 Settled になるまで続け、 Short-Circuit しない
+        </li>
+        <li>
+          <code translate="no">Promise.any</code>:        1 つでも Fulfilled になると Short-Circuit する
+        </li>
+        <li>
+          <code translate="no">Promise.race</code>:       1 つでも Settled になると Short-Circuit する
+        </li>
+      </ul>
+      <p>つまり、終わる条件が Settled なのかどうかで分類できることがわかる。
+      <p>この分類で行くと race はそもそも <a href="https://github.com/tc39/proposal-promise-any/issues/10#issuecomment-459134703">anySettled</a> だったと言うことになる。
+      <p>同じようにもし今名前を変えても良いのであれば、こうするとわかりやすいだろう。
+      <ul>
+        <li>
+          <code translate="no">Promise.allFulfilled</code>: (Promise.all)
+        </li>
+        <li>
+          <code translate="no">Promise.allSettled</code>:   (Promise.allSettled)
+        </li>
+        <li>
+          <code translate="no">Promise.anyFulfilled</code>: (Promise.any)
+        </li>
+        <li>
+          <code translate="no">Promise.anySettled</code>:   (Promise.race)
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 id="demo"><a href="#demo">DEMO</a></h2>
+      <p>動作するデモを以下に用意した。
+      <ul>
+        <li>
+          <a href="https://labs.jxck.io/promise/allsettled">https://labs.jxck.io/promise/allsettled</a>
+        </li>
+        <li>
+          <a href="https://labs.jxck.io/promise/any">https://labs.jxck.io/promise/any</a>
+        </li>
+      </ul>
+    </section>
+  </article>
+
+</main>
+<hr>
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small><small>Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>Google Analytics</a> and <a href=https://w3c.github.io/ServiceWorker/>Service Worker</a>.</small></p>
+</footer>
+</body>
+</html>
+<amp-analytics type=googleanalytics id=analytics1>
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
