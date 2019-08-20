@@ -1,4 +1,4 @@
-# [promise][tc39][js] Promise.allSettled と Promise.any
+# [promise][tc39][javascript] Promise.allSettled と Promise.any
 
 ## Intro
 
