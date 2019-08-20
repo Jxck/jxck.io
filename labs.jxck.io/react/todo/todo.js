@@ -1,23 +1,23 @@
 'use strict';
-let log = console.log.bind(console);
+let log = console.error.bind(console);
 
 class Controller extends React.Component {
-  bindElem(elem) {
-    if (elem === null) return
-    this.elem = elem
-  }
 
-  onClick() {
-    const message = this.elem.value
-    this.props.onInput(message)
+  onSubmit(e) {
+    e.preventDefault()
+    const formData = new FormData(e.target)
+    const message  = formData.get('message')
+    this.props.onTODO(message)
   }
 
   render() {
     return (
       <section>
         <h2>TODO</h2>
-        <input name="message" type="text" ref={this.bindElem.bind(this)}/>
-        <button onClick={this.onClick.bind(this)}>+</button>
+        <form onSubmit={this.onSubmit.bind(this)}>
+          <input name="message" type="text"/>
+          <button type="submit">+</button>
+        </form>
       </section>
     )
   }
@@ -39,13 +39,12 @@ class Messages extends React.Component {
 class Root extends React.Component {
   constructor() {
     super()
-    this.elem = null
     this.state = {
       messages: [],
     }
   }
 
-  onInput(message) {
+  onTODO(message) {
     const messages = this.state.messages
     messages.push(message)
     const state = Object.assign(this.state, {messages})
@@ -53,11 +52,10 @@ class Root extends React.Component {
   }
 
   render() {
-    const {name, value} = this.props
     const messages = this.state.messages
     return (
       <main>
-        <Controller onInput={this.onInput.bind(this)} />
+        <Controller onTODO={this.onTODO.bind(this)} />
         <Messages messages={messages} />
       </main>
     )
