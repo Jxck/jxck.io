@@ -15,7 +15,7 @@ class Controller extends React.Component {
   render() {
     return (
       <section>
-        <h2>Controller</h2>
+        <h2>TODO</h2>
         <input name="message" type="text" ref={this.bindElem.bind(this)}/>
         <button onClick={this.onClick.bind(this)}>+</button>
       </section>
