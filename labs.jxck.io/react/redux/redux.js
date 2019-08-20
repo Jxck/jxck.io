@@ -1,5 +1,5 @@
 // Action Type
-const  INCREMENT = 'INCREMENT'
+const INCREMENT = 'INCREMENT'
 const DECREMENT = 'DECREMENT'
 
 
@@ -48,14 +48,6 @@ const counter = (state = 0, action) => {
 
 // Component
 class Counter extends React.Component {
-  static get propTypes() {
-    return {
-      value: PropTypes.number.isRequired,
-      onIncrement: PropTypes.func.isRequired,
-      onDecrement: PropTypes.func.isRequired,
-    }
-  }
-
   render() {
     const { value, onIncrement, onDecrement, onIncrementIfOdd, onIncrementAsync } = this.props
     return (
