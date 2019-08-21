@@ -20,7 +20,7 @@ Proc.new do |env|
   when "json"
     body = <<-EOS
 {
-  "seq": "#{seq}",
+  "seq": #{seq},
   "now": "#{now}",
   "random": "#{random}"
 }
