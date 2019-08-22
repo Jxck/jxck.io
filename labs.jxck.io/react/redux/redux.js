@@ -16,6 +16,7 @@ const decrement = () => {
   }
 }
 
+
 // Action Creator with Dispatch
 const incrementIfOdd = (value, dispatch) => {
   if (value % 2 == 0) return
@@ -30,7 +31,7 @@ const incrementAsync = (dispatch) => {
 
 
 // Reducer
-const counter = (state = 0, action) => {
+const counterReducer = (state = {value: 0}, action) => {
   switch (action.type) {
     case INCREMENT:
       return Object.assign({}, state, {
@@ -65,11 +66,12 @@ class Counter extends React.Component {
 }
 
 
-// Container
+// State を Props に Map
 function mapStateToProps(state) {
   return { value: state.value }
 }
 
+// ActionCreator を Props に Map
 function mapDispatchToProps(dispatch) {
   return {
     onIncrement() {
@@ -94,7 +96,7 @@ const AppContainer = ReactRedux.connect(
 
 
 const initialState = { value: 0 };
-const store = Redux.createStore(counter, initialState)
+const store = Redux.createStore(counterReducer, initialState)
 
 ReactDOM.render(
   <ReactRedux.Provider store={store}>
