@@ -402,7 +402,7 @@ WebTransport や WebCodecs が、 Stadia を展開するために必要な穴を
     - <https://github.com/WICG/web-transport>
   - Explainer
     - <https://github.com/wicg/web-transport/blob/master/explainer.md>
-  - - Meeting Material
+- Meeting Material
   - QUIC Interim
     - <https://github.com/quicwg/wg-materials/blob/master/interim-19-05/webtransport-20190522.pdf>
   - IETF 105
@@ -415,7 +415,6 @@ WebTransport や WebCodecs が、 Stadia を展開するために必要な穴を
 - Mailing List
   - webtransport
     - <https://mailarchive.ietf.org/arch/browse/webtransport/>
-
 - Intent to Implement: WebSocketStream
   - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X7rWpAkMCyg/j6K7mEEwAgAJ>
   - <https://github.com/ricea/websocketstream-explainer/blob/master/README.md>
