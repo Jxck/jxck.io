@@ -55,7 +55,7 @@
     "https://logo.jxck.io/jxck.1200x1200.png"
   ],
   "datePublished": "2019-08-20T08:00:00+08:00",
-  "dateModified": "2019-08-20T08:00:00+08:00",
+  "dateModified": "2019-08-25T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -100,7 +100,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-08-20>2019-08-20</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2019-08-20>2019-08-20</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2019-08-25>2019-08-25</time></dd></div>
       <div><dt class=tags>tags</dt><dd>[<a href='/tags/promise.html'>promise</a>,<a href='/tags/tc39.html'>tc39</a>,<a href='/tags/javascript.html'>javascript</a>]</dd></div>
     </dl>
 
@@ -138,7 +138,7 @@
 await Promise.all(fetched)
 
 // 最初の一つが Resolve したら Resolve する
-await Promise.all(fetched)</code></pre>
+await Promise.race(fetched)</code></pre>
       <p>ただし、それは全ての Promise が Resolve することを前提とした場合である。
       <p>all/race ともに、そのうちの一部が Reject した場合を考えると意外と面倒くさい。
       <section>
