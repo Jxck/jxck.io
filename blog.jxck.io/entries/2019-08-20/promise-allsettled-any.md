@@ -32,7 +32,7 @@ const fetches = [
 await Promise.all(fetched)
 
 // 最初の一つが Resolve したら Resolve する
-await Promise.all(fetched)
+await Promise.race(fetched)
 ```
 
 ただし、それは全ての Promise が Resolve することを前提とした場合である。
