@@ -172,10 +172,10 @@ Fulfilled か Rejected どちらかになった状態、つまり成功失敗に
 
 これを踏まえて分類すると、以下のようになる。
 
-- `Promise.all`:        全部 Fulfilled になるまで続け、 1 つでも Rejected になると Short-Circuit する
-- `Promise.allSettled`: 全部 Settled になるまで続け、 Short-Circuit しない
-- `Promise.any`:        1 つでも Fulfilled になると Short-Circuit する
-- `Promise.race`:       1 つでも Settled になると Short-Circuit する
+- Promise.all:        全部 Fulfilled になるまで続け、 1 つでも Rejected になると Short-Circuit する
+- Promise.allSettled: 全部 Settled になるまで続け、 Short-Circuit しない
+- Promise.any:        1 つでも Fulfilled になると Short-Circuit する
+- Promise.race:       1 つでも Settled になると Short-Circuit する
 
 つまり、終わる条件が Settled なのかどうかで分類できることがわかる。
 
@@ -183,10 +183,18 @@ Fulfilled か Rejected どちらかになった状態、つまり成功失敗に
 
 同じようにもし今名前を変えても良いのであれば、こうするとわかりやすいだろう。
 
-- `Promise.allFulfilled`: (Promise.all)
-- `Promise.allSettled`:   (Promise.allSettled)
-- `Promise.anyFulfilled`: (Promise.any)
-- `Promise.anySettled`:   (Promise.race)
+- Promise.allFulfilled: Promise.all
+- Promise.allSettled:   Promise.allSettled
+- Promise.anyFulfilled: Promise.any
+- Promise.anySettled:   Promise.race
+
+
+```js
+Promise.allFulfilled = Promise.all
+Promise.allSettled   = Promise.allSettled
+Promise.anyFulfilled = Promise.any
+Promise.anySettled   = Promise.race
+```
 
 
 ## DEMO
