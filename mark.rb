@@ -663,7 +663,7 @@ class Article
   def joined_tag
     joined = tags.map{|tag|
       "<a href='/tags/#{tag.gsub(' ', '%20')}.html'>#{tag}</a>"
-    }.join(",")
+    }.join("<i>,</i>")
     "[#{joined}]"
   end
 
