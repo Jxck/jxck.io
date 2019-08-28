@@ -660,6 +660,13 @@ class Article
     @text.sub(" [" + tags.join("][") + "]", "")
   end
 
+  def joined_tag
+    joined = tags.map{|tag|
+      "<a href='/tags/#{tag.gsub(' ', '%20')}.html'>#{tag}</a>"
+    }.join(",")
+    "[#{joined}]"
+  end
+
   def theme
     @text.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2]
   end

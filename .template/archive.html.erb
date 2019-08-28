@@ -42,28 +42,28 @@
     <section>
       <h2 id=2019><a href=#2019>2019</a></h2>
       <ul><% entries.select {|e| e.created_at.start_with?("2019") }.each do |e| %>
-        <li><time datetime=<%= e.created_at %>><%= e.created_at %></time><a href=<%= e.relative %>><%= e.title %></a><span class=tags>[<%= e.tags.reverse.map{|tag| "<a href='/tags/#{tag.gsub(' ', '%20')}.html'>#{tag}</a>" }.join(",") %>]</span><% end %>
+        <li><time datetime=<%= e.created_at %>><%= e.created_at %></time><a href=<%= e.relative %>><%= e.title %></a><span class=tags><%= e.joined_tag %></span><% end %>
       </ul>
     </section>
 
     <section>
       <h2 id=2018><a href=#2018>2018</a></h2>
       <ul><% entries.select {|e| e.created_at.start_with?("2018") }.each do |e| %>
-        <li><time datetime=<%= e.created_at %>><%= e.created_at %></time><a href=<%= e.relative %>><%= e.title %></a><span class=tags>[<%= e.tags.reverse.map{|tag| "<a href='/tags/#{tag.gsub(' ', '%20')}.html'>#{tag}</a>" }.join(",") %>]</span><% end %>
+        <li><time datetime=<%= e.created_at %>><%= e.created_at %></time><a href=<%= e.relative %>><%= e.title %></a><span class=tags><%= e.joined_tag %></span><% end %>
       </ul>
     </section>
 
     <section>
       <h2 id=2017><a href=#2017>2017</a></h2>
       <ul><% entries.select {|e| e.created_at.start_with?("2017") }.each do |e| %>
-        <li><time datetime=<%= e.created_at %>><%= e.created_at %></time><a href=<%= e.relative %>><%= e.title %></a><span class=tags>[<%= e.tags.reverse.map{|tag| "<a href='/tags/#{tag.gsub(' ', '%20')}.html'>#{tag}</a>" }.join(",") %>]</span><% end %>
+        <li><time datetime=<%= e.created_at %>><%= e.created_at %></time><a href=<%= e.relative %>><%= e.title %></a><span class=tags><%= e.joined_tag %></span><% end %>
       </ul>
     </section>
 
     <section>
       <h2 id=2016><a href=#2016>2016</a></h2>
       <ul><% entries.select {|e| e.created_at.start_with?("2016") }.each do |e| %>
-        <li><time datetime=<%= e.created_at %>><%= e.created_at %></time><a href=<%= e.relative %>><%= e.title %></a><span class=tags>[<%= e.tags.reverse.map{|tag| "<a href='/tags/#{tag.gsub(' ', '%20')}.html'>#{tag}</a>" }.join(",") %>]</span><% end %>
+        <li><time datetime=<%= e.created_at %>><%= e.created_at %></time><a href=<%= e.relative %>><%= e.title %></a><span class=tags><%= e.joined_tag %></span><% end %>
       </ul>
     </section>
   </main>

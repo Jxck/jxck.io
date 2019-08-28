@@ -44,7 +44,7 @@
     <section><% Hash[tags.sort].each do |tag, entries| %>
       <h2><a href='/tags/<%= tag.gsub(' ', '%20') %>.html'><%= tag %></a></h2>
       <ul><% entries.each do |e| %>
-        <li><time datetime=<%= e.created_at %>><%= e.created_at %></time><a href=<%= e.url %>><%= e.title %></a><span class=tags>[<%= e.tags.map{|tag| "<a href='/tags/#{tag.gsub(' ', '%20')}.html'>#{tag}</a>" }.join(",") %>]</span><% end %>
+        <li><time datetime=<%= e.created_at %>><%= e.created_at %></time><a href=<%= e.url %>><%= e.title %></a><span class=tags><%= e.joined_tag %></span><% end %>
       </ul><% end %>
     </section>
   </main>
