@@ -53,6 +53,7 @@ connection.on('negotiationneeded', async (e) => {
   const offer = await connection.createOffer()
 
   console.log('send offer', offer.sdp)
+  $("#sdp").value += (offer.sdp + "\n")
   await connection.setLocalDescription(offer)
 
   ws.send(JSON.stringify({
@@ -222,6 +223,7 @@ ws.on('message', async ({data}) => {
     window.peerid = message.from
 
     console.log('recv offer', message.data.sdp)
+    $("#sdp").value += (message.data.sdp + "\n")
     await connection.setRemoteDescription(message.data)
 
     const checked = $('input[name="deviceid"]:checked')
@@ -240,6 +242,7 @@ ws.on('message', async ({data}) => {
     })
 
     const answer = await connection.createAnswer()
+    $("#sdp").value += (answer.sdp + "\n")
     await connection.setLocalDescription(answer)
     console.log('send answer', connection.localDescription.sdp)
 
@@ -256,6 +259,7 @@ ws.on('message', async ({data}) => {
 
   if (type === 'answer') {
     console.log('recv answer', message.data.sdp)
+    $("#sdp").value += (message.data.sdp + "\n")
     await connection.setRemoteDescription(message.data)
   }
 
