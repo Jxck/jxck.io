@@ -39,10 +39,10 @@
       log('worker()', self)
 
       const ASSETS = [
-        'https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular-201907.woff2',
-        'https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold-201907.woff2',
-        'https://jxck.io/assets/font/NotoSansMonoCJKjp-Jxck-Regular-201907.woff2',
-        'https://jxck.io/assets/font/NotoSansMonoCJKjp-Jxck-Bold-201907.woff2',
+        'https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular-201908.woff2',
+        'https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Bold-201908.woff2',
+        'https://jxck.io/assets/font/NotoSansMonoCJKjp-Jxck-Regular-201908.woff2',
+        'https://jxck.io/assets/font/NotoSansMonoCJKjp-Jxck-Bold-201908.woff2',
         'https://jxck.io/assets/js/highlight.pack.js',
         'https://use.fontawesome.com/releases/v5.9.0/webfonts/fa-solid-900.ttf',
       ]
