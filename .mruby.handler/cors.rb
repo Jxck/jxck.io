@@ -16,7 +16,7 @@ Proc.new do |env|
 
   headers = {
     "Access-Control-Allow-Origin"=> origin,
-    "Vary" => origin
+    "Vary" => "origin"
   }
   [399, headers, []]
 end

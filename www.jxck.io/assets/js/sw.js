@@ -3,7 +3,7 @@
   EventTarget.prototype.on  = EventTarget.prototype.addEventListener
   EventTarget.prototype.off = EventTarget.prototype.removeEventListener
   const DEBUG   = location.hash === '#debug'
-  const VERSION = 'v0.2.4'
+  const VERSION = 'v0.2.5'
   const log = DEBUG ? console.log.bind(console) : () => {}
   log('sw.js')
 
