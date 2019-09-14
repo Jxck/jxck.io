@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Media Session DEMO | labs.jxck.io</title>
+
+<style>
+</style>
+
+<h1>Media Session DEMO</h1>
+
+<audio src=../assets/Japanese/female1.wav controls></audio>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  document.on('DOMContentLoaded', async (e) => {
+    console.log(e)
+    if (navigator.mediaSession === undefined) return
+
+    const $audio = $('audio')
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title:  "sample audio",
+      artist: "sample artist",
+      album:  "sample album",
+      artwork: [
+        {
+          src:   "https://logo.jxck.io/jxck.256x256.png",
+          sizes: '256x256',
+          type:  'image/png'
+        }
+      ]
+    });
+
+    navigator.mediaSession.setActionHandler('play',  () => $audio.play())
+    navigator.mediaSession.setActionHandler('pause', () => $audio.puase())
+  })
+</script>
+
