@@ -642,12 +642,12 @@ guest
     - <https://tools.ietf.org/html/draft-stw-6761ext-00>
   - DMARC (Domain-based Message Authentication, Reporting, and Conformance) Extension For PSDs (Public Suffix Domains)
     - <https://tools.ietf.org/html/draft-kitterman-dmarc-psd-00>
-  - * Other
+- Other
   - *New co-chair for HTTPBIS*
     - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018OctDec/0066.html>
     - httpbis の Chair である patrick と mnot が両方 Fastly に入ってしまった
     - そこで 3 人目をたてるということで Apple の Tommy を追加
-  - *IETF | What's Happening with QUIC*
+  - *IETF \| What's Happening with QUIC*
     - <https://www.ietf.org/blog/whats-happening-quic/>
     - 仕様はある程度揉まれ、実装し検証している段階
     - IETF103 Bangkok でもやる
