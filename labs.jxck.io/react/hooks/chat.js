@@ -33,7 +33,7 @@ function SocketChat({socket}) {
       console.log('socket.removeEventListener')
       socket.removeEventListener('message', onMessage)
     }
-  }, [socket])
+  }, [])
 
   function onSubmit(e) {
     console.log('submit')
