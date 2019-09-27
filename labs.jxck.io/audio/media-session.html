@@ -4,11 +4,19 @@
 <title>Media Session DEMO | labs.jxck.io</title>
 
 <style>
+audio {
+  display: block;
+}
 </style>
 
 <h1>Media Session DEMO</h1>
 
-<audio src=../assets/Japanese/female1.wav controls></audio>
+<audio controls preload=metadata type=audio/wave></audio>
+
+<button id=prev>◀◀</button>
+<button id=play>▶</button>
+<button id=pause>■</button>
+<button id=next>▶▶</button>
 
 <script>
   'use strict';
@@ -16,26 +24,101 @@
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
+  class Player {
+    constructor($audio, tracks) {
+      this.$audio = $audio
+      this.tracks = tracks
+      this.currentId  = 0
+      this.$audio.src = this.currentSrc()
+    }
+
+    currentSrc() {
+      const track = this.tracks[this.currentId]
+      return `../assets/Japanese/${track}`
+    }
+
+    play() {
+      this.$audio.play()
+      navigator.mediaSession.playbackState = "playing";
+    }
+    pause() {
+      this.$audio.pause()
+      navigator.mediaSession.playbackState = "paused";
+    }
+
+    change() {
+      this.$audio.src = this.currentSrc()
+      this.metadata()
+      this.play()
+    }
+    next() {
+      if (this.currentId < this.tracks.length-1) {
+        this.currentId ++
+        this.change()
+      }
+    }
+    prev() {
+      if (this.currentId > 0) {
+        this.currentId --
+        this.change()
+      }
+    }
+
+    metadata() {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title:  this.tracks[this.currentId],
+        artist: "sample artist",
+        album:  "sample album",
+        artwork: [
+          {
+            src:   "https://logo.jxck.io/jxck.256x256.png",
+            sizes: '256x256',
+            type:  'image/png'
+          }
+        ]
+      })
+    }
+  }
+
+
   document.on('DOMContentLoaded', async (e) => {
     console.log(e)
-    if (navigator.mediaSession === undefined) return
+    if (navigator.mediaSession === undefined) return alert('mediaSession unsupported')
 
-    const $audio = $('audio')
-    navigator.mediaSession.metadata = new MediaMetadata({
-      title:  "sample audio",
-      artist: "sample artist",
-      album:  "sample album",
-      artwork: [
-        {
-          src:   "https://logo.jxck.io/jxck.256x256.png",
-          sizes: '256x256',
-          type:  'image/png'
-        }
-      ]
-    });
+    const tracks = [
+      "female1.wav",
+      "female2.wav",
+      "female3.wav",
+      "male1.wav",
+      "male2.wav",
+      "male3.wav",
+    ]
+    const player = new Player($('audio'), tracks)
 
-    navigator.mediaSession.setActionHandler('play',  () => $audio.play())
-    navigator.mediaSession.setActionHandler('pause', () => $audio.puase())
+    $('#play').on('click',  (e) => {
+      console.log(e)
+      player.play()
+    })
+    $('#pause').on('click', (e) => {
+      console.log(e)
+      player.pause()
+    })
+    $('#prev').on('click',  (e) => {
+      console.log(e)
+      player.prev()
+    })
+    $('#next').on('click',  (e) => {
+      console.log(e)
+      player.next()
+    })
+
+    navigator.mediaSession.setActionHandler("play",          () => { player.play()  })
+    navigator.mediaSession.setActionHandler("pause",         () => { player.pause() })
+    navigator.mediaSession.setActionHandler("previoustrack", () => { player.prev()  })
+    navigator.mediaSession.setActionHandler("nexttrack",     () => { player.next()  })
+    navigator.mediaSession.setActionHandler("seekbackward",  () => {}) // TODO
+    navigator.mediaSession.setActionHandler("seekforward",   () => {}) // TODO
+    // navigator.mediaSession.setActionHandler("seekto",     () => {})
+    // navigator.mediaSession.setActionHandler("skipad",     () => {})
   })
 </script>
-
