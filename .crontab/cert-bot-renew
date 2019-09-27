@@ -1,2 +1,13 @@
 # every 4:00 on every 2st, renew cert & reload h2o
-4 2 * * * sudo /home/jxck/dotfiles/local/certbot-auto/certbot-auto renew --post-hook "sudo /bin/systemctl reload h2o" 2>&1 1>/home/jxck/server/logs/cron.log
+COMMAND=/home/jxck/server/jxck.io/.crontab/update-cert.sh
+LOG=/home/jxck/server/logs/cron.log
+
+# Example of job definition:
+#min(0-59)
+#| hour(0-23)
+#| | day(1-31)
+#| | | mon(1-12)
+#| | | | week(0-6)
+#| | | | | command
+#/ / / / / /
+0 4 2 * * sudo $COMMAND 2>&1 1> $LOG
