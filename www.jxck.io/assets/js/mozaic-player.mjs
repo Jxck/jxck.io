@@ -166,7 +166,8 @@ export default class MozaicPlayer extends HTMLElement {
     this.audio = this.shadowRoot.querySelector('slot').assignedNodes().pop()
     console.assert(this.audio.tagName.toLowerCase() === "audio", '<audio slot=audio> should assigned to <mozaic-player>')
 
-    // get delta
+    // get data
+    this.title        = this.audio.title
     this.forwardDelta = parseFloat(this.audio.dataset['forward']) || 30
     this.backDelta    = parseFloat(this.audio.dataset['back'])    || -10
 
@@ -222,6 +223,40 @@ export default class MozaicPlayer extends HTMLElement {
 
     // load the audio
     this.audio.load()
+
+    // MediaSession API
+    if (navigator.mediaSession) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title:  this.title,
+        artist: "Jxck",
+        album:  "mozaic.fm",
+        artwork: [
+          {
+            src:   "https://logo.jxck.io/mozaic.png",
+            sizes: "256x256",
+            type:  "image/png"
+          },
+          {
+            src:   "https://logo.jxck.io/mozaic.webp",
+            sizes: "256x256",
+            type:  "image/webp"
+          },
+          {
+            src:   "https://logo.jxck.io/mozaic.jpeg",
+            sizes: "2000x2000",
+            type:  "image/jpeg"
+          },
+          {
+            src:   "https://logo.jxck.io/mozaic.svg",
+            type:  "image/svg+xml"
+          }
+        ]
+      })
+
+      navigator.mediaSession.setActionHandler("play",  this.onPlay.bind(this))
+      navigator.mediaSession.setActionHandler("pause", this.onPlay.bind(this))
+      // TODO: other action if supported
+    }
   }
 
 
