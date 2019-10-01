@@ -64,6 +64,10 @@ audio {
       }
     }
 
+    seekto(time) {
+      this.$audio.currentTime = time;
+    }
+
     metadata() {
       navigator.mediaSession.metadata = new MediaMetadata({
         title:  this.tracks[this.currentId],
@@ -112,13 +116,28 @@ audio {
       player.next()
     })
 
-    navigator.mediaSession.setActionHandler("play",          () => { player.play()  })
-    navigator.mediaSession.setActionHandler("pause",         () => { player.pause() })
-    navigator.mediaSession.setActionHandler("previoustrack", () => { player.prev()  })
-    navigator.mediaSession.setActionHandler("nexttrack",     () => { player.next()  })
-    navigator.mediaSession.setActionHandler("seekbackward",  () => {}) // TODO
-    navigator.mediaSession.setActionHandler("seekforward",   () => {}) // TODO
-    // navigator.mediaSession.setActionHandler("seekto",     () => {})
-    // navigator.mediaSession.setActionHandler("skipad",     () => {})
+    navigator.mediaSession.setActionHandler("play",          (e) => { player.play()  })
+    navigator.mediaSession.setActionHandler("pause",         (e) => { player.pause() })
+    navigator.mediaSession.setActionHandler("previoustrack", (e) => { player.prev()  })
+    navigator.mediaSession.setActionHandler("nexttrack",     (e) => { player.next()  })
+
+    // navigator.mediaSession.setActionHandler("seekto",        (e) => { player.seekto(e.seekTime) })
+    // navigator.mediaSession.setActionHandler("seekbackward", () => {})
+    // navigator.mediaSession.setActionHandler("seekforward",  () => {})
+    // navigator.mediaSession.setActionHandler("skipad",       () => {})
   })
+</script>
+
+<script>
+  (async () => {
+    const res = await fetch('https://feed.mozaic.fm')
+    const xml = await res.text()
+
+    const parser = new DOMParser()
+    const dom    = parser.parseFromString(xml, 'application/xml')
+
+    const items = Array.from(dom.querySelectorAll('item enclosure'))
+    const urls  = items.map((item) => item.attributes.url.value)
+    // console.dir(urls)
+  })()
 </script>
