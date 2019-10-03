@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Portals Audio Navigation DEMO</title>
+
+<h1>1.html</h1>
+
+<a href=index.html>index</a>
+
+<div class=player>
+  <!-- ここに一個前の player が埋め込まれて欲しい -->
+</div>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  window.addEventListener('portalactivate', (e) => {
+    const predecessor = e.adoptPredecessor();
+    $('.player').appendChild(predecessor)
+  });
+
+  window.on('load', (e) => {
+    window.portalHost.postMessage({ready: true}, location.origin)
+  })
+</script>

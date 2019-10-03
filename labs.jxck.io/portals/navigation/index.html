@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Portals Audio Navigation DEMO</title>
+
+<style>
+portal {
+  border: solid 1px red
+}
+</style>
+
+<h1>Top</h1>
+
+<a href=1.html>1.html</a>
+
+<div class=player>
+  <portal src=player.html></portal>
+</div>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  const $portal = $('portal')
+  window.on('load', (e) => {
+    $portal.postMessage({cmd: 'play'})
+  })
+
+  $('a').on('click', (e) => {
+    e.preventDefault()
+    $portal.postMessage({navigate: e.target.href})
+    $portal.addEventListener('message', (e) => {
+      $portal.activate()
+    })
+  })
+</script>

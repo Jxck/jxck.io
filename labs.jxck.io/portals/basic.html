@@ -27,7 +27,7 @@ portal.activate {
 
 <h1>Portals DEMO</h1>
 
-<h2>hover 1s over links below, then click portals</h2>
+<h2>hover links below, then click portals</h2>
 
 <ul>
   <li><a href=https://example.com>secure example.com</a>
@@ -79,13 +79,7 @@ portal.activate {
     $$('a').forEach(($a) => {
       let timer;
       $a.on('mouseover', (e) => {
-        timer = setTimeout(() => {
-          $portal.src = e.target.href
-        }, 1000)
-      })
-
-      $a.on('mouseout', (e) => {
-        clearTimeout(timer)
+        $portal.src = e.target.href
       })
     })
 

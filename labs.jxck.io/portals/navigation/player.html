@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<title>portal player</title>
+
+<audio controls src=/assets/Japanese/female1.wav></audio>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  window.portalHost.on('message', (e) => {
+    if (e.data.cmd === 'play') {
+      $('audio').play()
+    }
+    if (e.data.navigate) {
+      const $portal = document.createElement('portal')
+      $portal.src = e.data.navigate
+      document.body.appendChild($portal)
+
+      $portal.on('message', (e) => {
+        // これがしたい
+        $portal.activate()
+      })
+    }
+  })
+</script>
