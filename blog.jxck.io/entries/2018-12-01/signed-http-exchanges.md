@@ -514,7 +514,7 @@ SignedHTTPExchange はまだいくつかの課題がある。筆者が把握し�
 
 Mozilla は少し前に Standard Position の中で、 Signed HTTP Exchange を considered harmful と表明した。
 
-- [https://mozilla.github.io/standards-positions/]
+- <https://mozilla.github.io/standards-positions/>
 
 簡単に言えば、証明書が漏洩した場合、それを取得した攻撃者は自由に Origin を語れるということに対する懸念によるものだが、ユースケース自体は認めており、仕様のセキュリティモデルが改善すれば、この表明は見直されるだろうと考えられる。
 
