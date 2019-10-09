@@ -1,5 +1,5 @@
-.PHONY: blog podcast comp gz br remove clean
-.SUFFIXES: .html .md .amp .amp.html
+.PHONY: blog podcast comp gz br remove clean webp
+.SUFFIXES: .html .md .amp .amp.html .webp .png .jpeg .gif
 
 build:
 	make full
@@ -95,6 +95,31 @@ podcasttest:
 ##########################
 # Optimize Image
 ##########################
+CWEBP = cwebp -q 40 -quiet
+GWEBP = gif2webp -q 40 -quiet
+
+PNG := $(wildcard ./blog.jxck.io/entries/**/*.png)
+JPG := $(wildcard ./blog.jxck.io/entries/**/*.jpeg)
+GIF := $(wildcard ./blog.jxck.io/entries/**/*.gif)
+
+WEBP = $(PNG:.png=.webp)
+WEBP += $(JPG:.jpeg=.webp)
+WEBP += $(GIF:.gif=.webp)
+
+# .webp
+.png.webp:
+	$(CWEBP) $*.png -o $*.webp
+
+.jpeg.webp:
+	$(CWEBP) $*.jpeg -o $*.webp
+
+.gif.webp:
+	$(GWEBP) $*.gif -o $*.webp
+
+webp: $(WEBP)
+
+
+#--gulp----------------------------
 # .png/.jpg/.svg
 IMAGES := $(shell find ./blog.jxck.io/entries/**/* \
 	-name *.png -or \
@@ -106,6 +131,7 @@ image:
 	@for target in $(IMAGES); do \
 		gulp image --path $$target; \
 	done
+#--gulp----------------------------
 
 
 ##########################
