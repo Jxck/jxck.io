@@ -1,7 +1,8 @@
 'use strict';
 
-const gulp  = require('gulp');
-const image = require('gulp-image');
+const path  = require('path')
+const gulpImage = require('gulp-image');
+const {src, dest, series} = require('gulp');
 
 const imageOption = {
   pngquant:       true,
@@ -16,13 +17,14 @@ const imageOption = {
 }
 
 // gulp image --path ./path/to/image.png
-gulp.task('image', (done) => {
-  const path = process.argv[4]
-  const dir  = require('path').parse(path).dir
-  gulp.src(path)
-    .pipe(image(imageOption))
-    .pipe(gulp.dest(dir))
-    .on('end', done)
-})
+function image(done) {
+  const target = process.argv[4]
+  console.log(target)
+  const dir = path.parse(target).dir
+  return src(target)
+    .pipe(gulpImage(imageOption))
+    .pipe(dest(dir))
+}
 
-gulp.task('default', gulp.series('image'))
+exports.image = image
+exports.default = series(image)
