@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>WebFont Subset DEMO</title>
+
+<style>
+@font-face {
+  font-family:  "font-block";
+  src: url("./subset.woff") format("woff");
+}
+
+body {
+  width: 60%;
+  margin: 0 auto;
+  font-family: "font-block";
+}
+</style>
+
+<h1>WebFont Subset DEMO</h1>
+
+<div id=text>てすと</div>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  document.on('DOMContentLoaded', async (e) => {
+    const res  = await fetch('https://jxck.io/assets/font/All.txt')
+    const text = await res.text()
+    $('#text').textContent = text
+  })
+</script>
+
