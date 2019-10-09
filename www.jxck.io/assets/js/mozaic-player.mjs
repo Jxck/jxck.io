@@ -253,8 +253,10 @@ export default class MozaicPlayer extends HTMLElement {
         ]
       })
 
-      navigator.mediaSession.setActionHandler("play",  this.onPlay.bind(this))
-      navigator.mediaSession.setActionHandler("pause", this.onPlay.bind(this))
+      navigator.mediaSession.setActionHandler("play",         () => { this.onPlay()    })
+      navigator.mediaSession.setActionHandler("pause",        () => { this.onPlay()    })
+      navigator.mediaSession.setActionHandler("seekbackward", () => { this.onBack()    })
+      navigator.mediaSession.setActionHandler("seekforward",  () => { this.onForward() })
       // TODO: other action if supported
     }
   }
