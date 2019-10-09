@@ -13,10 +13,12 @@ audio {
 
 <audio controls preload=metadata type=audio/wave></audio>
 
-<button id=prev>◀◀</button>
+<button id=previoustrack>|◀</button>
+<button id=seekbackward>◀◀</button>
 <button id=play>▶</button>
 <button id=pause>■</button>
-<button id=next>▶▶</button>
+<button id=seekforward>▶▶</button>
+<button id=nexttrack>▶|</button>
 
 <script>
   'use strict';
@@ -51,17 +53,26 @@ audio {
       this.metadata()
       this.play()
     }
-    next() {
+    nexttrack() {
       if (this.currentId < this.tracks.length-1) {
         this.currentId ++
         this.change()
       }
     }
-    prev() {
+    previoustrack() {
       if (this.currentId > 0) {
         this.currentId --
         this.change()
       }
+    }
+
+    seekbackward(t) {
+      console.log(t)
+      this.$audio.currentTime -= t
+    }
+    seekforward(t) {
+      console.log(t)
+      this.$audio.currentTime += t
     }
 
     seekto(time) {
@@ -90,6 +101,7 @@ audio {
     if (navigator.mediaSession === undefined) return alert('mediaSession unsupported')
 
     const tracks = [
+      "all.mp3",
       "female1.wav",
       "female2.wav",
       "female3.wav",
@@ -103,28 +115,46 @@ audio {
       console.log(e)
       player.play()
     })
+
     $('#pause').on('click', (e) => {
       console.log(e)
       player.pause()
     })
-    $('#prev').on('click',  (e) => {
+
+    $('#previoustrack').on('click',  (e) => {
       console.log(e)
-      player.prev()
-    })
-    $('#next').on('click',  (e) => {
-      console.log(e)
-      player.next()
+      player.previoustrack()
     })
 
-    navigator.mediaSession.setActionHandler("play",          (e) => { player.play()  })
+    $('#nexttrack').on('click',  (e) => {
+      console.log(e)
+      player.nexttrack()
+    })
+
+    $('#seekbackward').on('click',  (e) => {
+      console.log(e)
+      player.seekbackward(5)
+    })
+
+    $('#seekforward').on('click',  (e) => {
+      console.log(e)
+      player.seekforward(5)
+    })
+
+
+    navigator.mediaSession.setActionHandler("play",          (e) => { player.play() })
     navigator.mediaSession.setActionHandler("pause",         (e) => { player.pause() })
-    navigator.mediaSession.setActionHandler("previoustrack", (e) => { player.prev()  })
-    navigator.mediaSession.setActionHandler("nexttrack",     (e) => { player.next()  })
+    navigator.mediaSession.setActionHandler("previoustrack", (e) => { player.previoustrack() })
+    navigator.mediaSession.setActionHandler("nexttrack",     (e) => { player.nexttrack() })
+    navigator.mediaSession.setActionHandler("seekbackward",  (e) => { player.seekbackward(5) })
+    navigator.mediaSession.setActionHandler("seekforward",   (e) => { player.seekforward(5) })
 
-    // navigator.mediaSession.setActionHandler("seekto",        (e) => { player.seekto(e.seekTime) })
-    // navigator.mediaSession.setActionHandler("seekbackward", () => {})
-    // navigator.mediaSession.setActionHandler("seekforward",  () => {})
-    // navigator.mediaSession.setActionHandler("skipad",       () => {})
+    try {
+      navigator.mediaSession.setActionHandler("seekto",        (e) => { player.seekto(e.seekTime) })
+    } catch(err) {
+      console.log('seekto unsupported')
+    }
+    // navigator.mediaSession.setActionHandler("skipad",        (e) => { cosnole.log(e) })
   })
 </script>
 
