@@ -29,4 +29,5 @@ sed -i -e "s/2019[0-9]\{2\}\.woff2/$NOW.woff2/g" ~/server/jxck.io/labs.jxck.io/*
 sed -i -e "s/2019[0-9]\{2\}\.woff2/$NOW.woff2/g" ~/server/jxck.io/www.jxck.io/assets/js/*.js
 sed -i -e "s/2019[0-9]\{2\}\.woff2/$NOW.woff2/g" ~/server/jxck.io/www.jxck.io/assets/css/*.css
 
+cd ../
 \rm -rf ./tmp
