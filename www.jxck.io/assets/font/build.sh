@@ -23,11 +23,11 @@ foreach target in $TARGETS
  mv $woff2 ../
 end
 
-sed -i -e "s/2019[0-9]\{2\}\.woff2/$NOW.woff2/g" ~/server/jxck.io/.mruby.handler/*
-sed -i -e "s/2019[0-9]\{2\}\.woff2/$NOW.woff2/g" ~/server/jxck.io/.template/*
-sed -i -e "s/2019[0-9]\{2\}\.woff2/$NOW.woff2/g" ~/server/jxck.io/labs.jxck.io/**/*.html
-sed -i -e "s/2019[0-9]\{2\}\.woff2/$NOW.woff2/g" ~/server/jxck.io/www.jxck.io/assets/js/*.js
-sed -i -e "s/2019[0-9]\{2\}\.woff2/$NOW.woff2/g" ~/server/jxck.io/www.jxck.io/assets/css/*.css
+sed -i -e "s/2019[0-9]\{4\}\.woff2/$NOW.woff2/g" ~/server/jxck.io/.mruby.handler/*
+sed -i -e "s/2019[0-9]\{4\}\.woff2/$NOW.woff2/g" ~/server/jxck.io/.template/*
+sed -i -e "s/2019[0-9]\{4\}\.woff2/$NOW.woff2/g" ~/server/jxck.io/labs.jxck.io/**/*.html
+sed -i -e "s/2019[0-9]\{4\}\.woff2/$NOW.woff2/g" ~/server/jxck.io/www.jxck.io/assets/js/*.js
+sed -i -e "s/2019[0-9]\{4\}\.woff2/$NOW.woff2/g" ~/server/jxck.io/www.jxck.io/assets/css/*.css
 
 cd ../
 \rm -rf ./tmp
