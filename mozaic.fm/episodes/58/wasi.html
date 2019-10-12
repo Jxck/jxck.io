@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <!--
+  貴様、見ているな!!
+  このサイトの技術的なまとめはこちらをどうぞ。
+  https://labs.jxck.io/blog
+
+  by Jxck
+  -->
+  <link rel=canonical href=https://mozaic.fm/episodes/58/wasi.html>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <link rel=alternate type=application/rss+xml title=mozaic.fm href=http://feed.mozaic.fm>
+  <link rel=author href=https://jxck.io/assets/humans.txt>
+  <script type=module src=/assets/js/mozaic.js></script>
+  <script type=module src=/assets/js/sw.js></script>
+  <script defer src=/assets/js/ga.mozaic.js></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon type=image/png sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.png>
+  <link rel=apple-touch-icon type=image/png sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.png>
+
+  <meta name=author content=Jxck>
+  <meta name=description content="第 58 回のテーマは WASI (WebAssembly System Interface) です。今回は @chikoski さんをお迎えし、事例もで始めた WASM が次のステップとして取り組んでいる WASI について、 WASI は何を目指し、今どうなっているのか...">
+  <meta name=keywords content="wasi,wasm,mozaic.fm">
+
+  <meta name=twitter:card content=summary>
+  <meta name=twitter:site content=@jxck_>
+  <meta name=twitter:url content="https://mozaic.fm/episodes/58/wasi.html">
+  <meta name=twitter:title content="ep58 WASI | mozaic.fm">
+  <meta name=twitter:description content="第 58 回のテーマは WASI (WebAssembly System Interface) です。今回は @chikoski さんをお迎えし、事例もで始めた WASM が次のステップとして取り組んでいる WASI について、 WASI は何を目指し、今どうなっているのか...">
+  <meta name=twitter:image content="https://mozaic.fm/assets/img/mozaic.png">
+
+  <meta property=og:type content=article>
+  <meta property=og:url content="https://mozaic.fm/episodes/58/wasi.html">
+  <meta property=og:title content="ep58 WASI | mozaic.fm">
+  <meta property=og:site_name content="mozaic.fm">
+  <meta property=og:description content="第 58 回のテーマは WASI (WebAssembly System Interface) です。今回は @chikoski さんをお迎えし、事例もで始めた WASM が次のステップとして取り組んでいる WASI について、 WASI は何を目指し、今どうなっているのか...">
+  <meta property=og:image content="https://mozaic.fm/assets/img/mozaic.png">
+
+  <title>ep58 WASI | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/57/monthly-web-201909.html>
+  
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css>
+
+  <template id=search_diag>
+    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/dialog.css>
+    <dialog class=search>
+      <form method=get action=https://google.co.jp/search>
+        <fieldset>
+          <legend>search via google</legend>
+          <label for=keywords>keyword:</label>
+          <input type=search name=q id=keywords placeholder=keywords>
+          <input type=hidden name=q value=site:mozaic.fm/episodes>
+          <button type=submit>go</button>
+        </fieldset>
+      </form>
+    </dialog>
+  </template>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=/                                                                            ><img alt=top              width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/mozaic.svg class=logo></a>
+      <li><a                                                                                   ><img alt=share id=share   width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/share.svg></a>
+      <li><a href=https://www.google.co.jp/search?q=site%3Amozaic.fm%2Fepisodes class=search   ><img alt=search           width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/search.svg></a>
+      <li><a href=http://feed.mozaic.fm                                                        ><img alt="rss feed"       width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/podcast.svg></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495                    ><img alt=itunes           width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/itunes.svg></a>
+      <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D"    ><img alt="google podcast" width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/google-podcast.svg></a>
+      <li><a href="https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd"><img alt=huamns.txt       width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/twitter.svg></a>
+      <li><a href=https://jxck.io                                                              ><img alt="jxck logo"      width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/jxck.svg class=logo></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/57/monthly-web-201909.html">ep57 Monthly Web 201909</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+
+  <article>
+    <h1><a href=/episodes/58/wasi.html>ep58 WASI</a></h1>
+    <section>
+      <h2>Info</h2>
+      <p><mozaic-player><audio slot=audio src=https://files.mozaic.fm/mozaic-ep58.mp3 title='ep58 WASI' data-forward=+30 data-back=-10></audio></mozaic-player>
+      <dl class=info>
+        <div>
+          <dt>published_at
+          <dd>2019-10-12
+        </div>
+        <div>
+          <dt>guest
+          <dd><a href="https://twitter.com/chikoski">@chikoski</a>
+        </div>
+      </dl>
+    </section>
+    <section>
+      <h2>Theme</h2>
+      <p>第 58 回のテーマは WASI (WebAssembly System Interface) です。
+      <p>今回は <a href="https://twitter.com/chikoski">@chikoski</a> さんをお迎えし、事例もで始めた WASM が次のステップとして取り組んでいる WASI について、 WASI は何を目指し、今どうなっているのか。また、それは Web の進化に影響をするのかしないのか。
+      <p>2015-08-05 にやった <a href="https://mozaic.fm/episodes/19/es7-sideshow.html">WASM</a> の回から WASM が辿った 4 年を振り返りつつ、今何が起こっているのか、これからどうなっていくのかを議論しました。
+    </section>
+    <section>
+      <h2>Show Note</h2>
+      <ul>
+        <li>
+          WASI resources.md by @Chikoski - GitHub<ul>
+            <li>
+              <a href="https://gist.github.com/chikoski/32a999326d2b638a3647284c537d7493">https://gist.github.com/chikoski/32a999326d2b638a3647284c537d7493</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          WASM<ul>
+            <li>
+              Core<ul>
+                <li>
+                  <a href="https://webassembly.github.io/spec/core/bikeshed">https://webassembly.github.io/spec/core/bikeshed</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              JS-API<ul>
+                <li>
+                  <a href="https://webassembly.github.io/spec/js-api">https://webassembly.github.io/spec/js-api</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Web-API<ul>
+                <li>
+                  <a href="https://webassembly.github.io/spec/web-api">https://webassembly.github.io/spec/web-api</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          WASI<ul>
+            <li>
+              WebAssembly/WASI: WebAssembly System Interface<ul>
+                <li>
+                  <a href="https://github.com/WebAssembly/WASI">https://github.com/WebAssembly/WASI</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              wasmtime/WASI-intro.md at master - CraneStation/wasmtime<ul>
+                <li>
+                  <a href="https://github.com/CraneStation/wasmtime/blob/master/docs/WASI-intro.md">https://github.com/CraneStation/wasmtime/blob/master/docs/WASI-intro.md</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Entry<ul>
+            <li>
+              Standardizing WASI: A system interface to run WebAssembly outside the web - Mozilla Hacks - the Web developer blog<ul>
+                <li>
+                  <a href="https://hacks.mozilla.org/2019/03/standardizing-wasi-a-webassembly-system-interface">https://hacks.mozilla.org/2019/03/standardizing-wasi-a-webassembly-system-interface</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              WebAssembly Interface Types: Interoperate with All the Things! - Mozilla Hacks - the Web developer blog<ul>
+                <li>
+                  <a href="https://hacks.mozilla.org/2019/08/webassembly-interface-types">https://hacks.mozilla.org/2019/08/webassembly-interface-types</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Other<ul>
+            <li>
+              WebAssembly night !! - connpass<ul>
+                <li>
+                  <a href="https://emsn.connpass.com">https://emsn.connpass.com</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Squoosh<ul>
+                <li>
+                  <a href="https://squoosh.app">https://squoosh.app</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              こえのブログ<ul>
+                <li>
+                  <a href="https://voice.ameba.jp">https://voice.ameba.jp</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </article>
+
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/57/monthly-web-201909.html">ep57 Monthly Web 201909</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small> Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>Google Analytics</a>.</p>
+  <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong>
+</footer>
+</body>
+</html>
