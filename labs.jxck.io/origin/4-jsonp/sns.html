@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<title>SNS Example</title>
+
+<h1>SNS Example</h1>
+
+<script src="http://intra.example/script.js"></script>
+
+<script src="http://intra.example/data.js"></script>
+<script>
+  console.log(data) // 表示可能
+</script>
+
+<script>
+  function callback(data) { // データがこの関数に渡ってくる
+    console.log(data)
+  }
+
+  const $script = document.createElement('script')
+  $script.src = "http://intra.example/callback.js"
+  document.body.appendChild($script)
+</script>

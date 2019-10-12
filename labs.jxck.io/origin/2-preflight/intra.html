@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<title>Intra Example</title>
+
+<h1>Intra Example</h1>
+
+<script>
+  document.addEventListener('DOMContentLoaded', async (e) => {
+    // SNS の投稿を削除
+    const res  = await fetch('http://sns.example/jxck/123456', {method: 'delete'}) // 許可されているので成功
+    console.log(res.status)
+  })
+</script>
+

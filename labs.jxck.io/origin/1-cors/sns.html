@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<title>SNS Example</title>
+
+<h1>SNS Example</h1>
+
+<script>
+  document.addEventListener('DOMContentLoaded', async (e) => {
+    // Intra の情報を取得
+    const res = await fetch('http://intra.example') // Origin が許可されているため成功
+    const text = await res.text()
+    console.log(text) // 情報が取得できる
+  })
+</script>

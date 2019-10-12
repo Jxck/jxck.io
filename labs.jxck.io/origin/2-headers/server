@@ -1,0 +1,66 @@
+#!/usr/bin/env ruby
+
+########################################
+# Main
+########################################
+
+require "webrick"
+
+# Color
+BOLD  = "\x1b[1;30m"
+RED   = "\x1b[0;35m"
+CLEAR = "\x1b[0m"
+
+http_config = {
+  :Port          => 80,
+  :RequestCallback => lambda {|req, res|
+    puts req.header.map{|k, v|
+      "#{BOLD}#{k}#{CLEAR}: #{RED}#{v.join(" ")}#{CLEAR}"
+    }.join("\n")
+    puts "\n"
+  }
+}
+
+server = WEBrick::HTTPServer.new(http_config)
+
+# /favicon.ico
+server.mount("/favicon.ico", WEBrick::HTTPServlet::FileHandler, "#{__dir__}/../favicon.ico")
+
+# /
+server.mount_proc('/', Proc.new{|req, res|
+  host = req.header["host"].first
+
+  case host
+  when "intra.example" then
+
+    # allow from SNS
+    origin = req.header.fetch("origin", []).first
+    if origin == "http://sns.example"
+      res.header['access-control-allow-origin'] = origin
+    end
+
+    res.content_type = "text/html"
+
+    # Header を追加
+    res.header['X-Author'] = "jxck"
+    res.header['Etag']     = "deadbeef"
+
+    # これを返せば追加ヘッダに JS からアクセスできる
+    res.header['Access-Control-Expose-Headers'] = 'X-Author, Etag'
+
+    # これを返せば全てのヘッダに JS からアクセスできる
+    # res.header['Access-Control-Expose-Headers'] = '*'
+
+    res.body = File.open("./intra.html").read
+  when "sns.example" then
+    res.content_type = "text/html"
+    res.body = File.open("./sns.html").read
+  when "attack.example" then
+    res.content_type = "text/html"
+    res.body = File.open("./attack.html").read
+  end
+})
+
+
+Signal.trap("INT") { server.shutdown }
+server.start

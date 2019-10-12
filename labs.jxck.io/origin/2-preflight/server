@@ -1,0 +1,87 @@
+#!/usr/bin/env ruby
+
+########################################
+# Main
+########################################
+
+require "webrick"
+
+# Color
+BOLD  = "\x1b[1;30m"
+RED   = "\x1b[0;35m"
+CLEAR = "\x1b[0m"
+
+http_config = {
+  :Port          => 80,
+  :RequestCallback => lambda {|req, res|
+    puts req.header.map{|k, v|
+      "#{BOLD}#{k}#{CLEAR}: #{RED}#{v.join(" ")}#{CLEAR}"
+    }.join("\n")
+    puts "\n"
+  }
+}
+
+server = WEBrick::HTTPServer.new(http_config)
+
+# /favicon.ico
+server.mount("/favicon.ico", WEBrick::HTTPServlet::FileHandler, "#{__dir__}/../favicon.ico")
+
+# /
+server.mount_proc('/', Proc.new{|req, res|
+  host = req.header["host"].first
+
+  case host
+  when "intra.example" then
+    res.content_type = "text/html"
+    res.body = File.open("./intra.html").read
+  when "sns.example" then
+    res.content_type = "text/html"
+    res.body = File.open("./sns.html").read
+  when "attack.example" then
+    res.content_type = "text/html"
+    res.body = File.open("./attack.html").read
+  end
+})
+
+# /jxck/123456
+class Preflight < WEBrick::HTTPServlet::AbstractServlet
+  def do_OPTIONS(req, res)
+    host = req.header["host"].first
+    unless host == "sns.example"
+      return res.status = 404
+    end
+
+    origin         = req.header.fetch("origin", []).first
+    request_method = req.header.fetch("access-control-request-method", []).first
+
+    if origin == "http://intra.example" and request_method == "DELETE"
+      res.header['access-control-allow-origin']  = origin
+      res.header['access-control-allow-methods'] = request_method
+      return res.status = 200
+    end
+
+    ## OPTIONS は Preflight 以外にも使われ
+    ## 通常は Allow ヘッダで有効なメソッドを伝える
+    res["allow"] = ["OPTIONS", "HEAD", "GET", "POST", "DELETE", "PUT"].join(",")
+    res.status = 200
+  end
+  def do_DELETE(req, res)
+    host = req.header["host"].first
+    unless host == "sns.example"
+      return res.status = 404
+    end
+
+    origin = req.header.fetch("origin", []).first
+
+    if origin == "http://intra.example"
+      res.header['access-control-allow-origin'] = origin
+      return res.status = 204
+    end
+
+    return res.status = 400
+  end
+end
+
+server.mount('/jxck/123456', Preflight)
+Signal.trap("INT") { server.shutdown }
+server.start

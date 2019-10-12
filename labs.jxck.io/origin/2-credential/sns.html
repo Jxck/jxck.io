@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<title>SNS Example</title>
+
+<h1>SNS Example</h1>
+
+<script>
+  document.addEventListener('DOMContentLoaded', async (e) => {
+    // Intra の情報を取得
+    const credentials = 'omit'
+    const res = await fetch('http://intra.example', {credentials}) // Cookie を送る
+    for (const header of res.headers) {
+      console.log(header)
+    }
+  })
+</script>

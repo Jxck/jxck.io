@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<title>Attack Example</title>
+
+<h1>Attack Example</h1>
+
+<script>
+  document.addEventListener('DOMContentLoaded', async (e) => {
+    // SNS の投稿を削除
+    const res  = await fetch('http://sns.example/jxck/123456', {method: 'delete'}) // CORS 違反で失敗する
+    console.log(res.status)
+  })
+</script>

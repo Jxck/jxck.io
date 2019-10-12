@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<title>Attack Example</title>
+
+<h1>Attack Example</h1>
+
+<form method=post action=http://sns.example/jxck>
+    <input type=text name=message value=hello>
+    <button type=submit>submit</button>
+</form>
+
+<button id=simple_request>simple request</button>
+
+<button id=not_simple_request>not simple request</button>
+
+
+<script>
+  document.querySelector('#simple_request').addEventListener('click', async (e) => {
+    // Simple Request なので Preflight が発生しない
+    const res = await fetch('http://sns.example/jxck', {
+      method: 'post',
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      body: 'message=hello'
+    })
+    console.log(res.status)
+  })
+
+  document.querySelector('#not_simple_request').addEventListener('click', async (e) => {
+    // Simple Request ではないので Preflight が発生する
+    const res = await fetch('http://sns.example/jxck', {
+      method: 'post',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: '{"message":"hello"}'
+    })
+    console.log(res.status)
+  })
+</script>
