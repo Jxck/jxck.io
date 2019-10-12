@@ -19,6 +19,3 @@ guest
 
 
 ## Show Note
-
-- JSConfJP 2019
-  - <https://jsconf.jp/2019>
