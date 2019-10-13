@@ -1,7 +1,6 @@
 #!/usr/bin/zsh
 
-NOW=20191012
-#$(date +"%Y%m%d")
+NOW=$(date +"%Y%m%d")
 
 \rm -rf ./tmp
 \mkdir ./tmp
