@@ -16,10 +16,12 @@ TARGETS=(
 "NotoSansMonoCJKjp-Regular.otf"
 )
 
+FEATURES='halt'
+
 foreach target in $TARGETS
  woff=`echo $target | sed "s/.otf/-Jxck-$NOW.woff/g"`
  woff2=`echo $target | sed "s/.otf/-Jxck-$NOW.woff2/g"`
- pyftsubset $target --text-file=../All.txt --layout-features='*' --flavor=woff2 --output-file=$woff2
+ pyftsubset $target --text-file=../All.txt --layout-features=$FEATURES --flavor=woff2 --output-file=$woff2
  mv $woff2 ../
 end
 
