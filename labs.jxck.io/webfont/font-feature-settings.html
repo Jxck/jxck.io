@@ -5,48 +5,78 @@
 
 <style>
 @font-face {
-  font-family:  "noto-subset";
-  src: url("./NotoSansCJKjp-Regular-Jxck-201909.woff2") format("woff2");
+  font-family:  "noto-sans-hinted";
+  src: url("./NotoSansCJKjp-Regular-Jxck-20191011.woff2") format("woff2");
 }
 
 body {
   width: 80%;
   margin: 0 auto;
-  font-family:  serif;
+  font-family:  noto-sans-hinted;
 }
 
 ul#features {
-  column-count: 4;
+  overflow-y: scroll;
+  height: 40vh;
+  border: 1px solid black;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 60% 1fr;
+  grid-column-gap: 5%;
 }
 
 code {
+  display: block;
   background-color: #eee;
+  overflow-x: scroll;
 }
 </style>
 
 <h1>font-feature-setting</h1>
 
-<div id=text>
-  <p>01234456789</p>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-  <p>しかし私は、喜びを非難して苦痛を賞賛するという誤ったこの考えがすべてどのようにして誕生したかをあなたに説明しなければならないから、私はあなたにその体系を完璧に説明し、真実を求める偉大な探究家、人間の喜びを築く建築家の実践的な教えを詳しく説明しよう。だれも喜びそのものを、それが喜びであるという理由で拒んだり、嫌ったり、避けたりはしない。</p>
-</div>
+<main>
+  <section>
+    <h2>sample</h2>
+    <div id=text>
+      <p>01234456789 Difficult waffles</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p>しかし私は、喜びを「非難して苦痛を賞賛する」という誤ったこの考えがすべてどのようにして誕生したかをあなたに説明しなければならないから、私はあなたにその体系を完璧に説明し、真実を求める偉大な探究家、人間の喜びを築く建築家の実践的な教えを詳しく説明しよう。だれも喜びそのものを、それが喜びであるという理由で拒んだり、嫌ったり、避けたりはしない。</p>
 
-<h2>font family</h2>
-<form id=fontFamily>
-  <ul>
-    <li><input type=radio name=family id=serif value=serif checked>       <label for=serif>serif</label>
-    <li><input type=radio name=family id="sans-serif" value="sans-serif" ><label for="sans-serif">"sans-serif"</label>
-  </ul>
-</form>
+      <h3>noto sans hinted supported feature</h3>
+      <ul>
+        <li>aalt:Access
+        <li>dlig:Discretionary Ligatures
+        <li>fwid:Full Widths
+        <li>halt:Alternate Half Widths
+        <li>hwid:Half Widths
+        <li>palt:Proportional Alternate Widths
+        <li>vert:Vertical Writing
+        <li>vrt2:Vertical Alternates and Rotation
+      </ul>
 
-<h2>font-feature-settings</h2>
-<form id=fontFeatureSettings>
-  <p><code>font-feature-settings: <output id=style></output></code></p>
-  <input type=reset value=reset>
-  <ul id=features></ul>
-</form>
+    </div>
+  </section>
 
+  <section>
+    <h2>font family</h2>
+    <form id=fontFamily>
+      <ul>
+        <li><input type=radio name=family id="noto-sans-hinted" value="noto-sans-hinted" checked><label for="noto-sans-hinted">"noto-sans-hinted"</label>
+        <li><input type=radio name=family id=serif value=serif>       <label for=serif>serif</label>
+        <li><input type=radio name=family id="sans-serif" value="sans-serif" ><label for="sans-serif">"sans-serif"</label>
+      </ul>
+    </form>
+
+    <h2>font-feature-settings</h2>
+    <form id=fontFeatureSettings>
+      <p><code>font-feature-settings: <output id=style></output></code></p>
+      <input type=reset value=reset>
+      <ul id=features></ul>
+    </form>
+  </section>
+</main>
 
 <script>
   'use strict';
