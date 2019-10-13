@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <!--
+  貴様、見ているな!!
+  このサイトの技術的なまとめはこちらをどうぞ。
+  https://labs.jxck.io/blog
+
+  by Jxck
+  -->
+  <link rel=canonical href="https://blog.jxck.io/entries/2019-10-13/font-feature-settings.html">
+  <link rel=amphtml href="https://blog.jxck.io/entries/2019-10-13/font-feature-settings.amp.html">
+  <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+  <link rel=author href=https://jxck.io/assets/humans.txt>
+  <link rel=manifest href=/manifest.json>
+  <link rel=preload as=font type=font/woff2 href=https://jxck.io/assets/font/NotoSansCJKjp-Regular-Jxck-20191013.woff2 crossorigin>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <script defer src=/assets/js/main.js></script>
+  <script defer src=/assets/js/ga.js></script>
+  <script defer src=https://jxck.io/assets/js/highlight.pack.js></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type=image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+
+  <meta name=author content=Jxck>
+  <meta name=description content="Noto Sans のサブセット生成を見なおし、 Noto Sans Hinted から pyftsubset で生成し、ついでに font-feature-settings を有効にした。作業と検証の記録を兼ねて、実施結果を記す。...">
+  <meta name=keywords content="font-feature-settings,noto sans,web font">
+
+  <meta name=twitter:card content=summary>
+  <meta name=twitter:site content=@jxck_>
+  <meta name=twitter:url content="https://blog.jxck.io/entries/2019-10-13/font-feature-settings.html">
+  <meta name=twitter:title content="Noto Sans Hinted と font-feature-settings: &#039;palt&#039; | blog.jxck.io">
+  <meta name=twitter:description content="Noto Sans のサブセット生成を見なおし、 Noto Sans Hinted から pyftsubset で生成し、ついでに font-feature-settings を有効にした。作業と検証の記録を兼ねて、実施結果を記す。...">
+  <meta name=twitter:image content="https://jxck.io/assets/img/jxck.png">
+
+  <meta property=og:type content=article>
+  <meta property=og:url content="https://blog.jxck.io/entries/2019-10-13/font-feature-settings.html">
+  <meta property=og:title content="Noto Sans Hinted と font-feature-settings: &#039;palt&#039; | blog.jxck.io">
+  <meta property=og:site_name content="blog.jxck.io">
+  <meta property=og:description content="Noto Sans のサブセット生成を見なおし、 Noto Sans Hinted から pyftsubset で生成し、ついでに font-feature-settings を有効にした。作業と検証の記録を兼ねて、実施結果を記す。...">
+  <meta property=og:image content="https://jxck.io/assets/img/jxck.png">
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://blog.jxck.io"
+  },
+  "headline": "Noto Sans Hinted と font-feature-settings: &#039;palt&#039; | blog.jxck.io",
+  "image": [
+    "https://jxck.io/assets/img/jxck.png",
+    "https://logo.jxck.io/jxck.1200x1200.png"
+  ],
+  "datePublished": "2019-10-13T08:00:00+08:00",
+  "dateModified": "2019-10-13T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "https://jxck.io/assets/img/jxck.png"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://logo.jxck.io/jxck.60x60.png",
+      "height": 60,
+      "width": 60
+    }
+  },
+  "description": "Noto Sans のサブセット生成を見なおし、 Noto Sans Hinted から pyftsubset で生成し、ついでに font-feature-settings を有効にした。作業と検証の記録を兼ねて、実施結果を記す。..."
+}
+</script>
+
+  <title>Noto Sans Hinted と font-feature-settings: &#039;palt&#039; | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/blog.svg   title=blog   alt="blog top" class=logo></a>
+        <li><a href="/entries/2019-10-13/font-feature-settings.amp.html#development=1" aria-label="amp version">
+                                               <img width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/amp.svg    title=blog   alt="amp version"></a>
+        <li><a href=.                         ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/up.svg     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/rss.svg    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/humans.svg title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/jxck.svg   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/markdown.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2019-10-13>2019-10-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2019-10-13>2019-10-13</time></dd></div>
+      <div><dt class=tags>tags</dt><dd>[<a href='/tags/font-feature-settings.html'>font-feature-settings</a><i>,</i><a href='/tags/noto%20sans.html'>noto sans</a><i>,</i><a href='/tags/web%20font.html'>web font</a>]</dd></div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+  <article>
+    <h1><a href=/entries/2019-10-13/font-feature-settings.html>Noto Sans Hinted と font-feature-settings: &lsquo;palt&rsquo;</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p>Noto Sans のサブセット生成を見なおし、 Noto Sans Hinted から pyftsubset で生成し、ついでに font-feature-settings を有効にした。
+      <p>作業と検証の記録を兼ねて、実施結果を記す。
+    </section>
+    <section>
+      <h2 id="fonttools"><a href="#fonttools">fonttools</a></h2>
+      <p>これまで、フォントのサブセットの生成には以下の二つのツールを使用していた。
+      <ul>
+        <li>
+          <a href="https://opentype.jp/subsetfontmk.htm">サブセットフォントメーカー</a>
+        </li>
+        <li>
+          <a href="https://opentype.jp/woffconv.htm">WOFF コンバータ</a>
+        </li>
+      </ul>
+      <p>しかし、 macOS を Catalina にあげたところ、これらが起動できなくなり、フォントが生成できなくなった。
+      <p>これまで GUI で行なっていたが、せっかくなので自動化するために、大体コマンドを探し、プロセスを組んだ。
+      <p>いくつかツールがあるが、今回は fonttools に同梱された pyftsubset を採用することとした。
+      <ul>
+        <li>
+          <a href="https://github.com/fonttools/fonttools">fonttools/fonttools</a>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 id="pyftsubset"><a href="#pyftsubset">pyftsubset</a></h2>
+      <p>これまでは、使用しそうなフォントをリストアップし、そのリストを元にフォントを生成していた。
+      <p>しかし、更新への追従も面倒になったので、やはり記事で利用している文字を全てリストアップするスクリプトを書くことにした。
+      <p>ところが、単純に全ての文字を取ると、一度しか使用しない文字が増えてしまう。理由は以下のようなエントリがあるからだ。
+      <ul>
+        <li>
+          <a href="https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html">Noto Sans の Web Font 対応とサブセットによる最適化 | blog.jxck.io</a>
+        </li>
+        <li>
+          <a href="https://blog.jxck.io/entries/2017-03-02/unicode-in-javascript.html">JavaScript における文字コードと「文字数」の数え方 | blog.jxck.io</a>
+        </li>
+      </ul>
+      <p>通常、記事中に結合文字、絵文字、サロゲートペアなどは基本的に使わないが、それ自体を解説するこの二つのエントリは含まれてしまう。
+      <p>フォントに含まれない文字は、スタイルが変わってしまい、違和感があるため、これまでは含んでいた。
+      <p>しかし、そういった文字はほぼサンプルコードとしてコードブロック(<code translate="no">&lt;code&gt;</code>)に含まれており、かつそこには MONO font しか当たってない。
+      <p>そこで、コードブロックに含まれてない特殊な文字を全てコードブロックに含むように記事を修正し、 HTML から <code translate="no">&lt;code&gt;</code> を全て除いた文字群をサブセットの対象とした。
+      <p>変換は以下のようにした。
+      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+      <pre class=sh><code translate="no">$ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../All.txt --layout-features=&#039;*&#039; --flavor=woff2 --output-file=NotoSansCJKjp-Regular-Jxck-20191011.woff2</code></pre>
+    </section>
+    <section>
+      <h2 id="layout-features"><a href="#layout-features">layout features</a></h2>
+      <p>ところが、生成したフォントが従来の倍近いサイズになっていた。
+      <ul>
+        <li>353.1K: 従来
+        <li>606.6K: 更新後
+      </ul>
+      <p>コマンドヘルプを見ながら適当につけた以下のオプションが問題である。
+      <pre class=sh><code translate="no">--layout-features=&#039;*&#039;</code></pre>
+      <p>この layout features は、 Open Type のフォントが含む、ヒント情報を含めるという指定だ。
+      <p>Open Type がいくつかの情報を持っていることは薄々知っていたが、以下の理由から特に考えずにきた。
+      <ul>
+        <li>従来使用していたツールは、この情報を全て削除していた。
+        <li>昔の Noto Sans はこの情報を含まなかった気がする
+      </ul>
+      <blockquote>
+        <p>フォントが、ヒント(OpenType フォントの場合)、カーニング情報、ビットマップデータ、 OpenType 機能を持っている場合、それらは削除されます。
+        <p>&mdash; <cite><a href="https://opentype.jp/subsetfontmk.htm">サブセットフォントメーカー</a></cite>
+      </blockquote>
+      <p>今は、 NotoSansCJKjp-hinted.zip を元にすれば、ヒント情報を含むサブセットが作れるため、 CSS の font-feature-settings が指定できる。
+      <p>全て削れば従来通りだが、せっかくなので指定を検証することにした。
+    </section>
+    <section>
+      <h2 id="font-feature-settings"><a href="#font-feature-settings">font-feature-settings</a></h2>
+      <p>まず、以下を調査する。
+      <ul>
+        <li>Noto Sans CJK jp が含むヒント情報
+        <li>CSS で指定可能なプロパティ
+      </ul>
+      <p>ところが、前者についてはリポジトリを見てもそれらしい情報にたどり着くことができなかった。
+      <p>後者は、 <a href="https://drafts.csswg.org/css-fonts-3/#ref-OPENTYPE-FEATURES">font-feature-settings の CSS の仕様</a>から、 MS にある Registered Features という一覧がリンクされていた。
+      <ul>
+        <li>
+          <a href="https://docs.microsoft.com/ja-jp/typography/opentype/spec/featurelist">Registered features - Typography | Microsoft Docs</a>
+        </li>
+      </ul>
+      <p>140 近い機能があるようだが、このうちのどれが使えるのかがわからなかったため、以下の DEMO ページを用意し Chrome で試した。
+      <ul>
+        <li>
+          <a href="http://labs.jxck.io/webfont/font-feature-settings.html">Font Feature Settings DEMO</a>
+        </li>
+      </ul>
+      <p>恐らく検証するための妥当な文字や、ブラウザの実装などといった変数もあるだろうが、そのへんを網羅するのは難しいため、あきらかに見た目が変わるプロパティが以下であるところまで検証した。
+      <ul>
+        <li>aalt: Access
+        <li>dlig: Discretionary Ligatures
+        <li>fwid: Full Widths
+        <li>halt: Alternate Half Widths
+        <li>hwid: Half Widths
+        <li>palt: Proportional Alternate Widths
+        <li>pwid: Proportional Widths
+        <li>vert: Vertical Writing
+        <li>vrt2: Vertical Alternates and Rotation
+      </ul>
+      <p>この中で、本サイトでの対応を検討すべきは <code translate="no">halt</code>, <code translate="no">palt</code> だろうと判断した。
+    </section>
+    <section>
+      <h2 id="字詰palt"><a href="#字詰palt">字詰(palt)</a></h2>
+      <p><code translate="no">halt</code>, <code translate="no">palt</code> はいずれも字詰に関するプロパティだ。
+      <p>以下のような違いがある。
+      <ul>
+        <li>halt: 約物類(句読点など)を半角幅にする
+        <li>palt: 字体を置き換えずプロポーショナル幅にする
+      </ul>
+      <p>DEMO でみた halt は割と良さそうに見えたが、ブログ全体に適用したところあまり良くなかったため不採用とした。
+      <p>palt とは別に、字体を置き換える pwid があるが、そちらは Chrome か Noto Sans CJK JP が対応してないようだ。
+      <p>そこで結果として <code translate="no">palt</code> のみを指定してフォントをビルドすることにした。
+      <pre class=sh><code translate="no">$ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../All.txt --layout-features=&#039;palt&#039; --flavor=woff2 --output-file=NotoSansCJKjp-Regular-Jxck-20191011.woff2</code></pre>
+      <p>結果は以下である。
+      <ul>
+        <li>353.1K: 従来
+        <li>
+          606.6K: layout-feature=&rsquo;*&rsquo;
+        </li>
+        <li>
+          293.9K: layout-feature=&rsquo;palt&rsquo;
+        </li>
+      </ul>
+      <p>サブセット生成のロジックを変えたため、不要な文字も減り、トータルでは layout-feature を入れる前よりも小さくなっている。
+      <p>またこのフォントを利用し、 CSS に以下を追加した。
+      <pre class=css><code translate="no">body {
+  font-feature-settings: &quot;palt&quot;
+}</code></pre>
+      <p>before/after は以下のようになる。
+      <p>
+        <picture>
+          <source type=image/webp srcset=font-feature-settings-palt.webp#1665x968>
+          <img loading=lazy src=font-feature-settings-palt.gif#1665x968 alt="font-feature-settings で palt を切り替えた時の字詰めの変化" title="font-feature-settings:'palt'" intrinsicsize=1665x968>
+        </picture>
+      </p>
+    </section>
+    <section>
+      <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
+      <p>以下のことを行なった。
+      <ul>
+        <li>subset 対象の文字を記事から取得
+        <li>pyftsubset で自動化
+        <li>layout-feature を検証し palt を採用
+        <li>css に font-feature-settings を追加
+      </ul>
+      <p>正直フォントについては素人であり、色々と雰囲気でやっているところもあるが、新しい機能を採用するという点ではよい改修ができた。
+      <p>今後もおもしろい font-feature-settings があれば採用し、 Noto Sans が対応していなければ、対応しているフォントへの変更も視野に入れて、検証していきたい。
+    </section>
+  </article>
+
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small><small>Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>Google Analytics</a> and <a href=https://w3c.github.io/ServiceWorker/>Service Worker</a>.</small></p>
+  </footer>
+</body>
+</html>

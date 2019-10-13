@@ -1,4 +1,4 @@
-# [font-feature-settings][noto sans][web font] Noto Sans Hinted と font-feature-settings
+# [font-feature-settings][noto sans][web font] Noto Sans Hinted と font-feature-settings: 'palt'
 
 ## Intro
 
