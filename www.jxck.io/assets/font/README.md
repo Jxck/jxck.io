@@ -1,10 +1,12 @@
-- font.rb を実行すると、現時点のエントリの中から All.txt に入ってない文字だけを出す。
-- この出力を All.txt に入れてフォントセットを作り直す。
-- https://www.google.com/get/noto/#sans-jpan
-  - https://noto-website.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip
+- subset.rb を実行すると、現時点のエントリの中から対象文字だけを出す。
+  - font ダイエットの記事や unicode の記事では、絵文字や結合文字など入れたく無いものも多い
+  - それらを `<code>` に入れ、 subset.rb は `<code>` を省いている
+  - All.txt に保存される
+- build.sh でサブセットを生成する
+  - https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip
+  - hinted なものを使う
   - Mono も CJKjp に入ってるものを使う
-  - (https://noto-website-2.storage.googleapis.com/pkgs/NotoSansMono-unhinted.zip)
-- http://opentype.jp/subsetfontmk.htm を使って生成
-  - font 名は blod/regular は入れず mono かどうかだけ
-- http://opentype.jp/woffconv.htm で woff にする
-- バージョンをつけてデプロイする。
+  - layout-features を全部入れると倍くらいになるので `palt` のみを入れている
+- CSS
+  - font-feature-settings: 'palt' を追加
+  - 他の機能が欲しければ build.sh でオプションに追加
