@@ -1,6 +1,7 @@
 #!/usr/bin/zsh
 
-NOW=$(date +"%Y%m%d")
+NOW=20191012
+#$(date +"%Y%m%d")
 
 \rm -rf ./tmp
 \mkdir ./tmp
@@ -16,7 +17,7 @@ TARGETS=(
 "NotoSansMonoCJKjp-Regular.otf"
 )
 
-FEATURES='halt'
+FEATURES='palt'
 
 foreach target in $TARGETS
  woff=`echo $target | sed "s/.otf/-Jxck-$NOW.woff/g"`
