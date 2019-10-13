@@ -1,12 +1,3 @@
-const ICON = {
-  PAUSE:   "&#xf04c;",
-  PLAY:    "&#xf04b;",
-  FORWARD: "&#xf04e;",
-  BACK:    "&#xf04a;",
-  VOLUP:   "&#xf027;",
-  VOLDOWN: "&#xf027;",
-}
-
 // Enable debug log adding #debug into url
 const log = location.hash === "#debug" ? console.log.bind(console) : () => {}
 
@@ -20,48 +11,369 @@ export default class MozaicPlayer extends HTMLElement {
     const template = document.createElement('template')
     // TODO: html-modules
     template.innerHTML = `
+<style>
+/* player host */
+.mozaic-player {
+  display:          grid;
+  color:            #fff;
+  background-color: #000;
+}
+  .mozaic-player button {
+    border:           none;
+    background-color: initial;
+  }
+  .mozaic-player input[type=range] {
+    width:              100%;
+    -webkit-appearance: none;
+    -moz-appearance:    none;
+    background-color:   #fff;
+    border-radius:      2px;
+    height:             2px;
+    margin:             0 1rem;
+  }
+  .mozaic-player input::-moz-range-track {
+    background-color:   #fff;
+  }
+
+/* progress bar */
+.grid-progress {
+  grid-area:   progress;
+  display:     inline-flex;
+  align-items: center;
+}
+  .grid-progress .current {
+  }
+  .grid-progress .progress {
+    -webkit-appearance: none;
+    -moz-appearance:    none;
+    appearance:         none;
+    border-radius:      2px;
+    border:             none;
+    width:              100%;
+    height:             6px;
+    margin:             0 1rem;
+  }
+  .grid-progress progress[value]::-webkit-progress-bar {
+    background-color: white;
+    border-radius:    2px;
+  }
+  .grid-progress progress[value]::-moz-progress-bar {
+    background-color: royalblue;
+    border-radius:    2px;
+  }
+  .grid-progress progress[value]::-webkit-progress-value {
+    background-color: royalblue;
+    border-radius:    2px;
+  }
+
+/* controls */
+.grid-volume {
+  display:   flex;
+  grid-area: volume;
+  align-items:     center;
+  justify-content: flex-end;
+}
+
+.grid-play {
+  display:   flex;
+  grid-area: play;
+  align-items:     center;
+  justify-content: space-between;
+}
+  .grid-play .play:disabled .svg-play path {
+    fill:   #777;
+    stroke: #777;
+  }
+  .grid-play .svg-pause {
+    display: none;
+  }
+
+.grid-speed {
+  display:   flex;
+  grid-area: speed;
+  align-items:     center;
+  justify-content: flex-start;
+}
+
+/* layout for mobile */
+@media screen and (max-width: 1024px) {
+  .mozaic-player {
+    grid-template:
+      "progress" 1fr
+      "play"     1fr
+      "speed"    1fr
+      / 1fr;
+  }
+  .mozaic-player svg {
+    width: 2.8rem;
+  }
+  .grid-progress {
+    margin: 0 1rem;
+  }
+  .grid-volume {
+    display: none;
+  }
+  .grid-play {
+    margin: 0 10%;
+  }
+  .grid-speed {
+    margin: 0 10%;
+  }
+}
+
+/* layout for PC */
+@media screen and (min-width: 1024px) {
+  .mozaic-player {
+    grid-template:
+      "progress progress progress progress progress" 2fr
+      ".        volume   play     speed    ."        3fr
+      /1fr      6fr      6fr      6fr      1fr;
+    grid-row-gap: 1em;
+    padding: 1%;
+  }
+  .mozaic-player svg {
+    width: 3rem;
+  }
+  .grid-volume svg {
+    width: 2rem;
+  }
+  .grid-play {
+    margin: 0 20%;
+  }
+}
+</style>
 
 
+<div class=mozaic-player>
+  <slot name=audio></slot>
 
+  <div class=grid-progress>
+    <time class=current datetime=00:00:00>00:00:00</time>
+    <progress class=progress value=0 tabindex=0></progress>
+    <time class=duration datetime=00:00:00>00:00:00</time>
+  </div>
 
+  <div class=grid-volume>
+    <button class=volumeDown title="volume down">
+      <svg class="svg-volume-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+        <!-- volume-down -->
+        <path
+          fill="#fff"
+          stroke="#fff"
+          stroke-linejoin="round"
+          stroke-width="30"
+          d="
+          M  30 100
+          L  90 100
+          L 140  50
+          L 140 250
+          L  90 200
+          L  30 200
+          Z
+          "/>
 
+        <circle
+          cx="170"
+          cy="150"
+          r="30"
+          stroke="#fff"
+          stroke-width="18"
+          stroke-linecap="round"
+          stroke-dashoffset="85"
+          stroke-dasharray="124,110"
+          fill="transparent">
+        </circle>
+      </svg>
+    </button>
 
+    <input class=volume type=range title=volume value=0.5>
 
+    <button class=volumeUp title="volume up">
+      <svg class="svg-volume-up" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+        <!-- volume up -->
+        <path
+          fill="#fff"
+          stroke="#fff"
+          stroke-linejoin="round"
+          stroke-width="30"
+          d="
+          M  30 100
+          L  90 100
+          L 140  50
+          L 140 250
+          L  90 200
+          L  30 200
+          Z
+          "/>
 
+        <circle
+          cx="170"
+          cy="150"
+          r="30"
+          stroke="#fff"
+          stroke-width="18"
+          stroke-linecap="round"
+          stroke-dashoffset="85"
+          stroke-dasharray="124,110"
+          fill="transparent">
+        </circle>
 
+        <circle
+          cx="170"
+          cy="150"
+          r="70"
+          stroke="#fff"
+          stroke-width="18"
+          stroke-linecap="round"
+          stroke-dashoffset="96"
+          stroke-dasharray="176,279"
+          fill="transparent">
+        </circle>
 
+        <circle
+          cx="170"
+          cy="150"
+          r="110"
+          stroke="#fff"
+          stroke-width="18"
+          stroke-linecap="round"
+          stroke-dashoffset="64"
+          stroke-dasharray="185,448"
+          fill="transparent">
+        </circle>
+      </svg>
+    </button>
+  </div>
 
+  <div class=grid-play>
+    <button class=back title="back 10s">
+      <svg class="svg-back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+        <!-- back -->
+        <circle
+          cx="150"
+          cy="150"
+          r="110"
+          stroke="#fff"
+          stroke-width="21"
+          stroke-dashoffset="0"
+          stroke-dasharray="449,66"
+          fill="transparent">
+        </circle>
 
+        <text
+          x="150"
+          y="150"
+          fill="#fff"
+          font-size="110"
+          font-weight="bold"
+          font-family="sans-serif"
+          text-anchor="middle"
+          dominant-baseline="central">10</text>
 
+        <path stroke="#fff"
+              stroke-width="1"
+              fill="#fff"
+              d="
+              M 160 5
+              L 160 80
+              L 100 40
+              Z
+              "/>
+      </svg>
+    </button>
+    <button class=play title=play disabled>
+      <svg class="svg-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+        <!-- >  -->
+        <path
+          fill="#fff"
+          stroke="#fff"
+          stroke-linejoin="round"
+          stroke-width="30"
+          d="
+          M 70  30
+          L 250 150
+          L 70  270
+          Z
+          "/>
+      </svg>
+      <svg class="svg-pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+        <!-- ||(pause) -->
+        <path
+          fill="#fff"
+          stroke="#fff"
+          stroke-linejoin="round"
+          stroke-width="30"
+          d="
+          M   40  30
+          L  110  30
+          L  110 270
+          L   40 270
+          Z
+          M  260  30
+          L  260 270
+          L  190 270
+          L  190  30
+          Z
+          "/>
+      </svg>
+    </button>
+    <button class=forward title="forward 30s">
+      <svg class="svg-forward" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+        <!-- forward -->
+        <circle
+          cx="150"
+          cy="150"
+          r="110"
+          stroke="#fff"
+          stroke-width="21"
+          stroke-dashoffset="0"
+          stroke-dasharray="518,70"
+          fill="transparent">
+        </circle>
 
+        <text
+          x="150"
+          y="150"
+          fill="#fff"
+          font-size="110"
+          font-weight="bold"
+          font-family="sans-serif"
+          text-anchor="middle"
+          dominant-baseline="central">30</text>
 
+        <path stroke="#fff"
+              stroke-width="1"
+              fill="#fff"
+              d="
+              M 140  5
+              L 140 80
+              L 200 40
+              Z
+              "/>
+      </svg>
+    </button>
+  </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <div class=grid-speed>
+    <input class=playbackRate type=range title=speed min=0.6 max=3.0 step=0.2 value=1.0 list=playbackRate>
+    <output class=rate>x1.0</output>
+  </div>
+  <datalist id=playbackRate>
+    <option value=0.6 label="x0.6">
+    <option value=0.8>
+    <option value=1.0 label="x1.0">
+    <option value=1.2>
+    <option value=1.4>
+    <option value=1.6>
+    <option value=1.8>
+    <option value=2.0 label="x2.0">
+    <option value=2.2>
+    <option value=2.4>
+    <option value=2.6>
+    <option value=2.8>
+    <option value=3.0 label="x3.0">
+  </datalist>
+</div>
     `
     return template.content.cloneNode(true)
   }
@@ -112,11 +424,17 @@ export default class MozaicPlayer extends HTMLElement {
     this.$forward      = this.shadowRoot.querySelector('.forward')
     this.$back         = this.shadowRoot.querySelector('.back')
     this.$volume       = this.shadowRoot.querySelector('.volume')
+    this.$volumeUp     = this.shadowRoot.querySelector('.volumeUp')
+    this.$volumeDown   = this.shadowRoot.querySelector('.volumeDown')
     this.$playbackRate = this.shadowRoot.querySelector('.playbackRate')
     this.$current      = this.shadowRoot.querySelector('.current')
     this.$progress     = this.shadowRoot.querySelector('.progress')
     this.$duration     = this.shadowRoot.querySelector('.duration')
     this.$outputRate   = this.shadowRoot.querySelector('output.rate')
+
+    this.$svgPlay = this.shadowRoot.querySelector('.svg-play')
+    this.$svgPause = this.shadowRoot.querySelector('.svg-pause')
+
 
 
     // tooltip event bindings
@@ -124,6 +442,8 @@ export default class MozaicPlayer extends HTMLElement {
     this.$forward     .addEventListener('click', this.onForward.bind(this))
     this.$back        .addEventListener('click', this.onBack.bind(this))
     this.$volume      .addEventListener('input', this.onVolume.bind(this))
+    this.$volumeUp    .addEventListener('click', this.onVolumeUp.bind(this))
+    this.$volumeDown  .addEventListener('click', this.onVolumeDown.bind(this))
     this.$playbackRate.addEventListener('input', this.onPlaybackrate.bind(this))
 
     // dragging progress bar
@@ -254,6 +574,23 @@ export default class MozaicPlayer extends HTMLElement {
     this.$current.dateTime    = this.timeFormat(currentTime)
   }
 
+  setCanPlayButton() {
+    this.$play.disabled = false
+    const $path = this.$svgPlay.querySelector('path')
+    $path.style.fill   = "#fff"
+    $path.style.stroke = "#fff"
+  }
+
+  setPlayButton() {
+    this.$svgPlay.style.display  = "inline-block";
+    this.$svgPause.style.display = "none";
+  }
+
+  setPauseButton() {
+    this.$svgPlay.style.display  = "none";
+    this.$svgPause.style.display = "inline-block";
+  }
+
 
   ///////////////////////////
   // Save Setting
@@ -311,10 +648,12 @@ export default class MozaicPlayer extends HTMLElement {
 
   onAudioCanplay(e) {
     log(e.type, e)
+    this.setCanPlayButton()
   }
 
   onAudioCanplaythrough(e) {
     log(e.type, e)
+    this.setCanPlayButton()
   }
 
   onAudioDurationchange(e) {
@@ -358,11 +697,12 @@ export default class MozaicPlayer extends HTMLElement {
 
   onAudioPause(e) {
     log(e.type, e)
-    this.$play.innerHTML = ICON.PLAY
+    this.setPlayButton()
   }
 
   onAudioPlay(e) {
     log(e.type, e)
+    this.setPauseButton()
   }
 
   onAudioPlaying(e) {
@@ -409,11 +749,9 @@ export default class MozaicPlayer extends HTMLElement {
     if (this.audio.paused) {
       log('play()')
       this.audio.play()
-      e.target.innerHTML = ICON.PAUSE
     } else {
       log('pause()')
       this.audio.pause()
-      e.target.innerHTML = ICON.PLAY
     }
   }
 
@@ -432,6 +770,16 @@ export default class MozaicPlayer extends HTMLElement {
     log(e.type, volume)
     this.audio.volume = volume
     this.saveVolume()
+  }
+
+  onVolumeUp(e) {
+    log(e.type, "volmeUp")
+    this.volumeup()
+  }
+
+  onVolumeDown(e) {
+    log(e.type, "volmeDown")
+    this.volumedown()
   }
 
   onPlaybackrate(e) {
