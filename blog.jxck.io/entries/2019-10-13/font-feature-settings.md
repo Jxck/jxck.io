@@ -44,6 +44,7 @@ Noto Sans のサブセット生成を見なおし、 Noto Sans Hinted から pyf
 
 変換は以下のようにした。
 
+
 ```sh
 $ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../All.txt --layout-features='*' --flavor=woff2 --output-file=NotoSansCJKjp-Regular-Jxck-20191011.woff2
 ```
@@ -56,8 +57,8 @@ $ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../All.txt --layout-features=
 - 353.1K: 従来
 - 606.6K: 更新後
 
-
 コマンドヘルプを見ながら適当につけた以下のオプションが問題である。
+
 
 ```sh
 --layout-features='*'
@@ -70,10 +71,8 @@ Open Type がいくつかの情報を持っていることは薄々知ってい�
 - 従来使用していたツールは、この情報を全て削除していた。
 - 昔の Noto Sans はこの情報を含まなかった気がする
 
-
-> フォントが、ヒント(OpenTypeフォントの場合)、カーニング情報、ビットマップデータ、OpenType機能を持っている場合、それらは削除されます。
+> フォントが、ヒント(OpenType フォントの場合)、カーニング情報、ビットマップデータ、 OpenType 機能を持っている場合、それらは削除されます。
 > --- <cite>[サブセットフォントメーカー](https://opentype.jp/subsetfontmk.htm)</cite>
-
 
 今は、 NotoSansCJKjp-hinted.zip を元にすれば、ヒント情報を含むサブセットが作れるため、 CSS の font-feature-settings が指定できる。
 
@@ -142,6 +141,7 @@ $ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../All.txt --layout-features=
 
 またこのフォントを利用し、 CSS に以下を追加した。
 
+
 ```css
 body {
   font-feature-settings: "palt"
@@ -150,13 +150,7 @@ body {
 
 before/after は以下のようになる。
 
-
-
-
-
-
-
-
+![font-feature-settings で palt を切り替えた時の字詰めの変化](font-feature-settings-palt.gif#1665x968 "font-feature-settings:'palt'")
 
 
 ## まとめ
