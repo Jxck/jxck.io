@@ -1,10 +1,5 @@
 # [noto sans][web font][performance] Noto Sans の Web Font 対応とサブセットによる最適化
 
-## Update
-
-- 2018-02-13: [WebFont の WOFF2 対応によるサイズ最適化 \| blog.jxck.io](https://blog.jxck.io/entries/2018-02-13/web-font-woff2.html)
-
-
 ## Intro
 
 このサイトのフォントに Web Font を適用することにした。
@@ -519,3 +514,8 @@ Web Font もだいぶ一般的になってきたため、今後の Web 作成で
 このサイトではパフォーマンスに関わる最適化手法を色々と試しているが、 Web Font も無しに表示の速さを語っても片手落ちだろうと思い、いわゆる鉄下駄として入れてみた。
 
 こうした使いやすく優れたフォントが無料で提供されているのは、非常にありがたい。
+
+
+## Related
+
+その他 WebFont に関連する検証は [web font](https://blog.jxck.io/tags/web%20font.html) タグにまとまっている。

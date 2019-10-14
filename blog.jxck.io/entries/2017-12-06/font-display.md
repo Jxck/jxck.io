@@ -1,5 +1,11 @@
 # [font-display][web font][performance][css] Font Display プロパティを用いた FOIT/FOUT 最適化
 
+## Update
+
+- この検証から 2 年程のちに、 First Paint/First Contentful Paint を重視するため、全ての display プロパティは swap に統一した。
+- その他 WebFont に関連する検証は [web font](https://blog.jxck.io/tags/web%20font.html) タグにまとまっている。
+
+
 ## Intro
 
 Web Font 読み込み中の HTML 表示については、ブラウザデフォルトの挙動に依存していた。

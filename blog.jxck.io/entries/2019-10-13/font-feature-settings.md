@@ -165,3 +165,8 @@ before/after は以下のようになる。
 正直フォントについては素人であり、色々と雰囲気でやっているところもあるが、新しい機能を採用するという点ではよい改修ができた。
 
 今後もおもしろい font-feature-settings があれば採用し、 Noto Sans が対応していなければ、対応しているフォントへの変更も視野に入れて、検証していきたい。
+
+
+## Related
+
+その他 WebFont に関連する検証は [web font](https://blog.jxck.io/tags/web%20font.html) タグにまとまっている。
