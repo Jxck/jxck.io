@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Scroll To Text Fragment DEMO</title>
+
+<style>
+body {
+  width: 70%;
+  margin: 0 auto;
+}
+
+article {
+  font-size: 2em;
+}
+
+form {
+  font-size: 1.4em;
+}
+
+input[type=text] {
+  width: 30em;
+}
+
+:target {
+  color: green;
+}
+</style>
+
+<h1>Scroll To Text Fragment DEMO</h1>
+
+<form method=get action=.>
+  <label for=fragment>:~:text=[prefix-,]textStart[,textEnd][,-suffix]</label>
+  <input id=fragment type=text name=fragment value=":~:text=" placeholder="input fragment here">
+  <button type=submit>go</button>
+</form>
+
+<article>
+<p id=en>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+<p id=ja>しかし私は、喜びを非難して苦痛を賞賛するという誤ったこの考えがすべてどのようにして誕生したかをあなたに説明しなければならないから、私はあなたにその体系を完璧に説明し、真実を求める偉大な探究家、人間の喜びを築く建築家の実践的な教えを詳しく説明しよう。だれも喜びそのものを、それが喜びであるという理由で拒んだり、嫌ったり、避けたりはしない。しかし、どのようにして喜びを理性的に追求するかを知らない人たちは非常に苦痛な結末に直面する。同様に、苦痛そのものを、それが苦痛であるという理由で愛したり、探したり、手に入れることを望んだりする者もいない。しかし、ときには苦労や苦痛がその人に大いなる喜びをいくらかもたらす状況がおこることがある。些末な例を挙げると、私たちのうちのだれが、そこから何か有益なものを得られないのに、骨の折れる肉体運動を引き受けるだろうか？しかしだれに、いらだたしい結末のない喜びを享受することを選ぶ人や、その結果としての喜びを生み出さないような痛みを避ける人にある、落ち度を見つける権利はあるのだろうか？
+</article>
+
+<script>
+'use strict';
+const $  = document.querySelector.bind(document)
+const $$ = document.querySelectorAll.bind(document)
+EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+document.on('DOMContentLoaded', async (e) => {
+  $('form').on('submit', async (e) => {
+    console.log(e)
+    e.preventDefault();
+
+    const data = new FormData(e.target)
+    const fragment = data.get('fragment')
+    location.hash = fragment
+    location.reload()
+  })
+})
+</script>
+
+<a href=https://ja.wikipedia.org/wiki/Lorem_ipsum>Lorem ipsum - Wikipedia</a>
