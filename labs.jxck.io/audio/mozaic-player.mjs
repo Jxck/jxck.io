@@ -11,108 +11,57 @@ const ICON = {
 const log = location.hash === "#debug" ? console.log.bind(console) : () => {}
 
 export default class MozaicPlayer extends HTMLElement {
-  static get observedAttributes() { return ['src', 'type'] }
+  static get observedAttributes() { return ['src'] }
 
   get src()      { return this.querySelector('audio').src }
   set src(value) { return this.querySelector('audio').src = value }
-
-  get type()      { return this.querySelector('auido').getAttribute('type') }
-  set type(value) { return this.querySelector('auido').setAttribute('type', value) }
 
   get template() {
     const template = document.createElement('template')
     // TODO: html-modules
     template.innerHTML = `
-      <style>
-        :host * {
-          font-family: "FontAwesome5Free";
-        }
-
-        /* progress bar */
-        .progress-line {
-          display: inline-flex;
-          width:   100%;
-        }
-          .progress-line .current {
-          }
-          .progress-line .progress {
-            width:  100%;
-            margin: 0 0.6rem;
-          }
-          .progress-line .duration {
-          }
 
 
-        /* control-line */
-        .control-line {
-          width:                 100%;
-          display:               grid;
-          grid-template-columns: 2fr 1fr 2fr;
-          grid-template-areas:   "left center right";
-          grid-column-gap:       10%;
-          margin-top:            1%;
-        }
-          .control-line .grid-left {
-            display:         flex;
-            grid-area:       left;
-            align-items:     center;
-            justify-content: flex-end;
-          }
-          .control-line .grid-center {
-            display:         flex;
-            grid-area:       center;
-            align-items:     center;
-            justify-content: space-between;
-          }
-          .control-line .grid-right {
-            display:         flex;
-            grid-area:       right;
-            align-items:     center;
-            justify-content: flex-start;
-          }
-          .control-line button {
-            border:           none;
-            background-color: initial;
-            font-size:        1.4rem;
-          }
-          .control-line select {
-            background-color: #eee;
-          }
-          .control-line input[type=range] {
-            -webkit-appearance: none;
-            -moz-appearance:    none;
-            background:         #999;
-            height:             2px;
-            border-radius:      2px;
-          }
-      </style>
 
-      <div class=mozaic-player>
-        <slot name=audio></slot>
 
-        <div class=progress-line>
-          <time class=current>00:00:00</time>
-          <progress class=progress value=0></progress>
-          <time class=duration>00:00:00</time>
-        </div>
 
-        <div class=control-line>
 
-          <div class=grid-left>
-            <span>&#xf027;</span><input class=volume type=range><span>&#xf028;</span>
-          </div>
 
-          <div class=grid-center>
-            <button class="back">&#xf04a;</button>
-            <button class="play">&#xf04b;</button>
-            <button class="forward">&#xf04e;</button>
-          </div>
 
-          <div class=grid-right>
-            <span>&#xf103;</span><input class=playbackRate type=range min=0.6 max=3.0 step=0.2><span>&#xf102;</span>
-          </div>
-        </div>
-      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     `
     return template.content.cloneNode(true)
   }
@@ -129,7 +78,8 @@ export default class MozaicPlayer extends HTMLElement {
     this.audio = this.shadowRoot.querySelector('slot').assignedNodes().pop()
     console.assert(this.audio.tagName.toLowerCase() === "audio", '<audio slot=audio> should assigned to <mozaic-player>')
 
-    // get delta
+    // get data
+    this.title        = this.audio.title
     this.forwardDelta = parseFloat(this.audio.dataset['forward']) || 30
     this.backDelta    = parseFloat(this.audio.dataset['back'])    || -10
 
@@ -157,23 +107,70 @@ export default class MozaicPlayer extends HTMLElement {
     this.audio.addEventListener('volumechange',   this.onAudioVolumechange.bind(this))
     this.audio.addEventListener('waiting',        this.onAudioWaiting.bind(this))
 
+    // caching dom
+    this.$play         = this.shadowRoot.querySelector('.play')
+    this.$forward      = this.shadowRoot.querySelector('.forward')
+    this.$back         = this.shadowRoot.querySelector('.back')
+    this.$volume       = this.shadowRoot.querySelector('.volume')
+    this.$playbackRate = this.shadowRoot.querySelector('.playbackRate')
+    this.$current      = this.shadowRoot.querySelector('.current')
+    this.$progress     = this.shadowRoot.querySelector('.progress')
+    this.$duration     = this.shadowRoot.querySelector('.duration')
+    this.$outputRate   = this.shadowRoot.querySelector('output.rate')
+
+
     // tooltip event bindings
-    this.shadowRoot.querySelector('.play'        ).addEventListener('click', this.onPlay.bind(this))
-    this.shadowRoot.querySelector('.forward'     ).addEventListener('click', this.onForward.bind(this))
-    this.shadowRoot.querySelector('.back'        ).addEventListener('click', this.onBack.bind(this))
-    this.shadowRoot.querySelector('.volume'      ).addEventListener('input', this.onVolume.bind(this))
-    this.shadowRoot.querySelector('.playbackRate').addEventListener('input', this.onPlaybackrate.bind(this))
+    this.$play        .addEventListener('click', this.onPlay.bind(this))
+    this.$forward     .addEventListener('click', this.onForward.bind(this))
+    this.$back        .addEventListener('click', this.onBack.bind(this))
+    this.$volume      .addEventListener('input', this.onVolume.bind(this))
+    this.$playbackRate.addEventListener('input', this.onPlaybackrate.bind(this))
 
     // dragging progress bar
     this.dragging = false
-    const progress = this.shadowRoot.querySelector('.progress')
-    progress.addEventListener('mouseup',   this.onMouseup.bind(this))
-    progress.addEventListener('mousedown', this.onMousedown.bind(this))
-    progress.addEventListener('mousemove', this.onMousemove.bind(this))
-    progress.addEventListener('mouseout',  this.onMouseout.bind(this))
+    this.$progress.addEventListener('mouseup',   this.onMouseup.bind(this))
+    this.$progress.addEventListener('mousedown', this.onMousedown.bind(this))
+    this.$progress.addEventListener('mousemove', this.onMousemove.bind(this))
+    this.$progress.addEventListener('mouseout',  this.onMouseout.bind(this))
 
     // load the audio
     this.audio.load()
+
+    // MediaSession API
+    if (navigator.mediaSession) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title:  this.title,
+        artist: "Jxck",
+        album:  "mozaic.fm",
+        artwork: [
+          {
+            src:   "https://logo.jxck.io/mozaic.png",
+            sizes: "256x256",
+            type:  "image/png"
+          },
+          {
+            src:   "https://logo.jxck.io/mozaic.webp",
+            sizes: "256x256",
+            type:  "image/webp"
+          },
+          {
+            src:   "https://logo.jxck.io/mozaic.jpeg",
+            sizes: "2000x2000",
+            type:  "image/jpeg"
+          },
+          {
+            src:   "https://logo.jxck.io/mozaic.svg",
+            type:  "image/svg+xml"
+          }
+        ]
+      })
+
+      navigator.mediaSession.setActionHandler("play",         () => { this.onPlay()    })
+      navigator.mediaSession.setActionHandler("pause",        () => { this.onPlay()    })
+      navigator.mediaSession.setActionHandler("seekbackward", () => { this.onBack()    })
+      navigator.mediaSession.setActionHandler("seekforward",  () => { this.onForward() })
+      // TODO: other action if supported
+    }
   }
 
 
@@ -201,25 +198,25 @@ export default class MozaicPlayer extends HTMLElement {
   // Public Interface
   ///////////////////////////
   play() {
-    this.shadowRoot.querySelector('.play').dispatchEvent(new Event('click'))
+    this.$play.dispatchEvent(new Event('click'))
   }
 
   forward() {
-    this.shadowRoot.querySelector('.forward').dispatchEvent(new Event('click'))
+    this.$forward.dispatchEvent(new Event('click'))
   }
 
   back() {
-    this.shadowRoot.querySelector('.back').dispatchEvent(new Event('click'))
+    this.$back.dispatchEvent(new Event('click'))
   }
 
   volumeup() {
-    this.shadowRoot.querySelector('.volume').stepUp()
-    this.shadowRoot.querySelector('.volume').dispatchEvent(new Event('input'))
+    this.$volume.stepUp()
+    this.$volume.dispatchEvent(new Event('input'))
   }
 
   volumedown() {
-    this.shadowRoot.querySelector('.volume').stepDown()
-    this.shadowRoot.querySelector('.volume').dispatchEvent(new Event('input'))
+    this.$volume.stepDown()
+    this.$volume.dispatchEvent(new Event('input'))
   }
 
 
@@ -244,15 +241,17 @@ export default class MozaicPlayer extends HTMLElement {
   setDuration() {
     const duration = this.audio.duration
     log('duration', duration)
-    this.shadowRoot.querySelector('.progress').max         = duration
-    this.shadowRoot.querySelector('.duration').textContent = this.timeFormat(duration)
+    this.$progress.max         = duration
+    this.$duration.textContent = this.timeFormat(duration)
+    this.$duration.dateTime    = this.timeFormat(duration)
   }
 
   setTime() {
     const currentTime = this.audio.currentTime
     log('currentTime', currentTime)
-    this.shadowRoot.querySelector('.progress').value      = currentTime
-    this.shadowRoot.querySelector('.current').textContent = this.timeFormat(currentTime)
+    this.$progress.value      = currentTime
+    this.$current.textContent = this.timeFormat(currentTime)
+    this.$current.dateTime    = this.timeFormat(currentTime)
   }
 
 
@@ -268,13 +267,13 @@ export default class MozaicPlayer extends HTMLElement {
   saveVolume() {
     const volume = this.audio.volume
     log('saveVolume', volume)
-    localStorage.setItem(`${this.src}:volume`, volume)
+    localStorage.setItem(`mozaic.fm:volume`, volume)
   }
 
   savePlaybackRate() {
     const playbackRate = this.audio.playbackRate
     log('savePlaybackRate', playbackRate)
-    localStorage.setItem(`${this.src}:playbackRate`, playbackRate)
+    localStorage.setItem(`mozaic.fm:playbackRate`, playbackRate)
   }
 
 
@@ -288,17 +287,18 @@ export default class MozaicPlayer extends HTMLElement {
   }
 
   loadVolume() {
-    const volume = parseFloat(localStorage.getItem(`${this.src}:volume`) || '0.5')
+    const volume = parseFloat(localStorage.getItem(`mozaic.fm:volume`) || '0.5')
     log('loadVolume', volume)
     this.audio.volume = volume
-    this.shadowRoot.querySelector('.volume').value = volume*100
+    this.$volume.value = volume*100
   }
 
   loadPlaybackRate() {
-    const playbackRate = parseFloat(localStorage.getItem(`${this.src}:playbackRate`) || '1.0')
+    const playbackRate = parseFloat(localStorage.getItem(`mozaic.fm:playbackRate`) || '1.0')
     log('loadPlabackRate', playbackRate)
-    this.audio.playbackRate = playbackRate
-    this.shadowRoot.querySelector('.playbackRate').value = playbackRate
+    this.audio.playbackRate      = playbackRate
+    this.$playbackRate.value     = playbackRate
+    this.$outputRate.textContent = `x${playbackRate}`
   }
 
 
@@ -358,7 +358,7 @@ export default class MozaicPlayer extends HTMLElement {
 
   onAudioPause(e) {
     log(e.type, e)
-    this.shadowRoot.querySelector('.play').innerHTML = ICON.PLAY
+    this.$play.innerHTML = ICON.PLAY
   }
 
   onAudioPlay(e) {
@@ -438,6 +438,7 @@ export default class MozaicPlayer extends HTMLElement {
     const playbackRate = parseFloat(e.target.value)
     log(e.type, playbackRate)
     this.audio.playbackRate = playbackRate
+    this.$outputRate.textContent = `x${playbackRate}`
     this.savePlaybackRate()
   }
 
