@@ -83,13 +83,23 @@ ID で遷移した場合は `:targe` 疑似要素からスタイルが設定で�
 
 <https://labs.jxck.io/scroll-to-text-fragment/#:~:text=ipsum>
 
+![textStart を英語指定](1.textStart.en.png 'textStart with en')
+
 <https://labs.jxck.io/scroll-to-text-fragment/#:~:text=ipsum,aliqua>
+
+![textStart, textEnd を英語指定](2.textStart-textEnd.en.png 'textStart & textEnd with en')
 
 <https://labs.jxck.io/scroll-to-text-fragment/#:~:text=しかし,ない>
 
+![textStart, textEnd を日本語指定](3.textStart-textEnd.ja.png 'textStart & textEnd with ja')
+
 <https://labs.jxck.io/scroll-to-text-fragment/#:~:text=しない。-,しかし,ない>
 
+![prefix, textStart, textEnd を日本語指定](4.prefix-textStart-textEnd.ja.png 'prefix & textStart & textEnd with ja')
+
 <https://labs.jxck.io/scroll-to-text-fragment/#:~:text=ない。-,しかし,ない,-のに>
+
+![prefix, textStart, textEnd, suffix を日本語指定](5.prefix-textStart-textEnd-suffix.jp.png 'prefix & textStart & textEnd & suffix with ja')
 
 
 ## 考察
