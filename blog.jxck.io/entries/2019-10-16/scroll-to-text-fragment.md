@@ -1,4 +1,4 @@
-# [tag] Scroll To Text Fragment と :~:text
+# [scroll][fragment][url] Scroll To Text Fragment と :~:text
 
 ## Intro
 
@@ -40,7 +40,7 @@ URL には、フラグメントくらいしか拡張できるポイントが無�
 
 最初は `##` と二重にする方式がシンプルでわかりやすいとされたが、仕様上有効ではないため既存のパーサを壊す可能性が有り、また実際に壊れるかどうかを測定するのが難しいとして却下された。
 
-これを踏まえ、URL の仕様の範囲で 1, 2 文字では無く 3 文字の組み合わせで候補が出され、 Google の過去 5 年の URL 履歴でヒットしないものがリストアップされた。
+これを踏まえ、 URL の仕様の範囲で 1, 2 文字では無く 3 文字の組み合わせで候補が出され、 Google の過去 5 年の URL 履歴でヒットしないものがリストアップされた。
 
 - `~&~`
 - `:~:`
@@ -83,23 +83,23 @@ ID で遷移した場合は `:targe` 疑似要素からスタイルが設定で�
 
 <https://labs.jxck.io/scroll-to-text-fragment/#:~:text=ipsum>
 
-![textStart を英語指定](1.textStart.en.png 'textStart with en')
+![textStart を英語指定](1.textStart.en.png#3359x2051 'textStart with en')
 
 <https://labs.jxck.io/scroll-to-text-fragment/#:~:text=ipsum,aliqua>
 
-![textStart, textEnd を英語指定](2.textStart-textEnd.en.png 'textStart & textEnd with en')
+![textStart, textEnd を英語指定](2.textStart-textEnd.en.png#3357x2053 'textStart & textEnd with en')
 
 <https://labs.jxck.io/scroll-to-text-fragment/#:~:text=しかし,ない>
 
-![textStart, textEnd を日本語指定](3.textStart-textEnd.ja.png 'textStart & textEnd with ja')
+![textStart, textEnd を日本語指定](3.textStart-textEnd.ja.png#3359x2051 'textStart & textEnd with ja')
 
 <https://labs.jxck.io/scroll-to-text-fragment/#:~:text=しない。-,しかし,ない>
 
-![prefix, textStart, textEnd を日本語指定](4.prefix-textStart-textEnd.ja.png 'prefix & textStart & textEnd with ja')
+![prefix, textStart, textEnd を日本語指定](4.prefix-textStart-textEnd.ja.png#3359x2054 'prefix & textStart & textEnd with ja')
 
 <https://labs.jxck.io/scroll-to-text-fragment/#:~:text=ない。-,しかし,ない,-のに>
 
-![prefix, textStart, textEnd, suffix を日本語指定](5.prefix-textStart-textEnd-suffix.jp.png 'prefix & textStart & textEnd & suffix with ja')
+![prefix, textStart, textEnd, suffix を日本語指定](5.prefix-textStart-textEnd-suffix.jp.png#3359x2054 'prefix & textStart & textEnd & suffix with ja')
 
 
 ## 考察
