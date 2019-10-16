@@ -436,7 +436,7 @@ class Traverser
       hash = code.chomp.hash
       @codes[hash] = code.chomp
 
-      # あとで差し変えるため id として番号を入れておく
+      # あとで差し変えるため id として hash を入れておく
       node.value = "// #{hash}"
     end
 
@@ -692,6 +692,7 @@ class Article
     # ここで pre に code を戻す
     # ついでにエスケープ
     traverser.codes.each {|key, value|
+      # hash に差し替えられているところを置き換える
       article.gsub!("// #{key}") { hsc(value) }
     }
 
