@@ -9,14 +9,14 @@ Noto Sans のサブセット生成を見なおし、 Noto Sans Hinted から pyf
 
 ## fonttools
 
-これまで、フォントのサブセットの生成には以下の二つのツールを使用していた。
+これまで、フォントのサブセットの生成には以下の 2 つのツールを使用していた。
 
 - [サブセットフォントメーカー](https://opentype.jp/subsetfontmk.htm)
 - [WOFF コンバータ](https://opentype.jp/woffconv.htm)
 
 しかし、 macOS を Catalina にあげたところ、これらが起動できなくなり、フォントが生成できなくなった。
 
-これまで GUI で行なっていたが、せっかくなので自動化するために、大体コマンドを探し、プロセスを組んだ。
+これまで GUI で行なっていたが、せっかくなので自動化するために、代替コマンドを探し、プロセスを組んだ。
 
 いくつかツールがあるが、今回は fonttools に同梱された pyftsubset を採用することとした。
 
@@ -34,19 +34,19 @@ Noto Sans のサブセット生成を見なおし、 Noto Sans Hinted から pyf
 - [Noto Sans の Web Font 対応とサブセットによる最適化 \| blog\.jxck\.io](https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html)
 - [JavaScript における文字コードと「文字数」の数え方 \| blog\.jxck\.io](https://blog.jxck.io/entries/2017-03-02/unicode-in-javascript.html)
 
-通常、記事中に結合文字、絵文字、サロゲートペアなどは基本的に使わないが、それ自体を解説するこの二つのエントリは含まれてしまう。
+通常、記事中に結合文字、絵文字、サロゲートペアなどは基本的に使わないが、それ自体を解説するこの 2 つのエントリはそれが含まれてしまう。
 
-フォントに含まれない文字は、スタイルが変わってしまい、違和感があるため、これまでは含んでいた。
+フォントに含まれない文字は、スタイルが変わってしまい違和感があるため、これまでは見つけ次第含むように更新していた。
 
-しかし、そういった文字はほぼサンプルコードとしてコードブロック(`<code>`)に含まれており、かつそこには MONO font しか当たってない。
+しかし、そういった文字はほぼサンプルコードとしてコードブロック(`<code>`)に含まれており、かつそこには MONO font が当たっている。
 
 そこで、コードブロックに含まれてない特殊な文字を全てコードブロックに含むように記事を修正し、 HTML から `<code>` を全て除いた文字群をサブセットの対象とした。
 
-変換は以下のようにした。
+対象を subset.txt に保存し、変換は以下のようにした。
 
 
 ```sh
-$ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../All.txt --layout-features='*' --flavor=woff2 --output-file=NotoSansCJKjp-Regular-Jxck-20191011.woff2
+$ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../subset.txt --layout-features='*' --flavor=woff2 --output-file=NotoSansCJKjp-Regular-Jxck-20191011.woff2
 ```
 
 
@@ -96,7 +96,9 @@ Open Type がいくつかの情報を持っていることは薄々知ってい�
 
 - [Font Feature Settings DEMO](http://labs.jxck.io/webfont/font-feature-settings.html)
 
-恐らく検証するための妥当な文字や、ブラウザの実装などといった変数もあるだろうが、そのへんを網羅するのは難しいため、あきらかに見た目が変わるプロパティが以下であるところまで検証した。
+恐らく検証するための妥当な文字や、ブラウザの実装などといった変数もあるだろうが、その辺まで網羅するのはコストが高い。
+
+そこで、適当なサンプル文章をベースに、プロパティを切り替えながら、明らかに見た目が変わる指定を把握するところまで行った。
 
 - aalt: Access
 - dlig: Discretionary Ligatures
@@ -137,9 +139,9 @@ $ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../All.txt --layout-features=
 - 606.6K: layout-feature='*'
 - 293.9K: layout-feature='palt'
 
-サブセット生成のロジックを変えたため、不要な文字も減り、トータルでは layout-feature を入れる前よりも小さくなっている。
+サブセット生成のロジックを変えたため、不要な文字も減り、トータルでは layout-features を入れても、改善前前より小さくなっている。
 
-またこのフォントを利用し、 CSS に以下を追加した。
+またこのヒントを有効にするため、 CSS に以下を追加した。
 
 
 ```css
@@ -157,14 +159,15 @@ before/after は以下のようになる。
 
 以下のことを行なった。
 
+- 不要文字をコードブロックに移すように記事を更新
 - subset 対象の文字を記事から取得
-- pyftsubset で自動化
+- pyftsubset でサブセット生成を自動化
 - layout-feature を検証し palt を採用
 - css に font-feature-settings を追加
 
 正直フォントについては素人であり、色々と雰囲気でやっているところもあるが、新しい機能を採用するという点ではよい改修ができた。
 
-今後もおもしろい font-feature-settings があれば採用し、 Noto Sans が対応していなければ、対応しているフォントへの変更も視野に入れて、検証していきたい。
+今後も、おもしろい font-feature-settings があれば採用し、 Noto Sans が対応していなければ、対応しているフォントへの変更も視野に入れて、検証していきたい。
 
 
 ## Related
