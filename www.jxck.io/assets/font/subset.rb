@@ -19,8 +19,6 @@ current = Dir.glob(ALL).reject {|file|
 
 all = File.read("./All.txt").split("\n")
 
-current = current - [" "]
-
 p (current - all)
 
 IO.write("./All.txt", current.join("\n"))
