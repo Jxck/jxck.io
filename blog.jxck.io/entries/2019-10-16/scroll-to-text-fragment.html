@@ -55,7 +55,7 @@
     "https://logo.jxck.io/jxck.1200x1200.png"
   ],
   "datePublished": "2019-10-16T08:00:00+08:00",
-  "dateModified": "2019-10-16T08:00:00+08:00",
+  "dateModified": "2019-10-18T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -100,7 +100,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-10-16>2019-10-16</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2019-10-16>2019-10-16</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2019-10-18>2019-10-18</time></dd></div>
       <div><dt class=tags>tags</dt><dd>[<a href='/tags/scroll.html'>scroll</a><i>,</i><a href='/tags/fragment.html'>fragment</a><i>,</i><a href='/tags/url.html'>url</a>]</dd></div>
     </dl>
 
@@ -140,7 +140,7 @@
         <li>etc
       </ul>
       <p>Chrome は最初 <code translate="no">#targetText</code> と CSS セレクタを用いた仕様で intents を出していた。
-      <p>しかし、セレクタの書き方によって CSRF Token といった情報が推測可能といった脆弱性が指摘され、その結果今回の仕様に至った。
+      <p>しかし、セレクタの書き方によって CSRF Token 等の情報が推測可能である、といった脆弱性が指摘され、その結果今回の仕様に至った。
     </section>
     <section>
       <h2 id="デリミタ"><a href="#デリミタ">デリミタ</a></h2>
@@ -218,9 +218,9 @@
       <h2 id="考察"><a href="#考察">考察</a></h2>
       <p>実際に、引用などをする際にこれが有ると便利な場面も思い当たる一方、こうした、俗に言う「直リンク」を望まない Author に対しては、望ましく無い面もありそうだ。
       <p>筆者は最初の提案時から、互換性やセキュリティなどの側面からも、仕様化もデプロイも難しいのではないかと考えていたが、思った以上に作業が進んでいる現状がある。
-      <p>互換性、セキュリティについては仕様の中で議論されてはいるが、フラグメントの使われ方が外から測定しにくいという側面があるため、デプロイしないとわからない問題もありそうに思う。
+      <p>互換性、セキュリティについては、仕様の中で議論されてはいるが、フラグメントの使われ方が外から測定しにくいという側面があるため、デプロイしないとわからない問題もありそうに思う。
       <p>今は location.href や location.hash からはこの値が取得できないため、悪用は難しそうだが、今後も仕様を補完する API も増えていくかも知れない。
-      <p>これまでの URL の使われ方、ひいては Web の使われ方に少なからず影響するだろうと思うので、どのようにデプロイし、どの用に広まり、どの用に使われていくか、注目したい。
+      <p>これまでの URL の使われ方、ひいては Web の使われ方に少なからず影響するだろうと考えられるので、どのようにデプロイし、どの用に広まり、どの用に使われていくか、注目したい。
     </section>
   </article>
 

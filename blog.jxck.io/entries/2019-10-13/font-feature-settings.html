@@ -55,7 +55,7 @@
     "https://logo.jxck.io/jxck.1200x1200.png"
   ],
   "datePublished": "2019-10-13T08:00:00+08:00",
-  "dateModified": "2019-10-14T08:00:00+08:00",
+  "dateModified": "2019-10-18T08:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "Jxck",
@@ -100,7 +100,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-10-13>2019-10-13</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2019-10-14>2019-10-14</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2019-10-18>2019-10-18</time></dd></div>
       <div><dt class=tags>tags</dt><dd>[<a href='/tags/font-feature-settings.html'>font-feature-settings</a><i>,</i><a href='/tags/noto%20sans.html'>noto sans</a><i>,</i><a href='/tags/web%20font.html'>web font</a>]</dd></div>
     </dl>
 
@@ -114,7 +114,7 @@
     </section>
     <section>
       <h2 id="fonttools"><a href="#fonttools">fonttools</a></h2>
-      <p>これまで、フォントのサブセットの生成には以下の二つのツールを使用していた。
+      <p>これまで、フォントのサブセットの生成には以下の 2 つのツールを使用していた。
       <ul>
         <li>
           <a href="https://opentype.jp/subsetfontmk.htm">サブセットフォントメーカー</a>
@@ -124,7 +124,7 @@
         </li>
       </ul>
       <p>しかし、 macOS を Catalina にあげたところ、これらが起動できなくなり、フォントが生成できなくなった。
-      <p>これまで GUI で行なっていたが、せっかくなので自動化するために、大体コマンドを探し、プロセスを組んだ。
+      <p>これまで GUI で行なっていたが、せっかくなので自動化するために、代替コマンドを探し、プロセスを組んだ。
       <p>いくつかツールがあるが、今回は fonttools に同梱された pyftsubset を採用することとした。
       <ul>
         <li>
@@ -145,13 +145,13 @@
           <a href="https://blog.jxck.io/entries/2017-03-02/unicode-in-javascript.html">JavaScript における文字コードと「文字数」の数え方 | blog.jxck.io</a>
         </li>
       </ul>
-      <p>通常、記事中に結合文字、絵文字、サロゲートペアなどは基本的に使わないが、それ自体を解説するこの二つのエントリは含まれてしまう。
-      <p>フォントに含まれない文字は、スタイルが変わってしまい、違和感があるため、これまでは含んでいた。
-      <p>しかし、そういった文字はほぼサンプルコードとしてコードブロック(<code translate="no">&lt;code&gt;</code>)に含まれており、かつそこには MONO font しか当たってない。
+      <p>通常、記事中に結合文字、絵文字、サロゲートペアなどは基本的に使わないが、それ自体を解説するこの 2 つのエントリはそれが含まれてしまう。
+      <p>フォントに含まれない文字は、スタイルが変わってしまい違和感があるため、これまでは見つけ次第含むように更新していた。
+      <p>しかし、そういった文字はほぼサンプルコードとしてコードブロック(<code translate="no">&lt;code&gt;</code>)に含まれており、かつそこには MONO font が当たっている。
       <p>そこで、コードブロックに含まれてない特殊な文字を全てコードブロックに含むように記事を修正し、 HTML から <code translate="no">&lt;code&gt;</code> を全て除いた文字群をサブセットの対象とした。
-      <p>変換は以下のようにした。
+      <p>対象を subset.txt に保存し、変換は以下のようにした。
       <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre class=sh><code translate="no">$ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../All.txt --layout-features=&#039;*&#039; --flavor=woff2 --output-file=NotoSansCJKjp-Regular-Jxck-20191011.woff2</code></pre>
+      <pre class=sh><code translate="no">$ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../subset.txt --layout-features=&#039;*&#039; --flavor=woff2 --output-file=NotoSansCJKjp-Regular-Jxck-20191011.woff2</code></pre>
     </section>
     <section>
       <h2 id="layout-features"><a href="#layout-features">layout features</a></h2>
@@ -195,7 +195,8 @@
           <a href="http://labs.jxck.io/webfont/font-feature-settings.html">Font Feature Settings DEMO</a>
         </li>
       </ul>
-      <p>恐らく検証するための妥当な文字や、ブラウザの実装などといった変数もあるだろうが、そのへんを網羅するのは難しいため、あきらかに見た目が変わるプロパティが以下であるところまで検証した。
+      <p>恐らく検証するための妥当な文字や、ブラウザの実装などといった変数もあるだろうが、その辺まで網羅するのはコストが高い。
+      <p>そこで、適当なサンプル文章をベースに、プロパティを切り替えながら、明らかに見た目が変わる指定を把握するところまで行った。
       <ul>
         <li>aalt: Access
         <li>dlig: Discretionary Ligatures
@@ -231,8 +232,8 @@
           293.9K: layout-feature=&rsquo;palt&rsquo;
         </li>
       </ul>
-      <p>サブセット生成のロジックを変えたため、不要な文字も減り、トータルでは layout-feature を入れる前よりも小さくなっている。
-      <p>またこのフォントを利用し、 CSS に以下を追加した。
+      <p>サブセット生成のロジックを変えたため、不要な文字も減り、トータルでは layout-features を入れても、改善前前より小さくなっている。
+      <p>またこのヒントを有効にするため、 CSS に以下を追加した。
       <pre class=css><code translate="no">body {
   font-feature-settings: &quot;palt&quot;
 }</code></pre>
@@ -248,13 +249,14 @@
       <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
       <p>以下のことを行なった。
       <ul>
+        <li>不要文字をコードブロックに移すように記事を更新
         <li>subset 対象の文字を記事から取得
-        <li>pyftsubset で自動化
+        <li>pyftsubset でサブセット生成を自動化
         <li>layout-feature を検証し palt を採用
         <li>css に font-feature-settings を追加
       </ul>
       <p>正直フォントについては素人であり、色々と雰囲気でやっているところもあるが、新しい機能を採用するという点ではよい改修ができた。
-      <p>今後もおもしろい font-feature-settings があれば採用し、 Noto Sans が対応していなければ、対応しているフォントへの変更も視野に入れて、検証していきたい。
+      <p>今後も、おもしろい font-feature-settings があれば採用し、 Noto Sans が対応していなければ、対応しているフォントへの変更も視野に入れて、検証していきたい。
     </section>
     <section>
       <h2 id="related"><a href="#related">Related</a></h2>
