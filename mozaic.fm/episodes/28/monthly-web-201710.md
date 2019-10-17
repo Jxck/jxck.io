@@ -43,7 +43,7 @@ Monthly Web のモチベーションについては以下。
     - async iterators/generators
     - Device Memory API
     - (Android) 許可の UI が変更
-      - 下からにゅっと出すパネルだと、 90 ％ が dismiss することがわかった
+      - 下からにゅっと出すパネルだと、 90% が dismiss することがわかった
       - 63 からダイアログをモーダルにすることにした
       - <https://twitter.com/grigs/status/922524110961307649>
     - font-variant-east-asian

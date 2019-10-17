@@ -36,4 +36,4 @@ guest
 - [H.264](http://ja.wikipedia.org/wiki/H264)
 - [Object RTC](http://ortc.org/)
 - [skyway](http://nttcom.github.io/skyway/)
-- [Intel ® CS for WebRTC](https://software.intel.com/sites/landingpage/webrtc/)
+- [Intel (R) CS for WebRTC](https://software.intel.com/sites/landingpage/webrtc/)

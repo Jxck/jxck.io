@@ -70,7 +70,7 @@ guest
   - Ship: Customized Built-in Elements
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/S3naD9vIcM4/7tKyfvi0AgAJ>
     - HTML ビルトインの要素を継承してカスタム要素を作る is 属性を有効に
-    - Apple が強く反対していたものの、 Mozilla が実装した＆ Edge も反対してないということで有効に
+    - Apple が強く反対していたものの、 Mozilla が実装した & Edge も反対してないということで有効に
   - Ship: CSS conic-gradient()
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ySuNvyaB8jY/CtcfGxoCAgAJ>
   - *Ship: Numeric separators*
@@ -113,7 +113,7 @@ guest
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2PhPgk_k9a0/alO4yt_HBQAJ>
   - *Implement: Default Style for Custom Elements*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/RQVKGUjDz9U/ltwrLQ1HAQAJ>
-    - 簡単なスタイルのためだけに Shadow DOM をいちいち生成＆アタッチしなくていいように
+    - 簡単なスタイルのためだけに Shadow DOM をいちいち生成&アタッチしなくていいように
     - `customElements.define` にディクショナリを取る引数を追加して、そのディクショナリに CSSStyleSheet を渡せるメンバを追加する予定
   - Implement: Experimental support for native AEC
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/kEld5OudUOM/WzImbX2UAQAJ>
@@ -159,7 +159,7 @@ guest
   - Tracing from JS to the DOM and back again
     - <https://v8project.blogspot.jp/2018/03/tracing-js-dom.html>
   - <https://twitter.com/bmeurer/status/976180632584933377>
-    - V8 の人から、最適化の観点で `Promise.all()` のシンタックスシュガーがあると良いという意見＆それに続くスレッド
+    - V8 の人から、最適化の観点で `Promise.all()` のシンタックスシュガーがあると良いという意見&それに続くスレッド
   - V8 JavaScript Engine: Background compilation
     - <https://v8project.blogspot.jp/2018/03/background-compilation.html>
   - *V8 JavaScript Engine: V8 release v6.6*
@@ -178,7 +178,7 @@ guest
   - Site Isolation Status - Dev Channel trial, ChromeDriver, Cross-Origin Read Blocking
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/N0L4ksJMWqs/rX0FKGzJBQAJ>
     - <https://www.chromium.org/Home/chromium-security/site-isolation>
-  - 🙂/🙁 Blink Code Complexity Survey (complain about what makes working in Blink hard)
+  - Blink Code Complexity Survey (complain about what makes working in Blink hard)
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/XXfdw82ENVM/pR5ufQJ6AAAJ>
     - 何が blink の開発難易度をあげてるかのアンケート
   - Official Google Webmaster Central Blog: Rolling out mobile-first indexing
@@ -254,7 +254,7 @@ guest
     - <https://hacks.mozilla.org/2018/03/firefox-quantum-extensions-challenge/>
   - *FYI: Short Nightly Shield Study involving DNS over HTTPs (DoH)*
     - <https://groups.google.com/forum/#!topic/mozilla.dev.platform/_8OAKUHso0c>
-    - Nightly ユーザの 50 ％ を対象に DNS over HTTP の実験を計画中
+    - Nightly ユーザの 50% を対象に DNS over HTTP の実験を計画中
     - DoH サーバの実装が Cloudflare を使うので、オプトインにしないのというコメントが
     - DNS の仕組みや、 DoH が解決するものを知っている人からは、プライバシーに関して懸念はないだろうという声も
     - いろんなコメントがあったので、それを反映すべく検討中
@@ -618,10 +618,9 @@ guest
   - <https://www.bleepingcomputer.com/news/security/google-chrome-flash-usage-declines-from-80-percent-in-2014-to-under-8-percent-today/>
   - Adobe は 2020 に Flash サポート終了
   - Chrome も 2020 Chrome 87 で Flash サポート終了
-- Let's Encrypt さんのツイート: "In 1 year, Japan's percentage of Web pages loaded by @firefox using HTTPS has increased over 30 percentage points (via Firefox Telemetry):
+- 日本の HTTPS 対応が一年でだいぶ進んだ。(tweet by letsencrypt)
   - <https://letsencrypt.org/stats/#percent-pageloads>
   - <https://twitter.com/letsencrypt/status/971980147300732928>
-  - 日本の HTTPS 対応が一年でだいぶ進んだ。
 - Upcoming Features - Let's Encrypt - Free SSL/TLS Certificates
   - <https://letsencrypt.org/upcoming-features/>
 - Deprecating TLS 1.0 and 1.1 on api.cloudflare.com

@@ -53,7 +53,6 @@ lazyload
 postpone
 : 表示が必要になるまでダウンロードしない
 
-
 なお、この時点では Boolean Attribute になっていたため、値を書くだけで有効になる。
 
 (この使い分けで言うと、今の loading=lazy の挙動は postpone に近く、 lazyload は別途提案されている importance 属性による priority hints の方が近そうだ)
@@ -90,7 +89,6 @@ eager
 
 auto
 : デフォルト、ブラウザに判断を委ねる
-
 
 省略時は auto とみなされる。
 

@@ -455,7 +455,7 @@ guest
     - <https://blogs.windows.com/msedgedev/2019/06/27/tracking-prevention-microsoft-edge-preview/>
     - 悪意あるトラッカーをブロックする設定がフラグ付きで導入された
     - Trust Protection Lists というのにサイトの情報があり、それをもとにサイトがトラッカーかどうかを判断
-    - TLD+4 までチェック＋現在の URL のサブドメインをチェックする模様
+    - TLD+4 までチェックと現在の URL のサブドメインをチェックする模様
     - ストレージアクセスの制限、リソースのブロックなどが行われる
   - <https://github.com/MicrosoftEdge/Status/compare/production@{2019-06-01}...production@{2019-07-01}>
   - <https://social.msdn.microsoft.com/Forums/ja-JP/home?forum=edgeiesupportteamja>
@@ -678,7 +678,7 @@ guest
   - 60,000,300 円(6 千万)で落札
 - *Online Tracking and Publishers' Revenues:An Empirical Analysis (PDF)*
   - <https://weis2019.econinfosec.org/wp-content/uploads/sites/6/2019/05/WEIS_2019_paper_38.pdf>
-  - トラッキングによってパブリッシャーにもたらされるレベニューが 4 ％増にしかならないという研究
+  - トラッキングによってパブリッシャーにもたらされるレベニューが 4% 増にしかならないという研究
   - 先月話題になった Wall Street Journal の記事のソース
   - Behavioral Ad Targeting Not Paying Off for Publishers, Study Suggests - WSJ https://www.wsj.com/articles/behavioral-ad-targeting-not-paying-off-for-publishers-study-suggests-11559167195
 - *Pika CDN - Pika*

@@ -600,7 +600,7 @@ guest
   - Have I Been Pwned の API がアップデート
   - DoS が多いので IP ベースのフィルタリングをやめ AuthKey を発行するように
 - Former AWS Worker Is Accused in Cloud Hack of Capital One - Bloomberg
-  - キャピタル・ワンで約１億人分の情報流出、アマゾン元従業員を逮捕 - Bloomberg
+  - キャピタル・ワンで約 1 億人分の情報流出、アマゾン元従業員を逮捕 - Bloomberg
   - <https://www.bloomberg.com/news/articles/2019-07-29/capital-one-data-systems-breached-by-seattle-woman-u-s-says>
   - <https://www.bloomberg.co.jp/news/articles/2019-07-30/PVG8PB6JIJUR01>
 - 米セキュリティ企業の内部ファイルにアクセスが可能なパスワードが GitHub 上で公開されていた

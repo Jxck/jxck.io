@@ -220,7 +220,7 @@ Monthly Web のモチベーションについては以下。
 - First Public Working Draft: Payment Method Manifest
   - <https://www.w3.org/blog/news/archives/6718>
   - <https://www.w3.org/TR/2017/WD-payment-method-manifest-20171212/>
-- Thanks Steve for everything …
+- Thanks Steve for everything ...
   - <https://lists.w3.org/Archives/Public/public-html/2017Dec/0006.html>
     - The Paciello Group の Steve Faulkner が W3C HTML5 の Editor を降りる
       - ARIA まわりの仕様は続けそう

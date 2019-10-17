@@ -186,7 +186,7 @@ guest
     - <https://japan.googleblog.com/2019/01/shigoto-search.html>
     - 検索結果に仕事が出るように
     - Structured Data から出してるっぽい
-  - *Wow, fancy that. Web ad giant Google to block ad-blockers in Chrome. For safety, apparently • The Register*
+  - *Wow, fancy that. Web ad giant Google to block ad-blockers in Chrome. For safety, apparently - The Register*
     - <https://www.theregister.co.uk/2019/01/22/google_chrome_browser_ad_content_block_change/>
     - <https://bugs.chromium.org/p/chromium/issues/detail?id=896897&desc=2#c23>
     - Chrome Extensions の Manifest v3 で WebRequest が廃止になり declarativeNetRequest API になる。
@@ -202,13 +202,11 @@ guest
     - <https://chromium.googlesource.com/chromium/src/+/12e546d6fee1d2a669733feaad7e85145ae4c02f>
     - macOS の Chrome で Dark mode がサポートされた
     - 73 でリリース予定
-  - 💾 HTTP Archive on Twitter: "🆕 The @ChromiumDev Chrome Platform Status dashboard now includes graphs of feature usage powered by HTTP Archive. And now you can easily browse known URLs of sample websites that make use of a feature. Example: https://t.co/QYGMlzkueA … https://t.co/SJdjt0ks1V"
+  - chromestatus.com の features ページで、その機能を使っているサイトが表示されるように
     - <https://twitter.com/HTTPArchive/status/1085298896677597185>
-    - chromestatus.com の features ページで、その機能を使っているサイトが表示されるように
     - HTTP Archive のデータを利用
-  - Emilio on Twitter: "So for context, the full backstory is that this is effectively reverting a patch that landed in https://t.co/VEwX6ZsHTN, where a Google property broke and they changed the browser to not comply with the spec instead of fixing their website :( https://t.co/pT7lqWXPGf"
+  - Chrome を直したら Google Photos が壊れた話
     - <https://twitter.com/ecbos_/status/1090726938925297665>
-    - Chrome を直したら Google Photos が壊れた
     - Photos を直す代わりに Blink の挙動を仕様に則さないようにしていたらしい
 
 
@@ -432,7 +430,7 @@ guest
 - Other
   - *Future JavaScript: what is still missing?*
     - <http://2ality.com/2019/01/future-js.html>
-  - *Justin Fagnani on Twitter: "JavaScript class fields are so, so, very broken 😥"*
+  - *Justin Fagnani on Twitter: "JavaScript class fields are so, so, very broken"*
     - <https://twitter.com/justinfagnani/status/1090732607615029248>
     - class fields の設計がうれしくないという指摘
 
@@ -530,7 +528,7 @@ guest
 - *TLS 1.3 rollout on GitHub.com \| The GitHub Blog*
   - <https://blog.github.com/changelog/2019-01-15-tls13-rollout/>
   - エントリ公開の前週に github.com で TLS 1.3 をロールアウト
-  - 1 週間ほどで 30 ％ ほどのトラフィックが 1.3 上に
+  - 1 週間ほどで 30% ほどのトラフィックが 1.3 上に
 - *Let's Encrypt No Longer Checking Google Safe Browsing - Issuance Policy - Let's Encrypt Community Support*
   - <https://community.letsencrypt.org/t/let-s-encrypt-no-longer-checking-google-safe-browsing/82168>
   - 証明書の提供前に Google Safe Browsing を見ていたがやめた

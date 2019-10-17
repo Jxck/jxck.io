@@ -310,7 +310,7 @@ guest
 - Release Notes for Safari Technology Preview 65
   - <https://webkit.org/blog/8411/release-notes-for-safari-technology-preview-65/>
 - Other
-  - Bailey Basile on Twitter: "Safari on iOS 12 changes the look of the URL/Search bar for sites using Extended Validation certificates. Before and after screenshots below.…
+  - Bailey Basile on Twitter: "Safari on iOS 12 changes the look of the URL/Search bar for sites using Extended Validation certificates. Before and after screenshots below...
     - <https://twitter.com/BasileBailey/status/1041787756697899008>
     - iOS 12 の Safari と Safari 12 で EV 証明書の表示がされなくなった
   - Changeset 236144 - WebKit - Enable Unified Plan by default

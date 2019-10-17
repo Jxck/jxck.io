@@ -31,7 +31,7 @@ guest
   - [AMP Cache Update Ping Format](https://developers.google.com/amp/cache/update-ping#update-ping-format)
 - AMP Validator
   - [Chrome Dev Tools #development=1](https://www.ampproject.org/docs/guides/validate.html)
-  - [AMP HTML ⚡ Validator](https://github.com/ampproject/amphtml/blob/master/validator/README.md)
+  - [AMP HTML Validator](https://github.com/ampproject/amphtml/blob/master/validator/README.md)
   - [Chrome Extension](https://chrome.google.com/webstore/detail/amp-validator/nmoffdblmcmgeicmolmhobpoocbbmknc?hl=ja)
   - [sitemap.xml をクロールしてサイト内の全ページの AMP のバリデーションをしてくれるコマンドラインツールを作った](http://blog.sushi.money/entry/2016/06/23/154827)
 - PWA(Progressive Web Apps)

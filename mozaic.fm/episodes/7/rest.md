@@ -28,7 +28,7 @@ guest
 ## Show Note
 
 - [Representational State Transfer (REST)](http://www.ics.uci.edu/%7Efielding/pubs/dissertation/rest_arch_style.htm)
-- [Web を支える技術 ── HTTP ， URI ， HTML ，そして REST](http://gihyo.jp/magazine/wdpress/plus/978-4-7741-4204-3)
+- [Web を支える技術 - - HTTP, URI, HTML, そして REST](http://gihyo.jp/magazine/wdpress/plus/978-4-7741-4204-3)
 - [まっとうなソフトウェア工学に期待すること](http://yohei-y.blogspot.jp/2005/05/blog-post_21.html)
 - [第八回 XML 開発者の日](http://www.hi-ho.ne.jp/y-komachi/committees/vma/confs/xml-dev/xml-dev-8.htm)
 - [Jesse James Garrett による Ajax の発見(2005 年 2 月でした)](http://www.adaptivepath.com/ideas/ajax-new-approach-web-applications/)

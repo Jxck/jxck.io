@@ -158,10 +158,10 @@ guest
   - *Site Isolation for web developers*
     - <https://developers.google.com/web/updates/2018/07/site-isolation>
   - *Site Isolation*
-    - Justin Schuh 😑さんのツイート: "I want to tweet more, because this is just such a big event. It's the culmination of a 6-year effort (or for Charlie Reis, 10 years, starting with his Ph.D. thesis) where the team took a groundbreaking idea from the bleeding edge of academic research and made it a reality."
-      - <https://twitter.com/justinschuh/status/1017090324592652288>
-    - Kinuko Yasuda さんのツイート: "6 年越しの一大セキュリティプロジェクト Site isolation が Chrome M67 でローンチされて🎉、 Bug bounty の New feature special rewards の対象になってるようです(賞金お高め!)。 3 連休はみなさんバグハンティングいかがでしょう
-      - <https://twitter.com/kinu/status/1017683220735750144>
+    - 6 年越しの大プロジェクトが Chrome 67 でローンチ
+    - バウンティーの賞金も高い
+    - <https://twitter.com/justinschuh/status/1017090324592652288>
+    - <https://twitter.com/kinu/status/1017683220735750144>
   - ReportingObserver: know your code health
     - <https://developers.google.com/web/updates/2018/07/reportingobserver>
     - 導入してるけど Report が JSON serializable ではないので報告中[b]
@@ -572,16 +572,14 @@ guest
 - *EFF to Japan: Reject Website Blocking*
   - <https://www.eff.org/deeplinks/2018/07/eff-japan-reject-website-blocking>
   - 電子フロンティア財団からブロッキングの取り下げるべきという声明
-- *Chris Peterson さんのツイート: "YouTube page load is 5x slower in Firefox and Edge than in Chrome because YouTube's Polymer redesign relies on the deprecated Shadow DOM v0 API only implemented in Chrome. You can restore YouTube's faster pre-Polymer design with this Firefox extension:"*
+- *YouTube が Chrome 以外で遅い問題* (tweet by Chris Peterson)
   - <https://twitter.com/cpeterso/status/1021626510296285185>
-  - YouTube が Chrome 以外で遅い問題
   - Chrome 以外は Shadow DOM v0 がないから Polyfill が使われるのが原因
   - Progressive Enhancement ではあるが、影響が大きすぎた
   - とはいえ v1 が出た今から他のブラウザが v0 実装する必要はない
   - YouTube の Polymer も 1 系だったし YouTube の方針転換もちょっと微妙だったかも
-- dietrich ayala さんのツイート: "How big is the API surface of the web - HTML, JS, CSS, APIs … ??? ✨✨ 8173 ✨✨ According to MDN engineer @floscholz, who counted up the @MozDevNet compatibility data (which is 76% complete at this time).
+- *Web には 9K 近くの API がある。* (そのうち 76% が MDN に載ってる)
   - <https://twitter.com/dietrich/status/998978915912663040>
-  - *Web には 9K 近くの API がある。* (そのうち 76% が MDN に載ってる)
 - *Removing Babel's Stage Presets*
   - <https://babeljs.io/blog/2018/07/27/removing-babels-stage-presets>
   - ES のプロポーザルのステージごとに用意された Babel プラグインのプリセットを廃止

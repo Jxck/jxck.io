@@ -580,7 +580,7 @@ guest
   - <https://www.canada.ca/en/treasury-board-secretariat/services/information-technology/policy-implementation-notices/implementing-https-secure-web-connections-itpin.html>
   - <https://twitter.com/ibash_10/status/1012142587627671553>
   - カナダ政府のサイトが HTTPS を必須にするお達し
-- 常時SSL/TLS化調査レポート - 自治体サイト対応状況
+- 常時 SSL/TLS 化調査レポート - 自治体サイト対応状況
   - <https://itc.jipdec.or.jp/aossl_local-government/201806.html>
   - 設定率のトップは愛媛県の 71.4%
 

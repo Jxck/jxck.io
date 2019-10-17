@@ -148,7 +148,7 @@ guest
     - unicode-range, woff2, HTTP/2 のおかげでチャンクの分割ができるようになった
     - 文字を頻度順に並べ上から 3000 文字を 20 のスライスに等分割
     - 残りの文字を Unicode のコードポイント順に並べ、 100 のスライスに等分割
-    - フォントそのままを配信するよりも、 80 ％ のバイト数削減に
+    - フォントそのままを配信するよりも、 80% のバイト数削減に
   - Web Payments Overview  |  Web Fundamentals
     - <https://developers.google.com/web/fundamentals/payments/>
     - えーじさん作、先月の収録直後だった。
@@ -213,7 +213,7 @@ guest
     - <https://quality.mozilla.org/2018/10/firefox-63-beta-10-testday-results/>
   - *Supporting Referrer Policy for CSS in Firefox 64*
     - <https://blog.mozilla.org/security/2018/10/02/supporting-referrer-policy-for-css-in-firefox-64/>
-  - Calls between JavaScript and WebAssembly are finally fast 🎉
+  - Calls between JavaScript and WebAssembly are finally fast
     - <https://hacks.mozilla.org/2018/10/calls-between-javascript-and-webassembly-are-finally-fast-%F0%9F%8E%89/>
   - At MozFest
     - At MozFest, Spend 7 Days Exploring Internet Health
@@ -297,7 +297,7 @@ guest
     - <https://blog.nightly.mozilla.org/2018/09/28/the-developer-toolbar-or-gcli-is-no-longer-in-devtools/>
   - A New Way to Support MDN - Mozilla Hacks - the Web developer blog
     - <https://hacks.mozilla.org/2018/10/a-new-way-to-support-mdn/>
-  - Calls between JavaScript and WebAssembly are finally fast 🎉 - Mozilla Hacks - the Web developer blog
+  - Calls between JavaScript and WebAssembly are finally fast
     - <https://hacks.mozilla.org/2018/10/calls-between-javascript-and-webassembly-are-finally-fast-%f0%9f%8e%89/>
   - How to create a design system
     - <https://medium.com/dev-channel/how-to-create-a-design-system-460b93a6565>
@@ -369,7 +369,7 @@ guest
 - Other
   - Changeset 236557 - WebKit - Add VP8 support to WebRTC
     - <https://trac.webkit.org/changeset/236557/webkit>
-  - *Changeset 236623 - WebKit - Drop support for cross-origin-window-policy header* ​
+  - *Changeset 236623 - WebKit - Drop support for cross-origin-window-policy header*
     - <https://trac.webkit.org/changeset/236623/webkit>
   - Deprecation of Legacy TLS 1.0 and 1.1 Versions
     - <https://webkit.org/blog/8462/deprecation-of-legacy-tls-1-0-and-1-1-versions/>
@@ -676,18 +676,17 @@ guest
     - <https://blog.mozilla.org/security/2018/10/15/removing-old-versions-of-tls/>
 - 祝 RFC!Transport Layer Security (TLS) 1.3 発行の軌跡 ～熟成された 4 年間の安全性解析～|株式会社レピダム
   - <https://lepidum.co.jp/blog/2018-10-01/tls1_3security/>
-- *Michael Bleigh さんのツイート: "Should there be a browser API that can request permission for cross-origin HTTP access without CORS?"*
+- *Permission をとれば opt-in で CORS 迂回してもよいのでは* (tweet by Michael Bleigh)
   - <https://twitter.com/mbleigh/status/1047950318363803649?s=12>
-  - Permission をとれば opt-in で CORS 迂回したい
 - URLs are hard, let's kill them
   - <https://scotthelme.co.uk/urls-are-hard/>
-- *［速報］ GitHub 、見られてはいけないコード中のアクセストークンを発見し通知してくれる「Token Scanning」発表。 GitHub Universe 2018 − Publickey*
+- *[速報] GitHub 、見られてはいけないコード中のアクセストークンを発見し通知してくれる「Token Scanning」発表。 GitHub Universe 2018 - Publickey*
   - <https://www.publickey1.jp/blog/18/githubtoken_scanninggithub_universe_2018.html>
   - security token scheme もこの関連か?
   - Behind the scenes of GitHub Token Scanning | The GitHub Blog
   - <https://blog.github.com/2018-10-17-behind-the-scenes-of-github-token-scanning/>
   - *The secret-token URI Scheme* https://tools.ietf.org/html/draft-nottingham-how-did-that-get-into-the-repo-00
-- Metadata-Attacker - A Tool To Generate Media Files With Malicious Metadata - KitPloit - PenTest Tools for your Security Arsenal ☣
+- Metadata-Attacker - A Tool To Generate Media Files With Malicious Metadata - KitPloit - PenTest Tools for your Security Arsenal
   - <https://www.kitploit.com/2018/10/metadata-attacker-tool-to-generate.html>
 - ### 周辺動向
 - *むずかしすぎる!五輪大会ボランティア応募フォーム*

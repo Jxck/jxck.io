@@ -104,6 +104,6 @@ guest
 
 ### これからどうなっていくか? (1:07:20~)
 
-- [Service worker が拓く mobile web の新しいかたち](http://www.slideshare.net/kinukox/service-worker-mobile-web)
+- [Service worker が拓く mobile web の新しいかたち](http://www.slideshare.net/kinukox/service-worker-mobile-web)
 - [ServiceWorker のスコープとページコントロールについて](http://qiita.com/nhiroki/items/eb16b802101153352bba)
 - [Service Worker の claim() について](http://blog.nhiroki.jp/2015/04/18/service-worker-claim/)

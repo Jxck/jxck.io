@@ -69,7 +69,7 @@ guest
     - 概要 API の紹介、現状
   - BlinkOn 10 "Decision Making": `<script>`+modules roadmap planning
     - <https://docs.google.com/presentation/d/1zuuKMe8SPyiZQf9dmj8xL7EbL6IQnrE8bpZdytH3JIs>
-    - スクリプト読み込み関連の機能がいっぱいあるのでリスト化＆オーナーを決めるなどのディスカッション記録
+    - スクリプト読み込み関連の機能がいっぱいあるのでリスト化 & オーナーを決めるなどのディスカッション記録
   - Off Main Thread CSS Paint
     - <https://docs.google.com/presentation/d/1WrzDN_PiKBfOVUrrbOV8gHQO-ODN0gdCpWE4xMYv29c/>
     - Paint Worklet 専用のスレッドと、アニメーションの Compositor での処理を検討中という話
@@ -266,8 +266,8 @@ guest
   - *Reducing Notification Permission Prompt Spam in Firefox*
     - <https://blog.nightly.mozilla.org/2019/04/01/reducing-notification-permission-prompt-spam-in-firefox/>
     - Web Push のプロンプトについて 2018 年 12 月 25 日からひと月調査した
-    - 1800 万以上のプロンプトが表示され、許可されたのが 3 ％未満、表示されたら即離脱したケースが 19 ％も
-    - カメラの許可が 85 ％以上なので、これは多すぎる
+    - 1800 万以上のプロンプトが表示され、許可されたのが 3% 未満、表示されたら即離脱したケースが 19% も
+    - カメラの許可が 85% 以上なので、これは多すぎる
     - 4 月の 1 ヶ月間、 Nightly でユーザージェスチャーのないプロンプトを拒否する実験をする
     - リリース版においても、プロンプトに関する情報を限定的に集めるとも
   - Stop videos from automatically playing with new autoplay controls from Firefox
@@ -339,7 +339,7 @@ guest
   - Implemented FIDO AppID extension (r243193)
   - Implemented support for new meter ARIA role (r243198)
   - Changed to use a ServiceWorker process per registrable domain (r242905)
-  - Blocked all plugins smaller than 5px × 5px (r242949)
+  - Blocked all plugins smaller than 5px x 5px (r242949)
   - Changed to use smaller default storage quotas for third-party frames (r243247)
 - *Release Notes for Safari Technology Preview 80*
   - <https://webkit.org/blog/8825/release-notes-for-safari-technology-preview-80/>
@@ -419,7 +419,7 @@ guest
   - ソースコード
     - Github にはリポジトリがあるがコードが無い
     - <https://github.com/MicrosoftEdge/MSEdge>
-    - Redmond の住所に＄ 5 払ったらコード送るよ的なことが edge://terms に書いてある
+    - Redmond の住所に $5 払ったらコード送るよ的なことが edge://terms に書いてある
     - > Source code for portions of Microsoft Edge is available free of charge from <https://thirdpartysource.microsoft.com> under the third party open source license terms provided at <http://aka.ms/thirdpartynotices> and in Microsoft Edge at edge://credits after installation. Or to obtain this source code you may send a check or money order for US $5.00, including the Edge version number, to: [住所]
     - でもダウンロードリンクが出回っていて普通に取得できる
     - [3.7G] <https://thirdpartysource.microsoft.com/download/Microsoft%20Edge/75.0.121.1/Windows%20x64/chromium.zip>
@@ -499,7 +499,7 @@ guest
     - Simon Pieters(元 Opera 、現 Bocoup)による HTML の parser についての書籍
   - Proposal: Comments element - HTML - WICG
     - <https://discourse.wicg.io/t/proposal-comments-element/3483>
-  - *W3C honored with a second Technology & Engineering Emmy ® Award*
+  - *W3C honored with a second Technology & Engineering Emmy (R) Award*
     - <https://www.w3.org/blog/news/archives/7690>
     - W3C が standardize a Full TV Experience on the Web で Emmy 賞
   - *Avoiding Built-In Tracking in Signed Packages · Issue #422 · WICG/webpackage*
@@ -643,9 +643,8 @@ guest
 
 ### セキュリティ動向
 
-- Colm MacC á rthaigh on Twitter: "I think right around this minute is just about exactly 5 years since the Heartbleed vulnerability in OpenSSL became public. I remember the day vividly, and if you're interested, allow me to tell you about how the day, and the subsequent months, and years unfolded ...…
+- Heartbleed からちょうど 5 年(4/8)
   - <https://twitter.com/colmmacc/status/1114944298246660100>
-  - Heartbleed からちょうど 5 年(4/8)
   - 当時の Amazon 内での動きなどの回顧録
 - コインハイブ事件のご報告とこれからのこと
   - <https://note.mu/morois/n/n7210db925aa1>

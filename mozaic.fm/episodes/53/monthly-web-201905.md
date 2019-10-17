@@ -249,7 +249,7 @@ guest
     - logpoints
   - Graphics Team ships WebRender MVP!
     - <https://mozillagfx.wordpress.com/2019/05/21/graphics-team-ships-webrender-mvp/>
-    - Firefox 67 で Windows 10 ＋ NVIDIA なデスクトップで WebRender が有効に
+    - Firefox 67 で Windows 10 + NVIDIA なデスクトップで WebRender が有効に
   - Password Manager Improvements in Firefox 67
     - <https://matthew.noorenberghe.com/blog/2019/05/password-manager-improvements-firefox-67>
   - *Firefox 67: Dark Mode CSS, WebRender, and more*

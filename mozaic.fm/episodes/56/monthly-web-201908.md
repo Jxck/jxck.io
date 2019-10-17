@@ -11,11 +11,9 @@ guest
 : [@あざらし / Sho Miyamoto](https://twitter.com/antidotech)
 
 
-
 ## Theme
 
 第 56 回のテーマは 2019 年 8 月の Monthly Web です。
-
 
 
 ### Chrome 動向
@@ -160,13 +158,13 @@ guest
     - <https://developers.googleblog.com/2019/08/the-speed-benefit-of-amp-prerendering.html>
   - Announcing AMP Toolbox 1.0 - The AMP Blog
     - <https://blog.amp.dev/2019/08/08/announcing-amp-toolbox-1-0/>
-  - Faster AMP on the origin: AMP + SSR = ⚡ - The AMP Blog
+  - Faster AMP on the origin: AMP + SSR = `⚡` - The AMP Blog
     - <https://blog.amp.dev/2019/08/07/faster-amp-on-the-origin-amp-ssr/>
   - AMP Advisory Committee midterm election - The AMP Blog
     - <https://blog.amp.dev/2019/08/05/amp-advisory-committee-midterm-election/>
   - AMP Roadshow: It's Everywhere! - The AMP Blog
     - <https://blog.amp.dev/2019/08/05/amp-roadshow-everywhere/>
-  - *amp-script: AMP ❤️ JS - The AMP Blog*
+  - *amp-script: AMP loves JS - The AMP Blog*
     - <https://blog.amp.dev/2019/08/21/amp-script-amp-heart-js/>
     - `<amp-script>` が正式リリース
 - v8
@@ -222,6 +220,7 @@ guest
     - <https://developers.google.com/web/updates/2019/08/get-started-with-gpu-compute-on-the-web>
   - The Chromium Chronicle: Coding Outside the Sandbox
     - <https://developers.google.com/web/updates/2019/08/chromium-chronicle-5>
+
 
 ### Firefox 動向
 
@@ -320,6 +319,7 @@ guest
     - <https://blog.mozilla.org/blog/2019/08/29/thank-you-chris/>
     - Mozilla Corp の CEO である Chris Beard が 2019 末で辞任
 
+
 ### Safari 動向
 
 - Stable: 12.1.2
@@ -346,7 +346,7 @@ guest
     - <https://webkit.org/blog/8970/how-web-content-can-affect-power-usage/>
     - バッテリーを長持ちさせるためのガイドライン
     - マシンリソースのハイパワーな状態の時間を減らしできるだけアイドルにする
-    - インタラクションの３状態
+    - インタラクションの 3 状態
 - アクティブにインタラクションしている
 - ページは最前面に出ているがインタラクションしていない
 - ページが最前面ではない
@@ -372,6 +372,7 @@ guest
     - Page Visibility API
     - fucus されてない場合に発生する blur event
 - Other
+
 
 ### Edge 動向
 
@@ -407,6 +408,7 @@ guest
   - 新しい BugBounty Program
     - <https://www.microsoft.com/en-us/msrc/bounty-new-edge>
   - <https://social.msdn.microsoft.com/Forums/ja-JP/home?forum=edgeiesupportteamja>
+
 
 ### WHATWG/W3C 動向
 
@@ -450,6 +452,7 @@ guest
       - Double-keyed (or more) caches
       - Protecting/sandboxing `<iframe>` sites (history.length, caches, window[i])
 
+
 ### TC39 動向
 
 - Meeting
@@ -472,6 +475,7 @@ guest
     - Promise をチェインする演算子
     - `Promise.resolve(x).get(i)` を `x!i` って書ける
 - Other
+
 
 ### IETF 動向
 
@@ -520,6 +524,7 @@ guest
     - <https://mailarchive.ietf.org/arch/msg/rtcweb/4cj95edGFtfjZkUjozTybOJiMcA>
     - rtcweb wg が close
 
+
 ### セキュリティ動向
 
 - Introducing Certificate Transparency Monitoring
@@ -553,6 +558,7 @@ guest
   - すでに国内 ISP の MITM も確認されている
   - これを Chrome/Firefox がブロック
 
+
 ### 周辺動向
 
 - First HTTP/3 with curl - daniel.haxx.se
@@ -565,6 +571,7 @@ guest
   - 2012 年"NO-TAGS" でも同じことがあった
 - Web-to-App Communication: App Protocols
   - <https://textslashplain.com/2019/08/29/web-to-app-communication-app-protocols/>
+
 
 ### イベント
 

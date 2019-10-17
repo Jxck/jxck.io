@@ -68,7 +68,7 @@ guest
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/dEsseBBMbs4/rvdT2wK4BQAJ>
   - Ship: Link rel=modulepreload
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/T-OkMDASYfk/Mp7VsfDGBQAJ>
-  - Ship: JSON ⊂ ECMAScript
+  - Ship: JSON `⊂` ECMAScript
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/4dXU27USmxM/FaBSGluHBgAJ>
     - サブセットのやつ
     - <https://www.tbray.org/ongoing/When/201x/2016/08/20/Fixing-JSON>

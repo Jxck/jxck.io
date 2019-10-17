@@ -406,7 +406,7 @@ Monthly Web のモチベーションについては以下。
     - キャッシュが max-age 内であればリロード時もキャッシュヒットさせる
   - RFC8187: Indicating Character Encoding and Language for HTTP Header Field
     - <https://tools.ietf.org/html/rfc8187>
-    - non-ascii ("£" , "€") を含む初の RFC らしい
+    - non-ascii (`£` , `€`) を含む初の RFC らしい
 - Draft
   - IETF Last Call: Happy Eyeballs Version 2
     - <https://tools.ietf.org/html/draft-ietf-v6ops-rfc6555bis-05>

@@ -169,7 +169,6 @@ Firefox
 IE/Edge
 : CSS が読み込み終わるまでパーサをブロックする、しかし、 `<link>` 前のコンテンツはレンダリングする。
 
-
 Chrome は IE/Edge の方式に移ることを検討している。これにより Progressive Rendering パターンが可能になる。
 
 合わせて [`<body>`内の`<link>`を許可する仕様](https://github.com/whatwg/html/pull/616) の策定を進めている。

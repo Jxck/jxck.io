@@ -468,7 +468,7 @@ guest
   - Looking back at TPAC 2019; public release of W3C Strategic Highlights
     - <https://www.w3.org/blog/2019/09/looking-back-at-tpac-2019-public-release-of-w3c-strategic-highlights/>
   - Blog
-    - Project Fugu 🐡 at W3C TPAC - Thomas Steiner - Medium
+    - Project Fugu at W3C TPAC - Thomas Steiner - Medium
       - <https://medium.com/@tomayac/project-fugu-at-w3c-tpac-a7b74d0271ec>
 - Recommendation
 - Proposed Recommendation
@@ -619,7 +619,7 @@ guest
   - <https://www.fastly.com/blog/observability-in-live-broadcasts>
 - Cloudflare's Approach to Research
   - <https://blog.cloudflare.com/cloudflares-approach-to-research/>
-- *Can I email … Support tables for HTML and CSS in emails*
+- *Can I email ... Support tables for HTML and CSS in emails*
   - <https://www.caniemail.com/>
   - メールクライアントの HTML メールのサポートの caniuse
 - *Wikipedia's JavaScript initialisation on a budget*

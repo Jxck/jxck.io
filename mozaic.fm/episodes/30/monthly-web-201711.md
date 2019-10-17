@@ -34,7 +34,7 @@ Monthly Web のモチベーションについては以下。
 - Chrome 63 Beta
 - Chrome 64 Dev
 - V8 (<https://bit.ly/v8apichanges>)
-  - V8 💚 developers and their tool
+  - V8 developers and their tool
     - <https://v8project.blogspot.jp/2017/11/web-tooling-benchmark.html>
     - <https://v8.github.io/web-tooling-benchmark/>
     - 擬似的なものではなく、実際に開発者が日々使っているツールなどを元に作ったベンチ
@@ -151,7 +151,7 @@ Monthly Web のモチベーションについては以下。
   - Web Platform Docs Briefing
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/HGqwKZ89tVI/p6h3OZcQCAAJ>
     - MDN への貢献の仕方
-  - Loading Performance Survey ⚡️
+  - Loading Performance Survey
     - <https://docs.google.com/forms/d/e/1FAIpQLSdvwpfzVY6iFaw9rraOH8Nm-yk2sruvgqGnvQnIGF3PweucsQ/viewform>
     - ローディングボトルネックについてのアンケート
     - <https://gist.github.com/KenjiBaheux/4574cb5b16e2f441c23316f0da44577f>

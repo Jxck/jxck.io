@@ -505,11 +505,11 @@ guest
   - New features for extensions in the Windows 10 April 2018 Update - Microsoft Edge Dev Blog
     - <https://blogs.windows.com/msedgedev/2018/05/24/new-extension-features-april-2018-update-notifications-inprivate/>
   - Exchange Server TLS guidance
-    - Exchange Server TLS guidance, part 1: Getting Ready for TLS 1.2 - You Had Me At EHLO …
+    - Exchange Server TLS guidance, part 1: Getting Ready for TLS 1.2 - You Had Me At EHLO ...
       - <https://blogs.technet.microsoft.com/exchange/2018/01/26/exchange-server-tls-guidance-part-1-getting-ready-for-tls-1-2/>
-    - Part 2: Enabling TLS 1.2 and Identifying Clients Not Using It - You Had Me At EHLO …
+    - Part 2: Enabling TLS 1.2 and Identifying Clients Not Using It - You Had Me At EHLO ...
       - <https://blogs.technet.microsoft.com/exchange/2018/04/02/exchange-server-tls-guidance-part-2-enabling-tls-1-2-and-identifying-clients-not-using-it/>
-    - Part 3: Turning Off TLS 1.0/1.1 - You Had Me At EHLO …
+    - Part 3: Turning Off TLS 1.0/1.1 - You Had Me At EHLO ...
       - <https://blogs.technet.microsoft.com/exchange/2018/05/23/exchange-server-tls-guidance-part-3-turning-off-tls-1-01-1/>
 
 
@@ -741,7 +741,7 @@ guest
   - <https://www.arturjanc.com/cross-origin-infoleaks.pdf>
 - <https://twitter.com/johnwilander/status/1000792369258639360>
   - Apple のセキュリティエンジニアが`<ad>`要素はどうかなあとツイート
-  - `<ad src="https://ad.example" type="image" size="…" audience="fashion, vegan, comics" impression-report-src="https://ad.example/impression"></ad>`
+  - `<ad src="https://ad.example" type="image" size="..." audience="fashion, vegan, comics" impression-report-src="https://ad.example/impression"></ad>`
   - クレデンシャルとリファラは送られず、レポートに origin だけ送られる
 
 

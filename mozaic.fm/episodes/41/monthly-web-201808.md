@@ -572,7 +572,7 @@ guest
   - *Deploying TLS 1.3 at scale with Fizz, a performant open source TLS library - Facebook Code*
     - <https://code.fb.com/networking-traffic/deploying-tls-1-3-at-scale-with-fizz-a-performant-open-source-tls-library/>
     - Facebook 製 TLS ライブラリ Fizz がオープンソースに
-    - モバイルアプリですでに使用中、 50 ％以上のトラフィックが TLS 1.3
+    - モバイルアプリですでに使用中、 50% 以上のトラフィックが TLS 1.3
     - 1 秒に百万単位で TLS 1.3 ハンドシェイクが行われている
 - RFC
   - RFC 8410 - Algorithm Identifiers for Ed25519, Ed448, X25519, and X448 for Use in the Internet X.509 Public Key Infrastructure
@@ -655,7 +655,7 @@ guest
 - PWA: Progressive Web All-the-things - Tales of a Developer Advocate by Paul Kinlan
   - <https://paul.kinlan.me/pwa-progressive-web-all-the-things/>
   - PWA とは何かを今一度問い直す話
-- dev.to is now open source - DEV Community 👩‍💻👨‍💻
+- dev.to is now open source - DEV Community
   - <https://dev.to/ben/devto-is-now-open-source-5n1>
 - The Future of JavaScript- 2018 and Beyond - Progress
   - <https://www.telerik.com/campaigns/kendo-ui/wp-javascript-future-2018>
