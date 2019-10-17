@@ -2,7 +2,7 @@
 
 NOTO = "../../../blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html"
 UNI  = "../../../blog.jxck.io/entries/2017-03-02/unicode-in-javascript.html"
-ALL  = "../../../blog.jxck.io/entries/**/*.html"
+ALL  = ["../../../blog.jxck.io/entries/**/*.html", "../../../mozaic.fm/episodes/**/*.html"]
 
 current = Dir.glob(ALL).reject {|file|
   file.include?(".amp.html")
