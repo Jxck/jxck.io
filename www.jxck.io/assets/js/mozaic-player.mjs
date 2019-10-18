@@ -17,6 +17,7 @@ export default class MozaicPlayer extends HTMLElement {
   display:          grid;
   color:            #fff;
   background-color: inherit;
+  border-radius:    inherit;
 }
   .mozaic-player button {
     border:           none;
