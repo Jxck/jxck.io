@@ -39,8 +39,14 @@ function playerKeybind(e) {
       break
     case '/':
       log('shortcut')
-      const $dialog = $('dialog.shortcut')
-      $dialog.showModal()
+      const $shortCutDiag = $('dialog.shortcut')
+      $shortCutDiag.showModal()
+      $shortCutDiag.on('click', (e) => {
+        log(e.target, $shortCutDiag)
+        if (e.target === $shortCutDiag) {
+          $shortCutDiag.close()
+        }
+      })
       break
   }
 }
@@ -76,9 +82,8 @@ function enablePortal($portal) {
 document.on('DOMContentLoaded', (e) => {
 
   // Enable Mozaic Player
-  if (window.matchMedia( "(max-width: 800px)" ).matches || window.customElements === undefined) {
-    // スマホの UI は デフォルトの controls が一番使いやすい気がする
-    // custom element 無い場合も controls
+  if (window.customElements === undefined) {
+    // custom element 無い場合は controls
     const $audio = $('audio')
     if ($audio !== null) {
       $audio.controls = true
@@ -86,7 +91,6 @@ document.on('DOMContentLoaded', (e) => {
   } else {
     log(MozaicPlayer)
     customElements.define('mozaic-player', MozaicPlayer);
-
     document.on('keydown', playerKeybind)
   }
 
@@ -98,9 +102,9 @@ document.on('DOMContentLoaded', (e) => {
       $share.style.display = 'block'
       $share.addEventListener('click', (e) => {
         log(e)
-        const url    = location.href
-        const title  = document.title
-        const text   = document.querySelector('meta[property="og:description"]').content
+        const url   = location.href
+        const title = document.title
+        const text  = document.querySelector('meta[property="og:description"]').content
         navigator.share({url, title, text})
       })
     }
@@ -143,8 +147,8 @@ document.on('DOMContentLoaded', (e) => {
   // Enable ShortCut Dialog
   if (window.HTMLDialogElement) {
     // <dialog> があったら shortcut を <dialog> で出す
-    const searchDiag = document.importNode($('#shortcut_diag').content, true)
-    document.body.appendChild(searchDiag)
+    const shortCutDiag = document.importNode($('#shortcut_diag').content, true)
+    document.body.appendChild(shortCutDiag)
   }
 
   if (window.HTMLPortalElement && $('portal#preview')) {
