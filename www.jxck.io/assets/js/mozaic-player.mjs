@@ -12,12 +12,14 @@ export default class MozaicPlayer extends HTMLElement {
     // TODO: html-modules
     template.innerHTML = `
 <style>
+
 /* player host */
 .mozaic-player {
   display:          grid;
   color:            #fff;
   background-color: inherit;
   border-radius:    inherit;
+  font-family:      "NotoSansMonoCJKjp-Jxck";
 }
   .mozaic-player button {
     border:           none;
@@ -265,9 +267,9 @@ export default class MozaicPlayer extends HTMLElement {
           x="150"
           y="150"
           fill="#fff"
-          font-size="110"
+          font-size="100"
           font-weight="bold"
-          font-family="sans-serif"
+          font-family="NotoSansMonoCJKjp-Jxck"
           text-anchor="middle"
           dominant-baseline="central">10</text>
 
@@ -336,9 +338,9 @@ export default class MozaicPlayer extends HTMLElement {
           x="150"
           y="150"
           fill="#fff"
-          font-size="110"
+          font-size="100"
           font-weight="bold"
-          font-family="sans-serif"
+          font-family="NotoSansMonoCJKjp-Jxck"
           text-anchor="middle"
           dominant-baseline="central">30</text>
 
@@ -449,15 +451,15 @@ export default class MozaicPlayer extends HTMLElement {
 
     // dragging progress bar
     this.dragging = false
-    this.$progress.addEventListener('mousedown', this.onMousedown.bind(this))
-    this.$progress.addEventListener('mousemove', this.onMousemove.bind(this))
-    this.$progress.addEventListener('mouseup',   this.onMouseup.bind(this))
-    this.$progress.addEventListener('mouseout',  this.onMouseout.bind(this))
+    this.$progress.addEventListener('mousedown',   this.onMousedown. bind(this), {passive: true})
+    this.$progress.addEventListener('mousemove',   this.onMousemove. bind(this), {passive: true})
+    this.$progress.addEventListener('mouseup',     this.onMouseup.   bind(this), {passive: true})
+    this.$progress.addEventListener('mouseout',    this.onMouseout.  bind(this), {passive: true})
 
-    this.$progress.addEventListener('touchstart',  this.onMousedown.bind(this))
-    this.$progress.addEventListener('touchmove',   this.onMousemove.bind(this))
-    this.$progress.addEventListener('touchend',    this.onMouseup.bind(this))
-    this.$progress.addEventListener('touchcancel', this.onMouseout.bind(this))
+    this.$progress.addEventListener('touchstart',  this.onMousedown. bind(this), {passive: true})
+    this.$progress.addEventListener('touchmove',   this.onMousemove. bind(this), {passive: true})
+    this.$progress.addEventListener('touchend',    this.onMouseup.   bind(this), {passive: true})
+    this.$progress.addEventListener('touchcancel', this.onMouseout.  bind(this), {passive: true})
 
     // load the audio
     this.audio.load()
@@ -799,10 +801,13 @@ export default class MozaicPlayer extends HTMLElement {
   }
 
   onPlaybackrate(e) {
-    const playbackRate = parseFloat(e.target.value)
-    log(e.type, playbackRate)
+    const playbackRate = new Number(e.target.value)
+    log(e.target.value, playbackRate)
     this.audio.playbackRate = playbackRate
-    this.$outputRate.textContent = `x${playbackRate}`
+    //   1.toPrecision(2) => 1.0
+    // 0.8.toPrecision(1) => 0.8
+    const precision = playbackRate < 1 ? 1 : 2
+    this.$outputRate.textContent = `x${playbackRate.toPrecision(precision)}`
     this.savePlaybackRate()
   }
 
