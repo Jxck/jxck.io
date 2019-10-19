@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <!--
+  貴様、見ているな!!
+  このサイトの技術的なまとめはこちらをどうぞ。
+  https://labs.jxck.io/blog
+
+  by Jxck
+  -->
+  <link rel=canonical href=https://mozaic.fm/episodes/58/wasi-sideshow.html>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <link rel=alternate type=application/rss+xml title=mozaic.fm href=http://feed.mozaic.fm>
+  <link rel=author href=https://jxck.io/assets/humans.txt>
+  <script type=module src=/assets/js/mozaic.js></script>
+  <script type=module src=/assets/js/sw.js></script>
+  <script defer src=/assets/js/ga.mozaic.js></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon type=image/png sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.png>
+  <link rel=apple-touch-icon type=image/png sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.png>
+
+  <meta name=author content=Jxck>
+  <meta name=description content="第 58 回 WASI の Sideshow です。@chikoski さんとのこぼれ話です。...">
+  <meta name=keywords content="wasi,wasm,mozaic.fm">
+
+  <meta name=twitter:card content=summary>
+  <meta name=twitter:site content=@jxck_>
+  <meta name=twitter:url content="https://mozaic.fm/episodes/58/wasi-sideshow.html">
+  <meta name=twitter:title content="ep58 WASI sideshow | mozaic.fm">
+  <meta name=twitter:description content="第 58 回 WASI の Sideshow です。@chikoski さんとのこぼれ話です。...">
+  <meta name=twitter:image content="https://mozaic.fm/assets/img/mozaic.png">
+
+  <meta property=og:type content=article>
+  <meta property=og:url content="https://mozaic.fm/episodes/58/wasi-sideshow.html">
+  <meta property=og:title content="ep58 WASI sideshow | mozaic.fm">
+  <meta property=og:site_name content="mozaic.fm">
+  <meta property=og:description content="第 58 回 WASI の Sideshow です。@chikoski さんとのこぼれ話です。...">
+  <meta property=og:image content="https://mozaic.fm/assets/img/mozaic.png">
+
+  <title>ep58 WASI sideshow | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/58/wasi.html>
+  
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css>
+
+  <template id=search_diag>
+    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/dialog.css>
+    <dialog class=search>
+      <form method=get action=https://google.co.jp/search>
+        <fieldset>
+          <legend>search via google</legend>
+          <label for=keywords>keyword:</label>
+          <input type=search name=q id=keywords placeholder=keywords>
+          <input type=hidden name=q value=site:mozaic.fm/episodes>
+          <button type=submit>go</button>
+        </fieldset>
+      </form>
+    </dialog>
+  </template>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=/                                                                            ><img alt=top              width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/mozaic.svg class=logo></a>
+      <li><a                                                                                   ><img alt=share id=share   width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/share.svg></a>
+      <li><a href=https://www.google.co.jp/search?q=site%3Amozaic.fm%2Fepisodes class=search   ><img alt=search           width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/search.svg></a>
+      <li><a href=http://feed.mozaic.fm                                                        ><img alt="rss feed"       width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/podcast.svg></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495                    ><img alt=itunes           width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/itunes.svg></a>
+      <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D"    ><img alt="google podcast" width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/google-podcast.svg></a>
+      <li><a href="https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd"><img alt=huamns.txt       width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/twitter.svg></a>
+      <li><a href=https://jxck.io                                                              ><img alt="jxck logo"      width=30 height=30 intrinsicsize=30x30 loading=eager src=https://jxck.io/assets/img/jxck.svg class=logo></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/58/wasi.html">ep58 WASI</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+
+  <article>
+    <h1><a href=/episodes/58/wasi-sideshow.html>ep58 WASI sideshow</a></h1>
+    <section>
+      <h2>Info</h2>
+      <p><mozaic-player><audio slot=audio src=https://files.mozaic.fm/mozaic-ep58.sideshow.mp3 title='ep58 WASI sideshow' data-forward=+30 data-back=-10></audio></mozaic-player>
+      <dl class=info>
+        <div>
+          <dt>published_at
+          <dd>2019-10-19
+        </div>
+        <div>
+          <dt>guest
+          <dd><a href="https://twitter.com/chikoski">@chikoski</a>
+        </div>
+      </dl>
+    </section>
+    <section>
+      <h2>Theme</h2>
+      <p>第 58 回 WASI の Sideshow です。
+      <p><a href="https://twitter.com/chikoski">@chikoski</a> さんとのこぼれ話です。
+    </section>
+    <section>
+      <h2>Show Note</h2>
+      <ul>
+        <li>
+          <a href="https://builderscon.io/tokyo/2018/session/476a4a30-2f94-424c-bbc2-f6cb14f1c4cd">builderscon 2018</a>
+        </li>
+        <li>
+          <a href="https://jsconf.jp/2019/">jsconfjp 2019</a>
+        </li>
+        <li>
+          <a href="https://www.w3.org/History/1989/proposal.html">Tim Berners-Lee の発明/発見</a>
+        </li>
+        <li>
+          <a href="https://unity.com/ja">Unity</a>
+        </li>
+        <li>
+          <a href="https://flutter.dev/web">Flutter for Web</a>
+        </li>
+      </ul>
+    </section>
+  </article>
+
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/58/wasi.html">ep58 WASI</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small> Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>Google Analytics</a>.</p>
+  <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong>
+</footer>
+</body>
+</html>
