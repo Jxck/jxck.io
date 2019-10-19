@@ -16,7 +16,8 @@ export default class MozaicPlayer extends HTMLElement {
 .mozaic-player {
   display:          grid;
   color:            #fff;
-  background-color: #000;
+  background-color: inherit;
+  border-radius:    inherit;
 }
   .mozaic-player button {
     border:           none;
@@ -448,10 +449,15 @@ export default class MozaicPlayer extends HTMLElement {
 
     // dragging progress bar
     this.dragging = false
-    this.$progress.addEventListener('mouseup',   this.onMouseup.bind(this))
     this.$progress.addEventListener('mousedown', this.onMousedown.bind(this))
     this.$progress.addEventListener('mousemove', this.onMousemove.bind(this))
+    this.$progress.addEventListener('mouseup',   this.onMouseup.bind(this))
     this.$progress.addEventListener('mouseout',  this.onMouseout.bind(this))
+
+    this.$progress.addEventListener('touchstart',  this.onMousedown.bind(this))
+    this.$progress.addEventListener('touchmove',   this.onMousemove.bind(this))
+    this.$progress.addEventListener('touchend',    this.onMouseup.bind(this))
+    this.$progress.addEventListener('touchcancel', this.onMouseout.bind(this))
 
     // load the audio
     this.audio.load()
@@ -543,8 +549,18 @@ export default class MozaicPlayer extends HTMLElement {
   ///////////////////////////
   // Logic
   ///////////////////////////
-  seek({offsetX, target}) {
-    const percent  = offsetX / target.offsetWidth
+  percent(e) {
+    let {clientX, touches} = e
+    if (touches) {
+      clientX = touches[0].clientX
+    }
+    const {offsetLeft, clientWidth} = e.target
+    let percent = (clientX - offsetLeft) / clientWidth
+    return percent
+  }
+
+  seek(e) {
+    const percent  = this.percent(e)
     const duration = this.audio.duration
     const seekTime = duration * percent
     log('seekTime', seekTime)
@@ -790,6 +806,8 @@ export default class MozaicPlayer extends HTMLElement {
     this.savePlaybackRate()
   }
 
+
+  // Mouse & Touch Events
   onMousedown(e) {
     log(e.type, e)
     this.dragging = true
@@ -797,18 +815,18 @@ export default class MozaicPlayer extends HTMLElement {
   }
 
   onMousemove(e) {
-    // log(e.type, e)
+    log(e.type, e)
     if (!this.dragging) return
     this.audio.currentTime = this.seek(e) // seek if dragging
   }
 
   onMouseup(e) {
-    // log(e.type, e)
+    log(e.type, e)
     this.dragging = false
   }
 
   onMouseout(e) {
-    // log(e.type, e)
+    log(e.type, e)
     this.dragging = false
   }
 }
