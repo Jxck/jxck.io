@@ -96,7 +96,8 @@ end
 def blog(paths)
   icon  = "https://jxck.io/assets/img/jxck"
   fav_template  = File.read(".template/favicon.html.erb")
-  meta_template = File.read(".template/meta.html.erb") + File.read(".template/ld-json.html.erb")
+  ld_template   = File.read(".template/ld-json.html.erb")
+  meta_template = File.read(".template/meta.html.erb")
   blog_template = File.read(".template/blog.html.erb")
   amp_template  = File.read(".template/amp.html.erb")
 
@@ -121,6 +122,7 @@ def blog(paths)
     entry.build(markup)
     fav  = ERB.new(fav_template).result(entry.instance_eval { binding }).strip
     meta = ERB.new(meta_template).result(entry.instance_eval { binding }).strip
+    ld   = ERB.new(ld_template).result(entry.instance_eval { binding }).strip
     html = ERB.new(blog_template).result(binding).strip
     File.write(entry.htmlfile, html)
 
@@ -129,6 +131,7 @@ def blog(paths)
     entry.build(amp)
     fav  = ERB.new(fav_template).result(entry.instance_eval { binding }).strip
     meta = ERB.new(meta_template).result(entry.instance_eval { binding }).strip
+    ld   = ERB.new(ld_template).result(entry.instance_eval { binding }).strip
     html = ERB.new(amp_template).result(binding).strip
     File.write(entry.ampfile, html)
   }
