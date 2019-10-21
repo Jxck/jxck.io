@@ -120,19 +120,19 @@ def blog(paths)
     # blog
     markup = Markup.new
     entry.build(markup)
-    fav  = ERB.new(fav_template).result(entry.instance_eval { binding }).strip
-    meta = ERB.new(meta_template).result(entry.instance_eval { binding }).strip
-    ld   = ERB.new(ld_template).result(entry.instance_eval { binding }).strip
+    fav  = ERB.new(fav_template) .result(entry.instance_eval{ binding }).strip
+    meta = ERB.new(meta_template).result(entry.instance_eval{ binding }).strip
+    ld   = ERB.new(ld_template)  .result(entry.instance_eval{ binding }).strip
     html = ERB.new(blog_template).result(binding).strip
     File.write(entry.htmlfile, html)
 
     # amp
     amp = AMP.new
     entry.build(amp)
-    fav  = ERB.new(fav_template).result(entry.instance_eval { binding }).strip
-    meta = ERB.new(meta_template).result(entry.instance_eval { binding }).strip
-    ld   = ERB.new(ld_template).result(entry.instance_eval { binding }).strip
-    html = ERB.new(amp_template).result(binding).strip
+    fav  = ERB.new(fav_template) .result(entry.instance_eval{ binding }).strip
+    meta = ERB.new(meta_template).result(entry.instance_eval{ binding }).strip
+    ld   = ERB.new(ld_template)  .result(entry.instance_eval{ binding }).strip
+    html = ERB.new(amp_template) .result(binding).strip
     File.write(entry.ampfile, html)
   }
 end
