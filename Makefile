@@ -48,7 +48,7 @@ remove:
 ##########################
 # BUILD Markdown
 ##########################
-MARK = bundle exec ruby ./mark.rb
+MARK = bundle exec ruby ./.script/mark.rb
 
 # .md
 BMD := $(shell find ./blog.jxck.io/entries/**/*.md)
