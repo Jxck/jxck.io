@@ -52,6 +52,11 @@ def oneline(str)
   str.gsub(/(\n|\r)/, "")
 end
 
+def indent(str, depth=2)
+  space = " "*depth
+  str.split("\n").join("\n#{space}").gsub(/\n#{space}\n/, "\n\n")
+end
+
 def j(o)
   puts caller.first, JSON.pretty_generate(o)
 end
