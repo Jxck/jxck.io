@@ -75,719 +75,710 @@
   <script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
   <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
   <script async src=https://cdn.ampproject.org/v0.js></script>
-<style amp-custom>
-article section p {
-  margin-left: 0;
-}
-
-article table {
-  margin-left: 0;
-}
-
-article img {
-  margin: var(--grid) 0;
-  border: 1px solid #ccc;
-  box-sizing: content-box;
-  background-color: #fff;
-}
-
-article ul,
-article ol,
-article dl {
-  margin-left: var(--grid);
-  font-family: var(--mono-font);
-}
-
-article ul li ul,
-article ol li ol {
-  margin: 0 0 0 calc(var(--grid)*2);
-  font-size: 1rem;
-}
-
-article ol li ol li,
-article ul li ul li {
-  margin-bottom: 0;
-}
-
-article dl {
-  display: grid;
-  grid-template-columns: minmax(auto, max-content);
-  grid-column-gap: var(--grid);
-}
-
-article dl div {
-  display: contents;
-}
-
-article dl dt {
-  grid-column: 1 / 2;
-}
-article dl dd {
-  grid-column: 2 / 2;
-}
-
-article blockquote {
-  font-family: var(--mono-font);
-}
-
-article blockquote p {
-  margin: 0;
-}
-
-@supports (line-height-step: 1px) {
-  article {
-    --grid-rhythm: 1.5em;
-    line-height: 1.5;
-    line-height-step: var(--grid-rhythm);
-  }
-
-  article h1,
-  article h2,
-  article h3,
-  article h4,
-  article h5,
-  article h6 {
-    display: inline-block;
-    width: 100%;
-    line-height-step: 0;
-    line-height: 1.2;
-    margin-bottom: 0;
-  }
-
-  article section {
-    /* grid for debug */
-    /* background-size: 100% var(--grid-rhythm); */
-    /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
-  }
-
-  article p {
-    margin-top: var(--grid-rhythm);
-    margin-bottom: var(--grid-rhythm);
-  }
-
-  article pre,
-  article table {
-    line-height-step: 0;
-    line-height: normal;
-  }
-}
-
-/* normal regular */
-@font-face {
-  font-family: "NotoSansCJKjp-Jxck";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src:
-    local("Noto Sans CJK JP Regular"),
-    url("https://jxck.io/assets/font/NotoSansCJKjp-Regular-Jxck-20191017.woff2") format("woff2");
-}
-/* normal bold */
-@font-face {
-  font-family: "NotoSansCJKjp-Jxck";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src:
-    local("Noto Sans CJK JP Bold"),
-    url("https://jxck.io/assets/font/NotoSansCJKjp-Bold-Jxck-20191017.woff2") format("woff2");
-}
-
-
-/* mono regular */
-@font-face {
-  font-family: "NotoSansMonoCJKjp-Jxck";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src:
-    local("Noto Sans Mono CJK JP Regular"),
-    url("https://jxck.io/assets/font/NotoSansMonoCJKjp-Regular-Jxck-20191017.woff2") format("woff2");
-}
-/* mono bold */
-@font-face {
-  font-family: "NotoSansMonoCJKjp-Jxck";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src:
-    local("Noto Sans Mono CJK JP Bold"),
-    url("https://jxck.io/assets/font/NotoSansMonoCJKjp-Bold-Jxck-20191017.woff2") format("woff2");
-}
-
-/* Light Mode Theme */
-:root {
-  --background-color: #fefefe;
-  --font-color: #222;
-  --header-color: #222;
-
-  --anchor-color: RoyalBlue;
-  --anchor-visited-color: Brown;
-
-  --code-block: #efefef;
-  --code-block-font: #222;
-
-  --block-quote: #ddd;
-  --table-border: #222;
-
-  --regular-font: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", "Hiragino Sans", 'ヒラギノ角ゴ Pro W3', 'メイリオ', sans-serif;
-  --mono-font: "NotoSansMonoCJKjp-Jxck";
-  --code-font: Menlo, Consolas, Liberation, Mono, Courier, "NotoSansMonoCJKjp-Jxck";
-
-  --icon-size: 30px;
-
-  --width: 80vw;
-  --grid: 1rem;
-
-  --radius: 4px;
-}
-
-
-/* Mobile Theme */
-@media screen and (max-device-width: 800px) {
-  :root {
-    --width: 94vw;
-  }
-
-  audio {
-    width: 100%;
-  }
-}
-
-/* Dark Mode Theme */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background-color: #010101;
-    --font-color: #eee;
-
-    --anchor-color: CornflowerBlue;
-    --anchor-visited-color: RosyBrown;
-
-    --code-block: #efefef;
-
-    --table-border: #eee;
-  }
-
-  article img {
-    filter: grayscale(50%);
-  }
-  article img[src*=svg] {
-    filter: invert(100%) grayscale(50%);
-  }
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: var(--regular-font);
-  background-color: var(--background-color);
-  color: var(--font-color);
-  font-feature-settings: "palt";
-  margin: 0;
-  padding: 0;
-}
-
-code {
-  font-family: var(--mono-font);
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-hr {
-  margin: 0;
-  padding: 0;
-}
-
-iframe {
-  display: block;
-  max-width: 100%;
-  margin: var(--grid) 0;
-}
-
-dl.info {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 0;
-}
-
-dl.info div {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-}
-
-dl.info dt::after {
-  content: ":";
-  margin-right: calc(var(--grid)/2);
-}
-
-dl.info dd {
-  margin: 0 var(--grid) 0 0;
-}
-
-dl.info dd i {
-  font-style: normal;
-  margin-right: calc(var(--grid)/3);
-}
-
-header {
-  z-index: 1;
-  position: sticky;
-  position: -webkit-sticky;
-  top: 0;
-  box-sizing: border-box;
-  margin: 0;
-  padding: calc(var(--grid)/2);
-  background-color: var(--header-color);
-}
-
-h2:target,
-h3:target,
-h4:target,
-h5:target,
-h6:target {
-  /* sticky header に合わせて link scroll をずらす */
-  margin-top:  calc((var(--icon-size) + var(--grid)) * -1);
-  padding-top: calc((var(--icon-size) + var(--grid)));
-}
-
-header ul {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  width: var(--width);
-  margin: 0 auto;
-}
-
-header ul li {
-  width:  var(--icon-size);
-  height: var(--icon-size);
-  padding: 0;
-  margin: 0 0 0 var(--grid);
-}
-
-header ul li a {
-  display: block;
-  width:  var(--icon-size);
-  height: var(--icon-size);
-}
-
-header ul li svg {
-  fill: var(--background-color);
-}
-
-header ul li::before {
-  content: none;
-}
-
-header ul li:first-child {
-  flex-grow: 1;
-  margin-left: 0;
-}
-
-header .logo {
-  border: 1px solid #fff;
-  box-sizing: border-box;
-}
-
-h1 > a,
-h2 > a,
-h3 > a,
-h4 > a,
-h5 > a,
-h6 > a {
-  color: var(--font-color);
-}
-
-h1 > a:visited,
-h2 > a:visited,
-h3 > a:visited,
-h4 > a:visited,
-h5 > a:visited,
-h6 > a:visited {
-  color: var(--font-color);
-}
-
-h1 > a::before {
-  content: "# ";
-}
-
-h2 > a::before {
-  content: "## ";
-}
-
-h3 > a::before {
-  content: "### ";
-}
-
-h4 > a::before {
-  content: "#### ";
-}
-
-h1 > a:hover::before,
-h2 > a:hover::before,
-h3 > a:hover::before,
-h4 > a:hover::before,
-h5 > a:hover::before,
-h6 > a:hover::before {
-  color: var(--anchor-visited-color);
-}
-
-em {
-  font-weight: bold;
-  font-style: normal;
-}
-
-em::before,
-em::after {
-  content: "*";
-}
-
-strong {
-  color: red;
-}
-
-strong::before,
-strong::after {
-  content: "**";
-}
-
-ul li::before {
-  content: "- ";
-}
-
-ol {
-  counter-reset: list;
-}
-
-ol li::before {
-  counter-increment: list;
-  content: counter(list) ". ";
-}
-
-dl dt::after {
-  content: ":";
-}
-
-blockquote {
-  display: block;
-  border: solid 1px var(--block-quote);
-  border-radius: var(--radius);
-  padding: 1rem;
-  margin: 0;
-}
-
-blockquote p::before {
-  content: "> ";
-}
-
-code {
-  background-color: var(--code-block);
-  color: var(--code-block-font);
-  border-radius: var(--radius);
-  padding: 0 4px;
-}
-
-code::before,
-code::after {
-  content: "`";
-}
-
-main {
-  display: block;
-  width: var(--width);
-  margin: 1em auto;
-}
-
-a {
-  word-wrap: break-word;
-  text-decoration: none;
-  color: var(--anchor-color);
-}
-
-a:visited {
-  color: var(--anchor-visited-color);
-}
-
-ol,
-ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-li {
-  word-break: break-all;
-  word-wrap: break-word;
-}
-
-dl dt {
-  font-weight: bold;
-  margin: 0;
-}
-
-dl dd {
-  margin: 0;
-}
-
-footer {
-  padding: var(--grid);
-}
-
-footer strong,
-footer .copyright {
-  display: block;
-  width: var(--width);
-  margin: 0 auto;
-  font-style: italic;
-}
-
-pre {
-  margin: var(--grid) 0;
-  border-radius: var(--radius);
-}
-
-pre::before {
-  content: "```" attr(class) "\A";
-}
-
-pre::after {
-  z-index: -1;
-  position: relative;
-  top: -1em;
-  content: "\A```";
-}
-
-pre > code {
-  font-family: var(--code-font);
-  overflow: auto;
-  display: block;
-  padding: 0.5rem;
-  margin: 0;
-}
-
-pre > code::before,
-pre > code::after {
-  content: none;
-}
-
-.hljs-keyword {
-  color: #a71d5d;
-}
-
-.hljs-title {
-  color: #795da3;
-}
-
-.hljs-string {
-  color: #183691;
-}
-
-.hljs-number {
-  color: #0086b3;
-}
-
-.hljs-built_in {
-  color: #0086b3;
-}
-
-.hljs-literal {
-  color: #0086b3;
-}
-
-.hljs-regexp {
-  color: #183691;
-}
-
-.hljs-comment {
-  color: #4f80e5;
-}
-
-.hljs-tag {
-  color: #a71d5d;
-}
-
-.hljs-name {
-  color: #222222;
-}
-
-.hljs-strong {
-  font-weight: bold;
-}
-
-.hljs-attribute {
-  font-weight: bold;
-}
-
-.hljs-meta {
-  color: #4f80e5;
-}
-
-.hljs-selector-id,
-.hljs-selector-class,
-.hljs-selector-pseudo {
-  color: #6f42c1;
-}
-
-.hljs-selector-tag {
-  color: #22863a;
-}
-
-.hljs-subst {
-  font-weight: bold;
-}
-
-.hljs-variable {
-  color: #a71d5d;
-}
-
-.hljs-symbol {
-  font-weight: bold;
-}
-
-.hljs-selector-attr {
-  color: #6f42c1;
-}
-
-
-@media (prefers-color-scheme: dark) {
-  .hljs-keyword {
-    color: #000;
-    font-weight: bold;
-    font-style: italic;
-  }
-
-  .hljs-number {
-    color: var(--code-block-font);
-  }
-
-  .hljs-built_in {
-    color: #000;
-    font-weight: bold;
-  }
-
-  .hljs-literal {
-    color: var(--code-block-font);
-    font-weight: bold;
-  }
-
-  .hljs-regexp {
-    color: var(--code-block-font);
-  }
-
-  .hljs-comment {
-    color: #888;
-  }
-
-  .hljs-tag {
-    color: var(--code-block-font);
-    font-weight: bold;
-  }
-
-  .hljs-strong {
-    font-weight: bold;
-  }
-
-  .hljs-attribute {
-  }
-
-  .hljs-attr {
-    color: var(--code-block-font);
-    font-weight: bold;
-  }
-
-  .hljs-selector-tag {
-    color: var(--code-block-font);
-  }
-
-  .hljs-subst {
-    font-weight: bold;
-  }
-  .hljs-symbol {
-    font-weight: bold;
-  }
-
-  .hljs-section {
-  }
-
-  .hljs-meta,
-  .hljs-selector-id,
-  .hljs-selector-class,
-  .hljs-selector-pseudo,
-  .hljs-variable,
-  .hljs-title,
-  .hljs-string,
-  .hljs-name,
-  .hljs-selector-attr {
-    color: var(--code-block-font);
-  }
-}
-
-
-
-
-
-
-
-/**.hljs,**/
-.hljs-meta-keyword,
-.hljs-doctag,
-.hljs-bullet,
-.hljs-code,
-.hljs-addition,
-.hljs-template-variable,
-.hljs-link,
-.hljs-type,
-.hljs-quote,
-.hljs-template-tag,
-.hljs-deletion,
-.hljs-meta-string,
-.hljs-emphasis {
-  /** if you find element applyed this style, please tell me https://github.com/jxck/jxck.io/issues **/
-  font-size: 100em;
-}
-
-table {
-  font-family: var(--mono-font);
-  margin: var(--grid) 0;
-  border-spacing: 0 0.4rem;
-}
-
-th {
-  padding: 0 var(--grid) calc(var(--grid)/2) var(--grid);
-  border-left: 2px solid var(--table-border);
-  border-bottom: 2px dashed var(--table-border);
-}
-
-td {
-  padding: calc(var(--grid)/2) var(--grid);
-  border-left: 2px solid var(--table-border);
-}
-
-th:last-child,
-td:last-child {
-  border-right: 2px solid var(--table-border);
-}
-
-.align-center {
-  text-align: center;
-}
-
-.align-left {
-  text-align: left;
-}
-
-.align-right {
-  text-align: right;
-}
-
-</style>
+  <style amp-custom>
+    article section p {
+      margin-left: 0;
+    }
+
+    article table {
+      margin-left: 0;
+    }
+
+    article img {
+      margin: var(--grid) 0;
+      border: 1px solid #ccc;
+      box-sizing: content-box;
+      background-color: #fff;
+    }
+
+    article ul,
+    article ol,
+    article dl {
+      margin-left: var(--grid);
+      font-family: var(--mono-font);
+    }
+
+    article ul li ul,
+    article ol li ol {
+      margin: 0 0 0 calc(var(--grid)*2);
+      font-size: 1rem;
+    }
+
+    article ol li ol li,
+    article ul li ul li {
+      margin-bottom: 0;
+    }
+
+    article dl {
+      display: grid;
+      grid-template-columns: minmax(auto, max-content);
+      grid-column-gap: var(--grid);
+    }
+
+    article dl div {
+      display: contents;
+    }
+
+    article dl dt {
+      grid-column: 1 / 2;
+    }
+    article dl dd {
+      grid-column: 2 / 2;
+    }
+
+    article blockquote {
+      font-family: var(--mono-font);
+    }
+
+    article blockquote p {
+      margin: 0;
+    }
+
+    @supports (line-height-step: 1px) {
+      article {
+        --grid-rhythm: 1.5em;
+        line-height: 1.5;
+        line-height-step: var(--grid-rhythm);
+      }
+
+      article h1,
+      article h2,
+      article h3,
+      article h4,
+      article h5,
+      article h6 {
+        display: inline-block;
+        width: 100%;
+        line-height-step: 0;
+        line-height: 1.2;
+        margin-bottom: 0;
+      }
+
+      article section {
+        /* grid for debug */
+        /* background-size: 100% var(--grid-rhythm); */
+        /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
+      }
+
+      article p {
+        margin-top: var(--grid-rhythm);
+        margin-bottom: var(--grid-rhythm);
+      }
+
+      article pre,
+      article table {
+        line-height-step: 0;
+        line-height: normal;
+      }
+    }
+    /* normal regular */
+    @font-face {
+      font-family: "NotoSansCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src:
+        local("Noto Sans CJK JP Regular"),
+        url("https://jxck.io/assets/font/NotoSansCJKjp-Regular-Jxck-20191017.woff2") format("woff2");
+    }
+    /* normal bold */
+    @font-face {
+      font-family: "NotoSansCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src:
+        local("Noto Sans CJK JP Bold"),
+        url("https://jxck.io/assets/font/NotoSansCJKjp-Bold-Jxck-20191017.woff2") format("woff2");
+    }
+
+
+    /* mono regular */
+    @font-face {
+      font-family: "NotoSansMonoCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src:
+        local("Noto Sans Mono CJK JP Regular"),
+        url("https://jxck.io/assets/font/NotoSansMonoCJKjp-Regular-Jxck-20191017.woff2") format("woff2");
+    }
+    /* mono bold */
+    @font-face {
+      font-family: "NotoSansMonoCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src:
+        local("Noto Sans Mono CJK JP Bold"),
+        url("https://jxck.io/assets/font/NotoSansMonoCJKjp-Bold-Jxck-20191017.woff2") format("woff2");
+    }
+
+    /* Light Mode Theme */
+    :root {
+      --background-color: #fefefe;
+      --font-color: #222;
+      --header-color: #222;
+
+      --anchor-color: RoyalBlue;
+      --anchor-visited-color: Brown;
+
+      --code-block: #efefef;
+      --code-block-font: #222;
+
+      --block-quote: #ddd;
+      --table-border: #222;
+
+      --regular-font: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", "Hiragino Sans", 'ヒラギノ角ゴ Pro W3', 'メイリオ', sans-serif;
+      --mono-font: "NotoSansMonoCJKjp-Jxck";
+      --code-font: Menlo, Consolas, Liberation, Mono, Courier, "NotoSansMonoCJKjp-Jxck";
+
+      --icon-size: 30px;
+
+      --width: 80vw;
+      --grid: 1rem;
+
+      --radius: 4px;
+    }
+
+
+    /* Mobile Theme */
+    @media screen and (max-device-width: 800px) {
+      :root {
+        --width: 94vw;
+      }
+
+      audio {
+        width: 100%;
+      }
+    }
+
+    /* Dark Mode Theme */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background-color: #010101;
+        --font-color: #eee;
+
+        --anchor-color: CornflowerBlue;
+        --anchor-visited-color: RosyBrown;
+
+        --code-block: #efefef;
+
+        --table-border: #eee;
+      }
+
+      article img {
+        filter: grayscale(50%);
+      }
+      article img[src*=svg] {
+        filter: invert(100%) grayscale(50%);
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--regular-font);
+      background-color: var(--background-color);
+      color: var(--font-color);
+      font-feature-settings: "palt";
+      margin: 0;
+      padding: 0;
+    }
+
+    code {
+      font-family: var(--mono-font);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    hr {
+      margin: 0;
+      padding: 0;
+    }
+
+    iframe {
+      display: block;
+      max-width: 100%;
+      margin: var(--grid) 0;
+    }
+    dl.info {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info div {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+
+    dl.info dt::after {
+      content: ":";
+      margin-right: calc(var(--grid)/2);
+    }
+
+    dl.info dd {
+      margin: 0 var(--grid) 0 0;
+    }
+
+    dl.info dd i {
+      font-style: normal;
+      margin-right: calc(var(--grid)/3);
+    }
+    header {
+      z-index: 1;
+      position: sticky;
+      position: -webkit-sticky;
+      top: 0;
+      box-sizing: border-box;
+      margin: 0;
+      padding: calc(var(--grid)/2);
+      background-color: var(--header-color);
+    }
+
+    h2:target,
+    h3:target,
+    h4:target,
+    h5:target,
+    h6:target {
+      /* sticky header に合わせて link scroll をずらす */
+      margin-top:  calc((var(--icon-size) + var(--grid)) * -1);
+      padding-top: calc((var(--icon-size) + var(--grid)));
+    }
+
+    header ul {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      width: var(--width);
+      margin: 0 auto;
+    }
+
+    header ul li {
+      width:  var(--icon-size);
+      height: var(--icon-size);
+      padding: 0;
+      margin: 0 0 0 var(--grid);
+    }
+
+    header ul li a {
+      display: block;
+      width:  var(--icon-size);
+      height: var(--icon-size);
+    }
+
+    header ul li svg {
+      fill: var(--background-color);
+    }
+
+    header ul li::before {
+      content: none;
+    }
+
+    header ul li:first-child {
+      flex-grow: 1;
+      margin-left: 0;
+    }
+
+    header .logo {
+      border: 1px solid #fff;
+      box-sizing: border-box;
+    }
+    h1 > a,
+    h2 > a,
+    h3 > a,
+    h4 > a,
+    h5 > a,
+    h6 > a {
+      color: var(--font-color);
+    }
+
+    h1 > a:visited,
+    h2 > a:visited,
+    h3 > a:visited,
+    h4 > a:visited,
+    h5 > a:visited,
+    h6 > a:visited {
+      color: var(--font-color);
+    }
+
+    h1 > a::before {
+      content: "# ";
+    }
+
+    h2 > a::before {
+      content: "## ";
+    }
+
+    h3 > a::before {
+      content: "### ";
+    }
+
+    h4 > a::before {
+      content: "#### ";
+    }
+
+    h1 > a:hover::before,
+    h2 > a:hover::before,
+    h3 > a:hover::before,
+    h4 > a:hover::before,
+    h5 > a:hover::before,
+    h6 > a:hover::before {
+      color: var(--anchor-visited-color);
+    }
+
+    em {
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    em::before,
+    em::after {
+      content: "*";
+    }
+
+    strong {
+      color: red;
+    }
+
+    strong::before,
+    strong::after {
+      content: "**";
+    }
+
+    ul li::before {
+      content: "- ";
+    }
+
+    ol {
+      counter-reset: list;
+    }
+
+    ol li::before {
+      counter-increment: list;
+      content: counter(list) ". ";
+    }
+
+    dl dt::after {
+      content: ":";
+    }
+
+    blockquote {
+      display: block;
+      border: solid 1px var(--block-quote);
+      border-radius: var(--radius);
+      padding: 1rem;
+      margin: 0;
+    }
+
+    blockquote p::before {
+      content: "> ";
+    }
+
+    code {
+      background-color: var(--code-block);
+      color: var(--code-block-font);
+      border-radius: var(--radius);
+      padding: 0 4px;
+    }
+
+    code::before,
+    code::after {
+      content: "`";
+    }
+    main {
+      display: block;
+      width: var(--width);
+      margin: 1em auto;
+    }
+
+    a {
+      word-wrap: break-word;
+      text-decoration: none;
+      color: var(--anchor-color);
+    }
+
+    a:visited {
+      color: var(--anchor-visited-color);
+    }
+
+    ol,
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      word-break: break-all;
+      word-wrap: break-word;
+    }
+
+    dl dt {
+      font-weight: bold;
+      margin: 0;
+    }
+
+    dl dd {
+      margin: 0;
+    }
+    footer {
+      padding: var(--grid);
+    }
+
+    footer strong,
+    footer .copyright {
+      display: block;
+      width: var(--width);
+      margin: 0 auto;
+      font-style: italic;
+    }
+    pre {
+      margin: var(--grid) 0;
+      border-radius: var(--radius);
+    }
+
+    pre::before {
+      content: "```" attr(class) "\A";
+    }
+
+    pre::after {
+      z-index: -1;
+      position: relative;
+      top: -1em;
+      content: "\A```";
+    }
+
+    pre > code {
+      font-family: var(--code-font);
+      overflow: auto;
+      display: block;
+      padding: 0.5rem;
+      margin: 0;
+    }
+
+    pre > code::before,
+    pre > code::after {
+      content: none;
+    }
+
+    .hljs-keyword {
+      color: #a71d5d;
+    }
+
+    .hljs-title {
+      color: #795da3;
+    }
+
+    .hljs-string {
+      color: #183691;
+    }
+
+    .hljs-number {
+      color: #0086b3;
+    }
+
+    .hljs-built_in {
+      color: #0086b3;
+    }
+
+    .hljs-literal {
+      color: #0086b3;
+    }
+
+    .hljs-regexp {
+      color: #183691;
+    }
+
+    .hljs-comment {
+      color: #4f80e5;
+    }
+
+    .hljs-tag {
+      color: #a71d5d;
+    }
+
+    .hljs-name {
+      color: #222222;
+    }
+
+    .hljs-strong {
+      font-weight: bold;
+    }
+
+    .hljs-attribute {
+      font-weight: bold;
+    }
+
+    .hljs-meta {
+      color: #4f80e5;
+    }
+
+    .hljs-selector-id,
+    .hljs-selector-class,
+    .hljs-selector-pseudo {
+      color: #6f42c1;
+    }
+
+    .hljs-selector-tag {
+      color: #22863a;
+    }
+
+    .hljs-subst {
+      font-weight: bold;
+    }
+
+    .hljs-variable {
+      color: #a71d5d;
+    }
+
+    .hljs-symbol {
+      font-weight: bold;
+    }
+
+    .hljs-selector-attr {
+      color: #6f42c1;
+    }
+
+
+    @media (prefers-color-scheme: dark) {
+      .hljs-keyword {
+        color: #000;
+        font-weight: bold;
+        font-style: italic;
+      }
+
+      .hljs-number {
+        color: var(--code-block-font);
+      }
+
+      .hljs-built_in {
+        color: #000;
+        font-weight: bold;
+      }
+
+      .hljs-literal {
+        color: var(--code-block-font);
+        font-weight: bold;
+      }
+
+      .hljs-regexp {
+        color: var(--code-block-font);
+      }
+
+      .hljs-comment {
+        color: #888;
+      }
+
+      .hljs-tag {
+        color: var(--code-block-font);
+        font-weight: bold;
+      }
+
+      .hljs-strong {
+        font-weight: bold;
+      }
+
+      .hljs-attribute {
+      }
+
+      .hljs-attr {
+        color: var(--code-block-font);
+        font-weight: bold;
+      }
+
+      .hljs-selector-tag {
+        color: var(--code-block-font);
+      }
+
+      .hljs-subst {
+        font-weight: bold;
+      }
+      .hljs-symbol {
+        font-weight: bold;
+      }
+
+      .hljs-section {
+      }
+
+      .hljs-meta,
+      .hljs-selector-id,
+      .hljs-selector-class,
+      .hljs-selector-pseudo,
+      .hljs-variable,
+      .hljs-title,
+      .hljs-string,
+      .hljs-name,
+      .hljs-selector-attr {
+        color: var(--code-block-font);
+      }
+    }
+
+
+
+
+
+
+
+    /**.hljs,**/
+    .hljs-meta-keyword,
+    .hljs-doctag,
+    .hljs-bullet,
+    .hljs-code,
+    .hljs-addition,
+    .hljs-template-variable,
+    .hljs-link,
+    .hljs-type,
+    .hljs-quote,
+    .hljs-template-tag,
+    .hljs-deletion,
+    .hljs-meta-string,
+    .hljs-emphasis {
+      /** if you find element applyed this style, please tell me https://github.com/jxck/jxck.io/issues **/
+      font-size: 100em;
+    }
+    table {
+      font-family: var(--mono-font);
+      margin: var(--grid) 0;
+      border-spacing: 0 0.4rem;
+    }
+
+    th {
+      padding: 0 var(--grid) calc(var(--grid)/2) var(--grid);
+      border-left: 2px solid var(--table-border);
+      border-bottom: 2px dashed var(--table-border);
+    }
+
+    td {
+      padding: calc(var(--grid)/2) var(--grid);
+      border-left: 2px solid var(--table-border);
+    }
+
+    th:last-child,
+    td:last-child {
+      border-right: 2px solid var(--table-border);
+    }
+
+    .align-center {
+      text-align: center;
+    }
+
+    .align-left {
+      text-align: left;
+    }
+
+    .align-right {
+      text-align: right;
+    }
+  </style>
 </head>
 <body>
 <header>
