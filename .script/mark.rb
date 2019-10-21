@@ -56,7 +56,7 @@ end
 
 def indent(str, depth=2)
   space = " "*depth
-  str.split("\n").join("\n#{space}").gsub(/\n#{space}\n/, "\n\n")
+  str.split("\n").join("\n#{space}").gsub(/^ *$/, "")
 end
 
 def j(o)
@@ -100,18 +100,6 @@ def blog(paths)
   meta_template = File.read(".template/meta.html.erb")
   blog_template = File.read(".template/blog.html.erb")
   amp_template  = File.read(".template/amp.html.erb")
-
-  style = [
-    "./blog.jxck.io/assets/css/article.css",
-    "./blog.jxck.io/assets/css/body.css",
-    "./blog.jxck.io/assets/css/info.css",
-    "./blog.jxck.io/assets/css/header.css",
-    "./blog.jxck.io/assets/css/markdown.css",
-    "./blog.jxck.io/assets/css/main.css",
-    "./blog.jxck.io/assets/css/footer.css",
-    "./blog.jxck.io/assets/css/pre.css",
-    "./blog.jxck.io/assets/css/table.css",
-  ].map {|css| File.read(css)}.join("\n")
 
   paths.each{|path|
     p path
