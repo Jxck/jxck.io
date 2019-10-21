@@ -222,6 +222,8 @@ def podcast(path)
 
   # ビルドする
   episodes.each{|episode|
+    p episode.path
+
     # entry
     markup = Podcast.new
     episode.build(markup)
