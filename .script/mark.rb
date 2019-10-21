@@ -10,12 +10,14 @@ require "pathname"
 require "kramdown"
 require "kramdown-parser-gfm"
 
+require_relative "ast.rb"
 require_relative "markup.rb"
 require_relative "amp.rb"
 require_relative "article.rb"
-require_relative "ast.rb"
-require_relative "entry.rb"
 require_relative "traverser.rb"
+require_relative "entry.rb"
+require_relative "episode.rb"
+require_relative "podcast.rb"
 
 
 # html

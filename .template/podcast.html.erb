@@ -17,9 +17,9 @@
   <script type=module src=/assets/js/sw.js></script>
   <script defer src=/assets/js/ga.mozaic.js></script>
 
-  <%= fav %>
+  <%= indent(fav) %>
 
-  <%= meta %>
+  <%= indent(meta) %>
 
   <title><%= episode.title %> | <%= episode.host %></title>
   <% if episode.prev %><link rel=prev href=<%= episode.prev.canonical %>><% end %>
