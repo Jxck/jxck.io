@@ -9,10 +9,6 @@ class Markup
       TABLE: "/assets/css/table.css",
     }
   end
-  def wrap(value)
-    # increase indent
-    "\n#{value.split("\n").map{|e| @indent + e}.join("\n")}\n"
-  end
   def style(href)
     "<link rel=stylesheet property=stylesheet type=text/css href=#{href}>"
   end
@@ -20,19 +16,35 @@ class Markup
     node.value
   end
   def root(node)
-    wrap(node.value.to_s)
+    indent(node.value.to_s)
   end
   def article(node)
-    "<article>#{wrap(node.value)}</article>"
+    <<~EOS
+    <article>
+      #{indent(node.value)}
+    </article>
+    EOS
   end
   def section(node)
-    "<section>#{wrap(node.value)}</section>\n"
+    <<~EOS
+    <section>
+      #{indent(node.value)}
+    </section>
+    EOS
   end
   def ul(node)
-    "<ul>#{wrap(node.value)}</ul>\n"
+    <<~EOS
+    <ul>
+      #{indent(node.value)}
+    </ul>
+    EOS
   end
   def ol(node)
-    "<ol>#{wrap(node.value)}</ol>\n"
+    <<~EOS
+    <ol>
+      #{indent(node.value)}
+    </ol>
+    EOS
   end
 
   def header(node)
@@ -66,7 +78,11 @@ class Markup
   end
 
   def tabletag(node)
-    "<table>#{wrap(node.value)}</table>\n"
+    <<~EOS
+    <table>
+      #{indent(node.value)}
+    </table>
+    EOS
   end
   protected :tabletag
 
@@ -80,13 +96,25 @@ class Markup
     value
   end
   def thead(node)
-    "<thead>#{wrap(node.value)}</thead>\n"
+    <<~EOS
+    <thead>
+      #{indent(node.value)}
+    </thead>
+    EOS
   end
   def tbody(node)
-    "<tbody>#{wrap(node.value)}</tbody>\n"
+    <<~EOS
+    <tbody>
+      #{indent(node.value)}
+    </tbody>
+    EOS
   end
   def tr(node)
-    "<tr>#{wrap(node.value)}</tr>\n"
+    <<~EOS
+    <tr>
+      #{indent(node.value)}
+    </tr>
+    EOS
   end
   def th(node)
     "<th class=align-#{node.alignment}>#{node.value}</th>\n"
@@ -95,7 +123,11 @@ class Markup
     "<td class=align-#{node.alignment}>#{node.value}</td>\n"
   end
   def dl(node)
-    "<dl>#{wrap(node.value)}</dl>\n"
+    <<~EOS
+    <dl>
+      #{indent(node.value)}
+    </dl>
+    EOS
   end
   def dt(node)
     "<dt>#{node.value}\n"
@@ -105,13 +137,21 @@ class Markup
   end
   def p(node)
     if node.close
-      "<p>#{node.value}</p>\n"
+      <<~EOS
+      <p>
+        #{indent(node.value)}
+      </p>
+      EOS
     else
       "<p>#{node.value}\n"
     end
   end
   def div(node)
-    "<div>#{wrap(node.value)}</div>\n"
+    <<~EOS
+    <div>
+      #{indent(node.value)}
+    </div>
+    EOS
   end
 
   # inline elements
@@ -119,7 +159,11 @@ class Markup
     "<code translate=\"no\">#{hsc(node.value)}</code>"
   end
   def blockquote(node)
-    "<blockquote>#{wrap(node.value)}</blockquote>\n"
+    <<~EOS
+    <blockquote>
+      #{indent(node.value)}
+    </blockquote>
+    EOS
   end
   def smart_quote(node)
     {
@@ -131,7 +175,11 @@ class Markup
   end
   def li(node)
     if node.close
-      "<li>#{wrap(node.value)}</li>\n"
+      <<~EOS
+      <li>
+        #{indent(node.value)}
+      </li>
+      EOS
     else
       "<li>#{node.value}\n"
     end
@@ -193,13 +241,12 @@ class Markup
     end
 
     # No width-height for normal img
-    return <<-EOS
-
-  <picture>
-    <source type=image/webp srcset=#{node.attr['src'].sub(/(.png|.gif|.jpg)/, '.webp')}>
-    <img loading=lazy src=#{node.attr['src']} alt="#{node.attr['alt']}" title="#{node.attr['title']}" intrinsicsize=#{width}x#{height}>
-  </picture>
-EOS
+    return <<~EOS
+           <picture>
+             <source type=image/webp srcset=#{node.attr['src'].sub(/(.png|.gif|.jpg)/, '.webp')}>
+             <img loading=lazy src=#{node.attr['src']} alt="#{node.attr['alt']}" title="#{node.attr['title']}" intrinsicsize=#{width}x#{height}>
+           </picture>
+           EOS
   end
 
   def html_element(node)
