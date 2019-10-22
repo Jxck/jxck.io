@@ -1,4 +1,6 @@
 module ErbHelper
+  include ERB::Util
+
   # indent with depth
   # remove empty line indent
   def indent(str, depth=2)
