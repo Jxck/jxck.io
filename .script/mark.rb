@@ -46,6 +46,11 @@ def oneline(str)
   str.gsub(/(\n|\r)/, "")
 end
 
+def erb_template(path)
+  template = File.read(path)
+  ERB.new(template, nil, '-')
+end
+
 # dot access Hash
 class Hash
   def method_missing(method, *params)
@@ -115,15 +120,15 @@ def blogfeed(feed = false)
 
   if feed
     puts "build blog feed & sitemap"
-    xml = ERB.new(File.read(".template/atom.xml.erb")).result(binding)
+    xml = erb_template(".template/atom.xml.erb").result(binding)
     File.write("./blog.jxck.io/feeds/atom.xml", xml)
 
-    xml = ERB.new(File.read(".template/sitemap.xml.erb")).result(binding)
+    xml = erb_template(".template/sitemap.xml.erb").result(binding)
     File.write("./blog.jxck.io/feeds/sitemap.xml", xml)
   else
     puts "build archive page"
-    fav     = ERB.new(File.read(".template/favicon.html.erb")).result(binding).strip
-    archive = ERB.new(File.read(".template/archive.html.erb")).result(binding)
+    fav     = erb_template(".template/favicon.html.erb").result(binding).strip
+    archive = erb_template(".template/archive.html.erb").result(binding)
     File.write("./blog.jxck.io/index.html", archive)
 
     puts "build tags page"
@@ -136,14 +141,14 @@ def blogfeed(feed = false)
     }
 
     tag      = "Tags"
-    fav      = ERB.new(File.read(".template/favicon.html.erb")).result(binding).strip
-    template = ERB.new(File.read(".template/tags.html.erb")).result(binding).strip
+    fav      = erb_template(".template/favicon.html.erb").result(binding).strip
+    template = erb_template(".template/tags.html.erb").result(binding).strip
     html     = ERB.new(template).result(binding)
     File.write("./blog.jxck.io/tags/index.html", html)
 
     tags.each {|tag, v|
       tags     = { tag => v }
-      template = ERB.new(File.read(".template/tags.html.erb")).result(binding).strip
+      template = erb_template(".template/tags.html.erb").result(binding).strip
       html     = ERB.new(template).result(binding)
       File.write("./blog.jxck.io/tags/#{tag}.html", html)
     }
@@ -157,9 +162,6 @@ end
 def podcast(path)
   dir  = "./mozaic.fm/episodes/**/*.md"
   icon = "https://mozaic.fm/assets/img/mozaic"
-  fav_template     = File.read(".template/favicon.html.erb")
-  meta_template    = File.read(".template/meta.html.erb")
-  podcast_template = File.read(".template/podcast.html.erb")
 
   # prev/next のリンクを貼るために一度全部をたどる必要がある
   # (sideshow があるためディレクトリの番号では足らない)
@@ -188,9 +190,9 @@ def podcast(path)
 
     # entry
     episode.build(Podcast.new)
-    fav  = ERB.new(fav_template).result(episode.instance_eval { binding }).strip
-    meta = ERB.new(meta_template).result(episode.instance_eval { binding }).strip
-    html = ERB.new(podcast_template).result(binding).strip
+    fav  = erb_template(".template/favicon.html.erb").result(episode.instance_eval { binding }).strip
+    meta = erb_template(".template/meta.html.erb")   .result(episode.instance_eval { binding }).strip
+    html = erb_template(".template/podcast.html.erb").result(binding).strip
     File.write(episode.htmlfile, html)
   }
 
@@ -216,7 +218,7 @@ def podcastfeed(feed = false)
 
   if feed
     puts "build podcast feed"
-    xml = ERB.new(File.read(".template/rss2.xml.erb")).result(binding)
+    xml = erb_template(".template/rss2.xml.erb").result(binding)
     File.write("./feed.mozaic.fm/index.xml", xml)
   else
     episodes.each.with_index {|e, i|
@@ -225,8 +227,8 @@ def podcastfeed(feed = false)
     }
 
     puts "build index.html"
-    fav     = ERB.new(File.read(".template/favicon.html.erb")).result(binding).strip
-    archive = ERB.new(File.read(".template/podcast.index.html.erb"), nil, '-').result(binding)
+    fav     = erb_template(".template/favicon.html.erb").result(binding).strip
+    archive = erb_template(".template/podcast.index.html.erb").result(binding)
     File.write("./mozaic.fm/index.html", archive)
   end
 end
