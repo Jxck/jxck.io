@@ -19,29 +19,21 @@ require_relative "entry.rb"
 require_relative "episode.rb"
 require_relative "podcast.rb"
 
+require_relative "erb_helper.rb"
+include ErbHelper
 
-# html
+# debugger
+def j(o)
+  puts caller.first, JSON.pretty_generate(o)
+end
+
+
+
+# build markdown to html
 def to_html(md)
   Kramdown::Document
     .new(md, {input: "GFM"})
     .to_html
-end
-
-# html special chars
-def hsc(str)
-  str.gsub(/&/, "&amp;")
-     .gsub(/</, "&lt;")
-     .gsub(/>/, "&gt;")
-     .gsub(/"/, "&quot;")
-     .gsub(/'/, "&#039;")
-end
-
-# trim to 140 word for html meta description
-def short(str)
-  limit = 140
-  str.gsub(/(\n|\r)/, "")
-     .strip[0...(limit-3)]
-     .concat("...")
 end
 
 # remove markdown link
@@ -52,22 +44,6 @@ end
 # remove \n\r for online
 def oneline(str)
   str.gsub(/(\n|\r)/, "")
-end
-
-def indent(str, depth=2)
-  space = " "*depth
-  str.split("\n").join("\n#{space}").gsub(/^ *$/, "")
-end
-
-def j(o)
-  puts caller.first, JSON.pretty_generate(o)
-end
-
-# replace " " to "+"
-def escape(str)
-  str
-    .tr('"', "")
-    .tr(" ", "+")
 end
 
 # dot access Hash
