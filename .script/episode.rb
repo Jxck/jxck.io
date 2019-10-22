@@ -60,7 +60,7 @@ class Episode < Article
   end
 
   def theme_line
-    to_html(theme).split("\n").reject{|c| c.empty?}
+    to_html(theme).split("\n").reject(&:empty?)
   end
 
   def size
