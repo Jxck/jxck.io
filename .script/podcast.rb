@@ -1,4 +1,5 @@
-class Podcast < Markup
+# Podcast 用に拡張した HTML
+class Podcast < HTML
   def header(node)
     level = node.options.level
     if level == 1

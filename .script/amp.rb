@@ -1,5 +1,5 @@
-# AMP 用に拡張した Markup
-class AMP < Markup
+# AMP 用に拡張した HTML
+class AMP < HTML
   def root(node)
     indent(node.value.to_s)
   end

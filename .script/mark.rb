@@ -11,7 +11,7 @@ require "kramdown"
 require "kramdown-parser-gfm"
 
 require_relative "ast.rb"
-require_relative "markup.rb"
+require_relative "html.rb"
 require_relative "amp.rb"
 require_relative "article.rb"
 require_relative "traverser.rb"
@@ -106,8 +106,7 @@ def blog(paths)
     entry = Entry.new(path, icon)
 
     # blog
-    markup = Markup.new
-    entry.build(markup)
+    entry.build(HTML.new)
     fav  = ERB.new(fav_template) .result(entry.instance_eval{ binding }).strip
     meta = ERB.new(meta_template).result(entry.instance_eval{ binding }).strip
     ld   = ERB.new(ld_template)  .result(entry.instance_eval{ binding }).strip
@@ -115,8 +114,7 @@ def blog(paths)
     File.write(entry.htmlfile, html)
 
     # amp
-    amp = AMP.new
-    entry.build(amp)
+    entry.build(AMP.new)
     fav  = ERB.new(fav_template) .result(entry.instance_eval{ binding }).strip
     meta = ERB.new(meta_template).result(entry.instance_eval{ binding }).strip
     ld   = ERB.new(ld_template)  .result(entry.instance_eval{ binding }).strip
@@ -213,8 +211,7 @@ def podcast(path)
     p episode.path
 
     # entry
-    markup = Podcast.new
-    episode.build(markup)
+    episode.build(Podcast.new)
     fav  = ERB.new(fav_template).result(episode.instance_eval { binding }).strip
     meta = ERB.new(meta_template).result(episode.instance_eval { binding }).strip
     html = ERB.new(podcast_template).result(binding).strip

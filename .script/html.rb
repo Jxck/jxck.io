@@ -1,5 +1,5 @@
 # tag ごとのビルダ
-class Markup
+class HTML
   attr_writer :url
   attr_accessor :baseurl
   def initialize
