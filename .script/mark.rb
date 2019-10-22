@@ -72,37 +72,48 @@ class Hash
   end
 end
 
+
 ## 渡されたパスの配列を全部ビルドする
 ## 1 つしかなければ 1 つだけ
-def blog(paths)
-  icon  = "https://jxck.io/assets/img/jxck"
-  fav_template  = erb_template(".template/favicon.html.erb")
-  ld_template   = erb_template(".template/ld-json.html.erb")
-  meta_template = erb_template(".template/meta.html.erb")
-  blog_template = erb_template(".template/blog.html.erb")
-  amp_template  = erb_template(".template/amp.html.erb")
+class Blog
+  def initialize(entry_paths)
+    @paths = entry_paths
+  end
 
-  paths.each{|path|
-    puts path
-    entry = Entry.new(path, icon)
+  def render(path)
+    erb_template(path).result(entry.instance_eval{ binding }).strip
+  end
 
-    # blog
-    entry.build(HTML.new)
-    fav  = fav_template .result(entry.instance_eval{ binding }).strip
-    meta = meta_template.result(entry.instance_eval{ binding }).strip
-    ld   = ld_template  .result(entry.instance_eval{ binding }).strip
-    html = blog_template.result(binding).strip
-    File.write(entry.htmlfile, html)
+  def build
+    icon  = "https://jxck.io/assets/img/jxck"
+    fav_template  = erb_template(".template/favicon.html.erb")
+    ld_template   = erb_template(".template/ld-json.html.erb")
+    meta_template = erb_template(".template/meta.html.erb")
+    blog_template = erb_template(".template/blog.html.erb")
+    amp_template  = erb_template(".template/amp.html.erb")
+    @paths.each{|path|
+      puts path
+      entry = Entry.new(path, icon)
 
-    # amp
-    entry.build(AMP.new)
-    fav  = fav_template .result(entry.instance_eval{ binding }).strip
-    meta = meta_template.result(entry.instance_eval{ binding }).strip
-    ld   = ld_template  .result(entry.instance_eval{ binding }).strip
-    html = amp_template .result(binding).strip
-    File.write(entry.ampfile, html)
-  }
+      # blog
+      entry.build(HTML.new)
+      fav  = fav_template .result(entry.instance_eval{ binding }).strip
+      meta = meta_template.result(entry.instance_eval{ binding }).strip
+      ld   = ld_template  .result(entry.instance_eval{ binding }).strip
+      html = blog_template.result(binding).strip
+      File.write(entry.htmlfile, html)
+
+      # amp
+      entry.build(AMP.new)
+      fav  = fav_template .result(entry.instance_eval{ binding }).strip
+      meta = meta_template.result(entry.instance_eval{ binding }).strip
+      ld   = ld_template  .result(entry.instance_eval{ binding }).strip
+      html = amp_template .result(binding).strip
+      File.write(entry.ampfile, html)
+    }
+  end
 end
+
 
 # blog feed
 def blogfeed(feed = false)
@@ -243,13 +254,13 @@ if __FILE__ == $PROGRAM_NAME
 
   # Markdown to HTML
   opt.on("-b path/to/entry", "--blog ./path/to/entry.md") {|path|
-    blog([path])
+    Blog.new([path]).build
   }
   opt.on("-p path/to/episode", "--podcast ./path/to/episode.md") {|path|
     podcast(path)
   }
   opt.on("--full") {
-    blog(Dir.glob("./blog.jxck.io/entries/**/*.md"))
+    Blog.new(Dir.glob("./blog.jxck.io/entries/**/*.md")).build
     podcast(nil)
   }
 
@@ -276,7 +287,7 @@ if __FILE__ == $PROGRAM_NAME
   opt.on("--blogtest") {|v|
     puts "test builing blog"
     path = "./blog.jxck.io/entries/2016-01-27/new-blog-start.md"
-    blog([path])
+    Blog.new([path]).build
  }
   opt.on("--podcasttest") {|v|
     puts "test building podcast"
