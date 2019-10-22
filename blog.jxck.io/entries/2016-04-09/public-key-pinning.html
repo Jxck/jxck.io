@@ -106,100 +106,100 @@
     </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
-  <article>
-    <h1><a href=/entries/2016-04-09/public-key-pinning.html>Public Key Pinning for HTTP(HPKP) 対応と report-uri.io でのレポート収集</a></h1>
-    <section>
-      <h2 id="intro"><a href="#intro">Intro</a></h2>
-      <p>本サイトにて Public Key Pinning for HTTP を有効化した。
-      <p><a href="https://blog.jxck.io/entries/2016-03-30/content-security-policy.html">CSP</a> 同様、まずは Report-Only を設定し、
-      <p>HPKP Report についても、 <a href="https://report-uri.io">report-uri.io</a> を用いて収集することにした。
-      <p>導入に必要な設定や、注意点についてまとめる。
-      <p>なお、本サイトへの導入はあくまで <em>実験</em> である。運用や影響も踏まえると、一般サービスへの安易な導入は推奨しない。
-      <p>また、本来は HSTS と併用することが推奨されている。(必須ではない)
-      <p>そちらも追って対応する予定である。
-    </section>
-    <section>
-      <h2 id="public-key-pinning"><a href="#public-key-pinning">Public Key Pinning</a></h2>
+    <article>
+      <h1><a href=/entries/2016-04-09/public-key-pinning.html>Public Key Pinning for HTTP(HPKP) 対応と report-uri.io でのレポート収集</a></h1>
       <section>
-        <h3 id="概要"><a href="#概要">概要</a></h3>
-        <p>Public Key Pinning for HTTP(HPKP) とは、証明書の信頼性を向上させる仕組みである。
-        <ul>
-          <li>
-            <a href="https://tools.ietf.org/html/rfc7469">RFC 7469 - Public Key Pinning Extension for HTTP</a>
-          </li>
-        </ul>
-        <p>本サイトは HTTPS を提供しており、証明書は証明機関(CA)より有料のワイルドカード証明書を購入して設定している。(Let&rsquo;s Encrypt ではない)
-        <p>本ドメインの証明書の有効性は、この CA によって担保されており、この CA の信頼性は各デバイスにプリインストールされた CA の証明書(およびそこまでのチェイン)で担保されている。
-        <p>この仕組み(PKI) は、デバイスが CA を信用していることが土台となっているため、例えば CA が危殆化するなどのインシデントが発生すると、基盤そのものが揺らぐことを意味する。
-        <p>もし CA が攻撃され、偽の証明書が発行された場合、ユーザはその証明書が CA から発行された本物にしか見えないため、接続先が偽サイトだとしても信用してしまう。
-        <p>仕組み上 CA の危殆化はあってはならない訳だが、証明書の価値が高まりつつあり、一方で多くの認証局が運用されている今、一部の CA では実際に攻撃による偽の証明書発行が発生している。
-        <ul>
-          <li>
-            <a href="https://jp.globalsign.com/blog/2013/certificate_public_key_pinning.html">Pinning 年表</a> 参照
-          </li>
-          <li>
-            <a href="http://d.hatena.ne.jp/jovi0608/20140902/1409635279">1. 不正な SSL 証明書の脅威</a> 参照
-          </li>
-        </ul>
-        <p>そこで、このリスクを低減するために考案されたのが HPKP である。
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>本サイトにて Public Key Pinning for HTTP を有効化した。
+        <p><a href="https://blog.jxck.io/entries/2016-03-30/content-security-policy.html">CSP</a> 同様、まずは Report-Only を設定し、
+        <p>HPKP Report についても、 <a href="https://report-uri.io">report-uri.io</a> を用いて収集することにした。
+        <p>導入に必要な設定や、注意点についてまとめる。
+        <p>なお、本サイトへの導入はあくまで <em>実験</em> である。運用や影響も踏まえると、一般サービスへの安易な導入は推奨しない。
+        <p>また、本来は HSTS と併用することが推奨されている。(必須ではない)
+        <p>そちらも追って対応する予定である。
       </section>
       <section>
-        <h3 id="public-key-pinning-for-http"><a href="#public-key-pinning-for-http">Public Key Pinning for HTTP</a></h3>
-        <p>本サイト <code translate="no">jxck.io</code> の証明書については、管理者である筆者が把握している。
-        <p>この証明書のハッシュを HTTP ヘッダに付与することで、ブラウザに保存させる。
-        <p>ユーザが HTTPS 接続を確立する際に、取得した証明書のハッシュと、このヘッダのハッシュを比較することで、サーバの提示した証明書が筆者の把握している証明書と同じであることを検査する。
-        <p>偽物が検出された際は、不正な証明書が発行されている可能性があるため、ブラウザはアクセスをブロックする。
-        <p>実際に HPKP で違反が発生した場合の挙動は以下で試すことができる。
-        <p><a href="https://pinningtest.appspot.com/">pinningtest.appspot.com</a>
-        <p>また、違反を発見した場合、ブラウザはその旨をレポートとして生成し、送信することで管理者に通知する。
-        <p>これによって、筆者は自分のサービスの証明書が偽造されている事実を把握することができる。
-        <p>この仕組みは、近年発生している CA への攻撃による偽証明書の発行の発見に、大きく貢献している。
+        <h2 id="public-key-pinning"><a href="#public-key-pinning">Public Key Pinning</a></h2>
+        <section>
+          <h3 id="概要"><a href="#概要">概要</a></h3>
+          <p>Public Key Pinning for HTTP(HPKP) とは、証明書の信頼性を向上させる仕組みである。
+          <ul>
+            <li>
+              <a href="https://tools.ietf.org/html/rfc7469">RFC 7469 - Public Key Pinning Extension for HTTP</a>
+            </li>
+          </ul>
+          <p>本サイトは HTTPS を提供しており、証明書は証明機関(CA)より有料のワイルドカード証明書を購入して設定している。(Let&rsquo;s Encrypt ではない)
+          <p>本ドメインの証明書の有効性は、この CA によって担保されており、この CA の信頼性は各デバイスにプリインストールされた CA の証明書(およびそこまでのチェイン)で担保されている。
+          <p>この仕組み(PKI) は、デバイスが CA を信用していることが土台となっているため、例えば CA が危殆化するなどのインシデントが発生すると、基盤そのものが揺らぐことを意味する。
+          <p>もし CA が攻撃され、偽の証明書が発行された場合、ユーザはその証明書が CA から発行された本物にしか見えないため、接続先が偽サイトだとしても信用してしまう。
+          <p>仕組み上 CA の危殆化はあってはならない訳だが、証明書の価値が高まりつつあり、一方で多くの認証局が運用されている今、一部の CA では実際に攻撃による偽の証明書発行が発生している。
+          <ul>
+            <li>
+              <a href="https://jp.globalsign.com/blog/2013/certificate_public_key_pinning.html">Pinning 年表</a> 参照
+            </li>
+            <li>
+              <a href="http://d.hatena.ne.jp/jovi0608/20140902/1409635279">1. 不正な SSL 証明書の脅威</a> 参照
+            </li>
+          </ul>
+          <p>そこで、このリスクを低減するために考案されたのが HPKP である。
+        </section>
+        <section>
+          <h3 id="public-key-pinning-for-http"><a href="#public-key-pinning-for-http">Public Key Pinning for HTTP</a></h3>
+          <p>本サイト <code translate="no">jxck.io</code> の証明書については、管理者である筆者が把握している。
+          <p>この証明書のハッシュを HTTP ヘッダに付与することで、ブラウザに保存させる。
+          <p>ユーザが HTTPS 接続を確立する際に、取得した証明書のハッシュと、このヘッダのハッシュを比較することで、サーバの提示した証明書が筆者の把握している証明書と同じであることを検査する。
+          <p>偽物が検出された際は、不正な証明書が発行されている可能性があるため、ブラウザはアクセスをブロックする。
+          <p>実際に HPKP で違反が発生した場合の挙動は以下で試すことができる。
+          <p><a href="https://pinningtest.appspot.com/">pinningtest.appspot.com</a>
+          <p>また、違反を発見した場合、ブラウザはその旨をレポートとして生成し、送信することで管理者に通知する。
+          <p>これによって、筆者は自分のサービスの証明書が偽造されている事実を把握することができる。
+          <p>この仕組みは、近年発生している CA への攻撃による偽証明書の発行の発見に、大きく貢献している。
+        </section>
+        <section>
+          <h3 id="preload-public-key-pinning"><a href="#preload-public-key-pinning">Preload Public Key Pinning</a></h3>
+          <p>HTTP レスポンスヘッダでハッシュを提示する方法では、 最初のアクセス時から偽の証明書が使われていた場合は無力である。
+          <p>あくまで、再訪問時への偽造にしか効果がなく、これを <em>Trust on First Use (TOFU)</em> という。
+          <p>そこで、ブラウザにあらかじめ証明書のハッシュを登録する Preload Publick Key Pinning もある。
+          <p>ただし、これは非常に重要なドメインにのみ提供されており、現状一般に向けた登録フローは公開されていない。
+          <p>Chrome と Firefox への Preload Pins のリストは以下である。
+          <ul>
+            <li>
+              <a href="https://src.chromium.org/viewvc/chrome/trunk/src/net/http/transport_security_state_static.json">[chrome] Contents of /trunk/src/net/http/transport_security_state_static.json</a>
+            </li>
+            <li>
+              <a href="https://mxr.mozilla.org/mozilla-central/source/security/manager/tools/PreloadedHPKPins.json">mozilla-central mozilla/security/manager/tools/PreloadedHPKPins.json</a>
+            </li>
+          </ul>
+          <p>したがって本サイトでは、 HTTP ヘッダでの対応を実施する。
+        </section>
       </section>
       <section>
-        <h3 id="preload-public-key-pinning"><a href="#preload-public-key-pinning">Preload Public Key Pinning</a></h3>
-        <p>HTTP レスポンスヘッダでハッシュを提示する方法では、 最初のアクセス時から偽の証明書が使われていた場合は無力である。
-        <p>あくまで、再訪問時への偽造にしか効果がなく、これを <em>Trust on First Use (TOFU)</em> という。
-        <p>そこで、ブラウザにあらかじめ証明書のハッシュを登録する Preload Publick Key Pinning もある。
-        <p>ただし、これは非常に重要なドメインにのみ提供されており、現状一般に向けた登録フローは公開されていない。
-        <p>Chrome と Firefox への Preload Pins のリストは以下である。
-        <ul>
-          <li>
-            <a href="https://src.chromium.org/viewvc/chrome/trunk/src/net/http/transport_security_state_static.json">[chrome] Contents of /trunk/src/net/http/transport_security_state_static.json</a>
-          </li>
-          <li>
-            <a href="https://mxr.mozilla.org/mozilla-central/source/security/manager/tools/PreloadedHPKPins.json">mozilla-central mozilla/security/manager/tools/PreloadedHPKPins.json</a>
-          </li>
-        </ul>
-        <p>したがって本サイトでは、 HTTP ヘッダでの対応を実施する。
-      </section>
-    </section>
-    <section>
-      <h2 id="hpkp-の設定"><a href="#hpkp-の設定">HPKP の設定</a></h2>
-      <section>
-        <h3 id="public-key-pins-ヘッダ"><a href="#public-key-pins-ヘッダ">Public-Key-Pins ヘッダ</a></h3>
-        <p>HPKP を有効化するには、 Public-Key-Pins ヘッダを付与し、その引数にハッシュを指定する。
-        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-        <pre class=http><code translate="no">Public-Key-Pins: pin-sha256=&quot;base64==&quot;; max-age=expireTime [; includeSubdomains][; report-uri=&quot;reportURI&quot;]</code></pre>
-        <p>設定については、以下が参考になる。
-        <p><a href="https://developer.mozilla.org/ja/docs/Web/Security/Public_Key_Pinning">Public Key Pinning - Web セキュリティ | MDN</a>
-        <p>基本的には後述する方法で取得した証明書のハッシュである Subject Public Key Information(SPKI) の Base64 と、ブラウザに保持する期限、検証に失敗した場合のレポート送信先を指定する。
-        <p>現時点では sha256 のみがアルゴリズムとして認められているが、これは将来拡張される可能性がある。
-        <p>Pin を設定する際は、現在有効な Pin 以外に、バックアップ Pin の登録が必須になっている。
-        <p>これは、有効な Pin を一つしか登録しない場合、証明書の危殆化や期限切れなどで、証明書を新しく更新すると必ず不一致が起こってしまうためである。
+        <h2 id="hpkp-の設定"><a href="#hpkp-の設定">HPKP の設定</a></h2>
+        <section>
+          <h3 id="public-key-pins-ヘッダ"><a href="#public-key-pins-ヘッダ">Public-Key-Pins ヘッダ</a></h3>
+          <p>HPKP を有効化するには、 Public-Key-Pins ヘッダを付与し、その引数にハッシュを指定する。
+          <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+          <pre class=http><code translate="no">Public-Key-Pins: pin-sha256=&quot;base64==&quot;; max-age=expireTime [; includeSubdomains][; report-uri=&quot;reportURI&quot;]</code></pre>
+          <p>設定については、以下が参考になる。
+          <p><a href="https://developer.mozilla.org/ja/docs/Web/Security/Public_Key_Pinning">Public Key Pinning - Web セキュリティ | MDN</a>
+          <p>基本的には後述する方法で取得した証明書のハッシュである Subject Public Key Information(SPKI) の Base64 と、ブラウザに保持する期限、検証に失敗した場合のレポート送信先を指定する。
+          <p>現時点では sha256 のみがアルゴリズムとして認められているが、これは将来拡張される可能性がある。
+          <p>Pin を設定する際は、現在有効な Pin 以外に、バックアップ Pin の登録が必須になっている。
+          <p>これは、有効な Pin を一つしか登録しない場合、証明書の危殆化や期限切れなどで、証明書を新しく更新すると必ず不一致が起こってしまうためである。
+        </section>
+        <section>
+          <h3 id="subject-public-key-information-spki"><a href="#subject-public-key-information-spki">Subject Public Key Information (SPKI)</a></h3>
+          <p>Pin の値は openssl コマンドを用いれば、公開鍵から SPKI の Base64 エンコードまで一括で行える。
+          <p>手元に、 Key, CSR, CRT のいずれかがあればそれを用いることができ、 Web 経由で取得した公開鍵からも生成できる。
+          <p>管理者がローカルで行うなら、何かあっても一番害のない CSR からの生成がよさそうと考える。
+          <pre class=sh><code translate="no">$ openssl req -in my-signing-request.csr -pubkey -noout | openssl rsa -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64</code></pre>
+        </section>
       </section>
       <section>
-        <h3 id="subject-public-key-information-spki"><a href="#subject-public-key-information-spki">Subject Public Key Information (SPKI)</a></h3>
-        <p>Pin の値は openssl コマンドを用いれば、公開鍵から SPKI の Base64 エンコードまで一括で行える。
-        <p>手元に、 Key, CSR, CRT のいずれかがあればそれを用いることができ、 Web 経由で取得した公開鍵からも生成できる。
-        <p>管理者がローカルで行うなら、何かあっても一番害のない CSR からの生成がよさそうと考える。
-        <pre class=sh><code translate="no">$ openssl req -in my-signing-request.csr -pubkey -noout | openssl rsa -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64</code></pre>
-      </section>
-    </section>
-    <section>
-      <h2 id="report-uriio"><a href="#report-uriio">report-uri.io</a></h2>
-      <p>ブラウザは、  Pin に一致しない証明書を検出した場合、違反レポートを生成し <code translate="no">report-uri</code> に指定した URI に対して自動的に送信する。
-      <p>HPKP の違反レポートは以下のような JSON データである。
-      <pre class=json><code translate="no">{
+        <h2 id="report-uriio"><a href="#report-uriio">report-uri.io</a></h2>
+        <p>ブラウザは、  Pin に一致しない証明書を検出した場合、違反レポートを生成し <code translate="no">report-uri</code> に指定した URI に対して自動的に送信する。
+        <p>HPKP の違反レポートは以下のような JSON データである。
+        <pre class=json><code translate="no">{
     &quot;date-time&quot;: &quot;2014-04-06T13:00:50Z&quot;,
     &quot;hostname&quot;: &quot;www.example.com&quot;,
     &quot;port&quot;: 443,
@@ -230,29 +230,29 @@
       &quot;pin-sha256=\&quot;E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g=\&quot;&quot;
     ]
   }</code></pre>
-    </section>
-    <section>
-      <h2 id="懸念点"><a href="#懸念点">懸念点</a></h2>
-      <section>
-        <h3 id="証明書更新と-max-age"><a href="#証明書更新と-max-age">証明書更新と Max-Age</a></h3>
-        <p>HPKP の運用での一番の懸念は、証明書の更新だろう。
-        <p>例えば今回は、現行の Pin(Pin1 とする)に加えてバックアップ Pin(Pin2 とする) を一つ登録したため、このバックアップ Pin2 にあたる証明書への更新までは問題ないだろう。
-        <p>しかし、問題はそのあとどうするかである。(その後更新する新しい証明書の Pin を Pin3, 4&hellip; とする)
-        <p>ブラウザが <code translate="no">[Pin1, Pin2]</code> を保存した状態なら、 Pin2 の証明書に更新されてもバックアップが効いているため問題はない。
-        <p>次に証明書を Pin3 のものへ更新した時がポイントとなるだろう。
-        <p>これは <code translate="no">[Pin1, Pin2]</code> を保存したまま、その後しばらく訪れず、 Pin3 の証明書に更新されてから訪れたら、持っている Pin と証明書がマッチせず接続できなくなるためである。
-        <p>つまり、 Pin3 を運用する際には、必ず <code translate="no">[Pin1, Pin2]</code> の組はブラウザから Expire されている必要がある。
-        <p>しかし、それを恐れて Pin の Max-Age を短くしすぎると、アクセスするたびに Pin が無効にな状態となり、 TOFU であるこのプロトコルを生かしきれない。
-        <p>Report-Only でない運用では、接続ができないという状態になるため、サービスへの影響も大きくなる。
-        <p>それを踏まえてか、以下のような中間証明書を Pin 留めするという運用もあるようなので、紹介する。
       </section>
       <section>
-        <h3 id="中間証明書の-pin"><a href="#中間証明書の-pin">中間証明書の Pin</a></h3>
-        <p>Github は現在 HPKP を運用しているため、 Pin の値を調べてみた。
-        <p>Github では、 Leaf (<code translate="no">github.com</code> 自体の証明書) ではなく、そこから Root CA までの証明書チェインに入っている、中間証明書を Pin として設定していた。
-        <p>OpenSSL の <code translate="no">-showcerts</code> コマンドを用いて、 Github の証明書を取得し Pin を計算してみる。
-        <p>(証明書が二つ見あり、中間証明書にあたる二つ目だけ抜き出している)
-        <pre class=sh><code translate="no"># github.com pins Intermediate Certificate
+        <h2 id="懸念点"><a href="#懸念点">懸念点</a></h2>
+        <section>
+          <h3 id="証明書更新と-max-age"><a href="#証明書更新と-max-age">証明書更新と Max-Age</a></h3>
+          <p>HPKP の運用での一番の懸念は、証明書の更新だろう。
+          <p>例えば今回は、現行の Pin(Pin1 とする)に加えてバックアップ Pin(Pin2 とする) を一つ登録したため、このバックアップ Pin2 にあたる証明書への更新までは問題ないだろう。
+          <p>しかし、問題はそのあとどうするかである。(その後更新する新しい証明書の Pin を Pin3, 4&hellip; とする)
+          <p>ブラウザが <code translate="no">[Pin1, Pin2]</code> を保存した状態なら、 Pin2 の証明書に更新されてもバックアップが効いているため問題はない。
+          <p>次に証明書を Pin3 のものへ更新した時がポイントとなるだろう。
+          <p>これは <code translate="no">[Pin1, Pin2]</code> を保存したまま、その後しばらく訪れず、 Pin3 の証明書に更新されてから訪れたら、持っている Pin と証明書がマッチせず接続できなくなるためである。
+          <p>つまり、 Pin3 を運用する際には、必ず <code translate="no">[Pin1, Pin2]</code> の組はブラウザから Expire されている必要がある。
+          <p>しかし、それを恐れて Pin の Max-Age を短くしすぎると、アクセスするたびに Pin が無効にな状態となり、 TOFU であるこのプロトコルを生かしきれない。
+          <p>Report-Only でない運用では、接続ができないという状態になるため、サービスへの影響も大きくなる。
+          <p>それを踏まえてか、以下のような中間証明書を Pin 留めするという運用もあるようなので、紹介する。
+        </section>
+        <section>
+          <h3 id="中間証明書の-pin"><a href="#中間証明書の-pin">中間証明書の Pin</a></h3>
+          <p>Github は現在 HPKP を運用しているため、 Pin の値を調べてみた。
+          <p>Github では、 Leaf (<code translate="no">github.com</code> 自体の証明書) ではなく、そこから Root CA までの証明書チェインに入っている、中間証明書を Pin として設定していた。
+          <p>OpenSSL の <code translate="no">-showcerts</code> コマンドを用いて、 Github の証明書を取得し Pin を計算してみる。
+          <p>(証明書が二つ見あり、中間証明書にあたる二つ目だけ抜き出している)
+          <pre class=sh><code translate="no"># github.com pins Intermediate Certificate
 # so add `-showcerts` option for first openssl
 # and extract second CERTIFICATE with ruby
 echo &#039;---- EXPECTED ----&#039;
@@ -262,53 +262,52 @@ openssl s_client -servername github.com -connect github.com:443 -showcerts 2&gt;
   | openssl rsa -pubin -outform der 2&gt;/dev/null \
   | openssl dgst -sha256 -binary 2&gt;/dev/null \
   | openssl enc -base64 2&gt;/dev/null</code></pre>
-        <p>実際に <code translate="no">Public-Key-Pins</code> ヘッダを見てみる。この中にはバックアップを含めいくつか登録されているが、その中に上で計算したものが入っている。
-        <pre class=sh><code translate="no"># get the actual Public-Key-Pins header
+          <p>実際に <code translate="no">Public-Key-Pins</code> ヘッダを見てみる。この中にはバックアップを含めいくつか登録されているが、その中に上で計算したものが入っている。
+          <pre class=sh><code translate="no"># get the actual Public-Key-Pins header
 # this will include hash calculated above
 echo &#039;---- ACTUAL ----&#039;
 curl -sI https://github.com | grep Public-Key-Pins | ruby -nle &#039;puts $_.gsub(&quot;;&quot;, &quot;\n&quot;)&#039;</code></pre>
-        <p>Leaf の証明書を Pin 留めしてしまうと、前述の通り証明書の更新で Pin との不整合が起きた場合に、接続できなくなってしまう。
-        <p>このリスクを減らすために、中間証明書を Pin 留めするという運用になっている模様である。
-        <p>(<a href="https://twitter.com/jovi0608">@jovi0608</a> さんにアドバイス頂きました、ありがとうございます。)
-      </section>
-    </section>
-    <section>
-      <h2 id="本サイトでの適用"><a href="#本サイトでの適用">本サイトでの適用</a></h2>
-      <section>
-        <h3 id="pin"><a href="#pin">Pin</a></h3>
-        <p>まず現在の証明書から、現行の Pin を生成しそれを指定する。
-        <p>本サイトでは、 2 年ごとに更新するワイルドカード証明書を購入して使用している。
-        <p>つまり、全サブドメインで証明書は一つであり、期限も長いので、運用はそこまで難しくないだろうと考えている。
-        <p>バックアップ Pin としては、未来の(次の更新で使用する)証明書用の鍵を先に一つ用意しておき、そこからバックアップ用 Pin を生成することにした。
-        <p><code translate="no">report-uri</code> には CSP 同様 <a href="https://report-uri.io">report-uri.io</a> を設定する。
-        <p>そしてこれを <a href="https://jxck.io">jxck.io</a> と <a href="https://blog.jxck.io">blog.jxck.io</a> に設定した。
-        <p>今回はあくまで実験であるため、 CSP 同様に Report-Only での運用とする。
-        <p>デモとして、 Report-Only 無しのヘッダを指定したページを以下に用意した。
-        <p><a href="https://labs.jxck.io/public-key-pinning/">Public Key Pinning DEMO | labs.jxck.io</a>
-        <p>HPKP が有効になっていることは、 <a href="chrome://net-internals/#hsts">chrome://net-internals/#hsts</a> で確認できる。しかし Report-Only ではここに上がらないようである。
+          <p>Leaf の証明書を Pin 留めしてしまうと、前述の通り証明書の更新で Pin との不整合が起きた場合に、接続できなくなってしまう。
+          <p>このリスクを減らすために、中間証明書を Pin 留めするという運用になっている模様である。
+          <p>(<a href="https://twitter.com/jovi0608">@jovi0608</a> さんにアドバイス頂きました、ありがとうございます。)
+        </section>
       </section>
       <section>
-        <h3 id="結果"><a href="#結果">結果</a></h3>
-        <p>生成したヘッダは以下である。
-        <p>max-age は、とりあえず 3600s と短い値から始めることにした。
-        <pre class=http><code translate="no">Public-Key-Pins:
+        <h2 id="本サイトでの適用"><a href="#本サイトでの適用">本サイトでの適用</a></h2>
+        <section>
+          <h3 id="pin"><a href="#pin">Pin</a></h3>
+          <p>まず現在の証明書から、現行の Pin を生成しそれを指定する。
+          <p>本サイトでは、 2 年ごとに更新するワイルドカード証明書を購入して使用している。
+          <p>つまり、全サブドメインで証明書は一つであり、期限も長いので、運用はそこまで難しくないだろうと考えている。
+          <p>バックアップ Pin としては、未来の(次の更新で使用する)証明書用の鍵を先に一つ用意しておき、そこからバックアップ用 Pin を生成することにした。
+          <p><code translate="no">report-uri</code> には CSP 同様 <a href="https://report-uri.io">report-uri.io</a> を設定する。
+          <p>そしてこれを <a href="https://jxck.io">jxck.io</a> と <a href="https://blog.jxck.io">blog.jxck.io</a> に設定した。
+          <p>今回はあくまで実験であるため、 CSP 同様に Report-Only での運用とする。
+          <p>デモとして、 Report-Only 無しのヘッダを指定したページを以下に用意した。
+          <p><a href="https://labs.jxck.io/public-key-pinning/">Public Key Pinning DEMO | labs.jxck.io</a>
+          <p>HPKP が有効になっていることは、 <a href="chrome://net-internals/#hsts">chrome://net-internals/#hsts</a> で確認できる。しかし Report-Only ではここに上がらないようである。
+        </section>
+        <section>
+          <h3 id="結果"><a href="#結果">結果</a></h3>
+          <p>生成したヘッダは以下である。
+          <p>max-age は、とりあえず 3600s と短い値から始めることにした。
+          <pre class=http><code translate="no">Public-Key-Pins:
   max-age=3600;
   pin-sha256=&quot;7JT7NhX2St/VBBkRi4BO427M7ytLy7p3CRYPtHpSm7c=&quot;;
   pin-sha256=&quot;+WpRHNpAId2FIOvVgwmS3HsG+eJtERKC4/qM1tQaeRk=&quot;;
   report-uri=&quot;https://4887c342aec2b444c655987aa8b0d5cb.report-uri.io/r/default/hpkp/enforce&quot;</code></pre>
-        <p>Report-Only は、 <code translate="no">max-age</code> が不要になる。また report-uri.io では、 Report-Only 用に URI が変わるので、それを設定している。
-        <pre class=http><code translate="no">Public-Key-Pins-Report-Only:
+          <p>Report-Only は、 <code translate="no">max-age</code> が不要になる。また report-uri.io では、 Report-Only 用に URI が変わるので、それを設定している。
+          <pre class=http><code translate="no">Public-Key-Pins-Report-Only:
   pin-sha256=&quot;7JT7NhX2St/VBBkRi4BO427M7ytLy7p3CRYPtHpSm7c=&quot;;
   pin-sha256=&quot;+WpRHNpAId2FIOvVgwmS3HsG+eJtERKC4/qM1tQaeRk=&quot;;
   report-uri=&quot;https://4887c342aec2b444c655987aa8b0d5cb.report-uri.io/r/default/hpkp/reportOnly&quot;</code></pre>
-        <p>意図的にレポートを上げて見てみたかったが、単に不正な証明書を用意するだけではだめだった。
-        <p>どうやったら、正しく HPKP 違反ができるのか、自前で CA を立てるなどする必要があるのかもしれない。
-        <p>ということで CSP と違い、よほどのことがない限りレポートは上がらないはずであると考える。
-        <p>もしレポートが上がった場合、結構な問題が発生している可能性もあるので、必要に応じて追記や報告をしたい。
+          <p>意図的にレポートを上げて見てみたかったが、単に不正な証明書を用意するだけではだめだった。
+          <p>どうやったら、正しく HPKP 違反ができるのか、自前で CA を立てるなどする必要があるのかもしれない。
+          <p>ということで CSP と違い、よほどのことがない限りレポートは上がらないはずであると考える。
+          <p>もしレポートが上がった場合、結構な問題が発生している可能性もあるので、必要に応じて追記や報告をしたい。
+        </section>
       </section>
-    </section>
-  </article>
-
+    </article>
   </main>
   <hr>
 

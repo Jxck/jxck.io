@@ -106,188 +106,192 @@
     </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
-  <article>
-    <h1><a href=/entries/2016-06-25/intersection-observer.html>Intersection Observer を用いた要素出現検出の最適化</a></h1>
-    <section>
-      <h2 id="intro"><a href="#intro">Intro</a></h2>
-      <p>スクロールによる DOM 要素の出現などを効率よく検知するため、新しく Intersection Observer という API が追加された。
-      <p>この API の使い方と、本サイトへの適用について記す。
-    </section>
-    <section>
-      <h2 id="要素交差intersectionの検出"><a href="#要素交差intersectionの検出">要素交差(intersection)の検出</a></h2>
-      <p>ページをスクロールしていく過程で、特定の DOM が画面に出現したことをフックしたいケースがある。
-      <p>代表例は <em>画像の遅延読み込み</em> であり、初期ロードでは画像の取得を行わずスクロールしていく過程で順次取得する手法である。
-      <p>特に画像の多いページでは表示に必要なリソース取得のみに最適化でき、初期画面表示などでは効果が大きいとされる。
-      <p>これを実装するのに必要なのは、「 <code translate="no">&lt;img&gt;</code> 要素が出現しているかどうか」であるが、本質的には「画面外にあった <code translate="no">&lt;img&gt;</code> が viewport と交差したか」を取得することになる。
-      <p>つまり、 <em>要素出現の取得</em> は、 <em>要素同士の交差取得</em> として汎用化し、その一例と見ることができる。
-      <p>新しく追加された、 Intersection Observe は「対象の親要素」と「対象の要素」が <em>交差(Intersect)したことを取得する API</em> である。
-    </section>
-    <section>
-      <h2 id="従来の方法"><a href="#従来の方法">従来の方法</a></h2>
-      <p>まず、従来どのようにして要素の交差を取得していたかを振り返る。
-      <p>要素の位置に関する API は以下のようになっている。
-      <p><em>ただし、これは互換性の問題を多く含んでいるため、厳密には色々あるが、調べるのが面倒だったので単なる参考として載せる</em>
+    <article>
+      <h1><a href=/entries/2016-06-25/intersection-observer.html>Intersection Observer を用いた要素出現検出の最適化</a></h1>
       <section>
-        <h3 id="図"><a href="#図">図</a></h3>
-        <p>先に全体図を示す。今回は上下方向にのみ注目する。
-        <p><img loading=lazy src=dom-size-potision-api.svg#700x818 alt="scrollTop, getBoundingClientRect, height などの相関関係の解説" title="DOM のサイズと位置に関する API" width=700 height=818 intrinsicsize=700x818></p>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>スクロールによる DOM 要素の出現などを効率よく検知するため、新しく Intersection Observer という API が追加された。
+        <p>この API の使い方と、本サイトへの適用について記す。
       </section>
       <section>
-        <h3 id="スクロール量scrolltop"><a href="#スクロール量scrolltop">スクロール量(scrollTop)</a></h3>
-        <p>ページがどの程度スクロールされたかという値である。
-        <p>基本は <code translate="no">document.documentElement.scrollTop</code> だが、互換モードでは <code translate="no">document.body.scrollTop</code> を使う。
-        <p>しかし iPhone には <code translate="no">scrollTop</code> がないので、 <code translate="no">window.pageYOffset</code> を使うが、これは <code translate="no">window.scrollY</code> のエイリアスになっている。
-        <p>要するに 4 つある。
-        <ul>
-          <li>
-            <code translate="no">document.documentElement.scrollTop</code>
-          </li>
-          <li>
-            <code translate="no">document.body.scrollTop</code>
-          </li>
-          <li>
-            <code translate="no">window.pageYOffset</code>
-          </li>
-          <li>
-            <code translate="no">window.scrollY</code>
-          </li>
-        </ul>
-        <p>よくある話だ。
+        <h2 id="要素交差intersectionの検出"><a href="#要素交差intersectionの検出">要素交差(intersection)の検出</a></h2>
+        <p>ページをスクロールしていく過程で、特定の DOM が画面に出現したことをフックしたいケースがある。
+        <p>代表例は <em>画像の遅延読み込み</em> であり、初期ロードでは画像の取得を行わずスクロールしていく過程で順次取得する手法である。
+        <p>特に画像の多いページでは表示に必要なリソース取得のみに最適化でき、初期画面表示などでは効果が大きいとされる。
+        <p>これを実装するのに必要なのは、「 <code translate="no">&lt;img&gt;</code> 要素が出現しているかどうか」であるが、本質的には「画面外にあった <code translate="no">&lt;img&gt;</code> が viewport と交差したか」を取得することになる。
+        <p>つまり、 <em>要素出現の取得</em> は、 <em>要素同士の交差取得</em> として汎用化し、その一例と見ることができる。
+        <p>新しく追加された、 Intersection Observe は「対象の親要素」と「対象の要素」が <em>交差(Intersect)したことを取得する API</em> である。
       </section>
       <section>
-        <h3 id="絶対位置offsettop"><a href="#絶対位置offsettop">絶対位置(offsetTop)</a></h3>
-        <p>body を親要素とすれば、そこからの offset 位置はドキュメント上の絶対位置と考えることができる。
-        <p>これは、要素自体が持っている。
-        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-        <pre class=js><code translate="no">let target = document.querySelector(&#039;.target&#039;);
+        <h2 id="従来の方法"><a href="#従来の方法">従来の方法</a></h2>
+        <p>まず、従来どのようにして要素の交差を取得していたかを振り返る。
+        <p>要素の位置に関する API は以下のようになっている。
+        <p><em>ただし、これは互換性の問題を多く含んでいるため、厳密には色々あるが、調べるのが面倒だったので単なる参考として載せる</em>
+        <section>
+          <h3 id="図"><a href="#図">図</a></h3>
+          <p>先に全体図を示す。今回は上下方向にのみ注目する。
+          <p>
+            <img loading=lazy src=dom-size-potision-api.svg#700x818 alt="scrollTop, getBoundingClientRect, height などの相関関係の解説" title="DOM のサイズと位置に関する API" width=700 height=818 intrinsicsize=700x818>
+          </p>
+        </section>
+        <section>
+          <h3 id="スクロール量scrolltop"><a href="#スクロール量scrolltop">スクロール量(scrollTop)</a></h3>
+          <p>ページがどの程度スクロールされたかという値である。
+          <p>基本は <code translate="no">document.documentElement.scrollTop</code> だが、互換モードでは <code translate="no">document.body.scrollTop</code> を使う。
+          <p>しかし iPhone には <code translate="no">scrollTop</code> がないので、 <code translate="no">window.pageYOffset</code> を使うが、これは <code translate="no">window.scrollY</code> のエイリアスになっている。
+          <p>要するに 4 つある。
+          <ul>
+            <li>
+              <code translate="no">document.documentElement.scrollTop</code>
+            </li>
+            <li>
+              <code translate="no">document.body.scrollTop</code>
+            </li>
+            <li>
+              <code translate="no">window.pageYOffset</code>
+            </li>
+            <li>
+              <code translate="no">window.scrollY</code>
+            </li>
+          </ul>
+          <p>よくある話だ。
+        </section>
+        <section>
+          <h3 id="絶対位置offsettop"><a href="#絶対位置offsettop">絶対位置(offsetTop)</a></h3>
+          <p>body を親要素とすれば、そこからの offset 位置はドキュメント上の絶対位置と考えることができる。
+          <p>これは、要素自体が持っている。
+          <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+          <pre class=js><code translate="no">let target = document.querySelector(&#039;.target&#039;);
 // target.offsetTop;
 // target.offsetHeight;
 // target.offsetWidth;
 // target.offsetLeft;</code></pre>
-      </section>
-      <section>
-        <h3 id="相対位置getboundingclientrect"><a href="#相対位置getboundingclientrect">相対位置(getBoundingClientRect)</a></h3>
-        <p>対象の DOM が、現在画面表示(viewport)上どの位置にあるか。
-        <p>スクロールするたびに変わる値で、常に表示領域の中の位置になる。
-        <p>これは、対象 DOM の <code translate="no">getBoundingClientRect()</code> で取れる。
-        <pre class=js><code translate="no">let rect = target.getBoundingClientRect();
+        </section>
+        <section>
+          <h3 id="相対位置getboundingclientrect"><a href="#相対位置getboundingclientrect">相対位置(getBoundingClientRect)</a></h3>
+          <p>対象の DOM が、現在画面表示(viewport)上どの位置にあるか。
+          <p>スクロールするたびに変わる値で、常に表示領域の中の位置になる。
+          <p>これは、対象 DOM の <code translate="no">getBoundingClientRect()</code> で取れる。
+          <pre class=js><code translate="no">let rect = target.getBoundingClientRect();
 // rect.top;
 // rect.bottom;
 // rect.height;
 // rect.left;
 // rect.right;
 // rect.width;</code></pre>
-      </section>
-      <section>
-        <h3 id="表示判定"><a href="#表示判定">表示判定</a></h3>
-        <p>ここまでを踏まえると、画面をスクロールし、画面の中に対象の DOM が入っていることは、以下のように判定できる。
-        <pre class=js><code translate="no">   (0 &lt; rect.top &amp;&amp; rect.top &lt; clientHeight)       // 対象の上端は表示領域に入っている
+        </section>
+        <section>
+          <h3 id="表示判定"><a href="#表示判定">表示判定</a></h3>
+          <p>ここまでを踏まえると、画面をスクロールし、画面の中に対象の DOM が入っていることは、以下のように判定できる。
+          <pre class=js><code translate="no">   (0 &lt; rect.top &amp;&amp; rect.top &lt; clientHeight)       // 対象の上端は表示領域に入っている
 || (0 &lt; rect.bottom &amp;&amp; rect.bottom &lt; clientHeight) // 対象の下端は表示領域に入っている
 || (rect.top &lt; 0 &amp;&amp; clientHeight &lt; rect.bottom)    // 上端下端も表示されてないがその間が表示されている</code></pre>
-        <p>この三つの論理和が満たされれば、どこかが表示されている。
-        <p>もちろん、計算基準の親要素を変えれば、 viewport 以外の要素でのスクロールによる出現にも対応できる。
+          <p>この三つの論理和が満たされれば、どこかが表示されている。
+          <p>もちろん、計算基準の親要素を変えれば、 viewport 以外の要素でのスクロールによる出現にも対応できる。
+        </section>
+        <section>
+          <h3 id="onscroll-イベント"><a href="#onscroll-イベント">onscroll イベント</a></h3>
+          <p>上記の判定は、スクロールするたび、つまり onscroll イベントごとに計算すれば DOM の出現監視になる。
+          <p>ただし、 onscroll は発生頻度が非常に多いため、愚直にコールバックに指定してしまうと、ボトルネックになり Scroll Jank を引き起こす可能性がある。
+          <p>対策としては、まずコールバックを実行するイベントを間引く throttling がある。
+          <p>例えば、 underscore.js の <a href="http://underscorejs.org/#throttle">throttle()</a> 相当のものや、 Reactive Extension 系のライブラリを使うことで実現できる。
+          <p>また、計算処理のみでコールバックを抜けるのであれば、 <code translate="no">.preventDefault()</code> を呼ばないため、別エントリで解説した Passive Event Listener を利用できる。
+          <ul>
+            <li>
+              <a href="https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html">Passive Event Listeners によるスクロールの改善</a>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3 id="scroll--position-api-demo"><a href="#scroll--position-api-demo">Scroll &amp; Position API DEMO</a></h3>
+          <p>ここまでの API の値の変化を確認するデモを以下に用意した。
+          <ul>
+            <li>
+              <a href="https://labs.jxck.io/intersection-observer/size.html">Scroll &amp; Position API DEMO</a>
+            </li>
+          </ul>
+        </section>
       </section>
       <section>
-        <h3 id="onscroll-イベント"><a href="#onscroll-イベント">onscroll イベント</a></h3>
-        <p>上記の判定は、スクロールするたび、つまり onscroll イベントごとに計算すれば DOM の出現監視になる。
-        <p>ただし、 onscroll は発生頻度が非常に多いため、愚直にコールバックに指定してしまうと、ボトルネックになり Scroll Jank を引き起こす可能性がある。
-        <p>対策としては、まずコールバックを実行するイベントを間引く throttling がある。
-        <p>例えば、 underscore.js の <a href="http://underscorejs.org/#throttle">throttle()</a> 相当のものや、 Reactive Extension 系のライブラリを使うことで実現できる。
-        <p>また、計算処理のみでコールバックを抜けるのであれば、 <code translate="no">.preventDefault()</code> を呼ばないため、別エントリで解説した Passive Event Listener を利用できる。
-        <ul>
-          <li>
-            <a href="https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html">Passive Event Listeners によるスクロールの改善</a>
-          </li>
-        </ul>
+        <h2 id="問題点"><a href="#問題点">問題点</a></h2>
+        <p>さて、ここまで見て来た方法には多くの問題があった。
+        <ol>
+          <li>scroll event のハンドラが Scroll Jank を引き起こす可能性がある
+          <li>全 scroll event での実施は回数が多いので、 throttling (まびき)を行う必要がある
+          <li>サイズや位置を取得する API は Forced Synchronous Layout を発生させる
+          <li>API が分かりづらく、互換性も微妙で、単純に実装が面倒くさい
+        </ol>
+        <p>ここでは 3 に注目したい。
+        <section>
+          <h3 id="forced-synchronous-layout"><a href="#forced-synchronous-layout">Forced Synchronous Layout</a></h3>
+          <p>ここまでに紹介した、 <code translate="no">scrollTop</code>, <code translate="no">offset</code>, <code translate="no">getBoundingClientRect()</code> などの呼び出しは、その時点での DOM の位置を取得するために Layout 計算を行う。
+          <p>この計算は同期処理であり、つまりブロックが発生する。さらにそれを onscroll など頻度の高いイベントの中で行うのは、スムーズなスクロール表示のためのブラウザの最適化を阻害してしまう。
+          <p>そこで、この頻出処理をブラウザのネイティブ API として実装し、より効率良く実装するのが、今回紹介する Intersection Observer である。
+        </section>
       </section>
       <section>
-        <h3 id="scroll--position-api-demo"><a href="#scroll--position-api-demo">Scroll &amp; Position API DEMO</a></h3>
-        <p>ここまでの API の値の変化を確認するデモを以下に用意した。
-        <ul>
-          <li>
-            <a href="https://labs.jxck.io/intersection-observer/size.html">Scroll &amp; Position API DEMO</a>
-          </li>
-        </ul>
+        <h2 id="intersection-observer"><a href="#intersection-observer">Intersection Observer</a></h2>
+        <p>Intersection Observer は交点(Intersection) を監視し、指定した要素同士の交差が発生したら、イベントを発火する Observer である。
+        <p>交点の検出処理は、ブラウザが内部で行っているため、前述のような onscroll 内での同期処理などは一切必要がなくなる。
+        <p>逆を言えば、スクロール以外による交差の発生も一括して取得することが可能になる。
+        <p>これにより、 Scroll Jank の原因が除去され、効率良く実装することが可能となる。
       </section>
-    </section>
-    <section>
-      <h2 id="問題点"><a href="#問題点">問題点</a></h2>
-      <p>さて、ここまで見て来た方法には多くの問題があった。
-      <ol>
-        <li>scroll event のハンドラが Scroll Jank を引き起こす可能性がある
-        <li>全 scroll event での実施は回数が多いので、 throttling (まびき)を行う必要がある
-        <li>サイズや位置を取得する API は Forced Synchronous Layout を発生させる
-        <li>API が分かりづらく、互換性も微妙で、単純に実装が面倒くさい
-      </ol>
-      <p>ここでは 3 に注目したい。
       <section>
-        <h3 id="forced-synchronous-layout"><a href="#forced-synchronous-layout">Forced Synchronous Layout</a></h3>
-        <p>ここまでに紹介した、 <code translate="no">scrollTop</code>, <code translate="no">offset</code>, <code translate="no">getBoundingClientRect()</code> などの呼び出しは、その時点での DOM の位置を取得するために Layout 計算を行う。
-        <p>この計算は同期処理であり、つまりブロックが発生する。さらにそれを onscroll など頻度の高いイベントの中で行うのは、スムーズなスクロール表示のためのブラウザの最適化を阻害してしまう。
-        <p>そこで、この頻出処理をブラウザのネイティブ API として実装し、より効率良く実装するのが、今回紹介する Intersection Observer である。
-      </section>
-    </section>
-    <section>
-      <h2 id="intersection-observer"><a href="#intersection-observer">Intersection Observer</a></h2>
-      <p>Intersection Observer は交点(Intersection) を監視し、指定した要素同士の交差が発生したら、イベントを発火する Observer である。
-      <p>交点の検出処理は、ブラウザが内部で行っているため、前述のような onscroll 内での同期処理などは一切必要がなくなる。
-      <p>逆を言えば、スクロール以外による交差の発生も一括して取得することが可能になる。
-      <p>これにより、 Scroll Jank の原因が除去され、効率良く実装することが可能となる。
-    </section>
-    <section>
-      <h2 id="api"><a href="#api">API</a></h2>
-      <p>コールバックとオプションを指定し、 Intersection Observer Class のインスタンスを生成する。
-      <p>生成した Observer に対して、任意の DOM 要素を <code translate="no">observe()</code> メソッドで指定することにより、対象を監視する。
-      <p>複数要素を同じように監視する場合は、同じ Intersection Observer インスタンスで、 observe を複数回呼ぶことができる。
-      <pre class=js><code translate="no">let observer = new IntersectionObserver((changes) =&gt; {
+        <h2 id="api"><a href="#api">API</a></h2>
+        <p>コールバックとオプションを指定し、 Intersection Observer Class のインスタンスを生成する。
+        <p>生成した Observer に対して、任意の DOM 要素を <code translate="no">observe()</code> メソッドで指定することにより、対象を監視する。
+        <p>複数要素を同じように監視する場合は、同じ Intersection Observer インスタンスで、 observe を複数回呼ぶことができる。
+        <pre class=js><code translate="no">let observer = new IntersectionObserver((changes) =&gt; {
   for (let change of changes) {
     console.log(change);
   }
 }, option);
 observer.observe(target);</code></pre>
-      <section>
-        <h3 id="callback"><a href="#callback">callback</a></h3>
-        <p>複数の DOM を監視した場合は、一つのイベントで複数の変更が取得されるため、コールバックの引数は監視した DOM の数だけ入ってくる。
-        <p>一つの変更は以下のプロパティを持つ
-        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/table.css>
-        <table>
-          <thead>
-            <tr>
-              <th class=align-left>プロパティ</th>
-              <th class=align-left>内容</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class=align-left><code translate="no">change.time</code></td>
-              <td class=align-left>タイムスタンプ</td>
-            </tr>
-            <tr>
-              <td class=align-left><code translate="no">change.rootBounds</code></td>
-              <td class=align-left>root の <code translate="no">getBoundingClientRect()</code></td>
-            </tr>
-            <tr>
-              <td class=align-left><code translate="no">change.boundingClientRect</code></td>
-              <td class=align-left>target の <code translate="no">getBoundingClientRect()</code></td>
-            </tr>
-            <tr>
-              <td class=align-left><code translate="no">change.intersectionRect</code></td>
-              <td class=align-left>交差領域の <code translate="no">getBoundingClientRect()</code></td>
-            </tr>
-            <tr>
-              <td class=align-left><code translate="no">change.intersectionRatio</code></td>
-              <td class=align-left>交差している領域の割合</td>
-            </tr>
-            <tr>
-              <td class=align-left><code translate="no">change.target</code></td>
-              <td class=align-left>target</td>
-            </tr>
-          </tbody>
-        </table>
-        <p><img loading=lazy src=intersection-observer.svg#500x357 alt="IntersectionObserver の各プロパティが表す部分" title="Intersection Observer API" width=500 height=357 intrinsicsize=500x357></p>
-        <p>特に <code translate="no">change.intersectionRect</code> および <code translate="no">change.intersectionRatio</code> は、自分で計算するとボトルネックになりがちである。
-        <p>第二引数には、オプションとして三つのプロパティを設定したオブジェクトを指定できる。
-        <pre class=js><code translate="no">let observer = new IntersectionObserver((changes) =&gt; {
+        <section>
+          <h3 id="callback"><a href="#callback">callback</a></h3>
+          <p>複数の DOM を監視した場合は、一つのイベントで複数の変更が取得されるため、コールバックの引数は監視した DOM の数だけ入ってくる。
+          <p>一つの変更は以下のプロパティを持つ
+          <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/table.css>
+          <table>
+            <thead>
+              <tr>
+                <th class=align-left>プロパティ</th>
+                <th class=align-left>内容</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class=align-left><code translate="no">change.time</code></td>
+                <td class=align-left>タイムスタンプ</td>
+              </tr>
+              <tr>
+                <td class=align-left><code translate="no">change.rootBounds</code></td>
+                <td class=align-left>root の <code translate="no">getBoundingClientRect()</code></td>
+              </tr>
+              <tr>
+                <td class=align-left><code translate="no">change.boundingClientRect</code></td>
+                <td class=align-left>target の <code translate="no">getBoundingClientRect()</code></td>
+              </tr>
+              <tr>
+                <td class=align-left><code translate="no">change.intersectionRect</code></td>
+                <td class=align-left>交差領域の <code translate="no">getBoundingClientRect()</code></td>
+              </tr>
+              <tr>
+                <td class=align-left><code translate="no">change.intersectionRatio</code></td>
+                <td class=align-left>交差している領域の割合</td>
+              </tr>
+              <tr>
+                <td class=align-left><code translate="no">change.target</code></td>
+                <td class=align-left>target</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            <img loading=lazy src=intersection-observer.svg#500x357 alt="IntersectionObserver の各プロパティが表す部分" title="Intersection Observer API" width=500 height=357 intrinsicsize=500x357>
+          </p>
+          <p>特に <code translate="no">change.intersectionRect</code> および <code translate="no">change.intersectionRatio</code> は、自分で計算するとボトルネックになりがちである。
+          <p>第二引数には、オプションとして三つのプロパティを設定したオブジェクトを指定できる。
+          <pre class=js><code translate="no">let observer = new IntersectionObserver((changes) =&gt; {
   // callback
 }, {
   root: document.querySelector(&#039;.target&#039;),
@@ -295,72 +299,71 @@ observer.observe(target);</code></pre>
   rootMargin: &#039;10px&#039;,
 });
 observer.observe(target);</code></pre>
+        </section>
+        <section>
+          <h3 id="root"><a href="#root">root</a></h3>
+          <p>デフォルトでは、 viewport を対象にした交差検出を行うことができるが、これはデフォルトの root が document 自身になっているからである。
+          <p>root オプションを用いることで、任意の親要素内を指定できるため、例えば <code translate="no">overflow: scroll</code> になった div の中の交差を判定することができる。
+          <pre class=js><code translate="no">{ root: document.querySelector(&#039;.target&#039;) }</code></pre>
+        </section>
+        <section>
+          <h3 id="threshold"><a href="#threshold">threshold</a></h3>
+          <p><code translate="no">change.intersectionRatio</code> によって、交差している領域の割合を取得できるが、コールバックが呼ばれるタイミングが交差のタイミングだけでは、 0% や 100% などあまり役に立たない値しか出ない。
+          <p>これは、表示が 0 (表示されてない), 100 (全て表示されている) のどちらかしかないためである。
+          <p>イベント発生頻度を増やすには、 threshold オプションを使うことができる。
+          <p>例えば、以下のように引数を設定すれば、交差領域が 20% 変化する毎にコールバックを呼ぶことができる。
+          <pre class=js><code translate="no">{ threshold: [0, 0.2, 0.4, 0.6, 0.8, 1.0] }</code></pre>
+          <p>これにより、表示領域の変化に合わせたインタラクションも実装が可能になる。
+        </section>
+        <section>
+          <h3 id="rootmargin"><a href="#rootmargin">rootMargin</a></h3>
+          <p>画像の遅延読み込みなどを実装したい場合は、 viewport を root として <code translate="no">&lt;img&gt;</code> を IntersectionObserver で監視するだろう。
+          <p>viewport 上に <code translate="no">&lt;img&gt;</code> が出現したことを検出することで、そこで画像の取得を走らせることができる。
+          <p>しかし、 viewport 上に表示されてから取得するより、表示される少し前に取得を開始できれば、小さい画像なら空の <code translate="no">&lt;img&gt;</code> すら出さずに済む可能性がある。
+          <p>こうした場合は rootMargin オプションを指定することができる。
+          <p>値は CSS の margin への指定と同じだ、例えば以下のように設定すれば、上下左右が交差する 10px 手前でイベントが発火する。
+          <pre class=js><code translate="no">{ rootMargin: &#039;10px&#039; }</code></pre>
+        </section>
+        <section>
+          <h3 id="intersection-observe-demo"><a href="#intersection-observe-demo">Intersection Observe DEMO</a></h3>
+          <p>Intersection Observer を用いた、基本的なデモを用意した。
+          <p>threshold を 10% にし、 intersectionRatio を表示するように実装している。
+          <ul>
+            <li>
+              <a href="https://labs.jxck.io/intersection-observer/intersection.html">Intersection Observer DEMO</a>
+            </li>
+          </ul>
+          <p>また以下に Intersecton Observer と、それ以前の API で、要素出現の検出を比較する DEMO を用意した。
+          <p>こちらは、 <code translate="no">overflow: scroll</code> な div を親とする出現検出も含めてある。
+          <ul>
+            <li>
+              <a href="https://labs.jxck.io/intersection-observer/visibility-change.html">Visibility Change DEMO</a>
+            </li>
+          </ul>
+        </section>
       </section>
       <section>
-        <h3 id="root"><a href="#root">root</a></h3>
-        <p>デフォルトでは、 viewport を対象にした交差検出を行うことができるが、これはデフォルトの root が document 自身になっているからである。
-        <p>root オプションを用いることで、任意の親要素内を指定できるため、例えば <code translate="no">overflow: scroll</code> になった div の中の交差を判定することができる。
-        <pre class=js><code translate="no">{ root: document.querySelector(&#039;.target&#039;) }</code></pre>
+        <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
+        <p>この機能を用いて、本サイトでも画像の遅延読み込みを実装するつもりでいる。
+        <p>しかし、本サイトでは Service Worker や HTTP2 Push など他の最適化戦略も併用する予定であるため、検証がまだ追いついていない。
+        <p>また、現状では最適化した SVG がほとんどであるため、画像の取得がボトルネックと見なすには弱い場合が多く、一旦見送ることにした。
+        <p>将来的に最適化戦略が落ち着いたら、追記する。
       </section>
       <section>
-        <h3 id="threshold"><a href="#threshold">threshold</a></h3>
-        <p><code translate="no">change.intersectionRatio</code> によって、交差している領域の割合を取得できるが、コールバックが呼ばれるタイミングが交差のタイミングだけでは、 0% や 100% などあまり役に立たない値しか出ない。
-        <p>これは、表示が 0 (表示されてない), 100 (全て表示されている) のどちらかしかないためである。
-        <p>イベント発生頻度を増やすには、 threshold オプションを使うことができる。
-        <p>例えば、以下のように引数を設定すれば、交差領域が 20% 変化する毎にコールバックを呼ぶことができる。
-        <pre class=js><code translate="no">{ threshold: [0, 0.2, 0.4, 0.6, 0.8, 1.0] }</code></pre>
-        <p>これにより、表示領域の変化に合わせたインタラクションも実装が可能になる。
-      </section>
-      <section>
-        <h3 id="rootmargin"><a href="#rootmargin">rootMargin</a></h3>
-        <p>画像の遅延読み込みなどを実装したい場合は、 viewport を root として <code translate="no">&lt;img&gt;</code> を IntersectionObserver で監視するだろう。
-        <p>viewport 上に <code translate="no">&lt;img&gt;</code> が出現したことを検出することで、そこで画像の取得を走らせることができる。
-        <p>しかし、 viewport 上に表示されてから取得するより、表示される少し前に取得を開始できれば、小さい画像なら空の <code translate="no">&lt;img&gt;</code> すら出さずに済む可能性がある。
-        <p>こうした場合は rootMargin オプションを指定することができる。
-        <p>値は CSS の margin への指定と同じだ、例えば以下のように設定すれば、上下左右が交差する 10px 手前でイベントが発火する。
-        <pre class=js><code translate="no">{ rootMargin: &#039;10px&#039; }</code></pre>
-      </section>
-      <section>
-        <h3 id="intersection-observe-demo"><a href="#intersection-observe-demo">Intersection Observe DEMO</a></h3>
-        <p>Intersection Observer を用いた、基本的なデモを用意した。
-        <p>threshold を 10% にし、 intersectionRatio を表示するように実装している。
+        <h2 id="links"><a href="#links">Links</a></h2>
         <ul>
           <li>
-            <a href="https://labs.jxck.io/intersection-observer/intersection.html">Intersection Observer DEMO</a>
+            <a href="https://wicg.github.io/IntersectionObserver/">Intersection Observer Spec</a>
           </li>
-        </ul>
-        <p>また以下に Intersecton Observer と、それ以前の API で、要素出現の検出を比較する DEMO を用意した。
-        <p>こちらは、 <code translate="no">overflow: scroll</code> な div を親とする出現検出も含めてある。
-        <ul>
           <li>
-            <a href="https://labs.jxck.io/intersection-observer/visibility-change.html">Visibility Change DEMO</a>
+            <a href="https://github.com/WICG/IntersectionObserver/blob/gh-pages/explainer.md">Intersection Observers Explained</a>
+          </li>
+          <li>
+            <a href="https://gist.github.com/paulirish/5d52fb081b3570c81e3a">What forces layout/reflow. The comprehensive list.</a>
           </li>
         </ul>
       </section>
-    </section>
-    <section>
-      <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
-      <p>この機能を用いて、本サイトでも画像の遅延読み込みを実装するつもりでいる。
-      <p>しかし、本サイトでは Service Worker や HTTP2 Push など他の最適化戦略も併用する予定であるため、検証がまだ追いついていない。
-      <p>また、現状では最適化した SVG がほとんどであるため、画像の取得がボトルネックと見なすには弱い場合が多く、一旦見送ることにした。
-      <p>将来的に最適化戦略が落ち着いたら、追記する。
-    </section>
-    <section>
-      <h2 id="links"><a href="#links">Links</a></h2>
-      <ul>
-        <li>
-          <a href="https://wicg.github.io/IntersectionObserver/">Intersection Observer Spec</a>
-        </li>
-        <li>
-          <a href="https://github.com/WICG/IntersectionObserver/blob/gh-pages/explainer.md">Intersection Observers Explained</a>
-        </li>
-        <li>
-          <a href="https://gist.github.com/paulirish/5d52fb081b3570c81e3a">What forces layout/reflow. The comprehensive list.</a>
-        </li>
-      </ul>
-    </section>
-  </article>
-
+    </article>
   </main>
   <hr>
 

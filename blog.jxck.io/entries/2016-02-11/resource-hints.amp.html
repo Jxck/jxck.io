@@ -798,8 +798,6 @@
     <dt>updated_at</dt><dd><time class=updated_at datetime=2018-07-27>2018-07-27</time></dd>
     <dt class=tags>tags</dt><dd>[<a href='/tags/resource%20hints.html'>resource hints</a><i>,</i><a href='/tags/performance.html'>performance</a>]</dd>
   </ul>
-
-
   <article>
     <h1><a href=/entries/2016-02-11/resource-hints.html>Resource Hints API でリソースの投機的取得</a></h1>
     <section>
@@ -906,7 +904,9 @@
     <section>
       <h2 id="api-選択フロー"><a href="#api-選択フロー">API 選択フロー</a></h2>
       <p>どの API を選ぶフローは、接続するドメインが分かっている前提であれば、以下のように考えることができる。
-      <p><amp-img layout=responsive src=resource-hints.svg#546x608 alt="接続する URL まで決まっている N -> dns-prefetch, Y -> 静的リソースか、事前取得可能である N -> preconnect, Y -> prefetch 可能かリソースだけでなる N -> prefetch, Y -> prerender" title="Resource Hints API の選択フロー" width=546 height=608></p>
+      <p>
+        <amp-img layout=responsive src=resource-hints.svg#546x608 alt="接続する URL まで決まっている N -> dns-prefetch, Y -> 静的リソースか、事前取得可能である N -> preconnect, Y -> prefetch 可能かリソースだけでなる N -> prefetch, Y -> prerender" title="Resource Hints API の選択フロー" width=546 height=608>
+      </p>
     </section>
     <section>
       <h2 id="サイトへの適用"><a href="#サイトへの適用">サイトへの適用</a></h2>
@@ -923,10 +923,11 @@
       </ul>
       <p>名前解決の方は確認が難しいので、後者のみ確認結果を載せる。
       <p>Chrome の場合は Prerender の状況について chrome://net-internals から確認できる。
-      <p><amp-img layout=responsive src=net-internals-prerender.png#1058x299 alt="chrome://net-internals#prerender による Prerender の状況確認" title="chrome://net-internals#prerender" width=1058 height=299></p>
+      <p>
+        <amp-img layout=responsive src=net-internals-prerender.png#1058x299 alt="chrome://net-internals#prerender による Prerender の状況確認" title="chrome://net-internals#prerender" width=1058 height=299>
+      </p>
     </section>
   </article>
-
 </main>
 <hr>
 <footer>

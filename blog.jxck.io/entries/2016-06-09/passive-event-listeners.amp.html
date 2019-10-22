@@ -798,8 +798,6 @@
     <dt>updated_at</dt><dd><time class=updated_at datetime=2018-07-30>2018-07-30</time></dd>
     <dt class=tags>tags</dt><dd>[<a href='/tags/rendering.html'>rendering</a><i>,</i><a href='/tags/performance.html'>performance</a>]</dd>
   </ul>
-
-
   <article>
     <h1><a href=/entries/2016-06-09/passive-event-listeners.html>Passive Event Listeners によるスクロールの改善</a></h1>
     <section>
@@ -929,12 +927,16 @@ function addEventListenerWithOptions(target, type, handler, options) {
       <section>
         <h3 id="passive-false"><a href="#passive-false">Passive False</a></h3>
         <p>touchstart イベントに時間がかかっているため、スクロールが詰まる。
-        <p><amp-img layout=responsive src=passive-event-listeners-false.gif#1347x687 alt="リスナが Active であるため、スクロールが詰まる" title="Active Event Listener DEMO" width=1347 height=687></p>
+        <p>
+          <amp-img layout=responsive src=passive-event-listeners-false.gif#1347x687 alt="リスナが Active であるため、スクロールが詰まる" title="Active Event Listener DEMO" width=1347 height=687>
+        </p>
       </section>
       <section>
         <h3 id="passive-true"><a href="#passive-true">Passive True</a></h3>
         <p>スクロールが詰まらない。
-        <p><amp-img layout=responsive src=passive-event-listeners-true.gif#1347x687 alt="リスナが Passive であるため、スクロールが詰まらない" title="Passive Event Listener DEMO" width=1347 height=687></p>
+        <p>
+          <amp-img layout=responsive src=passive-event-listeners-true.gif#1347x687 alt="リスナが Passive であるため、スクロールが詰まらない" title="Passive Event Listener DEMO" width=1347 height=687>
+        </p>
       </section>
     </section>
     <section>
@@ -967,7 +969,6 @@ function addEventListenerWithOptions(target, type, handler, options) {
       </ul>
     </section>
   </article>
-
 </main>
 <hr>
 <footer>

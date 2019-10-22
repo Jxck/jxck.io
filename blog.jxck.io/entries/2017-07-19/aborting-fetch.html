@@ -106,92 +106,92 @@
     </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
-  <article>
-    <h1><a href=/entries/2017-07-19/aborting-fetch.html>Fetch の中断と Promise のキャンセル方法の標準化</a></h1>
-    <section>
-      <h2 id="intro"><a href="#intro">Intro</a></h2>
-      <p>XHR から <code translate="no">fetch()</code> に積極的に移行しづらかった最大のミッシングピースとして、中断できないという問題があった。
-      <p>これは、 <code translate="no">fetch()</code> が選んだ Promise ベースのインタフェースにおいて、キャンセルをどうするかという議論と絡み、長く決着が付かずにいた問題である。
-      <p>最近、やっと話が前進したので、ここまでの経過を解説する。
-    </section>
-    <section>
-      <h2 id="fetch-のミッシングピース"><a href="#fetch-のミッシングピース">Fetch のミッシングピース</a></h2>
-      <p><code translate="no">fetch()</code> は、ブラウザが発行するリクエストと、取得するレスポンスを扱う低レベルなインタフェースとして策定が始まった。
-      <p>DOM の API が Promise ベースに移行しつつある流れを汲み、 <code translate="no">fetch()</code> もまた Promise を返す関数一発スタイルになった。
-      <p>クラスからインスタンスを生成しメソッドを呼ぶ XHR スタイルでは、インスタンスを再利用した場合の挙動などを含め、オブジェクトのライフサイクルを考慮する必要もあった。
-      <p>これを Request オブジェクトを渡し Response オブジェクトが返る (resolve) 関数とすることで、実際の挙動との整合したまま全体をシンプルに定義することができた。
-      <p>しかし、このインタフェースによって、 XHR ではできて <code translate="no">fetch()</code> ではできないことが大きく 2 つあった。
-      <ul>
-        <li>
-          <code translate="no">fetch()</code> を中断する
-        </li>
-        <li>
-          <code translate="no">fetch()</code> の Progress (経過) を取得する
-        </li>
-      </ul>
-      <p>したがって、初期の <code translate="no">fetch()</code> は、プログレスバーとキャンセルボタンを持つ UI といった、典型的な実装が不可能だった。
-      <p>ところが、この問題の一部は後の stream 導入により解決している。
-    </section>
-    <section>
-      <h2 id="stream-対応"><a href="#stream-対応">Stream 対応</a></h2>
-      <p>resolve される response から得られる body が stream に対応したため、 <a href="https://blog.jxck.io/entries/2016-07-21/fetch-progress-cancel.html">2 つのことが可能</a>となった。
-      <ul>
-        <li>chunk が取得できるようになり、実質 progess の取得が可能になった
-        <li>stream を中断することが可能になった
-      </ul>
-      <p>後者の stream の中断は、 <code translate="no">fetch()</code> の中断の一種として使うこともできる。
-      <p>しかし、あくまで stream は <code translate="no">fetch()</code> が resolve された後、つまりサーバからレスポンスが届き始めてからである。
-      <p>サーバが詰まっていて、リクエストに対するレスポンスが全く来てないような状況では、そもそも Promise  が resolve されないので、やはり中断ができない。
-    </section>
-    <section>
-      <h2 id="abort-のインタフェースは誰が持つべきか"><a href="#abort-のインタフェースは誰が持つべきか">abort のインタフェースは誰が持つべきか</a></h2>
-      <p>この中断問題は、 <code translate="no">fetch()</code> だけの問題かというとそうではないだろう。
-      <p>DOM の標準 API 以外に、自分で Promise による抽象化をしたい場合も同じ要求は想定できる。
-      <p>例えば、 <code translate="no">Promise.race()</code> は最初に resolve した Promise の結果を返して終わるが、他の promise が止まるわけではなく裏で動き続ける。
-      <p>もし 4 つのタスクを race に渡して、最初に終わった結果を取りたいと思ったら、残りの 3 つは中断で良いかもしれない。
-      <p>つまり Promise 自体に停止の概念を持たせようという発想が自然であり、それが Cancelable Promise だった。
-    </section>
-    <section>
-      <h2 id="cancelable-promise"><a href="#cancelable-promise">Cancelable Promise</a></h2>
-      <p>Promise にキャンセルさせる仕組みを持たせれば、 <code translate="no">fetch()</code> も同時にキャンセルできるし、今後 Promise を返す全ての API が中断を考慮できる。
-      <p>これが、 TC39 で提案されていた Cancelable Promise である。
-      <p><a href="https://github.com/tc39/proposal-cancelable-promises/">tc39/proposal-cancelable-promises</a>
-      <p>提案先が TC39 なのは、対象が JS の Promise そのものだからである。
-      <p>要約すると以下のようなものだった。
-      <ul>
-        <li>CancelToken (.NET の知見) という API 経由で Promise をキャンセルする。
-        <li>キャンセルはエラーとは違うため、 resolve/reject 以外に 3 つめの状態を追加する。
-      </ul>
-      <p>しかし、結論から言うと議論の途中で頓挫してしまった。
-      <p>なんで頓挫したかの詳細は、仕様策定の中心だった domenic の悲痛な一言に集約されている。
-      <p><a href="https://github.com/tc39/proposal-cancelable-promises/issues/70#issuecomment-267414933">Why was this proposal withdrawn? #70</a>
-    </section>
-    <section>
-      <h2 id="aborting-fetch"><a href="#aborting-fetch">aborting fetch</a></h2>
-      <p>Promise がキャンセルできないからといって、 <code translate="no">fetch()</code> の中断を諦めるわけにはいかない。
-      <p>XHR であたりまえにできていたことが、できないままでは困る。
-      <p>そこで Cancelable Promise 待ちだった <code translate="no">fetch()</code> の abort は、 <code translate="no">fetch()</code> 側で再度議論することとなった。
-      <p><a href="https://github.com/whatwg/fetch/issues/447">Aborting a fetch: The Next Generation #447</a>
-      <p>再出発から半年くらいの <a href="https://github.com/whatwg/fetch/pull/523">議論</a> を重ね、やっと <a href="https://github.com/w3c/web-platform-tests/pull/6484#issuecomment-315775251">まとまりつつ</a> ある。
-    </section>
-    <section>
-      <h2 id="aborting-ongoing-activities"><a href="#aborting-ongoing-activities">Aborting ongoing activities</a></h2>
-      <p><code translate="no">fetch()</code> での議論の結果、 DOM 自体にいくつかの機能と、中断処理の方法を追加し、それを <code translate="no">fetch()</code> で利用する形に落ち着いた。
-      <p>結果的に DOM の中に、実行中の処理を中断する一般的な方法が定義された形になる。
-      <p><a href="https://dom.spec.whatwg.org/#aborting-ongoing-activities">Aborting ongoing activities</a>
-      <p>実際に、同じ問題を持っていた WebUSB API などの周辺仕様の反応も良好なようだ。
-      <p>つまり、この方法が今後の Web における一般的な方法として使われていき、 Promise を繋いで非同期処理を行う上での頻出パターンの一つとなる可能性がある。
-      <p>そうなったときのためにも、 <em>現状の提案を把握し異論があれば発言をする大事なタイミング</em> だと思われるため、この API を解説する。
-      <p>作業中の仕様であるため変更される可能性はあり、まだ実装したブラウザも確認してない。
-    </section>
-    <section>
-      <h2 id="abortcontroller"><a href="#abortcontroller">AbortController</a></h2>
+    <article>
+      <h1><a href=/entries/2017-07-19/aborting-fetch.html>Fetch の中断と Promise のキャンセル方法の標準化</a></h1>
       <section>
-        <h3 id="汎例"><a href="#汎例">汎例</a></h3>
-        <p>まず一般的な方法として、 Promise に包んだロングタスクを中断する方法を解説する。
-        <p>ここでは EventTarget で実装されたタスクを、中断に対応した Promise にする例である。
-        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-        <pre class=js><code translate="no">class LongTask extends EventTarget {
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>XHR から <code translate="no">fetch()</code> に積極的に移行しづらかった最大のミッシングピースとして、中断できないという問題があった。
+        <p>これは、 <code translate="no">fetch()</code> が選んだ Promise ベースのインタフェースにおいて、キャンセルをどうするかという議論と絡み、長く決着が付かずにいた問題である。
+        <p>最近、やっと話が前進したので、ここまでの経過を解説する。
+      </section>
+      <section>
+        <h2 id="fetch-のミッシングピース"><a href="#fetch-のミッシングピース">Fetch のミッシングピース</a></h2>
+        <p><code translate="no">fetch()</code> は、ブラウザが発行するリクエストと、取得するレスポンスを扱う低レベルなインタフェースとして策定が始まった。
+        <p>DOM の API が Promise ベースに移行しつつある流れを汲み、 <code translate="no">fetch()</code> もまた Promise を返す関数一発スタイルになった。
+        <p>クラスからインスタンスを生成しメソッドを呼ぶ XHR スタイルでは、インスタンスを再利用した場合の挙動などを含め、オブジェクトのライフサイクルを考慮する必要もあった。
+        <p>これを Request オブジェクトを渡し Response オブジェクトが返る (resolve) 関数とすることで、実際の挙動との整合したまま全体をシンプルに定義することができた。
+        <p>しかし、このインタフェースによって、 XHR ではできて <code translate="no">fetch()</code> ではできないことが大きく 2 つあった。
+        <ul>
+          <li>
+            <code translate="no">fetch()</code> を中断する
+          </li>
+          <li>
+            <code translate="no">fetch()</code> の Progress (経過) を取得する
+          </li>
+        </ul>
+        <p>したがって、初期の <code translate="no">fetch()</code> は、プログレスバーとキャンセルボタンを持つ UI といった、典型的な実装が不可能だった。
+        <p>ところが、この問題の一部は後の stream 導入により解決している。
+      </section>
+      <section>
+        <h2 id="stream-対応"><a href="#stream-対応">Stream 対応</a></h2>
+        <p>resolve される response から得られる body が stream に対応したため、 <a href="https://blog.jxck.io/entries/2016-07-21/fetch-progress-cancel.html">2 つのことが可能</a>となった。
+        <ul>
+          <li>chunk が取得できるようになり、実質 progess の取得が可能になった
+          <li>stream を中断することが可能になった
+        </ul>
+        <p>後者の stream の中断は、 <code translate="no">fetch()</code> の中断の一種として使うこともできる。
+        <p>しかし、あくまで stream は <code translate="no">fetch()</code> が resolve された後、つまりサーバからレスポンスが届き始めてからである。
+        <p>サーバが詰まっていて、リクエストに対するレスポンスが全く来てないような状況では、そもそも Promise  が resolve されないので、やはり中断ができない。
+      </section>
+      <section>
+        <h2 id="abort-のインタフェースは誰が持つべきか"><a href="#abort-のインタフェースは誰が持つべきか">abort のインタフェースは誰が持つべきか</a></h2>
+        <p>この中断問題は、 <code translate="no">fetch()</code> だけの問題かというとそうではないだろう。
+        <p>DOM の標準 API 以外に、自分で Promise による抽象化をしたい場合も同じ要求は想定できる。
+        <p>例えば、 <code translate="no">Promise.race()</code> は最初に resolve した Promise の結果を返して終わるが、他の promise が止まるわけではなく裏で動き続ける。
+        <p>もし 4 つのタスクを race に渡して、最初に終わった結果を取りたいと思ったら、残りの 3 つは中断で良いかもしれない。
+        <p>つまり Promise 自体に停止の概念を持たせようという発想が自然であり、それが Cancelable Promise だった。
+      </section>
+      <section>
+        <h2 id="cancelable-promise"><a href="#cancelable-promise">Cancelable Promise</a></h2>
+        <p>Promise にキャンセルさせる仕組みを持たせれば、 <code translate="no">fetch()</code> も同時にキャンセルできるし、今後 Promise を返す全ての API が中断を考慮できる。
+        <p>これが、 TC39 で提案されていた Cancelable Promise である。
+        <p><a href="https://github.com/tc39/proposal-cancelable-promises/">tc39/proposal-cancelable-promises</a>
+        <p>提案先が TC39 なのは、対象が JS の Promise そのものだからである。
+        <p>要約すると以下のようなものだった。
+        <ul>
+          <li>CancelToken (.NET の知見) という API 経由で Promise をキャンセルする。
+          <li>キャンセルはエラーとは違うため、 resolve/reject 以外に 3 つめの状態を追加する。
+        </ul>
+        <p>しかし、結論から言うと議論の途中で頓挫してしまった。
+        <p>なんで頓挫したかの詳細は、仕様策定の中心だった domenic の悲痛な一言に集約されている。
+        <p><a href="https://github.com/tc39/proposal-cancelable-promises/issues/70#issuecomment-267414933">Why was this proposal withdrawn? #70</a>
+      </section>
+      <section>
+        <h2 id="aborting-fetch"><a href="#aborting-fetch">aborting fetch</a></h2>
+        <p>Promise がキャンセルできないからといって、 <code translate="no">fetch()</code> の中断を諦めるわけにはいかない。
+        <p>XHR であたりまえにできていたことが、できないままでは困る。
+        <p>そこで Cancelable Promise 待ちだった <code translate="no">fetch()</code> の abort は、 <code translate="no">fetch()</code> 側で再度議論することとなった。
+        <p><a href="https://github.com/whatwg/fetch/issues/447">Aborting a fetch: The Next Generation #447</a>
+        <p>再出発から半年くらいの <a href="https://github.com/whatwg/fetch/pull/523">議論</a> を重ね、やっと <a href="https://github.com/w3c/web-platform-tests/pull/6484#issuecomment-315775251">まとまりつつ</a> ある。
+      </section>
+      <section>
+        <h2 id="aborting-ongoing-activities"><a href="#aborting-ongoing-activities">Aborting ongoing activities</a></h2>
+        <p><code translate="no">fetch()</code> での議論の結果、 DOM 自体にいくつかの機能と、中断処理の方法を追加し、それを <code translate="no">fetch()</code> で利用する形に落ち着いた。
+        <p>結果的に DOM の中に、実行中の処理を中断する一般的な方法が定義された形になる。
+        <p><a href="https://dom.spec.whatwg.org/#aborting-ongoing-activities">Aborting ongoing activities</a>
+        <p>実際に、同じ問題を持っていた WebUSB API などの周辺仕様の反応も良好なようだ。
+        <p>つまり、この方法が今後の Web における一般的な方法として使われていき、 Promise を繋いで非同期処理を行う上での頻出パターンの一つとなる可能性がある。
+        <p>そうなったときのためにも、 <em>現状の提案を把握し異論があれば発言をする大事なタイミング</em> だと思われるため、この API を解説する。
+        <p>作業中の仕様であるため変更される可能性はあり、まだ実装したブラウザも確認してない。
+      </section>
+      <section>
+        <h2 id="abortcontroller"><a href="#abortcontroller">AbortController</a></h2>
+        <section>
+          <h3 id="汎例"><a href="#汎例">汎例</a></h3>
+          <p>まず一般的な方法として、 Promise に包んだロングタスクを中断する方法を解説する。
+          <p>ここでは EventTarget で実装されたタスクを、中断に対応した Promise にする例である。
+          <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+          <pre class=js><code translate="no">class LongTask extends EventTarget {
   start() {
     //...
   }
@@ -250,12 +250,12 @@ function main() {
     controller.abort()
   }, 1000)
 }</code></pre>
+        </section>
       </section>
-    </section>
-    <section>
-      <h2 id="ferch"><a href="#ferch">ferch</a></h2>
-      <p><code translate="no">fetch()</code> の場合は、以下のようになる。
-      <pre class=js><code translate="no">function main() {
+      <section>
+        <h2 id="ferch"><a href="#ferch">ferch</a></h2>
+        <p><code translate="no">fetch()</code> の場合は、以下のようになる。
+        <pre class=js><code translate="no">function main() {
   // AbortController class が追加される
   const controller = new AbortController()
 
@@ -288,11 +288,11 @@ function main() {
     controller.abort()
   }, 1000)
 }</code></pre>
-    </section>
-    <section>
-      <h2 id="promiserace"><a href="#promiserace">Promise.race()</a></h2>
-      <p>Promise.race() で、勝った 1 つ以外を止める処理もできるようになる。
-      <pre class=js><code translate="no">const controlle = new AbortController()
+      </section>
+      <section>
+        <h2 id="promiserace"><a href="#promiserace">Promise.race()</a></h2>
+        <p>Promise.race() で、勝った 1 つ以外を止める処理もできるようになる。
+        <pre class=js><code translate="no">const controlle = new AbortController()
 const signal = controller.signal
 
 // 同じリソースを複数のミラーに問い合わせて
@@ -317,20 +317,19 @@ Promise.race([
   // race の失敗
   console.error(err)
 })</code></pre>
-    </section>
-    <section>
-      <h2 id="demo"><a href="#demo">DEMO</a></h2>
-      <p>デモを以下に用意した。
-      <p><a href="https://labs.jxck.io/fetch/abort.html">Aborting Fetch DEMO</a>
-    </section>
-    <section>
-      <h2 id="懸念点"><a href="#懸念点">懸念点</a></h2>
-      <p>Promise も DOM から始まって TC39 に移された経緯があるが、今回の件は TC39 から戻されて DOM 側で解決した。
-      <p>中断が TC39 に戻らない場合、 Promise は JS の仕様だが、中断は JS の仕様ではないという形になる。
-      <p>例えば Node への導入などが話し合われる際、こういう点がボトルネックにならないか少し気にかかるところだ。
-    </section>
-  </article>
-
+      </section>
+      <section>
+        <h2 id="demo"><a href="#demo">DEMO</a></h2>
+        <p>デモを以下に用意した。
+        <p><a href="https://labs.jxck.io/fetch/abort.html">Aborting Fetch DEMO</a>
+      </section>
+      <section>
+        <h2 id="懸念点"><a href="#懸念点">懸念点</a></h2>
+        <p>Promise も DOM から始まって TC39 に移された経緯があるが、今回の件は TC39 から戻されて DOM 側で解決した。
+        <p>中断が TC39 に戻らない場合、 Promise は JS の仕様だが、中断は JS の仕様ではないという形になる。
+        <p>例えば Node への導入などが話し合われる際、こういう点がボトルネックにならないか少し気にかかるところだ。
+      </section>
+    </article>
   </main>
   <hr>
 

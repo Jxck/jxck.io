@@ -106,165 +106,164 @@
     </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
-  <article>
-    <h1><a href=/entries/2016-09-29/vender-prefix-to-origin-trials.html>Web 標準化のフィードバックサイクルを円滑にする Origin Trials について</a></h1>
-    <section>
-      <h2 id="intro"><a href="#intro">Intro</a></h2>
-      <p>ブラウザに追加される新しい機能に対して、 Vender Prefix の代替となる Origin Trials の導入が徐々に始まっている。
-      <p>今回は、これまでの Vender Prefix の問題点と、代替として提案された Origin Trials のデザインや導入方法などについて記す。
-    </section>
-    <section>
-      <h2 id="avoid-breaking-the-web"><a href="#avoid-breaking-the-web">Avoid Breaking the Web</a></h2>
-      <p>Web が壊れることは、避けねばならない。
-      <p>Web に関する、特にブラウザが実装するような機能については、その仕様や実装を変更することにより、既存の資産の挙動が壊れることがある。
-      <p>これを <em>Breaking the Web</em> といい、プロトコルにしても API にしても、標準化団体やブラウザベンダなどは、これを避けることを念頭に置いて作業を行っている。(セキュリティ的な理由など、例外は多く有る。)
-      <p>一方で、新しく提案される仕様はフィードバックを集めなければ、仕様や実装が妥当か、安全か、本当に問題を解決するかなど、わからないことが多い。
-      <p>ところが、一度作られたコンテンツが更新されない可能性がある Web においては、 Breaking the Web を避けながらフィードバックを反映する変更を入れるのが難しい場合がある。
-      <p>そこで、かつてブラウザや端末のメーカが取った手法が Vender Prefix だった。
-    </section>
-    <section>
-      <h2 id="vender-prefix"><a href="#vender-prefix">Vender Prefix</a></h2>
-      <p>Vender Prefix とは、各ベンダが以下のような接頭辞を、標準プロパティの前に置くものをさす。
-      <ul>
-        <li>webkit (Chrome, Safari, newer versions of Opera.)
-        <li>moz (Firefox)
-        <li>o (Old versions of Opera)
-        <li>ms (Internet Explorer)
-      </ul>
-      <p>(<a href="https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix">Vendor Prefix - Glossary | MDN</a>)
-      <p>Vender Prefix は、まさしくその機能が <em>実験中</em> であることを示すために用いられ、これを付したベンダは、実験の結果をより積極的に反映できると期待した。
-      <p>そして、実験が終われば Prefix は取られ、標準プロパティに置きかわり役目を終える。はずだった。
-      <p>ところが、実際には多くのコンテンツが以下のようなコードを含む結果となった。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre class=css><code translate="no">.radius {
+    <article>
+      <h1><a href=/entries/2016-09-29/vender-prefix-to-origin-trials.html>Web 標準化のフィードバックサイクルを円滑にする Origin Trials について</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>ブラウザに追加される新しい機能に対して、 Vender Prefix の代替となる Origin Trials の導入が徐々に始まっている。
+        <p>今回は、これまでの Vender Prefix の問題点と、代替として提案された Origin Trials のデザインや導入方法などについて記す。
+      </section>
+      <section>
+        <h2 id="avoid-breaking-the-web"><a href="#avoid-breaking-the-web">Avoid Breaking the Web</a></h2>
+        <p>Web が壊れることは、避けねばならない。
+        <p>Web に関する、特にブラウザが実装するような機能については、その仕様や実装を変更することにより、既存の資産の挙動が壊れることがある。
+        <p>これを <em>Breaking the Web</em> といい、プロトコルにしても API にしても、標準化団体やブラウザベンダなどは、これを避けることを念頭に置いて作業を行っている。(セキュリティ的な理由など、例外は多く有る。)
+        <p>一方で、新しく提案される仕様はフィードバックを集めなければ、仕様や実装が妥当か、安全か、本当に問題を解決するかなど、わからないことが多い。
+        <p>ところが、一度作られたコンテンツが更新されない可能性がある Web においては、 Breaking the Web を避けながらフィードバックを反映する変更を入れるのが難しい場合がある。
+        <p>そこで、かつてブラウザや端末のメーカが取った手法が Vender Prefix だった。
+      </section>
+      <section>
+        <h2 id="vender-prefix"><a href="#vender-prefix">Vender Prefix</a></h2>
+        <p>Vender Prefix とは、各ベンダが以下のような接頭辞を、標準プロパティの前に置くものをさす。
+        <ul>
+          <li>webkit (Chrome, Safari, newer versions of Opera.)
+          <li>moz (Firefox)
+          <li>o (Old versions of Opera)
+          <li>ms (Internet Explorer)
+        </ul>
+        <p>(<a href="https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix">Vendor Prefix - Glossary | MDN</a>)
+        <p>Vender Prefix は、まさしくその機能が <em>実験中</em> であることを示すために用いられ、これを付したベンダは、実験の結果をより積極的に反映できると期待した。
+        <p>そして、実験が終われば Prefix は取られ、標準プロパティに置きかわり役目を終える。はずだった。
+        <p>ところが、実際には多くのコンテンツが以下のようなコードを含む結果となった。
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+        <pre class=css><code translate="no">.radius {
   -webkit-border-radius: 1em;
   -moz-border-radius: 1em;
 }</code></pre>
-      <pre class=js><code translate="no">var peerConnection = window.webkitRTCPeerConnection || window.mozRTCPeerConnection;</code></pre>
-      <p>このコードには以下のような問題がある。
-      <ul>
-        <li>webkit/moz 以外のブラウザがその機能を実装しても有効にならない
-        <li>webkit/moz の実装が安定しても、ブラウザが Prefix を捨てられない。
-        <li>実験だった筈が、挙動を大きく変更しにくい。
-      </ul>
-      <p>本来は以下のように書かれるべきだった。
-      <pre class=css><code translate="no">.radius {
+        <pre class=js><code translate="no">var peerConnection = window.webkitRTCPeerConnection || window.mozRTCPeerConnection;</code></pre>
+        <p>このコードには以下のような問題がある。
+        <ul>
+          <li>webkit/moz 以外のブラウザがその機能を実装しても有効にならない
+          <li>webkit/moz の実装が安定しても、ブラウザが Prefix を捨てられない。
+          <li>実験だった筈が、挙動を大きく変更しにくい。
+        </ul>
+        <p>本来は以下のように書かれるべきだった。
+        <pre class=css><code translate="no">.radius {
   -webkit-border-radius: 1em;
   -ms-border-radius: 1em;
   -o-border-radius: 1em;
   -webkit-border-radius: 1em;
   border-radius: 1em;
 }</code></pre>
-      <pre class=js><code translate="no">var peerConnection = window.RTCPeerConnection
+        <pre class=js><code translate="no">var peerConnection = window.RTCPeerConnection
                   || window.mozRTCPeerConnection
                   || window.webkitRTCPeerConnection
                   || window.msRTCPeerConnection;</code></pre>
-      <p>HTML5 時代には、特に実装が早い webkit/moz あたりを取り上げて「こう書けば動く」という形でコードが広まる結果となった。
-      <p>特に、仕様の策定に時間がかかった機能は、 Vender Prefix 付きの実装が多くのプロダクトに根強く染み込んでしまった。
-      <p>Vender Prefix は、 <em>「変更や消滅がありえる」ということを使う側に強制することができなかった</em> ため、本来の目的を果たすためには弱い仕組みだったといえる。
-      <p>
-        <picture>
-          <source type=image/webp srcset=vender-prefix-warning.webp#570x194>
-          <img loading=lazy src=vender-prefix-warning.png#570x194 alt="Veder Prefix 付きの API が呼ばれているため DevTools に警告(warning)が出ている" title="vender prefix warning" intrinsicsize=570x194>
-        </picture>
-      </p>
-      <p>また、 Prefix が付いていたのが、ベンダの独自拡張であったとしても、それに依存するサイトは同様の理由で産まれた。
-      <p>今年 Firefox が <a href="http://www.otsukare.info/2016/01/04/webkit-resolved-fixed">Prefix のついた webkit 独自拡張を見るようになった</a> のも、 Vender Prefix の性質を象徴する現象と言えると思う。
-    </section>
-    <section>
-      <h2 id="doing-science-on-the-web"><a href="#doing-science-on-the-web">Doing Science On The Web</a></h2>
-      <p>かといって新しい仕様の検討や実装をあきらめるわけにはいかない。
-      <p>仮説と検証、実装とドックフーディング、机上の空論で終わらないためには、実際にシップしてフィードバックを集めるプロセスは欠かせない。
-      <p><a href="https://infrequently.org/2015/08/doing-science-on-the-web/">Doing Science On The Web</a>
-      <p>新しい機能の実装を、特定の開発者にのみ提供するのであれば、既に方法はいくつかある。
-      <ul>
-        <li>
-          about:flags によるフラグの有効化(<a href="chrome://flags/#enable-experimental-web-platform-features">#enable-experimental-web-platform-features</a> etc)
-        </li>
-        <li>
-          ブラウザの起動フラグによる有効化(<a href="https://www.chromium.org/developers/how-tos/run-chromium-with-flags">&ndash;es_staging</a> etc)
-        </li>
-        <li>beta, dev, canary ビルドの提供
-        <li>devtools での有効化
-      </ul>
-      <p>いずれも、明示的に有効にしたユーザにのみ機能が提供できるが、実際にサービスなどにアクセスしてきたユーザに対しては機能が提供できない(だから Vender Prefix があった)。
-      <p>開発者がリアルワールドにデプロイして検証するためには、ユーザにいちいちベータブラウザの利用や、 about:flags の設定変更を求めるわけにもいかない。
-      <p>ブラウザが適切なフィードバックを得るための先行実装を行うには、その <em>途中の実装に依存したコンテンツが広まりすぎない仕組み</em> が必要となる。
-      <p>そこで、新しく提案されたのが Origin Trials だ。
-    </section>
-    <section>
-      <h2 id="origin-trials"><a href="#origin-trials">Origin Trials</a></h2>
-      <p>Origin Trials は、その名の通り「<em>特定のオリジンにだけ、実験中の機能を、期限付きで提供する</em>」仕組みである。
-      <p><a href="https://github.com/jpchase/OriginTrials/blob/gh-pages/explainer.md">Motivation and Explainer</a>
-      <p>開発者が Origin Trials の対象となっている機能を試したい場合、利用するオリジン(scheme + domain + port)へのトークンを申請する。
-      <p>コンテンツにそのトークンを付与すると、ブラウザがそのトークンを認識し、そのオリジンでのみ実験中の機能を有効にする。
-      <p>トークンには期限があり、役目を終えると Expire され、そうしたステータスの更新は登録時のアドレスにメールで通知される。
-      <p>オプトイン形式にすることで、利用範囲や期限を限定し、途中の挙動に依存したコンテンツが広がること/残ることを防ぐことができる。
-      <p>そしてなにより利用者との <em>連絡手段</em> を確保することにより、フィードバックの収集や利用者の量的データ、何かあった時の連絡などができるようになる点が大きい。
-      <p>特に最近追加される、より高度で低レイヤな機能については、実装も仕様も難易度が高く、こうした仕組みの重要性は高い。
-    </section>
-    <section>
-      <h2 id="利用の流れ"><a href="#利用の流れ">利用の流れ</a></h2>
-      <p>今回は、以下のガイドに沿って、ブラウザの持つ新しい機能を、筆者の持つ新機能実験用オリジンである <a href="https://labs.jxck.io">https://labs.jxck.io</a> でのみ使えるように、実際に申請をしながら解説する。
-      <p><a href="https://github.com/jpchase/OriginTrials/blob/gh-pages/developer-guide.md">Origin Trials Guide for Web Developers</a>
-      <section>
-        <h3 id="対象機能"><a href="#対象機能">対象機能</a></h3>
-        <p>Origin Trials の対象となる機能は、執筆時点で以下のとおりである。
-        <ul>
-          <li>Persistent Storage (Experimenting until mid-October 2016)
-          <li>Web Bluetooth (Experimenting until Late January 2017)
-          <li>Web USB (Experimenting until March 2017)
-          <li>Foreign Fetch (Experimenting until March 2017)
-        </ul>
-        <p>それぞれ、トライアルのおおよその期間も記されている。
-        <p>この期間になったら、トライアルが終わり、機能が使えなくなる可能性があることを、開発者は事前に了解する必要がある。
-        <p>今後、 Origin Trials 対象となる機能については、以下にリストされるようである。
-        <p><a href="https://github.com/jpchase/OriginTrials/blob/gh-pages/available-trials.md">Current Experimental Features</a>
-        <p>また、最初にトライアルに登録した時点で自動で登録される ML でアナウンスを得ることもできるらしい。
+        <p>HTML5 時代には、特に実装が早い webkit/moz あたりを取り上げて「こう書けば動く」という形でコードが広まる結果となった。
+        <p>特に、仕様の策定に時間がかかった機能は、 Vender Prefix 付きの実装が多くのプロダクトに根強く染み込んでしまった。
+        <p>Vender Prefix は、 <em>「変更や消滅がありえる」ということを使う側に強制することができなかった</em> ため、本来の目的を果たすためには弱い仕組みだったといえる。
+        <p>
+          <picture>
+            <source type=image/webp srcset=vender-prefix-warning.webp#570x194>
+            <img loading=lazy src=vender-prefix-warning.png#570x194 alt="Veder Prefix 付きの API が呼ばれているため DevTools に警告(warning)が出ている" title="vender prefix warning" intrinsicsize=570x194>
+          </picture>
+        </p>
+        <p>また、 Prefix が付いていたのが、ベンダの独自拡張であったとしても、それに依存するサイトは同様の理由で産まれた。
+        <p>今年 Firefox が <a href="http://www.otsukare.info/2016/01/04/webkit-resolved-fixed">Prefix のついた webkit 独自拡張を見るようになった</a> のも、 Vender Prefix の性質を象徴する現象と言えると思う。
       </section>
       <section>
-        <h3 id="申請"><a href="#申請">申請</a></h3>
-        <p>今回は、 &ldquo;Foreign Fetch&rdquo; の Origin Trials を申請してみることとする。
-        <p>申請は以下のフォームから行う。
-        <p><a href="http://bit.ly/OriginTrialSignup">http://bit.ly/OriginTrialSignup</a>
+        <h2 id="doing-science-on-the-web"><a href="#doing-science-on-the-web">Doing Science On The Web</a></h2>
+        <p>かといって新しい仕様の検討や実装をあきらめるわけにはいかない。
+        <p>仮説と検証、実装とドックフーディング、机上の空論で終わらないためには、実際にシップしてフィードバックを集めるプロセスは欠かせない。
+        <p><a href="https://infrequently.org/2015/08/doing-science-on-the-web/">Doing Science On The Web</a>
+        <p>新しい機能の実装を、特定の開発者にのみ提供するのであれば、既に方法はいくつかある。
         <ul>
-          <li>使用者のメールアドレス
-          <li>使用する機能 (Foreign Fetch)
-          <li>使用するオリジン (https://labs.jxck.io)
-          <li>いくつかの質問
+          <li>
+            about:flags によるフラグの有効化(<a href="chrome://flags/#enable-experimental-web-platform-features">#enable-experimental-web-platform-features</a> etc)
+          </li>
+          <li>
+            ブラウザの起動フラグによる有効化(<a href="https://www.chromium.org/developers/how-tos/run-chromium-with-flags">&ndash;es_staging</a> etc)
+          </li>
+          <li>beta, dev, canary ビルドの提供
+          <li>devtools での有効化
         </ul>
+        <p>いずれも、明示的に有効にしたユーザにのみ機能が提供できるが、実際にサービスなどにアクセスしてきたユーザに対しては機能が提供できない(だから Vender Prefix があった)。
+        <p>開発者がリアルワールドにデプロイして検証するためには、ユーザにいちいちベータブラウザの利用や、 about:flags の設定変更を求めるわけにもいかない。
+        <p>ブラウザが適切なフィードバックを得るための先行実装を行うには、その <em>途中の実装に依存したコンテンツが広まりすぎない仕組み</em> が必要となる。
+        <p>そこで、新しく提案されたのが Origin Trials だ。
       </section>
-    </section>
-    <section>
-      <h2 id="origin-trial-token"><a href="#origin-trial-token">Origin Trial Token</a></h2>
-      <p>しばらくすると、メールでトークンが送られてくる。
-      <p>このトークンを、 HTML か HTTP Header の中に仕込むことで、ブラウザが Origin Trials へのオプトインを認識し、申請した機能が使えるようになる。
       <section>
-        <h3 id="html-の場合"><a href="#html-の場合">HTML の場合</a></h3>
-        <p>HTML ページがある場合は、 <code translate="no">&lt;meta&gt;</code> タグに埋め込むことで、ブラウザがそれを認識し、ページ上で機能が有効になる。
-        <pre class=html><code translate="no">&lt;meta
+        <h2 id="origin-trials"><a href="#origin-trials">Origin Trials</a></h2>
+        <p>Origin Trials は、その名の通り「<em>特定のオリジンにだけ、実験中の機能を、期限付きで提供する</em>」仕組みである。
+        <p><a href="https://github.com/jpchase/OriginTrials/blob/gh-pages/explainer.md">Motivation and Explainer</a>
+        <p>開発者が Origin Trials の対象となっている機能を試したい場合、利用するオリジン(scheme + domain + port)へのトークンを申請する。
+        <p>コンテンツにそのトークンを付与すると、ブラウザがそのトークンを認識し、そのオリジンでのみ実験中の機能を有効にする。
+        <p>トークンには期限があり、役目を終えると Expire され、そうしたステータスの更新は登録時のアドレスにメールで通知される。
+        <p>オプトイン形式にすることで、利用範囲や期限を限定し、途中の挙動に依存したコンテンツが広がること/残ることを防ぐことができる。
+        <p>そしてなにより利用者との <em>連絡手段</em> を確保することにより、フィードバックの収集や利用者の量的データ、何かあった時の連絡などができるようになる点が大きい。
+        <p>特に最近追加される、より高度で低レイヤな機能については、実装も仕様も難易度が高く、こうした仕組みの重要性は高い。
+      </section>
+      <section>
+        <h2 id="利用の流れ"><a href="#利用の流れ">利用の流れ</a></h2>
+        <p>今回は、以下のガイドに沿って、ブラウザの持つ新しい機能を、筆者の持つ新機能実験用オリジンである <a href="https://labs.jxck.io">https://labs.jxck.io</a> でのみ使えるように、実際に申請をしながら解説する。
+        <p><a href="https://github.com/jpchase/OriginTrials/blob/gh-pages/developer-guide.md">Origin Trials Guide for Web Developers</a>
+        <section>
+          <h3 id="対象機能"><a href="#対象機能">対象機能</a></h3>
+          <p>Origin Trials の対象となる機能は、執筆時点で以下のとおりである。
+          <ul>
+            <li>Persistent Storage (Experimenting until mid-October 2016)
+            <li>Web Bluetooth (Experimenting until Late January 2017)
+            <li>Web USB (Experimenting until March 2017)
+            <li>Foreign Fetch (Experimenting until March 2017)
+          </ul>
+          <p>それぞれ、トライアルのおおよその期間も記されている。
+          <p>この期間になったら、トライアルが終わり、機能が使えなくなる可能性があることを、開発者は事前に了解する必要がある。
+          <p>今後、 Origin Trials 対象となる機能については、以下にリストされるようである。
+          <p><a href="https://github.com/jpchase/OriginTrials/blob/gh-pages/available-trials.md">Current Experimental Features</a>
+          <p>また、最初にトライアルに登録した時点で自動で登録される ML でアナウンスを得ることもできるらしい。
+        </section>
+        <section>
+          <h3 id="申請"><a href="#申請">申請</a></h3>
+          <p>今回は、 &ldquo;Foreign Fetch&rdquo; の Origin Trials を申請してみることとする。
+          <p>申請は以下のフォームから行う。
+          <p><a href="http://bit.ly/OriginTrialSignup">http://bit.ly/OriginTrialSignup</a>
+          <ul>
+            <li>使用者のメールアドレス
+            <li>使用する機能 (Foreign Fetch)
+            <li>使用するオリジン (https://labs.jxck.io)
+            <li>いくつかの質問
+          </ul>
+        </section>
+      </section>
+      <section>
+        <h2 id="origin-trial-token"><a href="#origin-trial-token">Origin Trial Token</a></h2>
+        <p>しばらくすると、メールでトークンが送られてくる。
+        <p>このトークンを、 HTML か HTTP Header の中に仕込むことで、ブラウザが Origin Trials へのオプトインを認識し、申請した機能が使えるようになる。
+        <section>
+          <h3 id="html-の場合"><a href="#html-の場合">HTML の場合</a></h3>
+          <p>HTML ページがある場合は、 <code translate="no">&lt;meta&gt;</code> タグに埋め込むことで、ブラウザがそれを認識し、ページ上で機能が有効になる。
+          <pre class=html><code translate="no">&lt;meta
   http-equiv=&quot;origin-trial&quot;
   data-feature=&quot;Foreign Fetch&quot;
   data-expires=&quot;2016-10-27&quot;
   content=&quot;AjWBjwNj3D6ajLeOwcUojZHss8sYj1mPvbhnmUQRcdrLzXKs13uUlR4pXvlOB7e9R5oMUNZbngniw6X2SLHlXgYAAABXeyJvcmlnaW4iOiAiaHR0cHM6Ly9sYWJzLmp4Y2suaW86NDQzIiwgImZlYXR1cmUiOiAiRm9yZWlnbkZldGNoIiwgImV4cGlyeSI6IDE0Nzc1OTMwMDB9&quot;&gt;</code></pre>
+        </section>
+        <section>
+          <h3 id="http-header-の場合"><a href="#http-header-の場合">HTTP Header の場合</a></h3>
+          <p>HTTP ヘッダの <code translate="no">Origin-Trial</code> ヘッダに埋め込むこともできる。ページの無い API などの場合はこちらを使う。
+          <pre class=http><code translate="no">Origin-Trial: AjWBjwNj3D6ajLeOwcUojZHss8sYj1mPvbhnmUQRcdrLzXKs13uUlR4pXvlOB7e9R5oMUNZbngniw6X2SLHlXgYAAABXeyJvcmlnaW4iOiAiaHR0cHM6Ly9sYWJzLmp4Y2suaW86NDQzIiwgImZlYXR1cmUiOiAiRm9yZWlnbkZldGNoIiwgImV4cGlyeSI6IDE0Nzc1OTMwMDB9</code></pre>
+        </section>
       </section>
       <section>
-        <h3 id="http-header-の場合"><a href="#http-header-の場合">HTTP Header の場合</a></h3>
-        <p>HTTP ヘッダの <code translate="no">Origin-Trial</code> ヘッダに埋め込むこともできる。ページの無い API などの場合はこちらを使う。
-        <pre class=http><code translate="no">Origin-Trial: AjWBjwNj3D6ajLeOwcUojZHss8sYj1mPvbhnmUQRcdrLzXKs13uUlR4pXvlOB7e9R5oMUNZbngniw6X2SLHlXgYAAABXeyJvcmlnaW4iOiAiaHR0cHM6Ly9sYWJzLmp4Y2suaW86NDQzIiwgImZlYXR1cmUiOiAiRm9yZWlnbkZldGNoIiwgImV4cGlyeSI6IDE0Nzc1OTMwMDB9</code></pre>
+        <h2 id="tool"><a href="#tool">Tool</a></h2>
+        <p>一応 Origin Trials が有効になっているかを知る Chrome Extension があるが、これは HTML の方しか見ていない模様。
+        <p><a href="https://chrome.google.com/webstore/detail/origin-trials/abpmcigmbmlngkajkikaghaibaocdhkp/related">Origin Trials Chrome Extension</a>
       </section>
-    </section>
-    <section>
-      <h2 id="tool"><a href="#tool">Tool</a></h2>
-      <p>一応 Origin Trials が有効になっているかを知る Chrome Extension があるが、これは HTML の方しか見ていない模様。
-      <p><a href="https://chrome.google.com/webstore/detail/origin-trials/abpmcigmbmlngkajkikaghaibaocdhkp/related">Origin Trials Chrome Extension</a>
-    </section>
-    <section>
-      <h2 id="foreign-fetch"><a href="#foreign-fetch">Foreign Fetch</a></h2>
-      <p>次回は、この Origin-Trial token によって有効になった Foreign Fetch について、実際のデモを作成しながら解説する。
-    </section>
-  </article>
-
+      <section>
+        <h2 id="foreign-fetch"><a href="#foreign-fetch">Foreign Fetch</a></h2>
+        <p>次回は、この Origin-Trial token によって有効になった Foreign Fetch について、実際のデモを作成しながら解説する。
+      </section>
+    </article>
   </main>
   <hr>
 

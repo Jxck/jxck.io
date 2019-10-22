@@ -798,8 +798,6 @@
     <dt>updated_at</dt><dd><time class=updated_at datetime=2019-10-09>2019-10-09</time></dd>
     <dt class=tags>tags</dt><dd>[<a href='/tags/webpackaging.html'>webpackaging</a><i>,</i><a href='/tags/signed-http-exchange.html'>signed-http-exchange</a>]</dd>
   </ul>
-
-
   <article>
     <h1><a href=/entries/2018-12-01/signed-http-exchanges.html>WebPackaging の Signed HTTP Exchanges</a></h1>
     <section>
@@ -868,7 +866,9 @@
       </ul>
       <p>実際に mozaic.fm のオリジンサーバから取得したわけではないが、署名によってそのように扱うことができる。
       <p>展開される Origin は mozaic.fm のものになり、ここから遷移する際に付与される Referer や Origin ヘッダも全て mozaic.fm になる。
-      <p><amp-img layout=responsive src=signed-http-exchange.svg#748x561 alt="signed http exchange 概観" title="signed http exchange" width=748 height=561></p>
+      <p>
+        <amp-img layout=responsive src=signed-http-exchange.svg#748x561 alt="signed http exchange 概観" title="signed http exchange" width=748 height=561>
+      </p>
     </section>
     <section>
       <h2 id="use-case"><a href="#use-case">Use Case</a></h2>
@@ -1066,21 +1066,31 @@ open -a Google\ Chrome\ Canary --args --ignore-certificate-errors-spki-list=$BAS
         </ul>
         <p><a href="https://labs.jxck.io/webpackaging/signed-http-exchange-b2/">https://labs.jxck.io/webpackaging/signed-http-exchange-b2/</a>
         <p>まず遷移先のページは以下だ。
-        <p><amp-img layout=responsive src=1-index.png#748x457 alt="sxg へ遷移する前のページ" title="index page" width=748 height=457></p>
+        <p>
+          <amp-img layout=responsive src=1-index.png#748x457 alt="sxg へ遷移する前のページ" title="index page" width=748 height=457>
+        </p>
         <p>ページ下部のリンクから sxg に遷移する。
         <ul>
           <li>https://labs.jxck.io/webpackaging/signed-http-exchange-b2/mozaic.sxg
         </ul>
         <p>このファイルに Origin-Trial Token を付与しており、 content-type は application/signed-exchange;v=b2 である。
-        <p><amp-img layout=responsive src=2-sxg-response.png#748x457 alt="sxg のレスポンスヘッダ" title="sxg response" width=748 height=457></p>
+        <p>
+          <amp-img layout=responsive src=2-sxg-response.png#748x457 alt="sxg のレスポンスヘッダ" title="sxg response" width=748 height=457>
+        </p>
         <p>このファイルを展開したブラウザは、ファイルをパースし、必要な情報を取得する。
         <p>オリジナルの URL やコンテンツ、署名と証明書などが確認できる。
-        <p><amp-img layout=responsive src=3-sxg-signing-detail.png#748x457 alt="sxg の署名部分の詳細" title="sxg signing detail" width=748 height=457></p>
+        <p>
+          <amp-img layout=responsive src=3-sxg-signing-detail.png#748x457 alt="sxg の署名部分の詳細" title="sxg signing detail" width=748 height=457>
+        </p>
         <p>ここで取得した Certificate URL から証明書を取得する。
         <p>cbor は <code translate="no">application/cert-chain+cbor</code> で配布する。
-        <p><amp-img layout=responsive src=4-cert-chain-cbor.png#748x457 alt="証明書チェインの詳細" title="cert chain cbor" width=748 height=457></p>
+        <p>
+          <amp-img layout=responsive src=4-cert-chain-cbor.png#748x457 alt="証明書チェインの詳細" title="cert chain cbor" width=748 height=457>
+        </p>
         <p>これを用いて署名の検証が完了したら、ブラウザは Original の URL でコンテンツを表示する。
-        <p><amp-img layout=responsive src=5-rendered-contents.png#748x457 alt="Logical URL で表示された HTML" title="" width=748 height=457></p>
+        <p>
+          <amp-img layout=responsive src=5-rendered-contents.png#748x457 alt="Logical URL で表示された HTML" title="" width=748 height=457>
+        </p>
         <p>内部的には改めてリクエストが発生しているように見えるが、サーバにはリクエストは飛んでいない。
         <p>また、ブラウザの URL バーには mozaic.fm として表示されていることがわかる。
         <p>ただし、今回 Signing の対象は index.html だけであり、サブリソースは署名していない。したがって CSS や JS などは実際のサーバにリクエストが発生している。
@@ -1313,7 +1323,6 @@ Content-Encoding: mi-sha256-03
       </ul>
     </section>
   </article>
-
 </main>
 <hr>
 <footer>

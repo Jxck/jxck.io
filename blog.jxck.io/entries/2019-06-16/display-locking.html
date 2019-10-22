@@ -106,163 +106,163 @@
     </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
-  <article>
-    <h1><a href=/entries/2019-06-16/display-locking.html>Display Locking によるレンダリングの最適化と Async DOM</a></h1>
-    <section>
-      <h2 id="intro"><a href="#intro">Intro</a></h2>
-      <p>React や lit-html などにより、 DOM 操作の抽象化に加えて最適化が提供されることが一般的となった。
-      <p>見方を変えれば、本来ブラウザがやるような最適化を、ライブラリが肩代わりしていると捉えることもできる。
-      <p>これは、現在の標準 API には、規模が大きく処理が複雑なアプリケーションを開発する際に、足りてないものがあると考えることが可能だ。
-      <p>課題の 1 つとして「DOM 操作が同期処理である」という点に着目し、 Async DOM という文脈でいくつかの提案が行われた。
-      <p>今回は、その提案の 1 つであり Chrome で実装が進んでいる Display Locking について現状を解説する。
-    </section>
-    <section>
-      <h2 id="現状の-dom-操作の課題"><a href="#現状の-dom-操作の課題">現状の DOM 操作の課題</a></h2>
-      <p>まず、以下のような処理を考える。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre class=html><code translate="no">body.appencCild($div)</code></pre>
-      <p>この処理が JS の途中で出現すれば、その瞬間 Window にある DOM Tree はロックを取得し、 <code translate="no">$div</code> の追加処理が行われ、 DOM Tree が atomic に更新される。
-      <p>DOM Tree の更新が終わったら、レンダリング処理(style -&gt; layout -&gt; paint -&gt; composit)が発生し、すぐさま画面上に新たな要素が表示される。
-      <p>このモデルは非常にわかりやすい一方で、大規模なアプリケーションを開発する際には、様々な課題を産むことになる。
-      <p>まず、レンダリングはメインループで行われ、しかも同期処理だ。
-      <p>もしこの appendChild した <code translate="no">$div</code> がものすごく大きかった場合は、そこでメインループをブロックし、 JS の実行もユーザのインタラクションもブロックされる。
-      <p>結果、応答性能が悪くなり、 User Experience が阻害されてしまう。
-      <p>メインループをブロックする処理はご法度であることが常識でありながら、 DOM API は基本的に同期しかない。
-      <p>また、ブロックを発生するような同期処理は Worker に落とすのが常套手段だが、 DOM は Worker から触ることができない。
-      <p>現状は、この <code translate="no">$div</code> に隠れている更新処理を、なるべく細かいタスクに分割し、 requestIdleCallback などで他に配慮しながら行うなどの工夫が、開発者によってなされることになる。
-      <p>しかし、規模の大きい SPA では、 State の DOM への展開ごとにそれを自前でやるのは現実的ではない。
-      <p>そこで、この更新のコストをコントロールすることが、近年のフロントエンド開発の関心の 1 つとなっている。
+    <article>
+      <h1><a href=/entries/2019-06-16/display-locking.html>Display Locking によるレンダリングの最適化と Async DOM</a></h1>
       <section>
-        <h3 id="ライブラリによる最適化"><a href="#ライブラリによる最適化">ライブラリによる最適化</a></h3>
-        <p>React や lit-html は、この State の DOM への展開をライブラリで抽象化し、更新コストのコントロールを提供している。
-        <p>実装はそれぞれ違うが、簡単にいえば既に展開されている DOM から、更新結果の DOM までの間を、最小限の操作で変化できる方法を割り出すという点では共通しているだろう。
-        <p>React は Virtual DOM による差分更新、 lit-html は Tagged Template Literal で割り出した Strict/Dynamic Part の識別によりこれを行なっている。
-        <p>少し違うアプローチとして Worker DOM は、 DOM の処理を Woker で実行しているように見せているが、実際には当然 Window にコマンドを発行し DOM API を呼ぶ。
-        <p>どんなに最適化をしても、最終的にはブラウザの持つ DOM API を呼び出す必要があるため、そこがボトルネックになるのは避けられない。
-        <p>そこには、標準 API によりブラウザが担保し、ベンダが実装によって最適化する余地があるだろう。
-        <p>当然同じことを考える人は多く、おおよそ 4 つの異なるアプローチによる提案がなされ、それらは Async DOM という文脈でまとめられていた。
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>React や lit-html などにより、 DOM 操作の抽象化に加えて最適化が提供されることが一般的となった。
+        <p>見方を変えれば、本来ブラウザがやるような最適化を、ライブラリが肩代わりしていると捉えることもできる。
+        <p>これは、現在の標準 API には、規模が大きく処理が複雑なアプリケーションを開発する際に、足りてないものがあると考えることが可能だ。
+        <p>課題の 1 つとして「DOM 操作が同期処理である」という点に着目し、 Async DOM という文脈でいくつかの提案が行われた。
+        <p>今回は、その提案の 1 つであり Chrome で実装が進んでいる Display Locking について現状を解説する。
       </section>
       <section>
-        <h3 id="async-dom-の提案"><a href="#async-dom-の提案">Async DOM の提案</a></h3>
-        <p>同時期に出てきたというよりは、常に誰かが何かしら提案していた DOM API の改善提案が、 3~4 年くらい前から AsyncDOM としてまとめられた。
-        <ul>
-          <li>
-            <a href="https://github.com/chrishtr/async-dom/blob/master/current-proposals.md">async-dom/current-proposals.md at master - chrishtr/async-dom</a>
-          </li>
-        </ul>
-        <p>これを議論するための Mailing List ができたため、できてから 2 年くらいずっと気にかけていたのだが、特に大きな動きはなかった。
-        <ul>
-          <li>
-            <a href="https://groups.google.com/a/chromium.org/forum/#!forum/async-dom">async-dom - Google グループ</a>
-          </li>
-        </ul>
-        <p>基本は、現状の DOM の持つ問題を大きく 2 つと考え、そのどちらかないし両方にアプローチしていると見るとだいたいわかる。
-        <ul>
-          <li>DOM の操作が同期に行われる(非同期にできない)
-          <li>DOM の操作がメインループ上でしかできない(Worker に落とせない)
-        </ul>
-        <p>それを踏まえて簡単にそれぞれを解説する。
-        <ul>
-          <li>
-            <a href="https://github.com/WICG/async-append">asyncAppend</a><ul>
-              <li>非同期版 Append を生やす
-              <li>単体 Append だけではなく、 DOM 処理の Batch 化もする
-            </ul>
-          </li>
-          <li>
-            <a href="https://github.com/drufball/worker-node/">WokerNode</a><ul>
-              <li>Worker と行き来できる DOM 更新命令をまとめたオブジェクトの提案
-              <li>そのオブジェクトの適用には asyncAppend を使う
-            </ul>
-          </li>
-          <li>
-            <a href="https://github.com/whatwg/dom/issues/270">DOM ChangeList</a><ul>
-              <li>DOM の更新命令をまとめるオブジェクトを提案
-              <li>それを適用すると一気に処理が走る、 VirtualDOM に似てる
-              <li>エンジンが最適化できるため
-            </ul>
-          </li>
-          <li>
-            <a href="https://github.com/WICG/display-locking">Display Locking</a><ul>
-              <li>今回の本題なので後述
-            </ul>
-          </li>
-        </ul>
-        <p>Display Locking 以外は、特に作業がされていない。
-      </section>
-    </section>
-    <section>
-      <h2 id="display-locking"><a href="#display-locking">Display Locking</a></h2>
-      <p>Async DOM の実装の中で、もっとも作業が進み、 Chrome で実装され始めたのがこの仕様だ。
-      <ul>
-        <li>
-          Proposal:                  <a href="https://discourse.wicg.io/t/proposal-display-locking/2905">Proposal: Display Locking - APIs - WICG</a>
-        </li>
-        <li>
-          Draft:                     <a href="https://github.com/WICG/display-locking">WICG/display-locking: A repository for the Display Locking spec</a>
-        </li>
-        <li>
-          Intents:                   <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2Yo590-USNo/7Da9scWwBwAJ">Intent to Implement: Display Locking - Google グループ</a>
-        </li>
-        <li>
-          Chromium Bug:              <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=882663">882663 - Implement display locking (meta bug) - chromium - Monorail</a>
-        </li>
-        <li>
-          TAG Review:                <a href="https://github.com/w3ctag/design-reviews/issues/306">Display Locking - Issue #306 - w3ctag/design-reviews</a>
-        </li>
-        <li>
-          Mozilla Standard Position: <a href="https://github.com/mozilla/standards-positions/issues/135">Display Locking API - Issue #135 - mozilla/standards-positions</a>
-        </li>
-      </ul>
-      <p>この仕様の状況としては、まず Intetns で <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2Yo590-USNo/7Da9scWwBwAJ">positive feedback from ReactJS and Polymer</a> と書かれているため、なんらかのやり取りはあったようだ。
-      <p>しかし、 Mozilla は <a href="https://github.com/mozilla/standards-positions/issues/135">Standard Pisition</a> でこれを <em>harmful 寄り</em> としており、同じスレッドで Apple も <a href="https://github.com/mozilla/standards-positions/issues/135#issuecomment-476952851">we do not support this proposal</a> と言っている。
-      <p>ただし、どちらも現状の仕様の持つ課題に対する態度であり、前述したような現状の DOM API については共通の問題意識を持っており、 Display Locking の作業が全て無駄だという割り切りというわけでもない。
-      <p>仕様が改善途中ということで Tag の Design Review はペンディングされている。
-      <p>対外的にも Google I/O などで、多少話が出ることがある程度だ。
-      <p>基本的にはそういう状況だという前提で、現状の実装をベースに、何ができ、何を解決するのかを解説し、今後 Async DOM の議論が進んだ時のベースとして記録に残す。
-      <section>
-        <h3 id="api"><a href="#api">API</a></h3>
-        <p>Display Locking が実装されると、 Element に displayLock というプロパティが生える。
-        <p>ここには 4 つのメソッドがあり、それぞれ以下の役割がある。
-        <dl>
-          <div>
-            <dt><code translate="no">acquire()</code>
-            <dd>ロックの取得
-          </div>
-          <div>
-            <dt><code translate="no">update()</code>
-            <dd>getComputedStyle, offsetTop で必要な計算(forced update)などを計算する
-          </div>
-          <div>
-            <dt><code translate="no">commit()</code>
-            <dd>ロックの解除(レンダリング開始)
-          </div>
-          <div>
-            <dt><code translate="no">updateAndCommit()</code>
-            <dd>update + commit
-          </div>
-        </dl>
-        <p>それぞれが Promise を返す非同期な処理となっている。
+        <h2 id="現状の-dom-操作の課題"><a href="#現状の-dom-操作の課題">現状の DOM 操作の課題</a></h2>
+        <p>まず、以下のような処理を考える。
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+        <pre class=html><code translate="no">body.appencCild($div)</code></pre>
+        <p>この処理が JS の途中で出現すれば、その瞬間 Window にある DOM Tree はロックを取得し、 <code translate="no">$div</code> の追加処理が行われ、 DOM Tree が atomic に更新される。
+        <p>DOM Tree の更新が終わったら、レンダリング処理(style -&gt; layout -&gt; paint -&gt; composit)が発生し、すぐさま画面上に新たな要素が表示される。
+        <p>このモデルは非常にわかりやすい一方で、大規模なアプリケーションを開発する際には、様々な課題を産むことになる。
+        <p>まず、レンダリングはメインループで行われ、しかも同期処理だ。
+        <p>もしこの appendChild した <code translate="no">$div</code> がものすごく大きかった場合は、そこでメインループをブロックし、 JS の実行もユーザのインタラクションもブロックされる。
+        <p>結果、応答性能が悪くなり、 User Experience が阻害されてしまう。
+        <p>メインループをブロックする処理はご法度であることが常識でありながら、 DOM API は基本的に同期しかない。
+        <p>また、ブロックを発生するような同期処理は Worker に落とすのが常套手段だが、 DOM は Worker から触ることができない。
+        <p>現状は、この <code translate="no">$div</code> に隠れている更新処理を、なるべく細かいタスクに分割し、 requestIdleCallback などで他に配慮しながら行うなどの工夫が、開発者によってなされることになる。
+        <p>しかし、規模の大きい SPA では、 State の DOM への展開ごとにそれを自前でやるのは現実的ではない。
+        <p>そこで、この更新のコストをコントロールすることが、近年のフロントエンド開発の関心の 1 つとなっている。
+        <section>
+          <h3 id="ライブラリによる最適化"><a href="#ライブラリによる最適化">ライブラリによる最適化</a></h3>
+          <p>React や lit-html は、この State の DOM への展開をライブラリで抽象化し、更新コストのコントロールを提供している。
+          <p>実装はそれぞれ違うが、簡単にいえば既に展開されている DOM から、更新結果の DOM までの間を、最小限の操作で変化できる方法を割り出すという点では共通しているだろう。
+          <p>React は Virtual DOM による差分更新、 lit-html は Tagged Template Literal で割り出した Strict/Dynamic Part の識別によりこれを行なっている。
+          <p>少し違うアプローチとして Worker DOM は、 DOM の処理を Woker で実行しているように見せているが、実際には当然 Window にコマンドを発行し DOM API を呼ぶ。
+          <p>どんなに最適化をしても、最終的にはブラウザの持つ DOM API を呼び出す必要があるため、そこがボトルネックになるのは避けられない。
+          <p>そこには、標準 API によりブラウザが担保し、ベンダが実装によって最適化する余地があるだろう。
+          <p>当然同じことを考える人は多く、おおよそ 4 つの異なるアプローチによる提案がなされ、それらは Async DOM という文脈でまとめられていた。
+        </section>
+        <section>
+          <h3 id="async-dom-の提案"><a href="#async-dom-の提案">Async DOM の提案</a></h3>
+          <p>同時期に出てきたというよりは、常に誰かが何かしら提案していた DOM API の改善提案が、 3~4 年くらい前から AsyncDOM としてまとめられた。
+          <ul>
+            <li>
+              <a href="https://github.com/chrishtr/async-dom/blob/master/current-proposals.md">async-dom/current-proposals.md at master - chrishtr/async-dom</a>
+            </li>
+          </ul>
+          <p>これを議論するための Mailing List ができたため、できてから 2 年くらいずっと気にかけていたのだが、特に大きな動きはなかった。
+          <ul>
+            <li>
+              <a href="https://groups.google.com/a/chromium.org/forum/#!forum/async-dom">async-dom - Google グループ</a>
+            </li>
+          </ul>
+          <p>基本は、現状の DOM の持つ問題を大きく 2 つと考え、そのどちらかないし両方にアプローチしていると見るとだいたいわかる。
+          <ul>
+            <li>DOM の操作が同期に行われる(非同期にできない)
+            <li>DOM の操作がメインループ上でしかできない(Worker に落とせない)
+          </ul>
+          <p>それを踏まえて簡単にそれぞれを解説する。
+          <ul>
+            <li>
+              <a href="https://github.com/WICG/async-append">asyncAppend</a><ul>
+                <li>非同期版 Append を生やす
+                <li>単体 Append だけではなく、 DOM 処理の Batch 化もする
+              </ul>
+            </li>
+            <li>
+              <a href="https://github.com/drufball/worker-node/">WokerNode</a><ul>
+                <li>Worker と行き来できる DOM 更新命令をまとめたオブジェクトの提案
+                <li>そのオブジェクトの適用には asyncAppend を使う
+              </ul>
+            </li>
+            <li>
+              <a href="https://github.com/whatwg/dom/issues/270">DOM ChangeList</a><ul>
+                <li>DOM の更新命令をまとめるオブジェクトを提案
+                <li>それを適用すると一気に処理が走る、 VirtualDOM に似てる
+                <li>エンジンが最適化できるため
+              </ul>
+            </li>
+            <li>
+              <a href="https://github.com/WICG/display-locking">Display Locking</a><ul>
+                <li>今回の本題なので後述
+              </ul>
+            </li>
+          </ul>
+          <p>Display Locking 以外は、特に作業がされていない。
+        </section>
       </section>
       <section>
-        <h3 id="example"><a href="#example">Example</a></h3>
-        <p>簡単な例として、すでに DOM 上にある <code translate="no">&lt;ul&gt;</code> に、複数の <code translate="no">&lt;li&gt;</code> を追加する処理を考える。
-        <pre class=js><code translate="no">const $ul = document.querySelector(&quot;$ul&quot;)
+        <h2 id="display-locking"><a href="#display-locking">Display Locking</a></h2>
+        <p>Async DOM の実装の中で、もっとも作業が進み、 Chrome で実装され始めたのがこの仕様だ。
+        <ul>
+          <li>
+            Proposal:                  <a href="https://discourse.wicg.io/t/proposal-display-locking/2905">Proposal: Display Locking - APIs - WICG</a>
+          </li>
+          <li>
+            Draft:                     <a href="https://github.com/WICG/display-locking">WICG/display-locking: A repository for the Display Locking spec</a>
+          </li>
+          <li>
+            Intents:                   <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2Yo590-USNo/7Da9scWwBwAJ">Intent to Implement: Display Locking - Google グループ</a>
+          </li>
+          <li>
+            Chromium Bug:              <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=882663">882663 - Implement display locking (meta bug) - chromium - Monorail</a>
+          </li>
+          <li>
+            TAG Review:                <a href="https://github.com/w3ctag/design-reviews/issues/306">Display Locking - Issue #306 - w3ctag/design-reviews</a>
+          </li>
+          <li>
+            Mozilla Standard Position: <a href="https://github.com/mozilla/standards-positions/issues/135">Display Locking API - Issue #135 - mozilla/standards-positions</a>
+          </li>
+        </ul>
+        <p>この仕様の状況としては、まず Intetns で <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2Yo590-USNo/7Da9scWwBwAJ">positive feedback from ReactJS and Polymer</a> と書かれているため、なんらかのやり取りはあったようだ。
+        <p>しかし、 Mozilla は <a href="https://github.com/mozilla/standards-positions/issues/135">Standard Pisition</a> でこれを <em>harmful 寄り</em> としており、同じスレッドで Apple も <a href="https://github.com/mozilla/standards-positions/issues/135#issuecomment-476952851">we do not support this proposal</a> と言っている。
+        <p>ただし、どちらも現状の仕様の持つ課題に対する態度であり、前述したような現状の DOM API については共通の問題意識を持っており、 Display Locking の作業が全て無駄だという割り切りというわけでもない。
+        <p>仕様が改善途中ということで Tag の Design Review はペンディングされている。
+        <p>対外的にも Google I/O などで、多少話が出ることがある程度だ。
+        <p>基本的にはそういう状況だという前提で、現状の実装をベースに、何ができ、何を解決するのかを解説し、今後 Async DOM の議論が進んだ時のベースとして記録に残す。
+        <section>
+          <h3 id="api"><a href="#api">API</a></h3>
+          <p>Display Locking が実装されると、 Element に displayLock というプロパティが生える。
+          <p>ここには 4 つのメソッドがあり、それぞれ以下の役割がある。
+          <dl>
+            <div>
+              <dt><code translate="no">acquire()</code>
+              <dd>ロックの取得
+            </div>
+            <div>
+              <dt><code translate="no">update()</code>
+              <dd>getComputedStyle, offsetTop で必要な計算(forced update)などを計算する
+            </div>
+            <div>
+              <dt><code translate="no">commit()</code>
+              <dd>ロックの解除(レンダリング開始)
+            </div>
+            <div>
+              <dt><code translate="no">updateAndCommit()</code>
+              <dd>update + commit
+            </div>
+          </dl>
+          <p>それぞれが Promise を返す非同期な処理となっている。
+        </section>
+        <section>
+          <h3 id="example"><a href="#example">Example</a></h3>
+          <p>簡単な例として、すでに DOM 上にある <code translate="no">&lt;ul&gt;</code> に、複数の <code translate="no">&lt;li&gt;</code> を追加する処理を考える。
+          <pre class=js><code translate="no">const $ul = document.querySelector(&quot;$ul&quot;)
 for (const i = 0; i &lt; 100; i ++) {
   const $li = document.createElement(&quot;li&quot;)
   $li.textContent = &quot;deadbeef&quot;
   $ul.appendChild($li)
 }</code></pre>
-        <p>この <code translate="no">appendChild</code> が毎回レンダリングを発生している。
-        <p>わかりやすいように、 <code translate="no">appendChild</code> に <code translate="no">setTimeout</code> を仕込んだ例は以下のように挙動する。
-        <p>
-          <picture>
-            <source type=image/webp srcset=display-no-locking.webp#825x968>
-            <img loading=lazy src=display-no-locking.gif#825x968 alt="lock を取らず普通に appendChild する例" title="display with no locking" intrinsicsize=825x968>
-          </picture>
-        </p>
-        <p>そこで、 <code translate="no">&lt;ul&gt;</code> のロックを取得し、全ての <code translate="no">&lt;li&gt;</code> が追加されてから一気にレンダリングする場合以下のように書ける。
-        <pre class=js><code translate="no">const $ul = document.querySelector(&quot;$ul&quot;)
+          <p>この <code translate="no">appendChild</code> が毎回レンダリングを発生している。
+          <p>わかりやすいように、 <code translate="no">appendChild</code> に <code translate="no">setTimeout</code> を仕込んだ例は以下のように挙動する。
+          <p>
+            <picture>
+              <source type=image/webp srcset=display-no-locking.webp#825x968>
+              <img loading=lazy src=display-no-locking.gif#825x968 alt="lock を取らず普通に appendChild する例" title="display with no locking" intrinsicsize=825x968>
+            </picture>
+          </p>
+          <p>そこで、 <code translate="no">&lt;ul&gt;</code> のロックを取得し、全ての <code translate="no">&lt;li&gt;</code> が追加されてから一気にレンダリングする場合以下のように書ける。
+          <pre class=js><code translate="no">const $ul = document.querySelector(&quot;$ul&quot;)
 
 // Lock
 await $ul.displayLock.acquire({ timeout: Infinity })
@@ -275,110 +275,109 @@ for (let i = 0; i &lt; 100; i ++) {
 
 // Unlock
 await container.displayLock.updateAndCommit()</code></pre>
-        <p>こちらも、わかりやすいように <code translate="no">setTimeout</code> を仕込んだ例は以下のように挙動する。
-        <p>
-          <picture>
-            <source type=image/webp srcset=display-locking.webp#825x968>
-            <img loading=lazy src=display-locking.gif#825x968 alt="ul の lock を取り追加が終わってから commit する例" title="display with locking" intrinsicsize=825x968>
-          </picture>
-        </p>
-        <p>Lock 中に行われる <code translate="no">appendChild</code> は、メモリ上で DOM の処理を行うだけになり、 <code translate="no">commit()</code> でレンダリングが一度に走っていることがわかるだろう。
+          <p>こちらも、わかりやすいように <code translate="no">setTimeout</code> を仕込んだ例は以下のように挙動する。
+          <p>
+            <picture>
+              <source type=image/webp srcset=display-locking.webp#825x968>
+              <img loading=lazy src=display-locking.gif#825x968 alt="ul の lock を取り追加が終わってから commit する例" title="display with locking" intrinsicsize=825x968>
+            </picture>
+          </p>
+          <p>Lock 中に行われる <code translate="no">appendChild</code> は、メモリ上で DOM の処理を行うだけになり、 <code translate="no">commit()</code> でレンダリングが一度に走っていることがわかるだろう。
+        </section>
+        <section>
+          <h3 id="acquire-option"><a href="#acquire-option">acquire option</a></h3>
+          <p><code translate="no">acquire()</code> はオプション値をとる。
+          <dl>
+            <div>
+              <dt>timeout
+              <dd>タイムアウトすると commit されるため、 commit 漏れを防ぐことができる。
+            </div>
+            <div>
+              <dt>sizes
+              <dd>commit 後のサイズを指定することで、その領域を確保しておくことができる。
+            </div>
+            <div>
+              <dt>activatable
+              <dd>後述
+            </div>
+          </dl>
+        </section>
+        <section>
+          <h3 id="css-containment"><a href="#css-containment">CSS Containment</a></h3>
+          <p>Commit された場合のレンダリング処理を最適化するために、 Display Lock を取得する対象は <code translate="no">contain: style layout</code> が指定されている必要がある。
+          <p>CSS Containment は、例えば style と layout の計算が、対象要素内に閉じていることを明示し、ブラウザの最適化にヒントを与えるものだ。
+          <p>Display Lock は、その性質を利用して、事前にブラウザに style と layout が contain された要素が commit 時にレンダリングされることを示すことにした。
+          <p>これは逆に Containment が指定できる設計に事前になっている箇所にしか Display Lock が使えないことを意味するため、 Lock を取得する対象など、設計に影響してくるだろう。
+        </section>
+        <section>
+          <h3 id="activatable"><a href="#activatable">activatable</a></h3>
+          <p>この API が標準で提供されるメリットの 1 つが <code translate="no">activatable</code> だろう。
+          <p>activatable は、メモリ上にあるがレンダリングされてない DOM に対して、 UI からアクセスできるようにするオプションだ。
+          <p>説明よりも見た方が早いので以下にデモを示す。
+          <p>
+            <picture>
+              <source type=image/webp srcset=display-locking-activatable.webp#825x968>
+              <img loading=lazy src=display-locking-activatable.gif#825x968 alt="commit してない要素が画面内検索で一致した際にレンダリングされる例" title="find in page commits activatable element" intrinsicsize=825x968>
+            </picture>
+          </p>
+          <p>このデモでは、ランダムな文字列を <code translate="no">&lt;li&gt;</code> に入れ、ロックをとった <code translate="no">&lt;ul&gt;</code> に追加し commit してない状態で止めている。
+          <p>ここで、 CTL+F で「ページ内検索」を行い、ランダムな文字列にヒットするように検索をすると、レンダリングが走り遷移していることがわかるだろう。
+          <p>ブラウザは、まだメモリ上にありレンダリングされてない要素を、検索やフォーカス移動などの対象に含み、必要に応じて commit することができるのだ。
+          <p>これを利用すると、 Infinit Scroll で、少しづつ裏で DOM に挿しつつレンダリングは遅延させていても、検索にはヒットするといった実装が可能になる。
+          <p>そのものずばりなユースケースとして、 Layered API の文脈で議論されている Virtual Scroll のニーズとも一致している。
+          <ul>
+            <li>
+              <a href="https://github.com/WICG/virtual-scroller">WICG/virtual-scroller</a>
+            </li>
+          </ul>
+          <p>この Virtual Scroller のページ検索のために、もともと別ドラフトであった Searchabel Invisible DOM という提案があった。
+          <ul>
+            <li>
+              <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Icw_sU6PqVA/8hwXw0jTDwAJ">Intent to Implement: Searchable Invisible DOM - Google グループ</a>
+            </li>
+          </ul>
+          <p>これは現在 Display Locking の仕様に統合されたと記されている。
+        </section>
+        <section>
+          <h3 id="効果と-junk-の回避"><a href="#効果と-junk-の回避">効果と Junk の回避</a></h3>
+          <p>より効果がわかりやすい DEMO として、 <a href="https://github.com/WICG/display-locking/blob/master/explainer.md">explainer</a> で紹介されている動画を引用する。
+          <p>(MIME が指定されていないため、 <code translate="no">&lt;video&gt;</code> で埋め込むことができず、リンクしている)
+          <p>ソースが公開されていないが、この DEMO では、アニメーションで円形のタイマーを回しており、通常は緑で表示される。
+          <p>その背景に、複雑なレイアウトの DOM が表示されており、その表示/非表示を toggle ボタンで切り替えている模様だ。
+          <p>まず display locking を利用しない場合は、背景を表示する際にかかるレンダリングコストが大きく、 Junk が発生してタイマー部が赤くなっていることがわかる。
+          <p><a href="https://drive.google.com/file/d/1Qip6D4Allotua8S6xSXzOhNolnvYPYjt/view">display locking を指定せず Junk が発生している例</a>
+          <p>これを、背景表示に Display Locking を適用した DEMO が以下だ。
+          <p>レンダリングを一括して行なっているため、タイマー部の赤い部分が削減され Junk が最小に抑えられているように見える。
+          <p><a href="https://drive.google.com/file/d/1r1aBi4P1_DMCZNXlpzW5jAibCEdT38YB/view">display locking を指定し Junk を抑えた例</a>
+          <p>背景のレイアウトがどの程度複雑なのかは想像でしかないが、この規模のレンダリングコストがかかるということはそれなりに大きいのだろう。
+          <p>SPA などでは、 DOM 変更の範囲が大きいページ遷移などが考えられそうだ。
+        </section>
+        <section>
+          <h3 id="考察"><a href="#考察">考察</a></h3>
+          <p>前述の通り、 Display Locking は、この仕様のまま標準化されると決まっているわけではないが、今後の Async DOM を考える上でのたたき台になるだろう。
+          <p>AsyncDOM の他の提案が、 Append の非同期化や Worker への以降などを基本としていたことに比べると、この仕様はレンダリングのライフサイクル自体に手を入れた点が大きく異なる。
+          <p>結果として、 Activatable による UI のインタラクションを受け入れることができる一方、レンダリングエンジンへの影響も大きいため、実装上の懸念は少なくない。
+          <p>しかし、リアルワールドでは様々なライブラリが DOM 操作の最適化を提供している以上、 Chrome の Intents にある通り React/Polymer といったチームからのフィードバックも無視されることはなさそうにも思える。
+          <p>今後、この仕様自体のブラッシュアップ、もしくはこれをベースとした対案の標準化も含め、何かしら作業がすすむことはありそうだ。
+          <p>仮に Display Locking がそのまま改善を含めて進んだとしても、レイヤの低い API であるため、そのまま開発者が触ることは少ないだろう。
+          <p>React や lit-html が提供しているのは DOM の更新だけではないため、 Display Locking があればそうしたライブライが不要になるというものではない。
+          <p>特に SPA では State を DOM に展開する部分のコードが、いかに抽象化されているかも Developer Experience として重要だ。
+          <p>しかし、その先の DOM への展開への最適化は、現状の DOM API の限界を越えることができないため、こうしたライブラリの下回りが Display Locking をうまく取り入れることで、 Developer Experience を保ちながら、実装を改善することはできるだろう。
+          <p>ただし、恩恵を受けるために CSS Containment などが絡むと考慮点も増えるため、単純にライブラリが更新されるだけで改善するかというと、そうもいかないかもしれない。
+          <p>それを考えると、実装そのものが隠蔽された Virtual Scroller のような Component を呼び出すだけといった抽象度の高い利用の方が、導入障壁は低いかもしれない。
+          <p>いずれにせよ、今後の Mozilla や Apple の反応、それに対応した Display Locking のチームの改善や、対案の登場などを中心に、動向を注視したい。
+        </section>
+        <section>
+          <h3 id="demo"><a href="#demo">DEMO</a></h3>
+          <p>動作する DEMO を以下に用意した。
+          <ul>
+            <li>
+              <a href="https://labs.jxck.io/display-locking/">display locking demo</a>
+            </li>
+          </ul>
+        </section>
       </section>
-      <section>
-        <h3 id="acquire-option"><a href="#acquire-option">acquire option</a></h3>
-        <p><code translate="no">acquire()</code> はオプション値をとる。
-        <dl>
-          <div>
-            <dt>timeout
-            <dd>タイムアウトすると commit されるため、 commit 漏れを防ぐことができる。
-          </div>
-          <div>
-            <dt>sizes
-            <dd>commit 後のサイズを指定することで、その領域を確保しておくことができる。
-          </div>
-          <div>
-            <dt>activatable
-            <dd>後述
-          </div>
-        </dl>
-      </section>
-      <section>
-        <h3 id="css-containment"><a href="#css-containment">CSS Containment</a></h3>
-        <p>Commit された場合のレンダリング処理を最適化するために、 Display Lock を取得する対象は <code translate="no">contain: style layout</code> が指定されている必要がある。
-        <p>CSS Containment は、例えば style と layout の計算が、対象要素内に閉じていることを明示し、ブラウザの最適化にヒントを与えるものだ。
-        <p>Display Lock は、その性質を利用して、事前にブラウザに style と layout が contain された要素が commit 時にレンダリングされることを示すことにした。
-        <p>これは逆に Containment が指定できる設計に事前になっている箇所にしか Display Lock が使えないことを意味するため、 Lock を取得する対象など、設計に影響してくるだろう。
-      </section>
-      <section>
-        <h3 id="activatable"><a href="#activatable">activatable</a></h3>
-        <p>この API が標準で提供されるメリットの 1 つが <code translate="no">activatable</code> だろう。
-        <p>activatable は、メモリ上にあるがレンダリングされてない DOM に対して、 UI からアクセスできるようにするオプションだ。
-        <p>説明よりも見た方が早いので以下にデモを示す。
-        <p>
-          <picture>
-            <source type=image/webp srcset=display-locking-activatable.webp#825x968>
-            <img loading=lazy src=display-locking-activatable.gif#825x968 alt="commit してない要素が画面内検索で一致した際にレンダリングされる例" title="find in page commits activatable element" intrinsicsize=825x968>
-          </picture>
-        </p>
-        <p>このデモでは、ランダムな文字列を <code translate="no">&lt;li&gt;</code> に入れ、ロックをとった <code translate="no">&lt;ul&gt;</code> に追加し commit してない状態で止めている。
-        <p>ここで、 CTL+F で「ページ内検索」を行い、ランダムな文字列にヒットするように検索をすると、レンダリングが走り遷移していることがわかるだろう。
-        <p>ブラウザは、まだメモリ上にありレンダリングされてない要素を、検索やフォーカス移動などの対象に含み、必要に応じて commit することができるのだ。
-        <p>これを利用すると、 Infinit Scroll で、少しづつ裏で DOM に挿しつつレンダリングは遅延させていても、検索にはヒットするといった実装が可能になる。
-        <p>そのものずばりなユースケースとして、 Layered API の文脈で議論されている Virtual Scroll のニーズとも一致している。
-        <ul>
-          <li>
-            <a href="https://github.com/WICG/virtual-scroller">WICG/virtual-scroller</a>
-          </li>
-        </ul>
-        <p>この Virtual Scroller のページ検索のために、もともと別ドラフトであった Searchabel Invisible DOM という提案があった。
-        <ul>
-          <li>
-            <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Icw_sU6PqVA/8hwXw0jTDwAJ">Intent to Implement: Searchable Invisible DOM - Google グループ</a>
-          </li>
-        </ul>
-        <p>これは現在 Display Locking の仕様に統合されたと記されている。
-      </section>
-      <section>
-        <h3 id="効果と-junk-の回避"><a href="#効果と-junk-の回避">効果と Junk の回避</a></h3>
-        <p>より効果がわかりやすい DEMO として、 <a href="https://github.com/WICG/display-locking/blob/master/explainer.md">explainer</a> で紹介されている動画を引用する。
-        <p>(MIME が指定されていないため、 <code translate="no">&lt;video&gt;</code> で埋め込むことができず、リンクしている)
-        <p>ソースが公開されていないが、この DEMO では、アニメーションで円形のタイマーを回しており、通常は緑で表示される。
-        <p>その背景に、複雑なレイアウトの DOM が表示されており、その表示/非表示を toggle ボタンで切り替えている模様だ。
-        <p>まず display locking を利用しない場合は、背景を表示する際にかかるレンダリングコストが大きく、 Junk が発生してタイマー部が赤くなっていることがわかる。
-        <p><a href="https://drive.google.com/file/d/1Qip6D4Allotua8S6xSXzOhNolnvYPYjt/view">display locking を指定せず Junk が発生している例</a>
-        <p>これを、背景表示に Display Locking を適用した DEMO が以下だ。
-        <p>レンダリングを一括して行なっているため、タイマー部の赤い部分が削減され Junk が最小に抑えられているように見える。
-        <p><a href="https://drive.google.com/file/d/1r1aBi4P1_DMCZNXlpzW5jAibCEdT38YB/view">display locking を指定し Junk を抑えた例</a>
-        <p>背景のレイアウトがどの程度複雑なのかは想像でしかないが、この規模のレンダリングコストがかかるということはそれなりに大きいのだろう。
-        <p>SPA などでは、 DOM 変更の範囲が大きいページ遷移などが考えられそうだ。
-      </section>
-      <section>
-        <h3 id="考察"><a href="#考察">考察</a></h3>
-        <p>前述の通り、 Display Locking は、この仕様のまま標準化されると決まっているわけではないが、今後の Async DOM を考える上でのたたき台になるだろう。
-        <p>AsyncDOM の他の提案が、 Append の非同期化や Worker への以降などを基本としていたことに比べると、この仕様はレンダリングのライフサイクル自体に手を入れた点が大きく異なる。
-        <p>結果として、 Activatable による UI のインタラクションを受け入れることができる一方、レンダリングエンジンへの影響も大きいため、実装上の懸念は少なくない。
-        <p>しかし、リアルワールドでは様々なライブラリが DOM 操作の最適化を提供している以上、 Chrome の Intents にある通り React/Polymer といったチームからのフィードバックも無視されることはなさそうにも思える。
-        <p>今後、この仕様自体のブラッシュアップ、もしくはこれをベースとした対案の標準化も含め、何かしら作業がすすむことはありそうだ。
-        <p>仮に Display Locking がそのまま改善を含めて進んだとしても、レイヤの低い API であるため、そのまま開発者が触ることは少ないだろう。
-        <p>React や lit-html が提供しているのは DOM の更新だけではないため、 Display Locking があればそうしたライブライが不要になるというものではない。
-        <p>特に SPA では State を DOM に展開する部分のコードが、いかに抽象化されているかも Developer Experience として重要だ。
-        <p>しかし、その先の DOM への展開への最適化は、現状の DOM API の限界を越えることができないため、こうしたライブラリの下回りが Display Locking をうまく取り入れることで、 Developer Experience を保ちながら、実装を改善することはできるだろう。
-        <p>ただし、恩恵を受けるために CSS Containment などが絡むと考慮点も増えるため、単純にライブラリが更新されるだけで改善するかというと、そうもいかないかもしれない。
-        <p>それを考えると、実装そのものが隠蔽された Virtual Scroller のような Component を呼び出すだけといった抽象度の高い利用の方が、導入障壁は低いかもしれない。
-        <p>いずれにせよ、今後の Mozilla や Apple の反応、それに対応した Display Locking のチームの改善や、対案の登場などを中心に、動向を注視したい。
-      </section>
-      <section>
-        <h3 id="demo"><a href="#demo">DEMO</a></h3>
-        <p>動作する DEMO を以下に用意した。
-        <ul>
-          <li>
-            <a href="https://labs.jxck.io/display-locking/">display locking demo</a>
-          </li>
-        </ul>
-      </section>
-    </section>
-  </article>
-
+    </article>
   </main>
   <hr>
 

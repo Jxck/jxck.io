@@ -106,91 +106,91 @@
     </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
-  <article>
-    <h1><a href=/entries/2017-09-27/example-local-test-domains.html>予約済みドメイン (.example, .localhost, .test) について</a></h1>
-    <section>
-      <h2 id="intro"><a href="#intro">Intro</a></h2>
-      <p>特別なドメインとして予約され、特定の用途で使用可能なドメインとして、 <code translate="no">.example</code> <code translate="no">.localhost</code> <code translate="no">.test</code> などがある。
-      <p><code translate="no">localhost</code> の Draft や、  gTLD である <code translate="no">.dev</code> が Chrome で Preload HSTS になったなどの動きを踏まえ、これらの意味や用途を解説する。
-    </section>
-    <section>
-      <h2 id="ドメインを利用する上での注意"><a href="#ドメインを利用する上での注意">ドメインを利用する上での注意</a></h2>
-      <p>ドメインは、レジストラなどを通じて取得するため、インターネット上では好き勝手に取得することはできない。
-      <p>しかし、自分で設定可能な DNS や hosts ファイルなどを使えば、任意のドメインを任意のアドレスに解決させることができる。
-      <p>例えば、自分が適当にリクエストのテストを行うためのドメインを hosts ファイルに設定し、ループバックアドレスに解決して流していたとする。
-      <p>このドメインがたまたま実在するものだった場合、そのテストを他のユーザが実行すれば、実際のドメインに対してパケットが飛んでしまう可能性がある。
-      <p>同じように、例えば <code translate="no">nmap</code> コマンドを用いた port scan の方法をドキュメントにする際、もしそこに指定したホストが本当に存在したら、問題があるだろう。
-      <p>ドキュメント通り実行されたコマンドから、大量の port scan を受けてしまうかもしれない。
-      <p>ドキュメントやテストで、適当に思いついたドメイン名を用いるのは問題がある。
-    </section>
-    <section>
-      <h2 id="今は無いドメイン"><a href="#今は無いドメイン">「今は」無いドメイン</a></h2>
-      <p>もしローカルネットワークで使う用途で割り当てたドメインでも、外に出れば実際にそのドメインが取得されているかもしれない。
-      <p>仮に今は取得されていなかったとしても、今後取得される可能性もある。
-      <p>もっと言えば、 gTLD (global top level domain) ですら近年は色々と増えている。
-      <p>例えば、社内のネットワークで当時存在しなかった <code translate="no">.dev</code> を、開発用ドメインとして割り当てられるような環境を作っていたとする。
-      <p>現在、 <code translate="no">.dev</code> は正式に gTLD として認定され、 <a href="https://www.iana.org/domains/root/db/dev.html">Google</a> がそれを管理している。
-      <p>つまり、これまで社内のみと思われていた <code translate="no">.dev</code> のアドレスと、同じものが Google からリリースされる可能性もある。
-      <p>合わせて、先日 Google は <code translate="no">.dev</code> 全体に対して Chrome に preload HSTS の設定をマージした。
-      <p><a href="https://chromium-review.googlesource.com/c/chromium/src/+/669923">Preload HSTS for the .dev gTLD</a>
-      <p>HTTPS が前提の昨今、こうして先手を打って HSTS を TLD 以下に強制するということだろう。
-      <p>もしくは、 <code translate="no">.dev</code> を社内で勝手に運用している環境を認識して、そうした環境にあっても Google の正規サービスであることを明示する目的もあるかもしれない。
-      <p>いずれにせよ、自前で <code translate="no">.dev</code> を運用しているユーザには影響があるだろう。
-      <p>他にも gTLD はどんどん増えているので、 <code translate="no">.dev</code> 以外にも注意が必要だ。
-    </section>
-    <section>
-      <h2 id="reserved-top-level-dns-names"><a href="#reserved-top-level-dns-names">Reserved Top Level DNS Names</a></h2>
-      <p>以上のことを踏まえれば、将来に渡って取得されないことが保証され、こうした用途に使えるメインがあるのが望ましい。
-      <p>そこで RFC6761 (was RFC2606) には、 <em>予約済みドメイン</em> としていくつかのドメインとその用途が記されている。
-      <ul>
-        <li>
-          <a href="https://tools.ietf.org/html/rfc6761">RFC6761 Special-Use Domain Names</a>
-        </li>
-        <li>
-          <a href="https://tools.ietf.org/html/rfc2606">RFC2606 Reserved Top Level DNS Names</a>
-        </li>
-      </ul>
-      <p>用途を守れば、そのドメインを所有していなくても、安心して使うことができるのだ。
-    </section>
-    <section>
-      <h2 id="example"><a href="#example"><code translate="no">.example</code></a></h2>
-      <p>主にドキュメントなどの例示に使われる。
-      <p>TLD としての <code translate="no">*.example</code> 以外に、以下の 3 つの STD も予約されており、同様に使うことができる。
-      <p>(本サイトでは、ブログの例示には主にこれを使っている)
-      <ul>
-        <li>example.com
-        <li>example.net
-        <li>example.org
-      </ul>
-      <p>また、この 3 つは実際にインターネット上で HTTP をサーブしている。
-      <ul>
-        <li>
-          <a href="http://example.com">http://example.com</a>
-        </li>
-        <li>
-          <a href="http://example.net">http://example.net</a>
-        </li>
-        <li>
-          <a href="http://example.org">http://example.org</a>
-        </li>
-      </ul>
-      <p>ちなみに、これらのアドレスは実は結構便利な作りをしている。
-      <ul>
-        <li>単純な HTML (サブリソースなし)
-        <li>HTTP (HSTS なし)
-        <li>HTTPS (HTTP2)
-        <li>余計なヘッダなし
-        <li>コンテンツがほぼ更新されない
-      </ul>
-      <p>筆者は Wifi の認証など HTTP のアドレスが欲しい時や、余計な邪魔のないページで devtool をいじりたいとき、単なる疎通確認など色々な場面で使っている。
-      <p>管理しているのが ICANN なので、個人が取得したドメインと違い <em>無くなっている可能性などを気にしないで良い</em> ため、覚えておくと地味に便利だったりする。
-    </section>
-    <section>
-      <h2 id="localhost"><a href="#localhost"><code translate="no">.localhost</code></a></h2>
-      <p>主に開発で自ホストに解決される用途で使われる。
-      <p>実際には、 OS が名前解決に使う hosts ファイルなどで、 <code translate="no">localhost</code> がループバックアドレスに指定されている。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre><code translate="no">##
+    <article>
+      <h1><a href=/entries/2017-09-27/example-local-test-domains.html>予約済みドメイン (.example, .localhost, .test) について</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>特別なドメインとして予約され、特定の用途で使用可能なドメインとして、 <code translate="no">.example</code> <code translate="no">.localhost</code> <code translate="no">.test</code> などがある。
+        <p><code translate="no">localhost</code> の Draft や、  gTLD である <code translate="no">.dev</code> が Chrome で Preload HSTS になったなどの動きを踏まえ、これらの意味や用途を解説する。
+      </section>
+      <section>
+        <h2 id="ドメインを利用する上での注意"><a href="#ドメインを利用する上での注意">ドメインを利用する上での注意</a></h2>
+        <p>ドメインは、レジストラなどを通じて取得するため、インターネット上では好き勝手に取得することはできない。
+        <p>しかし、自分で設定可能な DNS や hosts ファイルなどを使えば、任意のドメインを任意のアドレスに解決させることができる。
+        <p>例えば、自分が適当にリクエストのテストを行うためのドメインを hosts ファイルに設定し、ループバックアドレスに解決して流していたとする。
+        <p>このドメインがたまたま実在するものだった場合、そのテストを他のユーザが実行すれば、実際のドメインに対してパケットが飛んでしまう可能性がある。
+        <p>同じように、例えば <code translate="no">nmap</code> コマンドを用いた port scan の方法をドキュメントにする際、もしそこに指定したホストが本当に存在したら、問題があるだろう。
+        <p>ドキュメント通り実行されたコマンドから、大量の port scan を受けてしまうかもしれない。
+        <p>ドキュメントやテストで、適当に思いついたドメイン名を用いるのは問題がある。
+      </section>
+      <section>
+        <h2 id="今は無いドメイン"><a href="#今は無いドメイン">「今は」無いドメイン</a></h2>
+        <p>もしローカルネットワークで使う用途で割り当てたドメインでも、外に出れば実際にそのドメインが取得されているかもしれない。
+        <p>仮に今は取得されていなかったとしても、今後取得される可能性もある。
+        <p>もっと言えば、 gTLD (global top level domain) ですら近年は色々と増えている。
+        <p>例えば、社内のネットワークで当時存在しなかった <code translate="no">.dev</code> を、開発用ドメインとして割り当てられるような環境を作っていたとする。
+        <p>現在、 <code translate="no">.dev</code> は正式に gTLD として認定され、 <a href="https://www.iana.org/domains/root/db/dev.html">Google</a> がそれを管理している。
+        <p>つまり、これまで社内のみと思われていた <code translate="no">.dev</code> のアドレスと、同じものが Google からリリースされる可能性もある。
+        <p>合わせて、先日 Google は <code translate="no">.dev</code> 全体に対して Chrome に preload HSTS の設定をマージした。
+        <p><a href="https://chromium-review.googlesource.com/c/chromium/src/+/669923">Preload HSTS for the .dev gTLD</a>
+        <p>HTTPS が前提の昨今、こうして先手を打って HSTS を TLD 以下に強制するということだろう。
+        <p>もしくは、 <code translate="no">.dev</code> を社内で勝手に運用している環境を認識して、そうした環境にあっても Google の正規サービスであることを明示する目的もあるかもしれない。
+        <p>いずれにせよ、自前で <code translate="no">.dev</code> を運用しているユーザには影響があるだろう。
+        <p>他にも gTLD はどんどん増えているので、 <code translate="no">.dev</code> 以外にも注意が必要だ。
+      </section>
+      <section>
+        <h2 id="reserved-top-level-dns-names"><a href="#reserved-top-level-dns-names">Reserved Top Level DNS Names</a></h2>
+        <p>以上のことを踏まえれば、将来に渡って取得されないことが保証され、こうした用途に使えるメインがあるのが望ましい。
+        <p>そこで RFC6761 (was RFC2606) には、 <em>予約済みドメイン</em> としていくつかのドメインとその用途が記されている。
+        <ul>
+          <li>
+            <a href="https://tools.ietf.org/html/rfc6761">RFC6761 Special-Use Domain Names</a>
+          </li>
+          <li>
+            <a href="https://tools.ietf.org/html/rfc2606">RFC2606 Reserved Top Level DNS Names</a>
+          </li>
+        </ul>
+        <p>用途を守れば、そのドメインを所有していなくても、安心して使うことができるのだ。
+      </section>
+      <section>
+        <h2 id="example"><a href="#example"><code translate="no">.example</code></a></h2>
+        <p>主にドキュメントなどの例示に使われる。
+        <p>TLD としての <code translate="no">*.example</code> 以外に、以下の 3 つの STD も予約されており、同様に使うことができる。
+        <p>(本サイトでは、ブログの例示には主にこれを使っている)
+        <ul>
+          <li>example.com
+          <li>example.net
+          <li>example.org
+        </ul>
+        <p>また、この 3 つは実際にインターネット上で HTTP をサーブしている。
+        <ul>
+          <li>
+            <a href="http://example.com">http://example.com</a>
+          </li>
+          <li>
+            <a href="http://example.net">http://example.net</a>
+          </li>
+          <li>
+            <a href="http://example.org">http://example.org</a>
+          </li>
+        </ul>
+        <p>ちなみに、これらのアドレスは実は結構便利な作りをしている。
+        <ul>
+          <li>単純な HTML (サブリソースなし)
+          <li>HTTP (HSTS なし)
+          <li>HTTPS (HTTP2)
+          <li>余計なヘッダなし
+          <li>コンテンツがほぼ更新されない
+        </ul>
+        <p>筆者は Wifi の認証など HTTP のアドレスが欲しい時や、余計な邪魔のないページで devtool をいじりたいとき、単なる疎通確認など色々な場面で使っている。
+        <p>管理しているのが ICANN なので、個人が取得したドメインと違い <em>無くなっている可能性などを気にしないで良い</em> ため、覚えておくと地味に便利だったりする。
+      </section>
+      <section>
+        <h2 id="localhost"><a href="#localhost"><code translate="no">.localhost</code></a></h2>
+        <p>主に開発で自ホストに解決される用途で使われる。
+        <p>実際には、 OS が名前解決に使う hosts ファイルなどで、 <code translate="no">localhost</code> がループバックアドレスに指定されている。
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+        <pre><code translate="no">##
 # Host Database
 #
 # localhost is used to configure the loopback interface
@@ -198,54 +198,53 @@
 ##
 127.0.0.1 localhost
 ::1             localhost</code></pre>
-      <p>もしこの設定がなければ、他のアドレス同様 DNS に問い合わせを行い、もし DNS が別のアドレスを返せば <code translate="no">localhost</code> は &ldquo;localhost&rdquo; ではなくなってしまう。
-      <p>しかし、最近では HTTPS 必須のブラウザ機能が、 localhost だけは特別扱いするなどといった挙動になっている。
-      <p>そこで、 <code translate="no">localhost</code> がループバックアドレスであることを保証するべきというドラフトが上がっている。
-      <p><a href="https://tools.ietf.org/html/draft-west-let-localhost-be-localhost-06">Let &lsquo;localhost&rsquo; be localhost. draft-west-let-localhost-be-localhost-06</a>
-      <p>これが RFC になれば、 <code translate="no">.localhost</code> は明確にループバックアドレスとして使われることになるだろう。
-      <p>先ほどの <code translate="no">.dev</code> 同様に <code translate="no">.localhost</code> を別のアドレスで解決する環境を作っていたりする場合は、やはり問題が出るかもしれない。
-    </section>
-    <section>
-      <h2 id="test"><a href="#test"><code translate="no">.test</code></a></h2>
-      <p>主にテスト用途で使われる。
-      <p>取得されないことと共に、他のネットワークでは別の名前に解決される可能性を前提とした上で、比較的自由に使える。
-      <p>つまり前述のように、社内ネットワークのような環境で開発用ドメインを運用する際などに、利用できるだろう。
-    </section>
-    <section>
-      <h2 id="invalid"><a href="#invalid"><code translate="no">.invalid</code></a></h2>
-      <p>無効であることを明示する用途で使われる。
-      <p>常に NXDOMAIN を返すと想定され、主に DNS の開発などに使うのだろうと思われる。
-    </section>
-    <section>
-      <h2 id="その他テスト用ドメイン"><a href="#その他テスト用ドメイン">その他テスト用ドメイン</a></h2>
-      <p>RFC6761 の他にもこうした用途のドメインはいくつかある。
-      <p>中でも <code translate="no">.テスト</code> や <code translate="no">ドメイン名例.jp</code> などは、 Ascii だけでなく日本語ドメイン(punycode)も検証対象としたい場合などに使えるだろう。
-      <p>一度にたくさんのドメインが欲しい場合は、連番が使える以下が便利だ。
-      <ul>
-        <li>example1.jp
-        <li>example2.jp
-        <li>example3.jp
-        <li>example4.jp
-        <li>example5.jp
-        <li>
-          &hellip;
-        </li>
-      </ul>
-      <p>詳細は下記参照
-      <ul>
-        <li>
-          <a href="https://www.iana.org/domains/reserved">https://www.iana.org/domains/reserved</a>
-        </li>
-        <li>
-          <a href="https://jprs.jp/doc/rule/wideusejp-reserved.html">https://jprs.jp/doc/rule/wideusejp-reserved.html</a>
-        </li>
-        <li>
-          <a href="https://jprs.jp/faq/use/">https://jprs.jp/faq/use/</a>
-        </li>
-      </ul>
-    </section>
-  </article>
-
+        <p>もしこの設定がなければ、他のアドレス同様 DNS に問い合わせを行い、もし DNS が別のアドレスを返せば <code translate="no">localhost</code> は &ldquo;localhost&rdquo; ではなくなってしまう。
+        <p>しかし、最近では HTTPS 必須のブラウザ機能が、 localhost だけは特別扱いするなどといった挙動になっている。
+        <p>そこで、 <code translate="no">localhost</code> がループバックアドレスであることを保証するべきというドラフトが上がっている。
+        <p><a href="https://tools.ietf.org/html/draft-west-let-localhost-be-localhost-06">Let &lsquo;localhost&rsquo; be localhost. draft-west-let-localhost-be-localhost-06</a>
+        <p>これが RFC になれば、 <code translate="no">.localhost</code> は明確にループバックアドレスとして使われることになるだろう。
+        <p>先ほどの <code translate="no">.dev</code> 同様に <code translate="no">.localhost</code> を別のアドレスで解決する環境を作っていたりする場合は、やはり問題が出るかもしれない。
+      </section>
+      <section>
+        <h2 id="test"><a href="#test"><code translate="no">.test</code></a></h2>
+        <p>主にテスト用途で使われる。
+        <p>取得されないことと共に、他のネットワークでは別の名前に解決される可能性を前提とした上で、比較的自由に使える。
+        <p>つまり前述のように、社内ネットワークのような環境で開発用ドメインを運用する際などに、利用できるだろう。
+      </section>
+      <section>
+        <h2 id="invalid"><a href="#invalid"><code translate="no">.invalid</code></a></h2>
+        <p>無効であることを明示する用途で使われる。
+        <p>常に NXDOMAIN を返すと想定され、主に DNS の開発などに使うのだろうと思われる。
+      </section>
+      <section>
+        <h2 id="その他テスト用ドメイン"><a href="#その他テスト用ドメイン">その他テスト用ドメイン</a></h2>
+        <p>RFC6761 の他にもこうした用途のドメインはいくつかある。
+        <p>中でも <code translate="no">.テスト</code> や <code translate="no">ドメイン名例.jp</code> などは、 Ascii だけでなく日本語ドメイン(punycode)も検証対象としたい場合などに使えるだろう。
+        <p>一度にたくさんのドメインが欲しい場合は、連番が使える以下が便利だ。
+        <ul>
+          <li>example1.jp
+          <li>example2.jp
+          <li>example3.jp
+          <li>example4.jp
+          <li>example5.jp
+          <li>
+            &hellip;
+          </li>
+        </ul>
+        <p>詳細は下記参照
+        <ul>
+          <li>
+            <a href="https://www.iana.org/domains/reserved">https://www.iana.org/domains/reserved</a>
+          </li>
+          <li>
+            <a href="https://jprs.jp/doc/rule/wideusejp-reserved.html">https://jprs.jp/doc/rule/wideusejp-reserved.html</a>
+          </li>
+          <li>
+            <a href="https://jprs.jp/faq/use/">https://jprs.jp/faq/use/</a>
+          </li>
+        </ul>
+      </section>
+    </article>
   </main>
   <hr>
 

@@ -106,45 +106,45 @@
     </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
-  <article>
-    <h1><a href=/entries/2018-11-10/dark-mode-via-prefers-color-scheme.html>prefers-color-scheme を用いた Dark Mode 対応と User Preference Media Features</a></h1>
-    <section>
-      <h2 id="intro"><a href="#intro">Intro</a></h2>
-      <p>macOS Mojava は OS レベルで Dark Mode に対応した。
-      <p>しかし、 Web コンテンツは依然として白背景黒文字ベースのデザインが多く、結果ブラウザの中だけ眩しいという問題がある。
-      <p><a href="https://webkit.org/blog/8475/release-notes-for-safari-technology-preview-68/">Safari TP69</a> では、これにメディアクエリで対応するための <code translate="no">prefers-color-scheme</code> が実装された。
-      <p>これを用いた DarkMode 対応と、本ブログの DarkMode 対応、および策定中の User Preference Media Features について解説する。
-    </section>
-    <section>
-      <h2 id="update"><a href="#update">Update</a></h2>
-      <ul>
-        <li>画像の対応について追記した
-        <li>Code Block の対応について追記した
-        <li>
-          2019/1 に Chrome の Intents が出された。<ul>
-            <li>
-              <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Muw0N43ntSw/WZZZI7w7DQAJ">Intent to Implement: Media Queries: prefers-color-scheme feature</a>
-            </li>
-            <li>
-              <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/NZ3c9d4ivA8/BIHFbOj6DAAJ">Intent to Implement and Ship: CSS prefers-reduced-motion media query</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </section>
-    <section>
-      <h2 id="dark-mode"><a href="#dark-mode">Dark Mode</a></h2>
-      <p>多くのディスプレイコンテンツは、背景を白、文字を黒にしたデザイン(Light Mode)が多い。
-      <p>しかし、暗い場所での閲覧時に目への負荷を下げる目的で、背景を黒、文字を白に反転したデザインが用意され、ユーザが好みで切り替えられるようにしたアプリケーションも増えた。
-      <p>macOS Mojava らは、 OS レベルで Dark Mode を有効にできるようオプションが追加され、これによって多くのアプリケーションのデザインが切り替わるようになった。
-      <p>筆者は黒背景のターミナル上に居る時間が長いため、ブラウザと切り替えた時の光の強さの変化がずっと気になっていたが、 OS 全体を Dark Mode にした結果より一層ブラウザが眩しく感じるようになった。
-      <p>Safari は、 Mojava の Mode が Light/Dark どちらに設定されているかを取得する仕組みを検証しており、これを用いると OS の設定に合わせたデザインを提供できる。
-    </section>
-    <section>
-      <h2 id="prefers-color-scheme"><a href="#prefers-color-scheme">prefers-color-scheme</a></h2>
-      <p>Safari TP 69 では、 <code translate="no">prefers-color-scheme</code> を用いて Media Query でテーマごとに分岐した CSS を記述できるようになった。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre class=css><code translate="no">@media (prefers-color-scheme: light) {
+    <article>
+      <h1><a href=/entries/2018-11-10/dark-mode-via-prefers-color-scheme.html>prefers-color-scheme を用いた Dark Mode 対応と User Preference Media Features</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>macOS Mojava は OS レベルで Dark Mode に対応した。
+        <p>しかし、 Web コンテンツは依然として白背景黒文字ベースのデザインが多く、結果ブラウザの中だけ眩しいという問題がある。
+        <p><a href="https://webkit.org/blog/8475/release-notes-for-safari-technology-preview-68/">Safari TP69</a> では、これにメディアクエリで対応するための <code translate="no">prefers-color-scheme</code> が実装された。
+        <p>これを用いた DarkMode 対応と、本ブログの DarkMode 対応、および策定中の User Preference Media Features について解説する。
+      </section>
+      <section>
+        <h2 id="update"><a href="#update">Update</a></h2>
+        <ul>
+          <li>画像の対応について追記した
+          <li>Code Block の対応について追記した
+          <li>
+            2019/1 に Chrome の Intents が出された。<ul>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Muw0N43ntSw/WZZZI7w7DQAJ">Intent to Implement: Media Queries: prefers-color-scheme feature</a>
+              </li>
+              <li>
+                <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/NZ3c9d4ivA8/BIHFbOj6DAAJ">Intent to Implement and Ship: CSS prefers-reduced-motion media query</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="dark-mode"><a href="#dark-mode">Dark Mode</a></h2>
+        <p>多くのディスプレイコンテンツは、背景を白、文字を黒にしたデザイン(Light Mode)が多い。
+        <p>しかし、暗い場所での閲覧時に目への負荷を下げる目的で、背景を黒、文字を白に反転したデザインが用意され、ユーザが好みで切り替えられるようにしたアプリケーションも増えた。
+        <p>macOS Mojava らは、 OS レベルで Dark Mode を有効にできるようオプションが追加され、これによって多くのアプリケーションのデザインが切り替わるようになった。
+        <p>筆者は黒背景のターミナル上に居る時間が長いため、ブラウザと切り替えた時の光の強さの変化がずっと気になっていたが、 OS 全体を Dark Mode にした結果より一層ブラウザが眩しく感じるようになった。
+        <p>Safari は、 Mojava の Mode が Light/Dark どちらに設定されているかを取得する仕組みを検証しており、これを用いると OS の設定に合わせたデザインを提供できる。
+      </section>
+      <section>
+        <h2 id="prefers-color-scheme"><a href="#prefers-color-scheme">prefers-color-scheme</a></h2>
+        <p>Safari TP 69 では、 <code translate="no">prefers-color-scheme</code> を用いて Media Query でテーマごとに分岐した CSS を記述できるようになった。
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+        <pre class=css><code translate="no">@media (prefers-color-scheme: light) {
   background-color: white;
   color: black;
 }
@@ -153,10 +153,10 @@
   background-color: black;
   color: white;
 }</code></pre>
-      <p>多くの場合、現状のコンテンツが Ligth Mode と見なされるだろう。
-      <p>その場合、差分のみを Dark Mode 用に書き、色を反転するデザインをあてれば良い。
-      <p>しかし、今後 Dark 以外のテーマの出現や汎用性、メンテナンス性を考えると、カラーセットを Variables でまとめておき、切り替えるのが良いだろう。
-      <pre class=css><code translate="no">@media (prefers-color-scheme: light) {
+        <p>多くの場合、現状のコンテンツが Ligth Mode と見なされるだろう。
+        <p>その場合、差分のみを Dark Mode 用に書き、色を反転するデザインをあてれば良い。
+        <p>しかし、今後 Dark 以外のテーマの出現や汎用性、メンテナンス性を考えると、カラーセットを Variables でまとめておき、切り替えるのが良いだろう。
+        <pre class=css><code translate="no">@media (prefers-color-scheme: light) {
   --theme-base: white;
   --theme-font: black;
   --theme-accent: red;
@@ -176,97 +176,96 @@ body {
 strong {
   color: var(--them-accent);
 }</code></pre>
-    </section>
-    <section>
-      <h2 id="画像"><a href="#画像">画像</a></h2>
-      <p>CSS で色を付けているものは解決するが、問題は <code translate="no">&lt;img&gt;</code> タグの画像だった。
-      <p>ページをダークモードにしても、画像が元のままだと浮いてしまうという問題があった。
-      <p>画像には大きく二つの種類がある。
-      <ul>
-        <li>スクショなどの写真画像(png, jpg, webp)
-        <li>ツールで書いた図(svg)
-      </ul>
-      <p>SVG は最悪作り直すことも可能だが、コストがかかるため難しい。
-      <p>そこで、これらは CSS Filter で対応することにした。
+      </section>
       <section>
-        <h3 id="ラスタ画像png-jpg-webp"><a href="#ラスタ画像png-jpg-webp">ラスタ画像(png, jpg, webp)</a></h3>
-        <p>Dark Mode 時の画像がどうあるべきかを考えると難しい。
-        <p>背景と文字については反転しているわけだが、画像の反転での <code translate="no">invert()</code> はネガのようになりより見にくくなってしまう。
-        <p>そもそも Mode があるのは、なんらかの理由で「見やすさ」を切り替える目的があると考える。
-        <p>Light Mode に対し Dark Mode があるのは、 Light Mode が「明るすぎる」「眩しい」という理由が挙げられるだろう。
-        <p>すると、 Dark Mode 時の画像は、 Light Mode に対して暗くなっているべきだと考えられる。
-        <p>そこで <code translate="no">grayscale()</code> を適用し、暗くする方法を取ることにした。
-        <p>この <code translate="no">grayscale()</code> は引数を取り、 100% が完全な白黒になる。
-        <p>注釈や赤線を引いたスクショもあるため、それらの色が認識でき、かつ明るさを抑えて先の dark mode の CSS デザインと混じる値を探す。
-        <p>結果、以下に落ち着いた。
-        <pre class=css><code translate="no">article img {
+        <h2 id="画像"><a href="#画像">画像</a></h2>
+        <p>CSS で色を付けているものは解決するが、問題は <code translate="no">&lt;img&gt;</code> タグの画像だった。
+        <p>ページをダークモードにしても、画像が元のままだと浮いてしまうという問題があった。
+        <p>画像には大きく二つの種類がある。
+        <ul>
+          <li>スクショなどの写真画像(png, jpg, webp)
+          <li>ツールで書いた図(svg)
+        </ul>
+        <p>SVG は最悪作り直すことも可能だが、コストがかかるため難しい。
+        <p>そこで、これらは CSS Filter で対応することにした。
+        <section>
+          <h3 id="ラスタ画像png-jpg-webp"><a href="#ラスタ画像png-jpg-webp">ラスタ画像(png, jpg, webp)</a></h3>
+          <p>Dark Mode 時の画像がどうあるべきかを考えると難しい。
+          <p>背景と文字については反転しているわけだが、画像の反転での <code translate="no">invert()</code> はネガのようになりより見にくくなってしまう。
+          <p>そもそも Mode があるのは、なんらかの理由で「見やすさ」を切り替える目的があると考える。
+          <p>Light Mode に対し Dark Mode があるのは、 Light Mode が「明るすぎる」「眩しい」という理由が挙げられるだろう。
+          <p>すると、 Dark Mode 時の画像は、 Light Mode に対して暗くなっているべきだと考えられる。
+          <p>そこで <code translate="no">grayscale()</code> を適用し、暗くする方法を取ることにした。
+          <p>この <code translate="no">grayscale()</code> は引数を取り、 100% が完全な白黒になる。
+          <p>注釈や赤線を引いたスクショもあるため、それらの色が認識でき、かつ明るさを抑えて先の dark mode の CSS デザインと混じる値を探す。
+          <p>結果、以下に落ち着いた。
+          <pre class=css><code translate="no">article img {
   filter: grayscale(50%);
 }</code></pre>
-      </section>
-      <section>
-        <h3 id="ベクタ画像svg"><a href="#ベクタ画像svg">ベクタ画像(svg)</a></h3>
-        <p>ベクタは、基本白背景に対して黒の線や文字で作り、一部色を入れている。
-        <p>これは、 <code translate="no">invert()</code> で反転させることで黒背景にすることが可能なので、黒背景にした dark mode とも合う。
-        <p>しかし、そのままではやはり色が強くなりがちなので、ラスタと同じように <code translate="no">grayscale()</code> を適用することにした。
-        <p>結果、以下に落ち着いた。
-        <pre class=css><code translate="no">article img[src*=svg] {
+        </section>
+        <section>
+          <h3 id="ベクタ画像svg"><a href="#ベクタ画像svg">ベクタ画像(svg)</a></h3>
+          <p>ベクタは、基本白背景に対して黒の線や文字で作り、一部色を入れている。
+          <p>これは、 <code translate="no">invert()</code> で反転させることで黒背景にすることが可能なので、黒背景にした dark mode とも合う。
+          <p>しかし、そのままではやはり色が強くなりがちなので、ラスタと同じように <code translate="no">grayscale()</code> を適用することにした。
+          <p>結果、以下に落ち着いた。
+          <pre class=css><code translate="no">article img[src*=svg] {
   filter: invert(100%) grayscale(50%);
 }</code></pre>
-      </section>
-      <section>
-        <h3 id="画像についての備考"><a href="#画像についての備考">画像についての備考</a></h3>
-        <p>本サイトが、そのそもモノクロデザインであるため、画像もモノクロにしてしまっても、なんとなくそれっぽく見える。
-        <pre class=css><code translate="no">article img[src*=svg] {
+        </section>
+        <section>
+          <h3 id="画像についての備考"><a href="#画像についての備考">画像についての備考</a></h3>
+          <p>本サイトが、そのそもモノクロデザインであるため、画像もモノクロにしてしまっても、なんとなくそれっぽく見える。
+          <pre class=css><code translate="no">article img[src*=svg] {
   filter: invert(100%) grayscale(100%);
 }
 
 article img {
   filter: grayscale(100%);
 }</code></pre>
-        <p>しかし、それは本サイトがたまたまそうだっただけで、テーマカラーのあるサイトではそうはならないだろう。
-        <p>そこで、ここまでの極端な設定は一旦避けて、前述のようにした。
-        <p>画像については、今後も色々値を変えつつ試していきたい。
+          <p>しかし、それは本サイトがたまたまそうだっただけで、テーマカラーのあるサイトではそうはならないだろう。
+          <p>そこで、ここまでの極端な設定は一旦避けて、前述のようにした。
+          <p>画像については、今後も色々値を変えつつ試していきたい。
+        </section>
       </section>
-    </section>
-    <section>
-      <h2 id="code-block"><a href="#code-block">Code Block</a></h2>
-      <p>本サイトでは、コードスニペットにシンタックスハイライトを入れている。
-      <p>ハイライト用のテーマを dark 用に用意するのも良いが、大変そうだったのでここも CSS filter を使うことにした。
-      <p>ハイライト用に作ったカラーテーマは、そのまま <code translate="no">invert()</code> してもそれなりに違和感がなかったため、これを適用した。
-      <pre class=css><code translate="no">p &gt; code,
+      <section>
+        <h2 id="code-block"><a href="#code-block">Code Block</a></h2>
+        <p>本サイトでは、コードスニペットにシンタックスハイライトを入れている。
+        <p>ハイライト用のテーマを dark 用に用意するのも良いが、大変そうだったのでここも CSS filter を使うことにした。
+        <p>ハイライト用に作ったカラーテーマは、そのまま <code translate="no">invert()</code> してもそれなりに違和感がなかったため、これを適用した。
+        <pre class=css><code translate="no">p &gt; code,
 pre &gt; code {
   filter: invert(100%);
 }</code></pre>
-    </section>
-    <section>
-      <h2 id="user-preference-media-features"><a href="#user-preference-media-features">User Preference Media Features</a></h2>
-      <p>この <code translate="no">prefers-color-scheme</code> は MediaQueries Lv5 の User Preference Media Features という仕様に含まれ、まだ策定途中である。(current work は Lv4)
-      <p>主に、ユーザ自身が望ましい閲覧設定を、コンテンツ側が取得して、デザインのヒントに利用するためのものである。
-      <p>執筆時点では、 User Preference Media Features は以下の 4 が定義されている。
-      <ul>
-        <li>prefers-reduced-motion(reduce):       アニメーションなどの動きを減らす
-        <li>prefers-reduced-transparency(reduce): 透過表現を減らす
-        <li>prefers-contrast(high, low):          コントラストの高低を要求する
-        <li>prefers-color-scheme(light, dark):    カラーテーマを指定する
-      </ul>
-      <p><a href="https://drafts.csswg.org/mediaqueries-5/#mf-user-preferences">Media Queries Level 5</a>
-      <p>今回はこの color-scheme にのみフォーカスしたが、この仕様を見ればユーザが様々な閲覧環境を設定できるようになる可能性が想定でき、対応のバリエーションも増えるだろう。
-      <p>もし今回 DarkMode に対応するために CSS に手を入れたり、新規に CSS を書く機会があるのであれば、将来こうした設定への対応をする可能性を考慮し、設計できるとより良いのではないだろうか。
-    </section>
-    <section>
-      <h2 id="本サイトでの適用"><a href="#本サイトでの適用">本サイトでの適用</a></h2>
-      <p>本サイトも色関連を variables でまとめ、 dark mode のみ切り替えるように CSS を適用した。
-      <p>動作は Safari TP69 で確認している。
-      <p>
-        <picture>
-          <source type=image/webp srcset=./dark-mode.webp#1346x783>
-          <img loading=lazy src=./dark-mode.gif#1346x783 alt="dark mode support demo" title="" intrinsicsize=1346x783>
-        </picture>
-      </p>
-      <p>今後、新しくプロパティが実装された際には対応していく予定であり、それを見据えた CSS のリファクタリングをし、備えておきたいと考えている。
-    </section>
-  </article>
-
+      </section>
+      <section>
+        <h2 id="user-preference-media-features"><a href="#user-preference-media-features">User Preference Media Features</a></h2>
+        <p>この <code translate="no">prefers-color-scheme</code> は MediaQueries Lv5 の User Preference Media Features という仕様に含まれ、まだ策定途中である。(current work は Lv4)
+        <p>主に、ユーザ自身が望ましい閲覧設定を、コンテンツ側が取得して、デザインのヒントに利用するためのものである。
+        <p>執筆時点では、 User Preference Media Features は以下の 4 が定義されている。
+        <ul>
+          <li>prefers-reduced-motion(reduce):       アニメーションなどの動きを減らす
+          <li>prefers-reduced-transparency(reduce): 透過表現を減らす
+          <li>prefers-contrast(high, low):          コントラストの高低を要求する
+          <li>prefers-color-scheme(light, dark):    カラーテーマを指定する
+        </ul>
+        <p><a href="https://drafts.csswg.org/mediaqueries-5/#mf-user-preferences">Media Queries Level 5</a>
+        <p>今回はこの color-scheme にのみフォーカスしたが、この仕様を見ればユーザが様々な閲覧環境を設定できるようになる可能性が想定でき、対応のバリエーションも増えるだろう。
+        <p>もし今回 DarkMode に対応するために CSS に手を入れたり、新規に CSS を書く機会があるのであれば、将来こうした設定への対応をする可能性を考慮し、設計できるとより良いのではないだろうか。
+      </section>
+      <section>
+        <h2 id="本サイトでの適用"><a href="#本サイトでの適用">本サイトでの適用</a></h2>
+        <p>本サイトも色関連を variables でまとめ、 dark mode のみ切り替えるように CSS を適用した。
+        <p>動作は Safari TP69 で確認している。
+        <p>
+          <picture>
+            <source type=image/webp srcset=./dark-mode.webp#1346x783>
+            <img loading=lazy src=./dark-mode.gif#1346x783 alt="dark mode support demo" title="" intrinsicsize=1346x783>
+          </picture>
+        </p>
+        <p>今後、新しくプロパティが実装された際には対応していく予定であり、それを見据えた CSS のリファクタリングをし、備えておきたいと考えている。
+      </section>
+    </article>
   </main>
   <hr>
 

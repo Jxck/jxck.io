@@ -106,86 +106,85 @@
     </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
-  <article>
-    <h1><a href=/entries/2018-01-15/aom-and-av1.html>Apple の AOM 加盟と AV1 への期待</a></h1>
-    <section>
-      <h2 id="intro"><a href="#intro">Intro</a></h2>
-      <p>Apple が Alliance for Open Media に加盟したという報道があった。
-      <p>もし、このまま Safari が AV1 をサポートするまで至れば、 WebRTC のコーデック戦争に一旦の落ち着きが出ると思われる。
-      <p><a href="https://www.cnet.com/news/apple-online-video-compression-av1/">Apple joins alliance to shrink your online videos - CNET</a>
-      <p>この動向について解説する。
-    </section>
-    <section>
-      <h2 id="webrtc-codec-war"><a href="#webrtc-codec-war">WebRTC Codec WAR</a></h2>
-      <p>WebRTC によって、動画/音声をやり取りする際に、ブラウザはどのコーデックをサポートするべきかという問題があった。
-      <p>特に動画については以下のような要件が求められる
-      <ul>
-        <li>パテントフリー
-        <li>圧縮効率率/計算速度 etc
-        <li>ハードウェアエンコーダサポート
-        <li>普及率
-      </ul>
-      <p>パフォーマンス要件は確かに無視できないが、 Web において最も重要なのはやはりパテントの問題である。
-      <p>そこで、パテントフリーを謳う新たなコーデックの開発も行われ、度々候補として提案されてきた。
-      <p>しかし、各社とも自分が保有する技術に寄せたいという思惑もあり長いこと議論が行われた。
-      <p>結果的に、音声は Opus でほぼ落ち着いていたが、動画は VP8 と H.264 という折衷案で折れることになった。
-      <ul>
-        <li>
-          <a href="https://tools.ietf.org/html/rfc7742">RFC 7742 - WebRTC Video Processing and Codec Requirements</a>
-        </li>
-        <li>
-          <a href="https://tools.ietf.org/html/rfc7874">RFC 7874 - WebRTC Audio Codec and Processing Requirements</a>
-        </li>
-      </ul>
-      <p>一方すでに、 H.265/VP9 が性能的にも更新しており、 H.264/VP8 だけをサポートして終わりともいかない。
-    </section>
-    <section>
-      <h2 id="コーデックの選択"><a href="#コーデックの選択">コーデックの選択</a></h2>
-      <p>新しいコーデックが単体でどんなパフォーマンスを記録しても、モバイル端末などを見ればハードウェアのサポートは無視できない。
-      <p>H.264 はパテントプールである MPEGLA の存在が常につきまとうが、それでも普及するのはこの部分が大きいからという視点がある。
-      <p>VP9 は、ロイヤリティフリーでありながら、特に Safari がサポートしないことがネックとなっている。
-      <p>時代はすでに H.265, VP9 で議論が進んでいる現状でも、ハードのサポートは一歩遅れてくる。
-      <p>一方で、サポートする側がどのコーデックを詰むかも、コーデックの普及状況を鑑みる。
-      <p>WebRTC のように相互に通信をし、リアルタイムに処理をする必要がある場合、ライセンス的に安全で、ハードウェアエンコーダがサポートしており、ブラウザ実装が進んでいて、スペックパフォーマンスに難が無い、 <em>単一のコーデック</em> があるのが嬉しいのが本音だ。
-      <p>音声は Opus で良いとして、動画については H.264/H.265/VP8/VP9 という選択肢の幅は、多様性として受け入れるほど嬉しいと言い切れない現状がある。
-    </section>
-    <section>
-      <h2 id="av1"><a href="#av1">AV1</a></h2>
-      <p>こうした問題を解決することを目標として AOM (Alliance for Open Media) により開発されているのが AV1 である。
-      <p>AV1 は、最初から H.265 や VP9 を置き換えることを目的としており、 Google も VP10 開発から舵を切りその成果を組み込んでいる。
-      <p>もちろん、最初からロイヤリティフリーなコーデックであることを目指している。
-      <p>Alliance のメンバーには AMD, ARM, Intel, NVIDIA などが名を連ね、ハードウェアのサポートも期待ができそうだ。
-      <p>そして、 Google, Microsoft, Mozilla がいるため、 Chrome/Edge/Firefox については実装が期待される。
-      <p>コンテンツも、既に Amazon Prim, Youtube, Nertflix, Hulu などの指示も取り付けているようだ。
-      <p>つまり、 WebRTC 的に言えば「<em>あと Apple だけ</em>」だった。
-    </section>
-    <section>
-      <h2 id="apple-joins-aom"><a href="#apple-joins-aom">Apple joins AOM</a></h2>
-      <p>そんな中、新年早々 Apple が AOM に join したというニュースが出た。
-      <p><a href="https://www.cnet.com/news/apple-online-video-compression-av1/">Apple joins alliance to shrink your online videos - CNET</a>
-      <p>このニュースのソースは、 AOM の公式アナウンス等ではなく、 <a href="http://aomedia.org/about-us/">AOM のページ</a> のメンバー欄に Apple が追加されたことを元にしているようだ。
-      <ul>
-        <li>
-          <a href="https://web.archive.org/web/20180104174428/http://aomedia.org/about-us/">before</a>
-        </li>
-        <li>
-          <a href="https://web.archive.org/web/20171226184721/http://aomedia.org/about-us/">after</a>
-        </li>
-      </ul>
-      <p>この大きな更新に、即アナウンスが出ないのもちょっと気にかかるが、それでも参画したのであればある程度の進展が期待できるのでは無いかと個人的には考えている。
-      <p>最善のプロセスは
-      <ul>
-        <li>パテントフリーのまま
-        <li>AV1 そのものの実装が加速し
-        <li>H.265/VP9 の性能をきちんと更新しつつ
-        <li>多くのハードでエンコーダがサポートされ
-        <li>各ブラウザが対応する世界
-      </ul>
-      <p>だ。
-      <p>Opus + AV1 on WebM がデファクトスタンダードになり、それをなんの気兼ねも無く使える世界がくればと願う。
-    </section>
-  </article>
-
+    <article>
+      <h1><a href=/entries/2018-01-15/aom-and-av1.html>Apple の AOM 加盟と AV1 への期待</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>Apple が Alliance for Open Media に加盟したという報道があった。
+        <p>もし、このまま Safari が AV1 をサポートするまで至れば、 WebRTC のコーデック戦争に一旦の落ち着きが出ると思われる。
+        <p><a href="https://www.cnet.com/news/apple-online-video-compression-av1/">Apple joins alliance to shrink your online videos - CNET</a>
+        <p>この動向について解説する。
+      </section>
+      <section>
+        <h2 id="webrtc-codec-war"><a href="#webrtc-codec-war">WebRTC Codec WAR</a></h2>
+        <p>WebRTC によって、動画/音声をやり取りする際に、ブラウザはどのコーデックをサポートするべきかという問題があった。
+        <p>特に動画については以下のような要件が求められる
+        <ul>
+          <li>パテントフリー
+          <li>圧縮効率率/計算速度 etc
+          <li>ハードウェアエンコーダサポート
+          <li>普及率
+        </ul>
+        <p>パフォーマンス要件は確かに無視できないが、 Web において最も重要なのはやはりパテントの問題である。
+        <p>そこで、パテントフリーを謳う新たなコーデックの開発も行われ、度々候補として提案されてきた。
+        <p>しかし、各社とも自分が保有する技術に寄せたいという思惑もあり長いこと議論が行われた。
+        <p>結果的に、音声は Opus でほぼ落ち着いていたが、動画は VP8 と H.264 という折衷案で折れることになった。
+        <ul>
+          <li>
+            <a href="https://tools.ietf.org/html/rfc7742">RFC 7742 - WebRTC Video Processing and Codec Requirements</a>
+          </li>
+          <li>
+            <a href="https://tools.ietf.org/html/rfc7874">RFC 7874 - WebRTC Audio Codec and Processing Requirements</a>
+          </li>
+        </ul>
+        <p>一方すでに、 H.265/VP9 が性能的にも更新しており、 H.264/VP8 だけをサポートして終わりともいかない。
+      </section>
+      <section>
+        <h2 id="コーデックの選択"><a href="#コーデックの選択">コーデックの選択</a></h2>
+        <p>新しいコーデックが単体でどんなパフォーマンスを記録しても、モバイル端末などを見ればハードウェアのサポートは無視できない。
+        <p>H.264 はパテントプールである MPEGLA の存在が常につきまとうが、それでも普及するのはこの部分が大きいからという視点がある。
+        <p>VP9 は、ロイヤリティフリーでありながら、特に Safari がサポートしないことがネックとなっている。
+        <p>時代はすでに H.265, VP9 で議論が進んでいる現状でも、ハードのサポートは一歩遅れてくる。
+        <p>一方で、サポートする側がどのコーデックを詰むかも、コーデックの普及状況を鑑みる。
+        <p>WebRTC のように相互に通信をし、リアルタイムに処理をする必要がある場合、ライセンス的に安全で、ハードウェアエンコーダがサポートしており、ブラウザ実装が進んでいて、スペックパフォーマンスに難が無い、 <em>単一のコーデック</em> があるのが嬉しいのが本音だ。
+        <p>音声は Opus で良いとして、動画については H.264/H.265/VP8/VP9 という選択肢の幅は、多様性として受け入れるほど嬉しいと言い切れない現状がある。
+      </section>
+      <section>
+        <h2 id="av1"><a href="#av1">AV1</a></h2>
+        <p>こうした問題を解決することを目標として AOM (Alliance for Open Media) により開発されているのが AV1 である。
+        <p>AV1 は、最初から H.265 や VP9 を置き換えることを目的としており、 Google も VP10 開発から舵を切りその成果を組み込んでいる。
+        <p>もちろん、最初からロイヤリティフリーなコーデックであることを目指している。
+        <p>Alliance のメンバーには AMD, ARM, Intel, NVIDIA などが名を連ね、ハードウェアのサポートも期待ができそうだ。
+        <p>そして、 Google, Microsoft, Mozilla がいるため、 Chrome/Edge/Firefox については実装が期待される。
+        <p>コンテンツも、既に Amazon Prim, Youtube, Nertflix, Hulu などの指示も取り付けているようだ。
+        <p>つまり、 WebRTC 的に言えば「<em>あと Apple だけ</em>」だった。
+      </section>
+      <section>
+        <h2 id="apple-joins-aom"><a href="#apple-joins-aom">Apple joins AOM</a></h2>
+        <p>そんな中、新年早々 Apple が AOM に join したというニュースが出た。
+        <p><a href="https://www.cnet.com/news/apple-online-video-compression-av1/">Apple joins alliance to shrink your online videos - CNET</a>
+        <p>このニュースのソースは、 AOM の公式アナウンス等ではなく、 <a href="http://aomedia.org/about-us/">AOM のページ</a> のメンバー欄に Apple が追加されたことを元にしているようだ。
+        <ul>
+          <li>
+            <a href="https://web.archive.org/web/20180104174428/http://aomedia.org/about-us/">before</a>
+          </li>
+          <li>
+            <a href="https://web.archive.org/web/20171226184721/http://aomedia.org/about-us/">after</a>
+          </li>
+        </ul>
+        <p>この大きな更新に、即アナウンスが出ないのもちょっと気にかかるが、それでも参画したのであればある程度の進展が期待できるのでは無いかと個人的には考えている。
+        <p>最善のプロセスは
+        <ul>
+          <li>パテントフリーのまま
+          <li>AV1 そのものの実装が加速し
+          <li>H.265/VP9 の性能をきちんと更新しつつ
+          <li>多くのハードでエンコーダがサポートされ
+          <li>各ブラウザが対応する世界
+        </ul>
+        <p>だ。
+        <p>Opus + AV1 on WebM がデファクトスタンダードになり、それをなんの気兼ねも無く使える世界がくればと願う。
+      </section>
+    </article>
   </main>
   <hr>
 

@@ -106,84 +106,84 @@
     </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
-  <article>
-    <h1><a href=/entries/2017-06-12/web-budget-api.html>Web Budget API と Web に導入されつつある Budget と Cost の概念</a></h1>
-    <section>
-      <h2 id="intro"><a href="#intro">Intro</a></h2>
-      <p>PWA の普及により、バックグラウンド処理をいかに制限するかといった課題が生まれた。
-      <p>その対策として、バックグラウンド処理における Budget と Cost の概念が提案され、それを扱う Budget API の策定が進んでいる。
-      <p>基本概念と現時点での API 外観について解説する。
-    </section>
-    <section>
-      <h2 id="update"><a href="#update">Update</a></h2>
-      <p>提案されて以降長いことアップデートがなかったが、 Mozilla Standard Position をリクエストしたところ、仕様が消えていたことがわかった。
-      <ul>
-        <li>
-          <a href="https://github.com/mozilla/standards-positions/issues/73#issuecomment-373681407">https://github.com/mozilla/standards-positions/issues/73#issuecomment-373681407</a>
-        </li>
-      </ul>
-      <p>元のリポジトリに Issue で現状を問い合わせたところ、結局開発者からの支持が得られず、 Obsolute されたとのこと。
-      <p>blink-dev では Intent to Remove も出て、削除のパッチも上がっている。
-      <ul>
-        <li>
-          <a href="https://github.com/WICG/budget-api/issues/23">https://github.com/WICG/budget-api/issues/23</a>
-        </li>
-        <li>
-          <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/18r3whCBv0I/b8qrtFTsDAAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/18r3whCBv0I/b8qrtFTsDAAJ</a>
-        </li>
-      </ul>
-      <p>Silent Push 含め今後どうしていくかは、別途議論となる。
-    </section>
-    <section>
-      <h2 id="budget-api"><a href="#budget-api">Budget API</a></h2>
-      <p>Push API と Background Fetch が入った事で、 Web アプリはユーザ操作への応答のみだけでなく、バックグラウンドでの動作の可能性が増えた。
-      <p>しかし、これまでの Web のライフサイクルとの乖離が大きいため、潜在的な問題が露見する可能性もある。
-      <p>そこで、例えば Chrome は Push API は必ず User Visible な通知(notification)を伴うものに制限していた。
-      <p>一方 Firefox は処理に対して Cost を定義し、アプリに対して Budget を付与することで、処理を制限する方式を模索していた。
-      <p>これが、 Web Budget API として整備され、 Chrome もこの方式にシフトしている。
-      <p><a href="https://wicg.github.io/budget-api/">Web Budget API</a>
-    </section>
-    <section>
-      <h2 id="cost--budget"><a href="#cost--budget">Cost &amp; Budget</a></h2>
-      <p>Web Push は、現状ユーザに通知を表示する目的で使われている。
-      <p>しかし、ユーザへの通知ではなく、例えばデータの同期等の処理をバックグラウンドで行うなど Silent Push のユースケースも考えられる。
-      <p>Service Worker が登録されて、そこにユーザへの通知なく Push を自由に送ることができてしまうと、 Push が乱用される可能性がある。
-      <p>Silent Push が乱用されると、ユーザの知らないところで著しくバッテリーが消費されるなどのリスクもあるため、何らかの方法で制限をかける必要がある。
-      <p>そこで、バックグラウンド実行できる処理それぞれに対して <em>Cost</em> を割り当て、その Origin が実行できる <em>Budget</em> を定義することで、 Budget の範囲内でしか処理できないように制限する方式が提案されている。
-      <p>例えば Silent Push の Cost が <code translate="no">2</code> であったとし、 Origin に付与された Budget が <code translate="no">6</code> だとしたら、 3 回しか Silent Push を送れないといったイメージだ。
-    </section>
-    <section>
-      <h2 id="budget-api-1"><a href="#budget-api-1">Budget API</a></h2>
-      <p>Budget API は、この Budget と Cost を扱うための API である。
-      <p>基本は <code translate="no">navigator.budget</code> に定義される。
+    <article>
+      <h1><a href=/entries/2017-06-12/web-budget-api.html>Web Budget API と Web に導入されつつある Budget と Cost の概念</a></h1>
       <section>
-        <h3 id="budgetgetbudget"><a href="#budgetgetbudget">budget.getBudget()</a></h3>
-        <p>現在から、将来に渡り利用できる budget のリストを取得する。
-        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-        <pre class=js><code translate="no">navigator.budget.getBudget().then((budgets) =&gt; {
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>PWA の普及により、バックグラウンド処理をいかに制限するかといった課題が生まれた。
+        <p>その対策として、バックグラウンド処理における Budget と Cost の概念が提案され、それを扱う Budget API の策定が進んでいる。
+        <p>基本概念と現時点での API 外観について解説する。
+      </section>
+      <section>
+        <h2 id="update"><a href="#update">Update</a></h2>
+        <p>提案されて以降長いことアップデートがなかったが、 Mozilla Standard Position をリクエストしたところ、仕様が消えていたことがわかった。
+        <ul>
+          <li>
+            <a href="https://github.com/mozilla/standards-positions/issues/73#issuecomment-373681407">https://github.com/mozilla/standards-positions/issues/73#issuecomment-373681407</a>
+          </li>
+        </ul>
+        <p>元のリポジトリに Issue で現状を問い合わせたところ、結局開発者からの支持が得られず、 Obsolute されたとのこと。
+        <p>blink-dev では Intent to Remove も出て、削除のパッチも上がっている。
+        <ul>
+          <li>
+            <a href="https://github.com/WICG/budget-api/issues/23">https://github.com/WICG/budget-api/issues/23</a>
+          </li>
+          <li>
+            <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/18r3whCBv0I/b8qrtFTsDAAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/18r3whCBv0I/b8qrtFTsDAAJ</a>
+          </li>
+        </ul>
+        <p>Silent Push 含め今後どうしていくかは、別途議論となる。
+      </section>
+      <section>
+        <h2 id="budget-api"><a href="#budget-api">Budget API</a></h2>
+        <p>Push API と Background Fetch が入った事で、 Web アプリはユーザ操作への応答のみだけでなく、バックグラウンドでの動作の可能性が増えた。
+        <p>しかし、これまでの Web のライフサイクルとの乖離が大きいため、潜在的な問題が露見する可能性もある。
+        <p>そこで、例えば Chrome は Push API は必ず User Visible な通知(notification)を伴うものに制限していた。
+        <p>一方 Firefox は処理に対して Cost を定義し、アプリに対して Budget を付与することで、処理を制限する方式を模索していた。
+        <p>これが、 Web Budget API として整備され、 Chrome もこの方式にシフトしている。
+        <p><a href="https://wicg.github.io/budget-api/">Web Budget API</a>
+      </section>
+      <section>
+        <h2 id="cost--budget"><a href="#cost--budget">Cost &amp; Budget</a></h2>
+        <p>Web Push は、現状ユーザに通知を表示する目的で使われている。
+        <p>しかし、ユーザへの通知ではなく、例えばデータの同期等の処理をバックグラウンドで行うなど Silent Push のユースケースも考えられる。
+        <p>Service Worker が登録されて、そこにユーザへの通知なく Push を自由に送ることができてしまうと、 Push が乱用される可能性がある。
+        <p>Silent Push が乱用されると、ユーザの知らないところで著しくバッテリーが消費されるなどのリスクもあるため、何らかの方法で制限をかける必要がある。
+        <p>そこで、バックグラウンド実行できる処理それぞれに対して <em>Cost</em> を割り当て、その Origin が実行できる <em>Budget</em> を定義することで、 Budget の範囲内でしか処理できないように制限する方式が提案されている。
+        <p>例えば Silent Push の Cost が <code translate="no">2</code> であったとし、 Origin に付与された Budget が <code translate="no">6</code> だとしたら、 3 回しか Silent Push を送れないといったイメージだ。
+      </section>
+      <section>
+        <h2 id="budget-api-1"><a href="#budget-api-1">Budget API</a></h2>
+        <p>Budget API は、この Budget と Cost を扱うための API である。
+        <p>基本は <code translate="no">navigator.budget</code> に定義される。
+        <section>
+          <h3 id="budgetgetbudget"><a href="#budgetgetbudget">budget.getBudget()</a></h3>
+          <p>現在から、将来に渡り利用できる budget のリストを取得する。
+          <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+          <pre class=js><code translate="no">navigator.budget.getBudget().then((budgets) =&gt; {
   budgets.forEach((budget) =&gt; {
     console.log(budget.time, budget.budgetAt);
   });
 });</code></pre>
-        <p>Budget の値は仕様では定義せず、 User Agent に委ねられている。これにより、 UA にヒューリスティックな値の算出や、ニーズに応じた増減などの余地を与えている。
-      </section>
-      <section>
-        <h3 id="budgetgetcost"><a href="#budgetgetcost">budget.getCost()</a></h3>
-        <p>処理の Cost を取得する。
-        <p>引数には、対象となる処理の名前を与えるが、この値は仕様に定義される。
-        <p>執筆時点では <code translate="no">&quot;silent-push&quot;</code> のみ定義されている。
-        <pre class=js><code translate="no">navigator.budget.getCost(&#039;silent-push&#039;).then((cost) =&gt; {
+          <p>Budget の値は仕様では定義せず、 User Agent に委ねられている。これにより、 UA にヒューリスティックな値の算出や、ニーズに応じた増減などの余地を与えている。
+        </section>
+        <section>
+          <h3 id="budgetgetcost"><a href="#budgetgetcost">budget.getCost()</a></h3>
+          <p>処理の Cost を取得する。
+          <p>引数には、対象となる処理の名前を与えるが、この値は仕様に定義される。
+          <p>執筆時点では <code translate="no">&quot;silent-push&quot;</code> のみ定義されている。
+          <pre class=js><code translate="no">navigator.budget.getCost(&#039;silent-push&#039;).then((cost) =&gt; {
   console.log(cost); // 2
 });</code></pre>
-        <p>ここで返される Cost は、上限値であり、実際の UA やデバイスの状況によっては、より低い Cost しか実行時に消費されない可能性がある。
-        <p>例えば、デバイスが充電状態である場合、強い Wifi ネットワークに繋がっている場合などは、デバイスは Cost を下げることを許されている。
-      </section>
-      <section>
-        <h3 id="budgetreserve"><a href="#budgetreserve">budget.reserve()</a></h3>
-        <p>実際に処理を実行する際に、 Budget を Cost 分消費する。
-        <p>戻る Promise は、コストが足りたかどうかを bool で解決する。
-        <p><code translate="no">silent-push</code> の場合は、コストが足りればそのまま処理を進められ、足りなかった場合は notification によってユーザに通知する必要が出る。
-        <pre class=js><code translate="no">self.addEventListener(&#039;push&#039;, (e) =&gt; {
+          <p>ここで返される Cost は、上限値であり、実際の UA やデバイスの状況によっては、より低い Cost しか実行時に消費されない可能性がある。
+          <p>例えば、デバイスが充電状態である場合、強い Wifi ネットワークに繋がっている場合などは、デバイスは Cost を下げることを許されている。
+        </section>
+        <section>
+          <h3 id="budgetreserve"><a href="#budgetreserve">budget.reserve()</a></h3>
+          <p>実際に処理を実行する際に、 Budget を Cost 分消費する。
+          <p>戻る Promise は、コストが足りたかどうかを bool で解決する。
+          <p><code translate="no">silent-push</code> の場合は、コストが足りればそのまま処理を進められ、足りなかった場合は notification によってユーザに通知する必要が出る。
+          <pre class=js><code translate="no">self.addEventListener(&#039;push&#039;, (e) =&gt; {
   return e.waitUntil(navigator.budget.reserve(&#039;silent-push&#039;).then((reserved) =&gt; {
     if (reserved) {
       // budget が足りている
@@ -195,22 +195,21 @@
     return registration.showNotification();
   }))
 });</code></pre>
+        </section>
+        <section>
+          <h3 id="demo"><a href="#demo">DEMO</a></h3>
+          <p>以下に、簡単な DEMO を用意した。
+          <p><a href="https://labs.jxck.io/budget/basic.html">Budget API DEMO</a>
+        </section>
+        <section>
+          <h3 id="budget-の導入と-cost-管理"><a href="#budget-の導入と-cost-管理">Budget の導入と Cost 管理</a></h3>
+          <p>Budget のような概念が無いと、ユーザが気づかないうちに実行環境が乱用される可能性があるため、 PWA によってアーキテクチャが変わった Web にとっては、こうした制限はある程度必要だろう。
+          <p>一方で、 Silent Push を積極的に利用して、バックグラウンドでデータの同期を行うといったアプリでは、ユーザの状態として考慮すべき状態変数が一つ増える結果となる。
+          <p>今後定義されるバックグラウンド系の処理も、 Budget 管理の対象になる可能性があるため、 PWA を真剣にやる上では無視できないものになっていく可能性がある。
+          <p>まだ策定が始まったばかりではあるが、バックグラウンド処理を多用するユースケースに期待を寄せている開発者は、今のうちに Origin Trials 経由などで積極的なフィードバックをするといいだろう。
+        </section>
       </section>
-      <section>
-        <h3 id="demo"><a href="#demo">DEMO</a></h3>
-        <p>以下に、簡単な DEMO を用意した。
-        <p><a href="https://labs.jxck.io/budget/basic.html">Budget API DEMO</a>
-      </section>
-      <section>
-        <h3 id="budget-の導入と-cost-管理"><a href="#budget-の導入と-cost-管理">Budget の導入と Cost 管理</a></h3>
-        <p>Budget のような概念が無いと、ユーザが気づかないうちに実行環境が乱用される可能性があるため、 PWA によってアーキテクチャが変わった Web にとっては、こうした制限はある程度必要だろう。
-        <p>一方で、 Silent Push を積極的に利用して、バックグラウンドでデータの同期を行うといったアプリでは、ユーザの状態として考慮すべき状態変数が一つ増える結果となる。
-        <p>今後定義されるバックグラウンド系の処理も、 Budget 管理の対象になる可能性があるため、 PWA を真剣にやる上では無視できないものになっていく可能性がある。
-        <p>まだ策定が始まったばかりではあるが、バックグラウンド処理を多用するユースケースに期待を寄せている開発者は、今のうちに Origin Trials 経由などで積極的なフィードバックをするといいだろう。
-      </section>
-    </section>
-  </article>
-
+    </article>
   </main>
   <hr>
 

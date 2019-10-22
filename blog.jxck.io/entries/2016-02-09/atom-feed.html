@@ -106,32 +106,32 @@
     </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
-  <article>
-    <h1><a href=/entries/2016-02-09/atom-feed.html>Atom の RSS Feed 対応</a></h1>
-    <section>
-      <h2 id="intro"><a href="#intro">Intro</a></h2>
-      <p>このブログの Atom feed を吐くようにした。
-      <p>右上の <a href="https://blog.jxck.io/feeds/atom.xml">feed アイコン</a> から登録できる。
-    </section>
-    <section>
-      <h2 id="rss-のフォーマット"><a href="#rss-のフォーマット">RSS のフォーマット</a></h2>
-      <p>RSS の主な仕様は三つある
-      <ul>
-        <li>RSS 1.0
-        <li>RSS 2.0
-        <li>Atom
-      </ul>
-      <p>どれも順番に進化したというよりは、混乱する仕様編成を経て落ち着いたということらしい。
-      <p>一方で、標準的な RSS(feed)リーダならどのフォーマットも基本的には対応しているとのこと。
-      <p>中でも Atom は一番シンプルな仕様であるようなので、これで吐くことにした。
-    </section>
-    <section>
-      <h2 id="atom"><a href="#atom">Atom</a></h2>
-      <p>このサイトの、ここまでのエントリのフィードは以下のようになった。
+    <article>
+      <h1><a href=/entries/2016-02-09/atom-feed.html>Atom の RSS Feed 対応</a></h1>
       <section>
-        <h3 id="完成型"><a href="#完成型">完成型</a></h3>
-        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-        <pre class=xml><code translate="no">&lt;?xml version=&#039;1.0&#039; encoding=&#039;UTF-8&#039;?&gt;
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>このブログの Atom feed を吐くようにした。
+        <p>右上の <a href="https://blog.jxck.io/feeds/atom.xml">feed アイコン</a> から登録できる。
+      </section>
+      <section>
+        <h2 id="rss-のフォーマット"><a href="#rss-のフォーマット">RSS のフォーマット</a></h2>
+        <p>RSS の主な仕様は三つある
+        <ul>
+          <li>RSS 1.0
+          <li>RSS 2.0
+          <li>Atom
+        </ul>
+        <p>どれも順番に進化したというよりは、混乱する仕様編成を経て落ち着いたということらしい。
+        <p>一方で、標準的な RSS(feed)リーダならどのフォーマットも基本的には対応しているとのこと。
+        <p>中でも Atom は一番シンプルな仕様であるようなので、これで吐くことにした。
+      </section>
+      <section>
+        <h2 id="atom"><a href="#atom">Atom</a></h2>
+        <p>このサイトの、ここまでのエントリのフィードは以下のようになった。
+        <section>
+          <h3 id="完成型"><a href="#完成型">完成型</a></h3>
+          <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+          <pre class=xml><code translate="no">&lt;?xml version=&#039;1.0&#039; encoding=&#039;UTF-8&#039;?&gt;
 &lt;feed xmlns=&#039;http://www.w3.org/2005/Atom&#039; xml:lang=&#039;ja&#039;&gt;
 &lt;title&gt;blog.jxck.io&lt;/title&gt;
 &lt;link rel=&quot;alternate&quot; href=&quot;https://blog.jxck.io/&quot;/&gt;
@@ -164,37 +164,36 @@
 &lt;/entry&gt;
 
 &lt;/feed&gt;</code></pre>
-        <p>必須項目くらいしか書いていない、シンプルな形にしている。
-        <p>悩んだ項目が ID だった。
+          <p>必須項目くらいしか書いていない、シンプルな形にしている。
+          <p>悩んだ項目が ID だった。
+        </section>
+        <section>
+          <h3 id="id"><a href="#id">id</a></h3>
+          <p>まず feed 自体の id と、エントリごとの id がある。
+          <p>feed の id は、 feed を生成し直すたびに振るのかと思ったが、そうではなく、この feed 自体に一度振ったら二度と変えないらしい。
+          <p>エントリの id は、エントリ自体に振る。エントリを更新しても振りなおしたりはしない。
+          <p>どちらも URI でいいのでは? という気がするが、例えばエントリの id は、 URI が変わっても同じものを使うらしい。そのため、エントリの URI を変える可能性を考え、別途振ることが多いとのこと。
+          <p>そこで、 URI の一部や、 UUID などを織り交ぜ、 <a href="https://www.ietf.org/rfc/rfc4151.txt">The &lsquo;tag&rsquo; URI Scheme</a> というフォーマットを使うことが多い。
+          <p>ということで、このサイトの feed も、その辺を参考に作ってみた。
+          <p>(もちろん URI は変わらない、というポリシーを貫ける場合は、 URI でも問題ない)
+        </section>
+        <section>
+          <h3 id="validate"><a href="#validate">validate</a></h3>
+          <p>生成した Atom Feed は w3c のバリデータで確認した。
+          <p><a href="https://validator.w3.org/feed/check.cgi?url=https%3A%2F%2Fblog.jxck.io%2Ffeeds%2Fatom.xml">Feed Validator</a>
+        </section>
+        <section>
+          <h3 id="meta"><a href="#meta">meta</a></h3>
+          <p>サイトの HTML に、 Feed を持つことを <code translate="no">&lt;meta&gt;</code> タグで記述した。
+          <pre class=html><code translate="no">&lt;link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml /&gt;</code></pre>
+        </section>
       </section>
       <section>
-        <h3 id="id"><a href="#id">id</a></h3>
-        <p>まず feed 自体の id と、エントリごとの id がある。
-        <p>feed の id は、 feed を生成し直すたびに振るのかと思ったが、そうではなく、この feed 自体に一度振ったら二度と変えないらしい。
-        <p>エントリの id は、エントリ自体に振る。エントリを更新しても振りなおしたりはしない。
-        <p>どちらも URI でいいのでは? という気がするが、例えばエントリの id は、 URI が変わっても同じものを使うらしい。そのため、エントリの URI を変える可能性を考え、別途振ることが多いとのこと。
-        <p>そこで、 URI の一部や、 UUID などを織り交ぜ、 <a href="https://www.ietf.org/rfc/rfc4151.txt">The &lsquo;tag&rsquo; URI Scheme</a> というフォーマットを使うことが多い。
-        <p>ということで、このサイトの feed も、その辺を参考に作ってみた。
-        <p>(もちろん URI は変わらない、というポリシーを貫ける場合は、 URI でも問題ない)
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>firefox がデフォルトで持っている feed reader や feedly, Live Dowango Reader などでチェックしたところ普通に動いている。
+        <p>追加の属性については、必要に応じて足していく。
       </section>
-      <section>
-        <h3 id="validate"><a href="#validate">validate</a></h3>
-        <p>生成した Atom Feed は w3c のバリデータで確認した。
-        <p><a href="https://validator.w3.org/feed/check.cgi?url=https%3A%2F%2Fblog.jxck.io%2Ffeeds%2Fatom.xml">Feed Validator</a>
-      </section>
-      <section>
-        <h3 id="meta"><a href="#meta">meta</a></h3>
-        <p>サイトの HTML に、 Feed を持つことを <code translate="no">&lt;meta&gt;</code> タグで記述した。
-        <pre class=html><code translate="no">&lt;link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml /&gt;</code></pre>
-      </section>
-    </section>
-    <section>
-      <h2 id="outro"><a href="#outro">Outro</a></h2>
-      <p>firefox がデフォルトで持っている feed reader や feedly, Live Dowango Reader などでチェックしたところ普通に動いている。
-      <p>追加の属性については、必要に応じて足していく。
-    </section>
-  </article>
-
+    </article>
   </main>
   <hr>
 

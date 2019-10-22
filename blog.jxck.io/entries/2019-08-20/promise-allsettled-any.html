@@ -106,28 +106,28 @@
     </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
-  <article>
-    <h1><a href=/entries/2019-08-20/promise-allsettled-any.html>Promise.allSettled と Promise.any</a></h1>
-    <section>
-      <h2 id="intro"><a href="#intro">Intro</a></h2>
-      <p><code translate="no">Promise.allSettled()</code> と <code translate="no">Promise.any()</code> の仕様策定が進んでいる。
-      <p>両者は近いレイヤの仕様では有るが、作業の進捗には差がある。
-      <ul>
-        <li>
-          <a href="https://github.com/tc39/proposal-promise-allSettled">Promise.allSettled</a> は Stage 4 であり、 Chrome や Safari TP には実装もされている
-        </li>
-        <li>
-          <a href="https://github.com/tc39/proposal-promise-any">Promise.any</a> は Stage 2 であり、実装はまだない
-        </li>
-      </ul>
-      <p>ここでは、これらがあると何が嬉しいのかを <code translate="no">Promise.all()</code>, <code translate="no">Promise.race()</code> の特徴を踏まえて解説する。
-    </section>
-    <section>
-      <h2 id="promiseallrace"><a href="#promiseallrace">Promise.all()/race()</a></h2>
-      <p><code translate="no">Promise.all()</code>, <code translate="no">Promise.race()</code> は、いずれも複数の Promise をまとめて処理する Utility Method のようなものである。
-      <p>all は全ての Promise が Resolve したら Resolve し、 race はどれか 1 つでも Resolve したら Resolve する Promise をそれぞれ返す。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre class=js><code translate="no">const fetches = [
+    <article>
+      <h1><a href=/entries/2019-08-20/promise-allsettled-any.html>Promise.allSettled と Promise.any</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p><code translate="no">Promise.allSettled()</code> と <code translate="no">Promise.any()</code> の仕様策定が進んでいる。
+        <p>両者は近いレイヤの仕様では有るが、作業の進捗には差がある。
+        <ul>
+          <li>
+            <a href="https://github.com/tc39/proposal-promise-allSettled">Promise.allSettled</a> は Stage 4 であり、 Chrome や Safari TP には実装もされている
+          </li>
+          <li>
+            <a href="https://github.com/tc39/proposal-promise-any">Promise.any</a> は Stage 2 であり、実装はまだない
+          </li>
+        </ul>
+        <p>ここでは、これらがあると何が嬉しいのかを <code translate="no">Promise.all()</code>, <code translate="no">Promise.race()</code> の特徴を踏まえて解説する。
+      </section>
+      <section>
+        <h2 id="promiseallrace"><a href="#promiseallrace">Promise.all()/race()</a></h2>
+        <p><code translate="no">Promise.all()</code>, <code translate="no">Promise.race()</code> は、いずれも複数の Promise をまとめて処理する Utility Method のようなものである。
+        <p>all は全ての Promise が Resolve したら Resolve し、 race はどれか 1 つでも Resolve したら Resolve する Promise をそれぞれ返す。
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+        <pre class=js><code translate="no">const fetches = [
   fetch(&#039;./page1.html&#039;),
   fetch(&#039;./page2.html&#039;),
   fetch(&#039;./page3.html&#039;),
@@ -140,12 +140,12 @@ await Promise.all(fetched)
 
 // 最初の一つが Resolve したら Resolve する
 await Promise.race(fetched)</code></pre>
-      <p>ただし、それは全ての Promise が Resolve することを前提とした場合である。
-      <p>all/race ともに、そのうちの一部が Reject した場合を考えると意外と面倒くさい。
-      <section>
-        <h3 id="all--reject"><a href="#all--reject">all + reject</a></h3>
-        <p>all は、その中の一つでも Reject すると、全体が Reject してしまう。
-        <pre class=js><code translate="no">try {
+        <p>ただし、それは全ての Promise が Resolve することを前提とした場合である。
+        <p>all/race ともに、そのうちの一部が Reject した場合を考えると意外と面倒くさい。
+        <section>
+          <h3 id="all--reject"><a href="#all--reject">all + reject</a></h3>
+          <p>all は、その中の一つでも Reject すると、全体が Reject してしまう。
+          <pre class=js><code translate="no">try {
   const fetches = [
     fetch(&#039;./page1.html&#039;),
     fetch(&#039;./page2.html&#039;),
@@ -162,16 +162,16 @@ await Promise.race(fetched)</code></pre>
   // 一つでも Reject すると Reject する
   cosnole.error(err) // abort
 }</code></pre>
-        <p>すると、「<em>全ての処理が完了してほしい</em>」という要件を満たすためには、リトライする必要がある。
-        <p>しかし、上で言う catch された err は Reject されたエラーしか入ってないため、どこまでが成功しているのかはわからない。
-        <p>そこで、どこまで成功したかがわかるように設計するか、諦めて全部やり直すなどを行う必要がある。
+          <p>すると、「<em>全ての処理が完了してほしい</em>」という要件を満たすためには、リトライする必要がある。
+          <p>しかし、上で言う catch された err は Reject されたエラーしか入ってないため、どこまでが成功しているのかはわからない。
+          <p>そこで、どこまで成功したかがわかるように設計するか、諦めて全部やり直すなどを行う必要がある。
+        </section>
       </section>
-    </section>
-    <section>
-      <h2 id="allsettled"><a href="#allsettled">allSettled</a></h2>
-      <p>allSettled は、 all とは違い、個々が Resolve/Reject どちらになっても、最後までとにかく全て実行する。
-      <p>実行した結果を配列として Resolve するため、基本的に allSettled 自体は Reject しない。
-      <pre class=js><code translate="no">const fetches = [
+      <section>
+        <h2 id="allsettled"><a href="#allsettled">allSettled</a></h2>
+        <p>allSettled は、 all とは違い、個々が Resolve/Reject どちらになっても、最後までとにかく全て実行する。
+        <p>実行した結果を配列として Resolve するため、基本的に allSettled 自体は Reject しない。
+        <pre class=js><code translate="no">const fetches = [
   fetch(&#039;./page1.html&#039;),
   fetch(&#039;./page2.html&#039;),
   fetch(&#039;./page3.html&#039;),
@@ -192,13 +192,13 @@ try {
   // 基本的に reject はしない
   console.error(err)
 }</code></pre>
-      <p>したがって、 <code translate="no">status: &#039;rejected&#039;</code> な結果だけをリトライすれば良い。
-      <p>完了したものを無駄にせず、効率よく簡単に実装することができるだろう。
-    </section>
-    <section>
-      <h2 id="race--reject"><a href="#race--reject">race + reject</a></h2>
-      <p>race の場合は、最初の一つが Resolve する前に Reject した Promise があると、そこで全体が Reject してしまう。
-      <pre class=js><code translate="no">const fetches = [
+        <p>したがって、 <code translate="no">status: &#039;rejected&#039;</code> な結果だけをリトライすれば良い。
+        <p>完了したものを無駄にせず、効率よく簡単に実装することができるだろう。
+      </section>
+      <section>
+        <h2 id="race--reject"><a href="#race--reject">race + reject</a></h2>
+        <p>race の場合は、最初の一つが Resolve する前に Reject した Promise があると、そこで全体が Reject してしまう。
+        <pre class=js><code translate="no">const fetches = [
   fetch(&#039;./page1.html&#039;),
   fetch(&#039;./page2.html&#039;),
   fetch(&#039;./page3.html&#039;),
@@ -213,13 +213,13 @@ try {
 } catch(err) {
   console.error(err) // abort
 }</code></pre>
-      <p>従って、「<em>最初に Resolve する Promise を待ちたい</em>」という要件を満たす場合は、リトライする必要がある。
-    </section>
-    <section>
-      <h2 id="any"><a href="#any">any</a></h2>
-      <p>any は rece とは違い、 Resolve する前に Reject する Promise があっても無視し、最初にいずれかが Resolve するまで待つ。
-      <p>そして、全ての Promise が Reject した場合にのみ全体を Reject する。
-      <pre class=js><code translate="no">const fetches = [
+        <p>従って、「<em>最初に Resolve する Promise を待ちたい</em>」という要件を満たす場合は、リトライする必要がある。
+      </section>
+      <section>
+        <h2 id="any"><a href="#any">any</a></h2>
+        <p>any は rece とは違い、 Resolve する前に Reject する Promise があっても無視し、最初にいずれかが Resolve するまで待つ。
+        <p>そして、全ての Promise が Reject した場合にのみ全体を Reject する。
+        <pre class=js><code translate="no">const fetches = [
   fetch(&#039;./page1.html&#039;),
   fetch(&#039;./page2.html&#039;),
   fetch(&#039;./page3.html&#039;),
@@ -234,48 +234,47 @@ try {
 } catch(err) {
   console.error(err) // 全部 reject した場合
 }</code></pre>
-      <p>従って、「<em>最初に Resolve する Promise を待ちたい</em>」という要件を満たす場合は、 any を使えばそれだけで良い。
-    </section>
-    <section>
-      <h2 id="補足"><a href="#補足">補足</a></h2>
-      <p>Promise が Resolve した状態を Fulfilled, Reject した状態を Rejected と言う。
-      <p>Fulfilled か Rejected どちらかになった状態、つまり成功失敗に関わらず「処理が終わった状態」を <em>Settled</em> と言う。
-      <p>そして、 Promise の配列を取る API で、まだ処理中の Promise がいても、中断して全体を Settled にすることを Short-Circuit と言う。
-      <p>これを踏まえて分類すると、以下のようになる。
-      <ul>
-        <li>Promise.all:        全部 Fulfilled になるまで続け、 1 つでも Rejected になると Short-Circuit する
-        <li>Promise.allSettled: 全部 Settled になるまで続け、 Short-Circuit しない
-        <li>Promise.any:        1 つでも Fulfilled になると Short-Circuit する
-        <li>Promise.race:       1 つでも Settled になると Short-Circuit する
-      </ul>
-      <p>つまり、終わる条件が Settled なのかどうかで分類できることがわかる。
-      <p>この分類で行くと race はそもそも <a href="https://github.com/tc39/proposal-promise-any/issues/10#issuecomment-459134703">anySettled</a> だったと言うことになる。
-      <p>同じようにもし今名前を変えても良いのであれば、こうするとわかりやすいだろう。
-      <ul>
-        <li>Promise.allFulfilled: Promise.all
-        <li>Promise.allSettled:   Promise.allSettled
-        <li>Promise.anyFulfilled: Promise.any
-        <li>Promise.anySettled:   Promise.race
-      </ul>
-      <pre class=js><code translate="no">Promise.allFulfilled = Promise.all
+        <p>従って、「<em>最初に Resolve する Promise を待ちたい</em>」という要件を満たす場合は、 any を使えばそれだけで良い。
+      </section>
+      <section>
+        <h2 id="補足"><a href="#補足">補足</a></h2>
+        <p>Promise が Resolve した状態を Fulfilled, Reject した状態を Rejected と言う。
+        <p>Fulfilled か Rejected どちらかになった状態、つまり成功失敗に関わらず「処理が終わった状態」を <em>Settled</em> と言う。
+        <p>そして、 Promise の配列を取る API で、まだ処理中の Promise がいても、中断して全体を Settled にすることを Short-Circuit と言う。
+        <p>これを踏まえて分類すると、以下のようになる。
+        <ul>
+          <li>Promise.all:        全部 Fulfilled になるまで続け、 1 つでも Rejected になると Short-Circuit する
+          <li>Promise.allSettled: 全部 Settled になるまで続け、 Short-Circuit しない
+          <li>Promise.any:        1 つでも Fulfilled になると Short-Circuit する
+          <li>Promise.race:       1 つでも Settled になると Short-Circuit する
+        </ul>
+        <p>つまり、終わる条件が Settled なのかどうかで分類できることがわかる。
+        <p>この分類で行くと race はそもそも <a href="https://github.com/tc39/proposal-promise-any/issues/10#issuecomment-459134703">anySettled</a> だったと言うことになる。
+        <p>同じようにもし今名前を変えても良いのであれば、こうするとわかりやすいだろう。
+        <ul>
+          <li>Promise.allFulfilled: Promise.all
+          <li>Promise.allSettled:   Promise.allSettled
+          <li>Promise.anyFulfilled: Promise.any
+          <li>Promise.anySettled:   Promise.race
+        </ul>
+        <pre class=js><code translate="no">Promise.allFulfilled = Promise.all
 Promise.allSettled   = Promise.allSettled
 Promise.anyFulfilled = Promise.any
 Promise.anySettled   = Promise.race</code></pre>
-    </section>
-    <section>
-      <h2 id="demo"><a href="#demo">DEMO</a></h2>
-      <p>動作するデモを以下に用意した。
-      <ul>
-        <li>
-          <a href="https://labs.jxck.io/promise/allsettled">https://labs.jxck.io/promise/allsettled</a>
-        </li>
-        <li>
-          <a href="https://labs.jxck.io/promise/any">https://labs.jxck.io/promise/any</a>
-        </li>
-      </ul>
-    </section>
-  </article>
-
+      </section>
+      <section>
+        <h2 id="demo"><a href="#demo">DEMO</a></h2>
+        <p>動作するデモを以下に用意した。
+        <ul>
+          <li>
+            <a href="https://labs.jxck.io/promise/allsettled">https://labs.jxck.io/promise/allsettled</a>
+          </li>
+          <li>
+            <a href="https://labs.jxck.io/promise/any">https://labs.jxck.io/promise/any</a>
+          </li>
+        </ul>
+      </section>
+    </article>
   </main>
   <hr>
 

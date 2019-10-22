@@ -106,342 +106,341 @@
     </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
-  <article>
-    <h1><a href=/entries/2017-08-19/content-encoding-brotli.html>Brotli を用いた静的コンテンツ配信最適化と Accept-Encoding: br について</a></h1>
-    <section>
-      <h2 id="intro"><a href="#intro">Intro</a></h2>
-      <p>High Sierra に乗る Safari 11 で Brotli 対応がされるということで、メジャーブラウザの Brotli 対応が概ね揃うことになる。
-      <p>そこで、本サイトも Brotli による静的コンテンツ配信に対応した。
-    </section>
-    <section>
-      <h2 id="brotli"><a href="#brotli">brotli</a></h2>
-      <p>brotli は Google が開発した新しい圧縮形式である。
-      <p><a href="https://www.ietf.org/rfc/rfc7932.txt">Brotli Compressed Data Format</a>
-      <p>LZ77 とハフマン符号化を合わせたものであり、元々は WOFF2 の仕様の一部として作られたものが、汎用化されたものである。
-      <p>過去に公開されている <a href="https://github.com/google/zopfli">zopfli</a> と比べても、さらに圧縮率が <a href="https://opensource.googleblog.com/2015/09/introducing-brotli-new-compression.html">20-26%</a> 向上しており、解答速度は zlib 相当とされている。
-      <p>この効果に寄与する特徴的な要因として、仕様に含まれる辞書が挙げられる。
-    </section>
-    <section>
-      <h2 id="static-dictionary"><a href="#static-dictionary">Static Dictionary</a></h2>
-      <p>圧縮アルゴリズムは、簡単に言えば頻出する一致部分を短い情報で置き換える方式が中心となる。
-      <p>ここで、頻出する一致部分を、対象とするコンテンツの中から探す場合は、探索する長さや範囲の広さなどによって結果が変わる。
-      <p>もちろん、広い範囲を丁寧に探索すれば、効率よく圧縮が可能だとしても、それでは時間がかかってしまう。
-      <p>そこで、コンテンツの種類に応じて、あらかじめ頻出する単語パターンを辞書として用意する方式が使用される場合がある。
-      <p>Brotli は、以下の要領で構築した 122MB にもなる辞書を仕様に含み、これによって特に Web コンテンツにおいて高い圧縮率を実現している。
-      <blockquote>
-        <p>Unlike other algorithms compared here, brotli includes a static dictionary. It contains 13&rsquo;504 words or syllables of English, Spanish, Chinese, Hindi, Russian and Arabic, as well as common phrases used in machine readable languages, particularly HTML and JavaScript. The total size of the static dictionary is 122&rsquo;784 bytes. The static dictionary is extended by a mechanism of transforms that slightly change the words in the dictionary. A total of 1&rsquo;633&rsquo;984 sequences, although not all of them unique, can be constructed by using the 121 transforms. To reduce the amount of bias the static dictionary gives to the results, we used a multilingual web corpus of 93 different languages where only 122 of the 1285 documents (9.5 %) are in languages supported by our static dictionary.
-        <p>&mdash; <cite><a href="http://www.gstatic.com/b/brotlidocs/brotli-2015-09-22.pdf">Comparison of Brotli, Deflate, Zopfli, LZMA, LZHAM and Bzip2 Compression Algorithms</a></cite>
-      </blockquote>
-      <p>なお、仕様には HexString で辞書の全体が記載されているが、これを Ascii に変換したものを以下に置いた。
-      <p>これを見ると、引用したように HTML や JS などのコンテンツが強く圧縮されるだろうことが、想像できる。
-      <p><a href="brotli-dict.txt">brotli dictionary ascii</a>
-    </section>
-    <section>
-      <h2 id="accept-encoding-br"><a href="#accept-encoding-br">Accept-Encoding: br</a></h2>
-      <p>Google が提案した圧縮形式としては、本サイトも既に対応している Zopfli もある。
-      <p><a href="https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html">zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について</a>
-      <p>Zopfli が gzip 互換であり既存のブラウザでもそのまま利用できたのに対し、 Brotli は全く新しいフォーマットとなっている。
-      <p>つまりブラウザが Brotli に対応していない限り、 Brotli 形式のファイルを配信することができない。
-      <p>ブラウザが対応している形式については、ブラウザが Accept-Encoding ヘッダにそれを記載し、サーバとネゴシエーションする方法が取られる。
-      <p>これまで、多くのブラウザは以下のような値を返していた。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre class=http><code translate="no">Accept-Encoding: gzip, deflate</code></pre>
-      <p>ここに、 <code translate="no">br</code> があれば Brotli に対応しているため、 Brotli で圧縮したファイルをレスポンスできる。
-      <pre class=http><code translate="no">Accept-Encoding: gzip, deflate, br</code></pre>
-      <p>現状、 Chrome などは HTTPS でしか Brotli を許可せず、またコンテンツによっては Brotli を許可しないフォーマットなどもあるかもしれない。
-      <p>しかし、それら例外を除けば、単純にテキストベースで <em>大半のリクエストのサイズが 4 byte 増える</em> ことを意味する。
-      <p>この変更は、 Web 全体のトラフィックで考えるとかなり大きいと言えるだろう。
-      <p>プロトコルレベルでは、 HPACK のように 1byte でもペイロードを減らそうとしている現状、この変化は無視できない。
-      <p>ところが、追加したところで、対応しないトラフィックの方が多いうちは、オーバーヘッドの方が多くなる。
-      <p>そのため、ちょっとしたフォーマットが提案されたからといって、ブラウザのリクエストのデフォルト値が簡単に変わるわけではない。
-      <p>Accept ヘッダへの <code translate="no">image/webp</code> の追加などもそうだが、相応の効果と普及を考えての変更と見ることができるだろう。
-      <p>そして、前述の Safari の実装が済むと、主要ブラウザのサポートは完了する。
-      <p>brotli の圧縮効果が 4byte 以上あるならば、このヘッダを見過ごす手はない。
-    </section>
-    <section>
-      <h2 id="brotli-対応"><a href="#brotli-対応">Brotli 対応</a></h2>
-      <p>本サイトは h2o でサーブしており、 h2o はオンザフライの Brotli 圧縮に対応している。
-      <p><a href="https://h2o.examp1e.net/configure/compress_directives.html#compress">Configure &gt; Compress Directives &gt; compress</a>
-      <p>しかし、本サイトは zopfli も含めビルドプロセスで圧縮をしているので、ここで Brotli 圧縮をあらかじめ行う構成をとる。
-      <p>圧縮済みの <code translate="no">.br</code> を用意すれば、以下の設定で Accept-Encoding ベースのコンテントネゴシエーションを経て Brotli を配信できる。
-      <p><a href="https://h2o.examp1e.net/configure/file_directives.html#file.send-compressed">Configure &gt; File Directives &gt; file.send-compressed</a>
-    </section>
-    <section>
-      <h2 id="brotli-圧縮"><a href="#brotli-圧縮">Brotli 圧縮</a></h2>
-      <p>Brotli の実装は Google が公開している。
-      <p><a href="https://github.com/google/brotli">google/brotli</a>
-      <p>これを README の通りビルドし、実際にいくつかのコンテンツで圧縮結果を比較した。
-      <p>予備実験とし、 <code translate="no">--quality</code> を変えて試したところ、基本的には高いほど効果があり、速度はほとんど変わらなかった。
-      <p>そこで、以下は全て最高値である <code translate="no">--quality 10</code> を採用している。
-      <p>zopfli は、以前の検証で出した <code translate="no">--i30</code> を採用している。
+    <article>
+      <h1><a href=/entries/2017-08-19/content-encoding-brotli.html>Brotli を用いた静的コンテンツ配信最適化と Accept-Encoding: br について</a></h1>
       <section>
-        <h3 id="html"><a href="#html">HTML</a></h3>
-        <p>当サイトの平均的なサンプルとして、<a href="https://blog.jxck.io/entries/2017-08-15/universal-mjs-ecosystem.html">一つ前の記事</a> の HTML を採用した。
-        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/table.css>
-        <table>
-          <thead>
-            <tr>
-              <th class=align-left>file type</th>
-              <th class=align-right>size</th>
-              <th class=align-right>ratio</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class=align-left>.html</td>
-              <td class=align-right>22260</td>
-              <td class=align-right>100%</td>
-            </tr>
-            <tr>
-              <td class=align-left>.html.gz</td>
-              <td class=align-right>6347</td>
-              <td class=align-right>29%</td>
-            </tr>
-            <tr>
-              <td class=align-left>.html.br</td>
-              <td class=align-right>5658</td>
-              <td class=align-right>25%</td>
-            </tr>
-          </tbody>
-        </table>
-        <p>zopfli と比べて、 4 point 圧縮率が向上している。
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>High Sierra に乗る Safari 11 で Brotli 対応がされるということで、メジャーブラウザの Brotli 対応が概ね揃うことになる。
+        <p>そこで、本サイトも Brotli による静的コンテンツ配信に対応した。
       </section>
       <section>
-        <h3 id="js"><a href="#js">JS</a></h3>
-        <p><a href="https://jxck.io/assets/js/highlight.min.js">highlight.min.js</a>
-        <table>
-          <thead>
-            <tr>
-              <th class=align-left>file type</th>
-              <th class=align-right>size</th>
-              <th class=align-right>ratio</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class=align-left>.js</td>
-              <td class=align-right>42536</td>
-              <td class=align-right>100%</td>
-            </tr>
-            <tr>
-              <td class=align-left>.js.gz</td>
-              <td class=align-right>16289</td>
-              <td class=align-right>38%</td>
-            </tr>
-            <tr>
-              <td class=align-left>.js.br</td>
-              <td class=align-right>15775</td>
-              <td class=align-right>37%</td>
-            </tr>
-          </tbody>
-        </table>
-        <p>zopfli と比べて、 1 point 圧縮率が向上している。
-        <p>サイズとしては 1K 程度減っているので、かなり圧縮が効いている。
+        <h2 id="brotli"><a href="#brotli">brotli</a></h2>
+        <p>brotli は Google が開発した新しい圧縮形式である。
+        <p><a href="https://www.ietf.org/rfc/rfc7932.txt">Brotli Compressed Data Format</a>
+        <p>LZ77 とハフマン符号化を合わせたものであり、元々は WOFF2 の仕様の一部として作られたものが、汎用化されたものである。
+        <p>過去に公開されている <a href="https://github.com/google/zopfli">zopfli</a> と比べても、さらに圧縮率が <a href="https://opensource.googleblog.com/2015/09/introducing-brotli-new-compression.html">20-26%</a> 向上しており、解答速度は zlib 相当とされている。
+        <p>この効果に寄与する特徴的な要因として、仕様に含まれる辞書が挙げられる。
       </section>
       <section>
-        <h3 id="css"><a href="#css">CSS</a></h3>
-        <p><a href="https://jxck.io/assets/css/mozaic.css">mozaic.css</a>
-        <table>
-          <thead>
-            <tr>
-              <th class=align-left>file type</th>
-              <th class=align-right>size</th>
-              <th class=align-right>ratio</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class=align-left>.css</td>
-              <td class=align-right>1454</td>
-              <td class=align-right>100%</td>
-            </tr>
-            <tr>
-              <td class=align-left>.css.gz</td>
-              <td class=align-right>503</td>
-              <td class=align-right>35%</td>
-            </tr>
-            <tr>
-              <td class=align-left>.css.br</td>
-              <td class=align-right>402</td>
-              <td class=align-right>28%</td>
-            </tr>
-          </tbody>
-        </table>
-        <p>あまり大きなサイズの CSS を使っていなかったので微妙ではある。
-        <p>zopfli と比べて、 7 point 圧縮率が向上している。
+        <h2 id="static-dictionary"><a href="#static-dictionary">Static Dictionary</a></h2>
+        <p>圧縮アルゴリズムは、簡単に言えば頻出する一致部分を短い情報で置き換える方式が中心となる。
+        <p>ここで、頻出する一致部分を、対象とするコンテンツの中から探す場合は、探索する長さや範囲の広さなどによって結果が変わる。
+        <p>もちろん、広い範囲を丁寧に探索すれば、効率よく圧縮が可能だとしても、それでは時間がかかってしまう。
+        <p>そこで、コンテンツの種類に応じて、あらかじめ頻出する単語パターンを辞書として用意する方式が使用される場合がある。
+        <p>Brotli は、以下の要領で構築した 122MB にもなる辞書を仕様に含み、これによって特に Web コンテンツにおいて高い圧縮率を実現している。
+        <blockquote>
+          <p>Unlike other algorithms compared here, brotli includes a static dictionary. It contains 13&rsquo;504 words or syllables of English, Spanish, Chinese, Hindi, Russian and Arabic, as well as common phrases used in machine readable languages, particularly HTML and JavaScript. The total size of the static dictionary is 122&rsquo;784 bytes. The static dictionary is extended by a mechanism of transforms that slightly change the words in the dictionary. A total of 1&rsquo;633&rsquo;984 sequences, although not all of them unique, can be constructed by using the 121 transforms. To reduce the amount of bias the static dictionary gives to the results, we used a multilingual web corpus of 93 different languages where only 122 of the 1285 documents (9.5 %) are in languages supported by our static dictionary.
+          <p>&mdash; <cite><a href="http://www.gstatic.com/b/brotlidocs/brotli-2015-09-22.pdf">Comparison of Brotli, Deflate, Zopfli, LZMA, LZHAM and Bzip2 Compression Algorithms</a></cite>
+        </blockquote>
+        <p>なお、仕様には HexString で辞書の全体が記載されているが、これを Ascii に変換したものを以下に置いた。
+        <p>これを見ると、引用したように HTML や JS などのコンテンツが強く圧縮されるだろうことが、想像できる。
+        <p><a href="brotli-dict.txt">brotli dictionary ascii</a>
       </section>
       <section>
-        <h3 id="web-font"><a href="#web-font">Web Font</a></h3>
-        <p><a href="https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html">本サイト用にビルド</a> したフォントファイルを採用する。
-        <p><a href="https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff">NotoSansCJKjp-Jxck-Regular.woff</a>
-        <table>
-          <thead>
-            <tr>
-              <th class=align-left>file type</th>
-              <th class=align-right>size</th>
-              <th class=align-right>ratio</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class=align-left>.otf</td>
-              <td class=align-right>486132</td>
-              <td class=align-right>100%</td>
-            </tr>
-            <tr>
-              <td class=align-left>.otf.gz</td>
-              <td class=align-right>382322</td>
-              <td class=align-right>79%</td>
-            </tr>
-            <tr>
-              <td class=align-left>.otf.br</td>
-              <td class=align-right>344003</td>
-              <td class=align-right>71%</td>
-            </tr>
-          </tbody>
-        </table>
-        <p><a href="https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.otf">NotoSansCJKjp-Jxck-Regular.otf</a>
-        <table>
-          <thead>
-            <tr>
-              <th class=align-left>file type</th>
-              <th class=align-right>size</th>
-              <th class=align-right>ratio</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class=align-left>.woff</td>
-              <td class=align-right>387528</td>
-              <td class=align-right>100%</td>
-            </tr>
-            <tr>
-              <td class=align-left>.woff.gz</td>
-              <td class=align-right>387527</td>
-              <td class=align-right>99%</td>
-            </tr>
-            <tr>
-              <td class=align-left>.woff.br</td>
-              <td class=align-right>387533</td>
-              <td class=align-right>101%</td>
-            </tr>
-          </tbody>
-        </table>
-        <p>OTF は圧縮効果が高いが、 WoFF は逆効果となっている。
-        <p>これは WoFF がそもそも圧縮を仕様に含んでいるからと考えられる。
+        <h2 id="accept-encoding-br"><a href="#accept-encoding-br">Accept-Encoding: br</a></h2>
+        <p>Google が提案した圧縮形式としては、本サイトも既に対応している Zopfli もある。
+        <p><a href="https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html">zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について</a>
+        <p>Zopfli が gzip 互換であり既存のブラウザでもそのまま利用できたのに対し、 Brotli は全く新しいフォーマットとなっている。
+        <p>つまりブラウザが Brotli に対応していない限り、 Brotli 形式のファイルを配信することができない。
+        <p>ブラウザが対応している形式については、ブラウザが Accept-Encoding ヘッダにそれを記載し、サーバとネゴシエーションする方法が取られる。
+        <p>これまで、多くのブラウザは以下のような値を返していた。
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+        <pre class=http><code translate="no">Accept-Encoding: gzip, deflate</code></pre>
+        <p>ここに、 <code translate="no">br</code> があれば Brotli に対応しているため、 Brotli で圧縮したファイルをレスポンスできる。
+        <pre class=http><code translate="no">Accept-Encoding: gzip, deflate, br</code></pre>
+        <p>現状、 Chrome などは HTTPS でしか Brotli を許可せず、またコンテンツによっては Brotli を許可しないフォーマットなどもあるかもしれない。
+        <p>しかし、それら例外を除けば、単純にテキストベースで <em>大半のリクエストのサイズが 4 byte 増える</em> ことを意味する。
+        <p>この変更は、 Web 全体のトラフィックで考えるとかなり大きいと言えるだろう。
+        <p>プロトコルレベルでは、 HPACK のように 1byte でもペイロードを減らそうとしている現状、この変化は無視できない。
+        <p>ところが、追加したところで、対応しないトラフィックの方が多いうちは、オーバーヘッドの方が多くなる。
+        <p>そのため、ちょっとしたフォーマットが提案されたからといって、ブラウザのリクエストのデフォルト値が簡単に変わるわけではない。
+        <p>Accept ヘッダへの <code translate="no">image/webp</code> の追加などもそうだが、相応の効果と普及を考えての変更と見ることができるだろう。
+        <p>そして、前述の Safari の実装が済むと、主要ブラウザのサポートは完了する。
+        <p>brotli の圧縮効果が 4byte 以上あるならば、このヘッダを見過ごす手はない。
       </section>
       <section>
-        <h3 id="png"><a href="#png">PNG</a></h3>
-        <p><a href="https://jxck.io/assets/img/mozaic.png">mozaic.png</a>
-        <table>
-          <thead>
-            <tr>
-              <th class=align-left>file type</th>
-              <th class=align-right>size</th>
-              <th class=align-right>ratio</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class=align-left>.png</td>
-              <td class=align-right>37509</td>
-              <td class=align-right>100%</td>
-            </tr>
-            <tr>
-              <td class=align-left>.png.gz</td>
-              <td class=align-right>3108</td>
-              <td class=align-right>8%</td>
-            </tr>
-            <tr>
-              <td class=align-left>.png.br</td>
-              <td class=align-right>3103</td>
-              <td class=align-right>8%</td>
-            </tr>
-          </tbody>
-        </table>
-        <p>圧縮効果は高いが、 zopfli と brotli では有意な差はなかった。
+        <h2 id="brotli-対応"><a href="#brotli-対応">Brotli 対応</a></h2>
+        <p>本サイトは h2o でサーブしており、 h2o はオンザフライの Brotli 圧縮に対応している。
+        <p><a href="https://h2o.examp1e.net/configure/compress_directives.html#compress">Configure &gt; Compress Directives &gt; compress</a>
+        <p>しかし、本サイトは zopfli も含めビルドプロセスで圧縮をしているので、ここで Brotli 圧縮をあらかじめ行う構成をとる。
+        <p>圧縮済みの <code translate="no">.br</code> を用意すれば、以下の設定で Accept-Encoding ベースのコンテントネゴシエーションを経て Brotli を配信できる。
+        <p><a href="https://h2o.examp1e.net/configure/file_directives.html#file.send-compressed">Configure &gt; File Directives &gt; file.send-compressed</a>
       </section>
       <section>
-        <h3 id="webp"><a href="#webp">WebP</a></h3>
-        <p><a href="https://jxck.io/assets/img/mozaic.webp">mozaic.webp</a>
-        <table>
-          <thead>
-            <tr>
-              <th class=align-left>file type</th>
-              <th class=align-right>size</th>
-              <th class=align-right>ratio</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class=align-left>.webp</td>
-              <td class=align-right>9474</td>
-              <td class=align-right>100%</td>
-            </tr>
-            <tr>
-              <td class=align-left>.webp.gz</td>
-              <td class=align-right>2609</td>
-              <td class=align-right>28%</td>
-            </tr>
-            <tr>
-              <td class=align-left>.webp.br</td>
-              <td class=align-right>2544</td>
-              <td class=align-right>27%</td>
-            </tr>
-          </tbody>
-        </table>
-        <p>WebP も圧縮済みのフォーマットであるため、圧縮が逆効果となる場合が多いが、このファイルでは効果が出ている。
-        <p>しかし、 jpeg をベースにした別の webp では圧縮が逆効果になっているものもあったので、このあたりはファイルごとに見ていく必要がある。
+        <h2 id="brotli-圧縮"><a href="#brotli-圧縮">Brotli 圧縮</a></h2>
+        <p>Brotli の実装は Google が公開している。
+        <p><a href="https://github.com/google/brotli">google/brotli</a>
+        <p>これを README の通りビルドし、実際にいくつかのコンテンツで圧縮結果を比較した。
+        <p>予備実験とし、 <code translate="no">--quality</code> を変えて試したところ、基本的には高いほど効果があり、速度はほとんど変わらなかった。
+        <p>そこで、以下は全て最高値である <code translate="no">--quality 10</code> を採用している。
+        <p>zopfli は、以前の検証で出した <code translate="no">--i30</code> を採用している。
+        <section>
+          <h3 id="html"><a href="#html">HTML</a></h3>
+          <p>当サイトの平均的なサンプルとして、<a href="https://blog.jxck.io/entries/2017-08-15/universal-mjs-ecosystem.html">一つ前の記事</a> の HTML を採用した。
+          <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/table.css>
+          <table>
+            <thead>
+              <tr>
+                <th class=align-left>file type</th>
+                <th class=align-right>size</th>
+                <th class=align-right>ratio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class=align-left>.html</td>
+                <td class=align-right>22260</td>
+                <td class=align-right>100%</td>
+              </tr>
+              <tr>
+                <td class=align-left>.html.gz</td>
+                <td class=align-right>6347</td>
+                <td class=align-right>29%</td>
+              </tr>
+              <tr>
+                <td class=align-left>.html.br</td>
+                <td class=align-right>5658</td>
+                <td class=align-right>25%</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>zopfli と比べて、 4 point 圧縮率が向上している。
+        </section>
+        <section>
+          <h3 id="js"><a href="#js">JS</a></h3>
+          <p><a href="https://jxck.io/assets/js/highlight.min.js">highlight.min.js</a>
+          <table>
+            <thead>
+              <tr>
+                <th class=align-left>file type</th>
+                <th class=align-right>size</th>
+                <th class=align-right>ratio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class=align-left>.js</td>
+                <td class=align-right>42536</td>
+                <td class=align-right>100%</td>
+              </tr>
+              <tr>
+                <td class=align-left>.js.gz</td>
+                <td class=align-right>16289</td>
+                <td class=align-right>38%</td>
+              </tr>
+              <tr>
+                <td class=align-left>.js.br</td>
+                <td class=align-right>15775</td>
+                <td class=align-right>37%</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>zopfli と比べて、 1 point 圧縮率が向上している。
+          <p>サイズとしては 1K 程度減っているので、かなり圧縮が効いている。
+        </section>
+        <section>
+          <h3 id="css"><a href="#css">CSS</a></h3>
+          <p><a href="https://jxck.io/assets/css/mozaic.css">mozaic.css</a>
+          <table>
+            <thead>
+              <tr>
+                <th class=align-left>file type</th>
+                <th class=align-right>size</th>
+                <th class=align-right>ratio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class=align-left>.css</td>
+                <td class=align-right>1454</td>
+                <td class=align-right>100%</td>
+              </tr>
+              <tr>
+                <td class=align-left>.css.gz</td>
+                <td class=align-right>503</td>
+                <td class=align-right>35%</td>
+              </tr>
+              <tr>
+                <td class=align-left>.css.br</td>
+                <td class=align-right>402</td>
+                <td class=align-right>28%</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>あまり大きなサイズの CSS を使っていなかったので微妙ではある。
+          <p>zopfli と比べて、 7 point 圧縮率が向上している。
+        </section>
+        <section>
+          <h3 id="web-font"><a href="#web-font">Web Font</a></h3>
+          <p><a href="https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html">本サイト用にビルド</a> したフォントファイルを採用する。
+          <p><a href="https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff">NotoSansCJKjp-Jxck-Regular.woff</a>
+          <table>
+            <thead>
+              <tr>
+                <th class=align-left>file type</th>
+                <th class=align-right>size</th>
+                <th class=align-right>ratio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class=align-left>.otf</td>
+                <td class=align-right>486132</td>
+                <td class=align-right>100%</td>
+              </tr>
+              <tr>
+                <td class=align-left>.otf.gz</td>
+                <td class=align-right>382322</td>
+                <td class=align-right>79%</td>
+              </tr>
+              <tr>
+                <td class=align-left>.otf.br</td>
+                <td class=align-right>344003</td>
+                <td class=align-right>71%</td>
+              </tr>
+            </tbody>
+          </table>
+          <p><a href="https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.otf">NotoSansCJKjp-Jxck-Regular.otf</a>
+          <table>
+            <thead>
+              <tr>
+                <th class=align-left>file type</th>
+                <th class=align-right>size</th>
+                <th class=align-right>ratio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class=align-left>.woff</td>
+                <td class=align-right>387528</td>
+                <td class=align-right>100%</td>
+              </tr>
+              <tr>
+                <td class=align-left>.woff.gz</td>
+                <td class=align-right>387527</td>
+                <td class=align-right>99%</td>
+              </tr>
+              <tr>
+                <td class=align-left>.woff.br</td>
+                <td class=align-right>387533</td>
+                <td class=align-right>101%</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>OTF は圧縮効果が高いが、 WoFF は逆効果となっている。
+          <p>これは WoFF がそもそも圧縮を仕様に含んでいるからと考えられる。
+        </section>
+        <section>
+          <h3 id="png"><a href="#png">PNG</a></h3>
+          <p><a href="https://jxck.io/assets/img/mozaic.png">mozaic.png</a>
+          <table>
+            <thead>
+              <tr>
+                <th class=align-left>file type</th>
+                <th class=align-right>size</th>
+                <th class=align-right>ratio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class=align-left>.png</td>
+                <td class=align-right>37509</td>
+                <td class=align-right>100%</td>
+              </tr>
+              <tr>
+                <td class=align-left>.png.gz</td>
+                <td class=align-right>3108</td>
+                <td class=align-right>8%</td>
+              </tr>
+              <tr>
+                <td class=align-left>.png.br</td>
+                <td class=align-right>3103</td>
+                <td class=align-right>8%</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>圧縮効果は高いが、 zopfli と brotli では有意な差はなかった。
+        </section>
+        <section>
+          <h3 id="webp"><a href="#webp">WebP</a></h3>
+          <p><a href="https://jxck.io/assets/img/mozaic.webp">mozaic.webp</a>
+          <table>
+            <thead>
+              <tr>
+                <th class=align-left>file type</th>
+                <th class=align-right>size</th>
+                <th class=align-right>ratio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class=align-left>.webp</td>
+                <td class=align-right>9474</td>
+                <td class=align-right>100%</td>
+              </tr>
+              <tr>
+                <td class=align-left>.webp.gz</td>
+                <td class=align-right>2609</td>
+                <td class=align-right>28%</td>
+              </tr>
+              <tr>
+                <td class=align-left>.webp.br</td>
+                <td class=align-right>2544</td>
+                <td class=align-right>27%</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>WebP も圧縮済みのフォーマットであるため、圧縮が逆効果となる場合が多いが、このファイルでは効果が出ている。
+          <p>しかし、 jpeg をベースにした別の webp では圧縮が逆効果になっているものもあったので、このあたりはファイルごとに見ていく必要がある。
+        </section>
+        <section>
+          <h3 id="svg"><a href="#svg">SVG</a></h3>
+          <p><a href="https://jxck.io/assets/img/mozaic.svg">mozaic.svg</a>
+          <table>
+            <thead>
+              <tr>
+                <th class=align-left>file type</th>
+                <th class=align-right>size</th>
+                <th class=align-right>ratio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class=align-left>.svg</td>
+                <td class=align-right>2871</td>
+                <td class=align-right>100%</td>
+              </tr>
+              <tr>
+                <td class=align-left>.svg.gz</td>
+                <td class=align-right>300</td>
+                <td class=align-right>10%</td>
+              </tr>
+              <tr>
+                <td class=align-left>.svg.br</td>
+                <td class=align-right>269</td>
+                <td class=align-right>9%</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>テキストであるためかなり圧縮率は高いが、 zopfli との差は小さい。
+        </section>
       </section>
       <section>
-        <h3 id="svg"><a href="#svg">SVG</a></h3>
-        <p><a href="https://jxck.io/assets/img/mozaic.svg">mozaic.svg</a>
-        <table>
-          <thead>
-            <tr>
-              <th class=align-left>file type</th>
-              <th class=align-right>size</th>
-              <th class=align-right>ratio</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class=align-left>.svg</td>
-              <td class=align-right>2871</td>
-              <td class=align-right>100%</td>
-            </tr>
-            <tr>
-              <td class=align-left>.svg.gz</td>
-              <td class=align-right>300</td>
-              <td class=align-right>10%</td>
-            </tr>
-            <tr>
-              <td class=align-left>.svg.br</td>
-              <td class=align-right>269</td>
-              <td class=align-right>9%</td>
-            </tr>
-          </tbody>
-        </table>
-        <p>テキストであるためかなり圧縮率は高いが、 zopfli との差は小さい。
-      </section>
-    </section>
-    <section>
-      <h2 id="速度比較"><a href="#速度比較">速度比較</a></h2>
-      <p>同じパラメータで、本サイト全体の圧縮タスクの実行時間を比較した。
-      <p>圧縮対象は、 html/js/css/png/txt/md など 890 ファイルである。
-      <pre class=text><code translate="no">zopfli: 190.33s user 2.77s system 98% cpu 3:15.28  total
+        <h2 id="速度比較"><a href="#速度比較">速度比較</a></h2>
+        <p>同じパラメータで、本サイト全体の圧縮タスクの実行時間を比較した。
+        <p>圧縮対象は、 html/js/css/png/txt/md など 890 ファイルである。
+        <pre class=text><code translate="no">zopfli: 190.33s user 2.77s system 98% cpu 3:15.28  total
 brotli:  22.44s user 1.42s system 99% cpu   24.014 total</code></pre>
-      <p>測定ミスではなく、圧倒的に brotli の方が速い。
-      <p>単発で試しているうちから圧倒的に速いことは認識しており、サンプルを増やしたため歴然とした差となった。
-    </section>
-    <section>
-      <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
-      <p>本サイトのコンテンツに対しては、 brotli の圧縮効果は概ね zopfli より高く、これは辞書との相性が大きく効いていると考えられる。
-      <p>また、ブラウザは brotli への対応が進み、コンテントネゴシエーションによる配信が可能となりつつある。
-      <p>本サイトは、コンテンツを全面的に brotli で事前圧縮し、対応ブラウザに配信するよう対応した。
-    </section>
-  </article>
-
+        <p>測定ミスではなく、圧倒的に brotli の方が速い。
+        <p>単発で試しているうちから圧倒的に速いことは認識しており、サンプルを増やしたため歴然とした差となった。
+      </section>
+      <section>
+        <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
+        <p>本サイトのコンテンツに対しては、 brotli の圧縮効果は概ね zopfli より高く、これは辞書との相性が大きく効いていると考えられる。
+        <p>また、ブラウザは brotli への対応が進み、コンテントネゴシエーションによる配信が可能となりつつある。
+        <p>本サイトは、コンテンツを全面的に brotli で事前圧縮し、対応ブラウザに配信するよう対応した。
+      </section>
+    </article>
   </main>
   <hr>
 

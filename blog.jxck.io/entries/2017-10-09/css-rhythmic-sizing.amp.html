@@ -798,8 +798,6 @@
     <dt>updated_at</dt><dd><time class=updated_at datetime=2018-02-08>2018-02-08</time></dd>
     <dt class=tags>tags</dt><dd>[<a href='/tags/rhythmic%20sizing.html'>rhythmic sizing</a><i>,</i><a href='/tags/vertical%20rhythm.html'>vertical rhythm</a><i>,</i><a href='/tags/css.html'>css</a>]</dd>
   </ul>
-
-
   <article>
     <h1><a href=/entries/2017-10-09/css-rhythmic-sizing.html>CSS Rhythmic Sizing で Vertical Rhythm</a></h1>
     <section>
@@ -839,7 +837,9 @@
     <section>
       <h2 id="vertical-rhythm"><a href="#vertical-rhythm">Vertical Rhythm</a></h2>
       <p>例えば以下のようなページがあったとする。
-      <p><amp-img layout=responsive src=single-no-rhythm.png#500x600 alt="Vertical Rhythm を適用しないシングルカラムでは、各行の高さ/余白のリズムが安定しない" title="single column with no vertical rhythm" width=500 height=600></p>
+      <p>
+        <amp-img layout=responsive src=single-no-rhythm.png#500x600 alt="Vertical Rhythm を適用しないシングルカラムでは、各行の高さ/余白のリズムが安定しない" title="single column with no vertical rhythm" width=500 height=600>
+      </p>
       <p>ここでは、わかりやすくするため、 <code translate="no">font-size</code> を <code translate="no">16px</code> とし、 <code translate="no">&lt;p&gt;</code> のマージンは前後とも <code translate="no">24px</code> としている。
       <pre class=css><code translate="no">body {
   --base: 16px; /* base font size */
@@ -860,7 +860,9 @@ p {
       <p>この設定を親要素に指定すると、子要素のインライン要素は、 <code translate="no">line-height</code> を自動で <code translate="no">24px</code> の倍数に揃えることができる。
       <p>すると、 <code translate="no">&lt;h1&gt;</code> ~ <code translate="no">&lt;h4&gt;</code> の高さは、フォントが <code translate="no">line-height-step</code> の値(つまり <code translate="no">24px</code>) に収まる場合は <code translate="no">24px</code> に、収まらなければ 40, 80&hellip; px に自動でアラインされる。
       <p><code translate="no">&lt;p&gt;</code> のマージンは同じく(相殺含め) <code translate="no">24px</code> に揃っているので、表示は以下のようにグリッドに揃う。
-      <p><amp-img layout=responsive src=single-with-rhythm.png#500x600 alt="Vertical Rhythm を適用したシングルカラムでは、各行の高さ/余白が揃いリズムが安定する" title="single column with vertical rhythm" width=500 height=600></p>
+      <p>
+        <amp-img layout=responsive src=single-with-rhythm.png#500x600 alt="Vertical Rhythm を適用したシングルカラムでは、各行の高さ/余白が揃いリズムが安定する" title="single column with vertical rhythm" width=500 height=600>
+      </p>
       <p>途中にある <code translate="no">&lt;img&gt;</code> もインライン要素なので、同じくリズムに載っていることがわかるだろう。
     </section>
     <section>
@@ -873,7 +875,9 @@ p {
   padding: var(--grid);
 }</code></pre>
       <p>結果は以下である。
-      <p><amp-img layout=responsive src=multi-with-rhythm.png#1680x700 alt="Vertical Rhythm を適用したマルチカラムレイアウトでは、隣同士での高さも揃いリズムが安定する" title="multi column with vertical rhythm" width=1680 height=700></p>
+      <p>
+        <amp-img layout=responsive src=multi-with-rhythm.png#1680x700 alt="Vertical Rhythm を適用したマルチカラムレイアウトでは、隣同士での高さも揃いリズムが安定する" title="multi column with vertical rhythm" width=1680 height=700>
+      </p>
     </section>
     <section>
       <h2 id="block-step"><a href="#block-step">Block Step</a></h2>
@@ -945,7 +949,6 @@ article table {
       <p>仕様のステータスとしてはまだまだだが、今後の展開にも期待したい。
     </section>
   </article>
-
 </main>
 <hr>
 <footer>

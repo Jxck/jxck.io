@@ -798,8 +798,6 @@
     <dt>updated_at</dt><dd><time class=updated_at datetime=2018-07-29>2018-07-29</time></dd>
     <dt class=tags>tags</dt><dd>[<a href='/tags/csp.html'>csp</a><i>,</i><a href='/tags/security.html'>security</a>]</dd>
   </ul>
-
-
   <article>
     <h1><a href=/entries/2017-02-13/csp-report-case-study.html>CSP Report 収集と実レポートの考察</a></h1>
     <section>
@@ -853,7 +851,9 @@
     <section>
       <h2 id="全体像"><a href="#全体像">全体像</a></h2>
       <p>以下が CSP をデプロイしてから、今月までのレポート発生のグラフである。
-      <p><amp-img layout=responsive src=graph-of-csp-report-12month.png#2642x786 alt="report-uri.io で生成した過去 12 ヵ月の CSP レポートのグラフ" title="graph of csp report 12 month" width=2642 height=786></p>
+      <p>
+        <amp-img layout=responsive src=graph-of-csp-report-12month.png#2642x786 alt="report-uri.io で生成した過去 12 ヵ月の CSP レポートのグラフ" title="graph of csp report 12 month" width=2642 height=786>
+      </p>
       <p>まず最初の期間は、コンテンツ自体の更新も多く、ポリシーを修正する期間だったためレポートが多い。
       <p>その後も、コンテンツの更新(AMP の対応、 YouTube 埋め込みの対応 etc) を行うたびに設定の更新が必要になるため、ところどころ山がある。
       <p>しかし、全体として、定常的にレポートが上がっており、コンテンツが安定ている今でも、レポートがなくなることは基本的には無いことが分かる。
@@ -909,7 +909,9 @@
         <p>本サイトでは記事の原稿を Markdown でも閲覧できる。また RSS feed は XML で提供し、 humand.txt や robot.txt は Text で提供している。
         <p>こうした <code translate="no">.md</code>, <code translate="no">.txt</code>, <code translate="no">.xml</code>, <code translate="no">.json</code> などのページをブラウザで表示すると、ブラウザによってはそれを内部的に HTML に整形して表示する。
         <p>このとき、 HTML の中にある Inline Style がポリシー違反と判定されるため、レポートが上がる。
-        <p><amp-img layout=responsive src=chrome-inline-style-violation.png#1667x656 alt="Chrome でテキストを表示すると、整形のために埋め込まれた HTML が CSP 違反を起こす" title="inline style violation for RSS feed in chrome" width=1667 height=656></p>
+        <p>
+          <amp-img layout=responsive src=chrome-inline-style-violation.png#1667x656 alt="Chrome でテキストを表示すると、整形のために埋め込まれた HTML が CSP 違反を起こす" title="inline style violation for RSS feed in chrome" width=1667 height=656>
+        </p>
         <pre class=js><code translate="no">{
   &quot;csp-report&quot;: {
   &quot;document-uri&quot;:        &quot;https://jxck.io/humans.txt&quot;,
@@ -930,7 +932,9 @@
         <p>本サイトは技術者向けの内容が多いため、このサイト内の HTML ソースをブラウザで表示する閲覧者も多い。
         <p>Firefox ではソースを表示すると、オリジンが <code translate="no">view-source://~</code> となるため、このページが CSP 違反となりレポートが上がる。
         <p>Chrome でも同じくオリジンが変わるが、ここでレポートはあがらない実装になっているようだ。
-        <p><amp-img layout=responsive src=firefox-view-source-violation.png#1674x824 alt="Firefox の view-source:// でソースを表示すると、整形のために埋め込まれた HTML が CSP 違反を起こす" title="view-source:// violates csp policy in firefox" width=1674 height=824></p>
+        <p>
+          <amp-img layout=responsive src=firefox-view-source-violation.png#1674x824 alt="Firefox の view-source:// でソースを表示すると、整形のために埋め込まれた HTML が CSP 違反を起こす" title="view-source:// violates csp policy in firefox" width=1674 height=824>
+        </p>
         <p>これは対応せず無視することとした。
       </section>
       <section>
@@ -1003,7 +1007,6 @@
       </ul>
     </section>
   </article>
-
 </main>
 <hr>
 <footer>

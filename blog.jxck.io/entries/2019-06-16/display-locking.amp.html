@@ -798,8 +798,6 @@
     <dt>updated_at</dt><dd><time class=updated_at datetime=2019-06-16>2019-06-16</time></dd>
     <dt class=tags>tags</dt><dd>[<a href='/tags/display%20locking.html'>display locking</a><i>,</i><a href='/tags/async.html'>async</a><i>,</i><a href='/tags/dom.html'>dom</a>]</dd>
   </ul>
-
-
   <article>
     <h1><a href=/entries/2019-06-16/display-locking.html>Display Locking によるレンダリングの最適化と Async DOM</a></h1>
     <section>
@@ -948,7 +946,9 @@ for (const i = 0; i &lt; 100; i ++) {
 }</code></pre>
         <p>この <code translate="no">appendChild</code> が毎回レンダリングを発生している。
         <p>わかりやすいように、 <code translate="no">appendChild</code> に <code translate="no">setTimeout</code> を仕込んだ例は以下のように挙動する。
-        <p><amp-img layout=responsive src=display-no-locking.gif#825x968 alt="lock を取らず普通に appendChild する例" title="display with no locking" width=825 height=968></p>
+        <p>
+          <amp-img layout=responsive src=display-no-locking.gif#825x968 alt="lock を取らず普通に appendChild する例" title="display with no locking" width=825 height=968>
+        </p>
         <p>そこで、 <code translate="no">&lt;ul&gt;</code> のロックを取得し、全ての <code translate="no">&lt;li&gt;</code> が追加されてから一気にレンダリングする場合以下のように書ける。
         <pre class=js><code translate="no">const $ul = document.querySelector(&quot;$ul&quot;)
 
@@ -964,7 +964,9 @@ for (let i = 0; i &lt; 100; i ++) {
 // Unlock
 await container.displayLock.updateAndCommit()</code></pre>
         <p>こちらも、わかりやすいように <code translate="no">setTimeout</code> を仕込んだ例は以下のように挙動する。
-        <p><amp-img layout=responsive src=display-locking.gif#825x968 alt="ul の lock を取り追加が終わってから commit する例" title="display with locking" width=825 height=968></p>
+        <p>
+          <amp-img layout=responsive src=display-locking.gif#825x968 alt="ul の lock を取り追加が終わってから commit する例" title="display with locking" width=825 height=968>
+        </p>
         <p>Lock 中に行われる <code translate="no">appendChild</code> は、メモリ上で DOM の処理を行うだけになり、 <code translate="no">commit()</code> でレンダリングが一度に走っていることがわかるだろう。
       </section>
       <section>
@@ -997,7 +999,9 @@ await container.displayLock.updateAndCommit()</code></pre>
         <p>この API が標準で提供されるメリットの 1 つが <code translate="no">activatable</code> だろう。
         <p>activatable は、メモリ上にあるがレンダリングされてない DOM に対して、 UI からアクセスできるようにするオプションだ。
         <p>説明よりも見た方が早いので以下にデモを示す。
-        <p><amp-img layout=responsive src=display-locking-activatable.gif#825x968 alt="commit してない要素が画面内検索で一致した際にレンダリングされる例" title="find in page commits activatable element" width=825 height=968></p>
+        <p>
+          <amp-img layout=responsive src=display-locking-activatable.gif#825x968 alt="commit してない要素が画面内検索で一致した際にレンダリングされる例" title="find in page commits activatable element" width=825 height=968>
+        </p>
         <p>このデモでは、ランダムな文字列を <code translate="no">&lt;li&gt;</code> に入れ、ロックをとった <code translate="no">&lt;ul&gt;</code> に追加し commit してない状態で止めている。
         <p>ここで、 CTL+F で「ページ内検索」を行い、ランダムな文字列にヒットするように検索をすると、レンダリングが走り遷移していることがわかるだろう。
         <p>ブラウザは、まだメモリ上にありレンダリングされてない要素を、検索やフォーカス移動などの対象に含み、必要に応じて commit することができるのだ。
@@ -1056,7 +1060,6 @@ await container.displayLock.updateAndCommit()</code></pre>
       </section>
     </section>
   </article>
-
 </main>
 <hr>
 <footer>

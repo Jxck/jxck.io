@@ -106,125 +106,124 @@
     </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
-  <article>
-    <h1><a href=/entries/2019-10-16/scroll-to-text-fragment.html>Scroll To Text Fragment と :~:text</a></h1>
-    <section>
-      <h2 id="intro"><a href="#intro">Intro</a></h2>
-      <p>ページ内の特定の位置へのスクロールは、 URL フラグメントと HTML の ID 属性を用いて行われていた。
-      <p>しかし、 ID を持たない要素へのスクロールというユースケースをカバーするために、フラグメントの拡張仕様が提案されている。
-      <p>Chrome がフラグ付きで実装しているため、この仕様の特徴について解説する。
-    </section>
-    <section>
-      <h2 id="id-属性とフラグメント"><a href="#id-属性とフラグメント">id 属性とフラグメント</a></h2>
-      <p>従来の仕様では、 HTML 内にある ID 属性を URL フラグメントに付与することで、その要素まで自動でスクロールするという仕様になっていた。
-      <ul>
-        <li>
-          <a href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#try-to-scroll-to-the-fragment">https://html.spec.whatwg.org/multipage/browsing-the-web.html#try-to-scroll-to-the-fragment</a>
-        </li>
-        <li>
-          <a href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#the-indicated-part-of-the-document">https://html.spec.whatwg.org/multipage/browsing-the-web.html#the-indicated-part-of-the-document</a>
-        </li>
-      </ul>
-      <p>しかし、実際には ID が振られていないサイトや、スクロールしたい場所に ID が無い場面は多い。
-      <p>そうしたコンテンツでも、ブラウザの表示内検索を行ったときのようなスクロールを実現したいという要望が、主に検索エンジンなどからあったようだ。
-    </section>
-    <section>
-      <h2 id="alternatives"><a href="#alternatives">Alternatives</a></h2>
-      <p>ここに至るまではいくつかの提案があった。
-      <ul>
-        <li>
-          <a href="https://www.w3.org/TR/annotation-model/#text-quote-selector">TextQuoteSelector</a>
-        </li>
-        <li>
-          <a href="https://github.com/bryanmcquade/scroll-to-css-selector">bryanmcquade/scroll-to-css-selector</a>
-        </li>
-        <li>etc
-      </ul>
-      <p>Chrome は最初 <code translate="no">#targetText</code> と CSS セレクタを用いた仕様で intents を出していた。
-      <p>しかし、セレクタの書き方によって CSRF Token 等の情報が推測可能である、といった脆弱性が指摘され、その結果今回の仕様に至った。
-    </section>
-    <section>
-      <h2 id="デリミタ"><a href="#デリミタ">デリミタ</a></h2>
-      <p>URL には、フラグメントくらいしか拡張できるポイントが無いため、ここにクエリ相当のものを入れることになる。
-      <p>最初は <code translate="no">##</code> と二重にする方式がシンプルでわかりやすいとされたが、仕様上有効ではないため既存のパーサを壊す可能性が有り、また実際に壊れるかどうかを測定するのが難しいとして却下された。
-      <p>これを踏まえ、 URL の仕様の範囲で 1, 2 文字では無く 3 文字の組み合わせで候補が出され、 Google の過去 5 年の URL 履歴でヒットしないものがリストアップされた。
-      <ul>
-        <li>
-          <code translate="no">~&amp;~</code>
-        </li>
-        <li>
-          <code translate="no">:~:</code>
-        </li>
-        <li>
-          <code translate="no">~@~</code>
-        </li>
-      </ul>
-      <p>Chrome 78 では 3 つとも実装されたようだが、今は <code translate="no">:~:</code> のみになったようだ。
-    </section>
-    <section>
-      <h2 id="text"><a href="#text">text=</a></h2>
-      <p><code translate="no">textTarget=</code> などの案も有ったが、現状は以下のような構文になっている。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre class=text><code translate="no">:~:text=[prefix-,]textStart[,textEnd][,-suffix]</code></pre>
-      <p>これをフラグメントに付与することで、遷移時にスクロールする。
-      <p>フォールバックとして既存のフラグメントと両方使うこともできる。
-      <pre class=url><code translate="no">https://example.com#sometext:~:text=sometext</code></pre>
-    </section>
-    <section>
-      <h2 id="target"><a href="#target">:target</a></h2>
-      <p>ID で遷移した場合は <code translate="no">:targe</code> 疑似要素からスタイルが設定できる。
-      <p><code translate="no">text=</code> で遷移した場合も同じことが検討されていたが、現実装では疑似要素は付かないようだ。
-    </section>
-    <section>
-      <h2 id="demo"><a href="#demo">DEMO</a></h2>
-      <p>実際にいくつかの例を示す。遷移先の DEMO は、フラグメントを操作できるようにしてある。
-      <p>各指定は、基本は単語単位で行う。
-      <p><a href="https://labs.jxck.io/scroll-to-text-fragment/#:~:text=ipsum">https://labs.jxck.io/scroll-to-text-fragment/#:~:text=ipsum</a>
-      <p>
-        <picture>
-          <source type=image/webp srcset=1.textStart.en.webp#3359x2051>
-          <img loading=lazy src=1.textStart.en.png#3359x2051 alt="textStart を英語指定" title="textStart with en" intrinsicsize=3359x2051>
-        </picture>
-      </p>
-      <p><a href="https://labs.jxck.io/scroll-to-text-fragment/#:~:text=ipsum,aliqua">https://labs.jxck.io/scroll-to-text-fragment/#:~:text=ipsum,aliqua</a>
-      <p>
-        <picture>
-          <source type=image/webp srcset=2.textStart-textEnd.en.webp#3357x2053>
-          <img loading=lazy src=2.textStart-textEnd.en.png#3357x2053 alt="textStart, textEnd を英語指定" title="textStart & textEnd with en" intrinsicsize=3357x2053>
-        </picture>
-      </p>
-      <p><a href="https://labs.jxck.io/scroll-to-text-fragment/#:~:text=しかし,ない">https://labs.jxck.io/scroll-to-text-fragment/#:~:text=しかし,ない</a>
-      <p>
-        <picture>
-          <source type=image/webp srcset=3.textStart-textEnd.ja.webp#3359x2051>
-          <img loading=lazy src=3.textStart-textEnd.ja.png#3359x2051 alt="textStart, textEnd を日本語指定" title="textStart & textEnd with ja" intrinsicsize=3359x2051>
-        </picture>
-      </p>
-      <p><a href="https://labs.jxck.io/scroll-to-text-fragment/#:~:text=しない。-,しかし,ない">https://labs.jxck.io/scroll-to-text-fragment/#:~:text=しない。-,しかし,ない</a>
-      <p>
-        <picture>
-          <source type=image/webp srcset=4.prefix-textStart-textEnd.ja.webp#3359x2054>
-          <img loading=lazy src=4.prefix-textStart-textEnd.ja.png#3359x2054 alt="prefix, textStart, textEnd を日本語指定" title="prefix & textStart & textEnd with ja" intrinsicsize=3359x2054>
-        </picture>
-      </p>
-      <p><a href="https://labs.jxck.io/scroll-to-text-fragment/#:~:text=ない。-,しかし,ない,-のに">https://labs.jxck.io/scroll-to-text-fragment/#:~:text=ない。-,しかし,ない,-のに</a>
-      <p>
-        <picture>
-          <source type=image/webp srcset=5.prefix-textStart-textEnd-suffix.jp.webp#3359x2054>
-          <img loading=lazy src=5.prefix-textStart-textEnd-suffix.jp.png#3359x2054 alt="prefix, textStart, textEnd, suffix を日本語指定" title="prefix & textStart & textEnd & suffix with ja" intrinsicsize=3359x2054>
-        </picture>
-      </p>
-    </section>
-    <section>
-      <h2 id="考察"><a href="#考察">考察</a></h2>
-      <p>実際に、引用などをする際にこれが有ると便利な場面も思い当たる一方、こうした、俗に言う「直リンク」を望まない Author に対しては、望ましく無い面もありそうだ。
-      <p>筆者は最初の提案時から、互換性やセキュリティなどの側面からも、仕様化もデプロイも難しいのではないかと考えていたが、思った以上に作業が進んでいる現状がある。
-      <p>互換性、セキュリティについては、仕様の中で議論されてはいるが、フラグメントの使われ方が外から測定しにくいという側面があるため、デプロイしないとわからない問題もありそうに思う。
-      <p>今は location.href や location.hash からはこの値が取得できないため、悪用は難しそうだが、今後も仕様を補完する API も増えていくかも知れない。
-      <p>これまでの URL の使われ方、ひいては Web の使われ方に少なからず影響するだろうと考えられるので、どのようにデプロイし、どの用に広まり、どの用に使われていくか、注目したい。
-    </section>
-  </article>
-
+    <article>
+      <h1><a href=/entries/2019-10-16/scroll-to-text-fragment.html>Scroll To Text Fragment と :~:text</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>ページ内の特定の位置へのスクロールは、 URL フラグメントと HTML の ID 属性を用いて行われていた。
+        <p>しかし、 ID を持たない要素へのスクロールというユースケースをカバーするために、フラグメントの拡張仕様が提案されている。
+        <p>Chrome がフラグ付きで実装しているため、この仕様の特徴について解説する。
+      </section>
+      <section>
+        <h2 id="id-属性とフラグメント"><a href="#id-属性とフラグメント">id 属性とフラグメント</a></h2>
+        <p>従来の仕様では、 HTML 内にある ID 属性を URL フラグメントに付与することで、その要素まで自動でスクロールするという仕様になっていた。
+        <ul>
+          <li>
+            <a href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#try-to-scroll-to-the-fragment">https://html.spec.whatwg.org/multipage/browsing-the-web.html#try-to-scroll-to-the-fragment</a>
+          </li>
+          <li>
+            <a href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#the-indicated-part-of-the-document">https://html.spec.whatwg.org/multipage/browsing-the-web.html#the-indicated-part-of-the-document</a>
+          </li>
+        </ul>
+        <p>しかし、実際には ID が振られていないサイトや、スクロールしたい場所に ID が無い場面は多い。
+        <p>そうしたコンテンツでも、ブラウザの表示内検索を行ったときのようなスクロールを実現したいという要望が、主に検索エンジンなどからあったようだ。
+      </section>
+      <section>
+        <h2 id="alternatives"><a href="#alternatives">Alternatives</a></h2>
+        <p>ここに至るまではいくつかの提案があった。
+        <ul>
+          <li>
+            <a href="https://www.w3.org/TR/annotation-model/#text-quote-selector">TextQuoteSelector</a>
+          </li>
+          <li>
+            <a href="https://github.com/bryanmcquade/scroll-to-css-selector">bryanmcquade/scroll-to-css-selector</a>
+          </li>
+          <li>etc
+        </ul>
+        <p>Chrome は最初 <code translate="no">#targetText</code> と CSS セレクタを用いた仕様で intents を出していた。
+        <p>しかし、セレクタの書き方によって CSRF Token 等の情報が推測可能である、といった脆弱性が指摘され、その結果今回の仕様に至った。
+      </section>
+      <section>
+        <h2 id="デリミタ"><a href="#デリミタ">デリミタ</a></h2>
+        <p>URL には、フラグメントくらいしか拡張できるポイントが無いため、ここにクエリ相当のものを入れることになる。
+        <p>最初は <code translate="no">##</code> と二重にする方式がシンプルでわかりやすいとされたが、仕様上有効ではないため既存のパーサを壊す可能性が有り、また実際に壊れるかどうかを測定するのが難しいとして却下された。
+        <p>これを踏まえ、 URL の仕様の範囲で 1, 2 文字では無く 3 文字の組み合わせで候補が出され、 Google の過去 5 年の URL 履歴でヒットしないものがリストアップされた。
+        <ul>
+          <li>
+            <code translate="no">~&amp;~</code>
+          </li>
+          <li>
+            <code translate="no">:~:</code>
+          </li>
+          <li>
+            <code translate="no">~@~</code>
+          </li>
+        </ul>
+        <p>Chrome 78 では 3 つとも実装されたようだが、今は <code translate="no">:~:</code> のみになったようだ。
+      </section>
+      <section>
+        <h2 id="text"><a href="#text">text=</a></h2>
+        <p><code translate="no">textTarget=</code> などの案も有ったが、現状は以下のような構文になっている。
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+        <pre class=text><code translate="no">:~:text=[prefix-,]textStart[,textEnd][,-suffix]</code></pre>
+        <p>これをフラグメントに付与することで、遷移時にスクロールする。
+        <p>フォールバックとして既存のフラグメントと両方使うこともできる。
+        <pre class=url><code translate="no">https://example.com#sometext:~:text=sometext</code></pre>
+      </section>
+      <section>
+        <h2 id="target"><a href="#target">:target</a></h2>
+        <p>ID で遷移した場合は <code translate="no">:targe</code> 疑似要素からスタイルが設定できる。
+        <p><code translate="no">text=</code> で遷移した場合も同じことが検討されていたが、現実装では疑似要素は付かないようだ。
+      </section>
+      <section>
+        <h2 id="demo"><a href="#demo">DEMO</a></h2>
+        <p>実際にいくつかの例を示す。遷移先の DEMO は、フラグメントを操作できるようにしてある。
+        <p>各指定は、基本は単語単位で行う。
+        <p><a href="https://labs.jxck.io/scroll-to-text-fragment/#:~:text=ipsum">https://labs.jxck.io/scroll-to-text-fragment/#:~:text=ipsum</a>
+        <p>
+          <picture>
+            <source type=image/webp srcset=1.textStart.en.webp#3359x2051>
+            <img loading=lazy src=1.textStart.en.png#3359x2051 alt="textStart を英語指定" title="textStart with en" intrinsicsize=3359x2051>
+          </picture>
+        </p>
+        <p><a href="https://labs.jxck.io/scroll-to-text-fragment/#:~:text=ipsum,aliqua">https://labs.jxck.io/scroll-to-text-fragment/#:~:text=ipsum,aliqua</a>
+        <p>
+          <picture>
+            <source type=image/webp srcset=2.textStart-textEnd.en.webp#3357x2053>
+            <img loading=lazy src=2.textStart-textEnd.en.png#3357x2053 alt="textStart, textEnd を英語指定" title="textStart & textEnd with en" intrinsicsize=3357x2053>
+          </picture>
+        </p>
+        <p><a href="https://labs.jxck.io/scroll-to-text-fragment/#:~:text=しかし,ない">https://labs.jxck.io/scroll-to-text-fragment/#:~:text=しかし,ない</a>
+        <p>
+          <picture>
+            <source type=image/webp srcset=3.textStart-textEnd.ja.webp#3359x2051>
+            <img loading=lazy src=3.textStart-textEnd.ja.png#3359x2051 alt="textStart, textEnd を日本語指定" title="textStart & textEnd with ja" intrinsicsize=3359x2051>
+          </picture>
+        </p>
+        <p><a href="https://labs.jxck.io/scroll-to-text-fragment/#:~:text=しない。-,しかし,ない">https://labs.jxck.io/scroll-to-text-fragment/#:~:text=しない。-,しかし,ない</a>
+        <p>
+          <picture>
+            <source type=image/webp srcset=4.prefix-textStart-textEnd.ja.webp#3359x2054>
+            <img loading=lazy src=4.prefix-textStart-textEnd.ja.png#3359x2054 alt="prefix, textStart, textEnd を日本語指定" title="prefix & textStart & textEnd with ja" intrinsicsize=3359x2054>
+          </picture>
+        </p>
+        <p><a href="https://labs.jxck.io/scroll-to-text-fragment/#:~:text=ない。-,しかし,ない,-のに">https://labs.jxck.io/scroll-to-text-fragment/#:~:text=ない。-,しかし,ない,-のに</a>
+        <p>
+          <picture>
+            <source type=image/webp srcset=5.prefix-textStart-textEnd-suffix.jp.webp#3359x2054>
+            <img loading=lazy src=5.prefix-textStart-textEnd-suffix.jp.png#3359x2054 alt="prefix, textStart, textEnd, suffix を日本語指定" title="prefix & textStart & textEnd & suffix with ja" intrinsicsize=3359x2054>
+          </picture>
+        </p>
+      </section>
+      <section>
+        <h2 id="考察"><a href="#考察">考察</a></h2>
+        <p>実際に、引用などをする際にこれが有ると便利な場面も思い当たる一方、こうした、俗に言う「直リンク」を望まない Author に対しては、望ましく無い面もありそうだ。
+        <p>筆者は最初の提案時から、互換性やセキュリティなどの側面からも、仕様化もデプロイも難しいのではないかと考えていたが、思った以上に作業が進んでいる現状がある。
+        <p>互換性、セキュリティについては、仕様の中で議論されてはいるが、フラグメントの使われ方が外から測定しにくいという側面があるため、デプロイしないとわからない問題もありそうに思う。
+        <p>今は location.href や location.hash からはこの値が取得できないため、悪用は難しそうだが、今後も仕様を補完する API も増えていくかも知れない。
+        <p>これまでの URL の使われ方、ひいては Web の使われ方に少なからず影響するだろうと考えられるので、どのようにデプロイし、どの用に広まり、どの用に使われていくか、注目したい。
+      </section>
+    </article>
   </main>
   <hr>
 

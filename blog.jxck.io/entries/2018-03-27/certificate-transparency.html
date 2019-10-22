@@ -106,39 +106,39 @@
     </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
-  <article>
-    <h1><a href=/entries/2018-03-27/certificate-transparency.html>Certificate Transparency の仕組みと HPKP から Expect-CT への移行</a></h1>
-    <section>
-      <h2 id="update"><a href="#update">Update</a></h2>
-      <ul>
-        <li>
-          2018/3/30: Let&rsquo;s Encrypt が SCT 埋め込みに対応したため、 <a href="#本サイトでの適用">本サイトでの適用</a> を更新した。
-        </li>
-      </ul>
-    </section>
-    <section>
-      <h2 id="intro"><a href="#intro">Intro</a></h2>
-      <p>本サイトは HPKP (public-key-pins-report-only) に対応していた。
-      <p>しかし、 HPKP はその運用性の問題などもあり、 Chrome はすでに deprecate するアナウンスを出している。
-      <p>代替の仕様として、 Certificate Transparency (CT) のエコシステムと、それを利用する Expect-CT の策定/実装が進んでいる。
-      <p>CT エコシステムの概要、 Log の登録/検証、 HPKP から Expect-CT への移行などについて解説する。
-    </section>
-    <section>
-      <h2 id="ca-は信用できるのか問題"><a href="#ca-は信用できるのか問題">「CA は信用できるのか?」問題</a></h2>
-      <p>HTTPS 化が前提として定着した昨今、トラストアンカーとしての CA の責務は増している。
-      <p>我々が依存する PKI は、 「CA は信用できる」という前提のもとに成り立っており、 CA はその信用を担保するために堅牢なシステムを構築することを求められる。
-      <p>しかし、最近 CA が <em>証明書を誤発行する</em> などといった、この安全の前提を崩すような事態が複数発生している。
-      <p>(ここでは、ドメインオーナーの知らないところでそのドメインの証明書が発行されることを、理由/方法によらず誤発行と言うことにする。)
-    </section>
-    <section>
-      <h2 id="ca-インシデントの影響"><a href="#ca-インシデントの影響">CA インシデントの影響</a></h2>
-      <p>例として、悪意のある Eve が <code translate="no">google.com</code> の証明書を、 <code translate="no">google.com</code> の管理者に知られずに、正規の CA に発行させることができたとする。
-      <p>(Eve は外部からの攻撃したかもしれないし、内部犯の可能性もある)
-      <p>Eve は MITM を成立させたら、 <code translate="no">https://google.com</code> のレスポンスを改ざんし、取得した証明書で暗号化することができる。
-      <p>ブラウザはそのレスポンスが信頼された <code translate="no">google.com</code> からのものであると表示し、 URL バーも緑になってしまう。
-      <p>Eve の持つ秘密鍵は Google のそれとは違うが、証明書には「本物」と同等の効力があることが原因だ。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre class=text><code translate="no">+------------+                       +-----------+
+    <article>
+      <h1><a href=/entries/2018-03-27/certificate-transparency.html>Certificate Transparency の仕組みと HPKP から Expect-CT への移行</a></h1>
+      <section>
+        <h2 id="update"><a href="#update">Update</a></h2>
+        <ul>
+          <li>
+            2018/3/30: Let&rsquo;s Encrypt が SCT 埋め込みに対応したため、 <a href="#本サイトでの適用">本サイトでの適用</a> を更新した。
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>本サイトは HPKP (public-key-pins-report-only) に対応していた。
+        <p>しかし、 HPKP はその運用性の問題などもあり、 Chrome はすでに deprecate するアナウンスを出している。
+        <p>代替の仕様として、 Certificate Transparency (CT) のエコシステムと、それを利用する Expect-CT の策定/実装が進んでいる。
+        <p>CT エコシステムの概要、 Log の登録/検証、 HPKP から Expect-CT への移行などについて解説する。
+      </section>
+      <section>
+        <h2 id="ca-は信用できるのか問題"><a href="#ca-は信用できるのか問題">「CA は信用できるのか?」問題</a></h2>
+        <p>HTTPS 化が前提として定着した昨今、トラストアンカーとしての CA の責務は増している。
+        <p>我々が依存する PKI は、 「CA は信用できる」という前提のもとに成り立っており、 CA はその信用を担保するために堅牢なシステムを構築することを求められる。
+        <p>しかし、最近 CA が <em>証明書を誤発行する</em> などといった、この安全の前提を崩すような事態が複数発生している。
+        <p>(ここでは、ドメインオーナーの知らないところでそのドメインの証明書が発行されることを、理由/方法によらず誤発行と言うことにする。)
+      </section>
+      <section>
+        <h2 id="ca-インシデントの影響"><a href="#ca-インシデントの影響">CA インシデントの影響</a></h2>
+        <p>例として、悪意のある Eve が <code translate="no">google.com</code> の証明書を、 <code translate="no">google.com</code> の管理者に知られずに、正規の CA に発行させることができたとする。
+        <p>(Eve は外部からの攻撃したかもしれないし、内部犯の可能性もある)
+        <p>Eve は MITM を成立させたら、 <code translate="no">https://google.com</code> のレスポンスを改ざんし、取得した証明書で暗号化することができる。
+        <p>ブラウザはそのレスポンスが信頼された <code translate="no">google.com</code> からのものであると表示し、 URL バーも緑になってしまう。
+        <p>Eve の持つ秘密鍵は Google のそれとは違うが、証明書には「本物」と同等の効力があることが原因だ。
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+        <pre class=text><code translate="no">+------------+                       +-----------+
 |            |  valid        valid   |           |
 |   Google   |---------&gt;| |---------&gt;|  Browser  |
 |            |          | |          |           |
@@ -146,17 +146,17 @@
                    +-----------+
                    | Eve(MITM) |
                    +-----------+</code></pre>
-      <p>これまでは、こうしたこと防ぐには、 CA 自身が努力するしかなかった。
-      <p>Google は、 CA を信じ自分の知らないところで <code translate="no">google.com</code> の証明書が勝手に発行されていないことを祈るしか無い。
-    </section>
-    <section>
-      <h2 id="hpkp"><a href="#hpkp">HPKP</a></h2>
-      <p>Google が CA から発行を受けた証明書と、 Eve が CA に誤発行させた証明書は、同等ではあるが byte 単位では別のものである。
-      <p>つまり、 Hash を取得すれば 2 つの値は変わるはずだ。
-      <p>そこで、 Google は自身が所有する証明書の Hash 値をレスポンスヘッダに付与し、ブラウザに確認させる方法を考えた。
-      <p>MITM によってすり替えられたレスポンスに使用された証明書は、 Google が付与した Hash と合わない。
-      <p>これにより、ブラウザは証明書が意図したものと違うことに気づくことができる。
-      <pre class=text><code translate="no">                      HPKP:xxx
+        <p>これまでは、こうしたこと防ぐには、 CA 自身が努力するしかなかった。
+        <p>Google は、 CA を信じ自分の知らないところで <code translate="no">google.com</code> の証明書が勝手に発行されていないことを祈るしか無い。
+      </section>
+      <section>
+        <h2 id="hpkp"><a href="#hpkp">HPKP</a></h2>
+        <p>Google が CA から発行を受けた証明書と、 Eve が CA に誤発行させた証明書は、同等ではあるが byte 単位では別のものである。
+        <p>つまり、 Hash を取得すれば 2 つの値は変わるはずだ。
+        <p>そこで、 Google は自身が所有する証明書の Hash 値をレスポンスヘッダに付与し、ブラウザに確認させる方法を考えた。
+        <p>MITM によってすり替えられたレスポンスに使用された証明書は、 Google が付与した Hash と合わない。
+        <p>これにより、ブラウザは証明書が意図したものと違うことに気づくことができる。
+        <pre class=text><code translate="no">                      HPKP:xxx
 +------------+                       +-----------+
 |            |  hash:xxx    hash:yyy |           |
 |   Google   |---------&gt;| |---------x|  Browser  |
@@ -165,36 +165,36 @@
                    +-----------+
                    | Eve(MITM) |
                    +-----------+</code></pre>
-      <p>これが <em>HPKP (HTTP Public Key Pinning)</em> の基本的な考え方であった。
-      <p>本サイトも、実験的にこれを適用していた。
-      <p><a href="https://blog.jxck.io/entries/2016-04-09/public-key-pinning.html">Public Key Pinning for HTTP(HPKP) 対応と report-uri.io でのレポート収集</a>
-      <p>しかし、このヘッダは証明書の失効/更新時に、 Hash が不整合を起こすのを防ぐため、先にバックアップ Hash を付与しておくなど、運用負荷が高かった。
-      <p>(本サイトでも、しばらく前からヘッダ自体を付与していない)
-      <p>そこで HPKP の代替として、並行して議論されていた <em>CertificateTransparency(CT)</em> という仕組みを応用し、より運用負荷が低い形で同等のことを実現する方法が提案された。
-      <p>それが Expect-CT ヘッダである。
-      <p>Chrome は既に、 HPKP を Deprecate し Expect-CT への移行を促している
-      <ul>
-        <li>
-          <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/he9tr7p3rZ8/eNMwKPmUBAAJ">Intent To Deprecate And Remove: Public Key Pinning</a>
-        </li>
-        <li>
-          <a href="https://groups.google.com/a/chromium.org/forum/#!msg/ct-policy/sz_3W_xKBNY/6jq2ghJXBAAJ">Certificate Transparency in Chrome - Change to Enforcement Date</a>
-        </li>
-      </ul>
-      <p>まず、前提としての CT のエコシステムについて解説する。
-    </section>
-    <section>
-      <h2 id="certificate-transparency"><a href="#certificate-transparency">Certificate Transparency</a></h2>
-      <p><a href="https://www.certificate-transparency.org/">CT: Certificate Transparency</a> には、いくつかのロールがある。
-      <p>ここでは、一番イメージしやすい例で以下のように整理し、図示する。
-      <ul>
-        <li>CA: 証明書を発行し Log を登録する
-        <li>Log: 証明書を Merkle Hash Tree で保存しパブリックに公開する
-        <li>Monitor: Log を監視する
-        <li>Auditor: Log を検証する
-      </ul>
-      <p>ここではわかりやすく Monitor が Google で Auditor はブラウザだとしておく。
-      <pre class=text><code translate="no">    +--------------+                     +--------------+
+        <p>これが <em>HPKP (HTTP Public Key Pinning)</em> の基本的な考え方であった。
+        <p>本サイトも、実験的にこれを適用していた。
+        <p><a href="https://blog.jxck.io/entries/2016-04-09/public-key-pinning.html">Public Key Pinning for HTTP(HPKP) 対応と report-uri.io でのレポート収集</a>
+        <p>しかし、このヘッダは証明書の失効/更新時に、 Hash が不整合を起こすのを防ぐため、先にバックアップ Hash を付与しておくなど、運用負荷が高かった。
+        <p>(本サイトでも、しばらく前からヘッダ自体を付与していない)
+        <p>そこで HPKP の代替として、並行して議論されていた <em>CertificateTransparency(CT)</em> という仕組みを応用し、より運用負荷が低い形で同等のことを実現する方法が提案された。
+        <p>それが Expect-CT ヘッダである。
+        <p>Chrome は既に、 HPKP を Deprecate し Expect-CT への移行を促している
+        <ul>
+          <li>
+            <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/he9tr7p3rZ8/eNMwKPmUBAAJ">Intent To Deprecate And Remove: Public Key Pinning</a>
+          </li>
+          <li>
+            <a href="https://groups.google.com/a/chromium.org/forum/#!msg/ct-policy/sz_3W_xKBNY/6jq2ghJXBAAJ">Certificate Transparency in Chrome - Change to Enforcement Date</a>
+          </li>
+        </ul>
+        <p>まず、前提としての CT のエコシステムについて解説する。
+      </section>
+      <section>
+        <h2 id="certificate-transparency"><a href="#certificate-transparency">Certificate Transparency</a></h2>
+        <p><a href="https://www.certificate-transparency.org/">CT: Certificate Transparency</a> には、いくつかのロールがある。
+        <p>ここでは、一番イメージしやすい例で以下のように整理し、図示する。
+        <ul>
+          <li>CA: 証明書を発行し Log を登録する
+          <li>Log: 証明書を Merkle Hash Tree で保存しパブリックに公開する
+          <li>Monitor: Log を監視する
+          <li>Auditor: Log を検証する
+        </ul>
+        <p>ここではわかりやすく Monitor が Google で Auditor はブラウザだとしておく。
+        <pre class=text><code translate="no">    +--------------+                     +--------------+
     |              |     Submit Log      |              |
     |              |--------------------&gt;|              |
     |      CA      |        SCT          |     Log      |
@@ -217,49 +217,49 @@
     |   (Google)   +--------------------&gt;|   (browser)  |
     |              |                     |              |
     +--------------+                     +--------------+</code></pre>
-      <p>まず、 CA は発行した証明書を CT Log Server に登録する。
-      <p>全ての CT Log Server は、パブリックな URL で公開され、 HTTPS でアクセスし登録や監視が行える。
-      <p>Google は Monitor として CT Log Server を監視することで、 <code translate="no">google.com</code> が登録されたことを知ることができる。
-      <p>先の例で、 Google が恐れていたのは「自分たちが知らないところで <code translate="no">google.com</code> の証明書が発行されること」だ。
-      <p>自分たちが把握している発行が Log に登録されるのはもちろん問題ないし、把握していない Log が登録されれば、攻撃などで CA が誤発行を起こしたことがすぐにわかる。
-      <p>攻撃は、発生していることがわかれば、対応ができる。これは、わからなかったころと比べるとかなりの進歩だ。
-      <p>つまり、 Monitor である Google の視点で言えば「<em>CA を監視する技術</em>」と言えなくもない。
-      <p>発行された Log が必ず登録されていることや、その Log が改ざんされていないことは、どう保証するのかは後述する。
-    </section>
-    <section>
-      <h2 id="sctsigned-certificate-timestamp"><a href="#sctsigned-certificate-timestamp">SCT(Signed Certificate Timestamp)</a></h2>
-      <p>証明書を Log Server に登録すると、 SCT という Timestamp が発行される。
-      <p>この値を元に、 CT Log Server に問い合わせれば、証明書が登録されているかを確認することができる。
-      <p>SCT は以下の 3 つのどこかに付与し、ブラウザに通知することができる。
-      <section>
-        <h3 id="証明書"><a href="#証明書">証明書</a></h3>
-        <p>証明書自体に SCT を埋め込む方式。
-        <p>CA は一旦証明書(プレ証明書)を生成し、 SCT を取得し、それを埋め込んだ新たな証明書を生成し、それを発行することになる。
-        <p>このため、 CA 内部の運用への影響が多少あるが、もし対応されれば、コンテンツプロバイダからすると運用が一番楽だろう。
-        <p>Let&rsquo;s Encrypt は、対応を予定している。
-        <p><a href="https://letsencrypt.org/upcoming-features/">Upcoming Features - Let&rsquo;s Encrypt</a>
+        <p>まず、 CA は発行した証明書を CT Log Server に登録する。
+        <p>全ての CT Log Server は、パブリックな URL で公開され、 HTTPS でアクセスし登録や監視が行える。
+        <p>Google は Monitor として CT Log Server を監視することで、 <code translate="no">google.com</code> が登録されたことを知ることができる。
+        <p>先の例で、 Google が恐れていたのは「自分たちが知らないところで <code translate="no">google.com</code> の証明書が発行されること」だ。
+        <p>自分たちが把握している発行が Log に登録されるのはもちろん問題ないし、把握していない Log が登録されれば、攻撃などで CA が誤発行を起こしたことがすぐにわかる。
+        <p>攻撃は、発生していることがわかれば、対応ができる。これは、わからなかったころと比べるとかなりの進歩だ。
+        <p>つまり、 Monitor である Google の視点で言えば「<em>CA を監視する技術</em>」と言えなくもない。
+        <p>発行された Log が必ず登録されていることや、その Log が改ざんされていないことは、どう保証するのかは後述する。
       </section>
       <section>
-        <h3 id="ocsp"><a href="#ocsp">OCSP</a></h3>
-        <p>OCSP の情報に SCT を含む方式。これも CA 側の対応が必要。
-        <p>Let&rsquo;s Encrypt は、証明書の方で対応する予定なので、こちらのプライオリティは低くなった。
-        <p><a href="https://github.com/letsencrypt/boulder/issues/592#issuecomment-262036049">Include SCT receipts in OCSP responses #592</a>
+        <h2 id="sctsigned-certificate-timestamp"><a href="#sctsigned-certificate-timestamp">SCT(Signed Certificate Timestamp)</a></h2>
+        <p>証明書を Log Server に登録すると、 SCT という Timestamp が発行される。
+        <p>この値を元に、 CT Log Server に問い合わせれば、証明書が登録されているかを確認することができる。
+        <p>SCT は以下の 3 つのどこかに付与し、ブラウザに通知することができる。
+        <section>
+          <h3 id="証明書"><a href="#証明書">証明書</a></h3>
+          <p>証明書自体に SCT を埋め込む方式。
+          <p>CA は一旦証明書(プレ証明書)を生成し、 SCT を取得し、それを埋め込んだ新たな証明書を生成し、それを発行することになる。
+          <p>このため、 CA 内部の運用への影響が多少あるが、もし対応されれば、コンテンツプロバイダからすると運用が一番楽だろう。
+          <p>Let&rsquo;s Encrypt は、対応を予定している。
+          <p><a href="https://letsencrypt.org/upcoming-features/">Upcoming Features - Let&rsquo;s Encrypt</a>
+        </section>
+        <section>
+          <h3 id="ocsp"><a href="#ocsp">OCSP</a></h3>
+          <p>OCSP の情報に SCT を含む方式。これも CA 側の対応が必要。
+          <p>Let&rsquo;s Encrypt は、証明書の方で対応する予定なので、こちらのプライオリティは低くなった。
+          <p><a href="https://github.com/letsencrypt/boulder/issues/592#issuecomment-262036049">Include SCT receipts in OCSP responses #592</a>
+        </section>
+        <section>
+          <h3 id="tls-extension"><a href="#tls-extension">TLS Extension</a></h3>
+          <p>TLS ハンドシェイクで、 ServerHello の <code translate="no">signed_certificate_timestamp</code> 拡張に埋め込む方式。
+          <p>自分で CT Log に登録し、取得した SCT を埋め込めばよいので、唯一 CA が対応していなくても、コンテンツプロバイダだけで対応ができる方法。
+          <p>対応しているサーバはまだ少ない。
+        </section>
       </section>
       <section>
-        <h3 id="tls-extension"><a href="#tls-extension">TLS Extension</a></h3>
-        <p>TLS ハンドシェイクで、 ServerHello の <code translate="no">signed_certificate_timestamp</code> 拡張に埋め込む方式。
-        <p>自分で CT Log に登録し、取得した SCT を埋め込めばよいので、唯一 CA が対応していなくても、コンテンツプロバイダだけで対応ができる方法。
-        <p>対応しているサーバはまだ少ない。
-      </section>
-    </section>
-    <section>
-      <h2 id="ユースケース"><a href="#ユースケース">ユースケース</a></h2>
-      <p>Google が管理する <code translate="no">google.com</code> の EV 証明書と Chrome を例に、ケースごとに何が発生するのかを整理する。
-      <section>
-        <h3 id="証明書が誤発行され-log-が登録されている"><a href="#証明書が誤発行され-log-が登録されている">証明書が誤発行され、 Log が登録されている</a></h3>
-        <p>Google は、 <code translate="no">google.com</code> の EV 証明書が、自分たちの知らないところで勝手に発行されていないかを監視している。
-        <p>したがって、 Eve が誤発行に成功しても、 Log サーバに Log が登録されれば、誤発行を発見し対策が行える。
-        <pre class=text><code translate="no">    +--------------+                     +--------------+
+        <h2 id="ユースケース"><a href="#ユースケース">ユースケース</a></h2>
+        <p>Google が管理する <code translate="no">google.com</code> の EV 証明書と Chrome を例に、ケースごとに何が発生するのかを整理する。
+        <section>
+          <h3 id="証明書が誤発行され-log-が登録されている"><a href="#証明書が誤発行され-log-が登録されている">証明書が誤発行され、 Log が登録されている</a></h3>
+          <p>Google は、 <code translate="no">google.com</code> の EV 証明書が、自分たちの知らないところで勝手に発行されていないかを監視している。
+          <p>したがって、 Eve が誤発行に成功しても、 Log サーバに Log が登録されれば、誤発行を発見し対策が行える。
+          <pre class=text><code translate="no">    +--------------+                     +--------------+
     |              |     Submit Log      |              |
     |              |--------------------&gt;|              |
     |      CA      |                     |     Log      |
@@ -282,12 +282,12 @@
     |   (Google)   |
     |              |
     +--------------+</code></pre>
-      </section>
-      <section>
-        <h3 id="証明書が誤発行され-log-が登録されたが後から-log-を改ざんした"><a href="#証明書が誤発行され-log-が登録されたが後から-log-を改ざんした">証明書が誤発行され、 Log が登録されたが、後から Log を改ざんした</a></h3>
-        <p>CT Log は Merkle Tree Hashes を用いているため、 Log を改ざんすると不整合が発生する。
-        <p>Monitor/Auditor は Log の整合性を監視/検証しているので、計算が合わないことで改ざんに気づくことができる。
-        <pre class=text><code translate="no">    +--------------+                     +--------------+   改ざん
+        </section>
+        <section>
+          <h3 id="証明書が誤発行され-log-が登録されたが後から-log-を改ざんした"><a href="#証明書が誤発行され-log-が登録されたが後から-log-を改ざんした">証明書が誤発行され、 Log が登録されたが、後から Log を改ざんした</a></h3>
+          <p>CT Log は Merkle Tree Hashes を用いているため、 Log を改ざんすると不整合が発生する。
+          <p>Monitor/Auditor は Log の整合性を監視/検証しているので、計算が合わないことで改ざんに気づくことができる。
+          <pre class=text><code translate="no">    +--------------+                     +--------------+   改ざん
     |              |                     |              | &lt;------- Eve
     |              |                     |              |
     |      CA      |                     |     Log      |
@@ -310,12 +310,12 @@
     |   (Google)   |                     |   (browser)  |
     |              |                     |              |
     +--------------+                     +--------------+</code></pre>
-      </section>
-      <section>
-        <h3 id="証明書が誤発行されたが-log-を登録せず証明書には別の-sct-を埋め込んだ"><a href="#証明書が誤発行されたが-log-を登録せず証明書には別の-sct-を埋め込んだ">証明書が誤発行されたが、 Log を登録せず、証明書には別の SCT を埋め込んだ</a></h3>
-        <p>CT Log は、証明書そのものの値を Hash のシードとして含んでいる。
-        <p>従って、ブラウザ(Auditor) が証明書に含まれた SCT の正当性を Log Server に問い合わせる際に、おかしいことに気づくことができる。
-        <pre class=text><code translate="no">    +--------------+                     +--------------+
+        </section>
+        <section>
+          <h3 id="証明書が誤発行されたが-log-を登録せず証明書には別の-sct-を埋め込んだ"><a href="#証明書が誤発行されたが-log-を登録せず証明書には別の-sct-を埋め込んだ">証明書が誤発行されたが、 Log を登録せず、証明書には別の SCT を埋め込んだ</a></h3>
+          <p>CT Log は、証明書そのものの値を Hash のシードとして含んでいる。
+          <p>従って、ブラウザ(Auditor) が証明書に含まれた SCT の正当性を Log Server に問い合わせる際に、おかしいことに気づくことができる。
+          <pre class=text><code translate="no">    +--------------+                     +--------------+
     |              |                     |              |
     |              |                     |              |
     |      CA      |                     |     Log      |
@@ -338,20 +338,20 @@
     |   (Google)   +----||- MITM -||----&gt;|   (browser)  |
     |              |                     |              |
     +--------------+                     +--------------+</code></pre>
-      </section>
-      <section>
-        <h3 id="ca-からの誤発行ではなく偽造された証明書が-log-に登録されその-sct-を埋め込んだ"><a href="#ca-からの誤発行ではなく偽造された証明書が-log-に登録されその-sct-を埋め込んだ">CA からの誤発行ではなく偽造された証明書が Log に登録され、その SCT を埋め込んだ</a></h3>
-        <p>CA の署名がない証明書は、 CT 関係なくブラウザで弾かれるため、 SCT をみるまでもない。
-        <p>仮に、そうした証明書が CT Log に登録されていたとしても、単なる Hash の 1 つとして使われるだけだ。
-        <p>Monitor の関心あるドメインであれば、誤発行と同じように対応され、関心がなければ無視される。
-        <p>他の証明書の Audit にも特に影響はない。
-      </section>
-      <section>
-        <h3 id="証明書が誤発行されたが-log-を登録せず証明書には-sct-を埋め込まない"><a href="#証明書が誤発行されたが-log-を登録せず証明書には-sct-を埋め込まない">証明書が誤発行されたが、 Log を登録せず、証明書には SCT を埋め込まない</a></h3>
-        <p>SCT が証明書になければ、ブラウザはその証明書が誤発行されたものかどうかを確認することができない。
-        <p>単に SCT に対応してない証明書である、と扱うことになってしまう。
-        <p>そこで <em>Chrome は EV については SCT を必須</em> とし、 SCT がなければその時点で Invalid とみなすという方向にした。
-        <pre class=text><code translate="no">    +--------------+                     +--------------+
+        </section>
+        <section>
+          <h3 id="ca-からの誤発行ではなく偽造された証明書が-log-に登録されその-sct-を埋め込んだ"><a href="#ca-からの誤発行ではなく偽造された証明書が-log-に登録されその-sct-を埋め込んだ">CA からの誤発行ではなく偽造された証明書が Log に登録され、その SCT を埋め込んだ</a></h3>
+          <p>CA の署名がない証明書は、 CT 関係なくブラウザで弾かれるため、 SCT をみるまでもない。
+          <p>仮に、そうした証明書が CT Log に登録されていたとしても、単なる Hash の 1 つとして使われるだけだ。
+          <p>Monitor の関心あるドメインであれば、誤発行と同じように対応され、関心がなければ無視される。
+          <p>他の証明書の Audit にも特に影響はない。
+        </section>
+        <section>
+          <h3 id="証明書が誤発行されたが-log-を登録せず証明書には-sct-を埋め込まない"><a href="#証明書が誤発行されたが-log-を登録せず証明書には-sct-を埋め込まない">証明書が誤発行されたが、 Log を登録せず、証明書には SCT を埋め込まない</a></h3>
+          <p>SCT が証明書になければ、ブラウザはその証明書が誤発行されたものかどうかを確認することができない。
+          <p>単に SCT に対応してない証明書である、と扱うことになってしまう。
+          <p>そこで <em>Chrome は EV については SCT を必須</em> とし、 SCT がなければその時点で Invalid とみなすという方向にした。
+          <pre class=text><code translate="no">    +--------------+                     +--------------+
     |              |                     |              |
     |              |                     |              |
     |      CA      |                     |     Log      |
@@ -374,45 +374,45 @@
     |   (Google)   +----||- MITM -||----&gt;|   (browser)  |
     |              |            (no SCT) |              |
     +--------------+                     +--------------+</code></pre>
-        <p>自社の発行する EV が Chrome では使えないという状況を防ぐために、 CA は EV を発行する際に必ず CT Log を登録せざるをえなくなる。
-        <p>こうして CA に CT 対応を実質的に強制することで、証明書の誤発行を監視するエコシステムの形成が、 Google 先導で進められている。
-        <p>EV 以外の証明書については、後述する HTTP の Expect-CT ヘッダで、コンテンツベンダがオプトインすることができる。
-      </section>
-    </section>
-    <section>
-      <h2 id="ct-の活用"><a href="#ct-の活用">CT の活用</a></h2>
-      <p>DV 証明書などを使っている場合も、自分でこのエコシステムにオプトインすることもできる。
-      <section>
-        <h3 id="sct-を自分で取得する"><a href="#sct-を自分で取得する">SCT を自分で取得する</a></h3>
-        <p>CT Log Server への登録は、誰でもできる。
-        <p>つまり、 CA が登録をしていなくても、自分で証明書を登録すれば、 SCT を取得することができる。
-        <p>また、処理は冪等であるため、既に登録されている場合は同じ値が返る。
-        <p>可用性のためにも、 Log は複数のサーバに登録することが望ましいとされている。
-        <p>現在運用されている Log Server の一覧は以下にある。
-        <p><a href="https://www.certificate-transparency.org/known-logs">Known Logs - Certificate Transparency</a>
+          <p>自社の発行する EV が Chrome では使えないという状況を防ぐために、 CA は EV を発行する際に必ず CT Log を登録せざるをえなくなる。
+          <p>こうして CA に CT 対応を実質的に強制することで、証明書の誤発行を監視するエコシステムの形成が、 Google 先導で進められている。
+          <p>EV 以外の証明書については、後述する HTTP の Expect-CT ヘッダで、コンテンツベンダがオプトインすることができる。
+        </section>
       </section>
       <section>
-        <h3 id="sct-を自分で埋め込む"><a href="#sct-を自分で埋め込む">SCT を自分で埋め込む</a></h3>
-        <p>CA に頼らず SCT を自分で提供する場合は、 TLS Handshake の <code translate="no">signed_certificate_timestamp</code> 拡張を用いる。
-        <p>しかし、現在これに対応してるサーバは少なく、本サイトで使用している h2o は <a href="https://github.com/h2o/h2o/issues/448">執筆時では未対応</a> である。
-        <p>(ハンドシェイクレベルなため mruby のハンドラでも手が出せない)
-        <p>他のサーバの実装状況については、以下にまとまっている。
-        <p><a href="https://www.certificate-transparency.org/resources-for-site-owners">Resources for site owners - Certificate Transparency</a>
-      </section>
-      <section>
-        <h3 id="ct-を自分で監視する"><a href="#ct-を自分で監視する">CT を自分で監視する</a></h3>
-        <p>CT Log を監視することで、自身の保有するドメインの証明書が、知らないところで発行されていないかを監視することができる。
-        <p>しかし、 CT Log Server は複数あり、登録される証明書も非常に多いので、個人が Monitor になる負荷は低くは無い。
-        <p>本サイトでは Facebook が提供している CT monitoring のサービスを利用している。
-        <p><a href="https://developers.facebook.com/tools/ct/">証明書の透明性のモニタリング - 開発者向け Facebook</a>
-        <p>ここに、監視したいドメインを登録すると、 CT Log 登録時に通知が来るので、手軽に監視ができる。
-        <p>CT Log はパブリックなため、認証などはなく、任意のドメインの登録を監視できる。
-        <p>ここから、 CT Log を通して公開されてない製品/サービスの推測などが懸念されており、別途議論が進んでいる点も把握しておきたい。
-      </section>
-      <section>
-        <h3 id="expect-ct-header-による強制"><a href="#expect-ct-header-による強制">Expect-CT Header による強制</a></h3>
-        <p>誤発行に成功した証明書に置き換えられた場合、 Chrome での EV のように SCT のチェックが必須でない場合は、正しい証明書として通っていまう。
-        <pre class=text><code translate="no">+------------+                       +-----------+
+        <h2 id="ct-の活用"><a href="#ct-の活用">CT の活用</a></h2>
+        <p>DV 証明書などを使っている場合も、自分でこのエコシステムにオプトインすることもできる。
+        <section>
+          <h3 id="sct-を自分で取得する"><a href="#sct-を自分で取得する">SCT を自分で取得する</a></h3>
+          <p>CT Log Server への登録は、誰でもできる。
+          <p>つまり、 CA が登録をしていなくても、自分で証明書を登録すれば、 SCT を取得することができる。
+          <p>また、処理は冪等であるため、既に登録されている場合は同じ値が返る。
+          <p>可用性のためにも、 Log は複数のサーバに登録することが望ましいとされている。
+          <p>現在運用されている Log Server の一覧は以下にある。
+          <p><a href="https://www.certificate-transparency.org/known-logs">Known Logs - Certificate Transparency</a>
+        </section>
+        <section>
+          <h3 id="sct-を自分で埋め込む"><a href="#sct-を自分で埋め込む">SCT を自分で埋め込む</a></h3>
+          <p>CA に頼らず SCT を自分で提供する場合は、 TLS Handshake の <code translate="no">signed_certificate_timestamp</code> 拡張を用いる。
+          <p>しかし、現在これに対応してるサーバは少なく、本サイトで使用している h2o は <a href="https://github.com/h2o/h2o/issues/448">執筆時では未対応</a> である。
+          <p>(ハンドシェイクレベルなため mruby のハンドラでも手が出せない)
+          <p>他のサーバの実装状況については、以下にまとまっている。
+          <p><a href="https://www.certificate-transparency.org/resources-for-site-owners">Resources for site owners - Certificate Transparency</a>
+        </section>
+        <section>
+          <h3 id="ct-を自分で監視する"><a href="#ct-を自分で監視する">CT を自分で監視する</a></h3>
+          <p>CT Log を監視することで、自身の保有するドメインの証明書が、知らないところで発行されていないかを監視することができる。
+          <p>しかし、 CT Log Server は複数あり、登録される証明書も非常に多いので、個人が Monitor になる負荷は低くは無い。
+          <p>本サイトでは Facebook が提供している CT monitoring のサービスを利用している。
+          <p><a href="https://developers.facebook.com/tools/ct/">証明書の透明性のモニタリング - 開発者向け Facebook</a>
+          <p>ここに、監視したいドメインを登録すると、 CT Log 登録時に通知が来るので、手軽に監視ができる。
+          <p>CT Log はパブリックなため、認証などはなく、任意のドメインの登録を監視できる。
+          <p>ここから、 CT Log を通して公開されてない製品/サービスの推測などが懸念されており、別途議論が進んでいる点も把握しておきたい。
+        </section>
+        <section>
+          <h3 id="expect-ct-header-による強制"><a href="#expect-ct-header-による強制">Expect-CT Header による強制</a></h3>
+          <p>誤発行に成功した証明書に置き換えられた場合、 Chrome での EV のように SCT のチェックが必須でない場合は、正しい証明書として通っていまう。
+          <pre class=text><code translate="no">+------------+                       +-----------+
 |            |  DV+SCT        DV     |           | ブラウザが SCT のチェックを
 |   Google   |---------&gt;| |---------x|  Browser  | しなければ、普通の証明書
 |            |          | |          |           |
@@ -420,9 +420,9 @@
                    +-----------+
                    | Eve(MITM) |
                    +-----------+</code></pre>
-        <p>そこで、「<em>このコンテンツは CT に対応した証明書で提供される</em>」ということを明示する方法が提案された。
-        <p>これが <code translate="no">Expect-CT</code> ヘッダだ。
-        <pre class=text><code translate="no">                 Expect-CT: enforce
+          <p>そこで、「<em>このコンテンツは CT に対応した証明書で提供される</em>」ということを明示する方法が提案された。
+          <p>これが <code translate="no">Expect-CT</code> ヘッダだ。
+          <pre class=text><code translate="no">                 Expect-CT: enforce
 +------------+                       +-----------+
 |            |  DV+SCT        DV     |           | Expect-CT 対応ブラウザは
 |   Google   |---------&gt;| |---------x|  Browser  | SCT を必ずチェックする
@@ -431,36 +431,36 @@
                    +-----------+
                    | Eve(MITM) |
                    +-----------+</code></pre>
-        <p><a href="https://tools.ietf.org/html/draft-ietf-httpbis-expect-ct">Expect-CT Extension for HTTP</a>
-        <p>Expect-CT のディレクティブは、基本的に CSP と同じような設計になっている。
-        <pre class=http><code translate="no">Expect-CT: max-age=86400, enforce, report-uri=&quot;https://foo.example/report&quot;</code></pre>
-        <ul>
-          <li>
-            <code translate="no">enforce</code>:  SCT のチェックをブラウザに強制させる
-          </li>
-          <li>
-            <code translate="no">report-uri</code>: CSP レポートの送信先
-          </li>
-          <li>
-            <code translate="no">max-age</code>: 有効期限
-          </li>
-        </ul>
-        <p>なお <em>Expect-CT 自体が SCT の値を含むわけではない</em> 点に注意したい。
-        <p>これにより、証明書が変わってもヘッダの値は変わらないため、 HPKP と比べて運用負荷が大きく下がる。
-        <p>また、他の CSP のように <code translate="no">Expect-CT-Report-Only</code> は定義されておらず、 <code translate="no">enforce</code> を付けずに <code translate="no">report-uri</code> のみとすれば、レポートだけが飛ぶ。
-        <pre class=http><code translate="no">Expect-CT: max-age=86400, report-uri=&quot;https://foo.example/report&quot;</code></pre>
+          <p><a href="https://tools.ietf.org/html/draft-ietf-httpbis-expect-ct">Expect-CT Extension for HTTP</a>
+          <p>Expect-CT のディレクティブは、基本的に CSP と同じような設計になっている。
+          <pre class=http><code translate="no">Expect-CT: max-age=86400, enforce, report-uri=&quot;https://foo.example/report&quot;</code></pre>
+          <ul>
+            <li>
+              <code translate="no">enforce</code>:  SCT のチェックをブラウザに強制させる
+            </li>
+            <li>
+              <code translate="no">report-uri</code>: CSP レポートの送信先
+            </li>
+            <li>
+              <code translate="no">max-age</code>: 有効期限
+            </li>
+          </ul>
+          <p>なお <em>Expect-CT 自体が SCT の値を含むわけではない</em> 点に注意したい。
+          <p>これにより、証明書が変わってもヘッダの値は変わらないため、 HPKP と比べて運用負荷が大きく下がる。
+          <p>また、他の CSP のように <code translate="no">Expect-CT-Report-Only</code> は定義されておらず、 <code translate="no">enforce</code> を付けずに <code translate="no">report-uri</code> のみとすれば、レポートだけが飛ぶ。
+          <pre class=http><code translate="no">Expect-CT: max-age=86400, report-uri=&quot;https://foo.example/report&quot;</code></pre>
+        </section>
       </section>
-    </section>
-    <section>
-      <h2 id="ct-log-の仕組み"><a href="#ct-log-の仕組み">CT Log の仕組み</a></h2>
-      <p>ここからは、実際の CT Log の仕組みである Merkle Tree や、それを踏まえた CT Log Server へのリクエストについて解説する。
       <section>
-        <h3 id="merkle-tree"><a href="#merkle-tree">Merkle Tree</a></h3>
-        <p>CT Log は、 Merkle Tree という構造で保存されている。
-        <p>これは、ビットコインのトランザクションの記録などにも使われており、やっていることも非常に似ている。
-        <p>仕組みはシンプルで、証明書の Hash を Leaf とし、 Leaf/Node ペアの Hash を親とする二分技を構築する。
-        <p>CT では Hash に SHA256 を使用する。
-        <pre class=text><code translate="no">              Sign
+        <h2 id="ct-log-の仕組み"><a href="#ct-log-の仕組み">CT Log の仕組み</a></h2>
+        <p>ここからは、実際の CT Log の仕組みである Merkle Tree や、それを踏まえた CT Log Server へのリクエストについて解説する。
+        <section>
+          <h3 id="merkle-tree"><a href="#merkle-tree">Merkle Tree</a></h3>
+          <p>CT Log は、 Merkle Tree という構造で保存されている。
+          <p>これは、ビットコインのトランザクションの記録などにも使われており、やっていることも非常に似ている。
+          <p>仕組みはシンプルで、証明書の Hash を Leaf とし、 Leaf/Node ペアの Hash を親とする二分技を構築する。
+          <p>CT では Hash に SHA256 を使用する。
+          <pre class=text><code translate="no">              Sign
       Root  --------&gt;  STH
      /   \
     /     \
@@ -472,18 +472,18 @@ d0  d1  d2  d3
 
 a = sha256(0x00 || d0)
 i = sha256(0x01 || a || b)</code></pre>
-        <p>Log Server は、この Root となる Hash に署名をする。これを Signed Tree Head(STH) と呼ぶ。
-        <p>Leaf の値が 1 つでも変わると、計算結果が STH と合わなくなる。また、 STH そのものは署名によって守られている。
-        <p>結果、一度 STH に署名をすれば、木全体について改ざんの検知が可能となる。
-        <p>この構造を踏まえて、基本的な処理を見ていく。
+          <p>Log Server は、この Root となる Hash に署名をする。これを Signed Tree Head(STH) と呼ぶ。
+          <p>Leaf の値が 1 つでも変わると、計算結果が STH と合わなくなる。また、 STH そのものは署名によって守られている。
+          <p>結果、一度 STH に署名をすれば、木全体について改ざんの検知が可能となる。
+          <p>この構造を踏まえて、基本的な処理を見ていく。
+        </section>
       </section>
-    </section>
-    <section>
-      <h2 id="log-の追加"><a href="#log-の追加">Log の追加</a></h2>
-      <p>CT Log Server には多くのの登録依頼が届き、定期的に既存の Tree に追加登録を行う。
-      <p>このため CT 登録にはラグがあり、その最大値は Maximum Merge Delay (MMD)として提示されている。
-      <p>この場合、追加分の証明書(d4, d5)だけで Tree を作り、その Root(k) と既存の Root(m) の Hash を取り、署名して新たな STH とすれば良い。
-      <pre class=text><code translate="no">                       Sign
+      <section>
+        <h2 id="log-の追加"><a href="#log-の追加">Log の追加</a></h2>
+        <p>CT Log Server には多くのの登録依頼が届き、定期的に既存の Tree に追加登録を行う。
+        <p>このため CT 登録にはラグがあり、その最大値は Maximum Merge Delay (MMD)として提示されている。
+        <p>この場合、追加分の証明書(d4, d5)だけで Tree を作り、その Root(k) と既存の Root(m) の Hash を取り、署名して新たな STH とすれば良い。
+        <pre class=text><code translate="no">                       Sign
            New Root  --------&gt;  STH
          /          \
         /            \
@@ -495,14 +495,14 @@ i = sha256(0x01 || a || b)</code></pre>
  a   b   c   d   d4      d5
  |   |   |   |
 d0  d1  d2  d3</code></pre>
-    </section>
-    <section>
-      <h2 id="一貫性の証明"><a href="#一貫性の証明">一貫性の証明</a></h2>
-      <p>木が構築された後に、どこか 1 つでも値を改ざんすれば、再計算すると STH と値が合わなくなる。
-      <p>一方、それを検証する側は、証明書全部を取得して全部再計算することもできるが、毎回それを行う必要はない。
-      <p>Log が少ないうちに STH まで検証しておけば、あとはその STH と、追加された分の証明書だけを計算して、新しい STH と比較することで、 Log が改ざんされていないことを検証できる。
-      <p>先の図に d6, d7 を追加した結果が以下のようになっていたとする。
-      <pre class=text><code translate="no">                      Sign
+      </section>
+      <section>
+        <h2 id="一貫性の証明"><a href="#一貫性の証明">一貫性の証明</a></h2>
+        <p>木が構築された後に、どこか 1 つでも値を改ざんすれば、再計算すると STH と値が合わなくなる。
+        <p>一方、それを検証する側は、証明書全部を取得して全部再計算することもできるが、毎回それを行う必要はない。
+        <p>Log が少ないうちに STH まで検証しておけば、あとはその STH と、追加された分の証明書だけを計算して、新しい STH と比較することで、 Log が改ざんされていないことを検証できる。
+        <p>先の図に d6, d7 を追加した結果が以下のようになっていたとする。
+        <pre class=text><code translate="no">                      Sign
               Root  ---------&gt;  STH
          /           \
         /             \
@@ -514,22 +514,22 @@ d0  d1  d2  d3</code></pre>
  a   b   c   d   e   f   g   h
  |   |   |   |   |   |   |   |
 d0  d1  d2  d3  d4  d5  d6  d7</code></pre>
-      <p>この Tree の一貫性を証明するためには、以下を検証すれば良い。
-      <ul>
-        <li>k, m を用いて、この 1 つ前までの Tree が改ざんされていないこと
-        <li>その Tree に対して g, h を加えた木の Root が新しい STH と一致すること
-      </ul>
-      <p>つまり、計算に必要なのは m, k g, h だけで済む。
-      <p>第三者がこれを検証し続ければ、 Tree のどこかが意図的に書き換えられていないことが保証できる。
-      <p>こうして、 CT Log は Merkle Hashe Tree を用いて <em>追記</em> しか出来ないことが暗号的に保証されている。
-      <section>
-        <h3 id="log-の存在検証-merkle-audit-proofs"><a href="#log-の存在検証-merkle-audit-proofs">Log の存在検証 (Merkle Audit Proofs)</a></h3>
-        <p>ある証明書が、 Log に含まれていることを検証する。
-        <p>証明書は Leaf なので、この Hash と他の証明書の Hash を組み合わせて計算を進めた結果が Root Hash と一致するかどうかを検証すれば良い。
-        <p>しかし、全ての証明書データを並べて計算するには、サイズが大きすぎる。
-        <p>そこで、 Leaf から Root を辿る間に必要な、最小の Node の Hash のみを取得することで計算を枝刈りできる。
-        <p>以下の場合、 d3 の存在を調べるのに必要なのは c, i, n のみである。
-        <pre class=text><code translate="no">                      Sign
+        <p>この Tree の一貫性を証明するためには、以下を検証すれば良い。
+        <ul>
+          <li>k, m を用いて、この 1 つ前までの Tree が改ざんされていないこと
+          <li>その Tree に対して g, h を加えた木の Root が新しい STH と一致すること
+        </ul>
+        <p>つまり、計算に必要なのは m, k g, h だけで済む。
+        <p>第三者がこれを検証し続ければ、 Tree のどこかが意図的に書き換えられていないことが保証できる。
+        <p>こうして、 CT Log は Merkle Hashe Tree を用いて <em>追記</em> しか出来ないことが暗号的に保証されている。
+        <section>
+          <h3 id="log-の存在検証-merkle-audit-proofs"><a href="#log-の存在検証-merkle-audit-proofs">Log の存在検証 (Merkle Audit Proofs)</a></h3>
+          <p>ある証明書が、 Log に含まれていることを検証する。
+          <p>証明書は Leaf なので、この Hash と他の証明書の Hash を組み合わせて計算を進めた結果が Root Hash と一致するかどうかを検証すれば良い。
+          <p>しかし、全ての証明書データを並べて計算するには、サイズが大きすぎる。
+          <p>そこで、 Leaf から Root を辿る間に必要な、最小の Node の Hash のみを取得することで計算を枝刈りできる。
+          <p>以下の場合、 d3 の存在を調べるのに必要なのは c, i, n のみである。
+          <pre class=text><code translate="no">                      Sign
               Root  ---------&gt;  STH
          /           \
         /             \
@@ -541,22 +541,22 @@ d0  d1  d2  d3  d4  d5  d6  d7</code></pre>
  a   b  [c]  d   e   f   g   h
  |   |   |   |   |   |   |   |
 d0  d1  d2 [d3] d4  d5  d6  d7</code></pre>
-        <p>これにより、実際の Hash の計算は、全証明書が 1000 万個あったとしても、 24 個あれば足りることになる。(<code translate="no">10M &lt; 2^24</code>)
-        <p>もし、結果が Root と違えば、その証明書は <em>Log の中に無い</em> ことがわかる。
-        <p>これは、主にブラウザが証明書の提供を受けた時に、それが Log に存在するかを確認し、なければ否認するという用途に利用できる。
+          <p>これにより、実際の Hash の計算は、全証明書が 1000 万個あったとしても、 24 個あれば足りることになる。(<code translate="no">10M &lt; 2^24</code>)
+          <p>もし、結果が Root と違えば、その証明書は <em>Log の中に無い</em> ことがわかる。
+          <p>これは、主にブラウザが証明書の提供を受けた時に、それが Log に存在するかを確認し、なければ否認するという用途に利用できる。
+        </section>
       </section>
-    </section>
-    <section>
-      <h2 id="ct-log-server-へのリクエスト"><a href="#ct-log-server-へのリクエスト">CT Log Server へのリクエスト</a></h2>
-      <p>では、実際に CT Log への HTTP リクエストを通して、ここまでの挙動を確認する。
-      <p><a href="https://tools.ietf.org/html/rfc6962">RFC 6962 - Certificate Transparency</a>
-      <p>なお、以下のコード例は、実際に本サイトで使用している証明書を用いたリクエストを書いているが、読者はこれをそのまま実行しても問題ない。
       <section>
-        <h3 id="証明書の登録add-chain"><a href="#証明書の登録add-chain">証明書の登録(add-chain)</a></h3>
-        <p>証明書チェインを登録し、 SCT の値を取得する。
-        <p>今回は、 CT Log Server として <a href="https://ct.googleapis.com/pilot">https://ct.googleapis.com/pilot</a> を対象とする。
-        <p>本サイトの証明書は Let&rsquo;s Encrypt で発行しており、 fullchain.pem の証明書チェインは 2 つから成り立っている。
-        <pre class=bash><code translate="no">$ cat /etc/letsencrypt/live/jxck.io/fullchain.pem
+        <h2 id="ct-log-server-へのリクエスト"><a href="#ct-log-server-へのリクエスト">CT Log Server へのリクエスト</a></h2>
+        <p>では、実際に CT Log への HTTP リクエストを通して、ここまでの挙動を確認する。
+        <p><a href="https://tools.ietf.org/html/rfc6962">RFC 6962 - Certificate Transparency</a>
+        <p>なお、以下のコード例は、実際に本サイトで使用している証明書を用いたリクエストを書いているが、読者はこれをそのまま実行しても問題ない。
+        <section>
+          <h3 id="証明書の登録add-chain"><a href="#証明書の登録add-chain">証明書の登録(add-chain)</a></h3>
+          <p>証明書チェインを登録し、 SCT の値を取得する。
+          <p>今回は、 CT Log Server として <a href="https://ct.googleapis.com/pilot">https://ct.googleapis.com/pilot</a> を対象とする。
+          <p>本サイトの証明書は Let&rsquo;s Encrypt で発行しており、 fullchain.pem の証明書チェインは 2 つから成り立っている。
+          <pre class=bash><code translate="no">$ cat /etc/letsencrypt/live/jxck.io/fullchain.pem
 -----BEGIN CERTIFICATE-----
 MIIFvTCCBKWgAwIBAgISA6/EsoaosazyV8VTiLTZMzBzMA0GCSqGSIb3DQEBCwUA
 MEoxCzAJBgNVBAYTAlVTMRYwFAYDVQQKEw1MZXQncyBFbmNyeXB0MSMwIQYDVQQD
@@ -617,39 +617,39 @@ X4Po1QYz+3dszkDqMp4fklxBwXRsW10KXzPMTZ+sOPAveyxindmjkW8lGy+QsRlG
 PfZ+G6Z6h7mjem0Y+iWlkYcV4PIWL1iwBi8saCbGS5jN2p8M+X+Q7UNKEkROb3N6
 KOqkqm57TH2H3eDJAkSnh6/DNFu0Qg==
 -----END CERTIFICATE-----</code></pre>
-        <p>これを登録するリクエストは以下のようになる。
-        <pre class=bash><code translate="no">$ curl -H &#039;Content-Type:application/json&#039; \
+          <p>これを登録するリクエストは以下のようになる。
+          <pre class=bash><code translate="no">$ curl -H &#039;Content-Type:application/json&#039; \
        -d &#039;{
          &quot;chain&quot;: [
            &quot;MIIFvTCCBKWgAwIBAgISA6/EsoaosazyV8VTiLTZMzBzMA0GCSqGSIb3DQEBCwUAMEoxCzAJBgNVBAYTAlVTMRYwFAYDVQQKEw1MZXQncyBFbmNyeXB0MSMwIQYDVQQDExpMZXQncyBFbmNyeXB0IEF1dGhvcml0eSBYMzAeFw0xODAzMDYwNjA5MDZaFw0xODA2MDQwNjA5MDZaMBIxEDAOBgNVBAMTB2p4Y2suaW8wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC7UnbgMfyQOVAqOp9oNjcoHZ2p0H0sUkFERYzZ2VXXJRkg7QzFrZTAP7jdxw/HEhkMJTMNlX59cvEyxiEbgNqTLYQjwSP1Ibgtkjzq2EPlm2SsFkq6vwbuydZA31HQa2vEYqZzo9RUG69T4URUotmtZBTWqW5w8m9l9xwCuInzOxS8990rVW27FiWtSF+4HI/mBTzHAX/w1dJRaT9ESrWJnmKYcYCBayCswEfp9b6uOgNWASZBd67lKE2AfE0FDdgKclElttBbvK8Kl2TNpCzwRwwzt54Bt9AFt8MZr4p4SKUjuj5GkcFrlnvyESbXJuyZwnnUCNkbxxYP0LfsgfmnAgMBAAGjggLTMIICzzAOBgNVHQ8BAf8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMAwGA1UdEwEB/wQCMAAwHQYDVR0OBBYEFMnlleIsgD60xDmW8Pz/yWKKPjk4MB8GA1UdIwQYMBaAFKhKamMEfd265tE5t6ZFZe/zqOyhMG8GCCsGAQUFBwEBBGMwYTAuBggrBgEFBQcwAYYiaHR0cDovL29jc3AuaW50LXgzLmxldHNlbmNyeXB0Lm9yZzAvBggrBgEFBQcwAoYjaHR0cDovL2NlcnQuaW50LXgzLmxldHNlbmNyeXB0Lm9yZy8wgd0GA1UdEQSB1TCB0oINYWRtaW4uanhjay5pb4ILYXBpLmp4Y2suaW+CDGJsb2cuanhjay5pb4INZmlsZXMuanhjay5pb4IHanhjay5pb4IMbGFiMi5qeGNrLmlvggxsYWJzLmp4Y2suaW+CDGxvZ28uanhjay5pb4INcmFpbHMuanhjay5pb4IScmVwb3J0LXVyaS5qeGNrLmlvggtzZnUuanhjay5pb4INc2xpZGUuanhjay5pb4IMc3BlYy5qeGNrLmlvggp3cy5qeGNrLmlvggt3d3cuanhjay5pbzCB/gYDVR0gBIH2MIHzMAgGBmeBDAECATCB5gYLKwYBBAGC3xMBAQEwgdYwJgYIKwYBBQUHAgEWGmh0dHA6Ly9jcHMubGV0c2VuY3J5cHQub3JnMIGrBggrBgEFBQcCAjCBngyBm1RoaXMgQ2VydGlmaWNhdGUgbWF5IG9ubHkgYmUgcmVsaWVkIHVwb24gYnkgUmVseWluZyBQYXJ0aWVzIGFuZCBvbmx5IGluIGFjY29yZGFuY2Ugd2l0aCB0aGUgQ2VydGlmaWNhdGUgUG9saWN5IGZvdW5kIGF0IGh0dHBzOi8vbGV0c2VuY3J5cHQub3JnL3JlcG9zaXRvcnkvMA0GCSqGSIb3DQEBCwUAA4IBAQA6Tnb6wxUgQE7mnf8N+5PgIzC5ebxjGps/I2ppEqnvuAECdrkWySdqPDG8e7lyuyxzzav6FTFUb3y8EwDrdT+UDquewpv6TxoP1NcnuMRhpjV41Y/otxRW53+Fz+g+Ub4XTnrJmK98aq8vzyMpvkWhHPMfs2xRsIkNH6L/T0h+8AL7MpKLiuqiy9SA4COVjNLX5Z2ZyK/xPaNhfJ1jv7vs/fvIGNLtJ7sCwVa54r8OycNVd1nj9zVFmtJ554S3fRBNFI5vZNJJw4npN1/q1bQ1B7oo8U1pLunDxqhvNHO247WDRVBeCvJLuZGZJc4g35W97iUTVVbwPLVfK4o82MOD&quot;,
            &quot;MIIEkjCCA3qgAwIBAgIQCgFBQgAAAVOFc2oLheynCDANBgkqhkiG9w0BAQsFADA/MSQwIgYDVQQKExtEaWdpdGFsIFNpZ25hdHVyZSBUcnVzdCBDby4xFzAVBgNVBAMTDkRTVCBSb290IENBIFgzMB4XDTE2MDMxNzE2NDA0NloXDTIxMDMxNzE2NDA0NlowSjELMAkGA1UEBhMCVVMxFjAUBgNVBAoTDUxldCdzIEVuY3J5cHQxIzAhBgNVBAMTGkxldCdzIEVuY3J5cHQgQXV0aG9yaXR5IFgzMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnNMM8FrlLke3cl03g7NoYzDq1zUmGSXhvb418XCSL7e4S0EFq6meNQhY7LEqxGiHC6PjdeTm86dicbp5gWAf15Gan/PQeGdxyGkOlZHP/uaZ6WA8SMx+yk13EiSdRxta67nsHjcAHJyse6cF6s5K671B5TaYucv9bTyWaN8jKkKQDIZ0Z8h/pZq4UmEUEz9l6YKHy9v6Dlb2honzhT+Xhq+w3Brvaw2VFn3EK6BlspkENnWAa6xK8xuQSXgvopZPKiAlKQTGdMDQMc2PMTiVFrqoM7hD8bEfwzB/onkxEz0tNvjj/PIzark5McWvxI0NHWQWM6r6hCm21AvA2H3DkwIDAQABo4IBfTCCAXkwEgYDVR0TAQH/BAgwBgEB/wIBADAOBgNVHQ8BAf8EBAMCAYYwfwYIKwYBBQUHAQEEczBxMDIGCCsGAQUFBzABhiZodHRwOi8vaXNyZy50cnVzdGlkLm9jc3AuaWRlbnRydXN0LmNvbTA7BggrBgEFBQcwAoYvaHR0cDovL2FwcHMuaWRlbnRydXN0LmNvbS9yb290cy9kc3Ryb290Y2F4My5wN2MwHwYDVR0jBBgwFoAUxKexpHsscfrb4UuQdf/EFWCFiRAwVAYDVR0gBE0wSzAIBgZngQwBAgEwPwYLKwYBBAGC3xMBAQEwMDAuBggrBgEFBQcCARYiaHR0cDovL2Nwcy5yb290LXgxLmxldHNlbmNyeXB0Lm9yZzA8BgNVHR8ENTAzMDGgL6AthitodHRwOi8vY3JsLmlkZW50cnVzdC5jb20vRFNUUk9PVENBWDNDUkwuY3JsMB0GA1UdDgQWBBSoSmpjBH3duubRObemRWXv86jsoTANBgkqhkiG9w0BAQsFAAOCAQEA3TPXEfNjWDjdGBX7CVW+dla5cEilaUcne8IkCJLxWh9KEik3JHRRHGJouM2VcGfl96S8TihRzZvoroed6ti6WqEBmtzw3Wodatg+VyOeph4EYpr/1wXKtx8/wApIvJSwtmVi4MFU5aMqrSDE6ea73Mj2tcMyo5jMd6jmeWUHK8so/joWUoHOUgwuX4Po1QYz+3dszkDqMp4fklxBwXRsW10KXzPMTZ+sOPAveyxindmjkW8lGy+QsRlGPfZ+G6Z6h7mjem0Y+iWlkYcV4PIWL1iwBi8saCbGS5jN2p8M+X+Q7UNKEkROb3N6KOqkqm57TH2H3eDJAkSnh6/DNFu0Qg==&quot;
          ] }&#039; \
      https://ct.googleapis.com/pilot/ct/v1/add-chain | jq .</code></pre>
-        <p>すると SCT(timestamp) を含む JSON が返る。
-        <pre class=json><code translate="no">{
+          <p>すると SCT(timestamp) を含む JSON が返る。
+          <pre class=json><code translate="no">{
   &quot;sct_version&quot;: 0,
   &quot;id&quot;: &quot;pLkJkLQYWBSHuxOizGdwCjw1mAT5G9+443fNDsgN3BA=&quot;,
   &quot;timestamp&quot;: 1520466748750,
   &quot;extensions&quot;: &quot;&quot;,
   &quot;signature&quot;: &quot;BAMASDBGAiEAwQMZSobyRhrwBToeThpDc13WFsv+6SVeW4biQqtgd/ACIQCa3Gx9TCY47YYfGnqOnNKugJhIjHGAYJX1Py5dBJTbCA==&quot;
 }</code></pre>
-        <p>なお、この処理は冪等なので、複数回登録しても同じ結果が返る。
-      </section>
-      <section>
-        <h3 id="証明書の存在確認"><a href="#証明書の存在確認">証明書の存在確認</a></h3>
-        <p>次にこの証明書が登録されていることを確認してみる。
-        <p>まず、現時点での tree_size を取得する。
-        <pre class=bash><code translate="no">$ curl &#039;https://ct.googleapis.com/pilot/ct/v1/get-sth&#039; | jq .
+          <p>なお、この処理は冪等なので、複数回登録しても同じ結果が返る。
+        </section>
+        <section>
+          <h3 id="証明書の存在確認"><a href="#証明書の存在確認">証明書の存在確認</a></h3>
+          <p>次にこの証明書が登録されていることを確認してみる。
+          <p>まず、現時点での tree_size を取得する。
+          <pre class=bash><code translate="no">$ curl &#039;https://ct.googleapis.com/pilot/ct/v1/get-sth&#039; | jq .
 {
   &quot;tree_size&quot;: 237390491,
   &quot;timestamp&quot;: 1521715637642,
   &quot;sha256_root_hash&quot;: &quot;WisB+1AbBn/gjrVa+YY6UEguquQ3EmMTiC2jyvJE5+U=&quot;,
   &quot;tree_head_signature&quot;: &quot;BAMARjBEAiBlYg2NpfsX/dDs2iP8RKGhr0t7YwaUjFPyiFpxbhdZ/wIgMDCaTD9D3l1BqTOlHNz8b73mcy4z1Z3MW9TA7wIH3nE=&quot;
 }</code></pre>
-        <p>SCT から計算した Hash と、 tree_size をパラメータにし、リクエストを投げると結果が返る。
-        <p>Hash はバイナリ演算が必要なため、書き捨てのスクリプトで行ったものを参考までに貼っておく。
-        <p><a href="./ct.rb">ct.rb</a>
-        <pre class=bash><code translate="no">$ curl &#039;https://ct.googleapis.com/pilot/ct/v1/get-proof-by-hash?hash=odRjuexWzJ36zh8XavhDEZaUhoAv9yxRF4zEyKZiVVg%3D&amp;tree_size=237363285&#039; | jq .
+          <p>SCT から計算した Hash と、 tree_size をパラメータにし、リクエストを投げると結果が返る。
+          <p>Hash はバイナリ演算が必要なため、書き捨てのスクリプトで行ったものを参考までに貼っておく。
+          <p><a href="./ct.rb">ct.rb</a>
+          <pre class=bash><code translate="no">$ curl &#039;https://ct.googleapis.com/pilot/ct/v1/get-proof-by-hash?hash=odRjuexWzJ36zh8XavhDEZaUhoAv9yxRF4zEyKZiVVg%3D&amp;tree_size=237363285&#039; | jq .
 {
   &quot;leaf_index&quot;: 229437452,
   &quot;audit_path&quot;: [
@@ -683,39 +683,38 @@ KOqkqm57TH2H3eDJAkSnh6/DNFu0Qg==
     &quot;8E8n1s9obojfAiyCIsRRnaoYi5geOjT8Pi2Dka2Wg+I=&quot;
   ]
 }</code></pre>
-        <p>この <code translate="no">leaf_index</code> は、証明書が Leaf のどこにあるかを示し、 <code translate="no">audit_path</code> は Leaf から Root までに通る Node Hash だ。
-        <p>Hash が合っていなければ、エラーが返る。つまり、 CT Log を信用するならこのレスポンスをもって、証明書は存在すると言えるだろう。
-        <p>自身で検証を行う場合は、自分の証明書に対して <code translate="no">audit_path</code> の順に Root まで計算し、 STH と一致することを確認すれば良い。
+          <p>この <code translate="no">leaf_index</code> は、証明書が Leaf のどこにあるかを示し、 <code translate="no">audit_path</code> は Leaf から Root までに通る Node Hash だ。
+          <p>Hash が合っていなければ、エラーが返る。つまり、 CT Log を信用するならこのレスポンスをもって、証明書は存在すると言えるだろう。
+          <p>自身で検証を行う場合は、自分の証明書に対して <code translate="no">audit_path</code> の順に Root まで計算し、 STH と一致することを確認すれば良い。
+        </section>
       </section>
-    </section>
-    <section>
-      <h2 id="日本語訳について"><a href="#日本語訳について">日本語訳について</a></h2>
-      <p>Chrome では、 Certificate Transparency の情報を日本語で表示すると「<em>証明書の透明性</em>」と訳しており、意味的にもそれが適しているだろう。
-      <p>しかし、 CT を「証明書透かし」や「透かし入り証明書」と訳す文書もあるようだ。
-      <p>恐らく Transparency を「透かし」と安直に訳したのでは無いかと筆者は想像している。
-      <p>百歩譲って、 SCT を「透かし」と捉えることもできなくはないかもしれないが、 SCT は証明書に埋め込むだけでなく、ハンドシェイクや OCSP で渡しても良い。
-      <p>また、 CT の仕組み自体は SCT を発行するだけでなく、誤発行を検知することも含め、広く「CA がやっていることの透明性を高めよう(監視しよう)」というスコープだ。
-      <p>以上より、もし訳すのであれば「証明書透かし」や「透かし入り証明書」ではなく「<em>証明書の透明性</em>」とするのが妥当だと考える。
-      <p>(また、普通「電子透かし」は Digital Wartermarking で、 Transparency とは言わないかと思う)
-    </section>
-    <section>
-      <h2 id="本サイトでの適用"><a href="#本サイトでの適用">本サイトでの適用</a></h2>
-      <p>Let&rsquo;s Encrypt の SCT 埋め込みがサポートされた。
-      <p><a href="https://community.letsencrypt.org/t/signed-certificate-timestamps-embedded-in-certificates/57187/2">Signed Certificate Timestamps embedded in certificates - API Announcements - Let&rsquo;s Encrypt Community Support</a>
-      <p>本サイトでは証明書を再発行し SCT が埋め込まれた証明書を取得した。
-      <p>
-        <picture>
-          <source type=image/webp srcset=sct-in-chrome-devtools.webp#938x498>
-          <img loading=lazy src=sct-in-chrome-devtools.png#938x498 alt="Chrome DevTools の Security タブで本サイトの証明書に埋め込まれた SCT を確認する" title="certificate transparency sct check in chrome devtools security tab" intrinsicsize=938x498>
-        </picture>
-      </p>
-      <p>また、 <code translate="no">jxck.io</code> および <code translate="no">blog.jxck.io</code> に Expect-CT ヘッダを Enforce 無し(Report-Only 相当) で適用した。
-      <pre class=http><code translate="no">Expect-Ct: max-age=31536000, report-uri https://report-uri.example.com</code></pre>
-      <p>HPKP をデプロイした時も、レポートなど来ないだろうと思っていたが、ある特定のサービスからレポートが頻繁に来ていた。
-      <p>Expect-CT も、実際にどういうレポートが発生するのか未知であるため、知見を貯めていきたい。
-    </section>
-  </article>
-
+      <section>
+        <h2 id="日本語訳について"><a href="#日本語訳について">日本語訳について</a></h2>
+        <p>Chrome では、 Certificate Transparency の情報を日本語で表示すると「<em>証明書の透明性</em>」と訳しており、意味的にもそれが適しているだろう。
+        <p>しかし、 CT を「証明書透かし」や「透かし入り証明書」と訳す文書もあるようだ。
+        <p>恐らく Transparency を「透かし」と安直に訳したのでは無いかと筆者は想像している。
+        <p>百歩譲って、 SCT を「透かし」と捉えることもできなくはないかもしれないが、 SCT は証明書に埋め込むだけでなく、ハンドシェイクや OCSP で渡しても良い。
+        <p>また、 CT の仕組み自体は SCT を発行するだけでなく、誤発行を検知することも含め、広く「CA がやっていることの透明性を高めよう(監視しよう)」というスコープだ。
+        <p>以上より、もし訳すのであれば「証明書透かし」や「透かし入り証明書」ではなく「<em>証明書の透明性</em>」とするのが妥当だと考える。
+        <p>(また、普通「電子透かし」は Digital Wartermarking で、 Transparency とは言わないかと思う)
+      </section>
+      <section>
+        <h2 id="本サイトでの適用"><a href="#本サイトでの適用">本サイトでの適用</a></h2>
+        <p>Let&rsquo;s Encrypt の SCT 埋め込みがサポートされた。
+        <p><a href="https://community.letsencrypt.org/t/signed-certificate-timestamps-embedded-in-certificates/57187/2">Signed Certificate Timestamps embedded in certificates - API Announcements - Let&rsquo;s Encrypt Community Support</a>
+        <p>本サイトでは証明書を再発行し SCT が埋め込まれた証明書を取得した。
+        <p>
+          <picture>
+            <source type=image/webp srcset=sct-in-chrome-devtools.webp#938x498>
+            <img loading=lazy src=sct-in-chrome-devtools.png#938x498 alt="Chrome DevTools の Security タブで本サイトの証明書に埋め込まれた SCT を確認する" title="certificate transparency sct check in chrome devtools security tab" intrinsicsize=938x498>
+          </picture>
+        </p>
+        <p>また、 <code translate="no">jxck.io</code> および <code translate="no">blog.jxck.io</code> に Expect-CT ヘッダを Enforce 無し(Report-Only 相当) で適用した。
+        <pre class=http><code translate="no">Expect-Ct: max-age=31536000, report-uri https://report-uri.example.com</code></pre>
+        <p>HPKP をデプロイした時も、レポートなど来ないだろうと思っていたが、ある特定のサービスからレポートが頻繁に来ていた。
+        <p>Expect-CT も、実際にどういうレポートが発生するのか未知であるため、知見を貯めていきたい。
+      </section>
+    </article>
   </main>
   <hr>
 

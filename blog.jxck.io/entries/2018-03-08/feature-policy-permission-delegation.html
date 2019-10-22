@@ -106,204 +106,203 @@
     </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
-  <article>
-    <h1><a href=/entries/2018-03-08/feature-policy-permission-delegation.html>Feature Policy による Permission Delegation</a></h1>
-    <section>
-      <h2 id="intro"><a href="#intro">Intro</a></h2>
-      <p>ブラウザの機能を制限する Feature Policy の実装が進みつつある。
-      <p>Feature Policy は、ブラウザが持つ機能について選択的に許可/制限を行う API だ。
-      <p>AMP のように特定の機能を制限する目的にも使えるが、クロスオリジン iframe に対する権限移譲のための API としても使用される。
-      <p>Feature Policy のモチベーションおよび適用方法について、類似する CSP や iframe sandbox と合わせて解説する。
-      <p>なお、今回解説する内容は、まだブラウザの実装に反映されていない部分があるため、注意されたい。
-    </section>
-    <section>
-      <h2 id="motivation"><a href="#motivation">Motivation</a></h2>
-      <p>まず Feature Policy のモチベーションとして、 <em>機能の制限</em> と <em>権限の移譲</em> という二つのニーズを解説する。
+    <article>
+      <h1><a href=/entries/2018-03-08/feature-policy-permission-delegation.html>Feature Policy による Permission Delegation</a></h1>
       <section>
-        <h3 id="機能の制限"><a href="#機能の制限">機能の制限</a></h3>
-        <p>パフォーマンスやセキュリティの観点から、実装はあるが、使用する上で制限を設けたい機能がいくつか存在する。
-        <p>例えば、同期 XHR や <code translate="no">document.write()</code> は、レンダリングを阻害するため、使用を避けるのが望ましい。
-        <p>しかし、ブラウザのデフォルト挙動が、一律でこうした機能を制限しては互換性を保つことができない(すでに動いているサイトが動かなくなる)。
-        <p>AMP は、最初から機能が制限されたサブセットの仕様を定義し、それを強制するアプローチをとった。
-        <p>同等のことを、 HTTP や HTML などから明示的に設定し、機能を許可/制限する方法は長いこと模索されていた。
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>ブラウザの機能を制限する Feature Policy の実装が進みつつある。
+        <p>Feature Policy は、ブラウザが持つ機能について選択的に許可/制限を行う API だ。
+        <p>AMP のように特定の機能を制限する目的にも使えるが、クロスオリジン iframe に対する権限移譲のための API としても使用される。
+        <p>Feature Policy のモチベーションおよび適用方法について、類似する CSP や iframe sandbox と合わせて解説する。
+        <p>なお、今回解説する内容は、まだブラウザの実装に反映されていない部分があるため、注意されたい。
       </section>
       <section>
-        <h3 id="権限の移譲"><a href="#権限の移譲">権限の移譲</a></h3>
-        <p>geolocation, getusermedia など、強力な API については、ユーザに対して許可を求めるようになっている。
-        <p>一方で、こうした許可を iframe に読み込んだクロスオリジンのコンテンツに対していかに付与するかという方法についも、長いこと議論されてきた。
-        <p>例えば、 <a href="https://jxck.io">https://jxck.io</a> の中で <a href="https://payment.example.com">https://payment.example.com</a> を iframe で埋め込んでいたとする。
-        <p>iframe では強力な API が実行されるため、ユーザに許可を求める必要がある。
+        <h2 id="motivation"><a href="#motivation">Motivation</a></h2>
+        <p>まず Feature Policy のモチベーションとして、 <em>機能の制限</em> と <em>権限の移譲</em> という二つのニーズを解説する。
+        <section>
+          <h3 id="機能の制限"><a href="#機能の制限">機能の制限</a></h3>
+          <p>パフォーマンスやセキュリティの観点から、実装はあるが、使用する上で制限を設けたい機能がいくつか存在する。
+          <p>例えば、同期 XHR や <code translate="no">document.write()</code> は、レンダリングを阻害するため、使用を避けるのが望ましい。
+          <p>しかし、ブラウザのデフォルト挙動が、一律でこうした機能を制限しては互換性を保つことができない(すでに動いているサイトが動かなくなる)。
+          <p>AMP は、最初から機能が制限されたサブセットの仕様を定義し、それを強制するアプローチをとった。
+          <p>同等のことを、 HTTP や HTML などから明示的に設定し、機能を許可/制限する方法は長いこと模索されていた。
+        </section>
+        <section>
+          <h3 id="権限の移譲"><a href="#権限の移譲">権限の移譲</a></h3>
+          <p>geolocation, getusermedia など、強力な API については、ユーザに対して許可を求めるようになっている。
+          <p>一方で、こうした許可を iframe に読み込んだクロスオリジンのコンテンツに対していかに付与するかという方法についも、長いこと議論されてきた。
+          <p>例えば、 <a href="https://jxck.io">https://jxck.io</a> の中で <a href="https://payment.example.com">https://payment.example.com</a> を iframe で埋め込んでいたとする。
+          <p>iframe では強力な API が実行されるため、ユーザに許可を求める必要がある。
+          <ul>
+            <li>
+              <em>jxck.io の画面上</em> に <em>「example.com が xxx の許可を求めている」</em> とプロンプトが出ても、その意味がユーザに伝わるか。
+            </li>
+            <li>仮に権限が付与されたとして、別のページが同じように example.com を埋め込んでいた場合、その権限はどうすべきか。
+            <li>iframe が複数埋め込まれていた場合に、複数プロンプトを出すことの UX はどうか
+            <li>ユーザが権限を削除したいと考えた時、 jxck.io を見ていたのに、削除するのは example.com への権限だと、どのように気づかせるか。
+          </ul>
+          <p>こうした問題について、実際に検証した結果は以下に報告されている。
+          <ul>
+            <li>
+              <a href="https://docs.google.com/document/d/1x5QejvpyQ71LPWhMLsaM1lWCfSsBsSQ8Dap9kJ6uLv0">Permission Delegation Proposal</a>
+            </li>
+            <li>
+              <a href="https://docs.google.com/presentation/d/1suzMhtvMtA11jxPUdH1jL1oPh-82rTymCnslgR3ehEE">Understanding Permission Requests From Iframes</a>
+            </li>
+          </ul>
+          <p>そして、結論としては以下のようなモデルが採用されることとなった。
+          <ul>
+            <li>
+              iframe 内では、強力な機能の権限を <a href="https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/mG6vL09JMOQ">デフォルトでオフにする</a>
+            </li>
+            <li>
+              ユーザは基本的に URL バーに表示された <a href="https://jxck.io">https://jxck.io</a> を信頼の対象とする
+            </li>
+            <li>
+              permission ui は、 <code translate="no">「このサイトに権限を許可するか」</code> をユーザに問う
+            </li>
+            <li>
+              権限を付与された <a href="https://jxck.io">https://jxck.io</a> は <a href="https://example.com">https://example.com</a> へ、その <em>権限を移譲</em> できる
+            </li>
+          </ul>
+          <p>例えば、 Payment のために 3rd Party iframe を埋め込んだサイトがある場合、ユーザが信頼するかどうかを決めるのはあくまでその <em>サイト自体</em> ということだ。
+          <p>埋め込まれた Payment 用の iframe を選定したのはそのサイトであり、そこを含めてユーザはそのサイトを信頼するかどうかを決めるべきという方針である。
+          <p>もし既にサイト自体に権限があれば、サイトはプロンプト無しに iframe に権限を移譲できる。
+          <p>サイトが権限を得る前ならば、 iframe が権限を必要とした時点で、 <em>サイト自体に権限を与えるか</em> のプロンプトが出る。
+          <p>そして、この <em>機能の制限</em> および <em>権限の移譲</em> は Feature Policy を用いて行うこととなった。
+          <p><em>ただし、まだ方針がきまりつつある段階であり、実装がその通りにされているわけではない。</em>
+          <p>それを踏まえた上で、類似する API である iframe sandbox とその CSP 版も合わせて、これら API について解説する。
+        </section>
+      </section>
+      <section>
+        <h2 id="iframe-sandbox"><a href="#iframe-sandbox">iframe sandbox</a></h2>
+        <p>iframe sandbox は、 iframe 内に展開したコンテンツにおいて、機能を制限できる。
+        <p>これは、信頼の無いコンテンツを安全に読み込む場合などに利用できる。
+        <p><a href="https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-sandbox">https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-sandbox</a>
+        <p>iframe sandbox の特徴は、何をブロックするのかが先に決まっているという点だ。
+        <p>もし制限を緩める場合は、許可する機能を明示的に指定するホワイトリスト方式を採用している。
+        <p>執筆時点では、以下のような <code translate="no">allow-*</code> ディレクティブが定義されている。
         <ul>
-          <li>
-            <em>jxck.io の画面上</em> に <em>「example.com が xxx の許可を求めている」</em> とプロンプトが出ても、その意味がユーザに伝わるか。
-          </li>
-          <li>仮に権限が付与されたとして、別のページが同じように example.com を埋め込んでいた場合、その権限はどうすべきか。
-          <li>iframe が複数埋め込まれていた場合に、複数プロンプトを出すことの UX はどうか
-          <li>ユーザが権限を削除したいと考えた時、 jxck.io を見ていたのに、削除するのは example.com への権限だと、どのように気づかせるか。
+          <li>allow-forms
+          <li>allow-modals
+          <li>allow-orientation-lock
+          <li>allow-pointer-lock
+          <li>allow-popups
+          <li>allow-popups-to-escape-sandbox
+          <li>allow-presentation
+          <li>allow-same-origin
+          <li>allow-scripts
+          <li>allow-top-navigation
+          <li>allow-top-navigation-by-user-activation
         </ul>
-        <p>こうした問題について、実際に検証した結果は以下に報告されている。
-        <ul>
-          <li>
-            <a href="https://docs.google.com/document/d/1x5QejvpyQ71LPWhMLsaM1lWCfSsBsSQ8Dap9kJ6uLv0">Permission Delegation Proposal</a>
-          </li>
-          <li>
-            <a href="https://docs.google.com/presentation/d/1suzMhtvMtA11jxPUdH1jL1oPh-82rTymCnslgR3ehEE">Understanding Permission Requests From Iframes</a>
-          </li>
-        </ul>
-        <p>そして、結論としては以下のようなモデルが採用されることとなった。
-        <ul>
-          <li>
-            iframe 内では、強力な機能の権限を <a href="https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/mG6vL09JMOQ">デフォルトでオフにする</a>
-          </li>
-          <li>
-            ユーザは基本的に URL バーに表示された <a href="https://jxck.io">https://jxck.io</a> を信頼の対象とする
-          </li>
-          <li>
-            permission ui は、 <code translate="no">「このサイトに権限を許可するか」</code> をユーザに問う
-          </li>
-          <li>
-            権限を付与された <a href="https://jxck.io">https://jxck.io</a> は <a href="https://example.com">https://example.com</a> へ、その <em>権限を移譲</em> できる
-          </li>
-        </ul>
-        <p>例えば、 Payment のために 3rd Party iframe を埋め込んだサイトがある場合、ユーザが信頼するかどうかを決めるのはあくまでその <em>サイト自体</em> ということだ。
-        <p>埋め込まれた Payment 用の iframe を選定したのはそのサイトであり、そこを含めてユーザはそのサイトを信頼するかどうかを決めるべきという方針である。
-        <p>もし既にサイト自体に権限があれば、サイトはプロンプト無しに iframe に権限を移譲できる。
-        <p>サイトが権限を得る前ならば、 iframe が権限を必要とした時点で、 <em>サイト自体に権限を与えるか</em> のプロンプトが出る。
-        <p>そして、この <em>機能の制限</em> および <em>権限の移譲</em> は Feature Policy を用いて行うこととなった。
-        <p><em>ただし、まだ方針がきまりつつある段階であり、実装がその通りにされているわけではない。</em>
-        <p>それを踏まえた上で、類似する API である iframe sandbox とその CSP 版も合わせて、これら API について解説する。
-      </section>
-    </section>
-    <section>
-      <h2 id="iframe-sandbox"><a href="#iframe-sandbox">iframe sandbox</a></h2>
-      <p>iframe sandbox は、 iframe 内に展開したコンテンツにおいて、機能を制限できる。
-      <p>これは、信頼の無いコンテンツを安全に読み込む場合などに利用できる。
-      <p><a href="https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-sandbox">https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-sandbox</a>
-      <p>iframe sandbox の特徴は、何をブロックするのかが先に決まっているという点だ。
-      <p>もし制限を緩める場合は、許可する機能を明示的に指定するホワイトリスト方式を採用している。
-      <p>執筆時点では、以下のような <code translate="no">allow-*</code> ディレクティブが定義されている。
-      <ul>
-        <li>allow-forms
-        <li>allow-modals
-        <li>allow-orientation-lock
-        <li>allow-pointer-lock
-        <li>allow-popups
-        <li>allow-popups-to-escape-sandbox
-        <li>allow-presentation
-        <li>allow-same-origin
-        <li>allow-scripts
-        <li>allow-top-navigation
-        <li>allow-top-navigation-by-user-activation
-      </ul>
-      <p>何も許可せず、全てブロックする場合は以下のようになる。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre class=html><code translate="no">&lt;iframe sandbox=&quot;&quot; src=&quot;example.com&quot;&gt;&lt;/iframe&gt;</code></pre>
-      <p>DEMO: <a href="http://labs.jxck.io/iframe">http://labs.jxck.io/iframe</a>
-    </section>
-    <section>
-      <h2 id="csp"><a href="#csp">CSP</a></h2>
-      <p>HTML に埋め込む sanbox 属性は、埋め込んだ iframe にしか適用されない。
-      <p>これを HTTP ヘッダで適用できるように、 CSP2 では sandbox ディレクティブが追加された。
-      <pre class=http><code translate="no">Content-Security-Policy: sandbox</code></pre>
-      <p><a href="https://w3c.github.io/webappsec-csp/#directive-sandbox">https://w3c.github.io/webappsec-csp/#directive-sandbox</a>
-      <p>機能は基本的に HTML に書く場合と同じだ。
-      <p>しかし、元々がホワイトリスト方式であることにより、いくつか微妙なところがある。
-      <p>まず、他の CSP ディレクティブと違い、「何をブロックしたい」というブラックリストではないため Reporting の対象では無い。
-      <p>もし Report-Only で適用した場合は、単に無視されることになる。
-      <p>また、ホワイトリスト方式では、サンドボックス対象のブロックしたい機能を増やした場合に問題になる。
-      <p>仕様に機能制限が追加されると、古い仕様で sandbox を検証した際に動いていた別の機能が、ブラウザのアップデートで急に動かなくなってしまう可能性があるからだ。
-      <p>つまり、 sandbox は <em>互換性のリスクなしに拡張することが実質できない</em>。
-      <p>CSP のように、ブラックリスト方式を取っていれば、制限したい項目を増やしオプトインで適用していけるため、拡張に対して開いた設計となるのは、後から判明したのだろう。
-      <p>DEMO: <a href="http://labs.jxck.io/content-security-policy/sandbox.html">http://labs.jxck.io/content-security-policy/sandbox.html</a>
-    </section>
-    <section>
-      <h2 id="feature-policy"><a href="#feature-policy">Feature Policy</a></h2>
-      <p>sandbox iframe のように埋め込むコンテンツ以外にも、広くコンテンツ一般に対して機能を制限したい場合がある。
-      <p>また、逆にデフォルトでは無効になっている API へのアクセスを、明示的に許可したい場合もある。
-      <p>このように、リソースに対して機能の制限/許可を行う汎用的な方法として定義されたのが Feature Policy である。
-      <p><a href="https://wicg.github.io/feature-policy/">https://wicg.github.io/feature-policy/</a>
-      <p>Feature Policy はレスポンスヘッダに付与し、対象機能の制限/許可をオリジン単位で設定することができる。
-      <p>ここでは、 Chrome に実装されている <code translate="no">sync-xhr</code> で、同期 XHR の制限/許可を例に解説する。
-      <section>
-        <h3 id="none"><a href="#none">&lsquo;none&rsquo;</a></h3>
-        <p><code translate="no">none</code> は、全てのオリジンに対して制限を適用する。つまりこれでページ上全ての同期 XHR が制限される。
-        <pre class=http><code translate="no">Feature-Policy: sync-xhr &#039;none&#039;</code></pre>
+        <p>何も許可せず、全てブロックする場合は以下のようになる。
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+        <pre class=html><code translate="no">&lt;iframe sandbox=&quot;&quot; src=&quot;example.com&quot;&gt;&lt;/iframe&gt;</code></pre>
+        <p>DEMO: <a href="http://labs.jxck.io/iframe">http://labs.jxck.io/iframe</a>
       </section>
       <section>
-        <h3 id="self"><a href="#self">&lsquo;self&rsquo;</a></h3>
-        <p><code translate="no">self</code> は、同一オリジン上は許可し、それ以外のオリジンでは制限する。
-        <p>iframe があった場合も、同一オリジンなら許可されるが、クロスオリジンでは制限される。
-        <pre class=http><code translate="no">Feature-Policy: sync-xhr &#039;self&#039;</code></pre>
+        <h2 id="csp"><a href="#csp">CSP</a></h2>
+        <p>HTML に埋め込む sanbox 属性は、埋め込んだ iframe にしか適用されない。
+        <p>これを HTTP ヘッダで適用できるように、 CSP2 では sandbox ディレクティブが追加された。
+        <pre class=http><code translate="no">Content-Security-Policy: sandbox</code></pre>
+        <p><a href="https://w3c.github.io/webappsec-csp/#directive-sandbox">https://w3c.github.io/webappsec-csp/#directive-sandbox</a>
+        <p>機能は基本的に HTML に書く場合と同じだ。
+        <p>しかし、元々がホワイトリスト方式であることにより、いくつか微妙なところがある。
+        <p>まず、他の CSP ディレクティブと違い、「何をブロックしたい」というブラックリストではないため Reporting の対象では無い。
+        <p>もし Report-Only で適用した場合は、単に無視されることになる。
+        <p>また、ホワイトリスト方式では、サンドボックス対象のブロックしたい機能を増やした場合に問題になる。
+        <p>仕様に機能制限が追加されると、古い仕様で sandbox を検証した際に動いていた別の機能が、ブラウザのアップデートで急に動かなくなってしまう可能性があるからだ。
+        <p>つまり、 sandbox は <em>互換性のリスクなしに拡張することが実質できない</em>。
+        <p>CSP のように、ブラックリスト方式を取っていれば、制限したい項目を増やしオプトインで適用していけるため、拡張に対して開いた設計となるのは、後から判明したのだろう。
+        <p>DEMO: <a href="http://labs.jxck.io/content-security-policy/sandbox.html">http://labs.jxck.io/content-security-policy/sandbox.html</a>
       </section>
       <section>
-        <h3 id="allowlist"><a href="#allowlist">allowlist</a></h3>
-        <p>機能を許可するオリジンをホワイトリストで指定できる。
-        <p>例えば以下のようにすれば、同一オリジンに加え、 iframe 内の example.com では許可される。
-        <pre class=http><code translate="no">Feature-Policy: sync-xhr &#039;self&#039; https://example.com</code></pre>
-        <p>sync-xhr の場合は、もともとブラウザで有効になっている機能を Feature Policy によって機能を制限しつつ、ホワイトリストで例外を設ける形になる。
-      </section>
-      <section>
-        <h3 id="権限移譲"><a href="#権限移譲">権限移譲</a></h3>
-        <p>最近の強力な機能は、 iframe からの呼び出しがデフォルトで制限されているものがある。
-        <p>例えば、現在 Chrome では iframe から Geolocation API を呼び出すことはデフォルトで制限されている。
-        <p>これを、特定のドメインにのみ許可したい場合は、以下のように指定する。
-        <pre class=http><code translate="no">Feature-Policy: geolocation &#039;self&#039; https://example.com</code></pre>
-        <p>すると、この iframe で Geolocation API が呼び出された時、埋め込んだサイト上でプロンプトが表示される。
-        <p>ユーザがこれを許可すると、サイトに対して権限が付与され、それが example.com にも移譲される。
-        <p>これにより、 iframe 内で Geoloation API が実行できることになる。
-        <p>(執筆時点では、この Prompt はまだ 「example.com が現在位置の取得を求めている」という表示になっているが、この表示はいずれ変更されるようだ)
-        <p>もし Geolocation API の呼び出しを全オリジンに対して許可したい場合は以下のように指定することも可能だ。
-        <pre class=http><code translate="no">Feature-Policy: geolocation *</code></pre>
-        <p>DEMO: <a href="https://labs.jxck.io/feature-policy/geolocation/basic.html">https://labs.jxck.io/feature-policy/geolocation/basic.html</a>
-      </section>
-      <section>
-        <h3 id="with-iframe-sandbox"><a href="#with-iframe-sandbox">with iframe sandbox</a></h3>
-        <p>前述のように iframe sandbox は制限事項の追加拡張に対して閉じている。
-        <p>そこで、 iframe に対して sandbox に入っていない機能を、追加で無効化する用途でも Feature Policy を用いる。
-        <p>Feature Policy は <em>sandbox が制限する機能は重複して持たず</em> sandbox と組み合わせて利用することが想定されている。
-        <p>設定する際は、 CSP の sandbox を基準とし、許可したいものを <code translate="no">allow-*</code> で、追加で制限したいものを Feature Policy で行うことになるだろう。
-        <p>例として、 iframe Sandbox を有効にしつつ、 script の実行を許可するが、それによって sycn-xhr が行われるのは制限したいといった場合は以下のようになるだろう。
-        <pre class=http><code translate="no">Content-Security-Policy: sandbox allow-scripts;
+        <h2 id="feature-policy"><a href="#feature-policy">Feature Policy</a></h2>
+        <p>sandbox iframe のように埋め込むコンテンツ以外にも、広くコンテンツ一般に対して機能を制限したい場合がある。
+        <p>また、逆にデフォルトでは無効になっている API へのアクセスを、明示的に許可したい場合もある。
+        <p>このように、リソースに対して機能の制限/許可を行う汎用的な方法として定義されたのが Feature Policy である。
+        <p><a href="https://wicg.github.io/feature-policy/">https://wicg.github.io/feature-policy/</a>
+        <p>Feature Policy はレスポンスヘッダに付与し、対象機能の制限/許可をオリジン単位で設定することができる。
+        <p>ここでは、 Chrome に実装されている <code translate="no">sync-xhr</code> で、同期 XHR の制限/許可を例に解説する。
+        <section>
+          <h3 id="none"><a href="#none">&lsquo;none&rsquo;</a></h3>
+          <p><code translate="no">none</code> は、全てのオリジンに対して制限を適用する。つまりこれでページ上全ての同期 XHR が制限される。
+          <pre class=http><code translate="no">Feature-Policy: sync-xhr &#039;none&#039;</code></pre>
+        </section>
+        <section>
+          <h3 id="self"><a href="#self">&lsquo;self&rsquo;</a></h3>
+          <p><code translate="no">self</code> は、同一オリジン上は許可し、それ以外のオリジンでは制限する。
+          <p>iframe があった場合も、同一オリジンなら許可されるが、クロスオリジンでは制限される。
+          <pre class=http><code translate="no">Feature-Policy: sync-xhr &#039;self&#039;</code></pre>
+        </section>
+        <section>
+          <h3 id="allowlist"><a href="#allowlist">allowlist</a></h3>
+          <p>機能を許可するオリジンをホワイトリストで指定できる。
+          <p>例えば以下のようにすれば、同一オリジンに加え、 iframe 内の example.com では許可される。
+          <pre class=http><code translate="no">Feature-Policy: sync-xhr &#039;self&#039; https://example.com</code></pre>
+          <p>sync-xhr の場合は、もともとブラウザで有効になっている機能を Feature Policy によって機能を制限しつつ、ホワイトリストで例外を設ける形になる。
+        </section>
+        <section>
+          <h3 id="権限移譲"><a href="#権限移譲">権限移譲</a></h3>
+          <p>最近の強力な機能は、 iframe からの呼び出しがデフォルトで制限されているものがある。
+          <p>例えば、現在 Chrome では iframe から Geolocation API を呼び出すことはデフォルトで制限されている。
+          <p>これを、特定のドメインにのみ許可したい場合は、以下のように指定する。
+          <pre class=http><code translate="no">Feature-Policy: geolocation &#039;self&#039; https://example.com</code></pre>
+          <p>すると、この iframe で Geolocation API が呼び出された時、埋め込んだサイト上でプロンプトが表示される。
+          <p>ユーザがこれを許可すると、サイトに対して権限が付与され、それが example.com にも移譲される。
+          <p>これにより、 iframe 内で Geoloation API が実行できることになる。
+          <p>(執筆時点では、この Prompt はまだ 「example.com が現在位置の取得を求めている」という表示になっているが、この表示はいずれ変更されるようだ)
+          <p>もし Geolocation API の呼び出しを全オリジンに対して許可したい場合は以下のように指定することも可能だ。
+          <pre class=http><code translate="no">Feature-Policy: geolocation *</code></pre>
+          <p>DEMO: <a href="https://labs.jxck.io/feature-policy/geolocation/basic.html">https://labs.jxck.io/feature-policy/geolocation/basic.html</a>
+        </section>
+        <section>
+          <h3 id="with-iframe-sandbox"><a href="#with-iframe-sandbox">with iframe sandbox</a></h3>
+          <p>前述のように iframe sandbox は制限事項の追加拡張に対して閉じている。
+          <p>そこで、 iframe に対して sandbox に入っていない機能を、追加で無効化する用途でも Feature Policy を用いる。
+          <p>Feature Policy は <em>sandbox が制限する機能は重複して持たず</em> sandbox と組み合わせて利用することが想定されている。
+          <p>設定する際は、 CSP の sandbox を基準とし、許可したいものを <code translate="no">allow-*</code> で、追加で制限したいものを Feature Policy で行うことになるだろう。
+          <p>例として、 iframe Sandbox を有効にしつつ、 script の実行を許可するが、それによって sycn-xhr が行われるのは制限したいといった場合は以下のようになるだろう。
+          <pre class=http><code translate="no">Content-Security-Policy: sandbox allow-scripts;
 Feature-Policy: sync-xhr &#039;none&#039;</code></pre>
-        <p>DEMO: <a href="https://labs.jxck.io/feature-policy/sync-xhr/sandbox.html">https://labs.jxck.io/feature-policy/sync-xhr/sandbox.html</a>
+          <p>DEMO: <a href="https://labs.jxck.io/feature-policy/sync-xhr/sandbox.html">https://labs.jxck.io/feature-policy/sync-xhr/sandbox.html</a>
+        </section>
       </section>
-    </section>
-    <section>
-      <h2 id="feature-一覧"><a href="#feature-一覧">Feature 一覧</a></h2>
-      <p>仕様自体には Feature の一覧が無いが、いくつかリストを持っているドキュメントは存在する。
-      <p>この辺の扱いについてはよくわかっていないが、現時点では実装ベースで判断する必用がありそうだ。
-      <ul>
-        <li>
-          <a href="https://github.com/WICG/feature-policy/blob/gh-pages/features.md">https://github.com/WICG/feature-policy/blob/gh-pages/features.md</a>
-        </li>
-        <li>
-          <a href="https://docs.google.com/document/d/1k0Ua-ZWlM_PsFCFdLMa8kaVTo32PeNZ4G7FFHqpFx4E/edit">https://docs.google.com/document/d/1k0Ua-ZWlM_PsFCFdLMa8kaVTo32PeNZ4G7FFHqpFx4E/edit</a>
-        </li>
-        <li>
-          <a href="https://cs.chromium.org/chromium/src/third_party/WebKit/Source/platform/feature_policy/FeaturePolicy.cpp?sq=package:chromium&dr=C&l=225">https://cs.chromium.org/chromium/src/third_party/WebKit/Source/platform/feature_policy/FeaturePolicy.cpp?sq=package:chromium&amp;dr=C&amp;l=225</a>
-        </li>
-      </ul>
-    </section>
-    <section>
-      <h2 id="reporting"><a href="#reporting">Reporting</a></h2>
-      <p>Feature Policy には執筆時点で Reporting の仕様が無い。
-      <p>しかし、これは Reporing 側で CORS の Preflight をどうするかの問題がブロッカーとなっているだけで、盛り込む予定ではあるようだ。
-      <p><a href="https://github.com/WICG/feature-policy/issues/142">https://github.com/WICG/feature-policy/issues/142</a>
-    </section>
-    <section>
-      <h2 id="outro"><a href="#outro">Outro</a></h2>
-      <p>Feature Policy には 2 つの側面がある
-      <ul>
-        <li>機能の制限
-        <li>権限の移譲
-      </ul>
-      <p>3rd Party への Permission Delegation の側面は、今後強力な機能を安全に活用していく上で、非常に重要だ。
-      <p>そもそも 1st Party でブロックされていてはどうしようもないという点で、プロンプトで許可を求める UX は、さらに一層慎重になるべきだろう。
-      <p>上手く使えば 1st Party におけるパフォーマンスやセキュリティの面でも、効果を出すことができそうだ。
-      <p>まだ、ブラウザの実装が整っていないため、そこを注視しつつ、今後実装される Policy やリアルワールドレポートの知見を貯めていきたい。
-    </section>
-  </article>
-
+      <section>
+        <h2 id="feature-一覧"><a href="#feature-一覧">Feature 一覧</a></h2>
+        <p>仕様自体には Feature の一覧が無いが、いくつかリストを持っているドキュメントは存在する。
+        <p>この辺の扱いについてはよくわかっていないが、現時点では実装ベースで判断する必用がありそうだ。
+        <ul>
+          <li>
+            <a href="https://github.com/WICG/feature-policy/blob/gh-pages/features.md">https://github.com/WICG/feature-policy/blob/gh-pages/features.md</a>
+          </li>
+          <li>
+            <a href="https://docs.google.com/document/d/1k0Ua-ZWlM_PsFCFdLMa8kaVTo32PeNZ4G7FFHqpFx4E/edit">https://docs.google.com/document/d/1k0Ua-ZWlM_PsFCFdLMa8kaVTo32PeNZ4G7FFHqpFx4E/edit</a>
+          </li>
+          <li>
+            <a href="https://cs.chromium.org/chromium/src/third_party/WebKit/Source/platform/feature_policy/FeaturePolicy.cpp?sq=package:chromium&dr=C&l=225">https://cs.chromium.org/chromium/src/third_party/WebKit/Source/platform/feature_policy/FeaturePolicy.cpp?sq=package:chromium&amp;dr=C&amp;l=225</a>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="reporting"><a href="#reporting">Reporting</a></h2>
+        <p>Feature Policy には執筆時点で Reporting の仕様が無い。
+        <p>しかし、これは Reporing 側で CORS の Preflight をどうするかの問題がブロッカーとなっているだけで、盛り込む予定ではあるようだ。
+        <p><a href="https://github.com/WICG/feature-policy/issues/142">https://github.com/WICG/feature-policy/issues/142</a>
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>Feature Policy には 2 つの側面がある
+        <ul>
+          <li>機能の制限
+          <li>権限の移譲
+        </ul>
+        <p>3rd Party への Permission Delegation の側面は、今後強力な機能を安全に活用していく上で、非常に重要だ。
+        <p>そもそも 1st Party でブロックされていてはどうしようもないという点で、プロンプトで許可を求める UX は、さらに一層慎重になるべきだろう。
+        <p>上手く使えば 1st Party におけるパフォーマンスやセキュリティの面でも、効果を出すことができそうだ。
+        <p>まだ、ブラウザの実装が整っていないため、そこを注視しつつ、今後実装される Policy やリアルワールドレポートの知見を貯めていきたい。
+      </section>
+    </article>
   </main>
   <hr>
 

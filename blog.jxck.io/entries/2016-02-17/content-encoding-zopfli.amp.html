@@ -798,8 +798,6 @@
     <dt>updated_at</dt><dd><time class=updated_at datetime=2018-07-29>2018-07-29</time></dd>
     <dt class=tags>tags</dt><dd>[<a href='/tags/zopfli.html'>zopfli</a><i>,</i><a href='/tags/brotli.html'>brotli</a><i>,</i><a href='/tags/http.html'>http</a><i>,</i><a href='/tags/performance.html'>performance</a>]</dd>
   </ul>
-
-
   <article>
     <h1><a href=/entries/2016-02-17/content-encoding-zopfli.html>zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について</a></h1>
     <section>
@@ -989,7 +987,9 @@
         <li>webp は対象外
       </ul>
       <p>動作は、 HTTP ヘッダで確認できる。
-      <p><amp-img layout=responsive src=zopfli.png#656x463 alt="圧縮が有効である場合、 content-encoding: gzip が追加されていることを確認" title="Content-Encoding Support Before/After" width=656 height=463></p>
+      <p>
+        <amp-img layout=responsive src=zopfli.png#656x463 alt="圧縮が有効である場合、 content-encoding: gzip が追加されていることを確認" title="Content-Encoding Support Before/After" width=656 height=463>
+      </p>
       <p>また、一部は h2o の mruby-handler で動的な生成をしているが、 <code translate="no">gzip</code> ディレクティブの効果は未検証なので設定していない。
       <p>本サイトの中で、 <code translate="no">.html</code>, <code translate="no">.css</code>, <code translate="no">.js</code> で終わるような URL は、 <code translate="no">.gz</code> を後ろに付けると zopfli 圧縮版が取得できるので、興味があれば試してみて欲しい。
       <p><a href="https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html.gz">この HTML の zopfli 圧縮版</a>
@@ -1005,7 +1005,6 @@
       <p><a href="https://github.com/h2o/h2o/issues/660">Feature request: file.send-brotli #660</a>
     </section>
   </article>
-
 </main>
 <hr>
 <footer>

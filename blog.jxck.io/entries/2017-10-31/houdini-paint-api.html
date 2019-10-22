@@ -106,77 +106,77 @@
     </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
-  <article>
-    <h1><a href=/entries/2017-10-31/houdini-paint-api.html>Houdini Paint API</a></h1>
-    <section>
-      <h2 id="intro"><a href="#intro">Intro</a></h2>
-      <p>Houdini で議論されている CSS Paint API が Chrome Canary で flag 付きで実装されている。
-      <p>デモの実装を通して、関連仕様を含めた以下の 4 つのドラフトを解説する。
-      <ul>
-        <li>
-          <a href="https://drafts.css-houdini.org/css-paint-api/">CSS Painting API Level 1</a>
-        </li>
-        <li>
-          <a href="https://drafts.css-houdini.org/css-properties-values-api/">CSS Properties and Values API Level 1</a>
-        </li>
-        <li>
-          <a href="https://drafts.css-houdini.org/css-typed-om-1/">CSS Typed OM Level 1</a>
-        </li>
-        <li>
-          <a href="https://drafts.css-houdini.org/worklets/">Worklets Level 1</a>
-        </li>
-      </ul>
-    </section>
-    <section>
-      <h2 id="css-paint-api"><a href="#css-paint-api">CSS Paint API</a></h2>
-      <p>CSS Paint API は、特定の領域に対して任意の描画を行うことができる仕様である。
-      <p><a href="https://drafts.css-houdini.org/css-paint-api/">CSS Painting API Level 1</a>
-      <p>例えば、これまで <code translate="no">border</code> は、仕様に定義されたいくつかの種類の style から選び、無いものは画像で代替するのが基本だった。
-      <p>CSS Paint API は用意した領域に対し、画像ではなく Canvas API のサブセットを用いてペイントを行うことができる。
-      <p>今回はデモとして「突然の死」を Paint で書こうと考えた。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre class=text><code translate="no">＿人人人人人人＿
+    <article>
+      <h1><a href=/entries/2017-10-31/houdini-paint-api.html>Houdini Paint API</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>Houdini で議論されている CSS Paint API が Chrome Canary で flag 付きで実装されている。
+        <p>デモの実装を通して、関連仕様を含めた以下の 4 つのドラフトを解説する。
+        <ul>
+          <li>
+            <a href="https://drafts.css-houdini.org/css-paint-api/">CSS Painting API Level 1</a>
+          </li>
+          <li>
+            <a href="https://drafts.css-houdini.org/css-properties-values-api/">CSS Properties and Values API Level 1</a>
+          </li>
+          <li>
+            <a href="https://drafts.css-houdini.org/css-typed-om-1/">CSS Typed OM Level 1</a>
+          </li>
+          <li>
+            <a href="https://drafts.css-houdini.org/worklets/">Worklets Level 1</a>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="css-paint-api"><a href="#css-paint-api">CSS Paint API</a></h2>
+        <p>CSS Paint API は、特定の領域に対して任意の描画を行うことができる仕様である。
+        <p><a href="https://drafts.css-houdini.org/css-paint-api/">CSS Painting API Level 1</a>
+        <p>例えば、これまで <code translate="no">border</code> は、仕様に定義されたいくつかの種類の style から選び、無いものは画像で代替するのが基本だった。
+        <p>CSS Paint API は用意した領域に対し、画像ではなく Canvas API のサブセットを用いてペイントを行うことができる。
+        <p>今回はデモとして「突然の死」を Paint で書こうと考えた。
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+        <pre class=text><code translate="no">＿人人人人人人＿
 ＞  突然の死  ＜
 ￣Y^Y^Y^Y^Y￣</code></pre>
-      <p>しかし、現時点では <code translate="no">strokeText()</code> など、 Canvas のテキスト系の API は仕様から落とされている。
-      <p>これは、各ブラウザでフォントスタックがマルチスレッド対応されていないため、 Worklets 内での実行が難しいという理由かららしく、将来の仕様まで先送りされているとのこと。
-      <p>詳細は以下を参照。
-      <p><a href="https://mozaic.fm/episodes/29/houdini.html">ep29 Houdini | mozaic.fm</a>
-      <p>代わりにデモのネタを探していたところ <a href="https://twitter.com/yoshiko_pg">@yoshiko</a> から、
-      <blockquote>
-        <p>border double で、太さや間隔を自由に設定したい
-      </blockquote>
-      <p>という丁度いいユースケースをもらったので、これを実現しながら、関連する API の使い方について解説する。
-    </section>
-    <section>
-      <h2 id="border-image"><a href="#border-image">border-image</a></h2>
-      <p>まずは、 border を描画する <code translate="no">&lt;div&gt;</code> に対して、描画領域を用意する。
-      <p>Paint API で実装したペイントは、最終的には <code translate="no">border-image-source</code> に対して指定することになる。
-      <p>そこで、今回は描画領域として <code translate="no">border-width</code> と <code translate="no">border-image-slice</code> を指定する。
-      <pre class=css><code translate="no">div {
+        <p>しかし、現時点では <code translate="no">strokeText()</code> など、 Canvas のテキスト系の API は仕様から落とされている。
+        <p>これは、各ブラウザでフォントスタックがマルチスレッド対応されていないため、 Worklets 内での実行が難しいという理由かららしく、将来の仕様まで先送りされているとのこと。
+        <p>詳細は以下を参照。
+        <p><a href="https://mozaic.fm/episodes/29/houdini.html">ep29 Houdini | mozaic.fm</a>
+        <p>代わりにデモのネタを探していたところ <a href="https://twitter.com/yoshiko_pg">@yoshiko</a> から、
+        <blockquote>
+          <p>border double で、太さや間隔を自由に設定したい
+        </blockquote>
+        <p>という丁度いいユースケースをもらったので、これを実現しながら、関連する API の使い方について解説する。
+      </section>
+      <section>
+        <h2 id="border-image"><a href="#border-image">border-image</a></h2>
+        <p>まずは、 border を描画する <code translate="no">&lt;div&gt;</code> に対して、描画領域を用意する。
+        <p>Paint API で実装したペイントは、最終的には <code translate="no">border-image-source</code> に対して指定することになる。
+        <p>そこで、今回は描画領域として <code translate="no">border-width</code> と <code translate="no">border-image-slice</code> を指定する。
+        <pre class=css><code translate="no">div {
   /* area size for border */
   --border-width: 10;
   border-image-slice: var(--border-width);
   border-width: calc(var(--border-width) * 1px);
 }</code></pre>
-      <p>ここでは <code translate="no">&lt;div&gt;</code> の周囲に <code translate="no">10px</code> 分の領域が作られる。
-    </section>
-    <section>
-      <h2 id="paint"><a href="#paint">paint()</a></h2>
-      <p>作成する描画は <code translate="no">border-double-custom</code> という名前とし、これを CSS 内で <code translate="no">paint()</code> 関数に指定して呼び出す。
-      <p><code translate="no">paint()</code> の第二引数以降は、処理に渡される引数となるため、今回は以下のように定義した。
-      <pre class=css><code translate="no">paint(border-double-custom, outer-color, outer-width, inner-color, inner-width, margin)</code></pre>
-      <p>また、開発をするに当たって debug フラグを渡せると便利なため、 CSS から debug フラグを渡せるようにもしてみる。
-      <p>例えば
-      <ul>
-        <li>外側の線は 3px の orange
-        <li>内側の線は 5px の yellow
-        <li>線の間隔は 1px
-        <li>デバッグ ON
-      </ul>
-      <p>として設定する場合は以下のような指定になる。
-      <p>(フォールバックとして、ネイティブの実装を指定する)
-      <pre class=css><code translate="no">div {
+        <p>ここでは <code translate="no">&lt;div&gt;</code> の周囲に <code translate="no">10px</code> 分の領域が作られる。
+      </section>
+      <section>
+        <h2 id="paint"><a href="#paint">paint()</a></h2>
+        <p>作成する描画は <code translate="no">border-double-custom</code> という名前とし、これを CSS 内で <code translate="no">paint()</code> 関数に指定して呼び出す。
+        <p><code translate="no">paint()</code> の第二引数以降は、処理に渡される引数となるため、今回は以下のように定義した。
+        <pre class=css><code translate="no">paint(border-double-custom, outer-color, outer-width, inner-color, inner-width, margin)</code></pre>
+        <p>また、開発をするに当たって debug フラグを渡せると便利なため、 CSS から debug フラグを渡せるようにもしてみる。
+        <p>例えば
+        <ul>
+          <li>外側の線は 3px の orange
+          <li>内側の線は 5px の yellow
+          <li>線の間隔は 1px
+          <li>デバッグ ON
+        </ul>
+        <p>として設定する場合は以下のような指定になる。
+        <p>(フォールバックとして、ネイティブの実装を指定する)
+        <pre class=css><code translate="no">div {
   /* fall back */
   border: double 4px orange;
 
@@ -189,37 +189,37 @@
   border-width: calc(var(--border-width) * 1px);
   border-image-source: paint(border-double-custom, orange, 3px, yellow, 5px, 1px);
 }</code></pre>
-    </section>
-    <section>
-      <h2 id="paintworklet"><a href="#paintworklet">paintWorklet</a></h2>
-      <p>Paint を始め Layout や Animation などの処理は、メインスレッドとは別に実行する必要がある。
-      <p>また、例えば今回のように border を引く対象が多く存在する場合は、複数処理を並行して走らせる必要もある。
-      <p>こうした用途では、 WebWorker などの Worker は用途として合わないため、 Houdini ではより限定した API で軽量な実行環境として Worklet という API が定義されている。
-      <p><a href="https://drafts.css-houdini.org/worklets/">Worklets Level 1</a>
-      <p>Paint API は Worklet の上位に定義された PaintWorklet の中に実際の描画処理を移譲し、メインスレッドからは Worklet への処理の登録のみを行う。
-      <p><a href="https://drafts.css-houdini.org/css-paint-api/#paint-worklet">Paint Worklet</a>
-      <p>Worklet への登録は、モジュール単位となっているため、今回実装するファイルを <code translate="no">border-double-custom.js</code> とした場合、メインからの呼び出しは以下になる。
-      <pre class=js><code translate="no">CSS.paintWorklet.addModule(&#039;border-double-custom.js&#039;);</code></pre>
-      <p>Worklet はメインスレッドと Global を共有せず、必要な情報はコピーして渡すこととなる。
-      <p>これは、後述する Arguments か Property を経由して行う。
-    </section>
-    <section>
-      <h2 id="registerpaint"><a href="#registerpaint">registerPaint()</a></h2>
-      <p>実際に <code translate="no">border-double-custom</code> を <code translate="no">addModule()</code> したファイルの中に実装していく。
-      <p>大枠は <code translate="no">registerPaint()</code> に対して、名前とコールバックを渡すような形になる。
-      <p>コールバックは、関数ではなく必要なプロパティを実装した class を渡す。
-      <p>今回実装するのは以下の 2 つだ。
-      <pre class=js><code translate="no">registerPaint(&#039;border-double-custom&#039;, class {
+      </section>
+      <section>
+        <h2 id="paintworklet"><a href="#paintworklet">paintWorklet</a></h2>
+        <p>Paint を始め Layout や Animation などの処理は、メインスレッドとは別に実行する必要がある。
+        <p>また、例えば今回のように border を引く対象が多く存在する場合は、複数処理を並行して走らせる必要もある。
+        <p>こうした用途では、 WebWorker などの Worker は用途として合わないため、 Houdini ではより限定した API で軽量な実行環境として Worklet という API が定義されている。
+        <p><a href="https://drafts.css-houdini.org/worklets/">Worklets Level 1</a>
+        <p>Paint API は Worklet の上位に定義された PaintWorklet の中に実際の描画処理を移譲し、メインスレッドからは Worklet への処理の登録のみを行う。
+        <p><a href="https://drafts.css-houdini.org/css-paint-api/#paint-worklet">Paint Worklet</a>
+        <p>Worklet への登録は、モジュール単位となっているため、今回実装するファイルを <code translate="no">border-double-custom.js</code> とした場合、メインからの呼び出しは以下になる。
+        <pre class=js><code translate="no">CSS.paintWorklet.addModule(&#039;border-double-custom.js&#039;);</code></pre>
+        <p>Worklet はメインスレッドと Global を共有せず、必要な情報はコピーして渡すこととなる。
+        <p>これは、後述する Arguments か Property を経由して行う。
+      </section>
+      <section>
+        <h2 id="registerpaint"><a href="#registerpaint">registerPaint()</a></h2>
+        <p>実際に <code translate="no">border-double-custom</code> を <code translate="no">addModule()</code> したファイルの中に実装していく。
+        <p>大枠は <code translate="no">registerPaint()</code> に対して、名前とコールバックを渡すような形になる。
+        <p>コールバックは、関数ではなく必要なプロパティを実装した class を渡す。
+        <p>今回実装するのは以下の 2 つだ。
+        <pre class=js><code translate="no">registerPaint(&#039;border-double-custom&#039;, class {
   static get inputProperties() { }
   static get inputArguments() { }
   paint(ctx, size, styleMap, argments) { }
 })</code></pre>
-    </section>
-    <section>
-      <h2 id="inputarguments"><a href="#inputarguments">inputArguments()</a></h2>
-      <p>まず、 CSS で指定した線の色と幅、間隔の値を取得する必要がある。
-      <p>CSS で渡した値の型がなんであるかを指定するために、 <code translate="no">inputArguments()</code> に引数の順に型の配列を指定する。
-      <pre class=js><code translate="no">// paint(border-double-custom, orange, 3px, yellow, 5px, 1px);
+      </section>
+      <section>
+        <h2 id="inputarguments"><a href="#inputarguments">inputArguments()</a></h2>
+        <p>まず、 CSS で指定した線の色と幅、間隔の値を取得する必要がある。
+        <p>CSS で渡した値の型がなんであるかを指定するために、 <code translate="no">inputArguments()</code> に引数の順に型の配列を指定する。
+        <pre class=js><code translate="no">// paint(border-double-custom, orange, 3px, yellow, 5px, 1px);
 static get inputArguments() {
   return [
     &#039;&lt;color&gt;&#039;,  // orange
@@ -229,63 +229,63 @@ static get inputArguments() {
     &#039;&lt;length&gt;&#039;, // 1px
   ]
 }</code></pre>
-      <p>ここで指定する型は、 CSS Property and Values に定義された Syntax String である。
-      <p><a href="https://drafts.css-houdini.org/css-properties-values-api/#supported-syntax-strings">CSS Properties and Values API Level 1</a>
-      <p>これによって、 CSS で渡された引数が解析される。
-      <section>
-        <h3 id="registerproperty"><a href="#registerproperty">registerProperty()</a></h3>
-        <p>CSS で指定した debug フラグは、 <code translate="no">pain()</code> の引数ではなく、別のプロパティとして取得する。
-        <p>このためには、まず Worklet がアクセス可能なプロパティとして <code translate="no">--debug</code> をメインスレッド側で <code translate="no">registerProperty()</code> を用いて登録する。
-        <p><a href="https://drafts.css-houdini.org/css-properties-values-api/#registering-custom-properties">CSS Properties and Values API Level 1</a>
-        <p><code translate="no">--debug</code> は <code translate="no">true/false</code> を引数に取りたいが、 Property Values の定義する Syntax List には <code translate="no">&lt;boolean&gt;</code> は無いため、 <code translate="no">&lt;custom-indent&gt;</code> を利用し、文字列で代替することとした。
-        <pre class=js><code translate="no">CSS.registerProperty({
+        <p>ここで指定する型は、 CSS Property and Values に定義された Syntax String である。
+        <p><a href="https://drafts.css-houdini.org/css-properties-values-api/#supported-syntax-strings">CSS Properties and Values API Level 1</a>
+        <p>これによって、 CSS で渡された引数が解析される。
+        <section>
+          <h3 id="registerproperty"><a href="#registerproperty">registerProperty()</a></h3>
+          <p>CSS で指定した debug フラグは、 <code translate="no">pain()</code> の引数ではなく、別のプロパティとして取得する。
+          <p>このためには、まず Worklet がアクセス可能なプロパティとして <code translate="no">--debug</code> をメインスレッド側で <code translate="no">registerProperty()</code> を用いて登録する。
+          <p><a href="https://drafts.css-houdini.org/css-properties-values-api/#registering-custom-properties">CSS Properties and Values API Level 1</a>
+          <p><code translate="no">--debug</code> は <code translate="no">true/false</code> を引数に取りたいが、 Property Values の定義する Syntax List には <code translate="no">&lt;boolean&gt;</code> は無いため、 <code translate="no">&lt;custom-indent&gt;</code> を利用し、文字列で代替することとした。
+          <pre class=js><code translate="no">CSS.registerProperty({
   name: &#039;--debug&#039;,
   syntax: &#039;&lt;custom-ident&gt;&#039;,
   inherits: true,
   initialValue: &#039;false&#039;,
 });</code></pre>
-      </section>
-      <section>
-        <h3 id="inputproperties"><a href="#inputproperties">inputProperties()</a></h3>
-        <p><code translate="no">registerProperty()</code> で登録された値は、 Worklet 側で <code translate="no">inputProperties()</code> に、ホワイトリストとして指定しておくことで、クラス内に取り込むことができる。
-        <pre class=js><code translate="no">static get inputProperties() {
+        </section>
+        <section>
+          <h3 id="inputproperties"><a href="#inputproperties">inputProperties()</a></h3>
+          <p><code translate="no">registerProperty()</code> で登録された値は、 Worklet 側で <code translate="no">inputProperties()</code> に、ホワイトリストとして指定しておくことで、クラス内に取り込むことができる。
+          <pre class=js><code translate="no">static get inputProperties() {
   return [
     &#039;--debug&#039;,
   ]
 }</code></pre>
-        <p>これにより、後述する <code translate="no">paint()</code> callback に渡る Property Style Map に値が含まれる。
+          <p>これにより、後述する <code translate="no">paint()</code> callback に渡る Property Style Map に値が含まれる。
+        </section>
       </section>
-    </section>
-    <section>
-      <h2 id="paint-1"><a href="#paint-1">paint()</a></h2>
-      <p><code translate="no">paint()</code> には Canvas Context と領域のサイズ、当たっているスタイル、先に解析した引数が渡る。
-      <pre class=js><code translate="no">paint(ctx, size styleMap, arguments) {
+      <section>
+        <h2 id="paint-1"><a href="#paint-1">paint()</a></h2>
+        <p><code translate="no">paint()</code> には Canvas Context と領域のサイズ、当たっているスタイル、先に解析した引数が渡る。
+        <pre class=js><code translate="no">paint(ctx, size styleMap, arguments) {
   // paint with canvas api
 })</code></pre>
-      <section>
-        <h3 id="rendering-context"><a href="#rendering-context">Rendering Context</a></h3>
-        <p>第一引数は 2D のレンダリングコンテキストである。
-        <p>ここから Canvas の API を呼ぶことで、実際の描画処理を行う。
-        <p><code translate="no">moveTo()</code>, <code translate="no">lineTo()</code>, <code translate="no">strokeRect()</code>, <code translate="no">fillRect()</code> などといったおなじみの Canvas API が利用可能だ。
-        <p>しかし、あくまでサブセットであり前述のように <code translate="no">strokeText()</code> などフォントスタックがないなど、使えないものもある。
-      </section>
-      <section>
-        <h3 id="paint-size"><a href="#paint-size">Paint Size</a></h3>
-        <p>第二引数は描画対象のサイズであり Width, Height を持つ単純なオブジェクトだ。
-      </section>
-      <section>
-        <h3 id="style-property-map"><a href="#style-property-map">Style Property Map</a></h3>
-        <p>前述の <code translate="no">inputProperties()</code> で指定したプロパティが含まれた Map が渡される。
-        <p>今回指定した <code translate="no">--debug</code> は、以下のように取得できる。
-        <pre class=js><code translate="no">const DEBUG = styleMap.get(&#039;--debug&#039;).value</code></pre>
-        <p>ただし、これは指定した型の都合上、文字列の <code translate="no">&quot;true&quot;</code> か <code translate="no">&quot;false&quot;</code> になっている。
-      </section>
-      <section>
-        <h3 id="arguments"><a href="#arguments">Arguments</a></h3>
-        <p>前述の <code translate="no">inputArguments()</code> で指定した引数が配列で渡ってくる。
-        <p>各値は、指定した型でパースされた Typed OM の形でアクセス可能だ。
-        <p><a href="https://drafts.css-houdini.org/css-typed-om-1/">CSS Typed OM Level 1</a>
-        <pre class=js><code translate="no">// paint(border-double-custom, orange, 3px, yellow, 5px, 1px);
+        <section>
+          <h3 id="rendering-context"><a href="#rendering-context">Rendering Context</a></h3>
+          <p>第一引数は 2D のレンダリングコンテキストである。
+          <p>ここから Canvas の API を呼ぶことで、実際の描画処理を行う。
+          <p><code translate="no">moveTo()</code>, <code translate="no">lineTo()</code>, <code translate="no">strokeRect()</code>, <code translate="no">fillRect()</code> などといったおなじみの Canvas API が利用可能だ。
+          <p>しかし、あくまでサブセットであり前述のように <code translate="no">strokeText()</code> などフォントスタックがないなど、使えないものもある。
+        </section>
+        <section>
+          <h3 id="paint-size"><a href="#paint-size">Paint Size</a></h3>
+          <p>第二引数は描画対象のサイズであり Width, Height を持つ単純なオブジェクトだ。
+        </section>
+        <section>
+          <h3 id="style-property-map"><a href="#style-property-map">Style Property Map</a></h3>
+          <p>前述の <code translate="no">inputProperties()</code> で指定したプロパティが含まれた Map が渡される。
+          <p>今回指定した <code translate="no">--debug</code> は、以下のように取得できる。
+          <pre class=js><code translate="no">const DEBUG = styleMap.get(&#039;--debug&#039;).value</code></pre>
+          <p>ただし、これは指定した型の都合上、文字列の <code translate="no">&quot;true&quot;</code> か <code translate="no">&quot;false&quot;</code> になっている。
+        </section>
+        <section>
+          <h3 id="arguments"><a href="#arguments">Arguments</a></h3>
+          <p>前述の <code translate="no">inputArguments()</code> で指定した引数が配列で渡ってくる。
+          <p>各値は、指定した型でパースされた Typed OM の形でアクセス可能だ。
+          <p><a href="https://drafts.css-houdini.org/css-typed-om-1/">CSS Typed OM Level 1</a>
+          <pre class=js><code translate="no">// paint(border-double-custom, orange, 3px, yellow, 5px, 1px);
 paint(ctx, size styleMap, arguments) {
   // CSSKeywordValue {value: &quot;orange&quot;}
   // CSSUnitValue {value: 3, unit: &quot;px&quot;, type: &quot;length&quot;}
@@ -294,20 +294,20 @@ paint(ctx, size styleMap, arguments) {
   // CSSUnitValue {value: 1, unit: &quot;px&quot;, type: &quot;length&quot;}
   console.log(arguments)
 }</code></pre>
-        <p>(CSSColorValue がまだ無いため、 <code translate="no">&lt;color&gt;</code> が CSSKeywordValue になっている。<a href="https://github.com/w3c/css-houdini-drafts/issues/159">#159</a>)
-      </section>
-      <section>
-        <h3 id="例"><a href="#例">例</a></h3>
-        <p>例えば、その領域全体を、第一引数で渡ってきた色で塗りつぶす場合は、以下のように Canvas API で描画できる。
-        <pre class=js><code translate="no">paint(ctx, {width: w, height: h}, styleMap, [color]) {
+          <p>(CSSColorValue がまだ無いため、 <code translate="no">&lt;color&gt;</code> が CSSKeywordValue になっている。<a href="https://github.com/w3c/css-houdini-drafts/issues/159">#159</a>)
+        </section>
+        <section>
+          <h3 id="例"><a href="#例">例</a></h3>
+          <p>例えば、その領域全体を、第一引数で渡ってきた色で塗りつぶす場合は、以下のように Canvas API で描画できる。
+          <pre class=js><code translate="no">paint(ctx, {width: w, height: h}, styleMap, [color]) {
     ctx.strokeStyle = color
     ctx.fillRect(0, 0, w, h)
 })</code></pre>
-      </section>
-      <section>
-        <h3 id="完成形"><a href="#完成形">完成形</a></h3>
-        <p>あとは、 <code translate="no">paint()</code> の中で要求を満たす二つの矩形を描画する処理を記述すれば良い。
-        <pre class=html><code translate="no">&lt;style&gt;
+        </section>
+        <section>
+          <h3 id="完成形"><a href="#完成形">完成形</a></h3>
+          <p>あとは、 <code translate="no">paint()</code> の中で要求を満たす二つの矩形を描画する処理を記述すれば良い。
+          <pre class=html><code translate="no">&lt;style&gt;
 div {
   font-size: 30px;
   text-align: center;
@@ -342,7 +342,7 @@ CSS.registerProperty({
 
 CSS.paintWorklet.addModule(&#039;border-double-custom.js&#039;);
 &lt;/script&gt;</code></pre>
-        <pre class=js><code translate="no">registerPaint(&#039;border-double-custom&#039;, class {
+          <pre class=js><code translate="no">registerPaint(&#039;border-double-custom&#039;, class {
   static get inputProperties() {
     return [
       &#039;--debug&#039;,
@@ -395,25 +395,24 @@ CSS.paintWorklet.addModule(&#039;border-double-custom.js&#039;);
     ctx.strokeRect(x+(l/2), y+(l/2), w-l, h-l)
   }
 })</code></pre>
+        </section>
       </section>
-    </section>
-    <section>
-      <h2 id="動作イメージ"><a href="#動作イメージ">動作イメージ</a></h2>
-      <p>
-        <picture>
-          <source type=image/webp srcset=border-double-custom.webp#667x401>
-          <img loading=lazy src=border-double-custom.png#667x401 alt="Houdini Paint API で色と間隔を変更可能な二重線を引くデモ" title="border-double-custom implemented by css paint api" intrinsicsize=667x401>
-        </picture>
-      </p>
-    </section>
-    <section>
-      <h2 id="demo"><a href="#demo">DEMO</a></h2>
-      <p>完成形は以下に公開した。
-      <p>Chrome 64 Canary で <a href="chrome://flags/#enable-experimental-web-platform-features">flag</a> を有効にすると動作する。
-      <p><a href="https://labs.jxck.io/houdini/paint/border-double-custom/">Houdini Paint API DEMO | labs.jxck.io</a>
-    </section>
-  </article>
-
+      <section>
+        <h2 id="動作イメージ"><a href="#動作イメージ">動作イメージ</a></h2>
+        <p>
+          <picture>
+            <source type=image/webp srcset=border-double-custom.webp#667x401>
+            <img loading=lazy src=border-double-custom.png#667x401 alt="Houdini Paint API で色と間隔を変更可能な二重線を引くデモ" title="border-double-custom implemented by css paint api" intrinsicsize=667x401>
+          </picture>
+        </p>
+      </section>
+      <section>
+        <h2 id="demo"><a href="#demo">DEMO</a></h2>
+        <p>完成形は以下に公開した。
+        <p>Chrome 64 Canary で <a href="chrome://flags/#enable-experimental-web-platform-features">flag</a> を有効にすると動作する。
+        <p><a href="https://labs.jxck.io/houdini/paint/border-double-custom/">Houdini Paint API DEMO | labs.jxck.io</a>
+      </section>
+    </article>
   </main>
   <hr>
 

@@ -106,59 +106,59 @@
     </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
-  <article>
-    <h1><a href=/entries/2016-04-24/service-worker-tutorial.html>中級者向け Service Worker Tutorial</a></h1>
-    <section>
-      <h2 id="intro"><a href="#intro">Intro</a></h2>
-      <p>Service Worker の初心者向けのチュートリアルや、使ってみた系のエントリも増えてきました。
-      <p>しかし、 Service Worker は通常のブラウザ用 JS の開発と少し経路が違い、慣れるまで開発やデバッグもなかなか難しいと思います。
-      <p>そこで特に難しい部分、そして分かっていないと実際にデプロイした際に難しいと思う部分について、実際に動きを確認しながら解説したいと思います。
-      <p>なお、 Service Worker の基本的な概念などについては、他のチュートリアルなどを見て理解している前提で進めます。
-      <p>思いつきで撮ったので色々ミスも有ります、また Chrome Dev Tools の UI はどうせ変わるのでそのつもりで見てください。
-      <p>TODO になっている動画は、そのうち撮って追加します。
-    </section>
-    <section>
-      <h2 id="list"><a href="#list">List</a></h2>
-      <ol>
-        <li>
-          <a href="#claim">#claim</a>
-        </li>
-        <li>
-          <a href="#controllerchange">#controllerchange</a>
-        </li>
-        <li>
-          <a href="#updatefound">#updatefound</a>
-        </li>
-        <li>
-          <a href="#update()">#update()</a>
-        </li>
-        <li>
-          <a href="#backgroundsync">#backgroundsync</a>
-        </li>
-        <li>
-          <a href="#push">#push</a><ol>
-            <li>
-              <a href="#1.+Google+Developer+Console">#1. Google Developer Console</a>
-            </li>
-            <li>
-              <a href="#2.master.js">#2.master.js</a>
-            </li>
-            <li>
-              <a href="#3.worker.js">#3.worker.js</a>
-            </li>
-            <li>
-              <a href="#4.push.js">#4.push.js</a>
-            </li>
-          </ol>
-        </li>
-      </ol>
-    </section>
-    <section>
-      <h2 id="claim"><a href="#claim">claim</a></h2>
-      <p>controller とは何か、いつ controller になるか、 <code translate="no">claim()</code> で何が起こるのかなどについて。
-      <iframe src="https://www.youtube.com/embed/m6qBg4M3RTA" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre class=html><code translate="no">&lt;!DOCTYPE html&gt;
+    <article>
+      <h1><a href=/entries/2016-04-24/service-worker-tutorial.html>中級者向け Service Worker Tutorial</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>Service Worker の初心者向けのチュートリアルや、使ってみた系のエントリも増えてきました。
+        <p>しかし、 Service Worker は通常のブラウザ用 JS の開発と少し経路が違い、慣れるまで開発やデバッグもなかなか難しいと思います。
+        <p>そこで特に難しい部分、そして分かっていないと実際にデプロイした際に難しいと思う部分について、実際に動きを確認しながら解説したいと思います。
+        <p>なお、 Service Worker の基本的な概念などについては、他のチュートリアルなどを見て理解している前提で進めます。
+        <p>思いつきで撮ったので色々ミスも有ります、また Chrome Dev Tools の UI はどうせ変わるのでそのつもりで見てください。
+        <p>TODO になっている動画は、そのうち撮って追加します。
+      </section>
+      <section>
+        <h2 id="list"><a href="#list">List</a></h2>
+        <ol>
+          <li>
+            <a href="#claim">#claim</a>
+          </li>
+          <li>
+            <a href="#controllerchange">#controllerchange</a>
+          </li>
+          <li>
+            <a href="#updatefound">#updatefound</a>
+          </li>
+          <li>
+            <a href="#update()">#update()</a>
+          </li>
+          <li>
+            <a href="#backgroundsync">#backgroundsync</a>
+          </li>
+          <li>
+            <a href="#push">#push</a><ol>
+              <li>
+                <a href="#1.+Google+Developer+Console">#1. Google Developer Console</a>
+              </li>
+              <li>
+                <a href="#2.master.js">#2.master.js</a>
+              </li>
+              <li>
+                <a href="#3.worker.js">#3.worker.js</a>
+              </li>
+              <li>
+                <a href="#4.push.js">#4.push.js</a>
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </section>
+      <section>
+        <h2 id="claim"><a href="#claim">claim</a></h2>
+        <p>controller とは何か、いつ controller になるか、 <code translate="no">claim()</code> で何が起こるのかなどについて。
+        <iframe src="https://www.youtube.com/embed/m6qBg4M3RTA" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+        <pre class=html><code translate="no">&lt;!DOCTYPE html&gt;
 &lt;meta charset=utf-8&gt;
 &lt;title&gt;Service Worker&lt;/title&gt;
 
@@ -169,7 +169,7 @@
 &lt;input id=test type=button value=test&gt;
 
 &lt;script src=master.js&gt;&lt;/script&gt;</code></pre>
-      <pre class=js><code translate="no">console.log(&#039;master&#039;);
+        <pre class=js><code translate="no">console.log(&#039;master&#039;);
 
 document.getElementById(&#039;button&#039;).addEventListener(&#039;click&#039;, () =&gt; {
   fetch(&#039;/test&#039;);
@@ -178,7 +178,7 @@ document.getElementById(&#039;button&#039;).addEventListener(&#039;click&#039;, 
 navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt; {
   console.log(registration);
 });</code></pre>
-      <pre class=js><code translate="no">console.info(&#039;worker&#039;);
+        <pre class=js><code translate="no">console.info(&#039;worker&#039;);
 
 self.addEventListener(&#039;activate&#039;, (e) =&gt; {
   console.info(&#039;activate&#039;, e);
@@ -193,13 +193,13 @@ self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
   }
   return;
 });</code></pre>
-      <p>DEMO: <a href="https://labs.jxck.io/service-worker/claim/index.html">https://labs.jxck.io/service-worker/claim/index.html</a>
-    </section>
-    <section>
-      <h2 id="controllerchange"><a href="#controllerchange">controllerchange</a></h2>
-      <p>register が終わった後、「新しく登録された controller が使えるようになったら」または「既に登録されている controller が使えるようになったら」という状態をとる方法と <code translate="no">controllerchange</code> イベント。
-      <iframe src="https://www.youtube.com/embed/XoI0FPDV8Xo" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-      <pre class=js><code translate="no">console.log(&#039;master&#039;);
+        <p>DEMO: <a href="https://labs.jxck.io/service-worker/claim/index.html">https://labs.jxck.io/service-worker/claim/index.html</a>
+      </section>
+      <section>
+        <h2 id="controllerchange"><a href="#controllerchange">controllerchange</a></h2>
+        <p>register が終わった後、「新しく登録された controller が使えるようになったら」または「既に登録されている controller が使えるようになったら」という状態をとる方法と <code translate="no">controllerchange</code> イベント。
+        <iframe src="https://www.youtube.com/embed/XoI0FPDV8Xo" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
+        <pre class=js><code translate="no">console.log(&#039;master&#039;);
 
 let controllerChange = new Promise((resolve, reject) =&gt; {
   navigator.serviceWorker.addEventListener(&#039;controllerchange&#039;, () =&gt; {
@@ -218,7 +218,7 @@ navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt
   console.log(controller);
   fetch(&#039;/test&#039;);
 });</code></pre>
-      <pre class=js><code translate="no">console.info(&#039;worker&#039;);
+        <pre class=js><code translate="no">console.info(&#039;worker&#039;);
 
 self.addEventListener(&#039;activate&#039;, (e) =&gt; {
   console.info(&#039;activate&#039;, e);
@@ -233,14 +233,14 @@ self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
   }
   return;
 });</code></pre>
-      <p>DEMO: <a href="https://labs.jxck.io/service-worker/controllerchange/">https://labs.jxck.io/service-worker/controllerchange/</a>
-    </section>
-    <section>
-      <h2 id="updatefound"><a href="#updatefound">updatefound</a></h2>
-      <p>Service Worker が更新される際の動きと、 <code translate="no">skipWaiting()</code> が何をスキップするのか?
-      <p><code translate="no">install</code>, <code translate="no">activate</code> イベントの用途。
-      <iframe src="https://www.youtube.com/embed/AMbQ7d9rjao" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-      <pre class=js><code translate="no">console.log(&#039;master&#039;);
+        <p>DEMO: <a href="https://labs.jxck.io/service-worker/controllerchange/">https://labs.jxck.io/service-worker/controllerchange/</a>
+      </section>
+      <section>
+        <h2 id="updatefound"><a href="#updatefound">updatefound</a></h2>
+        <p>Service Worker が更新される際の動きと、 <code translate="no">skipWaiting()</code> が何をスキップするのか?
+        <p><code translate="no">install</code>, <code translate="no">activate</code> イベントの用途。
+        <iframe src="https://www.youtube.com/embed/AMbQ7d9rjao" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
+        <pre class=js><code translate="no">console.log(&#039;master&#039;);
 
 navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt; {
   registration.addEventListener(&#039;updatefound&#039;, (e) =&gt; {
@@ -248,7 +248,7 @@ navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt
   });
   return navigator.serviceWorker.ready;
 });</code></pre>
-      <pre class=js><code translate="no">console.info(&#039;worker&#039;);
+        <pre class=js><code translate="no">console.info(&#039;worker&#039;);
 
 const ver = 1;
 
@@ -270,13 +270,13 @@ self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
   }
   return;
 });</code></pre>
-      <p>DEMO: <a href="https://labs.jxck.io/service-worker/updatefound/">https://labs.jxck.io/service-worker/updatefound/</a>
-    </section>
-    <section>
-      <h2 id="update"><a href="#update">update()</a></h2>
-      <p><code translate="no">registration.update()</code> による worker の更新と、ブラウザキャッシュにヒットする場合の挙動。
-      <iframe src="https://www.youtube.com/embed/7uRVh9PzV5o" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-      <pre class=js><code translate="no">console.log(&#039;master&#039;);
+        <p>DEMO: <a href="https://labs.jxck.io/service-worker/updatefound/">https://labs.jxck.io/service-worker/updatefound/</a>
+      </section>
+      <section>
+        <h2 id="update"><a href="#update">update()</a></h2>
+        <p><code translate="no">registration.update()</code> による worker の更新と、ブラウザキャッシュにヒットする場合の挙動。
+        <iframe src="https://www.youtube.com/embed/7uRVh9PzV5o" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
+        <pre class=js><code translate="no">console.log(&#039;master&#039;);
 
 navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt; {
   registration.addEventListener(&#039;updatefound&#039;, (e) =&gt; {
@@ -290,7 +290,7 @@ navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt
     registration.update();
   }, 1000);
 });</code></pre>
-      <pre class=js><code translate="no">console.info(&#039;worker&#039;);
+        <pre class=js><code translate="no">console.info(&#039;worker&#039;);
 
 const ver = 1;
 
@@ -316,13 +316,13 @@ self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
 self.addEventListener(&#039;push&#039;, () =&gt; {
   self.registration.update();
 });</code></pre>
-      <p>DEMO: <a href="https://labs.jxck.io/service-worker/update/">https://labs.jxck.io/service-worker/update/</a>
-    </section>
-    <section>
-      <h2 id="backgroundsync"><a href="#backgroundsync">backgroundsync</a></h2>
-      <p>sync の発火タイミングと fetch を sync で送る場合の考え方。
-      <iframe src="https://www.youtube.com/embed/b7ZM7uzkykA" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-      <pre class=js><code translate="no">// master.js
+        <p>DEMO: <a href="https://labs.jxck.io/service-worker/update/">https://labs.jxck.io/service-worker/update/</a>
+      </section>
+      <section>
+        <h2 id="backgroundsync"><a href="#backgroundsync">backgroundsync</a></h2>
+        <p>sync の発火タイミングと fetch を sync で送る場合の考え方。
+        <iframe src="https://www.youtube.com/embed/b7ZM7uzkykA" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
+        <pre class=js><code translate="no">// master.js
 navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt; {
   return navigator.serviceWorker.ready;
 }).then((registration) =&gt; {
@@ -333,7 +333,7 @@ navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt
     }).catch(console.error.bind(console));
   });
 }).catch(console.error.bind(console));</code></pre>
-      <pre class=js><code translate="no">// worker.js
+        <pre class=js><code translate="no">// worker.js
 self.addEventListener(&#039;install&#039;, (e) =&gt; {
   console.info(&#039;install&#039;, e);
   e.waitUntil(skipWaiting());
@@ -347,23 +347,23 @@ self.addEventListener(&#039;activate&#039;, (e) =&gt; {
 self.addEventListener(&#039;sync&#039;, (e) =&gt; {
   console.log(&#039;sync&#039;, e);
 });</code></pre>
-      <p>DEMO: <a href="https://labs.jxck.io/service-worker/background-sync/">https://labs.jxck.io/service-worker/background-sync/</a>
-    </section>
-    <section>
-      <h2 id="push"><a href="#push">push</a></h2>
-      <p>push に必要な情報とその取り方、投げ方。
-      <p><em>デモで作った API KEY は当たり前ですが無効にしてあります、全く同じ値を入れても動きません</em>
+        <p>DEMO: <a href="https://labs.jxck.io/service-worker/background-sync/">https://labs.jxck.io/service-worker/background-sync/</a>
+      </section>
       <section>
-        <h3 id="1-google-developer-console"><a href="#1-google-developer-console">1. Google Developer Console</a></h3>
-        <p>Console の UI はコロコロ変わります。以下の情報を頑張って探してください。
-        <ul>
-          <li>プロジェクトを作る
-          <li>プロジェクト ID の数字を探す
-          <li>Google Cloud Messaging の API Key を探す
-          <li>manifest.json を作って HTML にリンクスする
-        </ul>
-        <iframe src="https://www.youtube.com/embed/MlCZWVvUiXM" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-        <pre class=json><code translate="no">{
+        <h2 id="push"><a href="#push">push</a></h2>
+        <p>push に必要な情報とその取り方、投げ方。
+        <p><em>デモで作った API KEY は当たり前ですが無効にしてあります、全く同じ値を入れても動きません</em>
+        <section>
+          <h3 id="1-google-developer-console"><a href="#1-google-developer-console">1. Google Developer Console</a></h3>
+          <p>Console の UI はコロコロ変わります。以下の情報を頑張って探してください。
+          <ul>
+            <li>プロジェクトを作る
+            <li>プロジェクト ID の数字を探す
+            <li>Google Cloud Messaging の API Key を探す
+            <li>manifest.json を作って HTML にリンクスする
+          </ul>
+          <iframe src="https://www.youtube.com/embed/MlCZWVvUiXM" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
+          <pre class=json><code translate="no">{
   &quot;name&quot;: &quot;labs.jxck.io push demo&quot;,
   &quot;short_name&quot;: &quot;labs.jxck.io&quot;,
   &quot;icons&quot;: [{
@@ -376,8 +376,8 @@ self.addEventListener(&#039;sync&#039;, (e) =&gt; {
   &quot;theme_color&quot;: &quot;#ccc&quot;,
   &quot;gcm_sender_id&quot;: &quot;************&quot;
 }</code></pre>
-        <p>(<code translate="no">gcm_user_visible_only</code> は今はもういりません)
-        <pre class=html><code translate="no">&lt;!DOCTYPE html&gt;
+          <p>(<code translate="no">gcm_user_visible_only</code> は今はもういりません)
+          <pre class=html><code translate="no">&lt;!DOCTYPE html&gt;
 &lt;meta charset=utf-8&gt;
 &lt;title&gt;Service Worker Push Demo | labs.jxck.io&lt;/title&gt;
 
@@ -386,12 +386,12 @@ self.addEventListener(&#039;sync&#039;, (e) =&gt; {
 &lt;script src=master.js&gt;&lt;/script&gt;
 
 &lt;h1&gt;Push DEMO&lt;/h1&gt;</code></pre>
-      </section>
-      <section>
-        <h3 id="2masterjs"><a href="#2masterjs">2.master.js</a></h3>
-        <p><code translate="no">endpoint</code>, <code translate="no">userAuth</code>, <code translate="no">userPublickKey</code> をなんらかの方法でサーバに送ります。
-        <iframe src="https://www.youtube.com/embed/f-ney12qAEI" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-        <pre class=js><code translate="no">&#039;use strict&#039;;
+        </section>
+        <section>
+          <h3 id="2masterjs"><a href="#2masterjs">2.master.js</a></h3>
+          <p><code translate="no">endpoint</code>, <code translate="no">userAuth</code>, <code translate="no">userPublickKey</code> をなんらかの方法でサーバに送ります。
+          <iframe src="https://www.youtube.com/embed/f-ney12qAEI" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
+          <pre class=js><code translate="no">&#039;use strict&#039;;
 let p = console.log.bind(console);
 
 navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt; {
@@ -414,11 +414,11 @@ navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt
   console.log(body);
 
 }).catch(console.error.bind(console));</code></pre>
-      </section>
-      <section>
-        <h3 id="3workerjs"><a href="#3workerjs">3.worker.js</a></h3>
-        <iframe src="https://www.youtube.com/embed/k939NlThH4E" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-        <pre class=js><code translate="no">self.addEventListener(&#039;install&#039;, (e) =&gt; {
+        </section>
+        <section>
+          <h3 id="3workerjs"><a href="#3workerjs">3.worker.js</a></h3>
+          <iframe src="https://www.youtube.com/embed/k939NlThH4E" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
+          <pre class=js><code translate="no">self.addEventListener(&#039;install&#039;, (e) =&gt; {
   console.info(&#039;install&#039;, e);
   e.waitUntil(self.skipWaiting());
 });
@@ -458,12 +458,12 @@ self.addEventListener(&#039;notificationclick&#039;, (e) =&gt; {
       return clients.openWindow(URL);
   }));
 });</code></pre>
-      </section>
-      <section>
-        <h3 id="4pushjs"><a href="#4pushjs">4.push.js</a></h3>
-        <p>使用したモジュール: <a href="https://github.com/web-push-libs/web-push">https://github.com/web-push-libs/web-push</a>
-        <iframe src="https://www.youtube.com/embed/hIliK4l4wqw" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-        <pre class=js><code translate="no">&#039;use strict&#039;;
+        </section>
+        <section>
+          <h3 id="4pushjs"><a href="#4pushjs">4.push.js</a></h3>
+          <p>使用したモジュール: <a href="https://github.com/web-push-libs/web-push">https://github.com/web-push-libs/web-push</a>
+          <iframe src="https://www.youtube.com/embed/hIliK4l4wqw" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
+          <pre class=js><code translate="no">&#039;use strict&#039;;
 
 let push = require(&#039;web-push&#039;);
 
@@ -487,16 +487,17 @@ push.sendNotification(data.endpoint, {
 .catch((err) =&gt; {
   console.error(&#039;fail&#039;, err);
 });</code></pre>
-        <p>DEMO(push は飛ばしていません): <a href="https://labs.jxck.io/service-worker/push/">https://labs.jxck.io/service-worker/push/</a>
+          <p>DEMO(push は飛ばしていません): <a href="https://labs.jxck.io/service-worker/push/">https://labs.jxck.io/service-worker/push/</a>
+        </section>
       </section>
-    </section>
-    <section>
-      <h2 id="図"><a href="#図">図</a></h2>
-      <p>映像中で使用した図です
-      <p><img loading=lazy src=service-worker-lifecycle.svg#840x450 alt="service worker のライフサイクル (installing -> waiting -> active -> redundunt) の遷移図" title="service worker lifecycle" width=840 height=450 intrinsicsize=840x450></p>
-    </section>
-  </article>
-
+      <section>
+        <h2 id="図"><a href="#図">図</a></h2>
+        <p>映像中で使用した図です
+        <p>
+          <img loading=lazy src=service-worker-lifecycle.svg#840x450 alt="service worker のライフサイクル (installing -> waiting -> active -> redundunt) の遷移図" title="service worker lifecycle" width=840 height=450 intrinsicsize=840x450>
+        </p>
+      </section>
+    </article>
   </main>
   <hr>
 

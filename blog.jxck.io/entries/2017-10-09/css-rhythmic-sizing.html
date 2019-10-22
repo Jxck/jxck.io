@@ -106,54 +106,54 @@
     </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
-  <article>
-    <h1><a href=/entries/2017-10-09/css-rhythmic-sizing.html>CSS Rhythmic Sizing で Vertical Rhythm</a></h1>
-    <section>
-      <h2 id="intro"><a href="#intro">Intro</a></h2>
-      <p>タイポグラフィに関連したデザイン手法の 1 つに Vertical Rhythm がある。
-      <p>そして、現在 CSS でそれを簡単に実現するための CSS Rhythmic Sizing という仕様が提案されている。
-      <p>Chrome にフラグ付きで実装されたこの仕様を用いて、本サイトへの適用を行ったので、解説する。
-      <p><a href="https://drafts.csswg.org/css-rhythm/examples/snap-height.html">CSS Rhythmic Sizing</a>
-    </section>
-    <section>
-      <h2 id="css-rhythmic-sizing"><a href="#css-rhythmic-sizing">CSS Rhythmic Sizing</a></h2>
-      <p>筆者はタイポグラフィやデザインには疎く、 Vertical Rhythm についてもよく知らなかった。
-      <p>しかし、 Chrome でこの仕様を実装している <a href="https://plus.google.com/u/0/111919080701466394452">Koji Ishii</a> さんに API を紹介してもらい、色々学ぶ機会があった。
-      <p>本仕様はまだブラウザ間でも合意が取りきれていない部分があるらしく、ユースケースやフィードバックを集めている段階とのことだったので、
-      <p>トライアルとして、本サイトへの適用を行うことにした。
-      <p>実装にあたっては、全面的に Koji さんに協力して頂いた。
-    </section>
-    <section>
-      <h2 id="readability-of-rhythm"><a href="#readability-of-rhythm">Readability of Rhythm</a></h2>
-      <p>Vertical Rhythm の効果については、以下のように教えて頂いた。
-      <blockquote>
-        <p>Readability の研究からすると、 Vertical Rhythm があたっていると、読むスピードが上がり、読後に質問すると内容を覚えていたり理解していたりする率が上がる、とされています。
-      </blockquote>
-      <p>つまり、本サイトのような、専門的な内容を扱うテキストを中心としたコンテンツでは、効果を期待できそうだ。
-      <p>また、本サイトの特徴上、アクセスするユーザは Chrome が多く、 <code translate="no">#enable-experimental-web-platform-features</code> を有効にしている可能性も期待しやすい。
-      <p>特に入れることによるデメリットもなさそうなので、本サイトには <code translate="no">@support</code> で CSS を切り替えつつ、試験的に適用することにした。
-    </section>
-    <section>
-      <h2 id="demo"><a href="#demo">DEMO</a></h2>
-      <p>機能を試すデモを以下に用意した。
-      <p><a href="https://labs.jxck.io/rhythmic-sizing/basic.html">Rhysmic Sizing DEMO</a>
-      <p>CSS の機能は Origin Trials ではないため、 <a href="chrome://flags/#enable-experimental-web-platform-features">chrome://flags/#enable-experimental-web-platform-features</a> を有効にする必要がある。
-      <p>作成時は Chrome Canary 63 で挙動を確認している。
-      <p>これを元に解説する。
-      <p>(参考までに <a href="https://drafts.csswg.org/css-rhythm/examples/snap-height.html">CSS Working Group</a> のデモも紹介しておく)
-    </section>
-    <section>
-      <h2 id="vertical-rhythm"><a href="#vertical-rhythm">Vertical Rhythm</a></h2>
-      <p>例えば以下のようなページがあったとする。
-      <p>
-        <picture>
-          <source type=image/webp srcset=single-no-rhythm.webp#500x600>
-          <img loading=lazy src=single-no-rhythm.png#500x600 alt="Vertical Rhythm を適用しないシングルカラムでは、各行の高さ/余白のリズムが安定しない" title="single column with no vertical rhythm" intrinsicsize=500x600>
-        </picture>
-      </p>
-      <p>ここでは、わかりやすくするため、 <code translate="no">font-size</code> を <code translate="no">16px</code> とし、 <code translate="no">&lt;p&gt;</code> のマージンは前後とも <code translate="no">24px</code> としている。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre class=css><code translate="no">body {
+    <article>
+      <h1><a href=/entries/2017-10-09/css-rhythmic-sizing.html>CSS Rhythmic Sizing で Vertical Rhythm</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>タイポグラフィに関連したデザイン手法の 1 つに Vertical Rhythm がある。
+        <p>そして、現在 CSS でそれを簡単に実現するための CSS Rhythmic Sizing という仕様が提案されている。
+        <p>Chrome にフラグ付きで実装されたこの仕様を用いて、本サイトへの適用を行ったので、解説する。
+        <p><a href="https://drafts.csswg.org/css-rhythm/examples/snap-height.html">CSS Rhythmic Sizing</a>
+      </section>
+      <section>
+        <h2 id="css-rhythmic-sizing"><a href="#css-rhythmic-sizing">CSS Rhythmic Sizing</a></h2>
+        <p>筆者はタイポグラフィやデザインには疎く、 Vertical Rhythm についてもよく知らなかった。
+        <p>しかし、 Chrome でこの仕様を実装している <a href="https://plus.google.com/u/0/111919080701466394452">Koji Ishii</a> さんに API を紹介してもらい、色々学ぶ機会があった。
+        <p>本仕様はまだブラウザ間でも合意が取りきれていない部分があるらしく、ユースケースやフィードバックを集めている段階とのことだったので、
+        <p>トライアルとして、本サイトへの適用を行うことにした。
+        <p>実装にあたっては、全面的に Koji さんに協力して頂いた。
+      </section>
+      <section>
+        <h2 id="readability-of-rhythm"><a href="#readability-of-rhythm">Readability of Rhythm</a></h2>
+        <p>Vertical Rhythm の効果については、以下のように教えて頂いた。
+        <blockquote>
+          <p>Readability の研究からすると、 Vertical Rhythm があたっていると、読むスピードが上がり、読後に質問すると内容を覚えていたり理解していたりする率が上がる、とされています。
+        </blockquote>
+        <p>つまり、本サイトのような、専門的な内容を扱うテキストを中心としたコンテンツでは、効果を期待できそうだ。
+        <p>また、本サイトの特徴上、アクセスするユーザは Chrome が多く、 <code translate="no">#enable-experimental-web-platform-features</code> を有効にしている可能性も期待しやすい。
+        <p>特に入れることによるデメリットもなさそうなので、本サイトには <code translate="no">@support</code> で CSS を切り替えつつ、試験的に適用することにした。
+      </section>
+      <section>
+        <h2 id="demo"><a href="#demo">DEMO</a></h2>
+        <p>機能を試すデモを以下に用意した。
+        <p><a href="https://labs.jxck.io/rhythmic-sizing/basic.html">Rhysmic Sizing DEMO</a>
+        <p>CSS の機能は Origin Trials ではないため、 <a href="chrome://flags/#enable-experimental-web-platform-features">chrome://flags/#enable-experimental-web-platform-features</a> を有効にする必要がある。
+        <p>作成時は Chrome Canary 63 で挙動を確認している。
+        <p>これを元に解説する。
+        <p>(参考までに <a href="https://drafts.csswg.org/css-rhythm/examples/snap-height.html">CSS Working Group</a> のデモも紹介しておく)
+      </section>
+      <section>
+        <h2 id="vertical-rhythm"><a href="#vertical-rhythm">Vertical Rhythm</a></h2>
+        <p>例えば以下のようなページがあったとする。
+        <p>
+          <picture>
+            <source type=image/webp srcset=single-no-rhythm.webp#500x600>
+            <img loading=lazy src=single-no-rhythm.png#500x600 alt="Vertical Rhythm を適用しないシングルカラムでは、各行の高さ/余白のリズムが安定しない" title="single column with no vertical rhythm" intrinsicsize=500x600>
+          </picture>
+        </p>
+        <p>ここでは、わかりやすくするため、 <code translate="no">font-size</code> を <code translate="no">16px</code> とし、 <code translate="no">&lt;p&gt;</code> のマージンは前後とも <code translate="no">24px</code> としている。
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+        <pre class=css><code translate="no">body {
   --base: 16px; /* base font size */
   --grid: 24px; /* base grid size */
   font-size: var(--base);
@@ -164,76 +164,76 @@ p {
   margin-top: var(--grid);
   margin-bottom: var(--grid);
 }</code></pre>
-      <p>そこに引いたグリッドの線を見ればわかるように、 <code translate="no">&lt;h1&gt;</code> ~ <code translate="no">&lt;h4&gt;</code> の余白はバラバラになっている。
-      <p>ここで、個々の <code translate="no">line-height</code> を計算し適切に設定する代わりに、 CSS Rhythmic Sizing では以下のようなプロパティが設定できる。
-      <pre class=css><code translate="no">.rhythm {
+        <p>そこに引いたグリッドの線を見ればわかるように、 <code translate="no">&lt;h1&gt;</code> ~ <code translate="no">&lt;h4&gt;</code> の余白はバラバラになっている。
+        <p>ここで、個々の <code translate="no">line-height</code> を計算し適切に設定する代わりに、 CSS Rhythmic Sizing では以下のようなプロパティが設定できる。
+        <pre class=css><code translate="no">.rhythm {
   line-height-step: var(--grid);
 }</code></pre>
-      <p>この設定を親要素に指定すると、子要素のインライン要素は、 <code translate="no">line-height</code> を自動で <code translate="no">24px</code> の倍数に揃えることができる。
-      <p>すると、 <code translate="no">&lt;h1&gt;</code> ~ <code translate="no">&lt;h4&gt;</code> の高さは、フォントが <code translate="no">line-height-step</code> の値(つまり <code translate="no">24px</code>) に収まる場合は <code translate="no">24px</code> に、収まらなければ 40, 80&hellip; px に自動でアラインされる。
-      <p><code translate="no">&lt;p&gt;</code> のマージンは同じく(相殺含め) <code translate="no">24px</code> に揃っているので、表示は以下のようにグリッドに揃う。
-      <p>
-        <picture>
-          <source type=image/webp srcset=single-with-rhythm.webp#500x600>
-          <img loading=lazy src=single-with-rhythm.png#500x600 alt="Vertical Rhythm を適用したシングルカラムでは、各行の高さ/余白が揃いリズムが安定する" title="single column with vertical rhythm" intrinsicsize=500x600>
-        </picture>
-      </p>
-      <p>途中にある <code translate="no">&lt;img&gt;</code> もインライン要素なので、同じくリズムに載っていることがわかるだろう。
-    </section>
-    <section>
-      <h2 id="multi-column-layout"><a href="#multi-column-layout">Multi Column Layout</a></h2>
-      <p>確かにリズムが揃っていることはわかるが、それによる効果は本サイトのような Single Column よりも Multi Column なコンテンツの方が実感しやすい。
-      <p>そこで、 CSS の Multi Column Layout で 2 column にするオプションを追加した。
-      <pre class=css><code translate="no">.colmun {
+        <p>この設定を親要素に指定すると、子要素のインライン要素は、 <code translate="no">line-height</code> を自動で <code translate="no">24px</code> の倍数に揃えることができる。
+        <p>すると、 <code translate="no">&lt;h1&gt;</code> ~ <code translate="no">&lt;h4&gt;</code> の高さは、フォントが <code translate="no">line-height-step</code> の値(つまり <code translate="no">24px</code>) に収まる場合は <code translate="no">24px</code> に、収まらなければ 40, 80&hellip; px に自動でアラインされる。
+        <p><code translate="no">&lt;p&gt;</code> のマージンは同じく(相殺含め) <code translate="no">24px</code> に揃っているので、表示は以下のようにグリッドに揃う。
+        <p>
+          <picture>
+            <source type=image/webp srcset=single-with-rhythm.webp#500x600>
+            <img loading=lazy src=single-with-rhythm.png#500x600 alt="Vertical Rhythm を適用したシングルカラムでは、各行の高さ/余白が揃いリズムが安定する" title="single column with vertical rhythm" intrinsicsize=500x600>
+          </picture>
+        </p>
+        <p>途中にある <code translate="no">&lt;img&gt;</code> もインライン要素なので、同じくリズムに載っていることがわかるだろう。
+      </section>
+      <section>
+        <h2 id="multi-column-layout"><a href="#multi-column-layout">Multi Column Layout</a></h2>
+        <p>確かにリズムが揃っていることはわかるが、それによる効果は本サイトのような Single Column よりも Multi Column なコンテンツの方が実感しやすい。
+        <p>そこで、 CSS の Multi Column Layout で 2 column にするオプションを追加した。
+        <pre class=css><code translate="no">.colmun {
   column-count: 2;
   column-gap: calc(var(--grid) * 2);
   padding: var(--grid);
 }</code></pre>
-      <p>結果は以下である。
-      <p>
-        <picture>
-          <source type=image/webp srcset=multi-with-rhythm.webp#1680x700>
-          <img loading=lazy src=multi-with-rhythm.png#1680x700 alt="Vertical Rhythm を適用したマルチカラムレイアウトでは、隣同士での高さも揃いリズムが安定する" title="multi column with vertical rhythm" intrinsicsize=1680x700>
-        </picture>
-      </p>
-    </section>
-    <section>
-      <h2 id="block-step"><a href="#block-step">Block Step</a></h2>
-      <p>ここまではインライン要素に対する設定であるが、仕様にはブロック要素へ設定するプロパティも定義されている。
-      <ul>
-        <li>
-          <code translate="no">block-step-size</code>
-        </li>
-        <li>
-          <code translate="no">block-step-insert</code>
-        </li>
-        <li>
-          <code translate="no">block-step-align</code>
-        </li>
-        <li>
-          <code translate="no">block-step-round</code>
-        </li>
-      </ul>
-      <p>しかし、まだ実装したブラウザは確認していない。
-      <p>そこで、現状ブロック要素を Rhythm に載せるには、 <code translate="no">inline-block</code> を指定して無理やり <code translate="no">line-height-step</code> を適用するしかないようだ。
-    </section>
-    <section>
-      <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
-      <p>本サイトは、デモと違い 1 column かつ日本語のコンテンツであり、 Grid の基準になる値もデモほど揃っていない。
-      <p>こうしたコンテンツでの考慮点も教えて頂いた。
-      <blockquote>
-        <p>特に 1 カラムにおいては、厳密にすべてをリズムに載せる必要はなく、また特に日本語では良くないとされています。リズムは、次の行がリズムに乗っていることで次の行の行頭を探しやすくする、という目的ですので、大きなブロックや表はリズムに乗る必要がありません。原則、行幅が広い時には、行がラップするときに視線が右端から左端まで移動する距離が長くなるので、行間は広めに取ります。でもあまり広げると、かっこわるいし、スペースも無駄なので、 Vertical Rhythm で視線移動を補完してあげる、ということなんです。
-      </blockquote>
-      <p>そこで、以下のような方針で適用する。
-      <p>まず <code translate="no">line-height: 15</code> とし、これを基準に <code translate="no">&lt;article&gt;</code> 全体に Rhythm を当てる。
-      <pre class=css><code translate="no">article {
+        <p>結果は以下である。
+        <p>
+          <picture>
+            <source type=image/webp srcset=multi-with-rhythm.webp#1680x700>
+            <img loading=lazy src=multi-with-rhythm.png#1680x700 alt="Vertical Rhythm を適用したマルチカラムレイアウトでは、隣同士での高さも揃いリズムが安定する" title="multi column with vertical rhythm" intrinsicsize=1680x700>
+          </picture>
+        </p>
+      </section>
+      <section>
+        <h2 id="block-step"><a href="#block-step">Block Step</a></h2>
+        <p>ここまではインライン要素に対する設定であるが、仕様にはブロック要素へ設定するプロパティも定義されている。
+        <ul>
+          <li>
+            <code translate="no">block-step-size</code>
+          </li>
+          <li>
+            <code translate="no">block-step-insert</code>
+          </li>
+          <li>
+            <code translate="no">block-step-align</code>
+          </li>
+          <li>
+            <code translate="no">block-step-round</code>
+          </li>
+        </ul>
+        <p>しかし、まだ実装したブラウザは確認していない。
+        <p>そこで、現状ブロック要素を Rhythm に載せるには、 <code translate="no">inline-block</code> を指定して無理やり <code translate="no">line-height-step</code> を適用するしかないようだ。
+      </section>
+      <section>
+        <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
+        <p>本サイトは、デモと違い 1 column かつ日本語のコンテンツであり、 Grid の基準になる値もデモほど揃っていない。
+        <p>こうしたコンテンツでの考慮点も教えて頂いた。
+        <blockquote>
+          <p>特に 1 カラムにおいては、厳密にすべてをリズムに載せる必要はなく、また特に日本語では良くないとされています。リズムは、次の行がリズムに乗っていることで次の行の行頭を探しやすくする、という目的ですので、大きなブロックや表はリズムに乗る必要がありません。原則、行幅が広い時には、行がラップするときに視線が右端から左端まで移動する距離が長くなるので、行間は広めに取ります。でもあまり広げると、かっこわるいし、スペースも無駄なので、 Vertical Rhythm で視線移動を補完してあげる、ということなんです。
+        </blockquote>
+        <p>そこで、以下のような方針で適用する。
+        <p>まず <code translate="no">line-height: 15</code> とし、これを基準に <code translate="no">&lt;article&gt;</code> 全体に Rhythm を当てる。
+        <pre class=css><code translate="no">article {
   line-height: 1.5;
   --grid: 1.5em;
   line-height-step: var(--grid);
 }</code></pre>
-      <p><code translate="no">&lt;h1&gt;</code> ~ <code translate="no">&lt;h5&gt;</code> 中はモバイルでの折り返しを考慮して 1.2 とし、中身は Rhythm から外すが、ブロック全体は Rhythm に載せる。
-      <p>しかし、余白が空きすぎるので <code translate="no">margin-bottom</code> のみ消す。
-      <pre class=css><code translate="no">article h1,
+        <p><code translate="no">&lt;h1&gt;</code> ~ <code translate="no">&lt;h5&gt;</code> 中はモバイルでの折り返しを考慮して 1.2 とし、中身は Rhythm から外すが、ブロック全体は Rhythm に載せる。
+        <p>しかし、余白が空きすぎるので <code translate="no">margin-bottom</code> のみ消す。
+        <pre class=css><code translate="no">article h1,
 article h2,
 article h3,
 article h4,
@@ -245,29 +245,28 @@ article h6 {
   line-height: 1.2;
   margin-bottom: 0;
 }</code></pre>
-      <p><code translate="no">&lt;p&gt;</code> はリズムに載せるため、 margin/padding を <code translate="no">line-height-step</code> に揃える。
-      <pre class=css><code translate="no">article p {
+        <p><code translate="no">&lt;p&gt;</code> はリズムに載せるため、 margin/padding を <code translate="no">line-height-step</code> に揃える。
+        <pre class=css><code translate="no">article p {
   margin-top: var(--grid);
   margin-bottom: var(--grid);
 }</code></pre>
-      <p><code translate="no">&lt;pre&gt;</code> と <code translate="no">&lt;table&gt;</code> は中身/全体ともに Rhythm に載せないよう、 <code translate="no">line-height-step: 0</code> にする。
-      <pre class=css><code translate="no">article pre,
+        <p><code translate="no">&lt;pre&gt;</code> と <code translate="no">&lt;table&gt;</code> は中身/全体ともに Rhythm に載せないよう、 <code translate="no">line-height-step: 0</code> にする。
+        <pre class=css><code translate="no">article pre,
 article table {
   line-height-step: 0;
   line-height: normal;
 }</code></pre>
-      <p>結果は本ページを、フラグを有効にした Chrome Canary と、そうでない Chrome Stable などを横に並べて見比べるなどすれば確認できる。
-    </section>
-    <section>
-      <h2 id="雑感"><a href="#雑感">雑感</a></h2>
-      <p>Vertical Rhythm については、既に CSS で実現する方法が色々あるようだ。
-      <p>しかし、このプロパティが有効であれば、面倒な計算などを行わずに、手軽に実現できることはわかった。
-      <p>Readability という話になると効果の測定が難しいところだが、 CSS を過度に複雑にせず目的を達成できる点では Rhythmic Sizing の導入は検討しやすい。
-      <p>また、低コストでリズムという指標を設計に取り入れられることは、設計にも良い影響があるのでは無いかと考える。
-      <p>仕様のステータスとしてはまだまだだが、今後の展開にも期待したい。
-    </section>
-  </article>
-
+        <p>結果は本ページを、フラグを有効にした Chrome Canary と、そうでない Chrome Stable などを横に並べて見比べるなどすれば確認できる。
+      </section>
+      <section>
+        <h2 id="雑感"><a href="#雑感">雑感</a></h2>
+        <p>Vertical Rhythm については、既に CSS で実現する方法が色々あるようだ。
+        <p>しかし、このプロパティが有効であれば、面倒な計算などを行わずに、手軽に実現できることはわかった。
+        <p>Readability という話になると効果の測定が難しいところだが、 CSS を過度に複雑にせず目的を達成できる点では Rhythmic Sizing の導入は検討しやすい。
+        <p>また、低コストでリズムという指標を設計に取り入れられることは、設計にも良い影響があるのでは無いかと考える。
+        <p>仕様のステータスとしてはまだまだだが、今後の展開にも期待したい。
+      </section>
+    </article>
   </main>
   <hr>
 

@@ -106,165 +106,164 @@
     </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
-  <article>
-    <h1><a href=/entries/2019-10-13/font-feature-settings.html>Noto Sans Hinted と font-feature-settings: &lsquo;palt&rsquo;</a></h1>
-    <section>
-      <h2 id="intro"><a href="#intro">Intro</a></h2>
-      <p>Noto Sans のサブセット生成を見なおし、 Noto Sans Hinted から pyftsubset で生成し、ついでに font-feature-settings を有効にした。
-      <p>作業と検証の記録を兼ねて、実施結果を記す。
-    </section>
-    <section>
-      <h2 id="fonttools"><a href="#fonttools">fonttools</a></h2>
-      <p>これまで、フォントのサブセットの生成には以下の 2 つのツールを使用していた。
-      <ul>
-        <li>
-          <a href="https://opentype.jp/subsetfontmk.htm">サブセットフォントメーカー</a>
-        </li>
-        <li>
-          <a href="https://opentype.jp/woffconv.htm">WOFF コンバータ</a>
-        </li>
-      </ul>
-      <p>しかし、 macOS を Catalina にあげたところ、これらが起動できなくなり、フォントが生成できなくなった。
-      <p>これまで GUI で行なっていたが、せっかくなので自動化するために、代替コマンドを探し、プロセスを組んだ。
-      <p>いくつかツールがあるが、今回は fonttools に同梱された pyftsubset を採用することとした。
-      <ul>
-        <li>
-          <a href="https://github.com/fonttools/fonttools">fonttools/fonttools</a>
-        </li>
-      </ul>
-    </section>
-    <section>
-      <h2 id="pyftsubset"><a href="#pyftsubset">pyftsubset</a></h2>
-      <p>これまでは、使用しそうなフォントをリストアップし、そのリストを元にフォントを生成していた。
-      <p>しかし、更新への追従も面倒になったので、やはり記事で利用している文字を全てリストアップするスクリプトを書くことにした。
-      <p>ところが、単純に全ての文字を取ると、一度しか使用しない文字が増えてしまう。理由は以下のようなエントリがあるからだ。
-      <ul>
-        <li>
-          <a href="https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html">Noto Sans の Web Font 対応とサブセットによる最適化 | blog.jxck.io</a>
-        </li>
-        <li>
-          <a href="https://blog.jxck.io/entries/2017-03-02/unicode-in-javascript.html">JavaScript における文字コードと「文字数」の数え方 | blog.jxck.io</a>
-        </li>
-      </ul>
-      <p>通常、記事中に結合文字、絵文字、サロゲートペアなどは基本的に使わないが、それ自体を解説するこの 2 つのエントリはそれが含まれてしまう。
-      <p>フォントに含まれない文字は、スタイルが変わってしまい違和感があるため、これまでは見つけ次第含むように更新していた。
-      <p>しかし、そういった文字はほぼサンプルコードとしてコードブロック(<code translate="no">&lt;code&gt;</code>)に含まれており、かつそこには MONO font が当たっている。
-      <p>そこで、コードブロックに含まれてない特殊な文字を全てコードブロックに含むように記事を修正し、 HTML から <code translate="no">&lt;code&gt;</code> を全て除いた文字群をサブセットの対象とした。
-      <p>対象を subset.txt に保存し、変換は以下のようにした。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre class=sh><code translate="no">$ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../subset.txt --layout-features=&#039;*&#039; --flavor=woff2 --output-file=NotoSansCJKjp-Regular-Jxck-20191011.woff2</code></pre>
-    </section>
-    <section>
-      <h2 id="layout-features"><a href="#layout-features">layout features</a></h2>
-      <p>ところが、生成したフォントが従来の倍近いサイズになっていた。
-      <ul>
-        <li>353.1K: 従来
-        <li>606.6K: 更新後
-      </ul>
-      <p>コマンドヘルプを見ながら適当につけた以下のオプションが問題である。
-      <pre class=sh><code translate="no">--layout-features=&#039;*&#039;</code></pre>
-      <p>この layout features は、 Open Type のフォントが含む、ヒント情報を含めるという指定だ。
-      <p>Open Type がいくつかの情報を持っていることは薄々知っていたが、以下の理由から特に考えずにきた。
-      <ul>
-        <li>従来使用していたツールは、この情報を全て削除していた。
-        <li>昔の Noto Sans はこの情報を含まなかった気がする
-      </ul>
-      <blockquote>
-        <p>フォントが、ヒント(OpenType フォントの場合)、カーニング情報、ビットマップデータ、 OpenType 機能を持っている場合、それらは削除されます。
-        <p>&mdash; <cite><a href="https://opentype.jp/subsetfontmk.htm">サブセットフォントメーカー</a></cite>
-      </blockquote>
-      <p>今は、 NotoSansCJKjp-hinted.zip を元にすれば、ヒント情報を含むサブセットが作れるため、 CSS の font-feature-settings が指定できる。
-      <p>全て削れば従来通りだが、せっかくなので指定を検証することにした。
-    </section>
-    <section>
-      <h2 id="font-feature-settings"><a href="#font-feature-settings">font-feature-settings</a></h2>
-      <p>まず、以下を調査する。
-      <ul>
-        <li>Noto Sans CJK jp が含むヒント情報
-        <li>CSS で指定可能なプロパティ
-      </ul>
-      <p>ところが、前者についてはリポジトリを見てもそれらしい情報にたどり着くことができなかった。
-      <p>後者は、 <a href="https://drafts.csswg.org/css-fonts-3/#ref-OPENTYPE-FEATURES">font-feature-settings の CSS の仕様</a>から、 MS にある Registered Features という一覧がリンクされていた。
-      <ul>
-        <li>
-          <a href="https://docs.microsoft.com/ja-jp/typography/opentype/spec/featurelist">Registered features - Typography | Microsoft Docs</a>
-        </li>
-      </ul>
-      <p>140 近い機能があるようだが、このうちのどれが使えるのかがわからなかったため、以下の DEMO ページを用意し Chrome で試した。
-      <ul>
-        <li>
-          <a href="http://labs.jxck.io/webfont/font-feature-settings.html">Font Feature Settings DEMO</a>
-        </li>
-      </ul>
-      <p>恐らく検証するための妥当な文字や、ブラウザの実装などといった変数もあるだろうが、その辺まで網羅するのはコストが高い。
-      <p>そこで、適当なサンプル文章をベースに、プロパティを切り替えながら、明らかに見た目が変わる指定を把握するところまで行った。
-      <ul>
-        <li>aalt: Access
-        <li>dlig: Discretionary Ligatures
-        <li>fwid: Full Widths
-        <li>halt: Alternate Half Widths
-        <li>hwid: Half Widths
-        <li>palt: Proportional Alternate Widths
-        <li>pwid: Proportional Widths
-        <li>vert: Vertical Writing
-        <li>vrt2: Vertical Alternates and Rotation
-      </ul>
-      <p>この中で、本サイトでの対応を検討すべきは <code translate="no">halt</code>, <code translate="no">palt</code> だろうと判断した。
-    </section>
-    <section>
-      <h2 id="字詰palt"><a href="#字詰palt">字詰(palt)</a></h2>
-      <p><code translate="no">halt</code>, <code translate="no">palt</code> はいずれも字詰に関するプロパティだ。
-      <p>以下のような違いがある。
-      <ul>
-        <li>halt: 約物類(句読点など)を半角幅にする
-        <li>palt: 字体を置き換えずプロポーショナル幅にする
-      </ul>
-      <p>DEMO でみた halt は割と良さそうに見えたが、ブログ全体に適用したところあまり良くなかったため不採用とした。
-      <p>palt とは別に、字体を置き換える pwid があるが、そちらは Chrome か Noto Sans CJK JP が対応してないようだ。
-      <p>そこで結果として <code translate="no">palt</code> のみを指定してフォントをビルドすることにした。
-      <pre class=sh><code translate="no">$ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../All.txt --layout-features=&#039;palt&#039; --flavor=woff2 --output-file=NotoSansCJKjp-Regular-Jxck-20191011.woff2</code></pre>
-      <p>結果は以下である。
-      <ul>
-        <li>353.1K: 従来
-        <li>
-          606.6K: layout-feature=&rsquo;*&rsquo;
-        </li>
-        <li>
-          293.9K: layout-feature=&rsquo;palt&rsquo;
-        </li>
-      </ul>
-      <p>サブセット生成のロジックを変えたため、不要な文字も減り、トータルでは layout-features を入れても、改善前前より小さくなっている。
-      <p>またこのヒントを有効にするため、 CSS に以下を追加した。
-      <pre class=css><code translate="no">body {
+    <article>
+      <h1><a href=/entries/2019-10-13/font-feature-settings.html>Noto Sans Hinted と font-feature-settings: &lsquo;palt&rsquo;</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>Noto Sans のサブセット生成を見なおし、 Noto Sans Hinted から pyftsubset で生成し、ついでに font-feature-settings を有効にした。
+        <p>作業と検証の記録を兼ねて、実施結果を記す。
+      </section>
+      <section>
+        <h2 id="fonttools"><a href="#fonttools">fonttools</a></h2>
+        <p>これまで、フォントのサブセットの生成には以下の 2 つのツールを使用していた。
+        <ul>
+          <li>
+            <a href="https://opentype.jp/subsetfontmk.htm">サブセットフォントメーカー</a>
+          </li>
+          <li>
+            <a href="https://opentype.jp/woffconv.htm">WOFF コンバータ</a>
+          </li>
+        </ul>
+        <p>しかし、 macOS を Catalina にあげたところ、これらが起動できなくなり、フォントが生成できなくなった。
+        <p>これまで GUI で行なっていたが、せっかくなので自動化するために、代替コマンドを探し、プロセスを組んだ。
+        <p>いくつかツールがあるが、今回は fonttools に同梱された pyftsubset を採用することとした。
+        <ul>
+          <li>
+            <a href="https://github.com/fonttools/fonttools">fonttools/fonttools</a>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="pyftsubset"><a href="#pyftsubset">pyftsubset</a></h2>
+        <p>これまでは、使用しそうなフォントをリストアップし、そのリストを元にフォントを生成していた。
+        <p>しかし、更新への追従も面倒になったので、やはり記事で利用している文字を全てリストアップするスクリプトを書くことにした。
+        <p>ところが、単純に全ての文字を取ると、一度しか使用しない文字が増えてしまう。理由は以下のようなエントリがあるからだ。
+        <ul>
+          <li>
+            <a href="https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html">Noto Sans の Web Font 対応とサブセットによる最適化 | blog.jxck.io</a>
+          </li>
+          <li>
+            <a href="https://blog.jxck.io/entries/2017-03-02/unicode-in-javascript.html">JavaScript における文字コードと「文字数」の数え方 | blog.jxck.io</a>
+          </li>
+        </ul>
+        <p>通常、記事中に結合文字、絵文字、サロゲートペアなどは基本的に使わないが、それ自体を解説するこの 2 つのエントリはそれが含まれてしまう。
+        <p>フォントに含まれない文字は、スタイルが変わってしまい違和感があるため、これまでは見つけ次第含むように更新していた。
+        <p>しかし、そういった文字はほぼサンプルコードとしてコードブロック(<code translate="no">&lt;code&gt;</code>)に含まれており、かつそこには MONO font が当たっている。
+        <p>そこで、コードブロックに含まれてない特殊な文字を全てコードブロックに含むように記事を修正し、 HTML から <code translate="no">&lt;code&gt;</code> を全て除いた文字群をサブセットの対象とした。
+        <p>対象を subset.txt に保存し、変換は以下のようにした。
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+        <pre class=sh><code translate="no">$ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../subset.txt --layout-features=&#039;*&#039; --flavor=woff2 --output-file=NotoSansCJKjp-Regular-Jxck-20191011.woff2</code></pre>
+      </section>
+      <section>
+        <h2 id="layout-features"><a href="#layout-features">layout features</a></h2>
+        <p>ところが、生成したフォントが従来の倍近いサイズになっていた。
+        <ul>
+          <li>353.1K: 従来
+          <li>606.6K: 更新後
+        </ul>
+        <p>コマンドヘルプを見ながら適当につけた以下のオプションが問題である。
+        <pre class=sh><code translate="no">--layout-features=&#039;*&#039;</code></pre>
+        <p>この layout features は、 Open Type のフォントが含む、ヒント情報を含めるという指定だ。
+        <p>Open Type がいくつかの情報を持っていることは薄々知っていたが、以下の理由から特に考えずにきた。
+        <ul>
+          <li>従来使用していたツールは、この情報を全て削除していた。
+          <li>昔の Noto Sans はこの情報を含まなかった気がする
+        </ul>
+        <blockquote>
+          <p>フォントが、ヒント(OpenType フォントの場合)、カーニング情報、ビットマップデータ、 OpenType 機能を持っている場合、それらは削除されます。
+          <p>&mdash; <cite><a href="https://opentype.jp/subsetfontmk.htm">サブセットフォントメーカー</a></cite>
+        </blockquote>
+        <p>今は、 NotoSansCJKjp-hinted.zip を元にすれば、ヒント情報を含むサブセットが作れるため、 CSS の font-feature-settings が指定できる。
+        <p>全て削れば従来通りだが、せっかくなので指定を検証することにした。
+      </section>
+      <section>
+        <h2 id="font-feature-settings"><a href="#font-feature-settings">font-feature-settings</a></h2>
+        <p>まず、以下を調査する。
+        <ul>
+          <li>Noto Sans CJK jp が含むヒント情報
+          <li>CSS で指定可能なプロパティ
+        </ul>
+        <p>ところが、前者についてはリポジトリを見てもそれらしい情報にたどり着くことができなかった。
+        <p>後者は、 <a href="https://drafts.csswg.org/css-fonts-3/#ref-OPENTYPE-FEATURES">font-feature-settings の CSS の仕様</a>から、 MS にある Registered Features という一覧がリンクされていた。
+        <ul>
+          <li>
+            <a href="https://docs.microsoft.com/ja-jp/typography/opentype/spec/featurelist">Registered features - Typography | Microsoft Docs</a>
+          </li>
+        </ul>
+        <p>140 近い機能があるようだが、このうちのどれが使えるのかがわからなかったため、以下の DEMO ページを用意し Chrome で試した。
+        <ul>
+          <li>
+            <a href="http://labs.jxck.io/webfont/font-feature-settings.html">Font Feature Settings DEMO</a>
+          </li>
+        </ul>
+        <p>恐らく検証するための妥当な文字や、ブラウザの実装などといった変数もあるだろうが、その辺まで網羅するのはコストが高い。
+        <p>そこで、適当なサンプル文章をベースに、プロパティを切り替えながら、明らかに見た目が変わる指定を把握するところまで行った。
+        <ul>
+          <li>aalt: Access
+          <li>dlig: Discretionary Ligatures
+          <li>fwid: Full Widths
+          <li>halt: Alternate Half Widths
+          <li>hwid: Half Widths
+          <li>palt: Proportional Alternate Widths
+          <li>pwid: Proportional Widths
+          <li>vert: Vertical Writing
+          <li>vrt2: Vertical Alternates and Rotation
+        </ul>
+        <p>この中で、本サイトでの対応を検討すべきは <code translate="no">halt</code>, <code translate="no">palt</code> だろうと判断した。
+      </section>
+      <section>
+        <h2 id="字詰palt"><a href="#字詰palt">字詰(palt)</a></h2>
+        <p><code translate="no">halt</code>, <code translate="no">palt</code> はいずれも字詰に関するプロパティだ。
+        <p>以下のような違いがある。
+        <ul>
+          <li>halt: 約物類(句読点など)を半角幅にする
+          <li>palt: 字体を置き換えずプロポーショナル幅にする
+        </ul>
+        <p>DEMO でみた halt は割と良さそうに見えたが、ブログ全体に適用したところあまり良くなかったため不採用とした。
+        <p>palt とは別に、字体を置き換える pwid があるが、そちらは Chrome か Noto Sans CJK JP が対応してないようだ。
+        <p>そこで結果として <code translate="no">palt</code> のみを指定してフォントをビルドすることにした。
+        <pre class=sh><code translate="no">$ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../All.txt --layout-features=&#039;palt&#039; --flavor=woff2 --output-file=NotoSansCJKjp-Regular-Jxck-20191011.woff2</code></pre>
+        <p>結果は以下である。
+        <ul>
+          <li>353.1K: 従来
+          <li>
+            606.6K: layout-feature=&rsquo;*&rsquo;
+          </li>
+          <li>
+            293.9K: layout-feature=&rsquo;palt&rsquo;
+          </li>
+        </ul>
+        <p>サブセット生成のロジックを変えたため、不要な文字も減り、トータルでは layout-features を入れても、改善前前より小さくなっている。
+        <p>またこのヒントを有効にするため、 CSS に以下を追加した。
+        <pre class=css><code translate="no">body {
   font-feature-settings: &quot;palt&quot;
 }</code></pre>
-      <p>before/after は以下のようになる。
-      <p>
-        <picture>
-          <source type=image/webp srcset=font-feature-settings-palt.webp#1665x968>
-          <img loading=lazy src=font-feature-settings-palt.gif#1665x968 alt="font-feature-settings で palt を切り替えた時の字詰めの変化" title="font-feature-settings:'palt'" intrinsicsize=1665x968>
-        </picture>
-      </p>
-    </section>
-    <section>
-      <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
-      <p>以下のことを行なった。
-      <ul>
-        <li>不要文字をコードブロックに移すように記事を更新
-        <li>subset 対象の文字を記事から取得
-        <li>pyftsubset でサブセット生成を自動化
-        <li>layout-feature を検証し palt を採用
-        <li>css に font-feature-settings を追加
-      </ul>
-      <p>正直フォントについては素人であり、色々と雰囲気でやっているところもあるが、新しい機能を採用するという点ではよい改修ができた。
-      <p>今後も、おもしろい font-feature-settings があれば採用し、 Noto Sans が対応していなければ、対応しているフォントへの変更も視野に入れて、検証していきたい。
-    </section>
-    <section>
-      <h2 id="related"><a href="#related">Related</a></h2>
-      <p>その他 WebFont に関連する検証は <a href="https://blog.jxck.io/tags/web%20font.html">web font</a> タグにまとまっている。
-    </section>
-  </article>
-
+        <p>before/after は以下のようになる。
+        <p>
+          <picture>
+            <source type=image/webp srcset=font-feature-settings-palt.webp#1665x968>
+            <img loading=lazy src=font-feature-settings-palt.gif#1665x968 alt="font-feature-settings で palt を切り替えた時の字詰めの変化" title="font-feature-settings:'palt'" intrinsicsize=1665x968>
+          </picture>
+        </p>
+      </section>
+      <section>
+        <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
+        <p>以下のことを行なった。
+        <ul>
+          <li>不要文字をコードブロックに移すように記事を更新
+          <li>subset 対象の文字を記事から取得
+          <li>pyftsubset でサブセット生成を自動化
+          <li>layout-feature を検証し palt を採用
+          <li>css に font-feature-settings を追加
+        </ul>
+        <p>正直フォントについては素人であり、色々と雰囲気でやっているところもあるが、新しい機能を採用するという点ではよい改修ができた。
+        <p>今後も、おもしろい font-feature-settings があれば採用し、 Noto Sans が対応していなければ、対応しているフォントへの変更も視野に入れて、検証していきたい。
+      </section>
+      <section>
+        <h2 id="related"><a href="#related">Related</a></h2>
+        <p>その他 WebFont に関連する検証は <a href="https://blog.jxck.io/tags/web%20font.html">web font</a> タグにまとまっている。
+      </section>
+    </article>
   </main>
   <hr>
 

@@ -106,26 +106,26 @@
     </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
-  <article>
-    <h1><a href=/entries/2018-07-20/toggle-attribute.html>Element.toggleAttribute</a></h1>
-    <section>
-      <h2 id="intro"><a href="#intro">Intro</a></h2>
-      <p>非常にシンプルかつミッシングピースだった Element.toggleAttribute という仕様が提案された。
-      <p>最近になって各ブラウザが一斉に実装を進め、リリースに向けたアナウンスが出始めている。
-      <p>この仕様について解説する。
-    </section>
-    <section>
-      <h2 id="boolean-attributes"><a href="#boolean-attributes">Boolean Attributes</a></h2>
-      <p>Boolean Attribute とは、属性の存在によって真偽となる属性である。
-      <ul>
-        <li>
-          <a href="https://html.spec.whatwg.org/#boolean-attribute">https://html.spec.whatwg.org/#boolean-attribute</a>
-        </li>
-      </ul>
-      <p>例えば button の disabled を例にとるとこうなる。
-      <p>button を disabled にする場合は、仕様上は以下の 3 つの書き方がある。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre class=html><code translate="no">&lt;!-- 属性のみを書く --&gt;
+    <article>
+      <h1><a href=/entries/2018-07-20/toggle-attribute.html>Element.toggleAttribute</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>非常にシンプルかつミッシングピースだった Element.toggleAttribute という仕様が提案された。
+        <p>最近になって各ブラウザが一斉に実装を進め、リリースに向けたアナウンスが出始めている。
+        <p>この仕様について解説する。
+      </section>
+      <section>
+        <h2 id="boolean-attributes"><a href="#boolean-attributes">Boolean Attributes</a></h2>
+        <p>Boolean Attribute とは、属性の存在によって真偽となる属性である。
+        <ul>
+          <li>
+            <a href="https://html.spec.whatwg.org/#boolean-attribute">https://html.spec.whatwg.org/#boolean-attribute</a>
+          </li>
+        </ul>
+        <p>例えば button の disabled を例にとるとこうなる。
+        <p>button を disabled にする場合は、仕様上は以下の 3 つの書き方がある。
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+        <pre class=html><code translate="no">&lt;!-- 属性のみを書く --&gt;
 &lt;button id=target disabled&gt;toggle target&lt;/button&gt;
 
 &lt;!-- 値をempty string にする --&gt;
@@ -133,24 +133,24 @@
 
 &lt;!-- 属性名と同じにする --&gt;
 &lt;button id=target disabled=disabled&gt;toggle target&lt;/button&gt;</code></pre>
-      <p>値に <code translate="no">true</code>, <code translate="no">false</code> などを設定することで有効無効が切り替わるわけではなく、仕様上は許可されていない点に注意したい。
-      <p>disabled 属性自体は JS から真偽値で操作できる。
-      <pre class=js><code translate="no">target.disabled = true
+        <p>値に <code translate="no">true</code>, <code translate="no">false</code> などを設定することで有効無効が切り替わるわけではなく、仕様上は許可されていない点に注意したい。
+        <p>disabled 属性自体は JS から真偽値で操作できる。
+        <pre class=js><code translate="no">target.disabled = true
 target.disabled = false</code></pre>
-      <p>しかし、他の boolean attribute も含め、属性自体を汎用的に操作する場合は以下のようになる。
-      <pre class=js><code translate="no">target.setAttribute(&quot;disabled&quot;, &quot;&quot;);
+        <p>しかし、他の boolean attribute も含め、属性自体を汎用的に操作する場合は以下のようになる。
+        <pre class=js><code translate="no">target.setAttribute(&quot;disabled&quot;, &quot;&quot;);
 target.removeAttribute(&quot;disabled&quot;);
 
 target.setAttribute(&quot;disabled&quot;, false); // 無効になるわけではない</code></pre>
-      <p>無効にする場合は、属性自体を消す(omit)という点は、直感に反するところもあるかもしれない。
-      <p>これをもう少し直感的にするために、引数を boolean にできる API があっても良いのではとして提案されたのが始まりだ。
-    </section>
-    <section>
-      <h2 id="elementtoggleattribute-1"><a href="#elementtoggleattribute-1">Element.toggleAttribute</a></h2>
-      <p>結果的には以下のような API に落ち着いた。
-      <p>属性名を指定して toggleAttribute を呼べば、 ture/false を切り替えられる。
-      <p>(値は empty string が採用された)
-      <pre class=js><code translate="no">// target = &lt;button id=target&gt;toggle target&lt;/button&gt;
+        <p>無効にする場合は、属性自体を消す(omit)という点は、直感に反するところもあるかもしれない。
+        <p>これをもう少し直感的にするために、引数を boolean にできる API があっても良いのではとして提案されたのが始まりだ。
+      </section>
+      <section>
+        <h2 id="elementtoggleattribute-1"><a href="#elementtoggleattribute-1">Element.toggleAttribute</a></h2>
+        <p>結果的には以下のような API に落ち着いた。
+        <p>属性名を指定して toggleAttribute を呼べば、 ture/false を切り替えられる。
+        <p>(値は empty string が採用された)
+        <pre class=js><code translate="no">// target = &lt;button id=target&gt;toggle target&lt;/button&gt;
 
 target.toggleAttribute(&quot;disabled&quot;) // =&gt; &lt;button id=&quot;target&quot; disabled=&quot;&quot;&gt;toggle target&lt;/button&gt;
 console.log(target.disabled) // true
@@ -160,72 +160,71 @@ console.log(target.disabled) // false
 
 target.toggleAttribute(&quot;disabled&quot;) // =&gt; &lt;button id=&quot;target&quot; disabled=&quot;&quot;&gt;toggle target&lt;/button&gt;
 console.log(target.disabled) // true</code></pre>
-      <p>第二引数を指定すると、現在の値に関わらず、第二引数の値に変更する。
-      <pre class=js><code translate="no">// 今が true であれ false であれ true にする
+        <p>第二引数を指定すると、現在の値に関わらず、第二引数の値に変更する。
+        <pre class=js><code translate="no">// 今が true であれ false であれ true にする
 target.toggleAttribute(&quot;disabled&quot;, true)
 console.log(target.disabled) // true
 
 // 今が true であれ false であれ false にする
 target.toggleAttribute(&quot;disabled&quot;, false)
 console.log(target.disabled) // false</code></pre>
-    </section>
-    <section>
-      <h2 id="demo"><a href="#demo">DEMO</a></h2>
-      <p>動作するデモを以下に用意した。
-      <ul>
-        <li>
-          <a href="https://labs.jxck.io/toggleAttribute/index.html">https://labs.jxck.io/toggleAttribute/index.html</a>
-        </li>
-      </ul>
-    </section>
-    <section>
-      <h2 id="proposal"><a href="#proposal">Proposal</a></h2>
-      <p>この機能の提案は 2017/5/23 に以下の issue で行われた。
-      <p><a href="https://github.com/whatwg/dom/issues/461">Consider boolean interface for properties - Issue #461 - whatwg/dom</a>
-      <p>Boolean 専用の setAttribute が欲しいというところから始まり、議論の末に名前などが代わり 5 月のうちにはおよそ今の形におちついた。
-      <p>その後 Anne が <code translate="no">needs implementer interest</code> というラベルをつけて、そこから一年間は反応がなかった。
-      <p>先月(2018/6)に入って、 Firefox, Chrome, Edge あたりが positive な反応を示し、同時に DOM の仕様への PR が作られる。
-      <p><a href="https://github.com/whatwg/dom/pull/656">Add toggleAttribute to Element. by jonathanKingston - Pull Request #656 - whatwg/dom</a>
-      <p>そこから一気に実装が始まった。
-    </section>
-    <section>
-      <h2 id="implementation"><a href="#implementation">Implementation</a></h2>
-      <p>Firefox は 61 をターゲットに intents を出している
-      <ul>
-        <li>
-          <a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/wwU0TW80u1g/X_V3091yCAAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/wwU0TW80u1g/X_V3091yCAAJ</a>
-        </li>
-        <li>
-          <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1469592">https://bugzilla.mozilla.org/show_bug.cgi?id=1469592</a>
-        </li>
-      </ul>
-      <p>Chrome は intent to implement が出ており canary には入っている。
-      <ul>
-        <li>
-          <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mAWBTaANvmE/OgaCRH04BAAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mAWBTaANvmE/OgaCRH04BAAJ</a>
-        </li>
-        <li>
-          <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=854960">https://bugs.chromium.org/p/chromium/issues/detail?id=854960</a>
-        </li>
-      </ul>
-      <p>safari は TP61 に入った
-      <ul>
-        <li>
-          <a href="https://webkit.org/blog/8365/release-notes-for-safari-technology-preview-61/">https://webkit.org/blog/8365/release-notes-for-safari-technology-preview-61/</a>
-        </li>
-        <li>
-          <a href="https://trac.webkit.org/changeset/233475/webkit/">https://trac.webkit.org/changeset/233475/webkit/</a>
-        </li>
-      </ul>
-      <p>Edge もやっていると思われるが、トラックできるソースは見つからなかった。
-    </section>
-    <section>
-      <h2 id="outro"><a href="#outro">Outro</a></h2>
-      <p>jQuery を始めとするライブラリなどにはよく実装されていたが、標準の範囲においてミッシングピースではあった。
-      <p>今回は単純な機能なためか、かなりの速さで策定と実装が進み、先月くらいから立て続けにアナウンスが出てきたので、スピード感があったため印象に残っている。
-    </section>
-  </article>
-
+      </section>
+      <section>
+        <h2 id="demo"><a href="#demo">DEMO</a></h2>
+        <p>動作するデモを以下に用意した。
+        <ul>
+          <li>
+            <a href="https://labs.jxck.io/toggleAttribute/index.html">https://labs.jxck.io/toggleAttribute/index.html</a>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="proposal"><a href="#proposal">Proposal</a></h2>
+        <p>この機能の提案は 2017/5/23 に以下の issue で行われた。
+        <p><a href="https://github.com/whatwg/dom/issues/461">Consider boolean interface for properties - Issue #461 - whatwg/dom</a>
+        <p>Boolean 専用の setAttribute が欲しいというところから始まり、議論の末に名前などが代わり 5 月のうちにはおよそ今の形におちついた。
+        <p>その後 Anne が <code translate="no">needs implementer interest</code> というラベルをつけて、そこから一年間は反応がなかった。
+        <p>先月(2018/6)に入って、 Firefox, Chrome, Edge あたりが positive な反応を示し、同時に DOM の仕様への PR が作られる。
+        <p><a href="https://github.com/whatwg/dom/pull/656">Add toggleAttribute to Element. by jonathanKingston - Pull Request #656 - whatwg/dom</a>
+        <p>そこから一気に実装が始まった。
+      </section>
+      <section>
+        <h2 id="implementation"><a href="#implementation">Implementation</a></h2>
+        <p>Firefox は 61 をターゲットに intents を出している
+        <ul>
+          <li>
+            <a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/wwU0TW80u1g/X_V3091yCAAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/wwU0TW80u1g/X_V3091yCAAJ</a>
+          </li>
+          <li>
+            <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1469592">https://bugzilla.mozilla.org/show_bug.cgi?id=1469592</a>
+          </li>
+        </ul>
+        <p>Chrome は intent to implement が出ており canary には入っている。
+        <ul>
+          <li>
+            <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mAWBTaANvmE/OgaCRH04BAAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mAWBTaANvmE/OgaCRH04BAAJ</a>
+          </li>
+          <li>
+            <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=854960">https://bugs.chromium.org/p/chromium/issues/detail?id=854960</a>
+          </li>
+        </ul>
+        <p>safari は TP61 に入った
+        <ul>
+          <li>
+            <a href="https://webkit.org/blog/8365/release-notes-for-safari-technology-preview-61/">https://webkit.org/blog/8365/release-notes-for-safari-technology-preview-61/</a>
+          </li>
+          <li>
+            <a href="https://trac.webkit.org/changeset/233475/webkit/">https://trac.webkit.org/changeset/233475/webkit/</a>
+          </li>
+        </ul>
+        <p>Edge もやっていると思われるが、トラックできるソースは見つからなかった。
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>jQuery を始めとするライブラリなどにはよく実装されていたが、標準の範囲においてミッシングピースではあった。
+        <p>今回は単純な機能なためか、かなりの速さで策定と実装が進み、先月くらいから立て続けにアナウンスが出てきたので、スピード感があったため印象に残っている。
+      </section>
+    </article>
   </main>
   <hr>
 

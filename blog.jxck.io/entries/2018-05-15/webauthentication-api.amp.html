@@ -798,8 +798,6 @@
     <dt>updated_at</dt><dd><time class=updated_at datetime=2019-04-15>2019-04-15</time></dd>
     <dt class=tags>tags</dt><dd>[<a href='/tags/fido-u2f.html'>fido-u2f</a><i>,</i><a href='/tags/web%20authentication%20api.html'>web authentication api</a>]</dd>
   </ul>
-
-
   <article>
     <h1><a href=/entries/2018-05-15/webauthentication-api.html>Web Authentication API で FIDO U2F(YubiKey) 認証</a></h1>
     <section>
@@ -915,7 +913,9 @@ const {attestationObject, clientDataJSON} = response</code></pre>
           <h4 id="fmt"><a href="#fmt">fmt</a></h4>
           <p>fmt の値によって、署名をどのように検証するかの処理は変わってくる。今回は <code translate="no">&quot;fido-u2f&quot;</code> で解説する。
           <p>次に authData はバイナリで以下のような構造になっている。
-          <p><amp-img layout=responsive src=https://w3c.github.io/webauthn/images/fido-signature-formats-figure1.svg#1000x217 alt="Authenticator data layout" title="" width=1000 height=217></p>
+          <p>
+            <amp-img layout=responsive src=https://w3c.github.io/webauthn/images/fido-signature-formats-figure1.svg#1000x217 alt="Authenticator data layout" title="" width=1000 height=217>
+          </p>
           <ul>
             <li>rpidHash (32byte)
             <li>
@@ -1117,7 +1117,6 @@ const publickKeyPEM = Buffer.concat([
       <p>実際にサービスに導入する際には、ライブラリやサービスに頼るべきだと思うが、今回のようにラフな実装で仕様を眺めると、理解の助けになるだろう。
     </section>
   </article>
-
 </main>
 <hr>
 <footer>

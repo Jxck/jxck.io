@@ -798,8 +798,6 @@
     <dt>updated_at</dt><dd><time class=updated_at datetime=2018-07-27>2018-07-27</time></dd>
     <dt class=tags>tags</dt><dd>[<a href='/tags/es%20modules.html'>es modules</a><i>,</i><a href='/tags/tc39.html'>tc39</a><i>,</i><a href='/tags/javascript.html'>javascript</a>]</dd>
   </ul>
-
-
   <article>
     <h1><a href=/entries/2017-08-15/universal-mjs-ecosystem.html>.mjs とは何か、またはモジュールベース JS とエコシステムの今後</a></h1>
     <section>
@@ -879,7 +877,9 @@ export default { message: &quot;hello world&quot; }</code></pre>
         <p><a href="https://blog.jxck.io/entries/2017-06-21/nomodule-attribute.html">ES Modules への橋渡しとしての nomodule 属性</a>
         <p>このように、ブラウザは読み込む前にそのファイルを Script/Module どちらとしてパースするかを判断することができる。
         <p>パースが正しく終われば、依存を解決のために追加の Fetch を以下のように行う。
-        <p><amp-img layout=responsive src=https://html.spec.whatwg.org/images/asyncdefer.svg#1000x245 alt="ブラウザによる ESM の依存解決と Parse/Fetch の順番" title="async-defer-module <script> parsing/fetching timeline" width=1000 height=245></p>
+        <p>
+          <amp-img layout=responsive src=https://html.spec.whatwg.org/images/asyncdefer.svg#1000x245 alt="ブラウザによる ESM の依存解決と Parse/Fetch の順番" title="async-defer-module <script> parsing/fetching timeline" width=1000 height=245>
+        </p>
         <p>あとはそのまま実行するだけなので、問題なく使うことができる。
       </section>
     </section>
@@ -968,7 +968,6 @@ export default { message: &quot;hello world&quot; }</code></pre>
       <p>これからの JS は、 ESM を <code translate="no">.mjs</code> に書くことになり、それを前提としたエコシステムが構築されていくことが望ましいだろう。
     </section>
   </article>
-
 </main>
 <hr>
 <footer>

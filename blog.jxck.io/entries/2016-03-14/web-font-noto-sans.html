@@ -106,140 +106,140 @@
     </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
-  <article>
-    <h1><a href=/entries/2016-03-14/web-font-noto-sans.html>Noto Sans の Web Font 対応とサブセットによる最適化</a></h1>
-    <section>
-      <h2 id="intro"><a href="#intro">Intro</a></h2>
-      <p>このサイトのフォントに Web Font を適用することにした。
-      <p>フォントには Google と Adobe が協同で開発した Noto Sans CJK JP を採用した。
-      <p>また、このサイトでは使用しないだろう文字を削除したサブセットを作ることで、フォントサイズを最適化した。
-    </section>
-    <section>
-      <h2 id="フォントサイズの最適化"><a href="#フォントサイズの最適化">フォントサイズの最適化</a></h2>
-      <p>Noto font は、そもそも豆腐(フォントがなかった場合に代替表示される四角)が出ないように(No-豆腐)することをコンセプトにしているため、フォントの網羅率は非常に高い。
-      <p>そのため Web Font として利用する場合は、全体だとサイズが大きすぎるため、言語毎に提供されるフォントセットの中から、必要なフォントのみを適用することになる。
-      <p>本サイトでは、 ASCII 、記号、日本語のフォントを用いる。
-      <p>しかし、特に網羅された漢字の中には、日常では使わない文字が多々ある。
-      <p>加えて、このサイトはあくまで <em>技術ブログ</em> なので、さらに使用する文字は限定される。
-      <p>そこで、提供されているフォントセットの中から、不要な文字を取り除いたサブセットを作成することで、フォントサイズを最適化が可能である。
-      <p>Noto Sans は <a href="http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL">OFL ライセンス</a> であるため、非常に自由度が高く、こうした変更が可能である。
-    </section>
-    <section>
-      <h2 id="noto-sans-fonts"><a href="#noto-sans-fonts">Noto Sans Fonts</a></h2>
-      <p>まず配布ページから、 Noto Sans CJK JP をダウンロードしてくる。
-      <p><a href="https://www.google.com/get/noto/#sans-jpan">Noto Sans CJK JP</a>
-      <p>ここに収録されている文字については、 <a href="https://www.google.com/fonts/earlyaccess#Noto+Sans+JP">google fonts</a> の方に書かれていた。
-      <blockquote>
-        <p>Note: Noto Sans JP has been subsetted to 6,992 characters and contains most of the characters defined by JIS X 0208 and some additional characters from Shift_JIS.  The set includes 6,390 Kanji as well as 602 non Kanji characters such as Hiragana, Katakana (including half-width variants), ASCII and full-width and punctuations.
-        <p>&mdash; <cite><a href="https://www.google.com/fonts/earlyaccess#Noto+Sans+JP">https://www.google.com/fonts/earlyaccess#Noto+Sans+JP</a></cite>
-      </blockquote>
-      <p>このサブセットが含む JIS X 0208 とは、いわゆる JIS 漢字コード のことであり、 7000 字近い漢字がきっちり収録されている。
-      <p>そして font-weight (太さ) が 100~900 まで 7 段階提供されており、それぞれサイズは以下となっている。(やはり太いとデカい)
-      <ul>
-        <li>100 NotoSansJP-Thin.otf      (4.0M)
-        <li>300 NotoSansJP-Light.otf     (4.2M)
-        <li>350 NotoSansJP-DemiLight.otf (4.3M)
-        <li>400 NotoSansJP-Regular.otf   (4.3M)
-        <li>500 NotoSansJP-Medium.otf    (4.3M)
-        <li>700 NotoSansJP-Bold.otf      (4.4M)
-        <li>900 NotoSansJP-Black.otf     (4.6M)
-      </ul>
-      <p>ここまでがデフォルトの状態である。ここから削って行く。
-    </section>
-    <section>
-      <h2 id="font-weight"><a href="#font-weight">Font Weight</a></h2>
-      <p>本サイトでは、 Markdown から生成していることもあり、「通常の文字」と「<em>太文字</em>」しか基本的に使わない。
-      <p>(CSS を別途当てて、調整するといったことをしていない)
-      <p>したがって、 Regular と Bold のみ使用する。
-      <p>この時点で 8.7MB ある。
-      <ul>
-        <li>400 NotoSansJP-Regular.otf (4.3M)
-        <li>700 NotoSansJP-Bold.otf    (4.4M)
-      </ul>
-      <p>ここからさらに絞っていく。
-    </section>
-    <section>
-      <h2 id="jisx0208-第一水準"><a href="#jisx0208-第一水準">JISX0208 第一水準</a></h2>
-      <p>収録されている、 JIS X 0208 は以下のようになっている。
-      <blockquote>
-        <p>JIS (日本工業規格)で定められた漢字の規格で、 JISX0208 に含まれる。日常で使用頻度の高い漢字を集め、コンピューターで利用するためにコード化したもの。 JIS 第 1 水準は 2965 字で、常用漢字 1945 字とその他の人名用漢字が含まれており、通常の文書であれば JIS 第 1 水準の文字だけで記述できるとされている。 JIS 第 2 水準は 3390 字で、 DTP で使用するフォントの多くは、 JIS 第 1 水準と JIS 第 2 水準を網羅している。 JIS 第 3 水準および JIS 第 4 水準は、業種によって必要になる特殊な記号などを集めたもので、 JISX0208 を拡張する別の規格である。
-        <p>&mdash; <cite><a href="http://yougo.ascii.jp/caltar/JIS 漢字水準">http://yougo.ascii.jp/caltar/JIS 漢字水準</a></cite>
-      </blockquote>
-      <p>しかし、このブログは <em>技術ブログ</em> であり、使われる漢字は非常に限定的だ。
-      <p>そこで、必要な漢字のみを収録したサブセットを作成する。
-    </section>
-    <section>
-      <h2 id="基本ラテン文字-0000-0070"><a href="#基本ラテン文字-0000-0070">基本ラテン文字 (0000-0070)</a></h2>
-      <p>いわゆる ASCII 文字。
-      <p>(ちなみに、 <code translate="no">pre &gt; code</code> 内のサンプルコードは別のフォントを使うので、コード用という訳ではない)
-      <p><a href="http://homepage2.nifty.com/k_maeda/code/uni/uni000.html">Unicode 基本ラテン文字 - Basic Latin -</a>
-      <p>制御文字などを除いて、以下の範囲を全て収録。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre class=text><code translate="no">! &quot; # $ % &amp; &#039; ( ) * + , - . /
+    <article>
+      <h1><a href=/entries/2016-03-14/web-font-noto-sans.html>Noto Sans の Web Font 対応とサブセットによる最適化</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>このサイトのフォントに Web Font を適用することにした。
+        <p>フォントには Google と Adobe が協同で開発した Noto Sans CJK JP を採用した。
+        <p>また、このサイトでは使用しないだろう文字を削除したサブセットを作ることで、フォントサイズを最適化した。
+      </section>
+      <section>
+        <h2 id="フォントサイズの最適化"><a href="#フォントサイズの最適化">フォントサイズの最適化</a></h2>
+        <p>Noto font は、そもそも豆腐(フォントがなかった場合に代替表示される四角)が出ないように(No-豆腐)することをコンセプトにしているため、フォントの網羅率は非常に高い。
+        <p>そのため Web Font として利用する場合は、全体だとサイズが大きすぎるため、言語毎に提供されるフォントセットの中から、必要なフォントのみを適用することになる。
+        <p>本サイトでは、 ASCII 、記号、日本語のフォントを用いる。
+        <p>しかし、特に網羅された漢字の中には、日常では使わない文字が多々ある。
+        <p>加えて、このサイトはあくまで <em>技術ブログ</em> なので、さらに使用する文字は限定される。
+        <p>そこで、提供されているフォントセットの中から、不要な文字を取り除いたサブセットを作成することで、フォントサイズを最適化が可能である。
+        <p>Noto Sans は <a href="http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL">OFL ライセンス</a> であるため、非常に自由度が高く、こうした変更が可能である。
+      </section>
+      <section>
+        <h2 id="noto-sans-fonts"><a href="#noto-sans-fonts">Noto Sans Fonts</a></h2>
+        <p>まず配布ページから、 Noto Sans CJK JP をダウンロードしてくる。
+        <p><a href="https://www.google.com/get/noto/#sans-jpan">Noto Sans CJK JP</a>
+        <p>ここに収録されている文字については、 <a href="https://www.google.com/fonts/earlyaccess#Noto+Sans+JP">google fonts</a> の方に書かれていた。
+        <blockquote>
+          <p>Note: Noto Sans JP has been subsetted to 6,992 characters and contains most of the characters defined by JIS X 0208 and some additional characters from Shift_JIS.  The set includes 6,390 Kanji as well as 602 non Kanji characters such as Hiragana, Katakana (including half-width variants), ASCII and full-width and punctuations.
+          <p>&mdash; <cite><a href="https://www.google.com/fonts/earlyaccess#Noto+Sans+JP">https://www.google.com/fonts/earlyaccess#Noto+Sans+JP</a></cite>
+        </blockquote>
+        <p>このサブセットが含む JIS X 0208 とは、いわゆる JIS 漢字コード のことであり、 7000 字近い漢字がきっちり収録されている。
+        <p>そして font-weight (太さ) が 100~900 まで 7 段階提供されており、それぞれサイズは以下となっている。(やはり太いとデカい)
+        <ul>
+          <li>100 NotoSansJP-Thin.otf      (4.0M)
+          <li>300 NotoSansJP-Light.otf     (4.2M)
+          <li>350 NotoSansJP-DemiLight.otf (4.3M)
+          <li>400 NotoSansJP-Regular.otf   (4.3M)
+          <li>500 NotoSansJP-Medium.otf    (4.3M)
+          <li>700 NotoSansJP-Bold.otf      (4.4M)
+          <li>900 NotoSansJP-Black.otf     (4.6M)
+        </ul>
+        <p>ここまでがデフォルトの状態である。ここから削って行く。
+      </section>
+      <section>
+        <h2 id="font-weight"><a href="#font-weight">Font Weight</a></h2>
+        <p>本サイトでは、 Markdown から生成していることもあり、「通常の文字」と「<em>太文字</em>」しか基本的に使わない。
+        <p>(CSS を別途当てて、調整するといったことをしていない)
+        <p>したがって、 Regular と Bold のみ使用する。
+        <p>この時点で 8.7MB ある。
+        <ul>
+          <li>400 NotoSansJP-Regular.otf (4.3M)
+          <li>700 NotoSansJP-Bold.otf    (4.4M)
+        </ul>
+        <p>ここからさらに絞っていく。
+      </section>
+      <section>
+        <h2 id="jisx0208-第一水準"><a href="#jisx0208-第一水準">JISX0208 第一水準</a></h2>
+        <p>収録されている、 JIS X 0208 は以下のようになっている。
+        <blockquote>
+          <p>JIS (日本工業規格)で定められた漢字の規格で、 JISX0208 に含まれる。日常で使用頻度の高い漢字を集め、コンピューターで利用するためにコード化したもの。 JIS 第 1 水準は 2965 字で、常用漢字 1945 字とその他の人名用漢字が含まれており、通常の文書であれば JIS 第 1 水準の文字だけで記述できるとされている。 JIS 第 2 水準は 3390 字で、 DTP で使用するフォントの多くは、 JIS 第 1 水準と JIS 第 2 水準を網羅している。 JIS 第 3 水準および JIS 第 4 水準は、業種によって必要になる特殊な記号などを集めたもので、 JISX0208 を拡張する別の規格である。
+          <p>&mdash; <cite><a href="http://yougo.ascii.jp/caltar/JIS 漢字水準">http://yougo.ascii.jp/caltar/JIS 漢字水準</a></cite>
+        </blockquote>
+        <p>しかし、このブログは <em>技術ブログ</em> であり、使われる漢字は非常に限定的だ。
+        <p>そこで、必要な漢字のみを収録したサブセットを作成する。
+      </section>
+      <section>
+        <h2 id="基本ラテン文字-0000-0070"><a href="#基本ラテン文字-0000-0070">基本ラテン文字 (0000-0070)</a></h2>
+        <p>いわゆる ASCII 文字。
+        <p>(ちなみに、 <code translate="no">pre &gt; code</code> 内のサンプルコードは別のフォントを使うので、コード用という訳ではない)
+        <p><a href="http://homepage2.nifty.com/k_maeda/code/uni/uni000.html">Unicode 基本ラテン文字 - Basic Latin -</a>
+        <p>制御文字などを除いて、以下の範囲を全て収録。
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+        <pre class=text><code translate="no">! &quot; # $ % &amp; &#039; ( ) * + , - . /
 0 1 2 3 4 5 6 7 8 9 : ; &lt; = &gt; ?
 @ A B C D E F G H I J K L M N O
 P Q R S T U V W X Y Z [ \ ] ^ _
 ` a b c d e f g h i j k l m n o
 p q r s t u v w x y z { | } ~</code></pre>
-      <p><a href="BasicLatin.txt">BasicLatin.txt</a>
-    </section>
-    <section>
-      <h2 id="cjk-記号と句読点3000-303f"><a href="#cjk-記号と句読点3000-303f">CJK 記号と句読点(3000-303F)</a></h2>
-      <p>句読点やカッコなど。基本的に <code translate="no">[](){}</code> など半角のカッコを使うが、全角のカッコも必要になる。
-      <p><a href="http://homepage2.nifty.com/k_maeda/code/uni/uni090.html">Unicode CJK 記号と句読点 - CJK Symbols and Punctuation -</a>
-      <p>以下が候補
-      <pre class=text><code translate="no">、 。 〃 〄 々 〆 〇 〈 〉 《 》 「 」 『 』
+        <p><a href="BasicLatin.txt">BasicLatin.txt</a>
+      </section>
+      <section>
+        <h2 id="cjk-記号と句読点3000-303f"><a href="#cjk-記号と句読点3000-303f">CJK 記号と句読点(3000-303F)</a></h2>
+        <p>句読点やカッコなど。基本的に <code translate="no">[](){}</code> など半角のカッコを使うが、全角のカッコも必要になる。
+        <p><a href="http://homepage2.nifty.com/k_maeda/code/uni/uni090.html">Unicode CJK 記号と句読点 - CJK Symbols and Punctuation -</a>
+        <p>以下が候補
+        <pre class=text><code translate="no">、 。 〃 〄 々 〆 〇 〈 〉 《 》 「 」 『 』
 【 】 〒 〓 〔 〕 〖 〗 〘 〙 〚 〛 〜 〝 〞 〟
 〠 〡 〢 〣 〤 〥 〦 〧 〨 〩  〪  〫  〬  〭  〮  〯
 〰 〱 〲 〳 〴 〵 〶 〷 〸 〹 〺 〻 〼 〽 〾 〿</code></pre>
-      <p>この中から、使わないものを除き、以下のみを収録。
-      <pre class=text><code translate="no">、 。 々 〆 〇 「 」 『 』 〜</code></pre>
-      <p><a href="SymbolsAndPunctuation.txt">SymbolsAndPunctuation.txt</a>
-    </section>
-    <section>
-      <h2 id="ひらがな3040-3090"><a href="#ひらがな3040-3090">ひらがな(3040-3090)</a></h2>
-      <p><a href="http://homepage2.nifty.com/k_maeda/code/uni/uni091.html">Unicode ひらがな - Hiragana -</a>
-      <p>以下が候補
-      <pre class=text><code translate="no">   ぁ あ ぃ い ぅ う ぇ え ぉ お か が き ぎ く
+        <p>この中から、使わないものを除き、以下のみを収録。
+        <pre class=text><code translate="no">、 。 々 〆 〇 「 」 『 』 〜</code></pre>
+        <p><a href="SymbolsAndPunctuation.txt">SymbolsAndPunctuation.txt</a>
+      </section>
+      <section>
+        <h2 id="ひらがな3040-3090"><a href="#ひらがな3040-3090">ひらがな(3040-3090)</a></h2>
+        <p><a href="http://homepage2.nifty.com/k_maeda/code/uni/uni091.html">Unicode ひらがな - Hiragana -</a>
+        <p>以下が候補
+        <pre class=text><code translate="no">   ぁ あ ぃ い ぅ う ぇ え ぉ お か が き ぎ く
 ぐ け げ こ ご さ ざ し じ す ず せ ぜ そ ぞ た
 だ ち ぢ っ つ づ て で と ど な に ぬ ね の は
 ば ぱ ひ び ぴ ふ ぶ ぷ へ べ ぺ ほ ぼ ぽ ま み
 む め も ゃ や ゅ ゆ ょ よ ら り る れ ろ ゎ わ
 ゐ ゑ を ん ゔ ゕ ゖ  	゙	゚ ゛ ゜ ゝ ゞ ゟ</code></pre>
-      <p>以下を収録
-      <pre class=text><code translate="no">   ぁ あ ぃ い ぅ う ぇ え ぉ お か が き ぎ く
+        <p>以下を収録
+        <pre class=text><code translate="no">   ぁ あ ぃ い ぅ う ぇ え ぉ お か が き ぎ く
 ぐ け げ こ ご さ ざ し じ す ず せ ぜ そ ぞ た
 だ ち ぢ っ つ づ て で と ど な に ぬ ね の は
 ば ぱ ひ び ぴ ふ ぶ ぷ へ べ ぺ ほ ぼ ぽ ま み
 む め も ゃ や ゅ ゆ ょ よ ら り る れ ろ ゎ わ
       を ん</code></pre>
-      <p><a href="Hiragana.txt">Hiragana.txt</a>
-    </section>
-    <section>
-      <h2 id="カタカナ30a0-30f0"><a href="#カタカナ30a0-30f0">カタカナ(30A0-30F0)</a></h2>
-      <p><a href="http://homepage2.nifty.com/k_maeda/code/uni/uni092.html">Unicode カタカナ - Katakana -</a>
-      <p>以下が候補
-      <pre class=text><code translate="no">゠ ァ ア ィ イ ゥ ウ ェ エ ォ オ カ ガ キ ギ ク
+        <p><a href="Hiragana.txt">Hiragana.txt</a>
+      </section>
+      <section>
+        <h2 id="カタカナ30a0-30f0"><a href="#カタカナ30a0-30f0">カタカナ(30A0-30F0)</a></h2>
+        <p><a href="http://homepage2.nifty.com/k_maeda/code/uni/uni092.html">Unicode カタカナ - Katakana -</a>
+        <p>以下が候補
+        <pre class=text><code translate="no">゠ ァ ア ィ イ ゥ ウ ェ エ ォ オ カ ガ キ ギ ク
 グ ケ ゲ コ ゴ サ ザ シ ジ ス ズ セ ゼ ソ ゾ タ
 ダ チ ヂ ッ ツ ヅ テ デ ト ド ナ ニ ヌ ネ ノ ハ
 バ パ ヒ ビ ピ フ ブ プ ヘ ベ ペ ホ ボ ポ マ ミ
 ム メ モ ャ ヤ ュ ユ ョ ヨ ラ リ ル レ ロ ヮ ワ
 ヰ ヱ ヲ ン ヴ ヵ ヶ ヷ ヸ ヹ ヺ ・ ー ヽ ヾ ヿ</code></pre>
-      <p>以下を収録
-      <pre class=text><code translate="no">   ァ ア ィ イ ゥ ウ ェ エ ォ オ カ ガ キ ギ ク
+        <p>以下を収録
+        <pre class=text><code translate="no">   ァ ア ィ イ ゥ ウ ェ エ ォ オ カ ガ キ ギ ク
 グ ケ ゲ コ ゴ サ ザ シ ジ ス ズ セ ゼ ソ ゾ タ
 ダ チ ヂ ッ ツ ヅ テ デ ト ド ナ ニ ヌ ネ ノ ハ
 バ パ ヒ ビ ピ フ ブ プ ヘ ベ ペ ホ ボ ポ マ ミ
 ム メ モ ャ ヤ ュ ユ ョ ヨ ラ リ ル レ ロ    ワ
       ヲ ン ヴ ヵ ヶ</code></pre>
-      <p><a href="Katakana.txt">Katakana.txt</a>
-    </section>
-    <section>
-      <h2 id="半角形と全角形ff00-ffe0"><a href="#半角形と全角形ff00-ffe0">半角形と全角形(FF00-FFE0)</a></h2>
-      <p>全角の英数や半角カタカナなど。しかし、このブログで <em>これらは使わない</em>。
-      <p><a href="http://homepage2.nifty.com/k_maeda/code/uni/uni120.html">Unicode 半角形と全角形 - Halfwidth and Fullwidth Forms -</a>
-      <p>以下が候補
-      <pre class=text><code translate="no">0 1 2 3 4 5 6 7 8 9 A B C D E F
+        <p><a href="Katakana.txt">Katakana.txt</a>
+      </section>
+      <section>
+        <h2 id="半角形と全角形ff00-ffe0"><a href="#半角形と全角形ff00-ffe0">半角形と全角形(FF00-FFE0)</a></h2>
+        <p>全角の英数や半角カタカナなど。しかし、このブログで <em>これらは使わない</em>。
+        <p><a href="http://homepage2.nifty.com/k_maeda/code/uni/uni120.html">Unicode 半角形と全角形 - Halfwidth and Fullwidth Forms -</a>
+        <p>以下が候補
+        <pre class=text><code translate="no">0 1 2 3 4 5 6 7 8 9 A B C D E F
   ！  ＂  ＃  ＄  ％  ＆  ＇  （  ）  ＊  ＋  ，  －  ．  ／
 ０  １  ２  ３  ４  ５  ６  ７  ８  ９  ：  ；  ＜  ＝  ＞  ？
 ＠  Ａ  Ｂ  Ｃ  Ｄ  Ｅ  Ｆ  Ｇ  Ｈ  Ｉ  Ｊ  Ｋ  Ｌ  Ｍ  Ｎ  Ｏ
@@ -255,60 +255,60 @@ p q r s t u v w x y z { | } ~</code></pre>
     ￂ ￃ ￄ ￅ ￆ ￇ     ￊ ￋ ￌ ￍ ￎ ￏ
     ￒ ￓ ￔ ￕ ￖ ￗ     ￚ ￛ ￜ
 ￠  ￡  ￢  ￣  ￤  ￥  ￦    ￨ ￩ ￪ ￫ ￬ ￭ ￮</code></pre>
-      <p>収録はしない。
-    </section>
-    <section>
-      <h2 id="漢字"><a href="#漢字">漢字</a></h2>
-      <p>さていよいよ漢字である。単純に Unicode の範囲で指定するわけにはいかない。
-      <p>過去に書いた記事から、使用する漢字を抽出しようかとも思ったが、ブログを続けていけば新しい漢字が出る可能性は非常に高い。
-      <p>そのたびにフォントセットを作り直すこともできるが、フォントには長時間のキャッシュを効かせたいため、なるべく一発でこのブログに適したサブセットを作りたいと考える。
-      <section>
-        <h3 id="第一水準漢字"><a href="#第一水準漢字">第一水準漢字</a></h3>
-        <p>他のサイトでは「第一水準漢字」に絞るという方法も紹介されている。
-        <p>以下に一覧がある。
-        <p><a href="http://kanji.jitenon.jp/cat/jisdai1.html">JIS X 0208 第一水準 2965 文字</a>
-        <p>このサブセットを適用しているサイトが多いということは、経験上第二水準にはブログなどの Web サイト使う漢字が少ないということなのだろう。
-        <p>これでもだいぶ減っているが、ざっと見ても使わなそうな漢字はかなり多い。
-        <p>先に引用した定義では、第一水準はざっくり 「常用漢字 + 人名用漢字」 となっている。
-        <p>このサイトでは、人名の引用は基本的に Twitter ID などになるだろう。というか書くのは自分なのでそう縛ればいい。
-        <p>そこで、常用漢字のみに絞ってみた。
+        <p>収録はしない。
       </section>
       <section>
-        <h3 id="常用漢字"><a href="#常用漢字">常用漢字</a></h3>
-        <p>常用漢字は文化庁が告示している。 2010 年に改定があった。
-        <blockquote>
-          <p>一般の社会生活において現代の国語を書き表すための漢字使用の目安を、次の表のように定める。
-          <p>&mdash; <cite><a href="http://kokugo.bunka.go.jp/kokugo_nihongo/joho/kijun/naikaku/kanji/">常用漢字表(平成 22 年内閣告示第 2 号)</a></cite>
-        </blockquote>
-        <p>以下に一覧がある。
-        <p><a href="http://kanji.jitenon.jp/cat/joyo.html">常用漢字 2136 文字</a>
-      </section>
-      <section>
-        <h3 id="常用漢字と第一水準漢字の差分"><a href="#常用漢字と第一水準漢字の差分">常用漢字と第一水準漢字の差分</a></h3>
-        <p>気になって、二つのセットの diff を取ってみたら、「 <em>JIS 第一水準にはないが、常用漢字にある漢字</em> 」があることがわかった。
-        <p>「JIS 第一水準でだいたい OK」と言われている候補に無い文字が、常用漢字一覧にはある。
-        <p>つまり、常用漢字一覧のなかでも、使われ無い可能性が高い漢字が含まれるということだ。
-        <p>以下の 30 文字である。
-        <pre class=text><code translate="no">丼 傲 刹 哺 喩 嗅 嘲 彙 恣 惧 慄 憬 拉 摯 曖 楷 毀 璧 瘍 箋 籠 緻 羞 訃 諧 貪 踪 辣 錮 鬱</code></pre>
-        <p>ざっと見て、以下 6 文字はいらないだろうと判断した。
-        <pre class=text><code translate="no">哺 惧 彙 楷 憬 錮</code></pre>
-      </section>
-      <section>
-        <h3 id="不要な文字"><a href="#不要な文字">不要な文字</a></h3>
-        <p>他にも、常用漢字一覧には、まだまだ「 <em>技術ブログではおおよそ出てこなさそうな漢字</em> 」がいくつか見られる。
-        <p>もちろん使う場面はあるかもしれないが、書くのは自分なので把握しておけば良い。
-        <p>どうしても必要ならフォントセットに追加すれば良いが、その頻度もそう高くはないだろう。
-        <p>よって、いらない漢字を 1 つ 1 つ丁寧に手動で取り除いた。
-        <p>先の 6 文字に 17 文字加えて、以下 23 文字が削除対象である。
-        <pre class=text><code translate="no">畝 租 朕 逓 哺 曹 惧 梗 痘 虞 嗣 塑 彙 楷 窟 嘱 畿 憬 璃 錮 嚇 濯 璽</code></pre>
-        <p>これらを反映した結果が以下である。
-        <p><a href="Kanji.txt">Kanji.txt</a>
-      </section>
-      <section>
-        <h3 id="更新20160828"><a href="#更新20160828">更新(2016/08/28)</a></h3>
-        <p>しばらく運用して、省かれていた以下の文字が記事中に必要になったため、文字セットに追加した。
-        <p>(後述する結果にも反映していある)
-        <pre class=text><code translate="no">✔
+        <h2 id="漢字"><a href="#漢字">漢字</a></h2>
+        <p>さていよいよ漢字である。単純に Unicode の範囲で指定するわけにはいかない。
+        <p>過去に書いた記事から、使用する漢字を抽出しようかとも思ったが、ブログを続けていけば新しい漢字が出る可能性は非常に高い。
+        <p>そのたびにフォントセットを作り直すこともできるが、フォントには長時間のキャッシュを効かせたいため、なるべく一発でこのブログに適したサブセットを作りたいと考える。
+        <section>
+          <h3 id="第一水準漢字"><a href="#第一水準漢字">第一水準漢字</a></h3>
+          <p>他のサイトでは「第一水準漢字」に絞るという方法も紹介されている。
+          <p>以下に一覧がある。
+          <p><a href="http://kanji.jitenon.jp/cat/jisdai1.html">JIS X 0208 第一水準 2965 文字</a>
+          <p>このサブセットを適用しているサイトが多いということは、経験上第二水準にはブログなどの Web サイト使う漢字が少ないということなのだろう。
+          <p>これでもだいぶ減っているが、ざっと見ても使わなそうな漢字はかなり多い。
+          <p>先に引用した定義では、第一水準はざっくり 「常用漢字 + 人名用漢字」 となっている。
+          <p>このサイトでは、人名の引用は基本的に Twitter ID などになるだろう。というか書くのは自分なのでそう縛ればいい。
+          <p>そこで、常用漢字のみに絞ってみた。
+        </section>
+        <section>
+          <h3 id="常用漢字"><a href="#常用漢字">常用漢字</a></h3>
+          <p>常用漢字は文化庁が告示している。 2010 年に改定があった。
+          <blockquote>
+            <p>一般の社会生活において現代の国語を書き表すための漢字使用の目安を、次の表のように定める。
+            <p>&mdash; <cite><a href="http://kokugo.bunka.go.jp/kokugo_nihongo/joho/kijun/naikaku/kanji/">常用漢字表(平成 22 年内閣告示第 2 号)</a></cite>
+          </blockquote>
+          <p>以下に一覧がある。
+          <p><a href="http://kanji.jitenon.jp/cat/joyo.html">常用漢字 2136 文字</a>
+        </section>
+        <section>
+          <h3 id="常用漢字と第一水準漢字の差分"><a href="#常用漢字と第一水準漢字の差分">常用漢字と第一水準漢字の差分</a></h3>
+          <p>気になって、二つのセットの diff を取ってみたら、「 <em>JIS 第一水準にはないが、常用漢字にある漢字</em> 」があることがわかった。
+          <p>「JIS 第一水準でだいたい OK」と言われている候補に無い文字が、常用漢字一覧にはある。
+          <p>つまり、常用漢字一覧のなかでも、使われ無い可能性が高い漢字が含まれるということだ。
+          <p>以下の 30 文字である。
+          <pre class=text><code translate="no">丼 傲 刹 哺 喩 嗅 嘲 彙 恣 惧 慄 憬 拉 摯 曖 楷 毀 璧 瘍 箋 籠 緻 羞 訃 諧 貪 踪 辣 錮 鬱</code></pre>
+          <p>ざっと見て、以下 6 文字はいらないだろうと判断した。
+          <pre class=text><code translate="no">哺 惧 彙 楷 憬 錮</code></pre>
+        </section>
+        <section>
+          <h3 id="不要な文字"><a href="#不要な文字">不要な文字</a></h3>
+          <p>他にも、常用漢字一覧には、まだまだ「 <em>技術ブログではおおよそ出てこなさそうな漢字</em> 」がいくつか見られる。
+          <p>もちろん使う場面はあるかもしれないが、書くのは自分なので把握しておけば良い。
+          <p>どうしても必要ならフォントセットに追加すれば良いが、その頻度もそう高くはないだろう。
+          <p>よって、いらない漢字を 1 つ 1 つ丁寧に手動で取り除いた。
+          <p>先の 6 文字に 17 文字加えて、以下 23 文字が削除対象である。
+          <pre class=text><code translate="no">畝 租 朕 逓 哺 曹 惧 梗 痘 虞 嗣 塑 彙 楷 窟 嘱 畿 憬 璃 錮 嚇 濯 璽</code></pre>
+          <p>これらを反映した結果が以下である。
+          <p><a href="Kanji.txt">Kanji.txt</a>
+        </section>
+        <section>
+          <h3 id="更新20160828"><a href="#更新20160828">更新(2016/08/28)</a></h3>
+          <p>しばらく運用して、省かれていた以下の文字が記事中に必要になったため、文字セットに追加した。
+          <p>(後述する結果にも反映していある)
+          <pre class=text><code translate="no">✔
 ー (伸ばし棒)
 叩
 套
@@ -323,153 +323,153 @@ p q r s t u v w x y z { | } ~</code></pre>
 脆
 閾
 騙</code></pre>
-      </section>
-    </section>
-    <section>
-      <h2 id="結果"><a href="#結果">結果</a></h2>
-      <p>ここまでの結果を合わせる。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/table.css>
-      <table>
-        <thead>
-          <tr>
-            <th class=align-left>範囲</th>
-            <th class=align-right>文字数</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class=align-left>基本ラテン文字</td>
-            <td class=align-right>94</td>
-          </tr>
-          <tr>
-            <td class=align-left>CJK 記号と句読点</td>
-            <td class=align-right>11</td>
-          </tr>
-          <tr>
-            <td class=align-left>ひらがな</td>
-            <td class=align-right>81</td>
-          </tr>
-          <tr>
-            <td class=align-left>カタカナ</td>
-            <td class=align-right>83</td>
-          </tr>
-          <tr>
-            <td class=align-left>半角形と全角形</td>
-            <td class=align-right>0</td>
-          </tr>
-          <tr>
-            <td class=align-left>常用漢字</td>
-            <td class=align-right>2136</td>
-          </tr>
-          <tr>
-            <td class=align-left>記号</td>
-            <td class=align-right>1</td>
-          </tr>
-          <tr>
-            <td class=align-left>不要文字</td>
-            <td class=align-right>- 23</td>
-          </tr>
-          <tr>
-            <td class=align-left>追加更新</td>
-            <td class=align-right>13</td>
-          </tr>
-          <tr>
-            <td class=align-left>合計</td>
-            <td class=align-right>2396</td>
-          </tr>
-        </tbody>
-      </table>
-      <p>全て合わせたのが以下である。
-      <p><a href="All.txt">All.txt</a>
-    </section>
-    <section>
-      <h2 id="フォント生成"><a href="#フォント生成">フォント生成</a></h2>
-      <p>ここまでに選択した文字のみで Web Font を作成する。
-      <section>
-        <h3 id="サブセット化"><a href="#サブセット化">サブセット化</a></h3>
-        <p>まず、以下のツールを用い、この対象文字だけを抜き出したサブセットを作成する。
-        <p><a href="https://opentype.jp/subsetfontmk.htm">サブセットフォントメーカー</a>
-        <ul>
-          <li>NotoSansCJKjp-Jxck-Bold.otf    (473.2K)
-          <li>NotoSansCJKjp-Jxck-Regular.otf (471.2K)
-        </ul>
+        </section>
       </section>
       <section>
-        <h3 id="woff-変換"><a href="#woff-変換">Woff 変換</a></h3>
-        <p>この OTF ファイルを、以下のツールを用い、 Woff 形式に変換する。
-        <p><a href="https://opentype.jp/woffconv.htm">WOFF コンバータ</a>
-        <p>メタデータは一切付与しない。
-        <p>また IE はどうでもいいので、 IE に対応させるための EOT ファイルも作成しない。
-        <ul>
-          <li>NotoSansCJKjp-Jxck-Bold.woff    (379.7K)
-          <li>NotoSansCJKjp-Jxck-Regular.woff (375.8K)
-        </ul>
-      </section>
-    </section>
-    <section>
-      <h2 id="効果"><a href="#効果">効果</a></h2>
-      <p>簡単にサイズの比較を行ってみる。
-      <p>比較は Woff で行い、フォントは Regular を使う。
-      <section>
-        <h3 id="漢字-1"><a href="#漢字-1">漢字</a></h3>
-        <p>まず対象とする漢字による、サイズの変化はこうなる。
+        <h2 id="結果"><a href="#結果">結果</a></h2>
+        <p>ここまでの結果を合わせる。
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/table.css>
         <table>
           <thead>
             <tr>
               <th class=align-left>範囲</th>
-              <th class=align-right>サイズ</th>
+              <th class=align-right>文字数</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class=align-left>JISX0208</td>
-              <td class=align-right>505.0K</td>
+              <td class=align-left>基本ラテン文字</td>
+              <td class=align-right>94</td>
+            </tr>
+            <tr>
+              <td class=align-left>CJK 記号と句読点</td>
+              <td class=align-right>11</td>
+            </tr>
+            <tr>
+              <td class=align-left>ひらがな</td>
+              <td class=align-right>81</td>
+            </tr>
+            <tr>
+              <td class=align-left>カタカナ</td>
+              <td class=align-right>83</td>
+            </tr>
+            <tr>
+              <td class=align-left>半角形と全角形</td>
+              <td class=align-right>0</td>
             </tr>
             <tr>
               <td class=align-left>常用漢字</td>
-              <td class=align-right>356.1K</td>
+              <td class=align-right>2136</td>
             </tr>
             <tr>
-              <td class=align-left>削除後</td>
-              <td class=align-right>351.6K</td>
+              <td class=align-left>記号</td>
+              <td class=align-right>1</td>
+            </tr>
+            <tr>
+              <td class=align-left>不要文字</td>
+              <td class=align-right>- 23</td>
+            </tr>
+            <tr>
+              <td class=align-left>追加更新</td>
+              <td class=align-right>13</td>
+            </tr>
+            <tr>
+              <td class=align-left>合計</td>
+              <td class=align-right>2396</td>
             </tr>
           </tbody>
         </table>
+        <p>全て合わせたのが以下である。
+        <p><a href="All.txt">All.txt</a>
       </section>
       <section>
-        <h3 id="結果-1"><a href="#結果-1">結果</a></h3>
-        <p>もしここまでに見てきた各項目にあげた候補を、一切削除せず、漢字を JISX0208 とした場合はこうなる。
-        <table>
-          <thead>
-            <tr>
-              <th class=align-left></th>
-              <th class=align-right>サイズ</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class=align-left>before</td>
-              <td class=align-right>547.5K</td>
-            </tr>
-            <tr>
-              <td class=align-left>after</td>
-              <td class=align-right>378.4K</td>
-            </tr>
-          </tbody>
-        </table>
+        <h2 id="フォント生成"><a href="#フォント生成">フォント生成</a></h2>
+        <p>ここまでに選択した文字のみで Web Font を作成する。
+        <section>
+          <h3 id="サブセット化"><a href="#サブセット化">サブセット化</a></h3>
+          <p>まず、以下のツールを用い、この対象文字だけを抜き出したサブセットを作成する。
+          <p><a href="https://opentype.jp/subsetfontmk.htm">サブセットフォントメーカー</a>
+          <ul>
+            <li>NotoSansCJKjp-Jxck-Bold.otf    (473.2K)
+            <li>NotoSansCJKjp-Jxck-Regular.otf (471.2K)
+          </ul>
+        </section>
+        <section>
+          <h3 id="woff-変換"><a href="#woff-変換">Woff 変換</a></h3>
+          <p>この OTF ファイルを、以下のツールを用い、 Woff 形式に変換する。
+          <p><a href="https://opentype.jp/woffconv.htm">WOFF コンバータ</a>
+          <p>メタデータは一切付与しない。
+          <p>また IE はどうでもいいので、 IE に対応させるための EOT ファイルも作成しない。
+          <ul>
+            <li>NotoSansCJKjp-Jxck-Bold.woff    (379.7K)
+            <li>NotoSansCJKjp-Jxck-Regular.woff (375.8K)
+          </ul>
+        </section>
       </section>
-    </section>
-    <section>
-      <h2 id="フォントの設定"><a href="#フォントの設定">フォントの設定</a></h2>
       <section>
-        <h3 id="font-face-の指定"><a href="#font-face-の指定">font-face の指定</a></h3>
-        <p>まず woff ファイルを配布し、それを読み込ませる。
-        <p>ただし、 Android Marshmallow では Noto Sans がビルドインになったため、 Regular のみが全フォント入っている。
-        <p>他にも、このブログを見に来る人は、自分でローカルインストールしている人がいるだろう。
-        <p>そうした場合、 <code translate="no">local()</code> を用いてシステムフォントを優先すれば、ダウンロードが不要になる。
-        <p>現在 NotoSans は &ldquo;NotoSansCJKjp-Bold.otf&rdquo; という名前で配布されている。
-        <p>Android は <a href="https://toach.click/how-to-noto-sans-japanese/#Android_MarshmallowNoto_Sans_Japanese">&ldquo;NotoSansJP-Regular.otf&rdquo; という名前で入っているらしい</a> ため、それも含めて以下のように設定する。
-        <pre class=css><code translate="no">@font-face {
+        <h2 id="効果"><a href="#効果">効果</a></h2>
+        <p>簡単にサイズの比較を行ってみる。
+        <p>比較は Woff で行い、フォントは Regular を使う。
+        <section>
+          <h3 id="漢字-1"><a href="#漢字-1">漢字</a></h3>
+          <p>まず対象とする漢字による、サイズの変化はこうなる。
+          <table>
+            <thead>
+              <tr>
+                <th class=align-left>範囲</th>
+                <th class=align-right>サイズ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class=align-left>JISX0208</td>
+                <td class=align-right>505.0K</td>
+              </tr>
+              <tr>
+                <td class=align-left>常用漢字</td>
+                <td class=align-right>356.1K</td>
+              </tr>
+              <tr>
+                <td class=align-left>削除後</td>
+                <td class=align-right>351.6K</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section>
+          <h3 id="結果-1"><a href="#結果-1">結果</a></h3>
+          <p>もしここまでに見てきた各項目にあげた候補を、一切削除せず、漢字を JISX0208 とした場合はこうなる。
+          <table>
+            <thead>
+              <tr>
+                <th class=align-left></th>
+                <th class=align-right>サイズ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class=align-left>before</td>
+                <td class=align-right>547.5K</td>
+              </tr>
+              <tr>
+                <td class=align-left>after</td>
+                <td class=align-right>378.4K</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </section>
+      <section>
+        <h2 id="フォントの設定"><a href="#フォントの設定">フォントの設定</a></h2>
+        <section>
+          <h3 id="font-face-の指定"><a href="#font-face-の指定">font-face の指定</a></h3>
+          <p>まず woff ファイルを配布し、それを読み込ませる。
+          <p>ただし、 Android Marshmallow では Noto Sans がビルドインになったため、 Regular のみが全フォント入っている。
+          <p>他にも、このブログを見に来る人は、自分でローカルインストールしている人がいるだろう。
+          <p>そうした場合、 <code translate="no">local()</code> を用いてシステムフォントを優先すれば、ダウンロードが不要になる。
+          <p>現在 NotoSans は &ldquo;NotoSansCJKjp-Bold.otf&rdquo; という名前で配布されている。
+          <p>Android は <a href="https://toach.click/how-to-noto-sans-japanese/#Android_MarshmallowNoto_Sans_Japanese">&ldquo;NotoSansJP-Regular.otf&rdquo; という名前で入っているらしい</a> ため、それも含めて以下のように設定する。
+          <pre class=css><code translate="no">@font-face {
   font-family: &quot;NotoSansCJKjp-Jxck&quot;;
   font-style: normal;
   font-weight: 400;
@@ -486,46 +486,45 @@ p q r s t u v w x y z { | } ~</code></pre>
        local(&quot;NotoSansJP-Bold.otf&quot;),
        url(&quot;https://path-to-font/NotoSansCJKjp-Jxck-Bold.woff&quot;) format(&quot;woff&quot;);
 }</code></pre>
-      </section>
-      <section>
-        <h3 id="font-family-の指定"><a href="#font-family-の指定">font-family の指定</a></h3>
-        <p>使用したフォントを CSS に設定する。
-        <p>Google はガイドラインを公開している。
-        <p><a href="https://www.google.com/get/noto/help/guidelines/">Guidelines for Using Noto</a>
-        <p>システムにある場合は正式名称で、こちらで提供したフォントがダウンロードされた場合は、それが使われるようにする。
-        <p>基本的には、サイト全体に適用するため <code translate="no">body</code> へ指定し、 <code translate="no">pre &gt; code</code> 内は別にしたいため、そこだけ上書きしている。
-        <pre class=css><code translate="no">body {
+        </section>
+        <section>
+          <h3 id="font-family-の指定"><a href="#font-family-の指定">font-family の指定</a></h3>
+          <p>使用したフォントを CSS に設定する。
+          <p>Google はガイドラインを公開している。
+          <p><a href="https://www.google.com/get/noto/help/guidelines/">Guidelines for Using Noto</a>
+          <p>システムにある場合は正式名称で、こちらで提供したフォントがダウンロードされた場合は、それが使われるようにする。
+          <p>基本的には、サイト全体に適用するため <code translate="no">body</code> へ指定し、 <code translate="no">pre &gt; code</code> 内は別にしたいため、そこだけ上書きしている。
+          <pre class=css><code translate="no">body {
   font-family: &quot;Noto Sans&quot;, &quot;Noto Sans CJK JP&quot;, &quot;NotoSansCJKjp-Jxck&quot;, sans-serif;
 }</code></pre>
+        </section>
       </section>
-    </section>
-    <section>
-      <h2 id="キャッシュ設定"><a href="#キャッシュ設定">キャッシュ設定</a></h2>
-      <p>フォントは、基本的には変更が非常に少ないファイルであるため、積極的にキャッシュをしていきたい。
-      <p>ただし、今回のような作り方の場合には、フォントの追加によるファイルの更新が皆無ではないため、 URL にバージョンを忘れずに入れる。(font-face の指定参照)
-      <pre class=css><code translate="no">url(&quot;/paht-to-font/NotoSansCJKjp-Jxck.Bold.woff?ver=201603014&quot;) format(&quot;woff&quot;);</code></pre>
-      <p>ここでは max-age を一年とし、フォントを作り直した場合はバージョンを変える
-      <pre class=http><code translate="no">Cache-Control: max-age=31536000</code></pre>
-    </section>
-    <section>
-      <h2 id="preload"><a href="#preload">Preload</a></h2>
-      <p><a href="https://blog.jxck.io/entries/2016-03-04/preload.html">Preload を用いたリソースプリローディングの最適化</a> で解説した <code translate="no">&lt;link rel=preload&gt;</code> でフォントを適用した。
-      <p>ただし、影響が大きい Regular のみにした。
-      <pre class=html><code translate="no">&lt;link rel=preload as=font type=font/woff href=https://path-to-font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin&gt;</code></pre>
-      <p>また、 AMP 対応ページでは <code translate="no">rel=preload</code> は許可されてないため指定するとエラーになったため、 AMP の方には指定していない。
-    </section>
-    <section>
-      <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
-      <p>Web Font もだいぶ一般的になってきたため、今後の Web 作成では、 Web Font の存在は前提となっていくだろうと感じている。
-      <p>このサイトではパフォーマンスに関わる最適化手法を色々と試しているが、 Web Font も無しに表示の速さを語っても片手落ちだろうと思い、いわゆる鉄下駄として入れてみた。
-      <p>こうした使いやすく優れたフォントが無料で提供されているのは、非常にありがたい。
-    </section>
-    <section>
-      <h2 id="related"><a href="#related">Related</a></h2>
-      <p>その他 WebFont に関連する検証は <a href="https://blog.jxck.io/tags/web%20font.html">web font</a> タグにまとまっている。
-    </section>
-  </article>
-
+      <section>
+        <h2 id="キャッシュ設定"><a href="#キャッシュ設定">キャッシュ設定</a></h2>
+        <p>フォントは、基本的には変更が非常に少ないファイルであるため、積極的にキャッシュをしていきたい。
+        <p>ただし、今回のような作り方の場合には、フォントの追加によるファイルの更新が皆無ではないため、 URL にバージョンを忘れずに入れる。(font-face の指定参照)
+        <pre class=css><code translate="no">url(&quot;/paht-to-font/NotoSansCJKjp-Jxck.Bold.woff?ver=201603014&quot;) format(&quot;woff&quot;);</code></pre>
+        <p>ここでは max-age を一年とし、フォントを作り直した場合はバージョンを変える
+        <pre class=http><code translate="no">Cache-Control: max-age=31536000</code></pre>
+      </section>
+      <section>
+        <h2 id="preload"><a href="#preload">Preload</a></h2>
+        <p><a href="https://blog.jxck.io/entries/2016-03-04/preload.html">Preload を用いたリソースプリローディングの最適化</a> で解説した <code translate="no">&lt;link rel=preload&gt;</code> でフォントを適用した。
+        <p>ただし、影響が大きい Regular のみにした。
+        <pre class=html><code translate="no">&lt;link rel=preload as=font type=font/woff href=https://path-to-font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin&gt;</code></pre>
+        <p>また、 AMP 対応ページでは <code translate="no">rel=preload</code> は許可されてないため指定するとエラーになったため、 AMP の方には指定していない。
+      </section>
+      <section>
+        <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
+        <p>Web Font もだいぶ一般的になってきたため、今後の Web 作成では、 Web Font の存在は前提となっていくだろうと感じている。
+        <p>このサイトではパフォーマンスに関わる最適化手法を色々と試しているが、 Web Font も無しに表示の速さを語っても片手落ちだろうと思い、いわゆる鉄下駄として入れてみた。
+        <p>こうした使いやすく優れたフォントが無料で提供されているのは、非常にありがたい。
+      </section>
+      <section>
+        <h2 id="related"><a href="#related">Related</a></h2>
+        <p>その他 WebFont に関連する検証は <a href="https://blog.jxck.io/tags/web%20font.html">web font</a> タグにまとまっている。
+      </section>
+    </article>
   </main>
   <hr>
 

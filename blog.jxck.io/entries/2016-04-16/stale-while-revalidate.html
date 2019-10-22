@@ -106,231 +106,236 @@
     </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
-  <article>
-    <h1><a href=/entries/2016-04-16/stale-while-revalidate.html>Stale-While-Revalidate ヘッダによるブラウザキャッシュの非同期更新</a></h1>
-    <section>
-      <h2 id="intro"><a href="#intro">Intro</a></h2>
-      <p>システムにおいてキャッシュの設計は永遠の課題であり、 Web のパフォーマンスにおいても非常に重要である。
-      <p>Web では、 HTTP ヘッダを用いてブラウザやプロキシにキャッシュの制御を指定する。
-      <p>Stale-While-Revalidate ヘッダは、このキャッシュ制御に選択肢を追加する新しい仕様である。
-      <p>このヘッダの概要と、本サイトへの適用を解説する。
-    </section>
-    <section>
-      <h2 id="web-におけるキャッシュ"><a href="#web-におけるキャッシュ">Web におけるキャッシュ</a></h2>
+    <article>
+      <h1><a href=/entries/2016-04-16/stale-while-revalidate.html>Stale-While-Revalidate ヘッダによるブラウザキャッシュの非同期更新</a></h1>
       <section>
-        <h3 id="キャッシュの種類"><a href="#キャッシュの種類">キャッシュの種類</a></h3>
-        <p>まず、ブラウザが持つ従来のキャッシュの機構について整理する。
-        <p>そもそも、キャッシュを行う意義は大きく二つある。
-        <ul>
-          <li>リソースの取得を高速化する
-          <li>サーバへの負荷を減らす
-        </ul>
-        <p>これまでは HTTP ヘッダを用いて、キャッシュを管理させる方法を用いてきた。
-        <p>Web における、キャッシュの指定には大きく二つの方式がある。
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>システムにおいてキャッシュの設計は永遠の課題であり、 Web のパフォーマンスにおいても非常に重要である。
+        <p>Web では、 HTTP ヘッダを用いてブラウザやプロキシにキャッシュの制御を指定する。
+        <p>Stale-While-Revalidate ヘッダは、このキャッシュ制御に選択肢を追加する新しい仕様である。
+        <p>このヘッダの概要と、本サイトへの適用を解説する。
+      </section>
+      <section>
+        <h2 id="web-におけるキャッシュ"><a href="#web-におけるキャッシュ">Web におけるキャッシュ</a></h2>
+        <section>
+          <h3 id="キャッシュの種類"><a href="#キャッシュの種類">キャッシュの種類</a></h3>
+          <p>まず、ブラウザが持つ従来のキャッシュの機構について整理する。
+          <p>そもそも、キャッシュを行う意義は大きく二つある。
+          <ul>
+            <li>リソースの取得を高速化する
+            <li>サーバへの負荷を減らす
+          </ul>
+          <p>これまでは HTTP ヘッダを用いて、キャッシュを管理させる方法を用いてきた。
+          <p>Web における、キャッシュの指定には大きく二つの方式がある。
+          <ul>
+            <li>
+              ブラウザはリクエストを発行せず、保持するキャッシュを使用する(<code translate="no">Cache-Control</code>, <code translate="no">Expires</code>)
+            </li>
+            <li>
+              ブラウザはリクエストを発行し、サーバにキャッシュの有効性を確認してから、キャッシュを使用する(<code translate="no">ETag</code>, <code translate="no">Last-Modified</code>)
+            </li>
+          </ul>
+          <p>また、キャッシュは、「再利用」を行う目的でありながら、ある一定の範囲で「更新」を行いたいという、相反するコントロールが求められる。
+          <p>筆者の認識として、キャッシュ設計の最も難しい点は、ここである。
+          <p>これらは基本的/一般的な内容であり、キャッシュに関わるヘッダや機能は他にもある点、そしてブラウザは独自の判断でキャッシュを使う場合があることに注意されたい。
+          <p>キャッシュを行う側としてブラウザ以外に Proxy もあるが、話を簡単にするため、今回は言及しない。
+        </section>
+        <section>
+          <h3 id="cache-control-expires"><a href="#cache-control-expires">Cache-Control, Expires</a></h3>
+          <p><code translate="no">Cache-Control</code> ヘッダで <code translate="no">max-age</code> を指定するか、 <code translate="no">Expires</code> ヘッダで未来の時間を指定した場合、ブラウザはその期間内であればサーバに問い合わせることなくキャッシュを使用する。
+          <p>つまり、この指定によるキャッシュがヒットする場合、ネットワークパケットは一切発生せず、理論上は最速でリソースを取得できる。
+          <p>しかし、これらのヘッダに基づくキャッシュヒットはブラウザ内で完結してしまうため、期限が切れるまでサーバは介入することができない。
+          <p>例えば、長い期間を指定してキャッシュさせた JS にバグがあった場合も、サーバから修正したスクリプトを配信することができなくなる。
+          <p>かと言って、短い消極的な期間にしては、高頻度でリクエストが発生してキャッシュの効果が薄れる。
+          <p>そこで、現実的には期間を長く、推奨される最大値の <em>1 年</em> などを指定し、更新があったらそのリソースの URL を変更するという運用がよく行われる。
+          <p>例えば <code translate="no">production.min.js</code> を 1 年間ブラウザにキャッシュさせる。
+          <p>この JS を <code translate="no">index.html</code> に指定する際は、以下のようにバージョンを含める。
+          <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+          <pre class=html><code translate="no">&lt;script src=production.min.js?ver=1&gt;&lt;/script&gt;</code></pre>
+          <p>これで <code translate="no">ver=1</code> を参照している間はキャッシュが使われる。
+          <p>もし JS が更新されたらバージョンを変えることで、 URL を以下のように変更する。
+          <pre class=html><code translate="no">&lt;script src=production.min.js?ver=2&gt;&lt;/script&gt;</code></pre>
+          <p>ブラウザのキャッシュは基本的に URL 単位で行われるため、この URL を毎回変えてやれば、古いキャッシュが使われるのを避けることができる。
+          <p>あくまで URL を変えることが目的なので、実際にサーバ側でこの値をハンドルする必要は必ずしもない。バージョンの代わりにタイムスタンプやハッシュを使っても良い。
+          <p>ただし、この <code translate="no">&lt;script&gt;</code> を含む、 <code translate="no">index.html</code> 自体が長期間キャッシュされてしまうと、 <code translate="no">production.min.js</code> の URL も更新できない。
+          <p>したがって、 <code translate="no">index.html</code> 自体は長期間のキャッシュがしにくいという問題は残る。
+        </section>
+        <section>
+          <h3 id="etag-last-modified"><a href="#etag-last-modified">Etag, Last-Modified</a></h3>
+          <p>HTTP には、 <em>Conditional GET</em> (条件付き GET) という仕組みがある。
+          <p>これは、「<em>既に保持しているキャッシュが今でも有効かどうか</em>」をサーバに問い合わせる方法である。
+          <p>具体的には、サーバは <code translate="no">ETag</code>, <code translate="no">Last-Modified</code> などのヘッダをレスポンスに付与することで、リソースに関する情報をサーバに伝える。
+          <dl>
+            <div>
+              <dt>ETag
+              <dd>そのリソースを一意に特定する値、要するにリソースのハッシュ値
+            </div>
+            <div>
+              <dt>Last-Modified
+              <dd>そのリソースが最後に更新されたタイムスタンプ。この値を保存したブラウザは、同じ URL へのリクエストに、キャッシュしたリソースに付与されていた値を設定してサーバに問い合わせる。 サーバは、リクエストされたリソースについて各値を検証する。
+            </div>
+            <div>
+              <dt>If-Non-Match
+              <dd>ETag で受け取った値を付与、サーバはその値と現在のリソースの値を比較
+            </div>
+            <div>
+              <dt>If-Modified-Since
+              <dd>Last-Modified で受け取った値を付与、サーバはリソースの最終更新日を比較 これによって、ブラウザがキャッシュしたリソースが、まだ新鮮であるかどうかをサーバが判断できる。 新鮮ならば <code translate="no">304 Not Modified</code> を返すことで、ブラウザにキャッシュが再利用できることを伝える。 新鮮でなければ新しいリソースをレスポンスし、キャッシュは更新される。 この仕組みは、キャッシュが有効と分かればレスポンスボディが空になるため、ペイロードサイズが大幅に減る。 キャッシュが古い場合は、常に新しいリソースを提供できるため、更新が多いリソースで、最新のコンテンツを提供する場合に使用できる。 ただし、あくまでサーバへの問い合わせ自体は発生するため、ラウンドトリップ自体の削減にはならない。
+            </div>
+          </dl>
+        </section>
+      </section>
+      <section>
+        <h2 id="stale-while-revalidate"><a href="#stale-while-revalidate">Stale-While-Revalidate</a></h2>
+        <p>ここまでの二つの仕組みは、下手に設定すると更新されない、弱気になるとキャッシュが効かないという、設計の難しさをはらむ。
+        <p>したがってヘッダのみを用いて、「<em>キャッシュは効かせたいが、なるべく新鮮なリソースを提供したい。</em>」などといった要望に対処するのが難しかった。
+        <p>そこで提案されたのが <em>Stale-While-Revalidate</em> (SwR)という <code translate="no">Cache-Control</code> の拡張である。
+        <p>簡単に言えば「<em>キャッシュから表示するが、裏で非同期にキャッシュを更新しておく</em>」という仕組みである。
         <ul>
           <li>
-            ブラウザはリクエストを発行せず、保持するキャッシュを使用する(<code translate="no">Cache-Control</code>, <code translate="no">Expires</code>)
+            <a href="https://tools.ietf.org/html/rfc5861">RFC 5861 - HTTP Cache-Control Extensions for Stale Content</a>
+          </li>
+        </ul>
+        <p>なお、現時点では Chrome のみに実装されており、 flag を有効にすることで使用できる。
+        <p><a href="chrome://flags/#enable-stale-while-revalidate">chrome://flags/#enable-stale-while-revalidate</a>
+        <section>
+          <h3 id="max-age"><a href="#max-age">max-age</a></h3>
+          <p>まず、従来の方法で以下のヘッダがあった場合を考える。
+          <pre class=http><code translate="no">Cache-Control: max-age=3600;</code></pre>
+          <p>すると、 fetch したレスポンスは 3600s の間は <em>fresh</em> とみなされ、その期間はキャッシュヒットする。
+          <p>しかし、 3600s をすぎるとキャッシュは <em>stale</em> とみなされ破棄し、次のリクエストで fetch が走る。
+          <p>
+            <img loading=lazy src=max-age.svg#552x352 alt="max-age の期間はキャッシュがヒットし、期間を過ぎると取得し直す" title="max-age header flow" width=552 height=352 intrinsicsize=552x352>
+          </p>
+        </section>
+        <section>
+          <h3 id="stale-while-revalidate-1"><a href="#stale-while-revalidate-1">stale-while-revalidate</a></h3>
+          <p><code translate="no">Cache-Control</code> に <code translate="no">stale-while-revalidate</code> を指定する。
+          <pre class=http><code translate="no">Cache-Control: max-age=3600, stale-while-revalidate=360</code></pre>
+          <p>すると、 fetch から 3600s 経過したキャッシュは <em>stale</em> となるが、そこから 360s は、その <em>stale</em> なキャッシュを引き続き使用する。
+          <p>しかし、一度 <em>stale</em> なキャッシュを使用したら、裏で非同期に fetch を行い、サーバにキャッシュの鮮度を問い合わせる(validate)。
+          <p>もしサーバから新しいリソースを fetch したなら、そこに付与された新しいヘッダにしたがってキャッシュを更新する。
+          <p>なんらかの理由で 360s の間に validate が完了しなければ、キャッシュを <em>true stale</em> とみなして破棄し、次のリクエストで fetch が走る。
+          <p><code translate="no">stale-while-revalidate</code> の時間が過ぎれば必ず fetch が発生するということは、従来設定していた <code translate="no">max-age</code> = <code translate="no">max-age</code> + <code translate="no">stale-while-revalidate</code> の時間と設定すれば、従来との差異はキャッシュの新しさだけになる。
+          <p>したがって、この設定からであれば、導入はそこまで難しく無いと考えられる。
+          <p>
+            <img loading=lazy src=stale-while-revalidate.svg#552x352 alt="fresh で無くなってからも、 while-revalidate の期間は fetch に対し stale なキャッシュをヒットさせし、裏で更新する" title="stale-while-revalidate header flow" width=552 height=352 intrinsicsize=552x352>
+          </p>
+        </section>
+        <section>
+          <h3 id="stale-if-error"><a href="#stale-if-error">stale-if-error</a></h3>
+          <p>仕様にはもう一つ、 <code translate="no">stale-if-error</code> という拡張もある。
+          <p>同じく <code translate="no">Cache-Control</code> に指定する。
+          <pre class=http><code translate="no">Cache-Control: max-age=3600, stale-if-error=360</code></pre>
+          <p>すると、 3600s でキャッシュは <em>stale</em> になり、次のリクエストで fetch が走る。
+          <p>しかし、もしその fetch がサーバの 500 やネットワークエラーにより失敗した場合は、 360s 間は stale cache を使用しても良い。
+          <p>これにより、ブラウザのエラー画面が表示されるのを防ぐことができる。
+          <p>もちろん、上記二つは組み合わせて使うことができる。
+          <p>
+            <img loading=lazy src=stale-if-error.svg#552x352 alt="fresh で無くなってからも、オリジンがエラーを返す場合は stale なキャッシュをヒットさせる" title="stale-if-erro header" width=552 height=352 intrinsicsize=552x352>
+          </p>
+        </section>
+      </section>
+      <section>
+        <h2 id="swr-のデモ"><a href="#swr-のデモ">SwR のデモ</a></h2>
+        <p>執筆時点では、実装ブラウザは Chrome のみであり、フラグを有効にすることで使用できる。
+        <p><a href="chrome://flags/#enable-stale-while-revalidate">chrome://flags/#enable-stale-while-revalidate</a>
+        <p>以下に用意したデモページを用意した。
+        <p><a href="https://labs.jxck.io/stale-while-revalidate/">https://labs.jxck.io/stale-while-revalidate/</a>
+        <p>サーバは、アクセスの度に異なるシーケンス番号、タイムスタンプ、ランダムな文字列を返すようになっている。
+        <p>そして、レスポンスに以下のヘッダを追加しているため、アクセスを繰り返せば挙動が確認できるだろう。
+        <p>(Chrome はリロードではキャッシュを無視する場合があるため、画面に用意したリンクを踏むこと)
+        <pre class=http><code translate="no">Cache-Control: max-age=5, stale-while-revalidate=10, stale-if-error=15</code></pre>
+        <p>以下にデモのキャプチャを用意した。 Chrome の dev tools とサーバ側のアクセスログを表示している。
+        <p>サーバへのアクセスが発生し表示が更新されているが、全てキャッシュがヒットしていることが分かるだろう。
+        <p>
+          <picture>
+            <source type=image/webp srcset=stale-while-revalidate-demo.webp#1000x510>
+            <img loading=lazy src=stale-while-revalidate-demo.gif#1000x510 alt="statle-while-revalidate の期間はキャッシュを利用し、裏で更新が行われている" title="stale-while-revalidate demo gif" intrinsicsize=1000x510>
+          </picture>
+        </p>
+      </section>
+      <section>
+        <h2 id="swr-を用いたキャッシュ戦略の考察"><a href="#swr-を用いたキャッシュ戦略の考察">SwR を用いたキャッシュ戦略の考察</a></h2>
+        <p>この仕組みを用いたキャッシュ戦略について考察する。
+        <p>まず、 SwR を用いると何が変わるのかを確認するため、極端な設定例を用いて考察する。
+        <section>
+          <h3 id="1-year-fresh-cache"><a href="#1-year-fresh-cache">1 year fresh cache</a></h3>
+          <pre class=http><code translate="no">Cache-Control: max-age=31536000</code></pre>
+          <p>この設定では、キャッシュは 1 年間 <em>fresh</em> となる。
+          <p>例えば、 <code translate="no">favicon.ico</code> や <code translate="no">jquery.min.js</code> などといった更新が少ない、もしくは更新が無い(ある場合はファイル名が変わる) といった場合に設定が可能になる。
+          <p>キャッシュが途中で消されない理想状態においては、そのブラウザからサーバへのリクエストは 1 年間無いことになる。
+          <p>ただし、取得されるリソースは常に最初に取得したものであり、最大で 1 年前のものとなる。
+        </section>
+        <section>
+          <h3 id="1-year-stale-cache"><a href="#1-year-stale-cache">1 year stale cache</a></h3>
+          <pre class=http><code translate="no">Cache-Control: max-age=1, stale-while-revalidate=3153600</code></pre>
+          <p>この設定は、キャッシュはすぐに <em>stale</em> となる。
+          <p>しかし、 1 年間はこの <em>stale cache</em> を使用することが許可されているため、次のリクエストはキャッシュヒットする。
+          <p>そして、その裏で <em>validate</em> として fetch が走る。もしレスポンスが同じヘッダを持てば、そこからまた 1 年キャッシュが <em>stale</em> になる。
+          <p>つまり、キャッシュは常に 1 度だけヒットし、最後にアクセスした直後の内容に更新されていることになる。
+          <p><code translate="no">max-age</code> との最大の違いは、サーバへの負荷になるだろう。この場合 fetch が行われる <em>回数</em> 自体は、 <code translate="no">Cache-Control</code> が無かった状態と変わらない。 fetch のタイミングが少し後ろにずれるだけである。
+          <p>最初にキャッシュしてから 1 年間は、必ずキャッシュヒットするが、リソースの状態は最後にアクセスした時のもの、という状態になる。
+        </section>
+        <section>
+          <h3 id="1-year-freshstale-cache"><a href="#1-year-freshstale-cache">1 year fresh/stale cache</a></h3>
+          <pre class=http><code translate="no">Cache-Control: max-age=15768000, stale-while-revalidate=15768000</code></pre>
+          <p>両方を半年ずつ設定した場合、半年ずつ <em>fresh</em> / <em>stale</em> になる。
+          <p>この場合 <code translate="no">stale-while-revalidate</code> に <em>対応していないブラウザ</em> でも、半年はキャッシュが効く。
+          <p>まだ <code translate="no">stale-while-revalidate</code> の実装が行き渡らないうちは、こうした両方での指定も考慮すべきだろう。
+          <p><code translate="no">max-age</code> の割合を、リソースのコンテンツ頻度などを元に考慮することで、サーバへの負荷とキャッシュの鮮度のバランスを取ることができる。
+        </section>
+      </section>
+      <section>
+        <h2 id="本サイトでの適用"><a href="#本サイトでの適用">本サイトでの適用</a></h2>
+        <section>
+          <h3 id="現状"><a href="#現状">現状</a></h3>
+          <p>本サイトでは、現状 <code translate="no">Cache-Control</code> は <a href="https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html">WebFont</a> 以外にはつけておらず、 ETag による Conditional GET でのキャッシュを利用している。
+          <p>これは、ブログの記事や、 JS/CSS などの <em>修正がいち早く反映されて欲しい</em> からである。
+          <p>全体のアクセスもまだまだ多くはなく、バージョンの付与による URL の変更は、あまり使いたくは無い。
+          <p>リクエストが頻発しても、もし実際にリソースの更新がないのであれば、 304 を返すだけで足りる。
+          <p>したがって、現状との飛躍が少ない状態で <em>リクエストを減らすため</em> のキャッシュは考慮になく、 <em>表示の最適化</em> のためのキャッシュを積極的に行いたい。
+          <p>毎回キャッシュはヒットするが、極力最新の状態というのが理想である。
+        </section>
+        <section>
+          <h3 id="アクセスパターン"><a href="#アクセスパターン">アクセスパターン</a></h3>
+          <p>そして、ブログは平均週一回程度の更新であるため、ユーザのアクセスは以下のパターンがある。
+          <ul>
+            <li>更新された日に RSS などからアクセスし、多少うろついて帰る
+            <li>長いスパンを開けて、検索などからアクセスし、多少うろついて帰る
+          </ul>
+          <p>現状、多くのサイトがキャッシュを設定しているため、ブラウザのローカルキャッシュは <a href="https://code.facebook.com/posts/964122680272229/web-performance-cache-efficiency-exercise/">2 日程度で消える</a> と言われている。
+          <p>そのため、後者の長いスパンの中で、前回アクセス時のキャッシュの適用を期待するのは難しい。
+          <p>どちらかというと、その日のアクセス後の導線上でキャッシュが効き、かつ、アクセス中に筆者が修正を適用しても、ある程度の速さで反映されて欲しい。
+          <p>合わせて、筆者の設定ミスなどでブログが落ちていたとしても、その日のうちはキャッシュが代替表示として十分に機能すると考える。
+        </section>
+        <section>
+          <h3 id="設定"><a href="#設定">設定</a></h3>
+          <p>結果、以下のように設定することとした。
+          <p>リソースの種類によって設定を変えることも考えたが、基本的にどのリソースでも更新が短期間に反映されて欲しいため、リソースによって差はない。
+          <ul>
+            <li>max-age=1sec : SwR 非対応ブラウザではキャッシュしない
+            <li>SwR=10min : そのとき滞在しているセッションの中ではキャッシュを使用
+            <li>SiE=1day : その日のうちは、エラーの代替表示として stale cache を利用
+          </ul>
+          <pre class=http><code translate="no">Cache-Control: max-age=1, stale-while-revalidate=600, stale-if-error=864000</code></pre>
+          <p>非常に短期のセッションでキャッシュを有効にする設定である。
+          <p>一方、長期のキャッシュは、どうしてもアクセスしてない期間に行われた更新を、バックグラウンドで反映したくなる。
+          <p>そうした場合は、 Service-Worker を使ったキャッシュ機構を適用するため、別途対応する。
+        </section>
+      </section>
+      <section>
+        <h2 id="link"><a href="#link">link</a></h2>
+        <ul>
+          <li>
+            <a href="https://www.mnot.net/blog/2014/06/01/chrome_and_stale-while-revalidate">mnot&rsquo;s blog: Chrome and Stale-While-Revalidate</a>
           </li>
           <li>
-            ブラウザはリクエストを発行し、サーバにキャッシュの有効性を確認してから、キャッシュを使用する(<code translate="no">ETag</code>, <code translate="no">Last-Modified</code>)
+            <a href="https://groups.google.com/a/chromium.org/forum/#!msg/chromium-dev/zchogDvIYrY/ZqWSdt3LJdMJ">[Web facing change PSA] Heads-up: Faster assets with the HTTP caching extension &ldquo;stale-while-revalidate&rdquo;</a>
           </li>
         </ul>
-        <p>また、キャッシュは、「再利用」を行う目的でありながら、ある一定の範囲で「更新」を行いたいという、相反するコントロールが求められる。
-        <p>筆者の認識として、キャッシュ設計の最も難しい点は、ここである。
-        <p>これらは基本的/一般的な内容であり、キャッシュに関わるヘッダや機能は他にもある点、そしてブラウザは独自の判断でキャッシュを使う場合があることに注意されたい。
-        <p>キャッシュを行う側としてブラウザ以外に Proxy もあるが、話を簡単にするため、今回は言及しない。
       </section>
-      <section>
-        <h3 id="cache-control-expires"><a href="#cache-control-expires">Cache-Control, Expires</a></h3>
-        <p><code translate="no">Cache-Control</code> ヘッダで <code translate="no">max-age</code> を指定するか、 <code translate="no">Expires</code> ヘッダで未来の時間を指定した場合、ブラウザはその期間内であればサーバに問い合わせることなくキャッシュを使用する。
-        <p>つまり、この指定によるキャッシュがヒットする場合、ネットワークパケットは一切発生せず、理論上は最速でリソースを取得できる。
-        <p>しかし、これらのヘッダに基づくキャッシュヒットはブラウザ内で完結してしまうため、期限が切れるまでサーバは介入することができない。
-        <p>例えば、長い期間を指定してキャッシュさせた JS にバグがあった場合も、サーバから修正したスクリプトを配信することができなくなる。
-        <p>かと言って、短い消極的な期間にしては、高頻度でリクエストが発生してキャッシュの効果が薄れる。
-        <p>そこで、現実的には期間を長く、推奨される最大値の <em>1 年</em> などを指定し、更新があったらそのリソースの URL を変更するという運用がよく行われる。
-        <p>例えば <code translate="no">production.min.js</code> を 1 年間ブラウザにキャッシュさせる。
-        <p>この JS を <code translate="no">index.html</code> に指定する際は、以下のようにバージョンを含める。
-        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-        <pre class=html><code translate="no">&lt;script src=production.min.js?ver=1&gt;&lt;/script&gt;</code></pre>
-        <p>これで <code translate="no">ver=1</code> を参照している間はキャッシュが使われる。
-        <p>もし JS が更新されたらバージョンを変えることで、 URL を以下のように変更する。
-        <pre class=html><code translate="no">&lt;script src=production.min.js?ver=2&gt;&lt;/script&gt;</code></pre>
-        <p>ブラウザのキャッシュは基本的に URL 単位で行われるため、この URL を毎回変えてやれば、古いキャッシュが使われるのを避けることができる。
-        <p>あくまで URL を変えることが目的なので、実際にサーバ側でこの値をハンドルする必要は必ずしもない。バージョンの代わりにタイムスタンプやハッシュを使っても良い。
-        <p>ただし、この <code translate="no">&lt;script&gt;</code> を含む、 <code translate="no">index.html</code> 自体が長期間キャッシュされてしまうと、 <code translate="no">production.min.js</code> の URL も更新できない。
-        <p>したがって、 <code translate="no">index.html</code> 自体は長期間のキャッシュがしにくいという問題は残る。
-      </section>
-      <section>
-        <h3 id="etag-last-modified"><a href="#etag-last-modified">Etag, Last-Modified</a></h3>
-        <p>HTTP には、 <em>Conditional GET</em> (条件付き GET) という仕組みがある。
-        <p>これは、「<em>既に保持しているキャッシュが今でも有効かどうか</em>」をサーバに問い合わせる方法である。
-        <p>具体的には、サーバは <code translate="no">ETag</code>, <code translate="no">Last-Modified</code> などのヘッダをレスポンスに付与することで、リソースに関する情報をサーバに伝える。
-        <dl>
-          <div>
-            <dt>ETag
-            <dd>そのリソースを一意に特定する値、要するにリソースのハッシュ値
-          </div>
-          <div>
-            <dt>Last-Modified
-            <dd>そのリソースが最後に更新されたタイムスタンプ。この値を保存したブラウザは、同じ URL へのリクエストに、キャッシュしたリソースに付与されていた値を設定してサーバに問い合わせる。 サーバは、リクエストされたリソースについて各値を検証する。
-          </div>
-          <div>
-            <dt>If-Non-Match
-            <dd>ETag で受け取った値を付与、サーバはその値と現在のリソースの値を比較
-          </div>
-          <div>
-            <dt>If-Modified-Since
-            <dd>Last-Modified で受け取った値を付与、サーバはリソースの最終更新日を比較 これによって、ブラウザがキャッシュしたリソースが、まだ新鮮であるかどうかをサーバが判断できる。 新鮮ならば <code translate="no">304 Not Modified</code> を返すことで、ブラウザにキャッシュが再利用できることを伝える。 新鮮でなければ新しいリソースをレスポンスし、キャッシュは更新される。 この仕組みは、キャッシュが有効と分かればレスポンスボディが空になるため、ペイロードサイズが大幅に減る。 キャッシュが古い場合は、常に新しいリソースを提供できるため、更新が多いリソースで、最新のコンテンツを提供する場合に使用できる。 ただし、あくまでサーバへの問い合わせ自体は発生するため、ラウンドトリップ自体の削減にはならない。
-          </div>
-        </dl>
-      </section>
-    </section>
-    <section>
-      <h2 id="stale-while-revalidate"><a href="#stale-while-revalidate">Stale-While-Revalidate</a></h2>
-      <p>ここまでの二つの仕組みは、下手に設定すると更新されない、弱気になるとキャッシュが効かないという、設計の難しさをはらむ。
-      <p>したがってヘッダのみを用いて、「<em>キャッシュは効かせたいが、なるべく新鮮なリソースを提供したい。</em>」などといった要望に対処するのが難しかった。
-      <p>そこで提案されたのが <em>Stale-While-Revalidate</em> (SwR)という <code translate="no">Cache-Control</code> の拡張である。
-      <p>簡単に言えば「<em>キャッシュから表示するが、裏で非同期にキャッシュを更新しておく</em>」という仕組みである。
-      <ul>
-        <li>
-          <a href="https://tools.ietf.org/html/rfc5861">RFC 5861 - HTTP Cache-Control Extensions for Stale Content</a>
-        </li>
-      </ul>
-      <p>なお、現時点では Chrome のみに実装されており、 flag を有効にすることで使用できる。
-      <p><a href="chrome://flags/#enable-stale-while-revalidate">chrome://flags/#enable-stale-while-revalidate</a>
-      <section>
-        <h3 id="max-age"><a href="#max-age">max-age</a></h3>
-        <p>まず、従来の方法で以下のヘッダがあった場合を考える。
-        <pre class=http><code translate="no">Cache-Control: max-age=3600;</code></pre>
-        <p>すると、 fetch したレスポンスは 3600s の間は <em>fresh</em> とみなされ、その期間はキャッシュヒットする。
-        <p>しかし、 3600s をすぎるとキャッシュは <em>stale</em> とみなされ破棄し、次のリクエストで fetch が走る。
-        <p><img loading=lazy src=max-age.svg#552x352 alt="max-age の期間はキャッシュがヒットし、期間を過ぎると取得し直す" title="max-age header flow" width=552 height=352 intrinsicsize=552x352></p>
-      </section>
-      <section>
-        <h3 id="stale-while-revalidate-1"><a href="#stale-while-revalidate-1">stale-while-revalidate</a></h3>
-        <p><code translate="no">Cache-Control</code> に <code translate="no">stale-while-revalidate</code> を指定する。
-        <pre class=http><code translate="no">Cache-Control: max-age=3600, stale-while-revalidate=360</code></pre>
-        <p>すると、 fetch から 3600s 経過したキャッシュは <em>stale</em> となるが、そこから 360s は、その <em>stale</em> なキャッシュを引き続き使用する。
-        <p>しかし、一度 <em>stale</em> なキャッシュを使用したら、裏で非同期に fetch を行い、サーバにキャッシュの鮮度を問い合わせる(validate)。
-        <p>もしサーバから新しいリソースを fetch したなら、そこに付与された新しいヘッダにしたがってキャッシュを更新する。
-        <p>なんらかの理由で 360s の間に validate が完了しなければ、キャッシュを <em>true stale</em> とみなして破棄し、次のリクエストで fetch が走る。
-        <p><code translate="no">stale-while-revalidate</code> の時間が過ぎれば必ず fetch が発生するということは、従来設定していた <code translate="no">max-age</code> = <code translate="no">max-age</code> + <code translate="no">stale-while-revalidate</code> の時間と設定すれば、従来との差異はキャッシュの新しさだけになる。
-        <p>したがって、この設定からであれば、導入はそこまで難しく無いと考えられる。
-        <p><img loading=lazy src=stale-while-revalidate.svg#552x352 alt="fresh で無くなってからも、 while-revalidate の期間は fetch に対し stale なキャッシュをヒットさせし、裏で更新する" title="stale-while-revalidate header flow" width=552 height=352 intrinsicsize=552x352></p>
-      </section>
-      <section>
-        <h3 id="stale-if-error"><a href="#stale-if-error">stale-if-error</a></h3>
-        <p>仕様にはもう一つ、 <code translate="no">stale-if-error</code> という拡張もある。
-        <p>同じく <code translate="no">Cache-Control</code> に指定する。
-        <pre class=http><code translate="no">Cache-Control: max-age=3600, stale-if-error=360</code></pre>
-        <p>すると、 3600s でキャッシュは <em>stale</em> になり、次のリクエストで fetch が走る。
-        <p>しかし、もしその fetch がサーバの 500 やネットワークエラーにより失敗した場合は、 360s 間は stale cache を使用しても良い。
-        <p>これにより、ブラウザのエラー画面が表示されるのを防ぐことができる。
-        <p>もちろん、上記二つは組み合わせて使うことができる。
-        <p><img loading=lazy src=stale-if-error.svg#552x352 alt="fresh で無くなってからも、オリジンがエラーを返す場合は stale なキャッシュをヒットさせる" title="stale-if-erro header" width=552 height=352 intrinsicsize=552x352></p>
-      </section>
-    </section>
-    <section>
-      <h2 id="swr-のデモ"><a href="#swr-のデモ">SwR のデモ</a></h2>
-      <p>執筆時点では、実装ブラウザは Chrome のみであり、フラグを有効にすることで使用できる。
-      <p><a href="chrome://flags/#enable-stale-while-revalidate">chrome://flags/#enable-stale-while-revalidate</a>
-      <p>以下に用意したデモページを用意した。
-      <p><a href="https://labs.jxck.io/stale-while-revalidate/">https://labs.jxck.io/stale-while-revalidate/</a>
-      <p>サーバは、アクセスの度に異なるシーケンス番号、タイムスタンプ、ランダムな文字列を返すようになっている。
-      <p>そして、レスポンスに以下のヘッダを追加しているため、アクセスを繰り返せば挙動が確認できるだろう。
-      <p>(Chrome はリロードではキャッシュを無視する場合があるため、画面に用意したリンクを踏むこと)
-      <pre class=http><code translate="no">Cache-Control: max-age=5, stale-while-revalidate=10, stale-if-error=15</code></pre>
-      <p>以下にデモのキャプチャを用意した。 Chrome の dev tools とサーバ側のアクセスログを表示している。
-      <p>サーバへのアクセスが発生し表示が更新されているが、全てキャッシュがヒットしていることが分かるだろう。
-      <p>
-        <picture>
-          <source type=image/webp srcset=stale-while-revalidate-demo.webp#1000x510>
-          <img loading=lazy src=stale-while-revalidate-demo.gif#1000x510 alt="statle-while-revalidate の期間はキャッシュを利用し、裏で更新が行われている" title="stale-while-revalidate demo gif" intrinsicsize=1000x510>
-        </picture>
-      </p>
-    </section>
-    <section>
-      <h2 id="swr-を用いたキャッシュ戦略の考察"><a href="#swr-を用いたキャッシュ戦略の考察">SwR を用いたキャッシュ戦略の考察</a></h2>
-      <p>この仕組みを用いたキャッシュ戦略について考察する。
-      <p>まず、 SwR を用いると何が変わるのかを確認するため、極端な設定例を用いて考察する。
-      <section>
-        <h3 id="1-year-fresh-cache"><a href="#1-year-fresh-cache">1 year fresh cache</a></h3>
-        <pre class=http><code translate="no">Cache-Control: max-age=31536000</code></pre>
-        <p>この設定では、キャッシュは 1 年間 <em>fresh</em> となる。
-        <p>例えば、 <code translate="no">favicon.ico</code> や <code translate="no">jquery.min.js</code> などといった更新が少ない、もしくは更新が無い(ある場合はファイル名が変わる) といった場合に設定が可能になる。
-        <p>キャッシュが途中で消されない理想状態においては、そのブラウザからサーバへのリクエストは 1 年間無いことになる。
-        <p>ただし、取得されるリソースは常に最初に取得したものであり、最大で 1 年前のものとなる。
-      </section>
-      <section>
-        <h3 id="1-year-stale-cache"><a href="#1-year-stale-cache">1 year stale cache</a></h3>
-        <pre class=http><code translate="no">Cache-Control: max-age=1, stale-while-revalidate=3153600</code></pre>
-        <p>この設定は、キャッシュはすぐに <em>stale</em> となる。
-        <p>しかし、 1 年間はこの <em>stale cache</em> を使用することが許可されているため、次のリクエストはキャッシュヒットする。
-        <p>そして、その裏で <em>validate</em> として fetch が走る。もしレスポンスが同じヘッダを持てば、そこからまた 1 年キャッシュが <em>stale</em> になる。
-        <p>つまり、キャッシュは常に 1 度だけヒットし、最後にアクセスした直後の内容に更新されていることになる。
-        <p><code translate="no">max-age</code> との最大の違いは、サーバへの負荷になるだろう。この場合 fetch が行われる <em>回数</em> 自体は、 <code translate="no">Cache-Control</code> が無かった状態と変わらない。 fetch のタイミングが少し後ろにずれるだけである。
-        <p>最初にキャッシュしてから 1 年間は、必ずキャッシュヒットするが、リソースの状態は最後にアクセスした時のもの、という状態になる。
-      </section>
-      <section>
-        <h3 id="1-year-freshstale-cache"><a href="#1-year-freshstale-cache">1 year fresh/stale cache</a></h3>
-        <pre class=http><code translate="no">Cache-Control: max-age=15768000, stale-while-revalidate=15768000</code></pre>
-        <p>両方を半年ずつ設定した場合、半年ずつ <em>fresh</em> / <em>stale</em> になる。
-        <p>この場合 <code translate="no">stale-while-revalidate</code> に <em>対応していないブラウザ</em> でも、半年はキャッシュが効く。
-        <p>まだ <code translate="no">stale-while-revalidate</code> の実装が行き渡らないうちは、こうした両方での指定も考慮すべきだろう。
-        <p><code translate="no">max-age</code> の割合を、リソースのコンテンツ頻度などを元に考慮することで、サーバへの負荷とキャッシュの鮮度のバランスを取ることができる。
-      </section>
-    </section>
-    <section>
-      <h2 id="本サイトでの適用"><a href="#本サイトでの適用">本サイトでの適用</a></h2>
-      <section>
-        <h3 id="現状"><a href="#現状">現状</a></h3>
-        <p>本サイトでは、現状 <code translate="no">Cache-Control</code> は <a href="https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html">WebFont</a> 以外にはつけておらず、 ETag による Conditional GET でのキャッシュを利用している。
-        <p>これは、ブログの記事や、 JS/CSS などの <em>修正がいち早く反映されて欲しい</em> からである。
-        <p>全体のアクセスもまだまだ多くはなく、バージョンの付与による URL の変更は、あまり使いたくは無い。
-        <p>リクエストが頻発しても、もし実際にリソースの更新がないのであれば、 304 を返すだけで足りる。
-        <p>したがって、現状との飛躍が少ない状態で <em>リクエストを減らすため</em> のキャッシュは考慮になく、 <em>表示の最適化</em> のためのキャッシュを積極的に行いたい。
-        <p>毎回キャッシュはヒットするが、極力最新の状態というのが理想である。
-      </section>
-      <section>
-        <h3 id="アクセスパターン"><a href="#アクセスパターン">アクセスパターン</a></h3>
-        <p>そして、ブログは平均週一回程度の更新であるため、ユーザのアクセスは以下のパターンがある。
-        <ul>
-          <li>更新された日に RSS などからアクセスし、多少うろついて帰る
-          <li>長いスパンを開けて、検索などからアクセスし、多少うろついて帰る
-        </ul>
-        <p>現状、多くのサイトがキャッシュを設定しているため、ブラウザのローカルキャッシュは <a href="https://code.facebook.com/posts/964122680272229/web-performance-cache-efficiency-exercise/">2 日程度で消える</a> と言われている。
-        <p>そのため、後者の長いスパンの中で、前回アクセス時のキャッシュの適用を期待するのは難しい。
-        <p>どちらかというと、その日のアクセス後の導線上でキャッシュが効き、かつ、アクセス中に筆者が修正を適用しても、ある程度の速さで反映されて欲しい。
-        <p>合わせて、筆者の設定ミスなどでブログが落ちていたとしても、その日のうちはキャッシュが代替表示として十分に機能すると考える。
-      </section>
-      <section>
-        <h3 id="設定"><a href="#設定">設定</a></h3>
-        <p>結果、以下のように設定することとした。
-        <p>リソースの種類によって設定を変えることも考えたが、基本的にどのリソースでも更新が短期間に反映されて欲しいため、リソースによって差はない。
-        <ul>
-          <li>max-age=1sec : SwR 非対応ブラウザではキャッシュしない
-          <li>SwR=10min : そのとき滞在しているセッションの中ではキャッシュを使用
-          <li>SiE=1day : その日のうちは、エラーの代替表示として stale cache を利用
-        </ul>
-        <pre class=http><code translate="no">Cache-Control: max-age=1, stale-while-revalidate=600, stale-if-error=864000</code></pre>
-        <p>非常に短期のセッションでキャッシュを有効にする設定である。
-        <p>一方、長期のキャッシュは、どうしてもアクセスしてない期間に行われた更新を、バックグラウンドで反映したくなる。
-        <p>そうした場合は、 Service-Worker を使ったキャッシュ機構を適用するため、別途対応する。
-      </section>
-    </section>
-    <section>
-      <h2 id="link"><a href="#link">link</a></h2>
-      <ul>
-        <li>
-          <a href="https://www.mnot.net/blog/2014/06/01/chrome_and_stale-while-revalidate">mnot&rsquo;s blog: Chrome and Stale-While-Revalidate</a>
-        </li>
-        <li>
-          <a href="https://groups.google.com/a/chromium.org/forum/#!msg/chromium-dev/zchogDvIYrY/ZqWSdt3LJdMJ">[Web facing change PSA] Heads-up: Faster assets with the HTTP caching extension &ldquo;stale-while-revalidate&rdquo;</a>
-        </li>
-      </ul>
-    </section>
-  </article>
-
+    </article>
   </main>
   <hr>
 

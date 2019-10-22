@@ -798,8 +798,6 @@
     <dt>updated_at</dt><dd><time class=updated_at datetime=2019-10-18>2019-10-18</time></dd>
     <dt class=tags>tags</dt><dd>[<a href='/tags/lazyload.html'>lazyload</a><i>,</i><a href='/tags/image.html'>image</a><i>,</i><a href='/tags/performance.html'>performance</a>]</dd>
   </ul>
-
-
   <article>
     <h1><a href=/entries/2019-05-20/lazyloading.html>画像最適化戦略 Lazy Loading 編</a></h1>
     <section>
@@ -927,7 +925,9 @@
       <section>
         <h3 id="eagerload"><a href="#eagerload">eagerload</a></h3>
         <p><code translate="no">loading=eager</code> の場合は、全ての画像が取得され、そこで onload が発火する。
-        <p><amp-img layout=responsive src=eagerload.png#1366x768 alt="Eager Load で複数画像を読み込んだ場合の挙動を Dev Tools の Network タブで見たところ" title="eager loading images" width=1366 height=768></p>
+        <p>
+          <amp-img layout=responsive src=eagerload.png#1366x768 alt="Eager Load で複数画像を読み込んだ場合の挙動を Dev Tools の Network タブで見たところ" title="eager loading images" width=1366 height=768>
+        </p>
       </section>
       <section>
         <h3 id="lazyload"><a href="#lazyload">lazyload</a></h3>
@@ -936,9 +936,13 @@
         <p>次に Above the fold だけ画像全体を取得している。
         <p>実際に Window に表示されている画像は 1 つだが、ここでは最初の 6 つが取得されている。(このロジックはブラウザの実装依存)
         <p>この 6 つの画像が取得された段階で <code translate="no">window.onload</code> が発火しているため、発火までの時間も早くなっている。
-        <p><amp-img layout=responsive src=lazyload-above.png#1366x768 alt="Lazy Load で複数画像を読み込んだ場合の挙動を Above the Fold に注目して Dev Tools の Network タブで見たところ" title="lazyloading images focusing above the fold" width=1366 height=768></p>
+        <p>
+          <amp-img layout=responsive src=lazyload-above.png#1366x768 alt="Lazy Load で複数画像を読み込んだ場合の挙動を Above the Fold に注目して Dev Tools の Network タブで見たところ" title="lazyloading images focusing above the fold" width=1366 height=768>
+        </p>
         <p>あとは、スクロールに従って残りの <code translate="no">&lt;img&gt;</code> が Viewport に近づくと、その画像の全体を再度取得する。
-        <p><amp-img layout=responsive src=lazyload-below.png#1366x768 alt="Lazy Load で複数画像を読み込んだ場合の挙動をスクロール後の Below the Fold に注目して Dev Tools の Network タブで見たところ" title="lazyloading images focusing below the fold" width=1366 height=768></p>
+        <p>
+          <amp-img layout=responsive src=lazyload-below.png#1366x768 alt="Lazy Load で複数画像を読み込んだ場合の挙動をスクロール後の Below the Fold に注目して Dev Tools の Network タブで見たところ" title="lazyloading images focusing below the fold" width=1366 height=768>
+        </p>
         <p>同じ検証の動画を以下に付記しておく。
         <amp-iframe src="https://www.youtube.com/embed/4rN1dzeXR4A" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></amp-iframe>
       </section>
@@ -1051,7 +1055,6 @@
       <p>この状態で、今後も挙動を検証していくこととする。
     </section>
   </article>
-
 </main>
 <hr>
 <footer>

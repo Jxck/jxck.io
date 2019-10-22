@@ -106,114 +106,114 @@
     </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
-  <article>
-    <h1><a href=/entries/2016-03-24/optimize-image.html>画像最適化戦略 PNG/JPEG 編</a></h1>
-    <section>
-      <h2 id="intro"><a href="#intro">Intro</a></h2>
-      <p>本サイトで使用している PNG/JPEG 画像に対し、メタデータ削除、減色、リサイズなど基本的な最適化処理の適用戦略と、その方法および結果について。
-      <p>画像最適化シリーズ第 1 回目のエントリである。
-      <ol>
-        <li>
-          <a href="https://blog.jxck.io/entries/2016-03-24/optimize-image.html">&gt; 画像最適化戦略 PNG/JPEG 編</a>
-        </li>
-        <li>
-          <a href="https://blog.jxck.io/entries/2016-03-25/picture.html">画像最適化戦略 Picture 編</a>
-        </li>
-        <li>
-          <a href="https://blog.jxck.io/entries/2016-03-26/webp.html">画像最適化戦略 WebP 編</a>
-        </li>
-        <li>
-          <a href="https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html">画像最適化戦略 SVG/Font 編</a>
-        </li>
-        <li>
-          <a href="https://blog.jxck.io/entries/2019-05-20/lazyloading.html">画像最適化戦略 Lazy Loading 編</a>
-        </li>
-      </ol>
-    </section>
-    <section>
-      <h2 id="サイズ最適化"><a href="#サイズ最適化">サイズ最適化</a></h2>
-      <p>画像において最も無駄なのは、サイズの大きい画像を小さく表示している場合である。
-      <p>これはネットワークでの転送上も、ブラウザのレンダリング上もオーバーヘッドになる。
-      <p>逆に小さい画像を拡大して描画すると、細部が荒れてしまう。
-      <p>したがって、表示するサイズぴったりにリサイズすれば、データ量も最適となる。
-      <p>また、見た目上の変化/劣化が生じなければ、減色や余計なメタ情報の削除などによって、サイズを削減できる場合がある。
-      <p>(Retina など High DPI 端末に向けたサイズの対応は、 <a href="https://blog.jxck.io/entries/2016-03-25/picture.html">別エントリ</a> で記載する)
-      <p>画像を表示する際に <code translate="no">&lt;img&gt;</code> や CSS に <code translate="no">width</code>, <code translate="no">height</code> を指定しなければ、画像本来のサイズで表示される。
-      <p>もしここで、本来のサイズと別のサイズを指定すれば、拡大か縮小が発生する。
-      <p>したがって、意図した大きさで収まるようにリサイズをした上で、サイズを指定せず表示する。
-    </section>
-    <section>
-      <h2 id="メタ情報削除"><a href="#メタ情報削除">メタ情報削除</a></h2>
-      <p>画像には位置情報やカラープロファイルなどのメタ情報が内包されている場合がある。
-      <p>これらの情報が不要であれば消してしまうことで、データを削減できる。
-      <p>そのためのツールはいくつかあるが、有名どころでは以下がある。
-      <ul>
-        <li>
-          <a href="https://imageoptim.com">ImageOptim</a>
-        </li>
-      </ul>
-    </section>
-    <section>
-      <h2 id="減色"><a href="#減色">減色</a></h2>
-      <p>一点の色の情報を 24bit で表しているものを、例えば 8bit に変換することで、データ量を減らすことができる。
-      <p>もちろん、表現できる色の数も減るため、人間が見た目で気になら無い範囲で行うことになる。
-      <ul>
-        <li>
-          <a href="https://tinypng.com/">TinyPNG</a> (JPEG も対応している)
-        </li>
-        <li>
-          <a href="http://www.jpegmini.com/">JPEGMini</a> (有料)
-        </li>
-        <li>
-          <a href="https://pngquant.org/">pngquant</a> (CLI)
-        </li>
-      </ul>
-    </section>
-    <section>
-      <h2 id="ベースラインプログレッシブ"><a href="#ベースラインプログレッシブ">ベースライン/プログレッシブ</a></h2>
-      <p>JPEG は、大きい画像を送信する際に、ベースとなるデータを先に送り、差分となるデータをあとから追加して画像を完成させることができる。方式は二つある。
-      <dl>
-        <div>
-          <dt>ベースライン
-          <dd>画像を上から順番に表示していく
-        </div>
-        <div>
-          <dt>プログレッシブ
-          <dd>解像度の低い画像から表示され、徐々に鮮明になっていく
-        </div>
-      </dl>
-      <p>なお、 PNG ではベースライン相当の形式をインタレースと呼ぶ。
-      <p>どちらを使うかは、二つの観点がある。
-      <ul>
-        <li>どちらのサイズが小さいか
-        <li>UX としてどちらが良いか
-      </ul>
+    <article>
+      <h1><a href=/entries/2016-03-24/optimize-image.html>画像最適化戦略 PNG/JPEG 編</a></h1>
       <section>
-        <h3 id="方式によるサイズ"><a href="#方式によるサイズ">方式によるサイズ</a></h3>
-        <p>まず、前者のサイズについて、少し古いが Steve 先生の調査がある。
-        <p>あらゆる画像を二つの形式で保存した場合、サイズがそれぞれどうなるかを検証している。
-        <p>結果だけ引用する。
-        <blockquote>
-          <p>when your JPEG image is under 10K, it&rsquo;s better to be saved as baseline JPEG (estimated 75% chance it will be smaller) for files over 10K the progressive JPEG will give you a better compression (in 94% of the cases)
-          <p>&mdash; <cite><a href="https://yuiblog.com/blog/2008/12/05/imageopt-4/">Image Optimization, Part 4: Progressive JPEG&hellip;Hot or Not?</a></cite>
-        </blockquote>
-        <p>素材のサイズが 10K を超えるかどうかで結果が変わるそうだ。そして必ずではないので、実際に両方で保存してみて試すしかないとのこと。
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>本サイトで使用している PNG/JPEG 画像に対し、メタデータ削除、減色、リサイズなど基本的な最適化処理の適用戦略と、その方法および結果について。
+        <p>画像最適化シリーズ第 1 回目のエントリである。
+        <ol>
+          <li>
+            <a href="https://blog.jxck.io/entries/2016-03-24/optimize-image.html">&gt; 画像最適化戦略 PNG/JPEG 編</a>
+          </li>
+          <li>
+            <a href="https://blog.jxck.io/entries/2016-03-25/picture.html">画像最適化戦略 Picture 編</a>
+          </li>
+          <li>
+            <a href="https://blog.jxck.io/entries/2016-03-26/webp.html">画像最適化戦略 WebP 編</a>
+          </li>
+          <li>
+            <a href="https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html">画像最適化戦略 SVG/Font 編</a>
+          </li>
+          <li>
+            <a href="https://blog.jxck.io/entries/2019-05-20/lazyloading.html">画像最適化戦略 Lazy Loading 編</a>
+          </li>
+        </ol>
       </section>
       <section>
-        <h3 id="ux"><a href="#ux">UX</a></h3>
-        <p>細い回線で大きめの画像を表示した際、表示方式でユーザがどう感じるか、という点がある。
-        <p>まず、個人的には同じサイトでも、サイズによってロードの仕方が変わるのはあまり好ましくないと感じる。
-        <p>そして、このサイトでは JPEG 以外にも PNG/WebP/SVG を使う。
-        <p>全ての挙動をなるべく近づけるには、サイズに限らずベースラインに統一するのが良さそうと判断した。
-        <p>(あと、プログレッシブはなんか古臭いというか、ダサく感じるのは自分だけだろうか)
+        <h2 id="サイズ最適化"><a href="#サイズ最適化">サイズ最適化</a></h2>
+        <p>画像において最も無駄なのは、サイズの大きい画像を小さく表示している場合である。
+        <p>これはネットワークでの転送上も、ブラウザのレンダリング上もオーバーヘッドになる。
+        <p>逆に小さい画像を拡大して描画すると、細部が荒れてしまう。
+        <p>したがって、表示するサイズぴったりにリサイズすれば、データ量も最適となる。
+        <p>また、見た目上の変化/劣化が生じなければ、減色や余計なメタ情報の削除などによって、サイズを削減できる場合がある。
+        <p>(Retina など High DPI 端末に向けたサイズの対応は、 <a href="https://blog.jxck.io/entries/2016-03-25/picture.html">別エントリ</a> で記載する)
+        <p>画像を表示する際に <code translate="no">&lt;img&gt;</code> や CSS に <code translate="no">width</code>, <code translate="no">height</code> を指定しなければ、画像本来のサイズで表示される。
+        <p>もしここで、本来のサイズと別のサイズを指定すれば、拡大か縮小が発生する。
+        <p>したがって、意図した大きさで収まるようにリサイズをした上で、サイズを指定せず表示する。
       </section>
-    </section>
-    <section>
-      <h2 id="gulp-image"><a href="#gulp-image">gulp-image</a></h2>
-      <p>画像フォーマットや、最適化対象によって、様々なツールがあるが、それらを一つにまとめた <code translate="no">gulp-image</code> というツールがあるため、これを採用することにした。
-      <p>リサイズは別途行い、その結果に対して以下のような gulp タスクを作成した。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre class=js><code translate="no">&#039;use strict&#039;;
+      <section>
+        <h2 id="メタ情報削除"><a href="#メタ情報削除">メタ情報削除</a></h2>
+        <p>画像には位置情報やカラープロファイルなどのメタ情報が内包されている場合がある。
+        <p>これらの情報が不要であれば消してしまうことで、データを削減できる。
+        <p>そのためのツールはいくつかあるが、有名どころでは以下がある。
+        <ul>
+          <li>
+            <a href="https://imageoptim.com">ImageOptim</a>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="減色"><a href="#減色">減色</a></h2>
+        <p>一点の色の情報を 24bit で表しているものを、例えば 8bit に変換することで、データ量を減らすことができる。
+        <p>もちろん、表現できる色の数も減るため、人間が見た目で気になら無い範囲で行うことになる。
+        <ul>
+          <li>
+            <a href="https://tinypng.com/">TinyPNG</a> (JPEG も対応している)
+          </li>
+          <li>
+            <a href="http://www.jpegmini.com/">JPEGMini</a> (有料)
+          </li>
+          <li>
+            <a href="https://pngquant.org/">pngquant</a> (CLI)
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="ベースラインプログレッシブ"><a href="#ベースラインプログレッシブ">ベースライン/プログレッシブ</a></h2>
+        <p>JPEG は、大きい画像を送信する際に、ベースとなるデータを先に送り、差分となるデータをあとから追加して画像を完成させることができる。方式は二つある。
+        <dl>
+          <div>
+            <dt>ベースライン
+            <dd>画像を上から順番に表示していく
+          </div>
+          <div>
+            <dt>プログレッシブ
+            <dd>解像度の低い画像から表示され、徐々に鮮明になっていく
+          </div>
+        </dl>
+        <p>なお、 PNG ではベースライン相当の形式をインタレースと呼ぶ。
+        <p>どちらを使うかは、二つの観点がある。
+        <ul>
+          <li>どちらのサイズが小さいか
+          <li>UX としてどちらが良いか
+        </ul>
+        <section>
+          <h3 id="方式によるサイズ"><a href="#方式によるサイズ">方式によるサイズ</a></h3>
+          <p>まず、前者のサイズについて、少し古いが Steve 先生の調査がある。
+          <p>あらゆる画像を二つの形式で保存した場合、サイズがそれぞれどうなるかを検証している。
+          <p>結果だけ引用する。
+          <blockquote>
+            <p>when your JPEG image is under 10K, it&rsquo;s better to be saved as baseline JPEG (estimated 75% chance it will be smaller) for files over 10K the progressive JPEG will give you a better compression (in 94% of the cases)
+            <p>&mdash; <cite><a href="https://yuiblog.com/blog/2008/12/05/imageopt-4/">Image Optimization, Part 4: Progressive JPEG&hellip;Hot or Not?</a></cite>
+          </blockquote>
+          <p>素材のサイズが 10K を超えるかどうかで結果が変わるそうだ。そして必ずではないので、実際に両方で保存してみて試すしかないとのこと。
+        </section>
+        <section>
+          <h3 id="ux"><a href="#ux">UX</a></h3>
+          <p>細い回線で大きめの画像を表示した際、表示方式でユーザがどう感じるか、という点がある。
+          <p>まず、個人的には同じサイトでも、サイズによってロードの仕方が変わるのはあまり好ましくないと感じる。
+          <p>そして、このサイトでは JPEG 以外にも PNG/WebP/SVG を使う。
+          <p>全ての挙動をなるべく近づけるには、サイズに限らずベースラインに統一するのが良さそうと判断した。
+          <p>(あと、プログレッシブはなんか古臭いというか、ダサく感じるのは自分だけだろうか)
+        </section>
+      </section>
+      <section>
+        <h2 id="gulp-image"><a href="#gulp-image">gulp-image</a></h2>
+        <p>画像フォーマットや、最適化対象によって、様々なツールがあるが、それらを一つにまとめた <code translate="no">gulp-image</code> というツールがあるため、これを採用することにした。
+        <p>リサイズは別途行い、その結果に対して以下のような gulp タスクを作成した。
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+        <pre class=js><code translate="no">&#039;use strict&#039;;
 
 let gulp = require(&#039;gulp&#039;);
 let image = require(&#039;gulp-image&#039;);
@@ -237,20 +237,19 @@ gulp.task(&#039;image&#039;, () =&gt; {
 });
 
 gulp.task(&#039;default&#039;, [&#039;image&#039;]);</code></pre>
-    </section>
-    <section>
-      <h2 id="結果"><a href="#結果">結果</a></h2>
-      <p>gulp-image の実行結果は以下である。
-      <pre class=text><code translate="no">✔ 2016-02-17/before.png -&gt; before=57.88 KB after=22.07 KB reduced=35.82 KB(61.9%)
+      </section>
+      <section>
+        <h2 id="結果"><a href="#結果">結果</a></h2>
+        <p>gulp-image の実行結果は以下である。
+        <pre class=text><code translate="no">✔ 2016-02-17/before.png -&gt; before=57.88 KB after=22.07 KB reduced=35.82 KB(61.9%)
 ✔ 2016-02-17/after.png -&gt; before=67.92 KB after=25.22 KB reduced=42.7 KB(62.9%)
 ✔ 2016-02-11/net-internals-prerender.png -&gt; before=65.7 KB after=26.05 KB reduced=39.65 KB(60.4%)
 ✔ 2016-02-17/zopfli.png -&gt; before=77.52 KB after=49.29 KB reduced=28.23 KB(36.4%)
 ✔ 2016-03-04/before.png -&gt; before=253.06 KB after=100.73 KB reduced=152.33 KB(60.2%)
 ✔ 2016-03-04/after.png -&gt; before=253.31 KB after=99.47 KB reduced=153.84 KB(60.7%)</code></pre>
-      <p>全体でみると、 775.39KB =&gt; 452.57KB (42%) の削減になった。
-    </section>
-  </article>
-
+        <p>全体でみると、 775.39KB =&gt; 452.57KB (42%) の削減になった。
+      </section>
+    </article>
   </main>
   <hr>
 

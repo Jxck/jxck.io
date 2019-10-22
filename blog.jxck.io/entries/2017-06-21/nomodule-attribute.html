@@ -106,77 +106,76 @@
     </dl>
 
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
-  <article>
-    <h1><a href=/entries/2017-06-21/nomodule-attribute.html>ES Modules への橋渡しとしての nomodule 属性</a></h1>
-    <section>
-      <h2 id="intro"><a href="#intro">Intro</a></h2>
-      <p>ブラウザにおける新機能の利用においては、非対応ブラウザの考慮も必要となる。
-      <p>ES Modules の利用においても、いかに非対応ブラウザでフォールバックの手段を提供するかが課題となっていた。
-      <p>今回は、 Modules の対応/非対応を切り分けるための仕様である <code translate="no">nomodule</code> 属性を解説する。
-    </section>
-    <section>
-      <h2 id="script-type-module"><a href="#script-type-module">script type module</a></h2>
-      <p>classic script (module ではない JS) は、 <code translate="no">&lt;script&gt;</code> で指定すると、取得解析しそのまま実行される。
-      <p>type は省略されることが多いが、その場合 <code translate="no">text/javascript</code> と解釈されている。
-      <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-      <pre class=html><code translate="no">&lt;script type=text/javascript src=bundle.js&gt;&lt;/script&gt;</code></pre>
-      <p>一方、 module script (module として実装された JS) は、 <code translate="no">import/export</code> の処理や依存の解決など、これまでと異なる扱いが必要となる。
-      <p>そこで、ブラウザにおいては同じ <code translate="no">&lt;script&gt;</code> で指定するが、新規に導入された <code translate="no">type=module</code> を指定し、 module script であることを明示することとなった。
-      <pre class=html><code translate="no">&lt;script type=module src=module.js&gt;&lt;/script&gt;</code></pre>
-      <p>しかし、 ES Modules に対応していないブラウザは <code translate="no">type=module</code> を知らないため、 <code translate="no">&lt;script&gt;</code> そのものを無視する。
-      <p>結果、これだけでは何も実行されない。
-      <p>かといって、両方書くと両方実行されてしまうためなんらかの切り分けの方法が必要だった。
-      <pre class=html><code translate="no">&lt;!-- module 対応ブラウザでは両方動く --&gt;
+    <article>
+      <h1><a href=/entries/2017-06-21/nomodule-attribute.html>ES Modules への橋渡しとしての nomodule 属性</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>ブラウザにおける新機能の利用においては、非対応ブラウザの考慮も必要となる。
+        <p>ES Modules の利用においても、いかに非対応ブラウザでフォールバックの手段を提供するかが課題となっていた。
+        <p>今回は、 Modules の対応/非対応を切り分けるための仕様である <code translate="no">nomodule</code> 属性を解説する。
+      </section>
+      <section>
+        <h2 id="script-type-module"><a href="#script-type-module">script type module</a></h2>
+        <p>classic script (module ではない JS) は、 <code translate="no">&lt;script&gt;</code> で指定すると、取得解析しそのまま実行される。
+        <p>type は省略されることが多いが、その場合 <code translate="no">text/javascript</code> と解釈されている。
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+        <pre class=html><code translate="no">&lt;script type=text/javascript src=bundle.js&gt;&lt;/script&gt;</code></pre>
+        <p>一方、 module script (module として実装された JS) は、 <code translate="no">import/export</code> の処理や依存の解決など、これまでと異なる扱いが必要となる。
+        <p>そこで、ブラウザにおいては同じ <code translate="no">&lt;script&gt;</code> で指定するが、新規に導入された <code translate="no">type=module</code> を指定し、 module script であることを明示することとなった。
+        <pre class=html><code translate="no">&lt;script type=module src=module.js&gt;&lt;/script&gt;</code></pre>
+        <p>しかし、 ES Modules に対応していないブラウザは <code translate="no">type=module</code> を知らないため、 <code translate="no">&lt;script&gt;</code> そのものを無視する。
+        <p>結果、これだけでは何も実行されない。
+        <p>かといって、両方書くと両方実行されてしまうためなんらかの切り分けの方法が必要だった。
+        <pre class=html><code translate="no">&lt;!-- module 対応ブラウザでは両方動く --&gt;
 &lt;script type=text/javascript src=bundle.js&gt;&lt;/script&gt;
 &lt;script type=module src=module.js&gt;&lt;/script&gt;</code></pre>
-    </section>
-    <section>
-      <h2 id="nomodule"><a href="#nomodule">nomodule</a></h2>
-      <p>もしブラウザが ES Modules に対応していれば module script を、そうでなければ classic script を取得実行する。
-      <p>これを実現するために提案されたのが、 <code translate="no">nomodule</code> 属性だ。
-      <p><a href="https://html.spec.whatwg.org/multipage/scripting.html#attr-script-nomodule">nomodule attribute</a>
-      <p>例えば以下を考える。
-      <ul>
-        <li>
-          module script である <code translate="no">module.js</code> をベースとして提供する。
-        </li>
-        <li>
-          ES Moduels 非対応ブラウザに対して WebPack などで bundle した classic script である <code translate="no">bundle.js</code> を提供する。
-        </li>
-        <li>
-          どちらでも実行したい classic script の <code translate="no">analytics.js</code> を提供する。
-        </li>
-      </ul>
-      <p>この場合、以下のように指定できる。
-      <pre class=html><code translate="no">&lt;script type=module src=module.js&gt;&lt;/script&gt;
+      </section>
+      <section>
+        <h2 id="nomodule"><a href="#nomodule">nomodule</a></h2>
+        <p>もしブラウザが ES Modules に対応していれば module script を、そうでなければ classic script を取得実行する。
+        <p>これを実現するために提案されたのが、 <code translate="no">nomodule</code> 属性だ。
+        <p><a href="https://html.spec.whatwg.org/multipage/scripting.html#attr-script-nomodule">nomodule attribute</a>
+        <p>例えば以下を考える。
+        <ul>
+          <li>
+            module script である <code translate="no">module.js</code> をベースとして提供する。
+          </li>
+          <li>
+            ES Moduels 非対応ブラウザに対して WebPack などで bundle した classic script である <code translate="no">bundle.js</code> を提供する。
+          </li>
+          <li>
+            どちらでも実行したい classic script の <code translate="no">analytics.js</code> を提供する。
+          </li>
+        </ul>
+        <p>この場合、以下のように指定できる。
+        <pre class=html><code translate="no">&lt;script type=module src=module.js&gt;&lt;/script&gt;
 &lt;script nomodule type=text/javascript src=bundle.js&gt;&lt;/script&gt;
 &lt;script type=text/javascript src=analytics.js&gt;&lt;/script&gt;</code></pre>
-      <p>挙動は ES Modules 対応/非対応によって以下のようになる。
-    </section>
-    <section>
-      <h2 id="es-modules-を実装していない場合"><a href="#es-modules-を実装していない場合">ES Modules を実装していない場合</a></h2>
-      <p><code translate="no">type=module</code> と <code translate="no">nomodule</code> は知らないため無視され、以下と同等に解釈される。
-      <pre class=html><code translate="no">&lt;script type=text/javascript src=bundle.js&gt;&lt;/script&gt;
+        <p>挙動は ES Modules 対応/非対応によって以下のようになる。
+      </section>
+      <section>
+        <h2 id="es-modules-を実装していない場合"><a href="#es-modules-を実装していない場合">ES Modules を実装していない場合</a></h2>
+        <p><code translate="no">type=module</code> と <code translate="no">nomodule</code> は知らないため無視され、以下と同等に解釈される。
+        <pre class=html><code translate="no">&lt;script type=text/javascript src=bundle.js&gt;&lt;/script&gt;
 &lt;script type=text/javascript src=analytics.js&gt;&lt;/script&gt;</code></pre>
-    </section>
-    <section>
-      <h2 id="es-modules-を実装している場合"><a href="#es-modules-を実装している場合">ES Modules を実装している場合</a></h2>
-      <p>ES Modules を実装する場合は <code translate="no">nomodule</code> の解釈が必須とされている。
-      <p>したがって ES Modules に対応したとされた場合は <code translate="no">nomodule</code> が理解されているとみなす。
-      <p>この場合、 <code translate="no">type=module</code> と <code translate="no">nomodule</code> を解釈し、 module script を実行する代わりに <code translate="no">nomodule</code> が指定された classic script を無視する。
-      <p>結果、以下と同等に解釈される。
-      <pre class=html><code translate="no">&lt;script type=module src=module.js&gt;&lt;/script&gt;
+      </section>
+      <section>
+        <h2 id="es-modules-を実装している場合"><a href="#es-modules-を実装している場合">ES Modules を実装している場合</a></h2>
+        <p>ES Modules を実装する場合は <code translate="no">nomodule</code> の解釈が必須とされている。
+        <p>したがって ES Modules に対応したとされた場合は <code translate="no">nomodule</code> が理解されているとみなす。
+        <p>この場合、 <code translate="no">type=module</code> と <code translate="no">nomodule</code> を解釈し、 module script を実行する代わりに <code translate="no">nomodule</code> が指定された classic script を無視する。
+        <p>結果、以下と同等に解釈される。
+        <pre class=html><code translate="no">&lt;script type=module src=module.js&gt;&lt;/script&gt;
 &lt;script type=text/javascript src=analytics.js&gt;&lt;/script&gt;</code></pre>
-    </section>
-    <section>
-      <h2 id="運用"><a href="#運用">運用</a></h2>
-      <p>現時点では ES Modules で実装したコードを WebPack などでビルドした classic script を提供する運用が多いと思われる。
-      <p>ここで <code translate="no">nomodule</code> の実装が行き渡れば、 ES Modules 対応ブラウザに対して、 module script のまま提供でき、本来の ES Modules のメリットを先行して享受することが可能となるだろう。
-      <p>しばらくは並行運用となるだろうが、現時点で WebPack などのビルドラインを持っているなら、導入の敷居は低そうにも思える。
-      <p>後方互換への手段が固まることは、安心して先に進む準備が整うことを意味するため、 ES Modules へ移行する上での橋渡しとして活用できるだろう。
-    </section>
-  </article>
-
+      </section>
+      <section>
+        <h2 id="運用"><a href="#運用">運用</a></h2>
+        <p>現時点では ES Modules で実装したコードを WebPack などでビルドした classic script を提供する運用が多いと思われる。
+        <p>ここで <code translate="no">nomodule</code> の実装が行き渡れば、 ES Modules 対応ブラウザに対して、 module script のまま提供でき、本来の ES Modules のメリットを先行して享受することが可能となるだろう。
+        <p>しばらくは並行運用となるだろうが、現時点で WebPack などのビルドラインを持っているなら、導入の敷居は低そうにも思える。
+        <p>後方互換への手段が固まることは、安心して先に進む準備が整うことを意味するため、 ES Modules へ移行する上での橋渡しとして活用できるだろう。
+      </section>
+    </article>
   </main>
   <hr>
 
