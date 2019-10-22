@@ -41,11 +41,15 @@
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/archive.css>
   <main class=archive>
     <h1><a href="#<%= tag %>"><%= tag %></a></h1>
-    <section><% Hash[tags.sort].each do |tag, entries| %>
+    <section>
+    <%- Hash[tags.sort].each do |tag, entries| -%>
       <h2><a href='/tags/<%= tag.gsub(' ', '%20') %>.html'><%= tag %></a></h2>
-      <ul><% entries.each do |e| %>
-        <li><time datetime=<%= e.created_at %>><%= e.created_at %></time><a href=<%= e.url %>><%= e.title %></a><span class=tags><%= e.joined_tag %></span><% end %>
-      </ul><% end %>
+      <ul>
+      <%- entries.each do |e| -%>
+        <li><time datetime=<%= e.created_at %>><%= e.created_at %></time><a href=<%= e.url %>><%= e.title %></a><span class=tags><%= e.joined_tag %></span>
+      <%- end -%>
+      </ul>
+    <%- end -%>
     </section>
   </main>
 
