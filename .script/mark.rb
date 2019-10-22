@@ -133,7 +133,7 @@ def blogfeed(feed = false)
 
     puts "build tags page"
 
-    tags = entries.map {|entry|
+    tag_map = entries.map {|entry|
       # 各エントリに対して tag => entry な hash を作る
       entry.tags.reduce({}) {|acc, tag|
         acc.merge({tag => [entry]})
@@ -143,14 +143,17 @@ def blogfeed(feed = false)
       acc.merge(entry) {|_key, old, new| new + old}
     }
 
-    tag  = "Tags"
-    fav  = erb_template(".template/favicon.html.erb").result(binding).strip
+    tag = "Tags"
+    fav = erb_template(".template/favicon.html.erb").result(binding).strip
+
+    # /tags で全タグの一覧のページ
     html = erb_template(".template/tags.html.erb").result(binding).strip
     File.write("./blog.jxck.io/tags/index.html", html)
 
-    tags.each {|tag, v|
-      tags = { tag => v }
-      txt  = erb_template(".template/tags.html.erb").result(binding).strip
+    # /tags/xxx.html で各タグのページ
+    tag_map.each {|tag, v|
+      tag_map = { tag => v } # 変数が同じなのでここで単一タグに上書き
+      txt     = erb_template(".template/tags.html.erb").result(binding).strip
       File.write("./blog.jxck.io/tags/#{tag}.html", txt)
     }
   end
