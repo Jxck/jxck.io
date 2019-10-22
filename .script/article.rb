@@ -81,7 +81,7 @@ class Article
 
     # traverse
     traverser = Traverser.new(markup)
-    article = traverser.traverse(ast.ast)
+    article   = traverser.traverse(ast.ast)
 
     # indent を無視するため
     # ここで pre に code を戻す

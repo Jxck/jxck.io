@@ -4,13 +4,13 @@ class Traverser
   attr_reader :codes
 
   def initialize(markup)
-    @codes = {}
+    @codes  = {}
     @markup = markup
   end
 
   def traverse(ast)
     enter(ast)
-    ast.children = ast.children&.map { |child|
+    ast.children = ast.children&.map {|child|
       traverse(child)
     }
     leave(ast)
@@ -99,6 +99,8 @@ class Traverser
     if node.children
       node.value = node.children.join
     end
+
+    # ここで markup のメソッドを呼び出し変換する
     up = @markup.send(node.type, node)
     up
   end
