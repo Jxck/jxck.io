@@ -98,22 +98,24 @@
 <main>
   <p>&gt; next generation web podcast by <a href=https://jxck.io>@Jxck</a>
   <ol>
-<% episodes.each do |e| %>
+<%- episodes.each do |e| -%>
     <li>
       <h2><a href=<%= e.url %>><%= e.title %></a></h2>
       <%= e.theme_html %>
       <dl class=info>
         <div>
           <dt>published_at</dt>
-          <dd><time datetime=<%= e.datetime %>><%= e.datetime %></time></dd><% e.guests.each do |guest| %>
+          <dd><time datetime=<%= e.datetime %>><%= e.datetime %></time></dd>
+          <%- e.guests.each do |guest| -%>
         </div>
         <div>
           <dt>guest</dt>
-          <dd><%= to_html(guest[0]).gsub("<p>", "").gsub("</p>", "") %><% end %>
+          <dd><%= to_html(guest[0]).gsub("<p>", "").gsub("</p>", "") %>
+          <%- end -%>
         </div>
       </dl>
     </li>
-<% end %>
+<%- end -%>
   </ol>
 </main>
 

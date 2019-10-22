@@ -226,7 +226,7 @@ def podcastfeed(feed = false)
 
     puts "build index.html"
     fav     = ERB.new(File.read(".template/favicon.html.erb")).result(binding).strip
-    archive = ERB.new(File.read(".template/podcast.index.html.erb")).result(binding)
+    archive = ERB.new(File.read(".template/podcast.index.html.erb"), nil, '-').result(binding)
     File.write("./mozaic.fm/index.html", archive)
   end
 end
