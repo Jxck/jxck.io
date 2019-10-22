@@ -10,18 +10,18 @@ class Entry < Article
   end
 
   # "./new-blog-start.amp.html"
-  def amprelative
+  def amp_relative
     "./#{name}.amp.html"
   end
 
   # "/entries/2016-01-27/new-blog-start.amp.html"
-  def amppath
+  def amp_path
     "/#{baseurl}/#{name}.amp.html"
   end
 
   # "https://blog.jxck.io/entries/2016-01-27/new-blog-start.amp.html"
-  def ampurl
-    "https://#{host}#{amppath}"
+  def amp_url
+    "https://#{host}#{amp_path}"
   end
 
   def created_at
