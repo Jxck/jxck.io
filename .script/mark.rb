@@ -132,11 +132,14 @@ def blogfeed(feed = false)
     File.write("./blog.jxck.io/index.html", archive)
 
     puts "build tags page"
+
     tags = entries.map {|entry|
+      # 各エントリに対して tag => entry な hash を作る
       entry.tags.reduce({}) {|acc, tag|
         acc.merge({tag => [entry]})
       }
     }.reduce {|acc, entry|
+      # 全エントリごとに作った hash をマージする
       acc.merge(entry) {|_key, old, new| new + old}
     }
 
