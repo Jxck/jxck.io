@@ -59,12 +59,8 @@ class Episode < Article
     hsc unlink @text.sub(/#(.*?)## Theme/m, "# #{title}")
   end
 
-  def theme_html()
-    # build markdown to html
-    html = to_html(theme)
-
-    # fixup indent
-    oneline(html).gsub("</p><p>", "</p>\n      <p>")
+  def theme_line
+    to_html(theme).split("\n").reject{|c| c.empty?}
   end
 
   def size

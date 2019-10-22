@@ -101,7 +101,9 @@
     <%- episodes.each do |episode| -%>
     <li>
       <h2><a href=<%= episode.url %>><%= episode.title %></a></h2>
-      <%= episode.theme_html %>
+      <%- episode.theme_line.each do |line| -%>
+      <%= line %>
+      <%- end -%>
       <dl class=info>
         <div>
           <dt>published_at</dt>
