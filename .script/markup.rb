@@ -16,7 +16,7 @@ class Markup
     node.value
   end
   def root(node)
-    indent(node.value.to_s)
+    indent(node.value.to_s, 4)
   end
   def article(node)
     <<~EOS

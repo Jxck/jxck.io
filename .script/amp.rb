@@ -1,5 +1,8 @@
 # AMP 用に拡張した Markup
 class AMP < Markup
+  def root(node)
+    indent(node.value.to_s)
+  end
   def a(node)
     if node.attr["href"].match(%r{^chrome:\/\/})
       # amp page ignores `chrome://` url
