@@ -112,31 +112,30 @@ class Blog
       File.write(entry.ampfile, html)
     }
   end
-end
 
+  def feed
+    entries = @paths
+      .select {|path| path.match(/.*.md\z/)}
+      .map {|path| Entry.new(path, @icon)}
+      .sort
+      .reverse
 
-# blog feed
-def blogfeed(feed = false)
-  puts "build blog"
-
-  # entries
-  dir  = "./blog.jxck.io/entries/**/*"
-  icon = "https://jxck.io/assets/img/jxck"
-
-  entries = Dir.glob(dir)
-    .select {|path| path.match(/.*.md\z/)}
-    .map {|path| Entry.new(path, icon)}
-    .sort
-    .reverse
-
-  if feed
     puts "build blog feed & sitemap"
     xml = erb_template(".template/atom.xml.erb").result(binding)
     File.write("./blog.jxck.io/feeds/atom.xml", xml)
 
     xml = erb_template(".template/sitemap.xml.erb").result(binding)
     File.write("./blog.jxck.io/feeds/sitemap.xml", xml)
-  else
+  end
+
+  def archive
+    icon  = "https://jxck.io/assets/img/jxck"
+    entries = @paths
+      .select {|path| path.match(/.*.md\z/)}
+      .map {|path| Entry.new(path, @icon)}
+      .sort
+      .reverse
+
     puts "build archive page"
     fav     = erb_template(".template/favicon.html.erb").result(binding).strip
     archive = erb_template(".template/archive.html.erb").result(binding)
@@ -169,6 +168,7 @@ def blogfeed(feed = false)
     }
   end
 end
+
 
 ## ビルド時に前後のエントリへのリンクを貼る
 ## そこで一旦全体を見る必要があるの
@@ -267,7 +267,7 @@ if __FILE__ == $PROGRAM_NAME
 
   # Update Index/Archive/Tags
   opt.on("--blogindex") {|v|
-    blogfeed(false)
+    Blog.new(Dir.glob("./blog.jxck.io/entries/**/*")).archive
   }
   opt.on("--podcastindex") {|v|
     podcastfeed(false)
@@ -276,7 +276,7 @@ if __FILE__ == $PROGRAM_NAME
 
   ## Update Feed
   opt.on("--blogfeed") {|v|
-    blogfeed(true)
+    Blog.new(Dir.glob("./blog.jxck.io/entries/**/*")).feed
   }
   opt.on("--podcastfeed") {|v|
     podcastfeed(true)
