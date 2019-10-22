@@ -3,7 +3,7 @@
   EventTarget.prototype.on  = EventTarget.prototype.addEventListener
   EventTarget.prototype.off = EventTarget.prototype.removeEventListener
   const DEBUG   = location.hash === '#debug'
-  const VERSION = 'v0.2.5'
+  const VERSION = 'v0.2.6'
   const log = DEBUG ? console.log.bind(console) : () => {}
   log('sw.js')
 
@@ -44,7 +44,6 @@
         'https://jxck.io/assets/font/NotoSansMonoCJKjp-Regular-Jxck-20191017.woff2',
         'https://jxck.io/assets/font/NotoSansMonoCJKjp-Bold-Jxck-20191017.woff2',
         'https://jxck.io/assets/js/highlight.pack.js',
-        'https://use.fontawesome.com/releases/v5.9.0/webfonts/fa-solid-900.ttf',
       ]
 
       self.on('install', async (e) => {
