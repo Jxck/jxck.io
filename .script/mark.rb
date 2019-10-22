@@ -76,11 +76,11 @@ end
 ## 1 つしかなければ 1 つだけ
 def blog(paths)
   icon  = "https://jxck.io/assets/img/jxck"
-  fav_template  = File.read(".template/favicon.html.erb")
-  ld_template   = File.read(".template/ld-json.html.erb")
-  meta_template = File.read(".template/meta.html.erb")
-  blog_template = File.read(".template/blog.html.erb")
-  amp_template  = File.read(".template/amp.html.erb")
+  fav_template  = erb_template(".template/favicon.html.erb")
+  ld_template   = erb_template(".template/ld-json.html.erb")
+  meta_template = erb_template(".template/meta.html.erb")
+  blog_template = erb_template(".template/blog.html.erb")
+  amp_template  = erb_template(".template/amp.html.erb")
 
   paths.each{|path|
     p path
@@ -88,18 +88,18 @@ def blog(paths)
 
     # blog
     entry.build(HTML.new)
-    fav  = ERB.new(fav_template) .result(entry.instance_eval{ binding }).strip
-    meta = ERB.new(meta_template).result(entry.instance_eval{ binding }).strip
-    ld   = ERB.new(ld_template)  .result(entry.instance_eval{ binding }).strip
-    html = ERB.new(blog_template).result(binding).strip
+    fav  = fav_template .result(entry.instance_eval{ binding }).strip
+    meta = meta_template.result(entry.instance_eval{ binding }).strip
+    ld   = ld_template  .result(entry.instance_eval{ binding }).strip
+    html = blog_template.result(binding).strip
     File.write(entry.htmlfile, html)
 
     # amp
     entry.build(AMP.new)
-    fav  = ERB.new(fav_template) .result(entry.instance_eval{ binding }).strip
-    meta = ERB.new(meta_template).result(entry.instance_eval{ binding }).strip
-    ld   = ERB.new(ld_template)  .result(entry.instance_eval{ binding }).strip
-    html = ERB.new(amp_template) .result(binding).strip
+    fav  = fav_template .result(entry.instance_eval{ binding }).strip
+    meta = meta_template.result(entry.instance_eval{ binding }).strip
+    ld   = ld_template  .result(entry.instance_eval{ binding }).strip
+    html = amp_template .result(binding).strip
     File.write(entry.ampfile, html)
   }
 end
@@ -140,17 +140,15 @@ def blogfeed(feed = false)
       acc.merge(entry) {|_key, old, new| new + old}
     }
 
-    tag      = "Tags"
-    fav      = erb_template(".template/favicon.html.erb").result(binding).strip
-    template = erb_template(".template/tags.html.erb").result(binding).strip
-    html     = ERB.new(template).result(binding)
+    tag  = "Tags"
+    fav  = erb_template(".template/favicon.html.erb").result(binding).strip
+    html = erb_template(".template/tags.html.erb").result(binding).strip
     File.write("./blog.jxck.io/tags/index.html", html)
 
     tags.each {|tag, v|
-      tags     = { tag => v }
-      template = erb_template(".template/tags.html.erb").result(binding).strip
-      html     = ERB.new(template).result(binding)
-      File.write("./blog.jxck.io/tags/#{tag}.html", html)
+      tags = { tag => v }
+      txt  = erb_template(".template/tags.html.erb").result(binding).strip
+      File.write("./blog.jxck.io/tags/#{tag}.html", txt)
     }
   end
 end
