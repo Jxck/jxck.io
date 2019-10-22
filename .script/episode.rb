@@ -31,7 +31,7 @@ class Episode < Article
   end
 
   def guests
-    @info.scan(/guest\n: (.*)/) || []
+    @info.scan(/guest\n: (.*)/).map(&:first) || []
   end
 
   def file

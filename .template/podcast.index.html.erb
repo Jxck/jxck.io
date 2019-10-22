@@ -110,7 +110,7 @@
         <div>
           <dt>guest</dt>
           <%- episode.guests.each do |guest| -%>
-          <dd><%= to_html(guest[0]).gsub("<p>", "").gsub("</p>", "").strip %>
+          <dd><%= to_html(guest).gsub("<p>", "").gsub("</p>", "").strip %>
           <%- end -%>
         </div>
       </dl>
