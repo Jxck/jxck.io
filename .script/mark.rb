@@ -83,7 +83,7 @@ def blog(paths)
   amp_template  = erb_template(".template/amp.html.erb")
 
   paths.each{|path|
-    p path
+    puts path
     entry = Entry.new(path, icon)
 
     # blog
@@ -184,7 +184,7 @@ def podcast(path)
 
   # ビルドする
   episodes.each{|episode|
-    p episode.path
+    puts episode.path
 
     # entry
     episode.build(Podcast.new)
