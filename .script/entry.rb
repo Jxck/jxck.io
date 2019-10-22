@@ -9,14 +9,19 @@ class Entry < Article
     @icon = icon
   end
 
-  # "/entries/2016-01-27/new-blog-start.amp.html"
+  # "./new-blog-start.amp.html"
   def amprelative
+    "./#{name}.amp.html"
+  end
+
+  # "/entries/2016-01-27/new-blog-start.amp.html"
+  def amppath
     "/#{baseurl}/#{name}.amp.html"
   end
 
   # "https://blog.jxck.io/entries/2016-01-27/new-blog-start.amp.html"
   def ampurl
-    "https://#{host}#{amprelative}"
+    "https://#{host}#{amppath}"
   end
 
   def created_at
