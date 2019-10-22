@@ -109,8 +109,8 @@
         </div>
         <div>
           <dt>guest</dt>
-          <%- episode.guests.each do |guest| -%>
-          <dd><%= to_html(guest).gsub("<p>", "").gsub("</p>", "").strip %>
+          <%- episode.guest_links.each do |link| -%>
+          <dd><%= link %>
           <%- end -%>
         </div>
       </dl>

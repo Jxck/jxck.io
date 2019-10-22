@@ -34,6 +34,15 @@ class Episode < Article
     @info.scan(/guest\n: (.*)/).map(&:first) || []
   end
 
+  def guest_links
+    guests.map{|guest|
+      to_html(guest)
+        .gsub("<p>", "")
+        .gsub("</p>", "")
+        .strip
+    }
+  end
+
   def file
     audio.sub("https://", "")
   end
