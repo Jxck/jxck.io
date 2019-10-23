@@ -1,6 +1,6 @@
 ## 渡されたパスの配列を全部ビルドする
 ## 1 つしかなければ 1 つだけ
-class Blog
+class BlogBuilder
   def initialize(dir="")
     @paths = Dir.glob(dir)
     @icon  = "https://jxck.io/assets/img/jxck"

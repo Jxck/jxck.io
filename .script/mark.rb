@@ -19,7 +19,7 @@ require_relative "entry.rb"
 require_relative "episode.rb"
 require_relative "podcast.rb"
 
-require_relative "blog.rb"
+require_relative "blog_builder.rb"
 
 require_relative "erb_helper.rb"
 include ErbHelper
@@ -158,7 +158,7 @@ end
 if __FILE__ == $PROGRAM_NAME
   opt = OptionParser.new
 
-  blog = Blog.new("./blog.jxck.io/entries/**/*.md")
+  blog = BlogBuilder.new("./blog.jxck.io/entries/**/*.md")
 
   # Markdown to HTML
   opt.on("-b path/to/entry", "--blog ./path/to/entry.md") {|path|
