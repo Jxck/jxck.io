@@ -8,7 +8,7 @@ class Blog
     @amp_template  = erb_template(".template/amp.html.erb")
   end
 
-  def build
+  def build_all
     @paths.each{|path|
       puts path
       entry = Entry.new(path, @icon)
@@ -25,7 +25,7 @@ class Blog
     }
   end
 
-  def build_path(path)
+  def build(path)
     puts path
     entry = Entry.new(path, @icon)
 

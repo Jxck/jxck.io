@@ -162,13 +162,13 @@ if __FILE__ == $PROGRAM_NAME
 
   # Markdown to HTML
   opt.on("-b path/to/entry", "--blog ./path/to/entry.md") {|path|
-    blog.build_path(path)
+    blog.build(path)
   }
   opt.on("-p path/to/episode", "--podcast ./path/to/episode.md") {|path|
     podcast(path)
   }
   opt.on("--full") {
-    blog.build
+    blog.build_all
     podcast(nil)
   }
 
@@ -195,12 +195,12 @@ if __FILE__ == $PROGRAM_NAME
   opt.on("--blogtest") {|v|
     puts "test builing blog"
     path = "./blog.jxck.io/entries/2016-01-27/new-blog-start.md"
-    blog.build_path(path)
+    blog.build(path)
 
     ## TODO: remove me
     blog.archive
     blog.feed
-    blog.build
+    blog.build_all
     ## TODO: remove me
  }
   opt.on("--podcasttest") {|v|
