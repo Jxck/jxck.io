@@ -176,7 +176,7 @@ if __FILE__ == $PROGRAM_NAME
   # Update Archive/Tags
   opt.on("--blogindex") {|v|
     blog.archive
-    blog.tag
+    blog.tags
   }
   opt.on("--podcastindex") {|v|
     podcastfeed(false)

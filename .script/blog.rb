@@ -20,7 +20,7 @@ class Blog
       build(path)
     }
     archive
-    tag
+    tags
   end
 
   def feed
@@ -48,7 +48,7 @@ class Blog
     File.write("./blog.jxck.io/index.html", archive)
   end
 
-  def tag
+  def tags
     puts "build tags page"
 
     tag_map = @paths
