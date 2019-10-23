@@ -7,8 +7,6 @@ class Blog
   end
 
   def build
-    ld_template   = erb_template(".template/ld-json.html.erb")
-    meta_template = erb_template(".template/meta.html.erb")
     blog_template = erb_template(".template/blog.html.erb")
     amp_template  = erb_template(".template/amp.html.erb")
 
@@ -18,23 +16,17 @@ class Blog
 
       # blog
       entry.build(HTML.new)
-      meta = meta_template.result(entry.instance_eval{ binding }).strip
-      ld   = ld_template  .result(entry.instance_eval{ binding }).strip
       html = blog_template.result(binding).strip
       File.write(entry.htmlfile, html)
 
       # amp
       entry.build(AMP.new)
-      meta = meta_template.result(entry.instance_eval{ binding }).strip
-      ld   = ld_template  .result(entry.instance_eval{ binding }).strip
       html = amp_template .result(binding).strip
       File.write(entry.ampfile, html)
     }
   end
 
   def build_path(path)
-    ld_template   = erb_template(".template/ld-json.html.erb")
-    meta_template = erb_template(".template/meta.html.erb")
     blog_template = erb_template(".template/blog.html.erb")
     amp_template  = erb_template(".template/amp.html.erb")
 
@@ -43,15 +35,11 @@ class Blog
 
     # blog
     entry.build(HTML.new)
-    meta = meta_template.result(entry.instance_eval{ binding }).strip
-    ld   = ld_template  .result(entry.instance_eval{ binding }).strip
     html = blog_template.result(binding).strip
     File.write(entry.htmlfile, html)
 
     # amp
     entry.build(AMP.new)
-    meta = meta_template.result(entry.instance_eval{ binding }).strip
-    ld   = ld_template  .result(entry.instance_eval{ binding }).strip
     html = amp_template .result(binding).strip
     File.write(entry.ampfile, html)
   end
