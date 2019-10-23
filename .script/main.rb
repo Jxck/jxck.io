@@ -10,17 +10,18 @@ require "pathname"
 require "kramdown"
 require "kramdown-parser-gfm"
 
+require_relative "markdown/ast.rb"
+require_relative "markdown/traverser.rb"
+
+require_relative "file/article.rb"
+require_relative "file/entry.rb"
+require_relative "file/episode.rb"
+
 require_relative "format/html.rb"
 require_relative "format/amp.rb"
 require_relative "format/removemeeeeeeeeeeeeeeeeeeeeeeeeeee.rb"
 
-require_relative "ast.rb"
-require_relative "article.rb"
-require_relative "traverser.rb"
-require_relative "entry.rb"
-require_relative "episode.rb"
-
-require_relative "blog_builder.rb"
+require_relative "builder/blog_builder.rb"
 
 require_relative "helper/erb_helper.rb"
 include ErbHelper

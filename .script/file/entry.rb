@@ -1,5 +1,3 @@
-require_relative "article.rb"
-
 # Blog Entry の抽象
 class Entry < Article
   attr_accessor :icon # TODO: いる？
