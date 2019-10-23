@@ -21,18 +21,6 @@ class Blog
     }
   end
 
-  def build_html(entry)
-    entry.build(HTML.new)
-    html = @blog_template.result(binding).strip
-    File.write(entry.htmlfile, html)
-  end
-
-  def build_amp_html(entry)
-    entry.build(AMP.new)
-    html = @amp_template.result(binding).strip
-    File.write(entry.ampfile, html)
-  end
-
   def feed
     entries = @paths
       .map {|path| Entry.new(path, @icon)}
@@ -82,5 +70,19 @@ class Blog
       txt     = erb_template(".template/tags.html.erb").result(binding).strip
       File.write("./blog.jxck.io/tags/#{tag}.html", txt)
     }
+  end
+
+  private
+
+  def build_html(entry)
+    entry.build(HTML.new)
+    html = @blog_template.result(binding).strip
+    File.write(entry.htmlfile, html)
+  end
+
+  def build_amp_html(entry)
+    entry.build(AMP.new)
+    html = @amp_template.result(binding).strip
+    File.write(entry.ampfile, html)
   end
 end
