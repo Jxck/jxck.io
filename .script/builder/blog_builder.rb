@@ -3,7 +3,7 @@ class BlogBuilder
   def initialize(dir, icon)
     @paths = Dir.glob(dir)
     @icon  = icon
-    @blog_template = erb_template(".template/blog.html.erb")
+    @html_template = erb_template(".template/blog.html.erb")
     @amp_template  = erb_template(".template/blog.amp.html.erb")
   end
 
@@ -88,7 +88,7 @@ class BlogBuilder
 
   def build_html(entry)
     entry.build(HTML.new)
-    html = @blog_template.result(binding).strip
+    html = @html_template.result(binding).strip
     File.write(entry.htmlfile, html)
   end
 
