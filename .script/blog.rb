@@ -8,35 +8,28 @@ class Blog
     @amp_template  = erb_template(".template/amp.html.erb")
   end
 
-  def build_all
-    @paths.each{|path|
-      puts path
-      entry = Entry.new(path, @icon)
-
-      # blog
-      entry.build(HTML.new)
-      html = @blog_template.result(binding).strip
-      File.write(entry.htmlfile, html)
-
-      # amp
-      entry.build(AMP.new)
-      html = @amp_template .result(binding).strip
-      File.write(entry.ampfile, html)
-    }
-  end
-
   def build(path)
     puts path
     entry = Entry.new(path, @icon)
+    build_html(entry)
+    build_amp_html(entry)
+  end
 
-    # blog
+  def build_all
+    @paths.each{|path|
+      build(path)
+    }
+  end
+
+  def build_html(entry)
     entry.build(HTML.new)
     html = @blog_template.result(binding).strip
     File.write(entry.htmlfile, html)
+  end
 
-    # amp
+  def build_amp_html(entry)
     entry.build(AMP.new)
-    html = @amp_template .result(binding).strip
+    html = @amp_template.result(binding).strip
     File.write(entry.ampfile, html)
   end
 
