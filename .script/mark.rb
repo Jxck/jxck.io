@@ -198,6 +198,7 @@ if __FILE__ == $PROGRAM_NAME
     blog.build(path)
 
     ## TODO: remove me
+    blog.tag
     blog.archive
     blog.feed
     blog.build_all

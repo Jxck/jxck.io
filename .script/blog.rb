@@ -44,10 +44,16 @@ class Blog
 
     archive = erb_template(".template/archive.html.erb").result(binding)
     File.write("./blog.jxck.io/index.html", archive)
+  end
 
+  def tag
     puts "build tags page"
 
-    tag_map = entries.map {|entry|
+    tag_map = @paths
+      .map {|path| Entry.new(path, @icon)}
+      .sort
+      .map {|entry|
+
       # 各エントリに対して tag => entry な hash を作る
       entry.tags.reduce({}) {|acc, tag|
         acc.merge({tag => [entry]})
