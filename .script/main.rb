@@ -141,7 +141,7 @@ def podcastfeed(feed = false)
 
   if feed
     puts "build podcast feed"
-    xml = erb_template(".template/rss2.xml.erb").result(binding)
+    xml = erb_template(".template/podcast.rss2.xml.erb").result(binding)
     File.write("./feed.mozaic.fm/index.xml", xml)
   else
     episodes.each.with_index {|e, i|

@@ -4,7 +4,7 @@ class BlogBuilder
     @paths = Dir.glob(dir)
     @icon  = icon
     @blog_template = erb_template(".template/blog.html.erb")
-    @amp_template  = erb_template(".template/amp.html.erb")
+    @amp_template  = erb_template(".template/blog.amp.html.erb")
   end
 
   ## 特定のパスのファイルをビルド
@@ -32,10 +32,10 @@ class BlogBuilder
       .map {|path| Entry.new(path, @icon)}
       .sort
 
-    xml = erb_template(".template/atom.xml.erb").result(binding)
+    xml = erb_template(".template/blog.atom.xml.erb").result(binding)
     File.write("./blog.jxck.io/feeds/atom.xml", xml)
 
-    xml = erb_template(".template/sitemap.xml.erb").result(binding)
+    xml = erb_template(".template/blog.sitemap.xml.erb").result(binding)
     File.write("./blog.jxck.io/feeds/sitemap.xml", xml)
   end
 
@@ -69,7 +69,7 @@ class BlogBuilder
       acc.merge(entry) {|_key, old, new| new + old}
     }
 
-    tags_template = erb_template(".template/tags.html.erb")
+    tags_template = erb_template(".template/blog.tags.html.erb")
 
     # /tags で全タグの一覧のページ
     tag = "Tags" # tag 一覧ページのタイトル
