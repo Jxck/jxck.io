@@ -35,4 +35,9 @@ class Entry < Article
   def ampfile
     "#{dir}/#{name}.amp.html"
   end
+
+  # エントリは降順で扱うのが基本なので逆に
+  def <=>(other)
+    return other.path <=> path
+  end
 end

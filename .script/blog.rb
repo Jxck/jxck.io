@@ -25,7 +25,6 @@ class Blog
     entries = @paths
       .map {|path| Entry.new(path, @icon)}
       .sort
-      .reverse
 
     puts "build blog feed & sitemap"
     xml = erb_template(".template/atom.xml.erb").result(binding)
@@ -39,7 +38,6 @@ class Blog
     entries = @paths
       .map {|path| Entry.new(path, @icon)}
       .sort
-      .reverse
 
     puts "build archive page"
     archive = erb_template(".template/archive.html.erb").result(binding)
