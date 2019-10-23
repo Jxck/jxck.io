@@ -16,7 +16,7 @@
   <script defer src=/assets/js/main.js></script>
   <script defer src=/assets/js/ga.js></script>
 
-  <%= indent(fav) %>
+  <%= indent(render(".template/favicon.html.erb", {icon: @icon})) %>
 
   <title>#<%= tag %> | blog.jxck.io</title>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
