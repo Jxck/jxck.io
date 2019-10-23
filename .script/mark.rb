@@ -175,7 +175,7 @@ if __FILE__ == $PROGRAM_NAME
 
   # Update Index/Archive/Tags
   opt.on("--blogindex") {|v|
-    blog.archive
+    blog.build_all
   }
   opt.on("--podcastindex") {|v|
     podcastfeed(false)
@@ -196,13 +196,8 @@ if __FILE__ == $PROGRAM_NAME
     puts "test builing blog"
     path = "./blog.jxck.io/entries/2016-01-27/new-blog-start.md"
     blog.build(path)
-
-    ## TODO: remove me
-    blog.tag
-    blog.archive
-    blog.feed
     blog.build_all
-    ## TODO: remove me
+    blog.feed
  }
   opt.on("--podcasttest") {|v|
     puts "test building podcast"

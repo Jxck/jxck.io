@@ -19,6 +19,8 @@ class Blog
     @paths.each{|path|
       build(path)
     }
+    archive
+    tag
   end
 
   def feed
