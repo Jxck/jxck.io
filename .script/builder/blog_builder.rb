@@ -20,7 +20,7 @@ class BlogBuilder
     @paths.each{|path|
       build(path)
     }
-    archive
+    index
     tags
   end
 
@@ -39,16 +39,16 @@ class BlogBuilder
     File.write("./blog.jxck.io/feeds/sitemap.xml", xml)
   end
 
-  ## archive ページ生成
-  def archive
-    puts "build archive page"
+  ## index ページ生成
+  def index
+    puts "build index page"
 
     entries = @paths
       .map {|path| Entry.new(path, @icon)}
       .sort
 
-    archive = erb_template(".template/archive.html.erb").result(binding)
-    File.write("./blog.jxck.io/index.html", archive)
+    index = erb_template(".template/blog.index.html.erb").result(binding)
+    File.write("./blog.jxck.io/index.html", index)
   end
 
   ## tag ページ生成

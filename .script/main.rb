@@ -150,9 +150,9 @@ def podcastfeed(feed = false)
     }
 
     puts "build index.html"
-    fav     = erb_template(".template/favicon.html.erb").result(binding).strip
-    archive = erb_template(".template/podcast.index.html.erb").result(binding)
-    File.write("./mozaic.fm/index.html", archive)
+    fav   = erb_template(".template/favicon.html.erb").result(binding).strip
+    index = erb_template(".template/podcast.index.html.erb").result(binding)
+    File.write("./mozaic.fm/index.html", index)
   end
 end
 
@@ -177,9 +177,9 @@ if __FILE__ == $PROGRAM_NAME
   }
 
 
-  # Update Archive/Tags
+  # Update Index/Tags
   opt.on("--blogindex") {|v|
-    blog.archive
+    blog.index
     blog.tags
   }
   opt.on("--podcastindex") {|v|
