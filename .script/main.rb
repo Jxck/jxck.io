@@ -12,7 +12,7 @@ require "kramdown-parser-gfm"
 
 require_relative "format/html.rb"
 require_relative "format/amp.rb"
-require_relative "format/podcast.rb"
+require_relative "format/removemeeeeeeeeeeeeeeeeeeeeeeeeeee.rb"
 
 require_relative "ast.rb"
 require_relative "article.rb"
@@ -111,7 +111,7 @@ def podcast(path)
     puts episode.path
 
     # entry
-    episode.build(Podcast.new)
+    episode.build(TMP.new)
     fav  = erb_template(".template/favicon.html.erb").result(episode.instance_eval { binding }).strip
     meta = erb_template(".template/meta.html.erb")   .result(episode.instance_eval { binding }).strip
     html = erb_template(".template/podcast.html.erb").result(binding).strip

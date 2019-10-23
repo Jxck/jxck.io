@@ -1,5 +1,6 @@
 # Podcast 用に拡張した HTML
-class Podcast < HTML
+# TODO: もうこれは消す
+class TMP < HTML
   def header(node)
     level = node.options.level
     if level == 1
