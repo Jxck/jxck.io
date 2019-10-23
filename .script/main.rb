@@ -160,7 +160,9 @@ end
 if __FILE__ == $PROGRAM_NAME
   opt = OptionParser.new
 
-  blog = BlogBuilder.new("./blog.jxck.io/entries/**/*.md")
+  dir  = "./blog.jxck.io/entries/**/*.md"
+  icon = "https://jxck.io/assets/img/jxck"
+  blog = BlogBuilder.new(dir, icon)
 
   # Markdown to HTML
   opt.on("-b path/to/entry", "--blog ./path/to/entry.md") {|path|

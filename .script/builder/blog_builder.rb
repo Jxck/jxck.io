@@ -1,9 +1,9 @@
 ## 渡されたパスの配列を全部ビルドする
 ## 1 つしかなければ 1 つだけ
 class BlogBuilder
-  def initialize(dir="")
+  def initialize(dir, icon)
     @paths = Dir.glob(dir)
-    @icon  = "https://jxck.io/assets/img/jxck"
+    @icon  = icon
     @blog_template = erb_template(".template/blog.html.erb")
     @amp_template  = erb_template(".template/amp.html.erb")
   end
