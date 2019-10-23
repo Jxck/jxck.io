@@ -22,7 +22,7 @@ require_relative "episode.rb"
 
 require_relative "blog_builder.rb"
 
-require_relative "erb_helper.rb"
+require_relative "helper/erb_helper.rb"
 include ErbHelper
 
 # debugger
