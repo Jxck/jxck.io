@@ -65,9 +65,8 @@ class Blog
       acc.merge(entry) {|_key, old, new| new + old}
     }
 
-    tag = "Tags"
-
     # /tags で全タグの一覧のページ
+    tag = "Tags" # tag 一覧ページのタイトル
     html = erb_template(".template/tags.html.erb").result(binding).strip
     File.write("./blog.jxck.io/tags/index.html", html)
 
