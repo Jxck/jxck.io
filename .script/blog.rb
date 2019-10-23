@@ -37,7 +37,6 @@ class Blog
 
   def archive
     entries = @paths
-      .select {|path| path.match(/.*.md\z/)}
       .map {|path| Entry.new(path, @icon)}
       .sort
       .reverse
