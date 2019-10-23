@@ -1,5 +1,4 @@
-## 渡されたパスの配列を全部ビルドする
-## 1 つしかなければ 1 つだけ
+## blog エントリの markdown を html/amp でビルド
 class BlogBuilder
   def initialize(dir, icon)
     @paths = Dir.glob(dir)
@@ -8,6 +7,7 @@ class BlogBuilder
     @amp_template  = erb_template(".template/amp.html.erb")
   end
 
+  ## 特定のパスのファイルをビルド
   def build(path)
     puts "build #{path}"
     entry = Entry.new(path, @icon)
@@ -15,6 +15,7 @@ class BlogBuilder
     build_amp_html(entry)
   end
 
+  ## dir の中全てビルド
   def build_all
     @paths.each{|path|
       build(path)
@@ -23,6 +24,7 @@ class BlogBuilder
     tags
   end
 
+  ## RSS/Sitemap 生成
   def feed
     puts "build blog feed & sitemap"
 
@@ -37,6 +39,7 @@ class BlogBuilder
     File.write("./blog.jxck.io/feeds/sitemap.xml", xml)
   end
 
+  ## archive ページ生成
   def archive
     puts "build archive page"
 
@@ -48,6 +51,7 @@ class BlogBuilder
     File.write("./blog.jxck.io/index.html", archive)
   end
 
+  ## tag ページ生成
   def tags
     puts "build tags page"
 
@@ -65,16 +69,18 @@ class BlogBuilder
       acc.merge(entry) {|_key, old, new| new + old}
     }
 
+    tags_template = erb_template(".template/tags.html.erb")
+
     # /tags で全タグの一覧のページ
     tag = "Tags" # tag 一覧ページのタイトル
-    html = erb_template(".template/tags.html.erb").result(binding).strip
-    File.write("./blog.jxck.io/tags/index.html", html)
+    tag_html = tags_template.result(binding).strip
+    File.write("./blog.jxck.io/tags/index.html", tag_html)
 
     # /tags/xxx.html で各タグのページ
     tag_map.each {|tag, v|
       tag_map = { tag => v } # 変数が同じなのでここで単一タグに上書き
-      txt     = erb_template(".template/tags.html.erb").result(binding).strip
-      File.write("./blog.jxck.io/tags/#{tag}.html", txt)
+      tags_html = tags_template.result(binding).strip
+      File.write("./blog.jxck.io/tags/#{tag}.html", tags_html)
     }
   end
 
