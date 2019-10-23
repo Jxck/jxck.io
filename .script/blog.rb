@@ -4,43 +4,39 @@ class Blog
   def initialize(dir="")
     @paths = Dir.glob(dir)
     @icon  = "https://jxck.io/assets/img/jxck"
+    @blog_template = erb_template(".template/blog.html.erb")
+    @amp_template  = erb_template(".template/amp.html.erb")
   end
 
   def build
-    blog_template = erb_template(".template/blog.html.erb")
-    amp_template  = erb_template(".template/amp.html.erb")
-
     @paths.each{|path|
       puts path
       entry = Entry.new(path, @icon)
 
       # blog
       entry.build(HTML.new)
-      html = blog_template.result(binding).strip
+      html = @blog_template.result(binding).strip
       File.write(entry.htmlfile, html)
 
       # amp
       entry.build(AMP.new)
-      html = amp_template .result(binding).strip
+      html = @amp_template .result(binding).strip
       File.write(entry.ampfile, html)
     }
   end
 
   def build_path(path)
-    blog_template = erb_template(".template/blog.html.erb")
-    amp_template  = erb_template(".template/amp.html.erb")
-
     puts path
     entry = Entry.new(path, @icon)
 
     # blog
     entry.build(HTML.new)
-    html = blog_template.result(binding).strip
+    html = @blog_template.result(binding).strip
     File.write(entry.htmlfile, html)
 
     # amp
     entry.build(AMP.new)
-    html = amp_template .result(binding).strip
+    html = @amp_template .result(binding).strip
     File.write(entry.ampfile, html)
   end
 
