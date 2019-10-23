@@ -1,10 +1,16 @@
-## blog エントリの markdown を html/amp でビルド
+## blog entry の markdown を html/amp でビルド
 class BlogBuilder
+  attr_accessor :entries
+
   def initialize(dir, icon)
     @paths = Dir.glob(dir)
     @icon  = icon
-    @html_template = erb_template(".template/blog.html.erb")
-    @amp_template  = erb_template(".template/blog.amp.html.erb")
+    @html_template = erb_template("template/blog.html.erb")
+    @amp_template  = erb_template("template/blog.amp.html.erb")
+
+    @entries = @paths
+      .map {|path| Entry.new(path, @icon)}
+      .sort
   end
 
   ## 特定のパスのファイルをビルド
@@ -24,30 +30,10 @@ class BlogBuilder
     tags
   end
 
-  ## RSS/Sitemap 生成
-  def feed
-    puts "build blog feed & sitemap"
-
-    entries = @paths
-      .map {|path| Entry.new(path, @icon)}
-      .sort
-
-    xml = erb_template(".template/blog.atom.xml.erb").result(binding)
-    File.write("./blog.jxck.io/feeds/atom.xml", xml)
-
-    xml = erb_template(".template/blog.sitemap.xml.erb").result(binding)
-    File.write("./blog.jxck.io/feeds/sitemap.xml", xml)
-  end
-
   ## index ページ生成
   def index
     puts "build index page"
-
-    entries = @paths
-      .map {|path| Entry.new(path, @icon)}
-      .sort
-
-    index = erb_template(".template/blog.index.html.erb").result(binding)
+    index = erb_template("template/blog.index.html.erb").result(binding)
     File.write("./blog.jxck.io/index.html", index)
   end
 
@@ -69,7 +55,7 @@ class BlogBuilder
       acc.merge(entry) {|_key, old, new| new + old}
     }
 
-    tags_template = erb_template(".template/blog.tags.html.erb")
+    tags_template = erb_template("template/blog.tags.html.erb")
 
     # /tags で全タグの一覧のページ
     tag = "Tags" # tag 一覧ページのタイトル
@@ -84,14 +70,27 @@ class BlogBuilder
     }
   end
 
+  ## RSS/Sitemap 生成
+  def feed
+    puts "build blog feed & sitemap"
+
+    xml = erb_template("template/blog.atom.xml.erb").result(binding)
+    File.write("./blog.jxck.io/feeds/atom.xml", xml)
+
+    xml = erb_template("template/blog.sitemap.xml.erb").result(binding)
+    File.write("./blog.jxck.io/feeds/sitemap.xml", xml)
+  end
+
   private
 
+  # html のビルド
   def build_html(entry)
     entry.build(HTML.new)
     html = @html_template.result(binding).strip
     File.write(entry.htmlfile, html)
   end
 
+  # amp html のビルド
   def build_amp_html(entry)
     entry.build(AMP.new)
     html = @amp_template.result(binding).strip

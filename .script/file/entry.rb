@@ -1,6 +1,6 @@
 # Blog Entry の抽象
 class Entry < Article
-  attr_accessor :icon # TODO: いる？
+  attr_accessor :icon
 
   def initialize(path, icon = "")
     super(path)

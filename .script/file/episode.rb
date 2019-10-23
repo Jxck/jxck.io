@@ -1,9 +1,10 @@
 # Podcast Episode の抽象
 class Episode < Article
-  attr_accessor :order, :prev, :next
+  attr_accessor :order, :prev, :next, :icon
 
-  def initialize(path)
+  def initialize(path, icon = "")
     super(path)
+    @icon = icon
     @info = @text.match(/## Info(([\n\r]|.)*?)##/m)[1]
   end
 
@@ -61,6 +62,13 @@ class Episode < Article
 
   def theme_line
     to_html(theme).split("\n").reject(&:empty?)
+  end
+
+  # build markdown to html
+  def to_html(md)
+    Kramdown::Document
+      .new(md, {input: "GFM"})
+      .to_html
   end
 
   def size

@@ -29,4 +29,10 @@ module ErbHelper
     # arg をコンテキストとして ERB の部分テンプレートを読む
     erb_template(path).result(arg.instance_eval{binding}).strip
   end
+
+  def erb_template(path)
+    abs_path = File.expand_path("../"+path, __dir__)
+    template = File.read(abs_path)
+    ERB.new(template, nil, '-')
+  end
 end

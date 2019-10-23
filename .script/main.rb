@@ -22,6 +22,7 @@ require_relative "format/amp.rb"
 require_relative "format/removemeeeeeeeeeeeeeeeeeeeeeeeeeee.rb"
 
 require_relative "builder/blog_builder.rb"
+require_relative "builder/podcast_builder.rb"
 
 require_relative "helper/erb_helper.rb"
 include ErbHelper
@@ -29,30 +30,6 @@ include ErbHelper
 # debugger
 def j(o)
   puts caller.first, JSON.pretty_generate(o)
-end
-
-
-
-# build markdown to html
-def to_html(md)
-  Kramdown::Document
-    .new(md, {input: "GFM"})
-    .to_html
-end
-
-# remove markdown link
-def unlink(str)
-  str.gsub(/\[(.*?)\]\(.*?\)/, '\1').gsub(/<(http.*?)>/, '\1')
-end
-
-# remove \n\r for online
-def oneline(str)
-  str.gsub(/(\n|\r)/, "")
-end
-
-def erb_template(path)
-  template = File.read(path)
-  ERB.new(template, nil, '-')
 end
 
 # dot access Hash
@@ -78,86 +55,6 @@ end
 
 
 
-## ビルド時に前後のエントリへのリンクを貼る
-## そこで一旦全体を見る必要があるの
-## 引数は nil なら全体をビルド
-## ファイルパスを渡すとそれだけをビルド
-def podcast_tmp(path)
-  dir  = "./mozaic.fm/episodes/**/*.md"
-  icon = "https://mozaic.fm/assets/img/mozaic" # 拡張子は template で補完
-
-  podcast = PodcastBuilder.new(dir, icon)
-
-  # prev/next のリンクを貼るために一度全部をたどる必要がある
-  # (sideshow があるためディレクトリの番号では足らない)
-  episodes = Dir.glob(dir)
-    .map {|path| Episode.new(path)} #.map(&method(Episode.new))
-    .sort
-    .reverse
-    .map.with_index {|ep, i|
-      # 連番を振る
-      ep.order = i
-      ep
-    }
-
-  # 前後関係を設定
-  episodes.each.with_index {|e, i|
-    e.prev = episodes[i+1] if i < episodes.size
-    e.next = episodes[i-1] if i > 0
-  }
-
-  # もし Path があったらその一つに絞る
-  episodes = episodes.select{|e| e.path == path} if path
-
-  # ビルドする
-  episodes.each{|episode|
-    puts episode.path
-
-    # entry
-    episode.build(TMP.new)
-    fav  = erb_template(".template/favicon.html.erb").result(episode.instance_eval { binding }).strip
-    meta = erb_template(".template/meta.html.erb")   .result(episode.instance_eval { binding }).strip
-    html = erb_template(".template/podcast.html.erb").result(binding).strip
-    File.write(episode.htmlfile, html)
-  }
-
-end
-
-def podcastfeed(feed = false)
-  puts "build podcast"
-
-  # episodes
-  dir  = "./mozaic.fm/episodes/**/*"
-  icon = "https://mozaic.fm/assets/img/mozaic" # 拡張子は template で補完
-  host = "mozaic.fm"
-
-  episodes = Dir.glob(dir)
-    .select {|path| path.match(/.*.md\z/)}
-    .map {|path| Episode.new(path)}
-    .sort
-    .reverse
-    .map.with_index {|ep, i|
-      ep.order = i
-      ep
-    }
-
-  if feed
-    puts "build podcast feed"
-    xml = erb_template(".template/podcast.rss2.xml.erb").result(binding)
-    File.write("./feed.mozaic.fm/index.xml", xml)
-  else
-    episodes.each.with_index {|e, i|
-      e.prev = episodes[i+1] if i < episodes.size
-      e.next = episodes[i-1] if i > 0
-    }
-
-    puts "build index.html"
-    fav   = erb_template(".template/favicon.html.erb").result(binding).strip
-    index = erb_template(".template/podcast.index.html.erb").result(binding)
-    File.write("./mozaic.fm/index.html", index)
-  end
-end
-
 
 if __FILE__ == $PROGRAM_NAME
   opt = OptionParser.new
@@ -166,16 +63,23 @@ if __FILE__ == $PROGRAM_NAME
   icon = "https://jxck.io/assets/img/jxck" # 拡張子は template で補完
   blog = BlogBuilder.new(dir, icon)
 
+
+  dir  = "./mozaic.fm/episodes/**/*.md"
+  icon = "https://mozaic.fm/assets/img/mozaic" # 拡張子は template で補完
+  podcast = PodcastBuilder.new(dir, icon)
+
+
+
   # Markdown to HTML
   opt.on("-b path/to/entry", "--blog ./path/to/entry.md") {|path|
     blog.build(path)
   }
   opt.on("-p path/to/episode", "--podcast ./path/to/episode.md") {|path|
-    podcast_tmp(path)
+    podcast.build(path)
   }
   opt.on("--full") {
     blog.build_all
-    podcast_tmp(nil)
+    podcast.build_all
   }
 
 
@@ -185,7 +89,7 @@ if __FILE__ == $PROGRAM_NAME
     blog.tags
   }
   opt.on("--podcastindex") {|v|
-    podcastfeed(false)
+    podcast.index
   }
 
 
@@ -194,7 +98,7 @@ if __FILE__ == $PROGRAM_NAME
     blog.feed
   }
   opt.on("--podcastfeed") {|v|
-    podcastfeed(true)
+    podcast.feed
   }
 
 
@@ -210,7 +114,10 @@ if __FILE__ == $PROGRAM_NAME
     puts "test building podcast"
     # path = "./mozaic.fm/episodes/0/introduction-of-mozaicfm.md"
     path = "./mozaic.fm/episodes/1/webcomponents.md"
-    podcast_tmp(path)
+    podcast.build(path)
+    podcast.build_all
+    podcast.feed
+    podcast.index
   }
 
   opt.parse!(ARGV)

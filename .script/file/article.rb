@@ -105,4 +105,10 @@ class Article
   def <=>(other)
     return path <=> other.path
   end
+
+  protected
+  # remove markdown link
+  def unlink(str)
+    str.gsub(/\[(.*?)\]\(.*?\)/, '\1').gsub(/<(http.*?)>/, '\1')
+  end
 end
