@@ -158,22 +158,24 @@ end
 if __FILE__ == $PROGRAM_NAME
   opt = OptionParser.new
 
+  blog = Blog.new("./blog.jxck.io/entries/**/*.md")
+
   # Markdown to HTML
   opt.on("-b path/to/entry", "--blog ./path/to/entry.md") {|path|
-    Blog.new().build_path(path)
+    blog.build_path(path)
   }
   opt.on("-p path/to/episode", "--podcast ./path/to/episode.md") {|path|
     podcast(path)
   }
   opt.on("--full") {
-    Blog.new("./blog.jxck.io/entries/**/*.md").build
+    blog.build
     podcast(nil)
   }
 
 
   # Update Index/Archive/Tags
   opt.on("--blogindex") {|v|
-    Blog.new("./blog.jxck.io/entries/**/*.md").archive
+    blog.archive
   }
   opt.on("--podcastindex") {|v|
     podcastfeed(false)
@@ -182,7 +184,7 @@ if __FILE__ == $PROGRAM_NAME
 
   ## Update Feed
   opt.on("--blogfeed") {|v|
-    Blog.new("./blog.jxck.io/entries/**/*.md").feed
+    blog.feed
   }
   opt.on("--podcastfeed") {|v|
     podcastfeed(true)
@@ -193,12 +195,12 @@ if __FILE__ == $PROGRAM_NAME
   opt.on("--blogtest") {|v|
     puts "test builing blog"
     path = "./blog.jxck.io/entries/2016-01-27/new-blog-start.md"
-    Blog.new().build_path(path)
+    blog.build_path(path)
 
     ## TODO: remove me
-    Blog.new("./blog.jxck.io/entries/**/*.md").archive
-    Blog.new("./blog.jxck.io/entries/**/*.md").feed
-    Blog.new("./blog.jxck.io/entries/**/*.md").build
+    blog.archive
+    blog.feed
+    blog.build
     ## TODO: remove me
  }
   opt.on("--podcasttest") {|v|
