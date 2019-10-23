@@ -9,7 +9,7 @@ class Blog
   end
 
   def build(path)
-    puts path
+    puts "build #{path}"
     entry = Entry.new(path, @icon)
     build_html(entry)
     build_amp_html(entry)
@@ -22,11 +22,12 @@ class Blog
   end
 
   def feed
+    puts "build blog feed & sitemap"
+
     entries = @paths
       .map {|path| Entry.new(path, @icon)}
       .sort
 
-    puts "build blog feed & sitemap"
     xml = erb_template(".template/atom.xml.erb").result(binding)
     File.write("./blog.jxck.io/feeds/atom.xml", xml)
 
@@ -35,11 +36,12 @@ class Blog
   end
 
   def archive
+    puts "build archive page"
+
     entries = @paths
       .map {|path| Entry.new(path, @icon)}
       .sort
 
-    puts "build archive page"
     archive = erb_template(".template/archive.html.erb").result(binding)
     File.write("./blog.jxck.io/index.html", archive)
 
