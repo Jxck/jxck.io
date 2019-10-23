@@ -82,9 +82,11 @@ end
 ## そこで一旦全体を見る必要があるの
 ## 引数は nil なら全体をビルド
 ## ファイルパスを渡すとそれだけをビルド
-def podcast(path)
+def podcast_tmp(path)
   dir  = "./mozaic.fm/episodes/**/*.md"
-  icon = "https://mozaic.fm/assets/img/mozaic"
+  icon = "https://mozaic.fm/assets/img/mozaic" # 拡張子は template で補完
+
+  podcast = PodcastBuilder.new(dir, icon)
 
   # prev/next のリンクを貼るために一度全部をたどる必要がある
   # (sideshow があるためディレクトリの番号では足らない)
@@ -126,7 +128,7 @@ def podcastfeed(feed = false)
 
   # episodes
   dir  = "./mozaic.fm/episodes/**/*"
-  icon = "https://mozaic.fm/assets/img/mozaic"
+  icon = "https://mozaic.fm/assets/img/mozaic" # 拡張子は template で補完
   host = "mozaic.fm"
 
   episodes = Dir.glob(dir)
@@ -161,7 +163,7 @@ if __FILE__ == $PROGRAM_NAME
   opt = OptionParser.new
 
   dir  = "./blog.jxck.io/entries/**/*.md"
-  icon = "https://jxck.io/assets/img/jxck"
+  icon = "https://jxck.io/assets/img/jxck" # 拡張子は template で補完
   blog = BlogBuilder.new(dir, icon)
 
   # Markdown to HTML
@@ -169,11 +171,11 @@ if __FILE__ == $PROGRAM_NAME
     blog.build(path)
   }
   opt.on("-p path/to/episode", "--podcast ./path/to/episode.md") {|path|
-    podcast(path)
+    podcast_tmp(path)
   }
   opt.on("--full") {
     blog.build_all
-    podcast(nil)
+    podcast_tmp(nil)
   }
 
 
@@ -208,7 +210,7 @@ if __FILE__ == $PROGRAM_NAME
     puts "test building podcast"
     # path = "./mozaic.fm/episodes/0/introduction-of-mozaicfm.md"
     path = "./mozaic.fm/episodes/1/webcomponents.md"
-    podcast(path)
+    podcast_tmp(path)
   }
 
   opt.parse!(ARGV)
