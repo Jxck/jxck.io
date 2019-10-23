@@ -24,4 +24,9 @@ module ErbHelper
       .strip[0...(limit-3)]
       .concat("...")
   end
+
+  def render(path, arg)
+    # arg をコンテキストとして ERB の部分テンプレートを読む
+    erb_template(path).result(arg.instance_eval{binding}).strip
+  end
 end

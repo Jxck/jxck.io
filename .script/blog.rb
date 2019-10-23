@@ -6,10 +6,6 @@ class Blog
     @icon  = "https://jxck.io/assets/img/jxck"
   end
 
-  def render(path, arg)
-    erb_template(path).result(arg.instance_eval{binding}).strip
-  end
-
   def build
     ld_template   = erb_template(".template/ld-json.html.erb")
     meta_template = erb_template(".template/meta.html.erb")
