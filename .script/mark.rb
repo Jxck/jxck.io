@@ -173,9 +173,10 @@ if __FILE__ == $PROGRAM_NAME
   }
 
 
-  # Update Index/Archive/Tags
+  # Update Archive/Tags
   opt.on("--blogindex") {|v|
-    blog.build_all
+    blog.archive
+    blog.tag
   }
   opt.on("--podcastindex") {|v|
     podcastfeed(false)
