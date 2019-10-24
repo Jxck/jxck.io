@@ -94,6 +94,9 @@ blogtest:
 podcasttest:
 	$(MARK) --podcasttest
 
+marktest:
+	$(MARK) --marktest
+
 
 ##########################
 # Optimize Image
