@@ -23,6 +23,7 @@ TARGET = $(WWW) $(BLO) $(MOZ)
 GZ = $(addsuffix .gz, $(TARGET))
 BR = $(addsuffix .br, $(TARGET))
 
+# 対象ファイルを圧縮
 comp: $(BR) $(GZ)
 
 gz:$(GZ)
@@ -35,10 +36,12 @@ br:$(BR)
 %.br: %
 	brotli -n -f $<
 
+# 圧縮を削除
 clean:
 	@rm -fv $(GZ)
 	@rm -fv $(BR)
 
+# ビルド結果(HTML)も削除
 remove:
 	@rm -fv $(BHTML)
 	@rm -fv $(BHTML:.html=.amp.html)
@@ -46,7 +49,7 @@ remove:
 
 
 ##########################
-# BUILD Markdown
+# Build Markdown
 ##########################
 MARK = bundle exec ruby ./.script/main.rb
 
@@ -106,7 +109,6 @@ WEBP = $(PNG:.png=.webp)
 WEBP += $(JPG:.jpeg=.webp)
 WEBP += $(GIF:.gif=.webp)
 
-# .webp
 .png.webp:
 	$(CWEBP) $*.png -o $*.webp
 
@@ -116,6 +118,8 @@ WEBP += $(GIF:.gif=.webp)
 .gif.webp:
 	$(GWEBP) $*.gif -o $*.webp
 
+
+# webp 生成
 webp: $(WEBP)
 
 

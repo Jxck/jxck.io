@@ -6,19 +6,19 @@ https://github.com/Jxck/jxck.io/tree/master/blog.jxck.io
 
 - 純静的ページ
 - 動的なものはほぼない
-- だいたいの操作は npm script から叩ける
+- 基本は全部 Makefile に集約
 
 
 ### basic flow
 
 - 原稿を md で記述
 - entries 以下に日付フォルダを作りそこに置く
-- `npm run blog` で html, amp.html が生成される
+- `make blog` で html, amp.html が生成される
   - ここで結果を確認しながら直していく
   - 古い圧縮を消さなければブラウザには新しい変換結果は送られない
-- `npm run blog feed` で RSS が更新される
+- `make blogfeed` で RSS が更新される
   - これをしなければ RSS は勝手には更新されない
-- `npm run build` で全体の変換や圧縮のなどを一式行う
+- `make build` で全体の変換や圧縮のなどを一式行う
   - これで build 結果をコミットしたら終わり
 
 
@@ -44,7 +44,7 @@ https://github.com/Jxck/jxck.io/tree/master/blog.jxck.io
 - 全角記号は半角にする: [singler](https://github.com/Jxck/dotfiles/blob/master/bin/singler)
 - 全角と半角の間はスペース: [spacer](https://github.com/Jxck/dotfiles/blob/master/bin/spacer) (ただし除外するファイルもある)
 - 改行とか細かいルール: [format.rb](https://github.com/Jxck/dotfiles/blob/master/bin/format.rb) (ただし除外するファイルもある)
-- いずれも npm script に入ってる
+- いずれも Makefile に入ってる
 
 ただし markdown は以下に注意
 
@@ -54,11 +54,14 @@ https://github.com/Jxck/jxck.io/tree/master/blog.jxck.io
 
 その他細かい挙動は最初のエントリをテストエントリにしているのでそこで確認。
 
-`npm run blogtest` でこれだけをビルドもできる。
+`make blogtest` でこれだけをビルドもできる。
 
 <https://blog.jxck.io/entries/2016-01-27/new-blog-start.html#test-section>
 
-変換の実装は kramdown を元に実装している。
+
+変換の実装は ./script にある。
+
+kramdown を元に実装している。
 
 <https://github.com/Jxck/jxck.io/blob/master/mark.rb>
 
@@ -95,7 +98,7 @@ alt, title, 画像のサイズがないといけない。
 
 なので、 imgage.webp を作って置いておく必要がある。
 
-これはビルドではなく手動でやっておく。
+これは make webp でできる。
 
 だいたい q=40 でやっている。
 
@@ -106,7 +109,7 @@ $ cwebp -q 40 image.png -o image.webp
 
 さらに gulp から gulp-image を叩いて最適化も行っている。
 
-これは `$ gulp` で叩けるが `npm run build` に入ってる。
+これは `$ gulp` で叩けるが `make build` に入ってる。
 
 
 ## 圧縮
@@ -120,7 +123,7 @@ html/css/js/png/jpeg/svg ファイルは全て圧縮する。
 
 <https://github.com/Jxck/jxck.io/blob/master/compress.sh>
 
-これは `npm run gzip` でできるが、 `npm run build` に入ってるため、もろもろ準備できたら最後の build でやる。
+これは `make comp` でできるが、 `make build` に入ってるため、もろもろ準備できたら最後の build でやる。
 
 
 ## podcast
@@ -135,9 +138,9 @@ https://github.com/Jxck/jxck.io/tree/master/mozaic.fm
 - 編集した mp3 を生成
 - 原稿を md で記述
 - episodes 以下にエピソード番号のディレクトリを作りそこに置く
-- `npm run podcast` で html が生成される
-- `npm run podcast feed` で RSS が更新される
-- `npm run build` で全体の変換や圧縮のなどを一式行う
+- `make podcast` で html が生成される
+- `make podcastfeed` で RSS が更新される
+- `make build` で全体の変換や圧縮のなどを一式行う
 
 
 ### md

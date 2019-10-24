@@ -55,7 +55,6 @@ end
 
 
 
-
 if __FILE__ == $PROGRAM_NAME
   opt = OptionParser.new
 
@@ -120,5 +119,10 @@ if __FILE__ == $PROGRAM_NAME
     podcast.index
   }
 
+  opt.on("-h") {|v|
+    puts "make から叩いて"
+  }
+
+  puts "make から叩いて" if ARGV.empty?
   opt.parse!(ARGV)
 end
