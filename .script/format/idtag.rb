@@ -130,6 +130,11 @@ class Idtag
     EOS
   end
 
+  def code_format(code)
+    # TODO: ここでハイライトする
+    (code)
+  end
+
   def table(node)
     tabletag(node)
   end

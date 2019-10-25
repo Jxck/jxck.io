@@ -85,10 +85,11 @@ class Article
 
     # indent を無視するため
     # ここで pre に code を戻す
-    # ついでにエスケープ
     traverser.codes.each {|key, value|
+      # markup のもつロジックでコードを処理
+      code = markup.code_format(value)
       # hash に差し替えられているところを置き換える
-      article.gsub!("// #{key}") { hsc(value) }
+      article.gsub!("// #{key}") { code }
     }
 
     @article = article

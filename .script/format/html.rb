@@ -221,6 +221,11 @@ class HTML
     %(<pre#{lang ? %( class=#{lang}) : ''}><code translate="no">#{node.value}</code></pre>\n)
   end
 
+  def code_format(code)
+    #TODO: ここでハイライトする
+    hsc(code)
+  end
+
   def p(node)
     if node.close
       <<~EOS
