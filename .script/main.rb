@@ -23,7 +23,7 @@ require_relative "format/removemeeeeeeeeeeeeeeeeeeeeeeeeeee.rb"
 
 require_relative "builder/blog_builder.rb"
 require_relative "builder/podcast_builder.rb"
-require_relative "builder/indesign_builder.rb"
+require_relative "builder/idtag_builder.rb"
 
 require_relative "helper/erb_helper.rb"
 include ErbHelper
@@ -122,8 +122,8 @@ if __FILE__ == $PROGRAM_NAME
   opt.on("--marktest") {|v|
     puts "test markup"
     path = "./.script/test/test.md"
-    indesign = IndesignBuilder.new()
-    indesign.build(path)
+    idtag = IdtagBuilder.new()
+    idtag.build(path)
   }
 
   opt.on("-h") {|v|

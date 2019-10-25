@@ -49,6 +49,15 @@ class Traverser
       node.children = children
     end
 
+    if node.type == :ul or node.type == :ol
+      # 初段の level を 1 としておく
+      node.level = 1 if node.level.nil?
+      node.children.map {|child|
+        # li に親の ul/ol の参照を渡しておく
+        child.parent = node if child.type == :li
+      }
+    end
+
     if node.type == :li
       # li の子には p が入るのでこれを除く
       first = node.children.shift
@@ -60,12 +69,22 @@ class Traverser
 
       # 基本は li を閉じる
       node.close = true
-      if node.children.size == 1 and node.children.first.type == :text
+      if node.children.size == 1 and node.children.first.inline
         # もし li の子が :text 1 つだけなら閉じない
         node.close = false
       end
+
+
+      # li の子に ul/ol がネストしていたら
+      # li の親の ul/ol のレベル + 1 する
+      node.children.map {|child|
+        if child.type == :ul or child.type == :ol
+          child.level = node.parent.level + 1
+        end
+      }
     end
 
+    # <p><img> は閉じる
     if node.type == :p and node.children
       first = node.children.first
       if first.type == :img
@@ -78,7 +97,6 @@ class Traverser
     # puts "[##{__LINE__}] leave: #{node.type} #{node.value}"
 
     if node.type == :codeblock
-      # コードを抜き取り、ここで id に置き換える
       code = node.value
       if code == ""
         # code が書かれてなかったらファイルから読む
@@ -88,14 +106,17 @@ class Traverser
         code = File.read(path)
       end
 
-      # インデントを無視するため、退避しておき全部組み上がったら後で差し込む。
-      hash = code.chomp.hash
-      @codes[hash] = code.chomp
-
-      # あとで差し変えるため id として hash を入れておく
-      node.value = "// #{hash}"
+      # コードを展開したあとに全体のインデント操作をすると
+      # コードのインデントが狂ってしまう
+      # そこでコードを hash に置き換えて退避しておき
+      # 全部組み上がったら後で差し込むことでインデントを回避できる
+      hash = code.chomp.hash.to_s
+      node.value = "// #{hash}" # value には hash を入れておく
+      node.code  = code         # 本物はこちらにも入れておく
+      @codes[hash] = code.chomp # 全部組み上がったらここから取り出して replace
     end
 
+    # children を結合して value に
     if node.children
       node.value = node.children.join
     end

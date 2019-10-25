@@ -96,6 +96,7 @@ podcasttest:
 
 marktest:
 	$(MARK) --marktest
+	#cat .script/test/test.html
 
 
 ##########################

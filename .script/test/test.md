@@ -1,10 +1,9 @@
-# [tag] Title
+# Title
 
 ## H2
 
-this is h2
-
-
-### H3
-
-this is h3
+```js
+function hoo(x) {
+  console.log(x)
+}
+```

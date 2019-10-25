@@ -4,10 +4,24 @@ class AST
     option = {
       input: "GFM"
     }
+    @inlines = [:text, :a, :br, :codespan, :dd, :dt, :em, :header, :hr, :li, :p, :strong, :td, :th]
+
     @ast = Kramdown::Document.new(md, option).to_hashAST
 
-    # pre process
+    # セクションの構成を行う
     @ast.children = sectioning(@ast.children, 1)
+
+    # inline ラベルをつける
+    @ast.children = labeling(@ast.children)
+  end
+
+  def labeling(children)
+    return if children.nil?
+    children.map{|child|
+      child[:inline] = @inlines.include?(child.type)
+      labeling(child.children) if child.children
+    }
+    children
   end
 
   def tabling(table)

@@ -1,17 +1,20 @@
 # tag ごとのビルダ
-class Indesign
+class Idtag
   attr_writer :url
   attr_accessor :baseurl
   def initialize
     @indent = "  "
-    @css = {
-      PRE:   "/assets/css/pre.css",
-      TABLE: "/assets/css/table.css",
-    }
+  end
+
+
+  def log(node)
+    puts ">>>>>>>>>>>>>>>>>>"
+    pp node
+    puts "<<<<<<<<<<<<<<<<<<"
   end
 
   def root(node)
-    indent(node.value.to_s, 4)
+    node.value
   end
   def text(node)
     node.value == "\n" ? "" : hsc(node.value)
@@ -46,74 +49,69 @@ class Indesign
 
   ### block element
   def article(node)
-    <<~EOS
-    <article>
-      #{indent(node.value)}
-    </article>
-    EOS
+    node.value
   end
   def section(node)
-    <<~EOS
-    <section>
-      #{indent(node.value)}
-    </section>
-    EOS
+    node.value
   end
+
+  # <ul> そのものは出力しない
+  # 最初の ul の前には br
   def ul(node)
-    <<~EOS
-    <ul>
-      #{indent(node.value)}
-    </ul>
-    EOS
+    if node.level == 1
+      <<~EOS.chomp
+      #{br}
+      #{node.value}
+      EOS
+    else
+      <<~EOS.chomp
+
+      #{(node.value)}
+      EOS
+    end
   end
+  # <ol> そのものは出力しない
+  # 最初の ol の前には br
   def ol(node)
-    <<~EOS
-    <ol>
-      #{indent(node.value)}
-    </ol>
-    EOS
+    if node.level == 1
+      <<~EOS.chomp
+      #{br}
+      #{node.value}
+      EOS
+    else
+      <<~EOS.chomp
+
+      #{node.value}
+      EOS
+    end
   end
+
   def tabletag(node)
-    <<~EOS
-    <table>
-      #{indent(node.value)}
-    </table>
-    EOS
+    node.value
   end
   def thead(node)
-    <<~EOS
-    <thead>
-      #{indent(node.value)}
-    </thead>
-    EOS
+    node.value
   end
   def tbody(node)
-    <<~EOS
-    <tbody>
-      #{indent(node.value)}
-    </tbody>
-    EOS
+    node.value
   end
   def tr(node)
-    <<~EOS
-    <tr>
-      #{indent(node.value)}
-    </tr>
-    EOS
+    value = node.children.map{|child| child.value}.join("\t")
+    type = node.children.first.type
+    "<ParaStyle:#{type}>#{value}\n"
   end
+  def th(node)
+    node
+  end
+  def td(node)
+    node
+  end
+
   def dl(node)
-    <<~EOS
-    <dl>
-      #{indent(node.value)}
-    </dl>
-    EOS
+    node.value
   end
   def div(node)
-    <<~EOS
-    <div>
-      #{indent(node.value)}
-    </div>
-    EOS
+    node.value
   end
   def blockquote(node)
     <<~EOS
@@ -124,23 +122,16 @@ class Indesign
   end
 
   def codeblock(node)
-    value = pre(node)
-
-    if @css.PRE
-      value = style(@css.PRE) + "\n" + value
-      @css.PRE = nil # 一度読み込んだら消す
-    end
-    value
+    lang = node.attr && node.attr["class"].sub("language-", "")
+    code = node.code.split("\n").map{|line| "<ParaStyle:code-#{lang}>#{line}"}.join("\n")
+    <<~EOS.chomp
+      #{br}
+      #{code}
+    EOS
   end
 
   def table(node)
-    value = tabletag(node)
-
-    if @css.TABLE
-      value = style(@css.TABLE) + "\n" + value
-      @css.TABLE = nil # 一度読み込んだら消す
-    end
-    value
+    tabletag(node)
   end
 
   def img(node)
@@ -162,12 +153,15 @@ class Indesign
 
   ## そのまま
   def html_element(node)
+    # attribute がある場合は結合
     attrs = node.attr&.map {|key, value|
       next key if value == ""
       %(#{key}="#{value}")
     }
 
     attr = attrs.nil? ? "" : " " + attrs.join(" ")
+
+    # TODO: 改行が合わない
     "<#{node.tag}#{attr}>#{node.value}</#{node.tag}>\n"
   end
 
@@ -175,28 +169,22 @@ class Indesign
 
   ### inline elements
   def codespan(node)
-    %(<code translate="no">#{hsc(node.value)}</code>)
+    %(<CharStyle:code>#{hsc(node.value)}<CharStyle:>)
   end
   def strong(node)
-    "<strong>#{node.value}</strong>"
+    "<CharStyle:strong>#{node.value}<CharStyle:>"
   end
   def em(node)
-    "<em>#{node.value}</em>"
-  end
-  def th(node)
-    "<th class=align-#{node.alignment}>#{node.value}</th>\n"
-  end
-  def td(node)
-    "<td class=align-#{node.alignment}>#{node.value}</td>\n"
+    "<CharStyle:em>#{node.value}<CharStyle:>"
   end
   def dt(node)
-    "<dt>#{node.value}\n"
+    "<ParaStyle:dt>#{node.value}\n"
   end
   def dd(node)
-    "<dd>#{node.value}\n"
+    "<ParaStyle:dd>#{node.value}\n"
   end
-  def br(_node)
-    "<br>\n"
+  def br(node=nil)
+    "<ParaStyle:br>"
   end
   def hr(_node)
     "<hr>\n"
@@ -207,41 +195,24 @@ class Indesign
     if level == 1
       # h1 の中身はタイトル
       @title = node.value
-      # h1 だけは self url にリンク
-      return %(<h#{level}><a href=#{@url}>#{@title}</a></h#{level}>\n)
-    else
-      # h2 以降は id を振る
-      id = node.attr["id"]
-      return %(<h#{level} id="#{id}"><a href="##{id}">#{node.value}</a></h#{level}>\n)
     end
-  end
-
-  def pre(node)
-    lang = node.attr && node.attr["class"].sub("language-", "")
-    %(<pre#{lang ? %( class=#{lang}) : ''}><code translate="no">#{node.value}</code></pre>\n)
+    %(<ParaStyle:h#{level}>#{node.value}\n)
   end
 
   def p(node)
-    if node.close
-      <<~EOS
-      <p>
-        #{indent(node.value)}
-      </p>
-      EOS
-    else
-      "<p>#{node.value}\n"
-    end
+    "<ParaStyle:p>#{node.value}\n"
   end
 
+
+  # <li> だが、親要素がないため、親のレベルに応じて
+  # <ulN>, <olN> を出す
   def li(node)
+    level = node.parent.level
+    type  = node.parent.type
     if node.close
-      <<~EOS
-      <li>
-        #{indent(node.value)}
-      </li>
-      EOS
+      "<#{type}#{level}>#{node.value}"
     else
-      "<li>#{node.value}\n"
+      "<#{type}#{level}>#{node.value}\n"
     end
   end
 
@@ -253,10 +224,6 @@ class Indesign
 
 
   private
-
-  def style(href)
-    "<link rel=stylesheet property=stylesheet type=text/css href=#{href}>"
-  end
 
   def imgsize(node)
     width = ""
