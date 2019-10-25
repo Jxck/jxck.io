@@ -821,9 +821,7 @@
       <p>SPA のように実装されている場合は、その状態を含めて初期化しないと不整合が発生する場合もある。
       <p>こうした問題に対して策定されたのが、 Clear-Site-Data Header である。
       <ul>
-        <li>
-          <a href="https://w3c.github.io/webappsec-clear-site-data/#http-headerdef-clear-site-data">https://w3c.github.io/webappsec-clear-site-data/#http-headerdef-clear-site-data</a>
-        </li>
+        <li><a href="https://w3c.github.io/webappsec-clear-site-data/#http-headerdef-clear-site-data">https://w3c.github.io/webappsec-clear-site-data/#http-headerdef-clear-site-data</a>
       </ul>
       <p>ブラウザにあるデータ削除機能が、 API として出たというイメージだ。
       <p>ページを遷移しなくても、 <code translate="no">fetch()</code> などで受信したレスポンスヘッダに含まれれば、そのコンテキストで削除が実施される。
@@ -836,21 +834,11 @@ Clear-Site-Data: &quot;cache&quot;, &quot;cookies&quot;, &quot;storage&quot;, &q
 Clear-Site-Data: &quot;*&quot;</code></pre>
       <p>Type は現時点では以下が定義されている。
       <ul>
-        <li>
-          <code translate="no">cookies</code>
-        </li>
-        <li>
-          <code translate="no">cache</code>
-        </li>
-        <li>
-          <code translate="no">storage</code>
-        </li>
-        <li>
-          <code translate="no">executionContexts</code>
-        </li>
-        <li>
-          <code translate="no">*</code>
-        </li>
+        <li><code translate="no">cookies</code>
+        <li><code translate="no">cache</code>
+        <li><code translate="no">storage</code>
+        <li><code translate="no">executionContexts</code>
+        <li><code translate="no">*</code>
       </ul>
       <p>各 Type で解説する。
       <section>
@@ -914,9 +902,7 @@ Clear-Site-Data: &quot;*&quot;</code></pre>
       <pre class=js><code translate="no">navigator.storage.clear(&quot;cache&quot;)</code></pre>
       <p>しかし、 <code translate="no">navigator.storage.clear(&quot;executionContexts&quot;)</code> を実行した場合、開いている全てのタブにおいて <code translate="no">location.reload()</code> 相当が実行されるという API の設計に疑問が出た。
       <ul>
-        <li>
-          <a href="https://github.com/w3c/webappsec-clear-site-data/issues/21">storage.clear(&ldquo;executionContexts&rdquo;) ends up doing a reload across tabs - Issue #21 - w3c/webappsec-clear-site-data</a>
-        </li>
+        <li><a href="https://github.com/w3c/webappsec-clear-site-data/issues/21">storage.clear(&ldquo;executionContexts&rdquo;) ends up doing a reload across tabs - Issue #21 - w3c/webappsec-clear-site-data</a>
       </ul>
       <p>結果、一旦これは Drop され、ニーズがあれば再度議論することとなった。
     </section>
@@ -924,23 +910,15 @@ Clear-Site-Data: &quot;*&quot;</code></pre>
       <h2 id="demo"><a href="#demo">DEMO</a></h2>
       <p>動作する DEMO は以下に用意した。
       <ul>
-        <li>
-          <a href="https://labs.jxck.io/clear-site-data/index.html">https://labs.jxck.io/clear-site-data/index.html</a>
-        </li>
+        <li><a href="https://labs.jxck.io/clear-site-data/index.html">https://labs.jxck.io/clear-site-data/index.html</a>
       </ul>
     </section>
     <section>
       <h2 id="link"><a href="#link">Link</a></h2>
       <ul>
-        <li>
-          <a href="https://github.com/mozilla/standards-positions/issues/90">https://github.com/mozilla/standards-positions/issues/90</a>
-        </li>
-        <li>
-          <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1268889">https://bugzilla.mozilla.org/show_bug.cgi?id=1268889</a>
-        </li>
-        <li>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Clear-Site-Data">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Clear-Site-Data</a>
-        </li>
+        <li><a href="https://github.com/mozilla/standards-positions/issues/90">https://github.com/mozilla/standards-positions/issues/90</a>
+        <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1268889">https://bugzilla.mozilla.org/show_bug.cgi?id=1268889</a>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Clear-Site-Data">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Clear-Site-Data</a>
       </ul>
     </section>
   </article>

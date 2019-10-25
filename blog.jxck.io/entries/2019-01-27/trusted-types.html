@@ -115,30 +115,18 @@
         <p>そこで処理前の文字列に対し、処理後の文字列を安全であるとして明示的に型付ける TrustedTypes という提案がされている。
         <p>まだ未解決の部分が多い提案だが、現時点での仕様と実装を元に、このアイデアについて解説する。
         <ul>
-          <li>
-            <a href="https://github.com/WICG/trusted-types">WICG/trusted-types</a>
-          </li>
-          <li>
-            <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/I9To21DXcLo/NrU9P0M4EAAJ">Intent to Experiment: Trusted Types</a>
-          </li>
+          <li><a href="https://github.com/WICG/trusted-types">WICG/trusted-types</a>
+          <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/I9To21DXcLo/NrU9P0M4EAAJ">Intent to Experiment: Trusted Types</a>
         </ul>
       </section>
       <section>
         <h2 id="sink"><a href="#sink">Sink</a></h2>
         <p>XSS などの原因となる DOM 操作として、 DOM に直接文字列を展開する処理がある。
         <ul>
-          <li>
-            <code translate="no">element.innderHTML</code>
-          </li>
-          <li>
-            <code translate="no">location.href</code>
-          </li>
-          <li>
-            <code translate="no">script.src</code>
-          </li>
-          <li>
-            <code translate="no">script.textContent</code>
-          </li>
+          <li><code translate="no">element.innderHTML</code>
+          <li><code translate="no">location.href</code>
+          <li><code translate="no">script.src</code>
+          <li><code translate="no">script.textContent</code>
         </ul>
         <p>こうした API は WebIDL でいう DOMString を許容しており、おおよそ任意の文字列を受け入れる。
         <p>そこで、開発者は意図しない文字列が代入されないように、エスケープなど事前処理を行う必要がある。
@@ -152,18 +140,10 @@
         <pre class=http><code translate="no">Content-Security-Policy: trusted-types</code></pre>
         <p>これにより、現時点では以下のような処理がエラーとなる。
         <ul>
-          <li>
-            <code translate="no">element.innderHTML</code>
-          </li>
-          <li>
-            <code translate="no">location.href</code>
-          </li>
-          <li>
-            <code translate="no">script.src</code>
-          </li>
-          <li>
-            <code translate="no">script.textContent</code>
-          </li>
+          <li><code translate="no">element.innderHTML</code>
+          <li><code translate="no">location.href</code>
+          <li><code translate="no">script.src</code>
+          <li><code translate="no">script.textContent</code>
         </ul>
         <pre class=js><code translate="no">const $ = document.querySelector.bind(document);
 
@@ -377,18 +357,10 @@ const escapedValue = escapePolicy.createHTML(&#039;&lt;b&gt;escape me&lt;/b&gt;&
       <section>
         <h2 id="links"><a href="#links">Links</a></h2>
         <ul>
-          <li>
-            <a href="https://github.com/WICG/trusted-types">WICG/trusted-types: Polyfill implementation of Trusted Types - a proposal to get rid of DOM XSS vulnerabilities in the web platform.</a>
-          </li>
-          <li>
-            <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/I9To21DXcLo/NrU9P0M4EAAJ">Intent to Experiment: Trusted Types</a>
-          </li>
-          <li>
-            <a href="https://github.com/mozilla/standards-positions/issues/20">Trusted Types issue #20 mozilla/standards-positions</a>
-          </li>
-          <li>
-            <a href="https://github.com/w3ctag/design-reviews/issues/198">Trusted Types issue #198 w3ctag/design-reviews</a>
-          </li>
+          <li><a href="https://github.com/WICG/trusted-types">WICG/trusted-types: Polyfill implementation of Trusted Types - a proposal to get rid of DOM XSS vulnerabilities in the web platform.</a>
+          <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/I9To21DXcLo/NrU9P0M4EAAJ">Intent to Experiment: Trusted Types</a>
+          <li><a href="https://github.com/mozilla/standards-positions/issues/20">Trusted Types issue #20 mozilla/standards-positions</a>
+          <li><a href="https://github.com/w3ctag/design-reviews/issues/198">Trusted Types issue #198 w3ctag/design-reviews</a>
         </ul>
       </section>
     </article>

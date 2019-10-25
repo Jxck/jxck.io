@@ -810,12 +810,8 @@
       <h2 id="id-属性とフラグメント"><a href="#id-属性とフラグメント">id 属性とフラグメント</a></h2>
       <p>従来の仕様では、 HTML 内にある ID 属性を URL フラグメントに付与することで、その要素まで自動でスクロールするという仕様になっていた。
       <ul>
-        <li>
-          <a href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#try-to-scroll-to-the-fragment">https://html.spec.whatwg.org/multipage/browsing-the-web.html#try-to-scroll-to-the-fragment</a>
-        </li>
-        <li>
-          <a href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#the-indicated-part-of-the-document">https://html.spec.whatwg.org/multipage/browsing-the-web.html#the-indicated-part-of-the-document</a>
-        </li>
+        <li><a href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#try-to-scroll-to-the-fragment">https://html.spec.whatwg.org/multipage/browsing-the-web.html#try-to-scroll-to-the-fragment</a>
+        <li><a href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#the-indicated-part-of-the-document">https://html.spec.whatwg.org/multipage/browsing-the-web.html#the-indicated-part-of-the-document</a>
       </ul>
       <p>しかし、実際には ID が振られていないサイトや、スクロールしたい場所に ID が無い場面は多い。
       <p>そうしたコンテンツでも、ブラウザの表示内検索を行ったときのようなスクロールを実現したいという要望が、主に検索エンジンなどからあったようだ。
@@ -824,12 +820,8 @@
       <h2 id="alternatives"><a href="#alternatives">Alternatives</a></h2>
       <p>ここに至るまではいくつかの提案があった。
       <ul>
-        <li>
-          <a href="https://www.w3.org/TR/annotation-model/#text-quote-selector">TextQuoteSelector</a>
-        </li>
-        <li>
-          <a href="https://github.com/bryanmcquade/scroll-to-css-selector">bryanmcquade/scroll-to-css-selector</a>
-        </li>
+        <li><a href="https://www.w3.org/TR/annotation-model/#text-quote-selector">TextQuoteSelector</a>
+        <li><a href="https://github.com/bryanmcquade/scroll-to-css-selector">bryanmcquade/scroll-to-css-selector</a>
         <li>etc
       </ul>
       <p>Chrome は最初 <code translate="no">#targetText</code> と CSS セレクタを用いた仕様で intents を出していた。
@@ -841,15 +833,9 @@
       <p>最初は <code translate="no">##</code> と二重にする方式がシンプルでわかりやすいとされたが、仕様上有効ではないため既存のパーサを壊す可能性が有り、また実際に壊れるかどうかを測定するのが難しいとして却下された。
       <p>これを踏まえ、 URL の仕様の範囲で 1, 2 文字では無く 3 文字の組み合わせで候補が出され、 Google の過去 5 年の URL 履歴でヒットしないものがリストアップされた。
       <ul>
-        <li>
-          <code translate="no">~&amp;~</code>
-        </li>
-        <li>
-          <code translate="no">:~:</code>
-        </li>
-        <li>
-          <code translate="no">~@~</code>
-        </li>
+        <li><code translate="no">~&amp;~</code>
+        <li><code translate="no">:~:</code>
+        <li><code translate="no">~@~</code>
       </ul>
       <p>Chrome 78 では 3 つとも実装されたようだが、今は <code translate="no">:~:</code> のみになったようだ。
     </section>

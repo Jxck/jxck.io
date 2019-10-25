@@ -806,21 +806,11 @@
       <p>ここでは、特に画像 <code translate="no">&lt;img&gt;</code> に注目し、 Lazyloading の議論の変遷を踏まえた上で現状を解説する。
       <p>画像最適化シリーズ第 5 回目のエントリである。
       <ol>
-        <li>
-          <a href="https://blog.jxck.io/entries/2016-03-24/optimize-image.html">画像最適化戦略 PNG/JPEG 編</a>
-        </li>
-        <li>
-          <a href="https://blog.jxck.io/entries/2016-03-25/picture.html">画像最適化戦略 Picture 編</a>
-        </li>
-        <li>
-          <a href="https://blog.jxck.io/entries/2016-03-26/webp.html">画像最適化戦略 WebP 編</a>
-        </li>
-        <li>
-          <a href="https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html">画像最適化戦略 SVG/Font 編</a>
-        </li>
-        <li>
-          <a href="https://blog.jxck.io/entries/2019-05-20/lazyloading.html">&gt; 画像最適化戦略 Lazy Loading 編</a>
-        </li>
+        <li><a href="https://blog.jxck.io/entries/2016-03-24/optimize-image.html">画像最適化戦略 PNG/JPEG 編</a>
+        <li><a href="https://blog.jxck.io/entries/2016-03-25/picture.html">画像最適化戦略 Picture 編</a>
+        <li><a href="https://blog.jxck.io/entries/2016-03-26/webp.html">画像最適化戦略 WebP 編</a>
+        <li><a href="https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html">画像最適化戦略 SVG/Font 編</a>
+        <li><a href="https://blog.jxck.io/entries/2019-05-20/lazyloading.html">&gt; 画像最適化戦略 Lazy Loading 編</a>
       </ol>
     </section>
     <section>
@@ -831,9 +821,7 @@
       <p>この機能を、 HTML の仕様に取り込み、 <code translate="no">&lt;img&gt;</code> や <code translate="no">&lt;iframe&gt;</code> タグに属性を記述するだけで、ブラウザが遅延読み込みを実現してくれるのが LazyLoading の提案である。
       <p>アイデア自体は古くからあったが、紆余曲折を経て最近実装が進みつつある。
       <ul>
-        <li>
-          <a href="https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/jxiJvQc-gVg">Intent to Ship: Lazily load below-the-fold images and iframes</a>
-        </li>
+        <li><a href="https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/jxiJvQc-gVg">Intent to Ship: Lazily load below-the-fold images and iframes</a>
       </ul>
     </section>
     <section>
@@ -841,15 +829,11 @@
       <p>もともと、 IE は <code translate="no">lazyload</code> 属性を早い段階で実装しており、値は Integer <code translate="no">0</code>/<code translate="no">1</code> を指定し <code translate="no">1</code> の場合は <em>他よりも優先度を下げる</em> という仕様だった。
       <pre class=html><code translate="no">&lt;img src=&quot;example.jpg&quot; lazyload=&quot;1&quot;&gt;</code></pre>
       <ul>
-        <li>
-          <a href="http://web.archive.org/web/20160313082908/https://msdn.microsoft.com/library/dn369270(v=vs.85).aspx">lazyload attribute | lazyload property (Internet Explorer)</a>
-        </li>
+        <li><a href="http://web.archive.org/web/20160313082908/https://msdn.microsoft.com/library/dn369270(v=vs.85).aspx">lazyload attribute | lazyload property (Internet Explorer)</a>
       </ul>
       <p>これを標準仕様に起こす作業が行われ、 Resource Priorities という形でまとめられた。
       <ul>
-        <li>
-          <a href="http://web.archive.org/web/20170808155035/https://w3c.github.io/web-performance/specs/ResourcePriorities/Overview.html">Resource Priorities</a>
-        </li>
+        <li><a href="http://web.archive.org/web/20170808155035/https://w3c.github.io/web-performance/specs/ResourcePriorities/Overview.html">Resource Priorities</a>
       </ul>
       <p>この時点では、 lazyload 以外に postpone も定義されており、以下のような使い分けだった。
       <dl>
@@ -869,9 +853,7 @@
       <p>Chrome がこの仕様の着手として Intent to Implement をアナウンスしたのは 2013 年だったため、かなり昔から話はあったということがわかるだろう。そしてこの時点でも、「まだ実装できるほど仕様が安定していない」というコメントが付いている。
       <p>まだ、 postpone 属性を消すかどうかという時期だったようだ。
       <ul>
-        <li>
-          <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/7ZBt9rQqjtM/3VdCW0c3bL0J">Intent to Implement: lazyload attribute</a>
-        </li>
+        <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/7ZBt9rQqjtM/3VdCW0c3bL0J">Intent to Implement: lazyload attribute</a>
       </ul>
       <p>このころ、気の早いライブラリは、 Boolean の <code translate="no">lazyload</code> 属性を実装していたため、この仕様を何かしらで見たことがある人も多いかと思うが、結論から言うと最新の仕様は変更されたため注意が必要だ。
     </section>
@@ -879,12 +861,8 @@
       <h2 id="loadinglazy"><a href="#loadinglazy">loading=lazy</a></h2>
       <p><a href="https://github.com/whatwg/html/pull/3752#issuecomment-472181420">色々あり</a> 、 lazyload 属性は <a href="https://github.com/whatwg/html/pull/3752#issuecomment-478200976">loading 属性</a> に変わり、今の最新の仕様は以下にある。
       <ul>
-        <li>
-          <a href="https://docs.google.com/document/d/1e8ZbVyUwgIkQMvJma3kKUDg8UUkLRRdANStqKuOIvHg/edit#">Blink LazyLoad Design Doc (public)</a>
-        </li>
-        <li>
-          <a href="https://github.com/scott-little/lazyload">scott-little/lazyload</a>
-        </li>
+        <li><a href="https://docs.google.com/document/d/1e8ZbVyUwgIkQMvJma3kKUDg8UUkLRRdANStqKuOIvHg/edit#">Blink LazyLoad Design Doc (public)</a>
+        <li><a href="https://github.com/scott-little/lazyload">scott-little/lazyload</a>
       </ul>
       <p>現時点では以下の値が定義されている。
       <dl>
@@ -918,9 +896,7 @@
       <p>デモとして、画像を 10 個並べたページを用意し  <code translate="no">loading=lazy</code> の有無による挙動を比較する。
       <p>デモは以下に用意した。
       <ul>
-        <li>
-          <a href="http://labs.jxck.io/lazyload/">http://labs.jxck.io/lazyload/</a>
-        </li>
+        <li><a href="http://labs.jxck.io/lazyload/">http://labs.jxck.io/lazyload/</a>
       </ul>
       <section>
         <h3 id="eagerload"><a href="#eagerload">eagerload</a></h3>
@@ -1005,15 +981,9 @@
       <h2 id="feature-policy"><a href="#feature-policy">Feature Policy</a></h2>
       <p>HTML に手を入れずに HTTP Header で挙動を指定できるように、 Feature Policy も提案されている。
       <ul>
-        <li>
-          <a href="https://github.com/w3c/webappsec-feature-policy/blob/master/policies/loading-image-default-eager.md">loading-image-default-eager</a>
-        </li>
-        <li>
-          <a href="https://github.com/w3c/webappsec-feature-policy/blob/master/policies/loading-frame-default-eager.md">loading-frame-default-eager</a>
-        </li>
-        <li>
-          <a href="https://github.com/w3c/webappsec-feature-policy/issues/193">Feature Policy: lazyload - Issue #193</a>
-        </li>
+        <li><a href="https://github.com/w3c/webappsec-feature-policy/blob/master/policies/loading-image-default-eager.md">loading-image-default-eager</a>
+        <li><a href="https://github.com/w3c/webappsec-feature-policy/blob/master/policies/loading-frame-default-eager.md">loading-frame-default-eager</a>
+        <li><a href="https://github.com/w3c/webappsec-feature-policy/issues/193">Feature Policy: lazyload - Issue #193</a>
       </ul>
       <p>一括で挙動を変えると、 Analytics で動的に埋め込む <code translate="no">&lt;img&gt;</code> でリクエストが二回発生し、測定がずれるといった問題も想像される。
       <p>Blink では、こうしたケースを <a href="https://docs.google.com/document/d/1jF1eSOhqTEt0L1WBCccGwH9chxLd9d1Ez0zo11obj14/edit#heading=h.cx8y0v73akfi">ヒューリスティックに解析し回避する</a> といったことも書かれているが、結果は実装に依存するだろう。
@@ -1022,9 +992,7 @@
       <h2 id="priority-hints"><a href="#priority-hints">Priority Hints</a></h2>
       <p><code translate="no">loading=lazy</code> が取得の遅延であることに対して、優先度を下げるための Priority Hints が別途提案されている。
       <ul>
-        <li>
-          <a href="https://wicg.github.io/priority-hints/">Priority Hints</a>
-        </li>
+        <li><a href="https://wicg.github.io/priority-hints/">Priority Hints</a>
       </ul>
       <p>これは、 HTTP2 の Stream Priority の分配などに対してヒントを与える提案である。
       <p>実際に遅延を行うと onload の発火タイミングが変わるといった挙動の大きな変化が発生するが、 Priority Hints であれば、実装にもよるが、そうした変化が少ないことが期待される。
@@ -1048,9 +1016,7 @@
       <p>また、 <code translate="no">&lt;article&gt;</code> 外で必ず Above the Fold に入る <code translate="no">&lt;header&gt;</code> に並んでいる画像については <code translate="no">lazyload</code> を付与していなかったが、今回の更新を受け全てに <code translate="no">loading=eager</code> を明示的に付与した。
       <p>HTML を AMP 用に変換して運用しているが、ここは lazyload 時代から不要なものとされているため、無視してくれれば良いものをわざわざ削っている。
       <ul>
-        <li>
-          <a href="ampproject/amphtml https://github.com/ampproject/amphtml/issues/19443">lazyload for <code translate="no">&lt;amp-iframe&gt;</code></a>
-        </li>
+        <li><a href="ampproject/amphtml https://github.com/ampproject/amphtml/issues/19443">lazyload for <code translate="no">&lt;amp-iframe&gt;</code></a>
       </ul>
       <p>この状態で、今後も挙動を検証していくこととする。
     </section>

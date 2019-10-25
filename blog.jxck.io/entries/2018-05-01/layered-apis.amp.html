@@ -818,18 +818,10 @@
       <p>Low Level API の整備は、関連する他の API との整合性にも良い影響を与え、結果として一定の成果を出したと言って良いだろう。
       <p>例として、ブラウザが内部で行っていることを表に出すという点で、以下のような API が整備された。
       <ul>
-        <li>
-          <a href="https://encoding.spec.whatwg.org/">Encoding Standard</a>
-        </li>
-        <li>
-          <a href="https://url.spec.whatwg.org/">URL Standard</a>
-        </li>
-        <li>
-          <a href="https://streams.spec.whatwg.org/">Streams Standard</a>
-        </li>
-        <li>
-          <a href="https://fetch.spec.whatwg.org/">Fetch Standard</a>
-        </li>
+        <li><a href="https://encoding.spec.whatwg.org/">Encoding Standard</a>
+        <li><a href="https://url.spec.whatwg.org/">URL Standard</a>
+        <li><a href="https://streams.spec.whatwg.org/">Streams Standard</a>
+        <li><a href="https://fetch.spec.whatwg.org/">Fetch Standard</a>
         <li>etc
       </ul>
       <p>また、 CustomElement など、ユーザが任意の拡張を行うことができる仕様も、こうした動きを加速させている。
@@ -848,15 +840,9 @@
       <p>そこで、 Polyfill によるユーザランドの実装を積極的に許容し、標準化プロセスからブラウザへの実装と相互にフィードバックさせ、緩やかにネイティブ実装へと移行していくパスを用意する。
       <p>これを目指すのが Layered API の基本的なモチベーションと言って良いだろう。
       <ul>
-        <li>
-          <a href="https://docs.google.com/document/d/1VbU4z7xtU_kzuLAcj38KKL5qoOr2UYNUJW8vZB2AcWc">Layered Web APIs Design Doc</a>
-        </li>
-        <li>
-          <a href="https://github.com/drufball/layered-apis">drufball/layered-apis: A new standards effort for collaborating on high-level features</a>
-        </li>
-        <li>
-          <a href="https://docs.google.com/presentation/d/1_5EVAiuragdEqop8V9b1hJkOW38y4EsXYgNBKdpSHmA">Layered APIs: an overview and update</a>
-        </li>
+        <li><a href="https://docs.google.com/document/d/1VbU4z7xtU_kzuLAcj38KKL5qoOr2UYNUJW8vZB2AcWc">Layered Web APIs Design Doc</a>
+        <li><a href="https://github.com/drufball/layered-apis">drufball/layered-apis: A new standards effort for collaborating on high-level features</a>
+        <li><a href="https://docs.google.com/presentation/d/1_5EVAiuragdEqop8V9b1hJkOW38y4EsXYgNBKdpSHmA">Layered APIs: an overview and update</a>
       </ul>
     </section>
     <section>
@@ -895,12 +881,8 @@ window.AsyncLocalStorage // native or polyfill</code></pre>
 &lt;infinite-list&gt;&lt;/infinite-list&gt;</code></pre>
       <p>いずれも、まだ提案段階の仕様である。
       <ul>
-        <li>
-          <a href="https://docs.google.com/document/d/1jRQjQP8DmV7RL75u_67ps3SB1sjfa1bFZmbCMfJCvrM">Layered web APIs fallback syntax</a>
-        </li>
-        <li>
-          <a href="https://github.com/drufball/layered-apis/blob/master/spec.md">Layered APIs Proto-spec</a>
-        </li>
+        <li><a href="https://docs.google.com/document/d/1jRQjQP8DmV7RL75u_67ps3SB1sjfa1bFZmbCMfJCvrM">Layered web APIs fallback syntax</a>
+        <li><a href="https://github.com/drufball/layered-apis/blob/master/spec.md">Layered APIs Proto-spec</a>
       </ul>
     </section>
     <section>
@@ -930,12 +912,8 @@ window.AsyncLocalStorage // native or polyfill</code></pre>
       <p>まだまだ始まったばかりの提案ではあるが、 Polyfill の効果的な使い方に注力するこの仕様は、現状の Polyfill の問題をそのまま引きずる。
       <p>Polyfill のあり方については、過去に TAG によってプラクティスがまとめられており、本ブログでも解説している。
       <ul>
-        <li>
-          <a href="https://w3ctag.github.io/polyfills/">Polyfills and the evolution of the Web</a>
-        </li>
-        <li>
-          <a href="https://blog.jxck.io/entries/2017-02-17/polyfill-implementation-guideline.html">Polyfill のあり方と Web の進化と協調するためのガイドライン | blog.jxck.io</a>
-        </li>
+        <li><a href="https://w3ctag.github.io/polyfills/">Polyfills and the evolution of the Web</a>
+        <li><a href="https://blog.jxck.io/entries/2017-02-17/polyfill-implementation-guideline.html">Polyfill のあり方と Web の進化と協調するためのガイドライン | blog.jxck.io</a>
       </ul>
       <p>例えば、以下の場合 polyfill とブラウザの実装で API が異なる場合は、ブラウザアップデートでアプリが壊れることになる。
       <pre class=js><code translate="no">import { storage } from &quot;std:async-local-storage|https://cdn.example.com/async-local-storage.js&quot;;</code></pre>
@@ -945,21 +923,15 @@ window.AsyncLocalStorage // native or polyfill</code></pre>
       <p>一方、そうした Polyfill の存在が、標準側で API を変更する際に足を引っ張ることは目に見えているわけだが、この問題へのアドレスは一切ない。
       <p>なにより、 Layered API は Polyfill が先に作られることをこそ是としているため、こうした問題に対する何らかの事前策が無くて良いのかとも思う。
       <ul>
-        <li>
-          <a href="https://github.com/drufball/layered-apis/issues/12">Risks of premature polyfilling #12</a>
-        </li>
+        <li><a href="https://github.com/drufball/layered-apis/issues/12">Risks of premature polyfilling #12</a>
       </ul>
       <p>Layered API はすでに TAG の design review がリクエストされているため、もしかしたら同じ話がでるかもしれない。
       <ul>
-        <li>
-          <a href="https://github.com/w3ctag/design-reviews/issues/276">Layered APIs Issue #276 w3ctag/design-reviews</a>
-        </li>
+        <li><a href="https://github.com/w3ctag/design-reviews/issues/276">Layered APIs Issue #276 w3ctag/design-reviews</a>
       </ul>
       <p>一方、 Chrome では、すでに Layered API の import 周りの実装について Intents が出されている。
       <ul>
-        <li>
-          <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MFbJuzA5tH4/t6Q-LZHpAgAJ">Intent to implement: Layered API infrastructure</a>
-        </li>
+        <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MFbJuzA5tH4/t6Q-LZHpAgAJ">Intent to implement: Layered API infrastructure</a>
       </ul>
       <p>この辺をふまえ、標準化の作業がどのように進んでいくのか、そして <a href="https://discourse.wicg.io/t/asynclocalstorage/1554/13">過去に提案</a> しつつも誰も相手にしてくれなかった <a href="https://domenic.github.io/async-local-storage/">AsyncLocalStorage</a> が今後どうなるか、注視していきたい。
     </section>

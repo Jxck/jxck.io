@@ -884,22 +884,16 @@
         </ul>
         <p>この挙動は、 AMP の仕組みを疑問視するユーザが指摘するポイントの 1 つだった。
         <ul>
-          <li>
-            <a href="http://ampletter.org/?lang=ja">AMP letter</a>
-          </li>
+          <li><a href="http://ampletter.org/?lang=ja">AMP letter</a>
         </ul>
         <p>ここで AMP が Signed HTTP Exchange に対応すると、 Google 検索の結果 AMP キャッシュからコンテンツを取得しても、元の URL を URL バーに表示できる。
         <p>AMP チームはすでに WebPackaging への対応をかなり早い段階でアナウンスしている。
         <ul>
-          <li>
-            <a href="https://amphtml.wordpress.com/2018/11/13/developer-preview-of-better-amp-urls-in-google-search/">Developer Preview of better AMP URLs in Google Search - Accelerated Mobile Pages Project</a>
-          </li>
+          <li><a href="https://amphtml.wordpress.com/2018/11/13/developer-preview-of-better-amp-urls-in-google-search/">Developer Preview of better AMP URLs in Google Search - Accelerated Mobile Pages Project</a>
         </ul>
         <p>また、 Cloudflare は AMP Cache に対して sxg を提供する部分のサポートをアナウンスしている。
         <ul>
-          <li>
-            <a href="https://blog.cloudflare.com/real-urls-for-amp-cached-content-using-cloudflare-workers/">Real URLs for AMP Cached Content Using Cloudflare Workers</a>
-          </li>
+          <li><a href="https://blog.cloudflare.com/real-urls-for-amp-cached-content-using-cloudflare-workers/">Real URLs for AMP Cached Content Using Cloudflare Workers</a>
         </ul>
       </section>
       <section>
@@ -937,9 +931,7 @@
         integrity=sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=&gt;&lt;/script&gt;</code></pre>
         <p>WebAppSec はこの SRI に、単なるハッシュではなく、署名を取り入れる方法について議論している。
         <ul>
-          <li>
-            <a href="https://github.com/mikewest/signature-based-sri">mikewest/signature-based-sri: Signature-based Resource Loading Restrictions</a>
-          </li>
+          <li><a href="https://github.com/mikewest/signature-based-sri">mikewest/signature-based-sri: Signature-based Resource Loading Restrictions</a>
         </ul>
         <p>これは、まさしく Signing がやっていることと類似している。
         <p>同様に、 TLS のような経路の暗号化だけでは足らず、コンテンツの完全性について保証が欲しい仕様で応用が可能になるだろう。
@@ -1180,18 +1172,14 @@ Content-Encoding: mi-sha256-03
         <h3 id="cansignhttpexchanges"><a href="#cansignhttpexchanges">CanSignHttpExchanges</a></h3>
         <p>Mozilla は少し前に Standard Position の中で、 Signed HTTP Exchange を considered harmful と表明した。
         <ul>
-          <li>
-            <a href="https://mozilla.github.io/standards-positions/">https://mozilla.github.io/standards-positions/</a>
-          </li>
+          <li><a href="https://mozilla.github.io/standards-positions/">https://mozilla.github.io/standards-positions/</a>
         </ul>
         <p>簡単に言えば、証明書が漏洩した場合、それを取得した攻撃者は自由に Origin を語れるということに対する懸念によるものだが、ユースケース自体は認めており、仕様のセキュリティモデルが改善すれば、この表明は見直されるだろうと考えられる。
         <p>具体的には、サーバが利用する HTTPS 用の証明書をそのまま sxg の署名に使うといった、運用の変更の隙間に、漏洩の懸念が生まれるため、基本的には HTTPS とは別の証明書を用意させる方が安全だろうという議論になっている。
         <p>結果、 sxg には「既存の証明書を利用させない」ために、新しい拡張を定義し、その拡張が入ったものでなければ利用できないように仕様を変更した。ここで X.509 の拡張として導入されたのが CanSignHttpExchanges である。
         <p>現時点で、この拡張に対応した証明書を発行する CA は、現時点では DigiCert のみだ。
         <ul>
-          <li>
-            <a href="https://www.digicert.com/account/ietf/http-signed-exchange.php">Adding CanSignHttpExchanges Extension :: DigiCert</a>
-          </li>
+          <li><a href="https://www.digicert.com/account/ietf/http-signed-exchange.php">Adding CanSignHttpExchanges Extension :: DigiCert</a>
         </ul>
         <p>DigiCert の証明書はもちろん有料であるため、無料で試すには自己証明書しかない。
         <p>Let&rsquo;s Encrypt や他の商用 CA がどの程度この拡張に対応するのかは未定だが、個人的には Let&rsquo;s Encrypt に期待したい。
@@ -1239,85 +1227,59 @@ Content-Encoding: mi-sha256-03
       <ul>
         <li>
           draft-yasskin-http-origin-signed-responses-04 - Signed HTTP Exchanges<ul>
-            <li>
-              <a href="https://tools.ietf.org/html/draft-yasskin-http-origin-signed-responses-04">https://tools.ietf.org/html/draft-yasskin-http-origin-signed-responses-04</a>
-            </li>
+            <li><a href="https://tools.ietf.org/html/draft-yasskin-http-origin-signed-responses-04">https://tools.ietf.org/html/draft-yasskin-http-origin-signed-responses-04</a>
           </ul>
         </li>
         <li>
           draft-yasskin-wpack-bundled-exchanges-00 - Bundled HTTP Exchanges<ul>
-            <li>
-              <a href="https://tools.ietf.org/html/draft-yasskin-wpack-bundled-exchanges-00">https://tools.ietf.org/html/draft-yasskin-wpack-bundled-exchanges-00</a>
-            </li>
+            <li><a href="https://tools.ietf.org/html/draft-yasskin-wpack-bundled-exchanges-00">https://tools.ietf.org/html/draft-yasskin-wpack-bundled-exchanges-00</a>
           </ul>
         </li>
         <li>
           Loading Signed Exchanges<ul>
-            <li>
-              <a href="https://wicg.github.io/webpackage/loading.html">https://wicg.github.io/webpackage/loading.html</a>
-            </li>
+            <li><a href="https://wicg.github.io/webpackage/loading.html">https://wicg.github.io/webpackage/loading.html</a>
           </ul>
         </li>
         <li>
           Signed HTTP Exchanges | Web | Google Developers<ul>
-            <li>
-              <a href="https://developers.google.com/web/updates/2018/11/signed-exchanges">https://developers.google.com/web/updates/2018/11/signed-exchanges</a>
-            </li>
+            <li><a href="https://developers.google.com/web/updates/2018/11/signed-exchanges">https://developers.google.com/web/updates/2018/11/signed-exchanges</a>
           </ul>
         </li>
         <li>
           Signed Exchanges · Issue #235 · w3ctag/design-reviews<ul>
-            <li>
-              <a href="https://github.com/w3ctag/design-reviews/issues/235">https://github.com/w3ctag/design-reviews/issues/235</a>
-            </li>
+            <li><a href="https://github.com/w3ctag/design-reviews/issues/235">https://github.com/w3ctag/design-reviews/issues/235</a>
           </ul>
         </li>
         <li>
           draft-yasskin-httpbis-origin-signed-exchanges-impl-02 - Signed HTTP Exchanges Implementation Checkpoints<ul>
-            <li>
-              <a href="https://tools.ietf.org/html/draft-yasskin-httpbis-origin-signed-exchanges-impl-02">https://tools.ietf.org/html/draft-yasskin-httpbis-origin-signed-exchanges-impl-02</a>
-            </li>
-            <li>
-              <a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/att-0212/HTTP_Signed_Exchange_side_meeting_notes.txt">https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/att-0212/HTTP_Signed_Exchange_side_meeting_notes.txt</a>
-            </li>
-            <li>
-              <a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/att-0212/HTTP_Signed_Exchange_side_meeting_notes.txt">https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/att-0212/HTTP_Signed_Exchange_side_meeting_notes.txt</a>
-            </li>
+            <li><a href="https://tools.ietf.org/html/draft-yasskin-httpbis-origin-signed-exchanges-impl-02">https://tools.ietf.org/html/draft-yasskin-httpbis-origin-signed-exchanges-impl-02</a>
+            <li><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/att-0212/HTTP_Signed_Exchange_side_meeting_notes.txt">https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/att-0212/HTTP_Signed_Exchange_side_meeting_notes.txt</a>
+            <li><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/att-0212/HTTP_Signed_Exchange_side_meeting_notes.txt">https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/att-0212/HTTP_Signed_Exchange_side_meeting_notes.txt</a>
           </ul>
         </li>
         <li>
           Intent to Implement: Origin-Signed HTTP Exchanges (Part of Web Packaging)<ul>
-            <li>
-              <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/n7cZXSTwBTY/l7rXucIwBAAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/n7cZXSTwBTY/l7rXucIwBAAJ</a>
-            </li>
+            <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/n7cZXSTwBTY/l7rXucIwBAAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/n7cZXSTwBTY/l7rXucIwBAAJ</a>
           </ul>
         </li>
         <li>
           Intent to Experiment: Signed HTTP Exchanges<ul>
-            <li>
-              <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MKHe54W996c/1E51GLbvAQAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MKHe54W996c/1E51GLbvAQAJ</a>
-            </li>
+            <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MKHe54W996c/1E51GLbvAQAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MKHe54W996c/1E51GLbvAQAJ</a>
           </ul>
         </li>
         <li>
           WICG/webpackage: Web packaging format<ul>
-            <li>
-              <a href="https://github.com/WICG/webpackage">https://github.com/WICG/webpackage</a>
-            </li>
+            <li><a href="https://github.com/WICG/webpackage">https://github.com/WICG/webpackage</a>
           </ul>
         </li>
         <li>
           sxg/ - Code Search<ul>
-            <li>
-              <a href="https://cs.chromium.org/chromium/src/content/test/data/sxg/">https://cs.chromium.org/chromium/src/content/test/data/sxg/</a>
-            </li>
+            <li><a href="https://cs.chromium.org/chromium/src/content/test/data/sxg/">https://cs.chromium.org/chromium/src/content/test/data/sxg/</a>
           </ul>
         </li>
         <li>
           Web OverPackaging<ul>
-            <li>
-              <a href="https://speakerdeck.com/jxck/web-over-packaging">https://speakerdeck.com/jxck/web-over-packaging</a>
-            </li>
+            <li><a href="https://speakerdeck.com/jxck/web-over-packaging">https://speakerdeck.com/jxck/web-over-packaging</a>
           </ul>
         </li>
       </ul>

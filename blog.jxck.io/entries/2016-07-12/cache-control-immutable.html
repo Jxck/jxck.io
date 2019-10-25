@@ -144,16 +144,12 @@
         <p>ブラウザの実装上の理由で不必要(とみなされやすい) Conditional GET が発生することもある。
         <p>特にブラウザ間の実装差異のため、 Chrome では他のブラウザよりも多くの Validation が行われ、多数の無駄な Conditional GET が発生していたことが Facebook により報告されていた。
         <ul>
-          <li>
-            <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=505048">Issue 505048 - chromium - Chrome makes more conditional re-validation requests than other browsers - Monorail</a>
-          </li>
+          <li><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=505048">Issue 505048 - chromium - Chrome makes more conditional re-validation requests than other browsers - Monorail</a>
         </ul>
         <p>これは、リロードが発生するタイミングについて、仕様上曖昧な部分があったという理由も大きいようである。
         <p>そこで、ブラウザがリロードを行った場合に挙動について調査が行われ、結果が以下にまとまっている。
         <ul>
-          <li>
-            <a href="https://docs.google.com/document/d/1vwx8WiUASKyC2I-j2smNhaJaQQhcWREh7PC3HiIAQCo/edit">Reload, reloaded</a>
-          </li>
+          <li><a href="https://docs.google.com/document/d/1vwx8WiUASKyC2I-j2smNhaJaQQhcWREh7PC3HiIAQCo/edit">Reload, reloaded</a>
         </ul>
         <p>無駄な Conditional GET 、つまり不必要な Validation の発生は、 304 レスポンスを返すだけのものであり、無駄な RTT であると言える。
         <p>したがって、キャッシュの設計がきちんとなされている場合は、ブラウザの実装に依存せずにリロード時にも Cache HIT させたいという要望から提案されたのが、 Immutable Extension である。
@@ -168,12 +164,8 @@
         <p>特に、画像、動画、フォントといったサイズが大きくも表示において重要なリソースについては、キャッシュの再利用がサーバの負荷という面でも、 UX の面でも有利に働く。
         <p>執筆時点では、 Firefox Nightly(version 50.0a1) が https 通信限定で、この拡張をサポートしている。
         <ul>
-          <li>
-            <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1267474">1267474 - Cache-Control: immutable</a>
-          </li>
-          <li>
-            <a href="https://bitsup.blogspot.jp/2016/05/cache-control-immutable.html">Bits Up!: Cache-Control: immutable</a>
-          </li>
+          <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1267474">1267474 - Cache-Control: immutable</a>
+          <li><a href="https://bitsup.blogspot.jp/2016/05/cache-control-immutable.html">Bits Up!: Cache-Control: immutable</a>
         </ul>
       </section>
       <section>
@@ -182,9 +174,7 @@
         <p>一度読み込んでからリロードを行うことで、キャッシュのヒットが確認できるだろう。
         <p>執筆時点では Firefox Nightly(version 50.0a1) のみ、かつ https のみで実装されている。
         <ul>
-          <li>
-            <a href="https://labs.jxck.io/cache-control-immutable/">Cache Control Immutable DEMO | labs.jxck.io</a>
-          </li>
+          <li><a href="https://labs.jxck.io/cache-control-immutable/">Cache Control Immutable DEMO | labs.jxck.io</a>
         </ul>
         <p>
           <picture>

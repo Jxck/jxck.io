@@ -128,24 +128,18 @@
         <h2 id="fetch"><a href="#fetch">Fetch</a></h2>
         <p>最新の Fetch の仕様は以下で確認できる。
         <ul>
-          <li>
-            <a href="https://fetch.spec.whatwg.org/">Fetch Spec</a>
-          </li>
+          <li><a href="https://fetch.spec.whatwg.org/">Fetch Spec</a>
         </ul>
         <p>仕様が出たばかりの頃の解説は以前のブログに書いた、本エントリはここからの差分を記す。
         <ul>
-          <li>
-            <a href="https://jxck.hatenablog.com/entry/whatwg-fetch">Fetch API 解説、または Web において &ldquo;Fetch する&rdquo; とは何か?</a>
-          </li>
+          <li><a href="https://jxck.hatenablog.com/entry/whatwg-fetch">Fetch API 解説、または Web において &ldquo;Fetch する&rdquo; とは何か?</a>
         </ul>
       </section>
       <section>
         <h2 id="promise-api"><a href="#promise-api">Promise API</a></h2>
         <p>まず、 <code translate="no">fetch()</code> は当初から Promise ベースの API となっている。
         <ul>
-          <li>
-            <a href="https://tc39.github.io/ecma262/#sec-promise-constructor">Promise</a>
-          </li>
+          <li><a href="https://tc39.github.io/ecma262/#sec-promise-constructor">Promise</a>
         </ul>
         <p>例えば、なんらかの Text を取得する場合、基本は以下のようになる。
         <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
@@ -155,9 +149,7 @@
   console.log(text);
 });</code></pre>
         <ul>
-          <li>
-            <a href="https://labs.jxck.io/fetch/basic.html">Fetch Basic DEMO</a>
-          </li>
+          <li><a href="https://labs.jxck.io/fetch/basic.html">Fetch Basic DEMO</a>
         </ul>
         <p><code translate="no">res.text()</code> が body を resolve する Promsie を返していることが分かる。
         <p>この API では、以下の二つができない。
@@ -176,9 +168,7 @@
         <h2 id="stream-api"><a href="#stream-api">Stream API</a></h2>
         <p>現在は <code translate="no">fetch()</code> が返す Response が、 WHATWG の Stream を返すように変更されている。
         <ul>
-          <li>
-            <a href="https://streams.spec.whatwg.org/">Streams Spec</a>
-          </li>
+          <li><a href="https://streams.spec.whatwg.org/">Streams Spec</a>
         </ul>
         <p>Stream は、 I/O 処理を chunk ごとに返し、非同期処理の <em>途中</em> に処理を挟むための仕様である。
         <p>先の例を Stream で取得する場合、以下のように書くことができる。
@@ -242,21 +232,15 @@
   });
 });</code></pre>
         <ul>
-          <li>
-            <a href="https://labs.jxck.io/fetch/stream-progress.html">Fetch Stream Progress DEMO</a>
-          </li>
+          <li><a href="https://labs.jxck.io/fetch/stream-progress.html">Fetch Stream Progress DEMO</a>
         </ul>
       </section>
       <section>
         <h2 id="fetch-の-cancel"><a href="#fetch-の-cancel">Fetch の cancel</a></h2>
         <p>Stream 、もしくはそこから取得した Reader はキャンセルすることができる。
         <ul>
-          <li>
-            <code translate="no">res.body.cancel()</code>
-          </li>
-          <li>
-            <code translate="no">reader.cancel()</code>
-          </li>
+          <li><code translate="no">res.body.cancel()</code>
+          <li><code translate="no">reader.cancel()</code>
         </ul>
         <p>これを用いることで、サイズの大きなファイルのダウンロードを途中で止めるといった実装が可能となる。
         <pre class=js><code translate="no">fetch(url).then((res) =&gt; {
@@ -282,9 +266,7 @@
   });
 });</code></pre>
         <ul>
-          <li>
-            <a href="https://labs.jxck.io/fetch/stream-cancel.html">Fetch Stream Cancel DEMO</a>
-          </li>
+          <li><a href="https://labs.jxck.io/fetch/stream-cancel.html">Fetch Stream Cancel DEMO</a>
         </ul>
       </section>
       <section>
@@ -294,9 +276,7 @@
         <p>もし Promise 自体にキャンセルの概念が入れば、 Stream の取得は不要となる。
         <p>fetch を含めて Promise を返す API は増加しつつあるため、 Cancelable Promise の議論は現在も続いている。
         <ul>
-          <li>
-            <a href="https://docs.google.com/presentation/d/1V4vmC54gJkwAss1nfEt9ywc-QOVOfleRxD5qtpMpc8U/preview?slide=id.gc6f9e470d_0_0">cancelable promises slide</a>
-          </li>
+          <li><a href="https://docs.google.com/presentation/d/1V4vmC54gJkwAss1nfEt9ywc-QOVOfleRxD5qtpMpc8U/preview?slide=id.gc6f9e470d_0_0">cancelable promises slide</a>
           <li>
             <a href="https://domenic.github.io/cancelable-promise/">cancelable promises draft</a> (現在は取り下げられている)
           </li>
@@ -307,9 +287,7 @@
         <h2 id="結論"><a href="#結論">結論</a></h2>
         <p>Stream での progress と cancel は可能になったが、まだ <em>ブラウザが実装しているか</em> という問題もある。
         <ul>
-          <li>
-            <a href="https://caniuse.com/#feat=fetch">Fetch | canuise</a>
-          </li>
+          <li><a href="https://caniuse.com/#feat=fetch">Fetch | canuise</a>
         </ul>
         <p>一方 XHR が無くなることはないため、今後も利用可能である。
         <p>以上のような仕様と現状を踏まえた上で、何を採用するか検討するのが良いだろう。
@@ -317,12 +295,8 @@
       <section>
         <h2 id="special-thanks"><a href="#special-thanks">Special Thanks</a></h2>
         <ul>
-          <li>
-            <a href="https://twitter.com/hirano_y_aa">@hirano_y_aa</a>
-          </li>
-          <li>
-            <a href="https://twitter.com/ykzts">@ykzts</a>
-          </li>
+          <li><a href="https://twitter.com/hirano_y_aa">@hirano_y_aa</a>
+          <li><a href="https://twitter.com/ykzts">@ykzts</a>
         </ul>
       </section>
     </article>

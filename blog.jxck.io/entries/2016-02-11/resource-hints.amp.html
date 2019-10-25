@@ -806,18 +806,10 @@
       <p><a href="https://w3c.github.io/resource-hints/">https://w3c.github.io/resource-hints/</a>
       <p>主に以下がある。
       <ul>
-        <li>
-          <a href="https://w3c.github.io/resource-hints/#dfn-dns-prefetch">dns-prefetch</a>
-        </li>
-        <li>
-          <a href="https://w3c.github.io/resource-hints/#dfn-preconnect">preconnect</a>
-        </li>
-        <li>
-          <a href="https://w3c.github.io/resource-hints/#dfn-prefetch">prefetch</a>
-        </li>
-        <li>
-          <a href="https://w3c.github.io/resource-hints/#dfn-prerender">prerender</a>
-        </li>
+        <li><a href="https://w3c.github.io/resource-hints/#dfn-dns-prefetch">dns-prefetch</a>
+        <li><a href="https://w3c.github.io/resource-hints/#dfn-preconnect">preconnect</a>
+        <li><a href="https://w3c.github.io/resource-hints/#dfn-prefetch">prefetch</a>
+        <li><a href="https://w3c.github.io/resource-hints/#dfn-prerender">prerender</a>
       </ul>
       <p>今回は本サイトでこれを適用した話。
     </section>
@@ -834,12 +826,8 @@
       <p>それぞれを DNS 解決 -&gt; TCP 接続 -&gt; リソースのフェッチ、と繰り返していくと、イニシャル表示は必然的に時間がかかる。
       <p>ところが、この遷移には以下の特徴がある。
       <ul>
-        <li>
-          <em>ログインページの滞在時間は長い</em>
-        </li>
-        <li>
-          <em>同一サービス内なので、その次のメインページで必要なリソースは予測可能性が高い</em>
-        </li>
+        <li><em>ログインページの滞在時間は長い</em>
+        <li><em>同一サービス内なので、その次のメインページで必要なリソースは予測可能性が高い</em>
       </ul>
       <p>であれば、ログインページでユーザが操作している間に必要なものを裏で取得しておければ、ログイン後の表示に必要なリソース収集は終わっているので表示が速くなる。
       <p>投機的な取得の代表シナリオはこんな感じになる。

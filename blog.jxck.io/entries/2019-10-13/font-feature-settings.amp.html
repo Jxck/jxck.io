@@ -809,20 +809,14 @@
       <h2 id="fonttools"><a href="#fonttools">fonttools</a></h2>
       <p>これまで、フォントのサブセットの生成には以下の 2 つのツールを使用していた。
       <ul>
-        <li>
-          <a href="https://opentype.jp/subsetfontmk.htm">サブセットフォントメーカー</a>
-        </li>
-        <li>
-          <a href="https://opentype.jp/woffconv.htm">WOFF コンバータ</a>
-        </li>
+        <li><a href="https://opentype.jp/subsetfontmk.htm">サブセットフォントメーカー</a>
+        <li><a href="https://opentype.jp/woffconv.htm">WOFF コンバータ</a>
       </ul>
       <p>しかし、 macOS を Catalina にあげたところ、これらが起動できなくなり、フォントが生成できなくなった。
       <p>これまで GUI で行なっていたが、せっかくなので自動化するために、代替コマンドを探し、プロセスを組んだ。
       <p>いくつかツールがあるが、今回は fonttools に同梱された pyftsubset を採用することとした。
       <ul>
-        <li>
-          <a href="https://github.com/fonttools/fonttools">fonttools/fonttools</a>
-        </li>
+        <li><a href="https://github.com/fonttools/fonttools">fonttools/fonttools</a>
       </ul>
     </section>
     <section>
@@ -831,12 +825,8 @@
       <p>しかし、更新への追従も面倒になったので、やはり記事で利用している文字を全てリストアップするスクリプトを書くことにした。
       <p>ところが、単純に全ての文字を取ると、一度しか使用しない文字が増えてしまう。理由は以下のようなエントリがあるからだ。
       <ul>
-        <li>
-          <a href="https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html">Noto Sans の Web Font 対応とサブセットによる最適化 | blog.jxck.io</a>
-        </li>
-        <li>
-          <a href="https://blog.jxck.io/entries/2017-03-02/unicode-in-javascript.html">JavaScript における文字コードと「文字数」の数え方 | blog.jxck.io</a>
-        </li>
+        <li><a href="https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html">Noto Sans の Web Font 対応とサブセットによる最適化 | blog.jxck.io</a>
+        <li><a href="https://blog.jxck.io/entries/2017-03-02/unicode-in-javascript.html">JavaScript における文字コードと「文字数」の数え方 | blog.jxck.io</a>
       </ul>
       <p>通常、記事中に結合文字、絵文字、サロゲートペアなどは基本的に使わないが、それ自体を解説するこの 2 つのエントリはそれが含まれてしまう。
       <p>フォントに含まれない文字は、スタイルが変わってしまい違和感があるため、これまでは見つけ次第含むように更新していた。
@@ -877,15 +867,11 @@
       <p>ところが、前者についてはリポジトリを見てもそれらしい情報にたどり着くことができなかった。
       <p>後者は、 <a href="https://drafts.csswg.org/css-fonts-3/#ref-OPENTYPE-FEATURES">font-feature-settings の CSS の仕様</a>から、 MS にある Registered Features という一覧がリンクされていた。
       <ul>
-        <li>
-          <a href="https://docs.microsoft.com/ja-jp/typography/opentype/spec/featurelist">Registered features - Typography | Microsoft Docs</a>
-        </li>
+        <li><a href="https://docs.microsoft.com/ja-jp/typography/opentype/spec/featurelist">Registered features - Typography | Microsoft Docs</a>
       </ul>
       <p>140 近い機能があるようだが、このうちのどれが使えるのかがわからなかったため、以下の DEMO ページを用意し Chrome で試した。
       <ul>
-        <li>
-          <a href="http://labs.jxck.io/webfont/font-feature-settings.html">Font Feature Settings DEMO</a>
-        </li>
+        <li><a href="http://labs.jxck.io/webfont/font-feature-settings.html">Font Feature Settings DEMO</a>
       </ul>
       <p>恐らく検証するための妥当な文字や、ブラウザの実装などといった変数もあるだろうが、その辺まで網羅するのはコストが高い。
       <p>そこで、適当なサンプル文章をベースに、プロパティを切り替えながら、明らかに見た目が変わる指定を把握するところまで行った。

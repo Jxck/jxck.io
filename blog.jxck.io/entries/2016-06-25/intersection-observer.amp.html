@@ -833,18 +833,10 @@
         <p>しかし iPhone には <code translate="no">scrollTop</code> がないので、 <code translate="no">window.pageYOffset</code> を使うが、これは <code translate="no">window.scrollY</code> のエイリアスになっている。
         <p>要するに 4 つある。
         <ul>
-          <li>
-            <code translate="no">document.documentElement.scrollTop</code>
-          </li>
-          <li>
-            <code translate="no">document.body.scrollTop</code>
-          </li>
-          <li>
-            <code translate="no">window.pageYOffset</code>
-          </li>
-          <li>
-            <code translate="no">window.scrollY</code>
-          </li>
+          <li><code translate="no">document.documentElement.scrollTop</code>
+          <li><code translate="no">document.body.scrollTop</code>
+          <li><code translate="no">window.pageYOffset</code>
+          <li><code translate="no">window.scrollY</code>
         </ul>
         <p>よくある話だ。
       </section>
@@ -888,18 +880,14 @@
         <p>例えば、 underscore.js の <a href="http://underscorejs.org/#throttle">throttle()</a> 相当のものや、 Reactive Extension 系のライブラリを使うことで実現できる。
         <p>また、計算処理のみでコールバックを抜けるのであれば、 <code translate="no">.preventDefault()</code> を呼ばないため、別エントリで解説した Passive Event Listener を利用できる。
         <ul>
-          <li>
-            <a href="https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html">Passive Event Listeners によるスクロールの改善</a>
-          </li>
+          <li><a href="https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html">Passive Event Listeners によるスクロールの改善</a>
         </ul>
       </section>
       <section>
         <h3 id="scroll--position-api-demo"><a href="#scroll--position-api-demo">Scroll &amp; Position API DEMO</a></h3>
         <p>ここまでの API の値の変化を確認するデモを以下に用意した。
         <ul>
-          <li>
-            <a href="https://labs.jxck.io/intersection-observer/size.html">Scroll &amp; Position API DEMO</a>
-          </li>
+          <li><a href="https://labs.jxck.io/intersection-observer/size.html">Scroll &amp; Position API DEMO</a>
         </ul>
       </section>
     </section>
@@ -1019,16 +1007,12 @@ observer.observe(target);</code></pre>
         <p>Intersection Observer を用いた、基本的なデモを用意した。
         <p>threshold を 10% にし、 intersectionRatio を表示するように実装している。
         <ul>
-          <li>
-            <a href="https://labs.jxck.io/intersection-observer/intersection.html">Intersection Observer DEMO</a>
-          </li>
+          <li><a href="https://labs.jxck.io/intersection-observer/intersection.html">Intersection Observer DEMO</a>
         </ul>
         <p>また以下に Intersecton Observer と、それ以前の API で、要素出現の検出を比較する DEMO を用意した。
         <p>こちらは、 <code translate="no">overflow: scroll</code> な div を親とする出現検出も含めてある。
         <ul>
-          <li>
-            <a href="https://labs.jxck.io/intersection-observer/visibility-change.html">Visibility Change DEMO</a>
-          </li>
+          <li><a href="https://labs.jxck.io/intersection-observer/visibility-change.html">Visibility Change DEMO</a>
         </ul>
       </section>
     </section>
@@ -1042,15 +1026,9 @@ observer.observe(target);</code></pre>
     <section>
       <h2 id="links"><a href="#links">Links</a></h2>
       <ul>
-        <li>
-          <a href="https://wicg.github.io/IntersectionObserver/">Intersection Observer Spec</a>
-        </li>
-        <li>
-          <a href="https://github.com/WICG/IntersectionObserver/blob/gh-pages/explainer.md">Intersection Observers Explained</a>
-        </li>
-        <li>
-          <a href="https://gist.github.com/paulirish/5d52fb081b3570c81e3a">What forces layout/reflow. The comprehensive list.</a>
-        </li>
+        <li><a href="https://wicg.github.io/IntersectionObserver/">Intersection Observer Spec</a>
+        <li><a href="https://github.com/WICG/IntersectionObserver/blob/gh-pages/explainer.md">Intersection Observers Explained</a>
+        <li><a href="https://gist.github.com/paulirish/5d52fb081b3570c81e3a">What forces layout/reflow. The comprehensive list.</a>
       </ul>
     </section>
   </article>
