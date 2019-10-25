@@ -16,6 +16,8 @@ class AST
   end
 
   def labeling(children)
+    # inline プロパティを生やす
+    # TODO: inline? にする
     return if children.nil?
     children.map{|child|
       child[:inline] = @inlines.include?(child.type)
@@ -26,9 +28,7 @@ class AST
 
   def tabling(table)
     # thead > tr > td を th にしたい
-
     alignment = table.options.alignment
-
     table.children = table.children.map {|node|
       node.children.map {|tr|
         tr.children.map.with_index {|td, i|
@@ -38,16 +38,13 @@ class AST
       }
       next node
     }
-
     table
   end
 
   def dling(dl)
     # <dd><p>hoge</dd> の <p> を消したい
-
     dl.children = dl.children.map {|c|
       next c if c.type == :dt
-
       c.children = c.children.first.children
       next c
     }
@@ -166,4 +163,3 @@ class AST
     sections
   end
 end
-

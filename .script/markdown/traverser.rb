@@ -18,6 +18,7 @@ class Traverser
 
   def enter(node)
     # 降りて行きながら、親子関係によって前処理を行う
+    # 親から見ないとわからない処理のみ行う
     # puts "[##{__LINE__}] enter: #{node.type}"
 
     if node.type == :html_element
@@ -74,7 +75,6 @@ class Traverser
         node.close = false
       end
 
-
       # li の子に ul/ol がネストしていたら
       # li の親の ul/ol のレベル + 1 する
       node.children.map {|child|
@@ -85,11 +85,8 @@ class Traverser
     end
 
     # <p><img> は閉じる
-    if node.type == :p and node.children
-      first = node.children.first
-      if first.type == :img
-        node.close = true
-      end
+    if node.type == :p and node.children&.first&.type == :img
+      node.close = true
     end
   end
 
@@ -109,10 +106,11 @@ class Traverser
       # コードを展開したあとに全体のインデント操作をすると
       # コードのインデントが狂ってしまう
       # そこでコードを hash に置き換えて退避しておき
-      # 全部組み上がったら後で差し込むことでインデントを回避できる
+      # 全部組み上がったら後で戻すことで
+      # インデントを回避できるようにする
       hash = code.chomp.hash.to_s
       node.value = "// #{hash}" # value には hash を入れておく
-      node.code  = code         # 本物はこちらにも入れておく
+      node.code  = code         # そのまま埋め込みたい場合は code に入ってる
       @codes[hash] = code.chomp # 全部組み上がったらここから取り出して replace
     end
 

@@ -12,7 +12,7 @@ class IdtagBuilder
   def build(path)
     puts "build #{path}"
     page = Page.new(path)
-    # build_html(page)
+    build_html(page)
     build_idtag(page)
   end
 
