@@ -4,8 +4,25 @@ class Traverser
   attr_reader :codes
 
   def initialize(markup)
+    # ここに codeblock を退避しておく
     @codes  = {}
     @markup = markup
+  end
+
+  def start(ast)
+    result = traverse(ast)
+
+    # indent を無視するため
+    # traverse が終わった後に
+    # pre に code を戻す
+    @codes.each {|key, value|
+      # markup のもつロジックでコードを処理
+      code = @markup.code_format(value)
+      # hash に差し替えられているところを置き換える
+      result.gsub!("// #{key}") { code }
+    }
+
+    result
   end
 
   def traverse(ast)

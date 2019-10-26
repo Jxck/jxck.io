@@ -63,17 +63,7 @@ class Article
 
     # traverse
     traverser = Traverser.new(markup)
-    article   = traverser.traverse(ast.ast)
-
-    # indent を無視するため
-    # ここで pre に code を戻す
-    traverser.codes.each {|key, value|
-      # markup のもつロジックでコードを処理
-      code = markup.code_format(value)
-      # hash に差し替えられているところを置き換える
-      article.gsub!("// #{key}") { code }
-    }
-
+    article   = traverser.start(ast.ast)
     @article = article
   end
 
