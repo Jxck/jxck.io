@@ -13,6 +13,13 @@ class Entry < Article
     @text.sub(" [" + tags.join("][") + "]", "")
   end
 
+  def joined_tag
+    joined = tags.map{|tag|
+      %(<a href="/tags/#{tag.gsub(' ', '%20')}.html">#{tag}</a>)
+    }.join("<i>,</i>")
+    "[#{joined}]"
+  end
+
   def created_at
     dir.split("/")[3]
   end

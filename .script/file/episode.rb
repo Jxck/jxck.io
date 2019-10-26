@@ -14,6 +14,13 @@ class Episode < Article
     @text.sub(" [" + tags.join("][") + "]", "")
   end
 
+  def joined_tag
+    joined = tags.map{|tag|
+      %(<a href="/tags/#{tag.gsub(' ', '%20')}.html">#{tag}</a>)
+    }.join("<i>,</i>")
+    "[#{joined}]"
+  end
+
   def article
     super
       .sub(/audio: (.*)/, "<mozaic-player><audio slot=audio src=#{audio} title='#{title}' data-forward=+30 data-back=-10></audio></mozaic-player>")

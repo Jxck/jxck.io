@@ -134,7 +134,7 @@ if __FILE__ == $PROGRAM_NAME
 
     path = "./mozaic.fm/episodes/1/webcomponents.md"
     podcast.build(path)
-    podcast.feed
+    # podcast.feed
     podcast.index
 
     path = "./.script/test/test.md"
