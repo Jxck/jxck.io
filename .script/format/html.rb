@@ -229,6 +229,9 @@ class HTML
 
     #TODO: ここでハイライトする
 
+    # lexer = Rouge::Lexer.guess(filename: file)
+    # formatted = formatter.format(lexer.new.lex(File.read(file)))
+
     formatter = MonoHTML.new
     js = formatter.format(Rouge::Lexers::Javascript.new.lex(code))
 
