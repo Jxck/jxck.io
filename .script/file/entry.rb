@@ -32,17 +32,7 @@ class AMPEntry < Entry
     @icon = icon
   end
 
-  # "./new-blog-start.amp.html"
-  def amp_relative
-    "./#{name}.amp.html"
-  end
-
-  # "/entries/2016-01-27/new-blog-start.amp.html"
-  def amp_path
-    "/#{baseurl}/#{name}.amp.html"
-  end
-
-  def ampfile
+  def target_path
     "#{dir}/#{name}.amp.html"
   end
 

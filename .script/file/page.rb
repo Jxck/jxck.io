@@ -7,7 +7,7 @@ class Page < Article
     hsc @text.match(/^# (.*)/)[1]
   end
 
-  def idfile
-    "#{dir}/#{name}.idtag"
+  def target_path
+    "#{dir}/#{name}"
   end
 end

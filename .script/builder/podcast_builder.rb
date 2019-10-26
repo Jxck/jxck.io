@@ -37,7 +37,7 @@ class PodcastBuilder
     # entry
     episode.build(TMP.new)
     html = @html_template.result(binding).strip
-    File.write(episode.htmlfile, html)
+    File.write(episode.target_path, html)
   end
 
   ## dir の中全てビルド
@@ -48,7 +48,7 @@ class PodcastBuilder
 
       episode.build(TMP.new)
       html = @html_template.result(binding).strip
-      File.write(episode.htmlfile, html)
+      File.write(episode.target_path, html)
     }
   end
 

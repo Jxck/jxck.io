@@ -95,7 +95,7 @@ class Article
     @article = article
   end
 
-  def htmlfile
+  def target_path
     "#{dir}/#{name}.html"
   end
 

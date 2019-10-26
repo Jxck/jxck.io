@@ -86,13 +86,13 @@ class BlogBuilder
   def build_html(entry)
     entry.build(HTML.new)
     html = @html_template.result(binding).strip
-    File.write(entry.htmlfile, html)
+    File.write(entry.target_path, html)
   end
 
   # amp html のビルド
   def build_amp_html(entry)
     entry.build(AMP.new)
     html = @amp_template.result(binding).strip
-    File.write(entry.ampfile, html)
+    File.write(entry.target_path, html)
   end
 end

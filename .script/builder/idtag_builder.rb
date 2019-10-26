@@ -20,13 +20,13 @@ class IdtagBuilder
   def build_html(page)
     page.build(HTML.new)
     html = @html_template.result(binding).strip
-    File.write(page.htmlfile, html)
+    File.write(page.target_path+".html", html)
   end
 
   # idtag のビルド
   def build_idtag(page)
     page.build(Idtag.new)
     idtag = @idtag_template.result(binding).strip
-    File.write(page.idfile, idtag)
+    File.write(page.target_path+".idtag", idtag)
   end
 end
