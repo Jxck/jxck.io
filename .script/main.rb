@@ -126,6 +126,22 @@ if __FILE__ == $PROGRAM_NAME
     idtag.build(path)
   }
 
+  opt.on("--test") {|v|
+    path = "./blog.jxck.io/entries/2016-01-27/new-blog-start.md"
+    blog.build(path)
+    blog.feed
+    blog.index
+
+    path = "./mozaic.fm/episodes/1/webcomponents.md"
+    podcast.build(path)
+    podcast.feed
+    podcast.index
+
+    path = "./.script/test/test.md"
+    idtag = IdtagBuilder.new()
+    idtag.build(path)
+  }
+
   opt.on("-h") {|v|
     puts "make から叩いて"
   }

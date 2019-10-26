@@ -29,7 +29,7 @@
 <% episodes.each do |episode| %>
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://<%= episode.file %>" length="<%= episode.size %>" type="audio/mpeg" />
+      <enclosure url="http://<%= episode.audio_file %>" length="<%= episode.size %>" type="audio/mpeg" />
       <guid isPermaLink="false"><%= episode.canonical %></guid>
       <link><%= episode.canonical %></link>
       <pubDate><%= episode.pubDate %></pubDate>
@@ -40,7 +40,7 @@
       <itunes:keywords>web,tech,it</itunes:keywords>
       <itunes:order><%= episode.order %></itunes:order>
       <itunes:subtitle><%= episode.subtitle %></itunes:subtitle>
-      <media:content url="https://<%= episode.file %>" fileSize="<%= episode.size %>" type="audio/mpeg" />
+      <media:content url="https://<%= episode.audio_file %>" fileSize="<%= episode.size %>" type="audio/mpeg" />
       <description><%= episode.summary %></description>
     </item>
 <% end %>
