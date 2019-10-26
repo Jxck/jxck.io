@@ -108,7 +108,10 @@ class Article
   end
 
   protected
-  # remove markdown link
+
+  # remove markdown link notation
+  # [aaa](http://example.com) -> aaa
+  # <http://example.com> -> http://example.com
   def unlink(str)
     str.gsub(/\[(.*?)\]\(.*?\)/, '\1').gsub(/<(http.*?)>/, '\1')
   end

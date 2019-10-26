@@ -44,7 +44,7 @@ class Episode < Article
     }
   end
 
-  def file
+  def audio_file
     audio.sub("https://", "")
   end
 
@@ -73,7 +73,7 @@ class Episode < Article
 
   def size
     begin
-      File.open("../#{file}").size
+      File.open("../#{audio_file}").size
     rescue
       0
     end
@@ -82,9 +82,9 @@ class Episode < Article
   def duration
     sec = 0
     if RUBY_PLATFORM.match(/darwin/)
-      sec = `afinfo ../#{file}  | grep duration | cut -d' ' -f 3`.to_i
+      sec = `afinfo ../#{audio_file}  | grep duration | cut -d' ' -f 3`.to_i
     else
-      sec = `mp3info -p "%S\n" ../#{file}`.to_i
+      sec = `mp3info -p "%S\n" ../#{audio_file}`.to_i
     end
     Time.at(sec).utc.strftime("%X")
   end
