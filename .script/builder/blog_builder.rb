@@ -16,9 +16,8 @@ class BlogBuilder
   ## 特定のパスのファイルをビルド
   def build(path)
     puts "build #{path}"
-    entry = Entry.new(path, @icon)
-    build_html(entry)
-    build_amp_html(entry)
+    build_html(Entry.new(path, @icon))
+    build_amp_html(AMPEntry.new(path, @icon))
   end
 
   ## dir の中全てビルド
