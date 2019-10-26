@@ -62,7 +62,7 @@ class Article
     # DEBUG: pp ast.ast
 
     # traverse
-    traverser = Traverser.new(markup)
+    traverser = Traverser.new(markup, dir)
     article   = traverser.start(ast.ast)
     @article = article
   end

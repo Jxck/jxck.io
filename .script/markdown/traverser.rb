@@ -3,10 +3,11 @@
 class Traverser
   attr_reader :codes
 
-  def initialize(markup)
+  def initialize(markup, dir)
     # ここに codeblock を退避しておく
     @codes  = {}
     @markup = markup
+    @dir    = dir
   end
 
   def start(ast)
@@ -117,7 +118,7 @@ class Traverser
         # code が書かれてなかったらファイルから読む
         # ```js:main.js
         node.lang, node.path = node.lang.split(":")
-        path = "./blog.jxck.io/#{@markup.baseurl}/#{node.path}"
+        path = "#{@dir}/#{node.path}"
         code = File.read(path).chomp
       end
 
