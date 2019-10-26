@@ -36,6 +36,6 @@ class Entry < Article
 
   # エントリは降順で扱うのが基本なので逆に
   def <=>(other)
-    return other.path <=> path
+    other.path <=> path
   end
 end

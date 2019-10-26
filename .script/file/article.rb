@@ -104,7 +104,7 @@ class Article
   end
 
   def <=>(other)
-    return path <=> other.path
+    path <=> other.path
   end
 
   protected

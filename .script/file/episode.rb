@@ -91,8 +91,9 @@ class Episode < Article
 
   def <=>(other)
     if num == other.num
-      return sideshow? ? 1 : -1
+      sideshow? ? 1 : -1
+    else
+      num <=> other.num
     end
-    return num <=> other.num
   end
 end
