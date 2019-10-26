@@ -11,10 +11,11 @@ class Traverser
   end
 
   def start(ast)
+    # 全体を舐めつつ変換
     result = traverse(ast)
 
     # indent を無視するため
-    # traverse が終わった後に
+    # traverse が終わった結果の
     # pre に code を戻す
     @codes.each {|key, value|
       # markup のもつロジックでコードを処理
