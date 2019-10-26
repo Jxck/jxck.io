@@ -56,10 +56,6 @@ class Article
     @text
   end
 
-  def description
-    unlink theme
-  end
-
   def build(markup) # Markup/AMP
     # setting self url
     markup.url = url
