@@ -46,10 +46,6 @@ class Article
     hsc @text.match(/^# \[.*\] (.*)/)[1]
   end
 
-  def tags
-    @text.split("\n")[0].scan(/\[(.+?)\]/).flatten
-  end
-
   # AST parse する markdown の body
   # 前処理が必要な場合は継承する
   def body

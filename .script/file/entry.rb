@@ -13,6 +13,10 @@ class Entry < Article
     @text.sub(" [" + tags.join("][") + "]", "")
   end
 
+  def tags
+    @text.split("\n")[0].scan(/\[(.+?)\]/).flatten
+  end
+
   def joined_tag
     joined = tags.map{|tag|
       %(<a href="/tags/#{tag.gsub(' ', '%20')}.html">#{tag}</a>)
