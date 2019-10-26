@@ -96,7 +96,9 @@ podcasttest:
 
 marktest:
 	$(MARK) --marktest
-	#cat .script/test/test.html
+
+test:
+	$(MARK) --test
 
 
 ##########################
@@ -174,10 +176,8 @@ restart:
 	sudo systemctl restart h2o
 
 reload:
-	sudo systemctl reload h2o
-
-test:
 	$(DOTFILES)/local/h2o/bin/h2o -t -c h2o.conf | cat
+	sudo systemctl reload h2o
 
 ## h2o local
 _start:
