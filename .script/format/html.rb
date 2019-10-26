@@ -4,7 +4,7 @@ require_relative "../highlighter/html.rb"
 class HTML
   attr_writer :url
   attr_accessor :baseurl
-  def initialize(highlight=false)
+  def initialize(highlight: "none")
     @highlight = highlight
     @indent = "  "
     @css = {
@@ -228,17 +228,18 @@ class HTML
     lang = arg.lang
     code = arg.code
 
-    return hsc(code) unless @highlight
+    case @highlight
+    when "mono"
+      lexer = Rouge::Lexer.guess(filename: ".#{lang}")
+      formatter = MonoHTML.new
+      formatted = formatter.format(lexer.new.lex(code))
 
-    #TODO: ここでハイライトする
+      formatted
+    when "color"
 
-    # lexer = Rouge::Lexer.guess(filename: file)
-    # formatted = formatter.format(lexer.new.lex(File.read(file)))
-
-    formatter = MonoHTML.new
-    js = formatter.format(Rouge::Lexers::Javascript.new.lex(code))
-
-    js
+    when "none"
+      hsc(code)
+    end
   end
 
   def p(node)
