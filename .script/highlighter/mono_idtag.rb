@@ -1,4 +1,6 @@
-class Idtag < Rouge::Formatters::HTML
+require 'rouge'
+
+class MonoIdtag < Rouge::Formatters::HTML
   def safe_span(token, safe_val)
     return safe_val if token == Rouge::Token::Tokens::Text
 

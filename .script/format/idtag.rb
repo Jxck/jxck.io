@@ -1,8 +1,11 @@
+require_relative "../highlighter/mono_idtag.rb"
+
 # tag ごとのビルダ
 class Idtag
   attr_writer :url
   attr_accessor :baseurl
-  def initialize
+  def initialize(highlight: "none")
+    @highlight = highlight
     @indent = "  "
   end
 
@@ -123,7 +126,7 @@ class Idtag
 
   def codeblock(node)
     lang = node.attr && node.attr["class"].sub("language-", "")
-    code = node.code.split("\n").map{|line| "<ParaStyle:code-#{lang}>#{line}"}.join("\n")
+    code = code_format(node).split("\n").map{|line| "<ParaStyle:code-#{lang}>#{line}"}.join("\n")
     <<~EOS.chomp
       #{br}
       #{code}
@@ -131,8 +134,18 @@ class Idtag
   end
 
   def code_format(arg)
-    # TODO: ここでハイライトする
-    (arg.code)
+    lang = arg.lang
+    code = arg.code
+
+    case @highlight
+    when "mono"
+      lexer = Rouge::Lexer.guess(filename: ".#{lang}")
+      formatter = MonoIdtag.new
+      formatted = formatter.format(lexer.new.lex(code))
+      formatted
+    when "none"
+      code
+    end
   end
 
   def table(node)

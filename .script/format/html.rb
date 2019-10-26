@@ -1,4 +1,4 @@
-require_relative "../highlighter/html.rb"
+require_relative "../highlighter/mono_html.rb"
 
 # tag ごとのビルダ
 class HTML
@@ -233,7 +233,6 @@ class HTML
       lexer = Rouge::Lexer.guess(filename: ".#{lang}")
       formatter = MonoHTML.new
       formatted = formatter.format(lexer.new.lex(code))
-
       formatted
     when "color"
 

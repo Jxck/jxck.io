@@ -25,7 +25,7 @@ class IdtagBuilder
 
   # idtag のビルド
   def build_idtag(page)
-    page.build(Idtag.new)
+    page.build(Idtag.new(highlight: "mono"))
     idtag = @idtag_template.result(binding).strip
     File.write(page.target_path+".idtag", idtag)
   end

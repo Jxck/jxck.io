@@ -18,8 +18,6 @@ class MonoHTML < Rouge::Formatters::HTML
     return "BoldBlack"           if classes.include?("Tag")
     return "BoldGray"            if classes.include?("Name")
     return "BoldBlack"           if classes.include?("Keyword")
-
-    p classes
     classes.join(" ")
   end
 end
