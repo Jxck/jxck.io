@@ -100,6 +100,9 @@ marktest:
 test:
 	$(MARK) --test
 
+t:
+	make test
+
 
 ##########################
 # Optimize Image
