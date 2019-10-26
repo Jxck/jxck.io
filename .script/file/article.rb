@@ -50,9 +50,10 @@ class Article
     @text.split("\n")[0].scan(/\[(.+?)\]/).flatten
   end
 
-  # tag を本文から消す
-  def no_tag
-    @text.sub(" [" + tags.join("][") + "]", "")
+  # AST parse する markdown の body
+  # 前処理が必要な場合は継承する
+  def body
+    @text
   end
 
   def joined_tag
@@ -76,7 +77,7 @@ class Article
     markup.baseurl = baseurl
 
     # parse ast
-    ast = AST.new(no_tag)
+    ast = AST.new(body)
     # DEBUG: pp ast.ast
 
     # traverse

@@ -8,6 +8,12 @@ class Episode < Article
     @info = @text.match(/## Info(([\n\r]|.)*?)##/m)[1]
   end
 
+  # AST parse する markdown の body
+  # tag を本文から消す
+  def body
+    @text.sub(" [" + tags.join("][") + "]", "")
+  end
+
   def article
     super
       .sub(/audio: (.*)/, "<mozaic-player><audio slot=audio src=#{audio} title='#{title}' data-forward=+30 data-back=-10></audio></mozaic-player>")

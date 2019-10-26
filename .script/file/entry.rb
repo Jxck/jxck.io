@@ -7,6 +7,12 @@ class Entry < Article
     @icon = icon
   end
 
+  # AST parse する markdown の body
+  # tag を本文から消す
+  def body
+    @text.sub(" [" + tags.join("][") + "]", "")
+  end
+
   def created_at
     dir.split("/")[3]
   end
