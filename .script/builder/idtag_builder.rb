@@ -18,7 +18,7 @@ class IdtagBuilder
 
   # html のビルド
   def build_html(page)
-    page.build(HTML.new)
+    page.build(HTML.new(true))
     html = @html_template.result(binding).strip
     File.write(page.target_path+".html", html)
   end

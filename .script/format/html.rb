@@ -1,8 +1,11 @@
+require_relative "../highlighter/html.rb"
+
 # tag ごとのビルダ
 class HTML
   attr_writer :url
   attr_accessor :baseurl
-  def initialize
+  def initialize(highlight=false)
+    @highlight = highlight
     @indent = "  "
     @css = {
       PRE:   "/assets/css/pre.css",
@@ -222,8 +225,14 @@ class HTML
   end
 
   def code_format(code)
+    return hsc(code) unless @highlight
+
     #TODO: ここでハイライトする
-    hsc(code)
+
+    formatter = MonoHTML.new
+    js = formatter.format(Rouge::Lexers::Javascript.new.lex(code))
+
+    js
   end
 
   def p(node)
