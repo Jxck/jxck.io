@@ -20,6 +20,10 @@ class Entry < Article
     "[#{joined}]"
   end
 
+  def theme
+    @text.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2]
+  end
+
   def created_at
     dir.split("/")[3]
   end

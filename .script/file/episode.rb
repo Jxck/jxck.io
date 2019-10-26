@@ -21,6 +21,10 @@ class Episode < Article
     "[#{joined}]"
   end
 
+  def theme
+    @text.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2]
+  end
+
   def article
     super
       .sub(/audio: (.*)/, "<mozaic-player><audio slot=audio src=#{audio} title='#{title}' data-forward=+30 data-back=-10></audio></mozaic-player>")

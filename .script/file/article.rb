@@ -56,10 +56,6 @@ class Article
     @text
   end
 
-  def theme
-    @text.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2]
-  end
-
   def description
     unlink theme
   end
