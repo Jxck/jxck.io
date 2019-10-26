@@ -112,13 +112,13 @@ class Traverser
 
     if node.type == :codeblock
       node.lang = node.attr && node.attr["class"].sub("language-", "")
-      code = node.value
+      code = node.value.chomp
       if code == ""
         # code が書かれてなかったらファイルから読む
         # ```js:main.js
         node.lang, node.path = node.lang.split(":")
         path = "./blog.jxck.io/#{@markup.baseurl}/#{node.path}"
-        code = File.read(path)
+        code = File.read(path).chomp
       end
 
       # コードを展開したあとに全体のインデント操作をすると
@@ -126,10 +126,10 @@ class Traverser
       # そこでコードを hash に置き換えて退避しておき
       # 全部組み上がったら後で戻すことで
       # インデントを回避できるようにする
-      hash = code.chomp.hash.to_s
-      node.value = "// #{hash}" # value には hash を入れておく
-      node.code  = code         # そのまま埋め込みたい場合は code に入ってる
-      @codes[hash] = code.chomp # 全部組み上がったらここから取り出して replace
+      hash = code.hash.to_s
+      node.value   = "// #{hash}" # value には hash を入れておく
+      node.code    = code         # そのまま埋め込みたい場合は code に入ってる
+      @codes[hash] = code         # 全部組み上がったらここから取り出して replace
     end
 
     # children を結合して value に
