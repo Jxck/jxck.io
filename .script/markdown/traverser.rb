@@ -113,12 +113,12 @@ class Traverser
     # puts "[##{__LINE__}] leave: #{node.type} #{node.value}"
 
     if node.type == :codeblock
-      node.lang = node.attr && node.attr["class"].sub("language-", "")
+      lang = node.attr && node.attr["class"].sub("language-", "")
       code = node.value.chomp
       if code == ""
         # code が書かれてなかったらファイルから読む
         # ```js:main.js
-        node.lang, node.path = node.lang.split(":")
+        lang, node.path = lang.split(":")
         path = "#{@dir}/#{node.path}"
         code = File.read(path).chomp
       end
@@ -131,7 +131,8 @@ class Traverser
       hash = code.hash.to_s
       node.value   = "// #{hash}" # value には hash を入れておく
       node.code    = code         # そのまま埋め込みたい場合は code に入ってる
-      @codes[hash] = code         # 全部組み上がったらここから取り出して replace
+      node.lang    = lang
+      @codes[hash] = {lang: lang, code: code} # 全部組み上がったらここから取り出して replace
     end
 
     # children を結合して value に

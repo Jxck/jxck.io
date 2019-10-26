@@ -224,7 +224,10 @@ class HTML
     %(<pre#{lang ? %( class=#{lang}) : ''}><code translate="no">#{node.value}</code></pre>\n)
   end
 
-  def code_format(code)
+  def code_format(arg)
+    lang = arg.lang
+    code = arg.code
+
     return hsc(code) unless @highlight
 
     #TODO: ここでハイライトする
