@@ -111,11 +111,12 @@ class Traverser
     # puts "[##{__LINE__}] leave: #{node.type} #{node.value}"
 
     if node.type == :codeblock
+      node.lang = node.attr && node.attr["class"].sub("language-", "")
       code = node.value
       if code == ""
         # code が書かれてなかったらファイルから読む
         # ```js:main.js
-        node.attr["class"], node.path = node.attr["class"].split(":")
+        node.lang, node.path = node.lang.split(":")
         path = "./blog.jxck.io/#{@markup.baseurl}/#{node.path}"
         code = File.read(path)
       end

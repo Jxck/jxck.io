@@ -220,7 +220,7 @@ class HTML
   end
 
   def pre(node)
-    lang = node.attr && node.attr["class"].sub("language-", "")
+    lang = node.lang
     %(<pre#{lang ? %( class=#{lang}) : ''}><code translate="no">#{node.value}</code></pre>\n)
   end
 
