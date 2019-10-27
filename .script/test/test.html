@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Title</title>
+    <title>This is Title</title>
     <style>
 :root {
 
@@ -79,14 +79,127 @@ pre {
   </head>
   <body>
     <article>
-      <h1><a href=/test/test.html>Title</a></h1>
+      <h1><a href=/test/test.html>This is Title</a></h1>
       <section>
-        <h2 id="h2"><a href="#h2">H2</a></h2>
-        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-        <pre class=js><code translate="no"><span class="BoldBlack">function</span> <span class="BoldGray">hoo</span><span class="Punctuation">(</span><span class="BoldGray">x</span><span class="Punctuation">)</span> <span class="Punctuation">{</span>
+        <h2 id="basic-paragraph"><a href="#basic-paragraph">basic paragraph</a></h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      </section>
+      <section>
+        <h2 id="inline-style"><a href="#inline-style">inline style</a></h2>
+        <p>inline styles are  <em>italic</em> also <em>italic</em> and <strong>strong</strong> and <code translate="no">inline code</code> are supported.
+      </section>
+      <section>
+        <h2 id="list-style"><a href="#list-style">list style</a></h2>
+        <section>
+          <h3 id="un-ordered-list"><a href="#un-ordered-list">un-ordered list</a></h3>
+          <ul>
+            <li>level 1-1
+            <li>
+              level 1-2<ul>
+                <li>level 2-1
+                <li>
+                  level 2-2<ul>
+                    <li>level 3-1
+                    <li>level 3-2
+                  </ul>
+                </li>
+                <li>level 2-3
+              </ul>
+            </li>
+            <li>level 1-3
+          </ul>
+        </section>
+        <section>
+          <h3 id="ordered-list"><a href="#ordered-list">ordered list</a></h3>
+          <ol>
+            <li>level 1-1
+            <li>
+              level 1-2<ol>
+                <li>level 2-1
+                <li>
+                  level 2-2<ol>
+                    <li>level 3-1
+                    <li>level 3-2
+                  </ol>
+                </li>
+                <li>level 2-3
+              </ol>
+            </li>
+            <li>level 1-3
+          </ol>
+          <p>(indent needs to be 4 space)
+        </section>
+        <section>
+          <h3 id="definition-list"><a href="#definition-list">definition list</a></h3>
+          <dl>
+            <div>
+              <dt>alice
+              <dd>who starts handshake
+            </div>
+            <div>
+              <dt>bob
+              <dd>who receives handshake
+            </div>
+            <div>
+              <dt>eve
+              <dd>who in the middle of transaction
+            </div>
+          </dl>
+        </section>
+      </section>
+      <section>
+        <h2 id="table"><a href="#table">table</a></h2>
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/table.css>
+        <table>
+          <thead>
+            <tr>
+              <th class=align-center>ext</th>
+              <th class=align-right>language</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class=align-center>.cpp</td>
+              <td class=align-right>c++</td>
+            </tr>
+            <tr>
+              <td class=align-center>.erl</td>
+              <td class=align-right>erlang</td>
+            </tr>
+            <tr>
+              <td class=align-center>.js</td>
+              <td class=align-right>javascript</td>
+            </tr>
+            <tr>
+              <td class=align-center>.py</td>
+              <td class=align-right>python</td>
+            </tr>
+            <tr>
+              <td class=align-center>.rb</td>
+              <td class=align-right>ruby</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section>
+        <h2 id="codeblock"><a href="#codeblock">Codeblock</a></h2>
+        <section>
+          <h3 id="text-block"><a href="#text-block">text block</a></h3>
+        </section>
+        <section>
+          <h3 id="programing-block"><a href="#programing-block">programing block</a></h3>
+          <section>
+            <h4 id="javascript"><a href="#javascript">javascript</a></h4>
+            <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+            <pre class=js><code translate="no"><span class="BoldBlack">function</span> <span class="BoldGray">hoo</span><span class="Punctuation">(</span><span class="BoldGray">x</span><span class="Punctuation">)</span> <span class="Punctuation">{</span>
   <span class="BoldGray">console</span><span class="Punctuation">.</span><span class="BoldGray">log</span><span class="Punctuation">(</span><span class="BoldGray">x</span><span class="Punctuation">)</span>
 <span class="Punctuation">}</span></code></pre>
-        <pre class=make><code translate="no"><span class="RegularSilverItalic"># Makefile
+          </section>
+          <section>
+            <h4 id="makefile"><a href="#makefile">makefile</a></h4>
+            <pre class=make><code translate="no"><span class="RegularSilverItalic"># Makefile
 </span><span class="BoldBlack">.PHONY</span><span class="RegularDark">:</span> <span class="BoldGray">all</span>
 <span class="BoldBlack">all</span><span class="RegularDark">:</span> <span class="BoldGray">main</span>
 
@@ -99,7 +212,10 @@ pre {
 <span class="BoldBlack">.PHONY</span><span class="RegularDark">:</span> <span class="BoldGray">clean</span>
 <span class="BoldBlack">clean</span><span class="RegularDark">:</span>
 	<span class="BoldGray">rm</span> <span class="BoldBlack">-rf</span> main main.o</code></pre>
-        <pre class=http><code translate="no">POST /demo/submit/ HTTP/1.1
+          </section>
+          <section>
+            <h4 id="http"><a href="#http">http</a></h4>
+            <pre class=http><code translate="no">POST /demo/submit/ HTTP/1.1
 Host: rouge.jneen.net
 Cache-Control: max-age=0
 Origin: http://rouge.jayferd.us
@@ -112,7 +228,10 @@ Accept-Language: en-US,en;q=0.8
 Accept-Charset: windows-949,utf-8;q=0.7,*;q=0.3
 
 {"name":"test","lang":"text","boring":true}</code></pre>
-        <pre class=conf><code translate="no"><span class="BoldGray">user</span>       <span class="BoldGray">www</span> <span class="BoldGray">www</span>;  <span class="RegularSilverItalic">## Default: nobody
+          </section>
+          <section>
+            <h4 id="noginxconf"><a href="#noginxconf">noginx.conf</a></h4>
+            <pre class=conf><code translate="no"><span class="BoldGray">user</span>       <span class="BoldGray">www</span> <span class="BoldGray">www</span>;  <span class="RegularSilverItalic">## Default: nobody
 </span><span class="BoldGray">worker_processes</span>  <span class="RegularDark">5</span>;  <span class="RegularSilverItalic">## Default: 1
 </span><span class="BoldGray">error_log</span>  <span class="BoldGray">logs</span>/<span class="BoldGray">error</span>.<span class="BoldGray">log</span>;
 <span class="BoldGray">pid</span>        <span class="BoldGray">logs</span>/<span class="BoldGray">nginx</span>.<span class="BoldGray">pid</span>;
@@ -181,7 +300,10 @@ Accept-Charset: windows-949,utf-8;q=0.7,*;q=0.3
       <span class="BoldGray">proxy_pass</span>      <span class="BoldGray">http</span>://<span class="BoldGray">big_server_com</span>;
     }
   }</code></pre>
-        <pre class=go><code translate="no"><span class="BoldBlack">package</span> <span class="BoldGray">main</span>
+          </section>
+          <section>
+            <h4 id="go"><a href="#go">go</a></h4>
+            <pre class=go><code translate="no"><span class="BoldBlack">package</span> <span class="BoldGray">main</span>
 
 <span class="BoldBlack">import</span> <span class="Punctuation">(</span>
 	<span class="RegularSilverItalic">"fmt"</span>
@@ -223,7 +345,32 @@ Accept-Charset: windows-949,utf-8;q=0.7,*;q=0.3
 <span class="BoldBlack">func</span> <span class="Punctuation">(</span><span class="BoldGray">v</span> <span class="RegularDark">*</span><span class="BoldGray">Vertex</span><span class="Punctuation">)</span> <span class="BoldGray">Abs</span><span class="Punctuation">()</span> <span class="BoldBlack">float64</span> <span class="Punctuation">{</span>
 	<span class="BoldBlack">return</span> <span class="BoldGray">math</span><span class="RegularDark">.</span><span class="BoldGray">Sqrt</span><span class="Punctuation">(</span><span class="BoldGray">v</span><span class="RegularDark">.</span><span class="BoldGray">X</span><span class="RegularDark">*</span><span class="BoldGray">v</span><span class="RegularDark">.</span><span class="BoldGray">X</span> <span class="RegularDark">+</span> <span class="BoldGray">v</span><span class="RegularDark">.</span><span class="BoldGray">Y</span><span class="RegularDark">*</span><span class="BoldGray">v</span><span class="RegularDark">.</span><span class="BoldGray">Y</span><span class="Punctuation">)</span>
 <span class="Punctuation">}</span></code></pre>
-        <pre class=html><code translate="no"><span class="RegularSilverItalic">&lt;!DOCTYPE html&gt;</span>
+          </section>
+          <section>
+            <h4 id="java"><a href="#java">java</a></h4>
+            <pre class=java><code translate="no"><span class="BoldBlack">public</span> <span class="BoldBlack">class</span> <span class="BoldGray">DecimalOctal</span> <span class="RegularDark">{</span>
+  <span class="BoldBlack">public</span> <span class="BoldBlack">static</span> <span class="BoldBlack">void</span> <span class="BoldGray">main</span><span class="RegularDark">(</span><span class="BoldGray">String</span><span class="RegularDark">[]</span> <span class="BoldGray">args</span><span class="RegularDark">)</span> <span class="RegularDark">{</span>
+    <span class="BoldBlack">int</span> <span class="BoldGray">decimal</span> <span class="RegularDark">=</span> <span class="RegularDark">78</span><span class="RegularDark">;</span>
+    <span class="BoldBlack">int</span> <span class="BoldGray">octal</span> <span class="RegularDark">=</span> <span class="BoldGray">convertDecimalToOctal</span><span class="RegularDark">(</span><span class="BoldGray">decimal</span><span class="RegularDark">);</span>
+    <span class="BoldGray">System</span><span class="RegularDark">.</span><span class="BoldGray">out</span><span class="RegularDark">.</span><span class="BoldGray">printf</span><span class="RegularDark">(</span><span class="RegularSilverItalic">"%d in decimal = %d in octal"</span><span class="RegularDark">,</span> <span class="BoldGray">decimal</span><span class="RegularDark">,</span> <span class="BoldGray">octal</span><span class="RegularDark">);</span>
+  <span class="RegularDark">}</span>
+
+  <span class="BoldBlack">public</span> <span class="BoldBlack">static</span> <span class="BoldBlack">int</span> <span class="BoldGray">convertDecimalToOctal</span><span class="RegularDark">(</span><span class="BoldBlack">int</span> <span class="BoldGray">decimal</span><span class="RegularDark">)</span> <span class="RegularDark">{</span>
+    <span class="BoldBlack">int</span> <span class="BoldGray">octalNumber</span> <span class="RegularDark">=</span> <span class="RegularDark">0</span><span class="RegularDark">,</span> <span class="BoldGray">i</span> <span class="RegularDark">=</span> <span class="RegularDark">1</span><span class="RegularDark">;</span>
+
+    <span class="BoldBlack">while</span> <span class="RegularDark">(</span><span class="BoldGray">decimal</span> <span class="RegularDark">!=</span> <span class="RegularDark">0</span><span class="RegularDark">)</span> <span class="RegularDark">{</span>
+      <span class="BoldGray">octalNumber</span> <span class="RegularDark">+=</span> <span class="RegularDark">(</span><span class="BoldGray">decimal</span> <span class="RegularDark">%</span> <span class="RegularDark">8</span><span class="RegularDark">)</span> <span class="RegularDark">*</span> <span class="BoldGray">i</span><span class="RegularDark">;</span>
+      <span class="BoldGray">decimal</span> <span class="RegularDark">/=</span> <span class="RegularDark">8</span><span class="RegularDark">;</span>
+      <span class="BoldGray">i</span> <span class="RegularDark">*=</span> <span class="RegularDark">10</span><span class="RegularDark">;</span>
+    <span class="RegularDark">}</span>
+
+    <span class="BoldBlack">return</span> <span class="BoldGray">octalNumber</span><span class="RegularDark">;</span>
+  <span class="RegularDark">}</span>
+<span class="RegularDark">}</span></code></pre>
+          </section>
+          <section>
+            <h4 id="html"><a href="#html">html</a></h4>
+            <pre class=html><code translate="no"><span class="RegularSilverItalic">&lt;!DOCTYPE html&gt;</span>
 <span class="BoldBlack">&lt;meta</span> <span class="BoldGray">charset=</span><span class="RegularSilverItalic">utf-8</span><span class="BoldBlack">&gt;</span>
 <span class="BoldBlack">&lt;meta</span> <span class="BoldGray">name=</span><span class="RegularSilverItalic">viewport</span> <span class="BoldGray">content=</span><span class="RegularSilverItalic">"width=device-width,initial-scale=1"</span><span class="BoldBlack">&gt;</span>
 <span class="BoldBlack">&lt;title&gt;</span>DEMO | labs.jxck.io<span class="BoldBlack">&lt;/title&gt;</span>
@@ -244,56 +391,10 @@ Accept-Charset: windows-949,utf-8;q=0.7,*;q=0.3
     <span class="BoldBlack">&lt;button</span> <span class="BoldGray">type=</span><span class="RegularSilverItalic">submit</span><span class="BoldBlack">&gt;</span>ok<span class="BoldBlack">&lt;/button&gt;</span>
   <span class="BoldBlack">&lt;/form&gt;</span>
 <span class="BoldBlack">&lt;/div&gt;</span></code></pre>
-        <pre class=java><code translate="no"><span class="BoldBlack">public</span> <span class="BoldBlack">class</span> <span class="BoldGray">DecimalOctal</span> <span class="RegularDark">{</span>
-  <span class="BoldBlack">public</span> <span class="BoldBlack">static</span> <span class="BoldBlack">void</span> <span class="BoldGray">main</span><span class="RegularDark">(</span><span class="BoldGray">String</span><span class="RegularDark">[]</span> <span class="BoldGray">args</span><span class="RegularDark">)</span> <span class="RegularDark">{</span>
-    <span class="BoldBlack">int</span> <span class="BoldGray">decimal</span> <span class="RegularDark">=</span> <span class="RegularDark">78</span><span class="RegularDark">;</span>
-    <span class="BoldBlack">int</span> <span class="BoldGray">octal</span> <span class="RegularDark">=</span> <span class="BoldGray">convertDecimalToOctal</span><span class="RegularDark">(</span><span class="BoldGray">decimal</span><span class="RegularDark">);</span>
-    <span class="BoldGray">System</span><span class="RegularDark">.</span><span class="BoldGray">out</span><span class="RegularDark">.</span><span class="BoldGray">printf</span><span class="RegularDark">(</span><span class="RegularSilverItalic">"%d in decimal = %d in octal"</span><span class="RegularDark">,</span> <span class="BoldGray">decimal</span><span class="RegularDark">,</span> <span class="BoldGray">octal</span><span class="RegularDark">);</span>
-  <span class="RegularDark">}</span>
-
-  <span class="BoldBlack">public</span> <span class="BoldBlack">static</span> <span class="BoldBlack">int</span> <span class="BoldGray">convertDecimalToOctal</span><span class="RegularDark">(</span><span class="BoldBlack">int</span> <span class="BoldGray">decimal</span><span class="RegularDark">)</span> <span class="RegularDark">{</span>
-    <span class="BoldBlack">int</span> <span class="BoldGray">octalNumber</span> <span class="RegularDark">=</span> <span class="RegularDark">0</span><span class="RegularDark">,</span> <span class="BoldGray">i</span> <span class="RegularDark">=</span> <span class="RegularDark">1</span><span class="RegularDark">;</span>
-
-    <span class="BoldBlack">while</span> <span class="RegularDark">(</span><span class="BoldGray">decimal</span> <span class="RegularDark">!=</span> <span class="RegularDark">0</span><span class="RegularDark">)</span> <span class="RegularDark">{</span>
-      <span class="BoldGray">octalNumber</span> <span class="RegularDark">+=</span> <span class="RegularDark">(</span><span class="BoldGray">decimal</span> <span class="RegularDark">%</span> <span class="RegularDark">8</span><span class="RegularDark">)</span> <span class="RegularDark">*</span> <span class="BoldGray">i</span><span class="RegularDark">;</span>
-      <span class="BoldGray">decimal</span> <span class="RegularDark">/=</span> <span class="RegularDark">8</span><span class="RegularDark">;</span>
-      <span class="BoldGray">i</span> <span class="RegularDark">*=</span> <span class="RegularDark">10</span><span class="RegularDark">;</span>
-    <span class="RegularDark">}</span>
-
-    <span class="BoldBlack">return</span> <span class="BoldGray">octalNumber</span><span class="RegularDark">;</span>
-  <span class="RegularDark">}</span>
-<span class="RegularDark">}</span></code></pre>
-        <pre class=js><code translate="no"><span class="BoldBlack">import</span> <span class="BoldGray">file</span> <span class="BoldBlack">from</span> <span class="BoldGray">fs</span>
-
-<span class="BoldBlack">function</span> <span class="BoldGray">callback</span><span class="Punctuation">(</span><span class="BoldGray">err</span><span class="Punctuation">,</span> <span class="BoldGray">file</span><span class="Punctuation">)</span> <span class="Punctuation">{</span>
-  <span class="BoldBlack">if</span> <span class="Punctuation">(</span><span class="BoldGray">err</span><span class="Punctuation">)</span> <span class="BoldBlack">return</span> <span class="BoldGray">console</span><span class="Punctuation">.</span><span class="BoldGray">error</span><span class="Punctuation">(</span><span class="BoldGray">err</span><span class="Punctuation">);</span>
-
-  <span class="RegularSilverItalic">/* ここで色々する */</span>
-<span class="Punctuation">};</span>
-
-<span class="BoldGray">file</span><span class="Punctuation">.</span><span class="BoldGray">open</span><span class="Punctuation">(</span><span class="BoldGray">callback</span><span class="Punctuation">);</span>
-
-<span class="BoldBlack">class</span> <span class="BoldGray">Test</span> <span class="BoldBlack">extends</span> <span class="BoldGray">EventEmitter</span> <span class="Punctuation">{</span>
-  <span class="BoldBlack">constructor</span><span class="Punctuation">(</span><span class="BoldGray">data</span><span class="Punctuation">)</span> <span class="Punctuation">{</span>
-    <span class="BoldBlack">this</span><span class="Punctuation">.</span><span class="BoldGray">data</span> <span class="RegularDark">=</span> <span class="BoldGray">data</span>
-  <span class="Punctuation">}</span>
-
-  <span class="BoldGray">jquery</span><span class="Punctuation">()</span> <span class="Punctuation">{</span>
-    <span class="BoldGray">$</span><span class="Punctuation">(</span><span class="RegularSilverItalic">'</span><span class="RegularSilverItalic">body</span><span class="RegularSilverItalic">'</span><span class="Punctuation">).</span><span class="BoldGray">innerHTML</span> <span class="RegularDark">=</span> <span class="RegularSilverItalic">"</span><span class="RegularSilverItalic">alert('xss')</span><span class="RegularSilverItalic">"</span>
-  <span class="Punctuation">}</span>
-
-  <span class="BoldGray">promise</span><span class="Punctuation">()</span> <span class="Punctuation">{</span>
-    <span class="BoldBlack">return</span> <span class="BoldGray">Promise</span><span class="Punctuation">.</span><span class="BoldGray">resolve</span><span class="Punctuation">(</span><span class="RegularSilverItalic">'</span><span class="RegularSilverItalic">foo</span><span class="RegularSilverItalic">'</span><span class="Punctuation">)</span>
-  <span class="Punctuation">}</span>
-<span class="Punctuation">}</span>
-
-<span class="BoldBlack">const</span> <span class="BoldGray">test</span> <span class="RegularDark">=</span> <span class="BoldBlack">new</span> <span class="BoldGray">Test</span><span class="Punctuation">()</span>
-<span class="BoldGray">test</span><span class="Punctuation">.</span><span class="BoldGray">promise</span><span class="Punctuation">().</span><span class="BoldGray">then</span><span class="Punctuation">((</span><span class="BoldGray">e</span><span class="Punctuation">)</span> <span class="RegularDark">=&gt;</span> <span class="Punctuation">{</span>
-  <span class="BoldGray">console</span><span class="Punctuation">.</span><span class="BoldGray">log</span><span class="Punctuation">(</span><span class="BoldGray">e</span><span class="Punctuation">)</span>
-<span class="Punctuation">})</span>
-
-<span class="BoldBlack">export</span> <span class="BoldGray">module</span><span class="Punctuation">;</span></code></pre>
-        <pre class=css><code translate="no"><span class="BoldBlack">strong</span><span class="BoldGray">::before</span><span class="RegularDark">,</span>
+          </section>
+          <section>
+            <h4 id="css"><a href="#css">css</a></h4>
+            <pre class=css><code translate="no"><span class="BoldBlack">strong</span><span class="BoldGray">::before</span><span class="RegularDark">,</span>
 <span class="BoldBlack">strong</span><span class="BoldGray">::after</span> <span class="Punctuation">{</span>
   <span class="BoldBlack">content</span><span class="Punctuation">:</span> <span class="RegularSilverItalic">"**"</span><span class="Punctuation">;</span>
 <span class="Punctuation">}</span>
@@ -323,6 +424,41 @@ Accept-Charset: windows-949,utf-8;q=0.7,*;q=0.3
   <span class="BoldBlack">margin</span><span class="Punctuation">:</span> <span class="RegularDark">0</span><span class="Punctuation">;</span>
 <span class="Punctuation">}</span>
 </code></pre>
+          </section>
+          <section>
+            <h4 id="js"><a href="#js">js</a></h4>
+            <pre class=js><code translate="no"><span class="BoldBlack">import</span> <span class="BoldGray">file</span> <span class="BoldBlack">from</span> <span class="BoldGray">fs</span>
+
+<span class="BoldBlack">function</span> <span class="BoldGray">callback</span><span class="Punctuation">(</span><span class="BoldGray">err</span><span class="Punctuation">,</span> <span class="BoldGray">file</span><span class="Punctuation">)</span> <span class="Punctuation">{</span>
+  <span class="BoldBlack">if</span> <span class="Punctuation">(</span><span class="BoldGray">err</span><span class="Punctuation">)</span> <span class="BoldBlack">return</span> <span class="BoldGray">console</span><span class="Punctuation">.</span><span class="BoldGray">error</span><span class="Punctuation">(</span><span class="BoldGray">err</span><span class="Punctuation">);</span>
+
+  <span class="RegularSilverItalic">/* ここで色々する */</span>
+<span class="Punctuation">};</span>
+
+<span class="BoldGray">file</span><span class="Punctuation">.</span><span class="BoldGray">open</span><span class="Punctuation">(</span><span class="BoldGray">callback</span><span class="Punctuation">);</span>
+
+<span class="BoldBlack">class</span> <span class="BoldGray">Test</span> <span class="BoldBlack">extends</span> <span class="BoldGray">EventEmitter</span> <span class="Punctuation">{</span>
+  <span class="BoldBlack">constructor</span><span class="Punctuation">(</span><span class="BoldGray">data</span><span class="Punctuation">)</span> <span class="Punctuation">{</span>
+    <span class="BoldBlack">this</span><span class="Punctuation">.</span><span class="BoldGray">data</span> <span class="RegularDark">=</span> <span class="BoldGray">data</span>
+  <span class="Punctuation">}</span>
+
+  <span class="BoldGray">jquery</span><span class="Punctuation">()</span> <span class="Punctuation">{</span>
+    <span class="BoldGray">$</span><span class="Punctuation">(</span><span class="RegularSilverItalic">'</span><span class="RegularSilverItalic">body</span><span class="RegularSilverItalic">'</span><span class="Punctuation">).</span><span class="BoldGray">innerHTML</span> <span class="RegularDark">=</span> <span class="RegularSilverItalic">"</span><span class="RegularSilverItalic">alert('xss')</span><span class="RegularSilverItalic">"</span>
+  <span class="Punctuation">}</span>
+
+  <span class="BoldGray">promise</span><span class="Punctuation">()</span> <span class="Punctuation">{</span>
+    <span class="BoldBlack">return</span> <span class="BoldGray">Promise</span><span class="Punctuation">.</span><span class="BoldGray">resolve</span><span class="Punctuation">(</span><span class="RegularSilverItalic">'</span><span class="RegularSilverItalic">foo</span><span class="RegularSilverItalic">'</span><span class="Punctuation">)</span>
+  <span class="Punctuation">}</span>
+<span class="Punctuation">}</span>
+
+<span class="BoldBlack">const</span> <span class="BoldGray">test</span> <span class="RegularDark">=</span> <span class="BoldBlack">new</span> <span class="BoldGray">Test</span><span class="Punctuation">()</span>
+<span class="BoldGray">test</span><span class="Punctuation">.</span><span class="BoldGray">promise</span><span class="Punctuation">().</span><span class="BoldGray">then</span><span class="Punctuation">((</span><span class="BoldGray">e</span><span class="Punctuation">)</span> <span class="RegularDark">=&gt;</span> <span class="Punctuation">{</span>
+  <span class="BoldGray">console</span><span class="Punctuation">.</span><span class="BoldGray">log</span><span class="Punctuation">(</span><span class="BoldGray">e</span><span class="Punctuation">)</span>
+<span class="Punctuation">})</span>
+
+<span class="BoldBlack">export</span> <span class="BoldGray">module</span><span class="Punctuation">;</span></code></pre>
+          </section>
+        </section>
       </section>
     </article>
   </body>
