@@ -72,19 +72,23 @@ main dl.info dd {
 }
 
 h1 a,
-h2 a {
+h1 a:visited,
+h1 a:hover {
   display: block;
   color: var(--heading-font-color);
 }
 
-h1 a:visited,
-h2 a:visited {
-  color: var(--heading-font-color);
+h2 a,
+h2 a:visited,
+h2 a:hover {
+  display: block;
+  color: var(--font-color);
 }
 
-h1 a:hover,
-h2 a:hover {
-  color: royalblue;
+main > ol > li > h2 > a,
+main > ol > li > h2 > a:visited,
+main > ol > li > h2 > a:hover {
+  color: var(--heading-font-color);
 }
 
 main > ol li p {

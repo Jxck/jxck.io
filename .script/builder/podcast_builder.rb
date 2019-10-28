@@ -35,7 +35,7 @@ class PodcastBuilder
     puts episode.path
 
     # entry
-    episode.build(TMP.new)
+    episode.build(HTML.new)
     html = @html_template.result(binding).strip
     File.write(episode.target_path, html)
   end
@@ -46,7 +46,7 @@ class PodcastBuilder
     @episodes.each{|episode|
       puts episode.path
 
-      episode.build(TMP.new)
+      episode.build(HTML.new)
       html = @html_template.result(binding).strip
       File.write(episode.target_path, html)
     }
