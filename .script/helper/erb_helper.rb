@@ -1,4 +1,4 @@
-module ErbHelper
+module ERBHelper
   include ERB::Util
 
   # indent with depth

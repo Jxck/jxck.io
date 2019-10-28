@@ -66,7 +66,11 @@ class Traverser
         acc
       }
 
-      node.children = children
+      node.children = children.map{|child|
+        # 親が blockquote であることを子に入れておく
+        child.parent = node
+        child
+      }
     end
 
     if node.type == :ul or node.type == :ol

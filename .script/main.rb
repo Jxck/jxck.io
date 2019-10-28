@@ -10,22 +10,10 @@ require "pathname"
 require "kramdown"
 require "kramdown-parser-gfm"
 
-require_relative "markdown/ast.rb"
-require_relative "markdown/traverser.rb"
 
-require_relative "file/article.rb"
-require_relative "file/entry.rb"
-require_relative "file/episode.rb"
-
-require_relative "format/html.rb"
-require_relative "format/amp.rb"
-
-require_relative "builder/blog_builder.rb"
-require_relative "builder/podcast_builder.rb"
-require_relative "builder/idtag_builder.rb"
-
-require_relative "helper/erb_helper.rb"
-include ErbHelper
+require "./.script/builder/builder.rb"
+require "./.script/helper/erb_helper.rb"
+include ERBHelper
 
 # debugger
 def j(o)
@@ -60,12 +48,12 @@ if __FILE__ == $PROGRAM_NAME
 
   dir  = "./blog.jxck.io/entries/**/*.md"
   icon = "https://jxck.io/assets/img/jxck" # 拡張子は template で補完
-  blog = BlogBuilder.new(dir, icon)
+  blog = Builder::BlogBuilder.new(dir, icon)
 
 
   dir  = "./mozaic.fm/episodes/**/*.md"
   icon = "https://mozaic.fm/assets/img/mozaic" # 拡張子は template で補完
-  podcast = PodcastBuilder.new(dir, icon)
+  podcast = Builder::PodcastBuilder.new(dir, icon)
 
 
 
@@ -121,7 +109,7 @@ if __FILE__ == $PROGRAM_NAME
   opt.on("--marktest") {|v|
     puts "test markup"
     path = "./.script/test/test.md"
-    idtag = IdtagBuilder.new()
+    idtag = Builder::IdtagBuilder.new()
     idtag.build(path)
   }
 
@@ -137,7 +125,7 @@ if __FILE__ == $PROGRAM_NAME
     podcast.index
 
     path = "./.script/test/test.md"
-    idtag = IdtagBuilder.new()
+    idtag = Builder::IdtagBuilder.new()
     idtag.build(path)
   }
 
