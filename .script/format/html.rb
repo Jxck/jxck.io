@@ -49,79 +49,79 @@ module Format
     ### block element
     def article(node)
       <<~EOS
-    <article>
-      #{indent(node.value)}
-    </article>
+      <article>
+        #{indent(node.value)}
+      </article>
       EOS
     end
     def section(node)
       <<~EOS
-    <section>
-      #{indent(node.value)}
-    </section>
+      <section>
+        #{indent(node.value)}
+      </section>
       EOS
     end
     def ul(node)
       <<~EOS
-    <ul>
-      #{indent(node.value)}
-    </ul>
+      <ul>
+        #{indent(node.value)}
+      </ul>
       EOS
     end
     def ol(node)
       <<~EOS
-    <ol>
-      #{indent(node.value)}
-    </ol>
+      <ol>
+        #{indent(node.value)}
+      </ol>
       EOS
     end
     def tabletag(node)
       <<~EOS
-    <table>
-      #{indent(node.value)}
-    </table>
+      <table>
+        #{indent(node.value)}
+      </table>
       EOS
     end
     def thead(node)
       <<~EOS
-    <thead>
-      #{indent(node.value)}
-    </thead>
+      <thead>
+        #{indent(node.value)}
+      </thead>
       EOS
     end
     def tbody(node)
       <<~EOS
-    <tbody>
-      #{indent(node.value)}
-    </tbody>
+      <tbody>
+        #{indent(node.value)}
+      </tbody>
       EOS
     end
     def tr(node)
       <<~EOS
-    <tr>
-      #{indent(node.value)}
-    </tr>
+      <tr>
+        #{indent(node.value)}
+      </tr>
       EOS
     end
     def dl(node)
       <<~EOS
-    <dl>
-      #{indent(node.value)}
-    </dl>
+      <dl>
+        #{indent(node.value)}
+      </dl>
       EOS
     end
     def div(node)
       <<~EOS
-    <div>
-      #{indent(node.value)}
-    </div>
+      <div>
+        #{indent(node.value)}
+      </div>
       EOS
     end
     def blockquote(node)
       <<~EOS
-    <blockquote>
-      #{indent(node.value)}
-    </blockquote>
+      <blockquote>
+        #{indent(node.value)}
+      </blockquote>
       EOS
     end
 
@@ -243,9 +243,9 @@ module Format
     def p(node)
       if node.close
         <<~EOS
-      <p>
-        #{indent(node.value)}
-      </p>
+        <p>
+          #{indent(node.value)}
+        </p>
         EOS
       else
         "<p>#{node.value}\n"
@@ -255,9 +255,9 @@ module Format
     def li(node)
       if node.close
         <<~EOS
-      <li>
-        #{indent(node.value)}
-      </li>
+        <li>
+          #{indent(node.value)}
+        </li>
         EOS
       else
         "<li>#{node.value}\n"
