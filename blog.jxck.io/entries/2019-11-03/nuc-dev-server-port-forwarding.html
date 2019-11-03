@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <!--
+  貴様、見ているな!!
+  このサイトの技術的なまとめはこちらをどうぞ。
+  https://labs.jxck.io/blog
+
+  by Jxck
+  -->
+  <link rel=canonical href="https://blog.jxck.io/entries/2019-11-03/nuc-dev-server-port-forwarding.html">
+  <link rel=amphtml href="https://blog.jxck.io/entries/2019-11-03/nuc-dev-server-port-forwarding.amp.html">
+  <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+  <link rel=author href=https://jxck.io/assets/humans.txt>
+  <link rel=manifest href=/manifest.json>
+  <link rel=preload as=font type=font/woff2 href=/assets/font/NotoSansCJKjp-Regular-Jxck-20191017.woff2 crossorigin>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <script defer src=/assets/js/main.js></script>
+  <script defer src=/assets/js/ga.js></script>
+  <script defer src=/assets/js/highlight.pack.js></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type=image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+
+  <meta name=author content=Jxck>
+  <meta name=description content="家では Mac を使っていたが、やはり Ubuntu 開発環境を作ることにした。前々から気になっていた Intel NUC をベースに Ubuntu 環境を構築。また、外出時もアクセスできるように SSH Port Fowarding を使って、固定 IP の無い家に外から...">
+  <meta name=keywords content="systemd,ssh,linux,nuc">
+
+  <meta name=twitter:card content=summary>
+  <meta name=twitter:site content=@jxck_>
+  <meta name=twitter:url content="https://blog.jxck.io/entries/2019-11-03/nuc-dev-server-port-forwarding.html">
+  <meta name=twitter:title content="Intel NUC で自宅 Ubuntu 開発環境構築と SSH Port Forwarding によるアクセス | blog.jxck.io">
+  <meta name=twitter:description content="家では Mac を使っていたが、やはり Ubuntu 開発環境を作ることにした。前々から気になっていた Intel NUC をベースに Ubuntu 環境を構築。また、外出時もアクセスできるように SSH Port Fowarding を使って、固定 IP の無い家に外から...">
+  <meta name=twitter:image content="https://jxck.io/assets/img/jxck.png">
+
+  <meta property=og:type content=article>
+  <meta property=og:url content="https://blog.jxck.io/entries/2019-11-03/nuc-dev-server-port-forwarding.html">
+  <meta property=og:title content="Intel NUC で自宅 Ubuntu 開発環境構築と SSH Port Forwarding によるアクセス | blog.jxck.io">
+  <meta property=og:site_name content="blog.jxck.io">
+  <meta property=og:description content="家では Mac を使っていたが、やはり Ubuntu 開発環境を作ることにした。前々から気になっていた Intel NUC をベースに Ubuntu 環境を構築。また、外出時もアクセスできるように SSH Port Fowarding を使って、固定 IP の無い家に外から...">
+  <meta property=og:image content="https://jxck.io/assets/img/jxck.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Intel NUC で自宅 Ubuntu 開発環境構築と SSH Port Forwarding によるアクセス | blog.jxck.io",
+    "image": [
+      "https://jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2019-11-03T08:00:00+08:00",
+    "dateModified": "2019-11-03T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.60x60.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": "家では Mac を使っていたが、やはり Ubuntu 開発環境を作ることにした。前々から気になっていた Intel NUC をベースに Ubuntu 環境を構築。また、外出時もアクセスできるように SSH Port Fowarding を使って、固定 IP の無い家に外から..."
+  }
+  </script>
+
+  <title>Intel NUC で自宅 Ubuntu 開発環境構築と SSH Port Forwarding によるアクセス | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/blog.svg   title=blog   alt="blog top" class=logo></a>
+        <li><a href="https://blog.jxck.io/entries/2019-11-03/nuc-dev-server-port-forwarding.amp.html#development=1" aria-label="amp version">
+                                               <img width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/amp.svg    title=blog   alt="amp version"></a>
+        <li><a href=.                         ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/up.svg     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/rss.svg    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/humans.svg title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/jxck.svg   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/markdown.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2019-11-03>2019-11-03</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2019-11-03>2019-11-03</time></dd></div>
+      <div><dt class=tags>tags</dt><dd>[<a href="/tags/systemd.html">systemd</a><i>,</i><a href="/tags/ssh.html">ssh</a><i>,</i><a href="/tags/linux.html">linux</a><i>,</i><a href="/tags/nuc.html">nuc</a>]</dd></div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+    <article>
+      <h1><a href=/entries/2019-11-03/nuc-dev-server-port-forwarding.html>Intel NUC で自宅 Ubuntu 開発環境構築と SSH Port Forwarding によるアクセス</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>家では Mac を使っていたが、やはり Ubuntu 開発環境を作ることにした。
+        <p>前々から気になっていた Intel NUC をベースに Ubuntu 環境を構築。
+        <p>また、外出時もアクセスできるように SSH Port Fowarding を使って、固定 IP の無い家に外からアクセスできるようにした。
+        <p>備忘録を兼ねて記す。
+      </section>
+      <section>
+        <h2 id="自宅開発環境"><a href="#自宅開発環境">自宅開発環境</a></h2>
+        <p>自宅では長らく Mac を使ってきたが、やはり Linux 環境があったほうが良いということで、数年ぶりにラップトップ以外の PC の購入を検討した。
+        <p>自宅サーバとして使えれば、宅内オートメーションや、さまざまな用途にも流用できて、遊ぶ上でも良いだろう。
+        <p>今は mini PC も色々出ており、選択肢も多く、比較的安価に、場所をとらないサーバが組めるようになった。
+        <p>これを期に、高い Mac の買い替え更新をやめ、 Air などの持ち運び用途に特化したものを選び、メインリソースとしてどこからもアクセスできる自宅サーバを組むことにした。
+      </section>
+      <section>
+        <h2 id="要件"><a href="#要件">要件</a></h2>
+        <p>要件は以下になる。
+        <ul>
+          <li>邪魔にならない
+          <li>静か
+          <li>どこからでもアクセスできる
+        </ul>
+      </section>
+      <section>
+        <h2 id="邪魔にならない"><a href="#邪魔にならない">邪魔にならない</a></h2>
+        <p>最後にデスクトップを買ったのは 10 年以上前で、そこからずっと Mac のラップトップで過ごしてきたため、基本的に大きな筐体を置く前提の家になってない。
+        <p>そこで、タワー型より、机の端にちょこっと置けるくらいの mini PC 程度が良く、前から気になっていた Intel NUC をベースにすることにした。
+      </section>
+      <section>
+        <h2 id="静か"><a href="#静か">静か</a></h2>
+        <p>家に置く上で、ファンなどがうるさいのが一番ストレスになる。発熱しやすい作りはあまり好ましくない。
+        <p>Mac 以外の PC 事情はあまり詳しくないので、久々に家電量販店で詳しそうな店員に色々聞いてみる。
+        <p>Intel NUC でそれなりのスペックを選ぶと、 Core i7 で M.2 SSD などが選択可能だが、それらは電力消費が大きく、ということは発熱しやすいとのこと。
+        <p>正直そこまで CPU をぶん回すような処理も、クラスタを組んでどうこうといったこともしないし、スペックが過剰である必要はない。
+        <p>値段も抑えられるので、今回はとりあえず控えめに組んでおくことにした。
+        <ul>
+          <li>
+            NUC 自体の世代<ul>
+              <li>8 以降は排熱が改善されているらしい
+            </ul>
+          </li>
+          <li>
+            Intel Core の世代<ul>
+              <li>4 Core 8 Thread あると嬉しい
+              <li>i7 で電気を食うなら i5 で別に良い
+            </ul>
+          </li>
+          <li>
+            SSD<ul>
+              <li>M.2 NVMe は高電力で発熱しやすいらしい
+              <li>
+                そこまでの書き込み速度いらないので 2.5&rdquo; SSD で十分
+              </li>
+              <li>外部ストレージがすでにあるので、サイズも小さくて良い
+            </ul>
+          </li>
+          <li>
+            RAM<ul>
+              <li>特に発熱はあまり関係なさそう
+              <li>とりあえず 16G を 1 枚指しておて不足ならもう 16G 買い足す
+            </ul>
+          </li>
+        </ul>
+        <p>すると NUC8i5BEH になる。
+        <p>あとは、その用途に合いそうなパーツをセットで購入し組む。
+        <ul>
+          <li><a href="https://www.amazon.co.jp/dp/B07J6T286L">NUC8I5BEH</a>
+          <li><a href="https://www.amazon.co.jp/dp/B01LW588R9">Kingston DDR4-2400 (PC4-19200) 16GB</a>
+          <li><a href="https://www.amazon.co.jp/dp/B077PPN5NN">Crucial SSD 500GB MX500</a>
+          <li><a href="https://www.amazon.co.jp/dp/B014GLJJ32">BUFFALO 電源ケーブル</a>
+        </ul>
+        <p>組み立ても、開けて指すだけなので特に難しいところは無かった。
+        <p>Ubuntu 19.10 eoan を入れたが、これもすんなり入った。
+      </section>
+      <section>
+        <h2 id="どこからでもアクセスできる"><a href="#どこからでもアクセスできる">どこからでもアクセスできる</a></h2>
+        <p>自宅内に置いているため、固定 IP などはない。
+        <p>しかし、せっかく作った環境は、外出先等でも使いたいため、外からもアクセスできるようにしたい。
+        <p>すでに Sakura VPS には固定 IP を振っているため、これを用いた最も安価で簡単な方法は SSH の Portfowarding だろう。
+        <section>
+          <h3 id="構成"><a href="#構成">構成</a></h3>
+          <p>外出先の Laptop から Sakura VPS を踏み台にして NUC に SSH 接続したい。
+          <p>構成としては以下のようになる。
+          <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+          <pre><code translate="no">[nuc]--1--&gt;|&lt;--3--[vps]----|&lt;--2--[laptop]</code></pre>
+          <p>このとき NUC から VPS には SSH できるが、逆は NUC に IP が無いためできない。
+          <p>そこで、 NUC と VPS の SSH を張りっぱなしにしておき、 laptop からの SSH をそこを通して NUC に届けるのが Port Fowarding だ。
+          <p>まず NUC から VPS に -R で SSH をつなぐ。
+          <pre class=sh><code translate="no"># nuc から vps
+$ ssh user@vps -NR 22222:localhost:22</code></pre>
+          <p>これを繋ぎっぱなしにする。
+          <p>次に、外出した laptop から vps につなぐ、これは普通の SSH
+          <pre class=sh><code translate="no"># laptop から vps
+$ ssh user@vps</code></pre>
+          <p>最後に、入った VPS の上で、 localhost:22222 に対して SSH する
+          <pre class=sh><code translate="no"># vps に入ったあと vps から nuc
+$ ssh user@localhost -p 22222</code></pre>
+          <p>最初に VPS の 22222 ポートへの通信を、 NUC の 22 に転送するように SSH を貼っている。
+          <p>NUC 上で sshd が動いていれば、 VPS 上で 22222 に対して SSH すると、 NUC に入れるという仕組みだ。
+          <p>これを、いつでも接続できるようにしておく。
+        </section>
+        <section>
+          <h3 id="sshconfig"><a href="#sshconfig">~/.ssh/config</a></h3>
+          <p>まず、 SSH 接続を維持しやすい設定にするため、 config を以下のようにする。
+          <pre class=config><code translate="no">Host reverse-ssh
+  HostName $vps
+  User $user
+  ServerAliveInterval 60
+  ExitOnForwardFailure yes
+  TCPKeepAlive no</code></pre>
+          <p>Foward に失敗したり、応答が返らなければ落ちる。ただし TCP の接続が一時的に不安定になっても影響を受けないといった設定だ。
+          <p>肝は、変な状態でとどまらず、おかしかったら落ちることだ。落ちれば、後述の方法で再接続できる。
+          <p>これで最初のコマンドは以下のようになる。
+          <pre class=sh><code translate="no"># nuc から vps
+$ ssh reverse-ssh -NR 22222:localhost:22</code></pre>
+        </section>
+        <section>
+          <h3 id="autossh"><a href="#autossh">autossh</a></h3>
+          <p>まず NUC から VPS への reverse ssh は、常に貼っておかないと使いたいとき使えない。
+          <p>もし接続が落ちても自動で再接続する必要がある。
+          <p>これは autossh というツールを使うと、簡単にできるらしいので入れてみる。
+          <p>autossh は ssh と同じコマンドで使うと、 ssh プロセスをフォークして監視し、 ssh が落ちたら再度フォークしてくれるツールだ。
+          <pre class=sh><code translate="no">$ autossh reverse-ssh -NR 22222:localhost:22</code></pre>
+          <p>しかし autossh 自体が落ちてもだれも面倒を見てくれない。
+          <p>また、 PC を再起動した場合は、自分で実行しないといけない。
+          <p>そこで、これを systemd に登録する。
+        </section>
+        <section>
+          <h3 id="systemd"><a href="#systemd">systemd</a></h3>
+          <p>systemd への登録はレベルによって場所が変わる。
+          <p>今回のようなユーザ単位のサービスの場合は <code translate="no">~/.config/systemd/user/</code> に登録することになる。
+          <p>しかし、ここはユーザがログインしたときに実行されるため、再起動してユーザがログインする前には実行されない。
+          <p>そこで、起動時にユーザのサービスが起動されるように以下を実行する。
+          <pre class=sh><code translate="no">$ sudo loginctl enable-linger $USER</code></pre>
+          <p>ところが、これが何故か動かない。
+          <pre class=sh><code translate="no">Could not enable linger: No such file or directory</code></pre>
+          <p>探すと <code translate="no">/var/lib/systemd/linger/$USER</code> を touch するとか色々ワークアラウンドが出てくるが、実行しても有効化できなかった。
+          <p>どうやら systemd のバグらしい。
+          <p>仕方ないので、普通に system レベルで登録してしまうことにした。
+          <p>ということで、以下を <code translate="no">/etc/systemd/system/autossh.service</code> として作成。
+          <pre class=systemd><code translate="no">[Unit]
+Description=keep ssh tunnel
+After=network-online.target ssh.service
+
+[Service]
+Type=simple
+RestartSec=3
+Restart=always
+TimeoutStopSec=10
+
+Environment=&quot;AUTOSSH_PORT=0&quot;
+Environment=&quot;AUTOSSH_GATETIME=0&quot;
+ExecStart=/usr/bin/autossh reverse-ssh -NTR 22222:localhost:22
+
+[Install]
+WantedBy=multi-user.target</code></pre>
+          <p>(しかし、これなら autossh 無くても systemd で ssh を監視するだけで良かった気もする)
+          <p>ところがこのままでは ssh が sudo で実行されるため、 <code translate="no">~/.ssh/config</code> は使われず reverse-ssh が解釈されない。
+          <p>面倒なので <code translate="no">~/.ssh/config</code> に書いた内容を <code translate="no">/etc/ssh/ssh_config</code> に書いてしまうことにした。
+          <p>これで一応 ssh 接続は維持できた。
+          <p>若干の不安もあるので、制限を色々かけておく。
+        </section>
+        <section>
+          <h3 id="sshd_config"><a href="#sshd_config">sshd_config</a></h3>
+          <p>NUC には、 VPS からの key を用いた ssh のみを許可したい。
+          <p>まず <code translate="no">/etc/ssh/sshd_cinfig</code> でパスワードによる接続を無効にする。
+          <pre class=config><code translate="no">PasswordAuthentication no</code></pre>
+          <p>これで鍵がなければ入れない。
+        </section>
+        <section>
+          <h3 id="ufw"><a href="#ufw">UFW</a></h3>
+          <p>ufw を使って、 NUC の 22 へのアクセスを VPS の IP に限定する。
+          <p>これにより、意図しないアクセスを防ぐことができる。
+          <p>そうでなくても Ubuntu Desktop に sshd を入れた時点で、ほかも締め付けておきたい。
+          <p>以下のようなスクリプトで行った。
+          <pre class=sh><code translate="no">ufw reset
+
+ufw default deny incoming
+ufw default allow outgoing
+
+ufw allow from $(vsp_ip) to any port 22
+
+ufw enable
+ufw reload
+ufw status numbered</code></pre>
+          <p>変更があったら、このスクリプトを更新して叩き直せばリセットして再設定できる。
+          <p>(デフォルトの UFW の設定を全部すっ飛ばしたが、デフォルトがなにやっているのかよくわからなかったので、困ったら自力で治す)
+        </section>
+        <section>
+          <h3 id="authorized_keys"><a href="#authorized_keys">authorized_keys</a></h3>
+          <p>authorized_keys の最初には、 SSH で接続してくる IP の制限が指定できる。
+          <p>今回は、 VPS からの forwarding しか受け付けない設定にしたい。
+          <p>この場合、 NUC には localhost からアクセスしていることになるため、 NUC の <code translate="no">~/.ssh/authorized_keys</code> で、該当行の先頭に以下を追加する。
+          <pre><code translate="no">from=&quot;127.0.0.1&quot; ssh-xxx xxxxxxxxxxxxxxxxx</code></pre>
+          <p>これで、経路が VPS の Port Forwarding を用いた経路一択になったはずだ。
+        </section>
+      </section>
+      <section>
+        <h2 id="laptop-の-config"><a href="#laptop-の-config">Laptop の config</a></h2>
+        <p>毎回 VPS に入ってから ssh しなおすのは面倒なので、以下のように ProxyCommand を設定する。
+        <pre class=config><code translate="no">Host nuc
+  ProxyCommand ssh -W localhost:22222 vps
+  ServerAliveInterval 60</code></pre>
+        <p>すると laptop 上では以下のように叩けば、 VPS を経由して NUC に自動的に入れる。
+        <pre class=sh><code translate="no">$ ssh nuc</code></pre>
+      </section>
+      <section>
+        <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
+        <ul>
+          <li>小さく静かで邪魔にならない開発環境を構築
+          <li>VPS を経由してのみ SSH Port Forwarding でログイン可能
+          <li>外出先からも簡単に SSH できるようにした
+        </ul>
+        <p>これでだいぶ色々な開発が捗るようになった。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small><small>Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>Google Analytics</a> and <a href=https://w3c.github.io/ServiceWorker/>Service Worker</a>.</small></p>
+  </footer>
+</body>
+</html>

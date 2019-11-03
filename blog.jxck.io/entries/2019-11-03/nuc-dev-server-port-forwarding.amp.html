@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html amp lang=ja>
+<head>
+  <meta charset=utf-8>
+  <!--
+  貴様、見ているな!!
+  このサイトの技術的なまとめはこちらをどうぞ。
+  https://labs.jxck.io/blog
+
+  by Jxck
+  -->
+  <link rel=canonical href=https://blog.jxck.io/entries/2019-11-03/nuc-dev-server-port-forwarding.html>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+  <link rel=author href=https://jxck.io/assets/humans.txt>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type=image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+
+  <meta name=author content=Jxck>
+  <meta name=description content="家では Mac を使っていたが、やはり Ubuntu 開発環境を作ることにした。前々から気になっていた Intel NUC をベースに Ubuntu 環境を構築。また、外出時もアクセスできるように SSH Port Fowarding を使って、固定 IP の無い家に外から...">
+  <meta name=keywords content="systemd,ssh,linux,nuc">
+
+  <meta name=twitter:card content=summary>
+  <meta name=twitter:site content=@jxck_>
+  <meta name=twitter:url content="https://blog.jxck.io/entries/2019-11-03/nuc-dev-server-port-forwarding.html">
+  <meta name=twitter:title content="Intel NUC で自宅 Ubuntu 開発環境構築と SSH Port Forwarding によるアクセス | blog.jxck.io">
+  <meta name=twitter:description content="家では Mac を使っていたが、やはり Ubuntu 開発環境を作ることにした。前々から気になっていた Intel NUC をベースに Ubuntu 環境を構築。また、外出時もアクセスできるように SSH Port Fowarding を使って、固定 IP の無い家に外から...">
+  <meta name=twitter:image content="https://jxck.io/assets/img/jxck.png">
+
+  <meta property=og:type content=article>
+  <meta property=og:url content="https://blog.jxck.io/entries/2019-11-03/nuc-dev-server-port-forwarding.html">
+  <meta property=og:title content="Intel NUC で自宅 Ubuntu 開発環境構築と SSH Port Forwarding によるアクセス | blog.jxck.io">
+  <meta property=og:site_name content="blog.jxck.io">
+  <meta property=og:description content="家では Mac を使っていたが、やはり Ubuntu 開発環境を作ることにした。前々から気になっていた Intel NUC をベースに Ubuntu 環境を構築。また、外出時もアクセスできるように SSH Port Fowarding を使って、固定 IP の無い家に外から...">
+  <meta property=og:image content="https://jxck.io/assets/img/jxck.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Intel NUC で自宅 Ubuntu 開発環境構築と SSH Port Forwarding によるアクセス | blog.jxck.io",
+    "image": [
+      "https://jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2019-11-03T08:00:00+08:00",
+    "dateModified": "2019-11-03T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.60x60.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": "家では Mac を使っていたが、やはり Ubuntu 開発環境を作ることにした。前々から気になっていた Intel NUC をベースに Ubuntu 環境を構築。また、外出時もアクセスできるように SSH Port Fowarding を使って、固定 IP の無い家に外から..."
+  }
+  </script>
+
+  <title>Intel NUC で自宅 Ubuntu 開発環境構築と SSH Port Forwarding によるアクセス | blog.jxck.io</title>
+  <script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+  <script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src=https://cdn.ampproject.org/v0.js></script>
+  <style amp-custom>
+    article section p {
+      margin-left: 0;
+    }
+
+    article table {
+      margin-left: 0;
+    }
+
+    article img {
+      margin: var(--grid) 0;
+      border: 1px solid #ccc;
+      box-sizing: content-box;
+      background-color: #fff;
+    }
+
+    article ul,
+    article ol,
+    article dl {
+      margin-left: var(--grid);
+      font-family: var(--mono-font);
+    }
+
+    article ul li ul,
+    article ol li ol {
+      margin: 0 0 0 calc(var(--grid)*2);
+      font-size: 1rem;
+    }
+
+    article ol li ol li,
+    article ul li ul li {
+      margin-bottom: 0;
+    }
+
+    article dl {
+      display: grid;
+      grid-template-columns: minmax(auto, max-content);
+      grid-column-gap: var(--grid);
+    }
+
+    article dl div {
+      display: contents;
+    }
+
+    article dl dt {
+      grid-column: 1 / 2;
+    }
+    article dl dd {
+      grid-column: 2 / 2;
+    }
+
+    article blockquote {
+      font-family: var(--mono-font);
+    }
+
+    article blockquote p {
+      margin: 0;
+    }
+
+    @supports (line-height-step: 1px) {
+      article {
+        --grid-rhythm: 1.5em;
+        line-height: 1.5;
+        line-height-step: var(--grid-rhythm);
+      }
+
+      article h1,
+      article h2,
+      article h3,
+      article h4,
+      article h5,
+      article h6 {
+        display: inline-block;
+        width: 100%;
+        line-height-step: 0;
+        line-height: 1.2;
+        margin-bottom: 0;
+      }
+
+      article section {
+        /* grid for debug */
+        /* background-size: 100% var(--grid-rhythm); */
+        /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
+      }
+
+      article p {
+        margin-top: var(--grid-rhythm);
+        margin-bottom: var(--grid-rhythm);
+      }
+
+      article pre,
+      article table {
+        line-height-step: 0;
+        line-height: normal;
+      }
+    }
+    /* normal regular */
+    @font-face {
+      font-family: "NotoSansCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src:
+        local("Noto Sans CJK JP Regular"),
+        url("/assets/font/NotoSansCJKjp-Regular-Jxck-20191017.woff2") format("woff2");
+    }
+    /* normal bold */
+    @font-face {
+      font-family: "NotoSansCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src:
+        local("Noto Sans CJK JP Bold"),
+        url("/assets/font/NotoSansCJKjp-Bold-Jxck-20191017.woff2") format("woff2");
+    }
+
+
+    /* mono regular */
+    @font-face {
+      font-family: "NotoSansMonoCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src:
+        local("Noto Sans Mono CJK JP Regular"),
+        url("/assets/font/NotoSansMonoCJKjp-Regular-Jxck-20191017.woff2") format("woff2");
+    }
+    /* mono bold */
+    @font-face {
+      font-family: "NotoSansMonoCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src:
+        local("Noto Sans Mono CJK JP Bold"),
+        url("/assets/font/NotoSansMonoCJKjp-Bold-Jxck-20191017.woff2") format("woff2");
+    }
+
+    /* Light Mode Theme */
+    :root {
+      --background-color: #fefefe;
+      --font-color: #222;
+      --header-color: #222;
+
+      --anchor-color: RoyalBlue;
+      --anchor-visited-color: Brown;
+
+      --code-block: #efefef;
+      --code-block-font: #222;
+
+      --block-quote: #ddd;
+      --table-border: #222;
+
+      --regular-font: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", "Hiragino Sans", 'ヒラギノ角ゴ Pro W3', 'メイリオ', sans-serif;
+      --mono-font: "NotoSansMonoCJKjp-Jxck";
+      --code-font: Menlo, Consolas, Liberation, Mono, Courier, "NotoSansMonoCJKjp-Jxck";
+
+      --icon-size: 30px;
+
+      --width: 80vw;
+      --grid: 1rem;
+
+      --radius: 4px;
+    }
+
+
+    /* Mobile Theme */
+    @media screen and (max-device-width: 800px) {
+      :root {
+        --width: 94vw;
+      }
+
+      audio {
+        width: 100%;
+      }
+    }
+
+    /* Dark Mode Theme */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background-color: #010101;
+        --font-color: #eee;
+
+        --anchor-color: CornflowerBlue;
+        --anchor-visited-color: RosyBrown;
+
+        --code-block: #efefef;
+
+        --table-border: #eee;
+      }
+
+      article img {
+        filter: grayscale(50%);
+      }
+      article img[src*=svg] {
+        filter: invert(100%) grayscale(50%);
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--regular-font);
+      background-color: var(--background-color);
+      color: var(--font-color);
+      font-feature-settings: "palt";
+      margin: 0;
+      padding: 0;
+    }
+
+    code {
+      font-family: var(--mono-font);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    hr {
+      margin: 0;
+      padding: 0;
+    }
+
+    iframe {
+      display: block;
+      max-width: 100%;
+      margin: var(--grid) 0;
+    }
+    dl.info {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info div {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+
+    dl.info dt::after {
+      content: ":";
+      margin-right: calc(var(--grid)/2);
+    }
+
+    dl.info dd {
+      margin: 0 var(--grid) 0 0;
+    }
+
+    dl.info dd i {
+      font-style: normal;
+      margin-right: calc(var(--grid)/3);
+    }
+    header {
+      z-index: 1;
+      position: sticky;
+      position: -webkit-sticky;
+      top: 0;
+      box-sizing: border-box;
+      margin: 0;
+      padding: calc(var(--grid)/2);
+      background-color: var(--header-color);
+    }
+
+    h2:target,
+    h3:target,
+    h4:target,
+    h5:target,
+    h6:target {
+      /* sticky header に合わせて link scroll をずらす */
+      margin-top:  calc((var(--icon-size) + var(--grid)) * -1);
+      padding-top: calc((var(--icon-size) + var(--grid)));
+    }
+
+    header ul {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      width: var(--width);
+      margin: 0 auto;
+    }
+
+    header ul li {
+      width:  var(--icon-size);
+      height: var(--icon-size);
+      padding: 0;
+      margin: 0 0 0 var(--grid);
+    }
+
+    header ul li a {
+      display: block;
+      width:  var(--icon-size);
+      height: var(--icon-size);
+    }
+
+    header ul li svg {
+      fill: var(--background-color);
+    }
+
+    header ul li::before {
+      content: none;
+    }
+
+    header ul li:first-child {
+      flex-grow: 1;
+      margin-left: 0;
+    }
+
+    header .logo {
+      border: 1px solid #fff;
+      box-sizing: border-box;
+    }
+    h1 > a,
+    h2 > a,
+    h3 > a,
+    h4 > a,
+    h5 > a,
+    h6 > a {
+      color: var(--font-color);
+    }
+
+    h1 > a:visited,
+    h2 > a:visited,
+    h3 > a:visited,
+    h4 > a:visited,
+    h5 > a:visited,
+    h6 > a:visited {
+      color: var(--font-color);
+    }
+
+    h1 > a::before {
+      content: "# ";
+    }
+
+    h2 > a::before {
+      content: "## ";
+    }
+
+    h3 > a::before {
+      content: "### ";
+    }
+
+    h4 > a::before {
+      content: "#### ";
+    }
+
+    h1 > a:hover::before,
+    h2 > a:hover::before,
+    h3 > a:hover::before,
+    h4 > a:hover::before,
+    h5 > a:hover::before,
+    h6 > a:hover::before {
+      color: var(--anchor-visited-color);
+    }
+
+    em {
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    em::before,
+    em::after {
+      content: "*";
+    }
+
+    strong {
+      color: red;
+    }
+
+    strong::before,
+    strong::after {
+      content: "**";
+    }
+
+    ul li::before {
+      content: "- ";
+    }
+
+    ol {
+      counter-reset: list;
+    }
+
+    ol li::before {
+      counter-increment: list;
+      content: counter(list) ". ";
+    }
+
+    dl dt::after {
+      content: ":";
+    }
+
+    blockquote {
+      display: block;
+      border: solid 1px var(--block-quote);
+      border-radius: var(--radius);
+      padding: 1rem;
+      margin: 0;
+    }
+
+    blockquote p::before {
+      content: "> ";
+    }
+
+    code {
+      background-color: var(--code-block);
+      color: var(--code-block-font);
+      border-radius: var(--radius);
+      padding: 0 4px;
+    }
+
+    code::before,
+    code::after {
+      content: "`";
+    }
+    main {
+      display: block;
+      width: var(--width);
+      margin: 1em auto;
+    }
+
+    a {
+      word-wrap: break-word;
+      text-decoration: none;
+      color: var(--anchor-color);
+    }
+
+    a:visited {
+      color: var(--anchor-visited-color);
+    }
+
+    ol,
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      word-break: break-all;
+      word-wrap: break-word;
+    }
+
+    dl dt {
+      font-weight: bold;
+      margin: 0;
+    }
+
+    dl dd {
+      margin: 0;
+    }
+    footer {
+      padding: var(--grid);
+    }
+
+    footer strong,
+    footer .copyright {
+      display: block;
+      width: var(--width);
+      margin: 0 auto;
+      font-style: italic;
+    }
+    pre {
+      margin: var(--grid) 0;
+      border-radius: var(--radius);
+    }
+
+    pre::before {
+      content: "```" attr(class) "\A";
+    }
+
+    pre::after {
+      z-index: -1;
+      position: relative;
+      top: -1em;
+      content: "\A```";
+    }
+
+    pre > code {
+      font-family: var(--code-font);
+      overflow: auto;
+      display: block;
+      padding: 0.5rem;
+      margin: 0;
+    }
+
+    pre > code::before,
+    pre > code::after {
+      content: none;
+    }
+
+    .hljs-keyword {
+      color: #a71d5d;
+    }
+
+    .hljs-title {
+      color: #795da3;
+    }
+
+    .hljs-string {
+      color: #183691;
+    }
+
+    .hljs-number {
+      color: #0086b3;
+    }
+
+    .hljs-built_in {
+      color: #0086b3;
+    }
+
+    .hljs-literal {
+      color: #0086b3;
+    }
+
+    .hljs-regexp {
+      color: #183691;
+    }
+
+    .hljs-comment {
+      color: #4f80e5;
+    }
+
+    .hljs-tag {
+      color: #a71d5d;
+    }
+
+    .hljs-name {
+      color: #222222;
+    }
+
+    .hljs-strong {
+      font-weight: bold;
+    }
+
+    .hljs-attribute {
+      font-weight: bold;
+    }
+
+    .hljs-meta {
+      color: #4f80e5;
+    }
+
+    .hljs-selector-id,
+    .hljs-selector-class,
+    .hljs-selector-pseudo {
+      color: #6f42c1;
+    }
+
+    .hljs-selector-tag {
+      color: #22863a;
+    }
+
+    .hljs-subst {
+      font-weight: bold;
+    }
+
+    .hljs-variable {
+      color: #a71d5d;
+    }
+
+    .hljs-symbol {
+      font-weight: bold;
+    }
+
+    .hljs-selector-attr {
+      color: #6f42c1;
+    }
+
+    .hljs-bullet {
+    }
+
+
+    @media (prefers-color-scheme: dark) {
+      .hljs-keyword {
+        color: #000;
+        font-weight: bold;
+        font-style: italic;
+      }
+
+      .hljs-number {
+        color: var(--code-block-font);
+      }
+
+      .hljs-built_in {
+        color: #000;
+        font-weight: bold;
+      }
+
+      .hljs-literal {
+        color: var(--code-block-font);
+        font-weight: bold;
+      }
+
+      .hljs-regexp {
+        color: var(--code-block-font);
+      }
+
+      .hljs-comment {
+        color: #888;
+      }
+
+      .hljs-tag {
+        color: var(--code-block-font);
+        font-weight: bold;
+      }
+
+      .hljs-strong {
+        font-weight: bold;
+      }
+
+      .hljs-attribute {
+      }
+
+      .hljs-attr {
+        color: var(--code-block-font);
+        font-weight: bold;
+      }
+
+      .hljs-selector-tag {
+        color: var(--code-block-font);
+      }
+
+      .hljs-subst {
+        font-weight: bold;
+      }
+      .hljs-symbol {
+        font-weight: bold;
+      }
+
+      .hljs-section {
+      }
+
+      .hljs-meta,
+      .hljs-selector-id,
+      .hljs-selector-class,
+      .hljs-selector-pseudo,
+      .hljs-variable,
+      .hljs-title,
+      .hljs-string,
+      .hljs-name,
+      .hljs-selector-attr {
+        color: var(--code-block-font);
+      }
+    }
+
+
+
+
+
+
+
+    /**.hljs,**/
+    .hljs-meta-keyword,
+    .hljs-doctag,
+    .hljs-code,
+    .hljs-addition,
+    .hljs-template-variable,
+    .hljs-link,
+    .hljs-type,
+    .hljs-quote,
+    .hljs-template-tag,
+    .hljs-deletion,
+    .hljs-meta-string,
+    .hljs-emphasis {
+      /** if you find element applyed this style, please tell me https://github.com/jxck/jxck.io/issues **/
+      font-size: 100em;
+    }
+    table {
+      font-family: var(--mono-font);
+      margin: var(--grid) 0;
+      border-spacing: 0 0.4rem;
+    }
+
+    th {
+      padding: 0 var(--grid) calc(var(--grid)/2) var(--grid);
+      border-left: 2px solid var(--table-border);
+      border-bottom: 2px dashed var(--table-border);
+    }
+
+    td {
+      padding: calc(var(--grid)/2) var(--grid);
+      border-left: 2px solid var(--table-border);
+    }
+
+    th:last-child,
+    td:last-child {
+      border-right: 2px solid var(--table-border);
+    }
+
+    .align-center {
+      text-align: center;
+    }
+
+    .align-left {
+      text-align: left;
+    }
+
+    .align-right {
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://blog.jxck.io      ><amp-img width=30 height=30 src=/assets/img/blog.svg   alt ="blog top" class=logo     ></a>
+      <li><a href=.                         ><amp-img width=30 height=30 src=/assets/img/up.svg     alt ="move to parent directory"></a>
+      <li><a href=/feeds/atom.xml           ><amp-img width=30 height=30 src=/assets/img/rss.svg    alt ="rss feed"                ></a>
+      <li><a href=https://jxck.io/humans.txt><amp-img width=30 height=30 src=/assets/img/humans.svg alt ="huamns.txt"              ></a>
+      <li><a href=https://jxck.io           ><amp-img width=30 height=30 src=/assets/img/jxck.svg   alt ="jxck logo" class=logo    ></a>
+    </ul>
+  </nav>
+</header>
+<main>
+  <dl class=info>
+    <dt>created_at</dt><dd><time class=created_at datetime=2019-11-03>2019-11-03</time></dd>
+    <dt>updated_at</dt><dd><time class=updated_at datetime=2019-11-03>2019-11-03</time></dd>
+    <dt class=tags>tags</dt><dd>[<a href="/tags/systemd.html">systemd</a><i>,</i><a href="/tags/ssh.html">ssh</a><i>,</i><a href="/tags/linux.html">linux</a><i>,</i><a href="/tags/nuc.html">nuc</a>]</dd>
+  </dl>
+  <article>
+    <h1><a href=/entries/2019-11-03/nuc-dev-server-port-forwarding.html>Intel NUC で自宅 Ubuntu 開発環境構築と SSH Port Forwarding によるアクセス</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p>家では Mac を使っていたが、やはり Ubuntu 開発環境を作ることにした。
+      <p>前々から気になっていた Intel NUC をベースに Ubuntu 環境を構築。
+      <p>また、外出時もアクセスできるように SSH Port Fowarding を使って、固定 IP の無い家に外からアクセスできるようにした。
+      <p>備忘録を兼ねて記す。
+    </section>
+    <section>
+      <h2 id="自宅開発環境"><a href="#自宅開発環境">自宅開発環境</a></h2>
+      <p>自宅では長らく Mac を使ってきたが、やはり Linux 環境があったほうが良いということで、数年ぶりにラップトップ以外の PC の購入を検討した。
+      <p>自宅サーバとして使えれば、宅内オートメーションや、さまざまな用途にも流用できて、遊ぶ上でも良いだろう。
+      <p>今は mini PC も色々出ており、選択肢も多く、比較的安価に、場所をとらないサーバが組めるようになった。
+      <p>これを期に、高い Mac の買い替え更新をやめ、 Air などの持ち運び用途に特化したものを選び、メインリソースとしてどこからもアクセスできる自宅サーバを組むことにした。
+    </section>
+    <section>
+      <h2 id="要件"><a href="#要件">要件</a></h2>
+      <p>要件は以下になる。
+      <ul>
+        <li>邪魔にならない
+        <li>静か
+        <li>どこからでもアクセスできる
+      </ul>
+    </section>
+    <section>
+      <h2 id="邪魔にならない"><a href="#邪魔にならない">邪魔にならない</a></h2>
+      <p>最後にデスクトップを買ったのは 10 年以上前で、そこからずっと Mac のラップトップで過ごしてきたため、基本的に大きな筐体を置く前提の家になってない。
+      <p>そこで、タワー型より、机の端にちょこっと置けるくらいの mini PC 程度が良く、前から気になっていた Intel NUC をベースにすることにした。
+    </section>
+    <section>
+      <h2 id="静か"><a href="#静か">静か</a></h2>
+      <p>家に置く上で、ファンなどがうるさいのが一番ストレスになる。発熱しやすい作りはあまり好ましくない。
+      <p>Mac 以外の PC 事情はあまり詳しくないので、久々に家電量販店で詳しそうな店員に色々聞いてみる。
+      <p>Intel NUC でそれなりのスペックを選ぶと、 Core i7 で M.2 SSD などが選択可能だが、それらは電力消費が大きく、ということは発熱しやすいとのこと。
+      <p>正直そこまで CPU をぶん回すような処理も、クラスタを組んでどうこうといったこともしないし、スペックが過剰である必要はない。
+      <p>値段も抑えられるので、今回はとりあえず控えめに組んでおくことにした。
+      <ul>
+        <li>
+          NUC 自体の世代<ul>
+            <li>8 以降は排熱が改善されているらしい
+          </ul>
+        </li>
+        <li>
+          Intel Core の世代<ul>
+            <li>4 Core 8 Thread あると嬉しい
+            <li>i7 で電気を食うなら i5 で別に良い
+          </ul>
+        </li>
+        <li>
+          SSD<ul>
+            <li>M.2 NVMe は高電力で発熱しやすいらしい
+            <li>
+              そこまでの書き込み速度いらないので 2.5&rdquo; SSD で十分
+            </li>
+            <li>外部ストレージがすでにあるので、サイズも小さくて良い
+          </ul>
+        </li>
+        <li>
+          RAM<ul>
+            <li>特に発熱はあまり関係なさそう
+            <li>とりあえず 16G を 1 枚指しておて不足ならもう 16G 買い足す
+          </ul>
+        </li>
+      </ul>
+      <p>すると NUC8i5BEH になる。
+      <p>あとは、その用途に合いそうなパーツをセットで購入し組む。
+      <ul>
+        <li><a href="https://www.amazon.co.jp/dp/B07J6T286L">NUC8I5BEH</a>
+        <li><a href="https://www.amazon.co.jp/dp/B01LW588R9">Kingston DDR4-2400 (PC4-19200) 16GB</a>
+        <li><a href="https://www.amazon.co.jp/dp/B077PPN5NN">Crucial SSD 500GB MX500</a>
+        <li><a href="https://www.amazon.co.jp/dp/B014GLJJ32">BUFFALO 電源ケーブル</a>
+      </ul>
+      <p>組み立ても、開けて指すだけなので特に難しいところは無かった。
+      <p>Ubuntu 19.10 eoan を入れたが、これもすんなり入った。
+    </section>
+    <section>
+      <h2 id="どこからでもアクセスできる"><a href="#どこからでもアクセスできる">どこからでもアクセスできる</a></h2>
+      <p>自宅内に置いているため、固定 IP などはない。
+      <p>しかし、せっかく作った環境は、外出先等でも使いたいため、外からもアクセスできるようにしたい。
+      <p>すでに Sakura VPS には固定 IP を振っているため、これを用いた最も安価で簡単な方法は SSH の Portfowarding だろう。
+      <section>
+        <h3 id="構成"><a href="#構成">構成</a></h3>
+        <p>外出先の Laptop から Sakura VPS を踏み台にして NUC に SSH 接続したい。
+        <p>構成としては以下のようになる。
+        <pre><code translate="no">[nuc]--1--&gt;|&lt;--3--[vps]----|&lt;--2--[laptop]</code></pre>
+        <p>このとき NUC から VPS には SSH できるが、逆は NUC に IP が無いためできない。
+        <p>そこで、 NUC と VPS の SSH を張りっぱなしにしておき、 laptop からの SSH をそこを通して NUC に届けるのが Port Fowarding だ。
+        <p>まず NUC から VPS に -R で SSH をつなぐ。
+        <pre class=sh><code translate="no"># nuc から vps
+$ ssh user@vps -NR 22222:localhost:22</code></pre>
+        <p>これを繋ぎっぱなしにする。
+        <p>次に、外出した laptop から vps につなぐ、これは普通の SSH
+        <pre class=sh><code translate="no"># laptop から vps
+$ ssh user@vps</code></pre>
+        <p>最後に、入った VPS の上で、 localhost:22222 に対して SSH する
+        <pre class=sh><code translate="no"># vps に入ったあと vps から nuc
+$ ssh user@localhost -p 22222</code></pre>
+        <p>最初に VPS の 22222 ポートへの通信を、 NUC の 22 に転送するように SSH を貼っている。
+        <p>NUC 上で sshd が動いていれば、 VPS 上で 22222 に対して SSH すると、 NUC に入れるという仕組みだ。
+        <p>これを、いつでも接続できるようにしておく。
+      </section>
+      <section>
+        <h3 id="sshconfig"><a href="#sshconfig">~/.ssh/config</a></h3>
+        <p>まず、 SSH 接続を維持しやすい設定にするため、 config を以下のようにする。
+        <pre class=config><code translate="no">Host reverse-ssh
+  HostName $vps
+  User $user
+  ServerAliveInterval 60
+  ExitOnForwardFailure yes
+  TCPKeepAlive no</code></pre>
+        <p>Foward に失敗したり、応答が返らなければ落ちる。ただし TCP の接続が一時的に不安定になっても影響を受けないといった設定だ。
+        <p>肝は、変な状態でとどまらず、おかしかったら落ちることだ。落ちれば、後述の方法で再接続できる。
+        <p>これで最初のコマンドは以下のようになる。
+        <pre class=sh><code translate="no"># nuc から vps
+$ ssh reverse-ssh -NR 22222:localhost:22</code></pre>
+      </section>
+      <section>
+        <h3 id="autossh"><a href="#autossh">autossh</a></h3>
+        <p>まず NUC から VPS への reverse ssh は、常に貼っておかないと使いたいとき使えない。
+        <p>もし接続が落ちても自動で再接続する必要がある。
+        <p>これは autossh というツールを使うと、簡単にできるらしいので入れてみる。
+        <p>autossh は ssh と同じコマンドで使うと、 ssh プロセスをフォークして監視し、 ssh が落ちたら再度フォークしてくれるツールだ。
+        <pre class=sh><code translate="no">$ autossh reverse-ssh -NR 22222:localhost:22</code></pre>
+        <p>しかし autossh 自体が落ちてもだれも面倒を見てくれない。
+        <p>また、 PC を再起動した場合は、自分で実行しないといけない。
+        <p>そこで、これを systemd に登録する。
+      </section>
+      <section>
+        <h3 id="systemd"><a href="#systemd">systemd</a></h3>
+        <p>systemd への登録はレベルによって場所が変わる。
+        <p>今回のようなユーザ単位のサービスの場合は <code translate="no">~/.config/systemd/user/</code> に登録することになる。
+        <p>しかし、ここはユーザがログインしたときに実行されるため、再起動してユーザがログインする前には実行されない。
+        <p>そこで、起動時にユーザのサービスが起動されるように以下を実行する。
+        <pre class=sh><code translate="no">$ sudo loginctl enable-linger $USER</code></pre>
+        <p>ところが、これが何故か動かない。
+        <pre class=sh><code translate="no">Could not enable linger: No such file or directory</code></pre>
+        <p>探すと <code translate="no">/var/lib/systemd/linger/$USER</code> を touch するとか色々ワークアラウンドが出てくるが、実行しても有効化できなかった。
+        <p>どうやら systemd のバグらしい。
+        <p>仕方ないので、普通に system レベルで登録してしまうことにした。
+        <p>ということで、以下を <code translate="no">/etc/systemd/system/autossh.service</code> として作成。
+        <pre class=systemd><code translate="no">[Unit]
+Description=keep ssh tunnel
+After=network-online.target ssh.service
+
+[Service]
+Type=simple
+RestartSec=3
+Restart=always
+TimeoutStopSec=10
+
+Environment=&quot;AUTOSSH_PORT=0&quot;
+Environment=&quot;AUTOSSH_GATETIME=0&quot;
+ExecStart=/usr/bin/autossh reverse-ssh -NTR 22222:localhost:22
+
+[Install]
+WantedBy=multi-user.target</code></pre>
+        <p>(しかし、これなら autossh 無くても systemd で ssh を監視するだけで良かった気もする)
+        <p>ところがこのままでは ssh が sudo で実行されるため、 <code translate="no">~/.ssh/config</code> は使われず reverse-ssh が解釈されない。
+        <p>面倒なので <code translate="no">~/.ssh/config</code> に書いた内容を <code translate="no">/etc/ssh/ssh_config</code> に書いてしまうことにした。
+        <p>これで一応 ssh 接続は維持できた。
+        <p>若干の不安もあるので、制限を色々かけておく。
+      </section>
+      <section>
+        <h3 id="sshd_config"><a href="#sshd_config">sshd_config</a></h3>
+        <p>NUC には、 VPS からの key を用いた ssh のみを許可したい。
+        <p>まず <code translate="no">/etc/ssh/sshd_cinfig</code> でパスワードによる接続を無効にする。
+        <pre class=config><code translate="no">PasswordAuthentication no</code></pre>
+        <p>これで鍵がなければ入れない。
+      </section>
+      <section>
+        <h3 id="ufw"><a href="#ufw">UFW</a></h3>
+        <p>ufw を使って、 NUC の 22 へのアクセスを VPS の IP に限定する。
+        <p>これにより、意図しないアクセスを防ぐことができる。
+        <p>そうでなくても Ubuntu Desktop に sshd を入れた時点で、ほかも締め付けておきたい。
+        <p>以下のようなスクリプトで行った。
+        <pre class=sh><code translate="no">ufw reset
+
+ufw default deny incoming
+ufw default allow outgoing
+
+ufw allow from $(vsp_ip) to any port 22
+
+ufw enable
+ufw reload
+ufw status numbered</code></pre>
+        <p>変更があったら、このスクリプトを更新して叩き直せばリセットして再設定できる。
+        <p>(デフォルトの UFW の設定を全部すっ飛ばしたが、デフォルトがなにやっているのかよくわからなかったので、困ったら自力で治す)
+      </section>
+      <section>
+        <h3 id="authorized_keys"><a href="#authorized_keys">authorized_keys</a></h3>
+        <p>authorized_keys の最初には、 SSH で接続してくる IP の制限が指定できる。
+        <p>今回は、 VPS からの forwarding しか受け付けない設定にしたい。
+        <p>この場合、 NUC には localhost からアクセスしていることになるため、 NUC の <code translate="no">~/.ssh/authorized_keys</code> で、該当行の先頭に以下を追加する。
+        <pre><code translate="no">from=&quot;127.0.0.1&quot; ssh-xxx xxxxxxxxxxxxxxxxx</code></pre>
+        <p>これで、経路が VPS の Port Forwarding を用いた経路一択になったはずだ。
+      </section>
+    </section>
+    <section>
+      <h2 id="laptop-の-config"><a href="#laptop-の-config">Laptop の config</a></h2>
+      <p>毎回 VPS に入ってから ssh しなおすのは面倒なので、以下のように ProxyCommand を設定する。
+      <pre class=config><code translate="no">Host nuc
+  ProxyCommand ssh -W localhost:22222 vps
+  ServerAliveInterval 60</code></pre>
+      <p>すると laptop 上では以下のように叩けば、 VPS を経由して NUC に自動的に入れる。
+      <pre class=sh><code translate="no">$ ssh nuc</code></pre>
+    </section>
+    <section>
+      <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
+      <ul>
+        <li>小さく静かで邪魔にならない開発環境を構築
+        <li>VPS を経由してのみ SSH Port Forwarding でログイン可能
+        <li>外出先からも簡単に SSH できるようにした
+      </ul>
+      <p>これでだいぶ色々な開発が捗るようになった。
+    </section>
+  </article>
+</main>
+<hr>
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small><small>Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>Google Analytics</a> and <a href=https://w3c.github.io/ServiceWorker/>Service Worker</a>.</small></p>
+</footer>
+</body>
+</html>
+<amp-analytics type=googleanalytics id=analytics1>
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
