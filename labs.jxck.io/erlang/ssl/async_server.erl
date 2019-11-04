@@ -4,7 +4,7 @@
 -include("../logger.hrl").
 
 -define(PORT, 4443).
--define(KEY,  "/keys/key.pem").
+-define(KEY,  "/keys/privkey.pem").
 -define(CERT, "/keys/cert.pem").
 
 

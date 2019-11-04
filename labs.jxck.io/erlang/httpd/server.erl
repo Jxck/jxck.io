@@ -13,7 +13,7 @@
 
 -include_lib("inets/include/httpd.hrl").
 
--define(KEY,  "/keys/key.pem").
+-define(KEY,  "/keys/privkey.pem").
 -define(CERT, "/keys/cert.pem").
 -define(RtoM(Name, Record), lists:foldl(fun({I, E}, Acc) -> Acc#{E => element(I, Record)} end, #{}, lists:zip(lists:seq(2, (record_info(size, Name))), (record_info(fields, Name))))).
 

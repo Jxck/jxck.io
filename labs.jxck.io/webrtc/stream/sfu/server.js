@@ -99,7 +99,7 @@ class Client extends events.EventEmitter {
 
 let server = mediasoup.Server({
   dtlsCertificateFile : "/keys/cert.pem",
-  dtlsPrivateKeyFile  : "/keys/key.pem",
+  dtlsPrivateKeyFile  : "/keys/privkey.pem",
   logLevel   : "debug",
   rtcMinPort : 40000,
   //rtcMaxPort : 40006
