@@ -185,7 +185,7 @@ restart:
 	sudo systemctl restart h2o
 
 reload:
-	$(DOTFILES)/local/h2o/bin/h2o -t -c h2o.conf | cat
+	sudo $(DOTFILES)/local/h2o/bin/h2o -t -c h2o.conf | cat
 	sudo systemctl reload h2o
 
 ## h2o local
