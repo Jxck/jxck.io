@@ -196,8 +196,8 @@ _stop:
 	sudo kill -TERM `cat ../pid/h2o.pid`
 
 _restart:
-	npm run _stop
-	npm run _start
+	$(MAKE) _stop
+	$(MAKE) _start
 
 
 ##########################
