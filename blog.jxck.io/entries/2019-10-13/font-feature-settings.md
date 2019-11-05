@@ -139,7 +139,7 @@ $ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../All.txt --layout-features=
 - 606.6K: layout-feature='*'
 - 293.9K: layout-feature='palt'
 
-サブセット生成のロジックを変えたため、不要な文字も減り、トータルでは layout-features を入れても、改善前前より小さくなっている。
+サブセット生成のロジックを変えたため、不要な文字も減り、トータルでは layout-features を入れても、改善前より小さくなっている。
 
 またこのヒントを有効にするため、 CSS に以下を追加した。
 
