@@ -39,7 +39,7 @@ module Builder
       puts episode.path
 
       # entry
-      episode.build(Format::HTML.new)
+      episode.build(Format::BlogHTML.new)
       html = @html_template.result(binding).strip
       File.write(episode.target_path, html)
     end
@@ -50,7 +50,7 @@ module Builder
       @episodes.each{|episode|
         puts episode.path
 
-        episode.build(Format::HTML.new)
+        episode.build(Format::BlogHTML.new)
         html = @html_template.result(binding).strip
         File.write(episode.target_path, html)
       }

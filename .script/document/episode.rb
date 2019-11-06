@@ -9,6 +9,12 @@ module Document
       @info = @text.match(/## Info(([\n\r]|.)*?)##/m)[1]
     end
 
+    def build(format)
+      # setting self url
+      format.url = url
+      super(format)
+    end
+
     # AST parse する markdown の body
     # tag を本文から消す
     def body

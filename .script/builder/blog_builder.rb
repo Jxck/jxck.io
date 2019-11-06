@@ -88,14 +88,14 @@ module Builder
 
     # html のビルド
     def build_html(entry)
-      entry.build(Format::HTML.new)
+      entry.build(Format::BlogHTML.new)
       html = @html_template.result(binding).strip
       File.write(entry.target_path, html)
     end
 
     # amp html のビルド
     def build_amp_html(entry)
-      entry.build(Format::AMP.new)
+      entry.build(Format::AmpHTML.new)
       html = @amp_template.result(binding).strip
       File.write(entry.target_path, html)
     end

@@ -1,23 +1,17 @@
+require "./.script/helper/erb_helper.rb"
+
 module Format
   # tag ごとのビルダ
   class Idtag
-    attr_writer :url
-    attr_accessor :baseurl
+    include ERBHelper
     def initialize(highlight: "none")
       @highlight = highlight
-      @indent = "  "
-    end
-
-
-    def log(node)
-      puts ">>>>>>>>>>>>>>>>>>"
-      pp node
-      puts "<<<<<<<<<<<<<<<<<<"
     end
 
     def root(node)
       node.value
     end
+
     def text(node)
       node.value == "\n" ? "" : hsc(node.value)
     end
@@ -30,6 +24,7 @@ module Format
         rdquo: "&rdquo;",
       }[node.value]
     end
+
     def typographic_sym(node)
       {
         hellip: "&hellip;",
@@ -37,24 +32,27 @@ module Format
         ndash:  "&ndash;",
       }[node.value]
     end
+
     def entity(node)
       # &gt; &lt; etc
       node.options.original
     end
 
-
-    # def raw(node)
-    #   puts "raw"
-    #   node.value
-    # end
-
-
-    ### block element
-    def article(node)
-      node.value
+    def header(node)
+      level = node.options.level
+      if level == 1
+        # h1 の中身はタイトル
+        @title = node.value
+      end
+      %(<ParaStyle:h#{level}>#{node.value}\n)
     end
-    def section(node)
-      node.value
+
+    def p(node)
+      if node.parent&.type == :blockquote
+        "<ParaStyle:blockquote>#{node.value}\n"
+      else
+        "<ParaStyle:p>#{node.value}\n"
+      end
     end
 
     # <ul> そのものは出力しない
@@ -72,6 +70,7 @@ module Format
         EOS
       end
     end
+
     # <ol> そのものは出力しない
     # 最初の ol の前には br
     def ol(node)
@@ -88,7 +87,62 @@ module Format
       end
     end
 
-    def tabletag(node)
+    # <li> だが、親要素がないため、親のレベルに応じて
+    # <ulN>, <olN> を出す
+    def li(node)
+      level = node.parent.level
+      type  = node.parent.type
+      if node.close
+        "<#{type}#{level}>#{node.value}"
+      else
+        "<#{type}#{level}>#{node.value}\n"
+      end
+    end
+
+    def codeblock(node)
+      lang = node.attr && node.attr["class"].sub("language-", "")
+      code = code_format(node).split("\n").map{|line| "<ParaStyle:code-#{lang}>#{line}"}.join("\n")
+      <<~EOS.chomp
+      #{br}
+      #{code}
+      EOS
+    end
+
+    def codespan(node)
+      %(<CharStyle:code>#{hsc(node.value)}<CharStyle:>)
+    end
+
+    def code_format(arg)
+      lang = arg.lang
+      code = arg.code
+
+      case @highlight
+      when "mono"
+        lexer = Rouge::Lexer.guess(filename: ".#{lang}")
+        formatter = Highlighter::MonoIdtag.new
+        formatted = formatter.format(lexer.new.lex(code))
+        formatted
+      when "none"
+        code
+      end
+    end
+
+    ## そのまま
+    def html_element(node)
+      # attribute がある場合は結合
+      attrs = node.attr&.map {|key, value|
+        next key if value == ""
+        %(#{key}="#{value}")
+      }
+
+      attr = attrs.nil? ? "" : " " + attrs.join(" ")
+
+      # TODO: 改行が合わない
+      "<#{node.tag}#{attr}>#{node.value}</#{node.tag}>\n"
+    end
+
+    ### table
+    def table(node)
       node.value
     end
     def thead(node)
@@ -109,7 +163,22 @@ module Format
       node
     end
 
+    ### dl
     def dl(node)
+      node.value
+    end
+    def dt(node)
+      "<ParaStyle:dt>#{node.value}\n"
+    end
+    def dd(node)
+      "<ParaStyle:dd>#{node.value}\n"
+    end
+
+    ### block elements
+    def article(node)
+      node.value
+    end
+    def section(node)
       node.value
     end
     def div(node)
@@ -119,82 +188,12 @@ module Format
       node.value
     end
 
-    def codeblock(node)
-      lang = node.attr && node.attr["class"].sub("language-", "")
-      code = code_format(node).split("\n").map{|line| "<ParaStyle:code-#{lang}>#{line}"}.join("\n")
-      <<~EOS.chomp
-      #{br}
-      #{code}
-      EOS
-    end
-
-    def code_format(arg)
-      lang = arg.lang
-      code = arg.code
-
-      case @highlight
-      when "mono"
-        lexer = Rouge::Lexer.guess(filename: ".#{lang}")
-        formatter = Highlighter::MonoIdtag.new
-        formatted = formatter.format(lexer.new.lex(code))
-        formatted
-      when "none"
-        code
-      end
-    end
-
-    def table(node)
-      tabletag(node)
-    end
-
-    def img(node)
-      width, height = imgsize(node)
-
-      # SVG should specify width-height
-      if File.extname(URI.parse(node.attr["src"]).path) == ".svg"
-        return %(<img loading=lazy src=#{node.attr['src']} alt="#{node.attr['alt']}" title="#{node.attr['title']}" width=#{width} height=#{height} intrinsicsize=#{width}x#{height}>)
-      end
-
-      # No width-height for normal img
-      return <<~EOS
-           <picture>
-             <source type=image/webp srcset=#{node.attr['src'].sub(/(.png|.gif|.jpg)/, '.webp')}>
-             <img loading=lazy src=#{node.attr['src']} alt="#{node.attr['alt']}" title="#{node.attr['title']}" intrinsicsize=#{width}x#{height}>
-           </picture>
-      EOS
-    end
-
-    ## そのまま
-    def html_element(node)
-      # attribute がある場合は結合
-      attrs = node.attr&.map {|key, value|
-        next key if value == ""
-        %(#{key}="#{value}")
-      }
-
-      attr = attrs.nil? ? "" : " " + attrs.join(" ")
-
-      # TODO: 改行が合わない
-      "<#{node.tag}#{attr}>#{node.value}</#{node.tag}>\n"
-    end
-
-
-
     ### inline elements
-    def codespan(node)
-      %(<CharStyle:code>#{hsc(node.value)}<CharStyle:>)
-    end
     def strong(node)
       "<CharStyle:strong>#{node.value}<CharStyle:>"
     end
     def em(node)
       "<CharStyle:em>#{node.value}<CharStyle:>"
-    end
-    def dt(node)
-      "<ParaStyle:dt>#{node.value}\n"
-    end
-    def dd(node)
-      "<ParaStyle:dd>#{node.value}\n"
     end
     def br(node=nil)
       "<ParaStyle:br>"
@@ -202,61 +201,13 @@ module Format
     def hr(node=nil)
       "<ParaStyle:hr>\n"
     end
-
-    def header(node)
-      level = node.options.level
-      if level == 1
-        # h1 の中身はタイトル
-        @title = node.value
-      end
-      %(<ParaStyle:h#{level}>#{node.value}\n)
-    end
-
-    def p(node)
-      if node.parent&.type == :blockquote
-        "<ParaStyle:blockquote>#{node.value}\n"
-      else
-        "<ParaStyle:p>#{node.value}\n"
-      end
-    end
-
-
-    # <li> だが、親要素がないため、親のレベルに応じて
-    # <ulN>, <olN> を出す
-    def li(node)
-      level = node.parent.level
-      type  = node.parent.type
-      if node.close
-        "<#{type}#{level}>#{node.value}"
-      else
-        "<#{type}#{level}>#{node.value}\n"
-      end
-    end
-
     def a(node)
+      # TODO: どする?
       %(<a href="#{node.attr['href']}">#{node.value}</a>)
-      # TODO: rel="noopener noreferrer"
     end
-
-
-
-    private
-
-    def imgsize(node)
-      width = ""
-      height = ""
-
-      size = node.attr["src"].split("#")[1]
-      if size
-        size = size.split("x")
-        if size.size == 1
-          width = size[0]
-        elsif size.size == 2
-          width = size[0]
-          height = size[1]
-        end
-      end
-      return width, height
+    def img(node)
+      # TODO: どする?
+      %(<img src=#{node.attr['src']} alt="#{node.attr['alt']}" title="#{node.attr['title']}">)
     end
   end
 end

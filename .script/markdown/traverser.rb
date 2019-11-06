@@ -1,12 +1,12 @@
-# markup をセットして生成したら
+# format をセットして生成したら
 # ast を渡すと traverse しながらビルドしてくれる
 class Traverser
   attr_reader :codes
 
-  def initialize(markup, dir)
+  def initialize(format, dir)
     # ここに codeblock を退避しておく
     @codes  = {}
-    @markup = markup
+    @format = format
     @dir    = dir
   end
 
@@ -18,8 +18,8 @@ class Traverser
     # traverse が終わった結果の
     # pre に code を戻す
     @codes.each {|key, value|
-      # markup のもつロジックでコードを処理
-      code = @markup.code_format(value)
+      # format のもつロジックでコードを処理
+      code = @format.code_format(value)
       # hash に差し替えられているところを置き換える
       result.gsub!("// #{key}") { code }
     }
@@ -144,8 +144,8 @@ class Traverser
       node.value = node.children.join
     end
 
-    # ここで markup のメソッドを呼び出し変換する
-    up = @markup.send(node.type, node)
+    # ここで format のメソッドを呼び出し変換する
+    up = @format.send(node.type, node)
     up
   end
 end

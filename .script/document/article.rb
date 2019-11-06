@@ -56,17 +56,13 @@ module Document
       @text
     end
 
-    def build(markup) # Markup/AMP
-      # setting self url
-      markup.url = url
-      markup.baseurl = baseurl
-
+    def build(format) # HTML/AMP
       # parse ast
       ast = AST.new(body)
       # DEBUG: pp ast.ast
 
       # traverse
-      traverser = Traverser.new(markup, dir)
+      traverser = Traverser.new(format, dir)
       article   = traverser.start(ast.ast)
       @article = article
     end

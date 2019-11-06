@@ -20,28 +20,6 @@ def j(o)
   puts caller.first, JSON.pretty_generate(o)
 end
 
-# dot access Hash
-class Hash
-  def method_missing(method, *params)
-    if method[-1] == "="
-      key = method[0..-2].to_sym
-      self[key] = params[0]
-    else
-      self[method.to_sym]
-    end
-  end
-
-  def inline?
-    inline || [
-      :text,
-      :header,
-      :strong,
-      :paragraph,
-    ].include?(type)
-  end
-end
-
-
 
 if __FILE__ == $PROGRAM_NAME
   opt = OptionParser.new
@@ -96,7 +74,7 @@ if __FILE__ == $PROGRAM_NAME
     blog.build(path)
     blog.build_all
     blog.feed
- }
+  }
   opt.on("--podcasttest") {|v|
     puts "test building podcast"
     # path = "./mozaic.fm/episodes/0/introduction-of-mozaicfm.md"
@@ -127,6 +105,26 @@ if __FILE__ == $PROGRAM_NAME
     path = "./.script/test/test.md"
     idtag = Builder::IdtagBuilder.new()
     idtag.build(path)
+  }
+
+  opt.on("-t") {|v|
+    path = "./.script/test/test.md"
+    dir  = File.dirname(path)
+
+    id_format   = Format::Idtag.new(highlight: "mono")
+    id_builder  = Builder::Builder.new(id_format)
+    id_body     = id_builder.build(path)
+    id_template = ERB.new(File.read("./.script/template/page.idtag.erb"))
+    id_tag      = id_template.result(binding)
+    File.write("#{dir}/test.idtag", id_tag)
+
+    html_format   = Format::HTML.new(highlight: "mono")
+    html_builder  = Builder::Builder.new(html_format)
+    html_body     = html_builder.build(path)
+    html_title    = "title"
+    html_template = ERB.new(File.read("./.script/template/page.html.erb"))
+    html          = html_template.result(binding)
+    File.write("#{dir}/test.html", html)
   }
 
   opt.on("-h") {|v|

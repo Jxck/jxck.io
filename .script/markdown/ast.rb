@@ -1,3 +1,24 @@
+# dot access Hash
+class Hash
+  def method_missing(method, *params)
+    if method[-1] == "="
+      key = method[0..-2].to_sym
+      self[key] = params[0]
+    else
+      self[method.to_sym]
+    end
+  end
+
+  def inline?
+    inline || [
+      :text,
+      :header,
+      :strong,
+      :paragraph,
+    ].include?(type)
+  end
+end
+
 class AST
   attr_accessor :ast
   def initialize(md)
