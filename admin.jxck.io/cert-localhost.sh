@@ -1,4 +1,4 @@
-certbot-auto certonly \
+sudo certbot certonly \
   -n \
   --webroot \
   --agree-tos \
