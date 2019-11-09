@@ -101,7 +101,7 @@ test:
 	$(MARK) --test
 
 t:
-	make test
+	$(MARK) -t
 
 
 ##########################
