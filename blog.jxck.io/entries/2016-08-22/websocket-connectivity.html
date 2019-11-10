@@ -211,7 +211,7 @@
           <p>WebSocket は PING 機能を持っているため、切断したら <code translate="no">onclose</code> イベントで判明するはずである。
           <p>そこでもう一度コネクションを貼り直す方法が考えられる。
           <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-          <pre class=js><code translate="no">ws.addEventListener(&#039;close&#039;, () =&gt; {
+          <pre class=js><code translate="no">ws.addEventListener(&#39;close&#39;, () =&gt; {
   if (意図しない切断) {
     return reconnect();
   }

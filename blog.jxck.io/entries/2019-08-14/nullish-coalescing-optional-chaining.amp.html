@@ -815,55 +815,55 @@
       <h2 id="nullish-coalescing"><a href="#nullish-coalescing">Nullish Coalescing</a></h2>
       <p>対象が null/undefined だった場合にデフォルト値を返したいといった場合を考える。
       <pre class=js><code translate="no">function main(option) {
-  option.param = option.param || &#039;default&#039;
+  option.param = option.param || &#39;default&#39;
 }
 
-main({param : &#039;hello&#039;})</code></pre>
-      <p>しかし、この場合は null/undefined 以外にも param が <code translate="no">0</code>, <code translate="no">false</code>, <code translate="no">&#039;&#039;</code> など falsy な値の場合も上書きされてしまう。
+main({param : &#39;hello&#39;})</code></pre>
+      <p>しかし、この場合は null/undefined 以外にも param が <code translate="no">0</code>, <code translate="no">false</code>, <code translate="no">&#39;&#39;</code> など falsy な値の場合も上書きされてしまう。
       <pre class=js><code translate="no">var param;
 
 param = 100
-param = param || &#039;default&#039; // 100
+param = param || &#39;default&#39; // 100
 
 param = null
-param = param || &#039;default&#039; // &#039;default&#039;
+param = param || &#39;default&#39; // &#39;default&#39;
 
 param = undefined
-param = param || &#039;default&#039; // &#039;default&#039;
+param = param || &#39;default&#39; // &#39;default&#39;
 
 param = 0
-param = param || &#039;default&#039; // &#039;default&#039;
+param = param || &#39;default&#39; // &#39;default&#39;
 
 param = false
-param = param || &#039;default&#039; // &#039;default&#039;
+param = param || &#39;default&#39; // &#39;default&#39;
 
-param = &#039;&#039;
-param = param || &#039;default&#039; // &#039;default&#039;</code></pre>
+param = &#39;&#39;
+param = param || &#39;default&#39; // &#39;default&#39;</code></pre>
       <p>つまり、本来は null/undefined の厳密な判定を行わなくてはいけないわけだが、プロパティごとにそれを行うのは面倒だ。
       <p>そこで提案されたのが <code translate="no">??</code> という Null Coalescing Operator だ。(日本語だと Null 結合演算子になるのだろうか?)
       <p>これを使うと、 null/undefined であった場合のみ上書きができる。(名前に反して null だけではない点に注意)
       <pre class=js><code translate="no">var param;
 
 param = 100
-param = param ?? &#039;default&#039; // 100
+param = param ?? &#39;default&#39; // 100
 
 param = null
-param = param ?? &#039;default&#039; // &#039;default&#039;
+param = param ?? &#39;default&#39; // &#39;default&#39;
 
 param = undefined
-param = param ?? &#039;default&#039; // &#039;default&#039;
+param = param ?? &#39;default&#39; // &#39;default&#39;
 
 param = 0
-param = param ?? &#039;default&#039; // 0
+param = param ?? &#39;default&#39; // 0
 
 param = false
-param = param ?? &#039;default&#039; // false
+param = param ?? &#39;default&#39; // false
 
-param = &#039;&#039;
-param = param ?? &#039;default&#039; // &#039;&#039;</code></pre>
+param = &#39;&#39;
+param = param ?? &#39;default&#39; // &#39;&#39;</code></pre>
       <p>パラメータの初期化などで、 null/undefined 以外の falsy な値を尊重しつつデフォルトを決めるといったケースに使うことができる。
       <pre class=js><code translate="no">function main(option) {
-  option.message  = option.message ?? &#039;default message&#039;
+  option.message  = option.message ?? &#39;default message&#39;
   option.timeout  = option.timeout ?? 100
   option.flag     = option.flag    ?? true
   option.logging  = {debug: true}
@@ -872,7 +872,7 @@ param = param ?? &#039;default&#039; // &#039;&#039;</code></pre>
 }
 
 main({
- message: &#039;&#039;,
+ message: &#39;&#39;,
  timeout: 0,
  flag:    false,
 })</code></pre>
@@ -909,15 +909,15 @@ a?.b[x++] // ?. より右は実行されず x は増えない</code></pre>
       <h2 id="nullable-と-optional"><a href="#nullable-と-optional">nullable と optional</a></h2>
       <p>こんなコードを考えてみる。
       <pre class=html><code translate="no">&lt;body&gt;
-  &lt;code class=&#039;highlight language-js&#039;&gt;
-    console.log(&#039;hello&#039;)
+  &lt;code class=&#39;highlight language-js&#39;&gt;
+    console.log(&#39;hello&#39;)
   &lt;/code&gt;
 &lt;/body&gt;
 &lt;script&gt;
-const lang = document.querySelector(&#039;code&#039;) // &lt;code&gt;
+const lang = document.querySelector(&#39;code&#39;) // &lt;code&gt;
                      .classList             // [highlight, language-js]
                      .item(1)               // language-js
-                     .split(&#039;-&#039;)[1]         // [language, js][1]
+                     .split(&#39;-&#39;)[1]         // [language, js][1]
                      .toUpperCase()         // JS
 
 console.log(lang) // JS
@@ -927,16 +927,16 @@ console.log(lang) // JS
       <p>したがって、チェインのどこかが null/undefined になれば破綻するため、そこをケアするには各段階で確認する必要がある。
       <p>色々書き方はあるが、雑に書くとこういうことだ。
       <pre class=html><code translate="no">&lt;body&gt;
-  &lt;code class=&#039;highlight language-js&#039;&gt;
-    console.log(&#039;hello&#039;)
+  &lt;code class=&#39;highlight language-js&#39;&gt;
+    console.log(&#39;hello&#39;)
   &lt;/code&gt;
 &lt;/body&gt;
 &lt;script&gt;
-const $code = document.querySelector(&#039;code&#039;) // &lt;code&gt;
+const $code = document.querySelector(&#39;code&#39;) // &lt;code&gt;
 if ($code) {
   const secondClass = $code.classList.item(1) // language-js
   if (secondClass) {
-    const lowerLanguage = secondClass.split(&#039;-&#039;)[1] // js
+    const lowerLanguage = secondClass.split(&#39;-&#39;)[1] // js
     if (lowerLanguage) {
       const lang = lowerLanguage.toUpperCase() // JS
       console.log(lang)
@@ -950,18 +950,18 @@ if ($code) {
       <p>しかし <code translate="no">else</code> は、書いたところでできることが少なく、共通のエラーを表示する程度な場合も多いだろう。
       <p>Optional Chaining を使うと以下のようになる。
       <pre class=html><code translate="no">&lt;body&gt;
-  &lt;code class=&#039;highlight language-js&#039;&gt;
-    console.log(&#039;hello&#039;)
+  &lt;code class=&#39;highlight language-js&#39;&gt;
+    console.log(&#39;hello&#39;)
   &lt;/code&gt;
 &lt;/body&gt;
 &lt;script&gt;
-const lang = document.querySelector(&#039;code&#039;)? // node が無ければ null
+const lang = document.querySelector(&#39;code&#39;)? // node が無ければ null
                      .classList.item(1)?     // 2 つめの class が無ければ null
-                     .split(&#039;-&#039;)[1]?         // 2 つめの 分割結果が無ければ undefined
+                     .split(&#39;-&#39;)[1]?         // 2 つめの 分割結果が無ければ undefined
                      .toUpperCase()
 
 if (lang === undefined) {
-  cosnole.error(&#039;something wrong&#039;)
+  cosnole.error(&#39;something wrong&#39;)
 } else {
   console.log(lang)
 }
@@ -970,11 +970,11 @@ if (lang === undefined) {
       <p>ここでの <code translate="no">undefined</code> の処理は、前述の <code translate="no">if</code> 版で省略されている <code translate="no">else</code> の処理にあたる。
       <p>つまり、 Optional Chaining は、こうした <code translate="no">null</code> を考慮すべき処理の連続を、全て if-else で分岐しつつケアする代わりに、一連の処理をつなげ結果を期待した値 or <code translate="no">undefined</code> に丸め込んで結果を検証するといった書き方を可能とする。
       <p>もしこのケースで、存在しない場合の lang をデフォルトで <code translate="no">&quot;TEXT&quot;</code> にしたい場合は、前述の Nullish Coalescing と組み合わせると以下のように書ける。
-      <pre class=js><code translate="no">const lang = document.querySelector(&#039;code&#039;)? // node が無ければ null
+      <pre class=js><code translate="no">const lang = document.querySelector(&#39;code&#39;)? // node が無ければ null
                      .classList.item(1)?     // 2 つめの class が無ければ null
-                     .split(&#039;-&#039;)[1]?         // 2 つめの 分割結果が無ければ undefined
+                     .split(&#39;-&#39;)[1]?         // 2 つめの 分割結果が無ければ undefined
                      .toUpperCase()          // どこかで失敗していれば undefined
-                     ?? &#039;TEXT&#039;               // undefined だった場合のデフォルト値
+                     ?? &#39;TEXT&#39;               // undefined だった場合のデフォルト値
 
 console.log(lang) // &quot;JS&quot; or &quot;TEXT&quot;</code></pre>
       <p>どこまでを一連の Optional でくくるか、途中の処理の結果の型は何か、といった設計に注意すればかなり便利に使えるだろう。
@@ -991,7 +991,7 @@ console.log(lang) // &quot;JS&quot; or &quot;TEXT&quot;</code></pre>
           <li><a href="https://webkit.org/blog/9497/release-notes-for-safari-technology-preview-89/">Release Notes for Safari Technology Preview 89</a>
         </ul>
         <p>Mac の場合 JSC のフラグは以下のように付与する。
-        <pre class=sh><code translate="no">$ __XPC_JSC_useNullishCoalescing=true open -a &#039;Safari Technology Preview&#039;</code></pre>
+        <pre class=sh><code translate="no">$ __XPC_JSC_useNullishCoalescing=true open -a &#39;Safari Technology Preview&#39;</code></pre>
       </section>
       <section>
         <h3 id="optional-chaining-1"><a href="#optional-chaining-1">Optional Chaining</a></h3>

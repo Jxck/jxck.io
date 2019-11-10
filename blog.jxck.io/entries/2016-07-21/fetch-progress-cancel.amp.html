@@ -836,7 +836,7 @@
         <li><a href="https://tc39.github.io/ecma262/#sec-promise-constructor">Promise</a>
       </ul>
       <p>例えば、なんらかの Text を取得する場合、基本は以下のようになる。
-      <pre class=js><code translate="no">fetch(&#039;foo.txt&#039;).then((res) =&gt; {
+      <pre class=js><code translate="no">fetch(&#39;foo.txt&#39;).then((res) =&gt; {
   return res.text();
 }).then((text) =&gt; {
   console.log(text);
@@ -865,9 +865,9 @@
       </ul>
       <p>Stream は、 I/O 処理を chunk ごとに返し、非同期処理の <em>途中</em> に処理を挟むための仕様である。
       <p>先の例を Stream で取得する場合、以下のように書くことができる。
-      <pre class=js><code translate="no">fetch(&#039;foo.txt&#039;).then((res) =&gt; {
+      <pre class=js><code translate="no">fetch(&#39;foo.txt&#39;).then((res) =&gt; {
   // foo.txt の全体サイズ
-  const total = res.headers.get(&#039;content-length&#039;);
+  const total = res.headers.get(&#39;content-length&#39;);
 
   // body の reader を取得する
   let reader = res.body.getReader();
@@ -877,7 +877,7 @@
   reader.read().then(function processResult(result) {
     // done が true なら最後の chunk
     if (result.done) {
-      return log(&#039;Fetch complete&#039;);
+      return log(&#39;Fetch complete&#39;);
     }
 
     // chunk の値
@@ -895,15 +895,15 @@
       <p>Stream の返す各 Chunk から、その Chunk のサイズを取得することができるため、取得するリソースの合計サイズがわかれば進捗率の取得などが可能になる。
       <p>リソースの合計サイズは HTTP レスポンスヘッダの <code translate="no">Content-Length</code> から取得することができる。
       <p>fetch の返す Response オブジェクトからは以下のように取ることができる。
-      <pre class=js><code translate="no">fetch(&#039;foo.txt&#039;).then((res) =&gt; {
-  const total = res.headers.get(&#039;content-length&#039;);
+      <pre class=js><code translate="no">fetch(&#39;foo.txt&#39;).then((res) =&gt; {
+  const total = res.headers.get(&#39;content-length&#39;);
 });</code></pre>
       <p>(クロスオリジンのリソースを CORS を使わずに取得する <code translate="no">mode: no-cors</code> の場合は、 Opaque な Response となりヘッダは取れない。しかし基本的にキャッシュのために使うものであり、 body も取れないためプログレスを出す用途はないだろう)
       <p>これを用いれば、以下のように Progress を得ることができる。
       <p>(進捗率の数値を使えば、 CSS でプログレスバーを表示することも可能だろう)
-      <pre class=js><code translate="no">fetch(&#039;foo.txt&#039;).then((res) =&gt; {
+      <pre class=js><code translate="no">fetch(&#39;foo.txt&#39;).then((res) =&gt; {
   // foo.txt の全体サイズ
-  const total = res.headers.get(&#039;content-length&#039;);
+  const total = res.headers.get(&#39;content-length&#39;);
 
   // body の reader を取得する
   let reader = res.body.getReader();
@@ -913,7 +913,7 @@
   reader.read().then(function processResult(result) {
     // done が true なら最後の chunk
     if (result.done) {
-      return log(&#039;Fetch complete&#039;);
+      return log(&#39;Fetch complete&#39;);
     }
 
     // chunk の長さの蓄積を total で割れば進捗が分かる
@@ -937,12 +937,12 @@
       </ul>
       <p>これを用いることで、サイズの大きなファイルのダウンロードを途中で止めるといった実装が可能となる。
       <pre class=js><code translate="no">fetch(url).then((res) =&gt; {
-  const total = res.headers.get(&#039;content-length&#039;);
+  const total = res.headers.get(&#39;content-length&#39;);
 
   let reader = res.body.getReader();
   let chunk = 0;
 
-  $stop.addEventListener(&#039;click&#039;, () =&gt; {
+  $stop.addEventListener(&#39;click&#39;, () =&gt; {
     // stream をキャンセルする
     // res.body.cancel(); でも良い
     reader.cancel();
@@ -950,7 +950,7 @@
 
   reader.read().then(function processResult(result) {
     if (result.done) {
-      return log(&#039;Fetch complete&#039;);
+      return log(&#39;Fetch complete&#39;);
     }
 
     console.log(result.value);

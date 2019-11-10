@@ -812,7 +812,7 @@
     <section>
       <h2 id="selects"><a href="#selects">selects</a></h2>
       <p>結論からいうとこういうコマンドだ。
-      <pre class=sh><code translate="no">$ selects mtime, size, basename from &#039;./entries/**/*&#039; where extname &#039;==&#039; &#039;.md&#039; and size &#039;&gt;&#039; 1000 order by mtime
+      <pre class=sh><code translate="no">$ selects mtime, size, basename from &#39;./entries/**/*&#39; where extname &#39;==&#39; &#39;.md&#39; and size &#39;&gt;&#39; 1000 order by mtime
 
 2016-07-06 22:45:44 +0900	18437	web-font-noto-sans.md
 2016-07-07 23:54:19 +0900	11236	amp-html.md
@@ -833,7 +833,7 @@
       <p>まず例をいくつか示す。
       <section>
         <h3 id="ディレクトリ以下をごっそり"><a href="#ディレクトリ以下をごっそり">ディレクトリ以下をごっそり</a></h3>
-        <pre class=sh><code translate="no">$ selects &#039;*&#039; from &#039;./entries/**/*&#039;
+        <pre class=sh><code translate="no">$ selects &#39;*&#39; from &#39;./entries/**/*&#39;
 2016-08-05 22:42:14 +0900	4096	2016-01-27
 2016-08-05 22:40:44 +0900	12499	new-blog-start.amp.html
 2016-08-05 22:41:32 +0900	3756	new-blog-start.amp.html.gz
@@ -845,7 +845,7 @@
       </section>
       <section>
         <h3 id="html-だけ"><a href="#html-だけ">.html だけ</a></h3>
-        <pre class=sh><code translate="no">$ selects basename from &#039;./entries/**/*&#039; where extname == &#039;.html&#039;
+        <pre class=sh><code translate="no">$ selects basename from &#39;./entries/**/*&#39; where extname == &#39;.html&#39;
 new-blog-start.amp.html
 new-blog-start.html
 html-compression.amp.html
@@ -857,7 +857,7 @@ h2o-http2-deploy.amp.html
       </section>
       <section>
         <h3 id="like-的な"><a href="#like-的な">like 的な</a></h3>
-        <pre class=sh><code translate="no">$ selects basename from &#039;./entries/**/*&#039; where basename &#039;=~&#039; &#039;mozaic&#039;
+        <pre class=sh><code translate="no">$ selects basename from &#39;./entries/**/*&#39; where basename &#39;=~&#39; &#39;mozaic&#39;
 mozaicfm-v2.amp.html
 mozaicfm-v2.amp.html.gz
 mozaicfm-v2.html
@@ -867,7 +867,7 @@ mozaicfm-v2.md.gz</code></pre>
       </section>
       <section>
         <h3 id="属性で絞る"><a href="#属性で絞る">属性で絞る</a></h3>
-        <pre class=sh><code translate="no">$ selects atime, basename from &#039;./entries/**/*&#039; where atime &#039;&gt;&#039; 2016-08-01 and directory? == true
+        <pre class=sh><code translate="no">$ selects atime, basename from &#39;./entries/**/*&#39; where atime &#39;&gt;&#39; 2016-08-01 and directory? == true
 2016-08-05 22:42:14 +0900       2016-01-27
 2016-08-05 22:42:14 +0900       2016-01-28
 2016-08-05 22:42:14 +0900       2016-02-01
@@ -877,7 +877,7 @@ mozaicfm-v2.md.gz</code></pre>
       </section>
       <section>
         <h3 id="dev-以下で-pipe-か-socket-か-symlink-だけを-ctime-atime-の順で"><a href="#dev-以下で-pipe-か-socket-か-symlink-だけを-ctime-atime-の順で">/dev 以下で pipe か socket か symlink だけを ctime, atime の順で</a></h3>
-        <pre class=sh><code translate="no">$ selects socket?, pipe?, symlink? basename from &#039;/dev/*&#039; where pipe? == true or socket? == true or symlink? == true order by atime, ctime
+        <pre class=sh><code translate="no">$ selects socket?, pipe?, symlink? basename from &#39;/dev/*&#39; where pipe? == true or socket? == true or symlink? == true order by atime, ctime
 false   true    true    initctl
 false   false   true    dvd
 false   false   true    cdrom
@@ -894,25 +894,25 @@ false   false   true    core</code></pre>
       <h2 id="からくり"><a href="#からくり">からくり</a></h2>
       <p>なんとなく気づいた方がいるかもしれないが、これは全部 Ruby に変換している。
       <p>つまりこんな感じだ。
-      <pre class=ruby><code translate="no">Dir.glob(&#039;from 句にあたる */** 的なの&#039;)
-   .select(&#039;where 句にあたる filter の proc&#039;)
-   .sort(&#039;order by 句にあたる sort の proc&#039;)
-   .map(&#039;抽出したファイルから select 句にあたる属性を取り出す&#039;)</code></pre>
+      <pre class=ruby><code translate="no">Dir.glob(&#39;from 句にあたる */** 的なの&#39;)
+   .select(&#39;where 句にあたる filter の proc&#39;)
+   .sort(&#39;order by 句にあたる sort の proc&#39;)
+   .map(&#39;抽出したファイルから select 句にあたる属性を取り出す&#39;)</code></pre>
       <p>各 Proc は引数として受け取ったトークンを元に Ruby のメソッドチェインを組み立てている。
       <p>例えば
       <pre class=sql><code translate="no">where size &gt; 1000</code></pre>
       <p>は
       <pre class=ruby><code translate="no">File.size(file) &gt; 100</code></pre>
       <p>になれば良い。
-      <p>これを文字として得ている <code translate="no">&#039;size&#039;</code>, <code translate="no">&#039;&gt;&#039;</code>, <code translate="no">&#039;100&#039;</code> を使って動的に組み立てると以下になる。
+      <p>これを文字として得ている <code translate="no">&#39;size&#39;</code>, <code translate="no">&#39;&gt;&#39;</code>, <code translate="no">&#39;100&#39;</code> を使って動的に組み立てると以下になる。
       <pre class=ruby><code translate="no">File
-  .method(&#039;size&#039;)
+  .method(&#39;size&#39;)
   .call(file)
-  .method(&#039;&gt;&#039;)
+  .method(&#39;&gt;&#39;)
   .call(100)</code></pre>
       <p>この仕組みを踏まえた上でもう一度クエリを見てみて欲しい。
       <p>もはや Ruby のメソッドチェインにしか見えないのではないだろうか?
-      <pre class=sh><code translate="no">$ selects atime, basename from &#039;./entries/**/*&#039; where atime &#039;&gt;&#039; 2016-08-01 and directory? == true</code></pre>
+      <pre class=sh><code translate="no">$ selects atime, basename from &#39;./entries/**/*&#39; where atime &#39;&gt;&#39; 2016-08-01 and directory? == true</code></pre>
       <p><code translate="no">select</code>, <code translate="no">where</code>, <code translate="no">order by</code> に使える属性なども、 ruby の File クラスのドキュメントを見てくれれば良い。
       <p><a href="https://docs.ruby-lang.org/ja/2.3.0/class/File.html">https://docs.ruby-lang.org/ja/2.3.0/class/File.html</a>
       <p>裏に Ruby が透けて見えるため、 Ruby を知ってると「こうすれば動きそう」がそのまま動く。
@@ -937,13 +937,13 @@ false   false   true    core</code></pre>
           パイプ後の <code translate="no">cut</code> コマンドと相性が良いように、列はタブ区切りにしている。
         </li>
         <li>
-          <code translate="no">&#039;*&#039;</code>, <code translate="no">&#039;&lt;&#039;</code>,  <code translate="no">&#039;&gt;&#039;</code> は Shell で意味を持つのでクオートが必要。
+          <code translate="no">&#39;*&#39;</code>, <code translate="no">&#39;&lt;&#39;</code>,  <code translate="no">&#39;&gt;&#39;</code> は Shell で意味を持つのでクオートが必要。
         </li>
         <li>
           Ruby の <code translate="no">File</code> と <code translate="no">File::Stat</code> のメソッドを呼べるようにしている。
         </li>
         <li>
-          SQL よりも Ruby に寄ってるので曖昧検索は <code translate="no">like</code> ではなく <code translate="no">where</code> で <code translate="no">basename =~ &#039;.*foo.*&#039;</code> などする。
+          SQL よりも Ruby に寄ってるので曖昧検索は <code translate="no">like</code> ではなく <code translate="no">where</code> で <code translate="no">basename =~ &#39;.*foo.*&#39;</code> などする。
         </li>
         <li>SQL の仕様は尊重しつつも、準拠よりあくまで裏の Ruby が透けて見える範囲で実装したい。
         <li>

@@ -175,20 +175,20 @@
           <p>インラインの場合は <code translate="no">&lt;code&gt;</code> タグを用いて表現する。
           <p>コードブロックの場合は <code translate="no">&lt;pre&gt;</code> と <code translate="no">&lt;code&gt;</code> を用いて表現する。
           <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-          <pre class=js><code translate="no">if (&#039;ServiceWorkerGlobalScope&#039; in self &amp;&amp; self instanceof ServiceWorkerGlobalScope) {
-  [&#039;install&#039;, &#039;activate&#039;, &#039;beforeevicted&#039;, &#039;evicted&#039;, &#039;fetch&#039;, &#039;message&#039;, &#039;push&#039;].forEach((e) =&gt; {
+          <pre class=js><code translate="no">if (&#39;ServiceWorkerGlobalScope&#39; in self &amp;&amp; self instanceof ServiceWorkerGlobalScope) {
+  [&#39;install&#39;, &#39;activate&#39;, &#39;beforeevicted&#39;, &#39;evicted&#39;, &#39;fetch&#39;, &#39;message&#39;, &#39;push&#39;].forEach((e) =&gt; {
     self.addEventListener(e, (ev) =&gt; {
       console.log(e, ev);
     });
   });
 
-  self.addEventListener(&#039;install&#039;, (ev) =&gt; {
+  self.addEventListener(&#39;install&#39;, (ev) =&gt; {
     ev.waitUntil(self.skipWaiting());
   });
 
-  self.addEventListener(&#039;activate&#039;, (ev) =&gt; {
+  self.addEventListener(&#39;activate&#39;, (ev) =&gt; {
     ev.waitUntil(self.clients.claim());
-    console.log(&#039;claimed&#039;);
+    console.log(&#39;claimed&#39;);
   });
 }</code></pre>
           <p>ファイルからコードを読むこともできる。

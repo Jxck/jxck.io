@@ -978,7 +978,7 @@
 openssl ecparam -out priv.key -name prime256v1 -genkey
 
 # 鍵に対する証明書のリクエストを作成、ドメインは mozaic.fm とする
-openssl req -new -sha256 -key priv.key -out cert.csr -subj &#039;/CN=mozaic.fm/O=Test/C=US&#039;
+openssl req -new -sha256 -key priv.key -out cert.csr -subj &#39;/CN=mozaic.fm/O=Test/C=US&#39;
 
 # 拡張を指定した CSR を生成する
 echo &quot;1.3.6.1.4.1.11129.2.1.22 = ASN1:NULL\nsubjectAltName=DNS:mozaic.fm&quot; &gt; ext
@@ -1147,13 +1147,13 @@ Content-Encoding: mi-sha256-03
         <p>両方存在する場合は、 update の size などを考慮して、コンテンツを継続利用するか更新するかを選べる。
         <pre class=http><code translate="no">{
   &quot;signatures&quot;: [
-    &#039;label; &#039;
-    &#039;sig=*MEQCIC/I9Q+7BZFP6cSDsWx43pBAL0ujTbON/+7RwKVk+ba5AiB3FSFLZqpzmDJ0NumNwN04pqgJZE99fcK86UjkPbj4jw; &#039;
-    &#039;validity-url&#039;=&quot;https://labs.jxck.io/webpackaging/signed-http-exchange-b2/cert.cbor&quot;;
-    &#039;integrity&#039;=&quot;digest/mi-sha256-03&quot;;
-    &#039;cert-url&#039;=&quot;https://labs.jxck.io/webpackaging/signed-http-exchange-b2/cert.cbor&quot;;
-    &#039;certSha256=*J/lEm9kNRODdCmINbvitpvdYKNQ+YgBj99DlYp4fEXw; &#039;
-    &#039;date=1511733180; expires=1512337980&#039;
+    &#39;label; &#39;
+    &#39;sig=*MEQCIC/I9Q+7BZFP6cSDsWx43pBAL0ujTbON/+7RwKVk+ba5AiB3FSFLZqpzmDJ0NumNwN04pqgJZE99fcK86UjkPbj4jw; &#39;
+    &#39;validity-url&#39;=&quot;https://labs.jxck.io/webpackaging/signed-http-exchange-b2/cert.cbor&quot;;
+    &#39;integrity&#39;=&quot;digest/mi-sha256-03&quot;;
+    &#39;cert-url&#39;=&quot;https://labs.jxck.io/webpackaging/signed-http-exchange-b2/cert.cbor&quot;;
+    &#39;certSha256=*J/lEm9kNRODdCmINbvitpvdYKNQ+YgBj99DlYp4fEXw; &#39;
+    &#39;date=1511733180; expires=1512337980&#39;
   ],
   &quot;update&quot;: {
     &quot;size&quot;: 5557452

@@ -942,9 +942,9 @@
         <pre class=sh><code translate="no"># github.com pins Intermediate Certificate
 # so add `-showcerts` option for first openssl
 # and extract second CERTIFICATE with ruby
-echo &#039;---- EXPECTED ----&#039;
+echo &#39;---- EXPECTED ----&#39;
 openssl s_client -servername github.com -connect github.com:443 -showcerts 2&gt;/dev/null \
-  | ruby -nle &#039;puts $_.scan(/-----BEGIN CERTIFICATE-----.*?-----END CERTIFICATE-----/m)[1]&#039; \
+  | ruby -nle &#39;puts $_.scan(/-----BEGIN CERTIFICATE-----.*?-----END CERTIFICATE-----/m)[1]&#39; \
   | openssl x509 -pubkey -noout 2&gt;/dev/null \
   | openssl rsa -pubin -outform der 2&gt;/dev/null \
   | openssl dgst -sha256 -binary 2&gt;/dev/null \
@@ -952,8 +952,8 @@ openssl s_client -servername github.com -connect github.com:443 -showcerts 2&gt;
         <p>実際に <code translate="no">Public-Key-Pins</code> ヘッダを見てみる。この中にはバックアップを含めいくつか登録されているが、その中に上で計算したものが入っている。
         <pre class=sh><code translate="no"># get the actual Public-Key-Pins header
 # this will include hash calculated above
-echo &#039;---- ACTUAL ----&#039;
-curl -sI https://github.com | grep Public-Key-Pins | ruby -nle &#039;puts $_.gsub(&quot;;&quot;, &quot;\n&quot;)&#039;</code></pre>
+echo &#39;---- ACTUAL ----&#39;
+curl -sI https://github.com | grep Public-Key-Pins | ruby -nle &#39;puts $_.gsub(&quot;;&quot;, &quot;\n&quot;)&#39;</code></pre>
         <p>Leaf の証明書を Pin 留めしてしまうと、前述の通り証明書の更新で Pin との不整合が起きた場合に、接続できなくなってしまう。
         <p>このリスクを減らすために、中間証明書を Pin 留めするという運用になっている模様である。
         <p>(<a href="https://twitter.com/jovi0608">@jovi0608</a> さんにアドバイス頂きました、ありがとうございます。)

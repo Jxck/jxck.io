@@ -821,11 +821,11 @@
       <p><code translate="no">Promise.all()</code>, <code translate="no">Promise.race()</code> は、いずれも複数の Promise をまとめて処理する Utility Method のようなものである。
       <p>all は全ての Promise が Resolve したら Resolve し、 race はどれか 1 つでも Resolve したら Resolve する Promise をそれぞれ返す。
       <pre class=js><code translate="no">const fetches = [
-  fetch(&#039;./page1.html&#039;),
-  fetch(&#039;./page2.html&#039;),
-  fetch(&#039;./page3.html&#039;),
-  fetch(&#039;./page4.html&#039;),
-  fetch(&#039;./page5.html&#039;),
+  fetch(&#39;./page1.html&#39;),
+  fetch(&#39;./page2.html&#39;),
+  fetch(&#39;./page3.html&#39;),
+  fetch(&#39;./page4.html&#39;),
+  fetch(&#39;./page5.html&#39;),
 ]
 
 // 全ての fetch が Resolve したら Resolve する
@@ -840,12 +840,12 @@ await Promise.race(fetched)</code></pre>
         <p>all は、その中の一つでも Reject すると、全体が Reject してしまう。
         <pre class=js><code translate="no">try {
   const fetches = [
-    fetch(&#039;./page1.html&#039;),
-    fetch(&#039;./page2.html&#039;),
-    fetch(&#039;./page3.html&#039;),
-    fetch(&#039;./page4.html&#039;),
+    fetch(&#39;./page1.html&#39;),
+    fetch(&#39;./page2.html&#39;),
+    fetch(&#39;./page3.html&#39;),
+    fetch(&#39;./page4.html&#39;),
     new Promise((done, fail) =&gt; {
-      setTimeout(() =&gt; fail(&#039;abort&#039;), 10)
+      setTimeout(() =&gt; fail(&#39;abort&#39;), 10)
     })
   ]
 
@@ -865,39 +865,39 @@ await Promise.race(fetched)</code></pre>
       <p>allSettled は、 all とは違い、個々が Resolve/Reject どちらになっても、最後までとにかく全て実行する。
       <p>実行した結果を配列として Resolve するため、基本的に allSettled 自体は Reject しない。
       <pre class=js><code translate="no">const fetches = [
-  fetch(&#039;./page1.html&#039;),
-  fetch(&#039;./page2.html&#039;),
-  fetch(&#039;./page3.html&#039;),
-  fetch(&#039;./page4.html&#039;),
+  fetch(&#39;./page1.html&#39;),
+  fetch(&#39;./page2.html&#39;),
+  fetch(&#39;./page3.html&#39;),
+  fetch(&#39;./page4.html&#39;),
   new Promise((done, fail) =&gt; {
-    setTimeout(() =&gt; fail(&#039;abort&#039;), 10)
+    setTimeout(() =&gt; fail(&#39;abort&#39;), 10)
   })
 ]
 
 try {
   console.log(await Promise.allSettled(fetches))
-  // 0: {status: &#039;fulfilled&#039;, value: Response}
-  // 1: {status: &#039;fulfilled&#039;, value: Response}
-  // 2: {status: &#039;fulfilled&#039;, value: Response}
-  // 3: {status: &#039;fulfilled&#039;, value: Response}
-  // 4: {status: &#039;rejected&#039;, reason: &#039;abort&#039;}
+  // 0: {status: &#39;fulfilled&#39;, value: Response}
+  // 1: {status: &#39;fulfilled&#39;, value: Response}
+  // 2: {status: &#39;fulfilled&#39;, value: Response}
+  // 3: {status: &#39;fulfilled&#39;, value: Response}
+  // 4: {status: &#39;rejected&#39;, reason: &#39;abort&#39;}
 } catch(err) {
   // 基本的に reject はしない
   console.error(err)
 }</code></pre>
-      <p>したがって、 <code translate="no">status: &#039;rejected&#039;</code> な結果だけをリトライすれば良い。
+      <p>したがって、 <code translate="no">status: &#39;rejected&#39;</code> な結果だけをリトライすれば良い。
       <p>完了したものを無駄にせず、効率よく簡単に実装することができるだろう。
     </section>
     <section>
       <h2 id="race--reject"><a href="#race--reject">race + reject</a></h2>
       <p>race の場合は、最初の一つが Resolve する前に Reject した Promise があると、そこで全体が Reject してしまう。
       <pre class=js><code translate="no">const fetches = [
-  fetch(&#039;./page1.html&#039;),
-  fetch(&#039;./page2.html&#039;),
-  fetch(&#039;./page3.html&#039;),
-  fetch(&#039;./page4.html&#039;),
+  fetch(&#39;./page1.html&#39;),
+  fetch(&#39;./page2.html&#39;),
+  fetch(&#39;./page3.html&#39;),
+  fetch(&#39;./page4.html&#39;),
   new Promise((done, fail) =&gt; {
-    setTimeout(() =&gt; fail(&#039;abort&#039;), 10)
+    setTimeout(() =&gt; fail(&#39;abort&#39;), 10)
   })
 ]
 
@@ -913,12 +913,12 @@ try {
       <p>any は rece とは違い、 Resolve する前に Reject する Promise があっても無視し、最初にいずれかが Resolve するまで待つ。
       <p>そして、全ての Promise が Reject した場合にのみ全体を Reject する。
       <pre class=js><code translate="no">const fetches = [
-  fetch(&#039;./page1.html&#039;),
-  fetch(&#039;./page2.html&#039;),
-  fetch(&#039;./page3.html&#039;),
-  fetch(&#039;./page4.html&#039;),
+  fetch(&#39;./page1.html&#39;),
+  fetch(&#39;./page2.html&#39;),
+  fetch(&#39;./page3.html&#39;),
+  fetch(&#39;./page4.html&#39;),
   new Promise((done, fail) =&gt; {
-    setTimeout(() =&gt; fail(&#039;abort&#039;), 10)
+    setTimeout(() =&gt; fail(&#39;abort&#39;), 10)
   })
 ]
 

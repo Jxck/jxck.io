@@ -841,7 +841,7 @@ resizeObserver.disconnect(element) // 解放</code></pre>
       <p><code translate="no">resize</code> イベントは、そもそも view-port に対して定義されており、さらに <em>変更したこと</em> だけを伝える仕様になっている。
       <p><a href="https://drafts.csswg.org/cssom-view/#resizing-viewports">12.1. Resizing viewports | CSSOM View Module</a>
       <p>つまり、 resize された結果を取得するためには、 <code translate="no">target</code> を辿りサイズを取得する必要が出る。
-      <pre class=js><code translate="no">window.addEventListener(&#039;resize&#039;, (e) =&gt; {
+      <pre class=js><code translate="no">window.addEventListener(&#39;resize&#39;, (e) =&gt; {
   const width  = e.target.outerWidth
   const height = e.target.outerHeight
   console.log({width, height})
@@ -857,16 +857,16 @@ resizeObserver.disconnect(element) // 解放</code></pre>
       <h2 id="resize-event-polyfill"><a href="#resize-event-polyfill">resize event polyfill</a></h2>
       <p>仮に、 Observer のインタフェースを Event 側に寄せたいというのであれば、以下のように CustomEvent を定義することもできるだろう。
       <p>必要に応じて <a href="https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html">Passive Event Listener</a> を検討する必要がある。
-      <pre class=js><code translate="no">const $target = document.querySelector(&#039;textarea&#039;)
+      <pre class=js><code translate="no">const $target = document.querySelector(&#39;textarea&#39;)
 const resizeObserver = new ResizeObserver((entries) =&gt; {
   for (const entry of entries) {
-    const resize = new CustomEvent(&#039;resize&#039;, { detail: entry });
+    const resize = new CustomEvent(&#39;resize&#39;, { detail: entry });
     $target.dispatchEvent(resize)
   }
 })
 resizeObserver.observe($target)
 
-$target.addEventListener(&#039;resize&#039;, ({detail: entries}) =&gt; {
+$target.addEventListener(&#39;resize&#39;, ({detail: entries}) =&gt; {
   console.log(entries.contentRect)
 }, {passive: true})</code></pre>
       <p>DEMO: <a href="https://labs.jxck.io/resize-observer/onresize-polyfill.html">https://labs.jxck.io/resize-observer/onresize-polyfill.html</a>
@@ -896,7 +896,7 @@ $target.addEventListener(&#039;resize&#039;, ({detail: entries}) =&gt; {
       <h2 id="container-query"><a href="#container-query">Container Query</a></h2>
       <p><a href="https://au.si/css-container-element-queries">Container Query</a> は Element Query と似ているが、文字通り対象を親要素に置いている。
       <p>例えば、親要素のサイズに応じて子要素のレイアウトを変えたい場合は、 Element Query のスコープで以下のように定義ができる。
-      <pre class=css><code translate="no">@element &#039;#sidebar&#039; and (max-width: 300px) {
+      <pre class=css><code translate="no">@element &#39;#sidebar&#39; and (max-width: 300px) {
   #sidebar .widget {
     font-size: 10pt;
   }

@@ -223,19 +223,19 @@
         <section>
           <h3 id="none"><a href="#none">&lsquo;none&rsquo;</a></h3>
           <p><code translate="no">none</code> は、全てのオリジンに対して制限を適用する。つまりこれでページ上全ての同期 XHR が制限される。
-          <pre class=http><code translate="no">Feature-Policy: sync-xhr &#039;none&#039;</code></pre>
+          <pre class=http><code translate="no">Feature-Policy: sync-xhr &#39;none&#39;</code></pre>
         </section>
         <section>
           <h3 id="self"><a href="#self">&lsquo;self&rsquo;</a></h3>
           <p><code translate="no">self</code> は、同一オリジン上は許可し、それ以外のオリジンでは制限する。
           <p>iframe があった場合も、同一オリジンなら許可されるが、クロスオリジンでは制限される。
-          <pre class=http><code translate="no">Feature-Policy: sync-xhr &#039;self&#039;</code></pre>
+          <pre class=http><code translate="no">Feature-Policy: sync-xhr &#39;self&#39;</code></pre>
         </section>
         <section>
           <h3 id="allowlist"><a href="#allowlist">allowlist</a></h3>
           <p>機能を許可するオリジンをホワイトリストで指定できる。
           <p>例えば以下のようにすれば、同一オリジンに加え、 iframe 内の example.com では許可される。
-          <pre class=http><code translate="no">Feature-Policy: sync-xhr &#039;self&#039; https://example.com</code></pre>
+          <pre class=http><code translate="no">Feature-Policy: sync-xhr &#39;self&#39; https://example.com</code></pre>
           <p>sync-xhr の場合は、もともとブラウザで有効になっている機能を Feature Policy によって機能を制限しつつ、ホワイトリストで例外を設ける形になる。
         </section>
         <section>
@@ -243,7 +243,7 @@
           <p>最近の強力な機能は、 iframe からの呼び出しがデフォルトで制限されているものがある。
           <p>例えば、現在 Chrome では iframe から Geolocation API を呼び出すことはデフォルトで制限されている。
           <p>これを、特定のドメインにのみ許可したい場合は、以下のように指定する。
-          <pre class=http><code translate="no">Feature-Policy: geolocation &#039;self&#039; https://example.com</code></pre>
+          <pre class=http><code translate="no">Feature-Policy: geolocation &#39;self&#39; https://example.com</code></pre>
           <p>すると、この iframe で Geolocation API が呼び出された時、埋め込んだサイト上でプロンプトが表示される。
           <p>ユーザがこれを許可すると、サイトに対して権限が付与され、それが example.com にも移譲される。
           <p>これにより、 iframe 内で Geoloation API が実行できることになる。
@@ -260,7 +260,7 @@
           <p>設定する際は、 CSP の sandbox を基準とし、許可したいものを <code translate="no">allow-*</code> で、追加で制限したいものを Feature Policy で行うことになるだろう。
           <p>例として、 iframe Sandbox を有効にしつつ、 script の実行を許可するが、それによって sycn-xhr が行われるのは制限したいといった場合は以下のようになるだろう。
           <pre class=http><code translate="no">Content-Security-Policy: sandbox allow-scripts;
-Feature-Policy: sync-xhr &#039;none&#039;</code></pre>
+Feature-Policy: sync-xhr &#39;none&#39;</code></pre>
           <p>DEMO: <a href="https://labs.jxck.io/feature-policy/sync-xhr/sandbox.html">https://labs.jxck.io/feature-policy/sync-xhr/sandbox.html</a>
         </section>
       </section>

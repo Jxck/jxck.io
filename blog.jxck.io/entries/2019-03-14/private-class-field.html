@@ -449,7 +449,7 @@ o // {&quot;#x&quot;: 10}</code></pre>
         <p>これは既存のコードでもあり得るが、アクセス方法も <code translate="no">o[&quot;#x&quot;]</code> しかなく、 <code translate="no">.#x</code> でアクセスするコードは既存にはないので両方を許さなければ競合はしない。
         <p>また、動的に Private にアクセスできるとうことは、以下のようなことができてしまうことを意味する。
         <pre class=js><code translate="no">class Dict {
-  #secret = &#039;secret values&#039;
+  #secret = &#39;secret values&#39;
   add(key, value) {
     this[key] = value;
   }
@@ -459,7 +459,7 @@ o // {&quot;#x&quot;: 10}</code></pre>
 }
 
 const dict = new Dict()
-dict.get(&#039;#secret&#039;); // secret values</code></pre>
+dict.get(&#39;#secret&#39;); // secret values</code></pre>
         <p>これでは意味がない。
       </section>
       <section>

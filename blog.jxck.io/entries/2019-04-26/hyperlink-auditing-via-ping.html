@@ -179,16 +179,16 @@ PING</code></pre>
           <p>最も想像しやすい手法は、 JS を用いた実装だろう。
           <p><code translate="no">onclick</code>, <code translate="no">onunload</code>, などをフックし、遷移の前に必要な情報を載せたリクエストをサーバに飛ばす方法だ。
           <p>XHR で飛ばすこともできるが、非同期だと送り終わる前にページが遷移してしまうなどの理由により、あえて同期の XHR でリクエストを投げ、終わるまで処理を止めてるという場合もある。
-          <pre class=js><code translate="no">window.addEventListener(&#039;unload&#039;, (e) =&gt; {
+          <pre class=js><code translate="no">window.addEventListener(&#39;unload&#39;, (e) =&gt; {
   const xhr = new XMLHttpRequest()
-  xhr.open(&#039;post&#039;, &#039;https://beacon.example/&#039;, false) // sync xhr
+  xhr.open(&#39;post&#39;, &#39;https://beacon.example/&#39;, false) // sync xhr
   xhr.send(data) // 必要な情報を収集する
 })</code></pre>
           <p>最近は Off The Main Thread の流れもあり、同期の XHR は徐々に無くしていく方向になっているため、標準化されている Beacon API や Keep Alive Fetch などを利用するのが理想的だ。
-          <pre class=js><code translate="no">window.addEventListener(&#039;unload&#039;, (e) =&gt; {
-  fetch(&#039;https://beacon.example/&#039;, {
+          <pre class=js><code translate="no">window.addEventListener(&#39;unload&#39;, (e) =&gt; {
+  fetch(&#39;https://beacon.example/&#39;, {
     keepalive: true,
-    method: &#039;post&#039;,
+    method: &#39;post&#39;,
     body: data // 必要な情報を収集する
   })
 })</code></pre>

@@ -147,7 +147,7 @@
         <p>この <code translate="no">preventDefault()</code> を呼ばないリスナを <em>Passive Listener</em> と表現する。
         <p>そして、登録したリスナが <em>Passive Listener</em> であることを明示するのが、今回追加された <code translate="no">passive</code> フラグである。
         <p>この値は、同じく今回追加された <code translate="no">addEventListener()</code> の第三引数に渡す <em>Event Listener Options</em> で指定する。
-        <pre class=js><code translate="no">document.addEventListener(&#039;touchstart&#039;, handler, {passive: true});</code></pre>
+        <pre class=js><code translate="no">document.addEventListener(&#39;touchstart&#39;, handler, {passive: true});</code></pre>
         <p>開発者がこれを明示的に指定することで、ブラウザはリスナが <code translate="no">preventDefault()</code> を呼ばないことを前提とできるため、リスナの完了を待たずにスクロールすることができ、それを最適化できる余地が生まれる。
         <p>なお Passive Listener 内で <code translate="no">preventDefault()</code> を呼んだ場合は無視されるため、呼んだとしても <code translate="no">defaultPrevented=false</code> のままになる。
         <p>Listener 内で <code translate="no">preventDefault()</code> を呼べるかどうかは、 <code translate="no">cancelable=true</code> となっているかどうかで分かる。
@@ -183,10 +183,10 @@
         <p>これが <code translate="no">true</code> の場合は、イベントはバブリングフェーズではなく、キャプチャリングフェーズで発火されることになる。
         <p>Event Listener Options 対応以降は、ここにオブジェクトを渡すことになるため、 <code translate="no">useCapture</code> フラグ相当は、 <code translate="no">{capture: true}</code> としてプロパティによる定義を行う。
         <pre class=js><code translate="no">// before
-document.addEventListener(&#039;touchstart&#039;, handler, true);
+document.addEventListener(&#39;touchstart&#39;, handler, true);
 
 // after
-document.addEventListener(&#039;touchstart&#039;, handler, {capture: true});</code></pre>
+document.addEventListener(&#39;touchstart&#39;, handler, {capture: true});</code></pre>
         <p>引数をオブジェクトにしたことにより、フラグの追加に対して開いた設計となるため、ここに Passive フラグを付け加えることができるわけである。
         <p>今後リスナに対する新たなオプション(ブラウザが実行前に知りたい内容)を追加する場合にも、同様に追加が可能となる。
       </section>
@@ -195,13 +195,13 @@ document.addEventListener(&#039;touchstart&#039;, handler, {capture: true});</co
         <p>引数をオブジェクトにした結果、 Passive 用に引数を追加するよりも柔軟な設計となったが、互換性の問題が発生してしまう結果となった。
         <p>これは <code translate="no">{passive: true}</code> は JS としては truthy であるため、第三引数が Event Listener Option に対応してないブラウザにおいて単に <code translate="no">useCapture</code> を有効にしたと解釈されてしまうためにおこる。
         <p>例えばキャプチャリングフェーズでの補足を <code translate="no">false</code> にする指定を Event Listener Options で指定した場合、古いブラウザでは意図に反して <code translate="no">useCapture</code> を <code translate="no">true</code> にしたと解釈されてしまうのである。
-        <pre class=js><code translate="no">document.addEventListener(&#039;touchstart&#039;, handler, {capture: false});</code></pre>
+        <pre class=js><code translate="no">document.addEventListener(&#39;touchstart&#39;, handler, {capture: false});</code></pre>
         <p>これを避けるためには Feature Detection が必要となる。
         <p>スペックにサンプルが掲載されているので、引用しコメントで解説を追記する。
         <pre class=js><code translate="no">var supportsPassive = false;
 try {
   // getter として opts.passive を定義して、 addEventListener 内で呼ばれたことがわかるようにする
-  var opts = Object.defineProperty({}, &#039;passive&#039;, {
+  var opts = Object.defineProperty({}, &#39;passive&#39;, {
     get: function() {
       // 内部で opts.passive が呼ばれたら対応ブラウザ
       // 用意しておいたフラグを有効にする

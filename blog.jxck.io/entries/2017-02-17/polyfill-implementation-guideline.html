@@ -161,9 +161,9 @@
           <p>しかし、この仕様を実装したブラウザで jsfiddle が壊れてことから、そこで使われていた MooTools が問題を起こしていたことが判明した。
           <p>MooTools は早い段階から <code translate="no">contains()</code> を実装していたのだが、その実装は行儀の良いものではなかった。
           <p>具体的には、その時点で Array が実装しているメソッドをホワイトリストとして定義し、当時そのリストに無かった <code translate="no">contains()</code> の Polyfill を追加した独自の Array を提供していた。
-          <pre class=js><code translate="no">(&#039;Array&#039;, Array, [
-  &#039;pop&#039;, &#039;push&#039;, &#039;reverse&#039;, &#039;shift&#039;, &#039;sort&#039;, &#039;splice&#039;, &#039;unshift&#039;, &#039;concat&#039;, &#039;join&#039;, &#039;slice&#039;,
-  &#039;indexOf&#039;, &#039;lastIndexOf&#039;, &#039;filter&#039;, &#039;forEach&#039;, &#039;every&#039;, &#039;map&#039;, &#039;some&#039;, &#039;reduce&#039;, &#039;reduceRight&#039;
+          <pre class=js><code translate="no">(&#39;Array&#39;, Array, [
+  &#39;pop&#39;, &#39;push&#39;, &#39;reverse&#39;, &#39;shift&#39;, &#39;sort&#39;, &#39;splice&#39;, &#39;unshift&#39;, &#39;concat&#39;, &#39;join&#39;, &#39;slice&#39;,
+  &#39;indexOf&#39;, &#39;lastIndexOf&#39;, &#39;filter&#39;, &#39;forEach&#39;, &#39;every&#39;, &#39;map&#39;, &#39;some&#39;, &#39;reduce&#39;, &#39;reduceRight&#39;
 ])</code></pre>
           <p><a href="https://github.com/mootools/mootools-core/blob/09b99e5886ca466480d4ae9acbb769e284f4acf1/Source/Core/Core.js#L269">Core.js#L269</a>
           <p>しかし、 <code translate="no">contains()</code> の実装を追加する前に <code translate="no">Array.prototype.contains</code> の存在をチェックし、存在したらスルーしていたため、そこにネイティブの実装が加わった時点で、最終的な独自の Array には、ネイティブ実装の <code translate="no">contains()</code> も Polyfill の <code translate="no">contains()</code> もない Array が提供されたというバグである。
@@ -178,10 +178,10 @@
           <p>しかし、 <code translate="no">createShadowRoot()</code> は主に Google が先行して Chrome に実装しており、それがかなり広く普及してしまったため、途中から引数を必須にすることは実質不可能だった。ただし、 <code translate="no">mode</code> の概念を外すことはできないため、 <code translate="no">createShadowRoot()</code> は従来のままとし、代わりに「引数を必須とする別の名前のメソッド」を定義することでこの問題を回避することとなった。
           <p>これが v1 で引数必須として定義されている <code translate="no">attachShadow({mode})</code> である。
           <pre class=js><code translate="no">// v0
-document.createElement(&#039;div&#039;).createShadowRoot();
+document.createElement(&#39;div&#39;).createShadowRoot();
 
 // v1 (引数必須)
-document.createElement(&#039;div&#039;).attachShadow({ mode: &#039;open&#039; });</code></pre>
+document.createElement(&#39;div&#39;).attachShadow({ mode: &#39;open&#39; });</code></pre>
           <p>ブラウザ自体の実装は、外部ライブラリとしての Polyfill とはまた違い、開発者からのフィードバックを集める以上、実装しないわけにもいかない。しかし、一度リリースし普及すれば、取り消すことは難しい。
           <p>このジレンマの解決としてベンダプレフィックスがあったが、これは次に紹介するように必ずしもうまくはいかなかった。
         </section>

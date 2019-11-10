@@ -948,43 +948,43 @@ codePoints.length // =&gt; 13</code></pre>
       <h2 id="正規表現"><a href="#正規表現">正規表現</a></h2>
       <p>正規表現における <code translate="no">.</code> も 1 文字ではなく、 UTF-16 の 16bit データ 1 つを意味する。
       <p>したがって、サロゲートペアがあると 1 文字にマッチせず、途中で切れる。
-      <pre class=js><code translate="no">&#039;吉野家&#039;.match(/./) // [&quot;吉&quot;]
-&#039;𠮷野家&#039;.match(/./) // [&quot;�&quot;]
+      <pre class=js><code translate="no">&#39;吉野家&#39;.match(/./) // [&quot;吉&quot;]
+&#39;𠮷野家&#39;.match(/./) // [&quot;�&quot;]
 
-&#039;吉野家&#039;.match(/.{3}/) // [&quot;吉野家&quot;]
-&#039;𠮷野家&#039;.match(/.{3}/) // [&quot;𠮷野&quot;] 変なところで切れる</code></pre>
+&#39;吉野家&#39;.match(/.{3}/) // [&quot;吉野家&quot;]
+&#39;𠮷野家&#39;.match(/.{3}/) // [&quot;𠮷野&quot;] 変なところで切れる</code></pre>
       <p>そこで、 ES2015 では Unicode Flag というフラグが入った。これで Code Point の単位でマッチさせることができるようになる。
-      <pre class=js><code translate="no">&#039;吉野家&#039;.match(/./u) // [&quot;吉&quot;]
-&#039;𠮷野家&#039;.match(/./u) // [&quot;𠮷&quot;]
+      <pre class=js><code translate="no">&#39;吉野家&#39;.match(/./u) // [&quot;吉&quot;]
+&#39;𠮷野家&#39;.match(/./u) // [&quot;𠮷&quot;]
 
-&#039;吉野家&#039;.match(/.{3}/u) // [&quot;吉野家&quot;]
-&#039;𠮷野家&#039;.match(/.{3}/u) // [&quot;𠮷野家&quot;]</code></pre>
+&#39;吉野家&#39;.match(/.{3}/u) // [&quot;吉野家&quot;]
+&#39;𠮷野家&#39;.match(/.{3}/u) // [&quot;𠮷野家&quot;]</code></pre>
     </section>
     <section>
       <h2 id="split"><a href="#split">split</a></h2>
-      <p>文字列を文字の配列に分解するのに使われる <code translate="no">split(&#039;&#039;)</code> も、サロゲートペアがあると崩れてしまう。
-      <pre class=js><code translate="no">&#039;叱られる&#039;.split(&#039;&#039;) // [&quot;叱&quot;, &quot;ら&quot;, &quot;れ&quot;, &quot;る&quot;]
-&#039;𠮟られる&#039;.split(&#039;&#039;) // [&quot;�&quot;, &quot;�&quot;, &quot;ら&quot;, &quot;れ&quot;, &quot;る&quot;]</code></pre>
+      <p>文字列を文字の配列に分解するのに使われる <code translate="no">split(&#39;&#39;)</code> も、サロゲートペアがあると崩れてしまう。
+      <pre class=js><code translate="no">&#39;叱られる&#39;.split(&#39;&#39;) // [&quot;叱&quot;, &quot;ら&quot;, &quot;れ&quot;, &quot;る&quot;]
+&#39;𠮟られる&#39;.split(&#39;&#39;) // [&quot;�&quot;, &quot;�&quot;, &quot;ら&quot;, &quot;れ&quot;, &quot;る&quot;]</code></pre>
       <p>代わりに、先ほどの Unicode フラグを使った正規表現を使うと、正しく文字の配列に分解できる。
-      <pre class=js><code translate="no">&#039;叱られる&#039;.match(/./ug) // [&quot;叱&quot;, &quot;ら&quot;, &quot;れ&quot;, &quot;る&quot;]
-&#039;𠮟られる&#039;.match(/./ug) // [&quot;𠮟&quot;, &quot;ら&quot;, &quot;れ&quot;, &quot;る&quot;]</code></pre>
+      <pre class=js><code translate="no">&#39;叱られる&#39;.match(/./ug) // [&quot;叱&quot;, &quot;ら&quot;, &quot;れ&quot;, &quot;る&quot;]
+&#39;𠮟られる&#39;.match(/./ug) // [&quot;𠮟&quot;, &quot;ら&quot;, &quot;れ&quot;, &quot;る&quot;]</code></pre>
     </section>
     <section>
       <h2 id="for-in--for-of"><a href="#for-in--for-of">for in / for of</a></h2>
       <p>繰り返し処理も注意が必要だ。特に文字列に対する添え字アクセスは、 UTF-16 配列に対するアクセスだとイメージするとわかりやすい。(ちなみに <code translate="no">charAt()</code> も同じだ)
-      <pre class=js><code translate="no">&#039;鯖定食&#039;[0] === &quot;鯖&quot;
-&#039;鯖定食&#039;.charAt(0) === &quot;鯖&quot;
+      <pre class=js><code translate="no">&#39;鯖定食&#39;[0] === &quot;鯖&quot;
+&#39;鯖定食&#39;.charAt(0) === &quot;鯖&quot;
 
-&#039;𩸽定食&#039;[0] === &quot;�&quot;
-&#039;𩸽定食&#039;.charAt(0) === &quot;�&quot;</code></pre>
+&#39;𩸽定食&#39;[0] === &quot;�&quot;
+&#39;𩸽定食&#39;.charAt(0) === &quot;�&quot;</code></pre>
       <p>よって 1 文字ずつ処理をするという処理に for を使う場合は、添え字を基準にすることができない。
-      <pre class=js><code translate="no">const str = &#039;鯖定食&#039;
+      <pre class=js><code translate="no">const str = &#39;鯖定食&#39;
 for (const i in str) console.log(str[i])
 // 鯖
 // 定
 // 食
 
-const str = &#039;𩸽定食&#039;
+const str = &#39;𩸽定食&#39;
 for (const i in str) console.log(str[i])
 // �
 // �
@@ -992,7 +992,7 @@ for (const i in str) console.log(str[i])
 // 食</code></pre>
       <p><code translate="no">for (i = 0; i &lt; str.length; i ++)</code> と書いても同じだ。
       <p>代わりに ES2015 で追加された <code translate="no">for of</code> を使うと、 Unicode の Code Point 単位で繰り返し処理が可能だ。
-      <pre class=js><code translate="no">for (let c of &#039;𩸽定食&#039;) console.log(c)
+      <pre class=js><code translate="no">for (let c of &#39;𩸽定食&#39;) console.log(c)
 // 𩸽
 // 定
 // 食</code></pre>
@@ -1000,12 +1000,12 @@ for (const i in str) console.log(str[i])
     <section>
       <h2 id="spread-operator"><a href="#spread-operator">Spread Operator</a></h2>
       <p>Spread Operator を用いた分割も、 Code Point の単位で分割される。
-      <pre class=js><code translate="no">((a, b, c) =&gt; console.log(a, b, c))(...&#039;𩸽定食&#039;) // 𩸽 定 食</code></pre>
+      <pre class=js><code translate="no">((a, b, c) =&gt; console.log(a, b, c))(...&#39;𩸽定食&#39;) // 𩸽 定 食</code></pre>
     </section>
     <section>
       <h2 id="destructoring"><a href="#destructoring">Destructoring</a></h2>
       <p>いわゆる分割代入時の分割も Code Point が意識されている。
-      <pre class=js><code translate="no">[a,b,c]=&#039;𩸽定食&#039;
+      <pre class=js><code translate="no">[a,b,c]=&#39;𩸽定食&#39;
 a // &quot;𩸽&quot;
 b // &quot;定&quot;
 c // &quot;食&quot;</code></pre>
@@ -1013,26 +1013,26 @@ c // &quot;食&quot;</code></pre>
     <section>
       <h2 id="arrayof-from"><a href="#arrayof-from">Array.{of, from}</a></h2>
       <p>文字列から、文字の配列に変える場合は以下のように行う。
-      <pre class=js><code translate="no">Array.of(...&#039;叱られた😭&#039;)
-Array.from(&#039;叱られた😭&#039;)
-[ &#039;叱&#039;, &#039;ら&#039;, &#039;れ&#039;, &#039;た&#039;, &#039;😭&#039; ]</code></pre>
+      <pre class=js><code translate="no">Array.of(...&#39;叱られた😭&#39;)
+Array.from(&#39;叱られた😭&#39;)
+[ &#39;叱&#39;, &#39;ら&#39;, &#39;れ&#39;, &#39;た&#39;, &#39;😭&#39; ]</code></pre>
     </section>
     <section>
       <h2 id="charcodecodepoint"><a href="#charcodecodepoint">charCode/codePoint</a></h2>
       <p><code translate="no">charCodeAt()</code> は文字コードを取り、 <code translate="no">fromCharCode()</code> はその逆を行う。
       <p><code translate="no">𩸽</code> の方は前半のバイトしかないため、元に戻らない。
-      <pre class=js><code translate="no">&#039;鯖定食&#039;.charCodeAt(0) === 0x9BD6
-&#039;𩸽定食&#039;.charCodeAt(0) === 0xD867
+      <pre class=js><code translate="no">&#39;鯖定食&#39;.charCodeAt(0) === 0x9BD6
+&#39;𩸽定食&#39;.charCodeAt(0) === 0xD867
 
-String.fromCharCode(&#039;鯖&#039;.charCodeAt(0)) //&quot;鯖&quot;
-String.fromCharCode(&#039;𩸽&#039;.charCodeAt(0)) // &quot;�&quot;</code></pre>
+String.fromCharCode(&#39;鯖&#39;.charCodeAt(0)) //&quot;鯖&quot;
+String.fromCharCode(&#39;𩸽&#39;.charCodeAt(0)) // &quot;�&quot;</code></pre>
       <p>これも、 Code Point を取り出すメソッドが定義されている。
       <p>これならサロゲートペアもうまく扱える。
-      <pre class=js><code translate="no">&#039;𩸽定食&#039;.codePointAt(0) // 0x9BD6
-&#039;鯖定食&#039;.codePointAt(0) // 0x29E3D
+      <pre class=js><code translate="no">&#39;𩸽定食&#39;.codePointAt(0) // 0x9BD6
+&#39;鯖定食&#39;.codePointAt(0) // 0x29E3D
 
-String.fromCodePoint(&#039;鯖&#039;.codePointAt(0)) // &quot;鯖&quot;
-String.fromCodePoint(&#039;𩸽&#039;.codePointAt(0)) // &quot;𩸽&quot;</code></pre>
+String.fromCodePoint(&#39;鯖&#39;.codePointAt(0)) // &quot;鯖&quot;
+String.fromCodePoint(&#39;𩸽&#39;.codePointAt(0)) // &quot;𩸽&quot;</code></pre>
     </section>
     <section>
       <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
@@ -1072,7 +1072,7 @@ str = &quot;葛󠄀城市&quot;
         <p>例えば <code translate="no">👍</code> という絵文字は <code translate="no">👍🏻 👍🏼 👍🏽 👍🏾 👍🏿</code> のように肌の色を変えることができる。
         <p>これは、元となる絵文字に対して、 Emoji Modifier Sequence という変更を加えるための異体字セレクタを組みわせている。
         <p>肌の色を変える skin tone は 5 種類定義されており、これを直後に置くことで表示上肌の色を変えられるのである。
-        <pre class=js><code translate="no">Array.of(...&#039;👍🏻👍🏼👍🏽👍🏾👍🏿&#039;)
+        <pre class=js><code translate="no">Array.of(...&#39;👍🏻👍🏼👍🏽👍🏾👍🏿&#39;)
 [
   &quot;👍&quot;, &quot;🏻&quot;, // &quot;0x1F44D&quot;, &quot;0x1F3FB&quot;
   &quot;👍&quot;, &quot;🏼&quot;, // &quot;0x1F44D&quot;, &quot;0x1F3FC&quot;
@@ -1087,17 +1087,17 @@ str = &quot;葛󠄀城市&quot;
       <section>
         <h3 id="結合文字"><a href="#結合文字">結合文字</a></h3>
         <p>よく例に上がるのが <code translate="no">パ</code> と <code translate="no">パ</code> だ。
-        <pre class=js><code translate="no">Array.of(...&#039;パ&#039;)
+        <pre class=js><code translate="no">Array.of(...&#39;パ&#39;)
 [&quot;パ&quot;]
-Array.of(...&#039;パ&#039;)
+Array.of(...&#39;パ&#39;)
 [&quot;ハ&quot;, &quot;゚&quot;]</code></pre>
         <p>このように、前者は 1 つの CodePoint だが、後者は 「ハ」と「半濁点」の 2 CodePoint から成り立っている。
         <p>ウムラウトやマクロンのような記号でも同じことがおこる。以下の文字は 3 つの方法で表すことができる。
-        <pre class=js><code translate="no">Array.of(...&#039;ǖ&#039;)
+        <pre class=js><code translate="no">Array.of(...&#39;ǖ&#39;)
 [&quot;ǖ&quot;]
-Array.of(...&#039;ǖ&#039;)
+Array.of(...&#39;ǖ&#39;)
 [&quot;ü&quot;, &quot;̄&quot;]
-Array.of(...&#039;ǖ&#039;)
+Array.of(...&#39;ǖ&#39;)
 [&quot;u&quot;, &quot;̈&quot;, &quot;̄&quot;]</code></pre>
         <p>濁点やウムラウトのような、前にある文字(基底文字)に結合される図形文字を結合文字という。
         <p>結合して表せる文字そのものに CodePoint が割り当てられているために、複数の表現方法が可能になる。
@@ -1110,7 +1110,7 @@ Array.of(...&#039;ǖ&#039;)
       <section>
         <h3 id="zwj"><a href="#zwj">ZWJ</a></h3>
         <p>他にも <code translate="no">👨‍👩‍👧‍👦</code> も合字を利用している。
-        <pre class=js><code translate="no">Array.of(...&#039;👨‍👩‍👧‍👦&#039;)
+        <pre class=js><code translate="no">Array.of(...&#39;👨‍👩‍👧‍👦&#39;)
 [&quot;👨&quot;, &quot;‍&quot;, &quot;👩&quot;, &quot;‍&quot;, &quot;👧&quot;, &quot;‍&quot;, &quot;👦&quot;]</code></pre>
         <p>この絵文字は &ldquo;family with mother father son daughter&rdquo; という名前の文字で、 4 つの絵文字が合成されてできている。
         <p>家族は多様なので別の組み合わせもある。

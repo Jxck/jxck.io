@@ -149,7 +149,7 @@
           <p>例えば、以下の README.md だった場合は、雑にやるとこんな感じでできそうだ。
           <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
           <pre class=js><code translate="no">javascript: (() =&gt; {
-  const readme = document.querySelector(&#039;#readme&#039;);
+  const readme = document.querySelector(&#39;#readme&#39;);
   document.body.innerHTML = &quot;&quot;;
   document.body.appendChild(readme);
 })()</code></pre>
@@ -162,10 +162,10 @@
           <p>それをリンクに直して、遷移できるようにする。
           <pre class=js><code translate="no">javascript: (() =&gt; {
   let url = new URL(location.href);
-  for (let $h of document.querySelectorAll(&#039;h1, h2, h3, h4&#039;)) {
-    let $a = document.createElement(&#039;a&#039;);
+  for (let $h of document.querySelectorAll(&#39;h1, h2, h3, h4&#39;)) {
+    let $a = document.createElement(&#39;a&#39;);
     $a.textContent = $h.textContent;
-    $h.textContent = &#039;&#039;;
+    $h.textContent = &#39;&#39;;
     url.hash = $h.id;
     $a.href = url.toString();
     $a.style.color = getComputedStyle($h).color;
@@ -178,7 +178,7 @@
           <h3 id="twitter-colored-link"><a href="#twitter-colored-link">Twitter Colored Link</a></h3>
           <p>Twitter のリンクが色も Underline も付かなくなって以降、 URL がどこにあるのかパッとわかりにくい。
           <p>そこで、対象の <code translate="no">&lt;a&gt;</code> に色をつける。
-          <pre class=js><code translate="no">javascript:Array.from(document.querySelectorAll(&#039;.js-display-url&#039;)).forEach((a) =&gt; a.style.color=&quot;red&quot;)</code></pre>
+          <pre class=js><code translate="no">javascript:Array.from(document.querySelectorAll(&#39;.js-display-url&#39;)).forEach((a) =&gt; a.style.color=&quot;red&quot;)</code></pre>
           <p>それっぽい Class をなんとか探すのがポイント。
         </section>
         <section>
@@ -189,17 +189,17 @@
           <p>例えば 1 ヶ月を選ぶと以下が付与される。
           <pre class=text><code translate="no">&amp;tbs=qdr:m</code></pre>
           <p>この <code translate="no">m</code> を <code translate="no">m3</code> にすると 3 ヶ月になる。
-          <pre class=js><code translate="no">javascript:location.href += &#039;&amp;tbs=qdr:m3&#039;</code></pre>
+          <pre class=js><code translate="no">javascript:location.href += &#39;&amp;tbs=qdr:m3&#39;</code></pre>
         </section>
         <section>
           <h3 id="canonical"><a href="#canonical">canonical</a></h3>
           <p>綺麗な URL を取得したいのに、遷移元などの影響で不要なゴミクエリが付いているといった場合にそれを除去する。
-          <pre class=js><code translate="no">javascript:location.href = document.querySelector(&#039;link[rel=&quot;canonical&quot;]&#039;).href</code></pre>
+          <pre class=js><code translate="no">javascript:location.href = document.querySelector(&#39;link[rel=&quot;canonical&quot;]&#39;).href</code></pre>
           <p>ところで、 Amazon の URL の canonical は以下のようになっている。
           <pre class=url><code translate="no">https://www.amazon.co.jp/商品名/dp/XXXXXXXX</code></pre>
           <p>ただ、商品名が長いとブログなどに貼る時に URL が見づらくなる。
           <p>実際は dp 以降だけで良いので、商品名を削除してしまった方が使いやすかったりする。
-          <pre class=js><code translate="no">javascript:location.href = document.querySelector(&#039;link[rel=&quot;canonical&quot;]&#039;).href.replace(/amazon.co.jp\/.*\/dp/, &#039;amazon.co.jp/dp&#039;);</code></pre>
+          <pre class=js><code translate="no">javascript:location.href = document.querySelector(&#39;link[rel=&quot;canonical&quot;]&#39;).href.replace(/amazon.co.jp\/.*\/dp/, &#39;amazon.co.jp/dp&#39;);</code></pre>
         </section>
         <section>
           <h3 id="preslide"><a href="#preslide">preslide</a></h3>
@@ -212,13 +212,13 @@
     document.querySelector(&quot;#svPlayerId &gt; div.stage &gt; div.rightpoint.pointly&quot;).click();
     loop(n-1);
   }, 100);
-}; loop(parseInt(document.querySelector(&#039;#total-slides&#039;).textContent)-2);</code></pre>
+}; loop(parseInt(document.querySelector(&#39;#total-slides&#39;).textContent)-2);</code></pre>
         </section>
         <section>
           <h3 id="safari-picture-in-picture"><a href="#safari-picture-in-picture">safari picture-in-picture</a></h3>
           <p>今の Safari は PinP に対応している。
           <p><code translate="no">&lt;video&gt;</code> タグで再生されていれば基本的に表示が可能だが、 UI がない場合は以下で再生中のビデオを PinP できる。
-          <pre class=js><code translate="no">javascript: document.querySelector(&#039;video&#039;).webkitSetPresentationMode(&#039;picture-in-picture&#039;)</code></pre>
+          <pre class=js><code translate="no">javascript: document.querySelector(&#39;video&#39;).webkitSetPresentationMode(&#39;picture-in-picture&#39;)</code></pre>
           <p>新しい Mac は touch bar に UI があるので、無い機種で使ってる。
         </section>
         <section>

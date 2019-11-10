@@ -220,13 +220,13 @@
 }</code></pre>
           <p>構文の場合は物によるが、例えば ES Module サポートをどうしても調べたいといった場合は以下のような手段が一応ある。
           <pre class=js><code translate="no">function supportsStaticImport() {
-  const script = document.createElement(&#039;script&#039;)
-  return &#039;noModule&#039; in script
+  const script = document.createElement(&#39;script&#39;)
+  return &#39;noModule&#39; in script
 }
 
 function supportsDynamicImport() {
   try {
-    new Function(&#039;import(&quot;&quot;)&#039;)
+    new Function(&#39;import(&quot;&quot;)&#39;)
     return true
   } catch (err) {
     return false

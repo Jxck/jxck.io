@@ -153,7 +153,7 @@
           <p>body を親要素とすれば、そこからの offset 位置はドキュメント上の絶対位置と考えることができる。
           <p>これは、要素自体が持っている。
           <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-          <pre class=js><code translate="no">let target = document.querySelector(&#039;.target&#039;);
+          <pre class=js><code translate="no">let target = document.querySelector(&#39;.target&#39;);
 // target.offsetTop;
 // target.offsetHeight;
 // target.offsetWidth;
@@ -282,9 +282,9 @@ observer.observe(target);</code></pre>
           <pre class=js><code translate="no">let observer = new IntersectionObserver((changes) =&gt; {
   // callback
 }, {
-  root: document.querySelector(&#039;.target&#039;),
+  root: document.querySelector(&#39;.target&#39;),
   threshold: [0, 0.2, 0.4, 0.6, 0.8, 1.0],
-  rootMargin: &#039;10px&#039;,
+  rootMargin: &#39;10px&#39;,
 });
 observer.observe(target);</code></pre>
         </section>
@@ -292,7 +292,7 @@ observer.observe(target);</code></pre>
           <h3 id="root"><a href="#root">root</a></h3>
           <p>デフォルトでは、 viewport を対象にした交差検出を行うことができるが、これはデフォルトの root が document 自身になっているからである。
           <p>root オプションを用いることで、任意の親要素内を指定できるため、例えば <code translate="no">overflow: scroll</code> になった div の中の交差を判定することができる。
-          <pre class=js><code translate="no">{ root: document.querySelector(&#039;.target&#039;) }</code></pre>
+          <pre class=js><code translate="no">{ root: document.querySelector(&#39;.target&#39;) }</code></pre>
         </section>
         <section>
           <h3 id="threshold"><a href="#threshold">threshold</a></h3>
@@ -310,7 +310,7 @@ observer.observe(target);</code></pre>
           <p>しかし、 viewport 上に表示されてから取得するより、表示される少し前に取得を開始できれば、小さい画像なら空の <code translate="no">&lt;img&gt;</code> すら出さずに済む可能性がある。
           <p>こうした場合は rootMargin オプションを指定することができる。
           <p>値は CSS の margin への指定と同じだ、例えば以下のように設定すれば、上下左右が交差する 10px 手前でイベントが発火する。
-          <pre class=js><code translate="no">{ rootMargin: &#039;10px&#039; }</code></pre>
+          <pre class=js><code translate="no">{ rootMargin: &#39;10px&#39; }</code></pre>
         </section>
         <section>
           <h3 id="intersection-observe-demo"><a href="#intersection-observe-demo">Intersection Observe DEMO</a></h3>

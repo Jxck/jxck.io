@@ -844,27 +844,27 @@
 &lt;input id=test type=button value=test&gt;
 
 &lt;script src=master.js&gt;&lt;/script&gt;</code></pre>
-      <pre class=js><code translate="no">console.log(&#039;master&#039;);
+      <pre class=js><code translate="no">console.log(&#39;master&#39;);
 
-document.getElementById(&#039;button&#039;).addEventListener(&#039;click&#039;, () =&gt; {
-  fetch(&#039;/test&#039;);
+document.getElementById(&#39;button&#39;).addEventListener(&#39;click&#39;, () =&gt; {
+  fetch(&#39;/test&#39;);
 });
 
-navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt; {
+navigator.serviceWorker.register(&#39;worker.js&#39;).then((registration) =&gt; {
   console.log(registration);
 });</code></pre>
-      <pre class=js><code translate="no">console.info(&#039;worker&#039;);
+      <pre class=js><code translate="no">console.info(&#39;worker&#39;);
 
-self.addEventListener(&#039;activate&#039;, (e) =&gt; {
-  console.info(&#039;activate&#039;, e);
+self.addEventListener(&#39;activate&#39;, (e) =&gt; {
+  console.info(&#39;activate&#39;, e);
   e.waitUntil(self.clients.claim());
 });
 
-self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
+self.addEventListener(&#39;fetch&#39;, (e) =&gt; {
   let path = new URL(e.request.url).pathname;
   console.log(path);
-  if (path === &#039;/test&#039;) {
-    e.respondWith(new Response(&#039;test&#039;));
+  if (path === &#39;/test&#39;) {
+    e.respondWith(new Response(&#39;test&#39;));
   }
   return;
 });</code></pre>
@@ -874,15 +874,15 @@ self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
       <h2 id="controllerchange"><a href="#controllerchange">controllerchange</a></h2>
       <p>register が終わった後、「新しく登録された controller が使えるようになったら」または「既に登録されている controller が使えるようになったら」という状態をとる方法と <code translate="no">controllerchange</code> イベント。
       <amp-iframe src="https://www.youtube.com/embed/XoI0FPDV8Xo" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></amp-iframe>
-      <pre class=js><code translate="no">console.log(&#039;master&#039;);
+      <pre class=js><code translate="no">console.log(&#39;master&#39;);
 
 let controllerChange = new Promise((resolve, reject) =&gt; {
-  navigator.serviceWorker.addEventListener(&#039;controllerchange&#039;, () =&gt; {
+  navigator.serviceWorker.addEventListener(&#39;controllerchange&#39;, () =&gt; {
     resolve(navigator.serviceWorker.controller);
   });
 });
 
-navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt; {
+navigator.serviceWorker.register(&#39;worker.js&#39;).then((registration) =&gt; {
   return navigator.serviceWorker.ready;
 }).then(() =&gt; {
   if (navigator.serviceWorker.controller) {
@@ -891,20 +891,20 @@ navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt
   return controllerChange;
 }).then((controller) =&gt; {
   console.log(controller);
-  fetch(&#039;/test&#039;);
+  fetch(&#39;/test&#39;);
 });</code></pre>
-      <pre class=js><code translate="no">console.info(&#039;worker&#039;);
+      <pre class=js><code translate="no">console.info(&#39;worker&#39;);
 
-self.addEventListener(&#039;activate&#039;, (e) =&gt; {
-  console.info(&#039;activate&#039;, e);
+self.addEventListener(&#39;activate&#39;, (e) =&gt; {
+  console.info(&#39;activate&#39;, e);
   e.waitUntil(self.clients.claim());
 });
 
-self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
+self.addEventListener(&#39;fetch&#39;, (e) =&gt; {
   let path = new URL(e.request.url).pathname;
   console.info(path);
-  if (path === &#039;/test&#039;) {
-    e.respondWith(new Response(&#039;test&#039;));
+  if (path === &#39;/test&#39;) {
+    e.respondWith(new Response(&#39;test&#39;));
   }
   return;
 });</code></pre>
@@ -915,33 +915,33 @@ self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
       <p>Service Worker が更新される際の動きと、 <code translate="no">skipWaiting()</code> が何をスキップするのか?
       <p><code translate="no">install</code>, <code translate="no">activate</code> イベントの用途。
       <amp-iframe src="https://www.youtube.com/embed/AMbQ7d9rjao" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></amp-iframe>
-      <pre class=js><code translate="no">console.log(&#039;master&#039;);
+      <pre class=js><code translate="no">console.log(&#39;master&#39;);
 
-navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt; {
-  registration.addEventListener(&#039;updatefound&#039;, (e) =&gt; {
-    console.info(&#039;update&#039;, e);
+navigator.serviceWorker.register(&#39;worker.js&#39;).then((registration) =&gt; {
+  registration.addEventListener(&#39;updatefound&#39;, (e) =&gt; {
+    console.info(&#39;update&#39;, e);
   });
   return navigator.serviceWorker.ready;
 });</code></pre>
-      <pre class=js><code translate="no">console.info(&#039;worker&#039;);
+      <pre class=js><code translate="no">console.info(&#39;worker&#39;);
 
 const ver = 1;
 
-self.addEventListener(&#039;install&#039;, (e) =&gt; {
+self.addEventListener(&#39;install&#39;, (e) =&gt; {
   console.info(` install${ver}`, e);
   e.waitUntil(skipWaiting());
 });
 
-self.addEventListener(&#039;activate&#039;, (e) =&gt; {
+self.addEventListener(&#39;activate&#39;, (e) =&gt; {
   console.info(` activate${ver}`, e);
   e.waitUntil(self.clients.claim());
 });
 
-self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
+self.addEventListener(&#39;fetch&#39;, (e) =&gt; {
   let path = new URL(e.request.url).pathname;
   console.info(path);
-  if (path === &#039;/service-worker/updatefound/test&#039;) {
-    e.respondWith(new Response(&#039;test&#039;));
+  if (path === &#39;/service-worker/updatefound/test&#39;) {
+    e.respondWith(new Response(&#39;test&#39;));
   }
   return;
 });</code></pre>
@@ -951,44 +951,44 @@ self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
       <h2 id="update"><a href="#update">update()</a></h2>
       <p><code translate="no">registration.update()</code> による worker の更新と、ブラウザキャッシュにヒットする場合の挙動。
       <amp-iframe src="https://www.youtube.com/embed/7uRVh9PzV5o" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></amp-iframe>
-      <pre class=js><code translate="no">console.log(&#039;master&#039;);
+      <pre class=js><code translate="no">console.log(&#39;master&#39;);
 
-navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt; {
-  registration.addEventListener(&#039;updatefound&#039;, (e) =&gt; {
-    console.info(&#039;update&#039;, e);
+navigator.serviceWorker.register(&#39;worker.js&#39;).then((registration) =&gt; {
+  registration.addEventListener(&#39;updatefound&#39;, (e) =&gt; {
+    console.info(&#39;update&#39;, e);
   });
 
   return navigator.serviceWorker.ready;
 }).then((registration) =&gt; {
   setInterval(() =&gt; {
-    console.log(&#039;update()&#039;);
+    console.log(&#39;update()&#39;);
     registration.update();
   }, 1000);
 });</code></pre>
-      <pre class=js><code translate="no">console.info(&#039;worker&#039;);
+      <pre class=js><code translate="no">console.info(&#39;worker&#39;);
 
 const ver = 1;
 
-self.addEventListener(&#039;install&#039;, (e) =&gt; {
+self.addEventListener(&#39;install&#39;, (e) =&gt; {
   console.info(` install${ver}`, e);
   e.waitUntil(skipWaiting());
 });
 
-self.addEventListener(&#039;activate&#039;, (e) =&gt; {
+self.addEventListener(&#39;activate&#39;, (e) =&gt; {
   console.info(` activate${ver}`, e);
   e.waitUntil(self.clients.claim());
 });
 
-self.addEventListener(&#039;fetch&#039;, (e) =&gt; {
+self.addEventListener(&#39;fetch&#39;, (e) =&gt; {
   let path = new URL(e.request.url).pathname;
   console.info(path);
-  if (path.indexOf(&#039;test&#039;) &gt; -1) {
-    e.respondWith(new Response(&#039;test&#039;));
+  if (path.indexOf(&#39;test&#39;) &gt; -1) {
+    e.respondWith(new Response(&#39;test&#39;));
   }
   return;
 });
 
-self.addEventListener(&#039;push&#039;, () =&gt; {
+self.addEventListener(&#39;push&#39;, () =&gt; {
   self.registration.update();
 });</code></pre>
       <p>DEMO: <a href="https://labs.jxck.io/service-worker/update/">https://labs.jxck.io/service-worker/update/</a>
@@ -998,29 +998,29 @@ self.addEventListener(&#039;push&#039;, () =&gt; {
       <p>sync の発火タイミングと fetch を sync で送る場合の考え方。
       <amp-iframe src="https://www.youtube.com/embed/b7ZM7uzkykA" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></amp-iframe>
       <pre class=js><code translate="no">// master.js
-navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt; {
+navigator.serviceWorker.register(&#39;worker.js&#39;).then((registration) =&gt; {
   return navigator.serviceWorker.ready;
 }).then((registration) =&gt; {
   // register sync
-  document.getElementById(&#039;button&#039;).addEventListener(&#039;click&#039;, () =&gt; {
-    registration.sync.register(&#039;sync-data&#039;).then(() =&gt; {
-      console.log(&#039;sync registered&#039;);
+  document.getElementById(&#39;button&#39;).addEventListener(&#39;click&#39;, () =&gt; {
+    registration.sync.register(&#39;sync-data&#39;).then(() =&gt; {
+      console.log(&#39;sync registered&#39;);
     }).catch(console.error.bind(console));
   });
 }).catch(console.error.bind(console));</code></pre>
       <pre class=js><code translate="no">// worker.js
-self.addEventListener(&#039;install&#039;, (e) =&gt; {
-  console.info(&#039;install&#039;, e);
+self.addEventListener(&#39;install&#39;, (e) =&gt; {
+  console.info(&#39;install&#39;, e);
   e.waitUntil(skipWaiting());
 });
 
-self.addEventListener(&#039;activate&#039;, (e) =&gt; {
-  console.info(&#039;activate&#039;, e);
+self.addEventListener(&#39;activate&#39;, (e) =&gt; {
+  console.info(&#39;activate&#39;, e);
   e.waitUntil(self.clients.claim());
 });
 
-self.addEventListener(&#039;sync&#039;, (e) =&gt; {
-  console.log(&#039;sync&#039;, e);
+self.addEventListener(&#39;sync&#39;, (e) =&gt; {
+  console.log(&#39;sync&#39;, e);
 });</code></pre>
       <p>DEMO: <a href="https://labs.jxck.io/service-worker/background-sync/">https://labs.jxck.io/service-worker/background-sync/</a>
     </section>
@@ -1066,10 +1066,10 @@ self.addEventListener(&#039;sync&#039;, (e) =&gt; {
         <h3 id="2masterjs"><a href="#2masterjs">2.master.js</a></h3>
         <p><code translate="no">endpoint</code>, <code translate="no">userAuth</code>, <code translate="no">userPublickKey</code> をなんらかの方法でサーバに送ります。
         <amp-iframe src="https://www.youtube.com/embed/f-ney12qAEI" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></amp-iframe>
-        <pre class=js><code translate="no">&#039;use strict&#039;;
+        <pre class=js><code translate="no">&#39;use strict&#39;;
 let p = console.log.bind(console);
 
-navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt; {
+navigator.serviceWorker.register(&#39;worker.js&#39;).then((registration) =&gt; {
   return navigator.serviceWorker.ready;
 }).then((registration) =&gt; {
   return registration.pushManager.subscribe({ userVisibleOnly: true });
@@ -1077,8 +1077,8 @@ navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt
   console.log(subscription);
 
   const endpoint = subscription.endpoint;
-  const auth = subscription.getKey(&#039;auth&#039;);
-  const p256dh = subscription.getKey(&#039;p256dh&#039;);
+  const auth = subscription.getKey(&#39;auth&#39;);
+  const p256dh = subscription.getKey(&#39;p256dh&#39;);
 
   const userAuth = btoa(String.fromCharCode(...new Uint8Array(auth)));
   const userPublicKey = btoa(String.fromCharCode(...new Uint8Array(p256dh)));
@@ -1093,33 +1093,33 @@ navigator.serviceWorker.register(&#039;worker.js&#039;).then((registration) =&gt
       <section>
         <h3 id="3workerjs"><a href="#3workerjs">3.worker.js</a></h3>
         <amp-iframe src="https://www.youtube.com/embed/k939NlThH4E" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></amp-iframe>
-        <pre class=js><code translate="no">self.addEventListener(&#039;install&#039;, (e) =&gt; {
-  console.info(&#039;install&#039;, e);
+        <pre class=js><code translate="no">self.addEventListener(&#39;install&#39;, (e) =&gt; {
+  console.info(&#39;install&#39;, e);
   e.waitUntil(self.skipWaiting());
 });
 
-self.addEventListener(&#039;activate&#039;, (e) =&gt; {
-  console.info(&#039;activate&#039;, e);
+self.addEventListener(&#39;activate&#39;, (e) =&gt; {
+  console.info(&#39;activate&#39;, e);
   e.waitUntil(self.clients.claim());
 });
 
-self.addEventListener(&#039;push&#039;, (e) =&gt; {
-  console.info(&#039;push&#039;, e);
+self.addEventListener(&#39;push&#39;, (e) =&gt; {
+  console.info(&#39;push&#39;, e);
   const message = e.data.text();
 
-  e.waitUntil(self.registration.showNotification(&#039;title&#039;, {
+  e.waitUntil(self.registration.showNotification(&#39;title&#39;, {
     body: message,
-    icon: &#039;/service-worker/push/jxck.png&#039;,
-    tag:  &#039;push-demo&#039;,
+    icon: &#39;/service-worker/push/jxck.png&#39;,
+    tag:  &#39;push-demo&#39;,
   }));
 });
 
-self.addEventListener(&#039;notificationclick&#039;, (e) =&gt; {
-  console.info(&#039;notificationclick&#039;, e.notification.tag);
+self.addEventListener(&#39;notificationclick&#39;, (e) =&gt; {
+  console.info(&#39;notificationclick&#39;, e.notification.tag);
   e.notification.close();
-  const URL = &#039;https://labs.jxck.io/service-worker/push/&#039;;
+  const URL = &#39;https://labs.jxck.io/service-worker/push/&#39;;
   e.waitUntil(clients.matchAll({
-      type: &#039;window&#039;
+      type: &#39;window&#39;
     }).then((windowClients) =&gt; {
       let target = windowClients.filter((client) =&gt; {
         return client.url === URL;
@@ -1138,11 +1138,11 @@ self.addEventListener(&#039;notificationclick&#039;, (e) =&gt; {
         <h3 id="4pushjs"><a href="#4pushjs">4.push.js</a></h3>
         <p>使用したモジュール: <a href="https://github.com/web-push-libs/web-push">https://github.com/web-push-libs/web-push</a>
         <amp-iframe src="https://www.youtube.com/embed/hIliK4l4wqw" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></amp-iframe>
-        <pre class=js><code translate="no">&#039;use strict&#039;;
+        <pre class=js><code translate="no">&#39;use strict&#39;;
 
-let push = require(&#039;web-push&#039;);
+let push = require(&#39;web-push&#39;);
 
-const GCM_API_KEY = &#039;*******&#039;;
+const GCM_API_KEY = &#39;*******&#39;;
 push.setGCMAPIKey(GCM_API_KEY);
 
 const data = {
@@ -1152,7 +1152,7 @@ const data = {
 }
 
 push.sendNotification(data.endpoint, {
-  payload:       &#039;push test for service worker&#039;,
+  payload:       &#39;push test for service worker&#39;,
   userAuth:      data.userAuth,
   userPublicKey: data.userPublicKey,
 })
@@ -1160,7 +1160,7 @@ push.sendNotification(data.endpoint, {
   console.log(result);
 })
 .catch((err) =&gt; {
-  console.error(&#039;fail&#039;, err);
+  console.error(&#39;fail&#39;, err);
 });</code></pre>
         <p>DEMO(push は飛ばしていません): <a href="https://labs.jxck.io/service-worker/push/">https://labs.jxck.io/service-worker/push/</a>
       </section>

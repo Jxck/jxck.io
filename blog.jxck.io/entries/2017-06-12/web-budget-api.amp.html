@@ -859,7 +859,7 @@
         <p>処理の Cost を取得する。
         <p>引数には、対象となる処理の名前を与えるが、この値は仕様に定義される。
         <p>執筆時点では <code translate="no">&quot;silent-push&quot;</code> のみ定義されている。
-        <pre class=js><code translate="no">navigator.budget.getCost(&#039;silent-push&#039;).then((cost) =&gt; {
+        <pre class=js><code translate="no">navigator.budget.getCost(&#39;silent-push&#39;).then((cost) =&gt; {
   console.log(cost); // 2
 });</code></pre>
         <p>ここで返される Cost は、上限値であり、実際の UA やデバイスの状況によっては、より低い Cost しか実行時に消費されない可能性がある。
@@ -870,8 +870,8 @@
         <p>実際に処理を実行する際に、 Budget を Cost 分消費する。
         <p>戻る Promise は、コストが足りたかどうかを bool で解決する。
         <p><code translate="no">silent-push</code> の場合は、コストが足りればそのまま処理を進められ、足りなかった場合は notification によってユーザに通知する必要が出る。
-        <pre class=js><code translate="no">self.addEventListener(&#039;push&#039;, (e) =&gt; {
-  return e.waitUntil(navigator.budget.reserve(&#039;silent-push&#039;).then((reserved) =&gt; {
+        <pre class=js><code translate="no">self.addEventListener(&#39;push&#39;, (e) =&gt; {
+  return e.waitUntil(navigator.budget.reserve(&#39;silent-push&#39;).then((reserved) =&gt; {
     if (reserved) {
       // budget が足りている
       return Promise.resolve(reserved);

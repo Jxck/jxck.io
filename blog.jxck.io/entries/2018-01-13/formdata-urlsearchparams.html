@@ -131,10 +131,10 @@
   &lt;/fieldset&gt;
 &lt;/form&gt;</code></pre>
         <p>JS は以下のように書かれる場合がある。
-        <pre class=js><code translate="no">document.querySelector(&#039;#login&#039;).onsubmit = (e) =&gt; {
+        <pre class=js><code translate="no">document.querySelector(&#39;#login&#39;).onsubmit = (e) =&gt; {
   e.preventDefault()
-  const username = document.querySelector(&#039;#username&#039;)
-  const password = document.querySelector(&#039;#password&#039;)
+  const username = document.querySelector(&#39;#username&#39;)
+  const password = document.querySelector(&#39;#password&#39;)
   process_input({username, password})
 }</code></pre>
         <p>ここでは、取得するデータは 2 つしかないが、大きなフォームでは多数の <code translate="no">&lt;input&gt;</code> を探索する必要がある。
@@ -145,10 +145,10 @@
         <p>最も簡単な改善は、 document からのクエリをやめることだ。
         <p><code translate="no">e.target</code> には、対象の DOM 、ここでは <code translate="no">&lt;form&gt;</code> が入っている。
         <p><code translate="no">&lt;input&gt;</code> はその子要素なので、わざわざ <code translate="no">document</code> を起点にする必要はない。
-        <pre class=js><code translate="no">document.querySelector(&#039;#login&#039;).onsubmit = (e) =&gt; {
+        <pre class=js><code translate="no">document.querySelector(&#39;#login&#39;).onsubmit = (e) =&gt; {
   e.preventDefault()
-  const username = e.target.querySelector(&#039;#username&#039;)
-  const password = e.target.querySelector(&#039;#password&#039;)
+  const username = e.target.querySelector(&#39;#username&#39;)
+  const password = e.target.querySelector(&#39;#password&#39;)
   process_input({username, password})
 }</code></pre>
       </section>
@@ -160,13 +160,13 @@
         <p>このオブジェクトは、 <code translate="no">get()</code>、 <code translate="no">set()</code> など Map のようなインタフェースを持つ。
         <p>(なお <code translate="no">new Map(form_data)</code> すれば、実際の Map にもなる)
         <p>また、そのまま XHR や fetch を使ってそのまま POST することができる。
-        <pre class=js><code translate="no">document.querySelector(&#039;#login&#039;).onsubmit = (e) =&gt; {
+        <pre class=js><code translate="no">document.querySelector(&#39;#login&#39;).onsubmit = (e) =&gt; {
   e.preventDefault()
   const form_data = new FormData(e.target)
-  validate_username(form_data.get(&#039;username&#039;))
-  validate_password(form_data.get(&#039;password&#039;))
-  fetch(&#039;/login&#039;, {
-    method: &#039;POST&#039;,
+  validate_username(form_data.get(&#39;username&#39;))
+  validate_password(form_data.get(&#39;password&#39;))
+  fetch(&#39;/login&#39;, {
+    method: &#39;POST&#39;,
     body: form_data
   })
 }</code></pre>
@@ -192,12 +192,12 @@ examplepassword
         <p>URLSearchParams は、 URL の標準化の際に QueryString 部分をサポートするために導入された。
         <p>しかし、これは FormData を引数にインスタンスを生成することができる。
         <p>また、そのまま POST の Body にすれば、 <code translate="no">application/form-url-encoded</code> として送ることができる。
-        <pre class=js><code translate="no">document.querySelector(&#039;#login&#039;).onsubmit = (e) =&gt; {
+        <pre class=js><code translate="no">document.querySelector(&#39;#login&#39;).onsubmit = (e) =&gt; {
   e.preventDefault()
   const form_data = new FormData(e.target)
   const url_search_params = new URLSearchParams(form_data)
-  fetch(&#039;/login&#039;, {
-    method: &#039;POST&#039;,
+  fetch(&#39;/login&#39;, {
+    method: &#39;POST&#39;,
     body: url_search_params
   })
 }</code></pre>
@@ -211,13 +211,13 @@ username=jxck&amp;password=thisismypassword</code></pre>
         <p>API バックエンドなどに対して JSON で送りたい場合もあるだろう。
         <p>せっかく FormData までは取得できているので、これを Object に変換してからシリアライズすれば良い。
         <p>ここでは FormData が iterable であるこを利用してオブジェクトを組み立ててみる。
-        <pre class=js><code translate="no">document.querySelector(&#039;#login&#039;).onsubmit = (e) =&gt; {
+        <pre class=js><code translate="no">document.querySelector(&#39;#login&#39;).onsubmit = (e) =&gt; {
   e.preventDefault()
   const form_data = new FormData(e.target)
   const object = Array.from(form_data).reduce((o, [k, v]) =&gt; { o[k] = v; return o }, {})
   const json = JSON.stringify(object)
-  fetch(&#039;/login&#039;, {
-    method: &#039;POST&#039;,
+  fetch(&#39;/login&#39;, {
+    method: &#39;POST&#39;,
     body: json
   })
 }</code></pre>
@@ -227,12 +227,12 @@ username=jxck&amp;password=thisismypassword</code></pre>
         <h2 id="beforesubmitcallback"><a href="#beforesubmitcallback">beforeSubmitCallback</a></h2>
         <p>submit に callback を仕込む仕様の提案がかなり前に出ている。
         <p><a href="https://github.com/w3c/webcomponents/issues/187">Need callback for form submit data</a>
-        <pre class=js><code translate="no">document.registerElement(&#039;input&#039;, {
+        <pre class=js><code translate="no">document.registerElement(&#39;input&#39;, {
   prototype: {
     proto: HTMLElement.prototype,
       beforeSubmitCallback: function() {
         switch (this.type) {
-        case &#039;checkbox&#039;:
+        case &#39;checkbox&#39;:
           if (this.checked) {
             return this.value;
           }

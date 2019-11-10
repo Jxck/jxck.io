@@ -840,18 +840,18 @@
       </ul>
       <pre class=js><code translate="no">const $ = document.querySelector.bind(document);
 
-// Uncaught TypeError: Failed to set the &#039;innerHTML&#039; property on &#039;Element&#039;: This document requires `TrustedHTML` assignment.
-$(&#039;div&#039;).innerHTML = &#039;&lt;img src=/ onerror=&quot;alert(10)&quot;&gt;&#039;
+// Uncaught TypeError: Failed to set the &#39;innerHTML&#39; property on &#39;Element&#39;: This document requires `TrustedHTML` assignment.
+$(&#39;div&#39;).innerHTML = &#39;&lt;img src=/ onerror=&quot;alert(10)&quot;&gt;&#39;
 
-// Uncaught TypeError: Failed to set the &#039;href&#039; property on &#039;Location&#039;: This document requires `TrustedURL` assignment.
-location.href = &#039;https://fishing.example.com&#039;;
+// Uncaught TypeError: Failed to set the &#39;href&#39; property on &#39;Location&#39;: This document requires `TrustedURL` assignment.
+location.href = &#39;https://fishing.example.com&#39;;
 
-// Uncaught TypeError: Failed to set the &#039;src&#039; property on &#039;HTMLScriptElement&#039;: This document requires `TrustedScriptURL` assignment.
-const $script = document.createElement(&#039;script&#039;)
-$script.src = &#039;https://attack.example.com/script.js&#039;
+// Uncaught TypeError: Failed to set the &#39;src&#39; property on &#39;HTMLScriptElement&#39;: This document requires `TrustedScriptURL` assignment.
+const $script = document.createElement(&#39;script&#39;)
+$script.src = &#39;https://attack.example.com/script.js&#39;
 
-// Uncaught TypeError: Failed to set the &#039;textContent&#039; property on &#039;Node&#039;: This document requires `TrustedScript` assignment.
-$(&#039;script&#039;).textContent = &#039;alert(0)&#039;</code></pre>
+// Uncaught TypeError: Failed to set the &#39;textContent&#39; property on &#39;Node&#39;: This document requires `TrustedScript` assignment.
+$(&#39;script&#39;).textContent = &#39;alert(0)&#39;</code></pre>
       <p>エラーを見るとわかるように、それぞれの処理は単なる文字列、 WebIDL でいう DOMString ではなく、それぞれ以下の型を要求していることがわかる。
       <ul>
         <li>TrustedHTML
@@ -866,56 +866,56 @@ $(&#039;script&#039;).textContent = &#039;alert(0)&#039;</code></pre>
       <h2 id="trusted-types"><a href="#trusted-types">Trusted Types</a></h2>
       <p>DOMString を TrustedTypes に変換するには、まず TrustedTypePolicy を生成する必要がある。
       <p>これは、以下のように <code translate="no">createPolicy()</code> を用いて生成する。
-      <pre class=js><code translate="no">const escapePolicy = TrustedTypes.createPolicy(&#039;application-policy&#039;, {
+      <pre class=js><code translate="no">const escapePolicy = TrustedTypes.createPolicy(&#39;application-policy&#39;, {
   createHTML:      (unsafe) =&gt; {/*..*/},
   createURL:       (unsafe) =&gt; {/*..*/},
   createScriptURL: (unsafe) =&gt; {/*..*/},
   createScript:    (unsafe) =&gt; {/*..*/},
 })</code></pre>
       <p>例えば <code translate="no">innerHTML</code> できる TrustedHTML は、この Policy に定義した <code translate="no">createHTML()</code> を通して取得することができる。
-      <pre class=js><code translate="no">const trustedHTML = escapePolicy.createHTML(&#039;&lt;img src=/ onerror=&quot;alert(10)&quot;&gt;&#039;)
-$(&#039;div&#039;).innerHTML = trustedHTML</code></pre>
+      <pre class=js><code translate="no">const trustedHTML = escapePolicy.createHTML(&#39;&lt;img src=/ onerror=&quot;alert(10)&quot;&gt;&#39;)
+$(&#39;div&#39;).innerHTML = trustedHTML</code></pre>
       <p>つまり、 <code translate="no">innerHTML</code> の前には HTML Special Chars のエスケープを必須としたいという場合は、 <code translate="no">createPolicy()</code> の引数に渡す関数にその処理を入れれば良い。
-      <pre class=js><code translate="no">const escapePolicy = TrustedTypes.createPolicy(&#039;application-policy&#039;, {
+      <pre class=js><code translate="no">const escapePolicy = TrustedTypes.createPolicy(&#39;application-policy&#39;, {
   createHTML: (unsafe) =&gt; {
     return unsafe
       .replace(/&amp;/g, &quot;&amp;amp;&quot;)
       .replace(/&lt;/g, &quot;&amp;lt;&quot;)
       .replace(/&gt;/g, &quot;&amp;gt;&quot;)
       .replace(/&quot;/g, &quot;&amp;quot;&quot;)
-      .replace(/&#039;/g, &quot;&amp;#039;&quot;)
+      .replace(/&#39;/g, &quot;&amp;#039;&quot;)
   }
 })
 
-const trustedHTML = escapePolicy.createHTML(&#039;&lt;img src=/ onerror=&quot;alert(10)&quot;&gt;&#039;)
-$(&#039;div&#039;).innerHTML = trustedHTML // html special chars escaped</code></pre>
+const trustedHTML = escapePolicy.createHTML(&#39;&lt;img src=/ onerror=&quot;alert(10)&quot;&gt;&#39;)
+$(&#39;div&#39;).innerHTML = trustedHTML // html special chars escaped</code></pre>
       <p>これで全ての innerHTML は確実にエスケープされていることを保証できる。
       <p>このように Trusted Types は、安全に処理されたことを型として定義し、それをブラウザが認識することで、安全で無い処理を防ぐことを目的としている。
     </section>
     <section>
       <h2 id="opt-in-policy"><a href="#opt-in-policy">Opt-In Policy</a></h2>
-      <p>先のように <code translate="no">createPolicy(&#039;application-policy&#039;)</code> で定義した Policy を利用するためには、必ず CSP に「利用を許可する Policy の名前」の指定が必要だ。
+      <p>先のように <code translate="no">createPolicy(&#39;application-policy&#39;)</code> で定義した Policy を利用するためには、必ず CSP に「利用を許可する Policy の名前」の指定が必要だ。
       <p>これをしなければポリシーを利用した時点で CSP エラーとなる。
       <pre class=http><code translate="no">Content-Security-Policy: trusted-types application-policy</code></pre>
       <p>これは Policy から <code translate="no">createHTML</code> すれば型としては TrustedType であるため、なんらかの方法で Policy も仕込まれてしまうことを防ぐ目的もある。
-      <pre class=js><code translate="no">const dummyPolicy = TrustedTypes.createPolicy(&#039;dummy&#039;, {
+      <pre class=js><code translate="no">const dummyPolicy = TrustedTypes.createPolicy(&#39;dummy&#39;, {
   createHTML: (unsafe) =&gt; unsafe
 })
 
 // CSP で dummuy が定義されていなければ使えない
-const trustedHTML = dummyPolicy.createHTML(&#039;&lt;img src=/ onerror=&quot;alert(10)&quot;&gt;&#039;)
-document.querySelector(&#039;div&#039;).innerHTML = trustedHTML</code></pre>
+const trustedHTML = dummyPolicy.createHTML(&#39;&lt;img src=/ onerror=&quot;alert(10)&quot;&gt;&#39;)
+document.querySelector(&#39;div&#39;).innerHTML = trustedHTML</code></pre>
       <p>ここで定義した Policy 名の <code translate="no">dummy</code> は、 CSP で指定されていないため使うことができない。
     </section>
     <section>
       <h2 id="名前空間"><a href="#名前空間">名前空間</a></h2>
       <p>Policy オブジェクトは戻り値でしか取得できないため、広く参照される場合は expose によって明示的に公開することができる。
-      <pre class=js><code translate="no">TrustedTypes.createPolicy(&#039;escape&#039;, {
+      <pre class=js><code translate="no">TrustedTypes.createPolicy(&#39;escape&#39;, {
   createHTML: (unsafe) =&gt; {/*...*/}
 }, true); // expose = true</code></pre>
       <p>expose された Policy は <code translate="no">getExposedPolicy(name)</code> で取得が可能だ。
-      <pre class=js><code translate="no">const escapePolicy = TrustedTypes.getExposedPolicy(&#039;escape&#039;)
-const escapedValue = escapePolicy.createHTML(&#039;&lt;b&gt;escape me&lt;/b&gt;&#039;);</code></pre>
+      <pre class=js><code translate="no">const escapePolicy = TrustedTypes.getExposedPolicy(&#39;escape&#39;)
+const escapedValue = escapePolicy.createHTML(&#39;&lt;b&gt;escape me&lt;/b&gt;&#39;);</code></pre>
       <p>Global に Policy が定義されるため、名前が衝突する再定義はエラーになる。
       <p>基本は expose せずに閉じた範囲で利用し、ライブラリなどによって提供される Policy の場合は Prefix をつけるなどした方が良さそうだ。
     </section>
@@ -928,39 +928,39 @@ const escapedValue = escapePolicy.createHTML(&#039;&lt;b&gt;escape me&lt;/b&gt;&
         <li>createScriptURL: ホワイトリストに無いオリジンはエラーとする
         <li>createScript:    定義しないことで利用そのものをエラーとする
       </ul>
-      <pre class=js><code translate="no">TrustedTypes.createPolicy(&#039;https://labs.jxck.io&#039;, {
+      <pre class=js><code translate="no">TrustedTypes.createPolicy(&#39;https://labs.jxck.io&#39;, {
   createHTML: (unsafe) =&gt; {
-    console.log(&#039;createHTML&#039;)
+    console.log(&#39;createHTML&#39;)
     return unsafe
       .replace(/&amp;/g, &quot;&amp;amp;&quot;)
       .replace(/&lt;/g, &quot;&amp;lt;&quot;)
       .replace(/&gt;/g, &quot;&amp;gt;&quot;)
       .replace(/&quot;/g, &quot;&amp;quot;&quot;)
-      .replace(/&#039;/g, &quot;&amp;#039;&quot;);
+      .replace(/&#39;/g, &quot;&amp;#039;&quot;);
   },
   createURL: (unsafe) =&gt; {
-    console.log(&#039;createURL&#039;)
+    console.log(&#39;createURL&#39;)
     const unsafeurl = new URL(unsafe)
     const currenturl = new URL(location.href)
 
     if (unsafeurl.origin !== currenturl.origin) {
-      throw new Error(&#039;url of unexpected origin&#039;)
+      throw new Error(&#39;url of unexpected origin&#39;)
     }
     return unsafeurl
   },
   createScriptURL: (unsafe) =&gt; {
-    console.log(&#039;createScriptURL&#039;)
+    console.log(&#39;createScriptURL&#39;)
     const unsafeurl = new URL(unsafe)
     const currenturl = new URL(location.href)
 
     const whitelist = [
       currenturl.origin,
-      &#039;https://unpkg.com&#039;,
-      &#039;https://www.google-analytics.com&#039;,
+      &#39;https://unpkg.com&#39;,
+      &#39;https://www.google-analytics.com&#39;,
     ]
 
     if (whitelist.includes(unsafeurl.origin) === false) {
-      throw new Error(&#039;url of unexpected origin&#039;)
+      throw new Error(&#39;url of unexpected origin&#39;)
     }
 
     return unsafe

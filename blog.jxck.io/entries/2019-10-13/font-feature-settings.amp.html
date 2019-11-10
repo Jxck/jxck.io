@@ -835,7 +835,7 @@
       <p>しかし、そういった文字はほぼサンプルコードとしてコードブロック(<code translate="no">&lt;code&gt;</code>)に含まれており、かつそこには MONO font が当たっている。
       <p>そこで、コードブロックに含まれてない特殊な文字を全てコードブロックに含むように記事を修正し、 HTML から <code translate="no">&lt;code&gt;</code> を全て除いた文字群をサブセットの対象とした。
       <p>対象を subset.txt に保存し、変換は以下のようにした。
-      <pre class=sh><code translate="no">$ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../subset.txt --layout-features=&#039;*&#039; --flavor=woff2 --output-file=NotoSansCJKjp-Regular-Jxck-20191011.woff2</code></pre>
+      <pre class=sh><code translate="no">$ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../subset.txt --layout-features=&#39;*&#39; --flavor=woff2 --output-file=NotoSansCJKjp-Regular-Jxck-20191011.woff2</code></pre>
     </section>
     <section>
       <h2 id="layout-features"><a href="#layout-features">layout features</a></h2>
@@ -845,7 +845,7 @@
         <li>606.6K: 更新後
       </ul>
       <p>コマンドヘルプを見ながら適当につけた以下のオプションが問題である。
-      <pre class=sh><code translate="no">--layout-features=&#039;*&#039;</code></pre>
+      <pre class=sh><code translate="no">--layout-features=&#39;*&#39;</code></pre>
       <p>この layout features は、 Open Type のフォントが含む、ヒント情報を含めるという指定だ。
       <p>Open Type がいくつかの情報を持っていることは薄々知っていたが、以下の理由から特に考えずにきた。
       <ul>
@@ -901,7 +901,7 @@
       <p>DEMO でみた halt は割と良さそうに見えたが、ブログ全体に適用したところあまり良くなかったため不採用とした。
       <p>palt とは別に、字体を置き換える pwid があるが、そちらは Chrome か Noto Sans CJK JP が対応してないようだ。
       <p>そこで結果として <code translate="no">palt</code> のみを指定してフォントをビルドすることにした。
-      <pre class=sh><code translate="no">$ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../All.txt --layout-features=&#039;palt&#039; --flavor=woff2 --output-file=NotoSansCJKjp-Regular-Jxck-20191011.woff2</code></pre>
+      <pre class=sh><code translate="no">$ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../All.txt --layout-features=&#39;palt&#39; --flavor=woff2 --output-file=NotoSansCJKjp-Regular-Jxck-20191011.woff2</code></pre>
       <p>結果は以下である。
       <ul>
         <li>353.1K: 従来

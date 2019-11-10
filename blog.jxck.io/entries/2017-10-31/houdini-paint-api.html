@@ -191,7 +191,7 @@
         <p>Paint API は Worklet の上位に定義された PaintWorklet の中に実際の描画処理を移譲し、メインスレッドからは Worklet への処理の登録のみを行う。
         <p><a href="https://drafts.css-houdini.org/css-paint-api/#paint-worklet">Paint Worklet</a>
         <p>Worklet への登録は、モジュール単位となっているため、今回実装するファイルを <code translate="no">border-double-custom.js</code> とした場合、メインからの呼び出しは以下になる。
-        <pre class=js><code translate="no">CSS.paintWorklet.addModule(&#039;border-double-custom.js&#039;);</code></pre>
+        <pre class=js><code translate="no">CSS.paintWorklet.addModule(&#39;border-double-custom.js&#39;);</code></pre>
         <p>Worklet はメインスレッドと Global を共有せず、必要な情報はコピーして渡すこととなる。
         <p>これは、後述する Arguments か Property を経由して行う。
       </section>
@@ -201,7 +201,7 @@
         <p>大枠は <code translate="no">registerPaint()</code> に対して、名前とコールバックを渡すような形になる。
         <p>コールバックは、関数ではなく必要なプロパティを実装した class を渡す。
         <p>今回実装するのは以下の 2 つだ。
-        <pre class=js><code translate="no">registerPaint(&#039;border-double-custom&#039;, class {
+        <pre class=js><code translate="no">registerPaint(&#39;border-double-custom&#39;, class {
   static get inputProperties() { }
   static get inputArguments() { }
   paint(ctx, size, styleMap, argments) { }
@@ -214,11 +214,11 @@
         <pre class=js><code translate="no">// paint(border-double-custom, orange, 3px, yellow, 5px, 1px);
 static get inputArguments() {
   return [
-    &#039;&lt;color&gt;&#039;,  // orange
-    &#039;&lt;length&gt;&#039;, // 3px
-    &#039;&lt;color&gt;&#039;,  // yellow
-    &#039;&lt;length&gt;&#039;, // 5px
-    &#039;&lt;length&gt;&#039;, // 1px
+    &#39;&lt;color&gt;&#39;,  // orange
+    &#39;&lt;length&gt;&#39;, // 3px
+    &#39;&lt;color&gt;&#39;,  // yellow
+    &#39;&lt;length&gt;&#39;, // 5px
+    &#39;&lt;length&gt;&#39;, // 1px
   ]
 }</code></pre>
         <p>ここで指定する型は、 CSS Property and Values に定義された Syntax String である。
@@ -231,10 +231,10 @@ static get inputArguments() {
           <p><a href="https://drafts.css-houdini.org/css-properties-values-api/#registering-custom-properties">CSS Properties and Values API Level 1</a>
           <p><code translate="no">--debug</code> は <code translate="no">true/false</code> を引数に取りたいが、 Property Values の定義する Syntax List には <code translate="no">&lt;boolean&gt;</code> は無いため、 <code translate="no">&lt;custom-indent&gt;</code> を利用し、文字列で代替することとした。
           <pre class=js><code translate="no">CSS.registerProperty({
-  name: &#039;--debug&#039;,
-  syntax: &#039;&lt;custom-ident&gt;&#039;,
+  name: &#39;--debug&#39;,
+  syntax: &#39;&lt;custom-ident&gt;&#39;,
   inherits: true,
-  initialValue: &#039;false&#039;,
+  initialValue: &#39;false&#39;,
 });</code></pre>
         </section>
         <section>
@@ -242,7 +242,7 @@ static get inputArguments() {
           <p><code translate="no">registerProperty()</code> で登録された値は、 Worklet 側で <code translate="no">inputProperties()</code> に、ホワイトリストとして指定しておくことで、クラス内に取り込むことができる。
           <pre class=js><code translate="no">static get inputProperties() {
   return [
-    &#039;--debug&#039;,
+    &#39;--debug&#39;,
   ]
 }</code></pre>
           <p>これにより、後述する <code translate="no">paint()</code> callback に渡る Property Style Map に値が含まれる。
@@ -269,7 +269,7 @@ static get inputArguments() {
           <h3 id="style-property-map"><a href="#style-property-map">Style Property Map</a></h3>
           <p>前述の <code translate="no">inputProperties()</code> で指定したプロパティが含まれた Map が渡される。
           <p>今回指定した <code translate="no">--debug</code> は、以下のように取得できる。
-          <pre class=js><code translate="no">const DEBUG = styleMap.get(&#039;--debug&#039;).value</code></pre>
+          <pre class=js><code translate="no">const DEBUG = styleMap.get(&#39;--debug&#39;).value</code></pre>
           <p>ただし、これは指定した型の都合上、文字列の <code translate="no">&quot;true&quot;</code> か <code translate="no">&quot;false&quot;</code> になっている。
         </section>
         <section>
@@ -326,28 +326,28 @@ div {
 
 &lt;script&gt;
 CSS.registerProperty({
-  name: &#039;--debug&#039;,
-  syntax: &#039;&lt;custom-ident&gt;&#039;,
+  name: &#39;--debug&#39;,
+  syntax: &#39;&lt;custom-ident&gt;&#39;,
   inherits: true,
-  initialValue: &#039;false&#039;,
+  initialValue: &#39;false&#39;,
 });
 
-CSS.paintWorklet.addModule(&#039;border-double-custom.js&#039;);
+CSS.paintWorklet.addModule(&#39;border-double-custom.js&#39;);
 &lt;/script&gt;</code></pre>
-          <pre class=js><code translate="no">registerPaint(&#039;border-double-custom&#039;, class {
+          <pre class=js><code translate="no">registerPaint(&#39;border-double-custom&#39;, class {
   static get inputProperties() {
     return [
-      &#039;--debug&#039;,
+      &#39;--debug&#39;,
     ]
   }
 
   static get inputArguments() {
     return [
-      &#039;&lt;color&gt;&#039;,  // outer_color
-      &#039;&lt;length&gt;&#039;, // outer_width
-      &#039;&lt;color&gt;&#039;,  // inner_color
-      &#039;&lt;length&gt;&#039;, // inner_width
-      &#039;&lt;length&gt;&#039;, // margin
+      &#39;&lt;color&gt;&#39;,  // outer_color
+      &#39;&lt;length&gt;&#39;, // outer_width
+      &#39;&lt;color&gt;&#39;,  // inner_color
+      &#39;&lt;length&gt;&#39;, // inner_width
+      &#39;&lt;length&gt;&#39;, // margin
     ]
   }
 
@@ -366,7 +366,7 @@ CSS.paintWorklet.addModule(&#039;border-double-custom.js&#039;);
     console.log(outer_color, outer_width, inner_color, inner_width, margin)
 
     // --debug
-    const DEBUG = styleMap.get(&#039;--debug&#039;).value == &quot;true&quot;
+    const DEBUG = styleMap.get(&#39;--debug&#39;).value == &quot;true&quot;
     if (DEBUG) {
       ctx.fillStyle = &quot;cyan&quot;;
       ctx.fillRect(0, 0, w, h);

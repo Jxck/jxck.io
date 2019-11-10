@@ -862,9 +862,9 @@
     <section>
       <h2 id="url-オブジェクト"><a href="#url-オブジェクト">URL オブジェクト</a></h2>
       <p>Node v7.0.0 で実装された API は以下のように使うことができる。
-      <pre class=js><code translate="no">const URL = require(&#039;url&#039;).URL;
+      <pre class=js><code translate="no">const URL = require(&#39;url&#39;).URL;
 
-const u = new URL(&#039;https://jxck:password@blog.jxck.io/path/to/entry?log=true&amp;lang=ja#main&#039;);
+const u = new URL(&#39;https://jxck:password@blog.jxck.io/path/to/entry?log=true&amp;lang=ja#main&#39;);
 console.log(u);
 // URL {
 //   href: https://jxck:password@blog.jxck.io/path/to/entry?log=true&amp;lang=ja#main
@@ -878,10 +878,10 @@ console.log(u);
 // }</code></pre>
       <p>この API を経由すれば、日本語ドメインの Punycode 化、 IPv6 アドレスの対応、 escape などもやってくれる。
       <p>(ここら辺が、正規表現での処理時に問題になりやすいあたりだ。)
-      <pre class=js><code translate="no">const URL = require(&#039;url&#039;).URL;
+      <pre class=js><code translate="no">const URL = require(&#39;url&#39;).URL;
 
 // 日本語ドメイン
-const jp = new URL(&#039;https://じゃっく.jp&#039;);
+const jp = new URL(&#39;https://じゃっく.jp&#39;);
 console.log(jp);
 // URL {
 //   href: https://xn--y8jr7a5i.jp/
@@ -891,7 +891,7 @@ console.log(jp);
 // }
 
 // IPv6
-const ipv6 = new URL(&#039;https://[::1]/&#039;);
+const ipv6 = new URL(&#39;https://[::1]/&#39;);
 console.log(ipv6);
 // URL {
 //   href: https://[::1]/
@@ -901,7 +901,7 @@ console.log(ipv6);
 // }
 
 // 日本語
-const ja = new URL(&#039;https://example.com/ぱす?きー=ばりゅー&#039;);
+const ja = new URL(&#39;https://example.com/ぱす?きー=ばりゅー&#39;);
 console.log(ja);
 // URL {
 //   href: https://example.com/%E3%81%B1%E3%81%99?%E3%81%8D%E3%83%BC=%E3%81%B0%E3%82%8A%E3%82%85%E3%83%BC
@@ -917,15 +917,15 @@ console.log(ja);
       <h2 id="urlsearchparams-オブジェクト"><a href="#urlsearchparams-オブジェクト">URLSearchParams オブジェクト</a></h2>
       <p>また、 query parameter を表現する URLSearchParams は別オブジェクトであるため、 query parameter の取得や生成もこのオブジェクトを利用できる。
       <p>一応 Node v7.0.0 にもコードはあるようだが、正しく動いてないようなので、完成予定の Chrome の結果を代わりに貼っておく。
-      <pre class=js><code translate="no">const URL = require(&#039;url&#039;).URL;
+      <pre class=js><code translate="no">const URL = require(&#39;url&#39;).URL;
 
-const u = new URL(&#039;https://jxck.io?log=warn&amp;lang=ja&#039;);
+const u = new URL(&#39;https://jxck.io?log=warn&amp;lang=ja&#39;);
 const searchParams = u.searchParams;
-searchParams.get(&#039;log&#039;) // &quot;warn&quot;
-searchParams.getAll(&#039;log&#039;) // [&quot;warn&quot;]
-searchParams.delete(&#039;log&#039;) // undefined
-searchParams.has(&#039;log&#039;) // false
-searchParams.append(&#039;debug&#039;, true) // undefined
+searchParams.get(&#39;log&#39;) // &quot;warn&quot;
+searchParams.getAll(&#39;log&#39;) // [&quot;warn&quot;]
+searchParams.delete(&#39;log&#39;) // undefined
+searchParams.has(&#39;log&#39;) // false
+searchParams.append(&#39;debug&#39;, true) // undefined
 searchParams.toString() // &quot;lang=ja&amp;debug=true&quot;
 
 for ([k, v] of searchParams) {

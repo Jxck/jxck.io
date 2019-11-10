@@ -863,14 +863,14 @@
       <p>また、取得を XHR で行い保存しておいたものをあとで <code translate="no">eval</code> することもできるが、 Preload を使うことで実行を <code translate="no">&lt;script&gt;</code> で行え、ブラウザの Preloader に取得させるため、再利用が効く。
       <p>まず「取得」を Preload で行う、これは HTML に書いておいても良いし、それ自体も遅延したければ好きなタイミングで以下のようにノードを作れば良い。
       <pre class=html><code translate="no">&lt;link rel=preload as=script href=script.js&gt;</code></pre>
-      <pre class=js><code translate="no">var preload = document.createElement(&#039;link&#039;);
-link.rel = &#039;preload&#039;;
-link.as = &#039;script&#039;;
-link.href = &#039;script.js&#039;;
+      <pre class=js><code translate="no">var preload = document.createElement(&#39;link&#39;);
+link.rel = &#39;preload&#39;;
+link.as = &#39;script&#39;;
+link.href = &#39;script.js&#39;;
 document.head.appendChild(link);</code></pre>
       <p>そして、「実行」は任意のタイミングで <code translate="no">&lt;script&gt;</code> を生成し行う。
-      <pre class=js><code translate="no">var script = document.createElement(&#039;script&#039;);
-script.src = &#039;script.js&#039;;
+      <pre class=js><code translate="no">var script = document.createElement(&#39;script&#39;);
+script.src = &#39;script.js&#39;;
 document.body.appendChild(script);</code></pre>
     </section>
     <section>
@@ -878,12 +878,12 @@ document.body.appendChild(script);</code></pre>
       <p><code translate="no">&lt;link rel=preload&gt;</code> は自身で <code translate="no">onload</code> を発火する。
       <p>これを利用すると、 HTML と少しの JS で <em>非同期ローダ</em> を実現することができる。
       <p>例えば CSS の場合はこうなる。
-      <pre class=html><code translate="no">&lt;link rel=preload as=style href=style.css onload=&quot;this.rel=&#039;stylesheet&#039;&quot;&gt;</code></pre>
+      <pre class=html><code translate="no">&lt;link rel=preload as=style href=style.css onload=&quot;this.rel=&#39;stylesheet&#39;&quot;&gt;</code></pre>
       <p>同じことは JS でも応用できる。
       <p><code translate="no">&lt;script async&gt;</code> があるが、これは <code translate="no">window.onload</code> をブロックするので、そこで使い分ける。
       <p>analytics のような場合。とにかく早く取得して、ユーザを取りこぼさず、かつ UX は一切損ないたく無い、特に onload を遅らせたくはない場合などに使える。
       <pre class=html><code translate="no">&lt;link rel=preload as=script href=analytics.js
-      onload=&quot;var script = document.createElement(&#039;script&#039;);
+      onload=&quot;var script = document.createElement(&#39;script&#39;);
               script.src = this.href;
               document.body.appendChild(script);&quot;&gt;</code></pre>
     </section>
