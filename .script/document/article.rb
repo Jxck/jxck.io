@@ -55,11 +55,11 @@ module Document
 
     def build(format) # HTML/AMP
       # parse ast
-      ast = AST.new(body)
+      ast = MD2Indesign::Markdown::AST.new(body)
       # DEBUG: pp ast.ast
 
       # traverse
-      traverser = Traverser.new(format, dir)
+      traverser = MD2Indesign::Markdown::Traverser.new(format, dir)
       article   = traverser.start(ast.ast)
       @article = article
     end

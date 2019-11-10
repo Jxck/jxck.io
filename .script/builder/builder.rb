@@ -10,8 +10,8 @@ module Builder
     def build(path)
       dir  = File.dirname(path)
       body = File.read(path)
-      ast  = AST.new(body).ast
-      traverser = Traverser.new(@format, dir)
+      ast  = MD2Indesign::Markdown::AST.new(body).ast
+      traverser = MD2Indesign::Markdown::Traverser.new(@format, dir)
       result = traverser.start(ast)
     end
   end
