@@ -11,16 +11,16 @@ module Format
     end
 
     def header(node)
-      level = node.options.level
+      level = node[:options][:level]
       if level == 1
         # h1 の中身はタイトル
-        @title = node.value
+        @title = node[:value]
         # h1 だけは self url にリンク
         return %(<h#{level}><a href=#{@url}>#{@title}</a></h#{level}>\n)
       else
         # h2 以降は id を振る
-        id = node.attr["id"]
-        return %(<h#{level} id="#{id}"><a href="##{id}">#{node.value}</a></h#{level}>\n)
+        id = node[:attr]["id"]
+        return %(<h#{level} id="#{id}"><a href="##{id}">#{node[:value]}</a></h#{level}>\n)
       end
     end
 
@@ -28,15 +28,15 @@ module Format
       width, height = imgsize(node)
 
       # SVG should specify width-height
-      if File.extname(URI.parse(node.attr["src"]).path) == ".svg"
-        return %(<img loading=lazy src=#{node.attr['src']} alt="#{node.attr['alt']}" title="#{node.attr['title']}" width=#{width} height=#{height} intrinsicsize=#{width}x#{height}>)
+      if File.extname(URI.parse(node[:attr]["src"]).path) == ".svg"
+        return %(<img loading=lazy src=#{node[:attr]['src']} alt="#{node[:attr]['alt']}" title="#{node[:attr]['title']}" width=#{width} height=#{height} intrinsicsize=#{width}x#{height}>)
       end
 
       # No width-height for normal img
       return <<~EOS
            <picture>
-             <source type=image/webp srcset=#{node.attr['src'].sub(/(.png|.gif|.jpg)/, '.webp')}>
-             <img loading=lazy src=#{node.attr['src']} alt="#{node.attr['alt']}" title="#{node.attr['title']}" intrinsicsize=#{width}x#{height}>
+             <source type=image/webp srcset=#{node[:attr]['src'].sub(/(.png|.gif|.jpg)/, '.webp')}>
+             <img loading=lazy src=#{node[:attr]['src']} alt="#{node[:attr]['alt']}" title="#{node[:attr]['title']}" intrinsicsize=#{width}x#{height}>
            </picture>
       EOS
     end
@@ -45,9 +45,9 @@ module Format
       value = super(node)
 
       # CSS を一度だけ挿入
-      if @css.TABLE
-        value = style(@css.TABLE) + "\n" + value
-        @css.TABLE = nil # 一度読み込んだら消す
+      if @css[:TABLE]
+        value = style(@css[:TABLE]) + "\n" + value
+        @css[:TABLE] = nil # 一度読み込んだら消す
       end
       value
     end
@@ -56,9 +56,9 @@ module Format
       value = super(node)
 
       # CSS を一度だけ挿入
-      if @css.PRE
-        value = style(@css.PRE) + "\n" + value
-        @css.PRE = nil # 一度読み込んだら消す
+      if @css[:PRE]
+        value = style(@css[:PRE]) + "\n" + value
+        @css[:PRE] = nil # 一度読み込んだら消す
       end
       value
     end
@@ -73,7 +73,7 @@ module Format
       width = ""
       height = ""
 
-      size = node.attr["src"].split("#")[1]
+      size = node[:attr]["src"].split("#")[1]
       if size
         size = size.split("x")
         if size.size == 1
@@ -95,13 +95,13 @@ module Format
     end
 
     def root(node)
-      indent(node.value.to_s)
+      indent(node[:value].to_s)
     end
 
     def a(node)
-      if node.attr["href"].match(%r{^chrome:\/\/})
+      if node[:attr]["href"].match(%r{^chrome:\/\/})
         # amp page ignores `chrome://` url
-        return node.attr["href"]
+        return node[:attr]["href"]
       end
       super(node)
     end
@@ -114,7 +114,7 @@ module Format
         STDERR.puts("no width x height for img")
         exit(1)
       end
-      %(<amp-img layout=responsive src=#{node.attr['src']} alt="#{node.attr['alt']}" title="#{node.attr['title']}" width=#{width} height=#{height}>)
+      %(<amp-img layout=responsive src=#{node[:attr]['src']} alt="#{node[:attr]['alt']}" title="#{node[:attr]['title']}" width=#{width} height=#{height}>)
     end
 
     def html_element(node)
