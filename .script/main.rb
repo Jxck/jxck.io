@@ -7,8 +7,6 @@ require "json"
 require "time"
 require "optparse"
 require "pathname"
-require "kramdown"
-require "kramdown-parser-gfm"
 require "md2indesign"
 
 
