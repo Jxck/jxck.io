@@ -1,5 +1,4 @@
 require "./.script/document/document.rb"
-require "./.script/format/format.rb"
 
 module Builder
   ## podcast episode の markdown を html でビルド

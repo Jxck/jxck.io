@@ -1,5 +1,4 @@
 require "./.script/document/document.rb"
-require "./.script/format/format.rb"
 
 module Builder
   ## blog entry の markdown を html/amp でビルド

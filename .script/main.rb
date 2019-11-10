@@ -9,6 +9,7 @@ require "optparse"
 require "pathname"
 require "kramdown"
 require "kramdown-parser-gfm"
+require "md2indesign"
 
 
 require "./.script/builder/builder.rb"

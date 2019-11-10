@@ -1,5 +1,4 @@
 require_relative "../document/document.rb"
-require_relative "../format/format.rb"
 
 module Builder
   ## markdown を idtag でビルド
