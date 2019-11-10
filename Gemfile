@@ -2,5 +2,4 @@
 source "https://rubygems.org"
 
 gem "kramdown-parser-gfm"
-gem "rouge"
 gem "md2indesign", path: "../md2indesign"
