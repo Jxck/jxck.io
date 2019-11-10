@@ -35,7 +35,7 @@
   <meta property=og:description content="next generation web podcast by Jxck">
   <meta property=og:image content=<%= @icon %>.png>
 
-  <%= indent(render("template/favicon.html.erb", OpenStruct.new({icon: @icon}))) %>
+  <%= indent(render_hash("template/favicon.html.erb", {icon: @icon})) %>
 
   <title>mozaic.fm</title>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>

@@ -15,7 +15,7 @@
   <script defer src=/assets/js/main.js></script>
   <script defer src=/assets/js/ga.js></script>
 
-  <%= indent(render("template/favicon.html.erb", OpenStruct.new({icon: @icon}))) %>
+  <%= indent(render_hash("template/favicon.html.erb", {icon: @icon})) %>
 
   <title>blog.jxck.io</title>
   <link rel=prerender href=<%= entries.first.relative %>>

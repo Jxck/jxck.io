@@ -30,6 +30,12 @@ module ERBHelper
     erb_template(path).result(arg.instance_eval{binding}).strip
   end
 
+  def render_hash(path, hash)
+    # arg をコンテキストとして ERB の部分テンプレートを読む
+    erb_template(path).result(OpenStruct.new(hash).instance_eval{binding}).strip
+  end
+
+
   def erb_template(path)
     abs_path = File.expand_path("../"+path, __dir__)
     template = File.read(abs_path)
