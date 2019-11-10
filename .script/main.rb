@@ -83,12 +83,12 @@ if __FILE__ == $PROGRAM_NAME
     podcast.feed
     podcast.index
   }
-  opt.on("--marktest") {|v|
-    puts "test markup"
-    path = "./.script/test/test.md"
-    idtag = Builder::IdtagBuilder.new()
-    idtag.build(path)
-  }
+  #opt.on("--marktest") {|v|
+  #  puts "test markup"
+  #  path = "./.script/test/test.md"
+  #  idtag = Builder::IdtagBuilder.new()
+  #  idtag.build(path)
+  #}
 
   opt.on("--test") {|v|
     path = "./blog.jxck.io/entries/2016-01-27/new-blog-start.md"
@@ -100,10 +100,6 @@ if __FILE__ == $PROGRAM_NAME
     podcast.build(path)
     # podcast.feed
     podcast.index
-
-    path = "./.script/test/test.md"
-    idtag = Builder::IdtagBuilder.new()
-    idtag.build(path)
   }
 
   opt.on("-h") {|v|
