@@ -1,6 +1,3 @@
-require "./.script/markdown/ast"
-require "./.script/markdown/traverser"
-
 module Document
   # File に関する情報の抽象
   class Article
