@@ -112,19 +112,29 @@ if __FILE__ == $PROGRAM_NAME
     path = "./.script/test/test.md"
     dir  = File.dirname(path)
 
+    class Entry
+      attr_reader :article, :title
+      def initialize(article, title="")
+        @article = article
+        @title   = title
+      end
+    end
+
+
     id_format   = MD2Indesign::Format::Idtag.new(highlight: "mono")
     id_builder  = Builder::Builder.new(id_format)
     id_body     = id_builder.build(path)
+    id_entry    = Entry.new(id_body)
     id_template = ERB.new(File.read("./.script/template/page.idtag.erb"))
-    id_tag      = id_template.result(binding)
+    id_tag      = id_template.result(id_entry.instance_eval{binding})
     File.write("#{dir}/test.idtag", id_tag)
 
     html_format   = MD2Indesign::Format::HTML.new(highlight: "mono")
     html_builder  = Builder::Builder.new(html_format)
     html_body     = html_builder.build(path)
-    html_title    = "title"
+    html_entry    = Entry.new(html_body, "title")
     html_template = ERB.new(File.read("./.script/template/page.html.erb"))
-    html          = html_template.result(binding)
+    html          = html_template.result(html_entry.instance_eval{binding})
     File.write("#{dir}/test.html", html)
   }
 
