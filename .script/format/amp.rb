@@ -1,6 +1,6 @@
 module Format
   # Blog 用に拡張した HTML
-  class BlogHTML < HTML
+  class BlogHTML < MD2Indesign::Format::HTML
     attr_writer :url
     def initialize(highlight: "none")
       super
