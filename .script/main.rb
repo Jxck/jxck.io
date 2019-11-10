@@ -126,15 +126,15 @@ if __FILE__ == $PROGRAM_NAME
     id_body     = id_builder.build(path)
     id_entry    = Entry.new(id_body)
     id_template = ERB.new(File.read("./.script/template/page.idtag.erb"))
-    id_tag      = id_template.result(id_entry.instance_eval{binding})
+    id_tag      = id_template.result(id_entry.instance_eval{binding}).strip
     File.write("#{dir}/test.idtag", id_tag)
 
     html_format   = MD2Indesign::Format::HTML.new(highlight: "mono")
     html_builder  = Builder::Builder.new(html_format)
     html_body     = html_builder.build(path)
-    html_entry    = Entry.new(html_body, "title")
+    html_entry    = Entry.new(html_body, "This is Title")
     html_template = ERB.new(File.read("./.script/template/page.html.erb"))
-    html          = html_template.result(html_entry.instance_eval{binding})
+    html          = html_template.result(html_entry.instance_eval{binding}).strip
     File.write("#{dir}/test.html", html)
   }
 
