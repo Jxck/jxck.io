@@ -106,25 +106,6 @@ if __FILE__ == $PROGRAM_NAME
     idtag.build(path)
   }
 
-  opt.on("-t") {|v|
-    path = "./.script/test/test.md"
-    dir  = File.dirname(path)
-
-    id_format   = MD2Indesign::Format::Idtag.new(highlight: "mono")
-    id_builder  = Builder::Builder.new(id_format)
-    id_entry    = OpenStruct.new({article: id_builder.build(path)})
-    id_template = ERB.new(File.read("./.script/template/page.idtag.erb"))
-    id_tag      = id_template.result(id_entry.instance_eval{binding}).strip
-    File.write("#{dir}/test.idtag", id_tag)
-
-    html_format   = MD2Indesign::Format::HTML.new(highlight: "mono")
-    html_builder  = Builder::Builder.new(html_format)
-    html_entry    = OpenStruct.new({title: "This is Title", article: html_builder.build(path)})
-    html_template = ERB.new(File.read("./.script/template/page.html.erb"))
-    html          = html_template.result(html_entry.instance_eval{binding}).strip
-    File.write("#{dir}/test.html", html)
-  }
-
   opt.on("-h") {|v|
     puts "make から叩いて"
   }
