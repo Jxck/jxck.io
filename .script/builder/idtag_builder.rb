@@ -18,14 +18,14 @@ module Builder
 
     # html のビルド
     def build_html(page)
-      page.build(Format::HTML.new(highlight: "mono"))
+      page.build(MD2Indesign::Format::HTML.new(highlight: "mono"))
       html = @html_template.result(binding).strip
       File.write(page.target_path+".html", html)
     end
 
     # idtag のビルド
     def build_idtag(page)
-      page.build(Format::Idtag.new(highlight: "mono"))
+      page.build(MD2Indesign::Format::Idtag.new(highlight: "mono"))
       idtag = @idtag_template.result(binding).strip
       File.write(page.target_path+".idtag", idtag)
     end

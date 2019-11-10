@@ -1,3 +1,4 @@
+require "./.script/format/blog.rb"
 require "./.script/document/document.rb"
 
 module Builder
