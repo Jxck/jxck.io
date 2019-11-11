@@ -74,9 +74,9 @@ podcast: $(PHTML)
 	$(MARK) --podcastindex
 
 full:
-	$(MARK) --full
 	$(MARK) --blogindex
 	$(MARK) --podcastindex
+	$(MARK) --full
 
 
 # feed
