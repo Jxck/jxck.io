@@ -14,26 +14,56 @@
 
 
 
+% webbundle = [
+%   ; 🌐📦 in UTF-8.
+%   magic: h'F0 9F 8C 90 F0 9F 93 A6',
+%   version: bytes .size 4,
+%   primary-url: whatwg-url,
+%   section-lengths: bytes .cbor [* (section-name: tstr, length: uint) ],
+%   sections: [* any ],
+%   length: bytes .size 8,  ; Big-endian number of bytes in the bundle.
+% ]
+%
+% $section-name /= "index" / "manifest" / "signatures" / "critical" / "responses"
+%
+% $section /= index / manifest / signatures / critical / responses
+%
+% responses = [*response]
+%
+% whatwg-url = tstr
 
 
 
+webbundle(Bin) ->
+    ?Log(Bin),
+    {Bundle, <<>>} = (decode(Bin)),
 
+    [
+     Magic,
+     Version,
+     PrimaryUrl,
+     _SectionLengths,
+     Sections,
+     Length
+    ] = ?Log(Bundle),
 
+    <<"🌐📦"/utf8>>    = (Magic),
+    <<"b", "1", 0, 0>> = (Version),
+    (PrimaryUrl), % "http://localhost.jxck.io:3000/"
 
+    {SectionLengths, <<>>} = (decode(_SectionLengths)), % ["index",188,"responses",1268]
+    ?Log(SectionLengths),
 
+    [Index, Responses] = (Sections),
+    ?Log(Index),
+    ?Log(Responses),
 
+    lists:map(fun([HeaderBin, Body]) ->
+                      {Header, <<>>} = decode(HeaderBin),
+                      ?Log(Header),
+                      ?Log(Body)
+              end, Responses),
 
-
-
-
-
-
-
-
-
-
-main(_) ->
-    appendix_a(),
     ok.
 
 
@@ -41,58 +71,14 @@ main(_) ->
 
 
 
+main(_) ->
+    {ok, Bin} = file:read_file("../webpackaging/webbundle/localhost.jxck.io.wbn"),
+    %{ok, Bin} = file:read_file("../webpackaging/webbundle/example.com.wbn"),
+    ?Log(webbundle(Bin)),
 
 
-% [0,0,0,0,0,0,0,0]
-% |-mt--|-ai------|
-%  0 0 0 1 1 1 1 1 = 0x1f
-%
-% well_formed (breakable = false) {
-%   // process initial bytes
-%   initial_byte = uint(take(1));
-%   major_type = initial_byte >> 5;
-%   val = additional_info = initial_byte & 0x1f;
-%   switch (additional_info) {
-%     case 24: val = uint(take(1)); break;
-%     case 25: val = uint(take(2)); break;
-%     case 26: val = uint(take(4)); break;
-%     case 27: val = uint(take(8)); break;
-%     case 28: case 29: case 30: fadditional_infol();
-%     case 31:
-%       return well_formed_indefinite(major_type, breakable);
-%   }
-%   // process content
-%   switch (major_type) {
-%     // case 0, 1, 7 do not have content; just use val
-%     case 2: case 3: take(val); break; // bytes/UTF-8
-%     case 4: for (i = 0; i < val; i++) well_formed(); break;
-%     case 5: for (i = 0; i < val*2; i++) well_formed(); break;
-%     case 6: well_formed(); break;     // 1 embedded data item
-%   }
-%   return major_type;                    // finite data item
-% }
-%
-% well_formed_indefinite(major_type, breakable) {
-%   switch (major_type) {
-%     case 2: case 3:
-%       while ((it = well_formed(true)) != -1)
-%         if (it != major_type)           // need finite embedded
-%           fadditional_infol();               //    of same type
-%       break;
-%     case 4: while (well_formed(true) != -1); break;
-%     case 5: while (well_formed(true) != -1) well_formed(); break;
-%     case 7:
-%       if (breakable)
-%         return -1;              // signal break out
-%       else fadditional_infol();              // no enclosing indefinite
-%     default: fadditional_infol();            // wrong major_type
-%   }
-%   return 0;                     // no break out
-% }
-%
-% Figure 1: Pseudocode for Well-Formedness Check
-
-
+    %appendix_a(),
+    ok.
 
 
 %% Major type 0:  an unsigned integer.
@@ -182,7 +168,7 @@ decode(<<6:3, 27:5, Tag:64, Rest/binary>>)                 -> decode_tag(Tag, Re
 
 %% Major type 7:  floating-point numbers and simple data types that need no content,
 %% as well as the "break" stop code.
-decode(<<7:3,  V:5,      Rest/binary>>) when (V < 20) -> {{simple, V}, Rest};
+decode(<<7:3,       V:5, Rest/binary>>) when (V < 20) -> {{simple, V}, Rest};
 decode(<<7:3, 20:5,      Rest/binary>>)               -> {false,       Rest};
 decode(<<7:3, 21:5,      Rest/binary>>)               -> {true,        Rest};
 decode(<<7:3, 22:5,      Rest/binary>>)               -> {null,        Rest};
@@ -193,15 +179,15 @@ decode(<<7:3, 24:5, V:8, Rest/binary>>)               -> {{simple, V}, Rest};
 decode(<<7:3, 25:5,   Half:16/float, Rest/binary>>) -> not_supported;
 
 
-decode(<<7:3, 26:5, 16#7f800000:32,  Rest/binary>>) -> {{single, infinity}, Rest};
-decode(<<7:3, 26:5, 16#ff800000:32,  Rest/binary>>) -> {{single, '-infinity'}, Rest};
-decode(<<7:3, 26:5, 16#ff:9, _:23,   Rest/binary>>) -> {{single, nan}, Rest};
-decode(<<7:3, 26:5, Single:32/float, Rest/binary>>) -> {{single, Single}, Rest};
+decode(<<7:3, 26:5, 16#7f800000:32,  Rest /binary>>) -> {{single, infinity   }, Rest};
+decode(<<7:3, 26:5, 16#ff800000:32,  Rest /binary>>) -> {{single, '-infinity'}, Rest};
+decode(<<7:3, 26:5, 16#ff:9,  _:23,  Rest /binary>>) -> {{single, nan        }, Rest};
+decode(<<7:3, 26:5, Single:32/float, Rest /binary>>) -> {{single, Single     }, Rest};
 
-decode(<<7:3, 27:5, 16#7ff0000000000000:64, Rest/binary>>) -> {{double, infinity}, Rest};
+decode(<<7:3, 27:5, 16#7ff0000000000000:64, Rest/binary>>) -> {{double, infinity   }, Rest};
 decode(<<7:3, 27:5, 16#fff0000000000000:64, Rest/binary>>) -> {{double, '-infinity'}, Rest};
-decode(<<7:3, 27:5, 16#7ff:12, _:52,        Rest/binary>>) -> {{double, nan}, Rest};
-decode(<<7:3, 27:5,        Double:64/float, Rest/binary>>) -> {{double, Double}, Rest};
+decode(<<7:3, 27:5, 16#7ff:12, _:52,        Rest/binary>>) -> {{double, nan        }, Rest};
+decode(<<7:3, 27:5,  Double:64/float,       Rest/binary>>) -> {{double, Double     }, Rest};
 
 decode(<<X:3, Y:5, Rest/binary>>) ->
     ?Log(X, Y, Rest),
@@ -330,10 +316,7 @@ appendix_a() ->
        "e" := "E"}, <<>>} = ?Log(decode(binary:encode_unsigned(16#a56161614161626142616361436164614461656145))),
 
 
-
-
-
-   %  (_ h'0102', h'030405')       = ?Log(decode(binary:encode_unsigned(16#5f42010243030405ff))),
+    % (_ h'0102', h'030405')       = ?Log(decode(binary:encode_unsigned(16#5f42010243030405ff))),
     % (_ "strea", "ming")          = ?Log(decode(binary:encode_unsigned(16#7f657374726561646d696e67ff))),
     % [_ ]                         = ?Log(decode(binary:encode_unsigned(16#9fff))),
     % [_ 1, [2, 3], [_ 4, 5]]      = ?Log(decode(binary:encode_unsigned(16#9f018202039f0405ffff))),
