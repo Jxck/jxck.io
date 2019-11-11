@@ -2,9 +2,11 @@
 
 ## Intro
 
-Signed HTTP Exchange と合わせて WebPackaging を実現するための Web Bundles の仕様策定と実装が進んでいる。
+依存コンテンツを 1 つにまとめて配信する、 Web Bundles の仕様策定と実装が進んでいる。
 
-現状のフォーマットと挙動について解説する。
+これは Signed HTTP Exchange と合わせて WebPackaging を実現するための仕様であり、組み合わせれば WebBundle に対して署名することでコンテンツの配信を通信と分けて考えることができる。
+
+Signed HTTP Exchange に比べると格段に簡単な仕様なので、現状のフォーマットと挙動について解説する。
 
 - [draft-yasskin-wpack-bundled-exchanges-latest](https://wicg.github.io/webpackage/draft-yasskin-wpack-bundled-exchanges.html)
 
@@ -15,7 +17,7 @@ Signed HTTP Exchange と合わせて WebPackaging を実現するための Web B
 
 複数のコンテンツを 1 つにまとめ、配信することができる仕様であり、例えば index.html とそれが依存する css/js/favicon etc を 1 つのファイルで配信しブラウザ上ではそれぞれの URL から取得したように展開することができる。
 
-WebPackaging の文脈では、以前解説した Signed HTTP Exchanges によって署名をすることで、そのコンテンツの物理的な URL と論理的な URL を差し替えて表示することができた。
+WebPackaging の文脈では、以前解説した Signed HTTP Exchanges によって署名をすることで、そのコンテンツの物理的な URL と論理的な URL を差し替えて表示することができた
 
 - [WebPackaging の Signed HTTP Exchanges \| blog.jxck.io](https://blog.jxck.io/entries/2018-12-01/signed-http-exchanges.html)
 
@@ -25,7 +27,7 @@ Signed HTTP Exchange は単一の Response に対する署名であるため、 
 
 例えばこのページ `https://blog.jxck.io/` のページを Web Bundle でまとめ、署名する。
 
-それを USB, Bluetooth, Air Drop など、任意の方法で取得し、 `file:///` でブラウザに表示すると、 URL バーには `https://blog.jxck.io` で表示されるというのがゴールだ。
+それを USB, Bluetooth, AirDrop, WebShare など、任意の方法で取得し、 `file:///` でブラウザに表示すると、 URL バーには `https://blog.jxck.io` で表示されるというのがゴールだ。
 
 Signing には、拡張に対応した証明書が必要で、今は有料でしか手に入らない。
 
@@ -315,6 +317,7 @@ zip や Electron の ASAR のように末尾にする[要望](https://github.com
 ## application/webbundle
 
 MIME は application/webbundle が登録される予定になっている。
+
 HTTP でサーブする場合は、 Content-Type にこれを付与する。
 
 また、 sniff による脆弱性を防ぐために、最初から nosniff の設定が MUST となっている点も面白い。
@@ -329,14 +332,37 @@ HTTP でサーブする場合は、 Content-Type にこれを付与する。
 
 http でも wbn をサーブしているが、執筆時の Chrome は `file:///` からの展開にしか対応してないようなので、ローカルにダウンロードしてブラウザで開かないと動かない。
 
-- TODO:
+- TODO: URL
+
+TODO: screen shot
 
 
+## bundling の単位
 
-## 考察
+現状の Web Bundles は、解説したように Primary URL を起点としたサブリソースの bundling をターゲットとしている。
 
-2017 年ごろ突如話に上がった WebPackaging のコアとなる仕様 2 つが揃った。
+ところが、筆者が一番期待しているのは、例えば JS の依存の bundling だ。
 
+例えば npm で package.json に書く module は複数でも、 node_modules には大量のファイルが存在することは周知だろう。
 
+これが全て es modules の記法で書かれており、 [import maps](https://wicg.github.io/import-maps/) で解決できるようにすれば、ブラウザでも動くかもしれない。
 
+ただし npm はローカルで解決できるのを前提に、小さいモジュールを大量に依存させる substack 由来の設計を良しとしてきたが、ブラウザでは fetch が多すぎる。
 
+すると、ブラウザ内部の IPC 負荷が大きくなり、例え http2 で多重化されると言えども、無視できないオーバーヘッドとなる。
+
+実際に 2017 年に行われた Chrome チームの調査結果では、[100 以上もしくは依存のネストが 5 以上の場合は WebPack の利用を強く推奨](https://docs.google.com/document/d/1ds9EEkcDGnt-iR8SAN-_7nsOfw7gsMfhZjzZ_QAIyjM/edit)と報告されていた。
+
+これは WebPackaging ではなく、ツールの WebPack であり、すでに広く普及しているため、多くの開発者にとってはそのままでいいという話にはなる。
+
+しかし、現在の Web における JS の依存は、この制限を超えることがしばしばあるため、せっかく仕様も実装も手に入った ES Modules へ以降する妨げになっていた。
+
+結果、 `import` は単に WebPack に向けたアノテーションとしてしか使われてないという非常に残念な現状があり、今も開発者は全体を bundle.js に固めて配布している。
+
+ここでもし、例えば npm モジュール単位で依存を .wbn にまとめ、 1 回の fetch で依存をまるごと取得し、かつ展開した全てのファイルを個別に fetch したかのように保存できたらどうだろうか。
+
+普通に `import` を用いたコードを書けるし、別々にキャッシュされればページを跨いだ再利用や、更新による再デプロイも変わってくるだろう。
+
+JS のように依存がなくても、単にまとめられることは、 CSS Sprite(画像のまとめ), WebFont(weight など), Icon(favivcon.ico と apple-touch-cion etc)などにも適用できるのでは無いかと筆者は考えている。
+
+今は、そうした議論よりも先に、当初の目標である AMP のようなケースにフォーカスしていると思うが、ゆくゆくはそういうことに応用できるように、 feedback していきたいと思っている。
