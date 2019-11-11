@@ -72,8 +72,7 @@ webbundle(Bin) ->
 
 
 main(_) ->
-    {ok, Bin} = file:read_file("../webpackaging/webbundle/localhost.jxck.io.wbn"),
-    %{ok, Bin} = file:read_file("../webpackaging/webbundle/example.com.wbn"),
+    {ok, Bin} = file:read_file("../webpackaging/webbundle/labs.jxck.io.wbn"),
     ?Log(webbundle(Bin)),
 
 
