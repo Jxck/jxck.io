@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html amp lang=ja>
+<head>
+  <meta charset=utf-8>
+  <!--
+  貴様、見ているな!!
+  このサイトの技術的なまとめはこちらをどうぞ。
+  https://labs.jxck.io/blog
+
+  by Jxck
+  -->
+  <link rel=canonical href=https://blog.jxck.io/entries/2019-11-12/webbundle.html>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
+  <link rel=author href=https://jxck.io/assets/humans.txt>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type=image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+
+  <meta name=author content=Jxck>
+  <meta name=description content="依存コンテンツを 1 つにまとめて配信する WebBundle の仕様策定と実装が進んでいる。これは Signed HTTP Exchange と合わせて WebPackaging を実現するための仕様であり、組み合わせれば WebBundle に対して署名することでコンテ...">
+  <meta name=keywords content="cbor,webbundle,webpackaging">
+
+  <meta name=twitter:card content=summary>
+  <meta name=twitter:site content=@jxck_>
+  <meta name=twitter:url content="https://blog.jxck.io/entries/2019-11-12/webbundle.html">
+  <meta name=twitter:title content="WebBundle によるコンテンツの結合と WebPackaging | blog.jxck.io">
+  <meta name=twitter:description content="依存コンテンツを 1 つにまとめて配信する WebBundle の仕様策定と実装が進んでいる。これは Signed HTTP Exchange と合わせて WebPackaging を実現するための仕様であり、組み合わせれば WebBundle に対して署名することでコンテ...">
+  <meta name=twitter:image content="https://jxck.io/assets/img/jxck.png">
+
+  <meta property=og:type content=article>
+  <meta property=og:url content="https://blog.jxck.io/entries/2019-11-12/webbundle.html">
+  <meta property=og:title content="WebBundle によるコンテンツの結合と WebPackaging | blog.jxck.io">
+  <meta property=og:site_name content="blog.jxck.io">
+  <meta property=og:description content="依存コンテンツを 1 つにまとめて配信する WebBundle の仕様策定と実装が進んでいる。これは Signed HTTP Exchange と合わせて WebPackaging を実現するための仕様であり、組み合わせれば WebBundle に対して署名することでコンテ...">
+  <meta property=og:image content="https://jxck.io/assets/img/jxck.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "WebBundle によるコンテンツの結合と WebPackaging | blog.jxck.io",
+    "image": [
+      "https://jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2019-11-12T08:00:00+08:00",
+    "dateModified": "2019-11-12T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.60x60.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": "依存コンテンツを 1 つにまとめて配信する WebBundle の仕様策定と実装が進んでいる。これは Signed HTTP Exchange と合わせて WebPackaging を実現するための仕様であり、組み合わせれば WebBundle に対して署名することでコンテ..."
+  }
+  </script>
+
+  <title>WebBundle によるコンテンツの結合と WebPackaging | blog.jxck.io</title>
+  <script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+  <script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src=https://cdn.ampproject.org/v0.js></script>
+  <style amp-custom>
+    article section p {
+      margin-left: 0;
+    }
+
+    article table {
+      margin-left: 0;
+    }
+
+    article img {
+      margin: var(--grid) 0;
+      border: 1px solid #ccc;
+      box-sizing: content-box;
+      background-color: #fff;
+    }
+
+    article ul,
+    article ol,
+    article dl {
+      margin-left: var(--grid);
+      font-family: var(--mono-font);
+    }
+
+    article ul li ul,
+    article ol li ol {
+      margin: 0 0 0 calc(var(--grid)*2);
+      font-size: 1rem;
+    }
+
+    article ol li ol li,
+    article ul li ul li {
+      margin-bottom: 0;
+    }
+
+    article dl {
+      display: grid;
+      grid-template-columns: minmax(auto, max-content);
+      grid-column-gap: var(--grid);
+    }
+
+    article dl div {
+      display: contents;
+    }
+
+    article dl dt {
+      grid-column: 1 / 2;
+    }
+    article dl dd {
+      grid-column: 2 / 2;
+    }
+
+    article blockquote {
+      font-family: var(--mono-font);
+    }
+
+    article blockquote p {
+      margin: 0;
+    }
+
+    @supports (line-height-step: 1px) {
+      article {
+        --grid-rhythm: 1.5em;
+        line-height: 1.5;
+        line-height-step: var(--grid-rhythm);
+      }
+
+      article h1,
+      article h2,
+      article h3,
+      article h4,
+      article h5,
+      article h6 {
+        display: inline-block;
+        width: 100%;
+        line-height-step: 0;
+        line-height: 1.2;
+        margin-bottom: 0;
+      }
+
+      article section {
+        /* grid for debug */
+        /* background-size: 100% var(--grid-rhythm); */
+        /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
+      }
+
+      article p {
+        margin-top: var(--grid-rhythm);
+        margin-bottom: var(--grid-rhythm);
+      }
+
+      article pre,
+      article table {
+        line-height-step: 0;
+        line-height: normal;
+      }
+    }
+    /* normal regular */
+    @font-face {
+      font-family: "NotoSansCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src:
+        local("Noto Sans CJK JP Regular"),
+        url("/assets/font/NotoSansCJKjp-Regular-Jxck-20191017.woff2") format("woff2");
+    }
+    /* normal bold */
+    @font-face {
+      font-family: "NotoSansCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src:
+        local("Noto Sans CJK JP Bold"),
+        url("/assets/font/NotoSansCJKjp-Bold-Jxck-20191017.woff2") format("woff2");
+    }
+
+
+    /* mono regular */
+    @font-face {
+      font-family: "NotoSansMonoCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src:
+        local("Noto Sans Mono CJK JP Regular"),
+        url("/assets/font/NotoSansMonoCJKjp-Regular-Jxck-20191017.woff2") format("woff2");
+    }
+    /* mono bold */
+    @font-face {
+      font-family: "NotoSansMonoCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src:
+        local("Noto Sans Mono CJK JP Bold"),
+        url("/assets/font/NotoSansMonoCJKjp-Bold-Jxck-20191017.woff2") format("woff2");
+    }
+
+    /* Light Mode Theme */
+    :root {
+      --background-color: #fefefe;
+      --font-color: #222;
+      --header-color: #222;
+
+      --anchor-color: RoyalBlue;
+      --anchor-visited-color: Brown;
+
+      --code-block: #efefef;
+      --code-block-font: #222;
+
+      --block-quote: #ddd;
+      --table-border: #222;
+
+      --regular-font: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", "Hiragino Sans", 'ヒラギノ角ゴ Pro W3', 'メイリオ', sans-serif;
+      --mono-font: "NotoSansMonoCJKjp-Jxck";
+      --code-font: Menlo, Consolas, Liberation, Mono, Courier, "NotoSansMonoCJKjp-Jxck";
+
+      --icon-size: 30px;
+
+      --width: 80vw;
+      --grid: 1rem;
+
+      --radius: 4px;
+    }
+
+
+    /* Mobile Theme */
+    @media screen and (max-device-width: 800px) {
+      :root {
+        --width: 94vw;
+      }
+
+      audio {
+        width: 100%;
+      }
+    }
+
+    /* Dark Mode Theme */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background-color: #010101;
+        --font-color: #eee;
+
+        --anchor-color: CornflowerBlue;
+        --anchor-visited-color: RosyBrown;
+
+        --code-block: #efefef;
+
+        --table-border: #eee;
+      }
+
+      article img {
+        filter: grayscale(50%);
+      }
+      article img[src*=svg] {
+        filter: invert(100%) grayscale(50%);
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--regular-font);
+      background-color: var(--background-color);
+      color: var(--font-color);
+      font-feature-settings: "palt";
+      margin: 0;
+      padding: 0;
+    }
+
+    code {
+      font-family: var(--mono-font);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    hr {
+      margin: 0;
+      padding: 0;
+    }
+
+    iframe {
+      display: block;
+      max-width: 100%;
+      margin: var(--grid) 0;
+    }
+    dl.info {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info div {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+
+    dl.info dt::after {
+      content: ":";
+      margin-right: calc(var(--grid)/2);
+    }
+
+    dl.info dd {
+      margin: 0 var(--grid) 0 0;
+    }
+
+    dl.info dd i {
+      font-style: normal;
+      margin-right: calc(var(--grid)/3);
+    }
+    header {
+      z-index: 1;
+      position: sticky;
+      position: -webkit-sticky;
+      top: 0;
+      box-sizing: border-box;
+      margin: 0;
+      padding: calc(var(--grid)/2);
+      background-color: var(--header-color);
+    }
+
+    h2:target,
+    h3:target,
+    h4:target,
+    h5:target,
+    h6:target {
+      /* sticky header に合わせて link scroll をずらす */
+      margin-top:  calc((var(--icon-size) + var(--grid)) * -1);
+      padding-top: calc((var(--icon-size) + var(--grid)));
+    }
+
+    header ul {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      width: var(--width);
+      margin: 0 auto;
+    }
+
+    header ul li {
+      width:  var(--icon-size);
+      height: var(--icon-size);
+      padding: 0;
+      margin: 0 0 0 var(--grid);
+    }
+
+    header ul li a {
+      display: block;
+      width:  var(--icon-size);
+      height: var(--icon-size);
+    }
+
+    header ul li svg {
+      fill: var(--background-color);
+    }
+
+    header ul li::before {
+      content: none;
+    }
+
+    header ul li:first-child {
+      flex-grow: 1;
+      margin-left: 0;
+    }
+
+    header .logo {
+      border: 1px solid #fff;
+      box-sizing: border-box;
+    }
+    h1 > a,
+    h2 > a,
+    h3 > a,
+    h4 > a,
+    h5 > a,
+    h6 > a {
+      color: var(--font-color);
+    }
+
+    h1 > a:visited,
+    h2 > a:visited,
+    h3 > a:visited,
+    h4 > a:visited,
+    h5 > a:visited,
+    h6 > a:visited {
+      color: var(--font-color);
+    }
+
+    h1 > a::before {
+      content: "# ";
+    }
+
+    h2 > a::before {
+      content: "## ";
+    }
+
+    h3 > a::before {
+      content: "### ";
+    }
+
+    h4 > a::before {
+      content: "#### ";
+    }
+
+    h1 > a:hover::before,
+    h2 > a:hover::before,
+    h3 > a:hover::before,
+    h4 > a:hover::before,
+    h5 > a:hover::before,
+    h6 > a:hover::before {
+      color: var(--anchor-visited-color);
+    }
+
+    em {
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    em::before,
+    em::after {
+      content: "*";
+    }
+
+    strong {
+      color: red;
+    }
+
+    strong::before,
+    strong::after {
+      content: "**";
+    }
+
+    ul li::before {
+      content: "- ";
+    }
+
+    ol {
+      counter-reset: list;
+    }
+
+    ol li::before {
+      counter-increment: list;
+      content: counter(list) ". ";
+    }
+
+    dl dt::after {
+      content: ":";
+    }
+
+    blockquote {
+      display: block;
+      border: solid 1px var(--block-quote);
+      border-radius: var(--radius);
+      padding: 1rem;
+      margin: 0;
+    }
+
+    blockquote p::before {
+      content: "> ";
+    }
+
+    code {
+      background-color: var(--code-block);
+      color: var(--code-block-font);
+      border-radius: var(--radius);
+      padding: 0 4px;
+    }
+
+    code::before,
+    code::after {
+      content: "`";
+    }
+    main {
+      display: block;
+      width: var(--width);
+      margin: 1em auto;
+    }
+
+    a {
+      word-wrap: break-word;
+      text-decoration: none;
+      color: var(--anchor-color);
+    }
+
+    a:visited {
+      color: var(--anchor-visited-color);
+    }
+
+    ol,
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      word-break: break-all;
+      word-wrap: break-word;
+    }
+
+    dl dt {
+      font-weight: bold;
+      margin: 0;
+    }
+
+    dl dd {
+      margin: 0;
+    }
+    footer {
+      padding: var(--grid);
+    }
+
+    footer strong,
+    footer .copyright {
+      display: block;
+      width: var(--width);
+      margin: 0 auto;
+      font-style: italic;
+    }
+    pre {
+      margin: var(--grid) 0;
+      border-radius: var(--radius);
+    }
+
+    pre::before {
+      content: "```" attr(class) "\A";
+    }
+
+    pre::after {
+      z-index: -1;
+      position: relative;
+      top: -1em;
+      content: "\A```";
+    }
+
+    pre > code {
+      font-family: var(--code-font);
+      overflow: auto;
+      display: block;
+      padding: 0.5rem;
+      margin: 0;
+    }
+
+    pre > code::before,
+    pre > code::after {
+      content: none;
+    }
+
+    .hljs-keyword {
+      color: #a71d5d;
+    }
+
+    .hljs-title {
+      color: #795da3;
+    }
+
+    .hljs-string {
+      color: #183691;
+    }
+
+    .hljs-number {
+      color: #0086b3;
+    }
+
+    .hljs-built_in {
+      color: #0086b3;
+    }
+
+    .hljs-literal {
+      color: #0086b3;
+    }
+
+    .hljs-regexp {
+      color: #183691;
+    }
+
+    .hljs-comment {
+      color: #4f80e5;
+    }
+
+    .hljs-tag {
+      color: #a71d5d;
+    }
+
+    .hljs-name {
+      color: #222222;
+    }
+
+    .hljs-strong {
+      font-weight: bold;
+    }
+
+    .hljs-attribute {
+      font-weight: bold;
+    }
+
+    .hljs-meta {
+      color: #4f80e5;
+    }
+
+    .hljs-selector-id,
+    .hljs-selector-class,
+    .hljs-selector-pseudo {
+      color: #6f42c1;
+    }
+
+    .hljs-selector-tag {
+      color: #22863a;
+    }
+
+    .hljs-subst {
+      font-weight: bold;
+    }
+
+    .hljs-variable {
+      color: #a71d5d;
+    }
+
+    .hljs-symbol {
+      font-weight: bold;
+    }
+
+    .hljs-selector-attr {
+      color: #6f42c1;
+    }
+
+    .hljs-bullet {
+    }
+
+
+    @media (prefers-color-scheme: dark) {
+      .hljs-keyword {
+        color: #000;
+        font-weight: bold;
+        font-style: italic;
+      }
+
+      .hljs-number {
+        color: var(--code-block-font);
+      }
+
+      .hljs-built_in {
+        color: #000;
+        font-weight: bold;
+      }
+
+      .hljs-literal {
+        color: var(--code-block-font);
+        font-weight: bold;
+      }
+
+      .hljs-regexp {
+        color: var(--code-block-font);
+      }
+
+      .hljs-comment {
+        color: #888;
+      }
+
+      .hljs-tag {
+        color: var(--code-block-font);
+        font-weight: bold;
+      }
+
+      .hljs-strong {
+        font-weight: bold;
+      }
+
+      .hljs-attribute {
+      }
+
+      .hljs-attr {
+        color: var(--code-block-font);
+        font-weight: bold;
+      }
+
+      .hljs-selector-tag {
+        color: var(--code-block-font);
+      }
+
+      .hljs-subst {
+        font-weight: bold;
+      }
+      .hljs-symbol {
+        font-weight: bold;
+      }
+
+      .hljs-section {
+      }
+
+      .hljs-meta,
+      .hljs-selector-id,
+      .hljs-selector-class,
+      .hljs-selector-pseudo,
+      .hljs-variable,
+      .hljs-title,
+      .hljs-string,
+      .hljs-name,
+      .hljs-selector-attr {
+        color: var(--code-block-font);
+      }
+    }
+
+
+
+
+
+
+
+    /**.hljs,**/
+    .hljs-meta-keyword,
+    .hljs-doctag,
+    .hljs-code,
+    .hljs-addition,
+    .hljs-template-variable,
+    .hljs-link,
+    .hljs-type,
+    .hljs-quote,
+    .hljs-template-tag,
+    .hljs-deletion,
+    .hljs-meta-string,
+    .hljs-emphasis {
+      /** if you find element applyed this style, please tell me https://github.com/jxck/jxck.io/issues **/
+      font-size: 100em;
+    }
+    table {
+      font-family: var(--mono-font);
+      margin: var(--grid) 0;
+      border-spacing: 0 0.4rem;
+    }
+
+    th {
+      padding: 0 var(--grid) calc(var(--grid)/2) var(--grid);
+      border-left: 2px solid var(--table-border);
+      border-bottom: 2px dashed var(--table-border);
+    }
+
+    td {
+      padding: calc(var(--grid)/2) var(--grid);
+      border-left: 2px solid var(--table-border);
+    }
+
+    th:last-child,
+    td:last-child {
+      border-right: 2px solid var(--table-border);
+    }
+
+    .align-center {
+      text-align: center;
+    }
+
+    .align-left {
+      text-align: left;
+    }
+
+    .align-right {
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://blog.jxck.io      ><amp-img width=30 height=30 src=/assets/img/blog.svg   alt ="blog top" class=logo     ></a>
+      <li><a href=.                         ><amp-img width=30 height=30 src=/assets/img/up.svg     alt ="move to parent directory"></a>
+      <li><a href=/feeds/atom.xml           ><amp-img width=30 height=30 src=/assets/img/rss.svg    alt ="rss feed"                ></a>
+      <li><a href=https://jxck.io/humans.txt><amp-img width=30 height=30 src=/assets/img/humans.svg alt ="huamns.txt"              ></a>
+      <li><a href=https://jxck.io           ><amp-img width=30 height=30 src=/assets/img/jxck.svg   alt ="jxck logo" class=logo    ></a>
+    </ul>
+  </nav>
+</header>
+<main>
+  <dl class=info>
+    <dt>created_at</dt><dd><time class=created_at datetime=2019-11-12>2019-11-12</time></dd>
+    <dt>updated_at</dt><dd><time class=updated_at datetime=2019-11-12>2019-11-12</time></dd>
+    <dt class=tags>tags</dt><dd>[<a href="/tags/cbor.html">cbor</a><i>,</i><a href="/tags/webbundle.html">webbundle</a><i>,</i><a href="/tags/webpackaging.html">webpackaging</a>]</dd>
+  </dl>
+  <article>
+    <h1><a href=/entries/2019-11-12/webbundle.html>WebBundle によるコンテンツの結合と WebPackaging</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p>依存コンテンツを 1 つにまとめて配信する WebBundle の仕様策定と実装が進んでいる。
+      <p>これは Signed HTTP Exchange と合わせて WebPackaging を実現するための仕様であり、組み合わせれば WebBundle に対して署名することでコンテンツの配信を通信と分けて考えることができる。
+      <p>Signed HTTP Exchange に比べると格段に簡単な仕様なので、現状のフォーマットと挙動について解説する。
+      <ul>
+        <li><a href="https://wicg.github.io/webpackage/draft-yasskin-wpack-bundled-exchanges.html">draft-yasskin-wpack-bundled-exchanges-latest</a>
+      </ul>
+    </section>
+    <section>
+      <h2 id="webbundle"><a href="#webbundle">WebBundle</a></h2>
+      <p>かつて Bundled HTTP Exchanges と呼ばれていた仕様であり、複数のコンテンツを 1 つにまとめ、配信することができる。
+      <p>例えば index.html とそれが依存する css/js/favicon etc を 1 つのファイルで配信しブラウザ上ではそれぞれの URL から取得したように展開することができる。
+      <p>WebPackaging の文脈では、以前解説した Signed HTTP Exchanges によって署名をすることで、そのコンテンツの物理的な URL と論理的な URL を差し替えて表示することができた
+      <ul>
+        <li><a href="https://blog.jxck.io/entries/2018-12-01/signed-http-exchanges.html">WebPackaging の Signed HTTP Exchanges | blog.jxck.io</a>
+      </ul>
+      <p>要するに AMP の URL を AMP Cache から取得しつつ、自分の URL で表示するというアレだ。
+      <p>Signed HTTP Exchange は単一の Response に対する署名であるため、 WebBundle でサブリソースを 1 つにまとめてから署名をすれば、サブリソースも合わせて配信できるというモチベーションがある。
+      <p>例えばこのページ <code translate="no">https://blog.jxck.io/</code> のページを WebBundle でまとめ、署名する。
+      <p>それを USB, Bluetooth, AirDrop, WebShare など、任意の方法で取得し、 <code translate="no">file:///</code> でブラウザに表示すると、 URL バーには <code translate="no">https://blog.jxck.io</code> で表示されるというのがゴールだ。
+      <p>Signing には、拡張に対応した証明書が必要で、今は有料でしか手に入らない。
+      <p>しかし WebBundle は無料で試すことができるため、今回は WebBundle のみを対象とする。
+    </section>
+    <section>
+      <h2 id="draft-yasskin-wpack-bundled-exchanges-latest"><a href="#draft-yasskin-wpack-bundled-exchanges-latest">draft-yasskin-wpack-bundled-exchanges-latest</a></h2>
+      <p>WebBundle の仕様は非常にシンプルだ。
+      <p>例として、仕様をもとに以下のような構成のページを Bundle してみる。
+      <ul>
+        <li>
+          http://localhost.jxck.io:3000<ul>
+            <li>index.html
+            <li>script.js
+            <li>style.css
+            <li>favicon.ico
+          </ul>
+        </li>
+      </ul>
+      <section>
+        <h3 id="cbor"><a href="#cbor">CBOR</a></h3>
+        <p>IETF のフォーマットといえば、 TLV (Type-Length-Value) 形式で定義される場合が多い。
+        <p>しかし、この仕様はシリアライズを全面的に CBOR に移譲している。
+        <p>CBOR はざっくりいうと JSON のバイナリ版なので、プログラミング上は JSON のような構造体で表現し、それを Encoder に渡すといった感じになるだろう。
+        <p>したがて、 CBOR の実装さえ手元にあれば、ほとんど終わる。
+        <p>CBOR の実装は TLV でいくつかの型をシリアライズするが、ストリーミング対応などをサボれば実装はそこまで難しくない。
+      </section>
+      <section>
+        <h3 id="cddl"><a href="#cddl">CDDL</a></h3>
+        <p>WebBundle のフォーマットは、 CBOR のスキーマ定義である CDDL で表現されている。
+        <p>特に仕様を読まなくても、見れば雰囲気でわかるだろう。
+        <pre class=cddl><code translate="no">webbundle = [
+  ; 🌐📦 in UTF-8.
+  magic: h&#39;F0 9F 8C 90 F0 9F 93 A6&#39;,
+  version: bytes .size 4,
+  primary-url: whatwg-url,
+  section-lengths: bytes .cbor [* (section-name: tstr, length: uint) ],
+  sections: [* any ],
+  length: bytes .size 8,  ; Big-endian number of bytes in the bundle.
+]
+
+$section-name /= &quot;index&quot; / &quot;manifest&quot; / &quot;signatures&quot; / &quot;critical&quot; / &quot;responses&quot;
+
+$section /= index / manifest / signatures / critical / responses
+
+index = {* whatwg-url =&gt; [ variants-value, +location-in-responses ] }
+
+variants-value = bstr
+
+location-in-responses = (offset: uint, length: uint)
+
+manifest = whatwg-url
+
+responses = [*response]
+
+response = [headers: bstr .cbor headers, payload: bstr]
+
+headers = {* bstr =&gt; bstr}
+
+critical = [*tstr]
+
+whatwg-url = tstr</code></pre>
+      </section>
+      <section>
+        <h3 id="magic"><a href="#magic">magic</a></h3>
+        <p>最初は地球(GLOBE WITH MERIDIANS)と箱(PACKAGE)の絵文字の UTF-8 をマジックナンバーとして使っている。
+        <p>しかし、すでに CBOR の中にあるため、ファイルの最初のバイトが地球になるわけではない。
+        <p>最初は、全体が CBOR の Array で、その要素数が 6 と決まっており、 magic は String のヘッダに続くので、最初の 10 byte が固定値になる。
+        <pre><code translate="no">[0x86, 0x48, 0xF0, 0x9F, 0x8C, 0x90, 0xF0, 0x9F, 0x93, 0xA6]</code></pre>
+        <p>つまり、最初の 10byte を見れば、そのファイルが WebBundle であることが判定できる。
+        <p>ただし、見ているのが version の手前までで、将来に全体の配列要素が増える変更(例えば sections と length の間に extension が増えるなど)があると、ここが非互換になるのは少し<a href="https://github.com/WICG/webpackage/issues/528">気になっている</a>。
+      </section>
+      <section>
+        <h3 id="version"><a href="#version">version</a></h3>
+        <p>4byte のバージョンであり、 仕様では <code translate="no">1</code> が入る。
+        <p>だが、執筆時の Chrome は <code translate="no">b1</code> が入るようだ。
+      </section>
+      <section>
+        <h3 id="primary-url"><a href="#primary-url">primary-url</a></h3>
+        <p>これがこのファイルの URL となる。
+        <p>もしファイルが展開できなかった場合、ブラウザはフォールバックとしてこの URL へ実際にリクエストを行う。
+      </section>
+      <section>
+        <h3 id="section"><a href="#section">section</a></h3>
+        <p>CBOR のメインとなるデータが section であり、 section にはいくつかの種類がある。
+        <ul>
+          <li>
+            &ldquo;index&rdquo;
+          </li>
+          <li>
+            &ldquo;manifest&rdquo;
+          </li>
+          <li>
+            &ldquo;signatures&rdquo;
+          </li>
+          <li>
+            &ldquo;critical&rdquo;
+          </li>
+          <li>
+            &ldquo;responses&rdquo;
+          </li>
+        </ul>
+        <p>つまり、単にレスポンスをまとめるだけではなく、他の情報も入れられる。
+        <p>普通こうした type には、 8bit の id を割り当てて領域を節約したりするが、単純な文字列を使っている。
+        <p>容量よりも、拡張や実装のしやすさが選ばれているようだ。
+      </section>
+      <section>
+        <h3 id="section-length"><a href="#section-length">section-length</a></h3>
+        <p>section-length には、それぞれの section 長さが書かれているため、特定の section にアクセスしたい場合、そこまでジャンプすることができるようになっている。
+        <p>今回は、 &ldquo;index&rdquo; と &ldquo;response&rdquo; しか使わないため、以下のようになる。
+        <pre class=json><code translate="no">[&quot;index&quot;,188,&quot;responses&quot;,1268]</code></pre>
+        <p>ページ全体をまとめる場合、ファイル全体が大きくなることが容易に想像できるため、先頭からのシーケンシャルアクセスではなく、必要な部分へのインデックスアクセスを可能にしている。
+      </section>
+      <section>
+        <h3 id="index"><a href="#index">index</a></h3>
+        <p>responses section には、複数の Response が含まれる。その個々の Response の場所を示すのが index だ。
+        <p>今回の場合、具体的には以下のようになる。
+        <pre class=json><code translate="no">{
+  &quot;http://localhost.jxck.io:3000/&quot;:            [[],   1, 396],
+  &quot;http://localhost.jxck.io:3000/script.js&quot;:   [[], 397, 267],
+  &quot;http://localhost.jxck.io:3000/style.css&quot;:   [[], 664, 275],
+  &quot;http://localhost.jxck.io:3000/favicon.ico&quot;: [[], 939, 329]
+}</code></pre>
+        <p>各 URL に対応する Response が、 responses セクションのどこ(offset)からどこ(length)までに入っているかを示している。
+        <p>また、最初の <code translate="no">[]</code> にはヘッダで示されるバリエーションが含まれる。
+        <p>例えば、多言語対応しており Content-Language が &ldquo;en&rdquo; と &ldquo;ja&rdquo; で、中身が変わる HTML がある場合、それらを区別でき、クライアントは展開時に必要なものを選ぶことができる。
+        <p>さらに Content-Encoding が &ldquo;gz&rdquo; &ldquo;br&rdquo; とあった場合には、そこで 4 通りの組み合わせがあるため、ここにその組み合わせが入ることになる。
+        <p>TODO: <a href="https://github.com/WICG/webpackage/issues/527">仕様は Accept-Language になっているが Response の方で見ると思う</a>。
+        <pre class=json><code translate="no">{
+  &quot;http://localhost.jxck.io:3000/&quot;: [[&quot;ja;gz&quot;],   1, 100],
+  &quot;http://localhost.jxck.io:3000/&quot;: [[&quot;ja;br&quot;], 101, 100],
+  &quot;http://localhost.jxck.io:3000/&quot;: [[&quot;en;gz&quot;], 201, 100],
+  &quot;http://localhost.jxck.io:3000/&quot;: [[&quot;en;br&quot;], 301, 100],
+}</code></pre>
+      </section>
+      <section>
+        <h3 id="responses"><a href="#responses">responses</a></h3>
+        <p>index で示された位置個々の Response が入る。
+        <p>Response は Header と Body の配列からなる。
+        <pre class=json><code translate="no">[ [header1, body1],
+  [header2, body2],
+  [header3, body3]
+  //..
+]</code></pre>
+        <p>Header は CBOR でデシリアライズすると Map になる、つまり必要になってからパースすれば良い仕様だ。
+        <p>Body はそのまま byte string で入っている。
+        <p>このあたりも、 Web Bundle を構成する response が増えても効率よく特定の response にアクセスできるように作られている。
+        <p>これが、単純な zip などといった既存仕様ではなく、新たに Web Bundle が定義された理由でもある。
+      </section>
+    </section>
+    <section>
+      <h2 id="length"><a href="#length">length</a></h2>
+      <p>最後に全体の長さが 64 bit で入っている。
+      <p>通常の TLV 形式なら、長さはヘッダ部に来るが、最後に長さを入れると末尾追記とそこまでの再署名などが容易になる。
+      <p>zip や Electron の ASAR のように末尾にする<a href="https://github.com/WICG/webpackage/issues/20">要望</a>がありこうなった。
+      <section>
+        <h3 id="全体"><a href="#全体">全体</a></h3>
+        <p>結果としては、だいたいこんな感じで組み立てた構造体を、 CBOR の実装でエンコードすれば WebBundle になる。
+        <pre class=js><code translate="no">[
+  &quot;🌐📦&quot;,
+  [&quot;b&quot;,&quot;1&quot;,0,0],
+  &quot;http://localhost.jxck.io:3000/&quot;,
+  [&quot;index&quot;,188,&quot;responses&quot;,1268]
+  [
+    {
+      &quot;http://localhost.jxck.io:3000/&quot;:            [[],   1, 396],
+      &quot;http://localhost.jxck.io:3000/script.js&quot;:   [[], 397, 267],
+      &quot;http://localhost.jxck.io:3000/style.css&quot;:   [[], 664, 275],
+      &quot;http://localhost.jxck.io:3000/favicon.ico&quot;: [[], 939, 329]
+    }
+    [
+      [
+        {
+          &quot;:status&quot;:        &quot;200&quot;,
+          &quot;content-length&quot;: &quot;154&quot;,
+          &quot;content-type&quot;:   &quot;text/html&quot;,
+          &quot;date&quot;:           &quot;Mon, 11 Nov 2019 05:50:46 GMT&quot;,
+          &quot;etag&quot;:           &quot;401301-9a-5dc8f6aa&quot;,
+          &quot;last-modified&quot;:  &quot;Mon, 11 Nov 2019 05:50:34 GMT&quot;,
+          &quot;server&quot;:         &quot;WEBrick/1.4.2 (Ruby/2.6.5/2019-10-01) OpenSSL/1.1.1c&quot;,
+          &quot;x-protocol&quot;:     &quot;http&quot;
+        }
+        &quot;&lt;!DOCTYPE html&gt;&lt;meta charset=utf-8&gt;&lt;title&gt;DEMO&lt;/title&gt;&lt;script src=script.js&gt;&lt;/script&gt;&lt;link rel=stylesheet type=text/css href=style.css&gt;&lt;h1&gt;Test&lt;/h1&gt;&quot;
+      ],
+      [
+        {
+          &quot;:status&quot;:        &quot;200&quot;,
+          &quot;content-length&quot;: &quot;21&quot;,
+          &quot;content-type&quot;:   &quot;text/javascript&quot;,
+          &quot;date&quot;:           &quot;Mon, 11 Nov 2019 05:50:46 GMT&quot;,
+          &quot;etag&quot;:           &quot;401302-15-5dc8f615&quot;,
+          &quot;last-modified&quot;:  &quot;Mon, 11 Nov 2019 05:48:05 GMT&quot;,
+          &quot;server&quot;:         &quot;WEBrick/1.4.2 (Ruby/2.6.5/2019-10-01) OpenSSL/1.1.1c&quot;,
+          &quot;x-protocol&quot;:     &quot;http&quot;
+        },
+        &quot;console.log(\&quot;hello\&quot;)&quot;
+      ],
+      [
+        {
+          &quot;:status&quot;:        &quot;200&quot;,
+          &quot;content-length&quot;: &quot;35&quot;,
+          &quot;content-type&quot;:   &quot;text/css&quot;,
+          &quot;date&quot;:           &quot;Mon, 11 Nov 2019 05:50:46 GMT&quot;,
+          &quot;etag&quot;:           &quot;401303-23-5dc8f6a2&quot;,
+          &quot;last-modified&quot;:  &quot;Mon, 11 Nov 2019 05:50:26 GMT&quot;,
+          &quot;server&quot;:         &quot;WEBrick/1.4.2 (Ruby/2.6.5/2019-10-01) OpenSSL/1.1.1c&quot;,
+          &quot;x-protocol&quot;:     &quot;http&quot;
+        },
+        &quot;body {background-color: #ccc;}&quot;
+      ],
+      [
+        {
+          &quot;:status&quot;:        &quot;200&quot;,
+          &quot;content-length&quot;: &quot;73&quot;,
+          &quot;content-type&quot;:   &quot;application/octet-stream&quot;,
+          &quot;date&quot;:           &quot;Mon, 11 Nov 2019 05:50:46 GMT&quot;,
+          &quot;etag&quot;:           &quot;8094f-49-5dbb97f5&quot;,
+          &quot;last-modified&quot;:  &quot;Fri, 01 Nov 2019 02:27:01 GMT&quot;,
+          &quot;server&quot;:         &quot;WEBrick/1.4.2 (Ruby/2.6.5/2019-10-01) OpenSSL/1.1.1c&quot;,
+          &quot;x-protocol&quot;:     &quot;http&quot;
+        },
+        [/*bin of favicon*/]
+      ]
+    ]
+  ],
+  &lt;&lt;0,0,0,0,0,0,6,0&gt;&gt;
+]</code></pre>
+      </section>
+      <section>
+        <h3 id="wbn"><a href="#wbn">.wbn</a></h3>
+        <p>あとは、 CBOR でエンコードした結果をフィアルに保存すればよい。
+        <p>拡張子としては <code translate="no">.wbn</code> が IANA に登録される予定になっている。
+      </section>
+    </section>
+    <section>
+      <h2 id="applicationwebbundle"><a href="#applicationwebbundle">application/webbundle</a></h2>
+      <p>MIME は <code translate="no">application/webbundle</code> が登録される予定になっている。
+      <p>HTTP でサーブする場合は、 Content-Type にこれを付与する。
+      <p>また、 sniff による脆弱性を防ぐために、最初から nosniff の設定が MUST となっている点も面白い。
+      <pre class=http><code translate="no">Content-Type: application/webbundle
+X-Content-Type-Options: nosniff</code></pre>
+    </section>
+    <section>
+      <h2 id="demo"><a href="#demo">DEMO</a></h2>
+      <p>以下に動作するデモを用意した。
+      <p>http でも wbn をサーブしているが、執筆時の Chrome は <code translate="no">file:///</code> からの展開にしか対応してないようなので、ローカルにダウンロードしてブラウザで開かないと動かない。
+      <ul>
+        <li>
+          orig: <a href="http://labs.jxck.io/webpackaging/webbundle/example/index.html">http://labs.jxck.io/webpackaging/webbundle/example/index.html</a>
+        </li>
+        <li>
+          .wbn: <a href="http://labs.jxck.io/webpackaging/webbundle/labs.jxck.io.wbn">http://labs.jxck.io/webpackaging/webbundle/labs.jxck.io.wbn</a>
+        </li>
+      </ul>
+      <p>Chrome Canary 80.0.3963.0 の挙動は以下のようになる。
+      <p>
+        <amp-img layout=responsive src=webbundle.png#1366x556 alt="Chrome Canary 80 で WebBundle を展開した devtools のスクリーンショット。ローカルから取得されていることがわかる" title="WebBundle DEMO" width=1366 height=556>
+      </p>
+    </section>
+    <section>
+      <h2 id="考察"><a href="#考察">考察</a></h2>
+      <section>
+        <h3 id="bundling-の単位"><a href="#bundling-の単位">bundling の単位</a></h3>
+        <p>現状の WebBundle は、解説したように Primary URL を起点としたサブリソースの bundling をターゲットとしている。
+        <p>ところが、筆者が一番期待しているのは、 JS の依存の bundling だ。
+        <p>例えば npm で package.json に書く module は少数でも、 node_modules には大量のファイルが存在することは周知だろう。
+        <p>npm はローカルで解決できるのを前提に、小さいモジュールを大量に依存させる substack 由来の設計を良しとしてきたためだ。
+        <p>これが全て es modules の記法で書かれており、 <a href="https://wicg.github.io/import-maps/">import maps</a> で解決できるようにすれば、ブラウザでも動くかもしれない。しかし fetch が多くなりすぎる。
+        <p>すると、ブラウザ内部の IPC 負荷が大きくなり、例え http2 で多重化されると言えども、無視できないオーバーヘッドとなる。
+        <p>実際に 2017 年に行われた Chrome チームの調査結果では、<a href="https://docs.google.com/document/d/1ds9EEkcDGnt-iR8SAN-_7nsOfw7gsMfhZjzZ_QAIyjM/edit">100 以上もしくは依存のネストが 5 以上の場合は WebPack の利用を推奨</a>と報告されていた。
+        <p>これは WebPackaging ではなくツールの WebPack であり、すでに広く普及しているため、多くの開発者にとってはそのままでいいという話にはなる。
+        <p>しかし、現在の Web における JS の依存は、この制限を超えることがしばしばあるため、せっかく仕様も実装も手に入った ES Modules へ移行する妨げになっていた。
+        <p>結果、 <code translate="no">import</code> は単に WebPack に向けたアノテーションとしてしか使われてないという非常に残念な現状があり、今も開発者は全体を bundle.js に固めて配布している。(かつ、問題が解決しているため、それで良いと思っている)
+        <p>ここでもし、例えば npm モジュール単位で依存を .wbn にまとめ、 1 回の fetch で依存をまるごと取得し、かつ展開した全てのファイルを個別に fetch したかのように保存できたらどうだろうか。
+        <p>普通に <code translate="no">import</code> を用いたコードを書けるし、別々にキャッシュされればページを跨いだ再利用や、更新による再デプロイも変わってくるだろう。
+        <p>JS のように依存がなくても、単にまとめられることは、 CSS Sprite(画像のまとめ), WebFont(weight など), Icon(favivcon.ico と apple-touch-cion etc)などにも適用できるのでは無いかと筆者は考えている。
+        <p>今は、そうした議論よりも先に、当初の目標である AMP のようなケースにフォーカスしていると思うが、ゆくゆくはそういうことに応用できるように、 <a href="https://github.com/WICG/webpackage/issues/526">feedback</a> を続けたい。
+      </section>
+      <section>
+        <h3 id="コンテンツの代理配布"><a href="#コンテンツの代理配布">コンテンツの代理配布</a></h3>
+        <p>WebBundle と SXG があり、ブラウザが対応すれば、究極的にはコンテンツがどこから来るかは本質的に関係なくなる。
+        <p>もちろん、どこかにドメインを解決した結果の IP で繋がる Origin はあり、そこが一次配信元にはなるが、そこを離れたらコピーでも良い。
+        <p>この変化が一番利用しやすいのは、トラフィックの制御だ。
+        <p>AMP Cache から取得したファイルが元の Origin で展開されるというユースケースは、別 AMP Cache である必要はなく、どのサーバ、もっといえばサーバでなくても良い。
+        <p>これが利用できる場面は多々ある。例えば先月日本を襲った台風のような災害時は、普段アクセスの少ない公共系サイトにトラフィックが殺到し、ダウンしている場面を目にした人も多いだろう。
+        <p>筆者の周りには、有志でミラーを立てている人もいたが、こうしたミラーには常に改ざんの危険性がつきまとう。
+        <p>OS などの場合は本家が Hash を掲載し、取得した人が手元で確認する習慣もあるが、一般の Web コンテンツでそれを求めるのは難しい。
+        <p>もし公共サイトが SXG + WebBundle に対応して入れば、誰もそれを再配布し、展開したブラウザで署名が検証できるため、ミラーリングがしやすくなる。
+      </section>
+      <section>
+        <h3 id="コンテンツの保存"><a href="#コンテンツの保存">コンテンツの保存</a></h3>
+        <p>同じことを視点を変えれば、 WebArchive.org や Web 魚拓がやっているような、コンテンツのスナップショットアーカイブには、この仕組みが非常に合う。
+        <p>WebBundle することで、コンテンツの再現性も高まり、署名があれば「改ざん、なりすまし、否認」といったコンテンツにつきまとう問題もある程度改善が期待できる。
+        <p>個人で、「このサイトは残しておきたい」と行った場合に利用している、「このページを保存」も改善が期待できるだろう。
+      </section>
+      <section>
+        <h3 id="共有キャッシュへの応用"><a href="#共有キャッシュへの応用">共有キャッシュへの応用</a></h3>
+        <p>Client から Server に接続するまでの間には、多くの middle box が中継役として介在している。
+        <p>その中の一部は、 HTTP の仕組みに則った「共有キャッシュ」を提供し、コンテンツを代理配布することで、ネットワークトラフィックの削減に寄与していた。
+        <p>しかし、近年の HTTPS 化で、 middle box は暗号化されたパケットを素通りさせることしかできず、共有キャッシュのメリットは減りつつある。
+        <p>確かにプライバシーやセキュリティの観点から、そうであることが望ましい一方で、これだけ中間にサーバがあるのに、それが転送以外一切できない、俗に言う土管の状態でいることは、単純に勿体無いというジレンマもある。
+        <p>Origin と暗号化した通信にどうやって middle box が共有キャッシュを提供するか、改ざん耐性はあるかもしれないがプライバシーはどうするのか、など多くの問題はあるが、 AMP がやっていることと図の上ではかわらないため、ユーザが合意できる何かしらの仕組みがあれば、不可能ではないだろうと漠然と思っている。
+      </section>
+      <section>
+        <h3 id="logging"><a href="#logging">logging</a></h3>
+        <p>AMP もそうだが、いよいよサーバにリクエストが来ることを前提にした Acccess Log が限界を迎えつつある。
+        <p>コンテンツを開いたことを、各位が beacon などで取得している現状があるが、ここがもう少しユーザの裁量(opt-outable)を反映した標準の API になるべきだろうと<a href="https://discourse.wicg.io/t/proposal-html-ping-for-navigation/2839/7">常々思っている</a>。
+      </section>
+    </section>
+  </article>
+</main>
+<hr>
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small><small>Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>Google Analytics</a> and <a href=https://w3c.github.io/ServiceWorker/>Service Worker</a>.</small></p>
+</footer>
+</body>
+</html>
+<amp-analytics type=googleanalytics id=analytics1>
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
