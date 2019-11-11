@@ -1,8 +1,8 @@
-# [cbor][webbundle][webpackaging] Web Bundles によるコンテンツの結合と WebPackaging
+# [cbor][webbundle][webpackaging] WebBundle によるコンテンツの結合と WebPackaging
 
 ## Intro
 
-依存コンテンツを 1 つにまとめて配信する、 Web Bundles の仕様策定と実装が進んでいる。
+依存コンテンツを 1 つにまとめて配信する WebBundle の仕様策定と実装が進んでいる。
 
 これは Signed HTTP Exchange と合わせて WebPackaging を実現するための仕様であり、組み合わせれば WebBundle に対して署名することでコンテンツの配信を通信と分けて考えることができる。
 
@@ -11,11 +11,11 @@ Signed HTTP Exchange に比べると格段に簡単な仕様なので、現状�
 - [draft-yasskin-wpack-bundled-exchanges-latest](https://wicg.github.io/webpackage/draft-yasskin-wpack-bundled-exchanges.html)
 
 
-## Web Bundles
+## WebBundle
 
-かつて Bundled HTTP Exchanges と呼ばれていた仕様だ。
+かつて Bundled HTTP Exchanges と呼ばれていた仕様であり、複数のコンテンツを 1 つにまとめ、配信することができる。
 
-複数のコンテンツを 1 つにまとめ、配信することができる仕様であり、例えば index.html とそれが依存する css/js/favicon etc を 1 つのファイルで配信しブラウザ上ではそれぞれの URL から取得したように展開することができる。
+例えば index.html とそれが依存する css/js/favicon etc を 1 つのファイルで配信しブラウザ上ではそれぞれの URL から取得したように展開することができる。
 
 WebPackaging の文脈では、以前解説した Signed HTTP Exchanges によって署名をすることで、そのコンテンツの物理的な URL と論理的な URL を差し替えて表示することができた
 
@@ -23,24 +23,24 @@ WebPackaging の文脈では、以前解説した Signed HTTP Exchanges によ�
 
 要するに AMP の URL を AMP Cache から取得しつつ、自分の URL で表示するというアレだ。
 
-Signed HTTP Exchange は単一の Response に対する署名であるため、 Web Bundle でサブリソースを 1 つにまとめてから署名をすれば、サブリソースも合わせて配信できるというモチベーションがある。
+Signed HTTP Exchange は単一の Response に対する署名であるため、 WebBundle でサブリソースを 1 つにまとめてから署名をすれば、サブリソースも合わせて配信できるというモチベーションがある。
 
-例えばこのページ `https://blog.jxck.io/` のページを Web Bundle でまとめ、署名する。
+例えばこのページ `https://blog.jxck.io/` のページを WebBundle でまとめ、署名する。
 
 それを USB, Bluetooth, AirDrop, WebShare など、任意の方法で取得し、 `file:///` でブラウザに表示すると、 URL バーには `https://blog.jxck.io` で表示されるというのがゴールだ。
 
 Signing には、拡張に対応した証明書が必要で、今は有料でしか手に入らない。
 
-しかし Web Bundles は無料で試すことができるため、今回は Web Bundles のみを対象とする。
+しかし WebBundle は無料で試すことができるため、今回は WebBundle のみを対象とする。
 
 
 ## draft-yasskin-wpack-bundled-exchanges-latest
 
-Web Bundles の仕様は非常にシンプルだ。
+WebBundle の仕様は非常にシンプルだ。
 
 例として、仕様をもとに以下のような構成のページを Bundle してみる。
 
-- http://localhost.jxck.io
+- http://localhost.jxck.io:3000
   - index.html
   - script.js
   - style.css
@@ -53,18 +53,18 @@ IETF のフォーマットといえば、 TLV (Type-Length-Value) 形式で定�
 
 しかし、この仕様はシリアライズを全面的に CBOR に移譲している。
 
-CBOR はざっくりいうと JSON のバイナリ版といった感じなので、プログラミング上は JSON のような構造体で表現し、それを Encoder に渡せば生成できるといった感じになるだろう。
+CBOR はざっくりいうと JSON のバイナリ版なので、プログラミング上は JSON のような構造体で表現し、それを Encoder に渡すといった感じになるだろう。
 
 したがて、 CBOR の実装さえ手元にあれば、ほとんど終わる。
 
-CBOR にはストリーミング対応なども入っているが、 Web Bundle には使わないので、基本的な構造だけ雑に実装しつつ進める。
+CBOR の実装は TLV でいくつかの型をシリアライズするが、ストリーミング対応などをサボれば実装はそこまで難しくない。
 
 
 ### CDDL
 
-Web Bundles のフォーマットは、 CBOR のスキーマ定義である CDDL で表現されている。
+WebBundle のフォーマットは、 CBOR のスキーマ定義である CDDL で表現されている。
 
-特に仕様を読まなくても、見ればわかる程度のものなので雰囲気で見ていく。
+特に仕様を読まなくても、見れば雰囲気でわかるだろう。
 
 
 ```cddl
@@ -108,16 +108,16 @@ whatwg-url = tstr
 
 しかし、すでに CBOR の中にあるため、ファイルの最初のバイトが地球になるわけではない。
 
-最初は、全体が CBOR の Array で、その要素が 6 と決まっており、 magic は String のヘッダに続くので、最初の 10 byte が以下に固定になる。
+最初は、全体が CBOR の Array で、その要素数が 6 と決まっており、 magic は String のヘッダに続くので、最初の 10 byte が固定値になる。
 
 
 ```
 [0x86, 0x48, 0xF0, 0x9F, 0x8C, 0x90, 0xF0, 0x9F, 0x93, 0xA6]
 ```
 
-以上より、最初の 10byte を見れば、そのファイルが Web bundle であることが判定できる。
+つまり、最初の 10byte を見れば、そのファイルが WebBundle であることが判定できる。
 
-ただし、将来に全体の配列要素が増える変更(例えば sections と length の間に何か増えるなど)があると、ここが非互換になるのは少し気になる。
+ただし、見ているのが version の手前までで、将来に全体の配列要素が増える変更(例えば sections と length の間に extension が増えるなど)があると、ここが非互換になるのは少し[気になっている](https://github.com/WICG/webpackage/issues/528)。
 
 
 ### version
@@ -144,11 +144,11 @@ CBOR のメインとなるデータが section であり、 section にはいく
 - "critical"
 - "responses"
 
-つまり、単にレスポンスをまとめるだけではなく、他の情報も入れられるようになっているのだ。
+つまり、単にレスポンスをまとめるだけではなく、他の情報も入れられる。
 
-普通こうした type には、 8bit の値を割り当てて領域を節約したりするが、単純な文字列を使っている。
+普通こうした type には、 8bit の id を割り当てて領域を節約したりするが、単純な文字列を使っている。
 
-容量を犠牲にして、拡張や実装のしやすさが選ばれているようだ。 
+容量よりも、拡張や実装のしやすさが選ばれているようだ。
 
 
 ### section-length
@@ -162,7 +162,7 @@ section-length には、それぞれの section 長さが書かれているた�
 ["index",188,"responses",1268]
 ```
 
-ページ全体をまとめる場合、ファイル全体が大きくなることが容易に想像できるため、このように必要のない部分の処理を飛ばしてアクセスできるようにしている。
+ページ全体をまとめる場合、ファイル全体が大きくなることが容易に想像できるため、先頭からのシーケンシャルアクセスではなく、必要な部分へのインデックスアクセスを可能にしている。
 
 
 ### index
@@ -188,6 +188,8 @@ responses section には、複数の Response が含まれる。その個々の 
 例えば、多言語対応しており Content-Language が "en" と "ja" で、中身が変わる HTML がある場合、それらを区別でき、クライアントは展開時に必要なものを選ぶことができる。
 
 さらに Content-Encoding が "gz" "br" とあった場合には、そこで 4 通りの組み合わせがあるため、ここにその組み合わせが入ることになる。
+
+TODO: [仕様は Accept-Language になっているが Response の方で見ると思う](https://github.com/WICG/webpackage/issues/527)。
 
 
 ```json
@@ -219,6 +221,10 @@ Header は CBOR でデシリアライズすると Map になる、つまり必�
 
 Body はそのまま byte string で入っている。
 
+このあたりも、 Web Bundle を構成する response が増えても効率よく特定の response にアクセスできるように作られている。
+
+これが、単純な zip などといった既存仕様ではなく、新たに Web Bundle が定義された理由でもある。
+
 
 ## length
 
@@ -231,7 +237,7 @@ zip や Electron の ASAR のように末尾にする[要望](https://github.com
 
 ### 全体
 
-結果としては、だいたいこんな感じで組み立てた構造体を、 CBOR の実装でエンコードすれば Web Bundles になる。
+結果としては、だいたいこんな感じで組み立てた構造体を、 CBOR の実装でエンコードすれば WebBundle になる。
 
 
 ```js
@@ -316,14 +322,17 @@ zip や Electron の ASAR のように末尾にする[要望](https://github.com
 
 ## application/webbundle
 
-MIME は application/webbundle が登録される予定になっている。
+MIME は `application/webbundle` が登録される予定になっている。
 
 HTTP でサーブする場合は、 Content-Type にこれを付与する。
 
 また、 sniff による脆弱性を防ぐために、最初から nosniff の設定が MUST となっている点も面白い。
 
-- Content-Type: application/webbundle
-- X-Content-Type-Options: nosniff
+
+```http
+Content-Type: application/webbundle
+X-Content-Type-Options: nosniff
+```
 
 
 ## DEMO
@@ -332,32 +341,38 @@ HTTP でサーブする場合は、 Content-Type にこれを付与する。
 
 http でも wbn をサーブしているが、執筆時の Chrome は `file:///` からの展開にしか対応してないようなので、ローカルにダウンロードしてブラウザで開かないと動かない。
 
-- TODO: URL
+- orig: <http://labs.jxck.io/webpackaging/webbundle/example/index.html>
+- .wbn: <http://labs.jxck.io/webpackaging/webbundle/labs.jxck.io.wbn>
 
-TODO: screen shot
+Chrome Canary 80.0.3963.0 の挙動は以下のようになる。
+
+![Chrome Canary 80 で WebBundle を展開した devtools のスクリーンショット。ローカルから取得されていることがわかる](webbundle.png#1366x556 'WebBundle DEMO')
 
 
-## bundling の単位
+## 考察
 
-現状の Web Bundles は、解説したように Primary URL を起点としたサブリソースの bundling をターゲットとしている。
 
-ところが、筆者が一番期待しているのは、例えば JS の依存の bundling だ。
+### bundling の単位
 
-例えば npm で package.json に書く module は複数でも、 node_modules には大量のファイルが存在することは周知だろう。
+現状の WebBundle は、解説したように Primary URL を起点としたサブリソースの bundling をターゲットとしている。
 
-これが全て es modules の記法で書かれており、 [import maps](https://wicg.github.io/import-maps/) で解決できるようにすれば、ブラウザでも動くかもしれない。
+ところが、筆者が一番期待しているのは、 JS の依存の bundling だ。
 
-ただし npm はローカルで解決できるのを前提に、小さいモジュールを大量に依存させる substack 由来の設計を良しとしてきたが、ブラウザでは fetch が多すぎる。
+例えば npm で package.json に書く module は少数でも、 node_modules には大量のファイルが存在することは周知だろう。
+
+npm はローカルで解決できるのを前提に、小さいモジュールを大量に依存させる substack 由来の設計を良しとしてきたためだ。
+
+これが全て es modules の記法で書かれており、 [import maps](https://wicg.github.io/import-maps/) で解決できるようにすれば、ブラウザでも動くかもしれない。しかし fetch が多くなりすぎる。
 
 すると、ブラウザ内部の IPC 負荷が大きくなり、例え http2 で多重化されると言えども、無視できないオーバーヘッドとなる。
 
-実際に 2017 年に行われた Chrome チームの調査結果では、[100 以上もしくは依存のネストが 5 以上の場合は WebPack の利用を強く推奨](https://docs.google.com/document/d/1ds9EEkcDGnt-iR8SAN-_7nsOfw7gsMfhZjzZ_QAIyjM/edit)と報告されていた。
+実際に 2017 年に行われた Chrome チームの調査結果では、[100 以上もしくは依存のネストが 5 以上の場合は WebPack の利用を推奨](https://docs.google.com/document/d/1ds9EEkcDGnt-iR8SAN-_7nsOfw7gsMfhZjzZ_QAIyjM/edit)と報告されていた。
 
-これは WebPackaging ではなく、ツールの WebPack であり、すでに広く普及しているため、多くの開発者にとってはそのままでいいという話にはなる。
+これは WebPackaging ではなくツールの WebPack であり、すでに広く普及しているため、多くの開発者にとってはそのままでいいという話にはなる。
 
-しかし、現在の Web における JS の依存は、この制限を超えることがしばしばあるため、せっかく仕様も実装も手に入った ES Modules へ以降する妨げになっていた。
+しかし、現在の Web における JS の依存は、この制限を超えることがしばしばあるため、せっかく仕様も実装も手に入った ES Modules へ移行する妨げになっていた。
 
-結果、 `import` は単に WebPack に向けたアノテーションとしてしか使われてないという非常に残念な現状があり、今も開発者は全体を bundle.js に固めて配布している。
+結果、 `import` は単に WebPack に向けたアノテーションとしてしか使われてないという非常に残念な現状があり、今も開発者は全体を bundle.js に固めて配布している。(かつ、問題が解決しているため、それで良いと思っている)
 
 ここでもし、例えば npm モジュール単位で依存を .wbn にまとめ、 1 回の fetch で依存をまるごと取得し、かつ展開した全てのファイルを個別に fetch したかのように保存できたらどうだろうか。
 
@@ -365,4 +380,52 @@ TODO: screen shot
 
 JS のように依存がなくても、単にまとめられることは、 CSS Sprite(画像のまとめ), WebFont(weight など), Icon(favivcon.ico と apple-touch-cion etc)などにも適用できるのでは無いかと筆者は考えている。
 
-今は、そうした議論よりも先に、当初の目標である AMP のようなケースにフォーカスしていると思うが、ゆくゆくはそういうことに応用できるように、 feedback していきたいと思っている。
+今は、そうした議論よりも先に、当初の目標である AMP のようなケースにフォーカスしていると思うが、ゆくゆくはそういうことに応用できるように、 [feedback](https://github.com/WICG/webpackage/issues/526) を続けたい。
+
+
+### コンテンツの代理配布
+
+WebBundle と SXG があり、ブラウザが対応すれば、究極的にはコンテンツがどこから来るかは本質的に関係なくなる。
+
+もちろん、どこかにドメインを解決した結果の IP で繋がる Origin はあり、そこが一次配信元にはなるが、そこを離れたらコピーでも良い。
+
+この変化が一番利用しやすいのは、トラフィックの制御だ。
+
+AMP Cache から取得したファイルが元の Origin で展開されるというユースケースは、別 AMP Cache である必要はなく、どのサーバ、もっといえばサーバでなくても良い。
+
+これが利用できる場面は多々ある。例えば先月日本を襲った台風のような災害時は、普段アクセスの少ない公共系サイトにトラフィックが殺到し、ダウンしている場面を目にした人も多いだろう。
+
+筆者の周りには、有志でミラーを立てている人もいたが、こうしたミラーには常に改ざんの危険性がつきまとう。
+
+OS などの場合は本家が Hash を掲載し、取得した人が手元で確認する習慣もあるが、一般の Web コンテンツでそれを求めるのは難しい。
+
+もし公共サイトが SXG + WebBundle に対応して入れば、誰もそれを再配布し、展開したブラウザで署名が検証できるため、ミラーリングがしやすくなる。
+
+
+### コンテンツの保存
+
+同じことを視点を変えれば、 WebArchive.org や Web 魚拓がやっているような、コンテンツのスナップショットアーカイブには、この仕組みが非常に合う。
+
+WebBundle することで、コンテンツの再現性も高まり、署名があれば「改ざん、なりすまし、否認」といったコンテンツにつきまとう問題もある程度改善が期待できる。
+
+個人で、「このサイトは残しておきたい」と行った場合に利用している、「このページを保存」も改善が期待できるだろう。
+
+
+### 共有キャッシュへの応用
+
+Client から Server に接続するまでの間には、多くの middle box が中継役として介在している。
+
+その中の一部は、 HTTP の仕組みに則った「共有キャッシュ」を提供し、コンテンツを代理配布することで、ネットワークトラフィックの削減に寄与していた。
+
+しかし、近年の HTTPS 化で、 middle box は暗号化されたパケットを素通りさせることしかできず、共有キャッシュのメリットは減りつつある。
+
+確かにプライバシーやセキュリティの観点から、そうであることが望ましい一方で、これだけ中間にサーバがあるのに、それが転送以外一切できない、俗に言う土管の状態でいることは、単純に勿体無いというジレンマもある。
+
+Origin と暗号化した通信にどうやって middle box が共有キャッシュを提供するか、改ざん耐性はあるかもしれないがプライバシーはどうするのか、など多くの問題はあるが、 AMP がやっていることと図の上ではかわらないため、ユーザが合意できる何かしらの仕組みがあれば、不可能ではないだろうと漠然と思っている。
+
+
+### logging
+
+AMP もそうだが、いよいよサーバにリクエストが来ることを前提にした Acccess Log が限界を迎えつつある。
+
+コンテンツを開いたことを、各位が beacon などで取得している現状があるが、ここがもう少しユーザの裁量(opt-outable)を反映した標準の API になるべきだろうと[常々思っている](https://discourse.wicg.io/t/proposal-html-ping-for-navigation/2839/7)。
