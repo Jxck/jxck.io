@@ -140,15 +140,13 @@ IMAGES := $(shell find ./blog.jxck.io/entries/**/* \
 	-name *.svg)
 
 # optimize all image
-CORE = $(shell cat /proc/cpuinfo | grep cpu.cores | wc -l)
-
 image:
 	find ./blog.jxck.io/entries/**/* \
 		-name *.png -or \
 		-name *.gif -or \
 		-name *.svg -or \
 		-name *.jpeg \
-		| xargs -L1 -P$(CORE) gulp image --path
+		| xargs -L1 -P$(shell core) gulp image --path
 
 #--gulp----------------------------
 
