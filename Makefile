@@ -107,6 +107,29 @@ t:
 ##########################
 # Optimize Image
 ##########################
+
+## png
+PNGQUANT := pngquant --force --speed 1 --strip --ext .png --verbose
+OPTIPNG  := optipng -o7
+png:
+	find ./blog.jxck.io/entries/**/*.png \
+		| xargs -L1 -P$(shell core) -I{} sh -c '$(PNGQUANT) {} && $(OPTIPNG) {}'
+
+## jpeg
+JPEGRECOMP := jpeg-recompress --strip
+MOZJPEG    := mozjpeg -optimize
+GUETZLI    := guetzli
+jpeg:
+	find ./blog.jxck.io/entries/**/*.jpeg \
+		| xargs -L1 -P$(shell core) -I{} sh -c '$(JPEGRECOMP) {} {} && $(MOZJPEG) {} | sponge {} && $(GUETZLI) {} {}'
+
+## gif
+GIFSICLE := gifsicle --optimize=3 --colors 256 -v
+gif:
+	find ./blog.jxck.io/entries/**/*.gif \
+		| xargs -L1 -P$(shell core) -I{} sh -c '$(GIFSICLE) {} -o {}'
+
+## webp
 CWEBP = cwebp -q 40 -quiet
 GWEBP = gif2webp -q 40 -quiet
 
@@ -127,29 +150,15 @@ WEBP += $(GIF:.gif=.webp)
 .gif.webp:
 	$(GWEBP) $*.gif -o $*.webp
 
-
-# webp 生成
 webp: $(WEBP)
 
 
-#--gulp----------------------------
-# .png/.jpg/.svg
-IMAGES := $(shell find ./blog.jxck.io/entries/**/* \
-	-name *.png -or \
-	-name *.jpg -or \
-	-name *.svg)
-
-# optimize all image
+## optimize all image
 image:
-	find ./blog.jxck.io/entries/**/* \
-		-name *.png -or \
-		-name *.gif -or \
-		-name *.svg -or \
-		-name *.jpeg \
-		| xargs -L1 -P$(shell core) gulp image --path
-
-#--gulp----------------------------
-
+	$(MAKE) png
+	$(MAKE) jpeg
+	$(MAKE) gif
+	$(MAKE) webp
 
 ##########################
 # formatter
