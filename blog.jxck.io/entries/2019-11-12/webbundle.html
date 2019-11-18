@@ -56,7 +56,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-11-12T08:00:00+08:00",
-    "dateModified": "2019-11-17T08:00:00+08:00",
+    "dateModified": "2019-11-19T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -101,7 +101,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-11-12>2019-11-12</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2019-11-17>2019-11-17</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2019-11-19>2019-11-19</time></dd></div>
       <div><dt class=tags>tags</dt><dd>[<a href="/tags/cbor.html">cbor</a><i>,</i><a href="/tags/webbundle.html">webbundle</a><i>,</i><a href="/tags/webpackaging.html">webpackaging</a>]</dd></div>
     </dl>
 
@@ -255,13 +255,15 @@ whatwg-url = tstr</code></pre>
           <p>また、最初の <code translate="no">[]</code> にはヘッダで示されるバリエーションが含まれる。
           <p>例えば、多言語対応しており Content-Language が &ldquo;en&rdquo; と &ldquo;ja&rdquo; で、中身が変わる HTML がある場合、それらを区別でき、クライアントは展開時に必要なものを選ぶことができる。
           <p>さらに Content-Encoding が &ldquo;gz&rdquo; &ldquo;br&rdquo; とあった場合には、そこで 4 通りの組み合わせがあるため、ここにその組み合わせが入ることになる。
-          <p>TODO: <a href="https://github.com/WICG/webpackage/issues/527">仕様は Accept-Language になっているが Response の方で見ると思う</a>。
+          <p>(仕様には、それを見る側のクライアントの挙動は書かれているが、サーバでどう生成するかといった部分は特に書かれてないため、雰囲気で入れる。)
           <pre class=json><code translate="no">{
   &quot;http://localhost.jxck.io:3000/&quot;: [[&quot;ja;gz&quot;],   1, 100],
   &quot;http://localhost.jxck.io:3000/&quot;: [[&quot;ja;br&quot;], 101, 100],
   &quot;http://localhost.jxck.io:3000/&quot;: [[&quot;en;gz&quot;], 201, 100],
   &quot;http://localhost.jxck.io:3000/&quot;: [[&quot;en;br&quot;], 301, 100],
 }</code></pre>
+          <p>ただ、 WebBundle のなかに gz や br といった同じコンテンツの圧縮タイプ違いを同居させるメリットはあまり無いように思う。
+          <p>すると、多言語対応の Content-Language ベースのものになるが、 Content-Language ヘッダを付けているサービスはあまり多くないのでコンテンツの中を見ないと作るのが難しい気がする。
         </section>
         <section>
           <h3 id="responses"><a href="#responses">responses</a></h3>
