@@ -189,7 +189,7 @@ responses section には、複数の Response が含まれる。その個々の 
 
 さらに Content-Encoding が "gz" "br" とあった場合には、そこで 4 通りの組み合わせがあるため、ここにその組み合わせが入ることになる。
 
-TODO: [仕様は Accept-Language になっているが Response の方で見ると思う](https://github.com/WICG/webpackage/issues/527)。
+(仕様には、それを見る側のクライアントの挙動は書かれているが、サーバでどう生成するかといった部分は特に書かれてないため、雰囲気で入れる。)
 
 
 ```json
@@ -200,6 +200,10 @@ TODO: [仕様は Accept-Language になっているが Response の方で見る�
   "http://localhost.jxck.io:3000/": [["en;br"], 301, 100],
 }
 ```
+
+ただ、 WebBundle のなかに gz や br といった同じコンテンツの圧縮タイプ違いを同居させるメリットはあまり無いように思う。
+
+すると、多言語対応の Content-Language ベースのものになるが、 Content-Language ヘッダを付けているサービスはあまり多くないのでコンテンツの中を見ないと作るのが難しい気がする。
 
 
 ### responses
