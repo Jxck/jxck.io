@@ -50,7 +50,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-10-26T08:00:00+08:00",
-    "dateModified": "2019-05-27T08:00:00+08:00",
+    "dateModified": "2019-11-19T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -797,7 +797,7 @@
 <main>
   <dl class=info>
     <dt>created_at</dt><dd><time class=created_at datetime=2018-10-26>2018-10-26</time></dd>
-    <dt>updated_at</dt><dd><time class=updated_at datetime=2019-05-27>2019-05-27</time></dd>
+    <dt>updated_at</dt><dd><time class=updated_at datetime=2019-11-19>2019-11-19</time></dd>
     <dt class=tags>tags</dt><dd>[<a href="/tags/same-site-cookie.html">same-site-cookie</a><i>,</i><a href="/tags/cookie.html">cookie</a><i>,</i><a href="/tags/csrf.html">csrf</a><i>,</i><a href="/tags/security.html">security</a>]</dd>
   </dl>
   <article>
@@ -887,7 +887,7 @@ msg=こんにちはこんにちは&amp;csrf_token=asdfqwerzxcv</code></pre>
         <p>Timing Attack は、古くから存在する手法であり、その方法も対象も様々なものがある。
         <p>Web のコンテキストで共通するのは、罠サイトから対象のサービスに向けて XHR などでリクエストを投げさせるというものだろう。
         <p>この時、実際にレスポンスを取得することができなくてもよく、リクエストにかかる時間を計測し、リクエストを変化させた時のレスポンスタイムの変化から機密情報を推測するというシナリオだ。
-        <p>例えば先の SNS でユーザのページへリクエストする場合、 block していなければプロフィールページが表示されるが、 block していなければ定型文が返るためレスポンスが速いとする。
+        <p>例えば先の SNS でユーザのページへリクエストする場合、 block していなければプロフィールページが表示されるが、 block していれば定型文が返るためレスポンスが速いとする。
         <pre class=js><code translate="no">function timing_attack() {
   img = new Image()
   t1 = performance.now()
@@ -895,8 +895,8 @@ msg=こんにちはこんにちは&amp;csrf_token=asdfqwerzxcv</code></pre>
   img.onerror = () =&gt; {
     t2 = performance.now()
 
-    // block されていれば速く
-    // block されてなければ遅い
+    // block していれば速く
+    // block していなければ遅い
     console.log(t2-t1)
   }
 
