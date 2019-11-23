@@ -20,8 +20,9 @@ module ERBHelper
   # trim to 140 word for html meta description
   def short(str)
     limit = 140
-    str.gsub(/(\n|\r)/, "")
-      .strip[0...(limit-3)]
+    str = str.gsub(/(\n|\r)/, "")
+    return str if str.size <= limit
+    str.strip[0...(limit-3)]
       .concat("...")
   end
 

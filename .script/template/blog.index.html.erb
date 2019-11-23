@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html lang=ja>
   <meta charset=utf-8>
-  <!--
-  貴様、見ているな!!
-  このサイトの技術的なまとめはこちらをどうぞ。
-  https://labs.jxck.io/blog
-
-  by Jxck
-  -->
   <meta name=viewport content="width=device-width,initial-scale=1">
-  <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
-  <link rel=author href=https://jxck.io/assets/humans.txt>
-  <link rel=manifest href=/manifest.json>
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.json>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href=https://blog.jxck.io>
+  <link rel=preload   type=font/woff2 as=font href=/assets/font/NotoSansCJKjp-Regular-Jxck-20191017.woff2 crossorigin>
+
   <script defer src=/assets/js/main.js></script>
   <script defer src=/assets/js/ga.js></script>
 
   <%= indent(render_hash("template/favicon.html.erb", {icon: @icon})) %>
+
+  <%= indent(render_hash("template/meta.html.erb", {
+    description: "Web Technology Blog by Jxck",
+    tags:        %w(web technology programming browser jxck),
+    canonical:   "https://blog.jxck.io",
+    title:       "Index",
+    host:        "blog.jxck.io",
+    icon:        @icon,
+  })) %>
 
   <title>blog.jxck.io</title>
   <link rel=prerender href=<%= entries.first.relative %>>
