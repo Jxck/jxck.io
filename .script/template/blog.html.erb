@@ -2,20 +2,16 @@
 <html lang=ja>
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
   <meta charset=utf-8>
-  <!--
-  貴様、見ているな!!
-  このサイトの技術的なまとめはこちらをどうぞ。
-  https://labs.jxck.io/blog
-
-  by Jxck
-  -->
-  <link rel=canonical href="<%= entry.canonical %>">
-  <link rel=amphtml href="<%= entry.amp_url %>">
-  <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
-  <link rel=author href=https://jxck.io/assets/humans.txt>
-  <link rel=manifest href=/manifest.json>
-  <link rel=preload as=font type=font/woff2 href=/assets/font/NotoSansCJKjp-Regular-Jxck-20191017.woff2 crossorigin>
   <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.json>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href="<%= entry.canonical %>">
+  <link rel=amphtml   href="<%= entry.amp_url %>">
+  <link rel=preload   type=font/woff2 as=font href=/assets/font/NotoSansCJKjp-Regular-Jxck-20191017.woff2 crossorigin>
+
   <script defer src=/assets/js/main.js></script>
   <script defer src=/assets/js/ga.js></script>
   <script defer src=/assets/js/highlight.pack.js></script>

@@ -2,20 +2,18 @@
 <html lang=ja>
 <head>
   <meta charset=utf-8>
-  <!--
-  貴様、見ているな!!
-  このサイトの技術的なまとめはこちらをどうぞ。
-  https://labs.jxck.io/blog
-
-  by Jxck
-  -->
-  <link rel=canonical href=<%= episode.canonical %>>
   <meta name=viewport content="width=device-width,initial-scale=1">
-  <link rel=alternate type=application/rss+xml title=mozaic.fm href=http://feed.mozaic.fm>
-  <link rel=author href=https://jxck.io/assets/humans.txt>
-  <script type=module src=/assets/js/mozaic.js></script>
-  <script type=module src=/assets/js/sw.js></script>
-  <script defer src=/assets/js/ga.mozaic.js></script>
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.json>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
+
+  <link rel=canonical href=<%= episode.canonical %>>
+  <link rel=preload   type=font/woff2 as=font href=/assets/font/NotoSansCJKjp-Regular-Jxck-20191017.woff2 crossorigin>
+
+  <script defer type=module src=/assets/js/mozaic.js></script>
+  <script defer type=module src=/assets/js/sw.js></script>
+  <script defer             src=/assets/js/ga.mozaic.js></script>
 
   <%= indent(render("template/favicon.html.erb", episode)) %>
 

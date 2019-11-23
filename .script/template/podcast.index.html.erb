@@ -2,40 +2,29 @@
 <html lang=ja>
 <head>
   <meta charset=utf-8>
-  <!--
-  貴様、見ているな!!
-  このサイトの技術的なまとめはこちらをどうぞ。
-  https://labs.jxck.io/blog
-
-  by Jxck
-  -->
-  <link rel=canonical href=https://mozaic.fm>
   <meta name=viewport content="width=device-width,initial-scale=1">
-  <link rel=alternate type=application/rss+xml title=mozaic.fm href=http://feed.mozaic.fm>
-  <link rel=author href=https://jxck.io/assets/humans.txt>
-  <script type=module src=/assets/js/mozaic.js></script>
-  <script type=module src=/assets/js/sw.js></script>
-  <script defer src=/assets/js/ga.mozaic.js></script>
 
-  <meta name=author content=Jxck>
-  <meta name=description content="next generation web podcast by Jxck">
-  <meta name=keywords content="web,technology,programming,it,software,jxck">
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.json>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
 
-  <meta name=twitter:card content=summary>
-  <meta name=twitter:site content=@jxck_>
-  <meta name=twitter:url content=https://mozaic.fm>
-  <meta name=twitter:title content=mozaic.fm>
-  <meta name=twitter:description content="next generation web podcast by Jxck">
-  <meta name=twitter:image content=<%= @icon %>.png>
+  <link rel=canonical href=https://mozaic.fm>
+  <link rel=preload   type=font/woff2 as=font href=/assets/font/NotoSansCJKjp-Regular-Jxck-20191017.woff2 crossorigin>
 
-  <meta property=og:type content=article>
-  <meta property=og:url content=https://mozaic.fm>
-  <meta property=og:title content=mozaic.fm>
-  <meta property=og:site_name content=mozaic.fm>
-  <meta property=og:description content="next generation web podcast by Jxck">
-  <meta property=og:image content=<%= @icon %>.png>
+  <script defer type=module src=/assets/js/mozaic.js></script>
+  <script defer type=module src=/assets/js/sw.js></script>
+  <script defer             src=/assets/js/ga.mozaic.js></script>
 
   <%= indent(render_hash("template/favicon.html.erb", {icon: @icon})) %>
+
+  <%= indent(render_hash("template/meta.html.erb", {
+    description: "next generation web podcast by Jxck",
+    tags:        %w(web technology programming browser it software jxck),
+    canonical:   "https://mozaic.fm",
+    title:       "Episodes",
+    host:        "mozaic.fm",
+    icon:        @icon,
+  })) %>
 
   <title>mozaic.fm</title>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
