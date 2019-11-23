@@ -2,43 +2,41 @@
 <html lang=ja>
 <head>
   <meta charset=utf-8>
-  <!--
-  貴様、見ているな!!
-  このサイトの技術的なまとめはこちらをどうぞ。
-  https://labs.jxck.io/blog
-
-  by Jxck
-  -->
-  <link rel=canonical href=https://mozaic.fm/episodes/19/es7-sideshow.html>
   <meta name=viewport content="width=device-width,initial-scale=1">
-  <link rel=alternate type=application/rss+xml title=mozaic.fm href=http://feed.mozaic.fm>
-  <link rel=author href=https://jxck.io/assets/humans.txt>
-  <script type=module src=/assets/js/mozaic.js></script>
-  <script type=module src=/assets/js/sw.js></script>
-  <script defer src=/assets/js/ga.mozaic.js></script>
 
-  <link rel=icon type=image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
-  <link rel=icon type=image/png sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.png>
-  <link rel=apple-touch-icon type=image/png sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.png>
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.json>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
 
-  <meta name=author content=Jxck>
-  <meta name=description content="第 19 回 ES7 の SideShow です。@Constellation さんが語る JavaScript Engine (JSCore) での実装の裏話と、 WebAssembly についてお送りします。なお、エピソード内で「何よりも ES6 module が欲しい...">
-  <meta name=keywords content="es7,javascript,constellation,mozaic.fm">
-  <meta name=theme-color content=#000000>
+  <link rel=canonical href=https://mozaic.fm/episodes/19/es7-sideshow.html>
+  <link rel=preload   type=font/woff2 as=font href=/assets/font/NotoSansCJKjp-Regular-Jxck-20191017.woff2 crossorigin>
 
-  <meta name=twitter:card content=summary>
-  <meta name=twitter:site content=@jxck_>
-  <meta name=twitter:url content="https://mozaic.fm/episodes/19/es7-sideshow.html">
-  <meta name=twitter:title content="ep19 ES7 sideshow | mozaic.fm">
+  <script defer type=module src=/assets/js/mozaic.js></script>
+  <script defer type=module src=/assets/js/sw.js></script>
+  <script defer             src=/assets/js/ga.mozaic.js></script>
+
+  <link rel=icon             type =image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon             type =image/png sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.png>
+  <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.png>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="第 19 回 ES7 の SideShow です。@Constellation さんが語る JavaScript Engine (JSCore) での実装の裏話と、 WebAssembly についてお送りします。なお、エピソード内で「何よりも ES6 module が欲しい...">
+  <meta name=keywords            content="es7,javascript,constellation,mozaic.fm">
+  <meta name=theme-color         content=#000000>
+
+  <meta name=twitter:card        content=summary>
+  <meta name=twitter:site        content=@jxck_>
+  <meta name=twitter:url         content=https://mozaic.fm/episodes/19/es7-sideshow.html>
+  <meta name=twitter:title       content="ep19 ES7 sideshow | mozaic.fm">
   <meta name=twitter:description content="第 19 回 ES7 の SideShow です。@Constellation さんが語る JavaScript Engine (JSCore) での実装の裏話と、 WebAssembly についてお送りします。なお、エピソード内で「何よりも ES6 module が欲しい...">
-  <meta name=twitter:image content="https://mozaic.fm/assets/img/mozaic.png">
+  <meta name=twitter:image       content=https://mozaic.fm/assets/img/mozaic.png>
 
-  <meta property=og:type content=article>
-  <meta property=og:url content="https://mozaic.fm/episodes/19/es7-sideshow.html">
-  <meta property=og:title content="ep19 ES7 sideshow | mozaic.fm">
-  <meta property=og:site_name content="mozaic.fm">
-  <meta property=og:description content="第 19 回 ES7 の SideShow です。@Constellation さんが語る JavaScript Engine (JSCore) での実装の裏話と、 WebAssembly についてお送りします。なお、エピソード内で「何よりも ES6 module が欲しい...">
-  <meta property=og:image content="https://mozaic.fm/assets/img/mozaic.png">
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://mozaic.fm/episodes/19/es7-sideshow.html>
+  <meta property=og:title        content="ep19 ES7 sideshow | mozaic.fm">
+  <meta property=og:site_name    content=mozaic.fm>
+  <meta property=og:description  content="第 19 回 ES7 の SideShow です。@Constellation さんが語る JavaScript Engine (JSCore) での実装の裏話と、 WebAssembly についてお送りします。なお、エピソード内で「何よりも ES6 module が欲しい...">
+  <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.png>
 
   <title>ep19 ES7 sideshow | mozaic.fm</title>
   <link rel=prev href=https://mozaic.fm/episodes/19/es7.html>

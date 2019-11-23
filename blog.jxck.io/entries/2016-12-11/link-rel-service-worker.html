@@ -2,46 +2,42 @@
 <html lang=ja>
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
   <meta charset=utf-8>
-  <!--
-  貴様、見ているな!!
-  このサイトの技術的なまとめはこちらをどうぞ。
-  https://labs.jxck.io/blog
-
-  by Jxck
-  -->
-  <link rel=canonical href="https://blog.jxck.io/entries/2016-12-11/link-rel-service-worker.html">
-  <link rel=amphtml href="https://blog.jxck.io/entries/2016-12-11/link-rel-service-worker.amp.html">
-  <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
-  <link rel=author href=https://jxck.io/assets/humans.txt>
-  <link rel=manifest href=/manifest.json>
-  <link rel=preload as=font type=font/woff2 href=/assets/font/NotoSansCJKjp-Regular-Jxck-20191017.woff2 crossorigin>
   <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.json>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href="https://blog.jxck.io/entries/2016-12-11/link-rel-service-worker.html">
+  <link rel=amphtml   href="https://blog.jxck.io/entries/2016-12-11/link-rel-service-worker.amp.html">
+  <link rel=preload   type=font/woff2 as=font href=/assets/font/NotoSansCJKjp-Regular-Jxck-20191017.woff2 crossorigin>
+
   <script defer src=/assets/js/main.js></script>
   <script defer src=/assets/js/ga.js></script>
   <script defer src=/assets/js/highlight.pack.js></script>
 
-  <link rel=icon type=image/svg+xml sizes=any href=https://jxck.io/assets/img/jxck.svg>
-  <link rel=icon type=image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
-  <link rel=apple-touch-icon type=image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+  <link rel=icon             type =image/svg+xml sizes=any href=https://jxck.io/assets/img/jxck.svg>
+  <link rel=icon             type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
 
-  <meta name=author content=Jxck>
-  <meta name=description content="Service Worker を登録する方法は現状 3 つある。HTML meta タグでの追加ならば、 Service Worker を追加するためだけの JS であれば不要になる。HTTP ヘッダでの追加ならば、 HTML を持たない API にも Service Wo...">
-  <meta name=keywords content="origin trials,service worker,offline">
-  <meta name=theme-color content=#000000>
+  <meta name=author              content=Jxck>
+  <meta name=description         content="Service Worker を登録する方法は現状 3 つある。HTML meta タグでの追加ならば、 Service Worker を追加するためだけの JS であれば不要になる。HTTP ヘッダでの追加ならば、 HTML を持たない API にも Service Wo...">
+  <meta name=keywords            content="origin trials,service worker,offline">
+  <meta name=theme-color         content=#000000>
 
-  <meta name=twitter:card content=summary>
-  <meta name=twitter:site content=@jxck_>
-  <meta name=twitter:url content="https://blog.jxck.io/entries/2016-12-11/link-rel-service-worker.html">
-  <meta name=twitter:title content="Link rel=serviceworker ヘッダによる API やアセットの Offline 対応 | blog.jxck.io">
+  <meta name=twitter:card        content=summary>
+  <meta name=twitter:site        content=@jxck_>
+  <meta name=twitter:url         content=https://blog.jxck.io/entries/2016-12-11/link-rel-service-worker.html>
+  <meta name=twitter:title       content="Link rel=serviceworker ヘッダによる API やアセットの Offline 対応 | blog.jxck.io">
   <meta name=twitter:description content="Service Worker を登録する方法は現状 3 つある。HTML meta タグでの追加ならば、 Service Worker を追加するためだけの JS であれば不要になる。HTTP ヘッダでの追加ならば、 HTML を持たない API にも Service Wo...">
-  <meta name=twitter:image content="https://jxck.io/assets/img/jxck.png">
+  <meta name=twitter:image       content=https://jxck.io/assets/img/jxck.png>
 
-  <meta property=og:type content=article>
-  <meta property=og:url content="https://blog.jxck.io/entries/2016-12-11/link-rel-service-worker.html">
-  <meta property=og:title content="Link rel=serviceworker ヘッダによる API やアセットの Offline 対応 | blog.jxck.io">
-  <meta property=og:site_name content="blog.jxck.io">
-  <meta property=og:description content="Service Worker を登録する方法は現状 3 つある。HTML meta タグでの追加ならば、 Service Worker を追加するためだけの JS であれば不要になる。HTTP ヘッダでの追加ならば、 HTML を持たない API にも Service Wo...">
-  <meta property=og:image content="https://jxck.io/assets/img/jxck.png">
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2016-12-11/link-rel-service-worker.html>
+  <meta property=og:title        content="Link rel=serviceworker ヘッダによる API やアセットの Offline 対応 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="Service Worker を登録する方法は現状 3 つある。HTML meta タグでの追加ならば、 Service Worker を追加するためだけの JS であれば不要になる。HTTP ヘッダでの追加ならば、 HTML を持たない API にも Service Wo...">
+  <meta property=og:image        content=https://jxck.io/assets/img/jxck.png>
 
   <script type="application/ld+json">
   {

@@ -2,40 +2,36 @@
 <html amp lang=ja>
 <head>
   <meta charset=utf-8>
-  <!--
-  貴様、見ているな!!
-  このサイトの技術的なまとめはこちらをどうぞ。
-  https://labs.jxck.io/blog
-
-  by Jxck
-  -->
-  <link rel=canonical href=https://blog.jxck.io/entries/2016-08-05/sql-for-file-search.html>
   <meta name=viewport content="width=device-width,initial-scale=1">
-  <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml>
-  <link rel=author href=https://jxck.io/assets/humans.txt>
 
-  <link rel=icon type=image/svg+xml sizes=any href=https://jxck.io/assets/img/jxck.svg>
-  <link rel=icon type=image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
-  <link rel=apple-touch-icon type=image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.json>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
 
-  <meta name=author content=Jxck>
-  <meta name=description content="UNIX コマンドを SQL で抽出できるツール qq を作った。 というエントリを読んで、そういえば似たようなものを作ってたなと思い出した。自分の dotfiles の中にある、便利コマンド集の中にある selects についてである。このコマンドは SQL という検索を...">
-  <meta name=keywords content="selects,sql,linux">
-  <meta name=theme-color content=#000000>
+  <link rel=canonical href=https://blog.jxck.io/entries/2016-08-05/sql-for-file-search.html>
 
-  <meta name=twitter:card content=summary>
-  <meta name=twitter:site content=@jxck_>
-  <meta name=twitter:url content="https://blog.jxck.io/entries/2016-08-05/sql-for-file-search.html">
-  <meta name=twitter:title content="SQL でファイル検索するコマンド selects を書いた話 | blog.jxck.io">
+  <link rel=icon             type =image/svg+xml sizes=any href=https://jxck.io/assets/img/jxck.svg>
+  <link rel=icon             type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="UNIX コマンドを SQL で抽出できるツール qq を作った。 というエントリを読んで、そういえば似たようなものを作ってたなと思い出した。自分の dotfiles の中にある、便利コマンド集の中にある selects についてである。このコマンドは SQL という検索を...">
+  <meta name=keywords            content="selects,sql,linux">
+  <meta name=theme-color         content=#000000>
+
+  <meta name=twitter:card        content=summary>
+  <meta name=twitter:site        content=@jxck_>
+  <meta name=twitter:url         content=https://blog.jxck.io/entries/2016-08-05/sql-for-file-search.html>
+  <meta name=twitter:title       content="SQL でファイル検索するコマンド selects を書いた話 | blog.jxck.io">
   <meta name=twitter:description content="UNIX コマンドを SQL で抽出できるツール qq を作った。 というエントリを読んで、そういえば似たようなものを作ってたなと思い出した。自分の dotfiles の中にある、便利コマンド集の中にある selects についてである。このコマンドは SQL という検索を...">
-  <meta name=twitter:image content="https://jxck.io/assets/img/jxck.png">
+  <meta name=twitter:image       content=https://jxck.io/assets/img/jxck.png>
 
-  <meta property=og:type content=article>
-  <meta property=og:url content="https://blog.jxck.io/entries/2016-08-05/sql-for-file-search.html">
-  <meta property=og:title content="SQL でファイル検索するコマンド selects を書いた話 | blog.jxck.io">
-  <meta property=og:site_name content="blog.jxck.io">
-  <meta property=og:description content="UNIX コマンドを SQL で抽出できるツール qq を作った。 というエントリを読んで、そういえば似たようなものを作ってたなと思い出した。自分の dotfiles の中にある、便利コマンド集の中にある selects についてである。このコマンドは SQL という検索を...">
-  <meta property=og:image content="https://jxck.io/assets/img/jxck.png">
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2016-08-05/sql-for-file-search.html>
+  <meta property=og:title        content="SQL でファイル検索するコマンド selects を書いた話 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="UNIX コマンドを SQL で抽出できるツール qq を作った。 というエントリを読んで、そういえば似たようなものを作ってたなと思い出した。自分の dotfiles の中にある、便利コマンド集の中にある selects についてである。このコマンドは SQL という検索を...">
+  <meta property=og:image        content=https://jxck.io/assets/img/jxck.png>
 
   <script type="application/ld+json">
   {
