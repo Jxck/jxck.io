@@ -77,6 +77,7 @@ if (window.PerformanceObserver) {
           performance.layoutshift += entry.value
           break;
         case "longtask":
+          performance.longtask = performance.longtask || 0
           performance.longtask += entry.duration
           break;
         case "first-input":
