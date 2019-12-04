@@ -161,7 +161,7 @@ guest
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Bm40gPAv4RE/Yt6r27pOBQAJ>
   - PSA: XHR now fallbacks to UTF-8 when invalid encoding is specified
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/GCF5UhIgXYA/i6UfPJMFAQAJ>
-  - *PSA: Intent-to-* templates transitioning into Chromestatus.*
+  - *PSA: Intent-to-\* templates transitioning into Chromestatus.*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/4kefOvdfsF4/OsQcKEn6AwAJ>
     - <https://github.com/GoogleChrome/chromium-dashboard/issues>
     - Intents テンプレートのツールが改良され、今までのようなフォーマットのブレが長期には解消される予定
