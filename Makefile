@@ -5,7 +5,6 @@ build:
 	make full
 	make blogfeed
 	make podcastfeed
-	make image
 	make comp
 
 
