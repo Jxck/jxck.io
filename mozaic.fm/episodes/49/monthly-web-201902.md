@@ -400,7 +400,7 @@ guest
     - <https://www.w3.org/blog/news/archives/7562>
     - 企業規模に応じた会員費用の安いプランを用意する動き
     - $50M(5000 万ドル,50 億円) から $500M(5 億ドル,500 億円) は 2.5 万ドル,250 万円
-  - *Jun Murai enters the French National Order of the Legion of Honour | W3C News*
+  - *Jun Murai enters the French National Order of the Legion of Honour*
     - <https://www.w3.org/blog/news/archives/7570>
     - the Knight of the Legion of Honour Medal from the French government.
     - 村井純先生がフランスのレジオン・ドヌール勲章シュヴァリエを受賞
