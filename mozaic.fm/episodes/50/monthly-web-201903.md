@@ -180,7 +180,7 @@ guest
     - <https://www.blog.google/products/gmail/take-action-and-stay-up-to-date-with-dynamic-email-in-gmail/>
     - AMP for Email
   - Building the future of email with AMP - Accelerated Mobile Pages Project
-    -  https://blog.amp.dev/2019/03/26/building-the-future-of-email-with-amp/
+    - <https://blog.amp.dev/2019/03/26/building-the-future-of-email-with-amp/>
   - Elliott Sprehn on Twitter: "I'm rethinking my former advice around web storage: localStorage reads are super fast since they read an in memory cache, writes are very slow. IndexedDB KV storage (like the built-in API proposal) has slow reads *and* writes and event loop delays on reads. @shubhie @_developit"
     - <https://twitter.com/ElliottZ/status/1105342069449474048>
 
