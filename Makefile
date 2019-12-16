@@ -102,6 +102,9 @@ test:
 t:
 	$(MARK) -t
 
+draft:
+	$(MARK) --draft $(lastword $(MAKECMDGOALS))
+
 
 ##########################
 # Optimize Image

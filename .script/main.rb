@@ -102,6 +102,10 @@ if __FILE__ == $PROGRAM_NAME
     podcast.index
   }
 
+  opt.on("-d path/to/episode", "--draft ./path/to/episode.md") {|path|
+    blog.build(path)
+  }
+
   opt.on("-h") {|v|
     puts "make から叩いて"
   }
