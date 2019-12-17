@@ -153,7 +153,7 @@ guest
     - Fullscreen API unprefixed
     - -webkit-appearance
     - Symantec CA Distrust
-  - Firefox 64 for developers | MDN
+  - Firefox 64 for developers
     - <https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/64>
 - Intents
   - Ship: InputEvent.inputType (with Input Events Level 1)
@@ -184,11 +184,11 @@ guest
     - <https://www.fxsitecompat.com/en-CA/docs/2018/non-printable-keys-no-longer-fire-keypress-event/>
   - keydown and keyup events are now fired during IME composition
     - <https://www.fxsitecompat.com/en-CA/docs/2018/keydown-and-keyup-events-are-now-fired-during-ime-composition/>
-  - Support for window.event and Event.returnValue has been added again (Affecting) | Firefox Site Compatibility
+  - Support for window.event and Event.returnValue has been added again (Affecting)
     - <https://www.fxsitecompat.com/en-CA/docs/2018/support-for-window-event-and-event-returnvalue-has-been-added-again/>
-  - DataView.length is now 1 instead of 3 | Firefox Site Compatibility
+  - DataView.length is now 1 instead of 3
     - <https://www.fxsitecompat.com/en-CA/docs/2018/dataview-length-is-now-1-instead-of-3/>
-  - window.open() can now be called only once per event | Firefox Site Compatibility
+  - window.open() can now be called only once per event
     - <https://www.fxsitecompat.com/en-CA/docs/2018/window-open-can-now-be-called-only-once-per-event/>
 - Other
   - Goodbye, EdgeHTML - The Mozilla Blog

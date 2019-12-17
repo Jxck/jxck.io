@@ -338,10 +338,10 @@ guest
     - 色々あるが IE11 モードの話が大きい
     - Same Site Cookie が引き起こす問題の話
       - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/AknSSyQTGYs/lXBt8xyGAgAJ>
-  - *Updating Browsers Quickly: Flags, Respins, and Components | text/plain*
+  - *Updating Browsers Quickly: Flags, Respins, and Components \| text/plain*
     - <https://textslashplain.com/2019/07/16/updating-browsers-quickly-flags-respins-and-components/>
     - Chromium 版 Edge や Chrome のリリースサイクル、試験機能などについて
-  - *Livin' on the Edge: Dude Where's My Fix?!? | text/plain*
+  - *Livin' on the Edge: Dude Where's My Fix?!? \| text/plain*
     - <https://textslashplain.com/2019/07/17/finding-where-fixes-landed-in-chrome-edge-chromium/>
     - OmahaProxy
 
@@ -546,7 +546,7 @@ guest
     - 42KB => 5.5GB
     - 10MB => 281TB
     - 46MB => 4.5PB
-- *ISPA announces finalists for 2019 Internet Heroes and Villains: Trump and Mozilla lead the way as Villain nominees » News, Press Releases | The Internet Service Providers Association*
+- *ISPA announces finalists for 2019 Internet Heroes and Villains: Trump and Mozilla lead the way as Villain nominees » News, Press Releases \| The Internet Service Providers Association*
   - <https://www.ispa.org.uk/ispa-announces-finalists-for-2019-internet-heroes-and-villains-trump-and-mozilla-lead-the-way-as-villain-nominees/>
   - <https://jp.techcrunch.com/2019/07/06/2019-07-05-isp-group-mozilla-internet-villain-dns-privacy/>
   - DoH を実装するとペアレンタルコントロールができなくなり、 UK の ISP が義務を履行できない。
@@ -579,7 +579,7 @@ guest
   - URL を踏むだけで会議に参加できるようにするため
   - ここに脆弱性があるが、 zoom は完全な修正はしなかった
   - Safari が URI ハンドラをサポートしてないことも要因の一つ
-- Updating Browsers Quickly: Flags, Respins, and Components | text/plain
+- Updating Browsers Quickly: Flags, Respins, and Components \| text/plain
   - <https://textslashplain.com/2019/07/16/updating-browsers-quickly-flags-respins-and-components/>
 - DarkMatter Concerns
   - <https://groups.google.com/forum/#!topic/mozilla.dev.security.policy/nnLVNfqgz7g%5B1-25%5D>

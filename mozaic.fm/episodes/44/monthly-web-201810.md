@@ -149,7 +149,7 @@ guest
     - 文字を頻度順に並べ上から 3000 文字を 20 のスライスに等分割
     - 残りの文字を Unicode のコードポイント順に並べ、 100 のスライスに等分割
     - フォントそのままを配信するよりも、 80% のバイト数削減に
-  - Web Payments Overview  |  Web Fundamentals
+  - Web Payments Overview
     - <https://developers.google.com/web/fundamentals/payments/>
     - えーじさん作、先月の収録直後だった。
   - How to make AMP even faster - Accelerated Mobile Pages Project
@@ -200,7 +200,7 @@ guest
     - <https://blog.nightly.mozilla.org/2018/10/10/these-weeks-in-firefox-issue-47/>
   - These Weeks in Firefox: Issue 48
     - <https://blog.nightly.mozilla.org/2018/10/27/these-weeks-in-firefox-issue-48/>
-  - *Firefox 63 for developers - Mozilla | MDN*
+  - *Firefox 63 for developers*
     - <https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/63>
     - Custom Elements v1
     - Shadow DOM v1
@@ -228,7 +228,7 @@ guest
     - <https://hacks.mozilla.org/2018/10/firefox-63-tricks-and-treats/>
     - Custom Elements
     - Shadow DOM
-  - *Firefox 63 Lets Users Block Tracking Cookies | Mozilla Security Blog*
+  - *Firefox 63 Lets Users Block Tracking Cookies*
     - <https://blog.mozilla.org/security/2018/10/23/firefox-63-lets-users-block-tracking-cookies/>
 - Intents
   - Ship: unprefixed max-content and min-content for css sizing properties
@@ -483,9 +483,9 @@ guest
   - Accessible Name, Description Computation 1.1
     - <https://www.w3.org/blog/news/archives/7357>
 - Candidate Recommendation
-  - W3C Invites Implementations of WebRTC 1.0 and Identity for WebRTC 1.0 | W3C News
+  - W3C Invites Implementations of WebRTC 1.0 and Identity for WebRTC 1.0
     - <https://www.w3.org/blog/news/archives/7319>
-  - Updated Candidate Recommendation for Scalable Vector Graphics (SVG) 2 | W3C News
+  - Updated Candidate Recommendation for Scalable Vector Graphics (SVG) 2
     - <https://www.w3.org/blog/news/archives/7343>
 - Working Draft
 - First Public Working Draft
@@ -668,11 +668,11 @@ guest
     - Firefox: March of 2020
   - Modernizing TLS connections in Microsoft Edge and Internet Explorer 11 - Microsoft Edge Dev Blog
     - <https://blogs.windows.com/msedgedev/2018/10/15/modernizing-tls-edge-ie11/#VUuVj0xAvokFxywF.97>
-  - Deprecation of Legacy TLS 1.0 and 1.1 Versions | WebKit
+  - Deprecation of Legacy TLS 1.0 and 1.1 Versions
     - <https://webkit.org/blog/8462/deprecation-of-legacy-tls-1-0-and-1-1-versions/>
   - Google Online Security Blog: Modernizing Transport Security
     - <https://security.googleblog.com/2018/10/modernizing-transport-security.html>
-  - Removing Old Versions of TLS | Mozilla Security Blog
+  - Removing Old Versions of TLS
     - <https://blog.mozilla.org/security/2018/10/15/removing-old-versions-of-tls/>
 - 祝 RFC!Transport Layer Security (TLS) 1.3 発行の軌跡 ～熟成された 4 年間の安全性解析～|株式会社レピダム
   - <https://lepidum.co.jp/blog/2018-10-01/tls1_3security/>
@@ -683,7 +683,7 @@ guest
 - *[速報] GitHub 、見られてはいけないコード中のアクセストークンを発見し通知してくれる「Token Scanning」発表。 GitHub Universe 2018 - Publickey*
   - <https://www.publickey1.jp/blog/18/githubtoken_scanninggithub_universe_2018.html>
   - security token scheme もこの関連か?
-  - Behind the scenes of GitHub Token Scanning | The GitHub Blog
+  - Behind the scenes of GitHub Token Scanning \| The GitHub Blog
   - <https://blog.github.com/2018-10-17-behind-the-scenes-of-github-token-scanning/>
   - *The secret-token URI Scheme* https://tools.ietf.org/html/draft-nottingham-how-did-that-get-into-the-repo-00
 - Metadata-Attacker - A Tool To Generate Media Files With Malicious Metadata - KitPloit - PenTest Tools for your Security Arsenal
@@ -706,7 +706,7 @@ guest
   - <https://medium.com/@addyosmani/start-performance-budgeting-dabde04cf6a3>
 - AMP Contributor Summit: Learnings & Takeaways - Accelerated Mobile Pages Project
   - <https://amphtml.wordpress.com/2018/10/15/amp-contributor-summit-learnings-takeaways/>
-- Rhythm in Web Typography | Better Web Type
+- Rhythm in Web Typography \| Better Web Type
   - <https://betterwebtype.com/rhythm-in-web-typography>
 - Did you see that? Monitoring vs observability
   - <https://www.fastly.com/blog/monitoring-vs-observability>

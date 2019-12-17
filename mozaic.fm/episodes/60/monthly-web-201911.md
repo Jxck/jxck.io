@@ -384,7 +384,7 @@ guest
 - Status Updates
   - Getting your sites ready for the new Microsoft Edge - Microsoft Edge Blog
     - <https://blogs.windows.com/msedgedev/2019/11/04/edge-chromium-release-candidate-get-ready>
-  - Introducing the new Microsoft Edge and Bing | Windows Experience Blog
+  - Introducing the new Microsoft Edge and Bing \| Windows Experience Blog
     - <https://blogs.windows.com/windowsexperience/2019/11/04/introducing-the-new-microsoft-edge-and-bing>
 - EdgeHTML
   - <https://aka.ms/devguide_edgehtml_16>
@@ -619,15 +619,15 @@ guest
   - <https://blog.cloudflare.com/keyless-delegation/>
 - Going Keyless Everywhere
   - <https://blog.cloudflare.com/going-keyless-everywhere/>
-- Thoughts on DNS-over-HTTPS | text/plain
+- Thoughts on DNS-over-HTTPS \| text/plain
   - <https://textslashplain.com/2019/11/06/thoughts-on-dns-over-https/>
-- Deprecated APIs and authentication | GitHub Developer Guide
+- Deprecated APIs and authentication \| GitHub Developer Guide
   - <https://developer.github.com/changes/2019-11-05-deprecated-passwords-and-authorizations-api/>
 - JSONBee - A Ready To Use JSONP Endpoints/Payloads To Help Bypass Content Security Policy Of Different Websites
   - <https://www.kitploit.com/2019/10/jsonbee-ready-to-use-jsonp.html>
 - Assorted Kaspersky vulnerabilities
   - <https://palant.de/2019/11/27/assorted-kaspersky-vulnerabilities/>
-- Thoughts from IETF 106 | APNIC Blog
+- Thoughts from IETF 106 \| APNIC Blog
   - <https://blog.apnic.net/2019/11/27/thoughts-from-ietf-106/>
 
 
@@ -635,7 +635,7 @@ guest
 
 - Shadow tree encapsulation theory - Anne's Blog
   - <https://annevankesteren.nl/2019/10/encapsulation-theory>
-- bye: FTP Support Is Going Away | text/plain
+- bye: FTP Support Is Going Away \| text/plain
   - <https://textslashplain.com/2019/11/04/bye-ftp-support-is-going-away/>
 - *wasi: introduce initial WASI support by cjihrig · Pull Request #30258 · nodejs/node*
   - <https://github.com/nodejs/node/pull/30258>
@@ -658,7 +658,7 @@ guest
   - <https://blog.mozilla.org/blog/2019/10/31/facebook-is-still-failing-at-ad-transparency-no-matter-what-they-claim/>
 - Even faster connection establishment with QUIC 0-RTT resumption
   - <https://blog.cloudflare.com/even-faster-connection-establishment-with-quic-0-rtt-resumption/>
-- Web-to-WebApp Communication: Custom Scheme Handlers | text/plain
+- Web-to-WebApp Communication: Custom Scheme Handlers \| text/plain
   - <https://textslashplain.com/2019/11/21/web-to-webapp-communication-custom-scheme-handlers/>
 - *Flow - Ekioh が開発している新しい Web ブラウザ*
   - <https://www.ekioh.com/flow-browser/>

@@ -483,10 +483,10 @@ guest
   - <http://wizardbible.org/>
   - セキュリティ系の情報まとめサイトが閉鎖された。
   - 警察/検察からの圧力があったらしい
-- Announcing NGINX Unit 1.0 | NGINX
+- Announcing NGINX Unit 1.0 \| NGINX
   - <https://www.nginx.com/blog/nginx-unit-1-0-released/>
   - 軽量アプリケーションコンテナ実装
-- April 22, 1993: Mosaic Browser Lights Up Web With Color, Creativity | WIRED
+- April 22, 1993: Mosaic Browser Lights Up Web With Color, Creativity \| WIRED
   - <https://www.wired.com/2010/04/0422mosaic-web-browser/>
   - Mosaic 1.0 リリースから 25 年
 - *Yahoo! Japan が TLS1.0, TLS1.1 を 2018 年 6 月 1 日で切る*

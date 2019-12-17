@@ -369,7 +369,7 @@ guest
 ### WHATWG/W3C 動向
 
 - TPAC
-  - TPAC Recap (2019 Edition) | Web Payments Working Group
+  - TPAC Recap (2019 Edition) \| Web Payments Working Group
     - <https://www.w3.org/blog/wpwg/2019/10/01/tpac-recap-2019-edition/>
   - *Service workers at TPAC - JakeArchibald.com*
     - <https://jakearchibald.com/2019/service-workers-tpac/>
@@ -592,7 +592,7 @@ guest
   - Arpanet で最初のパケットが流れてから 50 年
 - *Vint Cerf's top moments from 50 years of the Internet*
   - <https://blog.google/inside-google/googlers/vint-cerf-top-moments-50-years-internet/>
-- *Tim Berners-Lee published a document called HTML Tags - 1991 | Web Design Museum*
+- *Tim Berners-Lee published a document called HTML Tags - 1991 \| Web Design Museum*
   - <https://www.webdesignmuseum.org/web-design-history/tim-berners-lee-published-a-document-called-html-tags-1991>
   - Sir TBL が HTML Tag を Publish してから 28 年 (1991/10/29)
   - `<title>, <nextid>, <a>, <isindex>, <plaintext>, <listing>, <p>, <h1>...<h6>, <address>, <hp1>, <hp2>..., <dl>, <dt>, <dd>, <ul>, <li>,<menu> and <dir>`

@@ -704,12 +704,12 @@ guest
   - メーラが暗号化を複合した結果を `<img>` の fetch で外に投げてしまう
   - 色々な複合技だけど、抜本的な解決は HTML 無効くらいしかなさそう
   - そうなると AMP for Email どうなるか
-- *ADV180012 | Microsoft Guidance for Speculative Store Bypass*
+- *ADV180012 \| Microsoft Guidance for Speculative Store Bypass*
   - <https://portal.msrc.microsoft.com/en-US/security-guidance/advisory/ADV180012>
   - Spectre/Meltdown の亜種である CVE-2018-3639 が発見される
   - 最近 SameSite/SecMetadata/From-Origin などが動き始めてるのはやっぱりこのためなんだろうか。
   - <https://www.arturjanc.com/cross-origin-infoleaks.pdf>
-- サイバーセキュリティに関するグローバル動向四半期レポート(2018 年 1 月～ 3 月)を公開 | NTT データ
+- サイバーセキュリティに関するグローバル動向四半期レポート(2018 年 1 月～ 3 月)を公開 \| NTT データ
   - <https://www.nttdata.com/jp/ja/news/information/2018/2018050701.html>
   - 17 年度 Q4 のサマリ
 

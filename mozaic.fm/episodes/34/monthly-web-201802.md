@@ -287,7 +287,7 @@ guest
     - <https://www.fxsitecompat.com/en-CA/docs/2018/rich-text-editor-s-newline-behaviour-has-been-changed-now-generates-div-instead-of-br/>
   - -moz-user-input:enabled and disabled are no longer supported
     - <https://www.fxsitecompat.com/en-CA/docs/2018/moz-user-input-enabled-and-disabled-are-no-longer-supported/>
-  - `<script>` with version parameter will no longer be loaded (Affecting) | Firefox Site Compatibility
+  - `<script>` with version parameter will no longer be loaded (Affecting)
     - <https://www.fxsitecompat.com/en-CA/docs/2018/script-with-version-parameter-will-no-longer-be-loaded/>
 - Other
   - MDN browser compatibility data: Taking the guesswork out of web compatibility

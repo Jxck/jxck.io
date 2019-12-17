@@ -247,7 +247,7 @@ guest
     - Tracking Protection が Content Blocking に改称
   - These Weeks in Firefox: Issue 44
     - <https://blog.nightly.mozilla.org/2018/08/29/these-weeks-in-firefox-issue-44/>
-  - Extensions in Firefox 63 | Mozilla Add-ons Blog
+  - Extensions in Firefox 63 \| Mozilla Add-ons Blog
     - <https://blog.mozilla.org/addons/2018/08/31/extensions-in-firefox-63/>
     - 拡張視点の記事だが、 Async Clipboard API やタブの複数選択など、 Firefox 63 で導入される機能に触れている
 - Intents
@@ -402,7 +402,7 @@ guest
   - Added support for calc() in CSS Grid gutter properties
   - etc
 - Other
-  - ITP Debug Mode in Safari Technology Preview 62 | WebKit
+  - ITP Debug Mode in Safari Technology Preview 62
     - <https://webkit.org/blog/8387/itp-debug-mode-in-safari-technology-preview-62/>
   - Changeset 235480 - WebKit - Add a runtime flag for WebRTC unified plan
     - <https://trac.webkit.org/changeset/235480/webkit>
@@ -650,7 +650,7 @@ guest
 
 ### 周辺動向
 
-- Top web browsers 2018: IE, Edge and Firefox return to the road of ruin | Computerworld
+- Top web browsers 2018: IE, Edge and Firefox return to the road of ruin \| Computerworld
   - <https://www.computerworld.com/article/3199425/web-browsers/top-web-browsers-2018-ie-edge-and-firefox-return-to-the-road-of-ruin.html>
 - PWA: Progressive Web All-the-things - Tales of a Developer Advocate by Paul Kinlan
   - <https://paul.kinlan.me/pwa-progressive-web-all-the-things/>
@@ -667,7 +667,7 @@ guest
 - *WorkerDOM: Concurrency for JavaScript programming with the DOM - Accelerated Mobile Pages Project*
   - <https://amphtml.wordpress.com/2018/08/21/workerdom/>
   - <https://github.com/ampproject/worker-dom>
-- 24-core CPU and I can't type an email (part one) | Random ASCII
+- 24-core CPU and I can't type an email (part one) \| Random ASCII
   - <https://randomascii.wordpress.com/2018/08/16/24-core-cpu-and-i-cant-type-an-email-part-one/>
   - <https://gigazine.net/news/20180825-google-engineer-fix-chrome-hang/>
   - Gmail で Chrome がフリーズした現象のデバッグ記録

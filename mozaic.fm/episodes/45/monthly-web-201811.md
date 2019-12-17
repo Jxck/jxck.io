@@ -264,7 +264,7 @@ guest
     - <https://blog.mozilla.org/blog/2018/11/14/firefox-monitor-launches-in-26-languages-and-adds-new-desktop-browser-feature/>
   - These Weeks in Firefox: Issue 50
     - <https://blog.nightly.mozilla.org/2018/11/27/these-weeks-in-firefox-issue-50/>
-  - Multilingual Gecko Status Update 2018.2 | Mozilla L10N
+  - Multilingual Gecko Status Update 2018.2 \| Mozilla L10N
     - <https://blog.mozilla.org/l10n/2018/11/27/multilingual-gecko-status-update-2018-2/>
 
 

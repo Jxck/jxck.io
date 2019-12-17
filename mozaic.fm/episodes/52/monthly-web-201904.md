@@ -272,9 +272,9 @@ guest
     - リリース版においても、プロンプトに関する情報を限定的に集めるとも
   - Stop videos from automatically playing with new autoplay controls from Firefox
     - <https://blog.mozilla.org/firefox/block-autoplay/>
-  - Firefox Front-End Performance Update #16 | Mike Conley's Blog
+  - Firefox Front-End Performance Update #16 \| Mike Conley's Blog
     - <https://mikeconley.ca/blog/2019/04/08/firefox-front-end-performance-update-16/>
-  - Firefox Front-End Performance Update #17 | Mike Conley's Blog
+  - Firefox Front-End Performance Update #17 \| Mike Conley's Blog
     - <https://mikeconley.ca/blog/2019/04/24/firefox-front-end-performance-update-17/>
 - Intents
   - *Implement and Ship: add `preventScroll` option to HTMLElement's, SVGElement's and XULElement's `focus` method*
@@ -307,14 +307,14 @@ guest
     - <https://hacks.mozilla.org/2019/03/standardizing-wasi-a-webassembly-system-interface/>
   - Firefox Lockbox Now on Android, Keeping your Passwords Safe
     - <https://blog.mozilla.org/blog/2019/03/26/firefox-lockbox-now-on-android-keeping-your-passwords-safe/>
-  - DNS-over-HTTPS Policy Requirements for Resolvers | Mozilla Security Blog
+  - DNS-over-HTTPS Policy Requirements for Resolvers
     - <https://blog.mozilla.org/security/2019/04/09/dns-over-https-policy-requirements-for-resolvers/>
 
 
 ### Safari 動向
 
 - Stable: 12.1
-- New WebKit Features in Safari 12.1 | WebKit
+- New WebKit Features in Safari 12.1
   - <https://webkit.org/blog/8718/new-webkit-features-in-safari-12-1/>
   - STP 59-76 の更新が反映されている
   - Dark Mode for the Web
@@ -350,7 +350,7 @@ guest
   - Implemented white-space: break-spaces value (r244036)
   - Legacy Safari Extensions (.safariextz files) are no longer supported.
 - Other
-  - Introducing the JetStream 2 Benchmark Suite | WebKit
+  - Introducing the JetStream 2 Benchmark Suite
     - <https://webkit.org/blog/8685/introducing-the-jetstream-2-benchmark-suite/>
   - *Intelligent Tracking Prevention 2.2*
     - <https://webkit.org/blog/8828/intelligent-tracking-prevention-2-2/>
@@ -401,7 +401,7 @@ guest
 - Dev/Canary: 75.0
   - Microsoft Edge Insider
     - <https://www.microsoftedgeinsider.com/>
-  - Microsoft Edge preview builds: The next step in our OSS journey | Windows Experience Blog
+  - Microsoft Edge preview builds: The next step in our OSS journey
     - <https://blogs.windows.com/windowsexperience/2019/04/08/microsoft-edge-preview-builds-the-next-step-in-our-oss-journey/>
   - What to expect in the new Microsoft Edge Insider Channels - Microsoft Edge Blog
     - <https://blogs.windows.com/msedgedev/2019/04/08/microsoft-edge-preview-channel-details/>

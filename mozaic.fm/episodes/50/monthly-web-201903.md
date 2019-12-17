@@ -188,7 +188,7 @@ guest
 ### Firefox 動向
 
 - Stable: 66.0.1
-  - Firefox 66 for developers - Mozilla | MDN
+  - Firefox 66 for developers - Mozilla \| MDN
     - <https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/66>
   - Firefox 66.0, See All New Features, Updates and Fixes
     - <https://www.mozilla.org/en-US/firefox/66.0/releasenotes/>
@@ -199,9 +199,9 @@ guest
     - <https://blog.nightly.mozilla.org/2019/03/05/these-weeks-in-firefox-issue-54/>
   - These Weeks in Firefox: Issue 55
     - <https://blog.nightly.mozilla.org/2019/03/15/these-weeks-in-firefox-issue-55/>
-  - Firefox Front-End Performance Update #14 | Mike Conley's Blog
+  - Firefox Front-End Performance Update #14 \| Mike Conley's Blog
     - <https://mikeconley.ca/blog/2019/03/08/firefox-front-end-performance-update-14/>
-  - Firefox Front-End Performance Update #15 | Mike Conley's Blog
+  - Firefox Front-End Performance Update #15 \| Mike Conley's Blog
     - <https://mikeconley.ca/blog/2019/03/22/firefox-front-end-performance-update-15/>
 - Intents
   - *Ship: Dynamic module imports (JS 'import()' syntax)*
@@ -286,7 +286,7 @@ guest
     - Added remote search support for keyboard focusable element search type (r242528)
     - *Removed HEVC as a codec requiring hardware support (r242357)*
 - Other
-  - *On the Road to WebRTC 1.0, Including VP8 | WebKit*
+  - *On the Road to WebRTC 1.0, Including VP8*
     - <https://webkit.org/blog/8672/on-the-road-to-webrtc-1-0-including-vp8/>
     - VP8 Video Codec
     - Video Simulcast
@@ -308,7 +308,7 @@ guest
   - Release ChakraCore v1.11.7 · Microsoft/ChakraCore
     - <https://github.com/Microsoft/ChakraCore/releases/tag/v1.11.7>
 - Other
-  - Announcing Windows 10 Insider Preview Build 18358 | Windows Experience Blog
+  - Announcing Windows 10 Insider Preview Build 18358 \| Windows Experience Blog
     - <https://blogs.windows.com/windowsexperience/2019/03/15/announcing-windows-10-insider-preview-build-18358/>
     - Windows Defender Application Guard as browser extensions in Google Chrome and Mozilla Firefox
     - Microsoft 、 Chrome と Firefox 向け「Windows Defender Application Guard」拡張機能公開
@@ -326,7 +326,7 @@ guest
     - <https://www.w3.org/blog/news/archives/7663>
   - 30 years on, what's next #ForTheWeb?
     - <https://webfoundation.org/2019/03/web-birthday-30/>
-  - Building browsers! #Web30 | Vivaldi Browser
+  - Building browsers! #Web30 \| Vivaldi Browser
     - <https://vivaldi.com/ja/blog/building-browsers/>
 - Recommendation
   - *Web Authentication: An API for accessing Public Key Credentials Level 1 is a W3C Recommendation*
