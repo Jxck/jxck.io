@@ -5,7 +5,7 @@
 audio: https://files.mozaic.fm/mozaic-ep60.mp3
 
 published_at
-: 2019-11-05
+: 2019-12-08
 
 guest
 : [@arayaryoma](https://twitter.com/arayaryoma)
