@@ -48,7 +48,7 @@ guest
     - Remove feature policy: lazyload
   - Deprecations and removals in Chrome 76
     - <https://developers.google.com/web/updates/2019/06/chrome-76-deps-rems>
-- Intents
+  - Intents
   - Ship: Add charLength Attribute to SpeechSynthesisEvent
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/wXbIl5mq4eo/GSyt-hXeBQAJ>
   - Ship: Intl.NumberFormat Unified API Proposal
@@ -61,81 +61,81 @@ guest
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/aRKT0BkrF-8/G-KuTnMBBgAJ>
   - Ship: Add [Exposed=Window,Worker] to PaymentManager
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8WnMLRKeaog/VL4eBEJHAwAJ>
-- *Implement and Ship: Cookies with SameSite by default*
+  - *Implement and Ship: Cookies with SameSite by default*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/AknSSyQTGYs/SSB1rTEkBgAJ>
     - Chrome 77 での ship を計画していたが、 macOS/iOS の CFNetwork にバグがあった。
     - SameSite=None (や他の未知の値)が SameSite=Strict として解釈されるため Chrome 80 まで延期
-- Implement and Ship: Freeze task queues in background (desktop)
+  - Implement and Ship: Freeze task queues in background (desktop)
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Ik4vvlOg0jc/-EYx9IdxBAAJ>
-- Implement and Ship: Let all early errors be SyntaxErrors
+  - Implement and Ship: Let all early errors be SyntaxErrors
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/VizkBlcoy3M/7g4YAY88BgAJ>
-- *Implement and Ship: Limit `Referer` header's length to 4k*
+  - *Implement and Ship: Limit `Referer` header's length to 4k*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/lckJ5OAkUNo/ooVNdvhLAgAJ>
-- Implement and Ship: CSS font-size: xxx-large
+  - Implement and Ship: CSS font-size: xxx-large
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ucEUTqoi4Nc/wx3q-B7tAQAJ>
-- Implement and Ship: Stop action for Media Session
+  - Implement and Ship: Stop action for Media Session
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/xMxKEmIgUug/Se7BBGGoAgAJ>
-- Implement and Ship: Web Bluetooth getAvailability()
+  - Implement and Ship: Web Bluetooth getAvailability()
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/093IZbeZ6RA/PdhQFP6NAgAJ>
-- Implement and Ship: RTCPeerConnection::onicecandidateerror
+  - Implement and Ship: RTCPeerConnection::onicecandidateerror
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/fs-Y4awdYj0/1UOKRxzmBQAJ>
-- Implement and Ship: Discard input events targeting recently-moved iframes
+  - Implement and Ship: Discard input events targeting recently-moved iframes
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MzXscv7fT0w/ygq7qc6sBQAJ>
-- *Implement and Ship: SRI support for link preloads*
+  - *Implement and Ship: SRI support for link preloads*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/F0IiHq9EHyc/F4qC3QCQCwAJ>
-- *Implement and Ship: Error structured serialization*
+  - *Implement and Ship: Error structured serialization*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/f8JngIi8qYs/QR6GTJTACwAJ>
     - Worker とやり取りできるように Error をシリアライズ可能に
     - Transferable Stream がモチベーション
-- *Implement and Ship: CSS min(), max() and clamp()*
+  - *Implement and Ship: CSS min(), max() and clamp()*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/7FaMtRBfTBU/-Sm3s-gFAwAJ>
-- Implement and Ship: Overscroll Behavior logical longhands
+  - Implement and Ship: Overscroll Behavior logical longhands
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/V86fOkIaEQA/7bbQ4rP8AgAJ>
-- *Implement: Largest contentful paint*
+  - *Implement: Largest contentful paint*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/WVqgYtyaGJk/q-TGbeExBgAJ>
-- Implement: Add millisecondDigits option to Intl.DateTimeFormat
+  - Implement: Add millisecondDigits option to Intl.DateTimeFormat
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/WXd9nh03a1M/z7QeIMgrBgAJ>
-- *Implement: Cross-Origin-Resource-Policy-Policy (the name will be changed)*
+  - *Implement: Cross-Origin-Resource-Policy-Policy (the name will be changed)*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/oS94Kp3BOOU/sj6lcwYIBgAJ>
     - Cross-Origin-Embedder-Policy になりそう
-- Implement: Support step timing functions jump-start/end/both/none
+  - Implement: Support step timing functions jump-start/end/both/none
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/u65DesVOzmY/htUnPfFcBgAJ>
-- Implement: PushSubscriptionChangeEvent & PushManager.refreshSubscription
+  - Implement: PushSubscriptionChangeEvent & PushManager.refreshSubscription
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/rzNq9b5QSDc/p66EeehZBgAJ>
-- *Implement: Cross-Origin-Opener-Policy*
+  - *Implement: Cross-Origin-Opener-Policy*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/RN0PfhoxdHI/ASzdxxoMBgAJ>
     - opener の一括制限
-- Implement: JavaScript Memory API
+  - Implement: JavaScript Memory API
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/cdUOyBAtWzo/MRmGAURjBQAJ>
-- *Implement: Toast UI element*
+  - *Implement: Toast UI element*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Gl7FIKM5IFw/tA70X9ZIBQAJ>
     - `<std-toast>`
     - intent プロセスや Chrome チームのやりかた、機能に対して解決する問題、 toast という名前などいろんな観点で燃えている
-- *Implement: Toggle switch control element*
+  - *Implement: Toggle switch control element*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/kP556piqDR8/XHuly9HMAwAJ>
     - `<std-switch>`
   - *Implement: Content Index API*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/qERxZjYu6SE/JGd_lkyXBQAJ>
-- Extend Origin Trial: lowLatency canvas contexts (through end of M74)
+  - Extend Origin Trial: lowLatency canvas contexts (through end of M74)
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hqhrB2BIIr0/q7TfR2I1BgAJ>
-- Extend Origin Trial: per-method quota for hasEnrolledInstrument()
+  - Extend Origin Trial: per-method quota for hasEnrolledInstrument()
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/y4yesvnPC4Q/P4s53eZeBgAJ>
-- Extend Origin Trial: Feature Policy Reporting
+  - Extend Origin Trial: Feature Policy Reporting
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/PyYXyqBI3fk/2SBwjUPkBgAJ>
   - Continue Experimenting: Badging API
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/fHVltld3KLc/xnsC7tztCQAJ>
-- Experiment: MediaCapabilities: encrypted (EME) decodingInfo()
+  - Experiment: MediaCapabilities: encrypted (EME) decodingInfo()
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/eA9uG98td5U/Dhko1AcGAwAJ>
-- Experiment: Scroll To Text Fragment
+  - Experiment: Scroll To Text Fragment
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/NySZyk6UMEs/XGquAepZAwAJ>
     - テキストの内容に対してリンクを張れる
     - `https://example.com#targetText=prefix-,startText,endText,-suffix`
-- Change:
-- Unship:
-- Remove:
-- Deprecate and Remove: volume property.
+  - Change:
+  - Unship:
+  - Remove:
+  - Deprecate and Remove: volume property.
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8-Qn7pu41Kk/BWl_CjilBAAJ>
-- Deprecate: GCM-based subscriptions for Web Push Notifications
+  - Deprecate: GCM-based subscriptions for Web Push Notifications
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_3Q0vj7kQiM/qLCU2nf_BAAJ>
     - GCM から VAPID へ
   - PSA: converting HTTP authentication prompts to committed interstitials
@@ -190,11 +190,11 @@ guest
     - Chromium Blog: WebAssembly brings Google Earth to more browsers
       - <https://blog.chromium.org/2019/06/webassembly-brings-google-earth-to-more.html>
     - Google Earth の WASM 版正式リリース
-  -  *How do I notify users that my PWA is installable?*
+  - *How do I notify users that my PWA is installable?*
     - <https://developers.google.com/web/updates/2019/06/pwa-install-patterns>
     - Chrome 76 で beforeinstallprompt イベントを `preventDefault()` するとミニバーが表示されなくなる
     - PWA なこと、インストール可能なことをどう表現するか
-  -  *Bringing service workers to Google Search*
+  - *Bringing service workers to Google Search*
     - <https://web.dev/google-search-sw>
     - Google Search に SW を入れた苦労話
     - Navigation Preload によるオーバーヘッド削減
@@ -294,7 +294,7 @@ guest
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/S8WEan1uLGo/iRzqpVdPAwAJ>
   - Unship: DOMError
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/6yQtQoNeR-s/CrfdcbZEAwAJ>
-  - Unship: <keygen>
+  - Unship: `<keygen>`
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/SAh1b1R5lrY/UUHU2UNHAgAJ>
   - Experiment: infer aspect-ratio from width and height attributes in images
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/axGM9N0-jZk/SG3bRYlyCQAJ>
@@ -329,7 +329,7 @@ guest
     - 本当にコストを払うだけの価値があるのかをちゃんと判断したい
     - もっと情報が集まるまでは harmful のスタンスは変わらない
     - Workshop で Feedback を集めるなどをもう少しやる必要がある
-    - 7/18-19 https://www.iab.org/activities/workshops/escape-workshop/
+    - 7/18-19 <https://www.iab.org/activities/workshops/escape-workshop/>
     - Exploring Synergy between Content Aggregation and the Publisher Ecosystem (ESCAPE) Workshop 2019
   - *CSS Grid subgrid lands in Firefox Nightly*
     - <https://www.rachelandrew.co.uk/archives/2019/05/23/css-grid-subgrid-lands-in-firefox-nightly/>
@@ -680,7 +680,7 @@ guest
   - <https://weis2019.econinfosec.org/wp-content/uploads/sites/6/2019/05/WEIS_2019_paper_38.pdf>
   - トラッキングによってパブリッシャーにもたらされるレベニューが 4% 増にしかならないという研究
   - 先月話題になった Wall Street Journal の記事のソース
-  - Behavioral Ad Targeting Not Paying Off for Publishers, Study Suggests - WSJ https://www.wsj.com/articles/behavioral-ad-targeting-not-paying-off-for-publishers-study-suggests-11559167195
+  - Behavioral Ad Targeting Not Paying Off for Publishers, Study Suggests - WSJ <https://www.wsj.com/articles/behavioral-ad-targeting-not-paying-off-for-publishers-study-suggests-11559167195>
 - *Pika CDN - Pika*
   - <https://www.pika.dev/cdn>
   - CDN for modern JavaScript

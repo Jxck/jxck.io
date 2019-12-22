@@ -70,31 +70,31 @@ guest
   - Ship: Barcode Detection API
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/j-PLtssE5fo/budv_U6fCwAJ>
     - Shape Detection API のうちバーコードをまず ship したいと
-- Implement and Ship: PerformanceObserverInit buffered flag
+  - Implement and Ship: PerformanceObserverInit buffered flag
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/YMrf4l2DqtM/B8FB2axQAQAJ>
   - *Implement and Ship: WebRTC Perfect Negotiation APIs*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/OqPfCpC5RYU/SjapegYYAgAJ>
     - WebRTC の細かい問題に対処する 4 つの API 更新のこと
-    1. restartIce()
-    2. setRemoteDescription() with "rollback"
-    3. setLocalDescription() that implicitly creates the offer or answer
-    4. Stopping and stopped transceivers
-- Implement and Ship: Percentage opacity
+      1. restartIce()
+      2. setRemoteDescription() with "rollback"
+      3. setLocalDescription() that implicitly creates the offer or answer
+      4. Stopping and stopped transceivers
+  - Implement and Ship: Percentage opacity
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/SdPIaBdhzAQ/f26Mp_3REAAJ>
-- Implement: Dynamic Delegation of Autoplay Capability
+  - Implement: Dynamic Delegation of Autoplay Capability
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ETM5NChezQo/5gi9nXx2AQAJ>
-- *Implement: WebSocketStream*
+  - *Implement: WebSocketStream*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X7rWpAkMCyg/j6K7mEEwAgAJ>
     - Stream や Promise の無い時代に設計された今の WS API を置き換える API
     - 従来は backpressure が無かった問題も Stream によって解決
     - Promise によるエラー処理や、 AbortController のサポートも入る
-- *Implement: JSON Modules*
+  - *Implement: JSON Modules*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ojwkySW-bpQ/ecR5pnocAgAJ>
     - Synthetic Modules (builtin module の共通仕様) の JSON 版
     - 要するに module import で JSON が読める
-- Implement: Seeking for Media Session
+  - Implement: Seeking for Media Session
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hGqvr-De58E/wMzhfr9ZAgAJ>
-- Implement: Position State for Media Session
+  - Implement: Position State for Media Session
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/1jmTFQS95zs/4gZD-7-DBAAJ>
   - Implement: WebRTC SVC extensions
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/--ZpYlTo6LE/BTWcojtpBQAJ>
@@ -110,27 +110,27 @@ guest
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Cibo-GNPs7Y/RznlX7WKDAAJ>
   - *Implement: Prefetch Request Changes for Double-Keyed Cache*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/bSMOY-evrV4/tMnXA_0yEgAJ>
-- Extend Origin Trial: getInstalledRelatedApps()
+  - Extend Origin Trial: getInstalledRelatedApps()
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/M3ZMGLo362Y/oCUiqQrAAQAJ>
-- Experiment: Dynamic Delegation of Autoplay Capability
+  - Experiment: Dynamic Delegation of Autoplay Capability
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/s9NlCCv3Spc/1s8JTdkbAgAJ>
-- Extend Origin Trial: Trusted Types
+  - Extend Origin Trial: Trusted Types
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/JVQ34vvuApE/RC2wl0hOAgAJ>
-- *Experiment and launch: DNS over HTTPS auto-upgrade in Chrome (Targeting M78: branch cut @ Sept 5th; estimated Stable @ Oct 22nd)*
+  - *Experiment and launch: DNS over HTTPS auto-upgrade in Chrome (Targeting M78: branch cut @ Sept 5th; estimated Stable @ Oct 22nd)*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/net-dev/BgLpAi9O4MY/yD015PqwDgAJ>
-- *Extend Origin Trial: isInputPending*
+  - *Extend Origin Trial: isInputPending*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/0Bw-JW1POdw/ru7xMH2vCwAJ>
-- Change:
-- Unship:
-- Deprecate and Remove: -webkit-appearance keywords for arbitrary elements
+  - Change:
+  - Unship:
+  - Deprecate and Remove: -webkit-appearance keywords for arbitrary elements
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/1d9FpHEVI64/VSELVHzbAQAJ>
   - *Deprecate and Remove: XSSAuditor*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/TuYw-EZhO9g/blGViehIAwAJ>
     - デメリットが多いので消す
     - IE は既に消している
-- Remove: Basic Card Type
+  - Remove: Basic Card Type
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/5gxzhdS1KNs/Fs-Bvz4iAQAJ>
-- Remove: 'getThis' and 'getFunction' from the CallSite API
+  - Remove: 'getThis' and 'getFunction' from the CallSite API
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/TSTSEyzeSBM/mUPUaJLTBAAJ>
   - PSA: Service Worker request priorities are getting corrected
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_vXEZ6kt3VY/mDN-z7VJAwAJ>
@@ -431,7 +431,7 @@ guest
 - *ESCAPE Workshop*
   - Exploring Synergy between Content Aggregation and the Publisher Ecosystem Workshop 2019
     - <https://www.iab.org/activities/workshops/escape-workshop/>
-    - Minutes はまだ https://www.iab.org/documents/minutes/
+    - Minutes はまだ <https://www.iab.org/documents/minutes/>
 - IETF 105 Montreal
   - *httpwg/wg-materials*
     - <https://github.com/httpwg/wg-materials/blob/gh-pages/ietf105/agenda.md>
@@ -450,8 +450,8 @@ guest
       - <https://tools.ietf.org/html/draft-peon-httpbis-h2-priority-one-less-00>
       - 使いたい場合に明示的に知らせる SETTINGS frame
       - SETTINGS_ENABLE_HTTP2_PRIORITIES
-    - [Wpack] [wpack] Minutes from the IETF105 side meeting
-      - <https://mailarchive.ietf.org/arch/msg/wpack/OPwVCRvGrlFQCul-lRQNHwzJg3A>
+  - [Wpack] [wpack] Minutes from the IETF105 side meeting
+    - <https://mailarchive.ietf.org/arch/msg/wpack/OPwVCRvGrlFQCul-lRQNHwzJg3A>
 - RFC
   - RFC 8620: The JSON Meta Application Protocol (JMAP)
     - <https://www.rfc-editor.org/rfc/rfc8620.html>

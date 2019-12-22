@@ -506,10 +506,10 @@ guest
     - <https://lists.w3.org/Archives/Public/public-webappsec/2019Sep/0003.html>
     - Trusted Types を WICG W3C に移す
     - react/lit-html が取り込み作業をしており、 JS community は positive と
-    - [1] https://wicg.github.io/trusted-types/dist/spec/
-    - [2] https://github.com/facebook/react/pull/16157
-    - [3] https://github.com/Polymer/lit-html/pull/970
-    - [4] https://github.com/WICG/trusted-types/issues/215
+    - <https://wicg.github.io/trusted-types/dist/spec/>
+    - <https://github.com/facebook/react/pull/16157>
+    - <https://github.com/Polymer/lit-html/pull/970>
+    - <https://github.com/WICG/trusted-types/issues/215>
   - *Explainer: IsLoggedIn (in preparation for TPAC)*
     - <https://lists.w3.org/Archives/Public/public-webappsec/2019Sep/0004.html>
     - 謎だった login API の正体の Explainer
@@ -673,7 +673,7 @@ guest
   - 11-12: Chrome Dev Summit 2019
     - <https://developer.chrome.com/devsummit/>
   - 14-15: BlinkOn 11
-    - http://bit.ly/blinkon11-faq
+    - <http://bit.ly/blinkon11-faq>
   - 30-1: JSConf JP
     - <https://www.jsconf.jp>
 - 12 月

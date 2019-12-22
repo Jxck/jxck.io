@@ -425,11 +425,11 @@ guest
     - <https://www.w3.org/blog/news/archives/8032>
 - Chartering
   - Proposed W3C Charter: Web Payments Working Group
-    - http://lists.w3.org/Archives/Public/public-new-work/2019Nov/0003.html
+    - <http://lists.w3.org/Archives/Public/public-new-work/2019Nov/0003.html>
   - Proposed W3C Charter: Service Workers Working Group
-    - http://lists.w3.org/Archives/Public/public-new-work/2019Nov/0004.html
+    - <http://lists.w3.org/Archives/Public/public-new-work/2019Nov/0004.html>
   - Proposed W3C Charter: Web of Things Working Group
-    - http://lists.w3.org/Archives/Public/public-new-work/2019Nov/0005.html
+    - <http://lists.w3.org/Archives/Public/public-new-work/2019Nov/0005.html>
 - Other
   - *Contract for the Web*
     - <https://contractfortheweb.org/>
@@ -437,7 +437,7 @@ guest
   - W3C Website redesign, phase 1 RFP
     - <https://www.w3.org/blog/news/archives/8030>
   - *PSA: "same site" definition has changed and moved*
-    - http://lists.w3.org/Archives/Public/public-webappsec/2019Nov/0004.html
+    - <http://lists.w3.org/Archives/Public/public-webappsec/2019Nov/0004.html>
     - Mike West の提案で Same Site の定義を変えることに
     - "Same site" が scheme を考慮するようになる。考慮しない場合 "schemelessly same site"
     - "Same site" と "schemelessly same site" が host ではなく origin で考えるように
@@ -687,7 +687,7 @@ guest
   - 11-12: Chrome Dev Summit 2019
     - <https://developer.chrome.com/devsummit/>
   - 14-15: BlinkOn 11
-    - http://bit.ly/blinkon11-faq
+    - <http://bit.ly/blinkon11-faq>
   - 16-22: IETF106 Singapore
     - <https://ietf.org/how/meetings/106/>
   - 30-1: JSConf JP

@@ -354,7 +354,7 @@ guest
       - Lukasz Olejnik (W3C Invited Expert)
     - 任期終了
       - *Travis Leithead (Microsoft)*
-      - *Alex Russell (Google)*[c]
+      - *Alex Russell (Google)*
   - New version of the Roadmap of Web Applications on Mobile
     - <https://www.w3.org/blog/news/archives/7475>
 

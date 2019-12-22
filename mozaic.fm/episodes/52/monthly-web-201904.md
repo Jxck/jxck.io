@@ -258,7 +258,7 @@ guest
   - *Backward-Compatibility FIDO U2F support shipping soon in Firefox*
     - <https://blog.mozilla.org/security/2019/04/04/shipping-fido-u2f-api-support-in-firefox/>
     - WebAuthn をサポートしたが、 Google アカウントでは FIDO U2F API しかサポートしないので互換性のため一部ドメインで有効にする
-  - *DNS-over-HTTPS (DoH) Update - Recent Testing Results and Next Steps - Future Releases
+  - *DNS-over-HTTPS (DoH) Update - Recent Testing Results and Next Steps - Future Releases*
     - <https://blog.mozilla.org/futurereleases/2019/04/02/dns-over-https-doh-update-recent-testing-results-and-next-steps/>
     - 2018 年 11 月に行った DoH のテストの結果
     - 75 パーセンタイルでパフォーマンスに影響はない、もしくは向上も
@@ -420,7 +420,7 @@ guest
     - Github にはリポジトリがあるがコードが無い
     - <https://github.com/MicrosoftEdge/MSEdge>
     - Redmond の住所に $5 払ったらコード送るよ的なことが edge://terms に書いてある
-    - > Source code for portions of Microsoft Edge is available free of charge from <https://thirdpartysource.microsoft.com> under the third party open source license terms provided at <http://aka.ms/thirdpartynotices> and in Microsoft Edge at edge://credits after installation. Or to obtain this source code you may send a check or money order for US $5.00, including the Edge version number, to: [住所]
+    - Source code for portions of Microsoft Edge is available free of charge from <https://thirdpartysource.microsoft.com> under the third party open source license terms provided at <http://aka.ms/thirdpartynotices> and in Microsoft Edge at edge://credits after installation. Or to obtain this source code you may send a check or money order for US $5.00, including the Edge version number, to: [住所]
     - でもダウンロードリンクが出回っていて普通に取得できる
     - [3.7G] <https://thirdpartysource.microsoft.com/download/Microsoft%20Edge/75.0.121.1/Windows%20x64/chromium.zip>
 - Status Updates

@@ -415,7 +415,7 @@ guest
   - IETF \| Highlights from IETF 103
     - <https://www.ietf.org/blog/highlights-ietf-103/>
   - HTTP Working Group Minutes
-    - <https://github.com/httpwg/wg-materials/blob/gh-pages/ietf103/minutes.md[a]>
+    - <https://github.com/httpwg/wg-materials/blob/gh-pages/ietf103/minutes.md>
     - <https://daniel.haxx.se/blog/2018/11/11/http-3/>
   - HTTP3
     - QUIC を HTTP over QUIC と思っている人がいる

@@ -367,7 +367,7 @@ guest
   - *Name suggestions · Issue #2 · mikewest/sec-metadata*
     - <https://github.com/mikewest/sec-metadata/issues/2>
     - `sec-metadata` は `sec-fetch-*` で land されたのでフィニッシュ
-  - *Unpopular opinions: Standards edition (TC39, W3C, WHATWG, IETF, ISO, whatever) What do you *really* think?  by littledan*
+  - *Unpopular opinions: Standards edition (TC39, W3C, WHATWG, IETF, ISO, whatever) What do you \*really\* think?  by littledan*
     - <https://twitter.com/littledan/status/1109521891864338438>
     - 「標準化ってぶっちゃけどう思う?」
   - W3C doesn't help its invited experts. It should. - Tobie Langel - Medium
@@ -419,7 +419,7 @@ guest
   - httpwg/wg-materials
     - <https://github.com/httpwg/wg-materials/blob/gh-pages/ietf104/agenda.md>
 - RFC
-  - *RFC 8555 - Automatic Certificate Management Environment (ACME) *
+  - *RFC 8555 - Automatic Certificate Management Environment (ACME)*
     - <https://tools.ietf.org/html/rfc8555>
     - <https://letsencrypt.org/2019/03/11/acme-protocol-ietf-standard.html>
 - IETF Last Call

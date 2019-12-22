@@ -167,7 +167,7 @@ Monthly Web のモチベーションについては以下。
 - These Weeks in Firefox:
   - Issue 27: <https://blog.nightly.mozilla.org/2017/11/07/these-weeks-in-firefox-issue-27/>
   - Issue 28: <https://blog.nightly.mozilla.org/2017/11/22/these-weeks-in-firefox-issue-28/>
-- Quantum 関連[a]
+- Quantum 関連
   - New in Firefox 58: Developer Edition
     - <https://hacks.mozilla.org/2017/11/new-in-firefox-58-developer-edition/>
     - css, js, vr, extension のデバッグ環境などが改善
@@ -409,7 +409,7 @@ Monthly Web のモチベーションについては以下。
     - HTML Import replacement
     - デザインそのものをどうするか
     - F2F に持ち越し
-    - Declarative Syntax[b][c]
+    - Declarative Syntax
     - Web Components
       - <https://github.com/w3c/webcomponents/issues/641#issuecomment-341299861>
       - implement a polyfill of template-instantiation before even considering to add the API natively to the platform
@@ -558,7 +558,7 @@ Monthly Web のモチベーションについては以下。
     - 最初は WASM を中心にするらしい
     - そうすれば WASM の上に色々構築できるから
 - Recommendation
-- Proposed Recommendation[d]
+- Proposed Recommendation
   - HTML 5.2
     - <https://www.w3.org/blog/news/archives/6610>
   - DPub-ARIA 1.0 and DPub-AAM 1.0
@@ -596,7 +596,7 @@ Monthly Web のモチベーションについては以下。
     - <https://www.w3.org/blog/news/archives/6642>
     - 5G 以降の Web についての話が始まっている
     - Workshop も予定されている
-  - Proposed Group: Improving Web Advertising Business Group \| Community and Business Groups[h]
+  - Proposed Group: Improving Web Advertising Business Group \| Community and Business Groups
     - <https://www.w3.org/community/blog/2017/11/06/proposed-group-improving-web-advertising-business-group/>
   - Proposed Group: Merging of Web and Mobile APP Community Group \| Community and Business Groups
     - <https://www.w3.org/community/blog/2017/11/08/proposed-group-merging-of-web-and-mobile-app-community-group/>
@@ -716,7 +716,7 @@ Monthly Web のモチベーションについては以下。
 
 ### 周辺動向
 
-- Please build websites for the web, not just Google Chrome. [i]
+- Please build websites for the web, not just Google Chrome.
   - <https://thenextweb.com/dd/2017/11/28/please-build-websites-web-not-just-google-chrome/>
   - 古い iPhone で Airbnb がうまく使えない/表示されないことを問い合わせたユーザに
   - 「Chrome に最適化してるから Chrome 使って」などと返答(iPhone をアップデートすべき)

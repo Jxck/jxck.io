@@ -82,7 +82,7 @@ guest
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/KHSDQyr1ggA/f5kLDYPeAwAJ>
   - *Implement: Shadow DOM imperative distributed API*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/IVjeSC9tk64/u1kIxBFiBQAJ>
-    - TODO[a]
+    - TODO
   - Experiment:
   - Change:
   - Remove:
@@ -164,7 +164,7 @@ guest
     - <https://twitter.com/kinu/status/1017683220735750144>
   - ReportingObserver: know your code health
     - <https://developers.google.com/web/updates/2018/07/reportingobserver>
-    - 導入してるけど Report が JSON serializable ではないので報告中[b]
+    - 導入してるけど Report が JSON serializable ではないので報告中
 
 
 ### Firefox 動向
@@ -239,7 +239,7 @@ guest
     - <https://hacks.mozilla.org/2018/07/360-images-on-the-web-the-easy-way/>
   - Firefox Performance Update #10
     - <https://mikeconley.ca/blog/2018/07/24/firefox-performance-update-10/>
-  - *Developer Outreach - Web Platform Research and Recommendations*[c]
+  - *Developer Outreach - Web Platform Research and Recommendations*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/snwaIh0VxUo/2lBj3iBjCAAJ>
   - *Web Replay landed in Firefox nightly*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/0C2ZgpP1JTQ/5x3V-CBqCQAJ>

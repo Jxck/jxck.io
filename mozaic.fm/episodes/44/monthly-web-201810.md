@@ -336,7 +336,7 @@ guest
     - Server push
     - Resource prioritization
     - Control of the connection life
-    - *Cache digest*[a][b][c][d]
+    - *Cache digest*
 - Release Notes for Safari Technology Preview 66
   - <https://webkit.org/blog/8414/release-notes-for-safari-technology-preview-66/>
   - *Implemented the Web Share API*
@@ -362,7 +362,7 @@ guest
     - `_blank` なリンクがデフォルトで `rel=noopener` になる
     - opener が欲しければ `rel=opener` にする
     - 互換への影響を調査する
-    - issue https://github.com/whatwg/html/issues/4078
+    - issue <https://github.com/whatwg/html/issues/4078>
   - *Added VP8 support to WebRTC*
   - Added support for inline WebVTT styles
   - Added BigInt support for the bitwise `|` operator
@@ -685,7 +685,7 @@ guest
   - security token scheme もこの関連か?
   - Behind the scenes of GitHub Token Scanning \| The GitHub Blog
   - <https://blog.github.com/2018-10-17-behind-the-scenes-of-github-token-scanning/>
-  - *The secret-token URI Scheme* https://tools.ietf.org/html/draft-nottingham-how-did-that-get-into-the-repo-00
+  - *The secret-token URI Scheme* <https://tools.ietf.org/html/draft-nottingham-how-did-that-get-into-the-repo-00>
 - Metadata-Attacker - A Tool To Generate Media Files With Malicious Metadata - KitPloit - PenTest Tools for your Security Arsenal
   - <https://www.kitploit.com/2018/10/metadata-attacker-tool-to-generate.html>
 - ### 周辺動向

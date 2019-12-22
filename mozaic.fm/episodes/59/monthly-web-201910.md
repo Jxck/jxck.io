@@ -91,16 +91,16 @@ guest
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/7zLAOqxWxbE/TM4XRxrrDgAJ>
   - Ship: JS Optional Chaining operator
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/TI4h1Gj5TYE/5DnexKDfDwAJ>
-- *Implement and Ship: list-style-type `<string>`*
+  - *Implement and Ship: list-style-type `<string>`*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/GojYpoeDbqc/Ly-gpSrxCgAJ>
     - list-style-type で任意の文字を設定できるように
   - Implement and Ship: overflow-wrap: anywhere
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/CeGWh7l1Jq4/NeQXxZ4UCAAJ>
-- Implement and Ship: `@supports selector()` feature query function
+  - Implement and Ship: `@supports selector()` feature query function
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MVXTnyC_4bQ/ytY3XJq7CwAJ>
   - Implement and Ship: Freeze task queues in background (desktop) (attempt #2)
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/sotCDcI-E7Y/boghpXElDAAJ>
-- Implement: CSS ::marker pseudo-element
+  - Implement: CSS ::marker pseudo-element
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8v7pouXxxAc/5X8AeGzzCgAJ>
   - *Implement: WebRTC Insertable Streams*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/5UZuZNGvgwo/ZOl1Oz28BwAJ>
@@ -138,9 +138,9 @@ guest
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/3oVuczJ5Ty4/b8VLNNvyEAAJ>
   - Experiment: Origin Trial Opt-Out/In for Page Freezing (desktop)
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/CWOstYR9rdc/-E3C-YF7DAAJ>
-- Experiment: rendersubtree attribute + CSS content-size
+  - Experiment: rendersubtree attribute + CSS content-size
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/-6Cp2osHn50/VZhPCrXHDAAJ>
-- *Experiment: Serial API*
+  - *Experiment: Serial API*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/AiGJihoCbl4/OmA24108DwAJ>
     - シリアルポートを直接叩く API
     - USB/Bluetooth と似た stream ベース API と権限モデル
@@ -151,14 +151,14 @@ guest
     - annotation-presence
     - annotation-revision
     - annotation-suggestion
-- Change:
-- Unship:
-- Deprecate and Remove: -webkit-appearance:button for arbitrary elements
+  - Change:
+  - Unship:
+  - Deprecate and Remove: -webkit-appearance:button for arbitrary elements
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/QFXFzfQtlKk/YPOZLSoXCwAJ>
   - PSA: Support for SameSite=Extended cookie attribute value will be deprecated and removed
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/5r_fwZX9fnI/4Gb7C7bODQAJ>
     - SameSite=Extended という独自実装を消す
-- AMP
+  - AMP
   - *AMP is joining the OpenJS Foundation incubation program*
     - <https://blog.amp.dev/2019/10/10/amp-is-joining-the-openjs-foundation-incubation-program/>
     - AMP が OpenJS Fundation に入った
@@ -245,7 +245,7 @@ guest
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/p80ptKoqVvk/uKJwoK6JDAAJ>
   - Ship: Web Speech API
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/x-ZWH5sodNk/jlipsa4EDAAJ>
-  - Ship: MediaRecorder.{audio|video}BitsPerSecond
+  - Ship: `MediaRecorder.{audio|video}BitsPerSecond`
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/oCsc2h6g_7I/XGXLdckLCwAJ>
   - Ship: Infer aspect-ratio from img width and height attributes.
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/H9j3aJ20IgE/fs9Df3loCQAJ>
@@ -620,7 +620,7 @@ guest
   - 11-12: Chrome Dev Summit 2019
     - <https://developer.chrome.com/devsummit/>
   - 14-15: BlinkOn 11
-    - http://bit.ly/blinkon11-faq
+    - <http://bit.ly/blinkon11-faq>
   - 16-22: IETF106 Singapore
     - <https://ietf.org/how/meetings/106/>
   - 30-1: JSConf JP

@@ -433,7 +433,7 @@ guest
 
 ### TC39 動向
 
-- Proposals Diff[a]
+- Proposals Diff
   - <https://github.com/tc39/proposals/compare/master@{2019-05-01}...master@{2019-06-01}>
   - <https://tc39.github.io/beta/>
   - 0->1

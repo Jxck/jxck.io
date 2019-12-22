@@ -70,79 +70,79 @@ guest
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/JhZD9qdxq2E/9TpOODI8AgAJ>
   - Ship: Position State for Media Session
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/fj5EOkyQ7n0/-UTzT4jDAwAJ>
-- Implement and Ship: Web Authenticator API: cross-origin iframe support
+  - Implement and Ship: Web Authenticator API: cross-origin iframe support
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/NB6BMfcyKok/26LODCniAQAJ>
-- Implement and Ship: Restrict history navigations if navigation occurs from a sandboxed iframe
+  - Implement and Ship: Restrict history navigations if navigation occurs from a sandboxed iframe
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/jOa27iZPJtg/2ArNlXIBBAAJ>
-- Implement and Ship: Inline WebVTT Styling
+  - Implement and Ship: Inline WebVTT Styling
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/rebS5clSnIg/U0Nze97LAQAJ>
-- *Implement: Partition the HTTP Cache*
+  - *Implement: Partition the HTTP Cache*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/6KKXv1PqPZ0/3_1nYzrBBAAJ>
     - <https://www.bleepingcomputer.com/news/security/chrome-to-add-http-cache-partitioning-to-block-attacks-tracking/>
     - キャッシュがあることをチェックするタイプの攻撃への耐性
     - キャッシュヒットが下がるとして対応してなかったが、許容できるレベルだったので対応した
     - Safari は 6 年前からやっており、 Firefox も表明している
-- Implement: Main thread Scheduling APIs: Prioritized scheduler.postTask
+  - Implement: Main thread Scheduling APIs: Prioritized scheduler.postTask
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/HvqbB7TGJKU/xda9kTXGBAAJ>
-- Implement: Default Accessibility Semantics for Custom Elements
+  - Implement: Default Accessibility Semantics for Custom Elements
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/b-cGz9c67pM/0zvBzjhrAAAJ>
-- Implement: WebXR Anchors
+  - Implement: WebXR Anchors
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/EAj0HR-jIWI/wiZx2NmqBwAJ>
-- *Implement: Top Level Await*
+  - *Implement: Top Level Await*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/1_CyZvzZikM/C3wuu7hTAAAJ>
-- *Implement: JavaScript Optional Chaining*
+  - *Implement: JavaScript Optional Chaining*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/M8-Qp_LydJc/bOl5uQ8RAAAJ>
     - null/undefined の property access を undefined にできる記法
     - [blog](https://blog.jxck.io/entries/2019-08-14/nullish-coalescing-optional-chaining.html)
-- *Implement: Document Policy*
+  - *Implement: Document Policy*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Biu2XfAls5A/tJFlkdE0AgAJ>
     - Feature Policy の中で Permission Delegation にならないものを対象とする
     - 設定や機能制限に関する機能をまとめる
-- Implement: More restrictive hasEnrolledInstrument() for autofill data
+  - Implement: More restrictive hasEnrolledInstrument() for autofill data
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/geL6AWrTp88/nPKxT1kjAgAJ>
-- Implement: CSS Modules V1
+  - Implement: CSS Modules V1
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/vCrJCQxNnzo/OAYI9cPWAQAJ>
     - Synthetic Module の CSS 版
-- Implement: More restrictive show() for autofill instruments
+  - Implement: More restrictive show() for autofill instruments
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/zeF2hSX5c_o/MVdfRFemAwAJ>
-- Implement: PointerLock unadjustedMovement
+  - Implement: PointerLock unadjustedMovement
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/qZ_STHiTDzU/ldOT-Vq0DgAJ>
-- Implement: Font Table Access
+  - Implement: Font Table Access
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/-8wPGNpuV2Y/C5wdLebLAQAJ>
     - local の Font があるかどうかを取得できる API
     - Fingerprint の懸念についてはまだ作業中っぽい(permission ベース)
-- Implement: Font Enumeration
+  - Implement: Font Enumeration
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/XfkSdpMWNik/IX67fOTLAQAJ>
-- *Implement: Element Reflection*
+  - *Implement: Element Reflection*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/pWxNRxNcxFE/cjjqFse5AQAJ>
     - ARIA のステート属性のうち、 ID で参照するものの API
     - id 属性値ではなく、 Element を代入する `ariaDescribedByElements = element`
-- Implement: CSS content-size[a]
+  - Implement: CSS content-size
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/RMCpsWaqds0/_H9hTQ5tAgAJ>
     - まだ表示されていない要素のサイズを指定し、表示時にレイアウトジャンクを防ぐ
-- Implement: CompressionStream
+  - Implement: CompressionStream
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/9gaUKa3QmmE/z_Ef9Xr_DQAJ>
     - データを pipe すると gzip されて出てくる TransferStream
-- *Experiment: Periodic Background Sync*[b][c]
+  - *Experiment: Periodic Background Sync*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/aHdERJoKYh8/o3IysK5PFQAJ>
-- *Extend Origin Trial: Web Components v0 Deprecation*
+  - *Extend Origin Trial: Web Components v0 Deprecation*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/PoC7ShITSJI/-mrg7qQRBQAJ>
     - M73 で Remove 、 M80 で Expire Reverse Origin Trial の予定だった
     - M73 の現在、まだ 2% が使ってるので無理だった
     - M80 で Remove 、 M87 で Expire Reverse Origin Trial に延期する
-- Extend Origin Trial: Allow to set Jitter Buffer Target Delay
+  - Extend Origin Trial: Allow to set Jitter Buffer Target Delay
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ujRD28oEej4/Po73gdcwEQAJ>
-- Experiment: JS Self-Profiling API
+  - Experiment: JS Self-Profiling API
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/GP0OlwtC1EQ/7Q8P3v8nAgAJ>
-- Experiment: Badging API V2
+  - Experiment: Badging API V2
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/TGe5hYfJZU4/1mFm4a5AAgAJ>
-- Change:
-- Unship:
-- Deprecate and Remove: Insecure SameSite=None cookies
+  - Change:
+  - Unship:
+  - Deprecate and Remove: Insecure SameSite=None cookies
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/6KhRNH3PrvU/Xz6YyNXbAQAJ>
-- Deprecate and Remove: TLS 1.3 downgrade hardening bypass
+  - Deprecate and Remove: TLS 1.3 downgrade hardening bypass
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/zBYneRf242s/OXCLsqoeAgAJ>
-- Remove: Deprecate FTP support
+  - Remove: Deprecate FTP support
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/e1hkwUL4p3w/11sdjpuMAgAJ>
     - ブラウザでほぼ使われてないし、 SFTP もサポートしてないので段階的に消していく
   - *Upcoming Change to Chrome's Identity Indicators*
@@ -347,30 +347,30 @@ guest
     - バッテリーを長持ちさせるためのガイドライン
     - マシンリソースのハイパワーな状態の時間を減らしできるだけアイドルにする
     - インタラクションの 3 状態
-- アクティブにインタラクションしている
-- ページは最前面に出ているがインタラクションしていない
-- ページが最前面ではない
-- User Interaction のための *fast paths* をあけておく
-  - FP/ロードの最適化は、電力消費にも効果的
-  - 初期ロード後は、 JS をすばやくアイドルにすることが重要
-  - OS で可能な操作(スクロール etc) は JS でやらずに OS に任せるほうが効率的。
-- できるだけ電力を消費しない
-  - 頻繁に CPU を起こすような Timer の数を減らす。
-  - 動き続けるアニメーション(GIF, spinner, auto-play video etc)を減らす。
-  - IntersectionObserver を用いて見えてない要素の処理を減らす。
-  - アニメーションはスクリプトではなく最適化の効く CSS を利用。
-  - 定期的なネットワークのポーリングをやめ WebSocket や KeepAlive fetch を利用。
-- 消費電力ゼロ
-  - ページがインアクティブになると以下を実施
-    - rAF の停止
-    - CSS/SVG アニメーションの停止
-    - タイマーを間引く
-  - さらに OS が以下を実施
-    - iOS: タブを完全にサスペンド
-    - macOS: App Nap でスロットル
-  - ただし CPU は起こせてしまうため以下を併用
-    - Page Visibility API
-    - fucus されてない場合に発生する blur event
+    - アクティブにインタラクションしている
+    - ページは最前面に出ているがインタラクションしていない
+    - ページが最前面ではない
+    - User Interaction のための *fast paths* をあけておく
+      - FP/ロードの最適化は、電力消費にも効果的
+      - 初期ロード後は、 JS をすばやくアイドルにすることが重要
+      - OS で可能な操作(スクロール etc) は JS でやらずに OS に任せるほうが効率的。
+    - できるだけ電力を消費しない
+      - 頻繁に CPU を起こすような Timer の数を減らす。
+      - 動き続けるアニメーション(GIF, spinner, auto-play video etc)を減らす。
+      - IntersectionObserver を用いて見えてない要素の処理を減らす。
+      - アニメーションはスクリプトではなく最適化の効く CSS を利用。
+      - 定期的なネットワークのポーリングをやめ WebSocket や KeepAlive fetch を利用。
+    - 消費電力ゼロ
+      - ページがインアクティブになると以下を実施
+        - rAF の停止
+        - CSS/SVG アニメーションの停止
+        - タイマーを間引く
+      - さらに OS が以下を実施
+        - iOS: タブを完全にサスペンド
+        - macOS: App Nap でスロットル
+      - ただし CPU は起こせてしまうため以下を併用
+        - Page Visibility API
+        - fucus されてない場合に発生する blur event
 - Other
 
 
@@ -401,13 +401,13 @@ guest
     - Excel にエクスポートもでき、商品の比較など様々な用途に使える
   - *Reddit MS Edge Team AMA*
     - <https://www.reddit.com/r/IAmA/comments/c094uf/hi_reddit_were_the_team_behind_microsoft_edge_and/>
-      - Chrome の Adblock 対応について
-      - <https://www.reddit.com/r/IAmA/comments/c094uf/hi_reddit_were_the_team_behind_microsoft_edge_and/er34xbw/?context=8&depth=9>
-      - Tracking Prevention について
-      - <https://www.reddit.com/r/IAmA/comments/c094uf/hi_reddit_were_the_team_behind_microsoft_edge_and/er2tawg/>
+    - Chrome の Adblock 対応について
+    - <https://www.reddit.com/r/IAmA/comments/c094uf/hi_reddit_were_the_team_behind_microsoft_edge_and/er34xbw/?context=8&depth=9>
+    - Tracking Prevention について
+    - <https://www.reddit.com/r/IAmA/comments/c094uf/hi_reddit_were_the_team_behind_microsoft_edge_and/er2tawg/>
   - 新しい BugBounty Program
     - <https://www.microsoft.com/en-us/msrc/bounty-new-edge>
-  - <https://social.msdn.microsoft.com/Forums/ja-JP/home?forum=edgeiesupportteamja>
+    - <https://social.msdn.microsoft.com/Forums/ja-JP/home?forum=edgeiesupportteamja>
 
 
 ### WHATWG/W3C 動向
@@ -429,9 +429,9 @@ guest
   - Proposed W3C Charter: Decentralized Identifier Working Group (until 2019-08-31)
     - <https://lists.w3.org/Archives/Public/public-new-work/2019Aug/0000.html>
   - Proposed W3C Charter: Cascading Style Sheets (CSS) Working Group (until 2019-09-22)
-    - http://lists.w3.org/Archives/Public/public-new-work/2019Aug/0015.html
+    - <http://lists.w3.org/Archives/Public/public-new-work/2019Aug/0015.html>
   - Proposed W3C Charter: Decentralized Identifier Working Group
-    - http://lists.w3.org/Archives/Public/public-new-work/2019Aug/0013.html
+    - <http://lists.w3.org/Archives/Public/public-new-work/2019Aug/0013.html>
   - Proposed W3C Charter: Cascading Style Sheets (CSS) Working Group
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/5q0NoRZ-QVM/2w_JTwQSDAAJ>
 - Other
@@ -450,7 +450,7 @@ guest
       - Login API (@johnwilander)
       - CSP Next?
       - Double-keyed (or more) caches
-      - Protecting/sandboxing `<iframe>` sites (history.length, caches, window[i])
+      - Protecting/sandboxing `<iframe>` sites (history.length, caches, window)
 
 
 ### TC39 動向
@@ -590,7 +590,7 @@ guest
   - 11-12: Chrome Dev Summit 2019
     - <https://developer.chrome.com/devsummit/>
   - 14-15: BlinkOn 11
-    - http://bit.ly/blinkon11-faq
+    - <http://bit.ly/blinkon11-faq>
   - 30-1: JSConf JP
     - <https://www.jsconf.jp>
 - 12 月

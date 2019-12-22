@@ -183,7 +183,7 @@ guest
   - Implement and Ship: Support 'x' as a CSS resolution
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/FsD97U77tss/n3m_yvyoAAAJ>
   - Implement: WebRTC Unified Plan SDP
-    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Qgwfl-nD0Zs/u45qUqRHBwAJ
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Qgwfl-nD0Zs/u45qUqRHBwAJ>
     - [blog](https://blog.jxck.io/entries/2018-01-05/sdp-unified-plan.html)
   - Implement: Unified Touch adjustment
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/VjFBlOBwkmY/rDS04njmCAAJ>

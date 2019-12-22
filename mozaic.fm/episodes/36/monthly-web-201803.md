@@ -524,9 +524,9 @@ guest
     - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/0237.html>
     - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/0238.html>
 - Call for Adoption
-  - Variants[d]
+  - Variants
     - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/0224.html>
-  - HTTPtre[e]
+  - HTTPtre
     - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/0225.html>
 - I-D Action
   - draft-ietf-httpbis-bcp56bis-02.txt
