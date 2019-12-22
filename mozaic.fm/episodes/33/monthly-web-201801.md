@@ -199,7 +199,7 @@ guest
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/irAY53rSXIE/p0oZ5j4mAgAJ>
     - Permission Delegation Proposal
       - <https://docs.google.com/document/d/1x5QejvpyQ71LPWhMLsaM1lWCfSsBsSQ8Dap9kJ6uLv0/>
-  - *Implement: Origin-Signed <HTTP Exchanges (Part of Web Packaging)*>
+  - *Implement: Origin-Signed HTTP Exchanges (Part of Web Packaging)*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/n7cZXSTwBTY/l7rXucIwBAAJ>
     - Signature をヘッダに乗せてレスポンスに署名する
   - *Implement: Picture-in-Picture (PiP)*

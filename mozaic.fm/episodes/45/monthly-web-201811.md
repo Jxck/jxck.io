@@ -283,7 +283,7 @@ guest
   - Implemented getTiming() and updateTiming()
   - Implemented Animation.updatePlaybackRate()
   - Added support to allow cross-document intersection observing
-  - Added CSS Custom Properties API Support for syntax="*" and <length> with proper cycle handling
+  - Added CSS Custom Properties API Support for syntax="*" and `<length>` with proper cycle handling
   - Implemented text-underline-offset and text-decoration-thickness
   - Added support for sender and receiver getCapabilities
   - Added onremovetrack support for RTCPeerConnection removed tracks

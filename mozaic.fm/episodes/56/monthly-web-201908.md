@@ -331,7 +331,7 @@ guest
     - Made storing cross-origin top-level prefetches in HTTP cache optional (r247860)
     - Exposed the aria-label attribute for `<video>` elements (r247891)
     - Enabled a WebRTC debug mode without encryption (r247438)
-    - *Added support for console.screenshot with detached (not in main DOM tree) <img> and <picture> elements (r247814)*
+    - *Added support for console.screenshot with detached (not in main DOM tree) `<img>` and `<picture>` elements (r247814)*
     - *Added support for console.screenshot with ImageData and ImageBitmap (r247812)*
     - Added an indicator/separator around items in the Images collection in the Resources tab (r248019)
     - Add special case for about:blank resources to show "Resource has no content" message (r247747)
