@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Drag & Drop Basic DEMO</title>
+
+<style>
+#draggable {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  display: inline-block;
+}
+
+#droppable {
+  width: 600px;
+  height: 600px;
+  background-color: yellow;
+}
+</style>
+
+<h1>Test</h1>
+
+<div id=draggable draggable=true>draggable</div>
+
+<div id=droppable>droppable</div>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  document.on('DOMContentLoaded', async (e) => {
+    console.log(e)
+
+    $('#draggable').on('dragstart', (e) => {
+      console.log(e.type)
+      e.dataTransfer.setData("text", e.target.id);
+    })
+
+    $('#droppable').on('dragover', (e) => {
+      e.preventDefault()
+      console.log(e.type)
+    })
+
+    $('#droppable').on('drop', (e) => {
+      e.preventDefault()
+      console.log(e.type)
+      const id = e.dataTransfer.getData("text");
+      e.target.appendChild($(`#${id}`).cloneNode())
+    })
+
+    //;[
+    //   'drag',
+    //   'dragend',
+    //   'dragenter',
+    //   'dragexit',
+    //   'dragleave',
+    //   'dragover',
+    //   'dragstart',
+    //   'drop',
+    //].forEach((name) => {
+    //  $('#draggable').on(name, (e) => {
+    //    console.log(e.type)
+    //  })
+    //  $('#droppable').on(name, (e) => {
+    //    e.preventDefault()
+    //    // console.log(2, e.type, e.target.id)
+    //  })
+    //})
+  })
+</script>
