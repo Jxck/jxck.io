@@ -7,6 +7,18 @@
 
 <title>Audio API DEMO | labs.jxck.io</title>
 <style>
+  html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    height: 100%;
+    border: solid 1px #ccc;
+    margin: 0;
+    padding: 0;
+  }
+
   button {
     border: none;
     padding: 0;
@@ -84,12 +96,35 @@
       <option value=3.0>x3.0</option>
     </select>
   </div>
+
+  <form>
+    <input class=fileinput type=file accept="audio/*" name=audiofile>
+  </form>
 </div>
 
 <script>
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
   const $ = document.querySelector.bind(document)
   const $audio = $('.audio')
+  const $fileinput = $('.fileinput')
+
+  $fileinput.on('change', (e) => {
+    const file = e.target.files[0]
+    $audio.src = URL.createObjectURL(file)
+  })
+
+  document.body.on("dragover", (e) => {
+    e.preventDefault()
+    console.log(e)
+  })
+
+  document.body.on("drop", (e) => {
+    e.preventDefault()
+    console.log(e)
+    const dataTransfer = e.dataTransfer
+    console.log(dataTransfer, dataTransfer.files)
+    $audio.src = URL.createObjectURL(dataTransfer.files[0])
+  })
 
   $('.playpause').on('click', ({target}) => {
     if ($audio.paused) {
@@ -271,7 +306,6 @@
   $audio.on('waiting', (e) => {
     console.log(e.type, e)
   })
-
 
   document.on('keydown', ({key}) => {
     console.log({key})
