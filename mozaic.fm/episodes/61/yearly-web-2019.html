@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
+
+  <link rel=canonical href=https://mozaic.fm/episodes/61/yearly-web-2019.html>
+  <link rel=preload   type=font/woff2 as=font href=/assets/font/NotoSansCJKjp-Regular-Jxck-20191017.woff2 crossorigin>
+
+  <script defer type=module src=/assets/js/mozaic.js></script>
+  <script defer type=module src=/assets/js/sw.js></script>
+  <script defer             src=/assets/js/ga.mozaic.js></script>
+
+  <link rel=icon             type =image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon             type =image/png sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.png>
+  <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.png>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="第 61 回のテーマは 2019 年の Yearly Web です。今年行った Monthly Web を振り返ります。">
+  <meta name=keywords            content="monthly-web,mozaic.fm">
+  <meta name=theme-color         content=#000000>
+
+  <meta name=twitter:card        content=summary>
+  <meta name=twitter:site        content=@jxck_>
+  <meta name=twitter:url         content=https://mozaic.fm/episodes/61/yearly-web-2019.html>
+  <meta name=twitter:title       content="ep61 Yearly Web 2019 | mozaic.fm">
+  <meta name=twitter:description content="第 61 回のテーマは 2019 年の Yearly Web です。今年行った Monthly Web を振り返ります。">
+  <meta name=twitter:image       content=https://mozaic.fm/assets/img/mozaic.png>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://mozaic.fm/episodes/61/yearly-web-2019.html>
+  <meta property=og:title        content="ep61 Yearly Web 2019 | mozaic.fm">
+  <meta property=og:site_name    content=mozaic.fm>
+  <meta property=og:description  content="第 61 回のテーマは 2019 年の Yearly Web です。今年行った Monthly Web を振り返ります。">
+  <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.png>
+
+  <title>ep61 Yearly Web 2019 | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/60/monthly-web-201911.html>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css>
+
+  <template id=search_diag>
+    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/dialog.css>
+    <dialog class=search>
+      <form method=get action=https://google.co.jp/search>
+        <fieldset>
+          <legend>search via google</legend>
+          <label for=keywords>keyword:</label>
+          <input type=search name=q id=keywords placeholder=keywords>
+          <input type=hidden name=q value=site:mozaic.fm/episodes>
+          <button type=submit>go</button>
+        </fieldset>
+      </form>
+    </dialog>
+  </template>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=/                                                                            ><img alt=top              width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/mozaic.svg class=logo></a>
+      <li><a                                                                                   ><img alt=share id=share   width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/share.svg></a>
+      <li><a href=https://www.google.co.jp/search?q=site%3Amozaic.fm%2Fepisodes class=search   ><img alt=search           width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/search.svg></a>
+      <li><a href=http://feed.mozaic.fm                                                        ><img alt="rss feed"       width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/podcast.svg></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495                    ><img alt=itunes           width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/itunes.svg></a>
+      <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D"    ><img alt="google podcast" width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/google-podcast.svg></a>
+      <li><a href="https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd"><img alt=huamns.txt       width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/twitter.svg></a>
+      <li><a href=https://jxck.io                                                              ><img alt="jxck logo"      width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/jxck.svg class=logo></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/60/monthly-web-201911.html">ep60 Monthly Web 201911</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+<article>
+      <h1><a href=/episodes/61/yearly-web-2019.html>ep61 Yearly Web 2019</a></h1>
+      <section>
+        <h2 id="info"><a href="#info">Info</a></h2>
+        <p><mozaic-player><audio slot=audio src=https://files.mozaic.fm/mozaic-ep61.mp3 title='ep61 Yearly Web 2019' data-forward=+30 data-back=-10></audio></mozaic-player>
+        <dl class=info>
+          <div>
+            <dt>published_at
+            <dd>2019-12-29
+          </div>
+          <div>
+            <dt>guest
+            <dd><a href="https://twitter.com/myakura">@myakura</a>
+          </div>
+        </dl>
+      </section>
+      <section>
+        <h2 id="theme"><a href="#theme">Theme</a></h2>
+        <p>第 61 回のテーマは 2019 年の Yearly Web です。
+        <p>今年行った Monthly Web を振り返ります。
+      </section>
+      <section>
+        <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
+        <section>
+          <h3 id="2019-年キーワード"><a href="#2019-年キーワード">2019 年キーワード</a></h3>
+          <section>
+            <h4 id="jxck"><a href="#jxck">Jxck</a></h4>
+            <ul>
+              <li>WebTransport
+              <li>SXG/WBN
+              <li>ITP/SameSIte Default Lax
+              <li>DarkMode/HighContrast
+              <li>DesignSystem
+              <li>Document Policy
+              <li>Portal
+              <li>DoH
+            </ul>
+          </section>
+          <section>
+            <h4 id="myakura"><a href="#myakura">myakura</a></h4>
+            <ul>
+              <li>doh
+              <li>cookie
+              <li>
+                firefox css support<ul>
+                  <li>subgrid
+                  <li>aspectratio
+                </ul>
+              </li>
+              <li>apple/mozilla -&gt; google
+              <li>chromium への不安
+            </ul>
+          </section>
+        </section>
+        <section>
+          <h3 id="1-月"><a href="#1-月">1 月</a></h3>
+          <ul>
+            <li>
+              Chrome<ul>
+                <li>Intent to Ship: Signed HTTP Exchanges (SXG)
+                <li>Intent to Implement: High Contrast support
+                <li>Intent to Deprecate and Remove: Shadow DOM V0, Custom Elements V0, HTML Imports
+                <li>Extensions Manifest v3 の WebRequest to declarativeNetRequest API
+              </ul>
+            </li>
+            <li>
+              Firefox<ul>
+                <li>WebP / AVI1 Support
+                <li>
+                  Intent to Ship: default noopener for <code translate="no">_blank</code>
+                </li>
+                <li>Anti Tracking Policy
+              </ul>
+            </li>
+            <li>
+              Safari<ul>
+                <li>TP74 U2F HID Authenticators
+                <li>TP74 Disable WebSQL default
+                <li>Remove Legacy SPDY Support
+                <li>TP73 -&gt; iOS 12.1
+              </ul>
+            </li>
+            <li>Edge
+            <li>
+              W3C<ul>
+                <li>Alex / Travis が TAG を抜け Alice Boxhall が join
+                <li>WICG や Chrome チームの explainer プロセスについて問題視
+                <li>Edge チームから HTML Modules の提案
+              </ul>
+            </li>
+            <li>
+              TC39<ul>
+                <li>
+                  ES2019 に入る 8 つの機能(現 Stage 4)が確定<ul>
+                    <li>Optional catch binding
+                    <li>JSON superset
+                    <li>Symbol.prototype.description
+                    <li>Function.prototype.toString
+                    <li>Object.fromEntries
+                    <li>Well-formed JSON.stringify
+                    <li>String.prototype.{trimStart,trimEnd}
+                    <li>Array.prototype.{flat,flatMap}
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              IETF<ul>
+                <li>Cache Digests が実装無くて終わりそう
+                <li>H2 Priority みんなちゃんと実装できてない問題
+              </ul>
+            </li>
+            <li>
+              Security<ul>
+                <li>Github で TLS1.3 ロールアウト
+                <li>
+                  LE が証明書提供前に Google Safe Browsing を見るのをやめた<ul>
+                    <li>証明書の担保する安全(コンテンツを含まない)の議論
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Other<ul>
+                <li>
+                  <code translate="no">&lt;pinch-zoom&gt;</code> のデモ
+                </li>
+                <li>twitter の .well-known/change-password サポート
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3 id="2-月"><a href="#2-月">2 月</a></h3>
+          <ul>
+            <li>
+              Chrome<ul>
+                <li>TWA for Android
+                <li>passive event for scroll by default
+                <li>BF Cache 実装
+                <li>Ship: Private Class Field
+                <li>V8/Blink 統合 GC の Oilpan が Finch 開始
+                <li>Intent to Impl: import maps
+                <li>Intents のフォーマット統一開始
+                <li>.dev 提供開始
+                <li>Android が FIDO2 認証取得
+              </ul>
+            </li>
+            <li>
+              Firefox<ul>
+                <li>BigInt, prefers-color-scheme ettc
+                <li>Rust で Style Component 書き直す話
+              </ul>
+            </li>
+            <li>
+              Safari<ul>
+                <li>TP75,76
+                <li>
+                  Safari 12.1 Release<ul>
+                    <li>Push prompt に user gesture
+                    <li>prefers-color-scheme: dark
+                    <li>Do Not Track 削除
+                    <li>
+                      default noopener for <code translate="no">_blank</code>
+                    </li>
+                    <li>ITP2.1
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Edge<ul>
+                <li>
+                  IE やめよう論争<ul>
+                    <li>MS の声明が雑に翻訳されてそうなった
+                  </ul>
+                </li>
+                <li>MicrosoftEdge/wptest より簡単に WPTest 各仕組み
+              </ul>
+            </li>
+            <li>
+              W3C<ul>
+                <li>Salesforce が W3C に参加
+                <li>W3C が中規模企業プラン用意
+                <li>W3C Process 更新、 AB メンバの席や、 Contribution ライセンスの整備
+              </ul>
+            </li>
+            <li>
+              TC39<ul>
+                <li>Single-Chair + Vice Chair 構成から Flat 3 Chair にし責任分散
+                <li>ES2020 開始
+              </ul>
+            </li>
+            <li>
+              IETF<ul>
+                <li>Github を IETF で使う流れを整備
+                <li>Fake SNI (security で詳しく)
+              </ul>
+            </li>
+            <li>
+              Security<ul>
+                <li>韓国で SNI Blocking
+                <li>ESNI と ESNI Block と Fake SNI
+              </ul>
+            </li>
+            <li>Other
+          </ul>
+        </section>
+        <section>
+          <h3 id="3-月"><a href="#3-月">3 月</a></h3>
+          <ul>
+            <li>
+              Chrome<ul>
+                <li>Implement: Subresource prefetching+loading via Signed HTTP Exchange
+                <li>Implement: Alternative Text in CSS Generated Content
+                <li>Experiment: KV storage built-in module + import maps
+                <li>JIT-less V8
+                <li>AMP for Email
+              </ul>
+            </li>
+            <li>
+              Firefox<ul>
+                <li>
+                  Ship: Dynamic module imports (JS <code translate="no">import()</code> syntax)
+                </li>
+                <li>Ship: String.prototype.matchAll
+                <li>Ship: CSS Containment
+                <li>
+                  Implement: cryptomining and fingerprinting resource blocking<ul>
+                    <li>コンテンツブロッキングのリストに Mining/Fingerprint が追加された
+                    <li>Coinhive なども入っている
+                  </ul>
+                </li>
+                <li>Unship: Some Shadow DOM v0 APIs
+              </ul>
+            </li>
+            <li>
+              Safari<ul>
+                <li>
+                  TP77<ul>
+                    <li>Made navigator.mediaDevices SecureContext (r241602)
+                  </ul>
+                </li>
+                <li>
+                  TP78<ul>
+                    <li>Enabled support for Pointer Events by default (r242232)
+                    <li>Added support for the referrerpolicy attribute (r242534)
+                  </ul>
+                </li>
+                <li>On the Road to WebRTC 1.0, Including VP8
+              </ul>
+            </li>
+            <li>
+              Edge<ul>
+                <li>Japan Support Blog がついにアクセスできなくなる
+              </ul>
+            </li>
+            <li>
+              WHATWG/W3C<ul>
+                <li>#web30
+                <li>webauthn recommendation
+                <li>Patents and Standards Interest Group (PSIG)+
+                <li>[ External ] Moving Delivered JavaScript Forward
+                <li>Upcoming: W3C Workshop on Web Games, 27-28 June
+                <li>「標準化ってぶっちゃけどう思う?」 by littledan
+              </ul>
+            </li>
+            <li>
+              TC39<ul>
+                <li>
+                  A Homepage for the JavaScript Specification<ul>
+                    <li><a href="https://tc39.github.io/">https://tc39.github.io/</a>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              IETF<ul>
+                <li>RFC 8555 - Automatic Certificate Management Environment (ACME)
+              </ul>
+            </li>
+            <li>
+              Security<ul>
+                <li>
+                  Coinhive<ul>
+                    <li><a href="https://twitter.com/moro_is/status/1110748839831470081">https://twitter.com/moro_is/status/1110748839831470081</a>
+                    <li>無罪判決
+                    <li>Coinhive 自体も 3 月で終了
+                  </ul>
+                </li>
+                <li>
+                  #alertloop<ul>
+                    <li><a href="https://www.hacker.or.jp/">https://www.hacker.or.jp/</a>
+                    <li>一般社団法人日本ハッカー協会で寄付を募り 6,934,471 円の寄付を集めた
+                    <li>法的支援や転職支援を行う協会の会員有志が始めた
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Other<ul>
+                <li>
+                  OpenJS Foundation<ul>
+                    <li><a href="https://openjsf.org/">https://openjsf.org/</a>
+                  </ul>
+                </li>
+                <li>
+                  NGINX to Join F5: Proud to Finish One Chapter and Excited to Start the Next - NGINX<ul>
+                    <li><a href="https://www.nginx.com/blog/nginx-joins-f5/">https://www.nginx.com/blog/nginx-joins-f5/</a>
+                    <li><a href="https://www.publickey1.jp/blog/19/nginxf5f5nginx.html">https://www.publickey1.jp/blog/19/nginxf5f5nginx.html</a>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3 id="4-月"><a href="#4-月">4 月</a></h3>
+          <ul>
+            <li>
+              Chrome<ul>
+                <li>Data Saver が Light Mode に
+                <li>Chromium Chronicle 開始
+                <li>
+                  BlinkOn10<ul>
+                    <li>New Speed Metrics (Layout Stability, LCP etc)
+                  </ul>
+                </li>
+                <li>
+                  AMP Conf 2019<ul>
+                    <li><a href="https://amp.dev/ja/events/amp-conf-2019/">https://amp.dev/ja/events/amp-conf-2019/</a>
+                  </ul>
+                </li>
+                <li>Ship: Lazyload
+                <li>
+                  Implement and Ship : Support &ldquo;noreferrer&rdquo; for window.open()<ul>
+                    <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/K8_-u7mK688/rK7FrIOLBQAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/K8_-u7mK688/rK7FrIOLBQAJ</a>
+                  </ul>
+                </li>
+                <li>日付系 input の元号に令和追加
+                <li>
+                  isInputPending: Facebook&rsquo;s first browser API contribution - Facebook Code
+                </li>
+                <li>Announcing AMP Real URL
+              </ul>
+            </li>
+            <li>
+              Firefox<ul>
+                <li>
+                  Reducing Notification Permission Prompt Spam in Firefox<ul>
+                    <li><a href="https://blog.nightly.mozilla.org/2019/04/01/reducing-notification-permission-prompt-spam-in-firefox/">https://blog.nightly.mozilla.org/2019/04/01/reducing-notification-permission-prompt-spam-in-firefox/</a>
+                    <li>Web Push のプロンプトについて 2018 年 12 月 25 日からひと月調査した
+                    <li>1800 万以上のプロンプトが表示され、許可されたのが 3% 未満、表示されたら即離脱したケースが 19% も
+                    <li>カメラの許可が 85% 以上なので、これは多すぎる
+                    <li>4 月の 1 ヶ月間、 Nightly でユーザージェスチャーのないプロンプトを拒否する実験をする
+                    <li>リリース版においても、プロンプトに関する情報を限定的に集めるとも
+                  </ul>
+                </li>
+                <li>
+                  Implement and Ship: Support &ldquo;noreferrer&rdquo; feature for window.open()<ul>
+                    <li><a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/eTt1nd1Ia_Y/x-8JIf2TCwAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/eTt1nd1Ia_Y/x-8JIf2TCwAJ</a>
+                  </ul>
+                </li>
+                <li>
+                  Standardizing WASI: A system interface to run WebAssembly outside the web<ul>
+                    <li><a href="https://hacks.mozilla.org/2019/03/standardizing-wasi-a-webassembly-system-interface/">https://hacks.mozilla.org/2019/03/standardizing-wasi-a-webassembly-system-interface/</a>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Safari<ul>
+                <li>
+                  New WebKit Features in Safari 12.1<ul>
+                    <li>TP59-76
+                  </ul>
+                </li>
+                <li>
+                  TP80<ul>
+                    <li>
+                      Added support for &ldquo;noreferrer&rdquo; window feature to window.open() (r243705)
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Intelligent Tracking Prevention 2.2<ul>
+                    <li><a href="https://webkit.org/blog/8828/intelligent-tracking-prevention-2-2/">https://webkit.org/blog/8828/intelligent-tracking-prevention-2-2/</a>
+                    <li>QueryParameter でトラッキングしているっぽい場合
+                    <li>JS で付与された Cookie は 1 日で消える
+                    <li>(2.1 では document.cookie は 7 日になった)
+                    <li>SSO は ID Provider の 1st party Cookie が Header から出ていれば大丈夫ということか
+                  </ul>
+                </li>
+                <li>
+                  Link Click Analytics and Privacy<ul>
+                    <li>ping 属性を無効にする設定を入れない話
+                    <li>代わりに ITP / Content Blocker
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Edge<ul>
+                <li>new Edge Dev/Canary 公開
+                <li>UA に Edg/version が追加
+                <li>コードは Redmond に 5$ 送ったらもらえる?
+              </ul>
+            </li>
+            <li>
+              WHATWG/W3C<ul>
+                <li>
+                  DRAFT Memorandum of Understanding Between W3C and WHATWG<ul>
+                    <li>HTML と DOM 仕様を WHATWG で策定し、 W3C がその Review Drafts を REC に持って行くという方針のドラフト
+                  </ul>
+                </li>
+                <li>W3C が standardize a Full TV Experience on the Web で Emmy 賞
+                <li>
+                  Apple の John Wilander による Signed Exchange のプライバシーにおける考察<ul>
+                    <li>リソースのないニュースサイトにアドテクが Signed Exchange を提供するようになるとどうなるか?
+                    <li>トラッキング入りの個別の Signed package を送られやしないか?
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              TC39<ul>
+                <li>Standard-lib をどういう粒度で入れるかの議論
+                <li>smooshgate の反省とアップデート (flattern)
+              </ul>
+            </li>
+            <li>
+              IETF<ul>
+                <li>
+                  (Joke) RFC 8565 - Hypertext Jeopardy Protocol<ul>
+                    <li><a href="https://tools.ietf.org/html/rfc8565">https://tools.ietf.org/html/rfc8565</a>
+                  </ul>
+                </li>
+                <li>
+                  RFC 8586 - Loop Detection in Content Delivery Networks (CDNs)<ul>
+                    <li><a href="https://tools.ietf.org/html/rfc8586">https://tools.ietf.org/html/rfc8586</a>
+                  </ul>
+                </li>
+                <li>
+                  HTTP State Tokens<ul>
+                    <li><a href="https://tools.ietf.org/html/draft-west-http-state-tokens-00">https://tools.ietf.org/html/draft-west-http-state-tokens-00</a>
+                  </ul>
+                </li>
+                <li>
+                  The QUIC Loss Bits<ul>
+                    <li><a href="https://tools.ietf.org/html/draft-ferrieux-hamchaoui-quic-lossbits-00">https://tools.ietf.org/html/draft-ferrieux-hamchaoui-quic-lossbits-00</a>
+                  </ul>
+                </li>
+                <li>
+                  HTTP Testing Resources - httpwg/wiki Wiki<ul>
+                    <li><a href="https://github.com/httpwg/wiki/wiki/HTTP-Testing-Resources">https://github.com/httpwg/wiki/wiki/HTTP-Testing-Resources</a>
+                  </ul>
+                </li>
+                <li>
+                  コインハイブ事件のご報告とこれからのこと<ul>
+                    <li><a href="https://note.mu/morois/n/n7210db925aa1">https://note.mu/morois/n/n7210db925aa1</a>
+                  </ul>
+                </li>
+                <li>
+                  2019/7/8 からは CrossRoot ではなく ISRG Root X1 で証明書を配布するようになる<ul>
+                    <li><a href="https://letsencrypt.org/2019/04/15/transitioning-to-isrg-root.html">https://letsencrypt.org/2019/04/15/transitioning-to-isrg-root.html</a>
+                  </ul>
+                </li>
+                <li>
+                  Google 7 割くらい CSP をデプロイし、 nonce only は 1 割程度までデプロイ済み<ul>
+                    <li><a href="https://speakerdeck.com/mikispag/content-security-policy-a-successful-mess-between-hardening-and-mitigation">https://speakerdeck.com/mikispag/content-security-policy-a-successful-mess-between-hardening-and-mitigation</a>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Other<ul>
+                <li>
+                  Fastly Lucet<ul>
+                    <li><a href="https://www.fastly.com/blog/announcing-lucet-fastly-native-webassembly-compiler-runtime">https://www.fastly.com/blog/announcing-lucet-fastly-native-webassembly-compiler-runtime</a>
+                    <li>Mozilla Cranelift 上の WASM/WASI runtime で
+                  </ul>
+                </li>
+                <li>
+                  Cloudflare WARP<ul>
+                    <li>無料 VPN サービス、有料版 Warp+ は Argo (輻輳最適化)
+                  </ul>
+                </li>
+                <li>
+                  WAPM<ul>
+                    <li><a href="https://wapm.io/">https://wapm.io/</a>
+                    <li>WASM のパッケージマネージャー/リポジトリ
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3 id="5-月"><a href="#5-月">5 月</a></h3>
+          <ul>
+            <li>
+              Google<ul>
+                <li>
+                  mozaic bootcamp 2019<ul>
+                    <li><a href="https://blog.jxck.io/entries/2019-05-12/mozaic-bootcamp-2019.html">https://blog.jxck.io/entries/2019-05-12/mozaic-bootcamp-2019.html</a>
+                  </ul>
+                </li>
+                <li>
+                  Google I/O<ul>
+                    <li><a href="https://blog.chromium.org/2019/05/google-io-2019-whats-new-with-chrome.html">https://blog.chromium.org/2019/05/google-io-2019-whats-new-with-chrome.html</a>
+                  </ul>
+                </li>
+                <li>
+                  Paint Holding<ul>
+                    <li><a href="https://developers.google.com/web/updates/2019/05/paint-holding">https://developers.google.com/web/updates/2019/05/paint-holding</a>
+                    <li>ページ遷移のときに一度白でペイントしていたのをやめて前の画面を残す
+                  </ul>
+                </li>
+                <li>
+                  Chromium Blog: Improving privacy and security on the web<ul>
+                    <li><a href="https://blog.chromium.org/2019/05/improving-privacy-and-security-on-web.html">https://blog.chromium.org/2019/05/improving-privacy-and-security-on-web.html</a>
+                    <li>SameSiteCookie や Fingerprint 対策など、プライバシー保護を強化していく
+                  </ul>
+                </li>
+                <li>Ship: Media Queries: prefers-color-scheme feature
+                <li>Ship: Form-associated custom elements
+                <li>
+                  Ship: <code translate="no">formdata</code> event
+                </li>
+                <li>Implement and Ship: form.requestSubmit()
+                <li>Implement: Periodic Background Sync
+                <li>
+                  Implement: Picture-in-Picture for arbitrary content<ul>
+                    <li>任意のコンテンツを PiP
+                  </ul>
+                </li>
+                <li>Implement (meta): Bundled HTTP Exchanges
+                <li>
+                  PSA: Turning on LayoutNG<ul>
+                    <li>LayoutNG が Chrome76 から有効
+                  </ul>
+                </li>
+                <li>
+                  OOR-CORS is enabled by default on HEAD<ul>
+                    <li>このあと色々大変で 1 年くらい続いた
+                  </ul>
+                </li>
+                <li>
+                  Flutter for Web<ul>
+                    <li><a href="https://developers.googleblog.com/2019/05/Flutter-io19.html">https://developers.googleblog.com/2019/05/Flutter-io19.html</a>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Firefox<ul>
+                <li>
+                  Firefox 67 for developers<ul>
+                    <li>prefers-color-scheme
+                    <li>String.matchAll()
+                    <li>Dynamic import()
+                    <li>hashbang grammar
+                    <li>CSS revert keyword
+                    <li>word-break: break-word
+                  </ul>
+                </li>
+                <li>
+                  TLS 1.0 and 1.1 Removal Update<ul>
+                    <li>10 月には Nightly で無効にする予定
+                  </ul>
+                </li>
+                <li>
+                  Firefox 67: Dark Mode CSS, WebRender, and more<ul>
+                    <li>prefers-color-scheme
+                  </ul>
+                </li>
+                <li>Implement: Cookie SameSite=lax by default and SameSite=none only if secure
+                <li>
+                  拡張の中間証明書が失効したため拡張が一時使えない状況に<ul>
+                    <li><a href="https://hacks.mozilla.org/2019/05/technical-details-on-the-recent-firefox-add-on-outage/">https://hacks.mozilla.org/2019/05/technical-details-on-the-recent-firefox-add-on-outage/</a>
+                  </ul>
+                </li>
+                <li>
+                  Browser Compat Data のガバナンス強化<ul>
+                    <li><a href="https://hacks.mozilla.org/2019/05/browser-compatibility-data-and-open-source-governance/">https://hacks.mozilla.org/2019/05/browser-compatibility-data-and-open-source-governance/</a>
+                    <li>2019 年はデータを完全なものにしたいという野望も持っていると
+                  </ul>
+                </li>
+                <li>
+                  UA 文字列から OS のアーキテクチャなど(WOW64 とか)を削ろうという提案<ul>
+                    <li><a href="https://groups.google.com/d/topic/mozilla.dev.platform/vEMIqgnMxRw/discussion">https://groups.google.com/d/topic/mozilla.dev.platform/vEMIqgnMxRw/discussion</a>
+                    <li>ソフトウェアのダウンロードページなどに影響が出ないかなどの疑問が出ている
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Safari<ul>
+                <li>
+                  TC81<ul>
+                    <li>supported-color-scheme が color-scheme に
+                    <li>Ad Click Attribution(後述)
+                  </ul>
+                </li>
+                <li>
+                  TC82<ul>
+                    <li>Fetch API の keep-alive が有効に
+                  </ul>
+                </li>
+                <li>
+                  Privacy Preserving Ad Click Attribution For the Web<ul>
+                    <li>広告のコンバージョンを測る Cookie を無効にしたい
+                    <li>かわりに adcampaignid と addestination 属性を a 要素に追加
+                    <li><code translate="no">/.well-known/ad-click-attribution/</code>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Edge<ul>
+                <li>MS Build
+                <li>
+                  EdgeHTML17<ul>
+                    <li>First Edge Preview for macOS
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              WHATWG/W3C<ul>
+                <li>
+                  Privacy Preserving Ad Click Attribution<ul>
+                    <li>現時点の提案は adcampaignid と addestination 属性を a 要素に追加する
+                  </ul>
+                </li>
+                <li>
+                  JSON module support<ul>
+                    <li>import 文で JSON を読み込めるように
+                  </ul>
+                </li>
+                <li>
+                  Add form.requestSubmit()<ul>
+                    <li>submit ボタンを押した時の挙動(バリデーション、 submit イベント発火)と同様のメソッド
+                  </ul>
+                </li>
+                <li>
+                  tkent-google/std-switch<ul>
+                    <li>スイッチコントロールを標準コンポーネント化する試み
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>TC39
+            <li>
+              IETF<ul>
+                <li>
+                  RFC 8594 - The Sunset HTTP Header Field<ul>
+                    <li>サービスが落ちる時間を前もって知らせるヘッダ
+                  </ul>
+                </li>
+                <li>
+                  RFC 8615 - Well-Known Uniform Resource Identifiers (URIs)<ul>
+                    <li>
+                      &rdquo;/.well-known/&rdquo; のこと
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  The WebTransport Protocol Framework<ul>
+                    <li><a href="https://tools.ietf.org/html/draft-vvv-webtransport-overview-00">https://tools.ietf.org/html/draft-vvv-webtransport-overview-00</a>
+                  </ul>
+                </li>
+                <li>
+                  Incrementally Better Cookies<ul>
+                    <li><a href="https://tools.ietf.org/html/draft-west-cookie-incrementalism-00">https://tools.ietf.org/html/draft-west-cookie-incrementalism-00</a>
+                    <li>Cookie を徐々に改善していく話
+                    <li>まずは SameSite=Lax をデフォルトに
+                    <li>SameSite=None にするには Secure を強制
+                  </ul>
+                </li>
+                <li>
+                  First-Party Sets and SameSite Cookies<ul>
+                    <li><a href="https://tools.ietf.org/html/draft-west-cookie-samesite-firstparty-01">https://tools.ietf.org/html/draft-west-cookie-samesite-firstparty-01</a>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Other<ul>
+                <li>
+                  日本ハッカー協会セミナー「不正指令電磁的記録罪の傾向と対策」<ul>
+                    <li><a href="https://www.youtube.com/watch?v=umYIqISRIbg">https://www.youtube.com/watch?v=umYIqISRIbg</a>
+                  </ul>
+                </li>
+                <li>
+                  Google Online Security Blog: New research: How effective is basic account hygiene at preventing hijacking<ul>
+                    <li><a href="https://security.googleblog.com/2019/05/new-research-how-effective-is-basic.html">https://security.googleblog.com/2019/05/new-research-how-effective-is-basic.html</a>
+                  </ul>
+                </li>
+                <li>
+                  A Conspiracy To Kill IE6<ul>
+                    <li>元 YouTube エンジニアによる YouTube が IE6 サポートを打ち切るための策略についての回顧録
+                    <li>
+                      買収前の古い YouTube 社員によって作られた &ldquo;OldTuber&rdquo; という、 Google のインフラチェックをバイパスする権限を悪用しバナーを表示
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3 id="6-月"><a href="#6-月">6 月</a></h3>
+          <ul>
+            <li>TODO
+          </ul>
+        </section>
+        <section>
+          <h3 id="7-月"><a href="#7-月">7 月</a></h3>
+          <ul>
+            <li>TODO
+          </ul>
+        </section>
+        <section>
+          <h3 id="8-月"><a href="#8-月">8 月</a></h3>
+          <ul>
+            <li>TODO
+          </ul>
+        </section>
+        <section>
+          <h3 id="9-月"><a href="#9-月">9 月</a></h3>
+          <ul>
+            <li>TODO
+          </ul>
+        </section>
+        <section>
+          <h3 id="10-月"><a href="#10-月">10 月</a></h3>
+          <ul>
+            <li>TODO
+          </ul>
+        </section>
+        <section>
+          <h3 id="11-月"><a href="#11-月">11 月</a></h3>
+          <ul>
+            <li>TODO
+          </ul>
+        </section>
+        <section>
+          <h3 id="12-月"><a href="#12-月">12 月</a></h3>
+          <ul>
+            <li>TODO
+          </ul>
+        </section>
+        <section>
+          <h3 id="similar-yearly"><a href="#similar-yearly">Similar Yearly</a></h3>
+          <ul>
+            <li>
+              How the internet changed in 2019 (and what to expect in 2020)<ul>
+                <li><a href="https://www.fastly.com/blog/how-the-internet-changed-in-2019">https://www.fastly.com/blog/how-the-internet-changed-in-2019</a>
+              </ul>
+            </li>
+            <li>
+              Web Design And Development Advent Roundup For 2019 - Smashing Magazine<ul>
+                <li><a href="https://www.smashingmagazine.com/2019/12/web-design-development-advent-roundup-2019/">https://www.smashingmagazine.com/2019/12/web-design-development-advent-roundup-2019/</a>
+              </ul>
+            </li>
+            <li>
+              The Web in 2020: wohin sich das Web bewegt - Speaker Deck<ul>
+                <li><a href="https://speakerdeck.com/christianliebel/the-web-in-2020-wohin-sich-das-web-bewegt">https://speakerdeck.com/christianliebel/the-web-in-2020-wohin-sich-das-web-bewegt</a>
+              </ul>
+            </li>
+            <li>
+              Six Web Performance Technologies to Watch in 2020 – Simon Hearne<ul>
+                <li><a href="https://simonhearne.com/2019/2020-predictions/">https://simonhearne.com/2019/2020-predictions/</a>
+              </ul>
+            </li>
+            <li>
+              Mozilla Hacks&rsquo; 10 most-read posts of 2019 - Mozilla Hacks - the Web developer blog<ul>
+                <li><a href="https://hacks.mozilla.org/2019/12/mozilla-hacks-most-read-blog-posts-of-2019/">https://hacks.mozilla.org/2019/12/mozilla-hacks-most-read-blog-posts-of-2019/</a>
+                <li>1.Pyodide, 2.WASI, 3.WebThings
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </section>
+    </article>
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/60/monthly-web-201911.html">ep60 Monthly Web 201911</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small> Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>Google Analytics</a>.</p>
+  <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong>
+</footer>
+</body>
+</html>
