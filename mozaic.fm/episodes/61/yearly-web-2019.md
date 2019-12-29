@@ -413,4 +413,4 @@ guest
   - <https://simonhearne.com/2019/2020-predictions/>
 - Mozilla Hacks' 10 most-read posts of 2019 - Mozilla Hacks - the Web developer blog
   - <https://hacks.mozilla.org/2019/12/mozilla-hacks-most-read-blog-posts-of-2019/>
-  - 1. Pyodide -> 2. WASI -> 3. WebThings
+  - 1.Pyodide, 2.WASI, 3.WebThings
