@@ -33,7 +33,7 @@ br:$(BR)
 	zopfli --i30 $<
 
 %.br: %
-	brotli -n -f $<
+	brotli -f $<
 
 # 圧縮を削除
 clean:
