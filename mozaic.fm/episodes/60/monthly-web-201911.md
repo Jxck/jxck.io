@@ -414,7 +414,7 @@ guest
 - Proposed Recommendation
   - Call for Review: Trace Context is a W3C Proposed Recommendation
     - <https://www.w3.org/blog/news/archives/8051>
-  - Call for Review: Data Catalog Vocabulary (DCAT) – Version 2 is a W3C Proposed Recommendation
+  - Call for Review: Data Catalog Vocabulary (DCAT) - Version 2 is a W3C Proposed Recommendation
     - <https://www.w3.org/blog/news/archives/8040>
 - Candidate Recommendation
   - W3C Invites Implementations of Service Workers 1

@@ -546,7 +546,7 @@ guest
     - 42KB => 5.5GB
     - 10MB => 281TB
     - 46MB => 4.5PB
-- *ISPA announces finalists for 2019 Internet Heroes and Villains: Trump and Mozilla lead the way as Villain nominees » News, Press Releases \| The Internet Service Providers Association*
+- *ISPA announces finalists for 2019 Internet Heroes and Villains: Trump and Mozilla lead the way as Villain nominees >> News, Press Releases \| The Internet Service Providers Association*
   - <https://www.ispa.org.uk/ispa-announces-finalists-for-2019-internet-heroes-and-villains-trump-and-mozilla-lead-the-way-as-villain-nominees/>
   - <https://jp.techcrunch.com/2019/07/06/2019-07-05-isp-group-mozilla-internet-villain-dns-privacy/>
   - DoH を実装するとペアレンタルコントロールができなくなり、 UK の ISP が義務を履行できない。

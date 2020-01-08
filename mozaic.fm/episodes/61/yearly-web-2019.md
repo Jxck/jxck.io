@@ -409,7 +409,7 @@ guest
   - <https://www.smashingmagazine.com/2019/12/web-design-development-advent-roundup-2019/>
 - The Web in 2020: wohin sich das Web bewegt - Speaker Deck
   - <https://speakerdeck.com/christianliebel/the-web-in-2020-wohin-sich-das-web-bewegt>
-- Six Web Performance Technologies to Watch in 2020 – Simon Hearne
+- Six Web Performance Technologies to Watch in 2020 - Simon Hearne
   - <https://simonhearne.com/2019/2020-predictions/>
 - Mozilla Hacks' 10 most-read posts of 2019 - Mozilla Hacks - the Web developer blog
   - <https://hacks.mozilla.org/2019/12/mozilla-hacks-most-read-blog-posts-of-2019/>

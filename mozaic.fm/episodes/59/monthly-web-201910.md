@@ -307,7 +307,7 @@ guest
     - <https://blog.mozilla.org/security/2019/10/09/iterm2-critical-issue-moss-audit/>
   - Hardening Firefox against Injection Attacks
     - <https://blog.mozilla.org/security/2019/10/14/hardening-firefox-against-injection-attacks/>
-  - *Dramatically reduced power usage in Firefox 70 on macOS with Core Animation – Mozilla Gfx Team Blog*
+  - *Dramatically reduced power usage in Firefox 70 on macOS with Core Animation - Mozilla Gfx Team Blog*
     - <https://mozillagfx.wordpress.com/2019/10/22/dramatically-reduced-power-usage-in-firefox-70-on-macos-with-core-animation/>
     - 画像の最適化について解説しているビデオ
 
