@@ -7,28 +7,10 @@ by Jxck
 if (window.ReportingObserver) {
   console.log('ReportingObserver');
   const observer = new ReportingObserver((reports, observer) => {
+    console.log(reports)
+    const URL = "https://report-uri.jxck.io/report-to.cgi"
     for (const report of reports) {
-
-      // Bug:
-      // https://bugs.chromium.org/p/chromium/issues/detail?id=917945#c9
-      console.log(JSON.stringify(report)) // '{}'
-
-      console.log(report.type, report.url, report.body)
-
-      const r = {
-        type: report.type,
-        url:  report.url,
-        body: {},
-      }
-
-      for (let k in report.body) {
-        r.body[k] = report.body[k]
-      }
-
-      console.log(r)
-
-      const URL = "https://report-uri.jxck.io/report-to.cgi"
-      navigator.sendBeacon(URL, JSON.stringify(r))
+      navigator.sendBeacon(URL, JSON.stringify(report))
     }
   }, {buffered: true})
   observer.observe()
