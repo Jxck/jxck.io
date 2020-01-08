@@ -39,10 +39,10 @@
       log('worker()', self)
 
       const ASSETS = [
-        'https://jxck.io/assets/font/NotoSansCJKjp-Regular-Jxck-20191017.woff2',
-        'https://jxck.io/assets/font/NotoSansCJKjp-Bold-Jxck-20191017.woff2',
-        'https://jxck.io/assets/font/NotoSansMonoCJKjp-Regular-Jxck-20191017.woff2',
-        'https://jxck.io/assets/font/NotoSansMonoCJKjp-Bold-Jxck-20191017.woff2',
+        'https://jxck.io/assets/font/NotoSansCJKjp-Regular-Jxck-20200109.woff2',
+        'https://jxck.io/assets/font/NotoSansCJKjp-Bold-Jxck-20200109.woff2',
+        'https://jxck.io/assets/font/NotoSansMonoCJKjp-Regular-Jxck-20200109.woff2',
+        'https://jxck.io/assets/font/NotoSansMonoCJKjp-Bold-Jxck-20200109.woff2',
         'https://jxck.io/assets/js/highlight.pack.js',
       ]
 
