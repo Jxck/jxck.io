@@ -1,32 +1,20 @@
 // Action Type
 const INCREMENT = 'INCREMENT'
 const DECREMENT = 'DECREMENT'
+const RESET     = 'RESET'
 
 
 // Action Creator
 const increment = () => {
-  return {
-    type: INCREMENT
-  }
+  return { type: INCREMENT }
 }
 
 const decrement = () => {
-  return {
-    type: DECREMENT
-  }
+  return { type: DECREMENT }
 }
 
-
-// Action Creator with Dispatch
-const incrementIfOdd = (value, dispatch) => {
-  if (value % 2 == 0) return
-  dispatch(increment())
-}
-
-const incrementAsync = (dispatch) => {
-  setTimeout(() => {
-    dispatch(increment())
-  }, 1000)
+const reset = () => {
+  return { type: RESET }
 }
 
 
@@ -34,73 +22,53 @@ const incrementAsync = (dispatch) => {
 const counterReducer = (state = {value: 0}, action) => {
   switch (action.type) {
     case INCREMENT:
-      return Object.assign({}, state, {
-        value: state.value + 1
-      })
+      return {...state, value: state.value + 1}
     case DECREMENT:
-      return Object.assign({}, state, {
-        value: state.value - 1
-      })
+      return {...state, value: state.value - 1}
+    case RESET:
+      return {...state, value: 0}
     default:
       return state
   }
 }
 
-
 // Component
-class Counter extends React.Component {
-  render() {
-    const { value, onIncrement, onDecrement, onIncrementIfOdd, onIncrementAsync } = this.props
-    return (
-      <div>
-        <p>Clicked: {value} times</p>
-        <div>
-          <button onClick={onIncrement}>+</button>
-          <button onClick={onDecrement}>-</button>
-          <button onClick={onIncrementIfOdd.bind(this, value)}>Increment if odd</button>
-          <button onClick={onIncrementAsync}>Increment async</button>
-        </div>
-      </div>
-    )
-  }
-}
+const App: React.FC = () => {
+  const useEffect = React.useEffect
+  const dispatch  = ReactRedux.useDispatch()
+  const value     = ReactRedux.useSelector((state) => state.value)
 
-
-// State を Props に Map
-function mapStateToProps(state) {
-  return { value: state.value }
-}
-
-// ActionCreator を Props に Map
-function mapDispatchToProps(dispatch) {
-  return {
-    onIncrement() {
+  const handleIncrement      = () => dispatch(increment())
+  const handleDecrement      = () => dispatch(decrement())
+  const handleIncrementAsync = () => {
+    setTimeout(() => {
       dispatch(increment())
-    },
-    onDecrement() {
-      dispatch(decrement())
-    },
-    onIncrementIfOdd(value) {
-      incrementIfOdd(value, dispatch)
-    },
-    onIncrementAsync() {
-      incrementAsync(dispatch)
-    },
+    }, 1000)
   }
+
+  const handleReset = () => {
+    dispatch(reset())
+  }
+
+  return (
+    <div>
+      <p>Clicked: {value} times</p>
+      <div>
+        <button onClick={handleIncrement}>+</button>
+        <button onClick={handleDecrement}>-</button>
+        <button onClick={handleIncrementAsync}>async +</button>
+        <button onClick={handleReset}>reset 0</button>
+      </div>
+    </div>
+  )
 }
 
-const AppContainer = ReactRedux.connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Counter);
-
-
-const initialState = { value: 0 };
+const initialState = { value: 0 }
 const store = Redux.createStore(counterReducer, initialState)
 
 ReactDOM.render(
   <ReactRedux.Provider store={store}>
-    <AppContainer />
+    <App />
   </ReactRedux.Provider>,
   document.getElementById('root')
 )
