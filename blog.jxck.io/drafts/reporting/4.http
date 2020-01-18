@@ -1,0 +1,29 @@
+Report-To: {
+             "max_age": 36000,
+             "endpoints": [
+               {
+                 "url": "https://reports.example.com/default-endpoint"
+               }
+             ]
+           },
+           {
+             "group": "csp-endpoint",
+             "include_subdomains": true,
+             "max_age": 36000,
+             "endpoints": [
+               {
+                 "url": "https://reports.example.com/csp-endpoint1",
+                 "priority": 1,
+                 "weight": 50
+               },
+               {
+                 "url": "https://reports.example.com/csp-endpoint2",
+                 "priority": 1,
+                 "weight": 50
+               },
+               {
+                 "url": "https://failover.example.com/csp-endpoint",
+                 "priority": 2
+               }
+             ]
+           }

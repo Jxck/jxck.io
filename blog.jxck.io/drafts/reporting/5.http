@@ -1,0 +1,12 @@
+Content-Security-Policy: default-src 'self' report-to=csp-endpoint
+Feature-Policy: syncxhr 'none' report-to=default
+NEL: {"report-to": "default", "max-age": 2592000}
+Report-To: {
+             "group": "default",
+             "max_age": 36000,
+             "endpoints": [{ "url": "https://reports.example.com/default-endpoint" }]
+           },
+           {
+             "group": "csp-endpoint",
+             "endpoints": [{ "url": "https://reports.example.com/csp-endpoint" }]
+           }

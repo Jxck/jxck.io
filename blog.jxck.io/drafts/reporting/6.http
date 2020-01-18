@@ -1,0 +1,22 @@
+POST /default-endpoint HTTP/1.1
+Host: reports.example.com
+Content-Type: application/reports+json
+Content-Length: 999
+
+[
+  {
+    "type": "csp",
+    "url": "https://example.com/csp.html/",
+    "body": {...}
+  },
+  {
+    "type": "nel",
+    "url": "https://example.com/nel.html/",
+    "body": {...}
+  },
+  {
+    "type": "hpkp",
+    "url": "https://example.com/hpkp.html/",
+    "body": {...}
+  },
+]

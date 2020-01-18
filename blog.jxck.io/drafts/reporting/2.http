@@ -1,0 +1,11 @@
+Content-Security-Policy: default-src 'self' report-to=default-endpoint
+Feature-Policy: syncxhr 'none' report-to=default-endpoint
+NEL: {"report-to": "default-endpoint", "max-age": 2592000}
+Report-To: {
+             "group": "default-endpoint",
+             "max-age": "36000",
+             "endpoints": [
+               {"url": "https://report-uri.example.com"},
+               {"url": "https://report-uri2.example.com"}
+             ]
+           }
