@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html amp lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href=https://blog.jxck.io/entries/2020-01-18/reporting.html>
+
+  <link rel=icon             type =image/svg+xml sizes=any href=https://jxck.io/assets/img/jxck.svg>
+  <link rel=icon             type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="Web サービスにおいては通常、 Web サーバから取得できるアクセスログやエラーログを取得し解析する基盤を保有するだろう。しかし、 Web サーバから取得できる情報だけでは、ブラウザで何が起こったのかを知るのは限界がある。今回は、ブラウザ内で起こったことを知るための Re...">
+  <meta name=keywords            content="ReportingObserver,Report-To,Reporting">
+  <meta name=theme-color         content=#000000>
+
+  <meta name=twitter:card        content=summary>
+  <meta name=twitter:site        content=@jxck_>
+  <meta name=twitter:url         content=https://blog.jxck.io/entries/2020-01-18/reporting.html>
+  <meta name=twitter:title       content="ブラウザで何が起こっているのかを知る Reporting API と ReportingObserver | blog.jxck.io">
+  <meta name=twitter:description content="Web サービスにおいては通常、 Web サーバから取得できるアクセスログやエラーログを取得し解析する基盤を保有するだろう。しかし、 Web サーバから取得できる情報だけでは、ブラウザで何が起こったのかを知るのは限界がある。今回は、ブラウザ内で起こったことを知るための Re...">
+  <meta name=twitter:image       content=https://jxck.io/assets/img/jxck.png>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2020-01-18/reporting.html>
+  <meta property=og:title        content="ブラウザで何が起こっているのかを知る Reporting API と ReportingObserver | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="Web サービスにおいては通常、 Web サーバから取得できるアクセスログやエラーログを取得し解析する基盤を保有するだろう。しかし、 Web サーバから取得できる情報だけでは、ブラウザで何が起こったのかを知るのは限界がある。今回は、ブラウザ内で起こったことを知るための Re...">
+  <meta property=og:image        content=https://jxck.io/assets/img/jxck.png>
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "ブラウザで何が起こっているのかを知る Reporting API と ReportingObserver | blog.jxck.io",
+    "image": [
+      "https://jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2020-01-18T08:00:00+08:00",
+    "dateModified": "2020-01-18T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.60x60.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": "Web サービスにおいては通常、 Web サーバから取得できるアクセスログやエラーログを取得し解析する基盤を保有するだろう。しかし、 Web サーバから取得できる情報だけでは、ブラウザで何が起こったのかを知るのは限界がある。今回は、ブラウザ内で起こったことを知るための Re..."
+  }
+  </script>
+
+  <title>ブラウザで何が起こっているのかを知る Reporting API と ReportingObserver | blog.jxck.io</title>
+  <script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+  <script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src=https://cdn.ampproject.org/v0.js></script>
+  <style amp-custom>
+    article section p {
+      margin-left: 0;
+    }
+
+    article table {
+      margin-left: 0;
+    }
+
+    article img {
+      margin: var(--grid) 0;
+      border: 1px solid #ccc;
+      box-sizing: content-box;
+      background-color: #fff;
+    }
+
+    article ul,
+    article ol,
+    article dl {
+      margin-left: var(--grid);
+      font-family: var(--mono-font);
+    }
+
+    article ul li ul,
+    article ol li ol {
+      margin: 0 0 0 calc(var(--grid)*2);
+      font-size: 1rem;
+    }
+
+    article ol li ol li,
+    article ul li ul li {
+      margin-bottom: 0;
+    }
+
+    article dl {
+      display: grid;
+      grid-template-columns: minmax(auto, max-content);
+      grid-column-gap: var(--grid);
+    }
+
+    article dl div {
+      display: contents;
+    }
+
+    article dl dt {
+      grid-column: 1 / 2;
+    }
+    article dl dd {
+      grid-column: 2 / 2;
+    }
+
+    article blockquote {
+      font-family: var(--mono-font);
+    }
+
+    article blockquote p {
+      margin: 0;
+    }
+
+    @supports (line-height-step: 1px) {
+      article {
+        --grid-rhythm: 1.5em;
+        line-height: 1.5;
+        line-height-step: var(--grid-rhythm);
+      }
+
+      article h1,
+      article h2,
+      article h3,
+      article h4,
+      article h5,
+      article h6 {
+        display: inline-block;
+        width: 100%;
+        line-height-step: 0;
+        line-height: 1.2;
+        margin-bottom: 0;
+      }
+
+      article section {
+        /* grid for debug */
+        /* background-size: 100% var(--grid-rhythm); */
+        /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
+      }
+
+      article p {
+        margin-top: var(--grid-rhythm);
+        margin-bottom: var(--grid-rhythm);
+      }
+
+      article pre,
+      article table {
+        line-height-step: 0;
+        line-height: normal;
+      }
+    }
+    /* normal regular */
+    @font-face {
+      font-family: "NotoSansCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src:
+        local("Noto Sans CJK JP Regular"),
+        url("/assets/font/NotoSansCJKjp-Regular-Jxck-20200109.woff2") format("woff2");
+    }
+    /* normal bold */
+    @font-face {
+      font-family: "NotoSansCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src:
+        local("Noto Sans CJK JP Bold"),
+        url("/assets/font/NotoSansCJKjp-Bold-Jxck-20200109.woff2") format("woff2");
+    }
+
+
+    /* mono regular */
+    @font-face {
+      font-family: "NotoSansMonoCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src:
+        local("Noto Sans Mono CJK JP Regular"),
+        url("/assets/font/NotoSansMonoCJKjp-Regular-Jxck-20200109.woff2") format("woff2");
+    }
+    /* mono bold */
+    @font-face {
+      font-family: "NotoSansMonoCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src:
+        local("Noto Sans Mono CJK JP Bold"),
+        url("/assets/font/NotoSansMonoCJKjp-Bold-Jxck-20200109.woff2") format("woff2");
+    }
+
+    /* Light Mode Theme */
+    :root {
+      --background-color: #fefefe;
+      --font-color: #222;
+      --header-color: #222;
+
+      --anchor-color: RoyalBlue;
+      --anchor-visited-color: Brown;
+
+      --code-block: #efefef;
+      --code-block-font: #222;
+
+      --block-quote: #ddd;
+      --table-border: #222;
+
+      --regular-font: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", "Hiragino Sans", 'ヒラギノ角ゴ Pro W3', 'メイリオ', sans-serif;
+      --mono-font: "NotoSansMonoCJKjp-Jxck";
+      --code-font: Menlo, Consolas, Liberation, Mono, Courier, "NotoSansMonoCJKjp-Jxck";
+
+      --icon-size: 30px;
+
+      --width: 80vw;
+      --grid: 1rem;
+
+      --radius: 4px;
+    }
+
+
+    /* Mobile Theme */
+    @media screen and (max-device-width: 800px) {
+      :root {
+        --width: 94vw;
+      }
+
+      audio {
+        width: 100%;
+      }
+    }
+
+    /* Dark Mode Theme */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background-color: #010101;
+        --font-color: #eee;
+
+        --anchor-color: CornflowerBlue;
+        --anchor-visited-color: RosyBrown;
+
+        --code-block: #efefef;
+
+        --table-border: #eee;
+      }
+
+      article img {
+        filter: grayscale(50%);
+      }
+      article img[src*=svg] {
+        filter: invert(100%) grayscale(50%);
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--regular-font);
+      background-color: var(--background-color);
+      color: var(--font-color);
+      font-feature-settings: "palt";
+      margin: 0;
+      padding: 0;
+    }
+
+    code {
+      font-family: var(--mono-font);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    hr {
+      margin: 0;
+      padding: 0;
+    }
+
+    iframe {
+      display: block;
+      max-width: 100%;
+      margin: var(--grid) 0;
+    }
+    dl.info {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info div {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+
+    dl.info dt::after {
+      content: ":";
+      margin-right: calc(var(--grid)/2);
+    }
+
+    dl.info dd {
+      margin: 0 var(--grid) 0 0;
+    }
+
+    dl.info dd i {
+      font-style: normal;
+      margin-right: calc(var(--grid)/3);
+    }
+    header {
+      z-index: 1;
+      position: sticky;
+      position: -webkit-sticky;
+      top: 0;
+      box-sizing: border-box;
+      margin: 0;
+      padding: calc(var(--grid)/2);
+      background-color: var(--header-color);
+    }
+
+    h2:target,
+    h3:target,
+    h4:target,
+    h5:target,
+    h6:target {
+      /* sticky header に合わせて link scroll をずらす */
+      margin-top:  calc((var(--icon-size) + var(--grid)) * -1);
+      padding-top: calc((var(--icon-size) + var(--grid)));
+    }
+
+    header ul {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      width: var(--width);
+      margin: 0 auto;
+    }
+
+    header ul li {
+      width:  var(--icon-size);
+      height: var(--icon-size);
+      padding: 0;
+      margin: 0 0 0 var(--grid);
+    }
+
+    header ul li a {
+      display: block;
+      width:  var(--icon-size);
+      height: var(--icon-size);
+    }
+
+    header ul li svg {
+      fill: var(--background-color);
+    }
+
+    header ul li::before {
+      content: none;
+    }
+
+    header ul li:first-child {
+      flex-grow: 1;
+      margin-left: 0;
+    }
+
+    header .logo {
+      border: 1px solid #fff;
+      box-sizing: border-box;
+    }
+    h1 > a,
+    h2 > a,
+    h3 > a,
+    h4 > a,
+    h5 > a,
+    h6 > a {
+      color: var(--font-color);
+    }
+
+    h1 > a:visited,
+    h2 > a:visited,
+    h3 > a:visited,
+    h4 > a:visited,
+    h5 > a:visited,
+    h6 > a:visited {
+      color: var(--font-color);
+    }
+
+    h1 > a::before {
+      content: "# ";
+    }
+
+    h2 > a::before {
+      content: "## ";
+    }
+
+    h3 > a::before {
+      content: "### ";
+    }
+
+    h4 > a::before {
+      content: "#### ";
+    }
+
+    h1 > a:hover::before,
+    h2 > a:hover::before,
+    h3 > a:hover::before,
+    h4 > a:hover::before,
+    h5 > a:hover::before,
+    h6 > a:hover::before {
+      color: var(--anchor-visited-color);
+    }
+
+    em {
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    em::before,
+    em::after {
+      content: "*";
+    }
+
+    strong {
+      color: red;
+    }
+
+    strong::before,
+    strong::after {
+      content: "**";
+    }
+
+    ul li::before {
+      content: "- ";
+    }
+
+    ol {
+      counter-reset: list;
+    }
+
+    ol li::before {
+      counter-increment: list;
+      content: counter(list) ". ";
+    }
+
+    dl dt::after {
+      content: ":";
+    }
+
+    blockquote {
+      display: block;
+      border: solid 1px var(--block-quote);
+      border-radius: var(--radius);
+      padding: 1rem;
+      margin: 0;
+    }
+
+    blockquote p::before {
+      content: "> ";
+    }
+
+    code {
+      background-color: var(--code-block);
+      color: var(--code-block-font);
+      border-radius: var(--radius);
+      padding: 0 4px;
+    }
+
+    code::before,
+    code::after {
+      content: "`";
+    }
+    main {
+      display: block;
+      width: var(--width);
+      margin: 1em auto;
+    }
+
+    a {
+      word-wrap: break-word;
+      text-decoration: none;
+      color: var(--anchor-color);
+    }
+
+    a:visited {
+      color: var(--anchor-visited-color);
+    }
+
+    ol,
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      word-break: break-all;
+      word-wrap: break-word;
+    }
+
+    dl dt {
+      font-weight: bold;
+      margin: 0;
+    }
+
+    dl dd {
+      margin: 0;
+    }
+    footer {
+      padding: var(--grid);
+    }
+
+    footer strong,
+    footer .copyright {
+      display: block;
+      width: var(--width);
+      margin: 0 auto;
+      font-style: italic;
+    }
+    pre {
+      margin: var(--grid) 0;
+      border-radius: var(--radius);
+    }
+
+    pre::before {
+      content: "```" attr(class) "\A";
+    }
+
+    pre::after {
+      z-index: -1;
+      position: relative;
+      top: -1em;
+      content: "\A```";
+    }
+
+    pre > code {
+      font-family: var(--code-font);
+      overflow: auto;
+      display: block;
+      padding: 0.5rem;
+      margin: 0;
+    }
+
+    pre > code::before,
+    pre > code::after {
+      content: none;
+    }
+
+    .hljs-keyword {
+      color: #a71d5d;
+    }
+
+    .hljs-title {
+      color: #795da3;
+    }
+
+    .hljs-string {
+      color: #183691;
+    }
+
+    .hljs-number {
+      color: #0086b3;
+    }
+
+    .hljs-built_in {
+      color: #0086b3;
+    }
+
+    .hljs-literal {
+      color: #0086b3;
+    }
+
+    .hljs-regexp {
+      color: #183691;
+    }
+
+    .hljs-comment {
+      color: #4f80e5;
+    }
+
+    .hljs-tag {
+      color: #a71d5d;
+    }
+
+    .hljs-name {
+      color: #222222;
+    }
+
+    .hljs-strong {
+      font-weight: bold;
+    }
+
+    .hljs-attribute {
+      font-weight: bold;
+    }
+
+    .hljs-meta {
+      color: #4f80e5;
+    }
+
+    .hljs-selector-id,
+    .hljs-selector-class,
+    .hljs-selector-pseudo {
+      color: #6f42c1;
+    }
+
+    .hljs-selector-tag {
+      color: #22863a;
+    }
+
+    .hljs-subst {
+      font-weight: bold;
+    }
+
+    .hljs-variable {
+      color: #a71d5d;
+    }
+
+    .hljs-symbol {
+      font-weight: bold;
+    }
+
+    .hljs-selector-attr {
+      color: #6f42c1;
+    }
+
+    .hljs-bullet {
+    }
+
+
+    @media (prefers-color-scheme: dark) {
+      .hljs-keyword {
+        color: #000;
+        font-weight: bold;
+        font-style: italic;
+      }
+
+      .hljs-number {
+        color: var(--code-block-font);
+      }
+
+      .hljs-built_in {
+        color: #000;
+        font-weight: bold;
+      }
+
+      .hljs-literal {
+        color: var(--code-block-font);
+        font-weight: bold;
+      }
+
+      .hljs-regexp {
+        color: var(--code-block-font);
+      }
+
+      .hljs-comment {
+        color: #888;
+      }
+
+      .hljs-tag {
+        color: var(--code-block-font);
+        font-weight: bold;
+      }
+
+      .hljs-strong {
+        font-weight: bold;
+      }
+
+      .hljs-attribute {
+      }
+
+      .hljs-attr {
+        color: var(--code-block-font);
+        font-weight: bold;
+      }
+
+      .hljs-selector-tag {
+        color: var(--code-block-font);
+      }
+
+      .hljs-subst {
+        font-weight: bold;
+      }
+      .hljs-symbol {
+        font-weight: bold;
+      }
+
+      .hljs-section {
+      }
+
+      .hljs-meta,
+      .hljs-selector-id,
+      .hljs-selector-class,
+      .hljs-selector-pseudo,
+      .hljs-variable,
+      .hljs-title,
+      .hljs-string,
+      .hljs-name,
+      .hljs-selector-attr {
+        color: var(--code-block-font);
+      }
+    }
+
+
+
+
+
+
+
+    /**.hljs,**/
+    .hljs-meta-keyword,
+    .hljs-doctag,
+    .hljs-code,
+    .hljs-addition,
+    .hljs-template-variable,
+    .hljs-link,
+    .hljs-type,
+    .hljs-quote,
+    .hljs-template-tag,
+    .hljs-deletion,
+    .hljs-meta-string,
+    .hljs-emphasis {
+      /** if you find element applyed this style, please tell me https://github.com/jxck/jxck.io/issues **/
+      font-size: 100em;
+    }
+    table {
+      font-family: var(--mono-font);
+      margin: var(--grid) 0;
+      border-spacing: 0 0.4rem;
+    }
+
+    th {
+      padding: 0 var(--grid) calc(var(--grid)/2) var(--grid);
+      border-left: 2px solid var(--table-border);
+      border-bottom: 2px dashed var(--table-border);
+    }
+
+    td {
+      padding: calc(var(--grid)/2) var(--grid);
+      border-left: 2px solid var(--table-border);
+    }
+
+    th:last-child,
+    td:last-child {
+      border-right: 2px solid var(--table-border);
+    }
+
+    .align-center {
+      text-align: center;
+    }
+
+    .align-left {
+      text-align: left;
+    }
+
+    .align-right {
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://blog.jxck.io      ><amp-img width=30 height=30 src=/assets/img/blog.svg   alt ="blog top" class=logo     ></a>
+      <li><a href=.                         ><amp-img width=30 height=30 src=/assets/img/up.svg     alt ="move to parent directory"></a>
+      <li><a href=/feeds/atom.xml           ><amp-img width=30 height=30 src=/assets/img/rss.svg    alt ="rss feed"                ></a>
+      <li><a href=https://jxck.io/humans.txt><amp-img width=30 height=30 src=/assets/img/humans.svg alt ="huamns.txt"              ></a>
+      <li><a href=https://jxck.io           ><amp-img width=30 height=30 src=/assets/img/jxck.svg   alt ="jxck logo" class=logo    ></a>
+    </ul>
+  </nav>
+</header>
+<main>
+  <dl class=info>
+    <dt>created_at</dt><dd><time class=created_at datetime=2020-01-18>2020-01-18</time></dd>
+    <dt>updated_at</dt><dd><time class=updated_at datetime=2020-01-18>2020-01-18</time></dd>
+    <dt class=tags>tags</dt><dd>[<a href="/tags/ReportingObserver.html">ReportingObserver</a><i>,</i><a href="/tags/Report-To.html">Report-To</a><i>,</i><a href="/tags/Reporting.html">Reporting</a>]</dd>
+  </dl>
+  <article>
+    <h1><a href=/entries/2020-01-18/reporting.html>ブラウザで何が起こっているのかを知る Reporting API と ReportingObserver</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p>Web サービスにおいては通常、 Web サーバから取得できるアクセスログやエラーログを取得し解析する基盤を保有するだろう。
+      <p>しかし、 Web サーバから取得できる情報だけでは、ブラウザで何が起こったのかを知るのは限界がある。
+      <p>今回は、ブラウザ内で起こったことを知るための Reporting API と、その Report の収集について解説する。
+    </section>
+    <section>
+      <h2 id="notice"><a href="#notice">Notice</a></h2>
+      <p>本記事の大半は 1 年以上前に書いたものだが、そのころは仕様も実装もまだまだ落ち着きが無かった。
+      <ul>
+        <li>
+          仕様<ul>
+            <li>report-uri から report-to への移行期
+            <li>JFV の採用への不安
+          </ul>
+        </li>
+        <li>
+          実装<ul>
+            <li>ディレクティブの実装がバラバラ
+            <li>ReportingObserver では取れるが default group に自動では飛ばない(未実装)
+            <li>ReportingObserver で取った report が JSON Serialize できない(バグ)
+          </ul>
+        </li>
+      </ul>
+      <p>そこで時期焦燥かと思い寝かしたが、進捗を見てるとあと数年は寝かすことになりそうだった(特に JFV-&gt;SH)。
+      <p>そんななか、最後のバグについて報告した issue が、 1 年がかりくらいでやっと修正された。
+      <ul>
+        <li><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=917945">917945 - Reports from ReportingObserver aren&rsquo;t JSON Serializable</a>
+      </ul>
+      <p>先日 Chrome80 でやっと挙動を確認したため、これを期にこの記事を公開することにした。
+      <p>多くの問題がまだ解決しているとは言えず、実装もまだまだであるため、 Reporting 全般の途中経過だと思ってほしい。
+    </section>
+    <section>
+      <h2 id="reporting-api"><a href="#reporting-api">Reporting API</a></h2>
+      <p>いくつかの話が関わるので、一度全体像をまとめる。
+      <p>Reporting API は、簡単に言えば「ブラウザの中で起こったこと」を情報として取得する API だ。
+      <ul>
+        <li><a href="https://w3c.github.io/reporting/">Reporting API</a>
+      </ul>
+      <p>この仕様には Report の取得方法と言った全体の枠組みが定義されており、実際に取得できる情報は、目的ごとに別の仕様ができる(後述)。
+      <p>Report の取得方法は大きく 2 つある。
+      <ul>
+        <li>Report-To Header で指定したエンドポイントに、ブラウザが JSON で送る
+        <li>JS で ReportingObserver から取得しハンドリングする
+      </ul>
+      <p>いずれも、基本的には JSON にシリアライズしてサーバに送ることになるだろう。
+      <p>つまり、サービス側はその JSON を収集するエンドポイントを保有することになる。
+      <p>JSON を集めるだけなので、エンドポイントの実装はそこまで難しくない。
+      <p>問題はその解析だが、そこにはまだ課題が多いように筆者は感じている。
+    </section>
+    <section>
+      <h2 id="reporting-api-の経緯"><a href="#reporting-api-の経緯">Reporting API の経緯</a></h2>
+      <p>筆者の観測では発端は CSP からだ。
+      <p>CSP で定義したポリシーに違反があった場合、その原因をブロックすると同時に、違反があったことを知りたいという要望があった。でなければその問題に対して認識/対応ができないからだ。
+      <p>そこで、 CSP ヘッダに指定するためのディレクティブとして、 Report を送信する先を指定する <code translate="no">report-uri</code> が定義された。
+      <pre class=http><code translate="no">Content-Security-Policy: default-src &#39;self&#39; report-uri https://report-uri.example.com</code></pre>
+      <p>CSP は JS の実行をブロックする場合があるので、その Report は JS で収集するより、ブラウザが直接送信する方が理にかなっている。
+      <p>その後、他にも Report 送信を伴う API が提案された。
+      <p>すると、個々のヘッダに report-uri を書くより、 Reporting エンドポイントをまとめて記述できる Report-To ヘッダを定義し、各 Policy がそれを参照する形に整理するという方向になった。
+      <p>(<a href="https://github.com/WICG/feature-policy/issues/142">Feature-Policy の report-to 対応は議論中</a>)
+      <pre class=http><code translate="no">Content-Security-Policy: default-src &#39;self&#39; report-to=default-endpoint
+Feature-Policy: syncxhr &#39;none&#39; report-to=default-endpoint
+NEL: {&quot;report-to&quot;: &quot;default-endpoint&quot;, &quot;max-age&quot;: 2592000}
+Report-To: {
+             &quot;group&quot;: &quot;default-endpoint&quot;,
+             &quot;max-age&quot;: &quot;36000&quot;,
+             &quot;endpoints&quot;: [
+               {&quot;url&quot;: &quot;https://report-uri.example.com&quot;},
+               {&quot;url&quot;: &quot;https://report-uri2.example.com&quot;}
+             ]
+           }</code></pre>
+      <p>一方、他にも取得したい情報は増え、 Policy Header + Report-To よりも、 JS でハンドリングするほうが望ましいケースも現れ、  JS API も Export することになった。
+      <p>互換性の面でも、セマンティクスの面でも、 Report は Error ではないため、 Error を throw するようなモデルは使えない。代わりに Interface は昨今の流れに則り Observer で提供され、 opt-in で取得する設計が採用された。
+      <p>Report は JSON シリアライズ可能な形式で提供されるため、 Beacon API や Keep-Alive Fetch で送ることになるだろう。
+      <pre class=js><code translate="no">const observer = new ReportingObserver((reports, observer) =&gt; {
+  const message = JSON.stringify(reports)
+  navigator.sendBeacon(&quot;https://report-uri.example.com&quot;, message)
+});
+
+observer.observe();</code></pre>
+      <p>こうして、 Report-To ヘッダ、および Reporting Observer は Reporting API という仕様にまとめられ、 Report を送る他の API から参照される形に整理され、今に至る。
+      <p>report-to や report-uri, Reporting Observer など複数の仕様があるのはこのような理由による。
+    </section>
+    <section>
+      <h2 id="reporting-api-by-http-header"><a href="#reporting-api-by-http-header">Reporting API by HTTP Header</a></h2>
+      <p>Report-To ヘッダは、 Reporting エンドポイントの情報を一括して定義する HTTP Header だ。
+      <section>
+        <h3 id="report-to-header"><a href="#report-to-header">Report-To header</a></h3>
+        <pre class=http><code translate="no">Report-To: {
+             &quot;max_age&quot;: 36000,
+             &quot;endpoints&quot;: [
+               {
+                 &quot;url&quot;: &quot;https://reports.example.com/default-endpoint&quot;
+               }
+             ]
+           },
+           {
+             &quot;group&quot;: &quot;csp-endpoint&quot;,
+             &quot;include_subdomains&quot;: true,
+             &quot;max_age&quot;: 36000,
+             &quot;endpoints&quot;: [
+               {
+                 &quot;url&quot;: &quot;https://reports.example.com/csp-endpoint1&quot;,
+                 &quot;priority&quot;: 1,
+                 &quot;weight&quot;: 50
+               },
+               {
+                 &quot;url&quot;: &quot;https://reports.example.com/csp-endpoint2&quot;,
+                 &quot;priority&quot;: 1,
+                 &quot;weight&quot;: 50
+               },
+               {
+                 &quot;url&quot;: &quot;https://failover.example.com/csp-endpoint&quot;,
+                 &quot;priority&quot;: 2
+               }
+             ]
+           }</code></pre>
+        <p>このヘッダの値は、 JSON 形式(<a href="https://tools.ietf.org/html/draft-reschke-http-jfv">JFV</a>)が採用されている。
+        <p>1 つのグループは以下のメンバーを持つ
+        <ul>
+          <li>
+            group(optional): グループの識別子で、他のヘッダの report-to ディレクティブで指定される。デフォルトは &ldquo;default&rdquo;
+          </li>
+          <li>include_subdomains(optional): サブドメインまで伝搬させる。
+          <li>max_age(required): グループの有効期間。 0 にするとブラウザからグループが消える。
+          <li>
+            endpoints(required): エンドポイントの配列<ul>
+              <li>url(required): エンドポイントの URL
+              <li>priority(optional): 数値が小さいほうが優先され、落ちていた場合は次点にフェイルオーバーする
+              <li>weight(optional): 重みに応じて負荷分散をする
+            </ul>
+          </li>
+        </ul>
+        <p>また、グループを複数指定するとき、配列のように記述しつつも前後の <code translate="no">[</code> と <code translate="no">]</code> は <a href="https://w3c.github.io/reporting/#header">省略</a> する点に注意したい。
+        <p>上記の例は、 endpoint を 1 つ持つ <code translate="no">default</code> グループと、 CSP 用に 2 つのエンドポイントを持ち、負荷分散とフェイルオーバーを構成した <code translate="no">cap-endpoint</code> の 2 つがある。
+        <ul>
+          <li><a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/7dykNEdqvzA/DWcGTm4tDwAJ">Intent to implement: report-to header as part of Reporting API</a>
+        </ul>
+      </section>
+      <section>
+        <h3 id="jfv-から-structured-header-へ"><a href="#jfv-から-structured-header-へ">jfv から structured header へ</a></h3>
+        <p>jfv は、ヘッダの値に統一された構造化を持ち込もうと、 JSON をベースとして始まったドラフトだ。
+        <p>しかし、 JSON よりも独自に構造を定義した方が良いのではという流れで、対案として SH (Structured Header) が提案された。
+        <ul>
+          <li><a href="https://tools.ietf.org/html/draft-reschke-http-jfv">JFV</a>
+          <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-header-structure">SH</a>
+        </ul>
+        <p>なお、 IETF 的には <a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2016OctDec/0505.html">JFV よりも SH が良さそう</a> という雰囲気に結構前になっている。
+        <p>そこで、 Reporting も SH に移行するという方向になっている。
+        <ul>
+          <li><a href="https://github.com/w3c/reporting/issues/177">Switch reporting to Structured Headers - Issue #177 - w3c/reporting</a>
+        </ul>
+        <p><a href="https://github.com/w3c/reporting/issues/158">Mozilla</a> も、他で使うかわからない JFV よりも SH が良いという話をしているので、おそらくそうなるだろう。
+        <p>よって、ここまでに書いたことも、将来また変わると思ったほうが良い。
+        <p>場合によっては、また Report-To 以外のヘッダが出たりする可能性もあるので、そういう面倒を避けたいなら、導入はもう少し待っても良いかもしれない。
+      </section>
+      <section>
+        <h3 id="report-to-directive"><a href="#report-to-directive">report-to directive</a></h3>
+        <p>現在の仕様で Report-To を参照できる仕様は以下があるが、今後も増えていくだろう。
+        <ul>
+          <li>Content-Security-Policy
+          <li>Feature-Policy (仕様策定中)
+          <li>Network Error Logging
+          <li>Deprecation Report
+          <li>Intervention Report
+          <li>Crashe Report
+        </ul>
+        <p>CSP や Feature-Policy は、明示的に Report-To を指定する。
+        <p>一方、 Deprecation/Intervention/Crash などは、 API を持たずにブラウザが自動で生成するため、 Report-To に default group があれば自動で送信される。
+        <p>(仕様上はそうだが、実装されているブラウザはまだない)
+        <p>したがって、 Report-To だけを設定しておくということも考えられる。
+        <pre class=http><code translate="no">Content-Security-Policy: default-src &#39;self&#39; report-to=csp-endpoint
+Feature-Policy: syncxhr &#39;none&#39; report-to=default
+NEL: {&quot;report-to&quot;: &quot;default&quot;, &quot;max-age&quot;: 2592000}
+Report-To: {
+             &quot;group&quot;: &quot;default&quot;,
+             &quot;max_age&quot;: 36000,
+             &quot;endpoints&quot;: [{ &quot;url&quot;: &quot;https://reports.example.com/default-endpoint&quot; }]
+           },
+           {
+             &quot;group&quot;: &quot;csp-endpoint&quot;,
+             &quot;endpoints&quot;: [{ &quot;url&quot;: &quot;https://reports.example.com/csp-endpoint&quot; }]
+           }</code></pre>
+      </section>
+      <section>
+        <h3 id="reporting-request"><a href="#reporting-request">Reporting Request</a></h3>
+        <p>ブラウザ自身が送信する Report リクエストの概観は以下のようなものになる。
+        <ul>
+          <li><a href="https://w3c.github.io/reporting/#try-delivery">4.5. Attempt to deliver reports to endpoint</a>
+        </ul>
+        <pre class=http><code translate="no">POST /default-endpoint HTTP/1.1
+Host: reports.example.com
+Content-Type: application/reports+json
+Content-Length: 999
+
+[
+  {
+    &quot;type&quot;: &quot;csp&quot;,
+    &quot;url&quot;: &quot;https://example.com/csp.html/&quot;,
+    &quot;body&quot;: {...}
+  },
+  {
+    &quot;type&quot;: &quot;nel&quot;,
+    &quot;url&quot;: &quot;https://example.com/nel.html/&quot;,
+    &quot;body&quot;: {...}
+  },
+  {
+    &quot;type&quot;: &quot;hpkp&quot;,
+    &quot;url&quot;: &quot;https://example.com/hpkp.html/&quot;,
+    &quot;body&quot;: {...}
+  },
+]</code></pre>
+        <p>受信するエンドポイントは以下を想定する必要がある。
+        <ul>
+          <li>HTTP メソッドは POST
+          <li>Content-Type は application/reports+json
+          <li>Body は JSON (配列始まり)
+          <li>Cookie は付与される
+          <li>Preflight 有り CORS
+        </ul>
+        <p>特に Preflight には色々と議論があったが、最初はブラウザが生成し外から介入できない限定的なリクエストであるため、 Fetch の仕様に例外を設けていた。
+        <p>しかし、やはりバイパスするようなことはせず CORS を遵守すべきということになり、 Preflight を送ることになった。
+        <ul>
+          <li><a href="https://github.com/w3c/reporting/issues/41">Are report uploads supposed to send CORS preflights? - Issue #41</a>
+        </ul>
+        <p>執筆時の Chrome や Fetch の Spec からは、 Preflight は無いように見えるが、 <em>これから Reporting Endpoint を作る場合は Preflight を前提にすべき</em> と言える。
+      </section>
+    </section>
+    <section>
+      <h2 id="reporting-observer"><a href="#reporting-observer">Reporting Observer</a></h2>
+      <p>ReportingObserver は JS で report を取得する API だ。
+      <ul>
+        <li><a href="https://w3c.github.io/reporting/#observers">https://w3c.github.io/reporting/#observers</a>
+      </ul>
+      <p>サンプルを再掲する。
+      <pre class=js><code translate="no">const observer = new ReportingObserver((reports, observer) =&gt; {
+  const message = JSON.stringify(reports)
+  navigator.sendBeacon(&quot;https://report-uri.example.com&quot;, message)
+});
+
+observer.observe();</code></pre>
+      <p>(この JSON.stringify ができなかったために、修正前は自分で Serialize するロジックを <a href="https://github.com/Jxck/jxck.io/commit/4a0cdc168a73e40fcb88a1fe74f6ae62b40750fa">ワークアラウンド</a> として入れて収集していた)
+      <p>JS で取得するため、 JS が動いていることが前提だ。
+      <p>つまり、 CSP や Crash ではなく deprecation/intervention など軽微な Report を取得する。
+      <p>仕様どおり &ldquo;default&rdquo; group に自動で送られるため、 UI でフィードバックを表示でもしない限り JS で取得する必要はあまりなさそうに思う。
+      <p>本サイトでは、自動で &ldquo;default&rdquo; group に送られるようになるまでの間、 JS で収集する。
+    </section>
+    <section>
+      <h2 id="report"><a href="#report">Report</a></h2>
+      <p>すでにいくつかの Report が提案/実装されている。
+      <p>現時点で把握しているものを紹介する。
+      <section>
+        <h3 id="deprecation-report"><a href="#deprecation-report">Deprecation Report</a></h3>
+        <p>ブラウザで deprecate された API を呼び出している場合に発生する 。
+        <p>特に古い API の deprecate/remove は段階ごとにアナウンスされるが、それが自身のサービス内でどの程度の影響があるかなどを正確にするのは難しい。
+        <p>この report を収集すれば、サービス内のどのソースファイルの何行目でそれが使われているかまでわかるため、非常に有益な情報となる。
+        <p>なお、本サイトでは Chrome の拡張である <a href="https://chrome.google.com/webstore/detail/http2-and-spdy-indicator/mpbpobfflnpcgagjijhmgnchggcjblin/related">HTTP/2 and SPDY indicator</a> から <code translate="no">chrome.loadTimes()</code> を呼んでいるという Report が最も多く送られてきている。
+        <pre class=js><code translate="no">{
+  &quot;type&quot;: &quot;deprecation&quot;,
+    &quot;url&quot;: &quot;https://blog.jxck.io/entries/2018-05-15/webauthentication-api.html&quot;,
+    &quot;body&quot;: {
+      &quot;id&quot;: &quot;ChromeLoadTimesWasAlternateProtocolAvailable&quot;,
+      &quot;anticipatedRemoval&quot;: null,
+      &quot;message&quot;: &quot;chrome.loadTimes() is deprecated, instead use standardized API: nextHopProtocol in Navigation Timing 2. https://www.chromestatus.com/features/5637885046816768.&quot;,
+      &quot;sourceFile&quot;: &quot;chrome-extension://mpbpobfflnpcgagjijhmgnchggcjblin/content.js&quot;,
+      &quot;lineNumber&quot;: 5,
+      &quot;columnNumber&quot;: 19
+    }
+}
+
+{
+  &quot;type&quot;: &quot;deprecation&quot;,
+    &quot;age&quot;: 27,
+    &quot;url&quot;: &quot;https://example.com/&quot;,
+    &quot;user_agent&quot;: &quot;Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0&quot;,
+    &quot;body&quot;: {
+      &quot;id&quot;: &quot;websql&quot;,
+      &quot;anticipatedRemoval&quot;: &quot;1/1/2020&quot;,
+      &quot;message&quot;: &quot;WebSQL is deprecated and will be removed in Chrome 97 around January 2020&quot;,
+      &quot;sourceFile&quot;: &quot;https://example.com/index.js&quot;,
+      &quot;lineNumber&quot;: 1234,
+      &quot;columnNumber&quot;: 42
+    }
+}</code></pre>
+      </section>
+      <section>
+        <h3 id="intervention-report"><a href="#intervention-report">Intervention Report</a></h3>
+        <p>Intervention とは、ブラウザが特定の挙動を変更するような介入を行うことである。
+        <ul>
+          <li><a href="https://github.com/WICG/interventions">https://github.com/WICG/interventions</a>
+        </ul>
+        <p>例えば、 ontouch イベントにハンドラが割り当てられている場合、スクロールするたびにハンドラが実行されてしまい、画面のレスポンスが悪くなる。
+        <p>そこで、 ontouch イベントのハンドラは、ブラウザが勝手に PassiveEventListener として扱うといった挙動を Intervention という。
+        <p>開発者は、この事実を Report として知ることで、ハンドラを PassiveEventListener にするといった実装の見直しを検討することができる。
+        <p>今後こうした Intervention も増えていきそうな流れがある。
+        <ul>
+          <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/sQrAZpTA8WI/EWC7W6GOCwAJ">Intent to Ship: Intervention Reports</a>
+        </ul>
+      </section>
+      <section>
+        <h3 id="network-error-logging"><a href="#network-error-logging">Network Error Logging</a></h3>
+        <p>その名の通り Network Error が発生したことを取得できる。
+        <p>主に HTTPS のエラーを収集することを目的としている。
+        <ul>
+          <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/nNji_u7BRxo/Zh8Y9hRlBAAJ">Intent to Ship: Reporting and Network Error Logging</a>
+        </ul>
+      </section>
+      <section>
+        <h3 id="crash-reports"><a href="#crash-reports">Crash Reports</a></h3>
+        <p>なんらかの理由で画面がクラッシュした時に送られる Report である。
+        <p>おそらく Tab レベルのクラッシュまでだろうと思うが、まだ Report を見たことがないため、細かい挙動はまだわからない。
+        <ul>
+          <li><a href="https://groups.google.com/a/chromium.org/forum/#!searchin/blink-dev/crash$20reports%7Csort:date/blink-dev/ryK8SHcBzZw/uwkgibBvBQAJ">Intent to Ship: Crash Reports (via Reporting API)</a>
+        </ul>
+      </section>
+      <section>
+        <h3 id="csp-violation"><a href="#csp-violation">CSP Violation</a></h3>
+        <p>以前から report-uri/report-to で対応していた CSP の violation も、 ReportingObserver で取得できるようにする Intents が出ているが特に進んではいないし、 Report-To で集めれば良い。
+        <ul>
+          <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/dBc_epXL-r4/XhhajwQVBQAJ">Intent to Implement and Ship: CSP violation reports observable by ReportingObserver</a>
+        </ul>
+      </section>
+      <section>
+        <h3 id="feature-policy-violation"><a href="#feature-policy-violation">Feature Policy Violation</a></h3>
+        <p>Feature Policy も violation が発生した場合にその事実が知りたいが、仕様には含まれていなかった。
+        <p><a href="https://github.com/w3c/webappsec-feature-policy/issues/142">提案</a>したところ、  Reporting への<a href="https://github.com/WICG/feature-policy/blob/master/reporting.md">対応</a>が入ることになり、 Chrome は Intents が出ている。
+        <ul>
+          <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/5-3woY4Y1Qg/xHDTmUFAEAAJ">Intent to Implement: Feature Policy Violation Reporting</a>
+        </ul>
+      </section>
+      <section>
+        <h3 id="sxg"><a href="#sxg">SXG</a></h3>
+        <p>SXG の証明書検証などが発生した場合に distoributor に知らせるための Report 。 Network Error Logging を継承している。
+        <ul>
+          <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/bHo6cy9qKuw/6xqZt_1LAAAJ">Intent to Ship: Signed Exchange Reporting for distributors</a>
+        </ul>
+      </section>
+    </section>
+    <section>
+      <h2 id="report-の収集と解析"><a href="#report-の収集と解析">Report の収集と解析</a></h2>
+      <p>サービス提供者からすれば、 Report を収集し解析する目的は、自身のサービスの状態の把握になるだろう。
+      <p>しかし、実際に集められているのは「ブラウザで起こったこと」であり、そこにはユーザの閲覧環境ごとに様々なことが起こっていることがわかる。
+      <ul>
+        <li>拡張やプラグインに起因した Report
+        <li>bookmarklet やユーザスクリプトに起因した Report
+        <li>ブラウザの挙動に起因した Report
+        <li>単体ではなぜ起こったのか全く読み取れない Report
+      </ul>
+      <p>例えば、本サイトでは <a href="https://blog.jxck.io/entries/2016-03-30/content-security-policy.html">CSP Report を 4 年ほど収集</a> しているが、ほぼ純粋な静的サイトであるにも関わらず、日々かなりの CSP Report が日々送られてくる。
+      <p>また、 ReportingObserver から収集する JS と google analytics 以外にほぼ JS を使ってないのにも関わらず、大量の DeprecationReport が送られており、ほとんどは Chrome 拡張に起因したものである。
+      <p>そんな本サイトですらこの状況なので、今日一般的な、複雑な JS を駆使し、多くのインタラクションを可能とし、攻撃者が興味を持つようなサービスであれば、より多くの Report が様々な理由で送られてくることが容易に想像できる。
+      <p>つまり、 Reporting Endpoint に求められるのは、単なる JSON の収取だけでなく、その結果から本当に重要な内容を見落とさずに取り出し、本質的な問題を特定する解析基盤となる。
+      <p>元が機会可読で、ある程度クレンジングの終わったデータセットであることから、単なるパターンマッチで解析することも不可能ではないが、ブラウザの更新に応じて日々 Report は変化して行くため、メンテナンスは難しい。
+      <p>そこで、迷惑メール除去と同種のフィルタリング技術からのアプローチで、機械学習にかけていく方向になっていくだろう。
+      <p>今後、手元に集まったデータセットを元に教師データを作りながら、教師あり学習でうまく行かないか試行錯誤してみたいと考えている。
+      <p>同時に、 Web のエコシステムでもそうしたサービスやライブラリが提供され、知見が共有されて行くことに期待したい。
+      <p>特にモニタリングサービスなどを提供している各位は、ぜひフィルタリングも含めた Reporting 収集解析基盤の提供を検討いただければと思う。
+      <section>
+        <h3 id="まとめ"><a href="#まとめ">まとめ</a></h3>
+        <ul>
+          <li>
+            Report を収集することでブラウザ上で起こっていることが細かくわかる<ul>
+              <li>サービスの改善に役立てることもできる
+              <li>今後 Report に対応するものは増えていくだろう
+            </ul>
+          </li>
+          <li>
+            まずは収集基盤の整備<ul>
+              <li>JSON を POST で受けるだけなので作るのは難しくない
+              <li>CORS の場合は Preflight 対応を入れる
+              <li>収集よりも解析が重要
+            </ul>
+          </li>
+          <li>
+            仕様面<ul>
+              <li>まだまだ安定とは言えない
+              <li>機能ごとに指定の仕方が違うなど面倒な部分も多い
+              <li>今後整備されていくため、それを待つのも手
+              <li>全部入れず CSP など効果のあるところから入れるのも手
+            </ul>
+          </li>
+          <li>
+            実装面<ul>
+              <li>あいかわらず Chrome が手動
+              <li>JS だけ/ヘッダだけ、など機能ごとの対応もまばら
+              <li>シリアライズできないバグが 1 年放置されるくらいのプライオリティ感
+            </ul>
+          </li>
+          <li>
+            エコシステム<ul>
+              <li>モニタリングサービス系がそろそろ Reporting のサポートを始めてほしい
+              <li>機械学習方向からの解析方法が普及してほしい
+            </ul>
+          </li>
+        </ul>
+        <p>またしばらくして進捗があったら、更新を書きたい。
+      </section>
+    </section>
+  </article>
+</main>
+<hr>
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small><small>Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>Google Analytics</a> and <a href=https://w3c.github.io/ServiceWorker/>Service Worker</a>.</small></p>
+</footer>
+</body>
+</html>
+<amp-analytics type=googleanalytics id=analytics1>
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
