@@ -1,8 +1,6 @@
 'use strict'
-let log = console.log.bind(console)
 
-// server vapid public key
-const publicKey = "BEYQ1fBacZ0i49Cb8GZ_XQJ2q_Jg-shjjPghnNEzXcXnAGKUpasmJ8u2f9ibW_DdsluNvfKd1hVaaIi_U2816bU"
+const CACHE_KEY = 'push-cache'
 
 function base64url(str) {
   const base64 = str.replace(/-/g, '+').replace(/_/g, '/')
@@ -14,6 +12,10 @@ function base64url(str) {
 
 (async function() {
   try {
+    // server vapid public key
+    const {publicKey, privateKey} = await (await fetch('vapid-keys.json')).json()
+    console.log(publicKey, privateKey)
+
     // register service worker
     await navigator.serviceWorker.register('worker.js')
     const registration = await navigator.serviceWorker.ready
@@ -24,6 +26,7 @@ function base64url(str) {
       await currentSubscription.unsubscribe()
     }
 
+    console.log(base64url(publicKey))
     const subscription = await registration.pushManager.subscribe({
       applicationServerKey: base64url(publicKey),
       userVisibleOnly:      true
@@ -45,6 +48,7 @@ function base64url(str) {
 
     // check permission
     const result = await Notification.requestPermission()
+    console.log(result)
     document.querySelector('#permission').textContent = result
 
     // form submit

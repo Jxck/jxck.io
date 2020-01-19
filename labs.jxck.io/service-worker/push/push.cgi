@@ -12,14 +12,19 @@ process.stdin.on('readable', async (e) => {
     const req = process.stdin.read(content_length)
     if (req === null)  return
 
-    // console.error('req', JSON.parse(req));
-
     const {sub, title, options} = JSON.parse(req)
+    console.error({sub, title, options})
 
     const payload = JSON.stringify({ title, options })
 
     const response = await webpush.sendNotification(sub, payload)
-    // console.error('response', response)
+    console.error('response', response)
+
+
+    console.error(`
+    web-push send-notification --endpoint=${sub.endpoint} --vapid-pubkey=${vapidKeys.publicKey} --vapid-pvtkey=${vapidKeys.privateKey} --key=${sub.keys.p256dh} --auth=${sub.keys.auth} --vapid-subject=${contact} --payload=\\\{\\\}
+    `)
+
 
     console.log('Content-type: text/plain');
     console.log('');

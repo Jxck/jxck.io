@@ -1,3 +1,5 @@
+const CACHE_KEY = 'push-cache'
+
 self.addEventListener('install', (e) => {
   console.info(e.type, e)
   e.waitUntil(self.skipWaiting())
@@ -11,9 +13,7 @@ self.addEventListener('activate', (e) => {
 self.addEventListener('push', (e) => {
   console.info(e.type, e)
   const {title, options} = e.data.json()
-  e.waitUntil(
-    self.registration.showNotification(title, options)
-  )
+  e.waitUntil(self.registration.showNotification(title, options))
 })
 
 self.addEventListener('notificationclick', async (e) => {
