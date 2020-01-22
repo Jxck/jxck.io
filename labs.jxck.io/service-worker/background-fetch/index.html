@@ -5,7 +5,6 @@
 
 <style>
 a {
-  font-size: 4em
 }
 
 circle-progress {
@@ -17,8 +16,16 @@ circle-progress {
 <h1>Background Fetch DEMO</h1>
 
 <ul>
-  <li><circle-progress max=100 value=0></circle-progress><a class=download href=./mozaic-ep61.mp3>download large mp3</a></li>
-  <li><circle-progress max=100 value=0></circle-progress><a class=download href=./mozaic-ep00.mp3>download small mp3</a></li>
+  <li>
+    <circle-progress max=100 value=0></circle-progress>
+    <a class=download href=./mozaic-ep61.mp3>download large mp3</a>
+    <audio src=./mozaic-ep61.mp3 controls>play</audio>
+  </li>
+  <li>
+    <circle-progress max=100 value=0></circle-progress>
+    <a class=download href=./mozaic-ep0.mp3>download small mp3</a>
+    <audio src=./mozaic-ep0.mp3 controls>play</audio>
+  </li>
 </ul>
 
 <script type=module>
@@ -36,25 +43,59 @@ circle-progress {
     $$('.download').forEach((download) => {
       download.addEventListener('click', async (e) => {
         e.preventDefault()
-        const url = e.target.href
-        console.log(e.target)
-
         const registration = await navigator.serviceWorker.ready
-        console.log(registration)
 
-        const head          = await fetch(url, {method: 'head'})
-        const downloadTotal = head.headers.get('content-length')
-        console.dir(downloadTotal)
+        const url = e.target.href
+        console.log(url)
+        const file = url.split("/").reverse().shift()
+        console.log(url, file)
 
+        // get media info from rss
+        const rss = await fetch("https://feed.mozaic.fm")
+        const xml = await rss.text()
+        const dom = (new DOMParser()).parseFromString(xml, "application/xml")
+        const q = `enclosure[url="http://files.mozaic.fm/${file}"]`
+        console.log(q)
+        const enclosure = dom.querySelector(q)
+        const item = enclosure.closest('item')
+
+        const title = item.querySelector('title').textContent
+        const downloadTotal = parseInt(enclosure.getAttribute('length'))
+
+        const option = {
+          title,
+          downloadTotal,
+          icons: [
+            {
+              src: 'https://logo.jxck.io/mozaic.svg',
+              type: 'image/svg+xml',
+            },
+            {
+              sizes: '256x256',
+              src: 'https://logo.jxck.io/mozaic.webp',
+              type: 'image/webp',
+            },
+            {
+              sizes: '256x256',
+              src: 'https://logo.jxck.io/mozaic.png',
+              type: 'image/png',
+            },
+            {
+              sizes: '2000x2000',
+              src: 'https://logo.jxck.io/mozaic.jpeg',
+              type: 'image/jpeg',
+            }
+          ]
+        }
+
+        console.log(option)
+
+        // init circle progress
         const $circle = e.target.previousElementSibling
         $circle.setAttribute('max', downloadTotal)
 
-        // Promise<BackgroundFetchRegistration>
-        // fetch(DOMString id,
-        //       (RequestInfo or sequence<RequestInfo>) requests,
-        //       optional BackgroundFetchOptions options);
-
-        const task = await registration.backgroundFetch.fetch(url, [url], {downloadTotal})
+        // register background task
+        const task = await registration.backgroundFetch.fetch(url, [url], option)
         console.log(task)
 
         task.addEventListener('progress', (e) => {
@@ -63,13 +104,5 @@ circle-progress {
         })
       })
     })
-
-    //$('.fetch').addEventListener('click', async (e) => {
-    //  e.preventDefault()
-    //  const url = e.target.href
-    //  console.log(url)
-    //  const res = await fetch(url)
-    //  console.log(res)
-    //})
   })
 </script>
