@@ -3,12 +3,10 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <title>Periodic Background Sync DEMO</title>
 
-<meta http-equiv="origin-trial" content="AkuD/OBoOFSE0GQSVarzib3n5twzUMFZiaNzQW09PwGSWUfzUuGl55Ls3MKaRpRqWOkQRqNHs8cUFKDwYH6AJgoAAABqeyJvcmlnaW4iOiJodHRwczovL2p4Y2suaW86NDQzIiwiZmVhdHVyZSI6IlBlcmlvZGljQmFja2dyb3VuZFN5bmMiLCJleHBpcnkiOjE1Njg2MDA4NDIsImlzU3ViZG9tYWluIjp0cnVlfQ==">
-
 <h1>Periodic Background Sync DEMO</h1>
 <h2>cached</h2>
 
-<p>periodic background sync: <span id=detect></span></p>
+<p>periodic background sync: <span id=detect></span> permission: <span id=permission></span></p>
 
 <ul id=list></ul>
 
@@ -19,6 +17,12 @@
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
   document.on('DOMContentLoaded', async (e) => {
+
+    const status = await navigator.permissions.query({name:'periodic-background-sync'});
+    console.log(status)
+
+    $('#permission').textContent = status.state
+
     console.log(await navigator.serviceWorker.register('worker.js'))
 
     const registration = await navigator.serviceWorker.ready
@@ -27,21 +31,19 @@
     $('#detect').textContent = !!registration.periodicSync
     if (registration.periodicSync) {
       console.log(registration.periodicSync)
-      await registration.periodicSync.register('new-episode', {
-        minInterval: 24 * 60 * 60 * 1000
+      await registration.periodicSync.register('test', {
+        minInterval: 60 * 10
       })
       console.log(await registration.periodicSync.getTags())
     }
 
-    // const cache = await caches.open('periodic-background-sync')
-    // const keys = await cache.keys()
-    // const $ul  = $('ul')
-    // keys.forEach(async (key) => {
-    //   const res  = await cache.match(key)
-    //   const date = res.headers.get('date')
-    //   const $li  = document.createElement('li')
-    //   $li.textContent = date
-    //   $ul.appendChild($li)
-    // })
+    const cache = await caches.open('periodic-background-sync')
+    const keys = await cache.keys()
+    const $ul  = $('ul')
+    keys.forEach(async (key) => {
+      const $li  = document.createElement('li')
+      $li.textContent = key
+      $ul.appendChild($li)
+    })
   })
 </script>
