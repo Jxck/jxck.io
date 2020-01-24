@@ -1,4 +1,4 @@
-console.info('worker')
+console.info('worker1')
 
 const ver = 1
 

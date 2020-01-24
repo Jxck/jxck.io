@@ -8,13 +8,12 @@
 <style>
 circle-progress  {
   display: block;
-  width: 30px
+  width: 150px
 }
 </style>
 
 
 <circle-progress max=100 value=0></circle-progress>
-
 
 <script type=module>
   'use strict';
@@ -23,20 +22,15 @@ circle-progress  {
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
   import CircleProgress from './circle-progress.mjs'
-
   customElements.define('circle-progress', CircleProgress)
 
   document.on('DOMContentLoaded', (e) => {
     const $circle = $('circle-progress')
-    $circle.setAttribute('max',  100)
 
     function up(value) {
-      console.log(value)
       $circle.setAttribute('value', value)
       if (value > 100) return
-      setTimeout(() => {
-        up(value += 1)
-      }, 100)
+      setTimeout(() => up(value += 1), 10)
     }
     up(0)
   })

@@ -11,7 +11,8 @@ self.addEventListener('activate', (e) => {
 self.addEventListener('sync', (e) => {
   console.log('background sync', e)
   e.waitUntil(async function() {
-    const res   = await fetch('./feed.txt')
+    const rand  = btoa(Math.random())
+    const res   = await fetch(`./?sync=${rand}`)
     const date  = res.headers.get('date')
     const url   = new URL(res.url)
     url.search  = date

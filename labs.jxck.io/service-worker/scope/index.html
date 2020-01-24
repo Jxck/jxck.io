@@ -1,34 +1,13 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
+<title>Service Worker Scope DEMO</title>
 
-<title>Service Worker: scope DEMO | labs.jxck.io</title>
+<h1>Service Worker Scope DEMO</h1>
 
-<h1>Service Worker: scope</h1>
+<p>scope1/scope2 both has own service worker
 
-<strong>/index.html</strong>
-
-<a href=next.html>next</a>
-
-<input type=button id=button value=button>
-
-<script>
-'use strict';
-const $  = document.querySelector.bind(document)
-const $$ = document.querySelectorAll.bind(document)
-EventTarget.prototype.on = EventTarget.prototype.addEventListener
-
-console.log('main')
-
-document.on('DOMContentLoaded', async (e) => {
-  console.log(e)
-  await navigator.serviceWorker.register('worker.js', { scope: './index.html' })
-  await navigator.serviceWorker.ready
-})
-
-$('#button').on('click', async () => {
-  const res  = await fetch('test')
-  const text = await res.text()
-  console.log(text)
-})
-</script>
+<ul>
+  <li><a href=scope1.html>scope1</a>
+  <li><a href=scope2.html>scope2</a>
+</ul>

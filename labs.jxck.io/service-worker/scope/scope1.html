@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+
+<title>Service Worker: scope DEMO | labs.jxck.io</title>
+
+<h1>Service Worker: scope</h1>
+
+<strong>scope 1</strong>
+
+<a href=scope2.html>scope2</a>
+
+<button id=button>test</button>
+
+<script>
+'use strict';
+const $  = document.querySelector.bind(document)
+const $$ = document.querySelectorAll.bind(document)
+EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+console.log('scope1.html')
+
+document.on('DOMContentLoaded', async (e) => {
+  console.log(e)
+  await navigator.serviceWorker.register('scope1.js', { scope: './scope1.html' })
+  await navigator.serviceWorker.ready
+})
+
+$('#button').on('click', async () => {
+  const res  = await fetch('test')
+  const text = await res.text()
+  console.log(text)
+})
+</script>

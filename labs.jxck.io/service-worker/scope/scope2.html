@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
-<title>Service Worker: scope DEMO</title>
+<meta name=viewport content="width=device-width,initial-scale=1">
+
+<title>Service Worker: scope DEMO | labs.jxck.io</title>
 
 <h1>Service Worker: scope</h1>
 
-<strong>/next.html</strong>
+<strong>scope 2</strong>
 
-<input type=button id=button value=button>
+<a href=scope1.html>scope1</a>
+
+<button id=button>test</button>
 
 <script>
 'use strict';
@@ -14,11 +18,11 @@ const $  = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
-console.log('next')
+console.log('scope2.html')
 
 document.on('DOMContentLoaded', async (e) => {
   console.log(e)
-  await navigator.serviceWorker.register('worker2.js', { scope: './next.html' })
+  await navigator.serviceWorker.register('scope2.js', { scope: './scope2.html' })
   await navigator.serviceWorker.ready
 })
 

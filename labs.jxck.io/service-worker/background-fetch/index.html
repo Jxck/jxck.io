@@ -4,29 +4,30 @@
 <title>Background Fetch DEMO</title>
 
 <style>
-a {
+p {
+  vertical-align: middle;
 }
-
 circle-progress {
   display: inline-block;
-  width: 50px
+  width: 1em;
+}
+audio {
+  display: block;
 }
 </style>
 
 <h1>Background Fetch DEMO</h1>
 
-<ul>
-  <li>
-    <circle-progress max=100 value=0></circle-progress>
-    <a class=download href=./mozaic-ep61.mp3>download large mp3</a>
-    <audio src=./mozaic-ep61.mp3 controls>play</audio>
-  </li>
-  <li>
-    <circle-progress max=100 value=0></circle-progress>
-    <a class=download href=./mozaic-ep0.mp3>download small mp3</a>
-    <audio src=./mozaic-ep0.mp3 controls>play</audio>
-  </li>
-</ul>
+<div>
+  <div>
+    <p><circle-progress max=100 value=0></circle-progress><a class=download href=./mozaic-ep61.mp3>download large mp3</a>
+    <p><audio src=./mozaic-ep61.mp3 controls>play</audio>
+  </div>
+  <div>
+    <p><circle-progress max=100 value=0></circle-progress><a class=download href=./mozaic-ep0.mp3>download small mp3</a>
+    <p><audio src=./mozaic-ep0.mp3 controls>play</audio>
+  </div>
+</div>
 
 <script type=module>
   'use strict';
