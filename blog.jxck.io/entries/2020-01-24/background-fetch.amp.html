@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html amp lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href=https://blog.jxck.io/entries/2020-01-24/background-fetch.html>
+
+  <link rel=icon             type =image/svg+xml sizes=any href=https://jxck.io/assets/img/jxck.svg>
+  <link rel=icon             type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="Podcast を PWA 対応するために、待望だった機能の 1 つが Background Fetch だ。これにより、通常 Range Request で取得するような、大きなファイルを事前にダウンロードしておくことができるようになる。この API と、 Service...">
+  <meta name=keywords            content="background-fetch,service worker">
+  <meta name=theme-color         content=#000000>
+
+  <meta name=twitter:card        content=summary>
+  <meta name=twitter:site        content=@jxck_>
+  <meta name=twitter:url         content=https://blog.jxck.io/entries/2020-01-24/background-fetch.html>
+  <meta name=twitter:title       content="Service Worker の Background Fetch によるメディアのキャッシュ | blog.jxck.io">
+  <meta name=twitter:description content="Podcast を PWA 対応するために、待望だった機能の 1 つが Background Fetch だ。これにより、通常 Range Request で取得するような、大きなファイルを事前にダウンロードしておくことができるようになる。この API と、 Service...">
+  <meta name=twitter:image       content=https://jxck.io/assets/img/jxck.png>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2020-01-24/background-fetch.html>
+  <meta property=og:title        content="Service Worker の Background Fetch によるメディアのキャッシュ | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="Podcast を PWA 対応するために、待望だった機能の 1 つが Background Fetch だ。これにより、通常 Range Request で取得するような、大きなファイルを事前にダウンロードしておくことができるようになる。この API と、 Service...">
+  <meta property=og:image        content=https://jxck.io/assets/img/jxck.png>
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Service Worker の Background Fetch によるメディアのキャッシュ | blog.jxck.io",
+    "image": [
+      "https://jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2020-01-24T08:00:00+08:00",
+    "dateModified": "2020-01-24T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.60x60.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": "Podcast を PWA 対応するために、待望だった機能の 1 つが Background Fetch だ。これにより、通常 Range Request で取得するような、大きなファイルを事前にダウンロードしておくことができるようになる。この API と、 Service..."
+  }
+  </script>
+
+  <title>Service Worker の Background Fetch によるメディアのキャッシュ | blog.jxck.io</title>
+  <script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+  <script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src=https://cdn.ampproject.org/v0.js></script>
+  <style amp-custom>
+    article section p {
+      margin-left: 0;
+    }
+
+    article table {
+      margin-left: 0;
+    }
+
+    article img {
+      margin: var(--grid) 0;
+      border: 1px solid #ccc;
+      box-sizing: content-box;
+      background-color: #fff;
+    }
+
+    article ul,
+    article ol,
+    article dl {
+      margin-left: var(--grid);
+      font-family: var(--mono-font);
+    }
+
+    article ul li ul,
+    article ol li ol {
+      margin: 0 0 0 calc(var(--grid)*2);
+      font-size: 1rem;
+    }
+
+    article ol li ol li,
+    article ul li ul li {
+      margin-bottom: 0;
+    }
+
+    article dl {
+      display: grid;
+      grid-template-columns: minmax(auto, max-content);
+      grid-column-gap: var(--grid);
+    }
+
+    article dl div {
+      display: contents;
+    }
+
+    article dl dt {
+      grid-column: 1 / 2;
+    }
+    article dl dd {
+      grid-column: 2 / 2;
+    }
+
+    article blockquote {
+      font-family: var(--mono-font);
+    }
+
+    article blockquote p {
+      margin: 0;
+    }
+
+    @supports (line-height-step: 1px) {
+      article {
+        --grid-rhythm: 1.5em;
+        line-height: 1.5;
+        line-height-step: var(--grid-rhythm);
+      }
+
+      article h1,
+      article h2,
+      article h3,
+      article h4,
+      article h5,
+      article h6 {
+        display: inline-block;
+        width: 100%;
+        line-height-step: 0;
+        line-height: 1.2;
+        margin-bottom: 0;
+      }
+
+      article section {
+        /* grid for debug */
+        /* background-size: 100% var(--grid-rhythm); */
+        /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
+      }
+
+      article p {
+        margin-top: var(--grid-rhythm);
+        margin-bottom: var(--grid-rhythm);
+      }
+
+      article pre,
+      article table {
+        line-height-step: 0;
+        line-height: normal;
+      }
+    }
+    /* normal regular */
+    @font-face {
+      font-family: "NotoSansCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src:
+        local("Noto Sans CJK JP Regular"),
+        url("/assets/font/NotoSansCJKjp-Regular-Jxck-20200109.woff2") format("woff2");
+    }
+    /* normal bold */
+    @font-face {
+      font-family: "NotoSansCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src:
+        local("Noto Sans CJK JP Bold"),
+        url("/assets/font/NotoSansCJKjp-Bold-Jxck-20200109.woff2") format("woff2");
+    }
+
+
+    /* mono regular */
+    @font-face {
+      font-family: "NotoSansMonoCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src:
+        local("Noto Sans Mono CJK JP Regular"),
+        url("/assets/font/NotoSansMonoCJKjp-Regular-Jxck-20200109.woff2") format("woff2");
+    }
+    /* mono bold */
+    @font-face {
+      font-family: "NotoSansMonoCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src:
+        local("Noto Sans Mono CJK JP Bold"),
+        url("/assets/font/NotoSansMonoCJKjp-Bold-Jxck-20200109.woff2") format("woff2");
+    }
+
+    /* Light Mode Theme */
+    :root {
+      --background-color: #fefefe;
+      --font-color: #222;
+      --header-color: #222;
+
+      --anchor-color: RoyalBlue;
+      --anchor-visited-color: Brown;
+
+      --code-block: #efefef;
+      --code-block-font: #222;
+
+      --block-quote: #ddd;
+      --table-border: #222;
+
+      --regular-font: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", "Hiragino Sans", 'ヒラギノ角ゴ Pro W3', 'メイリオ', sans-serif;
+      --mono-font: "NotoSansMonoCJKjp-Jxck";
+      --code-font: Menlo, Consolas, Liberation, Mono, Courier, "NotoSansMonoCJKjp-Jxck";
+
+      --icon-size: 30px;
+
+      --width: 80vw;
+      --grid: 1rem;
+
+      --radius: 4px;
+    }
+
+
+    /* Mobile Theme */
+    @media screen and (max-device-width: 800px) {
+      :root {
+        --width: 94vw;
+      }
+
+      audio {
+        width: 100%;
+      }
+    }
+
+    /* Dark Mode Theme */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background-color: #010101;
+        --font-color: #eee;
+
+        --anchor-color: CornflowerBlue;
+        --anchor-visited-color: RosyBrown;
+
+        --code-block: #efefef;
+
+        --table-border: #eee;
+      }
+
+      article img {
+        filter: grayscale(50%);
+      }
+      article img[src*=svg] {
+        filter: invert(100%) grayscale(50%);
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--regular-font);
+      background-color: var(--background-color);
+      color: var(--font-color);
+      font-feature-settings: "palt";
+      margin: 0;
+      padding: 0;
+    }
+
+    code {
+      font-family: var(--mono-font);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    hr {
+      margin: 0;
+      padding: 0;
+    }
+
+    iframe {
+      display: block;
+      max-width: 100%;
+      margin: var(--grid) 0;
+    }
+    dl.info {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info div {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+
+    dl.info dt::after {
+      content: ":";
+      margin-right: calc(var(--grid)/2);
+    }
+
+    dl.info dd {
+      margin: 0 var(--grid) 0 0;
+    }
+
+    dl.info dd i {
+      font-style: normal;
+      margin-right: calc(var(--grid)/3);
+    }
+    header {
+      z-index: 1;
+      position: sticky;
+      position: -webkit-sticky;
+      top: 0;
+      box-sizing: border-box;
+      margin: 0;
+      padding: calc(var(--grid)/2);
+      background-color: var(--header-color);
+    }
+
+    h2:target,
+    h3:target,
+    h4:target,
+    h5:target,
+    h6:target {
+      /* sticky header に合わせて link scroll をずらす */
+      margin-top:  calc((var(--icon-size) + var(--grid)) * -1);
+      padding-top: calc((var(--icon-size) + var(--grid)));
+    }
+
+    header ul {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      width: var(--width);
+      margin: 0 auto;
+    }
+
+    header ul li {
+      width:  var(--icon-size);
+      height: var(--icon-size);
+      padding: 0;
+      margin: 0 0 0 var(--grid);
+    }
+
+    header ul li a {
+      display: block;
+      width:  var(--icon-size);
+      height: var(--icon-size);
+    }
+
+    header ul li svg {
+      fill: var(--background-color);
+    }
+
+    header ul li::before {
+      content: none;
+    }
+
+    header ul li:first-child {
+      flex-grow: 1;
+      margin-left: 0;
+    }
+
+    header .logo {
+      border: 1px solid #fff;
+      box-sizing: border-box;
+    }
+    h1 > a,
+    h2 > a,
+    h3 > a,
+    h4 > a,
+    h5 > a,
+    h6 > a {
+      color: var(--font-color);
+    }
+
+    h1 > a:visited,
+    h2 > a:visited,
+    h3 > a:visited,
+    h4 > a:visited,
+    h5 > a:visited,
+    h6 > a:visited {
+      color: var(--font-color);
+    }
+
+    h1 > a::before {
+      content: "# ";
+    }
+
+    h2 > a::before {
+      content: "## ";
+    }
+
+    h3 > a::before {
+      content: "### ";
+    }
+
+    h4 > a::before {
+      content: "#### ";
+    }
+
+    h1 > a:hover::before,
+    h2 > a:hover::before,
+    h3 > a:hover::before,
+    h4 > a:hover::before,
+    h5 > a:hover::before,
+    h6 > a:hover::before {
+      color: var(--anchor-visited-color);
+    }
+
+    em {
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    em::before,
+    em::after {
+      content: "*";
+    }
+
+    strong {
+      color: red;
+    }
+
+    strong::before,
+    strong::after {
+      content: "**";
+    }
+
+    ul li::before {
+      content: "- ";
+    }
+
+    ol {
+      counter-reset: list;
+    }
+
+    ol li::before {
+      counter-increment: list;
+      content: counter(list) ". ";
+    }
+
+    dl dt::after {
+      content: ":";
+    }
+
+    blockquote {
+      display: block;
+      border: solid 1px var(--block-quote);
+      border-radius: var(--radius);
+      padding: 1rem;
+      margin: 0;
+    }
+
+    blockquote p::before {
+      content: "> ";
+    }
+
+    code {
+      background-color: var(--code-block);
+      color: var(--code-block-font);
+      border-radius: var(--radius);
+      padding: 0 4px;
+    }
+
+    code::before,
+    code::after {
+      content: "`";
+    }
+    main {
+      display: block;
+      width: var(--width);
+      margin: 1em auto;
+    }
+
+    a {
+      word-wrap: break-word;
+      text-decoration: none;
+      color: var(--anchor-color);
+    }
+
+    a:visited {
+      color: var(--anchor-visited-color);
+    }
+
+    ol,
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      word-break: break-all;
+      word-wrap: break-word;
+    }
+
+    dl dt {
+      font-weight: bold;
+      margin: 0;
+    }
+
+    dl dd {
+      margin: 0;
+    }
+    footer {
+      padding: var(--grid);
+    }
+
+    footer strong,
+    footer .copyright {
+      display: block;
+      width: var(--width);
+      margin: 0 auto;
+      font-style: italic;
+    }
+    pre {
+      margin: var(--grid) 0;
+      border-radius: var(--radius);
+    }
+
+    pre::before {
+      content: "```" attr(class) "\A";
+    }
+
+    pre::after {
+      z-index: -1;
+      position: relative;
+      top: -1em;
+      content: "\A```";
+    }
+
+    pre > code {
+      font-family: var(--code-font);
+      overflow: auto;
+      display: block;
+      padding: 0.5rem;
+      margin: 0;
+    }
+
+    pre > code::before,
+    pre > code::after {
+      content: none;
+    }
+
+    .hljs-keyword {
+      color: #a71d5d;
+    }
+
+    .hljs-title {
+      color: #795da3;
+    }
+
+    .hljs-string {
+      color: #183691;
+    }
+
+    .hljs-number {
+      color: #0086b3;
+    }
+
+    .hljs-built_in {
+      color: #0086b3;
+    }
+
+    .hljs-literal {
+      color: #0086b3;
+    }
+
+    .hljs-regexp {
+      color: #183691;
+    }
+
+    .hljs-comment {
+      color: #4f80e5;
+    }
+
+    .hljs-tag {
+      color: #a71d5d;
+    }
+
+    .hljs-name {
+      color: #222222;
+    }
+
+    .hljs-strong {
+      font-weight: bold;
+    }
+
+    .hljs-attribute {
+      font-weight: bold;
+    }
+
+    .hljs-meta {
+      color: #4f80e5;
+    }
+
+    .hljs-selector-id,
+    .hljs-selector-class,
+    .hljs-selector-pseudo {
+      color: #6f42c1;
+    }
+
+    .hljs-selector-tag {
+      color: #22863a;
+    }
+
+    .hljs-subst {
+      font-weight: bold;
+    }
+
+    .hljs-variable {
+      color: #a71d5d;
+    }
+
+    .hljs-symbol {
+      font-weight: bold;
+    }
+
+    .hljs-selector-attr {
+      color: #6f42c1;
+    }
+
+    .hljs-bullet {
+    }
+
+
+    @media (prefers-color-scheme: dark) {
+      .hljs-keyword {
+        color: #000;
+        font-weight: bold;
+        font-style: italic;
+      }
+
+      .hljs-number {
+        color: var(--code-block-font);
+      }
+
+      .hljs-built_in {
+        color: #000;
+        font-weight: bold;
+      }
+
+      .hljs-literal {
+        color: var(--code-block-font);
+        font-weight: bold;
+      }
+
+      .hljs-regexp {
+        color: var(--code-block-font);
+      }
+
+      .hljs-comment {
+        color: #888;
+      }
+
+      .hljs-tag {
+        color: var(--code-block-font);
+        font-weight: bold;
+      }
+
+      .hljs-strong {
+        font-weight: bold;
+      }
+
+      .hljs-attribute {
+      }
+
+      .hljs-attr {
+        color: var(--code-block-font);
+        font-weight: bold;
+      }
+
+      .hljs-selector-tag {
+        color: var(--code-block-font);
+      }
+
+      .hljs-subst {
+        font-weight: bold;
+      }
+      .hljs-symbol {
+        font-weight: bold;
+      }
+
+      .hljs-section {
+      }
+
+      .hljs-meta,
+      .hljs-selector-id,
+      .hljs-selector-class,
+      .hljs-selector-pseudo,
+      .hljs-variable,
+      .hljs-title,
+      .hljs-string,
+      .hljs-name,
+      .hljs-selector-attr {
+        color: var(--code-block-font);
+      }
+    }
+
+
+
+
+
+
+
+    /**.hljs,**/
+    .hljs-meta-keyword,
+    .hljs-doctag,
+    .hljs-code,
+    .hljs-addition,
+    .hljs-template-variable,
+    .hljs-link,
+    .hljs-type,
+    .hljs-quote,
+    .hljs-template-tag,
+    .hljs-deletion,
+    .hljs-meta-string,
+    .hljs-emphasis {
+      /** if you find element applyed this style, please tell me https://github.com/jxck/jxck.io/issues **/
+      font-size: 100em;
+    }
+    table {
+      font-family: var(--mono-font);
+      margin: var(--grid) 0;
+      border-spacing: 0 0.4rem;
+    }
+
+    th {
+      padding: 0 var(--grid) calc(var(--grid)/2) var(--grid);
+      border-left: 2px solid var(--table-border);
+      border-bottom: 2px dashed var(--table-border);
+    }
+
+    td {
+      padding: calc(var(--grid)/2) var(--grid);
+      border-left: 2px solid var(--table-border);
+    }
+
+    th:last-child,
+    td:last-child {
+      border-right: 2px solid var(--table-border);
+    }
+
+    .align-center {
+      text-align: center;
+    }
+
+    .align-left {
+      text-align: left;
+    }
+
+    .align-right {
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://blog.jxck.io      ><amp-img width=30 height=30 src=/assets/img/blog.svg   alt ="blog top" class=logo     ></a>
+      <li><a href=.                         ><amp-img width=30 height=30 src=/assets/img/up.svg     alt ="move to parent directory"></a>
+      <li><a href=/feeds/atom.xml           ><amp-img width=30 height=30 src=/assets/img/rss.svg    alt ="rss feed"                ></a>
+      <li><a href=https://jxck.io/humans.txt><amp-img width=30 height=30 src=/assets/img/humans.svg alt ="huamns.txt"              ></a>
+      <li><a href=https://jxck.io           ><amp-img width=30 height=30 src=/assets/img/jxck.svg   alt ="jxck logo" class=logo    ></a>
+    </ul>
+  </nav>
+</header>
+<main>
+  <dl class=info>
+    <dt>created_at</dt><dd><time class=created_at datetime=2020-01-24>2020-01-24</time></dd>
+    <dt>updated_at</dt><dd><time class=updated_at datetime=2020-01-24>2020-01-24</time></dd>
+    <dt class=tags>tags</dt><dd>[<a href="/tags/background-fetch.html">background-fetch</a><i>,</i><a href="/tags/service%20worker.html">service worker</a>]</dd>
+  </dl>
+  <article>
+    <h1><a href=/entries/2020-01-24/background-fetch.html>Service Worker の Background Fetch によるメディアのキャッシュ</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p>Podcast を PWA 対応するために、待望だった機能の 1 つが Background Fetch だ。
+      <p>これにより、通常 Range Request で取得するような、大きなファイルを事前にダウンロードしておくことができるようになる。
+      <p>この API と、 Service Worker およびブラウザにおける Range Request/Partial Response の扱いについて記す。
+    </section>
+    <section>
+      <h2 id="background-fetch"><a href="#background-fetch">background fetch</a></h2>
+      <p>Podcast は大きな音声ファイルがメインコンテンツとなる。
+      <p>PWA のキャッシュ戦略典型例としては
+      <ul>
+        <li>install 時に全てキャッシュする
+        <li>request 発生時にキャッシュする
+      </ul>
+      <p>といった方法がある。
+      <p>しかし、この方法は一般的な Podcast としては少し使いにくい。
+      <ul>
+        <li>install 時に全てのファイルをキャッシするのは現実的ではない
+        <li>request が Range なのでキャッシュが生成しにくい
+      </ul>
+      <p>前者は分かりやすいだろう。後者は少し補足する。
+    </section>
+    <section>
+      <h2 id="range-request-と-cache-api"><a href="#range-request-と-cache-api">Range Request と Cache API</a></h2>
+      <p>音声の再生は、必ずファイルの先頭からリクエストするわけではなく、途中から聞く場合は途中からリクエストを行う。
+      <p>また、全てのレスポンスが揃ってから開始するわけではなく、届いた順に再生する。
+      <p>HTTP 上は Range Request と Partial Response が使われ、途中から再生するような場合以下のようになる。
+      <pre><code translate="no">GET /mozaic-ep60.mp3 HTTP/1.1
+Host: files.mozaic.fm
+Range: bytes=54034432-</code></pre>
+      <pre><code translate="no">HTTP/1.1 206 Partial Content
+content-type: audio/mpeg
+Content-Range: bytes 54034432-101797887/101797888
+Content-Length: 47763456</code></pre>
+      <p>つまり、 1 つの音声ファイルを取得するリクエスト/レスポンスが、 1 つとは限らないというわけだ。
+    </section>
+    <section>
+      <h2 id="service-worker-での-range-request"><a href="#service-worker-での-range-request">Service Worker での Range Request</a></h2>
+      <p>ところが onfetch で Range になるはずのリクエストを見てみると、レスポンスが必ず 200 で返ってきていることに気付く。
+      <pre class=js><code translate="no">self.addEventListener(&#39;fetch&#39;, (e) =&gt; {
+  e.respondWith((async () =&gt; {
+    const req = e.request
+    const res = await fetch(req)
+    console.log(req, res) // status 200
+    return res
+  })())
+})</code></pre>
+      <p>最初は Service Worker が 206 を 200 に変えてしまうバグかと思ったが、 Content-Range もついてない。
+      <p>もしやと思い、サーバ側のログを見ると、そもそも Range ヘッダが送られていない。
+      <p>そもそも、 fetch を通すと Range Request が普通のリクエストとして送られているのだ。
+      <p>最初に試したのが 4 年ほど前で、 Service Worker の初期の頃だったため、単に実装されてないだけろうと思い、実装されるのを待って漬けていた。
+    </section>
+    <section>
+      <h2 id="ブラウザにおける-rangeparcial"><a href="#ブラウザにおける-rangeparcial">ブラウザにおける Range/Parcial</a></h2>
+      <p>以下のブログが出て初めて、実装ではなく仕様の問題だということがわかった。
+      <ul>
+        <li><a href="https://jakearchibald.com/2018/i-discovered-a-browser-bug/">I discovered a browser bug - JakeArchibald.com</a>
+      </ul>
+      <p>結論から言うとこうだ。
+      <blockquote>
+        <p>They&rsquo;re standardised in HTTP, but not by HTML. We know what the headers look like, and when they should appear, but there&rsquo;s nothing to say what a browser should actually do with them.
+        <p>&mdash; <cite><a href="https://jakearchibald.com/2018/i-discovered-a-browser-bug/#range-requests-were-never-standardised">https://jakearchibald.com/2018/i-discovered-a-browser-bug/#range-requests-were-never-standardised</a></cite>
+      </blockquote>
+      <ul>
+        <li>Range/Partial の仕様はあくまで HTTP の仕様
+        <li>WHATWG において、それらがブラウザでどう扱われるかは、標準化されてない
+        <li>
+          <code translate="no">&lt;audio&gt;</code> / <code translate="no">&lt;video&gt;</code> などで Range を使うのはブラウザがそう実装してるだけ
+        </li>
+        <li>Service Worker/Cache のような API でどうするかは決まってない
+      </ul>
+      <p>つまり、 <em>Service Worker はそもそも Range/Partial には対応してない</em> というか標準化されてないと言って良いだろう。
+      <p>それでも、 200 では取得できるため、全体が得られればキャッシュは可能で、 Safari などには 206 に置き換えて返すこともできる。
+      <p>しかし、途中までしかキャッシュできてない状態でオフラインになると、途中で再生が止まるフラストレーションが溜まるだけだ。
+      <p>なら Podcast アプリで聞いたほうが体験が良いということになる。
+      <p>PWA で理想的な Podcast アプリを実現するのは難しそうだ。と諦めてから 4 年近く経った。
+    </section>
+    <section>
+      <h2 id="background-fetch-1"><a href="#background-fetch-1">Background Fetch</a></h2>
+      <p>Podcast のアプリは基本的に、ネットワークがある間にダウンロードを完了し、地下鉄などを移動する際に聞ける状態になっているだろう。
+      <p>これと同じことが可能になるのが Background Fetch だ。
+      <p>Service Worker に fetch を Task として追加し、バックグラウンドで実行させる。これは大きなファイルをブラウザでダウンロードしているときと同じような UX となる。
+      <p>もちろん、取得が終われば結果を 1 つの大きな Response として取得できるため、それをそのまま Cache API で保存すれば良い。分割されてないため Cache HIT も普通にできる。
+      <p>これを用いると Podcast アプリと近い UX を実現できるのだ。
+    </section>
+    <section>
+      <h2 id="api"><a href="#api">API</a></h2>
+      <section>
+        <h3 id="backgroundfetch-registration"><a href="#backgroundfetch-registration">backgroundFetch registration</a></h3>
+        <p>取得したい URL とオプションを登録する。
+        <p>ID はそのタスク自体を識別するために登録し、もし同じ ID のタスクがある状態で再登録しようとすると例外が出る。
+        <p>また、ダウンロード対象を複数登録して同時にダウンロードさせることができる。
+        <pre class=js><code translate="no">const id   = &#39;ep01&#39;
+const mp3  = &#39;https://files.example.com/ep01.mp3&#39;
+const html = &#39;https://files.example.com/ep01.html&#39;
+const option = {
+  title: &#39;title of download&#39;,
+  downloadTotal: 65535, // size
+  icons: [{src: &#39;logo.png&#39;, sizes: &#39;256x256&#39;, type: &#39;image/webp&#39;}]
+}
+const registration = await navigator.serviceWorker.ready
+const task = await registration.backgroundFetch.fetch(id, [url, mp3], option)</code></pre>
+      </section>
+      <section>
+        <h3 id="foreground-event"><a href="#foreground-event">foreground event</a></h3>
+        <p>ダウンロードの進捗は window 側で progress イベントで上がる
+        <pre class=js><code translate="no">task.addEventListener(&#39;progress&#39;, (e) =&gt; console.log(e.downloaded))</code></pre>
+      </section>
+      <section>
+        <h3 id="abort"><a href="#abort">abort()</a></h3>
+        <p>中断は API から可能であり、 <code translate="no">abort()</code> を呼べば task が終了する。
+        <pre class=js><code translate="no">task.abort()</code></pre>
+        <p>ただし、 Pause/Resume は API がなく、<a href="https://github.com/WICG/background-fetch/issues/38">提案</a> はされてるが、その UI は OS 側が提供するというスタンスだ。
+      </section>
+    </section>
+    <section>
+      <h2 id="background-event"><a href="#background-event">background event</a></h2>
+      <p>Service Worker 側では以下のイベントが上がる。
+      <ul>
+        <li>backgroundfetchsuccess
+        <li>backgroundfetchfail
+        <li>backgroundfetchabort
+        <li>backgroundfetchclick
+      </ul>
+      <pre class=js><code translate="no">// ダウンロード完了
+self.addEventListener(&#39;backgroundfetchsuccess&#39;, (e) =&gt; {
+  e.waitUntil(async function() {
+    try {
+      // 結果を取り出す
+      const id = e.registration.id
+      const record = await e.registration.match(id)
+
+      // キャッシュ対象
+      const request = record.request
+      const response = await record.responseReady
+
+      // キャッシュ追加
+      const cache = await caches.open(CACHE_NAME)
+      await cache.put(request.url, response)
+
+      // 通知
+      await e.updateUI({ title: &#39;download finished&#39; })
+    } catch (err) {
+      console.error(err)
+      e.updateUI({ title: `download failed ${e.registration.id}` })
+    }
+  }())
+})
+
+// download タスクをクリック
+self.addEventListener(&#39;backgroundfetchclick&#39;, (e) =&gt; {
+  e.waitUntil(async function() {
+    const id = e.registration.id
+    // 該当ページを開く
+    clients.openWindow(`https://files.example.com/${id}.html`)
+  }())
+})
+
+self.addEventListener(&#39;backgroundfetchfail&#39;, (e) =&gt; {
+  // 特に何もする必要ないっぽい
+  console.error(e)
+})
+
+self.addEventListener(&#39;backgroundfetchabort&#39;, (e) =&gt; {
+  // 特に何もする必要ないっぽい
+  console.error(e)
+})</code></pre>
+      <p>fail/abort は、タスクが消えるため特にリソースの開放などは必要なさそうだ。
+    </section>
+    <section>
+      <h2 id="cache-hit"><a href="#cache-hit">Cache HIT</a></h2>
+      <p>キャッシュは Range などを気にする必要もなく普通に返せば良い。
+      <p>実際に <code translate="no">&lt;audio&gt;</code> タグは途中からでも普通に再生できた。
+      <pre class=js><code translate="no">// ダウンロードしたものを返す
+self.addEventListener(&#39;fetch&#39;, (e) =&gt; {
+  e.respondWith(async function() {
+    const cachedResponse = await caches.match(e.request.url)
+    if (cachedResponse) {
+      // cache hit
+      return cachedResponse
+    } else {
+      // fallback to fetch
+      return fetch(e.request)
+    }
+  }())
+})</code></pre>
+    </section>
+    <section>
+      <h2 id="demo"><a href="#demo">DEMO</a></h2>
+      <p>動作するデモは以下に用意した。
+      <ul>
+        <li><a href="https://labs.jxck.io/service-worker/background-fetch/">https://labs.jxck.io/service-worker/background-fetch/</a>
+      </ul>
+    </section>
+    <section>
+      <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
+      <p>本サイトというか、適用先は mozaic.fm になる。
+      <p>すでにコードはある程度できているが、まだ Storage Quota に達した時の挙動がよくわかってないため、もう少しエッジケースを潰せたら入れたい。
+    </section>
+    <section>
+      <h2 id="next"><a href="#next">Next</a></h2>
+      <p>ところが、 Podcast アプリなら、ユーザが操作してないときに自動でダウンロードしておきたい。
+      <p>ネットワークに繋がっている場合、定期的にサーバに RSS を問い合わせ、更新があれば fetch する。
+      <p>ここでもう 1 つ待望だった API の <a href="https://github.com/WICG/periodic-background-sync">Periodic Background Sync</a> が利用できるだろう。
+      <p>また、今回の保存先はあくまでもキャッシュなので、キャッシュが増えればいずれ消える。
+      <p>そこでより積極的に保存を考える場合は File API も考慮できるだろう。
+      <p>次回はそれらを解説したい。
+    </section>
+  </article>
+</main>
+<hr>
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small><small>Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>Google Analytics</a> and <a href=https://w3c.github.io/ServiceWorker/>Service Worker</a>.</small></p>
+</footer>
+</body>
+</html>
+<amp-analytics type=googleanalytics id=analytics1>
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>

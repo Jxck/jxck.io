@@ -1,12 +1,13 @@
 # [background-fetch][service worker] Service Worker の Background Fetch によるメディアのキャッシュ
 
+
 ## Intro
 
 Podcast を PWA 対応するために、待望だった機能の 1 つが Background Fetch だ。
 
-これにより、通常 Range Request で取得するような、大きなファイルをダウンロードしておくことができるようになる。
+これにより、通常 Range Request で取得するような、大きなファイルを事前にダウンロードしておくことができるようになる。
 
-この API の使い方について解説する。
+この API と、 Service Worker およびブラウザにおける Range Request/Partial Response の扱いについて記す。
 
 
 ## background fetch
@@ -43,6 +44,7 @@ Host: files.mozaic.fm
 Range: bytes=54034432-
 ```
 
+
 ```
 HTTP/1.1 206 Partial Content
 content-type: audio/mpeg
@@ -50,40 +52,20 @@ Content-Range: bytes 54034432-101797887/101797888
 Content-Length: 47763456
 ```
 
-つまり、 1 つの音声ファイルを取得するリクエスト/レスポンスが、一つとは限らないというわけだ。
+つまり、 1 つの音声ファイルを取得するリクエスト/レスポンスが、 1 つとは限らないというわけだ。
 
 
 ## Service Worker での Range Request
 
-すると、 Service Worker で onfetch は Range ごとに複数発生する可能性がありそうだ。
+ところが onfetch で Range になるはずのリクエストを見てみると、レスポンスが必ず 200 で返ってきていることに気付く。
 
-HTTP の仕様によれば、 Partial Response は結合して 1 つの Response にすることが許されている。
-
-しかし、 Service Worker の Cache API はそんなことしてくれないから、自分でやるんだろうと予想する。
-
-すると以下のケースが考えられるだろう。
-
-すると、ユーザが頭から最後まで再生し、それを裏でまるっと保存できればよいが、途中から途中まで聞いた場合はどうだろう。
-
-歯抜けのキャッシュをヒットさせつつ、足らない部分はネットワークから取るなどしないといけなさそうだ。
-
-しかも Response オブジェクトには結合なんてメソッドは無いため、自分で ArrayBuffer を結合してそれを返す Reponse を自分で作る必要がありそうだ。
-
-1 byte でもずれてたら音声ファイルとして壊れたりしないだろうか、など色々妄想しつつ onfetch のログを眺めてみたとことがあれば、それどころじゃないことに気付くだろう。
-
-*Service Worker はそもそも Range/Partial には対応してない* というか標準化されてない。
-
-
-## fetch を通すと消える Range ヘッダ
-
-onfetch で Range になるはずのリクエストを見てみると、レスポンスが必ず 200 で返ってきていることに気付く。
 
 ```js
 self.addEventListener('fetch', (e) => {
   e.respondWith((async () => {
     const req = e.request
     const res = await fetch(req)
-    console.log(req, res)
+    console.log(req, res) // status 200
     return res
   })())
 })
@@ -95,7 +77,7 @@ self.addEventListener('fetch', (e) => {
 
 そもそも、 fetch を通すと Range Request が普通のリクエストとして送られているのだ。
 
-最初に試したのが Service Worker の初期の頃だったため、単に実装されてないだけろうと思い、実装されるのを待って漬けていた。
+最初に試したのが 4 年ほど前で、 Service Worker の初期の頃だったため、単に実装されてないだけろうと思い、実装されるのを待って漬けていた。
 
 
 ## ブラウザにおける Range/Parcial
@@ -107,27 +89,29 @@ self.addEventListener('fetch', (e) => {
 結論から言うとこうだ。
 
 > They're standardised in HTTP, but not by HTML. We know what the headers look like, and when they should appear, but there's nothing to say what a browser should actually do with them.
-> --- <cite>https://jakearchibald.com/2018/i-discovered-a-browser-bug/#range-requests-were-never-standardised</cite>
+> --- <cite><https://jakearchibald.com/2018/i-discovered-a-browser-bug/#range-requests-were-never-standardised></cite>
 
+- Range/Partial の仕様はあくまで HTTP の仕様
+- WHATWG において、それらがブラウザでどう扱われるかは、標準化されてない
+- `<audio>` / `<video>` などで Range を使うのはブラウザがそう実装してるだけ
+- Service Worker/Cache のような API でどうするかは決まってない
 
-つまり、 `<audio>` / `<video>` などで Range を使うのはブラウザの実装によるところであるため、 Service Worker/Fetch/Cache のような API に起こす上でどうするかが決まってなかった。
+つまり、 *Service Worker はそもそも Range/Partial には対応してない* というか標準化されてないと言って良いだろう。
 
-それでも、 200 では取得できるため、全体が得られればキャッシュは出来るし、 Safari などには 206 に置き換えて返すなどもできる。
+それでも、 200 では取得できるため、全体が得られればキャッシュは可能で、 Safari などには 206 に置き換えて返すこともできる。
 
-しかし、基本的に大きなファイルである Podcast をやる上で、標準化されてない仕様と、足りてない実装で、エッジケースだらけの要件を実装し切る必要が有る。
-
-そこまでやっても、途中までしかキャッシュできてない状態でオフラインになると、途中で再生が止まるフラストレーションが溜まるだけだ。
+しかし、途中までしかキャッシュできてない状態でオフラインになると、途中で再生が止まるフラストレーションが溜まるだけだ。
 
 なら Podcast アプリで聞いたほうが体験が良いということになる。
 
 PWA で理想的な Podcast アプリを実現するのは難しそうだ。と諦めてから 4 年近く経った。
 
 
-## background fetch
+## Background Fetch
 
 Podcast のアプリは基本的に、ネットワークがある間にダウンロードを完了し、地下鉄などを移動する際に聞ける状態になっているだろう。
 
-これと同じことが可能になるのが background fetch だ。
+これと同じことが可能になるのが Background Fetch だ。
 
 Service Worker に fetch を Task として追加し、バックグラウンドで実行させる。これは大きなファイルをブラウザでダウンロードしているときと同じような UX となる。
 
@@ -138,6 +122,7 @@ Service Worker に fetch を Task として追加し、バックグラウンド�
 
 ## API
 
+
 ### backgroundFetch registration
 
 取得したい URL とオプションを登録する。
@@ -145,6 +130,7 @@ Service Worker に fetch を Task として追加し、バックグラウンド�
 ID はそのタスク自体を識別するために登録し、もし同じ ID のタスクがある状態で再登録しようとすると例外が出る。
 
 また、ダウンロード対象を複数登録して同時にダウンロードさせることができる。
+
 
 ```js
 const id   = 'ep01'
@@ -159,9 +145,11 @@ const registration = await navigator.serviceWorker.ready
 const task = await registration.backgroundFetch.fetch(id, [url, mp3], option)
 ```
 
+
 ### foreground event
 
 ダウンロードの進捗は window 側で progress イベントで上がる
+
 
 ```js
 task.addEventListener('progress', (e) => console.log(e.downloaded))
@@ -171,6 +159,7 @@ task.addEventListener('progress', (e) => console.log(e.downloaded))
 ### abort()
 
 中断は API から可能であり、 `abort()` を呼べば task が終了する。
+
 
 ```js
 task.abort()
@@ -244,6 +233,7 @@ fail/abort は、タスクが消えるため特にリソースの開放などは
 
 実際に `<audio>` タグは途中からでも普通に再生できた。
 
+
 ```js
 // ダウンロードしたものを返す
 self.addEventListener('fetch', (e) => {
@@ -265,14 +255,17 @@ self.addEventListener('fetch', (e) => {
 
 動作するデモは以下に用意した。
 
-- https://labs.jxck.io/service-worker/background-fetch/
+- <https://labs.jxck.io/service-worker/background-fetch/>
 
 
-## まとめ
+## 本サイトへの適用
 
-あくまでもキャッシュなので、積極的に保存を考える場合は File API も考慮できるだろう。
+本サイトというか、適用先は mozaic.fm になる。
 
-しかし、これによってファイルをダウンロードしておくキャッシュ戦略が取れるようになった。
+すでにコードはある程度できているが、まだ Storage Quota に達した時の挙動がよくわかってないため、もう少しエッジケースを潰せたら入れたい。
+
+
+## Next
 
 ところが、 Podcast アプリなら、ユーザが操作してないときに自動でダウンロードしておきたい。
 
@@ -280,4 +273,8 @@ self.addEventListener('fetch', (e) => {
 
 ここでもう 1 つ待望だった API の [Periodic Background Sync](https://github.com/WICG/periodic-background-sync) が利用できるだろう。
 
-次回はそちらを解説したい。
+また、今回の保存先はあくまでもキャッシュなので、キャッシュが増えればいずれ消える。
+
+そこでより積極的に保存を考える場合は File API も考慮できるだろう。
+
+次回はそれらを解説したい。
