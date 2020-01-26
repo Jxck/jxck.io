@@ -3,7 +3,7 @@
   EventTarget.prototype.on  = EventTarget.prototype.addEventListener
   EventTarget.prototype.off = EventTarget.prototype.removeEventListener
   const DEBUG   = location.hash === '#debug'
-  const VERSION = 'v0.2.6'
+  const VERSION = 'v0.2.9'
   const log = DEBUG ? console.log.bind(console) : () => {}
   log('sw.js')
 
@@ -15,22 +15,31 @@
       if (location.hash === "#clear") {
         const registrations = await navigator.serviceWorker.getRegistrations()
         registrations.forEach(async (registration) => {
-          console.log(registration)
+          log(registration)
           await registration.unregister()
         })
         return
       }
 
       const controllerChange = new Promise((resolve, reject) => {
-        navigator.serviceWorker.addEventListener('controllerchange', () => {
-          resolve(navigator.serviceWorker.controller)
-        })
+        if (navigator.serviceWorker.controller) {
+          resolve(navigator.serviceWorker.controller);
+        } else {
+          navigator.serviceWorker.addEventListener('controllerchange', (e) => {
+            log(e.type)
+            resolve(navigator.serviceWorker.controller)
+          })
+        }
       })
 
       const registration = await navigator.serviceWorker.register(`/assets/js/sw.js`, { scope: '/' })
-      console.log(await navigator.serviceWorker.ready)
+      return await Promise.all([
+        navigator.serviceWorker.ready,
+        controllerChange
+      ])
     }
-    master()
+    log(await master())
+    // ここではすでに controller が新しくなっている
   }
 
   // Service Worker
@@ -39,11 +48,11 @@
       log('worker()', self)
 
       const ASSETS = [
-        'https://jxck.io/assets/font/NotoSansCJKjp-Regular-Jxck-20200124.woff2',
-        'https://jxck.io/assets/font/NotoSansCJKjp-Bold-Jxck-20200124.woff2',
-        'https://jxck.io/assets/font/NotoSansMonoCJKjp-Regular-Jxck-20200124.woff2',
-        'https://jxck.io/assets/font/NotoSansMonoCJKjp-Bold-Jxck-20200124.woff2',
-        'https://jxck.io/assets/js/highlight.pack.js',
+        'https://mozaic.fm/assets/font/NotoSansCJKjp-Regular-Jxck-20200124.woff2',
+        'https://mozaic.fm/assets/font/NotoSansCJKjp-Bold-Jxck-20200124.woff2',
+        'https://mozaic.fm/assets/font/NotoSansMonoCJKjp-Regular-Jxck-20200124.woff2',
+        'https://mozaic.fm/assets/font/NotoSansMonoCJKjp-Bold-Jxck-20200124.woff2',
+        'https://mozaic.fm/assets/js/highlight.pack.js',
       ]
 
       self.on('install', async (e) => {
@@ -52,10 +61,10 @@
           const cache = await caches.open(VERSION)
           // キャッシュされた URL の一覧
           const urls = Array.from(await cache.keys()).map((req) => req.url)
-          console.log('exists', urls)
+          log('exists', urls)
           // キャッシュされてない ASSETS 一覧
           const diff = ASSETS.filter((asset) => !urls.includes(asset))
-          console.log('diff', diff)
+          log('diff', diff)
           await cache.addAll(diff)
           return skipWaiting()
         }
@@ -71,7 +80,7 @@
           const stores        = await caches.keys()
           const old_stores    = stores.filter((store) => store !== VERSION)
           const stores_remove = old_stores.map((store) => {
-            console.log('remove cache table', store)
+            log('remove cache table', store)
             return caches.delete(store)
           })
 
@@ -80,7 +89,7 @@
           const requests        = await cache.keys()
           const old_requests    = requests.filter((req) => !ASSETS.includes(req.url))
           const requests_remove = old_requests.map((req) => {
-            console.log('remove cache', req.url)
+            log('remove cache', req.url)
             return cache.delete(req)
           })
 
