@@ -79,3 +79,10 @@ if (window.PerformanceObserver) {
     console.log(performance)
   }, 3000)
 }
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  // AdSense
+  (adsbygoogle = window.adsbygoogle || []).push({})
+  console.log(adsbygoogle)
+})
