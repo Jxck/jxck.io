@@ -73,7 +73,7 @@ if (window.PerformanceObserver) {
   observer.observe({entryTypes: PerformanceObserver.supportedEntryTypes});
 
   setTimeout(() => {
-    observer.takeRecords()
+    if (observer.takeRecords) observer.takeRecords() // safari unsupported
     observer.disconnect()
     // console.log(JSON.stringify(performance, " ", " "))
     console.log(performance)
