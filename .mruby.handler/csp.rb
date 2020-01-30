@@ -18,6 +18,7 @@ Proc.new do |env|
       "https://*.ampproject.net",
       "https://html.spec.whatwg.org",
       "https://w3c.github.io",
+      "https://adservice.google.com",
       ";",
       "frame-src",
       "https://www.youtube.com",
@@ -40,22 +41,42 @@ Proc.new do |env|
       "https://www.google-analytics.com",
       "https://html.spec.whatwg.org",
       "https://w3c.github.io",
-      ";",
-      "worker-src",
-      "https://blog.jxck.io", # service-worker
+      "https://*.google.co.jp",
+      "https://*.google.com",
+      "https://*.googleadservices.com",
+      "https://*.googlesyndication.com",
+      "https://*.googletagservices.com",
+      "https://*.ytimg.com",
+      "'unsafe-inline'",
       ";",
       "frame-src",
       "https://www.youtube.com",
+      "https://*.doubleclick.net",
       ";",
       "connect-src",
       "wss://ws.jxck.io",
-      "https://www.google-analytics.com",
       "https://report-uri.jxck.io",
+      "https://*.gstatic.com",
+      "https://www.google-analytics.com",
       ";",
       "report-uri #{REPORT_URI}",
       ";",
       "report-to default"
     ]
+
+    # csp = [
+    #   "script-src",
+    #   "'strict-dynamic'",
+    #   "'unsafe-eval'",
+    #   "'unsafe-inline'",
+    #   "https:",
+    #   "'nonce-dummynonce'",
+    #   ";",
+    #   "report-uri #{REPORT_URI}",
+    #   ";",
+    #   "report-to default"
+    # ]
+
     headers["Content-Security-Policy-Report-Only"] = csp.join(" ")
   end
   [399, headers, []]
