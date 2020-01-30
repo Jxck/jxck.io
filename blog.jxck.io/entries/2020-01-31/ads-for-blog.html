@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href="https://blog.jxck.io/entries/2020-01-31/ads-for-blog.html">
+  <link rel=amphtml   href="https://blog.jxck.io/entries/2020-01-31/ads-for-blog.amp.html">
+  <link rel=preload   type=font/woff2 as=font href=/assets/font/NotoSansCJKjp-Regular-Jxck-20200124.woff2 crossorigin>
+
+  <script defer src=/assets/js/main.js></script>
+  <script defer src=/assets/js/ga.js></script>
+  <script defer src=/assets/js/highlight.pack.js></script>
+
+  <link rel=icon             type =image/svg+xml sizes=any href=https://jxck.io/assets/img/jxck.svg>
+  <link rel=icon             type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="昨今、特に広告サービスを中心に 3rd Party Cookie を用いたトラッキングについての議論が多く行われている。Safari による ITP や、 Chrome による Privacy Sandbox への移行など、技術的な変化も著しい。こうした技術の変遷を観測し、...">
+  <meta name=keywords            content="AdSense,3rd Party Cookie,Cookie">
+  <meta name=theme-color         content=#000000>
+
+  <meta name=twitter:card        content=summary>
+  <meta name=twitter:site        content=@jxck_>
+  <meta name=twitter:url         content=https://blog.jxck.io/entries/2020-01-31/ads-for-blog.html>
+  <meta name=twitter:title       content="3rd Party Cookie 調査のための Web 広告導入 | blog.jxck.io">
+  <meta name=twitter:description content="昨今、特に広告サービスを中心に 3rd Party Cookie を用いたトラッキングについての議論が多く行われている。Safari による ITP や、 Chrome による Privacy Sandbox への移行など、技術的な変化も著しい。こうした技術の変遷を観測し、...">
+  <meta name=twitter:image       content=https://jxck.io/assets/img/jxck.png>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2020-01-31/ads-for-blog.html>
+  <meta property=og:title        content="3rd Party Cookie 調査のための Web 広告導入 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="昨今、特に広告サービスを中心に 3rd Party Cookie を用いたトラッキングについての議論が多く行われている。Safari による ITP や、 Chrome による Privacy Sandbox への移行など、技術的な変化も著しい。こうした技術の変遷を観測し、...">
+  <meta property=og:image        content=https://jxck.io/assets/img/jxck.png>
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "3rd Party Cookie 調査のための Web 広告導入 | blog.jxck.io",
+    "image": [
+      "https://jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2020-01-31T08:00:00+08:00",
+    "dateModified": "2020-01-31T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.60x60.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": "昨今、特に広告サービスを中心に 3rd Party Cookie を用いたトラッキングについての議論が多く行われている。Safari による ITP や、 Chrome による Privacy Sandbox への移行など、技術的な変化も著しい。こうした技術の変遷を観測し、..."
+  }
+  </script>
+
+  <title>3rd Party Cookie 調査のための Web 広告導入 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/blog.svg   title=blog   alt="blog top" class=logo></a>
+        <li><a href="https://blog.jxck.io/entries/2020-01-31/ads-for-blog.amp.html#development=1" aria-label="amp version">
+                                               <img width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/amp.svg    title=blog   alt="amp version"></a>
+        <li><a href=.                         ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/up.svg     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/rss.svg    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/humans.svg title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/jxck.svg   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/markdown.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2020-01-31>2020-01-31</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-01-31>2020-01-31</time></dd></div>
+      <div><dt class=tags>tags</dt><dd>[<a href="/tags/AdSense.html">AdSense</a><i>,</i><a href="/tags/3rd%20Party%20Cookie.html">3rd Party Cookie</a><i>,</i><a href="/tags/Cookie.html">Cookie</a>]</dd></div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+    <article>
+      <h1><a href=/entries/2020-01-31/ads-for-blog.html>3rd Party Cookie 調査のための Web 広告導入</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>昨今、特に広告サービスを中心に 3rd Party Cookie を用いたトラッキングについての議論が多く行われている。
+        <p>Safari による ITP や、 Chrome による Privacy Sandbox への移行など、技術的な変化も著しい。
+        <p>こうした技術の変遷を観測し、調査検証を行うために、これまで避けていた Web 広告を本サイトに導入することにした。
+      </section>
+      <section>
+        <h2 id="motivation"><a href="#motivation">Motivation</a></h2>
+        <p>本サイトは、様々な Web に関する技術を調査し、実際に試すためにサイト自体に適用しながらそれを記事にまとめるという目的で運用してきた。
+        <p>様々な技術を試したり、そのパフォーマンスやセキュリティへの影響を評価する上で、一般的なサイトの構成とかけ離れていれば、あまり意味をなさない。
+        <p>そのため、本サイトでは以下のように、別に必要はない機能やサービスをあえて導入している。
+        <ul>
+          <li>
+            AMP<ul>
+              <li>AMP より Origin の方が速く、 SEO は特に気にしてないので本来は必要無い
+              <li>AMP 自体の評価のために対応している
+            </ul>
+          </li>
+          <li>
+            Google Analytics<ul>
+              <li>Access Log や Reporting も手元にあるため、ダッシュボードを見ることはほぼない
+              <li>多くのサイトに ga.js が入っているため入れている
+            </ul>
+          </li>
+          <li>
+            Web Font<ul>
+              <li>タイポグラフィにこだわりがあるわけではなく、フォントはユーザが決めれば良いと考えている
+              <li>日本語フォントなど入れなければ早いに決まってるので、あえて鉄下駄として入れている
+            </ul>
+          </li>
+          <li>
+            Youtube<ul>
+              <li>
+                手元に動画ファイルがあるので <code translate="no">&lt;video&gt;</code> で貼れば良い
+              </li>
+              <li>
+                3rd Party の <code translate="no">&lt;iframe&gt;</code> を埋め込む場合の挙動を見たいので入れいている
+              </li>
+            </ul>
+          </li>
+          <li>
+            human.txt, ads.txt, security.txt<ul>
+              <li>だれが見ることもないと思うが入れている
+            </ul>
+          </li>
+        </ul>
+        <p>こうした、特に必要もないがよく使われている技術やサービスを入れておくことは、例えば以下のような指標を測定する際に、多くの発見がある。
+        <ul>
+          <li>
+            Performance<ul>
+              <li>日本語 WebFont の影響や、サブセッティングの効果
+              <li>AMP が速いとは限らないこと
+            </ul>
+          </li>
+          <li>
+            CSP<ul>
+              <li>特に Analytics や AMP で発生するエラー
+              <li>human.txt や ads.txt が CSP に違反するケース
+            </ul>
+          </li>
+          <li>
+            Feature Policy<ul>
+              <li>Youtube iframe で発生するエラー
+            </ul>
+          </li>
+          <li>etc,etc,etc
+        </ul>
+        <p>しかし、一般的なサービスが行っており、本サイトで行っていなかった大きな差異が一つある。それが <strong>広告の掲載</strong> だ。
+        <p>本サイトは、収益化を目的としてやってるわけではないし、広告があっても邪魔なだけなので、サイトの設立時から導入するつもりは一切なかった。
+        <p>ところが、昨今の Web において、 3rd Party Cookie の扱いやトラッキングの議論を考える上で、広告の存在は無視することができなくなっている。
+        <p>広告を設置してない状態では、広告があることによって起こると予想される様々な事象を見落としてる可能性が考えられるだろう。
+        <ul>
+          <li>
+            3rd Party Cookie がブロックされたとき、広告収益には具体的にどの程度の影響があるのか<ul>
+              <li>これを正確に比較して知るためには、本来 ITP よりも前に本サイトに広告があれば理想だったが、それは遅いのでしょうがない
+            </ul>
+          </li>
+          <li>
+            ブラウザに 3rd Party Cookie に対する制限が実装された時、広告のあるサイトでは実際どういう挙動を引き起こすのか<ul>
+              <li>特に Reporting API に Intervention Report が送られてくるのかどうか
+              <li>CSP や Feature Policy に 3rd Party Cookie などに関する directive が増えるのかどうか
+            </ul>
+          </li>
+          <li>
+            広告ベンダがそうした制限に対する対策を講じるとしたら、それはどういう形で配信者に提供されるのか<ul>
+              <li>アナウンスには、どういう説明が送られてくるのか
+              <li>Privacy Sandbox などはどういう API として提供されるのか
+            </ul>
+          </li>
+          <li>
+            その他<ul>
+              <li>広告があることによって起こる未知の事象
+            </ul>
+          </li>
+        </ul>
+        <p>そこで、本サイトにも広告を導入することを検討した。
+        <p>これ以上検証が不要とわかれば消すが、少なくとも Google が 3rd Party Cookie の無効化と Privacy Sandbox への以降を掲げている 2 年後までは運用していく。
+        <p>といっても邪魔なので Footer に置くため、目につくこともあまり無いだろう。仮に収益が出たら、このサイトのドメイン代やサーバ代の足しにする。
+      </section>
+      <section>
+        <h2 id="プロバイダ選定"><a href="#プロバイダ選定">プロバイダ選定</a></h2>
+        <p>プロバイダの選定は以下のように行う。
+        <ul>
+          <li>個人でも広告が掲載できる
+          <li>やめたい時にすぐやめられる
+          <li>3rd Party Cookie を利用している
+          <li>一般的なサイトでの採用率が高い
+          <li>広告の掲載場所がある程度自分でコントロールできる
+        </ul>
+        <p>特に最後の掲載場所は重要だ。
+        <p>広告を設置するとはいえ、収益よりもサイトのコンテンツを重要視しているので、広告はページの下部にでも表示できればそれでよい。
+        <p>逆を言えば、そういう設置場所のコントロールもできないと、採用は難しい。
+        <p>いくつか検討した結果、最終的に最も一般的に使われているであろう Google AdSesce を導入することにした。
+      </section>
+      <section>
+        <h2 id="google-adsense-導入"><a href="#google-adsense-導入">Google AdSense 導入</a></h2>
+        <p>基本の流れは以下になる。
+        <ul>
+          <li>導入申請
+          <li>広告のカスタマイズ
+          <li>AMP 対応
+          <li>ads.txt 対応
+          <li>Privacy Policy 対応
+          <li>CSP 対応
+        </ul>
+        <p>ここでは、導入時の備忘録を記す。
+        <section>
+          <h3 id="広告のカスタマイズ"><a href="#広告のカスタマイズ">広告のカスタマイズ</a></h3>
+          <p>設置できる広告にはいくつか種類がある。
+          <ul>
+            <li>ディスプレイ広告
+            <li>インフィード広告
+            <li>記事内広告
+          </ul>
+          <p>最初は AMP も対応されているディスプレイ広告を検討したが、スタイルの自由度的に記事内広告の方が扱いやすかったため記事内広告を採用した。
+          <p>背景や文字色も変更できるため、本サイトに合わせて変更しているが、本サイトが対応している <em>Dark Mode には対応できない</em> ようだ。
+        </section>
+        <section>
+          <h3 id="amp-対応"><a href="#amp-対応">AMP 対応</a></h3>
+          <p>AMP 対応は <code translate="no">&lt;amp-ad&gt;</code> を用いることになる。
+          <ul>
+            <li><a href="https://amp.dev/ja/documentation/components/amp-ad/">https://amp.dev/ja/documentation/components/amp-ad/</a>
+          </ul>
+          <p>これも貼るだけなので特に問題はなかった。
+        </section>
+        <section>
+          <h3 id="adstxt-対応"><a href="#adstxt-対応">ads.txt 対応</a></h3>
+          <p>本サイトは既に ads.txt を提供し Ad が無いことを記述していた。
+          <p>AdSense から ads.txt への記載内容が提供されたため、それを素直に転記した。
+          <p>AdSense は <code translate="no">blog.jxck.io</code> にしか掲載しないが、 ads.txt は <code translate="no">jxck.io</code> レベルで提供する必要があり、そこは気に食わないがおとなしく従うことにした。
+        </section>
+        <section>
+          <h3 id="privacy-policy-対応"><a href="#privacy-policy-対応">Privacy Policy 対応</a></h3>
+          <p>AdSense の利用には Privacy Policy の記載が必要となる。
+          <p>Analytics の規約については本サイト Footer に記載していたが、これを期にページを分け、本サイトの Policy をまとめる構成に変更した。
+          <p>具体的には以下の構成になる。
+          <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+          <pre><code translate="no">blog.jxck.io
+  `-- /policies
+        |-- privacy.html # privacy policy
+        `-- site.html    # site policy</code></pre>
+          <p>各ページへは、本サイト Footer からリンクしている。
+        </section>
+        <section>
+          <h3 id="csp-対応"><a href="#csp-対応">CSP 対応</a></h3>
+          <p>本サイトでは、長らく CSP-Report-Only を運用している。
+          <ul>
+            <li><a href="https://blog.jxck.io/entries/2016-03-30/content-security-policy.html">Content Security Policy(CSP) 対応と report-uri.io でのレポート収集</a>
+          </ul>
+          <p>適用が昔からの継ぎ足しなため、未だに v1 時代のホワイトリスト形式を採用したままだ。
+          <p>v3 の nonce + strict-dynamic ベースにへの以降は前々から計画していたため、これを期に v3 に移行しつつ対応しようと考えた。
+          <p>しかし、 nonce + strict-dynamic にしても、 AdSense のスクリプトが生成するどこかの <code translate="no">&lt;script&gt;</code> タグが CSP に違反してしまい、うまく適用ができなかった。
+          <p>strict-dynamic であれば動的生成の <code translate="no">&lt;script&gt;</code> も対応できるはずだったが、これが仕様や実装の問題なのか、適用方法の問題なのか検証しきれなかった。
+          <p>そこで、既存の v1 ベースで、引っかかるドメインを追加することで暫定対応を実施した。
+          <p>どこかで v3 ベースにうまく移行できるように再調査したい。
+        </section>
+        <section>
+          <h3 id="まとめ"><a href="#まとめ">まとめ</a></h3>
+          <p>本サイトに、 Google AdSense を導入した。
+          <p>ここを起点に、今後 3rd Party Cookie を取り巻く Web の変遷を観察し、調査/検証を行っていく。
+        </section>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small><small>Using <a href=https://www.google.com/intl/ja/policies/privacy/partners/>Google Analytics</a> and <a href=https://w3c.github.io/ServiceWorker/>Service Worker</a>.</small></p>
+  </footer>
+</body>
+</html>

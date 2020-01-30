@@ -1,4 +1,4 @@
-# [AdSense][3rd Party Cookie][Cookie] 3rd Party Cookie 調査のための Web 広告導入
+# [Ads][3rd Party Cookie][Cookie] 3rd Party Cookie 調査のための Web 広告導入
 
 ## Intro
 
