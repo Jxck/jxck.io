@@ -80,7 +80,7 @@ self.addEventListener('fetch', (e) => {
 最初に試したのが 4 年ほど前で、 Service Worker の初期の頃だったため、単に実装されてないだけろうと思い、実装されるのを待って漬けていた。
 
 
-## ブラウザにおける Range/Parcial
+## ブラウザにおける Range/Partial
 
 以下のブログが出て初めて、実装ではなく仕様の問題だということがわかった。
 
