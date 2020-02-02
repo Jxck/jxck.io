@@ -138,7 +138,7 @@ AdSense は `blog.jxck.io` にしか掲載しないが、 ads.txt は `jxck.io` 
 
 AdSense の利用には Privacy Policy の記載が必要となる。
 
-Analytics の規約については本サイト Footer に記載していたが、これを期にページを分け、本サイトの Policy をまとめる構成に変更した。
+Analytics の規約については本サイト Footer に記載していたが、これを機にページを分け、本サイトの Policy をまとめる構成に変更した。
 
 具体的には以下の構成になる。
 
@@ -161,7 +161,7 @@ blog.jxck.io
 
 適用が昔からの継ぎ足しなため、未だに v1 時代のホワイトリスト形式を採用したままだ。
 
-v3 の nonce + strict-dynamic ベースにへの以降は前々から計画していたため、これを期に v3 に移行しつつ対応しようと考えた。
+v3 の nonce + strict-dynamic ベースにへの以降は前々から計画していたため、これを機に v3 に移行しつつ対応しようと考えた。
 
 しかし、 nonce + strict-dynamic にしても、 AdSense のスクリプトが生成するどこかの `<script>` タグが CSP に違反してしまい、うまく適用ができなかった。
 
