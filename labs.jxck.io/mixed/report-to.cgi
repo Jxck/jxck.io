@@ -1,1 +1,0 @@
-../../report-uri.jxck.io/report-to.cgi
