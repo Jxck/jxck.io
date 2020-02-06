@@ -9,12 +9,15 @@ const $  = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
 if (window.ReportingObserver) {
-  (new ReportingObserver((reports, observer) => {
-    reports.map((report) => {
-      navigator.sendBeacon("https://report-uri.jxck.io/report-to.cgi", JSON.stringify(report))
-    })
-    console.log(reports, JSON.stringify(reports))
-  })).observe()
+  console.log('ReportingObserver');
+  const observer = new ReportingObserver((reports, observer) => {
+    console.log(reports)
+    const URL = "https://reporting.jxck.io/beacon"
+    for (const report of reports) {
+      navigator.sendBeacon(URL, JSON.stringify(report))
+    }
+  }, {buffered: true})
+  observer.observe()
 }
 
 // keybind

@@ -1,5 +1,5 @@
 Proc.new do |env|
-  REPORT_URI = "https://report-uri.jxck.io"
+  REPORT_URI = "https://reporting.jxck.io"
   # No CSP for static text file
   if /(\.md\z|\.txt\z|\.xml\z|\.json\z)/.match(env["PATH_INFO"])
     next [399, {}, []]
@@ -58,7 +58,7 @@ Proc.new do |env|
       ";",
       "connect-src",
       "wss://ws.jxck.io",
-      "https://report-uri.jxck.io",
+      "https://reporting.jxck.io",
       "https://*.gstatic.com",
       "https://www.google-analytics.com",
       "https://*.googlesyndication.com",

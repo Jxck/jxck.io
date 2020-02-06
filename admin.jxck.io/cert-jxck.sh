@@ -25,12 +25,12 @@ sudo certbot certonly \
   -d ws.jxck.io \
   -d rails.jxck.io \
   -d api.jxck.io \
-  -d report-uri.jxck.io \
   -d sfu.jxck.io \
   -d spec.jxck.io \
   -d logo.jxck.io \
   -d labs.jxck.io \
-  -d lab2.jxck.io
+  -d lab2.jxck.io \
+  -d reporting.jxck.io
 
 # no https
 # turn.jxck.io
