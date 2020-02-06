@@ -1,41 +1,39 @@
-#!/home/jxck/dotfiles/pkg/nodebrew/current/bin/node
+#!/usr/bin/env ruby
 
-// only for labs.jxck.io, no for https://report-uri.jxck.io
-// reporting daemon is report-uri.jxck.io/report.rb
+require "json"
+require "time"
 
-const fs = require('fs');
-const content_length = process.env['CONTENT_LENGTH'];
-const FILE = `${process.cwd()}/beacon.log`;
+FILE="#{Dir.pwd}/beacon.log"
 
-process.stdin.setEncoding('utf-8')
-process.stdin.on('readable', async (e) => {
-  try {
-    const body = process.stdin.read(content_length)
-    if (body === null)  return
+def append(file, data)
+  file = File.open(file, 'a')
+  file.print(data+"\r\n")
+  file.close()
+end
 
+begin
+  header = ENV
+    .entries
+    .select{|k,v| k.start_with?("HTTP_") }
+    .map{|k,v| [k.downcase.sub(/^http_/, ""), v]}
+    .to_h
 
-    const header = {}
-    Object.keys(process.env).filter((k) => k.startsWith("HTTP_")).forEach((k) => {
-      header[k.toLowerCase().replace("http_", "")] = process.env[k]
-    })
-    const req = JSON.stringify({
-      body: JSON.parse(body),
-      header: header,
-      date: new Date()
-    })
+  body = STDIN.read
 
-    fs.appendFile(FILE, req+'\r\n', (err) => {
-      let status = 201;
-      if (err) {
-        console.error(err);
-        console.log('Status: 500 Internal Server Error')
-      } else {
-        console.log('Status: 201 Created')
-      }
-      console.log('');
-    });
-  } catch (err) {
-    console.error(err);
-    console.log('Status: 500 Internal Server Error')
-  }
-})
+  if body.empty?
+    STDOUT.print "Status: 400 Bad Request\n\n"
+    exit(0)
+  end
+
+  date = Time.now.iso8601
+
+  json = {body: JSON.parse(body), header: header, date: date}
+
+  append(FILE, JSON.fast_generate(json))
+
+  STDOUT.print "Status: 201 Created\n\n"
+rescue => err
+  STDOUT.print "Status: 500 Internal Server Error\n\n"
+  STDERR.puts "\n" + err.full_message(highlight: true)
+  exit(0)
+end
