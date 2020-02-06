@@ -3,7 +3,7 @@
 require "json"
 require "time"
 
-FILE="#{Dir.pwd}/beacon.log"
+FILE="#{Dir.pwd}/reporting.log"
 
 def append(file, data)
   file = File.open(file, 'a')
