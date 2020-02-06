@@ -1,1 +1,1 @@
-../../.cgi/report-to.cgi
+../../report-uri.jxck.io/report-to.cgi
