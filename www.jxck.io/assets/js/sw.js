@@ -48,10 +48,10 @@
       log('worker()', self)
 
       const ASSETS = [
-        'https://mozaic.fm/assets/font/NotoSansCJKjp-Regular-Jxck-20200124.woff2',
-        'https://mozaic.fm/assets/font/NotoSansCJKjp-Bold-Jxck-20200124.woff2',
-        'https://mozaic.fm/assets/font/NotoSansMonoCJKjp-Regular-Jxck-20200124.woff2',
-        'https://mozaic.fm/assets/font/NotoSansMonoCJKjp-Bold-Jxck-20200124.woff2',
+        'https://mozaic.fm/assets/font/NotoSansCJKjp-Regular-Jxck-20200211.woff2',
+        'https://mozaic.fm/assets/font/NotoSansCJKjp-Bold-Jxck-20200211.woff2',
+        'https://mozaic.fm/assets/font/NotoSansMonoCJKjp-Regular-Jxck-20200211.woff2',
+        'https://mozaic.fm/assets/font/NotoSansMonoCJKjp-Bold-Jxck-20200211.woff2',
         'https://mozaic.fm/assets/js/highlight.pack.js',
       ]
 
