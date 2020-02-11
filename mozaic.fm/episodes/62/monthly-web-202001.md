@@ -411,7 +411,7 @@ guest
 - Update
   - *新たな年に新たなブラウザーを – 新しい Microsoft Edge はプレビューを終え、ダウンロード提供を開始 - Windows Blog for Japan*
     - <https://blogs.windows.com/japan/2020/01/16/new-year-new-browser-the-new-microsoft-edge-is-out-of-preview-and-now-available-for-download/>
-    - ※日本のお客様に対しては、確定申告への影響を考慮し、 Windows Update を通じた新しい Microsoft Edge の配信は令和 2 年 4 月 1 日以降、順次開始される予定です。
+    - 「日本のお客様に対しては、確定申告への影響を考慮し、 Windows Update を通じた新しい Microsoft Edge の配信は令和 2 年 4 月 1 日以降、順次開始される予定です。」
     - とのこと
   - *Improving Tracking Prevention in Microsoft Edge*
     - <https://blogs.windows.com/msedgedev/2019/12/03/improving-tracking-prevention-microsoft-edge-79/>
@@ -444,7 +444,7 @@ guest
     - Chrome に限らずモダンなエンジンをサポートしていく
   - *Exchange and SameSite Updates - Microsoft Tech Community - 1127984*
     - <https://techcommunity.microsoft.com/t5/exchange-team-blog/exchange-and-samesite-updates/ba-p/1127984>
-  - *【確定申告書等作成コーナー】-Microsoft Edge への対応について*
+  - *[確定申告書等作成コーナー]-Microsoft Edge への対応について*
     - <https://www.keisan.nta.go.jp/r1yokuaru/cat1/cat11/cid532.html>
     - new Edge では eTax が使えない(主にマイナンバーを読む NFC)
     - IE11 か Edge44 が推奨
