@@ -83,6 +83,10 @@ if __FILE__ == $PROGRAM_NAME
     podcast.feed
     podcast.index
   }
+  opt.on("--podcastid3all") {|v|
+    puts "test building podcast id3tag"
+    podcast.id3all
+  }
   #opt.on("--marktest") {|v|
   #  puts "test markup"
   #  path = "./.script/test/test.md"

@@ -1,0 +1,16 @@
+#!/bin/bash -xe
+
+<% episodes.reverse.each_with_index do |episode, i| %>
+eyeD3 --remove-all ../<%= episode.audio_file %>
+
+eyeD3 --title "<%= episode.title %>" \
+      --track <%= i+1 %> \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../<%= episode.audio_file %>
+
+
+<% end %>

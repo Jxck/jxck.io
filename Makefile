@@ -93,6 +93,9 @@ blogtest:
 podcasttest:
 	$(MARK) --podcasttest
 
+podcastid3all:
+	$(MARK) --podcastid3all
+
 marktest:
 	$(MARK) --marktest
 
