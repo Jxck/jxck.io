@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
+
+  <link rel=canonical href=https://mozaic.fm/episodes/63/cross-origin-info-leaks.html>
+  <link rel=preload   type=font/woff2 as=font href=/assets/font/NotoSansCJKjp-Regular-Jxck-20200124.woff2 crossorigin>
+
+  <script defer type=module src=/assets/js/mozaic.js></script>
+  <script defer type=module src=/assets/js/sw.js></script>
+
+  <link rel=icon             type =image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon             type =image/png sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.png>
+  <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.png>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="第 63 回のテーマは Cross Origin Info Leaks です。今回は @shhnjk さんをお迎えし、 Spectore で発覚した Side Channel Attack と、対策として出てきた Site Isolation や増えてきた `Cross-O...">
+  <meta name=keywords            content="cookie,site isolation,security,mozaic.fm">
+  <meta name=theme-color         content=#000000>
+
+  <meta name=twitter:card        content=summary>
+  <meta name=twitter:site        content=@jxck_>
+  <meta name=twitter:url         content=https://mozaic.fm/episodes/63/cross-origin-info-leaks.html>
+  <meta name=twitter:title       content="ep63 Cross Origin Info Leaks | mozaic.fm">
+  <meta name=twitter:description content="第 63 回のテーマは Cross Origin Info Leaks です。今回は @shhnjk さんをお迎えし、 Spectore で発覚した Side Channel Attack と、対策として出てきた Site Isolation や増えてきた `Cross-O...">
+  <meta name=twitter:image       content=https://mozaic.fm/assets/img/mozaic.png>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://mozaic.fm/episodes/63/cross-origin-info-leaks.html>
+  <meta property=og:title        content="ep63 Cross Origin Info Leaks | mozaic.fm">
+  <meta property=og:site_name    content=mozaic.fm>
+  <meta property=og:description  content="第 63 回のテーマは Cross Origin Info Leaks です。今回は @shhnjk さんをお迎えし、 Spectore で発覚した Side Channel Attack と、対策として出てきた Site Isolation や増えてきた `Cross-O...">
+  <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.png>
+
+  <title>ep63 Cross Origin Info Leaks | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/62/monthly-web-202001.html>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css>
+
+  <template id=search_diag>
+    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/dialog.css>
+    <dialog class=search>
+      <form method=get action=https://google.co.jp/search>
+        <fieldset>
+          <legend>search via google</legend>
+          <label for=keywords>keyword:</label>
+          <input type=search name=q id=keywords placeholder=keywords>
+          <input type=hidden name=q value=site:mozaic.fm/episodes>
+          <button type=submit>go</button>
+        </fieldset>
+      </form>
+    </dialog>
+  </template>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=/                                                                            ><img alt=top              width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/mozaic.svg class=logo></a>
+      <li><a                                                                                   ><img alt=share id=share   width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/share.svg></a>
+      <li><a href=https://www.google.co.jp/search?q=site%3Amozaic.fm%2Fepisodes class=search   ><img alt=search           width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/search.svg></a>
+      <li><a href=http://feed.mozaic.fm                                                        ><img alt="rss feed"       width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/podcast.svg></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495                    ><img alt=itunes           width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/itunes.svg></a>
+      <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D"    ><img alt="google podcast" width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/google-podcast.svg></a>
+      <li><a href="https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd"><img alt=huamns.txt       width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/twitter.svg></a>
+      <li><a href=https://jxck.io                                                              ><img alt="jxck logo"      width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/jxck.svg class=logo></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/62/monthly-web-202001.html">ep62 Monthly Web 202001</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+<article>
+      <h1><a href=/episodes/63/cross-origin-info-leaks.html>ep63 Cross Origin Info Leaks</a></h1>
+      <section>
+        <h2 id="info"><a href="#info">Info</a></h2>
+        <p><mozaic-player><audio slot=audio src=https://files.mozaic.fm/mozaic-ep63.mp3 title='ep63 Cross Origin Info Leaks' data-forward=+30 data-back=-10></audio></mozaic-player>
+        <dl class=info>
+          <div>
+            <dt>published_at
+            <dd>2020-02-11
+          </div>
+          <div>
+            <dt>guest
+            <dd><a href="https://twitter.com/shhnjk">@shhnjk</a>
+          </div>
+        </dl>
+      </section>
+      <section>
+        <h2 id="theme"><a href="#theme">Theme</a></h2>
+        <p>第 63 回のテーマは Cross Origin Info Leaks です。
+        <p>今回は <a href="https://twitter.com/shhnjk">@shhnjk</a> さんをお迎えし、 Spectore で発覚した Side Channel Attack と、対策として出てきた Site Isolation や増えてきた <code translate="no">Cross-Origin-*</code> 系のヘッダ郡。
+        <p>今の Web はどういう脅威と戦い、これらの仕様や実装は何を目的として提案されたのか。
+        <p>Origin を守るための Web の戦いと、そこから見える Web や Browser のアーキテクチャの今後について議論します。
+      </section>
+      <section>
+        <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
+        <ul>
+          <li>
+            Spectre<ul>
+              <li><a href="https://spectreattack.com/">https://spectreattack.com/</a>
+              <li>
+                A year with Spectre: a V8 perspective · V8<ul>
+                  <li><a href="https://v8.dev/blog/spectre">https://v8.dev/blog/spectre</a>
+                </ul>
+              </li>
+              <li>
+                What Spectre and Meltdown Mean For WebKit<ul>
+                  <li><a href="https://webkit.org/blog/8048/what-spectre-and-meltdown-mean-for-webkit/">https://webkit.org/blog/8048/what-spectre-and-meltdown-mean-for-webkit/</a>
+                  <li>webkit による解説と対策の紹介
+                </ul>
+              </li>
+              <li>
+                Jake Archibald<ul>
+                  <li><a href="https://twitter.com/jaffathecake/status/948879579397214208">https://twitter.com/jaffathecake/status/948879579397214208</a>
+                </ul>
+              </li>
+              <li>
+                A Spectre-shaped Web 👻🕸️ (BerlinSec)<ul>
+                  <li><a href="https://docs.google.com/presentation/d/1sadl7jTrBIECCanuqSrNndnDr82NGW1yyuXFT1Dc7SQ/edit">https://docs.google.com/presentation/d/1sadl7jTrBIECCanuqSrNndnDr82NGW1yyuXFT1Dc7SQ/edit</a>
+                </ul>
+              </li>
+              <li>
+                Mitigating Side-Channel Attacks - The Chromium Projects<ul>
+                  <li><a href="https://sites.google.com/a/chromium.org/dev/Home/chromium-security/ssca">https://sites.google.com/a/chromium.org/dev/Home/chromium-security/ssca</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Site Isolation<ul>
+              <li><a href="http://www.chromium.org/Home/chromium-security/site-isolation">http://www.chromium.org/Home/chromium-security/site-isolation</a>
+              <li>
+                Post-Spectre Threat Model Re-Think<ul>
+                  <li><a href="https://chromium.googlesource.com/chromium/src/+/master/docs/security/side-channel-threat-model.md">https://chromium.googlesource.com/chromium/src/+/master/docs/security/side-channel-threat-model.md</a>
+                </ul>
+              </li>
+              <li>
+                Hack Patch!: ブラウザ セキュリティの近状<ul>
+                  <li><a href="https://shhnjk.blogspot.com/2017/12/Browser-Security.html">https://shhnjk.blogspot.com/2017/12/Browser-Security.html</a>
+                </ul>
+              </li>
+              <li>
+                Chrome Rewards – Application Security – Google<ul>
+                  <li><a href="https://www.google.com/about/appsecurity/chrome-rewards/index.html#special">https://www.google.com/about/appsecurity/chrome-rewards/index.html#special</a>
+                  <li>Site Isolation はバグを見つけると報奨金も高い
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Out Of Renderer CORS<ul>
+              <li><a href="https://www.chromestatus.com/feature/5768642492891136">https://www.chromestatus.com/feature/5768642492891136</a>
+            </ul>
+          </li>
+          <li>
+            CORB(Cross Origin Read Blocking)<ul>
+              <li><a href="https://fetch.spec.whatwg.org/#corb">https://fetch.spec.whatwg.org/#corb</a>
+              <li>秘情報を含む json などのリソースが img などで意図的に取得される場合
+              <li>全部ではなくても先頭部分だけメモリに展開されても、サイドチャネルで読めてしまう
+              <li>そこで cors のついてない Content-Type がずれたコンテンツは一切読み込まない
+              <li>
+                Cross-Origin Read Blocking for Web Developers - The Chromium Projects<ul>
+                  <li><a href="https://www.chromium.org/Home/chromium-security/corb-for-developers">https://www.chromium.org/Home/chromium-security/corb-for-developers</a>
+                </ul>
+              </li>
+              <li>
+                Fetch: CORB - Issue #81 - mozilla/standards-positions<ul>
+                  <li><a href="https://github.com/mozilla/standards-positions/issues/81">https://github.com/mozilla/standards-positions/issues/81</a>
+                </ul>
+              </li>
+              <li>
+                Cross-Origin Read Blocking (CORB) - Issue #681 - whatwg/fetch<ul>
+                  <li><a href="https://github.com/whatwg/fetch/issues/681">https://github.com/whatwg/fetch/issues/681</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            CORP(Cross-Origin-Resorce-Policy) (was Form Origin)<ul>
+              <li><a href="https://fetch.spec.whatwg.org/#cross-origin-resource-policy-header">https://fetch.spec.whatwg.org/#cross-origin-resource-policy-header</a>
+              <li>same-origin/same-site などを指定
+              <li>そのリソースが別の Origin/Site で取得されることを防ぐ
+              <li>Chrome の場合は Renderer Process に渡されないなど
+              <li>CORB の opt-in 版で CORB で防げないものを防ぐ
+              <li>
+                Cross-Origin-Resource-Policy (was: From-Origin) - Issue #687 - whatwg/fetch<ul>
+                  <li><a href="https://github.com/whatwg/fetch/issues/687">https://github.com/whatwg/fetch/issues/687</a>
+                </ul>
+              </li>
+              <li>
+                Fetch: From-Origin #80<ul>
+                  <li><a href="https://github.com/mozilla/standards-positions/issues/80">https://github.com/mozilla/standards-positions/issues/80</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            COOP(Cross-Origin-Opener-Policy) (was Cross Origin Window Policy)<ul>
+              <li>自分が開かれたときに window.opener をなくせる
+              <li>前のページとのリファレンスが無くせるため、新しく開いたページを別 Process に isolate できる
+              <li>
+                なお、開く側が次のページとのリファレンスを無くす場合は、 <code translate="no">rel=noopener</code> を指定
+              </li>
+              <li>
+                Restricting cross-origin WindowProxy access (Cross-Origin-Opener-Policy) - Issue #3740 - whatwg/html<ul>
+                  <li><a href="https://github.com/whatwg/html/issues/3740">https://github.com/whatwg/html/issues/3740</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            COEP(Cross-Origin-Embedder-Policy) (was Cross Origin Resource Resource Policy)<ul>
+              <li><a href="https://mikewest.github.io/corpp/">https://mikewest.github.io/corpp/</a>
+              <li>iframe などで取得する全てのリソースに CORP を強制できる
+            </ul>
+          </li>
+          <li>
+            CORP+COEP+COOP を組み合わせる<ul>
+              <li>ページを展開した際に Isolation された Process に展開できる
+              <li>サブリソースも読み込みが許可されたものだけであることが保証できる
+            </ul>
+          </li>
+          <li>
+            Fetch Metadata (was Sec-Site/Sec-metadata)<ul>
+              <li>リクエストに 4 つのデフォルトヘッダが追加される
+              <li>
+                Fetch Metadata Request Headers - Issue #88 - mozilla/standards-positions<ul>
+                  <li><a href="https://github.com/mozilla/standards-positions/issues/88">https://github.com/mozilla/standards-positions/issues/88</a>
+                </ul>
+              </li>
+              <li>
+                <code translate="no">sec-metadata</code> - Issue #280 - w3ctag/design-reviews<ul>
+                  <li><a href="https://github.com/w3ctag/design-reviews/issues/280">https://github.com/w3ctag/design-reviews/issues/280</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Same Site Cookie<ul>
+              <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis-05#section-5.3.7">https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis-05#section-5.3.7</a>
+              <li>別 Site に Cookie が飛ばないようにする
+            </ul>
+          </li>
+          <li>
+            schemeless/schemefull same site<ul>
+              <li><a href="https://lists.w3.org/Archives/Public/public-webappsec/2019Nov/0004.html">https://lists.w3.org/Archives/Public/public-webappsec/2019Nov/0004.html</a>
+              <li>same site = TopLevel ドメインが同じ、において、 scheme を意識するかしないかを明確にする
+            </ul>
+          </li>
+          <li>
+            Origin Isolation<ul>
+              <li><a href="https://github.com/domenic/origin-isolation">https://github.com/domenic/origin-isolation</a>
+            </ul>
+          </li>
+          <li>
+            Securer Contexts<ul>
+              <li><a href="https://github.com/mikewest/securer-contexts/">https://github.com/mikewest/securer-contexts/</a>
+            </ul>
+          </li>
+          <li>
+            Securing your extensions against compromised renderer processes<ul>
+              <li><a href="https://groups.google.com/a/chromium.org/d/msg/chromium-extensions/0ei-UCHNm34/lDaXwQhzBAAJ">https://groups.google.com/a/chromium.org/d/msg/chromium-extensions/0ei-UCHNm34/lDaXwQhzBAAJ</a>
+              <li>あまり関係ないドキュメントだが、Compromised renderer processの定義が書いてある
+            </ul>
+          </li>
+          <li>
+            Possible side-channel information leak using IntersectionObserver<ul>
+              <li><a href="https://github.com/WICG/ScrollToTextFragment/issues/79">https://github.com/WICG/ScrollToTextFragment/issues/79</a>
+            </ul>
+          </li>
+          <li>
+            XS-Leaks<ul>
+              <li><a href="https://github.com/xsleaks/xsleaks">https://github.com/xsleaks/xsleaks</a>
+              <li>
+                sirdarckcat: [🌐💧💥] HTTP Cache Cross-Site Leaks<ul>
+                  <li><a href="http://sirdarckcat.blogspot.com/2019/03/http-cache-cross-site-leaks.html">http://sirdarckcat.blogspot.com/2019/03/http-cache-cross-site-leaks.html</a>
+                </ul>
+              </li>
+              <li>
+                Cache and Error Events<ul>
+                  <li><a href="https://github.com/xsleaks/xsleaks/wiki/Browser-Side-Channels#cache-and-error-events">https://github.com/xsleaks/xsleaks/wiki/Browser-Side-Channels#cache-and-error-events</a>
+                  <li>一度キャッシュを POST などで消す
+                  <li>prerender などで目的のサイトをレンダリングさせる
+                  <li>
+                    refere にすごく長い URL をセットしてリクエストさせる<ul>
+                      <li>キャッシュがあれば普通にヒットする
+                      <li>なければサーバに行き、通常エラーになる
+                      <li>この結果でキャッシュの有無がわかる
+                    </ul>
+                  </li>
+                  <li>たとえば特定の人の画像があるかどうかで、友達かどうかわかるなど
+                  <li>
+                    chrome が referer の長さを 4K に制限したのはこれの対策<ul>
+                      <li><a href="https://www.chromestatus.com/feature/5648956820291584">https://www.chromestatus.com/feature/5648956820291584</a>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Twitter Silhouette 攻撃<ul>
+                  <li><a href="https://blog.twitter.com/ja_jp/topics/company/2018/twitter_silhouette_JPN.html">https://blog.twitter.com/ja_jp/topics/company/2018/twitter_silhouette_JPN.html</a>
+                  <li>リクエストにかかる時間を観測し、レスポンスの大きさを調べる
+                  <li>ブロックしてたりすると、固定ページで、レスポンスが小さいが、フォローしてると TL が取得できる
+                  <li>これを観測しブロック関係などを推測する
+                </ul>
+              </li>
+              <li>どちらも Same Site Cookie などが有効
+            </ul>
+          </li>
+          <li>
+            Stephen Röttger | OffensiveCon<ul>
+              <li><a href="https://www.offensivecon.org/speakers/2020/stephen-roettger.html">https://www.offensivecon.org/speakers/2020/stephen-roettger.html</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </article>
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/62/monthly-web-202001.html">ep62 Monthly Web 202001</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small></p>
+  <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong>
+</footer>
+</body>
+</html>

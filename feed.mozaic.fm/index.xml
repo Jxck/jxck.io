@@ -29,7 +29,139 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep62.mp3" length="109965895" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep63.mp3" length="133474839" type="audio/mpeg" />
+      <guid isPermaLink="false">https://mozaic.fm/episodes/63/cross-origin-info-leaks.html</guid>
+      <link>https://mozaic.fm/episodes/63/cross-origin-info-leaks.html</link>
+      <pubDate>Tue, 11 Feb 2020 00:00:00 +0900</pubDate>
+      <title>ep63 Cross Origin Info Leaks | mozaic.fm</title>
+      <itunes:author>Jxck</itunes:author>
+      <itunes:duration>03:05:19</itunes:duration>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:keywords>web,tech,it</itunes:keywords>
+      <itunes:order>0</itunes:order>
+      <itunes:subtitle>第 63 回のテーマは Cross Origin Info Leaks です。</itunes:subtitle>
+      <media:content url="https://files.mozaic.fm/mozaic-ep63.mp3" fileSize="133474839" type="audio/mpeg" />
+      <description># ep63 Cross Origin Info Leaks
+
+第 63 回のテーマは Cross Origin Info Leaks です。
+
+今回は @shhnjk さんをお迎えし、 Spectore で発覚した Side Channel Attack と、対策として出てきた Site Isolation や増えてきた `Cross-Origin-*` 系のヘッダ郡。
+
+今の Web はどういう脅威と戦い、これらの仕様や実装は何を目的として提案されたのか。
+
+Origin を守るための Web の戦いと、そこから見える Web や Browser のアーキテクチャの今後について議論します。
+
+
+## Show Note
+
+- Spectre
+  - https://spectreattack.com/
+  - A year with Spectre: a V8 perspective · V8
+    - https://v8.dev/blog/spectre
+  - What Spectre and Meltdown Mean For WebKit
+    - https://webkit.org/blog/8048/what-spectre-and-meltdown-mean-for-webkit/
+    - webkit による解説と対策の紹介
+  - Jake Archibald
+    - https://twitter.com/jaffathecake/status/948879579397214208
+  - A Spectre-shaped Web 👻🕸️ (BerlinSec)
+    - https://docs.google.com/presentation/d/1sadl7jTrBIECCanuqSrNndnDr82NGW1yyuXFT1Dc7SQ/edit
+  - Mitigating Side-Channel Attacks - The Chromium Projects
+    - https://sites.google.com/a/chromium.org/dev/Home/chromium-security/ssca
+- Site Isolation
+  - http://www.chromium.org/Home/chromium-security/site-isolation
+  - Post-Spectre Threat Model Re-Think
+    - https://chromium.googlesource.com/chromium/src/+/master/docs/security/side-channel-threat-model.md
+  - Hack Patch!: ブラウザ セキュリティの近状
+    - https://shhnjk.blogspot.com/2017/12/Browser-Security.html
+  - Chrome Rewards – Application Security – Google
+    - https://www.google.com/about/appsecurity/chrome-rewards/index.html#special
+    - Site Isolation はバグを見つけると報奨金も高い
+- Out Of Renderer CORS
+  - https://www.chromestatus.com/feature/5768642492891136
+- CORB(Cross Origin Read Blocking)
+  - https://fetch.spec.whatwg.org/#corb
+  - 秘情報を含む json などのリソースが img などで意図的に取得される場合
+  - 全部ではなくても先頭部分だけメモリに展開されても、サイドチャネルで読めてしまう
+  - そこで cors のついてない Content-Type がずれたコンテンツは一切読み込まない
+  - Cross-Origin Read Blocking for Web Developers - The Chromium Projects
+    - https://www.chromium.org/Home/chromium-security/corb-for-developers
+  - Fetch: CORB - Issue #81 - mozilla/standards-positions
+    - https://github.com/mozilla/standards-positions/issues/81
+  - Cross-Origin Read Blocking (CORB) - Issue #681 - whatwg/fetch
+    - https://github.com/whatwg/fetch/issues/681
+- CORP(Cross-Origin-Resorce-Policy) (was Form Origin)
+  - https://fetch.spec.whatwg.org/#cross-origin-resource-policy-header
+  - same-origin/same-site などを指定
+  - そのリソースが別の Origin/Site で取得されることを防ぐ
+  - Chrome の場合は Renderer Process に渡されないなど
+  - CORB の opt-in 版で CORB で防げないものを防ぐ
+  - Cross-Origin-Resource-Policy (was: From-Origin) - Issue #687 - whatwg/fetch
+    - https://github.com/whatwg/fetch/issues/687
+  - Fetch: From-Origin #80
+    - https://github.com/mozilla/standards-positions/issues/80
+- COOP(Cross-Origin-Opener-Policy) (was Cross Origin Window Policy)
+  - 自分が開かれたときに window.opener をなくせる
+  - 前のページとのリファレンスが無くせるため、新しく開いたページを別 Process に isolate できる
+  - なお、開く側が次のページとのリファレンスを無くす場合は、 `rel=noopener` を指定
+  - Restricting cross-origin WindowProxy access (Cross-Origin-Opener-Policy) - Issue #3740 - whatwg/html
+    - https://github.com/whatwg/html/issues/3740
+- COEP(Cross-Origin-Embedder-Policy) (was Cross Origin Resource Resource Policy)
+  - https://mikewest.github.io/corpp/
+  - iframe などで取得する全てのリソースに CORP を強制できる
+- CORP+COEP+COOP を組み合わせる
+  - ページを展開した際に Isolation された Process に展開できる
+  - サブリソースも読み込みが許可されたものだけであることが保証できる
+
+- Fetch Metadata (was Sec-Site/Sec-metadata)
+  - リクエストに 4 つのデフォルトヘッダが追加される
+  - Fetch Metadata Request Headers - Issue #88 - mozilla/standards-positions
+    - https://github.com/mozilla/standards-positions/issues/88
+  - `sec-metadata` - Issue #280 - w3ctag/design-reviews
+    - https://github.com/w3ctag/design-reviews/issues/280
+- Same Site Cookie
+  - https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis-05#section-5.3.7
+  - 別 Site に Cookie が飛ばないようにする
+- schemeless/schemefull same site
+  - https://lists.w3.org/Archives/Public/public-webappsec/2019Nov/0004.html
+  - same site = TopLevel ドメインが同じ、において、 scheme を意識するかしないかを明確にする
+- Origin Isolation
+  - https://github.com/domenic/origin-isolation
+- Securer Contexts
+  - https://github.com/mikewest/securer-contexts/
+- Securing your extensions against compromised renderer processes
+  - https://groups.google.com/a/chromium.org/d/msg/chromium-extensions/0ei-UCHNm34/lDaXwQhzBAAJ
+  - あまり関係ないドキュメントだが、Compromised renderer processの定義が書いてある
+- Possible side-channel information leak using IntersectionObserver
+  - https://github.com/WICG/ScrollToTextFragment/issues/79
+- XS-Leaks
+  - https://github.com/xsleaks/xsleaks
+  - sirdarckcat: [🌐💧💥] HTTP Cache Cross-Site Leaks
+    - http://sirdarckcat.blogspot.com/2019/03/http-cache-cross-site-leaks.html
+  - Cache and Error Events
+    - https://github.com/xsleaks/xsleaks/wiki/Browser-Side-Channels#cache-and-error-events
+    - 一度キャッシュを POST などで消す
+    - prerender などで目的のサイトをレンダリングさせる
+    - refere にすごく長い URL をセットしてリクエストさせる
+      - キャッシュがあれば普通にヒットする
+      - なければサーバに行き、通常エラーになる
+      - この結果でキャッシュの有無がわかる
+    - たとえば特定の人の画像があるかどうかで、友達かどうかわかるなど
+    - chrome が referer の長さを 4K に制限したのはこれの対策
+      - https://www.chromestatus.com/feature/5648956820291584
+  - Twitter Silhouette 攻撃
+    - https://blog.twitter.com/ja_jp/topics/company/2018/twitter_silhouette_JPN.html
+    - リクエストにかかる時間を観測し、レスポンスの大きさを調べる
+    - ブロックしてたりすると、固定ページで、レスポンスが小さいが、フォローしてると TL が取得できる
+    - これを観測しブロック関係などを推測する
+  - どちらも Same Site Cookie などが有効
+- Stephen Röttger \| OffensiveCon
+  - https://www.offensivecon.org/speakers/2020/stephen-roettger.html
+</description>
+    </item>
+
+    <item>
+      <category>mozaicfm</category>
+      <enclosure url="http://files.mozaic.fm/mozaic-ep62.mp3" length="109895061" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/62/monthly-web-202001.html</guid>
       <link>https://mozaic.fm/episodes/62/monthly-web-202001.html</link>
       <pubDate>Mon, 03 Feb 2020 00:00:00 +0900</pubDate>
@@ -38,9 +170,9 @@
       <itunes:duration>02:32:35</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>0</itunes:order>
+      <itunes:order>1</itunes:order>
       <itunes:subtitle>第 62 回のテーマは 2019 年 12 月と 2020 年 1 月の Monthly Web 合併号です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep62.mp3" fileSize="109965895" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep62.mp3" fileSize="109895061" type="audio/mpeg" />
       <description># ep62 Monthly Web 202001
 
 第 62 回のテーマは 2019 年 12 月と 2020 年 1 月の Monthly Web 合併号です。
@@ -768,7 +900,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep61.mp3" length="186699738" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep61.mp3" length="186628911" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/61/yearly-web-2019.html</guid>
       <link>https://mozaic.fm/episodes/61/yearly-web-2019.html</link>
       <pubDate>Sun, 29 Dec 2019 00:00:00 +0900</pubDate>
@@ -777,9 +909,9 @@
       <itunes:duration>04:19:09</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>1</itunes:order>
+      <itunes:order>2</itunes:order>
       <itunes:subtitle>第 61 回のテーマは 2019 年の Yearly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep61.mp3" fileSize="186699738" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep61.mp3" fileSize="186628911" type="audio/mpeg" />
       <description># ep61 Yearly Web 2019
 
 第 61 回のテーマは 2019 年の Yearly Web です。
@@ -1188,7 +1320,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep60.mp3" length="101797888" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep60.mp3" length="101782447" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/60/monthly-web-201911.html</guid>
       <link>https://mozaic.fm/episodes/60/monthly-web-201911.html</link>
       <pubDate>Sun, 08 Dec 2019 00:00:00 +0900</pubDate>
@@ -1197,9 +1329,9 @@
       <itunes:duration>02:21:18</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>2</itunes:order>
+      <itunes:order>3</itunes:order>
       <itunes:subtitle>第 60 回のテーマは 2019 年 11 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep60.mp3" fileSize="101797888" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep60.mp3" fileSize="101782447" type="audio/mpeg" />
       <description># ep60 Monthly Web 201911
 
 第 60 回のテーマは 2019 年 11 月の Monthly Web です。
@@ -1889,7 +2021,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep59.mp3" length="122056704" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep59.mp3" length="122041660" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/59/monthly-web-201910.html</guid>
       <link>https://mozaic.fm/episodes/59/monthly-web-201910.html</link>
       <pubDate>Tue, 05 Nov 2019 00:00:00 +0900</pubDate>
@@ -1898,9 +2030,9 @@
       <itunes:duration>02:49:27</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>3</itunes:order>
+      <itunes:order>4</itunes:order>
       <itunes:subtitle>第 59 回のテーマは 2019 年 10 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep59.mp3" fileSize="122056704" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep59.mp3" fileSize="122041660" type="audio/mpeg" />
       <description># ep59 Monthly Web 201910
 
 第 59 回のテーマは 2019 年 10 月の Monthly Web です。
@@ -2523,7 +2655,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep58.sideshow.mp3" length="16557697" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep58.sideshow.mp3" length="16486859" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/58/wasi-sideshow.html</guid>
       <link>https://mozaic.fm/episodes/58/wasi-sideshow.html</link>
       <pubDate>Sat, 19 Oct 2019 00:00:00 +0900</pubDate>
@@ -2532,9 +2664,9 @@
       <itunes:duration>00:22:51</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>4</itunes:order>
+      <itunes:order>5</itunes:order>
       <itunes:subtitle>第 58 回 WASI の Sideshow です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep58.sideshow.mp3" fileSize="16557697" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep58.sideshow.mp3" fileSize="16486859" type="audio/mpeg" />
       <description># ep58 WASI sideshow
 
 第 58 回 WASI の Sideshow です。
@@ -2554,7 +2686,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep58.mp3" length="85051563" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep58.mp3" length="84980729" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/58/wasi.html</guid>
       <link>https://mozaic.fm/episodes/58/wasi.html</link>
       <pubDate>Sat, 12 Oct 2019 00:00:00 +0900</pubDate>
@@ -2563,9 +2695,9 @@
       <itunes:duration>01:57:58</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>5</itunes:order>
+      <itunes:order>6</itunes:order>
       <itunes:subtitle>第 58 回のテーマは WASI (WebAssembly System Interface) です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep58.mp3" fileSize="85051563" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep58.mp3" fileSize="84980729" type="audio/mpeg" />
       <description># ep58 WASI
 
 第 58 回のテーマは WASI (WebAssembly System Interface) です。
@@ -2608,7 +2740,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep57.mp3" length="131183625" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep57.mp3" length="131112838" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/57/monthly-web-201909.html</guid>
       <link>https://mozaic.fm/episodes/57/monthly-web-201909.html</link>
       <pubDate>Fri, 04 Oct 2019 00:00:00 +0900</pubDate>
@@ -2617,9 +2749,9 @@
       <itunes:duration>03:02:03</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>6</itunes:order>
+      <itunes:order>7</itunes:order>
       <itunes:subtitle>第 57 回のテーマは 2019 年 9 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep57.mp3" fileSize="131183625" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep57.mp3" fileSize="131112838" type="audio/mpeg" />
       <description># ep57 Monthly Web 201909
 
 第 57 回のテーマは 2019 年 9 月の Monthly Web です。
@@ -3293,7 +3425,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep56.mp3" length="92972870" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep56.mp3" length="92902173" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/56/monthly-web-201908.html</guid>
       <link>https://mozaic.fm/episodes/56/monthly-web-201908.html</link>
       <pubDate>Sun, 01 Sep 2019 00:00:00 +0900</pubDate>
@@ -3302,9 +3434,9 @@
       <itunes:duration>02:08:58</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>7</itunes:order>
+      <itunes:order>8</itunes:order>
       <itunes:subtitle>第 56 回のテーマは 2019 年 8 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep56.mp3" fileSize="92972870" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep56.mp3" fileSize="92902173" type="audio/mpeg" />
       <description># ep56 Monthly Web 201908
 
 第 56 回のテーマは 2019 年 8 月の Monthly Web です。
@@ -3896,7 +4028,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep55.mp3" length="121744344" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep55.mp3" length="121673647" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/55/monthly-web-201907.html</guid>
       <link>https://mozaic.fm/episodes/55/monthly-web-201907.html</link>
       <pubDate>Thu, 01 Aug 2019 00:00:00 +0900</pubDate>
@@ -3905,9 +4037,9 @@
       <itunes:duration>02:48:56</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>8</itunes:order>
+      <itunes:order>9</itunes:order>
       <itunes:subtitle>第 55 回のテーマは 2019 年 7 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep55.mp3" fileSize="121744344" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep55.mp3" fileSize="121673647" type="audio/mpeg" />
       <description># ep55 Monthly Web 201907
 
 第 55 回のテーマは 2019 年 7 月の Monthly Web です。
@@ -4567,7 +4699,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep54.mp3" length="149527463" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep54.mp3" length="149456757" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/54/monthly-web-201906.html</guid>
       <link>https://mozaic.fm/episodes/54/monthly-web-201906.html</link>
       <pubDate>Wed, 03 Jul 2019 00:00:00 +0900</pubDate>
@@ -4576,9 +4708,9 @@
       <itunes:duration>03:27:31</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>9</itunes:order>
+      <itunes:order>10</itunes:order>
       <itunes:subtitle>第 54 回のテーマは 2019 年 6 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep54.mp3" fileSize="149527463" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep54.mp3" fileSize="149456757" type="audio/mpeg" />
       <description># ep54 Monthly Web 201906
 
 第 54 回のテーマは 2019 年 6 月の Monthly Web です。
@@ -5368,7 +5500,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep53.mp3" length="114226727" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep53.mp3" length="114156021" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/53/monthly-web-201905.html</guid>
       <link>https://mozaic.fm/episodes/53/monthly-web-201905.html</link>
       <pubDate>Sun, 26 May 2019 00:00:00 +0900</pubDate>
@@ -5377,9 +5509,9 @@
       <itunes:duration>02:38:30</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>10</itunes:order>
+      <itunes:order>11</itunes:order>
       <itunes:subtitle>第 53 回のテーマは 2019 年 5 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep53.mp3" fileSize="114226727" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep53.mp3" fileSize="114156021" type="audio/mpeg" />
       <description># ep53 Monthly Web 201905
 
 第 53 回のテーマは 2019 年 5 月の Monthly Web です。
@@ -5992,7 +6124,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep52.mp3" length="141627746" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep52.mp3" length="141644469" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/52/monthly-web-201904.html</guid>
       <link>https://mozaic.fm/episodes/52/monthly-web-201904.html</link>
       <pubDate>Mon, 06 May 2019 00:00:00 +0900</pubDate>
@@ -6001,9 +6133,9 @@
       <itunes:duration>03:16:40</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>11</itunes:order>
+      <itunes:order>12</itunes:order>
       <itunes:subtitle>第 52 回のテーマは 2019 年 4 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep52.mp3" fileSize="141627746" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep52.mp3" fileSize="141644469" type="audio/mpeg" />
       <description># ep52 Monthly Web 201904
 
 第 52 回のテーマは 2019 年 4 月の Monthly Web です。
@@ -6740,7 +6872,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep51.mp3" length="57582791" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep51.mp3" length="57599431" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/51/translation.html</guid>
       <link>https://mozaic.fm/episodes/51/translation.html</link>
       <pubDate>Sun, 14 Apr 2019 00:00:00 +0900</pubDate>
@@ -6749,9 +6881,9 @@
       <itunes:duration>01:19:57</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>12</itunes:order>
+      <itunes:order>13</itunes:order>
       <itunes:subtitle>第 51 回のテーマは Translation です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep51.mp3" fileSize="57582791" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep51.mp3" fileSize="57599431" type="audio/mpeg" />
       <description># ep51 Translation
 
 第 51 回のテーマは Translation です。
@@ -6790,7 +6922,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep50.mp3" length="114001090" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep50.mp3" length="114017781" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/50/monthly-web-201903.html</guid>
       <link>https://mozaic.fm/episodes/50/monthly-web-201903.html</link>
       <pubDate>Sat, 30 Mar 2019 00:00:00 +0900</pubDate>
@@ -6799,9 +6931,9 @@
       <itunes:duration>02:38:18</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>13</itunes:order>
+      <itunes:order>14</itunes:order>
       <itunes:subtitle>第 50 回のテーマは 2019 年 03 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep50.mp3" fileSize="114001090" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep50.mp3" fileSize="114017781" type="audio/mpeg" />
       <description># ep50 Monthly Web 201903
 
 第 50 回のテーマは 2019 年 03 月の Monthly Web です。
@@ -7350,7 +7482,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep49.mp3" length="116645835" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep49.mp3" length="116662526" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/49/monthly-web-201902.html</guid>
       <link>https://mozaic.fm/episodes/49/monthly-web-201902.html</link>
       <pubDate>Tue, 05 Mar 2019 00:00:00 +0900</pubDate>
@@ -7359,9 +7491,9 @@
       <itunes:duration>02:41:58</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>14</itunes:order>
+      <itunes:order>15</itunes:order>
       <itunes:subtitle>第 49 回のテーマは 2019 年 02 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep49.mp3" fileSize="116645835" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep49.mp3" fileSize="116662526" type="audio/mpeg" />
       <description># ep49 Monthly Web 201902
 
 第 49 回のテーマは 2019 年 02 月の Monthly Web です。
@@ -7983,7 +8115,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep48.mp3" length="119422547" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep48.mp3" length="119439238" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/48/monthly-web-201901.html</guid>
       <link>https://mozaic.fm/episodes/48/monthly-web-201901.html</link>
       <pubDate>Mon, 04 Feb 2019 00:00:00 +0900</pubDate>
@@ -7992,9 +8124,9 @@
       <itunes:duration>02:45:50</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>15</itunes:order>
+      <itunes:order>16</itunes:order>
       <itunes:subtitle>第 48 回のテーマは 2019 年 01 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep48.mp3" fileSize="119422547" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep48.mp3" fileSize="119439238" type="audio/mpeg" />
       <description># ep48 Monthly Web 201901
 
 第 48 回のテーマは 2019 年 01 月の Monthly Web です。
@@ -8573,7 +8705,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep47.mp3" length="99416602" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep47.mp3" length="99433308" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/47/monthly-web-201812.html</guid>
       <link>https://mozaic.fm/episodes/47/monthly-web-201812.html</link>
       <pubDate>Sun, 20 Jan 2019 00:00:00 +0900</pubDate>
@@ -8582,9 +8714,9 @@
       <itunes:duration>02:18:03</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>16</itunes:order>
+      <itunes:order>17</itunes:order>
       <itunes:subtitle>第 47 回のテーマは 2018 年 12 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep47.mp3" fileSize="99416602" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep47.mp3" fileSize="99433308" type="audio/mpeg" />
       <description># ep47 Monthly Web 201812
 
 第 47 回のテーマは 2018 年 12 月の Monthly Web です。
@@ -9026,7 +9158,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep46.mp3" length="153053311" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep46.mp3" length="153069999" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/46/yearly-web-2018.html</guid>
       <link>https://mozaic.fm/episodes/46/yearly-web-2018.html</link>
       <pubDate>Sun, 16 Dec 2018 00:00:00 +0900</pubDate>
@@ -9035,9 +9167,9 @@
       <itunes:duration>03:32:32</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>17</itunes:order>
+      <itunes:order>18</itunes:order>
       <itunes:subtitle>第 46 回のテーマは 2018 年の Yearly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep46.mp3" fileSize="153053311" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep46.mp3" fileSize="153069999" type="audio/mpeg" />
       <description># ep46 Yearly Web 2018
 
 第 46 回のテーマは 2018 年の Yearly Web です。
@@ -9416,7 +9548,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep45.mp3" length="99414422" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep45.mp3" length="99431113" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/45/monthly-web-201811.html</guid>
       <link>https://mozaic.fm/episodes/45/monthly-web-201811.html</link>
       <pubDate>Wed, 05 Dec 2018 00:00:00 +0900</pubDate>
@@ -9425,9 +9557,9 @@
       <itunes:duration>02:18:03</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>18</itunes:order>
+      <itunes:order>19</itunes:order>
       <itunes:subtitle>第 45 回のテーマは 2018 年 11 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep45.mp3" fileSize="99414422" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep45.mp3" fileSize="99431113" type="audio/mpeg" />
       <description># ep45 Monthly Web 201811
 
 第 45 回のテーマは 2018 年 11 月の Monthly Web です。
@@ -9959,7 +10091,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep44.mp3" length="120087439" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep44.mp3" length="120104106" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/44/monthly-web-201810.html</guid>
       <link>https://mozaic.fm/episodes/44/monthly-web-201810.html</link>
       <pubDate>Sat, 03 Nov 2018 00:00:00 +0900</pubDate>
@@ -9968,9 +10100,9 @@
       <itunes:duration>02:46:45</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>19</itunes:order>
+      <itunes:order>20</itunes:order>
       <itunes:subtitle>第 44 回のテーマは 2018 年 10 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep44.mp3" fileSize="120087439" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep44.mp3" fileSize="120104106" type="audio/mpeg" />
       <description># ep44 Monthly Web 201810
 
 第 44 回のテーマは 2018 年 10 月の Monthly Web です。
@@ -10699,7 +10831,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep43.mp3" length="68903467" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep43.mp3" length="68920182" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/43/permission.html</guid>
       <link>https://mozaic.fm/episodes/43/permission.html</link>
       <pubDate>Sun, 30 Sep 2018 00:00:00 +0900</pubDate>
@@ -10708,9 +10840,9 @@
       <itunes:duration>01:35:40</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>20</itunes:order>
+      <itunes:order>21</itunes:order>
       <itunes:subtitle>第 43 回のテーマは Permission です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep43.mp3" fileSize="68903467" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep43.mp3" fileSize="68920182" type="audio/mpeg" />
       <description># ep43 Permission
 
 第 43 回のテーマは Permission です。
@@ -10760,7 +10892,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep42.mp3" length="92708739" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep42.mp3" length="92725376" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/42/monthly-web-201809.html</guid>
       <link>https://mozaic.fm/episodes/42/monthly-web-201809.html</link>
       <pubDate>Sat, 29 Sep 2018 00:00:00 +0900</pubDate>
@@ -10769,9 +10901,9 @@
       <itunes:duration>02:08:44</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>21</itunes:order>
+      <itunes:order>22</itunes:order>
       <itunes:subtitle>第 42 回のテーマは 2018 年 9 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep42.mp3" fileSize="92708739" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep42.mp3" fileSize="92725376" type="audio/mpeg" />
       <description># ep42 Monthly Web 201809
 
 第 42 回のテーマは 2018 年 9 月の Monthly Web です。
@@ -11308,7 +11440,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep41.mp3" length="103927790" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep41.mp3" length="103968269" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/41/monthly-web-201808.html</guid>
       <link>https://mozaic.fm/episodes/41/monthly-web-201808.html</link>
       <pubDate>Sun, 09 Sep 2018 00:00:00 +0900</pubDate>
@@ -11317,9 +11449,9 @@
       <itunes:duration>02:24:21</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>22</itunes:order>
+      <itunes:order>23</itunes:order>
       <itunes:subtitle>第 41 回のテーマは 2018 年 8 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep41.mp3" fileSize="103927790" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep41.mp3" fileSize="103968269" type="audio/mpeg" />
       <description># ep41 Monthly Web 201808
 
 第 41 回のテーマは 2018 年 8 月の Monthly Web です。
@@ -12014,7 +12146,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep40.mp3" length="101271144" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep40.mp3" length="101288733" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/40/monthly-web-201807.html</guid>
       <link>https://mozaic.fm/episodes/40/monthly-web-201807.html</link>
       <pubDate>Sat, 04 Aug 2018 00:00:00 +0900</pubDate>
@@ -12023,9 +12155,9 @@
       <itunes:duration>02:20:37</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>23</itunes:order>
+      <itunes:order>24</itunes:order>
       <itunes:subtitle>第 40 回のテーマは 2018 年 7 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep40.mp3" fileSize="101271144" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep40.mp3" fileSize="101288733" type="audio/mpeg" />
       <description># ep40 Monthly Web 201807
 
 第 40 回のテーマは 2018 年 7 月の Monthly Web です。
@@ -12632,7 +12764,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep39.mp3" length="105336529" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep39.mp3" length="105354118" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/39/monthly-web-201806.html</guid>
       <link>https://mozaic.fm/episodes/39/monthly-web-201806.html</link>
       <pubDate>Wed, 04 Jul 2018 00:00:00 +0900</pubDate>
@@ -12641,9 +12773,9 @@
       <itunes:duration>02:26:16</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>24</itunes:order>
+      <itunes:order>25</itunes:order>
       <itunes:subtitle>第 39 回のテーマは 2018 年 6 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep39.mp3" fileSize="105336529" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep39.mp3" fileSize="105354118" type="audio/mpeg" />
       <description># ep39 Monthly Web 201806
 
 第 39 回のテーマは 2018 年 6 月の Monthly Web です。
@@ -13255,7 +13387,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep38.mp3" length="113524977" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep38.mp3" length="113542566" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/38/monthly-web-201805.html</guid>
       <link>https://mozaic.fm/episodes/38/monthly-web-201805.html</link>
       <pubDate>Thu, 07 Jun 2018 00:00:00 +0900</pubDate>
@@ -13264,9 +13396,9 @@
       <itunes:duration>02:37:38</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>25</itunes:order>
+      <itunes:order>26</itunes:order>
       <itunes:subtitle>第 38 回のテーマは 2018 年 5 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep38.mp3" fileSize="113524977" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep38.mp3" fileSize="113542566" type="audio/mpeg" />
       <description># ep38 Monthly Web 201805
 
 第 38 回のテーマは 2018 年 5 月の Monthly Web です。
@@ -14042,7 +14174,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep37.mp3" length="85929953" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep37.mp3" length="85947542" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/37/monthly-web-201804.html</guid>
       <link>https://mozaic.fm/episodes/37/monthly-web-201804.html</link>
       <pubDate>Sat, 05 May 2018 00:00:00 +0900</pubDate>
@@ -14051,9 +14183,9 @@
       <itunes:duration>01:59:19</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>26</itunes:order>
+      <itunes:order>27</itunes:order>
       <itunes:subtitle>第 37 回のテーマは 2018 年 4 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep37.mp3" fileSize="85929953" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep37.mp3" fileSize="85947542" type="audio/mpeg" />
       <description># ep37 Monthly Web 201804
 
 第 37 回のテーマは 2018 年 4 月の Monthly Web です。
@@ -14559,7 +14691,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep36.mp3" length="117798192" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep36.mp3" length="117815781" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/36/monthly-web-201803.html</guid>
       <link>https://mozaic.fm/episodes/36/monthly-web-201803.html</link>
       <pubDate>Thu, 05 Apr 2018 00:00:00 +0900</pubDate>
@@ -14568,9 +14700,9 @@
       <itunes:duration>02:43:35</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>27</itunes:order>
+      <itunes:order>28</itunes:order>
       <itunes:subtitle>第 36 回のテーマは 2018 年 3 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep36.mp3" fileSize="117798192" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep36.mp3" fileSize="117815781" type="audio/mpeg" />
       <description># ep36 Monthly Web 201803
 
 第 36 回のテーマは 2018 年 3 月の Monthly Web です。
@@ -15223,7 +15355,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep35.mp3" length="92300905" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep35.mp3" length="92318500" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/35/security-bugbounty.html</guid>
       <link>https://mozaic.fm/episodes/35/security-bugbounty.html</link>
       <pubDate>Mon, 05 Mar 2018 00:00:00 +0900</pubDate>
@@ -15232,9 +15364,9 @@
       <itunes:duration>02:08:10</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>28</itunes:order>
+      <itunes:order>29</itunes:order>
       <itunes:subtitle>第 35 回のテーマは Security の Bug Bounty 編です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep35.mp3" fileSize="92300905" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep35.mp3" fileSize="92318500" type="audio/mpeg" />
       <description># ep35 Security (Bug Bounty)
 
 第 35 回のテーマは Security の Bug Bounty 編です。
@@ -15280,7 +15412,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep34.mp3" length="98034887" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep34.mp3" length="98052476" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/34/monthly-web-201802.html</guid>
       <link>https://mozaic.fm/episodes/34/monthly-web-201802.html</link>
       <pubDate>Sun, 04 Mar 2018 00:00:00 +0900</pubDate>
@@ -15289,9 +15421,9 @@
       <itunes:duration>02:16:08</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>29</itunes:order>
+      <itunes:order>30</itunes:order>
       <itunes:subtitle>第 34 回のテーマは 2018 年 2 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep34.mp3" fileSize="98034887" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep34.mp3" fileSize="98052476" type="audio/mpeg" />
       <description># ep34 Monthly Web 201802
 
 第 34 回のテーマは 2018 年 2 月の Monthly Web です。
@@ -15874,7 +16006,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep33.mp3" length="123185164" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep33.mp3" length="123202753" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/33/monthly-web-201801.html</guid>
       <link>https://mozaic.fm/episodes/33/monthly-web-201801.html</link>
       <pubDate>Fri, 02 Feb 2018 00:00:00 +0900</pubDate>
@@ -15883,9 +16015,9 @@
       <itunes:duration>02:51:04</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>30</itunes:order>
+      <itunes:order>31</itunes:order>
       <itunes:subtitle>第 33 回のテーマは 2018 年 1 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep33.mp3" fileSize="123185164" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep33.mp3" fileSize="123202753" type="audio/mpeg" />
       <description># ep33 Monthly Web 201801
 
 第 33 回のテーマは 2018 年 1 月の Monthly Web です。
@@ -16785,7 +16917,7 @@
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep32.mp3" length="80244873" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep32.mp3" length="80262456" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/32/yearly-web-2017.html</guid>
       <link>https://mozaic.fm/episodes/32/yearly-web-2017.html</link>
       <pubDate>Tue, 19 Dec 2017 00:00:00 +0900</pubDate>
@@ -16794,9 +16926,9 @@
       <itunes:duration>01:51:25</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>31</itunes:order>
+      <itunes:order>32</itunes:order>
       <itunes:subtitle>第 32 回のテーマは 2017 年の Yearly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep32.mp3" fileSize="80244873" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep32.mp3" fileSize="80262456" type="audio/mpeg" />
       <description># ep32 Yearly Web 2017
 
 第 32 回のテーマは 2017 年の Yearly Web です。
@@ -17135,7 +17267,7 @@ ep25 Monthly Web 201707
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep31.mp3" length="93259053" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep31.mp3" length="93276742" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/31/ietf.html</guid>
       <link>https://mozaic.fm/episodes/31/ietf.html</link>
       <pubDate>Tue, 12 Dec 2017 00:00:00 +0900</pubDate>
@@ -17144,9 +17276,9 @@ ep25 Monthly Web 201707
       <itunes:duration>02:09:30</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>32</itunes:order>
+      <itunes:order>33</itunes:order>
       <itunes:subtitle>第 31 回のテーマは IETF です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep31.mp3" fileSize="93259053" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep31.mp3" fileSize="93276742" type="audio/mpeg" />
       <description># ep31 IETF
 
 第 31 回のテーマは IETF です。
@@ -17205,7 +17337,7 @@ ep25 Monthly Web 201707
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep30.mp3" length="105609562" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep30.mp3" length="105627151" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/30/monthly-web-201711.html</guid>
       <link>https://mozaic.fm/episodes/30/monthly-web-201711.html</link>
       <pubDate>Tue, 05 Dec 2017 00:00:00 +0900</pubDate>
@@ -17214,9 +17346,9 @@ ep25 Monthly Web 201707
       <itunes:duration>02:26:39</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>33</itunes:order>
+      <itunes:order>34</itunes:order>
       <itunes:subtitle>第 30 回のテーマは 2017 年 11 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep30.mp3" fileSize="105609562" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep30.mp3" fileSize="105627151" type="audio/mpeg" />
       <description># ep30 Monthly Web 201711
 
 第 30 回のテーマは 2017 年 11 月の Monthly Web です。
@@ -17982,7 +18114,7 @@ ep25 Monthly Web 201707
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep29.mp3" length="84589430" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep29.mp3" length="84607125" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/29/houdini.html</guid>
       <link>https://mozaic.fm/episodes/29/houdini.html</link>
       <pubDate>Thu, 02 Nov 2017 00:00:00 +0900</pubDate>
@@ -17991,9 +18123,9 @@ ep25 Monthly Web 201707
       <itunes:duration>01:57:27</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>34</itunes:order>
+      <itunes:order>35</itunes:order>
       <itunes:subtitle>第 29 回のテーマは Houdini です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep29.mp3" fileSize="84589430" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep29.mp3" fileSize="84607125" type="audio/mpeg" />
       <description># ep29 Houdini
 
 第 29 回のテーマは Houdini です。
@@ -18065,7 +18197,7 @@ ep25 Monthly Web 201707
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep28.mp3" length="105234026" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep28.mp3" length="105251615" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/28/monthly-web-201710.html</guid>
       <link>https://mozaic.fm/episodes/28/monthly-web-201710.html</link>
       <pubDate>Wed, 01 Nov 2017 00:00:00 +0900</pubDate>
@@ -18074,9 +18206,9 @@ ep25 Monthly Web 201707
       <itunes:duration>02:26:08</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>35</itunes:order>
+      <itunes:order>36</itunes:order>
       <itunes:subtitle>第 28 回のテーマは 2017 年 10 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep28.mp3" fileSize="105234026" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep28.mp3" fileSize="105251615" type="audio/mpeg" />
       <description># ep28 Monthly Web 201710
 
 第 28 回のテーマは 2017 年 10 月の Monthly Web です。
@@ -18674,7 +18806,7 @@ ep25 Monthly Web 201707
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep27.mp3" length="91812207" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep27.mp3" length="91829796" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/27/monthly-web-201709.html</guid>
       <link>https://mozaic.fm/episodes/27/monthly-web-201709.html</link>
       <pubDate>Wed, 04 Oct 2017 00:00:00 +0900</pubDate>
@@ -18683,9 +18815,9 @@ ep25 Monthly Web 201707
       <itunes:duration>02:07:29</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>36</itunes:order>
+      <itunes:order>37</itunes:order>
       <itunes:subtitle>第 27 回のテーマは 2017 年 9 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep27.mp3" fileSize="91812207" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep27.mp3" fileSize="91829796" type="audio/mpeg" />
       <description># ep27 Monthly Web 201709
 
 第 27 回のテーマは 2017 年 9 月の Monthly Web です。
@@ -19230,7 +19362,7 @@ ep25 Monthly Web 201707
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep26.mp3" length="90501463" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep26.mp3" length="90519180" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/26/monthly-web-201708.html</guid>
       <link>https://mozaic.fm/episodes/26/monthly-web-201708.html</link>
       <pubDate>Sun, 03 Sep 2017 00:00:00 +0900</pubDate>
@@ -19239,9 +19371,9 @@ ep25 Monthly Web 201707
       <itunes:duration>02:05:40</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>37</itunes:order>
+      <itunes:order>38</itunes:order>
       <itunes:subtitle>第 26 回のテーマは 2017 年 8 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep26.mp3" fileSize="90501463" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep26.mp3" fileSize="90519180" type="audio/mpeg" />
       <description># ep26 Monthly Web 201708
 
 第 26 回のテーマは 2017 年 8 月の Monthly Web です。
@@ -19634,7 +19766,7 @@ ep25 Monthly Web 201707
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep25.mp3" length="49698093" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep25.mp3" length="49715810" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/25/monthly-web-201707.html</guid>
       <link>https://mozaic.fm/episodes/25/monthly-web-201707.html</link>
       <pubDate>Sat, 29 Jul 2017 00:00:00 +0900</pubDate>
@@ -19643,9 +19775,9 @@ ep25 Monthly Web 201707
       <itunes:duration>01:09:00</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>38</itunes:order>
+      <itunes:order>39</itunes:order>
       <itunes:subtitle>第 25 回のテーマは 2017 年 7 月の Monthly Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep25.mp3" fileSize="49698093" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep25.mp3" fileSize="49715810" type="audio/mpeg" />
       <description># ep25 Monthly Web 201707
 
 第 25 回のテーマは 2017 年 7 月の Monthly Web です。
@@ -19855,7 +19987,7 @@ Web をより深く理解するために
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep24.mp3" length="100853476" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep24.mp3" length="100871173" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/24/angular2.html</guid>
       <link>https://mozaic.fm/episodes/24/angular2.html</link>
       <pubDate>Fri, 16 Dec 2016 00:00:00 +0900</pubDate>
@@ -19864,9 +19996,9 @@ Web をより深く理解するために
       <itunes:duration>02:20:03</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>39</itunes:order>
+      <itunes:order>40</itunes:order>
       <itunes:subtitle>第 24 回のテーマは Angular2 です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep24.mp3" fileSize="100853476" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep24.mp3" fileSize="100871173" type="audio/mpeg" />
       <description># ep24 Angular2
 
 第 24 回のテーマは Angular2 です。
@@ -19907,7 +20039,7 @@ Angular 自身、そしてそれを取り巻くエコシステムや標準化の
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep23.mp3" length="67913486" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep23.mp3" length="67931203" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/23/lets-encrypt.html</guid>
       <link>https://mozaic.fm/episodes/23/lets-encrypt.html</link>
       <pubDate>Tue, 06 Sep 2016 00:00:00 +0900</pubDate>
@@ -19916,9 +20048,9 @@ Angular 自身、そしてそれを取り巻くエコシステムや標準化の
       <itunes:duration>01:34:18</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>40</itunes:order>
+      <itunes:order>41</itunes:order>
       <itunes:subtitle>第 23 回のテーマは Let&#039;s Encrypt です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep23.mp3" fileSize="67913486" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep23.mp3" fileSize="67931203" type="audio/mpeg" />
       <description># ep23 Let&amp;#039;s Encrypt
 
 第 23 回のテーマは Let&#039;s Encrypt です。
@@ -19984,7 +20116,7 @@ Angular 自身、そしてそれを取り巻くエコシステムや標準化の
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep22.mp3" length="54153433" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep22.mp3" length="54171120" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/22/amp.html</guid>
       <link>https://mozaic.fm/episodes/22/amp.html</link>
       <pubDate>Tue, 05 Jul 2016 00:00:00 +0900</pubDate>
@@ -19993,9 +20125,9 @@ Angular 自身、そしてそれを取り巻くエコシステムや標準化の
       <itunes:duration>01:15:11</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>41</itunes:order>
+      <itunes:order>42</itunes:order>
       <itunes:subtitle>第 22 回のテーマは AMP(Accelerated Mobile Pages) です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep22.mp3" fileSize="54153433" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep22.mp3" fileSize="54171120" type="audio/mpeg" />
       <description># ep22 AMP
 
 第 22 回のテーマは AMP(Accelerated Mobile Pages) です。
@@ -20042,7 +20174,7 @@ Angular 自身、そしてそれを取り巻くエコシステムや標準化の
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep21.mp3" length="7641914" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep21.mp3" length="7659517" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/21/mozaic-v2-release.html</guid>
       <link>https://mozaic.fm/episodes/21/mozaic-v2-release.html</link>
       <pubDate>Mon, 20 Jun 2016 00:00:00 +0900</pubDate>
@@ -20051,9 +20183,9 @@ Angular 自身、そしてそれを取り巻くエコシステムや標準化の
       <itunes:duration>00:10:35</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>42</itunes:order>
+      <itunes:order>43</itunes:order>
       <itunes:subtitle>mozaic.fm の v2 をリリースしました。 breaking change があるので、そのアナウンスとテストを兼ねています。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep21.mp3" fileSize="7641914" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep21.mp3" fileSize="7659517" type="audio/mpeg" />
       <description># ep21 mozaic.fm v2 release note
 
 mozaic.fm の v2 をリリースしました。 breaking change があるので、そのアナウンスとテストを兼ねています。
@@ -20104,7 +20236,7 @@ mozaic.fm を引き続きよろしくお願いいたします。
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep20.mp3" length="97012849" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep20.mp3" length="97030544" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/20/browser.html</guid>
       <link>https://mozaic.fm/episodes/20/browser.html</link>
       <pubDate>Thu, 26 Nov 2015 00:00:00 +0900</pubDate>
@@ -20113,9 +20245,9 @@ mozaic.fm を引き続きよろしくお願いいたします。
       <itunes:duration>02:14:42</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>43</itunes:order>
+      <itunes:order>44</itunes:order>
       <itunes:subtitle>第 20 回のテーマは Browser です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep20.mp3" fileSize="97012849" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep20.mp3" fileSize="97030544" type="audio/mpeg" />
       <description># ep20 Browser
 
 第 20 回のテーマは Browser です。
@@ -20221,7 +20353,7 @@ mozaic.fm を引き続きよろしくお願いいたします。
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep19.sideshow.mp3" length="43863174" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep19.sideshow.mp3" length="43880879" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/19/es7-sideshow.html</guid>
       <link>https://mozaic.fm/episodes/19/es7-sideshow.html</link>
       <pubDate>Wed, 05 Aug 2015 00:00:00 +0900</pubDate>
@@ -20230,9 +20362,9 @@ mozaic.fm を引き続きよろしくお願いいたします。
       <itunes:duration>01:00:53</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>44</itunes:order>
+      <itunes:order>45</itunes:order>
       <itunes:subtitle>第 19 回 ES7 の SideShow です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep19.sideshow.mp3" fileSize="43863174" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep19.sideshow.mp3" fileSize="43880879" type="audio/mpeg" />
       <description># ep19 ES7 sideshow
 
 第 19 回 ES7 の SideShow です。
@@ -20264,7 +20396,7 @@ Bug 147340 - [ES6] Implement ES6 Modules
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep19.mp3" length="64227713" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep19.mp3" length="64245400" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/19/es7.html</guid>
       <link>https://mozaic.fm/episodes/19/es7.html</link>
       <pubDate>Sun, 02 Aug 2015 00:00:00 +0900</pubDate>
@@ -20273,9 +20405,9 @@ Bug 147340 - [ES6] Implement ES6 Modules
       <itunes:duration>01:29:10</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>45</itunes:order>
+      <itunes:order>46</itunes:order>
       <itunes:subtitle>第 19 回のテーマは ES7 です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep19.mp3" fileSize="64227713" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep19.mp3" fileSize="64245400" type="audio/mpeg" />
       <description># ep19 ES7
 
 第 19 回のテーマは ES7 です。
@@ -20318,7 +20450,7 @@ Bug 147340 - [ES6] Implement ES6 Modules
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep18.mp3" length="66137682" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep18.mp3" length="66155373" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/18/nginx.html</guid>
       <link>https://mozaic.fm/episodes/18/nginx.html</link>
       <pubDate>Mon, 01 Jun 2015 00:00:00 +0900</pubDate>
@@ -20327,9 +20459,9 @@ Bug 147340 - [ES6] Implement ES6 Modules
       <itunes:duration>01:31:50</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>46</itunes:order>
+      <itunes:order>47</itunes:order>
       <itunes:subtitle>第 18 回のテーマは Nginx です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep18.mp3" fileSize="66137682" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep18.mp3" fileSize="66155373" type="audio/mpeg" />
       <description># ep18 Nginx
 
 第 18 回のテーマは Nginx です。
@@ -20442,7 +20574,7 @@ Bug 147340 - [ES6] Implement ES6 Modules
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep17.mp3" length="60312480" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep17.mp3" length="60330189" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/17/service-worker.html</guid>
       <link>https://mozaic.fm/episodes/17/service-worker.html</link>
       <pubDate>Wed, 22 Apr 2015 00:00:00 +0900</pubDate>
@@ -20451,9 +20583,9 @@ Bug 147340 - [ES6] Implement ES6 Modules
       <itunes:duration>01:23:44</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>47</itunes:order>
+      <itunes:order>48</itunes:order>
       <itunes:subtitle>第 17 回のテーマは Service Worker です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep17.mp3" fileSize="60312480" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep17.mp3" fileSize="60330189" type="audio/mpeg" />
       <description># ep17 Service Worker
 
 第 17 回のテーマは Service Worker です。
@@ -20552,7 +20684,7 @@ Bug 147340 - [ES6] Implement ES6 Modules
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep16.mp3" length="59657143" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep16.mp3" length="59674740" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/16/security-application.html</guid>
       <link>https://mozaic.fm/episodes/16/security-application.html</link>
       <pubDate>Fri, 27 Mar 2015 00:00:00 +0900</pubDate>
@@ -20561,9 +20693,9 @@ Bug 147340 - [ES6] Implement ES6 Modules
       <itunes:duration>01:22:50</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>48</itunes:order>
+      <itunes:order>49</itunes:order>
       <itunes:subtitle>第 16 回のテーマは Security (application) です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep16.mp3" fileSize="59657143" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep16.mp3" fileSize="59674740" type="audio/mpeg" />
       <description># ep16 Security (application)
 
 第 16 回のテーマは Security (application) です。
@@ -20608,7 +20740,7 @@ BGM: public domain jazz
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep15.mp3" length="33906132" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep15.mp3" length="33923841" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/15/extensible-web.html</guid>
       <link>https://mozaic.fm/episodes/15/extensible-web.html</link>
       <pubDate>Mon, 19 Jan 2015 00:00:00 +0900</pubDate>
@@ -20617,9 +20749,9 @@ BGM: public domain jazz
       <itunes:duration>00:47:04</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>49</itunes:order>
+      <itunes:order>50</itunes:order>
       <itunes:subtitle>第 15 回のテーマは Extensible Web です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep15.mp3" fileSize="33906132" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep15.mp3" fileSize="33923841" type="audio/mpeg" />
       <description># ep15 Extensible Web
 
 第 15 回のテーマは Extensible Web です。
@@ -20671,7 +20803,7 @@ BGM: public domain jazz
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep14.mp3" length="53772255" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep14.mp3" length="53789948" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/14/whatwg.html</guid>
       <link>https://mozaic.fm/episodes/14/whatwg.html</link>
       <pubDate>Sun, 18 Jan 2015 00:00:00 +0900</pubDate>
@@ -20680,9 +20812,9 @@ BGM: public domain jazz
       <itunes:duration>01:14:39</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>50</itunes:order>
+      <itunes:order>51</itunes:order>
       <itunes:subtitle>第 14 回のテーマは WHATWG です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep14.mp3" fileSize="53772255" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep14.mp3" fileSize="53789948" type="audio/mpeg" />
       <description># ep14 WHATWG
 
 第 14 回のテーマは WHATWG です。
@@ -20749,7 +20881,7 @@ BGM: public domain jazz
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep13.sideshow.mp3" length="23277767" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep13.sideshow.mp3" length="23295360" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/13/virtual-dom-sideshow.html</guid>
       <link>https://mozaic.fm/episodes/13/virtual-dom-sideshow.html</link>
       <pubDate>Wed, 31 Dec 2014 00:00:00 +0900</pubDate>
@@ -20758,9 +20890,9 @@ BGM: public domain jazz
       <itunes:duration>00:32:18</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>51</itunes:order>
+      <itunes:order>52</itunes:order>
       <itunes:subtitle>第 13 回 Virtual DOM の SideShow です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep13.sideshow.mp3" fileSize="23277767" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep13.sideshow.mp3" fileSize="23295360" type="audio/mpeg" />
       <description># ep13 Virtual DOM sideshow
 
 第 13 回 Virtual DOM の SideShow です。
@@ -20789,7 +20921,7 @@ BGM: public domain jazz
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep13.mp3" length="56821371" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep13.mp3" length="56839074" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/13/virtual-dom.html</guid>
       <link>https://mozaic.fm/episodes/13/virtual-dom.html</link>
       <pubDate>Sat, 27 Dec 2014 00:00:00 +0900</pubDate>
@@ -20798,9 +20930,9 @@ BGM: public domain jazz
       <itunes:duration>01:18:53</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>52</itunes:order>
+      <itunes:order>53</itunes:order>
       <itunes:subtitle>第 13 回のテーマは Virtual DOM です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep13.mp3" fileSize="56821371" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep13.mp3" fileSize="56839074" type="audio/mpeg" />
       <description># ep13 Virtual DOM
 
 第 13 回のテーマは Virtual DOM です。
@@ -20842,7 +20974,7 @@ BGM: public domain jazz
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep12.sideshow.mp3" length="27896297" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep12.sideshow.mp3" length="27914006" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/12/rails-sideshow.html</guid>
       <link>https://mozaic.fm/episodes/12/rails-sideshow.html</link>
       <pubDate>Fri, 12 Dec 2014 00:00:00 +0900</pubDate>
@@ -20851,9 +20983,9 @@ BGM: public domain jazz
       <itunes:duration>00:38:43</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>53</itunes:order>
+      <itunes:order>54</itunes:order>
       <itunes:subtitle>第 12 回 Ruby on Rails の SideShow です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep12.sideshow.mp3" fileSize="27896297" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep12.sideshow.mp3" fileSize="27914006" type="audio/mpeg" />
       <description># ep12 Rails sideshow
 
 第 12 回 Ruby on Rails の SideShow です。
@@ -20881,7 +21013,7 @@ BGM: public domain jazz
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep12.mp3" length="50978615" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep12.mp3" length="50996306" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/12/rails.html</guid>
       <link>https://mozaic.fm/episodes/12/rails.html</link>
       <pubDate>Sun, 07 Dec 2014 00:00:00 +0900</pubDate>
@@ -20890,9 +21022,9 @@ BGM: public domain jazz
       <itunes:duration>01:10:46</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>54</itunes:order>
+      <itunes:order>55</itunes:order>
       <itunes:subtitle>第 12 回のテーマは Ruby on Rails です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep12.mp3" fileSize="50978615" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep12.mp3" fileSize="50996306" type="audio/mpeg" />
       <description># ep12 Rails
 
 第 12 回のテーマは Ruby on Rails です。
@@ -20936,7 +21068,7 @@ BGM: public domain jazz
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep11.mp3" length="50008242" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep11.mp3" length="50025865" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/11/high-performance-browser-networking.html</guid>
       <link>https://mozaic.fm/episodes/11/high-performance-browser-networking.html</link>
       <pubDate>Mon, 10 Nov 2014 00:00:00 +0900</pubDate>
@@ -20945,9 +21077,9 @@ BGM: public domain jazz
       <itunes:duration>01:09:25</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>55</itunes:order>
+      <itunes:order>56</itunes:order>
       <itunes:subtitle>第 11 回のテーマは High Performance Browser Networking です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep11.mp3" fileSize="50008242" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep11.mp3" fileSize="50025865" type="audio/mpeg" />
       <description># ep11 High Performance Browser Networking
 
 第 11 回のテーマは High Performance Browser Networking です。
@@ -20995,7 +21127,7 @@ HPBN は、複雑化し、知らなくてはならい知識が飛躍的に増え
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep10.sideshow.mp3" length="38561466" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep10.sideshow.mp3" length="38579179" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/10/nodejs-sideshow.html</guid>
       <link>https://mozaic.fm/episodes/10/nodejs-sideshow.html</link>
       <pubDate>Thu, 23 Oct 2014 00:00:00 +0900</pubDate>
@@ -21004,9 +21136,9 @@ HPBN は、複雑化し、知らなくてはならい知識が飛躍的に増え
       <itunes:duration>00:53:32</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>56</itunes:order>
+      <itunes:order>57</itunes:order>
       <itunes:subtitle>第 10 回 Node.js の SideShow です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep10.sideshow.mp3" fileSize="38561466" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep10.sideshow.mp3" fileSize="38579179" type="audio/mpeg" />
       <description># ep10 Node.js sideshow
 
 第 10 回 Node.js の SideShow です。
@@ -21055,7 +21187,7 @@ HPBN は、複雑化し、知らなくてはならい知識が飛躍的に増え
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep10.mp3" length="109714316" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep10.mp3" length="109732011" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/10/nodejs.html</guid>
       <link>https://mozaic.fm/episodes/10/nodejs.html</link>
       <pubDate>Tue, 07 Oct 2014 00:00:00 +0900</pubDate>
@@ -21064,9 +21196,9 @@ HPBN は、複雑化し、知らなくてはならい知識が飛躍的に増え
       <itunes:duration>02:32:21</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>57</itunes:order>
+      <itunes:order>58</itunes:order>
       <itunes:subtitle>第 10 回のテーマは Node.js です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep10.mp3" fileSize="109714316" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep10.mp3" fileSize="109732011" type="audio/mpeg" />
       <description># ep10 Node.js
 
 第 10 回のテーマは Node.js です。
@@ -21153,7 +21285,7 @@ HPBN は、複雑化し、知らなくてはならい知識が飛躍的に増え
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep9.mp3" length="52626210" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep9.mp3" length="52643907" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/9/socket.io.html</guid>
       <link>https://mozaic.fm/episodes/9/socket.io.html</link>
       <pubDate>Mon, 08 Sep 2014 00:00:00 +0900</pubDate>
@@ -21162,9 +21294,9 @@ HPBN は、複雑化し、知らなくてはならい知識が飛躍的に増え
       <itunes:duration>01:13:04</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>58</itunes:order>
+      <itunes:order>59</itunes:order>
       <itunes:subtitle>第 9 回のテーマは Socket.IO です。*全編英語*です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep9.mp3" fileSize="52626210" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep9.mp3" fileSize="52643907" type="audio/mpeg" />
       <description># ep9 Socket.IO
 
 第 9 回のテーマは Socket.IO です。*全編英語*です。
@@ -21191,7 +21323,7 @@ HPBN は、複雑化し、知らなくてはならい知識が飛躍的に増え
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep8.mp3" length="44790416" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep8.mp3" length="44808105" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/8/altjs.html</guid>
       <link>https://mozaic.fm/episodes/8/altjs.html</link>
       <pubDate>Wed, 03 Sep 2014 00:00:00 +0900</pubDate>
@@ -21200,9 +21332,9 @@ HPBN は、複雑化し、知らなくてはならい知識が飛躍的に増え
       <itunes:duration>01:02:11</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>59</itunes:order>
+      <itunes:order>60</itunes:order>
       <itunes:subtitle>第 8 回のテーマは altJS(TypeScript, Dart) です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep8.mp3" fileSize="44790416" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep8.mp3" fileSize="44808105" type="audio/mpeg" />
       <description># ep8 AltJS
 
 第 8 回のテーマは altJS(TypeScript, Dart) です。
@@ -21235,7 +21367,7 @@ HPBN は、複雑化し、知らなくてはならい知識が飛躍的に増え
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep7.mp3" length="90240343" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep7.mp3" length="90258030" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/7/rest.html</guid>
       <link>https://mozaic.fm/episodes/7/rest.html</link>
       <pubDate>Tue, 19 Aug 2014 00:00:00 +0900</pubDate>
@@ -21244,9 +21376,9 @@ HPBN は、複雑化し、知らなくてはならい知識が飛躍的に増え
       <itunes:duration>02:05:18</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>60</itunes:order>
+      <itunes:order>61</itunes:order>
       <itunes:subtitle>第 7 回のテーマは REST です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep7.mp3" fileSize="90240343" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep7.mp3" fileSize="90258030" type="audio/mpeg" />
       <description># ep7 REST
 
 第 7 回のテーマは REST です。
@@ -21285,7 +21417,7 @@ HPBN は、複雑化し、知らなくてはならい知識が飛躍的に増え
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep6.mp3" length="64402629" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep6.mp3" length="64420320" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/6/webrtc.html</guid>
       <link>https://mozaic.fm/episodes/6/webrtc.html</link>
       <pubDate>Mon, 04 Aug 2014 00:00:00 +0900</pubDate>
@@ -21294,9 +21426,9 @@ HPBN は、複雑化し、知らなくてはならい知識が飛躍的に増え
       <itunes:duration>01:29:25</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>61</itunes:order>
+      <itunes:order>62</itunes:order>
       <itunes:subtitle>第 6 回のテーマは WebRTC です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep6.mp3" fileSize="64402629" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep6.mp3" fileSize="64420320" type="audio/mpeg" />
       <description># ep6 WebRTC
 
 第 6 回のテーマは WebRTC です。
@@ -21325,7 +21457,7 @@ HPBN は、複雑化し、知らなくてはならい知識が飛躍的に増え
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep5.mp3" length="66612274" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep5.mp3" length="66629973" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/5/typescript.html</guid>
       <link>https://mozaic.fm/episodes/5/typescript.html</link>
       <pubDate>Mon, 16 Jun 2014 00:00:00 +0900</pubDate>
@@ -21334,9 +21466,9 @@ HPBN は、複雑化し、知らなくてはならい知識が飛躍的に増え
       <itunes:duration>01:32:29</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>62</itunes:order>
+      <itunes:order>63</itunes:order>
       <itunes:subtitle>第 5 回のテーマは TypeScript です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep5.mp3" fileSize="66612274" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep5.mp3" fileSize="66629973" type="audio/mpeg" />
       <description># ep5 TypeScript
 
 第 5 回のテーマは TypeScript です。
@@ -21359,7 +21491,7 @@ HPBN は、複雑化し、知らなくてはならい知識が飛躍的に増え
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep4.mp3" length="58421633" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep4.mp3" length="58439350" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/4/secuirty-protocol.html</guid>
       <link>https://mozaic.fm/episodes/4/secuirty-protocol.html</link>
       <pubDate>Sat, 07 Jun 2014 00:00:00 +0900</pubDate>
@@ -21368,9 +21500,9 @@ HPBN は、複雑化し、知らなくてはならい知識が飛躍的に増え
       <itunes:duration>01:21:07</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>63</itunes:order>
+      <itunes:order>64</itunes:order>
       <itunes:subtitle>第 4 回のテーマは Security (Protocol)です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep4.mp3" fileSize="58421633" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep4.mp3" fileSize="58439350" type="audio/mpeg" />
       <description># ep4 Security (protocol)
 
 第 4 回のテーマは Security (Protocol)です。
@@ -21393,7 +21525,7 @@ HPBN は、複雑化し、知らなくてはならい知識が飛躍的に増え
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep3.mp3" length="53848114" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep3.mp3" length="53865813" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/3/angularjs.html</guid>
       <link>https://mozaic.fm/episodes/3/angularjs.html</link>
       <pubDate>Sat, 31 May 2014 00:00:00 +0900</pubDate>
@@ -21402,9 +21534,9 @@ HPBN は、複雑化し、知らなくてはならい知識が飛躍的に増え
       <itunes:duration>01:14:45</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>64</itunes:order>
+      <itunes:order>65</itunes:order>
       <itunes:subtitle>第 3 回のテーマは Angular.js です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep3.mp3" fileSize="53848114" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep3.mp3" fileSize="53865813" type="audio/mpeg" />
       <description># ep3 Angular.js
 
 第 3 回のテーマは Angular.js です。
@@ -21429,7 +21561,7 @@ HPBN は、複雑化し、知らなくてはならい知識が飛躍的に増え
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep2.sideshow.mp3" length="10530406" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep2.sideshow.mp3" length="10548113" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/2/http2-sideshow.html</guid>
       <link>https://mozaic.fm/episodes/2/http2-sideshow.html</link>
       <pubDate>Tue, 29 Apr 2014 00:00:00 +0900</pubDate>
@@ -21438,9 +21570,9 @@ HPBN は、複雑化し、知らなくてはならい知識が飛躍的に増え
       <itunes:duration>00:14:36</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>65</itunes:order>
+      <itunes:order>66</itunes:order>
       <itunes:subtitle>第 2 回 HTTP2 の SideShow です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep2.sideshow.mp3" fileSize="10530406" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep2.sideshow.mp3" fileSize="10548113" type="audio/mpeg" />
       <description># ep2 HTTP2 sideshow
 
 第 2 回 HTTP2 の SideShow です。
@@ -21464,7 +21596,7 @@ OSS 奨励賞受賞の裏話や、 http2 や spdylay が今後どうなるのか
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep2.mp3" length="47988431" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep2.mp3" length="48006120" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/2/http2.html</guid>
       <link>https://mozaic.fm/episodes/2/http2.html</link>
       <pubDate>Tue, 22 Apr 2014 00:00:00 +0900</pubDate>
@@ -21473,9 +21605,9 @@ OSS 奨励賞受賞の裏話や、 http2 や spdylay が今後どうなるのか
       <itunes:duration>01:06:37</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>66</itunes:order>
+      <itunes:order>67</itunes:order>
       <itunes:subtitle>第 2 回のテーマは HTTP2 です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep2.mp3" fileSize="47988431" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep2.mp3" fileSize="48006120" type="audio/mpeg" />
       <description># ep2 HTTP2
 
 第 2 回のテーマは HTTP2 です。
@@ -21512,7 +21644,7 @@ OSS 奨励賞受賞の裏話や、 http2 や spdylay が今後どうなるのか
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep1.mp3" length="39564881" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep1.mp3" length="39582586" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/1/webcomponents.html</guid>
       <link>https://mozaic.fm/episodes/1/webcomponents.html</link>
       <pubDate>Mon, 07 Apr 2014 00:00:00 +0900</pubDate>
@@ -21521,9 +21653,9 @@ OSS 奨励賞受賞の裏話や、 http2 や spdylay が今後どうなるのか
       <itunes:duration>00:54:55</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>67</itunes:order>
+      <itunes:order>68</itunes:order>
       <itunes:subtitle>第 1 回のテーマは WebComponents です。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep1.mp3" fileSize="39564881" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep1.mp3" fileSize="39582586" type="audio/mpeg" />
       <description># ep1 WebComponents
 
 第 1 回のテーマは WebComponents です。
@@ -21557,7 +21689,7 @@ OSS 奨励賞受賞の裏話や、 http2 や spdylay が今後どうなるのか
 
     <item>
       <category>mozaicfm</category>
-      <enclosure url="http://files.mozaic.fm/mozaic-ep0.mp3" length="1840849" type="audio/mpeg" />
+      <enclosure url="http://files.mozaic.fm/mozaic-ep0.mp3" length="1858450" type="audio/mpeg" />
       <guid isPermaLink="false">https://mozaic.fm/episodes/0/introduction-of-mozaicfm.html</guid>
       <link>https://mozaic.fm/episodes/0/introduction-of-mozaicfm.html</link>
       <pubDate>Mon, 31 Mar 2014 00:00:00 +0900</pubDate>
@@ -21566,9 +21698,9 @@ OSS 奨励賞受賞の裏話や、 http2 や spdylay が今後どうなるのか
       <itunes:duration>00:02:31</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
-      <itunes:order>68</itunes:order>
+      <itunes:order>69</itunes:order>
       <itunes:subtitle>次世代 Web Podcast Mozaic の紹介です。 feed のテストも兼ねています。</itunes:subtitle>
-      <media:content url="https://files.mozaic.fm/mozaic-ep0.mp3" fileSize="1840849" type="audio/mpeg" />
+      <media:content url="https://files.mozaic.fm/mozaic-ep0.mp3" fileSize="1858450" type="audio/mpeg" />
       <description># ep0 introduction of mozaic.fm
 
 次世代 Web Podcast Mozaic の紹介です。 feed のテストも兼ねています。
