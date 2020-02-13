@@ -1,4 +1,6 @@
 module ERBHelper
+  require 'digest'
+  require 'base64'
   include ERB::Util
 
   # indent with depth
@@ -26,6 +28,11 @@ module ERBHelper
       .concat("...")
   end
 
+  # subresource integrity with sha256
+  def integrity(path)
+    Base64.encode64(Digest::SHA256.digest(File.read(path)))
+  end
+
   def render(path, arg)
     # arg をコンテキストとして ERB の部分テンプレートを読む
     erb_template(path).result(arg.instance_eval{binding}).strip
@@ -35,7 +42,6 @@ module ERBHelper
     # arg をコンテキストとして ERB の部分テンプレートを読む
     erb_template(path).result(OpenStruct.new(hash).instance_eval{binding}).strip
   end
-
 
   def erb_template(path)
     abs_path = File.expand_path("../"+path, __dir__)
