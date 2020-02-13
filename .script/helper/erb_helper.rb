@@ -30,7 +30,7 @@ module ERBHelper
 
   # subresource integrity with sha256
   def integrity(path)
-    Base64.encode64(Digest::SHA256.digest(File.read(path)))
+    "sha256-#{Base64.encode64(Digest::SHA256.digest(File.read(path))).chomp}"
   end
 
   def render(path, arg)

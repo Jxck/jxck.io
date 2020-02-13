@@ -11,8 +11,8 @@
   <link rel=canonical href=<%= episode.canonical %>>
   <link rel=preload   type=font/woff2 as=font href=/assets/font/NotoSansCJKjp-Regular-Jxck-20200211.woff2 crossorigin>
 
-  <script defer type=module nonce=dummynonce src=/assets/js/mozaic.js></script>
-  <script defer type=module nonce=dummynonce src=/assets/js/sw.js></script>
+  <script defer type=module nonce=dummynonce integrity=<%= integrity("./mozaic.fm/assets/js/mozaic.js") -%> src=/assets/js/mozaic.js></script>
+  <script defer type=module nonce=dummynonce integrity=<%= integrity("./mozaic.fm/assets/js/sw.js") -%> src=/assets/js/sw.js></script>
 
   <%= indent(render("template/favicon.html.erb", episode)) %>
 
