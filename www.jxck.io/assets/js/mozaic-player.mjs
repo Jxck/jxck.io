@@ -472,22 +472,22 @@ export default class MozaicPlayer extends HTMLElement {
         album:  "mozaic.fm",
         artwork: [
           {
-            src:   "https://logo.jxck.io/mozaic.png",
+            src:   "https://mozaic.fm/assets/img/mozaic.png",
             sizes: "256x256",
             type:  "image/png"
           },
           {
-            src:   "https://logo.jxck.io/mozaic.webp",
+            src:   "https://mozaic.fm/assets/img/mozaic.webp",
             sizes: "256x256",
             type:  "image/webp"
           },
           {
-            src:   "https://logo.jxck.io/mozaic.jpeg",
+            src:   "https://mozaic.fm/assets/img/mozaic.jpeg",
             sizes: "2000x2000",
             type:  "image/jpeg"
           },
           {
-            src:   "https://logo.jxck.io/mozaic.svg",
+            src:   "https://mozaic.fm/assets/img/mozaic.svg",
             type:  "image/svg+xml"
           }
         ]
