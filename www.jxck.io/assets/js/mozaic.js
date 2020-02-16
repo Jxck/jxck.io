@@ -8,7 +8,7 @@ EventTarget.prototype.off = EventTarget.prototype.removeEventListener
 const $  = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
-if (window.ReportingObserver) {
+function reportingObserver() {
   console.log('ReportingObserver');
   const observer = new ReportingObserver((reports, observer) => {
     console.log(reports)
@@ -55,6 +55,8 @@ function playerKeybind(e) {
 }
 
 function enablePortal($portal) {
+  if ($portal === null) return
+  $portal.style.display = 'block'
   const $links = document.querySelectorAll('section:nth-of-type(3) a')
 
   $links.forEach(($a) => {
@@ -82,13 +84,72 @@ function enablePortal($portal) {
   })
 }
 
-document.on('DOMContentLoaded', (e) => {
+function enablePlayer() {
+  log(MozaicPlayer)
+  customElements.define('mozaic-player', MozaicPlayer);
+  document.on('keydown', playerKeybind)
+}
 
+function enableWebShare() {
+  const $share = $('#share')
+  if ($share !== null) {
+    $share.style.display = 'block'
+    $share.addEventListener('click', (e) => {
+      log(e)
+      const url   = location.href
+      const title = document.title
+      const text  = document.querySelector('meta[property="og:description"]').content
+      navigator.share({url, title, text})
+    })
+  }
+}
+
+function enableDialog() {
+  // <dialog> があったら検索 Form を <dialog> で出す
+  const searchDiag = document.importNode($('#search_diag').content, true)
+  document.body.appendChild(searchDiag)
+
+  $('.search').on('click', (e) => {
+    log(e)
+    e.preventDefault()
+
+    // player が使ってるキーバインドを一旦外す
+    document.off('keydown', playerKeybind)
+
+    const $dialog = $('dialog.search')
+    $dialog.on('click', (e) => {
+      log(e.target, $dialog)
+      if (e.target === $dialog) {
+        $dialog.close()
+      }
+    })
+    $dialog.on('cancel', (e) => {
+      log(e.type, $dialog.returnValue)
+    })
+    $dialog.on('close', (e) => {
+      log(e.type, $dialog.returnValue)
+
+      // player が使ってるキーバインドを戻す
+      document.on('keydown', playerKeybind)
+    })
+    $dialog.showModal()
+  })
+}
+
+function enableShortCutDiag() {
+  // <dialog> があったら shortcut を <dialog> で出す
+  const shortCutDiag = document.importNode($('#shortcut_diag').content, true)
+  document.body.appendChild(shortCutDiag)
+}
+
+if (window.ReportingObserver) {
+  reportingObserver()
+}
+
+document.on('DOMContentLoaded', (e) => {
   // Enable Mozaic Player
   if (window.customElements) {
-    log(MozaicPlayer)
-    customElements.define('mozaic-player', MozaicPlayer);
-    document.on('keydown', playerKeybind)
+    enablePlayer()
   } else {
     // custom element 無い場合は controls
     const $audio = $('audio')
@@ -99,61 +160,16 @@ document.on('DOMContentLoaded', (e) => {
 
   // Enable Web Share
   if (navigator.share) {
-    const $share = $('#share')
-    if ($share !== null) {
-      $share.style.display = 'block'
-      $share.addEventListener('click', (e) => {
-        log(e)
-        const url   = location.href
-        const title = document.title
-        const text  = document.querySelector('meta[property="og:description"]').content
-        navigator.share({url, title, text})
-      })
-    }
+    enableWebShare()
   }
 
-  // Enable Search Dialog
+  // Enable Search/ShortCut Dialog
   if (window.HTMLDialogElement) {
-    // <dialog> があったら検索 Form を <dialog> で出す
-    const searchDiag = document.importNode($('#search_diag').content, true)
-    document.body.appendChild(searchDiag)
-
-    $('.search').on('click', (e) => {
-      log(e)
-      e.preventDefault()
-
-      // player が使ってるキーバインドを一旦外す
-      document.off('keydown', playerKeybind)
-
-      const $dialog = $('dialog.search')
-      $dialog.on('click', (e) => {
-        log(e.target, $dialog)
-        if (e.target === $dialog) {
-          $dialog.close()
-        }
-      })
-      $dialog.on('cancel', (e) => {
-        log(e.type, $dialog.returnValue)
-      })
-      $dialog.on('close', (e) => {
-        log(e.type, $dialog.returnValue)
-
-        // player が使ってるキーバインドを戻す
-        document.on('keydown', playerKeybind)
-      })
-      $dialog.showModal()
-    })
+    enableDialog()
+    enableShortCutDiag()
   }
 
-  // Enable ShortCut Dialog
-  if (window.HTMLDialogElement) {
-    // <dialog> があったら shortcut を <dialog> で出す
-    const shortCutDiag = document.importNode($('#shortcut_diag').content, true)
-    document.body.appendChild(shortCutDiag)
-  }
-
-  if (window.HTMLPortalElement && $('portal#preview')) {
-    $('portal#preview').style.display = 'block'
+  if (window.HTMLPortalElement) {
     enablePortal($('portal#preview'))
   }
 })
