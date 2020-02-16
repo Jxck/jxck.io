@@ -1,6 +1,6 @@
 console.log(`貴様、見ているな!!!
 このサイトの技術的なまとめはこちらをどうぞ。
-https://labs.jxck.io/blog
+https://blog.jxck.io/policies/MEMO.md
 by Jxck
 `)
 
