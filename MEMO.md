@@ -1,12 +1,73 @@
 # jxck.io
 
+
 ## blog.jxck.io
 
-https://github.com/Jxck/jxck.io/tree/master/blog.jxck.io
+- <https://github.com/Jxck/jxck.io/tree/master/blog.jxck.io>
+  - ビルド済み静的サイト
+  - AMP 対応
+  - DarkMode 対応
+  - CSP/FeaturePolicy
+  - Reporting
+  - 鉄下駄として
+    - webfont
+    - adsense
+    - analytics
+    - youtbe embed
+    - etc を導入
 
-- 純静的ページ
-- 動的なものはほぼない
-- 基本は全部 Makefile に集約
+
+### HTML
+
+- markdown を自作のジェネレータでビルド
+- このとき AMP 版も生成
+
+
+### CSS
+
+- 基本は single colmun layout
+- dark mode 対応
+
+
+### JS
+
+- 基本使わない
+- reporting のみ
+- 将来的には消したい
+
+
+### Image
+
+- 基本は SVG を使う
+  - 基本は手書き
+  - 複雑なのは Cacoo で
+- ラスタは WebP に
+  - フォールバックとして jpeg/png/gif(anime)
+- picture タグで出しわけ
+
+
+### WebFont
+
+- 鉄下駄として日本語 WebFont を導入
+- Noto Sans CJK JP と Noto Sans Mono CJK JP
+- emoji は入れてない
+- diet
+  - entries 以下のファイルを全部みて、使われている文字を列挙
+  - それを元に subset 化した woff2 を生成
+- font-display: swap で表示
+
+
+### iframe
+
+- 鉄下駄として Youtube の iframe を embed
+- Feature Policy などを調整
+
+
+### Analytics/Ad
+
+- 鉄下駄としてアナリティクス/広告を導入
+- これを入れても早い状態を維持したい
+- CSP なども調整
 
 
 ### basic flow
@@ -58,7 +119,6 @@ https://github.com/Jxck/jxck.io/tree/master/blog.jxck.io
 
 <https://blog.jxck.io/entries/2016-01-27/new-blog-start.html#test-section>
 
-
 変換の実装は ./script にある。
 
 kramdown を元に実装している。
@@ -83,7 +143,7 @@ kramdown を元に実装している。
   - RSS もここからできる
 
 
-## 画像
+### 画像
 
 画像は以下のように埋め込む。
 
@@ -112,18 +172,18 @@ $ cwebp -q 40 image.png -o image.webp
 これは `$ gulp` で叩けるが `make build` に入ってる。
 
 
-## 圧縮
+### 圧縮
 
 html/css/js/png/jpeg/svg ファイルは全て圧縮する。
 
 ただし webp/rb/md/woff2 などは圧縮しない。
 
-- .gz は zopfli で作る
-- .br は brotli で作る
+また、圧縮方式は gz/br であるが、モダンなブラウザはほとんどが br に対応しているため、以下のような方針をとる。
 
-<https://github.com/Jxck/jxck.io/blob/master/compress.sh>
+- .br は brotli コマンドで事前に作る
+- .gz は h2o のオンデマンドで作る
 
-これは `make comp` でできるが、 `make build` に入ってるため、もろもろ準備できたら最後の build でやる。
+これは `make comp` でできるが、 `make build` に入ってるため、もろもろ準備できたら最後の build で実行。
 
 
 ## podcast
@@ -173,7 +233,6 @@ audio: https://files.mozaic.fm/mozaic-ep0.mp3
 - guest: 複数書ける
 - Theme: これが index ページの見出し、 description 要素、 RSS の概要などに使われる
 
-
 ビルドは blog と同じく mark.rb で行う。
 
 AMP は吐かない。
@@ -181,21 +240,45 @@ AMP は吐かない。
 mp3 のプレイヤーは [mozaic-player](https://github.com/Jxck/jxck.io/blob/master/www.jxck.io/assets/js/mozaic-player.mjs) を作っている。
 
 
-## mp3
+### mp3
 
 - 48kbps (mono) 96kbps(stereo)
 - 44.1kHz (joint stereo)
 - mp3
 
-で吐く。
+で編集したものを吐く。
 
-[Tag Editor Free on the Mac App Store](https://itunes.apple.com/us/app/tag-editor-free/id984278082)
 
-などを使ってタグをつける。
+### ID3 Tag
 
-- title
-- artist
-- album
-- genre: "Podcast"
-- Comment: "epXX Title"
-- Track#: ファイルの順番(sideshow があるものもあるので ep とは違う)
+mp3 には ID3 というメタデータを付与できる。
+
+ID3 には複数のバージョンがありおおよそ以下のようになっているらしい。
+
+変遷は wikipedia にまとまっているものが参考になる。
+
+- [ID3タグ - Wikipedia](https://ja.wikipedia.org/wiki/ID3%E3%82%BF%E3%82%B0)
+
+これを元に、元も普及しているらしく、画像を付与できる v2.3 を採用。
+
+ツールは、 GUI ではなく、ビルド時にメタデータを付与できるように CLI を探し、 Mac/Linux 両対応で使いやすい eyeD3 を採用した。
+
+- [eyeD3](https://eyed3.readthedocs.io/en/latest/)
+
+HTML/RSS をビルドするときに収集するメタデータを用いて、各ファイルに対するコマンドファイルの shell を精製し、それを必要に応じて(通常は公開時)に実行する。
+
+
+```shell
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep0.mp3
+
+eyeD3 --title "ep0 introduction of mozaic.fm" \
+      --track 1 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep0.mp3
+```
+
+一度全部消して、最小限のメタデータを付与。 track は sideshow の分ずれるので、エピソード番号と同じではなく、 1 オリジンで最初からのファイル数。
