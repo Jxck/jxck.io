@@ -10,7 +10,7 @@
   // Window
   if (typeof window !== 'undefined') {
     async function master() {
-      log('mastert()')
+      log('master()')
 
       if (location.hash === "#clear") {
         const registrations = await navigator.serviceWorker.getRegistrations()
@@ -44,6 +44,7 @@
 
   // Service Worker
   if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalScope) {
+    log('in sw')
     async function worker() {
       log('worker()', self)
 
@@ -94,7 +95,8 @@
           })
 
           // 一斉に削除
-          await Promise.all(stores_remove.concat(requests_remove))
+          const result = await Promise.allSettled(stores_remove.concat(requests_remove))
+          log(result)
 
           return self.clients.claim()
         }
