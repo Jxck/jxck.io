@@ -178,7 +178,7 @@ document.on('DOMContentLoaded', async (e) => {
     enablePortal($('portal#preview'))
   }
 
-  if (location.hash === "#clear") {
+  if (location.hash === '#clear') {
     const registrations = await navigator.serviceWorker.getRegistrations()
     registrations.forEach(async (registration) => {
       log(registration)
@@ -198,7 +198,7 @@ document.on('DOMContentLoaded', async (e) => {
     }
   })
 
-  const registration = await navigator.serviceWorker.register(`/assets/js/sw.js`, { scope: '/' })
+  const registration = await navigator.serviceWorker.register('/assets/js/sw.js', { scope: '/' })
   await Promise.all([
     navigator.serviceWorker.ready,
     controllerChange
