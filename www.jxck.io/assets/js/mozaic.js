@@ -43,6 +43,10 @@ function playerKeybind(e) {
     case '/':
       log('shortcut')
       const $shortCutDiag = $('dialog.shortcut')
+      if ($shortCutDiag.open) {
+        $shortCutDiag.close()
+        break
+      }
       $shortCutDiag.showModal()
       $shortCutDiag.on('click', (e) => {
         log(e.target, $shortCutDiag)
@@ -58,7 +62,6 @@ function enablePortal($portal) {
   if ($portal === null) return
   $portal.style.display = 'block'
   const $links = document.querySelectorAll('section:nth-of-type(3) a')
-
   $links.forEach(($a) => {
     let timer;
     $a.on('mouseover', (e) => {
@@ -108,7 +111,6 @@ function enableDialog() {
   // <dialog> があったら検索 Form を <dialog> で出す
   const searchDiag = document.importNode($('#search_diag').content, true)
   document.body.appendChild(searchDiag)
-
   $('.search').on('click', (e) => {
     log(e)
     e.preventDefault()
@@ -142,11 +144,14 @@ function enableShortCutDiag() {
   document.body.appendChild(shortCutDiag)
 }
 
+
+
+// main
 if (window.ReportingObserver) {
   reportingObserver()
 }
 
-document.on('DOMContentLoaded', (e) => {
+document.on('DOMContentLoaded', async (e) => {
   // Enable Mozaic Player
   if (window.customElements) {
     enablePlayer()
@@ -172,4 +177,30 @@ document.on('DOMContentLoaded', (e) => {
   if (window.HTMLPortalElement) {
     enablePortal($('portal#preview'))
   }
+
+  if (location.hash === "#clear") {
+    const registrations = await navigator.serviceWorker.getRegistrations()
+    registrations.forEach(async (registration) => {
+      log(registration)
+      await registration.unregister()
+    })
+    return
+  }
+
+  const controllerChange = new Promise((resolve, reject) => {
+    if (navigator.serviceWorker.controller) {
+      resolve(navigator.serviceWorker.controller);
+    } else {
+      navigator.serviceWorker.addEventListener('controllerchange', (e) => {
+        log(e.type)
+        resolve(navigator.serviceWorker.controller)
+      })
+    }
+  })
+
+  const registration = await navigator.serviceWorker.register(`/assets/js/sw.js`, { scope: '/' })
+  await Promise.all([
+    navigator.serviceWorker.ready,
+    controllerChange
+  ])
 })
