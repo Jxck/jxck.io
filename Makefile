@@ -72,6 +72,14 @@ blog: $(BHTML)
 podcast: $(PHTML)
 	$(MARK) --podcastindex
 
+blogfull:
+	$(MARK) --blogindex
+	$(MARK) --blogfull
+
+podcastfull:
+	$(MARK) --podcastindex
+	$(MARK) --podcastfull
+
 full:
 	$(MARK) --blogindex
 	$(MARK) --podcastindex

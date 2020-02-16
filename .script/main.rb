@@ -41,6 +41,12 @@ if __FILE__ == $PROGRAM_NAME
   opt.on("-p path/to/episode", "--podcast ./path/to/episode.md") {|path|
     podcast.build(path)
   }
+  opt.on("--blogfull") {
+    blog.build_all
+  }
+  opt.on("--podcastfull") {
+    podcast.build_all
+  }
   opt.on("--full") {
     blog.build_all
     podcast.build_all
