@@ -2,7 +2,7 @@
 import MozaicPlayer from '/assets/js/mozaic-player.mjs'
 
 // Enable debug log adding #debug into url
-const log = location.hash === "#debug" ? console.log.bind(console) : () => {}
+const log = location.hash === '#debug' ? console.log.bind(console) : () => {}
 EventTarget.prototype.on  = EventTarget.prototype.addEventListener
 EventTarget.prototype.off = EventTarget.prototype.removeEventListener
 const $  = document.querySelector.bind(document)
@@ -12,7 +12,7 @@ if (window.ReportingObserver) {
   console.log('ReportingObserver');
   const observer = new ReportingObserver((reports, observer) => {
     console.log(reports)
-    const URL = "https://reporting.jxck.io/beacon"
+    const URL = 'https://reporting.jxck.io/beacon'
     for (const report of reports) {
       navigator.sendBeacon(URL, JSON.stringify(report))
     }
@@ -73,7 +73,7 @@ function enablePortal($portal) {
   })
   $portal.on('click', (e) => {
     log(e)
-    if ($portal.src === "") return
+    if ($portal.src === '') return
     $portal.classList.add('activate')
     $portal.on('transitionend', (e) => {
       log(e)
@@ -85,18 +85,17 @@ function enablePortal($portal) {
 document.on('DOMContentLoaded', (e) => {
 
   // Enable Mozaic Player
-  if (window.customElements === undefined) {
+  if (window.customElements) {
+    log(MozaicPlayer)
+    customElements.define('mozaic-player', MozaicPlayer);
+    document.on('keydown', playerKeybind)
+  } else {
     // custom element 無い場合は controls
     const $audio = $('audio')
     if ($audio !== null) {
       $audio.controls = true
     }
-  } else {
-    log(MozaicPlayer)
-    customElements.define('mozaic-player', MozaicPlayer);
-    document.on('keydown', playerKeybind)
   }
-
 
   // Enable Web Share
   if (navigator.share) {
@@ -112,7 +111,6 @@ document.on('DOMContentLoaded', (e) => {
       })
     }
   }
-
 
   // Enable Search Dialog
   if (window.HTMLDialogElement) {
