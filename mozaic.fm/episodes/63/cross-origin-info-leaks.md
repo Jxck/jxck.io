@@ -126,3 +126,6 @@ Origin を守るための Web の戦いと、そこから見える Web や Brows
   - どちらも Same Site Cookie などが有効
 - Stephen Röttger \| OffensiveCon
   - <https://www.offensivecon.org/speakers/2020/stephen-roettger.html>
+- Project Zero: Escaping the Chrome Sandbox with RIDL
+  - OffensiveCon で発表されたもの
+  - <https://googleprojectzero.blogspot.com/2020/02/escaping-chrome-sandbox-with-ridl.html>
