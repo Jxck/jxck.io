@@ -911,3 +911,16 @@ eyeD3 --title "ep63 Cross Origin Info Leaks" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep63.sideshow.mp3
+
+eyeD3 --title "ep63 Cross Origin Info Leaks sideshow" \
+      --track 71 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep63.sideshow.mp3
+
+
+
