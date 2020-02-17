@@ -284,7 +284,7 @@ export default class MozaicPlayer extends HTMLElement {
               "/>
       </svg>
     </button>
-    <button class=play title=play disabled>
+    <button class=play title=loading aria-busy=true disabled>
       <svg class="svg-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
         <!-- >  -->
         <path
@@ -593,6 +593,8 @@ export default class MozaicPlayer extends HTMLElement {
   }
 
   setCanPlayButton() {
+    this.$play.title = "play"
+    this.$play.setAttribute("aria-busy", false)
     this.$play.disabled = false
     const $path = this.$svgPlay.querySelector("path")
     $path.style.fill   = "#fff"
