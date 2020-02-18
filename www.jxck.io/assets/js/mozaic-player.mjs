@@ -152,7 +152,7 @@ export default class MozaicPlayer extends HTMLElement {
 
   <div class=grid-progress>
     <time class=current datetime=00:00:00>00:00:00</time>
-    <progress class=progress value=0 tabindex=0></progress>
+    <progress aria-label=seekbar class=progress tabindex=0 value=0 aria-valuemin=0></progress>
     <time class=duration datetime=00:00:00>00:00:00</time>
   </div>
 
@@ -434,11 +434,8 @@ export default class MozaicPlayer extends HTMLElement {
     this.$progress     = this.shadowRoot.querySelector(".progress")
     this.$duration     = this.shadowRoot.querySelector(".duration")
     this.$outputRate   = this.shadowRoot.querySelector("output.rate")
-
-    this.$svgPlay = this.shadowRoot.querySelector(".svg-play")
-    this.$svgPause = this.shadowRoot.querySelector(".svg-pause")
-
-
+    this.$svgPlay      = this.shadowRoot.querySelector(".svg-play")
+    this.$svgPause     = this.shadowRoot.querySelector(".svg-pause")
 
     // tooltip event bindings
     this.$play        .addEventListener("click", this.onPlay.bind(this))
@@ -451,15 +448,14 @@ export default class MozaicPlayer extends HTMLElement {
 
     // dragging progress bar
     this.dragging = false
-    this.$progress.addEventListener("mousedown",   this.onMousedown. bind(this), {passive: true})
-    this.$progress.addEventListener("mousemove",   this.onMousemove. bind(this), {passive: true})
-    this.$progress.addEventListener("mouseup",     this.onMouseup.   bind(this), {passive: true})
-    this.$progress.addEventListener("mouseout",    this.onMouseout.  bind(this), {passive: true})
-
-    this.$progress.addEventListener("touchstart",  this.onMousedown. bind(this), {passive: true})
-    this.$progress.addEventListener("touchmove",   this.onMousemove. bind(this), {passive: true})
-    this.$progress.addEventListener("touchend",    this.onMouseup.   bind(this), {passive: true})
-    this.$progress.addEventListener("touchcancel", this.onMouseout.  bind(this), {passive: true})
+    this.$progress.addEventListener("mousedown",   this.onMousedown.bind(this), {passive:true})
+    this.$progress.addEventListener("mousemove",   this.onMousemove.bind(this), {passive:true})
+    this.$progress.addEventListener("mouseup",     this.onMouseup.bind(this),   {passive:true})
+    this.$progress.addEventListener("mouseout",    this.onMouseout.bind(this),  {passive:true})
+    this.$progress.addEventListener("touchstart",  this.onMousedown.bind(this), {passive:true})
+    this.$progress.addEventListener("touchmove",   this.onMousemove.bind(this), {passive:true})
+    this.$progress.addEventListener("touchend",    this.onMouseup.bind(this),   {passive:true})
+    this.$progress.addEventListener("touchcancel", this.onMouseout.bind(this),  {passive:true})
 
     // load the audio
     this.audio.load()
@@ -493,10 +489,10 @@ export default class MozaicPlayer extends HTMLElement {
         ]
       })
 
-      navigator.mediaSession.setActionHandler("play",         () => { this.onPlay()    })
-      navigator.mediaSession.setActionHandler("pause",        () => { this.onPlay()    })
-      navigator.mediaSession.setActionHandler("seekbackward", () => { this.onBack()    })
-      navigator.mediaSession.setActionHandler("seekforward",  () => { this.onForward() })
+      navigator.mediaSession.setActionHandler("play",         this.onPlay.bind(this))
+      navigator.mediaSession.setActionHandler("pause",        this.onPlay.bind(this))
+      navigator.mediaSession.setActionHandler("seekbackward", this.onBack.bind(this))
+      navigator.mediaSession.setActionHandler("seekforward",  this.onForward.bind(this))
       // TODO: other action if supported
     }
   }
@@ -578,18 +574,23 @@ export default class MozaicPlayer extends HTMLElement {
 
   setDuration() {
     const duration = this.audio.duration
+    const time     = this.timeFormat(duration)
     log("duration", duration)
     this.$progress.max         = duration
-    this.$duration.textContent = this.timeFormat(duration)
-    this.$duration.dateTime    = this.timeFormat(duration)
+    this.$progress.setAttribute("aria-valuemax", duration)
+    this.$duration.textContent = time
+    this.$duration.dateTime    = time
   }
 
   setTime() {
     const currentTime = this.audio.currentTime
+    const time        = this.timeFormat(currentTime)
     log("currentTime", currentTime)
     this.$progress.value      = currentTime
-    this.$current.textContent = this.timeFormat(currentTime)
-    this.$current.dateTime    = this.timeFormat(currentTime)
+    this.$progress.setAttribute("aria-valuenow", currentTime)
+    this.$progress.setAttribute("aria-valuetext", time)
+    this.$current.textContent = time
+    this.$current.dateTime    = time
   }
 
   setCanPlayButton() {
@@ -602,13 +603,13 @@ export default class MozaicPlayer extends HTMLElement {
   }
 
   setPlayButton() {
-    this.$svgPlay.style.display  = "inline-block";
-    this.$svgPause.style.display = "none";
+    this.$svgPlay.style.display  = "inline-block"
+    this.$svgPause.style.display = "none"
   }
 
   setPauseButton() {
-    this.$svgPlay.style.display  = "none";
-    this.$svgPause.style.display = "inline-block";
+    this.$svgPlay.style.display  = "none"
+    this.$svgPause.style.display = "inline-block"
   }
 
 
@@ -812,7 +813,6 @@ export default class MozaicPlayer extends HTMLElement {
     this.$outputRate.textContent = `x${playbackRate.toPrecision(precision)}`
     this.savePlaybackRate()
   }
-
 
   // Mouse & Touch Events
   onMousedown(e) {

@@ -90,7 +90,7 @@ function enablePortal($portal) {
 function enablePlayer() {
   log(MozaicPlayer)
   customElements.define('mozaic-player', MozaicPlayer);
-  document.on('keydown', playerKeybind)
+  // document.on('keydown', playerKeybind)
 }
 
 function enableWebShare() {
