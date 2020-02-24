@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href="https://blog.jxck.io/entries/2020-02-25/end-of-idyllic-cookie.html">
+  <link rel=amphtml   href="https://blog.jxck.io/entries/2020-02-25/end-of-idyllic-cookie.amp.html">
+  <link rel=preload   type=font/woff2 as=font href=/assets/font/NotoSansCJKjp-Regular-Jxck-20200211.woff2 crossorigin>
+
+  <script async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+  <script defer src=/assets/js/main.js></script>
+  <script defer src=/assets/js/ga.js></script>
+  <script defer src=/assets/js/highlight.pack.js></script>
+
+  <link rel=icon             type =image/svg+xml sizes=any href=https://jxck.io/assets/img/jxck.svg>
+  <link rel=icon             type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="Cookie は、ブラウザに一度保存すれば、次からその値を自動的に送ってくるという、非常に都合の良い仕様から始まった。State Less が基本だった Web にセッションの概念をもたらし、今ではこれが無ければ実現できないユースケースの方が多い。冷静に考えればふざけてると...">
+  <meta name=keywords            content="cookie,privacy">
+  <meta name=theme-color         content=#000000>
+
+  <meta name=twitter:card        content=summary>
+  <meta name=twitter:site        content=@jxck_>
+  <meta name=twitter:url         content=https://blog.jxck.io/entries/2020-02-25/end-of-idyllic-cookie.html>
+  <meta name=twitter:title       content="牧歌的 Cookie の終焉 | blog.jxck.io">
+  <meta name=twitter:description content="Cookie は、ブラウザに一度保存すれば、次からその値を自動的に送ってくるという、非常に都合の良い仕様から始まった。State Less が基本だった Web にセッションの概念をもたらし、今ではこれが無ければ実現できないユースケースの方が多い。冷静に考えればふざけてると...">
+  <meta name=twitter:image       content=https://jxck.io/assets/img/jxck.png>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2020-02-25/end-of-idyllic-cookie.html>
+  <meta property=og:title        content="牧歌的 Cookie の終焉 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="Cookie は、ブラウザに一度保存すれば、次からその値を自動的に送ってくるという、非常に都合の良い仕様から始まった。State Less が基本だった Web にセッションの概念をもたらし、今ではこれが無ければ実現できないユースケースの方が多い。冷静に考えればふざけてると...">
+  <meta property=og:image        content=https://jxck.io/assets/img/jxck.png>
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "牧歌的 Cookie の終焉 | blog.jxck.io",
+    "image": [
+      "https://jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2020-02-25T08:00:00+08:00",
+    "dateModified": "2020-02-26T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.60x60.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": "Cookie は、ブラウザに一度保存すれば、次からその値を自動的に送ってくるという、非常に都合の良い仕様から始まった。State Less が基本だった Web にセッションの概念をもたらし、今ではこれが無ければ実現できないユースケースの方が多い。冷静に考えればふざけてると..."
+  }
+  </script>
+
+  <title>牧歌的 Cookie の終焉 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/blog.svg   title=blog   alt="blog top" class=logo></a>
+        <li><a href="https://blog.jxck.io/entries/2020-02-25/end-of-idyllic-cookie.amp.html#development=1" aria-label="amp version">
+                                               <img width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/amp.svg    title=blog   alt="amp version"></a>
+        <li><a href=.                         ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/up.svg     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/rss.svg    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/humans.svg title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/jxck.svg   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/markdown.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2020-02-25>2020-02-25</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-02-26>2020-02-26</time></dd></div>
+      <div><dt class=tags>tags</dt><dd>[<a href="/tags/cookie.html">cookie</a><i>,</i><a href="/tags/privacy.html">privacy</a>]</dd></div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+    <article>
+      <h1><a href=/entries/2020-02-25/end-of-idyllic-cookie.html>牧歌的 Cookie の終焉</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>Cookie は、ブラウザに一度保存すれば、次からその値を自動的に送ってくるという、非常に都合の良い仕様から始まった。
+        <p>State Less が基本だった Web にセッションの概念をもたらし、今ではこれが無ければ実現できないユースケースの方が多い。
+        <p>冷静に考えればふざけてるとして思えないヘッダ名からもわかるように、当初はこのヘッダがこんなに重宝され、 Web のあり方を変えるかもしれないくらい重要な議論を巻き起こすことになるとは、最初の実装者も思ってなかっただろう。
+        <p>そんな Cookie が今どう使われ、 3rd Party Cookie (3rdPC) の何が問題になっているのかを踏まえ、これからどうなっていくのかについて考える。
+      </section>
+      <section>
+        <h2 id="cookie-のユースケース"><a href="#cookie-のユースケース">Cookie のユースケース</a></h2>
+        <p>Web にある API の中でも Cookie はいくつかの点で特異な挙動をする
+        <ul>
+          <li>一度保存すれば、次から自動で送る
+          <li>現在の Origin と関係なくどこにでも送る(CORS 不要)
+          <li>長さ以外特に制限が無く任意のシリアライズされた値を入れられる
+        </ul>
+        <p>結果、その緩い仕様がゆえに、 Cookei はあらゆるユースケースを背負い込むことになった。
+        <section>
+          <h3 id="設定値保存"><a href="#設定値保存">設定値保存</a></h3>
+          <p>例えば、テーマカラーを設定で変えられるようなサービスがあった際に、その情報を Cookie で持つこともできる。
+          <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+          <pre><code translate="no">Set-Cookie: theme=dark
+Cookie: theme=dark</code></pre>
+          <p>これにより、同じユーザでも違うブラウザであれば設定値を変えることができ、 JS を使わなくてもサービス側が CSS を切り替えてページを返すと言った実装が可能だ。
+          <p>毎回リクエストに乗るということを無視して JS API を用いれば、単なる KVS としても使えるため、 LocalStorage 以前は Cookie がその代替を担っていた。
+        </section>
+        <section>
+          <h3 id="セッションの維持"><a href="#セッションの維持">セッションの維持</a></h3>
+          <p>Cookie Store の中身はユーザが簡単に変更できるため、サーバからランダムな値を付与し、その値が送られてくることでユーザの連続したリクエストを紐付けるようになった。これがセッションの維持だ。
+          <p>多くのサイトで、初回のアクセス時にとりあえず付与されているだろう。
+          <pre><code translate="no">Cookie: SID=q1w2e3r4t5y
+Cookie: SID=q1w2e3r4t5y // 同じユーザであることがわかる</code></pre>
+        </section>
+        <section>
+          <h3 id="credential"><a href="#credential">Credential</a></h3>
+          <p>単に個々のアノニマスユーザを識別するだけだった SID に対して、サーバ側でユーザアカウントを紐付ける行為がログイン認証だと言える。
+          <p>メールサービスが受信ボックスを見せるのも、 EC サイトが購入履歴を見せるのも、全てこの乱数がキーとなり、もしこのキーを盗み出せれば、そのユーザに成りすますことができる。
+          <p>一部の仕様の中で、 Cookie のことを <em>Credential</em> と呼ぶのはこのためだ。
+          <p>Web における攻撃の大半は、最終的にこの Cookie を盗む(ex. XSS, MITM etc)か、 Cookie の挙動を利用(ex, CSRF, Timing Attack etc)している。
+          <p>HTTPS Everywhere が必要なことも、 HttpOnly や Secure 属性が必要なのも、 Credential としての Cookie が漏れることを防ぐために必要不可欠だからだ。
+        </section>
+        <section>
+          <h3 id="sso"><a href="#sso">SSO</a></h3>
+          <p>実装は色々あるが典型例としては、あるサイト a.example.com と b.example.jp で Single Sign On を実現したい場合、共通の認証基盤として auth.example を用意する。全て違うドメインだ。
+          <p>a.example.com にアクセスした場合、一度 auth.example にリダイレクトすることで、ログインフォームでログインさせ Cookie を付与する。さらにワンタイムトークンなどをクエリストリングに付けてリダイレクトバックしてやれば、 a.example.com は auth.example に裏で確認することでログイン済みとみなすことができる。
+          <pre><code translate="no">307 Temporary Redirect HTTP/1.1 // auth.example からのレスポンス
+Set-Cookie: SID=q1w2e3r4t5 // auth.example でログイン済みであることを示す Cookie
+Location: http://a.example.com?token=fawpiejfaoirgjhasiregjseptdigjseo;irgfjseaorigj
+// このトークンを受け取った a.example.com は auth.example に裏で問い合わせる</code></pre>
+          <p>次にユーザが b.example.jp にアクセスした際、 b.example.jp は auth.example にリダイレクトする。
+          <p>auth.example には Cookie が飛ぶため認証済みであることがわかり、そのまま token を付与した URL で b.example.jp にリダイレクトバックすれば、 b.example.jp はトークンを auth.example に問い合わせるだけで認証を完了できる。
+          <p>ユーザからみれば、画面がぱぱっと何回か変わるだけで、フォームに入力する手間は省けるのだ。
+          <p>これは、リダイレクトする際にも、 auth.example への Cookie が勝手に送られることを利用している。
+          <p>そして、 a.example.com や b.example.jp にアクセスしたユーザにとっては、アクセスしたいサービスが 1st Party 自分を 2nd Party として、 auth.example は 3rd Party となるため、送られている Cookie は 3rd Party Cookie と呼ばれる。
+        </section>
+        <section>
+          <h3 id="analytics"><a href="#analytics">Analytics</a></h3>
+          <p>サイトに簡単なスクリプトを設置するだけで、単なるアクセスログだけでは取りにくい、ユーザの行動などの細かな情報を取得する仕組みが Analytics だ。
+          <p>これも実装が色々あるが、よくあるのは <code translate="no">&lt;img&gt;</code> を使う方法だろう。
+          <p>a.example.com のアクセスを analytics.example というアナリティクスサービスで収集したい場合、 a.example.com に以下のような <code translate="no">&lt;img&gt;</code> を埋め込む。
+          <pre class=html><code translate="no">&lt;/body&gt;
+メインコンテンツ
+&lt;img width=1 height=1 src=https://analytics.example?id=q1w2e3r4&gt;
+&lt;/body&gt;</code></pre>
+          <p><code translate="no">&lt;img&gt;</code> を使うのは、 CORS に違反せずに別 Origin へとリクエストを投げる簡単な方法だからだろう。
+          <p>リクエストが飛べば、それだけでかなりの情報がわかる。
+          <pre><code translate="no">// そもそも IP からおおよその場所がわかる
+GET /?id=q1w2e3r4 HTTP/1.1 // クエリに任意の情報をつければ送れる
+Referer: https://a.example.com // 見ていたサイトもわかる
+// どの言語圏の人かだいたいわかる
+Accept-Language: ja,en-US;q=0.9,en;q=0.8
+// 以下を見れば閲覧環境もそれなりに絞れる
+Accept: Image/webp,image/apng,image/*,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+User-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.106 Safari/537.36</code></pre>
+          <p>ここでさらに analytics.example から Cookie を付与すれば、このアナリティクスサービスを埋め込んだ全てのサービスで、ユーザがどう動いているかを追跡することもできる。
+        </section>
+        <section>
+          <h3 id="広告"><a href="#広告">広告</a></h3>
+          <p>あるユーザが、 a.example.com で見た商品に関するリコメンドを、 b.example.jp で表示したい場合も Cookie が応用できる。
+          <p>これも実装が色々あるが、例えば ad.example という広告配信サービスを用意し、それを双方が iframe で埋め込んでいたとしよう。
+          <p>a.example.com でユーザは商品ページを見ている。
+          <pre class=html><code translate="no">&lt;main&gt;
+PC周辺機器
+&lt;/main&gt;
+&lt;aside&gt;
+   &lt;iframe src=https://ad.example?page=pc-accessory&gt;&lt;/ifarme&gt;
+&lt;/aside&gt;</code></pre>
+          <p>このとき、 ad.example には、ページの持ち主が設定したページの情報がクエリによって付与され、レスポンスで ad.example の Cookie が付与される。
+          <pre><code translate="no">GET /?page=pc-accessory HTTP/1.1 // PC周辺機器のページを見ていたことが伝わる
+Host: ad.example</code></pre>
+          <pre><code translate="no">200 OK HTTP/1.1
+Set-Cookie: q1w2e3r4t5 // このCookieで追跡
+Content-Type: text/html
+Content-Length: 1024
+
+&lt;html&gt;
+とりあえずの広告
+&lt;/html&gt;</code></pre>
+          <p>次にユーザは全く関係ない b.example.jp にアクセスし、同じく ad.example の広告が埋め込まれていたとする。
+          <pre class=html><code translate="no">&lt;main&gt;
+SNS 的な何か
+&lt;/main&gt;
+&lt;aside&gt;
+   &lt;iframe src=https://ad.example&gt;&lt;/ifarme&gt;
+&lt;/aside&gt;</code></pre>
+          <p>このとき ad.example を取得するために送られるリクエストは以下のようになる。
+          <pre><code translate="no">GET / HTTP/1.1
+Host: ad.example
+Cookie: q1w2e3r4t5 // さっきPC周辺機器を見ていた人だとわかる</code></pre>
+          <pre><code translate="no">200 OK HTTP/1.1
+Content-Type: text/html
+Content-Length: 1024
+
+&lt;html&gt;
+PC周辺機器の広告
+&lt;/html&gt;</code></pre>
+          <p>これも、 iframe であれ Cookie が送受信されることを利用している。
+          <p>もちろん、 ad.example への Cookie は 3rdPC だ。
+        </section>
+      </section>
+      <section>
+        <h2 id="問題の本質"><a href="#問題の本質">問題の本質</a></h2>
+        <p>Cookie は、単純に「保存した値を自動で送信する」という仕様のままそこにあり、使われている。
+        <p>問題はその仕様なのか、ユースケースなのかを考えれば、本来は後者だろう。
+        <p>昨今の議論の中で「3rd Party Cookie」が問題として取り扱われるが、 SSO は良くてターゲティング広告はだめなのであれば、本当の問題は Cookie そのものではなく、その後ろにある「トラッキング」というユースケースなはずだ。
+        <p>すると Cookie の挙動を変えるのではなく、そのユースケースを制限すれば良い。それが、かつて提案された <em>DNT</em> (Do Not Track) や <em>P3P</em> (Platform for Privacy Preferences) だった。
+        <p>性善説で考えれば、そうしたヘッダを受け取ったサービスは、その内容を遵守してトラッキングを外すといったことを行えば、問題は全て解決した。しかし、現状この仕様の存在すら知らない人が大半なように、全く遵守されず、全く普及しなかった。あまつさえ、 DNT を送ることが Fingerprinting のベクタになるとして <a href="https://developer.apple.com/documentation/safari_release_notes/safari_12_1_release_notes">DNT の送信をやめたブラウザ</a>もある。
+        <p>Cookie という挙動は維持したいが、そのユースケースの一部には問題がある、という現状を解決するための手段として、ユースケースの方を制限するという手法は、全く上手くいかなかった。
+        <p>そうなると挙動に手を入れるしかない。結果として 3rdPC を「<em>どう使われているかにかかわらず全てブロックする</em>」ということになる。それが今起こっていることだ。例え互換性を壊したとしてもだ。
+      </section>
+      <section>
+        <h2 id="web-が互換性を壊す時"><a href="#web-が互換性を壊す時">Web が互換性を壊す時</a></h2>
+        <p>「Web は互換性を重視する」という前提をよく聞くだろう。実際 Smoosh Gate のようなことが起こってしまう程度に、仕様策定の現場では互換性は重要視されている。
+        <p>世の開発者がブラウザ互換性に悩まされる原因は、まだ標準化が終わってない仕様にモダンだと勘違いして飛びついた時か、逆に仕様に準拠できてない古いブラウザの挙動に依存したコンテンツを作り、ブラウザ側が改善された時が大半だろう。一度作業を終え、正しく実装されたあとの仕様は、互換を壊して変わることは基本ない。しかし、「基本はない」だけで例外はいくつかある。最もわかりやすいのは「ユーザの安全」だ。
+        <p><em>Web はユーザの安全を守るために、互換性を壊すことがある。</em>
+        <p>この安全の実態には「セキュリティ」がまず上がる、 Spectre 対策で行われた Shared Array Buffer の無効化などが良い例だろう。その機能があることでユーザが危険に晒されるなら、機能を無効にしたり、挙動を変えたりといったことは、互換を壊してでも行われる。 AppCache のように Deprecate される機能の中にも、そういったものが少なくない。
+        <p>そして、この安全というカテゴリに「<em>セキュリティ</em>」だけでなく「<em>プライバシー</em>」も入ってきてるという流れが、昨今の議論の前提背景としてあると筆者は考える。
+        <p>例えば、 3rdPC でのトラッキングは、一般的に「攻撃」とは見なされていなかった(でなければ世の中の大抵のサイトは有害サイトになる)。しかし、過去数年の特に個人情報漏洩や売買などに関わるインシデントがあとを経たず、一方でターゲティング広告がうざいという消費者の意見などから、徐々に「プライバシー」に対する考えが変わりはじめ、とうとうトラッキングにもメスが入るようになり、責任の所在はその時たまたまトラッキングの実装に使われていた 3rd Party Cookie に向かうことになった。
+        <section>
+          <h3 id="tracking-prevention"><a href="#tracking-prevention">Tracking Prevention</a></h3>
+          <p>Cookie の挙動を制限すると言っても、どの Cookie がどういったユースケースを担っているかなど、サービス提供者にしかわからない。
+          <p>しかし、 1stPC は大抵問題ないが、 3rdPC は何らかの「意図しない何か」をしているという前提から、 3rdPC をブロックするという方法は、かなり前から知られていた。
+          <p>特に Firefox や Opera はそうした設定を持ち、有効にしている人も少なくないとされ、 Privacy 意識の高いユーザはそうしたブラウザを好んで使うという雰囲気があったように筆者は思う。
+          <p>これがあくまでもユーザの Opt-In なのは、サイトが崩れた場合などのために、オフにできないと困るという性質が少なからずあったためだろう。
+          <p>ところが Opt-In のままでは大半のユーザは無効のままなので、本来は「できるだけサイトを壊さないように、デフォルトで有効にすべき」という話になる。
+          <p>そこで、「その Cookie が何のユースケースで使われているかわからないなら、機械学習で推測して、トラッキングに使われていそうなやつだけブロックすれば、より正確にユーザを守ることができるのでは」という発想で実装されたのが Safari の <a href="https://webkit.org/blog/7675/intelligent-tracking-prevention/">ITP(Intelligent Tracking Prevention)</a> だ。
+          <p>実際にどういった機械学習が行われているかはブラックボックスであり、そのために Single Sign On が壊れたりといったこともあるが、ある意味「ユースケースをターゲットにしてブロックする」仕様であると言える。
+          <p>これに追従するようにして、 Firefox は <a href="https://support.mozilla.org/ja/kb/enhanced-tracking-protection-firefox-desktop">Enhanced Tracking Prevention</a> を、 new Edge は、 <a href="https://blogs.windows.com/msedgedev/2019/06/27/tracking-prevention-microsoft-edge-preview/">Tracking Prevention</a> がデフォルトで有効になっており、それぞれやり方は多少違うかもしれないが、 3rdPC がブロックされている。 ITP のような機械学習というよりは、ブラックリストなどを中心とした実装になっているようだ。
+          <p>Chrome は 2 年後までに 3rdPC を無くしていくことをアナウンスしており、現状ではまず SameSite=Lax をデフォルトにすることで、 opt-in されたサービス以外は自動で 3rdPC が飛ぶことを制限している。
+          <p>いずれにせよ、 3rdPC から脱していくことは、ほぼすべてのブラウザで合意が取れており、こうした方法を使うと、結局 3rdPC 自体が、それがどういう使われ方をしているかに関わらずブロックされる。
+          <p>多少壊れるサイトがあれば、それは 3rdPC 以外の方法で修正するなどを行ったとして、トラッキングについてはだいたい防ぐことができるかもしれない。
+          <p>ただ、 3rdPC を block しただけで本当に問題は解決したと言えるのだろうか?
+        </section>
+      </section>
+      <section>
+        <h2 id="3rdpc-block-という対処療法"><a href="#3rdpc-block-という対処療法">3rdPC Block という対処療法</a></h2>
+        <p>特に広告のためのトラッキングというユースケースは、それが実現できることが重要であり、 <em>3rdPC で実装されている必要があるわけではない</em>。
+        <p>つまり、 3rdPC がダメなら、広告会社は別の実装方法を探すだけだ。それが Finger Printing や <a href="https://medium.com/nextdns/cname-cloaking-the-dangerous-disguise-of-third-party-trackers-195205dc522a">CNAME Cloaking</a> であり、どちらもまたいたちごっこのように塞がれていくだろう。
+        <p>Web を見捨ててアプリにプラットフォームを移しても、今は IDFA などを用いたトラッキングがまだ可能かもしれないが、そこでも同じような議論がまたおこるだけだろう。
+        <p>結局、インターネットユーザが「トラッキングされたくない」という問題は解決するためには、トラッキングというユースケース自体について向き合う必要がある。
+        <p>対処療法として 3rdPC をブロックしても、それは <em>3rdPC をブロックしただけ</em> で、トラッキングの手法が別の何かに移っていくだけだ。ユーザから見たら問題は半分しか解決していない。
+      </section>
+      <section>
+        <h2 id="privacy-sandbox"><a href="#privacy-sandbox">Privacy Sandbox</a></h2>
+        <p>結局ユースケースの方が解決しなければ、どの仕様を塞いでも迂回され続けていく。そしてそういった仕様へのパッチは、通常の Web の利用にも影響が出てしまう可能性がある。
+        <p>であれば、 <em>ユースケースそのものを仕様化</em>し、そこに誘導した方がよっぽどヘルシーだという発想が、 <a href="https://www.chromium.org/Home/chromium-privacy/privacy-sandbox">Privacy Sandbox</a> のアイデアだと筆者は捉えている。
+        <p>例えば、サイトを跨いでコンバージョンを取りたいなら、「コンバージョンを取るための API」を、ターゲティングをしたいなら「ターゲティングをするための API」を定義する。
+        <p>これは、無尽蔵に取ることができる API を定義するという意味ではない。むしろその逆だ。
+        <p>仕様定義の中では、プライバシーに配慮したエントロピーのコントロールや、ユーザの許諾を取るような権限モデルを考慮することになる。
+        <p>またブラウザの API として実装することで、ブラウザ設定から Opt-In/Out を選択できたり、より自分に合った設定を拡張で導入したりといった選択をユーザが可能になる。
+        <p>結果、ブロックするかしないかという All or Nothing な現状から、ユーザとサービス側に API を通じた確かな合意形成と、標準仕様とブラウザ実装によって担保されたプライバシーの保護機構が確立し、新たなエコシステムが生まれる。
+        <p>実際そうなるかは別として、単に「ブロックする」ことしかしてない各 Tracking Prevention に対して、「じゃあどうすれば良いのか」を模索する動きが Privacy Snadbox だと言えるだろう。
+        <p>これは Chrome が中心となって行っていることではあるが、その中心である <a href="https://github.com/csharrison/conversion-measurement-api">Conversion Management API</a> は、先行して Safari が提案した <a href="https://webkit.org/blog/8943/privacy-preserving-ad-click-attribution-for-the-web/">Ad Click Attribution</a> とかなり類似している。 <a href="https://webkit.org/blog/8124/introducing-storage-access-api/">Storage Access API</a> 含め、 Safari は ITP を始めたことと並行して、 Privacy Sandbox の礎となるような作業を既に始めていたと言ってもいいだろう。
+        <p>いずれにせよ、まだ議論が始まったばかりで、中身はほとんど揃ってないが、この動きがどうなるか、各 API がどこまで実現するかは、今後の Web の生態系に大きな影響を及ぼすと筆者は考える。
+      </section>
+      <section>
+        <h2 id="3rd-party-cookie--を殺したのはだれか"><a href="#3rd-party-cookie--を殺したのはだれか">3rd Party Cookie  を殺したのはだれか</a></h2>
+        <p>よく、特定のベンダが 3rdPC を殺そうとしているとか、あのベンダは Web に興味がないから広告を締め付けることでアプリに誘導しているといった短絡的な解説が上がるのを見る。
+        <p>そもそもベンダを主語に語れるほど問題は単純ではない。ほぼ全てのベンダが実際に 3rd Party Cookie をなんらかの形で利用し、それとは別の文脈で「プライバシー」を真剣に考えているチームがある。
+        <p>そうしたチームがユーザを守るために 3rdPC をブロックしたことを考えれば、実際に 3rd Party Cookie を殺したのは、その緩い仕様に甘んじてトラッキングなどに利用し続けた、どちらかといえば Web サービス開発者側に責任が有ると言える。
+        <p>そしてブラウザベンダにおいて、 3rdPC を脱していくこはこれからの Web を形作る上での合意事項となりつつあり、標準化や実装の現場は、既にその後の話をしている。
+        <p>サービス開発者も、 「3rdPC が防がれたから別の精度の高い Tracking 方法を探す」のではなく、プライバシーの側面から自分たちが行うべきことを考え、必要となるユースケースに関しては Privacy Sandbox や各 API に対してフィードバックしていく方がよっぽど健全だろう。
+        <p>Web におけるマネタイズの大半は広告なのが現状だ。特に代替としてのマイニングなどが出遅れた日本にとって、広告を無くすことはできない。しかし、広告がこのままで良いとはならない以上、ならどうしていけば良いのかを考えるしか無い。
+        <p>大手は、 Top Level Domain を SuperApp 的な構成にして、配下に並べたコンテンツ間を 1st Party Cookie でトラッキングするといった荒業もできるかもしれないが、そうではない小さなドメインにも価値があるものは多くあり、それらが広告によって成り立っていることは十分考えられる。(このドメインは <a href="/entries/2020-01-31/ads-for-blog.html">こういう理由</a> で広告を貼っているだけなので、特に困りはしないが)
+        <p>そしてそもそも、巷にはトラッキングが無いと本当に広告の収益が下がるという報告もあれば、コンテキストの方が重要でターゲティングが無くても広告の価値は下がらないと報告も有る。つまり、自分の持つサービスにおいてどうなのかを計測せずに 3rdPC Block の影響を十把一絡げに語ること自体も怪しい。
+        <p>自分の持っているサービスと、そこで使われている 3rdPC と、その有無による影響の正確な数値をきちんと把握もせずに、「3rd Party Cooki が無いと広告はヤバイ」などと雑に捉えていては、本当に必要な議論を始めることすらできないのでは無いだろうか。
+      </section>
+      <section>
+        <h2 id="牧歌的-cookie-の終焉-1"><a href="#牧歌的-cookie-の終焉-1">牧歌的 Cookie の終焉</a></h2>
+        <p>ゆるふわな仕様がゆえに、あらゆるユースケースを背負わされた Cookie は、 3rdPC Block の流れとともにトラッキングベクタの汚名を返上すると、 1stPC に集中することができるようになるだろう。
+        <p>LocalStorage がある今、 Cookie を JS のための KVS として使う場面も減りつつあり、基本的には Credential としての Session ID を保持することに注力できる。
+        <p>また、 Web には Origin をまたぐ際に明示的な許可を必要とするセキュリティモデル、 Same Origin Policy があるが、 Cookie はその以前から存在し、逸脱した存在だったことも問題の一つだ。
+        <p>セッションの維持だけなら Same Origin で良く、それを Cookie 本来の仕様に合わせた概念が Same Site であり、既に Chrome はそれをデフォルトにし始めている。
+        <p>それらを総合すると、セッションの維持が目的であれば <code translate="no">HttpOnly</code> かつ <code translate="no">Secure</code> で <code translate="no">__Host</code> にロックされ <code translate="no">SameSite=Lax</code> に制限されたものが求められる。(そして HTTP State Token に繋がるかもしれない)。
+        <pre class=http><code translate="no">Set-Cookie: __Host-SID=q1w2e3r4t5; HttpOnly; Secure; Path=/; SameSite=Lax;</code></pre>
+        <p>結果として、「なんでもできた牧歌的な Cookie」は終わり、 Credential としてのユースケースを実現したこの姿に収束しつつ、他のユースケースは徐々に Cookie を離れて、各々の API を探していくことになりそうだ。
+        <p>この始まりの先に保証はない、結果としてみんなが各ベンダプラットフォームにロックインされてでもアプリに移ることを選べば、「完成した安全な仕様」と「誰も使わない Web」が残る可能性も有るだろう。
+        <p>今の Cookie の挙動にしがみつき、その変更を誰かのせいにして嘆いてる暇があったら、自身が今持つユースケースを見直し、それが正しく実現される Post 牧歌的 Cookie 時代の Web の姿を考える方が、建設的ではないだろうか。
+        <p>Jxck
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small> See <small><a href=/policies/site.html>Site Policy</a> and <a href=/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <ins class=adsbygoogle data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-2902784829138215 data-ad-slot=9735419796></ins>
+  </footer>
+</body>
+</html>
