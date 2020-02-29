@@ -1,0 +1,495 @@
+# [monthly-web][mozaic.fm] ep64 Monthly Web 202002
+
+## Info
+
+audio: https://files.mozaic.fm/mozaic-ep64.mp3
+
+published_at
+: 2020-03-02
+
+guest
+: [@myakura](https://twitter.com/myakura)
+
+
+## Theme
+
+第 64 回のテーマは 2020 年 2 月の Monthly Web です。
+
+
+### Chrome 動向
+
+- Stable: 80
+- Updates
+  - *New in Chrome 80*
+    - <https://developers.google.com/web/updates/2020/02/nic80>
+    - Modules in workers
+    - Optional chaining in JavaScript
+    - New Origin Trials
+      - Content indexing API
+      - Notification triggers
+      - Web Serial
+      - The ability for PWAs to register as file handlers
+      - New properties for the contact picker
+    - Graduated from origin trial
+      - scroll to text fragment
+      - display: minimal-ui
+      - SVG favicon
+  - The Chromium Chronicle: Catching UI Regressions with Pixel Tests
+    - <https://developers.google.com/web/updates/2020/02/chromium-chronicle>
+  - Adding notification permission data to the Chrome User Experience Report
+    - <https://developers.google.com/web/updates/2020/02/notification-permission-data-in-crux>
+  - Trusted Web Activities, the Lay of the Land
+    - <https://developers.google.com/web/updates/2020/02/twa-lay-of-the-land>
+  - *Chromium Blog: Protecting users from insecure downloads in Google Chrome*
+    - <https://blog.chromium.org/2020/02/protecting-users-from-insecure.html>
+    - 平文通信のダウンロードを段階的にできないように
+  - *Chromium Blog: Videos with fewer intrusive ads*
+    - <https://blog.chromium.org/2020/02/videos-with-fewer-intrusive-ads.html>
+    - 長い動画広告を中断するように
+  - Chromium Blog: SameSite Cookie Changes in February 2020: What You Need to Know
+    - <https://blog.chromium.org/2020/02/samesite-cookie-changes-in-february.html>
+  - Chromium Blog: Chrome 81: Near Field Communications, Augmented Reality, and More
+    - <https://blog.chromium.org/2020/02/chrome-81-near-field-communications.html>
+    - Web NFC for mobile
+    - Augmented Reality and Hit Testing
+    - PointerLock unadjustedMovement Origin Trials
+    - Buffered Flag for Long Tasks
+    - *CSS image-orientation property*
+    - CSS Color Adjust: color-scheme
+    - Exclude Implicit Tracks from grid-template-rows and grid-template-columns Resolved Values
+    - hrefTranslate attribute on HTMLAnchorElement
+    - IntersectionObserver Document Root
+    - *Modernized Form Controls*
+    - Move onwebkit{animation,transition}XX handlers to GlobalEventHandlers
+    - *Position State for Media Session*
+    - SubmitEvent
+    - WebAudio: ConvolverNode.channelCount and channelCountMode
+    - RTCPeerConnection.onicecandidateerror event changes
+    - onclosing Event for RTCDataChannel
+    - WorkerOptions for shared workers constructor
+    - WritableStream.close()
+    - Intl.DisplayNames()
+    - *Deprecation and Remove "basic-card" support Payment Handler*
+    - Remove supportedType field from BasicCardRequest
+    - Remove the `<discard>` element
+    - *Remove TLS 1.0 and TLS 1.1*
+    - TLS 1.3 downgrade hardening bypass
+  - Interact with NFC devices on Chrome for Android
+    - <https://web.dev/nfc/>
+  - Augmented reality: You may already know it
+    - <https://web.dev/web-ar/>
+  - Virtual reality comes to the web, part II
+    - <https://web.dev/vr-comes-to-the-web-pt-ii/>
+  - Positioning virtual objects in real-world views
+    - <https://web.dev/ar-hit-test/>
+- Intents
+  - Ship: Insecure Download Blocking in Secure Contexts
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ExW7oa5kMrk/Y7x7cxMTAwAJ>
+  - Ship: Simplified auto-disabling of -webkit-appearance
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/uNKeyd8091A/eBJIdtXqAgAJ>
+  - Ship: IndexedDB relaxed durability transactions
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/P7Jpm9JW6q8/bhl3sT5bBgAJ>
+  - Ship: Support ARIA Annotations from ARIA 1.3 draft
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2uume_z0n8M/dUFRWmVNBgAJ>
+  - Ship: disallowdocument access iframe attribute
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/TzuPAx9ZOk0/HYOf3FFFBgAJ>
+  - *Ship: CSS contain-intrinsic-size*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Dbpth-n7LZo/vtyZAmMIBgAJ>
+  - *Ship: Custom state pseudo class*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/dJibhmzE73o/jzB1zkJeCQAJ>
+    - Custom Component などで独自の疑似クラスを定義できる
+  - Implement and Ship: 'font-display: optional' without relayout
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/QsgMjIyO8qA/RWWWukoaAgAJ>
+  - Prototype and Ship: support "JIS-B5" and "JIS-B4" @page sizes
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/nlHnGz-oj-Y/mdPEneaOBwAJ>
+  - Prototype: input.rawValue
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/FMPV2LCc0Ho/X4minYyAAQAJ>
+  - Prototype: MediaCapabilities: Query HDR with decodingInfo()
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/jBzVLBz-Yk4/ORuQg2zAEwAJ>
+  - *Prototype: prefers-reduced-data*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/oNJTem41LBs/CA4Nx05aAwAJ>
+    - Save-Data の CSS 版
+    - Data Saver などが有効な場合に、 background-image を無くすとか
+  - Prototype: CanMakePaymentEvent.respondWithMinimalUI
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/kTLpgFJz6Ck/IQeiGDtOAwAJ>
+  - *Prototype: CSS primitives for foldable devices*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/KsPRO3hkOGw/md4jgIAaAgAJ>
+    - 折りたたみデバイス向けの CSS
+  - Prototype: Delegated Ink Trail
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/JeGBzAfR_Bw/Ppo1u7ofBgAJ>
+  - Prototype: WebRTC RTP header extension control
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/65YdUi02yZk/dXL1a8PYBQAJ>
+  - *Prototype: Declarative Shadow DOM*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/nJDc-1s3R9U/uCJKsEqpAwAJ>
+    - 宣言的な Shadow DOM の定義
+    - `<template shadowroot="open">` にするとその下が Shadow DOM として扱われる
+    - Shadow DOM が SSR できる
+  - *Prototype: Media Feeds*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/D1sGl6UkCzs/bSiEw3rlCAAJ>
+    - Web App Manifest に "dataFeedElement" を追加
+    - RSS などがあることを UA に伝える
+  - *Prototype: Imperative Shadow DOM Distribution API*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/TNYIAu5E_M4/1i7LME9WCwAJ>
+    - Shadow DOM への slot の割当を命令的に行う?
+    - `<summary>`/`<detail>` みたなことが、今の slot の仕組みだとできない
+  - *Prototype: URL Protocol Handler Registration for PWAs*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/x4Ev_l9Oj2U/6bGPs7MVCwAJ>
+    - Web App Manifest に "protocol_handler" を追加
+    - 他のアプリや Web アプリを呼べるように
+  - Prototype: Web Bluetooth getDevices()
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/UHRmDD20FWE/sCmwI9oxGgAJ>
+  - Experiment: scheduler.postTask
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/31qZ-bMToM8/bLhpSdXhEgAJ>
+  - *Experiment: Querying HTTPSSVC*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/brZTXr6-2PU/g0g8wWwCAwAJ>
+    - HTTPS に関わる追加情報を入れた DNS record の HTTPSSVC を取得するように
+    - ESNI, ALT-SVC, HSTS 情報などを入れる
+  - Deprecate GetPreferredTryMasters
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2MYXEr2Q11o/3URSq3mQCQAJ>
+  - Remove: @import rules in CSSStyleSheet.replace()
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/RKG8oxp22RY/fdFnG1rGCgAJ>
+  - [Web-Facing Change PSA] Chrome will block insecure downloads from secure contexts
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/XDrJNswwlh0/eK6eoLm9AQAJ>
+  - PSA: ExecutionContext is moving from Document to LocalDOMWindow
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/oT0UlFvqz0g/KfcepAq9AQAJ>
+  - PSA: Moving SHA-1 and 3DES in TLS to a fallback
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/yaJcs4p9LNI/haZWzX-UBwAJ>
+  - PSA: Periodic prioritization of rendering on the renderer's main thread in M81
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/NUMVehBQ9yc/L4c9OMyHBwAJ>
+  - PSA: content-type attached to beacon with ArrayBufferView has changed
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/k_JNBV9OC1s/R4JmR8VjBwAJ>
+  - *Blink API OWNERS Requirements*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/erJ4pMd5rv8/qCWFqIwDAwAJ>
+    - <https://www.chromium.org/blink/blink-api-owners-requirements>
+    - API オーナーの満たすべき基準
+  - Your flag: unsafely-treat-insecure-origin-as-secure is expiring in M82
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/security-dev/U2E2WGMhd14/W_bOimPQBQAJ>
+  - Your flag: allow-insecure-localhost is expiring in M82
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/security-dev/sSswK_C-AM8/-aKfcWPQBQAJ>
+  - Your flag: enable-layout-ng is expiring in M82
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/layout-dev/QDrBnD9KM9M/6GXd5PjhAQAJ>
+- v8
+  - *V8 release v8.1 · V8*
+    - <https://v8.dev/blog/v8-release-81>
+    - Intl.DisplayNames
+  - Understanding the ECMAScript spec, part 1 · V8
+    - <https://v8.dev/blog/understanding-ecmascript-part-1>
+    - ECMAScript 仕様の読み方の解説
+    - hasOwnProperty を例に読み進め方が書かれている
+- Other
+  - *Chromium Platform Security Summit!*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/security-dev/dPfHNzHWr5I/WmvdrwXeBAAJ>
+    - I/O の前くらいに開催予定
+  - Behind the Scenes: Deploying the AMP Runtime – The AMP Blog
+    - <https://blog.amp.dev/2020/02/05/behind-the-scenes-deploying-the-amp-runtime/>
+  - Official Google Webmaster Central Blog [EN]: Google Search News for January 2020
+    - <https://webmasters.googleblog.com/2020/01/google-search-news-for-january-2020.htm>
+  - Project Zero: A day^W^W Several months in the life of Project Zero - Part 1: The Chrome bug of suffering
+    - <https://googleprojectzero.blogspot.com/2020/02/several-months-in-life-of-part1.html>
+  - Project Zero: A day^W^W Several months in the life of Project Zero - Part 2: The Chrome exploit of suffering
+    - <https://googleprojectzero.blogspot.com/2020/02/several-months-in-life-of-part2.html>
+  - Project Zero: Escaping the Chrome Sandbox with RIDL
+    - <https://googleprojectzero.blogspot.com/2020/02/escaping-chrome-sandbox-with-ridl.html>
+  - Project Zero: Mitigations are attack surface, too
+    - <https://googleprojectzero.blogspot.com/2020/02/mitigations-are-attack-surface-too.html>
+  - Report on browser privacy
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/net-dev/S00RPKuvImU/UXT4JSu1CAAJ>
+  - QuicTransport Custom Certificate API - Invitation to comment
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/net-dev/r3YDvZfjOqA/qQARnV4pBAAJ>
+
+### Firefox 動向
+
+- Stable: 73.0.1
+- Updates
+  - *Securing Firefox with WebAssembly - Mozilla Hacks - the Web developer blog*
+    - <https://hacks.mozilla.org/2020/02/securing-firefox-with-webassembly/>
+    - WASM で作ったサンドボックス内でコードを実行しセキュアにしていく話し
+    - 主に 3rd Party Libs から注力していく
+  - Firefox 73 is upon us - Mozilla Hacks - the Web developer blog
+    - <https://hacks.mozilla.org/2020/02/firefox-73-is-upon-us/>
+  - Firefox 73 for developers - Mozilla \| MDN
+    - <https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/73>
+  - *Firefox 73.0, See All New Features, Updates and Fixes*
+    - <https://www.mozilla.org/en-US/firefox/73.0/releasenotes/>
+  - These Weeks in Firefox: Issue 69 – Firefox Nightly News
+    - <https://blog.nightly.mozilla.org/2020/02/14/these-weeks-in-firefox-issue-69/>
+  - *Firefox continues push to bring DNS over HTTPS by default for US users - The Mozilla Blog*
+    - <https://blog.mozilla.org/blog/2020/02/25/firefox-continues-push-to-bring-dns-over-https-by-default-for-us-users/>
+    - US で DoH がデフォルト有効に
+  - The Facts: Mozilla's DNS over HTTPs (DoH) - Open Policy & Advocacy
+    - <https://blog.mozilla.org/netpolicy/2020/02/25/the-facts-mozillas-dns-over-https-doh/>
+    - DoH についての FAQ
+- Intents
+  - *Ship: a change to the initial value of image-orientation*
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/PDYzBgRz8gk/6biEHyB_BwAJ>
+    - image-orientation の初期値を none から from-image にする
+    - EXIF の持つ回転の情報がデフォルトで使われるように
+  - Ship: Autodiscovery of WebExtension search engines
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/mc-JJFw85HM/f-VJ4PncBgAJ>
+  - Ship: SubmitEvent interface
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/ZyUPHkyLun8/XvYEqPncBgAJ>
+  - Ship: form.requestSubmit()
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/NB0Ht1UGoSw/KiPRi_ncBgAJ>
+  - Implement and ship: updated values for text-decoration properties
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/Rxnb4jD5gU8/J0Q7Rc7OAwAJ>
+  - *Prototype and ship: CSS comparison functions: min() / max() / clamp()*
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/i6V9W5XJjpA/DoxHJkiqBwAJ>
+  - *Prototype and ship: lazy load images*
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/3CH2pXxTWl4/xXc4_7QJBQAJ>
+  - *Prototype and ship: ARIA annotations*
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/eh_O7G4H26Q/mFy5IambGQAJ>
+  - Prototype and ship: running background color animations on the compositor thread
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/rHmM7kQaH7Q/jdrJS7sgCQAJ>
+  - *Prototype: :focus-visible pseudo-class.*
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/QzmcYfffVQ4/gk8iCALCCAAJ>
+  - Prototype: Document as explicit root of an intersection observer
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/64nDLTAZGzY/CQMV7WqtCAAJ>
+  - Implement: CSS conic-gradient
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/CSbRi8-MrMM/wtFU1ZNcBwAJ>
+  - Deploy: ThreadSanitizer
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/C76EeB0KutU/5SWRsczOAwAJ>
+  - Unship: Recursive call of Document.execCommand() (Only Nightly and early Beta for now)
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/HTKNoyWuYtc/RRa-QRwFBwAJ>
+  - Unship: system SQLite support on Linux (--enable-system-sqlite)
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/JqG26XiPl94/fuSiK7UJBQAJ>
+- Other
+  - It's the Boot for TLS 1.0 and TLS 1.1 - Mozilla Hacks - the Web developer blog
+    - <https://hacks.mozilla.org/2020/02/its-the-boot-for-tls-1-0-and-tls-1-1/>
+  - *(とりこぼし) backgroundsync と periodicbacgkroundsync が harmful に*
+    - <https://github.com/mozilla/standards-positions/pull/232/files>
+  - *Images are now rotated by default according to Exif data \| Firefox Site Compatibility*
+    - <https://www.fxsitecompat.dev/en-CA/docs/2020/images-are-now-rotated-by-default-according-to-exif-data/>
+    - 画像の表示に Exif の rotate 情報をみるように
+  - Resolve data breaches with Firefox Monitor \| The Firefox Frontier
+    - <https://blog.mozilla.org/firefox/resolve-data-breaches/>
+  - *Intent to implement: Cookie SameSite=lax by default and SameSite=none only if secure*
+    - <https://groups.google.com/d/msg/mozilla.dev.platform/nx2uP0CzA9k/REUNAW2YGQAJ>
+    - Nightly で SameSite=Lax がデフォルト有効に
+
+### Safari 動向
+
+- Stable: 13.0.5
+- Updates
+  - Release Notes for Safari Technology Preview 💯
+    - <https://webkit.org/blog/10024/release-notes-for-safari-technology-preview-100/>
+    - Added support for the options parameter to getAnimations() (r255149)
+    - Fixed User Verification (UV) option present on a CTAP2 authenticatorMakeCredential while the authenticator has not advertised support for it (r254710)
+    - Added support for allow="fullscreen" feature policy (r255162)
+    - Added finite timeout when synchronously terminating a service worker (r254706)
+    - *Fixed EXIF orientation ignored for some CSS images (r254841)*
+    - Fixed elements no longer stay fixed with elastic overscroll (r255037)
+    - Added support for MediaRecorder.requestData (r255085)
+    - Implemented sub-source texImage2D and texSubImage2D (r255316)
+  - Release Notes for Safari Technology Preview 101
+    - <https://webkit.org/blog/10031/release-notes-for-safari-technology-preview-101/>
+    - Corrected TextTrack sorting with invalid BCP47 language (r255997)
+    - Redacted billing contact during payment method selection (r256071)
+    - Added support for BigInt literal as PropertyName (r256541)
+    - Changed authenticatorGetAssertion to be sent without pinAuth if user verification is discouraged (r256001)
+    - Aligned getDisplayMedia() with standards specifications (r256034)
+    - Fixed CSS rules with the same selector from several large stylesheets getting applied in the wrong order (r255671)
+    - Fixed pages that trigger a redirect sometimes getting left blank (r256452)
+    - Disallowed setting base URL to a data or JavaScript URL (r256191)
+    - Fixed highlight text decorations to work with all decoration types and colors (r256451)
+    - *Implemented OffscreenCanvas.copiedImage (r256505)*
+    - Updated to remember if legacy TLS was used in the back-forward cache (r256073)
+  - *Explainer: IsLoggedIn (on GitHub)*
+    - <https://lists.w3.org/Archives/Public/public-webappsec/2020Feb/0008.html>
+    - <https://github.com/WebKit/explainers/tree/master/IsLoggedIn>
+    - IsLoggedIn の Explainer が更新されたっぽい
+  - *Changeset 256501 – WebKit*
+    - <https://trac.webkit.org/changeset/256501/webkit>
+    - WebKit の Nightly に WebP が実装
+- Other
+
+### Edge 動向
+
+- Stable: 80
+- Updates
+  - Announcing Windows 10 Insider Preview Build 19559 \| Windows Experience Blog
+    - <https://blogs.windows.com/windowsexperience/2020/02/05/announcing-windows-10-insider-preview-build-19559/>
+  - Bringing the Microsoft Edge DevTools to more languages
+    - <https://blogs.windows.com/msedgedev/2020/02/04/localizing-edge-devtools/>
+  - implifying Microsoft Edge configuration profiles for Jamf Pro
+    - <https://blogs.windows.com/msedgedev/2020/02/20/edge-profiles-jamf-applications-custom-settings/>
+  - *Protecting users from potentially unwanted applications in Microsoft Edge - Microsoft Edge Blog*
+    - <https://blogs.windows.com/msedgedev/2020/02/27/protecting-users-potentially-unwanted-apps/>
+- Chakra
+  - Release ChakraCore v1.11.16 · microsoft/ChakraCore
+    - <https://github.com/microsoft/ChakraCore/releases/tag/v1.11.16>
+- Other
+  - Microsoft's Three Browsers \| text/plain
+    - <https://textslashplain.com/2020/02/03/microsofts-three-browsers/>
+  - App-to-Web Communication: Launching Web Apps \| text/plain
+    - <https://textslashplain.com/2020/02/05/app-to-web-communication-launching-web-apps/>
+  - Demystifying Browsers \| text/plain
+    - <https://textslashplain.com/2020/02/09/demystifying-browsers/>
+  - Browser Password Managers: Threat Models \| text/plain
+    - <https://textslashplain.com/2020/02/11/browser-password-managers-threat-models/>
+
+### WHATWG/W3C 動向
+
+- Recommendation
+  - Trace Context is a W3C Recommendation
+    - <https://www.w3.org/blog/news/archives/8298>
+  - Data Catalog Vocabulary (DCAT) version 2 is a W3C Recommendation
+    - <https://www.w3.org/blog/news/archives/8287>
+- Proposed Recommendation
+- Candidate Recommendation
+- Working Draft
+- First Public Working Draft
+  - First Public Working Draft: Requirements for Personalization Semantics
+    - <https://www.w3.org/blog/news/archives/8290>
+  - *First Public Working Drafts: Media Capabilities, Picture-in-Picture, Media Session Standard*
+    - <https://www.w3.org/blog/news/archives/8285>
+  - First Public Working Drafts: Resize Observer; CSS Scroll Anchoring Module Level 1
+    - <https://www.w3.org/blog/news/archives/8311>
+  - First Public Working Draft: XR Accessibility User Requirements
+    - <https://www.w3.org/blog/news/archives/8320>
+  - *First Public Working Draft: WCAG 2.2*
+    - <https://www.w3.org/blog/news/archives/8334>
+- Chartering
+  - CSS Print Community Group created
+    - <https://lists.w3.org/Archives/Public/public-new-work/2020Feb/0005.html>
+  - CSS4 Community Group created
+    - <https://lists.w3.org/Archives/Public/public-new-work/2020Feb/0011.html>
+  - XSLT Extensions Community Group Proposed
+    - <https://lists.w3.org/Archives/Public/public-new-work/2020Feb/0010.html>
+  - Synthetic Media Community Group Proposed
+    - <https://lists.w3.org/Archives/Public/public-new-work/2020Feb/0009.html>
+- Other
+  - W3C Workshop Report: Inclusive Design for Immersive Web Standards
+    - <https://www.w3.org/blog/news/archives/8302>
+  - For Wide Review: Personalization Semantics Content Module 1.0
+    - <https://www.w3.org/blog/news/archives/8294>
+
+### TC39 動向
+
+- Meeting
+  - 2020-02
+    - <https://github.com/tc39/agendas>
+    - <https://github.com/tc39/notes>
+    - TC39-news/tc39-02-2020.md at master · codehag/TC39-news
+      - <https://github.com/codehag/TC39-news/blob/master/meetings/tc39-02-2020.md>
+      - <https://groups.google.com/forum/#!topic/mozilla.dev.platform/I_SBpSIh8CM>
+      - Mozilla の Yulia Startsev による Meeeting のサマリ
+- Proposals Diff
+  - <https://github.com/tc39/proposals/compare/master@{2020-02-01}...master@{2020-03-01}>
+  - <https://tc39.github.io/beta/>
+  - 0->1
+    - arraybuffer-view-stride
+      - <https://github.com/surma/arraybufferview-stride-proposal>
+    - Cryptographically Secure Random Number Generation
+      - <https://github.com/rbuckton/proposal-csprng>
+    - Async initialization
+      - <https://github.com/tc39/proposals/commit/78ae85b9893780e0d8e41ec2d013e24d644670b6>
+    - Legacy reflection features for functions
+      - <https://github.com/tc39/proposals/commit/8fc280e29655af5169840ebe7b32fbe12d6755ad>
+    - Preserve Host Virtualizability
+      - <https://github.com/Agoric/proposal-preserve-virtualizability>
+    - Decimal
+      - <https://github.com/littledan/proposal-decimal>
+    - Intl.DurationFormat
+      - <https://github.com/younies/proposal-intl-duration-format>
+  - 1->2
+    - logical-assignment
+      - <https://github.com/tc39/proposal-logical-assignment>
+  - 2->3
+  - 3->4
+    - Intl.locale
+      - <https://github.com/tc39/proposal-intl-locale>
+    - Intl.NumberFormat Unified API
+      - <https://github.com/tc39/proposal-unified-intl-numberformat>
+- New Proposals
+  - Intl.DurationFormat
+    - <https://github.com/younies/proposal-intl-duration-format>
+  - decimal
+    - <https://github.com/littledan/proposal-decimal>
+  - *Ergonomic brand checks for Private Fields(private-fields-in-in)*
+    - <https://github.com/ljharb/proposal-private-fields-in-in>
+    - private filed に対応しているかどうかを try-catch なしで判別する
+- Other
+
+### IETF 動向
+
+- IETF
+- RFC
+- IETF Last Call
+- WG Last Call
+- Call for Adoption
+- I-D Action
+- Draft
+  - Lightweight Authorization for Authenticated Key Exchange.
+    - <https://tools.ietf.org/html/draft-selander-ace-ake-authz-00>
+  - Roughtime
+    - <https://tools.ietf.org/html/draft-ietf-ntp-roughtime-00>
+  - JSContact: Converting from and to vCard
+    - <https://tools.ietf.org/html/draft-loffredo-jmap-jscontact-vcard-00>
+  - JSContact: A JSON representation of contact data
+    - <https://tools.ietf.org/html/draft-ietf-jmap-jscontact-00>
+  - SDP Mapping into HTTP structured headers
+    - <https://tools.ietf.org/html/draft-gruessing-sdp-http-00>
+  - JSON Responses for the Registration Data Access Protocol (RDAP)
+    - <https://tools.ietf.org/html/draft-hollenbeck-regext-rfc7483bis-00>
+  - Recommendations for Secure Use of Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS)
+    - <https://tools.ietf.org/html/draft-sheffer-uta-bcp195bis-00>
+  - Quic Timestamps For Measuring One-Way Delays
+    - <https://tools.ietf.org/html/draft-huitema-quic-ts-00>
+  - Pairing-Friendly Curves
+    - <https://tools.ietf.org/html/draft-irtf-cfrg-pairing-friendly-curves-01>
+  - Real-time text media handling in multi-party conferences
+    - <https://tools.ietf.org/html/draft-hellstrom-mmusic-multi-party-rtt-01>
+  - rLEDBAT: receiver-driven Low Extra Delay Background Transport for TCP
+    - <https://tools.ietf.org/html/draft-irtf-iccrg-rledbat-00>
+  - An Unreliable Datagram Extension to QUIC
+    - <https://tools.ietf.org/html/draft-ietf-quic-datagram-00>
+  - *Network-Based Website Fingerprinting*
+    - <https://tools.ietf.org/html/draft-irtf-pearg-website-fingerprinting-00>
+  - Compatible Version Negotiation for QUIC
+    - <https://tools.ietf.org/html/draft-ietf-quic-version-negotiation-00>
+- Other
+
+### セキュリティ動向
+
+- *暗号資産「無断採掘」、二審は有罪 閲覧者 PC 利用-東京高裁:時事ドットコム*
+  - <https://www.jiji.com/jc/article?k=2020020700330&g=soc>
+- Three ways TLS 1.3 protects origin names
+  - <https://www.fastly.com/blog/3-ways-tls-1-3-protects-origin-names>
+- Bypassing AppProtocol Prompts \| text/plain
+  - <https://textslashplain.com/2020/02/20/bypassing-appprotocol-prompts/>
+- *DNS over HTTPS Providers Chromium*
+  - <https://groups.google.com/a/chromium.org/forum/#!msg/net-dev/Fz3VfevdFmg/o1GhsWWnAwAJ>
+  - NextDNS が DoH 対応し、 Chrome の対応プロバイダリストへの登録を依頼
+  - なお、 CNAME Cloaking 回避もできるらしい
+  - <https://nextdns.io>
+
+### 周辺動向
+
+- What do you want from a Web Browser Developer Relations team? - Modern Web Development: Tales of a Developer Advocate by Paul Kinlan
+  - <https://paul.kinlan.me/what-do-you-want-from-a-web-browser-developer-relations-team/>
+- HTTP/3 for everyone \| daniel.haxx.se
+  - <https://daniel.haxx.se/blog/2020/02/02/http-3-for-everyone/>
+- How 1500 bytes became the MTU of the internet
+  - <https://blog.benjojo.co.uk/post/why-is-ethernet-mtu-1500>
+  - MTU が 1500 になった理由
+- *Introducing Acrobat on the Web, Powered by WebAssembly*
+  - <https://medium.com/adobetech/acrobat-on-the-web-powered-by-webassembly-782385e4947e>
+  - Adobe が Web 版の Acrobat を発表
+  - Mobile PDF Library を wasm にコンパイルして利用している
+  - <https://documentcloud.adobe.com/view-sdk-demo/index.html>
+- WebAssembly Summit 2020 Notes
+  - <https://gist.github.com/bushidocodes/19663642453c918d7868bf1ac5a563a4>
+- WebAssembly Summit まとめ
+  - <https://note.com/chikoski/n/n6f8b283767fc>
+  - <https://note.com/chikoski/n/n27b3e4c0ebd8>
+
+### イベント
+
+- 3 月
+  - 27: IETF 107 Vancouver
+- 4 月
+- 5 月
+  - ??: Chrome Security Summit
+  - 12-14: Google I/O
+- 6 月
+  - 19: SecWeb
