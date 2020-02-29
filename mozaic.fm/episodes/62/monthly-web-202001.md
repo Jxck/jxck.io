@@ -8,7 +8,7 @@ published_at
 : 2020-02-03
 
 guest
-: [@arayaryoma](https://twitter.com/arayaryoma)
+: [@myakura](https://twitter.com/yakura)
 
 
 ## Theme
