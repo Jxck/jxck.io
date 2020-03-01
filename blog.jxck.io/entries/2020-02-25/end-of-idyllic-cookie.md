@@ -74,13 +74,13 @@ a.example.com にアクセスした場合、一度 auth.example にリダイレ�
 ```
 307 Temporary Redirect HTTP/1.1 // auth.example からのレスポンス
 Set-Cookie: SID=q1w2e3r4t5 // auth.example でログイン済みであることを示す Cookie
-Location: http://a.example.com?token=fawpiejfaoirgjhasiregjseptdigjseo;irgfjseaorigj
+Location: http://a.example.com?token=q1w2e3r4t5y6u7i8o9p0
 // このトークンを受け取った a.example.com は auth.example に裏で問い合わせる
 ```
 
 次にユーザが b.example.jp にアクセスした際、 b.example.jp は auth.example にリダイレクトする。
 
-auth.example には Cookie が飛ぶため認証済みであることがわかり、そのまま token を付与した URL で b.example.jp にリダイレクトバックすれば、 b.example.jp はトークンを auth.example に問い合わせるだけで認証を完了できる。
+auth.example には Cookie が飛ぶため認証済みであることがわかり、そのまま Token を付与した URL で b.example.jp にリダイレクトバックすれば、 b.example.jp はトークンを auth.example に問い合わせるだけで認証を完了できる。
 
 ユーザからみれば、画面がぱぱっと何回か変わるだけで、フォームに入力する手間は省けるのだ。
 
@@ -139,7 +139,7 @@ a.example.com でユーザは商品ページを見ている。
 PC周辺機器
 </main>
 <aside>
-   <iframe src=https://ad.example?page=pc-accessory></ifarme>
+   <iframe src=https://ad.example?page=pc-accessory></iframe>
 </aside>
 ```
 
@@ -154,7 +154,7 @@ Host: ad.example
 
 ```
 200 OK HTTP/1.1
-Set-Cookie: q1w2e3r4t5 // このCookieで追跡
+Set-Cookie: SID=q1w2e3r4t5 // このCookieで追跡
 Content-Type: text/html
 Content-Length: 1024
 
@@ -171,7 +171,7 @@ Content-Length: 1024
 SNS 的な何か
 </main>
 <aside>
-   <iframe src=https://ad.example></ifarme>
+   <iframe src=https://ad.example></iframe>
 </aside>
 ```
 
@@ -181,7 +181,7 @@ SNS 的な何か
 ```
 GET / HTTP/1.1
 Host: ad.example
-Cookie: q1w2e3r4t5 // さっきPC周辺機器を見ていた人だとわかる
+Cookie: SID=q1w2e3r4t5 // さっきPC周辺機器を見ていた人だとわかる
 ```
 
 
@@ -256,7 +256,7 @@ Chrome は 2 年後までに 3rdPC を無くしていくことをアナウンス
 
 多少壊れるサイトがあれば、それは 3rdPC 以外の方法で修正するなどを行ったとして、トラッキングについてはだいたい防ぐことができるかもしれない。
 
-ただ、 3rdPC を block しただけで本当に問題は解決したと言えるのだろうか?
+ただ、 3rdPC をブロックしただけで本当に問題は解決したと言えるのだろうか?
 
 
 ## 3rdPC Block という対処療法
@@ -313,7 +313,7 @@ Web におけるマネタイズの大半は広告なのが現状だ。特に代�
 
 そしてそもそも、巷にはトラッキングが無いと本当に広告の収益が下がるという報告もあれば、コンテキストの方が重要でターゲティングが無くても広告の価値は下がらないと報告も有る。つまり、自分の持つサービスにおいてどうなのかを計測せずに 3rdPC Block の影響を十把一絡げに語ること自体も怪しい。
 
-自分の持っているサービスと、そこで使われている 3rdPC と、その有無による影響の正確な数値をきちんと把握もせずに、「3rd Party Cooki が無いと広告はヤバイ」などと雑に捉えていては、本当に必要な議論を始めることすらできないのでは無いだろうか。
+自分の持っているサービスと、そこで使われている 3rdPC と、その有無による影響の正確な数値をきちんと把握もせずに、「3rd Party Cookie が無いと広告はヤバイ」などと雑に捉えていては、本当に必要な議論を始めることすらできないのでは無いだろうか。
 
 
 ## 牧歌的 Cookie の終焉
