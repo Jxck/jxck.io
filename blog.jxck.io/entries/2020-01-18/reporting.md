@@ -157,7 +157,7 @@ jfv は、ヘッダの値に統一された構造化を持ち込もうと、 JSO
 - Network Error Logging
 - Deprecation Report
 - Intervention Report
-- Crashe Report
+- Crash Report
 
 CSP や Feature-Policy は、明示的に Report-To を指定する。
 
@@ -296,7 +296,7 @@ Feature Policy も violation が発生した場合にその事実が知りたい
 
 ### SXG
 
-SXG の証明書検証などが発生した場合に distoributor に知らせるための Report 。 Network Error Logging を継承している。
+SXG の証明書検証などが発生した場合に distributor に知らせるための Report 。 Network Error Logging を継承している。
 
 - [Intent to Ship: Signed Exchange Reporting for distributors](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/bHo6cy9qKuw/6xqZt_1LAAAJ)
 
