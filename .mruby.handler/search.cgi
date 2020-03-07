@@ -32,6 +32,10 @@ def build(keyword, result)
   html = <<-EOS
   <html>
     <meta charset="utf-8">
+    <form action=searches method=get>
+      <input type=text name=q>
+      <button type=submit>search</button>
+    </form>
     <title>Search Result of #{CGI.escapeHTML(keyword)}</title>
     <h1>Search Result of #{CGI.escapeHTML(keyword)}</h1>
     <ul>
