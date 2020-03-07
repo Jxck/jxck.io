@@ -1,18 +1,16 @@
 def list(dir, path)
   li = Dir.entries("#{dir}/#{path}")
-     .reject{|file| file == "." }
-     .sort{|a, b|
-       ret = b <=> a
-       ret = -1 if a == ".."
-       ret = 1 if b == ".."
-       ret
-     }
-     .map{|file|
-       "<li><a href=/#{path}/#{file}>#{file}</a></li>"
-     }
-     .join("\n    ")
+    .reject{|file| file == "." }
+    .sort{|a, b|
+    ret = b <=> a
+    ret = -1 if a == ".."
+    ret = 1 if b == ".."
+    ret
+  }.map{|file|
+    "<li><a href=/#{path}/#{file}>#{file}</a></li>"
+  }.join("\n    ")
 
-  html = File.read(".template/index.html")
+  html = File.read(".script/template/blog.archive.html.erb")
   html = html.gsub('"', '\"')
   html = '"' + html + '"'
 
