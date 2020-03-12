@@ -9,18 +9,18 @@ def log(*a)
 end
 
 def search(pwd, keyword)
-  Dir.glob("#{pwd}/blog.jxck.io/entries/**/*.html")
-    .reject{|path|
+  Dir.glob("#{pwd}/blog.jxck.io/entries/**/*.md").reject{|path|
     path.end_with?("amp.html")
-  }.map{|path|
+  }.reduce([]){|acc, path|
     body = File.read(path)
-    {path: path, body: body}
-  }.select{|entry|
-    entry[:body].match?(keyword)
-  }.map{|entry|
-    title = entry[:body].match(/<title>(.*) \| blog.jxck.io<\/title>/)[1]
-    path  = entry[:path].match(/(\/entries.*)/)[1]
-    {title: title, path: path}
+    result = body.scan(/^.*#{keyword}.*$/i).reject{|line| line.start_with?("# [")}
+    next acc if result.empty?
+    title = body.lines.first.match(/^# \[.*\] (.*)/)[1]
+
+    pp path
+
+    path  = path.match(/(\/entries.*)/)[1]
+    acc.append({path: path, title: title, result: result})
   }
 end
 
