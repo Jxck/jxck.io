@@ -8,17 +8,14 @@ def log(*a)
   #p(*a)
 end
 
-def search(pwd, keyword)
-  Dir.glob("#{pwd}/blog.jxck.io/entries/**/*.md").reject{|path|
+def search(root, keyword)
+  Dir.glob("#{root}/jxck.io/blog.jxck.io/entries/**/*.md").reject{|path|
     path.end_with?("amp.html")
   }.reduce([]){|acc, path|
     body = File.read(path)
     result = body.scan(/^.*#{keyword}.*$/i).reject{|line| line.start_with?("# [")}
     next acc if result.empty?
     title = body.lines.first.match(/^# \[.*\] (.*)/)[1]
-
-    pp path
-
     path  = path.match(/(\/entries.*)/)[1]
     acc.append({path: path, title: title, result: result})
   }
@@ -46,14 +43,19 @@ def build(keyword, result)
 end
 
 begin
-  pwd          = ENV["PWD"]
+  root         = ENV["SERVER"]
   path_info    = ENV["PATH_INFO"] || ""
   query_string = ENV["QUERY_STRING"]
 
   query = URI.decode_www_form(query_string).to_h
   q     = query["q"]
 
-  result = search(pwd, q)
+  if q.nil? or q.empty?
+    STDOUT.print "Status: 400 Bad Request\n\n"
+    exit(0)
+  end
+
+  result = search(root, q)
   html   = build(q, result)
 
   STDOUT.print "Status: 200 OK\n\n"
