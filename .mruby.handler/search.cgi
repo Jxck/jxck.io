@@ -9,7 +9,7 @@ def log(*a)
 end
 
 def search(root, keyword)
-  Dir.glob("#{root}/jxck.io/blog.jxck.io/entries/**/*.md").reject{|path|
+  Dir.glob("#{root}/blog.jxck.io/entries/**/*.md").reject{|path|
     path.end_with?("amp.html")
   }.reduce([]){|acc, path|
     body = File.read(path)
@@ -43,7 +43,7 @@ def build(keyword, result)
 end
 
 begin
-  root         = ENV["SERVER"]
+  root         = ENV["ROOT"] || ENV["PWD"]
   path_info    = ENV["PATH_INFO"] || ""
   query_string = ENV["QUERY_STRING"]
 
