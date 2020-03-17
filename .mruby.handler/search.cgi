@@ -13,17 +13,50 @@ def search(root, keyword)
     path.end_with?("amp.html")
   }.reduce([]){|acc, path|
     body = File.read(path)
-    result = body.scan(/^.*#{keyword}.*$/i).reject{|line| line.start_with?("# [")}
-    next acc if result.empty?
+    hits  = body.scan(/^.*#{keyword}.*$/i).reject{|line| line.start_with?("# [")}
+    next acc if hits.empty?
     title = body.lines.first.match(/^# \[.*\] (.*)/)[1]
-    path  = path.match(/(\/entries.*)/)[1]
-    acc.append({path: path, title: title, result: result})
+    path  = path.match(/(\/entries.*)/)[1].sub(".md", ".html")
+    date  = path.match(/\/entries\/(\d{4}-\d{2}-\d{2})\/.*/)[1]
+    acc.append({path: path, title: title, date: date, hits: hits, keyword: keyword})
   }
 end
 
 def build(keyword, result)
   li = result.map{|entry|
-    "<li><a href=https://blog.jxck.io#{entry[:path]}#:~:text=#{CGI.escape(keyword)}>#{entry[:title]}</a></li>"
+    title = entry[:title]
+    date  = entry[:date]
+    path  = entry[:path]
+    hits  = entry[:hits]
+    keyword = entry[:keyword]
+
+    deep = hits.map{|hit|
+      hit = hit.strip.gsub(/^- /, '').gsub(/^\#{,4} /, '')
+      m = hit.match(/(?<prefix>.*)(?<keyword>#{keyword})(?<suffix>.*)/i)
+
+      word   = CGI.escape(m[:keyword])
+      prefix = CGI.escape(m[:prefix].strip.split(" ").last  || "")
+      suffix = CGI.escape(m[:suffix].strip.split(" ").first || "")
+
+      prefix = "#{prefix}-," unless prefix.empty?
+      suffix = ",-#{suffix}" unless suffix.empty?
+
+      hash = "#{prefix}#{word}#{suffix}"
+      line =  CGI.escapeHTML(hit)
+      {hash: hash, line: line}
+    }.map{|hits|
+      "<li><a href=https://blog.jxck.io#{path}#:~:text=#{hits[:hash]}>#{hits[:line]}</a></li>"
+    }.join("\n")
+
+    <<-EOS
+      <li>
+        <time datetime="#{date}">#{date}</time>
+        <a href=https://blog.jxck.io#{path}#:~:text=#{keyword}>#{title}</a>
+        <ul>
+          #{deep}
+        </ul>
+      </li>
+    EOS
   }.join("\n      ")
 
   html = <<-EOS
