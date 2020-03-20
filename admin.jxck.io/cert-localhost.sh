@@ -1,8 +1,7 @@
 sudo certbot certonly \
-  -n \
-  --webroot \
+  --manual \
   --agree-tos \
+  --preferred-challenges dns \
   --email admin@jxck.io \
-  -w ../www.jxck.io \
-  --expand \
-  -d localhost.jxck.io
+  --manual-public-ip-logging-ok \
+  --domain localhost.jxck.io
