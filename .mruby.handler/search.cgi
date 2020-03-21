@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require "uri"
+require "pathname"
 require "cgi/escape"
 
 def log(*a)
@@ -8,50 +9,60 @@ def log(*a)
   #p(*a)
 end
 
-def search(root, keyword)
-  Dir.glob("#{root}/blog.jxck.io/entries/**/*.md").reject{|path|
-    path.end_with?("amp.html")
-  }.reduce([]){|acc, path|
+def search(base, keyword)
+  Pathname.glob("#{base}/entries/**/*.md").reduce([]){|acc, path|
     body = File.read(path)
-    hits  = body.scan(/^.*#{keyword}.*$/i).reject{|line| line.start_with?("# [")}
+    hits = body.scan(/^.*#{keyword}.*$/i)
     next acc if hits.empty?
     title = body.lines.first.match(/^# \[.*\] (.*)/)[1]
-    path  = path.match(/(\/entries.*)/)[1].sub(".md", ".html")
-    date  = path.match(/\/entries\/(\d{4}-\d{2}-\d{2})\/.*/)[1]
-    acc.append({path: path, title: title, date: date, hits: hits, keyword: keyword})
+    url   = path.relative_path_from(base).sub_ext(".html")
+    date  = path.dirname.basename()
+    acc.append({url: url, title: title, date: date, hits: hits, keyword: keyword})
   }
+end
+
+def hash(prefix, keyword, suffix)
+  word   = CGI.escape(keyword)
+  prefix = CGI.escape(prefix.strip.split(" ").last  || "")
+  suffix = CGI.escape(suffix.strip.split(" ").first || "")
+
+  prefix = "#{prefix}-," unless prefix.empty?
+  suffix = ",-#{suffix}" unless suffix.empty?
+
+  "#{prefix}#{word}#{suffix}"
 end
 
 def build(keyword, result)
   li = result.map{|entry|
     title = entry[:title]
     date  = entry[:date]
-    path  = entry[:path]
+    url   = entry[:url]
     hits  = entry[:hits]
     keyword = entry[:keyword]
 
     deep = hits.map{|hit|
       hit = hit.strip.gsub(/^- /, '').gsub(/^\#{,4} /, '')
-      m = hit.match(/(?<prefix>.*)(?<keyword>#{keyword})(?<suffix>.*)/i)
+      m   = hit.match(/(?<prefix>.*)(?<keyword>#{keyword})(?<suffix>.*)/i)
 
-      word   = CGI.escape(m[:keyword])
-      prefix = CGI.escape(m[:prefix].strip.split(" ").last  || "")
-      suffix = CGI.escape(m[:suffix].strip.split(" ").first || "")
+      keyword = m[:keyword]
+      prefix  = m[:prefix]
+      suffix  = m[:suffix]
 
-      prefix = "#{prefix}-," unless prefix.empty?
-      suffix = ",-#{suffix}" unless suffix.empty?
-
-      hash = "#{prefix}#{word}#{suffix}"
-      line =  CGI.escapeHTML(hit)
-      {hash: hash, line: line}
-    }.map{|hits|
-      "<li><a href=https://blog.jxck.io#{path}#:~:text=#{hits[:hash]}>#{hits[:line]}</a></li>"
+      <<-EOS
+        <li>
+          #{CGI.escapeHTML(prefix)}
+          <a href=https://blog.jxck.io#{url}#:~:text=#{hash(prefix, keyword, suffix)}>
+            #{CGI.escapeHTML(keyword)}
+          </a>
+          #{CGI.escapeHTML(suffix)}
+        </li>
+      EOS
     }.join("\n")
 
     <<-EOS
       <li>
         <time datetime="#{date}">#{date}</time>
-        <a href=https://blog.jxck.io#{path}#:~:text=#{keyword}>#{title}</a>
+        <a href=https://blog.jxck.io#{url}#:~:text=#{keyword}>#{title}</a>
         <ul>
           #{deep}
         </ul>
@@ -76,19 +87,20 @@ def build(keyword, result)
 end
 
 begin
-  root         = ENV["ROOT"] || ENV["PWD"]
+  # ROOT for exec from shell when test
+  base         = Pathname.new((ENV["ROOT"] || ENV["PWD"]) ++ "/blog.jxck.io")
   path_info    = ENV["PATH_INFO"] || ""
   query_string = ENV["QUERY_STRING"]
 
   query = URI.decode_www_form(query_string).to_h
-  q     = query["q"]
+  q     = Regexp.escape(query["q"] || "")
 
   if q.nil? or q.empty?
     STDOUT.print "Status: 400 Bad Request\n\n"
     exit(0)
   end
 
-  result = search(root, q)
+  result = search(base, q)
   html   = build(q, result)
 
   STDOUT.print "Status: 200 OK\n\n"
