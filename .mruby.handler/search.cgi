@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require "erb"
 require "uri"
 require "pathname"
 require "cgi/escape"
@@ -21,7 +22,7 @@ def search(base, keyword)
   }
 end
 
-def hash(prefix, keyword, suffix)
+def fragment(prefix, keyword, suffix)
   word   = CGI.escape(keyword)
   prefix = CGI.escape(prefix.strip.split(" ").last  || "")
   suffix = CGI.escape(suffix.strip.split(" ").first || "")
@@ -51,7 +52,7 @@ def build(keyword, result)
       <<-EOS
         <li>
           #{CGI.escapeHTML(prefix)}
-          <a href=https://blog.jxck.io#{url}#:~:text=#{hash(prefix, keyword, suffix)}>
+          <a href=https://blog.jxck.io#{url}#:~:text=#{fragment(prefix, keyword, suffix)}>
             #{CGI.escapeHTML(keyword)}
           </a>
           #{CGI.escapeHTML(suffix)}
@@ -70,20 +71,8 @@ def build(keyword, result)
     EOS
   }.join("\n      ")
 
-  html = <<-EOS
-  <html>
-    <meta charset="utf-8">
-    <form action=searches method=get>
-      <input type=text name=q>
-      <button type=submit>search</button>
-    </form>
-    <title>Search Result of #{CGI.escapeHTML(keyword)}</title>
-    <h1>Search Result of #{CGI.escapeHTML(keyword)}</h1>
-    <ul>
-      #{li}
-    </ul>
-  </html>
-  EOS
+  template =File.read("./search.html.erb")
+  ERB.new(template, nil, '-').result(binding)
 end
 
 begin
