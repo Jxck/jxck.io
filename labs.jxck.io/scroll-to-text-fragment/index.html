@@ -1,66 +1,34 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<title>Scroll To Text Fragment DEMO</title>
 
-<style>
-body {
-  width: 70%;
-  margin: 0 auto;
-}
+<title>Scroll to Text Fragment Labs | labs.jxck.io</title>
 
-article {
-  font-size: 2em;
-}
+<link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/body.css>
 
-form {
-  font-size: 1.4em;
-}
+<link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/header.css>
+<header>
+  <ul>
+    <li><a href=https://jxck.io><img class=logo alt="jxck logo" width=30 src=https://jxck.io/assets/img/jxck.svg></a>
+  </li>
+</header>
 
-input[type=text] {
-  width: 30em;
-}
+<link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/markdown.css>
+<link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/main.css>
+<main role=main class=archive>
+  <h1 id=labs><a href=#labs>Scroll to Text Fragment Labs</a></h1>
+  <section>
+    <h2 id=contents><a href=#contents>contents</a></h2>
+    <ul>
+      <li><a href=basic.html>Basic</a>
+      <li><a href=portal.html>Portal</a>
+    </ul>
+  </section>
+</main>
 
-:target {
-  color: green;
-}
-</style>
+<hr>
 
-<h1>Scroll To Text Fragment DEMO</h1>
-
-<form method=get action=.>
-  <label for=fragment>:~:text=[prefix-,]textStart[,textEnd][,-suffix]</label>
-  <input id=fragment type=text name=fragment value=":~:text=" placeholder="input fragment here">
-  <button type=submit>go</button>
-</form>
-
-<article>
-<p id=en>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-<p id=ja>しかし私は、喜びを非難して苦痛を賞賛するという誤ったこの考えがすべてどのようにして誕生したかをあなたに説明しなければならないから、私はあなたにその体系を完璧に説明し、真実を求める偉大な探究家、人間の喜びを築く建築家の実践的な教えを詳しく説明しよう。だれも喜びそのものを、それが喜びであるという理由で拒んだり、嫌ったり、避けたりはしない。しかし、どのようにして喜びを理性的に追求するかを知らない人たちは非常に苦痛な結末に直面する。同様に、苦痛そのものを、それが苦痛であるという理由で愛したり、探したり、手に入れることを望んだりする者もいない。しかし、ときには苦労や苦痛がその人に大いなる喜びをいくらかもたらす状況がおこることがある。些末な例を挙げると、私たちのうちのだれが、そこから何か有益なものを得られないのに、骨の折れる肉体運動を引き受けるだろうか？しかしだれに、いらだたしい結末のない喜びを享受することを選ぶ人や、その結果としての喜びを生み出さないような痛みを避ける人にある、落ち度を見つける権利はあるのだろうか？
-<p>全角スペース　や、半角 スペースが入った場合。</p>
-<p>カッコ [角括弧] や (丸括弧) や {波括弧} や &lt;山カッコ&gt;。</p>
-<p>全角の場合も 「カッコ」と（かっこ）とか</p>
-<p>他にも, URL の. なかで使われる # 色々な / 記号を \ 入れた場合の % 挙動を + 試す</p>
-</p>
-</article>
-
-<script>
-'use strict';
-const $  = document.querySelector.bind(document)
-const $$ = document.querySelectorAll.bind(document)
-EventTarget.prototype.on = EventTarget.prototype.addEventListener
-
-document.on('DOMContentLoaded', async (e) => {
-  $('form').on('submit', async (e) => {
-    console.log(e)
-    e.preventDefault();
-
-    const data = new FormData(e.target)
-    const fragment = data.get('fragment')
-    location.hash = fragment
-    location.reload()
-  })
-})
-</script>
-
-<a href=https://ja.wikipedia.org/wiki/Lorem_ipsum>Lorem ipsum - Wikipedia</a>
+<link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/footer.css>
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small></p>
+</footer>

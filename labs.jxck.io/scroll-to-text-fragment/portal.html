@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Scroll to Text Fragment in Portal DEMO</title>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template: "h h h"
+                 "l c r";
+}
+
+header { grid-area: h; }
+main   { grid-area: l; }
+portal { grid-area: c; }
+iframe { grid-area: r; }
+
+main, portal, iframe {
+  box-sizing: border-box;
+  border: solid 1px black;
+  height: 100vw;
+  width: 100%;
+}
+</style>
+
+<body>
+  <header>
+    <h1>Scroll to Text Fragment in Portal DEMO</h1>
+    <p>click link will show result in &lt;portal&gt; in center &amp; &lt;iframe&gt; in right.
+  </header>
+  <main id=main>
+    <ul>
+      <li><a href=https://blog.jxck.io/entries/2016-01-27/new-blog-start.html#:~:text=リストスタイル>#リストスタイル</a>
+      <li><a href=https://blog.jxck.io/entries/2016-01-27/new-blog-start.html#:~:text=定義リスト    >#定義リスト    </a>
+      <li><a href=https://blog.jxck.io/entries/2016-01-27/new-blog-start.html#:~:text=サンプルコード>#サンプルコード</a>
+    </ul>
+  </main>
+  <portal src=https://blog.jxck.io/entries/2016-01-27/new-blog-start.html></portal>
+  <iframe src=https://blog.jxck.io/entries/2016-01-27/new-blog-start.html></iframe>
+</body>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  document.on('DOMContentLoaded', async () => {
+    const $portal = $('portal')
+    const $iframe = $('iframe')
+
+    $$("a").forEach((a) => {
+      a.on('click', (e) => {
+        e.preventDefault()
+        console.log(e.target.href)
+        $portal.src = e.target.href
+        $iframe.src = e.target.href
+      })
+    })
+
+    $portal.on('click', (e) => {
+      $portal.activate()
+    })
+  })
+</script>
+
