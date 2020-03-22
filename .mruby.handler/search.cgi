@@ -5,27 +5,31 @@ require "uri"
 require "pathname"
 include ERB::Util
 
+MAX_LENGTH = 30
+
 def log(*a)
   STDERR.print(*a)
   #p(*a)
 end
 
-def search(base, keyword)
+def search(base, keywords)
+  reg = Regexp.union(keywords.map{|keyword| /(?<prefix>.*)(?<keyword>#{keyword})(?<suffix>.*)/i })
   Pathname.glob("#{base}/entries/**/*.md").reduce([]){|acc, path|
     body    = File.read(path)
-    details = body.scan(/^.*#{keyword}.*$/i).map{|hit|
-      hit = hit.strip.gsub(/^- /, '').gsub(/^\#{,4} /, '')
-      m   = hit.match(/(?<prefix>.*)(?<keyword>#{keyword})(?<suffix>.*)/i)
-      keyword  = m[:keyword]
-      prefix   = m[:prefix]
-      suffix   = m[:suffix]
-      {keyword: keyword, prefix: prefix, suffix: suffix, fragment: fragment(prefix, keyword, suffix)}
-    }
+    details = body.scan(reg).map {|hits|
+      hits.each_slice(3).reduce([]) {|acc, hit|
+        next acc if hit == [nil, nil, nil]
+        prefix   = hit[0]
+        keyword  = hit[1]
+        suffix   = hit[2]
+        acc.append({keyword: keyword, prefix: prefix, suffix: suffix, fragment: fragment(prefix, keyword, suffix)})
+      }
+    }.flatten
     next acc if details.empty?
     title = body.lines.first.match(/^# \[.*\] (.*)/)[1]
     url   = path.relative_path_from(base).sub_ext(".html")
-    date  = path.dirname.basename()
-    acc.append({url: url, title: title, date: date, keyword: keyword, details: details})
+    date  = path.dirname.basename().to_s
+    acc.append({url: url, title: title, date: date, keyword: keywords.join(" "), details: details})
   }
 end
 
@@ -40,27 +44,26 @@ def fragment(prefix, keyword, suffix)
   "#{prefix}#{word}#{suffix}"
 end
 
-def build(keyword, results)
-  template =File.read("./search.html.erb")
+def build(query, results)
+  template = File.read("./search.html.erb")
   ERB.new(template, nil, '-').result(binding)
+end
+
+def sanitize_query(query_string)
+  query = URI.decode_www_form(query_string).to_h
+  q     = query["q"]
+  return {valid: false, message: "search keyword is required"} if q.nil? or q.empty?
+  return {valid: false, message: "search keyword is required"} if q.size > MAX_LENGTH
+  keywords = q.split(" ").map{|q| Regexp.escape(q) }
+  return {valid: true, keywords: keywords, q: q}
 end
 
 begin
   # ROOT for exec from shell when test
-  base         = Pathname.new((ENV["ROOT"] || ENV["PWD"]) ++ "/blog.jxck.io")
-  path_info    = ENV["PATH_INFO"] || ""
-  query_string = ENV["QUERY_STRING"]
-
-  query = URI.decode_www_form(query_string).to_h
-  q     = Regexp.escape(query["q"] || "")
-  results = []
-
-  unless q.nil? or q.empty?
-    results = search(base, q)
-  end
-
-  html   = build(q, results)
-
+  base    = Pathname.new((ENV["ROOT"] || ENV["PWD"]) ++ "/blog.jxck.io")
+  query   = sanitize_query(ENV["QUERY_STRING"])
+  results = search(base, query[:keywords])
+  html    = build(query, results)
   STDOUT.print "Status: 200 OK\n\n"
   STDOUT.print html
 rescue => err

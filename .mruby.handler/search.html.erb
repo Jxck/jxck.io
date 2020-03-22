@@ -1,10 +1,10 @@
 <html>
   <meta charset="utf-8">
-  <title>Search Result of <%= h(keyword) %></title>
-  <h1>Search Result of <%= h(keyword) %></h1>
+  <title>Search Result of <%= h(query[:q]) %></title>
+  <h1>Search Result of <%= h(query[:q]) %></h1>
   <form action=searches method=get>
     <label for=keyword>Search Keyword</label>
-    <input id=keyword type=text name=q placeholder="csp, cookie, 標準化 etc" width=10 required>
+    <input id=keyword type=text name=q placeholder="csp, cookie, 標準化 etc" maxlength=20 minlength=1 required>
     <button type=submit>search</button>
   </form>
   <style>
@@ -13,26 +13,23 @@ a.highlight {
 }
   </style>
   <ul>
-    <% if results.empty? %>
-      <li>no result</li>
-    <% end %>
     <% results.each{|result| %>
       <li>
-        <details>
+        <details open>
           <summary>
-            <time datetime="<%= result[:date] %>"><%= result[:date] %></time>
-            <a href=https://blog.jxck.io/<%= result[:url] %>#:~:text=<%= result[:keyword] %>><%= result[:title] %></a>
+            <time datetime="<%= h(result[:date]) %>"><%= h(result[:date]) %></time>
+            <a href=https://blog.jxck.io/<%= result[:url] %>><%= result[:title] %></a>
           </summary>
           <ul>
-            <% result[:details].each{|detail| %>
-              <li>
-                <%= h(detail[:prefix]) %>
-                <a class=highlight href=https://blog.jxck.io/<%= result[:url] %>#:~:text=<%= detail[:fragment] %>>
-                  <%= h(detail[:keyword]) %>
-                </a>
-                <%= h(detail[:suffix]) %>
-              </li>
-            <% } %>
+            <%- result[:details].each{|detail| %>
+            <li>
+              <%= h(detail[:prefix]) %>
+              <a class=highlight href=https://blog.jxck.io/<%= result[:url] %>#:~:text=<%= detail[:fragment] %>>
+                <%= h(detail[:keyword]) %>
+              </a>
+              <%= h(detail[:suffix]) %>
+            </li>
+            <%- } %>
           </ul>
         </details>
       </li>
