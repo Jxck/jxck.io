@@ -4,8 +4,8 @@
     <input type=text name=q>
     <button type=submit>search</button>
   </form>
-  <title>Search Result of <%= CGI.escapeHTML(keyword) %></title>
-  <h1>Search Result of <%= CGI.escapeHTML(keyword) %></h1>
+  <title>Search Result of <%= h(keyword) %></title>
+  <h1>Search Result of <%= h(keyword) %></h1>
   <ul>
     <% results.each{|result| %>
       <li>
@@ -14,11 +14,11 @@
         <ul>
           <% result[:details].each{|detail| %>
             <li>
-              <%= CGI.escapeHTML(detail[:prefix]) %>
+              <%= h(detail[:prefix]) %>
               <a href=https://blog.jxck.io/<%= result[:url] %>#:~:text=<%= detail[:fragment] %>>
-                <%= CGI.escapeHTML(detail[:keyword]) %>
+                <%= h(detail[:keyword]) %>
               </a>
-              <%= CGI.escapeHTML(detail[:suffix]) %>
+              <%= h(detail[:suffix]) %>
             </li>
           <% } %>
         </ul>

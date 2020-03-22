@@ -3,7 +3,7 @@
 require "erb"
 require "uri"
 require "pathname"
-require "cgi/escape"
+include ERB::Util
 
 def log(*a)
   STDERR.print(*a)
@@ -32,9 +32,9 @@ def search(base, keyword)
 end
 
 def fragment(prefix, keyword, suffix)
-  word   = CGI.escape(keyword)
-  prefix = CGI.escape(prefix.strip.split(" ").last  || "")
-  suffix = CGI.escape(suffix.strip.split(" ").first || "")
+  word   = url_encode(keyword)
+  prefix = url_encode(prefix.strip.split(" ").last  || "")
+  suffix = url_encode(suffix.strip.split(" ").first || "")
 
   prefix = "#{prefix}-," unless prefix.empty?
   suffix = ",-#{suffix}" unless suffix.empty?
