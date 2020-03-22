@@ -18,7 +18,16 @@ def search(base, keyword)
     title = body.lines.first.match(/^# \[.*\] (.*)/)[1]
     url   = path.relative_path_from(base).sub_ext(".html")
     date  = path.dirname.basename()
-    acc.append({url: url, title: title, date: date, hits: hits, keyword: keyword})
+
+    details = hits.map{|hit|
+      hit = hit.strip.gsub(/^- /, '').gsub(/^\#{,4} /, '')
+      m   = hit.match(/(?<prefix>.*)(?<keyword>#{keyword})(?<suffix>.*)/i)
+      keyword  = m[:keyword]
+      prefix   = m[:prefix]
+      suffix   = m[:suffix]
+      {keyword: keyword, prefix: prefix, suffix: suffix, fragment: fragment(prefix, keyword, suffix)}
+    }
+    acc.append({url: url, title: title, date: date, keyword: keyword, details: details})
   }
 end
 
@@ -33,44 +42,7 @@ def fragment(prefix, keyword, suffix)
   "#{prefix}#{word}#{suffix}"
 end
 
-def build(keyword, result)
-  li = result.map{|entry|
-    title = entry[:title]
-    date  = entry[:date]
-    url   = entry[:url]
-    hits  = entry[:hits]
-    keyword = entry[:keyword]
-
-    deep = hits.map{|hit|
-      hit = hit.strip.gsub(/^- /, '').gsub(/^\#{,4} /, '')
-      m   = hit.match(/(?<prefix>.*)(?<keyword>#{keyword})(?<suffix>.*)/i)
-
-      keyword = m[:keyword]
-      prefix  = m[:prefix]
-      suffix  = m[:suffix]
-
-      <<-EOS
-        <li>
-          #{CGI.escapeHTML(prefix)}
-          <a href=https://blog.jxck.io#{url}#:~:text=#{fragment(prefix, keyword, suffix)}>
-            #{CGI.escapeHTML(keyword)}
-          </a>
-          #{CGI.escapeHTML(suffix)}
-        </li>
-      EOS
-    }.join("\n")
-
-    <<-EOS
-      <li>
-        <time datetime="#{date}">#{date}</time>
-        <a href=https://blog.jxck.io#{url}#:~:text=#{keyword}>#{title}</a>
-        <ul>
-          #{deep}
-        </ul>
-      </li>
-    EOS
-  }.join("\n      ")
-
+def build(keyword, results)
   template =File.read("./search.html.erb")
   ERB.new(template, nil, '-').result(binding)
 end

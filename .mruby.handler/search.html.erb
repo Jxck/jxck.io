@@ -7,6 +7,22 @@
   <title>Search Result of <%= CGI.escapeHTML(keyword) %></title>
   <h1>Search Result of <%= CGI.escapeHTML(keyword) %></h1>
   <ul>
-    <%= li %>
+    <% results.each{|result| %>
+      <li>
+        <time datetime="<%= result[:date] %>"><%= result[:date] %></time>
+        <a href=https://blog.jxck.io/<%= result[:url] %>#:~:text=<%= result[:keyword] %>><%= result[:title] %></a>
+        <ul>
+          <% result[:details].each{|detail| %>
+            <li>
+              <%= CGI.escapeHTML(detail[:prefix]) %>
+              <a href=https://blog.jxck.io/<%= result[:url] %>#:~:text=<%= detail[:fragment] %>>
+                <%= CGI.escapeHTML(detail[:keyword]) %>
+              </a>
+              <%= CGI.escapeHTML(detail[:suffix]) %>
+            </li>
+          <% } %>
+        </ul>
+      </li>
+    <% } %>
   </ul>
 </html>
