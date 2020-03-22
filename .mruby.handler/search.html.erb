@@ -1,27 +1,40 @@
 <html>
   <meta charset="utf-8">
-  <form action=searches method=get>
-    <input type=text name=q>
-    <button type=submit>search</button>
-  </form>
   <title>Search Result of <%= h(keyword) %></title>
   <h1>Search Result of <%= h(keyword) %></h1>
+  <form action=searches method=get>
+    <label for=keyword>Search Keyword</label>
+    <input id=keyword type=text name=q placeholder="[0-9a-zA-Z]{0,10}" width=10 required>
+    <button type=submit>search</button>
+  </form>
+  <style>
+a.highlight {
+  background-color: yellow;
+}
+  </style>
   <ul>
+    <% if results.empty? %>
+      <li>no result</li>
+    <% end %>
     <% results.each{|result| %>
       <li>
-        <time datetime="<%= result[:date] %>"><%= result[:date] %></time>
-        <a href=https://blog.jxck.io/<%= result[:url] %>#:~:text=<%= result[:keyword] %>><%= result[:title] %></a>
-        <ul>
-          <% result[:details].each{|detail| %>
-            <li>
-              <%= h(detail[:prefix]) %>
-              <a href=https://blog.jxck.io/<%= result[:url] %>#:~:text=<%= detail[:fragment] %>>
-                <%= h(detail[:keyword]) %>
-              </a>
-              <%= h(detail[:suffix]) %>
-            </li>
-          <% } %>
-        </ul>
+        <details>
+          <summary>
+            <time datetime="<%= result[:date] %>"><%= result[:date] %></time>
+            <a href=https://blog.jxck.io/<%= result[:url] %>#:~:text=<%= result[:keyword] %>><%= result[:title] %></a>
+          </summary>
+          <ul>
+            <% result[:details].each{|detail| %>
+              <li>
+                <%= h(detail[:prefix]) %>
+                <a class=highlight href=https://blog.jxck.io/<%= result[:url] %>#:~:text=<%= detail[:fragment] %>>
+                  <%= h(detail[:keyword]) %>
+                </a>
+                <%= h(detail[:suffix]) %>
+              </li>
+            <% } %>
+          </ul>
+        </details>
       </li>
     <% } %>
   </ul>

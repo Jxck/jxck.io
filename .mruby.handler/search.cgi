@@ -12,14 +12,8 @@ end
 
 def search(base, keyword)
   Pathname.glob("#{base}/entries/**/*.md").reduce([]){|acc, path|
-    body = File.read(path)
-    hits = body.scan(/^.*#{keyword}.*$/i)
-    next acc if hits.empty?
-    title = body.lines.first.match(/^# \[.*\] (.*)/)[1]
-    url   = path.relative_path_from(base).sub_ext(".html")
-    date  = path.dirname.basename()
-
-    details = hits.map{|hit|
+    body    = File.read(path)
+    details = body.scan(/^.*#{keyword}.*$/i).map{|hit|
       hit = hit.strip.gsub(/^- /, '').gsub(/^\#{,4} /, '')
       m   = hit.match(/(?<prefix>.*)(?<keyword>#{keyword})(?<suffix>.*)/i)
       keyword  = m[:keyword]
@@ -27,6 +21,10 @@ def search(base, keyword)
       suffix   = m[:suffix]
       {keyword: keyword, prefix: prefix, suffix: suffix, fragment: fragment(prefix, keyword, suffix)}
     }
+    next acc if details.empty?
+    title = body.lines.first.match(/^# \[.*\] (.*)/)[1]
+    url   = path.relative_path_from(base).sub_ext(".html")
+    date  = path.dirname.basename()
     acc.append({url: url, title: title, date: date, keyword: keyword, details: details})
   }
 end
@@ -55,14 +53,13 @@ begin
 
   query = URI.decode_www_form(query_string).to_h
   q     = Regexp.escape(query["q"] || "")
+  results = []
 
-  if q.nil? or q.empty?
-    STDOUT.print "Status: 400 Bad Request\n\n"
-    exit(0)
+  unless q.nil? or q.empty?
+    results = search(base, q)
   end
 
-  result = search(base, q)
-  html   = build(q, result)
+  html   = build(q, results)
 
   STDOUT.print "Status: 200 OK\n\n"
   STDOUT.print html
