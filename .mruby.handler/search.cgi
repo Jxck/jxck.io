@@ -45,7 +45,7 @@ def fragment(prefix, keyword, suffix)
 end
 
 def build(query, results)
-  template = File.read("./search.html.erb")
+  template = File.read("../.script/template/blog.search.html.erb")
   ERB.new(template, nil, '-').result(binding)
 end
 
