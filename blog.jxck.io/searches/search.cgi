@@ -59,9 +59,8 @@ def sanitize_query(query_string)
 end
 
 begin
-  #log ENV.entries.join("\n")
-  # ROOT for exec from shell when test
-  base    = Pathname.new((ENV["ROOT"] || ENV["PWD"]) ++ "/blog.jxck.io")
+  # log ENV.entries.join("\n")
+  base    = Pathname.new(ENV["PWD"] ++ "/blog.jxck.io")
   query   = sanitize_query(ENV["QUERY_STRING"])
   results = search(base, query[:keywords])
   html    = build(query, results)

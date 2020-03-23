@@ -1,1 +1,2 @@
-QUERY_STRING="q=$1 $2" ROOT=$SERVER/jxck.io ruby search.cgi
+cd ../../
+QUERY_STRING="q=$1 $2" ruby ./blog.jxck.io/searches/search.cgi
