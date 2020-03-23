@@ -45,7 +45,7 @@ def fragment(prefix, keyword, suffix)
 end
 
 def build(query, results)
-  template = File.read("../.script/template/blog.search.html.erb")
+  template = File.read("#{ENV["PWD"]}/.script/template/blog.search.html.erb")
   ERB.new(template, nil, '-').result(binding)
 end
 
@@ -59,6 +59,7 @@ def sanitize_query(query_string)
 end
 
 begin
+  #log ENV.entries.join("\n")
   # ROOT for exec from shell when test
   base    = Pathname.new((ENV["ROOT"] || ENV["PWD"]) ++ "/blog.jxck.io")
   query   = sanitize_query(ENV["QUERY_STRING"])
