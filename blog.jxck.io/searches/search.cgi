@@ -66,7 +66,25 @@ begin
   query   = validate_query(ENV["QUERY_STRING"])
   results = search(base, query)
   html    = build(query, results)
-  STDOUT.print "Status: 200 OK\n\n"
+
+  headers = {
+    "Content-Type"                 => "text/html",
+    "Strict-Transport-Security"    => "max-age=31536000",
+    "Content-Security-Policy"      => "default-src 'self'",
+    "Cross-Origin-Resource-Policy" => "same-origin",
+    "Cross-Origin-Opener-Policy"   => "same-origin",
+    "Cross-Origin-Embedder-Policy" => "require-corp",
+    "Feature-Policy"               => "sync-xhr 'none'; sync-script 'none'",
+    "Expect-CT"                    => "max-age=31536000, report-uri https://reporting.jxck.io;",
+    "NEL"                          => "{\"report-to\":\"default\", \"max-age\":864000, \"include-subdomains\":false, \"success-fraction\":0, \"error-fraction\":1.0}",
+    "X-Content-Type-Options"       => "nosniff",
+    "Accept-CH"                    => "DPR, Content-DPR, Width, Viewport-Width, Save-Data, Arch, Model, Platform, Header, Mobile",
+    "Accept-CH-Lifetime"           => "86400",
+  }.entries().map{|e| e.join(": ")}.join("\n")
+
+  STDOUT.print "Status: 200 OK\n"
+  STDOUT.print "#{headers}\n"
+  STDOUT.print "\n"
   STDOUT.print html
 rescue => err
   STDOUT.print "Status: 500 Internal Server Error\n\n"
