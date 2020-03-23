@@ -12,7 +12,9 @@ def log(*a)
   #p(*a)
 end
 
-def search(base, keywords)
+def search(base, query)
+  return [] unless query[:valid]
+  keywords = query[:keywords]
   reg = Regexp.union(keywords.map{|keyword| /(?<prefix>.*)(?<keyword>#{keyword})(?<suffix>.*)/i })
   Pathname.glob("#{base}/entries/**/*.md").reduce([]){|acc, path|
     body    = File.read(path)
@@ -49,20 +51,20 @@ def build(query, results)
   ERB.new(template, nil, '-').result(binding)
 end
 
-def sanitize_query(query_string)
+def validate_query(query_string)
   query = URI.decode_www_form(query_string).to_h
   q     = query["q"]
   return {valid: false, message: "search keyword is required"} if q.nil? or q.empty?
-  return {valid: false, message: "search keyword is required"} if q.size > MAX_LENGTH
-  keywords = q.split(" ").map{|q| Regexp.escape(q) }
-  return {valid: true, keywords: keywords, q: q}
+  return {valid: false, message: "search keyword is too long"} if q.size > MAX_LENGTH
+  keywords = q.split(" ").map{|q| Regexp.escape(q)}
+  return {valid: true, q: q, keywords: keywords}
 end
 
 begin
   # log ENV.entries.join("\n")
   base    = Pathname.new(ENV["PWD"] ++ "/blog.jxck.io")
-  query   = sanitize_query(ENV["QUERY_STRING"])
-  results = search(base, query[:keywords])
+  query   = validate_query(ENV["QUERY_STRING"])
+  results = search(base, query)
   html    = build(query, results)
   STDOUT.print "Status: 200 OK\n\n"
   STDOUT.print html

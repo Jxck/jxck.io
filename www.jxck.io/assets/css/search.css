@@ -1,0 +1,43 @@
+.search {
+  font-size: 1.2rem;
+  line-height: 2rem;
+}
+
+.search label::after {
+  content: ":";
+}
+
+.search form p.error {
+  color: red;
+  margin: 0;
+  padding: 0;
+}
+
+.search time::after {
+  content: ":";
+}
+
+.search ul.results summary {
+  font-size: 1.2em;
+  margin-bottom: calc(var(--grid)/2);
+}
+
+.search ul.results li:before {
+  content: none;
+}
+
+.search ul.results > li {
+  margin: var(--grid) 0;
+}
+
+.search ul.detail {
+  margin-left: calc(var(--grid)*3);
+}
+
+.search ul.detail li {
+  list-style: circle;
+}
+
+.search .detail a.highlight {
+  background-color: #ff07;
+}
