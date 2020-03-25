@@ -68,7 +68,7 @@ begin
   html    = build(query, results)
 
   headers = {
-    "Content-Type"                 => "text/html",
+    "Content-Type"                 => "text/html; charset=utf-8",
     "Strict-Transport-Security"    => "max-age=31536000",
     "Content-Security-Policy"      => "default-src 'self'",
     "Cross-Origin-Resource-Policy" => "same-origin",
@@ -78,6 +78,7 @@ begin
     "Expect-CT"                    => "max-age=31536000, report-uri https://reporting.jxck.io;",
     "NEL"                          => "{\"report-to\":\"default\", \"max-age\":864000, \"include-subdomains\":false, \"success-fraction\":0, \"error-fraction\":1.0}",
     "X-Content-Type-Options"       => "nosniff",
+    "X-XSS-Protection"             => "1; mode=block",
     "Accept-CH"                    => "DPR, Content-DPR, Width, Viewport-Width, Save-Data, Arch, Model, Platform, Header, Mobile",
     "Accept-CH-Lifetime"           => "86400",
   }.entries().map{|e| e.join(": ")}.join("\n")
