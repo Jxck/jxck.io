@@ -129,3 +129,5 @@ Origin を守るための Web の戦いと、そこから見える Web や Brows
 - Project Zero: Escaping the Chrome Sandbox with RIDL
   - OffensiveCon で発表されたもの
   - <https://googleprojectzero.blogspot.com/2020/02/escaping-chrome-sandbox-with-ridl.html>
+- Hack Patch!: 投機的なWebの修復
+  - <https://shhnjk.blogspot.com/2020/03/repairing-speculative-web.html>
