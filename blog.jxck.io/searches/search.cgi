@@ -54,7 +54,7 @@ end
 def validate_query(query_string)
   query = URI.decode_www_form(query_string).to_h
   q     = query["q"]
-  return {valid: false, message: "search keyword is required"} if q.nil? or q.empty?
+  return {valid: false, message: ""} if q.nil? or q.empty?
   return {valid: false, message: "search keyword is too long"} if q.size > MAX_LENGTH
   keywords = q.split(" ").map{|q| Regexp.escape(q)}
   return {valid: true, q: q, keywords: keywords}
