@@ -61,7 +61,7 @@ function playerKeybind(e) {
 function enablePortal($portal) {
   if ($portal === null) return
   $portal.style.display = 'block'
-  const $links = document.querySelectorAll('section:nth-of-type(3) a')
+  const $links = document.querySelectorAll('article li a')
   $links.forEach(($a) => {
     let timer;
     $a.on('mouseover', (e) => {
