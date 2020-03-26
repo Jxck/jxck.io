@@ -16,7 +16,7 @@ def search(base, query)
   return [] unless query[:valid]
   keywords = query[:keywords]
   reg = Regexp.union(keywords.map{|keyword| /(?<prefix>.*)(?<keyword>#{keyword})(?<suffix>.*)/i })
-  Pathname.glob("#{base}/entries/**/*.md").reduce([]){|acc, path|
+  Pathname.glob("#{base}/entries/**/*.md").sort.reverse.reduce([]){|acc, path|
     body    = File.read(path)
     details = body.scan(reg).map {|hits|
       hits.each_slice(3).reduce([]) {|acc, hit|
