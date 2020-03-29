@@ -22,7 +22,7 @@
   <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="Scroll to Text Fragment のユースケースとして、本サイトにサイト内検索を実装してみた。">
+  <meta name=description         content="Scroll to Text Fragment のユースケースとして、本サイトにサイト内検索を実装した。">
   <meta name=keywords            content="search">
   <meta name=theme-color         content=#000000>
 
@@ -30,14 +30,14 @@
   <meta name=twitter:site        content=@jxck_>
   <meta name=twitter:url         content=https://blog.jxck.io/entries/2020-03-27/scroll-to-search-result.html>
   <meta name=twitter:title       content="Scroll to Text Fragment を用いたサイト内検索の実装 | blog.jxck.io">
-  <meta name=twitter:description content="Scroll to Text Fragment のユースケースとして、本サイトにサイト内検索を実装してみた。">
+  <meta name=twitter:description content="Scroll to Text Fragment のユースケースとして、本サイトにサイト内検索を実装した。">
   <meta name=twitter:image       content=https://jxck.io/assets/img/jxck.png>
 
   <meta property=og:type         content=article>
   <meta property=og:url          content=https://blog.jxck.io/entries/2020-03-27/scroll-to-search-result.html>
   <meta property=og:title        content="Scroll to Text Fragment を用いたサイト内検索の実装 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="Scroll to Text Fragment のユースケースとして、本サイトにサイト内検索を実装してみた。">
+  <meta property=og:description  content="Scroll to Text Fragment のユースケースとして、本サイトにサイト内検索を実装した。">
   <meta property=og:image        content=https://jxck.io/assets/img/jxck.png>
 
   <script type="application/ld+json">
@@ -54,7 +54,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-03-27T08:00:00+08:00",
-    "dateModified": "2020-03-27T08:00:00+08:00",
+    "dateModified": "2020-03-30T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -70,7 +70,7 @@
         "width": 60
       }
     },
-    "description": "Scroll to Text Fragment のユースケースとして、本サイトにサイト内検索を実装してみた。"
+    "description": "Scroll to Text Fragment のユースケースとして、本サイトにサイト内検索を実装した。"
   }
   </script>
 
@@ -100,7 +100,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-03-27>2020-03-27</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-03-27>2020-03-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-03-30>2020-03-30</time></dd></div>
       <div><dt class=tags>tags</dt><dd>[<a href="/tags/search.html">search</a>]</dd></div>
     </dl>
 
@@ -109,7 +109,7 @@
       <h1><a href=/entries/2020-03-27/scroll-to-search-result.html>Scroll to Text Fragment を用いたサイト内検索の実装</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>Scroll to Text Fragment のユースケースとして、本サイトにサイト内検索を実装してみた。
+        <p>Scroll to Text Fragment のユースケースとして、本サイトにサイト内検索を実装した。
       </section>
       <section>
         <h2 id="scroll-to-text-fragment"><a href="#scroll-to-text-fragment">Scroll to Text Fragment</a></h2>
@@ -119,7 +119,7 @@
         <ul>
           <li><a href="https://blog.jxck.io/entries/2019-10-16/scroll-to-text-fragment.html<F29>">Scroll To Text Fragment と :~:text | blog.jxck.io</a>
         </ul>
-        <p>この機能の使い道の一つとして、検索結果リンクへの適用があると考え、 PoC として実装した。
+        <p>この機能の使い道の一つとして、検索結果の Deep Link への適用があると考え、 PoC として実装した。
       </section>
       <section>
         <h2 id="検索結果への適用"><a href="#検索結果への適用">検索結果への適用</a></h2>
@@ -129,15 +129,16 @@
           <p>Feature Policy のモチベーションおよび適用方法について、類似する CSP や iframe sandbox と合わせて解説する。
         </blockquote>
         <p>これをヒットしたキーワードの前後で分割し、 Prefix / Suffix として指定すれば以下のような fragment ができる。
+        <p>(<code translate="no">#:~:text=Prefix-,Keyword,-Suffix</code> の順)
         <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
         <pre><code translate="no">#:~:text=Feature Policy のモチベーションおよび適用方法について、類似する-,CSP,-や</code></pre>
-        <p>これをキーワードのヒットごとに生成すれば、サイト内のヒット箇所ごとへの deep link を生成することができるというものだ。
+        <p>これをキーワードのヒット箇所ごとに生成すれば、サイト内のヒット箇所ごとへの deep link を生成することができる。
       </section>
       <section>
         <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
         <p>もともと、単なる DEMO として始まったスクリプトを、そのままサイトに設置しただけなので、大した実装にはなってないところがある。
-        <p>特に、本サイトのテキストは大した量ではないこと、ヘッダや出力の挙動を細かく制御したいことから、全文検索エンジンなどは使わず愚直な自前実装を行た。
-        <p>挙動は以下のように、検索結果から遷移すると該当箇所まで自動でスクロールしていることがわかるだろう。
+        <p>特に、本サイトのテキストは大した量ではないこと、ヘッダや出力の挙動を細かく制御したいことから、全文検索エンジンなどは使わず愚直な自前実装を行った。
+        <p>挙動は以下のようになる。検索結果から遷移すると、該当箇所まで自動でスクロールするのがわかるだろう。
         <iframe width="560" height="315" src="https://www.youtube.com/embed/4YHJEmrUnl8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <p>サイト右上のアイコンから遷移するページから利用でき、キーワードとして CSP を検索した場合は以下のような URL になる。
         <ul>
@@ -174,19 +175,17 @@
         <p>余談だが、本サイトで初めて <code translate="no">&lt;form&gt;</code> を設置したため、それなりにセキュリティ的な対策を行う必要が出た。
         <p>今回は、独立した検索ページを用意し、 Portal との連携をやめたため JS を無くすことができたことから、検索ページからは 3rd Party 含め一切の JS を無くすことにした。
         <p>結果、出力のエスケープを注意すれば典型的な攻撃はかなり防げると考える。
-        <p>エスケープは、「正規表現」「HTML」「Fragmen」とそれぞれのコンテキストに応じて実施する必要があるが、そこさえ間違えなければ問題はなさそうだ。
+        <p>エスケープは、「正規表現」「HTML」「URL Fragment」とそれぞれのコンテキストに応じて実施する必要があるが、そこさえ間違えなければ問題はなさそうだ。
         <p>そして、多重防御として他のページとは別運用にし、 CSP などのヘッダをガチガチに固め、 Report-Only も外している。
         <p>最近では Frame Work に任せるような部分をあえて自分で実装してみると、いろいろ試せる上に適度な緊張感があって良い。
-        <p>(なお、潤沢なリソースのサーバで動いてるわけでは無いため DOS の類には弱い。あまり虐めないで欲しい。)
       </section>
       <section>
         <h2 id="考察"><a href="#考察">考察</a></h2>
         <p>こう使うとそれなりに利便性を感じるかと思う。
         <p>一方で、やはり任意のサイトでこうした Deep Link が生成できてしまうことには、一定の懸念もある。
-        <p>今回のように、コンテンツ提供側が Deep Link を提供したいために S2TF を使用するなら、 Feature-Policy で Opt-in すれば良いだろう。
+        <p>今回のように、コンテンツ提供側が Deep Link を提供したいために S2TF を使用するなら、 Feature-Policy で Opt-In すれば良いだろう。
         <p>しかし、仕様の策定はどちらかというと、更新されず HTML に ID もふられてないサイトでも、閲覧者側が利用したいというモチベーションの方が強そうだ。
-        <p>その場合、 Opt-In では使われないだけなので、デフォルトということになるだろう。
-        <p>ただ、その場合は少なくとも Opt-Out する手段があった方が良いようにも思う。
+        <p>その場合、 Opt-In では使われないだけなので、デフォルトということになる。その場合は少なくとも Opt-Out する手段があった方が良いようにも思う。
         <p>今後、今回の検証の結果を踏まえ、フィードバックに繋げていきたい。
       </section>
     </article>
