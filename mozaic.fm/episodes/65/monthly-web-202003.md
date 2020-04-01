@@ -1,0 +1,636 @@
+# [monthly-web][mozaic.fm] ep65 Monthly Web 202003
+
+## Info
+
+audio: https://files.mozaic.fm/mozaic-ep65.mp3
+
+published_at
+: 2020-04-02
+
+guest
+: [@myakura](https://twitter.com/myakura)
+
+
+## Theme
+
+第 65 回のテーマは 2020 年 3 月の Monthly Web です。
+
+### Covid-19
+
+- 4/1 現在
+- 世界的に感染拡大
+- 日本も徐々に増えている
+  - <https://stopcovid19.metro.tokyo.lg.jp/>
+  - 東京でも日時感染者が 60 人を越え始める
+  - 緊急事態宣言はでてない
+  - 都立学校の休校を延長
+  - 1 住所 2 枚マスクの配布を発表 etc
+- 影響
+  - ブラウザのリリースにも影響
+  - 多くのイベント、カンファレンス等が中止かリモートに
+  - インターネットのトラフィックが急増中
+
+### Chrome 動向
+
+- Stable: 80.0
+- Updates
+  - Chrome Releases: Upcoming Chrome and Chrome OS releases
+    - <https://chromereleases.googleblog.com/2020/03/upcoming-chrome-and-chrome-os-releases.html>
+    - COVID-19 の影響で Chrome 81 のリリースを停止
+    - Security Fix のみ
+  - Chrome Releases: Chrome and Chrome OS release updates
+    - <https://chromereleases.googleblog.com/2020/03/chrome-and-chrome-os-release-updates.html>
+    - <https://blog.chromium.org/2020/03/chrome-and-chrome-os-release-updates.html>
+    - M83 が M82 の作業を含んで 3 週間早くリリースされる
+    - Canary, Dev, Beta のリリースも再開
+    - M80 のセキュリティアップデートも再開
+    - 4/7 に M81 リリース
+    - 5 中旬に M83 をリリース
+    - M82 は欠番
+  - What's New In DevTools (Chrome 82 83)
+    - <https://developers.google.com/web/updates/2020/03/devtools>
+  - Deprecations and removals in Chrome 81
+    - <https://developers.google.com/web/updates/2020/02/chrome-81-deps-rems>
+  - How to set up Signed HTTP Exchanges (SXG)
+    - <https://web.dev/how-to-set-up-signed-http-exchanges/>
+  - How to distribute Signed HTTP Exchanges (SXG)
+    - <https://web.dev/how-to-distribute-signed-http-exchanges/>
+  - Customize media notifications and playback controls with the Media Session API
+    - <https://web.dev/media-session/>
+  - Chromium Blog: Updates to form controls and focus
+    - <https://blog.chromium.org/2020/03/updates-to-form-controls-and-focus.html>
+    - フォーム要素の見た目刷新について
+    - Chrome 83 から更新(Android 版を除く)
+- Intents
+  - Ship: Add fractionalSecondDigits option to Intl.DateTimeFormat
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ISa0b6fOefY/sZhHDV5eAgAJ>
+  - Ship: mixed content autoupgrading for images
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/gFNMWmg7iOw/Dw58z-UXAgAJ>
+  - Ship: Adding captureTimestamp and senderCaptureTimeOffset to RTCRtpContributingSource.
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/SRfE60yI0uc/YVDqEul6AQAJ>
+  - Ship: Screen Wake Lock API
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/uDn6a9fquCM/QmBxasoLAgAJ>
+  - Ship: Support scrolling=off and scrolling=noscroll
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/qBQCKhzbIRc/RsfZQmf3AQAJ>
+  - Ship: WebXR DOM Overlay
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Q0D5Lz6HwMU/7vBD4fM5AAAJ>
+  - *Ship Cross-Origin-Opener-Policy*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/cJ5dXIcQCsc/eGgi0gkcAAAJ>
+  - *Ship: Cross-Origin-Embedder-Policy (COEP)*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/XBKAGb2_7uA/TDg_AkQbAAAJ>
+  - Ship: JavaScript private methods and accessors
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/HLpO-HC8aKc/TT32fUNPBAAJ>
+  - *Ship: WebOTP API*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/4QercWhVKP8/FnM5NkpnCgAJ>
+  - *Ship: 'revert' keyword*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/tOHolEkBeY8/jX0jvQqkBAAJ>
+  - Implement and Ship: RTCRtpSendParameters.degradationPreference
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/WPvxi5nUK2E/Xd0ZzPwxAwAJ>
+  - Implement and Ship: Unprefixed 'appearance' CSS property
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/C5afPWCPXp8/5-uxJaSBAQAJ>
+  - Implement and Ship: 'auto' keyword for '-webkit-appearance' CSS property
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2NKgeWa_kuQ/HACnp5OBAQAJ>
+  - Prototype: Layout Instability Shifted Element Surfacing
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/SxtAa7lj3nw/UpVagPRbAwAJ>
+  - Prototype: Font Access
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/pb8sjXyFFg4/oH_XpCMxAQAJ>
+  - Prototype: CIE LAB color functions for CSS
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/iwsT-jkCQcI/Rpt_hBFUBQAJ>
+  - *Prototype: Named pages with page-orientation*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ByWuVBk1lFE/vAfiloyPBAAJ>
+  - *Prototype: CSS aspect-ratio property*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/pD4UW52y8Uk/CPWozoVmBAAJ>
+  - Experiment: performance.measureMemory
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/zxCKzulX424/Ac3zzMqqAQAJ>
+  - Experiment: WebRTC Insertable Streams
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Oy84pXDhajI/lu-Z0p3QAAAJ>
+  - Experiment: WebAssembly SIMD
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/y3z1Q4HnpgY/SpWP6YNJAwAJ>
+  - Continue Experimenting: Native File System API
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/FvRHynL2uwE/_jbRY6xkAgAJ>
+  - Extend Origin Trial: Subresource prefetching+loading via Signed HTTP Exchange
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X9HF6MnNXcw/zZx_tHDHAwAJ>
+  - Extend Origin Trial: Contacts API Address/Icon support
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/dY2KbZJpyVo/X8ZsQuaGBAAJ>
+  - Extend Origin Trial: Content Index API
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/xrGJs7JZbPc/26OtzaGGBAAJ>
+  - Remove: -webkit-box quirks from -webkit-line-clamp
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/SVD5wSqVwKU/eY28UiNkAwAJ>
+  - *Remove: Cross origin subframe JS Dialogs*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hTOXiBj3D6A/JtkdpDd1BAAJ>
+  - Chrome University Summer 2019: Videos Published
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/IU2q_z1fYGg/qUU-F60kAQAJ>
+  - [blink-dev] Important Update: See you at BlinkOn 13
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/WA23wUp5mBg/ws8zopFeAgAJ>
+  - [blink-dev] Important Update on COVID-19 and BlinkOn
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Us1LhilhG6k/v4pitfMkAQAJ>
+  - *Enabling QUIC in tip-of-tree*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/x-cVaiYHpPk/in7VB3ccAQAJ>
+  - [PSA] Extensions to origin trials impacted by changes to Chrome release schedule
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/XXqiE1usLH4/qh0QHcNcAwAJ>
+    - Origin Trial の期限などがリリーススケジュール変更で変わるので API Owner は確認が必要
+    - 使ってる人も確認が必要かも
+  - [ACTION REQUESTED] Please Remove Chrome 82 from ChromeStatus
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/M3J065bEFyQ/vF36Ki6pBAAJ>
+    - 82 が無くなることを反映するための調査
+  - [UPDATES NEEDED] What's in Chrome 83
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/HiBjeh7KsOw/Lo7zP_1GBAAJ>
+    - 83 でリリースされる機能の整理
+- v8
+  - Understanding the ECMAScript spec, part 2 · V8
+    - <https://v8.dev/blog/understanding-ecmascript-part-2>
+    - hasOwnProperty の続き
+  - Pointer Compression in V8 · V8
+    - <https://v8.dev/blog/pointer-compression>
+- Other
+  - How Google improved ads performance with stale-while-revalidate
+    - <https://web.dev/ads-case-study-stale-while-revalidate/>
+    - Ad を Stale-While-Revalidate で最適化しようとしてる
+  - *Google Developers Blog: Join us for the digital Google for Games Developer Summit*
+    - <https://developers.googleblog.com/2020/03/join-us-for-digital-google-for-games.html>
+    - Game Developers カンファレンス
+  - Google Developers Blog: Update on Google at GDC 2020
+    - <https://developers.googleblog.com/2020/03/update-on-google-at-gdc-2020.html>
+    - Game Developers カンファレンスの延期
+  - Chromium Blog: New developer dashboard and registration flow for Chrome Web Store
+    - <https://blog.chromium.org/2020/03/new-developer-dashboard-and.html>
+  - Google Chrome and Web Developer Experts - YouTube
+    - <https://www.youtube.com/playlist?list=PLNYkxOF6rcIAZqdZ8Uz5hWLgTl319CaLH>
+    - GDE の Video を集めた Youtube のプレイリスト
+
+### Firefox 動向
+
+- Stable: 74.0
+- Updates
+  - *Firefox 74.0, See All New Features, Updates and Fixes*
+    - <https://www.mozilla.org/en-US/firefox/74.0/releasenotes/>
+    - Optional Chaining operator のサポート
+    - TLS 1.0/1.1 がリリース時は無効にされたが、 COVID-19 による影響で復帰
+      - 政府系のサイトなどでも移行できてなかった模様
+      - <https://www.mozilla.org/en-US/firefox/74.0/releasenotes/#note-788289>
+  - Firefox 74 for developers
+    - <https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/74>
+  - *Security means more with Firefox 74*
+    - <https://hacks.mozilla.org/2020/03/security-means-more-with-firefox-74-2/>
+    - Feature Policy, Cross-Origin-Resource-Policy も有効になった
+  - Future-proofing Firefox's JavaScript Debugger Implementation
+    - <https://hacks.mozilla.org/2020/03/future-proofing-firefoxs-javascript-debugger-implementation/>
+  - These Weeks in Firefox: Issue 70
+    - <https://blog.nightly.mozilla.org/2020/03/03/these-weeks-in-firefox-issue-70/>
+  - These Weeks in Firefox: Issue 71
+    - <https://blog.nightly.mozilla.org/2020/03/18/these-weeks-in-firefox-issue-71/>
+- Intents
+  - Ship: Restrict window.open features parameter
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/_3aWsRQ8Tfs/XwP0iVbbAwAJ>
+  - Ship: Intermediate CA Preloading
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/BHWxTOsmNeU/RVog7fSrAAAJ>
+  - *Ship: JavaScript public static fields*
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/mumdrb5OUqk/Mz62vPOrAAAJ>
+  - Ship: JavaScript Intl.Locale
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/XKz_JSBCN4k/-r07q_OrAAAJ>
+  - Ship: Element.getAnimations() and Document.getAnimations()
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/gie9ExD2-mU/7aTCCslyAAAJ>
+  - Ship: Web Animations Animation timelines (without the setter of Animation.timeline)
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/pm3qlPUdO4o/sMlBa13ZGgAJ>
+  - Ship: Web Animations implicit to/from keyframes and auto-removing redundant filling animations
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/dhMQ7m2V7AY/eg83o7PHGgAJ>
+  - Ship: Document as explicit root of an intersection observer
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/7n1t9I-kVFw/WpsAwZUPBAAJ>
+  - Ship: Atomics and SharedArrayBuffer objects (limited to a single thread)
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/yl0BXW-_ou0/u9CKDvuABgAJ>
+  - Ship: Delegated Credentials for TLS 1.3
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/TYiOYcs7rsg/FzQ2YOyfBQAJ>
+  - Implement and Ship: RTCRtpReceiver.getParameters()
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/LPMJggXKOh0/VtchqJbzGQAJ>
+  - Implement and Ship: RTCRtpSender.getParameters() and RTCRtpSender.setParameters()
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/zjm88YlPbjE/tiG8RILyGQAJ>
+  - Implement and ship: Ignore navigation to unknown protocol
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/AaXUQ_t51D4/KMY7I0UiBgAJ>
+  - *Prototype and ship: Make `<script defer>` wait for stylesheet loads*
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/VXlDBa3SvWA/q7BZjj5iBAAJ>
+  - *Unship: FTP protocol implementation*
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/FqCZUT9ay_o/jt4DLRDjAwAJ>
+- Other
+  - *Getting Closer on Dot Org? - The Mozilla Blog*
+    - <https://blog.mozilla.org/blog/2020/03/06/getting-closer-on-dot-org/>
+    - org ドメインの話
+  - Engineering Effectiveness Newsletter #1
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/8YmwbdYmfsQ/_cRn0nzvBgAJ>
+  - Identifying bugs affecting people working and learning from home
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/Z-XD5FmkGk8/-PElZfKjBgAJ>
+    - バグに `[wfh]` タグが
+  - Learn web technology at "sofa school"
+    - <https://hacks.mozilla.org/2020/03/learn-web-technology-at-sofa-school/>
+  - *Innovating on Web Monetization: Coil and Firefox Reality*
+    - <https://hacks.mozilla.org/2020/03/web-monetization-coil-and-firefox-reality/>
+    - Coil という新しい Web 収益化の方法をテストするらしい
+  - *Try our latest Test Pilot, Firefox for a Better Web, offering privacy and faster access to great content*
+    - <https://blog.mozilla.org/blog/2020/03/24/try-our-latest-test-pilot-firefox-for-a-better-web-offering-privacy-and-faster-access-to-great-content/>
+    - Scroll というサービスと組んで Better Web という試験サービスを米国でリリース
+    - 月 2.5 ドルを払えば、 Scroll とパートナーシップを結んだパブリッシャーのサイトでは広告がでない
+    - 昨年のテストでは、広告を表示するよりも 40% より多い額がパブリッシャーに渡った
+  - *KaiOS Technologies and Mozilla partner to enable a healthy mobile internet for everyone*
+    - <https://www.kaiostech.com/press/kaios-technologies-and-mozilla-partner-to-enable-a-healthy-mobile-internet-for-everyone/>
+    - Firefox OS をフォークしたフィーチャーフォン用の OS な KaiOS が Mozilla と提携
+    - TLS 1.3 や新しめのフォーマット(WASM, WebP, etc.)への対応、古い Gecko の更新なども検討中らしい
+  - *Opening data to understand social distancing*
+    - <https://blog.mozilla.org/data/2020/03/30/opening-data-to-understand-social-distancing/>
+    - フランスで Firefox の DAU(Daily Active Usage) が 3 月中旬から増加している
+    - Social distancing の影響かはちゃんと検証しないとわからないとは前置きした上で、一部データを公開
+
+### Safari 動向
+
+- Stable: 13.1
+- Updates
+  - *Release Notes for Safari Technology Preview 102*
+    - <https://webkit.org/blog/10067/release-notes-for-safari-technology-preview-102/>
+    - Changed the disk cache policy to allow resources larger than 10MB to be cached (r257041)
+    - Fixed value sanitization for input[type=text] to not truncate the value at a control character (r257132)
+    - Fixed new FontFace() to not throw when failing to parse arguments (r256659)
+    - *Implemented EventTarget constructor (r256716)*
+    - Set User-Agent in preconnect requests (r256912)
+    - Improved the speed of index cursor iteration when there are a lot of index records from different object stores (r256738)
+    - Added support for Apple Pay buttons with custom corner radii (r256648)
+    - Ensured CSS Transition and CSS Animation events are queued, sorted and dispatched by their timeline (r256619)
+    - Improved performance of track sizing algorithm for spanning items (r256826)
+  - Release Notes for Safari Technology Preview 103
+    - <https://webkit.org/blog/10243/release-notes-for-safari-technology-preview-103/>
+    - Supported expanding and collapsing details sections with the spacebar or "enter" key (r258058)
+    - Supported cycling through scope bar items by pressing tab (r258057)
+    - *Implemented wildcard behavior for Cross-Origin-Expose-Headers (r258330)*
+      - Access-Control-Expose-Header の typo ?
+  - *Wide Gamut Color in CSS with Display-P3*
+    - <https://webkit.org/blog/10042/wide-gamut-color-in-css-with-display-p3/>
+    - これまでの RGB よりもより鮮やかな色が含まれる色空間に拡張される
+    - 現状の RGB は Display-P3 のサブセット
+    - 緑, 赤, 青の順で表現領域が拡張される
+    - `color: color(display-p3 1 1 1)`
+  - *Full Third-Party Cookie Blocking and More*
+    - <https://webkit.org/blog/10218/full-third-party-cookie-blocking-and-more/>
+    - Safari が 3rd Party Cookie を完全にブロックする初めてのブラウザに
+    - 「他のブラウザがそれをするための道を切り開く」というモチベーション
+    - Google が報告した ITP が tracking vector になる問題も要因
+    - 必要なら Storage Access API を利用
+    - ITP による分類自体は継続する
+    - JS から使える全てのストレージは 7 日に制限 (Service Worker 含)
+    - A2HS された「アプリ」は別
+    - cross site document.referrer は origin のみに
+- Other
+
+### Edge 動向
+
+- Stable: 80.0
+- Updates
+  - Update on Stable channel releases for Microsoft Edge
+    - <https://blogs.windows.com/msedgedev/2020/03/20/update-stable-channel-releases/>
+    - Chromium のリリースに追従する
+  - *Plan for change: TLS 1.0 and TLS 1.1 soon to be disabled by default*
+    - <https://blogs.windows.com/msedgedev/2020/03/31/tls-1-0-tls-1-1-schedule-update-edge-ie11/>
+    - 現状を鑑みて、 2020 前半に予定されていた 1.0/1.1 の無効化を延期
+    - Edge は 2020/7 の 84
+    - Edge Legacy と IE11 は 2020/9
+    - をそれぞれ予定
+  - The top 10 reasons to switch to the new Microsoft Edge
+    - <https://blogs.windows.com/windowsexperience/2020/03/30/the-top-10-reasons-to-switch-to-the-new-microsoft-edge/>
+    - Edge に追加する予定の機能紹介
+    - 縦タブ、コレクション、スマートコピーなど
+  - *新しい Microsoft Edge へのアップグレード - Windows Blog for Japan*
+    -  https://blogs.windows.com/japan/2020/01/16/upgrading-new-microsoft-edge-79-chromium/
+    - 2020/4/16 まで確定申告が延期
+    - 2020/4/17 以降に延期
+- Chakra
+  - Release ChakraCore v1.11.17 · microsoft/ChakraCore
+    - <https://github.com/microsoft/ChakraCore/releases/tag/v1.11.17>
+- Other
+  - Debugging Proxy Configuration Scripts in the new Edge
+    - <https://textslashplain.com/2020/03/25/debugging-proxy-configuration-scripts-in-the-new-edge/>
+    - PAC のデバッグの話?
+
+### WHATWG/W3C 動向
+
+- Recommendation
+- Proposed Recommendation
+- Candidate Recommendation
+  - *DOM Review Draft 18 June 2019 Endorsed as a W3C Candidate Recommendation*
+    - <https://www.w3.org/blog/news/archives/8398>
+    - <https://lists.w3.org/Archives/Public/public-html/2020Mar/0003.html>
+    - WHATWG DOM の仕様を Review Draft として W3C から公開
+- Working Draft
+- First Public Working Draft
+- Chartering
+  - *CoVid-19 Remote Meet, Work, Class Community Group created*
+    - <https://lists.w3.org/Archives/Public/public-new-work/2020Mar/0008.html>
+  - *Work in progress on a WebTransport Working Group charter*
+    - <https://lists.w3.org/Archives/Public/public-new-work/2020Apr/0001.html>
+    - WebTransport WG ができる
+  - *Web Real-Time Communications Working Group Charter Extended until 30 September 2020*
+    - <https://lists.w3.org/Archives/Public/public-new-work/2020Mar/0014.html>
+    - WebRTC WG は 9/30 で閉じる
+    - 主な作業者が WebTransport に移る
+- Other
+  - *Join us in celebrating the 31st birthday of the World Wide Web*
+    - <https://www.w3.org/blog/news/archives/8378>
+    - Web 31 歳
+  - *`CSS X' \| W3C Blog*
+    - <https://www.w3.org/blog/2020/03/css-x/>
+    - CSS にレベルがない理由
+  - *Why Are We Talking About CSS4? - Smashing Magazine*
+    - <https://www.smashingmagazine.com/2020/03/css4-pros-cons-discussion/>
+    - CSS4 についてどういう議論をしているか
+  - *pickhardt/js_reference_monitors: A proposed JavaScript API to allow reference monitors in modern web applications*
+    - <https://github.com/pickhardt/js_reference_monitors>
+    - TC39 じゃなく DOM 側での提案?
+    - Electron での情報漏えいなどをうけ Reference Monitor を入れる提案
+    - 意図しない呼び出しなどを止める仕組み
+
+### TC39 動向
+
+- Meeting
+  - 2020-02
+    - tc39/agendas
+      - <https://github.com/tc39/agendas/blob/master/2020/02.md>
+    - tc39/notes
+      - <https://github.com/tc39/notes/tree/master/meetings/2020-02>
+- Proposals Diff
+  - <https://github.com/tc39/proposals/compare/master@{2020-02-01}...master@{2020-03-01}>
+  - <https://tc39.github.io/beta/>
+  - 0->1
+    - Decimal
+    - Host Virtualizability
+    - Legacy reflection features
+    - Async initialization
+    - Secure Random Number Generator
+    - ArrayBuffer view stride
+    - Intl.DurationFormat
+  - 1->2
+    - Logical Assignment Operators
+  - 2->3
+  - 3->4
+    - Intl.NumberFormat
+    - Intl.Locale
+- New Proposals
+  - younies/proposal-intl-duration-format
+    - <https://github.com/younies/proposal-intl-duration-format>
+- Other
+  - *JavaScript: The First 20 Years*
+    - http://www.wirfs-brock.com/allen/posts/866
+    - <https://zenodo.org/record/3707008>
+    - JS の歴史についての論文
+    - HOPL (History Of Programming Languages Conferences) に提出する
+
+### IETF 動向
+
+- IETF 107 Virtual
+  - Full remote で、セッションを少数に絞って実施
+  - materials
+    - <https://datatracker.ietf.org/meeting/107/materials>
+  - httpwg
+    - <https://github.com/httpwg/wg-materials/tree/gh-pages/ietf107>
+    - agenda
+      - <https://github.com/httpwg/wg-materials/blob/gh-pages/ietf107/agenda.md>
+    - minutes
+  - *quicwg*
+    - <https://github.com/quicwg/wg-materials/tree/master/ietf107>
+    - agenda
+      - <https://github.com/quicwg/wg-materials/blob/master/ietf107/agenda.md>
+    - minutes
+  - *webtrans*
+    - <https://github.com/DavidSchinazi/webtrans-wg-materials>
+    - agenda
+      - <https://datatracker.ietf.org/meeting/107/materials/agenda-107-webtrans-00>
+    - minutes
+      - <https://datatracker.ietf.org/meeting/107/materials/minutes-107-webtrans-00>
+    - slides
+      - Chair slide
+        - <https://datatracker.ietf.org/meeting/107/materials/slides-107-webtrans-ietf-107-webtrans-wg-slides-01>
+  - *wpack*
+    - agenda
+      - <https://datatracker.ietf.org/meeting/107/materials/agenda-107-wpack-01>
+    - minutes
+      - no minutes
+    - slides
+      - slides-107-wpack-chair-slides-03
+        - <https://datatracker.ietf.org/meeting/107/materials/slides-107-wpack-chair-slides-03>
+      - slides-107-wpack-use-cases-00
+        - <https://datatracker.ietf.org/meeting/107/materials/slides-107-wpack-use-cases-00>
+      - slides-107-wpack-web-bundles-00
+        - <https://datatracker.ietf.org/meeting/107/materials/slides-107-wpack-web-bundles-00>
+      - *slides-107-wpack-signer-origins-00*
+        - <https://datatracker.ietf.org/meeting/107/materials/slides-107-wpack-signer-origins-00>
+      - *slides-107-wpack-draft-thomson-wpack-content-origin-01*
+        - <https://datatracker.ietf.org/meeting/107/materials/slides-107-wpack-draft-thomson-wpack-content-origin-01>
+      - *slides-107-wpack-comparing-content-origins-and-signer-origins-00*
+        - <https://datatracker.ietf.org/meeting/107/materials/slides-107-wpack-comparing-content-origins-and-signer-origins-00>
+  - tlswg
+    - <https://github.com/tlswg/wg-materials>
+    - 無し
+  - *privacypass*
+    - agenda
+      - <https://datatracker.ietf.org/meeting/107/materials/agenda-107-privacypass-04>
+    - minutes
+      - no minutes
+    - slides
+      - *slides-107-privacypass-chair-slides-00*
+        - <https://datatracker.ietf.org/meeting/107/materials/slides-107-privacypass-chair-slides-00>
+      - *slides-107-privacypass-privacy-pass-use-cases-02*
+        - <https://datatracker.ietf.org/meeting/107/materials/slides-107-privacypass-privacy-pass-use-cases-02>
+      - *slides-107-privacypass-privacy-pass-ecosystem-00*
+        - <https://datatracker.ietf.org/meeting/107/materials/slides-107-privacypass-privacy-pass-ecosystem-00>
+      - *slides-107-privacypass-privacy-pass-charter-01*
+        - <https://datatracker.ietf.org/meeting/107/materials/slides-107-privacypass-privacy-pass-charter-01>
+  - *dispatch*
+    - *HTTP Link HInts*
+      - <https://www.ietf.org/archive/id/draft-nottingham-link-hint-02.txt>
+    - SRT Protocol Overview
+      - <https://datatracker.ietf.org/meeting/107/materials/slides-107-dispatch-srt-overview-01>
+      - secure reliable transport
+  - secdispatch
+    - slides-107-secdispatch-client-cert-http-header-00
+      - <https://datatracker.ietf.org/meeting/107/materials/slides-107-secdispatch-client-cert-http-header-00>
+    - slides-107-secdispatch-http-sasl-00
+      - <https://datatracker.ietf.org/meeting/107/materials/slides-107-secdispatch-http-sasl-00>
+      - 可愛い
+- RFC
+- IETF Last Call
+- WG Last Call
+- Call for Adoption
+- I-D Action
+- Draft
+  - *Advisory Content-Length for HTTP*
+    - <https://tools.ietf.org/html/draft-nottingham-bikeshed-length-00>
+  - JSON Type Definition
+    - <https://tools.ietf.org/html/draft-ucarion-json-type-definition-00>
+  - SVG Fun with kramdown-rfc2629
+    - <https://tools.ietf.org/html/draft-fossati-svg-test-01>
+  - RTP Payload Format for Essential Video Coding (EVC)
+    - <https://tools.ietf.org/html/draft-zhao-avtcore-rtp-evc-01>
+  - Asymmetric Manifest Based Integrity
+    - <https://tools.ietf.org/html/draft-ietf-mboned-ambi-00>
+  - Circuit Breaker Assisted Congestion Control
+    - <https://tools.ietf.org/html/draft-ietf-mboned-cbacc-00>
+  - 5G transport network benchmarking
+    - <https://tools.ietf.org/html/draft-contreras-bmwg-5g-01>
+  - *CBOR Certificate Algorithm for TLS Certificate Compression*
+    - <https://tools.ietf.org/html/draft-mattsson-tls-cbor-cert-compress-00>
+  - *CBOR Object Signing and Encryption (COSE): Headers for Carrying CBOR Compressed Certificates*
+    - <https://tools.ietf.org/html/draft-mattsson-cose-cbor-cert-compress-00>
+  - *A CBOR Tag for Unprotected CWT Claims Sets*
+    - <https://tools.ietf.org/html/draft-birkholz-rats-uccs-00>
+  - Concise Binary Object Representation (CBOR) Tag for Date
+    - <https://tools.ietf.org/html/draft-jones-cbor-date-tag-00>
+  - Ephemeral Diffie-Hellman Over COSE (EDHOC)
+    - <https://tools.ietf.org/html/draft-selander-lake-edhoc-01>
+  - BCP72 - A Problem Statement
+    - <https://tools.ietf.org/html/draft-mcfadden-smart-threat-changes-00>
+  - *Retry-Scope header field*
+    - <https://tools.ietf.org/html/draft-polli-retry-scope-00>
+  - *Privacy Pass: Architectural Framework*
+    - <https://tools.ietf.org/html/draft-davidson-pp-architecture-00>
+  - *Privacy Pass: HTTP API*
+    - <https://tools.ietf.org/html/draft-svaldez-pp-http-api-00>
+  - *Privacy Pass: The Protocol*
+    - <https://tools.ietf.org/html/draft-davidson-pp-protocol-00>
+  - *Content-Based Origins for the Web*
+    - <https://tools.ietf.org/html/draft-thomson-wpack-content-origin-00>
+    - SXG の代替として提案
+  - Use Cases for RATS
+    - <https://tools.ietf.org/html/draft-chen-rats-usecase-00>
+  - Simple Registration Reporting
+    - <https://tools.ietf.org/html/draft-yee-regext-simple-registration-reporting-00>
+  - *Conditional HTTP Requests Using Digests*
+    - <https://tools.ietf.org/html/draft-thomson-http-if-digest-00>
+    - If-Digest という条件付きリクエストヘッダの提案
+    - digest algorithm を明示するところが Etag / If-None-Match との違い
+  - OCSP Nonce Extension
+    - <https://tools.ietf.org/html/draft-msahni-lamps-ocsp-nonce-01>
+  - Semi-Static Diffie-Hellman Key Establishment for TLS 1.3
+    - <https://tools.ietf.org/html/draft-ietf-tls-semistatic-dh-01>
+  - The OAuth 2.1 Authorization Framework
+    - <https://tools.ietf.org/html/draft-parecki-oauth-v2-1-00>
+  - A Vocabulary of Path Properties
+    - <https://tools.ietf.org/html/draft-irtf-panrg-path-properties-00>
+  - Bootstrapped TLS Authentication
+    - <https://tools.ietf.org/html/draft-friel-tls-eap-dpp-00>
+  - Textual Analysis Methodology for Security Considerations Sections
+    - <https://tools.ietf.org/html/draft-mcfadden-smart-rfc3552-textual-research-00>
+  - User Plane Message Encoding
+    - <https://tools.ietf.org/html/draft-murakami-dmm-user-plane-message-encoding-01>
+  - DNS-over-HTTPS and DNS-over-TLS Server Discovery and Deployment Considerations for Home and Mobile Networks
+    - <https://tools.ietf.org/html/draft-btw-add-home-01>
+  - Changing the Default QUIC ACK Policy
+    - <https://tools.ietf.org/html/draft-fairhurst-quic-ack-scaling-01>
+  - TLS Proxy Best Practice
+    - <https://tools.ietf.org/html/draft-wang-tls-proxy-best-practice-01>
+  - JMAP for Quotas
+    - <https://tools.ietf.org/html/draft-ietf-jmap-quotas-01>
+  - Impact of TLS 1.3 to Operational Network Security Practices
+    - <https://tools.ietf.org/html/draft-camwinget-tls-ns-impact-00>
+  - *The Transport-Info HTTP Header*
+    - <https://tools.ietf.org/html/draft-ohanlon-transport-info-header-01>
+    - 経由されたネットワーク上の RTT や経路情報を載せるヘッダ
+  - Domain Name System Uniform Resource Identifiers for DNS over HTTPS and DNS over TLS
+    - <https://tools.ietf.org/html/draft-mglt-dprive-dns-uri-00>
+  - *Extensible Prioritization Scheme for HTTP*
+    - <https://tools.ietf.org/html/draft-ietf-httpbis-priority-00>
+    - kazuho さんの draft が httpbis の wg draft に
+  - *User Defined Resource Error HTTP Status Code*
+    - <https://tools.ietf.org/html/draft-divilly-status-555-00>
+    - Status Code 555 でサーバ独自のエラーを作りたい
+    - Oracle の提案
+  - Accept-Auth HTTP Header for 3xx/401 Negotiation, and Redirect Authentication Scheme
+    - <https://tools.ietf.org/html/draft-williams-http-accept-auth-and-redirect-01>
+  - RTP Payload Format for Versatile Video Coding (VVC)
+    - <https://tools.ietf.org/html/draft-ietf-avtcore-rtp-vvc-01>
+  - Communicating Warning Information in HTTP APIs
+    - <https://tools.ietf.org/html/draft-cedik-http-warning-01>
+  - Real-time text solutions for multi-party sessions
+    - <https://tools.ietf.org/html/draft-hellstrom-avtcore-multi-party-rtt-solutions-00>
+  - User Defined Resource Error HTTP Status Code
+    - <https://tools.ietf.org/html/draft-divilly-user-defined-resource-error-00>
+  - TLS-based EAP types and TLS 1.3
+    - <https://tools.ietf.org/html/draft-dekok-emu-tls-eap-types-01>
+- Other
+
+### セキュリティ動向
+
+- Cookie Status :: Current Status Of Browser Tracking Prevention
+  - <https://www.cookiestatus.com/>
+  - ブラウザごとの Cookie の扱いのまとめ
+- *Cliqz - Secure browser with built-in quick search*
+  - <https://cliqz.com/en/>
+  - Cookie Status にあったプライバシー重視なブラウザ
+  - 2015 年からあるらしい
+  - Firefox のフォーク
+    - Why we forked Firefox and not Chromium
+    - <https://0x65.dev/blog/2019-12-17/why-we-forked-firefox-and-not-chromium.html>
+- Let's Encrypt Has Issued a Billion Certificates
+  - <https://letsencrypt.org/2020/02/27/one-billion-certs.html>
+  - 2017/6 に開始し 2020/02/27 で 10 億の証明書を発行
+  - HTTPS は世界 58% 米 64% だったのが、世界 81% 米 91%
+  - LE は 4600 万サイト 11 人で 261 万ドル予算から始まり、 1.92 億を 13 人で 335 万ドルで
+  - LE 自体もそうだが ACME(2019)や Certbot が大きい
+- *2020.02.29 CAA Rechecking Bug - Incidents - Let's Encrypt Community Support*
+  - <https://community.letsencrypt.org/t/2020-02-29-caa-rechecking-bug/114591/4>
+  - LE は domain control と CAA のチェックを行う
+  - domain control は 30 日有効とみなす
+  - その 30 日の間でも発行 8h 前に CAA は再チェックをする
+  - 1 回で N 個の証明書を発行する場合(SNI)、本来 N 個の CAA 全部チェック
+  - しかしバグで最初の 1 個を N 回チェックしていた
+  - 30 日以内に domain control してたら、 2 個目以降の CAA を変えていても素通り
+  - CAA(任意)を設定し、同時に複数取得し、期限より前に再発行している場合該当うる可能性
+  - 大半の証明書はセキュリティリスクがあるとは言えないが、ルール上取り消す必要がある
+  - 2.6%(300 万件)が失効対象、そのうち CAA で禁止されてた 445 件と 170 万件はすでに置き換わった
+  - 3/5 までに残り 130 万も失効したかったが、影響が大きすぎ、放っておいても 90 日で消えるので取りやめに
+- An Opinion Piece on Internet Security \| APNIC Blog
+  - <https://blog.apnic.net/2020/03/24/an-opinion-piece-on-internet-security/>
+
+### 周辺動向
+
+- *Enigma Conference 2020 – Browser Privacy Panel*
+  - <https://textslashplain.com/2020/03/11/enigma-conference-2020-browser-privacy-panel/>
+  - 1 月の Enigma Conference で、ブラウザベンダ各位の Privacy に関する発表が有った
+  - Brave/Firefox/Chrome/Edge
+  - 録画が公開されている
+- npm is joining GitHub - The GitHub Blog
+  - <https://github.blog/2020-03-16-npm-is-joining-github/>
+- *The History of the URL*
+  - <https://blog.cloudflare.com/the-history-of-the-url/>
+  - URL の歴史
+- *新型コロナウイルス感染症 2019(COVID-19)に関する更新 - YouTube ヘルプ*
+  - 画質を下げてインフラを保護
+    - <https://support.google.com/youtube/answer/9777243>
+  - Netflix, Prime Video なども実施
+    - <https://www.itmedia.co.jp/news/articles/2003/25/news078.html>
+- *COVID-19 impacts on Internet traffic: Seattle, Northern Italy and South Korea*
+  - <https://blog.cloudflare.com/covid-19-impacts-on-internet-traffic-seattle-italy-and-south-korea/>
+
+### イベント
+
+- 3 月
+  - 23: Google Game Developer Conference (延期)
+  - 27: IETF 107 Virtual Vancouver
+    - full remote
+  - 31-2: TC39 75th Apple
+- 4 月
+  - ??: Cloud Next
+    - 延期
+- 5 月
+  - ??: Chrome Security Summit
+  - 12-14: Google I/O
+    - 当初はバーチャルな開催も検討していたらしいが完全にキャンセル
+- 6 月
+  - 19: SecWeb
+  - ??: WWDC
+    - virtual
+
+### WrapUp
+
+- JS/CSS/URL などの歴史振り返りが多かった
+- コロナで 6 月くらいまで全部のイベントが中止に
+- 動画サービスが帯域の削減
+- Chrome 82 の欠番が決定
+- Safari が 3rd Party Cookie block をアナウンス
+- IETF が full remote 実施
+- WebRTC の作業を終え WebTrans への移行の兆し
+- Privacy Pass が動きはじめる
+- WebPackage も SXG の署名方法に動き
