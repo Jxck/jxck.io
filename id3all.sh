@@ -937,3 +937,16 @@ eyeD3 --title "ep64 Monthly Web 202002" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep65.mp3
+
+eyeD3 --title "ep65 Monthly Web 202003" \
+      --track 73 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep65.mp3
+
+
+
