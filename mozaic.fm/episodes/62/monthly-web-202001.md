@@ -118,60 +118,60 @@ guest
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/QyIz793UdGs/PgWUPO1PDQAJ>
   - Ship: ES modules for Shared Workers ('module' type option)
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/cfHHwQUynI4/6_h9FqemDgAJ>
-- Implement and Ship: Exclude implicit tracks from grid-template-rows/columns resolved values
+  - Implement and Ship: Exclude implicit tracks from grid-template-rows/columns resolved values
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/EKvyx2lZJXI/lyjkbiXZBQAJ>
-- Implement and Ship: WebXR AR Module
+  - Implement and Ship: WebXR AR Module
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/BXxS2U5EaN0/cSVmzxSmDQAJ>
   - Implement and Ship: Reversed range support for
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/GTPDv_MQbR0/fMjKxd5iDgAJ>
-- *Prototype: Service Worker Scopes Pattern Matching*
+  - *Prototype: Service Worker Scopes Pattern Matching*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/rSavaKsqd0o/mqos8JyEAwAJ>
-- *Prototype: Add timezonechange event to Window/WorkerGlobalScope*
+  - *Prototype: Add timezonechange event to Window/WorkerGlobalScope*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/4BUSE2aTQEc/bNQv4jyTCQAJ>
-- Prototype: Support replaceable animations
+  - Prototype: Support replaceable animations
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/H5sz_dg6fKc/1X7K7U4XCgAJ>
-- *Prototype: Origin isolation*
+  - *Prototype: Origin isolation*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/0vuiPTvBGvQ/4faGCaqnDQAJ>
-- *Prototype: Origin Policy*
+  - *Prototype: Origin Policy*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/phH1_G6qI0o/2O4YR8RkCgAJ>
-- Prototype: Run PWA on Startup
+  - Prototype: Run PWA on Startup
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/T6d2zqF_jpw/-ZmHBqlKDgAJ>
-- Prototype: Curve25519 in Web Cryptography
+  - Prototype: Curve25519 in Web Cryptography
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/PgBVW4ru1EQ/5dllcdVoDgAJ>
-- *Prototype: Schemeful Same-Site*
+  - *Prototype: Schemeful Same-Site*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/qB7DKqxkiaA/IEqPn3RYDgAJ>
-- Prototype: Gutters in flexbox: row-gap and column-gap properties
+  - Prototype: Gutters in flexbox: row-gap and column-gap properties
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/VU1zkDOL3bc/AU9FjKl2DQAJ>
-- Prototype: Schema.org data for media
+  - Prototype: Schema.org data for media
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/UlEFRLy80q8/s3qwWTVAEgAJ>
-- Prototype: SKU APIs for Web Apps in the Play Store
+  - Prototype: SKU APIs for Web Apps in the Play Store
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/vkS3k30lWNs/Gt4sKECQEgAJ>
-- Experiment:
-- Change:
-- Unship:
-- Remove: Non-ASCII Case-insensitive equivalents for ASCII keywords
+  - Experiment:
+  - Change:
+  - Unship:
+  - Remove: Non-ASCII Case-insensitive equivalents for ASCII keywords
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/sFOpNuQ91UU/VZDf-oCnBAAJ>
-- Remove: `-webkit-margin-*-collapse`
+  - Remove: `-webkit-margin-*-collapse`
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ewWQH9vEqtI/L2r2WFhPBAAJ>
-- Remove: The `<discard>` element
+  - Remove: The `<discard>` element
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/jUJG_CFqEvE/bc5_tXo8BAAJ>
   - Remove: TLS 1.0 and TLS 1.1
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/q3MkzsLYeJE/srEN4-t8DQAJ>
-- Deprecate and Remove: TLS 1.3 downgrade hardening bypass (take two)
+  - Deprecate and Remove: TLS 1.3 downgrade hardening bypass (take two)
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/CK0Xxdz-4Mg/KIOaBAXmBQAJ>
-- *Deprecate and Freeze: The User-Agent string*
+  - *Deprecate and Freeze: The User-Agent string*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/-2JIRNMWJ7s/yHe4tQNLCgAJ>
     - Blink principles of web compatibility
       - <https://docs.google.com/document/d/1RC-pBBvsazYfCNNUSkPqAVpSpNJ96U8trhNkfV0v9fk/edit>
-- Extend Origin Trial: JitterBufferDelayHint
+  - Extend Origin Trial: JitterBufferDelayHint
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/pEXIK2EkM0U/zyY0HB_mBQAJ>
   - Extend Origin Trial: Native File System API
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/7HasvKUZm5c/7k3QehJBCAAJ>
-- *Experiment: Web NFC*
+  - *Experiment: Web NFC*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8bsAd-PsdbA/ZTcgiwf7CQAJ>
-- Experiment: PointerLock unadjusted mouse movement Origin Trial
+  - Experiment: PointerLock unadjusted mouse movement Origin Trial
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/EL_IQ4BKpT0/5eDDVw02CQAJ>
-- Form Controls Refresh enabled
+  - Form Controls Refresh enabled
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/kscJbfVjR5k/z73iZYlHCQAJ>
   - "New System Color Keyboards" typo on Chrome Platform Status
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/LB0dTAxJBEE/wd52nmvHBgAJ>
