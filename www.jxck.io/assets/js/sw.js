@@ -1,7 +1,11 @@
 'use strict'
 EventTarget.prototype.on  = EventTarget.prototype.addEventListener
 EventTarget.prototype.off = EventTarget.prototype.removeEventListener
-const VERSION = 'v0.3.1'
+/**
+ * 同じ VERSION であれば、キャッシュにないものだけ追加する
+ * VERSION を変えると、あたらしく作り追加する
+ */
+const VERSION = 'v0.4.0'
 const log = console.debug.bind(console)
 log('sw.js')
 
@@ -10,6 +14,9 @@ async function worker() {
   log('worker()', self)
 
   const ASSETS = [
+    // episodes
+    new Request('https://mozaic.fm/episodes/0/introduction-of-mozaicfm.html', {cache: 'no-store'}),
+
     // fonts
     'https://mozaic.fm/assets/font/NotoSansCJKjp-Regular-Jxck-20200407.woff2',
     'https://mozaic.fm/assets/font/NotoSansCJKjp-Bold-Jxck-20200407.woff2',
@@ -57,13 +64,7 @@ async function worker() {
     log('install > skipWaiting', e)
     async function installing() {
       const cache = await caches.open(VERSION)
-      // キャッシュされた URL の一覧
-      const urls = Array.from(await cache.keys()).map((req) => req.url)
-      log('exists', urls)
-      // キャッシュされてない ASSETS 一覧
-      const diff = ASSETS.filter((asset) => !urls.includes(asset))
-      log('diff', diff)
-      await cache.addAll(diff)
+      await cache.addAll(ASSETS)
       return skipWaiting()
     }
     e.waitUntil(installing())
@@ -83,16 +84,16 @@ async function worker() {
       })
 
       // 不要なエントリの抽出
-      const cache           = await caches.open(VERSION)
-      const requests        = await cache.keys()
-      const old_requests    = requests.filter((req) => !ASSETS.includes(req.url))
-      const requests_remove = old_requests.map((req) => {
-        log('remove cache', req.url)
-        return cache.delete(req)
-      })
+      // const cache           = await caches.open(VERSION)
+      // const requests        = await cache.keys()
+      // const old_requests    = requests.filter((req) => !ASSETS.includes(req.url))
+      // const requests_remove = old_requests.map((req) => {
+      //   log('remove cache', req.url)
+      //   return cache.delete(req)
+      // })
 
       // 一斉に削除
-      const result = await Promise.allSettled(stores_remove.concat(requests_remove))
+      const result = await Promise.allSettled(stores_remove)
       log(result)
 
       return self.clients.claim()
