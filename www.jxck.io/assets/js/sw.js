@@ -1,7 +1,7 @@
 'use strict'
 EventTarget.prototype.on  = EventTarget.prototype.addEventListener
 EventTarget.prototype.off = EventTarget.prototype.removeEventListener
-const VERSION = 'v0.3.0'
+const VERSION = 'v0.3.1'
 const log = console.debug.bind(console)
 log('sw.js')
 
@@ -10,11 +10,47 @@ async function worker() {
   log('worker()', self)
 
   const ASSETS = [
+    // fonts
     'https://mozaic.fm/assets/font/NotoSansCJKjp-Regular-Jxck-20200407.woff2',
     'https://mozaic.fm/assets/font/NotoSansCJKjp-Bold-Jxck-20200407.woff2',
     'https://mozaic.fm/assets/font/NotoSansMonoCJKjp-Regular-Jxck-20200407.woff2',
     'https://mozaic.fm/assets/font/NotoSansMonoCJKjp-Bold-Jxck-20200407.woff2',
     'https://mozaic.fm/assets/js/highlight.pack.js',
+
+    // css
+    'https://mozaic.fm/assets/css/body.css',
+    'https://mozaic.fm/assets/css/article.css',
+    'https://mozaic.fm/assets/css/dialog.css',
+    'https://mozaic.fm/assets/css/info.css',
+    'https://mozaic.fm/assets/css/header.css',
+    'https://mozaic.fm/assets/css/footer.css',
+    'https://mozaic.fm/assets/css/main.css',
+    'https://mozaic.fm/assets/css/mozaic.css',
+
+    // svg
+    'https://mozaic.fm/assets/img/jxck.svg',
+    'https://mozaic.fm/assets/img/mozaic.svg',
+    'https://mozaic.fm/assets/img/podcast.svg',
+    'https://mozaic.fm/assets/img/itunes.svg',
+    'https://mozaic.fm/assets/img/google-podcast.svg',
+    'https://mozaic.fm/assets/img/search.svg',
+    'https://mozaic.fm/assets/img/share.svg',
+    'https://mozaic.fm/assets/img/twitter.svg',
+
+    // png
+    'https://mozaic.fm/assets/img/mozaic.png',
+    'https://mozaic.fm/assets/img/portal-preview.png',
+
+    // js
+    'https://mozaic.fm/assets/js/mozaic-player.mjs',
+    'https://mozaic.fm/assets/js/mozaic.js',
+    'https://mozaic.fm/assets/js/sw.js',
+
+    // template
+    'https://mozaic.fm/assets/template/mozaic-player.html',
+
+    // other
+    'https://mozaic.fm/manifest.webmanifest',
   ]
 
   self.on('install', async (e) => {
