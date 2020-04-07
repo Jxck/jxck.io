@@ -100,7 +100,7 @@ async function getFont(page, URL) {
       return {nodeId, familyName}
     })
   }))
-  const hits = fonts.flat().filter(({familyName}) => !(familyName.startsWith("Noto") || familyName.startsWith("Apple")))
+  const hits = fonts.flat().filter(({familyName}) => !familyName.startsWith("Noto"))
 
   return Promise.all(hits.map(async ({nodeId}) => {
     const {outerHTML} = await page._client.send("DOM.getOuterHTML", {nodeId})
