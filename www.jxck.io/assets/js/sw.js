@@ -5,7 +5,7 @@ EventTarget.prototype.off = EventTarget.prototype.removeEventListener
  * 同じ VERSION であれば、キャッシュにないものだけ追加する
  * VERSION を変えると、あたらしく作り追加する
  */
-const VERSION = 'v0.5.0'
+const VERSION = 'v0.5.1'
 const log = console.debug.bind(console)
 log('sw.js')
 
@@ -128,6 +128,14 @@ async function worker() {
       return res || fetch(req)
     }
     e.respondWith(fetching(req))
+  })
+
+  self.addEventListener('periodicsync', (e) => {
+    console.log('periodicsync', e)
+    e.waitUntil(async function() {
+      const cache = await caches.open('periodic-background-sync')
+      return cache.add(new Request(`/?${new Date().toISOString()}`), new Response())
+    }())
   })
 }
 worker()

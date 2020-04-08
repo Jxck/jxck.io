@@ -203,4 +203,14 @@ document.on('DOMContentLoaded', async (e) => {
     navigator.serviceWorker.ready,
     controllerChange
   ])
+
+  if (registration.periodicSync) {
+    const status = await navigator.permissions.query({name:'periodic-background-sync'});
+    console.info(status)
+    if (status.state === 'granted') {
+      await registration.periodicSync.register('test', {
+        minInterval: 60 * 60 * 6 // 6h
+      })
+    }
+  }
 })
