@@ -6,10 +6,34 @@
 <title>Content Index API DEMO</title>
 
 <style>
+strong { color: red }
 </style>
 
 <h1>Content Index API DEMO</h1>
 
+<h2> Click link below for adding to content index</h2>
+<p>Content Index Support: <span class=support></span></p>
+<p>Message: <strong class=message></strong></p>
+<ul>
+  <li class=one>
+    <a href=one.html>one</a>
+    <button class=add>add</button>
+    <button class=del>del</button>
+    <span class=saved></span>
+  </li>
+  <li class=twe>
+    <a href=twe.html>twe</a>
+    <button class=add>add</button>
+    <button class=del>del</button>
+    <span class=saved></span>
+  </li>
+  <li class=three>
+    <a href=three.html>three</a>
+    <button class=add>add</button>
+    <button class=del>del</button>
+    <span class=saved></span>
+  </li>
+</ul>
 
 <script>
   'use strict';
@@ -20,6 +44,60 @@
   document.on('DOMContentLoaded', async (e) => {
     console.log(e)
     const registration = await navigator.serviceWorker.register('worker.js')
-    console.log(await navigator.serviceWorker.ready)
+    await navigator.serviceWorker.ready
+
+    console.log('index', registration.index)
+    $('.support').textContent = !!registration.index
+
+    const indexes = await registration.index.getAll()
+    $$('li span').forEach((e) => e.textContent = '')
+    indexes.forEach(({id}) => {
+      $(`li.${id} span`).textContent = '(saved)'
+    })
+  })
+
+  $$('.add').forEach((add) => {
+    console.log(add)
+    add.on('click', async (e) => {
+      e.preventDefault()
+      console.log(e.target)
+      const id = e.target.parentElement.className
+      const registration = await navigator.serviceWorker.ready
+      await registration.index.add({
+        id: id,
+        title: id,
+        category: `article`,
+        launchUrl:`${id}.html`,
+        description: `content index api demo ${id}`,
+        icons: [
+          {
+            src: 'https://logo.jxck.io/jxck.60x60.png',
+            sizes: '60x60',
+            type: 'image/png',
+          },
+          {
+            src: 'https://logo.jxck.io/jxck.1200x1200.png',
+            sizes: '1200x1200',
+            type: 'image/png',
+          },
+        ]
+      })
+
+      $('.message').textContent = `add ${id} successfully`
+      $(`li.${id} span`).textContent = '(saved)'
+    })
+  })
+
+  $$('.del').forEach((del) => {
+    console.log(del)
+    del.on('click', async (e) => {
+      e.preventDefault()
+      console.log(e.target)
+      const id = e.target.parentElement.className
+      const registration = await navigator.serviceWorker.ready
+      await registration.index.delete(id)
+      $('.message').textContent = `delete ${id} successfully`
+      $(`li.${id} span`).textContent = ''
+    })
   })
 </script>
