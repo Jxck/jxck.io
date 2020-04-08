@@ -14,6 +14,6 @@ self.addEventListener('periodicsync', (e) => {
   console.log('periodicsync', e)
   e.waitUntil(async function() {
     const cache = await caches.open('periodic-background-sync')
-    return cache.add(`./?q=${Date.now()}`, res)
+    return cache.add(new Request(`/?${new Date().toISOString()}`), new Response())
   }())
 })
