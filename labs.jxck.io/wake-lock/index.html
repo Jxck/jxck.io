@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+
+<meta http-equiv="origin-trial" content="AqC1guofIn+HrlXVaLNAxhUq6F3JNimAa/vunT2Lw0Qdcu8k/41HVWLQ5oXBi48Wj3+VOWekcyW0IQ/QhJaRzAAAAABceyJvcmlnaW4iOiJodHRwczovL2p4Y2suaW86NDQzIiwiZmVhdHVyZSI6Ildha2VMb2NrIiwiZXhwaXJ5IjoxNTg5OTk1MDM5LCJpc1N1YmRvbWFpbiI6dHJ1ZX0=">
+
+<title>Wake Lock API DEMO</title>
+
+<style>
+</style>
+
+<h1>Wake Lock API DEMO</h1>
+<p>State: <span id=state>none</span></p>
+<button id=lock>Lock</button>
+<button id=release>Release</button>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  document.on('DOMContentLoaded', async (e) => {
+    console.log(e)
+
+    $("#lock").on('click', async () => {
+      const lock = await navigator.wakeLock.request('screen')
+      $("#state").textContent = "locked"
+
+      $("#release").on('click', async () => {
+        await lock.release()
+      })
+
+      lock.on('release', (e) => {
+        console.log(e)
+        $("#state").textContent = "released"
+      })
+    })
+  })
+</script>
+
