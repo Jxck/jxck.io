@@ -421,7 +421,7 @@ guest
       - Strict (さらに強くブロックし、サイトが壊れるものもある)
     - デフォルトが Balanced で、そこをさらに強化していく
       - より多くのトラッカーを Disconnectst's tracking protection lists でブロック
-        - https://disconnect.me/trackerprotection#categories-of-trackers
+        - <https://disconnect.me/trackerprotection#categories-of-trackers>
       - federation/embeded などが壊れることがないように改善
   - Upgrading to the new Microsoft Edge
     - <https://blogs.windows.com/msedgedev/2020/01/15/upgrading-new-microsoft-edge-79-chromium/>
@@ -448,8 +448,8 @@ guest
     - <https://www.keisan.nta.go.jp/r1yokuaru/cat1/cat11/cid532.html>
     - new Edge では eTax が使えない(主にマイナンバーを読む NFC)
     - IE11 か Edge44 が推奨
-  - Microsoft Edge をご利用の方へ(令和 2 年 1 月 30 日)\| e-Tax
-    - http://www.e-tax.nta.go.jp/topics/topics_new_edge.htm
+  - Microsoft Edge をご利用の方へ(令和 2 年 1 月 30 日) \| e-Tax
+    - <http://www.e-tax.nta.go.jp/topics/topics_new_edge.htm>
   - *Today, the Trident Era Ends*
     - <https://schepp.dev/posts/today-the-trident-era-ends/>
     - Trident の先進的だった機能のまとめ
@@ -498,14 +498,14 @@ guest
     - <https://www.w3.org/blog/news/archives/8194>
 - Chartering
   - Proposed W3C Charter: WebAssembly Working Group
-    - http://lists.w3.org/Archives/Public/public-new-work/2020Jan/0003.html
+    - <http://lists.w3.org/Archives/Public/public-new-work/2020Jan/0003.html>
   - Proposed W3C Charter: Audio Working Group
-    - http://lists.w3.org/Archives/Public/public-new-work/2019Dec/0012.html
+    - <http://lists.w3.org/Archives/Public/public-new-work/2019Dec/0012.html>
   - Service Workers Working Group Charter Extended
-    - http://lists.w3.org/Archives/Public/public-new-work/2019Dec/0009.html
+    - <http://lists.w3.org/Archives/Public/public-new-work/2019Dec/0009.html>
   - *Privacy Community Group created*
-    - http://lists.w3.org/Archives/Public/public-new-work/2020Jan/0005.html
-    - http://lists.w3.org/Archives/Public/public-webappsec/2020Jan/0017.html
+    - <http://lists.w3.org/Archives/Public/public-new-work/2020Jan/0005.html>
+    - <http://lists.w3.org/Archives/Public/public-webappsec/2020Jan/0017.html>
     - <https://privacycg.github.io/>
     - <https://github.com/privacycg/>
     - <https://github.com/privacycg/meetings/blob/master/2020/telcons/01-23-agenda.md>
@@ -516,9 +516,9 @@ guest
     - Private Click Measurement
       - was Ad Click Attribution
   - Building Device Naming Standards Community Group created
-    - http://lists.w3.org/Archives/Public/public-new-work/2020Jan/0007.html
+    - <http://lists.w3.org/Archives/Public/public-new-work/2020Jan/0007.html>
   - Service Workers Working Group Charter Approved; Call for Participation
-    - http://lists.w3.org/Archives/Public/public-new-work/2020Jan/0008.html
+    - <http://lists.w3.org/Archives/Public/public-new-work/2020Jan/0008.html>
   - WCAG-EM Report Tool: Accessibility Evaluation Report Generator is Updated
     - <https://www.w3.org/blog/news/archives/8276>
 - Other
@@ -527,9 +527,9 @@ guest
   - webpackage/signed-exchange-subresource-subtitution-explainer.md at master · WICG/webpackage
     - <https://github.com/WICG/webpackage/blob/master/explainers/signed-exchange-subresource-subtitution-explainer.md>
   - Next steps for Fetch Metadata
-    - http://lists.w3.org/Archives/Public/public-webappsec/2020Jan/0004.html
+    - <http://lists.w3.org/Archives/Public/public-webappsec/2020Jan/0004.html>
   - Scripting Policy sketch
-    - http://lists.w3.org/Archives/Public/public-webappsec/2020Jan/0002.html
+    - <http://lists.w3.org/Archives/Public/public-webappsec/2020Jan/0002.html>
   - *W3C Advisory Committee Elects Technical Architecture Group*
     - <https://www.w3.org/blog/news/archives/8100>
     - <https://www.w3.org/blog/news/archives/8231>
@@ -652,7 +652,7 @@ guest
   - <https://trackingthetrackers.com/site/>
 - *Announcing SecWeb 2020*
   - <https://secweb.work/>
-  - http://lists.w3.org/Archives/Public/public-webappsec/2020Jan/0016.html
+  - <http://lists.w3.org/Archives/Public/public-webappsec/2020Jan/0016.html>
   - 6/19 の IEEE に合わせて Genova で開催
   - もともとある Web の仕組みはセキュリティが後付け
   - それをセキュアにしていく流れは限界が有る

@@ -295,7 +295,7 @@ guest
     - Edge に追加する予定の機能紹介
     - 縦タブ、コレクション、スマートコピーなど
   - *新しい Microsoft Edge へのアップグレード - Windows Blog for Japan*
-    -  https://blogs.windows.com/japan/2020/01/16/upgrading-new-microsoft-edge-79-chromium/
+    - <https://blogs.windows.com/japan/2020/01/16/upgrading-new-microsoft-edge-79-chromium/>
     - 2020/4/16 まで確定申告が延期
     - 2020/4/17 以降に延期
 - Chakra
@@ -373,7 +373,7 @@ guest
     - <https://github.com/younies/proposal-intl-duration-format>
 - Other
   - *JavaScript: The First 20 Years*
-    - http://www.wirfs-brock.com/allen/posts/866
+    - <http://www.wirfs-brock.com/allen/posts/866>
     - <https://zenodo.org/record/3707008>
     - JS の歴史についての論文
     - HOPL (History Of Programming Languages Conferences) に提出する
