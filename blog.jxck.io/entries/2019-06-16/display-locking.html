@@ -82,14 +82,14 @@
   <header>
     <nav>
       <ul>
-        <li><a href=https://blog.jxck.io      ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/blog.svg   title=blog   alt="blog top" class=logo></a>
-        <li><a href=/searches                 ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/search.svg title=search alt=search></a>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=/assets/img/blog.svg   title=blog   alt="blog top" class=logo></a>
+        <li><a href=/searches                 ><img width=30 height=30 loading=eager src=/assets/img/search.svg title=search alt=search></a>
         <li><a href="https://blog.jxck.io/entries/2019-06-16/display-locking.amp.html#development=1" aria-label="amp version">
-                                               <img width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/amp.svg    title=blog   alt="amp version"></a>
-        <li><a href=.                         ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/up.svg     title=up     alt="move to parent directory"></a>
-        <li><a href=/feeds/atom.xml           ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/rss.svg    title=rss    alt="rss feed"></a>
-        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/humans.svg title=humans alt=huamns.txt></a>
-        <li><a href=https://jxck.io           ><img width=30 height=30 intrinsicsize=30x30 loading=eager src=/assets/img/jxck.svg   title=jxck   alt="jxck logo" class=logo></a>
+                                               <img width=30 height=30 loading=eager src=/assets/img/amp.svg    title=blog   alt="amp version"></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=/assets/img/up.svg     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=/assets/img/rss.svg    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=/assets/img/humans.svg title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=/assets/img/jxck.svg   title=jxck   alt="jxck logo" class=logo></a>
       </ul>
     </nav>
   </header>
@@ -253,7 +253,7 @@ for (const i = 0; i &lt; 100; i ++) {
           <p>
             <picture>
               <source type=image/webp srcset=display-no-locking.webp#825x968>
-              <img loading=lazy src=display-no-locking.gif#825x968 alt="lock を取らず普通に appendChild する例" title="display with no locking" intrinsicsize=825x968>
+              <img loading=lazy src=display-no-locking.gif#825x968 alt="lock を取らず普通に appendChild する例" title="display with no locking">
             </picture>
           </p>
           <p>そこで、 <code translate="no">&lt;ul&gt;</code> のロックを取得し、全ての <code translate="no">&lt;li&gt;</code> が追加されてから一気にレンダリングする場合以下のように書ける。
@@ -274,7 +274,7 @@ await container.displayLock.updateAndCommit()</code></pre>
           <p>
             <picture>
               <source type=image/webp srcset=display-locking.webp#825x968>
-              <img loading=lazy src=display-locking.gif#825x968 alt="ul の lock を取り追加が終わってから commit する例" title="display with locking" intrinsicsize=825x968>
+              <img loading=lazy src=display-locking.gif#825x968 alt="ul の lock を取り追加が終わってから commit する例" title="display with locking">
             </picture>
           </p>
           <p>Lock 中に行われる <code translate="no">appendChild</code> は、メモリ上で DOM の処理を行うだけになり、 <code translate="no">commit()</code> でレンダリングが一度に走っていることがわかるだろう。
@@ -312,7 +312,7 @@ await container.displayLock.updateAndCommit()</code></pre>
           <p>
             <picture>
               <source type=image/webp srcset=display-locking-activatable.webp#825x968>
-              <img loading=lazy src=display-locking-activatable.gif#825x968 alt="commit してない要素が画面内検索で一致した際にレンダリングされる例" title="find in page commits activatable element" intrinsicsize=825x968>
+              <img loading=lazy src=display-locking-activatable.gif#825x968 alt="commit してない要素が画面内検索で一致した際にレンダリングされる例" title="find in page commits activatable element">
             </picture>
           </p>
           <p>このデモでは、ランダムな文字列を <code translate="no">&lt;li&gt;</code> に入れ、ロックをとった <code translate="no">&lt;ul&gt;</code> に追加し commit してない状態で止めている。
