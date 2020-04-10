@@ -206,10 +206,13 @@ document.on('DOMContentLoaded', async (e) => {
 
   if (registration.periodicSync) {
     const status = await navigator.permissions.query({name:'periodic-background-sync'});
-    console.info(status)
+    log(status)
     if (status.state === 'granted') {
-      await registration.periodicSync.register('test', {
-        minInterval: 60 * 60 * 6 // 6h
+      const tags = await registration.periodicSync.getTags()
+      log('remove periodicSync tags', tags)
+      await Promise.all(tags.map((tag) => registration.periodicSync.unregister(tag)))
+      await registration.periodicSync.register('test-12h', {
+        minInterval: 12 * 60 * 60 * 1000 // 12h
       })
     }
   }

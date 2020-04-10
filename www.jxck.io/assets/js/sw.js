@@ -5,7 +5,7 @@ EventTarget.prototype.off = EventTarget.prototype.removeEventListener
  * 同じ VERSION であれば、キャッシュにないものだけ追加する
  * VERSION を変えると、あたらしく作り追加する
  */
-const VERSION = 'v0.5.1'
+const VERSION = 'v0.5.4'
 const log = console.debug.bind(console)
 log('sw.js')
 
