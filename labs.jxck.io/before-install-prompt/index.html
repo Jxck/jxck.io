@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=manifest  href=manifest.webmanifest>
+<title>Before Install Prompt DEMO</title>
+
+<style>
+button {
+  width: 10em;
+  height: 3em;
+}
+</style>
+
+<h1>Before Install Prompt DEMO</h1>
+
+<button id=install>Install</button>
+
+<div id=result></div>
+
+<dialog>
+  <div>
+    <p>install ?</p>
+    <button id=yes>yes</button>
+    <button id=no>no</button>
+  </div>
+</dialog>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  document.on('DOMContentLoaded', async (e) => {
+    console.log(e)
+    const registration = await navigator.serviceWorker.register('sw.js')
+    await navigator.serviceWorker.ready
+    const dialog = document.querySelector('dialog')
+    dialog.on('click', (e) => {
+      // dialog 背景含めて全体がフック対象
+      // その中に子要素をフィットさせておく
+      if (e.target === dialog) {
+        // target が dialog 自身なのは dialog の外側のみになる
+        dialog.close('')
+      }
+    })
+    dialog.on('cancel', (e) => {
+      console.log(e.type)
+      dialog.returnValue = ""
+    })
+    dialog.on('close', async (e) => {
+      console.log(e.type)
+      const returnValue = dialog.returnValue
+      console.log(returnValue)
+      if (returnValue === "yes") {
+        window.install_prompt.prompt()
+        const choice = await window.install_prompt.userChoice
+        console.log(choice)
+        $('#result').textContent = JSON.stringify(choice)
+      }
+    })
+    $('#yes').on('click', (e) => {
+      e.preventDefault()
+      dialog.close('yes')
+    })
+    $('#no').on('click', (e) => {
+      e.preventDefault()
+      dialog.close('no')
+    })
+    $('#install').on('click', () => {
+      dialog.showModal()
+    })
+  })
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    console.log(e)
+    e.preventDefault()
+    window.install_prompt = e
+  })
+</script>
