@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=manifest  href=manifest.webmanifest>
 <title>Periodic Background Sync DEMO</title>
 
 <h1>Periodic Background Sync DEMO</h1>
-<h2>cached</h2>
+
+<ul>
+  <li>make sure access via https to this site.
+  <li>if site-engagement is low, fix via chrome://site-engagement/.
+  <li>install this page from Add to Home Screen
+  <li>leave it more tha 12h
+</ul>
 
 <p>periodic background sync: <span id=detect></span> permission: <span id=permission></span></p>
 
+<p>if periodic background sync happed, save the timestamp into cahce storage.
+<p>cache entry lists are below.
+
+<h2>Cache List</h2>
 <ul id=list></ul>
 
 <script>
@@ -17,33 +28,36 @@
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
   document.on('DOMContentLoaded', async (e) => {
-
-    const status = await navigator.permissions.query({name:'periodic-background-sync'});
-    console.log(status)
-
-    $('#permission').textContent = status.state
-
     console.log(await navigator.serviceWorker.register('worker.js'))
-
     const registration = await navigator.serviceWorker.ready
     console.log(registration)
 
-    $('#detect').textContent = !!registration.periodicSync
-    if (registration.periodicSync) {
-      console.log(registration.periodicSync)
-      await registration.periodicSync.register('test', {
-        minInterval: 60 * 10
-      })
-      console.log(await registration.periodicSync.getTags())
-    }
 
-    const cache = await caches.open('periodic-background-sync')
-    const keys = await cache.keys()
-    const $ul  = $('ul')
-    keys.forEach(async (key) => {
+    // display cache
+    const cache    = await caches.open('periodic-background-sync')
+    const requests = await cache.keys()
+    const $ul      = $('ul')
+    requests.forEach(async (req) => {
+      const url  = new URL(req.url)
+      const date = new Date(url.searchParams.get('date'))
       const $li  = document.createElement('li')
-      $li.textContent = key
+      $li.textContent = date
       $ul.appendChild($li)
     })
+
+    // register PBS
+    if (registration.periodicSync) {
+      const status = await navigator.permissions.query({name:'periodic-background-sync'});
+      console.log(status)
+      $('#permission').textContent = status.state
+      if (status.state === 'granted') {
+        const tags = await registration.periodicSync.getTags()
+        console.log('remove periodicSync tags', tags)
+        await Promise.all(tags.map((tag) => registration.periodicSync.unregister(tag)))
+        await registration.periodicSync.register('test-12h', {
+          minInterval: 12 * 60 * 60 * 1000 // 12h
+        })
+      }
+    }
   })
 </script>
