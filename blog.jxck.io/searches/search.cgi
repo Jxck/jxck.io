@@ -56,7 +56,13 @@ def fragment(prefix, keyword, suffix)
 end
 
 def build(pwd, host, query, results)
-  template_path = "#{pwd}/.script/template/#{host.split(".").first}.search.html.erb"
+
+  template_path = case host
+                when "blog.jxck.io"
+                  "#{pwd}/.script/template/blog.search.html.erb"
+                when "mozaic.fm"
+                  "#{pwd}/.script/template/podcast.search.html.erb"
+                end
   template      = File.read(template_path)
   ERB.new(template, nil, '-').result(binding)
 end

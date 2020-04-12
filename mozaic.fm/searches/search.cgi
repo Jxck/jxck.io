@@ -1,0 +1,1 @@
+../../blog.jxck.io/searches/search.cgi
