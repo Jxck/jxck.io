@@ -12,11 +12,20 @@ def log(*a)
   #p(*a)
 end
 
-def search(base, query)
+def search(pwd, host, query)
   return [] unless query[:valid]
   keywords = query[:keywords]
-  reg = Regexp.union(keywords.map{|keyword| /(?<prefix>.*)(?<keyword>#{keyword})(?<suffix>.*)/i })
-  Pathname.glob("#{base}/entries/**/*.md").sort.reverse.reduce([]){|acc, path|
+  base     = Pathname.new("#{pwd}/#{host}")
+  reg      = Regexp.union(keywords.map{|keyword| /(?<prefix>.*)(?<keyword>#{keyword})(?<suffix>.*)/i })
+
+  search_path = case host
+                when "blog.jxck.io"
+                  "#{base}/entries/**/*.md"
+                when "mozaic.fm"
+                  "#{base}/episodes/**/*.md"
+                end
+
+  Pathname.glob(search_path).sort.reverse.reduce([]){|acc, path|
     body    = File.read(path)
     details = body.scan(reg).map {|hits|
       hits.each_slice(3).reduce([]) {|acc, hit|
@@ -46,8 +55,9 @@ def fragment(prefix, keyword, suffix)
   "#{prefix}#{word}#{suffix}"
 end
 
-def build(query, results)
-  template = File.read("#{ENV["PWD"]}/.script/template/blog.search.html.erb")
+def build(pwd, host, query, results)
+  template_path = "#{pwd}/.script/template/#{host.split(".").first}.search.html.erb"
+  template      = File.read(template_path)
   ERB.new(template, nil, '-').result(binding)
 end
 
@@ -61,11 +71,15 @@ def validate_query(query_string)
 end
 
 begin
-  # log ENV.entries.join("\n")
-  base    = Pathname.new(ENV["PWD"] ++ "/blog.jxck.io")
+  #log ENV.entries.join("\n")
+  host    = ENV["HTTP_HOST"]
+  unless ["blog.jxck.io", "mozaic.fm"].include?(host)
+    raise "invalid host"
+  end
+  pwd     = ENV["PWD"]
   query   = validate_query(ENV["QUERY_STRING"])
-  results = search(base, query)
-  html    = build(query, results)
+  results = search(pwd, host, query)
+  html    = build(pwd, host, query, results)
 
   headers = {
     "Content-Type"                 => "text/html; charset=utf-8",
