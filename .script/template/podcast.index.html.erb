@@ -35,21 +35,6 @@
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css>
 
-  <template id=search_diag>
-    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/dialog.css>
-    <dialog class=search>
-      <form method=get action=https://google.co.jp/search>
-        <fieldset>
-          <legend>search via google</legend>
-          <label for=keywords>keyword:</label>
-          <input type=search name=q id=keywords placeholder=keywords>
-          <input type=hidden name=q value=site:mozaic.fm/episodes>
-          <button type=submit>go</button>
-        </fieldset>
-      </form>
-    </dialog>
-  </template>
-
   <template id=shortcut_diag>
     <style>
     dialog.shortcut {
@@ -78,7 +63,7 @@
       <li><a href=http://feed.mozaic.fm                                                      ><img alt="rss feed"       width=30 height=30 loading=eager src=/assets/img/podcast.svg></a>
       <li id=install class=disabled><a><img alt=install width=30 height=30 loading=eager src=/assets/img/install.svg></a>
       <li id=share   class=disabled><a><img alt=share   width=30 height=30 loading=eager src=/assets/img/share.svg></a>
-      <li id=search><a><img alt=search  width=30 height=30 loading=eager src=/assets/img/search.svg></a>
+      <li id=search><a href=/searches ><img alt=search  width=30 height=30 loading=eager src=/assets/img/search.svg></a>
     </ul>
   </nav>
 </header>

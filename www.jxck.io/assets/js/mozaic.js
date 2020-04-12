@@ -107,37 +107,6 @@ function enableWebShare() {
   }
 }
 
-function enableDialog() {
-  // <dialog> があったら検索 Form を <dialog> で出す
-  const searchDiag = document.importNode($('#search_diag').content, true)
-  document.body.appendChild(searchDiag)
-  $('#search').on('click', (e) => {
-    log(e)
-    e.preventDefault()
-
-    // player が使ってるキーバインドを一旦外す
-    document.off('keydown', playerKeybind)
-
-    const $dialog = $('dialog.search')
-    $dialog.on('click', (e) => {
-      log(e.target, $dialog)
-      if (e.target === $dialog) {
-        $dialog.close()
-      }
-    })
-    $dialog.on('cancel', (e) => {
-      log(e.type, $dialog.returnValue)
-    })
-    $dialog.on('close', (e) => {
-      log(e.type, $dialog.returnValue)
-
-      // player が使ってるキーバインドを戻す
-      document.on('keydown', playerKeybind)
-    })
-    $dialog.showModal()
-  })
-}
-
 function enableShortCutDiag() {
   // <dialog> があったら shortcut を <dialog> で出す
   const shortCutDiag = document.importNode($('#shortcut_diag').content, true)
@@ -168,9 +137,8 @@ document.on('DOMContentLoaded', async (e) => {
     enableWebShare()
   }
 
-  // Enable Search/ShortCut Dialog
+  // Enable ShortCut Dialog
   if (window.HTMLDialogElement) {
-    enableDialog()
     enableShortCutDiag()
   }
 

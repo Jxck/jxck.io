@@ -5,7 +5,7 @@ EventTarget.prototype.off = EventTarget.prototype.removeEventListener
  * 同じ VERSION であれば、キャッシュにないものだけ追加する
  * VERSION を変えると、あたらしく作り追加する
  */
-const VERSION = 'v0.5.7'
+const VERSION = 'v0.5.8'
 const log = console.debug.bind(console)
 log('sw.js')
 
@@ -34,6 +34,7 @@ async function worker() {
     {url: 'https://mozaic.fm/assets/css/footer.css',  option: {cache: 'no-cache'}},
     {url: 'https://mozaic.fm/assets/css/main.css',    option: {cache: 'no-cache'}},
     {url: 'https://mozaic.fm/assets/css/mozaic.css',  option: {cache: 'no-cache'}},
+    {url: 'https://mozaic.fm/assets/css/search.css',  option: {cache: 'no-cache'}},
 
     // svg
     {url: 'https://mozaic.fm/assets/img/jxck.svg',           option: {cache: 'no-cache'}},
