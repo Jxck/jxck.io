@@ -12,8 +12,8 @@
   <link rel=preload type=font/woff2 as=font  crossorigin href=/assets/font/NotoSansCJKjp-Regular-Jxck-20200407.woff2>
   <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
 
-  <script defer type=module no-integrity=sha256-h9F1MOpYhYiOsmP06/aFznEKOppmi1/FKzHD8okoEz4= src=/assets/js/mozaic.js></script>
-  <script defer type=module no-integrity=sha256-L56hfNGkcfZ08vU1Sa0QkHEe2S62d2k4rstOI7de9T0= src=/assets/js/sw.js></script>
+  <script defer type=module no-integrity=sha256-LIlXiksaYFhIAEa7ZyMAPP8WWTaiR/Yqo3kHMMJcUsQ= src=/assets/js/mozaic.js></script>
+  <script defer type=module no-integrity=sha256-D3t5sQUoRtTnEUNFkXF1teoDo0VMTMAwlXWxSt7b1kQ= src=/assets/js/sw.js></script>
 
   <link rel=icon             type =image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
   <link rel=icon             type =image/png sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.png>
@@ -84,13 +84,14 @@
 <header>
   <nav>
     <ul>
-      <li><a href=/                                                                          ><img alt=top              width=30 height=30 loading=eager src=/assets/img/mozaic.svg class=logo></a>
-      <li><a                                                                                 ><img alt=share id=share   width=30 height=30 loading=eager src=/assets/img/share.svg></a>
+      <li><a href=/ ><img alt=top     width=30 height=30 loading=eager src=/assets/img/mozaic.svg class=logo></a>
       <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495                  ><img alt=itunes           width=30 height=30 loading=eager src=/assets/img/itunes.svg></a>
       <li><a href=https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D    ><img alt="google podcast" width=30 height=30 loading=eager src=/assets/img/google-podcast.svg></a>
       <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                       ><img alt=spotify          width=30 height=30 loading=eager src=/assets/img/spotify.svg></a>
       <li><a href=http://feed.mozaic.fm                                                      ><img alt="rss feed"       width=30 height=30 loading=eager src=/assets/img/podcast.svg></a>
-      <li><a href=https://www.google.co.jp/search?q=site%3Amozaic.fm%2Fepisodes class=search ><img alt=search           width=30 height=30 loading=eager src=/assets/img/search.svg></a>
+      <li id=install class=disabled><a><img alt=install width=30 height=30 loading=eager src=/assets/img/install.svg></a>
+      <li id=share   class=disabled><a><img alt=share   width=30 height=30 loading=eager src=/assets/img/share.svg></a>
+      <li id=search><a><img alt=search  width=30 height=30 loading=eager src=/assets/img/search.svg></a>
     </ul>
   </nav>
 </header>
