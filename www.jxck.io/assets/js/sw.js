@@ -5,7 +5,7 @@ EventTarget.prototype.off = EventTarget.prototype.removeEventListener
  * 同じ VERSION であれば、キャッシュにないものだけ追加する
  * VERSION を変えると、あたらしく作り追加する
  */
-const VERSION = 'v0.5.8'
+const VERSION = 'v0.5.11'
 const log = console.debug.bind(console)
 log('sw.js')
 
@@ -134,8 +134,69 @@ async function worker() {
   self.addEventListener('periodicsync', (e) => {
     console.log('periodicsync', e)
     e.waitUntil(async function() {
-      const cache = await caches.open('periodic-background-sync')
-      return cache.add(new Request(`/?${new Date().toISOString()}`), new Response())
+      const url = "https://files.mozaic.fm/mozaic-ep0.mp3"
+      const option =  {
+        "title": "ep0 introduction of mozaic.fm | mozaic.fm",
+        "downloadTotal": 1858450,
+        "icons": [
+          {"src": "/assets/img/mozaic.jpeg", "type": "image/jpeg", "sizes": "2000x2000"},
+          {"src": "/assets/img/mozaic.webp", "type": "image/webp", "sizes": "256x256"},
+          {"src": "/assets/img/mozaic.png",  "type": "image/png",  "sizes": "256x256"},
+          {"src": "/assets/img/mozaic.svg",  "type": "image/svg+xml"}
+        ]
+      }
+      console.log('registration.backgroundFetch', url, option)
+      const task = await registration.backgroundFetch.fetch(url, [url], option)
+      task.addEventListener('progress', (e) => {
+        console.log(task, task.downloaded)
+      })
+      return
+    }())
+  })
+
+  self.addEventListener('backgroundfetchsuccess', (e) => {
+    console.log(e.type)
+    e.waitUntil(async function() {
+      try {
+        // 結果を取り出す
+        const id = e.registration.id
+        const record = await e.registration.match(id)
+        console.log(id, record)
+
+        // キャッシュ対象
+        const request = record.request
+        const response = await record.responseReady
+        console.log(request, response)
+
+        // キャッシュ先
+        const cache = await caches.open('periodic-background-sync')
+        await cache.put(request.url, response)
+
+        // 通知
+        await e.updateUI({ title: id })
+      } catch (err) {
+        console.error(err)
+        e.updateUI({ title: `download failed ${e.registration.id}` })
+      }
+    }())
+  })
+
+  self.addEventListener('backgroundfetchfail', (e) => {
+    console.error(e)
+  })
+
+  self.addEventListener('backgroundfetchabort', (e) => {
+    console.error(e)
+  })
+
+  // download タスクをクリックした場合
+  self.addEventListener('backgroundfetchclick', (e) => {
+    console.log(e)
+    e.waitUntil(async function() {
+      const url = e.registration.id
+      console.log(url)
+      // TODO: エピソードのページを開く
+      clients.openWindow(url)
     }())
   })
 }
