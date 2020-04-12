@@ -111,7 +111,7 @@ function enableDialog() {
   // <dialog> があったら検索 Form を <dialog> で出す
   const searchDiag = document.importNode($('#search_diag').content, true)
   document.body.appendChild(searchDiag)
-  $('.search').on('click', (e) => {
+  $('#search').on('click', (e) => {
     log(e)
     e.preventDefault()
 
@@ -223,7 +223,7 @@ document.on('DOMContentLoaded', async (e) => {
     e.preventDefault()
     const $install = $('#install')
     $install.classList.remove('disabled')
-    $install.on('click', () => {
+    $install.on('click', async () => {
       install_prompt.prompt()
       const choice = await install_prompt.userChoice
       console.log(choice)
