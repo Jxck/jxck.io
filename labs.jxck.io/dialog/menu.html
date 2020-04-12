@@ -71,16 +71,16 @@ dialog h1 {
   <h1>mozaic.fm</h1>
   <hr>
   <ul>
-    <li><a><img src=https://www.jxck.io/assets/img/podcast.svg       >show podcast feed</a    ></li>
-    <li><a><img src=https://www.jxck.io/assets/img/itunes.svg        >access itunes</a        ></li>
-    <li><a><img src=https://www.jxck.io/assets/img/google-podcast.svg>access google podcast</a></li>
-    <li><a><img src=https://www.jxck.io/assets/img/spotify.svg       >access spotify</a       ></li>
-    <li><a><img src=https://www.jxck.io/assets/img/twitter.svg       >show #mozaic.fm</a      ></li>
-    <li><a><img src=https://www.jxck.io/assets/img/share.svg         >share mozaic.fm</a      ></li>
-    <li><a><img src=https://www.jxck.io/assets/img/search.svg        >search show note</a     ></li>
-    <li><a><img src=https://www.jxck.io/assets/img/install.svg       >add to home screen</a   ></li>
+    <li><a href=http://feed.mozaic.fm                                                      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/podcast.svg        alt="podcast feed"  >show podcast feed</a></li>
+    <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495                  ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/itunes.svg         alt=itunes          >access itunes</a></li>
+    <li><a href=https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D    ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/google-podcast.svg alt="google podcast">access google podcast</a></li>
+    <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                       ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/spotify.svg        alt=spotify         >access spotify</a></li>
+    <li><a href=https://twitter.com/search?f=tweets&vertical=default&q=%23mozaicfm&src=typd><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/twitter.svg        alt=twitter         >show #mozaic.fm</a></li>
+    <li><a href=https://www.google.co.jp/search?q=site%3Amozaic.fm%2Fepisodes              ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg         alt=search          >search show note</a></li>
+    <li><a                                                                                 ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/share.svg          alt=share           >share mozaic.fm</a></li>
+    <li><a                                                                                 ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/install.svg        alt=install         >add to home screen</a></li>
   </ul>
-  <img class=close src=https://www.jxck.io/assets/img/install.svg>
+  <img class=close src=https://www.jxck.io/assets/img/close.svg>
 </dialog>
 
 <script>
@@ -90,10 +90,8 @@ dialog h1 {
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
   document.on('DOMContentLoaded', async (e) => {
     console.log(e)
-
     const $dialog = $('dialog')
     $dialog.showModal()
-
   })
 </script>
 
