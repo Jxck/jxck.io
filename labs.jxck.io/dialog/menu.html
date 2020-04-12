@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Dialog Menu DEMO</title>
+
+<style>
+dialog {
+  bottom: auto;
+  width: 80vw;
+  height: 50vh;
+  padding: 5%;
+  background-color: #333;
+  border: none;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+}
+dialog::backdrop {
+  /* 背景を透過に */
+  background: rgba(200, 200, 200, 0.50);
+}
+dialog ul {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+dialog ul li {
+  list-style: none;
+}
+dialog ul li a {
+  color: white;
+  display: flex;
+  align-items: center;
+}
+dialog ul li a img {
+  display: inline;
+  width: 30px;
+  margin-right: 1em;
+}
+.top {
+  width: 30px;
+}
+.close {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  width: 20px;
+}
+hr {
+  width: 100%;
+  border: 1px solid white;
+
+}
+dialog h1 {
+  display: inline-block;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  color: white;
+}
+</style>
+
+<h1>Dialog Menu DEMO</h1>
+
+<button>open</button>
+
+<dialog>
+  <h1>mozaic.fm</h1>
+  <hr>
+  <ul>
+    <li><a><img src=https://www.jxck.io/assets/img/podcast.svg       >show podcast feed</a    ></li>
+    <li><a><img src=https://www.jxck.io/assets/img/itunes.svg        >access itunes</a        ></li>
+    <li><a><img src=https://www.jxck.io/assets/img/google-podcast.svg>access google podcast</a></li>
+    <li><a><img src=https://www.jxck.io/assets/img/twitter.svg       >show #mozaic.fm</a      ></li>
+    <li><a><img src=https://www.jxck.io/assets/img/share.svg         >share mozaic.fm</a      ></li>
+    <li><a><img src=https://www.jxck.io/assets/img/search.svg        >search show note</a     ></li>
+    <li><a><img src=https://www.jxck.io/assets/img/install.svg       >add to home screen</a   ></li>
+  </ul>
+  <img class=close src=https://www.jxck.io/assets/img/install.svg>
+</dialog>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+  document.on('DOMContentLoaded', async (e) => {
+    console.log(e)
+
+    const $dialog = $('dialog')
+    $dialog.showModal()
+
+  })
+</script>
+
