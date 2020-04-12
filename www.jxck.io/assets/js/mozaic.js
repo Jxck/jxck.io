@@ -96,7 +96,7 @@ function enablePlayer() {
 function enableWebShare() {
   const $share = $('#share')
   if ($share !== null) {
-    $share.style.display = 'block'
+    $share.classList.remove('disabled')
     $share.addEventListener('click', (e) => {
       log(e)
       const url   = location.href
@@ -178,6 +178,7 @@ document.on('DOMContentLoaded', async (e) => {
     enablePortal($('portal#preview'))
   }
 
+  // for Debug
   if (location.hash === '#clear') {
     const registrations = await navigator.serviceWorker.getRegistrations()
     registrations.forEach(async (registration) => {
@@ -216,4 +217,16 @@ document.on('DOMContentLoaded', async (e) => {
       })
     }
   }
+
+  window.addEventListener('beforeinstallprompt', (install_prompt) => {
+    console.log(e)
+    e.preventDefault()
+    const $install = $('#install')
+    $install.classList.remove('disabled')
+    $install.on('click', () => {
+      install_prompt.prompt()
+      const choice = await install_prompt.userChoice
+      console.log(choice)
+    })
+  })
 })
