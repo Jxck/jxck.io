@@ -9,9 +9,9 @@ const $  = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
 function reportingObserver() {
-  console.log('ReportingObserver');
+  log('ReportingObserver');
   const observer = new ReportingObserver((reports, observer) => {
-    console.log(reports)
+    log(reports)
     const URL = 'https://reporting.jxck.io/beacon'
     for (const report of reports) {
       navigator.sendBeacon(URL, JSON.stringify(report))

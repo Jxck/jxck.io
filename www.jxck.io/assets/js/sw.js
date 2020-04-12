@@ -5,7 +5,7 @@ EventTarget.prototype.off = EventTarget.prototype.removeEventListener
  * 同じ VERSION であれば、キャッシュにないものだけ追加する
  * VERSION を変えると、あたらしく作り追加する
  */
-const VERSION = 'v0.5.4'
+const VERSION = 'v0.5.5'
 const log = console.debug.bind(console)
 log('sw.js')
 
@@ -16,7 +16,7 @@ async function worker() {
   // revalidate したいものは no-cache
   const ASSETS = [
     // episodes
-    {url: 'https://mozaic.fm/episodes/0/introduction-of-mozaicfm.html', option: {cache: 'no-cache'}},
+    // {url: 'https://mozaic.fm/episodes/0/introduction-of-mozaicfm.html', option: {cache: 'no-cache'}},
 
     // fonts
     {url: 'https://mozaic.fm/assets/font/NotoSansCJKjp-Regular-Jxck-20200407.woff2',     option: {}},
@@ -117,7 +117,7 @@ async function worker() {
     // mp3 の duration が取れず Infinity になり壊れるので
     // audio/video は今はキャッシュしてない
     if (['audio', 'video'].includes(req.destination)) {
-      console.log(`bypass ${req.destination}`)
+      log(`bypass ${req.destination}`)
       return
     }
 
