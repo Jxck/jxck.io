@@ -1,13 +1,11 @@
 use std::env;
 #[macro_use]
-
 extern crate log;
 
-// mod tcp_client;
-// mod tcp_server;
+mod tcp_client;
+mod tcp_server;
 // mod udp_client;
 // mod udp_server;
-
 
 fn main() {
     env::set_var("RUST_LOG", "debug");
@@ -22,4 +20,38 @@ fn main() {
     let address = &args[3];
 
     println!("{} {} {}", protocol, role, address);
+
+    match protocol {
+        "tcp" => match role {
+            "server" => {
+                tcp_server::serve(address).unwrap_or_else(|e| error!("{}", e));
+            }
+            "client" => {
+                tcp_client::connect(address).unwrap_or_else(|e| error!("{}", e));
+            }
+            _ => {
+                missing_role();
+            }
+        },
+        "udp" => match role {
+            "server" => {
+                // TODO
+            }
+            "client" => {
+                // TODO
+            }
+            _ => {
+                missing_role();
+            }
+        },
+        _ => {
+            error!("missing arguments");
+            std::process::exit(1);
+        }
+    }
+}
+
+fn missing_role() {
+    error!("missing arguments");
+    std::process::exit(1);
 }
