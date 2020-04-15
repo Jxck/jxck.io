@@ -1,16 +1,44 @@
-extern crate glob;
-extern crate rand;
+extern crate chrono;
+extern crate libc;
 
+use chrono::offset::Utc;
+use chrono::DateTime;
 use std::cmp;
+use std::env;
+use std::ffi::CStr;
 use std::fmt;
 use std::fs;
 use std::os::unix::fs::{FileTypeExt, MetadataExt};
 use std::path::PathBuf;
 
-type UserMode = (bool, bool, bool);
-type GroupMode = (bool, bool, bool);
-type OtherMode = (bool, bool, bool);
-type Mode = (UserMode, GroupMode, OtherMode);
+struct Mode(bool, bool, bool);
+struct Modes(Mode, Mode, Mode);
+
+impl fmt::Display for Mode {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        let Mode(r, w, x) = self;
+        let r = match r {
+            true => "r",
+            false => "-",
+        };
+        let w = match w {
+            true => "w",
+            false => "-",
+        };
+        let x = match x {
+            true => "x",
+            false => "-",
+        };
+        write!(f, "{}{}{}", r, w, x)
+    }
+}
+
+impl fmt::Display for Modes {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        let Modes(user, group, other) = self;
+        write!(f, "{}{}{}", user, group, other)
+    }
+}
 
 #[derive(PartialEq, PartialOrd, Eq, Ord)]
 enum FileType {
@@ -29,21 +57,27 @@ enum FileType {
 struct Node {
     entry: fs::DirEntry,
     file_type: FileType,
-    mode: Mode,
+    modes: Modes,
 }
+
+fn get_cstr(ptr: *const libc::c_char) -> String {
+    let cstr = unsafe { CStr::from_ptr(ptr) };
+    cstr.to_str().unwrap().to_string()
+}
+
 impl Node {
     fn new(entry: fs::DirEntry) -> Node {
-        let (file_type, mode) = Node::file_type(&entry);
+        let (file_type, modes) = Node::file_type(&entry);
         let node = Node {
             entry,
             file_type,
-            mode,
+            modes,
         };
         return node;
     }
-    fn file_type(entry: &fs::DirEntry) -> (FileType, Mode) {
+    fn file_type(entry: &fs::DirEntry) -> (FileType, Modes) {
         let file_type = entry.file_type().unwrap();
-        let mode = Node::permission(&entry);
+        let modes: Modes = Node::permission(&entry);
         let file_type: FileType = if file_type.is_dir() {
             FileType::Dir
         } else if file_type.is_fifo() {
@@ -56,39 +90,72 @@ impl Node {
             FileType::Char
         } else if file_type.is_symlink() {
             FileType::Sym
-        } else if Node::is_exec(mode) {
+        } else if Node::is_exec(&modes) {
             FileType::Exec
         } else {
             FileType::File
         };
-        return (file_type, mode);
+        return (file_type, modes);
     }
-    fn permission(entry: &fs::DirEntry) -> Mode {
+    fn permission(entry: &fs::DirEntry) -> Modes {
         let mode: u32 = entry.metadata().unwrap().mode();
-        let user: UserMode = (
+        let user: Mode = Mode(
             mode & 0b100000000 > 0, // r
             mode & 0b010000000 > 0, // w
             mode & 0b001000000 > 0, // x
         );
-        let group: GroupMode = (
+        let group: Mode = Mode(
             mode & 0b000100000 > 0, // r
             mode & 0b000010000 > 0, // w
             mode & 0b000001000 > 0, // x
         );
-        let other: OtherMode = (
+        let other: Mode = Mode(
             mode & 0b000000100 > 0, // r
             mode & 0b000000010 > 0, // w
             mode & 0b000000001 > 0, // x
         );
-        return (user, group, other);
+        return Modes(user, group, other);
     }
-    fn is_exec(mode: Mode) -> bool {
-        return match mode {
-            ((_, _, true), _, _) => true,
-            (_, (_, _, true), _) => true,
-            (_, _, (_, _, true)) => true,
+    fn is_exec(modes: &Modes) -> bool {
+        return match modes {
+            Modes(Mode(_, _, true), _, _) => true,
+            Modes(_, Mode(_, _, true), _) => true,
+            Modes(_, _, Mode(_, _, true)) => true,
             _ => false,
         };
+    }
+    unsafe fn user_group(&self) -> (String, String) {
+        let uid = self.entry.metadata().unwrap().uid();
+        let gid = self.entry.metadata().unwrap().gid();
+        let pw_name = (*libc::getpwuid(uid)).pw_name;
+        let gr_name = (*libc::getgrgid(gid)).gr_name;
+        let username = get_cstr(pw_name);
+        let groupname = get_cstr(gr_name);
+        return (username, groupname);
+    }
+    fn size(&self) -> u64 {
+        return self.entry.metadata().unwrap().len();
+    }
+    fn human_size(&self) -> String {
+        let size = self.size();
+        let mega: u64 = 1024 * 1024;
+        match size {
+            size if size > mega => {
+                let m: f64 = (size as f64) / (mega as f64);
+                format!("{:5.1}M", m)
+            }
+            size if size > 1024 => {
+                let k: f64 = (size as f64) / (1024 as f64);
+                format!("{:5.1}K", k)
+            }
+            _ => format!("{:5}B", size),
+        }
+    }
+
+    fn mtime(&self) -> String {
+        let mtime: std::time::SystemTime = self.entry.metadata().unwrap().modified().unwrap();
+        let datetime: DateTime<Utc> = mtime.into();
+        return format!("{}", datetime.format("%Y-%m-%d %H:%M"));
     }
     fn path(&self) -> PathBuf {
         return self.entry.path();
@@ -102,29 +169,6 @@ impl Node {
             .unwrap()
             .to_string(); // ??
     }
-    // fn is_dir(&self) -> bool {
-    //     return self.file_type.is_dir();
-    // }
-    // #[allow(dead_code)]
-    // fn is_file(&self) -> bool {
-    //     return self.file_type.is_file();
-    // }
-    // #[allow(dead_code)]
-    // fn is_fifo(&self) -> bool {
-    //     return self.file_type.is_fifo();
-    // }
-    // fn is_socket(&self) -> bool {
-    //     return self.file_type.is_socket();
-    // }
-    // fn is_block_device(&self) -> bool {
-    //     return self.file_type.is_block_device();
-    // }
-    // fn is_char_device(&self) -> bool {
-    //     return self.file_type.is_char_device();
-    // }
-    // fn is_symlink(&self) -> bool {
-    //     return self.file_type.is_symlink();
-    // }
 }
 
 impl Eq for Node {}
@@ -139,6 +183,7 @@ impl cmp::Ord for Node {
                 // sort by file name in number or string
                 let self_name = self.file_name();
                 let other_name = &other.file_name();
+                // TODO: map() ?
                 return match self_name.parse::<u8>() {
                     Ok(self_num) => match &other_name.parse::<u8>() {
                         Ok(other_num) => self_num.cmp(other_num),
@@ -187,25 +232,147 @@ impl fmt::Display for Node {
     }
 }
 
-#[allow(dead_code)]
-fn list(path: &str) {
+fn list_nodes(path: &str) -> Vec<Node> {
     let mut nodes: Vec<Node> = fs::read_dir(path)
         .unwrap()
         .map(|d| Node::new(d.unwrap()))
         .collect();
 
     nodes.sort_unstable();
-    for node in nodes {
-        println!("{}", node);
+    return nodes;
+}
+
+fn print_nodes(nodes: Vec<Node>, opt: Opt) {
+    match opt {
+        Opt {
+            all: true,
+            human: false,
+        } => {
+            for node in nodes {
+                // all
+                let (owner, group) = unsafe { node.user_group() };
+                let size = node.size();
+                let mtime = node.mtime();
+                println!(
+                    "{} {:>6} {}\t{:>6} {} {}",
+                    node.modes, owner, group, size, mtime, node
+                );
+            }
+        }
+        Opt {
+            all: true,
+            human: true,
+        } => {
+            for node in nodes {
+                // all
+                let (owner, group) = unsafe { node.user_group() };
+                let size = node.human_size();
+                let mtime = node.mtime();
+                println!(
+                    "{} {:>6} {} {} {} {}",
+                    node.modes, owner, group, size, mtime, node
+                );
+            }
+        }
+        Opt { all: _, human: _ } => {
+            for node in nodes {
+                // normal
+                println!("{}", node);
+            }
+        }
     }
 }
 
-use std::env;
-fn main() {
+struct Opt {
+    all: bool,
+    human: bool,
+}
+
+fn opt_parse() -> (String, Opt) {
     let args: Vec<String> = env::args().collect();
-    let mut path = ".";
-    if args.len() > 1 {
-        path = &args[1];
-    }
-    list(path);
+    println!("{:?}", args);
+
+    // Opt { all: true };
+    let (path, opt): (&str, Opt) = match args.as_slice() {
+        // no arguments passed
+        [_] => (
+            ".",
+            Opt {
+                all: false,
+                human: false,
+            },
+        ),
+
+        [_, ref first] => {
+            if first == "-a" {
+                (
+                    ".",
+                    Opt {
+                        all: true,
+                        human: false,
+                    },
+                )
+            } else if first == "-ah" {
+                (
+                    ".",
+                    Opt {
+                        all: true,
+                        human: true,
+                    },
+                )
+            } else {
+                (
+                    &first,
+                    Opt {
+                        all: false,
+                        human: false,
+                    },
+                )
+            }
+        }
+
+        [_, ref first, ref second] => {
+            if first == "-a" {
+                (
+                    &second,
+                    Opt {
+                        all: true,
+                        human: false,
+                    },
+                )
+            } else if first == "-ah" {
+                (
+                    &second,
+                    Opt {
+                        all: true,
+                        human: true,
+                    },
+                )
+            } else {
+                (
+                    &second,
+                    Opt {
+                        all: false,
+                        human: false,
+                    },
+                )
+            }
+        }
+
+        _ => (
+            ".",
+            Opt {
+                all: false,
+                human: false,
+            },
+        ),
+    };
+    return (path.to_string(), opt);
+}
+
+fn main() {
+    let (path, opt) = opt_parse();
+    println!("{} {}", path, opt.all);
+    let nodes = list_nodes(&path);
+    print_nodes(nodes, opt);
 }
