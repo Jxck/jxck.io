@@ -42,18 +42,16 @@ impl fmt::Display for Modes {
 
 #[derive(PartialEq, PartialOrd, Eq, Ord)]
 enum FileType {
-    // TODO: 値いらない？
-    Dir = 1,
-    Pipe = 2,
-    Socket = 3,
-    Block = 4,
-    Char = 5,
-    Sym = 6,
-    Exec = 7,
-    File = 8,
+    Dir,
+    Pipe,
+    Socket,
+    Block,
+    Char,
+    Sym,
+    Exec,
+    File,
 }
 
-#[allow(dead_code)]
 struct Node {
     entry: fs::DirEntry,
     file_type: FileType,
@@ -75,6 +73,7 @@ impl Node {
         };
         return node;
     }
+
     fn file_type(entry: &fs::DirEntry) -> (FileType, Modes) {
         let file_type = entry.file_type().unwrap();
         let modes: Modes = Node::permission(&entry);
@@ -97,6 +96,7 @@ impl Node {
         };
         return (file_type, modes);
     }
+
     fn permission(entry: &fs::DirEntry) -> Modes {
         let mode: u32 = entry.metadata().unwrap().mode();
         let user: Mode = Mode(
@@ -116,6 +116,7 @@ impl Node {
         );
         return Modes(user, group, other);
     }
+
     fn is_exec(modes: &Modes) -> bool {
         return match modes {
             Modes(Mode(_, _, true), _, _) => true,
@@ -124,6 +125,7 @@ impl Node {
             _ => false,
         };
     }
+
     unsafe fn user_group(&self) -> (String, String) {
         let uid = self.entry.metadata().unwrap().uid();
         let gid = self.entry.metadata().unwrap().gid();
@@ -133,9 +135,11 @@ impl Node {
         let groupname = get_cstr(gr_name);
         return (username, groupname);
     }
+
     fn size(&self) -> u64 {
         return self.entry.metadata().unwrap().len();
     }
+
     fn human_size(&self) -> String {
         let size = self.size();
         let mega: u64 = 1024 * 1024;
@@ -157,9 +161,11 @@ impl Node {
         let datetime: DateTime<Utc> = mtime.into();
         return format!("{}", datetime.format("%Y-%m-%d %H:%M"));
     }
+
     fn path(&self) -> PathBuf {
         return self.entry.path();
     }
+
     fn file_name(&self) -> String {
         return self
             .path()
@@ -237,7 +243,6 @@ fn list_nodes(path: &str) -> Vec<Node> {
         .unwrap()
         .map(|d| Node::new(d.unwrap()))
         .collect();
-
     nodes.sort_unstable();
     return nodes;
 }
@@ -259,6 +264,7 @@ fn print_nodes(nodes: Vec<Node>, opt: Opt) {
                 );
             }
         }
+
         Opt {
             all: true,
             human: true,
@@ -274,6 +280,7 @@ fn print_nodes(nodes: Vec<Node>, opt: Opt) {
                 );
             }
         }
+
         Opt { all: _, human: _ } => {
             for node in nodes {
                 // normal
@@ -290,7 +297,6 @@ struct Opt {
 
 fn opt_parse() -> (String, Opt) {
     let args: Vec<String> = env::args().collect();
-    println!("{:?}", args);
 
     // Opt { all: true };
     let (path, opt): (&str, Opt) = match args.as_slice() {
@@ -372,7 +378,6 @@ fn opt_parse() -> (String, Opt) {
 
 fn main() {
     let (path, opt) = opt_parse();
-    println!("{} {}", path, opt.all);
     let nodes = list_nodes(&path);
     print_nodes(nodes, opt);
 }
