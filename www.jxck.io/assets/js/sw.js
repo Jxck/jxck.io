@@ -5,7 +5,7 @@ EventTarget.prototype.off = EventTarget.prototype.removeEventListener
  * 同じ VERSION であれば、キャッシュにないものだけ追加する
  * VERSION を変えると、あたらしく作り追加する
  */
-const VERSION = 'v0.5.11'
+const VERSION = 'v0.5.14'
 const log = console.debug.bind(console)
 log('sw.js')
 
@@ -133,24 +133,30 @@ async function worker() {
 
   self.addEventListener('periodicsync', (e) => {
     console.log('periodicsync', e)
+    // e.waitUntil(async function() {
+    //   const url = "https://files.mozaic.fm/mozaic-ep0.mp3"
+    //   const option =  {
+    //     "title": "ep0 introduction of mozaic.fm | mozaic.fm",
+    //     "downloadTotal": 1858450,
+    //     "icons": [
+    //       {"src": "/assets/img/mozaic.jpeg", "type": "image/jpeg", "sizes": "2000x2000"},
+    //       {"src": "/assets/img/mozaic.webp", "type": "image/webp", "sizes": "256x256"},
+    //       {"src": "/assets/img/mozaic.png",  "type": "image/png",  "sizes": "256x256"},
+    //       {"src": "/assets/img/mozaic.svg",  "type": "image/svg+xml"}
+    //     ]
+    //   }
+    //   console.log('registration.backgroundFetch', url, option)
+    //   const task = await registration.backgroundFetch.fetch(url, [url], option)
+    //   task.addEventListener('progress', (e) => {
+    //     console.log(task, task.downloaded)
+    //   })
+    //   return
+    // }())
+
     e.waitUntil(async function() {
-      const url = "https://files.mozaic.fm/mozaic-ep0.mp3"
-      const option =  {
-        "title": "ep0 introduction of mozaic.fm | mozaic.fm",
-        "downloadTotal": 1858450,
-        "icons": [
-          {"src": "/assets/img/mozaic.jpeg", "type": "image/jpeg", "sizes": "2000x2000"},
-          {"src": "/assets/img/mozaic.webp", "type": "image/webp", "sizes": "256x256"},
-          {"src": "/assets/img/mozaic.png",  "type": "image/png",  "sizes": "256x256"},
-          {"src": "/assets/img/mozaic.svg",  "type": "image/svg+xml"}
-        ]
-      }
-      console.log('registration.backgroundFetch', url, option)
-      const task = await registration.backgroundFetch.fetch(url, [url], option)
-      task.addEventListener('progress', (e) => {
-        console.log(task, task.downloaded)
-      })
-      return
+      const url = "https://files.mozaic.fm/mozaic-ep65.mp3"
+      const cache = await caches.open('periodic-background-sync');
+      return cache.add(url);
     }())
   })
 
