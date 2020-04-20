@@ -82,12 +82,12 @@ if __FILE__ == $PROGRAM_NAME
   }
   opt.on("--podcasttest") {|v|
     puts "test building podcast"
-    # path = "./mozaic.fm/episodes/0/introduction-of-mozaicfm.md"
-    path = "./mozaic.fm/episodes/1/webcomponents.md"
+    path = "./mozaic.fm/episodes/0/introduction-of-mozaicfm.md"
+    #path = "./mozaic.fm/episodes/1/webcomponents.md"
     podcast.build(path)
-    podcast.build_all
-    podcast.feed
-    podcast.index
+    #podcast.build_all
+    #podcast.feed
+    #podcast.index
   }
   opt.on("--podcastid3all") {|v|
     puts "test building podcast id3tag"
