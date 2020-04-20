@@ -1,5 +1,6 @@
 // add mozaic player
 import MozaicPlayer from '/assets/js/mozaic-player.mjs'
+import CircleProgress from '/assets/js/circle-progress.mjs'
 
 // Enable debug log adding #debug into url
 const log = location.hash === '#debug' ? console.log.bind(console) : () => {}
@@ -93,6 +94,24 @@ function enablePlayer() {
   // document.on('keydown', playerKeybind)
 }
 
+function enableCircleProgress() {
+  log(CircleProgress)
+  customElements.define('circle-progress', CircleProgress)
+  const $circle = $('circle-progress')
+  $circle.on('click', (e) => {
+    console.log(e)
+    function up(value) {
+      $circle.setAttribute('value', value)
+      if (value > 100) return
+      setTimeout(() => up(value += 1), 10)
+    }
+
+    $circle.on('click', () => {
+      up(0)
+    })
+  })
+}
+
 function enableWebShare() {
   const $share = $('#share')
   if ($share !== null) {
@@ -124,6 +143,7 @@ document.on('DOMContentLoaded', async (e) => {
   // Enable Mozaic Player
   if (window.customElements) {
     enablePlayer()
+    enableCircleProgress()
   } else {
     // custom element 無い場合は controls
     const $audio = $('audio')
