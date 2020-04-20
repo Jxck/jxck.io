@@ -82,11 +82,34 @@
       margin-left: 0;
     }
 
-    article img {
-      margin: var(--grid) 0;
-      border: 1px solid #ccc;
-      box-sizing: content-box;
-      background-color: #fff;
+
+    article h1 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    article circle-progress  {
+      display: block;
+      width: 1.5em;
+      height: 1.5em;
+    }
+    article circle-progress::part(arrow) {
+      fill: #fff;
+    }
+    article circle-progress::part(base) {
+      stroke: #888;
+      fill: transparent;
+    }
+    article circle-progress::part(progress) {
+      stroke: #fff;
+      fill:transparent;
+    }
+
+    article img.download {
+      margin: 0;
+      border: none;
+      background-color: unset;
     }
 
     article ul,

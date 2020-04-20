@@ -98,6 +98,7 @@ function enableCircleProgress() {
   log(CircleProgress)
   customElements.define('circle-progress', CircleProgress)
   const $circle = $('circle-progress')
+  if ($circle === null) return
   $circle.on('click', (e) => {
     console.log(e)
     function up(value) {
