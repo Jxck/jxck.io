@@ -5,7 +5,7 @@ EventTarget.prototype.off = EventTarget.prototype.removeEventListener
  * 同じ VERSION であれば、キャッシュにないものだけ追加する
  * VERSION を変えると、あたらしく作り追加する
  */
-const VERSION = 'v0.5.18'
+const VERSION = 'v0.5.19'
 const log = console.debug.bind(console)
 log('sw.js')
 
@@ -13,54 +13,55 @@ log('sw.js')
 async function worker() {
   log('worker()', self)
 
+  const ASSETS = [] // temporary disable cache
   // revalidate したいものは no-cache
-  const ASSETS = [
-    // episodes
-    // {url: 'https://mozaic.fm/episodes/0/introduction-of-mozaicfm.html', option: {cache: 'no-cache'}},
+  //const ASSETS = [
+  //  // episodes
+  //  // {url: 'https://mozaic.fm/episodes/0/introduction-of-mozaicfm.html', option: {cache: 'no-cache'}},
 
-    // fonts
-    {url: 'https://mozaic.fm/assets/font/NotoSansCJKjp-Regular-Jxck-20200407.woff2',     option: {}},
-    {url: 'https://mozaic.fm/assets/font/NotoSansCJKjp-Bold-Jxck-20200407.woff2',        option: {}},
-    {url: 'https://mozaic.fm/assets/font/NotoSansMonoCJKjp-Regular-Jxck-20200407.woff2', option: {}},
-    {url: 'https://mozaic.fm/assets/font/NotoSansMonoCJKjp-Bold-Jxck-20200407.woff2',    option: {}},
-    {url: 'https://mozaic.fm/assets/js/highlight.pack.js',                               option: {}},
+  //  // fonts
+  //  {url: 'https://mozaic.fm/assets/font/NotoSansCJKjp-Regular-Jxck-20200407.woff2',     option: {}},
+  //  {url: 'https://mozaic.fm/assets/font/NotoSansCJKjp-Bold-Jxck-20200407.woff2',        option: {}},
+  //  {url: 'https://mozaic.fm/assets/font/NotoSansMonoCJKjp-Regular-Jxck-20200407.woff2', option: {}},
+  //  {url: 'https://mozaic.fm/assets/font/NotoSansMonoCJKjp-Bold-Jxck-20200407.woff2',    option: {}},
+  //  {url: 'https://mozaic.fm/assets/js/highlight.pack.js',                               option: {}},
 
-    // css
-    {url: 'https://mozaic.fm/assets/css/body.css',    option: {cache: 'no-cache'}},
-    {url: 'https://mozaic.fm/assets/css/article.css', option: {cache: 'no-cache'}},
-    {url: 'https://mozaic.fm/assets/css/dialog.css',  option: {cache: 'no-cache'}},
-    {url: 'https://mozaic.fm/assets/css/info.css',    option: {cache: 'no-cache'}},
-    {url: 'https://mozaic.fm/assets/css/header.css',  option: {cache: 'no-cache'}},
-    {url: 'https://mozaic.fm/assets/css/footer.css',  option: {cache: 'no-cache'}},
-    {url: 'https://mozaic.fm/assets/css/main.css',    option: {cache: 'no-cache'}},
-    {url: 'https://mozaic.fm/assets/css/mozaic.css',  option: {cache: 'no-cache'}},
-    {url: 'https://mozaic.fm/assets/css/search.css',  option: {cache: 'no-cache'}},
+  //  // css
+  //  {url: 'https://mozaic.fm/assets/css/body.css',    option: {cache: 'no-cache'}},
+  //  {url: 'https://mozaic.fm/assets/css/article.css', option: {cache: 'no-cache'}},
+  //  {url: 'https://mozaic.fm/assets/css/dialog.css',  option: {cache: 'no-cache'}},
+  //  {url: 'https://mozaic.fm/assets/css/info.css',    option: {cache: 'no-cache'}},
+  //  {url: 'https://mozaic.fm/assets/css/header.css',  option: {cache: 'no-cache'}},
+  //  {url: 'https://mozaic.fm/assets/css/footer.css',  option: {cache: 'no-cache'}},
+  //  {url: 'https://mozaic.fm/assets/css/main.css',    option: {cache: 'no-cache'}},
+  //  {url: 'https://mozaic.fm/assets/css/mozaic.css',  option: {cache: 'no-cache'}},
+  //  {url: 'https://mozaic.fm/assets/css/search.css',  option: {cache: 'no-cache'}},
 
-    // svg
-    {url: 'https://mozaic.fm/assets/img/jxck.svg',           option: {cache: 'no-cache'}},
-    {url: 'https://mozaic.fm/assets/img/mozaic.svg',         option: {cache: 'no-cache'}},
-    {url: 'https://mozaic.fm/assets/img/podcast.svg',        option: {cache: 'no-cache'}},
-    {url: 'https://mozaic.fm/assets/img/itunes.svg',         option: {cache: 'no-cache'}},
-    {url: 'https://mozaic.fm/assets/img/google-podcast.svg', option: {cache: 'no-cache'}},
-    {url: 'https://mozaic.fm/assets/img/search.svg',         option: {cache: 'no-cache'}},
-    {url: 'https://mozaic.fm/assets/img/share.svg',          option: {cache: 'no-cache'}},
-    {url: 'https://mozaic.fm/assets/img/twitter.svg',        option: {cache: 'no-cache'}},
+  //  // svg
+  //  {url: 'https://mozaic.fm/assets/img/jxck.svg',           option: {cache: 'no-cache'}},
+  //  {url: 'https://mozaic.fm/assets/img/mozaic.svg',         option: {cache: 'no-cache'}},
+  //  {url: 'https://mozaic.fm/assets/img/podcast.svg',        option: {cache: 'no-cache'}},
+  //  {url: 'https://mozaic.fm/assets/img/itunes.svg',         option: {cache: 'no-cache'}},
+  //  {url: 'https://mozaic.fm/assets/img/google-podcast.svg', option: {cache: 'no-cache'}},
+  //  {url: 'https://mozaic.fm/assets/img/search.svg',         option: {cache: 'no-cache'}},
+  //  {url: 'https://mozaic.fm/assets/img/share.svg',          option: {cache: 'no-cache'}},
+  //  {url: 'https://mozaic.fm/assets/img/twitter.svg',        option: {cache: 'no-cache'}},
 
-    // png
-    {url: 'https://mozaic.fm/assets/img/mozaic.png',         option: {cache: 'no-cache'}},
-    {url: 'https://mozaic.fm/assets/img/portal-preview.png', option: {cache: 'no-cache'}},
+  //  // png
+  //  {url: 'https://mozaic.fm/assets/img/mozaic.png',         option: {cache: 'no-cache'}},
+  //  {url: 'https://mozaic.fm/assets/img/portal-preview.png', option: {cache: 'no-cache'}},
 
-    // js
-    {url: 'https://mozaic.fm/assets/js/mozaic-player.mjs',   option: {cache: 'no-cache'}},
-    {url: 'https://mozaic.fm/assets/js/mozaic.js',           option: {cache: 'no-cache'}},
-    {url: 'https://mozaic.fm/assets/js/sw.js',               option: {cache: 'no-cache'}},
+  //  // js
+  //  {url: 'https://mozaic.fm/assets/js/mozaic-player.mjs',   option: {cache: 'no-cache'}},
+  //  {url: 'https://mozaic.fm/assets/js/mozaic.js',           option: {cache: 'no-cache'}},
+  //  {url: 'https://mozaic.fm/assets/js/sw.js',               option: {cache: 'no-cache'}},
 
-    // template
-    {url: 'https://mozaic.fm/assets/template/mozaic-player.html', option: {cache: 'no-cache'}},
+  //  // template
+  //  {url: 'https://mozaic.fm/assets/template/mozaic-player.html', option: {cache: 'no-cache'}},
 
-    // other
-    {url: 'https://mozaic.fm/manifest.webmanifest', option: {cache: 'no-cache'}},
-  ]
+  //  // other
+  //  {url: 'https://mozaic.fm/manifest.webmanifest', option: {cache: 'no-cache'}},
+  //]
 
   self.on('install', async (e) => {
     log('install > skipWaiting', VERSION, e)
