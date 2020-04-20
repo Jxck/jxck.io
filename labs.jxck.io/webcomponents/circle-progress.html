@@ -10,6 +10,17 @@ circle-progress  {
   display: block;
   width: 150px
 }
+circle-progress::part(arrow) {
+  fill: #333;
+}
+circle-progress::part(base) {
+  stroke: #ccc;
+  fill: transparent;
+}
+circle-progress::part(progress) {
+  stroke: #333;
+  fill:transparent;
+}
 </style>
 
 
@@ -32,6 +43,9 @@ circle-progress  {
       if (value > 100) return
       setTimeout(() => up(value += 1), 10)
     }
-    up(0)
+
+    $circle.on('click', () => {
+      up(0)
+    })
   })
 </script>
