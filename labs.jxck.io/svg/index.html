@@ -4,7 +4,7 @@
 
 <title>SVG DEMO | labs.jxck.io</title>
 <!--
-<meta http-equiv=refresh content=1>
+  <meta http-equiv=refresh content=1>
 -->
 
 <style>
@@ -27,146 +27,114 @@ pre {
 }
 </style>
 
+<template>
+  <div>
+    <h2 id></h2>
+    <details>
+      <summary><img src></img></summary>
+      <pre id></pre>
+    </details>
+  </div>
+</template>
+
 <script>
-window.addEventListener('DOMContentLoaded', () => {
-  "use strict";
-  let imgs = document.getElementsByTagName('img');
-  let svgs = document.querySelectorAll('svg use');
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  window.addEventListener('DOMContentLoaded', () => {
+    "use strict";
 
-  let img_url = Array.from(imgs).map(img => img.src);
-  let svg_url = Array.from(svgs).map(svg => svg.href.baseVal.replace(/#.*/, ''));
+    const map = new Map([
+      ["cacoo",             "cacoo.svg"],
+      ["cacoo - svggo",     "svggo.svg"],
+      ["jxck",              "jxck.svg"],
+      ["mozaic",            "mozaic.svg"],
 
-  let urls = [...img_url, ...svg_url];
-  console.log(urls);
+      ["Close",             "close.svg"],
+      ["Install",           "install.svg"],
+      ["Humans.txt",        "humans.svg"],
 
-  urls.forEach((url) => {
-    fetch(url).then((res) => res.text()).then((txt) => {
-      let id = url.split('/').pop();
-      console.log(id);
-      txt = '// ' + txt.length + 'byte\n' + txt;
-      document.getElementById(id).textContent = txt;
+      ["Play",              "play.svg"],
+      ["Pause",             "pause.svg"],
+      ["Back",              "back.svg"],
+      ["Forward",           "forward.svg"],
+      ["Volume Down",       "volume-down.svg"],
+      ["Volume Up",         "volume-up.svg"],
+
+      ["Search",            "search.svg"],
+      ["Share",             "share.svg"],
+      ["UP",                "up.svg"],
+      ["Addto Home Screen", "a2hs.svg"],
+
+      ["RSS",               "rss.svg"],
+      ["Podcast",           "podcast.svg"],
+      ["iTunes",            "itunes.svg"],
+      ["Spotify",           "spotify.svg"],
+      ["Google Podcast",    "google-podcast.svg"],
+      ["Twitter",           "twitter.svg"],
+      ["Github",            "github.svg"],
+
+      ["Blog",              "blog.svg"],
+      ["Labs",              "labs.svg"],
+      ["Slide",             "slide.svg"],
+
+      ["LGTM",              "lgtm.svg"],
+      ["404",               "404.svg"],
+      ["500",               "500.svg"],
+      ["503",               "503.svg"],
+    ])
+
+    const $footer = $("footer")
+    const template = $('template')
+
+    map.forEach((v, k) => {
+      const id = v
+      const src = v
+      const name = k.replace('.svg', '')
+      const clone = document.importNode(template.content, true);
+      clone.querySelector('h2').id = name
+      clone.querySelector('h2').textContent = name
+      clone.querySelector('img').src = src
+      clone.querySelector('pre').id = id
+      $footer.parentNode.insertBefore(clone, $footer)
+    })
+
+    let imgs = document.getElementsByTagName('img');
+    let svgs = document.querySelectorAll('svg use');
+
+    let img_url = Array.from(imgs).map(img => img.src);
+    let svg_url = Array.from(svgs).map(svg => svg.href.baseVal.replace(/#.*/, ''));
+
+    let urls = [...img_url, ...svg_url];
+    console.log(urls);
+
+    urls.forEach((url) => {
+      fetch(url).then((res) => res.text()).then((txt) => {
+        let id = url.split('/').pop();
+        console.log(id);
+        txt = '// ' + txt.length + 'byte\n' + txt;
+        document.getElementById(id).textContent = txt;
+      });
     });
   });
-});
 </script>
 
 <h1>SVG Gallery</h1>
 
-<h2 id=jxck-cacoo>Jxck(cacoo)</h2>
-<img src=cacoo.svg>
-<pre id=cacoo.svg></pre>
+<div>
+  <h2 id=push>Push</h2>
+  <details>
+    <summary><svg><use xlink:href="push.svg#main"/></svg></summary>
+    <pre id=push.svg></pre>
+  </details>
+</div>
 
-<h2 id=jxck-svggo>Jxck(cacoo -> svggo)</h2>
-<img src=svggo.svg>
-<pre id=svggo.svg></pre>
-
-<h2 id=jxck>Jxck(hand write)</h2>
-<img src=jxck.svg>
-<pre id=jxck.svg></pre>
-
-<h2 id=push>Push</h2>
-<svg><use xlink:href="push.svg#main"/></svg>
-<pre id=push.svg></pre>
-
-<h2 id=amp>AMP</h2>
-<svg><use xlink:href="amp.svg#main"/></svg>
-<pre id=amp.svg></pre>
-
-<h2 id=up>UP</h2>
-<img src=up.svg>
-<pre id=up.svg></pre>
-
-<h2 id=rss>RSS</h2>
-<img src=rss.svg>
-<pre id=rss.svg></pre>
-
-<h2 id=share>Share</h2>
-<img src=share.svg>
-<pre id=share.svg></pre>
-
-<h2 id=install>Install</h2>
-<img src=install.svg>
-<pre id=install.svg></pre>
-
-<h2 id=close>Close</h2>
-<img src=close.svg>
-<pre id=close.svg></pre>
-
-<h2 id=humans>Humans.txt</h2>
-<img src=humans.svg>
-<pre id=humans.svg></pre>
-
-<h2 id=itunes>iTunes</h2>
-<img src=itunes.svg>
-<pre id=itunes.svg></pre>
-
-<h2 id=podcast>Podcast</h2>
-<img src=podcast.svg>
-<pre id=podcast.svg></pre>
-
-<h2 id=search>search</h2>
-<img src=search.svg>
-<pre id=search.svg></pre>
-
-<h2 id=mozaic>Mozaic</h2>
-<img src=mozaic.svg>
-<pre id=mozaic.svg></pre>
-
-<h2 id=blog>Blog</h2>
-<img src=blog.svg>
-<pre id=blog.svg></pre>
-
-<h2 id=slide>Slide</h2>
-<img src=slide.svg>
-<pre id=slide.svg></pre>
-
-<h2 id=labs>Labs</h2>
-<img src=labs.svg>
-<pre id=labs.svg></pre>
-
-<h2 id=lgtm>LGTM</h2>
-<img src=lgtm.svg>
-<pre id=lgtm.svg></pre>
-
-<h2 id=404>404</h2>
-<img src=404.svg>
-<pre id=404.svg></pre>
-
-<h2 id=500>500</h2>
-<img src=500.svg>
-<pre id=500.svg></pre>
-
-<h2 id=503>503</h2>
-<img src=503.svg>
-<pre id=503.svg></pre>
-
-<h2 id=volume-down>volume down</h2>
-<img src=volume-down.svg>
-<pre id=volume-down.svg></pre>
-
-<h2 id=volume-up>volume up</h2>
-<img src=volume-up.svg>
-<pre id=volume-up.svg></pre>
-
-<h2 id=play>play</h2>
-<img src=play.svg>
-<pre id=play.svg></pre>
-
-<h2 id=pause>pause</h2>
-<img src=pause.svg>
-<pre id=pause.svg></pre>
-
-<h2 id=back>back</h2>
-<img src=back.svg>
-<pre id=back.svg></pre>
-
-<h2 id=forward>forward</h2>
-<img src=forward.svg>
-<pre id=forward.svg></pre>
-
-<h2 id=a2hs>Add to Home Screen</h2>
-<img src=a2hs.svg>
-<pre id=a2hs.svg></pre>
+<div>
+  <h2 id=amp>AMP</h2>
+  <details>
+    <summary><svg><use xlink:href="amp.svg#main"/></svg></summary>
+    <pre id=amp.svg></pre>
+  </details>
+</div>
 
 <footer>
   <address class=copyright>Copyright &copy; 2013 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</address>
