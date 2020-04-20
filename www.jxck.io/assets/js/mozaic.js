@@ -180,8 +180,8 @@ document.on('DOMContentLoaded', async (e) => {
       const tags = await registration.periodicSync.getTags()
       log('remove periodicSync tags', tags)
       await Promise.all(tags.map((tag) => registration.periodicSync.unregister(tag)))
-      await registration.periodicSync.register('test-12h', {
-        minInterval: 12 * 60 * 60 * 1000 // 12h
+      await registration.periodicSync.register('test-3h', {
+        minInterval: 3 * 60 * 60 * 1000 // 3h
       })
     }
   }
