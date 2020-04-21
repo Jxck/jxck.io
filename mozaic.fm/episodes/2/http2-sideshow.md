@@ -11,7 +11,7 @@ guest
 : [@tatsuhiro_t](https://twitter.com/tatsuhiro_t)
 
 guest
- [@jovi0608](https://twitter.com/jovi0608)
+: [@jovi0608](https://twitter.com/jovi0608)
 
 
 ## Theme
