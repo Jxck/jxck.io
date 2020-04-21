@@ -156,7 +156,7 @@ async function worker() {
         console.log(request, response)
 
         // キャッシュ先
-        const cache = await caches.open('periodic-background-sync')
+        const cache = await caches.open('mozaic-files')
         await cache.put(request.url, response)
 
         // 通知

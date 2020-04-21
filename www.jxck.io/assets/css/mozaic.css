@@ -6,6 +6,9 @@
   --heading-back-color: #333;
   --border-color: black;
   --player-color: black;
+
+  --ui-back: #888;
+  --ui-front: white;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,6 +19,9 @@
     --heading-font-color: white;
     --heading-back-color: #333;
     --border-color: white;
+
+    --ui-back: #888;
+    --ui-front: white;
   }
 }
 
@@ -215,21 +221,24 @@ mozaic-player {
   }
 }
 
-/* cirlce progress */
-circle-progress  {
+/* background-fetch */
+background-fetch  {
   display: block;
   width: 1.5em;
   height: 1.5em;
 }
-circle-progress::part(arrow) {
-  fill: #fff;
+background-fetch::part(arrow) {
+  fill: var(--ui-back);
 }
-circle-progress::part(base) {
-  stroke: #888;
+background-fetch::part(arrow done) {
+  fill: var(--ui-front);
+}
+background-fetch::part(base) {
+  stroke: var(--ui-back);
   fill: transparent;
 }
-circle-progress::part(progress) {
-  stroke: #fff;
+background-fetch::part(progress) {
+  stroke: var(--ui-front);
   fill:transparent;
 }
 

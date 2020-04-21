@@ -180,10 +180,9 @@ document.on('DOMContentLoaded', async (e) => {
     const $bgfetch = $('background-fetch')
     $bgfetch.classList.remove('disable')
 
-    const $audio  = $('audio')
-    const url     = $audio.src
-    const size    = parseInt($audio.getAttribute('size'))
-    const mtime   = parseInt($audio.getAttribute('mtime'))
+    const url     = $bgfetch.getAttribute('url')
+    const size    = parseInt($bgfetch.getAttribute('max'))
+    const mtime   = parseInt($bgfetch.getAttribute('mtime'))
     const cache   = await caches.match(url)
 
     // check etag
@@ -194,6 +193,8 @@ document.on('DOMContentLoaded', async (e) => {
     if (current_etag === saved_etag) {
       // cache がある
       $bgfetch.setAttribute('value', size)
+      $bgfetch.shadowRoot.querySelector('#arrow').part.add('done')
+
     } else {
       // cache がない
       $bgfetch.on('click', async () => {
