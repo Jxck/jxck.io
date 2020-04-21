@@ -157,50 +157,65 @@ document.on('DOMContentLoaded', async (e) => {
     return
   }
 
-  const controllerChange = new Promise((resolve, reject) => {
-    if (navigator.serviceWorker.controller) {
-      resolve(navigator.serviceWorker.controller);
-    } else {
-      navigator.serviceWorker.addEventListener('controllerchange', (e) => {
-        log(e.type)
-        resolve(navigator.serviceWorker.controller)
-      })
-    }
-  })
+  // const controllerChange = new Promise((resolve, reject) => {
+  //   if (navigator.serviceWorker.controller) {
+  //     resolve(navigator.serviceWorker.controller);
+  //   } else {
+  //     navigator.serviceWorker.addEventListener('controllerchange', (e) => {
+  //       log(e.type)
+  //       resolve(navigator.serviceWorker.controller)
+  //     })
+  //   }
+  // })
 
   const registration = await navigator.serviceWorker.register('/assets/js/sw.js', { scope: '/' })
   await Promise.all([
     navigator.serviceWorker.ready,
-    controllerChange
+    //controllerChange
   ])
 
   if (registration.backgroundFetch) {
+    console.log('registration.backgroundFetch')
     customElements.define('circle-progress', CircleProgress)
     const $circle = $('circle-progress')
+    $circle.classList.remove('disable')
+
     const $audio  = $('audio')
     const url     = $audio.src
+    const size    = parseInt($audio.getAttribute('size'))
+    const mtime   = parseInt($audio.getAttribute('mtime'))
     const cache   = await caches.match(url)
-    const etag    = cache.headers.get('etag')
-    console.log(etag)
-    $circle.on('click', async () => {
-      const option = {
-        title: $('title').textContent,
-        icons: [
-          {'src': '/assets/img/mozaic.jpeg', 'type': 'image/jpeg', 'sizes': '2000x2000'},
-          {'src': '/assets/img/mozaic.webp', 'type': 'image/webp', 'sizes': '256x256'},
-          {'src': '/assets/img/mozaic.png',  'type': 'image/png',  'sizes': '256x256'},
-          {'src': '/assets/img/mozaic.svg',  'type': 'image/svg+xml'}
-        ],
-        downloadTotal: parseInt($audio.getAttribute('size')),
-      }
 
-      // register background task
-      const task = await registration.backgroundFetch.fetch(url, [url], option)
-      task.addEventListener('progress', (e) => {
-        console.log(task, task.downloaded)
-        $circle.setAttribute('value', task.downloaded)
+    // check etag
+    const current_etag = `"${mtime.toString(16)}-${size.toString(16)}"`
+    const saved_etag   = cache?.headers.get('etag')
+    console.log(current_etag, saved_etag, current_etag === saved_etag)
+
+    if (current_etag === saved_etag) {
+      // cache がある
+      $circle.setAttribute('value', size)
+    } else {
+      // cache がない
+      $circle.on('click', async () => {
+        const option = {
+          title: $('title').textContent,
+          icons: [
+            {'src': '/assets/img/mozaic.jpeg', 'type': 'image/jpeg', 'sizes': '2000x2000'},
+            {'src': '/assets/img/mozaic.webp', 'type': 'image/webp', 'sizes': '256x256'},
+            {'src': '/assets/img/mozaic.png',  'type': 'image/png',  'sizes': '256x256'},
+            {'src': '/assets/img/mozaic.svg',  'type': 'image/svg+xml'}
+          ],
+          downloadTotal: size
+        }
+
+        // register background task
+        const task = await registration.backgroundFetch.fetch(url, [url], option)
+        task.addEventListener('progress', (e) => {
+          console.log(task, task.downloaded)
+          $circle.setAttribute('value', task.downloaded)
+        })
       })
-    })
+    }
   }
 
   if (registration.periodicSync) {
