@@ -42,10 +42,10 @@ module Document
 
     def article
       super
-        #.sub(/audio: (.*)/, "<mozaic-player><audio slot=audio src=#{audio} crossorigin=anonymous title='#{title}' data-forward=+30 data-back=-10></audio></mozaic-player>")
         .sub(/audio: (.*)/, "")
         .sub(/<dl>(.*?)<dt>published_at/m, '<dl class=info>\1<dt>published_at')
         .sub(/published_at: (.*)/, "published_at: <time datetime=#{datetime}>#{datetime}</time>")
+        .sub(/<\/a><\/h1>/, "</a><circle-progress value=0 max=#{size}></circle-progress></h1>")
     end
 
     def num
