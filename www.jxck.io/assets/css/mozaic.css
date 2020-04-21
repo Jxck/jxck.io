@@ -58,6 +58,11 @@ main > ol > li {
 main > ol > li h2 {
   margin: 0;
   padding: 0.4em 0.6em;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   border-top-left-radius:  calc(var(--radius) - 1px);
   border-top-right-radius: calc(var(--radius) - 1px);
   font-weight: normal;
@@ -158,33 +163,22 @@ article ol > li > ol {
   margin: 0.2em 0 0.6em 1em;
 }
 
-/*
-article h1 {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-*/
 
-article circle-progress  {
-  display: block;
+circle-progress  {
+  display: none;
   width: 1.5em;
   height: 1.5em;
 }
-article circle-progress::part(arrow) {
+circle-progress::part(arrow) {
   fill: #fff;
 }
-article circle-progress::part(base) {
+circle-progress::part(base) {
   stroke: #888;
   fill: transparent;
 }
-article circle-progress::part(progress) {
+circle-progress::part(progress) {
   stroke: #fff;
   fill:transparent;
-}
-
-circle-progress {
-  display: none;
 }
 
 article img.download {
