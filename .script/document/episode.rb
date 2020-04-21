@@ -45,7 +45,7 @@ module Document
         .sub(/audio: (.*)/, "")
         .sub(/<dl>(.*?)<dt>published_at/m, '<dl class=info>\1<dt>published_at')
         .sub(/published_at: (.*)/, "published_at: <time datetime=#{datetime}>#{datetime}</time>")
-        .sub(/<\/a><\/h1>/, "</a><circle-progress value=0 max=#{size}></circle-progress></h1>")
+        .sub(/<\/a><\/h1>/, "</a><circle-progress class=disable value=0 max=#{size}></circle-progress></h1>")
     end
 
     def num
