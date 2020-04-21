@@ -112,6 +112,14 @@ module Document
       end
     end
 
+    def mtime
+      begin
+        File.open("../#{audio_file}").mtime.to_i
+      rescue
+        0
+      end
+    end
+
     def duration
       sec = 0
       if RUBY_PLATFORM.match(/darwin/)
