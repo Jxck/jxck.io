@@ -147,23 +147,23 @@ async function worker() {
       try {
         // 結果を取り出す
         const id = e.registration.id
-        const record = await e.registration.match(id)
-        console.log(id, record)
-
-        // キャッシュ対象
-        const request = record.request
-        const response = await record.responseReady
-        console.log(request, response)
+        const records = await e.registration.matchAll()
 
         // キャッシュ先
         const cache = await caches.open('mozaic-files')
-        await cache.put(request.url, response)
+
+        // キャッシュ対象
+        const promises = records.map(async (record) => {
+          const response = await record.responseReady;
+          await cache.put(record.request, response);
+        })
+        await Promise.all(promises);
 
         // 通知
-        await e.updateUI({ title: id })
+        await e.updateUI({title: `downloaded: ${id}`})
       } catch (err) {
         console.error(err)
-        e.updateUI({ title: `download failed ${e.registration.id}` })
+        e.updateUI({title: `download failed: ${id}`})
       }
     }())
   })
@@ -181,8 +181,6 @@ async function worker() {
     console.log(e)
     e.waitUntil(async function() {
       const url = e.registration.id
-      console.log(url)
-      // TODO: エピソードのページを開く
       clients.openWindow(url)
     }())
   })

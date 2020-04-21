@@ -177,46 +177,52 @@ document.on('DOMContentLoaded', async (e) => {
   if (registration.backgroundFetch) {
     console.log('registration.backgroundFetch')
     customElements.define('background-fetch', BackgroundFetch)
-    const $bgfetch = $('background-fetch')
-    $bgfetch.classList.remove('disable')
 
-    const url     = $bgfetch.getAttribute('url')
-    const size    = parseInt($bgfetch.getAttribute('max'))
-    const mtime   = parseInt($bgfetch.getAttribute('mtime'))
-    const cache   = await caches.match(url)
+    $$('background-fetch').forEach(async ($bgfetch) => {
+      $bgfetch.classList.remove('disable')
+      const id    = $bgfetch.previousElementSibling.href
+      const url   = $bgfetch.getAttribute('url')
+      const size  = parseInt($bgfetch.getAttribute('max'))
+      const mtime = parseInt($bgfetch.getAttribute('mtime'))
+      const cache = await caches.match(url)
 
-    // check etag
-    const current_etag = `"${mtime.toString(16)}-${size.toString(16)}"`
-    const saved_etag   = cache?.headers.get('etag')
-    console.log(current_etag, saved_etag, current_etag === saved_etag)
+      // check etag
+      const current_etag = `"${mtime.toString(16)}-${size.toString(16)}"`
+      const saved_etag   = cache?.headers.get('etag')
+      console.log(current_etag, saved_etag, current_etag === saved_etag)
 
-    if (current_etag === saved_etag) {
-      // cache がある
-      $bgfetch.setAttribute('value', size)
-      $bgfetch.shadowRoot.querySelector('#arrow').part.add('done')
+      if (current_etag === saved_etag) {
+        // cache がある
+        $bgfetch.setAttribute('value', size)
+        $bgfetch.shadowRoot.querySelector('#arrow').part.add('done')
 
-    } else {
-      // cache がない
-      $bgfetch.on('click', async () => {
-        const option = {
-          title: $('title').textContent,
-          icons: [
-            {'src': '/assets/img/mozaic.jpeg', 'type': 'image/jpeg', 'sizes': '2000x2000'},
-            {'src': '/assets/img/mozaic.webp', 'type': 'image/webp', 'sizes': '256x256'},
-            {'src': '/assets/img/mozaic.png',  'type': 'image/png',  'sizes': '256x256'},
-            {'src': '/assets/img/mozaic.svg',  'type': 'image/svg+xml'}
-          ],
-          downloadTotal: size
-        }
+      } else {
+        // cache がない
+        $bgfetch.on('click', async (e) => {
+          console.log(e)
+          const option = {
+            title: $('title').textContent,
+            icons: [
+              {'src': '/assets/img/mozaic.jpeg', 'type': 'image/jpeg', 'sizes': '2000x2000'},
+              {'src': '/assets/img/mozaic.webp', 'type': 'image/webp', 'sizes': '256x256'},
+              {'src': '/assets/img/mozaic.png',  'type': 'image/png',  'sizes': '256x256'},
+              {'src': '/assets/img/mozaic.svg',  'type': 'image/svg+xml'}
+            ],
+            downloadTotal: size
+          }
 
-        // register background task
-        const task = await registration.backgroundFetch.fetch(url, [url], option)
-        task.addEventListener('progress', (e) => {
-          console.log(task, task.downloaded)
-          $bgfetch.setAttribute('value', task.downloaded)
+          // register background task
+          let task = await registration.backgroundFetch.get(id)
+          if (task === undefined) {
+            task = await registration.backgroundFetch.fetch(id, [url], option)
+          }
+          task.addEventListener('progress', (e) => {
+            console.log(task, task.downloaded)
+            $bgfetch.setAttribute('value', task.downloaded)
+          })
         })
-      })
-    }
+      }
+    })
   }
 
   if (registration.periodicSync) {
