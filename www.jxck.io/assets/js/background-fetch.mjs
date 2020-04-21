@@ -1,4 +1,4 @@
-export default class CircleProgress extends HTMLElement {
+export default class BackgroundFetch extends HTMLElement {
   static get observedAttributes() {
     return ['max', 'value'];
   }

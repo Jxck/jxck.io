@@ -1,6 +1,6 @@
 // add mozaic player
 import MozaicPlayer from '/assets/js/mozaic-player.mjs'
-import CircleProgress from '/assets/js/circle-progress.mjs'
+import BackgroundFetch from '/assets/js/background-fetch.mjs'
 
 // Enable debug log adding #debug into url
 const log = location.hash === '#debug' ? console.log.bind(console) : () => {}
@@ -176,9 +176,9 @@ document.on('DOMContentLoaded', async (e) => {
 
   if (registration.backgroundFetch) {
     console.log('registration.backgroundFetch')
-    customElements.define('circle-progress', CircleProgress)
-    const $circle = $('circle-progress')
-    $circle.classList.remove('disable')
+    customElements.define('background-fetch', BackgroundFetch)
+    const $bgfetch = $('background-fetch')
+    $bgfetch.classList.remove('disable')
 
     const $audio  = $('audio')
     const url     = $audio.src
@@ -193,10 +193,10 @@ document.on('DOMContentLoaded', async (e) => {
 
     if (current_etag === saved_etag) {
       // cache がある
-      $circle.setAttribute('value', size)
+      $bgfetch.setAttribute('value', size)
     } else {
       // cache がない
-      $circle.on('click', async () => {
+      $bgfetch.on('click', async () => {
         const option = {
           title: $('title').textContent,
           icons: [
@@ -212,7 +212,7 @@ document.on('DOMContentLoaded', async (e) => {
         const task = await registration.backgroundFetch.fetch(url, [url], option)
         task.addEventListener('progress', (e) => {
           console.log(task, task.downloaded)
-          $circle.setAttribute('value', task.downloaded)
+          $bgfetch.setAttribute('value', task.downloaded)
         })
       })
     }

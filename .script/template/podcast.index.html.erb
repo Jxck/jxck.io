@@ -73,7 +73,7 @@
   <ol>
     <%- episodes.each do |episode| -%>
     <li>
-      <h2><a href=<%= episode.url %>><%= episode.title %></a><circle-progress class=disable value=0 max=<%= episode.size %>></circle-progress></h2>
+      <h2><a href=<%= episode.url %>><%= episode.title %></a><background-fetch class=disable value=0 max=<%= episode.size %>></background-fetch></h2>
       <%- episode.theme_line.each do |line| -%>
       <%= line %>
       <%- end -%>
