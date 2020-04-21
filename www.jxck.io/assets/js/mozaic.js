@@ -94,25 +94,6 @@ function enablePlayer() {
   // document.on('keydown', playerKeybind)
 }
 
-function enableCircleProgress() {
-  log(CircleProgress)
-  customElements.define('circle-progress', CircleProgress)
-  const $circle = $('circle-progress')
-  if ($circle === null) return
-  $circle.on('click', (e) => {
-    console.log(e)
-    function up(value) {
-      $circle.setAttribute('value', value)
-      if (value > 100) return
-      setTimeout(() => up(value += 1), 10)
-    }
-
-    $circle.on('click', () => {
-      up(0)
-    })
-  })
-}
-
 function enableWebShare() {
   const $share = $('#share')
   if ($share !== null) {
@@ -144,7 +125,6 @@ document.on('DOMContentLoaded', async (e) => {
   // Enable Mozaic Player
   if (window.customElements) {
     enablePlayer()
-    enableCircleProgress()
   } else {
     // custom element 無い場合は controls
     const $audio = $('audio')
@@ -193,6 +173,35 @@ document.on('DOMContentLoaded', async (e) => {
     navigator.serviceWorker.ready,
     controllerChange
   ])
+
+  if (registration.backgroundFetch) {
+    customElements.define('circle-progress', CircleProgress)
+    const $circle = $('circle-progress')
+    const $audio  = $('audio')
+    const url     = $audio.src
+    const cache   = await caches.match(url)
+    const etag    = cache.headers.get('etag')
+    console.log(etag)
+    $circle.on('click', async () => {
+      const option = {
+        title: $('title').textContent,
+        icons: [
+          {'src': '/assets/img/mozaic.jpeg', 'type': 'image/jpeg', 'sizes': '2000x2000'},
+          {'src': '/assets/img/mozaic.webp', 'type': 'image/webp', 'sizes': '256x256'},
+          {'src': '/assets/img/mozaic.png',  'type': 'image/png',  'sizes': '256x256'},
+          {'src': '/assets/img/mozaic.svg',  'type': 'image/svg+xml'}
+        ],
+        downloadTotal: parseInt($audio.getAttribute('size')),
+      }
+
+      // register background task
+      const task = await registration.backgroundFetch.fetch(url, [url], option)
+      task.addEventListener('progress', (e) => {
+        console.log(task, task.downloaded)
+        $circle.setAttribute('value', task.downloaded)
+      })
+    })
+  }
 
   if (registration.periodicSync) {
     const status = await navigator.permissions.query({name:'periodic-background-sync'});

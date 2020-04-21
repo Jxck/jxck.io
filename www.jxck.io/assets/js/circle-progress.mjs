@@ -63,6 +63,5 @@ export default class CircleProgress extends HTMLElement {
     const ratio = (this.max === 0) ? 0 : (this.value / this.max)
     console.log(ratio)
     this.$progress.style.setProperty('--ratio', ratio)
-    console.log(this.$progress)
   }
 }
