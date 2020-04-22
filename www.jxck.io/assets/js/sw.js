@@ -141,7 +141,7 @@ async function worker() {
       const URL  = 'https://feed.mozaic.fm/index.json'
       const feed = await fetch(URL)
       const etag = feed.headers.get('etag')
-      console.log(etag)
+      log(etag)
 
       // 保存済みの feed の etag を取得してから更新
       const cache_general = await caches.open(CACHE_GENERAL)
@@ -149,20 +149,42 @@ async function worker() {
       const stored_etag   = stored?.headers?.get('etag')
       await cache_general.add(URL, feed)
 
-      console.log(stored_etag, etag)
-      if (stored_etag !== etag) {
-        // 更新されてるのでパースして最新のエピソードを取得
-        const json = await feed.json()
-        const item = json.rss.channel.item[0]
-        const html = item.link
-        const mp3  = item["media:content"].url
+      log(stored_etag, etag)
 
-        await cache_general.add(html)
-        const cache_mp3 = await caches.open(CACHE_MP3)
-        await cache_mp3.add(mp3)
+      if (stored_etag === etag) return
 
-        console.log('cache updated')
-      }
+      // 更新されてるのでパースして最新のエピソードを取得
+      const json = await feed.json()
+      const item = json.rss.channel.item[0] // last: 72
+      const html = item.link
+      const mp3  = item["media:content"].url
+      const title = item.title
+      const subtitle = item["itunes:subtitle"]
+
+      await cache_general.add(html)
+      const cache_mp3 = await caches.open(CACHE_MP3)
+      await cache_mp3.add(mp3)
+
+      log('cache updated')
+
+      // content index に追加
+      if (self.registration === undefined) return
+      await self.registration.index.add({
+        id: html,
+        url: html,
+        title: title,
+        category: `article`,
+        launchUrl: html,
+        description: subtitle,
+        icons: [
+          {src: '/assets/img/mozaic.jpeg', type: 'image/jpeg', sizes: '2000x2000'},
+          {src: '/assets/img/mozaic.webp', type: 'image/webp', sizes: '256x256'},
+          {src: '/assets/img/mozaic.png',  type: 'image/png',  sizes: '256x256'},
+          // {src: '/assets/img/mozaic.svg',  type: 'image/svg+xml'} SVG はエラーになる?
+        ]
+      })
+
+      log('content index added')
 
       return
     }())

@@ -203,10 +203,10 @@ document.on('DOMContentLoaded', async (e) => {
           const option = {
             title: $('title').textContent,
             icons: [
-              {'src': '/assets/img/mozaic.jpeg', 'type': 'image/jpeg', 'sizes': '2000x2000'},
-              {'src': '/assets/img/mozaic.webp', 'type': 'image/webp', 'sizes': '256x256'},
-              {'src': '/assets/img/mozaic.png',  'type': 'image/png',  'sizes': '256x256'},
-              {'src': '/assets/img/mozaic.svg',  'type': 'image/svg+xml'}
+              {src: '/assets/img/mozaic.jpeg', type: 'image/jpeg', sizes: '2000x2000'},
+              {src: '/assets/img/mozaic.webp', type: 'image/webp', sizes: '256x256'},
+              {src: '/assets/img/mozaic.png',  type: 'image/png',  sizes: '256x256'},
+              {src: '/assets/img/mozaic.svg',  type: 'image/svg+xml'}
             ],
             downloadTotal: size
           }
