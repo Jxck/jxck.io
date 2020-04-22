@@ -142,7 +142,7 @@ const option = {
   icons: [{src: 'logo.png', sizes: '256x256', type: 'image/webp'}]
 }
 const registration = await navigator.serviceWorker.ready
-const task = await registration.backgroundFetch.fetch(id, [url, mp3], option)
+const task = await registration.backgroundFetch.fetch(id, [html, mp3], option)
 ```
 
 
