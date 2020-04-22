@@ -5,7 +5,9 @@ EventTarget.prototype.off = EventTarget.prototype.removeEventListener
  * 同じ VERSION であれば、キャッシュにないものだけ追加する
  * VERSION を変えると、あたらしく作り追加する
  */
-const VERSION = 'v0.5.19'
+const VERSION       = 'v0.5.21'
+const CACHE_GENERAL = `${VERSION}.general`
+const CACHE_MP3     = `${VERSION}.mp3`
 const log = console.debug.bind(console)
 log('sw.js')
 
@@ -68,7 +70,7 @@ async function worker() {
     async function installing() {
       // VERSION に紐づいた Cache Store を開く
       // VERSION が上がると新しく作る
-      const cache = await caches.open(VERSION)
+      const cache = await caches.open(CACHE_GENERAL)
 
       // すべて取得し直す、ただし revalidate しないものは store されたものがヒットするように
       const responses = await Promise.allSettled(ASSETS.map(({url, option}) => fetch(url, option)))
@@ -96,7 +98,7 @@ async function worker() {
       // 不要なストアの抽出
       const stores     = await caches.keys()
       const old_stores = stores
-        .filter((store) => store !== VERSION)
+        .filter((store) => !([CACHE_GENERAL, CACHE_MP3].includes(store)))
         .map((store) => {
           log('remove cache table', store)
           return caches.delete(store)
@@ -135,9 +137,12 @@ async function worker() {
   self.addEventListener('periodicsync', (e) => {
     log('periodicsync', e)
     e.waitUntil(async function() {
-      const url = "https://files.mozaic.fm/mozaic-ep65.mp3"
-      const cache = await caches.open('periodic-background-sync');
-      return cache.add(url);
+      // const url = "https://files.mozaic.fm/mozaic-ep65.mp3"
+      // const cache = await caches.open('periodic-background-sync');
+      // return cache.add(url);
+
+      const cache = await caches.open(CACHE_GENERAL)
+      return cache.add('https://feed.mozaic.fm')
     }())
   })
 
@@ -150,7 +155,7 @@ async function worker() {
         const records = await e.registration.matchAll()
 
         // キャッシュ先
-        const cache = await caches.open('mozaic-files')
+        const cache = await caches.open(CACHE_MP3)
 
         // キャッシュ対象
         const promises = records.map(async (record) => {
