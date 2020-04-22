@@ -12,26 +12,28 @@ mozaic.fm をリニューアルし v3 としてリリースした。
   - Periodic Background Sync
   - Content Index API
   - Badging API
-  - (Silent Push)
-  - Media Feeds (Web App Manifest)
 - Player UI の刷新
   - Pure Webcomponents
   - Media Session API
   - WAI-ARIA
   - Portal Preview
   - Screen Wake Lock
-  - id3 info by WASM
 - Security
   - CSP v3 (not Report-Only)
   - Cross Origin Resource Policy
   - Cross Origin Opener Policy
   - Cross Origin Embedder Policy
+  - Expect-CT
+  - NEL
   - Referer Policy
 - その他
   - Transpile Less
   - Scroll To Text Fragment Search
   - SXG
   - Spotify
+- WIP
+  - Silent Push
+  - id3 info by WASM
 
 実施したモチベーションおよび、実施内容について記す。
 
