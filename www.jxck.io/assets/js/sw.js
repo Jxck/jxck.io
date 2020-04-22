@@ -176,6 +176,11 @@ async function worker() {
 
       log('cache updated')
 
+      if (navigator.setAppBadge) {
+        navigator.setAppBadge()
+        log('show badge')
+      }
+
       // content index に追加
       if (self.registration === undefined) return
       await self.registration.index.add({

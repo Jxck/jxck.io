@@ -122,6 +122,10 @@ if (window.ReportingObserver) {
 }
 
 document.on('DOMContentLoaded', async (e) => {
+  if (navigator.setAppBadge) {
+    navigator.clearAppBadge()
+  }
+
   // Enable Mozaic Player
   if (window.customElements) {
     enablePlayer()
