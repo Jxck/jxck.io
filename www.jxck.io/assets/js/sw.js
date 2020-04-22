@@ -5,7 +5,7 @@ EventTarget.prototype.off = EventTarget.prototype.removeEventListener
  * 同じ VERSION であれば、キャッシュにないものだけ追加する
  * VERSION を変えると、あたらしく作り追加する
  */
-const VERSION       = 'v0.5.21'
+const VERSION       = 'v0.5.23'
 const CACHE_GENERAL = `${VERSION}.general`
 const CACHE_MP3     = `${VERSION}.mp3`
 const log = console.debug.bind(console)
@@ -137,22 +137,31 @@ async function worker() {
   self.addEventListener('periodicsync', (e) => {
     log('periodicsync', e)
     e.waitUntil(async function() {
-      // const url = "https://files.mozaic.fm/mozaic-ep65.mp3"
-      // const cache = await caches.open('periodic-background-sync');
-      // return cache.add(url);
-      const URL  = 'https://feed.mozaic.fm'
+      // feed json を取得し etag を確認
+      const URL  = 'https://feed.mozaic.fm/index.json'
       const feed = await fetch(URL)
       const etag = feed.headers.get('etag')
       console.log(etag)
 
-      const cache       = await caches.open(CACHE_GENERAL)
-      const stored      = await cache.match(URL)
-      const stored_etag = stored?.headers?.get('etag')
-      await cache.add(URL, feed)
+      // 保存済みの feed の etag を取得してから更新
+      const cache_general = await caches.open(CACHE_GENERAL)
+      const stored        = await cache_general.match(URL)
+      const stored_etag   = stored?.headers?.get('etag')
+      await cache_general.add(URL, feed)
 
       console.log(stored_etag, etag)
       if (stored_etag !== etag) {
-        // 更新されてるのでパースして取得
+        // 更新されてるのでパースして最新のエピソードを取得
+        const json = await feed.json()
+        const item = json.rss.channel.item[0]
+        const html = item.link
+        const mp3  = item["media:content"].url
+
+        await cache_general.add(html)
+        const cache_mp3 = await caches.open(CACHE_MP3)
+        await cache_mp3.add(mp3)
+
+        console.log('cache updated')
       }
 
       return
