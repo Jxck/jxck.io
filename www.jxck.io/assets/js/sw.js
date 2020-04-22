@@ -98,7 +98,7 @@ async function worker() {
       // 不要なストアの抽出
       const stores     = await caches.keys()
       const old_stores = stores
-        .filter((store) => !([CACHE_GENERAL, CACHE_MP3].includes(store)))
+        .filter((store) => !([CACHE_GENERAL].includes(store)))
         .map((store) => {
           log('remove cache table', store)
           return caches.delete(store)
