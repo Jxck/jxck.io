@@ -182,7 +182,7 @@ async function worker() {
       }
 
       // content index に追加
-      if (self.registration === undefined) return
+      if (self.registration.index === undefined) return
       await self.registration.index.add({
         id: html,
         url: html,
