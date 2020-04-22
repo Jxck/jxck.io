@@ -67,6 +67,8 @@ module Builder
       puts "build podcast feed"
       xml = erb_template("template/podcast.rss2.xml.erb").result(binding)
       File.write("./feed.mozaic.fm/index.xml", xml)
+      json = erb_template("template/podcast.rss2.json.erb").result(binding)
+      File.write("./feed.mozaic.fm/index.json", json)
     end
 
     ## ID3Tag script 生成
