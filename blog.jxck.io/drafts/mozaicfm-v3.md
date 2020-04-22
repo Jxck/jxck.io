@@ -220,7 +220,6 @@ blog.jxck.io の方に Analytics / Ad を入れたため、 3rd Party のコー�
 - Document Policy
 - Trusted Types
 
-
 ### CSP v3
 
 Origin ではなく、 nonce と integrity により CSP を設定した。
@@ -268,6 +267,9 @@ Dev Server も不要でリロードすれば反映され、 package.json, babelr
 
 blog にも入れた機能だが、よりインタラクティブな Form で実装した。
 
+### Access-Control-Expose-Headers
+
+細かいが Safari が Access-Control-Expose-Headers の `*` 対応をしたのでそれも入れている。
 
 ### SXG
 
