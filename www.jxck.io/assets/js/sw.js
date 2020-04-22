@@ -134,6 +134,15 @@ async function worker() {
     e.respondWith(fetching(req))
   })
 
+  self.addEventListener('message', async (e) => {
+    const { type, url } = e.data;
+    if (type === 'save') {
+      // url を general cache に追加
+      const cache = await caches.open(CACHE_GENERAL)
+      cache.add(url)
+    }
+  })
+
   self.addEventListener('periodicsync', (e) => {
     log('periodicsync', e)
     e.waitUntil(async function() {

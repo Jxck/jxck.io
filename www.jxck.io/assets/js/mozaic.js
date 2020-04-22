@@ -195,10 +195,15 @@ document.on('DOMContentLoaded', async (e) => {
         // cache がある
         $bgfetch.setAttribute('value', size)
         $bgfetch.shadowRoot.querySelector('#arrow').part.add('done')
-
       } else {
         // cache がない
         $bgfetch.on('click', async (e) => {
+
+          // html も一緒に取得したいが、 downloadTotal を出すのが面倒なので
+          // cache の追加を sw に依頼
+          const controller = navigator.serviceWorker.controller
+          controller.postMessage({type: 'save', url: id})
+
           console.log(e)
           const option = {
             title: $('title').textContent,
