@@ -52,7 +52,7 @@ export default class BackgroundFetch extends HTMLElement {
   }
 
   connectedCallback(e) {
-    console.log(e)
+    // console.log(e)
     this.update()
   }
 
@@ -72,7 +72,7 @@ export default class BackgroundFetch extends HTMLElement {
 
   update() {
     const ratio = (this.max === 0) ? 0 : (this.value / this.max)
-    console.log(ratio)
+    // console.log(ratio)
     this.$progress.style.setProperty('--ratio', ratio)
     if (ratio === 1) {
       const $arrow = this.shadowRoot.querySelector('#arrow')

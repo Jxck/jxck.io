@@ -140,9 +140,22 @@ async function worker() {
       // const url = "https://files.mozaic.fm/mozaic-ep65.mp3"
       // const cache = await caches.open('periodic-background-sync');
       // return cache.add(url);
+      const URL  = 'https://feed.mozaic.fm'
+      const feed = await fetch(URL)
+      const etag = feed.headers.get('etag')
+      console.log(etag)
 
-      const cache = await caches.open(CACHE_GENERAL)
-      return cache.add('https://feed.mozaic.fm')
+      const cache       = await caches.open(CACHE_GENERAL)
+      const stored      = await cache.match(URL)
+      const stored_etag = stored?.headers?.get('etag')
+      await cache.add(URL, feed)
+
+      console.log(stored_etag, etag)
+      if (stored_etag !== etag) {
+        // 更新されてるのでパースして取得
+      }
+
+      return
     }())
   })
 

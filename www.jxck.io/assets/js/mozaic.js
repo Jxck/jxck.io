@@ -189,7 +189,7 @@ document.on('DOMContentLoaded', async (e) => {
       // check etag
       const current_etag = `"${mtime.toString(16)}-${size.toString(16)}"`
       const saved_etag   = cache?.headers.get('etag')
-      console.log(current_etag, saved_etag, current_etag === saved_etag)
+      log(current_etag, saved_etag, current_etag === saved_etag)
 
       if (current_etag === saved_etag) {
         // cache がある
