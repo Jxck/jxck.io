@@ -14,16 +14,6 @@
 現時点での、仕様、実装、議論について解説する。
 
 
-<!--
-
-
-しかし、この API には、トラッキングや Bot Net 構築といったセキリュティ上の懸念もあがっており、実装している Chrome は非常に特殊な条件を課している。
-
-また、その議論の過程で見つかった「広義の Background Sync」が持つ性質により、 Mozilla は現在 Considered Harmful と表明している。
-
--->
-
-
 ## Periodic Background Sync
 
 Web で定期的なタスクを実行する場合、タブが開いていれば `setInterval()` などで行うなどが可能だ。
@@ -75,13 +65,15 @@ self.addEventListener('periodicsync', (e) => {
 
 一度 SW が登録されたら、ユーザがアプリを開いてないところでも、ユーザが認識できない形でトラッキングが可能ということになってしまう。
 
-TODO: 図
+![定期的に IP を取得することで、国をまたいだ移動などをトラッキング可能](./ip-tracking.png#2032x1084 "IP Tracking by Periodic Background Sync")
 
 また、 PBS 内での fetch 先を特定の攻撃対象に設定すれば、発生タイミングをある程度指定して DDOS を行う、 Bot Net の構築に応用可能であることも指摘されている。
 
 - [Periodic Background Sync has serious security risks, which are not described or adequately mitigated - Issue #169 - WICG/BackgroundSync](https://github.com/WICG/BackgroundSync/issues/169)
 
 これらは、 Periodic ではない従来の Background Sync でも同様であるため、現在 Mozilla は従来の PBS に加え、従来の Background Sync も Considered Harmful と表明した。
+
+![Mozilla は PBS/BS 双方に Harmful という Position を表明している](mozilla-standard-position-for-sync.png#2416x974 "Mozilla Standard Position for Periodic Background Sync & Background Sync")
 
 - [Mozilla Specification Positions](https://mozilla.github.io/standards-positions/#periodic-background-sync)
 
@@ -150,13 +142,15 @@ Native App の場合も、同様のことが OS レベルで行われ、 iPhone 
 
 Chrome は、サイトの使用頻度を収集し Site Engagemnet という指標を Chrome 内部に作成している。
 
-TODO: 図
-
 Site Engagement は以下の URL で確認できる。
 
 - <chrome://site-engagement/>
 
+![Chrome の site-engagement ページで、サイトの利用頻度を表示できる](site-engagement.png#2414x1108 "Site Engagement Page")
+
 この値が高ければ PBS は minInterval に近い値で発火し、そうでなければほとんど発火しない。
+
+開発時は、自分でこの値を調整して発火されることもできる。
 
 
 ### Known Network
@@ -199,7 +193,7 @@ Web は、こうした Native App だけが持つ機能を取り込むために�
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_LzSBr99kkw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
-TODO: JSCOnf の動画を会長が公開してくれない
+TODO: JSConf の動画(会長の公開待ち)
 
 おそらく「Web を Install する」という世界の是非は、まだまだ足りてない議論が多い。 Security/Privacy の問題、実装上の問題、 Store Vender/Platformer の立場の問題、開発者の好き嫌いのような感情の問題など、多くの議論がこれからなされていくだろう。
 
@@ -208,17 +202,36 @@ TODO: JSCOnf の動画を会長が公開してくれない
 もはや Web の生態系をがらっと変えるかもしれないこの動きが、今後どうなっていくのか、注視していきたいと思う。
 
 
-## Link
+### DEMO
 
-- Richer offline experiences with the Periodic Background Sync API
-  - <https://web.dev/periodic-background-sync>
-- BackgroundSync/periodicsync-explainer.md at master - WICG/BackgroundSync
+動作するデモは以下に用意した(前述のように動作させるのは難しい)
+
+- <https://labs.jxck.io/service-worker/periodic-background-sync/>
+
+
+## Resources
+
+- Spec
+  - <https://wicg.github.io/BackgroundSync/spec/PeriodicBackgroundSync-index.html>
+- Explainer
   - <https://github.com/WICG/BackgroundSync/blob/master/explainers/periodicsync-explainer.md>
-- Periodic Background Sync has serious security risks, which are not described or adequately mitigated - Issue #169 - WICG/BackgroundSync
-  - <https://github.com/WICG/BackgroundSync/issues/169>
-- Site Engagement - The Chromium Projects
-  - <https://www.chromium.org/developers/design-documents/site-engagement>
-- Periodic Background Sync - Issue #214 - mozilla/standards-positions
+- Requirements Doc
+  - <https://docs.google.com/document/d/1FI4x3G6vzEWDplghSx-pH13aAwuGHiUGtXliEkZf0Vc/edit#heading=h.puhs715welcu>
+- Mozilla Standard Position
   - <https://github.com/mozilla/standards-positions/issues/214>
-- Intent to Ship: Periodic Background Sync
+- TAG Design Review
+  - <https://github.com/w3ctag/design-reviews/issues/367>
+- Intents
   - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/KSJViFp3hMc/e-Yzd3_-AwAJ>
+- Chrome Platform Status
+  - <https://www.chromestatus.com/feature/5689383275462656>
+- Blog
+  - <https://web.dev/periodic-background-sync>
+- Presentation
+  - <https://speakerdeck.com/jxck/periodic-background-sync>
+- Issues
+  - Periodic Background Sync has serious security risks, which are not described or adequately mitigated - Issue #169 - WICG/BackgroundSync
+    - <https://github.com/WICG/BackgroundSync/issues/169>
+- Other
+  - Site Engagement - The Chromium Projects
+    - <https://www.chromium.org/developers/design-documents/site-engagement>
