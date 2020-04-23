@@ -838,7 +838,7 @@
       <p>もともと、単なる DEMO として始まったスクリプトを、そのままサイトに設置しただけなので、大した実装にはなってないところがある。
       <p>特に、本サイトのテキストは大した量ではないこと、ヘッダや出力の挙動を細かく制御したいことから、全文検索エンジンなどは使わず愚直な自前実装を行った。
       <p>挙動は以下のようになる。検索結果から遷移すると、該当箇所まで自動でスクロールするのがわかるだろう。
-      <amp-iframe width="560" height="315" src="https://www.youtube.com/embed/4YHJEmrUnl8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></amp-iframe>
+      <amp-iframe width="560" height="315" src="https://www.youtube.com/embed/4YHJEmrUnl8" frameborder="0" sandbox="allow-scripts allow-same-origin allow-presentation" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></amp-iframe>
       <p>サイト右上のアイコンから遷移するページから利用でき、キーワードとして CSP を検索した場合は以下のような URL になる。
       <ul>
         <li><a href="https://blog.jxck.io/searches?q=csp">https://blog.jxck.io/searches?q=csp</a>
@@ -863,7 +863,7 @@
       <h2 id="portal-での表示"><a href="#portal-での表示">Portal での表示</a></h2>
       <p>本来は、この検索結果を横に並べた Portal に表示し、そこで Preview する UI を考えていた。
       <p>イメージとしては以下だ。
-      <amp-iframe width="560" height="315" src="https://www.youtube.com/embed/oCH9wcrb0sU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></amp-iframe>
+      <amp-iframe width="560" height="315" src="https://www.youtube.com/embed/oCH9wcrb0sU" frameborder="0" sandbox="allow-scripts allow-same-origin allow-presentation" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></amp-iframe>
       <p>しかし、現状 Chrome の Portal や iframe 内は、 ID に対する Scroll はされるが、 Text Fragment に対する Scroll はしないようだ。
       <p>(上のデモは HTML 中の ID へのスクロールを行っている)
       <p>Portal/iframe と S2TF を組み合わせると、サイト内に任意の文字があるかを Side Channel で取得できる可能性が指摘されたため、今は実装されてないのだろう。

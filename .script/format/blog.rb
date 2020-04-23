@@ -122,6 +122,7 @@ module Format
       if value.match(/<iframe.*/)
         value.gsub!(/iframe/, "amp-iframe")
         value.gsub!(/ loading="lazy"/, "")
+        value.gsub!(/frameborder="0" allow/, 'frameborder="0" sandbox="allow-scripts allow-same-origin allow-presentation" allow') # youtube の仕様が変わり、 sandbox から allow になったため追加
       end
       value
     end
