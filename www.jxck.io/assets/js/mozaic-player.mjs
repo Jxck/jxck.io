@@ -33,10 +33,8 @@ export default class MozaicPlayer extends HTMLElement {
 
     /**
      * get slotted <audio>
-     *
-     * @type {HTMLAudioElement}
      */
-    this.audio = this.shadowRoot.querySelector("slot").assignedElements().pop()
+    this.audio = /** @type {HTMLAudioElement} */ (this.shadowRoot.querySelector("slot").assignedElements()[0])
     console.assert(this.audio.tagName.toLowerCase() === "audio", "<audio slot=audio> should assigned to <mozaic-player>")
 
     // get data
@@ -68,20 +66,22 @@ export default class MozaicPlayer extends HTMLElement {
     this.audio.addEventListener("volumechange",   this.onAudioVolumechange.bind(this))
     this.audio.addEventListener("waiting",        this.onAudioWaiting.bind(this))
 
-    // caching dom
-    this.$play         = this.shadowRoot.querySelector(".play")
-    this.$forward      = this.shadowRoot.querySelector(".forward")
-    this.$back         = this.shadowRoot.querySelector(".back")
-    this.$volume       = this.shadowRoot.querySelector(".volume")
-    this.$volumeUp     = this.shadowRoot.querySelector(".volumeUp")
-    this.$volumeDown   = this.shadowRoot.querySelector(".volumeDown")
-    this.$playbackRate = this.shadowRoot.querySelector(".playbackRate")
-    this.$current      = this.shadowRoot.querySelector(".current")
-    this.$progress     = this.shadowRoot.querySelector(".progress")
-    this.$duration     = this.shadowRoot.querySelector(".duration")
-    this.$outputRate   = this.shadowRoot.querySelector("output.rate")
-    this.$svgPlay      = this.shadowRoot.querySelector(".svg-play")
-    this.$svgPause     = this.shadowRoot.querySelector(".svg-pause")
+    /**
+     * caching dom
+     */
+    /**@type{HTMLButtonElement}  */ this.$play         = this.shadowRoot.querySelector(".play")
+    /**@type{HTMLButtonElement}  */ this.$forward      = this.shadowRoot.querySelector(".forward")
+    /**@type{HTMLButtonElement}  */ this.$back         = this.shadowRoot.querySelector(".back")
+    /**@type{HTMLInputElement}   */ this.$volume       = this.shadowRoot.querySelector(".volume")
+    /**@type{HTMLButtonElement}  */ this.$volumeUp     = this.shadowRoot.querySelector(".volumeUp")
+    /**@type{HTMLButtonElement}  */ this.$volumeDown   = this.shadowRoot.querySelector(".volumeDown")
+    /**@type{HTMLInputElement}   */ this.$playbackRate = this.shadowRoot.querySelector(".playbackRate")
+    /**@type{HTMLTimeElement}    */ this.$current      = this.shadowRoot.querySelector(".current")
+    /**@type{HTMLProgressElement}*/ this.$progress     = this.shadowRoot.querySelector(".progress")
+    /**@type{HTMLTimeElement}    */ this.$duration     = this.shadowRoot.querySelector(".duration")
+    /**@type{HTMLOutputElement}  */ this.$outputRate   = this.shadowRoot.querySelector("output.rate")
+    /**@type{SVGSVGElement}      */ this.$svgPlay      = this.shadowRoot.querySelector(".svg-play")
+    /**@type{SVGSVGElement}      */ this.$svgPause     = this.shadowRoot.querySelector(".svg-pause")
 
     // tooltip event bindings
     this.$play        .addEventListener("click", this.onPlay.bind(this))
@@ -204,9 +204,9 @@ export default class MozaicPlayer extends HTMLElement {
   }
 
   timeFormat(time) {
-    const h = (~~(time / 3600)).toString().padStart(2, 0)
-    const m = (~~(time % 3600 / 60)).toString().padStart(2, 0)
-    const s = (~~(time % 60)).toString().padStart(2, 0)
+    const h = (~~(time / 3600)).toString().padStart(2, '0')
+    const m = (~~(time % 3600 / 60)).toString().padStart(2, '0')
+    const s = (~~(time % 60)).toString().padStart(2, '0')
     return `${h}:${m}:${s}`
   }
 
@@ -215,7 +215,7 @@ export default class MozaicPlayer extends HTMLElement {
     const time     = this.timeFormat(duration)
     log("duration", duration)
     this.$progress.max         = duration
-    this.$progress.setAttribute("aria-valuemax", duration)
+    this.$progress.setAttribute("aria-valuemax", duration.toString())
     this.$duration.textContent = time
     this.$duration.dateTime    = time
   }
@@ -225,7 +225,7 @@ export default class MozaicPlayer extends HTMLElement {
     const time        = this.timeFormat(currentTime)
     log("currentTime", currentTime)
     this.$progress.value      = currentTime
-    this.$progress.setAttribute("aria-valuenow", currentTime)
+    this.$progress.setAttribute("aria-valuenow", currentTime.toString())
     this.$progress.setAttribute("aria-valuetext", time)
     this.$current.textContent = time
     this.$current.dateTime    = time
@@ -233,7 +233,7 @@ export default class MozaicPlayer extends HTMLElement {
 
   setCanPlayButton() {
     this.$play.title = "play"
-    this.$play.setAttribute("aria-busy", false)
+    this.$play.setAttribute("aria-busy", "false")
     this.$play.disabled = false
     const $path = this.$svgPlay.querySelector("path")
     $path.style.fill   = "#fff"
@@ -257,19 +257,19 @@ export default class MozaicPlayer extends HTMLElement {
   saveCurrentTime() {
     const currentTime = this.audio.currentTime
     log("saveCurrentTime", currentTime)
-    localStorage.setItem(`${this.src}:currentTime`, currentTime)
+    localStorage.setItem(`${this.src}:currentTime`, currentTime.toString())
   }
 
   saveVolume() {
     const volume = this.audio.volume
     log("saveVolume", volume)
-    localStorage.setItem(`mozaic.fm:volume`, volume)
+    localStorage.setItem(`mozaic.fm:volume`, volume.toString())
   }
 
   savePlaybackRate() {
     const playbackRate = this.audio.playbackRate
     log("savePlaybackRate", playbackRate)
-    localStorage.setItem(`mozaic.fm:playbackRate`, playbackRate)
+    localStorage.setItem(`mozaic.fm:playbackRate`, playbackRate.toString())
   }
 
 
@@ -286,14 +286,14 @@ export default class MozaicPlayer extends HTMLElement {
     const volume = parseFloat(localStorage.getItem(`mozaic.fm:volume`) || "0.5")
     log("loadVolume", volume)
     this.audio.volume = volume
-    this.$volume.value = volume*100
+    this.$volume.value = (volume*100).toString()
   }
 
   loadPlaybackRate() {
     const playbackRate = parseFloat(localStorage.getItem(`mozaic.fm:playbackRate`) || "1.0")
     log("loadPlabackRate", playbackRate)
     this.audio.playbackRate      = playbackRate
-    this.$playbackRate.value     = playbackRate
+    this.$playbackRate.value     = playbackRate.toString()
     this.$outputRate.textContent = `x${playbackRate}`
   }
 
@@ -442,7 +442,7 @@ export default class MozaicPlayer extends HTMLElement {
   }
 
   onPlaybackrate(e) {
-    const playbackRate = new Number(e.target.value)
+    const playbackRate = parseFloat(e.target.value)
     log(e.target.value, playbackRate)
     this.audio.playbackRate = playbackRate
     //   1.toPrecision(2) => 1.0
