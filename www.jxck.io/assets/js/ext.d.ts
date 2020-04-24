@@ -217,7 +217,7 @@ interface BackgroundFetchRecord {
 }
 
 interface ExtendableEvent extends Event {
-   waitUntil(f: Promise<any>): void;
+  waitUntil(f: Promise<any>): void;
 }
 
 interface ExtendableEventInit extends EventInit {
@@ -248,4 +248,41 @@ interface BackgroundFetchUpdateUIEvent extends BackgroundFetchEvent {
 declare var BackgroundFetchUpdateUIEvent: {
   prototype: BackgroundFetchUpdateUIEvent;
   new(type: DOMString, init: BackgroundFetchEventInit);
+}
+
+
+// Periodic Background Sync
+// https://wicg.github.io/BackgroundSync/spec/PeriodicBackgroundSync-index.html#idl-index
+interface ServiceWorkerGlobalScope {
+  onperiodicsync: EventHandler;
+}
+
+interface ServiceWorkerRegistration {
+  periodicSync: PeriodicSyncManager;
+}
+
+interface PeriodicSyncManager {
+  register(tag: DOMString, options?: BackgroundSyncOptions): Promise<void>;
+  getTags():                                                 Promise<DOMString[]>;
+  unregister(tag: DOMString):                                Promise<void>;
+}
+
+interface BackgroundSyncOptions {
+  minInterval?: number;
+}
+
+interface PeriodicSyncEventInit extends ExtendableEventInit {
+  tag: DOMString;
+}
+
+interface PeriodicSyncEvent extends ExtendableEvent {
+  tag: DOMString;
+}
+
+interface Permissions {
+  query(permissionDesc: PermissionDescriptor | DevicePermissionDescriptor | MidiPermissionDescriptor | PushPermissionDescriptor | PeriodicBackgroundSyncDescriptor): Promise<PermissionStatus>;
+}
+
+interface PeriodicBackgroundSyncDescriptor {
+  name: "periodic-background-sync";
 }
