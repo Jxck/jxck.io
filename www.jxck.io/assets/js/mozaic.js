@@ -99,7 +99,7 @@ function enableWebShare() {
   const $share = $('#share')
   if ($share !== null) {
     $share.classList.remove('disabled')
-    $share.addEventListener('click', (e) => {
+    $share.on('click', (e) => {
       log(e)
       const url   = location.href
       const title = document.title
@@ -167,7 +167,7 @@ document.on('DOMContentLoaded', async (e) => {
   //   if (navigator.serviceWorker.controller) {
   //     resolve(navigator.serviceWorker.controller);
   //   } else {
-  //     navigator.serviceWorker.addEventListener('controllerchange', (e) => {
+  //     navigator.serviceWorker.on('controllerchange', (e) => {
   //       log(e.type)
   //       resolve(navigator.serviceWorker.controller)
   //     })
@@ -227,7 +227,7 @@ document.on('DOMContentLoaded', async (e) => {
           if (task === undefined) {
             task = await registration.backgroundFetch.fetch(id, [url], option)
           }
-          task.addEventListener('progress', (e) => {
+          task.on('progress', (e) => {
             console.log(task, task.downloaded)
             $bgfetch.setAttribute('value', task.downloaded)
           })
@@ -249,7 +249,7 @@ document.on('DOMContentLoaded', async (e) => {
     }
   }
 
-  window.addEventListener('beforeinstallprompt', (install_prompt) => {
+  window.on('beforeinstallprompt', (/**@type{BeforeInstallPromptEvent}*/install_prompt) => {
     console.log(e)
     e.preventDefault()
     const $install = $('#install')

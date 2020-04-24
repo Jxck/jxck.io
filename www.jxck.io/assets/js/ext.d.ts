@@ -286,3 +286,16 @@ interface Permissions {
 interface PeriodicBackgroundSyncDescriptor {
   name: "periodic-background-sync";
 }
+
+
+// before install prompt
+// https://github.com/WICG/beforeinstallprompt
+interface BeforeInstallPromptEvent extends Event {
+  prompt():   Promise<void>;
+  userChoice: Promise<string>;
+}
+
+interface window {
+  beforeinstallprompt: ((this: Window, ev: BeforeInstallPromptEvent) => any) | null;
+}
+declare var beforeinstallprompt: ((this: Window, ev: BeforeInstallPromptEvent) => any) | null;
