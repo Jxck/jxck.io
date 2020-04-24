@@ -13,7 +13,6 @@ const $$ = document.querySelectorAll.bind(document)
 function reportingObserver() {
   log('ReportingObserver');
   const observer = new ReportingObserver((reports, observer) => {
-    log(reports)
     const URL = 'https://reporting.jxck.io/beacon'
     for (const report of reports) {
       navigator.sendBeacon(URL, JSON.stringify(report))
@@ -26,24 +25,28 @@ function reportingObserver() {
 function playerKeybind(e) {
   log(e.key, e.target, document.activeElement)
 
+  /**@type{MozaicPlayer}*/
+  const $mozaic_player = $('mozaic-player')
+
   switch(e.key) {
     case 'Enter':
       // document body 以外の Enter は、コントロールが必要かもしれないので無視
       if (document.activeElement !== document.body) return
       log('play/pause')
-      $('mozaic-player').play()
+      $mozaic_player.play()
       e.preventDefault()
       break
     case 'ArrowLeft':
       log('back')
-      $('mozaic-player').back()
+      $mozaic_player.back()
       break
     case 'ArrowRight':
       log('forward')
-      $('mozaic-player').forward()
+      $mozaic_player.forward()
       break
     case '/':
       log('shortcut')
+      /**@type{HTMLDialogElement}*/
       const $shortCutDiag = $('dialog.shortcut')
       if ($shortCutDiag.open) {
         $shortCutDiag.close()
@@ -51,7 +54,6 @@ function playerKeybind(e) {
       }
       $shortCutDiag.showModal()
       $shortCutDiag.on('click', (e) => {
-        log(e.target, $shortCutDiag)
         if (e.target === $shortCutDiag) {
           $shortCutDiag.close()
         }
@@ -63,27 +65,25 @@ function playerKeybind(e) {
 function enablePortal($portal) {
   if ($portal === null) return
   $portal.style.display = 'block'
+
+  /**@type{NodeListOf<Element>}*/
   const $links = document.querySelectorAll('article li a')
   $links.forEach(($a) => {
     let timer;
     $a.on('mouseover', (e) => {
-      log(e)
       timer = setTimeout(() => {
         $portal.src = /**@type{HTMLAnchorElement}*/(e.target).href
       }, 1000)
     })
 
     $a.on('mouseout', (e) => {
-      log(e)
       clearTimeout(timer)
     })
   })
   $portal.on('click', (e) => {
-    log(e)
     if ($portal.src === '') return
     $portal.classList.add('activate')
     $portal.on('transitionend', (e) => {
-      log(e)
       $portal.activate()
     })
   })
@@ -92,15 +92,15 @@ function enablePortal($portal) {
 function enablePlayer() {
   log(MozaicPlayer)
   customElements.define('mozaic-player', MozaicPlayer);
-  // document.on('keydown', playerKeybind)
+  document.on('keydown', playerKeybind)
 }
 
 function enableWebShare() {
+  /**@type{HTMLLIElement}*/
   const $share = $('#share')
   if ($share !== null) {
     $share.classList.remove('disabled')
     $share.on('click', (e) => {
-      log(e)
       const url   = location.href
       const title = document.title
       const $meta = /**@type{HTMLMetaElement}*/(document.querySelector('meta[name=description]'))
@@ -157,7 +157,6 @@ document.on('DOMContentLoaded', async (e) => {
   if (location.hash === '#clear') {
     const registrations = await navigator.serviceWorker.getRegistrations()
     registrations.forEach(async (registration) => {
-      log(registration)
       await registration.unregister()
     })
     return
@@ -168,7 +167,6 @@ document.on('DOMContentLoaded', async (e) => {
   //     resolve(navigator.serviceWorker.controller);
   //   } else {
   //     navigator.serviceWorker.on('controllerchange', (e) => {
-  //       log(e.type)
   //       resolve(navigator.serviceWorker.controller)
   //     })
   //   }
@@ -177,11 +175,11 @@ document.on('DOMContentLoaded', async (e) => {
   const registration = await navigator.serviceWorker.register('/assets/js/sw.js', { scope: '/' })
   await Promise.all([
     navigator.serviceWorker.ready,
-    //controllerChange
+    // controllerChange
   ])
 
   if (registration.backgroundFetch) {
-    console.log('registration.backgroundFetch')
+    log('registration.backgroundFetch')
     customElements.define('background-fetch', BackgroundFetch)
 
     $$('background-fetch').forEach(async ($bgfetch) => {
@@ -210,7 +208,6 @@ document.on('DOMContentLoaded', async (e) => {
           const controller = navigator.serviceWorker.controller
           controller.postMessage({type: 'save', url: id})
 
-          console.log(e)
           const option = {
             title: $('title').textContent,
             icons: [
@@ -228,7 +225,7 @@ document.on('DOMContentLoaded', async (e) => {
             task = await registration.backgroundFetch.fetch(id, [url], option)
           }
           task.on('progress', (e) => {
-            console.log(task, task.downloaded)
+            log(task, task.downloaded)
             $bgfetch.setAttribute('value', task.downloaded)
           })
         })
@@ -238,7 +235,6 @@ document.on('DOMContentLoaded', async (e) => {
 
   if (registration.periodicSync) {
     const status = await navigator.permissions.query({name:'periodic-background-sync'});
-    log(status)
     if (status.state === 'granted') {
       const tags = await registration.periodicSync.getTags()
       log('remove periodicSync tags', tags)
@@ -250,7 +246,6 @@ document.on('DOMContentLoaded', async (e) => {
   }
 
   window.on('beforeinstallprompt', (/**@type{BeforeInstallPromptEvent}*/install_prompt) => {
-    console.log(e)
     e.preventDefault()
     const $install = $('#install')
     $install.classList.remove('disabled')
