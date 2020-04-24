@@ -10,16 +10,19 @@ interface Navigator {
   readonly mediaSession: MediaSession;
 }
 
-interface MediaSession {
-  metadata?: MediaMetadata;
-  playbackState?: MediaSessionPlaybackState;
-  setActionHandler(action: MediaSessionAction, handler?: MediaSessionActionHandler): void;
-  setPositionState(state?: MediaPositionState): void;
+type MediaSessionPlaybackState = "none" | "paused" | "playing";
+
+type MediaSessionAction = "play" | "pause" | "seekbackward" | "seekforward" | "previoustrack" | "nexttrack" | "skipad" | "stop" | "seekto";
+
+interface MediaSessionActionHandler {
+  (details: MediaSessionActionDetails): void;
 }
 
-declare var MediaMetadata: {
-  prototype: MediaMetadata;
-  new(init?: MediaMetadataInit): MediaMetadata;
+interface MediaSession {
+  metadata?:     MediaMetadata;
+  playbackState: MediaSessionPlaybackState;
+  setActionHandler(action: MediaSessionAction, handler?: MediaSessionActionHandler): void;
+  setPositionState(state?: MediaPositionState): void;
 }
 
 type DOMString = string;
@@ -30,33 +33,35 @@ interface MediaMetadata {
   artwork: ReadonlyArray<MediaImage>;
 }
 
+declare var MediaMetadata: {
+  prototype: MediaMetadata;
+  new(init?: MediaMetadataInit): MediaMetadata;
+}
+
+interface MediaMetadataInit {
+  title?:   DOMString;
+  artist?:  DOMString;
+  album?:   DOMString;
+  artwork?: MediaImage[];
+}
+
 type USVString = string;
 interface MediaImage {
-  src:   USVString;
+  src:    USVString;
   sizes?: DOMString;
   type?:  DOMString;
 }
 
-interface MediaSessionActionHandler {
-  (details: MediaSessionActionDetails): void;
-}
-
+type Double = number;
 interface MediaPositionState {
-  duration?: number;
-  playbackRate?: number;
-  position?: number;
-}
-
-interface MediaMetadataInit {
-  album?: string;
-  artist?: string;
-  artwork?: MediaImage[];
-  title?: string;
+  duration?:     Double;
+  playbackRate?: Double;
+  position?:     Double;
 }
 
 interface MediaSessionActionDetails {
   action: MediaSessionAction;
+  seekOffset?: Double;
+  seekTime?:   Double;
+  fastSeek?:   boolean;
 }
-
-type MediaSessionAction        = "nexttrack" | "pause" | "play" | "previoustrack" | "seekbackward" | "seekforward" | "seekto" | "skipad" | "stop";
-type MediaSessionPlaybackState = "none" | "paused" | "playing";
