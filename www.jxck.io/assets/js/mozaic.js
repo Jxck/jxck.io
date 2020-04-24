@@ -1,6 +1,6 @@
 // add mozaic player
-import MozaicPlayer from '/assets/js/mozaic-player.mjs'
-import BackgroundFetch from '/assets/js/background-fetch.mjs'
+import MozaicPlayer from './mozaic-player.js'
+import BackgroundFetch from './background-fetch.js'
 
 // Enable debug log adding #debug into url
 const log = location.hash === '#debug' ? console.log.bind(console) : () => {}

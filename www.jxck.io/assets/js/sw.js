@@ -54,7 +54,7 @@ async function worker() {
   //  {url: 'https://mozaic.fm/assets/img/portal-preview.png', option: {cache: 'no-cache'}},
 
   //  // js
-  //  {url: 'https://mozaic.fm/assets/js/mozaic-player.mjs',   option: {cache: 'no-cache'}},
+  //  {url: 'https://mozaic.fm/assets/js/mozaic-player.js',    option: {cache: 'no-cache'}},
   //  {url: 'https://mozaic.fm/assets/js/mozaic.js',           option: {cache: 'no-cache'}},
   //  {url: 'https://mozaic.fm/assets/js/sw.js',               option: {cache: 'no-cache'}},
 
