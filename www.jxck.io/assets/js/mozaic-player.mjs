@@ -4,9 +4,7 @@ const log = location.hash === "#debug" ? console.log.bind(console) : () => {}
 export default class MozaicPlayer extends HTMLElement {
   static get observedAttributes() { return ["src"] }
 
-  /** @returns {string} */
   get src()      { return this.querySelector("audio").src }
-  /** @param {string} value */
   set src(value) { this.querySelector("audio").src = value }
 
   /**
@@ -16,9 +14,9 @@ export default class MozaicPlayer extends HTMLElement {
    * @returns {Promise<Node>}
    */
   async template() {
-    /** @type {Response}            */ const res       = await fetch("/assets/template/mozaic-player.html")
-    /** @type {string}              */ const text      = await res.text()
-    /** @type {HTMLTemplateElement} */ const template  = document.createElement("template")
+    const res      = await fetch("/assets/template/mozaic-player.html")
+    const text     = await res.text()
+    const template = document.createElement("template")
     template.innerHTML = text
     return template.content.cloneNode(true)
   }
@@ -39,13 +37,13 @@ export default class MozaicPlayer extends HTMLElement {
     this.shadowRoot.appendChild(await this.template())
 
     // get slotted <audio>
-    /** @type {HTMLAudioElement} */ this.audio = /** @type {HTMLAudioElement} */ (this.shadowRoot.querySelector("slot").assignedElements()[0])
+    /**@type{HTMLAudioElement}*/ this.audio = /**@type{HTMLAudioElement}*/ (this.shadowRoot.querySelector("slot").assignedElements()[0])
     console.assert(this.audio.tagName.toLowerCase() === "audio", "<audio slot=audio> should assigned to <mozaic-player>")
 
     // get data
-    /** @type{string} */ this.title        = this.audio.title
-    /** @type{number} */ this.forwardDelta = parseFloat(this.audio.dataset["forward"]) || 30
-    /** @type{number} */ this.backDelta    = parseFloat(this.audio.dataset["back"])    || -10
+    this.title        = this.audio.title
+    this.forwardDelta = parseFloat(this.audio.dataset["forward"]) || 30
+    this.backDelta    = parseFloat(this.audio.dataset["back"])    || -10
 
     // audio evnet bindings
     this.audio.addEventListener("abort",          this.onAudioAbort.bind(this))
@@ -197,7 +195,7 @@ export default class MozaicPlayer extends HTMLElement {
    * @returns {number}
    */
   percent(e) {
-    /** @type {number} */
+    /**@type{number}*/
     let clientX = 0;
     if (e instanceof MouseEvent) {
       clientX = e.clientX
@@ -205,13 +203,19 @@ export default class MozaicPlayer extends HTMLElement {
     if (e instanceof TouchEvent) {
       clientX = e.touches[0].clientX
     }
-    /** @type {{offsetLeft: number, clientWidth: number}} */
-    const {offsetLeft, clientWidth} = /** @type{HTMLProgressElement} */ (e.target)
-    /** @type {number} */
+    /**@type{{offsetLeft: number, clientWidth: number}}*/
+    const {offsetLeft, clientWidth} = /**@type{HTMLProgressElement}*/(e.target)
+    /**@type{number}*/
     const percent = (clientX - offsetLeft) / clientWidth
     return percent
   }
 
+  /**
+   * seek position
+   *
+   * @param {MouseEvent|TouchEvent} e
+   * @returns {number}
+   */
   seek(e) {
     const percent  = this.percent(e)
     const duration = this.audio.duration
@@ -220,6 +224,12 @@ export default class MozaicPlayer extends HTMLElement {
     return seekTime
   }
 
+  /**
+   * format time
+   *
+   * @param {number} time
+   * @returns string
+   */
   timeFormat(time) {
     const h = (~~(time / 3600)).toString().padStart(2, '0')
     const m = (~~(time % 3600 / 60)).toString().padStart(2, '0')
@@ -252,6 +262,8 @@ export default class MozaicPlayer extends HTMLElement {
     this.$play.title = "play"
     this.$play.setAttribute("aria-busy", "false")
     this.$play.disabled = false
+
+    /**@type{SVGPathElement}*/
     const $path = this.$svgPlay.querySelector("path")
     $path.style.fill   = "#fff"
     $path.style.stroke = "#fff"
@@ -470,6 +482,8 @@ export default class MozaicPlayer extends HTMLElement {
   }
 
   // Mouse & Touch Events
+
+  /** @param {MouseEvent|TouchEvent} e */
   onMousedown(e) {
     log(e.type, e)
     this.dragging = true
@@ -483,11 +497,13 @@ export default class MozaicPlayer extends HTMLElement {
     this.audio.currentTime = this.seek(e) // seek if dragging
   }
 
+  /** @param {MouseEvent|TouchEvent} e */
   onMouseup(e) {
     log(e.type, e)
     this.dragging = false
   }
 
+  /** @param {MouseEvent|TouchEvent} e */
   onMouseout(e) {
     log(e.type, e)
     this.dragging = false
