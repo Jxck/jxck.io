@@ -140,3 +140,112 @@ interface ReportingObserverOptions {
 }
 
 type ReportList = Report[];
+
+type EventHandler = (event: Event) => any;
+// Background Fetch
+// https://wicg.github.io/background-fetch/#idl-index
+//partial interface ServiceWorkerGlobalScope {
+//  attribute EventHandler onbackgroundfetchsuccess;
+//  attribute EventHandler onbackgroundfetchfail;
+//  attribute EventHandler onbackgroundfetchabort;
+//  attribute EventHandler onbackgroundfetchclick;
+//};
+
+interface ServiceWorkerRegistration {
+  backgroundFetch: BackgroundFetchManager;
+}
+
+interface BackgroundFetchManager {
+  fetch(id: DOMString, requests: (RequestInfo | RequestInfo[]), options?: BackgroundFetchOptions): Promise<BackgroundFetchRegistration>;
+  get(id: DOMString): Promise<BackgroundFetchRegistration>;
+  getIds():           Promise<DOMString[]>;
+}
+
+interface BackgroundFetchUIOptions {
+  icons: ImageResource[];
+  title: DOMString;
+}
+
+interface ImageResource {
+  src:       USVString;
+  sizes?:    DOMString;
+  type:      USVString;
+  purpose?:  USVString;
+  platform?: USVString;
+}
+
+interface BackgroundFetchOptions extends BackgroundFetchUIOptions {
+  downloadTotal?: number;
+}
+
+interface BackgroundFetchRegistration extends EventTarget {
+  id:               DOMString;
+  uploadTotal:      number;
+  uploaded:         number;
+  downloadTotal:    number;
+  downloaded:       number;
+  result:           BackgroundFetchResult;
+  failureReason:    BackgroundFetchFailureReason;
+  recordsAvailable: boolean;
+  onprogress:       EventHandler;
+  abort():                                                      Promise<boolean>;
+  match(request: RequestInfo, options?: CacheQueryOptions):     Promise<BackgroundFetchRecord>;
+  matchAll(request?: RequestInfo, options?: CacheQueryOptions): Promise<BackgroundFetchRecord[]>;
+}
+
+type BackgroundFetchResult = "" | "success" | "failure";
+
+type BackgroundFetchFailureReason =
+  // The background fetch has not completed yet, or was successful.
+  "" |
+  // The operation was aborted by the user, or abort() was called.
+  "aborted" |
+  // A response had a not-ok-status.
+  "bad-status" |
+  // A fetch failed for other reasons, e.g. CORS, MIX, an invalid partial response,
+  // or a general network failure for a fetch that cannot be retried.
+  "fetch-error" |
+  // Storage quota was reached during the operation.
+  "quota-exceeded" |
+  // The provided downloadTotal was exceeded.
+  "download-total-exceeded";
+
+
+interface BackgroundFetchRecord {
+  request:       Request;
+  responseReady: Promise<Response>;
+}
+
+interface ExtendableEvent extends Event {
+   waitUntil(f: Promise<any>): void;
+}
+
+interface ExtendableEventInit extends EventInit {
+}
+
+declare var ExtendableEvent: {
+  prototype: ExtendableEvent;
+  new(type: DOMString, eventInitDict?: ExtendableEventInit);
+}
+
+interface BackgroundFetchEvent extends ExtendableEvent {
+  registration: BackgroundFetchRegistration;
+}
+
+declare var BackgroundFetchEvent: {
+  prototype: BackgroundFetchEvent;
+  new(type: DOMString, init: BackgroundFetchEventInit);
+}
+
+interface BackgroundFetchEventInit extends ExtendableEventInit {
+  registration: BackgroundFetchRegistration;
+}
+
+interface BackgroundFetchUpdateUIEvent extends BackgroundFetchEvent {
+  updateUI(options?: BackgroundFetchUIOptions): Promise<void>;
+}
+
+declare var BackgroundFetchUpdateUIEvent: {
+  prototype: BackgroundFetchUpdateUIEvent;
+  new(type: DOMString, init: BackgroundFetchEventInit);
+}
