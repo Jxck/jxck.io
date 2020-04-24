@@ -4,8 +4,9 @@ import BackgroundFetch from './background-fetch.js'
 
 // Enable debug log adding #debug into url
 const log = location.hash === '#debug' ? console.log.bind(console) : () => {}
-EventTarget.prototype.on  = EventTarget.prototype.addEventListener
-EventTarget.prototype.off = EventTarget.prototype.removeEventListener
+EventTarget.prototype.on   = EventTarget.prototype.addEventListener
+EventTarget.prototype.off  = EventTarget.prototype.removeEventListener
+EventTarget.prototype.emit = EventTarget.prototype.dispatchEvent
 const $  = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
@@ -17,7 +18,7 @@ function reportingObserver() {
     for (const report of reports) {
       navigator.sendBeacon(URL, JSON.stringify(report))
     }
-  }, {buffered: true})
+  })
   observer.observe()
 }
 
@@ -68,7 +69,7 @@ function enablePortal($portal) {
     $a.on('mouseover', (e) => {
       log(e)
       timer = setTimeout(() => {
-        $portal.src = e.target.href
+        $portal.src = /**@type{HTMLAnchorElement}*/(e.target).href
       }, 1000)
     })
 
@@ -102,7 +103,8 @@ function enableWebShare() {
       log(e)
       const url   = location.href
       const title = document.title
-      const text  = document.querySelector('meta[property="og:description"]').content
+      const $meta = /**@type{HTMLMetaElement}*/(document.querySelector('meta[name=description]'))
+      const text  = $meta.content
       navigator.share({url, title, text})
     })
   }
