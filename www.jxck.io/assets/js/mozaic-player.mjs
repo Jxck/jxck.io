@@ -5,7 +5,7 @@ export default class MozaicPlayer extends HTMLElement {
   static get observedAttributes() { return ["src"] }
 
   get src()      { return this.querySelector("audio").src }
-  set src(value) { return this.querySelector("audio").src = value }
+  set src(value) { this.querySelector("audio").src = value }
 
   async template() {
     // TODO: html-modules
@@ -31,8 +31,12 @@ export default class MozaicPlayer extends HTMLElement {
     this.attachShadow({mode: "open"})
     this.shadowRoot.appendChild(await this.template())
 
-    // get slotted <audio>
-    this.audio = this.shadowRoot.querySelector("slot").assignedNodes().pop()
+    /**
+     * get slotted <audio>
+     *
+     * @type {HTMLAudioElement}
+     */
+    this.audio = this.shadowRoot.querySelector("slot").assignedElements().pop()
     console.assert(this.audio.tagName.toLowerCase() === "audio", "<audio slot=audio> should assigned to <mozaic-player>")
 
     // get data
