@@ -15,7 +15,7 @@
   <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="メールクライアントや RSS リーダーのようなユースケースを PWA で実装する場合、バックグラウンドで定期的にタスクをしたいケースがある。そこで、定期的に実行することに特化した API として提案されているのが Periodic Background Sync(PBS) ...">
+  <meta name=description         content="メールクライアントや RSS リーダーのようなユースケースを PWA で実装する場合、バックグラウンドで定期的にタスクを実行したいケースがある。このユースケースに特化した API として提案されているのが、 Periodic Background Sync(PBS) だ。し...">
   <meta name=keywords            content="periodic background sync,service worker">
   <meta name=theme-color         content=#000000>
 
@@ -23,14 +23,14 @@
   <meta name=twitter:site        content=@jxck_>
   <meta name=twitter:url         content=https://blog.jxck.io/entries/2020-04-23/periodic-background-sync.html>
   <meta name=twitter:title       content="Periodic Background Sync 及び Web を Install するということ | blog.jxck.io">
-  <meta name=twitter:description content="メールクライアントや RSS リーダーのようなユースケースを PWA で実装する場合、バックグラウンドで定期的にタスクをしたいケースがある。そこで、定期的に実行することに特化した API として提案されているのが Periodic Background Sync(PBS) ...">
+  <meta name=twitter:description content="メールクライアントや RSS リーダーのようなユースケースを PWA で実装する場合、バックグラウンドで定期的にタスクを実行したいケースがある。このユースケースに特化した API として提案されているのが、 Periodic Background Sync(PBS) だ。し...">
   <meta name=twitter:image       content=https://jxck.io/assets/img/jxck.png>
 
   <meta property=og:type         content=article>
   <meta property=og:url          content=https://blog.jxck.io/entries/2020-04-23/periodic-background-sync.html>
   <meta property=og:title        content="Periodic Background Sync 及び Web を Install するということ | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="メールクライアントや RSS リーダーのようなユースケースを PWA で実装する場合、バックグラウンドで定期的にタスクをしたいケースがある。そこで、定期的に実行することに特化した API として提案されているのが Periodic Background Sync(PBS) ...">
+  <meta property=og:description  content="メールクライアントや RSS リーダーのようなユースケースを PWA で実装する場合、バックグラウンドで定期的にタスクを実行したいケースがある。このユースケースに特化した API として提案されているのが、 Periodic Background Sync(PBS) だ。し...">
   <meta property=og:image        content=https://jxck.io/assets/img/jxck.png>
 
   <script type="application/ld+json">
@@ -47,7 +47,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-04-23T08:00:00+08:00",
-    "dateModified": "2020-04-23T08:00:00+08:00",
+    "dateModified": "2020-04-25T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -63,7 +63,7 @@
         "width": 60
       }
     },
-    "description": "メールクライアントや RSS リーダーのようなユースケースを PWA で実装する場合、バックグラウンドで定期的にタスクをしたいケースがある。そこで、定期的に実行することに特化した API として提案されているのが Periodic Background Sync(PBS) ..."
+    "description": "メールクライアントや RSS リーダーのようなユースケースを PWA で実装する場合、バックグラウンドで定期的にタスクを実行したいケースがある。このユースケースに特化した API として提案されているのが、 Periodic Background Sync(PBS) だ。し..."
   }
   </script>
 
@@ -802,15 +802,15 @@
 <main>
   <dl class=info>
     <dt>created_at</dt><dd><time class=created_at datetime=2020-04-23>2020-04-23</time></dd>
-    <dt>updated_at</dt><dd><time class=updated_at datetime=2020-04-23>2020-04-23</time></dd>
+    <dt>updated_at</dt><dd><time class=updated_at datetime=2020-04-25>2020-04-25</time></dd>
     <dt class=tags>tags</dt><dd>[<a href="/tags/periodic%20background%20sync.html">periodic background sync</a><i>,</i><a href="/tags/service%20worker.html">service worker</a>]</dd>
   </dl>
   <article>
     <h1><a href=/entries/2020-04-23/periodic-background-sync.html>Periodic Background Sync 及び Web を Install するということ</a></h1>
     <section>
       <h2 id="intro"><a href="#intro">Intro</a></h2>
-      <p>メールクライアントや RSS リーダーのようなユースケースを PWA で実装する場合、バックグラウンドで定期的にタスクをしたいケースがある。
-      <p>そこで、定期的に実行することに特化した API として提案されているのが Periodic Background Sync(PBS) だ。
+      <p>メールクライアントや RSS リーダーのようなユースケースを PWA で実装する場合、バックグラウンドで定期的にタスクを実行したいケースがある。
+      <p>このユースケースに特化した API として提案されているのが、 Periodic Background Sync(PBS) だ。
       <p>しかし、この API を取り巻く議論は「Web にアプリのような API を持ち込む上での難しさ」を物語っている。
       <p>この API が Web において正当化できるかどうかは、 Project Fugu に代表される Application Capabilities を Web に持ち込む場合の試金石になりそうだ。
       <p>現時点での、仕様、実装、議論について解説する。
@@ -818,7 +818,7 @@
     <section>
       <h2 id="periodic-background-sync"><a href="#periodic-background-sync">Periodic Background Sync</a></h2>
       <p>Web で定期的なタスクを実行する場合、タブが開いていれば <code translate="no">setInterval()</code> などで行うなどが可能だ。
-      <p>しかし、 Mailer の受信ボックス更新のように、バックグラウンドで定期的にタスクを実行したい場合がある。
+      <p>しかし、メールクライアントの受信ボックス更新のように、バックグラウンドで定期的にタスクを実行したい場合がある。
       <p>従来からある Service Worker の Background Sync は、 Offline 中に失敗したタスクを Online 復帰時に再実行するというユースケースに寄せて設計しているため、この用途では使いにくかった。
       <p>そこで、定期的に実行することに特化した API として提案されているのが Periodic Background Sync(PBS) だ。
       <section>
@@ -843,7 +843,7 @@ await registration.periodicSync.register(&#39;update-feed&#39;, {
     </section>
     <section>
       <h2 id="securityprivacy-consideration"><a href="#securityprivacy-consideration">Security/Privacy Consideration</a></h2>
-      <p>まず、定期的に SW を起動できため、そこで Crypt Mining などのリソース消費が可能になる。
+      <p>まず、定期的に SW を起動できるため、そこで Crypt Mining などのリソース消費が可能になる。
       <p>また、  PBS で Server に対して Fetch を行えば、 Server は Client の IP を定期的に知ることができる。
       <p>一度 SW が登録されたら、ユーザがアプリを開いてないところでも、ユーザが認識できない形でトラッキングが可能ということになってしまう。
       <p>
@@ -861,13 +861,13 @@ await registration.periodicSync.register(&#39;update-feed&#39;, {
         <li><a href="https://mozilla.github.io/standards-positions/#periodic-background-sync">Mozilla Specification Positions</a>
       </ul>
       <p>ユーザを危険に晒す機能はそのままでは標準化できないため、策定を進めるにはなんらかの安全措置を講じる必要がある。
-      <p>今回の場合は、ユーザの許可なく PBS が登録され、任意の状態(タイミング)でイベントが発火し、任意のタスクが実行できる場合にこうした懸念が発生するため、これらを防ぐための制限が必要だ。
+      <p>今回の場合は、ユーザの許可なく PBS が登録され、任意の状態(タイミング)でイベントが発火し、任意のタスクが実行できる場合に発生する問題のため、これらを防ぐための制限が必要だ。
       <p>現状仕様には <a href="https://wicg.github.io/BackgroundSync/spec/#privacy-considerations">Privacy Consideration</a> が追加され、この問題に対する実装上の対応を求めている。
       <p>では、 PBS を実装している Chrome は、これらの問題にどう対応しているのだろうか。
     </section>
     <section>
       <h2 id="chrome-での実装"><a href="#chrome-での実装">Chrome での実装</a></h2>
-      <p>まるで PBS という機能自体が悪いかのように書いたが、同様のことは Native App では実現可能だ。
+      <p>まるで PBS という機能自体が悪いかのように読めたかもしれないが、同様のことは Native App では実現可能だ。
       <p>問題は、その機能自体というよりは、それをユーザに対して安全に有効にするためのクライテリアにある。
       <p>そこで、現状 Chrome は PBS の利用について以下の制限を課している。
       <ul>
@@ -886,7 +886,7 @@ await registration.periodicSync.register(&#39;update-feed&#39;, {
         <p>本来 Web は、インストールのような操作なく、 URL にアクセスするだけでページが読み込まれ、スクリプトが実行される。
         <p>ここで強力な機能(Powerful Features)がユーザの同意なく実行されると、意図しない問題が発生する可能性がある。
         <p>そのため、ここまでの機能は、その API の重要性に応じて User Gesture, Feature Policy, Permission Prompt などを使い分けてきた。
-        <p>一方、 Native App は、強力な OS 機能を利用を、ユーザによる明示的なインストールという操作(とそこで発生する認証や追加許諾)によって許可してきた。
+        <p>一方、 Native App は、強力な OS 機能の利用を、ユーザによる明示的なインストールという操作(とそこで発生する認証や追加許諾)によって許可してきた。
         <p>この考え方に合わせれば、 「Web もユーザが明示的に Install すれば、 Native と同等の機能を許可できるのではないか」という発想に至る。
         <p>すでに MS は PWA を Store に並べるといったこともしており、 Install が OS ネイティブの Prompt を経由するのであれば、ある一定の説得力は有るだろう。
         <p>また Add to Home Screen するには Chrome の場合 <a href="https://web.dev/install-criteria/">install criteria</a> をクリアする必要があり、すでに一定のしきい値を設けている。
@@ -897,7 +897,7 @@ await registration.periodicSync.register(&#39;update-feed&#39;, {
         <p>Install すれば何でもできるか、というとそうはならないため、 Install だけでは PBS は発生しない。
         <p>全てのサイトが、無制限に PBS を発火するのは、 Tracking だけでなくバッテリーやネットワークリソース(俗にいうギガ)の消費の問題も出る。
         <p>PBS を導入したサイトが多くなり、それらの登録したタスクを律儀に全部実行していては、リソースの消費は無視できないだろう。
-        <p>そこで、頻繁に使うサイトの PBS の頻度は高く、使ってないサイトでは発火させない、という Intervention を導入することになる。
+        <p>そこで Chrome は、頻繁に使うサイトの PBS の頻度は高く、使ってないサイトでは発火させない、という Intervention を導入している。
         <p>Native App の場合も、同様のことが OS レベルで行われ、 iPhone であればそもそもアプリ自体が UnInstall されたりするのに近い。
         <p>Chrome は、サイトの使用頻度を収集し Site Engagemnet という指標を Chrome 内部に作成している。
         <p>Site Engagement は以下の URL で確認できる。
