@@ -303,9 +303,7 @@ TODO:
 
 blog にも入れた機能だが、よりインタラクティブな Form で実装した。
 
-### Access-Control-Expose-Headers
-
-細かいが Safari が Access-Control-Expose-Headers の `*` 対応をしたのでそれも入れている。
+- [Scroll to Text Fragment を用いたサイト内検索の実装 \| blog.jxck.io](https://blog.jxck.io/entries/2020-03-27/scroll-to-search-result.html)
 
 
 ### transpile less
@@ -318,14 +316,17 @@ blog にも入れた機能だが、よりインタラクティブな Form で実
 
 Dev Server も不要でリロードすれば反映され、 package.json, babelrc, webpack.config といったファイルのメンテという不毛なタスクが無いのは、開発体験が良い。
 
+### Spotify
+
+Spotify も Podcast のサポートを始めたため、登録した。
+
+- [mozaic.fm \| Spotify でポッドキャスト](https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K)
+
 
 ### SXG
 
 TODO:
 
-### Spotify
-
-Spotify も Podcast のサポートを始めたため、登録した。
 
 ---
 
@@ -334,6 +335,9 @@ Spotify も Podcast のサポートを始めたため、登録した。
 
 また、 Site Engagement も高くないと発生した無いため、定期的に聞いているリスナーでしか現状有効にならない。
 
+
+
+## WIP
 
 ### WAI-ARIA
 
