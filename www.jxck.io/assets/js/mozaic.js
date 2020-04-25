@@ -1,17 +1,13 @@
-// add mozaic player
-import MozaicPlayer from './mozaic-player.js'
-import BackgroundFetch from './background-fetch.js'
-
 // Enable debug log adding #debug into url
 const log = location.hash === '#debug' ? console.log.bind(console) : () => {}
+const $  = document.querySelector.bind(document)
+const $$ = document.querySelectorAll.bind(document)
 EventTarget.prototype.on   = EventTarget.prototype.addEventListener
 EventTarget.prototype.off  = EventTarget.prototype.removeEventListener
 EventTarget.prototype.emit = EventTarget.prototype.dispatchEvent
-const $  = document.querySelector.bind(document)
-const $$ = document.querySelectorAll.bind(document)
 
 function reportingObserver() {
-  log('ReportingObserver');
+  log('ReportingObserver')
   /**@type{ReportingObserver} */
   const observer = new ReportingObserver((reports, observer) => {
     /**@type{string} */
@@ -73,7 +69,7 @@ async function enablePortal() {
   /**@type{NodeListOf<Element>}*/
   const $links = $$('article li a')
   $links.forEach(($a) => {
-    let timer;
+    let timer
     $a.on('mouseover', (e) => {
       timer = setTimeout(() => {
         $portal.src = /**@type{HTMLAnchorElement}*/(e.target).href
@@ -93,8 +89,8 @@ async function enablePortal() {
 }
 
 async function enablePlayer() {
-  log(MozaicPlayer)
-  customElements.define('mozaic-player', MozaicPlayer);
+  const MozaicPlayer = await import('./mozaic-player.js')
+  customElements.define('mozaic-player', MozaicPlayer.default)
   document.on('keydown', playerKeybind)
 }
 
@@ -122,7 +118,8 @@ async function enableShortCutDiag() {
 
 async function enableBackgroundFetch(registration) {
   log('registration.backgroundFetch')
-  customElements.define('background-fetch', BackgroundFetch)
+  const BackgroundFetch = await import('./background-fetch.js')
+  customElements.define('background-fetch', BackgroundFetch.default)
 
   $$('background-fetch').forEach(async ($bgfetch) => {
     $bgfetch.classList.remove('disable')
@@ -180,7 +177,7 @@ async function enableBackgroundFetch(registration) {
 
 async function enablePeriodicSync(registration) {
   /**@type{PermissionStatus}*/
-  const status = await navigator.permissions.query({name:'periodic-background-sync'});
+  const status = await navigator.permissions.query({name:'periodic-background-sync'})
   if (status.state === 'granted') {
     /**@type{DOMString[]}*/
     const tags = await registration.periodicSync.getTags()
