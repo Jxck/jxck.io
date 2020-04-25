@@ -30,7 +30,7 @@ export default class BackgroundFetch extends HTMLElement {
       }
       </style>
 
-      <button aria-label="download this audio" title="download this audio">
+      <button tabindex=0 aria-label="download this audio" title="download this audio">
         <svg viewBox="0 0 100 100">
           <circle id="base"     part="base"     cx="50" cy="50" r="46" stroke-width="8" transform="rotate(-90, 50, 50)" />
           <circle id="progress" part="progress" cx="50" cy="50" r="46" stroke-width="8" transform="rotate(-90, 50, 50)" />
