@@ -96,6 +96,8 @@ interface MediaSessionActionDetails {
 // Portal
 // https://wicg.github.io/portals/#idl-index
 interface HTMLPortalElement extends HTMLElement {
+  src: string;
+  activate: Function;
 }
 
 declare var HTMLPortalElement: {
