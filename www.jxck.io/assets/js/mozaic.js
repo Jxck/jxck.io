@@ -122,7 +122,7 @@ async function enableBackgroundFetch(registration) {
   customElements.define('background-fetch', BackgroundFetch.default)
 
   $$('background-fetch').forEach(async ($bgfetch) => {
-    $bgfetch.classList.remove('disable')
+    $bgfetch.classList.remove('disabled')
     const id    /**@type{string}*/   = $bgfetch.previousElementSibling.href
     const url   /**@type{string}*/   = $bgfetch.getAttribute('url')
     const size  /**@type{number}*/   = parseInt($bgfetch.getAttribute('max'))
