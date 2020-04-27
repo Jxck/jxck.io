@@ -50,7 +50,7 @@ module Document
   mtime=#{mtime}
   url=#{audio}
   page=#{url}
-  title=#{title}
+  title="#{title}"
 ></background-fetch>
 </h1>
       EOS
