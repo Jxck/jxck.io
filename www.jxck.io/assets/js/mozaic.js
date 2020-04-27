@@ -22,8 +22,6 @@ function reportingObserver() {
 // keybind
 async function playerKeybind(e) {
   log(e.key, e.target, document.activeElement)
-
-  /**@type{MozaicPlayer}*/
   const $mozaic_player = $('mozaic-player')
 
   switch(e.key) {

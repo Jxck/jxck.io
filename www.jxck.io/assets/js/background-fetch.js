@@ -66,16 +66,27 @@ export default class BackgroundFetch extends HTMLElement {
     /** @type {HTMLElement} */
     this.$progress = this.shadowRoot.querySelector('#progress')
     /** @type {HTMLElement} */
-    this.$arrow    = this.shadowRoot.querySelector('#arrow')
+    this.$arrow = this.shadowRoot.querySelector('#arrow')
+    /** @type {number} */
+    this.value = 0
+    /** @type {number} */
+    this.size = 0
+    /** @type {number} */
+    this.mtime = 0
+    /** @type {string} */
+    this.url = ''
+    /** @type {string} */
+    this.page = ''
+    /** @type {string} */
+    this.title = ''
   }
 
   async connectedCallback(e) {
-    console.log('connectedCallback')
     this.update()
     const cached = await this.etag()
-    console.log(cached)
 
     console.log([
+      cached,
       this.value,
       this.size,
       this.mtime,
@@ -86,7 +97,7 @@ export default class BackgroundFetch extends HTMLElement {
 
     if (cached) {
       // cache がある
-      this.value = this.size
+      this.setAttribute('value', this.size.toString())
       this.$arrow.part.add('done')
     } else {
       // cache がない
@@ -100,7 +111,7 @@ export default class BackgroundFetch extends HTMLElement {
 
         /**@type{BackgroundFetchOptions}*/
         const option = {
-          title: this.title.textContent,
+          title: this.title,
           icons: [
             {src: '/assets/img/mozaic.jpeg', type: 'image/jpeg',    sizes: '2000x2000'},
             {src: '/assets/img/mozaic.webp', type: 'image/webp',    sizes: '256x256'},
@@ -112,19 +123,15 @@ export default class BackgroundFetch extends HTMLElement {
 
         /**@type{ServiceWorkerRegistration}*/
         const registration = await navigator.serviceWorker.ready
-        console.log(registration)
-        console.log(this)
-        console.log(this.page, this.url)
         /**@type{BackgroundFetchRegistration}*/
         let task = await registration.backgroundFetch.get(this.page)
         if (task === undefined) {
           task = await registration.backgroundFetch.fetch(this.page, [this.url], option)
         }
         task.on('progress', (e) => {
-          const {downloaded, downloadTotal} = e.target
+          const {downloaded, downloadTotal} = /**@type{BackgroundFetchRegistration}*/(e.target)
           console.log(downloaded, downloadTotal)
-          this.value = downloaded
-          this.update()
+          this.setAttribute('value', downloaded.toString())
         })
       })
     }
@@ -170,7 +177,6 @@ export default class BackgroundFetch extends HTMLElement {
     /**@type{string}*/
     const current_etag = `"${this.mtime.toString(16)}-${this.size.toString(16)}"`
 
-    console.log(current_etag, saved_etag)
     return current_etag === saved_etag
   }
 }
