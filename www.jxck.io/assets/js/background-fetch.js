@@ -1,3 +1,5 @@
+const log = localStorage.getItem("background-fetch") === "debug" ? console.log.bind(console) : () => {}
+
 export default class BackgroundFetch extends HTMLElement {
   /**
    * @returns {string[]}
@@ -84,9 +86,8 @@ export default class BackgroundFetch extends HTMLElement {
   async connectedCallback(e) {
     this.update()
     const cached = await this.etag()
-
-    console.log([
-      cached,
+    log({cached})
+    log([
       this.value,
       this.size,
       this.mtime,
@@ -128,9 +129,10 @@ export default class BackgroundFetch extends HTMLElement {
         if (task === undefined) {
           task = await registration.backgroundFetch.fetch(this.page, [this.url], option)
         }
+        log(task)
         task.on('progress', (e) => {
           const {downloaded, downloadTotal} = /**@type{BackgroundFetchRegistration}*/(e.target)
-          console.log(downloaded, downloadTotal)
+          log(downloaded, downloadTotal)
           this.setAttribute('value', downloaded.toString())
         })
       })
@@ -138,15 +140,15 @@ export default class BackgroundFetch extends HTMLElement {
   }
 
   disconnectedCallback(e) {
-    console.log(e)
+    log(e)
   }
 
   adoptedCallback(e) {
-    console.log(e)
+    log(e)
   }
 
   attributeChangedCallback(attrName, oldVal, newVal) {
-    console.log(attrName, oldVal, newVal)
+    log(attrName, oldVal, newVal)
     if (['size', 'mtime', 'value'].includes(attrName)) {
       this[attrName] = parseFloat(newVal)
     }
@@ -164,7 +166,7 @@ export default class BackgroundFetch extends HTMLElement {
       /** @type{Element} */
       const $arrow = this.shadowRoot.querySelector('#arrow')
       $arrow.part.add('done')
-      console.log('done')
+      log('done')
     }
   }
 
@@ -176,7 +178,6 @@ export default class BackgroundFetch extends HTMLElement {
     const saved_etag = cache?.headers.get('etag')
     /**@type{string}*/
     const current_etag = `"${this.mtime.toString(16)}-${this.size.toString(16)}"`
-
     return current_etag === saved_etag
   }
 }

@@ -1,5 +1,4 @@
-// Enable debug log adding #debug into url
-const log = location.hash === "#debug" ? console.log.bind(console) : () => {}
+const log = localStorage.getItem("mozaic-player") === "true" ? console.log.bind(console) : () => {}
 
 export default class MozaicPlayer extends HTMLElement {
   static get observedAttributes() { return ["src"] }
