@@ -133,6 +133,7 @@ export default class MozaicPlayer extends HTMLElement {
           },
           {
             src:   "https://mozaic.fm/assets/img/mozaic.svg",
+            sizes: "any",
             type:  "image/svg+xml"
           }
         ]
