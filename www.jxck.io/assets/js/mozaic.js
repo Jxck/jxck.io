@@ -92,6 +92,9 @@ async function enablePlayer() {
   const MozaicPlayer = await import('./mozaic-player.js')
   customElements.define('mozaic-player', MozaicPlayer.default)
   document.on('keydown', playerKeybind)
+  $$('background-fetch').forEach(async ($bgfetch) => {
+    $bgfetch.classList.remove('disabled')
+  })
 }
 
 async function enableWebShare() {
@@ -120,59 +123,6 @@ async function enableBackgroundFetch(registration) {
   log('registration.backgroundFetch')
   const BackgroundFetch = await import('./background-fetch.js')
   customElements.define('background-fetch', BackgroundFetch.default)
-
-  $$('background-fetch').forEach(async ($bgfetch) => {
-    $bgfetch.classList.remove('disabled')
-    const id    /**@type{string}*/   = $bgfetch.previousElementSibling.href
-    const url   /**@type{string}*/   = $bgfetch.getAttribute('url')
-    const size  /**@type{number}*/   = parseInt($bgfetch.getAttribute('max'))
-    const mtime /**@type{number}*/   = parseInt($bgfetch.getAttribute('mtime'))
-    const cache /**@type{Response}*/ = await caches.match(url)
-
-    // check etag
-    const current_etag /**@type{string}*/ = `"${mtime.toString(16)}-${size.toString(16)}"`
-    const saved_etag   /**@type{string}*/ = cache?.headers.get('etag')
-    log(current_etag, saved_etag, current_etag === saved_etag)
-
-    if (current_etag === saved_etag) {
-      // cache がある
-      $bgfetch.setAttribute('value', size)
-      $bgfetch.shadowRoot.querySelector('#arrow').part.add('done')
-    } else {
-      // cache がない
-      $bgfetch.on('click', async (e) => {
-        // html も一緒に取得したいが、 downloadTotal を出すのが面倒なので
-        // cache の追加を sw に依頼
-
-        /**@type{ServiceWorker}*/
-        const controller = navigator.serviceWorker.controller
-        controller.postMessage({type: 'save', url: id})
-
-        /**@type{BackgroundFetchOptions}*/
-        const option = {
-          title: $('title').textContent,
-          icons: [
-            {src: '/assets/img/mozaic.jpeg', type: 'image/jpeg',    sizes: '2000x2000'},
-            {src: '/assets/img/mozaic.webp', type: 'image/webp',    sizes: '256x256'},
-            {src: '/assets/img/mozaic.png',  type: 'image/png',     sizes: '256x256'},
-            {src: '/assets/img/mozaic.svg',  type: 'image/svg+xml', sizes: 'any'}
-          ],
-          downloadTotal: size
-        }
-
-        // register background task
-        /**@type{BackgroundFetchRegistration}*/
-        let task = await registration.backgroundFetch.get(id)
-        if (task === undefined) {
-          task = await registration.backgroundFetch.fetch(id, [url], option)
-        }
-        task.on('progress', (e) => {
-          log(task, task.downloaded)
-          $bgfetch.setAttribute('value', task.downloaded)
-        })
-      })
-    }
-  })
 }
 
 async function enablePeriodicSync(registration) {

@@ -100,14 +100,12 @@ export default class BackgroundFetch extends HTMLElement {
 
         /**@type{BackgroundFetchOptions}*/
         const option = {
-          title: $('title').textContent,
+          title: this.title.textContent,
           icons: [
-            // TODO:
-            {src: './test.jpeg', type: 'image/jpeg',    sizes: '2000x2000'},
-            // {src: '/assets/img/mozaic.jpeg', type: 'image/jpeg',    sizes: '2000x2000'},
-            // {src: '/assets/img/mozaic.webp', type: 'image/webp',    sizes: '256x256'},
-            // {src: '/assets/img/mozaic.png',  type: 'image/png',     sizes: '256x256'},
-            // {src: '/assets/img/mozaic.svg',  type: 'image/svg+xml', sizes: 'any'}
+            {src: '/assets/img/mozaic.jpeg', type: 'image/jpeg',    sizes: '2000x2000'},
+            {src: '/assets/img/mozaic.webp', type: 'image/webp',    sizes: '256x256'},
+            {src: '/assets/img/mozaic.png',  type: 'image/png',     sizes: '256x256'},
+            {src: '/assets/img/mozaic.svg',  type: 'image/svg+xml', sizes: 'any'}
           ],
           downloadTotal: this.size
         }
