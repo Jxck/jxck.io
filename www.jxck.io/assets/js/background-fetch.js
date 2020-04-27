@@ -1,4 +1,4 @@
-const log = localStorage.getItem("background-fetch") === "debug" ? console.log.bind(console) : () => {}
+const log = localStorage.getItem("background-fetch") === "true" ? console.log.bind(console) : () => {}
 
 export default class BackgroundFetch extends HTMLElement {
   /**
@@ -101,6 +101,18 @@ export default class BackgroundFetch extends HTMLElement {
       this.setAttribute('value', this.size.toString())
       this.$arrow.part.add('done')
     } else {
+      /**@type{ServiceWorkerRegistration}*/
+      const registration = await navigator.serviceWorker.ready
+      let task = await registration.backgroundFetch.get(this.page)
+      log(task)
+      if (task) {
+        task.on('progress', (e) => {
+          const {downloaded, downloadTotal} = /**@type{BackgroundFetchRegistration}*/(e.target)
+          log(downloaded, downloadTotal)
+          this.setAttribute('value', downloaded.toString())
+        })
+      }
+
       // cache がない
       this.on('click', async (e) => {
         // html も一緒に取得したいが、 downloadTotal を出すのが面倒なので
@@ -122,8 +134,6 @@ export default class BackgroundFetch extends HTMLElement {
           downloadTotal: this.size
         }
 
-        /**@type{ServiceWorkerRegistration}*/
-        const registration = await navigator.serviceWorker.ready
         /**@type{BackgroundFetchRegistration}*/
         let task = await registration.backgroundFetch.get(this.page)
         if (task === undefined) {
