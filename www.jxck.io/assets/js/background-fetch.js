@@ -3,7 +3,16 @@ export default class BackgroundFetch extends HTMLElement {
    * @returns {string[]}
    */
   static get observedAttributes() {
-    return ['max', 'value'];
+    return [
+      // number
+      'value',
+      'size',
+      'mtime',
+      // string
+      'url',
+      'page',
+      'title',
+    ]
   }
 
   /**
@@ -51,45 +60,119 @@ export default class BackgroundFetch extends HTMLElement {
   }
 
   constructor() {
-    super();
+    super()
     this.attachShadow({mode: 'open'})
     this.shadowRoot.appendChild(this.template)
-    /** @type{number} */
-    this.max   = 0
-    /** @type{number} */
-    this.value = 0
     /** @type {HTMLElement} */
     this.$progress = this.shadowRoot.querySelector('#progress')
+    /** @type {HTMLElement} */
+    this.$arrow    = this.shadowRoot.querySelector('#arrow')
   }
 
-  connectedCallback(e) {
-    // console.debug(e)
+  async connectedCallback(e) {
+    console.log('connectedCallback')
     this.update()
+    const cached = await this.etag()
+    console.log(cached)
+
+    console.log([
+      this.value,
+      this.size,
+      this.mtime,
+      this.url,
+      this.page,
+      this.title,
+    ])
+
+    if (cached) {
+      // cache がある
+      this.value = this.size
+      this.$arrow.part.add('done')
+    } else {
+      // cache がない
+      this.on('click', async (e) => {
+        // html も一緒に取得したいが、 downloadTotal を出すのが面倒なので
+        // cache の追加を sw に依頼
+
+        /**@type{ServiceWorker}*/
+        const controller = navigator.serviceWorker.controller
+        controller.postMessage({type: 'save', url: this.page})
+
+        /**@type{BackgroundFetchOptions}*/
+        const option = {
+          title: $('title').textContent,
+          icons: [
+            // TODO:
+            {src: './test.jpeg', type: 'image/jpeg',    sizes: '2000x2000'},
+            // {src: '/assets/img/mozaic.jpeg', type: 'image/jpeg',    sizes: '2000x2000'},
+            // {src: '/assets/img/mozaic.webp', type: 'image/webp',    sizes: '256x256'},
+            // {src: '/assets/img/mozaic.png',  type: 'image/png',     sizes: '256x256'},
+            // {src: '/assets/img/mozaic.svg',  type: 'image/svg+xml', sizes: 'any'}
+          ],
+          downloadTotal: this.size
+        }
+
+        /**@type{ServiceWorkerRegistration}*/
+        const registration = await navigator.serviceWorker.ready
+        console.log(registration)
+        console.log(this)
+        console.log(this.page, this.url)
+        /**@type{BackgroundFetchRegistration}*/
+        let task = await registration.backgroundFetch.get(this.page)
+        if (task === undefined) {
+          task = await registration.backgroundFetch.fetch(this.page, [this.url], option)
+        }
+        task.on('progress', (e) => {
+          const {downloaded, downloadTotal} = e.target
+          console.log(downloaded, downloadTotal)
+          this.value = downloaded
+          this.update()
+        })
+      })
+    }
   }
 
   disconnectedCallback(e) {
-    console.debug(e)
+    console.log(e)
   }
 
   adoptedCallback(e) {
-    console.debug(e)
+    console.log(e)
   }
 
   attributeChangedCallback(attrName, oldVal, newVal) {
-    // console.debug(attrName, oldVal, newVal)
-    this[attrName] = parseFloat(newVal)
+    console.log(attrName, oldVal, newVal)
+    if (['size', 'mtime', 'value'].includes(attrName)) {
+      this[attrName] = parseFloat(newVal)
+    }
+    if (['url', 'page'].includes(attrName)) {
+      this[attrName] = newVal
+    }
     this.update()
   }
 
   update() {
     /** @type{Number} */
-    const ratio = (this.max === 0) ? 0 : (this.value / this.max)
-    // console.debug(ratio)
+    const ratio = (this.size === 0) ? 0 : (this.value / this.size)
     this.$progress.style.setProperty('--ratio', ratio.toString())
     if (ratio === 1) {
       /** @type{Element} */
       const $arrow = this.shadowRoot.querySelector('#arrow')
       $arrow.part.add('done')
+      console.log('done')
     }
+  }
+
+  // check etag
+  async etag() {
+    /**@type{Response}*/
+    const cache = await caches.match(this.url)
+    /**@type{string}*/
+    const saved_etag = cache?.headers.get('etag')
+    /**@type{string}*/
+    const current_etag = `"${this.mtime.toString(16)}-${this.size.toString(16)}"`
+
+    console.log(current_etag, saved_etag)
+    return current_etag === saved_etag
   }
 }

@@ -31,64 +31,47 @@ async function worker() {
     }
   })
 
-  self.addEventListener('periodicsync', (e) => {
-    console.log('periodicsync', e)
+  self.addEventListener('backgroundfetchsuccess', (e) => {
+    console.log(e.type)
     e.waitUntil(async function() {
-      // feed json を取得し etag を確認
-      const URL  = 'https://feed.mozaic.fm/index.json'
-      const feed = await fetch(URL)
-      const etag = feed.headers.get('etag')
-      console.log(etag)
+      try {
+        // 結果を取り出す
+        const id = e.registration.id
+        const records = await e.registration.matchAll()
 
-      // 保存済みの feed の etag を取得してから更新
-      const cache_general = await caches.open(CACHE_GENERAL)
-      const stored        = await cache_general.match(URL)
-      const stored_etag   = stored?.headers?.get('etag')
-      await cache_general.add(URL, feed)
+        // キャッシュ先
+        const cache = await caches.open(CACHE_MP3)
 
-      console.log(stored_etag, etag)
+        // キャッシュ対象
+        const promises = records.map(async (record) => {
+          const response = await record.responseReady;
+          await cache.put(record.request, response);
+        })
+        await Promise.all(promises);
 
-      if (stored_etag === etag) return
-
-      // 更新されてるのでパースして最新のエピソードを取得
-      const json = await feed.json()
-      const item = json.rss.channel.item[0] // last: 72
-      const html = item.link
-      const mp3  = item["media:content"].url
-      const title = item.title
-      const subtitle = item["itunes:subtitle"]
-
-      await cache_general.add(html)
-      const cache_mp3 = await caches.open(CACHE_MP3)
-      await cache_mp3.add(mp3)
-
-      console.log('cache updated')
-
-      if (navigator.setAppBadge) {
-        navigator.setAppBadge()
-        console.log('show badge')
+        // 通知
+        await e.updateUI({title: `downloaded: ${id}`})
+      } catch (err) {
+        console.error(err)
+        e.updateUI({title: `download failed: ${id}`})
       }
+    }())
+  })
 
-      // content index に追加
-      if (self.registration.index === undefined) return
-      await self.registration.index.add({
-        id: html,
-        url: html,
-        title: title,
-        category: `article`,
-        launchUrl: html,
-        description: subtitle,
-        icons: [
-          {src: '/assets/img/mozaic.jpeg', type: 'image/jpeg', sizes: '2000x2000'},
-          {src: '/assets/img/mozaic.webp', type: 'image/webp', sizes: '256x256'},
-          {src: '/assets/img/mozaic.png',  type: 'image/png',  sizes: '256x256'},
-          // {src: '/assets/img/mozaic.svg',  type: 'image/svg+xml'} SVG はエラーになる?
-        ]
-      })
+  self.addEventListener('backgroundfetchfail', (e) => {
+    console.error(e)
+  })
 
-      console.log('content index added')
+  self.addEventListener('backgroundfetchabort', (e) => {
+    console.error(e)
+  })
 
-      return
+  // download タスクをクリックした場合
+  self.addEventListener('backgroundfetchclick', (e) => {
+    console.log(e)
+    e.waitUntil(async function() {
+      const url = e.registration.id
+      clients.openWindow(url)
     }())
   })
 }
