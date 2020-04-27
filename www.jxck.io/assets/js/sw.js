@@ -5,7 +5,7 @@ EventTarget.prototype.off = EventTarget.prototype.removeEventListener
  * 同じ VERSION であれば、キャッシュにないものだけ追加する
  * VERSION を変えると、あたらしく作り追加する
  */
-const VERSION       = 'v0.5.23'
+const VERSION       = 'v0.5.24'
 const CACHE_GENERAL = `${VERSION}.general`
 const CACHE_MP3     = `${VERSION}.mp3`
 const log = console.debug.bind(console)
