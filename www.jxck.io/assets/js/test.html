@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>DEMO</title>
+
+<style>
+:root {
+  --ui-back: #888;
+  --ui-front: white;
+}
+h1 {
+  background-color: #333;
+  color: white;
+  display: flex;
+}
+background-fetch {
+  display: block;
+  width: 30px;
+  height: 30px;
+  color: white;
+}
+background-fetch::part(arrow) {
+  fill: var(--ui-back);
+}
+background-fetch::part(arrow done) {
+  fill: var(--ui-front);
+}
+background-fetch::part(base) {
+  stroke: var(--ui-back);
+  fill: transparent;
+}
+background-fetch::part(progress) {
+  stroke: var(--ui-front);
+  fill:transparent;
+}
+</style>
+
+<h1>
+  <a href=/>Test</a>
+  <background-fetch
+    class=disabled
+    value=0
+    max=1858450
+    mtime=1581935516
+    url=https://files.mozaic.fm/mozaic-ep0.mp3></background-fetch>
+</h1>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  async function enableBackgroundFetch(registration) {
+    console.log('registration.backgroundFetch')
+    const BackgroundFetch = await import('./background-fetch.js')
+    customElements.define('background-fetch', BackgroundFetch.default)
+
+    $$('background-fetch').forEach(async ($bgfetch) => {
+      $bgfetch.classList.remove('disabled')
+      const id    /**@type{string}*/   = $bgfetch.previousElementSibling.href
+      const url   /**@type{string}*/   = $bgfetch.getAttribute('url')
+      const size  /**@type{number}*/   = parseInt($bgfetch.getAttribute('max'))
+      const mtime /**@type{number}*/   = parseInt($bgfetch.getAttribute('mtime'))
+      const cache /**@type{Response}*/ = await caches.match(url)
+
+      // check etag
+      const current_etag /**@type{string}*/ = `"${mtime.toString(16)}-${size.toString(16)}"`
+      const saved_etag   /**@type{string}*/ = cache?.headers.get('etag')
+      console.log(current_etag, saved_etag, current_etag === saved_etag)
+
+      if (current_etag === saved_etag) {
+        // cache がある
+        $bgfetch.setAttribute('value', size)
+        $bgfetch.shadowRoot.querySelector('#arrow').part.add('done')
+      } else {
+        // cache がない
+        $bgfetch.on('click', async (e) => {
+          // html も一緒に取得したいが、 downloadTotal を出すのが面倒なので
+          // cache の追加を sw に依頼
+
+          /**@type{ServiceWorker}*/
+          const controller = navigator.serviceWorker.controller
+          controller.postMessage({type: 'save', url: id})
+
+          /**@type{BackgroundFetchOptions}*/
+          const option = {
+            title: $('title').textContent,
+            icons: [
+              {src: '/assets/img/mozaic.jpeg', type: 'image/jpeg', sizes: '2000x2000'},
+              {src: '/assets/img/mozaic.webp', type: 'image/webp', sizes: '256x256'},
+              {src: '/assets/img/mozaic.png',  type: 'image/png',  sizes: '256x256'},
+              {src: '/assets/img/mozaic.svg',  type: 'image/svg+xml'}
+            ],
+            downloadTotal: size
+          }
+
+          // register background task
+          /**@type{BackgroundFetchRegistration}*/
+          let task = await registration.backgroundFetch.get(id)
+          if (task === undefined) {
+            task = await registration.backgroundFetch.fetch(id, [url], option)
+          }
+          task.on('progress', (e) => {
+            console.log(task, task.downloaded)
+            $bgfetch.setAttribute('value', task.downloaded)
+          })
+        })
+      }
+    })
+  }
+
+  document.on('DOMContentLoaded', async (e) => {
+    console.log(e)
+
+    const registration = await navigator.serviceWorker.register('test.sw.js', { scope: '/' })
+    await navigator.serviceWorker.ready
+
+    await enableBackgroundFetch(registration)
+
+
+  })
+</script>
