@@ -73,7 +73,17 @@
   <ol>
     <%- episodes.each do |episode| -%>
     <li>
-      <h2><a href=<%= episode.url %>><%= episode.title %></a><background-fetch class=disabled value=0 max=<%= episode.size %> mtime=<%= episode.mtime %> url=<%= episode.audio %>></background-fetch></h2>
+      <h2><a href=<%= episode.url %>><%= episode.title %></a>
+        <background-fetch
+          class=disabled
+          value=0
+          size=<%=  episode.size %>
+          mtime=<%= episode.mtime %>
+          url=<%=   episode.audio %>
+          page=<%=  episode.url %>
+          title=<%= episode.title %>
+        ></background-fetch>
+      </h2>
       <%- episode.theme_line.each do |line| -%>
       <%= line %>
       <%- end -%>
