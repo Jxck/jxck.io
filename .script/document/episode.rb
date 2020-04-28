@@ -45,12 +45,12 @@ module Document
 </a>
 <background-fetch
   class=disabled
-  value=0
-  size=#{size}
-  mtime=#{mtime}
-  url=#{audio}
-  page=#{url}
-  title="#{title}"
+  data-value=0
+  data-size=#{size}
+  data-mtime=#{mtime}
+  data-url=#{audio}
+  data-page=#{url}
+  data-title="#{title}"
 ></background-fetch>
 </h1>
       EOS
