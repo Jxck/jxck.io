@@ -1,4 +1,6 @@
 'use strict'
+const DEBUG = false
+const log = DEBUG ? console.debug.bind(console) : () => {}
 EventTarget.prototype.on  = EventTarget.prototype.addEventListener
 EventTarget.prototype.off = EventTarget.prototype.removeEventListener
 /**
@@ -8,7 +10,6 @@ EventTarget.prototype.off = EventTarget.prototype.removeEventListener
 const VERSION       = 'v0.5.26'
 const CACHE_GENERAL = `${VERSION}.general`
 const CACHE_MP3     = `${VERSION}.mp3`
-const log = console.debug.bind(console)
 log('sw.js')
 
 // Service Worker
