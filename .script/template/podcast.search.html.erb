@@ -41,7 +41,7 @@
   <h1>Search Result of <%= h(query[:q]) %></h1>
   <form action=searches method=get>
     <label for=keyword>Search</label>
-    <input id=keyword type=text name=q minlength=1 maxlength=20 required placeholder="csp, cookie, 標準化 etc" value="<%= h(query[:q]) %>">
+    <input id=keyword type=text name=q minlength=1 maxlength=20 autofocus required placeholder="csp, cookie, 標準化 etc" value="<%= h(query[:q]) %>">
     <button>search</button>
     <% unless query[:valid] %>
     <p class=error><%= query[:message] %></p>
