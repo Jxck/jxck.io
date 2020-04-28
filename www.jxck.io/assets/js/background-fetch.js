@@ -41,7 +41,7 @@ export default class BackgroundFetch extends HTMLElement {
       }
       </style>
 
-      <button tabindex=0 aria-label="download this audio" title="download this audio">
+      <button>
         <svg viewBox="0 0 100 100">
           <circle id="base"     part="base"     cx="50" cy="50" r="46" stroke-width="8" transform="rotate(-90, 50, 50)" />
           <circle id="progress" part="progress" cx="50" cy="50" r="46" stroke-width="8" transform="rotate(-90, 50, 50)" />
@@ -88,19 +88,26 @@ export default class BackgroundFetch extends HTMLElement {
     const cached = await this.etag()
     log({cached})
     log(this)
-    log([
-      this.dataset.value,
-      this.dataset.size,
-      this.dataset.mtime,
-      this.dataset.url,
-      this.dataset.page,
-      this.dataset.title,
-    ])
+    log(`
+      "this.dataset.value": ${this.dataset.value},
+      "this.dataset.size":  ${this.dataset.size},
+      "this.dataset.mtime": ${this.dataset.mtime},
+      "this.dataset.url":   ${this.dataset.url},
+      "this.dataset.page":  ${this.dataset.page},
+      "this.dataset.title": ${this.dataset.title},
+    `)
+
+    this.setAttribute('tabindex',   '0')
+    this.setAttribute('role',       'button')
+    this.setAttribute('title',      'download this audio')
+    this.setAttribute('aria-label', 'download this audio')
 
     if (cached) {
       // cache がある
       this.dataset.value = this.dataset.size
       this.$arrow.part.add('done')
+      this.setAttribute('title',      'this audio already downloaded')
+      this.setAttribute('aria-label', 'this audio already downloaded')
     } else {
       /**@type{ServiceWorkerRegistration}*/
       const registration = await navigator.serviceWorker.ready
