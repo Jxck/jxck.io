@@ -290,12 +290,6 @@ Referrer Policy は `no-referrer-when-downgrade` が default とされており�
 - [Referrer-Policy によるリファラ制御 \| blog.jxck.io](https://blog.jxck.io/entries/2018-10-08/referrer-policy.html)
 
 
-### Document Policy
-
-TODO:
-
-
-
 
 ## その他
 
@@ -338,6 +332,12 @@ TODO:
 
 
 ## WIP
+
+### Document Policy
+
+入れようとしたが、まだ欲しい実装がなかったためペンディング。
+
+
 
 ### WAI-ARIA
 
