@@ -7,13 +7,13 @@ export default class BackgroundFetch extends HTMLElement {
   static get observedAttributes() {
     return [
       // number
-      'value',
-      'size',
-      'mtime',
+      'data-value',
+      'data-size',
+      'data-mtime',
       // string
-      'url',
-      'page',
-      'title',
+      'data-url',
+      'data-page',
+      'data-title',
     ]
   }
 
@@ -69,47 +69,48 @@ export default class BackgroundFetch extends HTMLElement {
     this.$progress = this.shadowRoot.querySelector('#progress')
     /** @type {HTMLElement} */
     this.$arrow = this.shadowRoot.querySelector('#arrow')
-    /** @type {number} */
-    this.value = 0
-    /** @type {number} */
-    this.size = 0
-    /** @type {number} */
-    this.mtime = 0
     /** @type {string} */
-    this.url = ''
+    this.dataset.value = '0'
     /** @type {string} */
-    this.page = ''
+    this.dataset.size  = '0'
     /** @type {string} */
-    this.title = ''
+    this.dataset.mtime = '0'
+    /** @type {string} */
+    this.dataset.url   = ''
+    /** @type {string} */
+    this.dataset.page  = ''
+    /** @type {string} */
+    this.dataset.title = ''
   }
 
   async connectedCallback(e) {
     this.update()
     const cached = await this.etag()
     log({cached})
+    log(this)
     log([
-      this.value,
-      this.size,
-      this.mtime,
-      this.url,
-      this.page,
-      this.title,
+      this.dataset.value,
+      this.dataset.size,
+      this.dataset.mtime,
+      this.dataset.url,
+      this.dataset.page,
+      this.dataset.title,
     ])
 
     if (cached) {
       // cache がある
-      this.setAttribute('value', this.size.toString())
+      this.dataset.value = this.dataset.size
       this.$arrow.part.add('done')
     } else {
       /**@type{ServiceWorkerRegistration}*/
       const registration = await navigator.serviceWorker.ready
-      let task = await registration.backgroundFetch.get(this.page)
+      let task = await registration.backgroundFetch.get(this.dataset.page)
       log(task)
       if (task) {
         task.on('progress', (e) => {
           const {downloaded, downloadTotal} = /**@type{BackgroundFetchRegistration}*/(e.target)
           log(downloaded, downloadTotal)
-          this.setAttribute('value', downloaded.toString())
+          this.dataset.value = downloaded.toString()
         })
       }
 
@@ -120,30 +121,31 @@ export default class BackgroundFetch extends HTMLElement {
 
         /**@type{ServiceWorker}*/
         const controller = navigator.serviceWorker.controller
-        controller.postMessage({type: 'save', url: this.page})
+        controller.postMessage({type: 'save', url: this.dataset.page})
 
         /**@type{BackgroundFetchOptions}*/
         const option = {
-          title: this.title,
+          title: this.dataset.title,
           icons: [
             {src: '/assets/img/mozaic.jpeg', type: 'image/jpeg',    sizes: '2000x2000'},
             {src: '/assets/img/mozaic.webp', type: 'image/webp',    sizes: '256x256'},
             {src: '/assets/img/mozaic.png',  type: 'image/png',     sizes: '256x256'},
             {src: '/assets/img/mozaic.svg',  type: 'image/svg+xml', sizes: 'any'}
           ],
-          downloadTotal: this.size
+          downloadTotal: parseFloat(this.dataset.size)
         }
+        log(option)
 
         /**@type{BackgroundFetchRegistration}*/
-        let task = await registration.backgroundFetch.get(this.page)
+        let task = await registration.backgroundFetch.get(this.dataset.page)
         if (task === undefined) {
-          task = await registration.backgroundFetch.fetch(this.page, [this.url], option)
+          task = await registration.backgroundFetch.fetch(this.dataset.page, [this.dataset.url], option)
         }
         log(task)
         task.on('progress', (e) => {
           const {downloaded, downloadTotal} = /**@type{BackgroundFetchRegistration}*/(e.target)
           log(downloaded, downloadTotal)
-          this.setAttribute('value', downloaded.toString())
+          this.dataset.value = downloaded.toString()
         })
       })
     }
@@ -158,19 +160,19 @@ export default class BackgroundFetch extends HTMLElement {
   }
 
   attributeChangedCallback(attrName, oldVal, newVal) {
-    log(attrName, oldVal, newVal)
-    if (['size', 'mtime', 'value'].includes(attrName)) {
-      this[attrName] = parseFloat(newVal)
-    }
-    if (['url', 'page'].includes(attrName)) {
-      this[attrName] = newVal
-    }
+    if (oldVal === newVal) return
+    log(`${attrName}, ${oldVal}, ${newVal}`)
+    this.dataset[attrName.match(/^data-(.*)/)[1]] = newVal
     this.update()
   }
 
   update() {
     /** @type{Number} */
-    const ratio = (this.size === 0) ? 0 : (this.value / this.size)
+    const value = parseFloat(this.dataset.value)
+    /** @type{Number} */
+    const size  = parseFloat(this.dataset.size)
+    /** @type{Number} */
+    const ratio = (size === 0) ? 0 : (value / size)
     this.$progress.style.setProperty('--ratio', ratio.toString())
     if (ratio === 1) {
       /** @type{Element} */
@@ -182,12 +184,16 @@ export default class BackgroundFetch extends HTMLElement {
 
   // check etag
   async etag() {
+    /** @type{Number} */
+    const mtime = parseFloat(this.dataset.mtime)
+    /** @type{Number} */
+    const size  = parseFloat(this.dataset.size)
     /**@type{Response}*/
-    const cache = await caches.match(this.url)
+    const cache = await caches.match(this.dataset.url)
     /**@type{string}*/
     const saved_etag = cache?.headers.get('etag')
     /**@type{string}*/
-    const current_etag = `"${this.mtime.toString(16)}-${this.size.toString(16)}"`
+    const current_etag = `"${mtime.toString(16)}-${size.toString(16)}"`
     return current_etag === saved_etag
   }
 }
