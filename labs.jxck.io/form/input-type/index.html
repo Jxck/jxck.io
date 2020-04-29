@@ -6,6 +6,67 @@
 
 <h1>Input Type DEMO</h1>
 
+<style>
+:root {
+  --thumb-color:  royalblue;
+  --thumb-size:   10px;
+  --thumb-radius: 50%;
+  --bar-color:    #ccc;
+  --bar-size:     4px;
+  --bar-radius:   2px;
+}
+  #slider {
+    background-color: pink;
+    position: relative;
+    height: 40px;
+  }
+  #bar {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    width:         50%;
+    background:    var(--thumb-color);
+    height:        var(--bar-size);
+    border-radius: var(--bar-radius);
+  }
+
+
+  input[type=range] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-appearance:none;
+    width:         90vw;
+    background:    var(--bar-color);
+    height:        var(--bar-size);
+    border-radius: var(--bar-radius);
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance:none;
+    border:        none;
+    background:    var(--thumb-color);
+    height:        var(--thumb-size);
+    width:         var(--thumb-size);
+    border-radius: var(--thumb-radius);
+  }
+
+  input[type=range]::-moz-range-thumb {
+    border:        none;
+    background:    var(--thumb-color);
+    height:        var(--thumb-size);
+    width:         var(--thumb-size);
+    border-radius: var(--thumb-radius);
+  }
+  input[type=range]::-moz-range-track {
+    height: var(--bar-size);
+  }
+
+  input[type=range]::-ms-tooltip{
+    display: none;
+  }
+</style>
+
+
 <form id=form>
   <dl>
     <dt><label for=text>type=text</label>
@@ -45,7 +106,14 @@
     <dd><input id=number name=number type=number value=2222>
 
     <dt><label for=range>type=range (min=-100 max=100)</label>
-    <dd><input id=range name=range type=range min=-100 max=100 value=50>
+    <dd>
+      <div id=slider>
+        <input id=range name=range type=range min=0 max=256 value=0 step=0.1>
+        <div id=bar></div>
+      </div>
+      <script>
+      </script>
+    </dd>
 
     <dt><label for=color>type=color</label>
     <dd><input id=color name=color type=color value=#abcdef>
