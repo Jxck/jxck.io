@@ -45,7 +45,7 @@ export default class MozaicPlayer extends HTMLElement {
     console.assert(this.audio.tagName.toLowerCase() === "audio", "<audio slot=audio> should assigned to <mozaic-player>")
 
     // get data
-    this.title        = this.audio.title
+    this.title        = this.audio.dataset.title
     this.forwardDelta = parseFloat(this.audio.dataset.forward) || 30
     this.backDelta    = parseFloat(this.audio.dataset.back)    || -10
 
@@ -240,11 +240,11 @@ export default class MozaicPlayer extends HTMLElement {
    */
   timeFormat(time) {
     /**@type{string}*/
-    const h = (~~(time / 3600)).toString().padStart(2, '0')
+    const h = (~~(time / 3600)).toString().padStart(2, "0")
     /**@type{string}*/
-    const m = (~~(time % 3600 / 60)).toString().padStart(2, '0')
+    const m = (~~(time % 3600 / 60)).toString().padStart(2, "0")
     /**@type{string}*/
-    const s = (~~(time % 60)).toString().padStart(2, '0')
+    const s = (~~(time % 60)).toString().padStart(2, "0")
     return `${h}:${m}:${s}`
   }
 

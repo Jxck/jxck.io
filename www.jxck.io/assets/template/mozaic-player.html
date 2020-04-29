@@ -139,12 +139,12 @@
 
   <div class=grid-progress>
     <time class=current datetime=00:00:00>00:00:00</time>
-    <progress aria-label=seekbar class=progress tabindex=0 value=0 aria-valuemin=0></progress>
+    <progress id=seekbar class=progress tabindex=0 value=0 role=slider aria-label=seekbar aria-valuemin=0 draggable></progress>
     <time class=duration datetime=00:00:00>00:00:00</time>
   </div>
 
   <div class=grid-volume>
-    <button class=volumeDown title="volume down">
+    <button class=volumeDown title="volume down" aria-controls=volume>
       <svg class="svg-volume-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
         <!-- volume-down -->
         <path
