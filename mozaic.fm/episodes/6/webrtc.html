@@ -12,8 +12,8 @@
   <link rel=preload type=font/woff2 as=font  crossorigin href=/assets/font/NotoSansCJKjp-Regular-Jxck-20200407.woff2>
   <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
 
-  <script defer type=module no-integrity=sha256-ui4wHSqE/FpK3I8MUe3AEIQgN32WFasGtp9/x56KWKk= src=/assets/js/mozaic.js></script>
-  <script defer type=module no-integrity=sha256-lOpKm4hWPo45S2Mbh68YzvZOzFziKLngz9R2nvP98uw= src=/assets/js/sw.js></script>
+  <script defer type=module no-integrity=sha256-vmsMAtx5Yk9sK4bKLn13IFLIGR8WozkJG3AWixtJNR0= src=/assets/js/mozaic.js></script>
+  <script defer type=module no-integrity=sha256-NvG6VRm3hvmnIig82DKa2HB/XpVgUffxBiPP7wtUajU= src=/assets/js/sw.js></script>
 
   <link rel=icon             type =image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
   <link rel=icon             type =image/png sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.png>
@@ -153,7 +153,16 @@
   <p class=copyright><small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small> <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong></p>
 </footer>
 
-<mozaic-player><audio slot=audio src=https://files.mozaic.fm/mozaic-ep6.mp3 crossorigin=anonymous title='ep6 WebRTC' data-forward=+30 data-back=-10></audio></mozaic-player>
+<mozaic-player>
+  <audio
+    slot=audio
+    src=https://files.mozaic.fm/mozaic-ep6.mp3
+    crossorigin=anonymous
+    data-title='ep6 WebRTC'
+    data-forward=+30
+    data-back=-10>
+  </audio>
+</mozaic-player>
 
 </body>
 </html>
