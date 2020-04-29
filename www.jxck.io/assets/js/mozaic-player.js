@@ -76,19 +76,19 @@ export default class MozaicPlayer extends HTMLElement {
     /**
      * caching dom
      */
-    /**@type{HTMLButtonElement}  */ this.$play         = this.shadowRoot.$(".play")
-    /**@type{HTMLButtonElement}  */ this.$forward      = this.shadowRoot.$(".forward")
-    /**@type{HTMLButtonElement}  */ this.$back         = this.shadowRoot.$(".back")
-    /**@type{HTMLInputElement}   */ this.$volume       = this.shadowRoot.$(".volume")
-    /**@type{HTMLButtonElement}  */ this.$volumeUp     = this.shadowRoot.$(".volumeUp")
-    /**@type{HTMLButtonElement}  */ this.$volumeDown   = this.shadowRoot.$(".volumeDown")
-    /**@type{HTMLInputElement}   */ this.$playbackRate = this.shadowRoot.$(".playbackRate")
-    /**@type{HTMLTimeElement}    */ this.$current      = this.shadowRoot.$(".current")
-    /**@type{HTMLProgressElement}*/ this.$progress     = this.shadowRoot.$(".progress")
-    /**@type{HTMLTimeElement}    */ this.$duration     = this.shadowRoot.$(".duration")
-    /**@type{HTMLOutputElement}  */ this.$outputRate   = this.shadowRoot.$("output.rate")
-    /**@type{SVGSVGElement}      */ this.$svgPlay      = this.shadowRoot.$(".svg-play")
-    /**@type{SVGSVGElement}      */ this.$svgPause     = this.shadowRoot.$(".svg-pause")
+    /**@type{HTMLButtonElement}  */ this.$play         = this.shadowRoot.$("#play")
+    /**@type{HTMLButtonElement}  */ this.$forward      = this.shadowRoot.$("#forward")
+    /**@type{HTMLButtonElement}  */ this.$back         = this.shadowRoot.$("#back")
+    /**@type{HTMLInputElement}   */ this.$volume       = this.shadowRoot.$("#volume")
+    /**@type{HTMLButtonElement}  */ this.$volumeUp     = this.shadowRoot.$("#volumeUp")
+    /**@type{HTMLButtonElement}  */ this.$volumeDown   = this.shadowRoot.$("#volumeDown")
+    /**@type{HTMLInputElement}   */ this.$playbackRate = this.shadowRoot.$("#playbackRate")
+    /**@type{HTMLTimeElement}    */ this.$current      = this.shadowRoot.$("#current")
+    /**@type{HTMLProgressElement}*/ this.$progress     = this.shadowRoot.$("#progress")
+    /**@type{HTMLTimeElement}    */ this.$duration     = this.shadowRoot.$("#duration")
+    /**@type{HTMLOutputElement}  */ this.$outputRate   = this.shadowRoot.$("output#rate")
+    /**@type{SVGSVGElement}      */ this.$svgPlay      = this.shadowRoot.$("#svg-play")
+    /**@type{SVGSVGElement}      */ this.$svgPause     = this.shadowRoot.$("#svg-pause")
 
     // tooltip event bindings
     this.$play        .on("click", this.onPlay.bind(this))

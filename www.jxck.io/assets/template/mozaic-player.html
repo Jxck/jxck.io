@@ -1,19 +1,19 @@
 <style>
 
 /* player host */
-.mozaic-player {
+#mozaic-player {
   display:          grid;
   color:            #fff;
   background-color: inherit;
   border-radius:    inherit;
   font-family:      "NotoSansMonoCJKjp-Jxck";
 }
-  .mozaic-player button {
+  #mozaic-player button {
     border:           none;
     padding:          0;
     background-color: initial;
   }
-  .mozaic-player input[type=range] {
+  #mozaic-player input[type=range] {
     width:              100%;
     -webkit-appearance: none;
     -moz-appearance:    none;
@@ -22,19 +22,19 @@
     height:             2px;
     margin:             0 1rem;
   }
-  .mozaic-player input::-moz-range-track {
+  #mozaic-player input::-moz-range-track {
     background-color:   #fff;
   }
 
 /* progress bar */
-.grid-progress {
+#grid-progress {
   grid-area:   progress;
   display:     inline-flex;
   align-items: center;
 }
-  .grid-progress .current {
+  #grid-progress #current {
   }
-  .grid-progress .progress {
+  #grid-progress #progress {
     -webkit-appearance: none;
     -moz-appearance:    none;
     appearance:         none;
@@ -44,42 +44,42 @@
     height:             6px;
     margin:             0 1rem;
   }
-  .grid-progress progress[value]::-webkit-progress-bar {
+  #grid-progress progress[value]::-webkit-progress-bar {
     background-color: white;
     border-radius:    2px;
   }
-  .grid-progress progress[value]::-moz-progress-bar {
+  #grid-progress progress[value]::-moz-progress-bar {
     background-color: royalblue;
     border-radius:    2px;
   }
-  .grid-progress progress[value]::-webkit-progress-value {
+  #grid-progress progress[value]::-webkit-progress-value {
     background-color: royalblue;
     border-radius:    2px;
   }
 
 /* controls */
-.grid-volume {
+#grid-volume {
   display:   flex;
   grid-area: volume;
   align-items:     center;
   justify-content: flex-end;
 }
 
-.grid-play {
+#grid-play {
   display:   flex;
   grid-area: play;
   align-items:     center;
   justify-content: space-between;
 }
-  .grid-play .play:disabled .svg-play path {
+  #grid-play #play:disabled #svg-play path {
     fill:   #777;
     stroke: #777;
   }
-  .grid-play .svg-pause {
+  #grid-play #svg-pause {
     display: none;
   }
 
-.grid-speed {
+#grid-speed {
   display:   flex;
   grid-area: speed;
   align-items:     center;
@@ -88,64 +88,64 @@
 
 /* layout for mobile */
 @media screen and (max-width: 1024px) {
-  .mozaic-player {
+  #mozaic-player {
     grid-template:
       "progress" 1fr
       "play"     1fr
       "speed"    1fr
       / 1fr;
   }
-  .mozaic-player svg {
+  #mozaic-player svg {
     width: 2.8rem;
   }
-  .grid-progress {
+  #grid-progress {
     margin: 0 1rem;
   }
-  .grid-volume {
+  #grid-volume {
     display: none;
   }
-  .grid-play {
+  #grid-play {
     margin: 0 10%;
   }
-  .grid-speed {
+  #grid-speed {
     margin: 0 10%;
   }
 }
 
 /* layout for PC */
 @media screen and (min-width: 1024px) {
-  .mozaic-player {
+  #mozaic-player {
     grid-template:
       "progress progress progress progress progress" 2fr
       ".        volume   play     speed    ."        3fr
       /1fr      6fr      6fr      6fr      1fr;
     padding: 0px 10px;
   }
-  .mozaic-player svg {
+  #mozaic-player svg {
     width: 2rem;
   }
-  .grid-volume svg {
+  #grid-volume svg {
     width: 1.4rem;
   }
-  .grid-play {
+  #grid-play {
     margin: 0 20%;
   }
 }
 </style>
 
 
-<div class=mozaic-player>
+<div id=mozaic-player>
   <slot name=audio></slot>
 
-  <div class=grid-progress>
-    <time class=current datetime=00:00:00>00:00:00</time>
-    <progress id=seekbar class=progress tabindex=0 value=0 role=slider aria-label=seekbar aria-valuemin=0 draggable></progress>
-    <time class=duration datetime=00:00:00>00:00:00</time>
+  <div id=grid-progress>
+    <time id=current datetime=00:00:00>00:00:00</time>
+    <progress id=progress tabindex=0 value=0 role=slider aria-label=seekbar aria-valuemin=0 draggable></progress>
+    <time id=duration datetime=00:00:00>00:00:00</time>
   </div>
 
-  <div class=grid-volume>
-    <button class=volumeDown title="volume down" aria-controls=volume>
-      <svg class="svg-volume-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+  <div id=grid-volume>
+    <button id=volumeDown title="volume down" aria-controls=volume>
+      <svg id="svg-volume-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
         <!-- volume-down -->
         <path
           fill="#fff"
@@ -176,10 +176,10 @@
       </svg>
     </button>
 
-    <input class=volume type=range title=volume value=0.5>
+    <input id=volume type=range title=volume value=0.5>
 
-    <button class=volumeUp title="volume up">
-      <svg class="svg-volume-up" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+    <button id=volumeUp title="volume up">
+      <svg id="svg-volume-up" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
         <!-- volume up -->
         <path
           fill="#fff"
@@ -235,9 +235,9 @@
     </button>
   </div>
 
-  <div class=grid-play>
-    <button class=back title="back 10s">
-      <svg class="svg-back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+  <div id=grid-play>
+    <button id=back title="back 10s">
+      <svg id="svg-back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
         <!-- back -->
         <circle
           cx="150"
@@ -271,8 +271,8 @@
               "/>
       </svg>
     </button>
-    <button class=play title=loading aria-busy=true disabled>
-      <svg class="svg-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+    <button id=play title=loading aria-busy=true disabled>
+      <svg id="svg-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
         <!-- >  -->
         <path
           fill="#fff"
@@ -286,7 +286,7 @@
           Z
           "/>
       </svg>
-      <svg class="svg-pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+      <svg id="svg-pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
         <!-- ||(pause) -->
         <path
           fill="#fff"
@@ -307,8 +307,8 @@
           "/>
       </svg>
     </button>
-    <button class=forward title="forward 30s">
-      <svg class="svg-forward" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+    <button id=forward title="forward 30s">
+      <svg id="svg-forward" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
         <!-- forward -->
         <circle
           cx="150"
@@ -344,9 +344,9 @@
     </button>
   </div>
 
-  <div class=grid-speed>
-    <input class=playbackRate type=range title=speed min=0.6 max=3.0 step=0.2 value=1.0 list=playbackRate>
-    <output class=rate>x1.0</output>
+  <div id=grid-speed>
+    <input id=playbackRate type=range title=speed min=0.6 max=3.0 step=0.2 value=1.0 list=playbackRate>
+    <output id=rate>x1.0</output>
   </div>
   <datalist id=playbackRate>
     <option value=0.6 label="x0.6">
