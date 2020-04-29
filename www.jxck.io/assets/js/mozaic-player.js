@@ -84,7 +84,7 @@ export default class MozaicPlayer extends HTMLElement {
     /**@type{HTMLButtonElement}  */ this.$volumeDown   = this.shadowRoot.$("#volumeDown")
     /**@type{HTMLInputElement}   */ this.$playbackRate = this.shadowRoot.$("#playbackRate")
     /**@type{HTMLTimeElement}    */ this.$current      = this.shadowRoot.$("#current")
-    /**@type{HTMLProgressElement}*/ this.$progress     = this.shadowRoot.$("#progress")
+    /**@type{HTMLProgressElement}*/ this.$progress     = this.shadowRoot.$("#slider")
     /**@type{HTMLTimeElement}    */ this.$duration     = this.shadowRoot.$("#duration")
     /**@type{HTMLOutputElement}  */ this.$outputRate   = this.shadowRoot.$("output#rate")
     /**@type{SVGSVGElement}      */ this.$svgPlay      = this.shadowRoot.$("#svg-play")

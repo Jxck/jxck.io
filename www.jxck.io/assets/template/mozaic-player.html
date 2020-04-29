@@ -34,7 +34,7 @@
 }
   #grid-progress #current {
   }
-  #grid-progress #progress {
+  #grid-progress #slider {
     -webkit-appearance: none;
     -moz-appearance:    none;
     appearance:         none;
@@ -139,7 +139,18 @@
 
   <div id=grid-progress>
     <time id=current datetime=00:00:00>00:00:00</time>
-    <progress id=progress tabindex=0 value=0 role=slider aria-label=seekbar aria-valuemin=0 draggable></progress>
+    <!--
+      seek bar は進捗を表すと同時に draggable に再生地点を変更できる
+
+      role で考えると、 progressbar か slider が適切そう。
+
+      <progress> は role=progressbar であり、変更できない。
+      progressbar は完了に向けた進捗を表し、readonly であるためユーザは変更できない。
+      したがって draggable で変更できる seekbar に使うものではない。
+
+      <input type=range> は role=slider であり、値は変更可能。矢印キーの補助なども得られる。
+    -->
+    <progress id=slider tabindex=0 value=0 role=slider aria-label=seekbar aria-valuemin=0 draggable></progress>
     <time id=duration datetime=00:00:00>00:00:00</time>
   </div>
 
@@ -178,7 +189,7 @@
 
     <input id=volume type=range title=volume value=0.5>
 
-    <button id=volumeUp title="volume up">
+    <button id=volumeUp title="volume up" aria-controls=volume>
       <svg id="svg-volume-up" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
         <!-- volume up -->
         <path
@@ -236,7 +247,7 @@
   </div>
 
   <div id=grid-play>
-    <button id=back title="back 10s">
+    <button id=back title="back 10s" aria-controls=slider>
       <svg id="svg-back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
         <!-- back -->
         <circle
@@ -307,7 +318,7 @@
           "/>
       </svg>
     </button>
-    <button id=forward title="forward 30s">
+    <button id=forward title="forward 30s" aria-controls=progress>
       <svg id="svg-forward" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
         <!-- forward -->
         <circle
