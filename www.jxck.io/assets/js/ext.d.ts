@@ -1,3 +1,7 @@
+type DOMString = string;
+type USVString = string;
+type Double = number;
+
 // CSS Shadow Parts
 // https://drafts.csswg.org/css-shadow-parts-1/#idl
 interface Element {
@@ -8,6 +12,18 @@ interface EventTarget {
   on(type: string, listener: EventListenerOrEventListenerObject | null, options?: boolean | AddEventListenerOptions): void;
   emit(event: Event): boolean;
   off(type: string, callback: EventListenerOrEventListenerObject | null, options?: EventListenerOptions | boolean): void;
+}
+
+interface DocumentFragment {
+  $<K extends keyof HTMLElementTagNameMap>(selectors: K): HTMLElementTagNameMap[K] | null;
+  $<K extends keyof SVGElementTagNameMap>(selectors: K): SVGElementTagNameMap[K] | null;
+  $<E extends Element = Element>(selectors: string): E | null;
+}
+
+interface Element {
+  $<K extends keyof HTMLElementTagNameMap>(selectors: K): HTMLElementTagNameMap[K] | null;
+  $<K extends keyof SVGElementTagNameMap>(selectors: K): SVGElementTagNameMap[K] | null;
+  $<E extends Element = Element>(selectors: string): E | null;
 }
 
 // Web Share
@@ -36,6 +52,7 @@ interface Navigator {
 interface Navigator {
   readonly mediaSession: MediaSession;
 }
+
 type MediaSessionPlaybackState = "none" | "paused" | "playing";
 
 type MediaSessionAction = "play" | "pause" | "seekbackward" | "seekforward" | "previoustrack" | "nexttrack" | "skipad" | "stop" | "seekto";
@@ -51,7 +68,6 @@ interface MediaSession {
   setPositionState(state?: MediaPositionState): void;
 }
 
-type DOMString = string;
 interface MediaMetadata {
   title:   DOMString;
   artist:  DOMString;
@@ -71,14 +87,12 @@ interface MediaMetadataInit {
   artwork?: MediaImage[];
 }
 
-type USVString = string;
 interface MediaImage {
   src:    USVString;
   sizes?: DOMString;
   type?:  DOMString;
 }
 
-type Double = number;
 interface MediaPositionState {
   duration?:     Double;
   playbackRate?: Double;
