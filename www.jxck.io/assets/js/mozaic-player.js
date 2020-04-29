@@ -3,7 +3,9 @@ const log = localStorage.getItem("mozaic-player") === "true" ? console.log.bind(
 export default class MozaicPlayer extends HTMLElement {
   static get observedAttributes() { return ["src"] }
 
+  /** @returns {string} */
   get src()      { return this.$("audio").src }
+  /** @params {string} value */
   set src(value) { this.$("audio").src = value }
 
   /**
@@ -13,8 +15,11 @@ export default class MozaicPlayer extends HTMLElement {
    * @returns {Promise<Node>}
    */
   async template() {
+    /** @type{Response} */
     const res      = await fetch("/assets/template/mozaic-player.html")
+    /** @type{string} */
     const text     = await res.text()
+    /** @type{HTMLTemplateElement} */
     const template = document.createElement("template")
     template.innerHTML = text
     return template.content.cloneNode(true)
@@ -217,8 +222,11 @@ export default class MozaicPlayer extends HTMLElement {
    * @returns {number}
    */
   seek(e) {
+    /**@type{number}*/
     const percent  = this.percent(e)
+    /**@type{number}*/
     const duration = this.audio.duration
+    /**@type{number}*/
     const seekTime = duration * percent
     log("seekTime", seekTime)
     return seekTime
@@ -228,17 +236,22 @@ export default class MozaicPlayer extends HTMLElement {
    * format time
    *
    * @param {number} time
-   * @returns string
+   * @returns {string}
    */
   timeFormat(time) {
+    /**@type{string}*/
     const h = (~~(time / 3600)).toString().padStart(2, '0')
+    /**@type{string}*/
     const m = (~~(time % 3600 / 60)).toString().padStart(2, '0')
+    /**@type{string}*/
     const s = (~~(time % 60)).toString().padStart(2, '0')
     return `${h}:${m}:${s}`
   }
 
   setDuration() {
+    /**@type{number}*/
     const duration = this.audio.duration
+    /**@type{string}*/
     const time     = this.timeFormat(duration)
     log("duration", duration)
     this.$progress.max         = duration
@@ -248,7 +261,9 @@ export default class MozaicPlayer extends HTMLElement {
   }
 
   setTime() {
+    /**@type{number}*/
     const currentTime = this.audio.currentTime
+    /**@type{string}*/
     const time        = this.timeFormat(currentTime)
     log("currentTime", currentTime)
     this.$progress.value      = currentTime
@@ -284,18 +299,21 @@ export default class MozaicPlayer extends HTMLElement {
   // Save Setting
   ///////////////////////////
   saveCurrentTime() {
+    /**@type{number}*/
     const currentTime = this.audio.currentTime
     log("saveCurrentTime", currentTime)
     localStorage.setItem(`${this.src}:currentTime`, currentTime.toString())
   }
 
   saveVolume() {
+    /**@type{number}*/
     const volume = this.audio.volume
     log("saveVolume", volume)
     localStorage.setItem(`mozaic.fm:volume`, volume.toString())
   }
 
   savePlaybackRate() {
+    /**@type{number}*/
     const playbackRate = this.audio.playbackRate
     log("savePlaybackRate", playbackRate)
     localStorage.setItem(`mozaic.fm:playbackRate`, playbackRate.toString())
@@ -306,12 +324,14 @@ export default class MozaicPlayer extends HTMLElement {
   // Load Setting
   ///////////////////////////
   loadCurrentTime() {
+    /**@type{number}*/
     const currentTime = parseFloat(localStorage.getItem(`${this.src}:currentTime`) || "0")
     log("loadCurrentTime", currentTime)
     this.audio.currentTime = currentTime
   }
 
   loadVolume() {
+    /**@type{number}*/
     const volume = parseFloat(localStorage.getItem(`mozaic.fm:volume`) || "0.5")
     log("loadVolume", volume)
     this.audio.volume = volume
@@ -319,6 +339,7 @@ export default class MozaicPlayer extends HTMLElement {
   }
 
   loadPlaybackRate() {
+    /**@type{number}*/
     const playbackRate = parseFloat(localStorage.getItem(`mozaic.fm:playbackRate`) || "1.0")
     log("loadPlabackRate", playbackRate)
     this.audio.playbackRate      = playbackRate
@@ -454,6 +475,7 @@ export default class MozaicPlayer extends HTMLElement {
   }
 
   onVolume(e) {
+    /**@type{number}*/
     const volume = parseFloat(e.target.value)/100
     log(e.type, volume)
     this.audio.volume = volume
@@ -471,11 +493,13 @@ export default class MozaicPlayer extends HTMLElement {
   }
 
   onPlaybackrate(e) {
+    /**@type{number}*/
     const playbackRate = parseFloat(e.target.value)
     log(e.target.value, playbackRate)
     this.audio.playbackRate = playbackRate
     //   1.toPrecision(2) => 1.0
     // 0.8.toPrecision(1) => 0.8
+    /**@type{number}*/
     const precision = playbackRate < 1 ? 1 : 2
     this.$outputRate.textContent = `x${playbackRate.toPrecision(precision)}`
     this.savePlaybackRate()

@@ -3,10 +3,10 @@ const log = location.hash === '#debug' ? console.log.bind(console) : () => {}
 const $  = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 DocumentFragment.prototype.$ = DocumentFragment.prototype.querySelector
-Element.prototype.$ = Element.prototype.querySelector
-EventTarget.prototype.on   = EventTarget.prototype.addEventListener
-EventTarget.prototype.off  = EventTarget.prototype.removeEventListener
-EventTarget.prototype.emit = EventTarget.prototype.dispatchEvent
+Element.prototype.$          = Element.prototype.querySelector
+EventTarget.prototype.on     = EventTarget.prototype.addEventListener
+EventTarget.prototype.off    = EventTarget.prototype.removeEventListener
+EventTarget.prototype.emit   = EventTarget.prototype.dispatchEvent
 
 function reportingObserver() {
   log('ReportingObserver')
