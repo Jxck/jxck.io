@@ -16,18 +16,20 @@
   --bar-radius:   2px;
 }
   #slider {
+    width: 80vw;
     background-color: pink;
     position: relative;
     height: 40px;
   }
   #bar {
     position: absolute;
-    top: 2px;
-    left: 0;
-    width:         50%;
-    background:    var(--thumb-color);
-    height:        var(--bar-size);
-    border-radius: var(--bar-radius);
+    top:      2px;
+    left:     0;
+    width:    0%;
+    height:   var(--bar-size);
+    background: var(--thumb-color);
+    border-top-left-radius: var(--bar-radius);
+    border-bottom-left-radius: var(--bar-radius);
   }
 
 
@@ -36,7 +38,7 @@
     top: 0;
     left: 0;
     -webkit-appearance:none;
-    width:         90vw;
+    width:         100%;
     background:    var(--bar-color);
     height:        var(--bar-size);
     border-radius: var(--bar-radius);
@@ -68,120 +70,59 @@
 
 
 <form id=form>
-  <dl>
-    <dt><label for=text>type=text</label>
-    <dd><input id=text name=text type=text value=text>
-
-    <dt><label for=search>type=search</label>
-    <dd><input id=search name=search type=search value=search>
-
-    <dt><label for=tel>type=tel</label>
-    <dd><input id=tel name=tel type=tel value=12345678>
-
-    <dt><label for=url>type=url</label>
-    <dd><input id=url name=url type=url value=http://example.com>
-
-    <dt><label for=email>type=email</label>
-    <dd><input id=email name=email type=email value=mail@example.com>
-
-    <dt><label for=password>type=password</label>
-    <dd><input id=password name=password type=password value=passworddddd>
-
-    <dt><label for=date>type=date</label>
-    <dd><input id=date name=date type=date value="2222-02-02">
-
-    <dt><label for=month>type=month</label>
-    <dd><input id=month name=month type=month value="2222-02">
-
-    <dt><label for=week>type=week</label>
-    <dd><input id=week name=week type=week value="2222-W01">
-
-    <dt><label for=time>type=time</label>
-    <dd><input id=time name=time type=time value="12:12">
-
-    <dt><label for=datetime-local>type=datetime-local</label>
-    <dd><input id=datetime-local name=datetime-local type=datetime-local value=2222-02-02T12:12>
-
-    <dt><label for=number>type=number</label>
-    <dd><input id=number name=number type=number value=2222>
-
-    <dt><label for=range>type=range (min=-100 max=100)</label>
-    <dd>
-      <div id=slider>
-        <input id=range name=range type=range min=0 max=256 value=0 step=0.1>
-        <div id=bar></div>
-      </div>
-      <script>
-      </script>
-    </dd>
-
-    <dt><label for=color>type=color</label>
-    <dd><input id=color name=color type=color value=#abcdef>
-
-    <dt><label for=checkbox>type=checkbox</label>
-    <dd><input id=checkbox name=checkbox type=checkbox value=checked checked>
-
-    <dt><label for=radio>type=radio</label>
-    <dd>
-      <input id=radio1 type=radio name=radio value=radio1>
-      <label for=radio1>radio1</label>
-
-      <input id=radio2 type=radio name=radio value=radio2 checked>
-      <label for=radio2>radio2</label>
-
-      <input id=radio3 type=radio name=radio value=radio3>
-      <label for=radio3>radio3</label>
-    </dd>
-
-    <dt><label for=file>type=file</label>
-    <dd><input id=file name=file type=file>
-
-    <dt><label for=select>select</label>
-    <select name="select" multiple>
-      <option value="value1">Value 1</option>
-      <option value="value2" selected>Value 2</option>
-      <option value="value3" selected>Value 3</option>
-    </select>
-
-    <dt><label for=reset>type=reset</label>
-    <dd><input id=reset name=reset type=reset>
-
-  </dl>
+  <div id=slider>
+    <input id=range name=range type=range min=0 max=256 value=0 step=0.1>
+    <div id=bar></div>
+  </div>
   <button type=submit>submit</button>
-
-  <label for=image>type=image (graphical submit button)</label>
-  <input id=image name=image type=image src=https://logo.jxck.io/jxck.png>
 </form>
+
+<script>
+const $  = document.querySelector.bind(document)
+const $$ = document.querySelectorAll.bind(document)
+EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+const $range = $('#range')
+const $bar = $('#bar')
+$range.on('input', (e) => {
+  console.log(e.target.value)
+  const value = parseFloat(e.target.value)
+  const max   = parseFloat(e.target.max)
+  const curr  = (value/max)*100
+  $bar.style.width = `${curr}%`
+})
+
+</script>
 
 
 <script>
-document.querySelector('#form').addEventListener('submit', (e) => {
-  e.preventDefault();
+  document.querySelector('#form').addEventListener('submit', (e) => {
+    e.preventDefault();
 
-  let formdata = new FormData(e.target)
-  let dataset = Array.from(formdata.entries()).reduce((o, [k, v]) => {
-    console.log(k, ":", v)
+    let formdata = new FormData(e.target)
+    let dataset = Array.from(formdata.entries()).reduce((o, [k, v]) => {
+      console.log(k, ":", v)
 
-    if (k === "file") {
-      v = {
-        lastModified    : v.lastModified,
-        lastModifiedDate: v.lastModifiedDate,
-        name            : v.name,
-        size            : v.size,
-        type            : v.type,
+      if (k === "file") {
+        v = {
+          lastModified    : v.lastModified,
+          lastModifiedDate: v.lastModifiedDate,
+          name            : v.name,
+          size            : v.size,
+          type            : v.type,
+        }
       }
-    }
 
-    if (k === "select") {
-      if (o[k] === undefined) o[k] = []
+      if (k === "select") {
+        if (o[k] === undefined) o[k] = []
 
-      o[k].push(v)
+        o[k].push(v)
+        return o
+      }
+
+      o[k] = v
       return o
-    }
-
-    o[k] = v
-    return o
-  }, {})
-  console.log(JSON.stringify(dataset, "   ", "   "))
-});
+    }, {})
+    console.log(JSON.stringify(dataset, "   ", "   "))
+  });
 </script>
