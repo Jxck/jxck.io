@@ -3,8 +3,8 @@ const log = localStorage.getItem("mozaic-player") === "true" ? console.log.bind(
 export default class MozaicPlayer extends HTMLElement {
   static get observedAttributes() { return ["src"] }
 
-  get src()      { return this.querySelector("audio").src }
-  set src(value) { this.querySelector("audio").src = value }
+  get src()      { return this.$("audio").src }
+  set src(value) { this.$("audio").src = value }
 
   /**
    * Fetch and Clonse HTML template
@@ -36,74 +36,74 @@ export default class MozaicPlayer extends HTMLElement {
     this.shadowRoot.appendChild(await this.template())
 
     // get slotted <audio>
-    /**@type{HTMLAudioElement}*/ this.audio = /**@type{HTMLAudioElement}*/ (this.shadowRoot.querySelector("slot").assignedElements()[0])
+    /**@type{HTMLAudioElement}*/ this.audio = /**@type{HTMLAudioElement}*/ (this.shadowRoot.$("slot").assignedElements()[0])
     console.assert(this.audio.tagName.toLowerCase() === "audio", "<audio slot=audio> should assigned to <mozaic-player>")
 
     // get data
     this.title        = this.audio.title
-    this.forwardDelta = parseFloat(this.audio.dataset["forward"]) || 30
-    this.backDelta    = parseFloat(this.audio.dataset["back"])    || -10
+    this.forwardDelta = parseFloat(this.audio.dataset.forward) || 30
+    this.backDelta    = parseFloat(this.audio.dataset.back)    || -10
 
     // audio evnet bindings
-    this.audio.addEventListener("abort",          this.onAudioAbort.bind(this))
-    this.audio.addEventListener("canplay",        this.onAudioCanplay.bind(this))
-    this.audio.addEventListener("canplaythrough", this.onAudioCanplaythrough.bind(this))
-    this.audio.addEventListener("durationchange", this.onAudioDurationchange.bind(this))
-    this.audio.addEventListener("emptied",        this.onAudioEmptied.bind(this))
-    this.audio.addEventListener("ended",          this.onAudioEnded.bind(this))
-    this.audio.addEventListener("error",          this.onAudioError.bind(this))
-    this.audio.addEventListener("loadeddata",     this.onAudioLoadeddata.bind(this))
-    this.audio.addEventListener("loadedmetadata", this.onAudioLoadedmetadata.bind(this))
-    this.audio.addEventListener("timeupdate",     this.onAudioTimeupdate.bind(this))
-    this.audio.addEventListener("loadstart",      this.onAudioLoadstart.bind(this))
-    this.audio.addEventListener("pause",          this.onAudioPause.bind(this))
-    this.audio.addEventListener("play",           this.onAudioPlay.bind(this))
-    this.audio.addEventListener("playing",        this.onAudioPlaying.bind(this))
-    this.audio.addEventListener("progress",       this.onAudioProgress.bind(this))
-    this.audio.addEventListener("ratechange",     this.onAudioRatechange.bind(this))
-    this.audio.addEventListener("seeked",         this.onAudioSeeked.bind(this))
-    this.audio.addEventListener("seeking",        this.onAudioSeeking.bind(this))
-    this.audio.addEventListener("stalled",        this.onAudioStalled.bind(this))
-    this.audio.addEventListener("suspend",        this.onAudioSuspend.bind(this))
-    this.audio.addEventListener("volumechange",   this.onAudioVolumechange.bind(this))
-    this.audio.addEventListener("waiting",        this.onAudioWaiting.bind(this))
+    this.audio.on("abort",          this.onAudioAbort.bind(this))
+    this.audio.on("canplay",        this.onAudioCanplay.bind(this))
+    this.audio.on("canplaythrough", this.onAudioCanplaythrough.bind(this))
+    this.audio.on("durationchange", this.onAudioDurationchange.bind(this))
+    this.audio.on("emptied",        this.onAudioEmptied.bind(this))
+    this.audio.on("ended",          this.onAudioEnded.bind(this))
+    this.audio.on("error",          this.onAudioError.bind(this))
+    this.audio.on("loadeddata",     this.onAudioLoadeddata.bind(this))
+    this.audio.on("loadedmetadata", this.onAudioLoadedmetadata.bind(this))
+    this.audio.on("timeupdate",     this.onAudioTimeupdate.bind(this))
+    this.audio.on("loadstart",      this.onAudioLoadstart.bind(this))
+    this.audio.on("pause",          this.onAudioPause.bind(this))
+    this.audio.on("play",           this.onAudioPlay.bind(this))
+    this.audio.on("playing",        this.onAudioPlaying.bind(this))
+    this.audio.on("progress",       this.onAudioProgress.bind(this))
+    this.audio.on("ratechange",     this.onAudioRatechange.bind(this))
+    this.audio.on("seeked",         this.onAudioSeeked.bind(this))
+    this.audio.on("seeking",        this.onAudioSeeking.bind(this))
+    this.audio.on("stalled",        this.onAudioStalled.bind(this))
+    this.audio.on("suspend",        this.onAudioSuspend.bind(this))
+    this.audio.on("volumechange",   this.onAudioVolumechange.bind(this))
+    this.audio.on("waiting",        this.onAudioWaiting.bind(this))
 
     /**
      * caching dom
      */
-    /**@type{HTMLButtonElement}  */ this.$play         = this.shadowRoot.querySelector(".play")
-    /**@type{HTMLButtonElement}  */ this.$forward      = this.shadowRoot.querySelector(".forward")
-    /**@type{HTMLButtonElement}  */ this.$back         = this.shadowRoot.querySelector(".back")
-    /**@type{HTMLInputElement}   */ this.$volume       = this.shadowRoot.querySelector(".volume")
-    /**@type{HTMLButtonElement}  */ this.$volumeUp     = this.shadowRoot.querySelector(".volumeUp")
-    /**@type{HTMLButtonElement}  */ this.$volumeDown   = this.shadowRoot.querySelector(".volumeDown")
-    /**@type{HTMLInputElement}   */ this.$playbackRate = this.shadowRoot.querySelector(".playbackRate")
-    /**@type{HTMLTimeElement}    */ this.$current      = this.shadowRoot.querySelector(".current")
-    /**@type{HTMLProgressElement}*/ this.$progress     = this.shadowRoot.querySelector(".progress")
-    /**@type{HTMLTimeElement}    */ this.$duration     = this.shadowRoot.querySelector(".duration")
-    /**@type{HTMLOutputElement}  */ this.$outputRate   = this.shadowRoot.querySelector("output.rate")
-    /**@type{SVGSVGElement}      */ this.$svgPlay      = this.shadowRoot.querySelector(".svg-play")
-    /**@type{SVGSVGElement}      */ this.$svgPause     = this.shadowRoot.querySelector(".svg-pause")
+    /**@type{HTMLButtonElement}  */ this.$play         = this.shadowRoot.$(".play")
+    /**@type{HTMLButtonElement}  */ this.$forward      = this.shadowRoot.$(".forward")
+    /**@type{HTMLButtonElement}  */ this.$back         = this.shadowRoot.$(".back")
+    /**@type{HTMLInputElement}   */ this.$volume       = this.shadowRoot.$(".volume")
+    /**@type{HTMLButtonElement}  */ this.$volumeUp     = this.shadowRoot.$(".volumeUp")
+    /**@type{HTMLButtonElement}  */ this.$volumeDown   = this.shadowRoot.$(".volumeDown")
+    /**@type{HTMLInputElement}   */ this.$playbackRate = this.shadowRoot.$(".playbackRate")
+    /**@type{HTMLTimeElement}    */ this.$current      = this.shadowRoot.$(".current")
+    /**@type{HTMLProgressElement}*/ this.$progress     = this.shadowRoot.$(".progress")
+    /**@type{HTMLTimeElement}    */ this.$duration     = this.shadowRoot.$(".duration")
+    /**@type{HTMLOutputElement}  */ this.$outputRate   = this.shadowRoot.$("output.rate")
+    /**@type{SVGSVGElement}      */ this.$svgPlay      = this.shadowRoot.$(".svg-play")
+    /**@type{SVGSVGElement}      */ this.$svgPause     = this.shadowRoot.$(".svg-pause")
 
     // tooltip event bindings
-    this.$play        .addEventListener("click", this.onPlay.bind(this))
-    this.$forward     .addEventListener("click", this.onForward.bind(this))
-    this.$back        .addEventListener("click", this.onBack.bind(this))
-    this.$volume      .addEventListener("input", this.onVolume.bind(this))
-    this.$volumeUp    .addEventListener("click", this.onVolumeUp.bind(this))
-    this.$volumeDown  .addEventListener("click", this.onVolumeDown.bind(this))
-    this.$playbackRate.addEventListener("input", this.onPlaybackrate.bind(this))
+    this.$play        .on("click", this.onPlay.bind(this))
+    this.$forward     .on("click", this.onForward.bind(this))
+    this.$back        .on("click", this.onBack.bind(this))
+    this.$volume      .on("input", this.onVolume.bind(this))
+    this.$volumeUp    .on("click", this.onVolumeUp.bind(this))
+    this.$volumeDown  .on("click", this.onVolumeDown.bind(this))
+    this.$playbackRate.on("input", this.onPlaybackrate.bind(this))
 
     // dragging progress bar
     this.dragging = false
-    this.$progress.addEventListener("mousedown",   this.onMousedown.bind(this), {passive:true})
-    this.$progress.addEventListener("mousemove",   this.onMousemove.bind(this), {passive:true})
-    this.$progress.addEventListener("mouseup",     this.onMouseup.bind(this),   {passive:true})
-    this.$progress.addEventListener("mouseout",    this.onMouseout.bind(this),  {passive:true})
-    this.$progress.addEventListener("touchstart",  this.onMousedown.bind(this), {passive:true})
-    this.$progress.addEventListener("touchmove",   this.onMousemove.bind(this), {passive:true})
-    this.$progress.addEventListener("touchend",    this.onMouseup.bind(this),   {passive:true})
-    this.$progress.addEventListener("touchcancel", this.onMouseout.bind(this),  {passive:true})
+    this.$progress.on("mousedown",   this.onMousedown.bind(this), {passive:true})
+    this.$progress.on("mousemove",   this.onMousemove.bind(this), {passive:true})
+    this.$progress.on("mouseup",     this.onMouseup.bind(this),   {passive:true})
+    this.$progress.on("mouseout",    this.onMouseout.bind(this),  {passive:true})
+    this.$progress.on("touchstart",  this.onMousedown.bind(this), {passive:true})
+    this.$progress.on("touchmove",   this.onMousemove.bind(this), {passive:true})
+    this.$progress.on("touchend",    this.onMouseup.bind(this),   {passive:true})
+    this.$progress.on("touchcancel", this.onMouseout.bind(this),  {passive:true})
 
     // load the audio
     this.audio.load()
@@ -264,7 +264,7 @@ export default class MozaicPlayer extends HTMLElement {
     this.$play.disabled = false
 
     /**@type{SVGPathElement}*/
-    const $path = this.$svgPlay.querySelector("path")
+    const $path = this.$svgPlay.$("path")
     $path.style.fill   = "#fff"
     $path.style.stroke = "#fff"
   }

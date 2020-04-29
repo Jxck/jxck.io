@@ -66,9 +66,9 @@ export default class BackgroundFetch extends HTMLElement {
     this.attachShadow({mode: 'open'})
     this.shadowRoot.appendChild(this.template)
     /** @type {HTMLElement} */
-    this.$progress = this.shadowRoot.querySelector('#progress')
+    this.$progress = this.shadowRoot.$('#progress')
     /** @type {HTMLElement} */
-    this.$arrow = this.shadowRoot.querySelector('#arrow')
+    this.$arrow = this.shadowRoot.$('#arrow')
     /** @type {string} */
     this.dataset.value = '0'
     /** @type {string} */
@@ -183,7 +183,7 @@ export default class BackgroundFetch extends HTMLElement {
     this.$progress.style.setProperty('--ratio', ratio.toString())
     if (ratio === 1) {
       /** @type{Element} */
-      const $arrow = this.shadowRoot.querySelector('#arrow')
+      const $arrow = this.shadowRoot.$('#arrow')
       $arrow.part.add('done')
       log('done')
     }
