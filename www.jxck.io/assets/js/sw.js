@@ -7,16 +7,15 @@ EventTarget.prototype.off = EventTarget.prototype.removeEventListener
  * 同じ VERSION であれば、キャッシュにないものだけ追加する
  * VERSION を変えると、あたらしく作り追加する
  */
-const VERSION       = 'v0.6.0'
-const CACHE_GENERAL = `${VERSION}.general`
-const CACHE_MP3     = `${VERSION}.mp3`
+const VERSION       = 'v0.6.6'
+const CACHE_GENERAL = `mozaic.${VERSION}`
+const CACHE_MP3     = `mozaic.mp3`
 log('sw.js')
 
 // Service Worker
 async function worker() {
   log('worker()', self)
 
-  const ASSETS = [] // temporary disable cache
   // revalidate したいものは no-cache
   const ASSETS = [
     // episodes
@@ -98,8 +97,15 @@ async function worker() {
     async function clean_cache() {
       // 不要なストアの抽出
       const stores     = await caches.keys()
+
+      // CACHE_MP3 以外を消す
       const old_stores = stores
-        .filter((store) => !([CACHE_GENERAL].includes(store)))
+        .filter((store) => {
+          return !([
+            CACHE_GENERAL,
+            CACHE_MP3,
+          ].includes(store))
+        })
         .map((store) => {
           log('remove cache table', store)
           return caches.delete(store)
