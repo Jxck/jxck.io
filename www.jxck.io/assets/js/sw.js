@@ -7,7 +7,7 @@ EventTarget.prototype.off = EventTarget.prototype.removeEventListener
  * 同じ VERSION であれば、キャッシュにないものだけ追加する
  * VERSION を変えると、あたらしく作り追加する
  */
-const VERSION       = 'v0.6.6'
+const VERSION       = 'v0.6.7'
 const CACHE_GENERAL = `mozaic.${VERSION}`
 const CACHE_MP3     = `mozaic.mp3`
 log('sw.js')
@@ -18,9 +18,6 @@ async function worker() {
 
   // revalidate したいものは no-cache
   const ASSETS = [
-    // episodes
-    // {url: 'https://mozaic.fm/episodes/0/introduction-of-mozaicfm.html', option: {cache: 'no-cache'}},
-
     // fonts
     {url: 'https://mozaic.fm/assets/font/NotoSansCJKjp-Regular-Jxck-20200407.woff2',     option: {}},
     {url: 'https://mozaic.fm/assets/font/NotoSansCJKjp-Bold-Jxck-20200407.woff2',        option: {}},
@@ -48,12 +45,15 @@ async function worker() {
     {url: 'https://mozaic.fm/assets/img/search.svg',         option: {cache: 'no-cache'}},
     {url: 'https://mozaic.fm/assets/img/share.svg',          option: {cache: 'no-cache'}},
     {url: 'https://mozaic.fm/assets/img/twitter.svg',        option: {cache: 'no-cache'}},
+    {url: 'https://mozaic.fm/assets/img/spotify.svg',        option: {cache: 'no-cache'}},
+    {url: 'https://mozaic.fm/assets/img/install.svg',        option: {cache: 'no-cache'}},
 
     // png
     {url: 'https://mozaic.fm/assets/img/mozaic.png',         option: {cache: 'no-cache'}},
     {url: 'https://mozaic.fm/assets/img/portal-preview.png', option: {cache: 'no-cache'}},
 
     // js
+    {url: 'https://mozaic.fm/assets/js/background-fetch.js', option: {cache: 'no-cache'}},
     {url: 'https://mozaic.fm/assets/js/mozaic-player.js',    option: {cache: 'no-cache'}},
     {url: 'https://mozaic.fm/assets/js/mozaic.js',           option: {cache: 'no-cache'}},
     {url: 'https://mozaic.fm/assets/js/sw.js',               option: {cache: 'no-cache'}},
@@ -95,10 +95,9 @@ async function worker() {
   self.on('activate', async (e) => {
     log('activate > claim', VERSION, e)
     async function clean_cache() {
-      // 不要なストアの抽出
       const stores     = await caches.keys()
 
-      // CACHE_MP3 以外を消す
+      // 不要なストアの抽出
       const old_stores = stores
         .filter((store) => {
           return !([
@@ -127,10 +126,10 @@ async function worker() {
     // safari は fetch(req) が Range だと
     // mp3 の duration が取れず Infinity になり壊れるので
     // audio/video は今はキャッシュしてない
-    if (['audio', 'video'].includes(req.destination)) {
-      log(`bypass ${req.destination}`)
-      return
-    }
+    // if (['audio', 'video'].includes(req.destination)) {
+    //   log(`bypass ${req.destination}`)
+    //   return
+    // }
 
     // cache then fetch
     async function fetching(req) {
@@ -145,7 +144,7 @@ async function worker() {
     const { type, url } = e.data;
     if (type === 'save') {
       // url を general cache に追加
-      const cache = await caches.open(CACHE_GENERAL)
+      const cache = await caches.open(CACHE_MP3)
       cache.add(url)
     }
   })
