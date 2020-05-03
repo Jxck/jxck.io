@@ -30,11 +30,14 @@ mozaic.fm をリニューアルし v3 としてリリースした。
 - その他
   - Transpile Less
   - Scroll To Text Fragment Search
-  - SXG
   - Spotify
 - WIP
+  - Template Instantiation
+  - HTML Modules
+  - Document Policy
   - Silent Push
-  - id3 info by WASM
+  - WASM ID3
+  - SXG
 
 実施したモチベーションおよび、実施内容について記す。
 
@@ -339,6 +342,17 @@ Spotify も Podcast のサポートを始めたため、登録した。
 ### Document Policy
 
 入れたいものもあるが、実装がまだ無いっぽいのでペンディング。
+
+
+### Silent Push
+
+ただし条件は厳しいが、 User Visible ではない Push が使える場面があるように思う。
+
+ブラウザ依存かつ、 Unstable と思われるため調査が面倒で実施しなかった。
+
+今後 Permission が Install に依存するようになると、ある程度現実味が出てきそうだ。
+
+Periodic Sync よりもリアルタイムな feed 更新に使えるかもしれないため、今後もう少し調査したい。
 
 
 ### WASM ID3
