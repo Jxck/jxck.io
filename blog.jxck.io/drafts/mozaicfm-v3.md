@@ -1,5 +1,6 @@
 # [mozaic.fm][podcast] mozaic.fm v3 リリースと Podcast の PWA 化
 
+
 ## Intro
 
 mozaic.fm をリニューアルし v3 としてリリースした。
@@ -155,7 +156,6 @@ Badge のみでなく、更新されたコンテンツの概要をユーザに�
 
 ## Player UI の刷新
 
-
 音声ファイルを再生する Player の UI も大幅に刷新した。変更は徐々に行っていたが、結果としては以下のようになっている。
 
 - Pure WebComponents
@@ -212,6 +212,7 @@ Media Session とは逆に、ロックがかからないようにする API が 
 UI が、特にモバイル対応周りが詰めきれてないが、 Portal もまだまだ過渡期なので、そのうちまた修正する。
 
 機能としては別になくてもいいため、 Portal がデフォルトになってきたら、無効化する UI を入れるか、消す。
+
 
 ## Security
 
@@ -290,8 +291,8 @@ Referrer Policy は `no-referrer-when-downgrade` が default とされており�
 - [Referrer-Policy によるリファラ制御 \| blog.jxck.io](https://blog.jxck.io/entries/2018-10-08/referrer-policy.html)
 
 
-
 ## その他
+
 
 ### Scroll To Text Fragment Search
 
@@ -310,6 +311,7 @@ blog にも入れた機能だが、よりインタラクティブな Form で実
 
 Dev Server も不要でリロードすれば反映され、 package.json, babelrc, webpack.config といったファイルのメンテという不毛なタスクが無いのは、開発体験が良い。
 
+
 ### Spotify
 
 Spotify も Podcast のサポートを始めたため、登録した。
@@ -317,26 +319,12 @@ Spotify も Podcast のサポートを始めたため、登録した。
 - [mozaic.fm \| Spotify でポッドキャスト](https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K)
 
 
-### SXG
-
-TODO:
-
-
----
-
-
-ただし、この API の Permission は、サイトを Add to Home Screen (A2HS) しないと得られない、つまりインストールが必須だ。
-
-また、 Site Engagement も高くないと発生した無いため、定期的に聞いているリスナーでしか現状有効にならない。
-
-
-
 ## WIP
+
 
 ### Document Policy
 
 入れようとしたが、まだ欲しい実装がなかったためペンディング。
-
 
 
 ### WAI-ARIA
@@ -347,6 +335,7 @@ TODO:
 
 リアルタイムに再生される音声のコントロールという点では、補足できる情報は多いが、そもそもどうあるべきかが定義しづらいため、今後も更新していきたい。
 
+
 ### WASM ID3
 
 mp3 には ID3 というメタデータを付与でき、 mozaic.fm ではここにエピソードやトラックの情報を載せている。
@@ -356,3 +345,8 @@ ID3 は仕様がブレブレで、意図した情報を追加する手頃なツ�
 ついでに、取得できるツールに応用し WASM にすれば、サーバでもフロントでも活用できる。
 
 そこで、サーバでは付与するツール、クライアントでは表示するツールとして WASM を読ませ、 UI に表示している。
+
+
+### SXG
+
+TODO:
