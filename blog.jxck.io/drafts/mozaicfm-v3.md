@@ -3,7 +3,7 @@
 
 ## Intro
 
-mozaic.fm をリニューアルし v3 としてリリースした。
+[mozaic.fm](https://mozaic.fm) をリニューアルし v3 としてリリースした。
 
 今回の更新は以下のような変更/修正を実施している。
 
@@ -128,6 +128,8 @@ Service Worker の Cache は Cache API で行うのが基本だ。
 
 PBS + Bgfetch が鉄板の組み合わせだと思っていたので、ここは意外だった。詳細は詰めきれていないが理由などをもう少し調査しておきたい。
 
+なお、 Bgfetch は cors が必要だが、 `<aduio>` のリクエストが no-cors なこと、そして SW を経由したときに Cross-Origin-Resource-Policy の設定を求められたあたりがハマった。
+
 
 ### Badging API
 
@@ -178,6 +180,25 @@ HTML Modules は実装されてないため、 fetch で代用しているが、
 Player ではないが、 Bgfetch を行うためのダウンロードアイコンも、アイコン自体に Download 機能をもたせた WebComponents にしている。
 
 これまでは Tempalte をレンダリングした静的ページだったが、今後もこのように UI に機能を統合した WebComponents 群の組み合わせによる実装に移行していきたい。
+
+
+### WAI-ARIA
+
+Player のアプリとしての UI が、一般の HTML で実装されている部分については、不足するセマンティクスを WAI-ARIA で補っている。
+
+ARIA 以前に、そもそもの audio の seek bar の role が progressbar か slider かを一番悩んだ。
+
+progressbar は進捗を表すが、本来値は readonly で D&D で seek できる UI に利用するのは妥当ではないように思う。
+
+slider としては `<input type=range>` があり、 D&D やネイティブのショートカットなども使える、しかしリアルタイムに value の変わる input はどうなのだろうかという疑問も残る。
+
+他の実装を参考にすると、 `<progress>` を使っているところや、 `<div role=slider>` で行っている実装が見つかったが、多くは `<div>` で実装しているようだ。 `<input>` な実装はなかった。
+
+折衷案として `<progress role=slider>` という実装に落ち着けて実装し終えたが、後から `<progress>` の role は仕様上変えられないことに気づいたため修正が必要な状態だ。
+
+せっかくなので検証として `<input type=range>` で実装を試してみてから、だめなら最後は `<div role=slider>` に落ち着かせようかと考えている。
+
+他にも、まだ UI の設計や付随するアノテーションも TODO があるため、継続して改善していきたい。
 
 
 ### Media Session API
