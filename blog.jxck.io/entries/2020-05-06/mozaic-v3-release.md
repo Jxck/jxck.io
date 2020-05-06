@@ -1,4 +1,4 @@
-# [mozaic.fm][podcast] mozaic.fm v3 リリースと Podcast の PWA 化
+# [mozaic.fm][podcast][pwa] mozaic.fm v3 リリースと Podcast の PWA 化
 
 
 ## Intro
@@ -40,6 +40,10 @@
   - SXG
 
 実施したモチベーションおよび、実施内容について記す。
+
+先に言っておくが、実装も仕様も全く安定してないものを、エミュレータだけでエスパー実装しているので、実機で動く保証もなく、しょっちゅう壊れる。
+
+サイトが壊れて聴けなかったらご愛用の Podcast アプリで聞いてほしい。
 
 
 ## Podcast over Web
