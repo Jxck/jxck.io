@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html amp lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href=https://blog.jxck.io/entries/2020-05-06/mozaic-v3-release.html>
+
+  <link rel=icon             type =image/svg+xml sizes=any href=https://jxck.io/assets/img/jxck.svg>
+  <link rel=icon             type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="mozaic.fm をリニューアルし v3 としてリリースした。今回の更新は以下のような変更/修正を実施している。- PWA 化  - before install prompt  - Background Fetch  - Periodic Background Sync...">
+  <meta name=keywords            content="mozaic.fm,podcast,pwa">
+  <meta name=theme-color         content=#000000>
+
+  <meta name=twitter:card        content=summary>
+  <meta name=twitter:site        content=@jxck_>
+  <meta name=twitter:url         content=https://blog.jxck.io/entries/2020-05-06/mozaic-v3-release.html>
+  <meta name=twitter:title       content="mozaic.fm v3 リリースと Podcast の PWA 化 | blog.jxck.io">
+  <meta name=twitter:description content="mozaic.fm をリニューアルし v3 としてリリースした。今回の更新は以下のような変更/修正を実施している。- PWA 化  - before install prompt  - Background Fetch  - Periodic Background Sync...">
+  <meta name=twitter:image       content=https://jxck.io/assets/img/jxck.png>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2020-05-06/mozaic-v3-release.html>
+  <meta property=og:title        content="mozaic.fm v3 リリースと Podcast の PWA 化 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="mozaic.fm をリニューアルし v3 としてリリースした。今回の更新は以下のような変更/修正を実施している。- PWA 化  - before install prompt  - Background Fetch  - Periodic Background Sync...">
+  <meta property=og:image        content=https://jxck.io/assets/img/jxck.png>
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "mozaic.fm v3 リリースと Podcast の PWA 化 | blog.jxck.io",
+    "image": [
+      "https://jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2020-05-06T08:00:00+08:00",
+    "dateModified": "2020-05-06T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.60x60.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": "mozaic.fm をリニューアルし v3 としてリリースした。今回の更新は以下のような変更/修正を実施している。- PWA 化  - before install prompt  - Background Fetch  - Periodic Background Sync..."
+  }
+  </script>
+
+  <title>mozaic.fm v3 リリースと Podcast の PWA 化 | blog.jxck.io</title>
+  <script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+  <script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+  <script async custom-element=amp-ad src=https://cdn.ampproject.org/v0/amp-ad-0.1.js></script>
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src=https://cdn.ampproject.org/v0.js></script>
+  <style amp-custom>
+    article section p {
+      margin-left: 0;
+    }
+
+    article table {
+      margin-left: 0;
+    }
+
+    article img {
+      margin: var(--grid) 0;
+      border: 1px solid #ccc;
+      box-sizing: content-box;
+      background-color: #fff;
+    }
+
+    article ul,
+    article ol,
+    article dl {
+      margin-left: var(--grid);
+      font-family: var(--mono-font);
+    }
+
+    article ul li ul,
+    article ol li ol {
+      margin: 0 0 0 calc(var(--grid)*2);
+      font-size: 1rem;
+    }
+
+    article ol li ol li,
+    article ul li ul li {
+      margin-bottom: 0;
+    }
+
+    article dl {
+      display: grid;
+      grid-template-columns: minmax(auto, max-content);
+      grid-column-gap: var(--grid);
+    }
+
+    article dl div {
+      display: contents;
+    }
+
+    article dl dt {
+      grid-column: 1 / 2;
+    }
+    article dl dd {
+      grid-column: 2 / 2;
+    }
+
+    article blockquote {
+      font-family: var(--mono-font);
+    }
+
+    article blockquote p {
+      margin: 0;
+    }
+
+    @supports (line-height-step: 1px) {
+      article {
+        --grid-rhythm: 1.5em;
+        line-height: 1.5;
+        line-height-step: var(--grid-rhythm);
+      }
+
+      article h1,
+      article h2,
+      article h3,
+      article h4,
+      article h5,
+      article h6 {
+        display: inline-block;
+        width: 100%;
+        line-height-step: 0;
+        line-height: 1.2;
+        margin-bottom: 0;
+      }
+
+      article section {
+        /* grid for debug */
+        /* background-size: 100% var(--grid-rhythm); */
+        /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
+      }
+
+      article p {
+        margin-top: var(--grid-rhythm);
+        margin-bottom: var(--grid-rhythm);
+      }
+
+      article pre,
+      article table {
+        line-height-step: 0;
+        line-height: normal;
+      }
+    }
+    /* normal regular */
+    @font-face {
+      font-family: "NotoSansCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src:
+        local("Noto Sans CJK JP Regular"),
+        url("/assets/font/NotoSansCJKjp-Regular-Jxck-20200407.woff2") format("woff2");
+    }
+    /* normal bold */
+    @font-face {
+      font-family: "NotoSansCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src:
+        local("Noto Sans CJK JP Bold"),
+        url("/assets/font/NotoSansCJKjp-Bold-Jxck-20200407.woff2") format("woff2");
+    }
+
+
+    /* mono regular */
+    @font-face {
+      font-family: "NotoSansMonoCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src:
+        local("Noto Sans Mono CJK JP Regular"),
+        url("/assets/font/NotoSansMonoCJKjp-Regular-Jxck-20200407.woff2") format("woff2");
+    }
+    /* mono bold */
+    @font-face {
+      font-family: "NotoSansMonoCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src:
+        local("Noto Sans Mono CJK JP Bold"),
+        url("/assets/font/NotoSansMonoCJKjp-Bold-Jxck-20200407.woff2") format("woff2");
+    }
+
+    /* Light Mode Theme */
+    :root {
+      --background-color: #fefefe;
+      --font-color: #222;
+      --header-color: #222;
+
+      --anchor-color: RoyalBlue;
+      --anchor-visited-color: Brown;
+
+      --code-block: #efefef;
+      --code-block-font: #222;
+
+      --block-quote: #ddd;
+      --table-border: #222;
+
+      --regular-font: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", "Hiragino Sans", 'ヒラギノ角ゴ Pro W3', 'メイリオ', sans-serif;
+      --mono-font: "NotoSansMonoCJKjp-Jxck";
+      --code-font: Menlo, Consolas, Liberation, Mono, Courier, "NotoSansMonoCJKjp-Jxck";
+
+      --icon-size: 30px;
+
+      --width: 80vw;
+      --grid: 1rem;
+
+      --radius: 4px;
+    }
+
+
+    /* Mobile Theme */
+    @media screen and (max-device-width: 800px) {
+      :root {
+        --width: 94vw;
+      }
+
+      audio {
+        width: 100%;
+      }
+    }
+
+    /* Dark Mode Theme */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background-color: #010101;
+        --font-color: #eee;
+
+        --anchor-color: CornflowerBlue;
+        --anchor-visited-color: RosyBrown;
+
+        --code-block: #efefef;
+
+        --table-border: #eee;
+      }
+
+      article img {
+        filter: grayscale(50%);
+      }
+      article img[src*=svg] {
+        filter: invert(100%) grayscale(50%);
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--regular-font);
+      background-color: var(--background-color);
+      color: var(--font-color);
+      font-feature-settings: "palt";
+      margin: 0;
+      padding: 0;
+    }
+
+    code {
+      font-family: var(--mono-font);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    hr {
+      margin: 0;
+      padding: 0;
+    }
+
+    iframe {
+      display: block;
+      max-width: 100%;
+      margin: var(--grid) 0;
+    }
+    dl.info {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info div {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+
+    dl.info dt::after {
+      content: ":";
+      margin-right: calc(var(--grid)/2);
+    }
+
+    dl.info dd {
+      margin: 0 var(--grid) 0 0;
+    }
+
+    dl.info dd i {
+      font-style: normal;
+      margin-right: calc(var(--grid)/3);
+    }
+    header {
+      z-index: 1;
+      position: sticky;
+      position: -webkit-sticky;
+      top: 0;
+      box-sizing: border-box;
+      margin: 0;
+      padding: calc(var(--grid)/2);
+      background-color: var(--header-color);
+    }
+
+    h2:target,
+    h3:target,
+    h4:target,
+    h5:target,
+    h6:target {
+      /* sticky header に合わせて link scroll をずらす */
+      margin-top:  calc((var(--icon-size) + var(--grid)) * -1);
+      padding-top: calc((var(--icon-size) + var(--grid)));
+    }
+
+    header ul {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      width: var(--width);
+      margin: 0 auto;
+    }
+
+    header ul li {
+      width:  var(--icon-size);
+      height: var(--icon-size);
+      padding: 0;
+      margin: 0 0 0 var(--grid);
+    }
+
+    header ul li a,
+    header ul li button {
+      display: block;
+      width: var(--icon-size);
+      height: var(--icon-size);
+      padding: 0;
+      margin: 0;
+      border: none;
+      background-color: black;
+    }
+
+    header ul li svg {
+      fill: var(--background-color);
+    }
+
+    header ul li::before {
+      content: none;
+    }
+
+    header ul li:first-child {
+      flex-grow: 1;
+      margin-left: 0;
+    }
+
+    header .logo {
+      border: 1px solid #fff;
+      box-sizing: border-box;
+    }
+    h1 > a,
+    h2 > a,
+    h3 > a,
+    h4 > a,
+    h5 > a,
+    h6 > a {
+      color: var(--font-color);
+    }
+
+    h1 > a:visited,
+    h2 > a:visited,
+    h3 > a:visited,
+    h4 > a:visited,
+    h5 > a:visited,
+    h6 > a:visited {
+      color: var(--font-color);
+    }
+
+    h1 > a::before {
+      content: "# ";
+    }
+
+    h2 > a::before {
+      content: "## ";
+    }
+
+    h3 > a::before {
+      content: "### ";
+    }
+
+    h4 > a::before {
+      content: "#### ";
+    }
+
+    h1 > a:hover::before,
+    h2 > a:hover::before,
+    h3 > a:hover::before,
+    h4 > a:hover::before,
+    h5 > a:hover::before,
+    h6 > a:hover::before {
+      color: var(--anchor-visited-color);
+    }
+
+    em {
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    em::before,
+    em::after {
+      content: "*";
+    }
+
+    strong {
+      color: red;
+    }
+
+    strong::before,
+    strong::after {
+      content: "**";
+    }
+
+    ul li::before {
+      content: "- ";
+    }
+
+    ol {
+      counter-reset: list;
+    }
+
+    ol li::before {
+      counter-increment: list;
+      content: counter(list) ". ";
+    }
+
+    dl dt::after {
+      content: ":";
+    }
+
+    blockquote {
+      display: block;
+      border: solid 1px var(--block-quote);
+      border-radius: var(--radius);
+      padding: 1rem;
+      margin: 0;
+    }
+
+    blockquote p::before {
+      content: "> ";
+    }
+
+    code {
+      background-color: var(--code-block);
+      color: var(--code-block-font);
+      border-radius: var(--radius);
+      padding: 0 4px;
+    }
+
+    code::before,
+    code::after {
+      content: "`";
+    }
+    main {
+      display: block;
+      width: var(--width);
+      margin: 1em auto;
+    }
+
+    a {
+      word-wrap: break-word;
+      text-decoration: none;
+      color: var(--anchor-color);
+    }
+
+    a:visited {
+      color: var(--anchor-visited-color);
+    }
+
+    ol,
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      word-break: break-all;
+      word-wrap: break-word;
+    }
+
+    dl dt {
+      font-weight: bold;
+      margin: 0;
+    }
+
+    dl dd {
+      margin: 0;
+    }
+    footer {
+      padding: var(--grid);
+    }
+
+    footer strong,
+    footer .copyright {
+      width: var(--width);
+      margin: 0 auto;
+      font-style: italic;
+    }
+
+    /* AdSense */
+    footer ins {
+      display: block;
+      width: var(--width);
+      margin: 0 auto;
+    }
+    pre {
+      margin: var(--grid) 0;
+      border-radius: var(--radius);
+    }
+
+    pre::before {
+      content: "```" attr(class) "\A";
+    }
+
+    pre::after {
+      z-index: -1;
+      position: relative;
+      top: -1em;
+      content: "\A```";
+    }
+
+    pre > code {
+      font-family: var(--code-font);
+      overflow: auto;
+      display: block;
+      padding: 0.5rem;
+      margin: 0;
+    }
+
+    pre > code::before,
+    pre > code::after {
+      content: none;
+    }
+
+    .hljs-keyword {
+      color: #a71d5d;
+    }
+
+    .hljs-title {
+      color: #795da3;
+    }
+
+    .hljs-string {
+      color: #183691;
+    }
+
+    .hljs-number {
+      color: #0086b3;
+    }
+
+    .hljs-built_in {
+      color: #0086b3;
+    }
+
+    .hljs-literal {
+      color: #0086b3;
+    }
+
+    .hljs-regexp {
+      color: #183691;
+    }
+
+    .hljs-comment {
+      color: #4f80e5;
+    }
+
+    .hljs-tag {
+      color: #a71d5d;
+    }
+
+    .hljs-name {
+      color: #222222;
+    }
+
+    .hljs-strong {
+      font-weight: bold;
+    }
+
+    .hljs-attribute {
+      font-weight: bold;
+    }
+
+    .hljs-meta {
+      color: #4f80e5;
+    }
+
+    .hljs-selector-id,
+    .hljs-selector-class,
+    .hljs-selector-pseudo {
+      color: #6f42c1;
+    }
+
+    .hljs-selector-tag {
+      color: #22863a;
+    }
+
+    .hljs-subst {
+      font-weight: bold;
+    }
+
+    .hljs-variable {
+      color: #a71d5d;
+    }
+
+    .hljs-symbol {
+      font-weight: bold;
+    }
+
+    .hljs-selector-attr {
+      color: #6f42c1;
+    }
+
+    .hljs-bullet {
+    }
+
+
+    @media (prefers-color-scheme: dark) {
+      .hljs-keyword {
+        color: #000;
+        font-weight: bold;
+        font-style: italic;
+      }
+
+      .hljs-number {
+        color: var(--code-block-font);
+      }
+
+      .hljs-built_in {
+        color: #000;
+        font-weight: bold;
+      }
+
+      .hljs-literal {
+        color: var(--code-block-font);
+        font-weight: bold;
+      }
+
+      .hljs-regexp {
+        color: var(--code-block-font);
+      }
+
+      .hljs-comment {
+        color: #888;
+      }
+
+      .hljs-tag {
+        color: var(--code-block-font);
+        font-weight: bold;
+      }
+
+      .hljs-strong {
+        font-weight: bold;
+      }
+
+      .hljs-attribute {
+      }
+
+      .hljs-attr {
+        color: var(--code-block-font);
+        font-weight: bold;
+      }
+
+      .hljs-selector-tag {
+        color: var(--code-block-font);
+      }
+
+      .hljs-subst {
+        font-weight: bold;
+      }
+      .hljs-symbol {
+        font-weight: bold;
+      }
+
+      .hljs-section {
+      }
+
+      .hljs-meta,
+      .hljs-selector-id,
+      .hljs-selector-class,
+      .hljs-selector-pseudo,
+      .hljs-variable,
+      .hljs-title,
+      .hljs-string,
+      .hljs-name,
+      .hljs-selector-attr {
+        color: var(--code-block-font);
+      }
+    }
+
+
+
+
+
+
+
+    /**.hljs,**/
+    .hljs-meta-keyword,
+    .hljs-doctag,
+    .hljs-code,
+    .hljs-addition,
+    .hljs-template-variable,
+    .hljs-link,
+    .hljs-type,
+    .hljs-quote,
+    .hljs-template-tag,
+    .hljs-deletion,
+    .hljs-meta-string,
+    .hljs-emphasis {
+      /** if you find element applyed this style, please tell me https://github.com/jxck/jxck.io/issues **/
+      font-size: 100em;
+    }
+    table {
+      font-family: var(--mono-font);
+      margin: var(--grid) 0;
+      border-spacing: 0 0.4rem;
+    }
+
+    th {
+      padding: 0 var(--grid) calc(var(--grid)/2) var(--grid);
+      border-left: 2px solid var(--table-border);
+      border-bottom: 2px dashed var(--table-border);
+    }
+
+    td {
+      padding: calc(var(--grid)/2) var(--grid);
+      border-left: 2px solid var(--table-border);
+    }
+
+    th:last-child,
+    td:last-child {
+      border-right: 2px solid var(--table-border);
+    }
+
+    .align-center {
+      text-align: center;
+    }
+
+    .align-left {
+      text-align: left;
+    }
+
+    .align-right {
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://blog.jxck.io      ><amp-img width=30 height=30 src=/assets/img/blog.svg   alt="blog logo" class=logo    ></a>
+      <li><a href=/searches                 ><amp-img width=30 height=30 src=/assets/img/search.svg alt=search                    ></a>
+      <li><a href=.                         ><amp-img width=30 height=30 src=/assets/img/up.svg     alt="move to parent directory"></a>
+      <li><a href=/feeds/atom.xml           ><amp-img width=30 height=30 src=/assets/img/rss.svg    alt="rss feed"                ></a>
+      <li><a href=https://jxck.io/humans.txt><amp-img width=30 height=30 src=/assets/img/humans.svg alt="huamns.txt"              ></a>
+      <li><a href=https://jxck.io           ><amp-img width=30 height=30 src=/assets/img/jxck.svg   alt="jxck logo" class=logo    ></a>
+    </ul>
+  </nav>
+</header>
+<main>
+  <dl class=info>
+    <dt>created_at</dt><dd><time class=created_at datetime=2020-05-06>2020-05-06</time></dd>
+    <dt>updated_at</dt><dd><time class=updated_at datetime=2020-05-06>2020-05-06</time></dd>
+    <dt class=tags>tags</dt><dd>[<a href="/tags/mozaic.fm.html">mozaic.fm</a><i>,</i><a href="/tags/podcast.html">podcast</a><i>,</i><a href="/tags/pwa.html">pwa</a>]</dd>
+  </dl>
+  <article>
+    <h1><a href=/entries/2020-05-06/mozaic-v3-release.html>mozaic.fm v3 リリースと Podcast の PWA 化</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p><a href="https://mozaic.fm">mozaic.fm</a> をリニューアルし v3 としてリリースした。
+      <p>今回の更新は以下のような変更/修正を実施している。
+      <ul>
+        <li>
+          PWA 化<ul>
+            <li>before install prompt
+            <li>Background Fetch
+            <li>Periodic Background Sync
+            <li>Content Index API
+            <li>Badging API
+          </ul>
+        </li>
+        <li>
+          Player UI の刷新<ul>
+            <li>Pure Webcomponents
+            <li>Media Session API
+            <li>WAI-ARIA
+            <li>Portal Preview
+            <li>Screen Wake Lock
+          </ul>
+        </li>
+        <li>
+          Security<ul>
+            <li>CSP v3 (not Report-Only)
+            <li>Cross Origin Resource Policy
+            <li>Cross Origin Opener Policy
+            <li>Cross Origin Embedder Policy
+            <li>Expect-CT
+            <li>NEL
+            <li>Referer Policy
+          </ul>
+        </li>
+        <li>
+          その他<ul>
+            <li>Transpile Less
+            <li>Scroll To Text Fragment Search
+            <li>Spotify
+          </ul>
+        </li>
+        <li>
+          WIP<ul>
+            <li>Template Instantiation
+            <li>HTML Modules
+            <li>Document Policy
+            <li>Silent Push
+            <li>WASM ID3
+            <li>SXG
+          </ul>
+        </li>
+      </ul>
+      <p>実施したモチベーションおよび、実施内容について記す。
+      <p>先に言っておくが、実装も仕様も全く安定してないものを、エミュレータだけでエスパー実装しているので、実機で動く保証もなく、しょっちゅう壊れる。
+      <p>サイトが壊れて聴けなかったらご愛用の Podcast アプリで聞いてほしい。
+    </section>
+    <section>
+      <h2 id="podcast-over-web"><a href="#podcast-over-web">Podcast over Web</a></h2>
+      <p>PWA が始まったときから Podcast を PWA でできないかと取り組んできた。
+      <p>しかし、足りてないパーツがあまりにも多く、実現できずにいた。
+      <p>そもそも Podcast とは、「自動で音声ファイルをダウンロードし、オフラインで再生できる RSS リーダー」とみなすことができる。
+      <p>そこには以下が必要不可欠となる。
+      <ul>
+        <li>RSS を自動で更新する
+        <li>大きめな音声ファイルを自動でダウンロードする
+        <li>オフラインで再生できる
+      </ul>
+      <p>これらが、最近特に Chrome チームから提案されている API 群によって徐々に実現しつつある。
+      <p>一方で、こうしたことを実現することは、従来の Web の前提とは違い、様々な懸念があり、議論が行われている。
+      <p>特に今後 Powerful Features は「Install した後の Web」という新たな世界観によって実現されていく可能性があるのだ。
+      <p>そこで、「Podcast を Installable Web で実現する」という一つのユースケースを実装することで、そうした議論の土台となる検証を行うことを目的として改良を行った。
+      <p>まだ Origin Trial な API も多いが、あえて新しい API をふんだんに盛り込んでいるのは、そうしたモチベーションがある。
+      <p>ついでに、これまで使っていなかった新たな機能をとにかく入れ込んでいる。
+      <p>次節以降、各変更の詳細を解説する。
+    </section>
+    <section>
+      <h2 id="pwa-化"><a href="#pwa-化">PWA 化</a></h2>
+      <p>従来の mozaic.fm にも Service Worker は入れていたが、 Install するところまでは想定した実装をしていなかった。
+      <p>今回は、 Install 可能にしつつ以下の API を入れることで、いわゆる Native Podcast App に挙動を近づけることを目指した。
+      <ul>
+        <li>Before Install Prompt
+        <li>Periodic Background Sync
+        <li>Background Fetch
+        <li>Badging API
+        <li>Content Indexing API
+      </ul>
+      <section>
+        <h3 id="periodic-background-syncpbs"><a href="#periodic-background-syncpbs">Periodic Background Sync(PBS)</a></h3>
+        <p>Podcast アプリの実態は、音声が再生できる RSS リーダーであり、定期的にフィードを取得し Podcast の更新を取得する。
+        <p>Service Worker は background sync が従来からあるが、これは「オフライン中に発生したリクエストを、オンライン復帰時に再送する」といったユースケースをカバーしている。
+        <p>サーバ側でフィードを更新したときに Push を送る方法もあるが、 Push は届くとは限らない上に、 Permission の問題もある。
+        <p>そこで、 Slient Push を待っていたのだが、先に Periodic Background Sync(PBS) が提案された。
+        <ul>
+          <li><a href="https://blog.jxck.io/entries/2020-04-23/periodic-background-sync.html">Periodic Background Sync 及び Web を Install するということ | blog.jxck.io</a>
+        </ul>
+        <p>PBS の発火タイミングで Feed を取得し、更新があればメディアをダウンロードしておくように実装した。
+      </section>
+      <section>
+        <h3 id="before-install-prompt"><a href="#before-install-prompt">before install prompt</a></h3>
+        <p>PBS のために、性能をフルに発揮するにはインストールが必要になった。
+        <p>これを、自動で出てくるインストールバナーにまかせては、ユーザに対して体験が良くない。
+        <p>そこで、内容を理解した上で Opt-In でインストールできるような UI を用意し、クリックすると Install Prompt が出るように実装した。
+      </section>
+      <section>
+        <h3 id="background-fetch"><a href="#background-fetch">Background Fetch</a></h3>
+        <p>Service Worker の Cache は Cache API で行うのが基本だ。
+        <p>しかし、 mozaic.fm の音声ファイルはサイズも大きいため、 Service Worker の Install 中に全て入れておくのは適切ではない。
+        <p>また、音声は Range リクエストであるため、再生中に裏でキャッシュするのも適さない。
+        <p>そこで提案されたのが Background Fetch であり、ユーザの操作とは非同期に裏でダウンロードが可能な API だ。
+        <p>ユーザが明示的に Download を指定し、アプリをバックグラウンドに回してもキャッシュに入るようにした。
+        <ul>
+          <li><a href="https://blog.jxck.io/entries/2020-01-24/background-fetch.html">Service Worker の Background Fetch によるメディアのキャッシュ | blog.jxck.io</a>
+        </ul>
+        <p>本当は Periodic Background Sync で Background Fetch を実行する方向で考えていたが、今の Android Chrome では、それをしてもタスクが登録されるだけでダウンロードが実行されない。
+        <p>ユーザが明示的にタスクを許可しないといけないため、ここは普通に Fetch して Cache に入れるようにした。
+        <p>PBS + Bgfetch が鉄板の組み合わせだと思っていたので、ここは意外だった。詳細は詰めきれていないが理由などをもう少し調査しておきたい。
+        <p>なお、 Bgfetch は cors が必要だが、 <code translate="no">&lt;aduio&gt;</code> のリクエストが no-cors なこと、そして SW を経由したときに Cross-Origin-Resource-Policy の設定を求められたあたりがハマった。
+      </section>
+      <section>
+        <h3 id="badging-api"><a href="#badging-api">Badging API</a></h3>
+        <p>バックグラウンドで更新されたなら、更新を知らせる UI が必要となり、アプリの場合はバッジが代表格だろう。
+        <p>これも Badging API として提案されているため、導入した。
+        <p>具体的には PBS で更新があったときだけ、無印のバッヂを表示し、 DOMContentLoaded でクリアしている。
+      </section>
+      <section>
+        <h3 id="content-indexing-api"><a href="#content-indexing-api">Content Indexing API</a></h3>
+        <p>Badge のみでなく、更新されたコンテンツの概要をユーザに伝える UI があることが望ましい。
+        <p>そこでコンテンツの概要を登録し、ユーザに更新を伝えるために提案されたのが Content Indexing API だ。
+        <p>現状 Android Chrome の実装では Download タブの中という、およそ誰も見なさそうな場所でしか表示されない。
+        <p>そして Install した PWA では、 Download タブは現状見れないため、あまり意味がない。
+        <p>しかし、これは標準化が進みユースケースが整理されれば、 UI が改善されより意味のある場所に表示されるだろう。
+        <p>先行して登録するようにしている。
+      </section>
+    </section>
+    <section>
+      <h2 id="player-ui-の刷新"><a href="#player-ui-の刷新">Player UI の刷新</a></h2>
+      <p>音声ファイルを再生する Player の UI も大幅に刷新した。変更は徐々に行っていたが、結果としては以下のようになっている。
+      <ul>
+        <li>Pure WebComponents
+        <li>WAI-ARIA
+        <li>Media Session API
+        <li>Screen Wake Lock
+        <li>WASM ID3
+        <li>Portal Preview
+      </ul>
+      <section>
+        <h3 id="pure-webcomponents"><a href="#pure-webcomponents">Pure WebComponents</a></h3>
+        <p>かつては生の <code translate="no">&lt;audio controls&gt;</code> を入れていたが、「早送り」「巻き戻し」「再生速度変更」など、自分が Podcast アプリに欲しいと思っていた UI が無いため独自実装した。
+        <p>実装自体は <code translate="no">&lt;mozaic-player&gt;</code> という Custom Elements で実装し、 template の内容を Shadow DOM に展開する完全に Pure な WebComponents にしている。
+        <p>Audio の API も生で操作し、フレームワークなどは一切利用してない。
+        <p>HTML Modules は実装されてないため、 fetch で代用しているが、 module は mjs を import している。
+        <p>Player ではないが、 Bgfetch を行うためのダウンロードアイコンも、アイコン自体に Download 機能をもたせた WebComponents にしている。
+        <p>これまでは Tempalte をレンダリングした静的ページだったが、今後もこのように UI に機能を統合した WebComponents 群の組み合わせによる実装に移行していきたい。
+      </section>
+      <section>
+        <h3 id="wai-aria"><a href="#wai-aria">WAI-ARIA</a></h3>
+        <p>Player のアプリとしての UI が、一般の HTML で実装されている部分については、不足するセマンティクスを WAI-ARIA で補っている。
+        <p>ARIA 以前に、そもそもの audio の seek bar の role が progressbar か slider かを一番悩んだ。
+        <p>progressbar は進捗を表すが、本来値は readonly で D&amp;D で seek できる UI に利用するのは妥当ではないように思う。
+        <p>slider としては <code translate="no">&lt;input type=range&gt;</code> があり、 D&amp;D やネイティブのショートカットなども使える、しかしリアルタイムに value の変わる input はどうなのだろうかという疑問も残る。
+        <p>他の実装を参考にすると、 <code translate="no">&lt;progress&gt;</code> を使っているところや、 <code translate="no">&lt;div role=slider&gt;</code> で行っている実装が見つかったが、多くは <code translate="no">&lt;div&gt;</code> で実装しているようだ。 <code translate="no">&lt;input&gt;</code> な実装はなかった。
+        <p>折衷案として <code translate="no">&lt;progress role=slider&gt;</code> という実装に落ち着けて実装し終えたが、後から <code translate="no">&lt;progress&gt;</code> の role は仕様上変えられないことに気づいたため修正が必要な状態だ。
+        <p>せっかくなので検証として <code translate="no">&lt;input type=range&gt;</code> で実装を試してみてから、だめなら最後は <code translate="no">&lt;div role=slider&gt;</code> に落ち着かせようかと考えている。
+        <p>他にも、まだ UI の設計や付随するアノテーションも TODO があるため、継続して改善していきたい。
+      </section>
+      <section>
+        <h3 id="media-session-api"><a href="#media-session-api">Media Session API</a></h3>
+        <p>音声の再生をバックグラウンドにした場合、ロック画面などから共通の UI で操作ができるだろう。
+        <p>Web の場合も、 Media Session API を利用すると、再生や早送り巻き戻しなどを OS の UI から操作できる。
+        <p>自前で実装した Player の API を繋ぎこみ OS からも操作できるようにしている。
+      </section>
+      <section>
+        <h3 id="wake-lock-api"><a href="#wake-lock-api">Wake Lock API</a></h3>
+        <p>Media Session とは逆に、ロックがかからないようにする API が Wake Lock API だ。
+        <p>動画があるわけではないため、ロックしたいモチベーションは音声にはあまりなさそうだが、一応再生時は Lock するようにした。
+        <p>とはいえ、ロックされても音声が止まるわけではなく、 Media Session でも操作できるため、あまりいらない気はしている。
+        <p>邪魔だったら消すつもりだ。
+      </section>
+      <section>
+        <h3 id="portal-preview"><a href="#portal-preview">Portal Preview</a></h3>
+        <p>エピソードごとに付与している Show Note には、 Podcast 内で言及した URL が多く載っている。
+        <p>あまりに多いため、マウスオーバーによる Preview を Portal により実装している。
+        <p>実は Portal が出てすぐに入れた機能で、完全に忘れていたが今回の修正でみつかったものだ。
+        <p>UI が、特にモバイル対応周りが詰めきれてないが、 Portal もまだまだ過渡期なので、そのうちまた修正する。
+        <p>機能としては別になくてもいいため、 Portal がデフォルトになってきたら、無効化する UI を入れるか、消す。
+      </section>
+    </section>
+    <section>
+      <h2 id="security"><a href="#security">Security</a></h2>
+      <p>blog.jxck.io の方に Analytics / Ad を入れたため、 3rd Party のコードが多く、 CSP の設定などもかなり複雑になった。
+      <p>代わりに、 mozaic.fm にはそうした 3rd Party のコードは一切なく、外部ライブラリなども一切使ってないため、ガチガチに固めることができる。
+      <p>そこで以下を見直した。
+      <ul>
+        <li>CSP v3 (not Report-Only)
+        <li>Cross Origin Resource Policy
+        <li>Cross Origin Opener Policy
+        <li>Cross Origin Embedder Policy
+        <li>Referer Policy
+        <li>Document Policy
+        <li>Trusted Types
+      </ul>
+      <section>
+        <h3 id="csp-v3"><a href="#csp-v3">CSP v3</a></h3>
+        <p>Origin ベースの CSP をやめ、 nonce と integrity ベースの CSP v3 に移行することにした。
+        <p>本来 nonce は毎回違う値が必要だが、これを実現するには静的な配信をやめてサーバ側で毎回生成する必要がある。
+        <p>しかし、アプリサーバをあまり持ちたくなかったため、 integrity ベースだけにしようと考えた。
+        <p>ところが、 integrity ベースだと CSP のレポート収集を検証する点であまりうれしくない。
+        <p>そこで、 CSPv3 のアンチパターンである固定 nonce でとりあえず導入することにした、値は integrity と同じである。
+        <p>このサイト自体が CSP で防御するほど機能がないため、特に問題はないが、もし本番環境で導入する際は、必ず nonce を毎回ランダムに生成するようにするべきだ。
+        <p>Report については、 User Script や拡張などもあるかもしれないが、 Report-Only もそろそろ飽きたので外すことにした。
+        <p>何かあれば実際にブロックするため、レポートもより慎重に見ていきたい。
+      </section>
+      <section>
+        <h3 id="trusted-types"><a href="#trusted-types">Trusted Types</a></h3>
+        <p>これも CSP の機能であり、特定の DOM API の操作を型によって保護する仕組みである。
+        <ul>
+          <li><a href="https://blog.jxck.io/entries/2019-01-27/trusted-types.html">安全な文字列であると型で検証する Trusted Types について | blog.jxck.io</a>
+        </ul>
+        <p>サイトの中では、保護に該当する DOM API を使ってないが、これを入れることで XSS による DOM の改変を防ぐことが可能になる。
+        <p>ヘッダから有効にしている。
+      </section>
+      <section>
+        <h3 id="cross-origin--policy"><a href="#cross-origin--policy">Cross Origin * Policy</a></h3>
+        <p>Site Isolation を固めることで、サイトをより強固に Origin に閉じるための提案が最近色々となされている。
+        <ul>
+          <li>Cross-Origin Resource Policy
+          <li>Cross-Origin Embedder Policy
+          <li>Cross-Origin Opener Policy
+        </ul>
+        <p>これら全てを有効にしている。
+        <p>加えて CSP/Trusted Types を有効にした環境を Securere Context と定義し、そこではさらに強力な機能を有効にできるのではないかという提案がなされている。
+        <ul>
+          <li><a href="https://github.com/mikewest/securer-contexts/blob/master/README.md">mikewest/securer-contexts</a>
+        </ul>
+        <p>全て行っておくことで、今後より高い権限が必要になる強力な機能が入っても、有効にしていける土台になるだろう。
+      </section>
+      <section>
+        <h3 id="referer-policy"><a href="#referer-policy">Referer Policy</a></h3>
+        <p>Referrer Policy は <code translate="no">no-referrer-when-downgrade</code> が default とされており、 Cross Origin でも URL 全体が送られる。
+        <p>本来 Show Note から参照している外部のページには、 Referer を送っても良いため、この値でも問題はない。
+        <p>しかし、認証を行いパーソナライズされたページなどでは、サイトの外に URL が漏れることを防ぐために、 <code translate="no">strict-origin-when-cross-origin</code> がより理想とされている。
+        <p>そこで、本サイトもパーソナライズは一切してないが、 <code translate="no">strict-origin-when-cross-origin</code> に変更してみることにした。
+        <ul>
+          <li><a href="https://blog.jxck.io/entries/2018-10-08/referrer-policy.html">Referrer-Policy によるリファラ制御 | blog.jxck.io</a>
+        </ul>
+      </section>
+    </section>
+    <section>
+      <h2 id="その他"><a href="#その他">その他</a></h2>
+      <section>
+        <h3 id="scroll-to-text-fragment-search"><a href="#scroll-to-text-fragment-search">Scroll To Text Fragment Search</a></h3>
+        <p>blog にも入れた機能だが、よりインタラクティブな Form で実装した。
+        <ul>
+          <li><a href="https://blog.jxck.io/entries/2020-03-27/scroll-to-search-result.html">Scroll to Text Fragment を用いたサイト内検索の実装 | blog.jxck.io</a>
+        </ul>
+      </section>
+      <section>
+        <h3 id="transpile-less"><a href="#transpile-less">transpile less</a></h3>
+        <p>近年の Web 開発につきものなコードのトランスパイルを一切行っていない。
+        <p>ビルドは gz/br の生成ので、 WebPack や Babal のような変換が無く SSR もない。
+        <p>型の整合性チェックはテストと位置づけているため、 TypeScript ではなく Pure JS だが、 JSDoc に型を書きテストで tsc を叩いてる。
+        <p>Dev Server も不要でリロードすれば反映され、 package.json, babelrc, webpack.config といったファイルのメンテという不毛なタスクが無いのは、開発体験が良い。
+      </section>
+      <section>
+        <h3 id="spotify"><a href="#spotify">Spotify</a></h3>
+        <p>Spotify も Podcast のサポートを始めたため、登録した。
+        <ul>
+          <li><a href="https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K">mozaic.fm | Spotify でポッドキャスト</a>
+        </ul>
+      </section>
+    </section>
+    <section>
+      <h2 id="wip"><a href="#wip">WIP</a></h2>
+      <p>入れたかったがまだ入れられなかったもの。
+      <p>全部入れられたら v4 をリリースするかもしれない。
+      <section>
+        <h3 id="template-instantiation"><a href="#template-instantiation">Template Instantiation</a></h3>
+        <p>もう少し作業が進むかと思ったが、ちょっと停滞気味なので様子見。
+      </section>
+      <section>
+        <h3 id="html-modules"><a href="#html-modules">HTML Modules</a></h3>
+        <p>話が進んだので入れられるかと思ったら、 Security Issue で止まってしまったのでペンディング。
+      </section>
+      <section>
+        <h3 id="document-policy"><a href="#document-policy">Document Policy</a></h3>
+        <p>入れたいものもあるが、実装がまだ無いっぽいのでペンディング。
+      </section>
+      <section>
+        <h3 id="silent-push"><a href="#silent-push">Silent Push</a></h3>
+        <p>ただし条件は厳しいが、 User Visible ではない Push が使える場面があるように思う。
+        <p>ブラウザ依存かつ、 Unstable と思われるため調査が面倒で実施しなかった。
+        <p>今後 Permission が Install に依存するようになると、ある程度現実味が出てきそうだ。
+        <p>Periodic Sync よりもリアルタイムな feed 更新に使えるかもしれないため、今後もう少し調査したい。
+      </section>
+      <section>
+        <h3 id="wasm-id3"><a href="#wasm-id3">WASM ID3</a></h3>
+        <p>mp3 には ID3 というメタデータを付与でき、その情報を WASM で取得し表示するようにしようと計画していた。
+        <p>Rust で ID3 のパース自体は目処がたっていたのだが、そもそも <code translate="no">&lt;audio&gt;</code> から生のバイナリを取得する方法が無いことに気づいた。
+        <p>もしそれをやりたければ、先に自分で fetch してそれを <code translate="no">&lt;audio&gt;</code> に食わせる必要がある。
+        <p>しかし、お作法として fetch 自体は <code translate="no">&lt;audio&gt;</code> に任せるべきだろうと考える。
+        <p>なのでこれを実現するためには、 <code translate="no">&lt;audio&gt;</code> が取得したバイナリを取得する API を標準化するとこからやないといけない。
+        <p>ところが、 <code translate="no">&lt;audio&gt;</code> は Range なので取得と定義すのも難しい <code translate="no">onmetadataloaded</code> でも良さそうだが、それだけでは済まない。
+        <p>ということで諦めた。
+      </section>
+      <section>
+        <h3 id="sxg"><a href="#sxg">SXG</a></h3>
+        <p>HTML + JS + MP3 で固めた WebPackaging をやろうと考えていたが、 SXG Extension に対応した証明書が一箇所しか提供して無く地味に高い。
+        <p>そのうち Let&rsquo;s Encrypt がていきょうしてくれることを期待して保留している。
+      </section>
+    </section>
+    <section>
+      <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
+      <p>ほとんどの機能が Android Chrome でしか動かないが、 Emulator で実装したので実機で動くかはわからない。
+      <p>そして、 PC 版 Chrome は実装がこなれてないのか、挙動が安定せずよく壊れる。
+      <p>とにかく、壊れることが多々あるが、もし音声が聴けないレベルで壊れていたら、 Podcast アプリで聞いてほしい。
+      <p>今後も、新しい機能の検証のために、手軽に実装を追加して試すための土台として使っていきたい。
+    </section>
+  </article>
+</main>
+<hr>
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small> See <small><a href=/policies/site.html>Site Policy</a> and <a href=/policies/privacy.html>Privacy Policy</a>.</small></p>
+  <amp-ad width=100vw height=320 type=adsense data-ad-client=ca-pub-2902784829138215 data-ad-slot=9735419796 data-auto-format=rspv data-full-width><div overflow></div></amp-ad>
+</footer>
+</body>
+</html>
+<amp-analytics type=googleanalytics id=analytics1>
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
