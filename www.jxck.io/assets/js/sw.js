@@ -7,9 +7,9 @@ EventTarget.prototype.off = EventTarget.prototype.removeEventListener
  * 同じ VERSION であれば、キャッシュにないものだけ追加する
  * VERSION を変えると、あたらしく作り追加する
  */
-const VERSION       = 'v0.6.7'
+const VERSION       = 'v0.7.0'
 const CACHE_GENERAL = `mozaic.${VERSION}`
-const CACHE_MP3     = `mozaic.mp3`
+const CACHE_MP3     = `mozaic.v2.mp3`
 log('sw.js')
 
 // Service Worker
@@ -120,16 +120,14 @@ async function worker() {
   })
 
   self.on('fetch', async (e) => {
-    const req = e.request
+    let req = e.request
     log(req)
 
-    // safari は fetch(req) が Range だと
-    // mp3 の duration が取れず Infinity になり壊れるので
-    // audio/video は今はキャッシュしてない
-    // if (['audio', 'video'].includes(req.destination)) {
-    //   log(`bypass ${req.destination}`)
-    //   return
-    // }
+    if (req.url.endsWith(".mp3")) {
+      // background fetch は cors でしか取れない
+      // audio の mp3 は no-cors なので cors に変える
+      req = new Request(req, {mode: 'cors'})
+    }
 
     // cache then fetch
     async function fetching(req) {
