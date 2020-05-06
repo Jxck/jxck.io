@@ -15,3 +15,10 @@ guest
 ## Theme
 
 第 66 回のテーマは mozaic.fm v3 リリースアナウンスです。
+
+
+## Show Note
+
+アップデートの詳細はブログに書いています。
+
+- [mozaic.fm v3 リリースと Podcast の PWA 化 \| blog.jxck.io](https://blog.jxck.io/entries/2020-05-06/mozaic-v3-release.html)
