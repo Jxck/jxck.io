@@ -148,14 +148,17 @@
     <time id=current datetime=00:00:00>00:00:00</time>
     <!--
       seek bar は進捗を表すと同時に draggable に再生地点を変更できる
-
-      role で考えると、 progressbar か slider が適切そう。
+      role で考えると、 progressbar か slider だがどちらが良いか。
 
       <progress> は role=progressbar であり、変更できない。
       progressbar は完了に向けた進捗を表し、readonly であるためユーザは変更できない。
-      したがって draggable で変更できる seekbar に使うものではない。
+      したがって draggable で変更できる seekbar に使うのは適切ではないかもしれない。
 
       <input type=range> は role=slider であり、値は変更可能。矢印キーの補助なども得られる。
+      しかし、 input value がリアルタイムに変わるというのは、想定された挙動かは怪しい。
+
+      リアルワールドの実装を見ると、 progress を使ってるところもあるが、 div でやっているところも多い。
+      とりあえず progress で実装してみるが、そのうち input type=range に置き換えてみようと思っている。
     -->
     <progress id=slider tabindex=0 value=0 role=slider aria-label=seekbar aria-valuemin=0 draggable></progress>
     <time id=duration datetime=00:00:00>00:00:00</time>
