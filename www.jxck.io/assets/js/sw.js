@@ -1,5 +1,5 @@
 'use strict'
-const DEBUG = false
+const DEBUG = true
 const log = DEBUG ? console.debug.bind(console) : () => {}
 EventTarget.prototype.on  = EventTarget.prototype.addEventListener
 EventTarget.prototype.off = EventTarget.prototype.removeEventListener
@@ -7,9 +7,9 @@ EventTarget.prototype.off = EventTarget.prototype.removeEventListener
  * 同じ VERSION であれば、キャッシュにないものだけ追加する
  * VERSION を変えると、あたらしく作り追加する
  */
-const VERSION       = 'v0.7.0'
+const VERSION       = 'v0.7.2'
 const CACHE_GENERAL = `mozaic.${VERSION}`
-const CACHE_MP3     = `mozaic.v2.mp3`
+const CACHE_MP3     = `mozaic.v2.2.mp3`
 log('sw.js')
 
 // Service Worker
@@ -120,18 +120,15 @@ async function worker() {
   })
 
   self.on('fetch', async (e) => {
-    let req = e.request
-
-    if (req.url.endsWith(".mp3")) {
-      console.log(req)
-      // background fetch は cors でしか取れない
-      // audio の mp3 は no-cors なので cors に変える
-      // req = req.url //new Request(req, {mode: 'cors'})
-    }
+    const req = e.request
+    log('fetch', req)
 
     // cache then fetch
     async function fetching(req) {
-      const res = await caches.match(req)
+      // bgfetch は cors が必要だが <audio> は no-cors で投げる
+      // cors/no-cors のリクエストがお互いにマッチするように
+      // Request ではなく URL 単位でキャッシュを探す
+      const res = await caches.match(req.url)
       log('cache match', res)
       return res || fetch(req)
     }
