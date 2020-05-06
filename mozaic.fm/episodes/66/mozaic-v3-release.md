@@ -1,4 +1,4 @@
-# [monthly-web][mozaic.fm] ep66 mozaic.fm v3
+# [monthly-web][mozaic.fm] ep66 mozaic.fm v3 release note
 
 
 ## Info
