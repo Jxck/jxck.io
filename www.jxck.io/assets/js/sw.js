@@ -121,12 +121,12 @@ async function worker() {
 
   self.on('fetch', async (e) => {
     let req = e.request
-    log(req)
 
     if (req.url.endsWith(".mp3")) {
+      console.log(req)
       // background fetch は cors でしか取れない
       // audio の mp3 は no-cors なので cors に変える
-      req = new Request(req, {mode: 'cors'})
+      // req = req.url //new Request(req, {mode: 'cors'})
     }
 
     // cache then fetch
