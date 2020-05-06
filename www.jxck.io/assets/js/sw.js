@@ -7,9 +7,9 @@ EventTarget.prototype.off = EventTarget.prototype.removeEventListener
  * 同じ VERSION であれば、キャッシュにないものだけ追加する
  * VERSION を変えると、あたらしく作り追加する
  */
-const VERSION       = 'v0.7.2'
+const VERSION       = 'v3.0.0'
 const CACHE_GENERAL = `mozaic.${VERSION}`
-const CACHE_MP3     = `mozaic.v2.2.mp3`
+const CACHE_MP3     = `mozaic.v3.mp3`
 log('sw.js')
 
 // Service Worker
