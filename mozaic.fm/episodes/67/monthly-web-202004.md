@@ -6,7 +6,7 @@
 audio: https://files.mozaic.fm/mozaic-ep67.mp3
 
 published_at
-: 2020-05-06
+: 2020-05-07
 
 guest
 : [@myakura](https://twitter.com/myakura)
