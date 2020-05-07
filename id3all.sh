@@ -952,7 +952,7 @@ eyeD3 --title "ep65 Monthly Web 202003" \
 
 eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep66.mp3
 
-eyeD3 --title "ep66 mozaic.fm v3" \
+eyeD3 --title "ep66 mozaic.fm v3 release note" \
       --track 74 \
       --artist 'Jxck' \
       --album 'mozaic.fm' \
@@ -960,6 +960,19 @@ eyeD3 --title "ep66 mozaic.fm v3" \
       --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
       --to-v2.3 \
       ../files.mozaic.fm/mozaic-ep66.mp3
+
+
+
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep67.mp3
+
+eyeD3 --title "ep67 Monthly Web 202004" \
+      --track 75 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep67.mp3
 
 
 
