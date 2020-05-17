@@ -41,23 +41,24 @@ module Document
     end
 
     def article
-      background_fetch = <<~"EOS"
+      background_fetch = <<-"EOS"
 </a>
-<background-fetch
-  class=disabled
-  data-value=0
-  data-size=#{size}
-  data-mtime=#{mtime}
-  data-url=#{audio}
-  data-page=#{url}
-  data-title="#{title}"
-></background-fetch>
-</h1>
+        <background-fetch
+          class=disabled
+          data-value=0
+          data-size=#{size}
+          data-mtime=#{mtime}
+          data-url=#{audio}
+          data-page=#{url}
+          data-title="#{title}"
+        ></background-fetch>
+      </h1>
       EOS
       super
         .sub(/audio: (.*)/, "")
         .sub(/<dl>(.*?)<dt>published_at/m, '<dl class=info>\1<dt>published_at')
         .sub(/published_at: (.*)/, "published_at: <time datetime=#{datetime}>#{datetime}</time>")
+        .sub(/<h1><a/, "<h1>\n        <a")
         .sub(/<\/a><\/h1>/, background_fetch)
     end
 
