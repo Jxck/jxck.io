@@ -216,7 +216,7 @@ document.on('DOMContentLoaded', async (e) => {
 
   /** @type {TrustedTypePolicy} */
   const scriptPolicy = trustedTypes.createPolicy('script-policy', {
-    createScriptURL: (url) => url
+    createScriptURL: (url) => '/assets/js/sw.js'
   })
   /** @type {TrustedScriptURL} */
   const script = scriptPolicy.createScriptURL('/assets/js/sw.js')
