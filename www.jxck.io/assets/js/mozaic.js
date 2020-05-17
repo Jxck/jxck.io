@@ -191,8 +191,37 @@ document.on('DOMContentLoaded', async (e) => {
     await enablePortal()
   }
 
+  if (window.trustedTypes === undefined) {
+    class TrustedTypePolicy {
+      createHTML(arg) {
+        // log(arg)
+        return arg
+      }
+      createScript(arg) {
+        // log(arg)
+        return arg
+      }
+      createScriptURL(arg) {
+        // log(arg)
+        return arg
+      }
+    }
+    class TrustedTypes {
+      createPolicy(name, opt) {
+        return new TrustedTypePolicy()
+      }
+    }
+    window.trustedTypes = new TrustedTypes()
+  }
+
+  /** @type {TrustedTypePolicy} */
+  const scriptPolicy = trustedTypes.createPolicy('script-policy', {
+    createScriptURL: (url) => url
+  })
+  /** @type {TrustedScriptURL} */
+  const script = scriptPolicy.createScriptURL('/assets/js/sw.js')
   /**@type{ServiceWorkerRegistration}*/
-  const registration = await navigator.serviceWorker.register('/assets/js/sw.js', { scope: '/' })
+  const registration = await navigator.serviceWorker.register(script, { scope: '/' })
   await navigator.serviceWorker.ready
 
   if (registration.backgroundFetch) {

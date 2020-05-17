@@ -23,7 +23,11 @@ export default class BackgroundFetch extends HTMLElement {
   get template() {
     /** @type {HTMLTemplateElement} */
     const template = document.createElement('template')
-    template.innerHTML = `
+    /** @type {TrustedTypePolicy} */
+    const templatePolicy = trustedTypes.createPolicy('template-policy', {
+      createHTML: (unsafeValue) => unsafeValue
+    })
+    template.innerHTML = templatePolicy.createHTML(`
       <style>
       #progress {
         --ratio: 0;
@@ -57,7 +61,7 @@ export default class BackgroundFetch extends HTMLElement {
           "/>
         </svg>
       </button>
-    `
+    `)
     return template.content.cloneNode(true)
   }
 

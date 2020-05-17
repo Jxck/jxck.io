@@ -21,7 +21,11 @@ export default class MozaicPlayer extends HTMLElement {
     const text     = await res.text()
     /** @type{HTMLTemplateElement} */
     const template = document.createElement("template")
-    template.innerHTML = text
+    /** @type {TrustedTypePolicy} */
+    const htmlPolicy = trustedTypes.createPolicy('html-policy', {
+      createHTML: (unsafeValue) => unsafeValue
+    })
+    template.innerHTML = htmlPolicy.createHTML(text)
     return template.content.cloneNode(true)
   }
 

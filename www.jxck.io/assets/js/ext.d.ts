@@ -315,3 +315,31 @@ interface window {
   beforeinstallprompt: ((this: Window, ev: BeforeInstallPromptEvent) => any) | null;
 }
 declare var beforeinstallprompt: ((this: Window, ev: BeforeInstallPromptEvent) => any) | null;
+
+
+// trusted types
+// https://w3c.github.io/webappsec-trusted-types/dist/spec/#trustedtypepolicy
+type TrustedHTML      = string;
+type TrustedScript    = string;
+type TrustedScriptURL = string;
+
+interface TrustedTypePolicyOptions {
+  createHTML?     (input: DOMString): TrustedHTML;
+  createScript?   (input: DOMString): TrustedScript;
+  createScriptURL?(input: DOMString): TrustedScriptURL;
+}
+
+interface TrustedTypePolicy {
+  createHTML     (input: DOMString): TrustedHTML;
+  createScript   (input: DOMString): TrustedScript;
+  createScriptURL(input: DOMString): TrustedScriptURL;
+}
+
+interface TrustedTypePolicyFactory {
+  createPolicy(policyName: DOMString, policyOptions?: TrustedTypePolicyOptions): TrustedTypePolicy;
+}
+
+interface Window {
+  trustedTypes: TrustedTypePolicyFactory;
+}
+declare var trustedTypes: TrustedTypePolicyFactory;
