@@ -208,8 +208,7 @@ export default class MozaicPlayer extends HTMLElement {
     let clientX = 0;
     if (e instanceof MouseEvent) {
       clientX = e.clientX
-    }
-    if (e instanceof TouchEvent) {
+    } else if (e instanceof TouchEvent) {
       clientX = e.touches[0].clientX
     }
     /**@type{{offsetLeft: number, clientWidth: number}}*/
