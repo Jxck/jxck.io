@@ -118,13 +118,15 @@
         <p>本記事の大半は 1 年以上前に書いたものだが、そのころは仕様も実装もまだまだ落ち着きが無かった。
         <ul>
           <li>
-            仕様<ul>
+            仕様
+            <ul>
               <li>report-uri から report-to への移行期
               <li>JFV の採用への不安
             </ul>
           </li>
           <li>
-            実装<ul>
+            実装
+            <ul>
               <li>ディレクティブの実装がバラバラ
               <li>ReportingObserver では取れるが default group に自動では飛ばない(未実装)
               <li>ReportingObserver で取った report が JSON Serialize できない(バグ)
@@ -234,7 +236,8 @@ observer.observe();</code></pre>
             <li>include_subdomains(optional): サブドメインまで伝搬させる。
             <li>max_age(required): グループの有効期間。 0 にするとブラウザからグループが消える。
             <li>
-              endpoints(required): エンドポイントの配列<ul>
+              endpoints(required): エンドポイントの配列
+              <ul>
                 <li>url(required): エンドポイントの URL
                 <li>priority(optional): 数値が小さいほうが優先され、落ちていた場合は次点にフェイルオーバーする
                 <li>weight(optional): 重みに応じて負荷分散をする
@@ -469,20 +472,23 @@ observer.observe();</code></pre>
           <h3 id="まとめ"><a href="#まとめ">まとめ</a></h3>
           <ul>
             <li>
-              Report を収集することでブラウザ上で起こっていることが細かくわかる<ul>
+              Report を収集することでブラウザ上で起こっていることが細かくわかる
+              <ul>
                 <li>サービスの改善に役立てることもできる
                 <li>今後 Report に対応するものは増えていくだろう
               </ul>
             </li>
             <li>
-              まずは収集基盤の整備<ul>
+              まずは収集基盤の整備
+              <ul>
                 <li>JSON を POST で受けるだけなので作るのは難しくない
                 <li>CORS の場合は Preflight 対応を入れる
                 <li>収集よりも解析が重要
               </ul>
             </li>
             <li>
-              仕様面<ul>
+              仕様面
+              <ul>
                 <li>まだまだ安定とは言えない
                 <li>機能ごとに指定の仕方が違うなど面倒な部分も多い
                 <li>今後整備されていくため、それを待つのも手
@@ -490,14 +496,16 @@ observer.observe();</code></pre>
               </ul>
             </li>
             <li>
-              実装面<ul>
+              実装面
+              <ul>
                 <li>あいかわらず Chrome が手動
                 <li>JS だけ/ヘッダだけ、など機能ごとの対応もまばら
                 <li>シリアライズできないバグが 1 年放置されるくらいのプライオリティ感
               </ul>
             </li>
             <li>
-              エコシステム<ul>
+              エコシステム
+              <ul>
                 <li>モニタリングサービス系がそろそろ Reporting のサポートを始めてほしい
                 <li>機械学習方向からの解析方法が普及してほしい
               </ul>

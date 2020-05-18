@@ -120,25 +120,29 @@
         <p>そのため、本サイトでは以下のように、別に必要はない機能やサービスをあえて導入している。
         <ul>
           <li>
-            AMP<ul>
+            AMP
+            <ul>
               <li>AMP より Origin の方が速く、 SEO は特に気にしてないので本来は必要無い
               <li>AMP 自体の評価のために対応している
             </ul>
           </li>
           <li>
-            Google Analytics<ul>
+            Google Analytics
+            <ul>
               <li>Access Log や Reporting も手元にあるため、ダッシュボードを見ることはほぼない
               <li>多くのサイトに ga.js が入っているため入れている
             </ul>
           </li>
           <li>
-            Web Font<ul>
+            Web Font
+            <ul>
               <li>タイポグラフィにこだわりがあるわけではなく、フォントはユーザが決めれば良いと考えている
               <li>日本語フォントなど入れなければ早いに決まってるので、あえて鉄下駄として入れている
             </ul>
           </li>
           <li>
-            Youtube<ul>
+            Youtube
+            <ul>
               <li>
                 手元に動画ファイルがあるので <code translate="no">&lt;video&gt;</code> で貼れば良い
               </li>
@@ -148,7 +152,8 @@
             </ul>
           </li>
           <li>
-            human.txt, ads.txt, security.txt<ul>
+            human.txt, ads.txt, security.txt
+            <ul>
               <li>だれが見ることもないと思うが入れている
             </ul>
           </li>
@@ -156,19 +161,22 @@
         <p>こうした、特に必要もないがよく使われている技術やサービスを入れておくことは、例えば以下のような指標を測定する際に、多くの発見がある。
         <ul>
           <li>
-            Performance<ul>
+            Performance
+            <ul>
               <li>日本語 WebFont の影響や、サブセッティングの効果
               <li>AMP が速いとは限らないこと
             </ul>
           </li>
           <li>
-            CSP<ul>
+            CSP
+            <ul>
               <li>特に Analytics や AMP で発生するエラー
               <li>human.txt や ads.txt が CSP に違反するケース
             </ul>
           </li>
           <li>
-            Feature Policy<ul>
+            Feature Policy
+            <ul>
               <li>Youtube iframe で発生するエラー
             </ul>
           </li>
@@ -180,24 +188,28 @@
         <p>広告を設置してない状態では、広告があることによって起こると予想される様々な事象を見落としてる可能性が考えられるだろう。
         <ul>
           <li>
-            3rd Party Cookie がブロックされたとき、広告収益には具体的にどの程度の影響があるのか<ul>
+            3rd Party Cookie がブロックされたとき、広告収益には具体的にどの程度の影響があるのか
+            <ul>
               <li>これを正確に比較して知るためには、本来 ITP よりも前に本サイトに広告があれば理想だったが、それは遅いのでしょうがない
             </ul>
           </li>
           <li>
-            ブラウザに 3rd Party Cookie に対する制限が実装された時、広告のあるサイトでは実際どういう挙動を引き起こすのか<ul>
+            ブラウザに 3rd Party Cookie に対する制限が実装された時、広告のあるサイトでは実際どういう挙動を引き起こすのか
+            <ul>
               <li>特に Reporting API に Intervention Report が送られてくるのかどうか
               <li>CSP や Feature Policy に 3rd Party Cookie などに関する directive が増えるのかどうか
             </ul>
           </li>
           <li>
-            広告ベンダがそうした制限に対する対策を講じるとしたら、それはどういう形で配信者に提供されるのか<ul>
+            広告ベンダがそうした制限に対する対策を講じるとしたら、それはどういう形で配信者に提供されるのか
+            <ul>
               <li>アナウンスには、どういう説明が送られてくるのか
               <li>Privacy Sandbox などはどういう API として提供されるのか
             </ul>
           </li>
           <li>
-            その他<ul>
+            その他
+            <ul>
               <li>広告があることによって起こる未知の事象
             </ul>
           </li>

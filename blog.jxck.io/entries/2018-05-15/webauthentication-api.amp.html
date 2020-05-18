@@ -927,7 +927,8 @@ const {attestationObject, clientDataJSON} = response</code></pre>
           <ul>
             <li>rpidHash (32byte)
             <li>
-              flags    (1byte)<ul>
+              flags    (1byte)
+              <ul>
                 <li>UserPresent
                 <li>Reserved
                 <li>UserVerified
@@ -1006,7 +1007,8 @@ const {attestationObject, clientDataJSON} = response</code></pre>
           <li>サーバが送った情報を元に
           <li>FIDO-U2F でユーザの操作を伴い鍵ペアを正しく生成し
           <li>
-            その公開鍵が改ざんされずに送られてきた<ul>
+            その公開鍵が改ざんされずに送られてきた
+            <ul>
               <li>challenge が送ったものと同じ
               <li>origin が正しい
               <li>clientDataHash と attestation に対する authenticator の署名を確認する
@@ -1070,7 +1072,8 @@ const { type, authenticatorData, signature, userHandle, clientDataJSON } // type
         <ul>
           <li>rpidHash (32byte)
           <li>
-            flags    (1byte)<ul>
+            flags    (1byte)
+            <ul>
               <li>UserPresent
               <li>Reserved
               <li>UserVerified

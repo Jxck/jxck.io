@@ -843,9 +843,11 @@
         <p>例えば WebSocket/MSE/WebRTC を例に、それぞれをゲームを作るという視点から見てみる。
         <ul>
           <li>
-            WebSocket<ul>
+            WebSocket
+            <ul>
               <li>
-                Pros<ul>
+                Pros
+                <ul>
                   <li>Client-Server 型
                   <li>バイナリも送れる
                   <li>シンプルな API
@@ -853,7 +855,8 @@
                 </ul>
               </li>
               <li>
-                Cons<ul>
+                Cons
+                <ul>
                   <li>TCP で Head-of-Line-Blocking(HoLB) がある
                   <li>UDP を選べない
                   <li>API が古い
@@ -862,14 +865,17 @@
             </ul>
           </li>
           <li>
-            MSE<ul>
+            MSE
+            <ul>
               <li>
-                Pros<ul>
+                Pros
+                <ul>
                   <li>HTTP で LiveStreaming する方法がやっと標準化された(HLS/DASH)
                 </ul>
               </li>
               <li>
-                Cons<ul>
+                Cons
+                <ul>
                   <li>それに特化していて他には使いにくい
                   <li>制御できる箇所が少ない
                 </ul>
@@ -877,16 +883,19 @@
             </ul>
           </li>
           <li>
-            WebRTC<ul>
+            WebRTC
+            <ul>
               <li>
-                Pros<ul>
+                Pros
+                <ul>
                   <li>UDP でかつ DTLS によりセキュア
                   <li>P2P を考慮した Hole Punch などの対応
                   <li>DataChannel で任意のデータも送れる
                 </ul>
               </li>
               <li>
-                Cons<ul>
+                Cons
+                <ul>
                   <li>Client-Server で使いにくい
                   <li>事前処理(セレモニー/ダンス)が長い
                   <li>前提としているユースケースと外れると複雑なだけで使いにくい
@@ -895,15 +904,18 @@
             </ul>
           </li>
           <li>
-            UDP Socket API<ul>
+            UDP Socket API
+            <ul>
               <li>
-                Pros<ul>
+                Pros
+                <ul>
                   <li>生 UDP が送れる
                   <li>CORS などは考慮されている
                 </ul>
               </li>
               <li>
-                Cons<ul>
+                Cons
+                <ul>
                   <li>暗号化が仕様に含まれていない
                   <li>輻輳制御も含まれていない
                   <li>まだ標準化途中でどうなるかも怪しい
@@ -915,7 +927,8 @@
         <p>要するに本当に欲しいのはこういう通信手段だ
         <ul>
           <li>
-            Architecture<ul>
+            Architecture
+            <ul>
               <li>Client-Server でデプロイ
               <li>UDP + Binary
               <li>Low Latency 輻輳制御
@@ -925,13 +938,15 @@
             </ul>
           </li>
           <li>
-            Security<ul>
+            Security
+            <ul>
               <li>暗号化必須
               <li>CORS などにも配慮
             </ul>
           </li>
           <li>
-            API<ul>
+            API
+            <ul>
               <li>WebSocket 並みに簡単な API
               <li>かつモダンな API
               <li>Back Pressure も対応
@@ -949,19 +964,23 @@
         <p>そこで、ドラフトとして WebTransport のベースとなる仕様に加え、その over QUIC と over HTTP3 の 2 つが提案されている。
         <ul>
           <li>
-            Protocol<ul>
+            Protocol
+            <ul>
               <li>
-                The WebTransport Protocol Framework<ul>
+                The WebTransport Protocol Framework
+                <ul>
                   <li><a href="https://tools.ietf.org/html/draft-vvv-webtransport-overview-00">https://tools.ietf.org/html/draft-vvv-webtransport-overview-00</a>
                 </ul>
               </li>
               <li>
-                WebTransport over HTTP/3<ul>
+                WebTransport over HTTP/3
+                <ul>
                   <li><a href="https://tools.ietf.org/html/draft-vvv-webtransport-http3-00">https://tools.ietf.org/html/draft-vvv-webtransport-http3-00</a>
                 </ul>
               </li>
               <li>
-                WebTransport over QUIC<ul>
+                WebTransport over QUIC
+                <ul>
                   <li><a href="https://tools.ietf.org/html/draft-vvv-webtransport-quic-00">https://tools.ietf.org/html/draft-vvv-webtransport-quic-00</a>
                 </ul>
               </li>
@@ -1034,7 +1053,8 @@
         <p>最近 WebTransport の横で WebSocketStream という WebSocket の API 改善作業が始まった。
         <ul>
           <li>
-            Intent to Implement: WebSocketStream<ul>
+            Intent to Implement: WebSocketStream
+            <ul>
               <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X7rWpAkMCyg/j6K7mEEwAgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X7rWpAkMCyg/j6K7mEEwAgAJ</a>
               <li><a href="https://github.com/ricea/websocketstream-explainer/blob/master/README.md">https://github.com/ricea/websocketstream-explainer/blob/master/README.md</a>
             </ul>
@@ -1055,7 +1075,8 @@
         <p>しかし、それらをコントロールできる API は、ある程度ユースケースに紐づいており、自由度が必ずしも高くはない。
         <ul>
           <li>
-            HTMLMediaElement<ul>
+            HTMLMediaElement
+            <ul>
               <li>
                 <code translate="no">&lt;video&gt;</code>, <code translate="no">&lt;audio&gt;</code> による再生
               </li>
@@ -1064,7 +1085,8 @@
             </ul>
           </li>
           <li>
-            MediaStream API<ul>
+            MediaStream API
+            <ul>
               <li>
                 <code translate="no">getUserMedia()</code>, <code translate="no">getDisplayMedia()</code> etc
               </li>
@@ -1072,19 +1094,22 @@
             </ul>
           </li>
           <li>
-            WebAudio<ul>
+            WebAudio
+            <ul>
               <li>decodeAudioData etc
             </ul>
           </li>
           <li>
-            WebRTC<ul>
+            WebRTC
+            <ul>
               <li>vp8/9, h.264/265, opus など対応は多い
               <li>あくまで通信(RTP)に特化している
               <li>それ以外の用途に柔軟性がない
             </ul>
           </li>
           <li>
-            MSE<ul>
+            MSE
+            <ul>
               <li>映像/音声のストリーミング配信に特化している
               <li>それ以外の用途に柔軟性がない
             </ul>
@@ -1220,70 +1245,85 @@ videoElem.srcObject = mediaStream;</code></pre>
         <h3 id="webtransport-1"><a href="#webtransport-1">WebTransport</a></h3>
         <ul>
           <li>
-            Protocol<ul>
+            Protocol
+            <ul>
               <li>
-                The WebTransport Protocol Framework<ul>
+                The WebTransport Protocol Framework
+                <ul>
                   <li><a href="https://tools.ietf.org/html/draft-vvv-webtransport-overview-00">https://tools.ietf.org/html/draft-vvv-webtransport-overview-00</a>
                 </ul>
               </li>
               <li>
-                WebTransport over HTTP/3<ul>
+                WebTransport over HTTP/3
+                <ul>
                   <li><a href="https://tools.ietf.org/html/draft-vvv-webtransport-http3-00">https://tools.ietf.org/html/draft-vvv-webtransport-http3-00</a>
                 </ul>
               </li>
               <li>
-                WebTransport over QUIC<ul>
+                WebTransport over QUIC
+                <ul>
                   <li><a href="https://tools.ietf.org/html/draft-vvv-webtransport-quic-00">https://tools.ietf.org/html/draft-vvv-webtransport-quic-00</a>
                 </ul>
               </li>
             </ul>
           </li>
           <li>
-            API<ul>
+            API
+            <ul>
               <li>
-                WebTransport<ul>
+                WebTransport
+                <ul>
                   <li><a href="https://wicg.github.io/web-transport/">https://wicg.github.io/web-transport/</a>
                 </ul>
               </li>
             </ul>
           </li>
           <li>
-            WICG<ul>
+            WICG
+            <ul>
               <li>
-                Thread<ul>
+                Thread
+                <ul>
                   <li><a href="https://discourse.wicg.io/t/webtransport-proposal/3508">https://discourse.wicg.io/t/webtransport-proposal/3508</a>
                 </ul>
               </li>
               <li>
-                Repo<ul>
+                Repo
+                <ul>
                   <li><a href="https://github.com/WICG/web-transport">https://github.com/WICG/web-transport</a>
                 </ul>
               </li>
               <li>
-                Explainer<ul>
+                Explainer
+                <ul>
                   <li><a href="https://github.com/wicg/web-transport/blob/master/explainer.md">https://github.com/wicg/web-transport/blob/master/explainer.md</a>
                 </ul>
               </li>
             </ul>
           </li>
           <li>
-            Meeting Material<ul>
+            Meeting Material
+            <ul>
               <li>
-                QUIC Interim<ul>
+                QUIC Interim
+                <ul>
                   <li><a href="https://github.com/quicwg/wg-materials/blob/master/interim-19-05/webtransport-20190522.pdf">https://github.com/quicwg/wg-materials/blob/master/interim-19-05/webtransport-20190522.pdf</a>
                 </ul>
               </li>
               <li>
-                IETF 105<ul>
+                IETF 105
+                <ul>
                   <li><a href="https://datatracker.ietf.org/meeting/105/materials/slides-105-dispatch-webtransport-00">https://datatracker.ietf.org/meeting/105/materials/slides-105-dispatch-webtransport-00</a>
                 </ul>
               </li>
               <li>
-                W3C Web Games Workshop<ul>
+                W3C Web Games Workshop
+                <ul>
                   <li><a href="https://www.w3.org/2018/12/games-workshop/report.html#webtransport">https://www.w3.org/2018/12/games-workshop/report.html#webtransport</a>
                   <li><a href="https://docs.google.com/presentation/d/13hX5p8opMD8SrmCHwcdqn_mNkHjQBjI32jvq_gIDubM/edit">https://docs.google.com/presentation/d/13hX5p8opMD8SrmCHwcdqn_mNkHjQBjI32jvq_gIDubM/edit</a>
                   <li>
-                    Minutes から<ul>
+                    Minutes から
+                    <ul>
                       <li>Sony/BBC などが強い賛同を示している
                     </ul>
                   </li>
@@ -1292,16 +1332,19 @@ videoElem.srcObject = mediaStream;</code></pre>
             </ul>
           </li>
           <li>
-            Mailing List<ul>
+            Mailing List
+            <ul>
               <li>
-                webtransport<ul>
+                webtransport
+                <ul>
                   <li><a href="https://mailarchive.ietf.org/arch/browse/webtransport/">https://mailarchive.ietf.org/arch/browse/webtransport/</a>
                 </ul>
               </li>
             </ul>
           </li>
           <li>
-            Intent to Implement: WebSocketStream<ul>
+            Intent to Implement: WebSocketStream
+            <ul>
               <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X7rWpAkMCyg/j6K7mEEwAgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X7rWpAkMCyg/j6K7mEEwAgAJ</a>
               <li><a href="https://github.com/ricea/websocketstream-explainer/blob/master/README.md">https://github.com/ricea/websocketstream-explainer/blob/master/README.md</a>
             </ul>
@@ -1312,12 +1355,14 @@ videoElem.srcObject = mediaStream;</code></pre>
         <h3 id="webcodecs-1"><a href="#webcodecs-1">WebCodecs</a></h3>
         <ul>
           <li>
-            Explainer<ul>
+            Explainer
+            <ul>
               <li><a href="https://github.com/pthatcherg/web-codecs/blob/master/explainer.md">https://github.com/pthatcherg/web-codecs/blob/master/explainer.md</a>
             </ul>
           </li>
           <li>
-            WICG Tread<ul>
+            WICG Tread
+            <ul>
               <li><a href="https://discourse.wicg.io/t/webcodecs-proposal/3662">https://discourse.wicg.io/t/webcodecs-proposal/3662</a>
             </ul>
           </li>

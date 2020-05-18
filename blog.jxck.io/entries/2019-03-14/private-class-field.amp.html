@@ -985,13 +985,15 @@ console.log(c.count) // undefined</code></pre>
       <p>具体的に求められる挙動は <a href="https://github.com/tc39/proposal-class-fields/blob/master/PRIVATE_SYNTAX_FAQ.md#what-do-you-mean-by-encapsulation--hard-private">以下</a> のようになる。
       <ol>
         <li>
-          Private フィールドにアクセスする方法が一切ない<ol>
+          Private フィールドにアクセスする方法が一切ない
+          <ol>
             <li>Reflection など、迂回する方法も提供しない
             <li>それがテストであっても例外は無し
           </ol>
         </li>
         <li>
-          Private フィールドがあることが外からわからない<ol>
+          Private フィールドがあることが外からわからない
+          <ol>
             <li>getOwnPropertyNames などで取得する方法も提供しない
             <li>Private フィールドと同じ Public フィールドが定義できる、これをエラーにすると存在がわかる
             <li>継承した子クラスや親クラスからもアクセスできない
@@ -999,7 +1001,8 @@ console.log(c.count) // undefined</code></pre>
           </ol>
         </li>
         <li>
-          以上を一定のパフォーマンスで実装できる<ol>
+          以上を一定のパフォーマンスで実装できる
+          <ol>
             <li>Private へのアクセスが遅くない
             <li>Public なアクセスや Obejct の生成など既存の挙動に影響が極力無い
           </ol>
