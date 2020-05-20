@@ -4,15 +4,35 @@
 <title>Cross-Origin-Embedder-Policy DEMO</title>
 
 <h1>Cross-Origin-Embedder-Policy DEMO</h1>
+<p>see console
 
-<!-- same origin -->
-<iframe src=https://labs.jxck.io/site-isolation/cross-origin-embedder-policy/corp.html></iframe>
-<iframe src=https://labs.jxck.io/site-isolation/cross-origin-embedder-policy/no-corp.html></iframe>
-
-<!-- same site -->
-<iframe src=https://lab2.jxck.io/site-isolation/cross-origin-embedder-policy/corp.html></iframe>
-<iframe src=https://lab2.jxck.io/site-isolation/cross-origin-embedder-policy/no-corp.html></iframe>
-
-<!-- cross origin -->
-<iframe src=https://labs.mozaic.fm/site-isolation/cross-origin-embedder-policy/corp.html></iframe>
-<iframe src=https://labs.mozaic.fm/site-isolation/cross-origin-embedder-policy/no-corp.html></iframe>
+<table>
+  <tr>
+    <th>
+    <th>c-o-r-p: none
+    <th>c-o-r-p: same-origin
+    <th>c-o-r-p: same-site
+    <th>c-o-r-p: cross-origin
+  <tr>
+  <tr>
+    <td>iframe from same origin
+    <td><iframe src=https://labs.jxck.io/site-isolation/cross-origin-embedder-policy/corp-none.html        ></iframe>
+    <td><iframe src=https://labs.jxck.io/site-isolation/cross-origin-embedder-policy/corp-same-origin.html ></iframe>
+    <td><iframe src=https://labs.jxck.io/site-isolation/cross-origin-embedder-policy/corp-same-site.html   ></iframe>
+    <td><iframe src=https://labs.jxck.io/site-isolation/cross-origin-embedder-policy/corp-cross-origin.html></iframe>
+  </tr>
+  <tr>
+    <td>iframe from same site
+    <td><iframe src=https://lab2.jxck.io/site-isolation/cross-origin-embedder-policy/corp-none.html        ></iframe>
+    <td><iframe src=https://lab2.jxck.io/site-isolation/cross-origin-embedder-policy/corp-same-origin.html ></iframe>
+    <td><iframe src=https://lab2.jxck.io/site-isolation/cross-origin-embedder-policy/corp-same-site.html   ></iframe>
+    <td><iframe src=https://lab2.jxck.io/site-isolation/cross-origin-embedder-policy/corp-cross-origin.html></iframe>
+  </tr>
+  <tr>
+    <td>iframe from cross origin
+    <td><iframe src=https://labs.mozaic.fm/site-isolation/cross-origin-embedder-policy/corp-none.html        ></iframe>
+    <td><iframe src=https://labs.mozaic.fm/site-isolation/cross-origin-embedder-policy/corp-same-origin.html ></iframe>
+    <td><iframe src=https://labs.mozaic.fm/site-isolation/cross-origin-embedder-policy/corp-same-site.html   ></iframe>
+    <td><iframe src=https://labs.mozaic.fm/site-isolation/cross-origin-embedder-policy/corp-cross-origin.html></iframe>
+  </tr>
+</table>
