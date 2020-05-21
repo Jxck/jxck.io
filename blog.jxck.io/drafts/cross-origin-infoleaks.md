@@ -160,6 +160,8 @@ CORB はこうしたコードで意図しないリソースがメモリに展開
 
 
 
+
+
 ## corssorigin attribute
 
 `<script>` や `<img>` からのリクエストが no-cors なことにより、 Origin はチェックできない。
@@ -386,6 +388,8 @@ if (self.crossOriginIsolated) {
 - Explainer
   - Cross-Origin-Opener-Policy Explainer
     - <https://docs.google.com/document/d/1Ey3MXcLzwR1T7aarkpBXEwP7jKdd2NvQdgYvF8_8scI/edit>
+  - Cross-Origin-Opener-Policy explainer
+    - <https://docs.google.com/document/d/1eQEdjHDaJHJ5SFyRKjcqohS7x8XSpF8xmajXimAKcHc/edit#>
   - COOP and COEP explained
     - <https://docs.google.com/document/d/1zDlfvfTJ_9e8Jdc8ehuV4zMEu9ySMCiTGMS9y0GU92k/edit>
 - Requirements Doc
@@ -467,8 +471,12 @@ if (self.crossOriginIsolated) {
 
 
 
+## DEMO
 
+動作する DEMO を以下に用意した。
 
+- [CORB DEMO](https://labs.jxck.io/site-isolation/cross-origin-read-blocking/index.html)
+- [CORP DEMO](https://labs.jxck.io/site-isolation/cross-origin-resource-policy/index.html)
 
 
 
