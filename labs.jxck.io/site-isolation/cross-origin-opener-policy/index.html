@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Cross-Origin-Opener-Policy DEMO</title>
+
+<h1>Cross-Origin-Opener-Policy DEMO</h1>
+
+<p>window.opener: <strong id=opener></strong>
+
+<p><label><input id=popup type=checkbox>: open as popup</label>
+<ul>
+  <li><a target=_blank href=https://labs.jxck.io/site-isolation/cross-origin-opener-policy/coop-none.html                    >none</a>
+  <li><a target=_blank href=https://labs.jxck.io/site-isolation/cross-origin-opener-policy/coop-same-origin.html             >same-origin</a>
+  <li><a target=_blank href=https://labs.jxck.io/site-isolation/cross-origin-opener-policy/coop-same-origin-allow-popups.html>same-origin-allow-popups</a>
+  <li><a target=_blank href=https://labs.jxck.io/site-isolation/cross-origin-opener-policy/coop-unsafe-none.html             >unsafe-none</a>
+</ul>
+
+<script>
+  document.querySelector('#opener').textContent = !!window.opener
+
+  document.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      if (document.querySelector('#popup').checked) {
+        e.preventDefault()
+        window.open(a.href, 'name', 'width=300,height=300')
+      }
+    })
+  })
+</script>
