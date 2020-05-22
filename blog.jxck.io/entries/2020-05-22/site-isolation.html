@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href="https://blog.jxck.io/entries/2020-05-22/site-isolation.html">
+  <link rel=amphtml   href="https://blog.jxck.io/entries/2020-05-22/site-isolation.amp.html">
+  <link rel=preload   type=font/woff2 as=font href=/assets/font/NotoSansCJKjp-Regular-Jxck-20200407.woff2 crossorigin>
+
+  <script async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+  <script defer src=/assets/js/main.js></script>
+  <script defer src=/assets/js/ga.js></script>
+  <script defer src=/assets/js/highlight.pack.js></script>
+
+  <link rel=icon             type =image/svg+xml sizes=any href=https://jxck.io/assets/img/jxck.svg>
+  <link rel=icon             type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="Origin は Web におけるセキュリティモデルの一つとして、コンテンツ間の Communication に関する境界を定義し、リソースを保護してきた。しかし、 Spectre の発覚以降、  Communication に関する制限だけではなく Isolation に...">
+  <meta name=keywords            content="COOP,COEP,CORP,CORB,isolation,spectre,security">
+  <meta name=theme-color         content=#000000>
+
+  <meta name=twitter:card        content=summary>
+  <meta name=twitter:site        content=@jxck_>
+  <meta name=twitter:url         content=https://blog.jxck.io/entries/2020-05-22/site-isolation.html>
+  <meta name=twitter:title       content="Site Isolation 及び Web のセキュリティモデルの更新 | blog.jxck.io">
+  <meta name=twitter:description content="Origin は Web におけるセキュリティモデルの一つとして、コンテンツ間の Communication に関する境界を定義し、リソースを保護してきた。しかし、 Spectre の発覚以降、  Communication に関する制限だけではなく Isolation に...">
+  <meta name=twitter:image       content=https://jxck.io/assets/img/jxck.png>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2020-05-22/site-isolation.html>
+  <meta property=og:title        content="Site Isolation 及び Web のセキュリティモデルの更新 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="Origin は Web におけるセキュリティモデルの一つとして、コンテンツ間の Communication に関する境界を定義し、リソースを保護してきた。しかし、 Spectre の発覚以降、  Communication に関する制限だけではなく Isolation に...">
+  <meta property=og:image        content=https://jxck.io/assets/img/jxck.png>
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Site Isolation 及び Web のセキュリティモデルの更新 | blog.jxck.io",
+    "image": [
+      "https://jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2020-05-22T08:00:00+08:00",
+    "dateModified": "2020-05-23T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.60x60.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": "Origin は Web におけるセキュリティモデルの一つとして、コンテンツ間の Communication に関する境界を定義し、リソースを保護してきた。しかし、 Spectre の発覚以降、  Communication に関する制限だけではなく Isolation に..."
+  }
+  </script>
+
+  <title>Site Isolation 及び Web のセキュリティモデルの更新 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=/assets/img/blog.svg   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/searches                 ><img width=30 height=30 loading=eager src=/assets/img/search.svg title=search alt=search></a>
+        <li><a href="https://blog.jxck.io/entries/2020-05-22/site-isolation.amp.html#development=1" aria-label="amp version">
+                                               <img width=30 height=30 loading=eager src=/assets/img/amp.svg    title=amp    alt="amp version"></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=/assets/img/up.svg     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=/assets/img/rss.svg    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=/assets/img/humans.svg title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=/assets/img/jxck.svg   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/markdown.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2020-05-22>2020-05-22</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-05-23>2020-05-23</time></dd></div>
+      <div><dt class=tags>tags</dt><dd>[<a href="/tags/COOP.html">COOP</a><i>,</i><a href="/tags/COEP.html">COEP</a><i>,</i><a href="/tags/CORP.html">CORP</a><i>,</i><a href="/tags/CORB.html">CORB</a><i>,</i><a href="/tags/isolation.html">isolation</a><i>,</i><a href="/tags/spectre.html">spectre</a><i>,</i><a href="/tags/security.html">security</a>]</dd></div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+    <article>
+      <h1><a href=/entries/2020-05-22/site-isolation.html>Site Isolation 及び Web のセキュリティモデルの更新</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>Origin は Web におけるセキュリティモデルの一つとして、コンテンツ間の Communication に関する境界を定義し、リソースを保護してきた。
+        <p>しかし、 Spectre の発覚以降、  Communication に関する制限だけではなく Isolation によるメモリレベルでのアクセス制御が必要となった。
+        <p>そこで現在作業されているのが、 CORB, CORP, COEP, COOP といった仕様群であり、これは Web におけるセキュリティモデルの更新作業と見ることができる。
+        <p>概要と現状について解説する。
+      </section>
+      <section>
+        <h2 id="demo--resouces"><a href="#demo--resouces">DEMO &amp; Resouces</a></h2>
+        <p>量が多いため、動作する DEMO と関連リソースは、ページ下部にまとめてある。
+      </section>
+      <section>
+        <h2 id="cors-による-cross-origin-communication-の制限"><a href="#cors-による-cross-origin-communication-の制限">CORS による Cross Origin Communication の制限</a></h2>
+        <p>CORS は、平たく言えば、リソース提供元(サーバ)が、クライアントのリクエストに対し、その Origin に基づいてアクセスの許可を判断する、アクセス制御の仕組みである。
+        <p>この CORS が定義されたことにより、それまで SOP のみに限定されていたリソースの共有が、 JSONP といったハックを使わずに、明示的な Opt-In によって Cross Origin で可能になった。
+        <p>CORS が明示的であるとは、裏を返せば暗黙的に別 Origin のリソースを、提供者の許可なく読み出すことはできないことを意味し、それによって Web は成り立っていた。
+        <p>この前提が崩れたのが Spectre の登場だ。
+      </section>
+      <section>
+        <h2 id="spectre-は何が問題だったのか"><a href="#spectre-は何が問題だったのか">Spectre は何が問題だったのか</a></h2>
+        <p>Spectre の説明を CPU の脆弱性の話からするのは長くなるので、 Web Facing な部分だけを筆者の理解でかいつまむ。
+        <p>簡単に言えば、本来アクセスできないはずの「別プロセスにあるメモリ」を、 CPU の投機的実行という特性を利用してキャッシュに載せ、それを推測することでアクセスできるという脆弱性だ。
+        <p>それ自体は OS や CPU の対応が必須となり、「別プロセスのメモリ」にはアクセスできないように、一部(全部かどうかはよくわからない)は対策がされた。
+        <p>それでも、「同じプロセスにあるメモリ」で本来は読めないようになっているものは、工夫次第では読めてしまう可能性が残っている。
+        <p>そして、その攻撃が一番再現しやすいのが、 URL にアクセスするだけで様々なコードが実行できる Web だったというわけだ。
+      </section>
+      <section>
+        <h2 id="spectre-と-web"><a href="#spectre-と-web">Spectre と Web</a></h2>
+        <p>典型例として、あるブラウザの設計が <code translate="no">&lt;iframe&gt;</code> に読み込まれた別 Origin のリソースを、 window と同じメモリ内に展開する作りになっていたとしよう。
+        <p>Cross Origin Iframe の中身は、 JS から直接触ることができない。しかし、ある CPU の投機的実行という特性を利用すると、キャッシュに載せることができる。
+        <p>アクセスを試みて、早ければキャッシュにあり、遅ければキャッシュにない、この時間を正確に計測して繰り返せば、徐々にキャッシュに載っている情報を推測できる。
+        <p>これを利用して、ユーザを攻撃ページに誘導し、そのユーザの Cookie が無いと取得できないデータを <code translate="no">&lt;iframe&gt;</code> に読み、時間をかければ中身を推測できるという攻撃だ。
+        <p>本来アクセスできない情報を外から推測することをサイドチャネル攻撃と呼び、その中でも特に時間という要素を利用する攻撃をタイミング攻撃と呼ぶ。今回の場合はそのどちらでもある。
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+        <pre class=html><code translate="no">&lt;!-- 攻撃者が用意した罠サイト --&gt;
+&lt;title&gt;attacker site&lt;/title&gt;
+
+&lt;!-- ユーザを滞在されるためのダミーコンテンツ --&gt;
+&lt;h1&gt;dummy contents&lt;/h1&gt;
+
+&lt;!--
+  ユーザの Cookie が送られるため、ユーザのメールボックスが読み込まれる
+  JS で直接アクセスはできないが、内容は同じメモリに展開される
+  この iframe を隠しておき、時間をかけて中身を推測する
+--&gt;
+&lt;iframe src=https://mail.example.com&gt;&lt;/iframe&gt;</code></pre>
+        <p>これが Spectre による攻撃のざっくりした部分だ。
+        <p>これを本質的に解決するには、ブラウザの作りを根本的に直すしか無いが、それは時間がかかる。
+        <p>しかし、 Web は URL にアクセスするだけで、全てのユーザがこの攻撃に晒される危険性があるため、なんとかしないといけない。
+        <p>そこで、ブラウザベンダは対処療法として、攻撃者が推測に必要とする「高解像度で時間を測れる API」である <code translate="no">performance.now()</code> と「工夫次第で同じく高解像度で時間が測れる」 <code translate="no">SharedArrayBuffer</code> を無効にすることにした。
+        <p>これは、互換性を壊しているわけだが、ユーザの安全を守るためにはしかたない。とはいえそのままにしておくこともできない。
+        <p>そこで、根本的な解決として理想的には「違う Origin のデータを同じメモリ内に読み込まない」状態にするための対応を始めた。
+        <p>これが Site Isolation などと呼ばれているものだ。
+      </section>
+      <section>
+        <h2 id="site-isolation"><a href="#site-isolation">Site Isolation</a></h2>
+        <p>Site Isolation は、メモリの分離のためにプロセスアーキテクチャをいじる必要があり、ブラウザにとっては大工事だ。
+        <p>ブラウザによってやり方が違うが、 Chrome の場合についてみておく。
+        <p>Chrome はそもそもマルチプロセスなアーキテクチャになっており、具体的には 1 tab が 1 process (renderer process) で分離されていた。
+        <p>プロセスが違えばメモリ空間が違うため、別のタブの内容を読み出すことは Spectre のようなサイドチャネルアタックはできない。
+        <p>しかし、 <code translate="no">&lt;iframe&gt;</code> を同じタブの中に展開する場合、読み込んでる Origin が違っても同じ Process 内で展開されるため、サイドチャネル攻撃が可能だった。
+        <p>そこで、 <code translate="no">&lt;iframe&gt;</code> などもきちんとプロセスを分離するというのが Chrome における Site Isolation となる。
+        <p>Chrome はこれをマージするまでに 6 年近くかかったらしい。
+        <ul>
+          <li><a href="https://security.googleblog.com/2018/07/mitigating-spectre-with-site-isolation.html">Google Online Security Blog: Mitigating Spectre with Site Isolation in Chrome</a>
+        </ul>
+        <p>これは 6 年前から Spectre が裏で共有されていたという意味ではなく、別の理由で必要な作業として行われていた。
+        <p>特に V8 などにバグがあった場合に、そこから Renderer Process が掌握されても、その影響範囲を限定できるように実施されていた。それが Spectre 対策でも有効なことがわかったので、スピードアップしてマージしたという流れらしい。
+        <p>これにより Spectre の発生をかなり抑えることができる。
+        <p>同じことは Firefox なども取り組んでいるが、そもそも先発のブラウザは、シングルプロセスな作りから始まったものが多いため、対応が簡単とは限らないため、 Site Isolation をブラウザそのものがネイティブに対応し、全てのリソースを分離するのは難しい場合もある。
+        <p>そこで、リソースごとに Opt-In で Site Isolation に対応するためのいくつかの仕様が提案されている。
+      </section>
+      <section>
+        <h2 id="corb"><a href="#corb">CORB</a></h2>
+        <p><code translate="no">&lt;iframe&gt;</code> 以外にも、 Cross Origin なリソースを同じプロセスに展開する方法が知られている。
+        <p>例えば、ユーザが Cookie を持っているときにのみ取得できる JSON や HTML があったとする。
+        <p>これらを <code translate="no">&lt;script&gt;</code> や <code translate="no">&lt;img&gt;</code> で読み込めば、メモリ上に展開できる。
+        <pre class=html><code translate="no">&lt;!-- 攻撃者が用意した罠サイト --&gt;
+&lt;title&gt;attacker site&lt;/title&gt;
+
+&lt;!-- ユーザを滞在されるためのダミーコンテンツ --&gt;
+&lt;h1&gt;dummy contents&lt;/h1&gt;
+
+&lt;!--
+  ユーザの Cookie が送られるため JSON が読み込まれる
+  JSON を展開しただけでなにもおきないが、メモリには展開されている
+--&gt;
+&lt;script src=https://admin.example.com/secret.json&gt;&lt;/script&gt;
+
+&lt;!--
+  ユーザの Cookie が送られるため HTML が読み込まれる
+  HTML を img で読み込んでるのでパースは失敗しエラーになるが
+  メモリには展開されている。
+--&gt;
+&lt;img src=https://admin.example.com/secret.html&gt;&lt;/img&gt;</code></pre>
+        <p>一度メモリに展開できれば、前述のように Spectre で読み出せる可能性がある。
+        <p>こうした読み込みは、基本的には攻撃にしか使われないため、これらをブロックすることはサイドチャネル攻撃の抑止に繋がる。
+        <p>CORB はこうしたコードで意図しないリソースがメモリに展開されることを防ぐ仕組みだ。
+        <p>具体的には以下のような request destination について
+        <ul>
+          <li>
+            &ldquo;image&rdquo; (<code translate="no">&lt;img&gt;</code>, <code translate="no">&lt;image&gt;</code>,  <code translate="no">background-image</code>, favicon.ico etc)
+          </li>
+          <li>
+            &ldquo;script&rdquo; (<code translate="no">&lt;script&gt;</code>, <code translate="no">importScripts()</code>, <code translate="no">navigator.serviceWorker.register()</code>, <code translate="no">audioWorklet.addModule()</code>) etc.
+          </li>
+          <li>
+            &ldquo;audio&rdquo;, &ldquo;video&rdquo;, &ldquo;track&rdquo;
+          </li>
+          <li>
+            &ldquo;font&rdquo;
+          </li>
+          <li>
+            &ldquo;style&rdquo;
+          </li>
+          <li>
+            &ldquo;report&rdquo;
+          </li>
+        </ul>
+        <p>そこから発生したリクエストに対するレスポンスの Content-Type が
+        <ul>
+          <li>HTML (text/html)
+          <li>XML (text/xml, application/xml, etc)
+          <li>JSON (text/json, application/json, etc)
+        </ul>
+        <p>だった場合に、そのレスポンスの header/body を空にするという仕様だ。
+        <p>ブラウザが勝手に行う intervention であるため、特にヘッダなどを付けるわけではない。
+        <p>実際の条件はもう少し複雑で <code translate="no">X-C-T-O: no-sniff</code> がない場合は、 Sniffing を行わなければ壊れるサイトがある(html として img を配信してる etc)ため、色々と場合分けが必要なようだ。
+        <ul>
+          <li><a href="https://chromium.googlesource.com/chromium/src/+/master/services/network/cross_origin_read_blocking_explainer.md">Cross-Origin Read Blocking (CORB)</a>
+          <li><a href="https://www.chromium.org/Home/chromium-security/corb-for-developers">Cross-Origin Read Blocking for Web Developers - The Chromium Projects</a>
+        </ul>
+        <p>また、これにより Prefix を付けてパースを抑制し XSSI を防ぐ場面も、 CORB のスコープに入っている。
+        <ul>
+          <li><a href="https://docs.angularjs.org/api/ng/service/$http#json-vulnerability-protection">AngularJS: API: $http</a>
+        </ul>
+        <p>基本的に CORB が発生するのは、攻撃のような場面しか無く、これによって既存のサイトが壊れることはほぼ無いはずだ。
+      </section>
+      <section>
+        <h2 id="corp"><a href="#corp">CORP</a></h2>
+        <p>CORB は既存のサイトを壊さない範囲で、 Intervention としてサイトが実施しているため、対象外が多く有る。
+        <p>例えば、 <code translate="no">&lt;script&gt;</code> から JS へのリクエストであれば成功してしまう。
+        <p>そこで、 CORB と同等のことを Opt-In で行うのが Cross-Origin-Resource-Policy(CORP) だ。
+        <p>そのヘッダが付いたリソースが、どの Origin から読まれて良いかを決める。
+        <pre class=html><code translate="no">&lt;!-- 攻撃者が用意した罠サイト --&gt;
+&lt;title&gt;attacker site&lt;/title&gt;
+
+&lt;!-- ユーザを滞在されるためのダミーコンテンツ --&gt;
+&lt;h1&gt;dummy contents&lt;/h1&gt;
+
+&lt;!--
+  ユーザの Cookie が送られるため JS が読み込まれる
+  これは CORB では防げない。
+--&gt;
+&lt;script src=https://admin.example.com/secret.js&gt;&lt;/script&gt;</code></pre>
+        <p>この secret.js に対して以下のいずれかのヘッダをつける。
+        <pre class=http><code translate="no">Cross-Origin-Resource-Policy: same-origin
+Cross-Origin-Resource-Policy: same-site
+Cross-Origin-Resource-Policy: cross-origin</code></pre>
+        <p>same-origin や same-site を指定すれば、ブラウザは secret.json のレスポンスヘッダを見た時点で、メモリへ展開してよいかどうかをブラウザが判断できる。
+        <p>どんなレスポンスにも使えるため、 CORB で守られないものも守ることができる。
+        <p>省略されているものは暗黙的に cross-origin になっている状態と言え、これまで通りどのページからも読み込める。
+        <p>しかし、今後後述する COEP のことを考えると、 CDN のようにどの Origin からも読み込めるリソースにも、明示的に cross-origin を指定することが望ましくなる。
+      </section>
+      <section>
+        <h2 id="coep"><a href="#coep">COEP</a></h2>
+        <p>現状は <code translate="no">require-corp</code> という値だけが定義されている。
+        <pre class=http><code translate="no">Cross-Origin-Embedder-Policy: require-corp</code></pre>
+        <p>これをトップフレームの HTML レスポンスに指定すると、そのサブリソース全てが CORP を指定したものでないといけなくなる。つまり、 <code translate="no">&lt;script&gt;</code> に読む JS や、 <code translate="no">&lt;img&gt;</code> に読む画像、 <code translate="no">&lt;iframe&gt;</code> に埋め込む別のページも、全て CORP を明示している必要があるということだ。
+        <p>全てのサブリソースの CORP の値が、読み込みページと正しく整合してないとブロックされるため、 CORP を強制するということは、全てのサブリソースがそのトップフレームで読み込まれることを許可している状態であることを意味する。
+        <p>これにより、全てのリソースが意図した読み込みで構成されている状態になるため、同じプロセスで展開されても問題無いことが保証できる。
+        <p>ただし、 CORS に明示的に対応している場合はこの限りではない。
+        <p>例えば <code translate="no">&lt;script&gt;</code> や <code translate="no">&lt;img&gt;</code> の場合は以下のように明示的に CORS mode でリクエストさせることができる。
+        <pre class=html><code translate="no">&lt;!-- cross origin script を CORS で取得する --&gt;
+&lt;script crossorigin src=https://example.com/script.js&gt;</code></pre>
+        <p>この場合、リクエストには Origin ヘッダが載り、サーバはそれを見て明示的に Access-Control-Allow-Origin を返すことになる。
+        <p>つまり、すでに明示的に読み込める Origin を制限しているため、 CORP をつけていなくても COEP の要件を満たす。
+        <p>Public CDN のようなサーバは、これまで CROP が暗黙的に <code translate="no">cross-origin</code> だったことに依存し、特に何もせず Cross Origin でコンテンツを配信してきた。
+        <p>しかし、 COEP のデプロイが広まると、今のままではコンテンツを読み込めな書くなるため、 Public であっても <code translate="no">CORP: cross-origin</code> か <code translate="no">ACAO: *</code> に対応する必要がでてくる。ブラウザサポートが増えれば前者のほうが導入は容易だろう。
+        <p>逆に言うと、 <code translate="no">CORP: cross-origin</code> を明示的に指定することが、そのリソースは public であることを表明するヘッダとして使われていくことになるだろう。
+      </section>
+      <section>
+        <h2 id="coop"><a href="#coop">COOP</a></h2>
+        <p>CORP + COEP があれば、ほぼ完璧に「意図したリソースだけが読み込まれたプロセス」が構築できそうだが、これだけでは missing point がある、それが Opener の存在だ。
+        <p><code translate="no">window.open()</code> や <code translate="no">_blaknk</code> では、開いた側(opener)の Window に、 開かれたページ(openee)から <code translate="no">window.opener</code> を経由してアクセスできる。このため、 2 つのページは同じプロセスに展開されてしまう。
+        <p>noopener は、 Opener が <code translate="no">window.opener</code> の削除を指定するが、 Openee はそれを拒否できない(そういう提案があった気もするが)。
+        <p>COOP は Opener / Openee 両方に指定し、その両方の値が整合しなければ <code translate="no">window.opener</code> が削除されるという仕様だ。
+        <ul>
+          <li><a href="https://docs.google.com/document/d/1Ey3MXcLzwR1T7aarkpBXEwP7jKdd2NvQdgYvF8_8scI/edit">Cross-Origin-Opener-Policy Explainer</a>
+        </ul>
+        <pre><code translate="no">Cross-Origin-Opener-Policy: same-origin
+Cross-Origin-Opener-Policy: same-origin-allow-popups
+Cross-Origin-Opener-Policy: unsafe-none</code></pre>
+        <p>対応は以下のようになる。
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/table.css>
+        <table>
+          <thead>
+            <tr>
+              <th class=align-center>Opener / Openee</th>
+              <th class=align-center>Same origin - unsafe-none</th>
+              <th class=align-center>Same origin - allow-popups</th>
+              <th class=align-center>Same origin - Same origin</th>
+              <th class=align-center>Cross origin - unsafe-none</th>
+              <th class=align-center>Cross origin - allow-popups</th>
+              <th class=align-center>Cross origin - same-origin</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class=align-center>Top level           - unsafe-none</td>
+              <td class=align-center>Y</td>
+              <td class=align-center>N</td>
+              <td class=align-center>N</td>
+              <td class=align-center>Y</td>
+              <td class=align-center>N</td>
+              <td class=align-center>N</td>
+            </tr>
+            <tr>
+              <td class=align-center>Top level           - allow-popups</td>
+              <td class=align-center>Y</td>
+              <td class=align-center>Y</td>
+              <td class=align-center>N</td>
+              <td class=align-center>Y</td>
+              <td class=align-center>N</td>
+              <td class=align-center>N</td>
+            </tr>
+            <tr>
+              <td class=align-center>Top level           - same-origin</td>
+              <td class=align-center>N</td>
+              <td class=align-center>N</td>
+              <td class=align-center>Y</td>
+              <td class=align-center>N</td>
+              <td class=align-center>N</td>
+              <td class=align-center>N</td>
+            </tr>
+            <tr>
+              <td class=align-center>Same origin iframe  - unsafe-none</td>
+              <td class=align-center>Y</td>
+              <td class=align-center>N</td>
+              <td class=align-center>N</td>
+              <td class=align-center>Y</td>
+              <td class=align-center>N</td>
+              <td class=align-center>N</td>
+            </tr>
+            <tr>
+              <td class=align-center>Same origin iframe  - allow-popups</td>
+              <td class=align-center>Y</td>
+              <td class=align-center>Y</td>
+              <td class=align-center>N</td>
+              <td class=align-center>Y</td>
+              <td class=align-center>N</td>
+              <td class=align-center>N</td>
+            </tr>
+            <tr>
+              <td class=align-center>Same origin iframe  - same-origin</td>
+              <td class=align-center>N</td>
+              <td class=align-center>N</td>
+              <td class=align-center>Y</td>
+              <td class=align-center>N</td>
+              <td class=align-center>N</td>
+              <td class=align-center>N</td>
+            </tr>
+            <tr>
+              <td class=align-center>Cross origin iframe - unsafe-none</td>
+              <td class=align-center>Y</td>
+              <td class=align-center>N</td>
+              <td class=align-center>N</td>
+              <td class=align-center>Y</td>
+              <td class=align-center>N</td>
+              <td class=align-center>N</td>
+            </tr>
+            <tr>
+              <td class=align-center>Cross origin iframe - allow-popups</td>
+              <td class=align-center>Y</td>
+              <td class=align-center>N</td>
+              <td class=align-center>N</td>
+              <td class=align-center>Y</td>
+              <td class=align-center>N</td>
+              <td class=align-center>N</td>
+            </tr>
+            <tr>
+              <td class=align-center>Cross origin iframe - same-origin</td>
+              <td class=align-center>N</td>
+              <td class=align-center>N</td>
+              <td class=align-center>N</td>
+              <td class=align-center>N</td>
+              <td class=align-center>N</td>
+              <td class=align-center>N</td>
+            </tr>
+          </tbody>
+        </table>
+        <p><a href="https://docs.google.com/document/d/1eQEdjHDaJHJ5SFyRKjcqohS7x8XSpF8xmajXimAKcHc/edit#heading=h.fqpz10jiwbh9">Impact of the popup CrossOriginOpenerPolicy</a>
+        <p>これにより missing point だった Opener の生成を制限することができる。
+      </section>
+      <section>
+        <h2 id="cors--coep--coop"><a href="#cors--coep--coop">CORS + COEP + COOP</a></h2>
+        <p>これら全てが指定された場合を考える。
+        <p>ある HTML を読んだとき、そのサブリソースは全て CORS が指定されており、さらに他の Origin との opener もないため、完全に独立したプロセスグループが展開できるのだ。
+        <p>Chrome のように、ブラウザ全体で Site Isolation が実装されてないブラウザでも、これらヘッダについてだけ明示的にプロセスを分ける実装ができれば、 Spectre の対策になる。
+        <p>Spectre が緩和できたことは、それによって無効化されていた SharedArrayBuffer の再度有効化を可能にする。
+        <p>Chrome では COEP/COOP が有効になったサイトにのみ、 SharedArrayBuffer を有効にする予定を発表している。
+        <ul>
+          <li><a href="https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/_0MEXs6TJhg">Planning isolation requirements (COOP/COEP) for SharedArrayBuffer</a>
+        </ul>
+        <p>そして、こうした理想的に分離された(Site Isolated)環境が手に入ったことは、今後より強力な API をブラウザに展開していく上での礎となる。
+        <p>例えば <code translate="no">performance.measureMemory()</code> や JS Self-Profiling API などもそうした候補になり、 Isolated されている環境でのみ利用できるようにしていく計画も有る。
+        <p>逆に新しい環境であることを利用し、 <code translate="no">document.domain</code> の変更を禁止するといった互換性のためにできなかった変更を持ち込むことも検討されている。
+        <p>これは、もはやこうしたヘッダを付与しコントロールしていくことは、 Spectre 対策だけの話ではなくなっていく可能性があることを意味する。
+      </section>
+      <section>
+        <h2 id="関連仕様"><a href="#関連仕様">関連仕様</a></h2>
+        <section>
+          <h3 id="crossoriginisolated"><a href="#crossoriginisolated">crossOriginIsolated</a></h3>
+          <p>Isolated な環境でしか利用できない API が存在するということは、分岐のために Isolated であるかどうかを知りたい場面がでてくる。
+          <p>そこで、 CORS + COEP + COOP が適切に設定されているかどうかを取得するフラグとして提案されているのが <code translate="no">self.corssOriginIsolated</code> だ。
+          <pre class=js><code translate="no">if (self.crossOriginIsolated) {
+  // Cross Origin Isolation が有効な場合 true を返す
+}</code></pre>
+          <ul>
+            <li><a href="https://annevankesteren.nl/2020/01/shared-memory-feature-detection">Feature detection of SharedArrayBuffer objects and shared memory - Anne&rsquo;s Blog</a>
+          </ul>
+        </section>
+        <section>
+          <h3 id="origin-isolation"><a href="#origin-isolation">Origin Isolation</a></h3>
+          <p>Origin Isolation は、基本的には Site Isolation が Same Site なのに対して Same Origin に限定した仕様だ。
+          <p>これによい、サブドメイン側に影響があってもそれが伝搬しないで済むことになるだろう。
+          <p>ただし、単にそうするだけではなく、 Same Origin Isolation を実装する上で重要になる JS の Agent Cluster という仕様を更新することにモチベーションがあるようだ。
+          <p>ここを更新できると、 Origin Isolation を実装する上で UA が取る戦略が多様になる。
+          <p>また、 COOP + COEP の方向は良いにせよ、依存リソース全てが対応する必要があり対応負荷が高いこと、そして結果的に同じような結果になっても Origin Isolation をしたいという明示的なシグナルにはなってないことなどが指摘されている。
+          <p>内部の実装へのケアが強いイメージがある提案で、完全には理解できてないが、策定が進んだら単体で解説したい。
+          <ul>
+            <li><a href="https://github.com/WICG/origin-isolation/blob/master/README.md">https://github.com/WICG/origin-isolation/blob/master/README.md</a>
+          </ul>
+        </section>
+        <section>
+          <h3 id="securer-context"><a href="#securer-context">Securer Context</a></h3>
+          <p>これまで https で提供された環境を Secure Context としてきた。
+          <p>しかし、単にトランスポートが暗号化されているだけで Secure とすることができない現状があり、むしろ単に https にすることは前提となりつつある。
+          <p>そこで、暗号化に追加してより安全な環境が提供できる状況をパラメタライズする仕様だ。具体的には 3 つ有り、それぞれ有効にできるものが変わる。
+          <ul>
+            <li>
+
+            </li>
+            <li>
+
+            </li>
+            <li>
+
+            </li>
+          </ul>
+          <p>こうしたコンセプトを用意し、今後新しい Powerful Feature API が提供される際の指針にするという内容のようだ。
+          <ul>
+            <li><a href="https://github.com/mikewest/securer-contexts/">https://github.com/mikewest/securer-contexts/</a>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
+        <p>CORS / COOP / COEP あたりは、最初の提案から名前が何度か変わったりしてややこしかったが、最近やっと落ち着いてきて実装が進みつつ有るため、今回解説するに至った。
+        <p>より詳細な流れについては、以下が参考になるだろう。
+        <ul>
+          <li><a href="https://mozaic.fm/episodes/63/cross-origin-info-leaks.html">ep63 Cross Origin Info Leaks | mozaic.fm</a>
+        </ul>
+        <p>これらのヘッダは、後から対応する負荷がある程度ある一方、今後の Powerful Feature の有効化の条件になる可能性が有るため、仮にこのまま進めば避けては通れないヘッダになる可能性が有る。
+        <p>しかし、広告を初めとする 3rd Party Resource を多様している場合は、依存先の対応が必要なため、しばらくは対応が難しいかも知れない。
+        <p>そうした理由で <a href="https://blog.jxck.io/entries/2020-01-31/ads-for-blog.html">広告</a> を入れている本サイトでは使用しなかったが、広告を外している <a href="https://mozaic.fm">mozaic.fm</a> の方は、 <a href="https://blog.jxck.io/entries/2020-05-06/mozaic-v3-release.html">v3</a> で実装しデプロイ済みだ。
+        <p>今回は解説してないが、それぞれ Reporting API で Report が取れるため、デプロイしていく上で Reporting Endpoint の確保は必須となるだろう。(report はまだ観測してない)
+        <p>Origin-Isolation などの関連仕様の動向も気になるため、引き続き仕様の動向を追いつつ、 feedback につなげていきたい。
+      </section>
+      <section>
+        <h2 id="resources"><a href="#resources">Resources</a></h2>
+        <section>
+          <h3 id="corb-1"><a href="#corb-1">CORB</a></h3>
+          <ul>
+            <li>
+              Spec
+              <ul>
+                <li>
+                  Fetch Standard
+                  <ul>
+                    <li><a href="https://fetch.spec.whatwg.org/#corb">https://fetch.spec.whatwg.org/#corb</a>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Explainer
+              <ul>
+                <li>
+                  Cross-Origin Read Blocking for Web Developers - The Chromium Projects
+                  <ul>
+                    <li><a href="https://www.chromium.org/Home/chromium-security/corb-for-developers">https://www.chromium.org/Home/chromium-security/corb-for-developers</a>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Requirements Doc
+              <ul>
+                <li>
+                  Cross-Origin Read Blocking (CORB)
+                  <ul>
+                    <li><a href="https://chromium.googlesource.com/chromium/src/+/master/services/network/cross_origin_read_blocking_explainer.md">https://chromium.googlesource.com/chromium/src/+/master/services/network/cross_origin_read_blocking_explainer.md</a>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Mozilla Standard Position
+              <ul>
+                <li>
+                  Fetch: CORB - Issue #81 - mozilla/standards-positions
+                  <ul>
+                    <li><a href="https://github.com/mozilla/standards-positions/issues/81">https://github.com/mozilla/standards-positions/issues/81</a>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>TAG Design Review
+            <li>
+              Intents
+              <ul>
+                <li>
+                  Intent to Implement and Ship: Cross-Origin Read Blocking (CORB)
+                  <ul>
+                    <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hnAWBzq1qys/DhyRSDKKBQAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hnAWBzq1qys/DhyRSDKKBQAJ</a>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Chrome Platform Status
+              <ul>
+                <li>
+                  Cross-Origin Read Blocking (CORB) - Chrome Platform Status
+                  <ul>
+                    <li><a href="https://www.chromestatus.com/feature/5629709824032768">https://www.chromestatus.com/feature/5629709824032768</a>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>Blog
+            <li>Presentation
+            <li>
+              Issues
+              <ul>
+                <li>
+                  Cross-Origin Read Blocking (CORB) - Issue #681 - whatwg/fetch
+                  <ul>
+                    <li><a href="https://github.com/whatwg/fetch/issues/681">https://github.com/whatwg/fetch/issues/681</a>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Other
+              <ul>
+                <li>
+                  CORB demo
+                  <ul>
+                    <li><a href="https://anforowicz.github.io/xsdb-demo/index.html">https://anforowicz.github.io/xsdb-demo/index.html</a>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <h2 id="corp-1"><a href="#corp-1">CORP</a></h2>
+        <ul>
+          <li>
+            Spec
+            <ul>
+              <li>
+                Fetch Standard
+                <ul>
+                  <li><a href="https://fetch.spec.whatwg.org/#cross-origin-resource-policy-header">https://fetch.spec.whatwg.org/#cross-origin-resource-policy-header</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Explainer
+          <li>Requirements Doc
+          <li>Mozilla Standard Position
+          <li>TAG Design Review
+          <li>
+            Intents
+            <ul>
+              <li>
+                Intent to Implement and Ship: Cross-Origin Resource Policy
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/TBNHorRPhZk/4_gfRjfzDgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/TBNHorRPhZk/4_gfRjfzDgAJ</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Chrome Platform Status
+            <ul>
+              <li>
+                Cross-Origin Resource Policy - Chrome Platform Status
+                <ul>
+                  <li><a href="https://www.chromestatus.com/feature/4647328103268352">https://www.chromestatus.com/feature/4647328103268352</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Blog
+            <ul>
+              <li>
+                Consider deploying cross-origin resource policy!
+                <ul>
+                  <li><a href="https://resourcepolicy.fyi/">https://resourcepolicy.fyi/</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Presentation
+          <li>
+            Issues
+            <ul>
+              <li>
+                Cross-Origin-Resource-Policy (was: From-Origin) - Issue #687 - whatwg/fetch
+                <ul>
+                  <li><a href="https://github.com/whatwg/fetch/issues/687">https://github.com/whatwg/fetch/issues/687</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Other
+        </ul>
+      </section>
+      <section>
+        <h2 id="coep-1"><a href="#coep-1">COEP</a></h2>
+        <ul>
+          <li>
+            Spec
+            <ul>
+              <li>
+                Cross-Origin Embedder Policy
+                <ul>
+                  <li><a href="https://wicg.github.io/cross-origin-embedder-policy/">https://wicg.github.io/cross-origin-embedder-policy/</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Explainer
+            <ul>
+              <li>
+                COOP and COEP explained
+                <ul>
+                  <li><a href="https://docs.google.com/document/d/1zDlfvfTJ_9e8Jdc8ehuV4zMEu9ySMCiTGMS9y0GU92k/edit">https://docs.google.com/document/d/1zDlfvfTJ_9e8Jdc8ehuV4zMEu9ySMCiTGMS9y0GU92k/edit</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Requirements Doc
+          <li>Mozilla Standard Position
+          <li>TAG Design Review
+          <li>
+            Intents
+            <ul>
+              <li>
+                Intent to Ship: Cross-Origin-Embedder-Policy (COEP)
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/XBKAGb2_7uA/TDg_AkQbAAAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/XBKAGb2_7uA/TDg_AkQbAAAJ</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Chrome Platform Status
+            <ul>
+              <li>
+                Cross-Origin-Embedder-Policy - Chrome Platform Status
+                <ul>
+                  <li><a href="https://www.chromestatus.com/feature/5642721685405696">https://www.chromestatus.com/feature/5642721685405696</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Blog
+            <ul>
+              <li>
+                Making your website &ldquo;cross-origin isolated&rdquo; using COOP and COEP
+                <ul>
+                  <li><a href="https://web.dev/coop-coep/">https://web.dev/coop-coep/</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Presentation
+          <li>
+            Issues
+            <ul>
+              <li>
+                Making postMessage() work for SharedArrayBuffer (Cross-Origin-Embedder-Policy) - Issue #4175 - whatwg/html
+                <ul>
+                  <li><a href="https://github.com/whatwg/html/issues/4175">https://github.com/whatwg/html/issues/4175</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Other
+        </ul>
+      </section>
+      <section>
+        <h2 id="coop-1"><a href="#coop-1">COOP</a></h2>
+        <ul>
+          <li>
+            Spec
+            <ul>
+              <li>
+                coop.md
+                <ul>
+                  <li><a href="https://gist.github.com/annevk/6f2dd8c79c77123f39797f6bdac43f3e">https://gist.github.com/annevk/6f2dd8c79c77123f39797f6bdac43f3e</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Explainer
+            <ul>
+              <li>
+                Cross-Origin-Opener-Policy Explainer
+                <ul>
+                  <li><a href="https://docs.google.com/document/d/1Ey3MXcLzwR1T7aarkpBXEwP7jKdd2NvQdgYvF8_8scI/edit">https://docs.google.com/document/d/1Ey3MXcLzwR1T7aarkpBXEwP7jKdd2NvQdgYvF8_8scI/edit</a>
+                </ul>
+              </li>
+              <li>
+                Cross-Origin-Opener-Policy explainer
+                <ul>
+                  <li><a href="https://docs.google.com/document/d/1eQEdjHDaJHJ5SFyRKjcqohS7x8XSpF8xmajXimAKcHc/edit#">https://docs.google.com/document/d/1eQEdjHDaJHJ5SFyRKjcqohS7x8XSpF8xmajXimAKcHc/edit#</a>
+                </ul>
+              </li>
+              <li>
+                COOP and COEP explained
+                <ul>
+                  <li><a href="https://docs.google.com/document/d/1zDlfvfTJ_9e8Jdc8ehuV4zMEu9ySMCiTGMS9y0GU92k/edit">https://docs.google.com/document/d/1zDlfvfTJ_9e8Jdc8ehuV4zMEu9ySMCiTGMS9y0GU92k/edit</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Requirements Doc
+          <li>Mozilla Standard Position
+          <li>TAG Design Review
+          <li>
+            Intents
+            <ul>
+              <li>
+                Intent to Ship Cross-Origin-Opener-Policy
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/cJ5dXIcQCsc/eGgi0gkcAAAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/cJ5dXIcQCsc/eGgi0gkcAAAJ</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Chrome Platform Status
+            <ul>
+              <li>
+                Cross-Origin-Opener-Policy - Chrome Platform Status
+                <ul>
+                  <li><a href="https://www.chromestatus.com/feature/5432089535053824">https://www.chromestatus.com/feature/5432089535053824</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Blog
+          <li>Presentation
+          <li>Issues
+          <li>Other
+        </ul>
+      </section>
+      <section>
+        <h2 id="crossoriginisolated-1"><a href="#crossoriginisolated-1">crossOriginIsolated</a></h2>
+        <ul>
+          <li>
+            Chrome Platform Status
+            <ul>
+              <li>
+                crossOriginIsolated - Chrome Platform Status
+                <ul>
+                  <li><a href="https://www.chromestatus.com/feature/5953286387531776">https://www.chromestatus.com/feature/5953286387531776</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Blog
+            <ul>
+              <li>
+                self.crossOriginIsolated
+                <ul>
+                  <li><a href="https://annevankesteren.nl/2020/01/shared-memory-feature-detection">https://annevankesteren.nl/2020/01/shared-memory-feature-detection</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="site-isolation-1"><a href="#site-isolation-1">Site Isolation</a></h2>
+        <ul>
+          <li>
+            Explainer
+            <ul>
+              <li>
+                Site Isolation - The Chromium Projects
+                <ul>
+                  <li><a href="https://www.chromium.org/Home/chromium-security/site-isolation">https://www.chromium.org/Home/chromium-security/site-isolation</a>
+                </ul>
+              </li>
+              <li>
+                Mitigating Side-Channel Attacks - The Chromium Projects
+                <ul>
+                  <li><a href="https://www.chromium.org/Home/chromium-security/ssca">https://www.chromium.org/Home/chromium-security/ssca</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Requirements Doc
+            <ul>
+              <li>
+                Site Isolation Design Document - The Chromium Projects
+                <ul>
+                  <li><a href="https://www.chromium.org/developers/design-documents/site-isolation">https://www.chromium.org/developers/design-documents/site-isolation</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Blog
+            <ul>
+              <li>
+                Google Online Security Blog: Mitigating Spectre with Site Isolation in Chrome
+                <ul>
+                  <li><a href="https://security.googleblog.com/2018/07/mitigating-spectre-with-site-isolation.html">https://security.googleblog.com/2018/07/mitigating-spectre-with-site-isolation.html</a>
+                </ul>
+              </li>
+              <li>
+                Site Isolation for web developers
+                <ul>
+                  <li><a href="https://developers.google.com/web/updates/2018/07/site-isolation">https://developers.google.com/web/updates/2018/07/site-isolation</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="origin-isolation-1"><a href="#origin-isolation-1">Origin Isolation</a></h2>
+        <ul>
+          <li>
+            Explainer
+            <ul>
+              <li>origin-isolation/README.md at master · WICG/origin-isolation
+              <li><a href="https://github.com/WICG/origin-isolation/blob/master/README.md">https://github.com/WICG/origin-isolation/blob/master/README.md</a>
+            </ul>
+          </li>
+          <li>
+            Chrome Platform Status
+            <ul>
+              <li>
+                Origin isolation - Chrome Platform Status
+                <ul>
+                  <li><a href="https://www.chromestatus.com/feature/5683766104162304">https://www.chromestatus.com/feature/5683766104162304</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Tag Review
+            <ul>
+              <li>
+                Origin isolation · Issue #464 · w3ctag/design-reviews
+                <ul>
+                  <li><a href="https://github.com/w3ctag/design-reviews/issues/464">https://github.com/w3ctag/design-reviews/issues/464</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Issue
+            <ul>
+              <li>Origin isolation - Issue #464 - w3ctag/design-reviews
+              <li><a href="https://github.com/w3ctag/design-reviews/issues/464">https://github.com/w3ctag/design-reviews/issues/464</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="securer-context-1"><a href="#securer-context-1">Securer Context</a></h2>
+        <ul>
+          <li>
+            mikewest/securer-contexts: Secure Contexts, but with <em>more</em> secureness!
+            <ul>
+              <li><a href="https://github.com/mikewest/securer-contexts/">https://github.com/mikewest/securer-contexts/</a>
+            </ul>
+          </li>
+          <li>
+            Securer Contexts - Issue #471 - w3ctag/design-reviews
+            <ul>
+              <li><a href="https://github.com/w3ctag/design-reviews/issues/471">https://github.com/w3ctag/design-reviews/issues/471</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="blog"><a href="#blog">Blog</a></h2>
+        <ul>
+          <li>
+            Hack Patch!: 投機的な Web の修復
+            <ul>
+              <li><a href="https://shhnjk.blogspot.com/2020/03/repairing-speculative-web.html">https://shhnjk.blogspot.com/2020/03/repairing-speculative-web.html</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="demo"><a href="#demo">DEMO</a></h2>
+        <p>動作する DEMO を以下に用意した。
+        <ul>
+          <li>
+            <a href="https://labs.jxck.io/site-isolation/">Site Isolation</a>
+            <ul>
+              <li><a href="https://labs.jxck.io/site-isolation/cross-origin-read-blocking/index.html">Cross-Origin-Read-Blocking DEMO</a>
+              <li><a href="https://labs.jxck.io/site-isolation/cross-origin-resource-policy/index.html">Cross-Origin-Resource-Policy DEMO</a>
+              <li><a href="https://labs.jxck.io/site-isolation/cross-origin-embedder-policy/index.html">Cross-Origin-Embedder-Policy DEMO</a>
+              <li><a href="https://labs.jxck.io/site-isolation/cross-origin-opener-policy/index.html">Cross-Origin-Opener-Policy DEMO</a>
+              <li><a href="https://labs.jxck.io/site-isolation/crossOriginIsolated/index.html">crossOriginIsolated DEMO</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="special-thanks"><a href="#special-thanks">Special Thanks</a></h2>
+        <ul>
+          <li><a href="https://twitter.com/shhnjk">@shhnjk</a>
+        </ul>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small> See <small><a href=/policies/site.html>Site Policy</a> and <a href=/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <ins class=adsbygoogle data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-2902784829138215 data-ad-slot=9735419796></ins>
+  </footer>
+</body>
+</html>

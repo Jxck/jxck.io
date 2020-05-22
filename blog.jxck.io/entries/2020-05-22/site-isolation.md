@@ -55,7 +55,6 @@ Cross Origin Iframe の中身は、 JS から直接触ることができない�
 
 
 ```html
-<!doctype html>
 <!-- 攻撃者が用意した罠サイト -->
 <title>attacker site</title>
 
@@ -124,7 +123,6 @@ Chrome はこれをマージするまでに 6 年近くかかったらしい。
 
 
 ```html
-<!doctype html>
 <!-- 攻撃者が用意した罠サイト -->
 <title>attacker site</title>
 
@@ -194,7 +192,6 @@ CORB は既存のサイトを壊さない範囲で、 Intervention としてサ�
 
 
 ```html
-<!doctype html>
 <!-- 攻撃者が用意した罠サイト -->
 <title>attacker site</title>
 
@@ -548,7 +545,7 @@ Origin-Isolation などの関連仕様の動向も気になるため、引き続
   - Origin isolation - Chrome Platform Status
     - <https://www.chromestatus.com/feature/5683766104162304>
 - Tag Review
-  - - Origin isolation · Issue #464 · w3ctag/design-reviews
+  - Origin isolation · Issue #464 · w3ctag/design-reviews
     - <https://github.com/w3ctag/design-reviews/issues/464>
 - Issue
   - Origin isolation - Issue #464 - w3ctag/design-reviews
@@ -558,7 +555,7 @@ Origin-Isolation などの関連仕様の動向も気になるため、引き続
 ## Securer Context
 
 - mikewest/securer-contexts: Secure Contexts, but with _more_ secureness!
- - <https://github.com/mikewest/securer-contexts/>
+  - <https://github.com/mikewest/securer-contexts/>
 - Securer Contexts - Issue #471 - w3ctag/design-reviews
   - <https://github.com/w3ctag/design-reviews/issues/471>
 
