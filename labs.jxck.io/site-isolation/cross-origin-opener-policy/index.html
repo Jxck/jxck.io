@@ -3,26 +3,166 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <title>Cross-Origin-Opener-Policy DEMO</title>
 
+<style>
+h1 {
+  font-size: 1rem;
+}
+#opener {
+  color: red;
+}
+
+table, td, th {
+  border: 1px solid black;
+}
+caption {
+  caption-side: bottom;
+}
+
+</style>
+
 <h1>Cross-Origin-Opener-Policy DEMO</h1>
 
-<p>window.opener: <strong id=opener></strong>
-
-<p><label><input id=popup type=checkbox>: open as popup</label>
 <ul>
-  <li><a target=_blank href=https://labs.jxck.io/site-isolation/cross-origin-opener-policy/coop-none.html                    >none</a>
-  <li><a target=_blank href=https://labs.jxck.io/site-isolation/cross-origin-opener-policy/coop-same-origin.html             >same-origin</a>
-  <li><a target=_blank href=https://labs.jxck.io/site-isolation/cross-origin-opener-policy/coop-same-origin-allow-popups.html>same-origin-allow-popups</a>
-  <li><a target=_blank href=https://labs.jxck.io/site-isolation/cross-origin-opener-policy/coop-unsafe-none.html             >unsafe-none</a>
+  <li>origin for this doc: <strong id=origin></strong>
+  <li>coop for this doc: <strong id=coop></strong>
+  <li>window.opener: <strong id=opener></strong>
 </ul>
 
+<p><label><input id=popup type=checkbox>: open as popup</label>
+
+<h2>same origin</h2>
+<ul>
+  <li><a target=_blank href=https://labs.jxck.io/site-isolation/cross-origin-opener-policy/index.html                              >labs.jxck.io + none</a>
+  <li><a target=_blank href=https://labs.jxck.io/site-isolation/cross-origin-opener-policy/index.html?coop=same-origin             >labs.jxck.io + same-origin</a>
+  <li><a target=_blank href=https://labs.jxck.io/site-isolation/cross-origin-opener-policy/index.html?coop=same-origin-allow-popups>labs.jxck.io + same-origin-allow-popups</a>
+  <li><a target=_blank href=https://labs.jxck.io/site-isolation/cross-origin-opener-policy/index.html?coop=unsafe-none             >labs.jxck.io + unsafe-none</a>
+</ul>
+
+<h2>same site</h2>
+<ul>
+  <li><a target=_blank href=https://lab2.jxck.io/site-isolation/cross-origin-opener-policy/index.html                              >lab2.jxck.io + none</a>
+  <li><a target=_blank href=https://lab2.jxck.io/site-isolation/cross-origin-opener-policy/index.html?coop=same-origin             >lab2.jxck.io + same-origin</a>
+  <li><a target=_blank href=https://lab2.jxck.io/site-isolation/cross-origin-opener-policy/index.html?coop=same-origin-allow-popups>lab2.jxck.io + same-origin-allow-popups</a>
+  <li><a target=_blank href=https://lab2.jxck.io/site-isolation/cross-origin-opener-policy/index.html?coop=unsafe-none             >lab2.jxck.io + unsafe-none</a>
+</ul>
+
+<h2>cross origin</h2>
+<ul>
+  <li><a target=_blank href=https://labs.mozaic.fm/site-isolation/cross-origin-opener-policy/index.html                              >labs.mozaic.fm + none</a>
+  <li><a target=_blank href=https://labs.mozaic.fm/site-isolation/cross-origin-opener-policy/index.html?coop=same-origin             >labs.mozaic.fm + same-origin</a>
+  <li><a target=_blank href=https://labs.mozaic.fm/site-isolation/cross-origin-opener-policy/index.html?coop=same-origin-allow-popups>labs.mozaic.fm + same-origin-allow-popups</a>
+  <li><a target=_blank href=https://labs.mozaic.fm/site-isolation/cross-origin-opener-policy/index.html?coop=unsafe-none             >labs.mozaic.fm + unsafe-none</a>
+</ul>
+
+
+<table>
+  <caption><a href="https://docs.google.com/document/d/1eQEdjHDaJHJ5SFyRKjcqohS7x8XSpF8xmajXimAKcHc/edit#heading=h.fqpz10jiwbh9">Impact of the popup CrossOriginOpenerPolicy</a></caption>
+  <thead>
+    <tr>
+      <th align="center">Opener / Openee</th>
+      <th align="center">Same origin - unsafe-none</th>
+      <th align="center">Same origin - allow-popups</th>
+      <th align="center">Same origin - Same origin</th>
+      <th align="center">Cross origin - unsafe-none</th>
+      <th align="center">Cross origin - allow-popups</th>
+      <th align="center">Cross origin - same-origin</th>
+    </tr>
+  </thead>
+  <tbody><tr>
+      <td align="center">Top level - unsafe-none</td>
+      <td align="center">Y</td>
+      <td align="center">N</td>
+      <td align="center">N</td>
+      <td align="center">Y</td>
+      <td align="center">N</td>
+      <td align="center">N</td>
+    </tr>
+    <tr>
+      <td align="center">Top level - allow-popups</td>
+      <td align="center">Y</td>
+      <td align="center">Y</td>
+      <td align="center">N</td>
+      <td align="center">Y</td>
+      <td align="center">N</td>
+      <td align="center">N</td>
+    </tr>
+    <tr>
+      <td align="center">Top level - same-origin</td>
+      <td align="center">N</td>
+      <td align="center">N</td>
+      <td align="center">Y</td>
+      <td align="center">N</td>
+      <td align="center">N</td>
+      <td align="center">N</td>
+    </tr>
+    <tr>
+      <td align="center">Same origin iframe - unsafe-none</td>
+      <td align="center">Y</td>
+      <td align="center">N</td>
+      <td align="center">N</td>
+      <td align="center">Y</td>
+      <td align="center">N</td>
+      <td align="center">N</td>
+    </tr>
+    <tr>
+      <td align="center">Same origin iframe - allow-popups</td>
+      <td align="center">Y</td>
+      <td align="center">Y</td>
+      <td align="center">N</td>
+      <td align="center">Y</td>
+      <td align="center">N</td>
+      <td align="center">N</td>
+    </tr>
+    <tr>
+      <td align="center">Same origin iframe - same-origin</td>
+      <td align="center">N</td>
+      <td align="center">N</td>
+      <td align="center">Y</td>
+      <td align="center">N</td>
+      <td align="center">N</td>
+      <td align="center">N</td>
+    </tr>
+    <tr>
+      <td align="center">Cross origin iframe - unsafe-none</td>
+      <td align="center">Y</td>
+      <td align="center">N</td>
+      <td align="center">N</td>
+      <td align="center">Y</td>
+      <td align="center">N</td>
+      <td align="center">N</td>
+    </tr>
+    <tr>
+      <td align="center">Cross origin iframe - allow-popups</td>
+      <td align="center">Y</td>
+      <td align="center">N</td>
+      <td align="center">N</td>
+      <td align="center">Y</td>
+      <td align="center">N</td>
+      <td align="center">N</td>
+    </tr>
+    <tr>
+      <td align="center">Cross origin iframe - same-origin</td>
+      <td align="center">N</td>
+      <td align="center">N</td>
+      <td align="center">N</td>
+      <td align="center">N</td>
+      <td align="center">N</td>
+      <td align="center">N</td>
+    </tr>
+  </tbody>
+</table>
+
 <script>
+  const url = new URL(location.href)
+  document.querySelector('#origin').textContent = url.origin
+  document.querySelector('#coop').textContent = url.searchParams.get('coop') || 'no header'
   document.querySelector('#opener').textContent = !!window.opener
 
   document.querySelectorAll('a').forEach((a) => {
     a.addEventListener('click', (e) => {
       if (document.querySelector('#popup').checked) {
         e.preventDefault()
-        window.open(a.href, 'name', 'width=300,height=300')
+        window.open(a.href, 'name', 'width=500,height=500')
       }
     })
   })
