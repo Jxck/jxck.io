@@ -475,9 +475,11 @@ if (self.crossOriginIsolated) {
 
 動作する DEMO を以下に用意した。
 
-- [CORB DEMO](https://labs.jxck.io/site-isolation/cross-origin-read-blocking/index.html)
-- [CORP DEMO](https://labs.jxck.io/site-isolation/cross-origin-resource-policy/index.html)
-
+- [Site Isolation](https://labs.jxck.io/site-isolation/)
+  - [Cross-Origin-Read-Blocking   DEMO](https://labs.jxck.io/site-isolation/cross-origin-read-blocking/index.html)
+  - [Cross-Origin-Resource-Policy DEMO](https://labs.jxck.io/site-isolation/cross-origin-resource-policy/index.html)
+  - [Cross-Origin-Embedder-Policy DEMO](https://labs.jxck.io/site-isolation/cross-origin-embedder-policy/index.html)
+  - [Cross-Origin-Opener-Policy   DEMO](https://labs.jxck.io/site-isolation/cross-origin-opener-policy/index.html)
 
 
 
