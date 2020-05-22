@@ -13,9 +13,7 @@ Origin は Web におけるセキュリティモデルの一つとして、コ�
 
 ## CORS による Cross Origin Communication の制限
 
-CORS は、 Origin を跨いだリソースの Communication を制限する仕様である。
-
-平たく言えば、リソース提供元(サーバ)が、クライアントのリクエストに対し、その Origin に基づいてアクセスの許可を判断する、アクセス制御の仕組みである。
+CORS は、平たく言えば、リソース提供元(サーバ)が、クライアントのリクエストに対し、その Origin に基づいてアクセスの許可を判断する、アクセス制御の仕組みである。
 
 この CORS が定義されたことにより、それまで SOP のみに限定されていたリソースの共有が、 JSONP といったハックを使わずに、明示的な Opt-In によって Cross Origin で可能になった。
 
@@ -28,15 +26,26 @@ CORS が明示的であるとは、裏を返せば暗黙的に別 Origin のリ�
 
 Spectre の説明を CPU の脆弱性の話からするのは長くなるので、 Web Facing な部分だけを筆者の理解でかいつまむ。
 
+簡単に言えば、本来アクセスできないはずの「別プロセスにあるメモリ」を、 CPU の投機的実行という特性を利用してキャッシュに載せ、それを推測することでアクセスできるという脆弱性だ。
+
+それ自体は OS や CPU の対応が必須となり、「別プロセスのメモリ」にはアクセスできないように、一部(全部かどうかはよくわからない)は対策がされた。
+
+それでも、「同じプロセスにあるメモリ」で本来は読めないようになっているものは、工夫次第では読めてしまう可能性が残っている。
+
+そして、その攻撃が一番再現しやすいのが、 URL にアクセスするだけで様々なコードが実行できる Web だったというわけだ。
+
+
+## Spectre と Web
+
 典型例として、あるブラウザの設計が `<iframe>` に読み込まれた別 Origin のリソースを、 window と同じメモリ内に展開する作りになっていたとしよう。
 
-Cross Origin Iframe の中身は、 JS から直接触ることができない。しかし、ある CPU の特性を利用すると、キャッシュに載せることができる。
+Cross Origin Iframe の中身は、 JS から直接触ることができない。しかし、ある CPU の投機的実行という特性を利用すると、キャッシュに載せることができる。
 
-アクセスを試みて、早ければキャッシュにあり、遅ければキャッシュにない、これを正確に計測して繰り返せば、徐々にキャッシュに載っている情報を推測できる。
+アクセスを試みて、早ければキャッシュにあり、遅ければキャッシュにない、この時間を正確に計測して繰り返せば、徐々にキャッシュに載っている情報を推測できる。
 
-これを利用して、ユーザを攻撃ページに誘導し、そのユーザの Cookie が無いと取得できないデータを `<iframe>` に読み、時間をかければ中身を推測できる可能性がある。
+これを利用して、ユーザを攻撃ページに誘導し、そのユーザの Cookie が無いと取得できないデータを `<iframe>` に読み、時間をかければ中身を推測できるという攻撃だ。
 
-別の場所から推測することをサイドチャネル攻撃と呼び、その中でも特に時間という要素を利用する攻撃をタイミング攻撃と呼ぶ。今回の場合はそのどちらでもある。
+本来アクセスできない情報を外から推測することをサイドチャネル攻撃と呼び、その中でも特に時間という要素を利用する攻撃をタイミング攻撃と呼ぶ。今回の場合はそのどちらでもある。
 
 ```html
 <!doctype html>
@@ -56,7 +65,7 @@ Cross Origin Iframe の中身は、 JS から直接触ることができない�
 
 これが Spectre による攻撃のざっくりした部分だ。
 
-これを本質的に解決するには、 CPU を直すしか無い。しかし CPU は簡単には入れ替えられない。
+これを本質的に解決するには、ブラウザの作りを根本的に直すしか無いが、それは時間がかかる。
 
 しかし、 Web は URL にアクセスするだけで、全てのユーザがこの攻撃に晒される危険性があるため、なんとかしないといけない。
 
@@ -75,40 +84,31 @@ Site Isolation は、メモリの分離のためにプロセスアーキテク�
 
 ブラウザによってやり方が違うが、 Chrome の場合についてみておく。
 
-
-Chrome は、 Chrome 全体のマスタープロセスとして Browser Process があり、そこからページごとに立ち上がる Renderer Process で成り立っている。
-
-Renderer Process がなんらかのバグで掌握されても、その影響範囲を限定できるように実施されていた。
-
-作業中だったこれが Spectre 対策でも有効なことがわかったので、スピードアップしてマージした。
-
-Chrome はこれをマージするまでに 6 年近くかかったらしい。
-
-- [Google Online Security Blog: Mitigating Spectre with Site Isolation in Chrome](https://security.googleblog.com/2018/07/mitigating-spectre-with-site-isolation.html)
-
-6 年かかったのに Spectre が発覚したときにはすでに flag で機能が有効にできた、これは Chrome が Spectre よりもずっと以前から作業を始めていたことを意味する。
-
-TODO: そもそも、 v8 のバグでプロセスを掌握されても影響範囲を限定できるように実施
-
-
-
-
-
-Chrome はマルチプロセスなアーキテクチャになっており、具体的には 1 tab が 1 process (renderer process) で分離されていた。
+Chrome はそもそもマルチプロセスなアーキテクチャになっており、具体的には 1 tab が 1 process (renderer process) で分離されていた。
 
 プロセスが違えばメモリ空間が違うため、別のタブの内容を読み出すことは Spectre のようなサイドチャネルアタックはできない。
 
 しかし、 `<iframe>` を同じタブの中に展開する場合、読み込んでる Origin が違っても同じ Process 内で展開されるため、サイドチャネル攻撃が可能だった。
 
-そこで、 `<iframe>` などもきちんとプロセスを分離するというのが Chrome における Site Isolation。
+そこで、 `<iframe>` などもきちんとプロセスを分離するというのが Chrome における Site Isolation となる。
 
-同じことは Firefox なども取り組んでおり、これにより Spectre の発生をかなり抑えることができる。
+Chrome はこれをマージするまでに 6 年近くかかったらしい。
 
+- [Google Online Security Blog: Mitigating Spectre with Site Isolation in Chrome](https://security.googleblog.com/2018/07/mitigating-spectre-with-site-isolation.html)
 
+これは 6 年前から Spectre が裏で共有されていたという意味ではなく、そもそもずっと作業があった。
 
+特に V8 などにバグがあった場合に、そこから Renderer Process が掌握されても、その影響範囲を限定できるように実施されていたらしい。
 
+作業中だったこれが Spectre 対策でも有効なことがわかったので、スピードアップしてマージしたという流れらしい。
 
+これにより Spectre の発生をかなり抑えることができる。
 
+同じことは Firefox なども取り組んでいるが、そもそも先発のブラウザは、シングルプロセスな作りから始まったものが多いため、対応が簡単とは限らない。
+
+Site Isolation をブラウザそのものがネイティブに対応し、全てのリソースを分離するのは難しい場合もある。
+
+そこで、リソースごとに Opt-In で Site Isolation に対応するためのいくつかの仕様が提案されている。
 
 
 ## CORB
@@ -141,23 +141,43 @@ Chrome はマルチプロセスなアーキテクチャになっており、具�
 <img src=https://admin.example.com/secret.html></img>
 ```
 
-一度メモリに展開できれば、前述のように Spectre で読み出せる可能性が有る。
+一度メモリに展開できれば、前述のように Spectre で読み出せる可能性がある。
 
 こうした読み込みは、基本的には攻撃にしか使われないため、これらをブロックすることはサイドチャネル攻撃の抑止に繋がる。
 
 CORB はこうしたコードで意図しないリソースがメモリに展開されることを防ぐ仕組みだ。
 
-- [Cross-Origin Read Blocking (CORB)](https://chromium.googlesource.com/chromium/src/+/master/services/network/cross_origin_read_blocking_explainer.md)
-- [Cross-Origin Read Blocking for Web Developers - The Chromium Projects](https://www.chromium.org/Home/chromium-security/corb-for-developers)
+具体的には以下のような request destination について
 
+- "image" (`<img>`, `<image>`,  `background-image`, favicon.ico etc)
+- "script" (`<script>`, `importScripts()`, `navigator.serviceWorker.register()`, `audioWorklet.addModule()`) etc.
+- "audio", "video", "track"
+- "font"
+- "style"
+- "report"
+
+そこから発生したリクエストに対するレスポンスの Content-Type が
+
+- HTML (text/html)
+- XML (text/xml, application/xml, etc)
+- JSON (text/json, application/json, etc)
+
+だった場合に、そのレスポンスの header/body を空にするという仕様だ。
 
 ブラウザが自動的にブロックを行うため、特にヘッダなどを付けるわけではない。
+
+実際の条件はもう少し複雑で `X-C-T-O: no-sniff` がない場合は、 Sniffing を行わなければ壊れるサイトがある(html として img を配信してる etc)ため、色々と場合分けが必要なようだ。
+
+- [Cross-Origin Read Blocking (CORB)](https://chromium.googlesource.com/chromium/src/+/master/services/network/cross_origin_read_blocking_explainer.md)
+- [Cross-Origin Read Blocking for Web Developers - The Chromium Projects](https://www.chromium.org/Home/chromium-security/corb-for-developers)
 
 また、これにより Prefix を付けてパースを抑制し XSSI を防ぐ場面も、 CORB のスコープに入っている。
 
 - [AngularJS: API: $http](https://docs.angularjs.org/api/ng/service/$http#json-vulnerability-protection)
 
+動作する DEMO は以下に用意した。
 
+- [Cross-Origin-Read-Blocking DEMO](https://labs.jxck.io/site-isolation/cross-origin-read-blocking/index.html)
 
 
 
@@ -476,10 +496,10 @@ if (self.crossOriginIsolated) {
 動作する DEMO を以下に用意した。
 
 - [Site Isolation](https://labs.jxck.io/site-isolation/)
-  - [Cross-Origin-Read-Blocking   DEMO](https://labs.jxck.io/site-isolation/cross-origin-read-blocking/index.html)
+  - [Cross-Origin-Read-Blocking DEMO](  https://labs.jxck.io/site-isolation/cross-origin-read-blocking/index.html)
   - [Cross-Origin-Resource-Policy DEMO](https://labs.jxck.io/site-isolation/cross-origin-resource-policy/index.html)
   - [Cross-Origin-Embedder-Policy DEMO](https://labs.jxck.io/site-isolation/cross-origin-embedder-policy/index.html)
-  - [Cross-Origin-Opener-Policy   DEMO](https://labs.jxck.io/site-isolation/cross-origin-opener-policy/index.html)
+  - [Cross-Origin-Opener-Policy DEMO](  https://labs.jxck.io/site-isolation/cross-origin-opener-policy/index.html)
 
 
 
