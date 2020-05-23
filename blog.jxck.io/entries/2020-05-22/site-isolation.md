@@ -252,7 +252,7 @@ Cross-Origin-Embedder-Policy: require-corp
 
 つまり、すでに明示的に読み込める Origin を制限しているため、 CORP をつけていなくても COEP の要件を満たす。
 
-Public CDN のようなサーバは、これまで CROP が暗黙的に `cross-origin` だったことに依存し、特に何もせず Cross Origin でコンテンツを配信してきた。
+Public CDN のようなサーバは、これまで CORP が暗黙的に `cross-origin` だったことに依存し、特に何もせず Cross Origin でコンテンツを配信してきた。
 
 しかし、 COEP のデプロイが広まると、今のままではコンテンツを読み込めな書くなるため、 Public であっても `CORP: cross-origin` か `ACAO: *` に対応する必要がでてくる。ブラウザサポートが増えれば前者のほうが導入は容易だろう。
 
@@ -263,7 +263,7 @@ Public CDN のようなサーバは、これまで CROP が暗黙的に `cross-o
 
 CORP + COEP があれば、ほぼ完璧に「意図したリソースだけが読み込まれたプロセス」が構築できそうだが、これだけでは missing point がある、それが Opener の存在だ。
 
-`window.open()` や `_blaknk` では、開いた側(opener)の Window に、 開かれたページ(openee)から `window.opener` を経由してアクセスできる。このため、 2 つのページは同じプロセスに展開されてしまう。
+`window.open()` や `_blank` では、開いた側(opener)の Window に、 開かれたページ(openee)から `window.opener` を経由してアクセスできる。このため、 2 つのページは同じプロセスに展開されてしまう。
 
 noopener は、 Opener が `window.opener` の削除を指定するが、 Openee はそれを拒否できない(そういう提案があった気もするが)。
 
@@ -298,11 +298,11 @@ Cross-Origin-Opener-Policy: unsafe-none
 これにより missing point だった Opener の生成を制限することができる。
 
 
-## CORS + COEP + COOP
+## CORP + COEP + COOP
 
 これら全てが指定された場合を考える。
 
-ある HTML を読んだとき、そのサブリソースは全て CORS が指定されており、さらに他の Origin との opener もないため、完全に独立したプロセスグループが展開できるのだ。
+ある HTML を読んだとき、そのサブリソースは全て CORP が指定されており、さらに他の Origin との opener もないため、完全に独立したプロセスグループが展開できるのだ。
 
 Chrome のように、ブラウザ全体で Site Isolation が実装されてないブラウザでも、これらヘッダについてだけ明示的にプロセスを分ける実装ができれば、 Spectre の対策になる。
 
@@ -328,7 +328,7 @@ Chrome では COEP/COOP が有効になったサイトにのみ、 SharedArrayBu
 
 Isolated な環境でしか利用できない API が存在するということは、分岐のために Isolated であるかどうかを知りたい場面がでてくる。
 
-そこで、 CORS + COEP + COOP が適切に設定されているかどうかを取得するフラグとして提案されているのが `self.corssOriginIsolated` だ。
+そこで、 CORP + COEP + COOP が適切に設定されているかどうかを取得するフラグとして提案されているのが `self.corssOriginIsolated` だ。
 
 
 ```js
@@ -344,7 +344,7 @@ if (self.crossOriginIsolated) {
 
 Origin Isolation は、基本的には Site Isolation が Same Site なのに対して Same Origin に限定した仕様だ。
 
-これによい、サブドメイン側に影響があってもそれが伝搬しないで済むことになるだろう。
+これにより、サブドメイン側に影響があってもそれが伝搬しないで済むことになるだろう。
 
 ただし、単にそうするだけではなく、 Same Origin Isolation を実装する上で重要になる JS の Agent Cluster という仕様を更新することにモチベーションがあるようだ。
 
@@ -365,12 +365,12 @@ Origin Isolation は、基本的には Site Isolation が Same Site なのに対
 
 そこで、暗号化に追加してより安全な環境が提供できる状況をパラメタライズする仕様だ。具体的には 3 つ有り、それぞれ有効にできるものが変わる。
 
-- [SecureContext=Transport]: https
+- \[SecureContext=Transport\]: https
   - SW や getUserMedia など今定義されているもの
-- [SecureContext=Isolation]: CORP + COOP + COEP
-  - `peformance.now`, `performance.measureMemory`, SharedArrayBuffer etc
-- [SecureContext=Injection]: CSP Strict + Trusted Types
-  - WebUSP, clipboard etc
+- \[SecureContext=Isolation\]: CORP + COOP + COEP
+  - `performance.now`, `performance.measureMemory`, SharedArrayBuffer etc
+- \[SecureContext=Injection\]: CSP Strict + Trusted Types
+  - WebUSB, clipboard etc
 
 こうしたコンセプトを用意し、今後新しい Powerful Feature API が提供される際の指針にするという内容のようだ。
 
@@ -379,7 +379,7 @@ Origin Isolation は、基本的には Site Isolation が Same Site なのに対
 
 ## まとめ
 
-CORS / COOP / COEP あたりは、最初の提案から名前が何度か変わったりしてややこしかったが、最近やっと落ち着いてきて実装が進みつつ有るため、今回解説するに至った。
+CORP / COOP / COEP あたりは、最初の提案から名前が何度か変わったりしてややこしかったが、最近やっと落ち着いてきて実装が進みつつ有るため、今回解説するに至った。
 
 より詳細な流れについては、以下が参考になるだろう。
 
@@ -387,7 +387,7 @@ CORS / COOP / COEP あたりは、最初の提案から名前が何度か変わ�
 
 これらのヘッダは、後から対応する負荷がある程度ある一方、今後の Powerful Feature の有効化の条件になる可能性が有るため、仮にこのまま進めば避けては通れないヘッダになる可能性が有る。
 
-しかし、広告を初めとする 3rd Party Resource を多様している場合は、依存先の対応が必要なため、しばらくは対応が難しいかも知れない。
+しかし、広告を初めとする 3rd Party Resource を多用している場合は、依存先の対応が必要なため、しばらくは対応が難しいかも知れない。
 
 そうした理由で [広告](https://blog.jxck.io/entries/2020-01-31/ads-for-blog.html) を入れている本サイトでは使用しなかったが、広告を外している [mozaic.fm](https://mozaic.fm) の方は、 [v3](https://blog.jxck.io/entries/2020-05-06/mozaic-v3-release.html) で実装しデプロイ済みだ。
 
