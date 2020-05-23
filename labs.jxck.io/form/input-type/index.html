@@ -69,20 +69,28 @@
     <dd><input id=file name=file type=file>
 
     <dt><label for=select>select</label>
-    <select name="select" multiple>
+    <select id=select name="select">
       <option value="value1">Value 1</option>
-      <option value="value2" selected>Value 2</option>
-      <option value="value3" selected>Value 3</option>
+      <option value="value2">Value 2</option>
+      <option value="value3">Value 3</option>
     </select>
 
     <dt><label for=reset>type=reset</label>
     <dd><input id=reset name=reset type=reset>
 
+    <dt><label for=image>type=image (graphical submit button)</label>
+    <dd><input id=image name=image type=image src=../../assets/jxck.png width=30 height=30>
+
+    <dt><label for=progress>&lt;progress&gt;</label>
+    <dd><progress id=progress max=100 value=70>70%</progress>
+
+    <dt><label for=meter>&lt;meter&gt;</label>
+    <dd><meter id=meter max=100 value=70>70%</meter>
+
+    <dt><label for=textarea>&lt;textarea&gt;</label>
+    <dd><textarea id=textarea></textarea>
   </dl>
   <button type=submit>submit</button>
-
-  <label for=image>type=image (graphical submit button)</label>
-  <input id=image name=image type=image src=https://logo.jxck.io/jxck.png>
 </form>
 
 
