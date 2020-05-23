@@ -540,16 +540,19 @@ Origin-Isolation などの関連仕様の動向も気になるため、引き続
 
 - Explainer
   - origin-isolation/README.md at master · WICG/origin-isolation
-   - <https://github.com/WICG/origin-isolation/blob/master/README.md>
+    - <https://github.com/WICG/origin-isolation/blob/master/README.md>
 - Chrome Platform Status
   - Origin isolation - Chrome Platform Status
     - <https://www.chromestatus.com/feature/5683766104162304>
 - Tag Review
   - Origin isolation · Issue #464 · w3ctag/design-reviews
     - <https://github.com/w3ctag/design-reviews/issues/464>
+- Intents
+  - Intent to Experiment: Origin isolation
+    - <https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/G0h3PFPeclA>
 - Issue
   - Origin isolation - Issue #464 - w3ctag/design-reviews
-   - <https://github.com/w3ctag/design-reviews/issues/464>
+    - <https://github.com/w3ctag/design-reviews/issues/464>
 
 
 ## Securer Context
