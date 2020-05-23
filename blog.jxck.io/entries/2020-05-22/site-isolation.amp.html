@@ -988,14 +988,14 @@ Cross-Origin-Resource-Policy: cross-origin</code></pre>
 &lt;script crossorigin src=https://example.com/script.js&gt;</code></pre>
       <p>この場合、リクエストには Origin ヘッダが載り、サーバはそれを見て明示的に Access-Control-Allow-Origin を返すことになる。
       <p>つまり、すでに明示的に読み込める Origin を制限しているため、 CORP をつけていなくても COEP の要件を満たす。
-      <p>Public CDN のようなサーバは、これまで CROP が暗黙的に <code translate="no">cross-origin</code> だったことに依存し、特に何もせず Cross Origin でコンテンツを配信してきた。
+      <p>Public CDN のようなサーバは、これまで CORP が暗黙的に <code translate="no">cross-origin</code> だったことに依存し、特に何もせず Cross Origin でコンテンツを配信してきた。
       <p>しかし、 COEP のデプロイが広まると、今のままではコンテンツを読み込めな書くなるため、 Public であっても <code translate="no">CORP: cross-origin</code> か <code translate="no">ACAO: *</code> に対応する必要がでてくる。ブラウザサポートが増えれば前者のほうが導入は容易だろう。
       <p>逆に言うと、 <code translate="no">CORP: cross-origin</code> を明示的に指定することが、そのリソースは public であることを表明するヘッダとして使われていくことになるだろう。
     </section>
     <section>
       <h2 id="coop"><a href="#coop">COOP</a></h2>
       <p>CORP + COEP があれば、ほぼ完璧に「意図したリソースだけが読み込まれたプロセス」が構築できそうだが、これだけでは missing point がある、それが Opener の存在だ。
-      <p><code translate="no">window.open()</code> や <code translate="no">_blaknk</code> では、開いた側(opener)の Window に、 開かれたページ(openee)から <code translate="no">window.opener</code> を経由してアクセスできる。このため、 2 つのページは同じプロセスに展開されてしまう。
+      <p><code translate="no">window.open()</code> や <code translate="no">_blank</code> では、開いた側(opener)の Window に、 開かれたページ(openee)から <code translate="no">window.opener</code> を経由してアクセスできる。このため、 2 つのページは同じプロセスに展開されてしまう。
       <p>noopener は、 Opener が <code translate="no">window.opener</code> の削除を指定するが、 Openee はそれを拒否できない(そういう提案があった気もするが)。
       <p>COOP は Opener / Openee 両方に指定し、その両方の値が整合しなければ <code translate="no">window.opener</code> が削除されるという仕様だ。
       <ul>
@@ -1105,9 +1105,9 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
       <p>これにより missing point だった Opener の生成を制限することができる。
     </section>
     <section>
-      <h2 id="cors--coep--coop"><a href="#cors--coep--coop">CORS + COEP + COOP</a></h2>
+      <h2 id="corp--coep--coop"><a href="#corp--coep--coop">CORP + COEP + COOP</a></h2>
       <p>これら全てが指定された場合を考える。
-      <p>ある HTML を読んだとき、そのサブリソースは全て CORS が指定されており、さらに他の Origin との opener もないため、完全に独立したプロセスグループが展開できるのだ。
+      <p>ある HTML を読んだとき、そのサブリソースは全て CORP が指定されており、さらに他の Origin との opener もないため、完全に独立したプロセスグループが展開できるのだ。
       <p>Chrome のように、ブラウザ全体で Site Isolation が実装されてないブラウザでも、これらヘッダについてだけ明示的にプロセスを分ける実装ができれば、 Spectre の対策になる。
       <p>Spectre が緩和できたことは、それによって無効化されていた SharedArrayBuffer の再度有効化を可能にする。
       <p>Chrome では COEP/COOP が有効になったサイトにのみ、 SharedArrayBuffer を有効にする予定を発表している。
@@ -1124,7 +1124,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
       <section>
         <h3 id="crossoriginisolated"><a href="#crossoriginisolated">crossOriginIsolated</a></h3>
         <p>Isolated な環境でしか利用できない API が存在するということは、分岐のために Isolated であるかどうかを知りたい場面がでてくる。
-        <p>そこで、 CORS + COEP + COOP が適切に設定されているかどうかを取得するフラグとして提案されているのが <code translate="no">self.corssOriginIsolated</code> だ。
+        <p>そこで、 CORP + COEP + COOP が適切に設定されているかどうかを取得するフラグとして提案されているのが <code translate="no">self.corssOriginIsolated</code> だ。
         <pre class=js><code translate="no">if (self.crossOriginIsolated) {
   // Cross Origin Isolation が有効な場合 true を返す
 }</code></pre>
@@ -1135,7 +1135,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
       <section>
         <h3 id="origin-isolation"><a href="#origin-isolation">Origin Isolation</a></h3>
         <p>Origin Isolation は、基本的には Site Isolation が Same Site なのに対して Same Origin に限定した仕様だ。
-        <p>これによい、サブドメイン側に影響があってもそれが伝搬しないで済むことになるだろう。
+        <p>これにより、サブドメイン側に影響があってもそれが伝搬しないで済むことになるだろう。
         <p>ただし、単にそうするだけではなく、 Same Origin Isolation を実装する上で重要になる JS の Agent Cluster という仕様を更新することにモチベーションがあるようだ。
         <p>ここを更新できると、 Origin Isolation を実装する上で UA が取る戦略が多様になる。
         <p>また、 COOP + COEP の方向は良いにせよ、依存リソース全てが対応する必要があり対応負荷が高いこと、そして結果的に同じような結果になっても Origin Isolation をしたいという明示的なシグナルにはなってないことなどが指摘されている。
@@ -1151,13 +1151,24 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
         <p>そこで、暗号化に追加してより安全な環境が提供できる状況をパラメタライズする仕様だ。具体的には 3 つ有り、それぞれ有効にできるものが変わる。
         <ul>
           <li>
-
+            [SecureContext=Transport]: https
+            <ul>
+              <li>SW や getUserMedia など今定義されているもの
+            </ul>
           </li>
           <li>
-
+            [SecureContext=Isolation]: CORP + COOP + COEP
+            <ul>
+              <li>
+                <code translate="no">performance.now</code>, <code translate="no">performance.measureMemory</code>, SharedArrayBuffer etc
+              </li>
+            </ul>
           </li>
           <li>
-
+            [SecureContext=Injection]: CSP Strict + Trusted Types
+            <ul>
+              <li>WebUSB, clipboard etc
+            </ul>
           </li>
         </ul>
         <p>こうしたコンセプトを用意し、今後新しい Powerful Feature API が提供される際の指針にするという内容のようだ。
@@ -1168,13 +1179,13 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
     </section>
     <section>
       <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
-      <p>CORS / COOP / COEP あたりは、最初の提案から名前が何度か変わったりしてややこしかったが、最近やっと落ち着いてきて実装が進みつつ有るため、今回解説するに至った。
+      <p>CORP / COOP / COEP あたりは、最初の提案から名前が何度か変わったりしてややこしかったが、最近やっと落ち着いてきて実装が進みつつ有るため、今回解説するに至った。
       <p>より詳細な流れについては、以下が参考になるだろう。
       <ul>
         <li><a href="https://mozaic.fm/episodes/63/cross-origin-info-leaks.html">ep63 Cross Origin Info Leaks | mozaic.fm</a>
       </ul>
       <p>これらのヘッダは、後から対応する負荷がある程度ある一方、今後の Powerful Feature の有効化の条件になる可能性が有るため、仮にこのまま進めば避けては通れないヘッダになる可能性が有る。
-      <p>しかし、広告を初めとする 3rd Party Resource を多様している場合は、依存先の対応が必要なため、しばらくは対応が難しいかも知れない。
+      <p>しかし、広告を初めとする 3rd Party Resource を多用している場合は、依存先の対応が必要なため、しばらくは対応が難しいかも知れない。
       <p>そうした理由で <a href="https://blog.jxck.io/entries/2020-01-31/ads-for-blog.html">広告</a> を入れている本サイトでは使用しなかったが、広告を外している <a href="https://mozaic.fm">mozaic.fm</a> の方は、 <a href="https://blog.jxck.io/entries/2020-05-06/mozaic-v3-release.html">v3</a> で実装しデプロイ済みだ。
       <p>今回は解説してないが、それぞれ Reporting API で Report が取れるため、デプロイしていく上で Reporting Endpoint の確保は必須となるだろう。(report はまだ観測してない)
       <p>Origin-Isolation などの関連仕様の動向も気になるため、引き続き仕様の動向を追いつつ、 feedback につなげていきたい。
