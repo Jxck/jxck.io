@@ -579,6 +579,7 @@ Origin-Isolation などの関連仕様の動向も気になるため、引き続
   - [Cross-Origin-Embedder-Policy DEMO](https://labs.jxck.io/site-isolation/cross-origin-embedder-policy/index.html)
   - [Cross-Origin-Opener-Policy DEMO](  https://labs.jxck.io/site-isolation/cross-origin-opener-policy/index.html)
   - [crossOriginIsolated DEMO](         https://labs.jxck.io/site-isolation/crossOriginIsolated/index.html)
+  - [Origin-Isolation DEMO](            https://labs.jxck.io/site-isolation/origin-isolation/index.html)
 
 
 ## Special Thanks
