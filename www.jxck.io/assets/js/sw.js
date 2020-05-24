@@ -7,7 +7,7 @@ EventTarget.prototype.off = EventTarget.prototype.removeEventListener
  * 同じ VERSION であれば、キャッシュにないものだけ追加する
  * VERSION を変えると、あたらしく作り追加する
  */
-const VERSION       = 'v3.0.3'
+const VERSION       = 'v3.0.5'
 const CACHE_GENERAL = `mozaic.${VERSION}`
 const CACHE_MP3     = `mozaic.v3.mp3`
 log('sw.js')
@@ -128,9 +128,28 @@ async function worker() {
       // bgfetch は cors が必要だが <audio> は no-cors で投げる
       // cors/no-cors のリクエストがお互いにマッチするように
       // Request ではなく URL 単位でキャッシュを探す
-      const res = await caches.match(req.url)
+      let res = await caches.match(req.url)
       log('cache match', res)
-      return res || fetch(req)
+
+      if (res && ['video', 'audio'].includes(req.destination)) {
+        log('audio/video cache', res)
+        // video/audio のときだけ
+        // range を元に cache の buffer を組み立て
+        // Partial Response で返す
+        const range   = req.headers.get('range')?.match(/^bytes\=(\d+)\-$/)[1]
+        const type    = res.headers.get('content-type')
+        const buf     = await res.arrayBuffer()
+        const partial = buf.slice(range)
+        const status  = 206
+        const headers = new Headers({
+          'Content-Type':  type,
+          'Content-Range': `bytes ${range}-${buf.byteLength - 1}/${buf.byteLength}`
+        })
+        res = new Response(partial, {status, headers})
+      } else {
+        res = await fetch(req)
+      }
+      return res
     }
     e.respondWith(fetching(req))
   })
@@ -206,7 +225,7 @@ async function worker() {
   })
 
   self.addEventListener('backgroundfetchsuccess', (e) => {
-    console.log(e.type)
+    log(e.type)
     e.waitUntil(async function() {
       try {
         // 結果を取り出す
