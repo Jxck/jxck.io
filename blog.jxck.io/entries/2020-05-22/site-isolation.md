@@ -214,7 +214,7 @@ Cross-Origin-Resource-Policy: same-site
 Cross-Origin-Resource-Policy: cross-origin
 ```
 
-same-origin や same-site を指定すれば、ブラウザは secret.json のレスポンスヘッダを見た時点で、メモリへ展開してよいかどうかをブラウザが判断できる。
+same-origin や same-site を指定すれば、ブラウザは secret.js のレスポンスヘッダを見た時点で、メモリへ展開してよいかどうかをブラウザが判断できる。
 
 どんなレスポンスにも使えるため、 CORB で守られないものも守ることができる。
 
