@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>DEMO</title>
+
+<style>
+</style>
+
+<h1>Test</h1>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+
+
+  document.on('DOMContentLoaded', async (e) => {
+    console.log(e)
+
+    const url = `quic-transport://localhost.jxck.io:3000/echo`
+    const transport = new QuicTransport(url);
+    await transport.ready;
+
+    const sender = await transport.createSendStream();
+    const writer = sender.writable.getWriter();
+
+    const data = new Uint8Array([1,2,3,4,5]);
+    await writer.write(data)
+    await writer.close();
+
+    const recver = transport.receiveStreams().getReader();
+    const {value: receiveStream, done: streamsDone} = await recver.read();
+    console.log(receiveStream, streamsDone)
+
+    const reader = receiveStream.readable.getReader();
+    const {value: u8array, done: arraysDone} = await reader.read();
+    console.log(u8array, arraysDone)
+
+  })
+</script>
+

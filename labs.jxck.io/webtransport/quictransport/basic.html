@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>DEMO</title>
+
+<style>
+</style>
+
+<h1>Test</h1>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  document.on('DOMContentLoaded', async (e) => {
+    console.log(e)
+
+    const url = `quic-transport://localhost.jxck.io:3000/echo`
+    const transport = new QuicTransport(url);
+    await transport.ready
+
+    const writer = transport.sendDatagrams().getWriter();
+    const reader = transport.receiveDatagrams().getReader();
+
+    const data = new Uint8Array([1,2,3,4,5]);
+    writer.write(data);
+
+    const {done, value} = await reader.read();
+    console.log(done, value)
+    await transport.close()
+    console.log(await reader.read())
+  })
+</script>
+
