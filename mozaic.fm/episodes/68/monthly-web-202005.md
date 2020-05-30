@@ -1,0 +1,662 @@
+# [monthly-web][mozaic.fm] ep68 Monthly Web 202005
+
+
+## Info
+
+audio: https://files.mozaic.fm/mozaic-ep68.mp3
+
+published_at
+: 2020-06-01
+
+guest
+: [@myakura](https://twitter.com/myakura)
+
+
+## Theme
+
+第 68 回のテーマは 2020 年 5 月の Monthly Web です。
+
+
+### Chrome 動向
+
+- Stable: 83
+- Updates
+  - *New in Chrome 83*
+    - <https://developers.google.com/web/updates/2020/05/nic83>
+    - Trusted types
+    - Updates to form controls
+    - Origin trials
+    - Measure memory with `measureMemory()`
+    - Updates to the Native File System API
+    - New cross-origin policies
+    - Web vitals
+    - Barcode Detection API
+    - @supports CSS selectors.
+    - New ARIA annotations for comments, suggestions, and text highlights (similar to `<mark>`).
+    - prefers-color-scheme
+    - modules in shared workers.
+  - *Chromium Blog: Chrome 84 Beta: Web OTP, Web Animations, New Origin Trials and More*
+    - <https://blog.chromium.org/2020/05/chrome-84-beta-web-otp-web-animations.html>
+    - Web OTP API
+    - Web Animations
+    - App shortcuts
+    - Autoupgrade Image Mixed Content
+    - Blocking Insecure Downloads from Secure (HTTPS) Contexts
+    - ReportingObserver on Workers
+    - Resize Observer Updates
+    - revert Keyword
+    - Unprefixed Appearance CSS Property
+    - Unprefixed ruby-position CSS Property
+    - Web Authenticator API: Cross-origin iframe Support
+    - Private Methods and Accessors
+    - Weak references
+    - Deprecations, and Removals
+      - @import rules in `CSSStyleSheet.replace()` Removed
+      - Remove TLS 1.0 and TLS 1.1
+    - New Origin Trials
+      - Cookie Store API
+      - Idle Detection
+      - Origin Isolation
+      - WebAssembly SIMD
+    - Completed Origin Trials
+      - Content Indexing API
+      - Wake Lock API Based on Promises
+  - Deprecations and removals in Chrome 84
+    - <https://developers.google.com/web/updates/2020/05/chrome-84-deps-rems>
+    - @import rules in CSSStyleSheet.replace() removed
+    - Remove TLS 1.0 and TLS 1.1
+  - *What's New In DevTools (Chrome 84)*
+    - <https://developers.google.com/web/updates/2020/05/devtools>
+    - Fix site issues with the new Issues tab
+    - View accessibility information in the Inspect Mode tooltip
+    - Performance panel updates
+    - Layout Shift events in the new Experience section
+    - More accurate promise terminology in the Console
+    - Support for the revert keyword
+    - Image previews
+    - Color Picker now uses space-separated functional color notation
+    - Deprecation of the Properties pane in the Elements panel
+    - App shortcuts support in the Manifest pane
+  - Chromium Blog: Introducing Web Vitals: essential metrics for a healthy site
+    - <https://blog.chromium.org/2020/05/introducing-web-vitals-essential-metrics.html>
+  - *Chromium Blog: Protecting Chrome users from abusive notifications*
+    - <https://blog.chromium.org/2020/05/protecting-chrome-users-from-abusive.html>
+  - *Chromium Blog: Resuming SameSite Cookie Changes in July*
+    - <https://blog.chromium.org/2020/05/resuming-samesite-cookie-changes-in-july.html>
+    - 延期されていた SameSite=Lax by default を 7/14 の M84 で再開する計画
+  - *Chromium Blog: Protecting against resource-heavy ads in Chrome*
+    - <https://blog.chromium.org/2020/05/resource-heavy-ads-in-chrome.html>
+  - *Chromium Blog: A safer and more private browsing experience with Secure DNS*
+    - <https://blog.chromium.org/2020/05/a-safer-and-more-private-browsing-DoH.html>
+  - *Chromium Blog: Celebrating 10 years of WebM and WebRTC*
+    - <https://blog.chromium.org/2020/05/celebrating-10-years-of-webm-and-webrtc.html>
+  - Chromium Blog: web.dev LIVE: A digital event over three days and three time zones
+    - <https://blog.chromium.org/2020/05/webdev-live-digital-event-over-three.html>
+  - *Web Vitals*
+    - <https://web.dev/vitals/>
+    - LCP + FID + CLS
+    - Optimize Largest Contentful Paint
+      - <https://web.dev/optimize-lcp/>
+      - View Port の最大コンテンツ要素が表示されるまでの時間
+      - Preload や SW によるキャッシュヒットなどが有効
+    - Optimize First Input Delay
+      - <https://web.dev/optimize-fid/>
+      - ユーザの操作に応答できるようになるまでの時間
+      - JS の実行を減らす
+      - async/defer, dynamic import, minimize
+    - Optimize Cumulative Layout Shift
+      - <https://web.dev/optimize-cls/>
+      - `<img>` `<video>` `<iframe>` などが表示されレイアウトがずれること
+      - あらかじめ領域を確保しておくことで防げる
+      - `<img>` では width/height から自動でアスペクト比が算出される
+      - font の FOUT/FOIT も preload / font-display: optional
+    - Defining the Core Web Vitals metrics thresholds
+      - <https://web.dev/defining-core-web-vitals-thresholds/>
+    - *Chromium Blog: The Science Behind Web Vitals*
+      - <https://blog.chromium.org/2020/05/the-science-behind-web-vitals.html>
+    - Tools to measure Core Web Vitals
+      - <https://web.dev/vitals-tools/>
+    - Getting started with measuring Web Vitals
+      - <https://web.dev/vitals-measurement-getting-started/>
+    - Best practices for measuring Web Vitals in the field
+      - <https://web.dev/vitals-field-measurement-best-practices/>
+    - *Official Google Webmaster Central Blog: Evaluating page experience for a better web*
+      - <https://webmasters.googleblog.com/2020/05/evaluating-page-experience.html>
+      - Core Web Vitals のスコアを Page Experience に入れる
+      - Top Story に乗る条件から AMP を外す
+      - という変更を来年以降に行い、ロールアウトの半年前には再度通知する
+  - Making your website "cross-origin isolated" using COOP and COEP
+    - <https://web.dev/coop-coep/>
+    - Why you need "cross-origin isolated" for powerful features
+      - <https://web.dev/why-coop-coep/>
+  - Chromium lands Flexbox gap
+    - <https://web.dev/flexbox-gap/>
+    - Flexbox でも Grid の gap プロパティが使えるように
+  - Persistent storage
+    - <https://web.dev/persistent-storage/>
+    - Storage API の永続キャッシュと権限について
+    - 権限の付与は以下を考慮して Chrome が自動でプロンプトを出す
+      - site-engagement があるか
+      - installed/bookmarked されてるか
+      - notification permission があるか
+    - 永続としてマークされると、領域が圧迫されても消えない
+    - 実際領域の圧迫で消えることはほとんどない
+    - ユーザが自分で消すことの方が一般的
+  - *Handling Heavy Ad Interventions*
+    - <https://developers.google.com/web/updates/2020/05/heavy-ad-interventions>
+    - 重たい広告を自動で削除する Intervention について
+    - 基準
+      - 60s 以上メインスレッドを占有
+      - 30s のウインドウ内で 15s 以上メインスレッド占有を
+      - 4MB 以上帯域を占有
+    - 削除したら Intervention Report を飛ばす
+- Intents
+  - Ship: Gutters in flexbox: row-gap and column-gap properties
+    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/HYDQLFPAHC0/m/BsF9T0wGAAAJ>
+  - Ship: Forced Colors Mode
+    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/hkjRPJ1-Ruk/m/AS6HBVfCAAAJ>
+  - *Ship: App Shortcuts Menu*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/FgzYX7AFbUQ/f2i0-f-BAQAJ>
+    - installed app にショートカットアイコンを追加できる
+  - Ship: Promise.any
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/TXMOAEC0AW4/x7_VE87VCQAJ>
+  - Ship: Logical Assignment
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ttUq_6Bq_FM/8cwxp6nVCQAJ>
+  - Ship: Layout Instability Shifted Element Surfacing
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/18PUl8RwgHg/JHmpT47lAQAJ>
+  - Ship: Event Timing
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/1UQqjz1CR-k/Rdl-wVPkBwAJ>
+  - Ship: Web Bluetooth Remote GATT Characteristic Write With/Without Response
+    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/1JE8tjylY3s/m/lIJgtnADAgAJ>
+  - Implement and Ship: CSS advanced `attr()` function
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/FGCgsKmylhw/BSUrk2roCQAJ>
+  - Implement and Ship: Update the behavior of the "disabled" attribute for HTMLLinkElement
+    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/3izM5vVo98U/m/iDLjz_TwAgAJ>
+  - Implement and Ship: Battery status API gated by feature policy
+    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/sUs1KsQaXjA/m/l57qc73mAgAJ>
+  - Implement and Ship: WebAuthn `getPublicKey[Algorithm]()` and `getAuthenticatorData()`
+    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/gIINuOdEh1Q/m/AT8MZ_MtAAAJ>
+  - Intent to Implement and Ship: WebAuthn `getPublicKey[Algorithm]()` and `getAuthenticatorData()`
+    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/sAm4neyQybU/m/gu-gO1ctAAAJ>
+  - Implement and Ship: CSS Color Adjust: Remove 'only' and support used 'dark' for preferred 'light' for color-scheme
+    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/3RhZFvZE1LM/m/2n93K-kPAwAJ>
+  - *Prototype: Federated Learning of Cohorts*
+    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/DpZZG5K1PWs/m/IJT1W69wCAAJ>
+    - ユーザの興味関心を荒く収集し Ad. サーバなどに送るための API
+  - Prototype: optional total field in PaymentRequest
+    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/TJVn0Ps9ugA/m/3unr2Vo8AgAJ>
+  - Prototype: Beforematch event
+    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/QKUZ_ALJdM8/m/d0Qu1wJcAQAJ>
+    - 検索や id, scroll to text frag でヒットした時に移動する前に発火するイベント
+  - *Prototype: Subresource loading with Web Bundles*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/wYn13HabRN0/L4y4iY1-AgAJ>
+  - Prototype: API for receiving multicast
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/JVKSTHFiDzo/XlduZcFWAgAJ>
+  - *Prototype: Client-side video editing (MediaBlob)*
+    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/3eac-HVygFY/m/N_OXaOs7AAAJ>
+  - Prototype: CSS advanced `attr()` function (Was: Intent to Implement and Ship)
+    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/viBACPfSsEM/m/URCnDl81AAAJ>
+  - Prototype: Adding adaptivePtime to RTCRtpEncodingParameters.
+    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/lOi5XonBstA/m/lUMku8g0AwAJ>
+  - *Experiment: Cookie Store API*
+    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/bBdx2xIB7OQ/m/k2fMXf-WAAAJ>
+    - document.cookie の代替 API
+    - document/service worker 両方から触れる
+    - sw からはより細かい粒度で判断できる
+    - 将来的に cookie を無くし state token していく上での布石でもある(cooki を考え直す機会)
+  - *Experiment: Origin isolation*
+    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/G0h3PFPeclA/m/Lqt872UCAAAJ>
+  - *Experiment: Trust Token API*
+    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/UIvia1WwIhk/m/DuXLKdF7AgAJ>
+  - Experiment: `fetch()` upload streaming
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/l7QI1bsq80Y/Z1TJ0nplAQAJ>
+    - ReadableStream で chunked upload
+  - *Experiment: QuicTransport*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mHV_ZALf07Q/d7J9W0a1CQAJ>
+  - Extend Origin Trial: performance.measureMemory
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/LuoryMqT7wQ/DEiG_IpAAgAJ>
+  - Extend Experiment: PointerLock unadjusted mouse movement
+    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/yQ4Rdkrit_g/m/eGnWC9zhAgAJ>
+  - Change:
+- Unship:
+- Remove:
+- *Blink launch process update*
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/R8oZsw6RLGs/l0KOUyuWAQAJ>
+    - intents の公開や Chrome Status への反映などを行ってきた
+    - chromium を利用したプロジェクトや、関わる人も多くなった
+    - Chrome Status を Web Status (仮称)として刷新することに
+    - ドメインも変わる
+    - Chrome の UMA で取得するメトリクスは chromestatus.com で維持
+  - Planning isolation requirements (COOP/COEP) for SharedArrayBuffer
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_0MEXs6TJhg/F0UduPfpAQAJ>
+  - A few clarifications for the API owners process
+    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/2jon7dlhvLo/m/zOWmPnkKAgAJ>
+  - *Important: change to the "browser signals" section of the intent-to-ship process*
+    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/4sKJR-XPghU/m/UoUHsBExAAAJ>
+- v8
+  - V8 release v8.3 · V8
+    - <https://v8.dev/blog/v8-release-83>
+  - *Up to 4GB of memory in WebAssembly · V8*
+    - <https://v8.dev/blog/4gb-wasm-memory>
+    - WASM で 4G までのメモリが扱えるようになった
+    - そこに向かって発生した変更のまとめ
+    - 64bit メモリのサポートにより 4G 超えるアクセスも計画にある
+  - Understanding the ECMAScript spec, part 4 · V8
+    - <https://v8.dev/blog/understanding-ecmascript-part-4>
+  - High-performance garbage collection for C++ · V8
+    - <https://v8.dev/blog/high-performance-cpp-gc>
+- Other
+  - Preparing for AppCache removal
+    - <https://web.dev/appcache-removal/>
+  - More variable font options for the macOS system-ui font in Chromium 83
+    - <https://web.dev/more-variable-font-options-in-chromium-83/>
+  - Get things done quickly with app shortcuts
+    - <https://web.dev/app-shortcuts/>
+  - Wake Lock API case study: 300% increase in purchase intent indicators on BettyCrocker.com
+    - <https://web.dev/betty-crocker/>
+  - Detect inactive users with the Idle Detection API
+    - <https://web.dev/idle-detection/>
+  - *What's New in Lighthouse 6.0*
+    - <https://web.dev/lighthouse-whats-new-6.0/>
+  - Web Animations API improvements in Chromium 84
+    - <https://web.dev/web-animations/>
+  - Profiling Web Audio apps in Chrome
+    - <https://web.dev/profiling-web-audio-apps-in-chrome/>
+  - AMP + Web Vitals – a better web, together – The AMP Blog
+    - <https://blog.amp.dev/2020/05/06/amp-web-vitals-a-better-web-together/>
+  - Creating accessible sites with AMP – The AMP Blog
+    - <https://blog.amp.dev/2020/05/04/creating-accessible-sites-with-amp/>
+  - Web Stories, powered by AMP – The AMP Blog
+    - <https://blog.amp.dev/2020/05/01/web-stories-powered-by-amp/>
+  - Infinite recommendations with a new and improved amp-next-page – The AMP Blog
+    - <https://blog.amp.dev/2020/05/12/infinite-recommendations-with-a-new-and-improved-amp-next-page/>
+  - AMP: a well-lit path to optimizing for Google's page experience signal – The AMP Blog
+    - <https://blog.amp.dev/2020/05/28/amp-page-experience/>
+
+
+### Firefox 動向
+
+- Stable: 76
+- Updates
+  - *Firefox 76: Audio worklets and other tricks - Mozilla Hacks - the Web developer blog*
+    - <https://hacks.mozilla.org/2020/05/firefox-76-audio-worklets-and-other-tricks/>
+    - Fresh in Dev Edition: CSS Compatibility Panel
+      - CSS のブラウザ対応が表示される
+    - Audio worklets
+    - devtools updates
+  - Firefox 77 Beta and Developer Edition are out, COVID-19 continues to affect the development
+    - <https://www.fxsitecompat.dev/en-CA/blog/2020/firefox-77-beta-and-developer-edition-are-out-covid-19-continues-to-affect-the-development/>
+  - These Weeks in Firefox: Issue 74 – Firefox Nightly News
+    - <https://blog.nightly.mozilla.org/2020/05/26/these-weeks-in-firefox-issue-74/>
+- Intents
+  - Ship: "JS BigInt to I64 integration" WebAssembly proposal
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/D72xparvfC8/1g2GQ6OyAQAJ>
+  - Ship: :read-only / :read-write pseudo-classes
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/3CguC7Mp3yQ/dQIFGug8AQAJ>
+  - *Ship: RegExp Named Capture Groups*
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/0Z49y1Hdaic/cb5hy62sAAAJ>
+  - Ship: ParentNode#replaceChildren
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/eZ-UZT6rT5g/Jt82qvL5AQAJ>
+  - *Ship: and Link: rel=preload support on Nightly and Early Beta*
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/MShUZ4VTa6s/E4XFYfL5AQAJ>
+  - *Prototype: CSS aspect-ratio in [css-sizing-4]*
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/mWViuwFw8b8/HVHJ8yAnAAAJ>
+  - Prototype: ::file-chooser-button
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/70ODk1Gqrzs/CBLgePEkAAAJ>
+  - *Prototype: Schemeful Cookie Same-Site*
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/8EjoeN7NXrc/TlxdZcSpAgAJ>
+  - Prototype: WebAssembly SIMD
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/Y-IR14CRxGc/CM-rT8-HAQAJ>
+- Other
+  - May 2020 CA Communication - Mozilla Security Blog
+    - <https://blog.mozilla.org/security/2020/05/08/may-2020-ca-communication/>
+  - Welcome Adam Seligman, Mozilla's new Chief Operating Officer - The Mozilla Blog
+    - <https://blog.mozilla.org/blog/2020/05/13/welcome-adam-seligman-mozillas-new-chief-operating-officer/>
+  - *High Performance Web Audio with AudioWorklet in Firefox - Mozilla Hacks - the Web developer blog*
+    - <https://hacks.mozilla.org/2020/05/high-performance-web-audio-with-audioworklet-in-firefox/>
+  - *Gecko Web Platform Update (2020-05-15)*
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/ms-_ExGEm_E/H3SvcHIJAwAJ>
+    - 隔週で共有するらしい
+  - Soft code freeze for Firefox 78 starts May 28
+    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/v9ms3Bgrlrs/7eqsN4aRAQAJ>
+  - Protecting Search and Browsing Data from Warrantless Access - The Mozilla Blog
+    - <https://blog.mozilla.org/blog/2020/05/22/protecting-search-and-browsing-data-from-warrantless-access/>
+  - The USA Freedom Act and Browsing History - The Mozilla Blog
+    - <https://blog.mozilla.org/blog/2020/05/22/usa-freedom-and-browsing-history/>
+  - Mozilla's journey to environmental sustainability - The Mozilla Blog
+    - <https://blog.mozilla.org/blog/2020/05/28/mozillas-journey-to-environmental-sustainability/>
+  - Sharing data on Italy's mid-pandemic internet outage – Data@Mozilla
+    - <https://blog.mozilla.org/data/2020/05/18/sharing-data-on-italys-mid-pandemic-internet-outage/>
+  - How does the Glean SDK send gzipped pings – Data@Mozilla
+    - <https://blog.mozilla.org/data/2020/05/26/how-does-the-glean-sdk-send-gzipped-pings/>
+  - Extensions in Firefox 77
+    - <https://blog.mozilla.org/addons/2020/05/28/extensions-in-firefox-77/>
+  - L10n Report: May 2020 Edition
+    - <https://blog.mozilla.org/l10n/2020/05/28/l10n-report-may-2020-edition/>
+  - An opportunity for openness and user agency in the proposed Facebook-Giphy merger - Open Policy & Advocacy
+    - <https://blog.mozilla.org/netpolicy/2020/05/27/an-opportunity-for-openness-and-user-agency-in-the-proposed-facebook-giphy-merger/>
+  - Mozilla Mornings on advertising and micro-targeting in the EU Digital Services Act - Open Policy & Advocacy
+    - <https://blog.mozilla.org/netpolicy/2020/05/25/mozilla-mornings-on-advertising-and-micro-targeting-in-the-eu-digital-services-act/>
+  - Today is Global Accessibility Awareness Day! - Mozilla Accessibility
+    - <https://blog.mozilla.org/accessibility/today-is-global-accessibility-awareness-day/>
+  - Firefox Reality for HoloLens 2
+    - <https://blog.mozvr.com/firefox-reality-hololens/>
+  - Firefox Reality 10
+    - <https://blog.mozvr.com/firefox-reality-10/>
+
+
+### Safari 動向
+
+- Stable: 13.1
+- Updates
+  - *Release Notes for Safari Technology Preview 106*
+    - <https://webkit.org/blog/10580/release-notes-for-safari-technology-preview-106/>
+    - Enabled async frame and overflow scrolling by default on macOS (r260276)
+    - Implemented `jump-*` functions for `steps()` timing functions (r261046)
+    - Added support for `:where()` pseudo class (r260319)
+    - Fixed `:is()` and `:where()` to not allow pseudo-elements when parsing (r260338)
+    - Fixed border-radius failing to clip composited iframe contents (r260950)
+    - Enabled BigInt (r260345)
+    - Changed BigInt constructor to accept larger integers than safe-integers (r260863)
+    - Added support for Intl.RelativeTimeFormat (r260349)
+    - Redesigned for-of iteration for arrays (r260323)
+    - Enabled using credentials for same-origin CSS mask images (r260598)
+  - *Release Notes for Safari Technology Preview 107*
+    - <https://webkit.org/blog/10585/release-notes-for-safari-technology-preview-107/>
+    - Changed the initial value of transform-box to be view-box to fix some SVG animations (r261752)
+    - Changed the cursor to update during the rendering steps, rather than on a 20ms timer (r261741)
+    - Fixed repaint issues when the login field collapses on music.apple.com (r261979)
+    - Fixed text clipped when rendered with fonts which have a negative line gap metric (r261573)
+    - Fixed table sizing when max-width is used (r261924)
+    - Changed to ignore a poster set after playback begins (r261341, r261576)
+    - Implemented Intl.Locale (r261215)
+    - Implemented BigInt.asIntN and BigInt.asUintN (r261156, r261199)
+    - Enabled logical assignment operators (r261728)
+    - Ensured IntlCollator.prototype.resolvedOptions returns relevant locale extension keys in alphabetical order (r261182)
+    - Enabled clipboard API access when pasting from a menu item or key binding (r261825)
+    - Implemented accessibility of HTML 5.1 Drag & Drop (r261248)
+- *Position*
+  - Webkit-dev から Position Request についてだけ抜粋
+    - 返信は apple の開発者個々人の意見や、 apple 外の人からもくる
+    - 単純に Yes/No にまとめることはできない
+  - [webkit-dev] Position on emerging standard: WebCodecs
+    - <https://lists.webkit.org/pipermail/webkit-dev/2020-May/031191.html>
+    - some reply
+  - [webkit-dev] Position on User-Agent Client Hints
+    - <https://lists.webkit.org/pipermail/webkit-dev/2020-May/031195.html>
+    - some reply
+  - [webkit-dev] Request for position on named pages and page-orientation
+    - <https://lists.webkit.org/pipermail/webkit-dev/2020-May/031216.html>
+    - no reply
+  - [webkit-dev] Request for position on content-visibility
+    - <https://lists.webkit.org/pipermail/webkit-dev/2020-May/031217.html>
+    - no reply
+  - [webkit-dev] Position on emerging standard: Declarative Shadow DOM
+    - <https://lists.webkit.org/pipermail/webkit-dev/2020-May/031218.html>
+    - no reply
+  - [webkit-dev] Request for position on First-Party Sets
+    - <https://lists.webkit.org/pipermail/webkit-dev/2020-May/031221.html>
+    - some reply
+  - [webkit-dev] Position on emerging standard: HTMLLinkElement "disabled" attribute behavior
+    - <https://lists.webkit.org/pipermail/webkit-dev/2020-May/031223.html>
+    - no reply
+  - [webkit-dev] Request for position on Schemeful Same-Site
+    - <https://lists.webkit.org/pipermail/webkit-dev/2020-May/031224.html>
+    - no reply
+  - [webkit-dev] Position on WebXR Anchors Module
+    - <https://lists.webkit.org/pipermail/webkit-dev/2020-May/031225.html>
+    - no reply
+- Other
+
+
+### Edge 動向
+
+- Stable: 83
+- Build
+  - *MyBuild - Home*
+    - <https://mybuild.microsoft.com/>
+    - Live Session
+      - MyBuild - Moving the web forward with Microsoft Edge and Chromium
+        - <https://mybuild.microsoft.com/sessions/a0f213d7-66f7-4a6e-a595-4c0d7acb2e6e>
+      - MyBuild - WebView2: Bringing the best of the web to your native apps
+        - <https://mybuild.microsoft.com/sessions/2118150e-250b-4a7f-94dd-2a23db4bd7df>
+      - MyBuild - Microsoft Edge: What's New for Web Developers
+        - <https://mybuild.microsoft.com/sessions/9198aeac-0c8e-4d32-96d1-cbb99a390aa6>
+      - MyBuild - Focus Group: Microsoft Products for Web Developers
+        - <https://mybuild.microsoft.com/sessions/4d581e25-4ec5-4761-a322-74dd4dbcfc95>
+      - MyBuild - Learn Studio Session: Build a WebAssembly app with Blazor & VS Code
+        - <https://mybuild.microsoft.com/sessions/b6d02ab0-d1fd-441d-bcb3-8dec25bbc46a>
+      - MyBuild - From code to scale! Build a static web app in minutes
+        - <https://mybuild.microsoft.com/sessions/90d1945f-35ab-4703-938c-85db3f1d2083>
+      - MyBuild - Modern Web UI with Blazor WebAssembly
+        - <https://mybuild.microsoft.com/sessions/7e6c0b6e-36b9-4b9b-a409-a0960f67531f>
+      - MyBuild - Expert Q&A: WinRTC, Open Source WebRTC Library
+        - <https://mybuild.microsoft.com/sessions/b89fd127-4d12-41b3-b67c-91fee11425b7>
+      - MyBuild - Building a Web for Everyone
+        - <https://mybuild.microsoft.com/sessions/13da0e38-2147-4714-9334-3c079e6c1920>
+      - MyBuild - Modern Web UI with Blazor WebAssembly
+        - <https://mybuild.microsoft.com/sessions/420ccd3f-6570-4c58-91da-cd760c511171>
+      - MyBuild - Learn Studio Session: Create a website in Azure
+        - <https://mybuild.microsoft.com/sessions/6bcd6b12-e074-437b-ba8c-0e27d97a8935>
+      - MyBuild - Moving the web forward with Microsoft Edge and Chromium
+        - <https://mybuild.microsoft.com/sessions/a0f213d7-66f7-4a6e-a595-4c0d7acb2e6e>
+- Updates
+  - *Everything new from Microsoft Edge at Build 2020*
+    - <https://blogs.windows.com/msedgedev/2020/05/19/microsoft-edge-news-developers-build-2020/>
+    - Edge リリース後初の Build カンファレンス
+    - What's new for web developers
+      - WebView2 preview expands to include .NET and UWP (WinUI) development
+      - Improvements to the Microsoft Edge Add-ons site make searching and finding extensions easier
+      - Making PWAs feel more at home on Windows 10
+      - Try out experimental web platform features with Origin Trials
+    - New features for every user
+      - Collections in Microsoft Edge is getting smarter with a new Pinterest integration
+      - Sidebar search provides a faster, more contextual way to look things up
+    - New features for information workers and IT Pros
+      - New syncing and customization options for IT professionals
+      - Data security gets a boost with Windows Information Protection
+      - Easily move between work and personal profiles
+      - Microsoft Search in Bing puts your work results all in one place
+  - *Origin Trials - Microsoft Edge Developer*
+    - <https://developer.microsoft.com/en-us/microsoft-edge/origin-trials/>
+    - Edge も Origin Trials を始める
+    - Chrome と仕組みは同じ
+    - VirtualKeyboardPolicy と PenButtonEvents からから
+  - *Making the web more accessible and inclusive for all with Microsoft Edge*
+    - <https://blogs.windows.com/windowsexperience/2020/05/21/making-the-web-more-accessible-and-inclusive-for-all-with-microsoft-edge/>
+    - Chromium に取り組み始めてから、 150 以上の a11y 機能改善を実施した
+    - 「Immersive Reader で開く」ができるように
+    - Immersive Reader で翻訳できるように
+    - Read Aloud で読み上げ
+    - Picture Dictionary の搭載により、単語の隣にそれを示す絵が出る
+  - Introducing an improved spellcheck experience in Microsoft Edge - Microsoft Edge Blog
+    - <https://blogs.windows.com/msedgedev/2020/05/28/improved-spellcheck-microsoft-edge-83/>
+  - *Introducing the new surf game in Microsoft Edge - Microsoft Edge Blog*
+    - <https://blogs.windows.com/msedgedev/2020/05/26/surf-game-edge-stable/>
+    - edge://surf でサーフィンゲームができる
+  - *Hi Reddit! We're the team behind Microsoft Edge and we're back for our third AMA. Ask us anything! : MicrosoftEdge*
+    - <https://www.reddit.com/r/MicrosoftEdge/comments/gnweyj/hi_reddit_were_the_team_behind_microsoft_edge_and/>
+    - Reddit で AMA
+- Chakra
+  - Release ChakraCore v1.11.19 · microsoft/ChakraCore
+    - <https://github.com/microsoft/ChakraCore/releases/tag/v1.11.19>
+- Other
+  - Using multiple profiles at work and at home is now easier with Microsoft Edge - Microsoft Edge Blog
+    - <https://blogs.windows.com/msedgedev/2020/04/30/automatic-profile-switching/>
+  - Browser Basics: User Gestures \| text/plain
+    - <https://textslashplain.com/2020/05/18/browser-basics-user-gestures/>
+  - A bit of GREASE keeps the web moving \| text/plain
+    - <https://textslashplain.com/2020/05/18/a-bit-of-grease-keeps-the-web-moving/>
+
+
+### WHATWG/W3C 動向
+
+- Recommendation
+- Proposed Recommendation
+  - Call for Review: JSON-LD 1.1 Specifications are W3C Proposed Recommendations
+    - <https://www.w3.org/blog/news/archives/8529>
+  - *Call for Review: DOM Review Draft - Published 18 June 2019 is a W3C Proposed Recommendation*
+    - <https://www.w3.org/blog/news/archives/8538>
+- Candidate Recommendation
+- Working Draft
+  - [CSSWG][css-text-decor-4] Updated WD of CSS Text Decoration L4
+    - <https://lists.w3.org/Archives/Public/www-style/2020May/0000.html>
+- First Public Working Draft
+  - First Public Working Draft: Challenges with Accessibility Guidelines Conformance and Testing, and Approaches for Mitigating Them
+    - <https://www.w3.org/blog/news/archives/8517>
+  - First Public Working Draft: Image Resource
+    - <https://www.w3.org/blog/news/archives/8526>
+  - First Public Working Draft: CSS Box Sizing Module Level 4
+    - <https://www.w3.org/blog/news/archives/8552>
+- Chartering
+- Other
+  - Migrating "A Well-Known URL for Changing Passwords" to WebAppSec
+    - <https://lists.w3.org/Archives/Public/public-webappsec/2020May/0001.html>
+  - HTTP Priority - proposal to support headers
+    - <https://lists.w3.org/Archives/Public/ietf-http-wg/2020AprJun/0070.html>
+  - W3C opens Advisory Board (AB) election
+    - <https://www.w3.org/blog/news/archives/8519>
+    - Tantek Ç elik (Mozilla)
+    - Heejin Chung (Samsung)
+    - Klaus Peter Hoeckner (Hilfsgemeinschaft)
+    - Tatsuya Igarashi (Sony)
+    - Florian Rivoal (W3C Invited Expert)*
+    - Tzviya Siegman (Wiley)*
+    - David Singer (Apple)*
+    - Alan Stearns (Adobe)
+  - *W3C Website Redesign Discovery Phase: New Survey*
+    - <https://lists.w3.org/Archives/Public/www-style/2020May/0001.html>
+    - サイト更新に先立つアンケート
+  - *CfC: Renaming Feature Policy to Permissions Policy*
+    - <https://lists.w3.org/Archives/Public/public-webappsec/2020May/0008.html>
+    - feature-policy が permission-policy に rename
+    - <https://github.com/w3c/webappsec-feature-policy/pull/379>
+  - *design principles for new CSS features*
+    - <https://lists.w3.org/Archives/Public/www-style/2020May/0009.html>
+  - W3C Strategic Highlights, May 2020
+    - <https://www.w3.org/blog/news/archives/8564>
+
+
+### TC39 動向
+
+- Meeting
+  - 2020-06
+    - 6/1-4, Remote で実施
+    - agendas/06.md at master · tc39/agendas
+      - <https://github.com/tc39/agendas/blob/master/2020/06.md>
+- Proposals Diff
+  - <https://github.com/tc39/proposals/compare/master@{2020-05-01}...master@{2020-06-01}>
+  - <https://tc39.github.io/beta/>
+  - 0->1
+  - 1->2
+  - 2->3
+  - 3->4
+- New Proposals
+  - proposal-intl-enumeration: Return supported values of options, such as timeZone, calendars, numberingSystems, currencies, units, regions, scripts
+    - <https://github.com/FrankYFTang/proposal-intl-enumeration>
+    - サポートされている言語設定などを取得できる API
+- Other
+
+
+### IETF 動向
+
+- IETF108
+  - materials
+    - <https://datatracker.ietf.org/meeting/>
+  - httpwg
+    - <https://github.com/httpwg/wg-materials/>
+    - httpbis - Not having a session at IETF 108 2020)
+      - <https://lists.w3.org/Archives/Public/ietf-http-wg/2020AprJun/0225.html>
+      - httpbis はなし
+    - wg-materials/interim-20-05 at gh-pages · httpwg/wg-materials
+      - <https://github.com/httpwg/wg-materials/tree/gh-pages/interim-20-05>
+      - interim はあった
+      - wg-materials/minutes.md at gh-pages · httpwg/wg-materials
+      - <https://github.com/httpwg/wg-materials/blob/gh-pages/interim-20-05/minutes.md>
+  - quicwg
+    - <https://github.com/quicwg/wg-materials>
+  - webtrans
+    - <https://github.com/DavidSchinazi/webtrans-wg-materials>
+  - tlswg
+    - <https://github.com/tlswg/wg-materials>
+  - wpack
+  - privacypass
+  - dispatch
+  - secdispatch
+- RFC
+- IETF Last Call
+- WG Last Call
+- Call for Adoption
+- I-D Action
+- Draft
+  - Channel Bindings for TLS 1.3
+    - <https://tools.ietf.org/html/draft-whited-tls-channel-bindings-for-tls13-00>
+  - JSResume: A JSON representation of resume data
+    - <https://tools.ietf.org/html/draft-dumler-jsresume-00>
+  - Questions Arising Concerning In-Person Meeting Cancellation
+    - <https://tools.ietf.org/html/draft-cooper-shmo-questions-00>
+  - End to End Media Encryption Procedures
+    - <https://tools.ietf.org/html/draft-murillo-perc-lite-01>
+  - Notable CBOR Tags
+    - <https://tools.ietf.org/html/draft-bormann-cbor-notable-tags-00>
+  - Changes to the RFC Series and RSE
+    - <https://tools.ietf.org/html/draft-brownlee-rfc-series-and-rse-changes-00>
+- Other
+
+
+### セキュリティ動向
+
+- Network-Layer DDoS Attack Trends for Q1 2020
+  - <https://blog.cloudflare.com/network-layer-ddos-attack-trends-for-q1-2020/>
+
+
+### 周辺動向
+
+- *Can QUIC match the computational efficiency of TCP? Our research says yes.*
+  - <https://www.fastly.com/blog/measuring-quic-vs-tcp-computational-efficiency>
+- Does the QUIC handshake require compression to be fast?
+  - <https://www.fastly.com/blog/quic-handshake-tls-compression-certificates-extension-study>
+- CUBIC and HyStart++ Support in quiche
+  - <https://blog.cloudflare.com/cubic-and-hystart-support-in-quiche/>
+- Making Video Intuitive: An Explainer
+  - <https://blog.cloudflare.com/making-video-intuitive-an-explainer/>
+- The requestVideoFrameCallback API
+  - <https://blog.tomayac.com/2020/05/15/the-requestvideoframecallback-api/>
+
+
+### イベント
+
+- 5 月
+  - 20-22: MS build
+    - <https://mybuild.microsoft.com/>
+- 6 月
+  - 22: WWDC20 - Apple Developer
+    - <https://developer.apple.com/wwdc20/>
+- 7 月
+  - 30-2: web.dev LIVE
+    - <https://web.dev/live/>
+  - 27-31: IETF 108 Online
+    - <https://ietf.org/how/meetings/108/>
+- 8 月
+- 9 月
+  - 7-11: SecWeb
+    - <https://secweb.work/>
+  - 9-10: Chromium Platform Security Summit
+    - <https://groups.google.com/a/chromium.org/forum/#!topic/security-dev/k7Lzy8TpR6Y>
+- 10 月
+  - 26-30: TPAC/2020 - W3C Wiki
+    - <https://www.w3.org/wiki/TPAC/2020>
+- 11 月
+  - 14-20: IETF 109 Bangkok
+    - <https://www.ietf.org/how/meetings/109/>
+
+
+### Wrap Up
+
+- Core Web Vitals 発表
+- MS Build
+- Edge の Origin Trials 開始
+- Gecko Web Platform Update 開始
+- Firefox Devtools が活発
+- WebKit の Request for Position のトラッキング開始
+- Feature Policy から Permission Policy への Rename
