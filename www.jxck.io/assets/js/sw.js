@@ -7,7 +7,7 @@ EventTarget.prototype.off = EventTarget.prototype.removeEventListener
  * 同じ VERSION であれば、キャッシュにないものだけ追加する
  * VERSION を変えると、あたらしく作り追加する
  */
-const VERSION       = 'v3.0.5'
+const VERSION       = 'v3.1.0'
 const CACHE_GENERAL = `mozaic.${VERSION}`
 const CACHE_MP3     = `mozaic.v3.mp3`
 log('sw.js')
@@ -120,38 +120,40 @@ async function worker() {
   })
 
   self.on('fetch', async (e) => {
-    const req = e.request
-    log('fetch', req)
+    // TODO: Range のハンドリングがおかしいので直す
 
-    // cache then fetch
-    async function fetching(req) {
-      // bgfetch は cors が必要だが <audio> は no-cors で投げる
-      // cors/no-cors のリクエストがお互いにマッチするように
-      // Request ではなく URL 単位でキャッシュを探す
-      let res = await caches.match(req.url)
-      log('cache match', res)
+    // const req = e.request
+    // log('fetch', req)
 
-      if (res && ['video', 'audio'].includes(req.destination)) {
-        log('audio/video cache', res)
-        // video/audio のときだけ
-        // range を元に cache の buffer を組み立て
-        // Partial Response で返す
-        const range   = req.headers.get('range')?.match(/^bytes\=(\d+)\-$/)[1]
-        const type    = res.headers.get('content-type')
-        const buf     = await res.arrayBuffer()
-        const partial = buf.slice(range)
-        const status  = 206
-        const headers = new Headers({
-          'Content-Type':  type,
-          'Content-Range': `bytes ${range}-${buf.byteLength - 1}/${buf.byteLength}`
-        })
-        res = new Response(partial, {status, headers})
-      } else {
-        res = await fetch(req)
-      }
-      return res
-    }
-    e.respondWith(fetching(req))
+    // // cache then fetch
+    // async function fetching(req) {
+    //   // bgfetch は cors が必要だが <audio> は no-cors で投げる
+    //   // cors/no-cors のリクエストがお互いにマッチするように
+    //   // Request ではなく URL 単位でキャッシュを探す
+    //   let res = await caches.match(req.url)
+    //   log('cache match', res)
+
+    //   if (res && ['video', 'audio'].includes(req.destination)) {
+    //     log('audio/video cache', res)
+    //     // video/audio のときだけ
+    //     // range を元に cache の buffer を組み立て
+    //     // Partial Response で返す
+    //     const range   = req.headers.get('range')?.match(/^bytes\=(\d+)\-$/)[1]
+    //     const type    = res.headers.get('content-type')
+    //     const buf     = await res.arrayBuffer()
+    //     const partial = buf.slice(range)
+    //     const status  = 206
+    //     const headers = new Headers({
+    //       'Content-Type':  type,
+    //       'Content-Range': `bytes ${range}-${buf.byteLength - 1}/${buf.byteLength}`
+    //     })
+    //     res = new Response(partial, {status, headers})
+    //   } else {
+    //     res = await fetch(req)
+    //   }
+    //   return res
+    // }
+    // e.respondWith(fetching(req))
   })
 
   self.addEventListener('message', async (e) => {
