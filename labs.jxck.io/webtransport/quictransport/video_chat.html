@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>DEMO</title>
+
+<style>
+canvas {
+  border: solid 1px black;
+}
+</style>
+
+<h1>Test</h1>
+
+<video id=local></video>
+<video id=peer></video>
+
+<button id=start>start</button>
+
+<script>
+  'use strict'
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  $('#start').on('click', async (e) => {
+    console.log(e)
+
+    // get camera data
+    const $video = document.querySelector("#local")
+    const stream = await navigator.mediaDevices.getUserMedia({video: true})
+    $video.srcObject = stream
+
+    // offscreen canvas for get binary
+    const $canvas = document.createElement("canvas")
+    const ctx     = $canvas.getContext("2d")
+
+    $video.onloadedmetadata = () => {
+      $video.play()
+      $canvas.width  = $video.videoWidth
+      $canvas.height = $video.videoHeight
+      frame()
+    }
+
+    function frame() {
+      // draw video into offscreen canvas
+      ctx.drawImage($video, 0, 0)
+
+      // get image data
+      const imageData = ctx.getImageData(0, 0, $canvas.width, $canvas.height)
+      console.log(imageData.data);
+
+      // next frame
+      window.requestAnimationFrame(frame)
+    }
+  })
+</script>
