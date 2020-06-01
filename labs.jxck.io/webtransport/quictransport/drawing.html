@@ -4,11 +4,21 @@
 <title>QuicTransport drawing DEMO</title>
 
 <style>
+canvas {
+  border: solid 1px black;
+}
 </style>
 
 <h1>QuicTransport drawing DEMO</h1>
 
+<h2>local</h2>
+<canvas id=local></canvas>
 
+<h2>websocket</h2>
+<canvas id=ws></canvas>
+
+<h2>webtransport</h2>
+<canvas id=wt></canvas>
 
 <script>
   'use strict'
@@ -16,14 +26,76 @@
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
+  class Transport extends EventTarget {
+    constructor(url) {
+      super()
+      this.transport = new QuicTransport(url)
+      this.writer = this.transport.sendDatagrams().getWriter()
+      this.reader = this.transport.receiveDatagrams().getReader()
+      this.transport.ready.then(async (e) => {
+        this.dispatchEvent(new CustomEvent('open'))
 
+        while(true) {
+          const detail = await this.reader.read()
+          this.dispatchEvent(new CustomEvent('data', {detail}))
+        }
+      })
+    }
+
+    send(data) {
+      this.writer.write(data)
+    }
+
+    close() {
+      this.transport.close()
+    }
+  }
+
+  const wt = new Transport('quic-transport://labs.jxck.io:3000/echo')
+  const ws = new WebSocket("wss://ws.jxck.io", ['echo'])
 
   document.on('DOMContentLoaded', async (e) => {
     console.log(e)
 
+    const $local    = document.querySelector('#local')
+    const local_ctx = $local.getContext('2d')
 
+    const $ws    = document.querySelector('#ws')
+    const ws_ctx = $ws.getContext('2d')
 
+    const $wt    = document.querySelector('#wt')
+    const wt_ctx = $wt.getContext('2d')
 
+    const {left, top} = $local.getBoundingClientRect()
+
+    function drawPos(ctx, {x, y}) {
+      ctx.beginPath()
+      ctx.arc(x, y, 4, 0, Math.PI * 2, false);
+      ctx.fill()
+    }
+
+    function getPos({clientX, clientY}) {
+      return {
+        x: clientX - left,
+        y: clientY - top
+      }
+    }
+
+    $local.addEventListener('mousemove', (e) => {
+      const pos = getPos(e)
+      ws.send(JSON.stringify(pos))
+      wt.send(new Uint8Array([pos.x, pos.y]))
+      drawPos(local_ctx, pos)
+    })
+
+    ws.on('message', ({data}) => {
+      const pos = JSON.parse(data)
+      drawPos(ws_ctx, pos)
+    })
+
+    wt.on('data', ({detail}) => {
+      const [x,y] = detail.value
+      drawPos(wt_ctx, {x,y})
+    })
   })
 </script>
-
