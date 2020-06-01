@@ -40,6 +40,11 @@ canvas {
           this.dispatchEvent(new CustomEvent('data', {detail}))
         }
       })
+
+      this.transport.onstatechange = (e) => {
+        console.log(e)
+        console.log(this.transport.state)
+      }
     }
 
     send(data) {
