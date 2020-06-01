@@ -7,12 +7,18 @@
 canvas {
   border: solid 1px black;
 }
+video {
+  width: 300px;
+}
 </style>
 
 <h1>Test</h1>
 
+<h1>local</h1>
 <video id=local></video>
-<video id=peer></video>
+
+<h1>remote</h1>
+<canvas id=remote></canvas>
 
 <button id=start>start</button>
 
@@ -22,35 +28,76 @@ canvas {
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
+  const $local  = document.querySelector("#local")
+  const $remote = document.querySelector("#remote")
+  const remote_ctx = $remote.getContext("2d")
+
+  window.writer;
+  window.reader;
+
+  document.on('DOMContentLoaded', async (e) => {
+    const url = `quic-transport://labs.jxck.io:3000/echo`
+    const transport = new QuicTransport(url);
+    await transport.ready
+    const stream = await transport.createBidirectionalStream()
+
+    window.writer = stream.writable.getWriter()
+    window.reader = stream.readable.getReader()
+
+    console.log(writer, reader)
+
+
+
+    var buf = new Uint8Array()
+    while (true) {
+      const {value, done} = await window.reader.read()
+      console.log(done)
+
+      var tmp = new Uint8Array(buf.length + value.length);
+      tmp.set(buf);
+      tmp.set(value, buf.length);
+
+      buf = tmp
+
+      if (buf.length >= 1228800) {
+        const imageData = new ImageData(new Uint8ClampedArray(buf), $local.videoWidth, $local.videoHeight)
+        remote_ctx.putImageData(imageData, 0, 0)
+        buf = new Uint8Array()
+      }
+    }
+  })
+
+
   $('#start').on('click', async (e) => {
     console.log(e)
 
     // get camera data
-    const $video = document.querySelector("#local")
     const stream = await navigator.mediaDevices.getUserMedia({video: true})
-    $video.srcObject = stream
+    $local.srcObject = stream
 
     // offscreen canvas for get binary
     const $canvas = document.createElement("canvas")
     const ctx     = $canvas.getContext("2d")
 
-    $video.onloadedmetadata = () => {
-      $video.play()
-      $canvas.width  = $video.videoWidth
-      $canvas.height = $video.videoHeight
+    $local.onloadedmetadata = () => {
+      $local.play()
+      $canvas.width  = $local.videoWidth
+      $canvas.height = $local.videoHeight
       frame()
     }
 
     function frame() {
       // draw video into offscreen canvas
-      ctx.drawImage($video, 0, 0)
+      ctx.drawImage($local, 0, 0)
 
       // get image data
       const imageData = ctx.getImageData(0, 0, $canvas.width, $canvas.height)
-      console.log(imageData.data);
+      console.log(imageData)
+
+      window.writer.write(imageData.data)
 
       // next frame
-      window.requestAnimationFrame(frame)
+      // window.requestAnimationFrame(frame)
     }
   })
 </script>
