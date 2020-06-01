@@ -9,7 +9,7 @@
 <h1>QuicTransport stream DEMO</h1>
 
 <script>
-  'use strict';
+  'use strict'
   const $  = document.querySelector.bind(document)
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
@@ -20,22 +20,22 @@
     console.log(e)
 
     const url = `quic-transport://labs.jxck.io:3000/echo`
-    const transport = new QuicTransport(url);
-    await transport.ready;
+    const transport = new QuicTransport(url)
+    await transport.ready
 
-    const sender = await transport.createSendStream();
-    const writer = sender.writable.getWriter();
+    const sender = await transport.createSendStream()
+    const writer = sender.writable.getWriter()
 
-    const data = new Uint8Array([1,2,3,4,5]);
+    const data = new Uint8Array([1,2,3,4,5])
     await writer.write(data)
-    await writer.close();
+    await writer.close()
 
-    const recver = transport.receiveStreams().getReader();
-    const {value: receiveStream, done: streamsDone} = await recver.read();
+    const recver = transport.receiveStreams().getReader()
+    const {value: receiveStream, done: streamsDone} = await recver.read()
     console.log(receiveStream, streamsDone)
 
-    const reader = receiveStream.readable.getReader();
-    const {value: u8array, done: arraysDone} = await reader.read();
+    const reader = receiveStream.readable.getReader()
+    const {value: u8array, done: arraysDone} = await reader.read()
     console.log(u8array, arraysDone)
 
   })

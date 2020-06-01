@@ -9,7 +9,7 @@
 <h1>QuicTransport basic DEMO</h1>
 
 <script>
-  'use strict';
+  'use strict'
   const $  = document.querySelector.bind(document)
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
@@ -18,16 +18,16 @@
     console.log(e)
 
     const url = `quic-transport://labs.jxck.io:3000/echo`
-    const transport = new QuicTransport(url);
+    const transport = new QuicTransport(url)
     await transport.ready
 
-    const writer = transport.sendDatagrams().getWriter();
-    const reader = transport.receiveDatagrams().getReader();
+    const writer = transport.sendDatagrams().getWriter()
+    const reader = transport.receiveDatagrams().getReader()
 
-    const data = new Uint8Array([1,2,3,4,5]);
-    writer.write(data);
+    const data = new Uint8Array([1,2,3,4,5])
+    writer.write(data)
 
-    const {done, value} = await reader.read();
+    const {done, value} = await reader.read()
     console.log(done, value)
     await transport.close()
     console.log(await reader.read())

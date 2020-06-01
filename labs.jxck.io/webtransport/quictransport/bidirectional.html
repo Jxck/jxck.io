@@ -9,14 +9,14 @@
 <h1>QuicTransport bidirectional DEMO</h1>
 
 <script>
-  'use strict';
+  'use strict'
   const $  = document.querySelector.bind(document)
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
   document.on('DOMContentLoaded', async (e) => {
     const url = `quic-transport://labs.jxck.io:3000/echo`
-    const transport = new QuicTransport(url);
+    const transport = new QuicTransport(url)
 
     await transport.ready
 
@@ -25,7 +25,7 @@
     const writer = stream.writable.getWriter()
     const reader = stream.readable.getReader()
 
-    const data = new Uint8Array([1,2,3,4,5]);
+    const data = new Uint8Array([1,2,3,4,5])
     await writer.write(data)
 
     var {value, done} = await reader.read()
