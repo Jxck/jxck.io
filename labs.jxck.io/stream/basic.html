@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Stream DEMO</title>
+
+<style>
+textarea {
+  height: 90vh
+}
+</style>
+
+<h1>Stream DEMO</h1>
+
+<button id=start>start</button>
+<textarea id=output></textarea>
+
+
+<script>
+  'use strict'
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+
+  // number generator Push source
+  class Source {
+    constructor(opt = {}) {
+      this.value    = opt.initial  || 0
+      this.step     = opt.step     || 1
+      this.interval = opt.interval || 300
+      this.timer
+    }
+    start(controller) {
+      console.log('start', controller)
+      this.timer = setInterval(() => {
+        console.log('desiredSize', controller.desiredSize)
+        if (controller.desiredSize <= 0) return
+        console.log('enqueue')
+        controller.enqueue(this.value)
+        this.value += this.step
+
+        if (this.value > 20) {
+          controller.close()
+        }
+      }, this.interval)
+    }
+    pull(controller) {
+      console.log('pull', controller)
+    }
+    cancel(reason) {
+      console.log('cancel', reason)
+      clearInterval(this.timer)
+    }
+  }
+
+  // queuing strategy
+  class Queue {
+    get highWaterMark() { return 10 }
+    size(chunk) {
+      return 1
+    }
+  }
+  const readableStream = new ReadableStream(new Source(), new Queue())
+
+
+  // // stringify & line break
+  // const transformer = {
+  //   transform(chunk, controller) {
+  //     controller.enqueue(chunk + "\n")
+  //   }
+  // }
+
+  // const transformStream = new TransformStream(transformer)
+
+
+
+  // output to dom
+  class Sink {
+    start(controller) {
+      console.log('start', controller)
+    }
+
+    write(chunk, controller) {
+      console.log('write', chunk, controller)
+      return new Promise((done) => {
+        setTimeout(() => {
+          $("#output").value += chunk
+          done()
+        }, 1000)
+      })
+    }
+
+    close() {
+      console.log('close')
+    }
+
+    abort(reason) {
+      console.log('abort', reason)
+    }
+  }
+
+  const writableStream = new WritableStream(new Sink())
+
+
+
+  $('#start').on('click', async (e) => {
+    readableStream
+      // .pipeThrough(transformStream)
+      .pipeTo(writableStream)
+
+  })
+</script>
+
