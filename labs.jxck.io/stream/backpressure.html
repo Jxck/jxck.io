@@ -54,8 +54,9 @@ textarea {
           setTimeout(done, 300)
         })
       }
-    })
+    }, {highWaterMark: 5}) // queue は 5 個まで
 
+    // writable の方が queue が小さいのでそちらに律速
     domRead.pipeTo(domWrite)
   })
 </script>

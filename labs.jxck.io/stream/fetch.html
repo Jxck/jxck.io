@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>DEMO</title>
+
+<style>
+textarea {
+  width: 80vw;
+  height: 20vh;
+}
+</style>
+
+<h1>Test</h1>
+
+<textarea id=output></textarea>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+
+  document.on('DOMContentLoaded', async (e) => {
+    console.log(e)
+
+    const url = 'https://labs.jxck.io/fetch/cors/simple.html';
+    const res = await fetch(url)
+    const decoder = new TextDecoderStream();
+
+    const domWrite = new WritableStream({
+      write(chunk) {
+        console.log(chunk)
+        return new Promise((done) => {
+          $("#output").value += chunk
+          setTimeout(done, 300)
+        })
+      },
+      close() {
+        console.log('close')
+      },
+      abort(reason) {
+        console.log('abort', reason)
+      },
+    }, {highWaterMark: 5, size: (chunk) => chunk.length})
+
+    res.body.pipeThrough(decoder).pipeTo(domWrite)
+  })
+</script>
+
