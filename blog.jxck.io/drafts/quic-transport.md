@@ -19,7 +19,6 @@ WebTransport については [以前解説した](https://blog.jxck.io/entries/2
 使用感は WebSocket を Promise や Stream ベースでモダンにし、データが UDP で送られているといったイメージだ。
 
 
-
 ## Server
 
 サーバの実装はまだ少ないが Chrome のリポジトリと、 WPT(WebPlatformTest) にサンプルの実装が入っている。
@@ -27,7 +26,17 @@ WebTransport については [以前解説した](https://blog.jxck.io/entries/2
 - [net/tools/quic/quic_transport_simple_server_bin.cc - chromium/src](https://chromium.googlesource.com/chromium/src/+/master/net/tools/quic/quic_transport_simple_server_bin.cc)
 - [wpt/quic_transport_server.py](https://github.com/web-platform-tests/wpt/blob/master/tools/quic/quic_transport_server.py)
 
+
+QUIC のプロトコル実装がある場合は、少ない追加コードで QuicTransport で使えるようになっている。具体的には以下だ。
+
+- ALPB が `wq-vvv-01`
+- Client Indication で Origin + Path を通知
+
+
 Quic のプロトコル実装がある場合は、 ALPN を少しいじるくらいで基本的には実装できそうだ、その場合は wpt の実装が参考になるだろう。
+
+
+
 
 
 
@@ -37,7 +46,7 @@ Quic のプロトコル実装がある場合は、 ALPN を少しいじるくら
 
 送受信は un-reliable であり、送達は保証されない。
 
-WebSocket に似た使用感ではあるが、 EventTarget ベースではなく Promise で flag を待つような API になっていることがわかる。
+WebSocket に似た使用感ではあるが、細かいところが違う。
 
 
 ```js
@@ -59,7 +68,16 @@ await transport.close()
 ```
 
 
-イベントベースがよければ EventTarget で繋ぐこともできるだろう。
+### EventTarget
+
+サーバとの接続、切断を `ready`, `closed` という Promise を返すプロパティで表現している(ServiceWorker と類似)。
+
+これはまだ議論中だが、この実装だと、同期処理になる state プロパティを無くし、その変更を表す onstatechange が不要になるため EventTarget を継承する必要がなくなる。
+
+- [WebTransport.ready - Issue #92 - WICG/web-transport](https://github.com/WICG/web-transport/issues/92)
+
+
+内部の状態が少なければこれで良いのかもしれない。EventTarget ベースのコードの方が慣れている場合は以下のように Wrap することもできるだろう。
 
 ```js
 class Transport extends EventTarget {
@@ -75,6 +93,9 @@ class Transport extends EventTarget {
         this.dispatchEvent(new CustomEvent('data', {detail}))
       }
     })
+    this.transport.closed.then(async (e) => {
+      this.dispatchEvent(new CustomEvent('close'))
+    })
   }
 
   send(data) {
@@ -86,6 +107,9 @@ class Transport extends EventTarget {
   }
 }
 ```
+
+### Stream
+
 
 
 
