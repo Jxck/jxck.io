@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Websocket Stream DEMO</title>
+
+<style>
+textarea {
+  width: 80vw;
+  height: 20vh;
+}
+</style>
+
+<h1>WebSocket Stream DEMO</h1>
+
+<textarea id=input autofocus></textarea>
+<textarea id=output></textarea>
+
+<script>
+  'use strict'
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  document.on('DOMContentLoaded', async (e) => {
+    console.log(e)
+
+    const ws = new WebSocket("wss://ws.jxck.io/", ["echo"])
+    const $input  = $('#input')
+    const $output = $('#output')
+
+    ws.on('open', () => {
+      const domRead = new ReadableStream({
+        start(controller) {
+          $input.on('input', ({data, inputType}) => {
+            if (inputType === 'insertLineBreak') data = '\n'
+            controller.enqueue(data)
+          })
+        }
+      })
+
+      const domWrite = new WritableStream({
+        write(chunk) {
+          $output.value += chunk
+        }
+      })
+
+      const wsRead = new ReadableStream({
+        start(controller) {
+          ws.on('message', ({data}) => {
+            controller.enqueue(data)
+          })
+        }
+      })
+
+      const wsWrite = new WritableStream({
+        write(chunk) {
+          ws.send(chunk)
+        }
+      })
+
+      domRead.pipeTo(wsWrite)
+      wsRead.pipeTo(domWrite)
+    })
+  })
+</script>
