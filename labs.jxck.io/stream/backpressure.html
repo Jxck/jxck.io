@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Stream BackPressure DEMO</title>
+
+<style>
+textarea {
+  width: 80vw;
+  height: 20vh;
+}
+</style>
+
+<h1>Stream BackPressure DEMO</h1>
+
+<textarea id=input autofocus></textarea>
+<textarea id=output></textarea>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  document.on('DOMContentLoaded', async (e) => {
+    const $input  = $('#input')
+    const $output = $('#output')
+
+    const domRead = new ReadableStream({
+      start(controller) {
+        $input.on('input', ({data, inputType}) => {
+          console.log(controller.desiredSize)
+          // queue に余裕が無いため Pause
+          if (controller.desiredSize <= 0) {
+            $input.disabled = true
+          }
+          if (inputType === 'insertLineBreak') data = '\n'
+          controller.enqueue(data)
+        })
+      },
+
+      pull(controller) {
+        // queue に余裕が生まれたため Resume
+        console.log(controller.desiredSize)
+        $input.disabled = false
+        $input.focus()
+      }
+    }, {highWaterMark: 10}) // queue は 10 個まで
+
+    const domWrite = new WritableStream({
+      write(chunk) {
+        // fulfill するまで queue に詰む
+        return new Promise((done) => {
+          $output.value += chunk
+          setTimeout(done, 300)
+        })
+      }
+    })
+
+    domRead.pipeTo(domWrite)
+  })
+</script>
+
