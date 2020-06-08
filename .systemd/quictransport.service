@@ -1,0 +1,17 @@
+[Unit]
+Description=quictransport.jxck.io
+After=network.target nss-lookup.target
+
+[Service]
+Type=simple
+Restart=always
+WorkingDirectory=/home/jxck/server/jxck.io/labs.jxck.io/webtransport/quictransport
+ExecStart=/home/jxck/server/jxck.io/labs.jxck.io/webtransport/quictransport/server/quic_transport_simple_server  \
+  --key_file=/keys/privkey.p8  \
+  --certificate_file=/keys/fullchain.pem  \
+  --port=3000  \
+  --accepted_origins=""
+
+
+[Install]
+WantedBy=multi-user.target
