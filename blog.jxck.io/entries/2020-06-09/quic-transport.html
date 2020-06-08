@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href="https://blog.jxck.io/entries/2020-06-09/quic-transport.html">
+  <link rel=amphtml   href="https://blog.jxck.io/entries/2020-06-09/quic-transport.amp.html">
+  <link rel=preload   type=font/woff2 as=font href=/assets/font/NotoSansCJKjp-Regular-Jxck-20200407.woff2 crossorigin>
+
+  <script async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+  <script defer src=/assets/js/main.js></script>
+  <script defer src=/assets/js/ga.js></script>
+  <script defer src=/assets/js/highlight.pack.js></script>
+
+  <link rel=icon             type =image/svg+xml sizes=any href=https://jxck.io/assets/img/jxck.svg>
+  <link rel=icon             type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="WebTransport の Quic 実装である QuicTransport の開発が Chrome で行われている。Chrome で Origin Trials が開始されたので仕様と実装を解説する。">
+  <meta name=keywords            content="QuicTransport,WebTransport,QUIC">
+  <meta name=theme-color         content=#000000>
+
+  <meta name=twitter:card        content=summary>
+  <meta name=twitter:site        content=@jxck_>
+  <meta name=twitter:url         content=https://blog.jxck.io/entries/2020-06-09/quic-transport.html>
+  <meta name=twitter:title       content="QuicTransport によるアプリケーションレイヤでの QUIC 活用 | blog.jxck.io">
+  <meta name=twitter:description content="WebTransport の Quic 実装である QuicTransport の開発が Chrome で行われている。Chrome で Origin Trials が開始されたので仕様と実装を解説する。">
+  <meta name=twitter:image       content=https://jxck.io/assets/img/jxck.png>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2020-06-09/quic-transport.html>
+  <meta property=og:title        content="QuicTransport によるアプリケーションレイヤでの QUIC 活用 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="WebTransport の Quic 実装である QuicTransport の開発が Chrome で行われている。Chrome で Origin Trials が開始されたので仕様と実装を解説する。">
+  <meta property=og:image        content=https://jxck.io/assets/img/jxck.png>
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "QuicTransport によるアプリケーションレイヤでの QUIC 活用 | blog.jxck.io",
+    "image": [
+      "https://jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2020-06-09T08:00:00+08:00",
+    "dateModified": "2020-06-09T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.60x60.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": "WebTransport の Quic 実装である QuicTransport の開発が Chrome で行われている。Chrome で Origin Trials が開始されたので仕様と実装を解説する。"
+  }
+  </script>
+
+  <title>QuicTransport によるアプリケーションレイヤでの QUIC 活用 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=/assets/img/blog.svg   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/searches                 ><img width=30 height=30 loading=eager src=/assets/img/search.svg title=search alt=search></a>
+        <li><a href="https://blog.jxck.io/entries/2020-06-09/quic-transport.amp.html#development=1" aria-label="amp version">
+                                               <img width=30 height=30 loading=eager src=/assets/img/amp.svg    title=amp    alt="amp version"></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=/assets/img/up.svg     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=/assets/img/rss.svg    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=/assets/img/humans.svg title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=/assets/img/jxck.svg   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/markdown.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2020-06-09>2020-06-09</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-06-09>2020-06-09</time></dd></div>
+      <div><dt class=tags>tags</dt><dd>[<a href="/tags/QuicTransport.html">QuicTransport</a><i>,</i><a href="/tags/WebTransport.html">WebTransport</a><i>,</i><a href="/tags/QUIC.html">QUIC</a>]</dd></div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+    <article>
+      <h1><a href=/entries/2020-06-09/quic-transport.html>QuicTransport によるアプリケーションレイヤでの QUIC 活用</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>WebTransport の Quic 実装である QuicTransport の開発が Chrome で行われている。
+        <p>Chrome で Origin Trials が開始されたので仕様と実装を解説する。
+      </section>
+      <section>
+        <h2 id="quictransport"><a href="#quictransport">QuicTransport</a></h2>
+        <p>WebTransport については <a href="https://blog.jxck.io/entries/2019-08-18/webtransport-and-webcodecs.html">以前解説した</a> が、位置づけとしてはこうだ。
+        <ul>
+          <li>
+            WebTransport
+            <ul>
+              <li>QuicTransport
+              <li>Http3Transport
+            </ul>
+          </li>
+        </ul>
+        <p>今回入ったのは、 WebTransport の通信レイヤとして QUIC を用いた QuicTransport という位置づけになる。
+        <p>IETF で WebTransport over QUIC としてバインディングの仕様が策定され、 WICG でブラウザ API が策定されている。
+        <ul>
+          <li>
+            draft-vvv-webtransport-quic-00 - WebTransport over QUIC
+            <ul>
+              <li><a href="https://tools.ietf.org/html/draft-vvv-webtransport-quic-01">https://tools.ietf.org/html/draft-vvv-webtransport-quic-01</a>
+            </ul>
+          </li>
+          <li>
+            WebTransport
+            <ul>
+              <li><a href="https://wicg.github.io/web-transport/">https://wicg.github.io/web-transport/</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="server"><a href="#server">Server</a></h2>
+        <p>サーバの実装はまだ少ないが Chrome のリポジトリと、 WPT(WebPlatformTest) にサンプルの実装が入っている。
+        <ul>
+          <li><a href="https://chromium.googlesource.com/chromium/src/+/master/net/tools/quic/quic_transport_simple_server_bin.cc">net/tools/quic/quic_transport_simple_server_bin.cc - chromium/src</a>
+          <li><a href="https://github.com/web-platform-tests/wpt/blob/master/tools/quic/quic_transport_server.py">wpt/quic_transport_server.py</a>
+        </ul>
+        <section>
+          <h3 id="connection-確立"><a href="#connection-確立">Connection 確立</a></h3>
+          <p>QUIC のプロトコル実装がある場合は、少ない追加コードで QuicTransport で使えるようになっている。具体的には以下だ。
+          <ul>
+            <li>
+              ALPN が <code translate="no">wq-vvv-01</code>
+              <ul>
+                <li>QuicTransport を意図してないサーバとの接続を防ぐ
+              </ul>
+            </li>
+            <li>
+              Client Indication で Origin + Path を通知
+              <ul>
+                <li>サーバが許可した Origin + Path であることを検証
+              </ul>
+            </li>
+          </ul>
+          <p>この 2 つをサーバが許可すれば接続が確立できる。
+          <p>wpt の実装は、これを Python の aioquic で行っているため参考になるだろう。
+        </section>
+        <section>
+          <h3 id="uri-scheme"><a href="#uri-scheme">URI Scheme</a></h3>
+          <p>また、プロトコルには新しくスキーマが定義されている。
+          <p>仕様にも注意書きがあるが、仮の定義として現状は <code translate="no">quic-transport</code> になっており、将来変わる可能性が有る。
+          <p>ここに指定された Origin + Path が前述の Client Indication で通知されることになる。
+          <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+          <pre><code translate="no">quic-transport://example.com:3000/echo</code></pre>
+          <p>これが JS API で以下のように使われる。
+          <pre class=js><code translate="no">const transport = new QuicTransport(`quic-transport://example.com:3000/echo`)</code></pre>
+          <p>WebSocket と比較すると SubProtocol が無い。
+          <p>一方でドラフトでは何故か <code translate="no">/.well-known</code> が使えることが明記してあり、もしかしたら(SubProtocol のような)メタ情報や変数が有る場合、ここを何かに使うのかとも思ったが、深読みかもしれない。
+        </section>
+        <section>
+          <h3 id="transport"><a href="#transport">Transport</a></h3>
+          <p>基本的には QUIC が持つ機能が API から利用できるようにマッピングされている。
+          <p>具体的には Datagram, Stream independence, Partial Reliability, 0-RTT(optional), Uni/Bi-Directional etc だ。
+          <p>操作も read/write/close がそのまま後述する API に反映されている。
+          <p>QUIC をそのまま使うという非常にすっきりとした仕様になっていることがわかる。
+        </section>
+      </section>
+      <section>
+        <h2 id="client"><a href="#client">Client</a></h2>
+        <p>単純な datagram 送受信のサンプルは以下のようになる。
+        <p>この場合送受信は un-reliable であり、送達は保証されない。
+        <p>WebSocket に似た使用感ではあるが、細かいところが違う。
+        <pre class=js><code translate="no">const url = `quic-transport://example.com:3000/echo`
+const transport = new QuicTransport(url)
+
+await transport.ready
+
+const writer = transport.sendDatagrams().getWriter()
+const reader = transport.receiveDatagrams().getReader()
+
+const data = new Uint8Array([1,2,3,4,5])
+writer.write(data)
+
+const {done, value} = await reader.read()
+console.log(done, value)
+
+await transport.close()</code></pre>
+        <section>
+          <h3 id="uint8array"><a href="#uint8array">Uint8Array</a></h3>
+          <p>まだ interface API には明示されてないようだが、仕様のアルゴリズムをみると、基本は Uint8Array を Chunk とする Read/Write Stream を内部で生成するようだ。
+          <p>つまり、転送単位が Uint8Array であり、実装もそうなっている。
+          <p>これは WebSocket のように文字列を渡しても送れないことを意味し、その場合は TextEncoder/Decoder を使うことになるだろう。
+          <p><code translate="no">JSON.stringify()</code> で送っていたようなオブジェクトも、 CBOR などを用いたバイナリシリアライズが検討されるかもしれない。
+          <p>(<code translate="no">new TextEncoder().encode(JSON.stringify())</code> とかでもいいのかもしれない。)
+        </section>
+        <section>
+          <h3 id="eventtarget"><a href="#eventtarget">EventTarget</a></h3>
+          <p>サーバとの接続/切断を <code translate="no">ready</code>, <code translate="no">closed</code> という Promise を返すプロパティで表現している。
+          <p>これは、 Service Worker の <code translate="no">navigator.serviceWorker.ready</code> でも採用されている手法だ。
+          <p>従来であれば、内部の State は <code translate="no">state</code> に持ち、その変更を <code translate="no">onstatechange</code> で表すために EventTarget を継承するのが基本だった。
+          <p>しかし、 <code translate="no">state</code> へのプロパティアクセスは同期処理であるため、 Promise で表現するほうが実装上のメリットがあるという議論がされている。
+          <ul>
+            <li><a href="https://github.com/WICG/web-transport/issues/92">WebTransport.ready - Issue #92 - WICG/web-transport</a>
+          </ul>
+          <p>メッセージについては、明示的な <code translate="no">read()</code> もしくはそれを行う Stream の Pipe でを行うため、 <code translate="no">onmessage</code> イベントもいらない。
+          <p>内部の状態は以下なので、これが増えたらどうするかという懸念もあるが、 WebSocket も同じ状態遷移で特に増えたことはないため、問題ないということだろう。
+          <pre><code translate="no">connecting -&gt; connected
+connecting -&gt; failed
+connected -&gt; closed
+connected -&gt; failed</code></pre>
+          <p>この議論の結果によっては、 EventTarget にならなくなり、 developer experience としては今までと少し違う雰囲気の使用感になりそうだ。
+          <p>もし、最近やっと Safari に入り Node でも入りそうな EventTarget を使ったほうが慣れているのであれば、以下のような感じで自分で Wrap することもできるだろう。
+          <pre class=js><code translate="no">class Transport extends EventTarget {
+  constructor(url) {
+    super()
+    this.transport = new QuicTransport(url)
+    this.writer = this.transport.sendDatagrams().getWriter()
+    this.reader = this.transport.receiveDatagrams().getReader()
+    this.transport.ready.then(async (e) =&gt; {
+      this.dispatchEvent(new CustomEvent(&#39;open&#39;))
+
+      while(true) {
+        const {done, value} = await this.reader.read()
+        if (done) break
+        this.dispatchEvent(new CustomEvent(&#39;data&#39;, {detail: value}))
+      }
+    })
+
+    this.transport.closed.then(async (e) =&gt; {
+      this.dispatchEvent(new CustomEvent(&#39;close&#39;))
+    })
+  }
+
+  send(data) {
+    this.writer.write(data)
+  }
+
+  close() {
+    this.transport.close()
+  }
+}</code></pre>
+        </section>
+        <section>
+          <h3 id="stream"><a href="#stream">Stream</a></h3>
+          <p>WebTransport の API は最初から Stream が考慮された実装になっている。
+          <p>API interface 的に言うと、現状の定義は以下のようになっている。
+          <pre class=js><code translate="no">interface QuicTransport {}
+QuicTransport includes UnidirectionalStreamsTransport;
+QuicTransport includes BidirectionalStreamsTransport;
+QuicTransport includes DatagramTransport;
+QuicTransport includes WebTransport;</code></pre>
+          <p>Http3Transport も同じように 4 つ includes している。
+          <p>そもそも WebTransport interface が 3 つ includes すれば良さそうだが、これは将来別の Transport パターンが実装されることがあった場合の拡張性だろうか。
+          <p>UnidirectionalStreamTransport は以下のような定義だ。
+          <pre class=js><code translate="no">interface mixin UnidirectionalStreamsTransport {
+  Promise&lt;SendStream&gt; createSendStream(optional SendStreamParameters parameters = {});
+  ReadableStream receiveStreams();
+};</code></pre>
+          <p>クライアントからサーバに対する 1 方向の場合は <code translate="no">createSendStream</code> を、逆は <code translate="no">receiveStreams()</code> によって、必要な Stream が得られる。
+          <p>一方 BidirectionalStreamTransport の定義はこうだ。
+          <pre class=js><code translate="no">interface mixin BidirectionalStreamsTransport {
+  Promise&lt;BidirectionalStream&gt; createBidirectionalStream();
+  ReadableStream receiveBidirectionalStreams();
+};</code></pre>
+          <p>Bidirectional Stream をクライアントから確立する場合は <code translate="no">createBidirectionalStream()</code> を、サーバから確立する場合は <code translate="no">receiveBidirectionaStreams()</code> を用いる。
+          <p>(Uni/Bi)Directional x (Client/Server)Initiated が全てサポートされて Stream が得られるので、エコシステム的に言えば、 Sink/Source を定義して Stream を用意しておけば、 QUIC のメリットを活かしつつアプリケーションを組むことができる。
+          <p>例として Bi-dir で <code translate="no">&lt;textarea&gt;</code> の入力を送り echo back で表示するサンプルを以下に作成した。<br>
+
+          肝になる部分は以下のようになる。
+          <pre class=js><code translate="no">const transport = new QuicTransport(url)
+await transport.ready
+const {readable, writable} = await transport.createBidirectionalStream()
+
+// Pipe
+domRead.pipeThrough(new TextEncoderStream()).pipeTo(writable)
+  .then((e) =&gt; console.log(e))
+  .catch((e) =&gt; console.error(e))
+
+readable.pipeThrough(new TextDecoderStream()).pipeTo(domWrite)
+  .then((e) =&gt; console.log(e))
+  .catch((e) =&gt; console.error(e))</code></pre>
+          <ul>
+            <li><a href="http://labs.jxck.io/webtransport/quictransport/stream_pipe.html">Stream Pipe DEMO</a>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <h2 id="use-case"><a href="#use-case">Use Case</a></h2>
+        <p>さて、これを何に使うかという点に付いて考える。
+        <section>
+          <h3 id="media-stream"><a href="#media-stream">Media Stream</a></h3>
+          <p>まず、このブログでも以前紹介したように、 WebRTC を比較対象に上がるのであれば、メディアの転送がどうなのかという問題になる。
+          <p>現状 QuicTransport の転送単位は Uint8Array を基本としているため、 getUserMedia の結果からバイナリを取得するなどができれば、ビデオ会議なども可能になるポテンシャルはあるだろう。
+          <p>しかし、現状 getUserMedia した MediaStream API は、前述した WHATWG Stream を指すのではなく、たんなるメディアの抽象化という意味で、 Pipe しても流れるわけではない。
+          <p>Canvas 経由で ImageBitmap を取る、 WASM でエンコードする、別の Peer とつないだ PeerConnection から InsertableStream で抜くなどの方法は無くはないが、正攻法でいうと WebCodecs を待つことになる。
+          <p>WebCodecs は現在 Intent to Implement なので、 Experiment が始まったら改めて検証する。
+          <ul>
+            <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/3oVuczJ5Ty4/m/b8VLNNvyEAAJ">Intent to Implement WebCodecs</a>
+          </ul>
+        </section>
+        <section>
+          <h3 id="unreliable-stream"><a href="#unreliable-stream">Unreliable Stream</a></h3>
+          <p>QUIC が作られた背景まで遡れば、 TCP での Head of Line Blocking への対策や、 Unreliable な通信を選択肢として持つという点が UDP によるメリットとしてあった。
+          <p>DatagramTransport を使えば out of order / unreliable な read/write が可能なので、現時点では個々が QuicTransport を使用するモチベーションの一つとして考えられるだろう。
+          <p>(逆にそうでない場合は、「WebSocket でいいのでは?」 となってしまう可能性がある)
+          <p>例えば、ゲームのリアルタイムなコントロールは、ゲームの性質にもよるが、全ての入力が TCP レベルでの回復を伴いながら、順序を保って確実に送られる必要は必ずしもないかもしれない。
+          <p>また、 getUserMedia 以外の何らかのデバイスから、大量に入力し binary serialize したオブジェクトを送るケースも考えられるだろう。
+        </section>
+      </section>
+      <section>
+        <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
+        <ul>
+          <li>WebTransport の実装の 1 つとして、 QuicTransport の Origin Trials が始まった。
+          <li>Promise や Stream を用いた API で、モダンな API Interface となっている。
+          <li>QUIC の持つ、 unreliable, uni/bi-directional などの性質を上手く API に反映させている
+          <li>QUIC の特徴をアプリレイヤで活かしたいユースケースでの活用が考えられる
+          <li>WebCodecs と組み合わせたとき、 WebRTC のようなユースケースへの応用も期待できる
+        </ul>
+        <p>WebCodecs の Experiment が始まったら、追加で検証したい。
+      </section>
+      <section>
+        <h2 id="demo"><a href="#demo">DEMO</a></h2>
+        <p>動作する DEMO は以下に用意した。
+        <ul>
+          <li><a href="http://labs.jxck.io/webtransport">WebTransport Stream DEMO</a>
+        </ul>
+      </section>
+      <section>
+        <h2 id="resources"><a href="#resources">Resources</a></h2>
+        <ul>
+          <li>
+            Spec
+            <ul>
+              <li>
+                WICG: WebTransport
+                <ul>
+                  <li><a href="https://wicg.github.io/web-transport/#quic-transport">https://wicg.github.io/web-transport/#quic-transport</a>
+                </ul>
+              </li>
+              <li>
+                IETF: QUIC: A UDP-Based Multiplexed and Secure Transport
+                <ul>
+                  <li><a href="https://quicwg.org/base-drafts/draft-ietf-quic-transport.html">https://quicwg.org/base-drafts/draft-ietf-quic-transport.html</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Explainer
+            <ul>
+              <li>
+                web-transport/explainer.md at master - WICG/web-transport
+                <ul>
+                  <li><a href="https://github.com/WICG/web-transport/blob/master/explainer.md">https://github.com/WICG/web-transport/blob/master/explainer.md</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Requirements Doc
+            <ul>
+              <li>
+                QuicTransport Design Doc
+                <ul>
+                  <li><a href="https://docs.google.com/document/d/1UgviRBnZkMUq4OKcsAJvIQFX6UCXeCbOtX_wMgwD_es/edit">https://docs.google.com/document/d/1UgviRBnZkMUq4OKcsAJvIQFX6UCXeCbOtX_wMgwD_es/edit</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Mozilla Standard Position
+            <ul>
+              <li>not yet
+            </ul>
+          </li>
+          <li>
+            TAG Design Review
+            <ul>
+              <li>
+                WebTransport - Issue #389 - w3ctag/design-reviews
+                <ul>
+                  <li><a href="https://github.com/w3ctag/design-reviews/issues/389">https://github.com/w3ctag/design-reviews/issues/389</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Intents
+            <ul>
+              <li>
+                Intent to Experiment: QuicTransport
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mHV_ZALf07Q/d7J9W0a1CQAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mHV_ZALf07Q/d7J9W0a1CQAJ</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Chrome Platform Status
+          <li>Blog
+          <li>Presentation
+          <li>Issues
+          <li>Other
+        </ul>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small> See <small><a href=/policies/site.html>Site Policy</a> and <a href=/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <ins class=adsbygoogle data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-2902784829138215 data-ad-slot=9735419796></ins>
+  </footer>
+</body>
+</html>
