@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>QuicTransport Stream DEMO</title>
+
+<style>
+textarea {
+  width: 80vw;
+  height: 20vh;
+}
+</style>
+
+<h1>QuicTransport Stream DEMO</h1>
+
+<p>type in first textarea
+
+<button id=close>close</button>
+<section>
+  <textarea id=input autofocus></textarea>
+  <textarea id=output></textarea>
+</section>
+
+<script>
+  'use strict'
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  document.on('DOMContentLoaded', async (e) => {
+    const $input  = $('#input')
+    const $output = $('#output')
+    const $close  = $('#close')
+
+    const url = `quic-transport://labs.jxck.io:3000/echo`
+    const transport = new QuicTransport(url)
+    await transport.ready
+
+    const {readable, writable} = await transport.createBidirectionalStream()
+    console.log(readable)
+    console.log(writable)
+
+    /**
+     * DOM -> WebSocket
+     */
+    // Readable Stream
+    const domRead = new ReadableStream({
+      start(controller) {
+        $input.on('input', ({data, inputType}) => {
+          if (inputType === 'insertLineBreak') data = '\n'
+          controller.enqueue(data)
+        })
+      },
+      pull(controller) {
+        console.log(controller)
+      },
+      cancel(reason) {
+        console.log(reason)
+      }
+    })
+
+    // Writable Stream
+    const domWrite = new WritableStream({
+      start(controller) {
+      },
+
+      write(chunk, controller) {
+        $output.value += chunk
+      },
+
+      close() {
+        console.log('close')
+      },
+
+      abort() {
+        console.log('abort')
+      }
+    })
+
+
+    // Pipe
+    domRead.pipeThrough(new TextEncoderStream()).pipeTo(writable)
+      .then((e) => console.log(e))
+      .catch((e) => console.error(e))
+
+    readable.pipeThrough(new TextDecoderStream()).pipeTo(domWrite)
+      .then((e) => console.log(e))
+      .catch((e) => console.error(e))
+
+
+    $close.on('click', (e) => {
+      ws.close()
+    })
+  })
+</script>

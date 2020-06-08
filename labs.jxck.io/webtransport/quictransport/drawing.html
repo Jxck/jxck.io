@@ -11,6 +11,10 @@ canvas {
 
 <h1>QuicTransport drawing DEMO</h1>
 
+<p>see console
+
+<button id=stop>stop</button>
+
 <h2>local</h2>
 <canvas id=local></canvas>
 
@@ -36,15 +40,15 @@ canvas {
         this.dispatchEvent(new CustomEvent('open'))
 
         while(true) {
-          const detail = await this.reader.read()
-          this.dispatchEvent(new CustomEvent('data', {detail}))
+          const {done, value} = await this.reader.read()
+          if (done) break
+          this.dispatchEvent(new CustomEvent('data', {detail: value}))
         }
       })
 
-      this.transport.onstatechange = (e) => {
-        console.log(e)
-        console.log(this.transport.state)
-      }
+      this.transport.closed.then(async (e) => {
+        this.dispatchEvent(new CustomEvent('close'))
+      })
     }
 
     send(data) {
@@ -88,9 +92,10 @@ canvas {
 
     $local.addEventListener('mousemove', (e) => {
       const pos = getPos(e)
+
+      drawPos(local_ctx, pos)
       ws.send(JSON.stringify(pos))
       wt.send(new Uint8Array([pos.x, pos.y]))
-      drawPos(local_ctx, pos)
     })
 
     ws.on('message', ({data}) => {
@@ -99,8 +104,20 @@ canvas {
     })
 
     wt.on('data', ({detail}) => {
-      const [x,y] = detail.value
+      const [x,y] = detail
       drawPos(wt_ctx, {x,y})
+    })
+
+    ws.on('close', (e) => {
+      console.log(e)
+    })
+    wt.on('close', (e) => {
+      console.log(e)
+    })
+
+    $("#stop").on('click', () => {
+      ws.close()
+      wt.close()
     })
   })
 </script>
