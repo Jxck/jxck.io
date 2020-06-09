@@ -21,7 +21,11 @@ module Document
     end
 
     def tags
-      @text.split("\n")[0].scan(/\[(.+?)\]/).flatten
+      @text.split("\n")[0].scan(/\[(.+?)\]/).flatten.tap{|tags|
+        tags.each{|tag|
+          raise "Tag should be downcase: '[#{tag}] #{name}'" if tag != tag.downcase
+        }
+      }
     end
 
     def joined_tag
