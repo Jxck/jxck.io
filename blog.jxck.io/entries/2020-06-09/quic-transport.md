@@ -1,4 +1,4 @@
-# [QuicTransport][WebTransport][QUIC] QuicTransport によるアプリケーションレイヤでの QUIC 活用
+# [quictransport][webtransport][quic] QuicTransport によるアプリケーションレイヤでの QUIC 活用
 
 ## Intro
 

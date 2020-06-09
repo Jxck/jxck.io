@@ -1,4 +1,4 @@
-# [ReportingObserver][Report-To][Reporting] ブラウザで何が起こっているのかを知る Reporting API と ReportingObserver
+# [reporting observer][report-to][reporting] ブラウザで何が起こっているのかを知る Reporting API と ReportingObserver
 
 
 ## Intro

@@ -1,4 +1,4 @@
-# [COOP][COEP][CORP][CORB][isolation][spectre][security] Site Isolation 及び Web のセキュリティモデルの更新
+# [coop][coep][corp][corb][isolation][spectre][security] Site Isolation 及び Web のセキュリティモデルの更新
 
 
 ## Intro
