@@ -102,7 +102,7 @@ Monthly Web のモチベーションについては以下。
     - <https://groups.google.com/a/chromium.org/d/msg/blink-dev/F4h7sdBdiBM/oVnhPTV5BAAJ>
   - Implement and Ship: 'unsafe-hashed-attributes' in CSP3
     - <https://groups.google.com/a/chromium.org/d/msg/blink-dev/bUAhkdsrmqE/nimnFDG3BAAJ>
-    - unsafe-inline できない場合、埋め込んだコードのハッシュでホワイトリストする用
+    - unsafe-inline できない場合、埋め込んだコードのハッシュでセーフリストする用
   - Implement and Ship: Adding new MHTML headers to support sharing of MHTML pages
     - <https://groups.google.com/a/chromium.org/d/msg/blink-dev/GkAQbgmElK8/zx8KPu8WCgAJ>
     - <https://docs.google.com/document/d/1FvmYUC0S0BkdkR7wZsg0hLdKc_qjGnGahBwwa0CdnHE/edit>

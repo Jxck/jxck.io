@@ -206,7 +206,7 @@ CSS.registerProperty({
 
 ### inputProperties()
 
-`registerProperty()` で登録された値は、 Worklet 側で `inputProperties()` に、ホワイトリストとして指定しておくことで、クラス内に取り込むことができる。
+`registerProperty()` で登録された値は、 Worklet 側で `inputProperties()` に、セーフリストとして指定しておくことで、クラス内に取り込むことができる。
 
 
 ```js

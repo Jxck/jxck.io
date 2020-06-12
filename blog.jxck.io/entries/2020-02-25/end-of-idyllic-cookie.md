@@ -248,7 +248,7 @@ Cookie の挙動を制限すると言っても、どの Cookie がどういっ�
 
 実際にどういった機械学習が行われているかはブラックボックスであり、そのために Single Sign On が壊れたりといったこともあるが、ある意味「ユースケースをターゲットにしてブロックする」仕様であると言える。
 
-これに追従するようにして、 Firefox は [Enhanced Tracking Prevention](https://support.mozilla.org/ja/kb/enhanced-tracking-protection-firefox-desktop) を、 new Edge は、 [Tracking Prevention](https://blogs.windows.com/msedgedev/2019/06/27/tracking-prevention-microsoft-edge-preview/) がデフォルトで有効になっており、それぞれやり方は多少違うかもしれないが、 3rdPC がブロックされている。 ITP のような機械学習というよりは、ブラックリストなどを中心とした実装になっているようだ。
+これに追従するようにして、 Firefox は [Enhanced Tracking Prevention](https://support.mozilla.org/ja/kb/enhanced-tracking-protection-firefox-desktop) を、 new Edge は、 [Tracking Prevention](https://blogs.windows.com/msedgedev/2019/06/27/tracking-prevention-microsoft-edge-preview/) がデフォルトで有効になっており、それぞれやり方は多少違うかもしれないが、 3rdPC がブロックされている。 ITP のような機械学習というよりは、ブロックリストなどを中心とした実装になっているようだ。
 
 Chrome は 2 年後までに 3rdPC を無くしていくことをアナウンスしており、現状ではまず SameSite=Lax をデフォルトにすることで、 opt-in されたサービス以外は自動で 3rdPC が飛ぶことを制限している。
 

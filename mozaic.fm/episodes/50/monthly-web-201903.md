@@ -509,7 +509,7 @@ guest
   - 無罪判決
   - Coinhive 自体も 3 月で終了
   - <https://coinhive.com/blog/en/discontinuation-of-coinhive>
-  - Firefox はブラックリストに追加
+  - Firefox はブロックリストに追加
   - <https://github.com/mozilla-services/shavar-prod-lists/blob/7eaadac98bc9dcc95ce917eff7bbb21cb71484ec/disconnect-blacklist.json>
 - #alertloop
   - <https://www.hacker.or.jp/>

@@ -159,7 +159,7 @@ blog.jxck.io
 
 - [Content Security Policy(CSP) 対応と report-uri.io でのレポート収集](https://blog.jxck.io/entries/2016-03-30/content-security-policy.html)
 
-適用が昔からの継ぎ足しなため、未だに v1 時代のホワイトリスト形式を採用したままだ。
+適用が昔からの継ぎ足しなため、未だに v1 時代のセーフリスト形式を採用したままだ。
 
 v3 の nonce + strict-dynamic ベースにへの以降は前々から計画していたため、これを機に v3 に移行しつつ対応しようと考えた。
 

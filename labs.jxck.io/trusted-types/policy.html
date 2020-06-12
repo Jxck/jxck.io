@@ -40,13 +40,13 @@
         const unsafeurl = new URL(unsafe)
         const currenturl = new URL(location.href)
 
-        const whitelist = [
+        const safelist = [
           currenturl.origin,
           'https://unpkg.com',
           'https://www.google-analytics.com',
         ]
 
-        if (whitelist.includes(unsafeurl.origin) === false) {
+        if (safelist.includes(unsafeurl.origin) === false) {
           throw new Error('url of unexpected origin')
         }
 

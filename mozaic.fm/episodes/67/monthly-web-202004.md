@@ -83,7 +83,7 @@ guest
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Wu4yPMznUw0/-LrirfTJBAAJ>
   - Prototype and Ship: Add schemes for decentralized web protocols to the safelist of registerProtocolHandler
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/7nHTRUP1EGY/LYCOtg3IAwAJ>
-    - Web サイトに HTML 仕様でホワイトリストされた schema を紐づける
+    - Web サイトに HTML 仕様でセーフリストされた schema を紐づける
   - Prototype and Ship: ReportingObserver on workers
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/s9npIUKHkMA/aaUeFkVYBAAJ>
   - Implement and Ship: Unprefixed ruby-position CSS property

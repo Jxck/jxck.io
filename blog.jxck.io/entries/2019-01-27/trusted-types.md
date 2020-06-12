@@ -183,7 +183,7 @@ Global に Policy が定義されるため、名前が衝突する再定義は�
 
 - createHTML:      HTML Special Chars をエスケープする
 - createURL:       同じオリジンでない場合はエラーとする
-- createScriptURL: ホワイトリストに無いオリジンはエラーとする
+- createScriptURL: セーフリストに無いオリジンはエラーとする
 - createScript:    定義しないことで利用そのものをエラーとする
 
 
@@ -213,13 +213,13 @@ TrustedTypes.createPolicy('https://labs.jxck.io', {
     const unsafeurl = new URL(unsafe)
     const currenturl = new URL(location.href)
 
-    const whitelist = [
+    const safelist = [
       currenturl.origin,
       'https://unpkg.com',
       'https://www.google-analytics.com',
     ]
 
-    if (whitelist.includes(unsafeurl.origin) === false) {
+    if (safelist.includes(unsafeurl.origin) === false) {
       throw new Error('url of unexpected origin')
     }
 
@@ -252,7 +252,7 @@ Policy に定義する関数は同期処理しかできない。
 
 これは `innerHTML` などの API がそもそも同期(代入)なのでしかたがない。
 
-しかし、例えば URL の WhiteList を IndexedDB や fetch で取得する、といった処理は書けないため、そのあたりはコード側で工夫する必要がある。
+しかし、例えば URL のセーフリストを IndexedDB や fetch で取得する、といった処理は書けないため、そのあたりはコード側で工夫する必要がある。
 
 
 ### expose が boolean
