@@ -1,1 +1,2 @@
-export 10
+export const data = 10
+console.log('b.js')

@@ -4,21 +4,29 @@
 <title>DEMO</title>
 
 <style>
+img {
+  border: solid 1px black;
+}
+textarea {
+  width: 40vw;
+  height: 20vh;
+}
 </style>
 
 <h1>Test</h1>
 
-- https://example.com/scope/a.js (which depends on ./b.js)
-- https://example.com/scope/b.js
-- https://example.com/scope/c.png
 
-<link rel=webbundle
-      href=./subresources.wbn
-      scope=./
-      />
+<link rel=webbundle href=./bundle.wbn scope=./>
 
 <script type=module src=./a.js></script>
-<img src=./c.png>
+
+<img width=100 src=./c.png>
+
+
+<h2>URL List</h2>
+<textarea>
+</textarea>
+
 
 
 <script>
@@ -27,13 +35,9 @@
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
-
-
   document.on('DOMContentLoaded', async (e) => {
-    console.log(e)
-
-
-
-
+    const res = await fetch('URLList.txt')
+    const text = await res.text()
+    $('textarea').value = text
   })
 </script>
