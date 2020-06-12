@@ -282,3 +282,19 @@ eyeD3 --title "ep0 introduction of mozaic.fm" \
 ```
 
 一度全部消して、最小限のメタデータを付与。 track は sideshow の分ずれるので、エピソード番号と同じではなく、 1 オリジンで最初からのファイル数。
+
+
+## install/update
+
+ruby と node の依存は以下で install/update できる
+
+```sh
+$ make isntall
+$ make update
+```
+
+gem は .bundle/vender に入れている。
+
+```sh
+$ bundle config set path './.bundle/vendor' --local
+```
