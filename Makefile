@@ -226,3 +226,9 @@ _restart:
 cron:
 	sudo crontab -u root .crontab/*
 	sudo crontab -u root -l
+
+
+install:
+	# this will saved in ./bundle/config
+	# bundle config set path './.bundle/vendor' --local
+	bundle install
