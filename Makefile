@@ -232,3 +232,8 @@ install:
 	# this will saved in ./bundle/config
 	# bundle config set path './.bundle/vendor' --local
 	bundle install
+	npm install
+
+update:
+	bundle update
+	ncu -u
