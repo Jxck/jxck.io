@@ -213,7 +213,7 @@ _start:
 	sudo $(DOTFILES)/local/h2o/bin/h2o -m daemon -c h2o.conf
 
 _stop:
-	sudo kill -TERM `cat ../pid/h2o.pid`
+	sudo kill -TERM `cat ./.pid/h2o.pid`
 
 _restart:
 	$(MAKE) _stop

@@ -5,7 +5,7 @@ After=network.target nss-lookup.target
 [Service]
 Type=forking
 Restart=always
-PIDFile=/home/jxck/server/pid/h2o.pid
+PIDFile=/home/jxck/server/jxck.io/.pid/h2o.pid
 WorkingDirectory=/home/jxck/server/jxck.io
 ExecStartPre=/home/jxck/dotfiles/local/h2o/bin/h2o -c h2o.conf -t
 ExecStart=/home/jxck/dotfiles/local/h2o/bin/h2o -c h2o.conf -m daemon
