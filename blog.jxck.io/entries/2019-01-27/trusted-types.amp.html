@@ -47,7 +47,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-01-27T08:00:00+08:00",
-    "dateModified": "2019-05-13T08:00:00+08:00",
+    "dateModified": "2020-06-12T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -807,7 +807,7 @@
 <main>
   <dl class=info>
     <dt>created_at</dt><dd><time class=created_at datetime=2019-01-27>2019-01-27</time></dd>
-    <dt>updated_at</dt><dd><time class=updated_at datetime=2019-05-13>2019-05-13</time></dd>
+    <dt>updated_at</dt><dd><time class=updated_at datetime=2020-06-12>2020-06-12</time></dd>
     <dt class=tags>tags</dt><dd>[<a href="/tags/xss.html">xss</a><i>,</i><a href="/tags/trusted%20types.html">trusted types</a><i>,</i><a href="/tags/security.html">security</a>]</dd>
   </dl>
   <article>
@@ -935,7 +935,7 @@ const escapedValue = escapePolicy.createHTML(&#39;&lt;b&gt;escape me&lt;/b&gt;&#
       <ul>
         <li>createHTML:      HTML Special Chars をエスケープする
         <li>createURL:       同じオリジンでない場合はエラーとする
-        <li>createScriptURL: ホワイトリストに無いオリジンはエラーとする
+        <li>createScriptURL: セーフリストに無いオリジンはエラーとする
         <li>createScript:    定義しないことで利用そのものをエラーとする
       </ul>
       <pre class=js><code translate="no">TrustedTypes.createPolicy(&#39;https://labs.jxck.io&#39;, {
@@ -963,13 +963,13 @@ const escapedValue = escapePolicy.createHTML(&#39;&lt;b&gt;escape me&lt;/b&gt;&#
     const unsafeurl = new URL(unsafe)
     const currenturl = new URL(location.href)
 
-    const whitelist = [
+    const safelist = [
       currenturl.origin,
       &#39;https://unpkg.com&#39;,
       &#39;https://www.google-analytics.com&#39;,
     ]
 
-    if (whitelist.includes(unsafeurl.origin) === false) {
+    if (safelist.includes(unsafeurl.origin) === false) {
       throw new Error(&#39;url of unexpected origin&#39;)
     }
 
@@ -992,7 +992,7 @@ const escapedValue = escapePolicy.createHTML(&#39;&lt;b&gt;escape me&lt;/b&gt;&#
         <h3 id="同期処理のみ"><a href="#同期処理のみ">同期処理のみ</a></h3>
         <p>Policy に定義する関数は同期処理しかできない。
         <p>これは <code translate="no">innerHTML</code> などの API がそもそも同期(代入)なのでしかたがない。
-        <p>しかし、例えば URL の WhiteList を IndexedDB や fetch で取得する、といった処理は書けないため、そのあたりはコード側で工夫する必要がある。
+        <p>しかし、例えば URL のセーフリストを IndexedDB や fetch で取得する、といった処理は書けないため、そのあたりはコード側で工夫する必要がある。
       </section>
       <section>
         <h3 id="expose-が-boolean"><a href="#expose-が-boolean">expose が boolean</a></h3>

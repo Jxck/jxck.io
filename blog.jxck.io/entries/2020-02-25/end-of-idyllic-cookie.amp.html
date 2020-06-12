@@ -47,7 +47,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-02-25T08:00:00+08:00",
-    "dateModified": "2020-03-01T08:00:00+08:00",
+    "dateModified": "2020-06-12T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -807,7 +807,7 @@
 <main>
   <dl class=info>
     <dt>created_at</dt><dd><time class=created_at datetime=2020-02-25>2020-02-25</time></dd>
-    <dt>updated_at</dt><dd><time class=updated_at datetime=2020-03-01>2020-03-01</time></dd>
+    <dt>updated_at</dt><dd><time class=updated_at datetime=2020-06-12>2020-06-12</time></dd>
     <dt class=tags>tags</dt><dd>[<a href="/tags/cookie.html">cookie</a><i>,</i><a href="/tags/privacy.html">privacy</a>]</dd>
   </dl>
   <article>
@@ -958,7 +958,7 @@ PC周辺機器の広告
         <p>ところが Opt-In のままでは大半のユーザは無効のままなので、本来は「できるだけサイトを壊さないように、デフォルトで有効にすべき」という話になる。
         <p>そこで、「その Cookie が何のユースケースで使われているかわからないなら、機械学習で推測して、トラッキングに使われていそうなやつだけブロックすれば、より正確にユーザを守ることができるのでは」という発想で実装されたのが Safari の <a href="https://webkit.org/blog/7675/intelligent-tracking-prevention/">ITP(Intelligent Tracking Prevention)</a> だ。
         <p>実際にどういった機械学習が行われているかはブラックボックスであり、そのために Single Sign On が壊れたりといったこともあるが、ある意味「ユースケースをターゲットにしてブロックする」仕様であると言える。
-        <p>これに追従するようにして、 Firefox は <a href="https://support.mozilla.org/ja/kb/enhanced-tracking-protection-firefox-desktop">Enhanced Tracking Prevention</a> を、 new Edge は、 <a href="https://blogs.windows.com/msedgedev/2019/06/27/tracking-prevention-microsoft-edge-preview/">Tracking Prevention</a> がデフォルトで有効になっており、それぞれやり方は多少違うかもしれないが、 3rdPC がブロックされている。 ITP のような機械学習というよりは、ブラックリストなどを中心とした実装になっているようだ。
+        <p>これに追従するようにして、 Firefox は <a href="https://support.mozilla.org/ja/kb/enhanced-tracking-protection-firefox-desktop">Enhanced Tracking Prevention</a> を、 new Edge は、 <a href="https://blogs.windows.com/msedgedev/2019/06/27/tracking-prevention-microsoft-edge-preview/">Tracking Prevention</a> がデフォルトで有効になっており、それぞれやり方は多少違うかもしれないが、 3rdPC がブロックされている。 ITP のような機械学習というよりは、ブロックリストなどを中心とした実装になっているようだ。
         <p>Chrome は 2 年後までに 3rdPC を無くしていくことをアナウンスしており、現状ではまず SameSite=Lax をデフォルトにすることで、 opt-in されたサービス以外は自動で 3rdPC が飛ぶことを制限している。
         <p>いずれにせよ、 3rdPC から脱していくことは、ほぼすべてのブラウザで合意が取れており、こうした方法を使うと、結局 3rdPC 自体が、それがどういう使われ方をしているかに関わらずブロックされる。
         <p>多少壊れるサイトがあれば、それは 3rdPC 以外の方法で修正するなどを行ったとして、トラッキングについてはだいたい防ぐことができるかもしれない。

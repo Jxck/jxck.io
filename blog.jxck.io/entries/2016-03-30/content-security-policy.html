@@ -54,7 +54,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-03-30T08:00:00+08:00",
-    "dateModified": "2018-07-29T08:00:00+08:00",
+    "dateModified": "2020-06-12T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -100,7 +100,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-03-30>2016-03-30</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2018-07-29>2018-07-29</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-06-12>2020-06-12</time></dd></div>
       <div><dt class=tags>tags</dt><dd>[<a href="/tags/csp.html">csp</a><i>,</i><a href="/tags/security.html">security</a>]</dd></div>
     </dl>
 
@@ -121,7 +121,7 @@
           <li><a href="https://www.w3.org/TR/CSP/">Content Security Policy Level 2</a>
           <li><a href="https://tools.ietf.org/html/draft-gondrom-websec-csp-header-00">draft-gondrom-websec-csp-header-00 - HTTP Header Content Security Policy</a>
         </ul>
-        <p>具体的には、コンテンツに対し Content-Security-Policy ヘッダを付加することにより、ブラウザに読み込を許可するコンテンツをホワイトリストにより制限することができる。
+        <p>具体的には、コンテンツに対し Content-Security-Policy ヘッダを付加することにより、ブラウザに読み込を許可するコンテンツをセーフリストにより制限することができる。
         <p>これによって、コンテンツ作成者が意図しない外部スクリプトや、インラインスクリプトを埋め込むことにより攻撃が実現するタイプの XSS を、ことごとく防ぐことが可能になる。
       </section>
       <section>
@@ -147,7 +147,7 @@
         <p>特にアド(広告)を貼っている場合は、そのアドは表示されなくなる可能性が高い。
         <p>同じオリジンから配布している JS でも、内部で <code translate="no">eval()</code> を実行している箇所や、 XHR, WebSocket で別オリジンに接続している箇所は、ポリシー違反になる場合もある。
         <p>とにかく、ある程度外部のリソースへリンクしているコンテンツにとっては、前述の制約はかなり厳しいものである。
-        <p>よって、ここに対してホワイトリストで、信頼するドメインの追加や、幾つかの挙動を例外的に許可する設定を足していくことになる。
+        <p>よって、ここに対してセーフリストで、信頼するドメインの追加や、幾つかの挙動を例外的に許可する設定を足していくことになる。
       </section>
       <section>
         <h2 id="report-only"><a href="#report-only">Report Only</a></h2>
@@ -175,7 +175,7 @@
         &quot;status-code&quot;: 0
     }
 }</code></pre>
-        <p>このレポートは、 Google Analytics の実行がポリシーのホワイトリストに含まれていないことによって発生している。
+        <p>このレポートは、 Google Analytics の実行がポリシーのセーフリストに含まれていないことによって発生している。
         <p>こうしたレポートにより、どのページの、どの実行が、どのポリシーに違反したかなどが取得できる。
         <p>このレポートの収集と解析を行うサービスとして、 report-uri.io というサービスが最近登場した。
         <p><a href="https://report-uri.io/">Welcome to report-uri.io</a>
@@ -205,7 +205,7 @@
           <li>Google Analytics を設定している
           <li>一部インラインスクリプト、インラインスタイルを使用していた
         </ul>
-        <p>基本的には、必要なオリジンをホワイトリストに追加し、インラインスタイル、インラインスクリプトは外部化した。
+        <p>基本的には、必要なオリジンをセーフリストに追加し、インラインスタイル、インラインスクリプトは外部化した。
         <p>しかし、 AMP のカスタムタグがインラインスタイルを使用している部分は、手を入れることができない。
         <p>かといって、全体としてスタイルに <code translate="no">&#39;unsafe-inline&#39;</code> を許容するのもはばかられたため、 AMP ページのみスタイルの <code translate="no">&#39;unsafe-inline&#39;</code> を許可した。
         <p>よって、通常のページ(上)と AMP 対応ページ(下)では以下の出し分けをしている。
