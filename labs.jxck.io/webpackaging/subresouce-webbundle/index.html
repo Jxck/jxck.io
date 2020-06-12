@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>DEMO</title>
+
+<style>
+</style>
+
+<h1>Test</h1>
+
+- https://example.com/scope/a.js (which depends on ./b.js)
+- https://example.com/scope/b.js
+- https://example.com/scope/c.png
+
+<link rel=webbundle
+      href=./subresources.wbn
+      scope=./
+      />
+
+<script type=module src=./a.js></script>
+<img src=./c.png>
+
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+
+
+  document.on('DOMContentLoaded', async (e) => {
+    console.log(e)
+
+
+
+
+  })
+</script>
