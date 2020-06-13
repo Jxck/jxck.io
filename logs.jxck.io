@@ -1,1 +1,1 @@
-../../storage/h2o.log
+../logs.jxck.io

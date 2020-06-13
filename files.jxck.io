@@ -1,1 +1,1 @@
-../../storage/files.jxck.io
+../files.jxck.io
