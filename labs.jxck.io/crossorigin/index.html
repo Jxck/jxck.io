@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>crossorigin Attribute DEMO</title>
+
+<style>
+img {
+  width: 100px;
+  border: solid 1px black;
+}
+</style>
+
+<h1>crossorigin Attribute DEMO</h1>
+
+<p>request cross origin from <em>https://labs.jxck.io</em> to <em>https://lab2.jxck.io</em>
+
+<p>see the console for result
+
+<p>no crossorigin attr and response has a-c-a-o = accessable
+<script src=https://lab2.jxck.io/crossorigin/a.js></script>
+<img    src=https://lab2.jxck.io/crossorigin/a.png>
+
+<p>with crossorigin attr and response has a-c-a-o = blocked
+<script crossorigin src=https://lab2.jxck.io/crossorigin/a.js></script>
+<img    crossorigin src=https://lab2.jxck.io/crossorigin/a.png>
