@@ -19,19 +19,12 @@ sudo certbot certonly \
   -d jxck.io \
   -d www.jxck.io \
   -d blog.jxck.io \
-  -d files.jxck.io \
-  -d slide.jxck.io \
   -d admin.jxck.io \
-  -d ws.jxck.io \
-  -d rails.jxck.io \
-  -d api.jxck.io \
-  -d sfu.jxck.io \
-  -d spec.jxck.io \
+  -d files.jxck.io \
   -d logo.jxck.io \
+  -d slide.jxck.io \
   -d labs.jxck.io \
   -d lab2.jxck.io \
+  -d api.jxck.io \
+  -d ws.jxck.io \
   -d reporting.jxck.io
-
-# no https
-# turn.jxck.io
-# stun.jxck.io
