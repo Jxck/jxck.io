@@ -120,7 +120,7 @@ module Document
 
     def size
       begin
-        File.open("../#{audio_file}").size
+        File.open("./#{audio_file}").size
       rescue
         0
       end
@@ -128,7 +128,7 @@ module Document
 
     def mtime
       begin
-        File.open("../#{audio_file}").mtime.to_i
+        File.open("./#{audio_file}").mtime.to_i
       rescue
         0
       end
@@ -137,9 +137,9 @@ module Document
     def duration
       sec = 0
       if RUBY_PLATFORM.match(/darwin/)
-        sec = `afinfo ../#{audio_file}  | grep duration | cut -d' ' -f 3`.to_i
+        sec = `afinfo ./#{audio_file}  | grep duration | cut -d' ' -f 3`.to_i
       else
-        sec = `mp3info -p "%S\n" ../#{audio_file}`.to_i
+        sec = `mp3info -p "%S\n" ./#{audio_file}`.to_i
       end
       Time.at(sec).utc.strftime("%X")
     end
