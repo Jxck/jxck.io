@@ -16,6 +16,7 @@ sudo certbot certonly \
   --email admin@jxck.io \
   -w ../www.jxck.io \
   --expand \
+  --force-renewal \
   -d jxck.io \
   -d www.jxck.io \
   -d blog.jxck.io \
