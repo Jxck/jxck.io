@@ -1,5 +1,6 @@
 # [systemd][ssh][linux][nuc] Intel NUC で自宅 Ubuntu 開発環境構築と SSH Port Forwarding によるアクセス
 
+
 ## Intro
 
 家では Mac を使っていたが、やはり Ubuntu 開発環境を作ることにした。
@@ -242,6 +243,25 @@ WantedBy=multi-user.target
 これで一応 ssh 接続は維持できた。
 
 若干の不安もあるので、制限を色々かけておく。
+
+
+## known_hosts
+
+known_hosts には接続相手の履歴が残っている。
+
+初回はここにエントリを追加し、次からは既存のエントリが参照される。
+
+サーバの IP などが変わったりすると、 DNS が書き換えられていると判定されエラーになることがある。
+
+systemd で起動した autossh は `/root/.ssh/known_hosts` にエントリを追加するため、もしエラーになったら一旦ここをクリアする。
+
+しかし、 systemd での起動ではエントリが足されないようなので、先に一旦手動で同等のコマンドを打っておくと良い。
+
+
+```sh
+# systemd に書いた ExecStart 相当
+$ sudo /usr/bin/autossh reverse-ssh -NTR 22222:localhost:22
+```
 
 
 ### sshd_config
