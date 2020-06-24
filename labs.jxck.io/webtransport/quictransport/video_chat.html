@@ -40,7 +40,7 @@ video {
   window.reader
 
   document.on('DOMContentLoaded', async (e) => {
-    const url = `quic-transport://labs.jxck.io:3000/echo`
+    const url = `quic-transport://labs.jxck.io:7000/echo`
     const transport = new QuicTransport(url)
     await transport.ready
     const stream = await transport.createBidirectionalStream()
