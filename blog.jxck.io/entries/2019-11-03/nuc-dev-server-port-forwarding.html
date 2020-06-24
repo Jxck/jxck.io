@@ -54,7 +54,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-11-03T08:00:00+08:00",
-    "dateModified": "2019-11-03T08:00:00+08:00",
+    "dateModified": "2020-06-24T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -100,7 +100,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-11-03>2019-11-03</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2019-11-03>2019-11-03</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-06-24>2020-06-24</time></dd></div>
       <div><dt class=tags>tags</dt><dd>[<a href="/tags/systemd.html">systemd</a><i>,</i><a href="/tags/ssh.html">ssh</a><i>,</i><a href="/tags/linux.html">linux</a><i>,</i><a href="/tags/nuc.html">nuc</a>]</dd></div>
     </dl>
 
@@ -273,6 +273,16 @@ WantedBy=multi-user.target</code></pre>
           <p>これで一応 ssh 接続は維持できた。
           <p>若干の不安もあるので、制限を色々かけておく。
         </section>
+      </section>
+      <section>
+        <h2 id="known_hosts"><a href="#known_hosts">known_hosts</a></h2>
+        <p>known_hosts には接続相手の履歴が残っている。
+        <p>初回はここにエントリを追加し、次からは既存のエントリが参照される。
+        <p>サーバの IP などが変わったりすると、 DNS が書き換えられていると判定されエラーになることがある。
+        <p>systemd で起動した autossh は <code translate="no">/root/.ssh/known_hosts</code> にエントリを追加するため、もしエラーになったら一旦ここをクリアする。
+        <p>しかし、 systemd での起動ではエントリが足されないようなので、先に一旦手動で同等のコマンドを打っておくと良い。
+        <pre class=sh><code translate="no"># systemd に書いた ExecStart 相当
+$ sudo /usr/bin/autossh reverse-ssh -NTR 22222:localhost:22</code></pre>
         <section>
           <h3 id="sshd_config"><a href="#sshd_config">sshd_config</a></h3>
           <p>NUC には、 VPS からの key を用いた ssh のみを許可したい。
