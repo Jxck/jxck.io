@@ -29,3 +29,6 @@ sudo certbot certonly \
   -d api.jxck.io \
   -d ws.jxck.io \
   -d reporting.jxck.io
+
+cd /keys
+sudo ./pkcs8.sh
