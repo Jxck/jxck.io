@@ -92,6 +92,8 @@ localhost を https にして URL バーを緑にするといった目的で、�
 
 この証明書と鍵を、[ローカルで立てるサーバ](https://github.com/Jxck/dotfiles/blob/master/bin/http)が読むようにし、ブラウザに https://localhost.jxck.io:3000 と入れれば、ブラウザには本物の https 環境がローカルで手に入る。
 
+![https://localhost.jxck.io:3000](localhost.jxck.io.png#1600x1407 'certificate detail view on https://localhost.jxck.io:3000 demo')
+
 パブリックな DNS に登録しているため、マシンが変わっても hosts を書き換える必要はない。鍵と証明書をコピーすればどのマシンでも同じ環境が再現でき、ローカルの証明書ストアをいじる必要もない。
 
 本番と違ってこの秘密鍵と証明書はカジュアルに取り回す前提として用意するため、柔軟性があがり、例えば LocalProxy や WireShark などに鍵をそのまま指定できる。[前回のブログ](https://blog.jxck.io/entries/2020-06-09/quic-transport.html) で使った QuicTransport サーバのようなものでも、証明書検証無視オプションを使わずにサーバが立てられたりもする。
