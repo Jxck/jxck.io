@@ -54,7 +54,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-06-29T08:00:00+08:00",
-    "dateModified": "2020-06-29T08:00:00+08:00",
+    "dateModified": "2020-06-30T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -100,7 +100,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-06-29>2020-06-29</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-06-29>2020-06-29</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-06-30>2020-06-30</time></dd></div>
       <div><dt class=tags>tags</dt><dd>[<a href="/tags/localhost.html">localhost</a><i>,</i><a href="/tags/https.html">https</a><i>,</i><a href="/tags/security.html">security</a>]</dd></div>
     </dl>
 
@@ -164,6 +164,12 @@
           <p>そして、このドメインの A レコードを 127.0.0.1 にし、変えない。 (dig してもらえればわかる)
           <p>ここに対して Let&rsquo;s Encrypt で証明書を発行する。 127.0.0.1 ではサーバ(.well-known url)での認証はできないので、 DNS 認証で証明書を取る。すると、「<em>本物の https の証明書</em>」(すでに証明書ストアに入った証明書で検証できる証明書)が手に入る。
           <p>この証明書と鍵を、<a href="https://github.com/Jxck/dotfiles/blob/master/bin/http">ローカルで立てるサーバ</a>が読むようにし、ブラウザに https://localhost.jxck.io:3000 と入れれば、ブラウザには本物の https 環境がローカルで手に入る。
+          <p>
+            <picture>
+              <source type=image/webp srcset=localhost.jxck.io.webp#1600x1407>
+              <img loading=lazy src=localhost.jxck.io.png#1600x1407 alt="https://localhost.jxck.io:3000" title="certificate detail view on https://localhost.jxck.io:3000 demo">
+            </picture>
+          </p>
           <p>パブリックな DNS に登録しているため、マシンが変わっても hosts を書き換える必要はない。鍵と証明書をコピーすればどのマシンでも同じ環境が再現でき、ローカルの証明書ストアをいじる必要もない。
           <p>本番と違ってこの秘密鍵と証明書はカジュアルに取り回す前提として用意するため、柔軟性があがり、例えば LocalProxy や WireShark などに鍵をそのまま指定できる。<a href="https://blog.jxck.io/entries/2020-06-09/quic-transport.html">前回のブログ</a> で使った QuicTransport サーバのようなものでも、証明書検証無視オプションを使わずにサーバが立てられたりもする。
           <p>管理もある程度気をつければ良く、仮に証明書が漏洩したところで、ドメインはループバック固定で、なにかがあっても再発行すればよく、最悪 3 ヶ月で revoke されるので、リスクも少ない。
