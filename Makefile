@@ -233,6 +233,7 @@ install:
 	# bundle config set path './.bundle/vendor' --local
 	bundle install
 	npm install
+	sudo apt install pngquant optipng
 
 update:
 	bundle update
