@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html amp lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href=https://blog.jxck.io/entries/2020-06-29/https-for-localhost.html>
+
+  <link rel=icon             type =image/svg+xml sizes=any href=https://jxck.io/assets/img/jxck.svg>
+  <link rel=icon             type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="Web の https 化が進み、それに伴って https を前提とする API も増えてきた。そうした API を用いた開発をローカルで行う場合、 localhost という特別なホストを用いることもできるが、それだけでは間に合わないケースも少なからずある。localho...">
+  <meta name=keywords            content="localhost,https,security">
+  <meta name=theme-color         content=#000000>
+
+  <meta name=twitter:card        content=summary>
+  <meta name=twitter:site        content=@jxck_>
+  <meta name=twitter:url         content=https://blog.jxck.io/entries/2020-06-29/https-for-localhost.html>
+  <meta name=twitter:title       content="ローカル開発環境の https 化 | blog.jxck.io">
+  <meta name=twitter:description content="Web の https 化が進み、それに伴って https を前提とする API も増えてきた。そうした API を用いた開発をローカルで行う場合、 localhost という特別なホストを用いることもできるが、それだけでは間に合わないケースも少なからずある。localho...">
+  <meta name=twitter:image       content=https://jxck.io/assets/img/jxck.png>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2020-06-29/https-for-localhost.html>
+  <meta property=og:title        content="ローカル開発環境の https 化 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="Web の https 化が進み、それに伴って https を前提とする API も増えてきた。そうした API を用いた開発をローカルで行う場合、 localhost という特別なホストを用いることもできるが、それだけでは間に合わないケースも少なからずある。localho...">
+  <meta property=og:image        content=https://jxck.io/assets/img/jxck.png>
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "ローカル開発環境の https 化 | blog.jxck.io",
+    "image": [
+      "https://jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2020-06-29T08:00:00+08:00",
+    "dateModified": "2020-06-29T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.60x60.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": "Web の https 化が進み、それに伴って https を前提とする API も増えてきた。そうした API を用いた開発をローカルで行う場合、 localhost という特別なホストを用いることもできるが、それだけでは間に合わないケースも少なからずある。localho..."
+  }
+  </script>
+
+  <title>ローカル開発環境の https 化 | blog.jxck.io</title>
+  <script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+  <script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+  <script async custom-element=amp-ad src=https://cdn.ampproject.org/v0/amp-ad-0.1.js></script>
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src=https://cdn.ampproject.org/v0.js></script>
+  <style amp-custom>
+    article section p {
+      margin-left: 0;
+    }
+
+    article table {
+      margin-left: 0;
+    }
+
+    article img {
+      margin: var(--grid) 0;
+      border: 1px solid #ccc;
+      box-sizing: content-box;
+      background-color: #fff;
+    }
+
+    article ul,
+    article ol,
+    article dl {
+      margin-left: var(--grid);
+      font-family: var(--mono-font);
+    }
+
+    article ul li ul,
+    article ol li ol {
+      margin: 0 0 0 calc(var(--grid)*2);
+      font-size: 1rem;
+    }
+
+    article ol li ol li,
+    article ul li ul li {
+      margin-bottom: 0;
+    }
+
+    article dl {
+      display: grid;
+      grid-template-columns: minmax(auto, max-content);
+      grid-column-gap: var(--grid);
+    }
+
+    article dl div {
+      display: contents;
+    }
+
+    article dl dt {
+      grid-column: 1 / 2;
+    }
+    article dl dd {
+      grid-column: 2 / 2;
+    }
+
+    article blockquote {
+      font-family: var(--mono-font);
+    }
+
+    article blockquote p {
+      margin: 0;
+    }
+
+    @supports (line-height-step: 1px) {
+      article {
+        --grid-rhythm: 1.5em;
+        line-height: 1.5;
+        line-height-step: var(--grid-rhythm);
+      }
+
+      article h1,
+      article h2,
+      article h3,
+      article h4,
+      article h5,
+      article h6 {
+        display: inline-block;
+        width: 100%;
+        line-height-step: 0;
+        line-height: 1.2;
+        margin-bottom: 0;
+      }
+
+      article section {
+        /* grid for debug */
+        /* background-size: 100% var(--grid-rhythm); */
+        /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
+      }
+
+      article p {
+        margin-top: var(--grid-rhythm);
+        margin-bottom: var(--grid-rhythm);
+      }
+
+      article pre,
+      article table {
+        line-height-step: 0;
+        line-height: normal;
+      }
+    }
+    /* normal regular */
+    @font-face {
+      font-family: "NotoSansCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src:
+        local("Noto Sans CJK JP Regular"),
+        url("/assets/font/NotoSansCJKjp-Regular-Jxck-20200407.woff2") format("woff2");
+    }
+    /* normal bold */
+    @font-face {
+      font-family: "NotoSansCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src:
+        local("Noto Sans CJK JP Bold"),
+        url("/assets/font/NotoSansCJKjp-Bold-Jxck-20200407.woff2") format("woff2");
+    }
+
+
+    /* mono regular */
+    @font-face {
+      font-family: "NotoSansMonoCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src:
+        local("Noto Sans Mono CJK JP Regular"),
+        url("/assets/font/NotoSansMonoCJKjp-Regular-Jxck-20200407.woff2") format("woff2");
+    }
+    /* mono bold */
+    @font-face {
+      font-family: "NotoSansMonoCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src:
+        local("Noto Sans Mono CJK JP Bold"),
+        url("/assets/font/NotoSansMonoCJKjp-Bold-Jxck-20200407.woff2") format("woff2");
+    }
+
+    /* Light Mode Theme */
+    :root {
+      --background-color: #fefefe;
+      --font-color: #222;
+      --header-color: #222;
+
+      --anchor-color: RoyalBlue;
+      --anchor-visited-color: Brown;
+
+      --code-block: #efefef;
+      --code-block-font: #222;
+
+      --block-quote: #ddd;
+      --table-border: #222;
+
+      --regular-font: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", "Hiragino Sans", 'ヒラギノ角ゴ Pro W3', 'メイリオ', sans-serif;
+      --mono-font: "NotoSansMonoCJKjp-Jxck";
+      --code-font: Menlo, Consolas, Liberation, Mono, Courier, "NotoSansMonoCJKjp-Jxck";
+
+      --icon-size: 30px;
+
+      --width: 80vw;
+      --grid: 1rem;
+
+      --radius: 4px;
+    }
+
+
+    /* Mobile Theme */
+    @media screen and (max-device-width: 800px) {
+      :root {
+        --width: 94vw;
+      }
+
+      audio {
+        width: 100%;
+      }
+    }
+
+    /* Dark Mode Theme */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background-color: #010101;
+        --font-color: #eee;
+
+        --anchor-color: CornflowerBlue;
+        --anchor-visited-color: RosyBrown;
+
+        --code-block: #efefef;
+
+        --table-border: #eee;
+      }
+
+      article img {
+        filter: grayscale(50%);
+      }
+      article img[src*=svg] {
+        filter: invert(100%) grayscale(50%);
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--regular-font);
+      background-color: var(--background-color);
+      color: var(--font-color);
+      font-feature-settings: "palt";
+      margin: 0;
+      padding: 0;
+    }
+
+    code {
+      font-family: var(--mono-font);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    hr {
+      margin: 0;
+      padding: 0;
+    }
+
+    iframe {
+      display: block;
+      max-width: 100%;
+      margin: var(--grid) 0;
+    }
+    dl.info {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info div {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+
+    dl.info dt::after {
+      content: ":";
+      margin-right: calc(var(--grid)/2);
+    }
+
+    dl.info dd {
+      margin: 0 var(--grid) 0 0;
+    }
+
+    dl.info dd i {
+      font-style: normal;
+      margin-right: calc(var(--grid)/3);
+    }
+    header {
+      z-index: 1;
+      position: sticky;
+      position: -webkit-sticky;
+      top: 0;
+      box-sizing: border-box;
+      margin: 0;
+      padding: calc(var(--grid)/2);
+      background-color: var(--header-color);
+    }
+
+    h2:target,
+    h3:target,
+    h4:target,
+    h5:target,
+    h6:target {
+      /* sticky header に合わせて link scroll をずらす */
+      margin-top:  calc((var(--icon-size) + var(--grid)) * -1);
+      padding-top: calc((var(--icon-size) + var(--grid)));
+    }
+
+    header ul {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      width: var(--width);
+      margin: 0 auto;
+    }
+
+    header ul li {
+      width:  var(--icon-size);
+      height: var(--icon-size);
+      padding: 0;
+      margin: 0 0 0 var(--grid);
+    }
+
+    header ul li a,
+    header ul li button {
+      display: block;
+      width: var(--icon-size);
+      height: var(--icon-size);
+      padding: 0;
+      margin: 0;
+      border: none;
+      background-color: var(--header-color);
+    }
+
+    header ul li svg {
+      fill: var(--background-color);
+    }
+
+    header ul li::before {
+      content: none;
+    }
+
+    header ul li:first-child {
+      flex-grow: 1;
+      margin-left: 0;
+    }
+
+    header .logo {
+      border: 1px solid #fff;
+      box-sizing: border-box;
+    }
+    h1 > a,
+    h2 > a,
+    h3 > a,
+    h4 > a,
+    h5 > a,
+    h6 > a {
+      color: var(--font-color);
+    }
+
+    h1 > a:visited,
+    h2 > a:visited,
+    h3 > a:visited,
+    h4 > a:visited,
+    h5 > a:visited,
+    h6 > a:visited {
+      color: var(--font-color);
+    }
+
+    h1 > a::before {
+      content: "# ";
+    }
+
+    h2 > a::before {
+      content: "## ";
+    }
+
+    h3 > a::before {
+      content: "### ";
+    }
+
+    h4 > a::before {
+      content: "#### ";
+    }
+
+    h1 > a:hover::before,
+    h2 > a:hover::before,
+    h3 > a:hover::before,
+    h4 > a:hover::before,
+    h5 > a:hover::before,
+    h6 > a:hover::before {
+      color: var(--anchor-visited-color);
+    }
+
+    em {
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    em::before,
+    em::after {
+      content: "*";
+    }
+
+    strong {
+      color: red;
+    }
+
+    strong::before,
+    strong::after {
+      content: "**";
+    }
+
+    ul li::before {
+      content: "- ";
+    }
+
+    ol {
+      counter-reset: list;
+    }
+
+    ol li::before {
+      counter-increment: list;
+      content: counter(list) ". ";
+    }
+
+    dl dt::after {
+      content: ":";
+    }
+
+    blockquote {
+      display: block;
+      border: solid 1px var(--block-quote);
+      border-radius: var(--radius);
+      padding: 1rem;
+      margin: 0;
+    }
+
+    blockquote p::before {
+      content: "> ";
+    }
+
+    code {
+      background-color: var(--code-block);
+      color: var(--code-block-font);
+      border-radius: var(--radius);
+      padding: 0 4px;
+    }
+
+    code::before,
+    code::after {
+      content: "`";
+    }
+    main {
+      display: block;
+      width: var(--width);
+      margin: 1em auto;
+    }
+
+    a {
+      word-wrap: break-word;
+      text-decoration: none;
+      color: var(--anchor-color);
+    }
+
+    a:visited {
+      color: var(--anchor-visited-color);
+    }
+
+    ol,
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      word-break: break-all;
+      word-wrap: break-word;
+    }
+
+    dl dt {
+      font-weight: bold;
+      margin: 0;
+    }
+
+    dl dd {
+      margin: 0;
+    }
+    footer {
+      padding: var(--grid);
+    }
+
+    footer strong,
+    footer .copyright {
+      width: var(--width);
+      margin: 0 auto;
+      font-style: italic;
+    }
+
+    /* AdSense */
+    footer ins {
+      display: block;
+      width: var(--width);
+      margin: 0 auto;
+    }
+    pre {
+      margin: var(--grid) 0;
+      border-radius: var(--radius);
+    }
+
+    pre::before {
+      content: "```" attr(class) "\A";
+    }
+
+    pre::after {
+      z-index: -1;
+      position: relative;
+      top: -1em;
+      content: "\A```";
+    }
+
+    pre > code {
+      font-family: var(--code-font);
+      overflow: auto;
+      display: block;
+      padding: 0.5rem;
+      margin: 0;
+    }
+
+    pre > code::before,
+    pre > code::after {
+      content: none;
+    }
+
+    .hljs-keyword {
+      color: #a71d5d;
+    }
+
+    .hljs-title {
+      color: #795da3;
+    }
+
+    .hljs-string {
+      color: #183691;
+    }
+
+    .hljs-number {
+      color: #0086b3;
+    }
+
+    .hljs-built_in {
+      color: #0086b3;
+    }
+
+    .hljs-literal {
+      color: #0086b3;
+    }
+
+    .hljs-regexp {
+      color: #183691;
+    }
+
+    .hljs-comment {
+      color: #4f80e5;
+    }
+
+    .hljs-tag {
+      color: #a71d5d;
+    }
+
+    .hljs-name {
+      color: #222222;
+    }
+
+    .hljs-strong {
+      font-weight: bold;
+    }
+
+    .hljs-attribute {
+      font-weight: bold;
+    }
+
+    .hljs-meta {
+      color: #4f80e5;
+    }
+
+    .hljs-selector-id,
+    .hljs-selector-class,
+    .hljs-selector-pseudo {
+      color: #6f42c1;
+    }
+
+    .hljs-selector-tag {
+      color: #22863a;
+    }
+
+    .hljs-subst {
+      font-weight: bold;
+    }
+
+    .hljs-variable {
+      color: #a71d5d;
+    }
+
+    .hljs-symbol {
+      font-weight: bold;
+    }
+
+    .hljs-selector-attr {
+      color: #6f42c1;
+    }
+
+    .hljs-bullet {
+    }
+
+
+    @media (prefers-color-scheme: dark) {
+      .hljs-keyword {
+        color: #000;
+        font-weight: bold;
+        font-style: italic;
+      }
+
+      .hljs-number {
+        color: var(--code-block-font);
+      }
+
+      .hljs-built_in {
+        color: #000;
+        font-weight: bold;
+      }
+
+      .hljs-literal {
+        color: var(--code-block-font);
+        font-weight: bold;
+      }
+
+      .hljs-regexp {
+        color: var(--code-block-font);
+      }
+
+      .hljs-comment {
+        color: #888;
+      }
+
+      .hljs-tag {
+        color: var(--code-block-font);
+        font-weight: bold;
+      }
+
+      .hljs-strong {
+        font-weight: bold;
+      }
+
+      .hljs-attribute {
+      }
+
+      .hljs-attr {
+        color: var(--code-block-font);
+        font-weight: bold;
+      }
+
+      .hljs-selector-tag {
+        color: var(--code-block-font);
+      }
+
+      .hljs-subst {
+        font-weight: bold;
+      }
+      .hljs-symbol {
+        font-weight: bold;
+      }
+
+      .hljs-section {
+      }
+
+      .hljs-meta,
+      .hljs-selector-id,
+      .hljs-selector-class,
+      .hljs-selector-pseudo,
+      .hljs-variable,
+      .hljs-title,
+      .hljs-string,
+      .hljs-name,
+      .hljs-selector-attr {
+        color: var(--code-block-font);
+      }
+    }
+
+
+
+
+
+
+
+    /**.hljs,**/
+    .hljs-meta-keyword,
+    .hljs-doctag,
+    .hljs-code,
+    .hljs-addition,
+    .hljs-template-variable,
+    .hljs-link,
+    .hljs-type,
+    .hljs-quote,
+    .hljs-template-tag,
+    .hljs-deletion,
+    .hljs-meta-string,
+    .hljs-emphasis {
+      /** if you find element applyed this style, please tell me https://github.com/jxck/jxck.io/issues **/
+      font-size: 100em;
+    }
+    table {
+      font-family: var(--mono-font);
+      margin: var(--grid) 0;
+      border-spacing: 0 0.4rem;
+    }
+
+    th {
+      padding: 0 var(--grid) calc(var(--grid)/2) var(--grid);
+      border-left: 2px solid var(--table-border);
+      border-bottom: 2px dashed var(--table-border);
+    }
+
+    td {
+      padding: calc(var(--grid)/2) var(--grid);
+      border-left: 2px solid var(--table-border);
+    }
+
+    th:last-child,
+    td:last-child {
+      border-right: 2px solid var(--table-border);
+    }
+
+    .align-center {
+      text-align: center;
+    }
+
+    .align-left {
+      text-align: left;
+    }
+
+    .align-right {
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://blog.jxck.io      ><amp-img width=30 height=30 src=/assets/img/blog.svg   alt="blog logo" class=logo    ></a>
+      <li><a href=/searches                 ><amp-img width=30 height=30 src=/assets/img/search.svg alt=search                    ></a>
+      <li><a href=.                         ><amp-img width=30 height=30 src=/assets/img/up.svg     alt="move to parent directory"></a>
+      <li><a href=/feeds/atom.xml           ><amp-img width=30 height=30 src=/assets/img/rss.svg    alt="rss feed"                ></a>
+      <li><a href=https://jxck.io/humans.txt><amp-img width=30 height=30 src=/assets/img/humans.svg alt="huamns.txt"              ></a>
+      <li><a href=https://jxck.io           ><amp-img width=30 height=30 src=/assets/img/jxck.svg   alt="jxck logo" class=logo    ></a>
+    </ul>
+  </nav>
+</header>
+<main>
+  <dl class=info>
+    <dt>created_at</dt><dd><time class=created_at datetime=2020-06-29>2020-06-29</time></dd>
+    <dt>updated_at</dt><dd><time class=updated_at datetime=2020-06-29>2020-06-29</time></dd>
+    <dt class=tags>tags</dt><dd>[<a href="/tags/localhost.html">localhost</a><i>,</i><a href="/tags/https.html">https</a><i>,</i><a href="/tags/security.html">security</a>]</dd>
+  </dl>
+  <article>
+    <h1><a href=/entries/2020-06-29/https-for-localhost.html>ローカル開発環境の https 化</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p>Web の https 化が進み、それに伴って https を前提とする API も増えてきた。
+      <p>そうした API を用いた開発をローカルで行う場合、 localhost という特別なホストを用いることもできるが、それだけでは間に合わないケースも少なからずある。
+      <p>localhost を https にするという方法もあるが、そのように紹介されている方法には、いくつか注意すべき点もある。
+      <p>この辺りの話を、直近 1 ヶ月で 3 回くらいしたので、筆者が普段使っている方法や注意点についてまとめる。
+      <p>特に推奨するつもりはない。
+    </section>
+    <section>
+      <h2 id="localhost-での開発の注意点"><a href="#localhost-での開発の注意点">localhost での開発の注意点</a></h2>
+      <p>例として <code translate="no">https://example.com</code> にデプロイする予定の ServiceWorker を用いたアプリがあったとする。
+      <p>開発をローカルで行う場合、 <code translate="no">http://localhost:3000</code> などに立てたローカルサーバなどで開発を行うことが多いだろう。
+      <p>筆者はそうした開発は極力しないようにしている。 localhost が特殊すぎるからだ。
+      <p>(この「localhost が特殊すぎる」と思ったことが無い読者や、自前でやらずに github pages や netlify などにデプロイすれば良いケースにとっては、読む必要のないことしか書いてない)
+      <section>
+        <h3 id="localhost-の特異性"><a href="#localhost-の特異性">localhost の特異性</a></h3>
+        <p>通信が外に出ないのを良いことに、ブラウザは開発向けに様々な例外を localhost に許している。例えば ServiceWorker や WebRTC(getUserMedia) といった https でしか使えない API の利用を、 localhost の場合だけ http でも許すと言ったものだ。
+        <p>localhost で開発し確認していても、実際にデプロイすると permission 周りの挙動の違いや、 mixed contents の見落としなど、様々な差異に気づくという経験をした人も、少なく無いのではないだろうか?
+        <p>本番との乖離があまりにも大きいため、サービスの特性や使う API によっては、 <code translate="no">http://localhost</code> が開発に適した環境ではない場面があり、そうした場面が増えているという実感が筆者にはある。
+      </section>
+      <section>
+        <h3 id="localhost-の実態"><a href="#localhost-の実態">localhost の実態</a></h3>
+        <p>ちなみに、 localhost の実態はただの hosts ファイルのエントリなので、そこを別の IP に書き換えれば、リモートのサーバを localhost で参照するといったこともできる。
+        <p>(これは Windows IE 上で localhost でサーバを見たいが、サーバは Mac で動いてるなど、ブラウザを起動するマシンとコードを書くマシンを分けたい時などにやむを得ず使ったりする)
+        <pre><code translate="no">127.0.0.1  localhost # default
+203.0.113.0  localhost # localhost を別のアドレスにする
+127.0.0.1  example.com # 別のドメインを loopback にする</code></pre>
+        <p>つまり localhost とは、単に多くの OS がデフォルトで hosts に書いているエントリというだけなので、 sudo が必要とはいえ、厳密には localhost の解決先が 127.0.0.1 である保証は実はない。そしてやったことは無いが、 hosts のエントリを消し DNS に localhost を解決させることも可能なはずだ。
+        <p>そこで、様々な例外が認められた結果 Powerful Features が使い放題になった localhost が、必ず 127.0.0.1 を向くようにしようという提案もある。
+        <ul>
+          <li><a href="https://tools.ietf.org/html/draft-ietf-dnsop-let-localhost-be-localhost-02">draft-ietf-dnsop-let-localhost-be-localhost-02 - Let &lsquo;localhost&rsquo; be localhost</a>
+        </ul>
+        <p>とはいえ、開発上必要で /etc/hosts を書き換え、戻し忘れた経験が有る人も多いのではないだろうか。そもそも sudo が必要なところからも、 hosts は頻繁に書き換えるような用途で使うものとはいえず、特に初心者がよくわからずにいじるようなファイルではない。
+      </section>
+      <section>
+        <h3 id="localhost-https"><a href="#localhost-https">localhost https</a></h3>
+        <p>localhost も単なるホストなので、証明書を発行することは可能だ。つまり <code translate="no">https://localhost</code> は実現でき、そうした環境を用意する方法はネット上でも散見される。
+        <p>ただし、自前で発行した localhost の証明書はいわゆる自己署名証明書(平成ではオレオレ証明書と呼ばれていた)であるため、ブラウザはそれを信用しない。つまりエラーになる。エラーを無視して続けることもできるが、毎回エラーが出て煩わしいだけでなく、他のエラーがあっても URL バーが常に赤でわかりにくいといった問題も有る。
+        <p>対策としては、その証明書を無理やり信用させる、具体的には証明書ストアに作った証明書を入れることになる。もう少し手をかけるなら、自前 CA(実態はサーバ証明書を署名するための証明書)を作り、その証明書を一回入れれば残りはその CA で署名できる。
+        <p>これらが、ネットで散見される localhost の https 化の方法だろう。
+      </section>
+    </section>
+    <section>
+      <h2 id="トラストアンカーとしての証明書ストア"><a href="#トラストアンカーとしての証明書ストア">トラストアンカーとしての証明書ストア</a></h2>
+      <p>証明書ストア(Mac では KeyChain)は OS ごとに用意されており、 Firefox は OS のストアは見ずに自前で証明書ストアを持っている。(ここを忘れると Firefox で反映されずハマる)
+      <p>そこには、予め審査を通った Root CA 等の証明書が並んでおり、これが PKI におけるトラストアンカーの実態だ。この証明書ストアが壊れれば、我々が https の緑を信用するための拠り所が壊れるということを意味する。したがって、 hosts と同じく sudo などで変更できるとはいえ、本当は証明書ストアこそ素人がいじる場所ではない。
+      <p>localhost を https にして URL バーを緑にするといった目的で、手軽に自前 CA を立てて軽い気持ちでいじるような運用が推奨されるのは、ちょっと危険ではないかと個人的には思っている。
+      <p>なかには、こうした設定を自動で行ってくれる便利ツールもあるようだ。権限を与えたら証明書ストアを自動でいじるようなツールは、誰が作っていようと使用するのは怖いし、危険だろう。
+      <section>
+        <h3 id="個人用開発環境"><a href="#個人用開発環境">個人用開発環境</a></h3>
+        <p>個人の場合、普段の開発でカジュアルに hosts や証明書ストアをいじるよりも、実在するドメインを用意し、本物の証明書を取ってしまうのが一番安全かつ完全だ。何も変えず何も騙さず、何の危険もなく正しく動く。
+        <p>例として、筆者が普段から個人的な開発や検証に使っている手元の https サーバの構成を紹介する。
+        <p>まず、自分が所有する jxck.io のサブドメインとして localhost.jxck.io を登録している。これは「<em>本物のドメイン</em>」だ。
+        <p>そして、このドメインの A レコードを 127.0.0.1 にし、変えない。 (dig してもらえればわかる)
+        <p>ここに対して Let&rsquo;s Encrypt で証明書を発行する。 127.0.0.1 ではサーバ(.well-known url)での認証はできないので、 DNS 認証で証明書を取る。すると、「<em>本物の https の証明書</em>」(すでに証明書ストアに入った証明書で検証できる証明書)が手に入る。
+        <p>この証明書と鍵を、<a href="https://github.com/Jxck/dotfiles/blob/master/bin/http">ローカルで立てるサーバ</a>が読むようにし、ブラウザに https://localhost.jxck.io:3000 と入れれば、ブラウザには本物の https 環境がローカルで手に入る。
+        <p>パブリックな DNS に登録しているため、マシンが変わっても hosts を書き換える必要はない。鍵と証明書をコピーすればどのマシンでも同じ環境が再現でき、ローカルの証明書ストアをいじる必要もない。
+        <p>本番と違ってこの秘密鍵と証明書はカジュアルに取り回す前提として用意するため、柔軟性があがり、例えば LocalProxy や WireShark などに鍵をそのまま指定できる。<a href="https://blog.jxck.io/entries/2020-06-09/quic-transport.html">前回のブログ</a> で使った QuicTransport サーバのようなものでも、証明書検証無視オプションを使わずにサーバが立てられたりもする。
+        <p>管理もある程度気をつければ良く、仮に証明書が漏洩したところで、ドメインはループバック固定で、なにかがあっても再発行すればよく、最悪 3 ヶ月で revoke されるので、リスクも少ない。
+        <p>ドメインさえ持っていれば誰にでもでき、ドメインはタダで手に入るものもあるので、この環境を作るコストはそこまで高くない。
+        <p>筆者は、手元でちょっとした挙動を確認したりするときは常に使っている。
+      </section>
+      <section>
+        <h3 id="管理された証明書ストア"><a href="#管理された証明書ストア">管理された証明書ストア</a></h3>
+        <p>一方大きめの企業などでは、組織で管理する CA を持ち、社員に配る PC のキッティング時に、社内 CA の証明書を証明書ストアに入れて配布している場合があるだろう。その場合は組織内でイントラ向けのドメインを管理し、組織の CA で証明書を発行するといった運用になっているはずだ。こうした管理体制と運用がしっかりしており、すでに健全に回っているのであれば、その運用に従えば同じことができる。
+        <p>例えば、 example.com という会社ならば、社員やプロジェクトに対して <code translate="no">dev.intra.example.com</code> のようなドメインを付与するか、この目的のために <code translate="no">localhost.intra.example.com</code> といったドメインを付与する。
+        <p>鍵は社員が作り、社内 CA で証明書を発行し、ドメインの A レコードは、組織の DNS でループバックにする。
+        <p>社員は、付与された証明書を使ってローカルサーバを起動し、 <code translate="no">https://{localhost|dev}.intra.example.com:3000</code> などにアクセスすれば、それを localhost の代わりに使うことができる。同じ社員同士なら、同じ環境がすぐ再現できるため環境構築の負荷も低い。
+        <p>注意点として、イントラでは任意のドメインを社内 DNS に載せ、証明書を出すこともできてしまうだろう。しかし、この用途で所有もしてない適当なドメインを使うべきではない(MUST)。今は取られてないドメインも将来誰かが所有する可能性があり、今はない TLD も将来登録されるかもしれない(.dev で懲りた人も多いだろう)。使うなら <code translate="no">.test</code> などが自由に使える、詳細は以下を参照してほしい。
+        <p><a href="https://blog.jxck.io/entries/2017-09-27/example-local-test-domains.html">予約済みドメイン (.example, .localhost, .test) について | blog.jxck.io</a>
+        <p>できれば、自社で取得しているドメインのサブドメインなどを使うのが良いだろう。
+        <p>あと、こうした社内での運用は、申請の負荷や許可される範囲など様々な制限があり、大抵の企業で、大抵は面倒なんじゃないかと思われる。
+      </section>
+      <section>
+        <h3 id="現場用開発環境"><a href="#現場用開発環境">現場用開発環境</a></h3>
+        <p>組織で CA やイントラドメインを管理してない場合や、あっても申請が面倒で誰も活用してない場合でも、本物のドメインを用意すれば、前述の Let&rsquo;s Encrypt を用いた方法を適用することはできる。
+        <p>例えば、 example.com というドメインにデプロイする予定であれば、そのステージング環境用としてそのサブドメインや、似たちょっと違うドメインを用意することが多いだろう。ここでは仮に <code translate="no">dev.example.com</code> とする。
+        <p>その場合は <code translate="no">dev.example.com</code> の証明書を Let&rsquo;s Encrypt で取得し、それをチームに安全に配布する方法を用意する。(Private Repo であれば、入れてしまってもいいのかもしれない)
+        <p>そして、開発で使う webpack-dev-server 的な何かにこの証明書を設定をしておく。最後に <code translate="no">dev.example.com</code> を 127.0.0.1 にしておけば、チームの誰もが本物の <code translate="no">https://dev.example.com:3000</code> 環境をすぐに再現できる。
+        <p>新人が Wiki を見ながら手元で OpenSSL を叩いたり、 KeyChain を雑にいじって証明書を入れたりするような運用よりは安全かと思い、筆者は実際にこうした運用を行ったこともある。
+        <p>現場で使う上での注意点があるとすれば、 Let&rsquo;s Encrypt は CT-Log に発行履歴が残るために、完全極秘なプロジェクトである場合は、ステージング用のドメインは関係ないものを選んだ方が良いだろう。
+      </section>
+    </section>
+    <section>
+      <h2 id="開発ツールにはどこまでが許されるか"><a href="#開発ツールにはどこまでが許されるか">開発ツールにはどこまでが許されるか?</a></h2>
+      <p>今回は、ドメインも証明書もすべて本物を使うという振り切った運用だったが、それも Let&rsquo;s Encrypt のコストが低すぎるから成り立っているだけである。本来、開発用には開発用の環境がもっと手軽に用意できればそれにこしたことはない。
+      <p>本来 hosts や証明書ストアなどは、管理者が重要な変更をたまに行う程度のもので、普段から頻繁にいじるようなものでは無かった。しかし、 HTTPS が必須な世界となった今、そこをいじらないと成り立たない業務が出始めているという実態と、 OS のモデルに乖離を感じたりもする。
+      <p>そういう文脈を踏まえた上で、例えばブラウザの開発者ツールの中で、 hosts に相当する名前解決や、許可リストベースでの証明書検証の無視などを、設定できたらどうかと思うこともある。
+      <p>開発者ツールには、実質「<em>閉じたら全てが無効になる</em>」を権限の起点としており、かつ開発者が使い慣れているという点でも、 sudo で永続的にいじる hosts や証明書よりよっぽど安全に運用できるだろう。
+      <p>ただ、そうした文脈の外からは「そんな危ない機能が開発者ツールにあって良いのか」という反応しか期待されない。実際は、既に Local Override を始めとした様々な機能があり、残念ながら開発者ツールが掌握されれば、現状でもおおよそやりたい放題だとは思うが。
+      <p>結局、開発者は正しい知識を身につけ各位工夫してやるか、 <code translate="no">http://localhost:3000</code> で足りるならそこで間に合わせるということになる。
+    </section>
+  </article>
+</main>
+<hr>
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small> See <small><a href=/policies/site.html>Site Policy</a> and <a href=/policies/privacy.html>Privacy Policy</a>.</small></p>
+  <amp-ad width=100vw height=320 type=adsense data-ad-client=ca-pub-2902784829138215 data-ad-slot=9735419796 data-auto-format=rspv data-full-width><div overflow></div></amp-ad>
+</footer>
+</body>
+</html>
+<amp-analytics type=googleanalytics id=analytics1>
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
