@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>WebCodecs DEMO</title>
+
+<style>
+</style>
+
+<h1>WebCodecs DEMO</h1>
+
+<ul>
+  <li>Explainer: <a href=https://github.com/WICG/web-codecs/blob/master/explainer.md>https://github.com/WICG/web-codecs/blob/master/explainer.md</a>
+  <li>CrBug: <a href=https://bugs.chromium.org/p/chromium/issues/detail?id=897297>https://bugs.chromium.org/p/chromium/issues/detail?id=897297</a>
+</ul>
+
+<pre>
+$ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-features=WebCodecs
+</pre>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  document.on('DOMContentLoaded', async (e) => {
+    console.log(e)
+
+    const mediaStream = await navigator.mediaDevices.getUserMedia({video: true, audio: false})
+    const [videoTrack] = mediaStream.getVideoTracks()
+
+    const videoEncoder = new VideoEncoder({
+      output: function() {
+        console.log(arguments)
+      }
+    })
+    console.log(videoEncoder)
+
+    await videoEncoder.configure({
+      codec:  'vp8',
+      width:  640,
+      height: 480
+    })
+
+    const videoReader = (new VideoTrackReader(videoTrack))
+    console.log(videoReader)
+    videoReader.start((videoFrame) => {
+      console.log(videoFrame)
+      console.log(videoEncoder.encode(videoFrame))
+    })
+
+  })
+</script>
