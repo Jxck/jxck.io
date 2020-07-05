@@ -989,3 +989,16 @@ eyeD3 --title "ep68 Monthly Web 202005" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep69.mp3
+
+eyeD3 --title "ep69 Monthly Web 202006" \
+      --track 77 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep69.mp3
+
+
+
