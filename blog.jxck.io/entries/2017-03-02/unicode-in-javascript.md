@@ -1,5 +1,6 @@
 # [utf-16][unicode][javascript] JavaScript における文字コードと「文字数」の数え方
 
+
 ## Intro
 
 textarea などに入力された文字数を、 JS で数えたい場合がある。
@@ -16,6 +17,7 @@ textarea などに入力された文字数を、 JS で数えたい場合があ�
 ### Update
 
 - 異体字セレクタ、正規化、セグメンテーションなどについて追記
+- String Iterator について追記
 
 
 ## 1 文字とは何か
@@ -241,6 +243,35 @@ codePoints.length // => 13
 自前で Code Point 列にするのは、それらで間に合わない場合にとる手段だ。
 
 
+## charCode/codePoint
+
+`charCodeAt()` は文字コードを取り、 `fromCharCode()` はその逆を行う。
+
+`𩸽` の方は前半のバイトしかないため、元に戻らない。
+
+
+```js
+'鯖定食'.charCodeAt(0) === 0x9BD6
+'𩸽定食'.charCodeAt(0) === 0xD867
+
+String.fromCharCode('鯖'.charCodeAt(0)) //"鯖"
+String.fromCharCode('𩸽'.charCodeAt(0)) // "�"
+```
+
+一方、 `codePointAt()` と `fromCodePoint()` は、その名の通り Code Point に対応している。
+
+これならサロゲートペアもうまく扱う事ができる。
+
+
+```js
+'𩸽定食'.codePointAt(0) // 0x9BD6
+'鯖定食'.codePointAt(0) // 0x29E3D
+
+String.fromCodePoint('鯖'.codePointAt(0)) // "鯖"
+String.fromCodePoint('𩸽'.codePointAt(0)) // "𩸽"
+```
+
+
 ## 正規表現
 
 正規表現における `.` も 1 文字ではなく、 UTF-16 の 16bit データ 1 つを意味する。
@@ -267,9 +298,6 @@ codePoints.length // => 13
 '𠮷野家'.match(/.{3}/u) // ["𠮷野家"]
 ```
 
-
-## split
-
 文字列を文字の配列に分解するのに使われる `split('')` も、サロゲートペアがあると崩れてしまう。
 
 
@@ -278,7 +306,7 @@ codePoints.length // => 13
 '𠮟られる'.split('') // ["�", "�", "ら", "れ", "る"]
 ```
 
-代わりに、先ほどの Unicode フラグを使った正規表現を使うと、正しく文字の配列に分解できる。
+代わりに、 Unicode フラグを使った正規表現を使うと、正しく文字の配列に分解できる。
 
 
 ```js
@@ -287,7 +315,7 @@ codePoints.length // => 13
 ```
 
 
-## for in / for of
+## String Iterator
 
 繰り返し処理も注意が必要だ。特に文字列に対する添え字アクセスは、 UTF-16 配列に対するアクセスだとイメージするとわかりやすい。(ちなみに `charAt()` も同じだ)
 
@@ -320,7 +348,16 @@ for (const i in str) console.log(str[i])
 
 `for (i = 0; i < str.length; i ++)` と書いても同じだ。
 
-代わりに ES2015 で追加された `for of` を使うと、 Unicode の Code Point 単位で繰り返し処理が可能だ。
+しかし String は *Iterator* に対応した Iterable Object であり、その処理は Code Point をベースとしている。
+
+(正確に言うと、 String はネイティブに実装している Symbol.Iterator の処理が Code Poin ベースで反復処理するようになっている)
+
+つまり Iterator を扱う API を用いれば、自然と Code Point を意識した処理が可能だ。
+
+
+### for of
+
+例えば ES2015 で追加された `for of` は Iterator に対応しているため、 Code Point 単位の繰り返し処理が可能だ。
 
 
 ```js
@@ -331,67 +368,38 @@ for (let c of '𩸽定食') console.log(c)
 ```
 
 
-## Spread Operator
+### Spread Operator
 
-Spread Operator を用いた分割も、 Code Point の単位で分割される。
+Spread Operator を用いた分割も Iterator で行われる。
 
 
 ```js
-((a, b, c) => console.log(a, b, c))(...'𩸽定食') // 𩸽 定 食
+[...'𩸽定食']  // 𩸽 定 食
+Array.of(...'𩸽定食')
 ```
 
 
 ## Destructoring
 
-いわゆる分割代入時の分割も Code Point が意識されている。
+分割代入時の分割も Iterator で行われる。
 
 
 ```js
-[a,b,c]='𩸽定食'
+[a, b, c] = '𩸽定食'
 a // "𩸽"
 b // "定"
 c // "食"
 ```
 
 
-## Array.{of, from}
+## Array.from
 
-文字列から、文字の配列に変える場合は以下のように行う。
+Array.from は Iterator をもとに配列を作る。
 
 
 ```js
-Array.of(...'叱られた😭')
 Array.from('叱られた😭')
 [ '叱', 'ら', 'れ', 'た', '😭' ]
-```
-
-
-## charCode/codePoint
-
-`charCodeAt()` は文字コードを取り、 `fromCharCode()` はその逆を行う。
-
-`𩸽` の方は前半のバイトしかないため、元に戻らない。
-
-
-```js
-'鯖定食'.charCodeAt(0) === 0x9BD6
-'𩸽定食'.charCodeAt(0) === 0xD867
-
-String.fromCharCode('鯖'.charCodeAt(0)) //"鯖"
-String.fromCharCode('𩸽'.charCodeAt(0)) // "�"
-```
-
-これも、 Code Point を取り出すメソッドが定義されている。
-
-これならサロゲートペアもうまく扱える。
-
-
-```js
-'𩸽定食'.codePointAt(0) // 0x9BD6
-'鯖定食'.codePointAt(0) // 0x29E3D
-
-String.fromCodePoint('鯖'.codePointAt(0)) // "鯖"
-String.fromCodePoint('𩸽'.codePointAt(0)) // "𩸽"
 ```
 
 
@@ -456,7 +464,7 @@ str = "葛󠄀城市"
 
 
 ```js
-Array.of(...'👍🏻👍🏼👍🏽👍🏾👍🏿')
+Array.from('👍🏻👍🏼👍🏽👍🏾👍🏿')
 [
   "👍", "🏻", // "0x1F44D", "0x1F3FB"
   "👍", "🏼", // "0x1F44D", "0x1F3FC"
@@ -479,9 +487,9 @@ Array.of(...'👍🏻👍🏼👍🏽👍🏾👍🏿')
 
 
 ```js
-Array.of(...'パ')
+Array.from('パ')
 ["パ"]
-Array.of(...'パ')
+Array.from('パ')
 ["ハ", "゚"]
 ```
 
@@ -491,11 +499,11 @@ Array.of(...'パ')
 
 
 ```js
-Array.of(...'ǖ')
+Array.from('ǖ')
 ["ǖ"]
-Array.of(...'ǖ')
+Array.from('ǖ')
 ["ü", "̄"]
-Array.of(...'ǖ')
+Array.from('ǖ')
 ["u", "̈", "̄"]
 ```
 
@@ -520,7 +528,7 @@ CodePoint によって文字数を数える観点からは、 NFC によって�
 
 
 ```js
-Array.of(...'👨‍👩‍👧‍👦')
+Array.from('👨‍👩‍👧‍👦')
 ["👨", "‍", "👩", "‍", "👧", "‍", "👦"]
 ```
 
