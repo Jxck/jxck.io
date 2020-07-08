@@ -379,7 +379,7 @@ Array.of(...'𩸽定食')
 ```
 
 
-## Destructoring
+### Destructoring
 
 分割代入時の分割も Iterator で行われる。
 
@@ -392,7 +392,7 @@ c // "食"
 ```
 
 
-## Array.from
+### Array.from
 
 Array.from は Iterator をもとに配列を作る。
 
@@ -409,9 +409,11 @@ Array.from('叱られた😭')
 
 これは、 JavaScript は文字列データを Code Point の配列ではなく UTF-16 の配列として持っているからだ。
 
-JavaScript の API には、この Code Point を意識した操作と、 そうでない操作があるため、それを意識して処理をすれば、正しく文字数を数えられるだろう。
+JavaScript で Code Point を意識した処理をしたい場合は、以下が使えるだろう。
 
-それでも足らない場合は、自分で UTF-16 配列を Code Point 配列に変換してしまうことも可能だ。
+- `codePointAt()` や `fromCodePoint()`
+- 正規表現の Unicode フラグを用いた処理
+- String Iterator を利用した API
 
 
 ## おまけ
