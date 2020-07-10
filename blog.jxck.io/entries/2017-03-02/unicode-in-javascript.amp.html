@@ -1052,8 +1052,14 @@ c // &quot;食&quot;</code></pre>
       <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
       <p>文字には Code Point が割り当てられており、「<em>文字数を数える</em>」を「<em>Code Point を数える</em>」とするならば、単に文字列の length や添え字での処理では正確な値が出ない場合がある。
       <p>これは、 JavaScript は文字列データを Code Point の配列ではなく UTF-16 の配列として持っているからだ。
-      <p>JavaScript の API には、この Code Point を意識した操作と、 そうでない操作があるため、それを意識して処理をすれば、正しく文字数を数えられるだろう。
-      <p>それでも足らない場合は、自分で UTF-16 配列を Code Point 配列に変換してしまうことも可能だ。
+      <p>JavaScript で Code Point を意識した処理をしたい場合は、以下が使えるだろう。
+      <ul>
+        <li>
+          <code translate="no">codePointAt()</code> や <code translate="no">fromCodePoint()</code>
+        </li>
+        <li>正規表現の Unicode フラグを用いた処理
+        <li>String Iterator を利用した API
+      </ul>
     </section>
     <section>
       <h2 id="おまけ"><a href="#おまけ">おまけ</a></h2>
