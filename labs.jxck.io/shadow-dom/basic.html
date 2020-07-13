@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Declarative Shadow DOM</title>
+
+<style>
+</style>
+
+<h1>Declarative Shadow DOM</h1>
+
+<host-element>
+  <template shadowroot=open>
+    <style>
+      ::slotted(h2), h2 {
+        background: blue;
+      }
+    </style>
+    <h2>Shadow Content</h2>
+    <slot></slot>
+  </template>
+  <style>
+    h2 {
+      background: red;
+    }
+  </style>
+  <h2>DOM Content</h2>
+</host-element>
