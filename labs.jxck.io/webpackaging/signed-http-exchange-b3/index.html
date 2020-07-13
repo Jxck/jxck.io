@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>SXG DEMO | labs.jxck.io</title>
+<style>
+pre {
+  background-color: #eee;
+  border: solid 1px #ccc;
+  padding: 0.4em 1em 0.4em 1em;
+}
+</style>
+
+<h1>SXG DEMO</h1>
+
+<p>open google chrome with option and flags</p>
+
+<ul>
+  <li><a href=chrome://flags/#enable-signed-http-exchange>chrome://flags/#enable-signed-http-exchange</a>
+  <li><a href=chrome://flags/#allow-sxg-certs-without-extension>chrome://flags/#allow-sxg-certs-without-extension</a>
+</ul>
+
+<pre><code></code></pre>
+<script>
+  (async () => {
+    const res = await fetch('cert_base64.txt')
+    const base64 = await res.text()
+    console.log(base64)
+    document.querySelector('code').textContent = `
+# mac
+$ open -a Google\ Chrome\ Canary --args --ignore-certificate-errors-spki-list=${base64}
+
+# linux
+$ google-chrome-unsgtable --args --ignore-certificate-errors-spki-list=${base64}
+`
+  })()
+</script>
+
+
+
+<p>then click link below, navigate to <a href=https://mozaic.fm/index.html>https://mozaic.fm/index.html</a> but not access to mozaic.fm origin server</p>
+<a href="mozaic.sxg">link to mozaic.sxg</a>
+
+<!--
+<p>also prefetch sxg, see the console</p>
+<link rel="prefetch" href="mozaic.sxg">
+-->
