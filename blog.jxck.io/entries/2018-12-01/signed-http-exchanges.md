@@ -262,7 +262,7 @@ openssl x509 -req -days 360 -in cert.csr -signkey priv.key -out cert.pem
 
 Signing の検証に必要な証明書チェーンを生成する。
 
-フィルは CBOR 形式で、証明書チェーン、 OCSP 、 SCT を含む必要がある。
+ファイルは CBOR 形式で、証明書チェーン、 OCSP 、 SCT を含む必要がある。
 
 生成には、リファレンス実装の gen-certurl を使用する。
 
@@ -276,6 +276,7 @@ Signing の検証に必要な証明書チェーンを生成する。
 go get -u github.com/WICG/webpackage/go/signedexchange/cmd/gen-certurl
 
 # 本来は ocsp の指定が必要だが、自己証明書なので適当な値を指定する
+# 正当な証明書ならば、指定しなければリクエストを投げて取得してくれる
 echo "ocsp" > tmp
 ./bin/gen-certurl -pem cert.pem -ocsp tmp > cert.cbor
 ```
