@@ -54,7 +54,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-06-29T08:00:00+08:00",
-    "dateModified": "2020-06-30T08:00:00+08:00",
+    "dateModified": "2020-07-17T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -100,7 +100,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-06-29>2020-06-29</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-06-30>2020-06-30</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-07-17>2020-07-17</time></dd></div>
       <div><dt class=tags>tags</dt><dd>[<a href="/tags/localhost.html">localhost</a><i>,</i><a href="/tags/https.html">https</a><i>,</i><a href="/tags/security.html">security</a>]</dd></div>
     </dl>
 
@@ -114,6 +114,14 @@
         <p>localhost を https にするという方法もあるが、そのように紹介されている方法には、いくつか注意すべき点もある。
         <p>この辺りの話を、直近 1 ヶ月で 3 回くらいしたので、筆者が普段使っている方法や注意点についてまとめる。
         <p>特に推奨するつもりはない。
+      </section>
+      <section>
+        <h2 id="update"><a href="#update">Update</a></h2>
+        <ul>
+          <li>
+            chrome の <code translate="no">--host-rules</code> について追記
+          </li>
+        </ul>
       </section>
       <section>
         <h2 id="localhost-での開発の注意点"><a href="#localhost-での開発の注意点">localhost での開発の注意点</a></h2>
@@ -205,6 +213,26 @@
         <p>開発者ツールには、実質「<em>閉じたら全てが無効になる</em>」を権限の起点としており、かつ開発者が使い慣れているという点でも、 sudo で永続的にいじる hosts や証明書よりよっぽど安全に運用できるだろう。
         <p>ただ、そうした文脈の外からは「そんな危ない機能が開発者ツールにあって良いのか」という反応しか期待されない。実際は、既に Local Override を始めとした様々な機能があり、残念ながら開発者ツールが掌握されれば、現状でもおおよそやりたい放題だとは思うが。
         <p>結局、開発者は正しい知識を身につけ各位工夫してやるか、 <code translate="no">http://localhost:3000</code> で足りるならそこで間に合わせるということになる。
+      </section>
+      <section>
+        <h2 id="追記"><a href="#追記">追記</a></h2>
+        <p>別件で Chrome のソースを漁っていたら <code translate="no">host-rules</code> というフラグを見つけた。(コメントにあるように <code translate="no">host-resolver-rules</code> でもいけるらしい)
+        <ul>
+          <li><a href="https://chromium.googlesource.com/chromium/src/+/master/components/network_session_configurator/common/network_switch_list.h#66">https://chromium.googlesource.com/chromium/src/+/master/components/network_session_configurator/common/network_switch_list.h#66</a>
+        </ul>
+        <p>ためしに以下のように開いてみると、確かにマッピングが指定できる。
+        <pre class=sh><code translate="no">$ google-chrome --host-rules=&quot;MAP example.com 127.0.0.1&quot;</code></pre>
+        <p>他にも色々な指定ができるようだ。
+        <pre><code translate="no">// For example:
+//    &quot;MAP * 127.0.0.1&quot; --&gt; Forces all hostnames to be mapped to 127.0.0.1
+//    &quot;MAP *.google.com proxy&quot; --&gt; Forces all google.com subdomains to be
+//                                 resolved to &quot;proxy&quot;.
+//    &quot;MAP test.com [::1]:77 --&gt; Forces &quot;test.com&quot; to resolve to IPv6 loopback.
+//                               Will also force the port of the resulting
+//                               socket address to be 77.
+//    &quot;MAP * baz, EXCLUDE www.google.com&quot; --&gt; Remaps everything to &quot;baz&quot;,
+//                                            except for &quot;www.google.com&quot;.</code></pre>
+        <p>これなら権限もいらないが、既に開いている Chrome だと再起動が必要で面倒ではある。
       </section>
     </article>
   </main>

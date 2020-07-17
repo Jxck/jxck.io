@@ -47,7 +47,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-12-01T08:00:00+08:00",
-    "dateModified": "2019-10-09T08:00:00+08:00",
+    "dateModified": "2020-07-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -331,6 +331,14 @@
     dl.info dd i {
       font-style: normal;
       margin-right: calc(var(--grid)/3);
+    }
+
+    details.info > summary {
+    }
+
+    details.info ul {
+      margin-top: 0;
+      margin-left: var(--grid);
     }
     header {
       z-index: 1;
@@ -807,7 +815,7 @@
 <main>
   <dl class=info>
     <dt>created_at</dt><dd><time class=created_at datetime=2018-12-01>2018-12-01</time></dd>
-    <dt>updated_at</dt><dd><time class=updated_at datetime=2019-10-09>2019-10-09</time></dd>
+    <dt>updated_at</dt><dd><time class=updated_at datetime=2020-07-15>2020-07-15</time></dd>
     <dt class=tags>tags</dt><dd>[<a href="/tags/webpackaging.html">webpackaging</a><i>,</i><a href="/tags/signed-http-exchange.html">signed-http-exchange</a>]</dd>
   </dl>
   <article>
@@ -1000,7 +1008,7 @@ openssl x509 -req -days 360 -in cert.csr -signkey priv.key -out cert.pem</code><
       <section>
         <h3 id="証明書チェーン"><a href="#証明書チェーン">証明書チェーン</a></h3>
         <p>Signing の検証に必要な証明書チェーンを生成する。
-        <p>フィルは CBOR 形式で、証明書チェーン、 OCSP 、 SCT を含む必要がある。
+        <p>ファイルは CBOR 形式で、証明書チェーン、 OCSP 、 SCT を含む必要がある。
         <p>生成には、リファレンス実装の gen-certurl を使用する。
         <p><a href="https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-certurl">https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-certurl</a>
         <pre class=sh><code translate="no">#! /bin/sh
@@ -1009,6 +1017,7 @@ openssl x509 -req -days 360 -in cert.csr -signkey priv.key -out cert.pem</code><
 go get -u github.com/WICG/webpackage/go/signedexchange/cmd/gen-certurl
 
 # 本来は ocsp の指定が必要だが、自己証明書なので適当な値を指定する
+# 正当な証明書ならば、指定しなければリクエストを投げて取得してくれる
 echo &quot;ocsp&quot; &gt; tmp
 ./bin/gen-certurl -pem cert.pem -ocsp tmp &gt; cert.cbor</code></pre>
         <p>生成した cert.cbor は、 <code translate="no">Content-Type: application/cert-chain+cbor</code> で、 CDN から配布する必要がある。
