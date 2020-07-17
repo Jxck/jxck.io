@@ -14,6 +14,11 @@ localhost を https にするという方法もあるが、そのように紹介
 特に推奨するつもりはない。
 
 
+## Update
+
+- chrome の `--host-rules` について追記
+
+
 ## localhost での開発の注意点
 
 例として `https://example.com` にデプロイする予定の ServiceWorker を用いたアプリがあったとする。
@@ -152,3 +157,34 @@ localhost を https にして URL バーを緑にするといった目的で、�
 ただ、そうした文脈の外からは「そんな危ない機能が開発者ツールにあって良いのか」という反応しか期待されない。実際は、既に Local Override を始めとした様々な機能があり、残念ながら開発者ツールが掌握されれば、現状でもおおよそやりたい放題だとは思うが。
 
 結局、開発者は正しい知識を身につけ各位工夫してやるか、 `http://localhost:3000` で足りるならそこで間に合わせるということになる。
+
+
+## 追記
+
+別件で Chrome のソースを漁っていたら `host-rules` というフラグを見つけた。(コメントにあるように `host-resolver-rules` でもいけるらしい)
+
+- <https://chromium.googlesource.com/chromium/src/+/master/components/network_session_configurator/common/network_switch_list.h#66>
+
+ためしに以下のように開いてみると、確かにマッピングが指定できる。
+
+
+```sh
+$ google-chrome --host-rules="MAP example.com 127.0.0.1"
+```
+
+他にも色々な指定ができるようだ。
+
+
+```
+// For example:
+//    "MAP * 127.0.0.1" --> Forces all hostnames to be mapped to 127.0.0.1
+//    "MAP *.google.com proxy" --> Forces all google.com subdomains to be
+//                                 resolved to "proxy".
+//    "MAP test.com [::1]:77 --> Forces "test.com" to resolve to IPv6 loopback.
+//                               Will also force the port of the resulting
+//                               socket address to be 77.
+//    "MAP * baz, EXCLUDE www.google.com" --> Remaps everything to "baz",
+//                                            except for "www.google.com".
+```
+
+これなら権限もいらないが、既に開いている Chrome だと再起動が必要で面倒ではある。
