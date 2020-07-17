@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Declarative ShadowDOM DEMO</title>
+
+<h1>Declarative ShadowDOM DEMO</h1>
+
+<style>
+h2 {
+  background: red;
+}
+</style>
+
+<h2>global</h2>
+
+<host-element>
+  <template shadowroot=open>
+    <style>
+      h2 {
+        background: green;
+      }
+    </style>
+    <h2>Inside ShadowRoot</h2>
+  </template>
+</host-element>
+
+<h2>global</h2>
+
+<template shadowroot=close>
+  <h2>Inside ShadowRoot2 </h2>
+</template>

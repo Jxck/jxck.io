@@ -1,6 +1,6 @@
 export default class CustomH2 extends HTMLHeadingElement {
   static get observedAttributes() {
-    return ['color'];
+    return ['color']
   }
 
   get color() {
@@ -37,7 +37,7 @@ export default class CustomH2 extends HTMLHeadingElement {
   constructor() {
     super()
     console.log(this, 'created')
-    this.attachShadow({mode: 'open'});
+    this.attachShadow({mode: 'open'})
     this.render()
 
     this.shadowRoot.querySelector('#h2').addEventListener('click', (e) => {
@@ -51,7 +51,7 @@ export default class CustomH2 extends HTMLHeadingElement {
   }
 
   render() {
-    this.shadowRoot.appendChild(this.template);
+    this.shadowRoot.appendChild(this.template)
   }
 
   connectedCallback() {
@@ -64,7 +64,7 @@ export default class CustomH2 extends HTMLHeadingElement {
 
   attributeChangedCallback(name, from, to) {
     console.log(this, `changed ${name}="${from}" to ${name}="${to}"`)
-    this.shadowRoot.host.style.setProperty('--theme-color', to);
+    this.shadowRoot.host.style.setProperty('--theme-color', to)
   }
 
   adoptedCallback() {
