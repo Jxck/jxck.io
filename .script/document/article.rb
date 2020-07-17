@@ -47,6 +47,13 @@ module Document
       hsc @text.match(/^# \[.*\] (.*)/)[1]
     end
 
+    def toc
+      @text.scan(/^(\#{2,6} .*)$/).flatten.map{|h|
+        href = '#' + h.gsub('#', '').strip.gsub(' ', '-').downcase
+        [href, h]
+      }
+    end
+
     # AST parse する markdown の body
     # 前処理が必要な場合は継承する
     def body
