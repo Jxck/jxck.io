@@ -77,8 +77,8 @@ if __FILE__ == $PROGRAM_NAME
     puts "test builing blog"
     path = "./blog.jxck.io/entries/2016-01-27/new-blog-start.md"
     blog.build(path)
-    blog.build_all
-    blog.feed
+    #blog.build_all
+    #blog.feed
   }
   opt.on("--podcasttest") {|v|
     puts "test building podcast"
