@@ -141,7 +141,7 @@ PBS + Bgfetch が鉄板の組み合わせだと思っていたので、ここは
 
 これも Badging API として提案されているため、導入した。
 
-具体的には PBS で更新があったときだけ、無印のバッヂを表示し、 DOMContentLoaded でクリアしている。
+具体的には PBS で更新があったときだけ、無印のバッジを表示し、 DOMContentLoaded でクリアしている。
 
 
 ### Content Indexing API
