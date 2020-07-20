@@ -507,7 +507,7 @@ guest
     - <https://github.com/tc39/notes>
   - *ES2020 Released[d]*
     - <https://www.ecma-international.org/news/index.html>
-    - ECMA-262 11th edition - ECMAScript ® 2020 Language Specification
+    - ECMA-262 11th edition - ECMAScript 2020 Language Specification
       - <https://github.com/tc39/String.prototype.matchAll>
       - <https://github.com/tc39/proposal-dynamic-import>
       - <https://github.com/tc39/proposal-bigint>
@@ -517,7 +517,7 @@ guest
       - <https://github.com/tc39/proposal-optional-chaining>
       - <https://github.com/tc39/proposal-nullish-coalescing>
       - <https://github.com/tc39/proposal-import-meta>
-    - ECMA-402 7th edition - ECMAScript ® 2020 Internationalization API Specification
+    - ECMA-402 7th edition - ECMAScript 2020 Internationalization API Specification
 - Proposals Diff
   - <https://github.com/tc39/proposals/compare/master@{2020-06-01}...master@{2020-07-01}>
   - <https://tc39.github.io/beta/>
