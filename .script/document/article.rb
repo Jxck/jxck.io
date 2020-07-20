@@ -48,9 +48,10 @@ module Document
     end
 
     def toc
-      @text.scan(/^(\#{2,6} .*)$/).flatten.map{|h|
-        href = '#' + h.gsub('#', '').strip.gsub(' ', '-').downcase
-        [href, h]
+      @toc.map{|toc|
+        href  = "##{toc[:id]}"
+        value = "#{'#' * toc[:level]} #{toc[:value]}"
+        [href, value]
       }
     end
 
@@ -68,7 +69,8 @@ module Document
       # traverse
       traverser = MD2Indesign::Markdown::Traverser.new(format, dir)
       article   = traverser.start(ast.ast)
-      @article = article
+      @toc      = format.toc
+      @article  = article
     end
 
     def target_path

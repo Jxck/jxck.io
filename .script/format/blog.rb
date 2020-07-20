@@ -2,12 +2,14 @@ module Format
   # Blog 用に拡張した HTML
   class BlogHTML < MD2Indesign::Format::HTML
     attr_writer :url
+    attr_reader :toc
     def initialize(highlight: "none")
       super
       @css = {
         PRE:   "/assets/css/pre.css",
         TABLE: "/assets/css/table.css",
       }
+      @toc = []
     end
 
     def header(node)
@@ -20,7 +22,9 @@ module Format
       else
         # h2 以降は id を振る
         id = node[:attr]["id"]
-        return %(<h#{level} id="#{id}"><a href="##{id}">#{node[:value]}</a></h#{level}>\n)
+        value = node[:value]
+        @toc.push({level: level, id: id, value: value})
+        return %(<h#{level} id="#{id}"><a href="##{id}">#{value}</a></h#{level}>\n)
       end
     end
 
