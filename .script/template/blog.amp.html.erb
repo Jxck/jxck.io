@@ -49,9 +49,22 @@
 </header>
 <main>
   <dl class=info>
-    <dt>created_at</dt><dd><time class=created_at datetime=<%= entry.created_at %>><%= entry.created_at %></time></dd>
-    <dt>updated_at</dt><dd><time class=updated_at datetime=<%= entry.updated_at %>><%= entry.updated_at %></time></dd>
-    <dt class=tags>tags</dt><dd><%= entry.joined_tag %></dd>
+    <div><dt>created_at</dt><dd><time class=created_at datetime=<%= entry.created_at %>><%= entry.created_at %></time></dd></div>
+    <div><dt>updated_at</dt><dd><time class=updated_at datetime=<%= entry.updated_at %>><%= entry.updated_at %></time></dd></div>
+    <div><dt class=tags>tags</dt><dd><%= entry.joined_tag %></dd></div>
+    <div>
+      <dt>toc</dt>
+      <dd>
+        <details class=info>
+          <summary>headdings</summary>
+          <ul>
+            <%- entry.toc.each{|href, value| -%>
+            <li><a href=<%= href %>><%= value %></a>
+            <%- } -%>
+          </ul>
+        </details>
+      </dd>
+    </div>
   </dl>
   <%= entry.article %>
 </main>
