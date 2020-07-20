@@ -5,9 +5,17 @@
 
 <h1>Declarative ShadowDOM DEMO</h1>
 
+<script>
+  customElements.whenDefined('host-element').then((a) => {
+    console.log(a)
+  })
+  console.log(customElements.get('host-element'))
+</script>
+
 <style>
-h2 {
-  background: red;
+host-element {
+  display: block;
+  border: solid 1px black;
 }
 </style>
 
@@ -16,16 +24,33 @@ h2 {
 <host-element>
   <template shadowroot=open>
     <style>
-      h2 {
+      ::slotted(h2) {
+        background-color: blue;
+      }
+    </style>
+    <slot></slot>
+  </template>
+  <h2>Slotted Content</h2>
+</host-element>
+
+<!--
+<host-element>
+  <template>
+    <style>
+      ::slotted(h2), h2 {
         background: green;
       }
     </style>
-    <h2>Inside ShadowRoot</h2>
+    <h2>Shadow Content</h2>
+    <slot></slot>
   </template>
+  <script>
+    const template   = document.currentScript.previousElementSibling
+    const shadowRoot = template.parentElement.attachShadow({mode:"open"})
+    shadowRoot.appendChild(template.content)
+    template.remove()
+    document.currentScript.remove()
+  </script>
+  <h2>Light content</h2>
 </host-element>
-
-<h2>global</h2>
-
-<template shadowroot=close>
-  <h2>Inside ShadowRoot2 </h2>
-</template>
+-->

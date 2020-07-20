@@ -20,7 +20,7 @@ export default class CustomH2 extends HTMLHeadingElement {
           --theme-color: ${this.color};
         }
 
-        h2 {
+        ::slotted(*) {
           font-weight:   bold;
           font-style:    italic;
           color:         var(--theme-color);
