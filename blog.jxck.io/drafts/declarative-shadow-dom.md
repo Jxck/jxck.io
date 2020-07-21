@@ -2,11 +2,34 @@
 
 ## Intro
 
+Shadow DOM は JS を用いた命令的 API により有効にする必要があった。
+
+しかし、 JS を実行しないと DOM が構築されないことは、一般的に SSR を必要とするような文脈では扱いづらかった。
+
+これを宣言的に記述するための仕様として Decralative Shadow DOM の仕様策定と実装が進んでいる。
+
+現在の仕様と実装について解説する。
+
+
+## Imperative Shadow DOM API
+
+おさらいとして、 Shadow DOM を用いて Custom Element に Shadow Root を追加するには、以下のようなコードが必要となる。
+
+
+
+
+
 
 
 ## DEMO
 
+動作する DEMO は以下に用意した。
+
+- TODO:
+
 ## Outro
+
+
 
 ## Resources
 
