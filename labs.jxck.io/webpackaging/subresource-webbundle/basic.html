@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Subresource Web Bundle DEMO</title>
+
+<link rel=webbundle
+      href=bundle.wbn
+      resources="
+                 https://labs.jxck.io/webpackaging/subresource-webbundle/a.js
+                 https://labs.jxck.io/webpackaging/subresource-webbundle/b.js
+                 https://labs.jxck.io/webpackaging/subresource-webbundle/c.css
+                 https://labs.jxck.io/webpackaging/subresource-webbundle/d.png
+                 "/>
+
+<h1>Subresource Web Bundle DEMO</h1>
+
+<script type=module src=a.js></script>
+
+<link rel=stylesheet href=c.css>
+
+<img width=100 src=d.png>
