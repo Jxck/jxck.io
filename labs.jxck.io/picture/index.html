@@ -54,13 +54,11 @@ strong {
 <h2 id=srcset-webp><a href=#srcset-webp>srcset with webp</a></h2>
 <div class=demo>
 <p>this seems work but error at console on chrome</p>
-<!--
 <img src=100x100.png
      srcset="100x100.png 100w, 200x200.png 200w, 300x300.png 300w
              100x100.webp 100w, 200x200.webp 200w, 300x300.webp 300w"
      width=100px
      alt="select with srcset" />
--->
 </div>
 <pre></pre>
 
@@ -136,6 +134,22 @@ strong {
   <img src=100x100.png
        width=100px
        alt="select with media query">
+</picture>
+</div>
+<pre></pre>
+
+<hr>
+
+<h2 id=picture-dpr><a href=#picture-dpr>picture dpr</a></h2>
+<div class=demo>
+<picture>
+  <source type=image/webp
+          srcset="100x100.webp 1x, 200x200.webp 2x, 300x300.webp 3x"
+          sizes=100px>
+  <source type=image/png
+          srcset="100x100.png 1x, 200x200.png 2x, 300x300.png 3x"
+          sizes=100px>
+  <img src=100x100.png width=100 height=100 alt="select with picture source">
 </picture>
 </div>
 <pre></pre>
