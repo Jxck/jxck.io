@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>WebComponent Bundle DEMO</title>
+
+<link rel=webbundle
+      href=profile-card.wbn
+      resources="
+                 https://labs.jxck.io/webpackaging/profile-card/jxck.png
+                 https://labs.jxck.io/webpackaging/profile-card/profile-card.js
+                 https://labs.jxck.io/webpackaging/profile-card/style.css
+                 https://labs.jxck.io/webpackaging/profile-card/template.html
+                 "/>
+
+<h1>WebComponent Bundle DEMO</h1>
+
+<profile-card></profile-card>
+
+<script type=module>
+  import ProfileCard from "./profile-card/profile-card.js"
+  customElements.define('profile-card', ProfileCard)
+</script>

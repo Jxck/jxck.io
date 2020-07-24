@@ -253,7 +253,9 @@ Bundle Subresouce は、「Module を分割したい、が、 fetch は一回に
 
 例えば、HTML, CSS, JS, Img などをまとめて、 WebComponent の単位で bundle を生成するといったことも可能だ。
 
-毎回 webbundle に max-age を指定し、内部のリソースを no-store にすれば、 webbundle の更新が component 全体の更新に匹敵し、 webbundle のバージョンだけ気にすれば、内部のリソースのバージョニングを気にする必要がなくなる。
+別途策定が進んでいる Synthetic Modules (JSON, CSS, HTML などを ES Module のように扱う)が実装されれば、この流れはより進むだろうと考えられる。
+
+その際、毎回 webbundle に max-age を指定し、内部のリソースを no-store にすれば、 webbundle の更新が component 全体の更新に匹敵し、 webbundle のバージョンだけ気にすれば、内部のリソースのバージョニングを気にする必要がなくなる。
 
 TODO: DEMO
 
