@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Nested Bundling DEMO</title>
+
+<link rel=webbundle
+      href=sub3.wbn
+      resources="
+                 https://labs.jxck.io/webpackaging/subresource-webbundle/sub1/sub1-a.js
+                 https://labs.jxck.io/webpackaging/subresource-webbundle/sub1/sub1-b.js
+                 https://labs.jxck.io/webpackaging/subresource-webbundle/sub2/sub2-a.js
+                 https://labs.jxck.io/webpackaging/subresource-webbundle/sub2/sub2-b.js
+                 "/>
+
+<h1>Nested Bundling DEMO</h1>
+
+<script type=module src=./sub1/sub1-a.js></script>
+<script type=module src=./sub2/sub2-a.js></script>
