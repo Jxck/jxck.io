@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Subresource Web Bundle DEMO</title>
+
+<link href=https://example.com/webpackaging/subresource-webbundle/favicon.ico rel="shortcut icon" type=image/x-icon>
+
+<link rel=webbundle
+      href=bundle-3p.wbn
+      resources="
+                 https://example.com/webpackaging/subresource-webbundle/a.js
+                 https://example.com/webpackaging/subresource-webbundle/b.js
+                 https://example.com/webpackaging/subresource-webbundle/c.css
+                 https://example.com/webpackaging/subresource-webbundle/d.css
+                 https://example.com/webpackaging/subresource-webbundle/e.png
+                 https://example.com/webpackaging/subresource-webbundle/favicon.ico
+                 "/>
+
+<h1>Subresource Web Bundle DEMO</h1>
+
+<script  src=https://example.com/webpackaging/subresource-webbundle/a.js  type=module></script>
+<link   href=https://example.com/webpackaging/subresource-webbundle/c.css rel=stylesheet>
+<img     src=https://example.com/webpackaging/subresource-webbundle/e.png width=100>

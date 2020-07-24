@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Subresource Web Bundle DEMO</title>
+
+<link href=favicon.ico rel="shortcut icon" type=image/x-icon>
+
+<link rel=webbundle
+      href=bundle.wbn
+      resources="
+                 https://labs.jxck.io/webpackaging/subresource-webbundle/a.js
+                 https://labs.jxck.io/webpackaging/subresource-webbundle/b.js
+                 https://labs.jxck.io/webpackaging/subresource-webbundle/c.css
+                 https://labs.jxck.io/webpackaging/subresource-webbundle/d.css
+                 https://labs.jxck.io/webpackaging/subresource-webbundle/e.png
+                 https://labs.jxck.io/webpackaging/subresource-webbundle/favicon.ico
+                 "/>
+
+<h1>Subresource Web Bundle DEMO</h1>
+
+<script  src=a.js  type=module></script>
+<link   href=c.css rel=stylesheet>
+<img     src=e.png width=100>

@@ -15,10 +15,16 @@ WebBundle の初期の仕様は、 HTML を頂点としたページ全体をま�
 
 - [WebBundle によるコンテンツの結合と WebPackaging \| blog.jxck.io](https://blog.jxck.io/entries/2019-11-12/webbundle.html)
 
+これをサブリソース(JS, CSS, Img etc)に対して利用できるようにする仕様だ。
 
+HTML 自体は普通に配信し、複数サブリソースの取得を 1 fetch にまとめることができる。
 
 
 ## gen-bundle
+
+実際に gen-bundle を用いてサブリソースのみを Bundle する。
+
+サブリソースを以下のように subresource ディレクトリにまとめたとする。
 
 ```sh
 subresource/
@@ -26,9 +32,18 @@ subresource/
   b.js
   c.css
   d.png
+  favicon.ico
 ```
 
+なお、 `a.js` は `b.js` を import している。
 
+生成は以下のようになる。
+
+CLI の仕様上 `-primaryURL` が必須となる。
+
+Primary URL は HTML を頂点とする Bundle で HTML の URL を指定するが、 Subresouce の場合は特定の Primary が存在しない。
+
+Chorme の実装もこれを無視しているようなので、適当に指定している。
 
 ```sh
 $ gen-bundle \
@@ -39,6 +54,7 @@ $ gen-bundle \
     -o bundle.wbn
 ```
 
+dump-bundle すると以下のようになる。
 
 ```sh
 $ dump-bundle -i bundle.wbn
@@ -94,6 +110,14 @@ img {
 ```
 
 
+## link rel bundle
+
+この Bundle を読み込む HTML は以下のようになる。
+
+普通にサブリソースを読む HTML に加え、 `<link>` で web bundle の読み込みを指定する。
+
+resouces 属性に bundle 側で解決する URL を許可リストで明示する必要がある。
+
 ```html
 <!DOCTYPE html>
 <meta charset=utf-8>
@@ -118,12 +142,24 @@ img {
 <img width=100 src=https://example.com/webpackaging/subresource-webbundle/d.png>
 ```
 
+## 挙動
 
-![Bundle Subresource のデモを Chrome Devtools で表示](./bundle-subresources.png 'bundle-subresources demo')
+Chrome Canary を flag 付きで起動する。
+
+```
+$ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-features=SubresourceWebBundles
+```
+HTML にアクセスすると、以下の様にサブリソースが bundle から解決されていることがわかる。
+
+![Bundle Subresource のデモを Chrome Devtools で表示](./subresource-bundling.png 'bundle-subresources demo')
+
+実際に実行されている fetch が HTML, Bundle, favicon の 3 つだけになっていることから、
 
 
 
 ## DEMO
+
+動作する DEMO を以下に用意した
 
 - <https://labs.jxck.io/webpackaging/subresource-webbundle/basic.html>
 
