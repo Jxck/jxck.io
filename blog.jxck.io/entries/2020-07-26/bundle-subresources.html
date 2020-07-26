@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href="https://blog.jxck.io/entries/2020-07-26/bundle-subresources.html">
+  <link rel=amphtml   href="https://blog.jxck.io/entries/2020-07-26/bundle-subresources.amp.html">
+  <link rel=preload   type=font/woff2 as=font href=/assets/font/NotoSansCJKjp-Regular-Jxck-20200720.woff2 crossorigin>
+
+  <script async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+  <script defer src=/assets/js/main.js></script>
+  <script defer src=/assets/js/ga.js></script>
+  <script defer src=/assets/js/highlight.pack.js></script>
+
+  <link rel=icon             type =image/svg+xml sizes=any href=https://jxck.io/assets/img/jxck.svg>
+  <link rel=icon             type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="WebBundle を用いてサブリソースのみを Bundle する、 Subresource Bundle の策定と実装が進んでいる。これを用いると、複数サブリソースの取得を一回の fetch で行うことができ、 RTT を減らしつつも個別に取得したかのようにキャッシュを制...">
+  <meta name=keywords            content="webbundle,webpackaging,performance">
+  <meta name=theme-color         content=#000000>
+
+  <meta name=twitter:card        content=summary>
+  <meta name=twitter:site        content=@jxck_>
+  <meta name=twitter:url         content=https://blog.jxck.io/entries/2020-07-26/bundle-subresources.html>
+  <meta name=twitter:title       content="Webbundle によるサブリソース取得の最適化 | blog.jxck.io">
+  <meta name=twitter:description content="WebBundle を用いてサブリソースのみを Bundle する、 Subresource Bundle の策定と実装が進んでいる。これを用いると、複数サブリソースの取得を一回の fetch で行うことができ、 RTT を減らしつつも個別に取得したかのようにキャッシュを制...">
+  <meta name=twitter:image       content=https://jxck.io/assets/img/jxck.png>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2020-07-26/bundle-subresources.html>
+  <meta property=og:title        content="Webbundle によるサブリソース取得の最適化 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="WebBundle を用いてサブリソースのみを Bundle する、 Subresource Bundle の策定と実装が進んでいる。これを用いると、複数サブリソースの取得を一回の fetch で行うことができ、 RTT を減らしつつも個別に取得したかのようにキャッシュを制...">
+  <meta property=og:image        content=https://jxck.io/assets/img/jxck.png>
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Webbundle によるサブリソース取得の最適化 | blog.jxck.io",
+    "image": [
+      "https://jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2020-07-26T08:00:00+08:00",
+    "dateModified": "2020-07-26T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.60x60.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": "WebBundle を用いてサブリソースのみを Bundle する、 Subresource Bundle の策定と実装が進んでいる。これを用いると、複数サブリソースの取得を一回の fetch で行うことができ、 RTT を減らしつつも個別に取得したかのようにキャッシュを制..."
+  }
+  </script>
+
+  <title>Webbundle によるサブリソース取得の最適化 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=/assets/img/blog.svg   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/searches                 ><img width=30 height=30 loading=eager src=/assets/img/search.svg title=search alt=search></a>
+        <li><a href="https://blog.jxck.io/entries/2020-07-26/bundle-subresources.amp.html#development=1" aria-label="amp version">
+                                               <img width=30 height=30 loading=eager src=/assets/img/amp.svg    title=amp    alt="amp version"></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=/assets/img/up.svg     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=/assets/img/rss.svg    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=/assets/img/humans.svg title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=/assets/img/jxck.svg   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/markdown.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2020-07-26>2020-07-26</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-07-26>2020-07-26</time></dd></div>
+      <div><dt class=tags>tags</dt><dd>[<a href="/tags/webbundle.html">webbundle</a><i>,</i><a href="/tags/webpackaging.html">webpackaging</a><i>,</i><a href="/tags/performance.html">performance</a>]</dd></div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headdings</summary>
+            <ul>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#subresource-bundling>## Subresource Bundling</a>
+              <li><a href=#gen-bundle>### gen-bundle</a>
+              <li><a href=#link-rel-bundle>### link rel bundle</a>
+              <li><a href=#挙動>### 挙動</a>
+              <li><a href=#web-component-bundle>### Web Component Bundle</a>
+              <li><a href=#nested-bundling>### Nested Bundling</a>
+              <li><a href=#考察>## 考察</a>
+              <li><a href=#bundle-のネイティブ化への期待の背景>### bundle のネイティブ化への期待の背景</a>
+              <li><a href=#動的な-bundling>### 動的な bundling</a>
+              <li><a href=#resouces>### resouces</a>
+              <li><a href=#demo>## DEMO</a>
+              <li><a href=#outro>## Outro</a>
+              <li><a href=#resources>## Resources</a>
+            </ul>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+    <article>
+      <h1><a href=/entries/2020-07-26/bundle-subresources.html>Webbundle によるサブリソース取得の最適化</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>WebBundle を用いてサブリソースのみを Bundle する、 Subresource Bundle の策定と実装が進んでいる。
+        <p>これを用いると、複数サブリソースの取得を一回の fetch で行うことができ、 RTT を減らしつつも個別に取得したかのようにキャッシュを制御できる。
+        <p>現時点での仕様と実装を解説する。
+        <ul>
+          <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/wYn13HabRN0/m/L4y4iY1-AgAJ">Intent to Prototype: Subresource loading with Web Bundles</a>
+        </ul>
+      </section>
+      <section>
+        <h2 id="subresource-bundling"><a href="#subresource-bundling">Subresource Bundling</a></h2>
+        <p>WebBundle の初期の仕様は、 HTML を頂点としたページ全体をまとめる方向で始まった。
+        <ul>
+          <li><a href="https://blog.jxck.io/entries/2019-11-12/webbundle.html">WebBundle によるコンテンツの結合と WebPackaging | blog.jxck.io</a>
+        </ul>
+        <p>これをサブリソース(JS, CSS, Img etc)に対して利用できるようにする仕様だ。
+        <p>HTML 自体は普通に配信し、複数サブリソースの取得を 1 fetch にまとめることができる。
+        <section>
+          <h3 id="gen-bundle"><a href="#gen-bundle">gen-bundle</a></h3>
+          <p>実際に <a href="https://github.com/WICG/webpackage/tree/master/go/bundle/cmd/gen-bundle">gen-bundle</a> を用いてサブリソースのみを Bundle する。
+          <p>サブリソースを以下のように subresource ディレクトリにまとめたとする。
+          <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+          <pre class=sh><code translate="no">$ ls subresource
+  a.js
+  b.js
+  c.css
+  d.css
+  e.png
+  favicon.ico</code></pre>
+          <p>なお、 <code translate="no">a.js</code> は <code translate="no">b.js</code> を import し、 <code translate="no">c.css</code> は <code translate="no">d.css</code> を import している。
+          <p>gen-bundle は <code translate="no">-dir</code> を指定するとディレクトリ以下をまるっと bundle してくれる。
+          <p>CLI の仕様上 <code translate="no">-primaryURL</code> (HTML を頂点とする Bundle での HTML の URL)が必須だが、 Subresource の場合は特定の Primary が存在しない。 Chorme の実装もこれを無視しているようなので、適当に指定している。
+          <p><code translate="no">-headerOverride</code> でヘッダを追加することもできる。フォーマットの仕様上は個々のリソースごとに別々にヘッダを追加可能だが、この CLI は全てのリソースに追加される。
+          <pre class=sh><code translate="no">$ gen-bundle \
+    -version b1 \
+    -baseURL    https://labs.jxck.io/webpackaging/subresource-webbundle/ \
+    -primaryURL https://labs.jxck.io/webpackaging/subresource-webbundle/a.js \
+    -dir subresource/ \
+    -headerOverride &quot;Cache-Control: max-age=60&quot; \
+    -o bundle.wbn</code></pre>
+          <p>dump-bundle すると以下のようになる。
+          <pre class=sh><code translate="no">$ dump-bundle -i bundle.wbn
+
+Version: b1
+Primary URL: https://labs.jxck.io/webpackaging/subresource-webbundle/a.js
+
+&gt; :url: https://labs.jxck.io/webpackaging/subresource-webbundle/a.js
+&lt; :status: 200
+&lt; Content-Type: [application/javascript]
+&lt; Accept-Ranges: [bytes]
+&lt; Cache-Control: [max-age=60]
+&lt; Last-Modified: [Sat, 13 Jun 2020 10:56:18 GMT]
+&lt; Content-Length: [54]
+&lt; [len(Body)]: 54
+import {data} from &#39;./b.js&#39;
+console.log(&#39;a.js&#39;, data)
+
+
+&gt; :url: https://labs.jxck.io/webpackaging/subresource-webbundle/b.js
+&lt; :status: 200
+&lt; Content-Length: [43]
+&lt; Content-Type: [application/javascript]
+&lt; Accept-Ranges: [bytes]
+&lt; Cache-Control: [max-age=60]
+&lt; Last-Modified: [Sat, 13 Jun 2020 10:56:18 GMT]
+&lt; [len(Body)]: 43
+export const data = 10
+console.log(&#39;b.js&#39;)
+
+
+&gt; :url: https://labs.jxck.io/webpackaging/subresource-webbundle/c.css
+&lt; :status: 200
+&lt; Content-Type: [text/css; charset=utf-8]
+&lt; Accept-Ranges: [bytes]
+&lt; Cache-Control: [max-age=60]
+&lt; Last-Modified: [Fri, 24 Jul 2020 08:35:13 GMT]
+&lt; Content-Length: [17]
+&lt; [len(Body)]: 17
+@import &#39;d.css&#39;;
+
+
+&gt; :url: https://labs.jxck.io/webpackaging/subresource-webbundle/d.css
+&lt; :status: 200
+&lt; Last-Modified: [Fri, 24 Jul 2020 08:34:57 GMT]
+&lt; Content-Length: [57]
+&lt; Content-Type: [text/css; charset=utf-8]
+&lt; Accept-Ranges: [bytes]
+&lt; Cache-Control: [max-age=60]
+&lt; [len(Body)]: 57
+h1 {
+  color: red;
+}
+
+img {
+  border: solid 1px black;
+}
+
+
+&gt; :url: https://labs.jxck.io/webpackaging/subresource-webbundle/e.png
+&lt; :status: 200
+&lt; Content-Type: [image/png]
+&lt; Accept-Ranges: [bytes]
+&lt; Cache-Control: [max-age=60]
+&lt; Last-Modified: [Sat, 06 Jun 2020 10:56:17 GMT]
+&lt; Content-Length: [1993]
+&lt; [len(Body)]: 1993
+[non-text body]
+
+&gt; :url: https://labs.jxck.io/webpackaging/subresource-webbundle/favicon.ico
+&lt; :status: 200
+&lt; Content-Type: [image/vnd.microsoft.icon]
+&lt; Accept-Ranges: [bytes]
+&lt; Cache-Control: [max-age=60]
+&lt; Last-Modified: [Sat, 06 Jun 2020 10:56:17 GMT]
+&lt; Content-Length: [5686]
+&lt; [len(Body)]: 5686
+[non-text body]</code></pre>
+        </section>
+        <section>
+          <h3 id="link-rel-bundle"><a href="#link-rel-bundle">link rel bundle</a></h3>
+          <p>この Bundle を読み込む HTML は以下のようになる。
+          <p>普通にサブリソースを読む HTML に加え、 <code translate="no">&lt;link&gt;</code> で web bundle の読み込みを指定する。
+          <p>この resources 属性に、 bundle 側で解決する URL を absolute URL で明示する必要がある。
+          <pre class=html><code translate="no">&lt;!DOCTYPE html&gt;
+&lt;meta charset=utf-8&gt;
+&lt;meta name=viewport content=&quot;width=device-width,initial-scale=1&quot;&gt;
+&lt;title&gt;Subresource Web Bundle DEMO&lt;/title&gt;
+
+&lt;link href=favicon.ico rel=&quot;shortcut icon&quot; type=image/x-icon&gt;
+
+&lt;link rel=webbundle
+      href=bundle.wbn
+      resources=&quot;
+                 https://labs.jxck.io/webpackaging/subresource-webbundle/a.js
+                 https://labs.jxck.io/webpackaging/subresource-webbundle/b.js
+                 https://labs.jxck.io/webpackaging/subresource-webbundle/c.css
+                 https://labs.jxck.io/webpackaging/subresource-webbundle/d.css
+                 https://labs.jxck.io/webpackaging/subresource-webbundle/e.png
+                 https://labs.jxck.io/webpackaging/subresource-webbundle/favicon.ico
+                 &quot;/&gt;
+
+&lt;h1&gt;Subresource Web Bundle DEMO&lt;/h1&gt;
+
+&lt;script  src=a.js  type=module&gt;&lt;/script&gt;
+&lt;link   href=c.css rel=stylesheet&gt;
+&lt;img     src=e.png width=100&gt;</code></pre>
+        </section>
+        <section>
+          <h3 id="挙動"><a href="#挙動">挙動</a></h3>
+          <p>Chrome Canary を flag 付きで起動する。
+          <pre><code translate="no">$ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-features=SubresourceWebBundles</code></pre>
+          <p>HTML にアクセスすると、以下の様にサブリソースが bundle から解決されていることがわかる。
+          <ul>
+            <li>
+              DEMO: <a href="https://labs.jxck.io/webpackaging/subresource-webbundle/bundle.html">https://labs.jxck.io/webpackaging/subresource-webbundle/bundle.html</a>
+            </li>
+          </ul>
+          <p>
+            <picture>
+              <source type=image/webp srcset=bundle-subresources.webp#898x372>
+              <img loading=lazy src=bundle-subresources.png#898x372 alt="Bundle Subresource のデモを Chrome Devtools で表示" title="bundle-subresources demo">
+            </picture>
+          </p>
+          <p>実際に実行されている fetch が HTML と Bundle だけになっていることがわかる。
+          <p>もし、ブラウザが Subresource Bundling に対応していなければ、 <code translate="no">&lt;link rel=webbundle&gt;</code> が無視され個別にリクエストが走ることになる。
+          <p>ここでは wbn は no-store としているが、展開されたサブリソースは wbn 内で設定された Cache-Control が効いているため、個別にキャッシュが行われている。
+          <p>また、ここでは一切署名を用いてないため、リソースの URL を別のものにすることも可能だ。
+          <pre class=sh><code translate="no">$ gen-bundle \
+    -version b1 \
+    -baseURL    https://example.com/webpackaging/subresource-webbundle/ \
+    -primaryURL https://example.com/webpackaging/subresource-webbundle/a.js \
+    -dir subresource/ \
+    -headerOverride &quot;Cache-Control: max-age=60&quot; \
+    -o bundle-3p.wbn</code></pre>
+          <p>html はこうなる。
+          <pre class=html><code translate="no">&lt;link rel=webbundle
+      href=bundle-3p.wbn
+      resources=&quot;
+                 https://example.com/webpackaging/subresource-webbundle/a.js
+                 https://example.com/webpackaging/subresource-webbundle/b.js
+                 https://example.com/webpackaging/subresource-webbundle/c.css
+                 https://example.com/webpackaging/subresource-webbundle/d.css
+                 https://example.com/webpackaging/subresource-webbundle/e.png
+                 https://example.com/webpackaging/subresource-webbundle/favicon.ico
+                 &quot;/&gt;
+&lt;script  src=https://example.com/webpackaging/subresource-webbundle/a.js  type=module&gt;&lt;/script&gt;
+&lt;link   href=https://example.com/webpackaging/subresource-webbundle/c.css rel=stylesheet&gt;
+&lt;img     src=https://example.com/webpackaging/subresource-webbundle/e.png width=100&gt;</code></pre>
+          <p>つまり、 3rd Party のサブリソースを読み込む際に、その配信元が webbundle に対応していなくとも、 1st Party 側が Bundle を生成して配信することが可能ということになる。それで良いのかは仕様がきちんと出てから議論されるのではないだろうか。
+        </section>
+        <section>
+          <h3 id="web-component-bundle"><a href="#web-component-bundle">Web Component Bundle</a></h3>
+          <p>JS だけではなくあらゆる Subresource を対象に bundle できるということは、 Web の開発を Component 単位で扱うようになり始めた今日のワークフローにもマッチするようになるだろう。
+          <p>HTML, CSS, JS, Img などをまとめて、いわゆる WebComponent の単位で bundle を生成するといったことも可能だ。
+          <p>以下の DEMO は、 <code translate="no">&lt;profile-card&gt;</code> を Custom Element として実装し、そこに必要なリソースを bundle している。
+          <pre class=sh><code translate="no">$ ls profile-card
+  jxck.png
+  profile-card.js
+  style.css
+  template.html</code></pre>
+          <ul>
+            <li>
+              DEMO: <a href="https://labs.jxck.io/webpackaging/subresource-webbundle/webcomponents.html ">https://labs.jxck.io/webpackaging/subresource-webbundle/webcomponents.html </a>
+            </li>
+          </ul>
+          <p>今は、 JS 以外は <code translate="no">import</code> できないため、 CSS は <code translate="no">@import</code> で、 HTML は <code translate="no">fetch()</code> で解決しているが、 別途策定が進んでいる <a href="https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/master/SyntheticModules/designDoc.md">Synthetic Modules</a> (JSON, CSS, HTML などを ES Module のように扱う)が実装されれば、全て <code translate="no">import</code> で扱える可能性がある。
+          <p>これら関連仕様が進むと、 Synthetic Module ベースで構成された WebComponent の使い勝手がよくなり、 Bundle で fetch の数も気にせずに積極的に使えるようになるかもしれない。
+        </section>
+        <section>
+          <h3 id="nested-bundling"><a href="#nested-bundling">Nested Bundling</a></h3>
+          <p>前述の WebComponents を複数組み合わせたり、大きめなフレームワークを組み合わせて使うケースは既に多くある。
+          <p>これらを一つの WebBundle にするよりも、おそらく WebBundle に Webbundle を含むことになっていくだろう。
+          <p>イメージとしては以下のような構成だ。
+          <pre class=sh><code translate="no">- bundle.wbn
+  - react.wbn
+  - react-dom.wbn
+  - redux.wbn</code></pre>
+          <p>実際このような Nested Bundle も生成可能で、 Chrome もそれを最後まで展開するところが確認できた。
+          <ul>
+            <li>
+              DEMO: <a href="https://labs.jxck.io/webpackaging/subresource-webbundle/nested-bundle/">https://labs.jxck.io/webpackaging/subresource-webbundle/nested-bundle/</a>
+            </li>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <h2 id="考察"><a href="#考察">考察</a></h2>
+        <section>
+          <h3 id="bundle-のネイティブ化への期待の背景"><a href="#bundle-のネイティブ化への期待の背景">bundle のネイティブ化への期待の背景</a></h3>
+          <p>もともと何を期待してたのかという背景を振り返る。
+          <p>特に JS では、長い議論と実装の努力により ES Modules がおおよそ使える所まで来た。
+          <p>しかし npm にあるような依存の深いモジュールを単純に import で取得しては、発生する fetch が多すぎてオーバーヘッドが無視できない。
+          <p>これは H2 や Prefetch を使うといった構成でもカバーしきれず、それを詳細に調査した Chrome のチームからは「100 を超えるなら webpack でバンドルした方が良い」というレポートが出てしまった。
+          <ul>
+            <li><a href="https://docs.google.com/document/d/1ds9EEkcDGnt-iR8SAN-_7nsOfw7gsMfhZjzZ_QAIyjM/edit">Loading Performance with (Many) Modules: Summary as of Oct 7, 2017</a>
+          </ul>
+          <p>この課題は すでに広く普及した webpack などのビルドツールにより解決されていたので、開発の現場ではあまり体感することはなかったかもしれない。
+          <p>結果、 ES Module の import はブラウザがランタイムで依存解決するためではなく、ビルドツールが変換に使うための placeholder として使われて、多くの依存を bundle.js にまとめ、その中の 1byte でも変わったらバンドルし直して再取得させる運用が通常となっている。
+          <p>筆者としては「せっかく ES Module が手に入ったのにブラウザから見れば恩恵はほとんど得られていない」と言う点に煮えきらなさを感じていた。
+          <p>Bundle Subresource は、「ブラウザ上でも Module を分割して扱いながらも fetch は減らしたい」という 2 つの要求を繋ぐ仕様として期待することができる。
+          <p>WebPackaging の構想が出たときから期待していた仕様であり、 SXG よりもより多くの現場に影響を与える仕様になりえるのではないだろうか。
+        </section>
+        <section>
+          <h3 id="動的な-bundling"><a href="#動的な-bundling">動的な bundling</a></h3>
+          <p>そうした理想を完全に叶えるためには、まだ足りてない部分もある。
+          <p>一番の問題は、モジュールごとにキャッシュを設計しても、ブラウザが何をキャッシュしているのかをサーバが知る術が無いことだ。
+          <p>先の例で、別で取得したキャッシュがおおよそあり、 <code translate="no">e.png</code> だけが無い場合は、 <code translate="no">e.png</code> だけを送りたいが、それがわからないと全てを含んだ bundle を送ることになってしまう。それはやはり無駄だ。
+          <p>この問題は Server Push と同じで、そのときは Cache-Digest によってキャッシュ内容のヒントを送るという提案がなされた。
+          <p>ところが、実装上の難易度などの問題から作業が止まり、結局実現しなかった。
+          <ul>
+            <li><a href="https://blog.jxck.io/entries/2019-01-19/cache-digest-status.html">Cache Digest と HTTP2 Server Push の現状 | blog.jxck.io</a>
+          </ul>
+          <p>WebBundle の Explainer には、この問題に対する考慮が一応書いてあるため、ここの議論が進めばより理想に近づくと個人的には期待したい。
+          <ul>
+            <li><a href="https://github.com/WICG/webpackage/blob/master/explainers/subresource-loading.md#approximate-membership-query-datastructure">https://github.com/WICG/webpackage/blob/master/explainers/subresource-loading.md#approximate-membership-query-datastructure</a>
+          </ul>
+          <p>現状の実装ではそこまではスコープに無いと思われるので、今後この議論が進むかどうかに注目しつつ、フィードバックしていきたい。
+        </section>
+        <section>
+          <h3 id="resouces"><a href="#resouces">resouces</a></h3>
+          <p>bundle で fetch の数が解決して、 ES Module を積極利用するとなると、自動生成するとしても link タグの resouces が少し肥大しすぎるあたりも気になる。
+          <p>ぱっと思い浮かぶのは import map だが、そちらも最近どうなってるかよくわからない。
+          <p>今はナイーブに全部書く実装になっているとは言え、あくまで Explainer ベースであり、仕様もかっちり固まっているわけではなく、さらに Explainer でも別の案について書かれているため、 Experiment を進める中でもう少し良い代替案がでることを期待したい。
+        </section>
+      </section>
+      <section>
+        <h2 id="demo"><a href="#demo">DEMO</a></h2>
+        <p>動作する DEMO を以下にまとめてある。
+        <ul>
+          <li><a href="https://labs.jxck.io/webpackaging/subresource-webbundle/">https://labs.jxck.io/webpackaging/subresource-webbundle/</a>
+        </ul>
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>まだまだ実装が始まったばかりで、 Explainer と Design Doc から仮実装されたような状態であるため、仕様が固まっているとはいえないだろう。
+        <p>その中でも、コアの部分についてはある程度動いており、いくつかのユースケースは実現できることが確認できた。
+        <p>なにより Cache-Digest の問題が気になるところなので、今後仕様策定が進んで改善されていくことを期待しつつ、検証を続けていきたい。
+      </section>
+      <section>
+        <h2 id="resources"><a href="#resources">Resources</a></h2>
+        <ul>
+          <li>Spec
+          <li>
+            Explainer
+            <ul>
+              <li><a href="https://github.com/WICG/webpackage/blob/master/explainers/subresource-loading.md">https://github.com/WICG/webpackage/blob/master/explainers/subresource-loading.md</a>
+              <li><a href="https://docs.google.com/document/d/11t4Ix2bvF1_ZCV9HKfafGfWu82zbOD7aUhZ_FyDAgmA/edit#">https://docs.google.com/document/d/11t4Ix2bvF1_ZCV9HKfafGfWu82zbOD7aUhZ_FyDAgmA/edit#</a>
+            </ul>
+          </li>
+          <li>
+            Requirements Doc
+            <ul>
+              <li><a href="https://docs.google.com/document/d/1imEt4TZkuzRVidmkaOaTym9JzPRMK8KSXiPp83797cw/edit#">https://docs.google.com/document/d/1imEt4TZkuzRVidmkaOaTym9JzPRMK8KSXiPp83797cw/edit#</a>
+            </ul>
+          </li>
+          <li>Mozilla Standard Position
+          <li>Webkit Position
+          <li>TAG Design Review
+          <li>
+            Intents
+            <ul>
+              <li>
+                Intent to Prototype: Subresource loading with Web Bundles
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/wYn13HabRN0/m/L4y4iY1-AgAJ">https://groups.google.com/a/chromium.org/g/blink-dev/c/wYn13HabRN0/m/L4y4iY1-AgAJ</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Chrome Platform Status
+            <ul>
+              <li><a href="https://www.chromestatus.com/feature/5710618575241216">https://www.chromestatus.com/feature/5710618575241216</a>
+            </ul>
+          </li>
+          <li>
+            DEMO
+            <ul>
+              <li><a href="https://docs.google.com/document/d/18fFrURT6xD1GnqJwCx2K3Z81Te9Iv-r2ZsCkOvDH_04/">https://docs.google.com/document/d/18fFrURT6xD1GnqJwCx2K3Z81Te9Iv-r2ZsCkOvDH_04/</a>
+            </ul>
+          </li>
+          <li>Blog
+          <li>Presentation
+          <li>Issues
+          <li>Other
+        </ul>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small> See <small><a href=/policies/site.html>Site Policy</a> and <a href=/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <ins class=adsbygoogle data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-2902784829138215 data-ad-slot=9735419796></ins>
+  </footer>
+</body>
+</html>

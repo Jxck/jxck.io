@@ -9,6 +9,8 @@ WebBundle を用いてサブリソースのみを Bundle する、 Subresource B
 
 現時点での仕様と実装を解説する。
 
+- [Intent to Prototype: Subresource loading with Web Bundles](https://groups.google.com/a/chromium.org/g/blink-dev/c/wYn13HabRN0/m/L4y4iY1-AgAJ)
+
 
 ## Subresource Bundling
 
@@ -189,7 +191,7 @@ HTML にアクセスすると、以下の様にサブリソースが bundle か�
 
 - DEMO: <https://labs.jxck.io/webpackaging/subresource-webbundle/bundle.html>
 
-![Bundle Subresource のデモを Chrome Devtools で表示](bundle-subresources.png 'bundle-subresources demo')
+![Bundle Subresource のデモを Chrome Devtools で表示](bundle-subresources.png#898x372 'bundle-subresources demo')
 
 実際に実行されている fetch が HTML と Bundle だけになっていることがわかる。
 
