@@ -1,12 +1,13 @@
-# [webbundle][webpackaging][performance] WebBundle によるサブリソース取得の最適化
+# [webbundle][webpackaging][performance] Webbundle によるサブリソース取得の最適化
+
 
 ## Intro
 
-WebBundle を用いてサブリソースのみを Bundle する Subresource Bundle の策定と実装が進んでいる。
+WebBundle を用いてサブリソースのみを Bundle する、 Subresource Bundle の策定と実装が進んでいる。
 
-これを用いると、リソース取得に必要な RTT を減らし、単一のファイルで取得が可能になる。
+これを用いると、複数サブリソースの取得を一回の fetch で行うことができ、 RTT を減らしつつも個別に取得したかのようにキャッシュを制御できる。
 
-仕様と実装を解説する。
+現時点での仕様と実装を解説する。
 
 
 ## Subresource Bundling
@@ -20,11 +21,12 @@ WebBundle の初期の仕様は、 HTML を頂点としたページ全体をま�
 HTML 自体は普通に配信し、複数サブリソースの取得を 1 fetch にまとめることができる。
 
 
-## gen-bundle
+### gen-bundle
 
-実際に gen-bundle を用いてサブリソースのみを Bundle する。
+実際に [gen-bundle](https://github.com/WICG/webpackage/tree/master/go/bundle/cmd/gen-bundle) を用いてサブリソースのみを Bundle する。
 
 サブリソースを以下のように subresource ディレクトリにまとめたとする。
+
 
 ```sh
 $ ls subresource
@@ -38,15 +40,12 @@ $ ls subresource
 
 なお、 `a.js` は `b.js` を import し、 `c.css` は `d.css` を import している。
 
-gen-bundle には `-dir` を指定するとディレクトリ以下をまるっと bundle してくれる。
+gen-bundle は `-dir` を指定するとディレクトリ以下をまるっと bundle してくれる。
 
-CLI の仕様上 `-primaryURL` として、 HTML を頂点とする Web Bundle では HTML の URL を指定するが、 Subresouce の場合は特定の Primary が存在しない。
+CLI の仕様上 `-primaryURL` (HTML を頂点とする Bundle での HTML の URL)が必須だが、 Subresource の場合は特定の Primary が存在しない。Chorme の実装もこれを無視しているようなので、適当に指定している。
 
-Chorme の実装もこれを無視しているようなので、適当に指定している。
+`-headerOverride` でヘッダを追加することもできる。フォーマットの仕様上は個々のリソースごとに別々にヘッダを追加可能だが、この CLI は全てのリソースに追加される。
 
-`-headerOverride` でヘッダを追加することもできる。
-
-フォーマットの仕様上は個々のリソースごとに別々にヘッダを追加可能だが、この CLI は全てのリソースに追加される。
 
 ```sh
 $ gen-bundle \
@@ -140,13 +139,15 @@ img {
 [non-text body]
 ```
 
-## link rel bundle
+
+### link rel bundle
 
 この Bundle を読み込む HTML は以下のようになる。
 
 普通にサブリソースを読む HTML に加え、 `<link>` で web bundle の読み込みを指定する。
 
-resouces 属性に bundle 側で解決する URL を許可リストとして absolute URL で明示する必要がある。
+この resources 属性に、 bundle 側で解決する URL を absolute URL で明示する必要がある。
+
 
 ```html
 <!DOCTYPE html>
@@ -175,24 +176,27 @@ resouces 属性に bundle 側で解決する URL を許可リストとして abs
 ```
 
 
-## 挙動
+### 挙動
 
 Chrome Canary を flag 付きで起動する。
+
 
 ```
 $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-features=SubresourceWebBundles
 ```
+
 HTML にアクセスすると、以下の様にサブリソースが bundle から解決されていることがわかる。
 
-![Bundle Subresource のデモを Chrome Devtools で表示](./subresource-bundling.png 'bundle-subresources demo')
+![Bundle Subresource のデモを Chrome Devtools で表示](subresource-bundling.png 'bundle-subresources demo')
 
 実際に実行されている fetch が HTML と Bundle だけになっていることがわかる。
 
-もし、ブラウザが Subresouce Bundling に対応していなければ、 webbundle の link 部が無視され個別にリクエストが走ることになる。
+もし、ブラウザが Subresource Bundling に対応していなければ、 webbundle の link 部が無視され個別にリクエストが走ることになる。
 
 ここでは wbn は no-store としているが、展開されたサブリソースは wbn 内で設定された Cache-Control が効いているため、個別にキャッシュが行われている。
 
 また、ここでは一切署名を用いてないため、リソースの URL を別のものにすることも可能だ。
+
 
 ```sh
 $ gen-bundle \
@@ -205,6 +209,7 @@ $ gen-bundle \
 ```
 
 html はこうなる。
+
 
 ```html
 <link rel=webbundle
@@ -227,7 +232,8 @@ html はこうなる。
 
 ## 考察
 
-### 背景
+
+### "バンドル" のネイティブ化への期待の背景
 
 もともと何を期待してたのかという背景を振り返る。
 
@@ -243,15 +249,16 @@ html はこうなる。
 
 そのため、開発の現場では大した違和感はなかったかもしれないが、ブラウザから見れば恩恵はほとんど得られておらず、筆者としては「せっかく手に入れた Native の ES Module が結局全然使えてない」と言う点に煮えきらなさを感じていた。
 
+Bundle Subresource は、「Module を分割したい、が、 fetch は一回にしたい」という 2 つの要求を繋ぐ仕様として期待することができる。それだけでもかなり大きい。
+
 
 ## Web Component Bundle
-### "バンドル" のネイティブ化
 
-Bundle Subresouce は、「Module を分割したい、が、 fetch は一回にしたい」という 2 つの要求を繋ぐ仕様として期待することができる。それだけでもかなり大きい。
+加えて、 JS だけではなくあらゆる Subresource を対象に bundle できるということは、 Web の開発を Component 単位で扱うようになり始めた今日のワークフローにもマッチするようになるだろう。
 
-加えて、 JS だけではなくあらゆる Subresouce を対象に bundle できるということは、 Web の開発を Component 単位で扱うようになり始めた今日のワークフローにもマッチするようになるだろう。
+HTML, CSS, JS, Img などをまとめて、いわゆる WebComponent の単位で bundle を生成するといったことも可能だ。
 
-例えば、HTML, CSS, JS, Img などをまとめて、 WebComponent の単位で bundle を生成するといったことも可能だ。
+- DEMO: <https://labs.jxck.io/webpackaging/subresource-webbundle/webcomponents.html >
 
 別途策定が進んでいる Synthetic Modules (JSON, CSS, HTML などを ES Module のように扱う)が実装されれば、この流れはより進むだろうと考えられる。
 
@@ -271,7 +278,6 @@ bundle で fetch の数が解決して、 ES Module を積極利用するとな�
 ぱっと思い浮かぶのは import map だが、そちらも最近どうなってるかよくわからない。
 
 今はナイーブに全部書く実装になっているとは言え、あくまで Explainer ベースであり、仕様もかっちり固まっているわけではなく、さらに Explainer でも別の案について書かれているため、 Experiment を進める中でもう少し良い代替案がでることを期待したい。
-
 
 
 ### 動的な bundling
@@ -298,6 +304,7 @@ WebBundle の Explainer には、この問題に対する考慮が一応書い�
 ### Nested Bundling
 
 おそらく WebBundle に Webbundle を含むことになっていくのではないかと想像する。
+
 
 ```sh
 - bundle.wbn
