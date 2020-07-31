@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Test DEMO</title>
+
+<style>
+body {
+  margin: 10vw;
+}
+
+img {
+  width: 80vw;
+}
+
+
+</style>
+
+<h1>Test DEMO</h1>
+
+<!--
+<h2>list</h2>
+<img width=300 src=320x240.png  >
+<img width=300 src=640x480.png  >
+<img width=300 src=800x600.png  >
+<img width=300 src=1024x768.png >
+<img width=300 src=1280x960.png >
+<img width=300 src=1600x1200.png>
+-->
+
+<h2>hero image</h2>
+
+<img id=hero_image
+     src=320x240.png
+     srcset=" 320x240.png   320w,
+              640x480.png   640w,
+              800x600.png   800w,
+             1024x768.png  1024w,
+             1280x960.png  1280w,
+             1600x1200.png 1600w"
+     sizes=100vw
+/>
+
+<ul>
+ <li>image src:                      <strong id=image_src                     ></strong><br>
+ <li>device pixel ratio:             <strong id=device_pixel_ratio            ></strong><br>
+ <li>viewport width:                 <strong id=viewport_width                ></strong>px<br>
+ <li>available screen width:         <strong id=available_screen_width        ></strong>px<br>
+ <li>image natural width:            <strong id=image_natural_width           ></strong>px<br>
+ <li>image display width:            <strong id=image_display_width           ></strong>px<br>
+ <li>minimum acceptable image width: <strong id=minimum_acceptable_image_width></strong>px<br>
+</ul>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  const $img                         = $('#hero_image')
+  const $imgSrc                      = $('#image_src')
+  const $devicePixelRatio            = $('#device_pixel_ratio')
+  const $viewportWidth               = $('#viewport_width')
+  const $availableScreenWidth        = $('#available_screen_width')
+  const $imageNaturalWidth           = $('#image_natural_width')
+  const $imageDisplayWidht           = $('#image_display_width')
+  const $minimumAcceptableImageWidth = $('#minimum_acceptable_image_width')
+
+  function displayData() {
+    const src = new URL($img.currentSrc).pathname
+    $imgSrc                     .innerHTML   = `<a href=${$img.currentSrc}>${src}</a>`
+    $devicePixelRatio           .textContent = window.devicePixelRatio
+    $viewportWidth              .textContent = document.documentElement.clientWidth
+    $availableScreenWidth       .textContent = window.screen.availWidth
+    $imageNaturalWidth          .textContent = $img.naturalWidth
+    $imageDisplayWidht          .textContent = $img.width
+    $minimumAcceptableImageWidth.textContent = $img.width * window.devicePixelRatio
+  }
+
+  $img.onload = window.onresize = displayData
+
+  document.on('DOMContentLoaded', async (e) => {
+      console.log(e)
+
+
+
+  })
+</script>
