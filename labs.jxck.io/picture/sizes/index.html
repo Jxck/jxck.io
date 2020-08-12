@@ -7,6 +7,10 @@
 body {
   margin: 0;
 }
+ul {
+  font-family: monospace;
+  font-size: 1.2em;
+}
 </style>
 
 <h1>Test DEMO</h1>
@@ -31,17 +35,19 @@ body {
              1024x768.png  1024w,
              1280x960.png  1280w,
              1600x1200.png 1600w"
-     sizes=320px
-/>
+>
 
 <ul>
- <li>image src:                      <strong id=image_src                     ></strong><br>
- <li>device pixel ratio:             <strong id=device_pixel_ratio            ></strong><br>
- <li>viewport width:                 <strong id=viewport_width                ></strong>px<br>
- <li>available screen width:         <strong id=available_screen_width        ></strong>px<br>
- <li>image natural width:            <strong id=image_natural_width           ></strong>px<br>
- <li>image display width:            <strong id=image_display_width           ></strong>px<br>
- <li>minimum acceptable image width: <strong id=minimum_acceptable_image_width></strong>px<br>
+ <li>image src:                      <strong id=image_src                     ></strong>
+ <li>device pixel ratio:             <strong id=device_pixel_ratio            ></strong>
+ <li>viewport width:                 <strong id=viewport_width                ></strong>px
+ <li>available screen width:         <strong id=available_screen_width        ></strong>px
+ <li>image natural width:            <strong id=image_natural_width           ></strong>px
+ <li>image display width:            <strong id=image_display_width           ></strong>px
+ <li>minimum acceptable image width: <strong id=minimum_acceptable_image_width></strong>px
+ <li>srcset:                         <ul id=srcset></ul></li>
+ <li>border dencity geometric mean:  <strong id=geometric_mean></strong>
+ <li>result                          <strong id=result></strong>
 </ul>
 
 <script>
@@ -52,31 +58,78 @@ body {
 
   const $img                         = $('#hero_image')
   const $imgSrc                      = $('#image_src')
+  const $srcSet                      = $('#srcset')
   const $devicePixelRatio            = $('#device_pixel_ratio')
   const $viewportWidth               = $('#viewport_width')
   const $availableScreenWidth        = $('#available_screen_width')
   const $imageNaturalWidth           = $('#image_natural_width')
   const $imageDisplayWidht           = $('#image_display_width')
   const $minimumAcceptableImageWidth = $('#minimum_acceptable_image_width')
+  const $geometricMean               = $('#geometric_mean')
+  const $result                      = $('#result')
 
   function displayData() {
-    const src = new URL($img.currentSrc).pathname
+    const src  = new URL($img.currentSrc).pathname
+    const sets = srcset($img.srcset)
     $imgSrc                     .innerHTML   = `<a href=${$img.currentSrc}>${src}</a>`
-    $devicePixelRatio           .textContent = window.devicePixelRatio
+    $devicePixelRatio           .textContent = devicePixelRatio
     $viewportWidth              .textContent = document.documentElement.clientWidth
-    $availableScreenWidth       .textContent = window.screen.availWidth
+    $availableScreenWidth       .textContent = screen.availWidth
     $imageNaturalWidth          .textContent = $img.naturalWidth
     $imageDisplayWidht          .textContent = $img.width
     $minimumAcceptableImageWidth.textContent = $img.width * window.devicePixelRatio
+
+    const splitted = sets
+      .reduce(([low, hi], [n, v, d]) => {
+        if (d <= devicePixelRatio) {
+          low.push(d)
+        } else {
+          hi.push(d)
+        }
+        return [low, hi]
+      },[[], []])
+
+    const [low, hi] = splitted
+    const border = {
+      low: low[low.length - 1],
+      hi:  hi[0],
+    }
+    const geo_mean = Math.floor(Math.sqrt(border.low * border.hi) * 10) / 10
+    $geometricMean.textContent = geo_mean
+
+    if (geo_mean < devicePixelRatio) {
+      $result.textContent = `geo_mean(${geo_mean}) < DPR(${devicePixelRatio}) = hi(${border.hi})`
+    } else if (devicePixelRatio < geo_mean){
+      $result.textContent = `DPR(${devicePixelRatio}) < geo_mean(${geo_mean}) = low(${border.low})`
+    }
+
+    Array.from($srcSet.children).forEach((c) => c.remove())
+    sets.forEach(([name, value, dencity]) => {
+      const $li       = document.createElement('li')
+      $li.textContent = `${name}: ${value} (${dencity})`
+      $srcSet.appendChild($li)
+    })
+  }
+
+  function srcset(attr) {
+    return attr
+      .split(",")
+      .map((set) => {
+        return set
+          .split(" ")
+          .filter((e) => e !== "")
+          .filter((e) => e !== "\n")
+      })
+      .map(([name, value]) => {
+        const dencity = Math.round(parseInt(value.replace('w', '')) / $img.width * 10) / 10
+        return [name, value, dencity]
+      })
+      .sort((prev, curr) => prev[2] - curr[2])
   }
 
   $img.onload = window.onresize = displayData
 
   document.on('DOMContentLoaded', async (e) => {
-      console.log(e)
-
-    setTimeout(() => {
-      //location.reload()
-    }, 1000)
+    // console.log(e)
   })
 </script>
