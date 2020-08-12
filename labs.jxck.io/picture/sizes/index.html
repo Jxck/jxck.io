@@ -11,6 +11,9 @@ ul {
   font-family: monospace;
   font-size: 1.2em;
 }
+.hit {
+  color: red;
+}
 </style>
 
 <h1>Test DEMO</h1>
@@ -46,7 +49,7 @@ ul {
  <li>image display width:            <strong id=image_display_width           ></strong>px
  <li>minimum acceptable image width: <strong id=minimum_acceptable_image_width></strong>px
  <li>srcset:                         <ul id=srcset></ul></li>
- <li>border dencity geometric mean:  <strong id=geometric_mean></strong>
+ <li>dencity geometric mean:         <strong id=geometric_mean></strong>
  <li>result                          <strong id=result></strong>
 </ul>
 
@@ -95,18 +98,24 @@ ul {
       hi:  hi[0],
     }
     const geo_mean = Math.floor(Math.sqrt(border.low * border.hi) * 10) / 10
-    $geometricMean.textContent = geo_mean
+    $geometricMean.textContent = `sqrt(${border.low} * ${border.hi}) = ${geo_mean}`
 
-    if (geo_mean < devicePixelRatio) {
+    let hit
+    if (geo_mean <= devicePixelRatio) {
       $result.textContent = `geo_mean(${geo_mean}) < DPR(${devicePixelRatio}) = hi(${border.hi})`
+      hit = border.hi
     } else if (devicePixelRatio < geo_mean){
       $result.textContent = `DPR(${devicePixelRatio}) < geo_mean(${geo_mean}) = low(${border.low})`
+      hit = border.low
     }
 
     Array.from($srcSet.children).forEach((c) => c.remove())
     sets.forEach(([name, value, dencity]) => {
       const $li       = document.createElement('li')
       $li.textContent = `${name}: ${value} (${dencity})`
+      if (dencity == hit) {
+        $li.classList.add('hit')
+      }
       $srcSet.appendChild($li)
     })
   }
