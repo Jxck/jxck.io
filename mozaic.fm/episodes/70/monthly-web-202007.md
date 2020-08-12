@@ -37,7 +37,7 @@ guest
   - When: November 17-19, 2020
   - Where: Virtual - given that BlinkOn 13 was supposed to be held in Google Kirkland and that, historically, the majority of our attendees have been from the AMER region, this event will be hosted in the Pacific Time Zone
   - <https://groups.google.com/a/chromium.org/g/blink-dev/c/zNDLekIrSQE/>
-- * Updates
+- Updates
   - *New in Chrome 84*
     - <https://developers.google.com/web/updates/2020/07/nic84>
     - Users can start common tasks within your app, with App Icon Shortcuts.
