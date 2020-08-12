@@ -5,14 +5,8 @@
 
 <style>
 body {
-  margin: 10vw;
+  margin: 0;
 }
-
-img {
-  width: 80vw;
-}
-
-
 </style>
 
 <h1>Test DEMO</h1>
@@ -37,7 +31,7 @@ img {
              1024x768.png  1024w,
              1280x960.png  1280w,
              1600x1200.png 1600w"
-     sizes=100vw
+     sizes=320px
 />
 
 <ul>
@@ -81,7 +75,8 @@ img {
   document.on('DOMContentLoaded', async (e) => {
       console.log(e)
 
-
-
+    setTimeout(() => {
+      //location.reload()
+    }, 1000)
   })
 </script>
