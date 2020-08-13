@@ -16,4 +16,19 @@
         integrity=sha256-GKodI5RAX+h8/uw8g+a55s2uy5K20mTbfZM8K9cyX44=
         crossorigin=anonymous></script>
 
+<script>
+  (async () => {
+    try {
+      const res = await fetch('https://lab2.jxck.io/content-security-policy/main.txt', {
+        integrity: 'sha256-8iE2EkzT4dZaSEh87PMQdxsv0eg9wDLj0ZckFgrA/3E=',
+        mode: 'cors'
+      })
+      const txt = await res.text()
+      console.log(txt)
+    } catch(err) {
+      console.error(err)
+    }
+  })()
+</script>
+
 <h1>Subresource Integrity DEMO</h1>
