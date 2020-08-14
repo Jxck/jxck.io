@@ -68,6 +68,10 @@ ul {
   const $geometricMean               = $('#geometric_mean')
   const $result                      = $('#result')
 
+  function round(num) {
+    return Math.round(num * 10000) / 10000;
+  }
+
   function displayData() {
     const src  = new URL($img.currentSrc).pathname
     const sets = srcset($img.srcset)
@@ -89,22 +93,22 @@ ul {
       low: low[low.length - 1],
       hi:  hi[0],
     }
-    const geo_mean = Math.floor(Math.sqrt(border.low * border.hi) * 10) / 10
-    $geometricMean.textContent = `sqrt(${border.low} * ${border.hi}) = ${geo_mean}`
+    const geo_mean = Math.sqrt(border.low * border.hi)
+    $geometricMean.textContent = `sqrt(${round(border.low)} * ${round(border.hi)}) = ${round(geo_mean)}`
 
     let hit
     if (geo_mean <= devicePixelRatio) {
-      $result.textContent = `geo_mean(${geo_mean}) < DPR(${devicePixelRatio}) = hi(${border.hi})`
+      $result.textContent = `geo_mean(${round(geo_mean)}) < DPR(${devicePixelRatio}) = hi(${round(border.hi)})`
       hit = border.hi
     } else if (devicePixelRatio < geo_mean){
-      $result.textContent = `DPR(${devicePixelRatio}) < geo_mean(${geo_mean}) = low(${border.low})`
+      $result.textContent = `DPR(${devicePixelRatio}) < geo_mean(${round(geo_mean)}) = low(${round(border.low)})`
       hit = border.low
     }
 
     Array.from($srcSet.children).forEach((c) => c.remove())
     sets.forEach(([name, value, dencity]) => {
       const $li       = document.createElement('li')
-      $li.textContent = `${name}: ${value} (${dencity})`
+      $li.textContent = `${name}: ${value} (${round(dencity)})`
       if (dencity == hit) {
         $li.classList.add('hit')
       }
@@ -122,7 +126,7 @@ ul {
           .filter((e) => e !== "\n")
       })
       .map(([name, value]) => {
-        const dencity = Math.round(parseInt(value.replace('w', '')) / $img.width * 10) / 10
+        const dencity = parseInt(value.replace('w', '')) / $img.width
         return [name, value, dencity]
       })
       .sort((prev, curr) => prev[2] - curr[2])
