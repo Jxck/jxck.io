@@ -222,10 +222,10 @@ static ImageCandidate PickBestImageCandidate(float device_scale_factor, float so
 - 候補を順に見ていき、現在の値を curr 次を next とする
 - next の dencity が DPR を超えるまで先に進む
 - `curr < DPR < next` になったらそこで curr/next どちらを見るか決める
-- まず curr/next の dencity の相乗平均(幾何平均)をとる
+- まず curr/next の dencity の幾何平均(相乗平均)をとる
 - 以下は next を使う
   - DPR が 1 で curr.dencity がそれより小さい
-  - 相乗平均が DPR より小さい
+  - 幾何平均が DPR より小さい
 - そうでなければ curr
 
 (DPR に 1 以下はあるのだろうか?)
@@ -253,7 +253,7 @@ static unsigned SelectionLogic(Vector<ImageCandidate*>& image_candidates, float 
     // そこで curr とのどっちを表示するかを考える
     current_density = image_candidates[i]->Density();
 
-    // そのために相乗平均をまず取る
+    // そのために幾何平均をまず取る
     geometric_mean  = sqrt(current_density * next_density);
 
     // curr が DPR より低くても、 DPR が 1 なら next を使う
@@ -275,24 +275,33 @@ static unsigned SelectionLogic(Vector<ImageCandidate*>& image_candidates, float 
   - dencity が 1 を超える一番小さいものを選ぶ
 - DPR が 1 以上の場合
   - dencity が DPR を上下にまたぐ 2 つの画像を選ぶ
-  - その 2 つの dencity の相乗平均を取る
-  - 相乗平均 `<` DPR なら next
-  - 相乗平均 `>` DPR なら curr
+  - その 2 つの dencity の幾何平均を取る
+  - 幾何平均 `<` DPR なら next
+  - 幾何平均 `>` DPR なら curr
+
+## 確認
+
+例として、 1024w と 1280w の画像を DPR 2 の端末で表示する場合を考える。
+
+これまでは DPR が 2 なので、 512px を超えると 1024w では足らなくなり 1280w に切り替わると考えていたが、実際に計算してみると
+
+img.width = 572 の時、 `sqrt((1024/572) * (640/572))` は 2.001 で DPR より大きいため、 1024w が採用される。
+img.width = 573 の時、 `sqrt((1024/573) * (640/573))` は 1.998 で DPR より小さいため、 1280w が採用される。
+
+つまり、 512px を超えても画像は切り替わらず 572px までは 1024w が使われている結果となるはずだ。
+
+Dencity とその幾何平均を見ながら画像の切り替わりポイントを確かめる実装を行ったところ、計算通りの結果になった。
 
 
-例として、 320w と 640w の画像を DPR 2 の端末で表示する場合を考える。
+## なぜ幾何平均なのか
 
-これまでは DPR が 2 なので、 160 を超えると 320w では足らなくなり 640w に切り替わると考えていたが、実際に計算してみると
+幾何平均を使っている理由は、おそらく画像 A と B の間が大きい時、 A では 1px 足りないがその 1px のために B を選ぶというのを割けるためだろう。
 
-img.width = 226 の時、 `sqrt((320/226) * (640/226))` は 2.001 で DPR より大きいため、 320w が採用される。
-img.width = 227 の時、 `sqrt((320/227) * (640/227))` は 1.992 で DPR より小さいため、 640w が採用される。
-
-つまり、 160 を超えても画像は切り替わらず 227 までは 320w が使われている結果となる。
+A と B の密度の幾何平均を、デバイスの密度と比較しそこを基準に選択することで、完全にピクセル密度が足りるわけではないが、妥協的なサイズの画像が選べているということだと考えられる。
 
 
-## bug
 
-なぜこうなってるのかは該当部分のログに書かれていた。
+などと考えながらログを探したら、該当部分の issue に理由がずばり書かれていた。
 
 > 425511 - Avoid loading srcset resources that are marginally larger/smaller than DPR - chromium
 >
@@ -302,17 +311,40 @@ img.width = 227 の時、 `sqrt((320/227) * (640/227))` は 1.992 で DPR より
 > even though the 1x resource would have been enough.
 > --- <cite>https://bugs.chromium.org/p/chromium/issues/detail?id=425511</cite>
 
+もともともモチベーションは、ズームで DPR が 1 -> 1.1 のようにずれることに起因するらしい。これも考察した理由と根底では同じ理由と言えるだろう。
 
+(ズームで DPR がちゃんと変わってることは知らなかった)
 
 
 ## Outro
 
+こうした挙動の差を見ると、それを踏まえた上でどのブラウザでも同じ画像が選ばれるように強制するといった発想を持つ開発者が必ずいるだろう。
 
+例えば media query を用いて viewport でスイッチする、 Client Hints で viewport や DPR を送らせてサーバ側で出し分ける、などをすれば、条件に応じて意図した画像を強制する実装は可能だ。
+
+しかし、そうした実装は、今回解説した「実装が選択する余地」をクライアントから完全に奪い取っていることに注意したい。
+
+そもそも、今回のデモでは srcset をわかりやすく変えているが、基本的には全く同じ画像を違うサイズで提供するための API だ。
+
+Media Query は、例えば PC では引きの写真だが、モバイルではアップにする、といった画像そのものを切り替えるために使われる API であり、用途が違う。
+
+DPR 1 用の画像をそのまま 3 で表示するとさすがに気になることもあるかもしれないが、基本的には数種のサイズを srcset で提供できていれば、あとの選択はブラウザに任せれば十分だし、そうであるべきだ。
+
+そもそも、数 px 程度のズレはよほど注意して見ないと気づくことすらないだろうし、気になるなら、ある程度のサイズバリエーションを提供しておけば問題ない。
+
+今回は、 Chrome だけ大きく挙動が違ったのでそこだけ調査したが、他のブラウザにも Data Saver mode のような実装や、その他の最適がおそらく入っているだろう。
+
+そして、今入っていなくても、今後入ってくることも十分に考えられる。
+
+クライアントの置かれている状態は基本的にはクライアントにしかわからない、最終的にユーザに最適化を提供する上で最も適しているのはクライアントで、サーバはそこに対して十分な選択肢を与えるのが責務と言える。
+
+srcset についても、十分なバリエーションを提供しつつ、後の選択はクライアントに回せる、というのが正しいスタンスと言えるだろう。
 
 
 ## Resources
 
 - Spec
+  - https://html.spec.whatwg.org/multipage/images.html#selecting-an-image-source
 - Explainer
 - Requirements Doc
 - Mozilla Standard Position
@@ -324,5 +356,7 @@ img.width = 227 の時、 `sqrt((320/227) * (640/227))` は 1.992 で DPR より
 - Blog
 - Presentation
 - Issues
+ - https://bugs.chromium.org/p/chromium/issues/detail?id=425511
 - Other
-
+ - https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;l=395;drc=23f61cb65a94208dc2c4728e895e87d47f64a8b6;bpv=1;bpt=0?originalUrl=https:%2F%2Fcs.chromium.org%2F
+ - https://source.chromium.org/chromium/chromium/src/+/bb57934c360a33560365cc47af176a7c71d51f9d?originalUrl=https%2F:%2F%2F%2Fcs.chromium.org%2F
