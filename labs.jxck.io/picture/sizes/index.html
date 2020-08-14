@@ -7,6 +7,9 @@
 body {
   margin: 0;
 }
+strong {
+  font-family: monospace;
+}
 ul {
   font-family: monospace;
   font-size: 1.2em;
@@ -28,8 +31,9 @@ ul {
 <img width=300 src=1600x1200.png>
 -->
 
-<h2>hero image</h2>
+<h2>hero image: <span id=image_src></span></h2>
 
+<strong id=minimum_acceptable_image_width></strong>
 <img id=hero_image
      src=320x240.png
      srcset=" 320x240.png   320w,
@@ -41,13 +45,6 @@ ul {
 >
 
 <ul>
- <li>image src:                      <strong id=image_src                     ></strong>
- <li>device pixel ratio:             <strong id=device_pixel_ratio            ></strong>
- <li>viewport width:                 <strong id=viewport_width                ></strong>px
- <li>available screen width:         <strong id=available_screen_width        ></strong>px
- <li>image natural width:            <strong id=image_natural_width           ></strong>px
- <li>image display width:            <strong id=image_display_width           ></strong>px
- <li>minimum acceptable image width: <strong id=minimum_acceptable_image_width></strong>px
  <li>srcset:                         <ul id=srcset></ul></li>
  <li>dencity geometric mean:         <strong id=geometric_mean></strong>
  <li>result                          <strong id=result></strong>
@@ -75,12 +72,7 @@ ul {
     const src  = new URL($img.currentSrc).pathname
     const sets = srcset($img.srcset)
     $imgSrc                     .innerHTML   = `<a href=${$img.currentSrc}>${src}</a>`
-    $devicePixelRatio           .textContent = devicePixelRatio
-    $viewportWidth              .textContent = document.documentElement.clientWidth
-    $availableScreenWidth       .textContent = screen.availWidth
-    $imageNaturalWidth          .textContent = $img.naturalWidth
-    $imageDisplayWidht          .textContent = $img.width
-    $minimumAcceptableImageWidth.textContent = $img.width * window.devicePixelRatio
+    $minimumAcceptableImageWidth.textContent = `Img.Width x DPR = ${$img.width} x ${devicePixelRatio} = ${$img.width * window.devicePixelRatio}`
 
     const splitted = sets
       .reduce(([low, hi], [n, v, d]) => {
