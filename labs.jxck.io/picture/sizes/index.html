@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<title>Test DEMO</title>
+<title>srcset DEMO</title>
 
 <style>
 body {
@@ -14,12 +14,18 @@ ul {
   font-family: monospace;
   font-size: 1.2em;
 }
+h2 {
+  font-size: 1em;
+}
 .hit {
+  color: red;
+}
+#minimum_acceptable_image_width {
   color: red;
 }
 </style>
 
-<h1>Test DEMO</h1>
+<h1>srcset DEMO</h1>
 
 <!--
 <h2>list</h2>
@@ -31,7 +37,7 @@ ul {
 <img width=300 src=1600x1200.png>
 -->
 
-<h2>hero image: <span id=image_src></span></h2>
+<h2><span id=image_src></span></h2>
 
 <strong id=minimum_acceptable_image_width></strong>
 <img id=hero_image
@@ -45,11 +51,10 @@ ul {
 >
 
 <ul>
- <li>srcset:                         <ul id=srcset></ul></li>
- <li>dencity geometric mean:         <strong id=geometric_mean></strong>
- <li>result                          <strong id=result></strong>
+ <li>srcset:                 <ul id=srcset></ul></li>
+ <li>dencity geo mean: <strong id=geometric_mean></strong>
+ <li>result                  <strong id=result></strong>
 </ul>
-
 <script>
   'use strict';
   const $  = document.querySelector.bind(document)
