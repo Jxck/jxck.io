@@ -1,5 +1,6 @@
 # [tag] <img> で srcset 指定時に選択される画像
 
+
 ## Intro
 
 `<img>` や `<picture>` で srcset に複数の画像を指定することで、デバイスに応じて適切な解像度の画像を提供することができる。
@@ -12,6 +13,7 @@
 ## srcset attribute
 
 まず以下のようなコードを考える。
+
 
 ```html
 <style>
@@ -101,6 +103,7 @@ Chrome/Edge は DPR が 1 の場合は想定した挙動だったが、 DPR を 
 
 答えは 5 にそのまま書かれている。
 
+
 ```
 5. In a user agent-specific manner, choose one image source from source set. Let this be selected source.
 ```
@@ -142,10 +145,10 @@ W3C に限らず、 IETF によるプロトコルの仕様にもよくあるこ�
 
 コードを探すとそれっぽい関数を見つけた。
 
+
 ### PickBestImageCandidate
 
 - https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;l=422;drc=7b27ab4f4e042b410230e267d31f8e6f67d1bdc4?originalUrl=https:%2F%2Fcs.chromium.org%2F
-
 
 色々手を加えたコードを引用する。基本の流れは
 
@@ -216,7 +219,6 @@ static ImageCandidate PickBestImageCandidate(float device_scale_factor, float so
 
 - https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;drc=23f61cb65a94208dc2c4728e895e87d47f64a8b6;bpv=1;bpt=1;l=380?originalUrl=https:%2F%2Fcs.chromium.org%2F
 
-
 ここで実際に画像を選択している。
 
 - 候補を順に見ていき、現在の値を curr 次を next とする
@@ -279,6 +281,7 @@ static unsigned SelectionLogic(Vector<ImageCandidate*>& image_candidates, float 
   - 幾何平均 `<` DPR なら next
   - 幾何平均 `>` DPR なら curr
 
+
 ## 確認
 
 例として、 1024w と 1280w の画像を DPR 2 の端末で表示する場合を考える。
@@ -286,13 +289,14 @@ static unsigned SelectionLogic(Vector<ImageCandidate*>& image_candidates, float 
 これまでは DPR が 2 なので、 512px を超えると 1024w では足らなくなり 1280w に切り替わると考えていたが、実際に計算してみると
 
 img.width = 572 の時、 `sqrt((1024/572) * (640/572))` は 2.001 で DPR より大きいため、 1024w が採用される。
+
 img.width = 573 の時、 `sqrt((1024/573) * (640/573))` は 1.998 で DPR より小さいため、 1280w が採用される。
 
 つまり、 512px を超えても画像は切り替わらず 572px までは 1024w が使われている結果となるはずだ。
 
 Dencity とその幾何平均を見ながら画像の切り替わりポイントを確かめたところ、計算通りの結果になった。
 
-
+- ![Chrome で DPR2 のとき 572px では 1024w が、 573px では 1280w が選択された](srcset-chrome-dpr2.gif "srcset image selection on chrome as expected")
 
 
 ## なぜ幾何平均なのか
@@ -301,14 +305,14 @@ Dencity とその幾何平均を見ながら画像の切り替わりポイント
 
 A と B の密度の幾何平均を、デバイスの密度と比較しそこを基準に選択することで、完全にピクセル密度が足りるわけではないが、妥協的なサイズの画像が選べているということだと考えられる。
 
-
-
 などと考えながらログを探したら、該当部分の issue に理由がずばり書かれていた。
 
 > 425511 - Avoid loading srcset resources that are marginally larger/smaller than DPR - chromium
 >
+
 > Currently the srcset resource selection simply picks the first candidate with a density that's equal or larger than DPR.
 >
+
 > That results in cases where slight zooming causes a DPR of 1.1 and the download of a 2x resource, 
 > even though the 1x resource would have been enough.
 > --- <cite>https://bugs.chromium.org/p/chromium/issues/detail?id=425511</cite>
