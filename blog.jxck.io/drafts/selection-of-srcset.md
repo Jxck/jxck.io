@@ -69,13 +69,13 @@ srcset の中ではちょうど 1024px があるので、それが適切と考�
 
 そこで、 Mobile View mode で Width を変えながら選択される画像を調べていく。
 
-Safari, Firefox では以下の様に、想定した挙動になった。
+Firefox, Safari では以下の様に、想定した挙動になった。(代表して Firefox の挙動を載せる)
 
-TODO: スクショ
+- ![Firefox では仮定したサイズで画像が切り替わっている](srcset-firefox.gif "srcset image selection on firefox")
 
 Chrome/Edge は DPR が 1 の場合は想定した挙動だったが、 DPR を 2, 3 に変えたときだけ想定とは違う動きをした。
 
-TODO: スクショ
+- ![Chrome では DPR が 1 でないとき、サイズの切り替わりが想定と異なる](srcset-chrome.gif "srcset image selection on chrome")
 
 この理由をつきとめるのが今回の本題となる。
 
@@ -290,7 +290,9 @@ img.width = 573 の時、 `sqrt((1024/573) * (640/573))` は 1.998 で DPR よ�
 
 つまり、 512px を超えても画像は切り替わらず 572px までは 1024w が使われている結果となるはずだ。
 
-Dencity とその幾何平均を見ながら画像の切り替わりポイントを確かめる実装を行ったところ、計算通りの結果になった。
+Dencity とその幾何平均を見ながら画像の切り替わりポイントを確かめたところ、計算通りの結果になった。
+
+
 
 
 ## なぜ幾何平均なのか
