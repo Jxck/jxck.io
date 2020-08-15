@@ -73,11 +73,11 @@ srcset の中ではちょうど 1024px があるので、それが適切と考�
 
 Firefox, Safari では以下の様に、想定した挙動になった。(代表して Firefox の挙動を載せる)
 
-- ![Firefox では仮定したサイズで画像が切り替わっている](srcset-firefox.gif "srcset image selection on firefox")
+- ![Firefox では仮定したサイズで画像が切り替わっている](srcset-firefox.gif#482x547 "srcset image selection on firefox")
 
 Chrome/Edge は DPR が 1 の場合は想定した挙動だったが、 DPR を 2, 3 に変えたときだけ想定とは違う動きをした。
 
-- ![Chrome では DPR が 1 でないとき、サイズの切り替わりが想定と異なる](srcset-chrome.gif "srcset image selection on chrome")
+- ![Chrome では DPR が 1 でないとき、サイズの切り替わりが想定と異なる](srcset-chrome.gif#482x547 "srcset image selection on chrome")
 
 この理由をつきとめるのが今回の本題となる。
 
@@ -88,18 +88,17 @@ Chrome/Edge は DPR が 1 の場合は想定した挙動だったが、 DPR を 
 
 対象の仕様は HTML であるため、 <https://html.spec.whatwg.org> のどこかにあり、探すとまさしく "4.8.4.3.6 Selecting an image source" に該当の記述がある。
 
-- [HTML Standard - 4.8.4.3.6 Selecting an image source]
- -  https://html.spec.whatwg.org/multipage/images.html#selecting-an-image-source
+- [HTML Standard - 4.8.4.3.6 Selecting an image source](https://html.spec.whatwg.org/multipage/images.html#selecting-an-image-source)
 
 短いので該当部分を引用する。
 
 > When asked to select an image source for a given img or link element el, user agents must do the following:
->  1. Update the source set for el.
->  2. If el's source set is empty, return null as the URL and undefined as the pixel density.
->  3. Otherwise, take el's source set and let it be source set.
->  4. If an entry b in source set has the same associated pixel density descriptor as an earlier entry a in source set, then remove entry b. Repeat this step until none of the entries in source set have the same associated pixel density descriptor as an earlier entry.
->  5. In a user agent-specific manner, choose one image source from source set. Let this be selected source.
->  6. Return selected source and its associated pixel density.
+> 1\. Update the source set for el.
+> 2\. If el's source set is empty, return null as the URL and undefined as the pixel density.
+> 3\. Otherwise, take el's source set and let it be source set.
+> 4\. If an entry b in source set has the same associated pixel density descriptor as an earlier entry a in source set, then remove entry b. Repeat this step until none of the entries in source set have the same associated pixel density descriptor as an earlier entry.
+> 5\. In a user agent-specific manner, choose one image source from source set. Let this be selected source.
+> 6\. Return selected source and its associated pixel density.
 
 答えは 5 にそのまま書かれている。
 
@@ -148,7 +147,7 @@ W3C に限らず、 IETF によるプロトコルの仕様にもよくあるこ�
 
 ### PickBestImageCandidate
 
-- https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;l=422;drc=7b27ab4f4e042b410230e267d31f8e6f67d1bdc4?originalUrl=https:%2F%2Fcs.chromium.org%2F
+- <https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;l=422;drc=7b27ab4f4e042b410230e267d31f8e6f67d1bdc4?originalUrl=https:%2F%2Fcs.chromium.org%2F>
 
 色々手を加えたコードを引用する。基本の流れは
 
@@ -158,72 +157,19 @@ W3C に限らず、 IETF によるプロトコルの仕様にもよくあるこ�
 - SelectionLogic に候補を渡して画像を選択
 
 
-```c
-// device_scale_factor = DPR
-// source_size = sizes attr value
-static ImageCandidate PickBestImageCandidate(float device_scale_factor, float source_size, Vector<ImageCandidate>& image_candidates, Document* document = nullptr) {
-  const float kDefaultDensityValue = 1.0;
-  bool ignore_src = false;
-
-  // 画像がなければ無視
-  if (image_candidates.IsEmpty()) {
-    return ImageCandidate();
-  }
-
-  // 画像ごとに表示領域に対する密度を計算(1.0 だとフィット)
-  // http://picture.responsiveimages.org/#normalize-source-densities
-  for (ImageCandidate& image : image_candidates) {
-    if (image.GetResourceWidth() > 0) {
-      float gensity = (float)image.GetResourceWidth() / source_size;
-      image.SetDensity(gensity);
-      ignore_src = true;
-    } else if (image.Density() < 0) {
-      image.SetDensity(kDefaultDensityValue);
-    }
-  }
-
-  // 密度でソート
-  std::stable_sort(image_candidates.begin(), image_candidates.end(), CompareByDensity);
-
-  Vector<ImageCandidate*> de_duped_image_candidates;
-  float prev_density = -1.0;
-
-  // 同じ密度を省く?
-  for (ImageCandidate& image : image_candidates) {
-    if (image.Density() != prev_density && (!ignore_src || !image.SrcOrigin())) {
-      de_duped_image_candidates.push_back(&image);
-    }
-    prev_density = image.Density();
-  }
-
-  // SelectionLogic で画像を選択
-  // Save Data してる場合は一番小さいの、ここでは無視
-  // unsigned winner = blink::WebNetworkStateNotifier::SaveDataEnabled() && base::FeatureList::IsEnabled(blink::features::kSaveDataImgSrcset) ? 0 : SelectionLogic(de_duped_image_candidates, device_scale_factor);
-  unsigned winner = SelectionLogic(de_duped_image_candidates, device_scale_factor);
-  DCHECK_LT(winner, de_duped_image_candidates.size());
-  winner = AvoidDownloadIfHigherDensityResourceIsInCache(de_duped_image_candidates, winner, document);
-
-  float winning_density = de_duped_image_candidates[winner]->Density();
-  // 16. If an entry b in candidates has the same associated ... pixel density
-  // as an earlier entry a in candidates,
-  // then remove entry b
-  while ((winner > 0) && (de_duped_image_candidates[winner - 1]->Density() == winning_density))
-    --winner;
-
-  return *de_duped_image_candidates[winner];
-}
+```cpp:pick-best-image-candidate.cpp
 ```
 
 
 ### SelectionLogic
 
-- https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;drc=23f61cb65a94208dc2c4728e895e87d47f64a8b6;bpv=1;bpt=1;l=380?originalUrl=https:%2F%2Fcs.chromium.org%2F
+- <https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;drc=23f61cb65a94208dc2c4728e895e87d47f64a8b6;bpv=1;bpt=1;l=380?originalUrl=https:%2F%2Fcs.chromium.org%2F>
 
 ここで実際に画像を選択している。
 
 - 候補を順に見ていき、現在の値を curr 次を next とする
 - next の dencity が DPR を超えるまで先に進む
-- `curr < DPR < next` になったらそこで curr/next どちらを見るか決める
+- curr &lt; DPR &lt; next になったらそこで curr/next どちらを見るか決める
 - まず curr/next の dencity の幾何平均(相乗平均)をとる
 - 以下は next を使う
   - DPR が 1 で curr.dencity がそれより小さい
@@ -233,42 +179,7 @@ static ImageCandidate PickBestImageCandidate(float device_scale_factor, float so
 (DPR に 1 以下はあるのだろうか?)
 
 
-```c
-// device_scale_factor = DPR
-static unsigned SelectionLogic(Vector<ImageCandidate*>& image_candidates, float device_scale_factor) {
-  unsigned i = 0;
-
-  for (; i < image_candidates.size() - 1; ++i) {
-    unsigned next = i + 1;
-    float next_density;
-    float current_density;
-    float geometric_mean;
-
-    next_density = image_candidates[next]->Density();
-
-    // next の密度が DSF より小さいならまだ先をみる必要
-    if (next_density < device_scale_factor) {
-      continue;
-    }
-
-    // next の密度が DSF より大きい、つまり表示に十分だとわかった
-    // そこで curr とのどっちを表示するかを考える
-    current_density = image_candidates[i]->Density();
-
-    // そのために幾何平均をまず取る
-    geometric_mean  = sqrt(current_density * next_density);
-
-    // curr が DPR より低くても、 DPR が 1 なら next を使う
-    // もしくは
-    // Geo が DSF より小さいなら next
-    // (そうでないなら curr)
-    if (((current_density < device_scale_factor) && (device_scale_factor <= 1.0)) || (geometric_mean <= device_scale_factor)) {
-      return next;
-    }
-    break;
-  }
-  return i;
-}
+```cpp:selection-logic.cpp
 ```
 
 つまり挙動としてはこうなるだろう。
@@ -278,8 +189,8 @@ static unsigned SelectionLogic(Vector<ImageCandidate*>& image_candidates, float 
 - DPR が 1 以上の場合
   - dencity が DPR を上下にまたぐ 2 つの画像を選ぶ
   - その 2 つの dencity の幾何平均を取る
-  - 幾何平均 `<` DPR なら next
-  - 幾何平均 `>` DPR なら curr
+  - 幾何平均 &lt; DPR なら next
+  - 幾何平均 &gt; DPR なら curr
 
 
 ## 確認
@@ -288,15 +199,15 @@ static unsigned SelectionLogic(Vector<ImageCandidate*>& image_candidates, float 
 
 これまでは DPR が 2 なので、 512px を超えると 1024w では足らなくなり 1280w に切り替わると考えていたが、実際に計算してみると
 
-img.width = 572 の時、 `sqrt((1024/572) * (640/572))` は 2.001 で DPR より大きいため、 1024w が採用される。
+img.width = 572 の時、 sqrt((1024/572) * (640/572)) は 2.001 で DPR より大きいため、 1024w が採用される。
 
-img.width = 573 の時、 `sqrt((1024/573) * (640/573))` は 1.998 で DPR より小さいため、 1280w が採用される。
+img.width = 573 の時、 sqrt((1024/573) * (640/573)) は 1.998 で DPR より小さいため、 1280w が採用される。
 
 つまり、 512px を超えても画像は切り替わらず 572px までは 1024w が使われている結果となるはずだ。
 
 Dencity とその幾何平均を見ながら画像の切り替わりポイントを確かめたところ、計算通りの結果になった。
 
-- ![Chrome で DPR2 のとき 572px では 1024w が、 573px では 1280w が選択された](srcset-chrome-dpr2.gif "srcset image selection on chrome as expected")
+- ![Chrome で DPR2 のとき 572px では 1024w が、 573px では 1280w が選択された](srcset-chrome-dpr2.gif#622x862 "srcset image selection on chrome as expected")
 
 
 ## なぜ幾何平均なのか
@@ -307,15 +218,10 @@ A と B の密度の幾何平均を、デバイスの密度と比較しそこを
 
 などと考えながらログを探したら、該当部分の issue に理由がずばり書かれていた。
 
-> 425511 - Avoid loading srcset resources that are marginally larger/smaller than DPR - chromium
->
-
 > Currently the srcset resource selection simply picks the first candidate with a density that's equal or larger than DPR.
->
-
-> That results in cases where slight zooming causes a DPR of 1.1 and the download of a 2x resource, 
+> That results in cases where slight zooming causes a DPR of 1.1 and the download of a 2x resource,
 > even though the 1x resource would have been enough.
-> --- <cite>https://bugs.chromium.org/p/chromium/issues/detail?id=425511</cite>
+> --- <cite>[425511 - Avoid loading srcset resources that are marginally larger/smaller than DPR - chromium](https://bugs.chromium.org/p/chromium/issues/detail?id=425511)</cite>
 
 もともともモチベーションは、ズームで DPR が 1 -> 1.1 のようにずれることに起因するらしい。これも考察した理由と根底では同じ理由と言えるだろう。
 
