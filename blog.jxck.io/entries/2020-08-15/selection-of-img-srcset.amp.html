@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html amp lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href=https://blog.jxck.io/entries/2020-08-15/selection-of-img-srcset.html>
+
+  <link rel=icon             type =image/svg+xml sizes=any href=https://jxck.io/assets/img/jxck.svg>
+  <link rel=icon             type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="`&lt;img&gt;` や `&lt;picture&gt;` で srcset に複数の画像を指定することで、デバイスに応じて適切な解像度の画像を提供することができる。この画像が、どういった条件で選択されるのかを頭では勝手に理解していたつもりだが、理解とは違う挙動があ...">
+  <meta name=keywords            content="srcset,picture,image">
+  <meta name=theme-color         content=#000000>
+
+  <meta name=twitter:card        content=summary>
+  <meta name=twitter:site        content=@jxck_>
+  <meta name=twitter:url         content=https://blog.jxck.io/entries/2020-08-15/selection-of-img-srcset.html>
+  <meta name=twitter:title       content="img の srcset 指定時に選択される画像 | blog.jxck.io">
+  <meta name=twitter:description content="`&lt;img&gt;` や `&lt;picture&gt;` で srcset に複数の画像を指定することで、デバイスに応じて適切な解像度の画像を提供することができる。この画像が、どういった条件で選択されるのかを頭では勝手に理解していたつもりだが、理解とは違う挙動があ...">
+  <meta name=twitter:image       content=https://jxck.io/assets/img/jxck.png>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2020-08-15/selection-of-img-srcset.html>
+  <meta property=og:title        content="img の srcset 指定時に選択される画像 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="`&lt;img&gt;` や `&lt;picture&gt;` で srcset に複数の画像を指定することで、デバイスに応じて適切な解像度の画像を提供することができる。この画像が、どういった条件で選択されるのかを頭では勝手に理解していたつもりだが、理解とは違う挙動があ...">
+  <meta property=og:image        content=https://jxck.io/assets/img/jxck.png>
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "img の srcset 指定時に選択される画像 | blog.jxck.io",
+    "image": [
+      "https://jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2020-08-15T08:00:00+08:00",
+    "dateModified": "2020-08-15T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.60x60.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": "`&lt;img&gt;` や `&lt;picture&gt;` で srcset に複数の画像を指定することで、デバイスに応じて適切な解像度の画像を提供することができる。この画像が、どういった条件で選択されるのかを頭では勝手に理解していたつもりだが、理解とは違う挙動があ..."
+  }
+  </script>
+
+  <title>img の srcset 指定時に選択される画像 | blog.jxck.io</title>
+  <script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+  <script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+  <script async custom-element=amp-ad src=https://cdn.ampproject.org/v0/amp-ad-0.1.js></script>
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src=https://cdn.ampproject.org/v0.js></script>
+  <style amp-custom>
+    article section p {
+      margin-left: 0;
+    }
+
+    article table {
+      margin-left: 0;
+    }
+
+    article img {
+      margin: var(--grid) 0;
+      border: 1px solid #ccc;
+      box-sizing: content-box;
+      background-color: #fff;
+    }
+
+    article ul,
+    article ol,
+    article dl {
+      margin-left: var(--grid);
+      font-family: var(--mono-font);
+    }
+
+    article ul li ul,
+    article ol li ol {
+      margin: 0 0 0 calc(var(--grid)*2);
+      font-size: 1rem;
+    }
+
+    article ol li ol li,
+    article ul li ul li {
+      margin-bottom: 0;
+    }
+
+    article dl {
+      display: grid;
+      grid-template-columns: minmax(auto, max-content);
+      grid-column-gap: var(--grid);
+    }
+
+    article dl div {
+      display: contents;
+    }
+
+    article dl dt {
+      grid-column: 1 / 2;
+    }
+    article dl dd {
+      grid-column: 2 / 2;
+    }
+
+    article blockquote {
+      font-family: var(--mono-font);
+    }
+
+    article blockquote p {
+      margin: 0;
+    }
+
+    @supports (line-height-step: 1px) {
+      article {
+        --grid-rhythm: 1.5em;
+        line-height: 1.5;
+        line-height-step: var(--grid-rhythm);
+      }
+
+      article h1,
+      article h2,
+      article h3,
+      article h4,
+      article h5,
+      article h6 {
+        display: inline-block;
+        width: 100%;
+        line-height-step: 0;
+        line-height: 1.2;
+        margin-bottom: 0;
+      }
+
+      article section {
+        /* grid for debug */
+        /* background-size: 100% var(--grid-rhythm); */
+        /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
+      }
+
+      article p {
+        margin-top: var(--grid-rhythm);
+        margin-bottom: var(--grid-rhythm);
+      }
+
+      article pre,
+      article table {
+        line-height-step: 0;
+        line-height: normal;
+      }
+    }
+    /* normal regular */
+    @font-face {
+      font-family: "NotoSansCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src:
+        local("Noto Sans CJK JP Regular"),
+        url("/assets/font/NotoSansCJKjp-Regular-Jxck-20200720.woff2") format("woff2");
+    }
+    /* normal bold */
+    @font-face {
+      font-family: "NotoSansCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src:
+        local("Noto Sans CJK JP Bold"),
+        url("/assets/font/NotoSansCJKjp-Bold-Jxck-20200720.woff2") format("woff2");
+    }
+
+
+    /* mono regular */
+    @font-face {
+      font-family: "NotoSansMonoCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src:
+        local("Noto Sans Mono CJK JP Regular"),
+        url("/assets/font/NotoSansMonoCJKjp-Regular-Jxck-20200720.woff2") format("woff2");
+    }
+    /* mono bold */
+    @font-face {
+      font-family: "NotoSansMonoCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src:
+        local("Noto Sans Mono CJK JP Bold"),
+        url("/assets/font/NotoSansMonoCJKjp-Bold-Jxck-20200720.woff2") format("woff2");
+    }
+
+    /* Light Mode Theme */
+    :root {
+      --background-color: #fefefe;
+      --font-color: #222;
+      --header-color: #222;
+
+      --anchor-color: RoyalBlue;
+      --anchor-visited-color: Brown;
+
+      --code-block: #efefef;
+      --code-block-font: #222;
+
+      --block-quote: #ddd;
+      --table-border: #222;
+
+      --regular-font: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", "Hiragino Sans", 'ヒラギノ角ゴ Pro W3', 'メイリオ', sans-serif;
+      --mono-font: "NotoSansMonoCJKjp-Jxck";
+      --code-font: Menlo, Consolas, Liberation, Mono, Courier, "NotoSansMonoCJKjp-Jxck";
+
+      --icon-size: 30px;
+
+      --width: 80vw;
+      --grid: 1rem;
+
+      --radius: 4px;
+    }
+
+
+    /* Mobile Theme */
+    @media screen and (max-device-width: 800px) {
+      :root {
+        --width: 94vw;
+      }
+
+      audio {
+        width: 100%;
+      }
+    }
+
+    /* Dark Mode Theme */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background-color: #010101;
+        --font-color: #eee;
+
+        --anchor-color: CornflowerBlue;
+        --anchor-visited-color: RosyBrown;
+
+        --code-block: #efefef;
+
+        --table-border: #eee;
+      }
+
+      article img {
+        filter: grayscale(50%);
+      }
+      article img[src*=svg] {
+        filter: invert(100%) grayscale(50%);
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--regular-font);
+      background-color: var(--background-color);
+      color: var(--font-color);
+      font-feature-settings: "palt";
+      margin: 0;
+      padding: 0;
+    }
+
+    code {
+      font-family: var(--mono-font);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    hr {
+      margin: 0;
+      padding: 0;
+    }
+
+    iframe {
+      display: block;
+      max-width: 100%;
+      margin: var(--grid) 0;
+    }
+    dl.info {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info div {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+
+    dl.info dt::after {
+      content: ":";
+      margin-right: calc(var(--grid)/2);
+    }
+
+    dl.info dd {
+      margin: 0 var(--grid) 0 0;
+    }
+
+    dl.info dd i {
+      font-style: normal;
+      margin-right: calc(var(--grid)/3);
+    }
+
+    details.info > summary {
+    }
+
+    details.info ul {
+      margin-top: 0;
+      margin-left: var(--grid);
+    }
+    header {
+      z-index: 1;
+      position: sticky;
+      position: -webkit-sticky;
+      top: 0;
+      box-sizing: border-box;
+      margin: 0;
+      padding: calc(var(--grid)/2);
+      background-color: var(--header-color);
+    }
+
+    h2:target,
+    h3:target,
+    h4:target,
+    h5:target,
+    h6:target {
+      /* sticky header に合わせて link scroll をずらす */
+      margin-top:  calc((var(--icon-size) + var(--grid)) * -1);
+      padding-top: calc((var(--icon-size) + var(--grid)));
+    }
+
+    header ul {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      width: var(--width);
+      margin: 0 auto;
+    }
+
+    header ul li {
+      width:  var(--icon-size);
+      height: var(--icon-size);
+      padding: 0;
+      margin: 0 0 0 var(--grid);
+    }
+
+    header ul li a,
+    header ul li button {
+      display: block;
+      width: var(--icon-size);
+      height: var(--icon-size);
+      padding: 0;
+      margin: 0;
+      border: none;
+      background-color: var(--header-color);
+    }
+
+    header ul li svg {
+      fill: var(--background-color);
+    }
+
+    header ul li::before {
+      content: none;
+    }
+
+    header ul li:first-child {
+      flex-grow: 1;
+      margin-left: 0;
+    }
+
+    header .logo {
+      border: 1px solid #fff;
+      box-sizing: border-box;
+    }
+    h1 > a,
+    h2 > a,
+    h3 > a,
+    h4 > a,
+    h5 > a,
+    h6 > a {
+      color: var(--font-color);
+    }
+
+    h1 > a:visited,
+    h2 > a:visited,
+    h3 > a:visited,
+    h4 > a:visited,
+    h5 > a:visited,
+    h6 > a:visited {
+      color: var(--font-color);
+    }
+
+    h1 > a::before {
+      content: "# ";
+    }
+
+    h2 > a::before {
+      content: "## ";
+    }
+
+    h3 > a::before {
+      content: "### ";
+    }
+
+    h4 > a::before {
+      content: "#### ";
+    }
+
+    h1 > a:hover::before,
+    h2 > a:hover::before,
+    h3 > a:hover::before,
+    h4 > a:hover::before,
+    h5 > a:hover::before,
+    h6 > a:hover::before {
+      color: var(--anchor-visited-color);
+    }
+
+    em {
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    em::before,
+    em::after {
+      content: "*";
+    }
+
+    strong {
+      color: red;
+    }
+
+    strong::before,
+    strong::after {
+      content: "**";
+    }
+
+    ul li::before {
+      content: "- ";
+    }
+
+    ol {
+      counter-reset: list;
+    }
+
+    ol li::before {
+      counter-increment: list;
+      content: counter(list) ". ";
+    }
+
+    dl dt::after {
+      content: ":";
+    }
+
+    blockquote {
+      display: block;
+      border: solid 1px var(--block-quote);
+      border-radius: var(--radius);
+      padding: 1rem;
+      margin: 0;
+    }
+
+    blockquote p::before {
+      content: "> ";
+    }
+
+    code {
+      background-color: var(--code-block);
+      color: var(--code-block-font);
+      border-radius: var(--radius);
+      padding: 0 4px;
+    }
+
+    code::before,
+    code::after {
+      content: "`";
+    }
+    main {
+      display: block;
+      width: var(--width);
+      margin: 1em auto;
+    }
+
+    a {
+      word-wrap: break-word;
+      text-decoration: none;
+      color: var(--anchor-color);
+    }
+
+    a:visited {
+      color: var(--anchor-visited-color);
+    }
+
+    ol,
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      word-break: break-all;
+      word-wrap: break-word;
+    }
+
+    dl dt {
+      font-weight: bold;
+      margin: 0;
+    }
+
+    dl dd {
+      margin: 0;
+    }
+    footer {
+      padding: var(--grid);
+    }
+
+    footer strong,
+    footer .copyright {
+      width: var(--width);
+      margin: 0 auto;
+      font-style: italic;
+    }
+
+    /* AdSense */
+    footer ins {
+      display: block;
+      width: var(--width);
+      margin: 0 auto;
+    }
+    pre {
+      margin: var(--grid) 0;
+      border-radius: var(--radius);
+    }
+
+    pre::before {
+      content: "```" attr(class) "\A";
+    }
+
+    pre::after {
+      z-index: -1;
+      position: relative;
+      top: -1em;
+      content: "\A```";
+    }
+
+    pre > code {
+      font-family: var(--code-font);
+      overflow: auto;
+      display: block;
+      padding: 0.5rem;
+      margin: 0;
+    }
+
+    pre > code::before,
+    pre > code::after {
+      content: none;
+    }
+
+    .hljs-keyword {
+      color: #a71d5d;
+    }
+
+    .hljs-title {
+      color: #795da3;
+    }
+
+    .hljs-string {
+      color: #183691;
+    }
+
+    .hljs-number {
+      color: #0086b3;
+    }
+
+    .hljs-built_in {
+      color: #0086b3;
+    }
+
+    .hljs-literal {
+      color: #0086b3;
+    }
+
+    .hljs-regexp {
+      color: #183691;
+    }
+
+    .hljs-comment {
+      color: #4f80e5;
+    }
+
+    .hljs-tag {
+      color: #a71d5d;
+    }
+
+    .hljs-name {
+      color: #222222;
+    }
+
+    .hljs-strong {
+      font-weight: bold;
+    }
+
+    .hljs-attribute {
+      font-weight: bold;
+    }
+
+    .hljs-meta {
+      color: #4f80e5;
+    }
+
+    .hljs-selector-id,
+    .hljs-selector-class,
+    .hljs-selector-pseudo {
+      color: #6f42c1;
+    }
+
+    .hljs-selector-tag {
+      color: #22863a;
+    }
+
+    .hljs-subst {
+      font-weight: bold;
+    }
+
+    .hljs-variable {
+      color: #a71d5d;
+    }
+
+    .hljs-symbol {
+      font-weight: bold;
+    }
+
+    .hljs-selector-attr {
+      color: #6f42c1;
+    }
+
+    .hljs-bullet {
+    }
+
+
+    @media (prefers-color-scheme: dark) {
+      .hljs-keyword {
+        color: #000;
+        font-weight: bold;
+        font-style: italic;
+      }
+
+      .hljs-number {
+        color: var(--code-block-font);
+      }
+
+      .hljs-built_in {
+        color: #000;
+        font-weight: bold;
+      }
+
+      .hljs-literal {
+        color: var(--code-block-font);
+        font-weight: bold;
+      }
+
+      .hljs-regexp {
+        color: var(--code-block-font);
+      }
+
+      .hljs-comment {
+        color: #888;
+      }
+
+      .hljs-tag {
+        color: var(--code-block-font);
+        font-weight: bold;
+      }
+
+      .hljs-strong {
+        font-weight: bold;
+      }
+
+      .hljs-attribute {
+      }
+
+      .hljs-attr {
+        color: var(--code-block-font);
+        font-weight: bold;
+      }
+
+      .hljs-selector-tag {
+        color: var(--code-block-font);
+      }
+
+      .hljs-subst {
+        font-weight: bold;
+      }
+      .hljs-symbol {
+        font-weight: bold;
+      }
+
+      .hljs-section {
+      }
+
+      .hljs-meta,
+      .hljs-meta-keyword,
+      .hljs-selector-id,
+      .hljs-selector-class,
+      .hljs-selector-pseudo,
+      .hljs-variable,
+      .hljs-title,
+      .hljs-string,
+      .hljs-name,
+      .hljs-selector-attr {
+        color: var(--code-block-font);
+      }
+    }
+
+
+
+
+
+
+
+    /**.hljs,**/
+    .hljs-doctag,
+    .hljs-code,
+    .hljs-addition,
+    .hljs-template-variable,
+    .hljs-link,
+    .hljs-type,
+    .hljs-quote,
+    .hljs-template-tag,
+    .hljs-deletion,
+    .hljs-meta-string,
+    .hljs-emphasis {
+      /** if you find element applyed this style, please tell me https://github.com/jxck/jxck.io/issues **/
+      font-size: 100em;
+    }
+    table {
+      font-family: var(--mono-font);
+      margin: var(--grid) 0;
+      border-spacing: 0 0.4rem;
+    }
+
+    th {
+      padding: 0 var(--grid) calc(var(--grid)/2) var(--grid);
+      border-left: 2px solid var(--table-border);
+      border-bottom: 2px dashed var(--table-border);
+    }
+
+    td {
+      padding: calc(var(--grid)/2) var(--grid);
+      border-left: 2px solid var(--table-border);
+    }
+
+    th:last-child,
+    td:last-child {
+      border-right: 2px solid var(--table-border);
+    }
+
+    .align-center {
+      text-align: center;
+    }
+
+    .align-left {
+      text-align: left;
+    }
+
+    .align-right {
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://blog.jxck.io      ><amp-img width=30 height=30 src=/assets/img/blog.svg   alt="blog logo" class=logo    ></a>
+      <li><a href=/searches                 ><amp-img width=30 height=30 src=/assets/img/search.svg alt=search                    ></a>
+      <li><a href=.                         ><amp-img width=30 height=30 src=/assets/img/up.svg     alt="move to parent directory"></a>
+      <li><a href=/feeds/atom.xml           ><amp-img width=30 height=30 src=/assets/img/rss.svg    alt="rss feed"                ></a>
+      <li><a href=https://jxck.io/humans.txt><amp-img width=30 height=30 src=/assets/img/humans.svg alt="huamns.txt"              ></a>
+      <li><a href=https://jxck.io           ><amp-img width=30 height=30 src=/assets/img/jxck.svg   alt="jxck logo" class=logo    ></a>
+    </ul>
+  </nav>
+</header>
+<main>
+  <dl class=info>
+    <div><dt>created_at</dt><dd><time class=created_at datetime=2020-08-15>2020-08-15</time></dd></div>
+    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-08-15>2020-08-15</time></dd></div>
+    <div><dt class=tags>tags</dt><dd>[<a href="/tags/srcset.html">srcset</a><i>,</i><a href="/tags/picture.html">picture</a><i>,</i><a href="/tags/image.html">image</a>]</dd></div>
+    <div>
+      <dt>toc</dt>
+      <dd>
+        <details class=info>
+          <summary>headdings</summary>
+          <ul>
+            <li><a href=#intro>## Intro</a>
+            <li><a href=#srcset-attribute>## srcset attribute</a>
+            <li><a href=#viewport-width>## Viewport Width</a>
+            <li><a href=#dpr>## DPR</a>
+            <li><a href=#検証>## 検証</a>
+            <li><a href=#調査>## 調査</a>
+            <li><a href=#仕様の意図>## 仕様の意図</a>
+            <li><a href=#chromium-の実装>## Chromium の実装</a>
+            <li><a href=#pickbestimagecandidate>### PickBestImageCandidate</a>
+            <li><a href=#selectionlogic>### SelectionLogic</a>
+            <li><a href=#確認>## 確認</a>
+            <li><a href=#なぜ幾何平均なのか>## なぜ幾何平均なのか</a>
+            <li><a href=#outro>## Outro</a>
+            <li><a href=#demo>## DEMO</a>
+            <li><a href=#resources>## Resources</a>
+          </ul>
+        </details>
+      </dd>
+    </div>
+  </dl>
+  <article>
+    <h1><a href=/entries/2020-08-15/selection-of-img-srcset.html>img の srcset 指定時に選択される画像</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p><code translate="no">&lt;img&gt;</code> や <code translate="no">&lt;picture&gt;</code> で srcset に複数の画像を指定することで、デバイスに応じて適切な解像度の画像を提供することができる。
+      <p>この画像が、どういった条件で選択されるのかを頭では勝手に理解していたつもりだが、理解とは違う挙動があったため、仕様と実装を確認した。
+      <p>その記録を記す。なお、先に言うがどのブラウザも <em>仕様に準拠して</em> 実装されている。
+    </section>
+    <section>
+      <h2 id="srcset-attribute"><a href="#srcset-attribute">srcset attribute</a></h2>
+      <p>まず以下のようなコードを考える。
+      <pre class=html><code translate="no">&lt;style&gt;
+body {
+  margin: 0;
+}
+&lt;/style&gt;
+&lt;body&gt;
+&lt;img id=hero_image
+     src=320x240.png
+     srcset=&quot; 320x240.png   320w,
+              640x480.png   640w,
+              800x600.png   800w,
+             1024x768.png  1024w,
+             1280x960.png  1280w,
+             1600x1200.png 1600w&quot;
+&gt;
+&lt;/body&gt;</code></pre>
+      <p>ヒーローイメージを表示するが、そのサイズを複数用意し、デバイスに合わせて提供する、いわゆるレスポンシブイメージの一種だ。
+      <p>ここでは後述のデモをわかりやすくするため sizes を省略している。 img に CSS を当てておらず、 body のマージンを消したので、画面いっぱいに表示されることになる。
+      <p>つまり Viewport Width が Image Width となっている。
+      <p>ここで、どういう場合にどの画像が選択されるかを考えてみる。
+    </section>
+    <section>
+      <h2 id="viewport-width"><a href="#viewport-width">Viewport Width</a></h2>
+      <p>そこそも適切な画像がデバイスごとに異なるとされる理由の一つが、 Viewport の大きさの違いだ。
+      <p>例えば Viewport Width が 512px のデバイスは、 width が 512px の画像が最も適していることになる。
+      <p>それより大きすぎると無駄だし、逆に小さい場合は画像が荒くなってしまうので、 512px よりも大きいなかで一番小さいものを選ぶことになるだろう。
+      <p>先の srcset の中では 640px が適切だと考えられる。
+    </section>
+    <section>
+      <h2 id="dpr"><a href="#dpr">DPR</a></h2>
+      <p>しかし、実際は Viewport だけでは決められず、必ず DPR を考慮する必要がある。
+      <p>DPR が 2 のデバイスは、 1 のデバイスよりもピクセルが小さく、半分のサイズになっている。 CSS でいう 1px を表示するために、物理的には 2px 使っているため、密度が 2 倍でその分キレイということだ。
+      <p>つまり DPR が 2 で、 Viewport Width が 512px だったら、適切な画像の width は 1024px ということになる。
+      <p>srcset の中ではちょうど 1024px があるので、それが適切と考えられるだろう。
+    </section>
+    <section>
+      <h2 id="検証"><a href="#検証">検証</a></h2>
+      <p>仮説としては、画像は Image Width (今回は Viewport Width に等しい)と DPR の値をかけ、それよりも大きい中で最小の画像が選ばれると考えた。
+      <p>そこで、 Mobile View mode で Width を変えながら選択される画像を調べていく。
+      <p>Firefox, Safari では以下の様に、想定した挙動になった。(代表して Firefox の挙動を載せる)
+      <ul>
+        <li>
+          <amp-img layout=responsive src=srcset-firefox.gif#482x547 alt="Firefox では仮定したサイズで画像が切り替わっている" title="srcset image selection on firefox" width=482 height=547>
+        </li>
+      </ul>
+      <p>Chrome/Edge は DPR が 1 の場合は想定した挙動だったが、 DPR を 2, 3 に変えたときだけ想定とは違う動きをした。
+      <ul>
+        <li>
+          <amp-img layout=responsive src=srcset-chrome.gif#482x547 alt="Chrome では DPR が 1 でないとき、サイズの切り替わりが想定と異なる" title="srcset image selection on chrome" width=482 height=547>
+        </li>
+      </ul>
+      <p>この理由をつきとめるのが今回の本題となる。
+    </section>
+    <section>
+      <h2 id="調査"><a href="#調査">調査</a></h2>
+      <p>この挙動だけを見ると、「Chromium の実装にバグが有るのでは」や、「Devtools の Emulation がおかしいのでは」といった点が浮かびがちだが、まずは仕様がどうなっているのかを見てみる。
+      <p>対象の仕様は HTML であるため、 <a href="https://html.spec.whatwg.org">https://html.spec.whatwg.org</a> のどこかにあり、探すとまさしく &ldquo;4.8.4.3.6 Selecting an image source&rdquo; に該当の記述がある。
+      <ul>
+        <li><a href="https://html.spec.whatwg.org/multipage/images.html#selecting-an-image-source">HTML Standard - 4.8.4.3.6 Selecting an image source</a>
+      </ul>
+      <p>短いので該当部分を引用する。
+      <blockquote>
+        <p>When asked to select an image source for a given img or link element el, user agents must do the following:
+        <p>1. Update the source set for el.
+        <p>2. If el&rsquo;s source set is empty, return null as the URL and undefined as the pixel density.
+        <p>3. Otherwise, take el&rsquo;s source set and let it be source set.
+        <p>4. If an entry b in source set has the same associated pixel density descriptor as an earlier entry a in source set, then remove entry b. Repeat this step until none of the entries in source set have the same associated pixel density descriptor as an earlier entry.
+        <p>5. In a user agent-specific manner, choose one image source from source set. Let this be selected source.
+        <p>6. Return selected source and its associated pixel density.
+      </blockquote>
+      <p>答えは 5 にそのまま書かれている。
+      <pre><code translate="no">5. In a user agent-specific manner, choose one image source from source set. Let this be selected source.</code></pre>
+      <p>つまり、 srcset の中からどの画像を選ぶのかは「User Agent の実装に任せる」という仕様になっているのだ。
+    </section>
+    <section>
+      <h2 id="仕様の意図"><a href="#仕様の意図">仕様の意図</a></h2>
+      <p>こうした仕様に慣れている人にとっては、この意図を汲み取るのはいつものことだろうが、念の為解説しておく。
+      <p>W3C に限らず、 IETF によるプロトコルの仕様にもよくあることだが、詳細な挙動を仕様に <em>あえて</em> 明示せず、実装に委ねる場合がある。
+      <p>これは、特に最適化が可能な部分によく見られ、たとえば「この方法でソートする」と決めてしまうとその方法以外でソートするのは仕様違反になってしまうが、単に「ソートする」としておけば以下のようなメリットが有る。
+      <ul>
+        <li>実装が、その時考案されている高速なソートのアルゴリズムから選べる
+        <li>保持しているデータの数や状態によってアルゴリズムを変えられる
+        <li>特定のソートアルゴリズムに欠陥が見つかった場合仕様をいじらずに実装側で更新できる
+        <li>単なる速さだけではなく、モバイルや IoT など電力消費を考慮したアルゴリズムを選択するといったことができる
+      </ul>
+      <p>したがって、この <em>あえて</em> 明示しない仕様の意図は、「実装側に選択の猶予を残す」ことに繋がる。
+      <p>今回の画像選択も同じ理由だ。
+      <p>前段での想定は、 Viewport と DPR で画像は決まると解釈していたが、実際に画像の選択には他の変数もある。
+      <p>例えば、 499px と 1024px の srcset があった場合、 Image Width が 500px だったら前者を選んだほうがいいかもしれない。
+      <p>他にも、モバイルで電力が残り少なかったり、 回線が 3G だったり、 ギガ消費を抑えるようなモードの設定が端末になされていたら、より小さい画像が選ばれるべきだろう。
+      <p>この一文によって、先程検証した挙動は、決して仕様に準拠してなかったわけではないことがわかる。
+      <p>なんらかの変数を元に、ブラウザごとに適切な選択をした結果なので、コンテンツ作成者の立場では、 srcset にバリエーションを指定したら、選択はブラウザに任せるのが筋ということになる。
+      <p>しかし、興味として「じゃあどうやって選んであの結果になったのか」は気になるところだ。ここからは夏休みの自由研究として Chrome のコードを見ていく。
+    </section>
+    <section>
+      <h2 id="chromium-の実装"><a href="#chromium-の実装">Chromium の実装</a></h2>
+      <p>コードを探すとそれっぽい関数を見つけた。
+      <section>
+        <h3 id="pickbestimagecandidate"><a href="#pickbestimagecandidate">PickBestImageCandidate</a></h3>
+        <ul>
+          <li><a href="https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;l=422;drc=7b27ab4f4e042b410230e267d31f8e6f67d1bdc4?originalUrl=https:%2F%2Fcs.chromium.org%2F">https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;l=422;drc=7b27ab4f4e042b410230e267d31f8e6f67d1bdc4?originalUrl=https:%2F%2Fcs.chromium.org%2F</a>
+        </ul>
+        <p>色々手を加えたコードを引用する。基本の流れは
+        <ul>
+          <li>srcset にある候補について、 img.width を size (w) で割った値を Dencity として算出
+          <li>その Dencity で候補をソートし重複を排除
+          <li>Save Data が有効な場合は最も小さいものを選択して終わり
+          <li>SelectionLogic に候補を渡して画像を選択
+        </ul>
+        <pre class=cpp><code translate="no">// device_scale_factor = DPR
+// source_size = sizes attr value
+static ImageCandidate PickBestImageCandidate(float device_scale_factor, float source_size, Vector&lt;ImageCandidate&gt;&amp; image_candidates, Document* document = nullptr) {
+  const float kDefaultDensityValue = 1.0;
+  bool ignore_src = false;
+
+  // 画像がなければ無視
+  if (image_candidates.IsEmpty()) {
+    return ImageCandidate();
+  }
+
+  // 画像ごとに表示領域に対する密度を計算(1.0 だとフィット)
+  // http://picture.responsiveimages.org/#normalize-source-densities
+  for (ImageCandidate&amp; image : image_candidates) {
+    if (image.GetResourceWidth() &gt; 0) {
+      float gensity = (float)image.GetResourceWidth() / source_size;
+      image.SetDensity(gensity);
+      ignore_src = true;
+    } else if (image.Density() &lt; 0) {
+      image.SetDensity(kDefaultDensityValue);
+    }
+  }
+
+  // 密度でソート
+  std::stable_sort(image_candidates.begin(), image_candidates.end(), CompareByDensity);
+
+  Vector&lt;ImageCandidate*&gt; de_duped_image_candidates;
+  float prev_density = -1.0;
+
+  // 同じ密度を省く?
+  for (ImageCandidate&amp; image : image_candidates) {
+    if (image.Density() != prev_density &amp;&amp; (!ignore_src || !image.SrcOrigin())) {
+      de_duped_image_candidates.push_back(&amp;image);
+    }
+    prev_density = image.Density();
+  }
+
+  // SelectionLogic で画像を選択
+  // Save Data してる場合は一番小さいの、ここでは無視
+  // unsigned winner = blink::WebNetworkStateNotifier::SaveDataEnabled() &amp;&amp; base::FeatureList::IsEnabled(blink::features::kSaveDataImgSrcset) ? 0 : SelectionLogic(de_duped_image_candidates, device_scale_factor);
+  unsigned winner = SelectionLogic(de_duped_image_candidates, device_scale_factor);
+  DCHECK_LT(winner, de_duped_image_candidates.size());
+  winner = AvoidDownloadIfHigherDensityResourceIsInCache(de_duped_image_candidates, winner, document);
+
+  float winning_density = de_duped_image_candidates[winner]-&gt;Density();
+  // 16. If an entry b in candidates has the same associated ... pixel density
+  // as an earlier entry a in candidates,
+  // then remove entry b
+  while ((winner &gt; 0) &amp;&amp; (de_duped_image_candidates[winner - 1]-&gt;Density() == winning_density))
+    --winner;
+
+  return *de_duped_image_candidates[winner];
+}</code></pre>
+      </section>
+      <section>
+        <h3 id="selectionlogic"><a href="#selectionlogic">SelectionLogic</a></h3>
+        <ul>
+          <li><a href="https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;drc=23f61cb65a94208dc2c4728e895e87d47f64a8b6;bpv=1;bpt=1;l=380?originalUrl=https:%2F%2Fcs.chromium.org%2F">https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;drc=23f61cb65a94208dc2c4728e895e87d47f64a8b6;bpv=1;bpt=1;l=380?originalUrl=https:%2F%2Fcs.chromium.org%2F</a>
+        </ul>
+        <p>ここで実際に画像を選択している。
+        <ul>
+          <li>候補を順に見ていき、現在の値を curr 次を next とする
+          <li>next の dencity が DPR を超えるまで先に進む
+          <li>
+            curr &lt; DPR &lt; next になったらそこで curr/next どちらを見るか決める
+          </li>
+          <li>まず curr/next の dencity の幾何平均(相乗平均)をとる
+          <li>
+            以下は next を使う
+            <ul>
+              <li>DPR が 1 で curr.dencity がそれより小さい
+              <li>幾何平均が DPR より小さい
+            </ul>
+          </li>
+          <li>そうでなければ curr
+        </ul>
+        <p>(DPR に 1 以下はあるのだろうか?)
+        <pre class=cpp><code translate="no">// device_scale_factor = DPR
+static unsigned SelectionLogic(Vector&lt;ImageCandidate*&gt;&amp; image_candidates, float device_scale_factor) {
+  unsigned i = 0;
+
+  for (; i &lt; image_candidates.size() - 1; ++i) {
+    unsigned next = i + 1;
+    float next_density;
+    float current_density;
+    float geometric_mean;
+
+    next_density = image_candidates[next]-&gt;Density();
+
+    // next の密度が DSF より小さいならまだ先をみる必要
+    if (next_density &lt; device_scale_factor) {
+      continue;
+    }
+
+    // next の密度が DSF より大きい、つまり表示に十分だとわかった
+    // そこで curr とのどっちを表示するかを考える
+    current_density = image_candidates[i]-&gt;Density();
+
+    // そのために幾何平均をまず取る
+    geometric_mean  = sqrt(current_density * next_density);
+
+    // curr が DPR より低くても、 DPR が 1 なら next を使う
+    // もしくは
+    // Geo が DSF より小さいなら next
+    // (そうでないなら curr)
+    if (((current_density &lt; device_scale_factor) &amp;&amp; (device_scale_factor &lt;= 1.0)) || (geometric_mean &lt;= device_scale_factor)) {
+      return next;
+    }
+    break;
+  }
+  return i;
+}</code></pre>
+        <p>つまり挙動としてはこうなるだろう。
+        <ul>
+          <li>
+            DPR が 1 の場合
+            <ul>
+              <li>dencity が 1 を超える一番小さいものを選ぶ
+            </ul>
+          </li>
+          <li>
+            DPR が 1 以上の場合
+            <ul>
+              <li>dencity が DPR を上下にまたぐ 2 つの画像を選ぶ
+              <li>その 2 つの dencity の幾何平均を取る
+              <li>
+                幾何平均 &lt; DPR なら next
+              </li>
+              <li>
+                幾何平均 &gt; DPR なら curr
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </section>
+    <section>
+      <h2 id="確認"><a href="#確認">確認</a></h2>
+      <p>例として、 1024w と 1280w の画像を DPR 2 の端末で表示する場合を考える。
+      <p>これまでは DPR が 2 なので、 512px を超えると 1024w では足らなくなり 1280w に切り替わると考えていたが、実際に計算してみると
+      <p>img.width = 572 の時、 sqrt((1024/572) * (640/572)) は 2.001 で DPR より大きいため、 1024w が採用される。
+      <p>img.width = 573 の時、 sqrt((1024/573) * (640/573)) は 1.998 で DPR より小さいため、 1280w が採用される。
+      <p>つまり、 512px を超えても画像は切り替わらず 572px までは 1024w が使われている結果となるはずだ。
+      <p>Dencity とその幾何平均を見ながら画像の切り替わりポイントを確かめたところ、計算通りの結果になった。
+      <ul>
+        <li>
+          <amp-img layout=responsive src=srcset-chrome-dpr2.gif#622x862 alt="Chrome で DPR2 のとき 572px では 1024w が、 573px では 1280w が選択された" title="srcset image selection on chrome as expected" width=622 height=862>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 id="なぜ幾何平均なのか"><a href="#なぜ幾何平均なのか">なぜ幾何平均なのか</a></h2>
+      <p>幾何平均を使っている理由は、おそらく画像 A と B の間が大きい時、 A では 1px 足りないがその 1px のために B を選ぶというのを割けるためだろう。
+      <p>A と B の密度の幾何平均を、デバイスの密度と比較しそこを基準に選択することで、完全にピクセル密度が足りるわけではないが、妥協的なサイズの画像が選べているということだと考えられる。
+      <p>などと考えながらログを探したら、該当部分の issue に理由がずばり書かれていた。
+      <blockquote>
+        <p>Currently the srcset resource selection simply picks the first candidate with a density that&rsquo;s equal or larger than DPR.
+        <p>That results in cases where slight zooming causes a DPR of 1.1 and the download of a 2x resource,
+        <p>even though the 1x resource would have been enough.
+        <p>&mdash; <cite><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=425511">425511 - Avoid loading srcset resources that are marginally larger/smaller than DPR - chromium</a></cite>
+      </blockquote>
+      <p>もともともモチベーションは、ズームで DPR が 1 -&gt; 1.1 のようにずれることに起因するらしい。これも考察した理由と根底では同じと言えるだろう。
+      <p>(ズームで DPR がちゃんと変わってることは知らなかった)
+    </section>
+    <section>
+      <h2 id="outro"><a href="#outro">Outro</a></h2>
+      <p>こうした挙動の差を見ると、それを踏まえた上でどのブラウザでも同じ画像が選ばれるように強制するといった発想を持つ開発者が必ずいるだろう。
+      <p>例えば media query を用いて viewport でスイッチする、 Client Hints で viewport や DPR を送らせてサーバ側で出し分ける、などをすれば、条件に応じて意図した画像を強制する実装は可能だ。
+      <p>しかし、そうした強制は、今回解説した「実装が選択する余地」をクライアントから完全に奪い取っていることに注意したい。
+      <p>そもそも、今回のデモでは srcset をわかりやすく変えているが、基本的には全く同じ画像を違うサイズで提供するための API だ。
+      <p>Media Query は、例えば PC では引きの写真だが、モバイルではアップにする、といった画像そのものを切り替えるために使われる API であり、用途が違う。
+      <p>DPR 1 用の画像をそのまま 3 で表示するとさすがに気になることもあるかもしれないが、基本的には数種のサイズを srcset で提供できていれば、あとの選択はブラウザに任せれば十分だし、そうであるべきだ。
+      <p>そもそも、数 px 程度のズレはよほど注意して見ないと気づくことすらないだろうし、気になるなら、ある程度のサイズバリエーションを提供しておけば問題ない。
+      <p>今回は、 Chrome だけ大きく挙動が違ったのでそこだけ調査したが、他のブラウザにも Data Saver mode のような実装や、その他の最適がおそらく入っているだろう。
+      <p>そして、今入っていなくても、今後入ってくることも十分に考えられる。
+      <p>クライアントの置かれている状態は基本的にはクライアントにしかわからない、最終的にユーザに最適化を提供する上で最も適しているのはクライアントで、サーバはそこに対して十分な選択肢を与えるのが責務と言える。
+      <p>srcset についても、十分なバリエーションを提供しつつ、後の選択はクライアントに任せる、というのが正しいスタンスと言えるだろう。
+    </section>
+    <section>
+      <h2 id="demo"><a href="#demo">DEMO</a></h2>
+    </section>
+    <section>
+      <h2 id="resources"><a href="#resources">Resources</a></h2>
+      <ul>
+        <li>
+          Spec
+          <ul>
+            <li>https://html.spec.whatwg.org/multipage/images.html#selecting-an-image-source
+          </ul>
+        </li>
+        <li>Explainer
+        <li>Requirements Doc
+        <li>Mozilla Standard Position
+        <li>Webkit Position
+        <li>TAG Design Review
+        <li>Intents
+        <li>Chrome Platform Status
+        <li>DEMO
+        <li>Blog
+        <li>Presentation
+        <li>Issues
+        <li>https://bugs.chromium.org/p/chromium/issues/detail?id=425511
+        <li>Other
+        <li>https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;l=395;drc=23f61cb65a94208dc2c4728e895e87d47f64a8b6;bpv=1;bpt=0?originalUrl=https:%2F%2Fcs.chromium.org%2F
+        <li>https://source.chromium.org/chromium/chromium/src/+/bb57934c360a33560365cc47af176a7c71d51f9d?originalUrl=https%2F:%2F%2F%2Fcs.chromium.org%2F
+      </ul>
+    </section>
+  </article>
+</main>
+<hr>
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small> See <small><a href=/policies/site.html>Site Policy</a> and <a href=/policies/privacy.html>Privacy Policy</a>.</small></p>
+  <amp-ad width=100vw height=320 type=adsense data-ad-client=ca-pub-2902784829138215 data-ad-slot=9735419796 data-auto-format=rspv data-full-width><div overflow></div></amp-ad>
+</footer>
+</body>
+</html>
+<amp-analytics type=googleanalytics id=analytics1>
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
