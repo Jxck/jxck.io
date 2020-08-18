@@ -126,7 +126,7 @@ Cache Digest が無ければ、やはりサーバは選択肢を出して、ク�
 そこを最適化するのは「選択肢をなるべく早めに提示する」ための Prefetch, Preload, Prerender であり、そこを超えたければ自分で Service Worker を使ってやるということになりそうだ。
 
 
-## まとめ
+## Outro
 
 Cache Digest が実装されず、仕様が文字通り瀕死の状態だ。
 

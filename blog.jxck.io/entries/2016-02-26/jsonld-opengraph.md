@@ -144,7 +144,7 @@ Twitter と Facebook だけ、以下を参考に対応した。
 ```
 
 
-## まとめ
+## Outro
 
 そもそも schema.org と Open Graph で内容が重複している部分が多いため、 Twitter, Facebook が schema.org に対応してくれるとそれだけでもペイロードサイズがだいぶ削減されそうである。
 

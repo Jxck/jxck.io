@@ -122,7 +122,7 @@ Node v7.0.0 で実装された API は以下のように使うことができる
 <https://caniuse.com/#feat=urlsearchparams>
 
 
-## まとめ
+## Outro
 
 WHATWG URL を用いることで、ブラウザ上での URL の正しい処理が、標準 API のみで行えるようになった。
 

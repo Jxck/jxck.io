@@ -1,6 +1,6 @@
 # [net neutrality][internet] ネットワーク中立性について #NetNeutrality
 
-## Introduction
+## Intro
 
 US では #NetNeutrality について話題になっている一方、日本ではさほど話題になってないように思う。
 

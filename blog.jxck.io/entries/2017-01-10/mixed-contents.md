@@ -202,7 +202,7 @@ iframe 自体を https で読み込んでいても、ネストした iframe 内�
 したがって、広告配信プラットフォームが `Upgrade-Insecure-Request` や `Block-All-Mixed-Contents` などに対応し、広告の入稿時点で mixed contents の発生を抑止するといった対応以外には、コンテンツ側での対応には限界がある。
 
 
-## まとめ
+## Outro
 
 mixed contents は HTTPS 化する上での悩みのタネになることが多い。
 

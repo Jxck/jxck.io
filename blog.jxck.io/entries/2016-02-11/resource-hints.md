@@ -134,7 +134,7 @@ prefetch 可能なリソースのみからなるページならば、ページ�
 ![接続する URL まで決まっている N -> dns-prefetch, Y -> 静的リソースか、事前取得可能である N -> preconnect, Y -> prefetch 可能かリソースだけでなる N -> prefetch, Y -> prerender](resource-hints.svg#546x608 "Resource Hints API の選択フロー")
 
 
-## サイトへの適用
+## 本サイトへの適用
 
 このサイトは現状こうした特徴がある。
 

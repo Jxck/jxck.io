@@ -377,7 +377,7 @@ Origin Isolation は、基本的には Site Isolation が Same Site なのに対
  - <https://github.com/mikewest/securer-contexts/>
 
 
-## まとめ
+## Outro
 
 CORP / COOP / COEP あたりは、最初の提案から名前が何度か変わったりしてややこしかったが、最近やっと落ち着いてきて実装が進みつつ有るため、今回解説するに至った。
 

@@ -155,7 +155,7 @@ before/after は以下のようになる。
 ![font-feature-settings で palt を切り替えた時の字詰めの変化](font-feature-settings-palt.gif#1665x968 "font-feature-settings:'palt'")
 
 
-## まとめ
+## Outro
 
 以下のことを行なった。
 

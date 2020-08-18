@@ -284,7 +284,7 @@ DatagramTransport を使えば out of order / unreliable な read/write が可�
 また、 getUserMedia 以外の何らかのデバイスから、大量に入力し binary serialize したオブジェクトを送るケースも考えられるだろう。
 
 
-## まとめ
+## Outro
 
 - WebTransport の実装の 1 つとして、 QuicTransport の Origin Trials が始まった。
 - Promise や Stream を用いた API で、モダンな API Interface となっている。

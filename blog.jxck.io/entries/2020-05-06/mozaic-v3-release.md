@@ -400,7 +400,7 @@ HTML + JS + MP3 で固めた WebPackaging をやろうと考えていたが、 S
 そのうち Let's Encrypt が提供してくれることを期待して保留している。
 
 
-## まとめ
+## Outro
 
 ほとんどの機能が Android Chrome でしか動かないが、 Emulator で実装したので実機で動くかはわからない。
 

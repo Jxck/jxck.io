@@ -455,7 +455,7 @@ const verified = crypto
 ここまで成功すれば、認証が完了したとみなすことができる。
 
 
-## まとめ
+## Outro
 
 WebAuthentication API により、 FIDO U2F を用いた認証が Web 標準でも可能になった。
 

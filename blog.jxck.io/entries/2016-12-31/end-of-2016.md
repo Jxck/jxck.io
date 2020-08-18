@@ -73,7 +73,7 @@ Erlang はいい。
 [2016 年に観た映画](https://gist.github.com/Jxck/85722216061b79b67e97)
 
 
-## まとめ
+## Outro
 
 年末少し失速したけど、今年は割と Input/Output のバランスは立て直せたと思う。
 

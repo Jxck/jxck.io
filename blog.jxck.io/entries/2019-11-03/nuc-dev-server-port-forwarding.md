@@ -342,7 +342,7 @@ $ ssh nuc
 ```
 
 
-## まとめ
+## Outro
 
 - 小さく静かで邪魔にならない開発環境を構築
 - VPS を経由してのみ SSH Port Forwarding でログイン可能
