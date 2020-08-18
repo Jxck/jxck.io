@@ -76,13 +76,15 @@ Cache-Control: max-age=10000, immutable
 
 ## DEMO
 
-画像に対して `cache-control: immutable` を設定した画像と、していない画像を並べたデモページを以下に用意した。
+動作するデモを以下に用意した。
+
+- <https://labs.jxck.io/cache-control-immutable>
+
+画像に対して `cache-control: immutable` を設定した画像と、していない画像を並べている。
 
 一度読み込んでからリロードを行うことで、キャッシュのヒットが確認できるだろう。
 
 執筆時点では Firefox Nightly(version 50.0a1) のみ、かつ https のみで実装されている。
-
-- [Cache Control Immutable DEMO \| labs.jxck.io](https://labs.jxck.io/cache-control-immutable/)
 
 ![Cache Control Immutable を有効にした場合はリロードでもキャッシュヒットしていることが Chrome DevTools で確認できる](cache-control-immutable.gif#759x555 "Firefox Nightly での Cache-Control Immutable の DEMO")
 

@@ -335,12 +335,11 @@ CSP によって有効になるのは、型が違う場合にエラーをあげ�
 
 ## DEMO
 
-以下に DEMO を用意した。
+動作するデモを以下に用意した。
+
+- <https://labs.jxck.io/trusted-types/>
 
 動作は Chrome Canary 74.0.3684.0 で確認している。
-
-[TrustedTypes Labs \| labs.jxck.io](https://labs.jxck.io/trusted-types/)
-
 
 ## 本サイトへの適用
 

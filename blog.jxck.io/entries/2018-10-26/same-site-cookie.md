@@ -340,6 +340,6 @@ Redirect を挟むのは Write Cookie を分けた意味がないため、一旦
 
 ## DEMO
 
-動作する DEMO は以下に用意した
+動作するデモを以下に用意した。
 
-<https://labs.mozaic.fm/same-site-cookie/>
+- <https://labs.mozaic.fm/same-site-cookie/>

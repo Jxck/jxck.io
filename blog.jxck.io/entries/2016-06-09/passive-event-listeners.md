@@ -155,11 +155,13 @@ function addEventListenerWithOptions(target, type, handler, options) {
 
 ## DEMO
 
+動作するデモを以下に用意した。
+
+- <https://labs.jxck.io/passive-event-listeners/>
+
 長いドキュメントで、 touchstart イベントにあえて遅延を入れたデモを用意した。
 
 ここに、 Passive オプション指定の有無による挙動の変化を試すことができる。
-
-- [Passive Event Uisteners DEMO](https://labs.jxck.io/passive-event-listeners/index.html)
 
 ちょっと分かりにくいがキャプチャも載せておく。
 

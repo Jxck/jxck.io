@@ -304,5 +304,4 @@ Safari もパッチはあるが、 TP にも入っていない。
 
 動作するデモを以下に用意した。
 
-- [Nullish Coalescing](https://labs.jxck.io/optional/nullish-coalescing.html)
-- [Optional Chaining](https://labs.jxck.io/optional/optional-chaining.html)
+- <https://labs.jxck.io/optional/>

@@ -93,4 +93,6 @@ fetch()
 
 ## DEMO
 
-- [Promise DEMO](https://labs.jxck.io/promise/)
+動作するデモを以下に用意した。
+
+- <https://labs.jxck.io/promise/>

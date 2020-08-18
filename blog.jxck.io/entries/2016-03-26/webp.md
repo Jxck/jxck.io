@@ -38,9 +38,12 @@ GIF アニメよりも、色数が多く綺麗なアニメーションを小さ�
 
 現状まだ対応するブラウザは限られているが、対応しているのであれば WebP で配布するのが望ましい場合が多い。
 
-WebP のデモは以下に記載した。
 
-[labs.jxck.io/webp](https://labs.jxck.io/webp/)
+## DEMO
+
+動作するデモを以下に用意した。
+
+- <https://labs.jxck.io/webp/>
 
 
 ## WebP 変換

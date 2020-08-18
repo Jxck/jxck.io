@@ -39,9 +39,9 @@ Vertical Rhythm の効果については、以下のように教えて頂いた�
 
 ## DEMO
 
-機能を試すデモを以下に用意した。
+動作するデモを以下に用意した。
 
-[Rhysmic Sizing DEMO](https://labs.jxck.io/rhythmic-sizing/basic.html)
+- <https://labs.jxck.io/rhythmic-sizing/basic.html>
 
 CSS の機能は Origin Trials ではないため、 [chrome://flags/#enable-experimental-web-platform-features](chrome://flags/#enable-experimental-web-platform-features) を有効にする必要がある。
 

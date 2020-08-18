@@ -205,7 +205,9 @@ document.registerElement('input', {
 
 ## DEMO
 
-DEMO: <https://labs.jxck.io/form/form-data/>
+動作するデモを以下に用意した。
+
+- <https://labs.jxck.io/form/form-data/>
 
 
 ## Links

@@ -571,7 +571,7 @@ Origin-Isolation などの関連仕様の動向も気になるため、引き続
 
 ## DEMO
 
-動作する DEMO を以下に用意した。
+動作するデモを以下に用意した。
 
 - [Site Isolation](https://labs.jxck.io/site-isolation/)
   - [Cross-Origin-Read-Blocking DEMO](  https://labs.jxck.io/site-isolation/cross-origin-read-blocking/index.html)

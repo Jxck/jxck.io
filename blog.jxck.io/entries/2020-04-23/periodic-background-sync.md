@@ -204,9 +204,11 @@ TODO: JSConf の動画(会長の公開待ち)
 
 ### DEMO
 
-動作するデモは以下に用意した(前述のように動作させるのは難しい)
+動作するデモを以下に用意した。
 
 - <https://labs.jxck.io/service-worker/periodic-background-sync/>
+
+前述のように動作させるのは少し難しい。
 
 
 ## Resources

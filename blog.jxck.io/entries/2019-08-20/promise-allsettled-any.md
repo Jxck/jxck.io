@@ -201,5 +201,4 @@ Promise.anySettled   = Promise.race
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/promise/allsettled/>
-- <https://labs.jxck.io/promise/any/>
+- <https://labs.jxck.io/promise/>

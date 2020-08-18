@@ -355,13 +355,13 @@ open -a Google\ Chrome\ Canary --args --ignore-certificate-errors-spki-list=$BAS
 
 動作するデモを以下に用意した。
 
+- <https://labs.jxck.io/webpackaging/signed-http-exchange-b2/>
+
 ただし
 
 - 生成された sxg は expire している可能性があるため、時間が経つとアクセスしても表示できない
 - 自己証明書であるため、遷移先に書かれたフラグをつけて Chrome を起動する必用がある
 - Origin Trials には Opt-In している
-
-<https://labs.jxck.io/webpackaging/signed-http-exchange-b2/>
 
 まず遷移先のページは以下だ。
 

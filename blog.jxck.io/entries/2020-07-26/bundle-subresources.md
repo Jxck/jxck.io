@@ -337,7 +337,7 @@ bundle で fetch の数が解決して、 ES Module を積極利用するとな�
 
 ## DEMO
 
-動作する DEMO を以下にまとめてある。
+動作するデモを以下に用意した。
 
 - <https://labs.jxck.io/webpackaging/subresource-webbundle/>
 

@@ -13,15 +13,17 @@ Web Authentication(WebAuthN) API の策定と実装が進んでいる。
 
 ## DEMO
 
-動作する DEMO を以下に用意した。 YubiKey での動作のみ確認している。
+動作するデモを以下に用意した。
 
-<https://labs.jxck.io/webauthentication/fido-u2f/>
+- <https://labs.jxck.io/webauthentication/fido-u2f/>
+
+YubiKey での動作のみ確認している。
 
 コードは以下にあり、今回の解説もここから抜粋している。
 
 (あくまで API の流れを解説するためのものであるため、飛ばした処理もあり、本番利用に耐えうるものではない。)
 
-<https://github.com/Jxck/jxck.io/tree/master/labs.jxck.io/webauthentication/fido-u2f>
+- <https://github.com/Jxck/jxck.io/tree/master/labs.jxck.io/webauthentication/fido-u2f>
 
 YubiKey Login の動作イメージは以下。
 

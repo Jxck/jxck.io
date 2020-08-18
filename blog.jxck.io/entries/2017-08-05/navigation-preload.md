@@ -130,6 +130,6 @@ navigator.serviceWorker.register('worker.js')
 
 ## DEMO
 
-動作するサンプルを以下に用意した。
+動作するデモを以下に用意した。
 
-- [Service Worker: Navigation Preload DEMO](https://labs.jxck.io/service-worker/navigation-preload/)
+- <https://labs.jxck.io/service-worker/navigation-preload/>

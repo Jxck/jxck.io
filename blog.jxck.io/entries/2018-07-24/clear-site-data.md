@@ -147,9 +147,9 @@ navigator.storage.clear("cache")
 
 ## DEMO
 
-動作する DEMO は以下に用意した。
+動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/clear-site-data/index.html>
+- <https://labs.jxck.io/clear-site-data/>
 
 
 ## Link

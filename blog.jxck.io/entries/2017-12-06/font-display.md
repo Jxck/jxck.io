@@ -160,9 +160,11 @@ FOIT を極力避けつつも、 swap period が無いため block period を過
 
 ## DEMO
 
-本サイトとは別に、大きいフォントファイルを、 4 つのプロパティで表示するデモを以下に用意した。
+動作するデモを以下に用意した。
 
-DEMO: <https://labs.jxck.io/webfont/font-display.html>
+- <https://labs.jxck.io/webfont/font-display.html>
+
+本サイトとは別に、大きいフォントファイルを、 4 つのプロパティで表示するデモを以下に用意した。
 
 
 ## Link

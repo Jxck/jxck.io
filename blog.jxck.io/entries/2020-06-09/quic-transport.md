@@ -297,9 +297,9 @@ WebCodecs の Experiment が始まったら、追加で検証したい。
 
 ## DEMO
 
-動作する DEMO は以下に用意した。
+動作するデモを以下に用意した。
 
-- [WebTransport Stream DEMO](http://labs.jxck.io/webtransport)
+- <http://labs.jxck.io/webtransport/>
 
 
 ## Resources

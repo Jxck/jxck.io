@@ -125,9 +125,9 @@ self.addEventListener('push', (e) => {
 
 ### DEMO
 
-以下に、簡単な DEMO を用意した。
+動作するデモを以下に用意した。
 
-[Budget API DEMO](https://labs.jxck.io/budget/basic.html)
+- <https://labs.jxck.io/budget/basic.html>
 
 
 ### Budget の導入と Cost 管理

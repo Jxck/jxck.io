@@ -111,15 +111,15 @@ auto
 そこで、そのようなブラウザの裁量を残すためにデフォルト時の挙動を仕様で規定しきらず、実装に任せる判断にしていると解釈ができる。
 
 
-## Chrome 75 + Flag
+## DEMO
+
+動作するデモを以下に用意した。
+
+- <http://labs.jxck.io/lazyload/>
 
 今回は、画像の Lazyload の挙動を、 Chrome 75 + Flag の実装を用いて確認してみる。
 
 デモとして、画像を 10 個並べたページを用意し  `loading=lazy` の有無による挙動を比較する。
-
-デモは以下に用意した。
-
-- <http://labs.jxck.io/lazyload/>
 
 
 ### eagerload

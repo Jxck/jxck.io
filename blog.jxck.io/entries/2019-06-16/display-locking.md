@@ -294,6 +294,6 @@ React や lit-html が提供しているのは DOM の更新だけではない�
 
 ### DEMO
 
-動作する DEMO を以下に用意した。
+動作するデモを以下に用意した。
 
-- [display locking demo](https://labs.jxck.io/display-locking/)
+- <https://labs.jxck.io/display-locking/>

@@ -142,9 +142,9 @@ Promise.race() で、勝った 1 つ以外を止める処理もできるよう�
 
 ## DEMO
 
-デモを以下に用意した。
+動作するデモを以下に用意した。
 
-[Aborting Fetch DEMO](https://labs.jxck.io/fetch/abort.html)
+- <https://labs.jxck.io/fetch/abort.html>
 
 
 ## 懸念点

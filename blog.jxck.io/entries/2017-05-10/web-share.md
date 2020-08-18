@@ -18,11 +18,11 @@ Web Share API は、 Web コンテンツと SNS やメールなどとの連携�
 
 ## DEMO
 
-DEMO を以下に公開している。
+動作するデモを以下に用意した。
 
 (まだ Origin Trials のトークンはそのままになっている)
 
-[DEMO: web-share](http://labs.jxck.io/web-share/)
+- <http://labs.jxck.io/web-share/>
 
 
 ## API

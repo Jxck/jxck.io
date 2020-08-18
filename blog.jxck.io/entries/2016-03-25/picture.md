@@ -120,9 +120,9 @@ sizes を用いて、画像のサイズを明示した場合以下のように�
 
 ### DEMO
 
-これらの指定のデモは、以下に掲載した。
+動作するデモを以下に用意した。
 
-[labs.jxck.io/picture](https://labs.jxck.io/picture/)
+- <https://labs.jxck.io/picture/>
 
 
 ### pros/cons

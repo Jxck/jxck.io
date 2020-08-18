@@ -84,7 +84,7 @@ self.addEventListener('fetch', (e) => {
 });
 ```
 
-DEMO: <https://labs.jxck.io/service-worker/claim/index.html>
+- DEMO: <https://labs.jxck.io/service-worker/claim/index.html>
 
 
 ## controllerchange
@@ -137,7 +137,7 @@ self.addEventListener('fetch', (e) => {
 });
 ```
 
-DEMO: <https://labs.jxck.io/service-worker/controllerchange/>
+- DEMO: <https://labs.jxck.io/service-worker/controllerchange/>
 
 
 ## updatefound
@@ -188,7 +188,7 @@ self.addEventListener('fetch', (e) => {
 });
 ```
 
-DEMO: <https://labs.jxck.io/service-worker/registration/>
+- DEMO: <https://labs.jxck.io/service-worker/registration/>
 
 
 ## update()
@@ -247,7 +247,7 @@ self.addEventListener('push', () => {
 });
 ```
 
-DEMO: <https://labs.jxck.io/service-worker/update/>
+- DEMO: <https://labs.jxck.io/service-worker/update/>
 
 
 ## backgroundsync
@@ -291,7 +291,7 @@ self.addEventListener('sync', (e) => {
 });
 ```
 
-DEMO: <https://labs.jxck.io/service-worker/background-sync/>
+- DEMO: <https://labs.jxck.io/service-worker/background-sync/>
 
 
 ## push
@@ -470,7 +470,7 @@ push.sendNotification(data.endpoint, {
 });
 ```
 
-DEMO(push は飛ばしていません): <https://labs.jxck.io/service-worker/push/>
+- DEMO(push は飛ばしていません): <https://labs.jxck.io/service-worker/push/>
 
 
 ## 図

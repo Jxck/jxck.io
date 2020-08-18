@@ -253,7 +253,7 @@ self.addEventListener('fetch', (e) => {
 
 ## DEMO
 
-動作するデモは以下に用意した。
+動作するデモを以下に用意した。
 
 - <https://labs.jxck.io/service-worker/background-fetch/>
 

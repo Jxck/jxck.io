@@ -470,7 +470,7 @@ Referrer-Policy: no-referrer
 
 ## DEMO
 
-動作する DEMO を以下に用意した。
+動作するデモを以下に用意した。
 
 - <https://labs.jxck.io/referrer-policy/>
 

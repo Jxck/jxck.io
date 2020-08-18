@@ -38,14 +38,14 @@ resizeObserver.disconnect(element) // 解放
 
 基本的な Observer のインタフェースのため、使い方もそこまで難しくない。
 
-DEMO: <https://labs.jxck.io/resize-observer/basic.html>
+- DEMO: <https://labs.jxck.io/resize-observer/basic.html>
 
 
 ## onresize
 
 レスポンシブ要件を満たす上で、 window のサイズが変更されたことを取得するため、 `resize` イベントが使われた。
 
-DEMO: <https://labs.jxck.io/resize-observer/onresize.html>
+- DEMO: <https://labs.jxck.io/resize-observer/onresize.html>
 
 これは window のみに発火するため、 window は不変のまま子要素の変更だけを取ることができなかった。
 
@@ -66,7 +66,7 @@ window.addEventListener('resize', (e) => {
 })
 ```
 
-DEMO: <https://labs.jxck.io/resize-observer/onresize.html>
+- DEMO: <https://labs.jxck.io/resize-observer/onresize.html>
 
 また、これを子要素で適用した場合は、 `scrollTop`, `offset`, `getBoundingClientRect()` などを用いることになるだろう。
 
@@ -101,7 +101,7 @@ $target.addEventListener('resize', ({detail: entries}) => {
 }, {passive: true})
 ```
 
-DEMO: <https://labs.jxck.io/resize-observer/onresize-polyfill.html>
+- DEMO: <https://labs.jxck.io/resize-observer/onresize-polyfill.html>
 
 
 ## Element Query
@@ -119,7 +119,7 @@ DEMO: <https://labs.jxck.io/resize-observer/onresize-polyfill.html>
 }
 ```
 
-DEMO: <http://elementqueries.com/#min-width-in-pixels>
+- DEMO: <http://elementqueries.com/#min-width-in-pixels>
 
 この程度単純な用途であれば ResizeObserver のハンドラ内で CSS の class を toggle するくらいでも実現できる。
 

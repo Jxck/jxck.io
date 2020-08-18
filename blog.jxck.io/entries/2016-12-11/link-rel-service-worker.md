@@ -70,13 +70,15 @@ Link: <sw.js>; rel="serviceworker"; scope="/"
 
 ## DEMO
 
+動作するデモを以下に用意した。
+
+- <https://labs.jxck.io/service-worker/link-rel-service-worker/>
+
 基本は次回の記事で解説する foreign-fetch と合わせた利用が主なユースケースになるため、 「Link ヘッダで Service Worker を登録する」という一点に絞ったデモを用意した。
 
-以下のリンクは、ボタンが 1 つあるページに遷移し、ボタンをクリックすると、同じオリジンの `./random` を fetch する。 `./random` はランダムな数字を返すと同時に Service Worker を Link ヘッダで提供する。
+ボタンが 1 つあるページに遷移し、ボタンをクリックすると、同じオリジンの `./random` を fetch する。 `./random` はランダムな数字を返すと同時に Service Worker を Link ヘッダで提供する。
 
 この Service Worker を登録した後は、ページをオフラインにしても Service Worker にフォールバックして引き続き乱数を取得できることに注目したい。
-
-[Link rel=serviceworker DEMO](https://labs.jxck.io/service-worker/link-rel-service-worker/)
 
 ただし、ページそのものはオフライン対応してないため、リロードはできない点に注意。
 

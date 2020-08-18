@@ -130,6 +130,6 @@ document.querySelector('button').on('click', (e) => {
 
 ## DEMO
 
-動作する DEMO を以下に用意した。
+動作するデモを以下に用意した。
 
-[EventTarget DEMO](http://labs.jxck.io/event-target/)
+- <http://labs.jxck.io/event-target/>

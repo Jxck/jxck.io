@@ -565,6 +565,6 @@ class Point {
 
 ## DEMO
 
-動作するデモを以下に用意した
+動作するデモを以下に用意した。
 
-- [private class field demo](https://labs.jxck.io/private-class-field/)
+- <https://labs.jxck.io/private-class-field/>

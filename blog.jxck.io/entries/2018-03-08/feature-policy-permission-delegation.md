@@ -107,7 +107,7 @@ iframe sandbox の特徴は、何をブロックするのかが先に決まっ�
 <iframe sandbox="" src="example.com"></iframe>
 ```
 
-DEMO: <http://labs.jxck.io/iframe>
+- DEMO: <http://labs.jxck.io/iframe>
 
 
 ## CSP
@@ -139,7 +139,7 @@ Content-Security-Policy: sandbox
 
 CSP のように、ブロックリスト方式を取っていれば、制限したい項目を増やしオプトインで適用していけるため、拡張に対して開いた設計となるのは、後から判明したのだろう。
 
-DEMO: <http://labs.jxck.io/content-security-policy/sandbox.html>
+- DEMO: <http://labs.jxck.io/content-security-policy/sandbox.html>
 
 
 ## Feature Policy
@@ -221,7 +221,7 @@ Feature-Policy: geolocation 'self' https://example.com
 Feature-Policy: geolocation *
 ```
 
-DEMO: <https://labs.jxck.io/feature-policy/geolocation/basic.html>
+- DEMO: <https://labs.jxck.io/feature-policy/geolocation/basic.html>
 
 
 ### with iframe sandbox
@@ -242,7 +242,7 @@ Content-Security-Policy: sandbox allow-scripts;
 Feature-Policy: sync-xhr 'none'
 ```
 
-DEMO: <https://labs.jxck.io/feature-policy/sync-xhr/sandbox.html>
+- DEMO: <https://labs.jxck.io/feature-policy/sync-xhr/sandbox.html>
 
 
 ## Feature 一覧

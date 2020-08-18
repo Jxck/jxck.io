@@ -180,15 +180,15 @@ Cache-Control: max-age=3600, stale-if-error=360
 ![fresh で無くなってからも、オリジンがエラーを返す場合は stale なキャッシュをヒットさせる](stale-if-error.svg#552x352 "stale-if-erro header")
 
 
-## SwR のデモ
+## DEMO
+
+動作するデモを以下に用意した。
+
+- <https://labs.jxck.io/stale-while-revalidate/>
 
 執筆時点では、実装ブラウザは Chrome のみであり、フラグを有効にすることで使用できる。
 
 [chrome://flags/#enable-stale-while-revalidate](chrome://flags/#enable-stale-while-revalidate)
-
-以下に用意したデモページを用意した。
-
-<https://labs.jxck.io/stale-while-revalidate/>
 
 サーバは、アクセスの度に異なるシーケンス番号、タイムスタンプ、ランダムな文字列を返すようになっている。
 

@@ -37,7 +37,7 @@ child で上記の JS が動くと、裏で勝手に parent が画面遷移し�
 
 これは、オリジンが違っても可能であるため、リンクをたどってきたユーザを任意のサイトに誘導することが可能というわけである。
 
-- DEMO: <https://labs.jxck.io/noopener/>
+- <https://labs.jxck.io/noopener/>
 
 
 ## open link in new tab
@@ -164,12 +164,9 @@ parent 側のリンクタグに `rel=noopener` を追加することで、 child
 
 ただし `noreferrer` はその名の通り Referrer を抑止する属性であるため、副作用には注意が必要である。
 
-
-## DEMO
-
 `rel` の有無により、 child から parent ページの遷移の動作を試すデモも以下に用意した。
 
-- DEMO: <https://labs.jxck.io/noopener/>
+- <https://labs.jxck.io/noopener/>
 
 
 ## 本サイトへの適用
