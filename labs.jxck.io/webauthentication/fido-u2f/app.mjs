@@ -4,7 +4,7 @@ import cookieSession from "cookie-session"
 import cookieParser  from "cookie-parser"
 import crypto        from "crypto"
 import cbor          from "cbor"
-import { b64enc, b64dec } from "./static/js/base64"
+import { b64enc, b64dec } from "./static/js/base64.mjs"
 
 const RPID    = process.env.RPID
 const ORIGIN  = process.env.ORIGIN
