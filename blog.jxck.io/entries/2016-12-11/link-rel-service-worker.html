@@ -54,7 +54,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-12-11T08:00:00+08:00",
-    "dateModified": "2018-07-29T08:00:00+08:00",
+    "dateModified": "2020-08-18T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -100,7 +100,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-12-11>2016-12-11</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2018-07-29>2018-07-29</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-08-18>2020-08-18</time></dd></div>
       <div><dt class=tags>tags</dt><dd>[<a href="/tags/origin%20trials.html">origin trials</a><i>,</i><a href="/tags/service%20worker.html">service worker</a><i>,</i><a href="/tags/offline.html">offline</a>]</dd></div>
       <div>
         <dt>toc</dt>
@@ -162,10 +162,13 @@ navigator.serviceworker.register(&quot;/sw.js&quot;, { scope: &quot;/&quot; });<
       </section>
       <section>
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
+        <p>動作するデモを以下に用意した。
+        <ul>
+          <li><a href="https://labs.jxck.io/service-worker/link-rel-service-worker/">https://labs.jxck.io/service-worker/link-rel-service-worker/</a>
+        </ul>
         <p>基本は次回の記事で解説する foreign-fetch と合わせた利用が主なユースケースになるため、 「Link ヘッダで Service Worker を登録する」という一点に絞ったデモを用意した。
-        <p>以下のリンクは、ボタンが 1 つあるページに遷移し、ボタンをクリックすると、同じオリジンの <code translate="no">./random</code> を fetch する。 <code translate="no">./random</code> はランダムな数字を返すと同時に Service Worker を Link ヘッダで提供する。
+        <p>ボタンが 1 つあるページに遷移し、ボタンをクリックすると、同じオリジンの <code translate="no">./random</code> を fetch する。 <code translate="no">./random</code> はランダムな数字を返すと同時に Service Worker を Link ヘッダで提供する。
         <p>この Service Worker を登録した後は、ページをオフラインにしても Service Worker にフォールバックして引き続き乱数を取得できることに注目したい。
-        <p><a href="https://labs.jxck.io/service-worker/link-rel-service-worker/">Link rel=serviceworker DEMO</a>
         <p>ただし、ページそのものはオフライン対応してないため、リロードはできない点に注意。
         <p>これは、 1 つのページの controller になれる Service Worker は同時に 1 つという制限があるためである。
       </section>

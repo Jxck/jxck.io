@@ -153,12 +153,20 @@ resizeObserver.observe(element)    // 検知開始
 resizeObserver.unobserve(element)  // 検知終了
 resizeObserver.disconnect(element) // 解放</code></pre>
         <p>基本的な Observer のインタフェースのため、使い方もそこまで難しくない。
-        <p>DEMO: <a href="https://labs.jxck.io/resize-observer/basic.html">https://labs.jxck.io/resize-observer/basic.html</a>
+        <ul>
+          <li>
+            DEMO: <a href="https://labs.jxck.io/resize-observer/basic.html">https://labs.jxck.io/resize-observer/basic.html</a>
+          </li>
+        </ul>
       </section>
       <section>
         <h2 id="onresize"><a href="#onresize">onresize</a></h2>
         <p>レスポンシブ要件を満たす上で、 window のサイズが変更されたことを取得するため、 <code translate="no">resize</code> イベントが使われた。
-        <p>DEMO: <a href="https://labs.jxck.io/resize-observer/onresize.html">https://labs.jxck.io/resize-observer/onresize.html</a>
+        <ul>
+          <li>
+            DEMO: <a href="https://labs.jxck.io/resize-observer/onresize.html">https://labs.jxck.io/resize-observer/onresize.html</a>
+          </li>
+        </ul>
         <p>これは window のみに発火するため、 window は不変のまま子要素の変更だけを取ることができなかった。
         <p>そこで導入されたのが ResizeObserver であったわけだが、ではなぜ <code translate="no">resize</code> イベントを子要素に適用しなかったか。
         <p><code translate="no">resize</code> イベントは、そもそも view-port に対して定義されており、さらに <em>変更したこと</em> だけを伝える仕様になっている。
@@ -169,7 +177,11 @@ resizeObserver.disconnect(element) // 解放</code></pre>
   const height = e.target.outerHeight
   console.log({width, height})
 })</code></pre>
-        <p>DEMO: <a href="https://labs.jxck.io/resize-observer/onresize.html">https://labs.jxck.io/resize-observer/onresize.html</a>
+        <ul>
+          <li>
+            DEMO: <a href="https://labs.jxck.io/resize-observer/onresize.html">https://labs.jxck.io/resize-observer/onresize.html</a>
+          </li>
+        </ul>
         <p>また、これを子要素で適用した場合は、 <code translate="no">scrollTop</code>, <code translate="no">offset</code>, <code translate="no">getBoundingClientRect()</code> などを用いることになるだろう。
         <p>これらは同期計算のため、 Forced Synchronous Layout を引き起こし、要素のリサイズ処理がガタつくことになってしまう。
         <p>Observer を定義することにより、こうした処理を行わずに変更情報のセットを取得できるため、パフォーマンス上の問題を解決できる。
@@ -192,7 +204,11 @@ resizeObserver.observe($target)
 $target.addEventListener(&#39;resize&#39;, ({detail: entries}) =&gt; {
   console.log(entries.contentRect)
 }, {passive: true})</code></pre>
-        <p>DEMO: <a href="https://labs.jxck.io/resize-observer/onresize-polyfill.html">https://labs.jxck.io/resize-observer/onresize-polyfill.html</a>
+        <ul>
+          <li>
+            DEMO: <a href="https://labs.jxck.io/resize-observer/onresize-polyfill.html">https://labs.jxck.io/resize-observer/onresize-polyfill.html</a>
+          </li>
+        </ul>
       </section>
       <section>
         <h2 id="element-query"><a href="#element-query">Element Query</a></h2>
@@ -203,7 +219,11 @@ $target.addEventListener(&#39;resize&#39;, ({detail: entries}) =&gt; {
     background: gold;
   }
 }</code></pre>
-        <p>DEMO: <a href="http://elementqueries.com/#min-width-in-pixels">http://elementqueries.com/#min-width-in-pixels</a>
+        <ul>
+          <li>
+            DEMO: <a href="http://elementqueries.com/#min-width-in-pixels">http://elementqueries.com/#min-width-in-pixels</a>
+          </li>
+        </ul>
         <p>この程度単純な用途であれば ResizeObserver のハンドラ内で CSS の class を toggle するくらいでも実現できる。
         <p>しかし、 EQ はあくまでスタイル定義を CSS 側で完結させるためのライブラリであるため、 Media Query に習い Custom at-rule (<code translate="no">@element</code>) を定義している。
         <p>これを実現するため、実装は以下のようなことを行なっている。

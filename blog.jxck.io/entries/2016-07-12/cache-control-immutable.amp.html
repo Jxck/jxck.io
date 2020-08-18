@@ -47,7 +47,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-07-12T08:00:00+08:00",
-    "dateModified": "2019-05-31T08:00:00+08:00",
+    "dateModified": "2020-08-18T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -815,7 +815,7 @@
 <main>
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2016-07-12>2016-07-12</time></dd></div>
-    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2019-05-31>2019-05-31</time></dd></div>
+    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-08-18>2020-08-18</time></dd></div>
     <div><dt class=tags>tags</dt><dd>[<a href="/tags/cache.html">cache</a><i>,</i><a href="/tags/http.html">http</a><i>,</i><a href="/tags/performance.html">performance</a>]</dd></div>
     <div>
       <dt>toc</dt>
@@ -900,12 +900,13 @@
     </section>
     <section>
       <h2 id="demo"><a href="#demo">DEMO</a></h2>
-      <p>画像に対して <code translate="no">cache-control: immutable</code> を設定した画像と、していない画像を並べたデモページを以下に用意した。
+      <p>動作するデモを以下に用意した。
+      <ul>
+        <li><a href="https://labs.jxck.io/cache-control-immutable">https://labs.jxck.io/cache-control-immutable</a>
+      </ul>
+      <p>画像に対して <code translate="no">cache-control: immutable</code> を設定した画像と、していない画像を並べている。
       <p>一度読み込んでからリロードを行うことで、キャッシュのヒットが確認できるだろう。
       <p>執筆時点では Firefox Nightly(version 50.0a1) のみ、かつ https のみで実装されている。
-      <ul>
-        <li><a href="https://labs.jxck.io/cache-control-immutable/">Cache Control Immutable DEMO | labs.jxck.io</a>
-      </ul>
       <p>
         <amp-img layout=responsive src=cache-control-immutable.gif#759x555 alt="Cache Control Immutable を有効にした場合はリロードでもキャッシュヒットしていることが Chrome DevTools で確認できる" title="Firefox Nightly での Cache-Control Immutable の DEMO" width=759 height=555>
       </p>

@@ -117,7 +117,7 @@
               <li><a href=#max-age>### max-age</a>
               <li><a href=#stale-while-revalidate-1>### stale-while-revalidate</a>
               <li><a href=#stale-if-error>### stale-if-error</a>
-              <li><a href=#swr-のデモ>## SwR のデモ</a>
+              <li><a href=#demo>## DEMO</a>
               <li><a href=#swr-を用いたキャッシュ戦略の考察>## SwR を用いたキャッシュ戦略の考察</a>
               <li><a href=#1-year-fresh-cache>### 1 year fresh cache</a>
               <li><a href=#1-year-stale-cache>### 1 year stale cache</a>
@@ -263,11 +263,13 @@
         </section>
       </section>
       <section>
-        <h2 id="swr-のデモ"><a href="#swr-のデモ">SwR のデモ</a></h2>
+        <h2 id="demo"><a href="#demo">DEMO</a></h2>
+        <p>動作するデモを以下に用意した。
+        <ul>
+          <li><a href="https://labs.jxck.io/stale-while-revalidate/">https://labs.jxck.io/stale-while-revalidate/</a>
+        </ul>
         <p>執筆時点では、実装ブラウザは Chrome のみであり、フラグを有効にすることで使用できる。
         <p><a href="chrome://flags/#enable-stale-while-revalidate">chrome://flags/#enable-stale-while-revalidate</a>
-        <p>以下に用意したデモページを用意した。
-        <p><a href="https://labs.jxck.io/stale-while-revalidate/">https://labs.jxck.io/stale-while-revalidate/</a>
         <p>サーバは、アクセスの度に異なるシーケンス番号、タイムスタンプ、ランダムな文字列を返すようになっている。
         <p>そして、レスポンスに以下のヘッダを追加しているため、アクセスを繰り返せば挙動が確認できるだろう。
         <p>(Chrome はリロードではキャッシュを無視する場合があるため、画面に用意したリンクを踏むこと)

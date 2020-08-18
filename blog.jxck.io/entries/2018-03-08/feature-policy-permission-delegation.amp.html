@@ -47,7 +47,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-03-08T08:00:00+08:00",
-    "dateModified": "2020-06-12T08:00:00+08:00",
+    "dateModified": "2020-08-18T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -815,7 +815,7 @@
 <main>
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2018-03-08>2018-03-08</time></dd></div>
-    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-06-12>2020-06-12</time></dd></div>
+    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-08-18>2020-08-18</time></dd></div>
     <div><dt class=tags>tags</dt><dd>[<a href="/tags/feature-policy.html">feature-policy</a><i>,</i><a href="/tags/permission.html">permission</a><i>,</i><a href="/tags/performance.html">performance</a><i>,</i><a href="/tags/security.html">security</a>]</dd></div>
     <div>
       <dt>toc</dt>
@@ -930,7 +930,11 @@
       </ul>
       <p>何も許可せず、全てブロックする場合は以下のようになる。
       <pre class=html><code translate="no">&lt;iframe sandbox=&quot;&quot; src=&quot;example.com&quot;&gt;&lt;/iframe&gt;</code></pre>
-      <p>DEMO: <a href="http://labs.jxck.io/iframe">http://labs.jxck.io/iframe</a>
+      <ul>
+        <li>
+          DEMO: <a href="http://labs.jxck.io/iframe">http://labs.jxck.io/iframe</a>
+        </li>
+      </ul>
     </section>
     <section>
       <h2 id="csp"><a href="#csp">CSP</a></h2>
@@ -946,7 +950,11 @@
       <p>仕様に機能制限が追加されると、古い仕様で sandbox を検証した際に動いていた別の機能が、ブラウザのアップデートで急に動かなくなってしまう可能性があるからだ。
       <p>つまり、 sandbox は <em>互換性のリスクなしに拡張することが実質できない</em>。
       <p>CSP のように、ブロックリスト方式を取っていれば、制限したい項目を増やしオプトインで適用していけるため、拡張に対して開いた設計となるのは、後から判明したのだろう。
-      <p>DEMO: <a href="http://labs.jxck.io/content-security-policy/sandbox.html">http://labs.jxck.io/content-security-policy/sandbox.html</a>
+      <ul>
+        <li>
+          DEMO: <a href="http://labs.jxck.io/content-security-policy/sandbox.html">http://labs.jxck.io/content-security-policy/sandbox.html</a>
+        </li>
+      </ul>
     </section>
     <section>
       <h2 id="feature-policy"><a href="#feature-policy">Feature Policy</a></h2>
@@ -986,7 +994,11 @@
         <p>(執筆時点では、この Prompt はまだ 「example.com が現在位置の取得を求めている」という表示になっているが、この表示はいずれ変更されるようだ)
         <p>もし Geolocation API の呼び出しを全オリジンに対して許可したい場合は以下のように指定することも可能だ。
         <pre class=http><code translate="no">Feature-Policy: geolocation *</code></pre>
-        <p>DEMO: <a href="https://labs.jxck.io/feature-policy/geolocation/basic.html">https://labs.jxck.io/feature-policy/geolocation/basic.html</a>
+        <ul>
+          <li>
+            DEMO: <a href="https://labs.jxck.io/feature-policy/geolocation/basic.html">https://labs.jxck.io/feature-policy/geolocation/basic.html</a>
+          </li>
+        </ul>
       </section>
       <section>
         <h3 id="with-iframe-sandbox"><a href="#with-iframe-sandbox">with iframe sandbox</a></h3>
@@ -997,7 +1009,11 @@
         <p>例として、 iframe Sandbox を有効にしつつ、 script の実行を許可するが、それによって sycn-xhr が行われるのは制限したいといった場合は以下のようになるだろう。
         <pre class=http><code translate="no">Content-Security-Policy: sandbox allow-scripts;
 Feature-Policy: sync-xhr &#39;none&#39;</code></pre>
-        <p>DEMO: <a href="https://labs.jxck.io/feature-policy/sync-xhr/sandbox.html">https://labs.jxck.io/feature-policy/sync-xhr/sandbox.html</a>
+        <ul>
+          <li>
+            DEMO: <a href="https://labs.jxck.io/feature-policy/sync-xhr/sandbox.html">https://labs.jxck.io/feature-policy/sync-xhr/sandbox.html</a>
+          </li>
+        </ul>
       </section>
     </section>
     <section>
