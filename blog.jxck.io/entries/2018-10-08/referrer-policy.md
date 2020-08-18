@@ -472,7 +472,7 @@ Referrer-Policy: no-referrer
 
 動作する DEMO を以下に用意した。
 
-- <https://labs.jxck.io/referrer-policy>
+- <https://labs.jxck.io/referrer-policy/>
 
 
 ## 本サイトへの適用

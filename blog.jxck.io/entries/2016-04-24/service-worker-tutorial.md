@@ -188,7 +188,7 @@ self.addEventListener('fetch', (e) => {
 });
 ```
 
-DEMO: <https://labs.jxck.io/service-worker/updatefound/>
+DEMO: <https://labs.jxck.io/service-worker/registration/>
 
 
 ## update()

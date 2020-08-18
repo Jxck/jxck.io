@@ -20,7 +20,7 @@
 
 ![Opener によって別タブで開いた画面が元の画面を遷移させている](window-opener.gif#150x150 "window opener demo")
 
-このデモでは、 <https://labs.jxck.io/noopener> から開いた <https://labs.jxck.io/noopener/opener-change.html> のページが別タブで開いた後、最初に開いたタブが勝手に <http://example.com> に遷移しているというものである。
+このデモでは、 <https://labs.jxck.io/noopener/> から開いた <https://labs.jxck.io/noopener/opener-change.html> のページが別タブで開いた後、最初に開いたタブが勝手に <http://example.com> に遷移しているというものである。
 
 最初のページを Parent 、開いたタブを Child とする。
 
@@ -37,7 +37,7 @@ child で上記の JS が動くと、裏で勝手に parent が画面遷移し�
 
 これは、オリジンが違っても可能であるため、リンクをたどってきたユーザを任意のサイトに誘導することが可能というわけである。
 
-[Window Opener DEMO](https://labs.jxck.io/noopener/)
+- DEMO: <https://labs.jxck.io/noopener/>
 
 
 ## open link in new tab
@@ -169,7 +169,7 @@ parent 側のリンクタグに `rel=noopener` を追加することで、 child
 
 `rel` の有無により、 child から parent ページの遷移の動作を試すデモも以下に用意した。
 
-[noopener DEMO](https://labs.jxck.io/noopener)
+- DEMO: <https://labs.jxck.io/noopener/>
 
 
 ## 本サイトでの適用

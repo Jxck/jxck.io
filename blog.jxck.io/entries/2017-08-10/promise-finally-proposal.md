@@ -93,4 +93,4 @@ fetch()
 
 ## DEMO
 
-- [Promise DEMO](https://labs.jxck.io/promise)
+- [Promise DEMO](https://labs.jxck.io/promise/)

@@ -251,7 +251,7 @@ $ ls profile-card
   template.html
 ```
 
-- DEMO: <https://labs.jxck.io/webpackaging/subresource-webbundle/webcomponents.html >
+- DEMO: <https://labs.jxck.io/webpackaging/subresource-webbundle/webcomponents.html>
 
 今は、 JS 以外は `import` できないため、 CSS は `@import` で、 HTML は `fetch()` で解決しているが、 別途策定が進んでいる [Synthetic Modules](https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/master/SyntheticModules/designDoc.md) (JSON, CSS, HTML などを ES Module のように扱う)が実装されれば、全て `import` で扱える可能性がある。
 

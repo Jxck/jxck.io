@@ -257,7 +257,7 @@ srcset についても、十分なバリエーションを提供しつつ、後�
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/image/srcset>
+- <https://labs.jxck.io/image/srcset/>
 
 
 ## Resources
