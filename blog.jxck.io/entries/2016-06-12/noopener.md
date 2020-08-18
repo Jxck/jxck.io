@@ -172,7 +172,7 @@ parent 側のリンクタグに `rel=noopener` を追加することで、 child
 - DEMO: <https://labs.jxck.io/noopener/>
 
 
-## 本サイトでの適用
+## 本サイトへの適用
 
 そもそも `target=_blank` が無ければ対応の必要はなく、モバイルにおいて `target=_blank` は UX を損ねるという話もあるため、本サイトでは基本的に `target=_blank` は付与していない。そもそもログインなどのクレデンシャルの保持も無い。
 

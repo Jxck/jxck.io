@@ -342,7 +342,7 @@ CSP によって有効になるのは、型が違う場合にエラーをあげ�
 [TrustedTypes Labs \| labs.jxck.io](https://labs.jxck.io/trusted-types/)
 
 
-## 本サイトの適用
+## 本サイトへの適用
 
 本サイトは JS による DOM 操作を行なっていない。
 

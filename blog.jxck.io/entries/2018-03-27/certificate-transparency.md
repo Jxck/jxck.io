@@ -3,7 +3,7 @@
 
 ## Update
 
-- 2018/3/30: Let's Encrypt が SCT 埋め込みに対応したため、 [本サイトでの適用](#本サイトでの適用) を更新した。
+- 2018/3/30: Let's Encrypt が SCT 埋め込みに対応したため、 [本サイトへの適用](#本サイトへの適用) を更新した。
 
 
 ## Intro
@@ -803,7 +803,7 @@ Chrome では、 Certificate Transparency の情報を日本語で表示する�
 (また、普通「電子透かし」は Digital Wartermarking で、 Transparency とは言わないかと思う)
 
 
-## 本サイトでの適用
+## 本サイトへの適用
 
 Let's Encrypt の SCT 埋め込みがサポートされた。
 
