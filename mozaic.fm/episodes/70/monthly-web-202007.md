@@ -467,35 +467,35 @@ guest
     - no meeting
   - *quicwg*
     - <https://github.com/quicwg/wg-materials>
-    - agenda: https://github.com/quicwg/wg-materials/blob/master/ietf108/agenda.md
-    - minutes: https://codimd.ietf.org/notes-ietf-108-quic
-    - video: https://www.youtube.com/watch?v=Qr9sZlF4SbI
+    - agenda:  <https://github.com/quicwg/wg-materials/blob/master/ietf108/agenda.md>
+    - minutes: <https://codimd.ietf.org/notes-ietf-108-quic>
+    - video:   <https://www.youtube.com/watch?v=Qr9sZlF4SbI>
   - *webtrans*
     - <https://github.com/DavidSchinazi/webtrans-wg-materials>
-    - agenda: https://www.ietf.org/proceedings/108/agenda/agenda-108-webtrans-01
-    - minutes: https://codimd.ietf.org/notes-ietf-108-webtrans
-    - video: https://www.youtube.com/watch?v=1mhsaxGk_VI&t=336s
+    - agenda:  <https://www.ietf.org/proceedings/108/agenda/agenda-108-webtrans-01>
+    - minutes: <https://codimd.ietf.org/notes-ietf-108-webtrans>
+    - video:   <https://www.youtube.com/watch?v=1mhsaxGk_VI&t=336s>
   - tlswg
     - <https://github.com/tlswg/wg-materials>
-    - agenda: https://www.ietf.org/proceedings/108/agenda/agenda-108-tls-03
-    - minutes: https://codimd.ietf.org/notes-ietf-108-tls
-    - video: https://www.youtube.com/watch?v=LF1Kc5PHAng
+    - agenda:  <https://www.ietf.org/proceedings/108/agenda/agenda-108-tls-03>
+    - minutes: <https://codimd.ietf.org/notes-ietf-108-tls>
+    - video:   <https://www.youtube.com/watch?v=LF1Kc5PHAng>
   - *wpack*
-    - agenda: https://www.ietf.org/proceedings/108/agenda/agenda-108-wpack-01
-    - minutes: https://codimd.ietf.org/notes-ietf-108-wpack
-    - video: https://www.youtube.com/watch?v=Hezs0oifBbc
+    - agenda:  <https://www.ietf.org/proceedings/108/agenda/agenda-108-wpack-01>
+    - minutes: <https://codimd.ietf.org/notes-ietf-108-wpack>
+    - video:   <https://www.youtube.com/watch?v=Hezs0oifBbc>
   - privacypass
-    - agenda: https://www.ietf.org/proceedings/108/agenda/agenda-108-privacypass-03
-    - minutes: https://codimd.ietf.org/notes-ietf-108-privacypass
-    - video: https://www.youtube.com/watch?v=U5CZ62RmXJA
+    - agenda:  <https://www.ietf.org/proceedings/108/agenda/agenda-108-privacypass-03>
+    - minutes: <https://codimd.ietf.org/notes-ietf-108-privacypass>
+    - video:   <https://www.youtube.com/watch?v=U5CZ62RmXJA>
   - dispatch
-    - agenda: https://www.ietf.org/proceedings/108/agenda/agenda-108-dispatch-02
-    - minutes: https://codimd.ietf.org/notes-ietf-108-dispatch
-    - video: https://www.youtube.com/watch?v=KDN7SamlAn0
+    - agenda:  <https://www.ietf.org/proceedings/108/agenda/agenda-108-dispatch-02>
+    - minutes: <https://codimd.ietf.org/notes-ietf-108-dispatch>
+    - video:   <https://www.youtube.com/watch?v=KDN7SamlAn0>
   - secdispatch
-    - agenda: https://www.ietf.org/proceedings/108/agenda/agenda-108-secdispatch-02
-    - minutes: https://codimd.ietf.org/notes-ietf-108-secdispatch
-    - video: https://www.youtube.com/watch?v=V2C3v21m7nU
+    - agenda:  <https://www.ietf.org/proceedings/108/agenda/agenda-108-secdispatch-02>
+    - minutes: <https://codimd.ietf.org/notes-ietf-108-secdispatch>
+    - video:   <https://www.youtube.com/watch?v=V2C3v21m7nU>
 - RFC
 - IETF Last Call
 - WG Last Call
