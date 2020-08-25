@@ -15,6 +15,9 @@ guest
 
 第 65 回のテーマは 2020 年 3 月の Monthly Web です。
 
+
+## Show Note
+
 ### Covid-19
 
 - 4/1 現在

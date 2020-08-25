@@ -17,6 +17,8 @@ guest
 第 67 回のテーマは 2020 年 4 月の Monthly Web です。
 
 
+## Show Note
+
 ### Chrome 動向
 
 - Stable: 81

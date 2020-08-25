@@ -16,6 +16,8 @@ guest
 第 64 回のテーマは 2020 年 2 月の Monthly Web です。
 
 
+## Show Note
+
 ### Chrome 動向
 
 - Stable: 80

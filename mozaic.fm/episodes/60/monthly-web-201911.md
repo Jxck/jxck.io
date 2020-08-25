@@ -16,6 +16,8 @@ guest
 第 60 回のテーマは 2019 年 11 月の Monthly Web です。
 
 
+## Show Note
+
 ### Chrome 動向
 
 - Stable: 78

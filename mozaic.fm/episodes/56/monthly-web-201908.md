@@ -16,6 +16,8 @@ guest
 第 56 回のテーマは 2019 年 8 月の Monthly Web です。
 
 
+## Show Note
+
 ### Chrome 動向
 
 - Stable: 76

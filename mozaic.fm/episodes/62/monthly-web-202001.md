@@ -15,6 +15,9 @@ guest
 
 第 62 回のテーマは 2019 年 12 月と 2020 年 1 月の Monthly Web 合併号です。
 
+
+## Show Note
+
 ### Chrome 動向
 
 - Stable: 79
