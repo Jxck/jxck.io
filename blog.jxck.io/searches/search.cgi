@@ -80,7 +80,7 @@ begin
   #log ENV.entries.join("\n")
   host    = ENV["HTTP_HOST"]
   unless ["blog.jxck.io", "mozaic.fm"].include?(host)
-    raise "invalid host"
+    raise "invalid host: #{host}"
   end
   pwd     = ENV["PWD"]
   query   = validate_query(ENV["QUERY_STRING"])
