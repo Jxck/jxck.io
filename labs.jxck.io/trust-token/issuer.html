@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+
+<meta http-equiv=origin-trial content="Anha8n5weiE1qmmioiu3ohgnpbUHsZXnFDiI8DtT8BWr8qp5y/dAYYBOgNclM4Gj0DSKtmCzHFqg9oea3q3aNA4AAABfeyJvcmlnaW4iOiJodHRwczovL2p4Y2suaW86NDQzIiwiZmVhdHVyZSI6IlRydXN0VG9rZW5zIiwiZXhwaXJ5IjoxNjAyMDU5NzQxLCJpc1N1YmRvbWFpbiI6dHJ1ZX0=">
+
+<title>Trust Token Issuer DEMO</title>
+
+<style>
+</style>
+
+<h1>Trust Token Issuer DEMO</h1>
+
+<p>Are you a human ?</p>
+<button id=yes>Yes</button>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+
+  const ISSUER = 'https://labs.jxck.io'
+
+
+  document.on('DOMContentLoaded', async (e) => {
+    console.log(e)
+
+    $('#yes').on('click', async () => {
+      const res = await fetch(`/.well-known/trust-token`, {
+        method: 'POST',
+        trustToken: {
+          type: 'token-request',
+          issuer: ISSUER,
+        }
+      })
+
+      console.log(res)
+    })
+
+    const token = await document.hasTrustToken(ISSUER)
+    console.log(token)
+  })
+</script>
