@@ -26,27 +26,30 @@ pre {
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
+  document.on('DOMContentLoaded', async (e) => {
+    console.log(e)
 
-  const ISSUER = 'https://labs.jxck.io'
-  const protocol_version = "TrustTokenV1"
-  const batchsize        = 10
-  const expiry           = "1622574000000000"
+    const res = await fetch('trust_token_key.json')
+    const json = await res.json()
+    console.log(json);
 
+    const ISSUER = 'https://labs.jxck.io'
+    const protocol_version = "TrustTokenV1"
+    const batchsize        = 10
+    const expiry           = "1622574000000000"
 
-  const srrkey = 'gWWrw3Vw25y/MAo6sqx3/XF2aTTm8qAeACP5ry8ApBs='
-  const Y = 'AAAAAQBhBDLlLwOnKkSMQd2Mgrgjso60I9NKEjbuhic5Nh/GRepS7wDf/2K0hnQT5URebuLFdHOZ7lpHjrnhMj46TvjfUcl7SGSuMbwiepDbIo+I5RCfotxvzRL/1eQJoNAeW1IIoQBhBAmYZcJpetEivsRpR0i3Yw86xHni6CZXuMUeQ+agO5URp1/o7GSTxoCFOVQAhtLWRnQ2FESH0m6gSQxNfcfrwWsMwzZ0Isf/OBo7qayykXWDD9sZsFxYfFwoFyyC5+jS3ABhBGOvKq7JRZ4QTsi5cre4JO78NnRV24wVhffushArrAMdekBEb2tY+rfYXhNsUU0bWKQq6ad8omsPlwPkLSjcGWr5UIm7+5olQ3snqo0dOFt4XfkFxW5x0siayVbaJZP49Q=='
+    const srrkey = json.srr_pub_key_base64
+    const Y = json.pub_key_base64
 
+    const COMMITMENT = {}
+    COMMITMENT[ISSUER] = {
+      protocol_version,
+      batchsize,
+      srrkey,
+      "1": { Y, expiry }
+    }
 
-
-  const COMMITMENT = {}
-  COMMITMENT[ISSUER] = {
-    protocol_version,
-    batchsize,
-    srrkey,
-    "1": { Y, expiry }
-  }
-
-  const CMD = `/Applications/Google\\ Chrome\\ Canary.app/Contents/MacOS/Google\\ Chrome\\ Canary \\
+    const CMD = `/Applications/Google\\ Chrome\\ Canary.app/Contents/MacOS/Google\\ Chrome\\ Canary \\
   --additional-trust-token-key-commitments='${JSON.stringify(COMMITMENT)}' \\
   --auto-open-devtools-for-tabs \\
   --log-net-log=./trust_token_chromium_netlog.json \\
@@ -55,10 +58,6 @@ pre {
   https://labs.jxck.io/trust-token/issuer.html \\
   &gt; canary_debuglog.txt 2&gt;&amp;1
   `
-
-
-  document.on('DOMContentLoaded', async (e) => {
-    console.log(e)
 
     $('pre').innerHTML = CMD;
 
