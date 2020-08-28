@@ -16,7 +16,10 @@ end
 begin
   # log ENV.entries.join("\n")
   sec_trust_token = ENV["HTTP_SEC_TRUST_TOKEN"]
+
   log sec_trust_token
+
+  `./issue #{sec_trust_token}`
 
   headers = {
     "Content-Type"   => "text/html; charset=utf-8",
