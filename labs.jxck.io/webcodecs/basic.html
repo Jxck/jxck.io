@@ -13,6 +13,10 @@
   <li>CrBug: <a href=https://bugs.chromium.org/p/chromium/issues/detail?id=897297>https://bugs.chromium.org/p/chromium/issues/detail?id=897297</a>
 </ul>
 
+<video id=local autoplay></video>
+
+<canvas width=640 height=480 id=remote></canvas>
+
 <pre>
 $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-features=WebCodecs
 </pre>
@@ -26,28 +30,60 @@ $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-feature
   document.on('DOMContentLoaded', async (e) => {
     console.log(e)
 
+    // Canvas
+    const $canvas = $('#remote')
+    const ctx = $canvas.getContext('2d')
+
+    // VideoStream
     const mediaStream = await navigator.mediaDevices.getUserMedia({video: true, audio: false})
+    $('#local').srcObject = mediaStream
     const [videoTrack] = mediaStream.getVideoTracks()
 
-    const videoEncoder = new VideoEncoder({
-      output: function() {
-        console.log(arguments)
+    // Decoder
+    const videoDecoder = new VideoDecoder({
+      output: async function(chunk) {
+        console.log(chunk)
+        const imageBitmap = await chunk.createImageBitmap()
+        console.log(imageBitmap)
+        ctx.drawImage(imageBitmap, 0, 0)
+      },
+      error: function() {
+        console.error(arguments)
       }
     })
-    console.log(videoEncoder)
 
-    await videoEncoder.configure({
-      codec:  'vp8',
-      width:  640,
-      height: 480
+    videoDecoder.configure({
+      codec: 'vp8',
     })
+
+    // Encoder
+    const videoEncoder = new VideoEncoder({
+      output: function(chunk) {
+        console.log(chunk)
+        videoDecoder.decode(chunk)
+      },
+      error: function() {
+        console.error(arguments)
+      }
+    })
+    await videoEncoder.configure({
+      codec:     'vp8',
+      framerate: 30,
+      width:     640,
+      height:    480,
+    })
+
 
     const videoReader = (new VideoTrackReader(videoTrack))
     console.log(videoReader)
-    videoReader.start((videoFrame) => {
-      console.log(videoFrame)
-      console.log(videoEncoder.encode(videoFrame))
+    videoReader.start(async (videoFrame) => {
+      videoEncoder.encode(videoFrame)
     })
+
+    setTimeout(() => {
+      console.log('stop')
+      videoReader.stop()
+    }, 3000)
 
   })
 </script>
