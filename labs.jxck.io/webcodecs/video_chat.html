@@ -21,6 +21,7 @@ $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-feature
 <canvas id=remote></canvas>
 <button id=start>start</button>
 
+<script src=cbor.js></script>
 <script>
   'use strict';
   const $  = document.querySelector.bind(document)
@@ -35,9 +36,12 @@ $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-feature
     const transport = new QuicTransport(url)
     await transport.ready
 
-    const writer = transport.sendDatagrams().getWriter()
-    const reader = transport.receiveDatagrams().getReader()
+    const stream = await transport.createBidirectionalStream()
+    const writer = stream.writable.getWriter()
+    const reader = stream.readable.getReader()
 
+    // const writer = transport.sendDatagrams().getWriter()
+    // const reader = transport.receiveDatagrams().getReader()
 
     $('#start').on('click', async (e) => {
       // Canvas
@@ -45,7 +49,6 @@ $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-feature
       $canvas.width  = width
       $canvas.height = height
       const ctx = $canvas.getContext('2d')
-
 
       // Video
       const $video = $('#local')
@@ -55,13 +58,12 @@ $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-feature
       })
       const [videoTrack] = $video.srcObject.getVideoTracks()
 
-
       // Decoder
       const videoDecoder = new VideoDecoder({
         output: async (chunk) => {
           console.log(chunk)
           const imageBitmap = await chunk.createImageBitmap()
-          console.log(imageBitmap)
+          // console.log(imageBitmap)
           ctx.drawImage(imageBitmap, 0, 0)
         },
         error: function() {
@@ -78,7 +80,15 @@ $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-feature
       const videoEncoder = new VideoEncoder({
         output: function(chunk) {
           console.log(chunk)
-          videoDecoder.decode(chunk)
+
+          const {data, duration, timestamp, type} = chunk
+          const buffer = new Uint8Array(data)
+          const encoded = CBOR.encode({
+            duration, timestamp, type,
+            length: buffer.length
+          })
+          writer.write(encoded)
+          writer.write(buffer)
         },
         error: function() {
           console.error(arguments)
@@ -86,22 +96,42 @@ $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-feature
       })
       await videoEncoder.configure({
         codec:     'vp8',
-        framerate: 30,
+        framerate: 10,
         width, height
       })
 
 
       const videoReader = (new VideoTrackReader(videoTrack))
-      console.log(videoReader)
       videoReader.start(async (videoFrame) => {
         videoEncoder.encode(videoFrame)
       })
 
+
       setTimeout(() => {
         console.log('stop')
         videoReader.stop()
-      }, 3000)
+      }, 2000)
 
+
+      while(true) {
+        let {done, value} = await reader.read()
+        const header = CBOR.decode(value.buffer)
+
+        let data = new Uint8Array([])
+        while (data.length < header.length) {
+          let {done, value} = await reader.read()
+          data = new Uint8Array([...data, ...value])
+        }
+        header.data = data
+        console.log(header)
+
+        const encoded = new EncodedVideoChunk(header)
+        videoDecoder.decode(encoded)
+
+        if (done) break;
+      }
     })
+
+    $('#start').click()
   })
 </script>
