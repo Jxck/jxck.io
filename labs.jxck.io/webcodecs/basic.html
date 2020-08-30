@@ -15,7 +15,7 @@
 
 <video id=local autoplay></video>
 
-<canvas width=640 height=480 id=remote></canvas>
+<canvas id=remote></canvas>
 
 <pre>
 $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-features=WebCodecs
@@ -30,12 +30,25 @@ $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-feature
   document.on('DOMContentLoaded', async (e) => {
     console.log(e)
 
+    const codec     = 'vp8'
+    const width     = 640 // 160 320
+    const height    = 480 // 120 240
+    const framerate = 30
+    const bitrate   = 900*1024
+
     // Canvas
     const $canvas = $('#remote')
     const ctx = $canvas.getContext('2d')
+    $canvas.width = width
+    $canvas.height = height
 
     // VideoStream
-    const mediaStream = await navigator.mediaDevices.getUserMedia({video: true, audio: false})
+    const mediaStream = await navigator.mediaDevices.getUserMedia({
+      audio: false,
+      video: {
+        width, height
+      }
+    })
     $('#local').srcObject = mediaStream
     const [videoTrack] = mediaStream.getVideoTracks()
 
@@ -52,9 +65,7 @@ $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-feature
       }
     })
 
-    videoDecoder.configure({
-      codec: 'vp8',
-    })
+    videoDecoder.configure({ codec })
 
     // Encoder
     const videoEncoder = new VideoEncoder({
@@ -67,10 +78,7 @@ $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-feature
       }
     })
     await videoEncoder.configure({
-      codec:     'vp8',
-      framerate: 30,
-      width:     640,
-      height:    480,
+      codec, framerate, width, height, bitrate
     })
 
 
@@ -80,10 +88,10 @@ $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-feature
       videoEncoder.encode(videoFrame)
     })
 
-    setTimeout(() => {
-      console.log('stop')
-      videoReader.stop()
-    }, 3000)
+    // setTimeout(() => {
+    //   console.log('stop')
+    //   videoReader.stop()
+    // }, 3000)
 
   })
 </script>
