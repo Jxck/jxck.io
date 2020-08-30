@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>WebCodecs/WebTransport Chat DEMO</title>
+
+<meta http-equiv="origin-trial" content="Av+mvY2l3yz0AUHUSgQoy3hjxVyCRKjwch6wSJpKTvxApPfoMs42RjbvonsiiYrALlWkMX+Ky2/EHHUsuSUTAQUAAABheyJvcmlnaW4iOiJodHRwczovL2p4Y2suaW86NDQzIiwiZmVhdHVyZSI6IlF1aWNUcmFuc3BvcnQiLCJleHBpcnkiOjE2MDIzNDg2MzcsImlzU3ViZG9tYWluIjp0cnVlfQ==">
+
+<style>
+video, canvas {
+  display: block;
+  border: solid 1px black;
+}
+</style>
+
+<h1>WebCodecs/WebTransport Chat DEMO</h1>
+<pre>
+$ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-features=WebCodecs
+</pre>
+
+<video id=local autoplay></video>
+<canvas id=remote></canvas>
+<button id=start>start</button>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  const width  = 320
+  const height = 240
+
+  document.on('DOMContentLoaded', async (e) => {
+    const url = `quic-transport://labs.jxck.io:50000/echo`
+    const transport = new QuicTransport(url)
+    await transport.ready
+
+    const writer = transport.sendDatagrams().getWriter()
+    const reader = transport.receiveDatagrams().getReader()
+
+
+    $('#start').on('click', async (e) => {
+      // Canvas
+      const $canvas  = $('#remote')
+      $canvas.width  = width
+      $canvas.height = height
+      const ctx = $canvas.getContext('2d')
+
+
+      // Video
+      const $video = $('#local')
+      $video.srcObject = await navigator.mediaDevices.getUserMedia({
+        audio: false,
+        video: { width, height }
+      })
+      const [videoTrack] = $video.srcObject.getVideoTracks()
+
+
+      // Decoder
+      const videoDecoder = new VideoDecoder({
+        output: async (chunk) => {
+          console.log(chunk)
+          const imageBitmap = await chunk.createImageBitmap()
+          console.log(imageBitmap)
+          ctx.drawImage(imageBitmap, 0, 0)
+        },
+        error: function() {
+          console.error(arguments)
+        }
+      })
+
+      videoDecoder.configure({
+        codec: 'vp8',
+      })
+
+
+      // Encoder
+      const videoEncoder = new VideoEncoder({
+        output: function(chunk) {
+          console.log(chunk)
+          videoDecoder.decode(chunk)
+        },
+        error: function() {
+          console.error(arguments)
+        }
+      })
+      await videoEncoder.configure({
+        codec:     'vp8',
+        framerate: 30,
+        width, height
+      })
+
+
+      const videoReader = (new VideoTrackReader(videoTrack))
+      console.log(videoReader)
+      videoReader.start(async (videoFrame) => {
+        videoEncoder.encode(videoFrame)
+      })
+
+      setTimeout(() => {
+        console.log('stop')
+        videoReader.stop()
+      }, 3000)
+
+    })
+  })
+</script>
