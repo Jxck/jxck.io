@@ -35,7 +35,7 @@ $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-feature
   const bitrate   = 1024
 
   document.on('DOMContentLoaded', async (e) => {
-    const url = `quic-transport://labs.jxck.io:50000/echo`
+    const url = `quic-transport://labs.jxck.io:7000/echo`
     const transport = new QuicTransport(url)
     await transport.ready
 
@@ -84,14 +84,15 @@ $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-feature
         output: function(chunk) {
           console.log(chunk.type)
 
-          const {data, duration, timestamp, type} = chunk
-          const buffer = new Uint8Array(data)
-          const encoded = CBOR.encode({
-            duration, timestamp, type,
-            length: buffer.length
-          })
-          writer.write(encoded)
-          writer.write(buffer)
+          const { type, timestamp, duration, data } = chunk
+          const encoded = new Uint8Array(CBOR.encode({
+            type, timestamp, duration,
+            data: new Uint8Array(data),
+          }))
+          const size = new Uint8Array(4)
+          const view = new DataView(size.buffer)
+          view.setUint32(0, encoded.length)
+          writer.write(new Uint8Array([...size, ...encoded]))
         },
         error: function() {
           console.error(arguments)
@@ -112,25 +113,26 @@ $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-feature
         videoEncoder.encode(videoFrame, option)
       })
 
-      setTimeout(() => {
-        console.log('stop')
-        videoReader.stop()
-      }, 10000)
+      // setTimeout(() => {
+      //   console.log('stop')
+      //   videoReader.stop()
+      // }, 10000)
 
       while(true) {
         try {
           let {done, value} = await reader.read()
-          const header = CBOR.decode(value.buffer)
+          const view   = new DataView(value.buffer)
+          const size   = view.getUint32(0)
+          let   buffer = value.slice(4)
 
-          let data = new Uint8Array([])
-          while (data.length < header.length) {
+          while (buffer.length < size) {
             let {done, value} = await reader.read()
-            data = new Uint8Array([...data, ...value])
+            buffer = new Uint8Array([...buffer, ...value])
           }
-          header.data = data
-          // console.log(header)
 
-          const encoded = new EncodedVideoChunk(header)
+          // Encode Chunk
+          const chunk   = CBOR.decode(buffer.buffer)
+          const encoded = new EncodedVideoChunk(chunk)
           videoDecoder.decode(encoded)
 
           if (done) break;
