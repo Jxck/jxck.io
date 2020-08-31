@@ -19,7 +19,7 @@
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
   document.on('DOMContentLoaded', async (e) => {
-    const url = `quic-transport://labs.jxck.io:50000/echo`
+    const url = `quic-transport://labs.jxck.io:7000/echo`
     const transport = new QuicTransport(url)
 
     await transport.ready
