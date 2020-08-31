@@ -10,16 +10,44 @@ video, canvas {
   display: block;
   border: solid 1px black;
 }
+section {
+  display: flex;
+}
 </style>
 
 <h1>WebCodecs/WebTransport Chat DEMO</h1>
+
+<p>video -&gt; encode -&gt; quictransport -&gt; echoback -&gt; decode -&gt; canvas<p>
 <pre>
 $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-features=WebCodecs
 </pre>
 
-<video id=local autoplay></video>
-<canvas id=remote></canvas>
-<button id=start>start</button>
+<section>
+  <video id=local autoplay></video>
+  <canvas id=remote></canvas>
+</section>
+
+<button id=start autofocus>start</button>
+<button id=stop>stop</button>
+
+<label for=codec>codec:</label>
+<select id=codec name=codec>
+  <option value=vp8 selected>vp8 </option>
+  <option value=vp9 >vp9 </option>
+  <option value=h264>h264</option>
+  <option value=h265>h265</option>
+  <option value=av1 >av1 </option>
+  <option value=hevc>hevc</option>
+</select>
+
+<label for=framerate>framerate:</label>
+<input id=framerate type=number value=10>
+
+<label for=width>width:</label>
+<input id=width type=number value=320 step=10>
+
+<label for=height>height:</label>
+<input id=height type=number value=240 step=10>
 
 <script src=cbor.js></script>
 <script>
@@ -27,12 +55,6 @@ $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-feature
   const $  = document.querySelector.bind(document)
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
-
-  const codec     = 'vp8'
-  const width     = 160
-  const height    = 120
-  const framerate = 10
-  const bitrate   = 1024
 
   document.on('DOMContentLoaded', async (e) => {
     const url = `quic-transport://labs.jxck.io:7000/echo`
@@ -47,6 +69,12 @@ $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-feature
     // const reader = transport.receiveDatagrams().getReader()
 
     $('#start').on('click', async (e) => {
+      const codec     = $('#codec').value
+      const framerate = $('#framerate').value
+      const width     = $('#width').value
+      const height    = $('#height').value
+      // const bitrate   = 10*1024
+
       // Canvas
       const $canvas  = $('#remote')
       $canvas.width  = width
@@ -75,7 +103,7 @@ $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-feature
       })
 
       videoDecoder.configure({
-        codec: 'vp8',
+        codec
       })
 
 
@@ -99,9 +127,7 @@ $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-feature
         }
       })
       await videoEncoder.configure({
-        codec:     'vp8',
-        framerate: 10,
-        width, height
+        codec, framerate, width, height //, bitrate
       })
 
       const videoReader = (new VideoTrackReader(videoTrack))
@@ -113,10 +139,10 @@ $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-feature
         videoEncoder.encode(videoFrame, option)
       })
 
-      // setTimeout(() => {
-      //   console.log('stop')
-      //   videoReader.stop()
-      // }, 10000)
+      $('#stop').on('click', () => {
+        videoReader.stop()
+        $('video').pause()
+      })
 
       while(true) {
         try {
@@ -140,8 +166,15 @@ $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-feature
           console.error(err)
         }
       }
+
     })
 
-    $('#start').click()
+
+    // setTimeout(() => {
+    //   console.log('stop')
+    //   videoReader.stop()
+    // }, 10000)
+
+    // $('#start').click()
   })
 </script>

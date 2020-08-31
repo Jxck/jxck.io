@@ -4,17 +4,48 @@
 <title>WebCodecs DEMO</title>
 
 <style>
+video, canvas {
+  display: block;
+  border: solid 1px black;
+}
+section {
+  display: flex;
+}
 </style>
 
 <h1>WebCodecs DEMO</h1>
 
+<p>encode / decode video stream locally<p>
 <pre>
 $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-features=WebCodecs
 </pre>
 
-<video id=local autoplay></video>
+<section>
+  <video id=local autoplay></video>
+  <canvas id=remote></canvas>
+</section>
 
-<canvas id=remote></canvas>
+<button id=start autofocus>start</button>
+<button id=stop>stop</button>
+
+<label for=codec>codec:</label>
+<select id=codec name=codec>
+  <option value=vp8 selected>vp8 </option>
+  <option value=vp9 >vp9 </option>
+  <option value=h264>h264</option>
+  <option value=h265>h265</option>
+  <option value=av1 >av1 </option>
+  <option value=hevc>hevc</option>
+</select>
+
+<label for=framerate>framerate:</label>
+<input id=framerate type=number value=30>
+
+<label for=width>width:</label>
+<input id=width type=number value=640 step=10>
+
+<label for=height>height:</label>
+<input id=height type=number value=480 step=10>
 
 <script>
   'use strict';
@@ -22,14 +53,14 @@ $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-feature
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
-  document.on('DOMContentLoaded', async (e) => {
+  $('#start').on('click', async (e) => {
     console.log(e)
 
-    const codec     = 'vp8'
-    const width     = 640 // 160 320
-    const height    = 480 // 120 240
-    const framerate = 30
-    const bitrate   = 900*1024
+    const codec     = $('#codec').value
+    const framerate = $('#framerate').value
+    const width     = $('#width').value
+    const height    = $('#height').value
+    // const bitrate   = 10*1024
 
     // Canvas
     const $canvas = $('#remote')
@@ -72,7 +103,7 @@ $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-feature
       }
     })
     await videoEncoder.configure({
-      codec, framerate, width, height, bitrate
+      codec, framerate, width, height //, bitrate
     })
 
 
@@ -82,10 +113,15 @@ $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-blink-feature
       videoEncoder.encode(videoFrame)
     })
 
-    // setTimeout(() => {
-    //   console.log('stop')
-    //   videoReader.stop()
-    // }, 3000)
 
+    $('#stop').on('click', () => {
+      console.log(mediaStream)
+      videoReader.stop()
+      $('video').pause()
+    })
+
+    // setTimeout(() => {
+    //   $('#stop').click()
+    // }, 3000)
   })
 </script>
