@@ -17,14 +17,23 @@ pre {
 <p>Are you a human ?</p>
 <button id=yes>Yes</button>
 
-<pre>
+<pre id=flag>
 </pre>
+
+<pre id=result>
+</pre>
+
+<script src=cbor.js></script>
 
 <script>
   'use strict';
   const $  = document.querySelector.bind(document)
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  function base64decode(str) {
+    return new Uint8Array([...atob(str)].map((a) => a.charCodeAt(0)))
+  }
 
   document.on('DOMContentLoaded', async (e) => {
     console.log(e)
@@ -59,10 +68,10 @@ pre {
   &gt; canary_debuglog.txt 2&gt;&amp;1
   `
 
-    $('pre').innerHTML = CMD;
+    $('#flag').innerHTML = CMD;
 
     $('#yes').on('click', async () => {
-      const res = await fetch(`/.well-known/trust-token`, {
+      const res = await fetch(`/.well-known/trust-token/request`, {
         method: 'POST',
         trustToken: {
           type: 'token-request',
@@ -71,11 +80,39 @@ pre {
       })
 
       console.log(res)
+
+      const token = await document.hasTrustToken(ISSUER)
+      console.log(token)
+
+      const res2 = await fetch(`/.well-known/trust-token/redemption`, {
+        method: 'POST',
+        trustToken: {
+          type: 'srr-token-redemption',
+          issuer: ISSUER,
+          refreshPolicy: 'refresh'
+        }
+      })
+      console.log(res2)
+
+      const res3 = await fetch(`/.well-known/trust-token/send-srr`, {
+        method: 'POST',
+        trustToken: {
+          type: 'send-srr',
+          issuer: ISSUER,
+          issuers: [ISSUER],
+        }
+      });
+      const body = await res3.text()
+      console.log(body)
+
+      // TODO: structured-header decode
+      const base64 = (atob(body.match(/redemption-record=:(.*):/)[1]).split(",")[0].match(/body=:(.*):/)[1])
+      const bytes  = base64decode(base64)
+      const result = CBOR.decode(bytes.buffer)
+
+      $("#result").textContent = JSON.stringify(result, ' ',  ' ')
     })
 
     $('#yes').click()
-
-    const token = await document.hasTrustToken(ISSUER)
-    console.log(token)
   })
 </script>
