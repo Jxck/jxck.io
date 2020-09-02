@@ -14,105 +14,27 @@ pre {
 
 <h1>Trust Token Issuer DEMO</h1>
 
-<p>Are you a human ?</p>
+<h2>how to use</h2>
+
+<p>1. open Google Chrome Canary &lt; M87 with following flag (in macOS case)
+
+<pre id=flag></pre>
+
+<p>2. Are you a human ?</p>
 <button id=yes>Yes</button>
 
-<pre id=flag>
-</pre>
-
+<p>3. see the console for detail. and results are below</p>
 <pre id=result>
 </pre>
 
+<p>see also</p>
+<ul>
+  <li><a href=http://www.chromium.org/updates/trust-token                       >Trust Token API - The Chromium Projects       </a>
+  <li><a href=https://groups.google.com/a/chromium.org/g/blink-dev/c/UIvia1WwIhk>Intent to Experiment: Trust Token API         </a>
+  <li><a href=https://bugs.chromium.org/p/chromium/issues/detail?id=1014199     >1014199 - Trust Token API - chromium          </a>
+  <li><a href=https://github.com/WICG/trust-token-api#trust-token-api-explainer >GitHub - WICG/trust-token-api: Trust Token API</a>
+  <li><a href=https://github.com/WICG/trust-token-api#potential-api             >GitHub - WICG/trust-token-api: Trust Token API</a>
+</ul>
+
 <script src=cbor.js></script>
-
-<script>
-  'use strict';
-  const $  = document.querySelector.bind(document)
-  const $$ = document.querySelectorAll.bind(document)
-  EventTarget.prototype.on = EventTarget.prototype.addEventListener
-
-  function base64decode(str) {
-    return new Uint8Array([...atob(str)].map((a) => a.charCodeAt(0)))
-  }
-
-  document.on('DOMContentLoaded', async (e) => {
-    console.log(e)
-
-    const res = await fetch('trust_token_key.json')
-    const json = await res.json()
-    console.log(json);
-
-    const ISSUER = 'https://labs.jxck.io'
-    const protocol_version = "TrustTokenV1"
-    const batchsize        = 10
-    const expiry           = "1622574000000000"
-
-    const srrkey = json.srr_pub_key_base64
-    const Y = json.pub_key_base64
-
-    const COMMITMENT = {}
-    COMMITMENT[ISSUER] = {
-      protocol_version,
-      batchsize,
-      srrkey,
-      "1": { Y, expiry }
-    }
-
-    const CMD = `/Applications/Google\\ Chrome\\ Canary.app/Contents/MacOS/Google\\ Chrome\\ Canary \\
-  --additional-trust-token-key-commitments='${JSON.stringify(COMMITMENT)}' \\
-  --auto-open-devtools-for-tabs \\
-  --log-net-log=./trust_token_chromium_netlog.json \\
-  --enable-logging=stderr \\
-  --v=1 \\
-  https://labs.jxck.io/trust-token/issuer.html \\
-  &gt; canary_debuglog.txt 2&gt;&amp;1
-  `
-
-    $('#flag').innerHTML = CMD;
-
-    $('#yes').on('click', async () => {
-      const res = await fetch(`/.well-known/trust-token/request`, {
-        method: 'POST',
-        trustToken: {
-          type: 'token-request',
-          issuer: ISSUER,
-        }
-      })
-
-      console.log(res)
-
-      const token = await document.hasTrustToken(ISSUER)
-      console.log(token)
-
-      const res2 = await fetch(`/.well-known/trust-token/redemption`, {
-        method: 'POST',
-        trustToken: {
-          type: 'srr-token-redemption',
-          issuer: ISSUER,
-          refreshPolicy: 'refresh'
-        }
-      })
-      console.log(res2)
-
-      const res3 = await fetch(`/.well-known/trust-token/send-srr`, {
-        method: 'POST',
-        trustToken: {
-          type: 'send-srr',
-          issuer: ISSUER,
-          issuers: [ISSUER],
-        }
-      });
-      const body = await res3.text()
-      console.log(body)
-
-      // TODO: structured-header decode
-      const base64 = (atob(body.match(/redemption-record=:(.*):/)[1]).split(",")[0].match(/body=:(.*):/)[1])
-      const bytes  = base64decode(base64)
-      const result = CBOR.decode(bytes.buffer)
-
-      $("#result").textContent = JSON.stringify(result, ' ',  ' ')
-    })
-
-    $('#yes').click()
-  })
-</script>
+<script src=issuer.js></script>
