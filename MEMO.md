@@ -257,7 +257,7 @@ ID3 には複数のバージョンがありおおよそ以下のようになっ�
 
 変遷は wikipedia にまとまっているものが参考になる。
 
-- [ID3タグ - Wikipedia](https://ja.wikipedia.org/wiki/ID3%E3%82%BF%E3%82%B0)
+- [ID3 タグ - Wikipedia](https://ja.wikipedia.org/wiki/ID3%E3%82%BF%E3%82%B0)
 
 これを元に、元も普及しているらしく、画像を付与できる v2.3 を採用。
 
@@ -288,12 +288,14 @@ eyeD3 --title "ep0 introduction of mozaic.fm" \
 
 ruby と node の依存は以下で install/update できる
 
+
 ```sh
 $ make isntall
 $ make update
 ```
 
 gem は .bundle/vender に入れている。
+
 
 ```sh
 $ bundle config set path './.bundle/vendor' --local
