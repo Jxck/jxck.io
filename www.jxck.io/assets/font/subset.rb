@@ -19,6 +19,8 @@ current = Dir.glob(ALL).reject {|file|
 
 all = File.read("./All.txt").split("\n")
 
-p (current - all)
+(current - all).each{|char|
+  puts "#{char}: #{char.codepoints.map{|c| '0x'+c.to_s(16)}}"
+}
 
 IO.write("./All.txt", current.join("\n"))
