@@ -180,11 +180,11 @@ guest
 - Stable: 80
   - Firefox 80.0, See All New Features, Updates and Fixes
     - <https://www.mozilla.org/en-US/firefox/80.0/releasenotes/>
-  - Firefox 80 for developers - Mozilla | MDN
+  - Firefox 80 for developers - Mozilla
     - <https://developer.mozilla.org/ja/docs/Mozilla/Firefox/Releases/80>
     - CSS の appearance プロパティの接頭辞が外れた
     - export * as namespace
-  - Firefox 80 Site Compatibility | Firefox Site Compatibility
+  - Firefox 80 Site Compatibility
     - <https://www.fxsitecompat.dev/en-CA/releases/80/>
   - *Changing World, Changing Mozilla - The Mozilla Blog*
     - <https://blog.mozilla.org/blog/2020/08/11/changing-world-changing-mozilla/>
@@ -207,7 +207,7 @@ guest
     - <https://groups.google.com/g/mozilla.dev.security.policy/c/BAK9eFalSd4>
     - Let's Encrypt の新しい証明書は RSA じゃなく ECDSA
     - バイト数省略のため lencr.org というドメインも用意している
-  - Extensions in Firefox 80 | Mozilla Add-ons Blog
+  - Extensions in Firefox 80
     - <https://blog.mozilla.org/addons/2020/08/25/extensions-in-firefox-80/>
 - Intents
   - Ship: selectionchange for input/textarea
@@ -408,7 +408,7 @@ guest
   - <https://blog.cloudflare.com/cloudflare-and-human-rights-joining-the-global-network-initiative-gni/>
 - How Argo Tunnel engineering uses Argo Tunnel
   - <https://blog.cloudflare.com/how-argo-tunnel-engineering-uses-argo-tunnel/>
-- Brave's Concerns with the Client-Hints Proposal | Brave Browser
+- Brave's Concerns with the Client-Hints Proposal \| Brave Browser
   - <https://brave.com/brave-and-client-hints/>
 - WebBundles Harmful to Content Blocking, Security Tools, and the Open Web (Standards Updates #2)
   - <https://brave.com/webbundles-harmful-to-content-blocking-security-tools-and-the-open-web/>

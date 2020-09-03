@@ -315,7 +315,7 @@ guest
     - <https://groups.google.com/g/mozilla.dev.security.policy/c/EPTMdyIKcYg>
   - Performance Improvements via Formally-Verified Cryptography in Firefox - Mozilla Security Blog
     - <https://blog.mozilla.org/security/2020/07/06/performance-improvements-via-formally-verified-cryptography-in-firefox/>
-  - Extensions in Firefox 79 | Mozilla Add-ons Blog
+  - Extensions in Firefox 79
     - <https://blog.mozilla.org/addons/2020/07/24/extensions-in-firefox-79/>
   - Call for Participants - W3C/OGC workshop series on Maps for the Web
     - <https://groups.google.com/g/mozilla.dev.platform/c/dM5MQY8H9Co>
@@ -398,7 +398,7 @@ guest
     - <https://blogs.windows.com/msedgedev/2020/07/23/reducing-distractions-quiet-notification-requests/>
   - Multitasking improvements in Windows 10 and Microsoft Edge
     - <https://blogs.windows.com/msedgedev/2020/07/22/multitasking-improvements-windows-10-microsoft-edge/>
-  - What's new in Microsoft Edge – July 2020 / Microsoft Inspire Edition | Windows Experience Blog
+  - What's new in Microsoft Edge – July 2020 / Microsoft Inspire Edition
     - <https://blogs.windows.com/windowsexperience/2020/07/21/whats-new-in-microsoft-edge-july-2020-microsoft-inspire-edition/>
 
 ### WHATWG/W3C 動向
@@ -562,7 +562,7 @@ guest
 
 ### セキュリティ動向
 
-- SSL サーバ証明書の有効期間を短縮するという決定に関する続報 | グローバルサインブログ
+- SSL サーバ証明書の有効期間を短縮するという決定に関する続報 \| グローバルサインブログ
   - <https://jp.globalsign.com/blog/articles/cabrowserforum_200707.html>
 - 2020 年第 1 四半期ネットワーク層 DDoS 攻撃の傾向
   - <https://blog.cloudflare.com/network-layer-ddos-attack-trends-for-q1-2020-jp/>
@@ -576,8 +576,7 @@ guest
 - *China is now blocking all encrypted HTTPS traffic that uses TLS 1.3 and ESNI*
   - <https://www.zdnet.com/article/china-is-now-blocking-all-encrypted-https-traffic-using-tls-1-3-and-esni/>
   - <https://mailarchive.ietf.org/arch/msg/tls/YzT5LjLJ_6WWhdnU2wVsKNKR6_I/>
-  - <https://www.iyouport.org/报告:中国的防火长城已经封锁加密服务器名称指/>
-  - 报告:中国的防火长城已经封锁加密服务器名称指/
+  - <https://www.iyouport.org/%e6%8a%a5%e5%91%8a%ef%bc%9a%e4%b8%ad%e5%9b%bd%e7%9a%84%e9%98%b2%e7%81%ab%e9%95%bf%e5%9f%8e%e5%b7%b2%e7%bb%8f%e5%b0%81%e9%94%81%e5%8a%a0%e5%af%86%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%90%8d%e7%a7%b0%e6%8c%87/>
     - パケットを落とす
     - GFW の双方向
     - TCP handshake の完了後
