@@ -1,4 +1,4 @@
-# git clone https://boringssl.googlesource.com/boringssl
+git clone https://boringssl.googlesource.com/boringssl
 cd boringssl
 mkdir build
 cd build
