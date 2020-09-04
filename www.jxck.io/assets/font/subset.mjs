@@ -57,7 +57,7 @@ async function getFont(page, URL) {
 // セレクタの textContent を取り出す
 async function selected_text(browser, urls, evaluate) {
   // each url
-  const num = 5
+  const num = 15
   const {fulfilled, rejected} = await PromiseLimit(num, urls.map((url) => {
     return async (done, fail) => {
       const page = await browser.newPage()
@@ -73,13 +73,10 @@ async function selected_text(browser, urls, evaluate) {
     console.error('failed', rejected)
     process.exit(0)
   }
-  const result = Array.from(new Set(fulfilled.flat().join("").split(""))).sort()
+  const result = Array.from(new Set([...fulfilled.flat().join("")])).sort()
   return result.join('\n')
 }
-
-async function main() {
-  const browser = await puppeteer.launch()
-
+async function main() { const browser = await puppeteer.launch() 
   const entries  = await entries_url(browser)
   const episodes = await episodes_url(browser)
 
@@ -90,23 +87,26 @@ async function main() {
 
   console.error(urls)
 
-
   const bold_text = await selected_text(browser, urls, () => {
     const selector = 'em, strong, dt, h1, h2, h3, h4, h5'
     return Array.from(document.querySelectorAll(selector)).map((e) => {
-      return e.textContent
+      return e.textContent.replace(/[\n, \t, ' ', '\xA0']/g, '')
     })
   })
   fs.writeFileSync('./bold.txt', bold_text)
 
 
   const regular_text = await selected_text(browser, urls, () => {
+    // bold になるものを消す
     const selector = 'em, strong, dt, h2, h3, h4, h5, code, pre'
     Array.from(document.querySelectorAll(selector)).forEach((e) => {
       return e.remove()
     })
-    return document.body.textContent.replace(/[\n, ' ', \t]/g, '')
+    return document.body.textContent.replace(/[\n, \t, ' ', '\xA0']/g, '')
   })
+  // console.error(regular_text.split('\n').map((e) => {
+  //   return `${e}: ${e.codePointAt(0)}`
+  // }).join('\n'))
   fs.writeFileSync('./regular.txt', regular_text)
 
 
