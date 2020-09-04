@@ -93,7 +93,7 @@ async function main() { const browser = await puppeteer.launch()
       return e.textContent.replace(/[\n, \t, ' ', '\xA0']/g, '')
     })
   })
-  fs.writeFileSync('./bold.txt', bold_text)
+  fs.writeFileSync('./font-bold.txt', bold_text)
 
 
   const regular_text = await selected_text(browser, urls, () => {
@@ -107,7 +107,7 @@ async function main() { const browser = await puppeteer.launch()
   // console.error(regular_text.split('\n').map((e) => {
   //   return `${e}: ${e.codePointAt(0)}`
   // }).join('\n'))
-  fs.writeFileSync('./regular.txt', regular_text)
+  fs.writeFileSync('./font-regular.txt', regular_text)
 
 
   await browser.close()

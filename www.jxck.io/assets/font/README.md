@@ -1,7 +1,7 @@
-- subset.rb を実行すると、現時点のエントリの中から対象文字だけを出す。
-  - font ダイエットの記事や unicode の記事では、絵文字や結合文字など入れたく無いものも多い
-  - それらを `<code>` に入れ、 subset.rb は `<code>` を省いている
-  - All.txt に保存される
+- subset.mjs を実行すると、現時点のエントリの中から対象文字だけを出す。
+  - ローカルの html ファイルを puppeteer でスクレイピング
+  - h1 や em など bold なフォントは font-bold.txt
+  - pre や code などは省いた body.textContent が font-regular.txt
 - build.sh でサブセットを生成する
   - https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip
   - hinted なものを使う
