@@ -22,13 +22,13 @@ FEATURES='palt'
 
 foreach target in $REGULAR
  woff2=`echo $target | sed "s/.otf/-Jxck-$NOW.woff2/g"`
- pyftsubset $target --text-file=../font-regular.txt --layout-features=$FEATURES --flavor=woff2 --output-file=$woff2
+ pyftsubset $target --layout-features=$FEATURES --flavor=woff2 --output-file=$woff2 --text-file=../font-regular.txt
  mv $woff2 ../
 end
 
 foreach target in $BOLD
  woff2=`echo $target | sed "s/.otf/-Jxck-$NOW.woff2/g"`
- pyftsubset $target --text-file=../font-bold.txt --layout-features=$FEATURES --flavor=woff2 --output-file=$woff2
+ pyftsubset $target --layout-features=$FEATURES --flavor=woff2 --output-file=$woff2 --text-file=../font-bold.txt
  mv $woff2 ../
 end
 
