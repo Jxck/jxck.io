@@ -33,7 +33,7 @@ Origin を守るための Web の戦いと、そこから見える Web や Brows
     - webkit による解説と対策の紹介
   - Jake Archibald
     - <https://twitter.com/jaffathecake/status/948879579397214208>
-  - A Spectre-shaped Web 👻🕸️ (BerlinSec)
+  - A Spectre-shaped Web 👻🕸 (BerlinSec)
     - <https://docs.google.com/presentation/d/1sadl7jTrBIECCanuqSrNndnDr82NGW1yyuXFT1Dc7SQ/edit>
   - Mitigating Side-Channel Attacks - The Chromium Projects
     - <https://sites.google.com/a/chromium.org/dev/Home/chromium-security/ssca>
