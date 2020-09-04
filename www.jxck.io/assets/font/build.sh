@@ -9,19 +9,26 @@ wget https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip
 unzip NotoSansCJKjp-hinted.zip
 
 
-TARGETS=(
-"NotoSansCJKjp-Bold.otf"
+REGULAR=(
 "NotoSansCJKjp-Regular.otf"
-"NotoSansMonoCJKjp-Bold.otf"
 "NotoSansMonoCJKjp-Regular.otf"
+)
+BOLD=(
+"NotoSansCJKjp-Bold.otf"
+"NotoSansMonoCJKjp-Bold.otf"
 )
 
 FEATURES='palt'
 
-foreach target in $TARGETS
- woff=`echo $target | sed "s/.otf/-Jxck-$NOW.woff/g"`
+foreach target in $REGULAR
  woff2=`echo $target | sed "s/.otf/-Jxck-$NOW.woff2/g"`
- pyftsubset $target --text-file=../All.txt --layout-features=$FEATURES --flavor=woff2 --output-file=$woff2
+ pyftsubset $target --text-file=../font-regular.txt --layout-features=$FEATURES --flavor=woff2 --output-file=$woff2
+ mv $woff2 ../
+end
+
+foreach target in $BOLD
+ woff2=`echo $target | sed "s/.otf/-Jxck-$NOW.woff2/g"`
+ pyftsubset $target --text-file=../font-bold.txt --layout-features=$FEATURES --flavor=woff2 --output-file=$woff2
  mv $woff2 ../
 end
 
