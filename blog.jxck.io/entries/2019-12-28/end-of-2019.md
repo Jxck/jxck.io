@@ -102,7 +102,7 @@ GW でありながら、参加者にも恵まれ、濃厚な回にできたと�
 - [FLEXISPOT 電動式スタンディングデスク](https://www.amazon.co.jp/dp/B07HF2WN1Z)
 - [Acer モニター ディスプレイ ET322QKwmiipx 31.5 インチ](https://www.amazon.co.jp/dp/B0771DQYT5)
 - [オフィスコム ハイタイプワゴン サイドワゴン 4 段 鍵付き](https://www.amazon.co.jp/dp/B0721SL7LM)
-- [サンワダイレクト モニターアーム 高耐荷重 8 ～ 20kg](https://www.amazon.co.jp/dp/B07JLGHXFR)
+- [サンワダイレクト モニターアーム 高耐荷重 8 〜 20kg](https://www.amazon.co.jp/dp/B07JLGHXFR)
 
 ディスプレイが重くなっても良いように、耐荷重の高いモニターアームにしておいたが、ディスプレイが軽すぎて上下の位置が戻ってしまうのが失敗だった。
 

@@ -709,7 +709,7 @@ guest
   - Spectre/Meltdown の亜種である CVE-2018-3639 が発見される
   - 最近 SameSite/SecMetadata/From-Origin などが動き始めてるのはやっぱりこのためなんだろうか。
   - <https://www.arturjanc.com/cross-origin-infoleaks.pdf>
-- サイバーセキュリティに関するグローバル動向四半期レポート(2018 年 1 月～ 3 月)を公開 \| NTT データ
+- サイバーセキュリティに関するグローバル動向四半期レポート(2018 年 1 月〜 3 月)を公開 \| NTT データ
   - <https://www.nttdata.com/jp/ja/news/information/2018/2018050701.html>
   - 17 年度 Q4 のサマリ
 
