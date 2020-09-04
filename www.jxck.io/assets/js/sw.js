@@ -19,10 +19,10 @@ async function worker() {
   // revalidate したいものは no-cache
   const ASSETS = [
     // fonts
-    {url: 'https://mozaic.fm/assets/font/NotoSansCJKjp-Regular-Jxck-20200720.woff2',     option: {}},
-    {url: 'https://mozaic.fm/assets/font/NotoSansCJKjp-Bold-Jxck-20200720.woff2',        option: {}},
-    {url: 'https://mozaic.fm/assets/font/NotoSansMonoCJKjp-Regular-Jxck-20200720.woff2', option: {}},
-    {url: 'https://mozaic.fm/assets/font/NotoSansMonoCJKjp-Bold-Jxck-20200720.woff2',    option: {}},
+    {url: 'https://mozaic.fm/assets/font/NotoSansCJKjp-Regular-Jxck-20200904.woff2',     option: {}},
+    {url: 'https://mozaic.fm/assets/font/NotoSansCJKjp-Bold-Jxck-20200904.woff2',        option: {}},
+    {url: 'https://mozaic.fm/assets/font/NotoSansMonoCJKjp-Regular-Jxck-20200904.woff2', option: {}},
+    {url: 'https://mozaic.fm/assets/font/NotoSansMonoCJKjp-Bold-Jxck-20200904.woff2',    option: {}},
     {url: 'https://mozaic.fm/assets/js/highlight.pack.js',                               option: {}},
 
     // css
