@@ -100,7 +100,7 @@ Origin を守るための Web の戦いと、そこから見える Web や Brows
   - <https://github.com/mikewest/securer-contexts/>
 - Securing your extensions against compromised renderer processes
   - <https://groups.google.com/a/chromium.org/d/msg/chromium-extensions/0ei-UCHNm34/lDaXwQhzBAAJ>
-  - あまり関係ないドキュメントだが、Compromised renderer processの定義が書いてある
+  - あまり関係ないドキュメントだが、 Compromised renderer process の定義が書いてある
 - Possible side-channel information leak using IntersectionObserver
   - <https://github.com/WICG/ScrollToTextFragment/issues/79>
 - XS-Leaks
