@@ -75,11 +75,11 @@
   <script async src=https://cdn.ampproject.org/v0.js></script>
   <style amp-custom>
     article section p {
-      margin-left: 0;
+      margin-inline-start: 0;
     }
 
     article table {
-      margin-left: 0;
+      margin-inline-start: 0;
     }
 
     article img {
@@ -92,7 +92,7 @@
     article ul,
     article ol,
     article dl {
-      margin-left: var(--grid);
+      margin-inline-start: var(--grid);
       font-family: var(--mono-font);
     }
 
@@ -104,7 +104,7 @@
 
     article ol li ol li,
     article ul li ul li {
-      margin-bottom: 0;
+      margin-block-end: 0;
     }
 
     article dl {
@@ -149,7 +149,7 @@
         width: 100%;
         line-height-step: 0;
         line-height: 1.2;
-        margin-bottom: 0;
+        margin-block-end: 0;
       }
 
       article section {
@@ -159,8 +159,8 @@
       }
 
       article p {
-        margin-top: var(--grid-rhythm);
-        margin-bottom: var(--grid-rhythm);
+        margin-block-start: var(--grid-rhythm);
+        margin-block-end: var(--grid-rhythm);
       }
 
       article pre,
@@ -321,7 +321,7 @@
 
     dl.info dt::after {
       content: ":";
-      margin-right: calc(var(--grid)/2);
+      padding-inline-end: calc(var(--grid)/2);
     }
 
     dl.info dd {
@@ -330,15 +330,15 @@
 
     dl.info dd i {
       font-style: normal;
-      margin-right: calc(var(--grid)/3);
+      padding-inline-end: calc(var(--grid)/3);
     }
 
     details.info > summary {
     }
 
     details.info ul {
-      margin-top: 0;
-      margin-left: var(--grid);
+      margin-block-start: 0;
+      margin-inline-start: var(--grid);
     }
     header {
       z-index: 1;
@@ -357,8 +357,8 @@
     h5:target,
     h6:target {
       /* sticky header に合わせて link scroll をずらす */
-      margin-top:  calc((var(--icon-size) + var(--grid)) * -1);
-      padding-top: calc((var(--icon-size) + var(--grid)));
+      margin-block-start:  calc((var(--icon-size) + var(--grid)) * -1);
+      padding-block-start: calc((var(--icon-size) + var(--grid)));
     }
 
     header ul {
@@ -397,7 +397,7 @@
 
     header ul li:first-child {
       flex-grow: 1;
-      margin-left: 0;
+      margin-inline-start: 0;
     }
 
     header .logo {
@@ -525,7 +525,7 @@
     ol,
     ul {
       list-style: none;
-      padding-left: 0;
+      padding-inline-start: 0;
     }
 
     li {
@@ -772,30 +772,32 @@
 
     th {
       padding: 0 var(--grid) calc(var(--grid)/2) var(--grid);
-      border-left: 2px solid var(--table-border);
-      border-bottom: 2px dashed var(--table-border);
+      border-inline-start: 2px solid var(--table-border);
+      border-block-end: 2px dashed var(--table-border);
     }
 
     td {
       padding: calc(var(--grid)/2) var(--grid);
-      border-left: 2px solid var(--table-border);
+      border-inline-start: 2px solid var(--table-border);
     }
 
     th:last-child,
     td:last-child {
-      border-right: 2px solid var(--table-border);
+      border-inline-end: 2px solid var(--table-border);
     }
 
     .align-center {
       text-align: center;
     }
 
+    /** TODO: fixup html class */
     .align-left {
-      text-align: left;
+      text-align: start;
     }
 
+    /** TODO: fixup html class */
     .align-right {
-      text-align: right;
+      text-align: end;
     }
   </style>
 </head>
