@@ -6,6 +6,7 @@ sudo certbot certonly \
   -w ../mozaic.fm \
   --expand \
   --force-renewal \
+  --cert-name mozaic.fm \
   -d mozaic.fm \
   -d files.mozaic.fm \
   -d feed.mozaic.fm \

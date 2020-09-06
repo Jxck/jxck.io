@@ -17,6 +17,7 @@ sudo certbot certonly \
   -w ../www.jxck.io \
   --expand \
   --force-renewal \
+  --cert-name jxck.io \
   -d jxck.io \
   -d www.jxck.io \
   -d blog.jxck.io \
