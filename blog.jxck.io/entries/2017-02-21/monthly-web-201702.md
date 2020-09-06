@@ -144,7 +144,7 @@ Finding っていう資料が二つ出た。
   - ORTC とは別に互換のために実装してた機能が表に
   - [公式ブログ](https://blogs.windows.com/msedgedev/2017/01/31/introducing-webrtc-microsoft-edge/)
 
-- 1/30: [ONE URL STANDARD PLEASE](https://daniel.haxx.se/blog/2017/01/30/one-url-standard-please/]
+- 1/30: [ONE URL STANDARD PLEASE](https://daniel.haxx.se/blog/2017/01/30/one-url-standard-please/)
   - URL の仕様が RFC と WHATWG と各実装とあって大変だという話
   - curl の作者の意見なので説得力ある
 

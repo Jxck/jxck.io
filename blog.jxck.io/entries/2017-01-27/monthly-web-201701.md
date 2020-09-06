@@ -16,7 +16,7 @@
   - HTML5 default
 
 - [1/24 Firefox 51](https://www.mozilla.org/en-US/firefox/51.0/releasenotes/)
-  - https://developer.mozilla.org/en-US/Firefox/Releases/51
+  - <https://developer.mozilla.org/en-US/Firefox/Releases/51>
   - webgl default
   - idb2
 

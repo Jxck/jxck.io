@@ -199,7 +199,7 @@ QUIC はパケットサイズに上限があるため、 QuicTransport でも大
 
 なので v4 だと PMTUD でサイズを確認しない限り 1252 以上は送れない
 
-- https://tools.ietf.org/html/draft-ietf-quic-transport-29#section-14
+- <https://tools.ietf.org/html/draft-ietf-quic-transport-29#section-14>
 
 すると、キーフレームは確実にフラグメントするため、全て揃うまでバッファしないと CBOR でデコードできない。
 
@@ -291,9 +291,9 @@ WebCodecs と WebTrasnport を用いて WebRTC のようなビデオ会議が、
   - Intent to Experiment: WebCodecs
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/7OdxQf5HnlQ>
   - Intent to Implement WebCodecs
-    - https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/3oVuczJ5Ty4/discussion
+    - <https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/3oVuczJ5Ty4/discussion>
   - Intent to Prototype: ImageDecoder API extension for WebCodecs
-    - https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/w1F8UGwTjZo/discussion
+    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/w1F8UGwTjZo/m/CoU8WTOxAAAJ>
 - Chrome Platform Status
   - <https://www.chromestatus.com/feature/5669293909868544>
 - DEMO

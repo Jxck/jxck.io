@@ -11,7 +11,7 @@
 
 - Firefox で noopener をデフォルトにする Intents が出た
   - Intent to Ship: implicit ref=noopener for `target=_blank` on anchor and area elements
-  - https://groups.google.com/forum/#!msg/mozilla.dev.platform/DDQP5xIKYiY/3ppe9V-ZCgAJ
+  - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/DDQP5xIKYiY/3ppe9V-ZCgAJ>
 
 
 ## window.opener

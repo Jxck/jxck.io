@@ -95,7 +95,7 @@ Cookie は、ブラウザ内で「*どこから付与されたか*」をキー�
 
 Mac OS は HiSierra から ITP というトラッキング防止の機能を追加する。
 
-https://webkit.org/blog/7675/intelligent-tracking-prevention/
+<https://webkit.org/blog/7675/intelligent-tracking-prevention/>
 
 これにより、 Safari が保存する Cookie の保存に関するポリシーが変更される。
 
