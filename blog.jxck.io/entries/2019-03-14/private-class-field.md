@@ -1,5 +1,6 @@
 # [private][javascript] Private Class Field の導入に伴う JS の構文拡張
 
+
 ## Intro
 
 ECMAScript の Private Class Field の仕様策定と各ブラウザの実装が進んでいる。

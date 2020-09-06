@@ -1,5 +1,6 @@
 # [web][blog] Blog を移転しました
 
+
 ## Intro
 
 長いこと [はてな](https://jxck.hatenablog.com/) をメインにし、他にも [Qiita](https://qiita.com/jxck_) や [Tumblr](http://jxck.tumblr.com/) を使って色々書いて来たが、そろそろ自分のドメインに全部集約していこうかと思う。

@@ -1,5 +1,6 @@
 # [fetch][stream][promise][whatwg] Fetch での Stream を用いたプログレス取得とキャンセル
 
+
 ## Intro
 
 WHATWG が定義する Fetch API は、出たばかりの仕様では、途中でのキャンセルや、プログレスイベントの取得が含まれていなかった。

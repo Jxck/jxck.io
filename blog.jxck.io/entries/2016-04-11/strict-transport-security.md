@@ -1,5 +1,6 @@
 # [hsts][security] HTTP Strict Transport Security(HSTS) 対応
 
+
 ## Intro
 
 本サイトにて HTTP Strict Transport Security (HSTS) を有効化した。

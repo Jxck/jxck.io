@@ -1,5 +1,6 @@
 # [promise][tc39] Promise.prototype.finally
 
+
 ## Intro
 
 Promise.prototype.finally の仕様が TC39 stage 3 となり、 [Safari TP37](https://webkit.org/blog/7862/release-notes-for-safari-technology-preview-release-37/) で先行実装が入った。

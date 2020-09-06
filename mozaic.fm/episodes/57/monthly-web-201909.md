@@ -1,5 +1,6 @@
 # [monthly-web][mozaic.fm] ep57 Monthly Web 201909
 
+
 ## Info
 
 audio: https://files.mozaic.fm/mozaic-ep57.mp3
@@ -17,6 +18,7 @@ guest
 
 
 ## Show Note
+
 
 ### Chrome 動向
 

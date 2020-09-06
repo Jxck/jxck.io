@@ -1,5 +1,6 @@
 # [monthly-web][mozaic.fm][podcast] Monthly Web の作り方 2018 年版
 
+
 ## Intro
 
 筆者がやっている Podcast である [mozaic.fm](https://mozaic.fm) の中で、 Monthly Web という月ごとの Web の動向をまとめる回をやっている。

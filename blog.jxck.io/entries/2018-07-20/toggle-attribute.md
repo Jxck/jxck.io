@@ -1,5 +1,6 @@
 # [dom][html] Element.toggleAttribute
 
+
 ## Intro
 
 非常にシンプルかつミッシングピースだった Element.toggleAttribute という仕様が提案された。

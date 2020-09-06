@@ -1,5 +1,6 @@
 # [quictransport][webtransport][quic] QuicTransport によるアプリケーションレイヤでの QUIC 活用
 
+
 ## Intro
 
 WebTransport の Quic 実装である QuicTransport の開発が Chrome で行われている。
@@ -55,11 +56,13 @@ wpt の実装は、これを Python の aioquic で行っているため参考�
 
 ここに指定された Origin + Path が前述の Client Indication で通知されることになる。
 
+
 ```
 quic-transport://example.com:3000/echo
 ```
 
 これが JS API で以下のように使われる。
+
 
 ```js
 const transport = new QuicTransport(`quic-transport://example.com:3000/echo`)
@@ -138,6 +141,7 @@ await transport.close()
 
 内部の状態は以下なので、これが増えたらどうするかという懸念もあるが、 WebSocket も同じ状態遷移で特に増えたことはないため、問題ないということだろう。
 
+
 ```
 connecting -> connected
 connecting -> failed
@@ -146,7 +150,6 @@ connected -> failed
 ```
 
 この議論の結果によっては、 EventTarget にならなくなり、 developer experience としては今までと少し違う雰囲気の使用感になりそうだ。
-
 
 もし、最近やっと Safari に入り Node でも入りそうな EventTarget を使ったほうが慣れているのであれば、以下のような感じで自分で Wrap することもできるだろう。
 
@@ -183,11 +186,13 @@ class Transport extends EventTarget {
 }
 ```
 
+
 ### Stream
 
 WebTransport の API は最初から Stream が考慮された実装になっている。
 
 API interface 的に言うと、現状の定義は以下のようになっている。
+
 
 ```js
 interface QuicTransport {}
@@ -201,8 +206,8 @@ Http3Transport も同じように 4 つ includes している。
 
 そもそも WebTransport interface が 3 つ includes すれば良さそうだが、これは将来別の Transport パターンが実装されることがあった場合の拡張性だろうか。
 
-
 UnidirectionalStreamTransport は以下のような定義だ。
+
 
 ```js
 interface mixin UnidirectionalStreamsTransport {
@@ -213,8 +218,8 @@ interface mixin UnidirectionalStreamsTransport {
 
 クライアントからサーバに対する 1 方向の場合は `createSendStream` を、逆は `receiveStreams()` によって、必要な Stream が得られる。
 
-
 一方 BidirectionalStreamTransport の定義はこうだ。
+
 
 ```js
 interface mixin BidirectionalStreamsTransport {
@@ -225,11 +230,10 @@ interface mixin BidirectionalStreamsTransport {
 
 Bidirectional Stream をクライアントから確立する場合は `createBidirectionalStream()` を、サーバから確立する場合は `receiveBidirectionaStreams()` を用いる。
 
-
 (Uni/Bi)Directional x (Client/Server)Initiated が全てサポートされて Stream が得られるので、エコシステム的に言えば、 Sink/Source を定義して Stream を用意しておけば、 QUIC のメリットを活かしつつアプリケーションを組むことができる。
 
-
 例として Bi-dir で `<textarea>` の入力を送り echo back で表示するサンプルを以下に作成した。
+
 肝になる部分は以下のようになる。
 
 
@@ -251,10 +255,10 @@ readable.pipeThrough(new TextDecoderStream()).pipeTo(domWrite)
 - [Stream Pipe DEMO](http://labs.jxck.io/webtransport/quictransport/stream_pipe.html)
 
 
-
 ## Use Case
 
 さて、これを何に使うかという点に付いて考える。
+
 
 ### Media Stream
 

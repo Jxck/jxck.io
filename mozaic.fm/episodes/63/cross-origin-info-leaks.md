@@ -1,5 +1,6 @@
 # [cookie][site isolation][security][mozaic.fm] ep63 Cross Origin Info Leaks
 
+
 ## Info
 
 audio: https://files.mozaic.fm/mozaic-ep63.mp3

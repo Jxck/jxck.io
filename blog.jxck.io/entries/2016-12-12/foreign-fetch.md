@@ -1,5 +1,6 @@
 # [fetch][service worker][origin trials] Foreign Fetch による Micro Service Workers
 
+
 ## Update
 
 Foreign Fetch は削除される方向で進んでいる。

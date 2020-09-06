@@ -1,5 +1,6 @@
 # [gde][web] Google Developer Experts (GDE) になりました
 
+
 ## Intro
 
 Google の中の人からお声がけ頂き、 Google Developer Experts (GDE) に Web Technologies の Expert として Join することになりました。

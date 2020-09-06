@@ -1,5 +1,6 @@
 # [webtransport][webcodecs] WebTransport と WebCodecs そして Web はどこまで "ゲーム化" するか
 
+
 ## Intro
 
 Transport として HTTP over TCP を基本としていた Web のあり方は大きく代わり、転送するメディアも HTML だけに止まらなくなってきた。

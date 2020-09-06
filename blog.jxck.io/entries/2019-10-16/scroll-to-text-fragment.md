@@ -1,5 +1,6 @@
 # [scroll][fragment][url] Scroll To Text Fragment と :~:text
 
+
 ## Intro
 
 ページ内の特定の位置へのスクロールは、 URL フラグメントと HTML の ID 属性を用いて行われていた。

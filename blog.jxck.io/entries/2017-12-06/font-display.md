@@ -1,5 +1,6 @@
 # [font-display][web font][performance][css] Font Display プロパティを用いた FOIT/FOUT 最適化
 
+
 ## Update
 
 - この検証から 2 年程のちに、 First Paint/First Contentful Paint を重視するため、全ての display プロパティは swap に統一した。

@@ -1,5 +1,6 @@
 # [webp][image][performance] 画像最適化戦略 WebP 編
 
+
 ## Intro
 
 本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい WebP 形式を提供し、対応ブラウザに配布するようにした。

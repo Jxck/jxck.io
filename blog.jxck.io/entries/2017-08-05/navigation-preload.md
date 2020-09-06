@@ -1,5 +1,6 @@
 # [navigation preload][service worker][performance] Service Worker の Navigation Preload による表示遅延回避
 
+
 ## Intro
 
 Service Worker で Fetch を Proxy する場合、 Fetch 発生時に SW が起動していなければ、その起動を待つ必要が出る。

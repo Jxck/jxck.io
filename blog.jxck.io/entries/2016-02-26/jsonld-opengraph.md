@@ -1,5 +1,6 @@
 # [jsonld][open graph][schema.org][semantics] JSON-LD と Open Graph で構造化メタデータ対応
 
+
 ## Intro
 
 本サイトのメタ情報を整理するため、 HTML のメタタグの整理、 JSON-LD による schema.org 対応、 Facebook, Twitter を主とした Open Graph 対応を実施した。

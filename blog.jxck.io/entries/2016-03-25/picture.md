@@ -1,5 +1,6 @@
 # [picture][image][performance] 画像最適化戦略 Picture 編
 
+
 ## Intro
 
 本サイトで使用している PNG/JPEG 画像を、対応デバイスと、 Device Pixel Ratio に対して最適なサイズで出し分けるために、 `<picture>` 要素を適用した。

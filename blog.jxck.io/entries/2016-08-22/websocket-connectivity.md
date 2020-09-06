@@ -1,5 +1,6 @@
 # [socket.io][websocket][network] 「Socket.IO は必要か?」または「WebSocket は通るのか?」問題について 2016 年版
 
+
 ## Intro
 
 [「Socket.IO 使ったほうがいいですか?」](https://twitter.com/chicken2227/status/766200604783882243) という主旨の質問をもらった。

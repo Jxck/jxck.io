@@ -1,5 +1,6 @@
 # [rails][igrigorik][mozaic.fm] ep12 Rails
 
+
 ## Info
 
 audio: https://files.mozaic.fm/mozaic-ep12.mp3

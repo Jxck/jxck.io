@@ -1,5 +1,6 @@
 # [same-site-cookie][cookie][csrf][security] Cookie の性質を利用した攻撃と Same Site Cookie の効果
 
+
 ## Intro
 
 Cookie はブラウザによって保存され、紐づいたドメインへのリクエストに自動で付与される。

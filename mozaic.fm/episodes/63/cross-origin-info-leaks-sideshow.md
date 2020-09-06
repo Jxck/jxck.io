@@ -1,5 +1,6 @@
 # [privacy][mozaic.fm] ep63 Cross Origin Info Leaks sideshow
 
+
 ## Info
 
 audio: https://files.mozaic.fm/mozaic-ep63.sideshow.mp3

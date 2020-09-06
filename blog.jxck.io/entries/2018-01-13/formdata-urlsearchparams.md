@@ -1,5 +1,6 @@
 # [urlsearchparams][formdata][form] Form で submit されたデータの収集と FormData & URLSearchParams
 
+
 ## Intro
 
 `<form>` の onsubmit をフックして、入力された値を `<input>` から集めて送るといった処理はよくある。

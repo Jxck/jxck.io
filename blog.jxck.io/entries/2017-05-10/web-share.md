@@ -1,5 +1,6 @@
 # [whatwg][web-share] Web Share API
 
+
 ## Intro
 
 [Web Share API](https://github.com/WICG/web-share) が Origin Trials を卒業したという知らせが届いた。

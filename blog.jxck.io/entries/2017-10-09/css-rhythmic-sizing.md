@@ -1,5 +1,6 @@
 # [rhythmic sizing][vertical rhythm][css] CSS Rhythmic Sizing で Vertical Rhythm
 
+
 ## Intro
 
 タイポグラフィに関連したデザイン手法の 1 つに Vertical Rhythm がある。

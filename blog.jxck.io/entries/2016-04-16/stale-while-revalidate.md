@@ -1,5 +1,6 @@
 # [swr][http][cache][performance] Stale-While-Revalidate ヘッダによるブラウザキャッシュの非同期更新
 
+
 ## Intro
 
 システムにおいてキャッシュの設計は永遠の課題であり、 Web のパフォーマンスにおいても非常に重要である。

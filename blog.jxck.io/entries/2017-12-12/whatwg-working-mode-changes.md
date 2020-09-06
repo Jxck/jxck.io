@@ -1,5 +1,6 @@
 # [w3c][whatwg] WHATWG の IPR Policy と Governance Structure
 
+
 ## Intro
 
 WHATWG が IPR Policy と Governance Structure についての更新を発表した。

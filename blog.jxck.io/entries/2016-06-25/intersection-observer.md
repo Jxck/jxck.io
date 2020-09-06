@@ -1,5 +1,6 @@
 # [intersection observer][scroll][performance] Intersection Observer を用いた要素出現検出の最適化
 
+
 ## Intro
 
 スクロールによる DOM 要素の出現などを効率よく検知するため、新しく Intersection Observer という API が追加された。

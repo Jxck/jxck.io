@@ -1,5 +1,6 @@
 # [virtual dom][react][flex][mizchi][mozaic.fm] ep13 Virtual DOM
 
+
 ## Info
 
 audio: https://files.mozaic.fm/mozaic-ep13.mp3

@@ -1,5 +1,6 @@
 # [erlang][gen_statem][gen_fsm] gen_fsm から gen_statem へ
 
+
 ## Intro
 
 Erlang/OTP 19 から、 gen_fsm の後継として gen_statem が導入された。

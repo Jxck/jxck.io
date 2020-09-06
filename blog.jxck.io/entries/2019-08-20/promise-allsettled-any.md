@@ -1,5 +1,6 @@
 # [promise][tc39][javascript] Promise.allSettled と Promise.any
 
+
 ## Intro
 
 `Promise.allSettled()` と `Promise.any()` の仕様策定が進んでいる。

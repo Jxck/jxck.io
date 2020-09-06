@@ -1,5 +1,6 @@
 # [dns][domain] 予約済みドメイン (.example, .localhost, .test) について
 
+
 ## Intro
 
 特別なドメインとして予約され、特定の用途で使用可能なドメインとして、 `.example` `.localhost` `.test` などがある。

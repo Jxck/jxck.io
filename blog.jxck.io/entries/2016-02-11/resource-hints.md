@@ -1,5 +1,6 @@
 # [resource hints][performance] Resource Hints API でリソースの投機的取得
 
+
 ## Intro
 
 Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要となるリソースを教える」ことで、投機的な取得を行う API 群である。

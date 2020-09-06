@@ -1,5 +1,6 @@
 # [early hints][preload][push][http2][http] HTTP の新しいステータスコード 103 Early Hints
 
+
 ## Intro
 
 これは、 [http2 Advent Calendar 2016](https://qiita.com/advent-calendar/2016/http2) の 16 日目の記事である。

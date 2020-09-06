@@ -1,5 +1,6 @@
 # [font-feature-settings][noto sans][web font] Noto Sans Hinted と font-feature-settings: 'palt'
 
+
 ## Intro
 
 Noto Sans のサブセット生成を見なおし、 Noto Sans Hinted から pyftsubset で生成し、ついでに font-feature-settings を有効にした。

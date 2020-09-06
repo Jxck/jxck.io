@@ -1,5 +1,6 @@
 # [origin trials][vender prefix][web] Web 標準化のフィードバックサイクルを円滑にする Origin Trials について
 
+
 ## Intro
 
 ブラウザに追加される新しい機能に対して、 Vender Prefix の代替となる Origin Trials の導入が徐々に始まっている。

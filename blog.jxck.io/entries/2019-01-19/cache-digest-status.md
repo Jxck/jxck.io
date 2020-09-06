@@ -1,5 +1,6 @@
 # [cache digest][server push][http2] Cache Digest と HTTP2 Server Push の現状
 
+
 ## Intro
 
 httpbis のチェアである mnot から、 Cache Digest についての現状確認が ML に投稿された。

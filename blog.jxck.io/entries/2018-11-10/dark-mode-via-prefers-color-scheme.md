@@ -1,5 +1,6 @@
 # [media query][dark mode][css] prefers-color-scheme を用いた Dark Mode 対応と User Preference Media Features
 
+
 ## Intro
 
 macOS Mojava は OS レベルで Dark Mode に対応した。

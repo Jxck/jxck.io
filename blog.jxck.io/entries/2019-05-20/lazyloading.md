@@ -1,5 +1,6 @@
 # [lazyload][image][performance] 画像最適化戦略 Lazy Loading 編
 
+
 ## Intro
 
 長らく議論されてきた `<img>` や `<iframe>` における Lazyload について、仕様と実装が動きを見せている。

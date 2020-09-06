@@ -1,5 +1,6 @@
 # [polyfill][w3c] Polyfill のあり方と Web の進化と協調するためのガイドライン
 
+
 ## Intro
 
 W3C の TAG から、主にブラウザ API の Polyfill に関するドキュメントが公開された。

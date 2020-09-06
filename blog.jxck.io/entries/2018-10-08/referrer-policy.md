@@ -1,5 +1,6 @@
 # [referrer-policy][referer][http] Referrer-Policy によるリファラ制御
 
+
 ## Intro
 
 リファラはリンクなどでページを遷移する際に、遷移元の URL をリクエストの Referer ヘッダに載せる仕様である。

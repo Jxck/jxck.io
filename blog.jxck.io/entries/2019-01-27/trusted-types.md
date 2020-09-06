@@ -1,5 +1,6 @@
 # [xss][trusted types][security] 安全な文字列であると型で検証する Trusted Types について
 
+
 ## Intro
 
 脆弱性の原因となる DOM 操作の代表例として `elem.innerHTML` や `location.href` などが既に知られている。
@@ -340,6 +341,7 @@ CSP によって有効になるのは、型が違う場合にエラーをあげ�
 - <https://labs.jxck.io/trusted-types/>
 
 動作は Chrome Canary 74.0.3684.0 で確認している。
+
 
 ## 本サイトへの適用
 

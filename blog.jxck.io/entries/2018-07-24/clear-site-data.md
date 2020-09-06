@@ -1,5 +1,6 @@
 # [cache][cookie][security][http] Clear-Site-Data Header
 
+
 ## Intro
 
 Clear-Site-Data Header の実装が進んでいる。

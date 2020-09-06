@@ -1,5 +1,6 @@
 # [zopfli][brotli][http][performance] zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について
 
+
 ## Intro
 
 HTTP では `Accept-Encoding` と `Content-Encoding` でのネゴシエーションにより、 gz などで圧縮したコンテンツを転送することができる。本サイトでは zopfli を用いて gzip 形式の配信に対応した。

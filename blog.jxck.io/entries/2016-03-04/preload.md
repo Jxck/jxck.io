@@ -1,5 +1,6 @@
 # [preload][performance] Preload を用いたリソースプリローディングの最適化
 
+
 ## Intro
 
 Preload を指定する `<link rel=preload>` の仕様が公開されており、現在 Chrome Canary に実装されている。

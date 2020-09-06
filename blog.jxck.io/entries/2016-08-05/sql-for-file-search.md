@@ -1,5 +1,6 @@
 # [selects][sql][linux] SQL でファイル検索するコマンド selects を書いた話
 
+
 ## Intro
 
 [UNIX コマンドを SQL で抽出できるツール qq を作った。](http://mattn.kaoriya.net/software/lang/go/20160805190022.htm) というエントリを読んで、そういえば似たようなものを作ってたなと思い出した。

@@ -1,5 +1,6 @@
 # [angular2][spa][javascript][mozaic.fm] ep24 Angular2
 
+
 ## Info
 
 audio: https://files.mozaic.fm/mozaic-ep24.mp3

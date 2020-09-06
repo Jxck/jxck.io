@@ -1,5 +1,6 @@
 # [monthly-web][mozaic.fm] ep64 Monthly Web 202002
 
+
 ## Info
 
 audio: https://files.mozaic.fm/mozaic-ep64.mp3
@@ -17,6 +18,7 @@ guest
 
 
 ## Show Note
+
 
 ### Chrome 動向
 
@@ -199,6 +201,7 @@ guest
   - QuicTransport Custom Certificate API - Invitation to comment
     - <https://groups.google.com/a/chromium.org/forum/#!msg/net-dev/r3YDvZfjOqA/qQARnV4pBAAJ>
 
+
 ### Firefox 動向
 
 - Stable: 73.0.1
@@ -268,6 +271,7 @@ guest
     - <https://groups.google.com/d/msg/mozilla.dev.platform/nx2uP0CzA9k/REUNAW2YGQAJ>
     - Nightly で SameSite=Lax がデフォルト有効に
 
+
 ### Safari 動向
 
 - Stable: 13.0.5
@@ -304,6 +308,7 @@ guest
     - WebKit の Nightly に WebP が実装
 - Other
 
+
 ### Edge 動向
 
 - Stable: 80
@@ -328,6 +333,7 @@ guest
     - <https://textslashplain.com/2020/02/09/demystifying-browsers/>
   - Browser Password Managers: Threat Models \| text/plain
     - <https://textslashplain.com/2020/02/11/browser-password-managers-threat-models/>
+
 
 ### WHATWG/W3C 動向
 
@@ -364,6 +370,7 @@ guest
     - <https://www.w3.org/blog/news/archives/8302>
   - For Wide Review: Personalization Semantics Content Module 1.0
     - <https://www.w3.org/blog/news/archives/8294>
+
 
 ### TC39 動向
 
@@ -412,6 +419,7 @@ guest
     - private filed に対応しているかどうかを try-catch なしで判別する
 - Other
 
+
 ### IETF 動向
 
 - IETF
@@ -451,6 +459,7 @@ guest
     - <https://tools.ietf.org/html/draft-ietf-quic-version-negotiation-00>
 - Other
 
+
 ### セキュリティ動向
 
 - *暗号資産「無断採掘」、二審は有罪 閲覧者 PC 利用-東京高裁:時事ドットコム*
@@ -464,6 +473,7 @@ guest
   - NextDNS が DoH 対応し、 Chrome の対応プロバイダリストへの登録を依頼
   - なお、 CNAME Cloaking 回避もできるらしい
   - <https://nextdns.io>
+
 
 ### 周辺動向
 
@@ -484,6 +494,7 @@ guest
 - WebAssembly Summit まとめ
   - <https://note.com/chikoski/n/n6f8b283767fc>
   - <https://note.com/chikoski/n/n27b3e4c0ebd8>
+
 
 ### イベント
 

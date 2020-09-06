@@ -1,5 +1,6 @@
 # [monthly-web][mozaic.fm] ep70 Monthly Web 202007
 
+
 ## Info
 
 audio: https://files.mozaic.fm/mozaic-ep70.mp3
@@ -15,7 +16,9 @@ guest
 
 第 70 回のテーマは 2020 年 7 月の Monthly Web です。
 
+
 ## Show Note
+
 
 ### Chrome 動向
 
@@ -239,6 +242,7 @@ guest
   - *Official Google Webmaster Central Blog: Prepare for mobile-first indexing (with a little extra time)*
     - <https://webmasters.googleblog.com/2020/07/prepare-for-mobile-first-indexing-with.html>
 
+
 ### Firefox 動向
 
 - Stable: 79
@@ -320,6 +324,7 @@ guest
   - Call for Participants - W3C/OGC workshop series on Maps for the Web
     - <https://groups.google.com/g/mozilla.dev.platform/c/dM5MQY8H9Co>
 
+
 ### Safari 動向
 
 - Stable: 13.1.1
@@ -378,6 +383,7 @@ guest
     - <https://changelog.com/podcast/400>
     - Safari の人が Podcast で Safari14 の話をしている
 
+
 ### Edge 動向
 
 - Stable:
@@ -400,6 +406,7 @@ guest
     - <https://blogs.windows.com/msedgedev/2020/07/22/multitasking-improvements-windows-10-microsoft-edge/>
   - What's new in Microsoft Edge – July 2020 / Microsoft Inspire Edition
     - <https://blogs.windows.com/windowsexperience/2020/07/21/whats-new-in-microsoft-edge-july-2020-microsoft-inspire-edition/>
+
 
 ### WHATWG/W3C 動向
 
@@ -426,6 +433,7 @@ guest
     - <https://bocoup.com/blog/introducing-the-web-platform-contribution-guide>
     - W3C/WHATWG への貢献のしかたガイド
     - 5 月の取りこぼし
+
 
 ### TC39 動向
 
@@ -458,6 +466,7 @@ guest
 - New Proposals
   - <https://github.com/tc39/proposal-await.ops>
 - Other
+
 
 ### IETF 動向
 
@@ -560,6 +569,7 @@ guest
   - HTTP/3 logo \| daniel.haxx.se
     - <https://daniel.haxx.se/blog/2020/08/01/http-3-logo/>
 
+
 ### セキュリティ動向
 
 - SSL サーバ証明書の有効期間を短縮するという決定に関する続報 \| グローバルサインブログ
@@ -582,6 +592,7 @@ guest
     - TCP handshake の完了後
     - 全ポート
     - 最初のブロック後 120~180 秒間くらい続く
+
 
 ### 周辺動向
 
@@ -623,6 +634,7 @@ guest
 - *Introducing Rome*
   - <https://romefrontend.dev/blog/2020/08/08/introducing-rome.html>
 
+
 ### イベント
 
 - 7 月
@@ -644,6 +656,7 @@ guest
     - <https://www.ietf.org/how/meetings/109/>
   - 17-19: BlinkOn
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/zNDLekIrSQE>
+
 
 ### Wrap Up
 

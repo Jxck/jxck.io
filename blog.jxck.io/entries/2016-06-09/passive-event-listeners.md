@@ -1,5 +1,6 @@
 # [rendering][performance] Passive Event Listeners によるスクロールの改善
 
+
 ## Intro
 
 DOM のイベントリスナの仕様に Passive Event Listeners というオプションが追加された。

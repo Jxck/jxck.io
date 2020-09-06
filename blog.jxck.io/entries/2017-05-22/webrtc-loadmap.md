@@ -1,5 +1,6 @@
 # [webrtc] WebRTC 1.0 に向けたロードマップ
 
+
 ## Intro
 
 Google の Product Manager である [Huib Kleinhout](https://jp.linkedin.com/in/huibkleinhout) が、 disscuss-webrtc の ML に以下のような投稿をした。

@@ -1,5 +1,6 @@
 # [monthly-web][mozaic.fm] ep62 Monthly Web 202001
 
+
 ## Info
 
 audio: https://files.mozaic.fm/mozaic-ep62.mp3
@@ -17,6 +18,7 @@ guest
 
 
 ## Show Note
+
 
 ### Chrome 動向
 
@@ -242,6 +244,7 @@ guest
   - The Chromium Chronicle: ClusterFuzz
     - <https://developers.google.com/web/updates/2019/12/chromium-chronicle-9>
 
+
 ### Firefox 動向
 
 - Stable:72.0.2
@@ -334,6 +337,7 @@ guest
   - ICANN Directors: Take a Close Look at the Dot Org Sale - The Mozilla Blog
     - <https://blog.mozilla.org/blog/2020/01/23/icann-directors-take-a-close-look-at-the-dot-org-sale/>
 
+
 ### Safari 動向
 
 - Stable:13.0.3
@@ -408,6 +412,7 @@ guest
   - ResizeObserver in WebKit \| WebKit
     - <https://webkit.org/blog/9997/resizeobserver-in-webkit/>
 
+
 ### Edge 動向
 
 - Stable: 79
@@ -477,6 +482,7 @@ guest
     - 2020 May にリリースのスケジュール
   - *Retiring Internet Explorer \| text/plain*
     - <https://textslashplain.com/2020/01/19/retiring-internet-explorer/>
+
 
 ### WHATWG/W3C 動向
 
@@ -556,6 +562,7 @@ guest
     - for authors/for implementers リンクなど
     - <https://www.24a11y.com/2019/pouring-aria-into-the-html-element-specs/>
 
+
 ### TC39 動向
 
 - Meeting
@@ -583,6 +590,7 @@ guest
 - Other
   - ECMAScript Archives
     - <https://www.ecma-international.org/archive/ecmascript/>
+
 
 ### IETF 動向
 
@@ -637,6 +645,7 @@ guest
     - <https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis-04>
 - Other
 
+
 ### セキュリティ動向
 
 - *Information Leaks via Safari's Intelligent Tracking Prevention*
@@ -662,6 +671,7 @@ guest
   - 「Web をセキュアにする」のではなく「セキュアな Web を作る」ための会議
   - 互換性を壊す大幅な変更提案も含めて議論される模様
   - CfP 中で、かなり広い分野から Program Committee が選出されてる
+
 
 ### 周辺動向
 
@@ -722,6 +732,7 @@ guest
   - <https://blog.cloudflare.com/empowering-your-privacy/>
 - Modernizing the internet with HTTP/3 and QUIC
   - <https://www.fastly.com/blog/modernizing-the-internet-with-http3-and-quic>
+
 
 ### イベント
 

@@ -171,6 +171,7 @@ CSP や Feature-Policy は、明示的に Report-To を指定する。
 ```http:./5.http
 ```
 
+
 ### Reporting Request
 
 ブラウザ自身が送信する Report リクエストの概観は以下のようなものになる。

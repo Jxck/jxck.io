@@ -1,5 +1,6 @@
 # [cbor][webbundle][webpackaging] WebBundle によるコンテンツの結合と WebPackaging
 
+
 ## Intro
 
 依存コンテンツを 1 つにまとめて配信する WebBundle の仕様策定と実装が進んでいる。

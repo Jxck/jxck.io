@@ -1,5 +1,6 @@
 # [origin trials][service worker][offline] Link rel=serviceworker ヘッダによる API やアセットの Offline 対応
 
+
 ## Intro
 
 Service Worker を登録する方法は現状 3 つある。

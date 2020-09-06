@@ -1,5 +1,6 @@
 # [amp][html][performance] AMP HTML 対応
 
+
 ## Intro
 
 Google が推奨する仕様である [AMP HTML](https://www.ampproject.org/) に、このブログを対応した。

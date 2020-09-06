@@ -1,5 +1,6 @@
 # [webpackaging][signed-http-exchange] WebPackaging の Signed HTTP Exchanges
 
+
 ## Intro
 
 [WebPackaging](https://github.com/WICG/webpackage) は以下の 3 つの仕様を組み合わせたユースケースである。

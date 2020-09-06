@@ -1,5 +1,6 @@
 # [csp][mixed contents][upgrade-insecure-request][block-all-mixed-contents] mixed contents 対応を促進する CSP ディレクティブ
 
+
 ## Intro
 
 HTTPS 移行の問題点の一つに、 mixed contents への対応がある。

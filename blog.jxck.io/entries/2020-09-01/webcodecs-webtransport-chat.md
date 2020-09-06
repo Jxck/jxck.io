@@ -1,5 +1,6 @@
 # [webcodecs][webtransport][webrtc] WebCodecs と WebTransport でビデオチャット
 
+
 ## Intro
 
 ブラウザの持つ Video/Audio コーデック実装へアクセスする API として WebCodecs の仕様策定と実装が進んでいる。
@@ -47,6 +48,7 @@ QUIC/HTTP3 の実装が進んでから、このトランスポートを WebSocke
 
 WebRTC の場合は、取得した MediaStream を RTCPeerConnection に addStream/addTrack すると、そのメディに合わせてシグナリングを行い、自動でエンコード/デコードし、そのバイナリを自動的に送受信してくれるという、抽象度の高い設計になっていた。
 
+
 ```js
 // 接続されたカメラを抽象化した MediaStream を取得
 const stream = await navigator.mediaDevices.getUserMedia({video:true, audio:true})
@@ -79,6 +81,7 @@ stream.getTracks().forEach((track) => {
 
 ビデオの場合は VideoStreamTrack を取得するところから始まる。
 
+
 ```js
 const stream = await navigator.mediaDevices.getUserMedia({video:true, audio:true})
 const [videoTrack] = mediaStream.getVideoTracks()
@@ -89,8 +92,11 @@ const [videoTrack] = mediaStream.getVideoTracks()
 VideoTrack をエンコードするには VideoEncoder を用いる。
 
 初期化時に output コールバックを指定し、初期化後に `configure()` でエンコードの仕様を設定する。
+
 後から動的にエンコードパラメータを変えられるようにするために、このような API になっていると思われる。
+
 (将来 Simulcast などに対応する場合はここが拡張されるだろう)
+
 
 ```js
 // Encoder
@@ -110,9 +116,10 @@ await videoEncoder.configure({
 })
 ```
 
-
 VideoTrackReader を用いて  MediaStream からビデオのデータを取り出す。
+
 ここでの単位はフレームで、この VideoFrame を VideoEncoder の `encode()` に渡すとエンコードされる。
+
 
 ```js
 const videoReader = new VideoTrackReader(videoTrack)
@@ -124,9 +131,11 @@ videoReader.start((videoFrame) => {
 結果は VideoEncoder の初期化時に指定した output コールバックに渡り、これが vp8 でエンコードした結果の ArrayBuffer だ。
 
 デコードもほぼ同じ、まずは初期化し `configure()` を呼ぶ。
+
 `encode()` に vp8 の chunk を渡せばデコードしたフレームが取り出せる。
 
 `createImageBitmap()` でビットマップに変換すれば Canvas に描画できる。
+
 
 ```js
 const ctx = $canvas.getContext('2d')
@@ -164,9 +173,7 @@ videoDecoder.decode(chunk)
 
 多人数にすると少し面倒なため、自分の映像をサーバがエコーして自分で表示する作りにしてある。
 
-
 ![WebCodecs と WebTransport で作成したビデオチャットのデモ動作風景](webcodecs-webtransport-chat-demo.gif#1082x1038 "webcodecs webtransport demo")
-
 
 デモは最後に貼るため、以下は特に WebRTC と比較しての部分について解説する。
 
@@ -174,6 +181,7 @@ videoDecoder.decode(chunk)
 ### シリアライズ
 
 エンコードした Chunk は以下のような形をしている。
+
 
 ```js
 interface EncodedVideoChunk {

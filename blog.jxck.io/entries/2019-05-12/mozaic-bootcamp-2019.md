@@ -1,5 +1,6 @@
 # [bootcamp][mozaic.fm][web] mozaic bootcamp 2019
 
+
 ## Intro
 
 2019/4/28 - 5/1 の 4 日間で、 mozaic bootcamp 2019 というひたすら Web 技術を叩き込むイベントを開催した。

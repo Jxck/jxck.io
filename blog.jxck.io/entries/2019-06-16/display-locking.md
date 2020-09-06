@@ -1,5 +1,6 @@
 # [display locking][async][dom] Display Locking によるレンダリングの最適化と Async DOM
 
+
 ## Intro
 
 React や lit-html などにより、 DOM 操作の抽象化に加えて最適化が提供されることが一般的となった。

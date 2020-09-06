@@ -1,5 +1,6 @@
 # [webrtc][sdp] SDP の Unified Plan と Plan B
 
+
 ## Intro
 
 新年早々、 Blink Dev で Unified Plan の Intent to Implement という嬉しい知らせが届いた。

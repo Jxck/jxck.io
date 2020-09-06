@@ -1,5 +1,6 @@
 # [brotli][zopfli][http][performance] Brotli を用いた静的コンテンツ配信最適化と Accept-Encoding: br について
 
+
 ## Intro
 
 High Sierra に乗る Safari 11 で Brotli 対応がされるということで、メジャーブラウザの Brotli 対応が概ね揃うことになる。

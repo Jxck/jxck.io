@@ -1,5 +1,6 @@
 # [ads][3rd party cookie][cookie] 3rd Party Cookie 調査のための Web 広告導入
 
+
 ## Intro
 
 昨今、特に広告サービスを中心に 3rd Party Cookie を用いたトラッキングについての議論が多く行われている。

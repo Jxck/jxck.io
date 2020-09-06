@@ -1,5 +1,6 @@
 # [html][security] リンクのへの rel=noopener 付与による Tabnabbing 対策
 
+
 ## Intro
 
 本サイト以下全ての `target=_blank` 付きのリンクに `rel="noopener noreferrer"` の付与を実施した。

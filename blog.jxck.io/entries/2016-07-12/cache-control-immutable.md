@@ -1,5 +1,6 @@
 # [cache][http][performance] Cache-Control の Immutable 拡張によるリロード時のキャッシュ最適化
 
+
 ## Intro
 
 ブラウザはリロード時に、 max-age に満たないキャッシュを持っていても Conditional GET によってキャッシュの Validate (有効性の問い合わせ)を行う。

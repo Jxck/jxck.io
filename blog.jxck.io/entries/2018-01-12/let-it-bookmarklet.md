@@ -1,5 +1,6 @@
 # [boolmarklet] Bookmarklet という一番身近な自動化技術
 
+
 ## Intro
 
 「毎回やるなら bookmarklet にでもすれば?」と言ったら、後輩が「そんな便利なことできたんですね、知りませんでした」と言ってた。

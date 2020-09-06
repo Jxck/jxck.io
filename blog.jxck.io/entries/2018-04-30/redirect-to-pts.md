@@ -1,5 +1,6 @@
 # [pty][tmux][tips] Linux で出力を別の shell に pts 経由で表示する
 
+
 ## Intro
 
 tmux, screen, terminal のタブなど、 shell を複数起動する方法はいくつかある。

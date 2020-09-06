@@ -1,5 +1,6 @@
 # [monthly-web][mozaic.fm] ep69 Monthly Web 202006
 
+
 ## Info
 
 audio: https://files.mozaic.fm/mozaic-ep69.mp3
@@ -17,6 +18,7 @@ guest
 
 
 ## Show Note
+
 
 ### Chrome 動向
 

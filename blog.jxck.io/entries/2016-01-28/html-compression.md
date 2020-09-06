@@ -1,5 +1,6 @@
 # [html][performance] HTML の省略によるサイズ最適化
 
+
 ## Intro
 
 本サイト [blog.jxck.io](https://blog.jxck.io) 以下については、 Markdown から静的ファイルを生成するスタイルで作成している。

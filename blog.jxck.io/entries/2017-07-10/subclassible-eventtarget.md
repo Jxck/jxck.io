@@ -1,5 +1,6 @@
 # [event target][event emitter] EventTarget の継承可能化による EventEmitter の代替
 
+
 ## Intro
 
 [念願](https://twitter.com/Jxck_/status/826004140211843072) だった EventTarget の constructible/subclassable が DOM の仕様にマージされた。
