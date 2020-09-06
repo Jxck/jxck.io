@@ -1,9 +1,9 @@
 article section p {
-  margin-left: 0;
+  margin-inline-start: 0;
 }
 
 article table {
-  margin-left: 0;
+  margin-inline-start: 0;
 }
 
 article img {
@@ -16,7 +16,7 @@ article img {
 article ul,
 article ol,
 article dl {
-  margin-left: var(--grid);
+  margin-inline-start: var(--grid);
   font-family: var(--mono-font);
 }
 
@@ -28,7 +28,7 @@ article ol li ol {
 
 article ol li ol li,
 article ul li ul li {
-  margin-bottom: 0;
+  margin-block-end: 0;
 }
 
 article dl {
@@ -73,7 +73,7 @@ article blockquote p {
     width: 100%;
     line-height-step: 0;
     line-height: 1.2;
-    margin-bottom: 0;
+    margin-block-end: 0;
   }
 
   article section {
@@ -83,8 +83,8 @@ article blockquote p {
   }
 
   article p {
-    margin-top: var(--grid-rhythm);
-    margin-bottom: var(--grid-rhythm);
+    margin-block-start: var(--grid-rhythm);
+    margin-block-end: var(--grid-rhythm);
   }
 
   article pre,

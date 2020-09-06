@@ -15,8 +15,8 @@ h4:target,
 h5:target,
 h6:target {
   /* sticky header に合わせて link scroll をずらす */
-  margin-top:  calc((var(--icon-size) + var(--grid)) * -1);
-  padding-top: calc((var(--icon-size) + var(--grid)));
+  margin-block-start:  calc((var(--icon-size) + var(--grid)) * -1);
+  padding-block-start: calc((var(--icon-size) + var(--grid)));
 }
 
 header ul {
@@ -55,7 +55,7 @@ header ul li::before {
 
 header ul li:first-child {
   flex-grow: 1;
-  margin-left: 0;
+  margin-inline-start: 0;
 }
 
 header .logo {

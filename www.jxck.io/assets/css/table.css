@@ -6,28 +6,30 @@ table {
 
 th {
   padding: 0 var(--grid) calc(var(--grid)/2) var(--grid);
-  border-left: 2px solid var(--table-border);
-  border-bottom: 2px dashed var(--table-border);
+  border-inline-start: 2px solid var(--table-border);
+  border-block-end: 2px dashed var(--table-border);
 }
 
 td {
   padding: calc(var(--grid)/2) var(--grid);
-  border-left: 2px solid var(--table-border);
+  border-inline-start: 2px solid var(--table-border);
 }
 
 th:last-child,
 td:last-child {
-  border-right: 2px solid var(--table-border);
+  border-inline-end: 2px solid var(--table-border);
 }
 
 .align-center {
   text-align: center;
 }
 
+/** TODO: fixup html class */
 .align-left {
-  text-align: left;
+  text-align: start;
 }
 
+/** TODO: fixup html class */
 .align-right {
-  text-align: right;
+  text-align: end;
 }
