@@ -191,11 +191,9 @@ stream.getTracks().forEach((track) =&gt; {
 const [videoTrack] = mediaStream.getVideoTracks()</code></pre>
           <p>ここには、カメラからの生のストリームがあるようなイメージだ。そのままでは大きいため、多くの場合は圧縮を行う。その方式が VP8 や H.264 のようなコーデックになる。
           <p>VideoTrack をエンコードするには VideoEncoder を用いる。
-          <p>初期化時に output コールバックを指定し、初期化後に <code translate="no">configure()</code> でエンコードの仕様を設定する。<br>
-
-          後から動的にエンコードパラメータを変えられるようにするために、このような API になっていると思われる。<br>
-
-          (将来 Simulcast などに対応する場合はここが拡張されるだろう)
+          <p>初期化時に output コールバックを指定し、初期化後に <code translate="no">configure()</code> でエンコードの仕様を設定する。
+          <p>後から動的にエンコードパラメータを変えられるようにするために、このような API になっていると思われる。
+          <p>(将来 Simulcast などに対応する場合はここが拡張されるだろう)
           <pre class=js><code translate="no">// Encoder
 const videoEncoder = new VideoEncoder({
   output: function(chunk) {
@@ -211,17 +209,15 @@ await videoEncoder.configure({
   height:    480
   framerate: 30
 })</code></pre>
-          <p>VideoTrackReader を用いて  MediaStream からビデオのデータを取り出す。<br>
-
-          ここでの単位はフレームで、この VideoFrame を VideoEncoder の <code translate="no">encode()</code> に渡すとエンコードされる。
+          <p>VideoTrackReader を用いて  MediaStream からビデオのデータを取り出す。
+          <p>ここでの単位はフレームで、この VideoFrame を VideoEncoder の <code translate="no">encode()</code> に渡すとエンコードされる。
           <pre class=js><code translate="no">const videoReader = new VideoTrackReader(videoTrack)
 videoReader.start((videoFrame) =&gt; {
   videoEncoder.encode(videoFrame)
 })</code></pre>
           <p>結果は VideoEncoder の初期化時に指定した output コールバックに渡り、これが vp8 でエンコードした結果の ArrayBuffer だ。
-          <p>デコードもほぼ同じ、まずは初期化し <code translate="no">configure()</code> を呼ぶ。<br>
-
-          <code translate="no">encode()</code> に vp8 の chunk を渡せばデコードしたフレームが取り出せる。
+          <p>デコードもほぼ同じ、まずは初期化し <code translate="no">configure()</code> を呼ぶ。
+          <p><code translate="no">encode()</code> に vp8 の chunk を渡せばデコードしたフレームが取り出せる。
           <p><code translate="no">createImageBitmap()</code> でビットマップに変換すれば Canvas に描画できる。
           <pre class=js><code translate="no">const ctx = $canvas.getContext(&#39;2d&#39;)
 

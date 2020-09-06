@@ -47,7 +47,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-06-09T08:00:00+08:00",
-    "dateModified": "2020-08-18T08:00:00+08:00",
+    "dateModified": "2020-09-06T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -815,7 +815,7 @@
 <main>
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2020-06-09>2020-06-09</time></dd></div>
-    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-08-18>2020-08-18</time></dd></div>
+    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
     <div><dt class=tags>tags</dt><dd>[<a href="/tags/quictransport.html">quictransport</a><i>,</i><a href="/tags/webtransport.html">webtransport</a><i>,</i><a href="/tags/quic.html">quic</a>]</dd></div>
     <div>
       <dt>toc</dt>
@@ -1025,9 +1025,8 @@ QuicTransport includes WebTransport;</code></pre>
 };</code></pre>
         <p>Bidirectional Stream をクライアントから確立する場合は <code translate="no">createBidirectionalStream()</code> を、サーバから確立する場合は <code translate="no">receiveBidirectionaStreams()</code> を用いる。
         <p>(Uni/Bi)Directional x (Client/Server)Initiated が全てサポートされて Stream が得られるので、エコシステム的に言えば、 Sink/Source を定義して Stream を用意しておけば、 QUIC のメリットを活かしつつアプリケーションを組むことができる。
-        <p>例として Bi-dir で <code translate="no">&lt;textarea&gt;</code> の入力を送り echo back で表示するサンプルを以下に作成した。<br>
-
-        肝になる部分は以下のようになる。
+        <p>例として Bi-dir で <code translate="no">&lt;textarea&gt;</code> の入力を送り echo back で表示するサンプルを以下に作成した。
+        <p>肝になる部分は以下のようになる。
         <pre class=js><code translate="no">const transport = new QuicTransport(url)
 await transport.ready
 const {readable, writable} = await transport.createBidirectionalStream()
