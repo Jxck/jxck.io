@@ -46,7 +46,7 @@ QUIC/HTTP3 の実装が進んでから、このトランスポートを WebSocke
 
 ## WebCodecs
 
-WebRTC の場合は、取得した MediaStream を RTCPeerConnection に addStream/addTrack すると、そのメディに合わせてシグナリングを行い、自動でエンコード/デコードし、そのバイナリを自動的に送受信してくれるという、抽象度の高い設計になっていた。
+WebRTC の場合は、取得した MediaStream を RTCPeerConnection に addStream/addTrack すると、そのメディアに合わせてシグナリングを行い、自動でエンコード/デコードし、そのバイナリを自動的に送受信してくれるという、抽象度の高い設計になっていた。
 
 
 ```js
