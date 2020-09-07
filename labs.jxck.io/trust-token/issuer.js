@@ -33,8 +33,6 @@ document.on('DOMContentLoaded', async (e) => {
   const CMD = `/Applications/Google\\ Chrome\\ Canary.app/Contents/MacOS/Google\\ Chrome\\ Canary \\
   --additional-trust-token-key-commitments='${JSON.stringify(COMMITMENT)}' \\
   --auto-open-devtools-for-tabs \\
-  --log-net-log=./trust_token_chromium_netlog.json \\
-  --enable-logging=stderr \\
   --v=1 \\
   https://labs.jxck.io/trust-token/issuer.html \\
   &gt; canary_debuglog.txt 2&gt;&amp;1
