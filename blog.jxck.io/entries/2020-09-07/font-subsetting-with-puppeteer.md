@@ -1,4 +1,4 @@
-# [pupeteer][web font] Puppeteer で静的サイトの Font Subsetting
+# [puppeteer][web font] Puppeteer で静的サイトの Font Subsetting
 
 
 ## Intro
