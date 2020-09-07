@@ -5,6 +5,8 @@ import fs from "fs"
 import puppeteer from "puppeteer"
 import PromiseLimit from "./promise-limit.mjs"
 
+const CONCURRENT = 15
+
 async function entries_url(browser) {
   const page = await browser.newPage()
   // get entries url
@@ -31,34 +33,10 @@ async function episodes_url(browser) {
   return episodes.map((href) => href.replace('file:///', 'file:///home/jxck/server/jxck.io/mozaic.fm/'))
 }
 
-async function getFont(page, URL) {
-  console.error(URL)
-  await page.goto(URL)
-  await page._client.send("DOM.enable")
-  await page._client.send("CSS.enable")
-  const doc    = await page._client.send("DOM.getDocument")
-  const selector = "span, div, a, li, dt, dd, h1, h2, h3, h4, h5, h6"
-  const node   = await page._client.send("DOM.querySelectorAll", {nodeId: doc.root.nodeId, selector: selector})
-  // console.error(node)
-  const fonts  = await Promise.all(node.nodeIds.map(async (nodeId) => {
-    const {fonts} = await page._client.send("CSS.getPlatformFontsForNode", {nodeId})
-    return fonts.map(({familyName}) => {
-      return {nodeId, familyName}
-    })
-  }))
-  const hits = fonts.flat().filter(({familyName}) => !familyName.startsWith("Noto"))
-
-  return Promise.all(hits.map(async ({nodeId}) => {
-    const {outerHTML} = await page._client.send("DOM.getOuterHTML", {nodeId})
-    return {outerHTML, hits}
-  }))
-}
-
 // セレクタの textContent を取り出す
 async function selected_text(browser, urls, evaluate) {
   // each url
-  const num = 15
-  const {fulfilled, rejected} = await PromiseLimit(num, urls.map((url) => {
+  const {fulfilled, rejected} = await PromiseLimit(CONCURRENT, urls.map((url) => {
     return async (done, fail) => {
       const page = await browser.newPage()
       await page.goto(url, {waitUntil: 'networkidle0'})
@@ -76,7 +54,9 @@ async function selected_text(browser, urls, evaluate) {
   const result = Array.from(new Set([...fulfilled.flat().join("")])).sort()
   return result.join('\n')
 }
-async function main() { const browser = await puppeteer.launch() 
+
+async function main() {
+  const browser  = await puppeteer.launch()
   const entries  = await entries_url(browser)
   const episodes = await episodes_url(browser)
 
@@ -90,11 +70,10 @@ async function main() { const browser = await puppeteer.launch()
   const bold_text = await selected_text(browser, urls, () => {
     const selector = 'em, strong, dt, h1, h2, h3, h4, h5'
     return Array.from(document.querySelectorAll(selector)).map((e) => {
-      return e.textContent.replace(/[\n, \t, ' ', '\xA0']/g, '')
+      return e.textContent
     })
   })
   fs.writeFileSync('./font-bold.txt', bold_text)
-
 
   const regular_text = await selected_text(browser, urls, () => {
     // bold になるものを消す
@@ -102,13 +81,12 @@ async function main() { const browser = await puppeteer.launch()
     Array.from(document.querySelectorAll(selector)).forEach((e) => {
       return e.remove()
     })
-    return document.body.textContent.replace(/[\n, \t, ' ', '\xA0']/g, '')
+    return document.body.textContent
   })
   // console.error(regular_text.split('\n').map((e) => {
   //   return `${e}: ${e.codePointAt(0)}`
   // }).join('\n'))
   fs.writeFileSync('./font-regular.txt', regular_text)
-
 
   await browser.close()
 }
