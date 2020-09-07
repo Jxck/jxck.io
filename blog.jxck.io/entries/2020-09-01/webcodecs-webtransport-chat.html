@@ -54,7 +54,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-09-01T08:00:00+08:00",
-    "dateModified": "2020-09-06T08:00:00+08:00",
+    "dateModified": "2020-09-07T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -100,7 +100,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-09-01>2020-09-01</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-07>2020-09-07</time></dd></div>
       <div><dt class=tags>tags</dt><dd>[<a href="/tags/webcodecs.html">webcodecs</a><i>,</i><a href="/tags/webtransport.html">webtransport</a><i>,</i><a href="/tags/webrtc.html">webrtc</a>]</dd></div>
       <div>
         <dt>toc</dt>
@@ -139,7 +139,7 @@
       </section>
       <section>
         <h2 id="webrtc"><a href="#webrtc">WebRTC</a></h2>
-        <p>WebRTC は UDP 上に DTLS で交換した鍵を用いて、 RTP を SRTP で流し、そのシグナリングに SDP を、ホーパンチに ICE(STUN/TURN) を用いることで、 P2P ビデオチャットといったユースケースを可能にした API だ。
+        <p>WebRTC は UDP 上に DTLS で交換した鍵を用いて、 RTP を SRTP で流し、そのシグナリングに SDP を、ホールパンチに ICE(STUN/TURN) を用いることで、 P2P ビデオチャットといったユースケースを可能にした API だ。
         <p>しかし、最初から「P2P ビデオチャット」というユースケースに寄せていることもあり、従来使われていたプロトコルスタックを応用して実現しており、 P2P ならではの問題を解決するために、全体は割と複雑な構成になっていた。(真面目にフルで実装すると 3 桁近い RFC が絡んでくる)
         <p>ところが、実際 WebRTC を用いたサービスを提供する際には、 P2P でクライアント同士を会話させるなどということはあまりなく、サービス側で持ったサーバ(SFU/MCU)で、ルーティングや QoS の調整といった様々なサービスを提供することになることが多い。
         <p>また、ブラウザ API の抽象度も高く、内部で行われる動作の機微をコントロールするには、新しい API が必要になり、クロスブラウザの切り分けが難しい場合もある。
@@ -163,7 +163,7 @@
       </section>
       <section>
         <h2 id="webcodecs"><a href="#webcodecs">WebCodecs</a></h2>
-        <p>WebRTC の場合は、取得した MediaStream を RTCPeerConnection に addStream/addTrack すると、そのメディに合わせてシグナリングを行い、自動でエンコード/デコードし、そのバイナリを自動的に送受信してくれるという、抽象度の高い設計になっていた。
+        <p>WebRTC の場合は、取得した MediaStream を RTCPeerConnection に addStream/addTrack すると、そのメディアに合わせてシグナリングを行い、自動でエンコード/デコードし、そのバイナリを自動的に送受信してくれるという、抽象度の高い設計になっていた。
         <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
         <pre class=js><code translate="no">// 接続されたカメラを抽象化した MediaStream を取得
 const stream = await navigator.mediaDevices.getUserMedia({video:true, audio:true})
