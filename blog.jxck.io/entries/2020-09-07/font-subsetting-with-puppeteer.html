@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href="https://blog.jxck.io/entries/2020-09-07/font-subsetting-with-puppeteer.html">
+  <link rel=amphtml   href="https://blog.jxck.io/entries/2020-09-07/font-subsetting-with-puppeteer.amp.html">
+  <link rel=preload   type=font/woff2 as=font href=/assets/font/NotoSansCJKjp-Regular-Jxck-20200904.woff2 crossorigin>
+
+  <script async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+  <script defer src=/assets/js/main.js></script>
+  <script defer src=/assets/js/ga.js></script>
+  <script defer src=/assets/js/highlight.pack.js></script>
+
+  <link rel=icon             type =image/svg+xml sizes=any href=https://jxck.io/assets/img/jxck.svg>
+  <link rel=icon             type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="Web Font のサブセット化を Font Weight に応じて作り分けるとともに、それを Puppeteer を用いて生成するように変更した。">
+  <meta name=keywords            content="puppeteer,web font">
+  <meta name=theme-color         content=#000000>
+
+  <meta name=twitter:card        content=summary>
+  <meta name=twitter:site        content=@jxck_>
+  <meta name=twitter:url         content=https://blog.jxck.io/entries/2020-09-07/font-subsetting-with-puppeteer.html>
+  <meta name=twitter:title       content="Puppeteer で静的サイトの Font Subsetting | blog.jxck.io">
+  <meta name=twitter:description content="Web Font のサブセット化を Font Weight に応じて作り分けるとともに、それを Puppeteer を用いて生成するように変更した。">
+  <meta name=twitter:image       content=https://jxck.io/assets/img/jxck.png>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2020-09-07/font-subsetting-with-puppeteer.html>
+  <meta property=og:title        content="Puppeteer で静的サイトの Font Subsetting | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="Web Font のサブセット化を Font Weight に応じて作り分けるとともに、それを Puppeteer を用いて生成するように変更した。">
+  <meta property=og:image        content=https://jxck.io/assets/img/jxck.png>
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Puppeteer で静的サイトの Font Subsetting | blog.jxck.io",
+    "image": [
+      "https://jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2020-09-07T08:00:00+08:00",
+    "dateModified": "2020-09-07T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.60x60.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": "Web Font のサブセット化を Font Weight に応じて作り分けるとともに、それを Puppeteer を用いて生成するように変更した。"
+  }
+  </script>
+
+  <title>Puppeteer で静的サイトの Font Subsetting | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=/assets/img/blog.svg   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/searches                 ><img width=30 height=30 loading=eager src=/assets/img/search.svg title=search alt=search></a>
+        <li><a href="https://blog.jxck.io/entries/2020-09-07/font-subsetting-with-puppeteer.amp.html#development=1" aria-label="amp version">
+                                               <img width=30 height=30 loading=eager src=/assets/img/amp.svg    title=amp    alt="amp version"></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=/assets/img/up.svg     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=/assets/img/rss.svg    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=/assets/img/humans.svg title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=/assets/img/jxck.svg   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/markdown.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2020-09-07>2020-09-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-07>2020-09-07</time></dd></div>
+      <div><dt class=tags>tags</dt><dd>[<a href="/tags/puppeteer.html">puppeteer</a><i>,</i><a href="/tags/web%20font.html">web font</a>]</dd></div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headdings</summary>
+            <ul>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#web-font-の静的サブセット>## Web Font の静的サブセット</a>
+              <li><a href=#regular-と-bold-の最適化>## Regular と Bold の最適化</a>
+              <li><a href=#puppeteer-による実装>## Puppeteer による実装</a>
+              <li><a href=#確認>## 確認</a>
+              <li><a href=#outro>## Outro</a>
+            </ul>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+    <article>
+      <h1><a href=/entries/2020-09-07/font-subsetting-with-puppeteer.html>Puppeteer で静的サイトの Font Subsetting</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>Web Font のサブセット化を Font Weight に応じて作り分けるとともに、それを Puppeteer を用いて生成するように変更した。
+      </section>
+      <section>
+        <h2 id="web-font-の静的サブセット"><a href="#web-font-の静的サブセット">Web Font の静的サブセット</a></h2>
+        <p>本サイトで提供している Web Font は当初、文字を事前に選定して生成したものを使っていた。
+        <ul>
+          <li><a href="https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html">Noto Sans の Web Font 対応とサブセットによる最適化</a>
+        </ul>
+        <p>当時はコンテンツがなかったが、コンテンツも増えた後は、コンテンツの原稿である markdown ファイルから使用している文字を抽出して生成するように変更していた。
+        <p>これでおおよそ必要最小限のサイズにすることができていた。
+      </section>
+      <section>
+        <h2 id="regular-と-bold-の最適化"><a href="#regular-と-bold-の最適化">Regular と Bold の最適化</a></h2>
+        <p>本サイトでは Font Weight として Regular(400) と Bold(700) を提供しているが、これまでは抽出した文字種を Bold/Regular 両方でビルドしていた。
+        <p>しかし、 Regular でしか使われてない文字が Bold にも入っており、 Bold 側のサイズをより削減できるという既知の問題があった。
+        <p>本サイトの HTML は markdown をパースし、独自のビルダで変換しているため、こうした処理は markdown の AST を元に生成する方針を取っていたが、 HTML への変換結果をみないと bold か regular かを判別できないため、実装が単純に面倒で後回しにしていた。
+      </section>
+      <section>
+        <h2 id="puppeteer-による実装"><a href="#puppeteer-による実装">Puppeteer による実装</a></h2>
+        <p>本サイトが全て静的に HTML 生成していることを利用し、 Puppeteer でローカルスクレイピングを行うことで、そこから必要な文字種類を取得することにした。
+        <p>単純に document 全体を対象要素のみに絞って、 textContent を取得しているだけだ。
+        <ul>
+          <li><a href="https://github.com/Jxck/jxck.io/blob/master/www.jxck.io/assets/font/subset.mjs">subset.mjs</a>
+        </ul>
+        <p>これにより、これまで同じサイズだった Bold は必要最低限に減らすことができた。
+        <p>Regular は、 Bold にあって Regular には無い文字が減らせた一方、これまで取りこぼしていた文字を収録しきったためトータルでは多くなっている。
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/table.css>
+        <table>
+          <thead>
+            <tr>
+              <th class=align-left>Type</th>
+              <th class=align-right>Regular</th>
+              <th class=align-right>Bold</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class=align-left>before</td>
+              <td class=align-right>343.0K</td>
+              <td class=align-right>354.0K</td>
+            </tr>
+            <tr>
+              <td class=align-left>after</td>
+              <td class=align-right>343.6K</td>
+              <td class=align-right>164.0K</td>
+            </tr>
+            <tr>
+              <td class=align-left>diff</td>
+              <td class=align-right>+0.4K</td>
+              <td class=align-right>-179.5K</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section>
+        <h2 id="確認"><a href="#確認">確認</a></h2>
+        <p>生成し直したフォントを適用した結果、本当に漏れがないかの確認は、目視では無理なので devtools を用いて Computed Style を見ることになる。
+        <p>これも手動でやるのは面倒なので、同様に Puppeteer で自動化して以下のように確認している。
+        <ul>
+          <li><a href="https://github.com/Jxck/jxck.io/blob/master/www.jxck.io/assets/font/rendered-font.mjs">rendered-font.mjs</a>
+        </ul>
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>Font Weight に応じてフォントセットのリストを作り分けたところ 180KB 近くアセットサイズを削減することができた。
+        <p>また Puppeteer による HTML レベルでの正確なリストの取得や、確認の自動化を可能とした。
+        <p>これ以上 WebFont のサイズを減らすのは難しいと思うが、今後もさらなる最適化の手法があれば検証していきたい。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small> See <small><a href=/policies/site.html>Site Policy</a> and <a href=/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <ins class=adsbygoogle data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-2902784829138215 data-ad-slot=9735419796></ins>
+  </footer>
+</body>
+</html>
