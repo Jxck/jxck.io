@@ -9,9 +9,7 @@
 #include <openssl/sha.h>
 #include <openssl/trust_token.h>
 
-
 int main(int argc, char **argv) {
-
   // TRUST_TOKEN_experiment_v1 is an experimental Trust Tokens protocol using
   // PMBTokens and P-384.
   const TRUST_TOKEN_METHOD *method = TRUST_TOKEN_experiment_v1();
@@ -67,7 +65,6 @@ int main(int argc, char **argv) {
     exit(0);
   }
 
-
   // client に公開鍵 |key| を紐付ける
   // |*out_key_index| に登録されたインデックスが入る
   // |key| がパースできなかったり、多すぎるとエラー
@@ -88,13 +85,11 @@ int main(int argc, char **argv) {
     exit(0);
   }
 
-
   // ED25519 の公開鍵と秘密鍵のペアを生成
   // generated, public/private key pair.
   uint8_t ed25519_private_key[ED25519_PRIVATE_KEY_LEN];
   uint8_t ed25519_public_key[ED25519_PUBLIC_KEY_LEN];
   ED25519_keypair(ed25519_public_key, ed25519_private_key);
-
 
   // EVP_PKEY への変換
   // Raw keys
@@ -127,7 +122,6 @@ int main(int argc, char **argv) {
     exit(0);
   }
 
-
   //////////////////////////////////////////////////////////////////////////
   // ここまでで準備完了
   //////////////////////////////////////////////////////////////////////////
@@ -141,8 +135,6 @@ int main(int argc, char **argv) {
     fprintf(stderr, "failed to generate trust token metadata key.\n");
     exit(0);
   }
-
-
 
   // 2. CLIENT で issuaunce を開始する
   // |count| 分の trust token リクエストを生成し |out| と |out_len| に入れる
@@ -183,8 +175,6 @@ int main(int argc, char **argv) {
   printf("ISSUER(issue)\tresponse(%zu): %p\n", resp_len, response);
   printf("ISSUER(issue)\ttokens_issued: %zu\n", tokens_issued);
 
-
-
   // 4. Client が |response| から token を取り出す
   // |out_key_index| に token のリストと署名に使った key の index を入れる
   // これで使った鍵がわかり、無かった(新しい key commitment がある)場合は捨てる
@@ -197,7 +187,6 @@ int main(int argc, char **argv) {
     exit(0);
   }
   printf("CLIENT(finish_issuance)\tused_key: %zu, token count: %li\n", used_key, sk_TRUST_TOKEN_num(tokens));
-
 
   // 5. token を取り出す
   TRUST_TOKEN* token = sk_TRUST_TOKEN_pop(tokens);
@@ -226,8 +215,6 @@ int main(int argc, char **argv) {
     exit(0);
   }
   fprintf(stderr, "CLIENT(begin_redemption)\tredeem_request(%zu): %p\n", redeem_request_len, &redeem_request);
-
-
 
   // 7. issuer redeem
   // |request| を redemption し token を検証する
@@ -261,7 +248,6 @@ int main(int argc, char **argv) {
   fprintf(stderr, "ISSUER(redeem) client_data(%zu): %s\n",  client_data_len, client_data);
   fprintf(stderr, "ISSUER(redeem) redemption_time:  %lu\n", redemption_time);
 
-
   // 8. client redumption finish
   // issuer からの |response| の SRR を verify する
   // Valid なら |out_srr| |out_sig| を返す
@@ -277,7 +263,6 @@ int main(int argc, char **argv) {
   }
   fprintf(stderr, "CLIENT(finish_redemption) srr(%zu): %p\n", srr_len, srr);
   fprintf(stderr, "CLIENT(finish_redemption) sig(%zu): %p\n", sig_len, sig);
-
 
   // 9. Private Metadata の取り出し
   // |encrypted_bit| を metadata key |key| と |nonce| を使ってデコード
@@ -301,7 +286,6 @@ int main(int argc, char **argv) {
     exit(0);
   }
   fprintf(stderr, "decode_private_metadata: %hhuu\n", decode_private_metadata);
-
 
   TRUST_TOKEN_CLIENT_free(client);
   TRUST_TOKEN_ISSUER_free(issuer);

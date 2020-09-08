@@ -9,7 +9,6 @@
 #include <openssl/sha.h>
 #include <openssl/trust_token.h>
 
-
 void hexdump(uint8_t *s, size_t len) {
   for(int i = 0; i < 3; i++) {
     fprintf(stderr, "0x%02x,", s[i]);
@@ -23,17 +22,13 @@ void hexdump(uint8_t *s, size_t len) {
 
 int base64_encode(uint8_t *buff, size_t buff_len,
                   uint8_t **out, size_t *out_len) {
-
-  // Base64 エンコードするのに必要な長さ
   size_t encoded_len;
   if (!EVP_EncodedLength(&encoded_len, buff_len)) {
     fprintf(stderr, "failed to calculate base64 length");
     return 0;
   }
 
-  // メモリを確保して Base64 に
   *out = (uint8_t*)malloc((encoded_len)*sizeof(uint8_t));
-  // NULL 終端を除いた長さを返す
   *out_len  = EVP_EncodeBlock(*out, buff, buff_len);
   return 1;
 }
@@ -41,14 +36,12 @@ int base64_encode(uint8_t *buff, size_t buff_len,
 int base64_decode(uint8_t *buff, size_t buff_len,
                   uint8_t **out, size_t *out_len) {
 
-  // Base64 デコードに必要な長さ
   size_t decoded_len;
   if (!EVP_DecodedLength(&decoded_len, buff_len)) {
     fprintf(stderr, "failed to calculate decode length\n");
     return 0;
   }
 
-  // Base64 デコード結果と、実際の長さ
   *out = (uint8_t*)malloc(decoded_len*sizeof(uint8_t));
   if (!EVP_DecodeBase64(*out, out_len, decoded_len, buff, buff_len)) {
     fprintf(stderr, "failed to decode base64\n");
@@ -56,37 +49,6 @@ int base64_decode(uint8_t *buff, size_t buff_len,
   }
 
   return 1;
-}
-
-void base64_test() {
-  // Base64 にする
-  uint8_t data[] = "ABCDEFG";
-  int data_len = sizeof(data) - 1; // 文字列の場合は NULL 終端を省く
-
-  // uint8_t data[] = {65, 66, 67, 68, 69, 70, 71};
-  // int data_len = sizeof(data);
-
-  size_t data_base64_len;
-  uint8_t* data_base64;
-  if (!base64_encode(data, data_len, &data_base64, &data_base64_len)) {
-    fprintf(stderr, "fail to encode base64\n");
-    exit(0);
-  }
-  fprintf(stderr, "data_base64(%lu): %s\n", data_base64_len, data_base64);
-
-
-  size_t out_len;
-  uint8_t* decoded;
-  base64_decode(data_base64, data_base64_len, &decoded, &out_len);
-  fprintf(stderr, "data(%li): %s\n", out_len, decoded);
-
-  for (int i = 0; i < out_len; i ++) {
-    fprintf(stderr, "'%d', ",  decoded[i]);
-  }
-  fprintf(stderr, "\n");
-
-  free(data_base64);
-  free(decoded);
 }
 
 int main(int argc, char **argv) {
@@ -124,7 +86,6 @@ int main(int argc, char **argv) {
   fprintf(stderr, "pub_key(%zu): \t", pub_key_len);
   hexdump(pub_key, pub_key_len);
 
-
   // ED25519 の公開鍵と秘密鍵のペアを生成
   // generated, public/private key pair.
   size_t srr_priv_key_len = ED25519_PRIVATE_KEY_LEN;
@@ -137,7 +98,6 @@ int main(int argc, char **argv) {
   hexdump(srr_priv_key, srr_priv_key_len);
   fprintf(stderr, "srr_pub_key(%lu): \t", srr_pub_key_len);
   hexdump(srr_pub_key, srr_pub_key_len);
-
 
   // Public Key の Base64
   size_t pub_key_base64_len;
@@ -157,7 +117,6 @@ int main(int argc, char **argv) {
   }
   fprintf(stderr, "priv_key_base64(%lu): %s\n", priv_key_base64_len, priv_key_base64);
 
-
   // SRR Public Key を Base64 にする
   size_t srr_pub_key_base64_len;
   uint8_t* srr_pub_key_base64;
@@ -166,7 +125,6 @@ int main(int argc, char **argv) {
     exit(0);
   }
   fprintf(stderr, "srr_pub_key_base64(%lu): %s\n", srr_pub_key_base64_len, srr_pub_key_base64);
-
 
   // SRR Private Key を Base64 にする
   size_t srr_priv_key_base64_len;
@@ -202,14 +160,10 @@ int main(int argc, char **argv) {
   fprintf(stderr, "srr_pub_key(%li): \t", srr_pub_key_decoded_len);
   hexdump(srr_pub_key_decoded, srr_pub_key_decoded_len);
 
-
   free(pub_key_base64);
   free(priv_key_base64);
   free(srr_pub_key_base64);
   free(srr_priv_key_base64);
   free(srr_pub_key_decoded);
   free(srr_priv_key_decoded);
-
-  // fprintf(stderr, "\n\n\n\n\n\n\n\n");
-  // base64_test();
 }
