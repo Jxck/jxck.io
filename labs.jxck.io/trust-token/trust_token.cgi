@@ -3,6 +3,7 @@
 require "erb"
 require "uri"
 require "pathname"
+require "json"
 include ERB::Util
 
 MAX_LENGTH = 30
@@ -12,11 +13,49 @@ def log(*a)
   #p(*a)
 end
 
+def key_commitment()
+  trust_token_key = JSON.parse(File.read('./trust_token_key.json'))
+  trust_token     = JSON.parse(File.read('./package.json'))['trust_token']
+  log(trust_token)
+
+  srrkey           = trust_token_key['srr_pub_key_base64']
+  y                = trust_token_key['pub_key_base64']
+  issuer           = trust_token['ISSUER']
+  protocol_version = trust_token['protocol_version']
+  batchsize        = trust_token['batchsize']
+  expiry           = trust_token['expiry']
+
+  commitment = {}
+  commitment[issuer] = {
+    protocol_version: protocol_version,
+    batchsize: batchsize,
+    srrkey: srrkey,
+    '1': {
+      Y: y,
+      expiry: expiry
+    }
+  }
+
+  html = JSON.pretty_generate({
+    "ISSUER": issuer,
+    "COMMITMENT": commitment
+  })
+
+  headers = {
+    "Content-Type"   => "text/json; charset=utf-8",
+    "Content-Length" => html.size,
+  }.entries().map{|e| e.join(": ")}.join("\n")
+
+  STDOUT.print "Status: 200 OK\n"
+  STDOUT.print "#{headers}\n"
+  STDOUT.print "\n"
+  STDOUT.print html
+end
 
 def issue()
   sec_trust_token = ENV["HTTP_SEC_TRUST_TOKEN"]
 
-  token = `./issue #{sec_trust_token}`
+  token = `./bin/issue #{sec_trust_token}`
 
   headers = {
     "Content-Type"   => "text/html; charset=utf-8",
@@ -34,7 +73,7 @@ end
 def redemption()
   sec_trust_token = ENV["HTTP_SEC_TRUST_TOKEN"]
 
-  token = `./redemption #{sec_trust_token}`
+  token = `./bin/redemption #{sec_trust_token}`
 
   headers = {
     "Content-Type"   => "text/html; charset=utf-8",
@@ -66,14 +105,14 @@ def send_srr()
   STDOUT.print html
 end
 
-
-
 begin
   # log ENV.entries.join("\n")
 
   uri = ENV["REQUEST_URI"]
 
   case uri
+  when "/.well-known/trust-token/key-commitment"
+    key_commitment()
   when "/.well-known/trust-token/request"
     issue()
   when "/.well-known/trust-token/redemption"

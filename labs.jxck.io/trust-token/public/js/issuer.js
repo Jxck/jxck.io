@@ -10,35 +10,18 @@ function base64decode(str) {
 document.on('DOMContentLoaded', async (e) => {
   console.log(e)
 
-  const res = await fetch('trust_token_key.json')
-  const json = await res.json()
-  console.log(json);
+  const {ISSUER, COMMITMENT} = await (await fetch('/.well-known/trust-token/key-commitment')).json()
 
-  const ISSUER = 'https://labs.jxck.io'
-  const protocol_version = "TrustTokenV1"
-  const batchsize        = 10
-  const expiry           = "1622574000000000"
-
-  const srrkey = json.srr_pub_key_base64
-  const Y = json.pub_key_base64
-
-  const COMMITMENT = {}
-  COMMITMENT[ISSUER] = {
-    protocol_version,
-    batchsize,
-    srrkey,
-    "1": { Y, expiry }
-  }
-
+  // display chrome flag with key-commitment
   const CMD = `/Applications/Google\\ Chrome\\ Canary.app/Contents/MacOS/Google\\ Chrome\\ Canary \\
   --additional-trust-token-key-commitments='${JSON.stringify(COMMITMENT)}' \\
   --auto-open-devtools-for-tabs \\
   --v=1 \\
   https://labs.jxck.io/trust-token/issuer.html \\
-  &gt; canary_debuglog.txt 2&gt;&amp;1
+  > canary_debuglog.txt 2>&1
   `
 
-  $('#flag').innerHTML = CMD;
+  $('#flag').textContent = CMD;
 
   $('#yes').on('click', async () => {
     const res = await fetch(`/.well-known/trust-token/request`, {

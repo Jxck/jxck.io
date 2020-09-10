@@ -1,21 +1,29 @@
+CC := gcc
+CFLAGS := -I./boringssl/include -L./boringssl/build/crypto -lcrypto -lpthread
+
 all:
-	make key
+	make trust_token
+	make key_generator
 	make issue
 	make redemption
 
+trust_token: c/trust_token.c
+	$(CC) c/trust_token.c -o ./bin/trust_token $(CFLAGS)
+	./bin/trust_token
 
-trust-token:
-	gcc -I./boringssl/include c/trust_token.c boringssl/build/crypto/libcrypto.a -lpthread
-	./a.out
+key_generator: c/key_generator.c
+	$(CC) c/key_generator.c -o ./bin/key_generator $(CFLAGS)
 
-key: c/key_generation.c
-	gcc -I./boringssl/include c/key_generation.c -o key_generation boringssl/build/crypto/libcrypto.a -lpthread
+issue: c/issue.c
+	$(CC) c/issue.c -o ./bin/issue $(CFLAGS)
 
-issue: ./c/issue.c
-	gcc -I./boringssl/include c/issue.c -o issue boringssl/build/crypto/libcrypto.a -lpthread
+redemption: c/redemption.c
+	$(CC) c/redemption.c -o ./bin/redemption $(CFLAGS)
 
-redemption: ./c/redemption.c
-	gcc -I./boringssl/include c/redemption.c -o redemption boringssl/build/crypto/libcrypto.a -lpthread
 
+.PHONY: generate_key, clean
 generate_key:
-	./key_generation 2>/dev/null 1>./trust_token_key.json
+	./bin/key_generator 2>/dev/null 1>./trust_token_key.json
+
+clean:
+	rm -f ./bin/*
