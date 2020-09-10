@@ -17,7 +17,7 @@ document.on('DOMContentLoaded', async (e) => {
   --additional-trust-token-key-commitments='${JSON.stringify(COMMITMENT)}' \\
   --auto-open-devtools-for-tabs \\
   --v=1 \\
-  https://labs.jxck.io/trust-token/issuer.html \\
+  https://issuer.example \\
   > canary_debuglog.txt 2>&1
   `
 
