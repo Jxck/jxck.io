@@ -1,42 +1,80 @@
 <!DOCTYPE html>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 
-<meta http-equiv=origin-trial content="Anha8n5weiE1qmmioiu3ohgnpbUHsZXnFDiI8DtT8BWr8qp5y/dAYYBOgNclM4Gj0DSKtmCzHFqg9oea3q3aNA4AAABfeyJvcmlnaW4iOiJodHRwczovL2p4Y2suaW86NDQzIiwiZmVhdHVyZSI6IlRydXN0VG9rZW5zIiwiZXhwaXJ5IjoxNjAyMDU5NzQxLCJpc1N1YmRvbWFpbiI6dHJ1ZX0=">
+<!--
+<meta
+  http-equiv="origin-trial"
+  content="AnSBDHXEt4c/eE/KhPPE6KUKx7HlXzSKVRkb9daXxroGDFkruGl+1K9DkTPpGtfUUxah1L4xMEHA1Vyf7X3mow4AAABfeyJvcmlnaW4iOiJodHRwczovL3RydXN0LXRva2VuLWRlbW8uZ2xpdGNoLm1lOjQ0MyIsImZlYXR1cmUiOiJUcnVzdFRva2VucyIsImV4cGlyeSI6MTYwMzM1NjY1MH0="
+/>
+-->
+<meta
+  http-equiv="origin-trial"
+  content="Anha8n5weiE1qmmioiu3ohgnpbUHsZXnFDiI8DtT8BWr8qp5y/dAYYBOgNclM4Gj0DSKtmCzHFqg9oea3q3aNA4AAABfeyJvcmlnaW4iOiJodHRwczovL2p4Y2suaW86NDQzIiwiZmVhdHVyZSI6IlRydXN0VG9rZW5zIiwiZXhwaXJ5IjoxNjAyMDU5NzQxLCJpc1N1YmRvbWFpbiI6dHJ1ZX0="
+/>
 
 <title>Trust Token Issuer DEMO</title>
 
 <style>
-pre {
-  background-color: #ccc;
-}
+  body {
+    font-family: sans-serif;
+  }
+  pre {
+    background-color: #ccc;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
 </style>
 
 <h1>Trust Token Issuer DEMO</h1>
 
 <h2>how to use</h2>
 
-<p>1. open Google Chrome Canary &lt; M87 with following flag (in macOS case)
+<p>1. open Google Chrome Canary &gt; M87 with following flag (in macOS case)</p>
 
-<pre id=flag></pre>
+<pre id="flag"></pre>
 
 <p>2. Are you a human ?</p>
-<button id=yes>Yes</button>
+<button id="yes">Yes</button>
 
 <p>3. see the console for detail. and results are below</p>
-<pre id=result>
-</pre>
+<pre id="result"></pre>
 
-<p>see also</p>
+<h2>see also</h2>
 <ul>
-  <li><a href=http://www.chromium.org/updates/trust-token                       >Trust Token API - The Chromium Projects       </a>
-  <li><a href=https://groups.google.com/a/chromium.org/g/blink-dev/c/UIvia1WwIhk>Intent to Experiment: Trust Token API         </a>
-  <li><a href=https://bugs.chromium.org/p/chromium/issues/detail?id=1014199     >1014199 - Trust Token API - chromium          </a>
-  <li><a href=https://github.com/WICG/trust-token-api#trust-token-api-explainer >GitHub - WICG/trust-token-api: Explainer</a>
-  <li><a href=https://github.com/WICG/trust-token-api/blob/master/ISSUER_PROTOCOL.md>trust-token-api/ISSUER_PROTOCOL.md</a>
-  <li><a href=https://source.chromium.org/chromium/chromium/src/+/master:third_party/boringssl/src/crypto/trust_token/trust_token_test.cc>boringssl/src/crypto/trust_token/trust_token_test.cc</a>
+  <li>
+    <a href="http://www.chromium.org/updates/trust-token"
+      >Trust Token API - The Chromium Projects</a
+    >
+  </li>
+  <li>
+    <a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/UIvia1WwIhk"
+      >Intent to Experiment: Trust Token API</a
+    >
+  </li>
+  <li>
+    <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=1014199"
+      >1014199 - Trust Token API - chromium</a
+    >
+  </li>
+  <li>
+    <a href="https://github.com/WICG/trust-token-api#trust-token-api-explainer"
+      >GitHub - WICG/trust-token-api: Explainer</a
+    >
+  </li>
+  <li>
+    <a
+      href="https://github.com/WICG/trust-token-api/blob/master/ISSUER_PROTOCOL.md"
+      >trust-token-api/ISSUER_PROTOCOL.md</a
+    >
+  </li>
+  <li>
+    <a
+      href="https://source.chromium.org/chromium/chromium/src/+/master:third_party/boringssl/src/crypto/trust_token/trust_token_test.cc"
+      >boringssl/src/crypto/trust_token/trust_token_test.cc</a
+    >
+  </li>
 </ul>
 
-
-<script src=https://cdn.jsdelivr.net/npm/cbor-js-unofficial@0.1.0-a4/cbor.min.js></script>
-<script src=public/js/issuer.js></script>
+<script src="https://cdn.jsdelivr.net/npm/cbor-js-unofficial@0.1.0-a4/cbor.min.js"></script>
+<script src="public/js/issuer.js"></script>

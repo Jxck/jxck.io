@@ -18,16 +18,8 @@ int main(int argc, char **argv) {
   size_t   priv_key_len, pub_key_len;
   uint32_t key_id = 0x0001;
 
-  // Trust Token keypair を生成
-  // |id| がラベル
-  // 秘密鍵の値と長さを |out_priv_key|  |*out_priv_key_len| に
-  // 公開鍵の値と長さを |out_pub_key|   |*out_pub_key_len| に
-  //
-  // 最大長は |max_priv_key_len| and |max_pub_key_len| で
-  // |TRUST_TOKEN_MAX_PRIVATE_KEY_SIZE| and |TRUST_TOKEN_MAX_PUBLIC_KEY_SIZE| にする
-  //
-  // WARNING: API は変わるかも。値は保存されないので自分で保持する。
-  //
+  // generate Trust Token keypair
+  // |id|: id for key
   // 1:success, 0:error
   if (!TRUST_TOKEN_generate_key(TRUST_TOKEN_experiment_v1(),
                                 priv_key, &priv_key_len, TRUST_TOKEN_MAX_PRIVATE_KEY_SIZE,
@@ -39,11 +31,11 @@ int main(int argc, char **argv) {
   fprintf(stderr, "priv_key_len: \t%zu\n", priv_key_len);
   fprintf(stderr, "pub_key_len: \t%zu\n",  pub_key_len);
 
-  // Client 側の実装
-  // |TRUST_TOKEN_CLIENT| を生成
-  // |max_batchsize| よりも小さい batch を使って issue する必要
-  // |max_batchsize| より小さい batch を作るべき
-  // |max_batchsize| が大きすぎたらエラー
+  // Client Side Implementation
+  //
+  // generate |TRUST_TOKEN_CLIENT|
+  // bactch sould be smaller than |max_batchsize|
+  // error if |max_batchsize| is too big
   uint16_t client_max_batchsize = 10;
   TRUST_TOKEN_CLIENT* client = TRUST_TOKEN_CLIENT_new(method, client_max_batchsize);
   if (!client) {
@@ -51,13 +43,12 @@ int main(int argc, char **argv) {
     exit(0);
   }
 
-  // Issuer 側の実装
+  // Issuer Side Implementation
   //
-  // |TRUST_TOKEN_ISSUER| は複数のやり取りに再利用可能
-  // 複数のスレッドで使う場合は mutation に注意
-  // |const| pointer な関数なら no-mutating そうでなければ mutating
-  // |max_batchsize| より小さい batch を作るべき
-  // |max_batchsize| が大きすぎたらエラー
+  // |TRUST_TOKEN_ISSUER| is reusable
+  // |const| if pointer then no-mutating else mutating
+  // bactch sould be smaller than |max_batchsize|
+  // error if |max_batchsize| is too big
   uint16_t issuer_max_batchsize = 10;
   TRUST_TOKEN_ISSUER* issuer = TRUST_TOKEN_ISSUER_new(method, issuer_max_batchsize);
   if (!issuer) {
@@ -65,9 +56,8 @@ int main(int argc, char **argv) {
     exit(0);
   }
 
-  // client に公開鍵 |key| を紐付ける
-  // |*out_key_index| に登録されたインデックスが入る
-  // |key| がパースできなかったり、多すぎるとエラー
+  // add Public Key to Client
+  // |*out_key_index| is added index 
   // 1:success, 0:error
   size_t key_index;
   if (!TRUST_TOKEN_CLIENT_add_key(client, &key_index, pub_key, pub_key_len)) {
@@ -76,30 +66,25 @@ int main(int argc, char **argv) {
   }
   fprintf(stderr, "Public Key has added to Client with index(%zu)\n", key_index);
 
-  // Issuer に秘密鍵 |key| を紐付ける
-  // |TRUST_TOKEN_generate_key| で作られた key に限る
-  // |key| がパースできなかったり、多すぎるとエラー
+  // add Private Key to Issuer
+  // key sould be generated via |TRUST_TOKEN_generate_key|
   // 1:success, 0:error
   if (!TRUST_TOKEN_ISSUER_add_key(issuer, priv_key, priv_key_len)) {
     fprintf(stderr, "failed to add key in TRUST_TOKEN Issuer.\n");
     exit(0);
   }
 
-  // ED25519 の公開鍵と秘密鍵のペアを生成
-  // generated, public/private key pair.
+  // ED25519 Public/Private Key
   uint8_t ed25519_private_key[ED25519_PRIVATE_KEY_LEN];
   uint8_t ed25519_public_key[ED25519_PUBLIC_KEY_LEN];
   ED25519_keypair(ed25519_public_key, ed25519_private_key);
 
-  // EVP_PKEY への変換
-  // Raw keys
+  // convert to EVP_PKEY
   //
   // Some keys types support a "raw" serialization. Currently the only supported
   // raw format is Ed25519, where the public key and private key formats are those
   // specified in RFC 8032. Note the RFC 8032 private key format is the 32-byte
   // prefix of |ED25519_sign|'s 64-byte private key.
-
-  // 鍵をラップした |EVP_PKEY| を生成する
   // 1:success, 0:error
   EVP_PKEY* ed25519_priv = EVP_PKEY_new_raw_private_key(EVP_PKEY_ED25519, NULL, ed25519_private_key, 32); // TODO: 64 ??
   EVP_PKEY* ed25519_pub  = EVP_PKEY_new_raw_public_key(EVP_PKEY_ED25519,  NULL, ed25519_public_key,  32);
@@ -108,14 +93,14 @@ int main(int argc, char **argv) {
     exit(0);
   }
 
-  // Issuer が SRR に署名するために秘密鍵を設定
+  // add Sign Key for SRR to issuer
   // 1:success, 0:error
   if (!TRUST_TOKEN_ISSUER_set_srr_key(issuer, ed25519_priv)) {
     fprintf(stderr, "failed to set SRR key to TRUST_TOKEN Issuer.\n");
     exit(0);
   }
 
-  // Client が SRR を検証するために公開鍵を設定
+  // add Validation Key for SRR to client
   // 1:success, 0:error
   if (!TRUST_TOKEN_CLIENT_set_srr_key(client, ed25519_pub)) {
     fprintf(stderr, "failed to set SRR key to TRUST_TOKEN Client.\n");
@@ -123,11 +108,11 @@ int main(int argc, char **argv) {
   }
 
   //////////////////////////////////////////////////////////////////////////
-  // ここまでで準備完了
+  // Ready to Request
   //////////////////////////////////////////////////////////////////////////
 
-  // 1. SRR(Signed Redemption Records) の生成
-  // Private Metadata を暗号化して SRR にするための鍵として 32 byte の乱数を設定
+  // 1. SRR(Signed Redemption Records) generation
+  // Private Metadata (32byte random) for encrypt SRR
   // 1:success, 0:error
   uint8_t metadata_key[32];
   RAND_bytes(metadata_key, sizeof(metadata_key));
@@ -136,9 +121,8 @@ int main(int argc, char **argv) {
     exit(0);
   }
 
-  // 2. CLIENT で issuaunce を開始する
-  // |count| 分の trust token リクエストを生成し |out| と |out_len| に入れる
-  // 取得したバッファは |OPENSSL_free| で消す
+  // 2. Client starts issuing
+  // generate trust token by |count|
   // 1:success, 0:error
   uint8_t* request = NULL;
   size_t request_len;
@@ -149,13 +133,12 @@ int main(int argc, char **argv) {
   }
   printf("CLIENT(begin_issuance)\trequest(%zu): %p\n", request_len, request);
 
-  // 3. ISSUER が |request| を元に |max_issuance| 分 token を発行する
-  // blinded token を作り、レスポンスをバッファに入れ |out|/|out_len| に返す
-  // |*out_tokens_issued| に issue した数を入れる
-  // Token は |public_metadata| と |private_metadata| で issue される
-  // |public_metadata| はすでに設定された key IDs.
-  // |private_metadata| は 0 or 1.
-  // 終わったら |OPENSSL_free|.
+  // 3. ISSUER issues token
+  // save blinded token into |out|/|out_len|
+  // save count into |*out_tokens_issued|
+  // Token is issued by |public_metadata| & |private_metadata|
+  // |public_metadata| is key IDs.
+  // |private_metadata| is 0 or 1.
   // 1:success, 0:error
   uint8_t* response = NULL;
   size_t   resp_len, tokens_issued;
@@ -175,11 +158,10 @@ int main(int argc, char **argv) {
   printf("ISSUER(issue)\tresponse(%zu): %p\n", resp_len, response);
   printf("ISSUER(issue)\ttokens_issued: %zu\n", tokens_issued);
 
-  // 4. Client が |response| から token を取り出す
-  // |out_key_index| に token のリストと署名に使った key の index を入れる
-  // これで使った鍵がわかり、無かった(新しい key commitment がある)場合は捨てる
-  // 終わったら |sk_TRUST_TOKEN_pop_free| (でも中でやってるっぽい?)
-  // 失敗したら empty list
+  // 4. Client get token from |response|
+  // |out_key_index| is key index for sign
+  // |sk_TRUST_TOKEN_pop_free| if finished
+  // empty list if fail
   size_t used_key;
   STACK_OF(TRUST_TOKEN)* tokens = TRUST_TOKEN_CLIENT_finish_issuance(client, &used_key, response, resp_len);
   if (sk_TRUST_TOKEN_num(tokens) < 1) {
@@ -188,7 +170,7 @@ int main(int argc, char **argv) {
   }
   printf("CLIENT(finish_issuance)\tused_key: %zu, token count: %li\n", used_key, sk_TRUST_TOKEN_num(tokens));
 
-  // 5. token を取り出す
+  // 5. take token
   TRUST_TOKEN* token = sk_TRUST_TOKEN_pop(tokens);
   if (!token) {
     fprintf(stderr, "no token in the stack.\n");
@@ -196,10 +178,9 @@ int main(int argc, char **argv) {
   }
 
   // 6. client redemption request
-  // |token| を検証するためのリクエストを生成する
-  // |data| を署名し、シリアライズしたリクエストを |out| に入れる
-  // |time| unix time で issuer response の検証に使う
-  // 終わったら |OPENSSL_free|
+  // |token| redemption request
+  // sign |data| and serialize into |out|
+  // |time| unix time for issuer response validation
   // 1:success, 0:error
   const uint8_t kClientData[] = "TEST CLIENT DATA";
   uint64_t kRedemptionTime    = 13374242;
@@ -217,14 +198,12 @@ int main(int argc, char **argv) {
   fprintf(stderr, "CLIENT(begin_redemption)\tredeem_request(%zu): %p\n", redeem_request_len, &redeem_request);
 
   // 7. issuer redeem
-  // |request| を redemption し token を検証する
-  // token が valid なら、 |lifetime| 秒の SRR が生成され、
-  // リクエストされた data と token を署名し、
-  // |out| に入れて返す
-  // 取り出された |TRUST_TOKEN| は |out_token|
-  // 取り出された client data が |out_client_data|
-  // redemption time は |*out_redemption_time|
-  // 終わったら |OPENSSL_free|
+  // redeem |request| token
+  // if token is valid, SRR with |lifetime|s are generated.
+  // sign requested data & token and save int |out|
+  // |TRUST_TOKEN| is |out_token|
+  // |out_client_data| is client data
+  // |*out_redemption_time| is redemption time
   // 1:success, 0:error
   uint8_t  *redeem_resp = NULL;
   size_t   redeem_resp_len;
@@ -249,8 +228,8 @@ int main(int argc, char **argv) {
   fprintf(stderr, "ISSUER(redeem) redemption_time:  %lu\n", redemption_time);
 
   // 8. client redumption finish
-  // issuer からの |response| の SRR を verify する
-  // Valid なら |out_srr| |out_sig| を返す
+  // verify SRR in |response| from issuer
+  // return |out_srr| |out_sig| if valid
   // 1:success, 0:error
   uint8_t *srr = NULL, *sig = NULL;
   size_t srr_len, sig_len;
@@ -264,10 +243,10 @@ int main(int argc, char **argv) {
   fprintf(stderr, "CLIENT(finish_redemption) srr(%zu): %p\n", srr_len, srr);
   fprintf(stderr, "CLIENT(finish_redemption) sig(%zu): %p\n", sig_len, sig);
 
-  // 9. Private Metadata の取り出し
-  // |encrypted_bit| を metadata key |key| と |nonce| を使ってデコード
-  // |TRUST_TOKEN_experiment_v1| の nonce は SRR の token-hash field.
-  // |*out_value| に decrypt された値(0 か 1)
+  // 9. Private Metadata
+  // decode |encrypted_bit| with metadata key |key| & |nonce|
+  // |TRUST_TOKEN_experiment_v1| 's nonce are SRR token-hash field.
+  // |*out_value| is decrypt result (0 / 1)
   // 1:success, 0:error
   const uint8_t kTokenHashDSTLabel[] = "TrustTokenV0 TokenHash";
   uint8_t token_hash[SHA256_DIGEST_LENGTH];
