@@ -1,80 +1,103 @@
 <!DOCTYPE html>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<html lang="en">
+  <head>
+    <title>Trust Token demo</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<!--
+    <meta http-equiv="origin-trial" content="AnSBDHXEt4c/eE/KhPPE6KUKx7HlXzSKVRkb9daXxroGDFkruGl+1K9DkTPpGtfUUxah1L4xMEHA1Vyf7X3mow4AAABfeyJvcmlnaW4iOiJodHRwczovL3RydXN0LXRva2VuLWRlbW8uZ2xpdGNoLm1lOjQ0MyIsImZlYXR1cmUiOiJUcnVzdFRva2VucyIsImV4cGlyeSI6MTYwMzM1NjY1MH0=">
+		-->
+    <meta http-equiv="origin-trial" content="Anha8n5weiE1qmmioiu3ohgnpbUHsZXnFDiI8DtT8BWr8qp5y/dAYYBOgNclM4Gj0DSKtmCzHFqg9oea3q3aNA4AAABfeyJvcmlnaW4iOiJodHRwczovL2p4Y2suaW86NDQzIiwiZmVhdHVyZSI6IlRydXN0VG9rZW5zIiwiZXhwaXJ5IjoxNjAyMDU5NzQxLCJpc1N1YmRvbWFpbiI6dHJ1ZX0=">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/cbor-js-unofficial@0.1.0-a4/cbor.min.js" defer></script>
+    <script src="public/js/issuer.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <h1>Trust Token demo</h1>
 
-<!--
-<meta
-  http-equiv="origin-trial"
-  content="AnSBDHXEt4c/eE/KhPPE6KUKx7HlXzSKVRkb9daXxroGDFkruGl+1K9DkTPpGtfUUxah1L4xMEHA1Vyf7X3mow4AAABfeyJvcmlnaW4iOiJodHRwczovL3RydXN0LXRva2VuLWRlbW8uZ2xpdGNoLm1lOjQ0MyIsImZlYXR1cmUiOiJUcnVzdFRva2VucyIsImV4cGlyeSI6MTYwMzM1NjY1MH0="
-/>
--->
-<meta
-  http-equiv="origin-trial"
-  content="Anha8n5weiE1qmmioiu3ohgnpbUHsZXnFDiI8DtT8BWr8qp5y/dAYYBOgNclM4Gj0DSKtmCzHFqg9oea3q3aNA4AAABfeyJvcmlnaW4iOiJodHRwczovL2p4Y2suaW86NDQzIiwiZmVhdHVyZSI6IlRydXN0VG9rZW5zIiwiZXhwaXJ5IjoxNjAyMDU5NzQxLCJpc1N1YmRvbWFpbiI6dHJ1ZX0="
-/>
+      <p>This site demonstrates Trust Token <a href="https://github.com/WICG/trust-token-api#trust-token-issuance">issuance and redemption</a>, using <a href="https://boringssl.googlesource.com/boringssl/">BoringSSL</a> to create an issuance service.</p>
+      <p>View code: <a href="https://glitch.com/edit/#!/trust-tokens">Glitch</a>, <a href="https://github.com/JackJey/trust-token">GitHub</a>.</p>
+      <p>Find out more: <a href="https://web.dev/trust-tokens">Getting started with Trust Tokens</a>.</p>
+      
+      <h2>How to use this demo</h2>
+      
+      <section>
+        <p>1. Open Chrome Canary 87 (or later) from a terminal. On MacOS use the following command:</p>
+          <div id="code">
+            <svg id="copy" height="24" width="24">
+              <title>Copy code</title>
+              <path d="M0 0h24v24H0z" fill="none"/>
+              <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+            </svg>
+            <pre id="flag"></pre>
+        </div>
+        <p><a href="https://www.chromium.org/developers/how-tos/run-chromium-with-flags">Run Chromium with flags</a> explains how to use Chrome with flags on other platforms.
+        </p>
+      </section>
 
-<title>Trust Token Issuer DEMO</title>
+      <section>
+        <p>2. Click the button to emulate authentication that you are a real human:</p>
+        <button id="yes">I am a human</button>
+      </section>
+      <section>
+        <p>Results are shown below and in the console.</p>
+        <pre id="result"></pre>
+      </section>
 
-<style>
-  body {
-    font-family: sans-serif;
-  }
-  pre {
-    background-color: #ccc;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-  }
-</style>
 
-<h1>Trust Token Issuer DEMO</h1>
-
-<h2>how to use</h2>
-
-<p>1. open Google Chrome Canary &gt; M87 with following flag (in macOS case)</p>
-
-<pre id="flag"></pre>
-
-<p>2. Are you a human ?</p>
-<button id="yes">Yes</button>
-
-<p>3. see the console for detail. and results are below</p>
-<pre id="result"></pre>
-
-<h2>see also</h2>
-<ul>
-  <li>
-    <a href="http://www.chromium.org/updates/trust-token"
-      >Trust Token API - The Chromium Projects</a
-    >
-  </li>
-  <li>
-    <a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/UIvia1WwIhk"
-      >Intent to Experiment: Trust Token API</a
-    >
-  </li>
-  <li>
-    <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=1014199"
-      >1014199 - Trust Token API - chromium</a
-    >
-  </li>
-  <li>
-    <a href="https://github.com/WICG/trust-token-api#trust-token-api-explainer"
-      >GitHub - WICG/trust-token-api: Explainer</a
-    >
-  </li>
-  <li>
-    <a
-      href="https://github.com/WICG/trust-token-api/blob/master/ISSUER_PROTOCOL.md"
-      >trust-token-api/ISSUER_PROTOCOL.md</a
-    >
-  </li>
-  <li>
-    <a
-      href="https://source.chromium.org/chromium/chromium/src/+/master:third_party/boringssl/src/crypto/trust_token/trust_token_test.cc"
-      >boringssl/src/crypto/trust_token/trust_token_test.cc</a
-    >
-  </li>
-</ul>
-
-<script src="https://cdn.jsdelivr.net/npm/cbor-js-unofficial@0.1.0-a4/cbor.min.js"></script>
-<script src="public/js/issuer.js"></script>
+      <h2>Find out more</h2>
+      <ul>
+        <li>
+          <a href="http://www.chromium.org/updates/trust-token"
+            >Trust Token API: The Chromium Projects</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://groups.google.com/a/chromium.org/g/blink-dev/c/UIvia1WwIhk"
+            >Intent to Experiment: Trust Token API</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://bugs.chromium.org/p/chromium/issues/detail?id=1014199"
+            >Chromium tracking bug</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://github.com/WICG/trust-token-api#trust-token-api-explainer"
+            >API explainer</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://github.com/WICG/trust-token-api/blob/master/ISSUER_PROTOCOL.md"
+            >TrustTokenV1 Issuer Protocol</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://source.chromium.org/chromium/chromium/src/+/master:third_party/boringssl/src/crypto/trust_token/trust_token_test.cc"
+            >boringssl/src/crypto/trust_token/trust_token_test.cc</a
+          >
+        </li>
+      </ul>
+    </main>
+    <script>
+    var preElement = document.querySelector("pre#flag");
+    var copyButton = document.querySelector("svg#copy");
+    copyButton.onclick = () => {
+      const copyText = preElement.textContent;
+      const dummy = document.createElement('input');
+      dummy.value = copyText;
+      document.body.append(dummy);
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+    }
+    </script>
+  </body>
+</html>
