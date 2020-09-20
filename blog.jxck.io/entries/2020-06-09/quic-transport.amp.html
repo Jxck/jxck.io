@@ -340,6 +340,29 @@
       margin-block-start: 0;
       margin-inline-start: var(--grid);
     }
+
+    dl.info dt.tags + dd ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info dt.tags + dd li:before {
+      content: none;
+    }
+
+    dl.info dt.tags + dd li:first-child:before{
+      content: "[ ";
+    }
+
+    dl.info dt.tags + dd li:after {
+      content: ",";
+      padding-inline-end: 0.5rem;
+    }
+
+    dl.info dt.tags + dd li:last-child:after {
+      content: " ]";
+    }
     header {
       z-index: 1;
       position: sticky;
@@ -818,30 +841,43 @@
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2020-06-09>2020-06-09</time></dd></div>
     <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
-    <div><dt class=tags>tags</dt><dd>[<a href="/tags/quictransport.html">quictransport</a><i>,</i><a href="/tags/webtransport.html">webtransport</a><i>,</i><a href="/tags/quic.html">quic</a>]</dd></div>
+    <div>
+      <dt class=tags>tags</dt>
+      <dd>
+        <nav>
+          <ul>
+            <li><a href="/tags/quictransport.html">quictransport</a>
+            <li><a href="/tags/webtransport.html">webtransport</a>
+            <li><a href="/tags/quic.html">quic</a>
+          </ul>
+        </nav>
+      </dd>
+    </div>
     <div>
       <dt>toc</dt>
       <dd>
         <details class=info>
           <summary>headdings</summary>
-          <ul>
-            <li><a href=#intro>## Intro</a>
-            <li><a href=#quictransport>## QuicTransport</a>
-            <li><a href=#server>## Server</a>
-            <li><a href=#connection-確立>### Connection 確立</a>
-            <li><a href=#uri-scheme>### URI Scheme</a>
-            <li><a href=#transport>### Transport</a>
-            <li><a href=#client>## Client</a>
-            <li><a href=#uint8array>### Uint8Array</a>
-            <li><a href=#eventtarget>### EventTarget</a>
-            <li><a href=#stream>### Stream</a>
-            <li><a href=#use-case>## Use Case</a>
-            <li><a href=#media-stream>### Media Stream</a>
-            <li><a href=#unreliable-stream>### Unreliable Stream</a>
-            <li><a href=#outro>## Outro</a>
-            <li><a href=#demo>## DEMO</a>
-            <li><a href=#resources>## Resources</a>
-          </ul>
+          <nav>
+            <ul>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#quictransport>## QuicTransport</a>
+              <li><a href=#server>## Server</a>
+              <li><a href=#connection-確立>### Connection 確立</a>
+              <li><a href=#uri-scheme>### URI Scheme</a>
+              <li><a href=#transport>### Transport</a>
+              <li><a href=#client>## Client</a>
+              <li><a href=#uint8array>### Uint8Array</a>
+              <li><a href=#eventtarget>### EventTarget</a>
+              <li><a href=#stream>### Stream</a>
+              <li><a href=#use-case>## Use Case</a>
+              <li><a href=#media-stream>### Media Stream</a>
+              <li><a href=#unreliable-stream>### Unreliable Stream</a>
+              <li><a href=#outro>## Outro</a>
+              <li><a href=#demo>## DEMO</a>
+              <li><a href=#resources>## Resources</a>
+            </ul>
+          </nav>
         </details>
       </dd>
     </div>

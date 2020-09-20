@@ -340,6 +340,29 @@
       margin-block-start: 0;
       margin-inline-start: var(--grid);
     }
+
+    dl.info dt.tags + dd ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info dt.tags + dd li:before {
+      content: none;
+    }
+
+    dl.info dt.tags + dd li:first-child:before{
+      content: "[ ";
+    }
+
+    dl.info dt.tags + dd li:after {
+      content: ",";
+      padding-inline-end: 0.5rem;
+    }
+
+    dl.info dt.tags + dd li:last-child:after {
+      content: " ]";
+    }
     header {
       z-index: 1;
       position: sticky;
@@ -818,24 +841,37 @@
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2016-12-12>2016-12-12</time></dd></div>
     <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
-    <div><dt class=tags>tags</dt><dd>[<a href="/tags/fetch.html">fetch</a><i>,</i><a href="/tags/service%20worker.html">service worker</a><i>,</i><a href="/tags/origin%20trials.html">origin trials</a>]</dd></div>
+    <div>
+      <dt class=tags>tags</dt>
+      <dd>
+        <nav>
+          <ul>
+            <li><a href="/tags/fetch.html">fetch</a>
+            <li><a href="/tags/service%20worker.html">service worker</a>
+            <li><a href="/tags/origin%20trials.html">origin trials</a>
+          </ul>
+        </nav>
+      </dd>
+    </div>
     <div>
       <dt>toc</dt>
       <dd>
         <details class=info>
           <summary>headdings</summary>
-          <ul>
-            <li><a href=#update>## Update</a>
-            <li><a href=#intro>## Intro</a>
-            <li><a href=#1st-party-と-3rd-party>## 1st Party と 3rd Party</a>
-            <li><a href=#1st-party-service-worker-の限界>## 1st Party Service Worker の限界</a>
-            <li><a href=#3rd-party-service-worker>## 3rd Party Service Worker</a>
-            <li><a href=#foreign-fetch-の仕組み>## foreign-fetch の仕組み</a>
-            <li><a href=#3rd-party-service-worker-の登録>## 3rd Party Service Worker の登録</a>
-            <li><a href=#foreign-fetch-によるサービス間連携>## foreign-fetch によるサービス間連携</a>
-            <li><a href=#micro-serivce-workers>## Micro Serivce Workers</a>
-            <li><a href=#foreign-fetch>## foreign-fetch</a>
-          </ul>
+          <nav>
+            <ul>
+              <li><a href=#update>## Update</a>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#1st-party-と-3rd-party>## 1st Party と 3rd Party</a>
+              <li><a href=#1st-party-service-worker-の限界>## 1st Party Service Worker の限界</a>
+              <li><a href=#3rd-party-service-worker>## 3rd Party Service Worker</a>
+              <li><a href=#foreign-fetch-の仕組み>## foreign-fetch の仕組み</a>
+              <li><a href=#3rd-party-service-worker-の登録>## 3rd Party Service Worker の登録</a>
+              <li><a href=#foreign-fetch-によるサービス間連携>## foreign-fetch によるサービス間連携</a>
+              <li><a href=#micro-serivce-workers>## Micro Serivce Workers</a>
+              <li><a href=#foreign-fetch>## foreign-fetch</a>
+            </ul>
+          </nav>
         </details>
       </dd>
     </div>

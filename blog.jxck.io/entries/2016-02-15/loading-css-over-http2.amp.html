@@ -340,6 +340,29 @@
       margin-block-start: 0;
       margin-inline-start: var(--grid);
     }
+
+    dl.info dt.tags + dd ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info dt.tags + dd li:before {
+      content: none;
+    }
+
+    dl.info dt.tags + dd li:first-child:before{
+      content: "[ ";
+    }
+
+    dl.info dt.tags + dd li:after {
+      content: ",";
+      padding-inline-end: 0.5rem;
+    }
+
+    dl.info dt.tags + dd li:last-child:after {
+      content: " ]";
+    }
     header {
       z-index: 1;
       position: sticky;
@@ -818,23 +841,36 @@
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2016-02-15>2016-02-15</time></dd></div>
     <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
-    <div><dt class=tags>tags</dt><dd>[<a href="/tags/css.html">css</a><i>,</i><a href="/tags/http2.html">http2</a><i>,</i><a href="/tags/performance.html">performance</a>]</dd></div>
+    <div>
+      <dt class=tags>tags</dt>
+      <dd>
+        <nav>
+          <ul>
+            <li><a href="/tags/css.html">css</a>
+            <li><a href="/tags/http2.html">http2</a>
+            <li><a href="/tags/performance.html">performance</a>
+          </ul>
+        </nav>
+      </dd>
+    </div>
     <div>
       <dt>toc</dt>
       <dd>
         <details class=info>
           <summary>headdings</summary>
-          <ul>
-            <li><a href=#intro>## Intro</a>
-            <li><a href=#http11-時代の-css>## HTTP/1.1 時代の CSS</a>
-            <li><a href=#css-の遅延ロード>## CSS の遅延ロード</a>
-            <li><a href=#二段階のロードという制限>## 二段階のロードという制限</a>
-            <li><a href=#http2-時代の最適化>## HTTP2 時代の最適化</a>
-            <li><a href=#chrome-での変更点>## Chrome での変更点</a>
-            <li><a href=#firefox-での-fouc-対策>## Firefox での FOUC 対策</a>
-            <li><a href=#まとめ>## まとめ</a>
-            <li><a href=#本サイトへの適用>## 本サイトへの適用</a>
-          </ul>
+          <nav>
+            <ul>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#http11-時代の-css>## HTTP/1.1 時代の CSS</a>
+              <li><a href=#css-の遅延ロード>## CSS の遅延ロード</a>
+              <li><a href=#二段階のロードという制限>## 二段階のロードという制限</a>
+              <li><a href=#http2-時代の最適化>## HTTP2 時代の最適化</a>
+              <li><a href=#chrome-での変更点>## Chrome での変更点</a>
+              <li><a href=#firefox-での-fouc-対策>## Firefox での FOUC 対策</a>
+              <li><a href=#まとめ>## まとめ</a>
+              <li><a href=#本サイトへの適用>## 本サイトへの適用</a>
+            </ul>
+          </nav>
         </details>
       </dd>
     </div>

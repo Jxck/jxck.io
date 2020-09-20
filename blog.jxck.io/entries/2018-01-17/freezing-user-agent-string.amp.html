@@ -340,6 +340,29 @@
       margin-block-start: 0;
       margin-inline-start: var(--grid);
     }
+
+    dl.info dt.tags + dd ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info dt.tags + dd li:before {
+      content: none;
+    }
+
+    dl.info dt.tags + dd li:first-child:before{
+      content: "[ ";
+    }
+
+    dl.info dt.tags + dd li:after {
+      content: ",";
+      padding-inline-end: 0.5rem;
+    }
+
+    dl.info dt.tags + dd li:last-child:after {
+      content: " ]";
+    }
     header {
       z-index: 1;
       position: sticky;
@@ -818,30 +841,42 @@
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2018-01-17>2018-01-17</time></dd></div>
     <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
-    <div><dt class=tags>tags</dt><dd>[<a href="/tags/user-agent.html">user-agent</a><i>,</i><a href="/tags/safari.html">safari</a>]</dd></div>
+    <div>
+      <dt class=tags>tags</dt>
+      <dd>
+        <nav>
+          <ul>
+            <li><a href="/tags/user-agent.html">user-agent</a>
+            <li><a href="/tags/safari.html">safari</a>
+          </ul>
+        </nav>
+      </dd>
+    </div>
     <div>
       <dt>toc</dt>
       <dd>
         <details class=info>
           <summary>headdings</summary>
-          <ul>
-            <li><a href=#update>## Update</a>
-            <li><a href=#intro>## Intro</a>
-            <li><a href=#freeze-user-agent>## Freeze User Agent</a>
-            <li><a href=#finger-printing>## Finger Printing</a>
-            <li><a href=#tracking-by-fingerpirnt->### Tracking by Fingerpirnt ?</a>
-            <li><a href=#user-metrics>## User Metrics</a>
-            <li><a href=#useragent-detection>## UserAgent Detection</a>
-            <li><a href=#feature-detection>## Feature Detection</a>
-            <li><a href=#js>### JS</a>
-            <li><a href=#css>### CSS</a>
-            <li><a href=#html>### HTML</a>
-            <li><a href=#picture>#### Picture</a>
-            <li><a href=#modulesnomodule>#### modules/nomodule</a>
-            <li><a href=#content-negotiation>### Content Negotiation</a>
-            <li><a href=#protocol>### Protocol</a>
-            <li><a href=#outro>### Outro</a>
-          </ul>
+          <nav>
+            <ul>
+              <li><a href=#update>## Update</a>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#freeze-user-agent>## Freeze User Agent</a>
+              <li><a href=#finger-printing>## Finger Printing</a>
+              <li><a href=#tracking-by-fingerpirnt->### Tracking by Fingerpirnt ?</a>
+              <li><a href=#user-metrics>## User Metrics</a>
+              <li><a href=#useragent-detection>## UserAgent Detection</a>
+              <li><a href=#feature-detection>## Feature Detection</a>
+              <li><a href=#js>### JS</a>
+              <li><a href=#css>### CSS</a>
+              <li><a href=#html>### HTML</a>
+              <li><a href=#picture>#### Picture</a>
+              <li><a href=#modulesnomodule>#### modules/nomodule</a>
+              <li><a href=#content-negotiation>### Content Negotiation</a>
+              <li><a href=#protocol>### Protocol</a>
+              <li><a href=#outro>### Outro</a>
+            </ul>
+          </nav>
         </details>
       </dd>
     </div>

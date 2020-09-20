@@ -340,6 +340,29 @@
       margin-block-start: 0;
       margin-inline-start: var(--grid);
     }
+
+    dl.info dt.tags + dd ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info dt.tags + dd li:before {
+      content: none;
+    }
+
+    dl.info dt.tags + dd li:first-child:before{
+      content: "[ ";
+    }
+
+    dl.info dt.tags + dd li:after {
+      content: ",";
+      padding-inline-end: 0.5rem;
+    }
+
+    dl.info dt.tags + dd li:last-child:after {
+      content: " ]";
+    }
     header {
       z-index: 1;
       position: sticky;
@@ -818,27 +841,39 @@
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2016-06-09>2016-06-09</time></dd></div>
     <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
-    <div><dt class=tags>tags</dt><dd>[<a href="/tags/rendering.html">rendering</a><i>,</i><a href="/tags/performance.html">performance</a>]</dd></div>
+    <div>
+      <dt class=tags>tags</dt>
+      <dd>
+        <nav>
+          <ul>
+            <li><a href="/tags/rendering.html">rendering</a>
+            <li><a href="/tags/performance.html">performance</a>
+          </ul>
+        </nav>
+      </dd>
+    </div>
     <div>
       <dt>toc</dt>
       <dd>
         <details class=info>
           <summary>headdings</summary>
-          <ul>
-            <li><a href=#intro>## Intro</a>
-            <li><a href=#scroll-event-の-preventdefault>## Scroll Event の PreventDefault()</a>
-            <li><a href=#scroll-jank>## Scroll Jank</a>
-            <li><a href=#影響>## 影響</a>
-            <li><a href=#passive-event-listeners>## Passive Event Listeners</a>
-            <li><a href=#event-listener-options>## Event Listener Options</a>
-            <li><a href=#feature-detection>## Feature Detection</a>
-            <li><a href=#demo>## DEMO</a>
-            <li><a href=#passive-false>### Passive False</a>
-            <li><a href=#passive-true>### Passive True</a>
-            <li><a href=#本サイトへの適用>## 本サイトへの適用</a>
-            <li><a href=#intersection-observer>## Intersection Observer</a>
-            <li><a href=#links>## Links</a>
-          </ul>
+          <nav>
+            <ul>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#scroll-event-の-preventdefault>## Scroll Event の PreventDefault()</a>
+              <li><a href=#scroll-jank>## Scroll Jank</a>
+              <li><a href=#影響>## 影響</a>
+              <li><a href=#passive-event-listeners>## Passive Event Listeners</a>
+              <li><a href=#event-listener-options>## Event Listener Options</a>
+              <li><a href=#feature-detection>## Feature Detection</a>
+              <li><a href=#demo>## DEMO</a>
+              <li><a href=#passive-false>### Passive False</a>
+              <li><a href=#passive-true>### Passive True</a>
+              <li><a href=#本サイトへの適用>## 本サイトへの適用</a>
+              <li><a href=#intersection-observer>## Intersection Observer</a>
+              <li><a href=#links>## Links</a>
+            </ul>
+          </nav>
         </details>
       </dd>
     </div>

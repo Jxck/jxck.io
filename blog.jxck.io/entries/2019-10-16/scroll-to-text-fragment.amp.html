@@ -340,6 +340,29 @@
       margin-block-start: 0;
       margin-inline-start: var(--grid);
     }
+
+    dl.info dt.tags + dd ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info dt.tags + dd li:before {
+      content: none;
+    }
+
+    dl.info dt.tags + dd li:first-child:before{
+      content: "[ ";
+    }
+
+    dl.info dt.tags + dd li:after {
+      content: ",";
+      padding-inline-end: 0.5rem;
+    }
+
+    dl.info dt.tags + dd li:last-child:after {
+      content: " ]";
+    }
     header {
       z-index: 1;
       position: sticky;
@@ -818,22 +841,35 @@
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2019-10-16>2019-10-16</time></dd></div>
     <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
-    <div><dt class=tags>tags</dt><dd>[<a href="/tags/scroll.html">scroll</a><i>,</i><a href="/tags/fragment.html">fragment</a><i>,</i><a href="/tags/url.html">url</a>]</dd></div>
+    <div>
+      <dt class=tags>tags</dt>
+      <dd>
+        <nav>
+          <ul>
+            <li><a href="/tags/scroll.html">scroll</a>
+            <li><a href="/tags/fragment.html">fragment</a>
+            <li><a href="/tags/url.html">url</a>
+          </ul>
+        </nav>
+      </dd>
+    </div>
     <div>
       <dt>toc</dt>
       <dd>
         <details class=info>
           <summary>headdings</summary>
-          <ul>
-            <li><a href=#intro>## Intro</a>
-            <li><a href=#id-属性とフラグメント>## id 属性とフラグメント</a>
-            <li><a href=#alternatives>## Alternatives</a>
-            <li><a href=#デリミタ>## デリミタ</a>
-            <li><a href=#text>## text=</a>
-            <li><a href=#target>## :target</a>
-            <li><a href=#demo>## DEMO</a>
-            <li><a href=#考察>## 考察</a>
-          </ul>
+          <nav>
+            <ul>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#id-属性とフラグメント>## id 属性とフラグメント</a>
+              <li><a href=#alternatives>## Alternatives</a>
+              <li><a href=#デリミタ>## デリミタ</a>
+              <li><a href=#text>## text=</a>
+              <li><a href=#target>## :target</a>
+              <li><a href=#demo>## DEMO</a>
+              <li><a href=#考察>## 考察</a>
+            </ul>
+          </nav>
         </details>
       </dd>
     </div>

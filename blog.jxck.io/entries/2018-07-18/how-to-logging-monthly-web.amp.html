@@ -340,6 +340,29 @@
       margin-block-start: 0;
       margin-inline-start: var(--grid);
     }
+
+    dl.info dt.tags + dd ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info dt.tags + dd li:before {
+      content: none;
+    }
+
+    dl.info dt.tags + dd li:first-child:before{
+      content: "[ ";
+    }
+
+    dl.info dt.tags + dd li:after {
+      content: ",";
+      padding-inline-end: 0.5rem;
+    }
+
+    dl.info dt.tags + dd li:last-child:after {
+      content: " ]";
+    }
     header {
       z-index: 1;
       position: sticky;
@@ -818,71 +841,84 @@
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2018-07-18>2018-07-18</time></dd></div>
     <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
-    <div><dt class=tags>tags</dt><dd>[<a href="/tags/monthly-web.html">monthly-web</a><i>,</i><a href="/tags/mozaic.fm.html">mozaic.fm</a><i>,</i><a href="/tags/podcast.html">podcast</a>]</dd></div>
+    <div>
+      <dt class=tags>tags</dt>
+      <dd>
+        <nav>
+          <ul>
+            <li><a href="/tags/monthly-web.html">monthly-web</a>
+            <li><a href="/tags/mozaic.fm.html">mozaic.fm</a>
+            <li><a href="/tags/podcast.html">podcast</a>
+          </ul>
+        </nav>
+      </dd>
+    </div>
     <div>
       <dt>toc</dt>
       <dd>
         <details class=info>
           <summary>headdings</summary>
-          <ul>
-            <li><a href=#intro>## Intro</a>
-            <li><a href=#monthly-web>## Monthly Web</a>
-            <li><a href=#対象>## 対象</a>
-            <li><a href=#chrome-動向>## Chrome 動向</a>
-            <li><a href=#overview>### Overview</a>
-            <li><a href=#intents>### Intents</a>
-            <li><a href=#team-snippet>### Team Snippet</a>
-            <li><a href=#release-blog>### Release Blog</a>
-            <li><a href=#events>### Events</a>
-            <li><a href=#v8>### V8</a>
-            <li><a href=#other>### Other</a>
-            <li><a href=#firefox-動向>## Firefox 動向</a>
-            <li><a href=#overview-1>### Overview</a>
-            <li><a href=#intents-1>### Intents</a>
-            <li><a href=#release-blog-1>### Release Blog</a>
-            <li><a href=#site-compat>### Site Compat</a>
-            <li><a href=#event>### Event</a>
-            <li><a href=#other-1>### Other</a>
-            <li><a href=#safari-動向>## Safari 動向</a>
-            <li><a href=#overview-2>### Overview</a>
-            <li><a href=#safari-technology-preview-nn>### Safari Technology Preview NN</a>
-            <li><a href=#changeset>### ChangeSet</a>
-            <li><a href=#blog>### Blog</a>
-            <li><a href=#event-1>### Event</a>
-            <li><a href=#other-2>### Other</a>
-            <li><a href=#edge-動向>## Edge 動向</a>
-            <li><a href=#overview-3>### Overview</a>
-            <li><a href=#edgehtml>### EdgeHTML</a>
-            <li><a href=#status-updates>### status updates</a>
-            <li><a href=#build-changelog>### Build Changelog</a>
-            <li><a href=#chakra>### Chakra</a>
-            <li><a href=#ie-support-team-blog>### IE Support Team Blog</a>
-            <li><a href=#other-3>### Other</a>
-            <li><a href=#whatwgw3c-動向>## WHATWG/W3C 動向</a>
-            <li><a href=#overview-4>### Overview</a>
-            <li><a href=#draft>### Draft</a>
-            <li><a href=#mailing-list>### Mailing List</a>
-            <li><a href=#news-blog>### News Blog</a>
-            <li><a href=#tag-review>### Tag Review</a>
-            <li><a href=#event-2>### Event</a>
-            <li><a href=#othre>### Othre</a>
-            <li><a href=#tc39-動向>## TC39 動向</a>
-            <li><a href=#overview-5>### Overview</a>
-            <li><a href=#stage>### Stage</a>
-            <li><a href=#event-3>### Event</a>
-            <li><a href=#stage-update>### Stage Update</a>
-            <li><a href=#other-4>### Other</a>
-            <li><a href=#ietf-動向>## IETF 動向</a>
-            <li><a href=#overview-6>### Overview</a>
-            <li><a href=#draft-1>### Draft</a>
-            <li><a href=#ml>### ML</a>
-            <li><a href=#event-4>### Event</a>
-            <li><a href=#セキュリティ動向>## セキュリティ動向</a>
-            <li><a href=#周辺動向>## 周辺動向</a>
-            <li><a href=#イベント>## イベント</a>
-            <li><a href=#yearly-web>## Yearly Web</a>
-            <li><a href=#outro>## Outro</a>
-          </ul>
+          <nav>
+            <ul>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#monthly-web>## Monthly Web</a>
+              <li><a href=#対象>## 対象</a>
+              <li><a href=#chrome-動向>## Chrome 動向</a>
+              <li><a href=#overview>### Overview</a>
+              <li><a href=#intents>### Intents</a>
+              <li><a href=#team-snippet>### Team Snippet</a>
+              <li><a href=#release-blog>### Release Blog</a>
+              <li><a href=#events>### Events</a>
+              <li><a href=#v8>### V8</a>
+              <li><a href=#other>### Other</a>
+              <li><a href=#firefox-動向>## Firefox 動向</a>
+              <li><a href=#overview-1>### Overview</a>
+              <li><a href=#intents-1>### Intents</a>
+              <li><a href=#release-blog-1>### Release Blog</a>
+              <li><a href=#site-compat>### Site Compat</a>
+              <li><a href=#event>### Event</a>
+              <li><a href=#other-1>### Other</a>
+              <li><a href=#safari-動向>## Safari 動向</a>
+              <li><a href=#overview-2>### Overview</a>
+              <li><a href=#safari-technology-preview-nn>### Safari Technology Preview NN</a>
+              <li><a href=#changeset>### ChangeSet</a>
+              <li><a href=#blog>### Blog</a>
+              <li><a href=#event-1>### Event</a>
+              <li><a href=#other-2>### Other</a>
+              <li><a href=#edge-動向>## Edge 動向</a>
+              <li><a href=#overview-3>### Overview</a>
+              <li><a href=#edgehtml>### EdgeHTML</a>
+              <li><a href=#status-updates>### status updates</a>
+              <li><a href=#build-changelog>### Build Changelog</a>
+              <li><a href=#chakra>### Chakra</a>
+              <li><a href=#ie-support-team-blog>### IE Support Team Blog</a>
+              <li><a href=#other-3>### Other</a>
+              <li><a href=#whatwgw3c-動向>## WHATWG/W3C 動向</a>
+              <li><a href=#overview-4>### Overview</a>
+              <li><a href=#draft>### Draft</a>
+              <li><a href=#mailing-list>### Mailing List</a>
+              <li><a href=#news-blog>### News Blog</a>
+              <li><a href=#tag-review>### Tag Review</a>
+              <li><a href=#event-2>### Event</a>
+              <li><a href=#othre>### Othre</a>
+              <li><a href=#tc39-動向>## TC39 動向</a>
+              <li><a href=#overview-5>### Overview</a>
+              <li><a href=#stage>### Stage</a>
+              <li><a href=#event-3>### Event</a>
+              <li><a href=#stage-update>### Stage Update</a>
+              <li><a href=#other-4>### Other</a>
+              <li><a href=#ietf-動向>## IETF 動向</a>
+              <li><a href=#overview-6>### Overview</a>
+              <li><a href=#draft-1>### Draft</a>
+              <li><a href=#ml>### ML</a>
+              <li><a href=#event-4>### Event</a>
+              <li><a href=#セキュリティ動向>## セキュリティ動向</a>
+              <li><a href=#周辺動向>## 周辺動向</a>
+              <li><a href=#イベント>## イベント</a>
+              <li><a href=#yearly-web>## Yearly Web</a>
+              <li><a href=#outro>## Outro</a>
+            </ul>
+          </nav>
         </details>
       </dd>
     </div>

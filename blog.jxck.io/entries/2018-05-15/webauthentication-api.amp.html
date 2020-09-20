@@ -340,6 +340,29 @@
       margin-block-start: 0;
       margin-inline-start: var(--grid);
     }
+
+    dl.info dt.tags + dd ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info dt.tags + dd li:before {
+      content: none;
+    }
+
+    dl.info dt.tags + dd li:first-child:before{
+      content: "[ ";
+    }
+
+    dl.info dt.tags + dd li:after {
+      content: ",";
+      padding-inline-end: 0.5rem;
+    }
+
+    dl.info dt.tags + dd li:last-child:after {
+      content: " ]";
+    }
     header {
       z-index: 1;
       position: sticky;
@@ -818,31 +841,43 @@
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2018-05-15>2018-05-15</time></dd></div>
     <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
-    <div><dt class=tags>tags</dt><dd>[<a href="/tags/fido-u2f.html">fido-u2f</a><i>,</i><a href="/tags/web%20authentication%20api.html">web authentication api</a>]</dd></div>
+    <div>
+      <dt class=tags>tags</dt>
+      <dd>
+        <nav>
+          <ul>
+            <li><a href="/tags/fido-u2f.html">fido-u2f</a>
+            <li><a href="/tags/web%20authentication%20api.html">web authentication api</a>
+          </ul>
+        </nav>
+      </dd>
+    </div>
     <div>
       <dt>toc</dt>
       <dd>
         <details class=info>
           <summary>headdings</summary>
-          <ul>
-            <li><a href=#intro>## Intro</a>
-            <li><a href=#demo>## DEMO</a>
-            <li><a href=#webauthentication-api>## WebAuthentication API</a>
-            <li><a href=#公開鍵暗号方式>## 公開鍵暗号方式</a>
-            <li><a href=#registration>## Registration</a>
-            <li><a href=#1-サービスに対して-challenge-乱数の発行を要求する>### 1. サービスに対して challenge (乱数)の発行を要求する</a>
-            <li><a href=#2-この-challenge-を元に-navigatorcredentialscreate-を呼ぶ>### 2. この challenge を元に <code translate="no">navigator.credentials.create()</code> を呼ぶ</a>
-            <li><a href=#3-サービスは中身を確認しユーザに紐付けて保存する>### 3. サービスは中身を確認し、ユーザに紐付けて保存する。</a>
-            <li><a href=#fmt>#### fmt</a>
-            <li><a href=#authdata>#### authData</a>
-            <li><a href=#attstmt>### attStmt</a>
-            <li><a href=#verification-procedure>### Verification Procedure</a>
-            <li><a href=#authentication>## Authentication</a>
-            <li><a href=#1-サービスに対して-challenge-乱数の発行を要求する-1>### 1. サービスに対して challenge (乱数)の発行を要求する</a>
-            <li><a href=#2-この-challenge-を元に-navigatorcredentialsget-を呼ぶ>### 2. この challenge を元に <code translate="no">navigator.credentials.get()</code> を呼ぶ</a>
-            <li><a href=#3-サービスは中身を確認しユーザを認証する>### 3. サービスは中身を確認し、ユーザを認証する</a>
-            <li><a href=#outro>## Outro</a>
-          </ul>
+          <nav>
+            <ul>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#demo>## DEMO</a>
+              <li><a href=#webauthentication-api>## WebAuthentication API</a>
+              <li><a href=#公開鍵暗号方式>## 公開鍵暗号方式</a>
+              <li><a href=#registration>## Registration</a>
+              <li><a href=#1-サービスに対して-challenge-乱数の発行を要求する>### 1. サービスに対して challenge (乱数)の発行を要求する</a>
+              <li><a href=#2-この-challenge-を元に-navigatorcredentialscreate-を呼ぶ>### 2. この challenge を元に <code translate="no">navigator.credentials.create()</code> を呼ぶ</a>
+              <li><a href=#3-サービスは中身を確認しユーザに紐付けて保存する>### 3. サービスは中身を確認し、ユーザに紐付けて保存する。</a>
+              <li><a href=#fmt>#### fmt</a>
+              <li><a href=#authdata>#### authData</a>
+              <li><a href=#attstmt>### attStmt</a>
+              <li><a href=#verification-procedure>### Verification Procedure</a>
+              <li><a href=#authentication>## Authentication</a>
+              <li><a href=#1-サービスに対して-challenge-乱数の発行を要求する-1>### 1. サービスに対して challenge (乱数)の発行を要求する</a>
+              <li><a href=#2-この-challenge-を元に-navigatorcredentialsget-を呼ぶ>### 2. この challenge を元に <code translate="no">navigator.credentials.get()</code> を呼ぶ</a>
+              <li><a href=#3-サービスは中身を確認しユーザを認証する>### 3. サービスは中身を確認し、ユーザを認証する</a>
+              <li><a href=#outro>## Outro</a>
+            </ul>
+          </nav>
         </details>
       </dd>
     </div>

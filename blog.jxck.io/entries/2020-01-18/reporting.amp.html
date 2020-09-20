@@ -340,6 +340,29 @@
       margin-block-start: 0;
       margin-inline-start: var(--grid);
     }
+
+    dl.info dt.tags + dd ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info dt.tags + dd li:before {
+      content: none;
+    }
+
+    dl.info dt.tags + dd li:first-child:before{
+      content: "[ ";
+    }
+
+    dl.info dt.tags + dd li:after {
+      content: ",";
+      padding-inline-end: 0.5rem;
+    }
+
+    dl.info dt.tags + dd li:last-child:after {
+      content: " ]";
+    }
     header {
       z-index: 1;
       position: sticky;
@@ -818,34 +841,47 @@
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2020-01-18>2020-01-18</time></dd></div>
     <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
-    <div><dt class=tags>tags</dt><dd>[<a href="/tags/reporting%20observer.html">reporting observer</a><i>,</i><a href="/tags/report-to.html">report-to</a><i>,</i><a href="/tags/reporting.html">reporting</a>]</dd></div>
+    <div>
+      <dt class=tags>tags</dt>
+      <dd>
+        <nav>
+          <ul>
+            <li><a href="/tags/reporting%20observer.html">reporting observer</a>
+            <li><a href="/tags/report-to.html">report-to</a>
+            <li><a href="/tags/reporting.html">reporting</a>
+          </ul>
+        </nav>
+      </dd>
+    </div>
     <div>
       <dt>toc</dt>
       <dd>
         <details class=info>
           <summary>headdings</summary>
-          <ul>
-            <li><a href=#intro>## Intro</a>
-            <li><a href=#notice>## Notice</a>
-            <li><a href=#reporting-api>## Reporting API</a>
-            <li><a href=#reporting-api-の経緯>## Reporting API の経緯</a>
-            <li><a href=#reporting-api-by-http-header>## Reporting API by HTTP Header</a>
-            <li><a href=#report-to-header>### Report-To header</a>
-            <li><a href=#jfv-から-structured-header-へ>### jfv から structured header へ</a>
-            <li><a href=#report-to-directive>### report-to directive</a>
-            <li><a href=#reporting-request>### Reporting Request</a>
-            <li><a href=#reporting-observer>## Reporting Observer</a>
-            <li><a href=#report>## Report</a>
-            <li><a href=#deprecation-report>### Deprecation Report</a>
-            <li><a href=#intervention-report>### Intervention Report</a>
-            <li><a href=#network-error-logging>### Network Error Logging</a>
-            <li><a href=#crash-reports>### Crash Reports</a>
-            <li><a href=#csp-violation>### CSP Violation</a>
-            <li><a href=#feature-policy-violation>### Feature Policy Violation</a>
-            <li><a href=#sxg>### SXG</a>
-            <li><a href=#report-の収集と解析>## Report の収集と解析</a>
-            <li><a href=#outro>### Outro</a>
-          </ul>
+          <nav>
+            <ul>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#notice>## Notice</a>
+              <li><a href=#reporting-api>## Reporting API</a>
+              <li><a href=#reporting-api-の経緯>## Reporting API の経緯</a>
+              <li><a href=#reporting-api-by-http-header>## Reporting API by HTTP Header</a>
+              <li><a href=#report-to-header>### Report-To header</a>
+              <li><a href=#jfv-から-structured-header-へ>### jfv から structured header へ</a>
+              <li><a href=#report-to-directive>### report-to directive</a>
+              <li><a href=#reporting-request>### Reporting Request</a>
+              <li><a href=#reporting-observer>## Reporting Observer</a>
+              <li><a href=#report>## Report</a>
+              <li><a href=#deprecation-report>### Deprecation Report</a>
+              <li><a href=#intervention-report>### Intervention Report</a>
+              <li><a href=#network-error-logging>### Network Error Logging</a>
+              <li><a href=#crash-reports>### Crash Reports</a>
+              <li><a href=#csp-violation>### CSP Violation</a>
+              <li><a href=#feature-policy-violation>### Feature Policy Violation</a>
+              <li><a href=#sxg>### SXG</a>
+              <li><a href=#report-の収集と解析>## Report の収集と解析</a>
+              <li><a href=#outro>### Outro</a>
+            </ul>
+          </nav>
         </details>
       </dd>
     </div>

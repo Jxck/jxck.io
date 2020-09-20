@@ -340,6 +340,29 @@
       margin-block-start: 0;
       margin-inline-start: var(--grid);
     }
+
+    dl.info dt.tags + dd ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info dt.tags + dd li:before {
+      content: none;
+    }
+
+    dl.info dt.tags + dd li:first-child:before{
+      content: "[ ";
+    }
+
+    dl.info dt.tags + dd li:after {
+      content: ",";
+      padding-inline-end: 0.5rem;
+    }
+
+    dl.info dt.tags + dd li:last-child:after {
+      content: " ]";
+    }
     header {
       z-index: 1;
       position: sticky;
@@ -818,28 +841,41 @@
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2020-07-26>2020-07-26</time></dd></div>
     <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
-    <div><dt class=tags>tags</dt><dd>[<a href="/tags/webbundle.html">webbundle</a><i>,</i><a href="/tags/webpackaging.html">webpackaging</a><i>,</i><a href="/tags/performance.html">performance</a>]</dd></div>
+    <div>
+      <dt class=tags>tags</dt>
+      <dd>
+        <nav>
+          <ul>
+            <li><a href="/tags/webbundle.html">webbundle</a>
+            <li><a href="/tags/webpackaging.html">webpackaging</a>
+            <li><a href="/tags/performance.html">performance</a>
+          </ul>
+        </nav>
+      </dd>
+    </div>
     <div>
       <dt>toc</dt>
       <dd>
         <details class=info>
           <summary>headdings</summary>
-          <ul>
-            <li><a href=#intro>## Intro</a>
-            <li><a href=#subresource-bundling>## Subresource Bundling</a>
-            <li><a href=#gen-bundle>### gen-bundle</a>
-            <li><a href=#link-rel-bundle>### link rel bundle</a>
-            <li><a href=#挙動>### 挙動</a>
-            <li><a href=#web-component-bundle>### Web Component Bundle</a>
-            <li><a href=#nested-bundling>### Nested Bundling</a>
-            <li><a href=#考察>## 考察</a>
-            <li><a href=#bundle-のネイティブ化への期待の背景>### bundle のネイティブ化への期待の背景</a>
-            <li><a href=#動的な-bundling>### 動的な bundling</a>
-            <li><a href=#resouces>### resouces</a>
-            <li><a href=#demo>## DEMO</a>
-            <li><a href=#outro>## Outro</a>
-            <li><a href=#resources>## Resources</a>
-          </ul>
+          <nav>
+            <ul>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#subresource-bundling>## Subresource Bundling</a>
+              <li><a href=#gen-bundle>### gen-bundle</a>
+              <li><a href=#link-rel-bundle>### link rel bundle</a>
+              <li><a href=#挙動>### 挙動</a>
+              <li><a href=#web-component-bundle>### Web Component Bundle</a>
+              <li><a href=#nested-bundling>### Nested Bundling</a>
+              <li><a href=#考察>## 考察</a>
+              <li><a href=#bundle-のネイティブ化への期待の背景>### bundle のネイティブ化への期待の背景</a>
+              <li><a href=#動的な-bundling>### 動的な bundling</a>
+              <li><a href=#resouces>### resouces</a>
+              <li><a href=#demo>## DEMO</a>
+              <li><a href=#outro>## Outro</a>
+              <li><a href=#resources>## Resources</a>
+            </ul>
+          </nav>
         </details>
       </dd>
     </div>

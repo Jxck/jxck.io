@@ -340,6 +340,29 @@
       margin-block-start: 0;
       margin-inline-start: var(--grid);
     }
+
+    dl.info dt.tags + dd ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info dt.tags + dd li:before {
+      content: none;
+    }
+
+    dl.info dt.tags + dd li:first-child:before{
+      content: "[ ";
+    }
+
+    dl.info dt.tags + dd li:after {
+      content: ",";
+      padding-inline-end: 0.5rem;
+    }
+
+    dl.info dt.tags + dd li:last-child:after {
+      content: " ]";
+    }
     header {
       z-index: 1;
       position: sticky;
@@ -818,33 +841,46 @@
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2019-01-27>2019-01-27</time></dd></div>
     <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
-    <div><dt class=tags>tags</dt><dd>[<a href="/tags/xss.html">xss</a><i>,</i><a href="/tags/trusted%20types.html">trusted types</a><i>,</i><a href="/tags/security.html">security</a>]</dd></div>
+    <div>
+      <dt class=tags>tags</dt>
+      <dd>
+        <nav>
+          <ul>
+            <li><a href="/tags/xss.html">xss</a>
+            <li><a href="/tags/trusted%20types.html">trusted types</a>
+            <li><a href="/tags/security.html">security</a>
+          </ul>
+        </nav>
+      </dd>
+    </div>
     <div>
       <dt>toc</dt>
       <dd>
         <details class=info>
           <summary>headdings</summary>
-          <ul>
-            <li><a href=#intro>## Intro</a>
-            <li><a href=#sink>## Sink</a>
-            <li><a href=#csp-trusted-types>## CSP trusted-types</a>
-            <li><a href=#trusted-types>## Trusted Types</a>
-            <li><a href=#opt-in-policy>## Opt-In Policy</a>
-            <li><a href=#名前空間>## 名前空間</a>
-            <li><a href=#example>## Example</a>
-            <li><a href=#考察>## 考察</a>
-            <li><a href=#何もしないはできない>### 何もしない、はできない。</a>
-            <li><a href=#同期処理のみ>### 同期処理のみ</a>
-            <li><a href=#expose-が-boolean>### expose が boolean</a>
-            <li><a href=#performance>### Performance</a>
-            <li><a href=#reporting>### Reporting</a>
-            <li><a href=#csp-無効での利用>### CSP 無効での利用</a>
-            <li><a href=#懸念点>### 懸念点</a>
-            <li><a href=#outro>## Outro</a>
-            <li><a href=#demo>## DEMO</a>
-            <li><a href=#本サイトへの適用>## 本サイトへの適用</a>
-            <li><a href=#links>## Links</a>
-          </ul>
+          <nav>
+            <ul>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#sink>## Sink</a>
+              <li><a href=#csp-trusted-types>## CSP trusted-types</a>
+              <li><a href=#trusted-types>## Trusted Types</a>
+              <li><a href=#opt-in-policy>## Opt-In Policy</a>
+              <li><a href=#名前空間>## 名前空間</a>
+              <li><a href=#example>## Example</a>
+              <li><a href=#考察>## 考察</a>
+              <li><a href=#何もしないはできない>### 何もしない、はできない。</a>
+              <li><a href=#同期処理のみ>### 同期処理のみ</a>
+              <li><a href=#expose-が-boolean>### expose が boolean</a>
+              <li><a href=#performance>### Performance</a>
+              <li><a href=#reporting>### Reporting</a>
+              <li><a href=#csp-無効での利用>### CSP 無効での利用</a>
+              <li><a href=#懸念点>### 懸念点</a>
+              <li><a href=#outro>## Outro</a>
+              <li><a href=#demo>## DEMO</a>
+              <li><a href=#本サイトへの適用>## 本サイトへの適用</a>
+              <li><a href=#links>## Links</a>
+            </ul>
+          </nav>
         </details>
       </dd>
     </div>

@@ -340,6 +340,29 @@
       margin-block-start: 0;
       margin-inline-start: var(--grid);
     }
+
+    dl.info dt.tags + dd ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info dt.tags + dd li:before {
+      content: none;
+    }
+
+    dl.info dt.tags + dd li:first-child:before{
+      content: "[ ";
+    }
+
+    dl.info dt.tags + dd li:after {
+      content: ",";
+      padding-inline-end: 0.5rem;
+    }
+
+    dl.info dt.tags + dd li:last-child:after {
+      content: " ]";
+    }
     header {
       z-index: 1;
       position: sticky;
@@ -818,29 +841,43 @@
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2018-03-08>2018-03-08</time></dd></div>
     <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
-    <div><dt class=tags>tags</dt><dd>[<a href="/tags/feature-policy.html">feature-policy</a><i>,</i><a href="/tags/permission.html">permission</a><i>,</i><a href="/tags/performance.html">performance</a><i>,</i><a href="/tags/security.html">security</a>]</dd></div>
+    <div>
+      <dt class=tags>tags</dt>
+      <dd>
+        <nav>
+          <ul>
+            <li><a href="/tags/feature-policy.html">feature-policy</a>
+            <li><a href="/tags/permission.html">permission</a>
+            <li><a href="/tags/performance.html">performance</a>
+            <li><a href="/tags/security.html">security</a>
+          </ul>
+        </nav>
+      </dd>
+    </div>
     <div>
       <dt>toc</dt>
       <dd>
         <details class=info>
           <summary>headdings</summary>
-          <ul>
-            <li><a href=#intro>## Intro</a>
-            <li><a href=#motivation>## Motivation</a>
-            <li><a href=#機能の制限>### 機能の制限</a>
-            <li><a href=#権限の移譲>### 権限の移譲</a>
-            <li><a href=#iframe-sandbox>## iframe sandbox</a>
-            <li><a href=#csp>## CSP</a>
-            <li><a href=#feature-policy>## Feature Policy</a>
-            <li><a href=#none>### &lsquo;none&rsquo;</a>
-            <li><a href=#self>### &lsquo;self&rsquo;</a>
-            <li><a href=#allowlist>### allowlist</a>
-            <li><a href=#権限移譲>### 権限移譲</a>
-            <li><a href=#with-iframe-sandbox>### with iframe sandbox</a>
-            <li><a href=#feature-一覧>## Feature 一覧</a>
-            <li><a href=#reporting>## Reporting</a>
-            <li><a href=#outro>## Outro</a>
-          </ul>
+          <nav>
+            <ul>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#motivation>## Motivation</a>
+              <li><a href=#機能の制限>### 機能の制限</a>
+              <li><a href=#権限の移譲>### 権限の移譲</a>
+              <li><a href=#iframe-sandbox>## iframe sandbox</a>
+              <li><a href=#csp>## CSP</a>
+              <li><a href=#feature-policy>## Feature Policy</a>
+              <li><a href=#none>### &lsquo;none&rsquo;</a>
+              <li><a href=#self>### &lsquo;self&rsquo;</a>
+              <li><a href=#allowlist>### allowlist</a>
+              <li><a href=#権限移譲>### 権限移譲</a>
+              <li><a href=#with-iframe-sandbox>### with iframe sandbox</a>
+              <li><a href=#feature-一覧>## Feature 一覧</a>
+              <li><a href=#reporting>## Reporting</a>
+              <li><a href=#outro>## Outro</a>
+            </ul>
+          </nav>
         </details>
       </dd>
     </div>

@@ -340,6 +340,29 @@
       margin-block-start: 0;
       margin-inline-start: var(--grid);
     }
+
+    dl.info dt.tags + dd ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info dt.tags + dd li:before {
+      content: none;
+    }
+
+    dl.info dt.tags + dd li:first-child:before{
+      content: "[ ";
+    }
+
+    dl.info dt.tags + dd li:after {
+      content: ",";
+      padding-inline-end: 0.5rem;
+    }
+
+    dl.info dt.tags + dd li:last-child:after {
+      content: " ]";
+    }
     header {
       z-index: 1;
       position: sticky;
@@ -818,31 +841,44 @@
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2019-05-20>2019-05-20</time></dd></div>
     <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
-    <div><dt class=tags>tags</dt><dd>[<a href="/tags/lazyload.html">lazyload</a><i>,</i><a href="/tags/image.html">image</a><i>,</i><a href="/tags/performance.html">performance</a>]</dd></div>
+    <div>
+      <dt class=tags>tags</dt>
+      <dd>
+        <nav>
+          <ul>
+            <li><a href="/tags/lazyload.html">lazyload</a>
+            <li><a href="/tags/image.html">image</a>
+            <li><a href="/tags/performance.html">performance</a>
+          </ul>
+        </nav>
+      </dd>
+    </div>
     <div>
       <dt>toc</dt>
       <dd>
         <details class=info>
           <summary>headdings</summary>
-          <ul>
-            <li><a href=#intro>## Intro</a>
-            <li><a href=#lazyloading>## Lazyloading</a>
-            <li><a href=#spec-history>## spec history</a>
-            <li><a href=#loadinglazy>## loading=lazy</a>
-            <li><a href=#demo>## DEMO</a>
-            <li><a href=#eagerload>### eagerload</a>
-            <li><a href=#lazyload>### lazyload</a>
-            <li><a href=#現時点での挙動>### 現時点での挙動</a>
-            <li><a href=#range--full-request-rtt>### Range + Full request RTT</a>
-            <li><a href=#lazy-for-small-img>### Lazy for small img</a>
-            <li><a href=#above-the-fold>### Above the Fold</a>
-            <li><a href=#20kb-request>### 2.0KB Request</a>
-            <li><a href=#考察>### 考察</a>
-            <li><a href=#feature-policy>## Feature Policy</a>
-            <li><a href=#priority-hints>## Priority Hints</a>
-            <li><a href=#loading-属性の導入>## Loading 属性の導入</a>
-            <li><a href=#本サイトへの適用>## 本サイトへの適用</a>
-          </ul>
+          <nav>
+            <ul>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#lazyloading>## Lazyloading</a>
+              <li><a href=#spec-history>## spec history</a>
+              <li><a href=#loadinglazy>## loading=lazy</a>
+              <li><a href=#demo>## DEMO</a>
+              <li><a href=#eagerload>### eagerload</a>
+              <li><a href=#lazyload>### lazyload</a>
+              <li><a href=#現時点での挙動>### 現時点での挙動</a>
+              <li><a href=#range--full-request-rtt>### Range + Full request RTT</a>
+              <li><a href=#lazy-for-small-img>### Lazy for small img</a>
+              <li><a href=#above-the-fold>### Above the Fold</a>
+              <li><a href=#20kb-request>### 2.0KB Request</a>
+              <li><a href=#考察>### 考察</a>
+              <li><a href=#feature-policy>## Feature Policy</a>
+              <li><a href=#priority-hints>## Priority Hints</a>
+              <li><a href=#loading-属性の導入>## Loading 属性の導入</a>
+              <li><a href=#本サイトへの適用>## 本サイトへの適用</a>
+            </ul>
+          </nav>
         </details>
       </dd>
     </div>

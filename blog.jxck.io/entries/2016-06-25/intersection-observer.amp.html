@@ -340,6 +340,29 @@
       margin-block-start: 0;
       margin-inline-start: var(--grid);
     }
+
+    dl.info dt.tags + dd ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info dt.tags + dd li:before {
+      content: none;
+    }
+
+    dl.info dt.tags + dd li:first-child:before{
+      content: "[ ";
+    }
+
+    dl.info dt.tags + dd li:after {
+      content: ",";
+      padding-inline-end: 0.5rem;
+    }
+
+    dl.info dt.tags + dd li:last-child:after {
+      content: " ]";
+    }
     header {
       z-index: 1;
       position: sticky;
@@ -818,35 +841,48 @@
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2016-06-25>2016-06-25</time></dd></div>
     <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
-    <div><dt class=tags>tags</dt><dd>[<a href="/tags/intersection%20observer.html">intersection observer</a><i>,</i><a href="/tags/scroll.html">scroll</a><i>,</i><a href="/tags/performance.html">performance</a>]</dd></div>
+    <div>
+      <dt class=tags>tags</dt>
+      <dd>
+        <nav>
+          <ul>
+            <li><a href="/tags/intersection%20observer.html">intersection observer</a>
+            <li><a href="/tags/scroll.html">scroll</a>
+            <li><a href="/tags/performance.html">performance</a>
+          </ul>
+        </nav>
+      </dd>
+    </div>
     <div>
       <dt>toc</dt>
       <dd>
         <details class=info>
           <summary>headdings</summary>
-          <ul>
-            <li><a href=#intro>## Intro</a>
-            <li><a href=#要素交差intersectionの検出>## 要素交差(intersection)の検出</a>
-            <li><a href=#従来の方法>## 従来の方法</a>
-            <li><a href=#図>### 図</a>
-            <li><a href=#スクロール量scrolltop>### スクロール量(scrollTop)</a>
-            <li><a href=#絶対位置offsettop>### 絶対位置(offsetTop)</a>
-            <li><a href=#相対位置getboundingclientrect>### 相対位置(getBoundingClientRect)</a>
-            <li><a href=#表示判定>### 表示判定</a>
-            <li><a href=#onscroll-イベント>### onscroll イベント</a>
-            <li><a href=#scroll--position-api-demo>### Scroll &amp; Position API DEMO</a>
-            <li><a href=#問題点>## 問題点</a>
-            <li><a href=#forced-synchronous-layout>### Forced Synchronous Layout</a>
-            <li><a href=#intersection-observer>## Intersection Observer</a>
-            <li><a href=#api>## API</a>
-            <li><a href=#callback>### callback</a>
-            <li><a href=#root>### root</a>
-            <li><a href=#threshold>### threshold</a>
-            <li><a href=#rootmargin>### rootMargin</a>
-            <li><a href=#intersection-observe-demo>### Intersection Observe DEMO</a>
-            <li><a href=#本サイトへの適用>## 本サイトへの適用</a>
-            <li><a href=#links>## Links</a>
-          </ul>
+          <nav>
+            <ul>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#要素交差intersectionの検出>## 要素交差(intersection)の検出</a>
+              <li><a href=#従来の方法>## 従来の方法</a>
+              <li><a href=#図>### 図</a>
+              <li><a href=#スクロール量scrolltop>### スクロール量(scrollTop)</a>
+              <li><a href=#絶対位置offsettop>### 絶対位置(offsetTop)</a>
+              <li><a href=#相対位置getboundingclientrect>### 相対位置(getBoundingClientRect)</a>
+              <li><a href=#表示判定>### 表示判定</a>
+              <li><a href=#onscroll-イベント>### onscroll イベント</a>
+              <li><a href=#scroll--position-api-demo>### Scroll &amp; Position API DEMO</a>
+              <li><a href=#問題点>## 問題点</a>
+              <li><a href=#forced-synchronous-layout>### Forced Synchronous Layout</a>
+              <li><a href=#intersection-observer>## Intersection Observer</a>
+              <li><a href=#api>## API</a>
+              <li><a href=#callback>### callback</a>
+              <li><a href=#root>### root</a>
+              <li><a href=#threshold>### threshold</a>
+              <li><a href=#rootmargin>### rootMargin</a>
+              <li><a href=#intersection-observe-demo>### Intersection Observe DEMO</a>
+              <li><a href=#本サイトへの適用>## 本サイトへの適用</a>
+              <li><a href=#links>## Links</a>
+            </ul>
+          </nav>
         </details>
       </dd>
     </div>

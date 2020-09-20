@@ -340,6 +340,29 @@
       margin-block-start: 0;
       margin-inline-start: var(--grid);
     }
+
+    dl.info dt.tags + dd ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info dt.tags + dd li:before {
+      content: none;
+    }
+
+    dl.info dt.tags + dd li:first-child:before{
+      content: "[ ";
+    }
+
+    dl.info dt.tags + dd li:after {
+      content: ",";
+      padding-inline-end: 0.5rem;
+    }
+
+    dl.info dt.tags + dd li:last-child:after {
+      content: " ]";
+    }
     header {
       z-index: 1;
       position: sticky;
@@ -818,23 +841,35 @@
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2016-03-24>2016-03-24</time></dd></div>
     <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
-    <div><dt class=tags>tags</dt><dd>[<a href="/tags/image.html">image</a><i>,</i><a href="/tags/performance.html">performance</a>]</dd></div>
+    <div>
+      <dt class=tags>tags</dt>
+      <dd>
+        <nav>
+          <ul>
+            <li><a href="/tags/image.html">image</a>
+            <li><a href="/tags/performance.html">performance</a>
+          </ul>
+        </nav>
+      </dd>
+    </div>
     <div>
       <dt>toc</dt>
       <dd>
         <details class=info>
           <summary>headdings</summary>
-          <ul>
-            <li><a href=#intro>## Intro</a>
-            <li><a href=#サイズ最適化>## サイズ最適化</a>
-            <li><a href=#メタ情報削除>## メタ情報削除</a>
-            <li><a href=#減色>## 減色</a>
-            <li><a href=#ベースラインプログレッシブ>## ベースライン/プログレッシブ</a>
-            <li><a href=#方式によるサイズ>### 方式によるサイズ</a>
-            <li><a href=#ux>### UX</a>
-            <li><a href=#gulp-image>## gulp-image</a>
-            <li><a href=#結果>## 結果</a>
-          </ul>
+          <nav>
+            <ul>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#サイズ最適化>## サイズ最適化</a>
+              <li><a href=#メタ情報削除>## メタ情報削除</a>
+              <li><a href=#減色>## 減色</a>
+              <li><a href=#ベースラインプログレッシブ>## ベースライン/プログレッシブ</a>
+              <li><a href=#方式によるサイズ>### 方式によるサイズ</a>
+              <li><a href=#ux>### UX</a>
+              <li><a href=#gulp-image>## gulp-image</a>
+              <li><a href=#結果>## 結果</a>
+            </ul>
+          </nav>
         </details>
       </dd>
     </div>

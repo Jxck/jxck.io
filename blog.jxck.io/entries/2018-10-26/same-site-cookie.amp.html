@@ -340,6 +340,29 @@
       margin-block-start: 0;
       margin-inline-start: var(--grid);
     }
+
+    dl.info dt.tags + dd ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info dt.tags + dd li:before {
+      content: none;
+    }
+
+    dl.info dt.tags + dd li:first-child:before{
+      content: "[ ";
+    }
+
+    dl.info dt.tags + dd li:after {
+      content: ",";
+      padding-inline-end: 0.5rem;
+    }
+
+    dl.info dt.tags + dd li:last-child:after {
+      content: " ]";
+    }
     header {
       z-index: 1;
       position: sticky;
@@ -818,30 +841,44 @@
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2018-10-26>2018-10-26</time></dd></div>
     <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
-    <div><dt class=tags>tags</dt><dd>[<a href="/tags/same-site-cookie.html">same-site-cookie</a><i>,</i><a href="/tags/cookie.html">cookie</a><i>,</i><a href="/tags/csrf.html">csrf</a><i>,</i><a href="/tags/security.html">security</a>]</dd></div>
+    <div>
+      <dt class=tags>tags</dt>
+      <dd>
+        <nav>
+          <ul>
+            <li><a href="/tags/same-site-cookie.html">same-site-cookie</a>
+            <li><a href="/tags/cookie.html">cookie</a>
+            <li><a href="/tags/csrf.html">csrf</a>
+            <li><a href="/tags/security.html">security</a>
+          </ul>
+        </nav>
+      </dd>
+    </div>
     <div>
       <dt>toc</dt>
       <dd>
         <details class=info>
           <summary>headdings</summary>
-          <ul>
-            <li><a href=#intro>## Intro</a>
-            <li><a href=#cookie-の挙動>## Cookie の挙動</a>
-            <li><a href=#cookie-の挙動を利用した攻撃>## Cookie の挙動を利用した攻撃</a>
-            <li><a href=#csrf>### CSRF</a>
-            <li><a href=#timing-attack>### Timing Attack</a>
-            <li><a href=#side-channel-attack>### Side Channel Attack</a>
-            <li><a href=#xssi>### XSSI</a>
-            <li><a href=#same-site-cookie>## Same Site Cookie</a>
-            <li><a href=#strict>### Strict</a>
-            <li><a href=#lax>### Lax</a>
-            <li><a href=#samesite-cookie-の導入>## SameSite Cookie の導入</a>
-            <li><a href=#既存の-cookie-に対する-lax-の付与>### 既存の Cookie に対する Lax の付与</a>
-            <li><a href=#readwrite-cookie-の分離運用>### Read/Write Cookie の分離運用</a>
-            <li><a href=#cookie-の改善>## Cookie の改善</a>
-            <li><a href=#本サイトへの適用>## 本サイトへの適用</a>
-            <li><a href=#demo>## DEMO</a>
-          </ul>
+          <nav>
+            <ul>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#cookie-の挙動>## Cookie の挙動</a>
+              <li><a href=#cookie-の挙動を利用した攻撃>## Cookie の挙動を利用した攻撃</a>
+              <li><a href=#csrf>### CSRF</a>
+              <li><a href=#timing-attack>### Timing Attack</a>
+              <li><a href=#side-channel-attack>### Side Channel Attack</a>
+              <li><a href=#xssi>### XSSI</a>
+              <li><a href=#same-site-cookie>## Same Site Cookie</a>
+              <li><a href=#strict>### Strict</a>
+              <li><a href=#lax>### Lax</a>
+              <li><a href=#samesite-cookie-の導入>## SameSite Cookie の導入</a>
+              <li><a href=#既存の-cookie-に対する-lax-の付与>### 既存の Cookie に対する Lax の付与</a>
+              <li><a href=#readwrite-cookie-の分離運用>### Read/Write Cookie の分離運用</a>
+              <li><a href=#cookie-の改善>## Cookie の改善</a>
+              <li><a href=#本サイトへの適用>## 本サイトへの適用</a>
+              <li><a href=#demo>## DEMO</a>
+            </ul>
+          </nav>
         </details>
       </dd>
     </div>

@@ -340,6 +340,29 @@
       margin-block-start: 0;
       margin-inline-start: var(--grid);
     }
+
+    dl.info dt.tags + dd ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info dt.tags + dd li:before {
+      content: none;
+    }
+
+    dl.info dt.tags + dd li:first-child:before{
+      content: "[ ";
+    }
+
+    dl.info dt.tags + dd li:after {
+      content: ",";
+      padding-inline-end: 0.5rem;
+    }
+
+    dl.info dt.tags + dd li:last-child:after {
+      content: " ]";
+    }
     header {
       z-index: 1;
       position: sticky;
@@ -818,37 +841,50 @@
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2019-11-12>2019-11-12</time></dd></div>
     <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
-    <div><dt class=tags>tags</dt><dd>[<a href="/tags/cbor.html">cbor</a><i>,</i><a href="/tags/webbundle.html">webbundle</a><i>,</i><a href="/tags/webpackaging.html">webpackaging</a>]</dd></div>
+    <div>
+      <dt class=tags>tags</dt>
+      <dd>
+        <nav>
+          <ul>
+            <li><a href="/tags/cbor.html">cbor</a>
+            <li><a href="/tags/webbundle.html">webbundle</a>
+            <li><a href="/tags/webpackaging.html">webpackaging</a>
+          </ul>
+        </nav>
+      </dd>
+    </div>
     <div>
       <dt>toc</dt>
       <dd>
         <details class=info>
           <summary>headdings</summary>
-          <ul>
-            <li><a href=#intro>## Intro</a>
-            <li><a href=#webbundle>## WebBundle</a>
-            <li><a href=#draft-yasskin-wpack-bundled-exchanges-latest>## draft-yasskin-wpack-bundled-exchanges-latest</a>
-            <li><a href=#cbor>### CBOR</a>
-            <li><a href=#cddl>### CDDL</a>
-            <li><a href=#magic>### magic</a>
-            <li><a href=#version>### version</a>
-            <li><a href=#primary-url>### primary-url</a>
-            <li><a href=#section>### section</a>
-            <li><a href=#section-length>### section-length</a>
-            <li><a href=#index>### index</a>
-            <li><a href=#responses>### responses</a>
-            <li><a href=#length>## length</a>
-            <li><a href=#全体>### 全体</a>
-            <li><a href=#wbn>### .wbn</a>
-            <li><a href=#applicationwebbundle>## application/webbundle</a>
-            <li><a href=#demo>## DEMO</a>
-            <li><a href=#考察>## 考察</a>
-            <li><a href=#bundling-の単位>### bundling の単位</a>
-            <li><a href=#コンテンツの代理配布>### コンテンツの代理配布</a>
-            <li><a href=#コンテンツの保存>### コンテンツの保存</a>
-            <li><a href=#共有キャッシュへの応用>### 共有キャッシュへの応用</a>
-            <li><a href=#logging>### logging</a>
-          </ul>
+          <nav>
+            <ul>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#webbundle>## WebBundle</a>
+              <li><a href=#draft-yasskin-wpack-bundled-exchanges-latest>## draft-yasskin-wpack-bundled-exchanges-latest</a>
+              <li><a href=#cbor>### CBOR</a>
+              <li><a href=#cddl>### CDDL</a>
+              <li><a href=#magic>### magic</a>
+              <li><a href=#version>### version</a>
+              <li><a href=#primary-url>### primary-url</a>
+              <li><a href=#section>### section</a>
+              <li><a href=#section-length>### section-length</a>
+              <li><a href=#index>### index</a>
+              <li><a href=#responses>### responses</a>
+              <li><a href=#length>## length</a>
+              <li><a href=#全体>### 全体</a>
+              <li><a href=#wbn>### .wbn</a>
+              <li><a href=#applicationwebbundle>## application/webbundle</a>
+              <li><a href=#demo>## DEMO</a>
+              <li><a href=#考察>## 考察</a>
+              <li><a href=#bundling-の単位>### bundling の単位</a>
+              <li><a href=#コンテンツの代理配布>### コンテンツの代理配布</a>
+              <li><a href=#コンテンツの保存>### コンテンツの保存</a>
+              <li><a href=#共有キャッシュへの応用>### 共有キャッシュへの応用</a>
+              <li><a href=#logging>### logging</a>
+            </ul>
+          </nav>
         </details>
       </dd>
     </div>

@@ -340,6 +340,29 @@
       margin-block-start: 0;
       margin-inline-start: var(--grid);
     }
+
+    dl.info dt.tags + dd ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info dt.tags + dd li:before {
+      content: none;
+    }
+
+    dl.info dt.tags + dd li:first-child:before{
+      content: "[ ";
+    }
+
+    dl.info dt.tags + dd li:after {
+      content: ",";
+      padding-inline-end: 0.5rem;
+    }
+
+    dl.info dt.tags + dd li:last-child:after {
+      content: " ]";
+    }
     header {
       z-index: 1;
       position: sticky;
@@ -818,22 +841,35 @@
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2019-10-13>2019-10-13</time></dd></div>
     <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
-    <div><dt class=tags>tags</dt><dd>[<a href="/tags/font-feature-settings.html">font-feature-settings</a><i>,</i><a href="/tags/noto%20sans.html">noto sans</a><i>,</i><a href="/tags/web%20font.html">web font</a>]</dd></div>
+    <div>
+      <dt class=tags>tags</dt>
+      <dd>
+        <nav>
+          <ul>
+            <li><a href="/tags/font-feature-settings.html">font-feature-settings</a>
+            <li><a href="/tags/noto%20sans.html">noto sans</a>
+            <li><a href="/tags/web%20font.html">web font</a>
+          </ul>
+        </nav>
+      </dd>
+    </div>
     <div>
       <dt>toc</dt>
       <dd>
         <details class=info>
           <summary>headdings</summary>
-          <ul>
-            <li><a href=#intro>## Intro</a>
-            <li><a href=#fonttools>## fonttools</a>
-            <li><a href=#pyftsubset>## pyftsubset</a>
-            <li><a href=#layout-features>## layout features</a>
-            <li><a href=#font-feature-settings>## font-feature-settings</a>
-            <li><a href=#字詰palt>## 字詰(palt)</a>
-            <li><a href=#outro>## Outro</a>
-            <li><a href=#related>## Related</a>
-          </ul>
+          <nav>
+            <ul>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#fonttools>## fonttools</a>
+              <li><a href=#pyftsubset>## pyftsubset</a>
+              <li><a href=#layout-features>## layout features</a>
+              <li><a href=#font-feature-settings>## font-feature-settings</a>
+              <li><a href=#字詰palt>## 字詰(palt)</a>
+              <li><a href=#outro>## Outro</a>
+              <li><a href=#related>## Related</a>
+            </ul>
+          </nav>
         </details>
       </dd>
     </div>

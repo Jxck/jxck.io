@@ -340,6 +340,29 @@
       margin-block-start: 0;
       margin-inline-start: var(--grid);
     }
+
+    dl.info dt.tags + dd ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info dt.tags + dd li:before {
+      content: none;
+    }
+
+    dl.info dt.tags + dd li:first-child:before{
+      content: "[ ";
+    }
+
+    dl.info dt.tags + dd li:after {
+      content: ",";
+      padding-inline-end: 0.5rem;
+    }
+
+    dl.info dt.tags + dd li:last-child:after {
+      content: " ]";
+    }
     header {
       z-index: 1;
       position: sticky;
@@ -818,22 +841,34 @@
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2016-03-30>2016-03-30</time></dd></div>
     <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
-    <div><dt class=tags>tags</dt><dd>[<a href="/tags/csp.html">csp</a><i>,</i><a href="/tags/security.html">security</a>]</dd></div>
+    <div>
+      <dt class=tags>tags</dt>
+      <dd>
+        <nav>
+          <ul>
+            <li><a href="/tags/csp.html">csp</a>
+            <li><a href="/tags/security.html">security</a>
+          </ul>
+        </nav>
+      </dd>
+    </div>
     <div>
       <dt>toc</dt>
       <dd>
         <details class=info>
           <summary>headdings</summary>
-          <ul>
-            <li><a href=#intro>## Intro</a>
-            <li><a href=#content-security-policy>## Content Security Policy</a>
-            <li><a href=#csp-の設定>## CSP の設定</a>
-            <li><a href=#csp-の注意点>## CSP の注意点</a>
-            <li><a href=#report-only>## Report Only</a>
-            <li><a href=#report-uriio>## report-uri.io</a>
-            <li><a href=#懸念点>## 懸念点</a>
-            <li><a href=#本サイトへの適用>## 本サイトへの適用</a>
-          </ul>
+          <nav>
+            <ul>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#content-security-policy>## Content Security Policy</a>
+              <li><a href=#csp-の設定>## CSP の設定</a>
+              <li><a href=#csp-の注意点>## CSP の注意点</a>
+              <li><a href=#report-only>## Report Only</a>
+              <li><a href=#report-uriio>## report-uri.io</a>
+              <li><a href=#懸念点>## 懸念点</a>
+              <li><a href=#本サイトへの適用>## 本サイトへの適用</a>
+            </ul>
+          </nav>
         </details>
       </dd>
     </div>

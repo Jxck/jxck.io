@@ -340,6 +340,29 @@
       margin-block-start: 0;
       margin-inline-start: var(--grid);
     }
+
+    dl.info dt.tags + dd ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info dt.tags + dd li:before {
+      content: none;
+    }
+
+    dl.info dt.tags + dd li:first-child:before{
+      content: "[ ";
+    }
+
+    dl.info dt.tags + dd li:after {
+      content: ",";
+      padding-inline-end: 0.5rem;
+    }
+
+    dl.info dt.tags + dd li:last-child:after {
+      content: " ]";
+    }
     header {
       z-index: 1;
       position: sticky;
@@ -818,23 +841,38 @@
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2016-12-16>2016-12-16</time></dd></div>
     <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
-    <div><dt class=tags>tags</dt><dd>[<a href="/tags/early%20hints.html">early hints</a><i>,</i><a href="/tags/preload.html">preload</a><i>,</i><a href="/tags/push.html">push</a><i>,</i><a href="/tags/http2.html">http2</a><i>,</i><a href="/tags/http.html">http</a>]</dd></div>
+    <div>
+      <dt class=tags>tags</dt>
+      <dd>
+        <nav>
+          <ul>
+            <li><a href="/tags/early%20hints.html">early hints</a>
+            <li><a href="/tags/preload.html">preload</a>
+            <li><a href="/tags/push.html">push</a>
+            <li><a href="/tags/http2.html">http2</a>
+            <li><a href="/tags/http.html">http</a>
+          </ul>
+        </nav>
+      </dd>
+    </div>
     <div>
       <dt>toc</dt>
       <dd>
         <details class=info>
           <summary>headdings</summary>
-          <ul>
-            <li><a href=#intro>## Intro</a>
-            <li><a href=#http2-push-の復習>## HTTP2 Push の復習</a>
-            <li><a href=#reverse-proxy>## Reverse Proxy</a>
-            <li><a href=#ステータスコードとヘッダ>## ステータスコードとヘッダ</a>
-            <li><a href=#103-early-hints>## 103 Early Hints</a>
-            <li><a href=#静的アセット-push-の移譲>## 静的アセット Push の移譲</a>
-            <li><a href=#h2-push-以外の用途>## H2 Push 以外の用途</a>
-            <li><a href=#outro>## Outro</a>
-            <li><a href=#special-thanks>## Special Thanks</a>
-          </ul>
+          <nav>
+            <ul>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#http2-push-の復習>## HTTP2 Push の復習</a>
+              <li><a href=#reverse-proxy>## Reverse Proxy</a>
+              <li><a href=#ステータスコードとヘッダ>## ステータスコードとヘッダ</a>
+              <li><a href=#103-early-hints>## 103 Early Hints</a>
+              <li><a href=#静的アセット-push-の移譲>## 静的アセット Push の移譲</a>
+              <li><a href=#h2-push-以外の用途>## H2 Push 以外の用途</a>
+              <li><a href=#outro>## Outro</a>
+              <li><a href=#special-thanks>## Special Thanks</a>
+            </ul>
+          </nav>
         </details>
       </dd>
     </div>
