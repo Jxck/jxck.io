@@ -47,41 +47,14 @@
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/archive.css>
   <main class=archive>
     <h1><a href=/>Archive</a></h1>
-
+    <%- (2016...(Date.today.year+1)).to_a.map(&:to_s).reverse.each{|year| -%>
     <section>
-      <h2 id=2020><a href=#2020>2020</a></h2>
-      <ul><% entries.select {|e| e.created_at.start_with?("2020") }.each do |e| %>
+      <h2 id=<%=year%>><a href=#<%=year%>><%=year%></a></h2>
+      <ul><% entries.select {|e| e.created_at.start_with?(year) }.each do |e| %>
         <li><time datetime=<%= e.created_at %>><%= e.created_at %></time><a href=<%= e.relative %>><%= e.title %></a><span class=tags><%= e.joined_tag %></span><% end %>
       </ul>
     </section>
-
-    <section>
-      <h2 id=2019><a href=#2019>2019</a></h2>
-      <ul><% entries.select {|e| e.created_at.start_with?("2019") }.each do |e| %>
-        <li><time datetime=<%= e.created_at %>><%= e.created_at %></time><a href=<%= e.relative %>><%= e.title %></a><span class=tags><%= e.joined_tag %></span><% end %>
-      </ul>
-    </section>
-
-    <section>
-      <h2 id=2018><a href=#2018>2018</a></h2>
-      <ul><% entries.select {|e| e.created_at.start_with?("2018") }.each do |e| %>
-        <li><time datetime=<%= e.created_at %>><%= e.created_at %></time><a href=<%= e.relative %>><%= e.title %></a><span class=tags><%= e.joined_tag %></span><% end %>
-      </ul>
-    </section>
-
-    <section>
-      <h2 id=2017><a href=#2017>2017</a></h2>
-      <ul><% entries.select {|e| e.created_at.start_with?("2017") }.each do |e| %>
-        <li><time datetime=<%= e.created_at %>><%= e.created_at %></time><a href=<%= e.relative %>><%= e.title %></a><span class=tags><%= e.joined_tag %></span><% end %>
-      </ul>
-    </section>
-
-    <section>
-      <h2 id=2016><a href=#2016>2016</a></h2>
-      <ul><% entries.select {|e| e.created_at.start_with?("2016") }.each do |e| %>
-        <li><time datetime=<%= e.created_at %>><%= e.created_at %></time><a href=<%= e.relative %>><%= e.title %></a><span class=tags><%= e.joined_tag %></span><% end %>
-      </ul>
-    </section>
+    <%- } -%>
   </main>
 
   <hr>
