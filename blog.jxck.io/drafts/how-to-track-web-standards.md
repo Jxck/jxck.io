@@ -1,12 +1,136 @@
-# [monthly-web][mozaic.fm][podcast] Monthly Web の作り方 2020 年版
+# [monthly-web] Web 技術の調査方法
+
 
 ## Intro
+
+「新しい API などを、どうやって調べているのか」「仕様などを調べる際に、どこから手をつければ良いのか」などといった質問をもらうことがある。
+
+やり方は一つではない上に、筆者は実務で必要になるというよりは、ほとんどを趣味でやっているため、このやり方が合わない場面は多々有るだろう。
+
+自分としても明文化していなかったため、これを気に解説してみることとする。
+
+
+## Scope
+
+従来からあり、ある程度こなれた API については、情報も多いため調査の敷居はそこまで高くないだろう。
+
+そこで、今回は新しめの API が、今どういう状況でどういう仕様で、どういう議論がされているのか、といった部分を調べる場面、つまり *点で調べる* 場面にフォーカスする。
+
+一方、流れ(トレンドと言っても良い)を把握するという意味で、 *線で調べる* 方法は以前解説した以下が参考になるだろう。
+
+
+- [Monthly Web の作り方 2018 年版](https://blog.jxck.io/entries/2018-07-18/how-to-logging-monthly-web.html)
+
+
+具体的なケースを上げた方が書きやすいので、今回はこのブログで紹介した過去の記事で、実際に行った調査を例に解説する。
+
+- WebCodecs の現状を調べる
+- srcset がどういう実装になっているのかを調べる
+- CSS のなにか
+
+
+## 新しい API の現状を調べる
+
+何か新しい API の話題が、主に Google などから出始め、それを調査する必要が出た場合を想定する。
+
+直近だと WebCodecs の記事がそのケースにあたるので、これを例に解説する。
+
+
+### blink-dev
+
+WebCodecs の場合は、 Google が提案/実装を主導しているため、情報源として blink-dev から当たるのがわかりやすいだろう。
+
+- [blink-dev \| Google Group](https://groups.google.com/a/chromium.org/g/blink-dev)
+
+この ML は、主に Chrome のエンジンである blink の開発に関するアナウンスが行われている。
+
+ここで WebCodecs を検索すると関連しそうなスレッドがいくつか見つかる。
+
+- TODO: スクショ
+
+
+まず、これらスレッドのタイトルについている "Intent to ~" という部分が、マイルストーンを示しており、だいたい以下の順で投稿される。
+
+
+- Intent to Prototype/Implement
+  - この機能について実装に着手する
+  - 関連するドキュメントや議論に関するリンクがまとめられている。
+  - Canary などでは作り途中のものが試せる場合がある
+- Intent to Experiment
+  - 実装がある程度形になったのでトライアルを開始する
+  - Chrome Dev/Beta でフラグ付きで有効にできる
+  - Origin Trials が開始される
+- Intent to Extend Origin Trials:
+  - Origin Trials を延長する
+  - OT は期限を決めて開始されるが、十分なトライアルが済んでない場合など
+- Intent to Ship
+  - トライアルで十分にフィードバックがあつまり実装も固まったので、リリースする
+  - コンセンサス、具体的には他の開発者から LGTM が 3 つが得られれば良いというルール
+  - その後 Chrome Stable リリースに入る
+- Intent to Deprecate
+  - なんらかの機能を非推奨/無効にする
+- Intent to Remove
+  - Deprecate が完了したためコードを消す
+
+
+もし該当の機能で何かしらヒットすれば、そこから調査を始めるのがわかりやすいだろう。
+
+
+WebCodecs の場合は、 Intent to Experiment まで出ているので、実装は進みトライアルが始まろうとしていることがわかる。
+
+- [Intent to Experiment: WebCodecs](https://groups.google.com/a/chromium.org/g/blink-dev/c/7OdxQf5HnlQ/m/oyb3oFVaAAAJ)
+
+また、その中で以下のような情報が入っている。
+
+- Explainer:   <https://github.com/WICG/web-codecs/blob/master/explainer.md>
+- Design docs: <https://docs.google.com/document/d/1fw3_aMB0-q9hOMuz_lxE8kEd-Z7vjA0wtklpx77m4yw/edit>
+- TAG review:  <https://github.com/w3ctag/design-reviews/issues/433>
+- Draft Spec:  <https://wicg.github.io/web-codecs/>
+
+これが調べていく起点となる。
+
+
+## Explainer
+
+新しい仕様が提案されるとき、まず最初に「こんな機能が欲しい」という概要とモチベーションを説明する *Explainer* が最初に作られる。
+
+特に置かれる場所もフォーマットも決まってないため、 Google Docs, Github の Markdown, Issue, ML や Discord の投稿だったりすることもある。
+
+いきなり仕様や実装を読むよりも、その仕様の概要を抑えるという意味では、まずこの Explainer を探すのが良いだろう。
+
+Intents が見つからなかった場合は、仕様のリポジトリなどを探すことになる。
+
+WebCodecs の場合は以下だ。
+
+- Explainer: <https://github.com/WICG/web-codecs/blob/master/explainer.md>
+
+
+## Spec
+
+Explainer が
+
+
+
+## Design Docs
+
+Chrome の場合、実装に着手する前に、どういう方法で実装を入れる予定なのかを Design Docs という形でまとめることが多い。
+
+これがレビューされてから実装に着手することになるので、作られる場合は Intent to Prototype の時点では用意されているだろう。
+
+ただ、この内容は実際に実装を行う上での話、つまり C++ での設計の話が中心なので、よほど細かい点を調べる必要でもない場合は、あまり見る必要は無い。
+
+
+
+
+
+
+
+
 
 筆者がやっている Podcast である [mozaic.fm](https://mozaic.fm) の中で、 Monthly Web という月ごとの Web の動向をまとめる回をやっている。
 
 その作り方のまとめを作ってからちょうど二年たった。
 
-- [Monthly Web の作り方 2018 年版](https://blog.jxck.io/entries/2018-07-18/how-to-logging-monthly-web.html)
 
 大枠は変わってないが、更新もあるため、現状を再度まとめる。
 
