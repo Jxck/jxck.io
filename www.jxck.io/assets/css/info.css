@@ -33,3 +33,26 @@ details.info ul {
   margin-block-start: 0;
   margin-inline-start: var(--grid);
 }
+
+dl.info dt.tags + dd ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+dl.info dt.tags + dd li:before {
+  content: none;
+}
+
+dl.info dt.tags + dd li:first-child:before{
+  content: "[ ";
+}
+
+dl.info dt.tags + dd li:after {
+  content: ",";
+  padding-inline-end: 0.5rem;
+}
+
+dl.info dt.tags + dd li:last-child:after {
+  content: " ]";
+}
