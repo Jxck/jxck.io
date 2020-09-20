@@ -51,9 +51,9 @@
       <div><dt>created_at</dt><dd><time class=created_at datetime=<%= entry.created_at %>><%= entry.created_at %></time></dd></div>
       <div><dt>updated_at</dt><dd><time class=updated_at datetime=<%= entry.updated_at %>><%= entry.updated_at %></time></dd></div>
       <div>
-        <dt class=tags>tags</dt>
+        <dt>tags</dt>
         <dd>
-          <nav>
+          <nav class=tags>
             <ul>
               <%- entry.tags.each{|tag| -%>
               <li><a href="/tags/<%=tag.gsub(' ', '%20')%>.html"><%=tag%></a>
