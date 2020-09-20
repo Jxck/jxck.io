@@ -36,6 +36,7 @@
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/markdown.css>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/archive.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
   <main class=archive>
     <h1><a href="#<%= tag %>"><%= tag %></a></h1>
     <section>
@@ -43,7 +44,17 @@
       <h2><a href="/tags/<%= u(tag) %>.html"><%= tag %></a></h2>
       <ul>
       <%- entries.each do |e| -%>
-        <li><time datetime=<%= e.created_at %>><%= e.created_at %></time><a href=<%= e.url %>><%= e.title %></a><span class=tags><%= e.joined_tag %></span>
+        <li>
+          <time datetime=<%= e.created_at %>><%= e.created_at %></time>
+          <a href=<%= e.relative %>><%= e.title %></a>
+          <nav class=tags>
+            <ul>
+              <%- e.tags.each{|tag| -%>
+              <li><a href="/tags/<%=tag.gsub(' ', '%20')%>.html"><%=tag%></a>
+              <%- } -%>
+            </ul>
+          </nav>
+        </li>
       <%- end -%>
       </ul>
     <%- end -%>
