@@ -227,7 +227,6 @@ cron:
 	sudo crontab -u root .crontab/*
 	sudo crontab -u root -l
 
-
 install:
 	# this will saved in ./bundle/config
 	# bundle config set path './.bundle/vendor' --local
@@ -239,6 +238,7 @@ update:
 	bundle update
 	ncu -u
 
-
 zenn:
+	# update origin anatomia cover
+	curl https://cacoo.com/diagrams/vZ8WNyLJCPRkni7O-E8FDF-w700-h500.png > ./books/origin-anatomia/cover.png
 	./node_modules/zenn-cli/bin/zenn.js preview --port 3000
