@@ -9,14 +9,14 @@ published_at
 : 2020-09-20
 
 guest
-: [@hirano]()
+: [@hirano](https://twitter.com/hirano_y_aa)
 
 
 ## Theme
 
 第 72 回のテーマは WebTransport です。
 
-今回は [@hirano]() さんをお迎えし、 WebTransport はどういうモチベーションで生まれ、何を目指しているのか。
+今回は [@hirano](https://twitter.com/hirano_y_aa) さんをお迎えし、 WebTransport はどういうモチベーションで生まれ、何を目指しているのか。
 
 標準化の場面で行われている議論や、「今新しく API/Protocol を作るとしたら」という観点からの実装の話などをお聞きしながら、これが Web にどう影響を与えていきそうか議論しました。
 
@@ -42,3 +42,5 @@ guest
   - worth prototyping
 - Raw Socket (収録時では Direct Socket)
   - <https://github.com/WICG/raw-sockets/blob/master/docs/explainer.md>
+- Compression Extensions for WebSocket
+  - <https://tools.ietf.org/html/rfc7692>
