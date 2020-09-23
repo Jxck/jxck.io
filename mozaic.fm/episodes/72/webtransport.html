@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
+
+  <link rel=canonical href=https://mozaic.fm/episodes/72/webtransport.html>
+  <!--
+  <link rel=preload type=font/woff2 as=font  crossorigin href=/assets/font/NotoSansCJKjp-Regular-Jxck-20200904.woff2>
+  <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
+  -->
+
+  <script defer type=module no-integrity=sha256-CQaVbkBFu4pP/UfiRNYqVp1KEYvyjxbwDkGXKGjKWO0= src=/assets/js/mozaic.js></script>
+  <script defer type=module no-integrity=sha256-zKDS+xS0/43vipkjyah+f9PttoKo12Vd2fXgOc7VYBc= src=/assets/js/sw.js></script>
+
+  <link rel=icon             type =image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon             type =image/png sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.png>
+  <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.png>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="第 72 回のテーマは WebTransport です。今回は @hirano さんをお迎えし、 WebTransport はどういうモチベーションで生まれ、何を目指しているのか。標準化の場面で行われている議論や、「今新しく API/Protocol を作るとしたら」という...">
+  <meta name=keywords            content="webtransport,mozaic.fm">
+  <meta name=theme-color         content=#000000>
+
+  <meta name=twitter:card        content=summary>
+  <meta name=twitter:site        content=@jxck_>
+  <meta name=twitter:url         content=https://mozaic.fm/episodes/72/webtransport.html>
+  <meta name=twitter:title       content="ep72 WebTransport | mozaic.fm">
+  <meta name=twitter:description content="第 72 回のテーマは WebTransport です。今回は @hirano さんをお迎えし、 WebTransport はどういうモチベーションで生まれ、何を目指しているのか。標準化の場面で行われている議論や、「今新しく API/Protocol を作るとしたら」という...">
+  <meta name=twitter:image       content=https://mozaic.fm/assets/img/mozaic.png>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://mozaic.fm/episodes/72/webtransport.html>
+  <meta property=og:title        content="ep72 WebTransport | mozaic.fm">
+  <meta property=og:site_name    content=mozaic.fm>
+  <meta property=og:description  content="第 72 回のテーマは WebTransport です。今回は @hirano さんをお迎えし、 WebTransport はどういうモチベーションで生まれ、何を目指しているのか。標準化の場面で行われている議論や、「今新しく API/Protocol を作るとしたら」という...">
+  <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.png>
+
+  <title>ep72 WebTransport | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/71/monthly-web-202008.html>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://mozaic.fm                                                      ><img width=30 height=30 loading=eager src=/assets/img/mozaic.svg         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495              ><img width=30 height=30 loading=eager src=/assets/img/itunes.svg         title=itunes           alt=itunes           ></a>
+      <li><a href=https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D><img width=30 height=30 loading=eager src=/assets/img/google-podcast.svg title="google podcast" alt="google podcast" ></a>
+      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                   ><img width=30 height=30 loading=eager src=/assets/img/spotify.svg        title=spotify          alt=spotify          ></a>
+      <li><a href=http://feed.mozaic.fm                                                  ><img width=30 height=30 loading=eager src=/assets/img/podcast.svg        title="rss feed"       alt="rss feed"       ></a>
+      <li id=install class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/install.svg title=install alt=install></button>
+      <li id=share   class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/share.svg   title=share   alt=share  ></button>
+      <li id=search><a href=/searches      ><img width=30 height=30 loading=eager src=/assets/img/search.svg  title=search  alt=search ></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/71/monthly-web-202008.html">ep71 Monthly Web 202008</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+  <article>
+      <h1>
+        <a href=/episodes/72/webtransport.html>ep72 WebTransport</a>
+        <background-fetch
+          class=disabled
+          data-value=0
+          data-size=76550988
+          data-mtime=1600828753
+          data-url=https://files.mozaic.fm/mozaic-ep72.mp3
+          data-page=/episodes/72/webtransport.html
+          data-title="ep72 WebTransport"
+        ></background-fetch>
+      </h1>
+
+      <section>
+        <h2 id="info"><a href="#info">Info</a></h2>
+        <p>
+        <dl class=info>
+          <div>
+            <dt>published_at
+            <dd>2020-09-20
+          </div>
+          <div>
+            <dt>guest
+            <dd><a href="https://twitter.com/hirano_y_aa">@hirano</a>
+          </div>
+        </dl>
+      </section>
+      <section>
+        <h2 id="theme"><a href="#theme">Theme</a></h2>
+        <p>第 72 回のテーマは WebTransport です。
+        <p>今回は <a href="https://twitter.com/hirano_y_aa">@hirano</a> さんをお迎えし、 WebTransport はどういうモチベーションで生まれ、何を目指しているのか。
+        <p>標準化の場面で行われている議論や、「今新しく API/Protocol を作るとしたら」という観点からの実装の話などをお聞きしながら、これが Web にどう影響を与えていきそうか議論しました。
+      </section>
+      <section>
+        <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
+        <ul>
+          <li>
+            WebTransport &amp; WebCodecs (WebGames Workshop)
+            <ul>
+              <li>WebRTC から WebTransport へ移行するモチベーションのトーク
+              <li><a href="https://vimeo.com/350908362">https://vimeo.com/350908362</a>
+            </ul>
+          </li>
+          <li>
+            Zoom on Web: getting connected with advanced web technology (Web.dev Live)
+            <ul>
+              <li>Zoom における WebTransport/WebCodecs/SIMD の活用への展望のトーク
+              <li><a href="https://youtu.be/nhTxJBgTywc">https://youtu.be/nhTxJBgTywc</a>
+            </ul>
+          </li>
+          <li>
+            WICG: WebTransport (ブラウザ API 仕様)
+            <ul>
+              <li><a href="https://wicg.github.io/web-transport/#quic-transport">https://wicg.github.io/web-transport/#quic-transport</a>
+            </ul>
+          </li>
+          <li>
+            IETF: QUIC: A UDP-Based Multiplexed and Secure Transport (プロトコル仕様)
+            <ul>
+              <li><a href="https://quicwg.org/base-drafts/draft-ietf-quic-transport.html">https://quicwg.org/base-drafts/draft-ietf-quic-transport.html</a>
+            </ul>
+          </li>
+          <li>
+            Intent to Experiment: QuicTransport
+            <ul>
+              <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mHV_ZALf07Q/d7J9W0a1CQAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mHV_ZALf07Q/d7J9W0a1CQAJ</a>
+            </ul>
+          </li>
+          <li>
+            Explainer
+            <ul>
+              <li><a href="https://github.com/WICG/web-transport/blob/master/explainer.md">https://github.com/WICG/web-transport/blob/master/explainer.md</a>
+            </ul>
+          </li>
+          <li>
+            Mozilla Standard Position
+            <ul>
+              <li><a href="https://mozilla.github.io/standards-positions/#webtransport">https://mozilla.github.io/standards-positions/#webtransport</a>
+              <li>worth prototyping
+            </ul>
+          </li>
+          <li>
+            Raw Socket (収録時では Direct Socket)
+            <ul>
+              <li><a href="https://github.com/WICG/raw-sockets/blob/master/docs/explainer.md">https://github.com/WICG/raw-sockets/blob/master/docs/explainer.md</a>
+            </ul>
+          </li>
+          <li>
+            Compression Extensions for WebSocket
+            <ul>
+              <li><a href="https://tools.ietf.org/html/rfc7692">https://tools.ietf.org/html/rfc7692</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </article>
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/71/monthly-web-202008.html">ep71 Monthly Web 202008</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small> <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong></p>
+</footer>
+
+<mozaic-player>
+  <audio
+    slot=audio
+    src=https://files.mozaic.fm/mozaic-ep72.mp3
+    data-title="ep72 WebTransport"
+    data-forward=+30
+    data-back=-10>
+  </audio>
+</mozaic-player>
+
+</body>
+</html>
