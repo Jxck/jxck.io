@@ -238,3 +238,7 @@ install:
 update:
 	bundle update
 	ncu -u
+
+
+zenn:
+	./node_modules/zenn-cli/bin/zenn.js preview --port 3000
