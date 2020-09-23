@@ -43,7 +43,7 @@
     <%- Hash[tag_map.sort].each do |tag, entries| -%>
       <h2><a href="/tags/<%= u(tag) %>.html"><%= tag %></a></h2>
       <ul>
-      <%- entries.each do |e| -%>
+      <%- entries.reverse.each do |e| -%>
         <li>
           <time datetime=<%= e.created_at %>><%= e.created_at %></time>
           <a href=<%= e.relative %>><%= e.title %></a>
