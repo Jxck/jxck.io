@@ -1041,3 +1041,16 @@ eyeD3 --title "ep72 WebTransport" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep73.mp3
+
+eyeD3 --title "ep73 Semantic Web" \
+      --track 81 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep73.mp3
+
+
+
