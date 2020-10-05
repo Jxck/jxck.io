@@ -3,7 +3,7 @@ title: "「Web 技術解体新書」執筆について"
 emoji: "✍️"
 type: "idea"
 topics: [web, book]
-published: false
+published: true
 ---
 
 # 「Web 技術解体新書」執筆について
