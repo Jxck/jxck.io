@@ -1,5 +1,23 @@
+# [monthly-web][mozaic.fm] ep74 Monthly Web 202009
 
-## ep74 Monthly Web 202009
+
+## Info
+
+audio: https://files.mozaic.fm/mozaic-ep74.mp3
+
+published_at
+: 2020-10-06
+
+guest
+: [@myakura](https://twitter.com/myakura)
+
+
+## Theme
+
+第 74 回のテーマは 2020 年 9 月の Monthly Web です。
+
+
+## Show Note
 
 
 ### Chrome 動向
@@ -179,6 +197,7 @@
   - sellers.json で販売者情報を提供する - AdSense ヘルプ
     - <https://support.google.com/adsense/answer/9889911?hl=ja>
 
+
 ### Firefox 動向
 
 - Stable: 81
@@ -255,6 +274,7 @@
     - MDN が開発者にブラウザの互換性についてアンケートをとった結果がまとまった
     - Flexbox や viewport の実装の違いなどについての回答が多かったらしい
 
+
 ### Safari 動向
 
 - Stable: 14.0
@@ -303,6 +323,7 @@
   - [webkit-dev] 2020 WebKit Contributors Meeting - Save the Date
     - <https://lists.webkit.org/pipermail/webkit-dev/2020-September/031419.html>
     - 11/16 と 11/17 の 2 日間、オンラインで開催
+
 
 ### Edge 動向
 
@@ -380,6 +401,7 @@
   - Debugging Browsers – Tools and Techniques – text/plain
     - <https://textslashplain.com/2020/09/29/debugging-browsers-tools-and-techniques/>
 
+
 ### WHATWG/W3C 動向
 
 - TPAC
@@ -435,6 +457,7 @@
   - **Work in progress on a Decentralized Web Interest Group Charter (Advance Notice)**
     - <https://lists.w3.org/Archives/Public/public-new-work/2020Sep/0006.html>
     - dweb 的な流れを組んでるのかと思いきや Improving Web Advertising Business Group 系
+
 
 ### TC39 動向
 
@@ -493,6 +516,7 @@
     - <https://slides.com/pzuraq/decorators-a-new-proposal-2020-09>
 - Other
 
+
 ### IETF 動向
 
 - IETF
@@ -539,6 +563,7 @@
     - <https://www.fastly.com/blog/state-of-quic-and-http3-2020>
     - WG Last Call 直前というのもありドラフトの変遷や実装状況をおさらい
 
+
 ### セキュリティ動向
 
 - 安心して利用できるログイン方法として最も多くの人が選んだのは「パスワード」 一方、 60%以上が「複数のサービスでパスワードを使いまわしている」と回答 - トピックス - ヤフー株式会社
@@ -562,6 +587,7 @@
   - <https://japan.zdnet.com/article/35159781/>
 - ドコモ口座を悪用した不正送金についてまとめてみた - piyolog
   - <https://piyolog.hatenadiary.jp/entry/2020/09/08/054431>
+
 
 ### 周辺動向
 
@@ -619,6 +645,7 @@
     - 東証、システム障害で謝罪 詳細な経緯説明、当面は「人的監視」で対応
     - <https://www.itmedia.co.jp/news/articles/2010/01/news156.html>
 
+
 ### イベント
 
 - 9 月
@@ -636,6 +663,7 @@
     - <https://www.ietf.org/how/meetings/109/>
   - 17-19: BlinkOn
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/zNDLekIrSQE>
+
 
 ### Wrap Up
 
@@ -655,4 +683,3 @@
 - Import Assertion の実装や仕様や Intents
 - Moment.js のメンテナンスモード
 - Inclusive rename (direct socket api / file system access api / v8 code)
-
