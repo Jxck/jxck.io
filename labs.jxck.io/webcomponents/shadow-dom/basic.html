@@ -3,14 +3,18 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <title>Declarative ShadowDOM DEMO</title>
 
+<meta http-equiv="origin-trial" content="AuS8qTaB5Ur7A//ti6P59rCV9XOFuICsY95r6eUJ1sC73VAHl6VyuAy/+Du5H9x5FfduacfhHigirHUybauCjg4AAABoeyJvcmlnaW4iOiJodHRwczovL2p4Y2suaW86NDQzIiwiZmVhdHVyZSI6IkRlY2xhcmF0aXZlU2hhZG93RE9NIiwiZXhwaXJ5IjoxNjA1NjcyMzg3LCJpc1N1YmRvbWFpbiI6dHJ1ZX0=">
+
 <h1>Declarative ShadowDOM DEMO</h1>
 
+<!--
 <script>
   customElements.whenDefined('host-element').then((a) => {
     console.log(a)
   })
   console.log(customElements.get('host-element'))
 </script>
+-->
 
 <style>
 host-element {
@@ -22,16 +26,31 @@ host-element {
 <h2>global</h2>
 
 <host-element>
-  <template shadowroot=open>
+  <template shadowroot=closed>
     <style>
-      ::slotted(h2) {
+      h2 {
         background-color: blue;
       }
+      ::slotted(h2) {
+        background-color: red;
+      }
     </style>
+    <h2>Inner Shadowroot</h2>
     <slot></slot>
   </template>
   <h2>Slotted Content</h2>
 </host-element>
+
+
+
+<script>
+const $template = document.querySelector('host-element')
+const html = $template.getInnerHTML({includeShadowRoots: true});
+console.log(html)
+</script>
+
+
+<h2>global 2</h2>
 
 <!--
 <host-element>
