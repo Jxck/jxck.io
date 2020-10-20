@@ -46,7 +46,7 @@
       <%- entries.reverse.each do |e| -%>
         <li>
           <time datetime=<%= e.created_at %>><%= e.created_at %></time>
-          <a href=<%= e.relative %>><%= e.title %></a>
+          <a href=<%= e.url %>><%= e.title %></a>
           <nav class=tags>
             <ul>
               <%- e.tags.each{|tag| -%>
