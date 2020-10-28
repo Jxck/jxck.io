@@ -87,7 +87,7 @@ Safari による ITP や、 Chrome による Privacy Sandbox への移行など�
 
 逆を言えば、そういう設置場所のコントロールもできないと、採用は難しい。
 
-いくつか検討した結果、最終的に最も一般的に使われているであろう Google AdSesce を導入することにした。
+いくつか検討した結果、最終的に最も一般的に使われているであろう Google AdSense を導入することにした。
 
 
 ## Google AdSense 導入
