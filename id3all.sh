@@ -1054,3 +1054,29 @@ eyeD3 --title "ep73 Semantic Web" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep74.mp3
+
+eyeD3 --title "ep74 Monthly Web 202009" \
+      --track 82 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep74.mp3
+
+
+
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep75.mp3
+
+eyeD3 --title "ep75 Monthly Web 202010" \
+      --track 83 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep75.mp3
+
+
+
