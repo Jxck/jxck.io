@@ -9,7 +9,7 @@ published_at
 : 2019-09-01
 
 guest
-: [@あざらし / Sho Miyamoto](https://twitter.com/antidotech)
+: [@shqld](https://twitter.com/shqld)
 
 
 ## Theme

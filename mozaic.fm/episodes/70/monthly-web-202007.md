@@ -9,7 +9,7 @@ published_at
 : 2020-08-11
 
 guest
-: [@webseals](https://twitter.com/webseals)
+: [@shqld](https://twitter.com/shqld)
 
 
 ## Theme
