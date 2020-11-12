@@ -19,13 +19,9 @@
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
   document.on('DOMContentLoaded', async (e) => {
     $('#buy').on('click', async (e) => {
-
       const $img = document.createElement('img')
-      $img.src = '/conversion-measurement/conversion'
+      $img.src = 'https://lab2.jxck.io/conversion-measurement/conversion'
       $('body').appendChild($img)
-      // const res = await fetch'/conversion-measurement/conversion')(
-      // console.log(res)
-
     })
   })
 </script>
