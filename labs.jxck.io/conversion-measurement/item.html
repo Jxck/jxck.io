@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Ad Item DEMO</title>
+
+<!-- 1st for labs.mozaic.fm -->
+<meta http-equiv="origin-trial" content="Ap4WACHNGwQagv7VN6AebDxKU3NbhtSKxpJm0D9Udn6MaUVp5VWb8yp3fKPBzXHhnVIKUqOK10JZ/DXtb3oyvw0AAABdeyJvcmlnaW4iOiJodHRwczovL2xhYnMubW96YWljLmZtOjQ0MyIsImZlYXR1cmUiOiJDb252ZXJzaW9uTWVhc3VyZW1lbnQiLCJleHBpcnkiOjE2MDg4MTEyMjl9">
+
+<h1>Ad Item DEMO</h1>
+
+<img width=300 src=https://logo.jxck.io/jxck.svg>
+
+<button id=buy>buy it !! (conversion)</button>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+  document.on('DOMContentLoaded', async (e) => {
+    $('#buy').on('click', async (e) => {
+
+      const $img = document.createElement('img')
+      $img.src = '/conversion-measurement/conversion'
+      $('body').appendChild($img)
+      // const res = await fetch'/conversion-measurement/conversion')(
+      // console.log(res)
+
+    })
+  })
+</script>
+
