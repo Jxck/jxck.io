@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Vary DEMO</title>
+
+<meta http-equiv="origin-trial" content="">
+
+<style>
+textarea {
+  width: 50vw;
+  height: 50vh;
+}
+</style>
+
+<h1>Vary DEMO</h1>
+
+<button id="en-US">en-US</button>
+<button id="ja-JP">ja-JP</button>
+
+<ul>
+  <li>button above requests <code>/vary/random.json</code> with <code>Accept-Language</code> which value is <code>en-US</code> or <code>ja-JP</code></li>
+  <li>response returns body with <code>"#{lang}, #{rand(10)}"</code></li>
+  <li>response header includes <code>"Cache-Control": "max-age=10"</code>, <code>"Vary": "Accept-Language"</code></li>
+  <li><strong>Expected Behavior</strong>
+    <ul>
+      <li>first click of each button fetch &amp; store in cache, thereafter click will hit cache</li>
+      <li>
+        <pre>en-US, 1</pre>
+        <pre>en-US, 1</pre>
+        <pre>ja-JP, 5</pre>
+        <pre>ja-JP, 5</pre>
+        <pre>en-US, 1</pre>
+        <pre>en-US, 1</pre>
+        <pre>ja-JP, 5</pre>
+        <pre>ja-JP, 5</pre>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Actual Behavior</strong>
+    <ul>
+      <li>switching button request again</li>
+      <li>
+        <pre>en-US, 1</pre>
+        <pre>en-US, 1</pre>
+        <pre>ja-JP, 5</pre>
+        <pre>ja-JP, 5</pre>
+        <pre>en-US, 3 (no cache hit)</pre>
+        <pre>en-US, 3</pre>
+        <pre>ja-JP, 8 (no cache hit)</pre>
+        <pre>ja-JP, 8</pre>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<textarea></textarea>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  $$('button').forEach(($button) => {
+    console.log($button.id)
+    $button.on('click', async (e) => {
+      const res = await fetch('random.json', {
+        headers: {
+          "Accept-Language": $button.id
+        }
+      })
+      const body = await res.text()
+      //console.log(Array.from(res.headers.entries()).map(e => e.join(':  \t')).join('\n'))
+      $('textarea').value += `${body}\n`
+    })
+  })
+</script>
