@@ -168,7 +168,19 @@ URL を見ると、 IETF の hybi が策定している the websocket protocol �
 
 これは、 Hybi WG で議論する前に WebSocket の最初のデザインを書いた Hixie (Ian Hickson) 個人のドラフトだ。
 
-このようにドラフトは最初個人が 76 回の更新を重ねた結果、 Hybi という WG のアイテムとして議論しようということで
+このようにドラフトは最初個人が書き始め、議論を重ねた結果 WG で扱うべき(みんなで広く議論すべき)となったら、 WG のアイテムとして採用される。
+
+### ドラフトの状態の見極め方
+
+ここまでのことがわかると、例えば以下のようなドラフトを見たときに読み取れる情報はこうなる。
+
+- https://tools.ietf.org/html/draft-ietf-quic-http-32
+
+![quic-http](quic-http.png)
+
+- quic wg で議論されいる
+- http3 のドラフトで v32 まで議論されいる
+- 元々は Google の R Shade が書いていたが、今は Akamai の M Bishop が Author
 
 
 
