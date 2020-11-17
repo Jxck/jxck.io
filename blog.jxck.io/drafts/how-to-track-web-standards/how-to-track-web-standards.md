@@ -118,15 +118,57 @@ WebCodecs の場合は以下だ。
 
 IETF と W3C の場合だけもう少し見方を解説しておく。
 
+
 ### IETF
 
-IETF の場合は、ドラフトは基本的に提案した人が個人的に書いたドラフトから始まる。
+#### RFC
 
-例えば HTTP2 の場合で見てみよう。
+例えば WebSocket の場合で見てみよう。 WebSocket は既に RFC になっており RFC6455 がそれにあたる。
+
+- https://tools.ietf.org/html/rfc6455
+
+RFC が出ていればそれを読めば良い。が、読み始める前にかならず確認すべきヘッダが 3 つある。
+
+- Errata Exist
+  - Github でいう Issue ページ、RFC が出た後に見つかった誤字脱字や仕様のバグなどが報告されている。
+  - RFC 自体は一度出たら修正されないので、ここに Errata が溜まったら、別の RFC として更新版が出るが、なかなか出ないものが多い。
+  - 特にこれから実装しようとか、仕様の細部を確認するような場合はかならず確認するべき。仕様が常に正しいとは限らない。
+  - 逆に仕様で間違ってたり誤字脱字を見つけたらここから報告する。
+- Obsolute by
+  - このリンクがある場合は、この仕様の改訂版があり、それによりこの仕様が古くなったことを意味する。
+  - 基本は最新版を見ればよい。
+- Updated by
+  - Obsolute ではないが、部分的に改定した RFC があることを示す。
+  - RFC6455 WebSocket の場合は、 RFC8443 Bootstrapping WebSockets with HTTP/2 などが Update している。
+
+RFC のヘッダ部分の赤線部をクリックすると過去のドラフトのリンクに飛べる。
+
+![RFC6455](RFC6455.png)
+
+これが WG Draft だ。
+
+#### WG Draft
+
+![hybi-thewebsocketprotocol](hybi-thewebsocketprotocol.png)
 
 
+- https://tools.ietf.org/html/draft-ietf-hybi-thewebsocketprotocol-17
 
-https://wicg.github.io/web-codecs/
+これは、 WebSocket を策定する Working Group である Hybi (hypertext bidirectional) で議論された RFC になる前のドラフトだ、バージョンが 00 ~ 17 まであり、 18 相当が RFC になったことがわかる。
+
+URL を見ると、 IETF の hybi が策定している the websocket protocol の v17 であることが読み取れるだろう。最後のバージョンを省略すると自動で最新にリダイレクトされるので、古いドラフトのヘッダは更新されないことがあるので、最新を見たいときは一度リダイレクトすると良い。
+
+#### 個人 Draft
+
+そのヘッダ部分には、更に古いドラフトへのリンクがある。
+
+![hixie-thewebsocketprotocol](hixie-thewebsocketprotocol.png)
+
+- https://tools.ietf.org/html/draft-hixie-thewebsocketprotocol-76
+
+これは、 Hybi WG で議論する前に WebSocket の最初のデザインを書いた Hixie (Ian Hickson) 個人のドラフトだ。
+
+このようにドラフトは最初個人が 76 回の更新を重ねた結果、 Hybi という WG のアイテムとして議論しようということで
 
 
 
