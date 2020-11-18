@@ -1,4 +1,4 @@
-# [monthly-web] Web 技術の調査方法
+# [standards][web] Web 技術の調査方法
 
 
 ## Intro
@@ -48,11 +48,11 @@ WebCodecs の場合は、 Google が提案/実装を主導しているため、 
 
 ちなみに、筆者はブラウザのカスタム検索エンジンとして blink-dev を登録しているので、ブラウザに "blink-dev" と打つだけで検索できるようにしている。
 
-![blink-dev をカスタム検索エンジンとして登録](custom-search-engine.png#681x233)
+![blink-dev をカスタム検索エンジンとして登録](custom-search-engine.png#681x233 'custom-search-engine')
 
 ここで WebCodecs を検索すると関連しそうなスレッドがいくつか見つかる。
 
-![blink-dev で WebCodecs を検索した結果](blink-dev-search.png#748x525)
+![blink-dev で WebCodecs を検索した結果](blink-dev-search.png#748x525 'blink-dev webcodecs search results')
 
 まず、これらスレッドのタイトルについている "Intent to ~" という部分が、マイルストーンを示しており、だいたい以下の順で投稿される。
 
@@ -205,7 +205,7 @@ RFC が出ていればそれを読めば良い。が、読み始める前にか�
   - RFC6455 WebSocket の場合は、 RFC8443 Bootstrapping WebSockets with HTTP/2 などが Update している。
   - 必ずしも Update 先を見るとは限らない。
 
-![RFC6455](RFC6455.png#748x324)
+![RFC6455](RFC6455.png#748x324 'RFC6455')
 
 また、ヘッダ部分 `[draft-...]` のリンクをクリックすると過去のドラフトを見ることができる。新しい技術を調査するのであれば、まだ RFC は出ていないと思われるため、ドラフトの見方も確認しておこう。
 
@@ -214,7 +214,7 @@ RFC が出ていればそれを読めば良い。が、読み始める前にか�
 
 RFC6455 の 1 つ前のドラフトは以下だ。
 
-![hybi-thewebsocketprotocol](hybi-thewebsocketprotocol.png#748x379)
+![draft-ietf-hybi-thewebsocketprotocol-17](hybi-thewebsocketprotocol.png#748x379 'draft-ietf-hybi-thewebsocketprotocol-17')
 
 - <https://tools.ietf.org/html/draft-ietf-hybi-thewebsocketprotocol-17>
 
@@ -229,7 +229,7 @@ URL を見ると、 IETF の hybi が策定している the websocket protocol �
 
 そのヘッダ部分には、更に古いドラフトへのリンクがある。
 
-![hixie-thewebsocketprotocol](hixie-thewebsocketprotocol.png#748x447)
+![draft-hixie-thewebsocketprotocol-76](hixie-thewebsocketprotocol.png#748x447 'draft-hixie-thewebsocketprotocol-76')
 
 - <https://tools.ietf.org/html/draft-hixie-thewebsocketprotocol-76>
 
@@ -244,7 +244,7 @@ URL を見ると、 IETF の hybi が策定している the websocket protocol �
 
 - <https://tools.ietf.org/html/draft-ietf-quic-http-32>
 
-![quic-http](quic-http.png#748x384)
+![draft-ietf-quic-http-32](quic-http.png#748x384 'draft-ietf-quic-http-32')
 
 - QUIC WG で議論されいる
 - HTTP3 のドラフトで v32 まで議論されいる
@@ -293,7 +293,7 @@ QUIC であれば以下のようにアレンジされていることがわかる
 
 - <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy>
 
-![MDN CSP のページ下部にある仕様へのリンク集](mdn-csp.png#748x398)
+![MDN CSP のページ下部にある仕様へのリンク集](mdn-csp.png#748x398 'MDN Spec Link')
 
 もし MDN にエントリがあるならこれが一番簡単な方法だろう。
 
@@ -306,7 +306,7 @@ W3C の Draft には段階があるが、解説すると長くなるので、良
 
 ドラフトを見るとき、まず最初にするのはヘッダ部分の確認だ。
 
-![CSP v3 Draft Header](cspv3.png#748x620)
+![CSP v3 Draft の Header 部分](cspv3.png#748x620 'CSP v3 Draft Header')
 
 例えば CSP で言うと、検索すると以下の様にいくつかの URL が見つかるかもしれない。
 
@@ -420,4 +420,4 @@ TC39 のミーティングは以前は奇数月に開催されていたが、作
 
 本ブログでは、新しい API について書くような場合は、記事の下部にここで紹介したようなリソースへのリンクを含めるようにテンプレートを作っているので、その辺も参考になるかもしれない。
 
-![記事の下部に含めている参考リンク集](blog-resource-link.png#748x698)
+![記事の下部に含めている参考リンク集](blog-resource-link.png#748x698 'blog-resource-linik')

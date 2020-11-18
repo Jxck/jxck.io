@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href="https://blog.jxck.io/entries/2020-11-19/how-to-track-web-standards.html">
+  <link rel=amphtml   href="https://blog.jxck.io/entries/2020-11-19/how-to-track-web-standards.amp.html">
+  <link rel=preload   type=font/woff2 as=font href=/assets/font/NotoSansCJKjp-Regular-Jxck-20200904.woff2 crossorigin>
+
+  <script async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+  <script defer src=/assets/js/main.js></script>
+  <script defer src=/assets/js/ga.js></script>
+  <script defer src=/assets/js/highlight.pack.js></script>
+
+  <link rel=icon             type =image/svg+xml sizes=any href=https://jxck.io/assets/img/jxck.svg>
+  <link rel=icon             type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="「新しい API などを、どうやって調べているのか」「仕様などを調べる際に、どこから手をつければ良いのか」などといった質問をもらうことがある。確かにどこかに明文化されていると言うよりは、普段からやっててある程度慣れてきているだけなものであり、自分としても明文化していなかった...">
+  <meta name=keywords            content="standards,web">
+  <meta name=theme-color         content=#000000>
+
+  <meta name=twitter:card        content=summary>
+  <meta name=twitter:site        content=@jxck_>
+  <meta name=twitter:url         content=https://blog.jxck.io/entries/2020-11-19/how-to-track-web-standards.html>
+  <meta name=twitter:title       content="Web 技術の調査方法 | blog.jxck.io">
+  <meta name=twitter:description content="「新しい API などを、どうやって調べているのか」「仕様などを調べる際に、どこから手をつければ良いのか」などといった質問をもらうことがある。確かにどこかに明文化されていると言うよりは、普段からやっててある程度慣れてきているだけなものであり、自分としても明文化していなかった...">
+  <meta name=twitter:image       content=https://jxck.io/assets/img/jxck.png>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2020-11-19/how-to-track-web-standards.html>
+  <meta property=og:title        content="Web 技術の調査方法 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="「新しい API などを、どうやって調べているのか」「仕様などを調べる際に、どこから手をつければ良いのか」などといった質問をもらうことがある。確かにどこかに明文化されていると言うよりは、普段からやっててある程度慣れてきているだけなものであり、自分としても明文化していなかった...">
+  <meta property=og:image        content=https://jxck.io/assets/img/jxck.png>
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Web 技術の調査方法 | blog.jxck.io",
+    "image": [
+      "https://jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2020-11-19T08:00:00+08:00",
+    "dateModified": "2020-11-19T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.60x60.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": "「新しい API などを、どうやって調べているのか」「仕様などを調べる際に、どこから手をつければ良いのか」などといった質問をもらうことがある。確かにどこかに明文化されていると言うよりは、普段からやっててある程度慣れてきているだけなものであり、自分としても明文化していなかった..."
+  }
+  </script>
+
+  <title>Web 技術の調査方法 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=/assets/img/blog.svg   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/searches                 ><img width=30 height=30 loading=eager src=/assets/img/search.svg title=search alt=search></a>
+        <li><a href="https://blog.jxck.io/entries/2020-11-19/how-to-track-web-standards.amp.html#development=1" aria-label="amp version">
+                                               <img width=30 height=30 loading=eager src=/assets/img/amp.svg    title=amp    alt="amp version"></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=/assets/img/up.svg     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=/assets/img/rss.svg    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=/assets/img/humans.svg title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=/assets/img/jxck.svg   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/markdown.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2020-11-19>2020-11-19</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-11-19>2020-11-19</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags/standards.html">standards</a>
+              <li><a href="/tags/web.html">web</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headdings</summary>
+            <nav>
+              <ul>
+                <li><a href=#intro>## Intro</a>
+                <li><a href=#scope>## Scope</a>
+                <li><a href=#chrome-platform-status>### Chrome Platform Status</a>
+                <li><a href=#blink-dev>### blink-dev</a>
+                <li><a href=#explainer>## Explainer</a>
+                <li><a href=#design-docs>## Design Docs</a>
+                <li><a href=#tag-review>## Tag Review</a>
+                <li><a href=#positions>## Positions</a>
+                <li><a href=#mozilla-standard-position>### Mozilla Standard Position</a>
+                <li><a href=#webkit-position>### Webkit Position</a>
+                <li><a href=#developer-position>### Developer Position</a>
+                <li><a href=#spec>## Spec</a>
+                <li><a href=#ietf>## IETF</a>
+                <li><a href=#rfc>### RFC</a>
+                <li><a href=#wg-draft>### WG Draft</a>
+                <li><a href=#個人-draft>### 個人 Draft</a>
+                <li><a href=#ドラフトの状態>### ドラフトの状態</a>
+                <li><a href=#議論の場所>### 議論の場所</a>
+                <li><a href=#ietf-mtg>### IETF MTG</a>
+                <li><a href=#w3cwhatwg>## W3C/WHATWG</a>
+                <li><a href=#draft>### Draft</a>
+                <li><a href=#wg>### WG</a>
+                <li><a href=#wicg>### WICG</a>
+                <li><a href=#tpac>### TPAC</a>
+                <li><a href=#tc39>## TC39</a>
+                <li><a href=#proposals>### Proposals</a>
+                <li><a href=#ecmascript>### ECMAScript</a>
+                <li><a href=#tc39-meeting>### TC39 Meeting</a>
+                <li><a href=#慣れ>## 慣れ</a>
+              </ul>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+    <article>
+      <h1><a href=/entries/2020-11-19/how-to-track-web-standards.html>Web 技術の調査方法</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>「新しい API などを、どうやって調べているのか」「仕様などを調べる際に、どこから手をつければ良いのか」などといった質問をもらうことがある。
+        <p>確かにどこかに明文化されていると言うよりは、普段からやっててある程度慣れてきているだけなものであり、自分としても明文化していなかったため、これを機に解説してみる。
+        <p>やり方は一つではない上に、日々変わっていくだろうが、頻繁にこの記事を更新するつもりはない。また、筆者は実務で必要になるというよりは、ほとんどを趣味でやっているため、このやり方が合わない場面は多々有るだろう。
+        <p>スコープとしては、ライブラリ、ツール、フレームワークなどではなく、 Web プラットフォーム関連の標準やブラウザの実装状況などに限定している。
+      </section>
+      <section>
+        <h2 id="scope"><a href="#scope">Scope</a></h2>
+        <p>従来からあり広く認知された API については、情報も多いため調査の敷居はそこまで高くないため、今回は議論が始まって間もない新しめの API になどについて、現時点でどういう状況なのか、仕様の議論はどう進んでいるのか、実装はどうなのか、といった部分を調査するような場面、つまり <em>点で調べる</em> 場面にフォーカスする。
+        <p>直近だと <a href="https://blog.jxck.io/entries/2020-09-01/webcodecs-webtransport-chat.html">WebCodecs の記事</a> がそのケースにあたるので、これを例に解説する。
+        <p>一方、普段から流れ(トレンドと言っても良い)を把握するという意味で、 <em>線で調べる</em> 方法は以前解説した以下が参考になるだろう。
+        <ul>
+          <li><a href="https://blog.jxck.io/entries/2018-07-18/how-to-logging-monthly-web.html">Monthly Web の作り方 2018 年版</a>
+        </ul>
+        <section>
+          <h3 id="chrome-platform-status"><a href="#chrome-platform-status">Chrome Platform Status</a></h3>
+          <p>まず最初に、現状を把握する意味では Chrome Platform Status のページがある。元々は名前の通り Chrome だけの Status だったが、ここは <a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/R8oZsw6RLGs/m/l0KOUyuWAQAJ">Web の Status</a> として今後も他のブラウザ実装も含めて整備される流れのようだ。
+          <ul>
+            <li><a href="https://www.chromestatus.com/feature/5669293909868544">https://www.chromestatus.com/feature/5669293909868544</a>
+          </ul>
+          <p>これが現状だけを示す意味で最もスッキリまとまっている。
+          <p>しかし、もう少し議論も含めて把握するために、筆者は Intents からたどることが多い。
+          <p>(なお、最近の Intents は Chrome Platform Status から生成されるらしい)
+        </section>
+        <section>
+          <h3 id="blink-dev"><a href="#blink-dev">blink-dev</a></h3>
+          <p>WebCodecs の場合は、 Google が提案/実装を主導しているため、 blink-dev で進捗がわかる。
+          <ul>
+            <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev">blink-dev | Google Group</a>
+          </ul>
+          <p>この ML は、主に Chrome のエンジンである blink の開発に関するアナウンスが行われている。
+          <p>大抵の新しい API は Chrome が何かしら作業をしている場合が多いので、まず blink-dev から当たると何かしら取っ掛かりが得られる。
+          <p>ちなみに、筆者はブラウザのカスタム検索エンジンとして blink-dev を登録しているので、ブラウザに &ldquo;blink-dev&rdquo; と打つだけで検索できるようにしている。
+          <p>
+            <picture>
+              <source type=image/webp srcset=custom-search-engine.webp#681x233>
+              <img loading=lazy src=custom-search-engine.png#681x233 alt="blink-dev をカスタム検索エンジンとして登録" title="custom-search-engine">
+            </picture>
+          </p>
+          <p>ここで WebCodecs を検索すると関連しそうなスレッドがいくつか見つかる。
+          <p>
+            <picture>
+              <source type=image/webp srcset=blink-dev-search.webp#748x525>
+              <img loading=lazy src=blink-dev-search.png#748x525 alt="blink-dev で WebCodecs を検索した結果" title="blink-dev webcodecs search results">
+            </picture>
+          </p>
+          <p>まず、これらスレッドのタイトルについている &ldquo;Intent to ~&rdquo; という部分が、マイルストーンを示しており、だいたい以下の順で投稿される。
+          <ul>
+            <li>
+              <em>Intent to Prototype/Implement</em>
+              <ul>
+                <li>この機能について実装に着手する
+                <li>関連するドキュメントや議論に関するリンクがまとめられている。
+                <li>Canary などでは作り途中のものが試せる場合がある
+                <li>以前は Implement だったが最近 Prototype に名前を変えたのでまだ名残がある。
+              </ul>
+            </li>
+            <li>
+              <em>Intent to Experiment</em>
+              <ul>
+                <li>実装がある程度形になったのでトライアルを開始する
+                <li>Chrome Dev/Beta でフラグ付きで有効にできる
+                <li>Origin Trials が開始される
+              </ul>
+            </li>
+            <li>
+              <em>Intent to Extend Origin Trials</em>
+              <ul>
+                <li>Origin Trials を延長する
+                <li>Origin Trials は期限を決めて開始されるが、十分なトライアルが済んでない場合など
+              </ul>
+            </li>
+            <li>
+              <em>Intent to Ship</em>
+              <ul>
+                <li>トライアルで十分にフィードバックが集まり実装も固まったので、リリースする
+                <li>コンセンサス、具体的には他の開発者から LGTM が 3 つが得られれば良いというルール
+                <li>その後 Chrome Stable リリースに入る
+              </ul>
+            </li>
+            <li>
+              <em>Intent to Deprecate</em>
+              <ul>
+                <li>なんらかの機能を非推奨/無効にする
+              </ul>
+            </li>
+            <li>
+              <em>Intent to Remove</em>
+              <ul>
+                <li>Deprecate が完了したためコードを消す
+              </ul>
+            </li>
+          </ul>
+          <p>(あくまで Intent なので、例えば Intent to Ship が出たら「Ship された」ではなく、「Ship しようと思う」という意味であることに注意)
+          <p>もし該当の機能で何かしらヒットすれば、そこから調査を始めるのがわかりやすいだろう。
+          <p>WebCodecs の場合は、 Intent to Experiment まで出ているので、実装は進みトライアルが始まろうとしていることがわかる。
+          <ul>
+            <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/7OdxQf5HnlQ/m/oyb3oFVaAAAJ">Intent to Experiment: WebCodecs</a>
+          </ul>
+          <p>また、その中で以下のような情報が入っている。
+          <ul>
+            <li>
+              Explainer:   <a href="https://github.com/WICG/web-codecs/blob/master/explainer.md">https://github.com/WICG/web-codecs/blob/master/explainer.md</a>
+            </li>
+            <li>
+              Design docs: <a href="https://docs.google.com/document/d/1fw3_aMB0-q9hOMuz_lxE8kEd-Z7vjA0wtklpx77m4yw/edit">https://docs.google.com/document/d/1fw3_aMB0-q9hOMuz_lxE8kEd-Z7vjA0wtklpx77m4yw/edit</a>
+            </li>
+            <li>
+              TAG review:  <a href="https://github.com/w3ctag/design-reviews/issues/433">https://github.com/w3ctag/design-reviews/issues/433</a>
+            </li>
+            <li>
+              Draft Spec:  <a href="https://wicg.github.io/web-codecs/">https://wicg.github.io/web-codecs/</a>
+            </li>
+          </ul>
+          <p>これが調べていく起点となり、 Intents が見つからなかった場合は、仕様のリポジトリなどを探すことになる。
+          <p>中身を順に解説していく。
+        </section>
+      </section>
+      <section>
+        <h2 id="explainer"><a href="#explainer">Explainer</a></h2>
+        <p>新しい仕様が提案されるとき、まず最初に「こんな機能が欲しい」という概要とモチベーションを説明する <em>Explainer</em> が最初に作られる。
+        <p>特に置かれる場所もフォーマットも決まってないため、 Google Docs, Github, Issue, ML, <a href="https://discourse.wicg.io/">Discourse</a> の投稿だったりすることもある。
+        <p>いきなり仕様や実装を読むよりも、その仕様の概要を抑えるという意味では、まずこの Explainer を探して読み、概要を把握するのが良いだろう。
+        <p>WebCodecs の場合は以下だ。
+        <ul>
+          <li>
+            Explainer: <a href="https://github.com/WICG/web-codecs/blob/master/explainer.md">https://github.com/WICG/web-codecs/blob/master/explainer.md</a>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="design-docs"><a href="#design-docs">Design Docs</a></h2>
+        <p>Chrome の場合、実装に着手する前に、どういう方法で実装を入れる予定なのかを Design Docs という形でまとめることが多い。
+        <p>これがレビューされてから実装に着手することになるので、作られる場合は Intent to Prototype の時点では用意されているだろう。
+        <p>ただ、この内容は実際に実装を行う上での話、つまり C++ での設計の話が中心なので、よほど細かい点を調べる場合以外、あまり見る必要は無い。
+        <p>また、 Google 内部でしか見れないように非公開になっている Docs が多々あり、その場合は権限をリクエストしても付与されることはほとんどない。
+      </section>
+      <section>
+        <h2 id="tag-review"><a href="#tag-review">Tag Review</a></h2>
+        <p>W3C の Tag (Technical Architecture Group) というグループのレビューを指す。
+        <p>要するに、 Web 標準のエキスパートたちによるレビュープロセスで、これを通すのが基本だ。
+        <ul>
+          <li><a href="https://github.com/w3ctag/design-reviews/issues/433">https://github.com/w3ctag/design-reviews/issues/433</a>
+        </ul>
+        <p>Github の Issue で行われており、セキュリティや互換性など、様々な側面からレビューがされるため、 API にどういう懸念があり、どう解決したのかなどがわかる。
+      </section>
+      <section>
+        <h2 id="positions"><a href="#positions">Positions</a></h2>
+        <p>最近は新しい API の提案が Chrome から出ることが多いが、標準化と普及のためには、他のブラウザや開発者がどう考えているかという Position も重要であり、 Intents にも書かれることが増えた。
+        <p>従来は、どこかのミーティングや ML でのログなどのリンクが貼られていたが、最近は情報ソースとして Standard Positon が使われることが多い。
+        <section>
+          <h3 id="mozilla-standard-position"><a href="#mozilla-standard-position">Mozilla Standard Position</a></h3>
+          <p>Mozilla の Position についてまとまったダッシュボードがある。
+          <ul>
+            <li><a href="https://mozilla.github.io/standards-positions/">https://mozilla.github.io/standards-positions/</a>
+          </ul>
+          <p>元々は、 Chrome が進めている仕様に対して明確な No(Harmful) を示すために作られた印象があるが、今では様々な仕様のポジションがわかって便利だ。
+          <p>ポジションのリクエストは誰にでもできるので、まだリストにないもので、 Mozilla がどう考えているかを知りたい場合は、 Issue を立てるところから始めることができる。
+          <ul>
+            <li><a href="https://mozilla.github.io/standards-positions/#web-codecs">https://mozilla.github.io/standards-positions/#web-codecs</a>
+          </ul>
+          <p>逆に Issue を探してログを読めば、 Mozilla のスタンスがより細かく把握できる。
+        </section>
+        <section>
+          <h3 id="webkit-position"><a href="#webkit-position">Webkit Position</a></h3>
+          <p>Safari の場合は特にページが有るわけではなく、主に webkit-dev の ML で、 Chrome 開発者が &ldquo;Request for Position&rdquo; というタイトルの投稿をして聞いているというのが現状だ。
+          <p>なので、基本的に Chrome 開発者が必要に応じて投げており、網羅性はそこまでない。解答も付いたり付かなかったり、付いても Apple の人間では無いっぽい人のコメントだったりと、気をつけるべき点が多い。
+          <ul>
+            <li><a href="https://lists.webkit.org/pipermail/webkit-dev/2020-May/031191.html">https://lists.webkit.org/pipermail/webkit-dev/2020-May/031191.html</a>
+          </ul>
+          <p>筆者は、キーマンとして &ldquo;Ryosuke Niwa&rdquo; さんの返事に注目している。
+        </section>
+        <section>
+          <h3 id="developer-position"><a href="#developer-position">Developer Position</a></h3>
+          <p>よく <code translate="no">Developer: Positive</code> と書かれている Intents を見るが、誰がどこで賛同したのか不明なものが多い。
+        </section>
+      </section>
+      <section>
+        <h2 id="spec"><a href="#spec">Spec</a></h2>
+        <p>仕様は、 IETF なのか W3C なのか TC39 なのかによって違うが、ある程度規定されたフォーマットで書かれているだろう。
+        <p>しかし、決まったフォーマットに落とす前に、例えば API Interface だけを Explainer の延長で Github に書いたりすることもあるので、一概にどこにあるとは言い切れない。
+        <p>IETF, W3C/WHATWG, TC39 それぞれの見方の概要について解説していく。
+      </section>
+      <section>
+        <h2 id="ietf"><a href="#ietf">IETF</a></h2>
+        <p>主に Internet Protocol に関する策定を行う組織なため、 HTTP3 や QUIC などのプロトコルはここで議論/策定される。
+        <section>
+          <h3 id="rfc"><a href="#rfc">RFC</a></h3>
+          <p>例えば WebSocket の場合で見てみよう。 WebSocket は既に RFC になっており RFC6455 がそれにあたる。
+          <ul>
+            <li><a href="https://tools.ietf.org/html/rfc6455">https://tools.ietf.org/html/rfc6455</a>
+          </ul>
+          <p>RFC が出ていればそれを読めば良い。が、読み始める前にかならず確認すべきヘッダが 3 つある。
+          <ul>
+            <li>
+              Errata Exist
+              <ul>
+                <li>Github でいう Issue ページ、 RFC が出た後に見つかった誤字脱字や仕様のバグなどが報告されている。
+                <li>RFC 自体は一度出たら修正されないので、ここに Errata が溜まったら、別の RFC として更新版が出るが、なかなか出ないものが多い。
+                <li>特にこれから実装しようとか、仕様の細部を確認するような場合はかならず確認するべき。仕様が常に正しいとは限らない。
+                <li>逆に仕様で間違ってたり誤字脱字を見つけたらここから報告する。
+              </ul>
+            </li>
+            <li>
+              Obsolute by
+              <ul>
+                <li>このリンクがある場合は、この仕様の改訂版があり、それによりこの仕様が古くなったことを意味する。
+                <li>基本は最新版を見ればよい。
+              </ul>
+            </li>
+            <li>
+              Updated by
+              <ul>
+                <li>Obsolute ではないが、部分的に改定したものや、拡張の RFC があることを示す。
+                <li>RFC6455 WebSocket の場合は、 RFC8443 Bootstrapping WebSockets with HTTP/2 などが Update している。
+                <li>必ずしも Update 先を見るとは限らない。
+              </ul>
+            </li>
+          </ul>
+          <p>
+            <picture>
+              <source type=image/webp srcset=RFC6455.webp#748x324>
+              <img loading=lazy src=RFC6455.png#748x324 alt="RFC6455" title="RFC6455">
+            </picture>
+          </p>
+          <p>また、ヘッダ部分 <code translate="no">[draft-...]</code> のリンクをクリックすると過去のドラフトを見ることができる。新しい技術を調査するのであれば、まだ RFC は出ていないと思われるため、ドラフトの見方も確認しておこう。
+        </section>
+        <section>
+          <h3 id="wg-draft"><a href="#wg-draft">WG Draft</a></h3>
+          <p>RFC6455 の 1 つ前のドラフトは以下だ。
+          <p>
+            <picture>
+              <source type=image/webp srcset=hybi-thewebsocketprotocol.webp#748x379>
+              <img loading=lazy src=hybi-thewebsocketprotocol.png#748x379 alt="draft-ietf-hybi-thewebsocketprotocol-17" title="draft-ietf-hybi-thewebsocketprotocol-17">
+            </picture>
+          </p>
+          <ul>
+            <li><a href="https://tools.ietf.org/html/draft-ietf-hybi-thewebsocketprotocol-17">https://tools.ietf.org/html/draft-ietf-hybi-thewebsocketprotocol-17</a>
+          </ul>
+          <p>これは、 WebSocket を策定する Working Group である Hybi (hypertext bidirectional) で議論された RFC になる前のドラフトだ、バージョンが 00 ~ 17 まであり、 18 相当が RFC になったことがわかる。
+          <p>URL を見ると、 IETF の hybi が策定している the websocket protocol の v17 であることが読み取れるだろう。
+          <p>ドラフトを見たときにまず最初にやるべきことは、そのドラフトが最新かどうかだ。古いドラフトには新しいドラフトの数字リンクがない場合がある。しかし、ドラフトの URL は最後が必ずバージョン番号で、ここ(<code translate="no">-17</code>)を省略すると自動で最新にリダイレクトされる仕組みになっている。読んでたのが古かったということがたまにあるので、筆者はとりあえず最初にそれをやる癖をつけている。
+        </section>
+        <section>
+          <h3 id="個人-draft"><a href="#個人-draft">個人 Draft</a></h3>
+          <p>そのヘッダ部分には、更に古いドラフトへのリンクがある。
+          <p>
+            <picture>
+              <source type=image/webp srcset=hixie-thewebsocketprotocol.webp#748x447>
+              <img loading=lazy src=hixie-thewebsocketprotocol.png#748x447 alt="draft-hixie-thewebsocketprotocol-76" title="draft-hixie-thewebsocketprotocol-76">
+            </picture>
+          </p>
+          <ul>
+            <li><a href="https://tools.ietf.org/html/draft-hixie-thewebsocketprotocol-76">https://tools.ietf.org/html/draft-hixie-thewebsocketprotocol-76</a>
+          </ul>
+          <p>これは、 Hybi WG で議論する前に WebSocket の最初のデザインを書いた Hixie (Ian Hickson) 個人のドラフトだ。
+          <p>このようにドラフトは最初個人が書き始め、議論を重ねた結果 WG で扱うべき(みんなで広く議論すべき)となったら、 WG のアイテムとして採用される。
+        </section>
+        <section>
+          <h3 id="ドラフトの状態"><a href="#ドラフトの状態">ドラフトの状態</a></h3>
+          <p>ここまでのことがわかると、例えば以下のようなドラフトを見たときに読み取れる情報はこうなる。
+          <ul>
+            <li><a href="https://tools.ietf.org/html/draft-ietf-quic-http-32">https://tools.ietf.org/html/draft-ietf-quic-http-32</a>
+          </ul>
+          <p>
+            <picture>
+              <source type=image/webp srcset=quic-http.webp#748x384>
+              <img loading=lazy src=quic-http.png#748x384 alt="draft-ietf-quic-http-32" title="draft-ietf-quic-http-32">
+            </picture>
+          </p>
+          <ul>
+            <li>QUIC WG で議論されいる
+            <li>HTTP3 のドラフトで v32 まで議論されいる
+            <li>元々は Google の R Shade が書いていたが、今は Akamai の M Bishop が Author
+          </ul>
+          <p>特に WG の把握は、後述する議論の場所や IETF のまとめを探す際などに重要だ。
+        </section>
+        <section>
+          <h3 id="議論の場所"><a href="#議論の場所">議論の場所</a></h3>
+          <p>ヘッダ上部にある <code translate="no">[WG]</code> というリンクから QUIC WG の作業全体が把握でき、そこにある <code translate="no">[List Archive]</code> というリンクが ML になる。
+          <p>IETF は基本的には ML で議論行われ、ここを遡るとどんな議論があるのかわかる。全部見るのが大変な場合は、ドラフトに関わるキーマンを見つけ、その人の返信を見るだけでも役に立つ。
+          <ul>
+            <li><a href="https://mailarchive.ietf.org/arch/browse/quic/">https://mailarchive.ietf.org/arch/browse/quic/</a>
+          </ul>
+          <p>また QUIC のドラフトには、ドラフト内に Github へのリンクがあるように、最近は Github で管理されることも増えた。
+          <ul>
+            <li><a href="https://github.com/quicwg/base-drafts">https://github.com/quicwg/base-drafts</a>
+          </ul>
+          <p>Github の運用はドラフトによってまちまちで、 Issue / PR を受け付けるものや、単なるホスティングで議論は ML でやるように促すものもあるので、 README をよく読んでから行動したい。
+        </section>
+        <section>
+          <h3 id="ietf-mtg"><a href="#ietf-mtg">IETF MTG</a></h3>
+          <p>IETF は、年に 3 回みんなで集まって議論する総会を開催している。参加料さえ払えば誰でも出られるが、少し追うくらいなら、 WG のミーティングのログを追う方法を抑えておくとよいだろう。
+          <p>ちょうど今 IETF109 がオンライン開催されており、 IETF のページからそこに飛ぶ。
+          <ul>
+            <li><a href="https://www.ietf.org/how/meetings/109/">https://www.ietf.org/how/meetings/109/</a>
+          </ul>
+          <p>そこに <code translate="no">Agenda (HTML)</code> というリンクがあるので、ここでスケジュールがわかる。 WG によっては IETF でミーティングを開催しないこともあるので、必ずあるとは限らない点には注意したい。
+          <p>QUIC であれば以下のようにアレンジされていることがわかる。
+          <ul>
+            <li><a href="https://datatracker.ietf.org/meeting/109/materials/agenda-109-quic-00">https://datatracker.ietf.org/meeting/109/materials/agenda-109-quic-00</a>
+          </ul>
+          <p>開催方法も WG によってさまざまだが、基本は開催前に Agenda(予定表) と開催後に Minutes(議事録)が出るのは大体共通している。 Minutes には使われたスライドのリンクなども載るので、とにかく Minutes を探せば直近までの議論のまとめがわかるだろう。
+        </section>
+      </section>
+      <section>
+        <h2 id="w3cwhatwg"><a href="#w3cwhatwg">W3C/WHATWG</a></h2>
+        <p>主にブラウザ API に関して策定される組織なため、 HTML や CSS から、 Service Worker や CSP といった様々な API が議論策定されている。ここは API が多岐にわたるため、探すのは少し慣れが必要だ。
+        <p>慣れない人に一番オススメなのは MDN の仕様へのリンクを見ることだ、例えば CSP のページを見てみるとこのように関連仕様へのリンクがまとまっている。
+        <ul>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy</a>
+        </ul>
+        <p>
+          <picture>
+            <source type=image/webp srcset=mdn-csp.webp#748x398>
+            <img loading=lazy src=mdn-csp.png#748x398 alt="MDN CSP のページ下部にある仕様へのリンク集" title="MDN Spec Link">
+          </picture>
+        </p>
+        <p>もし MDN にエントリがあるならこれが一番簡単な方法だろう。
+        <p>新しいドラフトは大抵 Github で管理されてるので、 MDN にエントリのないものは、検索して Github のリポジトリなどを探すと良い。
+        <section>
+          <h3 id="draft"><a href="#draft">Draft</a></h3>
+          <p>W3C の Draft には段階があるが、解説すると長くなるので、良くわからなければとりあえず最新を見ておけば良い。(逆に中途半端に古いものを見ても良いことはあまりない)
+          <p>ドラフトを見るとき、まず最初にするのはヘッダ部分の確認だ。
+          <p>
+            <picture>
+              <source type=image/webp srcset=cspv3.webp#748x620>
+              <img loading=lazy src=cspv3.png#748x620 alt="CSP v3 Draft の Header 部分" title="CSP v3 Draft Header">
+            </picture>
+          </p>
+          <p>例えば CSP で言うと、検索すると以下の様にいくつかの URL が見つかるかもしれない。
+          <ul>
+            <li><a href="https://www.w3.org/TR/2016/WD-CSP3-20160913/">https://www.w3.org/TR/2016/WD-CSP3-20160913/</a>
+            <li><a href="https://www.w3.org/TR/CSP3/">https://www.w3.org/TR/CSP3/</a>
+            <li><a href="https://w3c.github.io/webappsec-csp/">https://w3c.github.io/webappsec-csp/</a>
+          </ul>
+          <p>w3c には仕様にスナップショットを打つプロセスがあるが、とにかく最新を見たい場合は、ヘッダにある <code translate="no">[Editor&#39;s Draft]</code> というリンクの URL を見ると良いだろう(上のリストだと最後のもの)。これが、著者が作業している Working Copy となる。
+          <p>また、ここで Github のリポジトリも確認できることが多い。
+        </section>
+        <section>
+          <h3 id="wg"><a href="#wg">WG</a></h3>
+          <p>CSP の場合は Feedback のところに <code translate="no">public-webappsec</code> と書かれていたが、これが W3C における Working Group になる。
+          <ul>
+            <li><a href="https://www.w3.org/2011/webappsec/">https://www.w3.org/2011/webappsec/</a>
+          </ul>
+          <p>ここにいくと、他のドラフトや ML のリンクが探せるだろう。
+          <p>Working Group のリストは以下にある。
+          <ul>
+            <li><a href="https://www.w3.org/groups/wg/">https://www.w3.org/groups/wg/</a>
+          </ul>
+          <p>名前からだいたい何をやってそうかわかるだろう。
+        </section>
+        <section>
+          <h3 id="wicg"><a href="#wicg">WICG</a></h3>
+          <p>前述の WG にまだ属してないもの、もっと早い段階のものは、個人が提案として書いて、その後に WICG という Incubation のグループで議論されることもある。
+          <p>例えば WebCodecs はまだ WG が無いため WICG で管理されている。
+          <ul>
+            <li><a href="https://wicg.github.io/web-codecs/">https://wicg.github.io/web-codecs/</a>
+          </ul>
+          <p>WICG のリポジトリは全部 Github にあるため、ここは比較的新しい仕様が集まっていることになる。
+          <p>(Portal, Display Locking, WebUSB etc)
+          <ul>
+            <li><a href="https://github.com/wicg/">https://github.com/wicg/</a>
+          </ul>
+          <p>WICG でもう 1 つ知っておきたいのが Discourse だ。
+          <ul>
+            <li><a href="https://discourse.wicg.io/">https://discourse.wicg.io/</a>
+          </ul>
+          <p>ここは、質問や提案をわりと自由にできるフォーラムになっており、例えば「こういう仕様が欲しい」とか「これについて聞きたいけどどこで聞けばいいかわからない」といった場合に、とりあえずここに投げてみると良いだろう。
+        </section>
+        <section>
+          <h3 id="tpac"><a href="#tpac">TPAC</a></h3>
+          <p>TPAC は一年に一度開かれる W3C の総会だ。 W3C は会員じゃないと入れないため、自分の所属する会社が会員だったりしない限り参加は難しい。しかし Minutes や Slide は基本的に公開されるため、議論を追うことは可能だ。
+          <p>TPAC のスケジュールのページを見つけると良い。
+          <ul>
+            <li><a href="https://www.w3.org/2020/10/TPAC/breakout-schedule.html#calendar">https://www.w3.org/2020/10/TPAC/breakout-schedule.html#calendar</a>
+          </ul>
+          <p>あとは見たいトピックの会議の Minutes を見つければ、スライドのリンクなどもあるだろう。
+        </section>
+      </section>
+      <section>
+        <h2 id="tc39"><a href="#tc39">TC39</a></h2>
+        <p>TC39 は ECMA262 の Working Group であり、要するに JS の仕様を議論している。新しい機能という観点では ECMA262 に取り込まれる前の Proposal とその議論を追うことになるだろう。
+        <p>TC39 は IETF や W3C より規模が小さく、情報もまとまっているため、見るべき場所はシンプルだ。
+        <section>
+          <h3 id="proposals"><a href="#proposals">Proposals</a></h3>
+          <p>機能の提案は以下のリポジトリで管理されている。
+          <ul>
+            <li><a href="https://github.com/tc39/proposals">https://github.com/tc39/proposals</a>
+          </ul>
+          <p>Stage が 0 ~ 4 まであり、以下のようになっている。
+          <ul>
+            <li><a href="https://tc39.es/process-document/">https://tc39.es/process-document/</a>
+          </ul>
+          <p>特に Stage 4 になる条件として、最低 2 つの実装が必要なので、例えば v8 だけで動いても 4 にはならない。他のベンダに実装の意図が無ければそこから先に進まないこともありえる。
+          <p>策定が進まなければ <a href="https://github.com/tc39/proposals/blob/master/inactive-proposals.md">Inactive</a> として終わっていくので、 Stage に載ってるものが(たとえ Stage 3 でも)そのまま ECMAScript の仕様に入るとは限らないため、記事やブログを書くときは注意したい。
+        </section>
+        <section>
+          <h3 id="ecmascript"><a href="#ecmascript">ECMAScript</a></h3>
+          <p>Stage 4 を卒業すると、 ECMA262 の仕様に取り込まれる。現在は年 1 回更新され、例えば今年なら ES2020 といて公開された。
+          <p>この時点では少なくとも 2 つの実装では動いてるはずだが、全てのブラウザで動くといった保証があるわけではない。
+        </section>
+        <section>
+          <h3 id="tc39-meeting"><a href="#tc39-meeting">TC39 Meeting</a></h3>
+          <p>TC39 のミーティングは以前は奇数月に開催されていたが、作業が増えたため人を増やし開催が増えている。
+          <p>いつ開催するかは、 Agenda のリポジトリを見るとわかる。
+          <ul>
+            <li><a href="https://github.com/tc39/agendas">https://github.com/tc39/agendas</a>
+          </ul>
+          <p>ここで、議題などが把握できる。
+          <p>終わったら、 Minutes が以下に公開される。リポジトリが別なこととちょっとラグがあることには注意だ。
+          <ul>
+            <li><a href="https://github.com/tc39/notes">https://github.com/tc39/notes</a>
+          </ul>
+          <p>ミーティングで作業が進めば、 Stage の変更がある。そのあたりも note から確認できる。
+        </section>
+      </section>
+      <section>
+        <h2 id="慣れ"><a href="#慣れ">慣れ</a></h2>
+        <p>正直、ある日突然必要になって調べ始めるにはなかなか難しいところもあるかもしれない。ある程度広まっているものを概要レベルで調べるなら Google 検索で済むだろうが、新しい仕様を細かく調べるには検索はあまり役に立った記憶がない。
+        <p>そして、慣れれば慣れるほど逆に情報が過多になり、消化しきれなくなる。上手く減らすために、誰の発言かなどのフィルターだったり、どのタイミングでの議論かなど、暗黙知もたくさん有る。
+        <p>本ブログでは、新しい API について書くような場合は、記事の下部にここで紹介したようなリソースへのリンクを含めるようにテンプレートを作っているので、その辺も参考になるかもしれない。
+        <p>
+          <picture>
+            <source type=image/webp srcset=blog-resource-link.webp#748x698>
+            <img loading=lazy src=blog-resource-link.png#748x698 alt="記事の下部に含めている参考リンク集" title="blog-resource-linik">
+          </picture>
+        </p>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small> See <small><a href=/policies/site.html>Site Policy</a> and <a href=/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <ins class=adsbygoogle data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-2902784829138215 data-ad-slot=9735419796></ins>
+  </footer>
+</body>
+</html>
