@@ -27,7 +27,7 @@
 
 まず最初に、現状を把握する意味では Chrome Platform Status のページがある。元々は名前の通り Chrome だけの Status だったが、ここは [Web の Status](https://groups.google.com/a/chromium.org/g/blink-dev/c/R8oZsw6RLGs/m/l0KOUyuWAQAJ) として今後も他のブラウザ実装も含めて整備される流れのようだ。
 
-- https://www.chromestatus.com/feature/5669293909868544
+- <https://www.chromestatus.com/feature/5669293909868544>
 
 これが現状だけを示す意味で最もスッキリまとまっている。
 
@@ -48,11 +48,11 @@ WebCodecs の場合は、 Google が提案/実装を主導しているため、 
 
 ちなみに、筆者はブラウザのカスタム検索エンジンとして blink-dev を登録しているので、ブラウザに "blink-dev" と打つだけで検索できるようにしている。
 
-![blink-dev をカスタム検索エンジンとして登録](custom-search-engine.png)
+![blink-dev をカスタム検索エンジンとして登録](custom-search-engine.png#681x233)
 
 ここで WebCodecs を検索すると関連しそうなスレッドがいくつか見つかる。
 
-![blink-dev で WebCodecs を検索した結果](blink-dev-search.png)
+![blink-dev で WebCodecs を検索した結果](blink-dev-search.png#748x525)
 
 まず、これらスレッドのタイトルについている "Intent to ~" という部分が、マイルストーンを示しており、だいたい以下の順で投稿される。
 
@@ -127,7 +127,7 @@ W3C の Tag (Technical Architecture Group) というグループのレビュー�
 
 要するに、 Web 標準のエキスパートたちによるレビュープロセスで、これを通すのが基本だ。
 
-- https://github.com/w3ctag/design-reviews/issues/433
+- <https://github.com/w3ctag/design-reviews/issues/433>
 
 Github の Issue で行われており、セキュリティや互換性など、様々な側面からレビューがされるため、 API にどういう懸念があり、どう解決したのかなどがわかる。
 
@@ -143,13 +143,13 @@ Github の Issue で行われており、セキュリティや互換性など、
 
 Mozilla の Position についてまとまったダッシュボードがある。
 
-- https://mozilla.github.io/standards-positions/
+- <https://mozilla.github.io/standards-positions/>
 
 元々は、 Chrome が進めている仕様に対して明確な No(Harmful) を示すために作られた印象があるが、今では様々な仕様のポジションがわかって便利だ。
 
 ポジションのリクエストは誰にでもできるので、まだリストにないもので、 Mozilla がどう考えているかを知りたい場合は、 Issue を立てるところから始めることができる。
 
-- https://mozilla.github.io/standards-positions/#web-codecs
+- <https://mozilla.github.io/standards-positions/#web-codecs>
 
 逆に Issue を探してログを読めば、 Mozilla のスタンスがより細かく把握できる。
 
@@ -160,7 +160,7 @@ Safari の場合は特にページが有るわけではなく、主に webkit-de
 
 なので、基本的に Chrome 開発者が必要に応じて投げており、網羅性はそこまでない。解答も付いたり付かなかったり、付いても Apple の人間では無いっぽい人のコメントだったりと、気をつけるべき点が多い。
 
-- https://lists.webkit.org/pipermail/webkit-dev/2020-May/031191.html
+- <https://lists.webkit.org/pipermail/webkit-dev/2020-May/031191.html>
 
 筆者は、キーマンとして "Ryosuke Niwa" さんの返事に注目している。
 
@@ -188,7 +188,7 @@ IETF, W3C/WHATWG, TC39 それぞれの見方の概要について解説してい
 
 例えば WebSocket の場合で見てみよう。 WebSocket は既に RFC になっており RFC6455 がそれにあたる。
 
-- https://tools.ietf.org/html/rfc6455
+- <https://tools.ietf.org/html/rfc6455>
 
 RFC が出ていればそれを読めば良い。が、読み始める前にかならず確認すべきヘッダが 3 つある。
 
@@ -205,7 +205,7 @@ RFC が出ていればそれを読めば良い。が、読み始める前にか�
   - RFC6455 WebSocket の場合は、 RFC8443 Bootstrapping WebSockets with HTTP/2 などが Update している。
   - 必ずしも Update 先を見るとは限らない。
 
-![RFC6455](RFC6455.png)
+![RFC6455](RFC6455.png#748x324)
 
 また、ヘッダ部分 `[draft-...]` のリンクをクリックすると過去のドラフトを見ることができる。新しい技術を調査するのであれば、まだ RFC は出ていないと思われるため、ドラフトの見方も確認しておこう。
 
@@ -214,9 +214,9 @@ RFC が出ていればそれを読めば良い。が、読み始める前にか�
 
 RFC6455 の 1 つ前のドラフトは以下だ。
 
-![hybi-thewebsocketprotocol](hybi-thewebsocketprotocol.png)
+![hybi-thewebsocketprotocol](hybi-thewebsocketprotocol.png#748x379)
 
-- https://tools.ietf.org/html/draft-ietf-hybi-thewebsocketprotocol-17
+- <https://tools.ietf.org/html/draft-ietf-hybi-thewebsocketprotocol-17>
 
 これは、 WebSocket を策定する Working Group である Hybi (hypertext bidirectional) で議論された RFC になる前のドラフトだ、バージョンが 00 ~ 17 まであり、 18 相当が RFC になったことがわかる。
 
@@ -229,9 +229,9 @@ URL を見ると、 IETF の hybi が策定している the websocket protocol �
 
 そのヘッダ部分には、更に古いドラフトへのリンクがある。
 
-![hixie-thewebsocketprotocol](hixie-thewebsocketprotocol.png)
+![hixie-thewebsocketprotocol](hixie-thewebsocketprotocol.png#748x447)
 
-- https://tools.ietf.org/html/draft-hixie-thewebsocketprotocol-76
+- <https://tools.ietf.org/html/draft-hixie-thewebsocketprotocol-76>
 
 これは、 Hybi WG で議論する前に WebSocket の最初のデザインを書いた Hixie (Ian Hickson) 個人のドラフトだ。
 
@@ -242,9 +242,9 @@ URL を見ると、 IETF の hybi が策定している the websocket protocol �
 
 ここまでのことがわかると、例えば以下のようなドラフトを見たときに読み取れる情報はこうなる。
 
-- https://tools.ietf.org/html/draft-ietf-quic-http-32
+- <https://tools.ietf.org/html/draft-ietf-quic-http-32>
 
-![quic-http](quic-http.png)
+![quic-http](quic-http.png#748x384)
 
 - QUIC WG で議論されいる
 - HTTP3 のドラフトで v32 まで議論されいる
@@ -259,11 +259,11 @@ URL を見ると、 IETF の hybi が策定している the websocket protocol �
 
 IETF は基本的には ML で議論行われ、ここを遡るとどんな議論があるのかわかる。全部見るのが大変な場合は、ドラフトに関わるキーマンを見つけ、その人の返信を見るだけでも役に立つ。
 
-- https://mailarchive.ietf.org/arch/browse/quic/
+- <https://mailarchive.ietf.org/arch/browse/quic/>
 
 また QUIC のドラフトには、ドラフト内に Github へのリンクがあるように、最近は Github で管理されることも増えた。
 
-- https://github.com/quicwg/base-drafts
+- <https://github.com/quicwg/base-drafts>
 
 Github の運用はドラフトによってまちまちで、 Issue / PR を受け付けるものや、単なるホスティングで議論は ML でやるように促すものもあるので、 README をよく読んでから行動したい。
 
@@ -274,13 +274,13 @@ IETF は、年に 3 回みんなで集まって議論する総会を開催して
 
 ちょうど今 IETF109 がオンライン開催されており、 IETF のページからそこに飛ぶ。
 
-- https://www.ietf.org/how/meetings/109/
+- <https://www.ietf.org/how/meetings/109/>
 
 そこに `Agenda (HTML)` というリンクがあるので、ここでスケジュールがわかる。 WG によっては IETF でミーティングを開催しないこともあるので、必ずあるとは限らない点には注意したい。
 
 QUIC であれば以下のようにアレンジされていることがわかる。
 
-- https://datatracker.ietf.org/meeting/109/materials/agenda-109-quic-00
+- <https://datatracker.ietf.org/meeting/109/materials/agenda-109-quic-00>
 
 開催方法も WG によってさまざまだが、基本は開催前に Agenda(予定表) と開催後に Minutes(議事録)が出るのは大体共通している。 Minutes には使われたスライドのリンクなども載るので、とにかく Minutes を探せば直近までの議論のまとめがわかるだろう。
 
@@ -291,9 +291,9 @@ QUIC であれば以下のようにアレンジされていることがわかる
 
 慣れない人に一番オススメなのは MDN の仕様へのリンクを見ることだ、例えば CSP のページを見てみるとこのように関連仕様へのリンクがまとまっている。
 
-- https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
+- <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy>
 
-![MDN CSP のページ下部にある仕様へのリンク集](mdn-csp.png)
+![MDN CSP のページ下部にある仕様へのリンク集](mdn-csp.png#748x398)
 
 もし MDN にエントリがあるならこれが一番簡単な方法だろう。
 
@@ -306,13 +306,13 @@ W3C の Draft には段階があるが、解説すると長くなるので、良
 
 ドラフトを見るとき、まず最初にするのはヘッダ部分の確認だ。
 
-![CSP v3 Draft Header](cspv3.png)
+![CSP v3 Draft Header](cspv3.png#748x620)
 
 例えば CSP で言うと、検索すると以下の様にいくつかの URL が見つかるかもしれない。
 
-- https://www.w3.org/TR/2016/WD-CSP3-20160913/
-- https://www.w3.org/TR/CSP3/
-- https://w3c.github.io/webappsec-csp/
+- <https://www.w3.org/TR/2016/WD-CSP3-20160913/>
+- <https://www.w3.org/TR/CSP3/>
+- <https://w3c.github.io/webappsec-csp/>
 
 w3c には仕様にスナップショットを打つプロセスがあるが、とにかく最新を見たい場合は、ヘッダにある `[Editor's Draft]` というリンクの URL を見ると良いだろう(上のリストだと最後のもの)。これが、著者が作業している Working Copy となる。
 
@@ -323,13 +323,13 @@ w3c には仕様にスナップショットを打つプロセスがあるが、�
 
 CSP の場合は Feedback のところに `public-webappsec` と書かれていたが、これが W3C における Working Group になる。
 
-- https://www.w3.org/2011/webappsec/
+- <https://www.w3.org/2011/webappsec/>
 
 ここにいくと、他のドラフトや ML のリンクが探せるだろう。
 
 Working Group のリストは以下にある。
 
-- https://www.w3.org/groups/wg/
+- <https://www.w3.org/groups/wg/>
 
 名前からだいたい何をやってそうかわかるだろう。
 
@@ -340,17 +340,17 @@ Working Group のリストは以下にある。
 
 例えば WebCodecs はまだ WG が無いため WICG で管理されている。
 
-- https://wicg.github.io/web-codecs/
+- <https://wicg.github.io/web-codecs/>
 
 WICG のリポジトリは全部 Github にあるため、ここは比較的新しい仕様が集まっていることになる。
 
 (Portal, Display Locking, WebUSB etc)
 
-- https://github.com/wicg/
+- <https://github.com/wicg/>
 
 WICG でもう 1 つ知っておきたいのが Discourse だ。
 
-- https://discourse.wicg.io/
+- <https://discourse.wicg.io/>
 
 ここは、質問や提案をわりと自由にできるフォーラムになっており、例えば「こういう仕様が欲しい」とか「これについて聞きたいけどどこで聞けばいいかわからない」といった場合に、とりあえずここに投げてみると良いだろう。
 
@@ -361,7 +361,7 @@ TPAC は一年に一度開かれる W3C の総会だ。 W3C は会員じゃな�
 
 TPAC のスケジュールのページを見つけると良い。
 
-- https://www.w3.org/2020/10/TPAC/breakout-schedule.html#calendar
+- <https://www.w3.org/2020/10/TPAC/breakout-schedule.html#calendar>
 
 あとは見たいトピックの会議の Minutes を見つければ、スライドのリンクなどもあるだろう。
 
@@ -377,11 +377,11 @@ TC39 は IETF や W3C より規模が小さく、情報もまとまっている�
 
 機能の提案は以下のリポジトリで管理されている。
 
-- https://github.com/tc39/proposals
+- <https://github.com/tc39/proposals>
 
 Stage が 0 ~ 4 まであり、以下のようになっている。
 
-- https://tc39.es/process-document/
+- <https://tc39.es/process-document/>
 
 特に Stage 4 になる条件として、最低 2 つの実装が必要なので、例えば v8 だけで動いても 4 にはならない。他のベンダに実装の意図が無ければそこから先に進まないこともありえる。
 
@@ -401,13 +401,13 @@ TC39 のミーティングは以前は奇数月に開催されていたが、作
 
 いつ開催するかは、 Agenda のリポジトリを見るとわかる。
 
-- https://github.com/tc39/agendas
+- <https://github.com/tc39/agendas>
 
 ここで、議題などが把握できる。
 
 終わったら、 Minutes が以下に公開される。リポジトリが別なこととちょっとラグがあることには注意だ。
 
-- https://github.com/tc39/notes
+- <https://github.com/tc39/notes>
 
 ミーティングで作業が進めば、 Stage の変更がある。そのあたりも note から確認できる。
 
@@ -420,4 +420,4 @@ TC39 のミーティングは以前は奇数月に開催されていたが、作
 
 本ブログでは、新しい API について書くような場合は、記事の下部にここで紹介したようなリソースへのリンクを含めるようにテンプレートを作っているので、その辺も参考になるかもしれない。
 
-![記事の下部に含めている参考リンク集](blog-resource-link.png)
+![記事の下部に含めている参考リンク集](blog-resource-link.png#748x698)
