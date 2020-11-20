@@ -41,13 +41,17 @@ Safari TP 69 では、 `prefers-color-scheme` を用いて Media Query でテー
 
 ```css
 @media (prefers-color-scheme: light) {
-  background-color: white;
-  color: black;
+  body {
+    background-color: white;
+    color: black;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
-  background-color: black;
-  color: white;
+  body {
+    background-color: black;
+    color: white;
+  }
 }
 ```
 
@@ -60,15 +64,19 @@ Safari TP 69 では、 `prefers-color-scheme` を用いて Media Query でテー
 
 ```css
 @media (prefers-color-scheme: light) {
-  --theme-base: white;
-  --theme-font: black;
-  --theme-accent: red;
+  :root {
+    --theme-base: white;
+    --theme-font: black;
+    --theme-accent: red;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
-  --theme-base: black;
-  --theme-font: white;
-  --theme-accent: pink;
+  :root {
+    --theme-base: black;
+    --theme-font: white;
+    --theme-accent: pink;
+  }
 }
 
 body {
