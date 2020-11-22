@@ -54,7 +54,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-11-19T08:00:00+08:00",
-    "dateModified": "2020-11-19T08:00:00+08:00",
+    "dateModified": "2020-11-23T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -100,7 +100,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-11-19>2020-11-19</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-11-19>2020-11-19</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-11-23>2020-11-23</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -162,12 +162,12 @@
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>「新しい API などを、どうやって調べているのか」「仕様などを調べる際に、どこから手をつければ良いのか」などといった質問をもらうことがある。
         <p>確かにどこかに明文化されていると言うよりは、普段からやっててある程度慣れてきているだけなものであり、自分としても明文化していなかったため、これを機に解説してみる。
-        <p>やり方は一つではない上に、日々変わっていくだろうが、頻繁にこの記事を更新するつもりはない。また、筆者は実務で必要になるというよりは、ほとんどを趣味でやっているため、このやり方が合わない場面は多々有るだろう。
+        <p>やり方は一つではない上に日々変わっていくだろうが、頻繁にこの記事を更新するつもりはない。また、筆者は実務で必要になるというよりは、ほとんどを趣味でやっているため、このやり方が合わない場面は多々有るだろう。
         <p>スコープとしては、ライブラリ、ツール、フレームワークなどではなく、 Web プラットフォーム関連の標準やブラウザの実装状況などに限定している。
       </section>
       <section>
         <h2 id="scope"><a href="#scope">Scope</a></h2>
-        <p>従来からあり広く認知された API については、情報も多いため調査の敷居はそこまで高くないため、今回は議論が始まって間もない新しめの API になどについて、現時点でどういう状況なのか、仕様の議論はどう進んでいるのか、実装はどうなのか、といった部分を調査するような場面、つまり <em>点で調べる</em> 場面にフォーカスする。
+        <p>従来からあり、広く認知された API については、情報も多く調査の敷居はそこまで高くないため、今回は議論が始まって間もない新しめの API になどについて、現時点でどういう状況なのか、仕様の議論はどう進んでいるのか、実装はどうなのか、といった部分を調査するような場面、つまり <em>点で調べる</em> 場面にフォーカスする。
         <p>直近だと <a href="https://blog.jxck.io/entries/2020-09-01/webcodecs-webtransport-chat.html">WebCodecs の記事</a> がそのケースにあたるので、これを例に解説する。
         <p>一方、普段から流れ(トレンドと言っても良い)を把握するという意味で、 <em>線で調べる</em> 方法は以前解説した以下が参考になるだろう。
         <ul>
@@ -279,7 +279,7 @@
       </section>
       <section>
         <h2 id="explainer"><a href="#explainer">Explainer</a></h2>
-        <p>新しい仕様が提案されるとき、まず最初に「こんな機能が欲しい」という概要とモチベーションを説明する <em>Explainer</em> が最初に作られる。
+        <p>新しい仕様が提案されるとき、まず最初に「こんな機能が欲しい」という概要とモチベーションを説明する <em>Explainer</em> が作られる。
         <p>特に置かれる場所もフォーマットも決まってないため、 Google Docs, Github, Issue, ML, <a href="https://discourse.wicg.io/">Discourse</a> の投稿だったりすることもある。
         <p>いきなり仕様や実装を読むよりも、その仕様の概要を抑えるという意味では、まずこの Explainer を探して読み、概要を把握するのが良いだろう。
         <p>WebCodecs の場合は以下だ。
@@ -430,8 +430,8 @@
             </picture>
           </p>
           <ul>
-            <li>QUIC WG で議論されいる
-            <li>HTTP3 のドラフトで v32 まで議論されいる
+            <li>QUIC WG で議論されている
+            <li>HTTP3 のドラフトで v32 まで更新されいる
             <li>元々は Google の R Shade が書いていたが、今は Akamai の M Bishop が Author
           </ul>
           <p>特に WG の把握は、後述する議論の場所や IETF のまとめを探す際などに重要だ。
@@ -518,8 +518,7 @@
           <ul>
             <li><a href="https://wicg.github.io/web-codecs/">https://wicg.github.io/web-codecs/</a>
           </ul>
-          <p>WICG のリポジトリは全部 Github にあるため、ここは比較的新しい仕様が集まっていることになる。
-          <p>(Portal, Display Locking, WebUSB etc)
+          <p>WICG のリポジトリは全部 Github にあるため、ここは比較的新しい仕様が集まっていることになる。(Portal, Display Locking, WebUSB etc)
           <ul>
             <li><a href="https://github.com/wicg/">https://github.com/wicg/</a>
           </ul>
