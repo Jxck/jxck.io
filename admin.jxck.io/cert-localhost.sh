@@ -1,12 +1,9 @@
 sudo certbot certonly \
-  --manual \
   --agree-tos \
-  --preferred-challenges dns \
-  --manual \
-  --agree-tos \
-  --preferred-challenges dns \
-  --force-renewal \
-  --manual-public-ip-logging-ok \
   --cert-name localhost.jxck.io \
+  --force-renewal \
+  --manual \
+  --manual-public-ip-logging-ok \
+  --preferred-challenges dns \
   --email admin@jxck.io \
   --domain localhost.jxck.io
