@@ -1,4 +1,4 @@
-# [grid][layout][css] grid: masonry で Masonry Layout
+# [grid][layout][css] CSS Layout API で Masonry Layout
 
 
 ## Intro
