@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Masonry Layout DEMO</title>
+
+<h1>Masonry Layout DEMO</h1>
+
+<p>by <code>grid: masonry</code> <a href=https://drafts.csswg.org/css-grid-3/>CSS Grid Layout Module Level 3</a><p>
+
+<label for=flow>masonry-auto-flow</label>
+<select id=flow name=flow>
+  <option value=pack selected>pack</option>
+  <option value=next>next</option>
+  <option value=definite-first>definite-first</option>
+  <option value=ordered>ordered</option>
+</select>
+
+<style>
+.masonry {
+  display: inline-grid;
+  border:  1px solid;
+  width:   32vw;
+  grid:    masonry / repeat(3, auto);
+  gap:     1vw;
+  masonry-auto-flow: pack;
+}
+img {
+  width: 10vw;
+}
+</style>
+
+<div class=masonry>
+  <img src=./img/anastasiya-pavlova-IbHmZUmI0vQ-unsplash.webp>
+  <img src=./img/benjamin-suter-7JDtLR-KUyM-unsplash.webp>
+  <img src=./img/david-clode-EyEdZ2aKRfA-unsplash.webp>
+  <img src=./img/cristina-ilao-rpS3zNU_wVw-unsplash.webp>
+  <img src=./img/blake-carpenter-huMyy4c5x3g-unsplash.webp>
+  <img src=./img/dylan-leagh-B7KmlY_8Y9w-unsplash.webp>
+  <img src=./img/eiliv-sonas-aceron-w0JzqJZYX_E-unsplash.webp>
+  <img src=./img/paulina-h-6lBYM-LVAjc-unsplash.webp>
+  <img src=./img/rex-way-F2eWk-ACc6Q-unsplash.webp>
+  <img src=./img/riley-Gyv3lHSR68M-unsplash.webp>
+  <img src=./img/samsung-memory-CtP7oqJ2uCk-unsplash.webp>
+  <img src=./img/toni-tan-A73hZT9VxiY-unsplash.webp>
+  <img src=./img/tyler-nix-P1l7Ro3Fttk-unsplash.webp>
+  <img src=./img/wright-brand-bacon--Oi4UMPdLmg-unsplash.webp>
+  <img src=./img/yasser-youry-zshlEy-vzeY-unsplash.webp>
+</div>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  document.on('DOMContentLoaded', async (e) => {
+    $('#flow').on('change', (e) => {
+      $('.masonry').style.setProperty('masonry-auto-flow', e.target.value)
+    })
+  })
+</script>
