@@ -16,14 +16,17 @@
 <style>
 .masonry {
   display: inline-grid;
-  border:  1px solid;
+  border:  1px solid black;
   width:   32vw;
   grid:    masonry / repeat(3, auto);
   gap:     1vw;
   masonry-auto-flow: pack;
 }
-img {
+.masonry img {
   width: 10vw;
+}
+img {
+  border: 1px solid black;
 }
 </style>
 
@@ -46,6 +49,10 @@ img {
 </div>
 
 <p>images are from <a href=https://unsplash.com/>unsplash.com</a>
+
+<h2>Sample behavior on Firefox Nightly 85.0a1</h2>
+
+<img src=https://blog.jxck.io/entries/2020-12-03/masonry-layout-demo.webp#730x1104>
 
 <script>
   'use strict';
