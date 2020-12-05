@@ -1080,3 +1080,16 @@ eyeD3 --title "ep75 Monthly Web 202010" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep76.mp3
+
+eyeD3 --title "ep76 Monthly Web 202011" \
+      --track 84 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep76.mp3
+
+
+
