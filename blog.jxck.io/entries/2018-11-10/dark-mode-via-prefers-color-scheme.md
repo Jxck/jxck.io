@@ -41,13 +41,17 @@ Safari TP 69 では、 `prefers-color-scheme` を用いて Media Query でテー
 
 ```css
 @media (prefers-color-scheme: light) {
-  background-color: white;
-  color: black;
+  body {
+    background-color: white;
+    color: black;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
-  background-color: black;
-  color: white;
+  body {
+    background-color: black;
+    color: white;
+  }
 }
 ```
 
@@ -60,24 +64,28 @@ Safari TP 69 では、 `prefers-color-scheme` を用いて Media Query でテー
 
 ```css
 @media (prefers-color-scheme: light) {
-  --theme-base: white;
-  --theme-font: black;
-  --theme-accent: red;
+  :root {
+    --theme-base: white;
+    --theme-font: black;
+    --theme-accent: red;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
-  --theme-base: black;
-  --theme-font: white;
-  --theme-accent: pink;
+  :root {
+    --theme-base: black;
+    --theme-font: white;
+    --theme-accent: pink;
+  }
 }
 
 body {
-  background-color: var(--them-base);
-  color: var(--them-font);
+  background-color: var(--theme-base);
+  color: var(--theme-font);
 }
 
 strong {
-  color: var(--them-accent);
+  color: var(--theme-accent);
 }
 ```
 
@@ -146,7 +154,7 @@ article img[src*=svg] {
 
 ### 画像についての備考
 
-本サイトが、そのそもモノクロデザインであるため、画像もモノクロにしてしまっても、なんとなくそれっぽく見える。
+本サイトが、そもそもモノクロデザインであるため、画像もモノクロにしてしまっても、なんとなくそれっぽく見える。
 
 
 ```css
