@@ -4,24 +4,61 @@
 <title>&lt;details&gt; DEMO | labs.jxck.io</title>
 
 <style>
+summary {
+  list-style-type: "📁 ";
+  /*list-style-type: disclosure-open;*/
+}
+summary::marker {
+}
+details[open] > summary {
+  list-style-type: "📂 ";
+  /*list-style-type: disclosure-closed;*/
+}
+li.dir {
+  list-style-type: none;
+}
+li.file {
+  list-style-type: "📄 ";
+  list-style-position: inside;
+}
 </style>
 
-<h1>&lt;details&gt; </h1>
+<h1>&lt;details&gt; file viewer</h1>
 
-<details>
-  <summary>summary</summary>
-  <p>this is a details tag
-  <ul>
-    <li>aaaaa
-    <li>bbbbb
-    <li>ccccc
-    <li>ddddd
-  </ul>
-</details>
+<ul>
+  <li class=dir>
+    <details open>
+      <summary>root</summary>
+      <ul>
+        <li class=dir>
+          <details>
+            <summary>css</summary>
+            <ul>
+              <li class=file>header.css</li>
+              <li class=file>body.css</li>
+              <li class=file>footer.css</li>
+            </ul>
+          </details>
+        </li>
+        <li class=dir>
+          <details>
+            <summary>js</summary>
+            <ul>
+              <li class=file>main.js</li>
+              <li class=file>util.js</li>
+            </ul>
+          </details>
+
+        </li>
+        <li class=file>index.html</li>
+        <li class=file>favicon.ico</li>
+      </ul>
+    </details>
+  </li>
+</ul>
 
 <script>
   document.querySelector('details').addEventListener('toggle', (e) => {
-    console.log(e)
     console.log('open', e.target.open)
   })
 </script>
