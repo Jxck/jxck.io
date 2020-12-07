@@ -47,7 +47,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-11-10T08:00:00+08:00",
-    "dateModified": "2020-09-06T08:00:00+08:00",
+    "dateModified": "2020-12-07T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -844,7 +844,7 @@
 <main>
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2018-11-10>2018-11-10</time></dd></div>
-    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
+    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-12-07>2020-12-07</time></dd></div>
     <div>
       <dt class=tags>tags</dt>
       <dd>
@@ -908,7 +908,7 @@
       <h2 id="dark-mode"><a href="#dark-mode">Dark Mode</a></h2>
       <p>多くのディスプレイコンテンツは、背景を白、文字を黒にしたデザイン(Light Mode)が多い。
       <p>しかし、暗い場所での閲覧時に目への負荷を下げる目的で、背景を黒、文字を白に反転したデザインが用意され、ユーザが好みで切り替えられるようにしたアプリケーションも増えた。
-      <p>macOS Mojava らは、 OS レベルで Dark Mode を有効にできるようオプションが追加され、これによって多くのアプリケーションのデザインが切り替わるようになった。
+      <p>macOS Mojava からは、 OS レベルで Dark Mode を有効にできるようオプションが追加され、これによって多くのアプリケーションのデザインが切り替わるようになった。
       <p>筆者は黒背景のターミナル上に居る時間が長いため、ブラウザと切り替えた時の光の強さの変化がずっと気になっていたが、 OS 全体を Dark Mode にした結果より一層ブラウザが眩しく感じるようになった。
       <p>Safari は、 Mojava の Mode が Light/Dark どちらに設定されているかを取得する仕組みを検証しており、これを用いると OS の設定に合わせたデザインを提供できる。
     </section>
@@ -916,36 +916,44 @@
       <h2 id="prefers-color-scheme"><a href="#prefers-color-scheme">prefers-color-scheme</a></h2>
       <p>Safari TP 69 では、 <code translate="no">prefers-color-scheme</code> を用いて Media Query でテーマごとに分岐した CSS を記述できるようになった。
       <pre class=css><code translate="no">@media (prefers-color-scheme: light) {
-  background-color: white;
-  color: black;
+  body {
+    background-color: white;
+    color: black;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
-  background-color: black;
-  color: white;
+  body {
+    background-color: black;
+    color: white;
+  }
 }</code></pre>
       <p>多くの場合、現状のコンテンツが Ligth Mode と見なされるだろう。
       <p>その場合、差分のみを Dark Mode 用に書き、色を反転するデザインをあてれば良い。
       <p>しかし、今後 Dark 以外のテーマの出現や汎用性、メンテナンス性を考えると、カラーセットを Variables でまとめておき、切り替えるのが良いだろう。
       <pre class=css><code translate="no">@media (prefers-color-scheme: light) {
-  --theme-base: white;
-  --theme-font: black;
-  --theme-accent: red;
+  :root {
+    --theme-base: white;
+    --theme-font: black;
+    --theme-accent: red;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
-  --theme-base: black;
-  --theme-font: white;
-  --theme-accent: pink;
+  :root {
+    --theme-base: black;
+    --theme-font: white;
+    --theme-accent: pink;
+  }
 }
 
 body {
-  background-color: var(--them-base);
-  color: var(--them-font);
+  background-color: var(--theme-base);
+  color: var(--theme-font);
 }
 
 strong {
-  color: var(--them-accent);
+  color: var(--theme-accent);
 }</code></pre>
     </section>
     <section>
@@ -986,7 +994,7 @@ strong {
       </section>
       <section>
         <h3 id="画像についての備考"><a href="#画像についての備考">画像についての備考</a></h3>
-        <p>本サイトが、そのそもモノクロデザインであるため、画像もモノクロにしてしまっても、なんとなくそれっぽく見える。
+        <p>本サイトが、そもそもモノクロデザインであるため、画像もモノクロにしてしまっても、なんとなくそれっぽく見える。
         <pre class=css><code translate="no">article img[src*=svg] {
   filter: invert(100%) grayscale(100%);
 }
