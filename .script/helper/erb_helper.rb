@@ -19,6 +19,11 @@ module ERBHelper
       .gsub(/'/, "&#039;")
   end
 
+  def jsonescape(str)
+    # markdown 用に | を escape した backslash を消す
+    str.gsub(/\\/, "")
+  end
+
   # trim to 140 word for html meta description
   def short(str)
     limit = 140
