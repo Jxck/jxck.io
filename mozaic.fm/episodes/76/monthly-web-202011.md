@@ -343,7 +343,7 @@ guest
       - Loading a previously unvisited page is 13% faster
       - loading recently visited pages is 42-52% faster.
       - Tab closing performance improved from 3.5 seconds to 50 milliseconds.
-      - support for incrementally loading PDF files and now renders the first page up to 60 × faster.
+      - support for incrementally loading PDF files and now renders the first page up to 60 x faster.
     - Improved Compatibility
       - Service Workers, SVG, CSS, XHR+Fetch などで 14 万個のテストに追加でパス
     - *Privacy Updates*
@@ -557,7 +557,7 @@ guest
 - *Advent Calendar*
   - PWAdvent
     - <https://pwadvent.dev/>
-  - Web Performance Calendar » 2020
+  - Web Performance Calendar >> 2020
     - <https://calendar.perfplanet.com/2020/>
     - <https://calendar.perfplanet.com/contribute/>
 
