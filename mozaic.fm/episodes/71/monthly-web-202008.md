@@ -119,7 +119,7 @@ guest
   - *Prototype: Customizable `<select>` Element*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/9TcfjaOs5zg>
     - <https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/main/ControlUICustomization/explainer.md>
-  - *Implement and Ship: Cookies with SameSite by default[a][b][c]*
+  - *Implement and Ship: Cookies with SameSite by default*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/AknSSyQTGYs/m/SSB1rTEkBgAJ>
     - Finch だった SameSite のロールアウトが 8/11 に 100% になった
     - 3D セキュアなど壊れたサイトも報告されている

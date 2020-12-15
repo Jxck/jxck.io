@@ -533,7 +533,7 @@ guest
   - <https://letsencrypt.org/2020/11/06/own-two-feet.html>
 
 
-### 周辺動向[a]
+### 周辺動向
 
 - Cloudflare
   - SAD DNS Explained
