@@ -96,17 +96,6 @@
       font-family: var(--mono-font);
     }
 
-    article ul li ul,
-    article ol li ol {
-      margin: 0 0 0 calc(var(--grid)*2);
-      font-size: 1rem;
-    }
-
-    article ol li ol li,
-    article ul li ul li {
-      margin-block-end: 0;
-    }
-
     article dl {
       display: grid;
       grid-template-columns: minmax(auto, max-content);
@@ -234,6 +223,8 @@
       --icon-size: 30px;
 
       --width: 80vw;
+      --max-width: 1024px;
+
       --grid: 1rem;
 
       --radius: 4px;
@@ -241,7 +232,7 @@
 
 
     /* Mobile Theme */
-    @media screen and (max-device-width: 800px) {
+    @media screen and (max-device-width: 960px) {
       :root {
         --width: 94vw;
       }
@@ -393,6 +384,7 @@
       flex-direction: row;
       align-items: stretch;
       width: var(--width);
+      max-width: var(--max-width);
       margin: 0 auto;
     }
 
@@ -536,6 +528,7 @@
     main {
       display: block;
       width: var(--width);
+      max-width: var(--max-width);
       margin: 1em auto;
     }
 
@@ -575,6 +568,7 @@
     footer strong,
     footer .copyright {
       width: var(--width);
+      max-width: var(--max-width);
       margin: 0 auto;
       font-style: italic;
     }
@@ -583,6 +577,7 @@
     footer ins {
       display: block;
       width: var(--width);
+      max-width: var(--max-width);
       margin: 0 auto;
     }
     pre {
