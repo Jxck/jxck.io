@@ -379,24 +379,28 @@
       padding-block-start: calc((var(--icon-size) + var(--grid)));
     }
 
-    header ul {
-      display: flex;
-      flex-direction: row;
-      align-items: stretch;
+    header nav {
       width: var(--width);
       max-width: var(--max-width);
       margin: 0 auto;
     }
 
-    header ul li {
+    header nav ul {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      margin: 0;
+    }
+
+    header nav li {
       width:  var(--icon-size);
       height: var(--icon-size);
       padding: 0;
       margin: 0 0 0 var(--grid);
     }
 
-    header ul li a,
-    header ul li button {
+    header nav ul li a,
+    header nav ul li button {
       display: block;
       width: var(--icon-size);
       height: var(--icon-size);
@@ -406,20 +410,20 @@
       background-color: var(--header-color);
     }
 
-    header ul li svg {
+    header nav svg {
       fill: var(--background-color);
     }
 
-    header ul li::before {
+    header nav ul li::before {
       content: none;
     }
 
-    header ul li:first-child {
+    header nav ul li:first-child {
       flex-grow: 1;
       margin-inline-start: 0;
     }
 
-    header .logo {
+    header nav .logo {
       border: 1px solid #fff;
       box-sizing: border-box;
     }
