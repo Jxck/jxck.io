@@ -85,4 +85,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // AdSense
   (adsbygoogle = window.adsbygoogle || []).push({})
   console.log(adsbygoogle)
+
+  document.querySelectorAll('pre').forEach((code) => {
+    let lang = code.parentElement.classList.item(0)
+    lang === 'js'   ? 'javascript' : lang
+    lang === 'html' ? 'xml'        : lang
+    code.classList.add(lang)
+    hljs.highlightBlock(code)
+  })
 })
