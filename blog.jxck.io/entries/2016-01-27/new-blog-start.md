@@ -209,7 +209,7 @@ test.print() // hello
 ```
 
 
-```go:../2018-03-27/main.go
+```golang:../2018-03-27/main.go
 ```
 
 

@@ -252,7 +252,8 @@
         --anchor-color: CornflowerBlue;
         --anchor-visited-color: RosyBrown;
 
-        --code-block: #ccc;
+        --code-block: #161b22;
+        --code-block-font: #cad6e4;
 
         --table-border: #eee;
       }
@@ -616,35 +617,33 @@
     }
 
     .hljs-keyword {
-      color: #de1b59;
+      color: #ff407d;
     }
 
     .hljs-title {
-      color: #7744c3;
+      color: #b787ff;
     }
 
     .hljs-string {
-      color: #0c44ec;
+      color: #84a3ff;
     }
 
-    .hljs-number {
-      color: #0086b3;
+    .hljs-number,
+    .hljs-literal {
+      color: #03b5f1;
     }
 
     .hljs-built_in {
-      color: #26881a;
+      color: #17c103;
     }
 
-    .hljs-literal {
-      color: #0086b3;
-    }
 
     .hljs-regexp {
       color: #183691;
     }
 
     .hljs-comment {
-      color: #747475;
+      color: #96969c;
     }
 
     .hljs-tag {
@@ -660,7 +659,7 @@
     }
 
     .hljs-attribute {
-      color: #2253e6;
+      color: #5f87ff;
     }
 
     .hljs-meta {
@@ -1418,7 +1417,7 @@ end</code></pre>
 curl &#39;https://ct.googleapis.com/pilot/ct/v1/get-sth&#39; | jq .
 
 curl &#39;https://ct.googleapis.com/pilot/ct/v1/get-proof-by-hash?hash=odRjuexWzJ36zh8XavhDEZaUhoAv9yxRF4zEyKZiVVg%3D&amp;tree_size=237363285&#39; | jq .</code></pre>
-        <pre class=go><code translate="no">package main
+        <pre class=golang><code translate="no">package main
 
 import (
 	&quot;bytes&quot;
