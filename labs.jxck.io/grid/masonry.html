@@ -17,16 +17,17 @@
 .masonry {
   display: inline-grid;
   border:  1px solid black;
-  width:   32vw;
+  width:   20vw;
   grid:    masonry / repeat(3, auto);
   gap:     1vw;
   masonry-auto-flow: pack;
 }
 .masonry img {
-  width: 10vw;
+  width: 6vw;
 }
-img {
-  border: 1px solid black;
+
+img.sample {
+  border: solid 1px #ccc;
 }
 </style>
 
@@ -52,7 +53,7 @@ img {
 
 <h2>Sample behavior on Firefox Nightly 85.0a1</h2>
 
-<img src=https://blog.jxck.io/entries/2020-12-03/masonry-layout-demo.webp#730x1104>
+<img width=468 class=sample src=https://blog.jxck.io/entries/2020-12-03/masonry-layout-demo.png>
 
 <script>
   'use strict';
