@@ -142,7 +142,7 @@ gulp.task('default', ['image']);
 gulp-image の実行結果は以下である。
 
 
-```text
+```
 ✔ 2016-02-17/before.png -> before=57.88 KB after=22.07 KB reduced=35.82 KB(61.9%)
 ✔ 2016-02-17/after.png -> before=67.92 KB after=25.22 KB reduced=42.7 KB(62.9%)
 ✔ 2016-02-11/net-internals-prerender.png -> before=65.7 KB after=26.05 KB reduced=39.65 KB(60.4%)

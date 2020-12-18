@@ -55,7 +55,7 @@ Chrome 78 では 3 つとも実装されたようだが、今は `:~:` のみに
 `textTarget=` などの案も有ったが、現状は以下のような構文になっている。
 
 
-```text
+```
 :~:text=[prefix-,]textStart[,textEnd][,-suffix]
 ```
 
