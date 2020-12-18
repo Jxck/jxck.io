@@ -136,7 +136,7 @@ class Test {
 
 const test = new Test('hello')
 test.print() // hello
-``
+```
 
 ファイルからコードを読むこともできる。以下ハイライトテスト用。
 
