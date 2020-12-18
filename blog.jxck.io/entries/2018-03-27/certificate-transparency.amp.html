@@ -214,6 +214,9 @@
       --code-block: #182331;
       --code-block-font: #cad6e4;
 
+      --code-inline: #f1f5f9;
+      --code-inline-font: #292929;
+
       --block-quote: #ddd;
       --table-border: #222;
 
@@ -520,8 +523,8 @@
     }
 
     code {
-      background-color: var(--code-block);
-      color: var(--code-block-font);
+      background-color: var(--code-inline);
+      color: var(--code-inline-font);
       border-radius: var(--radius);
       padding: 0 4px;
     }
@@ -590,6 +593,11 @@
       border-radius: var(--radius);
     }
 
+    pre code {
+      background-color: var(--code-block);
+      color: var(--code-block-font);
+    }
+
     pre::before {
       content: "```" attr(class) "\A";
     }
@@ -641,9 +649,7 @@
       color: #96969c;
     }
 
-    .hljs-tag,
-    .hljs-name,
-    .hljs-selector-attr {
+    .hljs-tag {
       color: #ff429a;
     }
 
@@ -663,7 +669,7 @@
     .hljs-selector-id,
     .hljs-selector-class,
     .hljs-selector-pseudo {
-      color: #835fc3;
+      color: #a880ef;
     }
 
     .hljs-selector-tag {

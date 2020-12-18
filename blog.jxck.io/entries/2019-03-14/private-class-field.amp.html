@@ -47,7 +47,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-03-14T08:00:00+08:00",
-    "dateModified": "2020-09-06T08:00:00+08:00",
+    "dateModified": "2020-12-18T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -210,8 +210,12 @@
       --anchor-color: RoyalBlue;
       --anchor-visited-color: Brown;
 
-      --code-block: #f1f5f9;
-      --code-block-font: #292929;
+      /*--code-block: #161b22;*/
+      --code-block: #182331;
+      --code-block-font: #cad6e4;
+
+      --code-inline: #f1f5f9;
+      --code-inline-font: #292929;
 
       --block-quote: #ddd;
       --table-border: #222;
@@ -251,8 +255,6 @@
 
         --anchor-color: CornflowerBlue;
         --anchor-visited-color: RosyBrown;
-
-        --code-block: #ccc;
 
         --table-border: #eee;
       }
@@ -521,8 +523,8 @@
     }
 
     code {
-      background-color: var(--code-block);
-      color: var(--code-block-font);
+      background-color: var(--code-inline);
+      color: var(--code-inline-font);
       border-radius: var(--radius);
       padding: 0 4px;
     }
@@ -591,6 +593,11 @@
       border-radius: var(--radius);
     }
 
+    pre code {
+      background-color: var(--code-block);
+      color: var(--code-block-font);
+    }
+
     pre::before {
       content: "```" attr(class) "\A";
     }
@@ -615,44 +622,35 @@
       content: none;
     }
 
-    .hljs-keyword {
-      color: #de1b59;
+    .hljs-keyword,
+    .hljs-params {
+      color: #ff407d;
     }
 
     .hljs-title {
-      color: #7744c3;
+      color: #b787ff;
     }
 
-    .hljs-string {
-      color: #0c44ec;
+    .hljs-string,
+    .hljs-regexp {
+      color: #84a3ff;
     }
 
-    .hljs-number {
-      color: #0086b3;
+    .hljs-number,
+    .hljs-literal {
+      color: #03b5f1;
     }
 
     .hljs-built_in {
-      color: #26881a;
-    }
-
-    .hljs-literal {
-      color: #0086b3;
-    }
-
-    .hljs-regexp {
-      color: #183691;
+      color: #1ada03;
     }
 
     .hljs-comment {
-      color: #747475;
+      color: #96969c;
     }
 
     .hljs-tag {
-      color: #a71d5d;
-    }
-
-    .hljs-name {
-      color: #222222;
+      color: #ff429a;
     }
 
     .hljs-strong {
@@ -660,21 +658,22 @@
     }
 
     .hljs-attribute {
-      color: #2253e6;
+      font-weight: bold;
+      color: #7b9dff;
     }
 
     .hljs-meta {
-      color: #4f80e5;
+      color: #71a0ff;
     }
 
     .hljs-selector-id,
     .hljs-selector-class,
     .hljs-selector-pseudo {
-      color: #6f42c1;
+      color: #a880ef;
     }
 
     .hljs-selector-tag {
-      color: #22863a;
+      color: #17c103;
     }
 
     .hljs-subst {
@@ -689,17 +688,9 @@
       font-weight: bold;
     }
 
-    .hljs-selector-attr {
-      color: #6f42c1;
-    }
 
     .hljs-bullet {
     }
-
-    @media (prefers-color-scheme: dark) {
-    }
-
-
 
     /**.hljs,**/
     .hljs-doctag,
@@ -771,7 +762,7 @@
 <main>
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2019-03-14>2019-03-14</time></dd></div>
-    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
+    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-12-18>2020-12-18</time></dd></div>
     <div>
       <dt class=tags>tags</dt>
       <dd>

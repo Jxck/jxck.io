@@ -54,7 +54,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2017-05-18T08:00:00+08:00",
-    "dateModified": "2020-09-06T08:00:00+08:00",
+    "dateModified": "2020-12-18T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -100,7 +100,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2017-05-18>2017-05-18</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-12-18>2020-12-18</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -171,7 +171,7 @@
         <p>特にサーバのようなプログラムでは、状態の管理が重要になる。
         <p>この状態の変化を、現在の状態(S)と発生したイベント(E)の組み合わせによって、実行する処理(A)と次の状態(S&rsquo;)とし、以下のようにモデル化する。
         <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-        <pre class=text><code translate="no">State(S) x Event(E) -&gt; Actions(A), State(S&#39;)</code></pre>
+        <pre><code translate="no">State(S) x Event(E) -&gt; Actions(A), State(S&#39;)</code></pre>
         <p>これを、状態(S)を関数名とし、イベント(E)をパターンマッチで明示的に表現する gen_fsm ビヘイビアを用いて実装されることが多かった。
         <p>gen_statem は、この gen_fsm を強化したものとなっている。
       </section>
@@ -193,7 +193,7 @@
       <section>
         <h2 id="behavior"><a href="#behavior">behavior</a></h2>
         <p>gen_fsm と gen_statem の behavior を比較する。
-        <pre class=text><code translate="no">gen_fsm module                    Callback module
+        <pre><code translate="no">gen_fsm module                    Callback module
 --------------                    ---------------
 gen_fsm:start
 gen_fsm:start_link                -----&gt; Module:init/1
@@ -213,7 +213,7 @@ gen_fsm:sync_send_all_state_event -----&gt; Module:handle_sync_event/4
 -                                 -----&gt; Module:terminate/3
 
 -                                 -----&gt; Module:code_change/4</code></pre>
-        <pre class=text><code translate="no">gen_statem module                        Callback module
+        <pre><code translate="no">gen_statem module                        Callback module
 -----------------                        ---------------
 gen_statem:start
 gen_statem:start_link             -----&gt; Module:init/1
