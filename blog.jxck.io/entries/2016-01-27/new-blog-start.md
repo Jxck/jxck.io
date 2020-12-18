@@ -123,112 +123,181 @@ Accept-Encoding: br, gz
 Accept-Language: ja-JP
 ```
 
+
+```js
+class Test {
+  constructor(arg) {
+    this.arg = arg
+  }
+  print() {
+    console.log(this.arg)
+  }
+}
+
+const test = new Test('hello')
+test.print() // hello
+``
+
 ファイルからコードを読むこともできる。以下ハイライトテスト用。
 
 
 ```js:sample.js
+
+
 ```
 
 
 ```rb:../2016-02-17/test.rb
+
+
 ```
 
 
 ```js:../2016-10-27/searchparams.js
+
+
 ```
 
 
 ```js:../2016-10-27/url-ext.js
+
+
 ```
 
 
 ```js:../2016-10-27/url.js
+
+
 ```
 
 
 ```js:../2016-12-12/random.js
+
+
 ```
 
 
 ```js:../2016-12-12/worker.js
+
+
 ```
 
 
 ```js:../2017-07-10/ee.js
+
+
 ```
 
 
 ```js:../2017-07-10/et.js
+
+
 ```
 
 
 ```js:../2017-07-10/timer-ee.js
+
+
 ```
 
 
 ```js:../2017-07-10/timer-et.js
+
+
 ```
 
 
 ```js:../2017-07-19/aborting-fetch.js
+
+
 ```
 
 
 ```js:../2017-07-19/long-task.js
+
+
 ```
 
 
 ```js:../2017-07-19/race-fetch.js
+
+
 ```
 
 
 ```erl:../2018-01-14/erlang-record-to-map.erl
+
+
 ```
 
 
 ```rb:../2018-03-27/ct.rb
+
+
 ```
 
 
 ```sh:../2018-03-27/ct.sh
+
+
 ```
 
 
 ```go:../2018-03-27/main.go
+
+
 ```
 
 
 ```http:../2020-01-18/1.http
+
+
 ```
 
 
 ```http:../2020-01-18/2.http
+
+
 ```
 
 
 ```js:../2020-01-18/3.js
+
+
 ```
 
 
 ```http:../2020-01-18/4.http
+
+
 ```
 
 
 ```http:../2020-01-18/5.http
+
+
 ```
 
 
 ```http:../2020-01-18/6.http
+
+
 ```
 
 
 ```js:../2020-01-18/7.js
+
+
 ```
 
 
 ```cpp:../2020-08-15/pick-best-image-candidate.cpp
+
+
 ```
 
 
 ```cpp:../2020-08-15/selection-logic.cpp
+
+
 ```
