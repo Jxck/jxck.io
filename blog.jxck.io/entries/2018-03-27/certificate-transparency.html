@@ -54,7 +54,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-03-27T08:00:00+08:00",
-    "dateModified": "2020-09-06T08:00:00+08:00",
+    "dateModified": "2020-12-18T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -100,7 +100,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-03-27>2018-03-27</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-12-18>2020-12-18</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -192,7 +192,7 @@
         <p>ブラウザはそのレスポンスが信頼された <code translate="no">google.com</code> からのものであると表示し、 URL バーも緑になってしまう。
         <p>Eve の持つ秘密鍵は Google のそれとは違うが、証明書には「本物」と同等の効力があることが原因だ。
         <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-        <pre class=text><code translate="no">+------------+                       +-----------+
+        <pre><code translate="no">+------------+                       +-----------+
 |            |  valid        valid   |           |
 |   Google   |---------&gt;| |---------&gt;|  Browser  |
 |            |          | |          |           |
@@ -210,7 +210,7 @@
         <p>そこで、 Google は自身が所有する証明書の Hash 値をレスポンスヘッダに付与し、ブラウザに確認させる方法を考えた。
         <p>MITM によってすり替えられたレスポンスに使用された証明書は、 Google が付与した Hash と合わない。
         <p>これにより、ブラウザは証明書が意図したものと違うことに気づくことができる。
-        <pre class=text><code translate="no">                      HPKP:xxx
+        <pre><code translate="no">                      HPKP:xxx
 +------------+                       +-----------+
 |            |  hash:xxx    hash:yyy |           |
 |   Google   |---------&gt;| |---------x|  Browser  |
@@ -244,7 +244,7 @@
           <li>Auditor: Log を検証する
         </ul>
         <p>ここではわかりやすく Monitor が Google で Auditor はブラウザだとしておく。
-        <pre class=text><code translate="no">    +--------------+                     +--------------+
+        <pre><code translate="no">    +--------------+                     +--------------+
     |              |     Submit Log      |              |
     |              |--------------------&gt;|              |
     |      CA      |        SCT          |     Log      |
@@ -309,7 +309,7 @@
           <h3 id="証明書が誤発行され-log-が登録されている"><a href="#証明書が誤発行され-log-が登録されている">証明書が誤発行され、 Log が登録されている</a></h3>
           <p>Google は、 <code translate="no">google.com</code> の EV 証明書が、自分たちの知らないところで勝手に発行されていないかを監視している。
           <p>したがって、 Eve が誤発行に成功しても、 Log サーバに Log が登録されれば、誤発行を発見し対策が行える。
-          <pre class=text><code translate="no">    +--------------+                     +--------------+
+          <pre><code translate="no">    +--------------+                     +--------------+
     |              |     Submit Log      |              |
     |              |--------------------&gt;|              |
     |      CA      |                     |     Log      |
@@ -337,7 +337,7 @@
           <h3 id="証明書が誤発行され-log-が登録されたが後から-log-を改ざんした"><a href="#証明書が誤発行され-log-が登録されたが後から-log-を改ざんした">証明書が誤発行され、 Log が登録されたが、後から Log を改ざんした</a></h3>
           <p>CT Log は Merkle Tree Hashes を用いているため、 Log を改ざんすると不整合が発生する。
           <p>Monitor/Auditor は Log の整合性を監視/検証しているので、計算が合わないことで改ざんに気づくことができる。
-          <pre class=text><code translate="no">    +--------------+                     +--------------+   改ざん
+          <pre><code translate="no">    +--------------+                     +--------------+   改ざん
     |              |                     |              | &lt;------- Eve
     |              |                     |              |
     |      CA      |                     |     Log      |
@@ -365,7 +365,7 @@
           <h3 id="証明書が誤発行されたが-log-を登録せず証明書には別の-sct-を埋め込んだ"><a href="#証明書が誤発行されたが-log-を登録せず証明書には別の-sct-を埋め込んだ">証明書が誤発行されたが、 Log を登録せず、証明書には別の SCT を埋め込んだ</a></h3>
           <p>CT Log は、証明書そのものの値を Hash のシードとして含んでいる。
           <p>従って、ブラウザ(Auditor) が証明書に含まれた SCT の正当性を Log Server に問い合わせる際に、おかしいことに気づくことができる。
-          <pre class=text><code translate="no">    +--------------+                     +--------------+
+          <pre><code translate="no">    +--------------+                     +--------------+
     |              |                     |              |
     |              |                     |              |
     |      CA      |                     |     Log      |
@@ -401,7 +401,7 @@
           <p>SCT が証明書になければ、ブラウザはその証明書が誤発行されたものかどうかを確認することができない。
           <p>単に SCT に対応してない証明書である、と扱うことになってしまう。
           <p>そこで <em>Chrome は EV については SCT を必須</em> とし、 SCT がなければその時点で Invalid とみなすという方向にした。
-          <pre class=text><code translate="no">    +--------------+                     +--------------+
+          <pre><code translate="no">    +--------------+                     +--------------+
     |              |                     |              |
     |              |                     |              |
     |      CA      |                     |     Log      |
@@ -462,7 +462,7 @@
         <section>
           <h3 id="expect-ct-header-による強制"><a href="#expect-ct-header-による強制">Expect-CT Header による強制</a></h3>
           <p>誤発行に成功した証明書に置き換えられた場合、 Chrome での EV のように SCT のチェックが必須でない場合は、正しい証明書として通っていまう。
-          <pre class=text><code translate="no">+------------+                       +-----------+
+          <pre><code translate="no">+------------+                       +-----------+
 |            |  DV+SCT        DV     |           | ブラウザが SCT のチェックを
 |   Google   |---------&gt;| |---------x|  Browser  | しなければ、普通の証明書
 |            |          | |          |           |
@@ -472,7 +472,7 @@
                    +-----------+</code></pre>
           <p>そこで、「<em>このコンテンツは CT に対応した証明書で提供される</em>」ということを明示する方法が提案された。
           <p>これが <code translate="no">Expect-CT</code> ヘッダだ。
-          <pre class=text><code translate="no">                 Expect-CT: enforce
+          <pre><code translate="no">                 Expect-CT: enforce
 +------------+                       +-----------+
 |            |  DV+SCT        DV     |           | Expect-CT 対応ブラウザは
 |   Google   |---------&gt;| |---------x|  Browser  | SCT を必ずチェックする
@@ -510,7 +510,7 @@
           <p>これは、ビットコインのトランザクションの記録などにも使われており、やっていることも非常に似ている。
           <p>仕組みはシンプルで、証明書の Hash を Leaf とし、 Leaf/Node ペアの Hash を親とする二分技を構築する。
           <p>CT では Hash に SHA256 を使用する。
-          <pre class=text><code translate="no">              Sign
+          <pre><code translate="no">              Sign
       Root  --------&gt;  STH
      /   \
     /     \
@@ -533,7 +533,7 @@ i = sha256(0x01 || a || b)</code></pre>
         <p>CT Log Server には多くのの登録依頼が届き、定期的に既存の Tree に追加登録を行う。
         <p>このため CT 登録にはラグがあり、その最大値は Maximum Merge Delay (MMD)として提示されている。
         <p>この場合、追加分の証明書(d4, d5)だけで Tree を作り、その Root(k) と既存の Root(m) の Hash を取り、署名して新たな STH とすれば良い。
-        <pre class=text><code translate="no">                       Sign
+        <pre><code translate="no">                       Sign
            New Root  --------&gt;  STH
          /          \
         /            \
@@ -552,7 +552,7 @@ d0  d1  d2  d3</code></pre>
         <p>一方、それを検証する側は、証明書全部を取得して全部再計算することもできるが、毎回それを行う必要はない。
         <p>Log が少ないうちに STH まで検証しておけば、あとはその STH と、追加された分の証明書だけを計算して、新しい STH と比較することで、 Log が改ざんされていないことを検証できる。
         <p>先の図に d6, d7 を追加した結果が以下のようになっていたとする。
-        <pre class=text><code translate="no">                      Sign
+        <pre><code translate="no">                      Sign
               Root  ---------&gt;  STH
          /           \
         /             \
@@ -579,7 +579,7 @@ d0  d1  d2  d3  d4  d5  d6  d7</code></pre>
           <p>しかし、全ての証明書データを並べて計算するには、サイズが大きすぎる。
           <p>そこで、 Leaf から Root を辿る間に必要な、最小の Node の Hash のみを取得することで計算を枝刈りできる。
           <p>以下の場合、 d3 の存在を調べるのに必要なのは c, i, n のみである。
-          <pre class=text><code translate="no">                      Sign
+          <pre><code translate="no">                      Sign
               Root  ---------&gt;  STH
          /           \
         /             \
