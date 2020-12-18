@@ -104,7 +104,7 @@
 
 イメージは `<img>` タグを用いて表現する。
 
-![jxck](https://logo.jxck.io/jxck.png#256x256 'jxck logo')
+![jxck](https://logo.jxck.io/jxck.256x256.png#256x256 'jxck logo')
 
 
 ### サンプルコード
