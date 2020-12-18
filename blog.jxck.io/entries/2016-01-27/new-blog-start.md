@@ -64,39 +64,6 @@
 : `<dd>` を用いる
 
 
-### サンプルコード
-
-インラインの場合は `<code>` タグを用いて表現する。
-
-コードブロックの場合は `<pre>` と `<code>` を用いて表現する。
-
-
-```js
-if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalScope) {
-  ['install', 'activate', 'beforeevicted', 'evicted', 'fetch', 'message', 'push'].forEach((e) => {
-    self.addEventListener(e, (ev) => {
-      console.log(e, ev);
-    });
-  });
-
-  self.addEventListener('install', (ev) => {
-    ev.waitUntil(self.skipWaiting());
-  });
-
-  self.addEventListener('activate', (ev) => {
-    ev.waitUntil(self.clients.claim());
-    console.log('claimed');
-  });
-}
-```
-
-ファイルからコードを読むこともできる。
-
-
-```js:sample.js
-```
-
-
 ## 引用
 
 引用は `<blockquote>` を用いて表現する。
@@ -138,3 +105,130 @@ if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalSco
 イメージは `<img>` タグを用いて表現する。
 
 ![jxck](https://logo.jxck.io/jxck.png#256x256 'jxck logo')
+
+
+### サンプルコード
+
+インラインの場合は `<code>` タグを用いて表現する。
+
+コードブロックの場合は `<pre>` と `<code>` を用いて表現する。
+
+
+```http
+# デフォルトリクエスト
+GET / HTTP/1.1
+Host: example.com
+User-Agent: browser
+Accept-Encoding: br, gz
+Accept-Language: ja-JP
+```
+
+ファイルからコードを読むこともできる。以下ハイライトテスト用。
+
+
+```js:sample.js
+```
+
+
+```rb:../2016-02-17/test.rb
+```
+
+
+```js:../2016-10-27/searchparams.js
+```
+
+
+```js:../2016-10-27/url-ext.js
+```
+
+
+```js:../2016-10-27/url.js
+```
+
+
+```js:../2016-12-12/random.js
+```
+
+
+```js:../2016-12-12/worker.js
+```
+
+
+```js:../2017-07-10/ee.js
+```
+
+
+```js:../2017-07-10/et.js
+```
+
+
+```js:../2017-07-10/timer-ee.js
+```
+
+
+```js:../2017-07-10/timer-et.js
+```
+
+
+```js:../2017-07-19/aborting-fetch.js
+```
+
+
+```js:../2017-07-19/long-task.js
+```
+
+
+```js:../2017-07-19/race-fetch.js
+```
+
+
+```erl:../2018-01-14/erlang-record-to-map.erl
+```
+
+
+```rb:../2018-03-27/ct.rb
+```
+
+
+```sh:../2018-03-27/ct.sh
+```
+
+
+```go:../2018-03-27/main.go
+```
+
+
+```http:../2020-01-18/1.http
+```
+
+
+```http:../2020-01-18/2.http
+```
+
+
+```js:../2020-01-18/3.js
+```
+
+
+```http:../2020-01-18/4.http
+```
+
+
+```http:../2020-01-18/5.http
+```
+
+
+```http:../2020-01-18/6.http
+```
+
+
+```js:../2020-01-18/7.js
+```
+
+
+```cpp:../2020-08-15/pick-best-image-candidate.cpp
+```
+
+
+```cpp:../2020-08-15/selection-logic.cpp
+```
