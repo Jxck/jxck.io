@@ -1,0 +1,1 @@
+certbot certonly --server https://acme.digicert.com/v2/acme/directory/ --eab-kid mOosYqs1XSodHv1q3LolAj_uq4NUqsdruMQZYA6Q2tc --eab-hmac-key MERhQnFEbDVMa1ZtVHhXOV9WZ0xWaWNLdUgzWW1sRDJtMXNmbVRZMDNELUhwM2EtMWJZaUZCMHRCT2RydDhYeA
