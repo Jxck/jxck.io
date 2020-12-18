@@ -89,8 +89,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // highlight.js
   document.querySelectorAll('pre code').forEach((code) => {
     let lang = code.parentElement.classList.item(0)
-    lang === 'js'   ? 'javascript' : lang
-    lang === 'html' ? 'xml'        : lang
+    lang = lang === null   ? 'nohighlight': lang
+    lang = lang === 'js'   ? 'javascript' : lang
+    lang = lang === 'html' ? 'xml'        : lang
     code.classList.add(lang)
     hljs.highlightBlock(code)
   })
