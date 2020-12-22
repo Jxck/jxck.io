@@ -83,7 +83,10 @@
     }
 
     article img {
-      margin: var(--grid) 0;
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
       border: 1px solid #ccc;
       box-sizing: content-box;
       background-color: #fff;
@@ -94,6 +97,13 @@
     article dl {
       margin-inline-start: var(--grid);
       font-family: var(--mono-font);
+    }
+
+    article li {
+      margin-block-start:  calc(var(--grid)/2);
+      margin-block-end:    0;
+      margin-inline-start: calc(var(--grid)/2);
+      margin-inline-end:   0;
     }
 
     article dl {
@@ -149,7 +159,7 @@
 
       article p {
         margin-block-start: var(--grid-rhythm);
-        margin-block-end: var(--grid-rhythm);
+        margin-block-end:   var(--grid-rhythm);
       }
 
       article pre,
@@ -297,7 +307,10 @@
     iframe {
       display: block;
       max-width: 100%;
-      margin: var(--grid) 0;
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
     }
     dl.info {
       display: flex;
@@ -319,7 +332,10 @@
     }
 
     dl.info dd {
-      margin: 0 var(--grid) 0 0;
+      margin-block-start: 0;
+      margin-block-end: 0;
+      margin-inline-end: var(--grid);
+      margin-inline-start: 0;
     }
 
     dl.info dd i {
@@ -385,7 +401,10 @@
     header nav {
       width: var(--width);
       max-width: var(--max-width);
-      margin: 0 auto;
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
     }
 
     header nav ul {
@@ -400,7 +419,10 @@
       width:  var(--icon-size);
       height: var(--icon-size);
       padding: 0;
-      margin: 0 0 0 var(--grid);
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: var(--grid);
+      margin-inline-end:   0;
     }
 
     header nav ul li a,
@@ -537,7 +559,10 @@
       display: block;
       width: var(--width);
       max-width: var(--max-width);
-      margin: 1em auto;
+      margin-block-start:  1em;
+      margin-block-end:    1em;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
     }
 
     a {
@@ -575,10 +600,13 @@
 
     footer strong,
     footer .copyright {
+      font-style: italic;
       width: var(--width);
       max-width: var(--max-width);
-      margin: 0 auto;
-      font-style: italic;
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
     }
 
     /* AdSense */
@@ -586,10 +614,16 @@
       display: block;
       width: var(--width);
       max-width: var(--max-width);
-      margin: 0 auto;
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
     }
     pre {
-      margin: var(--grid) 0;
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
       border-radius: var(--radius);
     }
 
@@ -711,18 +745,27 @@
     }
     table {
       font-family: var(--mono-font);
-      margin: var(--grid) 0;
       border-spacing: 0 0.4rem;
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
     }
 
     th {
-      padding: 0 var(--grid) calc(var(--grid)/2) var(--grid);
       border-inline-start: 2px solid var(--table-border);
-      border-block-end: 2px dashed var(--table-border);
+      border-block-end:    2px dashed var(--table-border);
+      padding-block-start:  0;
+      padding-block-end:    calc(var(--grid)/2);
+      padding-inline-start: var(--grid);
+      padding-inline-end:   var(--grid);
     }
 
     td {
-      padding: calc(var(--grid)/2) var(--grid);
+      padding-block-start:  calc(var(--grid)/2);
+      padding-block-end:    calc(var(--grid)/2);
+      padding-inline-start: var(--grid);
+      padding-inline-end:   var(--grid);
       border-inline-start: 2px solid var(--table-border);
     }
 
