@@ -56,7 +56,10 @@ main > ol > li {
 }
 
 main > ol > li {
-  margin: 1em 0;
+  margin-block-start:  1em;
+  margin-block-end:    1em;
+  margin-inline-start: 0;
+  margin-inline-end:   0;
   border: 1px solid #ccc;
   border-radius: var(--radius);
   background-color: var(--background-color);
@@ -87,11 +90,17 @@ main > ol > li ul li {
 }
 
 main .info {
-  margin: 1em 0 0.5em 1em;
+  margin-block-start:  1em;
+  margin-block-end:    0.5em;
+  margin-inline-start: 1em;
+  margin-inline-end:   0;
 }
 
 main dl.info dd {
-  margin: 0 2rem 0 0.4rem;
+  margin-block-start:  0;
+  margin-block-end:    0;
+  margin-inline-start: 0.4rem;
+  margin-inline-end:   2rem;
 }
 
 h1 a,
@@ -168,7 +177,10 @@ article ol {
 }
 
 article li {
-  margin: calc(var(--grid)/2) 0 0 calc(var(--grid)/2);
+  margin-block-start:  calc(var(--grid)/2);
+  margin-block-end:    0;
+  margin-inline-start: calc(var(--grid)/2);
+  margin-inline-end:   0;
 }
 
 article img.download {
