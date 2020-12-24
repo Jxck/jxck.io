@@ -134,6 +134,14 @@ $ cat blog_jxck_io.crt DigiCertCA.crt > blog_jxck_io_full.crt
 
 toml を更新して起動し直すと成功。
 
+これを systemd に登録して完了。
+
+
+```service:../../../.systemd/amppkg.service
+```
+
+(最初、検証時に作らた `/tmp/amppkg-ocsp` の権限が起動ユーザのみに絞られており、 Systemd が root で起動するとアクセスできずに失敗した。単純に消せばいい。)
+
 
 ## routing
 
@@ -260,9 +268,6 @@ AMP-Cache-Transform: google;v="1..5"
 ## Search Result
 
 
-
-
-
 ## Outro
 
 技術調査だけのために AMP に対応してきたが、 Google Search においても Mobile Experience を採用するアナウンスが出ているため、本サイトのように Origin が十分速い場合は AMP が必須というわけでもなくなる。
@@ -279,7 +284,6 @@ AMP SXG も、本当に AMP の URL を変えるというだけのためなの�
 Android Chrome で Google のモバイル検索から見れば挙動が確認できるだろう。
 
 なお、各エントリの URL 末尾を `.html` から `.amp.html` にすれば AMP 版がリクエストでき、右上の稲妻アイコンから遷移できる。
-
 
 
 ## Resources
@@ -302,3 +306,5 @@ Android Chrome で Google のモバイル検索から見れば挙動が確認で
     - https://github.com/ampproject/amppackager
   - webpackage/go/signedexchange
     - https://github.com/WICG/webpackage/tree/master/go/signedexchange
+  - Serve AMP using signed exchanges
+    - https://amp.dev/documentation/guides-and-tutorials/optimize-and-measure/signed-exchange/?format=websites
