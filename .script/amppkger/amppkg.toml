@@ -1,0 +1,271 @@
+# This is a TOML 0.4.0 file, as specified by https://github.com/toml-lang/toml.
+
+# The port to listen on; 8080 is the default.
+Port = 10000
+
+# Uncomment this line to serve only to localhost clients, e.g. for testing, by
+# binding on the loopback interface.
+# LocalOnly = true
+
+# The path to the PEM file containing the full certificate chain, ordered from
+# leaf to root.
+#
+# Typically, it would look like:
+#   -----BEGIN CERTIFICATE-----
+#   ....
+#   -----END CERTIFICATE-----
+#   -----BEGIN CERTIFICATE-----
+#   ....
+#   -----END CERTIFICATE-----
+# where the first certificate is for your domain, and the second is your CA's
+# cert.
+#
+# For development, it may be any certificate that has an OCSP URL in its
+# Authority Information Access section (e.g. a TLS cert from Let's Encrypt).
+# For production, it must meet the following requirements set by the Signed
+# Exchanges specification:
+#
+#   The leaf certificate must use an EC P-256 key. (See https://goo.gl/pwK9EJ
+#   item 3.1.5.) It must have at least one SCT, either as an X.509 extension or
+#   as an extension to the OCSP responses from the URI mentioned in its Authority
+#   Information Access extension. (See https://goo.gl/JQiyNs item 7.4.)
+#
+#   To limit the risk to your existing TLS traffic, your signed exchanges
+#   certificate should be minted from a different private key than your TLS
+#   certificate. See https://goo.gl/U4vasm for details.
+#
+# As of November 2018, DigiCert is the only provider of such certs:
+#   https://www.digicert.com/account/ietf/http-signed-exchange.php
+#
+# To verify it has the right key type:
+#   openssl x509 -in cert.pem -text | grep 'ASN1 OID: prime256v1'
+# To verify it has the CanSignHttpExchanges extension:
+#   openssl x509 -in cert.pem -text | grep 1.3.6.1.4.1.11129.2.1.22:
+#
+# This will be served at /amppkg/cert/blahblahblah, where "blahblahblah" is a
+# stable unique identifier for the cert (currently, its base64-encoded
+# SHA-256).
+CertFile = '/keys/sxg/blog_jxck_io_full.crt'
+
+# The path to save a new cert retrieved from the CA if the current cert in
+# 'CertFile' above is still valid.
+# This is optional and is needed only if you have 'autorenewcert' turned on.
+# For multi-replica setups (multiple AMP Packager instances), only the replica
+# that will do the autorenewal of certs needs this config item set.
+# NewCertFile = './pems/newcert.pem'
+
+# The path to the Certificate Signing Request (CSR) that is needed to request
+# new certificates from the Certificate Authority using ACME.
+# CSRs are typically created using the openssl command:
+# 	openssl req -new -key /path/to/privkey -out /path/to/cert.csr
+# To verify:
+# 	openssl req -text -noout -verify -in cert.csr
+# The following docs list examples on how to go about generating CSRs:
+#      https://www.digicert.com/csr-creation.htm?rid=011592
+#      https://www.ssl.com/how-to/manually-generate-a-certificate-signing-request-csr-using-openssl/
+#      https://geekflare.com/san-ssl-certificate/
+# This is optional and is needed only if you have 'autorenewcert' turned on.
+# CSRFile = './pems/cert.csr'
+
+# The path to the PEM file containing the private key that corresponds to the
+# leaf certificate in CertFile.
+KeyFile = '/keys/sxg/blog_jxck_io.key'
+
+# The path to a file where the OCSP response will be cached. The parent
+# directory should exist, but the file need not. A dedicated lock file will be
+# created in the same directory as this file, sharing the same name but with
+# extension .lock appended. The filesystem must support shared and exclusive
+# locking; consider this especially when utilizing network-mounted storage.
+OCSPCache = '/tmp/amppkg-ocsp'
+
+# The list of request header names to be forwarded in a fetch request.
+# Hop-by-hop headers, conditional request headers and Via cannot be included.
+ForwardedRequestHeaders = []
+
+# This is a simple level of validation, to guard against accidental
+# misconfiguration of the reverse proxy that sits in front of the packager.
+#
+# You must specify at least one URLSet; you may specify multiple. Each one must
+# specify a Sign pattern and may specify a Fetch pattern. When the packager
+# receives a request for a package, it will first validate that the requested
+# fetch/sign URL pair matches at least one of the given URLSets.
+[[URLSet]]
+  # What URLs are allowed to show up in the browser's URL bar, when served from
+  # the AMP Cache. By default, the URL that the frontend requests to sign is
+  # also the URL where the packager fetches it. For extra flexibility, see
+  # URLSet.Fetch below.
+  #
+  # To ask the packager to fetch/sign a specific URL, request it like this:
+  #   /priv/doc/https://amppackageexample.com/
+  # or this:
+  #   /priv/doc?sign=https%3A%2F%2Famppackageexample.com%2F
+  #
+  # Note the need for the latter to be URL-escaped. Both options are provided,
+  # depending on what's easier for your server software.
+  [URLSet.Sign]
+    # The scheme of the URL must be https. There is no way to configure this.
+    # The `user:pass@` portion is disallowed. There is no way to configure this.
+
+    # The domain to limit signed URLs to. An exact string match. The
+    # certificate must cover this domain.
+    Domain = "blog.jxck.io"
+
+    # A full-match regexp on the path (not including the ?query). Defaults to
+    # ".*".
+    #
+    # The below example allows paths starting with /world/.
+    # PathRE = "/world/.*"
+
+    # A list of full-match regexps, carving out exclusions to the above PathRE.
+    # Examples of paths you might want to exclude:
+    #   * Personalized content, such as user settings pages. Signed exchanges
+    #     are cached globally and served to all users. (Personalization that
+    #     happens at runtime via JS is fine.) This provides defense-in-depth,
+    #     in addition to the Cache-Control: public check.
+    #   * User-generated content, such as forums. For instance, if there's a
+    #     chance of an XSS vulnerability in your templating library, the impact
+    #     of such event is higher here: even after you've fixed the bug, caches
+    #     may serve your signed packages for up to 7 days.
+    # PathExcludeRE = []
+
+    # A full-match regexp on the query portion of the URL, excluding the initial
+    # "?". Defaults to "" (though a single "?" is allowed). The below example
+    # allows non-empty query strings.
+    # QueryRE = ".*"
+
+    # The fragment portion of the URL (i.e. the '#' and everything after) must
+    # be empty. There is no way to configure this.
+
+    # By default, stateful headers (such as Set-Cookie and WWW-Authenticate)
+    # are stripped from the response before packaging. If instead you wish for
+    # this to cause packaging to fail, set ErrorOnStatefulHeaders = true.
+    # ErrorOnStatefulHeaders = true
+
+    # The maximum length of the URL. Defaults to 2000 as this is a de facto
+    # limit anyway in many browsers. The limit is to mitigate the risk of a
+    # content-sniffing attack (per https://github.com/WICG/webpackage/pull/348)
+    # against downstream servers that serve 200 responses regardless of some of
+    # the path components (e.g. looking up by id and not validating the slug in
+    # the requested URL). If your server only serves 200 responses on a limited
+    # set of valid URLs, and some of those URLs are >2000 chars, then it's safe
+    # to modify this default.
+    # MaxLength = 2000
+
+  # By default, the packager only looks at the sign param, and fetches the
+  # content from the same location. If you'd like more flexibility (for
+  # instance, to fetch content from an edge node), uncomment this section. This
+  # allows the frontend to specify an additional `fetch` query parameter.
+  # Instead of looking like:
+  #
+  #   /priv/doc/https://amppackageexample.com/page.html
+  #
+  # The URL will look like:
+  #
+  #   /priv/doc?fetch=https%3A%2F%2Finternal.amppackageexample.com%2Fpage.html&sign=https%3A%2F%2Famppackageexample.com%2Fpage.html
+  #
+  # Note that this reduces the defense-in-depth against the "signing oracle"
+  # attack. If an attacker can request custom URLs from the packager (or
+  # convince a frontend server to do so), it could convince the packager to
+  # fetch page A and sign it as page B. If enabling this, make sure there is no
+  # unauthorized access to the packager.
+  # [URLSet.Fetch]
+  # # The set of allowed schemes to fetch from is ["https"] by default, but may
+  # # be ["http"] or ["http", "https"].
+  # Scheme = ["http"]
+  #
+  # # By default, the packager enforces that the path and query are the same
+  # # between the fetch and sign URLs (e.g. respond in error if
+  # # fetch=http%3A%2F%2Ffoo%2Fbar.html and
+  # # sign=https%3A%2F%2Fbaz%2Fnot-bar.html). Change SamePath to false if this
+  # # requirement is too stringent.
+  # SamePath = false
+  #
+  # # A full-match regexp on the domain allowed. Only one of DomainRE and
+  # # Domain may be specified. Exercise caution; test the regexp thoroughly.
+  # # For instance, a DomainRE of "www.example.com" would allow fetches from
+  # # www-example.com.
+  # DomainRE = "www\\.corp\\d+\\.amppackageexample\\.com"
+  #
+  # # All other fields behave the same.
+  # Domain = "www.corp.amppackageexample.com"
+  # PathRE = "/world/.*"
+  # QueryRE = ""
+
+# IMPORTANT NOTE: the support of the ACME protocol and automatic renewal of certificates is currently in the
+# EXPERIMENTAL stage.  Once we have more experience with people using it out in the wild, we will gradually
+# move it to PRODUCTION mode.
+#
+# ACME is a protocol that allows for automatic renewal of certificates. AMP Packager uses an ACME library
+# https://github.com/go-acme/lego to handle certificate renewal. Automatic certificate renewal is enabled
+# in AMP Packager via the 'autorenewcert' flag. Turning the flag on will enable AMP Packager to automatically
+# request certificate renewals whenever it has determined that the current certificate is expired or about to
+# expire.
+#
+# ACMEConfig only needs to be present in the toml file if 'autorenewcert' command line flag was turned on.
+# If the flag is on, at least one of ACMEConfig.Production or ACMEConfig.Development should be present.
+# Note that a recommended best practice for setting up the cert renewal that minimizes both cost and bombarding
+# your Certificate Authority with requests is that for a multi-instance setup of AMP packager, only one instance is
+# setup to do automatic cert renewals and the rest of the instances will just be configured to reload the fresh
+# certificate from disk when their in-memory copies expire.  This also implies that the cert paths configured above
+# in 'CertFile' and 'NewCertFile' are located on a shared filesystem accessible by all AMP packager instances.
+#
+# For the full ACME spec, see:
+# 	https://tools.ietf.org/html/draft-ietf-acme-acme-02
+# 	https://ietf-wg-acme.github.io/acme/draft-ietf-acme-acme.html
+# TODO(banaag): consider renaming ACMEConfig to ACME
+# [ACMEConfig]
+  # This config will be used if 'autorenewcert' is turned on and 'development' is turned off.
+  # If the flags above are on but we don't have an entry here, AMP Packager will not start.
+  # [ACMEConfig.Production]
+    # This is the ACME discovery URL that is used for ACME http requests to the Certificate Authority that
+    # doles out the certificates.
+    # Currently, the only CA that supports automatic signed exchange cert renewals is Digicert:
+    # https://docs.digicert.com/certificate-tools/acme-user-guide/acme-directory-urls-signed-http-exchange-certificates/
+    # DiscoURL = "https://production-acme.discovery.url/"
+
+    # This is the email address you used to create an account with the Certificate Authority that is registered to
+    # request signed exchange certificates.
+    # EmailAddress = "user@company.com"
+
+    # For the remaining configuration items, it's important to understand the different challenges employed as
+    # part of the ACME protocol.  See:
+    #   https://ietf-wg-acme.github.io/acme/draft-ietf-acme-acme.html#identifier-validation-challenges
+    #   https://letsencrypt.org/docs/challenge-types/
+    #   https://certbot.eff.org/docs/challenges.html?highlight=http
+    # Note that you don't need to have all the challenges configured, it's typically sufficient to have one configured.
+    # The exception arises when you have to deal with wildcard certificates, see below.
+
+    # This is the http server root directory where the ACME http challenge token could be deposited. Note that you may
+    # need to do some configuration work to get this setup to work where multiple instances of AMP Packager is running.
+    # For example:
+    # 	https://community.letsencrypt.org/t/how-to-nginx-configuration-to-enable-acme-challenge-support-on-all-http-virtual-hosts/5622/3
+    # HttpWebRootDir = '/path/to/www_root_dir'
+
+    # This is the port used by the AMP Packager to respond to the HTTP challenge issued as part of ACME protocol.
+    # Note that if your setup only opens up certain ports, you may need to do a configuration change where you forward
+    # requests to this port using proxy_pass, for example:
+    # 	https://medium.com/@dipeshwagle/add-https-using-lets-encrypt-to-nginx-configured-as-a-reverse-proxy-on-ubuntu-b4455a729176
+    # HttpChallengePort = 5002
+
+    # This is the port used by AMP packager to respond to the TLS challenge issued as part of the ACME protocol.
+    # TlsChallengePort = 5003
+
+    # This is the DnsProvider to be used in fulfilling the ACME DNS challenge. Note that you only need the DNS challenge
+    # setup if you have wildcard certificates. See: https://searchsecurity.techtarget.com/definition/wildcard-certificate
+    # For the DNS challenge, go-acme/lego, there are certain environment variables that need to be set up which depends on
+    # the DNS provider that you use to fulfill the DNS challenge.  See:
+    # 	https://go-acme.github.io/lego/dns/
+    # To use this, build amppkg with `go build -tags dns01`; it is disabled by default because it bloats the binary.
+    # DnsProvider = "gcloud"
+
+  # This config will be used if 'autorenewcert' is turned on and 'development' is turned on.
+  # If the flags above are on but we don't have an entry here, AMP Packager will not start.
+  # All the other fields below have the same semantics as the one in ACMEConfig.Production above.
+  # For development mode, given that we don't require the SXG extension, one can use Let's Encrypt CA to generate the certs.
+  # [ACMEConfig.Development]
+    # DiscoURL = "https://development-acme.discovery.url/"
+    # EmailAddress = "user@company.com"
+    # HttpChallengePort = 5002
+    # HttpWebRootDir = '/path/to/www_root_dir'
+    # TlsChallengePort = 5003
+    # DnsProvider = "gcloud"
