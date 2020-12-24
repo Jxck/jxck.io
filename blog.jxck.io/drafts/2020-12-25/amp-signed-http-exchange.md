@@ -14,7 +14,11 @@ AMP HTML 自体は、ルールに則って作った HTML でしかない。し�
 
 モバイルの Google 検索で、稲妻マークが出た検索結果をクリックすると、自分のサーバにリクエストが来るのではなく、 Google の AMP CDN にリクエストが行き、そこに保存された AMP HTML が返されている。
 
+![AMP Search Result](amp-search-result.png)
+
 したがって、 AMP ページを表示すると、その URL バーが Google の URL になり、その仕組自体が色々と物議を呼んだりした。
+
+![AMP Blog Result](amp-blog-result.png)
 
 Google は AMP に SXG を組み合わせることで、 Google の AMP CDN から提供するが URL バーを Origin のものにできる AMP SXG に対応している。
 
@@ -202,7 +206,7 @@ amppackager はこれを自動で付与しているようなので問題ない�
 
 Devtools で見ると以下のように確認できる。
 
-![SXG Debug dump in Devtools](TODO)
+![SXG Debug dump in Devtools](amp-sxg-devtools.png)
 
 CLI の場合は `dump-signedexchage` で行うのが手軽だろう。
 
@@ -253,9 +257,19 @@ AMP-Cache-Transform: google;v="1..5"
 ```
 
 
+## Search Result
+
+
+
+
+
 ## Outro
 
-deadbeef
+技術調査だけのために AMP に対応してきたが、 Google Search においても Mobile Experience を採用するアナウンスが出ているため、本サイトのように Origin が十分速い場合は AMP が必須というわけでもなくなる。
+
+AMP SXG も、本当に AMP の URL を変えるというだけのためなので、ある程度試して満足したら AMP と一緒に捨てたいと思っている。
+
+合わせて通常の HTML の SXG 対策も実施していきたい。
 
 
 ## DEMO
@@ -265,6 +279,7 @@ deadbeef
 Android Chrome で Google のモバイル検索から見れば挙動が確認できるだろう。
 
 なお、各エントリの URL 末尾を `.html` から `.amp.html` にすれば AMP 版がリクエストでき、右上の稲妻アイコンから遷移できる。
+
 
 
 ## Resources
