@@ -16,7 +16,7 @@ AMP HTML 自体は、ルールに則って作った HTML でしかない。し�
 
 したがって、 AMP ページを表示すると、その URL バーが Google の URL になり、その仕組自体が色々と物議を呼んだりした。
 
-![AMP SXG Before](amp-sxg-before.png)
+![SXG に対応してない AMP は URL バーが google のドメインになる](amp-sxg-before.png#2280x2228)
 
 Google は AMP に SXG を組み合わせることで、 Google の AMP Cache から提供するが URL バーを Origin のものにできる *AMP SXG* に対応している。
 
@@ -214,7 +214,7 @@ amppackager はこれを自動で付与しているようなので問題ない�
 
 Devtools で見ると以下のように確認できる。
 
-![SXG Debug dump in Devtools](amp-sxg-devtools.png)
+![Devtools での SXG の Debug dump](amp-sxg-devtools.png#1928x1198)
 
 
 ### CLI
@@ -274,11 +274,11 @@ Google Bot が来るようになってからしばらくすると、 Search Resu
 
 通常ページはヘッダーに稲妻アイコンがあり AMP ページへリンクしているが、そのアイコンが無いことからもこれが AMP ページであることが確認できる。
 
-![AMP SXG After](amp-sxg-after.png)
+![検索結果からの遷移で AMP SXG が表示され URL バーが blog.jxck.io になっている](amp-sxg-after.png#1928x1198)
 
 また、 Search Result を表示した時点で可能性のある SXG が Preload されていることもわかる。
 
-![AMP SXG Preload](sxg-search-preload.png)
+![Google 検索結果のページで AMP SXG が Preload されている](sxg-search-preload.png#1080x2340)
 
 
 ## Outro
