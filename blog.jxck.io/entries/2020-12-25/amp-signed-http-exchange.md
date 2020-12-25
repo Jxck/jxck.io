@@ -1,4 +1,4 @@
-# [signed-http-exchage][amp][webpackaging] AMP SXG 対応
+# [signed-http-exchange][amp][webpackaging] AMP SXG 対応
 
 
 ## Intro
@@ -316,10 +316,10 @@ Android Chrome で Google のモバイル検索から見れば挙動が確認で
 - Issues
 - Other
   - ampproject/amppackager
-    - https://github.com/ampproject/amppackager
+    - <https://github.com/ampproject/amppackager>
   - webpackage/go/signedexchange
-    - https://github.com/WICG/webpackage/tree/master/go/signedexchange
+    - <https://github.com/WICG/webpackage/tree/master/go/signedexchange>
   - Serve AMP using signed exchanges
-    - https://amp.dev/documentation/guides-and-tutorials/optimize-and-measure/signed-exchange/?format=websites
+    - <https://amp.dev/documentation/guides-and-tutorials/optimize-and-measure/signed-exchange/?format=websites>
   - amphtml/amp-cache-transform.md
-    - https://github.com/ampproject/amphtml/blob/master/spec/amp-cache-transform.md
+    - <https://github.com/ampproject/amphtml/blob/master/spec/amp-cache-transform.md>
