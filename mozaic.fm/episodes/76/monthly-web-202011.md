@@ -296,7 +296,7 @@ guest
     - <https://groups.google.com/g/mozilla.dev.platform/c/yA2rL_2keTE>
   - Ship: CSS overflow:clip
     - <https://groups.google.com/g/mozilla.dev.platform/c/7oQm8PC0aU0>
-    - -moz-hidden-unscrollable の標準バージョン
+    - `-moz-hidden-unscrollable` の標準バージョン
   - *Ship: PerformancePaintTiming API*
     - <https://groups.google.com/g/mozilla.dev.platform/c/qPB1OLaQWsw>
     - First Contentful Paint

@@ -32,7 +32,7 @@ guest
   - Deprecations and removals in Chrome 87
     - <https://developers.google.com/web/updates/2020/10/chrome-87-deps-rems>
     - Comma separator in iframe allow attribute
-    - -webkit-font-size-delta
+    - `-webkit-font-size-delta`
     - Deprecate FTP support
   - *Chromium Blog: Chrome 87 Beta: WebAuthn in DevTools, Pan/Tilt/Zoom, Flow Relative Shorthands and More*
     - <https://blog.chromium.org/2020/10/chrome-87-beta-webauthn-in-devtools.html>

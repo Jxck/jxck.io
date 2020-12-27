@@ -152,7 +152,7 @@ guest
     - <https://hacks.mozilla.org/2018/12/firefox-64-released/>
     - prefers reduced-motion.
     - Fullscreen API unprefixed
-    - -webkit-appearance
+    - `-webkit-appearance`
     - Symantec CA Distrust
   - Firefox 64 for developers
     - <https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/64>

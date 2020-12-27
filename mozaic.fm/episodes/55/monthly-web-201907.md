@@ -446,7 +446,7 @@ guest
     - *The Priority HTTP Header Field*
       - <https://tools.ietf.org/html/draft-kazuho-httpbis-priority-00>
       - HTTP に priority header を入れてそこで優先度を指定できるように
-      - -1~6 までの 8 通りを設定可能
+      - `-1` ~ `6` までの 8 通りを設定可能
     - *Declaring Support for HTTP/2 Priorities*
       - <https://tools.ietf.org/html/draft-lassey-priority-setting-00>
       - H2 の Priority を使わなくしていく

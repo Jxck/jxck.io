@@ -256,7 +256,7 @@ guest
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/Wr19mMZnC80/WEGHDqx5CQAJ>
   - Ship '-webkit-appearance' and changes to '-moz-appearance' values
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/Fq6OH5SWeRo/lxHDXFnwCQAJ>
-    - -webkit-appearance しか指定しないサイトが多いので、 -moz-appearance のエイリアスにする
+    - `-webkit-appearance` しか指定しないサイトが多いので、 -moz-appearance のエイリアスにする
   - *Ship: Enable navigator.clipboard.* APIs by default*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/ef7O7PrmNh0/qy8k9HDjCQAJ>
     - Async Clipboard API が有効に

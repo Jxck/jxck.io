@@ -153,7 +153,7 @@ guest
     - Remove: -webkit-appearance Keywords for Arbitrary Elements
   - Deprecations and removals in Chrome 78
     - <https://developers.google.com/web/updates/2019/10/chrome-79-deps-rems>
-    - -webkit-appearance
+    - `-webkit-appearance`
 - Intents
   - Ship: getTransfrom() for OffscreenCanvasRenderingContext2D
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/HT7REXjYLUM/qjnN8Bp5EAAJ>

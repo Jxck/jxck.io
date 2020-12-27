@@ -58,9 +58,9 @@ guest
       - [blog](https://blog.jxck.io/entries/2018-03-27/certificate-transparency.html)
     - Deprecate AppCache on Non-secure Contexts
     - Layout 以下が削除
-      - -webkit-box-flex-group
-      - -webkit-line-clamp
-      - -webkit-box-lines
+      - `-webkit-box-flex-group`
+      - `-webkit-line-clamp`
+      - `-webkit-box-lines`
     - Deprecation policy
       - API 削除に関するポリシーの説明
       - ML で intent to deprecate
