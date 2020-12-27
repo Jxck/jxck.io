@@ -675,7 +675,7 @@ guest
     - <https://security.googleblog.com/2018/10/modernizing-transport-security.html>
   - Removing Old Versions of TLS
     - <https://blog.mozilla.org/security/2018/10/15/removing-old-versions-of-tls/>
-- 祝 RFC!Transport Layer Security (TLS) 1.3 発行の軌跡 〜熟成された 4 年間の安全性解析〜|株式会社レピダム
+- 祝 RFC!Transport Layer Security (TLS) 1.3 発行の軌跡 〜熟成された 4 年間の安全性解析〜\|株式会社レピダム
   - <https://lepidum.co.jp/blog/2018-10-01/tls1_3security/>
 - *Permission をとれば opt-in で CORS 迂回してもよいのでは* (tweet by Michael Bleigh)
   - <https://twitter.com/mbleigh/status/1047950318363803649?s=12>
@@ -689,7 +689,9 @@ guest
   - *The secret-token URI Scheme* <https://tools.ietf.org/html/draft-nottingham-how-did-that-get-into-the-repo-00>
 - Metadata-Attacker - A Tool To Generate Media Files With Malicious Metadata - KitPloit - PenTest Tools for your Security Arsenal
   - <https://www.kitploit.com/2018/10/metadata-attacker-tool-to-generate.html>
-- ### 周辺動向
+
+### 周辺動向
+
 - *むずかしすぎる!五輪大会ボランティア応募フォーム*
   - <https://news.yahoo.co.jp/byline/kandatoshiaki/20180927-00098411/>
 - Node.js Foundation and JS Foundation Announce Intent to Create Joint Organization to Support the Broad Node.js and JavaScript Communities - The Linux Foundation

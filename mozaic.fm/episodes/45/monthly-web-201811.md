@@ -99,7 +99,7 @@ guest
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/LXJUzctTVfM/p4J-WrzbBgAJ>
   - Implement and Ship: DOMMatrixReadOnly.scaleNonUniform()
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/BJJKDby5p7w/vxmb9bnGAgAJ>
-  - Implement and Ship: Additional encodings.networkPriority field in RtpSender[Get|Set]Parameters
+  - Implement and Ship: Additional encodings.networkPriority field in RtpSender[Get\|Set]Parameters
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/bVNynDp9PHo/4D96etzMAAAJ>
   - Implement: FetchEvent Worker Timing
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/WS17dXHV6xQ/rOnUbU4CCgAJ>
@@ -111,7 +111,7 @@ guest
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Ff6Ywg5vnh4/VbDH4X6wBQAJ>
   - *Implement: Form-associated custom elements*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/HW8j_JLLiPo/V_SmVZkwBgAJ>
-  - Implement: Additional encodings.networkPriority field in RtpSender[Get|Set]Parameters
+  - Implement: Additional encodings.networkPriority field in RtpSender[Get\|Set]Parameters
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/7SRh6Pl4iMA/MXPbE3FpBgAJ>
   - Implement: User Idle Detection
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/OuwzBmH02M4/5ChXdXZQBwAJ>
