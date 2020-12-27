@@ -25,6 +25,7 @@ sudo certbot certonly \
   -d files.jxck.io \
   -d logo.jxck.io \
   -d slide.jxck.io \
+  -d book.jxck.io \
   -d labs.jxck.io \
   -d lab2.jxck.io \
   -d api.jxck.io \
