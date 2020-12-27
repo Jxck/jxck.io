@@ -440,7 +440,7 @@ guest
     - メッセージの正規化方法も定義
   - *Best practices for password hashing and storage*
     - <https://tools.ietf.org/html/draft-whited-kitten-password-storage-01>
-    - * Other
+- Other
 
 
 ### セキュリティ動向

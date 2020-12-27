@@ -293,7 +293,7 @@ guest
 
 - Stable: 13.1.1
 - Updates
-  - *WWDC[c]*
+  - *WWDC*
     - WWDC20 - Apple Developer
       - <https://developer.apple.com/wwdc20/>
   - *Safari 14 Beta Release Notes*
@@ -304,17 +304,17 @@ guest
     - Improved web platform tests pass rate
     - <https://developer.apple.com/videos/play/wwdc2020/10663/>
       - Performance improvements
-            * Link clicking to unvisited page 13% faster
-            * Link clicking to recently visited page 42% faster
-            * Entering URL to recently visited page 52% faster
-            * Instant back 34% more pages
-            * First-page PDF render while downloading 60x faster
-            * Closing unresponsive tabs 50ms
-            * Scrolling CPU usage 3x less
-            * IndexedDB operations Up to 10x faster
-            * for-of loops Up to 5x faster
-            * JavaScript Promises Up to 2x faster
-            * JavaScript delete operations Up to 12x faster
+        - Link clicking to unvisited page 13% faster
+        - Link clicking to recently visited page 42% faster
+        - Entering URL to recently visited page 52% faster
+        - Instant back 34% more pages
+        - First-page PDF render while downloading 60x faster
+        - Closing unresponsive tabs 50ms
+        - Scrolling CPU usage 3x less
+        - IndexedDB operations Up to 10x faster
+        - for-of loops Up to 5x faster
+        - JavaScript Promises Up to 2x faster
+        - JavaScript delete operations Up to 12x faster
       - *WebP のサポート*
       - HDR のサポート `@media only screen (dynamic-range: high)`
       - Picture-in-picture API
@@ -424,9 +424,9 @@ guest
   - *App-Bound Domains*
     - <https://webkit.org/blog/10882/app-bound-domains/>
       - WKWebView で App 内 WebView を使うときに、 Web サイトのトラッキングスクリプトをブロックする方法を提供
-            * info.plist の WebAppBoundDomains に allow list を指定する(最大 10 個)
-            * WebAppBoundDomains を指定しなければデフォルトの挙動
-            * iOS14.0, macOS Big Sur 以降では WKWebView で ITP が有効になる
+        - info.plist の WebAppBoundDomains に allow list を指定する(最大 10 個)
+        - WebAppBoundDomains を指定しなければデフォルトの挙動
+        - iOS14.0, macOS Big Sur 以降では WKWebView で ITP が有効になる
   - Async Clipboard API
     - <https://webkit.org/blog/10855/async-clipboard-api/>
 
@@ -509,7 +509,7 @@ guest
   - 2020-01
     - <https://github.com/tc39/agendas>
     - <https://github.com/tc39/notes>
-  - *ES2020 Released[d]*
+  - *ES2020 Released*
     - <https://www.ecma-international.org/news/index.html>
     - ECMA-262 11th edition - ECMAScript 2020 Language Specification
       - <https://github.com/tc39/String.prototype.matchAll>

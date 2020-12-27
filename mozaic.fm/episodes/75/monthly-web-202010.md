@@ -24,9 +24,9 @@ guest
 
 - Stable: 86
 - Updates
-  - **New in Chrome 86**
+  - *New in Chrome 86*
     - <https://developers.google.com/web/updates/2020/10/nic86>
-    - **File System Access**
+    - *File System Access*
     - Origin Trial: WebHID
     - Origin Trial: Multi-Screen Window Placement API
   - Deprecations and removals in Chrome 87
@@ -34,7 +34,7 @@ guest
     - Comma separator in iframe allow attribute
     - -webkit-font-size-delta
     - Deprecate FTP support
-  - **Chromium Blog: Chrome 87 Beta: WebAuthn in DevTools, Pan/Tilt/Zoom, Flow Relative Shorthands and More**
+  - *Chromium Blog: Chrome 87 Beta: WebAuthn in DevTools, Pan/Tilt/Zoom, Flow Relative Shorthands and More*
     - <https://blog.chromium.org/2020/10/chrome-87-beta-webauthn-in-devtools.html>
     - WebAuthn Tab in DevTools
     - Control camera pan, tilt, and zoom
@@ -42,10 +42,10 @@ guest
     - Completed Origin Trials
       - Cookie Store API
     - Other features in this release
-      - **cross-origin isolation**
+      - *cross-origin isolation*
       - iframe attribute for limiting same-origin iframe document access
       - `isInputPending()`
-      - **Range Request Headers in Service Workers**
+      - *Range Request Headers in Service Workers*
       - Streams API: transferable streams
       - Transition related event handlers
       - WakeLockSentinel.released Attribute
@@ -55,30 +55,30 @@ guest
         - The quotes Property Supports the 'auto' Value
       - JavaScript
         - Atomics.waitAsync()
-  - **Gaining security and privacy by partitioning the cache**
+  - *Gaining security and privacy by partitioning the cache*
     - <https://developers.google.com/web/updates/2020/10/http-cache-partitioning>
     - Cache の Key が `{from, to}` になり partition される
     - Public CDN の旨味が一つ減る
   - How we built the Chrome DevTools WebAuthn tab
     - <https://developers.google.com/web/updates/2020/10/webauthn-tab>
-  - **Chromium Blog: Chrome is deploying HTTP/3 and IETF QUIC**
+  - *Chromium Blog: Chrome is deploying HTTP/3 and IETF QUIC*
     - <https://blog.chromium.org/2020/10/chrome-is-deploying-http3-and-ietf-quic.html>
     - Google QUIC から IETF QUIC に移行
   - Chromium Blog: Progress on Privacy Sandbox and building a more private web
     - <https://blog.chromium.org/2020/10/progress-on-privacy-sandbox-and.html>
-  - **Chromium Blog: Reducing abusive notification content**
+  - *Chromium Blog: Reducing abusive notification content*
     - <https://blog.chromium.org/2020/10/reducing-abusive-notification-content.html>
     - ユーザを騙して notification を取得しようとするページの prompt を block
-  - **Handling range requests in a service worker**
+  - *Handling range requests in a service worker*
     - <https://web.dev/sw-range-requests/>
     - Range が SW の `respondWith(fetch(req))` を経由しても消されなくなった
     - SW から Range を返すロジックはあいかわらず必要
-  - **What are third-party origin trials?**
+  - *What are third-party origin trials?*
     - <https://web.dev/third-party-origin-trials/>
     - 3rd Party から Origin Trials が実行可能に
   - Control camera pan, tilt, and zoom
     - <https://web.dev/camera-pan-tilt-zoom/>
-  - **A more private way to measure ad conversions, the Event Conversion Measurement API**
+  - *A more private way to measure ad conversions, the Event Conversion Measurement API*
     - <https://web.dev/conversion-measurement/>
   - Video processing with WebCodecs
     - <https://web.dev/webcodecs/>
@@ -97,23 +97,23 @@ guest
 - Intents
   - Ship: Top-level await
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/nAkEvjsqQbE>
-  - **Ship: Shared Array Buffers (SABs) on Android**
+  - *Ship: Shared Array Buffers (SABs) on Android*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/fxZAUibwfOQ/m/OTYl9h9AAAAJ>
   - Ship: CSS aspect-ratio property
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/TF41VMfLhMI>
-  - **Ship: Partition the HTTP cache**
+  - *Ship: Partition the HTTP cache*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/NUR-gpWxSZ4>
   - Ship: `path()` support in clip-path CSS property
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/E0bpVCaWPEg>
   - Ship: CSS Automatic Hyphenation for Windows/Linux/ChromeOS
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/sIRXYKA4jGE>
-  - **Ship: Selectors Level 4: :is() and :where()**
+  - *Ship: Selectors Level 4: :is() and :where()*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/Wodp9dSSdL8>
   - Ship: Pointer Lock Unadjusted Movement
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/cQn7OwcMQ64>
   - Ship: ElementInternals.shadowRoot attribute
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/uWcvDbzyIBk>
-  - **Ship: Anchor target=_blank implies rel=noopener by default**
+  - *Ship: Anchor target=_blank implies rel=noopener by default*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/FFX6VkvladY>
   - Ship: WebAuthentication API: ResidentKeyRequirement and credProps extension
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/_Lu3bV0JX-4>
@@ -125,10 +125,10 @@ guest
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/ApR03h3CGfo>
   - Implement and Ship: Make `|type|` optional in WakeLock.request()
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/HxWEyZz2nmI>
-  - **Prototype and Ship: CSS Selector Pseudo class :dir()**
+  - *Prototype and Ship: CSS Selector Pseudo class :dir()*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/p0Wc66rbVOc>
     - L2R/R2L を取得する擬似クラス
-  - **Implement and Ship: Selectors Level 4: Complex :not()**
+  - *Implement and Ship: Selectors Level 4: Complex :not()*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/0alTkXvDCL8>
     - `:is()`/`:where()` のおかげで、 `:not()` にも複雑なセレクタが書けるように
   - Prototype: WebID
@@ -137,11 +137,11 @@ guest
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/NYVbRRBlABI>
   - Prototype: Storage Buckets API
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/LZsMi8heTu0>
-  - **Prototype: TLS Encrypted Client Hello (ECH)**
+  - *Prototype: TLS Encrypted Client Hello (ECH)*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/YEo4LqB7nWI>
     - Encrypted SNI と呼ばれていたもの
     - DNS HTTP レコードで ECHConfig を返しその鍵で最初から暗号化
-  - **Prototype: Media Queries: prefers-contrast feature**
+  - *Prototype: Media Queries: prefers-contrast feature*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/I0e2_nAwW7E>
     - windows や mac が持つ hi contrast mode に対応する
     -  'more', 'less', 'forced', or 'no-preference' などの値が取れる
@@ -151,26 +151,26 @@ guest
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/zwG2m_KG0RY>
   - Prototype: Supports-Loading-Mode opt-in
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/nZVd7iiy3dc>
-  - **Prototype: Streams API: Byte Streams**
+  - *Prototype: Streams API: Byte Streams*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/Q8Qgu1ZdJ44>
     - BYOB な stream で GC 効率などが良い
   - Prototype and Ship: Don't clear adoptedStyleSheets on adoption to/from `<template>`
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/W5-EGUySQgc>
   - Prototype: Capability Delegation
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/9CeLYndESPE>
-  - **Prototype: URLPattern**
+  - *Prototype: URLPattern*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/jBMvUEkyBq8>
     - SW の registration の scope を特定パス以下に絞るための scope 属性と
     - そこに指定する URLPattern オブジェクト
   - Prototype: WebXR hand input module - Level 1
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/-cdYnhNAtmo/m/U2_boIg9AAAJ>
-  - **Prototype: Container Queries**
+  - *Prototype: Container Queries*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/u1AKdrXhPGI>
     - ViewPort ではなく任意の要素のサイズをメディアクエリに指定できる
     - 要素のサイズに応じたスタイルが可能に
   - Prototype: CSS custom counter styles
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/vSPTU15iL9Y>
-  - **Prototype: NativeIO**
+  - *Prototype: NativeIO*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/gh0gTHO18YQ>
     - buffer のデータをデバイスの File System にマップするような低レイヤな API
     - この上に様々な I/O 系 API が定義できるようにするベースにする目的
@@ -190,7 +190,7 @@ guest
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/zt3gLmrhTHc>
   - PSA: Cross-Origin-Embedder-Policy (COEP) expanded to Android WebView on M88
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/Wc_uYYkcviw/m/CIvXAq0yBQAJ>
-  - **FYI: Ports 5060 and 5061 to be added to the restricted list**
+  - *FYI: Ports 5060 and 5061 to be added to the restricted list*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/0d4L4zZWcH4>
   - Ready for Trial: WebAuthn: Large blob storage extension (largeBlob)
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/QF9jw1_ydWg>
@@ -214,7 +214,7 @@ guest
 
 - Stable: 82
 - Updates
-  - **Coming through with Firefox 82 - Mozilla Hacks - the Web developer blog**
+  - *Coming through with Firefox 82 - Mozilla Hacks - the Web developer blog*
     - <https://hacks.mozilla.org/2020/10/coming-through-with-firefox-82/>
     - Media Session API
     - `::file-selector-button`
@@ -222,32 +222,32 @@ guest
     - <https://blog.nightly.mozilla.org/2020/10/13/these-weeks-in-firefox-issue-81/>
   - These Weeks in Firefox: Issue 82 – Firefox Nightly News
     - <https://blog.nightly.mozilla.org/2020/10/21/these-weeks-in-firefox-issue-82/>
-  - **SpiderMonkey Newsletter 7 (Firefox 82-83) \| spidermonkey.dev**
+  - *SpiderMonkey Newsletter 7 (Firefox 82-83) \| spidermonkey.dev*
     - <https://mozilla-spidermonkey.github.io/blog/2020/10/27/newsletter-7.html>
     - `item()` を実装するも互換性の問題が出てバックアウトされた
     - YUI の互換性
-  - **Mozilla Reaction to U.S. v. Google - The Mozilla Blog**
+  - *Mozilla Reaction to U.S. v. Google - The Mozilla Blog*
     - <https://blog.mozilla.org/blog/2020/10/20/mozilla-reaction-to-u-s-v-google/>
 - Intents
   - Ship: CSS conic-gradient
     - <https://groups.google.com/g/mozilla.dev.platform/c/B3fPnRFM_yY/m/kPsyVeWzBAAJ>
-  - **Ship: Make wheel event listeners passive by default on the root**
+  - *Ship: Make wheel event listeners passive by default on the root*
     - <https://groups.google.com/g/mozilla.dev.platform/c/roYXRBAfY5Y>
-  - **Ship: PerformancePaintTiming API**
+  - *Ship: PerformancePaintTiming API*
     - <https://groups.google.com/g/mozilla.dev.platform/c/qPB1OLaQWsw/m/DQv2JdvpAAAJ>
-  - **Ship: Block HTTP(s) requests to SIP ports 5060, 5061**
+  - *Ship: Block HTTP(s) requests to SIP ports 5060, 5061*
     - <https://groups.google.com/g/mozilla.dev.platform/c/FL-zKm4T6SA/m/vEUPOg7EAAAJ>
   - Prototype & Ship: Treat localhost addresses as "Potentially Trustworthy"
     - <https://groups.google.com/g/mozilla.dev.platform/c/sZdEYTiEBdE/m/PbGpLjcqAQAJ>
-  - **Prototype: Mixed Content Auto Upgrading of display content (image, audio, video)**
+  - *Prototype: Mixed Content Auto Upgrading of display content (image, audio, video)*
     - <https://groups.google.com/g/mozilla.dev.platform/c/F163Jz32oYY>
 - Other
   - A New Backend for Cranelift, Part 1: Instruction Selection
     - <https://hacks.mozilla.org/2020/10/a-new-backend-for-cranelift-part-1-instruction-selection/>
-  - **MDN Web Docs: Editorial strategy and community participation**
+  - *MDN Web Docs: Editorial strategy and community participation*
     - <https://hacks.mozilla.org/2020/10/mdn-web-docs-editorial-strategy-and-community-participation/>
     - MDN を GitHub に移行
-  - **MDN Web Docs evolves! Lowdown on the upcoming new platform - Mozilla Hacks - the Web developer blog**
+  - *MDN Web Docs evolves! Lowdown on the upcoming new platform - Mozilla Hacks - the Web developer blog*
     - <https://hacks.mozilla.org/2020/10/mdn-web-docs-evolves-lowdown-on-the-upcoming-new-platform/>
     - Wiki ベースだった MDN のコンテンツを、 GitHub 上のソースから静的にビルドするアプローチに変更するプロジェクト Yari の詳細
     - 翻訳などローカリゼーションについては、機械翻訳によるものを考えている
@@ -261,7 +261,7 @@ guest
 
 - Stable: 14.0
 - Updates
-  - **Release Notes for Safari Technology Preview 114**
+  - *Release Notes for Safari Technology Preview 114*
     - <https://webkit.org/blog/11300/release-notes-for-safari-technology-preview-114/>
     - Added Intl.DateTimeFormat dateStyle and timeStyle (r266035)
     - Added Intl.Segmenter (r266032)
@@ -269,33 +269,33 @@ guest
     - Added Object.getOwnPropertyNames caching and accelerated Object.getOwnPropertyDescriptor (r265934)
     - Aligned legacy Intl constructor behavior to spec (r266655)
     - Applied Intl.DateTimeFormat hour-cycle correctly when timeStyle is used (r267108)
-    - **Enabled Intl.DisplayNames (r266029)**
+    - *Enabled Intl.DisplayNames (r266029)*
     - Implemented Intl.DateTimeFormat dayPeriod (r266323)
     - Implemented Intl Language Tag Parser (r266039)
     - Implemented Intl.DateTimeFormat.prototype.formatRange (r266033)
     - Implemented unified Intl.NumberFormat (r266031)
-    - **Added editing to `<input type="datetime-local">` (r266830)**
+    - *Added editing to `<input type="datetime-local">` (r266830)*
     - Added AudioParam.automationRate attribute (r265980)
     - Added proper support for AudioContextOptions.sampleRate (r267014)
     - Allowed direct creation of replacement codec (r266466)
     - Dropped non-standard AudioBuffer.gain (r267065)
-    - **Enabled MediaRecorder by default on macOS (r267225)**
+    - *Enabled MediaRecorder by default on macOS (r267225)*
     - End of media capture should not be reported before 3 seconds of the start of capture (r267081)
     - MediaRecorder timeslice parameter causing internal error on longer videos (r266611)
-    - **Enabled paint timing by default (r267235)**
-    - **Enabled WebGL2 by default (r267027)**
+    - *Enabled paint timing by default (r267235)*
+    - *Enabled WebGL2 by default (r267027)*
     - Added WebGL and WebGL2 context support to OffscreenCanvas (r266275)
     - WebGL goes in a bad state where glContext.createProgram() returns null (r266362)
     - Added support for flow-relative shorthand and offset properties (r266674)
-    - **Implemented encodeInto() TextEncoder method (r266533)**
-    - **Implemented lazy iframe loading (r266976, r267187)**
+    - *Implemented encodeInto() TextEncoder method (r266533)*
+    - *Implemented lazy iframe loading (r266976, r267187)*
     - Added RTCRtpSynchronizationSource.rtpTimestamp (r266052)
     - Changed letter-spacing to disable ligatures (r266683)
-    - **Added support for third-party domains to get stored for back-forward navigations (r265916)**
-    - **Allowed requests for storage access from nested iframes (r266479)**
-  - **Release Notes for Safari Technology Preview 115**
+    - *Added support for third-party domains to get stored for back-forward navigations (r265916)*
+    - *Allowed requests for storage access from nested iframes (r266479)*
+  - *Release Notes for Safari Technology Preview 115*
     - <https://webkit.org/blog/11333/release-notes-for-safari-technology-preview-115/>
-    - **Enabled the modern unprefixed WebAudio API (r267488, r267504)**
+    - *Enabled the modern unprefixed WebAudio API (r267488, r267504)*
     - Enabled Intl.DateTimeFormat dayPeriod (r267454)
     - Added support for HTMLMediaElement.setSinkId (r267472)
     - Implemented the CSS math-style property (r267578)
@@ -319,7 +319,7 @@ guest
   - [webkit-dev] Request for position on changing click, auxclick, contextmenu to PointerEvent
     - <https://lists.webkit.org/pipermail/webkit-dev/2020-November/031588.html>
 - Other
-  - **[webkit-dev] WebKit Transition to Git**
+  - *[webkit-dev] WebKit Transition to Git*
     - <https://lists.webkit.org/pipermail/webkit-dev/2020-October/031436.html>
     - Apple が WebKit を Subversion から Git に移行したいと表明
     - さらにレポジトリを GitHub でホストしたいとも
@@ -337,10 +337,10 @@ guest
     - <https://blogs.windows.com/msedgedev/2020/10/15/icymi-edge-ignite-2020/>
   - Announcing Microsoft Edge WebView2 General Availability
     - <https://blogs.windows.com/msedgedev/2020/10/19/edge-webview2-general-availability/>
-  - **What's new in the Windows 10 October 2020 Update \| Windows Experience Blog**
+  - *What's new in the Windows 10 October 2020 Update \| Windows Experience Blog*
     - <https://blogs.windows.com/windowsexperience/2020/10/20/whats-new-in-the-windows-10-october-2020-update/>
     - Edge Legacy が Chromium Edge に置き換えられた
-  - **Safety and privacy in Microsoft Edge**
+  - *Safety and privacy in Microsoft Edge*
     - <https://blogs.windows.com/msedgedev/2020/10/26/safety-privacy-cyber-security-awareness-month/>
     - Edge が持つプライバシー保護機能の解説
     - Tracking Prevention, Smart Screen, DoH, Password Monitor etc
@@ -354,12 +354,12 @@ guest
     - <https://techcommunity.microsoft.com/t5/exchange-team-blog/hybrid-agent-and-root-certificate-changes/ba-p/1811118>
   - Startup Boost FAQ - Microsoft Tech Community
     - <https://techcommunity.microsoft.com/t5/articles/startup-boost-faq/m-p/1810423#M3640>
-  - **Vertical tabs preview now available in the Canary and Dev channels - Microsoft Tech Community**
+  - *Vertical tabs preview now available in the Canary and Dev channels - Microsoft Tech Community*
     - <https://techcommunity.microsoft.com/t5/articles/vertical-tabs-preview-now-available-in-the-canary-and-dev/m-p/1823751#M3667>
     - Tab を縦に並べる UI が Canary と Dev に
   - Introducing Microsoft Edge preview builds for Linux - Microsoft Edge Blog
     - <https://blogs.windows.com/msedgedev/2020/10/20/microsoft-edge-dev-linux/>
-  - **Override webpage resources with local copies using Microsoft Edge DevTools - Microsoft Edge Development - Microsoft Docs**
+  - *Override webpage resources with local copies using Microsoft Edge DevTools - Microsoft Edge Development - Microsoft Docs*
     - <https://docs.microsoft.com/en-us/deployedge/edge-learnmore-neededge>
     - <https://edge.microsoft.com/neededge/v1>
 - Chakra
@@ -402,7 +402,7 @@ guest
     - <https://www.w3.org/2020/10/26-components-minutes.html>
   - Declarative ShadowDOM
     - <https://www.w3.org/2020/10/28-components-minutes.html>
-  - **The Waning Web Platform Engine Diversity**
+  - *The Waning Web Platform Engine Diversity*
     - <https://www.w3.org/2020/10/29-engine-scion-minutes.html>
   - Virtual Keyboard Control Breakout
     - <https://www.w3.org/2020/10/30-editing-minutes.html>
@@ -472,11 +472,11 @@ guest
   - Reducing memory copies in web-platform APIs
     - <https://github.com/WICG/reducing-memory-copies>
     - <https://docs.google.com/presentation/d/1VT3GFtGmoC1B7Cqz2a4YlVaoLN0s8k9nmYPIB9xzsno/edit#slide=id.p>
-  - **webcomponents/DOM-Parts.md**
+  - *webcomponents/DOM-Parts.md*
     - <https://github.com/WICG/webcomponents/blob/gh-pages/proposals/DOM-Parts.md>
     - template instantiation のベース?として DOM Parts の提案
     - 属性の変更を commit しないと反映されないようにし AsyncDOM を意識してそう
-  - **W3C Strategic Highlights, October 2020**
+  - *W3C Strategic Highlights, October 2020*
     - <https://www.w3.org/blog/news/archives/8747>
   - EMVCo, FIDO Alliance, and W3C Publish Resource on How Technologies Relate
     - <https://www.w3.org/blog/news/archives/8753>
@@ -488,7 +488,7 @@ guest
   - mikewest/deprecating-document-domain:
     - <https://github.com/mikewest/deprecating-document-domain>
     - `document.domain` を deprecate していく提案
-  - **Parties and browsers**
+  - *Parties and browsers*
     - <https://tess.oconnor.cx/2020/10/parties>
     - "first-party", "third-party" という言葉の解釈が異なる
     - Web ブラウザの文脈でも微妙に揺れている(Firefox と Safari のトラッキングに関するポリシーのドキュメント)
@@ -573,7 +573,7 @@ guest
   - The Transport Layer Security (TLS) Protocol Version 1.3
     - <https://tools.ietf.org/html/draft-ietf-tls-rfc8446bis-00>
 - Other
-  - **HTTP Working Group Interim Meeting Agenda - October 2020**
+  - *HTTP Working Group Interim Meeting Agenda - October 2020*
     - <https://github.com/httpwg/wg-materials/blob/gh-pages/interim-20-10/agenda.md>
     - <https://httpwg.org/wg-materials/interim-20-10/minutes.html>
 
@@ -582,11 +582,11 @@ guest
 
 - Project Zero: Enter the Vault: Authentication Issues in HashiCorp Vault
   - <https://googleprojectzero.blogspot.com/2020/10/enter-the-vault-auth-issues-hashicorp-vault.html>
-- **Samy Kamkar - NAT Slipstreaming**
+- *Samy Kamkar - NAT Slipstreaming*
   - <https://samy.pl/slipstream/>
   - SIP 関連の脆弱性
   - 5060/5061 Port を閉じる変更へと繋がっている
-- **日本を含む 7 カ国、エンドツーエンド暗号化コンテンツへの公的接続を可能にするよう要請する国際声明 - ITmedia NEWS**
+- *日本を含む 7 カ国、エンドツーエンド暗号化コンテンツへの公的接続を可能にするよう要請する国際声明 - ITmedia NEWS*
   - <https://www.itmedia.co.jp/news/articles/2010/12/news054.html>
   - <https://www.justice.gov/opa/pr/international-statement-end-end-encryption-and-public-safety>
 - International statement: End-to-end encryption and public safety - GOV.UK
@@ -603,21 +603,21 @@ guest
   - <https://www.fastly.com/blog/learnings-from-side-channel-attacks>
 - Meet AssemblyScript: your next computing language \| Fastly
   - <https://www.fastly.com/blog/meet-assemblyscript-your-next-computing-language>
-- **Beyond Server Push: experimenting with the 103 Early Hints Status Code \| Fastly**
+- *Beyond Server Push: experimenting with the 103 Early Hints Status Code \| Fastly*
   - <https://www.fastly.com/blog/beyond-server-push-experimenting-with-the-103-early-hints-status-code>
   - Early Hints を送った場合の改善の可能性を測定する検証を開始
 - AVIF image format supported by Cloudflare Image Resizing
   - <https://blog.cloudflare.com/generate-avif-images-with-image-resizing/>
-- **A Last Call for QUIC, a giant leap for the Internet**
+- *A Last Call for QUIC, a giant leap for the Internet*
   - <https://blog.cloudflare.com/last-call-for-quic/>
   - Cloudflare TV に解説ビデオシリーズ(12 本)が上がってる
-- **How Facebook is bringing QUIC to billions - Facebook Engineering**
+- *How Facebook is bringing QUIC to billions - Facebook Engineering*
   - <https://engineering.fb.com/networking-traffic/how-facebook-is-bringing-quic-to-billions/>
   - Facebook が HTTP/3 と QUIC をデプロイ、記事公開時点で 75% 以上のトラフィックが QUIC になっている
-- **Justice Department Sues Monopolist Google For Violating Antitrust Laws \| OPA \| Department of Justice**
+- *Justice Department Sues Monopolist Google For Violating Antitrust Laws \| OPA \| Department of Justice*
   - <https://www.justice.gov/opa/pr/justice-department-sues-monopolist-google-violating-antitrust-laws>
   - 検索と検索広告市場の独占で Google が米国司法省に訴えられる
-- **Opera comments on competition law case against Google in the United States**
+- *Opera comments on competition law case against Google in the United States*
   - <https://blogs.opera.com/news/2020/10/opera-comments-on-competition-law-case-against-google-in-the-united-states/>
   - Google が訴えられた件について Opera の声明
   - ブラウザは世界において最もオープンなプラットフォームのひとつ
@@ -640,17 +640,17 @@ guest
 - さくらインターネット 全サービスにおける Internet Explorer サポート終了のお知らせ \| さくらインターネット
   - <https://www.sakura.ad.jp/information/announcements/2020/10/29/1968205310/>
   - 2021 年 4 月 1 日から会員メニューと全サービスのコントロールパネルで IE の利用を「非推奨」に
-- **Era Web Architects**
+- *Era Web Architects*
   - <https://erawebarchitects.com/>
   - インターネット黎明期からウェブに携わり活躍した 30 人のウェブアーキテクツたちの素顔に迫るポートレート写真展
-- **Global Privacy Control - Take Control Of Your Privacy**
+- *Global Privacy Control - Take Control Of Your Privacy*
   - <https://globalprivacycontrol.org/>
   - 「自分の情報を売るな」とユーザーがオプトインで情報を伝える仕組み
   - サイト単位でなく、ブラウザやアプリの設定をすればよい
   - 仕様としては DNT ととくに変わらない
     - <https://globalprivacycontrol.github.io/gpc-spec/>
   - CCPA など法律による強制力とともに運用するのを想定している
-- **NetMarketShare**
+- *NetMarketShare*
   - <https://www.netmarketshare.com/>
   - Net Applications のブラウザシェア NetMarketShare が 10 月をもって終了
   - UA Client Hints への以降により、将来的にブラウザの検出が正確にできなくなると述べている

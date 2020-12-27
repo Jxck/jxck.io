@@ -262,7 +262,7 @@ guest
   - *Put off to ship: Event.returnValue*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/nPnUjQt0g1A/nOZXWcwgEgAJ>
     - [詳細](https://miketaylr.com/posts/2019/01/everything-is-terrible-keypress-edition.html)
-    -    * Unship: `-moz-binding` CSS property from content.
+    - Unship: `-moz-binding` CSS property from content.
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/TR1_24OldK8/FQ3X3zPXFwAJ>
 - Site Compat
   - <https://www.fxsitecompat.com>

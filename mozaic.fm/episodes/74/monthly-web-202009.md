@@ -60,26 +60,26 @@ guest
       - Deprecate FTP Support
   - What's New In DevTools (Chrome 87)
     - <https://developers.google.com/web/updates/2020/10/devtools>
-    - **New CSS Grid debugging tools**
-    - **New WebAuthn tab**
+    - *New CSS Grid debugging tools*
+    - *New WebAuthn tab*
     - Move tools between top and bottom panel
     - Elements panel updates
     - View the Computed sidebar pane in the Styles pane
     - Grouping CSS properties in the Computed pane
     - Lighthouse 6.4 in the Lighthouse panel
-    - **performance.mark() events in the Timings section**
+    - *performance.mark() events in the Timings section*
     - New resource-type and url filters in the Network panel
     - Frame details view updates
     - Display COEP and COOP reporting to endpoint
     - Display COEP and COOP report-only mode
     - Deprecation of Settings in the More tools menu
-  - **DevTools architecture refresh: Migrating to JavaScript modules**
+  - *DevTools architecture refresh: Migrating to JavaScript modules*
     - <https://developers.google.com/web/updates/2020/09/migrating-to-js-modules>
     - devtools が ES Module ベースになった
   - How we built the Chrome DevTools Issues tab
     - <https://developers.google.com/web/updates/2020/09/issues-tab>
     - DevTools の Issue Tab をどう実装したか
-  - **Chromium Blog: Changing the Chrome on iOS User Agent for Request Desktop Site**
+  - *Chromium Blog: Changing the Chrome on iOS User Agent for Request Desktop Site*
     - <https://blog.chromium.org/2020/09/changing-chrome-on-ios-user-agent-for.html>
     - iOS Chrome の UA に `CriOS/<version>` という文字列が追加される
   - Chromium Blog: Giving users and developers more control over focus
@@ -93,17 +93,17 @@ guest
     - <https://web.dev/change-password-url/>
   - Connecting to uncommon HID devices
     - <https://web.dev/hid/>
-  - **Managing several displays with the Multi-Screen Window Placement API**
+  - *Managing several displays with the Multi-Screen Window Placement API*
     - <https://web.dev/multi-screen-window-placement/>
-  - **Declarative Shadow DOM**
+  - *Declarative Shadow DOM*
     - <https://web.dev/declarative-shadow-dom/>
-  - **Detached window memory leaks**
+  - *Detached window memory leaks*
     - <https://web.dev/detached-window-memory-leaks/>
   - Content delivery networks (CDNs)
     - <https://web.dev/content-delivery-networks/>
     - CDN とは?を特定の CDN サービスを出さず一般的な部分だけ説明している
 - Intents
-  - **Ship: Heavy Ad Intervention**
+  - *Ship: Heavy Ad Intervention*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/roMMLWn6SrY>
   - Ship: Launch ".well-known/change-password" URL support
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/UN1BRg4qTbs/m/8jkerbboAgAJ>
@@ -113,28 +113,28 @@ guest
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/1V6Ss1VABko>
   - Ship: Web Share API (Windows & Chrome OS)
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/fJ8n9kTbna4/m/i8mMlc0jAgAJ>
-  - **Ship: Permissions-Policy header**
+  - *Ship: Permissions-Policy header*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/gTPNGMPgDBk>
-  - **Ship: cross-origin isolation**
+  - *Ship: cross-origin isolation*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/ZzngHwf2qyQ>
   - Ship: FontBoundingBoxAscent/Descent in New TextMetrics API in Canvas
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/GSmWjdqmgCA>
-  -  **Ship: text-decoration-thickness, text-underline-offset and from-font keyword for text-underline-position**
+  -  *Ship: text-decoration-thickness, text-underline-offset and from-font keyword for text-underline-position*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/9OzS90KISXI>
   - Ship: Cookie Store API
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/zOsGZGMGiM4>
-  - **Ship: @font-face descriptors to override font metrics**
+  - *Ship: @font-face descriptors to override font metrics*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/ApR03h3CGfo>
     - ascent と descent の値を上書きする
     - Web フォントによる layout shift を防ぐ
-  - **Implement and Ship: Change `<dialog>` from position: absolute to position: fixed.**
+  - *Implement and Ship: Change `<dialog>` from position: absolute to position: fixed.*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/Ow63WaHuTgc>
   - Prototype and Ship: Update visibilityState before firing pagehide
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/R7h6InVXzcI>
-  - **Prototype: Client Hint Reliability: Critical-CH Header**
+  - *Prototype: Client Hint Reliability: Critical-CH Header*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/zPYGbULXn7o>
     - CH が無かった場合にリトライさせるなどの機能
-  - **Prototype and Ship: Import Assertions**
+  - *Prototype and Ship: Import Assertions*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/Xft04J07Oh0>
     - Synthetic Module 対応の from 句
     - `import json from "./foo.json" assert { type: "json" };`
@@ -148,21 +148,21 @@ guest
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/6KrwUguadyE>
   - Extend Origin Trial: QuicTransport
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/W7GGHz9vecg>
-  - **Extend Origin Trial: Notification Triggers**
+  - *Extend Origin Trial: Notification Triggers*
     - TimeStamp や Location ベースで notification をトリガーする API 。
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/xOTmlUxPj7A>
   - Extend Origin Trial: Cross-origin opener policy reporting API
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/LrKpRY_bwCU>
   - Extend Origin Trial: Origin isolation
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/uI3DP5v-s34>
-  - **Experiment: Conversion Measurement API**
+  - *Experiment: Conversion Measurement API*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/Ib9-tDFitns>
   - Continue Experimenting: Idle Detection API
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/tkdwZYCI4EE>
 - Change:
 - Unship:
 - Remove:
-  - **PSA: Planned experimentation with changes to srcset selection**
+  - *PSA: Planned experimentation with changes to srcset selection*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/sIGNgOAC0oc/m/TFST-dJxAwAJ>
     - 32" などのディスプレイのために 2400w の画像を提供した場合 DPR4 の 600px モバイルでもダウンロードされる
     - いくら密度が高くても、そんな小さいスクリーンデバイスでデカイ画像を表示しても人間にはわからない
@@ -178,7 +178,7 @@ guest
     - <https://v8.dev/blog/system-analyzer>
   - Slack tracking in V8 · V8
     - <https://v8.dev/blog/slack-tracking>
-  - **Respectful code · V8**
+  - *Respectful code · V8*
     - <https://v8.dev/docs/respectful-code>
     - 差別的な言葉、強い言葉を置換
 - Other
@@ -192,7 +192,7 @@ guest
   - Official Google Webmaster Central Blog: New open source robots.txt projects
     - <https://webmasters.googleblog.com/2020/09/new-open-source-robotstxt-projects.html>
     - robots.txt のパーサ公開からしばらくして rust や go のツールも出てきた。今回インターン 2 名が Java のパーサとテストフレームワークを作ったらしい。
-  - **Official Google Webmaster Central Blog: Googlebot will soon speak HTTP/2**
+  - *Official Google Webmaster Central Blog: Googlebot will soon speak HTTP/2*
     - <https://webmasters.googleblog.com/2020/09/googlebot-will-soon-speak-http2.html>
   - sellers.json で販売者情報を提供する - AdSense ヘルプ
     - <https://support.google.com/adsense/answer/9889911?hl=ja>
@@ -202,7 +202,7 @@ guest
 
 - Stable: 81
 - Updates
-  - **Firefox 81.0, See All New Features, Updates and Fixes**
+  - *Firefox 81.0, See All New Features, Updates and Fixes*
     - <https://www.mozilla.org/en-US/firefox/81.0/releasenotes/>
     - 米国とカナダででクレジットカードの自動入力機能がリリース
     - WebP や AVIF ファイルを Firefox に関連付けられるように
@@ -216,7 +216,7 @@ guest
   - These Weeks in Firefox: Issue 80 – Firefox Nightly News
     - <https://blog.nightly.mozilla.org/2020/09/23/these-weeks-in-firefox-issue-80/>
 - Intents
-  - **Ship: Media Session API**
+  - *Ship: Media Session API*
     - <https://groups.google.com/g/mozilla.dev.platform/c/CPjGRm78JLI>
   - Ship: Implement :-moz-any() as an alias of :is()
     - <https://groups.google.com/g/mozilla.dev.platform/c/XWdnD-OPHB4>
@@ -226,37 +226,37 @@ guest
     - <https://groups.google.com/g/mozilla.dev.platform/c/Tu3uXFg5xV0>
   - Ship - sandbox-"allow-downloads"
     - <https://groups.google.com/g/mozilla.dev.platform/c/gyrM1spEek8>
-  - **Prototype: TLS Encrypted Client Hello**
+  - *Prototype: TLS Encrypted Client Hello*
     - <https://groups.google.com/g/mozilla.dev.platform/c/28UyT7aO2YU/m/nAQwIFkkBAAJ>
   - Prototype: math-depth property and font-size: math
     - <https://groups.google.com/g/mozilla.dev.platform/c/qfDohfGlNlE>
   - Prototype: math-style property
     - <https://groups.google.com/g/mozilla.dev.platform/c/1hQQ7ISudGo>
-  - **Prototype: Allow :is() and :where() to have better selector error recovery.**
+  - *Prototype: Allow :is() and :where() to have better selector error recovery.*
     - <https://groups.google.com/g/mozilla.dev.platform/c/p7XvnLTPRps>
     - セレクタはグループ内に書かれたものどれか一つが未サポートだったりするとブロックすべてが無視される
     - `:is()`や`:where()`の中はそうならないようにしようと仕様が変わったのでその実装
-  - **Prototype: autocapitalize**
+  - *Prototype: autocapitalize*
     - <https://groups.google.com/g/mozilla.dev.platform/c/xDj-uQVVCxc>
   - Deprecate: MathML scriptminsize and scriptsizemultiplier attributes
     - <https://groups.google.com/g/mozilla.dev.platform/c/CSb-CaesGTo>
   - Unship: MathML deprecated style, menclose@radical, mathsize/linethicknes named values, mfrac@bevelled, alignment attributes, script shift attributes, XLink.
     - <https://groups.google.com/g/mozilla.dev.platform/c/x_eQ3vn5iwc>
-  - **Dogfooding Warp**
+  - *Dogfooding Warp*
     - <https://groups.google.com/g/mozilla.dev.platform/c/1PHhxBxSehQ>
 - Other
-  - **Update on Firefox Send and Firefox Notes - The Mozilla Blog**
+  - *Update on Firefox Send and Firefox Notes - The Mozilla Blog*
     - <https://blog.mozilla.org/blog/2020/09/17/update-on-firefox-send-and-firefox-notes/>
     - Mozilla の事業整理の一環として Firefox Send と Notes が終了
-  - **A look at password security, Part V: Disk Encryption - The Mozilla Blog**
+  - *A look at password security, Part V: Disk Encryption - The Mozilla Blog*
     - <https://blog.mozilla.org/blog/2020/09/05/a-look-at-password-security-part-v-disk-encryption/>
     - EKR 先生のシリーズ第五弾
-  - **The internet needs our love - The Mozilla Blog**
+  - *The internet needs our love - The Mozilla Blog*
     - <https://blog.mozilla.org/blog/2020/09/30/the-internet-needs-our-love/>
     - 昨今のウェブやプラットフォームの問題について自衛したりしましょうねという話
     - なかでも Facebook や YouTube の推奨アルゴリズムで政治的に過激なものや誤情報に触れ続けてしまう危険性について
     - 大統領選が近いので改めて言っているものと思われる
-  - **Join the anti-establishment \| The Firefox Frontier**
+  - *Join the anti-establishment \| The Firefox Frontier*
     - <https://blog.mozilla.org/firefox/join-the-anti-establishment/>
     - プラットフォーマーではないサービスの紹介
   - Data Publishing @ Mozilla – Data@Mozilla
@@ -265,11 +265,11 @@ guest
     - <https://blog.mozilla.org/data/2020/09/25/this-week-in-glean-glean-core-to-wasm-experiment/>
   - To Eleventy and Beyond - Mozilla Hacks - the Web developer blog
     - <https://hacks.mozilla.org/2020/10/to-eleventy-and-beyond/>
-  - **Mozilla Foundation - RegretsReporter**
+  - *Mozilla Foundation - RegretsReporter*
     - <https://foundation.mozilla.org/en/campaigns/regrets-reporter/>
     - YouTube のアルゴリズムを調査するプロジェクト
     - 拡張をインストールし、政治的に過激なものやニセ科学などのビデオがおすすめに入ってきたらそれを Mozilla に送信する
-  - **MDN Browser Compatibility Report**
+  - *MDN Browser Compatibility Report*
     - <https://mdn-web-dna.s3-us-west-2.amazonaws.com/MDN-Browser-Compatibility-Report-2020.pdf>
     - MDN が開発者にブラウザの互換性についてアンケートをとった結果がまとまった
     - Flexbox や viewport の実装の違いなどについての回答が多かったらしい
@@ -294,7 +294,7 @@ guest
     - Implemented Canvas.transferControlToOffscreen and OffscreenCanvasRenderingContext2D.commit (r265543)
     - Implemented createImageBitmap(ImageData) (r265360)
     - Implemented PerfomanceObserverInit.buffered (r265390)
-    - **Added a special HID mapping for the Google Stadia controller (r265180)**
+    - *Added a special HID mapping for the Google Stadia controller (r265180)*
     - Added HID mapping for the Logitech F310/F710 controllers. (r265183)
 - Position
   - Request for position on Heavy Ad Intervention
@@ -329,23 +329,23 @@ guest
 
 - Stable: 85
 - Updates
-  - **MyIgnite - Your home for Microsoft MyIgnite (9/22-25)**
+  - *MyIgnite - Your home for Microsoft MyIgnite (9/22-25)*
     - <https://myignite.microsoft.com/home>
     - State of the browser in 2020
       - <https://myignite.microsoft.com/sessions/b46a7722-c3d2-4f0e-9004-3b32c077461f>
     - Introducing Microsoft Edge on Linux
       - <https://myignite.microsoft.com/sessions/6b216b31-0efe-442c-9f5c-97481c2a2310>
-  - **Improvements in PDF Reader – Table of Contents and Smooth Scrolling - Microsoft Tech Community**
+  - *Improvements in PDF Reader – Table of Contents and Smooth Scrolling - Microsoft Tech Community*
     - <https://techcommunity.microsoft.com/t5/articles/improvements-in-pdf-reader-table-of-contents-and-smooth/m-p/1732029>
-  - **Introducing web capture for Microsoft Edge - Microsoft Tech Community**
+  - *Introducing web capture for Microsoft Edge - Microsoft Tech Community*
     - <https://techcommunity.microsoft.com/t5/articles/introducing-web-capture-for-microsoft-edge/m-p/1721318>
-  - **Introducing Sleeping Tabs Experiment: Improving Memory Usage in Microsoft Edge - Microsoft Tech Community**
+  - *Introducing Sleeping Tabs Experiment: Improving Memory Usage in Microsoft Edge - Microsoft Tech Community*
     - <https://techcommunity.microsoft.com/t5/articles/introducing-sleeping-tabs-experiment-improving-memory-usage-in/m-p/1705571>
   - Sleeping Tabs FAQ - Microsoft Tech Community
     - <https://techcommunity.microsoft.com/t5/articles/sleeping-tabs-faq/m-p/1705434#M3330>
   - Dev channel update to 87.0.637.0 is live - Microsoft Tech Community
     - <https://techcommunity.microsoft.com/t5/articles/dev-channel-update-to-87-0-637-0-is-live/m-p/1670546>
-  - **Update on Adobe Flash Player Support - Microsoft Tech Community**
+  - *Update on Adobe Flash Player Support - Microsoft Tech Community*
     - <https://techcommunity.microsoft.com/t5/articles/update-on-adobe-flash-player-support/m-p/1646844>
   - Announcing the Open/Save as/Save and Delete prompts for downloads! - Microsoft Tech Community
     - <https://techcommunity.microsoft.com/t5/articles/announcing-the-open-save-as-save-and-delete-prompts-for/m-p/1646521>
@@ -372,22 +372,22 @@ guest
   - Update on Adobe Flash Player End of Support
     - <https://blogs.windows.com/msedgedev/2020/09/04/update-adobe-flash-end-support/>
     - 2020 年末でサポート終了の再アナウンス
-  - **Bringing the browser developer tools to Visual Studio Code**
+  - *Bringing the browser developer tools to Visual Studio Code*
     - <https://blogs.windows.com/msedgedev/2020/10/01/microsoft-edge-tools-vscode/>
     - Microsoft Edge Tools for VS Code extension
     - VSCode に DevTools の機能を導入する拡張
-  - **Microsoft Edge's multi-process architecture**
+  - *Microsoft Edge's multi-process architecture*
     - <https://blogs.windows.com/msedgedev/2020/09/30/microsoft-edge-multi-process-architecture/>
     - Edge というか Chromium のプロセスアーキテクチャの話
-  - **Building a faster, leaner, and more efficient Microsoft Edge**
+  - *Building a faster, leaner, and more efficient Microsoft Edge*
     - <https://blogs.windows.com/msedgedev/2020/09/23/faster-leaner-more-efficient-microsoft-edge/>
     - パフォーマンスの改善指標を Speed, Responsiveness, Resource Usage, Size という 4 つの指標で考えているという話
-  - **Styling for Windows high contrast with new standards for forced colors**
+  - *Styling for Windows high contrast with new standards for forced colors*
     - <https://blogs.windows.com/msedgedev/2020/09/17/styling-for-windows-high-contrast-with-new-standards-for-forced-colors/>
     - forced-colors, prefer-contrast を用いたハイコントラストモード時の設計ガイド
   - Introducing Source Order Viewer in the Microsoft Edge DevTools
     - <https://blogs.windows.com/msedgedev/2020/09/15/source-order-viewer-edge-devtools/>
-  - **Introducing Web APIs for Dual Screen and Foldable Devices**
+  - *Introducing Web APIs for Dual Screen and Foldable Devices*
     - <https://blogs.windows.com/msedgedev/2020/09/14/introducing-dual-screen-foldable-web-apis/>
     - foldable device のための JS/CSS の書き方の解説
   - Web-to-App Communication: The Native Messaging API – text/plain
@@ -405,7 +405,7 @@ guest
 ### WHATWG/W3C 動向
 
 - TPAC
-  - **TPAC 2020: Overview**
+  - *TPAC 2020: Overview*
     - <https://www.w3.org/2020/10/TPAC/>
     - <https://www.w3.org/2020/10/TPAC/group-schedule.html>
     - <https://www.w3.org/wiki/TPAC/2020/GroupMeetings>
@@ -420,7 +420,7 @@ guest
   - web-performance
   - web-rtc
   - privacy-ig
-  - **Information needed to answer TPAC 2020 Haiku Challenge - Web-Based Straw-poll and Balloting System**
+  - *Information needed to answer TPAC 2020 Haiku Challenge - Web-Based Straw-poll and Balloting System*
     - <https://www.w3.org/2002/09/wbs/1/TPAC2020Haiku/>
     - 俳句チャレンジがあるらしい
 - Recommendation
@@ -429,32 +429,32 @@ guest
 - Working Draft
 - First Public Working Draft
 - Chartering
-  - **WebTransport Working Group Charter Approved**
+  - *WebTransport Working Group Charter Approved*
     - <https://lists.w3.org/Archives/Public/public-new-work/2020Sep/0004.html>
 - Other
-  - **W3C re-energizes process for agile Web standardization and earlier Royalty-Free protection**
+  - *W3C re-energizes process for agile Web standardization and earlier Royalty-Free protection*
     - <https://www.w3.org/blog/news/archives/8677>
     - プロセスドキュメントと特許ポリシーが改訂
     - 勧告の修正や部分的な機能追加の要件や手順が新プロセスの仕様では簡略化でき、 Living Standard モデルのような改訂ができるようになった
     - 特許ポリシーもあわせて、効力の発行が REC から CR に
-  - **New version of the Roadmap of Web Applications on Mobile \| W3C News**
+  - *New version of the Roadmap of Web Applications on Mobile \| W3C News*
     - <https://www.w3.org/blog/news/archives/8686>
     - 変更点
       - <https://www.w3.org/2020/09/web-roadmaps/mobile/about.html#september-2020-0>
   - WebTransport Working Group
     - <https://lists.w3.org/Archives/Public/public-new-work/2020Sep/0004.html>
-  - **Open UI + CSSWG joint meeting**
+  - *Open UI + CSSWG joint meeting*
     - <https://lists.w3.org/Archives/Public/www-style/2020Sep/0005.html>
     - Form UI Customization に関する作業や実装者が Open UI と被ってる
     - ジョイントミーティングを実施
-  - **Rename spec to file-system-access.**
+  - *Rename spec to file-system-access.*
     - <https://github.com/WICG/file-system-access/pull/227>
     - Native File System から File System Access にリネーム
     - Inclusivity reason から native をさける
-  - **Rename to Direct Sockets API by ewilligers**
+  - *Rename to Direct Sockets API by ewilligers*
     - <https://github.com/WICG/raw-sockets/pull/13>
     - Raw Socket API から Direct Socket API にリネーム
-  - **Work in progress on a Decentralized Web Interest Group Charter (Advance Notice)**
+  - *Work in progress on a Decentralized Web Interest Group Charter (Advance Notice)*
     - <https://lists.w3.org/Archives/Public/public-new-work/2020Sep/0006.html>
     - dweb 的な流れを組んでるのかと思いきや Improving Web Advertising Business Group 系
 
@@ -540,7 +540,7 @@ guest
 - Call for Adoption
 - I-D Action
 - Draft
-  - ** WebRTC-HTTP ingestion protocol (WHIP)**
+  - *WebRTC-HTTP ingestion protocol (WHIP)*
     - <https://tools.ietf.org/html/draft-murillo-whip-00>
     - WebRTC のシグナリングを HTTP で行う標準化
   - The Vulcain Protocol
@@ -576,10 +576,10 @@ guest
   - <https://googleprojectzero.blogspot.com/2020/09/jitsploitation-three.html>
 - Project Zero: Attacking the Qualcomm Adreno GPU
   - <https://googleprojectzero.blogspot.com/2020/09/attacking-qualcomm-adreno-gpu.html>
-- **Project Zero: Announcing the Fuzzilli Research Grant Program**
+- *Project Zero: Announcing the Fuzzilli Research Grant Program*
   - <https://googleprojectzero.blogspot.com/2020/10/announcing-fuzzilli-research-grant.html>
   - JS の fazzing で脆弱性見つけるプログラム。 1 年間実施、脆弱性には最大 $5000
-- **JVNVU#91973538: OpenSSL における暗号通信を解読可能な脆弱性 (Raccoon Attack)**
+- *JVNVU#91973538: OpenSSL における暗号通信を解読可能な脆弱性 (Raccoon Attack)*
   - <https://jvn.jp/vu/JVNVU91973538/>
 - note でソースコードから IP アドレスが確認できた事態に関する追加報告とお詫び \| note 株式会社
   - <https://note.jp/n/n2115642a4e45>
@@ -610,7 +610,7 @@ guest
 - ImperialViolet - Letter to 20 years ago
   - <https://www.imperialviolet.org/2020/09/06/20yearsago.html>
   - 20 年前と変わったこと、変わらなかったこと
-- **Moment.js**
+- *Moment.js*
   - <https://momentjs.com/docs/#/-project-status/>
   - Moment.js は安定性を重視するメンテナンスモードに入る
   - 代替が色々あるためそちらを推奨、古いブラウザをサポートする場合に利用するものに
@@ -628,7 +628,7 @@ guest
   - DigitalOcean が 10 月に hacktoberfest という、オープンソースに初めて関わる人を応援するイベントみたいなのをやっている
   - PR 出したら T シャツをもらえるなど、参加の条件がゆるいため、大きなプロジェクトに無意味な PR や issue がたくさん投げられてメンテナが辟易としている
   - <https://twitter.com/github/status/1311772722234560517>
-- * 大規模サービス障害多発(二次情報集)
+- *大規模サービス障害多発(二次情報集)*
   - Google
     - Google で障害発生 Drive Gmail YouTube Hangouts 等各種サービスダウン
     - <https://cubeglb.com/media/2020/09/25/google_502_20200925/>

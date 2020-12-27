@@ -211,7 +211,7 @@ guest
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/w1Bv7YZxAco/pLvVx7trEAAJ>
   - Deprecate and Remove: remove HTMLFrameSetElement's anonymous getter
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/7jBHd71Yf0s/nuMq4gwbBwAJ>
-  -    * Site Isolation Status - M66 Stable Trial
+  - Site Isolation Status - M66 Stable Trial
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/HOKWCSaz6Uc/SxzJs-zjAgAJ>
   - Site Isolation Status - Preparing for M67
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/-OmY9SSZ2as/YHq4rLB5CAAJ>

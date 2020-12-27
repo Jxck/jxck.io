@@ -569,7 +569,7 @@ guest
       - <https://datatracker.ietf.org/meeting/106/materials/slides-106-tls-tls-md5-sha1-deprecate-00>
     - Encrypted Client Hello
       - <https://datatracker.ietf.org/meeting/106/materials/slides-106-tls-ietf106-tls-esni-01>
-      - * RFC
+- RFC
 - IETF Last Call
 - WG Last Call
 - Call for Adoption

@@ -334,7 +334,7 @@ guest
     - <https://hacks.mozilla.org/2018/08/the-video-wars-of-2027/>
   - AV1 and the Video Wars of 2027 - The Mozilla Blog
     - <https://blog.mozilla.org/blog/2018/08/20/av1-and-the-video-wars-of-2027/>
-  -    * Dweb: Social Feeds with Secure Scuttlebutt
+  - Dweb: Social Feeds with Secure Scuttlebutt
     - <https://hacks.mozilla.org/2018/08/dweb-social-feeds-with-secure-scuttlebutt/>
   - *Symantec Distrust in Firefox Nightly 63 - Firefox Nightly News*
     - <https://blog.nightly.mozilla.org/2018/08/14/symantec-distrust-in-firefox-nightly-63/>

@@ -251,7 +251,7 @@ guest
       - Changed text manipulation to not extract non-breaking spaces (r264947)
     - Storage
       - Changed to allow IndexedDB in third-party frames (r264790)
-- Position[d]
+- Position
   - <https://lists.webkit.org/pipermail/webkit-dev/ から Position Request についてだけ抜粋>
   - Request for position on transferable streams
     - <https://lists.webkit.org/pipermail/webkit-dev/2020-August/031350.html>
@@ -283,7 +283,7 @@ guest
     - <https://lists.webkit.org/pipermail/webkit-dev/2020-August/031364.html>
   - Request for position on Atomics.waitAsync
     - <https://lists.webkit.org/pipermail/webkit-dev/2020-August/031366.html>
-  - * Other
+  - Other
 
 
 ### Edge 動向
