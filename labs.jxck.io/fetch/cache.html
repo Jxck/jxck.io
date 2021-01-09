@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Fetch cache mode DEMO</title>
+
+<meta http-equiv="origin-trial" content="">
+
+<style>
+</style>
+
+<h1>Fetch cache mode DEMO</h1>
+
+<form id=fetch>
+  <select name=cache id=cache-mode>
+    <option value="default"       >default</option>
+    <option value="no-store"      >no-store</option>
+    <option value="reload"        >reload</option>
+    <option value="no-cache"      >no-cache</option>
+    <option value="force-cache"   >force-cache</option>
+    <option value="only-if-cached">only-if-cached</option>
+  </select>
+  <button type=submit>fetch</button>
+</form>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  document.on('DOMContentLoaded', async () => {
+    $('#fetch').on('submit', async (e) => {
+      e.preventDefault()
+      const formdata = new FormData(e.target)
+      const cache    = formdata.get('cache')
+      const mode     = 'same-origin'
+      const res      = await fetch('./cache.html', {cache, mode})
+      console.log(res)
+    })
+  })
+</script>
