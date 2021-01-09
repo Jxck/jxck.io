@@ -1093,3 +1093,29 @@ eyeD3 --title "ep76 Monthly Web 202011" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep77.mp3
+
+eyeD3 --title "ep77 Yearly Web 2020" \
+      --track 85 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep77.mp3
+
+
+
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep78.mp3
+
+eyeD3 --title "ep78 TC39" \
+      --track 86 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep78.mp3
+
+
+

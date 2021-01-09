@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
+
+  <link rel=canonical href=https://mozaic.fm/episodes/78/tc39.html>
+  <!--
+  <link rel=preload type=font/woff2 as=font  crossorigin href=/assets/font/NotoSansCJKjp-Regular-Jxck-20201215.woff2>
+  <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
+  -->
+
+  <script defer type=module no-integrity=sha256-CQaVbkBFu4pP/UfiRNYqVp1KEYvyjxbwDkGXKGjKWO0= src=/assets/js/mozaic.js></script>
+  <script defer type=module no-integrity=sha256-qulTDcneqMoN9bJUQhreWvQydPq6r7+5OiIsFuOQ8NI= src=/assets/js/sw.js></script>
+
+  <link rel=icon             type =image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon             type =image/png sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.png>
+  <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.png>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="第 78 回のテーマは TC39 です。今回は Prettier のメンテなや Babel のコントリビュータをやりながら、 TC39 の新しいプロポーサルをそれらに実装する作業をしている @__sosukesuzuki をゲストにお呼びし、 Prettier/Babel ...">
+  <meta name=keywords            content="tc39,mozaic.fm">
+  <meta name=theme-color         content=#000000>
+
+  <meta name=twitter:card        content=summary>
+  <meta name=twitter:site        content=@jxck_>
+  <meta name=twitter:url         content=https://mozaic.fm/episodes/78/tc39.html>
+  <meta name=twitter:title       content="ep78 TC39 | mozaic.fm">
+  <meta name=twitter:description content="第 78 回のテーマは TC39 です。今回は Prettier のメンテなや Babel のコントリビュータをやりながら、 TC39 の新しいプロポーサルをそれらに実装する作業をしている @__sosukesuzuki をゲストにお呼びし、 Prettier/Babel ...">
+  <meta name=twitter:image       content=https://mozaic.fm/assets/img/mozaic.png>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://mozaic.fm/episodes/78/tc39.html>
+  <meta property=og:title        content="ep78 TC39 | mozaic.fm">
+  <meta property=og:site_name    content=mozaic.fm>
+  <meta property=og:description  content="第 78 回のテーマは TC39 です。今回は Prettier のメンテなや Babel のコントリビュータをやりながら、 TC39 の新しいプロポーサルをそれらに実装する作業をしている @__sosukesuzuki をゲストにお呼びし、 Prettier/Babel ...">
+  <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.png>
+
+  <title>ep78 TC39 | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/77/yearly-web-2020.html>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://mozaic.fm                                                      ><img width=30 height=30 loading=eager src=/assets/img/mozaic.svg         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495              ><img width=30 height=30 loading=eager src=/assets/img/itunes.svg         title=itunes           alt=itunes           ></a>
+      <li><a href=https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D><img width=30 height=30 loading=eager src=/assets/img/google-podcast.svg title="google podcast" alt="google podcast" ></a>
+      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                   ><img width=30 height=30 loading=eager src=/assets/img/spotify.svg        title=spotify          alt=spotify          ></a>
+      <li><a href=http://feed.mozaic.fm                                                  ><img width=30 height=30 loading=eager src=/assets/img/podcast.svg        title="rss feed"       alt="rss feed"       ></a>
+      <li id=install class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/install.svg title=install alt=install></button>
+      <li id=share   class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/share.svg   title=share   alt=share  ></button>
+      <li id=search><a href=/searches      ><img width=30 height=30 loading=eager src=/assets/img/search.svg  title=search  alt=search ></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/77/yearly-web-2020.html">ep77 Yearly Web 2020</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+  <article>
+      <h1>
+        <a href=/episodes/78/tc39.html>ep78 TC39</a>
+        <background-fetch
+          class=disabled
+          data-value=0
+          data-size=72226076
+          data-mtime=1610184223
+          data-url=https://files.mozaic.fm/mozaic-ep78.mp3
+          data-page=/episodes/78/tc39.html
+          data-title="ep78 TC39"
+        ></background-fetch>
+      </h1>
+
+      <section>
+        <h2 id="info"><a href="#info">Info</a></h2>
+        <p>
+        <dl class=info>
+          <div>
+            <dt>published_at
+            <dd>2021-01-09
+          </div>
+          <div>
+            <dt>guest
+            <dd><a href="https://twitter.com/__sosukesuzuki">@__sosukesuzuki</a>
+          </div>
+        </dl>
+      </section>
+      <section>
+        <h2 id="theme"><a href="#theme">Theme</a></h2>
+        <p>第 78 回のテーマは TC39 です。
+        <p>今回は <a href="https://prettier.io">Prettier</a> のメンテなや <a href="https://babeljs.io">Babel</a> のコントリビュータをやりながら、 TC39 の新しいプロポーサルをそれらに実装する作業をしている <a href="https://twitter.com/__sosukesuzuki">@__sosukesuzuki</a> をゲストにお呼びし、 Prettier/Babel のメンテナンスの話などを交え、 TC39 のウォッチの仕方や、気になる Proposal の話、 ES2021 の展望を議論しながら、今後の ES や TC39 について議論しました。
+      </section>
+      <section>
+        <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
+        <ul>
+          <li><a href="https://prettier.io/">Prettier - Opinionated Code Formatter</a>
+          <li><a href="https://babeljs.io/">Babel - The compiler for next generation JavaScript</a>
+          <li><a href="https://blog.jxck.io/entries/2020-11-19/how-to-track-web-standards.html">Web 技術の調査方法 | blog.jxck.io</a>
+          <li>
+            TC39
+            <ul>
+              <li><a href="https://github.com/tc39/proposals">tc39/proposals</a>
+              <li><a href="https://github.com/tc39/agendas">tc39/agendas</a>
+              <li><a href="https://github.com/tc39/notes">tc39/notes</a>
+            </ul>
+          </li>
+          <li>
+            Twitter
+            <ul>
+              <li>https://twitter.com/littledan
+              <li>https://twitter.com/NicoloRibaudo
+              <li>https://twitter.com/LJHarb
+            </ul>
+          </li>
+          <li>
+            Proposal
+            <ul>
+              <li>
+                <a href="https://github.com/tc39/proposal-js-module-blocks">tc39/proposal-js-module-blocks</a> (stage 1)
+              </li>
+              <li>
+                <a href="https://github.com/tc39/proposal-pipeline-operator">tc39/proposal-pipeline-operator</a> (stage 1)
+              </li>
+              <li><a href="https://github.com/valtech-nyc/proposal-fsharp-pipelines/blob/master/README.md">F# style</a>
+              <li><a href="https://github.com/js-choi/proposal-smart-pipelines/blob/master/readme.md">Smart Pipelines</a>
+              <li>
+                <a href="https://github.com/tc39/proposal-decorators">tc39/proposal-decorators</a> (stage 2)
+              </li>
+              <li>
+                <a href="https://github.com/tc39/proposal-class-static-block">tc39/proposal-class-static-block</a> (stage 2)
+              </li>
+              <li>
+                <a href="https://github.com/tc39/proposal-import-assertions">tc39/proposal-import-assertions</a> (stage 3)
+              </li>
+              <li>
+                <a href="https://github.com/tc39/proposal-realms">tc39/proposal-realms</a> (stage 2)
+              </li>
+              <li>
+                <a href="https://github.com/tc39/proposal-temporal">tc39/proposal-temporal</a> (stage 2)
+              </li>
+              <li>
+                <a href="https://github.com/tc39/proposal-record-tuple">tc39/proposal-record-tuple</a> (stage 2)
+              </li>
+              <li>
+                <a href="https://github.com/hax/proposal-extensions">hax/proposal-extensions</a> (stage 1)
+              </li>
+              <li>
+                <a href="https://github.com/tc39/proposal-pattern-matching">tc39/proposal-pattern-matching</a> (stage 1)
+              </li>
+              <li>
+                <a href="https://github.com/tc39/proposal-binary-ast">tc39/proposal-binary-ast</a> (stage 1)
+              </li>
+              <li>
+                <a href="https://github.com/tc39/proposal-throw-expressions">tc39/proposal-throw-expressions</a> (stage 2)
+              </li>
+              <li>
+                <a href="https://github.com/tc39/proposal-pattern-matching">tc39/proposal-pattern-matching</a> (stage 1)
+              </li>
+            </ul>
+          </li>
+          <li><a href="https://www.ecma-international.org/publications/standards/Ecma-262.htm">Standard ECMA-262</a>
+          <li><a href="https://web-study.connpass.com/event/147538/">#tc39_study</a>
+          <li><a href="https://github.com/typescript-eslint/typescript-eslint">typescript-eslint/typescript-eslint</a>
+          <li><a href="https://podcast.babeljs.io/nicolo/">Core Team Chats: Nicol ò Ribaudo - The Babel Podcast</a>
+        </ul>
+      </section>
+    </article>
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/77/yearly-web-2020.html">ep77 Yearly Web 2020</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small> <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong></p>
+</footer>
+
+<mozaic-player>
+  <audio
+    slot=audio
+    src=https://files.mozaic.fm/mozaic-ep78.mp3
+    data-title="ep78 TC39"
+    data-forward=+30
+    data-back=-10>
+  </audio>
+</mozaic-player>
+
+</body>
+</html>
