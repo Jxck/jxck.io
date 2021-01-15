@@ -90,7 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('pre code').forEach(($code) => {
     const $pre = $code.parentElement
     const lang = $pre.classList.item(0)
-    const language = lang === null ? '': `language-${lang}`
+    if (lang == null) return
+    const language = `language-${lang}`
     $code.classList.add(language)
     $pre.dataset.code = lang
     Prism.highlightAll()
