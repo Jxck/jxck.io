@@ -86,13 +86,13 @@ document.addEventListener('DOMContentLoaded', () => {
   (adsbygoogle = window.adsbygoogle || []).push({})
   console.log(adsbygoogle)
 
-  // highlight.js
-  document.querySelectorAll('pre code').forEach((code) => {
-    let lang = code.parentElement.classList.item(0)
-    lang = lang === null   ? 'nohighlight': lang
-    lang = lang === 'js'   ? 'javascript' : lang
-    lang = lang === 'html' ? 'xml'        : lang
-    code.classList.add(lang)
-    hljs.highlightBlock(code)
+  // Prism.js
+  document.querySelectorAll('pre code').forEach(($code) => {
+    const $pre = $code.parentElement
+    const lang = $pre.classList.item(0)
+    const language = lang === null ? '': `language-${lang}`
+    $code.classList.add(language)
+    $pre.dataset.code = lang
+    Prism.highlightAll()
   })
 })
