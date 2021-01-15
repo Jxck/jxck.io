@@ -105,7 +105,7 @@ Ubuntu 19.10 eoan を入れたが、これもすんなり入った。
 まず NUC から VPS に -R で SSH をつなぐ。
 
 
-```sh
+```sh-session
 # nuc から vps
 $ ssh user@vps -NR 22222:localhost:22
 ```
@@ -115,7 +115,7 @@ $ ssh user@vps -NR 22222:localhost:22
 次に、外出した laptop から vps につなぐ、これは普通の SSH
 
 
-```sh
+```sh-session
 # laptop から vps
 $ ssh user@vps
 ```
@@ -123,7 +123,7 @@ $ ssh user@vps
 最後に、入った VPS の上で、 localhost:22222 に対して SSH する
 
 
-```sh
+```sh-session
 # vps に入ったあと vps から nuc
 $ ssh user@localhost -p 22222
 ```
@@ -156,7 +156,7 @@ Foward に失敗したり、応答が返らなければ落ちる。ただし TCP
 これで最初のコマンドは以下のようになる。
 
 
-```sh
+```sh-session
 # nuc から vps
 $ ssh reverse-ssh -NR 22222:localhost:22
 ```
@@ -173,7 +173,7 @@ $ ssh reverse-ssh -NR 22222:localhost:22
 autossh は ssh と同じコマンドで使うと、 ssh プロセスをフォークして監視し、 ssh が落ちたら再度フォークしてくれるツールだ。
 
 
-```sh
+```sh-session
 $ autossh reverse-ssh -NR 22222:localhost:22
 ```
 
@@ -195,14 +195,14 @@ systemd への登録はレベルによって場所が変わる。
 そこで、起動時にユーザのサービスが起動されるように以下を実行する。
 
 
-```sh
+```sh-session
 $ sudo loginctl enable-linger $USER
 ```
 
 ところが、これが何故か動かない。
 
 
-```sh
+```sh-session
 Could not enable linger: No such file or directory
 ```
 
@@ -258,7 +258,7 @@ systemd で起動した autossh は `/root/.ssh/known_hosts` にエントリを�
 しかし、 systemd での起動ではエントリが足されないようなので、先に一旦手動で同等のコマンドを打っておくと良い。
 
 
-```sh
+```sh-session
 # systemd に書いた ExecStart 相当
 $ sudo /usr/bin/autossh reverse-ssh -NTR 22222:localhost:22
 ```
@@ -289,7 +289,7 @@ ufw を使って、 NUC の 22 へのアクセスを VPS の IP に限定する�
 以下のようなスクリプトで行った。
 
 
-```sh
+```shell
 ufw reset
 
 ufw default deny incoming
@@ -337,7 +337,7 @@ Host nuc
 すると laptop 上では以下のように叩けば、 VPS を経由して NUC に自動的に入れる。
 
 
-```sh
+```sh-session
 $ ssh nuc
 ```
 

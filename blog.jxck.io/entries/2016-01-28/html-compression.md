@@ -156,11 +156,11 @@ HTML として問題が無いのであれば、 HTML に対応したツールで
 まず、省略時のサイズであるが、この記事自体を `<html>`, `<head>`, `<body>` 、閉じたタグ、引用符を全て付けた場合と比べると 259 byte の削減になっていた。
 
 
-```sh
-jxck$ wc html-compression.html
-     131     408    9158 html-compression.html
-jxck$ wc html-no-compression.html
-     141     417    9417 html-no-compression.html
+```sh-session
+$ wc html-compression.html
+ 131     408    9158 html-compression.html
+$ wc html-no-compression.html
+ 141     417    9417 html-no-compression.html
 ```
 
 また Chrome の devtools で二つのファイルをレンダリングし、 Timeline から *Parse HTML* の時間を確認した。

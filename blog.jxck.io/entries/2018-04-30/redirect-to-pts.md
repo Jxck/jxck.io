@@ -23,7 +23,7 @@ Linux では、 pts を経由すれば、ある shell の出力を簡単に別�
 ターミナル上では stdout/stderror の出力は同じ画面上に出る。
 
 
-```sh
+```sh-session
 $ ./hello_world
 hello
 world
@@ -39,18 +39,18 @@ world
 tmux で別のペインで表示したい場合に、例えば一旦別のファイルに追記し、ペインごとに `tail -f` することもできる。
 
 
-```sh
+```sh-session
 $ ./hello_world 1> ./success.log 2> ./error.log
 ```
 
 
-```sh
+```sh-session
 # pane1 for stdout
 $ tail -f access.log
 ```
 
 
-```sh
+```sh-session
 # pane2 for stderr
 $ tail -f error.log
 ```
@@ -65,7 +65,7 @@ tmux で pane を開いた状態で、 `tty` コマンドで紐付いた pts を
 (`ps` で確認することもできる)
 
 
-```sh
+```sh-session
 $ tty
 /dev/pts/2
 ...
@@ -76,13 +76,13 @@ $ tty
 試しに、別の pane からこの pts に対して書き込みをすると、結果が表示されることがわかるだろう。
 
 
-```sh
+```sh-session
 ## 別の pane
 $ echo hello > /dev/pts/2
 ```
 
 
-```sh
+```sh-session
 # pane1 for stdout
 $ hello # 表示される
 ```
@@ -90,14 +90,14 @@ $ hello # 表示される
 逆に、別の pane から cat で読み出すと、入力された値を奪い取ることもできる。
 
 
-```sh
+```sh-session
 ## 別の pane
 $ cat /dev/pts/2
 # 入力が表示される
 ```
 
 
-```sh
+```sh-session
 $ # ここでの入力は奪われる
 ```
 
@@ -110,7 +110,7 @@ pts は疑似端末であり、 tmux と shell に間に挟まった中継役の
 もし pane1 が `/dev/pts2/` に、 pane2 が `/dev/pts5/` に紐づくとすると。
 
 
-```sh
+```sh-session
 $ ./hello_world 1> /dev/pts2 2> /dev/pts5
 ```
 
@@ -126,13 +126,13 @@ $ ./hello_world 1> /dev/pts2 2> /dev/pts5
 例えば access_log をステータスコードごとに出す場合は以下のようになる。
 
 
-```sh
+```sh-session
 $ tail -f access.log | tee >(grep 404 > /dev/pts/5) >(grep 500 > /dev/pts/6) >(grep 451 > /dev/pts/7)
 ```
 
 Logger のタグ (Info, Debug, Trace etc) を使った分岐なんかも地味に便利だったりする。
 
 
-```sh
+```sh-session
 $ tail -f debug.log | tee >(grep Info > /dev/pts/5) >(grep Debug > /dev/pts/6) >(grep Trace > /dev/pts/7)
 ```

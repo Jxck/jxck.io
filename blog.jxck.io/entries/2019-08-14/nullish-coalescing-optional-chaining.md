@@ -287,7 +287,7 @@ Safari TP89 に入っているが、有効にするには Runtime Flag が必要
 Mac の場合 JSC のフラグは以下のように付与する。
 
 
-```sh
+```sh-session
 $ __XPC_JSC_useNullishCoalescing=true open -a 'Safari Technology Preview'
 ```
 

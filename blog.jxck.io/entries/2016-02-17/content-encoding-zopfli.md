@@ -105,7 +105,7 @@ zopfli は、探索を繰り返す回数を調節できるため、この回数�
 以下のように、前回の記事に対して zopfli コマンドを実行し、 time コマンドで実行時間を計測した。
 
 
-```sh
+```sh-session
 $ time zopfli --i10 -c loading-css-over-http2.html
 ```
 

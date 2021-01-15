@@ -241,7 +241,7 @@ Signing には CanSignHttpExchanges 拡張を含む X.509 証明書が必要だ�
 まず、署名を行う mozaic.fm ドメイン用に、 CanSignHttpExchanges 拡張の入った自己証明書を以下のように作成する。
 
 
-```sh
+```shell
 #! /bin/sh
 
 # prime256v1 ecdsa の秘密鍵を生成
@@ -270,7 +270,7 @@ Signing の検証に必要な証明書チェーンを生成する。
 <https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-certurl>
 
 
-```sh
+```shell
 #! /bin/sh
 
 # gen-certurl の取得
@@ -309,7 +309,7 @@ echo "ocsp" > tmp
 <https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-signedexchange>
 
 
-```sh
+```shell
 #! /bin/sh
 
 # gen-signedexchange の取得
@@ -343,7 +343,7 @@ go get -u github.com/WICG/webpackage/go/signedexchange/cmd/gen-signedexchange
 cert.pem を以下のように base64 形式に変換し、それを `--ignore-certificate-errors-spki-list` に指定する。
 
 
-```sh
+```shell
 # 証明書の base64 の生成
 export BASE64 = openssl x509 -noout -pubkey -in cert.pem | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | base64
 

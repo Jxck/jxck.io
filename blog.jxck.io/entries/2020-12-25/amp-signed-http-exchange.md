@@ -41,7 +41,7 @@ SXG はまだ過渡期の技術であるため、鍵や証明書が色々なプ�
 openssl を使うと以下のように確認できる。
 
 
-```sh
+```sh-session
 # key type が EC prim256v1
 $ openssl x509 -in blog_jxck_io.crt -text | grep 'ASN1 OID: prime256v1'
 # CanSignHttpExchanges 拡張がある
@@ -58,7 +58,7 @@ $ openssl x509 -in blog_jxck_io.crt -text | grep 1.3.6.1.4.1.11129.2.1.22:
 AMP SXG は、前述の通り SXG にする前に変換が必要となる。これを行うのが amppackager だ。
 
 
-```sh
+```sh-session
 $ go get -u github.com/ampproject/amppackager/cmd/amppkg
 ```
 
@@ -81,7 +81,7 @@ Port のデフォルトは 8080 だが管理上 10000 にしている。
 起動してみたが、エラーが出たので残しておく。
 
 
-```sh
+```sh-session
 $ amppkg
 2020/12/23 20:04:15 Updating cert if necessary
 2020/12/23 20:04:15 Certfetcher is not set, skipping cert updates. Checking cert on disk if updated.
@@ -124,7 +124,7 @@ runtime.goexit
 OCSP の情報が無いようだ。 Digicert で発行した証明書は自分のドメインのものと DigiCertCA.crt の 2 つがあったので連結したらいけた。
 
 
-```sh
+```sh-session
 $ cat blog_jxck_io.crt DigiCertCA.crt > blog_jxck_io_full.crt
 ```
 
@@ -224,7 +224,7 @@ Devtools で見ると以下のように確認できる。
 CLI の場合は `dump-signedexchage` で行うのが手軽だろう。
 
 
-```sh
+```sh-session
 $ dump-signedexchange -uri $URL -requestHeader AMP-Cache-Transform:any -version=1b3 -headers=false -payload=false -verify
 The exchage has a valid signature
 ```
@@ -234,7 +234,7 @@ The exchage has a valid signature
 個々のステップを細かく見たい場合は curl で取得してから順番に解くなどすると良いかもしれない。
 
 
-```sh
+```sh-session
 $ curl -s --output - -H 'amp-cache-transform: google;v="3"' -H 'accept: application/signed-exchange;v=b3,*/*;q=0.1' https://blog.jxck.io/entries/2020-12-03/masonry-layout.amp.html > dump.sxg
 $ dump-signedexchange -i dump.sxg
 format version: 1b3

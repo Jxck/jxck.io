@@ -58,7 +58,7 @@ WebP への変換ツールは、 Google が公式に提供しているバイナ�
 [Downloading and Installing WebP](https://developers.google.com/speed/webp/download)
 
 
-```sh
+```sh-session
 $ brew install webp    # mac
 $ apt-get install webp # linux
 ```
@@ -71,7 +71,7 @@ $ apt-get install webp # linux
 PNG からの変換は cwebp コマンドで行う。
 
 
-```sh
+```sh-session
 $ cwebp
 Usage:
 

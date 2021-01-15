@@ -17,7 +17,7 @@
 結論からいうとこういうコマンドだ。
 
 
-```sh
+```sh-session
 $ selects mtime, size, basename from './entries/**/*' where extname '==' '.md' and size '>' 1000 order by mtime
 
 2016-07-06 22:45:44 +0900	18437	web-font-noto-sans.md
@@ -48,7 +48,7 @@ $ selects mtime, size, basename from './entries/**/*' where extname '==' '.md' a
 ### ディレクトリ以下をごっそり
 
 
-```sh
+```sh-session
 $ selects '*' from './entries/**/*'
 2016-08-05 22:42:14 +0900	4096	2016-01-27
 2016-08-05 22:40:44 +0900	12499	new-blog-start.amp.html
@@ -64,7 +64,7 @@ $ selects '*' from './entries/**/*'
 ### .html だけ
 
 
-```sh
+```sh-session
 $ selects basename from './entries/**/*' where extname == '.html'
 new-blog-start.amp.html
 new-blog-start.html
@@ -80,7 +80,7 @@ h2o-http2-deploy.amp.html
 ### like 的な
 
 
-```sh
+```sh-session
 $ selects basename from './entries/**/*' where basename '=~' 'mozaic'
 mozaicfm-v2.amp.html
 mozaicfm-v2.amp.html.gz
@@ -94,7 +94,7 @@ mozaicfm-v2.md.gz
 ### 属性で絞る
 
 
-```sh
+```sh-session
 $ selects atime, basename from './entries/**/*' where atime '>' 2016-08-01 and directory? == true
 2016-08-05 22:42:14 +0900       2016-01-27
 2016-08-05 22:42:14 +0900       2016-01-28
@@ -108,7 +108,7 @@ $ selects atime, basename from './entries/**/*' where atime '>' 2016-08-01 and d
 ### /dev 以下で pipe か socket か symlink だけを ctime, atime の順で
 
 
-```sh
+```sh-session
 $ selects socket?, pipe?, symlink? basename from '/dev/*' where pipe? == true or socket? == true or symlink? == true order by atime, ctime
 false   true    true    initctl
 false   false   true    dvd
@@ -171,7 +171,7 @@ File
 もはや Ruby のメソッドチェインにしか見えないのではないだろうか?
 
 
-```sh
+```sh-session
 $ selects atime, basename from './entries/**/*' where atime '>' 2016-08-01 and directory? == true
 ```
 

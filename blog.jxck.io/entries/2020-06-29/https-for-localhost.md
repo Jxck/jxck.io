@@ -168,7 +168,7 @@ localhost を https にして URL バーを緑にするといった目的で、�
 ためしに以下のように開いてみると、確かにマッピングが指定できる。
 
 
-```sh
+```sh-session
 $ google-chrome --host-rules="MAP example.com 127.0.0.1"
 ```
 

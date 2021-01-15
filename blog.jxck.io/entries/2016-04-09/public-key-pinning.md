@@ -116,7 +116,7 @@ Pin の値は openssl コマンドを用いれば、公開鍵から SPKI の Bas
 管理者がローカルで行うなら、何かあっても一番害のない CSR からの生成がよさそうと考える。
 
 
-```sh
+```sh-session
 $ openssl req -in my-signing-request.csr -pubkey -noout | openssl rsa -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64
 ```
 
@@ -200,7 +200,7 @@ OpenSSL の `-showcerts` コマンドを用いて、 Github の証明書を取�
 (証明書が二つ見あり、中間証明書にあたる二つ目だけ抜き出している)
 
 
-```sh
+```shell
 # github.com pins Intermediate Certificate
 # so add `-showcerts` option for first openssl
 # and extract second CERTIFICATE with ruby
@@ -216,7 +216,7 @@ openssl s_client -servername github.com -connect github.com:443 -showcerts 2>/de
 実際に `Public-Key-Pins` ヘッダを見てみる。この中にはバックアップを含めいくつか登録されているが、その中に上で計算したものが入っている。
 
 
-```sh
+```shell
 # get the actual Public-Key-Pins header
 # this will include hash calculated above
 echo '---- ACTUAL ----'

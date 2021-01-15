@@ -30,7 +30,7 @@ HTML 自体は普通に配信し、複数サブリソースの取得を 1 fetch 
 サブリソースを以下のように subresource ディレクトリにまとめたとする。
 
 
-```sh
+```sh-session
 $ ls subresource
   a.js
   b.js
@@ -49,7 +49,7 @@ CLI の仕様上 `-primaryURL` (HTML を頂点とする Bundle での HTML の U
 `-headerOverride` でヘッダを追加することもできる。フォーマットの仕様上は個々のリソースごとに別々にヘッダを追加可能だが、この CLI は全てのリソースに追加される。
 
 
-```sh
+```sh-session
 $ gen-bundle \
     -version b1 \
     -baseURL    https://labs.jxck.io/webpackaging/subresource-webbundle/ \
@@ -62,7 +62,7 @@ $ gen-bundle \
 dump-bundle すると以下のようになる。
 
 
-```sh
+```sh-session
 $ dump-bundle -i bundle.wbn
 
 Version: b1
@@ -202,7 +202,7 @@ HTML にアクセスすると、以下の様にサブリソースが bundle か�
 また、ここでは一切署名を用いてないため、リソースの URL を別のものにすることも可能だ。
 
 
-```sh
+```sh-session
 $ gen-bundle \
     -version b1 \
     -baseURL    https://example.com/webpackaging/subresource-webbundle/ \
@@ -243,7 +243,7 @@ HTML, CSS, JS, Img などをまとめて、いわゆる WebComponent の単位�
 以下の DEMO は、 `<profile-card>` を Custom Element として実装し、そこに必要なリソースを bundle している。
 
 
-```sh
+```sh-session
 $ ls profile-card
   jxck.png
   profile-card.js
@@ -267,7 +267,7 @@ $ ls profile-card
 イメージとしては以下のような構成だ。
 
 
-```sh
+```
 - bundle.wbn
   - react.wbn
   - react-dom.wbn
