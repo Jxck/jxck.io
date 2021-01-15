@@ -140,6 +140,13 @@ test.print() // hello
 
 ファイルからコードを読むこともできる。以下ハイライトテスト用。
 
+```
+no tag
+```
+
+```text
+hello world
+```
 
 ```js:sample.js
 ```
@@ -197,7 +204,7 @@ test.print() // hello
 ```
 
 
-```erl:../2018-01-14/erlang-record-to-map.erl
+```erlang:../2018-01-14/erlang-record-to-map.erl
 ```
 
 
@@ -205,7 +212,7 @@ test.print() // hello
 ```
 
 
-```sh:../2018-03-27/ct.sh
+```shell:../2018-03-27/ct.sh
 ```
 
 
@@ -247,3 +254,44 @@ test.print() // hello
 
 ```cpp:../2020-08-15/selection-logic.cpp
 ```
+
+
+<pre translate=no>
+<code>
+<span class="token atrule    " >.token.atrule     </span>
+<span class="token attr-name " >.token.attr-name  </span>
+<span class="token attr-value" >.token.attr-value </span>
+<span class="token bold      " >.token.bold       </span>
+<span class="token boolean   " >.token.boolean    </span>
+<span class="token builtin   " >.token.builtin    </span>
+<span class="token cdata     " >.token.cdata      </span>
+<span class="token char      " >.token.char       </span>
+<span class="token class-name" >.token.class-name </span>
+<span class="token comment   " >.token.comment    </span>
+<span class="token constant  " >.token.constant   </span>
+<span class="token deleted   " >.token.deleted    </span>
+<span class="token doctype   " >.token.doctype    </span>
+<span class="token entity    " >.token.entity     </span>
+<span class="token entity    " >.token.entity     </span>
+<span class="token function  " >.token.function   </span>
+<span class="token important " >.token.important  </span>
+<span class="token important " >.token.important  </span>
+<span class="token inserted  " >.token.inserted   </span>
+<span class="token italic    " >.token.italic     </span>
+<span class="token keyword   " >.token.keyword    </span>
+<span class="token namespace " >.token.namespace  </span>
+<span class="token number    " >.token.number     </span>
+<span class="token operator  " >.token.operator   </span>
+<span class="token parameter " >.token.parameter  </span>
+<span class="token prolog    " >.token.prolog     </span>
+<span class="token property  " >.token.property   </span>
+<span class="token punctuation">.token.punctuation</span>
+<span class="token regex     " >.token.regex      </span>
+<span class="token selector  " >.token.selector   </span>
+<span class="token string    " >.token.string     </span>
+<span class="token symbol    " >.token.symbol     </span>
+<span class="token tag       " >.token.tag        </span>
+<span class="token url       " >.token.url        </span>
+<span class="token variable  " >.token.variable   </span>
+</code>
+</pre>
