@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Test DEMO</title>
+
+<link ref=stylesheet src=style.css>
+
+<meta http-equiv="origin-trial" content="">
+
+<h1>Test DEMO</h1>
+
+<script src=main.js></script>
+
+<script>
+  // Check that service workers are supported
+  if ('serviceWorker' in navigator) {
+    // Use the window load event to keep the page load performant
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js');
+    });
+  }
+</script>
