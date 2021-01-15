@@ -47,7 +47,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-04-30T08:00:00+08:00",
-    "dateModified": "2020-12-18T08:00:00+08:00",
+    "dateModified": "2021-01-16T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -220,9 +220,8 @@
       --anchor-color: RoyalBlue;
       --anchor-visited-color: Brown;
 
-      /*--code-block: #161b22;*/
-      --code-block: #182331;
-      --code-block-font: #cad6e4;
+      --code-block: #161b22;
+      --code-block-font: #ffffff;
 
       --code-inline: #f1f5f9;
       --code-inline-font: #292929;
@@ -660,95 +659,6 @@
       content: none;
     }
 
-    .hljs-keyword,
-    .hljs-params {
-      color: #ff407d;
-    }
-
-    .hljs-title {
-      color: #b787ff;
-    }
-
-    .hljs-string,
-    .hljs-regexp {
-      color: #84a3ff;
-    }
-
-    .hljs-number,
-    .hljs-literal {
-      color: #03b5f1;
-    }
-
-    .hljs-built_in {
-      color: #1ada03;
-    }
-
-    .hljs-comment {
-      color: #96969c;
-    }
-
-    .hljs-tag {
-      color: #ff429a;
-    }
-
-    .hljs-strong {
-      font-weight: bold;
-    }
-
-    .hljs-attribute {
-      font-weight: bold;
-      color: #7b9dff;
-    }
-
-    .hljs-meta {
-      color: #71a0ff;
-    }
-
-    .hljs-selector-id,
-    .hljs-selector-class,
-    .hljs-selector-pseudo {
-      color: #a880ef;
-    }
-
-    .hljs-selector-tag {
-      color: #17c103;
-    }
-
-    .hljs-subst {
-      font-weight: bold;
-    }
-
-    .hljs-variable {
-      color: #a71d5d;
-    }
-
-    .hljs-symbol {
-      font-weight: bold;
-    }
-
-
-    .hljs-bullet {
-    }
-
-    /**.hljs,**/
-    .hljs-doctag,
-    .hljs-code,
-    .hljs-addition,
-    .hljs-template-variable,
-    .hljs-link,
-    .hljs-quote,
-    .hljs-template-tag,
-    .hljs-deletion,
-    .hljs-meta-string,
-    .hljs-emphasis {
-      /** 🙏🙏🙏
-       * if you find element applyed this style, that's a bug.
-       * please tell me https://github.com/jxck/jxck.io/issues
-       **/
-      font-size: 100em;
-    }
-
-
     /* PrismJS 1.23.0
     https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clike+javascript+bash+c+cpp+erlang+go+http+hpkp+hsts+json+plsql+ruby+shell-session+sql+yaml */
     /**
@@ -757,66 +667,73 @@
      * @author ocodia
      */
 
-    .token.comment,
-    .token.prolog,
-    .token.doctype,
-    .token.cdata {
-      color: #8292a2;
+    :root {
+      --code-yellow: #ffe557;
+      --code-aqua:   #03b5f1;
+      --code-blue:   #76acff;
+      --code-gray:   #96969c;
+      --code-green:  #1cd24d;
+      --code-orange: #ff8b24;
+      --code-pink:   #ff61bf;
     }
 
+
+
+    .token {
+      color: red;
+    }
+
+    .token.delimiter.tag,
+    .token.variable {
+      color: var(--code-yellow);
+    }
+    .token.parameter,
+    .token.operator,
     .token.punctuation {
-      color: #f8f8f2;
+      color: var(--code-black-font);
     }
 
-    .token.namespace {
-      opacity: .7;
+    .token.function {
+      color: var(--code-green);
     }
 
+    .token.atom,
     .token.property,
-    .token.tag,
+    .token.keyword {
+      color: var(--code-pink);
+    }
+
+    .token.request-line {
+
+    }
+
+    .token.header-name.keyword,
+    .token.string,
+    .token.regex {
+      color: var(--code-blue);
+    }
+
+    .token.interpolation,
     .token.constant,
-    .token.symbol,
-    .token.deleted {
-      color: #f92672;
+    .token.class-name {
+      color: var(--code-orange);
     }
 
     .token.boolean,
     .token.number {
-      color: #ae81ff;
+      color: var(--code-aqua);
     }
 
-    .token.selector,
-    .token.attr-name,
-    .token.string,
-    .token.char,
-    .token.builtin,
-    .token.inserted {
-      color: #a6e22e;
+    .token.builtin {
+      color: var(--code-green);
     }
 
-    .token.operator,
-    .token.entity,
-    .token.url,
-    .language-css .token.string,
-    .style .token.string,
-    .token.variable {
-      color: #f8f8f2;
+    .token.comment {
+      color: var(--code-gray);
     }
 
-    .token.atrule,
-    .token.attr-value,
-    .token.function,
-    .token.class-name {
-      color: #e6db74;
-    }
-
-    .token.keyword {
-      color: #66d9ef;
-    }
-
-    .token.regex,
-    .token.important {
-      color: #fd971f;
+    .token.request-line {
+      color: var(--code-aqua);
     }
 
     .token.important,
@@ -892,7 +809,7 @@
 <main>
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2018-04-30>2018-04-30</time></dd></div>
-    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-12-18>2020-12-18</time></dd></div>
+    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-01-16>2021-01-16</time></dd></div>
     <div>
         <dt>tags</dt>
         <dd>
@@ -945,7 +862,7 @@ while true do
   sleep(1)
 end</code></pre>
       <p>ターミナル上では stdout/stderror の出力は同じ画面上に出る。
-      <pre class=sh><code translate="no">$ ./hello_world
+      <pre class=sh-session><code translate="no">$ ./hello_world
 hello
 world
 hello
@@ -956,10 +873,10 @@ world
 hello
 world</code></pre>
       <p>tmux で別のペインで表示したい場合に、例えば一旦別のファイルに追記し、ペインごとに <code translate="no">tail -f</code> することもできる。
-      <pre class=sh><code translate="no">$ ./hello_world 1&gt; ./success.log 2&gt; ./error.log</code></pre>
-      <pre class=sh><code translate="no"># pane1 for stdout
+      <pre class=sh-session><code translate="no">$ ./hello_world 1&gt; ./success.log 2&gt; ./error.log</code></pre>
+      <pre class=sh-session><code translate="no"># pane1 for stdout
 $ tail -f access.log</code></pre>
-      <pre class=sh><code translate="no"># pane2 for stderr
+      <pre class=sh-session><code translate="no"># pane2 for stderr
 $ tail -f error.log</code></pre>
       <p>この一時ファイルに相当するものとして pts を代用できる。
     </section>
@@ -967,25 +884,25 @@ $ tail -f error.log</code></pre>
       <h2 id="devpts"><a href="#devpts">/dev/pts</a></h2>
       <p>tmux で pane を開いた状態で、 <code translate="no">tty</code> コマンドで紐付いた pts を確認する。
       <p>(<code translate="no">ps</code> で確認することもできる)
-      <pre class=sh><code translate="no">$ tty
+      <pre class=sh-session><code translate="no">$ tty
 /dev/pts/2
 ...</code></pre>
       <p>紐付いている pts の実態は <code translate="no">/dev/pts/2</code> である。
       <p>試しに、別の pane からこの pts に対して書き込みをすると、結果が表示されることがわかるだろう。
-      <pre class=sh><code translate="no">## 別の pane
+      <pre class=sh-session><code translate="no">## 別の pane
 $ echo hello &gt; /dev/pts/2</code></pre>
-      <pre class=sh><code translate="no"># pane1 for stdout
+      <pre class=sh-session><code translate="no"># pane1 for stdout
 $ hello # 表示される</code></pre>
       <p>逆に、別の pane から cat で読み出すと、入力された値を奪い取ることもできる。
-      <pre class=sh><code translate="no">## 別の pane
+      <pre class=sh-session><code translate="no">## 別の pane
 $ cat /dev/pts/2
 # 入力が表示される</code></pre>
-      <pre class=sh><code translate="no">$ # ここでの入力は奪われる</code></pre>
+      <pre class=sh-session><code translate="no">$ # ここでの入力は奪われる</code></pre>
       <p>つまり、 pts への書き込みは pane に表示され、 pane への入力は pts から読み出せる。
       <p>pts は疑似端末であり、 tmux と shell に間に挟まった中継役のようなものだと思えば良い。
       <p>例えば、実行結果の stdout を pane1 に、 stderr を pane2 に分岐して出力したい場合。
       <p>もし pane1 が <code translate="no">/dev/pts2/</code> に、 pane2 が <code translate="no">/dev/pts5/</code> に紐づくとすると。
-      <pre class=sh><code translate="no">$ ./hello_world 1&gt; /dev/pts2 2&gt; /dev/pts5</code></pre>
+      <pre class=sh-session><code translate="no">$ ./hello_world 1&gt; /dev/pts2 2&gt; /dev/pts5</code></pre>
       <p>これで、結果を 2 つの pane に分けて出力することができる。
     </section>
     <section>
@@ -993,9 +910,9 @@ $ cat /dev/pts/2
       <p><code translate="no">tee</code> コマンドと、プロセス置換を使うと、出力を自由にフィルタし分岐することができる。
       <p>その分岐先を、複数の pane に分けて指定すれば、簡易ダッシュボードを作ることができる。
       <p>例えば access_log をステータスコードごとに出す場合は以下のようになる。
-      <pre class=sh><code translate="no">$ tail -f access.log | tee &gt;(grep 404 &gt; /dev/pts/5) &gt;(grep 500 &gt; /dev/pts/6) &gt;(grep 451 &gt; /dev/pts/7)</code></pre>
+      <pre class=sh-session><code translate="no">$ tail -f access.log | tee &gt;(grep 404 &gt; /dev/pts/5) &gt;(grep 500 &gt; /dev/pts/6) &gt;(grep 451 &gt; /dev/pts/7)</code></pre>
       <p>Logger のタグ (Info, Debug, Trace etc) を使った分岐なんかも地味に便利だったりする。
-      <pre class=sh><code translate="no">$ tail -f debug.log | tee &gt;(grep Info &gt; /dev/pts/5) &gt;(grep Debug &gt; /dev/pts/6) &gt;(grep Trace &gt; /dev/pts/7)</code></pre>
+      <pre class=sh-session><code translate="no">$ tail -f debug.log | tee &gt;(grep Info &gt; /dev/pts/5) &gt;(grep Debug &gt; /dev/pts/6) &gt;(grep Trace &gt; /dev/pts/7)</code></pre>
     </section>
   </article>
 </main>

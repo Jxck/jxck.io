@@ -47,7 +47,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-11-03T08:00:00+08:00",
-    "dateModified": "2020-12-18T08:00:00+08:00",
+    "dateModified": "2021-01-16T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -220,9 +220,8 @@
       --anchor-color: RoyalBlue;
       --anchor-visited-color: Brown;
 
-      /*--code-block: #161b22;*/
-      --code-block: #182331;
-      --code-block-font: #cad6e4;
+      --code-block: #161b22;
+      --code-block-font: #ffffff;
 
       --code-inline: #f1f5f9;
       --code-inline-font: #292929;
@@ -660,95 +659,6 @@
       content: none;
     }
 
-    .hljs-keyword,
-    .hljs-params {
-      color: #ff407d;
-    }
-
-    .hljs-title {
-      color: #b787ff;
-    }
-
-    .hljs-string,
-    .hljs-regexp {
-      color: #84a3ff;
-    }
-
-    .hljs-number,
-    .hljs-literal {
-      color: #03b5f1;
-    }
-
-    .hljs-built_in {
-      color: #1ada03;
-    }
-
-    .hljs-comment {
-      color: #96969c;
-    }
-
-    .hljs-tag {
-      color: #ff429a;
-    }
-
-    .hljs-strong {
-      font-weight: bold;
-    }
-
-    .hljs-attribute {
-      font-weight: bold;
-      color: #7b9dff;
-    }
-
-    .hljs-meta {
-      color: #71a0ff;
-    }
-
-    .hljs-selector-id,
-    .hljs-selector-class,
-    .hljs-selector-pseudo {
-      color: #a880ef;
-    }
-
-    .hljs-selector-tag {
-      color: #17c103;
-    }
-
-    .hljs-subst {
-      font-weight: bold;
-    }
-
-    .hljs-variable {
-      color: #a71d5d;
-    }
-
-    .hljs-symbol {
-      font-weight: bold;
-    }
-
-
-    .hljs-bullet {
-    }
-
-    /**.hljs,**/
-    .hljs-doctag,
-    .hljs-code,
-    .hljs-addition,
-    .hljs-template-variable,
-    .hljs-link,
-    .hljs-quote,
-    .hljs-template-tag,
-    .hljs-deletion,
-    .hljs-meta-string,
-    .hljs-emphasis {
-      /** 🙏🙏🙏
-       * if you find element applyed this style, that's a bug.
-       * please tell me https://github.com/jxck/jxck.io/issues
-       **/
-      font-size: 100em;
-    }
-
-
     /* PrismJS 1.23.0
     https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clike+javascript+bash+c+cpp+erlang+go+http+hpkp+hsts+json+plsql+ruby+shell-session+sql+yaml */
     /**
@@ -757,66 +667,73 @@
      * @author ocodia
      */
 
-    .token.comment,
-    .token.prolog,
-    .token.doctype,
-    .token.cdata {
-      color: #8292a2;
+    :root {
+      --code-yellow: #ffe557;
+      --code-aqua:   #03b5f1;
+      --code-blue:   #76acff;
+      --code-gray:   #96969c;
+      --code-green:  #1cd24d;
+      --code-orange: #ff8b24;
+      --code-pink:   #ff61bf;
     }
 
+
+
+    .token {
+      color: red;
+    }
+
+    .token.delimiter.tag,
+    .token.variable {
+      color: var(--code-yellow);
+    }
+    .token.parameter,
+    .token.operator,
     .token.punctuation {
-      color: #f8f8f2;
+      color: var(--code-black-font);
     }
 
-    .token.namespace {
-      opacity: .7;
+    .token.function {
+      color: var(--code-green);
     }
 
+    .token.atom,
     .token.property,
-    .token.tag,
+    .token.keyword {
+      color: var(--code-pink);
+    }
+
+    .token.request-line {
+
+    }
+
+    .token.header-name.keyword,
+    .token.string,
+    .token.regex {
+      color: var(--code-blue);
+    }
+
+    .token.interpolation,
     .token.constant,
-    .token.symbol,
-    .token.deleted {
-      color: #f92672;
+    .token.class-name {
+      color: var(--code-orange);
     }
 
     .token.boolean,
     .token.number {
-      color: #ae81ff;
+      color: var(--code-aqua);
     }
 
-    .token.selector,
-    .token.attr-name,
-    .token.string,
-    .token.char,
-    .token.builtin,
-    .token.inserted {
-      color: #a6e22e;
+    .token.builtin {
+      color: var(--code-green);
     }
 
-    .token.operator,
-    .token.entity,
-    .token.url,
-    .language-css .token.string,
-    .style .token.string,
-    .token.variable {
-      color: #f8f8f2;
+    .token.comment {
+      color: var(--code-gray);
     }
 
-    .token.atrule,
-    .token.attr-value,
-    .token.function,
-    .token.class-name {
-      color: #e6db74;
-    }
-
-    .token.keyword {
-      color: #66d9ef;
-    }
-
-    .token.regex,
-    .token.important {
-      color: #fd971f;
+    .token.request-line {
+      color: var(--code-aqua);
     }
 
     .token.important,
@@ -892,7 +809,7 @@
 <main>
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2019-11-03>2019-11-03</time></dd></div>
-    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-12-18>2020-12-18</time></dd></div>
+    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-01-16>2021-01-16</time></dd></div>
     <div>
         <dt>tags</dt>
         <dd>
@@ -1028,14 +945,14 @@
         <p>このとき NUC から VPS には SSH できるが、逆は NUC に IP が無いためできない。
         <p>そこで、 NUC と VPS の SSH を張りっぱなしにしておき、 laptop からの SSH をそこを通して NUC に届けるのが Port Fowarding だ。
         <p>まず NUC から VPS に -R で SSH をつなぐ。
-        <pre class=sh><code translate="no"># nuc から vps
+        <pre class=sh-session><code translate="no"># nuc から vps
 $ ssh user@vps -NR 22222:localhost:22</code></pre>
         <p>これを繋ぎっぱなしにする。
         <p>次に、外出した laptop から vps につなぐ、これは普通の SSH
-        <pre class=sh><code translate="no"># laptop から vps
+        <pre class=sh-session><code translate="no"># laptop から vps
 $ ssh user@vps</code></pre>
         <p>最後に、入った VPS の上で、 localhost:22222 に対して SSH する
-        <pre class=sh><code translate="no"># vps に入ったあと vps から nuc
+        <pre class=sh-session><code translate="no"># vps に入ったあと vps から nuc
 $ ssh user@localhost -p 22222</code></pre>
         <p>最初に VPS の 22222 ポートへの通信を、 NUC の 22 に転送するように SSH を貼っている。
         <p>NUC 上で sshd が動いていれば、 VPS 上で 22222 に対して SSH すると、 NUC に入れるという仕組みだ。
@@ -1053,7 +970,7 @@ $ ssh user@localhost -p 22222</code></pre>
         <p>Foward に失敗したり、応答が返らなければ落ちる。ただし TCP の接続が一時的に不安定になっても影響を受けないといった設定だ。
         <p>肝は、変な状態でとどまらず、おかしかったら落ちることだ。落ちれば、後述の方法で再接続できる。
         <p>これで最初のコマンドは以下のようになる。
-        <pre class=sh><code translate="no"># nuc から vps
+        <pre class=sh-session><code translate="no"># nuc から vps
 $ ssh reverse-ssh -NR 22222:localhost:22</code></pre>
       </section>
       <section>
@@ -1062,7 +979,7 @@ $ ssh reverse-ssh -NR 22222:localhost:22</code></pre>
         <p>もし接続が落ちても自動で再接続する必要がある。
         <p>これは autossh というツールを使うと、簡単にできるらしいので入れてみる。
         <p>autossh は ssh と同じコマンドで使うと、 ssh プロセスをフォークして監視し、 ssh が落ちたら再度フォークしてくれるツールだ。
-        <pre class=sh><code translate="no">$ autossh reverse-ssh -NR 22222:localhost:22</code></pre>
+        <pre class=sh-session><code translate="no">$ autossh reverse-ssh -NR 22222:localhost:22</code></pre>
         <p>しかし autossh 自体が落ちてもだれも面倒を見てくれない。
         <p>また、 PC を再起動した場合は、自分で実行しないといけない。
         <p>そこで、これを systemd に登録する。
@@ -1073,9 +990,9 @@ $ ssh reverse-ssh -NR 22222:localhost:22</code></pre>
         <p>今回のようなユーザ単位のサービスの場合は <code translate="no">~/.config/systemd/user/</code> に登録することになる。
         <p>しかし、ここはユーザがログインしたときに実行されるため、再起動してユーザがログインする前には実行されない。
         <p>そこで、起動時にユーザのサービスが起動されるように以下を実行する。
-        <pre class=sh><code translate="no">$ sudo loginctl enable-linger $USER</code></pre>
+        <pre class=sh-session><code translate="no">$ sudo loginctl enable-linger $USER</code></pre>
         <p>ところが、これが何故か動かない。
-        <pre class=sh><code translate="no">Could not enable linger: No such file or directory</code></pre>
+        <pre class=sh-session><code translate="no">Could not enable linger: No such file or directory</code></pre>
         <p>探すと <code translate="no">/var/lib/systemd/linger/$USER</code> を touch するとか色々ワークアラウンドが出てくるが、実行しても有効化できなかった。
         <p>どうやら systemd のバグらしい。
         <p>仕方ないので、普通に system レベルで登録してしまうことにした。
@@ -1110,7 +1027,7 @@ WantedBy=multi-user.target</code></pre>
       <p>サーバの IP などが変わったりすると、 DNS が書き換えられていると判定されエラーになることがある。
       <p>systemd で起動した autossh は <code translate="no">/root/.ssh/known_hosts</code> にエントリを追加するため、もしエラーになったら一旦ここをクリアする。
       <p>しかし、 systemd での起動ではエントリが足されないようなので、先に一旦手動で同等のコマンドを打っておくと良い。
-      <pre class=sh><code translate="no"># systemd に書いた ExecStart 相当
+      <pre class=sh-session><code translate="no"># systemd に書いた ExecStart 相当
 $ sudo /usr/bin/autossh reverse-ssh -NTR 22222:localhost:22</code></pre>
       <section>
         <h3 id="sshd_config"><a href="#sshd_config">sshd_config</a></h3>
@@ -1125,7 +1042,7 @@ $ sudo /usr/bin/autossh reverse-ssh -NTR 22222:localhost:22</code></pre>
         <p>これにより、意図しないアクセスを防ぐことができる。
         <p>そうでなくても Ubuntu Desktop に sshd を入れた時点で、ほかも締め付けておきたい。
         <p>以下のようなスクリプトで行った。
-        <pre class=sh><code translate="no">ufw reset
+        <pre class=shell><code translate="no">ufw reset
 
 ufw default deny incoming
 ufw default allow outgoing
@@ -1154,7 +1071,7 @@ ufw status numbered</code></pre>
   ProxyCommand ssh -W localhost:22222 vps
   ServerAliveInterval 60</code></pre>
       <p>すると laptop 上では以下のように叩けば、 VPS を経由して NUC に自動的に入れる。
-      <pre class=sh><code translate="no">$ ssh nuc</code></pre>
+      <pre class=sh-session><code translate="no">$ ssh nuc</code></pre>
     </section>
     <section>
       <h2 id="outro"><a href="#outro">Outro</a></h2>

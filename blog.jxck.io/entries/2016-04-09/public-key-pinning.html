@@ -54,7 +54,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-04-09T08:00:00+08:00",
-    "dateModified": "2020-12-18T08:00:00+08:00",
+    "dateModified": "2021-01-16T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -100,7 +100,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-04-09>2016-04-09</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-12-18>2020-12-18</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-01-16>2021-01-16</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -222,7 +222,7 @@
           <p>Pin の値は openssl コマンドを用いれば、公開鍵から SPKI の Base64 エンコードまで一括で行える。
           <p>手元に、 Key, CSR, CRT のいずれかがあればそれを用いることができ、 Web 経由で取得した公開鍵からも生成できる。
           <p>管理者がローカルで行うなら、何かあっても一番害のない CSR からの生成がよさそうと考える。
-          <pre class=sh><code translate="no">$ openssl req -in my-signing-request.csr -pubkey -noout | openssl rsa -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64</code></pre>
+          <pre class=sh-session><code translate="no">$ openssl req -in my-signing-request.csr -pubkey -noout | openssl rsa -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64</code></pre>
         </section>
       </section>
       <section>
@@ -282,7 +282,7 @@
           <p>Github では、 Leaf (<code translate="no">github.com</code> 自体の証明書) ではなく、そこから Root CA までの証明書チェインに入っている、中間証明書を Pin として設定していた。
           <p>OpenSSL の <code translate="no">-showcerts</code> コマンドを用いて、 Github の証明書を取得し Pin を計算してみる。
           <p>(証明書が二つ見あり、中間証明書にあたる二つ目だけ抜き出している)
-          <pre class=sh><code translate="no"># github.com pins Intermediate Certificate
+          <pre class=shell><code translate="no"># github.com pins Intermediate Certificate
 # so add `-showcerts` option for first openssl
 # and extract second CERTIFICATE with ruby
 echo &#39;---- EXPECTED ----&#39;
@@ -293,7 +293,7 @@ openssl s_client -servername github.com -connect github.com:443 -showcerts 2&gt;
   | openssl dgst -sha256 -binary 2&gt;/dev/null \
   | openssl enc -base64 2&gt;/dev/null</code></pre>
           <p>実際に <code translate="no">Public-Key-Pins</code> ヘッダを見てみる。この中にはバックアップを含めいくつか登録されているが、その中に上で計算したものが入っている。
-          <pre class=sh><code translate="no"># get the actual Public-Key-Pins header
+          <pre class=shell><code translate="no"># get the actual Public-Key-Pins header
 # this will include hash calculated above
 echo &#39;---- ACTUAL ----&#39;
 curl -sI https://github.com | grep Public-Key-Pins | ruby -nle &#39;puts $_.gsub(&quot;;&quot;, &quot;\n&quot;)&#39;</code></pre>

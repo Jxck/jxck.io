@@ -54,7 +54,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-01-28T08:00:00+08:00",
-    "dateModified": "2020-12-18T08:00:00+08:00",
+    "dateModified": "2021-01-16T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -100,7 +100,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-01-28>2016-01-28</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-12-18>2020-12-18</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-01-16>2021-01-16</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -260,10 +260,10 @@
           <p>今回は正直やってみたかったからやっただけで、パフォーマンス的な効果というより、「それによってパースが遅くなったり、他に影響が出たりするのか?」が知りたかったというモチベーションがある。
           <p>なので、その視点からいくつかの測定を実施する。
           <p>まず、省略時のサイズであるが、この記事自体を <code translate="no">&lt;html&gt;</code>, <code translate="no">&lt;head&gt;</code>, <code translate="no">&lt;body&gt;</code> 、閉じたタグ、引用符を全て付けた場合と比べると 259 byte の削減になっていた。
-          <pre class=sh><code translate="no">jxck$ wc html-compression.html
-     131     408    9158 html-compression.html
-jxck$ wc html-no-compression.html
-     141     417    9417 html-no-compression.html</code></pre>
+          <pre class=sh-session><code translate="no">$ wc html-compression.html
+ 131     408    9158 html-compression.html
+$ wc html-no-compression.html
+ 141     417    9417 html-no-compression.html</code></pre>
           <p>また Chrome の devtools で二つのファイルをレンダリングし、 Timeline から <em>Parse HTML</em> の時間を確認した。
           <p>10 回平均した結果がこうだ。
           <dl>

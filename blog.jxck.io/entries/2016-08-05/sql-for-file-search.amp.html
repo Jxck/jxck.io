@@ -47,7 +47,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-08-05T08:00:00+08:00",
-    "dateModified": "2020-12-18T08:00:00+08:00",
+    "dateModified": "2021-01-16T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -220,9 +220,8 @@
       --anchor-color: RoyalBlue;
       --anchor-visited-color: Brown;
 
-      /*--code-block: #161b22;*/
-      --code-block: #182331;
-      --code-block-font: #cad6e4;
+      --code-block: #161b22;
+      --code-block-font: #ffffff;
 
       --code-inline: #f1f5f9;
       --code-inline-font: #292929;
@@ -660,95 +659,6 @@
       content: none;
     }
 
-    .hljs-keyword,
-    .hljs-params {
-      color: #ff407d;
-    }
-
-    .hljs-title {
-      color: #b787ff;
-    }
-
-    .hljs-string,
-    .hljs-regexp {
-      color: #84a3ff;
-    }
-
-    .hljs-number,
-    .hljs-literal {
-      color: #03b5f1;
-    }
-
-    .hljs-built_in {
-      color: #1ada03;
-    }
-
-    .hljs-comment {
-      color: #96969c;
-    }
-
-    .hljs-tag {
-      color: #ff429a;
-    }
-
-    .hljs-strong {
-      font-weight: bold;
-    }
-
-    .hljs-attribute {
-      font-weight: bold;
-      color: #7b9dff;
-    }
-
-    .hljs-meta {
-      color: #71a0ff;
-    }
-
-    .hljs-selector-id,
-    .hljs-selector-class,
-    .hljs-selector-pseudo {
-      color: #a880ef;
-    }
-
-    .hljs-selector-tag {
-      color: #17c103;
-    }
-
-    .hljs-subst {
-      font-weight: bold;
-    }
-
-    .hljs-variable {
-      color: #a71d5d;
-    }
-
-    .hljs-symbol {
-      font-weight: bold;
-    }
-
-
-    .hljs-bullet {
-    }
-
-    /**.hljs,**/
-    .hljs-doctag,
-    .hljs-code,
-    .hljs-addition,
-    .hljs-template-variable,
-    .hljs-link,
-    .hljs-quote,
-    .hljs-template-tag,
-    .hljs-deletion,
-    .hljs-meta-string,
-    .hljs-emphasis {
-      /** 🙏🙏🙏
-       * if you find element applyed this style, that's a bug.
-       * please tell me https://github.com/jxck/jxck.io/issues
-       **/
-      font-size: 100em;
-    }
-
-
     /* PrismJS 1.23.0
     https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clike+javascript+bash+c+cpp+erlang+go+http+hpkp+hsts+json+plsql+ruby+shell-session+sql+yaml */
     /**
@@ -757,66 +667,73 @@
      * @author ocodia
      */
 
-    .token.comment,
-    .token.prolog,
-    .token.doctype,
-    .token.cdata {
-      color: #8292a2;
+    :root {
+      --code-yellow: #ffe557;
+      --code-aqua:   #03b5f1;
+      --code-blue:   #76acff;
+      --code-gray:   #96969c;
+      --code-green:  #1cd24d;
+      --code-orange: #ff8b24;
+      --code-pink:   #ff61bf;
     }
 
+
+
+    .token {
+      color: red;
+    }
+
+    .token.delimiter.tag,
+    .token.variable {
+      color: var(--code-yellow);
+    }
+    .token.parameter,
+    .token.operator,
     .token.punctuation {
-      color: #f8f8f2;
+      color: var(--code-black-font);
     }
 
-    .token.namespace {
-      opacity: .7;
+    .token.function {
+      color: var(--code-green);
     }
 
+    .token.atom,
     .token.property,
-    .token.tag,
+    .token.keyword {
+      color: var(--code-pink);
+    }
+
+    .token.request-line {
+
+    }
+
+    .token.header-name.keyword,
+    .token.string,
+    .token.regex {
+      color: var(--code-blue);
+    }
+
+    .token.interpolation,
     .token.constant,
-    .token.symbol,
-    .token.deleted {
-      color: #f92672;
+    .token.class-name {
+      color: var(--code-orange);
     }
 
     .token.boolean,
     .token.number {
-      color: #ae81ff;
+      color: var(--code-aqua);
     }
 
-    .token.selector,
-    .token.attr-name,
-    .token.string,
-    .token.char,
-    .token.builtin,
-    .token.inserted {
-      color: #a6e22e;
+    .token.builtin {
+      color: var(--code-green);
     }
 
-    .token.operator,
-    .token.entity,
-    .token.url,
-    .language-css .token.string,
-    .style .token.string,
-    .token.variable {
-      color: #f8f8f2;
+    .token.comment {
+      color: var(--code-gray);
     }
 
-    .token.atrule,
-    .token.attr-value,
-    .token.function,
-    .token.class-name {
-      color: #e6db74;
-    }
-
-    .token.keyword {
-      color: #66d9ef;
-    }
-
-    .token.regex,
-    .token.important {
-      color: #fd971f;
+    .token.request-line {
+      color: var(--code-aqua);
     }
 
     .token.important,
@@ -892,7 +809,7 @@
 <main>
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2016-08-05>2016-08-05</time></dd></div>
-    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-12-18>2020-12-18</time></dd></div>
+    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-01-16>2021-01-16</time></dd></div>
     <div>
         <dt>tags</dt>
         <dd>
@@ -941,7 +858,7 @@
     <section>
       <h2 id="selects"><a href="#selects">selects</a></h2>
       <p>結論からいうとこういうコマンドだ。
-      <pre class=sh><code translate="no">$ selects mtime, size, basename from &#39;./entries/**/*&#39; where extname &#39;==&#39; &#39;.md&#39; and size &#39;&gt;&#39; 1000 order by mtime
+      <pre class=sh-session><code translate="no">$ selects mtime, size, basename from &#39;./entries/**/*&#39; where extname &#39;==&#39; &#39;.md&#39; and size &#39;&gt;&#39; 1000 order by mtime
 
 2016-07-06 22:45:44 +0900	18437	web-font-noto-sans.md
 2016-07-07 23:54:19 +0900	11236	amp-html.md
@@ -962,7 +879,7 @@
       <p>まず例をいくつか示す。
       <section>
         <h3 id="ディレクトリ以下をごっそり"><a href="#ディレクトリ以下をごっそり">ディレクトリ以下をごっそり</a></h3>
-        <pre class=sh><code translate="no">$ selects &#39;*&#39; from &#39;./entries/**/*&#39;
+        <pre class=sh-session><code translate="no">$ selects &#39;*&#39; from &#39;./entries/**/*&#39;
 2016-08-05 22:42:14 +0900	4096	2016-01-27
 2016-08-05 22:40:44 +0900	12499	new-blog-start.amp.html
 2016-08-05 22:41:32 +0900	3756	new-blog-start.amp.html.gz
@@ -974,7 +891,7 @@
       </section>
       <section>
         <h3 id="html-だけ"><a href="#html-だけ">.html だけ</a></h3>
-        <pre class=sh><code translate="no">$ selects basename from &#39;./entries/**/*&#39; where extname == &#39;.html&#39;
+        <pre class=sh-session><code translate="no">$ selects basename from &#39;./entries/**/*&#39; where extname == &#39;.html&#39;
 new-blog-start.amp.html
 new-blog-start.html
 html-compression.amp.html
@@ -986,7 +903,7 @@ h2o-http2-deploy.amp.html
       </section>
       <section>
         <h3 id="like-的な"><a href="#like-的な">like 的な</a></h3>
-        <pre class=sh><code translate="no">$ selects basename from &#39;./entries/**/*&#39; where basename &#39;=~&#39; &#39;mozaic&#39;
+        <pre class=sh-session><code translate="no">$ selects basename from &#39;./entries/**/*&#39; where basename &#39;=~&#39; &#39;mozaic&#39;
 mozaicfm-v2.amp.html
 mozaicfm-v2.amp.html.gz
 mozaicfm-v2.html
@@ -996,7 +913,7 @@ mozaicfm-v2.md.gz</code></pre>
       </section>
       <section>
         <h3 id="属性で絞る"><a href="#属性で絞る">属性で絞る</a></h3>
-        <pre class=sh><code translate="no">$ selects atime, basename from &#39;./entries/**/*&#39; where atime &#39;&gt;&#39; 2016-08-01 and directory? == true
+        <pre class=sh-session><code translate="no">$ selects atime, basename from &#39;./entries/**/*&#39; where atime &#39;&gt;&#39; 2016-08-01 and directory? == true
 2016-08-05 22:42:14 +0900       2016-01-27
 2016-08-05 22:42:14 +0900       2016-01-28
 2016-08-05 22:42:14 +0900       2016-02-01
@@ -1006,7 +923,7 @@ mozaicfm-v2.md.gz</code></pre>
       </section>
       <section>
         <h3 id="dev-以下で-pipe-か-socket-か-symlink-だけを-ctime-atime-の順で"><a href="#dev-以下で-pipe-か-socket-か-symlink-だけを-ctime-atime-の順で">/dev 以下で pipe か socket か symlink だけを ctime, atime の順で</a></h3>
-        <pre class=sh><code translate="no">$ selects socket?, pipe?, symlink? basename from &#39;/dev/*&#39; where pipe? == true or socket? == true or symlink? == true order by atime, ctime
+        <pre class=sh-session><code translate="no">$ selects socket?, pipe?, symlink? basename from &#39;/dev/*&#39; where pipe? == true or socket? == true or symlink? == true order by atime, ctime
 false   true    true    initctl
 false   false   true    dvd
 false   false   true    cdrom
@@ -1041,7 +958,7 @@ false   false   true    core</code></pre>
   .call(100)</code></pre>
       <p>この仕組みを踏まえた上でもう一度クエリを見てみて欲しい。
       <p>もはや Ruby のメソッドチェインにしか見えないのではないだろうか?
-      <pre class=sh><code translate="no">$ selects atime, basename from &#39;./entries/**/*&#39; where atime &#39;&gt;&#39; 2016-08-01 and directory? == true</code></pre>
+      <pre class=sh-session><code translate="no">$ selects atime, basename from &#39;./entries/**/*&#39; where atime &#39;&gt;&#39; 2016-08-01 and directory? == true</code></pre>
       <p><code translate="no">select</code>, <code translate="no">where</code>, <code translate="no">order by</code> に使える属性なども、 ruby の File クラスのドキュメントを見てくれれば良い。
       <p><a href="https://docs.ruby-lang.org/ja/2.3.0/class/File.html">https://docs.ruby-lang.org/ja/2.3.0/class/File.html</a>
       <p>裏に Ruby が透けて見えるため、 Ruby を知ってると「こうすれば動きそう」がそのまま動く。

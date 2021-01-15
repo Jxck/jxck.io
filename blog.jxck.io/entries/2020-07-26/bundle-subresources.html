@@ -54,7 +54,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-07-26T08:00:00+08:00",
-    "dateModified": "2020-12-18T08:00:00+08:00",
+    "dateModified": "2021-01-16T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -100,7 +100,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-07-26>2020-07-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-12-18>2020-12-18</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-01-16>2021-01-16</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -166,7 +166,7 @@
           <p>実際に <a href="https://github.com/WICG/webpackage/tree/master/go/bundle/cmd/gen-bundle">gen-bundle</a> を用いてサブリソースのみを Bundle する。
           <p>サブリソースを以下のように subresource ディレクトリにまとめたとする。
           <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-          <pre class=sh><code translate="no">$ ls subresource
+          <pre class=sh-session><code translate="no">$ ls subresource
   a.js
   b.js
   c.css
@@ -177,7 +177,7 @@
           <p>gen-bundle は <code translate="no">-dir</code> を指定するとディレクトリ以下をまるっと bundle してくれる。
           <p>CLI の仕様上 <code translate="no">-primaryURL</code> (HTML を頂点とする Bundle での HTML の URL)が必須だが、 Subresource の場合は特定の Primary が存在しない。 Chorme の実装もこれを無視しているようなので、適当に指定している。
           <p><code translate="no">-headerOverride</code> でヘッダを追加することもできる。フォーマットの仕様上は個々のリソースごとに別々にヘッダを追加可能だが、この CLI は全てのリソースに追加される。
-          <pre class=sh><code translate="no">$ gen-bundle \
+          <pre class=sh-session><code translate="no">$ gen-bundle \
     -version b1 \
     -baseURL    https://labs.jxck.io/webpackaging/subresource-webbundle/ \
     -primaryURL https://labs.jxck.io/webpackaging/subresource-webbundle/a.js \
@@ -185,7 +185,7 @@
     -headerOverride &quot;Cache-Control: max-age=60&quot; \
     -o bundle.wbn</code></pre>
           <p>dump-bundle すると以下のようになる。
-          <pre class=sh><code translate="no">$ dump-bundle -i bundle.wbn
+          <pre class=sh-session><code translate="no">$ dump-bundle -i bundle.wbn
 
 Version: b1
 Primary URL: https://labs.jxck.io/webpackaging/subresource-webbundle/a.js
@@ -311,7 +311,7 @@ img {
           <p>もし、ブラウザが Subresource Bundling に対応していなければ、 <code translate="no">&lt;link rel=webbundle&gt;</code> が無視され個別にリクエストが走ることになる。
           <p>ここでは wbn は no-store としているが、展開されたサブリソースは wbn 内で設定された Cache-Control が効いているため、個別にキャッシュが行われている。
           <p>また、ここでは一切署名を用いてないため、リソースの URL を別のものにすることも可能だ。
-          <pre class=sh><code translate="no">$ gen-bundle \
+          <pre class=sh-session><code translate="no">$ gen-bundle \
     -version b1 \
     -baseURL    https://example.com/webpackaging/subresource-webbundle/ \
     -primaryURL https://example.com/webpackaging/subresource-webbundle/a.js \
@@ -339,7 +339,7 @@ img {
           <p>JS だけではなくあらゆる Subresource を対象に bundle できるということは、 Web の開発を Component 単位で扱うようになり始めた今日のワークフローにもマッチするようになるだろう。
           <p>HTML, CSS, JS, Img などをまとめて、いわゆる WebComponent の単位で bundle を生成するといったことも可能だ。
           <p>以下の DEMO は、 <code translate="no">&lt;profile-card&gt;</code> を Custom Element として実装し、そこに必要なリソースを bundle している。
-          <pre class=sh><code translate="no">$ ls profile-card
+          <pre class=sh-session><code translate="no">$ ls profile-card
   jxck.png
   profile-card.js
   style.css
@@ -357,7 +357,7 @@ img {
           <p>前述の WebComponents を複数組み合わせたり、大きめなフレームワークを組み合わせて使うケースは既に多くある。
           <p>これらを一つの WebBundle にするよりも、おそらく WebBundle に Webbundle を含むことになっていくだろう。
           <p>イメージとしては以下のような構成だ。
-          <pre class=sh><code translate="no">- bundle.wbn
+          <pre><code translate="no">- bundle.wbn
   - react.wbn
   - react-dom.wbn
   - redux.wbn</code></pre>

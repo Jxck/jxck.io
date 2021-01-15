@@ -47,7 +47,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-02-17T08:00:00+08:00",
-    "dateModified": "2020-12-18T08:00:00+08:00",
+    "dateModified": "2021-01-16T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -220,9 +220,8 @@
       --anchor-color: RoyalBlue;
       --anchor-visited-color: Brown;
 
-      /*--code-block: #161b22;*/
-      --code-block: #182331;
-      --code-block-font: #cad6e4;
+      --code-block: #161b22;
+      --code-block-font: #ffffff;
 
       --code-inline: #f1f5f9;
       --code-inline-font: #292929;
@@ -660,95 +659,6 @@
       content: none;
     }
 
-    .hljs-keyword,
-    .hljs-params {
-      color: #ff407d;
-    }
-
-    .hljs-title {
-      color: #b787ff;
-    }
-
-    .hljs-string,
-    .hljs-regexp {
-      color: #84a3ff;
-    }
-
-    .hljs-number,
-    .hljs-literal {
-      color: #03b5f1;
-    }
-
-    .hljs-built_in {
-      color: #1ada03;
-    }
-
-    .hljs-comment {
-      color: #96969c;
-    }
-
-    .hljs-tag {
-      color: #ff429a;
-    }
-
-    .hljs-strong {
-      font-weight: bold;
-    }
-
-    .hljs-attribute {
-      font-weight: bold;
-      color: #7b9dff;
-    }
-
-    .hljs-meta {
-      color: #71a0ff;
-    }
-
-    .hljs-selector-id,
-    .hljs-selector-class,
-    .hljs-selector-pseudo {
-      color: #a880ef;
-    }
-
-    .hljs-selector-tag {
-      color: #17c103;
-    }
-
-    .hljs-subst {
-      font-weight: bold;
-    }
-
-    .hljs-variable {
-      color: #a71d5d;
-    }
-
-    .hljs-symbol {
-      font-weight: bold;
-    }
-
-
-    .hljs-bullet {
-    }
-
-    /**.hljs,**/
-    .hljs-doctag,
-    .hljs-code,
-    .hljs-addition,
-    .hljs-template-variable,
-    .hljs-link,
-    .hljs-quote,
-    .hljs-template-tag,
-    .hljs-deletion,
-    .hljs-meta-string,
-    .hljs-emphasis {
-      /** 🙏🙏🙏
-       * if you find element applyed this style, that's a bug.
-       * please tell me https://github.com/jxck/jxck.io/issues
-       **/
-      font-size: 100em;
-    }
-
-
     /* PrismJS 1.23.0
     https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clike+javascript+bash+c+cpp+erlang+go+http+hpkp+hsts+json+plsql+ruby+shell-session+sql+yaml */
     /**
@@ -757,66 +667,73 @@
      * @author ocodia
      */
 
-    .token.comment,
-    .token.prolog,
-    .token.doctype,
-    .token.cdata {
-      color: #8292a2;
+    :root {
+      --code-yellow: #ffe557;
+      --code-aqua:   #03b5f1;
+      --code-blue:   #76acff;
+      --code-gray:   #96969c;
+      --code-green:  #1cd24d;
+      --code-orange: #ff8b24;
+      --code-pink:   #ff61bf;
     }
 
+
+
+    .token {
+      color: red;
+    }
+
+    .token.delimiter.tag,
+    .token.variable {
+      color: var(--code-yellow);
+    }
+    .token.parameter,
+    .token.operator,
     .token.punctuation {
-      color: #f8f8f2;
+      color: var(--code-black-font);
     }
 
-    .token.namespace {
-      opacity: .7;
+    .token.function {
+      color: var(--code-green);
     }
 
+    .token.atom,
     .token.property,
-    .token.tag,
+    .token.keyword {
+      color: var(--code-pink);
+    }
+
+    .token.request-line {
+
+    }
+
+    .token.header-name.keyword,
+    .token.string,
+    .token.regex {
+      color: var(--code-blue);
+    }
+
+    .token.interpolation,
     .token.constant,
-    .token.symbol,
-    .token.deleted {
-      color: #f92672;
+    .token.class-name {
+      color: var(--code-orange);
     }
 
     .token.boolean,
     .token.number {
-      color: #ae81ff;
+      color: var(--code-aqua);
     }
 
-    .token.selector,
-    .token.attr-name,
-    .token.string,
-    .token.char,
-    .token.builtin,
-    .token.inserted {
-      color: #a6e22e;
+    .token.builtin {
+      color: var(--code-green);
     }
 
-    .token.operator,
-    .token.entity,
-    .token.url,
-    .language-css .token.string,
-    .style .token.string,
-    .token.variable {
-      color: #f8f8f2;
+    .token.comment {
+      color: var(--code-gray);
     }
 
-    .token.atrule,
-    .token.attr-value,
-    .token.function,
-    .token.class-name {
-      color: #e6db74;
-    }
-
-    .token.keyword {
-      color: #66d9ef;
-    }
-
-    .token.regex,
-    .token.important {
-      color: #fd971f;
+    .token.request-line {
+      color: var(--code-aqua);
     }
 
     .token.important,
@@ -892,7 +809,7 @@
 <main>
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2016-02-17>2016-02-17</time></dd></div>
-    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-12-18>2020-12-18</time></dd></div>
+    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-01-16>2021-01-16</time></dd></div>
     <div>
         <dt>tags</dt>
         <dd>
@@ -998,7 +915,7 @@
       <section>
         <h3 id="ベンチマーク"><a href="#ベンチマーク">ベンチマーク</a></h3>
         <p>以下のように、前回の記事に対して zopfli コマンドを実行し、 time コマンドで実行時間を計測した。
-        <pre class=sh><code translate="no">$ time zopfli --i10 -c loading-css-over-http2.html</code></pre>
+        <pre class=sh-session><code translate="no">$ time zopfli --i10 -c loading-css-over-http2.html</code></pre>
         <p><code translate="no">--i</code> が探索回数であり、これを増やせばより小さく圧縮できるが、時間がかかる。
         <p>デフォルトは <code translate="no">i = 15</code> であるため、 <code translate="no">10..100</code> まで増やしながら実行した。
         <p>最初の段は、元のファイルサイズ、二段目は <code translate="no">gzip</code> コマンドの結果である。

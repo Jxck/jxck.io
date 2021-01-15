@@ -54,7 +54,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-08-05T08:00:00+08:00",
-    "dateModified": "2020-12-18T08:00:00+08:00",
+    "dateModified": "2021-01-16T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -100,7 +100,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-08-05>2016-08-05</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-12-18>2020-12-18</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-01-16>2021-01-16</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -152,7 +152,7 @@
         <h2 id="selects"><a href="#selects">selects</a></h2>
         <p>結論からいうとこういうコマンドだ。
         <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-        <pre class=sh><code translate="no">$ selects mtime, size, basename from &#39;./entries/**/*&#39; where extname &#39;==&#39; &#39;.md&#39; and size &#39;&gt;&#39; 1000 order by mtime
+        <pre class=sh-session><code translate="no">$ selects mtime, size, basename from &#39;./entries/**/*&#39; where extname &#39;==&#39; &#39;.md&#39; and size &#39;&gt;&#39; 1000 order by mtime
 
 2016-07-06 22:45:44 +0900	18437	web-font-noto-sans.md
 2016-07-07 23:54:19 +0900	11236	amp-html.md
@@ -173,7 +173,7 @@
         <p>まず例をいくつか示す。
         <section>
           <h3 id="ディレクトリ以下をごっそり"><a href="#ディレクトリ以下をごっそり">ディレクトリ以下をごっそり</a></h3>
-          <pre class=sh><code translate="no">$ selects &#39;*&#39; from &#39;./entries/**/*&#39;
+          <pre class=sh-session><code translate="no">$ selects &#39;*&#39; from &#39;./entries/**/*&#39;
 2016-08-05 22:42:14 +0900	4096	2016-01-27
 2016-08-05 22:40:44 +0900	12499	new-blog-start.amp.html
 2016-08-05 22:41:32 +0900	3756	new-blog-start.amp.html.gz
@@ -185,7 +185,7 @@
         </section>
         <section>
           <h3 id="html-だけ"><a href="#html-だけ">.html だけ</a></h3>
-          <pre class=sh><code translate="no">$ selects basename from &#39;./entries/**/*&#39; where extname == &#39;.html&#39;
+          <pre class=sh-session><code translate="no">$ selects basename from &#39;./entries/**/*&#39; where extname == &#39;.html&#39;
 new-blog-start.amp.html
 new-blog-start.html
 html-compression.amp.html
@@ -197,7 +197,7 @@ h2o-http2-deploy.amp.html
         </section>
         <section>
           <h3 id="like-的な"><a href="#like-的な">like 的な</a></h3>
-          <pre class=sh><code translate="no">$ selects basename from &#39;./entries/**/*&#39; where basename &#39;=~&#39; &#39;mozaic&#39;
+          <pre class=sh-session><code translate="no">$ selects basename from &#39;./entries/**/*&#39; where basename &#39;=~&#39; &#39;mozaic&#39;
 mozaicfm-v2.amp.html
 mozaicfm-v2.amp.html.gz
 mozaicfm-v2.html
@@ -207,7 +207,7 @@ mozaicfm-v2.md.gz</code></pre>
         </section>
         <section>
           <h3 id="属性で絞る"><a href="#属性で絞る">属性で絞る</a></h3>
-          <pre class=sh><code translate="no">$ selects atime, basename from &#39;./entries/**/*&#39; where atime &#39;&gt;&#39; 2016-08-01 and directory? == true
+          <pre class=sh-session><code translate="no">$ selects atime, basename from &#39;./entries/**/*&#39; where atime &#39;&gt;&#39; 2016-08-01 and directory? == true
 2016-08-05 22:42:14 +0900       2016-01-27
 2016-08-05 22:42:14 +0900       2016-01-28
 2016-08-05 22:42:14 +0900       2016-02-01
@@ -217,7 +217,7 @@ mozaicfm-v2.md.gz</code></pre>
         </section>
         <section>
           <h3 id="dev-以下で-pipe-か-socket-か-symlink-だけを-ctime-atime-の順で"><a href="#dev-以下で-pipe-か-socket-か-symlink-だけを-ctime-atime-の順で">/dev 以下で pipe か socket か symlink だけを ctime, atime の順で</a></h3>
-          <pre class=sh><code translate="no">$ selects socket?, pipe?, symlink? basename from &#39;/dev/*&#39; where pipe? == true or socket? == true or symlink? == true order by atime, ctime
+          <pre class=sh-session><code translate="no">$ selects socket?, pipe?, symlink? basename from &#39;/dev/*&#39; where pipe? == true or socket? == true or symlink? == true order by atime, ctime
 false   true    true    initctl
 false   false   true    dvd
 false   false   true    cdrom
@@ -252,7 +252,7 @@ false   false   true    core</code></pre>
   .call(100)</code></pre>
         <p>この仕組みを踏まえた上でもう一度クエリを見てみて欲しい。
         <p>もはや Ruby のメソッドチェインにしか見えないのではないだろうか?
-        <pre class=sh><code translate="no">$ selects atime, basename from &#39;./entries/**/*&#39; where atime &#39;&gt;&#39; 2016-08-01 and directory? == true</code></pre>
+        <pre class=sh-session><code translate="no">$ selects atime, basename from &#39;./entries/**/*&#39; where atime &#39;&gt;&#39; 2016-08-01 and directory? == true</code></pre>
         <p><code translate="no">select</code>, <code translate="no">where</code>, <code translate="no">order by</code> に使える属性なども、 ruby の File クラスのドキュメントを見てくれれば良い。
         <p><a href="https://docs.ruby-lang.org/ja/2.3.0/class/File.html">https://docs.ruby-lang.org/ja/2.3.0/class/File.html</a>
         <p>裏に Ruby が透けて見えるため、 Ruby を知ってると「こうすれば動きそう」がそのまま動く。

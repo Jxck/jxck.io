@@ -54,7 +54,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-12-01T08:00:00+08:00",
-    "dateModified": "2020-12-18T08:00:00+08:00",
+    "dateModified": "2021-01-16T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -100,7 +100,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-12-01>2018-12-01</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-12-18>2020-12-18</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-01-16>2021-01-16</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -330,7 +330,7 @@
           </ol>
           <p>今回は DEMO 用に 3 を採用する。
           <p>まず、署名を行う mozaic.fm ドメイン用に、 CanSignHttpExchanges 拡張の入った自己証明書を以下のように作成する。
-          <pre class=sh><code translate="no">#! /bin/sh
+          <pre class=shell><code translate="no">#! /bin/sh
 
 # prime256v1 ecdsa の秘密鍵を生成
 openssl ecparam -out priv.key -name prime256v1 -genkey
@@ -351,7 +351,7 @@ openssl x509 -req -days 360 -in cert.csr -signkey priv.key -out cert.pem</code><
           <p>ファイルは CBOR 形式で、証明書チェーン、 OCSP 、 SCT を含む必要がある。
           <p>生成には、リファレンス実装の gen-certurl を使用する。
           <p><a href="https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-certurl">https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-certurl</a>
-          <pre class=sh><code translate="no">#! /bin/sh
+          <pre class=shell><code translate="no">#! /bin/sh
 
 # gen-certurl の取得
 go get -u github.com/WICG/webpackage/go/signedexchange/cmd/gen-certurl
@@ -376,7 +376,7 @@ echo &quot;ocsp&quot; &gt; tmp
           <p>ここまでに用意した材料を用いて、コンテンツに署名する。
           <p>署名には、リファレンス実装の gen-signedexchange を使用する。
           <p><a href="https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-signedexchange">https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-signedexchange</a>
-          <pre class=sh><code translate="no">#! /bin/sh
+          <pre class=shell><code translate="no">#! /bin/sh
 
 # gen-signedexchange の取得
 go get -u github.com/WICG/webpackage/go/signedexchange/cmd/gen-signedexchange
@@ -402,7 +402,7 @@ go get -u github.com/WICG/webpackage/go/signedexchange/cmd/gen-signedexchange
           <p>つまり、 Origin Trials に登録し、正規の拡張付き証明書を使っていれば、 Chrome Canary などではそのまま表示できるだろう。
           <p>自己署名証明書の場合には、 Chrome にその証明書に関するエラーを無視させる必要がある。
           <p>cert.pem を以下のように base64 形式に変換し、それを <code translate="no">--ignore-certificate-errors-spki-list</code> に指定する。
-          <pre class=sh><code translate="no"># 証明書の base64 の生成
+          <pre class=shell><code translate="no"># 証明書の base64 の生成
 export BASE64 = openssl x509 -noout -pubkey -in cert.pem | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | base64
 
 # Mac で Canary を起動する場合

@@ -54,7 +54,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-12-25T08:00:00+08:00",
-    "dateModified": "2020-12-25T08:00:00+08:00",
+    "dateModified": "2021-01-16T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -100,7 +100,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-12-25>2020-12-25</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-12-25>2020-12-25</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-01-16>2021-01-16</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -180,7 +180,7 @@
         </ul>
         <p>openssl を使うと以下のように確認できる。
         <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-        <pre class=sh><code translate="no"># key type が EC prim256v1
+        <pre class=sh-session><code translate="no"># key type が EC prim256v1
 $ openssl x509 -in blog_jxck_io.crt -text | grep &#39;ASN1 OID: prime256v1&#39;
 # CanSignHttpExchanges 拡張がある
 $ openssl x509 -in blog_jxck_io.crt -text | grep 1.3.6.1.4.1.11129.2.1.22:</code></pre>
@@ -190,7 +190,7 @@ $ openssl x509 -in blog_jxck_io.crt -text | grep 1.3.6.1.4.1.11129.2.1.22:</code
       <section>
         <h2 id="amppackager"><a href="#amppackager">amppackager</a></h2>
         <p>AMP SXG は、前述の通り SXG にする前に変換が必要となる。これを行うのが amppackager だ。
-        <pre class=sh><code translate="no">$ go get -u github.com/ampproject/amppackager/cmd/amppkg</code></pre>
+        <pre class=sh-session><code translate="no">$ go get -u github.com/ampproject/amppackager/cmd/amppkg</code></pre>
         <p>デフォルトだと <code translate="no">$HOME/go/bin</code> に入るのでパスを通す。
         <section>
           <h3 id="amppkgtoml"><a href="#amppkgtoml">amppkg.toml</a></h3>
@@ -204,7 +204,7 @@ $ openssl x509 -in blog_jxck_io.crt -text | grep 1.3.6.1.4.1.11129.2.1.22:</code
         <section>
           <h3 id="amppkg"><a href="#amppkg">amppkg</a></h3>
           <p>起動してみたが、エラーが出たので残しておく。
-          <pre class=sh><code translate="no">$ amppkg
+          <pre class=sh-session><code translate="no">$ amppkg
 2020/12/23 20:04:15 Updating cert if necessary
 2020/12/23 20:04:15 Certfetcher is not set, skipping cert updates. Checking cert on disk if updated.
 2020/12/23 20:04:15 Updating OCSP; none cached yet.
@@ -242,7 +242,7 @@ runtime.main
 runtime.goexit
 	/home/jxck/dotfiles/pkg/go/current/src/runtime/asm_amd64.s:1373</code></pre>
           <p>OCSP の情報が無いようだ。 Digicert で発行した証明書は自分のドメインのものと DigiCertCA.crt の 2 つがあったので連結したらいけた。
-          <pre class=sh><code translate="no">$ cat blog_jxck_io.crt DigiCertCA.crt &gt; blog_jxck_io_full.crt</code></pre>
+          <pre class=sh-session><code translate="no">$ cat blog_jxck_io.crt DigiCertCA.crt &gt; blog_jxck_io_full.crt</code></pre>
           <p>toml を更新して起動し直すと成功。
           <p>これを systemd に登録して完了。
           <pre class=service><code translate="no">[Unit]
@@ -342,11 +342,11 @@ end</code></pre>
         <section>
           <h3 id="cli"><a href="#cli">CLI</a></h3>
           <p>CLI の場合は <code translate="no">dump-signedexchage</code> で行うのが手軽だろう。
-          <pre class=sh><code translate="no">$ dump-signedexchange -uri $URL -requestHeader AMP-Cache-Transform:any -version=1b3 -headers=false -payload=false -verify
+          <pre class=sh-session><code translate="no">$ dump-signedexchange -uri $URL -requestHeader AMP-Cache-Transform:any -version=1b3 -headers=false -payload=false -verify
 The exchage has a valid signature</code></pre>
           <p>これは cert-url から証明書チェインを取得してくれているらしいので、これが通れば一通り通ってると思われる。
           <p>個々のステップを細かく見たい場合は curl で取得してから順番に解くなどすると良いかもしれない。
-          <pre class=sh><code translate="no">$ curl -s --output - -H &#39;amp-cache-transform: google;v=&quot;3&quot;&#39; -H &#39;accept: application/signed-exchange;v=b3,*/*;q=0.1&#39; https://blog.jxck.io/entries/2020-12-03/masonry-layout.amp.html &gt; dump.sxg
+          <pre class=sh-session><code translate="no">$ curl -s --output - -H &#39;amp-cache-transform: google;v=&quot;3&quot;&#39; -H &#39;accept: application/signed-exchange;v=b3,*/*;q=0.1&#39; https://blog.jxck.io/entries/2020-12-03/masonry-layout.amp.html &gt; dump.sxg
 $ dump-signedexchange -i dump.sxg
 format version: 1b3
 ...
