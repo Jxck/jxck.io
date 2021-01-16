@@ -54,7 +54,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-12-16T08:00:00+08:00",
-    "dateModified": "2020-12-18T08:00:00+08:00",
+    "dateModified": "2021-01-16T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -100,7 +100,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-12-16>2016-12-16</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-12-18>2020-12-18</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-01-16>2021-01-16</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -176,7 +176,7 @@
         <h2 id="ステータスコードとヘッダ"><a href="#ステータスコードとヘッダ">ステータスコードとヘッダ</a></h2>
         <p>テキストベースプロトコルである HTTP/1.1 のレスポンスはこうなっている。
         <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-        <pre class=http><code translate="no">200 OK
+        <pre class=http><code translate="no">HTTP/1.1 200 OK
 Content-Length: 100
 Content-Type: text/html
 Link: &lt;/style.css&gt;; rel=preload
@@ -193,12 +193,12 @@ Link: &lt;/script.js&gt;; rel=preload
         <p><a href="https://tools.ietf.org/html/draft-kazuho-early-hints-status-code">An HTTP Status Code for Indicating Hints</a>
         <p>103 は、ヘッダだけを送る目的で使われ、実際のレスポンスは後から来るというセマンティクスになっている。
         <p>先の例の場合、 DB を引いてる最中に Link だけを 103 で送り、残りは後から送る。
-        <pre class=http><code translate="no">103 Early Hints
+        <pre class=http><code translate="no">HTTP/1.1 103 Early Hints
 Link: &lt;/style.css&gt;; rel=preload
 Link: &lt;/script.js&gt;; rel=preload
 
 
-200 OK
+HTTP/1.1 200 OK
 Content-Length: 100
 Content-Type: text/html
 

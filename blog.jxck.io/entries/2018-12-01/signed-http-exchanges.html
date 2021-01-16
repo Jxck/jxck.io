@@ -288,7 +288,7 @@
           <p>Subresource Integrity (SRI) とは、 Subresouce が想定したものであることを確認し、改ざん等によって意図しないものに差し替えられることを防ぐ仕組みである。
           <p>以下は、 integrity 属性に jquery 全体の sha-256 ハッシュを含むことで、異なる jquery が実行されることを防ぐ。
           <pre class=html><code translate="no">&lt;script src=https://code.jquery.com/jquery-3.3.1.js
-        integrity=sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=&gt;&lt;/script&gt;</code></pre>
+        integrity=&quot;sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=&quot;&gt;&lt;/script&gt;</code></pre>
           <p>WebAppSec はこの SRI に、単なるハッシュではなく、署名を取り入れる方法について議論している。
           <ul>
             <li><a href="https://github.com/mikewest/signature-based-sri">mikewest/signature-based-sri: Signature-based Resource Loading Restrictions</a>
@@ -521,7 +521,7 @@ Content-Encoding: mi-sha256-03
           <p>update は、新たなるコンテンツがある場合に、そのサイズを示している。
           <p>もし signature が無く、 update しかない場合は、コンテンツを更新する必要がある。
           <p>両方存在する場合は、 update の size などを考慮して、コンテンツを継続利用するか更新するかを選べる。
-          <pre class=http><code translate="no">{
+          <pre><code translate="no">{
   &quot;signatures&quot;: [
     &#39;label; &#39;
     &#39;sig=*MEQCIC/I9Q+7BZFP6cSDsWx43pBAL0ujTbON/+7RwKVk+ba5AiB3FSFLZqpzmDJ0NumNwN04pqgJZE99fcK86UjkPbj4jw; &#39;

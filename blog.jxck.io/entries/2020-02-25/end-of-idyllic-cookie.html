@@ -54,7 +54,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-02-25T08:00:00+08:00",
-    "dateModified": "2020-12-18T08:00:00+08:00",
+    "dateModified": "2021-01-16T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -100,7 +100,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-02-25>2020-02-25</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-12-18>2020-12-18</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-01-16>2021-01-16</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -164,7 +164,7 @@
           <h3 id="設定値保存"><a href="#設定値保存">設定値保存</a></h3>
           <p>例えば、テーマカラーを設定で変えられるようなサービスがあった際に、その情報を Cookie で持つこともできる。
           <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-          <pre><code translate="no">Set-Cookie: theme=dark
+          <pre class=http><code translate="no">Set-Cookie: theme=dark
 Cookie: theme=dark</code></pre>
           <p>これにより、同じユーザでも違うブラウザであれば設定値を変えることができ、 JS を使わなくてもサービス側が CSS を切り替えてページを返すと言った実装が可能だ。
           <p>毎回リクエストに乗るということを無視して JS API を用いれば、単なる KVS としても使えるため、 LocalStorage 以前は Cookie がその代替を担っていた。
@@ -173,8 +173,8 @@ Cookie: theme=dark</code></pre>
           <h3 id="セッションの維持"><a href="#セッションの維持">セッションの維持</a></h3>
           <p>Cookie Store の中身はユーザが簡単に変更できるため、サーバからランダムな値を付与し、その値が送られてくることでユーザの連続したリクエストを紐付けるようになった。これがセッションの維持だ。
           <p>多くのサイトで、初回のアクセス時にとりあえず付与されているだろう。
-          <pre><code translate="no">Cookie: SID=q1w2e3r4t5y
-Cookie: SID=q1w2e3r4t5y // 同じユーザであることがわかる</code></pre>
+          <pre class=http><code translate="no">Cookie: SID=q1w2e3r4t5y
+Cookie: SID=q1w2e3r4t5y # 同じユーザであることがわかる</code></pre>
         </section>
         <section>
           <h3 id="credential"><a href="#credential">Credential</a></h3>
@@ -188,10 +188,12 @@ Cookie: SID=q1w2e3r4t5y // 同じユーザであることがわかる</code></pr
           <h3 id="sso"><a href="#sso">SSO</a></h3>
           <p>実装は色々あるが典型例としては、あるサイト a.example.com と b.example.jp で Single Sign On を実現したい場合、共通の認証基盤として auth.example を用意する。全て違うドメインだ。
           <p>a.example.com にアクセスした場合、一度 auth.example にリダイレクトすることで、ログインフォームでログインさせ Cookie を付与する。さらにワンタイムトークンなどをクエリストリングに付けてリダイレクトバックしてやれば、 a.example.com は auth.example に裏で確認することでログイン済みとみなすことができる。
-          <pre><code translate="no">307 Temporary Redirect HTTP/1.1 // auth.example からのレスポンス
-Set-Cookie: SID=q1w2e3r4t5 // auth.example でログイン済みであることを示す Cookie
-Location: http://a.example.com?token=q1w2e3r4t5y6u7i8o9p0
-// このトークンを受け取った a.example.com は auth.example に裏で問い合わせる</code></pre>
+          <pre class=http><code translate="no"># auth.example からのレスポンス
+HTTP/1.1 307 Temporary Redirect
+# auth.example でログイン済みであることを示す Cookie
+Set-Cookie: SID=q1w2e3r4t5
+# このトークンを受け取った a.example.com は auth.example に裏で問い合わせる
+Location: http://a.example.com?token=q1w2e3r4t5y6u7i8o9p0</code></pre>
           <p>次にユーザが b.example.jp にアクセスした際、 b.example.jp は auth.example にリダイレクトする。
           <p>auth.example には Cookie が飛ぶため認証済みであることがわかり、そのまま Token を付与した URL で b.example.jp にリダイレクトバックすれば、 b.example.jp はトークンを auth.example に問い合わせるだけで認証を完了できる。
           <p>ユーザからみれば、画面がぱぱっと何回か変わるだけで、フォームに入力する手間は省けるのだ。
@@ -203,18 +205,20 @@ Location: http://a.example.com?token=q1w2e3r4t5y6u7i8o9p0
           <p>サイトに簡単なスクリプトを設置するだけで、単なるアクセスログだけでは取りにくい、ユーザの行動などの細かな情報を取得する仕組みが Analytics だ。
           <p>これも実装が色々あるが、よくあるのは <code translate="no">&lt;img&gt;</code> を使う方法だろう。
           <p>a.example.com のアクセスを analytics.example というアナリティクスサービスで収集したい場合、 a.example.com に以下のような <code translate="no">&lt;img&gt;</code> を埋め込む。
-          <pre class=html><code translate="no">&lt;/body&gt;
+          <pre class=html><code translate="no">&lt;body&gt;
 メインコンテンツ
 &lt;img width=1 height=1 src=https://analytics.example?id=q1w2e3r4&gt;
 &lt;/body&gt;</code></pre>
           <p><code translate="no">&lt;img&gt;</code> を使うのは、 CORS に違反せずに別 Origin へとリクエストを投げる簡単な方法だからだろう。
           <p>リクエストが飛べば、それだけでかなりの情報がわかる。
-          <pre><code translate="no">// そもそも IP からおおよその場所がわかる
-GET /?id=q1w2e3r4 HTTP/1.1 // クエリに任意の情報をつければ送れる
-Referer: https://a.example.com // 見ていたサイトもわかる
-// どの言語圏の人かだいたいわかる
+          <pre class=http><code translate="no"># そもそも IP からおおよその場所がわかる
+# クエリに任意の情報をつければ送れる
+GET /?id=q1w2e3r4 HTTP/1.1
+# リファラで見ていたサイトもわかる
+Referer: https://a.example.com
+# どの言語圏の人かだいたいわかる
 Accept-Language: ja,en-US;q=0.9,en;q=0.8
-// 以下を見れば閲覧環境もそれなりに絞れる
+# 以下を見れば閲覧環境もそれなりに絞れる
 Accept: Image/webp,image/apng,image/*,*/*;q=0.8
 Accept-Encoding: gzip, deflate, br
 User-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.106 Safari/537.36</code></pre>
@@ -232,10 +236,11 @@ PC周辺機器
    &lt;iframe src=https://ad.example?page=pc-accessory&gt;&lt;/iframe&gt;
 &lt;/aside&gt;</code></pre>
           <p>このとき、 ad.example には、ページの持ち主が設定したページの情報がクエリによって付与され、レスポンスで ad.example の Cookie が付与される。
-          <pre><code translate="no">GET /?page=pc-accessory HTTP/1.1 // PC周辺機器のページを見ていたことが伝わる
+          <pre class=http><code translate="no"># PC周辺機器のページを見ていたことが伝わる
+GET /?page=pc-accessory HTTP/1.1
 Host: ad.example</code></pre>
-          <pre><code translate="no">200 OK HTTP/1.1
-Set-Cookie: SID=q1w2e3r4t5 // このCookieで追跡
+          <pre class=http><code translate="no">HTTP/1.1 200 OK
+Set-Cookie: SID=q1w2e3r4t5 # このCookieで追跡
 Content-Type: text/html
 Content-Length: 1024
 
@@ -250,10 +255,10 @@ SNS 的な何か
    &lt;iframe src=https://ad.example&gt;&lt;/iframe&gt;
 &lt;/aside&gt;</code></pre>
           <p>このとき ad.example を取得するために送られるリクエストは以下のようになる。
-          <pre><code translate="no">GET / HTTP/1.1
+          <pre class=http><code translate="no">GET / HTTP/1.1
 Host: ad.example
-Cookie: SID=q1w2e3r4t5 // さっきPC周辺機器を見ていた人だとわかる</code></pre>
-          <pre><code translate="no">200 OK HTTP/1.1
+Cookie: SID=q1w2e3r4t5 # さっきPC周辺機器を見ていた人だとわかる</code></pre>
+          <pre class=http><code translate="no">HTTP/1.1 200 OK
 Content-Type: text/html
 Content-Length: 1024
 

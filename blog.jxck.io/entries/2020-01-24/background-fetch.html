@@ -54,7 +54,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-01-24T08:00:00+08:00",
-    "dateModified": "2020-12-18T08:00:00+08:00",
+    "dateModified": "2021-01-16T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -100,7 +100,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-01-24>2020-01-24</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-12-18>2020-12-18</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-01-16>2021-01-16</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -172,10 +172,10 @@
         <p>また、全てのレスポンスが揃ってから開始するわけではなく、届いた順に再生する。
         <p>HTTP 上は Range Request と Partial Response が使われ、途中から再生するような場合以下のようになる。
         <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-        <pre><code translate="no">GET /mozaic-ep60.mp3 HTTP/1.1
+        <pre class=http><code translate="no">GET /mozaic-ep60.mp3 HTTP/1.1
 Host: files.mozaic.fm
 Range: bytes=54034432-</code></pre>
-        <pre><code translate="no">HTTP/1.1 206 Partial Content
+        <pre class=http><code translate="no">HTTP/1.1 206 Partial Content
 content-type: audio/mpeg
 Content-Range: bytes 54034432-101797887/101797888
 Content-Length: 47763456</code></pre>

@@ -47,7 +47,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-01-27T08:00:00+08:00",
-    "dateModified": "2021-01-15T08:00:00+08:00",
+    "dateModified": "2021-01-16T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -220,9 +220,8 @@
       --anchor-color: RoyalBlue;
       --anchor-visited-color: Brown;
 
-      /*--code-block: #161b22;*/
-      --code-block: #182331;
-      --code-block-font: #cad6e4;
+      --code-block: #161b22;
+      --code-block-font: #ffffff;
 
       --code-inline: #f1f5f9;
       --code-inline-font: #292929;
@@ -660,165 +659,19 @@
       content: none;
     }
 
-    .hljs-keyword,
-    .hljs-params {
-      color: #ff407d;
+
+    /** Prism.js Syntax Highlight **/
+    :root {
+      --code-yellow: #ffe557;
+      --code-aqua:   #03b5f1;
+      --code-blue:   #76acff;
+      --code-gray:   #96969c;
+      --code-green:  #1cd24d;
+      --code-orange: #ff8b24;
+      --code-pink:   #ff61bf;
     }
 
-    .hljs-title {
-      color: #b787ff;
-    }
-
-    .hljs-string,
-    .hljs-regexp {
-      color: #84a3ff;
-    }
-
-    .hljs-number,
-    .hljs-literal {
-      color: #03b5f1;
-    }
-
-    .hljs-built_in {
-      color: #1ada03;
-    }
-
-    .hljs-comment {
-      color: #96969c;
-    }
-
-    .hljs-tag {
-      color: #ff429a;
-    }
-
-    .hljs-strong {
-      font-weight: bold;
-    }
-
-    .hljs-attribute {
-      font-weight: bold;
-      color: #7b9dff;
-    }
-
-    .hljs-meta {
-      color: #71a0ff;
-    }
-
-    .hljs-selector-id,
-    .hljs-selector-class,
-    .hljs-selector-pseudo {
-      color: #a880ef;
-    }
-
-    .hljs-selector-tag {
-      color: #17c103;
-    }
-
-    .hljs-subst {
-      font-weight: bold;
-    }
-
-    .hljs-variable {
-      color: #a71d5d;
-    }
-
-    .hljs-symbol {
-      font-weight: bold;
-    }
-
-
-    .hljs-bullet {
-    }
-
-    /**.hljs,**/
-    .hljs-doctag,
-    .hljs-code,
-    .hljs-addition,
-    .hljs-template-variable,
-    .hljs-link,
-    .hljs-quote,
-    .hljs-template-tag,
-    .hljs-deletion,
-    .hljs-meta-string,
-    .hljs-emphasis {
-      /** 🙏🙏🙏
-       * if you find element applyed this style, that's a bug.
-       * please tell me https://github.com/jxck/jxck.io/issues
-       **/
-      font-size: 100em;
-    }
-
-
-    /* PrismJS 1.23.0
-    https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clike+javascript+bash+c+cpp+erlang+go+http+hpkp+hsts+json+plsql+ruby+shell-session+sql+yaml */
-    /**
-     * okaidia theme for JavaScript, CSS and HTML
-     * Loosely based on Monokai textmate theme by http://www.monokai.nl/
-     * @author ocodia
-     */
-
-    .token.comment,
-    .token.prolog,
-    .token.doctype,
-    .token.cdata {
-      color: #8292a2;
-    }
-
-    .token.punctuation {
-      color: #f8f8f2;
-    }
-
-    .token.namespace {
-      opacity: .7;
-    }
-
-    .token.property,
-    .token.tag,
-    .token.constant,
-    .token.symbol,
-    .token.deleted {
-      color: #f92672;
-    }
-
-    .token.boolean,
-    .token.number {
-      color: #ae81ff;
-    }
-
-    .token.selector,
-    .token.attr-name,
-    .token.string,
-    .token.char,
-    .token.builtin,
-    .token.inserted {
-      color: #a6e22e;
-    }
-
-    .token.operator,
-    .token.entity,
-    .token.url,
-    .language-css .token.string,
-    .style .token.string,
-    .token.variable {
-      color: #f8f8f2;
-    }
-
-    .token.atrule,
-    .token.attr-value,
-    .token.function,
-    .token.class-name {
-      color: #e6db74;
-    }
-
-    .token.keyword {
-      color: #66d9ef;
-    }
-
-    .token.regex,
-    .token.important {
-      color: #fd971f;
-    }
-
+    /** style **/
     .token.important,
     .token.bold {
       font-weight: bold;
@@ -829,6 +682,80 @@
 
     .token.entity {
       cursor: help;
+    }
+
+    /** color **/
+    .token.command,
+    .token.parameter,
+    .token.operator,
+    .token.punctuation,
+    .token.output {
+      color: var(--code-block-font);
+    }
+
+    .token.attr-name,
+    .token.selector,
+    .token.shell-symbol {
+      color: var(--code-blue);
+    }
+
+    .token.delimiter.tag,
+    .token.variable {
+      color: var(--code-yellow);
+    }
+
+    .token.tag,
+    .token.function {
+      color: var(--code-green);
+    }
+
+    .token.key,
+    .token.attr-value,
+    .token.atom,
+    .token.property,
+    .token.keyword {
+      color: var(--code-pink);
+    }
+
+    .token.header-name.keyword,
+    .token.string,
+    .token.regex {
+      color: var(--code-blue);
+    }
+
+    .token.interpolation,
+    .token.constant,
+    .token.class-name {
+      color: var(--code-orange);
+    }
+
+    .token.response-status,
+    .token.boolean,
+    .token.number {
+      color: var(--code-aqua);
+    }
+
+    .token.rule,
+    .token.builtin {
+      color: var(--code-green);
+    }
+
+    .token.prolog,
+    .token.doctype,
+    .token.shebang,
+    .token.comment {
+      color: var(--code-gray);
+    }
+
+    .token.request-line {
+      color: var(--code-aqua);
+    }
+
+
+    /** language **/
+    .token.bash.language-bash,
+    .token.bash.language-bash > .token.function {
+      color: var(--code-block-font);
     }
     table {
       font-family: var(--mono-font);
@@ -892,7 +819,7 @@
 <main>
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2016-01-27>2016-01-27</time></dd></div>
-    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-01-15>2021-01-15</time></dd></div>
+    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-01-16>2021-01-16</time></dd></div>
     <div>
         <dt>tags</dt>
         <dd>

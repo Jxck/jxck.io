@@ -54,7 +54,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-06-16T08:00:00+08:00",
-    "dateModified": "2020-12-18T08:00:00+08:00",
+    "dateModified": "2021-01-16T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -100,7 +100,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-06-16>2019-06-16</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-12-18>2020-12-18</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-01-16>2021-01-16</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -155,7 +155,7 @@
         <h2 id="現状の-dom-操作の課題"><a href="#現状の-dom-操作の課題">現状の DOM 操作の課題</a></h2>
         <p>まず、以下のような処理を考える。
         <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
-        <pre class=html><code translate="no">body.appencCild($div)</code></pre>
+        <pre class=js><code translate="no">body.appencCild($div)</code></pre>
         <p>この処理が JS の途中で出現すれば、その瞬間 Window にある DOM Tree はロックを取得し、 <code translate="no">$div</code> の追加処理が行われ、 DOM Tree が atomic に更新される。
         <p>DOM Tree の更新が終わったら、レンダリング処理(style -&gt; layout -&gt; paint -&gt; composit)が発生し、すぐさま画面上に新たな要素が表示される。
         <p>このモデルは非常にわかりやすい一方で、大規模なアプリケーションを開発する際には、様々な課題を産むことになる。
