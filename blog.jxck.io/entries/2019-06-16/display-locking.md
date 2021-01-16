@@ -19,7 +19,7 @@ React や lit-html などにより、 DOM 操作の抽象化に加えて最適�
 まず、以下のような処理を考える。
 
 
-```html
+```js
 body.appencCild($div)
 ```
 

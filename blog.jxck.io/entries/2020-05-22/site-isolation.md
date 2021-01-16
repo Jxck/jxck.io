@@ -272,7 +272,7 @@ COOP は Opener / Openee 両方に指定し、その両方の値が整合しな�
 - [Cross-Origin-Opener-Policy Explainer](https://docs.google.com/document/d/1Ey3MXcLzwR1T7aarkpBXEwP7jKdd2NvQdgYvF8_8scI/edit)
 
 
-```
+```http
 Cross-Origin-Opener-Policy: same-origin
 Cross-Origin-Opener-Policy: same-origin-allow-popups
 Cross-Origin-Opener-Policy: unsafe-none

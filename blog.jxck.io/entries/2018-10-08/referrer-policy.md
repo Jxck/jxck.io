@@ -444,7 +444,7 @@ Policy を適用する方法は 4 つある。
 `<meta>` タグを利用することでページ全体に Policy を適用できる。
 
 
-```
+```html
 <meta name="referrer" content="origin-when-cross-origin">
 ```
 

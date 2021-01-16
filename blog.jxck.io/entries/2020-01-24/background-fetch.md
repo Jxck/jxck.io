@@ -38,14 +38,14 @@ PWA のキャッシュ戦略典型例としては
 HTTP 上は Range Request と Partial Response が使われ、途中から再生するような場合以下のようになる。
 
 
-```
+```http
 GET /mozaic-ep60.mp3 HTTP/1.1
 Host: files.mozaic.fm
 Range: bytes=54034432-
 ```
 
 
-```
+```http
 HTTP/1.1 206 Partial Content
 content-type: audio/mpeg
 Content-Range: bytes 54034432-101797887/101797888

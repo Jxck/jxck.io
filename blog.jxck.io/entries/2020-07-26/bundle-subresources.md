@@ -183,7 +183,7 @@ img {
 Chrome Canary を flag 付きで起動する。
 
 
-```
+```sh-session
 $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-features=SubresourceWebBundles
 ```
 

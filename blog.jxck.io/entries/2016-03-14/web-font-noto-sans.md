@@ -433,7 +433,7 @@ Cache-Control: max-age=31536000
 
 
 ```html
-<link rel=preload as=font type=font/woff href=https://path-to-font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014 crossorigin>
+<link rel=preload as=font type=font/woff href="https://path-to-font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014" crossorigin>
 ```
 
 また、 AMP 対応ページでは `rel=preload` は許可されてないため指定するとエラーになったため、 AMP の方には指定していない。

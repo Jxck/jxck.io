@@ -177,7 +177,7 @@ Subresource Integrity (SRI) とは、 Subresouce が想定したものである�
 
 ```html
 <script src=https://code.jquery.com/jquery-3.3.1.js
-        integrity=sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=></script>
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="></script>
 ```
 
 WebAppSec はこの SRI に、単なるハッシュではなく、署名を取り入れる方法について議論している。
@@ -480,7 +480,7 @@ update は、新たなるコンテンツがある場合に、そのサイズを�
 両方存在する場合は、 update の size などを考慮して、コンテンツを継続利用するか更新するかを選べる。
 
 
-```http
+```
 {
   "signatures": [
     'label; '

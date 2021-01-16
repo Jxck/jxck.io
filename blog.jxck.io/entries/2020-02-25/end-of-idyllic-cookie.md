@@ -28,7 +28,7 @@ Web にある API の中でも Cookie はいくつかの点で特異な挙動を
 例えば、テーマカラーを設定で変えられるようなサービスがあった際に、その情報を Cookie で持つこともできる。
 
 
-```
+```http
 Set-Cookie: theme=dark
 Cookie: theme=dark
 ```
@@ -45,9 +45,9 @@ Cookie Store の中身はユーザが簡単に変更できるため、サーバ�
 多くのサイトで、初回のアクセス時にとりあえず付与されているだろう。
 
 
-```
+```http
 Cookie: SID=q1w2e3r4t5y
-Cookie: SID=q1w2e3r4t5y // 同じユーザであることがわかる
+Cookie: SID=q1w2e3r4t5y # 同じユーザであることがわかる
 ```
 
 
@@ -71,11 +71,13 @@ HTTPS Everywhere が必要なことも、 HttpOnly や Secure 属性が必要な
 a.example.com にアクセスした場合、一度 auth.example にリダイレクトすることで、ログインフォームでログインさせ Cookie を付与する。さらにワンタイムトークンなどをクエリストリングに付けてリダイレクトバックしてやれば、 a.example.com は auth.example に裏で確認することでログイン済みとみなすことができる。
 
 
-```
-307 Temporary Redirect HTTP/1.1 // auth.example からのレスポンス
-Set-Cookie: SID=q1w2e3r4t5 // auth.example でログイン済みであることを示す Cookie
+```http
+# auth.example からのレスポンス
+HTTP/1.1 307 Temporary Redirect
+# auth.example でログイン済みであることを示す Cookie
+Set-Cookie: SID=q1w2e3r4t5
+# このトークンを受け取った a.example.com は auth.example に裏で問い合わせる
 Location: http://a.example.com?token=q1w2e3r4t5y6u7i8o9p0
-// このトークンを受け取った a.example.com は auth.example に裏で問い合わせる
 ```
 
 次にユーザが b.example.jp にアクセスした際、 b.example.jp は auth.example にリダイレクトする。
@@ -99,7 +101,7 @@ a.example.com のアクセスを analytics.example というアナリティク�
 
 
 ```html
-</body>
+<body>
 メインコンテンツ
 <img width=1 height=1 src=https://analytics.example?id=q1w2e3r4>
 </body>
@@ -110,13 +112,15 @@ a.example.com のアクセスを analytics.example というアナリティク�
 リクエストが飛べば、それだけでかなりの情報がわかる。
 
 
-```
-// そもそも IP からおおよその場所がわかる
-GET /?id=q1w2e3r4 HTTP/1.1 // クエリに任意の情報をつければ送れる
-Referer: https://a.example.com // 見ていたサイトもわかる
-// どの言語圏の人かだいたいわかる
+```http
+# そもそも IP からおおよその場所がわかる
+# クエリに任意の情報をつければ送れる
+GET /?id=q1w2e3r4 HTTP/1.1
+# リファラで見ていたサイトもわかる
+Referer: https://a.example.com
+# どの言語圏の人かだいたいわかる
 Accept-Language: ja,en-US;q=0.9,en;q=0.8
-// 以下を見れば閲覧環境もそれなりに絞れる
+# 以下を見れば閲覧環境もそれなりに絞れる
 Accept: Image/webp,image/apng,image/*,*/*;q=0.8
 Accept-Encoding: gzip, deflate, br
 User-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.106 Safari/537.36
@@ -146,15 +150,16 @@ PC周辺機器
 このとき、 ad.example には、ページの持ち主が設定したページの情報がクエリによって付与され、レスポンスで ad.example の Cookie が付与される。
 
 
-```
-GET /?page=pc-accessory HTTP/1.1 // PC周辺機器のページを見ていたことが伝わる
+```http
+# PC周辺機器のページを見ていたことが伝わる
+GET /?page=pc-accessory HTTP/1.1
 Host: ad.example
 ```
 
 
-```
-200 OK HTTP/1.1
-Set-Cookie: SID=q1w2e3r4t5 // このCookieで追跡
+```http
+HTTP/1.1 200 OK
+Set-Cookie: SID=q1w2e3r4t5 # このCookieで追跡
 Content-Type: text/html
 Content-Length: 1024
 
@@ -178,15 +183,14 @@ SNS 的な何か
 このとき ad.example を取得するために送られるリクエストは以下のようになる。
 
 
-```
+```http
 GET / HTTP/1.1
 Host: ad.example
-Cookie: SID=q1w2e3r4t5 // さっきPC周辺機器を見ていた人だとわかる
+Cookie: SID=q1w2e3r4t5 # さっきPC周辺機器を見ていた人だとわかる
 ```
 
-
-```
-200 OK HTTP/1.1
+```http
+HTTP/1.1 200 OK
 Content-Type: text/html
 Content-Length: 1024
 

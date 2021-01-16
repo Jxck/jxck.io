@@ -55,7 +55,7 @@ Push されたリソースはブラウザのキャッシュに入り、 `/users`
 
 
 ```http
-200 OK
+HTTP/1.1 200 OK
 Content-Length: 100
 Content-Type: text/html
 Link: </style.css>; rel=preload
@@ -83,12 +83,12 @@ Link: </script.js>; rel=preload
 
 
 ```http
-103 Early Hints
+HTTP/1.1 103 Early Hints
 Link: </style.css>; rel=preload
 Link: </script.js>; rel=preload
 
 
-200 OK
+HTTP/1.1 200 OK
 Content-Length: 100
 Content-Type: text/html
 

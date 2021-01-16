@@ -60,7 +60,7 @@ Web における、キャッシュの指定には大きく二つの方式があ�
 
 
 ```html
-<script src=production.min.js?ver=1></script>
+<script src="production.min.js?ver=1"></script>
 ```
 
 これで `ver=1` を参照している間はキャッシュが使われる。
@@ -69,7 +69,7 @@ Web における、キャッシュの指定には大きく二つの方式があ�
 
 
 ```html
-<script src=production.min.js?ver=2></script>
+<script src="production.min.js?ver=2"></script>
 ```
 
 ブラウザのキャッシュは基本的に URL 単位で行われるため、この URL を毎回変えてやれば、古いキャッシュが使われるのを避けることができる。
