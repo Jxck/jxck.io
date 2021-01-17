@@ -140,13 +140,16 @@ test.print() // hello
 
 ファイルからコードを読むこともできる。以下ハイライトテスト用。
 
+
 ```
 no tag
 ```
 
+
 ```text
 hello world
 ```
+
 
 ```js:sample.js
 ```
@@ -255,6 +258,65 @@ hello world
 ```cpp:../2020-08-15/selection-logic.cpp
 ```
 
+
+```html:../2016-04-24/claim.html
+```
+
+
+```html:../2016-04-24/push.html
+```
+
+
+```js:../2016-04-24/backgroundsync-master.js
+```
+
+
+```js:../2016-04-24/backgroundsync-worker.js
+```
+
+
+```js:../2016-04-24/claim-master.js
+```
+
+
+```js:../2016-04-24/claim-worker.js
+```
+
+
+```js:../2016-04-24/controllerchange-master.js
+```
+
+
+```js:../2016-04-24/controllerchange-worker.js
+```
+
+
+```js:../2016-04-24/push-master.js
+```
+
+
+```js:../2016-04-24/push-worker.js
+```
+
+
+```js:../2016-04-24/push.js
+```
+
+
+```js:../2016-04-24/update-master.js
+```
+
+
+```js:../2016-04-24/update-worker.js
+```
+
+
+```js:../2016-04-24/updatefound-master.js
+```
+
+
+```js:../2016-04-24/updatefound-worker.js
+```
 
 <pre translate=no>
 <code>
