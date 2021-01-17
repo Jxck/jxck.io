@@ -50,7 +50,7 @@ localhost で開発し確認していても、実際にデプロイすると per
 127.0.0.1  localhost # default
 203.0.113.0  localhost # localhost を別のアドレスにする
 127.0.0.1  example.com # 別のドメインを loopback にする
-````
+```
 
 つまり localhost とは、単に多くの OS がデフォルトで hosts に書いているエントリというだけなので、 sudo が必要とはいえ、厳密には localhost の解決先が 127.0.0.1 である保証は実はない。そしてやったことは無いが、 hosts のエントリを消し DNS に localhost を解決させることも可能なはずだ。
 
