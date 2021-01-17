@@ -47,7 +47,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-01-27T08:00:00+08:00",
-    "dateModified": "2021-01-16T08:00:00+08:00",
+    "dateModified": "2021-01-17T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -819,7 +819,7 @@
 <main>
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2016-01-27>2016-01-27</time></dd></div>
-    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-01-16>2021-01-16</time></dd></div>
+    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-01-17>2021-01-17</time></dd></div>
     <div>
         <dt>tags</dt>
         <dd>
@@ -1752,6 +1752,266 @@ static unsigned SelectionLogic(Vector&lt;ImageCandidate*&gt;&amp; image_candidat
   }
   return i;
 }</code></pre>
+        <pre class=html><code translate="no">&lt;!DOCTYPE html&gt;
+&lt;meta charset=utf-8&gt;
+&lt;title&gt;Service Worker&lt;/title&gt;
+
+&lt;h1&gt;Service Worker&lt;/h1&gt;
+
+&lt;a href=test&gt;test&lt;/a&gt;
+
+&lt;input id=test type=button value=test&gt;
+
+&lt;script src=master.js&gt;&lt;/script&gt;</code></pre>
+        <pre class=html><code translate="no">&lt;!DOCTYPE html&gt;
+&lt;meta charset=utf-8&gt;
+&lt;title&gt;Service Worker Push Demo | labs.jxck.io&lt;/title&gt;
+
+&lt;link rel=manifest href=manifest.json&gt;
+
+&lt;script src=master.js&gt;&lt;/script&gt;
+
+&lt;h1&gt;Push DEMO&lt;/h1&gt;</code></pre>
+        <pre class=js><code translate="no">// master.js
+navigator.serviceWorker.register(&#39;worker.js&#39;).then((registration) =&gt; {
+  return navigator.serviceWorker.ready;
+}).then((registration) =&gt; {
+  // register sync
+  document.getElementById(&#39;button&#39;).addEventListener(&#39;click&#39;, () =&gt; {
+    registration.sync.register(&#39;sync-data&#39;).then(() =&gt; {
+      console.log(&#39;sync registered&#39;);
+    }).catch(console.error.bind(console));
+  });
+}).catch(console.error.bind(console));</code></pre>
+        <pre class=js><code translate="no">// worker.js
+self.addEventListener(&#39;install&#39;, (e) =&gt; {
+  console.info(&#39;install&#39;, e);
+  e.waitUntil(skipWaiting());
+});
+
+self.addEventListener(&#39;activate&#39;, (e) =&gt; {
+  console.info(&#39;activate&#39;, e);
+  e.waitUntil(self.clients.claim());
+});
+
+self.addEventListener(&#39;sync&#39;, (e) =&gt; {
+  console.log(&#39;sync&#39;, e);
+});</code></pre>
+        <pre class=js><code translate="no">console.log(&#39;master&#39;);
+
+document.getElementById(&#39;button&#39;).addEventListener(&#39;click&#39;, () =&gt; {
+  fetch(&#39;/test&#39;);
+});
+
+navigator.serviceWorker.register(&#39;worker.js&#39;).then((registration) =&gt; {
+  console.log(registration);
+});</code></pre>
+        <pre class=js><code translate="no">console.info(&#39;worker&#39;);
+
+self.addEventListener(&#39;activate&#39;, (e) =&gt; {
+  console.info(&#39;activate&#39;, e);
+  e.waitUntil(self.clients.claim());
+});
+
+self.addEventListener(&#39;fetch&#39;, (e) =&gt; {
+  let path = new URL(e.request.url).pathname;
+  console.log(path);
+  if (path === &#39;/test&#39;) {
+    e.respondWith(new Response(&#39;test&#39;));
+  }
+  return;
+});</code></pre>
+        <pre class=js><code translate="no">console.log(&#39;master&#39;);
+
+let controllerChange = new Promise((resolve, reject) =&gt; {
+  navigator.serviceWorker.addEventListener(&#39;controllerchange&#39;, () =&gt; {
+    resolve(navigator.serviceWorker.controller);
+  });
+});
+
+navigator.serviceWorker.register(&#39;worker.js&#39;).then((registration) =&gt; {
+  return navigator.serviceWorker.ready;
+}).then(() =&gt; {
+  if (navigator.serviceWorker.controller) {
+    return navigator.serviceWorker.controller;
+  }
+  return controllerChange;
+}).then((controller) =&gt; {
+  console.log(controller);
+  fetch(&#39;/test&#39;);
+});</code></pre>
+        <pre class=js><code translate="no">console.info(&#39;worker&#39;);
+
+self.addEventListener(&#39;activate&#39;, (e) =&gt; {
+  console.info(&#39;activate&#39;, e);
+  e.waitUntil(self.clients.claim());
+});
+
+self.addEventListener(&#39;fetch&#39;, (e) =&gt; {
+  let path = new URL(e.request.url).pathname;
+  console.info(path);
+  if (path === &#39;/test&#39;) {
+    e.respondWith(new Response(&#39;test&#39;));
+  }
+  return;
+});</code></pre>
+        <pre class=js><code translate="no">&#39;use strict&#39;;
+let p = console.log.bind(console);
+
+navigator.serviceWorker.register(&#39;worker.js&#39;).then((registration) =&gt; {
+  return navigator.serviceWorker.ready;
+}).then((registration) =&gt; {
+  return registration.pushManager.subscribe({ userVisibleOnly: true });
+}).then((subscription) =&gt; {
+  console.log(subscription);
+
+  const endpoint = subscription.endpoint;
+  const auth = subscription.getKey(&#39;auth&#39;);
+  const p256dh = subscription.getKey(&#39;p256dh&#39;);
+
+  const userAuth = btoa(String.fromCharCode(...new Uint8Array(auth)));
+  const userPublicKey = btoa(String.fromCharCode(...new Uint8Array(p256dh)));
+
+  // send to server
+  const body = {endpoint, userAuth, userPublicKey};
+
+  console.log(body);
+
+}).catch(console.error.bind(console));</code></pre>
+        <pre class=js><code translate="no">self.addEventListener(&#39;install&#39;, (e) =&gt; {
+  console.info(&#39;install&#39;, e);
+  e.waitUntil(self.skipWaiting());
+});
+
+self.addEventListener(&#39;activate&#39;, (e) =&gt; {
+  console.info(&#39;activate&#39;, e);
+  e.waitUntil(self.clients.claim());
+});
+
+self.addEventListener(&#39;push&#39;, (e) =&gt; {
+  console.info(&#39;push&#39;, e);
+  const message = e.data.text();
+
+  e.waitUntil(self.registration.showNotification(&#39;title&#39;, {
+    body: message,
+    icon: &#39;/service-worker/push/jxck.png&#39;,
+    tag:  &#39;push-demo&#39;,
+  }));
+});
+
+self.addEventListener(&#39;notificationclick&#39;, (e) =&gt; {
+  console.info(&#39;notificationclick&#39;, e.notification.tag);
+  e.notification.close();
+  const URL = &#39;https://labs.jxck.io/service-worker/push/&#39;;
+  e.waitUntil(clients.matchAll({
+      type: &#39;window&#39;
+    }).then((windowClients) =&gt; {
+      let target = windowClients.filter((client) =&gt; {
+        return client.url === URL;
+      });
+      console.log(target, target.length);
+      if (target.length &gt; 0) {
+        // タブが開いているので、最初のものにフォーカスする
+        return target[0].focus();
+      }
+      // タブが開いてないので開く
+      return clients.openWindow(URL);
+  }));
+});</code></pre>
+        <pre class=js><code translate="no">&#39;use strict&#39;;
+
+let push = require(&#39;web-push&#39;);
+
+const GCM_API_KEY = &#39;*******&#39;;
+push.setGCMAPIKey(GCM_API_KEY);
+
+const data = {
+  &quot;endpoint&quot;: &quot;********&quot;,
+  &quot;userAuth&quot;: &quot;********&quot;,
+  &quot;userPublicKey&quot;: &quot;******&quot;
+}
+
+push.sendNotification(data.endpoint, {
+  payload:       &#39;push test for service worker&#39;,
+  userAuth:      data.userAuth,
+  userPublicKey: data.userPublicKey,
+})
+.then((result) =&gt; {
+  console.log(result);
+})
+.catch((err) =&gt; {
+  console.error(&#39;fail&#39;, err);
+});</code></pre>
+        <pre class=js><code translate="no">console.log(&#39;master&#39;);
+
+navigator.serviceWorker.register(&#39;worker.js&#39;).then((registration) =&gt; {
+  registration.addEventListener(&#39;updatefound&#39;, (e) =&gt; {
+    console.info(&#39;update&#39;, e);
+  });
+
+  return navigator.serviceWorker.ready;
+}).then((registration) =&gt; {
+  setInterval(() =&gt; {
+    console.log(&#39;update()&#39;);
+    registration.update();
+  }, 1000);
+});</code></pre>
+        <pre class=js><code translate="no">console.info(&#39;worker&#39;);
+
+const ver = 1;
+
+self.addEventListener(&#39;install&#39;, (e) =&gt; {
+  console.info(` install${ver}`, e);
+  e.waitUntil(skipWaiting());
+});
+
+self.addEventListener(&#39;activate&#39;, (e) =&gt; {
+  console.info(` activate${ver}`, e);
+  e.waitUntil(self.clients.claim());
+});
+
+self.addEventListener(&#39;fetch&#39;, (e) =&gt; {
+  let path = new URL(e.request.url).pathname;
+  console.info(path);
+  if (path.indexOf(&#39;test&#39;) &gt; -1) {
+    e.respondWith(new Response(&#39;test&#39;));
+  }
+  return;
+});
+
+self.addEventListener(&#39;push&#39;, () =&gt; {
+  self.registration.update();
+});</code></pre>
+        <pre class=js><code translate="no">console.log(&#39;master&#39;);
+
+navigator.serviceWorker.register(&#39;worker.js&#39;).then((registration) =&gt; {
+  registration.addEventListener(&#39;updatefound&#39;, (e) =&gt; {
+    console.info(&#39;update&#39;, e);
+  });
+  return navigator.serviceWorker.ready;
+});</code></pre>
+        <pre class=js><code translate="no">console.info(&#39;worker&#39;);
+
+const ver = 1;
+
+self.addEventListener(&#39;install&#39;, (e) =&gt; {
+  console.info(` install${ver}`, e);
+  e.waitUntil(skipWaiting());
+});
+
+self.addEventListener(&#39;activate&#39;, (e) =&gt; {
+  console.info(` activate${ver}`, e);
+  e.waitUntil(self.clients.claim());
+});
+
+self.addEventListener(&#39;fetch&#39;, (e) =&gt; {
+  let path = new URL(e.request.url).pathname;
+  console.info(path);
+  if (path === &#39;/service-worker/updatefound/test&#39;) {
+    e.respondWith(new Response(&#39;test&#39;));
+  }
+  return;
+});</code></pre>
         <pre translate="no">
         <code>
         <span class="token atrule    ">.token.atrule     </span>
