@@ -3,8 +3,6 @@
   <meta charset=utf-8>
   <meta name=viewport content="width=device-width,initial-scale=1">
   <title>Trusted Types without Policy DEMO | labs.jxck.io</title>
-
-  <meta http-equiv=Content-Security-Policy content=trusted-types>
 </head>
 <body>
   <h1>Trusted Types without Policy DEMO</h1>
@@ -20,26 +18,26 @@
       console.error(err)
     }
 
-    try {
-      location.href = 'https://example.com';
-    } catch (err) {
-      // Uncaught TypeError: Failed to set the 'href' property on 'Location': This document requires `TrustedURL` assignment.
-      console.error(err)
-    }
+    //try {
+    //  location.href = 'https://example.com';
+    //} catch (err) {
+    //  // Uncaught TypeError: Failed to set the 'href' property on 'Location': This document requires `TrustedURL` assignment.
+    //  console.error(err)
+    //}
 
-    try {
-      const $script = document.createElement('script')
-      $script.src = 'https://example.com/script.js'
-    } catch (err) {
-      // Uncaught TypeError: Failed to set the 'src' property on 'HTMLScriptElement': This document requires `TrustedScriptURL` assignment.
-      console.error(err)
-    }
+    //try {
+    //  const $script = document.createElement('script')
+    //  $script.src = 'https://example.com/script.js'
+    //} catch (err) {
+    //  // Uncaught TypeError: Failed to set the 'src' property on 'HTMLScriptElement': This document requires `TrustedScriptURL` assignment.
+    //  console.error(err)
+    //}
 
-    try {
-      $('script').textContent = 'alert(0)'
-    } catch (err) {
-      // Uncaught TypeError: Failed to set the 'textContent' property on 'Node': This document requires `TrustedScript` assignment.
-      console.error(err)
-    }
+    //try {
+    //  $('script').textContent = 'alert(0)'
+    //} catch (err) {
+    //  // Uncaught TypeError: Failed to set the 'textContent' property on 'Node': This document requires `TrustedScript` assignment.
+    //  console.error(err)
+    //}
   </script>
 </body>

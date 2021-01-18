@@ -3,8 +3,6 @@
   <meta charset=utf-8>
   <meta name=viewport content="width=device-width,initial-scale=1">
   <title>Trusted Types with Policy DEMO | labs.jxck.io</title>
-
-  <meta http-equiv=Content-Security-Policy content="trusted-types https://labs.jxck.io">
 </head>
 <body>
   <h1>Trusted Types with Policy DEMO</h1>
@@ -15,7 +13,7 @@
     const $ = document.querySelector.bind(document);
 
     // Create application policy
-    TrustedTypes.createPolicy('https://labs.jxck.io', {
+    trustedTypes.createPolicy('https://labs.jxck.io', {
       createHTML: (unsafe) => {
         console.log('createHTML')
         return unsafe
@@ -55,7 +53,7 @@
       /* not define createScript */
     }, true);
 
-    const policy = TrustedTypes.getExposedPolicy('https://labs.jxck.io')
+    const policy = trustedTypes.getExposedPolicy('https://labs.jxck.io')
 
     $('div').innerHTML = policy.createHTML('<img src=/ onerror="alert(10)">')
 
