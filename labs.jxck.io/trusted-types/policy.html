@@ -22,7 +22,7 @@
           .replace(/'/g, "&#039;");
       },
       createScript: (unsafe, args) => {
-        console.log(unsafe, args)
+        console.log('createScript', unsafe, args)
         if (unsafe.startsWith('javascript:')) {
           throw new Error('javascript scheme not allowed')
         }
