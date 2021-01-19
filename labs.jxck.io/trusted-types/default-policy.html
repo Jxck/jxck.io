@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <title>Trusted Types without Policy DEMO | labs.jxck.io</title>
+</head>
+<body>
+  <h1>Trusted Types without Policy DEMO</h1>
+  <script>
+    try {
+      const $div = document.createElement('div')
+      $div.innerHTML = '<img src=/ onerror="alert(10)">'
+    } catch(err) {
+      console.error(err)
+    }
+
+    try {
+      const $script = document.createElement('script')
+      $script.src = 'https://example.com/script.js'
+    } catch(err) {
+      console.error(err)
+    }
+
+    try {
+      const $script = document.createElement('script')
+      $script.textContent = 'console.log(0)'
+      document.body.appendChild($script)
+    } catch(err) {
+      console.error(err)
+    }
+
+    try {
+      location.href = 'javascript:alert(0)'
+    } catch(err) {
+      console.error(err)
+    }
+  </script>
+</body>

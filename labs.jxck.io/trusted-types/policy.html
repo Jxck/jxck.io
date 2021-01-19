@@ -7,15 +7,13 @@
 <body>
   <h1>Trusted Types with Policy DEMO</h1>
 
-  <div></div>
-
   <script>
     const $ = document.querySelector.bind(document);
 
     // Create application policy
-    trustedTypes.createPolicy('https://labs.jxck.io', {
-      createHTML: (unsafe) => {
-        console.log('createHTML')
+    const policy = trustedTypes.createPolicy('demo', {
+      createHTML: (unsafe, args) => {
+        console.log('createHTML', unsafe, args)
         return unsafe
           .replace(/&/g, "&amp;")
           .replace(/</g, "&lt;")
@@ -23,18 +21,15 @@
           .replace(/"/g, "&quot;")
           .replace(/'/g, "&#039;");
       },
-      createURL: (unsafe) => {
-        console.log('createURL')
-        const unsafeurl = new URL(unsafe)
-        const currenturl = new URL(location.href)
-
-        if (unsafeurl.origin !== currenturl.origin) {
-          throw new Error('url of unexpected origin')
+      createScript: (unsafe, args) => {
+        console.log(unsafe, args)
+        if (unsafe.startsWith('javascript:')) {
+          throw new Error('javascript scheme not allowed')
         }
-        return unsafeurl
+        return unsafe
       },
-      createScriptURL: (unsafe) => {
-        console.log('createScriptURL')
+      createScriptURL: (unsafe, args) => {
+        console.log('createScriptURL', unsafe, args)
         const unsafeurl = new URL(unsafe)
         const currenturl = new URL(location.href)
 
@@ -50,18 +45,10 @@
 
         return unsafe
       },
-      /* not define createScript */
     }, true);
 
-    const policy = trustedTypes.getExposedPolicy('https://labs.jxck.io')
-
-    $('div').innerHTML = policy.createHTML('<img src=/ onerror="alert(10)">')
-
-    try {
-      location.href = policy.createURL('https://example.com');
-    } catch(err) {
-      console.error(err)
-    }
+    const $div = document.createElement('div')
+    $div.innerHTML = policy.createHTML('<img src=/ onerror="alert(10)">')
 
     try {
       const $script = document.createElement('script')
@@ -71,7 +58,15 @@
     }
 
     try {
-      $('script').textContent = 'alert(0)'
+      const $script = document.createElement('script')
+      $script.textContent = policy.createScript('console.log(0)')
+      document.body.appendChild($script)
+    } catch(err) {
+      console.error(err)
+    }
+
+    try {
+      location.href = policy.createScript('javascript:alert(0)')
     } catch(err) {
       console.error(err)
     }
