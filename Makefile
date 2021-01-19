@@ -229,10 +229,10 @@ cron:
 
 install:
 	# this will saved in ./bundle/config
-	# bundle config set path './.bundle/vendor' --local
+	bundle config set path './.bundle/vendor' --local
 	bundle install
 	npm install
-	sudo apt install pngquant optipng
+	#sudo apt install pngquant optipng
 
 update:
 	bundle update
