@@ -19,6 +19,7 @@ Proc.new do |env|
       "https://*.googlesyndication.com",
       "https://*.googletagservices.com",
       "https://*.ytimg.com",
+      "https://cdn.speedcurve.com",
       "'unsafe-inline'",
     ],
     "frame-src": [
