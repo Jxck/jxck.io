@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html amp lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href=https://blog.jxck.io/entries/2021-01-31/structured-field-values.html>
+
+  <link rel=icon             type =image/svg+xml sizes=any href=https://jxck.io/assets/img/jxck.svg>
+  <link rel=icon             type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="HTTP Header の値を構造化する Structued Field Values の仕様が RFC 直前を迎えている。- draft-ietf-httpbis-header-structure-19 - Structured Field Values for HTTP...">
+  <meta name=keywords            content="sfv,http,ietf">
+  <meta name=theme-color         content=#000000>
+
+  <meta name=twitter:card        content=summary>
+  <meta name=twitter:site        content=@jxck_>
+  <meta name=twitter:url         content=https://blog.jxck.io/entries/2021-01-31/structured-field-values.html>
+  <meta name=twitter:title       content="Structured Field Values による Header Field の構造化 | blog.jxck.io">
+  <meta name=twitter:description content="HTTP Header の値を構造化する Structued Field Values の仕様が RFC 直前を迎えている。- draft-ietf-httpbis-header-structure-19 - Structured Field Values for HTTP...">
+  <meta name=twitter:image       content=https://jxck.io/assets/img/jxck.png>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2021-01-31/structured-field-values.html>
+  <meta property=og:title        content="Structured Field Values による Header Field の構造化 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="HTTP Header の値を構造化する Structued Field Values の仕様が RFC 直前を迎えている。- draft-ietf-httpbis-header-structure-19 - Structured Field Values for HTTP...">
+  <meta property=og:image        content=https://jxck.io/assets/img/jxck.png>
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Structured Field Values による Header Field の構造化 | blog.jxck.io",
+    "image": [
+      "https://jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2021-01-31T08:00:00+08:00",
+    "dateModified": "2021-02-02T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.60x60.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": "HTTP Header の値を構造化する Structued Field Values の仕様が RFC 直前を迎えている。- draft-ietf-httpbis-header-structure-19 - Structured Field Values for HTTP..."
+  }
+  </script>
+
+  <title>Structured Field Values による Header Field の構造化 | blog.jxck.io</title>
+  <script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+  <script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+  <script async custom-element=amp-ad src=https://cdn.ampproject.org/v0/amp-ad-0.1.js></script>
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src=https://cdn.ampproject.org/v0.js></script>
+  <style amp-custom>
+    article section p {
+      margin-inline-start: 0;
+    }
+
+    article table {
+      margin-inline-start: 0;
+    }
+
+    article img {
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
+      border: 1px solid #ccc;
+      box-sizing: content-box;
+      background-color: #fff;
+    }
+
+    article ul,
+    article ol,
+    article dl {
+      margin-inline-start: var(--grid);
+      font-family: var(--mono-font);
+    }
+
+    article li {
+      margin-block-start:  calc(var(--grid)/2);
+      margin-block-end:    0;
+      margin-inline-start: calc(var(--grid)/2);
+      margin-inline-end:   0;
+    }
+
+    article dl {
+      display: grid;
+      grid-template-columns: minmax(auto, max-content);
+      grid-column-gap: var(--grid);
+    }
+
+    article dl div {
+      display: contents;
+    }
+
+    article dl dt {
+      grid-column: 1 / 2;
+    }
+    article dl dd {
+      grid-column: 2 / 2;
+    }
+
+    article blockquote {
+      font-family: var(--mono-font);
+    }
+
+    article blockquote p {
+      margin: 0;
+    }
+
+    @supports (line-height-step: 1px) {
+      article {
+        --grid-rhythm: 1.5em;
+        line-height: 1.5;
+        line-height-step: var(--grid-rhythm);
+      }
+
+      article h1,
+      article h2,
+      article h3,
+      article h4,
+      article h5,
+      article h6 {
+        display: inline-block;
+        width: 100%;
+        line-height-step: 0;
+        line-height: 1.2;
+        margin-block-end: 0;
+      }
+
+      article section {
+        /* grid for debug */
+        /* background-size: 100% var(--grid-rhythm); */
+        /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
+      }
+
+      article p {
+        margin-block-start: var(--grid-rhythm);
+        margin-block-end:   var(--grid-rhythm);
+      }
+
+      article pre,
+      article table {
+        line-height-step: 0;
+        line-height: normal;
+      }
+    }
+    /* normal regular */
+    @font-face {
+      font-family: "NotoSansCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src:
+        local("Noto Sans CJK JP Regular"),
+        url("/assets/font/NotoSansCJKjp-Regular-Jxck-20201215.woff2") format("woff2");
+    }
+    /* normal bold */
+    @font-face {
+      font-family: "NotoSansCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src:
+        local("Noto Sans CJK JP Bold"),
+        url("/assets/font/NotoSansCJKjp-Bold-Jxck-20201215.woff2") format("woff2");
+    }
+
+
+    /* mono regular */
+    @font-face {
+      font-family: "NotoSansMonoCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src:
+        local("Noto Sans Mono CJK JP Regular"),
+        url("/assets/font/NotoSansMonoCJKjp-Regular-Jxck-20201215.woff2") format("woff2");
+    }
+    /* mono bold */
+    @font-face {
+      font-family: "NotoSansMonoCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src:
+        local("Noto Sans Mono CJK JP Bold"),
+        url("/assets/font/NotoSansMonoCJKjp-Bold-Jxck-20201215.woff2") format("woff2");
+    }
+
+    /* Light Mode Theme */
+    :root {
+      --background-color: #fefefe;
+      --font-color: #222;
+      --header-color: #222;
+
+      --anchor-color: RoyalBlue;
+      --anchor-visited-color: Brown;
+
+      --code-block: #161b22;
+      --code-block-font: #ffffff;
+
+      --code-inline: #f1f5f9;
+      --code-inline-font: #292929;
+
+      --block-quote: #ddd;
+      --table-border: #222;
+
+      --regular-font: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", "Hiragino Sans", 'ヒラギノ角ゴ Pro W3', 'メイリオ', sans-serif;
+      --mono-font: Menlo, Consolas, Liberation, Mono, Courier, "NotoSansMonoCJKjp-Jxck";
+      --code-font: Menlo, Consolas, Liberation, Mono, Courier, "NotoSansMonoCJKjp-Jxck";
+
+      --icon-size: 30px;
+
+      --width: 80vw;
+      --max-width: 1024px;
+
+      --grid: 1rem;
+
+      --radius: 4px;
+    }
+
+
+    /* Mobile Theme */
+    @media screen and (max-device-width: 960px) {
+      :root {
+        --width: 94vw;
+      }
+
+      audio {
+        width: 100%;
+      }
+    }
+
+    /* Dark Mode Theme */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --header-color: #111;
+        --background-color: #222;
+        --font-color: #eee;
+
+        --anchor-color: CornflowerBlue;
+        --anchor-visited-color: RosyBrown;
+
+        --table-border: #eee;
+      }
+
+      article img {
+        filter: grayscale(50%);
+      }
+      article img[src*=svg] {
+        filter: invert(100%) grayscale(50%);
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--regular-font);
+      background-color: var(--background-color);
+      color: var(--font-color);
+      font-feature-settings: "palt";
+      margin: 0;
+      padding: 0;
+    }
+
+    code {
+      font-family: var(--mono-font);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    hr {
+      margin: 0;
+      padding: 0;
+    }
+
+    iframe {
+      display: block;
+      max-width: 100%;
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
+    }
+    dl.info {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info div {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+
+    dl.info dt::after {
+      content: ":";
+      padding-inline-end: calc(var(--grid)/2);
+    }
+
+    dl.info dd {
+      margin-block-start: 0;
+      margin-block-end: 0;
+      margin-inline-end: var(--grid);
+      margin-inline-start: 0;
+    }
+
+    dl.info dd i {
+      font-style: normal;
+      padding-inline-end: calc(var(--grid)/3);
+    }
+
+    details.info > summary {
+    }
+
+    details.info ul {
+      margin-block-start: 0;
+      margin-inline-start: var(--grid);
+    }
+
+    nav.tags {
+      display: inline;
+    }
+
+    .tags ul {
+      display: inline-flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    .tags li:before {
+      content: none;
+    }
+
+    .tags li:first-child:before{
+      content: "[ ";
+    }
+
+    .tags li:after {
+      content: ",";
+      padding-inline-end: 0.5rem;
+    }
+
+    .tags li:last-child:after {
+      content: " ]";
+    }
+    header {
+      z-index: 1;
+      position: sticky;
+      position: -webkit-sticky;
+      top: 0;
+      box-sizing: border-box;
+      margin: 0;
+      padding: calc(var(--grid)/2);
+      background-color: var(--header-color);
+    }
+
+    h2:target,
+    h3:target,
+    h4:target,
+    h5:target,
+    h6:target {
+      /* sticky header に合わせて link scroll をずらす */
+      margin-block-start:  calc((var(--icon-size) + var(--grid)) * -1);
+      padding-block-start: calc((var(--icon-size) + var(--grid)));
+    }
+
+    header nav {
+      width: var(--width);
+      max-width: var(--max-width);
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
+    }
+
+    header nav ul {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      margin: 0;
+    }
+
+    header nav li {
+      width:  var(--icon-size);
+      height: var(--icon-size);
+      padding: 0;
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: var(--grid);
+      margin-inline-end:   0;
+    }
+
+    header nav ul li a,
+    header nav ul li button {
+      display: block;
+      width: var(--icon-size);
+      height: var(--icon-size);
+      padding: 0;
+      margin: 0;
+      border: none;
+      background-color: var(--header-color);
+    }
+
+    header nav svg {
+      fill: var(--background-color);
+    }
+
+    header nav ul li::before {
+      content: none;
+    }
+
+    header nav ul li:first-child {
+      flex-grow: 1;
+      margin-inline-start: 0;
+    }
+
+    header nav .logo {
+      border: 1px solid #fff;
+      box-sizing: border-box;
+    }
+    h1 > a,
+    h2 > a,
+    h3 > a,
+    h4 > a,
+    h5 > a,
+    h6 > a {
+      color: var(--font-color);
+    }
+
+    h1 > a:visited,
+    h2 > a:visited,
+    h3 > a:visited,
+    h4 > a:visited,
+    h5 > a:visited,
+    h6 > a:visited {
+      color: var(--font-color);
+    }
+
+    h1 > a::before {
+      content: "# ";
+    }
+
+    h2 > a::before {
+      content: "## ";
+    }
+
+    h3 > a::before {
+      content: "### ";
+    }
+
+    h4 > a::before {
+      content: "#### ";
+    }
+
+    h1 > a:hover::before,
+    h2 > a:hover::before,
+    h3 > a:hover::before,
+    h4 > a:hover::before,
+    h5 > a:hover::before,
+    h6 > a:hover::before {
+      color: var(--anchor-visited-color);
+    }
+
+    em {
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    em::before,
+    em::after {
+      content: "*";
+    }
+
+    strong {
+      color: red;
+    }
+
+    strong::before,
+    strong::after {
+      content: "**";
+    }
+
+    ul li::before {
+      content: "- ";
+    }
+
+    ol {
+      counter-reset: list;
+    }
+
+    ol li::before {
+      counter-increment: list;
+      content: counter(list) ". ";
+    }
+
+    dl dt::after {
+      content: ":";
+    }
+
+    blockquote {
+      display: block;
+      border: solid 1px var(--block-quote);
+      border-radius: var(--radius);
+      padding: 1rem;
+      margin: 0;
+    }
+
+    blockquote p::before {
+      content: "> ";
+    }
+
+    code {
+      background-color: var(--code-inline);
+      color: var(--code-inline-font);
+      border-radius: var(--radius);
+      padding: 0 4px;
+    }
+
+    code::before,
+    code::after {
+      content: "`";
+    }
+    main {
+      display: block;
+      width: var(--width);
+      max-width: var(--max-width);
+      margin-block-start:  1em;
+      margin-block-end:    1em;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
+    }
+
+    a {
+      word-wrap: break-word;
+      text-decoration: none;
+      color: var(--anchor-color);
+    }
+
+    a:visited {
+      color: var(--anchor-visited-color);
+    }
+
+    ol,
+    ul {
+      list-style: none;
+      padding-inline-start: 0;
+    }
+
+    li {
+      word-break: break-all;
+      word-wrap: break-word;
+    }
+
+    dl dt {
+      font-weight: bold;
+      margin: 0;
+    }
+
+    dl dd {
+      margin: 0;
+    }
+    footer {
+      padding: var(--grid);
+    }
+
+    footer strong,
+    footer .copyright {
+      font-style: italic;
+      width: var(--width);
+      max-width: var(--max-width);
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
+    }
+
+    /* AdSense */
+    footer ins {
+      display: block;
+      width: var(--width);
+      max-width: var(--max-width);
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
+    }
+    pre {
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
+      border-radius: var(--radius);
+    }
+
+    pre code {
+      background-color: var(--code-block);
+      color: var(--code-block-font);
+    }
+
+    pre::before {
+      font-family: var(--code-font);
+      content: "```" attr(data-code) "\A";
+      font-size: 0.8em;
+    }
+
+    pre::after {
+      font-family: var(--code-font);
+      z-index: -1;
+      position: relative;
+      top: -1em;
+      content: "\A```";
+      font-size: 0.8em;
+    }
+
+    pre > code {
+      font-family: var(--code-font);
+      overflow: auto;
+      display: block;
+      padding: 0.5rem;
+      margin: 0;
+    }
+
+    pre > code::before,
+    pre > code::after {
+      content: none;
+    }
+
+
+    /** Prism.js Syntax Highlight **/
+    :root {
+      --code-yellow: #ffe557;
+      --code-aqua:   #03b5f1;
+      --code-blue:   #76acff;
+      --code-gray:   #96969c;
+      --code-green:  #1cd24d;
+      --code-orange: #ff8b24;
+      --code-pink:   #ff61bf;
+    }
+
+    /** style **/
+    .token.important,
+    .token.bold {
+      font-weight: bold;
+    }
+    .token.italic {
+      font-style: italic;
+    }
+
+    .token.entity {
+      cursor: help;
+    }
+
+    /** color **/
+    .token.command,
+    .token.parameter,
+    .token.operator,
+    .token.punctuation,
+    .token.output {
+      color: var(--code-block-font);
+    }
+
+    .token.attr-name,
+    .token.selector,
+    .token.shell-symbol {
+      color: var(--code-blue);
+    }
+
+    .token.delimiter.tag,
+    .token.variable {
+      color: var(--code-yellow);
+    }
+
+    .token.tag,
+    .token.function {
+      color: var(--code-green);
+    }
+
+    .token.key,
+    .token.attr-value,
+    .token.atom,
+    .token.property,
+    .token.keyword {
+      color: var(--code-pink);
+    }
+
+    .token.header-name.keyword,
+    .token.string,
+    .token.regex {
+      color: var(--code-blue);
+    }
+
+    .token.interpolation,
+    .token.constant,
+    .token.class-name {
+      color: var(--code-orange);
+    }
+
+    .token.response-status,
+    .token.boolean,
+    .token.number {
+      color: var(--code-aqua);
+    }
+
+    .token.rule,
+    .token.builtin {
+      color: var(--code-green);
+    }
+
+    .token.prolog,
+    .token.doctype,
+    .token.shebang,
+    .token.comment {
+      color: var(--code-gray);
+    }
+
+    .token.request-line {
+      color: var(--code-aqua);
+    }
+
+
+    /** language **/
+    .token.bash.language-bash,
+    .token.bash.language-bash > .token.function {
+      color: var(--code-block-font);
+    }
+    table {
+      font-family: var(--mono-font);
+      border-spacing: 0 0.4rem;
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
+    }
+
+    th {
+      border-inline-start: 2px solid var(--table-border);
+      border-block-end:    2px dashed var(--table-border);
+      padding-block-start:  0;
+      padding-block-end:    calc(var(--grid)/2);
+      padding-inline-start: var(--grid);
+      padding-inline-end:   var(--grid);
+    }
+
+    td {
+      padding-block-start:  calc(var(--grid)/2);
+      padding-block-end:    calc(var(--grid)/2);
+      padding-inline-start: var(--grid);
+      padding-inline-end:   var(--grid);
+      border-inline-start: 2px solid var(--table-border);
+    }
+
+    th:last-child,
+    td:last-child {
+      border-inline-end: 2px solid var(--table-border);
+    }
+
+    .align-center {
+      text-align: center;
+    }
+
+    /** TODO: fixup html class */
+    .align-left {
+      text-align: start;
+    }
+
+    /** TODO: fixup html class */
+    .align-right {
+      text-align: end;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://blog.jxck.io      ><amp-img width=30 height=30 src=/assets/img/blog.svg   alt="blog logo" class=logo    ></a>
+      <li><a href=/searches                 ><amp-img width=30 height=30 src=/assets/img/search.svg alt=search                    ></a>
+      <li><a href=.                         ><amp-img width=30 height=30 src=/assets/img/up.svg     alt="move to parent directory"></a>
+      <li><a href=/feeds/atom.xml           ><amp-img width=30 height=30 src=/assets/img/rss.svg    alt="rss feed"                ></a>
+      <li><a href=https://jxck.io/humans.txt><amp-img width=30 height=30 src=/assets/img/humans.svg alt="huamns.txt"              ></a>
+      <li><a href=https://jxck.io           ><amp-img width=30 height=30 src=/assets/img/jxck.svg   alt="jxck logo" class=logo    ></a>
+    </ul>
+  </nav>
+</header>
+<main>
+  <dl class=info>
+    <div><dt>created_at</dt><dd><time class=created_at datetime=2021-01-31>2021-01-31</time></dd></div>
+    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-02-02>2021-02-02</time></dd></div>
+    <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags/sfv.html">sfv</a>
+              <li><a href="/tags/http.html">http</a>
+              <li><a href="/tags/ietf.html">ietf</a>
+            </ul>
+          </nav>
+        </dd>
+    </div>
+    <div>
+      <dt>toc</dt>
+      <dd>
+        <details class=info>
+          <summary>headdings</summary>
+          <nav>
+            <ul>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#経緯>## 経緯</a>
+              <li><a href=#http-ヘッダの構造>### HTTP ヘッダの構造</a>
+              <li><a href=#headers-から-field-values-へ>### Headers から Field Values へ</a>
+              <li><a href=#json-encoding-for-field-values-jfv>### JSON Encoding for Field Values (JFV)</a>
+              <li><a href=#structured-field-values>## Structured Field Values</a>
+              <li><a href=#item>### Item</a>
+              <li><a href=#value>### Value</a>
+              <li><a href=#parameter>### Parameter</a>
+              <li><a href=#list>### List</a>
+              <li><a href=#dict>### Dict</a>
+              <li><a href=#inner-list>### Inner List</a>
+              <li><a href=#注意>### 注意</a>
+              <li><a href=#対応仕様>## 対応仕様</a>
+              <li><a href=#client-hints>### Client Hints</a>
+              <li><a href=#cache-status>### Cache-Status</a>
+              <li><a href=#digest-headers>### Digest Headers</a>
+              <li><a href=#proxy-status>### Proxy Status</a>
+              <li><a href=#http-variants>### HTTP Variants</a>
+              <li><a href=#http-signature>### HTTP Signature</a>
+              <li><a href=#実装>## 実装</a>
+              <li><a href=#実装による検証>### 実装による検証</a>
+              <li><a href=#テストケース>### テストケース</a>
+              <li><a href=#他-draft-の検証>### 他 Draft の検証</a>
+              <li><a href=#outro>## Outro</a>
+              <li><a href=#demo>## DEMO</a>
+              <li><a href=#resources>## Resources</a>
+            </ul>
+          </nav>
+        </details>
+      </dd>
+    </div>
+  </dl>
+  <article>
+    <h1><a href=/entries/2021-01-31/structured-field-values.html>Structured Field Values による Header Field の構造化</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p>HTTP Header の値を構造化する Structued Field Values の仕様が RFC 直前を迎えている。
+      <ul>
+        <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-header-structure-19">draft-ietf-httpbis-header-structure-19 - Structured Field Values for HTTP</a>
+      </ul>
+      <p>この仕様の詳細について、筆者の実装を交えて解説する。
+    </section>
+    <section>
+      <h2 id="経緯"><a href="#経緯">経緯</a></h2>
+      <section>
+        <h3 id="http-ヘッダの構造"><a href="#http-ヘッダの構造">HTTP ヘッダの構造</a></h3>
+        <p>HTTP のヘッダは以下のようになっている。
+        <pre class=http><code translate="no">Host: example.com
+Set-Cookie: session_id=deadbeef; SameSite=Strict; Path=/; Secure; HttpOnly
+Content-Security-Policy:content-security-policy: default-src &#39;self&#39; https://jxck.io; child-src https://blog.jxck.io; connect-src wss://ws.jxck.io;
+Permission-Policy: syncxhr &#39;none&#39; report-to=default-endpoint</code></pre>
+        <p>HTTP の仕様では、この Header Name と Header Value をパースする部分が標準化されている。
+        <p>しかし、 Header Value の中身をどうパースするかは、それぞれのヘッダの仕様、ここでいう Cookie, CSP, Permission-Policy によって決められており、そのフォーマットはバラバラだ。
+        <p>それぞれのヘッダごとに仕様を定義するのも、それぞれパーサを書くのもあまりヘルシーではない。特にブラウザは新しいパーサを実装するとセキュリティ的なリスクがあるため、積極的には入れにくい。
+        <p>そこで、この構造を共通化する作業として始まったのが Structured Headers だった。
+      </section>
+      <section>
+        <h3 id="headers-から-field-values-へ"><a href="#headers-から-field-values-へ">Headers から Field Values へ</a></h3>
+        <p>少し脱線するが、 httpbis では、別途並行して HTTP Semantics という仕様を策定している。(RFC 目前の仕様だ)
+        <ul>
+          <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-semantics-14">draft-ietf-httpbis-semantics-14 - HTTP Semantics</a>
+        </ul>
+        <p>HTTP 1.x 系のプロトコルは、パケットのフォーマットとセマンティクスが密結合なところがあったが、 HTTP2 や 3 ではバイナリフォーマットが使われるようになった。
+        <p>そこで、 HTTP プロトコルが備えていたセマンティクス(意味)と転送方法をきちんと分離し、セマンティクスだけを取り出したのが HTTP Semantics の仕様となる。
+        <p>このなかで、これまで慣習的に <em>HTTP Header</em> などとと呼ばれていたプロトコル上のメタデータを表現するパートも、 <em>Field</em> と呼ばれるように更新された。
+        <p>いわゆるヘッダは、必ずしも Header (Body より上)にあるとは限らず、 Streaming などでは Trailer(Body より下)にある場合もあることから、上部にあれば Header Field 、下部にあれば Trailer Field で、共通して Field になる。
+        <p>Field はさらに Field Name / Field Value から構成されるため、従来のように Header Name / Header Value という呼び方も更新されることになる。
+        <p>話を戻して今回 <em>Structured Header</em> として始まった改善は、この方針に則ると <em>Structured Field Values</em> になるため、途中からドラフトの名前も変わっている。
+        <p>古い情報では Structured Header で残っているものもあるだろうが、そういう経緯だ。
+      </section>
+      <section>
+        <h3 id="json-encoding-for-field-values-jfv"><a href="#json-encoding-for-field-values-jfv">JSON Encoding for Field Values (JFV)</a></h3>
+        <p>既存のパーサを流用するという点で、わかりやすい方法の一つが Field Value を JSON にしてしまうという方針だ。
+        <ul>
+          <li><a href="https://tools.ietf.org/html/draft-reschke-http-jfv-12">draft-reschke-http-jfv-12 - A JSON Encoding for HTTP Header Field Values</a>
+        </ul>
+        <p>これは、ドラフト段階からいくつかの新しい Field 定義によって使われている。例えば Network Error Logging や Reporting API だ。
+        <pre class=http><code translate="no">NEL: {&quot;report-to&quot;: &quot;default-endpoint&quot;, &quot;max-age&quot;: 2592000}
+Report-To: {
+             &quot;group&quot;: &quot;default-endpoint&quot;,
+             &quot;max-age&quot;: &quot;36000&quot;,
+             &quot;endpoints&quot;: [
+               {&quot;url&quot;: &quot;https://report-uri.example.com&quot;},
+               {&quot;url&quot;: &quot;https://report-uri2.example.com&quot;}
+             ]
+           }</code></pre>
+        <p>しかし、これでは問題があることが指摘され、代替として提案されたのが Structured Field Values だ。
+        <p>なぜ JSON じゃだめなのかは、 Structured Field Values の中に書かれている。
+        <ul>
+          <li><a href="https://httpwg.org/http-extensions/draft-ietf-httpbis-header-structure.html#why-not-json">Structured Field Values for HTTP # Why Not JSON ?</a>
+          <li><a href="https://triple-underscore.github.io/http-header-structure-ja.html#why-not-json">翻訳: なぜ JSON じゃない?</a>
+        </ul>
+        <p>詳細は原文にゆずるが、すでに汎用フォーマットとして使われている JSON をそのまま Field に応用はできないが、そこに制限を設けて注意喚起しても、実装も運用も追いつかないということだ。
+        <p>JSON っぽいフォーマットだと、どうしても既存の JSON 実装が流用されることが想定されるため、 Field の要件に準拠した新しいフォーマットを作り、新しい実装を作ることで要件を満たすことになった。
+      </section>
+    </section>
+    <section>
+      <h2 id="structured-field-values"><a href="#structured-field-values">Structured Field Values</a></h2>
+      <p>こうして、 Field の Value に Structured を持ち込むために提案された JSON ではない新しいフォーマットが Structured Field Values(以下 SFV) だ。
+      <p>SFV には大きく 3 つの構造が定義されており、それを利用して Field に必要な情報を構造化する。
+      <ul>
+        <li>Item: 単体の情報
+        <li>List: Item の配列
+        <li>Dict: Key-Value 形式で Value が Item
+      </ul>
+      <section>
+        <h3 id="item"><a href="#item">Item</a></h3>
+        <p>Item には Value と Parameter がある。
+      </section>
+      <section>
+        <h3 id="value"><a href="#value">Value</a></h3>
+        <p>サポートされているのは以下。
+        <table>
+          <thead>
+            <tr>
+              <th class=align-left>Type</th>
+              <th class=align-left>Value</th>
+              <th class=align-left>SFV</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class=align-left>Integer</td>
+              <td class=align-left>10</td>
+              <td class=align-left>10</td>
+            </tr>
+            <tr>
+              <td class=align-left>Decimal</td>
+              <td class=align-left>3.14</td>
+              <td class=align-left>3.14</td>
+            </tr>
+            <tr>
+              <td class=align-left>String</td>
+              <td class=align-left>&ldquo;hello&rdquo;</td>
+              <td class=align-left>&ldquo;hello&rdquo;</td>
+            </tr>
+            <tr>
+              <td class=align-left>Token</td>
+              <td class=align-left>x</td>
+              <td class=align-left>x</td>
+            </tr>
+            <tr>
+              <td class=align-left>Byte Seq</td>
+              <td class=align-left>[0x1,0x2,0x3]</td>
+              <td class=align-left>:AQID:</td>
+            </tr>
+            <tr>
+              <td class=align-left>Boolean</td>
+              <td class=align-left>true</td>
+              <td class=align-left>?1</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Token が文字列とは別に定義されているため、実装する言語によっては設計に悩む(JS 実装では Symbol を使っている)。
+      </section>
+      <section>
+        <h3 id="parameter"><a href="#parameter">Parameter</a></h3>
+        <p>Parameter は Item に付与できるメタデータだ。
+        <p>例えば以下は String の &ldquo;abc&rdquo; に対してパラメータを 2 つ付与している。
+        <pre class=js><code translate="no">// &quot;abc&quot;;a=1;b=2
+{
+ &quot;value&quot;: &quot;abc&quot;,
+ &quot;params&quot;: {
+  &quot;a&quot;: 1,
+  &quot;b&quot;: 2
+ }
+}</code></pre>
+        <p>データ表現には基本的に Key/Value/Metadata の 3 つがあることが望ましい。
+        <p>例えば XML/HTML のようなフォーマットは Attribute がメタデータを担うが、これを再現可能になる。
+        <pre class=html><code translate="no">&lt;p id=&quot;foo&quot; class=&quot;bar&quot;&gt;hello&lt;/p&gt;</code></pre>
+        <pre class=js><code translate="no">// p=&quot;hello world&quot;;id=&quot;foo&quot;;class=&quot;bar&quot;
+{
+ &quot;p&quot;: {
+  &quot;value&quot;: &quot;hello world&quot;,
+  &quot;params&quot;: {
+   &quot;id&quot;: &quot;foo&quot;,
+   &quot;class&quot;: &quot;bar&quot;
+  }
+ }
+}</code></pre>
+        <p>これは、 Key/Value だけしかない JSON では表現しにくかった部分でもある。
+      </section>
+      <section>
+        <h3 id="list"><a href="#list">List</a></h3>
+        <p>Item の配列。
+        <pre class=js><code translate="no">// 1,2,3,4
+[
+ { &quot;value&quot;: 1, &quot;params&quot;: {} },
+ { &quot;value&quot;: 2, &quot;params&quot;: {} },
+ { &quot;value&quot;: 3, &quot;params&quot;: {} },
+ { &quot;value&quot;: 4, &quot;params&quot;: {} }
+]</code></pre>
+      </section>
+      <section>
+        <h3 id="dict"><a href="#dict">Dict</a></h3>
+        <p>Key に紐付けた Item の辞書。
+        <p>Key は Item ほど柔軟ではなく、文字列で使える文字種も限られている。。
+        <pre class=js><code translate="no">// a=10,b=20,c=30
+{
+ &quot;a&quot;: { &quot;value&quot;: 10, &quot;params&quot;: {} },
+ &quot;b&quot;: { &quot;value&quot;: 20, &quot;params&quot;: {} },
+ &quot;c&quot;: { &quot;value&quot;: 30, &quot;params&quot;: {} }
+}</code></pre>
+      </section>
+      <section>
+        <h3 id="inner-list"><a href="#inner-list">Inner List</a></h3>
+        <p>List や Dict の値として配列を使いたい場合は、 Inner List を使う。(List そのものは Top Level でしか使えない)
+        <pre class=js><code translate="no">// a=&quot;x&quot;, d=(1 2)
+{
+ &quot;a&quot;: { &quot;value&quot;: &quot;x&quot;, &quot;params&quot;: {} },
+ &quot;d&quot;: {
+  &quot;value&quot;: [
+   { &quot;value&quot;: 1, &quot;params&quot;: {} },
+   { &quot;value&quot;: 2, &quot;params&quot;: {} }
+  ],
+  &quot;params&quot;: {}
+ }
+}
+
+// &quot;a&quot;, &quot;b&quot;, (1 2)
+[
+ { &quot;value&quot;: &quot;a&quot;, &quot;params&quot;: {} },
+ { &quot;value&quot;: &quot;b&quot;, &quot;params&quot;: {} },
+ {
+  &quot;value&quot;: [
+   { &quot;value&quot;: 1, &quot;params&quot;: {} },
+   { &quot;value&quot;: 2, &quot;params&quot;: {} }
+  ],
+  &quot;params&quot;: {}
+ }
+]</code></pre>
+      </section>
+      <section>
+        <h3 id="注意"><a href="#注意">注意</a></h3>
+        <p>その Field が Item/List/Dict どれでエンコードされているかは事前の知識が必要だ。
+        <p>例えば SFV を採用している Client Hints の <code translate="no">Accept-CH</code> は、 List でエンコードすると仕様側で決まっている。
+        <p>従って <code translate="no">Accept-CH</code> を受け取ったら <code translate="no">decodeList(value)</code> でパースするといった処理を書くことになるだろう。
+        <p>これは、 Field 値を入れればなんかしらデコードされて出てくる <code translate="no">decode()</code> を定義することはできないことを意味する。
+        <p>Dict としてパースしてエラーになったら List で、、などはできなくはないが、それは非効率だ。
+        <p>通常、そうした場合は最初の一文字を見た時点で Item/List/Dict どれなのかを判定できるようにするが、この仕様はそうはなってない。
+        <p>もし、自分が独自ヘッダで SFV を採用する際は、その点に注意する必要がある。
+        <p>同じヘッダ名なのに Dict/List がバラバラだとパースできないし、もし Item だったのを List に変えるなどすると breaking change になる。
+      </section>
+    </section>
+    <section>
+      <h2 id="対応仕様"><a href="#対応仕様">対応仕様</a></h2>
+      <p>すでに SFV を用いて策定されている仕様も複数ある。
+      <ul>
+        <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-client-hints-15">draft-ietf-httpbis-client-hints-15 - HTTP Client Hints</a>
+        <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-cache-header-07">draft-ietf-httpbis-cache-header-07 - The Cache-Status HTTP Response Header Field</a>
+        <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-digest-headers-04">draft-ietf-httpbis-digest-headers-04 - Digest Headers</a>
+        <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-proxy-status-02">draft-ietf-httpbis-proxy-status-02 - The Proxy-Status HTTP Response Header Field</a>
+        <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-variants-06">draft-ietf-httpbis-variants-06 - HTTP Representation Variants</a>
+        <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-message-signatures-01">draft-ietf-httpbis-message-signatures-01 - Signing HTTP Messages</a>
+      </ul>
+      <p>いずれもドラフトだが、実例の雰囲気がわかるよう参考として引用する。
+      <p>特に httpbis の新しい仕様は基本的に SFV を使っていくことになるため、今後触れる機会も増えるだろう。
+      <section>
+        <h3 id="client-hints"><a href="#client-hints">Client Hints</a></h3>
+        <pre class=js><code translate="no">// Accept-CH: Sec-CH-Example, Sec-CH-Example-2
+[
+ {
+  &quot;value&quot;: &quot;Symbol(Sec-CH-Example)&quot;,
+  &quot;params&quot;: {}
+ },
+ {
+  &quot;value&quot;: &quot;Symbol(Sec-CH-Example-2)&quot;,
+  &quot;params&quot;: {}
+ }
+]</code></pre>
+      </section>
+      <section>
+        <h3 id="cache-status"><a href="#cache-status">Cache-Status</a></h3>
+        <pre class=js><code translate="no">// Cache-Status: OriginCache; hit; ttl=1100; collapsed, &quot;CDN Company Here&quot;; hit; ttl=545
+[
+ {
+  &quot;value&quot;: &quot;Symbol(OriginCache)&quot;,
+  &quot;params&quot;: {
+   &quot;hit&quot;: true,
+   &quot;ttl&quot;: 1100,
+   &quot;collapsed&quot;: true
+  }
+ },
+ {
+  &quot;value&quot;: &quot;CDN Company Here&quot;,
+  &quot;params&quot;: {
+   &quot;hit&quot;: true,
+   &quot;ttl&quot;: 545
+  }
+ }
+]</code></pre>
+      </section>
+      <section>
+        <h3 id="digest-headers"><a href="#digest-headers">Digest Headers</a></h3>
+        <pre class=js><code translate="no">//  Digest: sha-256=4REjxQ4yrqUVicfSKYNO/cF9zNj5ANbzgDZt3/h3Qxo=, id-sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
+(TODO: パースできないので報告)
+
+// Want-Digest: sha-256;q=0.3, sha;q=1
+[
+ {
+  &quot;value&quot;: &quot;Symbol(sha-256)&quot;,
+  &quot;params&quot;: {
+   &quot;q&quot;: 0.3
+  }
+ },
+ {
+  &quot;value&quot;: &quot;Symbol(sha)&quot;,
+  &quot;params&quot;: {
+   &quot;q&quot;: 1
+  }
+ }
+]</code></pre>
+      </section>
+      <section>
+        <h3 id="proxy-status"><a href="#proxy-status">Proxy Status</a></h3>
+        <pre class=js><code translate="no">// Proxy-Status: ExampleProxy; error=&quot;http_protocol_error&quot;; details=&quot;Malformed response header - space before colon&quot;
+[
+ {
+  &quot;value&quot;: &quot;Symbol(ExampleProxy)&quot;,
+  &quot;params&quot;: {
+   &quot;error&quot;: &quot;http_protocol_error&quot;,
+   &quot;details&quot;: &quot;Malformed response header - space before colon&quot;
+  }
+ }
+]</code></pre>
+      </section>
+      <section>
+        <h3 id="http-variants"><a href="#http-variants">HTTP Variants</a></h3>
+        <pre class=js><code translate="no">// Variants: Accept-Encoding=(gzip br), Accept-Language=(en fr)
+// (TODO: パースできないので報告)</code></pre>
+      </section>
+      <section>
+        <h3 id="http-signature"><a href="#http-signature">HTTP Signature</a></h3>
+        <pre class=js><code translate="no">// Signature-Input: reverse_proxy_sig=(*created, host, date, signature:sig1, x-forwarded-for); keyId=&quot;test-key-a&quot;; alg=hs2019; created=1402170695; expires=1402170695.25
+// (TODO: パースできないので報告)
+
+// Signature: reverse_proxy_sig=:ON3HsnvuoTlX41xfcGWaOEVo1M3bJDRBOp0Pc/OjAOWKQn0VMY0SvMMWXS7xG+xYVa152rRVAo6nMV7FS3rv0rR5MzXL8FCQ2A35DCENLOhEgj/S1IstEAEFsKmE9Bs7McBsCtJwQ3hMqdtFenkDffSoHOZOInkTYGafkoy78l1VZvmb3Y4yf7McJwAvk2R3gwKRWiiRCw448Nt7JTWzhvEwbh7bN2swc/v3NJbg/wJYyYVbelZx4IywuZnYFxgPl/qvqbAjeEVvaLKLgSMr11y+uzxCHoMnDUnTYhMrmOT4O8lBLfRFOcoJPKBdoKg9U0a96U2mUug1bFOozEVYFg==:
+{
+ &quot;reverse_proxy_sig&quot;: {
+  &quot;value&quot;: Uint8Array[],
+  &quot;params&quot;: {}
+ }
+ }</code></pre>
+      </section>
+    </section>
+    <section>
+      <h2 id="実装"><a href="#実装">実装</a></h2>
+      <p>実装は以下に公開している。
+      <ul>
+        <li><a href="https://github.com/jxck/structured-field-values">https://github.com/jxck/structured-field-values</a>
+      </ul>
+      <p>npm にも上げており、 ES Module で書いてあるため Browser でもそのまま使える。
+      <ul>
+        <li><a href="https://www.npmjs.com/package/structured-field-values">https://www.npmjs.com/package/structured-field-values</a>
+      </ul>
+      <section>
+        <h3 id="実装による検証"><a href="#実装による検証">実装による検証</a></h3>
+        <p>この実装は、 SFV の実装を開発するというだけでなく、実装を開発することで仕様の不備を見つけることを目的として始めた。
+        <p>そのため、パフォーマンスやメンテナンスなどを考えず、仕様にある汎用的なアルゴリズムを変数名やループ処理含めて極力そのまま実装している。
+        <ul>
+          <li><a href="https://github.com/Jxck/structured-field-values/blob/54cfea375be670cfcb873b6c0c4c4fc57e642bc9/index.js">Implementation based on spec Algorithm</a>
+        </ul>
+        <p>また、本来 BNF は参考なので、仕様についても機械的な検証などはあまり行われてないことがほとんどだが、それを検証する意味で再起降下パーサを手書きした実装も行った。
+        <ul>
+          <li><a href="https://github.com/Jxck/structured-field-values/blob/54cfea375be670cfcb873b6c0c4c4fc57e642bc9/bnf.js">Implementation based on spec ABNF</a>
+        </ul>
+        <p>結果、 RFC Editor Queue に間に合わず取り込まれなかったものもあるが、ドキュメントの言い回しや BNF の不備などを報告している。
+        <p>RFC が出れば一旦の役目を終えるため、使い勝手やパフォーマンスの改善を行ってから 1.0.0 を公開する予定だ。
+      </section>
+      <section>
+        <h3 id="テストケース"><a href="#テストケース">テストケース</a></h3>
+        <p>最近の IETF の良い傾向として、こうした提案に付随してテストケースが公開されている。
+        <ul>
+          <li><a href="https://github.com/httpwg/structured-field-tests">httpwg/structured-field-tests: Tests for HTTP Structured Field Values</a>
+        </ul>
+        <p>実装する場合はこれを流すと互換性が上がるため、筆者もすべてパスしている。
+      </section>
+      <section>
+        <h3 id="他-draft-の検証"><a href="#他-draft-の検証">他 Draft の検証</a></h3>
+        <p>本来は SFV のドラフトの検証用に書いたものだが、ある日 <a href="https://github.com/Jxck/structured-field-values/issues/1">Issue</a> で SFV を採用している別ドラフトの Example が SFV として正しいか相談を受けた。
+        <p>前述のサンプルにもあるように、まだ SFV の RFC は出ておらず実装も少ないため、他のドラフト作成者も雰囲気で SFV の Example を書いている場面が多く、パースできないサンプルも多く見つかっている。
+        <p>後述する DEMO などを使えば簡単に検証できるので、今後はこの実装を使ってそうした Example の修正などをサポートするのに使っていきたい。
+      </section>
+    </section>
+    <section>
+      <h2 id="outro"><a href="#outro">Outro</a></h2>
+      <p>Structured Field Values の実装を行い仕様の検証を行った。
+      <p>この仕様は今後新しく提案される仕様で採用されていく可能性が高いため、今後利用することも多くあるだろう。
+      <p>また、比較的簡単な仕様なため、実装のない言語があったら実装してみると良いだろう。
+    </section>
+    <section>
+      <h2 id="demo"><a href="#demo">DEMO</a></h2>
+      <p>動作するデモを以下に用意した。
+      <ul>
+        <li><a href="https://jxck.github.io/structured-field-values/demo.html">https://jxck.github.io/structured-field-values/demo.html</a>
+      </ul>
+    </section>
+    <section>
+      <h2 id="resources"><a href="#resources">Resources</a></h2>
+      <ul>
+        <li>
+          Spec
+          <ul>
+            <li>
+              draft-ietf-httpbis-header-structure-19 - Structured Field Values for HTTP
+              <ul>
+                <li>https://tools.ietf.org/html/draft-ietf-httpbis-header-structure-19
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>Explainer
+        <li>Requirements Doc
+        <li>Mozilla Standard Position
+        <li>Webkit Position
+        <li>TAG Design Review
+        <li>Intents
+        <li>Chrome Platform Status
+        <li>WPT (Web Platform Test)
+        <li>
+          DEMO
+          <ul>
+            <li>https://jxck.github.io/structured-field-values/demo.html
+          </ul>
+        </li>
+        <li>Blog
+        <li>
+          Presentation
+          <ul>
+            <li>https://speakerdeck.com/jxck/abnf-for-protocol-parser-at-ietf
+          </ul>
+        </li>
+        <li>Issues
+        <li>Other
+      </ul>
+    </section>
+  </article>
+</main>
+<hr>
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small> See <small><a href=/policies/site.html>Site Policy</a> and <a href=/policies/privacy.html>Privacy Policy</a>.</small></p>
+  <amp-ad width=100vw height=320 type=adsense data-ad-client=ca-pub-2902784829138215 data-ad-slot=9735419796 data-auto-format=rspv data-full-width><div overflow></div></amp-ad>
+</footer>
+</body>
+</html>
+<amp-analytics type=googleanalytics id=analytics1>
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
