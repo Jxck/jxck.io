@@ -443,7 +443,7 @@ Structured Field Values の実装を行い仕様の検証を行った。
 
 - Spec
   - draft-ietf-httpbis-header-structure-19 - Structured Field Values for HTTP
-    - https://tools.ietf.org/html/draft-ietf-httpbis-header-structure-19
+    - <https://tools.ietf.org/html/draft-ietf-httpbis-header-structure-19>
 - Explainer
 - Requirements Doc
 - Mozilla Standard Position
@@ -453,9 +453,9 @@ Structured Field Values の実装を行い仕様の検証を行った。
 - Chrome Platform Status
 - WPT (Web Platform Test)
 - DEMO
-  - https://jxck.github.io/structured-field-values/demo.html
+  - <https://jxck.github.io/structured-field-values/demo.html>
 - Blog
 - Presentation
-  - https://speakerdeck.com/jxck/abnf-for-protocol-parser-at-ietf
+  - <https://speakerdeck.com/jxck/abnf-for-protocol-parser-at-ietf>
 - Issues
 - Other
