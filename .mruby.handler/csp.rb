@@ -20,7 +20,9 @@ Proc.new do |env|
       "https://*.googletagservices.com",
       "https://*.ytimg.com",
       "https://cdn.speedcurve.com",
+      "https://lux.speedcurve.com",
       "'unsafe-inline'",
+      "'unsafe-eval'",
     ],
     "frame-src": [
       "https://www.youtube.com",
@@ -34,6 +36,7 @@ Proc.new do |env|
       "https://www.google-analytics.com",
       "https://*.googlesyndication.com",
       "https://*.doubleclick.net",
+      "https://adservice.google.com",
     ],
     "report-uri": [
       "#{REPORT_URI}",
