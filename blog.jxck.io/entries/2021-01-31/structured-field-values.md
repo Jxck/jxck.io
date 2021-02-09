@@ -3,11 +3,16 @@
 
 ## Intro
 
-HTTP Header の値を構造化する Structued Field Values の仕様が RFC 直前を迎えている。
+HTTP Header の値を構造化する Structued Field Values の仕様が RFC になった。
 
-- [draft-ietf-httpbis-header-structure-19 - Structured Field Values for HTTP](https://tools.ietf.org/html/draft-ietf-httpbis-header-structure-19)
+- [RFC 8941](https://www.rfc-editor.org/rfc/rfc8941.html)
 
 この仕様の詳細について、筆者の実装を交えて解説する。
+
+
+## Update
+
+- 2021-02-09: SFV が [RFC 8941](https://www.rfc-editor.org/rfc/rfc8941.html) として公開されたたドラフト 19 を RFC に置き換えて編集
 
 
 ## 経緯
@@ -80,7 +85,7 @@ Report-To: {
 
 なぜ JSON じゃだめなのかは、 Structured Field Values の中に書かれている。
 
-- [Structured Field Values for HTTP # Why Not JSON ?](https://httpwg.org/http-extensions/draft-ietf-httpbis-header-structure.html#why-not-json)
+- [Structured Field Values for HTTP # Why Not JSON ?](https://www.rfc-editor.org/rfc/rfc8941.html#name-why-not-json)
 - [翻訳: なぜ JSON じゃない?](https://triple-underscore.github.io/http-header-structure-ja.html#why-not-json)
 
 詳細は原文にゆずるが、すでに汎用フォーマットとして使われている JSON をそのまま Field に応用はできないが、そこに制限を設けて注意喚起しても、実装も運用も追いつかないということだ。
@@ -442,8 +447,8 @@ Structured Field Values の実装を行い仕様の検証を行った。
 ## Resources
 
 - Spec
-  - draft-ietf-httpbis-header-structure-19 - Structured Field Values for HTTP
-    - <https://tools.ietf.org/html/draft-ietf-httpbis-header-structure-19>
+  - RFC 8941: Structured Field Values for HTTP
+    - https://www.rfc-editor.org/rfc/rfc8941.html
 - Explainer
 - Requirements Doc
 - Mozilla Standard Position
