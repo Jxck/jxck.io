@@ -19,7 +19,7 @@ RFC7234 では、新しいステータスコードを策定する際に、キャ
 > however, status codes that are defined as being cacheable are allowed to be cached
 > without explicit freshness information.
 > Likewise, the definition of a status code can place constraints upon cache behavior...
-> --- https://httpwg.org/specs/rfc7231.html#rfc.section.8.2.2
+> <cite>--- <https://httpwg.org/specs/rfc7231.html#rfc.section.8.2.2></cite>
 
 つまり、その新しいステータスコードは、 `max-age` などを伴えばその指定通りキャッシュが可能であり、さらにそうした明示的なコントロールがない場合に Heuristic Cache 可能かどうかなどを定義できるのだ。
 
@@ -28,13 +28,11 @@ RFC7234 では、新しいステータスコードを策定する際に、キャ
 > A cache MUST NOT store a response to any request, unless:
 > The request method is understood by the cache and defined as being cacheable, and
 > the response status code is understood by the cache, and...
-> --- https://httpwg.org/specs/rfc7234.html#response.cacheability
+> <cite>--- <https://httpwg.org/specs/rfc7234.html#response.cacheability></cite>
 
 問題は、 3 行目にある「キャッシュを行う実装は、ステータスコードを理解する必要がある」という条件だ。
 
-新しいステータスコードが標準化された場合に、そのステータスコードが未実装な場合はキャッシュできないように読めてしまう。
-
-実装者は、サポートしているステータスコードをリストとして埋め込み、突き合わせてキャッシュの制御を行うことになるだろう。
+新しいステータスコードが標準化された場合に、そのステータスコードが未実装な場合はキャッシュできないように読めてしまう。実装者は、サポートしているステータスコードをリストとして埋め込み、突き合わせてキャッシュの制御を行うことになるだろう。
 
 この点は、先程の要件と矛盾が有り、例えば `max-age` を伴う新しいステータスコードのレスポンスを受信した実装が、そのステータスコードを実装してない場合に、どうすべきかということになる。
 
@@ -84,11 +82,13 @@ Cache-Control: max-age=3600, must-understand, no-store
 
 `must-understand` の追加によって、改訂ドラフトで前述の仕様は以下のようになった。
 
-> 3. Storing Responses in Caches
+> 3 Storing Responses in Caches
 > A cache MUST NOT store a response to a request unless:
-> - the request method is understood by the cache;
-> - the response status code is final (see Section 15 of [Semantics]);
-> - if the response status code is 206 or 304, or the "must-understand" cache directive (see Section 5.2.2.2) is present: the cache understands the response status code;
+> the request method is understood by the cache;
+> the response status code is final (see Section 15 of [Semantics]);
+> if the response status code is 206 or 304, or the "must-understand" cache directive (see Section 5.2.2.2) is present: the cache understands the response status code;
+>   ...
+> --- <cite><https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html#section-3></cite>
 
 ステータスコードに `final` という概念が入ったのはまた別の話として解説したいが、問題は 3 つ目の条件だ。
 
