@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html amp lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href=https://blog.jxck.io/entries/2021-02-12/cache-control-must-understand.html>
+
+  <link rel=icon             type =image/svg+xml sizes=any href=https://jxck.io/assets/img/jxck.svg>
+  <link rel=icon             type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://jxck.io/assets/img/jxck.png>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="IETF が策定する HTTP の仕様が更新されようとしている。ここには、 Cache の仕様も含まれており、そのなかで `must-understand` という `Cache-Control` のディレクティブが追加されている。このディレクティブが追加された経緯と仕様に...">
+  <meta name=keywords            content="cache,http,ietf">
+  <meta name=theme-color         content=#000000>
+
+  <meta name=twitter:card        content=summary>
+  <meta name=twitter:site        content=@jxck_>
+  <meta name=twitter:url         content=https://blog.jxck.io/entries/2021-02-12/cache-control-must-understand.html>
+  <meta name=twitter:title       content="Cache-Control: must-understand ディレクティブとは何か | blog.jxck.io">
+  <meta name=twitter:description content="IETF が策定する HTTP の仕様が更新されようとしている。ここには、 Cache の仕様も含まれており、そのなかで `must-understand` という `Cache-Control` のディレクティブが追加されている。このディレクティブが追加された経緯と仕様に...">
+  <meta name=twitter:image       content=https://jxck.io/assets/img/jxck.png>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2021-02-12/cache-control-must-understand.html>
+  <meta property=og:title        content="Cache-Control: must-understand ディレクティブとは何か | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="IETF が策定する HTTP の仕様が更新されようとしている。ここには、 Cache の仕様も含まれており、そのなかで `must-understand` という `Cache-Control` のディレクティブが追加されている。このディレクティブが追加された経緯と仕様に...">
+  <meta property=og:image        content=https://jxck.io/assets/img/jxck.png>
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Cache-Control: must-understand ディレクティブとは何か | blog.jxck.io",
+    "image": [
+      "https://jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2021-02-12T08:00:00+08:00",
+    "dateModified": "2021-02-12T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.60x60.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": "IETF が策定する HTTP の仕様が更新されようとしている。ここには、 Cache の仕様も含まれており、そのなかで `must-understand` という `Cache-Control` のディレクティブが追加されている。このディレクティブが追加された経緯と仕様に..."
+  }
+  </script>
+
+  <title>Cache-Control: must-understand ディレクティブとは何か | blog.jxck.io</title>
+  <script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+  <script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+  <script async custom-element=amp-ad src=https://cdn.ampproject.org/v0/amp-ad-0.1.js></script>
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src=https://cdn.ampproject.org/v0.js></script>
+  <style amp-custom>
+    article section p {
+      margin-inline-start: 0;
+    }
+
+    article table {
+      margin-inline-start: 0;
+    }
+
+    article img {
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
+      border: 1px solid #ccc;
+      box-sizing: content-box;
+      background-color: #fff;
+    }
+
+    article ul,
+    article ol,
+    article dl {
+      margin-inline-start: var(--grid);
+      font-family: var(--mono-font);
+    }
+
+    article li {
+      margin-block-start:  calc(var(--grid)/2);
+      margin-block-end:    0;
+      margin-inline-start: calc(var(--grid)/2);
+      margin-inline-end:   0;
+    }
+
+    article dl {
+      display: grid;
+      grid-template-columns: minmax(auto, max-content);
+      grid-column-gap: var(--grid);
+    }
+
+    article dl div {
+      display: contents;
+    }
+
+    article dl dt {
+      grid-column: 1 / 2;
+    }
+    article dl dd {
+      grid-column: 2 / 2;
+    }
+
+    article blockquote {
+      font-family: var(--mono-font);
+    }
+
+    article blockquote p {
+      margin: 0;
+    }
+
+    @supports (line-height-step: 1px) {
+      article {
+        --grid-rhythm: 1.5em;
+        line-height: 1.5;
+        line-height-step: var(--grid-rhythm);
+      }
+
+      article h1,
+      article h2,
+      article h3,
+      article h4,
+      article h5,
+      article h6 {
+        display: inline-block;
+        width: 100%;
+        line-height-step: 0;
+        line-height: 1.2;
+        margin-block-end: 0;
+      }
+
+      article section {
+        /* grid for debug */
+        /* background-size: 100% var(--grid-rhythm); */
+        /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
+      }
+
+      article p {
+        margin-block-start: var(--grid-rhythm);
+        margin-block-end:   var(--grid-rhythm);
+      }
+
+      article pre,
+      article table {
+        line-height-step: 0;
+        line-height: normal;
+      }
+    }
+    /* normal regular */
+    @font-face {
+      font-family: "NotoSansCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src:
+        local("Noto Sans CJK JP Regular"),
+        url("/assets/font/NotoSansCJKjp-Regular-Jxck-20201215.woff2") format("woff2");
+    }
+    /* normal bold */
+    @font-face {
+      font-family: "NotoSansCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src:
+        local("Noto Sans CJK JP Bold"),
+        url("/assets/font/NotoSansCJKjp-Bold-Jxck-20201215.woff2") format("woff2");
+    }
+
+
+    /* mono regular */
+    @font-face {
+      font-family: "NotoSansMonoCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src:
+        local("Noto Sans Mono CJK JP Regular"),
+        url("/assets/font/NotoSansMonoCJKjp-Regular-Jxck-20201215.woff2") format("woff2");
+    }
+    /* mono bold */
+    @font-face {
+      font-family: "NotoSansMonoCJKjp-Jxck";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src:
+        local("Noto Sans Mono CJK JP Bold"),
+        url("/assets/font/NotoSansMonoCJKjp-Bold-Jxck-20201215.woff2") format("woff2");
+    }
+
+    /* Light Mode Theme */
+    :root {
+      --background-color: #fefefe;
+      --font-color: #222;
+      --header-color: #222;
+
+      --anchor-color: RoyalBlue;
+      --anchor-visited-color: Brown;
+
+      --code-block: #161b22;
+      --code-block-font: #ffffff;
+
+      --code-inline: #f1f5f9;
+      --code-inline-font: #292929;
+
+      --block-quote: #ddd;
+      --table-border: #222;
+
+      --regular-font: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", "Hiragino Sans", 'ヒラギノ角ゴ Pro W3', 'メイリオ', sans-serif;
+      --mono-font: Menlo, Consolas, Liberation, Mono, Courier, "NotoSansMonoCJKjp-Jxck";
+      --code-font: Menlo, Consolas, Liberation, Mono, Courier, "NotoSansMonoCJKjp-Jxck";
+
+      --icon-size: 30px;
+
+      --width: 80vw;
+      --max-width: 1024px;
+
+      --grid: 1rem;
+
+      --radius: 4px;
+    }
+
+
+    /* Mobile Theme */
+    @media screen and (max-device-width: 960px) {
+      :root {
+        --width: 94vw;
+      }
+
+      audio {
+        width: 100%;
+      }
+    }
+
+    /* Dark Mode Theme */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --header-color: #111;
+        --background-color: #222;
+        --font-color: #eee;
+
+        --anchor-color: CornflowerBlue;
+        --anchor-visited-color: RosyBrown;
+
+        --table-border: #eee;
+      }
+
+      article img {
+        filter: grayscale(50%);
+      }
+      article img[src*=svg] {
+        filter: invert(100%) grayscale(50%);
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--regular-font);
+      background-color: var(--background-color);
+      color: var(--font-color);
+      font-feature-settings: "palt";
+      margin: 0;
+      padding: 0;
+    }
+
+    code {
+      font-family: var(--mono-font);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    hr {
+      margin: 0;
+      padding: 0;
+    }
+
+    iframe {
+      display: block;
+      max-width: 100%;
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
+    }
+    dl.info {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info div {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+
+    dl.info dt::after {
+      content: ":";
+      padding-inline-end: calc(var(--grid)/2);
+    }
+
+    dl.info dd {
+      margin-block-start: 0;
+      margin-block-end: 0;
+      margin-inline-end: var(--grid);
+      margin-inline-start: 0;
+    }
+
+    dl.info dd i {
+      font-style: normal;
+      padding-inline-end: calc(var(--grid)/3);
+    }
+
+    details.info > summary {
+    }
+
+    details.info ul {
+      margin-block-start: 0;
+      margin-inline-start: var(--grid);
+    }
+
+    nav.tags {
+      display: inline;
+    }
+
+    .tags ul {
+      display: inline-flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    .tags li:before {
+      content: none;
+    }
+
+    .tags li:first-child:before{
+      content: "[ ";
+    }
+
+    .tags li:after {
+      content: ",";
+      padding-inline-end: 0.5rem;
+    }
+
+    .tags li:last-child:after {
+      content: " ]";
+    }
+    header {
+      z-index: 1;
+      position: sticky;
+      position: -webkit-sticky;
+      top: 0;
+      box-sizing: border-box;
+      margin: 0;
+      padding: calc(var(--grid)/2);
+      background-color: var(--header-color);
+    }
+
+    h2:target,
+    h3:target,
+    h4:target,
+    h5:target,
+    h6:target {
+      /* sticky header に合わせて link scroll をずらす */
+      margin-block-start:  calc((var(--icon-size) + var(--grid)) * -1);
+      padding-block-start: calc((var(--icon-size) + var(--grid)));
+    }
+
+    header nav {
+      width: var(--width);
+      max-width: var(--max-width);
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
+    }
+
+    header nav ul {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      margin: 0;
+    }
+
+    header nav li {
+      width:  var(--icon-size);
+      height: var(--icon-size);
+      padding: 0;
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: var(--grid);
+      margin-inline-end:   0;
+    }
+
+    header nav ul li a,
+    header nav ul li button {
+      display: block;
+      width: var(--icon-size);
+      height: var(--icon-size);
+      padding: 0;
+      margin: 0;
+      border: none;
+      background-color: var(--header-color);
+    }
+
+    header nav svg {
+      fill: var(--background-color);
+    }
+
+    header nav ul li::before {
+      content: none;
+    }
+
+    header nav ul li:first-child {
+      flex-grow: 1;
+      margin-inline-start: 0;
+    }
+
+    header nav .logo {
+      border: 1px solid #fff;
+      box-sizing: border-box;
+    }
+    h1 > a,
+    h2 > a,
+    h3 > a,
+    h4 > a,
+    h5 > a,
+    h6 > a {
+      color: var(--font-color);
+    }
+
+    h1 > a:visited,
+    h2 > a:visited,
+    h3 > a:visited,
+    h4 > a:visited,
+    h5 > a:visited,
+    h6 > a:visited {
+      color: var(--font-color);
+    }
+
+    h1 > a::before {
+      content: "# ";
+    }
+
+    h2 > a::before {
+      content: "## ";
+    }
+
+    h3 > a::before {
+      content: "### ";
+    }
+
+    h4 > a::before {
+      content: "#### ";
+    }
+
+    h1 > a:hover::before,
+    h2 > a:hover::before,
+    h3 > a:hover::before,
+    h4 > a:hover::before,
+    h5 > a:hover::before,
+    h6 > a:hover::before {
+      color: var(--anchor-visited-color);
+    }
+
+    em {
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    em::before,
+    em::after {
+      content: "*";
+    }
+
+    strong {
+      color: red;
+    }
+
+    strong::before,
+    strong::after {
+      content: "**";
+    }
+
+    ul li::before {
+      content: "- ";
+    }
+
+    ol {
+      counter-reset: list;
+    }
+
+    ol li::before {
+      counter-increment: list;
+      content: counter(list) ". ";
+    }
+
+    dl dt::after {
+      content: ":";
+    }
+
+    blockquote {
+      display: block;
+      border: solid 1px var(--block-quote);
+      border-radius: var(--radius);
+      padding: 1rem;
+      margin: 0;
+    }
+
+    blockquote p::before {
+      content: "> ";
+    }
+
+    code {
+      background-color: var(--code-inline);
+      color: var(--code-inline-font);
+      border-radius: var(--radius);
+      padding: 0 4px;
+    }
+
+    code::before,
+    code::after {
+      content: "`";
+    }
+    main {
+      display: block;
+      width: var(--width);
+      max-width: var(--max-width);
+      margin-block-start:  1em;
+      margin-block-end:    1em;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
+    }
+
+    a {
+      word-wrap: break-word;
+      text-decoration: none;
+      color: var(--anchor-color);
+    }
+
+    a:visited {
+      color: var(--anchor-visited-color);
+    }
+
+    ol,
+    ul {
+      list-style: none;
+      padding-inline-start: 0;
+    }
+
+    li {
+      word-break: break-all;
+      word-wrap: break-word;
+    }
+
+    dl dt {
+      font-weight: bold;
+      margin: 0;
+    }
+
+    dl dd {
+      margin: 0;
+    }
+    footer {
+      padding: var(--grid);
+    }
+
+    footer strong,
+    footer .copyright {
+      font-style: italic;
+      width: var(--width);
+      max-width: var(--max-width);
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
+    }
+
+    /* AdSense */
+    footer ins {
+      display: block;
+      width: var(--width);
+      max-width: var(--max-width);
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
+    }
+    pre {
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
+      border-radius: var(--radius);
+    }
+
+    pre code {
+      background-color: var(--code-block);
+      color: var(--code-block-font);
+    }
+
+    pre::before {
+      font-family: var(--code-font);
+      content: "```" attr(data-code) "\A";
+      font-size: 0.8em;
+    }
+
+    pre::after {
+      font-family: var(--code-font);
+      z-index: -1;
+      position: relative;
+      top: -1em;
+      content: "\A```";
+      font-size: 0.8em;
+    }
+
+    pre > code {
+      font-family: var(--code-font);
+      overflow: auto;
+      display: block;
+      padding: 0.5rem;
+      margin: 0;
+    }
+
+    pre > code::before,
+    pre > code::after {
+      content: none;
+    }
+
+
+    /** Prism.js Syntax Highlight **/
+    :root {
+      --code-yellow: #ffe557;
+      --code-aqua:   #03b5f1;
+      --code-blue:   #76acff;
+      --code-gray:   #96969c;
+      --code-green:  #1cd24d;
+      --code-orange: #ff8b24;
+      --code-pink:   #ff61bf;
+    }
+
+    /** style **/
+    .token.important,
+    .token.bold {
+      font-weight: bold;
+    }
+    .token.italic {
+      font-style: italic;
+    }
+
+    .token.entity {
+      cursor: help;
+    }
+
+    /** color **/
+    .token.command,
+    .token.parameter,
+    .token.operator,
+    .token.punctuation,
+    .token.output {
+      color: var(--code-block-font);
+    }
+
+    .token.attr-name,
+    .token.selector,
+    .token.shell-symbol {
+      color: var(--code-blue);
+    }
+
+    .token.delimiter.tag,
+    .token.variable {
+      color: var(--code-yellow);
+    }
+
+    .token.tag,
+    .token.function {
+      color: var(--code-green);
+    }
+
+    .token.key,
+    .token.attr-value,
+    .token.atom,
+    .token.property,
+    .token.keyword {
+      color: var(--code-pink);
+    }
+
+    .token.header-name.keyword,
+    .token.string,
+    .token.regex {
+      color: var(--code-blue);
+    }
+
+    .token.interpolation,
+    .token.constant,
+    .token.class-name {
+      color: var(--code-orange);
+    }
+
+    .token.response-status,
+    .token.boolean,
+    .token.number {
+      color: var(--code-aqua);
+    }
+
+    .token.rule,
+    .token.builtin {
+      color: var(--code-green);
+    }
+
+    .token.prolog,
+    .token.doctype,
+    .token.shebang,
+    .token.comment {
+      color: var(--code-gray);
+    }
+
+    .token.request-line {
+      color: var(--code-aqua);
+    }
+
+
+    /** language **/
+    .token.bash.language-bash,
+    .token.bash.language-bash > .token.function {
+      color: var(--code-block-font);
+    }
+    table {
+      font-family: var(--mono-font);
+      border-spacing: 0 0.4rem;
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
+    }
+
+    th {
+      border-inline-start: 2px solid var(--table-border);
+      border-block-end:    2px dashed var(--table-border);
+      padding-block-start:  0;
+      padding-block-end:    calc(var(--grid)/2);
+      padding-inline-start: var(--grid);
+      padding-inline-end:   var(--grid);
+    }
+
+    td {
+      padding-block-start:  calc(var(--grid)/2);
+      padding-block-end:    calc(var(--grid)/2);
+      padding-inline-start: var(--grid);
+      padding-inline-end:   var(--grid);
+      border-inline-start: 2px solid var(--table-border);
+    }
+
+    th:last-child,
+    td:last-child {
+      border-inline-end: 2px solid var(--table-border);
+    }
+
+    .align-center {
+      text-align: center;
+    }
+
+    /** TODO: fixup html class */
+    .align-left {
+      text-align: start;
+    }
+
+    /** TODO: fixup html class */
+    .align-right {
+      text-align: end;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://blog.jxck.io      ><amp-img width=30 height=30 src=/assets/img/blog.svg   alt="blog logo" class=logo    ></a>
+      <li><a href=/searches                 ><amp-img width=30 height=30 src=/assets/img/search.svg alt=search                    ></a>
+      <li><a href=.                         ><amp-img width=30 height=30 src=/assets/img/up.svg     alt="move to parent directory"></a>
+      <li><a href=/feeds/atom.xml           ><amp-img width=30 height=30 src=/assets/img/rss.svg    alt="rss feed"                ></a>
+      <li><a href=https://jxck.io/humans.txt><amp-img width=30 height=30 src=/assets/img/humans.svg alt="huamns.txt"              ></a>
+      <li><a href=https://jxck.io           ><amp-img width=30 height=30 src=/assets/img/jxck.svg   alt="jxck logo" class=logo    ></a>
+    </ul>
+  </nav>
+</header>
+<main>
+  <dl class=info>
+    <div><dt>created_at</dt><dd><time class=created_at datetime=2021-02-12>2021-02-12</time></dd></div>
+    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-02-12>2021-02-12</time></dd></div>
+    <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags/cache.html">cache</a>
+              <li><a href="/tags/http.html">http</a>
+              <li><a href="/tags/ietf.html">ietf</a>
+            </ul>
+          </nav>
+        </dd>
+    </div>
+    <div>
+      <dt>toc</dt>
+      <dd>
+        <details class=info>
+          <summary>headdings</summary>
+          <nav>
+            <ul>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#cache-と-status-code>## Cache と Status Code</a>
+              <li><a href=#must-understand>## must-understand</a>
+              <li><a href=#改訂仕様>### 改訂仕様</a>
+              <li><a href=#ユースケース>### ユースケース</a>
+              <li><a href=#outro>## Outro</a>
+              <li><a href=#demo>## DEMO</a>
+              <li><a href=#resources>## Resources</a>
+            </ul>
+          </nav>
+        </details>
+      </dd>
+    </div>
+  </dl>
+  <article>
+    <h1><a href=/entries/2021-02-12/cache-control-must-understand.html>Cache-Control: must-understand ディレクティブとは何か</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p>IETF が策定する HTTP の仕様が更新されようとしている。
+      <p>ここには、 <a href="https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html">Cache</a> の仕様も含まれており、そのなかで <code translate="no">must-understand</code> という <code translate="no">Cache-Control</code> のディレクティブが追加されている。
+      <p>このディレクティブが追加された経緯と仕様について解説する。
+    </section>
+    <section>
+      <h2 id="cache-と-status-code"><a href="#cache-と-status-code">Cache と Status Code</a></h2>
+      <p>RFC7234 では、新しいステータスコードを策定する際に、キャッシュに関して以下のように書かれている。
+      <blockquote>
+        <p>The definition of a new status code ought to specify whether or not it is cacheable.
+        <p>Note that all status codes can be cached if the response they occur in has explicit freshness information;
+        <p>however, status codes that are defined as being cacheable are allowed to be cached
+        <p>without explicit freshness information.
+        <p>Likewise, the definition of a status code can place constraints upon cache behavior&hellip;
+        <p><cite>&mdash; <a href="https://httpwg.org/specs/rfc7231.html#rfc.section.8.2.2">https://httpwg.org/specs/rfc7231.html#rfc.section.8.2.2</a></cite>
+      </blockquote>
+      <p>つまり、その新しいステータスコードは、 <code translate="no">max-age</code> などを伴えばその指定通りキャッシュが可能であり、さらにそうした明示的なコントロールがない場合に Heuristic Cache 可能かどうかなどを定義できるのだ。
+      <p>一方、キャッシュを保存する要件として以下があった。
+      <blockquote>
+        <p>A cache MUST NOT store a response to any request, unless:
+        <p>The request method is understood by the cache and defined as being cacheable, and
+        <p>the response status code is understood by the cache, and&hellip;
+        <p><cite>&mdash; <a href="https://httpwg.org/specs/rfc7234.html#response.cacheability">https://httpwg.org/specs/rfc7234.html#response.cacheability</a></cite>
+      </blockquote>
+      <p>問題は、 3 行目にある「キャッシュを行う実装は、ステータスコードを理解する必要がある」という条件だ。
+      <p>新しいステータスコードが標準化された場合に、そのステータスコードが未実装な場合はキャッシュできないように読めてしまう。実装者は、サポートしているステータスコードをリストとして埋め込み、突き合わせてキャッシュの制御を行うことになるだろう。
+      <p>この点は、先程の要件と矛盾が有り、例えば <code translate="no">max-age</code> を伴う新しいステータスコードのレスポンスを受信した実装が、そのステータスコードを実装してない場合に、どうすべきかということになる。
+      <p>実装に対する制限は後者なので、安全側に倒すと「キャッシュしない」方を選ぶことになり、すると実装が普及するまではキャッシュが効かないことになる。
+      <p>すると、セマンティクスよりもキャッシュ効率を求める開発者により、意味的に適した新しいステータスコードを利用する代わりに、既存のステータスコードが使われてしまう可能性があるのだ。
+    </section>
+    <section>
+      <h2 id="must-understand"><a href="#must-understand">must-understand</a></h2>
+      <p>例としてここでは <code translate="no">999 New Status</code> という架空のステータスコードが新しく仕様化され、そのステータスコードにはデフォルトでキャッシュに関する要件が定義されていたとする。
+      <pre class=http><code translate="no">HTTP/1.1 999 New Status
+Content-Type: text/html
+Content-Length: 256
+Cache-Control: max-age=3600</code></pre>
+      <p>このステータスコード <code translate="no">999</code> がまだ新しく、実装が広まってないうちは、受信した実装は「<code translate="no">999</code> を知らない」という理由だけで <code translate="no">Cache-Control</code> も無視してキャッシュを保存しない可能性がある。
+      <p>この問題を解決するために Cache の改定版 ID では、該当部分が更新され <code translate="no">must-understand</code> というディレクティブが追加されている。
+      <p>このディレクティブは、以下のように必ず <code translate="no">no-store</code> とともに付与される。
+      <pre class=http><code translate="no">HTTP/1.1 999 New Status
+Content-Type: text/html
+Content-Length: 256
+Cache-Control: max-age=3600, must-understand, no-store</code></pre>
+      <p><code translate="no">must-understand</code> は、その status code の要件として定義されたキャッシュに関する挙動をサポートしない限りは、そのレスポンスをキャッシュしてはならないという意味になる。
+      <p>上の例では、実装が <code translate="no">999</code> に定義された要件を実装してない、平たく言うと <code translate="no">999</code> をサポートしてない場合は、このレスポンスがキャッシュできないが、 <code translate="no">999</code> をサポートしているのであれば後ろの <code translate="no">no-store</code> を無視してキャッシュすることができる。
+      <p>もし <code translate="no">999</code> に特に何か特別な要件がなければ <code translate="no">max-age</code> に準じた挙動になるだろうし、何か <code translate="no">max-age</code> を上書きするような条件があればそれに従うことになるだろう。
+      <p>通常、キャッシュの実装はサポートしてないディレクティブを無視するため、 <code translate="no">must-understand</code> に対応してない場合は、後ろの <code translate="no">no-store</code> が適応され、これは <code translate="no">max-age</code> よりも優先されるためにこのレスポンスはキャッシュされない。
+      <p>結果、 <code translate="no">must-understand</code> が <code translate="no">no-store</code> とともに付与された場合のレスポンスは、ステータスコードを理解してない実装によって意図しない保存をされることがなくなることが期待される。
+      <section>
+        <h3 id="改訂仕様"><a href="#改訂仕様">改訂仕様</a></h3>
+        <p><code translate="no">must-understand</code> の追加によって、改訂ドラフトで前述の仕様は以下のようになった。
+        <blockquote>
+          <p>3 Storing Responses in Caches
+          <p>A cache MUST NOT store a response to a request unless:
+          <p>the request method is understood by the cache;
+          <p>the response status code is final (see Section 15 of [Semantics]);
+          <p>if the response status code is 206 or 304, or the &ldquo;must-understand&rdquo; cache directive (see Section 5.2.2.2) is present: the cache understands the response status code;
+          <p>  &hellip;
+          <p>&mdash; <cite><a href="https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html#section-3">https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html#section-3</a></cite>
+        </blockquote>
+        <p>ステータスコードに <code translate="no">final</code> という概念が入ったのはまた別の話として解説したいが、問題は 3 つ目の条件だ。
+        <p><code translate="no">must-understand</code> に加えて <code translate="no">206</code> と <code translate="no">304</code> が明示的に例外扱いされているのは、この 2 つは <code translate="no">must-understand</code> 以前からキャッシュに関して要件を持つステータスコードであり、明示的な扱いが必要だからだ。
+        <p>もし最初から <code translate="no">must-understand</code> があれば、ここに <code translate="no">206</code> / <code translate="no">304</code> の例外は不要だっただろう。
+      </section>
+      <section>
+        <h3 id="ユースケース"><a href="#ユースケース">ユースケース</a></h3>
+        <p>こうした新しい機能が出ると、すぐにでもつけるべきかどうかという話になりがちだが、現状は不要だろう。
+        <p>このディレクティブは、どちらかというと前述のような仕様の解釈のブレによって、将来、特にキャッシュ周りに特定の条件を伴うような新しいステータスコードを追加する場合に、その普及が順調に進むように投機的に仕様化されたという性質が強い。
+        <p>近年でも <code translate="no">103 Early Hints</code>, <code translate="no">425 Too Early</code>, <code translate="no">451 Unavailable For Legal Reasons</code> など、それほど多い頻度ではないが、ステータスコードが追加されることはあり、そこで互換性を壊さずに「実装がそうした新しい仕様を実装しているのか」を担保した上で使用できる仕組みなのだ。
+        <p>もちろん、十分に実装が普及したステータスコードに <code translate="no">must-understand</code> を併用する必要はなく、それはむしろ <code translate="no">must-understand</code> を理解しない実装によって <code translate="no">no-store</code> と扱われるだけなので、デメリットの方が強いだろう。
+        <p>かといって、特に今 <code translate="no">must-understand</code> が無いと普及が難しいステータスコードが議論されているという話も聞かないため、主に httbis によるキャッシュ仕様の更新に合わせて、 mnot が空いた穴を埋めたという認識でいる。
+      </section>
+    </section>
+    <section>
+      <h2 id="outro"><a href="#outro">Outro</a></h2>
+      <p>執筆に際して httpbis の仕様を見ていたところ、新しいディレクティブが追加されたことを知ったため、備忘録として書いた。
+      <p>まだ RFC にもなっておらず、実装も無く、すぐ使うようなユースケースも無いが、いずれ新しいステータスコードが仕様化されると見る機会もあるかもしれない。
+    </section>
+    <section>
+      <h2 id="demo"><a href="#demo">DEMO</a></h2>
+      <p>動作するデモを以下に用意した。
+      <ul>
+        <li><a href="http://labs.jxck.io/cache-control/must-understand.html">http://labs.jxck.io/cache-control/must-understand.html</a>
+      </ul>
+      <p>(特に使うステータスコードが無いため 200 にしてある)
+    </section>
+    <section>
+      <h2 id="resources"><a href="#resources">Resources</a></h2>
+      <ul>
+        <li>
+          Spec
+          <ul>
+            <li><a href="https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html#name-must-understand">https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html#name-must-understand</a>
+          </ul>
+        </li>
+        <li>Explainer
+        <li>Requirements Doc
+        <li>Mozilla Standard Position
+        <li>Webkit Position
+        <li>TAG Design Review
+        <li>Intents
+        <li>Chrome Platform Status
+        <li>WPT (Web Platform Test)
+        <li>DEMO
+        <li>Blog
+        <li>Presentation
+        <li>
+          Issues
+          <ul>
+            <li><a href="https://github.com/httpwg/http-core/issues/120">https://github.com/httpwg/http-core/issues/120</a>
+          </ul>
+        </li>
+        <li>Other
+      </ul>
+    </section>
+  </article>
+</main>
+<hr>
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small> See <small><a href=/policies/site.html>Site Policy</a> and <a href=/policies/privacy.html>Privacy Policy</a>.</small></p>
+  <amp-ad width=100vw height=320 type=adsense data-ad-client=ca-pub-2902784829138215 data-ad-slot=9735419796 data-auto-format=rspv data-full-width><div overflow></div></amp-ad>
+</footer>
+</body>
+</html>
+<amp-analytics type=googleanalytics id=analytics1>
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>

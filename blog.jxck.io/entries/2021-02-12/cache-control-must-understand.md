@@ -1,4 +1,4 @@
-# [cache][http][ietf] Cache-Control: must-understand ディレクティブ
+# [cache][http][ietf] Cache-Control: must-understand ディレクティブとは何か
 
 
 ## Intro
