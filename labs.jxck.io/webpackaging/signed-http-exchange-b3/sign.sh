@@ -15,7 +15,7 @@ gen-signedexchange \
   -content              ./test.html \
   -dumpHeadersCbor      ./header.dump \
   -dumpSignatureMessage ./sig.dump \
-  -expire               24h \
+  -expire               168h \
   -o                    test.sxg \
   -privateKey           $KEY \
   -uri                  https://labs.jxck.io/webpackaging/signed-http-exchange-b3/test.html \
