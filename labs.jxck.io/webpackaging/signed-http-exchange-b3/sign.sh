@@ -7,9 +7,9 @@ CRT=$DOTFILES/keys/sxg/labs.jxck.io.sxg.pem
 KEY=$DOTFILES/keys/sxg/labs.jxck.io.sxg.key
 CBOR=./labs.jxck.io.sxg.cbor
 
-./bin/gen-certurl -pem $CRT > $CBOR
+gen-certurl -pem $CRT > $CBOR
 
-sudo ./bin/gen-signedexchange \
+gen-signedexchange \
   -certUrl              https://labs.jxck.io/webpackaging/signed-http-exchange-b3/labs.jxck.io.sxg.cbor \
   -certificate          $CRT \
   -content              ./test.html \
