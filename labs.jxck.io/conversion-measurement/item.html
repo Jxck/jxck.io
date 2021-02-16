@@ -10,7 +10,10 @@
 
 <img width=300 src=https://logo.jxck.io/jxck.svg>
 
-<button id=buy>buy it !! (conversion)</button>
+<form>
+  <input type=number min=1 max=8 value=1 name=conversion-data>
+  <button type=submit>buy it !! (conversion)</button>
+</form>
 
 <script>
   'use strict';
@@ -18,9 +21,12 @@
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
   document.on('DOMContentLoaded', async (e) => {
-    $('#buy').on('click', async (e) => {
+    $('form').on('submit', async (e) => {
+      e.preventDefault()
+      const formData = new FormData(e.target)
+      const search = new URLSearchParams(formData)
       const $img = document.createElement('img')
-      $img.src = 'https://adtech.labs.jxck.io/conversion-measurement/conversion'
+      $img.src = `https://adtech.labs.jxck.io/conversion-measurement/conversion.cgi?${search.toString()}`
       $('body').appendChild($img)
     })
   })
