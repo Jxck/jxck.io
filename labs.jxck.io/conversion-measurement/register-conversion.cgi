@@ -29,7 +29,7 @@ begin
 
   query = URI::decode_www_form(header['query_string']).to_h
 
-  # body = STDIN.read
+  body = STDIN.read
 
   date = Time.now.iso8601
 
