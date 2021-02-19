@@ -298,7 +298,7 @@ for (const i = 0; i &lt; 100; i ++) {
           <p>
             <picture>
               <source type=image/webp srcset=display-no-locking.webp#825x968>
-              <img loading=lazy src=display-no-locking.gif#825x968 alt="lock を取らず普通に appendChild する例" title="display with no locking">
+              <img loading=lazy decoding=async src=display-no-locking.gif#825x968 alt="lock を取らず普通に appendChild する例" title="display with no locking">
             </picture>
           </p>
           <p>そこで、 <code translate="no">&lt;ul&gt;</code> のロックを取得し、全ての <code translate="no">&lt;li&gt;</code> が追加されてから一気にレンダリングする場合以下のように書ける。
@@ -319,7 +319,7 @@ await container.displayLock.updateAndCommit()</code></pre>
           <p>
             <picture>
               <source type=image/webp srcset=display-locking.webp#825x968>
-              <img loading=lazy src=display-locking.gif#825x968 alt="ul の lock を取り追加が終わってから commit する例" title="display with locking">
+              <img loading=lazy decoding=async src=display-locking.gif#825x968 alt="ul の lock を取り追加が終わってから commit する例" title="display with locking">
             </picture>
           </p>
           <p>Lock 中に行われる <code translate="no">appendChild</code> は、メモリ上で DOM の処理を行うだけになり、 <code translate="no">commit()</code> でレンダリングが一度に走っていることがわかるだろう。
@@ -357,7 +357,7 @@ await container.displayLock.updateAndCommit()</code></pre>
           <p>
             <picture>
               <source type=image/webp srcset=display-locking-activatable.webp#825x968>
-              <img loading=lazy src=display-locking-activatable.gif#825x968 alt="commit してない要素が画面内検索で一致した際にレンダリングされる例" title="find in page commits activatable element">
+              <img loading=lazy decoding=async src=display-locking-activatable.gif#825x968 alt="commit してない要素が画面内検索で一致した際にレンダリングされる例" title="find in page commits activatable element">
             </picture>
           </p>
           <p>このデモでは、ランダムな文字列を <code translate="no">&lt;li&gt;</code> に入れ、ロックをとった <code translate="no">&lt;ul&gt;</code> に追加し commit してない状態で止めている。

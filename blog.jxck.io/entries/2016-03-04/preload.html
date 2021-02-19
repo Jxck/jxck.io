@@ -312,14 +312,14 @@ Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin
           <p>
             <picture>
               <source type=image/webp srcset=before.webp#1366x768>
-              <img loading=lazy src=before.png#1366x768 alt="preload を有効にしていないため、パースが進んでから fetch が始まる" title="Preload 追加前のパフォーマンスタイムライン">
+              <img loading=lazy decoding=async src=before.png#1366x768 alt="preload を有効にしていないため、パースが進んでから fetch が始まる" title="Preload 追加前のパフォーマンスタイムライン">
             </picture>
           </p>
           <p>after
           <p>
             <picture>
               <source type=image/webp srcset=before.webp#1366x768>
-              <img loading=lazy src=before.png#1366x768 alt="preload を有効にしたため、パース完了前に fetch が始まる" title="Preload 追加前のパフォーマンスタイムライン">
+              <img loading=lazy decoding=async src=before.png#1366x768 alt="preload を有効にしたため、パース完了前に fetch が始まる" title="Preload 追加前のパフォーマンスタイムライン">
             </picture>
           </p>
           <p>このページでは、むしろ遅くなっている。これは、元のコンテンツで特にリソースの読み込みなどに関するオーバーヘッドが少ないためであると考えられる。したがって、処理が入ることによる内部処理のオーバーヘッドが結果に影響していると推測する。

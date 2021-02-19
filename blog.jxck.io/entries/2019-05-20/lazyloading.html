@@ -257,7 +257,7 @@
           <p>
             <picture>
               <source type=image/webp srcset=eagerload.webp#1366x768>
-              <img loading=lazy src=eagerload.png#1366x768 alt="Eager Load で複数画像を読み込んだ場合の挙動を Dev Tools の Network タブで見たところ" title="eager loading images">
+              <img loading=lazy decoding=async src=eagerload.png#1366x768 alt="Eager Load で複数画像を読み込んだ場合の挙動を Dev Tools の Network タブで見たところ" title="eager loading images">
             </picture>
           </p>
         </section>
@@ -271,14 +271,14 @@
           <p>
             <picture>
               <source type=image/webp srcset=lazyload-above.webp#1366x768>
-              <img loading=lazy src=lazyload-above.png#1366x768 alt="Lazy Load で複数画像を読み込んだ場合の挙動を Above the Fold に注目して Dev Tools の Network タブで見たところ" title="lazyloading images focusing above the fold">
+              <img loading=lazy decoding=async src=lazyload-above.png#1366x768 alt="Lazy Load で複数画像を読み込んだ場合の挙動を Above the Fold に注目して Dev Tools の Network タブで見たところ" title="lazyloading images focusing above the fold">
             </picture>
           </p>
           <p>あとは、スクロールに従って残りの <code translate="no">&lt;img&gt;</code> が Viewport に近づくと、その画像の全体を再度取得する。
           <p>
             <picture>
               <source type=image/webp srcset=lazyload-below.webp#1366x768>
-              <img loading=lazy src=lazyload-below.png#1366x768 alt="Lazy Load で複数画像を読み込んだ場合の挙動をスクロール後の Below the Fold に注目して Dev Tools の Network タブで見たところ" title="lazyloading images focusing below the fold">
+              <img loading=lazy decoding=async src=lazyload-below.png#1366x768 alt="Lazy Load で複数画像を読み込んだ場合の挙動をスクロール後の Below the Fold に注目して Dev Tools の Network タブで見たところ" title="lazyloading images focusing below the fold">
             </picture>
           </p>
           <p>同じ検証の動画を以下に付記しておく。

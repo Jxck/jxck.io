@@ -202,7 +202,7 @@ stream.getTracks().forEach((track) =&gt; {
           <h3 id="api"><a href="#api">API</a></h3>
           <p>今回は、まずカメラから取得したビデオストリームに注目して解説する。音声や画面キャプチャもほぼ同じように可能だ。
           <p>
-            <img loading=lazy src=webcodecs-webtransport-chat.svg#500x190 alt="WebCodecs と WebTransport を用いたビデオ会議の概要図" title="overview of webcodecs & webtransport video chat" width=500 height=190>
+            <img loading=lazy decoding=async src=webcodecs-webtransport-chat.svg#500x190 alt="WebCodecs と WebTransport を用いたビデオ会議の概要図" title="overview of webcodecs & webtransport video chat" width=500 height=190>
           </p>
           <p>ビデオの場合は VideoStreamTrack を取得するところから始まる。
           <pre class=js><code translate="no">const stream = await navigator.mediaDevices.getUserMedia({video:true, audio:true})
@@ -268,7 +268,7 @@ videoDecoder.decode(chunk)</code></pre>
         <p>
           <picture>
             <source type=image/webp srcset=webcodecs-webtransport-chat-demo.webp#1082x1038>
-            <img loading=lazy src=webcodecs-webtransport-chat-demo.gif#1082x1038 alt="WebCodecs と WebTransport で作成したビデオチャットのデモ動作風景" title="webcodecs webtransport demo">
+            <img loading=lazy decoding=async src=webcodecs-webtransport-chat-demo.gif#1082x1038 alt="WebCodecs と WebTransport で作成したビデオチャットのデモ動作風景" title="webcodecs webtransport demo">
           </picture>
         </p>
         <p>デモは最後に貼るため、以下は特に WebRTC と比較しての部分について解説する。

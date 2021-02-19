@@ -173,7 +173,7 @@
         <p>
           <picture>
             <source type=image/webp srcset=window-opener.webp#150x150>
-            <img loading=lazy src=window-opener.gif#150x150 alt="Opener によって別タブで開いた画面が元の画面を遷移させている" title="window opener demo">
+            <img loading=lazy decoding=async src=window-opener.gif#150x150 alt="Opener によって別タブで開いた画面が元の画面を遷移させている" title="window opener demo">
           </picture>
         </p>
         <p>このデモでは、 <a href="https://labs.jxck.io/noopener/">https://labs.jxck.io/noopener/</a> から開いた <a href="https://labs.jxck.io/noopener/opener-change.html">https://labs.jxck.io/noopener/opener-change.html</a> のページが別タブで開いた後、最初に開いたタブが勝手に <a href="http://example.com">http://example.com</a> に遷移しているというものである。
@@ -244,7 +244,7 @@
         <section>
           <h3 id="攻撃の概要"><a href="#攻撃の概要">攻撃の概要</a></h3>
           <p>
-            <img loading=lazy src=tab-nabbing.svg#500x500 alt="Opener を利用することで、元サイトとそっくりなログイン画面を用意し、そこに認証情報を入力させることで Tab Naving が成立する" title="tab-nabbing の解説図" width=500 height=500>
+            <img loading=lazy decoding=async src=tab-nabbing.svg#500x500 alt="Opener を利用することで、元サイトとそっくりなログイン画面を用意し、そこに認証情報を入力させることで Tab Naving が成立する" title="tab-nabbing の解説図" width=500 height=500>
           </p>
           <p><code translate="no">https://cgm.example.com</code> (左上) というサービスがあるとし、これは SNS やチームコラボレーション系サービスを想定する。
           <p>攻撃者は、このサービスの不特定ユーザのユーザ名およびパスワードを盗みたいとする。
