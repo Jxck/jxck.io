@@ -33,14 +33,14 @@ module Format
 
       # SVG should specify width-height
       if File.extname(URI.parse(node[:attr]["src"]).path) == ".svg"
-        return %(<img loading=lazy src=#{node[:attr]['src']} alt="#{node[:attr]['alt']}" title="#{node[:attr]['title']}" width=#{width} height=#{height}>)
+        return %(<img loading=lazy decoding=async src=#{node[:attr]['src']} alt="#{node[:attr]['alt']}" title="#{node[:attr]['title']}" width=#{width} height=#{height}>)
       end
 
       # No width-height for normal img
       return <<~EOS
            <picture>
              <source type=image/webp srcset=#{node[:attr]['src'].sub(/(.png|.gif|.jpg)/, '.webp')}>
-             <img loading=lazy src=#{node[:attr]['src']} alt="#{node[:attr]['alt']}" title="#{node[:attr]['title']}">
+             <img loading=lazy decoding=async src=#{node[:attr]['src']} alt="#{node[:attr]['alt']}" title="#{node[:attr]['title']}">
            </picture>
       EOS
     end
