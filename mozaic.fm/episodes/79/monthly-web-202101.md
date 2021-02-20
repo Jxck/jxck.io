@@ -812,7 +812,7 @@ guest
 
 - Welcome to Privacy & Compliance Week: Reflecting Values at Cloudflare's Core
   - <https://blog.cloudflare.com/welcome-to-privacy-and-compliance-week/>
-  - 12/6 ～の 1 週間は Cloudflare の Privacy & Compliance Week だった
+  - 12/6 ~ の 1 週間は Cloudflare の Privacy & Compliance Week だった
   - プライバシー関連の技術紹介や、法律順守の話が色々出ている
 - Privacy needs to be built into the Internet
   - <https://blog.cloudflare.com/internet-privacy/>
@@ -899,7 +899,7 @@ guest
   - <https://infrequently.org/2020/12/resize-resilient-deferred-rendering/>
 - ソフトバンク・博報堂・トレジャーデータの合弁会社、 3rd パーティクッキー依存しないソリューションを提供開始 | RTB SQUARE
   - <https://rtbsquare.work/archives/34250>
-- South Korea kills ActiveX-based government digital certificate service • The Register
+- South Korea kills ActiveX-based government digital certificate service - The Register
   - <https://www.theregister.com/2020/12/10/south_korea_activex_certs_dead/>
   - 韓国政府が ActiveX 依存からの脱却へ
 - Vol.49 \| Internet Infrastructure Review(IIR) \| IIJ の技術 \| インターネットイニシアティブ(IIJ)
