@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Font Metrics Override DEMO</title>
+
+<style>
+@font-face {
+  font-family:  "noto-sans-hinted";
+  src: url("./NotoSansCJKjp-Regular-Jxck-full.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: fallback-osaka;
+  ascent-override: 113%;
+  descent-override: 13%;
+  line-gap-override: 0;
+  advance-override: normal;
+  src: local(Osaka);
+}
+
+body {
+  width: 80%;
+  margin: 0 auto;
+}
+
+label {
+  display: block;
+}
+
+label span {
+  font-family: monospace;
+}
+
+.text {
+  width: 50vw;
+  position: relative;
+  border: solid 1px #ccc;
+}
+
+.text * {
+  padding: 0;
+  margin: 0;
+}
+
+#noto {
+  color: red;
+  font-family: noto-sans-hinted;
+  line-height: 23px;
+}
+
+#osaka {
+  color: blue;
+  font-family: fallback-osaka;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 60% 1fr;
+  grid-column-gap: 5%;
+}
+</style>
+
+<h1>font-metrics-override</h1>
+
+<main>
+  <section>
+    <h2>Noto/Osaka <button>overwrap</button></h2>
+    <p>compare Noto Sanf Webfont and Osaka Local Font</p>
+    <div id=noto class=text>
+      <p>Noto Sans</p>
+      <p>01234456789 abcdefghijklmnopqrstuvwxyz</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p>しかし私は、喜びを「非難して苦痛を賞賛する」という誤ったこの考えがすべてどのようにして誕生したかをあなたに説明しなければならないから、私はあなたにその体系を完璧に説明し、真実を求める偉大な探究家、人間の喜びを築く建築家の実践的な教えを詳しく説明しよう。</p>
+    </div>
+    <div id=osaka class=text>
+      <p>Osaka</p>
+      <p>01234456789 abcdefghijklmnopqrstuvwxyz</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p>しかし私は、喜びを「非難して苦痛を賞賛する」という誤ったこの考えがすべてどのようにして誕生したかをあなたに説明しなければならないから、私はあなたにその体系を完璧に説明し、真実を求める偉大な探究家、人間の喜びを築く建築家の実践的な教えを詳しく説明しよう。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>font metrics</h2>
+    <form>
+      <label for=ascentOverride>ascent-override:
+        <input id=ascentOverride type=range min=-100 max=300 step=0.1 value=113 width=100%>
+        <span></span>
+      </label>
+      <label for=descentOverride>descent-override:
+        <input id=descentOverride type=range min=-100 max=300 step=0.1 value=13 width=100%>
+        <span></span>
+      </label>
+      <label for=lineGapOverride>line-gap-override:
+        <input id=lineGapOverride type=range min=-100 max=300 step=0.1 value=0 width=100%>
+        <span></span>
+      </label>
+      <label for=lineHeight>line-height:
+        <input id=lineHeight type=range min=0 max=40 step=0.1 value=23 width=100%>
+        <span></span>
+      </label>
+      <label for=letterSpacing>letter-spacing:
+        <input id=letterSpacing type=range min=-3 max=3 step=0.01 value=0 width=100%>
+        <span></span>
+      </label>
+      <label for=wordSpacing>word-spacing:
+        <input id=wordSpacing type=range min=-3 max=3 step=0.01 value=0 width=100%>
+        <span></span>
+      </label>
+    </form>
+  </section>
+</main>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  document.on('DOMContentLoaded', async (e) => {
+    console.log(e)
+    await change()
+
+    $('h2 button').on('click', () => {
+      $$('.text').forEach(($text) => {
+        let position = $text.style.position
+        position = (position === 'absolute') ? 'relative' : 'absolute'
+        $text.style.position = position
+      })
+    })
+
+    $('#ascentOverride' ).on('change', change)
+    $('#descentOverride').on('change', change)
+    $('#lineGapOverride').on('change', change)
+    $('#lineHeight'     ).on('change', change)
+    $('#letterSpacing'  ).on('change', change)
+    $('#wordSpacing'    ).on('change', change)
+
+    async function change() {
+      const ascentOverride  = `${$('#ascentOverride' ).value}%`
+      const descentOverride = `${$('#descentOverride').value}%`
+      const lineGapOverride = `${$('#lineGapOverride').value}%`
+
+      $('#ascentOverride  + span').textContent = ascentOverride
+      $('#descentOverride + span').textContent = descentOverride
+      $('#lineGapOverride + span').textContent = lineGapOverride
+
+      const property = {
+        ascentOverride,
+        descentOverride,
+        lineGapOverride,
+      }
+      const fontFace = new FontFace('fallback-osaka', 'local(Osaka)', property)
+      const loaded   = await fontFace.load()
+      document.fonts.add(loaded)
+
+      const lineHeight    = `${$('#lineHeight')   .value}px`
+      const letterSpacing = `${$('#letterSpacing').value}px`
+      const wordSpacing   = `${$('#wordSpacing')  .value}px`
+
+      $('#lineHeight    + span').textContent = lineHeight
+      $('#letterSpacing + span').textContent = letterSpacing
+      $('#wordSpacing   + span').textContent = wordSpacing
+
+      $('#osaka').style.lineHeight    = lineHeight
+      $('#osaka').style.letterSpacing = letterSpacing
+      $('#osaka').style.wordSpacing   = wordSpacing
+
+      console.log({
+        lineHeight,
+        letterSpacing,
+        wordSpacing,
+      })
+    }
+  })
+</script>
