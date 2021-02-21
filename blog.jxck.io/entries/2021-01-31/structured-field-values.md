@@ -5,14 +5,14 @@
 
 HTTP Header の値を構造化する Structued Field Values の仕様が RFC になった。
 
-- [RFC 8941](https://www.rfc-editor.org/rfc/rfc8941.html)
+- [RFC 8941: Structured Field Values for HTTP](https://www.rfc-editor.org/rfc/rfc8941.html#section-4.2.1)
 
 この仕様の詳細について、筆者の実装を交えて解説する。
 
 
 ## Update
 
-- 2021-02-09: SFV が [RFC 8941](https://www.rfc-editor.org/rfc/rfc8941.html) として公開されたたドラフト 19 を RFC に置き換えて編集
+- 2021-02-09: SFV が [RFC 8941](https://www.rfc-editor.org/rfc/rfc8941.html) として公開されたため、 draft-19 へのリンクを RFC に置き換え。
 
 
 ## 経緯
