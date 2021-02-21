@@ -4,18 +4,19 @@
 <title>Font Metrics Override DEMO</title>
 
 <style>
-@font-face {
-  font-family:  "noto-sans-hinted";
-  src: url("./NotoSansCJKjp-Regular-Jxck-full.woff2") format("woff2");
+:root {
+  --line-height: 24px;
+  --letter-spacing: 0px;
+  --word-spacing: 4.3px;
 }
 
 @font-face {
-  font-family: fallback-osaka;
-  ascent-override: 113%;
-  descent-override: 13%;
-  line-gap-override: 0;
-  advance-override: normal;
-  src: local(Osaka);
+  font-family: "webfont";
+  src: url("https://fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Regular.woff") format("woff");
+  ascent-override: 95%;
+  descent-override: 0%;
+  line-gap-override: 0%;
+  advance-override: 0;
 }
 
 body {
@@ -27,14 +28,17 @@ label {
   display: block;
 }
 
-label span {
+label span button {
   font-family: monospace;
 }
 
 .text {
   width: 50vw;
-  position: relative;
   border: solid 1px #ccc;
+}
+
+.overwrap {
+  position: absolute;
 }
 
 .text * {
@@ -42,15 +46,17 @@ label span {
   margin: 0;
 }
 
-#noto {
-  color: red;
-  font-family: noto-sans-hinted;
-  line-height: 23px;
+#webfont {
+  color: blue;
+  font-family: webfont;
+  line-height:    var(--line-height);
+  word-spacing:   var(--word-spacing);
+  letter-spacing: var(--letter-spacing);
 }
 
-#osaka {
-  color: blue;
-  font-family: fallback-osaka;
+#fallback {
+  color: red;
+  font-family: Hiragino Sans;
 }
 
 main {
@@ -64,16 +70,16 @@ main {
 
 <main>
   <section>
-    <h2>Noto/Osaka <button>overwrap</button></h2>
-    <p>compare Noto Sanf Webfont and Osaka Local Font</p>
-    <div id=noto class=text>
-      <p>Noto Sans</p>
+    <h2>LocalFont/WebFont <button>overwrap</button></h2>
+    <p>compare Osaka Local Fallback Font and Noto Sanf Webfont</p>
+    <div id=webfont class="text overwrap">
+      <p>Noto Sans WebFont</p>
       <p>01234456789 abcdefghijklmnopqrstuvwxyz</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       <p>しかし私は、喜びを「非難して苦痛を賞賛する」という誤ったこの考えがすべてどのようにして誕生したかをあなたに説明しなければならないから、私はあなたにその体系を完璧に説明し、真実を求める偉大な探究家、人間の喜びを築く建築家の実践的な教えを詳しく説明しよう。</p>
     </div>
-    <div id=osaka class=text>
-      <p>Osaka</p>
+    <div id=fallback class="text overwrap">
+      <p>Fallback font</p>
       <p>01234456789 abcdefghijklmnopqrstuvwxyz</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       <p>しかし私は、喜びを「非難して苦痛を賞賛する」という誤ったこの考えがすべてどのようにして誕生したかをあなたに説明しなければならないから、私はあなたにその体系を完璧に説明し、真実を求める偉大な探究家、人間の喜びを築く建築家の実践的な教えを詳しく説明しよう。</p>
@@ -84,27 +90,27 @@ main {
     <h2>font metrics</h2>
     <form>
       <label for=ascentOverride>ascent-override:
-        <input id=ascentOverride type=range min=-100 max=300 step=0.1 value=113 width=100%>
+        <input id=ascentOverride type=range min=0 max=300 step=0.1 value=95 width=100%>
         <span></span>
       </label>
       <label for=descentOverride>descent-override:
-        <input id=descentOverride type=range min=-100 max=300 step=0.1 value=13 width=100%>
+        <input id=descentOverride type=range min=0 max=300 step=0.1 value=0 width=100%>
         <span></span>
       </label>
       <label for=lineGapOverride>line-gap-override:
-        <input id=lineGapOverride type=range min=-100 max=300 step=0.1 value=0 width=100%>
+        <input id=lineGapOverride type=range min=0 max=300 step=0.1 value=0 width=100%>
         <span></span>
       </label>
       <label for=lineHeight>line-height:
-        <input id=lineHeight type=range min=0 max=40 step=0.1 value=23 width=100%>
+        <input id=lineHeight type=range min=0 max=40 step=0.1 value=24 width=100%>
         <span></span>
       </label>
       <label for=letterSpacing>letter-spacing:
-        <input id=letterSpacing type=range min=-3 max=3 step=0.01 value=0 width=100%>
+        <input id=letterSpacing type=range min=-3 max=5 step=0.01 value=0 width=100%>
         <span></span>
       </label>
       <label for=wordSpacing>word-spacing:
-        <input id=wordSpacing type=range min=-3 max=3 step=0.01 value=0 width=100%>
+        <input id=wordSpacing type=range min=-3 max=5 step=0.01 value=4.3 width=100%>
         <span></span>
       </label>
     </form>
@@ -118,14 +124,11 @@ main {
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
   document.on('DOMContentLoaded', async (e) => {
-    console.log(e)
     await change()
 
     $('h2 button').on('click', () => {
       $$('.text').forEach(($text) => {
-        let position = $text.style.position
-        position = (position === 'absolute') ? 'relative' : 'absolute'
-        $text.style.position = position
+        $text.classList.toggle('overwrap')
       })
     })
 
@@ -150,8 +153,12 @@ main {
         descentOverride,
         lineGapOverride,
       }
-      const fontFace = new FontFace('fallback-osaka', 'local(Osaka)', property)
+
+      console.log(property)
+      const src = 'url("https://fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Regular.woff")'
+      const fontFace = new FontFace('webfont', src, property)
       const loaded   = await fontFace.load()
+      document.fonts.clear()
       document.fonts.add(loaded)
 
       const lineHeight    = `${$('#lineHeight')   .value}px`
@@ -162,9 +169,9 @@ main {
       $('#letterSpacing + span').textContent = letterSpacing
       $('#wordSpacing   + span').textContent = wordSpacing
 
-      $('#osaka').style.lineHeight    = lineHeight
-      $('#osaka').style.letterSpacing = letterSpacing
-      $('#osaka').style.wordSpacing   = wordSpacing
+      $('#webfont').style.lineHeight    = lineHeight
+      $('#webfont').style.letterSpacing = letterSpacing
+      $('#webfont').style.wordSpacing   = wordSpacing
 
       console.log({
         lineHeight,
