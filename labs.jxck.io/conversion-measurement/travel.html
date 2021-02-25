@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<title>Conversion Measurement Ad DEMO</title>
+<title>Travel Advatiser DEMO</title>
 
-<!-- 1st for lab2.jxck.io -->
-<meta http-equiv="origin-trial" content="ArSteS9ZenRlHADFh8fXKq8cLUosmuayzkMDwOvByfu0FozNYChgGMKOwW9Zuai9N9RdM7s0IkJaxIFS2qYN7QAAAABbeyJvcmlnaW4iOiJodHRwczovL2xhYjIuanhjay5pbzo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjE1NDQ4MjM5fQ==">
+<meta http-equiv="origin-trial" content="AyrEUXFQ8nZdDbofYliuaptXdP8fF+19JTlHkHIs8VHgxmxymdaujjyyWfpUnxgAr068NNYbDfX2bZeI+xUx+gcAAACCeyJvcmlnaW4iOiJodHRwczovL2xhYnMuanhjay5pbzo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
 
-<!-- 3rd for lab2.jxck.io -->
-<!--
-<meta http-equiv="origin-trial" content="">
--->
+<h1>Travel Advatiser DEMO</h1>
 
-<style>
-h1 {
-  font-size: 10px;
-}
-</style>
+<img width=300 src=travel.svg>
 
-<h1>Conversion Measurement AdPlatform DEMO</h1>
+<form>
+  <input type=number min=1 max=8 value=1 name=conversion-data>
+  <button type=submit>buy it !! (conversion)</button>
+</form>
 
-<a href=https://advertiser.labs.jxck.io/conversion-measurement/item.html
-   target=_parent
-   impressiondata=1111111111111111
-   conversiondestination=https://advertiser.labs.jxck.io
-   reportingorigin=https://adtech.labs.jxck.io
-   impressionexpiry=864000000>
-  <img
-    width=300
-    src=travel.svg
-    >
-</a>
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+  document.on('DOMContentLoaded', async (e) => {
+    $('form').on('submit', async (e) => {
+      e.preventDefault()
+      const formData = new FormData(e.target)
+      const search = new URLSearchParams(formData)
+      const $img = document.createElement('img')
+      $img.src = `https://adtech.labs.jxck.io/conversion-measurement/conversion.cgi?${search.toString()}`
+      $('body').appendChild($img)
+    })
+  })
+</script>
