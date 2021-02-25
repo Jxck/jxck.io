@@ -8,6 +8,20 @@
 <updated>2016-01-28T18:30:02Z</updated>
 
   <entry>
+   <title>Web Font のメトリクス上書きによる CLS の改善</title>
+   <link href="https://blog.jxck.io/entries/2021-02-25/font-metrics-override.html" rel="alternate" />
+   <id>tag:blog.jxck.io,2016:entry://2021-02-25</id>
+   <updated>2021-02-25T00:00:00Z</updated>
+   <summary>WebFont を読み込む際に、取得完了までのラグを、システムが持つフォールバックフォントで代替する場合がある。
+
+このとき、フォールバックフォントと読み込んだ Web フォントで、高さに関する情報が異なる場合、 Layout Shift が発生してしまう。
+
+これを防ぐ方法として、 CSS からフォントメトリクスの上書きを行う仕様の提案が行われているため、本サイトへの適用を目指し検証を行った。
+
+なお、この仕様は Layout Shift ではなく、単純にテキストレイアウトスタイル用途での利用も考えられるが、そこはスコープ外としている。</summary>
+  </entry>
+
+  <entry>
    <title>Cache-Control: must-understand ディレクティブとは何か</title>
    <link href="https://blog.jxck.io/entries/2021-02-12/cache-control-must-understand.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2021-02-12</id>
