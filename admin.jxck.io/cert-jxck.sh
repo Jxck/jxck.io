@@ -33,7 +33,9 @@ sudo certbot certonly \
   -d reporting.jxck.io \
   -d publisher.labs.jxck.io \
   -d advertiser.labs.jxck.io \
-  -d adtech.labs.jxck.io
+  -d adtech.labs.jxck.io \
+  -d shopping.labs.jxck.io \
+  -d travel.labs.jxck.io
 
 cd /keys
 sudo ./pkcs8.sh
