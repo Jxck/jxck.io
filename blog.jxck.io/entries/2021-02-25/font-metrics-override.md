@@ -182,30 +182,30 @@ font-family: "Noto Sans Webfont", "Osaka", "Meiryo";
 
 - Spec
   - CSS Fonts Module Level 4
-    - https://drafts.csswg.org/css-fonts-4/#font-metrics-override-desc
+    - <https://drafts.csswg.org/css-fonts-4/#font-metrics-override-desc>
 - Explainer
   - New @font-face descriptors for overriding font metrics
-    - https://docs.google.com/document/d/1PW-5ML5hOZw7GczOargelPo6_8Zkuk2DXtgfOtJ59Eo
+    - <https://docs.google.com/document/d/1PW-5ML5hOZw7GczOargelPo6_8Zkuk2DXtgfOtJ59Eo>
   - Explainer: Font Metrics Override Descriptors
-    - https://gist.github.com/xiaochengh/da1fa52648d6184fd8022d7134c168c1
+    - <https://gist.github.com/xiaochengh/da1fa52648d6184fd8022d7134c168c1>
 - Mozilla Standard Position
 - Webkit Position
 - TAG Design Review
 - Intents
   - Intent to Ship: @font-face descriptors to override font metrics
-    - https://groups.google.com/a/chromium.org/g/blink-dev/c/ApR03h3CGfo/m/K_Fw3bAPBwAJ
+    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/ApR03h3CGfo/m/K_Fw3bAPBwAJ>
 - Chrome Platform Status
   - @font-face descriptors to override font metrics
-    - https://www.chromestatus.com/feature/5651198621253632
+    - <https://www.chromestatus.com/feature/5651198621253632>
 - WPT (Web Platform Test)
 - DEMO
 - Blog
   - How to avoid layout shifts caused by web fonts - Simon Hearne
-    - https://simonhearne.com/2021/layout-shifts-webfonts#reduce-layout-shift-with-f-mods
+    - <https://simonhearne.com/2021/layout-shifts-webfonts#reduce-layout-shift-with-f-mods>
   - Overriding Font Metrics with CSS - The Publishing Project
-    - https://publishing-project.rivendellweb.net/overriding-font-metrics-with-css/
+    - <https://publishing-project.rivendellweb.net/overriding-font-metrics-with-css/>
   - Web Performance Calendar > A font-display setting for slow connections
-    - https://calendar.perfplanet.com/2020/a-font-display-setting-for-slow-connections/#font_matching
+    - <https://calendar.perfplanet.com/2020/a-font-display-setting-for-slow-connections/#font_matching>
 - Presentation
 - Issues
 - Other
