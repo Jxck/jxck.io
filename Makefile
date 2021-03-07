@@ -12,11 +12,10 @@ build:
 # Compression
 ##########################
 # 探索は www/blog/mozaic のみ
-# .webp, .rb, .md, .txt は対象外
-# これを brotli/zopfli で圧縮する
-WWW := $(shell selects path from "./www.jxck.io/**/*"  where "file?" "==" "true" and extname "!~" ".gz|.br|.png|.jpeg|.gif|.webp|.rb|.md|.txt|.woff2|.sh|.cgi" order by path desc)
-BLO := $(shell selects path from "./blog.jxck.io/**/*" where "file?" "==" "true" and extname "!~" ".gz|.br|.png|.jpeg|.gif|.webp|.rb|.md|.txt|.woff2|.sh|.cgi" and path "!~" "drafts" and path "!~" "tags" order by path desc)
-MOZ := $(shell selects path from "./mozaic.fm/**/*"    where "file?" "==" "true" and extname "!~" ".gz|.br|.png|.jpeg|.gif|.webp|.rb|.md|.txt|.woff2|.sh|.cgi" order by path desc)
+# 対象外ファイルを除き brotli で圧縮する (zopfli/gz は h2o 側でやることにした)
+WWW = $(shell selects path from "./www.jxck.io/**/*"  where "file?" "==" "true" and extname "!~" ".gz|.br|.png|.jpeg|.gif|.webp|.rb|.md|.txt|.woff2|.sh|.cgi" order by path desc)
+BLO = $(shell selects path from "./blog.jxck.io/**/*" where "file?" "==" "true" and extname "!~" ".gz|.br|.png|.jpeg|.gif|.webp|.rb|.md|.txt|.woff2|.sh|.cgi" and      path "!~" "drafts" and path "!~" "tags" order by path desc)
+MOZ = $(shell selects path from "./mozaic.fm/**/*"    where "file?" "==" "true" and extname "!~" ".gz|.br|.png|.jpeg|.gif|.webp|.rb|.md|.txt|.woff2|.sh|.cgi" order by path desc)
 TARGET = $(WWW) $(BLO) $(MOZ)
 
 # GZ = $(addsuffix .gz, $(TARGET))
@@ -53,8 +52,8 @@ remove:
 MARK = bundle exec ruby ./.script/main.rb
 
 # .md
-BMD := $(shell find ./blog.jxck.io/entries/**/*.md)
-PMD := $(shell find ./mozaic.fm/episodes/**/*.md)
+BMD = $(wildcard ./blog.jxck.io/entries/**/*.md)
+PMD = $(wildcard ./mozaic.fm/episodes/**/*.md)
 
 # .html
 BHTML = $(BMD:.md=.html)
@@ -146,9 +145,9 @@ gif:
 CWEBP = cwebp -q 40 -quiet
 GWEBP = gif2webp -q 40 -quiet
 
-PNG := $(wildcard ./blog.jxck.io/entries/**/*.png)
-JPG := $(wildcard ./blog.jxck.io/entries/**/*.jpeg)
-GIF := $(wildcard ./blog.jxck.io/entries/**/*.gif)
+PNG = $(wildcard ./blog.jxck.io/entries/**/*.png)
+JPG = $(wildcard ./blog.jxck.io/entries/**/*.jpeg)
+GIF = $(wildcard ./blog.jxck.io/entries/**/*.gif)
 
 WEBP = $(PNG:.png=.webp)
 WEBP += $(JPG:.jpeg=.webp)
