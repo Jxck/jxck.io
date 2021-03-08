@@ -33,6 +33,7 @@ br:$(BR)
 
 %.br: %
 	brotli -f $<
+	touch -r $< $@
 
 # 圧縮を削除
 clean:
