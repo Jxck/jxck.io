@@ -3,15 +3,11 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <title>Publisher DEMO</title>
 
-<!-- 1st for publisher.jxck.io -->
+<!-- 1st for publisher.jxck.io
 <meta http-equiv="origin-trial" content="AltmitdOlP/62uW3IsA8A9B41o/oDeKQtyn3bD9BRBdV65WWhUQFb4P6ui79oDJRFP05H24A2DjTNUlRIjiKTAEAAABleyJvcmlnaW4iOiJodHRwczovL3B1Ymxpc2hlci5sYWJzLmp4Y2suaW86NDQzIiwiZmVhdHVyZSI6IkNvbnZlcnNpb25NZWFzdXJlbWVudCIsImV4cGlyeSI6MTYyNjIyMDc5OX0=">
+-->
 
 <style>
-#fp {
-  color: red;
-  font-weight: bold;
-  font-family: sans-serif;
-}
 iframe {
   height: 500px;
 }
@@ -19,17 +15,23 @@ iframe {
 
 <h1>Publisher DEMO</h1>
 
-<p>featurePolicy for conversion-measurement: <span id=fp></span></p>
+<p>featurePolicy for conversion-measurement: <strong id=fp></strong></p>
 
 
+<!--
 <iframe src=https://adtech.labs.jxck.io/conversion-measurement/travel-ad.html
         allow="conversion-measurement"
         ></iframe>
 <iframe src=https://adtech.labs.jxck.io/conversion-measurement/shopping-ad.html
         allow="conversion-measurement"
         ></iframe>
+-->
 
+<script src=https://adtech.labs.jxck.io/conversion-measurement/3rd-party-ot.js></script>
+<script src=https://adtech.labs.jxck.io/conversion-measurement/adtech.js></script>
 <script>
+document.on('DOMContentLoaded', async (e) => {
   const fp = document.featurePolicy.features().includes('conversion-measurement');
   document.querySelector('#fp').textContent = fp
+})
 </script>

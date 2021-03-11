@@ -3,12 +3,15 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <title>Advatiser DEMO</title>
 
-<!-- 1st for shopping.jxck.io -->
+<!-- 1st for shopping.jxck.io
 <meta http-equiv="origin-trial" content="AkNRfP+gcl1DMGFyt2MBMm9VlVhrFIjPmFR/sj5AzfbrC/DiS3zgJXSdA8UFuCxwVFppq3qMJhvmzC+KPpfNjw8AAABkeyJvcmlnaW4iOiJodHRwczovL3Nob3BwaW5nLmxhYnMuanhjay5pbzo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5fQ==">
+-->
+
+<script src=https://adtech.labs.jxck.io/conversion-measurement/3rd-party-ot.js></script>
 
 <h1>Shopping Advatiser DEMO</h1>
 
-<p>featurePolicy for conversion-measurement: <span id=fp></span></p>
+<p>featurePolicy for conversion-measurement: <strong id=fp></span></p>
 
 <img width=300 src=shopping.svg>
 
@@ -23,6 +26,9 @@
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
   document.on('DOMContentLoaded', async (e) => {
+    const fp = document.featurePolicy.features().includes('conversion-measurement');
+    document.querySelector('#fp').textContent = fp
+
     $('form').on('submit', async (e) => {
       e.preventDefault()
       const formData = new FormData(e.target)
@@ -32,9 +38,4 @@
       $('body').appendChild($img)
     })
   })
-</script>
-
-<script>
-  const fp = document.featurePolicy.features().includes('conversion-measurement');
-  document.querySelector('#fp').textContent = fp
 </script>
