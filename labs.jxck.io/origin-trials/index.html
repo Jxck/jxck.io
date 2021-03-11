@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>OT Token DEMO</title>
+
+<style>
+</style>
+
+<h1>OT Token DEMO</h1>
+
+<form>
+  <label>Input Your OT Token:</label>
+  <input type=text name=token placeholder="AwFoh9S9Wwyz...."></input>
+  <button>decode</button>
+</form>
+
+<dl>
+  <dt>version  </dt><dd id=version></dd>
+  <dt>signature</dt><dd id=signature></dd>
+  <dt>payload  </dt><dd id=payload>
+    <ul class=payloads>
+    </ul>
+  </dd>
+</dl>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  function base64decode(str) {
+    return new Uint8Array([...atob(str)].map(a => a.charCodeAt(0)));
+  }
+
+  function decodeToken(token) {
+    const buf       = base64decode(token)
+    const view      = new DataView(buf.buffer)
+    const version   = view.getUint8()
+    const signature = buf.slice(1, 65)
+    const length    = view.getUint32(65, false)
+    const payload   = JSON.parse((new TextDecoder()).decode(buf.slice(69, 69+length)))
+    return {version, signature, length, payload}
+  }
+
+  $('form').on('submit', async (e) => {
+    console.log(e)
+    e.preventDefault()
+
+    const fd = new FormData(e.target)
+    const token = fd.get('token')
+
+    const parsed = decodeToken(token)
+    console.log(parsed)
+
+    $("#version").textContent = parsed.version
+    $("#signature").textContent = parsed.signature
+
+    Object.entries(parsed.payload).forEach(([k, v]) => {
+      const $li = document.createElement('li')
+      $li.textContent = `${k}: ${v}`
+      $('.payloads').appendChild($li)
+    })
+  })
+</script>
+
