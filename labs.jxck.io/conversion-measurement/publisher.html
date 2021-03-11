@@ -3,15 +3,23 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <title>Publisher DEMO</title>
 
-<meta http-equiv="origin-trial" content="AyrEUXFQ8nZdDbofYliuaptXdP8fF+19JTlHkHIs8VHgxmxymdaujjyyWfpUnxgAr068NNYbDfX2bZeI+xUx+gcAAACCeyJvcmlnaW4iOiJodHRwczovL2xhYnMuanhjay5pbzo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+<!-- 1st for publisher.jxck.io -->
+<meta http-equiv="origin-trial" content="AltmitdOlP/62uW3IsA8A9B41o/oDeKQtyn3bD9BRBdV65WWhUQFb4P6ui79oDJRFP05H24A2DjTNUlRIjiKTAEAAABleyJvcmlnaW4iOiJodHRwczovL3B1Ymxpc2hlci5sYWJzLmp4Y2suaW86NDQzIiwiZmVhdHVyZSI6IkNvbnZlcnNpb25NZWFzdXJlbWVudCIsImV4cGlyeSI6MTYyNjIyMDc5OX0=">
 
 <style>
+#fp {
+  color: red;
+  font-weight: bold;
+  font-family: sans-serif;
+}
 iframe {
   height: 500px;
 }
 </style>
 
 <h1>Publisher DEMO</h1>
+
+<p>featurePolicy for conversion-measurement: <span id=fp></span></p>
 
 
 <iframe src=https://adtech.labs.jxck.io/conversion-measurement/travel-ad.html
@@ -20,3 +28,8 @@ iframe {
 <iframe src=https://adtech.labs.jxck.io/conversion-measurement/shopping-ad.html
         allow="conversion-measurement"
         ></iframe>
+
+<script>
+  const fp = document.featurePolicy.features().includes('conversion-measurement');
+  document.querySelector('#fp').textContent = fp
+</script>

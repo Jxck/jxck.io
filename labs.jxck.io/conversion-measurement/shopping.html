@@ -3,9 +3,12 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <title>Advatiser DEMO</title>
 
-<meta http-equiv="origin-trial" content="AyrEUXFQ8nZdDbofYliuaptXdP8fF+19JTlHkHIs8VHgxmxymdaujjyyWfpUnxgAr068NNYbDfX2bZeI+xUx+gcAAACCeyJvcmlnaW4iOiJodHRwczovL2xhYnMuanhjay5pbzo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+<!-- 1st for shopping.jxck.io -->
+<meta http-equiv="origin-trial" content="AkNRfP+gcl1DMGFyt2MBMm9VlVhrFIjPmFR/sj5AzfbrC/DiS3zgJXSdA8UFuCxwVFppq3qMJhvmzC+KPpfNjw8AAABkeyJvcmlnaW4iOiJodHRwczovL3Nob3BwaW5nLmxhYnMuanhjay5pbzo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5fQ==">
 
 <h1>Shopping Advatiser DEMO</h1>
+
+<p>featurePolicy for conversion-measurement: <span id=fp></span></p>
 
 <img width=300 src=shopping.svg>
 
@@ -29,4 +32,9 @@
       $('body').appendChild($img)
     })
   })
+</script>
+
+<script>
+  const fp = document.featurePolicy.features().includes('conversion-measurement');
+  document.querySelector('#fp').textContent = fp
 </script>

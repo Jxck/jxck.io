@@ -3,7 +3,8 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <title>Conversion Measurement Ad DEMO</title>
 
-<meta http-equiv="origin-trial" content="AyrEUXFQ8nZdDbofYliuaptXdP8fF+19JTlHkHIs8VHgxmxymdaujjyyWfpUnxgAr068NNYbDfX2bZeI+xUx+gcAAACCeyJvcmlnaW4iOiJodHRwczovL2xhYnMuanhjay5pbzo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+<!-- 1st for adtech.jxck.io -->
+<meta http-equiv="origin-trial" content="AoB0H+wNCr3R+BYzZRP07P9FQC9fj3opDBEYApkC39yz3oh3+5H5LZQtAFmdCX+57P9F8bunFPTbuYyCh5WQXAsAAABieyJvcmlnaW4iOiJodHRwczovL2FkdGVjaC5sYWJzLmp4Y2suaW86NDQzIiwiZmVhdHVyZSI6IkNvbnZlcnNpb25NZWFzdXJlbWVudCIsImV4cGlyeSI6MTYyNjIyMDc5OX0=">
 
 <style>
 h1 {
@@ -12,6 +13,8 @@ h1 {
 </style>
 
 <h1>Conversion Measurement AdPlatform DEMO</h1>
+
+<p>featurePolicy for conversion-measurement: <span id=fp></span></p>
 
 <p>impression: 1111111111111111</p>
 <a href=https://travel.labs.jxck.io/conversion-measurement/travel.html
@@ -25,3 +28,8 @@ h1 {
     src=travel.svg
     >
 </a>
+
+<script>
+  const fp = document.featurePolicy.features().includes('conversion-measurement');
+  document.querySelector('#fp').textContent = fp
+</script>

@@ -3,9 +3,12 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <title>Travel Advatiser DEMO</title>
 
-<meta http-equiv="origin-trial" content="AyrEUXFQ8nZdDbofYliuaptXdP8fF+19JTlHkHIs8VHgxmxymdaujjyyWfpUnxgAr068NNYbDfX2bZeI+xUx+gcAAACCeyJvcmlnaW4iOiJodHRwczovL2xhYnMuanhjay5pbzo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+<!-- 1st for travel.jxck.io -->
+<meta http-equiv="origin-trial" content="Am+6YZsSzYgktuzhxK4LWaGIEs0LKsdBLy3PXtftDWNnlMYfafmf4kFcADtDtwnIuDILLaOytLSlKNtoIYSUigIAAABieyJvcmlnaW4iOiJodHRwczovL3RyYXZlbC5sYWJzLmp4Y2suaW86NDQzIiwiZmVhdHVyZSI6IkNvbnZlcnNpb25NZWFzdXJlbWVudCIsImV4cGlyeSI6MTYyNjIyMDc5OX0=">
 
 <h1>Travel Advatiser DEMO</h1>
+
+<p>featurePolicy for conversion-measurement: <span id=fp></span></p>
 
 <img width=300 src=travel.svg>
 
@@ -29,4 +32,9 @@
       $('body').appendChild($img)
     })
   })
+</script>
+
+<script>
+  const fp = document.featurePolicy.features().includes('conversion-measurement');
+  document.querySelector('#fp').textContent = fp
 </script>
