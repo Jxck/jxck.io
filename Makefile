@@ -18,26 +18,28 @@ BLO = $(shell selects path from "./blog.jxck.io/**/*" where "file?" "==" "true" 
 MOZ = $(shell selects path from "./mozaic.fm/**/*"    where "file?" "==" "true" and extname "!~" ".gz|.br|.png|.jpeg|.gif|.webp|.rb|.md|.txt|.woff2|.sh|.cgi" order by path desc)
 TARGET = $(WWW) $(BLO) $(MOZ)
 
-# GZ = $(addsuffix .gz, $(TARGET))
 BR = $(addsuffix .br, $(TARGET))
 
-# 対象ファイルを圧縮
-comp: $(BR) # $(GZ)
+#HASH_TARGET = $(shell etag.rb $(filter-out %.html, $(TARGET)))
+#COMP_TARGET = $(addsuffix .br, $(HASH_TARGET) $(filter %.html, $(TARGET)))
 
-# gz:$(GZ)
+# .js => .xxxx.js
+#$(HASH_TARGET): $(TARGET)
+#	cp $(abspath $<) $(abspath $@)
 
-br:$(BR)
-
-# %.gz: %
-# 	zopfli --i30 $<
+# .xxx.js => .xxx.js.br
+#$(COMP_TARGET): $(HASH_TARGET)
 
 %.br: %
 	brotli -f $<
 	touch -r $< $@
 
+
+# 対象ファイルを圧縮
+comp: $(BR)
+
 # 圧縮を削除
 clean:
-	# @rm -fv $(GZ)
 	@rm -fv $(BR)
 
 # ビルド結果(HTML)も削除
