@@ -448,7 +448,7 @@ Structured Field Values の実装を行い仕様の検証を行った。
 
 - Spec
   - RFC 8941: Structured Field Values for HTTP
-    - https://www.rfc-editor.org/rfc/rfc8941.html
+    - <https://www.rfc-editor.org/rfc/rfc8941.html>
 - Explainer
 - Requirements Doc
 - Mozilla Standard Position

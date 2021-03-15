@@ -69,7 +69,7 @@ $ go get -u github.com/ampproject/amppackager/cmd/amppkg
 
 amppackager の設定ファイルは toml で用意する。詳細は example を参照。
 
-- https://raw.githubusercontent.com/ampproject/amppackager/releases/amppkg.example.toml
+- <https://raw.githubusercontent.com/ampproject/amppackager/releases/amppkg.example.toml>
 
 Port/Key/Cert など必要なものを埋める。
 
