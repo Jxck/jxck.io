@@ -127,7 +127,7 @@ guest
   - web extension
   - webp
   - privacy concern
-    - https://webkit.org/tracking-prevention/#anti-fingerprinting
+    - <https://webkit.org/tracking-prevention/#anti-fingerprinting>
 - Firefox regexp redesign
 - QUIC Last Call
 - HTTP2 GREASE / UA-CH と WAF

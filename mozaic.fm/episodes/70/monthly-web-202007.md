@@ -71,7 +71,7 @@ guest
     - CSS
       - Color Adjust: Remove 'only' and Support 'dark' or 'light' for color-scheme"
       - *content-visibility Property*
-        - https://web.dev/content-visibility/
+        - <https://web.dev/content-visibility/>
       - counter-set
     - Event Timing API
     - Expose Picture-in-Picture Window in leavepictureinpicture event
