@@ -29,18 +29,23 @@ module Format
     end
 
     def img(node)
-      width, height = imgsize(node)
+      src   = node[:attr]["src"]
+      alt   = node[:attr]["alt"]
+      title = node[:attr]["title"]
+      uri   = URI.parse(src)
+
+      width, height = imgsize(uri.fragment)
 
       # SVG should specify width-height
-      if File.extname(URI.parse(node[:attr]["src"]).path) == ".svg"
-        return %(<img loading=lazy decoding=async src=#{node[:attr]['src']} alt="#{node[:attr]['alt']}" title="#{node[:attr]['title']}" width=#{width} height=#{height}>)
+      if File.extname(uri.path) == ".svg"
+        return %(<img loading=lazy decoding=async src=#{src} alt="#{alt}" title="#{title}" width=#{width} height=#{height}>)
       end
 
       # No width-height for normal img
       return <<~EOS
            <picture>
-             <source type=image/webp srcset=#{node[:attr]['src'].sub(/(.png|.gif|.jpg)/, '.webp')}>
-             <img loading=lazy decoding=async src=#{node[:attr]['src']} alt="#{node[:attr]['alt']}" title="#{node[:attr]['title']}">
+             <source type=image/webp srcset=#{src.sub(/(.png|.gif|.jpg)/, '.webp')}>
+             <img loading=lazy decoding=async src=#{src} alt="#{alt}" title="#{title}">
            </picture>
       EOS
     end
@@ -73,19 +78,14 @@ module Format
       "<link rel=stylesheet property=stylesheet type=text/css #{href(path)}>"
     end
 
-    def imgsize(node)
+    def imgsize(fragment)
       width = ""
       height = ""
 
-      size = node[:attr]["src"].split("#")[1]
-      if size
-        size = size.split("x")
-        if size.size == 1
-          width = size[0]
-        elsif size.size == 2
-          width = size[0]
-          height = size[1]
-        end
+      if fragment
+        w, h = fragment.split("x")
+        width  = w unless w.nil?
+        height = h unless h.nil?
       end
       return width, height
     end
@@ -111,14 +111,20 @@ module Format
     end
 
     def img(node)
-      width, height = imgsize(node)
+      src   = node[:attr]["src"]
+      alt   = node[:attr]["alt"]
+      title = node[:attr]["title"]
+      uri   = URI.parse(src)
+
+      width, height = imgsize(uri.fragment)
+
 
       # AMP should specify width-height
       if width == "" || height == ""
         STDERR.puts("no width x height for img")
         exit(1)
       end
-      %(<amp-img layout=responsive src=#{node[:attr]['src']} alt="#{node[:attr]['alt']}" title="#{node[:attr]['title']}" width=#{width} height=#{height}>)
+      %(<amp-img layout=responsive src=#{src} alt="#{alt}" title="#{title}" width=#{width} height=#{height}>)
     end
 
     def html_element(node)

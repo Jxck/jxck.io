@@ -54,17 +54,21 @@ module ERBHelper
     ERB.new(template, nil, '-')
   end
 
+  def cache_busting(path)
+    f = File.open(path)
+    q = f.mtime.strftime("%y%m%d_%H%M%S")
+    return q
+  end
+
   def src(path)
     abs_path = File.expand_path("../../www.jxck.io"+path, __dir__)
-    f = File.open(abs_path)
-    q = f.mtime.strftime("%y%m%d_%H%M%S")
+    q = cache_busting(abs_path)
     "src=#{path}?#{q}"
   end
 
   def href(path)
     abs_path = File.expand_path("../../www.jxck.io"+path, __dir__)
-    f = File.open(abs_path)
-    q = f.mtime.strftime("%y%m%d_%H%M%S")
+    q = cache_busting(abs_path)
     "href=#{path}?#{q}"
   end
 end
