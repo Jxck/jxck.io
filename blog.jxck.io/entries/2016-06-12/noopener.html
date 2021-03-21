@@ -178,7 +178,7 @@
         <p>このデモでは、 <a href="https://labs.jxck.io/noopener/">https://labs.jxck.io/noopener/</a> から開いた <a href="https://labs.jxck.io/noopener/opener-change.html">https://labs.jxck.io/noopener/opener-change.html</a> のページが別タブで開いた後、最初に開いたタブが勝手に <a href="http://example.com">http://example.com</a> に遷移しているというものである。
         <p>最初のページを Parent 、開いたタブを Child とする。
         <p>child 側では以下のような JS が書かれており、 parent 側の location を変えて、任意の URL に遷移されることが可能である。
-        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css?210116_195125>
         <pre class=js><code translate="no">window.opener.location = http://example.com</code></pre>
         <p>多くのブラウザでは、 child が <code translate="no">target=blank_</code> により別タブで開いた場合に、そちらが手前に表示され、 parent は裏に回る。
         <p>child で上記の JS が動くと、裏で勝手に parent が画面遷移している状態となる。
@@ -191,7 +191,7 @@
         <h2 id="open-link-in-new-tab"><a href="#open-link-in-new-tab">open link in new tab</a></h2>
         <p><code translate="no">target=_blank</code> が無いリンクを、別タブとして開いても、この攻撃は再現しないようである。
         <p>しかし、 <code translate="no">target=_blank</code> がついたリンクを、さらに「別タブとして開く」機能を用いて開いた場合の挙動は、ブラウザによって異なる。
-        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/table.css>
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/table.css?201223_011131>
         <table>
           <thead>
             <tr>

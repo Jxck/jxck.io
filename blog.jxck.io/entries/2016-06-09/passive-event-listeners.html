@@ -173,7 +173,7 @@
         <p>イベントリスナを実際に実行し、その処理が終わるまで <code translate="no">preventDefault()</code> が呼ばれるかどうかわからないため、 Scroll Jank がおこる。
         <p>つまり、 Scroll Event に登録されたイベントリスナの実行時間が長ければ長いほど、 Scroll Jank の影響が大きくなる。
         <p>Chrome は現在、実行時間の長いリスナが登録された場合、以下のような警告を devtools に表示する。
-        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css?210116_195125>
         <pre><code translate="no">explainer.md#the-problem:1 Deferred long-running timer task(s) to improve scrolling smoothness. See crbug.com/574343.</code></pre>
         <p>ただし、イベントリスナの実行自体にも多少のオーバーヘッドがあるため、空のイベントリスナを登録しただけでも、ブラウザのスクロール最適化を邪魔するには十分であり、影響がでることも確認されている。
         <p>仕様には Scroll Event にイベントリスナを登録したサイトの中で、実際に <code translate="no">preventDefault()</code> を呼ぶのは 20% 程度という調査結果が記載されている。
@@ -189,7 +189,7 @@
         <p>開発者がこれを明示的に指定することで、ブラウザはリスナが <code translate="no">preventDefault()</code> を呼ばないことを前提とできるため、リスナの完了を待たずにスクロールすることができ、それを最適化できる余地が生まれる。
         <p>なお Passive Listener 内で <code translate="no">preventDefault()</code> を呼んだ場合は無視されるため、呼んだとしても <code translate="no">defaultPrevented=false</code> のままになる。
         <p>Listener 内で <code translate="no">preventDefault()</code> を呼べるかどうかは、 <code translate="no">cancelable=true</code> となっているかどうかで分かる。
-        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/table.css>
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/table.css?201223_011131>
         <table>
           <thead>
             <tr>

@@ -194,7 +194,7 @@
         <p>もっと酷い例として、後から取得された Web Font でテキストが全て置き換わった場合、これをなるべく早く(かつ高い優先度で)取得したいと思うのが自然だろう。
         <p>重要なリソースがサブリソースに隠されている場合、どうしても取得までにラグが発生してしまい、画像を反映するには再レイアウトが発生し UX を損ねる場合がある。
         <p><code translate="no">&lt;link rel=preload&gt;</code> を記述すれば、こうした「<em>後から取得されるが、レイアウト上重要なリソース</em>」を Preload 段階で取得するようにブラウザに指示することができる。
-        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+        <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css?210116_195125>
         <pre class=html><code translate="no">&lt;link rel=preload as=image href=hero-image.png&gt;</code></pre>
         <p>Web Font の場合はこうなる。
         <pre class=html><code translate="no">&lt;link rel=preload  as=font type=font/woff2 href=font.woff2 crossorigin&gt;</code></pre>

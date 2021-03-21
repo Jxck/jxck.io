@@ -176,7 +176,7 @@
           <h3 id="csrf"><a href="#csrf">CSRF</a></h3>
           <p>CSRF は、この SNS の場合、別の罠サイトを用意し SNS への正規の投稿と同じリクエストを作り出すことで、ユーザに対して意図しない投稿を行わせるといった攻撃である。
           <p>例えば、正規の投稿はログイン状態で <code translate="no">https://sns.example.com/posts/new</code> にある以下の form から行うものであったとする。
-          <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css>
+          <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/pre.css?210116_195125>
           <pre class=html><code translate="no">&lt;form action=/posts method=post&gt;
   &lt;textarea name=msg&gt;hello&lt;/textarea&gt;
   &lt;button type=submit&gt;post&lt;/button&gt;
@@ -302,7 +302,7 @@ Set-Cookie: key=value; SameSite=Lax</code></pre>
           <p>従って、 JS からリクエストを生成し、時間を測るタイプの攻撃への耐性もある。
           <p>しかし、 Popup Window や <code translate="no">&lt;link rel=prerender&gt;</code> などは Top Level Navigation となるため、いくつかの攻撃には依然として耐性が無い点に注意したい。
           <p>Lax で送られるかどうかをまとめると以下のようになる。
-          <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/table.css>
+          <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/table.css?201223_011131>
           <table>
             <thead>
               <tr>
