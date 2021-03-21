@@ -41,7 +41,6 @@ module Format
       if uri.relative?
         path = File.expand_path(uri.path, dir)
         uri.query = cache_busting(path)
-        puts uri.to_s
       end
 
       # SVG should specify width-height
@@ -125,7 +124,6 @@ module Format
       uri   = URI.parse(src)
 
       width, height = imgsize(uri.fragment)
-
 
       # AMP should specify width-height
       if width == "" || height == ""
