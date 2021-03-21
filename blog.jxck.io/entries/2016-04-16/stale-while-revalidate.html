@@ -249,7 +249,7 @@
           <p>すると、 fetch したレスポンスは 3600s の間は <em>fresh</em> とみなされ、その期間はキャッシュヒットする。
           <p>しかし、 3600s をすぎるとキャッシュは <em>stale</em> とみなされ破棄し、次のリクエストで fetch が走る。
           <p>
-            <img loading=lazy decoding=async src=max-age.svg#552x352 alt="max-age の期間はキャッシュがヒットし、期間を過ぎると取得し直す" title="max-age header flow" width=552 height=352>
+            <img loading=lazy decoding=async src=max-age.svg?180105_115707#552x352 alt="max-age の期間はキャッシュがヒットし、期間を過ぎると取得し直す" title="max-age header flow" width=552 height=352>
           </p>
         </section>
         <section>
@@ -263,7 +263,7 @@
           <p><code translate="no">stale-while-revalidate</code> の時間が過ぎれば必ず fetch が発生するということは、従来設定していた <code translate="no">max-age</code> = <code translate="no">max-age</code> + <code translate="no">stale-while-revalidate</code> の時間と設定すれば、従来との差異はキャッシュの新しさだけになる。
           <p>したがって、この設定からであれば、導入はそこまで難しく無いと考えられる。
           <p>
-            <img loading=lazy decoding=async src=stale-while-revalidate.svg#552x352 alt="fresh で無くなってからも、 while-revalidate の期間は fetch に対し stale なキャッシュをヒットさせし、裏で更新する" title="stale-while-revalidate header flow" width=552 height=352>
+            <img loading=lazy decoding=async src=stale-while-revalidate.svg?180105_115707#552x352 alt="fresh で無くなってからも、 while-revalidate の期間は fetch に対し stale なキャッシュをヒットさせし、裏で更新する" title="stale-while-revalidate header flow" width=552 height=352>
           </p>
         </section>
         <section>
@@ -276,7 +276,7 @@
           <p>これにより、ブラウザのエラー画面が表示されるのを防ぐことができる。
           <p>もちろん、上記二つは組み合わせて使うことができる。
           <p>
-            <img loading=lazy decoding=async src=stale-if-error.svg#552x352 alt="fresh で無くなってからも、オリジンがエラーを返す場合は stale なキャッシュをヒットさせる" title="stale-if-erro header" width=552 height=352>
+            <img loading=lazy decoding=async src=stale-if-error.svg?180105_115707#552x352 alt="fresh で無くなってからも、オリジンがエラーを返す場合は stale なキャッシュをヒットさせる" title="stale-if-erro header" width=552 height=352>
           </p>
         </section>
       </section>
@@ -296,8 +296,8 @@
         <p>サーバへのアクセスが発生し表示が更新されているが、全てキャッシュがヒットしていることが分かるだろう。
         <p>
           <picture>
-            <source type=image/webp srcset=stale-while-revalidate-demo.webp#1000x510>
-            <img loading=lazy decoding=async src=stale-while-revalidate-demo.gif#1000x510 alt="statle-while-revalidate の期間はキャッシュを利用し、裏で更新が行われている" title="stale-while-revalidate demo gif">
+            <source type=image/webp srcset=stale-while-revalidate-demo.webp?200606_195616#1000x510>
+            <img loading=lazy decoding=async src=stale-while-revalidate-demo.gif?200606_195616#1000x510 alt="statle-while-revalidate の期間はキャッシュを利用し、裏で更新が行われている" title="stale-while-revalidate demo gif">
           </picture>
         </p>
       </section>
