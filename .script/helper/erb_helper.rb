@@ -55,10 +55,16 @@ module ERBHelper
   end
 
   def src(path)
-    "src=#{path}"
+    abs_path = File.expand_path("../../www.jxck.io"+path, __dir__)
+    f = File.open(abs_path)
+    q = f.mtime.strftime("%y%m%d_%H%M%S")
+    "src=#{path}?#{q}"
   end
 
   def href(path)
-    "href=#{path}"
+    abs_path = File.expand_path("../../www.jxck.io"+path, __dir__)
+    f = File.open(abs_path)
+    q = f.mtime.strftime("%y%m%d_%H%M%S")
+    "href=#{path}?#{q}"
   end
 end
