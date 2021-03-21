@@ -69,8 +69,8 @@ module Format
 
     private
 
-    def style(href)
-      "<link rel=stylesheet property=stylesheet type=text/css href=#{href}>"
+    def style(path)
+      "<link rel=stylesheet property=stylesheet type=text/css #{href(path)}>"
     end
 
     def imgsize(node)
