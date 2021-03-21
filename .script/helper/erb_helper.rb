@@ -53,4 +53,12 @@ module ERBHelper
     template = File.read(abs_path)
     ERB.new(template, nil, '-')
   end
+
+  def src(path)
+    "src=#{path}"
+  end
+
+  def href(path)
+    "href=#{path}"
+  end
 end
