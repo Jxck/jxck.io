@@ -32,20 +32,28 @@ module Format
       src   = node[:attr]["src"]
       alt   = node[:attr]["alt"]
       title = node[:attr]["title"]
+      dir   = node[:dir]
       uri   = URI.parse(src)
+      q     = ""
 
       width, height = imgsize(uri.fragment)
 
+      if uri.relative?
+        path = File.expand_path(uri.path, dir)
+        uri.query = cache_busting(path)
+        puts uri.to_s
+      end
+
       # SVG should specify width-height
       if File.extname(uri.path) == ".svg"
-        return %(<img loading=lazy decoding=async src=#{src} alt="#{alt}" title="#{title}" width=#{width} height=#{height}>)
+        return %(<img loading=lazy decoding=async src=#{uri} alt="#{alt}" title="#{title}" width=#{width} height=#{height}>)
       end
 
       # No width-height for normal img
       return <<~EOS
            <picture>
-             <source type=image/webp srcset=#{src.sub(/(.png|.gif|.jpg)/, '.webp')}>
-             <img loading=lazy decoding=async src=#{src} alt="#{alt}" title="#{title}">
+             <source type=image/webp srcset=#{uri.to_s.sub(/(.png|.gif|.jpg)/, '.webp')}>
+             <img loading=lazy decoding=async src=#{uri} alt="#{alt}" title="#{title}">
            </picture>
       EOS
     end
