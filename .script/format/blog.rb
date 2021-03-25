@@ -6,8 +6,8 @@ module Format
     def initialize(highlight: "none")
       super
       @css = {
-        PRE:   "/assets/css/pre.css",
-        TABLE: "/assets/css/table.css",
+        PRE:   "https://www.jxck.io/assets/css/pre.css",
+        TABLE: "https://www.jxck.io/assets/css/table.css",
       }
       @toc = []
     end

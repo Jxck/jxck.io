@@ -1,6 +1,7 @@
 module ERBHelper
   require 'digest'
   require 'base64'
+  require 'uri'
   include ERB::Util
 
   # indent with depth
@@ -60,15 +61,17 @@ module ERBHelper
     return q
   end
 
-  def src(path)
+  def src(url)
+    path = URI.parse(url).path
     abs_path = File.expand_path("../../www.jxck.io"+path, __dir__)
     q = cache_busting(abs_path)
-    "src=#{path}?#{q}"
+    "src=#{url}?#{q}"
   end
 
-  def href(path)
+  def href(url)
+    path = URI.parse(url).path
     abs_path = File.expand_path("../../www.jxck.io"+path, __dir__)
     q = cache_busting(abs_path)
-    "href=#{path}?#{q}"
+    "href=#{url}?#{q}"
   end
 end
