@@ -4,7 +4,7 @@ const { generateSW } = require("workbox-build");
 
 //variable
 const distDir = path.join(process.cwd(), "dist");
-const swPath = path.join(distDir, "serviceWorker.js");
+const swPath = path.join(distDir, "workbox.js");
 const cacheId = "labs.jxck.io"
 
 generateSW({
@@ -18,29 +18,19 @@ generateSW({
       urlPattern: /.+(\/|.html)$/,
       handler: "NetworkFirst",
       options: {
-        cacheName: cacheId + "-html-cache",
+        cacheName: cacheId + "-html",
         expiration: {
           maxAgeSeconds: 60 * 60 * 24 * 7,
         },
       },
     },
     {
-      urlPattern: /.+\.(js|css|woff)$/,
+      urlPattern: /.+\.(js|css|svg)$/,
       handler: "CacheFirst",
       options: {
-        cacheName: cacheId + "-dependent-cache",
+        cacheName: cacheId + "-assets",
         expiration: {
-          maxAgeSeconds: 60 * 60 * 24 * 90,
-        },
-      },
-    },
-    {
-      urlPattern: /.+\.(png|gif|jpg|jpeg|svg)$/,
-      handler: "CacheFirst",
-      options: {
-        cacheName: cacheId + "-image-cache",
-        expiration: {
-          maxAgeSeconds: 60 * 60 * 24 * 30,
+          maxAgeSeconds: 60 * 60 * 24 * 365,
         },
       },
     },
