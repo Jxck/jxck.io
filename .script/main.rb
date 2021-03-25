@@ -24,7 +24,9 @@ if __FILE__ == $PROGRAM_NAME
   opt = OptionParser.new
 
   dir  = "./blog.jxck.io/entries/**/*.md"
-  icon = "https://www.jxck.io/assets/img/jxck" # 拡張子は template で補完
+  # twitter card が同一 doamin である必要があるので
+  # www.jxck.io にはできない。
+  icon = "https://blog.jxck.io/assets/img/jxck" # 拡張子は template で補完
   blog = Builder::BlogBuilder.new(dir, icon)
 
 
