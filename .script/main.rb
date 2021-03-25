@@ -24,7 +24,7 @@ if __FILE__ == $PROGRAM_NAME
   opt = OptionParser.new
 
   dir  = "./blog.jxck.io/entries/**/*.md"
-  icon = "https://jxck.io/assets/img/jxck" # 拡張子は template で補完
+  icon = "https://www.jxck.io/assets/img/jxck" # 拡張子は template で補完
   blog = Builder::BlogBuilder.new(dir, icon)
 
 
