@@ -1,36 +1,74 @@
 /* https://jxck.io */
+:root {
+  --box-width: 65%;
+  --align: left;
+  --title-font-size: 2rem;
+  --item-width: 200px;
+  --justify-content: space-between;
+  --item-gap: 10vh;
+}
+
+/* Mobile Theme */
+@media screen and (max-device-width: 960px) {
+  :root {
+    --box-width: 100%;
+    --align: center;
+    --title-font-size: 1.4rem;
+    --item-width: 140px;
+    --justify-content: space-around;
+    --item-gap: 4vh;
+  }
+}
+
 body {
-  box-sizing: border-box;
-  max-width: 1200px;
   background-color: #fefefe;
-  color: #222;
   font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
-  padding: 0;
+  width: var(--box-width);
   margin: 0 auto;
 }
 
-a {
-  text-decoration: none;
+header, footer {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
+  width: 100%;
+  margin: 4vh 0;
+  padding: 0;
+  font-size: var(--title-font-size);
+  text-align: var(--align);
+}
+
+figure {
+  padding: 0;
+  margin: 0;
+}
+
+figure > a {
+  display: block;
+}
+
+img {
   display: block;
   width: 100%;
+  aspect-ratio: 1/1;
+  background-color: black;
 }
 
 main {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 0 auto;
+  align-items: center;
+  justify-content: var(--justify-content);
+  align-content: space-around;
 }
 
-main section {
+section {
+  display: block;
+  width: var(--item-width);
   box-sizing: border-box;
-  padding: 0;
-  margin: 0 auto;
-}
-
-main img {
-  background: black;
+  margin-bottom: var(--item-gap);
 }
