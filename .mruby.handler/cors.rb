@@ -1,8 +1,9 @@
 Proc.new do |env|
   origin = env["HTTP_ORIGIN"]
 
+  # env["rack.errors"].p()
   # logger = env["rack.errors"]
-  # logger.p(origin)
+  # logger.p()
 
   if origin.nil?
     next [403, {}, []]
