@@ -20,17 +20,17 @@
   <link rel=preload as=script href=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js>
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
-  <link rel=preload as=script <%= href("https://www.jxck.io/assets/js/prism.js") %>>
-  <link rel=preload as=script <%= href("https://www.jxck.io/assets/js/main.js") %>>
-  <link rel=preload as=script <%= href("https://www.jxck.io/assets/js/ga.js") %>>
+  <link rel=preload as=script href=<%= version("https://www.jxck.io/assets/js/prism.js") %>>
+  <link rel=preload as=script href=<%= version("https://www.jxck.io/assets/js/main.js") %>>
+  <link rel=preload as=script href=<%= version("https://www.jxck.io/assets/js/ga.js") %>>
 
   <script defer src=https://cdn.speedcurve.com/js/lux.js?id=810939560 crossorigin></script>
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
-  <script defer <%= src("https://www.jxck.io/assets/js/prism.js") %>></script>
-  <script defer <%= src("https://www.jxck.io/assets/js/main.js") %>></script>
-  <script defer <%= src("https://www.jxck.io/assets/js/ga.js") %>></script>
+  <script defer src=<%= version("https://www.jxck.io/assets/js/prism.js") %>></script>
+  <script defer src=<%= version("https://www.jxck.io/assets/js/main.js") %>></script>
+  <script defer src=<%= version("https://www.jxck.io/assets/js/ga.js") %>></script>
 
   <%= indent(render("template/favicon.html.erb", entry)) %>
 
@@ -39,29 +39,29 @@
   <%= indent(render("template/ld-json.html.erb", entry)) %>
 
   <title><%= entry.title %> | <%= entry.host %></title>
-  <link rel=stylesheet property=stylesheet type=text/css <%= href("https://www.jxck.io/assets/css/body.css") %>>
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("https://www.jxck.io/assets/css/body.css") %>>
 </head>
 <body>
-  <link rel=stylesheet property=stylesheet type=text/css <%= href("https://www.jxck.io/assets/css/header.css") %>>
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("https://www.jxck.io/assets/css/header.css") %>>
   <header>
     <nav>
       <ul>
-        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager <%= src("https://www.jxck.io/assets/img/blog.svg") %>   title=blog   alt="blog logo" class=logo></a>
-        <li><a href=/searches                 ><img width=30 height=30 loading=eager <%= src("https://www.jxck.io/assets/img/search.svg") %> title=search alt=search></a>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=<%= version("https://www.jxck.io/assets/img/blog.svg") %>   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/searches                 ><img width=30 height=30 loading=eager src=<%= version("https://www.jxck.io/assets/img/search.svg") %> title=search alt=search></a>
         <li><a href="<%= entry.amp_url %>#development=1" aria-label="amp version">
-                                               <img width=30 height=30 loading=eager <%= src("https://www.jxck.io/assets/img/amp.svg") %>    title=amp    alt="amp version"></a>
-        <li><a href=.                         ><img width=30 height=30 loading=eager <%= src("https://www.jxck.io/assets/img/up.svg") %>     title=up     alt="move to parent directory"></a>
-        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager <%= src("https://www.jxck.io/assets/img/rss.svg") %>    title=rss    alt="rss feed"></a>
-        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager <%= src("https://www.jxck.io/assets/img/humans.svg") %> title=humans alt=huamns.txt></a>
-        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager <%= src("https://www.jxck.io/assets/img/jxck.svg") %>   title=jxck   alt="jxck logo" class=logo></a>
+                                               <img width=30 height=30 loading=eager src=<%= version("https://www.jxck.io/assets/img/amp.svg") %>    title=amp    alt="amp version"></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=<%= version("https://www.jxck.io/assets/img/up.svg") %>     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=<%= version("https://www.jxck.io/assets/img/rss.svg") %>    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=<%= version("https://www.jxck.io/assets/img/humans.svg") %> title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=<%= version("https://www.jxck.io/assets/img/jxck.svg") %>   title=jxck   alt="jxck logo" class=logo></a>
       </ul>
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css <%= href("https://www.jxck.io/assets/css/markdown.css") %>>
-  <link rel=stylesheet property=stylesheet type=text/css <%= href("https://www.jxck.io/assets/css/main.css") %>>
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("https://www.jxck.io/assets/css/markdown.css") %>>
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("https://www.jxck.io/assets/css/main.css") %>>
   <main>
-    <link rel=stylesheet property=stylesheet type=text/css <%= href("https://www.jxck.io/assets/css/info.css") %>>
+    <link rel=stylesheet property=stylesheet type=text/css href=<%= version("https://www.jxck.io/assets/css/info.css") %>>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=<%= entry.created_at %>><%= entry.created_at %></time></dd></div>
       <div><dt>updated_at</dt><dd><time class=updated_at datetime=<%= entry.updated_at %>><%= entry.updated_at %></time></dd></div>
@@ -94,12 +94,12 @@
       </div>
     </dl>
 
-    <link rel=stylesheet property=stylesheet type=text/css <%= href("https://www.jxck.io/assets/css/article.css") %>>
+    <link rel=stylesheet property=stylesheet type=text/css href=<%= version("https://www.jxck.io/assets/css/article.css") %>>
     <%= entry.article %>
   </main>
   <hr>
 
-  <link rel=stylesheet property=stylesheet type=text/css <%= href("https://www.jxck.io/assets/css/footer.css") %>>
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("https://www.jxck.io/assets/css/footer.css") %>>
   <footer>
     <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small> See <small><a href=/policies/site.html>Site Policy</a> and <a href=/policies/privacy.html>Privacy Policy</a>.</small></p>
     <ins class=adsbygoogle data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-2902784829138215 data-ad-slot=9735419796></ins>

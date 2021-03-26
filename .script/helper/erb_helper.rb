@@ -61,17 +61,10 @@ module ERBHelper
     return q
   end
 
-  def src(url)
+  def version(url)
     path = URI.parse(url).path
     abs_path = File.expand_path("../../www.jxck.io"+path, __dir__)
     q = cache_busting(abs_path)
-    "src=#{url}?#{q}"
-  end
-
-  def href(url)
-    path = URI.parse(url).path
-    abs_path = File.expand_path("../../www.jxck.io"+path, __dir__)
-    q = cache_busting(abs_path)
-    "href=#{url}?#{q}"
+    "#{url}?#{q}"
   end
 end

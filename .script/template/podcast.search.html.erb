@@ -11,31 +11,31 @@
   <link rel=canonical href=https://mozaic.fm>
 
   <title>mozaic.fm</title>
-  <link rel=stylesheet property=stylesheet type=text/css <%= href("/assets/css/body.css") %>>
-  <link rel=stylesheet property=stylesheet type=text/css <%= href("/assets/css/header.css") %>>
-  <link rel=stylesheet property=stylesheet type=text/css <%= href("/assets/css/main.css") %>>
-  <link rel=stylesheet property=stylesheet type=text/css <%= href("/assets/css/info.css") %>>
-  <link rel=stylesheet property=stylesheet type=text/css <%= href("/assets/css/article.css") %>>
-  <link rel=stylesheet property=stylesheet type=text/css <%= href("/assets/css/footer.css") %>>
-  <link rel=stylesheet property=stylesheet type=text/css <%= href("/assets/css/mozaic.css") %>>
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("/assets/css/body.css") %>>
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("/assets/css/header.css") %>>
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("/assets/css/main.css") %>>
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("/assets/css/info.css") %>>
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("/assets/css/article.css") %>>
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("/assets/css/footer.css") %>>
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("/assets/css/mozaic.css") %>>
 </head>
 <body>
 <header>
   <nav>
     <ul>
-      <li><a href=https://mozaic.fm                                                      ><img width=30 height=30 loading=eager <%= src("/assets/img/mozaic.svg") %>         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
-      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495              ><img width=30 height=30 loading=eager <%= src("/assets/img/itunes.svg") %>         title=itunes           alt=itunes           ></a>
-      <li><a href=https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D><img width=30 height=30 loading=eager <%= src("/assets/img/google-podcast.svg") %> title="google podcast" alt="google podcast" ></a>
-      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                   ><img width=30 height=30 loading=eager <%= src("/assets/img/spotify.svg") %>        title=spotify          alt=spotify          ></a>
-      <li><a href=http://feed.mozaic.fm                                                  ><img width=30 height=30 loading=eager <%= src("/assets/img/podcast.svg") %>        title="rss feed"       alt="rss feed"       ></a>
-      <li id=install class=disabled><a><img width=30 height=30 loading=eager <%= src("/assets/img/install.svg") %>  title=install alt=install></a>
-      <li id=share   class=disabled><a><img width=30 height=30 loading=eager <%= src("/assets/img/share.svg") %>    title=share   alt=share  ></a>
-      <li id=search><a href=/searches ><img width=30 height=30 loading=eager <%= src("/assets/img/search.svg") %>   title=search  alt=search ></a>
+      <li><a href=https://mozaic.fm                                                      ><img width=30 height=30 loading=eager src=<%= version("/assets/img/mozaic.svg") %>         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495              ><img width=30 height=30 loading=eager src=<%= version("/assets/img/itunes.svg") %>         title=itunes           alt=itunes           ></a>
+      <li><a href=https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D><img width=30 height=30 loading=eager src=<%= version("/assets/img/google-podcast.svg") %> title="google podcast" alt="google podcast" ></a>
+      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                   ><img width=30 height=30 loading=eager src=<%= version("/assets/img/spotify.svg") %>        title=spotify          alt=spotify          ></a>
+      <li><a href=http://feed.mozaic.fm                                                  ><img width=30 height=30 loading=eager src=<%= version("/assets/img/podcast.svg") %>        title="rss feed"       alt="rss feed"       ></a>
+      <li id=install class=disabled><a><img width=30 height=30 loading=eager src=<%= version("/assets/img/install.svg") %>  title=install alt=install></a>
+      <li id=share   class=disabled><a><img width=30 height=30 loading=eager src=<%= version("/assets/img/share.svg") %>    title=share   alt=share  ></a>
+      <li id=search><a href=/searches ><img width=30 height=30 loading=eager src=<%= version("/assets/img/search.svg") %>   title=search  alt=search ></a>
     </ul>
   </nav>
 </header>
 
-<link rel=stylesheet property=stylesheet type=text/css <%= href("/assets/css/search.css") %>>
+<link rel=stylesheet property=stylesheet type=text/css href=<%= version("/assets/css/search.css") %>>
 <main class=search>
   <h1>Search Result of <%= h(query[:q]) %></h1>
   <form action=searches method=get>

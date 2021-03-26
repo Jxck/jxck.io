@@ -13,8 +13,8 @@
   <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
   -->
 
-  <script defer type=module no-integrity=<%= integrity("./mozaic.fm/assets/js/mozaic.js") -%> <%= src("/assets/js/mozaic.js") %>></script>
-  <script defer type=module no-integrity=<%= integrity("./mozaic.fm/assets/js/sw.js") -%> <%= src("/assets/js/sw.js") %>></script>
+  <script defer type=module no-integrity=<%= integrity("./mozaic.fm/assets/js/mozaic.js") -%> src=<%= version("/assets/js/mozaic.js") %>></script>
+  <script defer type=module no-integrity=<%= integrity("./mozaic.fm/assets/js/sw.js") -%> src=<%= version("/assets/js/sw.js") %>></script>
 
   <%= indent(render("template/favicon.html.erb", episode)) %>
 
@@ -27,13 +27,13 @@
   <%- if episode.next -%>
   <link rel=next href=<%= episode.next.canonical %>>
   <%- end -%>
-  <link rel=stylesheet property=stylesheet type=text/css <%= href("/assets/css/body.css") %>>
-  <link rel=stylesheet property=stylesheet type=text/css <%= href("/assets/css/header.css") %>>
-  <link rel=stylesheet property=stylesheet type=text/css <%= href("/assets/css/main.css") %>>
-  <link rel=stylesheet property=stylesheet type=text/css <%= href("/assets/css/info.css") %>>
-  <link rel=stylesheet property=stylesheet type=text/css <%= href("/assets/css/article.css") %>>
-  <link rel=stylesheet property=stylesheet type=text/css <%= href("/assets/css/footer.css") %>>
-  <link rel=stylesheet property=stylesheet type=text/css <%= href("/assets/css/mozaic.css") %>>
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("/assets/css/body.css") %>>
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("/assets/css/header.css") %>>
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("/assets/css/main.css") %>>
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("/assets/css/info.css") %>>
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("/assets/css/article.css") %>>
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("/assets/css/footer.css") %>>
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("/assets/css/mozaic.css") %>>
 
   <template id=shortcut_diag>
     <style>
@@ -56,14 +56,14 @@
 <header>
   <nav>
     <ul>
-      <li><a href=https://mozaic.fm                                                      ><img width=30 height=30 loading=eager <%= src("/assets/img/mozaic.svg") %>         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
-      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495              ><img width=30 height=30 loading=eager <%= src("/assets/img/itunes.svg") %>         title=itunes           alt=itunes           ></a>
-      <li><a href=https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D><img width=30 height=30 loading=eager <%= src("/assets/img/google-podcast.svg") %> title="google podcast" alt="google podcast" ></a>
-      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                   ><img width=30 height=30 loading=eager <%= src("/assets/img/spotify.svg") %>        title=spotify          alt=spotify          ></a>
-      <li><a href=http://feed.mozaic.fm                                                  ><img width=30 height=30 loading=eager <%= src("/assets/img/podcast.svg") %>        title="rss feed"       alt="rss feed"       ></a>
-      <li id=install class=disabled><button><img width=30 height=30 loading=eager <%= src("/assets/img/install.svg") %> title=install alt=install></button>
-      <li id=share   class=disabled><button><img width=30 height=30 loading=eager <%= src("/assets/img/share.svg") %>   title=share   alt=share  ></button>
-      <li id=search><a href=/searches      ><img width=30 height=30 loading=eager <%= src("/assets/img/search.svg") %>  title=search  alt=search ></a>
+      <li><a href=https://mozaic.fm                                                      ><img width=30 height=30 loading=eager src=<%= version("/assets/img/mozaic.svg") %>         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495              ><img width=30 height=30 loading=eager src=<%= version("/assets/img/itunes.svg") %>         title=itunes           alt=itunes           ></a>
+      <li><a href=https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D><img width=30 height=30 loading=eager src=<%= version("/assets/img/google-podcast.svg") %> title="google podcast" alt="google podcast" ></a>
+      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                   ><img width=30 height=30 loading=eager src=<%= version("/assets/img/spotify.svg") %>        title=spotify          alt=spotify          ></a>
+      <li><a href=http://feed.mozaic.fm                                                  ><img width=30 height=30 loading=eager src=<%= version("/assets/img/podcast.svg") %>        title="rss feed"       alt="rss feed"       ></a>
+      <li id=install class=disabled><button><img width=30 height=30 loading=eager src=<%= version("/assets/img/install.svg") %> title=install alt=install></button>
+      <li id=share   class=disabled><button><img width=30 height=30 loading=eager src=<%= version("/assets/img/share.svg") %>   title=share   alt=share  ></button>
+      <li id=search><a href=/searches      ><img width=30 height=30 loading=eager src=<%= version("/assets/img/search.svg") %>  title=search  alt=search ></a>
     </ul>
   </nav>
 </header>

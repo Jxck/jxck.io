@@ -82,7 +82,7 @@ module Format
     private
 
     def style(path)
-      "<link rel=stylesheet property=stylesheet type=text/css #{href(path)}>"
+      "<link rel=stylesheet property=stylesheet type=text/css href=#{version(path)}>"
     end
 
     def imgsize(fragment)
