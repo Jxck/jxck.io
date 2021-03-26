@@ -3,13 +3,24 @@ importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.1.1/workbox
 console.log(workbox);
 
 
-const {precacheAndRoute} = workbox.precaching;
+const {precacheAndRoute} = workbox.precaching
 
 precacheAndRoute([
-  "assets/a.css?v1",
-  "assets/b.css?v1",
-  "assets/c.css?v1",
-  "assets/x.js?v1",
-  "assets/y.js?v1",
-  "assets/z.js?v1",
+  {url: "assets/a.css?v1", revision: null},
+  {url: "assets/b.css?v1", revision: null},
+  {url: "assets/c.css?v1", revision: null},
+  {url: "assets/x.js?v1",  revision: null},
+  {url: "assets/y.js?v1",  revision: null},
+  {url: "assets/z.js?v1",  revision: null},
 ])
+
+
+const {registerRoute} = workbox.routing
+const {CacheFirst} = workbox.strategies
+
+registerRoute(
+  ({url}) => {
+    return url.pathname.startsWith("/service-worker/workbox/assets/")
+  },
+  new CacheFirst()
+);
