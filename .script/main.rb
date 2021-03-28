@@ -53,7 +53,37 @@ if __FILE__ == $PROGRAM_NAME
     blog.build_all
     podcast.build_all
   }
+  opt.on("--blogsw") {|v|
+    # main.js にある precache リストの version を更新して書き込む
+    JS_PATH = "./www.jxck.io/assets/js/main.js"
 
+    mtime   = File.mtime(JS_PATH)
+    src     = File.read(JS_PATH)
+    matched = src.match(/\/\*precache-build.rb\*\/(.*)\/\*precache-build.rb\*\//m)[1]
+    assets  = eval(matched)
+
+    @versioned = assets.map{|asset|
+      version(URI.parse(asset).path)
+    }
+
+    erb = <<~EOS
+      /*precache-build.rb*/
+      [
+      <% @versioned.each do |asset| -%>
+        "<%= asset %>",
+      <% end -%>
+      ]
+      /*precache-build.rb*/
+    EOS
+    precache_js = ERB.new(erb, nil, '-').result
+
+    replaced = src.sub(/\/\*precache-build.rb\*\/(.*)\/\*precache-build.rb\*\/\n/m, precache_js)
+
+    File.write(JS_PATH, replaced)
+
+    # mtime は変えない
+    File.utime(Time.now, mtime, JS_PATH)
+  }
 
   # Update Index/Tags
   opt.on("--blogindex") {|v|

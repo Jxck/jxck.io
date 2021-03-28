@@ -78,6 +78,9 @@ blogfull:
 	$(MARK) --blogindex
 	$(MARK) --blogfull
 
+blogsw:
+	$(MARK) --blogsw
+
 podcastfull:
 	$(MARK) --podcastindex
 	$(MARK) --podcastfull
@@ -86,6 +89,8 @@ full:
 	$(MARK) --blogindex
 	$(MARK) --podcastindex
 	$(MARK) --full
+	$(MARK) --blogsw
+
 
 
 # feed
