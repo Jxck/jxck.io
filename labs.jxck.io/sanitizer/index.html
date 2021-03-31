@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Sanitizer API DEMO</title>
+
+<style>
+:root {
+  --width: 60vw;
+  --font-height: 3vh;
+}
+@media screen and (max-device-width: 960px) {
+  :root {
+    --width: 90vw;
+  }
+}
+
+body {
+  width: var(--width);
+  margin: 0 auto;
+  font-family: sans-serif;
+}
+
+h1 {
+  height: calc(var(--font-height) * 1.5);
+  font-size: calc(var(--font-height) * 1.5);
+  padding: 0;
+  margin: 1vh 0;
+}
+
+h2 {
+  height: var(--font-height);
+  font-size: var(--font-height);
+  width: 100%;
+  padding: 0;
+  margin: 2vh 0 1vh 0;
+}
+
+textarea {
+  width: 100%;
+  height: 22vh;
+}
+
+output {
+  display: block;
+  height: 20vh;
+  border: solid 1px #ccc;
+}
+
+pre {
+  display: block;
+  background-color: #eee;
+  border-radius: 4px;
+  padding: 1em;
+}
+
+#code {
+  padding: 0;
+  margin: 0;
+  width: var(--width);
+  position: absolute;
+}
+
+svg {
+  background-color: #eee;
+  fill: #666;
+  cursor: pointer;
+  position: absolute;
+  right: 4px;
+  top: 20px;
+}
+</style>
+
+<h1>Sanitizer API DEMO</h1>
+
+<form>
+  <h2><label for=rawtext>Raw Text</label></h2>
+<textarea id=rawtext name=rawtext>
+You can write <strong>any</strong> text you like and <b><i>submit</i></b> the <em>button</em>.
+<div class=highlight>It's fine</div> even if text includes xss <script>alert(1)</script>.
+<img src="" onerror="alert('xss')">
+</textarea>
+
+<label>mode:
+<select name=mode>
+  <option value=default selected>default</option>
+  <option value=no-attr>remove every attributes</option>
+  <option value=no-elem>remove every element</option>
+</select>
+</label>
+
+<button id=sanitize>sanitize</button>
+
+</form>
+
+<h2>Sanitized Text</h2>
+<textarea id=sanitized></textarea>
+
+<h2>Reder to DOM</h2>
+<output id=render></output>
+
+<div id=code>
+  <svg id=copy height=24 width=24>
+    <title>Copy code</title>
+    <path d="M0 0h24v24H0z" fill="none"></path>
+    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path>
+  </svg>
+  <pre><code>--enable-blink-features=SanitizerAPI</code></pre>
+</div>
+<footer>
+</footer>
+
+<script src=main.js></script>
