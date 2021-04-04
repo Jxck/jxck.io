@@ -105,9 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
 const precache =
 /*precache-build.rb*/
 [
-  "/assets/js/main.js?210328_195740",
+  "/assets/js/main.js?210328_200128",
   "/assets/js/prism.js?210115_215132",
-  "/assets/js/ga.js?210325_162955",
+  "/assets/js/ga.js?210325_165821",
   "/assets/css/archive.css?200907_002254",
   "/assets/css/article.css?201223_011702",
   "/assets/css/body.css?210316_224521",
