@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Root Element Transition DEMO</title>
+
+<meta http-equiv="origin-trial" content="">
+
+<style>
+main {
+  display: flex;
+  width: 100%;
+  background-color: #ccc;
+  justify-content: space-around;
+}
+
+section {
+  width: 30vw;
+  height: 30vw;
+
+  display: grid;
+  align-content:         space-between;
+  justify-content:       space-between;
+  grid-template-columns: 20% 50% 20%;
+  grid-template-rows:    20% 25% 25% 20%;
+  grid-template-areas:
+    "   a   up    b  "
+    "left explode right"
+    "left implode right"
+    "   d  down   e  ";
+}
+
+main section a {
+  font-family: monospace;
+  background-color: #333;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.up {
+  grid-area: up;
+  clip-path: polygon(50% 0, 0 100%, 100% 100%);
+}
+.right {
+  grid-area: right;
+  clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+}
+.left {
+  grid-area: left;
+  clip-path: polygon(0% 50%, 100% 0%, 100% 100%);
+}
+.down {
+  grid-area: down;
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+}
+
+.explode {
+  grid-area: explode;
+}
+.implode {
+  grid-area: implode;
+}
+</style>
+
+<h1>Root Element Transition DEMO</h1>
+
+<main>
+  <section>
+    <a class=up    href=#up   >up</a>
+    <a class=left  href=#left >left</a>
+
+    <a class=explode href=#explode>explode</a>
+    <a class=implode href=#implode>implode</a>
+
+    <a class=right href=#right>right</a>
+    <a class=down  href=#down >down</a>
+  </section>
+</main>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  document.on('DOMContentLoaded', async (e) => {
+    const duration = 5000
+
+    function type2transition(type) {
+      switch (type) {
+        case 'explode':
+          return type;
+        case 'implode':
+          return type
+        default:
+          return `reveal-${type}`
+      }
+    }
+
+    $$('a').forEach(($a) => $a.on('click', async (e) => {
+      const type = e.target.classList[0]
+      const rootTransition = type2transition(type)
+      await document.documentTransition.prepare({rootTransition, duration})
+      document.body.style = "background: yellow";
+      await document.documentTransition.start()
+    }))
+  })
+</script>
