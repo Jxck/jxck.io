@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Test DEMO</title>
+
+<meta http-equiv="origin-trial" content="">
+
+<style>
+div {
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+}
+</style>
+
+<h1>Test DEMO</h1>
+
+<header>
+  <div>a</div>
+</header>
+
+<button>go</button>
+
+<footer></footer>
+
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+
+  document.on('DOMContentLoaded', async (e) => {
+    console.log(e)
+
+    $('button').on('click', async (e) => {
+      const child = $('header').firstElementChild
+
+      await document.documentTransition.prepare({
+        rootTransition: "reveal-down",
+        duration: 1000,
+        sharedElements: [child]
+      })
+
+      $('header').removeChild(child)
+      $('footer').appendChild(child)
+
+      await document.documentTransition.start({sharedElements:[child]})
+    })
+  })
+</script>
+

@@ -1,0 +1,96 @@
+:root {
+  --width: 40vw;
+  --triangle: 60%;
+}
+
+@media screen and (max-device-width: 960px) {
+  :root {
+    --width: 80vw;
+    --triangle: 20%;
+  }
+}
+
+body, header, ul {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  width: 100vw;
+  padding-top: 5vh;
+
+  display: grid;
+  grid-template-columns: 1fr var(--width) 1fr;
+  grid-template-rows: var(--width) 1fr;
+  grid-template-areas:
+    "left    article right"
+    "preview preview preview"
+}
+
+a, article {
+  color: white;
+  font-family: monospace;
+}
+
+a {
+  text-decoration: none;
+}
+
+.left {
+  grid-area: left;
+  background-color: #ccc;
+  clip-path: polygon(var(--triangle) 50%, 80% 30%, 80% 70%);
+}
+
+.right {
+  grid-area: right;
+  background-color: #ccc;
+  clip-path: polygon(calc(100% - var(--triangle)) 50%, 20% 30%, 20% 70%);
+}
+
+article {
+  grid-area: article;
+  background-color: #333;
+  font-size: 500%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+ul {
+  padding-top: 3vh;
+  grid-area: preview;
+  display: flex;
+  justify-content: space-around;
+}
+
+li {
+  list-style: none;
+}
+
+li a {
+  display: block;
+  width: 100px;
+  height: 100px;
+  background-color: #333;
+  font-size: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+footer {
+  height: 4em;
+  font-family: sans-serif;
+  font-style: italic;
+  margin-top: 4vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
