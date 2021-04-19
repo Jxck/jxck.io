@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Note</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+textarea {
+  width: 100vw;
+  height: 100vh;
+  border: none;
+  padding: 1rem;
+  font-size: 1.2rem;
+  background-color: #eee;
+  color: #222;
+  tab-size : 2;
+
+  border-radius: 0;
+}
+
+ul {
+  display: flex;
+  background-color: #ccc;
+}
+
+li {
+  list-style: none;
+  border: solid 1px red;
+  padding: 2px 4px;
+  margin-right: 4px;
+}
+</style>
+
+<ul>
+  <li><a class=tab href=#1 data-tab=1>#1</a></li>
+  <li><a class=add>+</a></li>
+</ul>
+<textarea autofocus></textarea>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  const $textarea = $('textarea')
+
+  function save(hash, text) {
+    console.log(hash, text)
+    localStorage.setItem(hash, text)
+  }
+
+  function load(hash) {
+    console.log(hash)
+    console.log(localStorage.getItem(hash))
+    $textarea.value = localStorage.getItem(hash)
+  }
+
+  function createTab(next) {
+    const $a    = document.createElement('a')
+    const $li   = document.createElement('li')
+
+    $a.classList.add('tab')
+    $a.href = `#${next}`
+    $a.textContent = `#${next}`
+    $a.dataset.tab = next
+    $li.appendChild($a)
+    return $li
+  }
+
+  function loadTabs() {
+    const $add = $('.add').parentNode
+    const tabs = new Array(localStorage.length)
+      .fill()
+      .map((e,i) => localStorage.key(i))
+      .filter((e) => e !== 'active' && e !== '#1')
+      .map((e) => parseInt(e.replace('#', '')))
+      .sort()
+      .forEach((e) => {
+        const $li = createTab(e)
+        $('ul').insertBefore($li, $add)
+      })
+  }
+
+  document.on('DOMContentLoaded', async () => {
+    loadTabs()
+    if (location.hash === '') {
+      location.hash = localStorage.getItem('active') || '#1'
+    }
+
+    load(location.hash)
+
+    $$('a.tab').forEach(($a) => {
+      $a.on('click', ({target}) => {
+        const hash = target.hash
+        localStorage.setItem('active', hash)
+        load(hash)
+      })
+    })
+
+    $('.add').on('click', (e) => {
+      e.preventDefault()
+      const $last = Array.from($$('a.tab')).pop()
+      const next  = parseInt($last.dataset.tab) + 1
+      const $li   = createTab(next)
+      $('ul').insertBefore($li, e.target.parentNode)
+      location.hash = `#${next}`
+      load(location.hash)
+    })
+
+    $textarea.on('keyup', (e) => {
+      save(location.hash, e.target.value)
+    })
+
+    $textarea.on('keydown', (e) => {
+      const {key, target} = e
+      if (key == 'Tab') {
+        e.preventDefault()
+        const start  = target.selectionStart
+        const end    = target.selectionEnd
+        const before = target.value.substring(0, start)
+        const after  = target.value.substring(end)
+        target.value = `${before}\t${after}`
+        target.selectionStart = target.selectionEnd = start + 1
+      }
+    })
+  })
+</script>
