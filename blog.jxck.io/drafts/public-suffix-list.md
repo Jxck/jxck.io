@@ -1,4 +1,5 @@
-# [tag] Public Suffix List とな何か、なぜ今問題になっているのか
+# [public suffix list][cookie][privacy] Public Suffix List の用途と今起こっている問題について
+
 
 ## Intro
 
@@ -8,12 +9,13 @@ Public Suffix List (PSL) は、現在の Web セキュリティの一旦を支�
 
 最近、このリストへの追加リクエストがあとを絶たず、問題になっている。
 
-今何が起こっているのか、そして "Public Suffix List" で検索してたどり着いた読者がもしやろうとしてるなら、絶対にすべきでないことについて解説する。
+今何が起こっているのか、そして Facebook Pixel のアナウンスを見て検索したどり着いた読者が、今しようとしている行為が何を意味するのかを解説する。
 
 
 ## Public Suffix List とは何か
 
 PSL を解説するにはまずドメインの用語について整理する。
+
 
 ### Top Level Domain (TLD)
 
@@ -21,7 +23,7 @@ PSL を解説するにはまずドメインの用語について整理する。
 
 `jxck.io` は、 `.io` という TLD を販売しているレジストラから購入できる。もちろん `io` そのものをドメインとして例えば `https://io` というサイトを建てることはできない。
 
-我々がレジストラから割当を受けられるドメインを Registerable Domain と言う。
+`jxck.io` のように、我々がレジストラから割当を受けられる(購入できる)ドメインを Registerable Domain と言う。
 
 すると、 Registerable Domain とは、 TLD の一個下の階層、つまり **TLD + 1** と思うかもしれない。しかしここには例外がある。
 
@@ -40,7 +42,6 @@ PSL を解説するにはまずドメインの用語について整理する。
 - `.co.jp` のサブドメインを取得することも可能 (ex. `example.co.jp`)
 - `co.jp` というドメイン自体は取得できない (ex. `https://co.jp` というサイトは建てられない)
 
-
 つまり `.co.jp` とは、それ自体が TLD ではないにも関わらず、 TLD のように扱われるという、例外的な存在なのだ。
 
 このようなドメインの組み合わせを Effective Top Level Domain (eTLD) と呼ぶ。
@@ -50,7 +51,7 @@ PSL を解説するにはまずドメインの用語について整理する。
 
 `.jp` は TLD なのは機械的にわかる。ドメインを `.` で区切った一番右は常に TLD だ。
 
-しかし、 `co.jp` が eTLD で `example.jp` が Registerable Domain であるというのは、どう見分ければ良いのだろうか？
+しかし、 `co.jp` が eTLD で `example.jp` が Registerable Domain であるというのは、どう見分ければ良いのだろうか?
 
 実はここには機械的な処理方法がない。
 
@@ -58,7 +59,9 @@ PSL を解説するにはまずドメインの用語について整理する。
 
 - https://publicsuffix.org/
 
-今は Github で管理されており、全体は以下のリンク先に 1.3 万行のテキストファイルとして存在する。
+今は Github で管理されており、全体は以下のリポジトリに 1.3 万行のテキストファイルとして存在する。
+
+- https://github.com/publicsuffix/list
 
 これはもともと Mozilla が管理を始めたものだ、しかし今ではこのファイルが多くのブラウザで使われている。
 
@@ -69,17 +72,18 @@ PSL を解説するにはまずドメインの用語について整理する。
 
 `tokyo.jp` というドメインは、 "都道府県型 JP ドメイン" という種類の東京版だ。 `tokyo.jp` が eTLD であるため取得できず、 `${好きな単語}.tokyo.jp` は取得できる。これは `tokyo.jp` をレジストラがそう運用しているからという、仕様ではなく運用の都合なのだ。
 
-ところが、「そう運用されている」という事実を知らないブラウザがあったらどうなるだろうか？
+ところが、「そう運用されている」という事実を知らないブラウザがあったらどうなるだろうか?
 
 例として `example.tokyo.jp` というドメインが取得され、なんらかのログインを伴うサービスがデプロイされていたとする。
 
 ここで以下のような Cookie について考えてみよう。
 
+
 ```http
 Set-Cookie: session_id=deadbeef;
 ```
 
-この Cookie は `example.tokyo.jp` にしか送られない。しかし以下はどうだろうか？
+この Cookie は `example.tokyo.jp` にしか送られない。しかし以下はどうだろうか?
 
 
 ```http
@@ -102,7 +106,7 @@ Set-Cookie: session_id=deadbeef; Domain=tokyo.jp
 
 こうしたサブドメインのサービスが Cookie を持つ場合同じ問題がおこるので、 `github.io` や `glitch.me` も eTLD として扱わなければならないのだ。これはいちサービスが提供する機能の都合だ。
 
-さらに、少し前に TLD 自体が爆発的に増え、その上で運用される同様のサービスも増えたが、それらすべての eTLD 運用を把握できてないと、そのブラウザではバグとされてしまう。
+さらに、少し前に TLD 自体が爆発的に増え(.web, .new etc)、その上で運用される同様のサービスも増えたが、それらすべての eTLD 運用を把握できてないと、そのブラウザではバグとされてしまう。
 
 そこで、最も現実を追従できている Mozilla の PSL が他のブラウザでも徐々に採用されるようになり、 IE の都道府県型 JP ドメインの問題も PSL への移行をもって解決した。
 
@@ -122,9 +126,9 @@ PSL の説明によれば、 Cookie 以外にもブラウザが「履歴をド�
 
 ### PSL の運用
 
-もともとは Mozilla の bugzilla で管理されていたものが Github に移され、今ではそこにリクエストを出せば良くなったという点で事実上一本化されている。
+もともとは Mozilla の bugzilla で管理されていたものが Github に移された。しかし、当時担当だった Mozilla の [Gerv Markham](https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md#user-content-high-volume-of-requests-to-add-domains-to-the-psl-78:~:text=Peter%20Saint%2DAndre%3A%20The%20PSL%20did%20start,the%20current%20folks%20who%20are%20active.) が亡くなってからは、数人のボランティアが引き継いでいるため、実質 Mozilla 管理というわけでもなく、良く言えばオープンになっている。
 
-しかし、出す側は良いとしても中にいる人は実はほぼボランティアであり、しかも非常に少ない。
+このリポジトリにリクエストを出せば良くなったという点で、受付も事実上一本化されているため出す側は良いかもしれないが、メンテナンスをしている側のリソースは非常に少ない。
 
 同じように審査と登録をするレジストラや CA のような運用ではなく、人が手作業でボランティアでこの重要なリストをメンテナンスしているのだ。
 
@@ -156,11 +160,11 @@ PSL の説明によれば、 Cookie 以外にもブラウザが「履歴をド�
 
 周知の通り、この変更は多くのトラッキングサービスに影響を与え、その 1 つに Facebook Pixel がある。
 
-- [AppleのiOS 14リリースが広告やレポートに及ぼしうる影響 \| Facebook Businessヘルプセンター](https://www.facebook.com/business/help/331612538028890?id=428636648170202)
+- [Apple の iOS 14 リリースが広告やレポートに及ぼしうる影響 \| Facebook Business ヘルプセンター](https://www.facebook.com/business/help/331612538028890?id=428636648170202)
 
 そこで Facebook Pixel は Aggregated Event Measurement(AEM) への以降を促した。
 
-- [合算イベント測定について \| Facebook Businessヘルプセンター](https://www.facebook.com/business/help/721422165168355)
+- [合算イベント測定について \| Facebook Business ヘルプセンター](https://www.facebook.com/business/help/721422165168355)
 
 AEM ではドメインごとに 8 つまでしかコンバージョンイベントが設定できないため、多くのイベントを設定してたユーザにとっては厳しい制限となる。
 
@@ -179,61 +183,54 @@ FB のアナウンスは「ワークアラウンドとして PSL の追加があ
 
 前者は対応されつつも、後者は棄却されたり、一時的に追加を凍結するといった対応が取られている。
 
-単にリソースが足らず(最近は実質一人で対応しているように見える)手が回ってないという理由もあるが、そもそも PSL への追加は FB が示した
+ところが、トラッキング制約の迂回に躍起になっている人間からは、かなり攻撃的な反応が github 以外の場所(電話など)から、中の人に対して来ているようだ。
 
-https://github.com/publicsuffix/list/issues/1245#issuecomment-818050711
+- https://github.com/publicsuffix/list/issues/1245#issuecomment-818050711
 
+完全に健全な状態とは言えず、無視できない状況である一方、こうした運用を想定しなかった中の人は、ひたすらに消耗している。
 
+近年 Privacy Sandbox 系の議論が行われている Privacy CG でも、この問題が取り上げられた。
 
+- https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md
 
-
-
-
-
-
-
-
-AppleのiOS 14リリースが広告やレポートに及ぼしうる影響 | Facebook Businessヘルプセンター
-https://www.facebook.com/business/help/331612538028890?id=428636648170202
-AppTrackingTransparency に基づく Facebook Pixel ユーザへの注意喚起とガイドラインが FB から公開された
-https://developer.apple.com/jp/app-store/user-privacy-and-data-use/
-ATT の影響があっても効果的な広告が提供できるように Aggregated Event Measurement を提供することに
-https://www.facebook.com/business/help/721422165168355
-これを使うにはドメイン認証が必要になる
-https://www.facebook.com/business/help/245311299870862
-ドメイン認証は eTLD + 1 の範囲で Public Suffix List を見る
-その結果、 PSL への追加リクエストが急増している
-https://github.com/publicsuffix/list/issues/1245
-FB も FB Pixel のために PSL 追加リクエストをすることは推奨しないと書いてはいる
-PSL のメンテナンスはボランティアベースなので困っている
+Webkit で Privacy 系 API を担当している John Wilander は、これを Privacy Click Measurement の迂回に使っている業者については、「[望ましくないとはいえ、そうした業者を block list に乗せて PCM を使えなくするといった対応もあり得る](https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md#user-content-high-volume-of-requests-to-add-domains-to-the-psl-78:~:text=.%20We%E2%80%99re%20taking%20a%20chance%20that,point%3B%20I%20don%E2%80%99t%20really%20like%20it.) 」とう趣旨の発言をしている。
 
 
+### 理想的な状態は何か
+
+そもそも、そんな仕組みで動いてる現状自体が問題というのは、全くそのとおりであり、その問題はは以前から指摘され続けてきた。
+
+- [Public Suffix List Problems](https://github.com/sleevi/psl-problems)
+
+DNS の構造を無視していることも、 Origin の概念ともズレいてることも、レジストラやサービス提供者の気分次第で定義されることも、テキストファイルでメンテされていることも、そのメンテナンスが重要でありながらボランティアベースであることも、全てが問題といっていいだろう。
+
+しかし、一旦このファイルが壊れれば、多くのサイトで Cookie に関するなんらかの問題が発生するか、各ベンダがしかたなく自分で管理するようになり互換性の問題が発生するか、もっと最悪な何かになるだけだろう。
+
+既に動いている様々な機能が、 PSL を基底に構築されてしまっている以上、 PSL をやめるためにはそれら全ての使用を更新し、実装をリリースし、サービスが対応しないといけない。
+
+これが簡単ではないことは、説明しなくてもわかるだろう。したがって、現状はなんとかこの PSL の運用が健全に行える状態に戻すしかない。
 
 
+### 課題の解決と問題の解決
 
+未だに勘違いされているようだが、「3rd Party Cookie をブロックする」というのは、 3rd Party Cookie そのものの問題ではなく、そのユースケースであるトラッキングに問題があるからとされている。
 
+もしここで、「3rd Party Cookie が今までのように使えなくなる」という **課題** を「他の方法でできるようにする」ことで解決しようとするのは勘違いだ。
 
+Fingerprint をする、 CNAME Cloaking をする、など多くの手法が提案されたが、そこでは「トラッキング」という **問題** は解決してない。したがって、そのうちなんらかの方法で塞がれていく(実際に Safari では行われている)。
 
+PSL への追加が、手元のサービスがこれまで通りトラッキングを続けるための課題解決方法として使われるのであれば、おそらくそれもどこかで塞がれるだろう。問題が解決してないからだ。
 
-
-
-
-
-
-
-
+そうしたパッチングは Web をより複雑にし、少しづつ歪が増え、将来的に負債になることは想像に難くない。
 
 
 ## Outro
 
-deadbeef
+PSL の仕組みと、そこで今起こっている問題について解説した。
 
+トラッキング制限の迂回を目的としたような追加リクエストは妥当とは言えず、それがメンテナを疲弊させている現状は看過し難い。、
 
-## DEMO
-
-動作するデモを以下に用意した。
-
-- <https://labs.jxck.io/>
+少しでも健全な運用状態に戻るよう、少なくとも日本国内からそうしたリクエストが減るように願う。
 
 
 ## Resources
@@ -252,4 +249,3 @@ deadbeef
 - Presentation
 - Issues
 - Other
-
