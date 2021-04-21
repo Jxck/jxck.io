@@ -5,7 +5,7 @@
 
 Public Suffix List (PSL) は、現在の Web セキュリティの一旦を支えている非常に重要な要素だ。
 
-実はこれが、少数のボランティアにより Github でメンテナンスされた、単なるテキストリストであることは、あまり知られてないかもしれない。
+実はこれが、少数のボランティアにより GitHub でメンテナンスされた、単なるテキストリストであることは、あまり知られてないかもしれない。
 
 最近、このリストへの追加リクエストがあとを絶たず、問題になっている。
 
@@ -14,14 +14,14 @@ Public Suffix List (PSL) は、現在の Web セキュリティの一旦を支�
 
 ## Public Suffix List とは何か
 
-PSL を解説するには、まずドメインの用語について整理する。
+PSL を解説するには、まず[ドメインの用語](https://www.nic.ad.jp/ja/dom/registration.html)について整理する。
 
 
 ### Top Level Domain (TLD)
 
 例えば、このブログのドメインは `blog.jxck.io` であり、これは筆者が取得したドメイン `jxck.io` のサブドメインだ。
 
-`jxck.io` は、 `.io` という TLD を販売しているレジストラから購入できる。もちろん `io` そのものをドメインとして、例えば `https://io` というサイトを建てることはできない。
+`jxck.io` は、 `.io` という TLD のサブドメインを販売しているレジストラから購入できる。もちろん `io` そのものをドメインとして、例えば `https://io` というサイトを建てることは、TLD ドメインの運用者たるレジストリ以外には技術的に不可能である。
 
 `jxck.io` のように、我々がレジストラから割当を受けられる(購入できる)ドメインを Registerable Domain と言う。
 
@@ -98,11 +98,11 @@ Set-Cookie: session_id=deadbeef; Domain=tokyo.jp
 
 これは実際に IE で発生した Cookie Monster バグとして知られ、 Session Fixation などに応用可能な脆弱性として問題になった。
 
-まるで IE が悪いかのように喧伝されがちなこの問題だが、そもそも `tokyo.jp` を eTLD として運用するというのはレジストラの都合だ。 IE からすれば、言われなければ知ったことではない話でもある。
+まるで IE が悪いかのように喧伝されがちなこの問題だが、そもそも `tokyo.jp` を eTLD として運用するというのはレジストリの都合だ。 IE からすれば、言われなければ知ったことではない話でもある。
 
 同じことは、都道府県型 JP ドメインの話だけではない。
 
-例えば Github Pages が使う `github.io` は、 `jxck.github.io` のようにユーザごとにサブドメインが割り当てられる。ホスティングサービスの Glitch が使う `glitch.me` もアプリごとにサブドメインが振られる。
+例えば GitHub Pages が使う `github.io` は、 `jxck.github.io` のようにユーザごとにサブドメインが割り当てられる。ホスティングサービスの Glitch が使う `glitch.me` もアプリごとにサブドメインが振られる。
 
 こうしたサブドメインにデプロイされたサービスが Cookie を持つ場合同じ問題がおこるため、 `github.io` や `glitch.me` も eTLD として扱わなければならないのだ。これはいちサービスが提供する機能の都合だ。
 
@@ -126,7 +126,7 @@ PSL の説明によれば、 Cookie 以外にもブラウザが「履歴をド�
 
 ### PSL の運用
 
-もともとは Mozilla の bugzilla で管理されていたものが Github に移された。しかし、当時担当だった Mozilla の [Gerv Markham](https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md#user-content-high-volume-of-requests-to-add-domains-to-the-psl-78:~:text=Peter%20Saint%2DAndre%3A%20The%20PSL%20did%20start,the%20current%20folks%20who%20are%20active.) が亡くなってからは、数人のボランティアが引き継いでいるため、実質 Mozilla 管理というわけでもなく、良く言えばオープンになっている。
+もともとは Mozilla の bugzilla で管理されていたものが GitHub に移された。しかし、当時担当だった Mozilla の [Gerv Markham](https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md#user-content-high-volume-of-requests-to-add-domains-to-the-psl-78:~:text=Peter%20Saint%2DAndre%3A%20The%20PSL%20did%20start,the%20current%20folks%20who%20are%20active.) が亡くなってからは、数人のボランティアが引き継いでいるため、実質 Mozilla 管理というわけでもなく、良く言えばオープンになっている。
 
 リクエストの受付も事実上一本化されているため、出す側は良いかもしれないが、メンテナンスをしている側のリソースは非常に少ない。同じように審査と登録をするレジストラや CA のような運用ではなく、人が手作業でボランティアでこの重要なリストをメンテナンスしているのだ。
 
