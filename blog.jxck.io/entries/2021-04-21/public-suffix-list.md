@@ -158,7 +158,7 @@ PSL の説明によれば、 Cookie 以外にもブラウザが「履歴をド�
 
 - [Apple の iOS 14 リリースが広告やレポートに及ぼしうる影響 \| Facebook Business ヘルプセンター](https://www.facebook.com/business/help/331612538028890?id=428636648170202)
 
-そこで Facebook Pixel は Aggregated Event Measurement(AEM) への以降を促した。
+そこで Facebook Pixel は Aggregated Event Measurement(AEM) への移行を促した。
 
 - [合算イベント測定について \| Facebook Business ヘルプセンター](https://www.facebook.com/business/help/721422165168355)
 
@@ -179,7 +179,7 @@ FB のアナウンスは「ワークアラウンドとして PSL の追加があ
 
 前者は対応されつつも、後者は棄却されたり、一時的に追加を凍結するといった対応が取られている。
 
-ところが、トラッキング制約の迂回に躍起になっている人間からは、かなり攻撃的な反応が github 以外の場所(電話など)から、中の人に対して来ているようだ。
+ところが、トラッキング制約の迂回に躍起になっている人間からは、かなり攻撃的な反応が GitHub 以外の場所(電話など)から、中の人に対して来ているようだ。
 
 - <https://github.com/publicsuffix/list/issues/1245#issuecomment-818050711>
 
