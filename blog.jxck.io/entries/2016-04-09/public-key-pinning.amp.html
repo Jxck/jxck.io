@@ -47,7 +47,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-04-09T08:00:00+08:00",
-    "dateModified": "2021-01-16T08:00:00+08:00",
+    "dateModified": "2021-04-21T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -776,7 +776,7 @@
 <main>
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2016-04-09>2016-04-09</time></dd></div>
-    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-01-16>2021-01-16</time></dd></div>
+    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-04-21>2021-04-21</time></dd></div>
     <div>
         <dt>tags</dt>
         <dd>
@@ -951,9 +951,9 @@
       </section>
       <section>
         <h3 id="中間証明書の-pin"><a href="#中間証明書の-pin">中間証明書の Pin</a></h3>
-        <p>Github は現在 HPKP を運用しているため、 Pin の値を調べてみた。
-        <p>Github では、 Leaf (<code translate="no">github.com</code> 自体の証明書) ではなく、そこから Root CA までの証明書チェインに入っている、中間証明書を Pin として設定していた。
-        <p>OpenSSL の <code translate="no">-showcerts</code> コマンドを用いて、 Github の証明書を取得し Pin を計算してみる。
+        <p>GitHub は現在 HPKP を運用しているため、 Pin の値を調べてみた。
+        <p>GitHub では、 Leaf (<code translate="no">github.com</code> 自体の証明書) ではなく、そこから Root CA までの証明書チェインに入っている、中間証明書を Pin として設定していた。
+        <p>OpenSSL の <code translate="no">-showcerts</code> コマンドを用いて、 GitHub の証明書を取得し Pin を計算してみる。
         <p>(証明書が二つ見あり、中間証明書にあたる二つ目だけ抜き出している)
         <pre class=shell><code translate="no"># github.com pins Intermediate Certificate
 # so add `-showcerts` option for first openssl
