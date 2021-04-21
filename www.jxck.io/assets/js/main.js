@@ -110,7 +110,7 @@ const precache =
   "/assets/js/ga.js?210325_165821",
   "/assets/css/archive.css?200907_002254",
   "/assets/css/article.css?201223_011702",
-  "/assets/css/body.css?210316_224521",
+  "/assets/css/body.css?210421_145149",
   "/assets/css/footer.css?201223_011131",
   "/assets/css/header.css?201223_011131",
   "/assets/css/index.css?210325_220155",

@@ -37,7 +37,7 @@
   <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.png>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="Public Suffix List (PSL) は、現在の Web セキュリティの一旦を支えている非常に重要な要素だ。実は、これが少数のボランティアにより Github でメンテナンスされた、単なるテキストリストであることはあまり知られてないかもしれない。最近、このリスト...">
+  <meta name=description         content="Public Suffix List (PSL) は、現在の Web セキュリティの一旦を支えている非常に重要な要素だ。実はこれが、少数のボランティアにより Github でメンテナンスされた、単なるテキストリストであることは、あまり知られてないかもしれない。最近、このリス...">
   <meta name=keywords            content="public suffix list,cookie,privacy">
   <meta name=theme-color         content=#000000>
 
@@ -45,14 +45,14 @@
   <meta name=twitter:site        content=@jxck_>
   <meta name=twitter:url         content=https://blog.jxck.io/entries/2021-04-21/public-suffix-list.html>
   <meta name=twitter:title       content="Public Suffix List の用途と今起こっている問題について | blog.jxck.io">
-  <meta name=twitter:description content="Public Suffix List (PSL) は、現在の Web セキュリティの一旦を支えている非常に重要な要素だ。実は、これが少数のボランティアにより Github でメンテナンスされた、単なるテキストリストであることはあまり知られてないかもしれない。最近、このリスト...">
+  <meta name=twitter:description content="Public Suffix List (PSL) は、現在の Web セキュリティの一旦を支えている非常に重要な要素だ。実はこれが、少数のボランティアにより Github でメンテナンスされた、単なるテキストリストであることは、あまり知られてないかもしれない。最近、このリス...">
   <meta name=twitter:image       content=https://blog.jxck.io/assets/img/jxck.png>
 
   <meta property=og:type         content=article>
   <meta property=og:url          content=https://blog.jxck.io/entries/2021-04-21/public-suffix-list.html>
   <meta property=og:title        content="Public Suffix List の用途と今起こっている問題について | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="Public Suffix List (PSL) は、現在の Web セキュリティの一旦を支えている非常に重要な要素だ。実は、これが少数のボランティアにより Github でメンテナンスされた、単なるテキストリストであることはあまり知られてないかもしれない。最近、このリスト...">
+  <meta property=og:description  content="Public Suffix List (PSL) は、現在の Web セキュリティの一旦を支えている非常に重要な要素だ。実はこれが、少数のボランティアにより Github でメンテナンスされた、単なるテキストリストであることは、あまり知られてないかもしれない。最近、このリス...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.png>
 
   <script type="application/ld+json">
@@ -85,12 +85,12 @@
         "width": 60
       }
     },
-    "description": "Public Suffix List (PSL) は、現在の Web セキュリティの一旦を支えている非常に重要な要素だ。実は、これが少数のボランティアにより Github でメンテナンスされた、単なるテキストリストであることはあまり知られてないかもしれない。最近、このリスト..."
+    "description": "Public Suffix List (PSL) は、現在の Web セキュリティの一旦を支えている非常に重要な要素だ。実はこれが、少数のボランティアにより Github でメンテナンスされた、単なるテキストリストであることは、あまり知られてないかもしれない。最近、このリス..."
   }
   </script>
 
   <title>Public Suffix List の用途と今起こっている問題について | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?210316_224521>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?210421_145149>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?201223_011131>
@@ -161,19 +161,19 @@
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>Public Suffix List (PSL) は、現在の Web セキュリティの一旦を支えている非常に重要な要素だ。
-        <p>実は、これが少数のボランティアにより Github でメンテナンスされた、単なるテキストリストであることはあまり知られてないかもしれない。
+        <p>実はこれが、少数のボランティアにより Github でメンテナンスされた、単なるテキストリストであることは、あまり知られてないかもしれない。
         <p>最近、このリストへの追加リクエストがあとを絶たず、問題になっている。
         <p>そもそも PSL とは何であり、今どのような問題が起こっているのかについて解説する。
       </section>
       <section>
         <h2 id="public-suffix-list-とは何か"><a href="#public-suffix-list-とは何か">Public Suffix List とは何か</a></h2>
-        <p>PSL を解説するにはまずドメインの用語について整理する。
+        <p>PSL を解説するには、まずドメインの用語について整理する。
         <section>
           <h3 id="top-level-domain-tld"><a href="#top-level-domain-tld">Top Level Domain (TLD)</a></h3>
           <p>例えば、このブログのドメインは <code translate="no">blog.jxck.io</code> であり、これは筆者が取得したドメイン <code translate="no">jxck.io</code> のサブドメインだ。
-          <p><code translate="no">jxck.io</code> は、 <code translate="no">.io</code> という TLD を販売しているレジストラから購入できる。もちろん <code translate="no">io</code> そのものをドメインとして例えば <code translate="no">https://io</code> というサイトを建てることはできない。
+          <p><code translate="no">jxck.io</code> は、 <code translate="no">.io</code> という TLD を販売しているレジストラから購入できる。もちろん <code translate="no">io</code> そのものをドメインとして、例えば <code translate="no">https://io</code> というサイトを建てることはできない。
           <p><code translate="no">jxck.io</code> のように、我々がレジストラから割当を受けられる(購入できる)ドメインを Registerable Domain と言う。
-          <p>すると、 Registerable Domain とは、 TLD の一個下の階層、つまり <strong>TLD + 1</strong> と思うかもしれない。しかしここには例外がある。
+          <p>すると、 Registerable Domain とは TLD の一個下の階層、つまり <em>TLD + 1</em> と思うかもしれない。しかしここには例外がある。
         </section>
         <section>
           <h3 id="effective-top-level-domain-etld"><a href="#effective-top-level-domain-etld">Effective Top Level Domain (eTLD)</a></h3>
@@ -193,20 +193,20 @@
             </li>
           </ul>
           <p>つまり <code translate="no">.co.jp</code> とは、それ自体が TLD ではないにも関わらず、 TLD のように扱われるという、例外的な存在なのだ。
-          <p>このようなドメインの組み合わせを Effective Top Level Domain (eTLD) と呼ぶ。
+          <p>このようなドメインの組み合わせを、 Effective Top Level Domain (eTLD) と呼ぶ。
         </section>
         <section>
           <h3 id="public-suffix-list"><a href="#public-suffix-list">Public Suffix List</a></h3>
-          <p><code translate="no">.jp</code> は TLD なのは機械的にわかる。ドメインを <code translate="no">.</code> で区切った一番右は常に TLD だ。
+          <p><code translate="no">.jp</code> が TLD なのは機械的にわかる。ドメインを <code translate="no">.</code> で区切った一番右は常に TLD だ。
           <p>しかし、 <code translate="no">co.jp</code> が eTLD で <code translate="no">example.jp</code> が Registerable Domain であるというのは、どう見分ければ良いのだろうか?
           <p>実はここには機械的な処理方法がない。
           <p>そこで、「この組み合わせは eTLD だ」という判別のために存在するのが Public Suffix List だ。
           <ul>
-            <li>https://publicsuffix.org/
+            <li><a href="https://publicsuffix.org/">https://publicsuffix.org/</a>
           </ul>
           <p>今は Github で管理されており、全体は以下のリポジトリに 1.3 万行のテキストファイルとして存在する。
           <ul>
-            <li>https://github.com/publicsuffix/list
+            <li><a href="https://github.com/publicsuffix/list">https://github.com/publicsuffix/list</a>
           </ul>
           <p>これはもともと Mozilla が管理を始めたものだ、しかし今ではこのファイルが多くのブラウザで使われている。
         </section>
@@ -228,24 +228,24 @@
           <p>まるで IE が悪いかのように喧伝されがちなこの問題だが、そもそも <code translate="no">tokyo.jp</code> を eTLD として運用するというのはレジストラの都合だ。 IE からすれば、言われなければ知ったことではない話でもある。
           <p>同じことは、都道府県型 JP ドメインの話だけではない。
           <p>例えば Github Pages が使う <code translate="no">github.io</code> は、 <code translate="no">jxck.github.io</code> のようにユーザごとにサブドメインが割り当てられる。ホスティングサービスの Glitch が使う <code translate="no">glitch.me</code> もアプリごとにサブドメインが振られる。
-          <p>こうしたサブドメインのサービスが Cookie を持つ場合同じ問題がおこるので、 <code translate="no">github.io</code> や <code translate="no">glitch.me</code> も eTLD として扱わなければならないのだ。これはいちサービスが提供する機能の都合だ。
+          <p>こうしたサブドメインにデプロイされたサービスが Cookie を持つ場合同じ問題がおこるため、 <code translate="no">github.io</code> や <code translate="no">glitch.me</code> も eTLD として扱わなければならないのだ。これはいちサービスが提供する機能の都合だ。
           <p>さらに、少し前に TLD 自体が爆発的に増え(.web, .new etc)、その上で運用される同様のサービスも増えたが、それらすべての eTLD 運用を把握できてないと、そのブラウザではバグとされてしまう。
           <p>そこで、最も現実を追従できている Mozilla の PSL が他のブラウザでも徐々に採用されるようになり、 IE の都道府県型 JP ドメインの問題も PSL への移行をもって解決した。
         </section>
         <section>
           <h3 id="psl-のその他の用途"><a href="#psl-のその他の用途">PSL のその他の用途</a></h3>
           <p>PSL の説明によれば、 Cookie 以外にもブラウザが「履歴をドメインごとに並べる」「URL バーで重要なドメインを表示する」など、 UI がドメインを扱う上で活用されている。
-          <p>しかし、近年これが一番ハイライトされた例に Same Site Cookie がある。 &ldquo;Same Site&rdquo; という概念は、 <strong>eTLD+1 が同じ</strong> であると新しく定義されたのだ。
+          <p>しかし、近年これが一番ハイライトされた例に Same Site Cookie がある。 &ldquo;Same Site&rdquo; という概念は、 <em>eTLD+1 が同じ</em> であると新しく定義されたのだ。
           <p>これは、先の例で言えば <code translate="no">github.io</code> が eTLD で <code translate="no">jxck.github.io</code> が eTLD+1 にあたる。したがって <code translate="no">jxck.github.io</code> と <code translate="no">cdn.jxck.github.io</code> はドメインが違えど eTLD+1 が同じなので Same Site となる。
           <p>対して <code translate="no">jxck.github.io</code> と <code translate="no">www.github.io</code> は同じ <code translate="no">github.io</code> のサブドメインであるように見えながら eTLD+1 が違うので Cross Site となる。
-          <p>すると「<code translate="no">github.io</code> 自体の Cookie はどうなるのか?」というと、 PSL に登録したドメインは TLD と同じように扱われるため、 <code translate="no">Domain=com</code> な Cookie が付与できないのと同じく <code translate="no">github.io</code> な Cookie は付与できない。(したがって https://github.io/ や https://glitch.me/ には何もデプロイされてない)
+          <p>すると「<code translate="no">github.io</code> 自体の Cookie はどうなるのか?」というと、 PSL に登録したドメインは TLD と同じように扱われるため、 <code translate="no">Domain=com</code> な Cookie が付与できないのと同じく <code translate="no">Domain=github.io</code> な Cookie は付与できない。(したがって <a href="https://github.io/">https://github.io/</a> や <a href="https://glitch.me/">https://glitch.me/</a> には何もデプロイされてない)
         </section>
         <section>
           <h3 id="psl-の運用"><a href="#psl-の運用">PSL の運用</a></h3>
           <p>もともとは Mozilla の bugzilla で管理されていたものが Github に移された。しかし、当時担当だった Mozilla の <a href="https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md#user-content-high-volume-of-requests-to-add-domains-to-the-psl-78:~:text=Peter%20Saint%2DAndre%3A%20The%20PSL%20did%20start,the%20current%20folks%20who%20are%20active.">Gerv Markham</a> が亡くなってからは、数人のボランティアが引き継いでいるため、実質 Mozilla 管理というわけでもなく、良く言えばオープンになっている。
           <p>リクエストの受付も事実上一本化されているため、出す側は良いかもしれないが、メンテナンスをしている側のリソースは非常に少ない。同じように審査と登録をするレジストラや CA のような運用ではなく、人が手作業でボランティアでこの重要なリストをメンテナンスしているのだ。
           <p><a href="https://github.com/publicsuffix/list/issues">Issue</a> を見てみるとアクティブに Assignee になっている人は 2,3 人しかいないようだ。
-          <p>ホスティングサービスのように、サービスがユーザにサブドメインを振る形態も増えているため、リクエストは定期的にあり、さらに、近年は TLD 自体が増えていることもある程度は影響があるのかもしれない。
+          <p>ホスティングサービスのようにサービスがユーザにサブドメインを振る形態も増え、さらに近年は TLD 自体が増えていることもあり、これまでもリクエストは定期的にあった。
         </section>
       </section>
       <section>
@@ -278,17 +278,17 @@
         </section>
         <section>
           <h3 id="psl-リクエストの例"><a href="#psl-リクエストの例">PSL リクエストの例</a></h3>
-          <p>案の定 iOS および Facebook が当該アナウンスをしてから、その対応を理由にした PSL 追加の PR が増えている。
+          <p>案の定 iOS および Facebook が当該アナウンスをしてから、その対応を理由にした PSL 追加の PR が増えている。(そのドメインそのもので Cookie が使えなくなるといったことを理解してリクエストしているのかは謎だが)
           <p>中には、「そのサブドメインにクライアントが何かをデプロイしている」といったプラットフォームからの、いわゆる正統なリクエストもあれば、単にトラッキング制約を回避したいがためだけのリクエストもある。
           <p>前者は対応されつつも、後者は棄却されたり、一時的に追加を凍結するといった対応が取られている。
           <p>ところが、トラッキング制約の迂回に躍起になっている人間からは、かなり攻撃的な反応が github 以外の場所(電話など)から、中の人に対して来ているようだ。
           <ul>
-            <li>https://github.com/publicsuffix/list/issues/1245#issuecomment-818050711
+            <li><a href="https://github.com/publicsuffix/list/issues/1245#issuecomment-818050711">https://github.com/publicsuffix/list/issues/1245#issuecomment-818050711</a>
           </ul>
           <p>完全に健全な状態とは言えず、無視できない状況である一方、こうした運用を想定しなかった中の人は、ひたすらに消耗している。
           <p>近年 Privacy Sandbox 系の議論が行われている Privacy CG でも、この問題が取り上げられた。
           <ul>
-            <li>https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md
+            <li><a href="https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md">https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md</a>
           </ul>
           <p>Webkit で Privacy 系 API を担当している John Wilander は、これを Privacy Click Measurement の迂回に使っている業者については、「<a href="https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md#user-content-high-volume-of-requests-to-add-domains-to-the-psl-78:~:text=.%20We%E2%80%99re%20taking%20a%20chance%20that,point%3B%20I%20don%E2%80%99t%20really%20like%20it.">望ましくないとはいえ、そうした業者を block list に乗せて PCM を使えなくするといった対応もあり得る</a> 」とう趣旨の発言をしている。
           <p>過去にも Fingerprinting や CNAME Cloaking など、代替手段として提供されたものはあったが、特に Safari はそうしたものを徹底して塞いできた。これまで運用されていた仕組みがワークアラウンドに利用されることを防ぐためにパッチングを積み重ねることは、 Web をより複雑にし、少しづつ歪が増え、将来的に負債になることは想像に難くない。
@@ -303,7 +303,7 @@
         </ul>
         <p>DNS の構造を無視していることも、 Origin の概念ともズレいてることも、レジストラやサービス提供者の気分次第で定義されることも、テキストファイルでメンテされていることも、そのメンテナンスが重要でありながらボランティアベースであることも、全てが問題といっていいだろう。
         <p>しかし、一旦このファイルが壊れれば、多くのサイトで Cookie に関するなんらかの問題が発生するか、各ベンダがフォークして互換性の問題が発生するか、もっと最悪な何かになる可能性がある。
-        <p>既に動いている様々な機能が、 PSL を基底に構築されてしまっている以上、 PSL をやめるためにはそれら全ての使用を更新し、実装をリリースし、サービスが対応しないといけない。
+        <p>既に動いている様々な機能が、 PSL を基底に構築されてしまっている以上、 PSL をやめるためにはそれら全ての仕様を更新し、実装をリリースし、サービスが対応しないといけない。
         <p>これが簡単ではないことは、説明しなくてもわかるだろう。したがって、現状はなんとかこの PSL の運用が健全に行える状態に戻すことが先決となる。
       </section>
       <section>
