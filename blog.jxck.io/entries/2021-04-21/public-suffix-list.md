@@ -3,7 +3,7 @@
 
 ## Intro
 
-Public Suffix List (PSL) は、現在の Web セキュリティの一旦を支えている非常に重要な要素だ。
+Public Suffix List (PSL) は、現在の Web プラットフォームの一旦を支えている非常に重要な要素だ。
 
 実はこれが、少数のボランティアにより GitHub でメンテナンスされた、単なるテキストリストであることは、あまり知られてないかもしれない。
 
@@ -14,14 +14,14 @@ Public Suffix List (PSL) は、現在の Web セキュリティの一旦を支�
 
 ## Public Suffix List とは何か
 
-PSL を解説するには、まず[ドメインの用語](https://www.nic.ad.jp/ja/dom/registration.html)について整理する。
+PSL を解説するには、まず関連する用語について整理する。
 
 
 ### Top Level Domain (TLD)
 
 例えば、このブログのドメインは `blog.jxck.io` であり、これは筆者が取得したドメイン `jxck.io` のサブドメインだ。
 
-`jxck.io` は、 `.io` という TLD のサブドメインを販売しているレジストラから購入できる。もちろん `io` そのものをドメインとして、例えば `https://io` というサイトを建てることは、TLD ドメインの運用者たるレジストリ以外には技術的に不可能である。
+`jxck.io` は、 `.io` という TLD のサブドメインを販売しているレジストラから購入できる。もちろん `io` そのものをドメインを購入して、例えば `https://io` というサイトを建てることはできない。
 
 `jxck.io` のように、我々がレジストラから割当を受けられる(購入できる)ドメインを Registerable Domain と言う。
 
@@ -36,7 +36,7 @@ PSL を解説するには、まず[ドメインの用語](https://www.nic.ad.jp/
 
 `example.jp` 自体も取得できるため、 `.jp` は必ず何かと 2 つ組み合わせないと取得できないわけではない。
 
-まとめるとこうなる。
+まとめると以下のようになる。
 
 - `.jp` のサブドメインを取得することは可能 (ex. `example.jp`)
 - `.co.jp` のサブドメインを取得することも可能 (ex. `example.co.jp`)
@@ -47,7 +47,7 @@ PSL を解説するには、まず[ドメインの用語](https://www.nic.ad.jp/
 このようなドメインの組み合わせを、 Effective Top Level Domain (eTLD) と呼ぶ。
 
 
-### Public Suffix List
+### Public Suffix List (PSL)
 
 `.jp` が TLD なのは機械的にわかる。ドメインを `.` で区切った一番右は常に TLD だ。
 
@@ -59,7 +59,7 @@ PSL を解説するには、まず[ドメインの用語](https://www.nic.ad.jp/
 
 - <https://publicsuffix.org/>
 
-今は Github で管理されており、全体は以下のリポジトリに 1.3 万行のテキストファイルとして存在する。
+今は GitHub で管理されており、全体は以下のリポジトリに 1.3 万行のテキストファイルとして存在する。
 
 - <https://github.com/publicsuffix/list>
 
@@ -70,7 +70,7 @@ PSL を解説するには、まず[ドメインの用語](https://www.nic.ad.jp/
 
 昔は同様のファイルを各ベンダが別々に管理していたが、それが問題を起こしたことがある。
 
-`tokyo.jp` というドメインは、 "都道府県型 JP ドメイン" という種類の東京版だ。 `tokyo.jp` が eTLD であるため取得できず、 `${好きな単語}.tokyo.jp` は取得できる。これは `tokyo.jp` をレジストラがそう運用しているからという、仕様ではなく運用の都合なのだ。
+`tokyo.jp` というドメインは、 *都道府県型 JP ドメイン* という種類の東京版だ。 `tokyo.jp` が eTLD であるため取得できず、 `${好きな単語}.tokyo.jp` は取得できる。これは `tokyo.jp` をレジストラがそう運用しているからという、仕様ではなく運用の都合なのだ。
 
 ところが、「そう運用されている」という事実を知らないブラウザがあったらどうなるだろうか?
 
@@ -106,7 +106,7 @@ Set-Cookie: session_id=deadbeef; Domain=tokyo.jp
 
 こうしたサブドメインにデプロイされたサービスが Cookie を持つ場合同じ問題がおこるため、 `github.io` や `glitch.me` も eTLD として扱わなければならないのだ。これはいちサービスが提供する機能の都合だ。
 
-さらに、少し前に TLD 自体が爆発的に増え(.web, .new etc)、その上で運用される同様のサービスも増えたが、それらすべての eTLD 運用を把握できてないと、そのブラウザではバグとされてしまう。
+さらに、少し前に TLD 自体が爆発的に増え(`.web`, `.new` etc)、その上で運用される同様のサービスも増えたが、それらすべての eTLD 運用を把握できてないと、そのブラウザではバグとされてしまう。
 
 そこで、最も現実を追従できている Mozilla の PSL が他のブラウザでも徐々に採用されるようになり、 IE の都道府県型 JP ドメインの問題も PSL への移行をもって解決した。
 
@@ -132,7 +132,7 @@ PSL の説明によれば、 Cookie 以外にもブラウザが「履歴をド�
 
 [Issue](https://github.com/publicsuffix/list/issues) を見てみるとアクティブに Assignee になっている人は 2,3 人しかいないようだ。
 
-ホスティングサービスのようにサービスがユーザにサブドメインを振る形態も増え、さらに近年は TLD 自体が増えていることもあり、これまでもリクエストは定期的にあった。
+ホスティングサービスのように、ユーザにサブドメインを振るサービス形態も増え、さらに近年は TLD 自体が増えていることもあり、これまでもリクエストは定期的にあった。
 
 
 ## PSL 追加リクエストの増加
@@ -189,7 +189,7 @@ FB のアナウンスは「ワークアラウンドとして PSL の追加があ
 
 - <https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md>
 
-Webkit で Privacy 系 API を担当している John Wilander は、これを Privacy Click Measurement の迂回に使っている業者については、「[望ましくないとはいえ、そうした業者を block list に乗せて PCM を使えなくするといった対応もあり得る](https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md#user-content-high-volume-of-requests-to-add-domains-to-the-psl-78:~:text=.%20We%E2%80%99re%20taking%20a%20chance%20that,point%3B%20I%20don%E2%80%99t%20really%20like%20it.) 」とう趣旨の発言をしている。
+Webkit で Privacy 系 API を担当している John Wilander は、これを Privacy Click Measurement の迂回に使っている業者については、「[望ましくないとはいえ、そうした業者を block list に乗せて PCM を使えなくするといった対応もあり得る](https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md#user-content-high-volume-of-requests-to-add-domains-to-the-psl-78:~:text=.%20We%E2%80%99re%20taking%20a%20chance%20that,point%3B%20I%20don%E2%80%99t%20really%20like%20it.) 」という趣旨の発言をしている。
 
 過去にも Fingerprinting や CNAME Cloaking など、代替手段として提供されたものはあったが、特に Safari はそうしたものを徹底して塞いできた。これまで運用されていた仕組みがワークアラウンドに利用されることを防ぐためにパッチングを積み重ねることは、 Web をより複雑にし、少しづつ歪が増え、将来的に負債になることは想像に難くない。
 

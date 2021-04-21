@@ -191,11 +191,11 @@ Report-Only でない運用では、接続ができないという状態にな�
 
 ### 中間証明書の Pin
 
-Github は現在 HPKP を運用しているため、 Pin の値を調べてみた。
+GitHub は現在 HPKP を運用しているため、 Pin の値を調べてみた。
 
-Github では、 Leaf (`github.com` 自体の証明書) ではなく、そこから Root CA までの証明書チェインに入っている、中間証明書を Pin として設定していた。
+GitHub では、 Leaf (`github.com` 自体の証明書) ではなく、そこから Root CA までの証明書チェインに入っている、中間証明書を Pin として設定していた。
 
-OpenSSL の `-showcerts` コマンドを用いて、 Github の証明書を取得し Pin を計算してみる。
+OpenSSL の `-showcerts` コマンドを用いて、 GitHub の証明書を取得し Pin を計算してみる。
 
 (証明書が二つ見あり、中間証明書にあたる二つ目だけ抜き出している)
 

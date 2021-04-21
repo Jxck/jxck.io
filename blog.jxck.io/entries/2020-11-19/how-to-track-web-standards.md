@@ -101,7 +101,7 @@ WebCodecs の場合は、 Intent to Experiment まで出ているので、実装
 
 新しい仕様が提案されるとき、まず最初に「こんな機能が欲しい」という概要とモチベーションを説明する *Explainer* が作られる。
 
-特に置かれる場所もフォーマットも決まってないため、 Google Docs, Github, Issue, ML, [Discourse](https://discourse.wicg.io/) の投稿だったりすることもある。
+特に置かれる場所もフォーマットも決まってないため、 Google Docs, GitHub, Issue, ML, [Discourse](https://discourse.wicg.io/) の投稿だったりすることもある。
 
 いきなり仕様や実装を読むよりも、その仕様の概要を抑えるという意味では、まずこの Explainer を探して読み、概要を把握するのが良いだろう。
 
@@ -129,7 +129,7 @@ W3C の Tag (Technical Architecture Group) というグループのレビュー�
 
 - <https://github.com/w3ctag/design-reviews/issues/433>
 
-Github の Issue で行われており、セキュリティや互換性など、様々な側面からレビューがされるため、 API にどういう懸念があり、どう解決したのかなどがわかる。
+GitHub の Issue で行われており、セキュリティや互換性など、様々な側面からレビューがされるため、 API にどういう懸念があり、どう解決したのかなどがわかる。
 
 
 ## Positions
@@ -174,7 +174,7 @@ Safari の場合は特にページが有るわけではなく、主に webkit-de
 
 仕様は、 IETF なのか W3C なのか TC39 なのかによって違うが、ある程度規定されたフォーマットで書かれているだろう。
 
-しかし、決まったフォーマットに落とす前に、例えば API Interface だけを Explainer の延長で Github に書いたりすることもあるので、一概にどこにあるとは言い切れない。
+しかし、決まったフォーマットに落とす前に、例えば API Interface だけを Explainer の延長で GitHub に書いたりすることもあるので、一概にどこにあるとは言い切れない。
 
 IETF, W3C/WHATWG, TC39 それぞれの見方の概要について解説していく。
 
@@ -193,7 +193,7 @@ IETF, W3C/WHATWG, TC39 それぞれの見方の概要について解説してい
 RFC が出ていればそれを読めば良い。が、読み始める前にかならず確認すべきヘッダが 3 つある。
 
 - Errata Exist
-  - Github でいう Issue ページ、 RFC が出た後に見つかった誤字脱字や仕様のバグなどが報告されている。
+  - GitHub でいう Issue ページ、 RFC が出た後に見つかった誤字脱字や仕様のバグなどが報告されている。
   - RFC 自体は一度出たら修正されないので、ここに Errata が溜まったら、別の RFC として更新版が出るが、なかなか出ないものが多い。
   - 特にこれから実装しようとか、仕様の細部を確認するような場合はかならず確認するべき。仕様が常に正しいとは限らない。
   - 逆に仕様で間違ってたり誤字脱字を見つけたらここから報告する。
@@ -261,11 +261,11 @@ IETF は基本的には ML で議論行われ、ここを遡るとどんな議�
 
 - <https://mailarchive.ietf.org/arch/browse/quic/>
 
-また QUIC のドラフトには、ドラフト内に Github へのリンクがあるように、最近は Github で管理されることも増えた。
+また QUIC のドラフトには、ドラフト内に GitHub へのリンクがあるように、最近は GitHub で管理されることも増えた。
 
 - <https://github.com/quicwg/base-drafts>
 
-Github の運用はドラフトによってまちまちで、 Issue / PR を受け付けるものや、単なるホスティングで議論は ML でやるように促すものもあるので、 README をよく読んでから行動したい。
+GitHub の運用はドラフトによってまちまちで、 Issue / PR を受け付けるものや、単なるホスティングで議論は ML でやるように促すものもあるので、 README をよく読んでから行動したい。
 
 
 ### IETF MTG
@@ -297,7 +297,7 @@ QUIC であれば以下のようにアレンジされていることがわかる
 
 もし MDN にエントリがあるならこれが一番簡単な方法だろう。
 
-新しいドラフトは大抵 Github で管理されてるので、 MDN にエントリのないものは、検索して Github のリポジトリなどを探すと良い。
+新しいドラフトは大抵 GitHub で管理されてるので、 MDN にエントリのないものは、検索して GitHub のリポジトリなどを探すと良い。
 
 
 ### Draft
@@ -316,7 +316,7 @@ W3C の Draft には段階があるが、解説すると長くなるので、良
 
 w3c には仕様にスナップショットを打つプロセスがあるが、とにかく最新を見たい場合は、ヘッダにある `[Editor's Draft]` というリンクの URL を見ると良いだろう(上のリストだと最後のもの)。これが、著者が作業している Working Copy となる。
 
-また、ここで Github のリポジトリも確認できることが多い。
+また、ここで GitHub のリポジトリも確認できることが多い。
 
 
 ### WG
@@ -342,7 +342,7 @@ Working Group のリストは以下にある。
 
 - <https://wicg.github.io/web-codecs/>
 
-WICG のリポジトリは全部 Github にあるため、ここは比較的新しい仕様が集まっていることになる。(Portal, Display Locking, WebUSB etc)
+WICG のリポジトリは全部 GitHub にあるため、ここは比較的新しい仕様が集まっていることになる。(Portal, Display Locking, WebUSB etc)
 
 - <https://github.com/wicg/>
 
