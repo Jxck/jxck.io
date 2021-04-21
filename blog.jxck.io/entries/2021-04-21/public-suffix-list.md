@@ -5,7 +5,7 @@
 
 Public Suffix List (PSL) は、現在の Web セキュリティの一旦を支えている非常に重要な要素だ。
 
-実は、これが少数のボランティアにより Github でメンテナンスされた、単なるテキストリストであることはあまり知られてないかもしれない。
+実はこれが、少数のボランティアにより Github でメンテナンスされた、単なるテキストリストであることは、あまり知られてないかもしれない。
 
 最近、このリストへの追加リクエストがあとを絶たず、問題になっている。
 
@@ -14,18 +14,18 @@ Public Suffix List (PSL) は、現在の Web セキュリティの一旦を支�
 
 ## Public Suffix List とは何か
 
-PSL を解説するにはまずドメインの用語について整理する。
+PSL を解説するには、まずドメインの用語について整理する。
 
 
 ### Top Level Domain (TLD)
 
 例えば、このブログのドメインは `blog.jxck.io` であり、これは筆者が取得したドメイン `jxck.io` のサブドメインだ。
 
-`jxck.io` は、 `.io` という TLD を販売しているレジストラから購入できる。もちろん `io` そのものをドメインとして例えば `https://io` というサイトを建てることはできない。
+`jxck.io` は、 `.io` という TLD を販売しているレジストラから購入できる。もちろん `io` そのものをドメインとして、例えば `https://io` というサイトを建てることはできない。
 
 `jxck.io` のように、我々がレジストラから割当を受けられる(購入できる)ドメインを Registerable Domain と言う。
 
-すると、 Registerable Domain とは、 TLD の一個下の階層、つまり **TLD + 1** と思うかもしれない。しかしここには例外がある。
+すると、 Registerable Domain とは TLD の一個下の階層、つまり *TLD + 1* と思うかもしれない。しかしここには例外がある。
 
 
 ### Effective Top Level Domain (eTLD)
@@ -44,12 +44,12 @@ PSL を解説するにはまずドメインの用語について整理する。
 
 つまり `.co.jp` とは、それ自体が TLD ではないにも関わらず、 TLD のように扱われるという、例外的な存在なのだ。
 
-このようなドメインの組み合わせを Effective Top Level Domain (eTLD) と呼ぶ。
+このようなドメインの組み合わせを、 Effective Top Level Domain (eTLD) と呼ぶ。
 
 
 ### Public Suffix List
 
-`.jp` は TLD なのは機械的にわかる。ドメインを `.` で区切った一番右は常に TLD だ。
+`.jp` が TLD なのは機械的にわかる。ドメインを `.` で区切った一番右は常に TLD だ。
 
 しかし、 `co.jp` が eTLD で `example.jp` が Registerable Domain であるというのは、どう見分ければ良いのだろうか?
 
@@ -57,11 +57,11 @@ PSL を解説するにはまずドメインの用語について整理する。
 
 そこで、「この組み合わせは eTLD だ」という判別のために存在するのが Public Suffix List だ。
 
-- https://publicsuffix.org/
+- <https://publicsuffix.org/>
 
 今は Github で管理されており、全体は以下のリポジトリに 1.3 万行のテキストファイルとして存在する。
 
-- https://github.com/publicsuffix/list
+- <https://github.com/publicsuffix/list>
 
 これはもともと Mozilla が管理を始めたものだ、しかし今ではこのファイルが多くのブラウザで使われている。
 
@@ -104,7 +104,7 @@ Set-Cookie: session_id=deadbeef; Domain=tokyo.jp
 
 例えば Github Pages が使う `github.io` は、 `jxck.github.io` のようにユーザごとにサブドメインが割り当てられる。ホスティングサービスの Glitch が使う `glitch.me` もアプリごとにサブドメインが振られる。
 
-こうしたサブドメインのサービスが Cookie を持つ場合同じ問題がおこるので、 `github.io` や `glitch.me` も eTLD として扱わなければならないのだ。これはいちサービスが提供する機能の都合だ。
+こうしたサブドメインにデプロイされたサービスが Cookie を持つ場合同じ問題がおこるため、 `github.io` や `glitch.me` も eTLD として扱わなければならないのだ。これはいちサービスが提供する機能の都合だ。
 
 さらに、少し前に TLD 自体が爆発的に増え(.web, .new etc)、その上で運用される同様のサービスも増えたが、それらすべての eTLD 運用を把握できてないと、そのブラウザではバグとされてしまう。
 
@@ -115,13 +115,13 @@ Set-Cookie: session_id=deadbeef; Domain=tokyo.jp
 
 PSL の説明によれば、 Cookie 以外にもブラウザが「履歴をドメインごとに並べる」「URL バーで重要なドメインを表示する」など、 UI がドメインを扱う上で活用されている。
 
-しかし、近年これが一番ハイライトされた例に Same Site Cookie がある。 "Same Site" という概念は、 **eTLD+1 が同じ** であると新しく定義されたのだ。
+しかし、近年これが一番ハイライトされた例に Same Site Cookie がある。 "Same Site" という概念は、 *eTLD+1 が同じ* であると新しく定義されたのだ。
 
 これは、先の例で言えば `github.io` が eTLD で `jxck.github.io` が eTLD+1 にあたる。したがって `jxck.github.io` と `cdn.jxck.github.io` はドメインが違えど eTLD+1 が同じなので Same Site となる。
 
 対して `jxck.github.io` と `www.github.io` は同じ `github.io` のサブドメインであるように見えながら eTLD+1 が違うので Cross Site となる。
 
-すると「`github.io` 自体の Cookie はどうなるのか?」というと、 PSL に登録したドメインは TLD と同じように扱われるため、 `Domain=com` な Cookie が付与できないのと同じく `github.io` な Cookie は付与できない。(したがって https://github.io/ や https://glitch.me/ には何もデプロイされてない)
+すると「`github.io` 自体の Cookie はどうなるのか?」というと、 PSL に登録したドメインは TLD と同じように扱われるため、 `Domain=com` な Cookie が付与できないのと同じく `Domain=github.io` な Cookie は付与できない。(したがって <https://github.io/> や <https://glitch.me/> には何もデプロイされてない)
 
 
 ### PSL の運用
@@ -132,7 +132,7 @@ PSL の説明によれば、 Cookie 以外にもブラウザが「履歴をド�
 
 [Issue](https://github.com/publicsuffix/list/issues) を見てみるとアクティブに Assignee になっている人は 2,3 人しかいないようだ。
 
-ホスティングサービスのように、サービスがユーザにサブドメインを振る形態も増えているため、リクエストは定期的にあり、さらに、近年は TLD 自体が増えていることもある程度は影響があるのかもしれない。
+ホスティングサービスのようにサービスがユーザにサブドメインを振る形態も増え、さらに近年は TLD 自体が増えていることもあり、これまでもリクエストは定期的にあった。
 
 
 ## PSL 追加リクエストの増加
@@ -173,7 +173,7 @@ FB のアナウンスは「ワークアラウンドとして PSL の追加があ
 
 ### PSL リクエストの例
 
-案の定 iOS および Facebook が当該アナウンスをしてから、その対応を理由にした PSL 追加の PR が増えている。
+案の定 iOS および Facebook が当該アナウンスをしてから、その対応を理由にした PSL 追加の PR が増えている。(そのドメインそのもので Cookie が使えなくなるといったことを理解してリクエストしているのかは謎だが)
 
 中には、「そのサブドメインにクライアントが何かをデプロイしている」といったプラットフォームからの、いわゆる正統なリクエストもあれば、単にトラッキング制約を回避したいがためだけのリクエストもある。
 
@@ -181,13 +181,13 @@ FB のアナウンスは「ワークアラウンドとして PSL の追加があ
 
 ところが、トラッキング制約の迂回に躍起になっている人間からは、かなり攻撃的な反応が github 以外の場所(電話など)から、中の人に対して来ているようだ。
 
-- https://github.com/publicsuffix/list/issues/1245#issuecomment-818050711
+- <https://github.com/publicsuffix/list/issues/1245#issuecomment-818050711>
 
 完全に健全な状態とは言えず、無視できない状況である一方、こうした運用を想定しなかった中の人は、ひたすらに消耗している。
 
 近年 Privacy Sandbox 系の議論が行われている Privacy CG でも、この問題が取り上げられた。
 
-- https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md
+- <https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md>
 
 Webkit で Privacy 系 API を担当している John Wilander は、これを Privacy Click Measurement の迂回に使っている業者については、「[望ましくないとはいえ、そうした業者を block list に乗せて PCM を使えなくするといった対応もあり得る](https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md#user-content-high-volume-of-requests-to-add-domains-to-the-psl-78:~:text=.%20We%E2%80%99re%20taking%20a%20chance%20that,point%3B%20I%20don%E2%80%99t%20really%20like%20it.) 」とう趣旨の発言をしている。
 
@@ -206,7 +206,7 @@ DNS の構造を無視していることも、 Origin の概念ともズレい�
 
 しかし、一旦このファイルが壊れれば、多くのサイトで Cookie に関するなんらかの問題が発生するか、各ベンダがフォークして互換性の問題が発生するか、もっと最悪な何かになる可能性がある。
 
-既に動いている様々な機能が、 PSL を基底に構築されてしまっている以上、 PSL をやめるためにはそれら全ての使用を更新し、実装をリリースし、サービスが対応しないといけない。
+既に動いている様々な機能が、 PSL を基底に構築されてしまっている以上、 PSL をやめるためにはそれら全ての仕様を更新し、実装をリリースし、サービスが対応しないといけない。
 
 これが簡単ではないことは、説明しなくてもわかるだろう。したがって、現状はなんとかこの PSL の運用が健全に行える状態に戻すことが先決となる。
 
