@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html amp lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href=https://blog.jxck.io/entries/2021-04-21/public-suffix-list.html>
+
+  <link rel=icon             type =image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon             type =image/png sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.png>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="Public Suffix List (PSL) は、現在の Web セキュリティの一旦を支えている非常に重要な要素だ。実は、これが少数のボランティアにより Github でメンテナンスされた、単なるテキストリストであることはあまり知られてないかもしれない。最近、このリスト...">
+  <meta name=keywords            content="public suffix list,cookie,privacy">
+  <meta name=theme-color         content=#000000>
+
+  <meta name=twitter:card        content=summary>
+  <meta name=twitter:site        content=@jxck_>
+  <meta name=twitter:url         content=https://blog.jxck.io/entries/2021-04-21/public-suffix-list.html>
+  <meta name=twitter:title       content="Public Suffix List の用途と今起こっている問題について | blog.jxck.io">
+  <meta name=twitter:description content="Public Suffix List (PSL) は、現在の Web セキュリティの一旦を支えている非常に重要な要素だ。実は、これが少数のボランティアにより Github でメンテナンスされた、単なるテキストリストであることはあまり知られてないかもしれない。最近、このリスト...">
+  <meta name=twitter:image       content=https://blog.jxck.io/assets/img/jxck.png>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2021-04-21/public-suffix-list.html>
+  <meta property=og:title        content="Public Suffix List の用途と今起こっている問題について | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="Public Suffix List (PSL) は、現在の Web セキュリティの一旦を支えている非常に重要な要素だ。実は、これが少数のボランティアにより Github でメンテナンスされた、単なるテキストリストであることはあまり知られてないかもしれない。最近、このリスト...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.png>
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Public Suffix List の用途と今起こっている問題について | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2021-04-21T08:00:00+08:00",
+    "dateModified": "2021-04-21T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.60x60.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": "Public Suffix List (PSL) は、現在の Web セキュリティの一旦を支えている非常に重要な要素だ。実は、これが少数のボランティアにより Github でメンテナンスされた、単なるテキストリストであることはあまり知られてないかもしれない。最近、このリスト..."
+  }
+  </script>
+
+  <title>Public Suffix List の用途と今起こっている問題について | blog.jxck.io</title>
+  <script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+  <script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+  <script async custom-element=amp-ad src=https://cdn.ampproject.org/v0/amp-ad-0.1.js></script>
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src=https://cdn.ampproject.org/v0.js></script>
+  <style amp-custom>
+    article section p {
+      margin-inline-start: 0;
+    }
+
+    article table {
+      margin-inline-start: 0;
+    }
+
+    article img {
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
+      border: 1px solid #ccc;
+      box-sizing: content-box;
+      background-color: #fff;
+    }
+
+    article ul,
+    article ol,
+    article dl {
+      margin-inline-start: var(--grid);
+      font-family: var(--mono-font);
+    }
+
+    article li {
+      margin-block-start:  calc(var(--grid)/2);
+      margin-block-end:    0;
+      margin-inline-start: calc(var(--grid)/2);
+      margin-inline-end:   0;
+    }
+
+    article dl {
+      display: grid;
+      grid-template-columns: minmax(auto, max-content);
+      grid-column-gap: var(--grid);
+    }
+
+    article dl div {
+      display: contents;
+    }
+
+    article dl dt {
+      grid-column: 1 / 2;
+    }
+    article dl dd {
+      grid-column: 2 / 2;
+    }
+
+    article blockquote {
+      font-family: var(--mono-font);
+    }
+
+    article blockquote p {
+      margin: 0;
+    }
+
+    @supports (line-height-step: 1px) {
+      article {
+        --grid-rhythm: 1.5em;
+        line-height: 1.5;
+        line-height-step: var(--grid-rhythm);
+      }
+
+      article h1,
+      article h2,
+      article h3,
+      article h4,
+      article h5,
+      article h6 {
+        display: inline-block;
+        width: 100%;
+        line-height-step: 0;
+        line-height: 1.2;
+        margin-block-end: 0;
+      }
+
+      article section {
+        /* grid for debug */
+        /* background-size: 100% var(--grid-rhythm); */
+        /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
+      }
+
+      article p {
+        margin-block-start: var(--grid-rhythm);
+        margin-block-end:   var(--grid-rhythm);
+      }
+
+      article pre,
+      article table {
+        line-height-step: 0;
+        line-height: normal;
+      }
+    }
+    /* Light Mode Theme */
+    :root {
+      --background-color: #fefefe;
+      --font-color: #222;
+      --header-color: #222;
+
+      --anchor-color: RoyalBlue;
+      --anchor-visited-color: Brown;
+
+      --code-block: #161b22;
+      --code-block-font: #ffffff;
+
+      --code-inline: #f1f5f9;
+      --code-inline-font: #292929;
+
+      --block-quote: #ddd;
+      --table-border: #222;
+
+      --regular-font: "Noto Sans", "Noto Sans CJK JP", "Hiragino Sans", 'ヒラギノ角ゴ Pro W3', 'メイリオ', sans-serif;
+      --mono-font: Menlo, Consolas, Liberation, Mono, Courier;
+      --code-font: Menlo, Consolas, Liberation, Mono, Courier;
+
+      --icon-size: 30px;
+
+      --width: 80vw;
+      --max-width: 1024px;
+
+      --grid: 1rem;
+
+      --radius: 4px;
+    }
+
+
+    /* Mobile Theme */
+    @media screen and (max-device-width: 960px) {
+      :root {
+        --width: 94vw;
+      }
+
+      audio {
+        width: 100%;
+      }
+    }
+
+    /* Dark Mode Theme */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --header-color: #111;
+        --background-color: #222;
+        --font-color: #eee;
+
+        --anchor-color: CornflowerBlue;
+        --anchor-visited-color: RosyBrown;
+
+        --table-border: #eee;
+      }
+
+      article img {
+        filter: grayscale(50%);
+      }
+      article img[src*=svg] {
+        filter: invert(100%) grayscale(50%);
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--regular-font);
+      background-color: var(--background-color);
+      color: var(--font-color);
+      font-feature-settings: "palt";
+      margin: 0;
+      padding: 0;
+    }
+
+    code {
+      font-family: var(--mono-font);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    hr {
+      margin: 0;
+      padding: 0;
+    }
+
+    iframe {
+      display: block;
+      max-width: 100%;
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
+    }
+    dl.info {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info div {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+
+    dl.info dt::after {
+      content: ":";
+      padding-inline-end: calc(var(--grid)/2);
+    }
+
+    dl.info dd {
+      margin-block-start: 0;
+      margin-block-end: 0;
+      margin-inline-end: var(--grid);
+      margin-inline-start: 0;
+    }
+
+    dl.info dd i {
+      font-style: normal;
+      padding-inline-end: calc(var(--grid)/3);
+    }
+
+    details.info > summary {
+    }
+
+    details.info ul {
+      margin-block-start: 0;
+      margin-inline-start: var(--grid);
+    }
+
+    nav.tags {
+      display: inline;
+    }
+
+    .tags ul {
+      display: inline-flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    .tags li:before {
+      content: none;
+    }
+
+    .tags li:first-child:before{
+      content: "[ ";
+    }
+
+    .tags li:after {
+      content: ",";
+      padding-inline-end: 0.5rem;
+    }
+
+    .tags li:last-child:after {
+      content: " ]";
+    }
+    header {
+      z-index: 1;
+      position: sticky;
+      position: -webkit-sticky;
+      top: 0;
+      box-sizing: border-box;
+      margin: 0;
+      padding: calc(var(--grid)/2);
+      background-color: var(--header-color);
+    }
+
+    h2:target,
+    h3:target,
+    h4:target,
+    h5:target,
+    h6:target {
+      /* sticky header に合わせて link scroll をずらす */
+      margin-block-start:  calc((var(--icon-size) + var(--grid)) * -1);
+      padding-block-start: calc((var(--icon-size) + var(--grid)));
+    }
+
+    header nav {
+      width: var(--width);
+      max-width: var(--max-width);
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
+    }
+
+    header nav ul {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      margin: 0;
+    }
+
+    header nav li {
+      width:  var(--icon-size);
+      height: var(--icon-size);
+      padding: 0;
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: var(--grid);
+      margin-inline-end:   0;
+    }
+
+    header nav ul li a,
+    header nav ul li button {
+      display: block;
+      width: var(--icon-size);
+      height: var(--icon-size);
+      padding: 0;
+      margin: 0;
+      border: none;
+      background-color: var(--header-color);
+    }
+
+    header nav svg {
+      fill: var(--background-color);
+    }
+
+    header nav ul li::before {
+      content: none;
+    }
+
+    header nav ul li:first-child {
+      flex-grow: 1;
+      margin-inline-start: 0;
+    }
+
+    header nav .logo {
+      border: 1px solid #fff;
+      box-sizing: border-box;
+    }
+    h1 > a,
+    h2 > a,
+    h3 > a,
+    h4 > a,
+    h5 > a,
+    h6 > a {
+      color: var(--font-color);
+    }
+
+    h1 > a:visited,
+    h2 > a:visited,
+    h3 > a:visited,
+    h4 > a:visited,
+    h5 > a:visited,
+    h6 > a:visited {
+      color: var(--font-color);
+    }
+
+    h1 > a::before {
+      content: "# ";
+    }
+
+    h2 > a::before {
+      content: "## ";
+    }
+
+    h3 > a::before {
+      content: "### ";
+    }
+
+    h4 > a::before {
+      content: "#### ";
+    }
+
+    h1 > a:hover::before,
+    h2 > a:hover::before,
+    h3 > a:hover::before,
+    h4 > a:hover::before,
+    h5 > a:hover::before,
+    h6 > a:hover::before {
+      color: var(--anchor-visited-color);
+    }
+
+    em {
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    em::before,
+    em::after {
+      content: "*";
+    }
+
+    strong {
+      color: red;
+    }
+
+    strong::before,
+    strong::after {
+      content: "**";
+    }
+
+    ul li::before {
+      content: "- ";
+    }
+
+    ol {
+      counter-reset: list;
+    }
+
+    ol li::before {
+      counter-increment: list;
+      content: counter(list) ". ";
+    }
+
+    dl dt::after {
+      content: ":";
+    }
+
+    blockquote {
+      display: block;
+      border: solid 1px var(--block-quote);
+      border-radius: var(--radius);
+      padding: 1rem;
+      margin: 0;
+    }
+
+    blockquote p::before {
+      content: "> ";
+    }
+
+    code {
+      background-color: var(--code-inline);
+      color: var(--code-inline-font);
+      border-radius: var(--radius);
+      padding: 0 4px;
+    }
+
+    code::before,
+    code::after {
+      content: "`";
+    }
+    main {
+      display: block;
+      width: var(--width);
+      max-width: var(--max-width);
+      margin-block-start:  1em;
+      margin-block-end:    1em;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
+    }
+
+    a {
+      word-wrap: break-word;
+      text-decoration: none;
+      color: var(--anchor-color);
+    }
+
+    a:visited {
+      color: var(--anchor-visited-color);
+    }
+
+    ol,
+    ul {
+      list-style: none;
+      padding-inline-start: 0;
+    }
+
+    li {
+      word-break: break-all;
+      word-wrap: break-word;
+    }
+
+    dl dt {
+      font-weight: bold;
+      margin: 0;
+    }
+
+    dl dd {
+      margin: 0;
+    }
+    footer {
+      padding: var(--grid);
+    }
+
+    footer strong,
+    footer .copyright {
+      font-style: italic;
+      width: var(--width);
+      max-width: var(--max-width);
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
+    }
+
+    /* AdSense */
+    footer ins {
+      display: block;
+      width: var(--width);
+      max-width: var(--max-width);
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
+    }
+    pre {
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
+      border-radius: var(--radius);
+    }
+
+    pre code {
+      background-color: var(--code-block);
+      color: var(--code-block-font);
+    }
+
+    pre::before {
+      font-family: var(--code-font);
+      content: "```" attr(data-code) "\A";
+      font-size: 0.8em;
+    }
+
+    pre::after {
+      font-family: var(--code-font);
+      z-index: -1;
+      position: relative;
+      top: -1em;
+      content: "\A```";
+      font-size: 0.8em;
+    }
+
+    pre > code {
+      font-family: var(--code-font);
+      overflow: auto;
+      display: block;
+      padding: 0.5rem;
+      margin: 0;
+    }
+
+    pre > code::before,
+    pre > code::after {
+      content: none;
+    }
+
+
+    /** Prism.js Syntax Highlight **/
+    :root {
+      --code-yellow: #ffe557;
+      --code-aqua:   #03b5f1;
+      --code-blue:   #76acff;
+      --code-gray:   #96969c;
+      --code-green:  #1cd24d;
+      --code-orange: #ff8b24;
+      --code-pink:   #ff61bf;
+    }
+
+    /** style **/
+    .token.important,
+    .token.bold {
+      font-weight: bold;
+    }
+    .token.italic {
+      font-style: italic;
+    }
+
+    .token.entity {
+      cursor: help;
+    }
+
+    /** color **/
+    .token.command,
+    .token.parameter,
+    .token.operator,
+    .token.punctuation,
+    .token.output {
+      color: var(--code-block-font);
+    }
+
+    .token.attr-name,
+    .token.selector,
+    .token.shell-symbol {
+      color: var(--code-blue);
+    }
+
+    .token.delimiter.tag,
+    .token.variable {
+      color: var(--code-yellow);
+    }
+
+    .token.tag,
+    .token.function {
+      color: var(--code-green);
+    }
+
+    .token.key,
+    .token.attr-value,
+    .token.atom,
+    .token.property,
+    .token.keyword {
+      color: var(--code-pink);
+    }
+
+    .token.header-name.keyword,
+    .token.string,
+    .token.regex {
+      color: var(--code-blue);
+    }
+
+    .token.interpolation,
+    .token.constant,
+    .token.class-name {
+      color: var(--code-orange);
+    }
+
+    .token.response-status,
+    .token.boolean,
+    .token.number {
+      color: var(--code-aqua);
+    }
+
+    .token.rule,
+    .token.builtin {
+      color: var(--code-green);
+    }
+
+    .token.prolog,
+    .token.doctype,
+    .token.shebang,
+    .token.comment {
+      color: var(--code-gray);
+    }
+
+    .token.request-line {
+      color: var(--code-aqua);
+    }
+
+
+    /** language **/
+    .token.bash.language-bash,
+    .token.bash.language-bash > .token.function {
+      color: var(--code-block-font);
+    }
+    table {
+      font-family: var(--mono-font);
+      border-spacing: 0 0.4rem;
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
+    }
+
+    th {
+      border-inline-start: 2px solid var(--table-border);
+      border-block-end:    2px dashed var(--table-border);
+      padding-block-start:  0;
+      padding-block-end:    calc(var(--grid)/2);
+      padding-inline-start: var(--grid);
+      padding-inline-end:   var(--grid);
+    }
+
+    td {
+      padding-block-start:  calc(var(--grid)/2);
+      padding-block-end:    calc(var(--grid)/2);
+      padding-inline-start: var(--grid);
+      padding-inline-end:   var(--grid);
+      border-inline-start: 2px solid var(--table-border);
+    }
+
+    th:last-child,
+    td:last-child {
+      border-inline-end: 2px solid var(--table-border);
+    }
+
+    .align-center {
+      text-align: center;
+    }
+
+    /** TODO: fixup html class */
+    .align-left {
+      text-align: start;
+    }
+
+    /** TODO: fixup html class */
+    .align-right {
+      text-align: end;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://blog.jxck.io      ><amp-img width=30 height=30 src=/assets/img/blog.svg?160301_215351   alt="blog logo" class=logo    ></a>
+      <li><a href=/searches                 ><amp-img width=30 height=30 src=/assets/img/search.svg?190421_130410 alt=search                    ></a>
+      <li><a href=.                         ><amp-img width=30 height=30 src=/assets/img/up.svg?160831_002319     alt="move to parent directory"></a>
+      <li><a href=/feeds/atom.xml           ><amp-img width=30 height=30 src=/assets/img/rss.svg?160227_124312    alt="rss feed"                ></a>
+      <li><a href=https://jxck.io/humans.txt><amp-img width=30 height=30 src=/assets/img/humans.svg?160831_002319 alt="huamns.txt"              ></a>
+      <li><a href=https://jxck.io           ><amp-img width=30 height=30 src=/assets/img/jxck.svg?190123_200004   alt="jxck logo" class=logo    ></a>
+    </ul>
+  </nav>
+</header>
+<main>
+  <dl class=info>
+    <div><dt>created_at</dt><dd><time class=created_at datetime=2021-04-21>2021-04-21</time></dd></div>
+    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-04-21>2021-04-21</time></dd></div>
+    <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags/public%20suffix%20list.html">public suffix list</a>
+              <li><a href="/tags/cookie.html">cookie</a>
+              <li><a href="/tags/privacy.html">privacy</a>
+            </ul>
+          </nav>
+        </dd>
+    </div>
+    <div>
+      <dt>toc</dt>
+      <dd>
+        <details class=info>
+          <summary>headdings</summary>
+          <nav>
+            <ul>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#public-suffix-list-とは何か>## Public Suffix List とは何か</a>
+              <li><a href=#top-level-domain-tld>### Top Level Domain (TLD)</a>
+              <li><a href=#effective-top-level-domain-etld>### Effective Top Level Domain (eTLD)</a>
+              <li><a href=#public-suffix-list>### Public Suffix List</a>
+              <li><a href=#psl-と-cookie-の-domain-属性>### PSL と Cookie の Domain 属性</a>
+              <li><a href=#psl-のその他の用途>### PSL のその他の用途</a>
+              <li><a href=#psl-の運用>### PSL の運用</a>
+              <li><a href=#psl-追加リクエストの増加>## PSL 追加リクエストの増加</a>
+              <li><a href=#ios14-と-facebook-pixel-問題>### iOS14 と Facebook Pixel 問題</a>
+              <li><a href=#psl-リクエストの例>### PSL リクエストの例</a>
+              <li><a href=#理想的な状態は何か>## 理想的な状態は何か</a>
+              <li><a href=#outro>## Outro</a>
+            </ul>
+          </nav>
+        </details>
+      </dd>
+    </div>
+  </dl>
+  <article>
+    <h1><a href=/entries/2021-04-21/public-suffix-list.html>Public Suffix List の用途と今起こっている問題について</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p>Public Suffix List (PSL) は、現在の Web セキュリティの一旦を支えている非常に重要な要素だ。
+      <p>実は、これが少数のボランティアにより Github でメンテナンスされた、単なるテキストリストであることはあまり知られてないかもしれない。
+      <p>最近、このリストへの追加リクエストがあとを絶たず、問題になっている。
+      <p>そもそも PSL とは何であり、今どのような問題が起こっているのかについて解説する。
+    </section>
+    <section>
+      <h2 id="public-suffix-list-とは何か"><a href="#public-suffix-list-とは何か">Public Suffix List とは何か</a></h2>
+      <p>PSL を解説するにはまずドメインの用語について整理する。
+      <section>
+        <h3 id="top-level-domain-tld"><a href="#top-level-domain-tld">Top Level Domain (TLD)</a></h3>
+        <p>例えば、このブログのドメインは <code translate="no">blog.jxck.io</code> であり、これは筆者が取得したドメイン <code translate="no">jxck.io</code> のサブドメインだ。
+        <p><code translate="no">jxck.io</code> は、 <code translate="no">.io</code> という TLD を販売しているレジストラから購入できる。もちろん <code translate="no">io</code> そのものをドメインとして例えば <code translate="no">https://io</code> というサイトを建てることはできない。
+        <p><code translate="no">jxck.io</code> のように、我々がレジストラから割当を受けられる(購入できる)ドメインを Registerable Domain と言う。
+        <p>すると、 Registerable Domain とは、 TLD の一個下の階層、つまり <strong>TLD + 1</strong> と思うかもしれない。しかしここには例外がある。
+      </section>
+      <section>
+        <h3 id="effective-top-level-domain-etld"><a href="#effective-top-level-domain-etld">Effective Top Level Domain (eTLD)</a></h3>
+        <p>例として <code translate="no">example.co.jp</code> というドメインを考えよう。
+        <p>このドメインの TLD は <code translate="no">.jp</code> だ。しかしこのドメインは <code translate="no">.co.jp</code> という組み合わせの下で取得している。
+        <p><code translate="no">example.jp</code> 自体も取得できるため、 <code translate="no">.jp</code> は必ず何かと 2 つ組み合わせないと取得できないわけではない。
+        <p>まとめるとこうなる。
+        <ul>
+          <li>
+            <code translate="no">.jp</code> のサブドメインを取得することは可能 (ex. <code translate="no">example.jp</code>)
+          </li>
+          <li>
+            <code translate="no">.co.jp</code> のサブドメインを取得することも可能 (ex. <code translate="no">example.co.jp</code>)
+          </li>
+          <li>
+            <code translate="no">co.jp</code> というドメイン自体は取得できない (ex. <code translate="no">https://co.jp</code> というサイトは建てられない)
+          </li>
+        </ul>
+        <p>つまり <code translate="no">.co.jp</code> とは、それ自体が TLD ではないにも関わらず、 TLD のように扱われるという、例外的な存在なのだ。
+        <p>このようなドメインの組み合わせを Effective Top Level Domain (eTLD) と呼ぶ。
+      </section>
+      <section>
+        <h3 id="public-suffix-list"><a href="#public-suffix-list">Public Suffix List</a></h3>
+        <p><code translate="no">.jp</code> は TLD なのは機械的にわかる。ドメインを <code translate="no">.</code> で区切った一番右は常に TLD だ。
+        <p>しかし、 <code translate="no">co.jp</code> が eTLD で <code translate="no">example.jp</code> が Registerable Domain であるというのは、どう見分ければ良いのだろうか?
+        <p>実はここには機械的な処理方法がない。
+        <p>そこで、「この組み合わせは eTLD だ」という判別のために存在するのが Public Suffix List だ。
+        <ul>
+          <li>https://publicsuffix.org/
+        </ul>
+        <p>今は Github で管理されており、全体は以下のリポジトリに 1.3 万行のテキストファイルとして存在する。
+        <ul>
+          <li>https://github.com/publicsuffix/list
+        </ul>
+        <p>これはもともと Mozilla が管理を始めたものだ、しかし今ではこのファイルが多くのブラウザで使われている。
+      </section>
+      <section>
+        <h3 id="psl-と-cookie-の-domain-属性"><a href="#psl-と-cookie-の-domain-属性">PSL と Cookie の Domain 属性</a></h3>
+        <p>昔は同様のファイルを各ベンダが別々に管理していたが、それが問題を起こしたことがある。
+        <p><code translate="no">tokyo.jp</code> というドメインは、 &ldquo;都道府県型 JP ドメイン&rdquo; という種類の東京版だ。 <code translate="no">tokyo.jp</code> が eTLD であるため取得できず、 <code translate="no">${好きな単語}.tokyo.jp</code> は取得できる。これは <code translate="no">tokyo.jp</code> をレジストラがそう運用しているからという、仕様ではなく運用の都合なのだ。
+        <p>ところが、「そう運用されている」という事実を知らないブラウザがあったらどうなるだろうか?
+        <p>例として <code translate="no">example.tokyo.jp</code> というドメインが取得され、なんらかのログインを伴うサービスがデプロイされていたとする。
+        <p>ここで以下のような Cookie について考えてみよう。
+        <pre class=http><code translate="no">Set-Cookie: session_id=deadbeef;</code></pre>
+        <p>この Cookie は <code translate="no">example.tokyo.jp</code> にしか送られない。しかし以下はどうだろうか?
+        <pre class=http><code translate="no">Set-Cookie: session_id=deadbeef; Domain=tokyo.jp</code></pre>
+        <p>この Cookie はブラウザが <code translate="no">tokyo.jp</code> が eTLD だと知っているかどうかに応じて挙動が変わる。
+        <p>もし知っているのであれば、 <code translate="no">Domain=com</code> などと指定したのと同じで、不正な設定として扱われるだろう。
+        <p>しかし、知らなければ <code translate="no">tokyo.jp</code> のサブドメイン全てに送られる Cookie として扱われ、 <code translate="no">.tokyo.jp</code> 以下でデプロイされた他のサイトにも送られることになる。
+        <p>これは実際に IE で発生した Cookie Monster バグとして知られ、 Session Fixation などに応用可能な脆弱性として問題になった。
+        <p>まるで IE が悪いかのように喧伝されがちなこの問題だが、そもそも <code translate="no">tokyo.jp</code> を eTLD として運用するというのはレジストラの都合だ。 IE からすれば、言われなければ知ったことではない話でもある。
+        <p>同じことは、都道府県型 JP ドメインの話だけではない。
+        <p>例えば Github Pages が使う <code translate="no">github.io</code> は、 <code translate="no">jxck.github.io</code> のようにユーザごとにサブドメインが割り当てられる。ホスティングサービスの Glitch が使う <code translate="no">glitch.me</code> もアプリごとにサブドメインが振られる。
+        <p>こうしたサブドメインのサービスが Cookie を持つ場合同じ問題がおこるので、 <code translate="no">github.io</code> や <code translate="no">glitch.me</code> も eTLD として扱わなければならないのだ。これはいちサービスが提供する機能の都合だ。
+        <p>さらに、少し前に TLD 自体が爆発的に増え(.web, .new etc)、その上で運用される同様のサービスも増えたが、それらすべての eTLD 運用を把握できてないと、そのブラウザではバグとされてしまう。
+        <p>そこで、最も現実を追従できている Mozilla の PSL が他のブラウザでも徐々に採用されるようになり、 IE の都道府県型 JP ドメインの問題も PSL への移行をもって解決した。
+      </section>
+      <section>
+        <h3 id="psl-のその他の用途"><a href="#psl-のその他の用途">PSL のその他の用途</a></h3>
+        <p>PSL の説明によれば、 Cookie 以外にもブラウザが「履歴をドメインごとに並べる」「URL バーで重要なドメインを表示する」など、 UI がドメインを扱う上で活用されている。
+        <p>しかし、近年これが一番ハイライトされた例に Same Site Cookie がある。 &ldquo;Same Site&rdquo; という概念は、 <strong>eTLD+1 が同じ</strong> であると新しく定義されたのだ。
+        <p>これは、先の例で言えば <code translate="no">github.io</code> が eTLD で <code translate="no">jxck.github.io</code> が eTLD+1 にあたる。したがって <code translate="no">jxck.github.io</code> と <code translate="no">cdn.jxck.github.io</code> はドメインが違えど eTLD+1 が同じなので Same Site となる。
+        <p>対して <code translate="no">jxck.github.io</code> と <code translate="no">www.github.io</code> は同じ <code translate="no">github.io</code> のサブドメインであるように見えながら eTLD+1 が違うので Cross Site となる。
+        <p>すると「<code translate="no">github.io</code> 自体の Cookie はどうなるのか?」というと、 PSL に登録したドメインは TLD と同じように扱われるため、 <code translate="no">Domain=com</code> な Cookie が付与できないのと同じく <code translate="no">github.io</code> な Cookie は付与できない。(したがって https://github.io/ や https://glitch.me/ には何もデプロイされてない)
+      </section>
+      <section>
+        <h3 id="psl-の運用"><a href="#psl-の運用">PSL の運用</a></h3>
+        <p>もともとは Mozilla の bugzilla で管理されていたものが Github に移された。しかし、当時担当だった Mozilla の <a href="https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md#user-content-high-volume-of-requests-to-add-domains-to-the-psl-78:~:text=Peter%20Saint%2DAndre%3A%20The%20PSL%20did%20start,the%20current%20folks%20who%20are%20active.">Gerv Markham</a> が亡くなってからは、数人のボランティアが引き継いでいるため、実質 Mozilla 管理というわけでもなく、良く言えばオープンになっている。
+        <p>リクエストの受付も事実上一本化されているため、出す側は良いかもしれないが、メンテナンスをしている側のリソースは非常に少ない。同じように審査と登録をするレジストラや CA のような運用ではなく、人が手作業でボランティアでこの重要なリストをメンテナンスしているのだ。
+        <p><a href="https://github.com/publicsuffix/list/issues">Issue</a> を見てみるとアクティブに Assignee になっている人は 2,3 人しかいないようだ。
+        <p>ホスティングサービスのように、サービスがユーザにサブドメインを振る形態も増えているため、リクエストは定期的にあり、さらに、近年は TLD 自体が増えていることもある程度は影響があるのかもしれない。
+      </section>
+    </section>
+    <section>
+      <h2 id="psl-追加リクエストの増加"><a href="#psl-追加リクエストの増加">PSL 追加リクエストの増加</a></h2>
+      <p>ここからが本題だ。
+      <p>近年、そんな厳しい運用によってメンテナンスされている、非常に重要なファイルに対して、追加リクエストが頻発し問題になっている。
+      <ul>
+        <li><a href="https://github.com/publicsuffix/list/issues/1245">New interaction between iOS 14 and Facebook Pixel causing increase in PSL inclusion requests - Issue #1245 - publicsuffix/list</a>
+        <li><a href="https://github.com/privacycg/private-click-measurement/issues/78">High volume of requests to add domains to the PSL - Issue #78 - privacycg/private-click-measurement</a>
+      </ul>
+      <p>以降、ここでまとめられている問題を順に解説する。
+      <section>
+        <h3 id="ios14-と-facebook-pixel-問題"><a href="#ios14-と-facebook-pixel-問題">iOS14 と Facebook Pixel 問題</a></h3>
+        <p>まず、 iOS 14.5 以降でトラッキングをする際は、 AppTrackingTransparency(ATT) を通じた許諾の取得が必須となった。
+        <ul>
+          <li><a href="https://developer.apple.com/jp/app-store/user-privacy-and-data-use/">ユーザーのプライバシーとデータの使用 - App Store - Apple Developer</a>
+        </ul>
+        <p>周知の通り、この変更は多くのトラッキングサービスに影響を与え、その 1 つに Facebook Pixel がある。
+        <ul>
+          <li><a href="https://www.facebook.com/business/help/331612538028890?id=428636648170202">Apple の iOS 14 リリースが広告やレポートに及ぼしうる影響 | Facebook Business ヘルプセンター</a>
+        </ul>
+        <p>そこで Facebook Pixel は Aggregated Event Measurement(AEM) への以降を促した。
+        <ul>
+          <li><a href="https://www.facebook.com/business/help/721422165168355">合算イベント測定について | Facebook Business ヘルプセンター</a>
+        </ul>
+        <p>AEM ではドメインごとに 8 つまでしかコンバージョンイベントが設定できないため、多くのイベントを設定してたユーザにとっては厳しい制限となる。
+        <p>ところが、このドメインの定義は PSL をサポートしているため、 eTLD+1 単位で設定ができることがガイドラインに明記されているのだ。
+        <p>つまり、保有しているドメインが eTLD+1 だとそのサブドメイン含め 8 個に制限されるが、そのドメインが eTLD になれば、そのサブドメインが各々 8 個のイベントを設定できることを意味する。
+        <p>FB のアナウンスは「ワークアラウンドとして PSL の追加がある」と、特に PSL をよくわかってないマーケターに示しているような状況になっているのだ。
+      </section>
+      <section>
+        <h3 id="psl-リクエストの例"><a href="#psl-リクエストの例">PSL リクエストの例</a></h3>
+        <p>案の定 iOS および Facebook が当該アナウンスをしてから、その対応を理由にした PSL 追加の PR が増えている。
+        <p>中には、「そのサブドメインにクライアントが何かをデプロイしている」といったプラットフォームからの、いわゆる正統なリクエストもあれば、単にトラッキング制約を回避したいがためだけのリクエストもある。
+        <p>前者は対応されつつも、後者は棄却されたり、一時的に追加を凍結するといった対応が取られている。
+        <p>ところが、トラッキング制約の迂回に躍起になっている人間からは、かなり攻撃的な反応が github 以外の場所(電話など)から、中の人に対して来ているようだ。
+        <ul>
+          <li>https://github.com/publicsuffix/list/issues/1245#issuecomment-818050711
+        </ul>
+        <p>完全に健全な状態とは言えず、無視できない状況である一方、こうした運用を想定しなかった中の人は、ひたすらに消耗している。
+        <p>近年 Privacy Sandbox 系の議論が行われている Privacy CG でも、この問題が取り上げられた。
+        <ul>
+          <li>https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md
+        </ul>
+        <p>Webkit で Privacy 系 API を担当している John Wilander は、これを Privacy Click Measurement の迂回に使っている業者については、「<a href="https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md#user-content-high-volume-of-requests-to-add-domains-to-the-psl-78:~:text=.%20We%E2%80%99re%20taking%20a%20chance%20that,point%3B%20I%20don%E2%80%99t%20really%20like%20it.">望ましくないとはいえ、そうした業者を block list に乗せて PCM を使えなくするといった対応もあり得る</a> 」とう趣旨の発言をしている。
+        <p>過去にも Fingerprinting や CNAME Cloaking など、代替手段として提供されたものはあったが、特に Safari はそうしたものを徹底して塞いできた。これまで運用されていた仕組みがワークアラウンドに利用されることを防ぐためにパッチングを積み重ねることは、 Web をより複雑にし、少しづつ歪が増え、将来的に負債になることは想像に難くない。
+        <p>かりそめのワークアラウンドのために PSL が利用され、内部の運用まで圧迫している現状は、 Web を利用する誰にとっても良い結果にはならないと筆者は考えている。
+      </section>
+    </section>
+    <section>
+      <h2 id="理想的な状態は何か"><a href="#理想的な状態は何か">理想的な状態は何か</a></h2>
+      <p>そもそも、そんな仕組みで動いてる現状自体が問題というのは、全くそのとおりであり、この問題は以前から指摘され続けてきた。
+      <ul>
+        <li><a href="https://github.com/sleevi/psl-problems">Public Suffix List Problems</a>
+      </ul>
+      <p>DNS の構造を無視していることも、 Origin の概念ともズレいてることも、レジストラやサービス提供者の気分次第で定義されることも、テキストファイルでメンテされていることも、そのメンテナンスが重要でありながらボランティアベースであることも、全てが問題といっていいだろう。
+      <p>しかし、一旦このファイルが壊れれば、多くのサイトで Cookie に関するなんらかの問題が発生するか、各ベンダがフォークして互換性の問題が発生するか、もっと最悪な何かになる可能性がある。
+      <p>既に動いている様々な機能が、 PSL を基底に構築されてしまっている以上、 PSL をやめるためにはそれら全ての使用を更新し、実装をリリースし、サービスが対応しないといけない。
+      <p>これが簡単ではないことは、説明しなくてもわかるだろう。したがって、現状はなんとかこの PSL の運用が健全に行える状態に戻すことが先決となる。
+    </section>
+    <section>
+      <h2 id="outro"><a href="#outro">Outro</a></h2>
+      <p>PSL の仕組みと、そこで今起こっている問題について解説した。
+      <p>トラッキング制限の迂回を目的としたような追加リクエストは妥当とは言えず、それがメンテナを疲弊させている現状は看過し難い。
+      <p>PSL が正しく理解され、運用が少しでも健全な状態に戻るよう願う。
+    </section>
+  </article>
+</main>
+<hr>
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small> See <small><a href=/policies/site.html>Site Policy</a> and <a href=/policies/privacy.html>Privacy Policy</a>.</small></p>
+  <amp-ad width=100vw height=320 type=adsense data-ad-client=ca-pub-2902784829138215 data-ad-slot=9735419796 data-auto-format=rspv data-full-width><div overflow></div></amp-ad>
+</footer>
+</body>
+</html>
+<amp-analytics type=googleanalytics id=analytics1>
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
