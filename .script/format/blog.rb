@@ -52,7 +52,7 @@ module Format
       return <<~EOS
            <picture>
              <source type=image/webp srcset=#{uri.to_s.sub(/(.png|.gif|.jpg)/, '.webp')}>
-             <img loading=lazy decoding=async src=#{uri} alt="#{alt}" title="#{title}">
+             <img loading=lazy decoding=async src=#{uri} alt="#{alt}" title="#{title}" width=#{width} height=#{height}>
            </picture>
       EOS
     end
