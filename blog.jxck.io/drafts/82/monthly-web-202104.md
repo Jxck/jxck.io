@@ -169,7 +169,7 @@ guest
   - <https://www.chromium.org/getting-involved/dev-channel>
 - 3/22 の WebView 障害について障害レポートが出た
   - <https://static.googleusercontent.com/media/www.google.com/en//appsstatus/ir/fw6156fs1panucr.pdf>
-  - > A bug within Chrome & WebView's experiment & configuration technology caused instability for Android applications which incorporated WebView to surface web content. This bug caused those applications to crash on the affected devices
+  - > A bug within Chrome & WebView's experiment & configuration technology caused instability for Android applications which incorporated WebView to surface web content.
 
 
 ### Firefox 動向
@@ -590,7 +590,8 @@ guest
 - 5 月
   - 18-20: Google I/O '21
     - <https://events.google.com/io/>
-  - 12-14: blink-on 14?
+  - 12-14: BlinkOn 14
+    - <https://www.chromium.org/events/blinkon-14>
   - 25-27: Microsoft Build 2021
     - <https://japan.zdnet.com/article/35168829/>
     - 詳細はまだ
