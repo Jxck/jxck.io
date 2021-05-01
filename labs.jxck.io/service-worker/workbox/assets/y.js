@@ -1,1 +1,1 @@
-console.log('y2')
+console.log('y')

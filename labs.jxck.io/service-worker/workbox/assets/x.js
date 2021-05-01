@@ -1,1 +1,1 @@
-console.log('x2')
+console.log('x')
