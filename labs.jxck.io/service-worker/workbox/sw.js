@@ -3,18 +3,33 @@ importScripts('assets/workbox-v6.1.5/workbox-routing.prod.js')
 importScripts('assets/workbox-v6.1.5/workbox-strategies.prod.js')
 importScripts('assets/workbox-v6.1.5/workbox-precaching.prod.js')
 
+// precache
 const {PrecacheController} = workbox.precaching
 const precacheController   = new PrecacheController()
 
 precacheController.addToCacheList([
-  {url: "/service-worker/workbox/assets/a.css?v1", revision: null},
-  {url: "/service-worker/workbox/assets/b.css?v1", revision: null},
-  {url: "/service-worker/workbox/assets/c.css?v1", revision: null},
-  {url: "/service-worker/workbox/assets/x.js?v1",  revision: null},
-  {url: "/service-worker/workbox/assets/y.js?v1",  revision: null},
-  {url: "/service-worker/workbox/assets/z.js?v1",  revision: null},
-  {url: "/favicon.ico?v1",                         revision: null},
+  {url: "/service-worker/workbox/assets/a.css?v1",    revision: null},
+  {url: "/service-worker/workbox/assets/b.css?v1",    revision: null},
+  {url: "/service-worker/workbox/assets/c.css?v1",    revision: null},
+  {url: "/service-worker/workbox/assets/x.js?v1",     revision: null},
+  {url: "/service-worker/workbox/assets/y.js?v1",     revision: null},
+  {url: "/service-worker/workbox/assets/z.js?v1",     revision: null},
+  {url: "/service-worker/workbox/assets/jxck.png?v1", revision: null},
+  {url: "/service-worker/workbox/assets/jxck.svg?v1", revision: null},
 ])
+
+
+// routing
+const {registerRoute} = workbox.routing
+const {NetworkFirst}  = workbox.strategies
+
+registerRoute(
+  ({request}) => {
+    return (request.mode === 'navigate' && request.destination === 'document' )
+  },
+  new NetworkFirst()
+);
+
 
 self.addEventListener('install', (event) => {
   console.log(event.type)
