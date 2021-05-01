@@ -55,7 +55,7 @@ if __FILE__ == $PROGRAM_NAME
   }
   opt.on("--blogsw") {|v|
     # main.js にある precache リストの version を更新して書き込む
-    JS_PATH = "./www.jxck.io/assets/js/main.js"
+    JS_PATH = "./www.jxck.io/assets/js/workbox.js"
 
     mtime   = File.mtime(JS_PATH)
     src     = File.read(JS_PATH)
