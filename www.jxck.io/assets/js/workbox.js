@@ -10,9 +10,9 @@ importScripts('https://www.jxck.io/assets/js/workbox-v6.1.5/workbox-precaching.p
 const precache =
 /*precache-build.rb*/
 [
-  "https://www.jxck.io/assets/js/main.js?210502_150723",
-  "https://www.jxck.io/assets/js/prism.js?210502_150723",
-  "https://www.jxck.io/assets/js/ga.js?210502_150723",
+  "https://www.jxck.io/assets/js/main.js?210502_160025",
+  "https://www.jxck.io/assets/js/prism.js?210502_152618",
+  "https://www.jxck.io/assets/js/ga.js?210502_152618",
   "https://www.jxck.io/assets/css/archive.css?200907_002254",
   "https://www.jxck.io/assets/css/article.css?210426_200525",
   "https://www.jxck.io/assets/css/body.css?210426_195211",
@@ -61,7 +61,7 @@ registerRoute(
 
 // Events
 self.addEventListener('install', (event) => {
-  console.log(event.type)
+  console.debug(`%c${event.type}`, 'color: blue; font-weight: bold')
   event.waitUntil((async () => {
     await precacheController.install(event)
     return skipWaiting()
@@ -69,7 +69,7 @@ self.addEventListener('install', (event) => {
 })
 
 self.addEventListener('activate', (event) => {
-  console.log(event.type)
+  console.debug(`%c${event.type}`, 'color: blue; font-weight: bold')
   event.waitUntil((async () => {
     await precacheController.activate(event)
     return self.clients.claim()
@@ -79,9 +79,9 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const cacheKey = precacheController.getCacheKeyForURL(event.request.url)
   if (cacheKey) {
-    console.log('%cCACHE-HIT:', 'color: green; font-weight: bold', event.request.url);
+    console.debug('%cCACHE-HIT:', 'color: green; font-weight: bold', event.request.url);
     return event.respondWith(caches.match(cacheKey))
   }
-  console.log('%cCACHE-MISS:', 'color: red; font-weight: bold', event.request.url);
+  console.debug('%cCACHE-MISS:', 'color: red; font-weight: bold', event.request.url);
   return
 })
