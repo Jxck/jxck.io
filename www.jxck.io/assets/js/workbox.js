@@ -10,7 +10,7 @@ importScripts('/assets/js/workbox-v6.1.5/workbox-precaching.prod.js')
 const precache =
 /*precache-build.rb*/
 [
-  "/assets/js/main.js?210502_015217",
+  "/assets/js/main.js?210502_142941",
   "/assets/js/prism.js?210115_215132",
   "/assets/js/ga.js?210325_165821",
   "/assets/css/archive.css?200907_002254",
