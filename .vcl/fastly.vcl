@@ -7,6 +7,7 @@ sub vcl_recv {
     return(pass);
   }
 
+  # br が消えて gzip だけになるのでオリジナルを復元
   if (req.http.Fastly-Orig-Accept-Encoding) {
     set req.http.Accept-Encoding = req.http.Fastly-Orig-Accept-Encoding;
   }
@@ -87,6 +88,10 @@ sub vcl_error {
 
 sub vcl_deliver {
 #FASTLY deliver
+
+  # www.jxck.io は blog.jxck.io を許可
+  set resp.http.Access-Control-Allow-Origin = "https://blog.jxck.io";
+
   return(deliver);
 }
 
