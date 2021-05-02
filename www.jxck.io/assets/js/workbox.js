@@ -1,7 +1,7 @@
-importScripts('/assets/js/workbox-v6.1.5/workbox-core.prod.js')
-importScripts('/assets/js/workbox-v6.1.5/workbox-routing.prod.js')
-importScripts('/assets/js/workbox-v6.1.5/workbox-strategies.prod.js')
-importScripts('/assets/js/workbox-v6.1.5/workbox-precaching.prod.js')
+importScripts('https://www.jxck.io/assets/js/workbox-v6.1.5/workbox-core.prod.js')
+importScripts('https://www.jxck.io/assets/js/workbox-v6.1.5/workbox-routing.prod.js')
+importScripts('https://www.jxck.io/assets/js/workbox-v6.1.5/workbox-strategies.prod.js')
+importScripts('https://www.jxck.io/assets/js/workbox-v6.1.5/workbox-precaching.prod.js')
 
 /**
  * Ruby でビルドして version を更新するので
@@ -79,8 +79,9 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const cacheKey = precacheController.getCacheKeyForURL(event.request.url)
   if (cacheKey) {
+    console.log('%cCACHE-HIT:', 'color: green; font-weight: bold', event.request.url);
     return event.respondWith(caches.match(cacheKey))
   }
-  console.log(event.request.url, 'not cached')
+  console.log('%cCACHE-MISS:', 'color: red; font-weight: bold', event.request.url);
   return
 })
