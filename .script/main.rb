@@ -63,7 +63,7 @@ if __FILE__ == $PROGRAM_NAME
     assets  = eval(matched)
 
     @versioned = assets.map{|asset|
-      version(URI.parse(asset).path)
+      version(asset)
     }
 
     erb = <<~EOS

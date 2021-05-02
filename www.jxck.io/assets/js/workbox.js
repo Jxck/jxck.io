@@ -10,9 +10,9 @@ importScripts('/assets/js/workbox-v6.1.5/workbox-precaching.prod.js')
 const precache =
 /*precache-build.rb*/
 [
-  "https://www.jxck.io/assets/js/main.js?210502_142941",
-  "https://www.jxck.io/assets/js/prism.js?210115_215132",
-  "https://www.jxck.io/assets/js/ga.js?210325_165821",
+  "https://www.jxck.io/assets/js/main.js?210502_150723",
+  "https://www.jxck.io/assets/js/prism.js?210502_150723",
+  "https://www.jxck.io/assets/js/ga.js?210502_150723",
   "https://www.jxck.io/assets/css/archive.css?200907_002254",
   "https://www.jxck.io/assets/css/article.css?210426_200525",
   "https://www.jxck.io/assets/css/body.css?210426_195211",
