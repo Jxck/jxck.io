@@ -81,6 +81,15 @@ if (window.PerformanceObserver) {
 }
 
 
+if (navigator.serviceWorker) {
+  (async () => {
+    const scope  = '/entries/2016-01-27'
+    const worker = await navigator.serviceWorker.register('/assets/js/workbox.js', {scope})
+    console.log('registered', worker)
+  })()
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
   // AdSense
   (adsbygoogle = window.adsbygoogle || []).push({})

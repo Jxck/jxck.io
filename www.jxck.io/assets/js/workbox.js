@@ -1,4 +1,7 @@
-
+importScripts('/assets/js/workbox-v6.1.5/workbox-core.prod.js')
+importScripts('/assets/js/workbox-v6.1.5/workbox-routing.prod.js')
+importScripts('/assets/js/workbox-v6.1.5/workbox-strategies.prod.js')
+importScripts('/assets/js/workbox-v6.1.5/workbox-precaching.prod.js')
 
 /**
  * Ruby でビルドして version を更新するので
@@ -34,6 +37,50 @@ const precache =
 /*precache-build.rb*/
 
 
+// precache
+const {PrecacheController} = workbox.precaching
+const precacheController   = new PrecacheController()
+const revision = null
+
+precacheController.addToCacheList(precache.map((url) => {
+  return {url, revision}
+}))
 
 
-console.log(precache)
+// routing
+const {registerRoute} = workbox.routing
+const {NetworkFirst}  = workbox.strategies
+
+registerRoute(
+  ({request}) => {
+    return (request.mode === 'navigate' && request.destination === 'document' )
+  },
+  new NetworkFirst()
+);
+
+
+// Events
+self.addEventListener('install', (event) => {
+  console.log(event.type)
+  event.waitUntil((async () => {
+    await precacheController.install(event)
+    return skipWaiting()
+  })())
+})
+
+self.addEventListener('activate', (event) => {
+  console.log(event.type)
+  event.waitUntil((async () => {
+    await precacheController.activate(event)
+    return self.clients.claim()
+  })())
+})
+
+self.addEventListener('fetch', (event) => {
+  const cacheKey = precacheController.getCacheKeyForURL(event.request.url)
+  if (cacheKey) {
+    return event.respondWith(caches.match(cacheKey))
+  }
+  console.log(event.request.url, 'not cached')
+  return
+})
