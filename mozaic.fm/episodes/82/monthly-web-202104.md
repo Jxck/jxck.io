@@ -3,7 +3,7 @@
 
 ## Info
 
-audio: https://files.mozaic.fm/mozaic-ep81.mp3
+audio: https://files.mozaic.fm/mozaic-ep82.mp3
 
 published_at
 : 2021-05-09
