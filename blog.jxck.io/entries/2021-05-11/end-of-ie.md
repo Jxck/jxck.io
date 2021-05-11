@@ -3,17 +3,17 @@
 
 ## Intro
 
-IE11 が役目を終えていく流れを記録として残す。特に MS からのアナウンスや、それに準じた各サービスの反応、特に IE サポート終了アナウンスをまとめるのを目的とする。もともとは [Google Docs](https://docs.google.com/document/d/1XP58gVMyp_UCP4FFsf5ATpvRVwqi7v_EpEF3sl_Sobk/edit) にまとめていたものである。
+IE11 が役目を終えていく流れを記録として残す。特に MS からのアナウンスや、それに準じた各サービスの反応、特に IE サポート終了アナウンスをまとめることで、 IE11 というブラウザがどのように終了していったのかのを記録することを目的とする。
 
+もともとは [Google Docs](https://docs.google.com/document/d/1XP58gVMyp_UCP4FFsf5ATpvRVwqi7v_EpEF3sl_Sobk/edit) にまとめていたものである。
 
 - 日付はアナウンスの公開日
   - サポート終了日ではない
   - サポート終了日も書いておけばよかったけど今からやり直す気力はない、、
-- **赤字** は MS 関連もしくはサポート終了の影響が多きそうなアナウンス
+- **赤字** は MS 関連もしくはサポート終了の影響が大きそうなアナウンス
 - Windows における IE11 自体のサポート終了については以下を参照
   - <https://www.atmarkit.co.jp/ait/articles/1503/11/news134.html>
 - できればある程度の結論が出るまでこのエントリを更新していきたい
-
 
 
 ## 追加リクエスト
@@ -26,9 +26,9 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
 
 - **2018/07/18: Internet Explorer の今後について – Japan IE Support Team Blog**
   - <http://web.archive.org/web/20180718022957/https://blogs.technet.microsoft.com/jpieblog/2018/07/18/internet-explorer-support/>
-  - > Windows 10 においては、Microsoft Edge と Internet Explorer というふたつのブラウザーが搭載されていますが、弊社としましては、Internet Explorer との後方互換性が必要な業務 Web システムには Internet Explorer を利用いただき、Internet Explorer でなければならない場合以外は Microsoft Edgeをご利用いただくことを提案してきました。
-  - > この考え方は今も基本的には変わりはありませんが、現在の Web アプリケーションが古いブラウザーである Internet Explorer 固有の機能に依存している状態であれば、そうした依存性を無くし、最新のブラウザーである Microsoft Edge で閲覧できるように見直していただくことを、今からご検討いただくようお伝えをしていくことが、私たちサポート チームの使命と考えています。
-  - > Internet Explorer はいつまでサポートが提供されるのか？など、将来の予定についてお問い合せをいただいたとしても、大変恐縮ですが回答することはできません。ただ、世の中の大きな流れとして、Web ブラウザーという観点では相互運用性を保ちつつも、最新の Web 標準の技術を取り入れる方向性となっていることをご認識いただき、引き続き Legacy Web から Modern Web への移行を十分に余裕をもった計画で検討を進める必要があるということを、今回の記事をきかっけに改めて意識をしていただけますと幸いです。
+  - 「Windows 10 においては、Microsoft Edge と Internet Explorer というふたつのブラウザーが搭載されていますが、弊社としましては、Internet Explorer との後方互換性が必要な業務 Web システムには Internet Explorer を利用いただき、Internet Explorer でなければならない場合以外は Microsoft Edgeをご利用いただくことを提案してきました。」
+  - 「この考え方は今も基本的には変わりはありませんが、現在の Web アプリケーションが古いブラウザーである Internet Explorer 固有の機能に依存している状態であれば、そうした依存性を無くし、最新のブラウザーである Microsoft Edge で閲覧できるように見直していただくことを、今からご検討いただくようお伝えをしていくことが、私たちサポート チームの使命と考えています。」
+  - 「Internet Explorer はいつまでサポートが提供されるのか？など、将来の予定についてお問い合せをいただいたとしても、大変恐縮ですが回答することはできません。ただ、世の中の大きな流れとして、Web ブラウザーという観点では相互運用性を保ちつつも、最新の Web 標準の技術を取り入れる方向性となっていることをご認識いただき、引き続き Legacy Web から Modern Web への移行を十分に余裕をもった計画で検討を進める必要があるということを、今回の記事をきかっけに改めて意識をしていただけますと幸いです。」
 - 2018/11/26: Internet Explorer 11のサポート終了のお知らせ – Zendeskヘルプ
   - <https://support.zendesk.com/hc/ja/articles/360002084367-Internet-Explorer-11のサポート終了のお知らせ>
 
