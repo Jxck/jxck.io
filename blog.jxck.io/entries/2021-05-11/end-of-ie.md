@@ -77,6 +77,8 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - Eric Lawrence による回顧録と IE モードの話
 - 2020/06/01: Zendesk Chat：Internet Explorer 11のサポート終了のお知らせ – Zendeskヘルプ
   - <https://support.zendesk.com/hc/ja/articles/360048439353-Zendesk-Chat-Internet-Explorer-11%E3%81%AE%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E7%B5%82%E4%BA%86%E3%81%AE%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B>
+- 2020/06/16  Bootstrap 5 alpha! \| Bootstrap Blog
+  - <https://blog.getbootstrap.com/2020/06/16/bootstrap-5-alpha/>
 - 2020/07/17: Backlog IE11 サポート終了のお知らせ \| プロジェクト管理ツールBacklog
   - <https://backlog.com/ja/product-updates/announcement/ie11-support-ends/>
 - 2020/08/13: Internet Explorer 11サポート終了ならびにMicrosoft Edge更新についてのお知らせ - はてなブックマーク開発ブログ
@@ -144,6 +146,8 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
 - 2021/03/15: 全てのGoogle Workspace apps が IE11 をサポート終了
   - <https://workspaceupdates.googleblog.com/2020/12/ending-support-for-ie11-for-all-google-workspace.html>
   - <https://support.google.com/a/answer/33864?hl=ja>
+- 2021/03/18: WebClassのInternet Explorerサポート終了（2021年7月末）のお知らせ \| WebClass R&D Team Blog
+  - <https://webclass.jp/blog/2021/03/18/webclassのinternet-explorerサポート終了（2021年7月末）のお知らせ>
 - 2021/03/19: STUDIOサイトがInternet Explorerで閲覧できなくなります \| STUDIO Blog
   - <https://blog.studio.design/ja/posts/IE-support>
 - 2021/03/19: Internet Explorer 11への消極的対応について – カーリルのブログ
@@ -164,6 +168,8 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - <https://blog.goo.ne.jp/staffblog/e/6f4121c97f4dbab4c5bb0018d1fba65e>
 - 2021/04/02: Internet Explorer サポート終了のお知らせ \| キマRoom!（キマルーム）
   - <https://intro.kimaroom.jp/news/news1385>
+- 2021/04/02: Vue3 IE11 Support \| vuejs/rfcs
+  - <https://github.com/vuejs/rfcs/blob/master/active-rfcs/0038-vue3-ie11-support.md>
 - 2021/04/06:［重要なお知らせ］Internet Explorer 11 サポート終了のお知らせ – Hulu ヘルプセンター
   - <https://help.hulu.jp/hc/ja/articles/900005502846>
 - 2021/04/12:【テレ東BIZ Webサイト】Internet Explorerサポート終了のお知らせ – テレ東BIZヘルプセンター
@@ -172,3 +178,7 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - <https://www.miraimarche.com/press/news/20210414>
 - 2021/04/22: Internet Explorer11およびデスクトップアプリのサポート終了のお知らせ \| グループウェア アイポ
   - <https://aipo.com/2021/04_22_123924/>
+- 2021/05/05: Bootstrap 5 \| Bootstrap Blog
+  - <https://blog.getbootstrap.com/2021/05/05/bootstrap-5/>
+- 2021/05/13: Angular v12 is now available
+  - <https://blog.angular.io/angular-v12-is-now-available-32ed51fbfd49>
