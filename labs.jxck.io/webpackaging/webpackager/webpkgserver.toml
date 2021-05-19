@@ -1,0 +1,362 @@
+# This is sample config for Web Packager HTTP Server (webpkgserver).
+# Commented out lines show the default value for each parameter.
+
+[Listen]
+  # The bind address. If it is empty or unspecified, webpkgserver will accept
+  # requests on any address (equivalent to "0.0.0.0").
+  Host = '0.0.0.0'
+
+  # The port number to listen on. If it is unspecified, webpkgserver will use
+  # an arbitrary port number.
+  Port = 11000
+
+  # TLS certificate and private key.
+  #
+  # If neither is specified, webpkgserver will accept HTTP connections. It is
+  # a typical setup of webpkgserver running behind an edge server.
+  #
+  # If both are specified, webpkgserver will accept HTTPS connections instead
+  # of HTTP. The primary use case is local testing. Used with SXG.CertURLBase,
+  # it enables webpkgserver to serve signed exchange certificates directly to
+  # the browser, without using an edge server.
+  #
+  # It is an error to set only one of these.
+  #TLS.PEMFile = ''
+  #TLS.KeyFile = ''
+
+[Server]
+  # The endpoint where webpkgserver serves signed exchanges. The document URL
+  # is concatenated to DocPath (with a slash in between) or specified through
+  # SignParam. The request URL thus looks like:
+  #
+  #     /priv/doc/https://example.com/index.html
+  #         -- or --
+  #     /priv/doc?sign=https%3A%2F%2Fexample.com%2Findex.html
+  #
+  # This path must start with a slash and be normalized without ".", "..", or
+  # duplicate slashes. The trailing slash is allowed but not required.
+  #DocPath = '/priv/doc'
+
+  # The query parameter to specify the document URL. See DocPath above.
+  #SignParam = 'sign'
+
+  # The endpoint where webpkgserver serves certificates. It is followed by a
+  # stable unique identifier of the certificate (with a slash in between), so
+  # the request URL looks like:
+  #
+  #     /webpkg/cert/47DEQpj8HBSa-_TImW+5JCeuQeRkm5NMpJWZG3hSuFUK
+  #     ("47DEQpj8..." is an example identifier).
+  #
+  # If you change CertPath, you also likely change SXG.CertURLBase.
+  #
+  # This path must start with a slash and be normalized without ".", "..", or
+  # duplicate slashes. The trailing slash is allowed but not required.
+  #CertPath = '/webpkg/cert'
+
+  # The endpoint where webpkgserver serves validity data. It is always empty
+  # ("no update available") at this moment.
+  #
+  # If you change ValidityPath, you also likely change SXG.ValidityURL.
+  #
+  # This path must start with a slash and be normalized without ".", "..", or
+  # duplicate slashes. The trailing slash is allowed but discarded.
+  #ValidityPath = '/webpkg/validity'
+
+[SXG]
+  # The expiry period of signed exchanges. JSExpiry is applied to JavaScript
+  # resources and HTML documents with inline JavaScript. The maximum is 168h
+  # (7 days) due to the Signed HTTP Exchanges specification.
+  #
+  # IMPORTANT: Setting a longer period to JSExpiry is risky and discouraged.
+  # Signed exchanges can remain cached and used until their expiry, even if
+  # you find security issue(s) at a later time. To ensure you acknowledge it,
+  # JSExpiry longer than 24 hours requires "unsafe:" (e.g. "unsafe:48h").
+  #Expiry = '168h'
+  #JSExpiry = '24h'
+
+  # The base URL for cert-url of signed exchanges. It is followed by a stable
+  # unique identifier for the certificate. This URL must be either an https
+  # URL or just an absolute path (starting with a slash). webpkgserver does
+  # not currently support data: URIs for the certificate. If an absolute path
+  # is given, it is resolved against the document URL, thus the cert-url will
+  # have the same domain as the document.
+  #
+  # Generally you want to set the same value as Listen.CertPath, but you can
+  # set a different value if you want to serve the certificate on a single
+  # domain or plan to host the certificate on your own server.
+  #
+  # For local testing:
+  #   - If you have specified TLS.PEMFile and TLS.KeyFile, then you can you can
+  #     specify "https://localhost:8080/webpkg/cert" here, to have the browser
+  #     fetch the certificate directly from webpkgserver running on your
+  #     machine.
+  #   - Otherwise, you can specify "data:" here, and webpkgserver
+  #     will build data: cert-urls that are valid on http://localhost signed
+  #     exchanges. This will not work in production; these data: URLs will not
+  #     include an updated OCSP response, and otherwise do not meet Google SXG
+  #     cache requirements.
+  #CertURLBase = '/webpkg/cert'
+
+  # The validity-url of signed exchanges. webpkgserver sets the same URL to
+  # all signed exchanges at present; it serves only empty validity data. This
+  # URL must be either an https URL or just an absolute path (starting with a
+  # slash). If an absolute path is given, it is resolved against the document
+  # URL, thus the validity-url will have the same domain as the document.
+  #
+  # Generally you want to set the same value as Listen.ValidityPath.
+  #ValidityURL = '/webpkg/validity'
+
+  # Include preload link headers that lack the corresponding allowed-alt-sxg
+  # with a valid header-integrity.
+  #
+  # webpkgserver detects the preload links in HTTP response headers and
+  # HTML documents, then fetches the signed exchanges for the preloaded
+  # resources and inserts the allowed-alt-sxg links for them to the parent
+  # signed exchange. This allows signed exchange distributors to host all
+  # required resources on their servers. By default, when webpkgserver
+  # fails to generate the signed exchanges for some resources, it removes
+  # the corresponding preload links so only signed exchanges will get
+  # preloaded. We believe prominent distributors will reject signed exchanges
+  # that include preloads without the corresponding allowed-alt-sxg links.
+  # If you set this parameter to true, webpkgserver will preserve all preload
+  # links whether or not they are turned into signed exchanges.
+  #
+  # For example, suppose the target resource contains two preload links
+  #
+  #     Link: <https://example.org/valid.css>;rel="preload";as="style"
+  #     Link: <https://example.org/nonexistent.css>;rel="preload";as="style"
+  #
+  # and webpkgserver is only able to obtain a signed exchange for valid.css.
+  # If KeepNonSXGPreloads is false (default), the produced signed exchange will
+  # only include:
+  #
+  #     Link: <https://example.org/valid.css>;rel="allowed-alt-sxg";
+  #         header-integrity="sha256-<Base64String>"
+  #     Link: <https://example.org/valid.css>;rel="preload";as="style"
+  #
+  # since nonexistent.css is excluded. On the other hand, if KeepNonSXGPreloads
+  # is true, the produced signed exchange will include all preload links:
+  #
+  #     Link: <https://example.org/valid.css>;rel="allowed-alt-sxg";
+  #         header-integrity="sha256-<Base64String>"
+  #     Link: <https://example.org/valid.css>;rel="preload";as="style"
+  #     Link: <https://example.org/nonexistent.css>;rel="preload";as="style"
+  #
+  # For more detail about allowed-alt-sxg, see:
+  # https://github.com/horo-t/subresource-signed-exchange/blob/master/signed-exchange-subresource-subtitution-explainer.md
+  #KeepNonSXGPreloads = false
+
+# Specify the certificate to use. For development, set AllowTestCert to true,
+# and it may be any certificate. For production, it must have an OCSP URL in
+# its Authority Information Access section and meet the following requirements
+# set by the Signed HTTP Exchanges specification:
+#
+#   The leaf certificate must use an EC P-256 key (See https://goo.gl/pwK9EJ
+#   item 2.1.5). It must have at least one SCT, either as an X.509 extension
+#   or as an extension to the OCSP responses from the URI mentioned in its
+#   Authority Information Access extension (See https://goo.gl/JQiyNs item 7.4).
+#
+#   To limit the risk to your existing TLS traffic, your signed exchanges
+#   certificate should be minted from a different private key than your TLS
+#   certificate. See https://goo.gl/U4vasm for details.
+#
+# As of May 2020, DigiCert is the only provider of such certificates:
+#   https://www.digicert.com/account/ietf/http-signed-exchange.php
+#
+# To verify the certificate has the right key type:
+#   openssl x509 -in cert.pem -text | grep 'ASN1 OID: prime256v1'
+# and the CanSignHttpExchanges extension:
+#   openssl x509 -in cert.pem -text | grep 1.3.6.1.4.1.11129.2.1.22:
+#
+# The certificate is converted to the application/cert-chain+cbor format and
+# served at the endpoint specified by Listen.CertPath.
+[SXG.Cert]
+  # The path to the PEM file containing the full certificate chain, ordered
+  # from the leaf to the root. Typically, it would look like:
+  #
+  #   -----BEGIN CERTIFICATE-----
+  #   ....
+  #   -----END CERTIFICATE-----
+  #   -----BEGIN CERTIFICATE-----
+  #   ....
+  #   -----END CERTIFICATE-----
+  #
+  # where the first certificate is for your domain, and the second is for CA.
+  # Required.
+  PEMFile = '/keys/sxg/blog_jxck_io_full.crt'
+
+  # The path to the PEM file containing the private key that corresponds to
+  # the leaf certificate in PEMFile. Required.
+  KeyFile = '/keys/sxg/blog_jxck_io.key'
+
+  # The path to a directory where webpkgserver can use to cache certificates
+  # and OCSP responses. The directory is created automatically at startup in
+  # case it does not exist.
+  #
+  # If CacheDir is not specified, webpkgserver does not cache certificates or
+  # OCSP responses on disk.
+  CacheDir = '/tmp/webpkg'
+
+  # Use any certificate for signing exchanges. If this parameter is set true,
+  # webpkgserver will not verify that the certificate meets the requirements
+  # set by the Signed HTTP Exchanges specification, so you can use ordinary
+  # TLS certificates or self-signed certificates. Note those certificates only
+  # work for testing: the produced signed exchanges will be deemed invalid due
+  # to the certificate.
+  #
+  # If the certificate is missing an OCSP URL, webpkgserver substitutes dummy
+  # bytes for the OCSP response.
+  #AllowTestCert = false
+
+# IMPORTANT NOTE: the support of the ACME protocol and automatic renewal of
+# certificates is currently in the EXPERIMENTAL stage.  Once we have more
+# experience with people using it out in the wild, we will gradually move it to
+# the PRODUCTION stage.
+#
+# Configure ACME, which allows the webpkgserver to automatically renew Signed
+# Exchange certificates.
+#
+# ACME is a protocol that allows automatic certificate renewal. Setting the
+# Enable parameter to true will make webpkgserver automatically request a
+# renewed certificate whenever it has determined that the current certificate
+# is expired or about to expire.
+#
+# If you set up more than one instance of webpkgserver, the recommended practice
+# is to have only one instance handle automatic certificate renewals and let
+# other instances reload the fresh certificate from the disk. It allows
+# certificates to be shared on all webpkgserver instances (which may help
+# minimize the monetary cost, subject to Terms of Service set by your
+# Certificate Authority) and prevents webpkgserver from bombarding your
+# Certificate Authority with certificate requests.
+#
+# webpkgserver uses the ACME library from github.com/go-acme/lego.
+# 
+# For the full ACME spec, see:
+#   https://tools.ietf.org/html/rfc8555 
+[SXG.ACME]
+  # Enable webpkgserver to attempt to auto renew certificates using ACME.
+  Enable = false
+
+  # The path to the Certificate Signing Request PEM file.
+  # Required when ACME is enabled.
+  #CSRFile = "path/to/csr.pem"
+
+  # The ACME discovery URL. It is specified by the Certificate Authority that
+  # doles out your certificates. As of August 2020, only DigiCert supports
+  # automatic renewals of signed exchange certificate:
+  # https://docs.digicert.com/certificate-tools/acme-user-guide/acme-directory-urls-signed-http-exchange-certificates/
+  # Required when ACME is enabled.
+  #DiscoveryURL = '<Your Discovery URL>'
+
+  # The email address registered to the Certificate Authority for your signed
+  # exchange certificates.
+  # Required when ACME is enabled.
+  #Email = 'user@example.com'
+
+  # The EABKid and EABHmac need to have synchronized values.  They can both be empty (in which case EAB is not used)
+  # or both have valid values. If one is empty and the other is not, the Web Packager will generate an error.
+  # This is the Key Identifier from ACME CA. Used for External Account Binding.
+  #EABKid = "eab.kid"
+
+  # This is the MAC Key from ACME CA. Used for External Account Binding. Should be in
+  # Base64 URL Encoding without padding format.
+  #EABHmac = "eab.hmac"
+
+  # For the remaining configuration items, it is important to understand the
+  # different challenges employed as part of the ACME protocol:
+  # https://ietf-wg-acme.github.io/acme/draft-ietf-acme-acme.html#identifier-validation-challenges
+  # https://letsencrypt.org/docs/challenge-types/
+  # https://certbot.eff.org/docs/challenges.html/
+  #
+  # Note that you do not need to set the fields for all of these challenges. It
+  # is typically sufficient to have a setting for just one of the challenges. If
+  # more than one method is configured, the go-acme/lego library will decide
+  # pick one of them for primary use and use other settings as backup. For
+  # wildcard certificates, nevertheless, DNSProvider is the only supported
+  # method of validation, and others cannot be used. See DNSProvider for more
+  # detail.
+
+  # The http server root directory where the ACME http challenge token should
+  # be deposited. 
+  #HTTPWebRootDir = '/path/to/www_root_dir'
+
+  # The port used by the webpkgserver to respond to the HTTP challenge
+  # issued as part of ACME protocol. You will need to configure your
+  # reverse-proxy server where you route the challenge requests to this port
+  # using proxy_pass on NGINX or a similar mechanism on the server of your
+  # choice. An example specific to NGINX:
+  # https://medium.com/@dipeshwagle/add-https-using-lets-encrypt-to-nginx-configured-as-a-reverse-proxy-on-ubuntu-b4455a729176
+  #HTTPChallengePort = 5002
+
+  # The port used by webpkgserver to respond to the TLS challenge issued as part
+  # of the ACME protocol.
+  #TLSChallengePort = 5003
+
+  # The DNS Provider to be used for fulfilling the ACME DNS challenge.
+  # For the DNS challenge, you need to set certain environment variables
+  # which depend on the DNS provider that you use to fulfill the DNS challenge:
+  # https://go-acme.github.io/lego/dns/
+  # To use DNSProvider, you need to build webpkgserver with
+  # `go build -tags dns01`; it is disabled by default because it bloats the
+  # binary.
+  #
+  # Note that you only need the DNS challenge setup if you have wildcard
+  # certificates: https://en.wikipedia.org/wiki/Wildcard_certificate
+  #DNSProvider = '' 
+
+# Specify the range of URLs webpkgserver can fetch the contents from and
+# produce the signed exchanges of. You can specify as many [[Sign]] configs
+# as you want, but must specify at least one.
+[[Sign]]
+  # The scheme must be https, "user:pass@" is disallowed, the fragment must
+  # be empty. There is no way to configure these.
+
+  # The domain to limit signed URLs to, case-insensitive. The certificate is
+  # supposed to cover this domain. Required.
+  Domain = 'blog.jxck.io'
+
+  # A full-match regexp on the path (not including the ?query). The path is
+  # normalized ("." removed, ".." resolved, and slashes deduplicated) before
+  # matching, but kept escaped ("%xx" undecoded, aside from the normalization).
+  # The default is ".*", thus matches anything.
+  #
+  # For the regexp syntax, see https://golang.org/pkg/regexp/syntax/.
+  #PathRE = '.*'
+
+  # A full-match regexp on the query portion, excluding the initial "?".
+  # Symbols such as "<" and "|" are escaped before matching. The default is "",
+  # thus only matches URLs with no query (though a single "?" is allowed).
+  #
+  # Note: webpkgserver uses url.PathEscape for escaping the query portion with
+  # "&" and "=" kept unescaped.
+  #
+  # For the regexp syntax, see https://golang.org/pkg/regexp/syntax/.
+  #QueryRE = ''
+
+# Configure the processor, which helps optimize the page loading. Note that
+# webpkgserver respects the preload directives specified in the Link header
+# fields (in HTTP responses) and the <link rel="preload"> elements (in HTML
+# documents) even if these features are not enabled.
+[Processor]
+  # The maximum size of resources in bytes to allow webpkgserver to produce
+  # the signed exchanges of.
+  #SizeLimit = 4_194_304  # 4 MiB
+
+  # Look for external stylesheets (<link rel="stylesheet">) and insert the
+  # preload directives for those detected stylesheets.
+  #PreloadCSS = false
+
+  # Look for external scripts (<script src="...">) and insert the preload
+  # directives for those detected scripts. USE WITH EXTRA CAUTION: they can
+  # remain cached and used until their expiry, even if you find some security
+  # issue(s) at a later time.
+  #PreloadJS = false
+
+# Configure the resource cache, which stores signed exchanges generated by the
+# packager. This could save on future fetches to the backend server, or
+# computational resource generating signatures.
+[Cache]
+  # The maximum number of entries to store in the cache before evicting old or
+  # less frequently used entries. A value of 0 disables the cache, and a value
+  # of -1 imposes no maximum.
+  #MaxEntries = 200
