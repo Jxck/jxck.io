@@ -438,8 +438,8 @@ open -a Google\ Chrome\ Canary --args --ignore-certificate-errors-spki-list=$BAS
           <p>まず遷移先のページは以下だ。
           <p>
             <picture>
-              <source type=image/webp srcset=1-index.webp?200901_002432#748x457>
-              <img loading=lazy decoding=async src=1-index.png?200901_002432#748x457 alt="sxg へ遷移する前のページ" title="index page" width=748 height=457>
+              <source type=image/webp srcset=1-index.webp?210518_021940#748x457>
+              <img loading=lazy decoding=async src=1-index.png?210518_021940#748x457 alt="sxg へ遷移する前のページ" title="index page" width=748 height=457>
             </picture>
           </p>
           <p>ページ下部のリンクから sxg に遷移する。
@@ -449,31 +449,31 @@ open -a Google\ Chrome\ Canary --args --ignore-certificate-errors-spki-list=$BAS
           <p>このファイルに Origin-Trial Token を付与しており、 content-type は application/signed-exchange;v=b2 である。
           <p>
             <picture>
-              <source type=image/webp srcset=2-sxg-response.webp?191119_151451#748x457>
-              <img loading=lazy decoding=async src=2-sxg-response.png?191119_151451#748x457 alt="sxg のレスポンスヘッダ" title="sxg response" width=748 height=457>
+              <source type=image/webp srcset=2-sxg-response.webp?210518_021951#748x457>
+              <img loading=lazy decoding=async src=2-sxg-response.png?210518_021951#748x457 alt="sxg のレスポンスヘッダ" title="sxg response" width=748 height=457>
             </picture>
           </p>
           <p>このファイルを展開したブラウザは、ファイルをパースし、必要な情報を取得する。
           <p>オリジナルの URL やコンテンツ、署名と証明書などが確認できる。
           <p>
             <picture>
-              <source type=image/webp srcset=3-sxg-signing-detail.webp?200901_002432#748x457>
-              <img loading=lazy decoding=async src=3-sxg-signing-detail.png?200901_002432#748x457 alt="sxg の署名部分の詳細" title="sxg signing detail" width=748 height=457>
+              <source type=image/webp srcset=3-sxg-signing-detail.webp?210518_022027#748x457>
+              <img loading=lazy decoding=async src=3-sxg-signing-detail.png?210518_022027#748x457 alt="sxg の署名部分の詳細" title="sxg signing detail" width=748 height=457>
             </picture>
           </p>
           <p>ここで取得した Certificate URL から証明書を取得する。
           <p>cbor は <code translate="no">application/cert-chain+cbor</code> で配布する。
           <p>
             <picture>
-              <source type=image/webp srcset=4-cert-chain-cbor.webp?191119_151451#748x457>
-              <img loading=lazy decoding=async src=4-cert-chain-cbor.png?191119_151451#748x457 alt="証明書チェインの詳細" title="cert chain cbor" width=748 height=457>
+              <source type=image/webp srcset=4-cert-chain-cbor.webp?210518_022032#748x457>
+              <img loading=lazy decoding=async src=4-cert-chain-cbor.png?210518_022032#748x457 alt="証明書チェインの詳細" title="cert chain cbor" width=748 height=457>
             </picture>
           </p>
           <p>これを用いて署名の検証が完了したら、ブラウザは Original の URL でコンテンツを表示する。
           <p>
             <picture>
-              <source type=image/webp srcset=5-rendered-contents.webp?191119_151451#748x457>
-              <img loading=lazy decoding=async src=5-rendered-contents.png?191119_151451#748x457 alt="Logical URL で表示された HTML" title="" width=748 height=457>
+              <source type=image/webp srcset=5-rendered-contents.webp?210518_022108#748x457>
+              <img loading=lazy decoding=async src=5-rendered-contents.png?210518_022108#748x457 alt="Logical URL で表示された HTML" title="" width=748 height=457>
             </picture>
           </p>
           <p>内部的には改めてリクエストが発生しているように見えるが、サーバにはリクエストは飛んでいない。
