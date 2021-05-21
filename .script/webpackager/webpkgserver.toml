@@ -4,7 +4,7 @@
 [Listen]
   # The bind address. If it is empty or unspecified, webpkgserver will accept
   # requests on any address (equivalent to "0.0.0.0").
-  Host = '0.0.0.0'
+  # Host = '0.0.0.0'
 
   # The port number to listen on. If it is unspecified, webpkgserver will use
   # an arbitrary port number.
@@ -35,7 +35,7 @@
   #
   # This path must start with a slash and be normalized without ".", "..", or
   # duplicate slashes. The trailing slash is allowed but not required.
-  #DocPath = '/priv/doc'
+  DocPath = '/priv/doc'
 
   # The query parameter to specify the document URL. See DocPath above.
   #SignParam = 'sign'
@@ -219,7 +219,7 @@
 # ACME is a protocol that allows automatic certificate renewal. Setting the
 # Enable parameter to true will make webpkgserver automatically request a
 # renewed certificate whenever it has determined that the current certificate
-# is expired or about to expire.
+# is expired or about to r.
 #
 # If you set up more than one instance of webpkgserver, the recommended practice
 # is to have only one instance handle automatic certificate renewals and let
