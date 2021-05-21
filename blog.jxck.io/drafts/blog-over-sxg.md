@@ -42,7 +42,48 @@ go build .
 ```
 
 
-## 
+## Routing
+
+
+```h2o
+proxy.reverse.url: "http://127.0.0.1:11000/webpkg"
+```
+
+## Content Negotiation
+
+基本的にはリクエストヘッダに `Accpet: application/signed-exchange;v=b3` が付与されている場合、 Web Package Server に転送すれば良い。
+
+しかし、 Google の Bot だけでなく、 Chrome も現状このヘッダをデフォルトで付与しているため、単にこのヘッダの有無だけを見てルーティングすると、ブラウザでの表示にも SXG を返すことになる。
+
+これについては Q value を参照するように [ドキュメント](https://github.com/google/webpackager/blob/master/cmd/webpkgserver/README.md#content-negotiation) に書かれている。
+
+具体的には Chrome と Google Bot の付与する Accept は以下のように異なる。(どちらも前後に別の値もくるが省いている)
+
+```http
+# Google Bot
+text/html,application/xhtml+xml,application/signed-exchange;v=b3,application/xml;q=0.9,*/*;q=0.8
+
+# Chrome 90
+text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+```
+
+SXG に注目すると Chrome は Q value を HTML などよりも下げているが、 Google Bot は Q value を下げずに HTML と同等にしていることがわかる。
+
+ドキュメントでは、 Google Bot は Q value を付与しないことで優先度を下げないため、 Q value の有無が判断材料になると書かれており、それを Nginx で実現する正規表現の例が書かれている。
+
+本サイトでは h2o の mruby handler で対応するため、以下のように否定先読みで実現している。
+
+
+```ruby
+if /application\/signed-exchange;v=b3(?!;q=)/.match(env["HTTP_ACCEPT"])
+  # reproxy to backend wepkgserver
+  next [307, {"x-reproxy-url" => "http://127.0.0.1:11000/priv/doc/https://blog.jxck.io#{path}"}, []]
+else
+  # fallthrough
+  next [399, {}, []]
+end
+```
+
 
 
 
