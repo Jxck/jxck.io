@@ -1,5 +1,6 @@
 # [signed-http-exchange] SXG 対応
 
+
 ## Intro
 
 本サイトを (Non AMP) SXG に対応した。その作業ログを記す。
@@ -40,6 +41,7 @@ Web Packager Server は Web Packager に含まれる webpkgserver コマンド�
 
 webpkgserver は `go get` ではうまく動かなかったため、 README にある通りソースからビルドした。
 
+
 ```sh
 git clone --depth 1 https://github.com/google/webpackager
 cd webpackager/cmd/webpkgserver
@@ -50,13 +52,15 @@ go build .
 
 実行には設定ファイルの toml を引数に渡す。
 
+
 ```sh
 $ webpkgserver --config webpkgserver.toml
 ```
 
+
 ### webpkgserver.toml
 
-設定ファイルは、同梱されている webpkgserver.example.toml を修正する。　
+設定ファイルは、同梱されている webpkgserver.example.toml を修正する。
 
 ほとんどデフォルトで良く、 Port と SXG 用の証明書、 Domain あたりを気をつければ良いだろう。
 
@@ -84,11 +88,13 @@ $ webpkgserver --config webpkgserver.toml
 
 ローカルで起動した時点で、動作の確認はいかのように行うことができる。
 
+
 ```sh
 export URL="https://blog.jxck.io/"
 curl -s --output - -H 'accept: application/signed-exchange;v=b3,*/*;q=0.1' http://127.0.0.1:11000/priv/doc/$URL > dump.sxg
 dump-signedexchange -i dump.sxg
 ```
+
 
 ## Routing
 
@@ -97,8 +103,7 @@ dump-signedexchange -i dump.sxg
 - webpkgserver に直接アクセスできないようポートを閉じる
 - `/webpkg` を webpkserver に転送
 - Content Negotiation で SXG を返す場合は `/priv/doc` をつけて proxy
-- それ以外は proxy しない。
-
+- それ以外は proxy しない
 
 
 ## Content Negotiation
@@ -110,6 +115,7 @@ dump-signedexchange -i dump.sxg
 これについては Q value を参照するように [ドキュメント](https://github.com/google/webpackager/blob/master/cmd/webpkgserver/README.md#content-negotiation) に書かれている。
 
 具体的には Chrome と Google Bot の付与する Accept は以下のように異なる。(どちらも前後に別の値もくるが省いている)
+
 
 ```http
 # Google Bot
@@ -138,6 +144,7 @@ end
 
 ここまでが成功しているかは、以下のようにテストをすることができる。
 
+
 ```sh
 export URL="https://blog.jxck.io/"
 curl -s --output - -H 'accept: application/signed-exchange;v=b3,*/*;q=0.1' $URL > dump.sxg
@@ -151,12 +158,14 @@ webpkgserver は SXG に必要な Certificate URL を自動で提供してくれ
 
 そのパスは `/webpkg/cert/#{base64}` となっているため、ここへのリクエストはそのまま転送すれば良い。
 
+
 ```h2o
 "/webpkg":
   proxy.reverse.url: "http://127.0.0.1:11000/webpkg"
 ```
 
 dump した sxg の中に cert url があるためそこから URL を取得すると以下のようにテストできる。
+
 
 ```sh
 # dump certurl
@@ -173,21 +182,78 @@ curl でテストしても良いが、デプロイした後ならば Chrome で�
 
 その状態でアクセスると、成功すれば以下のように SXG が確認できる。
 
+まず、 Network の Timeline 上は SXG のレスポンスと CBOR リクエストが続き、 SXG から取り出された HTML が取得されている。
+
+![SXG レスポンス、 CBOR レスポンス、 SXG から取り出された HTML の順に取得されている Devtools Timeline の図](sxg-timeline.png)
+
+SXG の Preview タブを見ると、 Signature や Certificate も正しく解釈されていることが確認できる。
+
+![SXG の Signature や Certificate が正しく解釈されている Devtools の Preview の図](sxg-response.png)
+
+
+## Google Bot
+
+この状態で放置しておくと GoogleBot がクロールしに来た際に、 SXG の Content Negotiation に成功して SXG をクロールしていく。
+
+SXG が Google の Cache に乗ったかは以下の URL から検証できるようだ。
+
+- (before): https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html
+- (after ): http://blog-jxck-io.webpkgcache.com/doc/-/s/blog.jxck.io/entries/2016-07-12/cache-control-immutable.html
+
+Preserve log した状態でアクセスすると、 Devtools で前述の通り確認できる。
+
+
+## Search Result
+
+Search Result から SXG で取得できているところまで確認できると良かったのだが、 Mobile Search の結果は AMP SXG が優先されてしまっているようで、確認することができなかった。
+
+
+## AMP のトーンダウンと CWV と SXG
+
+特にモバイル向けサイトでのパフォーマンスが全体的に悪かった時代、 [High Performance Browser Networking](https://www.oreilly.co.jp/books/9784873116761/) の Iliya などが改善のための啓蒙を世界中で行っていた。
+
+しかし、世の中のサイトは一向に速くならず、その理由は「改善方法がわからない」という問題以外に、「改善の優先度が低い」という問題が共通してあった。特に改善したいと思っている開発者がいても、経営判断で後回しにされてしまう問題があった。
+
+そこで、サイトに対して Best Practice を適用するモチベーションとして Google は Search Result での優遇を掲げ、開発者が意思決定者を説得する材料を提供する方法を選んだ。 Best Practice が適用されているかを機械的に判断するためのエビデンスとして作られたのが AMP だったと言えるだろう。
+
+こうして Google によってぶら下げられた人参には世界中が飛びつき、対応は経営上の Hi Priority になった。実際は「パフォーマンスの改善」ではなく「AMP の対応」だったわけだが、 AMP は表向きは「速くするためのベストプラクティス」(実際は「サイトが遅くなるような実装ができないという制限」)をまとめたフレームワークだったため、 「AMP 対応」は大抵のサイトにとってそのまま「パフォーマンス改善」に繋がった。
+
+筆者は AMP が好きではないし、こんなに成功するとは夢にも思ってなかったが、それで世界の大半を変えてしまったのだから、 Google らしい(Google にしかできない)やり方として、一定の評価をせざるを得ないと思っている。
+
+しかし、 AMP にも問題がいくつかあった。
+
+まずは AMP Cache の URL が Goolge のものであることへの反発と、どんなにパフォーマンスを気にかけて十分に最適化されているメディアでも、 AMP に対応しないと不利になるとう技術者の不満だ。
+
+こうした不満が [AMP Letter](http://ampletter.org/) として表明されて以降、 Google は前者の改善のために SXG を取り入れた。 SXG 自体にも議論はあったが、少なくとも AMP であり、 AMP Cache で配信されながら URL は Origin のままにできるという点で、解決したといえば解決したのだ。これが AMP SXG として現在提供されている。
+
+それでも、「速くする」という非機能要件を、「AMP である」という機能要件に置き換えて、それを Requirement としている事実は変わらないため、例えば本サイトのように「AMP よりも Origin が速い」サイトにとっての納得感はなかった。
+
+そこで、「速い」という状態を客観的かつ機械的に測定するために、サイトの体感速度を数値化するための指標が Performance Timing API として多く提案された。従来はサーバ側の Response Time くらいしか測られていなかった Web も、フロントでのロジックが増えたことや、 Devtools の存在によって開発者には速めに受け入れられ、試行は続き、知見も貯められていった。
+
+様々な指標が提案された中で、 AMP が当初目指していた「Mobile での体験を良くする」にフォーカスした場合は、「パッと表示されたサクッと動く」という初期表示とインタラクションに注目した結果、 Google が選定した指標としきい値が [Core Web Vitals](https://web.dev/vitals/) につながる。
+
+Google は Search Rank への優遇を、 AMP という機能要件から CWV という非機能要件指標におきかえることで、速ければ AMP でる必要は無いという方向にゆるやかにシフトしていくのだろう。
+
+実際、世界は 6 月ごろリリースされるとされている CWV のランクへの反映にむけ、やっきになって CWV の改善に取り組んでいる。(実際に反映されるのは CWV だけではないが)
+
+実際に CWV をハックしてその数値の最適化をしている場合は、それはサイトのパフォーマンス・チューニングとはいえない。しかし AMP 対応サイトが遅いことはあまりないように、 CWV が良いサイトが遅いことはあまりないため、世界の動かし方としてはまた Goole らしいのかもしれない。
+
+そして今回のように AMP でない SXG も Search で対応されたことは、これまで AMP でしかできなかったことがなくなりつつあることを意味する。
+
+もちろん、下手なサイトをイチから作るよりは AMP にしておいた方が速い(遅くなりにくい)サイトを作ることはできるだろう。その意味でも AMP をフレームワークとして取り入れる選択肢は十分に残ると思い、 AMP 自体も [Web Component Framework](https://amp.dev/documentation/guides-and-tutorials/start/bento_guide/?format=websites) としての進化していく兆しを見せている。
+
+
+Search から prefetch されるためメリットがある。
+
+自分たちのサイトの特性やユーザのことを考え、 Google が提唱している CWV (FCP, CLS, FID) ではなく Speed Index など別の指標を自分で考えて最適化を進めているサイトにとっては、あまり腑に落ちない点は残るだろう。
 
 
 
 
 
-## Test
-
-https://signed-exchange-testing.dev/sxgs/valid.html
-http://signed--exchange--testing-dev.webpkgcache.com/doc/-/s/signed-exchange-testing.dev/sxgs/valid.html
 
 
-https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html
-http://blog-jxck-io.webpkgcache.com/doc/-/s/blog.jxck.io/entries/2016-07-12/cache-control-immutable.html
 
-https://blog-jxck-io.webpkgcache.com/doc/-/s/blog.jxck.io/entries/2019-08-14/nullish-coalescing-optional-chaining.html
 
 ## Outro
 
