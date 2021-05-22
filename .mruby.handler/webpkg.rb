@@ -6,13 +6,13 @@ Proc.new do |env|
 
   # amp page request
   if /\.amp.html\z/.match(path)
-    if amp_cache_transform.nil?
-      # delegate as normal access with vary header
-      next [399, {"vary" => "amp-cache-transform, accept"}, []]
-    else
-      # reproxy to backend amppackager
-      next [307, {"x-reproxy-url" => "http://127.0.0.1:10000/priv/doc/https://blog.jxck.io#{path}"}, []]
-    end
+    # if amp_cache_transform.nil?
+    #   # delegate as normal access with vary header
+    #   next [399, {"vary" => "amp-cache-transform, accept"}, []]
+    # else
+    #   # reproxy to backend amppackager
+    #   next [307, {"x-reproxy-url" => "http://127.0.0.1:10000/priv/doc/https://blog.jxck.io#{path}"}, []]
+    # end
   elsif /.html\z/.match(path) && /application\/signed-exchange;v=b3(?!;q=)/.match(env["HTTP_ACCEPT"])
     logger.puts(path)
     logger.puts(env["HTTP_USER_AGENT"])
