@@ -13,7 +13,7 @@ Proc.new do |env|
     #   # reproxy to backend amppackager
     #   next [307, {"x-reproxy-url" => "http://127.0.0.1:10000/priv/doc/https://blog.jxck.io#{path}"}, []]
     # end
-    next [302, {"Location" => path.sub(".amp.html", ".html")}, []]
+    next [301, {"Location" => path.sub(".amp.html", ".html")}, []]
   elsif /.html\z/.match(path) && /application\/signed-exchange;v=b3(?!;q=)/.match(env["HTTP_ACCEPT"])
     logger.puts(path)
     logger.puts(env["HTTP_USER_AGENT"])
