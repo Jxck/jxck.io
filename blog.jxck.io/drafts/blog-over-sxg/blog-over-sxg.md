@@ -198,7 +198,7 @@ SXG の Preview タブを見ると、 Signature や Certificate も正しく解�
 SXG が Google の Cache に乗ったかは以下の URL から検証できるようだ。
 
 - (before): https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html
-- (after ): http://blog-jxck-io.webpkgcache.com/doc/-/s/blog.jxck.io/entries/2016-07-12/cache-control-immutable.html
+- (after ): https://blog-jxck-io.webpkgcache.com/doc/-/s/blog.jxck.io/entries/2016-07-12/cache-control-immutable.html
 
 Preserve log した状態でアクセスすると、 Devtools で前述の通り確認できる。
 
