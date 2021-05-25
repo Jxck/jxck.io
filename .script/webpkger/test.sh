@@ -1,4 +1,6 @@
-export URL="https://blog.jxck.io/entries/2020-12-03/masonry-layout.html"
+export   URL="https://blog.jxck.io/entries/2020-12-03/masonry-layout.html"
+export CACHE="https://blog-jxck-io.webpkgcache.com/doc/-/s/blog.jxck.io/entries/2020-12-03/masonry-layout.html"
+
 
 # validate signature
 dump-signedexchange -uri $URL -version=1b3 -headers=false -payload=false  -verify
@@ -19,5 +21,7 @@ curl -s https://blog.jxck.io:11000/priv/doc/$URL -o /dev/null -w '%{http_code}\n
 curl -s --output - -H 'accept: application/signed-exchange;v=b3,*/*;q=0.1' http://127.0.0.1:11000/priv/doc/$URL > dump.sxg
 dump-signedexchange -i dump.sxg -signature
 
+# validate cache
+curl -s -i -H 'Accept: application/signed-exchange;v=b3' $CACHE | grep -a -i content-type:
 
 rm dump.sxg
