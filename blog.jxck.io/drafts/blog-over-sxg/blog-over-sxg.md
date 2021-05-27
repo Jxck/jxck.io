@@ -1,9 +1,17 @@
-# [signed-http-exchange] SXG 対応
+# [signed-http-exchange] SXG 対応と AMP 提供の停止
 
 
 ## Intro
 
-本サイトを (Non AMP) SXG に対応した。その作業ログを記す。
+本サイトを (Non AMP) SXG に対応した。
+
+これにより、 Google のモバイル検索では、結果を表示した時点でこのサイトの SXG が Prefetch され、結果を選択したら Cache から素早く表示されつつ、 URL も本サイトのものとして表示される。
+
+検索結果流入のユーザに対するパフォーマンスの向上が期待できるのだ。
+
+この、 Non AMP SXG 対応にあたって、本サイトの AMP の提供も停止することになった。
+
+移行の作業ログと、関連する流れについて記す。
 
 
 ## (Non AMP) SXG
@@ -218,7 +226,6 @@ CWV や SXG 、さらにこれから展開される予定の Prerender2 など�
 Bento AMP が気になるため、念のためにコンテンツは残すが、これを機に AMP の提供を停止することにした。
 
 
-
 ## AMP の停止
 
 AMP をやめる方法は基本は以下だ。
@@ -237,12 +244,24 @@ AMP をやめる方法は基本は以下だ。
 一晩放置したところ、検索結果から AMP が消え始めた。
 
 
-
 ## Search Result
 
-Search Result から SXG で取得できているところまで確認できると良かったのだが、 Mobile Search の結果は AMP SXG が優先されてしまっているようで、確認することができなかった。
+検索結果から AMP が消え、モバイルでも通常の HTML が表示されるようになった。
+
+また、ページの DOM 中に `<link rel=prefetch>` が挿入されている。
 
 ![Non AMP SXG が Prefetch されている](gsrp-sxg.jpg)
+
+これにより、検索結果を表示した時点で HTML は Google の SXG Cache から取得されている。
+
+![検索結果を表示した時点で HTML は Google の SXG Cache から取得されている](sxg-prefetch.png)
+
+実際に検索結果に遷移すると、 HTTP Request は筆者のサーバには発生せず、 Prefetch された HTML から展開されていることがわかる。
+
+![検索結果に遷移すると Prefetch した HMTL が展開されている](sxg-navigate.png)
+
+このとき(スクショでは切れているが)、アドレスバーには SXG Cache の URL である `https://blog-jxck-io.webpkgcache.com/` ではなく、 SXG を検証した結果として `https://blog.jxck.io` が表示されている。
+
 
 ## AMP のトーンダウンと CWV と SXG
 
@@ -278,29 +297,14 @@ Google は Search Rank への優遇を、 AMP という機能要件から CWV �
 
 もちろん、下手なサイトをイチから作るよりは AMP にしておいた方が速い(遅くなりにくい)サイトを作ることはできるだろう。その意味でも AMP をフレームワークとして取り入れる選択肢は十分に残ると思い、 AMP 自体も [Web Component Framework](https://amp.dev/documentation/guides-and-tutorials/start/bento_guide/?format=websites) としての進化していく兆しを見せている。
 
-
 Search から prefetch されるためメリットがある。
 
 自分たちのサイトの特性やユーザのことを考え、 Google が提唱している CWV (FCP, CLS, FID) ではなく Speed Index など別の指標を自分で考えて最適化を進めているサイトにとっては、あまり腑に落ちない点は残るだろう。
 
 
-
-
-
-
-
-
-
 ## Outro
 
-deadbeef
 
-
-## DEMO
-
-動作するデモを以下に用意した。
-
-- <https://labs.jxck.io/>
 
 
 ## Resources
@@ -311,8 +315,12 @@ deadbeef
 - Mozilla Standard Position
 - Webkit Position
 - TAG Design Review
+  - https://github.com/w3ctag/design-reviews/issues/235
 - Intents
+  - Intent to Ship: Signed HTTP Exchanges (SXG)
+    - https://groups.google.com/a/chromium.org/g/blink-dev/c/gPH_BcOBEtc
 - Chrome Platform Status
+  - https://www.chromestatus.com/feature/5745285984681984
 - WPT (Web Platform Test)
 - DEMO
 - Blog
