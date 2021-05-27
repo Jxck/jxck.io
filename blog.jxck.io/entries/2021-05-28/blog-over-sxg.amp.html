@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html amp lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href=https://blog.jxck.io/entries/2021-05-28/blog-over-sxg.html>
+
+  <link rel=icon             type =image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon             type =image/png sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.png>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="本サイトを (Non AMP) SXG に対応した。これにより、 Google のモバイル検索では、結果を表示した時点でこのサイトの SXG が Prefetch され、結果を選択したら Cache から素早く表示されつつ、 アドレスバーにも本サイトのものとして表示される。...">
+  <meta name=keywords            content="prefetch,amp,signed-http-exchange,webpackaging">
+  <meta name=theme-color         content=#000000>
+
+  <meta name=twitter:card        content=summary>
+  <meta name=twitter:site        content=@jxck_>
+  <meta name=twitter:url         content=https://blog.jxck.io/entries/2021-05-28/blog-over-sxg.html>
+  <meta name=twitter:title       content="Non AMP SXG による Prefetch 対応と AMP 提供の停止 | blog.jxck.io">
+  <meta name=twitter:description content="本サイトを (Non AMP) SXG に対応した。これにより、 Google のモバイル検索では、結果を表示した時点でこのサイトの SXG が Prefetch され、結果を選択したら Cache から素早く表示されつつ、 アドレスバーにも本サイトのものとして表示される。...">
+  <meta name=twitter:image       content=https://blog.jxck.io/assets/img/jxck.png>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2021-05-28/blog-over-sxg.html>
+  <meta property=og:title        content="Non AMP SXG による Prefetch 対応と AMP 提供の停止 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="本サイトを (Non AMP) SXG に対応した。これにより、 Google のモバイル検索では、結果を表示した時点でこのサイトの SXG が Prefetch され、結果を選択したら Cache から素早く表示されつつ、 アドレスバーにも本サイトのものとして表示される。...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.png>
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Non AMP SXG による Prefetch 対応と AMP 提供の停止 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2021-05-28T08:00:00+08:00",
+    "dateModified": "2021-05-28T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.60x60.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": "本サイトを (Non AMP) SXG に対応した。これにより、 Google のモバイル検索では、結果を表示した時点でこのサイトの SXG が Prefetch され、結果を選択したら Cache から素早く表示されつつ、 アドレスバーにも本サイトのものとして表示される。..."
+  }
+  </script>
+
+  <title>Non AMP SXG による Prefetch 対応と AMP 提供の停止 | blog.jxck.io</title>
+  <script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+  <script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+  <script async custom-element=amp-ad src=https://cdn.ampproject.org/v0/amp-ad-0.1.js></script>
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src=https://cdn.ampproject.org/v0.js></script>
+  <style amp-custom>
+    article section p {
+      margin-inline-start: 0;
+    }
+
+    article table {
+      margin-inline-start: 0;
+    }
+
+    article img {
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
+      border: 1px solid #ccc;
+      box-sizing: content-box;
+      background-color: #fff;
+      max-width: 100%;
+    }
+
+    article ul,
+    article ol,
+    article dl {
+      margin-inline-start: var(--grid);
+      font-family: var(--mono-font);
+    }
+
+    article li {
+      margin-block-start:  calc(var(--grid)/2);
+      margin-block-end:    0;
+      margin-inline-start: calc(var(--grid)/2);
+      margin-inline-end:   0;
+    }
+
+    article dl {
+      display: grid;
+      grid-template-columns: minmax(auto, max-content);
+      grid-column-gap: var(--grid);
+    }
+
+    article dl div {
+      display: contents;
+    }
+
+    article dl dt {
+      grid-column: 1 / 2;
+    }
+    article dl dd {
+      grid-column: 2 / 2;
+    }
+
+    article blockquote {
+      font-family: var(--mono-font);
+    }
+
+    article blockquote p {
+      margin: 0;
+    }
+
+    @supports (line-height-step: 1px) {
+      article {
+        --grid-rhythm: 1.5em;
+        line-height: 1.5;
+        line-height-step: var(--grid-rhythm);
+      }
+
+      article h1,
+      article h2,
+      article h3,
+      article h4,
+      article h5,
+      article h6 {
+        display: inline-block;
+        width: 100%;
+        line-height-step: 0;
+        line-height: 1.2;
+        margin-block-end: 0;
+      }
+
+      article section {
+        /* grid for debug */
+        /* background-size: 100% var(--grid-rhythm); */
+        /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
+      }
+
+      article p {
+        margin-block-start: var(--grid-rhythm);
+        margin-block-end:   var(--grid-rhythm);
+      }
+
+      article pre,
+      article table {
+        line-height-step: 0;
+        line-height: normal;
+      }
+    }
+    /* Light Mode Theme */
+    :root {
+      --background-color: #fefefe;
+      --font-color: #222;
+      --header-color: #222;
+
+      --anchor-color: RoyalBlue;
+      --anchor-visited-color: Brown;
+
+      --code-block: #161b22;
+      --code-block-font: #ffffff;
+
+      --code-inline: #f1f5f9;
+      --code-inline-font: #292929;
+
+      --block-quote: #ddd;
+      --table-border: #222;
+
+      --regular-font: "Noto Sans", "Noto Sans CJK JP", "Hiragino Sans", 'ヒラギノ角ゴ Pro W3', 'メイリオ', sans-serif;
+      --mono-font: Menlo, Consolas, Liberation, Mono, Courier;
+      --code-font: Menlo, Consolas, Liberation, Mono, Courier;
+
+      --icon-size: 30px;
+
+      --width: 80vw;
+      --max-width: 1024px;
+
+      --grid: 1rem;
+
+      --radius: 4px;
+    }
+
+
+    /* Mobile Theme */
+    @media screen and (max-device-width: 960px) {
+      :root {
+        --width: 94vw;
+      }
+
+      audio {
+        width: 100%;
+      }
+    }
+
+    /* Dark Mode Theme */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --header-color: #111;
+        --background-color: #222;
+        --font-color: #eee;
+
+        --anchor-color: CornflowerBlue;
+        --anchor-visited-color: RosyBrown;
+
+        --table-border: #eee;
+      }
+
+      article img {
+        filter: grayscale(50%);
+      }
+      article img[src*=svg] {
+        filter: invert(100%) grayscale(50%);
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--regular-font);
+      background-color: var(--background-color);
+      color: var(--font-color);
+      /*font-feature-settings: "palt";*/
+      margin: 0;
+      padding: 0;
+    }
+
+    code {
+      font-family: var(--mono-font);
+    }
+
+    img {
+      display: block;
+      height: auto;
+    }
+
+    hr {
+      margin: 0;
+      padding: 0;
+    }
+
+    iframe {
+      display: block;
+      max-width: 100%;
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
+    }
+    dl.info {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info div {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+
+    dl.info dt::after {
+      content: ":";
+      padding-inline-end: calc(var(--grid)/2);
+    }
+
+    dl.info dd {
+      margin-block-start: 0;
+      margin-block-end: 0;
+      margin-inline-end: var(--grid);
+      margin-inline-start: 0;
+    }
+
+    dl.info dd i {
+      font-style: normal;
+      padding-inline-end: calc(var(--grid)/3);
+    }
+
+    details.info > summary {
+    }
+
+    details.info ul {
+      margin-block-start: 0;
+      margin-inline-start: var(--grid);
+    }
+
+    nav.tags {
+      display: inline;
+    }
+
+    .tags ul {
+      display: inline-flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    .tags li:before {
+      content: none;
+    }
+
+    .tags li:first-child:before{
+      content: "[ ";
+    }
+
+    .tags li:after {
+      content: ",";
+      padding-inline-end: 0.5rem;
+    }
+
+    .tags li:last-child:after {
+      content: " ]";
+    }
+    header {
+      z-index: 1;
+      position: sticky;
+      position: -webkit-sticky;
+      top: 0;
+      box-sizing: border-box;
+      margin: 0;
+      padding: calc(var(--grid)/2);
+      background-color: var(--header-color);
+    }
+
+    h2:target,
+    h3:target,
+    h4:target,
+    h5:target,
+    h6:target {
+      /* sticky header に合わせて link scroll をずらす */
+      margin-block-start:  calc((var(--icon-size) + var(--grid)) * -1);
+      padding-block-start: calc((var(--icon-size) + var(--grid)));
+    }
+
+    header nav {
+      width: var(--width);
+      max-width: var(--max-width);
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
+    }
+
+    header nav ul {
+      width: 100%;
+      display: flex;
+      margin: 0;
+    }
+
+    header nav li {
+      width: fit-content;
+      padding: 0;
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: var(--grid);
+      margin-inline-end:   0;
+    }
+
+    header nav ul li a,
+    header nav ul li button {
+      width: fit-content;
+      display: block;
+      padding: 0;
+      margin: 0;
+      border: none;
+    }
+
+    header nav svg {
+      fill: var(--background-color);
+    }
+
+    header nav ul li::before {
+      content: none;
+    }
+
+    header nav ul li:first-child {
+      flex-grow: 1;
+      margin-inline-start: 0;
+    }
+
+    header nav .logo {
+      border: 1px solid #fff;
+      box-sizing: border-box;
+    }
+    h1 > a,
+    h2 > a,
+    h3 > a,
+    h4 > a,
+    h5 > a,
+    h6 > a {
+      color: var(--font-color);
+    }
+
+    h1 > a:visited,
+    h2 > a:visited,
+    h3 > a:visited,
+    h4 > a:visited,
+    h5 > a:visited,
+    h6 > a:visited {
+      color: var(--font-color);
+    }
+
+    h1 > a::before {
+      content: "# ";
+    }
+
+    h2 > a::before {
+      content: "## ";
+    }
+
+    h3 > a::before {
+      content: "### ";
+    }
+
+    h4 > a::before {
+      content: "#### ";
+    }
+
+    h1 > a:hover::before,
+    h2 > a:hover::before,
+    h3 > a:hover::before,
+    h4 > a:hover::before,
+    h5 > a:hover::before,
+    h6 > a:hover::before {
+      color: var(--anchor-visited-color);
+    }
+
+    em {
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    em::before,
+    em::after {
+      content: "*";
+    }
+
+    strong {
+      color: red;
+    }
+
+    strong::before,
+    strong::after {
+      content: "**";
+    }
+
+    ul li::before {
+      content: "- ";
+    }
+
+    ol {
+      counter-reset: list;
+    }
+
+    ol li::before {
+      counter-increment: list;
+      content: counter(list) ". ";
+    }
+
+    dl dt::after {
+      content: ":";
+    }
+
+    blockquote {
+      display: block;
+      border: solid 1px var(--block-quote);
+      border-radius: var(--radius);
+      padding: 1rem;
+      margin: 0;
+    }
+
+    blockquote p::before {
+      content: "> ";
+    }
+
+    code {
+      background-color: var(--code-inline);
+      color: var(--code-inline-font);
+      border-radius: var(--radius);
+      padding: 0 4px;
+    }
+
+    code::before,
+    code::after {
+      content: "`";
+    }
+    main {
+      display: block;
+      width: var(--width);
+      max-width: var(--max-width);
+      margin-block-start:  1em;
+      margin-block-end:    1em;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
+    }
+
+    a {
+      word-wrap: break-word;
+      text-decoration: none;
+      color: var(--anchor-color);
+    }
+
+    a:visited {
+      color: var(--anchor-visited-color);
+    }
+
+    ol,
+    ul {
+      list-style: none;
+      padding-inline-start: 0;
+    }
+
+    li {
+      word-break: break-all;
+      word-wrap: break-word;
+    }
+
+    dl dt {
+      font-weight: bold;
+      margin: 0;
+    }
+
+    dl dd {
+      margin: 0;
+    }
+    footer {
+      padding: var(--grid);
+    }
+
+    footer strong,
+    footer .copyright {
+      font-style: italic;
+      width: var(--width);
+      max-width: var(--max-width);
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
+    }
+
+    /* AdSense */
+    footer ins {
+      display: block;
+      width: var(--width);
+      max-width: var(--max-width);
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
+    }
+    pre {
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
+      border-radius: var(--radius);
+    }
+
+    pre code {
+      background-color: var(--code-block);
+      color: var(--code-block-font);
+    }
+
+    pre::before {
+      font-family: var(--code-font);
+      content: "```" attr(data-code) "\A";
+      font-size: 0.8em;
+    }
+
+    pre::after {
+      font-family: var(--code-font);
+      z-index: -1;
+      position: relative;
+      top: -1em;
+      content: "\A```";
+      font-size: 0.8em;
+    }
+
+    pre > code {
+      font-family: var(--code-font);
+      overflow: auto;
+      display: block;
+      padding: 0.5rem;
+      margin: 0;
+    }
+
+    pre > code::before,
+    pre > code::after {
+      content: none;
+    }
+
+
+    /** Prism.js Syntax Highlight **/
+    :root {
+      --code-yellow: #ffe557;
+      --code-aqua:   #03b5f1;
+      --code-blue:   #76acff;
+      --code-gray:   #96969c;
+      --code-green:  #1cd24d;
+      --code-orange: #ff8b24;
+      --code-pink:   #ff61bf;
+    }
+
+    /** style **/
+    .token.important,
+    .token.bold {
+      font-weight: bold;
+    }
+    .token.italic {
+      font-style: italic;
+    }
+
+    .token.entity {
+      cursor: help;
+    }
+
+    /** color **/
+    .token.command,
+    .token.parameter,
+    .token.operator,
+    .token.punctuation,
+    .token.output {
+      color: var(--code-block-font);
+    }
+
+    .token.attr-name,
+    .token.selector,
+    .token.shell-symbol {
+      color: var(--code-blue);
+    }
+
+    .token.delimiter.tag,
+    .token.variable {
+      color: var(--code-yellow);
+    }
+
+    .token.tag,
+    .token.function {
+      color: var(--code-green);
+    }
+
+    .token.key,
+    .token.attr-value,
+    .token.atom,
+    .token.property,
+    .token.keyword {
+      color: var(--code-pink);
+    }
+
+    .token.header-name.keyword,
+    .token.string,
+    .token.regex {
+      color: var(--code-blue);
+    }
+
+    .token.interpolation,
+    .token.constant,
+    .token.class-name {
+      color: var(--code-orange);
+    }
+
+    .token.response-status,
+    .token.boolean,
+    .token.number {
+      color: var(--code-aqua);
+    }
+
+    .token.rule,
+    .token.builtin {
+      color: var(--code-green);
+    }
+
+    .token.prolog,
+    .token.doctype,
+    .token.shebang,
+    .token.comment {
+      color: var(--code-gray);
+    }
+
+    .token.request-line {
+      color: var(--code-aqua);
+    }
+
+
+    /** language **/
+    .token.bash.language-bash,
+    .token.bash.language-bash > .token.function {
+      color: var(--code-block-font);
+    }
+    table {
+      font-family: var(--mono-font);
+      border-spacing: 0 0.4rem;
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
+    }
+
+    th {
+      border-inline-start: 2px solid var(--table-border);
+      border-block-end:    2px dashed var(--table-border);
+      padding-block-start:  0;
+      padding-block-end:    calc(var(--grid)/2);
+      padding-inline-start: var(--grid);
+      padding-inline-end:   var(--grid);
+    }
+
+    td {
+      padding-block-start:  calc(var(--grid)/2);
+      padding-block-end:    calc(var(--grid)/2);
+      padding-inline-start: var(--grid);
+      padding-inline-end:   var(--grid);
+      border-inline-start: 2px solid var(--table-border);
+    }
+
+    th:last-child,
+    td:last-child {
+      border-inline-end: 2px solid var(--table-border);
+    }
+
+    .align-center {
+      text-align: center;
+    }
+
+    /** TODO: fixup html class */
+    .align-left {
+      text-align: start;
+    }
+
+    /** TODO: fixup html class */
+    .align-right {
+      text-align: end;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://blog.jxck.io      ><amp-img width=30 height=30 src=/assets/img/blog.svg?160301_215351   alt="blog logo" class=logo    ></a>
+      <li><a href=/searches                 ><amp-img width=30 height=30 src=/assets/img/search.svg?190421_130410 alt=search                    ></a>
+      <li><a href=.                         ><amp-img width=30 height=30 src=/assets/img/up.svg?160831_002319     alt="move to parent directory"></a>
+      <li><a href=/feeds/atom.xml           ><amp-img width=30 height=30 src=/assets/img/rss.svg?160227_124312    alt="rss feed"                ></a>
+      <li><a href=https://jxck.io/humans.txt><amp-img width=30 height=30 src=/assets/img/humans.svg?160831_002319 alt="huamns.txt"              ></a>
+      <li><a href=https://jxck.io           ><amp-img width=30 height=30 src=/assets/img/jxck.svg?190123_200004   alt="jxck logo" class=logo    ></a>
+    </ul>
+  </nav>
+</header>
+<main>
+  <dl class=info>
+    <div><dt>created_at</dt><dd><time class=created_at datetime=2021-05-28>2021-05-28</time></dd></div>
+    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-05-28>2021-05-28</time></dd></div>
+    <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags/prefetch.html">prefetch</a>
+              <li><a href="/tags/amp.html">amp</a>
+              <li><a href="/tags/signed-http-exchange.html">signed-http-exchange</a>
+              <li><a href="/tags/webpackaging.html">webpackaging</a>
+            </ul>
+          </nav>
+        </dd>
+    </div>
+    <div>
+      <dt>toc</dt>
+      <dd>
+        <details class=info>
+          <summary>headdings</summary>
+          <nav>
+            <ul>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#non-amp-sxg>## (Non AMP) SXG</a>
+              <li><a href=#sxg-の配信>## SXG の配信</a>
+              <li><a href=#web-packager-server>## Web Packager Server</a>
+              <li><a href=#webpkgserver>### webpkgserver</a>
+              <li><a href=#webpkgservertoml>### webpkgserver.toml</a>
+              <li><a href=#routing>## Routing</a>
+              <li><a href=#content-negotiation>## Content Negotiation</a>
+              <li><a href=#webpkg>### <code translate="no">/webpkg</code></a>
+              <li><a href=#動作検証>## 動作検証</a>
+              <li><a href=#debug>### Debug</a>
+              <li><a href=#google-bot>### Google Bot</a>
+              <li><a href=#amp-sxg-と-non-amp-sxg>### AMP SXG と Non AMP SXG</a>
+              <li><a href=#amp-の停止>### AMP の停止</a>
+              <li><a href=#search-result>### Search Result</a>
+              <li><a href=#outro>## Outro</a>
+              <li><a href=#resources>## Resources</a>
+            </ul>
+          </nav>
+        </details>
+      </dd>
+    </div>
+  </dl>
+  <article>
+    <h1><a href=/entries/2021-05-28/blog-over-sxg.html>Non AMP SXG による Prefetch 対応と AMP 提供の停止</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p>本サイトを (Non AMP) SXG に対応した。
+      <p>これにより、 Google のモバイル検索では、結果を表示した時点でこのサイトの SXG が Prefetch され、結果を選択したら Cache から素早く表示されつつ、 アドレスバーにも本サイトのものとして表示される。
+      <p>この、 Non AMP SXG 対応にあたって、本サイトの AMP の提供も停止することになった。
+      <p>移行の作業ログと、関連する流れについて記す。
+    </section>
+    <section>
+      <h2 id="non-amp-sxg"><a href="#non-amp-sxg">(Non AMP) SXG</a></h2>
+      <p>SXG については過去に解説した。
+      <ul>
+        <li><a href="https://blog.jxck.io/entries/2018-12-01/signed-http-exchanges.html">WebPackaging の Signed HTTP Exchanges</a>
+      </ul>
+      <p>本サイトでは AMP SXG に対応しており、 Google Search からの AMP ページへの遷移には SXG が取得され、本サイトのドメインが表示される。
+      <ul>
+        <li><a href="https://blog.jxck.io/entries/2020-12-25/amp-signed-http-exchange.html">AMP SXG 対応</a>
+      </ul>
+      <p>今年の 4 月に、 AMP だけでなく通常のコンテンツであっても SXG を配信すれば Google Bot がそれを取得し、 Google Search のモバイル検索結果で Prefetch が行われるようになった。
+      <p>これにより、モバイル検索結果を表示した時点で SXG がブラウザに読み込まれ、結果をクリックしたら、リクエストを投げる代わりにキャッシュから HTML を表示するだけで済むため、検索流入のユーザに対して、初期表示のパフォーマンス向上が期待される。
+      <p>Google はこれを AMP SXG と対比して <a href="https://developers.google.com/search/docs/advanced/experience/signed-exchange#:~:text=non-,amp,-results">Non AMP SXG</a> と称しており、本サイトでもその使い分けを採用するが、実態はまさしく SXG そのものだ。
+    </section>
+    <section>
+      <h2 id="sxg-の配信"><a href="#sxg-の配信">SXG の配信</a></h2>
+      <p>SXG の配信は、コンテンツを SXG に変換するだけではなく、 Content Negotiation の対応や Validity URL の提供など、いくつか対応が必要となる。
+      <p>また、 SXG はファイル自体に期限があるため、 <a href="https://github.com/WICG/webpackage/tree/main/go/signedexchange/cmd/gen-signedexchange">gen-signedexchange</a> といったツールで静的に作る場合は更新が必要となる。
+      <p>今回はこうした処理を全て肩代わりしてくれる Web Packager Server を用いることにした。
+      <ul>
+        <li><a href="https://github.com/google/webpackager/tree/master/cmd/webpkgserver">Web Packager Server - google/webpackager</a>
+      </ul>
+    </section>
+    <section>
+      <h2 id="web-packager-server"><a href="#web-packager-server">Web Packager Server</a></h2>
+      <p>Web Packager Server は Web Packager に含まれる webpkgserver コマンドを用いる。
+      <p>このコマンドはサーバを起動し、リクエストに応じて SXG を生成して返すため、フロントサーバから Proxy するように構成する。
+      <section>
+        <h3 id="webpkgserver"><a href="#webpkgserver">webpkgserver</a></h3>
+        <p>webpkgserver は <code translate="no">go get</code> ではうまく動かなかったため、 README にある通りソースからビルドした。
+        <pre class=shell><code translate="no">git clone --depth 1 https://github.com/google/webpackager
+cd webpackager/cmd/webpkgserver
+go build .</code></pre>
+        <p>これで <code translate="no">webpkgserver</code> コマンドが生成される。
+        <p>実行には設定ファイルの toml を引数に渡す。
+        <pre class=shell-session><code translate="no">$ webpkgserver --config webpkgserver.toml</code></pre>
+      </section>
+      <section>
+        <h3 id="webpkgservertoml"><a href="#webpkgservertoml">webpkgserver.toml</a></h3>
+        <p>設定ファイルは、同梱されている <a href="https://github.com/google/webpackager/blob/master/cmd/webpkgserver/webpkgserver.example.toml">webpkgserver.example.toml</a> を修正する。
+        <p>ほとんどデフォルトが使えるため、 Port と SXG 用の証明書、 Domain あたりを気をつければ良いだろう。
+        <pre class=yaml><code translate="no">[Listen]
+  Port = 11000
+
+[Server]
+  DocPath = &#39;/priv/doc&#39;
+
+[SXG.Cert]
+  PEMFile = &#39;/keys/sxg/blog_jxck_io_full.crt&#39;
+  KeyFile = &#39;/keys/sxg/blog_jxck_io.key&#39;
+  CacheDir = &#39;/tmp/webpkg&#39;
+
+[SXG.ACME]
+  Enable = false
+
+[[Sign]]
+  Domain = &#39;blog.jxck.io&#39;</code></pre>
+        <p>これを引数にするだけでサーバは起動する。
+        <p>ローカルで起動した時点で、動作の確認は以下のように行うことができる。
+        <pre class=shell><code translate="no">export URL=&quot;https://blog.jxck.io/&quot;
+curl -s --output - -H &#39;accept: application/signed-exchange;v=b3,*/*;q=0.1&#39; http://127.0.0.1:11000/priv/doc/$URL &gt; dump.sxg
+dump-signedexchange -i dump.sxg</code></pre>
+      </section>
+    </section>
+    <section>
+      <h2 id="routing"><a href="#routing">Routing</a></h2>
+      <p>このサービスに対して行うべきルーティングは 3 つだ。
+      <ul>
+        <li>webpkgserver に直接アクセスできないようポートを閉じる
+        <li>
+          <code translate="no">/webpkg</code> を webpkserver に転送
+        </li>
+        <li>
+          Content Negotiation で SXG を返す場合は <code translate="no">/priv/doc</code> をつけて proxy
+        </li>
+        <li>それ以外は proxy しない
+      </ul>
+    </section>
+    <section>
+      <h2 id="content-negotiation"><a href="#content-negotiation">Content Negotiation</a></h2>
+      <p>基本的にはリクエストヘッダに <code translate="no">Accpet: application/signed-exchange;v=b3</code> が付与されている場合、 Web Package Server に転送すれば良い。
+      <p>しかし、 Google の Bot だけでなく、 Chrome も現状このヘッダをデフォルトで付与しているため、単にこのヘッダの有無だけを見てルーティングすると、ブラウザからのリクエストにも SXG を返すことになる。
+      <p>これについては Q value を参照するように <a href="https://github.com/google/webpackager/blob/master/cmd/webpkgserver/README.md#content-negotiation">ドキュメント</a> に書かれている。
+      <p>具体的には Chrome と Google Bot の付与する Accept は以下のように異なる。
+      <pre class=http><code translate="no"># Google Bot
+Accept: text/html,application/xhtml+xml,application/signed-exchange;v=b3,application/xml;q=0.9,*/*;q=0.8
+
+# Chrome 90
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</code></pre>
+      <p>SXG に注目すると Chrome は Q value を HTML などよりも下げているが、 Google Bot は Q value を下げずに HTML と同等にしていることがわかる。
+      <p>ドキュメントでは、 Google Bot は Q value を付与しないことで優先度を下げないため、 Q value の有無が判断材料になると書かれており、それを Nginx で実現する正規表現の例が書かれている。
+      <p>しかしドキュメントの正規表現が気に入らず、また本サイトでは h2o の mruby handler で対応するため、以下のように否定先読みで実現することとした。
+      <pre class=ruby><code translate="no">if /application\/signed-exchange;v=b3(?!;q=)/.match(env[&quot;HTTP_ACCEPT&quot;])
+  # reproxy to backend wepkgserver
+  next [307, {&quot;x-reproxy-url&quot; =&gt; &quot;http://127.0.0.1:11000/priv/doc/https://blog.jxck.io#{path}&quot;}, []]
+else
+  # fallthrough
+  next [399, {}, []]
+end</code></pre>
+      <p>ここまでが成功しているかは、以下のようにテストをすることができる。
+      <pre class=shell><code translate="no">export URL=&quot;https://blog.jxck.io/&quot;
+curl -s --output - -H &#39;accept: application/signed-exchange;v=b3,*/*;q=0.1&#39; $URL &gt; dump.sxg
+dump-signedexchange -i dump.sxg -signature</code></pre>
+      <section>
+        <h3 id="webpkg"><a href="#webpkg"><code translate="no">/webpkg</code></a></h3>
+        <p>webpkgserver は SXG に必要な Certificate URL を自動で提供してくれる。
+        <p>そのパスは <code translate="no">/webpkg/cert/#{base64}</code> となっているため、ここへのリクエストはそのまま転送すれば良い。
+        <pre class=h2o><code translate="no">&quot;/webpkg&quot;:
+  proxy.reverse.url: &quot;http://127.0.0.1:11000/webpkg&quot;</code></pre>
+        <p>dump した sxg の中に cert url があるためそこから URL を取得すると以下のようにテストできる。
+        <pre class=shell><code translate="no"># dump certurl
+curl -s --output - https://blog.jxck.io/webpkg/cert/g8zY1NBH4DQt9qIWOWBqLWvs6jAnJmURAtNRc2WChDE &gt; cert.cbor
+dump-certurl -i cert.cbor</code></pre>
+      </section>
+    </section>
+    <section>
+      <h2 id="動作検証"><a href="#動作検証">動作検証</a></h2>
+      <section>
+        <h3 id="debug"><a href="#debug">Debug</a></h3>
+        <p>curl でテストしても良いが、デプロイした後ならば Chrome でアクセスして Devtool で確認すると詳細がデバッグできる。
+        <p>しかし、今回の設定では Chrome のデフォルトの Q value がついた <code translate="no">Accept</code> ヘッダでは SXG が取得できないため、 <a href="https://chrome.google.com/webstore/detail/modheader/idgpnmonknjnojddfkpgkljpfnnfcklj">ModHeader</a> などを用いて Q value を無くすよう上書きする必要がある。
+        <p>その状態でアクセスし、成功すれば以下のように SXG が確認できる。
+        <p>まず、 Network の Timeline 上は SXG のレスポンスと CBOR リクエストが続き、 SXG から取り出された HTML が取得されている。
+        <p>
+          <amp-img layout=responsive src=sxg-timeline.png#2390x300 alt="SXG レスポンス、 CBOR レスポンス、 SXG から取り出された HTML の順に取得されている Devtools Timeline の図" title="" width=2390 height=300>
+        </p>
+        <p>SXG の Preview タブを見ると、 Signature や Certificate も正しく解釈されていることが確認できる。
+        <p>
+          <amp-img layout=responsive src=sxg-response.png#2128x1192 alt="SXG の Signature や Certificate が正しく解釈されている Devtools の Preview の図" title="" width=2128 height=1192>
+        </p>
+      </section>
+      <section>
+        <h3 id="google-bot"><a href="#google-bot">Google Bot</a></h3>
+        <p>この状態で放置しておくと GoogleBot がクロールしに来た際に、 SXG の Content Negotiation に成功して SXG をクロールしていく。
+        <p>SXG が Google の Cache に乗ったかは、以下のような規則で生成したキャッシュ URL に直接アクセスすれば確認できる。
+        <ul>
+          <li>
+            (before): <a href="https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html">https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html</a>
+          </li>
+          <li>
+            ( after): <a href="https://blog-jxck-io.webpkgcache.com/doc/-/s/blog.jxck.io/entries/2016-07-12/cache-control-immutable.html">https://blog-jxck-io.webpkgcache.com/doc/-/s/blog.jxck.io/entries/2016-07-12/cache-control-immutable.html</a>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="amp-sxg-と-non-amp-sxg"><a href="#amp-sxg-と-non-amp-sxg">AMP SXG と Non AMP SXG</a></h3>
+        <p>本来はこれで Google Search Result に反映されて、 Prefetch が埋め込まれるはずだった。
+        <p>しかし、本サイトは既に <a href="https://blog.jxck.io/entries/2016-02-01/amp-html.html">AMP</a> と <a href="https://blog.jxck.io/entries/2020-12-25/amp-signed-http-exchange.html">AMP SXG</a> に対応しているため、モバイルの検索結果では AMP がヒットし、 AMP SXG がリンクされている。
+        <p>
+          <amp-img layout=responsive src=gsrp-amp.jpg#2322x684 alt="AMP SXG と Non AMP SXG を両方デプロイした場合、 Google Search Result では AMP が優先される" title="" width=2322 height=684>
+        </p>
+        <p>どうやら Non AMP SXG がクロールされても、同時に AMP および AMP SXG に対応している場合は、現状 AMP 側が優先されるようだ。
+        <p>おそらく両方に対応しているサイト自体が他に無いため、ここをコントロールする情報は無く、今後 Non AMP SXG の方が優先されたりする可能性も無くはないが、まったく未定な状態となりいつまでたっても動作検証ができない。
+        <p>CWV や SXG 、さらにこれから展開される予定の Prerender2 などを見据えれば、 AMP 自体は特別扱いされなくなっていくと理解しているため、そもそも AMP はどこかでやめるつもりでいた。
+        <p>Bento AMP が気にるので、念のためにコンテンツは残すが、これを機に AMP の提供を停止することにした。
+      </section>
+      <section>
+        <h3 id="amp-の停止"><a href="#amp-の停止">AMP の停止</a></h3>
+        <p>AMP をやめる方法は基本は以下だ。
+        <ul>
+          <li>
+            canonical html から <code translate="no">&lt;link rel=amphtml&gt;</code> を削除
+          </li>
+          <li>amp html へのリクエストは canonical html にリダイレクト
+        </ul>
+        <p>デプロイ上はこれだけで、後はクローラが来ればしばらくして消えるかと思ったが、なかなか検索結果からは消えなかった。
+        <p>試しに 1 つ Search Console から AMP URL を削除するようにリクエストしたが、それでもなかなか反映されなかった。
+        <p>結果、以下にある削除リクエストを実施した。
+        <ul>
+          <li><a href="https://developers.google.com/amp/cache/update-cache">Update AMP Content</a>
+        </ul>
+        <p>一晩放置したところ、検索結果から AMP が消え始めた。
+      </section>
+      <section>
+        <h3 id="search-result"><a href="#search-result">Search Result</a></h3>
+        <p>検索結果から AMP が消え、モバイルでも通常の HTML が表示されるようになった。
+        <p>また、ページの DOM 中に <code translate="no">&lt;link rel=prefetch&gt;</code> が挿入されていることが確認できる。
+        <p>
+          <amp-img layout=responsive src=gsrp-sxg.jpg#2406x774 alt="Non AMP SXG が Prefetch されている" title="" width=2406 height=774>
+        </p>
+        <p>これにより、検索結果を表示した時点で HTML は Google の SXG Cache から取得されている。
+        <p>
+          <amp-img layout=responsive src=sxg-prefetch.png#3030x742 alt="検索結果を表示した時点で HTML は Google の SXG Cache から取得されている" title="" width=3030 height=742>
+        </p>
+        <p>実際に検索結果に遷移すると、 HTTP Request は筆者のサーバには発生せず、 Prefetch された HTML から展開されていることがわかる。
+        <p>
+          <amp-img layout=responsive src=sxg-navigate.png#3044x736 alt="検索結果に遷移すると Prefetch した HMTL が展開されている" title="" width=3044 height=736>
+        </p>
+        <p>このとき(スクショでは切れているが)、アドレスバーには SXG Cache の URL である <code translate="no">https://blog-jxck-io.webpkgcache.com/</code> ではなく、 SXG を検証した結果として <code translate="no">https://blog.jxck.io</code> が表示されている。
+      </section>
+    </section>
+    <section>
+      <h2 id="outro"><a href="#outro">Outro</a></h2>
+      <p>本サイトを Non AMP SXG に対応し、 Google のモバイル検索結果で Prefetch されることを確認した。
+      <p>本来、そこで発生したパフォーマンスの改善を CWV を指標として測るべきでもあるが、ローカルの Lighthouse はリロードベースでの測定しかできず、本サイトのアクセス数では Field Data が得られないため Page Speed Insight などでの変化も見ることができない。
+      <p>各 API で色々工夫すれば測れるかもしれないが、本サイトは Origin が十分に速いため、有意な数値差も期待できず、検証はここまでとした。
+      <p>また、今回ここで AMP をやめることは本来意図してなかったが、ここで不要になったように SXG も AMP の遺産の 1 つとも言え、すでに AMP はある程度の役目を終えつつあるだろう。
+      <p>それについて書いたところ長くなったので、いずれ別途記事にまとめたいと思う。
+    </section>
+    <section>
+      <h2 id="resources"><a href="#resources">Resources</a></h2>
+      <ul>
+        <li>Spec
+        <li>Explainer
+        <li>Requirements Doc
+        <li>Mozilla Standard Position
+        <li>Webkit Position
+        <li>
+          TAG Design Review
+          <ul>
+            <li><a href="https://github.com/w3ctag/design-reviews/issues/235">https://github.com/w3ctag/design-reviews/issues/235</a>
+          </ul>
+        </li>
+        <li>
+          Intents
+          <ul>
+            <li>
+              Intent to Ship: Signed HTTP Exchanges (SXG)
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/gPH_BcOBEtc">https://groups.google.com/a/chromium.org/g/blink-dev/c/gPH_BcOBEtc</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chrome Platform Status
+          <ul>
+            <li><a href="https://www.chromestatus.com/feature/5745285984681984">https://www.chromestatus.com/feature/5745285984681984</a>
+          </ul>
+        </li>
+        <li>WPT (Web Platform Test)
+        <li>DEMO
+        <li>Blog
+        <li>Presentation
+        <li>Issues
+        <li>
+          Other
+          <ul>
+            <li>
+              Privacy-preserving instant loading for all web content – The AMP Blog
+              <ul>
+                <li><a href="https://blog.amp.dev/2019/05/22/privacy-preserving-instant-loading-for-all-web-content/">https://blog.amp.dev/2019/05/22/privacy-preserving-instant-loading-for-all-web-content/</a>
+              </ul>
+            </li>
+            <li>
+              Get started with signed exchanges on Google Search - 検索セントラル
+              <ul>
+                <li><a href="https://developers.google.com/search/docs/advanced/experience/signed-exchange?hl=ja#debug-the-google-sxg-cache">https://developers.google.com/search/docs/advanced/experience/signed-exchange?hl=ja#debug-the-google-sxg-cache</a>
+              </ul>
+            </li>
+            <li>
+              ページ エクスペリエンスの更新に対応するための期間、ツール、詳細情報 - Google 検索セントラル ブログ
+              <ul>
+                <li><a href="https://developers.google.com/search/blog/2021/04/more-details-page-experience?hl=ja">https://developers.google.com/search/blog/2021/04/more-details-page-experience?hl=ja</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </article>
+</main>
+<hr>
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small> See <small><a href=/policies/site.html>Site Policy</a> and <a href=/policies/privacy.html>Privacy Policy</a>.</small></p>
+  <amp-ad width=100vw height=320 type=adsense data-ad-client=ca-pub-2902784829138215 data-ad-slot=9735419796 data-auto-format=rspv data-full-width><div overflow></div></amp-ad>
+</footer>
+</body>
+</html>
+<amp-analytics type=googleanalytics id=analytics1>
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
