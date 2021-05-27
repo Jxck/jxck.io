@@ -1,11 +1,11 @@
-# [signed-http-exchange] Non AMP SXG による Prefetch 対応と AMP 提供の停止
+# [prefetch][amp][signed-http-exchange][webpackaging] Non AMP SXG による Prefetch 対応と AMP 提供の停止
 
 
 ## Intro
 
 本サイトを (Non AMP) SXG に対応した。
 
-これにより、 Google のモバイル検索では、結果を表示した時点でこのサイトの SXG が Prefetch され、結果を選択したら Cache から素早く表示されつつ、 URL も本サイトのものとして表示される。
+これにより、 Google のモバイル検索では、結果を表示した時点でこのサイトの SXG が Prefetch され、結果を選択したら Cache から素早く表示されつつ、 アドレスバーにも本サイトのものとして表示される。
 
 この、 Non AMP SXG 対応にあたって、本サイトの AMP の提供も停止することになった。
 
@@ -22,11 +22,11 @@ SXG については過去に解説した。
 
 - [AMP SXG 対応](https://blog.jxck.io/entries/2020-12-25/amp-signed-http-exchange.html)
 
-今年の 4 月に AMP だけでなく、通常のコンテンツであっても SXG を配信すれば Google Bot がそれを取得し、 Google Search の検索結果で Prefetch が行われるようになった。
+今年の 4 月に、 AMP だけでなく通常のコンテンツであっても SXG を配信すれば Google Bot がそれを取得し、 Google Search のモバイル検索結果で Prefetch が行われるようになった。
 
 これにより、モバイル検索結果を表示した時点で SXG がブラウザに読み込まれ、結果をクリックしたら、リクエストを投げる代わりにキャッシュから HTML を表示するだけで済むため、検索流入のユーザに対して、初期表示のパフォーマンス向上が期待される。
 
-Google はこれを AMP SXG と対比して Non AMP SXG と言っており、本サイトでもその使い分けを採用するが、実態はまさしく SXG そのものだ。
+Google はこれを AMP SXG と対比して [Non AMP SXG](https://developers.google.com/search/docs/advanced/experience/signed-exchange#:~:text=non-,amp,-results) と称しており、本サイトでもその使い分けを採用するが、実態はまさしく SXG そのものだ。
 
 
 ## SXG の配信
@@ -52,7 +52,7 @@ Web Packager Server は Web Packager に含まれる webpkgserver コマンド�
 webpkgserver は `go get` ではうまく動かなかったため、 README にある通りソースからビルドした。
 
 
-```sh
+```shell
 git clone --depth 1 https://github.com/google/webpackager
 cd webpackager/cmd/webpkgserver
 go build .
@@ -63,14 +63,14 @@ go build .
 実行には設定ファイルの toml を引数に渡す。
 
 
-```sh
+```shell-session
 $ webpkgserver --config webpkgserver.toml
 ```
 
 
 ### webpkgserver.toml
 
-設定ファイルは、同梱されている webpkgserver.example.toml を修正する。
+設定ファイルは、同梱されている [webpkgserver.example.toml](https://github.com/google/webpackager/blob/master/cmd/webpkgserver/webpkgserver.example.toml) を修正する。
 
 ほとんどデフォルトが使えるため、 Port と SXG 用の証明書、 Domain あたりを気をつければ良いだろう。
 
@@ -99,7 +99,7 @@ $ webpkgserver --config webpkgserver.toml
 ローカルで起動した時点で、動作の確認は以下のように行うことができる。
 
 
-```sh
+```shell
 export URL="https://blog.jxck.io/"
 curl -s --output - -H 'accept: application/signed-exchange;v=b3,*/*;q=0.1' http://127.0.0.1:11000/priv/doc/$URL > dump.sxg
 dump-signedexchange -i dump.sxg
@@ -155,7 +155,7 @@ end
 ここまでが成功しているかは、以下のようにテストをすることができる。
 
 
-```sh
+```shell
 export URL="https://blog.jxck.io/"
 curl -s --output - -H 'accept: application/signed-exchange;v=b3,*/*;q=0.1' $URL > dump.sxg
 dump-signedexchange -i dump.sxg -signature
@@ -177,14 +177,15 @@ webpkgserver は SXG に必要な Certificate URL を自動で提供してくれ
 dump した sxg の中に cert url があるためそこから URL を取得すると以下のようにテストできる。
 
 
-```sh
+```shell
 # dump certurl
 curl -s --output - https://blog.jxck.io/webpkg/cert/g8zY1NBH4DQt9qIWOWBqLWvs6jAnJmURAtNRc2WChDE > cert.cbor
 dump-certurl -i cert.cbor
 ```
 
+## 動作検証
 
-## Debug
+### Debug
 
 curl でテストしても良いが、デプロイした後ならば Chrome でアクセスして Devtool で確認すると詳細がデバッグできる。
 
@@ -201,21 +202,21 @@ SXG の Preview タブを見ると、 Signature や Certificate も正しく解�
 ![SXG の Signature や Certificate が正しく解釈されている Devtools の Preview の図](sxg-response.png#2128x1192)
 
 
-## Google Bot
+### Google Bot
 
 この状態で放置しておくと GoogleBot がクロールしに来た際に、 SXG の Content Negotiation に成功して SXG をクロールしていく。
 
 SXG が Google の Cache に乗ったかは、以下のような規則で生成したキャッシュ URL に直接アクセスすれば確認できる。
 
-- (before): https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html
-- (after ): https://blog-jxck-io.webpkgcache.com/doc/-/s/blog.jxck.io/entries/2016-07-12/cache-control-immutable.html
+- (before): <https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html>
+- ( after): <https://blog-jxck-io.webpkgcache.com/doc/-/s/blog.jxck.io/entries/2016-07-12/cache-control-immutable.html>
 
 
-## AMP SXG と Non AMP SXG
+### AMP SXG と Non AMP SXG
 
 本来はこれで Google Search Result に反映されて、 Prefetch が埋め込まれるはずだった。
 
-しかし、本サイトは既に [AMP](https://blog.jxck.io/entries/2016-02-01/amp-html.html) と [AMP SXG](https://blog.jxck.io/entries/2020-12-25/amp-signed-http-exchange.html) に対応しているため、モバイルの検索結果では AMP がヒットし、 AMP SXG リンクされている。
+しかし、本サイトは既に [AMP](https://blog.jxck.io/entries/2016-02-01/amp-html.html) と [AMP SXG](https://blog.jxck.io/entries/2020-12-25/amp-signed-http-exchange.html) に対応しているため、モバイルの検索結果では AMP がヒットし、 AMP SXG がリンクされている。
 
 ![AMP SXG と Non AMP SXG を両方デプロイした場合、 Google Search Result では AMP が優先される](gsrp-amp.jpg#2322x684)
 
@@ -225,15 +226,15 @@ SXG が Google の Cache に乗ったかは、以下のような規則で生成�
 
 CWV や SXG 、さらにこれから展開される予定の Prerender2 などを見据えれば、 AMP 自体は特別扱いされなくなっていくと理解しているため、そもそも AMP はどこかでやめるつもりでいた。
 
-Bento AMP が気になるため、念のためにコンテンツは残すが、これを機に AMP の提供を停止することにした。
+Bento AMP が気にるので、念のためにコンテンツは残すが、これを機に AMP の提供を停止することにした。
 
 
-## AMP の停止
+### AMP の停止
 
 AMP をやめる方法は基本は以下だ。
 
-- Canonical から `<link rel=amphtml>` を削除
-- .amp.html を削除し canonical にリダイレクト
+- canonical html から `<link rel=amphtml>` を削除
+- amp html へのリクエストは canonical html にリダイレクト
 
 デプロイ上はこれだけで、後はクローラが来ればしばらくして消えるかと思ったが、なかなか検索結果からは消えなかった。
 
@@ -246,7 +247,7 @@ AMP をやめる方法は基本は以下だ。
 一晩放置したところ、検索結果から AMP が消え始めた。
 
 
-## Search Result
+### Search Result
 
 検索結果から AMP が消え、モバイルでも通常の HTML が表示されるようになった。
 
@@ -286,12 +287,12 @@ AMP をやめる方法は基本は以下だ。
 - Mozilla Standard Position
 - Webkit Position
 - TAG Design Review
-  - https://github.com/w3ctag/design-reviews/issues/235
+  - <https://github.com/w3ctag/design-reviews/issues/235>
 - Intents
   - Intent to Ship: Signed HTTP Exchanges (SXG)
-    - https://groups.google.com/a/chromium.org/g/blink-dev/c/gPH_BcOBEtc
+    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/gPH_BcOBEtc>
 - Chrome Platform Status
-  - https://www.chromestatus.com/feature/5745285984681984
+  - <https://www.chromestatus.com/feature/5745285984681984>
 - WPT (Web Platform Test)
 - DEMO
 - Blog
@@ -299,8 +300,8 @@ AMP をやめる方法は基本は以下だ。
 - Issues
 - Other
   - Privacy-preserving instant loading for all web content – The AMP Blog
-    - https://blog.amp.dev/2019/05/22/privacy-preserving-instant-loading-for-all-web-content/
+    - <https://blog.amp.dev/2019/05/22/privacy-preserving-instant-loading-for-all-web-content/>
   - Get started with signed exchanges on Google Search - 検索セントラル
-    - https://developers.google.com/search/docs/advanced/experience/signed-exchange?hl=ja#debug-the-google-sxg-cache
+    - <https://developers.google.com/search/docs/advanced/experience/signed-exchange?hl=ja#debug-the-google-sxg-cache>
   - ページ エクスペリエンスの更新に対応するための期間、ツール、詳細情報 - Google 検索セントラル ブログ
-    - https://developers.google.com/search/blog/2021/04/more-details-page-experience?hl=ja
+    - <https://developers.google.com/search/blog/2021/04/more-details-page-experience?hl=ja>
