@@ -16,7 +16,7 @@ SXG については過去に解説した。
 
 - [AMP SXG 対応](https://blog.jxck.io/entries/2020-12-25/amp-signed-http-exchange.html)
 
-今年の 4 月に AMP だけでなく、通常のコンテンツであっても SXG を配信すれば Google Bot がそれを取得し、 Google Search の検索結果で配信されるようになった。
+今年の 4 月に AMP だけでなく、通常のコンテンツであっても SXG を配信すれば Google Bot がそれを取得し、 Google Search の検索結果で Prefetch が行われるようになった。
 
 
 ## SXG の配信
@@ -200,13 +200,49 @@ SXG が Google の Cache に乗ったかは以下の URL から検証できる�
 - (before): https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html
 - (after ): https://blog-jxck-io.webpkgcache.com/doc/-/s/blog.jxck.io/entries/2016-07-12/cache-control-immutable.html
 
-Preserve log した状態でアクセスすると、 Devtools で前述の通り確認できる。
+
+## AMP SXG と Non AMP SXG
+
+本来はこれで Google Search Result に反映されて、 Prefetch が埋め込まれるはずだった。
+
+しかし、本サイトは既に [AMP](https://blog.jxck.io/entries/2016-02-01/amp-html.html) と [AMP SXG](https://blog.jxck.io/entries/2020-12-25/amp-signed-http-exchange.html) に対応しているため、モバイルの検索結果では AMP がヒットし、その裏で AMP SXG が prefetch されている。
+
+どうやら Non AMP SXG がクロールされても、同時に AMP および AMP SXG に対応している場合は、現状 AMP 側が優先されるようだ。
+
+![AMP SXG と Non AMP SXG を両方デプロイした場合、 Google Search Result では AMP が優先される](gsrp-amp.jpg)
+
+おそらく両方に対応しているサイト自体が他に無いため、ここで Non AMP を優先させる情報は無く、今後 Non AMP SXG の方が優先されたりする可能性も無くはないが、まったく未定な状態となる。
+
+CWV や SXG 、さらにこれから展開される予定の Prerender2 などを見据えれば、 AMP 自体は特別扱いされなくなっていくと理解しているため、そもそも AMP はどこかでやめるつもりでいた。
+
+Bento AMP が気になるため、念のためにコンテンツは残すが、これを機に AMP の提供を停止することにした。
+
+
+
+## AMP の停止
+
+AMP をやめる方法は基本は以下だ。
+
+- Canonical から `<link rel=amphtml>` を削除
+- .amp.html を削除し canonical にリダイレクト
+
+デプロイ上はこれだけで、後はクローラが来ればしばらくして消えるかと思ったが、なかなか検索結果からは消えなかった。
+
+試しに 1 つ Search Console から AMP URL を削除するようにリクエストしたが、それでもなかなか反映されなかった。
+
+結果、以下にある削除リクエストを実施した。
+
+- [Update AMP Content](https://developers.google.com/amp/cache/update-cache)
+
+一晩放置したところ、検索結果から AMP が消え始めた。
+
 
 
 ## Search Result
 
 Search Result から SXG で取得できているところまで確認できると良かったのだが、 Mobile Search の結果は AMP SXG が優先されてしまっているようで、確認することができなかった。
 
+![Non AMP SXG が Prefetch されている](gsrp-sxg.jpg)
 
 ## AMP のトーンダウンと CWV と SXG
 
