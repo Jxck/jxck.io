@@ -63,13 +63,6 @@
         <li>
           <time datetime=<%= e.created_at %>><%= e.created_at %></time>
           <a href=<%= e.relative %>><%= e.title %></a>
-          <nav class=tags>
-            <ul>
-              <%- e.tags.each{|tag| -%>
-              <li><a href="/tags/<%=tag.gsub(' ', '%20')%>.html"><%=tag%></a>
-              <%- } -%>
-            </ul>
-          </nav>
         </li>
         <%- end -%>
       </ul>
