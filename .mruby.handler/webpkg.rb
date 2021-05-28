@@ -15,9 +15,6 @@ Proc.new do |env|
     # end
     next [301, {"Location" => path.sub(".amp.html", ".html")}, []]
   elsif /.html\z/.match(path) && /application\/signed-exchange;v=b3(?!;q=)/.match(env["HTTP_ACCEPT"])
-    logger.puts(path)
-    logger.puts(env["HTTP_USER_AGENT"])
-    logger.puts(env["HTTP_ACCEPT"])
     # reproxy to backend wepkgserver
     next [307, {"x-reproxy-url" => "http://127.0.0.1:11000/priv/doc/https://blog.jxck.io#{path}"}, []]
   end
