@@ -28,6 +28,7 @@ Proc.new do |env|
       "https://www.youtube.com",
       "https://*.doubleclick.net",
       "https://*.googlesyndication.com",
+      "https://www.google.com/",
     ],
     "connect-src": [
       "wss://ws.jxck.io",
