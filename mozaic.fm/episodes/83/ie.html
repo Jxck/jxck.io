@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
+
+  <link rel=canonical href=https://mozaic.fm/episodes/83/ie.html>
+  <!--
+  <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
+  -->
+
+  <script defer type=module no-integrity=sha256-CQaVbkBFu4pP/UfiRNYqVp1KEYvyjxbwDkGXKGjKWO0= src=/assets/js/mozaic.js?210502_152618></script>
+  <script defer type=module no-integrity=sha256-zCTpMKOcn2QNE0fjgklzB1I5bNZgnA7+0GcjP1fneTk= src=/assets/js/sw.js?210502_152618></script>
+
+  <link rel=icon             type =image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon             type =image/png sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.png>
+  <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.png>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="第 83 回のテーマは IE です。今回は Microsoft の Yusuke さんをお呼びして、 IE のたどってきた歴史を振り返り、これをどう Edge に置き換えていくのかという流れを踏まえながら、 IE が Web に与えた歴史や、 IE 以降の Web について...">
+  <meta name=keywords            content="ie,browser,mozaic.fm">
+  <meta name=theme-color         content=#000000>
+
+  <meta name=twitter:card        content=summary>
+  <meta name=twitter:site        content=@jxck_>
+  <meta name=twitter:url         content=https://mozaic.fm/episodes/83/ie.html>
+  <meta name=twitter:title       content="ep83 IE | mozaic.fm">
+  <meta name=twitter:description content="第 83 回のテーマは IE です。今回は Microsoft の Yusuke さんをお呼びして、 IE のたどってきた歴史を振り返り、これをどう Edge に置き換えていくのかという流れを踏まえながら、 IE が Web に与えた歴史や、 IE 以降の Web について...">
+  <meta name=twitter:image       content=https://mozaic.fm/assets/img/mozaic.png>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://mozaic.fm/episodes/83/ie.html>
+  <meta property=og:title        content="ep83 IE | mozaic.fm">
+  <meta property=og:site_name    content=mozaic.fm>
+  <meta property=og:description  content="第 83 回のテーマは IE です。今回は Microsoft の Yusuke さんをお呼びして、 IE のたどってきた歴史を振り返り、これをどう Edge に置き換えていくのかという流れを踏まえながら、 IE が Web に与えた歴史や、 IE 以降の Web について...">
+  <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.png>
+
+  <title>ep83 IE | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/82/monthly-web-202104.html>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?210426_195211>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css?210501_230901>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css?210426_200525>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css?210501_231107>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://mozaic.fm                                                      ><img width=30 height=30 loading=eager src=/assets/img/mozaic.svg?190123_200004         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495              ><img width=30 height=30 loading=eager src=/assets/img/itunes.svg?160831_002319         title=itunes           alt=itunes           ></a>
+      <li><a href=https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D><img width=30 height=30 loading=eager src=/assets/img/google-podcast.svg?180621_013015 title="google podcast" alt="google podcast" ></a>
+      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                   ><img width=30 height=30 loading=eager src=/assets/img/spotify.svg?200412_191420        title=spotify          alt=spotify          ></a>
+      <li><a href=http://feed.mozaic.fm                                                  ><img width=30 height=30 loading=eager src=/assets/img/podcast.svg?160831_002319        title="rss feed"       alt="rss feed"       ></a>
+      <li id=install class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/install.svg?200415_062604 title=install alt=install></button>
+      <li id=share   class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/share.svg?190331_012905   title=share   alt=share  ></button>
+      <li id=search><a href=/searches      ><img width=30 height=30 loading=eager src=/assets/img/search.svg?190421_130410  title=search  alt=search ></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/82/monthly-web-202104.html">ep82 Monthly Web 202104</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+  <article>
+      <h1>
+        <a href=/episodes/83/ie.html>ep83 IE</a>
+        <background-fetch
+          class=disabled
+          data-value=0
+          data-size=94796056
+          data-mtime=1622270076
+          data-url=https://files.mozaic.fm/mozaic-ep83.mp3
+          data-page=/episodes/83/ie.html
+          data-title="ep83 IE"
+        ></background-fetch>
+      </h1>
+
+      <section>
+        <h2 id="info"><a href="#info">Info</a></h2>
+        <p>
+        <dl class=info>
+          <div>
+            <dt>published_at
+            <dd>2021-05-29
+          </div>
+          <div>
+            <dt>guest
+            <dd><a href="https://twitter.com/ms_yuhara">@ms_yuhara</a>
+          </div>
+        </dl>
+      </section>
+      <section>
+        <h2 id="theme"><a href="#theme">Theme</a></h2>
+        <p>第 83 回のテーマは IE です。
+        <p>今回は Microsoft の <a href="https://twitter.com/ms_yuhara">Yusuke</a> さんをお呼びして、 IE のたどってきた歴史を振り返り、これをどう Edge に置き換えていくのかという流れを踏まえながら、 IE が Web に与えた歴史や、 IE 以降の Web について議論しました。
+      </section>
+      <section>
+        <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
+        <ul>
+          <li>
+            IE11 サポート終了の歴史 | blog.jxck.io
+            <ul>
+              <li><a href="https://blog.jxck.io/entries/2021-05-11/end-of-ie.html">https://blog.jxck.io/entries/2021-05-11/end-of-ie.html</a>
+            </ul>
+          </li>
+          <li>
+            2018/07/18: Internet Explorer の今後について – Japan IE Support Team Blog
+            <ul>
+              <li><a href="http://web.archive.org/web/20180718022957/https://blogs.technet.microsoft.com/jpieblog/2018/07/18/internet-explorer-support/">http://web.archive.org/web/20180718022957/https://blogs.technet.microsoft.com/jpieblog/2018/07/18/internet-explorer-support/</a>
+              <li>「Windows 10 においては、 Microsoft Edge と Internet Explorer というふたつのブラウザーが搭載されていますが、弊社としましては、 Internet Explorer との後方互換性が必要な業務 Web システムには Internet Explorer を利用いただき、 Internet Explorer でなければならない場合以外は Microsoft Edge をご利用いただくことを提案してきました。」
+              <li>「この考え方は今も基本的には変わりはありませんが、現在の Web アプリケーションが古いブラウザーである Internet Explorer 固有の機能に依存している状態であれば、そうした依存性を無くし、最新のブラウザーである Microsoft Edge で閲覧できるように見直していただくことを、今からご検討いただくようお伝えをしていくことが、私たちサポート チームの使命と考えています。」
+              <li>「Internet Explorer はいつまでサポートが提供されるのか?など、将来の予定についてお問い合せをいただいたとしても、大変恐縮ですが回答することはできません。ただ、世の中の大きな流れとして、 Web ブラウザーという観点では相互運用性を保ちつつも、最新の Web 標準の技術を取り入れる方向性となっていることをご認識いただき、引き続き Legacy Web から Modern Web への移行を十分に余裕をもった計画で検討を進める必要があるということを、今回の記事をきかっけに改めて意識をしていただけますと幸いです。」
+            </ul>
+          </li>
+          <li>
+            The future of Internet Explorer on Windows 10 is in Microsoft Edge | Windows Experience Blog
+            <ul>
+              <li><a href="https://blogs.windows.com/windowsexperience/2021/05/19/the-future-of-internet-explorer-on-windows-10-is-in-microsoft-edge/">https://blogs.windows.com/windowsexperience/2021/05/19/the-future-of-internet-explorer-on-windows-10-is-in-microsoft-edge/</a>
+              <li>「Internet Explorer 11 デスクトップ アプリケーションは 2022 年 6 月 15 日をもってサポートを終了いたします」
+              <li>2021/05/19: Internet Explorer デスクトップアプリ提供終了発表
+              <li>2021/08/17: Microsoft 365 及び他アプリでの IE サポート終了
+              <li>2022/06/15: Internet Explorer デスクトップアプリの提供終了
+            </ul>
+          </li>
+          <li>
+            Internet Explorer から Microsoft Edge への移行ガイドライン | Japan Developer Support Internet Team Blog
+            <ul>
+              <li><a href="https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/guidelines-for-migrating-from-ie-to-microsoft-edge/">https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/guidelines-for-migrating-from-ie-to-microsoft-edge/</a>
+            </ul>
+          </li>
+          <li>
+            Project Spartan (2015)
+            <ul>
+              <li>IE とは別にブラウザを作り始めるプロジェクトの内部名称
+              <li><a href="https://blogs.windows.com/japan/2015/04/03/introducing-project-spartan-the-new-browser-built-for-windows-10/">https://blogs.windows.com/japan/2015/04/03/introducing-project-spartan-the-new-browser-built-for-windows-10/</a>
+            </ul>
+          </li>
+          <li>
+            Project Anaheim (2018)
+            <ul>
+              <li>Edge を Chromium ベースにしていくプロジェクトの内部名称
+              <li><a href="https://blogs.windows.com/windowsexperience/2018/12/06/microsoft-edge-making-the-web-better-through-more-open-source-collaboration/">https://blogs.windows.com/windowsexperience/2018/12/06/microsoft-edge-making-the-web-better-through-more-open-source-collaboration/</a>
+            </ul>
+          </li>
+          <li>
+            IE から Edge にリダイレクトする機能
+            <ul>
+              <li><a href="https://docs.microsoft.com/en-us/microsoft-edge/web-platform/ie-to-microsoft-edge-redirection">https://docs.microsoft.com/en-us/microsoft-edge/web-platform/ie-to-microsoft-edge-redirection</a>
+            </ul>
+          </li>
+          <li>
+            モダン ライフサイクル ポリシー
+            <ul>
+              <li><a href="https://docs.microsoft.com/ja-jp/lifecycle/policies/modern">https://docs.microsoft.com/ja-jp/lifecycle/policies/modern</a>
+            </ul>
+          </li>
+          <li>
+            LTSC(Long Time Support Channel) / LTSB(-Branch)
+            <ul>
+              <li><a href="https://docs.microsoft.com/ja-jp/windows/whats-new/ltsc/">https://docs.microsoft.com/ja-jp/windows/whats-new/ltsc/</a>
+            </ul>
+          </li>
+          <li>
+            MS Build 2021
+            <ul>
+              <li>
+                What&rsquo;s new for Microsoft Edge at Microsoft Build 2021
+                <ul>
+                  <li><a href="https://blogs.windows.com/msedgedev/2021/05/25/whats-new-edge-build-2021/">https://blogs.windows.com/msedgedev/2021/05/25/whats-new-edge-build-2021/</a>
+                </ul>
+              </li>
+              <li>
+                MyBuild - Ask the Experts: Microsoft Edge
+                <ul>
+                  <li><a href="https://mybuild.microsoft.com/sessions/9ae93910-ebb7-47e5-864d-2a268209e796?source=sessions">https://mybuild.microsoft.com/sessions/9ae93910-ebb7-47e5-864d-2a268209e796?source=sessions</a>
+                </ul>
+              </li>
+              <li>
+                MyBuild - Microsoft Edge: State of the platform
+                <ul>
+                  <li><a href="https://mybuild.microsoft.com/sessions/6f28eb25-8a24-488b-a50c-eab6d087d8a4">https://mybuild.microsoft.com/sessions/6f28eb25-8a24-488b-a50c-eab6d087d8a4</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </article>
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href="/episodes/82/monthly-web-202104.html">ep82 Monthly Web 202104</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small> <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong></p>
+</footer>
+
+<mozaic-player>
+  <audio
+    slot=audio
+    src=https://files.mozaic.fm/mozaic-ep83.mp3
+    data-title="ep83 IE"
+    data-forward=+30
+    data-back=-10>
+  </audio>
+</mozaic-player>
+
+</body>
+</html>
