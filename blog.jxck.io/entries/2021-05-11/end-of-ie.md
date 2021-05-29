@@ -93,7 +93,7 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - <https://blog.esrij.com/2020/08/25/post-37271/>
 - 2020/09/04: ウェブサイト開発における IE11 サポート終了のお知らせ - 株式会社デジタルキューブ
   - <https://www.digitalcube.jp/news/11416/>
-- 2020/10/16: Internet Explorer (IE) は使えますか? – よくある質問|STORES
+- 2020/10/16: Internet Explorer (IE) は使えますか? - よくある質問 \| STORES
   - <https://faq.stores.jp/hc/ja/articles/360049598591-Internet-Explorer-IE-%E3%81%AF%E4%BD%BF%E3%81%88%E3%81%BE%E3%81%99%E3%81%8B->
 - 2020/10/21: Gyazo のサポートブラウザについての変更を実施しました - Gyazo Blog
   - <https://blogja.gyazo.com/entry/2020/10/21/173000>
@@ -118,7 +118,7 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
 
 ## 2021
 
-- 2021/01/05: WArm+ Internet Explorer 11 サポート終了のお知らせ|インフォメーション|株式会社システムリサーチ イリイソリューション部
+- 2021/01/05: WArm+ Internet Explorer 11 サポート終了のお知らせ \| インフォメーション \| 株式会社システムリサーチ イリイソリューション部
   - <https://www.ilii.jp/info/2021/20210105/>
 - **2021/01/13: Browser changes for your Seller Central experience - US Announcements - Amazon セラーフォーラム**
   - <https://sellercentral.amazon.com/forums/t/browser-changes-for-your-seller-central-experience/768439>
@@ -126,13 +126,13 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - <https://www.reg.co.jp/news/archives/1711503.html>
 - 2021/01/22: 【重要】「ABEMA」 Internet Explorer 11 サポート終了のお知らせ
   - <https://help.abema.tv/hc/ja/articles/360055647611>
-- 2021/02/09: Internet Explorer への対応終了のお知らせ \| SmartHR|シェア No.1 のクラウド人事労務ソフト
+- 2021/02/09: Internet Explorer への対応終了のお知らせ \| SmartHR\|シェア No.1 のクラウド人事労務ソフト
   - <https://smarthr.jp/other/22512>
 - 2021/02/12: Internet Explorer サポート終了のお知らせ \| ハンドメイドマーケット minne
   - <https://minne.com/infos/2215>
 - 2021/02/17: Internet Explorer 11 を推奨利用環境の対象外といたします \| クラウドワークス お知らせブログ
   - <https://blog.crowdworks.jp/?p=4293>
-- 2021/02/22: 全サービス Internet Explorer への対応終了のお知らせ:Information|スターティアラボ
+- 2021/02/22: 全サービス Internet Explorer への対応終了のお知らせ:Information\|スターティアラボ
   - <https://www.startialab.co.jp/information/2021/02/22/656>
 - **2021/02/25: Google Workspace Updates: Reminder: Ending support for IE11 for all Google Workspace apps on March 15**
   - <https://workspaceupdates.googleblog.com/2021/02/reminder-ending-support-for-ie11-for.html>
@@ -158,10 +158,11 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - <https://goope.jp/info/information/?id=623>
 - 2021/03/23: Internet Explorer 11 が推奨利用環境の対象外となります \| お知らせ
   - <https://info.lancers.jp/25512>
-- 2021/03/25: Internet Explorer 対応終了のお知らせ|NINJA SIGN(忍者サイン)【公式】|note
+- 2021/03/25: Internet Explorer 対応終了のお知らせ\|NINJA SIGN(忍者サイン)【公式】\|note
   - <https://note.com/ninjasign/n/nb579ba9d1b3a>
 - 2021/03/26: WordPress to Drop Support for IE11 in Upcoming 5.8 or 5.9 Release – WordPress Tavern
   - <https://wptavern.com/wordpress-to-drop-support-for-ie11-in-upcoming-5-8-or-5-9-release>
+  - <https://ja.wordpress.org/2021/05/19/dropping-support-for-internet-explorer-11/>
 - 2021/03/26: Internet Explorer 11 サポート終了に伴うバナー表示のお知らせ – HENNGE One ヘルプセンター
   - <https://support.hdeone.com/hc/ja/articles/900006326923>
 - 2021/04/01:【重要なお知らせ】 Internet Explorer サポート終了について - goo blog スタッフブログ
@@ -194,3 +195,5 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - 2022/06/15: Internet Explorer デスクトップアプリの提供終了
 - 2021/05/19: 「Internet Explorer 11 デスクトップ アプリケーションのサポート終了」の発表に関連する FAQ - Windows Blog for Japan
   - <https://blogs.windows.com/japan/2021/05/19/internet-explorer-11-desktop-app-retirement-faq/>
+- 2021/05/20: Internet Explorer から Microsoft Edge への移行ガイドライン \| Japan Developer Support Internet Team Blog
+  - <https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/guidelines-for-migrating-from-ie-to-microsoft-edge/>
