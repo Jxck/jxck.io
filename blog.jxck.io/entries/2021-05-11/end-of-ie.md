@@ -99,6 +99,8 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - <https://blogja.gyazo.com/entry/2020/10/21/173000>
 - 2020/10/29: さくらインターネット 全サービスにおける Internet Explorer サポート終了のお知らせ \| さくらインターネット
   - <https://www.sakura.ad.jp/information/announcements/2020/10/29/1968205310/>
+- 2020/10/30: マガジン公式サイト Internet Explorer 非対応のお知らせ。 - 週マガ公式サイト
+  - <https://shonenmagazine.com/info/entry/20201030oshirase>
 - 2020/11/16: Internet Explorer のサポート終了とその後の BASE の進化 - BASE プロダクトチームブログ
   - <https://devblog.thebase.in/entry/ie-forever>
 - **2020/11/13: Moving users to Microsoft Edge from Internet Explorer - Microsoft Edge Development \| Microsoft Docs**
@@ -197,3 +199,9 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - <https://blogs.windows.com/japan/2021/05/19/internet-explorer-11-desktop-app-retirement-faq/>
 - 2021/05/20: Internet Explorer から Microsoft Edge への移行ガイドライン \| Japan Developer Support Internet Team Blog
   - <https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/guidelines-for-migrating-from-ie-to-microsoft-edge/>
+- 2021/05/20: Internet Explorer 11 デスクトップ アプリのサポート終了へ! IE モードへの移行を進めましょう! \| Japan Developer Support Internet Team Blog
+  - <https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/internet-explorer-app-end-of-support/>
+- 2021/05/20: Microsoft Edge 組み込みのサイト リスト マネージャーについて \| Japan Developer Support Internet Team Blog
+  - <https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/edge-ie-mode-site-list-manager/>
+- 2021/05/27: Internet Explorer: A Brief History – Ben Slivka
+  - <https://benslivka.com/2021/05/27/internet-explorer-a-brief-history/>
