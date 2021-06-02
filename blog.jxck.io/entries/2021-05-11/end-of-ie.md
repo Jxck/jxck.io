@@ -205,3 +205,18 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - <https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/edge-ie-mode-site-list-manager/>
 - 2021/05/27: Internet Explorer: A Brief History – Ben Slivka
   - <https://benslivka.com/2021/05/27/internet-explorer-a-brief-history/>
+
+
+## mozaic.fm ep 83 IE
+
+- **mozaic.fm ep 83 IE**
+  - <https://mozaic.fm/episodes/83/ie.html>
+  - Microsoft の Yusuke さんをお呼びして、 IE のたどってきた歴史を振り返り、これをどう Edge に置き換えていくのかという流れを踏まえながら、 IE が Web に与えた歴史や、 IE 以降の Web について議論した。
+  - IE サポートアナウンスの詳細や、開発者はこれから何に取り組んでいくべきなのかという点も議論している。
+
+
+## After Announce
+
+- List of APIs that will be available due to IE termination
+  - <https://github.com/progfay/benefit-from-end-of-ie>
+  - IE が終了することで使えるようになる API 一覧
