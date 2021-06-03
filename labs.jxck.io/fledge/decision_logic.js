@@ -7,9 +7,9 @@ function scoreAd(adMetadata, bid, auctionConfig, trustedScoringSignals, browserS
   return 1
 }
 
-async function reportResult(auctionConfig, browserSignals) {
+function reportResult(auctionConfig, browserSignals) {
   log("reportResult", {auctionConfig, browserSignals})
-  sendReportTo(auctionConfig.seller + "/fledge/report?reportResult")
+  sendReportTo(auctionConfig.seller + "/fledge/report.cgi?report=result")
   return {
     "success":          true,
     "signalsForWinner": {"signalForWinner": 1},
