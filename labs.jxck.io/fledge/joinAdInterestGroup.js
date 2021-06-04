@@ -29,6 +29,6 @@ const interestGroup = {
 
 document.addEventListener("DOMContentLoaded", async (e) => {
   console.log(e)
-  const kSecsPerDay = 10000
+  const kSecsPerDay = 3600*24*30
   console.log(await navigator.joinAdInterestGroup(interestGroup, kSecsPerDay))
 })
