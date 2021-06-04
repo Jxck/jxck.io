@@ -121,13 +121,13 @@ The on-device bidding flow includes a way that the worklets can use some data lo
 
 ```js
 const myGroup = {
-  'owner':            'www.example-dsp.com',
-  'name':             'womens-running-shoes',
-  'biddingLogicUrl':  'https://biddingLogic.example',
-  'dailyUpdateUrl':   'https://dailyUpdate.example',
-  'trustedBiddingSignalsUrl': 'https://trustedBiddingSignalUrl',
+  'owner': 'www.example-dsp.com',
+  'name':  'womens-running-shoes',
+  'biddingLogicUrl': '...',
+  'dailyUpdateUrl':  '...',
+  'trustedBiddingSignalsUrl':  '...',
   'trustedBiddingSignalsKeys': ['key1', 'key2'],
-  'userBiddingSignals': {...},
+  'userBiddingSignals': {},
   'ads': [shoesAd1, shoesAd2, shoesAd3],
 };
 navigator.joinAdInterestGroup(myGroup, 30 * kSecsPerDay);
@@ -193,16 +193,17 @@ Seller はパブリッシャーのページ内で javascript の API を起動�
 
 ```js
 const myAuctionConfig = {
-  'seller':                   'www.example-ssp.com',
-  'decisionLogicUrl':         'https://decisionLogicUrl.example',
-  'trustedScoringSignalsUrl': 'https://trustedScoringSignalsUrl.example',
-  'interestGroupBuyers':      ['www.example-dsp.com', 'buyer2.com', ...],
-  'additionalBids':           [otherSourceAd1, otherSourceAd2, ...],
-  'auctionSignals':  {...},
-  'sellerSignals':   {...},
-  'perBuyerSignals': {'www.example-dsp.com': {...},
-                      'www.another-buyer.com': {...},
-                     },
+  'seller': 'www.example-ssp.com',
+  'decisionLogicUrl':         '...',
+  'trustedScoringSignalsUrl': '...',
+  'interestGroupBuyers': ['www.example-dsp.com', 'buyer2.com', ...],
+  'additionalBids':      [otherSourceAd1, otherSourceAd2, ...],
+  'auctionSignals': {},
+  'sellerSignals':  {},
+  'perBuyerSignals': {
+    'www.example-dsp.com': {},
+    'www.another-buyer.com': {},
+  },
 };
 const auctionResultPromise = navigator.runAdAuction(myAuctionConfig);
 ```
