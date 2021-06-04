@@ -34,6 +34,8 @@ sudo certbot certonly \
   -d publisher.labs.jxck.io \
   -d advertiser.labs.jxck.io \
   -d adtech.labs.jxck.io \
+  -d ssp.labs.jxck.io \
+  -d dsp.labs.jxck.io \
   -d shopping.labs.jxck.io \
   -d travel.labs.jxck.io
 
