@@ -23,4 +23,10 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   console.log(e)
   const adAuctionResult = await navigator.runAdAuction(auctionConfig)
   console.log({ adAuctionResult })
+
+  const $iframe = document.createElement('iframe')
+  $iframe.src = adAuctionResult
+  $iframe.width = 300
+  $iframe.height = 300
+  document.body.appendChild($iframe)
 })

@@ -43,7 +43,7 @@ function generateBid(interestGroup, auctionSignals, perBuyerSignals, trustedBidd
   //   }
   // }
 
-  return {ad: interestGroup.ads[0], bid: 100, render: interestGroup.ads[0].renderUrl}
+  return {ad: interestGroup.ads[1], bid: 100, render: interestGroup.ads[1].renderUrl}
 }
 
 function reportWin(auctionSignals, perBuyerSignals, sellerSignals, browserSignals) {
