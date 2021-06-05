@@ -1,21 +1,19 @@
 const auctionConfig = {
-  seller: "https://adtech.labs.jxck.io", // should https & same as decisionLogicUrl's origin
+  seller: "https://ssp.labs.jxck.io", // should https & same as decisionLogicUrl's origin
 
   // x-allow-fledge: true
-  decisionLogicUrl: "https://adtech.labs.jxck.io/fledge/decision_logic.js",
+  decisionLogicUrl: "https://ssp.labs.jxck.io/fledge/decision_logic.js",
   interestGroupBuyers: [
     // * is not supported yet
-    "https://labs.jxck.io",
-    //"https://travel.labs.jxck.io",
-    //"https://shopping.labs.jxck.io",
+    "https://shopping.labs.jxck.io",
+    "https://travel.labs.jxck.io",
   ],
   auctionSignals: { auction_signals: "auction_signals" },
   sellerSignals: { seller_signals: "seller_signals" },
   perBuyerSignals: {
     // interestGroupByers にリストされていること
-    "https://labs.jxck.io": { per_buyer_signals: "per_buyer_signals" },
-    //"https://travel.labs.jxck.io": { per_buyer_signals: "per_buyer_signals" },
-    //"https://shopping.labs.jxck.io": { per_buyer_signals: "per_buyer_signals" },
+    "https://shopping.labs.jxck.io": { per_buyer_signals: "per_buyer_signals" },
+    "https://travel.labs.jxck.io": { per_buyer_signals: "per_buyer_signals" },
   }
 }
 
@@ -24,9 +22,9 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   const adAuctionResult = await navigator.runAdAuction(auctionConfig)
   console.log({ adAuctionResult })
 
-  const $iframe = document.createElement('iframe')
-  $iframe.src = adAuctionResult
-  $iframe.width = 300
+  const $iframe  = document.createElement('iframe')
+  $iframe.src    = adAuctionResult
+  $iframe.width  = 300
   $iframe.height = 300
   document.body.appendChild($iframe)
 })

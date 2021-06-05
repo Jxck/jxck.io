@@ -1,31 +1,28 @@
+const host = location.host.split('.').shift() // shopping or travel
+
 const interestGroup = {
-  name: "test",
-  owner: "https://labs.jxck.io", // dsp
+  name: host,
+  owner: `https://${host}.labs.jxck.io`, // dsp
 
   // x-allow-fledge: true
-  biddingLogicUrl: "https://labs.jxck.io/fledge/bidding_logic.js",
+  biddingLogicUrl: `https://${host}.labs.jxck.io/fledge/bidding_logic.js`,
 
   // x-allow-fledge: true
-  trustedBiddingSignalsUrl: "https://labs.jxck.io/fledge/bidding_signal.json",
+  trustedBiddingSignalsUrl: `https://${host}.labs.jxck.io/fledge/bidding_signal.json`,
   trustBiddingSignalsKeys: ["bidding_signals_keys"],
 
   dailyUpdateUrl: "", // not implemented yets
-  userBiddingSignals: { "user_bidding_signals": "user_bidding_signals" },
+  userBiddingSignals: { user_bidding_signals: "user_bidding_signals" },
   ads: [
     {
-      renderUrl: "https://labs.jxck.io/fledge/shopping-ad.html",
+      renderUrl: `https://${host}.labs.jxck.io/fledge/${host}-ad.html`,
       metadata: {
-        type: "shopping"
-      }
-    },
-    {
-      renderUrl: "https://labs.jxck.io/fledge/travel-ad.html",
-      metadata: {
-        type: "travel"
+        type: host
       }
     }
   ]
 }
+console.log(interestGroup)
 
 document.addEventListener("DOMContentLoaded", async (e) => {
   console.log(e)
