@@ -1,25 +1,25 @@
 const interestGroup = {
-  name: "shopping",
-  owner: "https://adtech.labs.jxck.io", // dsp
+  name: "test",
+  owner: "https://labs.jxck.io", // dsp
 
   // x-allow-fledge: true
-  biddingLogicUrl: "https://adtech.labs.jxck.io/fledge/bidding_logic.js",
+  biddingLogicUrl: "https://labs.jxck.io/fledge/bidding_logic.js",
 
   // x-allow-fledge: true
-  trustedBiddingSignalsUrl: "https://adtech.labs.jxck.io/fledge/bidding_signal.json",
+  trustedBiddingSignalsUrl: "https://labs.jxck.io/fledge/bidding_signal.json",
   trustBiddingSignalsKeys: ["bidding_signals_keys"],
 
   dailyUpdateUrl: "", // not implemented yets
   userBiddingSignals: { "user_bidding_signals": "user_bidding_signals" },
   ads: [
     {
-      renderUrl: "https://advertiser.labs.jxck.io/fledge/shopping-ad.html",
+      renderUrl: "https://labs.jxck.io/fledge/shopping-ad.html",
       metadata: {
         type: "shopping"
       }
     },
     {
-      renderUrl: "https://advertiser.labs.jxck.io/fledge/travel-ad.html",
+      renderUrl: "https://labs.jxck.io/fledge/travel-ad.html",
       metadata: {
         type: "travel"
       }

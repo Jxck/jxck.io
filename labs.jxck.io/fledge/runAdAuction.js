@@ -5,17 +5,17 @@ const auctionConfig = {
   decisionLogicUrl: "https://adtech.labs.jxck.io/fledge/decision_logic.js",
   interestGroupBuyers: [
     // * is not supported yet
-    "https://adtech.labs.jxck.io",
-    "https://travel.labs.jxck.io",
-    "https://shopping.labs.jxck.io",
+    "https://labs.jxck.io",
+    //"https://travel.labs.jxck.io",
+    //"https://shopping.labs.jxck.io",
   ],
   auctionSignals: { auction_signals: "auction_signals" },
   sellerSignals: { seller_signals: "seller_signals" },
   perBuyerSignals: {
     // interestGroupByers にリストされていること
-    "https://adtech.labs.jxck.io": { per_buyer_signals: "per_buyer_signals" },
-    "https://travel.labs.jxck.io": { per_buyer_signals: "per_buyer_signals" },
-    "https://shopping.labs.jxck.io": { per_buyer_signals: "per_buyer_signals" },
+    "https://labs.jxck.io": { per_buyer_signals: "per_buyer_signals" },
+    //"https://travel.labs.jxck.io": { per_buyer_signals: "per_buyer_signals" },
+    //"https://shopping.labs.jxck.io": { per_buyer_signals: "per_buyer_signals" },
   }
 }
 
