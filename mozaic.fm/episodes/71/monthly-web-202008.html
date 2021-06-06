@@ -258,12 +258,8 @@
                   <em>Ship: Imperative Shadow DOM Distribution API</em>
                   <ul>
                     <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/Jdw3VWbKvLY/">https://groups.google.com/a/chromium.org/g/blink-dev/c/Jdw3VWbKvLY/</a>
-                    <li>
-
-                    </li>
-                    <li>
-
-                    </li>
+                    <li>1 v0 と比べて v1 は明示的に slot を指定しないといけない
+                    <li>2 condition を明示して slot を切り替えることができなかった
                     <li>
                       これに対応するため、<code translate="no">attachShadow({ mode: &#39;open&#39;, slotAssignment: &#39;manual&#39; })</code> することで auto な slotAssign を止め、 <code translate="no">slot.assign()</code> で命令的にできるように。
                     </li>
