@@ -85,8 +85,8 @@ guest
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/h6my3rcC628>
   - *Ship: Imperative Shadow DOM Distribution API*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/Jdw3VWbKvLY/>
-    - 1. v0 と比べて v1 は明示的に slot を指定しないといけない
-    - 2. condition を明示して slot を切り替えることができなかった
+    - 1 v0 と比べて v1 は明示的に slot を指定しないといけない
+    - 2 condition を明示して slot を切り替えることができなかった
     - これに対応するため、`attachShadow({ mode: 'open', slotAssignment: 'manual' })` することで auto な slotAssign を止め、 `slot.assign()` で命令的にできるように。
   - Ship: Intl.Segmenter
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/MJ1OpvkcA8s>
