@@ -4,7 +4,10 @@ function log(label, o) {
 
 function generateBid(interestGroup, auctionSignals, perBuyerSignals, trustedBiddingSignals, browserSignals) {
   log("generateBid", {interestGroup, auctionSignals, perBuyerSignals, trustedBiddingSignals, browserSignals})
-  return {ad: interestGroup.ads[0], bid: 100, render: interestGroup.ads[0].renderUrl}
+  return {
+    ad:     "ad-metadata",
+    bid:    Math.floor(Math.random()*100, 10),
+    render: interestGroup.ads[0].renderUrl}
 }
 
 function reportWin(auctionSignals, perBuyerSignals, sellerSignals, browserSignals) {

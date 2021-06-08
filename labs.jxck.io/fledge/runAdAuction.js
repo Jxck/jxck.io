@@ -8,8 +8,12 @@ const auctionConfig = {
     "https://shopping.labs.jxck.io",
     "https://travel.labs.jxck.io",
   ],
+  // 全員に公開
   auctionSignals: { auction_signals: "auction_signals" },
+
+  // 単一パーティーのみ
   sellerSignals: { seller_signals: "seller_signals" },
+  // 単一パーティーのみ
   perBuyerSignals: {
     // interestGroupByers にリストされていること
     "https://shopping.labs.jxck.io": { per_buyer_signals: "per_buyer_signals" },

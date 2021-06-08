@@ -4,7 +4,7 @@ function log(label, o) {
 
 function scoreAd(adMetadata, bid, auctionConfig, trustedScoringSignals, browserSignals) {
   log("scoreAd", {adMetadata, bid, auctionConfig, trustedScoringSignals, browserSignals})
-  return 1
+  return bid
 }
 
 function reportResult(auctionConfig, browserSignals) {
