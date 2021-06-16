@@ -220,3 +220,7 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
 - List of APIs that will be available due to IE termination
   - <https://github.com/progfay/benefit-from-end-of-ie>
   - IE が終了することで使えるようになる API 一覧
+- 2021/06/15: 当社製品・サービスでのInternet Explorer 11サポート終了について \| サイボウズからのお知らせ
+  - <https://cs.cybozu.co.jp/2021/007430.html>
+- 2021/06/15: 2022年6月「Internet Explorer」サポートが終了へ ～ サポートが継続する他のブラウザへの切り替えを ～ IPA 独立行政法人 情報処理推進機構
+  - <https://www.ipa.go.jp/security/anshin/mgdayori20210615.html>
