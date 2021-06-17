@@ -90,7 +90,7 @@ Every interest group has an **_owner_** who will act as a buyer in an on-device 
 
 広告は **_interest group_** をターゲットにすることができます。 オリジナルの TURTLEDOVE の提案と同様に、ブラウザはどのインタレストグループに参加しているかを知る責任があります。
 
-すべてのインタレストグループには、デバイス上の広告オークションで Buyer となる **_owner_** がいます。 オーナーは、グループのメンバーシップと利用に関して最終的な責任を負いますが、必要に応じてそれらのタスクを第三者に委任することができます。 グループのオーナーになりたい人はたくさんいるでしょう。 例えば、以下のようなものがあります。
+すべてのインタレストグループには、デバイス上の広告オークションで Buyer となる **_owner_** がいます。 owner は、グループのメンバーシップと利用に関して最終的な責任を負いますが、必要に応じてそれらのタスクを第三者に委任することができます。 グループの owner になりたい人はたくさんいるでしょう。 例えば、以下のようなものがあります。
 
 *   An advertiser (or a third party working on the advertiser's behalf) might create and own an interest group of people whom they believe are interested in that advertiser's product.  Classical remarketing/retargeting use cases fall under this example.
 *   A publisher (or a third party working on the publisher's behalf) might create and own an interest group of people who have read a certain type of content on their site.  Publishers can already use first-party data to let advertisers target their readers on the publisher site.  A publisher-owned interest group could let publishers do the same even when those people are browsing other sites.  Publishers would presumably charge for the ability to target this list.
@@ -116,7 +116,7 @@ The on-device bidding flow includes a way that the worklets can use some data lo
 
 > Browsers keep track of the set of interest groups that they have joined.  For each interest group, the browser stores information about who owns the group, what ads the group might choose to show, various javascript functions and metadata used in bidding and rendering, and what servers to contact to update or supplement that information.
 
-ブラウザは、自分が参加している一連のインタレストグループを記録しています。 各インタレストグループについて、ブラウザは、グループの所有者、グループが表示を選択する可能性のある広告、入札やレンダリングに使用されるさまざまな javascript 関数やメタデータ、および情報を更新または補完するためにどのサーバーに連絡すべきかについての情報を保存します。
+ブラウザは、自分が参加している一連のインタレストグループを記録しています。 各インタレストグループについて、ブラウザは、グループの owner 、グループが表示を選択する可能性のある広告、入札やレンダリングに使用されるさまざまな javascript 関数やメタデータ、および情報を更新または補完するためにどのサーバーに連絡すべきかについての情報を保存します。
 
 
 ```js
@@ -135,7 +135,7 @@ navigator.joinAdInterestGroup(myGroup, 30 * kSecsPerDay);
 
 > The browser will only allow the `joinAdInterestGroup()` operation with the permission of both the site being visited and the group's owner.  The site can allow or deny permission to any or all third parties via a `Feature-Policy`, where the default policy is to allow all in the top-level page and to deny all in cross-domain iframes.  The group's owner can indicate permission by `joinAdInterestGroup()` running in a page or iframe in the owner's domain, and can delegate that permission to any other domains via a list at a `.well-known` URL.  These can be combined, to allow a DSP to add a person to one of its interest groups based on publisher context, as discussed in [TERN](https://github.com/WICG/turtledove/blob/master/TERN.md#c-contextual-interest-groups) - provided the publisher's `Feature-Policy` permits interest group additions by its SSP, and the DSP gives this SSP this ability.  If some permission is missing, `joinAdInterestGroup()` will raise an `Error` describing the reason for failure.
 
-ブラウザは、訪問先のサイトとグループの所有者の両方の許可がある場合にのみ、 `joinAdInterestGroup()` の操作を許可します。 サイトは `Feature-Policy` を通じて、任意のまたはすべてのサードパーティに対して許可または拒否することができます。デフォルトのポリシーは、トップレベルのページではすべて許可し、クロスドメインの iframe ではすべて拒否することです。 グループのオーナーは、オーナーのドメイン内のページや iframe で実行される `joinAdInterestGroup()` によって許可を示すことができ、`.well-known` URL のリストを介して他のドメインにその許可を委ねることができます。 これらを組み合わせることで、[TERN](https://github.com/WICG/turtledove/blob/master/TERN.md#c-contextual-interest-groups)で議論されているように、 DSP がパブリッシャーのコンテキストに基づいて人をインタレストグループに追加することができます - パブリッシャーの `Feature-Policy` が SSP によるインタレストグループの追加を許可していて、 DSP がこの SSP にこの能力を与えている場合に限ります。 何らかの許可がない場合、`joinAdInterestGroup()` は失敗の理由を説明する `Error` を発生させます。
+ブラウザは、訪問先のサイトとグループの owner の両方の許可がある場合にのみ、 `joinAdInterestGroup()` の操作を許可します。 サイトは `Feature-Policy` を通じて、任意のまたはすべてのサードパーティに対して許可または拒否することができます。デフォルトのポリシーは、トップレベルのページではすべて許可し、クロスドメインの iframe ではすべて拒否することです。 グループの owner は、 owner のドメイン内のページや iframe で実行される `joinAdInterestGroup()` によって許可を示すことができ、`.well-known` URL のリストを介して他のドメインにその許可を委ねることができます。 これらを組み合わせることで、[TERN](https://github.com/WICG/turtledove/blob/master/TERN.md#c-contextual-interest-groups)で議論されているように、 DSP がパブリッシャーのコンテキストに基づいて人をインタレストグループに追加することができます - パブリッシャーの `Feature-Policy` が SSP によるインタレストグループの追加を許可していて、 DSP がこの SSP にこの能力を与えている場合に限ります。 何らかの許可がない場合、`joinAdInterestGroup()` は失敗の理由を説明する `Error` を発生させます。
 
 > There is a complementary API `navigator.leaveAdInterestGroup(myGroup)` which looks only at `myGroup.name` and `myGroup.owner`.  As a special case to support in-ad UIs, invoking `navigator.leaveAdInterestGroup({})` from inside an ad that is being targeted at a particular interest group will cause the browser to leave that group, irrespective of permission policies.
 
@@ -143,18 +143,18 @@ navigator.joinAdInterestGroup(myGroup, 30 * kSecsPerDay);
 
 > The browser will remain in an interest group for only a limited amount of time.  The duration is specified in the call to `joinAdInterestGroup()`, and will be capped at 30 days.  This can be extended by calling `joinAdInterestGroup()` again later, with the same group name and owner.  Successive calls to `joinAdInterestGroup()` will overwrite the previously-stored values for any interest group properties, like the group's userBiddingSignal or list of ads.
 
-ブラウザがインタレストグループに留まる時間は限られています。 その期間は`joinAdInterestGroup()`の呼び出しで指定され、 30 日が上限となります。 この期間は、同じグループ名とオーナーを指定して後から再度`joinAdInterestGroup()`を呼び出すことで延長できます。 joinAdInterestGroup()を連続して呼び出すと、グループの userBiddingSignal や広告リストなど、インタレストグループのプロパティの以前に保存された値が上書きされます。
+ブラウザがインタレストグループに留まる時間は限られています。 その期間は`joinAdInterestGroup()`の呼び出しで指定され、 30 日が上限となります。 この期間は、同じグループ名と owner を指定して後から再度`joinAdInterestGroup()`を呼び出すことで延長できます。 joinAdInterestGroup()を連続して呼び出すと、グループの userBiddingSignal や広告リストなど、インタレストグループのプロパティの以前に保存された値が上書きされます。
 
 
 #### 1.2 Interest Group Attributes
 
 > The `userBiddingSignals` is for storage of additional metadata that the owner can use during on-device bidding, and the `trustedBiddingSignals*` attributes provide another mechanism for making real-time data available for use at bidding time.
 
-また、`trustedBiddingSignals*` 属性は、入札時にリアルタイムのデータを利用できるようにするための別のメカニズムを提供します。
+`userBiddingSignals` は、デバイス上での入札時に owner が使用できる追加のメタデータを保存するためのもので、 `trustedBiddingSignals` 属性は、入札時にリアルタイムデータを使用できるようにするための別のメカニズムを提供します。
 
 > The `dailyUpdateUrl` provides a mechanism for the group's owner to periodically update the attributes of the interest group: any new values returned in this way overwrite the values previously stored (except that the `name` and `owner` cannot be changed).  However, the browser will only allow daily updates when a sufficiently large number of people have the same `dailyUpdateUrl` , e.g. at least 100 browsers with the same update url. This will not include any metadata, so data such as the interest group `name` should be included within the url, so long as url exceeds the minimum count threshold.  (Without this sort of limit, a single-person interest group could be used to observe that person's coarse-grained IP-Geo location over time.)
 
-`dailyUpdateUrl` は、グループのオーナーが興味のあるグループの属性を定期的に更新するためのメカニズムを提供します。この方法で返される新しい値は、以前に保存された値を上書きします(ただし、 `name` と `owner` は変更できません)。 ただし、ブラウザは、十分に多くの人が同じ `dailyUpdateUrl` を持っている場合にのみ、毎日の更新を許可します。例えば、少なくとも 100 個のブラウザが同じ更新 URL を持っている場合です。これにはメタデータは含まれませんので、 URL が最小数のしきい値を超えていれば、インタレストグループの `name` などのデータを URL の中に含める必要があります。 (このような制限がなければ、一人の人のインタレストグループを使って、その人の粗い IP-Geo の位置情報を長期的に観察することができます)
+`dailyUpdateUrl` は、グループの owner が興味のあるグループの属性を定期的に更新するためのメカニズムを提供します。この方法で返される新しい値は、以前に保存された値を上書きします(ただし、 `name` と `owner` は変更できません)。 ただし、ブラウザは、十分に多くの人が同じ `dailyUpdateUrl` を持っている場合にのみ、毎日の更新を許可します。例えば、少なくとも 100 個のブラウザが同じ更新 URL を持っている場合です。これにはメタデータは含まれませんので、 URL が最小数のしきい値を超えていれば、インタレストグループの `name` などのデータを URL の中に含める必要があります。 (このような制限がなければ、一人の人のインタレストグループを使って、その人の粗い IP-Geo の位置情報を長期的に観察することができます)
 
 > The `ads` list contains the various ads that the interest group might show.  Each entry is an object that includes both a rendering URL and arbitrary metadata that can be used at bidding time.
 
@@ -221,11 +221,11 @@ const auctionResultPromise = navigator.runAdAuction(myAuctionConfig);
 
 > Each interest group the browser has joined and whose owner is in the list of `interestGroupBuyers` will have an opportunity to bid in the auction.  See the "Buyers Provide Ads and Bidding Functions" section, below, for how interest groups bid.
 
-ブラウザが参加していて、オーナーが `interestGroupBuyers` のリストに入っている各インタレストグループには、オークションに入札する機会があります。 インタレストグループがどのように入札するかについては、後述の「購入者による広告の提供と入札機能」の項を参照してください。
+ブラウザが参加していて、 owner が `interestGroupBuyers` のリストに入っている各インタレストグループには、オークションに入札する機会があります。 インタレストグループがどのように入札するかについては、後述の「購入者による広告の提供と入札機能」の項を参照してください。
 
 > The seller may instead specify `'interestGroupBuyers': '*'` to permit all interest groups into the auction, and decide ad admissibility later in the process, based on criteria other than the interest group owner.  For example, a seller with an out-of-band creative review process might decide admissibility solely based on the creative, not the buyer.
 
-Seller は、代わりに `'interestGroupBuyers': '*'` を指定して、すべてのインタレストグループをオークションに参加させ、広告の許可をプロセスの後半でインタレストグループのオーナー以外の基準に基づいて決定することができます。 例えば、帯域外のクリエイティブレビュープロセスを持つ Seller は、 Buyer ではなく、クリエイティブのみに基づいて許容性を決定することができます。
+Seller は、代わりに `'interestGroupBuyers': '*'` を指定して、すべてのインタレストグループをオークションに参加させ、広告の許可をプロセスの後半でインタレストグループの owner 以外の基準に基づいて決定することができます。 例えば、帯域外のクリエイティブレビュープロセスを持つ Seller は、 Buyer ではなく、クリエイティブのみに基づいて許容性を決定することができます。
 
 > The auction configuration's list of `additionalBids` is meant to allow a second way for ads to participate in this on-device auction.  More design work is needed to figure out how to support buyers' and sellers' needs in the multi-level decision-making use cases like those discussed in Issues [#59](https://github.com/WICG/turtledove/issues/59) or [#73](https://github.com/WICG/turtledove/issues/73) - a simple approach like putting one auction's `auctionResultPromise` into another auction's `additionalBids` is probably not sufficient.  This field may not be usable yet in the First Experiment stage, depending on how much new complexity it adds to the design.
 
@@ -303,11 +303,11 @@ scoreAd(adMetadata,
 
 > Interest groups are used by their owners to bid in on-device auctions.  We refer to each party bidding in an auction as a _buyer_.  The buyer might be an advertiser who is also an interest group owner themselves, or a DSP who owns an interest group and acts on an advertiser's behalf.
 
-インタレストグループは、所有者がデバイス上のオークションに入札するために使用されます。 ここでは、オークションに入札する各当事者を「Buyer」と呼びます。 Buyer は、インタレストグループのオーナーでもある広告主や、インタレストグループを所有し広告主の代理を務める DSP などが考えられます。
+インタレストグループは、 owner がデバイス上のオークションに入札するために使用されます。 ここでは、オークションに入札する各当事者を「Buyer」と呼びます。 Buyer は、インタレストグループの owner でもある広告主や、インタレストグループを所有し広告主の代理を務める DSP などが考えられます。
 
 > Alternatively, the interest group owner might be a party whose responsibility is focused on building audiences and letting many different advertisers use them for targeting.  In this case, the owner of the interest group is still the buyer, for the purposes of the seller's on-device auction.  The interest group owner's choice of which advertiser's ad to display might be made via some server-side decision process, or might be made on a case-by-case basis on-device as part of the bidding process.
 
-また、インタレストグループのオーナーは、オーディエンスを構築し、様々な広告主にそのオーディエンスを利用させてターゲティングを行うことを主な業務としている当事者である場合もあります。 この場合でも、 Seller のオンデバイスオークションでは、インタレストグループの所有者が Buyer となります。 インタレストグループのオーナーがどの広告主の広告を表示するかは、サーバー側の決定プロセスを介して行われる場合もあれば、デバイス上で入札プロセスの一部としてケースバイケースで行われる場合もあります。
+また、インタレストグループの owner は、オーディエンスを構築し、様々な広告主にそのオーディエンスを利用させてターゲティングを行うことを主な業務としている当事者である場合もあります。 この場合でも、 Seller のオンデバイスオークションでは、インタレストグループの owner が Buyer となります。 インタレストグループの owner がどの広告主の広告を表示するかは、サーバー側の決定プロセスを介して行われる場合もあれば、デバイス上で入札プロセスの一部としてケースバイケースで行われる場合もあります。
 
 > Buyers have three basic jobs in the on-device ad auction:
 
@@ -347,7 +347,7 @@ Buyer は、リアルタイムのデータ(例えば、広告キャンペーン�
 
 > Once the trusted bidding signals are fetched, each interest group's bidding function will run, inside a bidding worklet associated with the interest group owner's domain.  The buyer's JS is loaded from the interest group's `biddingLogicUrl`, which must expose a `generateBid()` function:
 
-信頼できる入札シグナルが取得されると、各インタレストグループの入札機能が、インタレストグループのオーナーのドメインに関連付けられた入札ワークレット内で実行されます。 Buyer の JS は、インタレストグループの `biddingLogicUrl` から読み込まれ、`generateBid()` 関数を公開する必要があります。
+信頼できる入札シグナルが取得されると、各インタレストグループの入札機能が、インタレストグループの owner のドメインに関連付けられた入札ワークレット内で実行されます。 Buyer の JS は、インタレストグループの `biddingLogicUrl` から読み込まれ、`generateBid()` 関数を公開する必要があります。
 
 
 ```js
@@ -482,7 +482,7 @@ The arguments to this function are:
 *   browserSignals: an object constructed by the browser, containing information it knows about what happened in the auction:
 
 * auctionConfig: `navigator.runAdAuction()`に渡されるオークション設定オブジェクト
-* browserSignals: ブラウザによって構築されたオブジェクトで、オークションで起こったことについて知っている情報を含みます。s
+* browserSignals: ブラウザによって構築されたオブジェクトで、オークションで起こったことについて知っている情報を含みます。 s
 
 
 ```js

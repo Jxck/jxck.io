@@ -9,9 +9,9 @@ const interestGroup = {
 
   // x-allow-fledge: true
   trustedBiddingSignalsUrl: `https://${host}.labs.jxck.io/fledge/bidding_signal.json`,
-  trustBiddingSignalsKeys: ["bidding_signals_keys"],
+  trustedBiddingSignalsKeys: ["key1", "key2"],
 
-  dailyUpdateUrl: "", // not implemented yets
+  dailyUpdateUrl: `https://${host}.labs.jxck.io/daily_update_url`, // not implemented yets
   userBiddingSignals: { user_bidding_signals: "user_bidding_signals" },
   ads: [
     {
