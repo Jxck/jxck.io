@@ -5,6 +5,7 @@ const auctionConfig = {
   decisionLogicUrl: "https://ssp.labs.jxck.io/fledge/decision_logic.js",
   interestGroupBuyers: [
     // * is not supported yet
+    "https://dsp.labs.jxck.io",
     "https://shopping.labs.jxck.io",
     "https://travel.labs.jxck.io",
   ],
@@ -16,6 +17,7 @@ const auctionConfig = {
   // 単一パーティーのみ
   perBuyerSignals: {
     // interestGroupByers にリストされていること
+    "https://dsp.labs.jxck.io": { per_buyer_signals: "per_buyer_signals" },
     "https://shopping.labs.jxck.io": { per_buyer_signals: "per_buyer_signals" },
     "https://travel.labs.jxck.io": { per_buyer_signals: "per_buyer_signals" },
   }

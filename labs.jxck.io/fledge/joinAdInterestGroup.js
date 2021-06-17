@@ -1,23 +1,24 @@
-const host = location.host.split('.').shift() // shopping or travel
+const ads = new URL(location.href).searchParams.get('ads')
+console.log(ads)
 
 const interestGroup = {
-  name: host,
-  owner: `https://${host}.labs.jxck.io`, // dsp
+  name: "dsp",
+  owner: "https://dsp.labs.jxck.io", // dsp
 
   // x-allow-fledge: true
-  biddingLogicUrl: `https://${host}.labs.jxck.io/fledge/bidding_logic.js`,
+  biddingLogicUrl: "https://dsp.labs.jxck.io/fledge/bidding_logic.js",
 
   // x-allow-fledge: true
-  trustedBiddingSignalsUrl: `https://${host}.labs.jxck.io/fledge/bidding_signal.json`,
+  trustedBiddingSignalsUrl: "https://dsp.labs.jxck.io/fledge/bidding_signal.json",
   trustedBiddingSignalsKeys: ["key1", "key2"],
 
-  dailyUpdateUrl: `https://${host}.labs.jxck.io/daily_update_url`, // not implemented yets
+  dailyUpdateUrl: "https://dsp.labs.jxck.io/daily_update_url", // not implemented yets
   userBiddingSignals: { user_bidding_signals: "user_bidding_signals" },
   ads: [
     {
-      renderUrl: `https://${host}.labs.jxck.io/fledge/${host}-ad.html`,
+      renderUrl: `https://${ads}.labs.jxck.io/fledge/${ads}-ad.html`,
       metadata: {
-        type: host
+        type: ads
       }
     }
   ]
