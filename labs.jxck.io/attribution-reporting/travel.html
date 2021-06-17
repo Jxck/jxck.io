@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Travel Advatiser DEMO</title>
+
+<!-- 1st for travel.jxck.io
+<meta http-equiv="origin-trial" content="Am+6YZsSzYgktuzhxK4LWaGIEs0LKsdBLy3PXtftDWNnlMYfafmf4kFcADtDtwnIuDILLaOytLSlKNtoIYSUigIAAABieyJvcmlnaW4iOiJodHRwczovL3RyYXZlbC5sYWJzLmp4Y2suaW86NDQzIiwiZmVhdHVyZSI6IkNvbnZlcnNpb25NZWFzdXJlbWVudCIsImV4cGlyeSI6MTYyNjIyMDc5OX0=">
+-->
+
+<script src=https://adtech.labs.jxck.io/attribution-reporting/3rd-party-ot.js></script>
+
+<h1>Travel Advatiser DEMO</h1>
+
+<p>featurePolicy for attribution-reporting: <strong id=fp></span></p>
+
+<img width=300 src=travel.svg>
+
+<form>
+  <input type=number min=1 max=8 value=1 name=trigger-data>
+  <button type=submit>buy it !!</button>
+</form>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+  document.on('DOMContentLoaded', async (e) => {
+    const fp = document.featurePolicy.features().includes('attribution-reporting');
+    document.querySelector('#fp').textContent = fp
+
+    $('form').on('submit', async (e) => {
+      e.preventDefault()
+      const formData = new FormData(e.target)
+      const search = new URLSearchParams(formData)
+      const $img = document.createElement('img')
+      $img.src = `https://adtech.labs.jxck.io/attribution-reporting/attribution.cgi?${search.toString()}`
+      $('body').appendChild($img)
+    })
+  })
+</script>

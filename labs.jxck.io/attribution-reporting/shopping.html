@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Advatiser DEMO</title>
+
+<!-- 1st for shopping.jxck.io
+<meta http-equiv="origin-trial" content="AkNRfP+gcl1DMGFyt2MBMm9VlVhrFIjPmFR/sj5AzfbrC/DiS3zgJXSdA8UFuCxwVFppq3qMJhvmzC+KPpfNjw8AAABkeyJvcmlnaW4iOiJodHRwczovL3Nob3BwaW5nLmxhYnMuanhjay5pbzo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5fQ==">
+-->
+
+<script src=https://adtech.labs.jxck.io/attribution-reporting/3rd-party-ot.js></script>
+
+<h1>Shopping Advatiser DEMO</h1>
+
+<p>featurePolicy for attribution-reporting: <strong id=fp></span></p>
+
+<img width=300 src=shopping.svg>
+
+<form>
+  <input type=number min=1 max=8 value=1 name=trigger-data>
+  <button type=submit>buy it !!</button>
+</form>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+  document.on('DOMContentLoaded', async (e) => {
+    const fp = document.featurePolicy.features().includes('attribution-reporting');
+    document.querySelector('#fp').textContent = fp
+
+    $('form').on('submit', async (e) => {
+      e.preventDefault()
+      const formData = new FormData(e.target)
+      const search = new URLSearchParams(formData)
+      const $img = document.createElement('img')
+      $img.src = `https://adtech.labs.jxck.io/attribution-reporting/attribution.cgi?${search.toString()}`
+      $('body').appendChild($img)
+    })
+  })
+</script>

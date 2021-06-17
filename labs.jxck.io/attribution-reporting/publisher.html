@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Publisher DEMO</title>
+
+<!-- 1st for publisher.jxck.io
+<meta http-equiv="origin-trial" content="AltmitdOlP/62uW3IsA8A9B41o/oDeKQtyn3bD9BRBdV65WWhUQFb4P6ui79oDJRFP05H24A2DjTNUlRIjiKTAEAAABleyJvcmlnaW4iOiJodHRwczovL3B1Ymxpc2hlci5sYWJzLmp4Y2suaW86NDQzIiwiZmVhdHVyZSI6IkNvbnZlcnNpb25NZWFzdXJlbWVudCIsImV4cGlyeSI6MTYyNjIyMDc5OX0=">
+-->
+
+<style>
+iframe {
+  height: 500px;
+}
+</style>
+
+<h1>Publisher DEMO</h1>
+
+<p>featurePolicy for attribution-reporting: <strong id=fp></strong></p>
+
+
+<!--
+<iframe src=https://adtech.labs.jxck.io/attribution-reporting/travel-ad.html
+        allow="attribution-reporting"
+        ></iframe>
+<iframe src=https://adtech.labs.jxck.io/attribution-reporting/shopping-ad.html
+        allow="attribution-reporting"
+        ></iframe>
+-->
+
+<script src=https://adtech.labs.jxck.io/attribution-reporting/3rd-party-ot.js></script>
+<script src=https://adtech.labs.jxck.io/attribution-reporting/adtech.js></script>
+<script>
+document.on('DOMContentLoaded', async (e) => {
+  const fp = document.featurePolicy.features().includes('attribution-reporting');
+  document.querySelector('#fp').textContent = fp
+})
+</script>
