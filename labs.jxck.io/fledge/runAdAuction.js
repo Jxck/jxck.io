@@ -1,25 +1,24 @@
+// ssp
 const auctionConfig = {
   seller: "https://ssp.labs.jxck.io", // should https & same as decisionLogicUrl's origin
 
   // x-allow-fledge: true
   decisionLogicUrl: "https://ssp.labs.jxck.io/fledge/decision_logic.js",
+
   interestGroupBuyers: [
     // * is not supported yet
     "https://dsp.labs.jxck.io",
-    "https://shopping.labs.jxck.io",
-    "https://travel.labs.jxck.io",
   ],
-  // 全員に公開
+  // public for everyone
   auctionSignals: { auction_signals: "auction_signals" },
 
-  // 単一パーティーのみ
+  // only for single party
   sellerSignals: { seller_signals: "seller_signals" },
-  // 単一パーティーのみ
+
+  // only for single party
   perBuyerSignals: {
-    // interestGroupByers にリストされていること
+    // listed on interestGroupByers
     "https://dsp.labs.jxck.io": { per_buyer_signals: "per_buyer_signals" },
-    "https://shopping.labs.jxck.io": { per_buyer_signals: "per_buyer_signals" },
-    "https://travel.labs.jxck.io": { per_buyer_signals: "per_buyer_signals" },
   }
 }
 

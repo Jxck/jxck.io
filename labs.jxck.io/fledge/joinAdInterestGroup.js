@@ -1,9 +1,10 @@
 const ads = new URL(location.href).searchParams.get('ads')
 console.log(ads)
 
+// dsp
 const interestGroup = {
   name: "dsp",
-  owner: "https://dsp.labs.jxck.io", // dsp
+  owner: "https://dsp.labs.jxck.io",
 
   // x-allow-fledge: true
   biddingLogicUrl: "https://dsp.labs.jxck.io/fledge/bidding_logic.js",
