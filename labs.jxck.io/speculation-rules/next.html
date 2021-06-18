@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Prerendering2 DEMO</title>
+
+<meta http-equiv="origin-trial" content="">
+
+<style>
+textarea {
+  width: 50vw;
+  height: 50vh;
+}
+</style>
+
+<h1>Prerendering2 DEMO</h1>
+
+<textarea></textarea>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  const $textarea = $('textarea')
+  function append(msg) {
+    const value = msg + '\n' + $textarea.value
+    $textarea.value = value
+  }
+
+  document.on('DOMContentLoaded', async (e) => {
+    console.log(e)
+    append('start')
+    setInterval(() => {
+
+
+      const date = new Date()
+      const sec = new Intl.DateTimeFormat('default', {
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric'
+      }).format(date)
+
+
+      append(sec)
+    }, 100)
+  })
+</script>
+

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Speculation Rules DEMO</title>
+
+<meta http-equiv="origin-trial" content="">
+
+<style>
+</style>
+
+<h1>Speculation Rules DEMO</h1>
+
+<button>add prerender</button>
+
+<!--
+<script type="speculationrules">
+  {
+    "prerender":[
+      {
+        "source": "list",
+        "urls": ["next.html"]
+      }
+    ]
+  }
+</script>
+<a href=next.html>next</a>
+-->
+
+<script>
+  "use strict";
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  $("button").on("click", (e) => {
+    e.preventDefault()
+    console.log(e.target)
+
+    const url = "next.html"
+
+    const $script = document.createElement("script")
+    $script.type = "speculationrules"
+    $script.textContent = JSON.stringify({
+      "prerender":[
+        {
+          "source": "list",
+          "urls": [url]
+        }
+      ]
+    }, " ", "  ")
+    document.body.appendChild($script)
+    console.log($script)
+
+    const $a = document.createElement("a")
+    $a.href = url
+    $a.textContent = "next"
+
+    setTimeout(() => {
+      document.body.appendChild($a)
+    }, 1000)
+  })
+</script>
+
