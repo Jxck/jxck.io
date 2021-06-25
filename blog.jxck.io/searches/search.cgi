@@ -14,9 +14,9 @@ end
 
 def search(pwd, host, query)
   return [] unless query[:valid]
-  keywords = query[:keywords]
   base     = Pathname.new("#{pwd}/#{host}")
-  reg      = Regexp.union(keywords.map{|keyword| /(?<prefix>.*)(?<keyword>#{keyword})(?<suffix>.*)/i })
+  keywords = query[:keywords].map{|keyword| /(?<prefix>.*)(?<keyword>#{keyword})(?<suffix>.*)/i }
+  reg      = Regexp.union(keywords)
 
   search_path = case host
                 when "blog.jxck.io"
@@ -27,6 +27,15 @@ def search(pwd, host, query)
 
   Pathname.glob(search_path).sort.reverse.reduce([]){|acc, path|
     body    = File.read(path)
+
+    # そもそも全キーワードが存在するか確認
+    exists = keywords.reduce(true){|flag, k|
+      break false if (body.scan(k).empty?)
+      flag
+    }
+    next acc unless exists
+
+    # 全キーワードが存在したら union した regexp でスキャンし直す
     details = body.scan(reg).map {|hits|
       hits.each_slice(3).reduce([]) {|acc, hit|
         next acc if hit == [nil, nil, nil]
