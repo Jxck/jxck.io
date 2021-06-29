@@ -22,7 +22,7 @@ AMP が発表されたのは 2015 年で、リリースされたのが 2016 年�
 
 当時まだ Google にいた [Iliya](https://twitter.com/igrigorik) が [HPBN](https://hpbn.co/) を出したのは 2013 年だった。もともと 「SPDY の薄い本」になる予定だったと [mozaic](https://mozaic.fm/episodes/11/high-performance-browser-networking.html) に出てくれた時話していたから、出た時期としては HTTP2 になりつつある頃だ。
 
-当時でもまだ Web 黎明期を引きずったエンジニアのノスタルジーによてバイブル視され続けていた [High Performance Web Site](https://www.oreilly.com/library/view/high-performance-web/9780596529307/) のプラクティスが古いことを知らしめ、(当時の)モダンパフォーマンスチューニングの啓蒙を Ilya が一手に担っていたように思う。
+当時でもまだ Web 黎明期を引きずったエンジニアのノスタルジーによってバイブル視され続けていた [High Performance Web Site](https://www.oreilly.com/library/view/high-performance-web/9780596529307/) のプラクティスが古いことを知らしめ、(当時の)モダンパフォーマンスチューニングの啓蒙を Iliya が一手に担っていたように思う。
 
 しかし、彼が一人で啓蒙を続けても、それが届くのはごく一部の意識の高いエンジニアのみで、実際にそのプラクティスが適用されるのも、ごく一部の意識の高い組織に留まる現実があった。
 
@@ -37,7 +37,7 @@ AMP のモチベーションの一つに「Iliya 一人じゃスケールしな�
 
 具体的には、ツールで検証可能にしそのツールを通ることをテストとしてしまう方法がある。 alt 警察が巡回するよりも、 alt が無い img を弾くという checker を回すような手法だ。これはセキュリティでも適用できる場面が多い。 OWASP Zap や Lighthouse なんかがこれにあたるだろう。ただこれらはまだ任意選択だ。
 
-一歩進めてフレームワークがデフォルトにしてしまう方法がある。例えば XSS 対策のために実際に行うべき適切なエスケープ方法を余すところなく周知するよりも、デフォルトでエスケープがなされるテンプレートエンジンを導入すれば問題の大半は解決する。これを [非常にうまくやったフレームワークの一つに Rails](https://qiita.com/Jxck_/items/ec8e928f69d099b25764) がある。レールに乗っている以上はある程度安全であり、そして Rubyist にとって Rails のレールに乗るのはほぼ機能要件だ。うっかり外れればレビューで叩かれるし、要件として外れないとならない場合は「これから危険を伴うことをする」という意識で開発者は望める。
+一歩進めてフレームワークがデフォルトにしてしまう方法がある。例えば XSS 対策のために実際に行うべき適切なエスケープ方法を余すところなく周知するよりも、デフォルトでエスケープがなされるテンプレートエンジンを導入すれば問題の大半は解決する。これを [非常にうまくやったフレームワークの一つに Rails](https://qiita.com/Jxck_/items/ec8e928f69d099b25764) がある。レールに乗っている以上はある程度安全であり、そして Rubyist にとって Rails のレールに乗るのはほぼ機能要件だ。うっかり外れればレビューで叩かれるし、要件として外れないとならない場合は「これから危険を伴うことをする」という意識で開発者は臨める。
 
 さらに最近では Web で発見された様々な脆弱性に対し、適切な制限を課すための仕様が定義され、それらがブラウザでデフォルトになる流れがある。 CORP や UA-CH や SameSite Cookie などがその代表例だ。デフォルトになることで、開発者はそれでも動くように作ることになり、正直なんでそんな対策が必要なのかよくわかっていない開発者にも、機能要件を満たすために対策を意識させることができる。
 
@@ -92,9 +92,9 @@ AMP の URL が google.com になる問題は、 WebPackaging (というか SXG)
 
 IETF の draft 見ると、 WebPackaging には PWA チームも興味があったようだけど、 SXG はやはり AMP のモチベーションが大きかったんじゃないだろうか。今思えば、事前に WebPackaging の話を進めながら、なんとかなりそうという段階で Letter に合わせて Answer を出せるように調整していたようにも見える。
 
-SXG を使って署名をすれば AMP Cache から配信しても Origin の URL が表示できるというのは、まさしく AMP のことだけを考えた Patching な仕様に見えてしまいそうだ。しかし、全体の構想として WebPackaging があり、そこには PWA など他の青写真も含まれていたたことを知っていたため、その部品と見るならば妥当な方向性ではあると当時感じたのを覚えている。
+SXG を使って署名をすれば AMP Cache から配信しても Origin の URL が表示できるというのは、まさしく AMP のことだけを考えた Patching な仕様に見えてしまいそうだ。しかし、全体の構想として WebPackaging があり、そこには PWA など他の青写真も含まれていたことを知っていたため、その部品と見るならば妥当な方向性ではあると当時感じたのを覚えている。
 
-それでも SXG にはやはり賛否があり、ちょうど Mozilla が [Standard Positions](https://mozilla.github.io/standards-positions/) を公開するようになったのもこの時期で、 SXG はこの最初が公開されたほぼ最初から [Harmful](https://datatracker.ietf.org/doc/html/draft-yasskin-http-origin-signed-responses) として表示されていた。なので筆者には Standard Position 自体が SXG に harmful って言うためにに始まったように見えた。
+それでも SXG にはやはり賛否があり、ちょうど Mozilla が [Standard Positions](https://mozilla.github.io/standards-positions/) を公開するようになったのもこの時期で、 SXG は Standard Positions が公開されたほぼ最初から [Harmful](https://datatracker.ietf.org/doc/html/draft-yasskin-http-origin-signed-responses) として表示されていた。なので筆者には Standard Position 自体が SXG に harmful と言うために始まったように見えた。
 
 ちなみに、この harmful に対して、証明書に拡張を追加することで、いわゆる HTTPS に使う証明書が使い回されないような改善が行われた。ただ、その拡張に対応した証明書は Digicert しか発行しておらず、他の CA の対応の話はまだ聞かないため、 SXG 普及のボトルネックの一つでもある。
 
@@ -104,7 +104,7 @@ Google としては Mozilla その他のフィードバックを含めて仕様�
 
 本サイトもこれに対応したことで、確かに AMP がヒットしても URL バーには blog.jxck.io が表示されることを確認した。
 
-- [AMP SXG 対応 | blog.jxck.io](https://blog.jxck.io/entries/2020-12-25/amp-signed-http-exchange.html)
+- [AMP SXG 対応 \| blog.jxck.io](https://blog.jxck.io/entries/2020-12-25/amp-signed-http-exchange.html)
 
 AMP によって余計なことができなくなり、 AMP CDN から配信されコンテンツが速くなり、 SXG によって URL も自分のものが表示される。そう聞くとたしかに色々解決してはいるが、なんとなく釈然としない開発者もいるだろうとは思う。
 
@@ -113,7 +113,7 @@ AMP によって余計なことができなくなり、 AMP CDN から配信さ�
 
 ## そして CWV へ
 
-AMP Letter には、 URL の問題ともう一つ、重要な指摘がされていた。それが「**中立的な指標**」の問題だ。
+AMP Letter には、 URL の問題ともう一つ、重要な指摘がされていた。それが「*中立的な指標*」の問題だ。
 
 要するに AMP は速くする手段として存在するが、 AMP がなくても速いコンテンツを作ることができる場合、同じように速くても AMP であることが優遇されるのは不公平ということだ。
 
@@ -133,7 +133,7 @@ Speed Index は当時割と重視されはじめた指標だった。特に初�
 
 - [Evaluating page experience for a better web](https://developers.google.com/search/blog/2020/05/evaluating-page-experience)
 
-つまり、同じ課題に対して AMP は「手段」を提供したが、 CWV は「指標」を定義した。そして、ここに AMP と同様の人参をぶら下げることで、 CWV のスコアを意識するインセンティブを提示したのだ。
+つまり、同じ課題に対して AMP は「*手段*」を提供したが、 CWV は「*指標*」を定義した。そして、ここに AMP と同様の人参をぶら下げることで、 CWV のスコアを意識するインセンティブを提示したのだ。
 
 実際 Page Experience として評価されるのは CWV だけでなく、 HTTPS であることや、悪質な Ad がないことなどがあがっているが、他はもう前提のようなものと考えると、多くのメディアにとっては「SEO のために CWV を改善する」という OKR が出来上がる。一旦延期され、[6 月から徐々に展開され始めた](https://twitter.com/googlesearchc/status/1404886100087246848) 変更に向けて、 CWV の改善は各所で行われている。
 
@@ -164,7 +164,7 @@ CWV は Origin を速くすればよいため、わざわざドメインが変�
 
 逆に 3rd Party Tag を消した状態で CWV を測ったらグリーンで、そこにマーケとの交渉を終えて折衷案に整理し終えた 3rd Party Tag を差し込んだらレッドになるような場合は、手詰まりとなる。タグを差し込む位置を工夫したり、読み込みをなんとか遅延させたりして、とにかく初期表示に干渉しないように読み込むぐらいしかできることがなかったりする。
 
-AMP はなんだかんだメジャーなタグはそのまま使うことができていたので、 AMP Valid にさえできればそれでよかった。 CWV の改善によって 3rd Party タグの問題が浮き彫りになった今後は、 CWV への影響を加味して 3rd Party Tag のベンダが選ばれるようになっていくのではと思うこともある。ベンダ側も自社のタグが外されないように、実装の改善を走られせてるころなのではないだろうか?
+AMP はなんだかんだメジャーなタグはそのまま使うことができていたので、 AMP Valid にさえできればそれでよかった。 CWV の改善によって 3rd Party タグの問題が浮き彫りになった今後は、 CWV への影響を加味して 3rd Party Tag のベンダが選ばれるようになっていくのではと思うこともある。ベンダ側も自社のタグが外されないように、実装の改善を走らせているころなのではないだろうか?
 
 
 ## AMP as Framework
@@ -198,7 +198,7 @@ AMP は domain を直すために SXG を使ったが、 SXG は AMP のため�
 
 通常の HTML レスポンスも SXG によって署名することができ、それは CDN から配布されてもブラウザ上では Origin の URL で表示できる。
 
-Google の検索結果はこの Non AMP な SXG にも対応を開始し、サイトが SXG を配信していればそれを収集し SXG の CDN から代理で配布するようになった。しかも、ただ検索結果のリンクを SXG に置き換えるだけでなく、 prefetch を行うことで、リンクをクリックする前に取得が完了するよになった。
+Google の検索結果はこの Non AMP な SXG にも対応を開始し、サイトが SXG を配信していればそれを収集し SXG の CDN から代理で配布するようになった。しかも、ただ検索結果のリンクを SXG に置き換えるだけでなく、 prefetch を行うことで、リンクをクリックする前に取得が完了するようになった。
 
 - [Google 検索で Signed Exchange の利用を開始する \| Google Developers](https://developers.google.com/search/docs/advanced/experience/signed-exchange)
 
