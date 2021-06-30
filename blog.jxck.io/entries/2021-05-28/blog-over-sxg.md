@@ -187,7 +187,7 @@ dump-certurl -i cert.cbor
 
 ### Debug
 
-curl でテストしても良いが、デプロイした後ならば Chrome でアクセスして Devtool で確認すると詳細がデバッグできる。
+curl でテストしても良いが、デプロイした後ならば Chrome でアクセスして Devtools で確認すると詳細がデバッグできる。
 
 しかし、今回の設定では Chrome のデフォルトの Q value がついた `Accept` ヘッダでは SXG が取得できないため、 [ModHeader](https://chrome.google.com/webstore/detail/modheader/idgpnmonknjnojddfkpgkljpfnnfcklj) などを用いて Q value を無くすよう上書きする必要がある。
 
