@@ -68,7 +68,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-05-28T08:00:00+08:00",
-    "dateModified": "2021-05-28T08:00:00+08:00",
+    "dateModified": "2021-06-30T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -112,7 +112,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-05-28>2021-05-28</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-05-28>2021-05-28</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-06-30>2021-06-30</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -287,7 +287,7 @@ dump-certurl -i cert.cbor</code></pre>
         <h2 id="動作検証"><a href="#動作検証">動作検証</a></h2>
         <section>
           <h3 id="debug"><a href="#debug">Debug</a></h3>
-          <p>curl でテストしても良いが、デプロイした後ならば Chrome でアクセスして Devtool で確認すると詳細がデバッグできる。
+          <p>curl でテストしても良いが、デプロイした後ならば Chrome でアクセスして Devtools で確認すると詳細がデバッグできる。
           <p>しかし、今回の設定では Chrome のデフォルトの Q value がついた <code translate="no">Accept</code> ヘッダでは SXG が取得できないため、 <a href="https://chrome.google.com/webstore/detail/modheader/idgpnmonknjnojddfkpgkljpfnnfcklj">ModHeader</a> などを用いて Q value を無くすよう上書きする必要がある。
           <p>その状態でアクセスし、成功すれば以下のように SXG が確認できる。
           <p>まず、 Network の Timeline 上は SXG のレスポンスと CBOR リクエストが続き、 SXG から取り出された HTML が取得されている。
