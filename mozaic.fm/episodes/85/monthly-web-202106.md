@@ -534,16 +534,16 @@ guest
     - <https://codimd.ietf.org/notes-httpbis-21-06>
     - New Proposal
       - ALT-SVC bis
-            * https://httpwg.org/wg-materials/interim-21-06/altsvcbis.pdf
+        - <https://httpwg.org/wg-materials/interim-21-06/altsvcbis.pdf>
       - Targeted Cache-Control
-            * https://httpwg.org/wg-materials/interim-21-06/targeted-cc.pdf
-            * CDN-Cache-Control のように CDN 意外にも特定の実装を対象にしたい場合がある
-            * これを標準化したい by mnot
+        - <https://httpwg.org/wg-materials/interim-21-06/targeted-cc.pdf>
+        - CDN-Cache-Control のように CDN 意外にも特定の実装を対象にしたい場合がある
+        - これを標準化したい by mnot
       - Cache-Trailer
-            * https://httpwg.org/wg-materials/interim-21-06/cache-trailer.pdf
+        - <https://httpwg.org/wg-materials/interim-21-06/cache-trailer.pdf>
       - Binary HTTP Messages
-            * https://httpwg.org/wg-materials/interim-21-06/bhttp.pdf
-            * OHTTP をする際に HTTP Message のバイナリ化が必要らしい
+        - <https://httpwg.org/wg-materials/interim-21-06/bhttp.pdf>
+        - OHTTP をする際に HTTP Message のバイナリ化が必要らしい
   - I-D Action: draft-ietf-httpbis-client-cert-field-00.txt
     - <https://lists.w3.org/Archives/Public/ietf-http-wg/2021AprJun/0199.html>
   - I-D Action: draft-ietf-httpbis-message-signatures-05.txt
