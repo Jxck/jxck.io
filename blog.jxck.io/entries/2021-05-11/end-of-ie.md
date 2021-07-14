@@ -230,3 +230,7 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - <https://www.microsoft.com/ja-jp/windows/windows-11-specifications>
   - 「Internet Explorer は無効になります。」
   - 「従来の Internet Explorer ベースの Web サイトやアプリケーションに直接アクセスできる「Internet Explorer モード (IE モード) 」を搭載した Microsoft Edge をご利用ください。」
+- Internet Explorer 11への対応終了のお知らせ - Mackerel お知らせ #mackerelio
+  - <https://mackerel.io/ja/blog/entry/20210517#Internet-Explorer-11への対応終了のお知らせ>
+- Internet Explorerの対応を終了します - カクヨムからのお知らせ
+  - <https://kakuyomu.jp/info/entry/2021/07/13/125755>
