@@ -204,7 +204,13 @@ mozaic-player {
 
 @media screen and (max-device-width: 800px) {
   article section {
-    padding: var(--grid);
+    padding: calc(var(--grid)/2);
+  }
+
+  article ul,
+  article ol,
+  article dl {
+    margin-inline-start: calc(var(--grid)*1.4);
   }
 
   article li {
@@ -225,6 +231,10 @@ mozaic-player {
 
   audio {
     width: 100%;
+  }
+
+  h2, h3, h4 {
+    margin: 0;
   }
 }
 
