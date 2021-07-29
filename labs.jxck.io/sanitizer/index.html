@@ -75,6 +75,7 @@ svg {
 <form>
   <h2><label for=rawtext>Raw Text</label></h2>
 <textarea id=rawtext name=rawtext>
+<!-- this is a comment -->
 You can write <strong>any</strong> text you like and <b><i>submit</i></b> the <em>button</em>.
 <div class=highlight>It's fine</div> even if text includes xss <script>alert(1)</script>.
 <img src="" onerror="alert('xss')">
@@ -85,6 +86,7 @@ You can write <strong>any</strong> text you like and <b><i>submit</i></b> the <e
   <option value=default selected>default</option>
   <option value=no-attr>remove every attributes</option>
   <option value=no-elem>remove every element</option>
+  <option value=allow-comments>allow comment</option>
 </select>
 </label>
 

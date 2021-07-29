@@ -22,21 +22,20 @@ document.on('DOMContentLoaded', async (e) => {
           return {allowAttributes: []}
         case 'no-elem':
           return {allowElements: []}
+        case 'allow-comments':
+          return {allowComments: true}
       }
     })(mode)
 
     console.log(raw)
     const sanitizer = new Sanitizer(option)
 
-    const sanitized = sanitizer.sanitizeToString(raw)
+    const sanitized = sanitizer.sanitizeFor("div", raw);
     console.log(sanitized)
-    $('#sanitized').value = sanitized
-
-    const result = new Sanitizer().sanitize(raw);
-    console.log(result)
+    $('#sanitized').value = sanitized.innerHTML
 
     $('#render').innerHTML = ''
-    $('#render').appendChild(result)
+    $('#render').setHTML(raw, sanitizer)
   })
 
   const elements =  Object.getOwnPropertyNames(window).reduce((acc, curr) => {
