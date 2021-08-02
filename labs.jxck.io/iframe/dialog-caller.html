@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>3rd Party Dialog DEMO</title>
+
+<h1>3rd Party Dialog DEMO</h1>
+
+<style>
+strong { color: red }
+</style>
+
+<strong>see the devtools console for log</strong>
+
+<p>
+  <button id=alert>alert()</button>
+  <button id=confirm>confirm()</button>
+  <button id=prompt>prompt()</button>
+</p>
+<p><button id=token>insert reverse ot token in this iframe</button></p>
+
+<script>
+  EventTarget.prototype.on  = EventTarget.prototype.addEventListener
+  EventTarget.prototype.off = EventTarget.prototype.removeEventListener
+  const $ = document.querySelector.bind(document)
+
+  $('#alert').on('click', (e) => {
+    alert('3p alert')
+  })
+  $('#prompt').on('click', (e) => {
+    console.log(prompt('3p prompt'))
+  })
+  $('#confirm').on('click', (e) => {
+    console.log(confirm('3p confirm'))
+  })
+
+  $('#token').on('click', (e) => {
+    // insert reverse origin trials token
+    const token = "AjpFm3rmClwjsGhdsh6Z0F76E2SR2DrGykSRh+yaCgsTMXb6VToslmSHXd5rMSuVDIflJ3yC+XC87uJgyWhwMwEAAACDeyJvcmlnaW4iOiJodHRwczovL2p4Y2suaW86NDQzIiwiZmVhdHVyZSI6IkRpc2FibGVEaWZmZXJlbnRPcmlnaW5TdWJmcmFtZURpYWxvZ1N1cHByZXNzaW9uIiwiZXhwaXJ5IjoxNjM5NTI2Mzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZX0="
+    const $meta = document.createElement('meta')
+    $meta.setAttribute('http-equiv', 'origin-trial')
+    $meta.setAttribute('content', token)
+    document.head.appendChild($meta)
+  })
+</script>
