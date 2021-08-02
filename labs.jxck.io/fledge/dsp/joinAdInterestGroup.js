@@ -17,7 +17,7 @@ const interestGroup = {
   userBiddingSignals: { user_bidding_signals: "user_bidding_signals" },
   ads: [
     {
-      renderUrl: `https://${ads}.labs.jxck.io/fledge/advertiser/${ads}-ad.html`,
+      renderUrl: `https://${ads}.labs.jxck.io/fledge/${ads}/ad.html`,
       metadata: {
         type: ads
       }
