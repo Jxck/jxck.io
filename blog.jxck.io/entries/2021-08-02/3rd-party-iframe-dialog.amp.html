@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html amp lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href=https://blog.jxck.io/entries/2021-08-02/3rd-party-iframe-dialog.html>
+
+  <link rel=icon             type =image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon             type =image/png sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.png>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="直近で話題になっている Chrome の挙動変更についてまとめた。Reverse OT による延命はあるが、もともとが「セキュリティ的な理由でできなくする」のが目的のため、 OT 期間中に修正が必要そうであることを先に述べておく。なお、これはあくまで筆者が調べた結果に基づい...">
+  <meta name=keywords            content="iframe,security">
+  <meta name=theme-color         content=#000000>
+
+  <meta name=twitter:card        content=summary>
+  <meta name=twitter:site        content=@jxck_>
+  <meta name=twitter:url         content=https://blog.jxck.io/entries/2021-08-02/3rd-party-iframe-dialog.html>
+  <meta name=twitter:title       content="Cross Origin iframe からの alert/confirm/prompt 呼び出しの無効化 | blog.jxck.io">
+  <meta name=twitter:description content="直近で話題になっている Chrome の挙動変更についてまとめた。Reverse OT による延命はあるが、もともとが「セキュリティ的な理由でできなくする」のが目的のため、 OT 期間中に修正が必要そうであることを先に述べておく。なお、これはあくまで筆者が調べた結果に基づい...">
+  <meta name=twitter:image       content=https://blog.jxck.io/assets/img/jxck.png>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2021-08-02/3rd-party-iframe-dialog.html>
+  <meta property=og:title        content="Cross Origin iframe からの alert/confirm/prompt 呼び出しの無効化 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="直近で話題になっている Chrome の挙動変更についてまとめた。Reverse OT による延命はあるが、もともとが「セキュリティ的な理由でできなくする」のが目的のため、 OT 期間中に修正が必要そうであることを先に述べておく。なお、これはあくまで筆者が調べた結果に基づい...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.png>
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Cross Origin iframe からの alert/confirm/prompt 呼び出しの無効化 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2021-08-02T08:00:00+08:00",
+    "dateModified": "2021-08-03T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.60x60.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": "直近で話題になっている Chrome の挙動変更についてまとめた。Reverse OT による延命はあるが、もともとが「セキュリティ的な理由でできなくする」のが目的のため、 OT 期間中に修正が必要そうであることを先に述べておく。なお、これはあくまで筆者が調べた結果に基づい..."
+  }
+  </script>
+
+  <title>Cross Origin iframe からの alert/confirm/prompt 呼び出しの無効化 | blog.jxck.io</title>
+  <script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+  <script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+  <script async custom-element=amp-ad src=https://cdn.ampproject.org/v0/amp-ad-0.1.js></script>
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src=https://cdn.ampproject.org/v0.js></script>
+  <style amp-custom>
+    article section p {
+      margin-inline-start: 0;
+    }
+
+    article table {
+      margin-inline-start: 0;
+    }
+
+    article img {
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
+      border: 1px solid #ccc;
+      box-sizing: content-box;
+      background-color: #fff;
+      max-width: 100%;
+    }
+
+    article ul,
+    article ol,
+    article dl {
+      margin-inline-start: var(--grid);
+      font-family: var(--mono-font);
+    }
+
+    article li {
+      margin-block-start:  calc(var(--grid)/2);
+      margin-block-end:    0;
+      margin-inline-start: calc(var(--grid)/2);
+      margin-inline-end:   0;
+    }
+
+    article dl {
+      display: grid;
+      grid-template-columns: minmax(auto, max-content);
+      grid-column-gap: var(--grid);
+    }
+
+    article dl div {
+      display: contents;
+    }
+
+    article dl dt {
+      grid-column: 1 / 2;
+    }
+    article dl dd {
+      grid-column: 2 / 2;
+    }
+
+    article blockquote {
+      font-family: var(--mono-font);
+    }
+
+    article blockquote p {
+      margin: 0;
+    }
+
+    @supports (line-height-step: 1px) {
+      article {
+        --grid-rhythm: 1.5em;
+        line-height: 1.5;
+        line-height-step: var(--grid-rhythm);
+      }
+
+      article h1,
+      article h2,
+      article h3,
+      article h4,
+      article h5,
+      article h6 {
+        display: inline-block;
+        width: 100%;
+        line-height-step: 0;
+        line-height: 1.2;
+        margin-block-end: 0;
+      }
+
+      article section {
+        /* grid for debug */
+        /* background-size: 100% var(--grid-rhythm); */
+        /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
+      }
+
+      article p {
+        margin-block-start: var(--grid-rhythm);
+        margin-block-end:   var(--grid-rhythm);
+      }
+
+      article pre,
+      article table {
+        line-height-step: 0;
+        line-height: normal;
+      }
+    }
+    /* Light Mode Theme */
+    :root {
+      --background-color: #fefefe;
+      --font-color: #222;
+      --header-color: #222;
+
+      --anchor-color: RoyalBlue;
+      --anchor-visited-color: Brown;
+
+      --code-block: #161b22;
+      --code-block-font: #ffffff;
+
+      --code-inline: #f1f5f9;
+      --code-inline-font: #292929;
+
+      --block-quote: #ddd;
+      --table-border: #222;
+
+      --regular-font: "Noto Sans", "Noto Sans CJK JP", "Hiragino Sans", 'ヒラギノ角ゴ Pro W3', 'メイリオ', sans-serif;
+      --mono-font: monospace;
+      --code-font: Menlo, Consolas, Liberation, Mono, Courier;
+
+      --icon-size: 30px;
+
+      --width: 80vw;
+      --max-width: 1024px;
+
+      --grid: 1rem;
+
+      --radius: 4px;
+    }
+
+
+    /* Mobile Theme */
+    @media screen and (max-device-width: 960px) {
+      :root {
+        --width: 94vw;
+      }
+
+      audio {
+        width: 100%;
+      }
+    }
+
+    /* Dark Mode Theme */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --header-color: #111;
+        --background-color: #222;
+        --font-color: #eee;
+
+        --anchor-color: CornflowerBlue;
+        --anchor-visited-color: RosyBrown;
+
+        --table-border: #eee;
+      }
+
+      article img {
+        filter: grayscale(50%);
+      }
+      article img[src*=svg] {
+        filter: invert(100%) grayscale(50%);
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--regular-font);
+      background-color: var(--background-color);
+      color: var(--font-color);
+      /*font-feature-settings: "palt";*/
+      margin: 0;
+      padding: 0;
+    }
+
+    code {
+      font-family: var(--mono-font);
+    }
+
+    img {
+      display: block;
+      height: auto;
+    }
+
+    hr {
+      margin: 0;
+      padding: 0;
+    }
+
+    iframe {
+      display: block;
+      max-width: 100%;
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
+    }
+    dl.info {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info div {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+
+    dl.info dt::after {
+      content: ":";
+      padding-inline-end: calc(var(--grid)/2);
+    }
+
+    dl.info dd {
+      margin-block-start: 0;
+      margin-block-end: 0;
+      margin-inline-end: var(--grid);
+      margin-inline-start: 0;
+    }
+
+    dl.info dd i {
+      font-style: normal;
+      padding-inline-end: calc(var(--grid)/3);
+    }
+
+    details.info > summary {
+    }
+
+    details.info ul {
+      margin-block-start: 0;
+      margin-inline-start: var(--grid);
+    }
+
+    nav.tags {
+      display: inline;
+    }
+
+    .tags ul {
+      display: inline-flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    .tags li:before {
+      content: none;
+    }
+
+    .tags li:first-child:before{
+      content: "[ ";
+    }
+
+    .tags li:after {
+      content: ",";
+      padding-inline-end: 0.5rem;
+    }
+
+    .tags li:last-child:after {
+      content: " ]";
+    }
+    header {
+      z-index: 1;
+      position: sticky;
+      position: -webkit-sticky;
+      top: 0;
+      box-sizing: border-box;
+      margin: 0;
+      padding: calc(var(--grid)/2);
+      background-color: var(--header-color);
+    }
+
+    h2:target,
+    h3:target,
+    h4:target,
+    h5:target,
+    h6:target {
+      /* sticky header に合わせて link scroll をずらす */
+      margin-block-start:  calc((var(--icon-size) + var(--grid)) * -1);
+      padding-block-start: calc((var(--icon-size) + var(--grid)));
+    }
+
+    header nav {
+      width: var(--width);
+      max-width: var(--max-width);
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
+    }
+
+    header nav ul {
+      width: 100%;
+      display: flex;
+      margin: 0;
+    }
+
+    header nav li {
+      width: fit-content;
+      padding: 0;
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: var(--grid);
+      margin-inline-end:   0;
+    }
+
+    header nav ul li a,
+    header nav ul li button {
+      width: fit-content;
+      display: block;
+      padding: 0;
+      margin: 0;
+      border: none;
+    }
+
+    header nav svg {
+      fill: var(--background-color);
+    }
+
+    header nav ul li::before {
+      content: none;
+    }
+
+    header nav ul li:first-child {
+      flex-grow: 1;
+      margin-inline-start: 0;
+    }
+
+    header nav .logo {
+      border: 1px solid #fff;
+      box-sizing: border-box;
+    }
+    h1 > a,
+    h2 > a,
+    h3 > a,
+    h4 > a,
+    h5 > a,
+    h6 > a {
+      color: var(--font-color);
+    }
+
+    h1 > a:visited,
+    h2 > a:visited,
+    h3 > a:visited,
+    h4 > a:visited,
+    h5 > a:visited,
+    h6 > a:visited {
+      color: var(--font-color);
+    }
+
+    h1 > a::before {
+      content: "# ";
+    }
+
+    h2 > a::before {
+      content: "## ";
+    }
+
+    h3 > a::before {
+      content: "### ";
+    }
+
+    h4 > a::before {
+      content: "#### ";
+    }
+
+    h1 > a:hover::before,
+    h2 > a:hover::before,
+    h3 > a:hover::before,
+    h4 > a:hover::before,
+    h5 > a:hover::before,
+    h6 > a:hover::before {
+      color: var(--anchor-visited-color);
+    }
+
+    em {
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    em::before,
+    em::after {
+      content: "*";
+    }
+
+    strong {
+      color: red;
+    }
+
+    strong::before,
+    strong::after {
+      content: "**";
+    }
+
+    ul li::before {
+      content: "- ";
+    }
+
+    ol {
+      counter-reset: list;
+    }
+
+    ol li::before {
+      counter-increment: list;
+      content: counter(list) ". ";
+    }
+
+    dl dt::after {
+      content: ":";
+    }
+
+    blockquote {
+      display: block;
+      border: solid 1px var(--block-quote);
+      border-radius: var(--radius);
+      padding: 1rem;
+      margin: 0;
+    }
+
+    blockquote p::before {
+      content: "> ";
+    }
+
+    code {
+      background-color: var(--code-inline);
+      color: var(--code-inline-font);
+      border-radius: var(--radius);
+      padding: 0 4px;
+    }
+
+    code::before,
+    code::after {
+      content: "`";
+    }
+    main {
+      display: block;
+      width: var(--width);
+      max-width: var(--max-width);
+      margin-block-start:  1em;
+      margin-block-end:    1em;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
+    }
+
+    a {
+      word-wrap: break-word;
+      text-decoration: none;
+      color: var(--anchor-color);
+    }
+
+    a:visited {
+      color: var(--anchor-visited-color);
+    }
+
+    ol,
+    ul {
+      list-style: none;
+      padding-inline-start: 0;
+    }
+
+    li {
+      word-break: break-all;
+      word-wrap: break-word;
+    }
+
+    dl dt {
+      font-weight: bold;
+      margin: 0;
+    }
+
+    dl dd {
+      margin: 0;
+    }
+    footer {
+      padding: var(--grid);
+    }
+
+    footer strong,
+    footer .copyright {
+      font-style: italic;
+      width: var(--width);
+      max-width: var(--max-width);
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
+    }
+
+    /* AdSense */
+    footer ins {
+      display: block;
+      width: var(--width);
+      max-width: var(--max-width);
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
+    }
+    pre {
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
+      border-radius: var(--radius);
+    }
+
+    pre code {
+      background-color: var(--code-block);
+      color: var(--code-block-font);
+    }
+
+    pre::before {
+      font-family: var(--code-font);
+      content: "```" attr(data-code) "\A";
+      font-size: 0.8em;
+    }
+
+    pre::after {
+      font-family: var(--code-font);
+      z-index: -1;
+      position: relative;
+      top: -1em;
+      content: "\A```";
+      font-size: 0.8em;
+    }
+
+    pre > code {
+      font-family: var(--code-font);
+      overflow: auto;
+      display: block;
+      padding: 0.5rem;
+      margin: 0;
+    }
+
+    pre > code::before,
+    pre > code::after {
+      content: none;
+    }
+
+
+    /** Prism.js Syntax Highlight **/
+    :root {
+      --code-yellow: #ffe557;
+      --code-aqua:   #03b5f1;
+      --code-blue:   #76acff;
+      --code-gray:   #96969c;
+      --code-green:  #1cd24d;
+      --code-orange: #ff8b24;
+      --code-pink:   #ff61bf;
+    }
+
+    /** style **/
+    .token.important,
+    .token.bold {
+      font-weight: bold;
+    }
+    .token.italic {
+      font-style: italic;
+    }
+
+    .token.entity {
+      cursor: help;
+    }
+
+    /** color **/
+    .token.command,
+    .token.parameter,
+    .token.operator,
+    .token.punctuation,
+    .token.output {
+      color: var(--code-block-font);
+    }
+
+    .token.attr-name,
+    .token.selector,
+    .token.shell-symbol {
+      color: var(--code-blue);
+    }
+
+    .token.delimiter.tag,
+    .token.variable {
+      color: var(--code-yellow);
+    }
+
+    .token.tag,
+    .token.function {
+      color: var(--code-green);
+    }
+
+    .token.key,
+    .token.attr-value,
+    .token.atom,
+    .token.property,
+    .token.keyword {
+      color: var(--code-pink);
+    }
+
+    .token.header-name.keyword,
+    .token.string,
+    .token.regex {
+      color: var(--code-blue);
+    }
+
+    .token.interpolation,
+    .token.constant,
+    .token.class-name {
+      color: var(--code-orange);
+    }
+
+    .token.response-status,
+    .token.boolean,
+    .token.number {
+      color: var(--code-aqua);
+    }
+
+    .token.rule,
+    .token.builtin {
+      color: var(--code-green);
+    }
+
+    .token.prolog,
+    .token.doctype,
+    .token.shebang,
+    .token.comment {
+      color: var(--code-gray);
+    }
+
+    .token.request-line {
+      color: var(--code-aqua);
+    }
+
+
+    /** language **/
+    .token.bash.language-bash,
+    .token.bash.language-bash > .token.function {
+      color: var(--code-block-font);
+    }
+    table {
+      font-family: var(--mono-font);
+      border-spacing: 0 0.4rem;
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
+    }
+
+    th {
+      border-inline-start: 2px solid var(--table-border);
+      border-block-end:    2px dashed var(--table-border);
+      padding-block-start:  0;
+      padding-block-end:    calc(var(--grid)/2);
+      padding-inline-start: var(--grid);
+      padding-inline-end:   var(--grid);
+    }
+
+    td {
+      padding-block-start:  calc(var(--grid)/2);
+      padding-block-end:    calc(var(--grid)/2);
+      padding-inline-start: var(--grid);
+      padding-inline-end:   var(--grid);
+      border-inline-start: 2px solid var(--table-border);
+    }
+
+    th:last-child,
+    td:last-child {
+      border-inline-end: 2px solid var(--table-border);
+    }
+
+    .align-center {
+      text-align: center;
+    }
+
+    /** TODO: fixup html class */
+    .align-left {
+      text-align: start;
+    }
+
+    /** TODO: fixup html class */
+    .align-right {
+      text-align: end;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://blog.jxck.io      ><amp-img width=30 height=30 src=/assets/img/blog.svg?160301_215351   alt="blog logo" class=logo    ></a>
+      <li><a href=/searches                 ><amp-img width=30 height=30 src=/assets/img/search.svg?190421_130410 alt=search                    ></a>
+      <li><a href=.                         ><amp-img width=30 height=30 src=/assets/img/up.svg?160831_002319     alt="move to parent directory"></a>
+      <li><a href=/feeds/atom.xml           ><amp-img width=30 height=30 src=/assets/img/rss.svg?160227_124312    alt="rss feed"                ></a>
+      <li><a href=https://jxck.io/humans.txt><amp-img width=30 height=30 src=/assets/img/humans.svg?160831_002319 alt="huamns.txt"              ></a>
+      <li><a href=https://jxck.io           ><amp-img width=30 height=30 src=/assets/img/jxck.svg?190123_200004   alt="jxck logo" class=logo    ></a>
+    </ul>
+  </nav>
+</header>
+<main>
+  <dl class=info>
+    <div><dt>created_at</dt><dd><time class=created_at datetime=2021-08-02>2021-08-02</time></dd></div>
+    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-08-03>2021-08-03</time></dd></div>
+    <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags/iframe.html">iframe</a>
+              <li><a href="/tags/security.html">security</a>
+            </ul>
+          </nav>
+        </dd>
+    </div>
+    <div>
+      <dt>toc</dt>
+      <dd>
+        <details class=info>
+          <summary>headdings</summary>
+          <nav>
+            <ul>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#問題の事象>## 問題の事象</a>
+              <li><a href=#remove-cross-origin-subframe-js-dialogs>## Remove: Cross origin subframe JS Dialogs</a>
+              <li><a href=#他のブラウザの反応>## 他のブラウザの反応</a>
+              <li><a href=#回避方法>## 回避方法</a>
+              <li><a href=#修正方法>## 修正方法</a>
+              <li><a href=#iframe-を埋め込む-js-を提供している場合>### iframe を埋め込む JS を提供している場合</a>
+              <li><a href=#iframe-を直接提供している場合>### iframe を直接提供している場合</a>
+              <li><a href=#web-の互換性と安全性>## Web の互換性と安全性</a>
+              <li><a href=#demo>## DEMO</a>
+              <li><a href=#resources>## Resources</a>
+            </ul>
+          </nav>
+        </details>
+      </dd>
+    </div>
+  </dl>
+  <article>
+    <h1><a href=/entries/2021-08-02/3rd-party-iframe-dialog.html>Cross Origin iframe からの alert/confirm/prompt 呼び出しの無効化</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p>直近で話題になっている Chrome の挙動変更についてまとめた。
+      <p>Reverse OT による延命はあるが、もともとが「セキュリティ的な理由でできなくする」のが目的のため、 OT 期間中に修正が必要そうであることを先に述べておく。
+      <p>なお、これはあくまで筆者が調べた結果に基づいた見解であるため、該当する開発者は常に公式のアナウンスなどに注意し、最新の情報を踏まえて自身で判断すべきである。
+    </section>
+    <section>
+      <h2 id="問題の事象"><a href="#問題の事象">問題の事象</a></h2>
+      <p>周知の通り <code translate="no">alert()</code>, <code translate="no">confirm()</code>, <code translate="no">prompt()</code> は、ブラウザのもつネイティブのダイアログ UI を呼び出す。
+      <p>この JS は、埋め込まれた <code translate="no">&lt;iframe&gt;</code> で実行しても、 Top Level Frame でダイアログ UI を表示できる。
+      <p>しかし、 Chrome M92 からは、 Cross Origin (3rd Party) の <code translate="no">&lt;iframe&gt;</code> がこれを呼び出しても、ダイアログが出ないというものだ。
+      <p>これは、 Google のもの含むいくつかのサービスで問題となり、その事象が ML や Issue Tracker などに報告されている。
+      <ul>
+        <li>
+          1065085 - Implement window.{alert, prompt, confirm} removal from cross-origin iframes - chromium
+          <ul>
+            <li><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=1065085">https://bugs.chromium.org/p/chromium/issues/detail?id=1065085</a>
+          </ul>
+        </li>
+      </ul>
+      <p>大きなサービスとしては Salesforce も影響を受けたようで、ユーザに対して Chrome のフラグにより(無効にする)機能を無効にするように案内しているようだ。
+      <ul>
+        <li>
+          Salesforce functionality impacted in Chrome 92 after recent change to cross-origin iframe JavaScript dialogs
+          <ul>
+            <li><a href="https://trailblazer.salesforce.com/issues_view?id=a1p4V000002BRMXQA4">https://trailblazer.salesforce.com/issues_view?id=a1p4V000002BRMXQA4</a>
+          </ul>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 id="remove-cross-origin-subframe-js-dialogs"><a href="#remove-cross-origin-subframe-js-dialogs">Remove: Cross origin subframe JS Dialogs</a></h2>
+      <p>ことの発端は <em>2020/03/25</em> に投稿された以下の Intents だ。
+      <ul>
+        <li>
+          Intent to Remove: Cross origin subframe JS Dialogs
+          <ul>
+            <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/hTOXiBj3D6A/">https://groups.google.com/a/chromium.org/g/blink-dev/c/hTOXiBj3D6A/</a>
+          </ul>
+        </li>
+      </ul>
+      <p>ダイアログ(alert, confirm, prompt)を呼び出す JS は、 Top Level で呼ばれたのか 3rd Party iframe で呼ばれたのかがわかりにくいという問題があった。
+      <p>Chrome の場合は、ダイアログに「<em>誰がこれを呼び出したのか</em>」を表示している。
+      <p>以下は labs.jxck.io のトップレベルで呼び出した場合の挙動だ。
+      <p>
+        <amp-img layout=responsive src=1st-prompt.png#1260x700 alt="トップレベルで prompt() を呼んだ場合 "labs.jxck.io says" と表示される" title="" width=1260 height=700>
+      </p>
+      <p>以下は Cross Origin iframe として埋め込んだ lab2.jxck.io で呼び出した場合の挙動だ。
+      <p>
+        <amp-img layout=responsive src=1st-prompt.png#1260x700 alt="Cross Origin iframe で prompt() を呼んだ場合 "An embedded page at lab2.jxck.io sayz" と表示される" title="" width=1260 height=700>
+      </p>
+      <p>ユーザにとってこの表示の意味を理解するのは必ずしも容易ではない。 ただの <code translate="no">alert()</code> であれば得られる情報はないが、 <code translate="no">prompt()</code> の場合はユーザに入力を求め、それを JS で取得することができてしまう。
+      <p>これを利用し、悪意のあるものが 3rd Party iframe から <code translate="no">prompt()</code> を表示し、ユーザを騙して情報を入力させる攻撃が実際に存在するそうだ。ユーザがこれを、自分が訪れたサイトが出したものだと勘違いすれば、そこでは「<em>なりすまし</em>(spoofing)」が成立していることを意味する。「先に進むにはパスワードを入力してください」とでも言われれば、うっかり入れてしまうユーザも存在するだろう。
+      <p>この Intent to Remove は、ユーザに「この <code translate="no">prompt()</code> は誰が出しているのか」を UI で説明するのは難しく、それは UI を不必要に複雑にするだけであると説明している。
+      <p>そこで、以下の理由からこの機能自体を削除しようという提案だ。
+      <ul>
+        <li>Cross Origin iframe の JS ダイアログの使用率は低い
+        <li>JS ダイアログが使用されていても一般的にサイトの主要な機能には必要ない
+        <li>ダイアログがどこから来ているのかを確実に説明することが難しい
+      </ul>
+      <p>さらに、 Cross Origin のダイアログがそもそもなくなれば、ホスト名の表示を削除してダイアログをさらに簡素化したり、ダイアログをコンテンツエリアの中央に表示してページの一部であることをより明らかにするよう改善できるといったメリットも説明されている。
+      <p>Cross Origin iframe が埋め込まれたページにおいては、他にも <a href="https://docs.google.com/document/d/1x5QejvpyQ71LPWhMLsaM1lWCfSsBsSQ8Dap9kJ6uLv0/edit#heading=h.u4dloygy0zkd">Permission を求める際に「誰が求めているのか」をユーザに伝えるのが難しい</a> という問題も知られているため、これと同等の議論があったと予想される。
+      <p>Intents には Use Counter も載っているので引用する。
+      <table>
+        <thead>
+          <tr>
+            <th class=align-default>Feature</th>
+            <th class=align-default>% of Page Loads with usage (from cross-origin iframes)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class=align-default>window.Alert</td>
+            <td class=align-default>0.006</td>
+          </tr>
+          <tr>
+            <td class=align-default>window.Confirm</td>
+            <td class=align-default>0.003</td>
+          </tr>
+          <tr>
+            <td class=align-default>window.Prompt</td>
+            <td class=align-default>0.00006</td>
+          </tr>
+          <tr>
+            <td class=align-default>Total</td>
+            <td class=align-default>0.00906</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>しかし、実際に M92 がリリースされてからは、この機能が壊れたことによる影響が多数報告されていたため、実装者が想定していた以上に影響はあったといえるだろう。
+    </section>
+    <section>
+      <h2 id="他のブラウザの反応"><a href="#他のブラウザの反応">他のブラウザの反応</a></h2>
+      <p>実際にロールアウトしたのが Chrome/Edge であったため、いつものように「また Google が勝手にやっている」と思う人もいるようだが、実際には他のブラウザも Positive を表明している。
+      <ul>
+        <li>Firefox: https://github.com/whatwg/html/issues/5407#issuecomment-606417807
+        <li>Safari: https://github.com/whatwg/html/issues/5407#issuecomment-760574422
+      </ul>
+      <p>また、この合意が取れているため、既に仕様にもマージされている。
+      <ul>
+        <li>
+          Add early return to JS dialogs triggered from different origin-domain iframes by carlosjoan91 - Pull Request #6297 - whatwg/html
+          <ul>
+            <li><a href="https://github.com/whatwg/html/pull/6297">https://github.com/whatwg/html/pull/6297</a>
+          </ul>
+        </li>
+      </ul>
+      <p>それでも、「まだそこにはユースケースがある」と食いつてる Issue は以下にある。
+      <ul>
+        <li>
+          Cross-origin prompts still have significant use cases - Issue #6897 - whatwg/html
+          <ul>
+            <li><a href="https://github.com/whatwg/html/issues/6897">https://github.com/whatwg/html/issues/6897</a>
+          </ul>
+        </li>
+      </ul>
+      <p>ここでの仕様策定者の反応を見れば、これはもう「<em>Web において決まった変更だ</em>」と理解した方が良いだろうことがわかる。
+    </section>
+    <section>
+      <h2 id="回避方法"><a href="#回避方法">回避方法</a></h2>
+      <p>ML のスレッドにも、回避方法が知りたいという声が多数あるが、基本的には無いと言うことになる。もし回避できるのであれば、問題自体が解決しないため意味が無いからだ。
+      <p>しかし、このように互換を壊す場合は、デプロイされたコンテンツが修正するための猶予期間として、 Reverse Origin Trials を提供するのが最近の Chrome の運用だ。
+      <ul>
+        <li>
+          Request for Deprecation Trial: Remove alert(), confirm(), and prompt for cross origin iframes
+          <ul>
+            <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/VOePv--Qa-4">https://groups.google.com/a/chromium.org/g/blink-dev/c/VOePv--Qa-4</a>
+          </ul>
+        </li>
+      </ul>
+      <p>Origin Trials は、新しい機能を先取りして試すために、 Token を取得してそれをコンテンツに追加することで Opt-In する方法だ。トライアルが終われば Token は無効になるため、実験中の実装が残るリスクを減らすことができる。またトライアルを実施しているユーザと連絡手段ができるため、実装の変更などのアナウンスが可能になる。
+      <p>この仕組みを利用して、例えば Token を付与しその Token が有効である間は機能を延命し、その間に修正できるよう猶予を与えるというのが Reverse Origin Trials だ。ただアナウンスなどをしても誰も修正をしないために考え出された機能であり、 WebComponents V0 の deprecate などでも運用された。
+      <p>今回の Token は以下から取得できる。使い方は <a href="https://blog.jxck.io/entries/2016-09-29/vender-prefix-to-origin-trials.html">過去に書いた記事</a> が参考になるだろう。
+      <ul>
+        <li>
+          Trial for Disable Different Origin Subframe Dialog Suppression
+          <ul>
+            <li><a href="https://developer.chrome.com/origintrials/#/view_trial/2541156089743802369">https://developer.chrome.com/origintrials/#/view_trial/2541156089743802369</a>
+          </ul>
+        </li>
+      </ul>
+      <p>ちなみに、試したところ Token を追加するのは <em>埋め込まれた iframe 側</em> で、埋め込む側には必要無さそうなので、提供する側が対応すれば良さそうだ。
+      <p>期間は <em>Chrome 92 to 96 (Dec 15, 2021)</em> となっている。
+      <p>これはあくまで Chrome の話で、 Firefox や Safari がいつリリースするかわわからない。 Firefox はおそらく Chrome に続くのではないかと思うが、 Safari は例年通り次の 9 月に 15 が出ると予想すると、最速でそこに入れてくる可能性が無いとは言い切れ無さそうだ。
+      <p>つまり、今分かっているのは「<em>Reverse Origin Trials に登録し、なるべく早く、遅くとも 12 月までに直すしか無い</em>」ということだと言えるだろう。
+    </section>
+    <section>
+      <h2 id="修正方法"><a href="#修正方法">修正方法</a></h2>
+      <p>実際にどういう実装があるのかは筆者にはよくわからないが、想定されるケースを筆者なりに考えてみた。
+      <p>できることは、提供している方法によって違うだろう。
+      <section>
+        <h3 id="iframe-を埋め込む-js-を提供している場合"><a href="#iframe-を埋め込む-js-を提供している場合">iframe を埋め込む JS を提供している場合</a></h3>
+        <p>Ad のタグなどは、 JS が提供され、サイトは <code translate="no">&lt;script&gt;</code> タグを埋め込む。その JS が実行された際に <code translate="no">&lt;iframe&gt;</code> を埋め込むという形式の提供が多いように思う。
+        <p>この場合は、埋め込む <code translate="no">&lt;iframe&gt;</code> が Top Level で実行された JS に messaging ができるのであれば、トップレベルでダイアログを呼ぶというような方式が考えられそうだ。
+        <p>ただ、そこまでできているのであれば、 Dialog API (alert/confirm/prompt) を使うよりは、きちんと UI を設計する方が良いように思うが、時間がなければとりあえずはダイアログで間に合わせることになるだろう。
+        <p>エントリポイントが JS である時点で、選択肢は広くあると思われる。
+      </section>
+      <section>
+        <h3 id="iframe-を直接提供している場合"><a href="#iframe-を直接提供している場合">iframe を直接提供している場合</a></h3>
+        <p><code translate="no">&lt;iframe&gt;</code> を提供し、コンテンツがその <code translate="no">&lt;iframe&gt;</code> を直接埋め込んでいる場合は、もうその <code translate="no">&lt;iframe&gt;</code> 内でなんとかするしかないだろう。
+        <p><code translate="no">&lt;iframe&gt;</code> が領域を広めに確保していれば、その中で出せる範囲のダイアログを出すしか無いし、 <code translate="no">&lt;iframe&gt;</code> が十分な領域を持ってない場合(ボタンだけなど)の場合はできることは少ないだろう。
+        <p>サイト側に <code translate="no">&lt;iframe&gt;</code> からのメッセージを送り、それを受け取って何かをするようにサイト側の JS を直してもらえるならなんとかなるが、そうでない場合は <code translate="no">&lt;iframe&gt;</code> での提供をやめて前述の JS 提供の形態に変えるか、もしくはダイアログ自体を諦めて仕様を変えるしか無いように思う。
+        <p>もちろん筆者が見落としている実装方法があるかもしれないので、良い方法があれば共有すると良いだろう。
+      </section>
+    </section>
+    <section>
+      <h2 id="web-の互換性と安全性"><a href="#web-の互換性と安全性">Web の互換性と安全性</a></h2>
+      <p>今回の件で、実装が壊れて対応に追われた人もいるだろう。そういう人達からすれば迷惑な話だと思うし、恨みの一つも言いたくなる気持ちはわからなくはない。
+      <p>実際、ここまで問題になれば、 Chrome にしてもプランの変更や OT の延長などがあり得るかもしれないが、実装の変更をしないで済むかというと、そうはならないだろう。どうあれ、近い将来にこの機能は無効になると思われるし、そう思って行動すべきだ。
+      <p>「<em>Web は互換性を維持する</em>」という大原則は知られているだろう。そこと比べれば今回は大きく互換性を壊していることになる。しかし、実は Web には互換性よりも大事なことがある。それが「<em>ユーザの安全</em>」だ。
+      <p>Web には歴史的に様々な機能があり、それらがその時点では「正しいユースケース」とみなされていても、時代が変わるとごとにそうではなく「危険な機能」であると見直されることがよくある。
+      <p>例えば Spectre の登場により Shared Array Buffer が無効になるのも、 Cookie のデフォルトが SameSite=Lax になるのも、 HTTPS でないと URL バーが赤くなるのも、全ては時代とともに高度になる潜在的な危険から、ユーザを守るために「互換性を壊してでも直すべきだ」とされて起こる変更だ。
+      <p>そして、そうした変更は Opt-In で提供しても実装が変わらないと浸透せず、多くの実装はいつまでたっても変わらないために、ブラウザがデフォルトとしてリリースすることで、変更を実装に強制するということを、分かった上で積極的に行っていく時代に既になっている。
+      <p>Web がそうなっている以上、その変更に合わせてユーザが安全に使えるように実装を更新するのも、開発者およびサービス/コンテンツ提供者の使命といっても、過言でないのではないだろうか。
+      <p>一方で、 Reverse Origin Trials があるとはいえ、 Google のアナウンスが適切であったかについては、筆者も疑問に思わなくない。一次情報として blink-dev の話はあるが、それ以外にもう少しアナウンスがあっても良さそうには思う。
+      <p>本サイトや、筆者が行っている <a href="https://mozaic.fm">mozaic.fm</a> の Monthly Web が少しでもそうした情報の提供に役立てば幸いだ。
+    </section>
+    <section>
+      <h2 id="demo"><a href="#demo">DEMO</a></h2>
+      <p>動作するデモを以下に用意した。
+      <ul>
+        <li><a href="https://labs.jxck.io/iframe/dialog.html">https://labs.jxck.io/iframe/dialog.html</a>
+      </ul>
+    </section>
+    <section>
+      <h2 id="resources"><a href="#resources">Resources</a></h2>
+      <ul>
+        <li>
+          Spec
+          <ul>
+            <li>
+              Add early return to JS dialogs triggered from different origin-domain iframes by carlosjoan91 - Pull Request #6297 - whatwg/html
+              <ul>
+                <li><a href="https://github.com/whatwg/html/pull/6297">https://github.com/whatwg/html/pull/6297</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>Explainer
+        <li>Requirements Doc
+        <li>
+          Mozilla Standard Position
+          <ul>
+            <li><a href="https://github.com/whatwg/html/issues/5407#issuecomment-606417807">https://github.com/whatwg/html/issues/5407#issuecomment-606417807</a>
+          </ul>
+        </li>
+        <li>
+          Webkit Position
+          <ul>
+            <li><a href="https://github.com/whatwg/html/issues/5407#issuecomment-760574422">https://github.com/whatwg/html/issues/5407#issuecomment-760574422</a>
+          </ul>
+        </li>
+        <li>TAG Design Review
+        <li>
+          Intents
+          <ul>
+            <li>
+              Intent to Remove: Cross origin subframe JS Dialogs
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/hTOXiBj3D6A/">https://groups.google.com/a/chromium.org/g/blink-dev/c/hTOXiBj3D6A/</a>
+              </ul>
+            </li>
+            <li>
+              Request for Deprecation Trial: Remove alert(), confirm(), and prompt for cross origin iframes
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/VOePv--Qa-4">https://groups.google.com/a/chromium.org/g/blink-dev/c/VOePv--Qa-4</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Chrome Platform Status
+          <ul>
+            <li>
+              Remove alert(), confirm(), and prompt for cross origin iframes - Chrome Platform Status
+              <ul>
+                <li><a href="https://www.chromestatus.com/feature/5148698084376576">https://www.chromestatus.com/feature/5148698084376576</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>WPT (Web Platform Test)
+        <li>
+          DEMO
+          <ul>
+            <li><a href="https://labs.jxck.io/iframe/dialog.html">https://labs.jxck.io/iframe/dialog.html</a>
+          </ul>
+        </li>
+        <li>Blog
+        <li>Presentation
+        <li>
+          Issues
+          <ul>
+            <li>
+              1065085 - Implement window.{alert, prompt, confirm} removal from cross-origin iframes - chromium
+              <ul>
+                <li><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=1065085">https://bugs.chromium.org/p/chromium/issues/detail?id=1065085</a>
+              </ul>
+            </li>
+            <li>
+              Cross-origin prompts still have significant use cases - Issue #6897 - whatwg/html
+              <ul>
+                <li><a href="https://github.com/whatwg/html/issues/6897">https://github.com/whatwg/html/issues/6897</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Other
+          <ul>
+            <li>
+              Salesforce functionality impacted in Chrome 92 after recent change to cross-origin iframe JavaScript dialogs
+              <ul>
+                <li><a href="https://trailblazer.salesforce.com/issues_view?id=a1p4V000002BRMXQA4">https://trailblazer.salesforce.com/issues_view?id=a1p4V000002BRMXQA4</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </article>
+</main>
+<hr>
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small> See <small><a href=/policies/site.html>Site Policy</a> and <a href=/policies/privacy.html>Privacy Policy</a>.</small></p>
+  <amp-ad width=100vw height=320 type=adsense data-ad-client=ca-pub-2902784829138215 data-ad-slot=9735419796 data-auto-format=rspv data-full-width><div overflow></div></amp-ad>
+</footer>
+</body>
+</html>
+<amp-analytics type=googleanalytics id=analytics1>
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
