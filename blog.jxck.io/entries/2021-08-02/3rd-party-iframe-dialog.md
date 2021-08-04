@@ -46,7 +46,7 @@ Chrome の場合は、ダイアログに「*誰がこれを呼び出したのか
 
 以下は Cross Origin iframe として埋め込んだ lab2.jxck.io で呼び出した場合の挙動だ。
 
-![Cross Origin iframe で prompt() を呼んだ場合 "An embedded page at lab2.jxck.io sayz" と表示される](1st-prompt.png#1260x700)
+![Cross Origin iframe で prompt() を呼んだ場合 "An embedded page at lab2.jxck.io sayz" と表示される](3rd-prompt.png#1260x700)
 
 ユーザにとってこの表示の意味を理解するのは必ずしも容易ではない。 ただの `alert()` であれば得られる情報はないが、 `prompt()` の場合はユーザに入力を求め、それを JS で取得することができてしまう。
 
