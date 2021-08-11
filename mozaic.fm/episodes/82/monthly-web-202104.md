@@ -20,7 +20,10 @@ guest
 
 ## Theme
 
-第 81 回のテーマは 2021 年 4 月の Monthly Web です。
+第 82 回のテーマは 2021 年 4 月の Monthly Web です。
+
+
+## Show Note
 
 
 ### Chrome 動向

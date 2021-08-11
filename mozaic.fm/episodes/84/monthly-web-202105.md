@@ -17,6 +17,9 @@ guest
 第 84 回のテーマは 2021 年 5 月の Monthly Web です。
 
 
+## Show Note
+
+
 ### Chrome 動向
 
 
@@ -165,6 +168,7 @@ guest
 - Ready for Trial: Extend Intl.DateTimeFormat timeZoneName Option
   - <https://groups.google.com/a/chromium.org/g/blink-dev/c/e4Ict1TT9FE/m/aq69ne3rBAAJ>
 
+
 #### V8
 
 - V8 release v9.1 · V8
@@ -177,6 +181,7 @@ guest
   - Interpreter の最適化が限界に来ている
   - より高速化するため中間に Sparkplug を導入
   - Speed Meter のスコアも 5~10% 向上
+
 
 #### Other
 
@@ -282,6 +287,7 @@ guest
   - An Easier Path to Great Page Experiences Using AMP for WordPress – The AMP Blog
     - <https://blog.amp.dev/2021/05/27/an-easier-path-to-great-page-experiences-using-amp-for-wordpress/>
 
+
 ### Firefox 動向
 
 
@@ -298,6 +304,7 @@ guest
   - <https://blog.mozilla.org/security/2021/05/25/updates-to-firefoxs-breach-alert-policy/>
 - *Introducing Site Isolation in Firefox - Mozilla Security Blog*
   - <https://blog.mozilla.org/security/2021/05/18/introducing-site-isolation-in-firefox/>
+
 
 #### Intents
 
@@ -326,6 +333,7 @@ guest
 - *prototype: Implement path() on d property on SVG path element*
   - <https://groups.google.com/a/mozilla.org/g/dev-platform/c/BTXw4pOfnR4>
 
+
 #### Other
 
 - *Growing the Bytecode Alliance - The Mozilla Blog*
@@ -338,8 +346,6 @@ guest
   - <https://blog.nightly.mozilla.org/2021/05/21/these-weeks-in-firefox-issue-94/>
 - *Manifest v3 update \| Mozilla Add-ons Blog*
   - <https://blog.mozilla.org/addons/2021/05/27/manifest-v3-update/>
-
-
 
 
 ### Safari 動向
@@ -409,7 +415,6 @@ guest
   - WebRTC
 
 
-
 #### Position
 
 - [webkit-dev] Request for position: New Canvas 2D API
@@ -443,6 +448,7 @@ guest
 - [webkit-dev] Position Request on Window Controls Overlay
   - <https://lists.webkit.org/pipermail/webkit-dev/2021-May/031865.html>
 
+
 #### Other
 
 - iOS 14.5 offers Unlock iPhone with Apple Watch, diverse Siri voices, and more - Apple
@@ -455,6 +461,7 @@ guest
   - Additional iOS 14.5 Features
   - Press Contacts
 
+
 ### Edge 動向
 
 
@@ -462,8 +469,6 @@ guest
 
 
 #### MS Build
-
-
 
 - MyBuild - Microsoft Edge: State of the platform
   - <https://mybuild.microsoft.com/sessions/6f28eb25-8a24-488b-a50c-eab6d087d8a4>
@@ -476,7 +481,6 @@ guest
   - AMA for Edge
 - What's new for Microsoft Edge at Microsoft Build 2021
   - <https://blogs.windows.com/msedgedev/2021/05/25/whats-new-edge-build-2021/>
-
 
 
 #### Updates
@@ -522,6 +526,7 @@ guest
 - New shopping features to help you save money for summer fun and all your back-to-school needs
   - <https://blogs.windows.com/windowsexperience/2021/05/27/new-shopping-features-to-help-you-save-money-for-summer-fun-and-all-your-back-to-school-needs/>
 
+
 #### Chakra
 
 
@@ -534,6 +539,7 @@ guest
 - *Internet Explorer: A Brief History – Ben Slivka*
   - <https://benslivka.com/2021/05/27/internet-explorer-a-brief-history/>
   - IE の歴史
+
 
 ### WHATWG/W3C 動向
 
@@ -570,6 +576,7 @@ guest
   - *Advance Notice: Working in progress on a Portable Network Graphics (PNG) Working Group*
     - <https://lists.w3.org/Archives/Public/public-new-work/2021May/0002.html>
 
+
 #### Other
 
 - Working Group Note: Making Content Usable for People with Cognitive and Learning Disabilities
@@ -583,6 +590,7 @@ guest
 - Interest Group Note: Web of Things (WoT): Use Cases and Requirements
   - <https://www.w3.org/blog/news/archives/9066>
 
+
 ### TC39 動向
 
 
@@ -595,6 +603,7 @@ guest
     - <https://spidermonkey.dev/blog/2021/05/10/tc39.html>
 - *2021-05*
   - <https://github.com/tc39/agendas/blob/master/2021/05.md>
+
 
 #### Proposals Diff
 
@@ -615,10 +624,12 @@ guest
   - *RegExp Match Indices*
   - *Top Level await*
 
+
 #### New Proposals
 
 - tc39/proposal-limited-arraybuffer
   - <https://github.com/tc39/proposal-limited-arraybuffer>
+
 
 #### Other
 
@@ -714,9 +725,8 @@ guest
 - secdispatch
   - <https://mailarchive.ietf.org/arch/browse/secdispatch/>
 
+
 #### Other
-
-
 
 
 ### CDN 動向
@@ -735,6 +745,7 @@ guest
 - *QUIC Version 1 is live on Cloudflare*
   - <https://blog.cloudflare.com/quic-version-1-is-live-on-cloudflare/>
 
+
 #### Fastly
 
 - *QUIC is now RFC 9000*
@@ -746,10 +757,12 @@ guest
   - 今後も MASQUE / WebTransport などへの展開も見えている
   - QUIC v1 がこれからの技術の発展のベースとなっていく
 
+
 #### Other
 
 - フィッシング対抗の多要素認証 Akamai MFA - Akamai Japan Blog
   - <https://blogs.akamai.com/jp/2021/05/akamai-mfa.html>
+
 
 ### セキュリティ動向
 
@@ -763,10 +776,12 @@ guest
 - Let's Encrypt のルート認証局移行についてちょっと調べてみた - Qiita
   - <https://qiita.com/kjur/items/2fd72b6707497c7fc6c5>
 
+
 ### 周辺動向
 
 - *How we use Web Components at GitHub*
   - <https://github.blog/2021-05-04-how-we-use-web-components-at-github/>
+
 
 ### イベント
 
@@ -787,6 +802,7 @@ guest
     - 10/18-22 October: Breakout sessions
     - 10/25-29 October: Groups and Joint Meetings
     - <https://lists.w3.org/Archives/Public/public-webrtc/2021Apr/0027.html>
+
 
 ### Wrap Up
 

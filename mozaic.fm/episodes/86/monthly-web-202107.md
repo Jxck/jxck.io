@@ -17,6 +17,9 @@ guest
 第 86 回のテーマは 2021 年 7 月の Monthly Web です。
 
 
+## Show Note
+
+
 ### Chrome 動向
 
 

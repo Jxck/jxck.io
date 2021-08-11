@@ -14,7 +14,10 @@ guest
 
 ## Theme
 
-第 80 回のテーマは 2021 年 3 月の Monthly Web です。
+第 81 回のテーマは 2021 年 3 月の Monthly Web です。
+
+
+## Show Note
 
 
 ### Chrome 動向

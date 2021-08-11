@@ -17,6 +17,9 @@ guest
 第 85 回のテーマは 2021 年 6 月の Monthly Web です。
 
 
+## Show Note
+
+
 ### Chrome 動向
 
 
