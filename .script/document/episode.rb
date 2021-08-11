@@ -67,7 +67,7 @@ module Document
     end
 
     def subtitle
-      summary.split("\n")[2]
+      summary.split("\n")[0]
     end
 
     def sideshow?
@@ -104,7 +104,7 @@ module Document
     end
 
     def summary()
-      hsc unlink @text.sub(/#(.*?)## Theme/m, "# #{title}")
+      hsc unlink @text.match(/## Theme(.*?)## Show Note/m).captures[0].strip
     end
 
     def theme_line

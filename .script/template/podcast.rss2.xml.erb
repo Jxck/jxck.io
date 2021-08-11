@@ -41,7 +41,11 @@
       <itunes:order><%= episode.order %></itunes:order>
       <itunes:subtitle><%= episode.subtitle %></itunes:subtitle>
       <media:content url="https://<%= episode.audio_file %>" fileSize="<%= episode.size %>" type="audio/mpeg" />
-      <description><%= episode.summary %></description>
+      <description>
+<%= episode.summary %>
+
+Show Note はこちら: <%= episode.canonical %>
+      </description>
     </item>
 <% end %>
   </channel>
