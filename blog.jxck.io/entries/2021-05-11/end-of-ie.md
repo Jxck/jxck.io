@@ -185,6 +185,8 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - <https://blog.getbootstrap.com/2021/05/05/bootstrap-5/>
 - 2021/05/13: Angular v12 is now available
   - <https://blog.angular.io/angular-v12-is-now-available-32ed51fbfd49>
+- 2021/05/17: Internet Explorer 11への対応終了のお知らせ - Mackerel お知らせ #mackerelio
+  - <https://mackerel.io/ja/blog/entry/20210517#Internet-Explorer-11への対応終了のお知らせ>
 
 
 ## Win10 の IE11 デスクトップサポート終了アナウンス
@@ -230,7 +232,9 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - <https://www.microsoft.com/ja-jp/windows/windows-11-specifications>
   - 「Internet Explorer は無効になります。」
   - 「従来の Internet Explorer ベースの Web サイトやアプリケーションに直接アクセスできる「Internet Explorer モード (IE モード) 」を搭載した Microsoft Edge をご利用ください。」
-- Internet Explorer 11への対応終了のお知らせ - Mackerel お知らせ #mackerelio
-  - <https://mackerel.io/ja/blog/entry/20210517#Internet-Explorer-11への対応終了のお知らせ>
-- Internet Explorerの対応を終了します - カクヨムからのお知らせ
+- 2021/07/13: Internet Explorerの対応を終了します - カクヨムからのお知らせ
   - <https://kakuyomu.jp/info/entry/2021/07/13/125755>
+- 2021/07/20: Deprecation of Internet Explorer Support - The AMP Blog
+  - <https://blog.amp.dev/2021/07/20/deprecation-of-internet-explorer-support/>
+- 2021/08/04: Internet Explorer 11 サポート終了のお知らせ \| ニコニコインフォ
+  - <https://blog.nicovideo.jp/niconews/155803.html>
