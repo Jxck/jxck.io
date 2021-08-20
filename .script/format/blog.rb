@@ -53,7 +53,7 @@ module Format
         return <<~EOS
             <video title="#{alt}" width=#{width} height=#{height} controls playsinline>
               <source src=#{uri} type=video/mp4>
-              <source src=#{uri.to_s.sub(/.mp4$/, '.webm')} type=video/webm>
+              <source src=#{uri.to_s.sub(/\.mp4/, '.webm')} type=video/webm>
               Video Tag required to play this video. Open <a href=#{uri}>#{uri}</a> directry in browser instead.
             </video>
         EOS
