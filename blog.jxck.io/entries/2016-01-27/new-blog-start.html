@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-01-27T08:00:00+08:00",
-    "dateModified": "2021-06-17T08:00:00+08:00",
+    "dateModified": "2021-08-20T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-01-27>2016-01-27</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-06-17>2021-06-17</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-08-20>2021-08-20</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -142,7 +142,8 @@
                 <li><a href=#定義リスト>### 定義リスト</a>
                 <li><a href=#引用>## 引用</a>
                 <li><a href=#テーブル>## テーブル</a>
-                <li><a href=#イメージ>## イメージ</a>
+                <li><a href=#image>## Image</a>
+                <li><a href=#video>## Video</a>
                 <li><a href=#サンプルコード>### サンプルコード</a>
               </ul>
             </nav>
@@ -310,19 +311,38 @@
         </table>
       </section>
       <section>
-        <h2 id="イメージ"><a href="#イメージ">イメージ</a></h2>
-        <p>イメージは <code translate="no">&lt;img&gt;</code> タグを用いて表現する。
+        <h2 id="image"><a href="#image">Image</a></h2>
+        <p>画像は <code translate="no">&lt;picture&gt;</code> タグを用いて表現する。
         <p>
           <picture>
             <source type=image/webp srcset=https://logo.jxck.io/jxck.256x256.webp#256x256>
             <img loading=lazy decoding=async src=https://logo.jxck.io/jxck.256x256.png#256x256 alt="jxck" title="jxck logo" width=256 height=256>
           </picture>
         </p>
+        <p>必ず <code translate="no">.webp</code> も提供する必要がある。
+        <p>webp の推奨は以下
+        <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
+        <pre class=sh><code translate="no">$ cwebp -q 40 img.png -o img.webp</code></pre>
+      </section>
+      <section>
+        <h2 id="video"><a href="#video">Video</a></h2>
+        <p>markdown 上は画像と同じ記法で、拡張子が <code translate="no">mp4</code> の場合は <code translate="no">&lt;video&gt;</code> で展開する。
+        <p>
+          <video title="dummy video" controls playsinline>
+            <source src=dummy_video.mp4?200606_195616#1000x2000 type=video/mp4>
+            <source src=dummy_video.mp4?200606_195616#1000x2000 type=video/webm>
+            Video Tag required to play this video. Open <a href=dummy_video.mp4?200606_195616#1000x2000>dummy_video.mp4?200606_195616#1000x2000</a> directry in browser instead.
+          </video>
+        </p>
+        <p>必ず <code translate="no">.mp4</code>, <code translate="no">.webm</code> 両方を提供する必要がある。
+        <p>Quick Time で screen record を取り gif 的に表示するなら推奨は以下。
+        <pre class=sh><code translate="no"># メタデータを消し、 frame rate を 24 にし、Audio を消す
+$ ffmpeg -i video.mov -map_metadata -1 -r 24 -an video.webm
+$ ffmpeg -i video.mov -map_metadata -1 -r 24 -an video.mp4</code></pre>
         <section>
           <h3 id="サンプルコード"><a href="#サンプルコード">サンプルコード</a></h3>
           <p>インラインの場合は <code translate="no">&lt;code&gt;</code> タグを用いて表現する。
           <p>コードブロックの場合は <code translate="no">&lt;pre&gt;</code> と <code translate="no">&lt;code&gt;</code> を用いて表現する。
-          <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
           <pre class=http><code translate="no"># デフォルトリクエスト
 GET / HTTP/1.1
 Host: example.com

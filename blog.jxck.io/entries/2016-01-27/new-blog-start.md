@@ -100,12 +100,35 @@
 
 
 
-## イメージ
+## Image
 
-イメージは `<img>` タグを用いて表現する。
+画像は `<picture>` タグを用いて表現する。
 
 ![jxck](https://logo.jxck.io/jxck.256x256.png#256x256 'jxck logo')
 
+必ず `.webp` も提供する必要がある。
+
+webp の推奨は以下
+
+```sh
+$ cwebp -q 40 img.png -o img.webp
+```
+
+## Video
+
+markdown 上は画像と同じ記法で、拡張子が `mp4` の場合は `<video>` で展開する。
+
+![dummy video](dummy_video.mp4#1000x2000)
+
+必ず `.mp4`, `.webm` 両方を提供する必要がある。
+
+Quick Time で screen record を取り gif 的に表示するなら推奨は以下。
+
+```sh
+# メタデータを消し、 frame rate を 24 にし、Audio を消す
+$ ffmpeg -i video.mov -map_metadata -1 -r 24 -an video.webm
+$ ffmpeg -i video.mov -map_metadata -1 -r 24 -an video.mp4
+```
 
 ### サンプルコード
 
