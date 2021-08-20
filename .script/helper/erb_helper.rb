@@ -56,7 +56,6 @@ module ERBHelper
   end
 
   def cache_busting(path)
-    puts path
     f = File.open(path)
     q = f.mtime.strftime("%y%m%d_%H%M%S")
     return q
