@@ -48,6 +48,17 @@ module Format
         return %(<img loading=lazy decoding=async src=#{uri} alt="#{alt}" title="#{title}" width=#{width} height=#{height}>)
       end
 
+      # if mp4, use <video> instead <picture>
+      if File.extname(uri.path) == ".mp4"
+        return <<~EOS
+            <video title="#{alt}" controls playsinline>
+              <source src=#{uri} type=video/mp4>
+              <source src=#{uri.to_s.sub(/.mp4$/, '.webm')} type=video/webm>
+              Video Tag required to play this video. Open <a href=#{uri}>#{uri}</a> directry in browser instead.
+            </video>
+        EOS
+      end
+
       # No width-height for normal img
       return <<~EOS
            <picture>
