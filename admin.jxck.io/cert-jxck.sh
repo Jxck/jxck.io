@@ -30,6 +30,7 @@ sudo certbot certonly \
   -d lab2.jxck.io \
   -d api.jxck.io \
   -d ws.jxck.io \
+  -d zenn.jxck.io \
   -d reporting.jxck.io \
   -d publisher.labs.jxck.io \
   -d advertiser.labs.jxck.io \
