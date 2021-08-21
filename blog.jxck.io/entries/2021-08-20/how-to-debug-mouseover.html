@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-08-20T08:00:00+08:00",
-    "dateModified": "2021-08-20T08:00:00+08:00",
+    "dateModified": "2021-08-21T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-08-20>2021-08-20</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-08-20>2021-08-20</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-08-21>2021-08-21</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -131,7 +131,7 @@
         <dt>toc</dt>
         <dd>
           <details class=info>
-            <summary>headdings</summary>
+            <summary>headings</summary>
             <nav>
               <ul>
                 <li><a href=#intro>## Intro</a>
@@ -159,7 +159,7 @@
       </section>
       <section>
         <h2 id="mouseover-tooltip"><a href="#mouseover-tooltip">mouseover tooltip</a></h2>
-        <p>対象として、 Github のユーザアイコンのクリックを見てみよう。
+        <p>対象として、 GitHub のユーザアイコンのクリックを見てみよう。
         <p>以下のようにアイコンに mouseover しているときだけ、ユーザのプロフィールが出現する UI だ。
         <p>この UI を表示した状態で Devtools で DOM を見たい場合、 Devtools 側にマウスを移動すると UI が消えてしまい、 inspect できない。
         <p>
@@ -178,7 +178,7 @@
         <p>mouseover で DOM を表示する実装は、大抵 mouseleave/mouseout などでその DOM を消している。
         <p>この対になるイベントハンドラが判明しているなら、それを消してしまえば DOM を消す側の処理がなくなり DOM が残る。
         <p>これが一番簡単なやり方で、大抵はこれで足りる。同じ発想は focus や mouseenter など他のハンドラでも応用できる。
-        <p>Github の場合は、アイコンの mouseleave と、表示されたプロフィールの mouseleave を消すと、落ち着いて DOM を inspect できるようになる。
+        <p>GitHub の場合は、アイコンの mouseleave と、表示されたプロフィールの mouseleave を消すと、落ち着いて DOM を inspect できるようになる。
         <p>
           <video title="mouseleave を消すことで UI が消えないようにし inspect する様のスクリーンレコード" width=2880 height=1800 controls playsinline>
             <source src=1.remove-mouseleave.mp4?210820_180414#2880x1800 type=video/mp4>
@@ -197,7 +197,7 @@
         </ul>
         <p>よって、 UI を表示した結果、属性やノードに起こる変化がわかっていれば、これを使うこともできる。
         <p>ただし、属性が変わったあとに UI が表示されるような実装だと、そこまでステップ実行する必要があったり、 UI が表示されるのが直接の子要素ではない場合などは 1 の方が楽だ。
-        <p>Github の場合は、ページ下部に非表示の DOM が先にあり、この属性を変えてるタイプの実装なので、そこが判明していれば、以下のように inspect できる。
+        <p>GitHub の場合は、ページ下部に非表示の DOM が先にあり、この属性を変えているタイプの実装なので、そこが判明していれば、以下のように inspect できる。
         <p>
           <video title="attribute modification に break point を設定し UI が消えないようにし inspect する様のスクリーンレコード" width=2880 height=1800 controls playsinline>
             <source src=2.break-on-state.mp4?210820_180419#2880x1800 type=video/mp4>
@@ -210,7 +210,7 @@
         <h2 id="3-f8"><a href="#3-f8">3. F8</a></h2>
         <p>Devtools の source tab を開いた状態で F8 を押すと、そこで Script Exec を止めることができる。つまり強制的に debugger を差し込むようなイメージだ。
         <p>mouseover で対象の UI を表示させてから F8 を押して、そのあとの JS を止めてしまうことで、 Devtools に移ることができ、そこから step 実行を始めることもできる。
-        <p>Github の場合は、プロフィールを表示してから F8 を押してからマウスを動かせば、 mouseleave の JS 発火時に break できる。
+        <p>GitHub の場合は、プロフィールを表示してから F8 を押してからマウスを動かせば、 mouseleave の JS 発火時に break できる。
         <p>
           <video title="UI が消える前に F8 でスクリプト実行を停止し inspect する様のスクリーンレコード" width=2880 height=1800 controls playsinline>
             <source src=3.break-F8.mp4?210820_180424#2880x1800 type=video/mp4>
@@ -219,11 +219,11 @@
           </video>
         </p>
         <p>同じことを、 console に <code translate="no">setTimeout(() =&gt; {debugger}, 1000)</code> を貼り付けて 1 秒以内に UI を出して、 debugger で JS を止めるというやり方で紹介していることもあるようだが、やっていることは同じだ。
-        <p>他にも、 F8 押すと止まるというのは、知ってると使える場面があるかもしれない。
+        <p>他にも、 F8 押すと止まるというのは、知っていると使える場面があるかもしれない。
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
-        <p>知ってれば一瞬だが、知らないと無駄に時間を食うタイプのものでもあるので紹介した。
+        <p>知っていれば一瞬だが、知らないと無駄に時間を食うタイプのものでもあるので紹介した。
         <p>Devtools は知らぬ間にどんどん新しい機能が入ってくるので、そのうちもっと良い方法が生まれるかもしれない。
       </section>
       <section>
