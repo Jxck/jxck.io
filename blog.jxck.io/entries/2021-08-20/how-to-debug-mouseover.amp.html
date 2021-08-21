@@ -853,7 +853,7 @@
         <li>node removal
       </ul>
       <p>よって、 UI を表示した結果、属性やノードに起こる変化がわかっていれば、これを使うこともできる。
-      <p>ただし、属性が変わったあとに UI が表示されるような実装だと、そこまでステップ実行する必要があったり、 UI が表示されるのが直接の子要素じゃない場合などは、 1 の方が楽だ。
+      <p>ただし、属性が変わったあとに UI が表示されるような実装だと、そこまでステップ実行する必要があったり、 UI が表示されるのが直接の子要素ではない場合などは 1 の方が楽だ。
       <p>Github の場合は、ページ下部に非表示の DOM が先にあり、この属性を変えてるタイプの実装なので、そこが判明していれば、以下のように inspect できる。
       <p>
         <amp-img layout=responsive src=2.break-on-state.mp4#2880x1800 alt="attribute modification に break point を設定し UI が消えないようにし inspect する様のスクリーンレコード" title="remove mouseleave" width=2880 height=1800>
@@ -867,12 +867,12 @@
       <p>
         <amp-img layout=responsive src=3.break-F8.mp4#2880x1800 alt="UI が消える前に F8 でスクリプト実行を停止し inspect する様のスクリーンレコード" title="remove mouseleave" width=2880 height=1800>
       </p>
-      <p>同じことを、 console に <code translate="no">setTimeout(() =&gt; {debugger}, 1000)</code> を貼り付けて 1 秒以内に UI を出して、 debugger で JS を止めるというやり方で紹介していることもあるようだが、やってることは同じだ。
-      <p>他にも、 F8 押すと止まるってのは、知ってると使える場面があるかもしれない。
+      <p>同じことを、 console に <code translate="no">setTimeout(() =&gt; {debugger}, 1000)</code> を貼り付けて 1 秒以内に UI を出して、 debugger で JS を止めるというやり方で紹介していることもあるようだが、やっていることは同じだ。
+      <p>他にも、 F8 押すと止まるというのは、知ってると使える場面があるかもしれない。
     </section>
     <section>
       <h2 id="outro"><a href="#outro">Outro</a></h2>
-      <p>知ってれば一瞬だが、知らないと無駄に時間を食うタイプのものでもあるので、紹介した。
+      <p>知ってれば一瞬だが、知らないと無駄に時間を食うタイプのものでもあるので紹介した。
       <p>Devtools は知らぬ間にどんどん新しい機能が入ってくるので、そのうちもっと良い方法が生まれるかもしれない。
     </section>
     <section>
