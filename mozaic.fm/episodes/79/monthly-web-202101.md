@@ -922,7 +922,7 @@ guest
   - <https://infrequently.org/2020/12/content-visibility-scroll-fix/>
 - Resize-Resilient `content-visiblity` Fixes - Infrequently Noted
   - <https://infrequently.org/2020/12/resize-resilient-deferred-rendering/>
-- ソフトバンク・博報堂・トレジャーデータの合弁会社、 3rd パーティクッキー依存しないソリューションを提供開始 | RTB SQUARE
+- ソフトバンク・博報堂・トレジャーデータの合弁会社、 3rd パーティクッキー依存しないソリューションを提供開始 \| RTB SQUARE
   - <https://rtbsquare.work/archives/34250>
 - South Korea kills ActiveX-based government digital certificate service - The Register
   - <https://www.theregister.com/2020/12/10/south_korea_activex_certs_dead/>

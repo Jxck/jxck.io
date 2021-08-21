@@ -651,7 +651,7 @@ guest
 - 3 月
   - 2-4: Microsoft Ignite
     - <https://myignite.microsoft.com/home>
-  - 8-12: IETF | IETF 110 Online
+  - 8-12: IETF110 Online
     - <https://www.ietf.org/how/meetings/110/>
   - 9: HTTP WG Interim meeting
     - <https://github.com/httpwg/wg-materials/blob/gh-pages/interim-21-02/agenda.md>

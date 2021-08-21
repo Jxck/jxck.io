@@ -560,7 +560,7 @@ guest
 
 #### Other
 
-- Node v16.5.0 (Current) | Node.js
+- Node v16.5.0 (Current) \| Node.js
   - <https://nodejs.org/en/blog/release/v16.5.0/>
   - Experimental Web Streams API
 
