@@ -24,12 +24,12 @@
 対応している記法を列挙し、挙動を確認する。
 
 
-### headding section 3
+### heading section 3
 
 ここは `<h3>` セクションである。
 
 
-#### headding section 4
+#### heading section 4
 
 ここは `<h4>` セクションである。
 
