@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>EyeDropper DEMO</title>
+
+<meta http-equiv="origin-trial" content="">
+
+<style>
+</style>
+
+<h1>EyeDropper DEMO</h1>
+
+<button>EyeDropper</button>
+
+<input type=color>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  $('button').on('click', async (e) => {
+    console.log(e)
+
+    const eyeDropper = new EyeDropper();
+    console.log(eyeDropper)
+
+    const color = await eyeDropper.open()
+    console.log(color);
+
+    $('input[type=color]').value = color.sRGBHex
+  })
+</script>
