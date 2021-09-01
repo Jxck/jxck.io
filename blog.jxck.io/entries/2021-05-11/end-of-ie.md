@@ -238,3 +238,5 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - <https://blog.amp.dev/2021/07/20/deprecation-of-internet-explorer-support/>
 - 2021/08/04: Internet Explorer 11 サポート終了のお知らせ \| ニコニコインフォ
   - <https://blog.nicovideo.jp/niconews/155803.html>
+- 2021/08: Internet Explorerサポート終了のご案内 - 少年ジャンプ＋α
+  - <https://shonenjumpplus.com/article/information_0818>
