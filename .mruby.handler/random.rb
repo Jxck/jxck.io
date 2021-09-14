@@ -12,7 +12,8 @@ Proc.new do |env|
 
   header = {
     "Content-Type" => "text/#{ext}; charset=utf-8",
-    "X-Seq" => seq
+    "X-Seq" => seq,
+    "ETag" => seq
   }
 
   body = ""
