@@ -111,6 +111,11 @@ podcasttest:
 podcastid3all:
 	$(MARK) --podcastid3all
 
+podcastkeyword:
+	#bundle exec ruby ./.script/shownote.rb
+	ruby ./.script/shownote.rb
+
+
 marktest:
 	$(MARK) --marktest
 
