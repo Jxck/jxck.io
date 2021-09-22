@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html amp lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href=https://blog.jxck.io/entries/2021-09-22/private-relay-for-ip-blindness.html>
+
+  <link rel=icon             type =image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon             type =image/png sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.png>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="iOS15 がリリースされたため、 Private Relay のベータを試すことができた。このようなサービスが提供されるようになった背景を踏まえ、挙動を簡単に確認しつつ、解説する。">
+  <meta name=keywords            content="private relay,proxy,ip blindness,privacy">
+  <meta name=theme-color         content=#000000>
+
+  <meta name=twitter:card        content=summary>
+  <meta name=twitter:site        content=@jxck_>
+  <meta name=twitter:url         content=https://blog.jxck.io/entries/2021-09-22/private-relay-for-ip-blindness.html>
+  <meta name=twitter:title       content="Private Relay と IP Blindness による  Fingerprint 対策 | blog.jxck.io">
+  <meta name=twitter:description content="iOS15 がリリースされたため、 Private Relay のベータを試すことができた。このようなサービスが提供されるようになった背景を踏まえ、挙動を簡単に確認しつつ、解説する。">
+  <meta name=twitter:image       content=https://blog.jxck.io/assets/img/jxck.png>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2021-09-22/private-relay-for-ip-blindness.html>
+  <meta property=og:title        content="Private Relay と IP Blindness による  Fingerprint 対策 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="iOS15 がリリースされたため、 Private Relay のベータを試すことができた。このようなサービスが提供されるようになった背景を踏まえ、挙動を簡単に確認しつつ、解説する。">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.png>
+
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Private Relay と IP Blindness による  Fingerprint 対策 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2021-09-22T08:00:00+08:00",
+    "dateModified": "2021-09-23T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.60x60.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": "iOS15 がリリースされたため、 Private Relay のベータを試すことができた。このようなサービスが提供されるようになった背景を踏まえ、挙動を簡単に確認しつつ、解説する。"
+  }
+  </script>
+
+  <title>Private Relay と IP Blindness による  Fingerprint 対策 | blog.jxck.io</title>
+  <script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script>
+  <script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script>
+  <script async custom-element=amp-ad src=https://cdn.ampproject.org/v0/amp-ad-0.1.js></script>
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src=https://cdn.ampproject.org/v0.js></script>
+  <style amp-custom>
+    article section p {
+      margin-inline-start: 0;
+    }
+
+    article table {
+      margin-inline-start: 0;
+    }
+
+    article img {
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
+      border: 1px solid #ccc;
+      box-sizing: content-box;
+      background-color: #fff;
+      max-width: 100%;
+    }
+
+    article ul,
+    article ol,
+    article dl {
+      margin-inline-start: var(--grid);
+      font-family: var(--mono-font);
+    }
+
+    article li {
+      margin-block-start:  calc(var(--grid)/2);
+      margin-block-end:    0;
+      margin-inline-start: calc(var(--grid)/2);
+      margin-inline-end:   0;
+    }
+
+    article dl {
+      display: grid;
+      grid-template-columns: minmax(auto, max-content);
+      grid-column-gap: var(--grid);
+    }
+
+    article dl div {
+      display: contents;
+    }
+
+    article dl dt {
+      grid-column: 1 / 2;
+    }
+    article dl dd {
+      grid-column: 2 / 2;
+    }
+
+    article blockquote {
+      font-family: var(--mono-font);
+    }
+
+    article blockquote p {
+      margin: 0;
+    }
+
+    @supports (line-height-step: 1px) {
+      article {
+        --grid-rhythm: 1.5em;
+        line-height: 1.5;
+        line-height-step: var(--grid-rhythm);
+      }
+
+      article h1,
+      article h2,
+      article h3,
+      article h4,
+      article h5,
+      article h6 {
+        display: inline-block;
+        width: 100%;
+        line-height-step: 0;
+        line-height: 1.2;
+        margin-block-end: 0;
+      }
+
+      article section {
+        /* grid for debug */
+        /* background-size: 100% var(--grid-rhythm); */
+        /* background-image: linear-gradient(to bottom, #00bcd1 1px, transparent 1px); */
+      }
+
+      article p {
+        margin-block-start: var(--grid-rhythm);
+        margin-block-end:   var(--grid-rhythm);
+      }
+
+      article pre,
+      article table {
+        line-height-step: 0;
+        line-height: normal;
+      }
+    }
+    /* Light Mode Theme */
+    :root {
+      --background-color: #fefefe;
+      --font-color: #222;
+      --header-color: #222;
+
+      --anchor-color: RoyalBlue;
+      --anchor-visited-color: Brown;
+
+      --code-block: #161b22;
+      --code-block-font: #ffffff;
+
+      --code-inline: #f1f5f9;
+      --code-inline-font: #292929;
+
+      --block-quote: #ddd;
+      --table-border: #222;
+
+      --regular-font: "Noto Sans", "Noto Sans CJK JP", "Hiragino Sans", 'ヒラギノ角ゴ Pro W3', 'メイリオ', sans-serif;
+      --mono-font: Menlo, Consolas, Liberation, Mono, Courier;
+      --code-font: Menlo, Consolas, Liberation, Mono, Courier;
+
+      --icon-size: 30px;
+
+      --width: 80vw;
+      --max-width: 1024px;
+
+      --grid: 1rem;
+
+      --radius: 4px;
+    }
+
+
+    /* Mobile Theme */
+    @media screen and (max-device-width: 960px) {
+      :root {
+        --width: 94vw;
+      }
+
+      audio {
+        width: 100%;
+      }
+    }
+
+    /* Dark Mode Theme */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --header-color: #111;
+        --background-color: #222;
+        --font-color: #eee;
+
+        --anchor-color: CornflowerBlue;
+        --anchor-visited-color: RosyBrown;
+
+        --table-border: #eee;
+      }
+
+      article img {
+        filter: grayscale(50%);
+      }
+      article img[src*=svg] {
+        filter: invert(100%) grayscale(50%);
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--regular-font);
+      background-color: var(--background-color);
+      color: var(--font-color);
+      /*font-feature-settings: "palt";*/
+      margin: 0;
+      padding: 0;
+    }
+
+    code {
+      font-family: var(--mono-font);
+    }
+
+    img {
+      display: block;
+      height: auto;
+    }
+
+    video {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border: solid 1px #333;
+    }
+
+    hr {
+      margin: 0;
+      padding: 0;
+    }
+
+    iframe {
+      display: block;
+      max-width: 100%;
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
+    }
+    dl.info {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+    }
+
+    dl.info div {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+
+    dl.info dt::after {
+      content: ":";
+      padding-inline-end: calc(var(--grid)/2);
+    }
+
+    dl.info dd {
+      margin-block-start: 0;
+      margin-block-end: 0;
+      margin-inline-end: var(--grid);
+      margin-inline-start: 0;
+    }
+
+    dl.info dd i {
+      font-style: normal;
+      padding-inline-end: calc(var(--grid)/3);
+    }
+
+    details.info > summary {
+    }
+
+    details.info ul {
+      margin-block-start: 0;
+      margin-inline-start: var(--grid);
+    }
+
+    nav.tags {
+      display: inline;
+    }
+
+    .tags ul {
+      display: inline-flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    .tags li:before {
+      content: none;
+    }
+
+    .tags li:first-child:before{
+      content: "[ ";
+    }
+
+    .tags li:after {
+      content: ",";
+      padding-inline-end: 0.5rem;
+    }
+
+    .tags li:last-child:after {
+      content: " ]";
+    }
+    header {
+      z-index: 1;
+      position: sticky;
+      position: -webkit-sticky;
+      top: 0;
+      box-sizing: border-box;
+      margin: 0;
+      padding: calc(var(--grid)/2);
+      background-color: var(--header-color);
+    }
+
+    h2:target,
+    h3:target,
+    h4:target,
+    h5:target,
+    h6:target {
+      /* sticky header に合わせて link scroll をずらす */
+      margin-block-start:  calc((var(--icon-size) + var(--grid)) * -1);
+      padding-block-start: calc((var(--icon-size) + var(--grid)));
+    }
+
+    header nav {
+      width: var(--width);
+      max-width: var(--max-width);
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
+    }
+
+    header nav ul {
+      width: 100%;
+      display: flex;
+      margin: 0;
+    }
+
+    header nav li {
+      width: fit-content;
+      padding: 0;
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: var(--grid);
+      margin-inline-end:   0;
+    }
+
+    header nav ul li a,
+    header nav ul li button {
+      width: fit-content;
+      display: block;
+      padding: 0;
+      margin: 0;
+      border: none;
+    }
+
+    header nav svg {
+      fill: var(--background-color);
+    }
+
+    header nav ul li::before {
+      content: none;
+    }
+
+    header nav ul li:first-child {
+      flex-grow: 1;
+      margin-inline-start: 0;
+    }
+
+    header nav .logo {
+      border: 1px solid #fff;
+      box-sizing: border-box;
+    }
+    h1 > a,
+    h2 > a,
+    h3 > a,
+    h4 > a,
+    h5 > a,
+    h6 > a {
+      color: var(--font-color);
+    }
+
+    h1 > a:visited,
+    h2 > a:visited,
+    h3 > a:visited,
+    h4 > a:visited,
+    h5 > a:visited,
+    h6 > a:visited {
+      color: var(--font-color);
+    }
+
+    h1 > a::before {
+      content: "# ";
+    }
+
+    h2 > a::before {
+      content: "## ";
+    }
+
+    h3 > a::before {
+      content: "### ";
+    }
+
+    h4 > a::before {
+      content: "#### ";
+    }
+
+    h1 > a:hover::before,
+    h2 > a:hover::before,
+    h3 > a:hover::before,
+    h4 > a:hover::before,
+    h5 > a:hover::before,
+    h6 > a:hover::before {
+      color: var(--anchor-visited-color);
+    }
+
+    em {
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    em::before,
+    em::after {
+      content: "*";
+    }
+
+    strong {
+      color: red;
+    }
+
+    strong::before,
+    strong::after {
+      content: "**";
+    }
+
+    ul li::before {
+      content: "- ";
+    }
+
+    ol {
+      counter-reset: list;
+    }
+
+    ol li::before {
+      counter-increment: list;
+      content: counter(list) ". ";
+    }
+
+    dl dt::after {
+      content: ":";
+    }
+
+    blockquote {
+      display: block;
+      border: solid 1px var(--block-quote);
+      border-radius: var(--radius);
+      padding: 1rem;
+      margin: 0;
+    }
+
+    blockquote p::before {
+      content: "> ";
+    }
+
+    code {
+      background-color: var(--code-inline);
+      color: var(--code-inline-font);
+      border-radius: var(--radius);
+      padding: 0 4px;
+    }
+
+    code::before,
+    code::after {
+      content: "`";
+    }
+    main {
+      display: block;
+      width: var(--width);
+      max-width: var(--max-width);
+      margin-block-start:  1em;
+      margin-block-end:    1em;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
+    }
+
+    a {
+      word-wrap: break-word;
+      text-decoration: none;
+      color: var(--anchor-color);
+    }
+
+    a:visited {
+      color: var(--anchor-visited-color);
+    }
+
+    ol,
+    ul {
+      list-style: none;
+      padding-inline-start: 0;
+    }
+
+    li {
+      word-break: break-all;
+      word-wrap: break-word;
+    }
+
+    dl dt {
+      font-weight: bold;
+      margin: 0;
+    }
+
+    dl dd {
+      margin: 0;
+    }
+    footer {
+      padding: var(--grid);
+    }
+
+    footer strong,
+    footer .copyright {
+      font-style: italic;
+      width: var(--width);
+      max-width: var(--max-width);
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
+    }
+
+    /* AdSense */
+    footer ins {
+      display: block;
+      width: var(--width);
+      max-width: var(--max-width);
+      margin-block-start:  0;
+      margin-block-end:    0;
+      margin-inline-start: auto;
+      margin-inline-end:   auto;
+    }
+    pre {
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
+      border-radius: var(--radius);
+    }
+
+    pre code {
+      background-color: var(--code-block);
+      color: var(--code-block-font);
+    }
+
+    pre::before {
+      font-family: var(--code-font);
+      content: "```" attr(data-code) "\A";
+      font-size: 0.8em;
+    }
+
+    pre::after {
+      font-family: var(--code-font);
+      z-index: -1;
+      position: relative;
+      top: -1em;
+      content: "\A```";
+      font-size: 0.8em;
+    }
+
+    pre > code {
+      font-family: var(--code-font);
+      overflow: auto;
+      display: block;
+      padding: 0.5rem;
+      margin: 0;
+    }
+
+    pre > code::before,
+    pre > code::after {
+      content: none;
+    }
+
+
+    /** Prism.js Syntax Highlight **/
+    :root {
+      --code-yellow: #ffe557;
+      --code-aqua:   #03b5f1;
+      --code-blue:   #76acff;
+      --code-gray:   #96969c;
+      --code-green:  #1cd24d;
+      --code-orange: #ff8b24;
+      --code-pink:   #ff61bf;
+    }
+
+    /** style **/
+    .token.important,
+    .token.bold {
+      font-weight: bold;
+    }
+    .token.italic {
+      font-style: italic;
+    }
+
+    .token.entity {
+      cursor: help;
+    }
+
+    /** color **/
+    .token.command,
+    .token.parameter,
+    .token.operator,
+    .token.punctuation,
+    .token.output {
+      color: var(--code-block-font);
+    }
+
+    .token.attr-name,
+    .token.selector,
+    .token.shell-symbol {
+      color: var(--code-blue);
+    }
+
+    .token.delimiter.tag,
+    .token.variable {
+      color: var(--code-yellow);
+    }
+
+    .token.tag,
+    .token.function {
+      color: var(--code-green);
+    }
+
+    .token.key,
+    .token.attr-value,
+    .token.atom,
+    .token.property,
+    .token.keyword {
+      color: var(--code-pink);
+    }
+
+    .token.header-name.keyword,
+    .token.string,
+    .token.regex {
+      color: var(--code-blue);
+    }
+
+    .token.interpolation,
+    .token.constant,
+    .token.class-name {
+      color: var(--code-orange);
+    }
+
+    .token.response-status,
+    .token.boolean,
+    .token.number {
+      color: var(--code-aqua);
+    }
+
+    .token.rule,
+    .token.builtin {
+      color: var(--code-green);
+    }
+
+    .token.prolog,
+    .token.doctype,
+    .token.shebang,
+    .token.comment {
+      color: var(--code-gray);
+    }
+
+    .token.request-line {
+      color: var(--code-aqua);
+    }
+
+
+    /** language **/
+    .token.bash.language-bash,
+    .token.bash.language-bash > .token.function {
+      color: var(--code-block-font);
+    }
+    table {
+      font-family: var(--mono-font);
+      border-spacing: 0 0.4rem;
+      margin-block-start:  var(--grid);
+      margin-block-end:    var(--grid);
+      margin-inline-start: 0;
+      margin-inline-end:   0;
+    }
+
+    th {
+      border-inline-start: 2px solid var(--table-border);
+      border-block-end:    2px dashed var(--table-border);
+      padding-block-start:  0;
+      padding-block-end:    calc(var(--grid)/2);
+      padding-inline-start: var(--grid);
+      padding-inline-end:   var(--grid);
+    }
+
+    td {
+      padding-block-start:  calc(var(--grid)/2);
+      padding-block-end:    calc(var(--grid)/2);
+      padding-inline-start: var(--grid);
+      padding-inline-end:   var(--grid);
+      border-inline-start: 2px solid var(--table-border);
+    }
+
+    th:last-child,
+    td:last-child {
+      border-inline-end: 2px solid var(--table-border);
+    }
+
+    .align-center {
+      text-align: center;
+    }
+
+    /** TODO: fixup html class */
+    .align-left {
+      text-align: start;
+    }
+
+    /** TODO: fixup html class */
+    .align-right {
+      text-align: end;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://blog.jxck.io      ><amp-img width=30 height=30 src=/assets/img/blog.svg?160301_215351   alt="blog logo" class=logo    ></a>
+      <li><a href=/searches                 ><amp-img width=30 height=30 src=/assets/img/search.svg?190421_130410 alt=search                    ></a>
+      <li><a href=.                         ><amp-img width=30 height=30 src=/assets/img/up.svg?160831_002319     alt="move to parent directory"></a>
+      <li><a href=/feeds/atom.xml           ><amp-img width=30 height=30 src=/assets/img/rss.svg?160227_124312    alt="rss feed"                ></a>
+      <li><a href=https://jxck.io/humans.txt><amp-img width=30 height=30 src=/assets/img/humans.svg?160831_002319 alt="huamns.txt"              ></a>
+      <li><a href=https://jxck.io           ><amp-img width=30 height=30 src=/assets/img/jxck.svg?190123_200004   alt="jxck logo" class=logo    ></a>
+    </ul>
+  </nav>
+</header>
+<main>
+  <dl class=info>
+    <div><dt>created_at</dt><dd><time class=created_at datetime=2021-09-22>2021-09-22</time></dd></div>
+    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-09-23>2021-09-23</time></dd></div>
+    <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags/private%20relay.html">private relay</a>
+              <li><a href="/tags/proxy.html">proxy</a>
+              <li><a href="/tags/ip%20blindness.html">ip blindness</a>
+              <li><a href="/tags/privacy.html">privacy</a>
+            </ul>
+          </nav>
+        </dd>
+    </div>
+    <div>
+      <dt>toc</dt>
+      <dd>
+        <details class=info>
+          <summary>headings</summary>
+          <nav>
+            <ul>
+              <li><a href=#intro>## Intro</a>
+              <li><a href=#背景>## 背景</a>
+              <li><a href=#fingerprinting>## Fingerprinting</a>
+              <li><a href=#private-relay>## Private Relay</a>
+              <li><a href=#private-relay-の挙動>## Private Relay の挙動</a>
+              <li><a href=#設定>### 設定</a>
+              <li><a href=#挙動>### 挙動</a>
+              <li><a href=#懸念点>## 懸念点</a>
+              <li><a href=#ip-ジオロケーション>### IP ジオロケーション</a>
+              <li><a href=#カウントフリーやフィルタリングサービスへの影響>### カウントフリーやフィルタリングサービスへの影響</a>
+              <li><a href=#オーバーヘッド>### オーバーヘッド</a>
+              <li><a href=#犯罪捜査>### 犯罪捜査</a>
+              <li><a href=#outro>## Outro</a>
+              <li><a href=#demo>## DEMO</a>
+              <li><a href=#resources>## Resources</a>
+            </ul>
+          </nav>
+        </details>
+      </dd>
+    </div>
+  </dl>
+  <article>
+    <h1><a href=/entries/2021-09-22/private-relay-for-ip-blindness.html>Private Relay と IP Blindness による  Fingerprint 対策</a></h1>
+    <section>
+      <h2 id="intro"><a href="#intro">Intro</a></h2>
+      <p>iOS15 がリリースされたため、 Private Relay のベータを試すことができた。
+      <p>このようなサービスが提供されるようになった背景を踏まえ、挙動を簡単に確認しつつ、解説する。
+    </section>
+    <section>
+      <h2 id="背景"><a href="#背景">背景</a></h2>
+      <p>そもそも、なぜこのようなサービスが出てきたのかを理解するには、現在のインターネットが抱える問題の背景を理解する必要がある。
+      <p>特に Web において問題になっている「トラッキング」を防ぐために、法的な規制や業界団体の自主規制による対策は長いこと行われてきたが、それでも看過できないインシデントなどが目立ったために、 Apple の ITP を皮切りに 3rd Party Cookie の制限が始まった。
+      <p>ここで重要なのは、「<em>本来防ぎたいのは 3rd party Cookie という技術ではなく Tracking というユースケースだ</em>」という点だ。
+      <p>この前提が伝わっていない場合、トラッキングのユースケースを持つパーティにとっては「3rd Party Cookie が使えないから別の方法で Tracking をしよう」という発想になる。
+      <p>そこで代替技術として上がるのが Fingerprinting だ。
+      <p>実際、広告やアナリティクスを 3rd Party Cookie で行っていた事業者には「最悪 Fingerprinting があるから、なんとかなる」と思っている人もいるようで、「新しい技術により n% の精度でトラッキングが可能」といった宣伝を行なっている商品の実態はこの Fingerprinting であることが多い。
+      <p>仮に Fingerprintin で精度の高いトラッキングができるのであれば、当初の「トラッキングを防ぐ」という本質的問題が解決してないことになるため、あたりまえのように「3rd Party Cookie だけでなく Fingerprinting も防ぐ必要が出る」という話になる。
+      <p>では、実際に Fingerprinting はどう行われているだろうか。
+    </section>
+    <section>
+      <h2 id="fingerprinting"><a href="#fingerprinting">Fingerprinting</a></h2>
+      <p>Fingerprinting は、クライアントから取得できるエントロピーの高い情報を組み合わせて、クライアントを区別する仕組みと言える。
+      <p>そして、エントロピーが高い情報の代表が IP アドレスと <code translate="no">User-Agent</code> 文字列だ。
+      <p>2012 年に Microsoft が公開した研究では IP アドレス+ <code translate="no">User-Agent</code> だけで 80% 程度の精度がでるとされている。
+      <ul>
+        <li>
+          Host Fingerprinting and Tracking on the Web:Privacy and Security Implications - Microsoft Research
+          <ul>
+            <li><a href="https://www.microsoft.com/en-us/research/publication/host-fingerprinting-and-tracking-on-the-webprivacy-and-security-implications/">https://www.microsoft.com/en-us/research/publication/host-fingerprinting-and-tracking-on-the-webprivacy-and-security-implications/</a>
+          </ul>
+        </li>
+      </ul>
+      <p>ここからさらに、 HTTP の <code translate="no">Accept</code> ヘッダや <code translate="no">If-Non-Match</code> を含めたり、 JS でさまざまな API を叩いて Canvas や Font などデバイス固有な挙動をするものを探し、精度を上げるために各社が凌ぎを削っている。
+      <p>そこで、ブラウザベンダ各社は、これらの情報量を減らすことで Fingerprint の精度を下げるために議論と検証を進めていた。具体的には以下のようなものだ。
+      <ul>
+        <li>IP アドレスを隠蔽する
+        <li>User-Agent を固定する
+        <li>既存/新規の API が Fingerprint ベクタにならないように仕様/実装ともに注意を払う
+      </ul>
+      <p>特にこうした取り組みを先導しているのが Apple で、 ITP や Freezing User-Agent の作業を先んじて進め、他のブラウザもそれに追従しているのは周知の通りだ。
+      <p>IP Blindness についても、 Google が <a href="https://github.com/bslassey/ip-blindness">Willful IP Blidness</a> を提案したり、 IETF では <a href="https://www.ietf.org/archive/id/draft-thomson-http-oblivious-01.html">Oblivious HTTP</a> として標準化に向けた議論が始まったばかりだった。そんな中、いつも通り Apple が先行して実施した、それが Private Relay だ。
+      <p>独自の規格/仕様かつオープンな実装ではなく iCloud サービスの一環としてリリースするるという、よくも悪くも Apple らしいやり方なので、 Apple が突然また過激なことを言い出したと思う人もいるかもしれないが、この流れがわかっていれば、順当以外の何者でもないとも言える。
+      <p>という背景を踏まえて中身を見ていこう。
+    </section>
+    <section>
+      <h2 id="private-relay"><a href="#private-relay">Private Relay</a></h2>
+      <p>標準技術では無いため、公開された情報もそこまで多くないが、最初に Private Relay って話が出たのは今年の WWDC だった。 Hide My Email などと合わせて Privacy Pillars の枠で解説されている。
+      <p>そのあと IETF の PEARG というワーキンググループでも、 Apple の人による詳細な解説があった。
+      <ul>
+        <li>
+          Apple&rsquo;s privacy pillars in focus - WWDC21 (24:30~)
+          <ul>
+            <li><a href="https://developer.apple.com/videos/play/wwdc2021/10085">https://developer.apple.com/videos/play/wwdc2021/10085</a>
+          </ul>
+        </li>
+        <li>
+          IETF-111-PEARG-Private-Relay
+          <ul>
+            <li><a href="https://youtu.be/J8sBCPYDHJo?t=4229">https://youtu.be/J8sBCPYDHJo?t=4229</a>
+            <li><a href="https://datatracker.ietf.org/meeting/111/materials/slides-111-pearg-private-relay-00">https://datatracker.ietf.org/meeting/111/materials/slides-111-pearg-private-relay-00</a>
+          </ul>
+        </li>
+      </ul>
+      <p>簡単に言えば、接続先サービスに IP アドレスが露出し Fingerprint ベクターとなることを防ぐために、 IP アドレスを隠すという技術だ。
+      <p>クライアントがサーバに通信すれば、 IP アドレスが伝わることは防ぎようがない(伝えなければレスポンスを受け取れない)。そこで、間に Apple が用意した Proxy を挟むことによって、サービスには Proxy の IP アドレスしか伝わらないというのが基本の発想だ。
+      <p>Proxy を 1 つ挟むというのは、 OHTTP など他の提案でも共通しているところだが、 Private Relay の特徴は Proxy が 2 つある点だろう。
+      <p>
+        <amp-img layout=responsive src=private-relay.png#2164x1624 alt="Private Relay のシーケンス図 - IETF の資料より" title="" width=2164 height=1624>
+      </p>
+      <p>Apple の資料によれば、 Private Relay が有効になると、 Ingress Proxy(前段) と Egress Proxy(後段) という 2 つ Proxy が割り当てられる。
+      <p>これらをどう使うかというと、まず Client は Egress Proxy (後段)と TLS を確立する。つまり全てのパケットは Client と Egress 間で暗号化されるのだ。
+      <p>Client は Server に送りたいパケットを、(それが Server との TLS で暗号化されていても) Egress との TLS で暗号化して Ingress に送る。 Ingress はそれをそのまま Egress に送る。 Egress は Client との TLS を解いて Server に転送する。
+      <p>これによって Ingress と Egress が知り得る情報は以下になる。
+      <ul>
+        <li>Ingress: Client の IP アドレスを知っているが、パケットが暗号化されているので Server の IP アドレスはわからない
+        <li>Egress: Ingress から転送されたので Client の IP アドレスはわからないが、パケットが解けるので Server の IP アドレスはわかる
+      </ul>
+      <p>なぜこのようなことをするかというと、もし Proxy が 1 台だった場合は、 Proxy は Client と Server の IP のマッピングを知ることができるが、 Private Relay はそのマッピングができないため、 Apple ですらだれがどこにアクセスしたのかが、わからないようになっているのだ。
+    </section>
+    <section>
+      <h2 id="private-relay-の挙動"><a href="#private-relay-の挙動">Private Relay の挙動</a></h2>
+      <section>
+        <h3 id="設定"><a href="#設定">設定</a></h3>
+        <p>iOS15 にアップデートできたため、 iCloud に課金し実際に Private Relay を有効にしてみた。
+        <p>UI は非常にシンプルで、以下から有効にできる。
+        <p>
+          <amp-img layout=responsive src=ios15.png#531x944 alt="iOS15 - iCloud から Private Relay の設定" title="" width=531 height=944>
+        </p>
+        <p>位置情報については以下の選択肢がある。 IP ジオロケーションについては後述するが、おそらく以下のような差だろう。
+        <p>
+          <amp-img layout=responsive src=ios15-ipgeo.png#531x944 alt="iOS15 - Private Relay のジオロケーション設定" title="" width=531 height=944>
+        </p>
+        <ul>
+          <li>おおよその位置情報を保持: より詳細な IP ジオロケーション
+          <li>国と時間帯を使用: タイムゾーンレベルの詳細度の低い位置情報
+        </ul>
+      </section>
+      <section>
+        <h3 id="挙動"><a href="#挙動">挙動</a></h3>
+        <p>まず、無効状態で <code translate="no">https://jxck.io</code> に接続したところが以下だ。ちなみに SIM はラインモバイルを使用している。(IP アドレスは微妙に変えてある)
+        <pre><code translate="no">2021/09/21 04:28:11.010 180.10.203.175 HTTP/2 200 GET jxck.io / &quot;Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1&quot;</code></pre>
+        <p>次に Private Relay 有効状態だと以下のようになる。
+        <pre><code translate="no">2021/09/21 04:40:07.430 2606:54c0:3b00:10::16:e1 HTTP/2 200 GET jxck.io / &quot;Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1&quot;</code></pre>
+        <p>サーバは IPv6 対応しているため、 IPv6 でのアクセスになっていることがわかる。
+        <p>この IP アドレスは Apple の Engress Proxy の IP アドレスリストで見ると以下のエントリに該当する。
+        <pre><code translate="no">2606:54c0:3b00:10::/64,JP,,Tokyo,</code></pre>
+        <p>日本の東京にある Proxy からリレーされいてることもわかる。
+      </section>
+    </section>
+    <section>
+      <h2 id="懸念点"><a href="#懸念点">懸念点</a></h2>
+      <p>Private Relay および今後 IP blindness を実現する技術が出てきた場合に、起こる懸念をまとめる。
+      <section>
+        <h3 id="ip-ジオロケーション"><a href="#ip-ジオロケーション">IP ジオロケーション</a></h3>
+        <p>IP アドレスがあると、そこからおおよその位置情報がわかるため、「どの地域からのアクセスが多いのか」という情報を得ることができる。これは、アナリティクスツールではおおよそサポートされ、マーケティングなどで重宝されている。
+        <p>IP アドレスが Proxy によって変わるとこの情報が落ちる懸念があるが、 Private Realy の場合は Egress Proxy の IP アドレスリストが以下で公開されている。
+        <ul>
+          <li>
+            IP ジオロケーションフィードへのアクセス - iCloud Private Relay に向けたネットワークの準備
+            <ul>
+              <li><a href="https://developer.apple.com/jp/support/prepare-your-network-for-icloud-private-relay/#h5o-6">https://developer.apple.com/jp/support/prepare-your-network-for-icloud-private-relay/#h5o-6</a>
+            </ul>
+          </li>
+        </ul>
+        <p>そして、各 IP には地域情報が記載されているため、例えば Tokyo 付近にいるユーザには Tokyo の Egress Proxy が割り当てられ、この CSV を引けば Tokyo からのアクセスであることがわかる。
+        <p>日本でみれば Tokyo, Osaka, Nagoya, Hiroshima &hellip; などの主要都市があるようなので、マーケティング用途レベルであればまかなえそうな粒度には見える。
+        <p>それでもカバーできない用途については、 GeoHash (緯度経度のハッシュ)を Client Hints ヘッダに付与する提案がちょうど Apple から提案されたため、そちらでカバーするという流れだろう。
+        <ul>
+          <li>
+            The Geohash HTTP Client Hint
+            <ul>
+              <li><a href="https://tfpauly.github.io/privacy-proxy/draft-geohash-hint.html">https://tfpauly.github.io/privacy-proxy/draft-geohash-hint.html</a>
+            </ul>
+          </li>
+        </ul>
+        <p>しかし、 GeoHash もエントロピーが高く、 Client Hints でも無尽蔵に取得させることはできないため、 Permission の取得や必要に応じた短縮などを行うべきという記載もある。別途提案されている Privacy Budget などによる制限もあるかもしれないので、あくまで補助的な情報として扱うことになるだろう。
+      </section>
+      <section>
+        <h3 id="カウントフリーやフィルタリングサービスへの影響"><a href="#カウントフリーやフィルタリングサービスへの影響">カウントフリーやフィルタリングサービスへの影響</a></h3>
+        <p>Private Relay が公開されて以降、モバイルキャリアなどから、特定のサービスの利用をギガの消費にカウントしないカウントフリーサービスや、フィルタリングサービスのなどが正常に機能しなくなる可能性がアナウンスされている。
+        <p>例としていくつか目についたものだけ抜粋する。
+        <ul>
+          <li>
+            ソフトバンクモバイル
+            <ul>
+              <li><a href="https://www.softbank.jp/mobile/info/personal/news/support/20210916a/">https://www.softbank.jp/mobile/info/personal/news/support/20210916a/</a>
+            </ul>
+          </li>
+          <li>
+            LINEMO
+            <ul>
+              <li><a href="https://www.linemo.jp/info/press/2021/21091601.html">https://www.linemo.jp/info/press/2021/21091601.html</a>
+            </ul>
+          </li>
+          <li>
+            楽天モバイル
+            <ul>
+              <li><a href="https://network.mobile.rakuten.co.jp/information/news/service/803/">https://network.mobile.rakuten.co.jp/information/news/service/803/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>こうしたサービスは、 IP アドレスが想定したものであることを前提に作られていることを想像すると、やむをえないだろう。こうしたサービスを利用するユーザは Private Relay を利用することはできない。
+      </section>
+      <section>
+        <h3 id="オーバーヘッド"><a href="#オーバーヘッド">オーバーヘッド</a></h3>
+        <p>Proxy を経由することによるオーバーヘッドがどの程度あるのかも気になるところだろう。もちろん、 TLS が 1 回多く実施されているという点においても、オーバーヘッドが無いとはいえないはずだ。
+        <p>しかし、ここの有意な比較を行うのは考えるほどなかなか難しい。
+        <p>ネットワークアクセスのオーバーヘッドの多くは、 TLS に費やされる処理だけでなく、選択される経路とその経路の転送能力などの影響も無視できない。
+        <p>したがって、 Private Relay の On/Off によってどういった経路の差が見られるかなども比較するのが妥当に思える。
+        <p>さらにいうと、日本は狭い地域に Proxy が密集しているが、国によっては Proxy までの距離のオーバーヘッドも無視できないだろう。
+        <p>また、なにより今はリリースされたばかりでトラフィックも少ないため、はずれ Proxy を引くことも少なそうだ。
+        <p>こうした状況で安易に特定のポイント間の速度計測し、雑な比較してもあまり意味がないと思われるため控える。
+        <p>少なくとも現時点では、有効にして丸一日普通につかっていたが、半日後には有効にしていたことを忘れるくらいには違和感は感じていない。
+      </section>
+      <section>
+        <h3 id="犯罪捜査"><a href="#犯罪捜査">犯罪捜査</a></h3>
+        <p>IP アドレスを隠す/偽装するために Proxy を挟むという発想は、別に新しいものではない。
+        <p>特に平成では「串を刺す」といった隠語に代表される Proxy の利用は行われており、海外 IP アドレスでしか遊べないゲームを遊んだり、匿名サイトに書き込む際に使われたりしていた。
+        <p>ダークウェブで知られる Tor も、 Onion Proxy を用いた IP blindness を行なっていると見れば、やっていることは実質変わらない。
+        <p>つまり IP アドレスには、やましいことをする上で隠すメリットがあるという側面があるのも事実だ。特にサイバー犯罪の検挙が IP アドレスを手がかりに行われている例があるように、サービスに IP アドレスの開示を依頼し、 ISP にマッピングを問い合わせ、自宅を突き止めるという捜査も一般的だ。
+        <p>単一 Proxy によって、 Apple がマッピングテーブルを持つのであれば、法的な開示依頼に応じるかどうかという企業対応の話にできるが、本当にマッピングテーブルが無いのであれば、何かが起こった場合にどうなるのだろうか? そのあたりの話もまだ見つけられてはいない。(とはいえどっちも Apple の Proxy だからなんとでもなりそうにも思えるが)
+      </section>
+    </section>
+    <section>
+      <h2 id="outro"><a href="#outro">Outro</a></h2>
+      <p>トラッキング対策のために 3rd Party Cookie, User-Agent ときて、ついに IP Blindness の取り組みが始まり、具体的なサービスとして Private Relay が Beta で展開され、実際に試してみることでその挙動を確認した。
+      <p>IP Blindness の流れ自体はこれからも続くと思われ、標準化も始まっており、いずれは他のベンダもそれぞれのやり方で同様のサービスを実施する可能性は高そうに思う。
+      <p>今後も、先陣を切った Apple により可視化される IP Blindness の様々な影響が、後発に活かされていく点も含めて注視していきたい。
+    </section>
+    <section>
+      <h2 id="demo"><a href="#demo">DEMO</a></h2>
+      <p>特になし。
+    </section>
+    <section>
+      <h2 id="resources"><a href="#resources">Resources</a></h2>
+      <ul>
+        <li>
+          Spec
+          <ul>
+            <li>
+              Oblivious HTTP
+              <ul>
+                <li><a href="https://www.ietf.org/archive/id/draft-thomson-http-oblivious-01.html">https://www.ietf.org/archive/id/draft-thomson-http-oblivious-01.html</a>
+              </ul>
+            </li>
+            <li>
+              The Geohash HTTP Client Hint
+              <ul>
+                <li><a href="https://tfpauly.github.io/privacy-proxy/draft-geohash-hint.html">https://tfpauly.github.io/privacy-proxy/draft-geohash-hint.html</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Explainer
+          <ul>
+            <li>
+              Willful IP Blidness
+              <ul>
+                <li><a href="https://github.com/bslassey/ip-blindness">https://github.com/bslassey/ip-blindness</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>Requirements Doc
+        <li>Mozilla Standard Position
+        <li>Webkit Position
+        <li>TAG Design Review
+        <li>Intents
+        <li>Chrome Platform Status
+        <li>WPT (Web Platform Test)
+        <li>DEMO
+        <li>Blog
+        <li>
+          Presentation
+          <ul>
+            <li>
+              Apple&rsquo;s privacy pillars in focus - WWDC21 (24:30~)
+              <ul>
+                <li><a href="https://developer.apple.com/videos/play/wwdc2021/10085">https://developer.apple.com/videos/play/wwdc2021/10085</a>
+              </ul>
+            </li>
+            <li>
+              IETF-111-PEARG-Private-Relay
+              <ul>
+                <li><a href="https://youtu.be/J8sBCPYDHJo?t=4229">https://youtu.be/J8sBCPYDHJo?t=4229</a>
+                <li><a href="https://datatracker.ietf.org/meeting/111/materials/slides-111-pearg-private-relay-00">https://datatracker.ietf.org/meeting/111/materials/slides-111-pearg-private-relay-00</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>Issues
+        <li>
+          Other
+          <ul>
+            <li>
+              IP ジオロケーションフィードへのアクセス - iCloud Private Relay に向けたネットワークの準備
+              <ul>
+                <li><a href="https://developer.apple.com/jp/support/prepare-your-network-for-icloud-private-relay/#h5o-6">https://developer.apple.com/jp/support/prepare-your-network-for-icloud-private-relay/#h5o-6</a>
+              </ul>
+            </li>
+            <li>
+              Host Fingerprinting and Tracking on the Web:Privacy and Security Implications - Microsoft Research
+              <ul>
+                <li><a href="https://www.microsoft.com/en-us/research/publication/host-fingerprinting-and-tracking-on-the-webprivacy-and-security-implications/">https://www.microsoft.com/en-us/research/publication/host-fingerprinting-and-tracking-on-the-webprivacy-and-security-implications/</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </article>
+</main>
+<hr>
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small> See <small><a href=/policies/site.html>Site Policy</a> and <a href=/policies/privacy.html>Privacy Policy</a>.</small></p>
+  <amp-ad width=100vw height=320 type=adsense data-ad-client=ca-pub-2902784829138215 data-ad-slot=9735419796 data-auto-format=rspv data-full-width><div overflow></div></amp-ad>
+</footer>
+</body>
+</html>
+<amp-analytics type=googleanalytics id=analytics1>
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-15088753-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>

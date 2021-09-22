@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href="https://blog.jxck.io/entries/2021-09-22/private-relay-for-ip-blindness.html">
+
+  <script>
+    LUX=(function(){var a=("undefined"!==typeof(LUX)&&"undefined"!==typeof(LUX.gaMarks)?LUX.gaMarks:[]);var d=("undefined"!==typeof(LUX)&&"undefined"!==typeof(LUX.gaMeasures)?LUX.gaMeasures:[]);var j="LUX_start";var k=window.performance;var l=("undefined"!==typeof(LUX)&&LUX.ns?LUX.ns:(Date.now?Date.now():+(new Date())));if(k&&k.timing&&k.timing.navigationStart){l=k.timing.navigationStart}function f(){if(k&&k.now){return k.now()}var o=Date.now?Date.now():+(new Date());return o-l}function b(n){if(k){if(k.mark){return k.mark(n)}else{if(k.webkitMark){return k.webkitMark(n)}}}a.push({name:n,entryType:"mark",startTime:f(),duration:0});return}function m(p,t,n){if("undefined"===typeof(t)&&h(j)){t=j}if(k){if(k.measure){if(t){if(n){return k.measure(p,t,n)}else{return k.measure(p,t)}}else{return k.measure(p)}}else{if(k.webkitMeasure){return k.webkitMeasure(p,t,n)}}}var r=0,o=f();if(t){var s=h(t);if(s){r=s.startTime}else{if(k&&k.timing&&k.timing[t]){r=k.timing[t]-k.timing.navigationStart}else{return}}}if(n){var q=h(n);if(q){o=q.startTime}else{if(k&&k.timing&&k.timing[n]){o=k.timing[n]-k.timing.navigationStart}else{return}}}d.push({name:p,entryType:"measure",startTime:r,duration:(o-r)});return}function h(n){return c(n,g())}function c(p,o){for(i=o.length-1;i>=0;i--){var n=o[i];if(p===n.name){return n}}return undefined}function g(){if(k){if(k.getEntriesByType){return k.getEntriesByType("mark")}else{if(k.webkitGetEntriesByType){return k.webkitGetEntriesByType("mark")}}}return a}return{mark:b,measure:m,gaMarks:a,gaMeasures:d}})();LUX.ns=(Date.now?Date.now():+(new Date()));LUX.ac=[];LUX.cmd=function(a){LUX.ac.push(a)};LUX.init=function(){LUX.cmd(["init"])};LUX.send=function(){LUX.cmd(["send"])};LUX.addData=function(a,b){LUX.cmd(["addData",a,b])};LUX_ae=[];window.addEventListener("error",function(a){LUX_ae.push(a)});LUX_al=[];if("function"===typeof(PerformanceObserver)&&"function"===typeof(PerformanceLongTaskTiming)){var LongTaskObserver=new PerformanceObserver(function(c){var b=c.getEntries();for(var a=0;a<b.length;a++){var d=b[a];LUX_al.push(d)}});try{LongTaskObserver.observe({type:["longtask"]})}catch(e){}};
+    LUX.label = "blog";
+  </script>
+
+  <link rel=preload as=script href=https://cdn.speedcurve.com/js/lux.js?id=810939560>
+  <link rel=preload as=script href=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js>
+  <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?210502_161127>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
+
+  <script defer src=https://cdn.speedcurve.com/js/lux.js?id=810939560 crossorigin></script>
+  <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+  <script defer src=https://www.google-analytics.com/analytics.js></script>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?210502_161127></script>
+  <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
+
+  <link rel=icon             type =image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon             type =image/png sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type =image/png sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.png>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="iOS15 がリリースされたため、 Private Relay のベータを試すことができた。このようなサービスが提供されるようになった背景を踏まえ、挙動を簡単に確認しつつ、解説する。">
+  <meta name=keywords            content="private relay,proxy,ip blindness,privacy">
+  <meta name=theme-color         content=#000000>
+
+  <meta name=twitter:card        content=summary>
+  <meta name=twitter:site        content=@jxck_>
+  <meta name=twitter:url         content=https://blog.jxck.io/entries/2021-09-22/private-relay-for-ip-blindness.html>
+  <meta name=twitter:title       content="Private Relay と IP Blindness による  Fingerprint 対策 | blog.jxck.io">
+  <meta name=twitter:description content="iOS15 がリリースされたため、 Private Relay のベータを試すことができた。このようなサービスが提供されるようになった背景を踏まえ、挙動を簡単に確認しつつ、解説する。">
+  <meta name=twitter:image       content=https://blog.jxck.io/assets/img/jxck.png>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2021-09-22/private-relay-for-ip-blindness.html>
+  <meta property=og:title        content="Private Relay と IP Blindness による  Fingerprint 対策 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="iOS15 がリリースされたため、 Private Relay のベータを試すことができた。このようなサービスが提供されるようになった背景を踏まえ、挙動を簡単に確認しつつ、解説する。">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.png>
+
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Private Relay と IP Blindness による  Fingerprint 対策 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2021-09-22T08:00:00+08:00",
+    "dateModified": "2021-09-23T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.60x60.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": "iOS15 がリリースされたため、 Private Relay のベータを試すことができた。このようなサービスが提供されるようになった背景を踏まえ、挙動を簡単に確認しつつ、解説する。"
+  }
+  </script>
+
+  <title>Private Relay と IP Blindness による  Fingerprint 対策 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?210820_182819>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210501_230901>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/searches                 ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?201218_145648>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2021-09-22>2021-09-22</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-09-23>2021-09-23</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags/private%20relay.html">private relay</a>
+              <li><a href="/tags/proxy.html">proxy</a>
+              <li><a href="/tags/ip%20blindness.html">ip blindness</a>
+              <li><a href="/tags/privacy.html">privacy</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ul>
+                <li><a href=#intro>## Intro</a>
+                <li><a href=#背景>## 背景</a>
+                <li><a href=#fingerprinting>## Fingerprinting</a>
+                <li><a href=#private-relay>## Private Relay</a>
+                <li><a href=#private-relay-の挙動>## Private Relay の挙動</a>
+                <li><a href=#設定>### 設定</a>
+                <li><a href=#挙動>### 挙動</a>
+                <li><a href=#懸念点>## 懸念点</a>
+                <li><a href=#ip-ジオロケーション>### IP ジオロケーション</a>
+                <li><a href=#カウントフリーやフィルタリングサービスへの影響>### カウントフリーやフィルタリングサービスへの影響</a>
+                <li><a href=#オーバーヘッド>### オーバーヘッド</a>
+                <li><a href=#犯罪捜査>### 犯罪捜査</a>
+                <li><a href=#outro>## Outro</a>
+                <li><a href=#demo>## DEMO</a>
+                <li><a href=#resources>## Resources</a>
+              </ul>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?210426_200525>
+    <article>
+      <h1><a href=/entries/2021-09-22/private-relay-for-ip-blindness.html>Private Relay と IP Blindness による  Fingerprint 対策</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>iOS15 がリリースされたため、 Private Relay のベータを試すことができた。
+        <p>このようなサービスが提供されるようになった背景を踏まえ、挙動を簡単に確認しつつ、解説する。
+      </section>
+      <section>
+        <h2 id="背景"><a href="#背景">背景</a></h2>
+        <p>そもそも、なぜこのようなサービスが出てきたのかを理解するには、現在のインターネットが抱える問題の背景を理解する必要がある。
+        <p>特に Web において問題になっている「トラッキング」を防ぐために、法的な規制や業界団体の自主規制による対策は長いこと行われてきたが、それでも看過できないインシデントなどが目立ったために、 Apple の ITP を皮切りに 3rd Party Cookie の制限が始まった。
+        <p>ここで重要なのは、「<em>本来防ぎたいのは 3rd party Cookie という技術ではなく Tracking というユースケースだ</em>」という点だ。
+        <p>この前提が伝わっていない場合、トラッキングのユースケースを持つパーティにとっては「3rd Party Cookie が使えないから別の方法で Tracking をしよう」という発想になる。
+        <p>そこで代替技術として上がるのが Fingerprinting だ。
+        <p>実際、広告やアナリティクスを 3rd Party Cookie で行っていた事業者には「最悪 Fingerprinting があるから、なんとかなる」と思っている人もいるようで、「新しい技術により n% の精度でトラッキングが可能」といった宣伝を行なっている商品の実態はこの Fingerprinting であることが多い。
+        <p>仮に Fingerprintin で精度の高いトラッキングができるのであれば、当初の「トラッキングを防ぐ」という本質的問題が解決してないことになるため、あたりまえのように「3rd Party Cookie だけでなく Fingerprinting も防ぐ必要が出る」という話になる。
+        <p>では、実際に Fingerprinting はどう行われているだろうか。
+      </section>
+      <section>
+        <h2 id="fingerprinting"><a href="#fingerprinting">Fingerprinting</a></h2>
+        <p>Fingerprinting は、クライアントから取得できるエントロピーの高い情報を組み合わせて、クライアントを区別する仕組みと言える。
+        <p>そして、エントロピーが高い情報の代表が IP アドレスと <code translate="no">User-Agent</code> 文字列だ。
+        <p>2012 年に Microsoft が公開した研究では IP アドレス+ <code translate="no">User-Agent</code> だけで 80% 程度の精度がでるとされている。
+        <ul>
+          <li>
+            Host Fingerprinting and Tracking on the Web:Privacy and Security Implications - Microsoft Research
+            <ul>
+              <li><a href="https://www.microsoft.com/en-us/research/publication/host-fingerprinting-and-tracking-on-the-webprivacy-and-security-implications/">https://www.microsoft.com/en-us/research/publication/host-fingerprinting-and-tracking-on-the-webprivacy-and-security-implications/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>ここからさらに、 HTTP の <code translate="no">Accept</code> ヘッダや <code translate="no">If-Non-Match</code> を含めたり、 JS でさまざまな API を叩いて Canvas や Font などデバイス固有な挙動をするものを探し、精度を上げるために各社が凌ぎを削っている。
+        <p>そこで、ブラウザベンダ各社は、これらの情報量を減らすことで Fingerprint の精度を下げるために議論と検証を進めていた。具体的には以下のようなものだ。
+        <ul>
+          <li>IP アドレスを隠蔽する
+          <li>User-Agent を固定する
+          <li>既存/新規の API が Fingerprint ベクタにならないように仕様/実装ともに注意を払う
+        </ul>
+        <p>特にこうした取り組みを先導しているのが Apple で、 ITP や Freezing User-Agent の作業を先んじて進め、他のブラウザもそれに追従しているのは周知の通りだ。
+        <p>IP Blindness についても、 Google が <a href="https://github.com/bslassey/ip-blindness">Willful IP Blidness</a> を提案したり、 IETF では <a href="https://www.ietf.org/archive/id/draft-thomson-http-oblivious-01.html">Oblivious HTTP</a> として標準化に向けた議論が始まったばかりだった。そんな中、いつも通り Apple が先行して実施した、それが Private Relay だ。
+        <p>独自の規格/仕様かつオープンな実装ではなく iCloud サービスの一環としてリリースするるという、よくも悪くも Apple らしいやり方なので、 Apple が突然また過激なことを言い出したと思う人もいるかもしれないが、この流れがわかっていれば、順当以外の何者でもないとも言える。
+        <p>という背景を踏まえて中身を見ていこう。
+      </section>
+      <section>
+        <h2 id="private-relay"><a href="#private-relay">Private Relay</a></h2>
+        <p>標準技術では無いため、公開された情報もそこまで多くないが、最初に Private Relay って話が出たのは今年の WWDC だった。 Hide My Email などと合わせて Privacy Pillars の枠で解説されている。
+        <p>そのあと IETF の PEARG というワーキンググループでも、 Apple の人による詳細な解説があった。
+        <ul>
+          <li>
+            Apple&rsquo;s privacy pillars in focus - WWDC21 (24:30~)
+            <ul>
+              <li><a href="https://developer.apple.com/videos/play/wwdc2021/10085">https://developer.apple.com/videos/play/wwdc2021/10085</a>
+            </ul>
+          </li>
+          <li>
+            IETF-111-PEARG-Private-Relay
+            <ul>
+              <li><a href="https://youtu.be/J8sBCPYDHJo?t=4229">https://youtu.be/J8sBCPYDHJo?t=4229</a>
+              <li><a href="https://datatracker.ietf.org/meeting/111/materials/slides-111-pearg-private-relay-00">https://datatracker.ietf.org/meeting/111/materials/slides-111-pearg-private-relay-00</a>
+            </ul>
+          </li>
+        </ul>
+        <p>簡単に言えば、接続先サービスに IP アドレスが露出し Fingerprint ベクターとなることを防ぐために、 IP アドレスを隠すという技術だ。
+        <p>クライアントがサーバに通信すれば、 IP アドレスが伝わることは防ぎようがない(伝えなければレスポンスを受け取れない)。そこで、間に Apple が用意した Proxy を挟むことによって、サービスには Proxy の IP アドレスしか伝わらないというのが基本の発想だ。
+        <p>Proxy を 1 つ挟むというのは、 OHTTP など他の提案でも共通しているところだが、 Private Relay の特徴は Proxy が 2 つある点だろう。
+        <p>
+          <picture>
+            <source type=image/webp srcset=private-relay.webp?210923_002354#2164x1624>
+            <img loading=lazy decoding=async src=private-relay.png?210923_002354#2164x1624 alt="Private Relay のシーケンス図 - IETF の資料より" title="" width=2164 height=1624>
+          </picture>
+        </p>
+        <p>Apple の資料によれば、 Private Relay が有効になると、 Ingress Proxy(前段) と Egress Proxy(後段) という 2 つ Proxy が割り当てられる。
+        <p>これらをどう使うかというと、まず Client は Egress Proxy (後段)と TLS を確立する。つまり全てのパケットは Client と Egress 間で暗号化されるのだ。
+        <p>Client は Server に送りたいパケットを、(それが Server との TLS で暗号化されていても) Egress との TLS で暗号化して Ingress に送る。 Ingress はそれをそのまま Egress に送る。 Egress は Client との TLS を解いて Server に転送する。
+        <p>これによって Ingress と Egress が知り得る情報は以下になる。
+        <ul>
+          <li>Ingress: Client の IP アドレスを知っているが、パケットが暗号化されているので Server の IP アドレスはわからない
+          <li>Egress: Ingress から転送されたので Client の IP アドレスはわからないが、パケットが解けるので Server の IP アドレスはわかる
+        </ul>
+        <p>なぜこのようなことをするかというと、もし Proxy が 1 台だった場合は、 Proxy は Client と Server の IP のマッピングを知ることができるが、 Private Relay はそのマッピングができないため、 Apple ですらだれがどこにアクセスしたのかが、わからないようになっているのだ。
+      </section>
+      <section>
+        <h2 id="private-relay-の挙動"><a href="#private-relay-の挙動">Private Relay の挙動</a></h2>
+        <section>
+          <h3 id="設定"><a href="#設定">設定</a></h3>
+          <p>iOS15 にアップデートできたため、 iCloud に課金し実際に Private Relay を有効にしてみた。
+          <p>UI は非常にシンプルで、以下から有効にできる。
+          <p>
+            <picture>
+              <source type=image/webp srcset=ios15.webp?210923_002354#531x944>
+              <img loading=lazy decoding=async src=ios15.png?210923_002354#531x944 alt="iOS15 - iCloud から Private Relay の設定" title="" width=531 height=944>
+            </picture>
+          </p>
+          <p>位置情報については以下の選択肢がある。 IP ジオロケーションについては後述するが、おそらく以下のような差だろう。
+          <p>
+            <picture>
+              <source type=image/webp srcset=ios15-ipgeo.webp?210923_002354#531x944>
+              <img loading=lazy decoding=async src=ios15-ipgeo.png?210923_002354#531x944 alt="iOS15 - Private Relay のジオロケーション設定" title="" width=531 height=944>
+            </picture>
+          </p>
+          <ul>
+            <li>おおよその位置情報を保持: より詳細な IP ジオロケーション
+            <li>国と時間帯を使用: タイムゾーンレベルの詳細度の低い位置情報
+          </ul>
+        </section>
+        <section>
+          <h3 id="挙動"><a href="#挙動">挙動</a></h3>
+          <p>まず、無効状態で <code translate="no">https://jxck.io</code> に接続したところが以下だ。ちなみに SIM はラインモバイルを使用している。(IP アドレスは微妙に変えてある)
+          <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
+          <pre><code translate="no">2021/09/21 04:28:11.010 180.10.203.175 HTTP/2 200 GET jxck.io / &quot;Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1&quot;</code></pre>
+          <p>次に Private Relay 有効状態だと以下のようになる。
+          <pre><code translate="no">2021/09/21 04:40:07.430 2606:54c0:3b00:10::16:e1 HTTP/2 200 GET jxck.io / &quot;Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1&quot;</code></pre>
+          <p>サーバは IPv6 対応しているため、 IPv6 でのアクセスになっていることがわかる。
+          <p>この IP アドレスは Apple の Engress Proxy の IP アドレスリストで見ると以下のエントリに該当する。
+          <pre><code translate="no">2606:54c0:3b00:10::/64,JP,,Tokyo,</code></pre>
+          <p>日本の東京にある Proxy からリレーされいてることもわかる。
+        </section>
+      </section>
+      <section>
+        <h2 id="懸念点"><a href="#懸念点">懸念点</a></h2>
+        <p>Private Relay および今後 IP blindness を実現する技術が出てきた場合に、起こる懸念をまとめる。
+        <section>
+          <h3 id="ip-ジオロケーション"><a href="#ip-ジオロケーション">IP ジオロケーション</a></h3>
+          <p>IP アドレスがあると、そこからおおよその位置情報がわかるため、「どの地域からのアクセスが多いのか」という情報を得ることができる。これは、アナリティクスツールではおおよそサポートされ、マーケティングなどで重宝されている。
+          <p>IP アドレスが Proxy によって変わるとこの情報が落ちる懸念があるが、 Private Realy の場合は Egress Proxy の IP アドレスリストが以下で公開されている。
+          <ul>
+            <li>
+              IP ジオロケーションフィードへのアクセス - iCloud Private Relay に向けたネットワークの準備
+              <ul>
+                <li><a href="https://developer.apple.com/jp/support/prepare-your-network-for-icloud-private-relay/#h5o-6">https://developer.apple.com/jp/support/prepare-your-network-for-icloud-private-relay/#h5o-6</a>
+              </ul>
+            </li>
+          </ul>
+          <p>そして、各 IP には地域情報が記載されているため、例えば Tokyo 付近にいるユーザには Tokyo の Egress Proxy が割り当てられ、この CSV を引けば Tokyo からのアクセスであることがわかる。
+          <p>日本でみれば Tokyo, Osaka, Nagoya, Hiroshima &hellip; などの主要都市があるようなので、マーケティング用途レベルであればまかなえそうな粒度には見える。
+          <p>それでもカバーできない用途については、 GeoHash (緯度経度のハッシュ)を Client Hints ヘッダに付与する提案がちょうど Apple から提案されたため、そちらでカバーするという流れだろう。
+          <ul>
+            <li>
+              The Geohash HTTP Client Hint
+              <ul>
+                <li><a href="https://tfpauly.github.io/privacy-proxy/draft-geohash-hint.html">https://tfpauly.github.io/privacy-proxy/draft-geohash-hint.html</a>
+              </ul>
+            </li>
+          </ul>
+          <p>しかし、 GeoHash もエントロピーが高く、 Client Hints でも無尽蔵に取得させることはできないため、 Permission の取得や必要に応じた短縮などを行うべきという記載もある。別途提案されている Privacy Budget などによる制限もあるかもしれないので、あくまで補助的な情報として扱うことになるだろう。
+        </section>
+        <section>
+          <h3 id="カウントフリーやフィルタリングサービスへの影響"><a href="#カウントフリーやフィルタリングサービスへの影響">カウントフリーやフィルタリングサービスへの影響</a></h3>
+          <p>Private Relay が公開されて以降、モバイルキャリアなどから、特定のサービスの利用をギガの消費にカウントしないカウントフリーサービスや、フィルタリングサービスのなどが正常に機能しなくなる可能性がアナウンスされている。
+          <p>例としていくつか目についたものだけ抜粋する。
+          <ul>
+            <li>
+              ソフトバンクモバイル
+              <ul>
+                <li><a href="https://www.softbank.jp/mobile/info/personal/news/support/20210916a/">https://www.softbank.jp/mobile/info/personal/news/support/20210916a/</a>
+              </ul>
+            </li>
+            <li>
+              LINEMO
+              <ul>
+                <li><a href="https://www.linemo.jp/info/press/2021/21091601.html">https://www.linemo.jp/info/press/2021/21091601.html</a>
+              </ul>
+            </li>
+            <li>
+              楽天モバイル
+              <ul>
+                <li><a href="https://network.mobile.rakuten.co.jp/information/news/service/803/">https://network.mobile.rakuten.co.jp/information/news/service/803/</a>
+              </ul>
+            </li>
+          </ul>
+          <p>こうしたサービスは、 IP アドレスが想定したものであることを前提に作られていることを想像すると、やむをえないだろう。こうしたサービスを利用するユーザは Private Relay を利用することはできない。
+        </section>
+        <section>
+          <h3 id="オーバーヘッド"><a href="#オーバーヘッド">オーバーヘッド</a></h3>
+          <p>Proxy を経由することによるオーバーヘッドがどの程度あるのかも気になるところだろう。もちろん、 TLS が 1 回多く実施されているという点においても、オーバーヘッドが無いとはいえないはずだ。
+          <p>しかし、ここの有意な比較を行うのは考えるほどなかなか難しい。
+          <p>ネットワークアクセスのオーバーヘッドの多くは、 TLS に費やされる処理だけでなく、選択される経路とその経路の転送能力などの影響も無視できない。
+          <p>したがって、 Private Relay の On/Off によってどういった経路の差が見られるかなども比較するのが妥当に思える。
+          <p>さらにいうと、日本は狭い地域に Proxy が密集しているが、国によっては Proxy までの距離のオーバーヘッドも無視できないだろう。
+          <p>また、なにより今はリリースされたばかりでトラフィックも少ないため、はずれ Proxy を引くことも少なそうだ。
+          <p>こうした状況で安易に特定のポイント間の速度計測し、雑な比較してもあまり意味がないと思われるため控える。
+          <p>少なくとも現時点では、有効にして丸一日普通につかっていたが、半日後には有効にしていたことを忘れるくらいには違和感は感じていない。
+        </section>
+        <section>
+          <h3 id="犯罪捜査"><a href="#犯罪捜査">犯罪捜査</a></h3>
+          <p>IP アドレスを隠す/偽装するために Proxy を挟むという発想は、別に新しいものではない。
+          <p>特に平成では「串を刺す」といった隠語に代表される Proxy の利用は行われており、海外 IP アドレスでしか遊べないゲームを遊んだり、匿名サイトに書き込む際に使われたりしていた。
+          <p>ダークウェブで知られる Tor も、 Onion Proxy を用いた IP blindness を行なっていると見れば、やっていることは実質変わらない。
+          <p>つまり IP アドレスには、やましいことをする上で隠すメリットがあるという側面があるのも事実だ。特にサイバー犯罪の検挙が IP アドレスを手がかりに行われている例があるように、サービスに IP アドレスの開示を依頼し、 ISP にマッピングを問い合わせ、自宅を突き止めるという捜査も一般的だ。
+          <p>単一 Proxy によって、 Apple がマッピングテーブルを持つのであれば、法的な開示依頼に応じるかどうかという企業対応の話にできるが、本当にマッピングテーブルが無いのであれば、何かが起こった場合にどうなるのだろうか? そのあたりの話もまだ見つけられてはいない。(とはいえどっちも Apple の Proxy だからなんとでもなりそうにも思えるが)
+        </section>
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>トラッキング対策のために 3rd Party Cookie, User-Agent ときて、ついに IP Blindness の取り組みが始まり、具体的なサービスとして Private Relay が Beta で展開され、実際に試してみることでその挙動を確認した。
+        <p>IP Blindness の流れ自体はこれからも続くと思われ、標準化も始まっており、いずれは他のベンダもそれぞれのやり方で同様のサービスを実施する可能性は高そうに思う。
+        <p>今後も、先陣を切った Apple により可視化される IP Blindness の様々な影響が、後発に活かされていく点も含めて注視していきたい。
+      </section>
+      <section>
+        <h2 id="demo"><a href="#demo">DEMO</a></h2>
+        <p>特になし。
+      </section>
+      <section>
+        <h2 id="resources"><a href="#resources">Resources</a></h2>
+        <ul>
+          <li>
+            Spec
+            <ul>
+              <li>
+                Oblivious HTTP
+                <ul>
+                  <li><a href="https://www.ietf.org/archive/id/draft-thomson-http-oblivious-01.html">https://www.ietf.org/archive/id/draft-thomson-http-oblivious-01.html</a>
+                </ul>
+              </li>
+              <li>
+                The Geohash HTTP Client Hint
+                <ul>
+                  <li><a href="https://tfpauly.github.io/privacy-proxy/draft-geohash-hint.html">https://tfpauly.github.io/privacy-proxy/draft-geohash-hint.html</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Explainer
+            <ul>
+              <li>
+                Willful IP Blidness
+                <ul>
+                  <li><a href="https://github.com/bslassey/ip-blindness">https://github.com/bslassey/ip-blindness</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Requirements Doc
+          <li>Mozilla Standard Position
+          <li>Webkit Position
+          <li>TAG Design Review
+          <li>Intents
+          <li>Chrome Platform Status
+          <li>WPT (Web Platform Test)
+          <li>DEMO
+          <li>Blog
+          <li>
+            Presentation
+            <ul>
+              <li>
+                Apple&rsquo;s privacy pillars in focus - WWDC21 (24:30~)
+                <ul>
+                  <li><a href="https://developer.apple.com/videos/play/wwdc2021/10085">https://developer.apple.com/videos/play/wwdc2021/10085</a>
+                </ul>
+              </li>
+              <li>
+                IETF-111-PEARG-Private-Relay
+                <ul>
+                  <li><a href="https://youtu.be/J8sBCPYDHJo?t=4229">https://youtu.be/J8sBCPYDHJo?t=4229</a>
+                  <li><a href="https://datatracker.ietf.org/meeting/111/materials/slides-111-pearg-private-relay-00">https://datatracker.ietf.org/meeting/111/materials/slides-111-pearg-private-relay-00</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Issues
+          <li>
+            Other
+            <ul>
+              <li>
+                IP ジオロケーションフィードへのアクセス - iCloud Private Relay に向けたネットワークの準備
+                <ul>
+                  <li><a href="https://developer.apple.com/jp/support/prepare-your-network-for-icloud-private-relay/#h5o-6">https://developer.apple.com/jp/support/prepare-your-network-for-icloud-private-relay/#h5o-6</a>
+                </ul>
+              </li>
+              <li>
+                Host Fingerprinting and Tracking on the Web:Privacy and Security Implications - Microsoft Research
+                <ul>
+                  <li><a href="https://www.microsoft.com/en-us/research/publication/host-fingerprinting-and-tracking-on-the-webprivacy-and-security-implications/">https://www.microsoft.com/en-us/research/publication/host-fingerprinting-and-tracking-on-the-webprivacy-and-security-implications/</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small> See <small><a href=/policies/site.html>Site Policy</a> and <a href=/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <ins class=adsbygoogle data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-2902784829138215 data-ad-slot=9735419796></ins>
+  </footer>
+</body>
+</html>
