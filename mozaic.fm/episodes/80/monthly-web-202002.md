@@ -458,7 +458,7 @@ guest
     - <https://help.abema.tv/hc/ja/articles/360055647611>
   - Internet Explorer への対応終了のお知らせ \| SmartHR
     - <https://smarthr.jp/other/22512>
-    - > 2021 年 1 月現在、 IE11 で SmartHR をご利用いただいているのは、管理者権限の方の 25%、お客さま全体では 6%です。[a]
+    - > 2021 年 1 月現在、 IE11 で SmartHR をご利用いただいているのは、管理者権限の方の 25%、お客さま全体では 6%です。
   - Internet Explorer 11 を推奨利用環境の対象外といたします \| クラウドワークス
     - <https://blog.crowdworks.jp/?p=4293>
   - Internet Explorer サポート終了のお知らせ \| マネーフォワード
