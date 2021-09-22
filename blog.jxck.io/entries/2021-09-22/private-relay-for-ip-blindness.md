@@ -32,9 +32,10 @@ Fingerprinting は、クライアントから取得できるエントロピー�
 
 そして、エントロピーが高い情報の代表が IP アドレスと `User-Agent` 文字列だ。
 
-2012 年に Microsoft が公開した研究では IP + `User-Agent` だけで 80% 程度の精度がでるとされている。
+2012 年に Microsoft が公開した研究では IP アドレス+ `User-Agent` だけで 80% 程度の精度がでるとされている。
 
-- [Host Fingerprinting and Tracking on the Web:Privacy and Security Implications - Microsoft Research](https://www.microsoft.com/en-us/research/publication/host-fingerprinting-and-tracking-on-the-webprivacy-and-security-implications/)
+- Host Fingerprinting and Tracking on the Web:Privacy and Security Implications - Microsoft Research
+  - <https://www.microsoft.com/en-us/research/publication/host-fingerprinting-and-tracking-on-the-webprivacy-and-security-implications/>
 
 ここからさらに、 HTTP の `Accept` ヘッダや `If-Non-Match` を含めたり、 JS でさまざまな API を叩いて Canvas や Font などデバイス固有な挙動をするものを探し、精度を上げるために各社が凌ぎを削っている。 
 
@@ -65,13 +66,13 @@ IP Blindness についても、 Google が [Willful IP Blidness](https://github.
   - <https://youtu.be/J8sBCPYDHJo?t=4229>
   - <https://datatracker.ietf.org/meeting/111/materials/slides-111-pearg-private-relay-00>
 
-簡単に言えば、接続先サービスに IP アドレスが露出し Fingerprint ベクターとなることを防ぐために、 IP を隠すという技術だ。
+簡単に言えば、接続先サービスに IP アドレスが露出し Fingerprint ベクターとなることを防ぐために、 IP アドレスを隠すという技術だ。
 
-クライアントがサーバに通信すれば、 IP アドレスが伝わることは防ぎようがない(伝えなければレスポンスを受け取れない)。そこで、間に Apple が用意した Proxy を挟むことによって、サービスには Proxy の IP しか伝わらないというのが基本の発想だ。
+クライアントがサーバに通信すれば、 IP アドレスが伝わることは防ぎようがない(伝えなければレスポンスを受け取れない)。そこで、間に Apple が用意した Proxy を挟むことによって、サービスには Proxy の IP アドレスしか伝わらないというのが基本の発想だ。
 
 Proxy を 1 つ挟むというのは、 OHTTP など他の提案でも共通しているところだが、 Private Relay の特徴は Proxy が 2 つある点だろう。
 
-TODO: 図
+![Private Relay のシーケンス図 - IETF の資料より](private-relay.png#2164x1624)
 
 Apple の資料によれば、 Private Relay が有効になると、 Ingress Proxy(前段) と Egress Proxy(後段) という 2 つ Proxy が割り当てられる。
 
@@ -81,8 +82,8 @@ Client は Server に送りたいパケットを、(それが Server との TLS 
 
 これによって Ingress と Egress が知り得る情報は以下になる。
 
-- Ingress: Client の IP を知っているが、パケットが暗号化されているので Server の IP はわからない
-- Egress: Ingress から転送されたので Client の IP はわからないが、パケットが解けるので Server の IP はわかる
+- Ingress: Client の IP アドレスを知っているが、パケットが暗号化されているので Server の IP アドレスはわからない
+- Egress: Ingress から転送されたので Client の IP アドレスはわからないが、パケットが解けるので Server の IP アドレスはわかる
 
 なぜこのようなことをするかというと、もし Proxy が 1 台だった場合は、 Proxy は Client と Server の IP のマッピングを知ることができるが、 Private Relay はそのマッピングができないため、 Apple ですらだれがどこにアクセスしたのかが、わからないようになっているのだ。
 
@@ -96,9 +97,11 @@ iOS15 にアップデートできたため、 iCloud に課金し実際に Priva
 
 UI は非常にシンプルで、以下から有効にできる。
 
-TOOD: 図
+![iOS15 - iCloud から Private Relay の設定](ios15.png#531x944)
 
 位置情報については以下の選択肢がある。 IP ジオロケーションについては後述するが、おそらく以下のような差だろう。
+
+![iOS15 - Private Relay のジオロケーション設定](ios15-ipgeo.png#531x944)
 
 - おおよその位置情報を保持: より詳細な IP ジオロケーション
 - 国と時間帯を使用: タイムゾーンレベルの詳細度の低い位置情報
@@ -106,7 +109,7 @@ TOOD: 図
 
 ### 挙動
 
-まず、無効状態で `https://jxck.io` に接続したところが以下だ。ちなみに SIM はラインモバイルを使用している。(IP は微妙に変えてある)
+まず、無効状態で `https://jxck.io` に接続したところが以下だ。ちなみに SIM はラインモバイルを使用している。(IP アドレスは微妙に変えてある)
 
 
 ```
@@ -122,7 +125,7 @@ TOOD: 図
 
 サーバは IPv6 対応しているため、 IPv6 でのアクセスになっていることがわかる。
 
-この IP は Apple の Engress Proxy の IP List で見ると以下のエントリに該当する。
+この IP アドレスは Apple の Engress Proxy の IP アドレスリストで見ると以下のエントリに該当する。
 
 
 ```
@@ -141,7 +144,7 @@ Private Relay および今後 IP blindness を実現する技術が出てきた�
 
 IP アドレスがあると、そこからおおよその位置情報がわかるため、「どの地域からのアクセスが多いのか」という情報を得ることができる。これは、アナリティクスツールではおおよそサポートされ、マーケティングなどで重宝されている。
 
-IP が Proxy によって変わるとこの情報が落ちる懸念があるが、 Private Realy の場合は Egress Proxy の IP リストが以下で公開されている。
+IP アドレスが Proxy によって変わるとこの情報が落ちる懸念があるが、 Private Realy の場合は Egress Proxy の IP アドレスリストが以下で公開されている。
 
 - IP ジオロケーションフィードへのアクセス - iCloud Private Relay に向けたネットワークの準備
   - <https://developer.apple.com/jp/support/prepare-your-network-for-icloud-private-relay/#h5o-6>
@@ -171,12 +174,12 @@ Private Relay が公開されて以降、モバイルキャリアなどから、
 - 楽天モバイル
   - <https://network.mobile.rakuten.co.jp/information/news/service/803/>
 
-こうしたサービスは、 IP アドレスが想定したものであることを前提に作られているであろうことを想像すると、やむをえないだろう。こうしたサービスを利用するユーザは Private Relay を利用することはできない。
+こうしたサービスは、 IP アドレスが想定したものであることを前提に作られていることを想像すると、やむをえないだろう。こうしたサービスを利用するユーザは Private Relay を利用することはできない。
 
 
 ### オーバーヘッド
 
-Proxy を経由することによるオーバーヘッドがどの程度あるのかも気になるところだろう。もちろん、 TLS が一回多く実施されているという一点においても、オーバーヘッドが無いとはいえない。
+Proxy を経由することによるオーバーヘッドがどの程度あるのかも気になるところだろう。もちろん、 TLS が 1 回多く実施されているという点においても、オーバーヘッドが無いとはいえないはずだ。
 
 しかし、ここの有意な比較を行うのは考えるほどなかなか難しい。
 
@@ -190,20 +193,20 @@ Proxy を経由することによるオーバーヘッドがどの程度ある�
 
 こうした状況で安易に特定のポイント間の速度計測し、雑な比較してもあまり意味がないと思われるため控える。
 
-すくなくとも現時点では、有効にして丸一日普通につかっていたが、半日後には有効にしていたことを忘れるくらいには違和感は感じていない。
+少なくとも現時点では、有効にして丸一日普通につかっていたが、半日後には有効にしていたことを忘れるくらいには違和感は感じていない。
 
 
 ### 犯罪捜査
 
 IP アドレスを隠す/偽装するために Proxy を挟むという発想は、別に新しいものではない。
 
-特に平成では「串を刺す」といった隠語に代表される Proxy の利用は行われており、海外 IP でしか遊べないゲームを遊んだり、匿名サイトに書き込む際に使われたりしていた。
+特に平成では「串を刺す」といった隠語に代表される Proxy の利用は行われており、海外 IP アドレスでしか遊べないゲームを遊んだり、匿名サイトに書き込む際に使われたりしていた。
 
 ダークウェブで知られる Tor も、 Onion Proxy を用いた IP blindness を行なっていると見れば、やっていることは実質変わらない。
 
-つまり IP には、やましいことをする上で隠すメリットがあるという側面もあるのが事実だ。特にサイバー犯罪の検挙が IP を手がかりに行われている例があるように、サービスに IP の開示を依頼し、 ISP にマッピングを問い合わせ、自宅を突き止めるという操作も一般的だ。
+つまり IP アドレスには、やましいことをする上で隠すメリットがあるという側面があるのも事実だ。特にサイバー犯罪の検挙が IP アドレスを手がかりに行われている例があるように、サービスに IP アドレスの開示を依頼し、 ISP にマッピングを問い合わせ、自宅を突き止めるという捜査も一般的だ。
 
-単一 Proxy によって、 Apple がマッピングテーブルを持つのであれば、法的な開示依頼に応じるかどうかという話になるが、本当にマッピングテーブルが無いのであれば、何かが起こった場合にどうなるのだろうか? そのあたりの話もまだ見つけられてはいない。(とはいえどっちも Apple の Proxy だからなんとでもなりそうにも思えるが)
+単一 Proxy によって、 Apple がマッピングテーブルを持つのであれば、法的な開示依頼に応じるかどうかという企業対応の話にできるが、本当にマッピングテーブルが無いのであれば、何かが起こった場合にどうなるのだろうか? そのあたりの話もまだ見つけられてはいない。(とはいえどっちも Apple の Proxy だからなんとでもなりそうにも思えるが)
 
 
 ## Outro
@@ -223,7 +226,13 @@ IP Blindness の流れ自体はこれからも続くと思われ、標準化も�
 ## Resources
 
 - Spec
+  - Oblivious HTTP
+    - <https://www.ietf.org/archive/id/draft-thomson-http-oblivious-01.html>
+  - The Geohash HTTP Client Hint
+    - <https://tfpauly.github.io/privacy-proxy/draft-geohash-hint.html>
 - Explainer
+  - Willful IP Blidness
+    - <https://github.com/bslassey/ip-blindness>
 - Requirements Doc
 - Mozilla Standard Position
 - Webkit Position
@@ -234,5 +243,14 @@ IP Blindness の流れ自体はこれからも続くと思われ、標準化も�
 - DEMO
 - Blog
 - Presentation
+  - Apple's privacy pillars in focus - WWDC21 (24:30~)
+    - <https://developer.apple.com/videos/play/wwdc2021/10085>
+  - IETF-111-PEARG-Private-Relay
+    - <https://youtu.be/J8sBCPYDHJo?t=4229>
+    - <https://datatracker.ietf.org/meeting/111/materials/slides-111-pearg-private-relay-00>
 - Issues
 - Other
+  - IP ジオロケーションフィードへのアクセス - iCloud Private Relay に向けたネットワークの準備
+    - <https://developer.apple.com/jp/support/prepare-your-network-for-icloud-private-relay/#h5o-6>
+  - Host Fingerprinting and Tracking on the Web:Privacy and Security Implications - Microsoft Research
+    - <https://www.microsoft.com/en-us/research/publication/host-fingerprinting-and-tracking-on-the-webprivacy-and-security-implications/>
