@@ -3,7 +3,8 @@
 - このディレクトリに service ファイルを書く
 - description には `.jxck.io` を入れる
 - /etc/systemd/system に ln
-- `systemctl daemon-reload`
-- `systemctl enable ${name}`
-- `systemctl start ${name}`
+- `sudo systemctl daemon-reload`
+- `sudo systemctl enable ${name}`
+- `sudo systemctl start ${name}`
+- `systemctl list-unit-files`
 - `journalctl -u ${name} -b -f`
