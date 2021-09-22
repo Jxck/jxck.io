@@ -250,3 +250,9 @@ install:
 update:
 	bundle update
 	ncu -u
+
+systemd-list:
+	@systemctl list-unit-files | grep $(foreach service, $(notdir $(wildcard ./.systemd/*)), -e '^$(service)')
+
+systemd-status:
+	$(foreach service, $(notdir $(wildcard ./.systemd/*)), systemctl status $(service))
