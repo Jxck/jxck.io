@@ -177,6 +177,18 @@ article ol {
   list-style-type: decimal;
 }
 
+article blockquote {
+  display: block;
+  border: solid 1px var(--block-quote);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin: 0;
+}
+
+article blockquote p::before {
+  content: "> ";
+}
+
 article img.download {
   margin: 0;
   border: none;
