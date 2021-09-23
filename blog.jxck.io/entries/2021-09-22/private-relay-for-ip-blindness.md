@@ -21,7 +21,7 @@ iOS15 がリリースされたため、 Private Relay のベータを試すこ�
 
 実際、広告やアナリティクスを 3rd Party Cookie で行っていた事業者には「最悪 Fingerprinting があるから、なんとかなる」と思っている人もいるようで、「新しい技術により n% の精度でトラッキングが可能」といった宣伝を行なっている商品の実態はこの Fingerprinting であることが多い。
 
-仮に Fingerprintin で精度の高いトラッキングができるのであれば、当初の「トラッキングを防ぐ」という本質的問題が解決してないことになるため、あたりまえのように「3rd Party Cookie だけでなく Fingerprinting も防ぐ必要が出る」という話になる。
+仮に Fingerprinting で精度の高いトラッキングができるのであれば、当初の「トラッキングを防ぐ」という本質的問題が解決してないことになるため、あたりまえのように「3rd Party Cookie だけでなく Fingerprinting も防ぐ必要が出る」という話になる。
 
 では、実際に Fingerprinting はどう行われているだろうか。
 
@@ -125,14 +125,14 @@ UI は非常にシンプルで、以下から有効にできる。
 
 サーバは IPv6 対応しているため、 IPv6 でのアクセスになっていることがわかる。
 
-この IP アドレスは Apple の Engress Proxy の IP アドレスリストで見ると以下のエントリに該当する。
+この IP アドレスは Apple の Egress Proxy の IP アドレスリストで見ると以下のエントリに該当する。
 
 
 ```
 2606:54c0:3b00:10::/64,JP,,Tokyo,
 ```
 
-日本の東京にある Proxy からリレーされいてることもわかる。
+日本の東京にある Proxy からリレーされてることもわかる。
 
 
 ## 懸念点
@@ -144,7 +144,7 @@ Private Relay および今後 IP blindness を実現する技術が出てきた�
 
 IP アドレスがあると、そこからおおよその位置情報がわかるため、「どの地域からのアクセスが多いのか」という情報を得ることができる。これは、アナリティクスツールではおおよそサポートされ、マーケティングなどで重宝されている。
 
-IP アドレスが Proxy によって変わるとこの情報が落ちる懸念があるが、 Private Realy の場合は Egress Proxy の IP アドレスリストが以下で公開されている。
+IP アドレスが Proxy によって変わるとこの情報が落ちる懸念があるが、 Private Relay の場合は Egress Proxy の IP アドレスリストが以下で公開されている。
 
 - IP ジオロケーションフィードへのアクセス - iCloud Private Relay に向けたネットワークの準備
   - <https://developer.apple.com/jp/support/prepare-your-network-for-icloud-private-relay/#h5o-6>
@@ -153,12 +153,12 @@ IP アドレスが Proxy によって変わるとこの情報が落ちる懸念�
 
 日本でみれば Tokyo, Osaka, Nagoya, Hiroshima ... などの主要都市があるようなので、マーケティング用途レベルであればまかなえそうな粒度には見える。
 
-それでもカバーできない用途については、 GeoHash (緯度経度のハッシュ)を Client Hints ヘッダに付与する提案がちょうど Apple から提案されたため、そちらでカバーするという流れだろう。
+それでもカバーできない用途については、 Geohash (緯度経度のハッシュ)を Client Hints ヘッダに付与する提案がちょうど Apple から提案されたため、そちらでカバーするという流れだろう。
 
 - The Geohash HTTP Client Hint
   - <https://tfpauly.github.io/privacy-proxy/draft-geohash-hint.html>
 
-しかし、 GeoHash もエントロピーが高く、 Client Hints でも無尽蔵に取得させることはできないため、 Permission の取得や必要に応じた短縮などを行うべきという記載もある。別途提案されている Privacy Budget などによる制限もあるかもしれないので、あくまで補助的な情報として扱うことになるだろう。
+しかし、 Geohash もエントロピーが高く、 Client Hints でも無尽蔵に取得させることはできないため、 Permission の取得や必要に応じた短縮などを行うべきという記載もある。別途提案されている Privacy Budget などによる制限もあるかもしれないので、あくまで補助的な情報として扱うことになるだろう。
 
 
 ### カウントフリーやフィルタリングサービスへの影響
@@ -202,7 +202,7 @@ IP アドレスを隠す/偽装するために Proxy を挟むという発想は
 
 特に平成では「串を刺す」といった隠語に代表される Proxy の利用は行われており、海外 IP アドレスでしか遊べないゲームを遊んだり、匿名サイトに書き込む際に使われたりしていた。
 
-ダークウェブで知られる Tor も、 Onion Proxy を用いた IP blindness を行なっていると見れば、やっていることは実質変わらない。
+ダークウェブで知られる Tor も、 Onion Proxy を用いた IP Blindness を行なっていると見れば、やっていることは実質変わらない。
 
 つまり IP アドレスには、やましいことをする上で隠すメリットがあるという側面があるのも事実だ。特にサイバー犯罪の検挙が IP アドレスを手がかりに行われている例があるように、サービスに IP アドレスの開示を依頼し、 ISP にマッピングを問い合わせ、自宅を突き止めるという捜査も一般的だ。
 
@@ -231,7 +231,7 @@ IP Blindness の流れ自体はこれからも続くと思われ、標準化も�
   - The Geohash HTTP Client Hint
     - <https://tfpauly.github.io/privacy-proxy/draft-geohash-hint.html>
 - Explainer
-  - Willful IP Blidness
+  - Willful IP Blindness
     - <https://github.com/bslassey/ip-blindness>
 - Requirements Doc
 - Mozilla Standard Position
