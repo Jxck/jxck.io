@@ -173,7 +173,7 @@
         <p>この前提が伝わっていない場合、トラッキングのユースケースを持つパーティにとっては「3rd Party Cookie が使えないから別の方法で Tracking をしよう」という発想になる。
         <p>そこで代替技術として上がるのが Fingerprinting だ。
         <p>実際、広告やアナリティクスを 3rd Party Cookie で行っていた事業者には「最悪 Fingerprinting があるから、なんとかなる」と思っている人もいるようで、「新しい技術により n% の精度でトラッキングが可能」といった宣伝を行なっている商品の実態はこの Fingerprinting であることが多い。
-        <p>仮に Fingerprintin で精度の高いトラッキングができるのであれば、当初の「トラッキングを防ぐ」という本質的問題が解決してないことになるため、あたりまえのように「3rd Party Cookie だけでなく Fingerprinting も防ぐ必要が出る」という話になる。
+        <p>仮に Fingerprinting で精度の高いトラッキングができるのであれば、当初の「トラッキングを防ぐ」という本質的問題が解決してないことになるため、あたりまえのように「3rd Party Cookie だけでなく Fingerprinting も防ぐ必要が出る」という話になる。
         <p>では、実際に Fingerprinting はどう行われているだろうか。
       </section>
       <section>
@@ -271,9 +271,9 @@
           <p>次に Private Relay 有効状態だと以下のようになる。
           <pre><code translate="no">2021/09/21 04:40:07.430 2606:54c0:3b00:10::16:e1 HTTP/2 200 GET jxck.io / &quot;Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1&quot;</code></pre>
           <p>サーバは IPv6 対応しているため、 IPv6 でのアクセスになっていることがわかる。
-          <p>この IP アドレスは Apple の Engress Proxy の IP アドレスリストで見ると以下のエントリに該当する。
+          <p>この IP アドレスは Apple の Egress Proxy の IP アドレスリストで見ると以下のエントリに該当する。
           <pre><code translate="no">2606:54c0:3b00:10::/64,JP,,Tokyo,</code></pre>
-          <p>日本の東京にある Proxy からリレーされいてることもわかる。
+          <p>日本の東京にある Proxy からリレーされてることもわかる。
         </section>
       </section>
       <section>
@@ -282,7 +282,7 @@
         <section>
           <h3 id="ip-ジオロケーション"><a href="#ip-ジオロケーション">IP ジオロケーション</a></h3>
           <p>IP アドレスがあると、そこからおおよその位置情報がわかるため、「どの地域からのアクセスが多いのか」という情報を得ることができる。これは、アナリティクスツールではおおよそサポートされ、マーケティングなどで重宝されている。
-          <p>IP アドレスが Proxy によって変わるとこの情報が落ちる懸念があるが、 Private Realy の場合は Egress Proxy の IP アドレスリストが以下で公開されている。
+          <p>IP アドレスが Proxy によって変わるとこの情報が落ちる懸念があるが、 Private Relay の場合は Egress Proxy の IP アドレスリストが以下で公開されている。
           <ul>
             <li>
               IP ジオロケーションフィードへのアクセス - iCloud Private Relay に向けたネットワークの準備
@@ -293,7 +293,7 @@
           </ul>
           <p>そして、各 IP には地域情報が記載されているため、例えば Tokyo 付近にいるユーザには Tokyo の Egress Proxy が割り当てられ、この CSV を引けば Tokyo からのアクセスであることがわかる。
           <p>日本でみれば Tokyo, Osaka, Nagoya, Hiroshima &hellip; などの主要都市があるようなので、マーケティング用途レベルであればまかなえそうな粒度には見える。
-          <p>それでもカバーできない用途については、 GeoHash (緯度経度のハッシュ)を Client Hints ヘッダに付与する提案がちょうど Apple から提案されたため、そちらでカバーするという流れだろう。
+          <p>それでもカバーできない用途については、 Geohash (緯度経度のハッシュ)を Client Hints ヘッダに付与する提案がちょうど Apple から提案されたため、そちらでカバーするという流れだろう。
           <ul>
             <li>
               The Geohash HTTP Client Hint
@@ -302,7 +302,7 @@
               </ul>
             </li>
           </ul>
-          <p>しかし、 GeoHash もエントロピーが高く、 Client Hints でも無尽蔵に取得させることはできないため、 Permission の取得や必要に応じた短縮などを行うべきという記載もある。別途提案されている Privacy Budget などによる制限もあるかもしれないので、あくまで補助的な情報として扱うことになるだろう。
+          <p>しかし、 Geohash もエントロピーが高く、 Client Hints でも無尽蔵に取得させることはできないため、 Permission の取得や必要に応じた短縮などを行うべきという記載もある。別途提案されている Privacy Budget などによる制限もあるかもしれないので、あくまで補助的な情報として扱うことになるだろう。
         </section>
         <section>
           <h3 id="カウントフリーやフィルタリングサービスへの影響"><a href="#カウントフリーやフィルタリングサービスへの影響">カウントフリーやフィルタリングサービスへの影響</a></h3>
@@ -345,7 +345,7 @@
           <h3 id="犯罪捜査"><a href="#犯罪捜査">犯罪捜査</a></h3>
           <p>IP アドレスを隠す/偽装するために Proxy を挟むという発想は、別に新しいものではない。
           <p>特に平成では「串を刺す」といった隠語に代表される Proxy の利用は行われており、海外 IP アドレスでしか遊べないゲームを遊んだり、匿名サイトに書き込む際に使われたりしていた。
-          <p>ダークウェブで知られる Tor も、 Onion Proxy を用いた IP blindness を行なっていると見れば、やっていることは実質変わらない。
+          <p>ダークウェブで知られる Tor も、 Onion Proxy を用いた IP Blindness を行なっていると見れば、やっていることは実質変わらない。
           <p>つまり IP アドレスには、やましいことをする上で隠すメリットがあるという側面があるのも事実だ。特にサイバー犯罪の検挙が IP アドレスを手がかりに行われている例があるように、サービスに IP アドレスの開示を依頼し、 ISP にマッピングを問い合わせ、自宅を突き止めるという捜査も一般的だ。
           <p>単一 Proxy によって、 Apple がマッピングテーブルを持つのであれば、法的な開示依頼に応じるかどうかという企業対応の話にできるが、本当にマッピングテーブルが無いのであれば、何かが起こった場合にどうなるのだろうか? そのあたりの話もまだ見つけられてはいない。(とはいえどっちも Apple の Proxy だからなんとでもなりそうにも思えるが)
         </section>
@@ -384,7 +384,7 @@
             Explainer
             <ul>
               <li>
-                Willful IP Blidness
+                Willful IP Blindness
                 <ul>
                   <li><a href="https://github.com/bslassey/ip-blindness">https://github.com/bslassey/ip-blindness</a>
                 </ul>
