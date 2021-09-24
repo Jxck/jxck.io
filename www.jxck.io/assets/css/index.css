@@ -1,54 +1,41 @@
 /* https://jxck.io */
 :root {
-  --box-width: 65%;
-  --align: left;
-  --title-font-size: 2rem;
-  --item-width: 250px;
-  --justify-content: space-between;
-  --item-gap: 10vh;
+  --item-width: 15vw;
+  --body-width: calc(var(--item-width)*5);
+  --gap: calc(var(--item-width)/3);
+  --justify: space-between;
 }
 
 /* Mobile Theme */
-@media screen and (max-device-width: 960px) {
+@media screen and (max-device-width: 500px) {
   :root {
-    --box-width: 100%;
-    --align: center;
-    --title-font-size: 1.4rem;
-    --item-width: 140px;
-    --justify-content: space-around;
-    --item-gap: 4vh;
+    --item-width: 40vw;
+    --body-width: 90vw;
+    --gap: 5vw;
+    --justify: space-around;
   }
 }
 
 body {
+  font-family: SF Pro Text,SF Pro Icons,Helvetica Neue,Helvetica,Arial,sans-serif;
   background-color: #fefefe;
-  font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
-  width: var(--box-width);
   margin: 0 auto;
+  width: var(--body-width);
 }
 
-header, footer {
+main {
   display: flex;
-  width: 100%;
-  margin: 0;
-  padding: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: var(--justify);
+  align-content: space-around;
+  gap: var(--gap);
 }
 
-h1 {
-  width: 100%;
-  margin: 4vh 0;
-  padding: 0;
-  font-size: var(--title-font-size);
-  text-align: var(--align);
-}
-
-figure {
-  padding: 0;
-  margin: 0;
-}
-
-figure > a {
+section {
   display: block;
+  box-sizing: border-box;
+  width: var(--item-width);
 }
 
 img {
@@ -56,19 +43,4 @@ img {
   width: 100%;
   aspect-ratio: 1/1;
   background-color: black;
-}
-
-main {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: var(--justify-content);
-  align-content: space-around;
-}
-
-section {
-  display: block;
-  width: var(--item-width);
-  box-sizing: border-box;
-  margin-bottom: var(--item-gap);
 }
