@@ -350,7 +350,7 @@ for (const i in str) console.log(str[i])
 
 しかし String は *Iterator* に対応した Iterable Object であり、その処理は Code Point をベースとしている。
 
-(正確に言うと、 String はネイティブに実装している Symbol.Iterator の処理が Code Poin ベースで反復処理するようになっている)
+(正確に言うと、 String はネイティブに実装している Symbol.Iterator の処理が Code Point ベースで反復処理するようになっている)
 
 つまり Iterator を扱う API を用いれば、自然と Code Point を意識した処理が可能だ。
 
@@ -551,7 +551,7 @@ Array.from('👨‍👩‍👧‍👦')
 
 1 文字を *カーソルが 1 つ移動する分* と捉えているとなると、 Code Point の数を数えるだけではなく、合字も 1 文字と捉える必要が出てくる。
 
-この *カーソルが 1 つ移動する分* を書記素と言い、 Code Point の列の中から、書記素の区切りを判別する方法は Unicode の中に定義されている。
+この *カーソルが 1 つ移動する分* を書記素クラスタと言い、 Code Point の列の中から、書記素クラスタの区切りを判別する方法は Unicode の中に定義されている。
 
 [UAX #29: Unicode Text Segmentation](http://unicode.org/reports/tr29/)
 
