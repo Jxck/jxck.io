@@ -10,9 +10,6 @@
 Cache-Control: public, max-age=31536000
 ```
 
-実はこの場合 `public` には全く意味がなく、不要な設定だ。
-
-
 ## public の誤解
 
 `Cache-Control` には `public` と `private` という、いかにも対をなしていそうな 2 つのディレクティブが定義されている。
@@ -45,7 +42,7 @@ Cache-Control: public, max-age=31536000
 
 `private` が Local Cache Storage に制限するなら、それ以外に保存する場合が `public` だという理解を、おそらく多くの開発者がしているのだろう。
 
-そもそも、キャッシュしても良いか? は `max-age` が明示されている時点で Yes であり、 `private` で制限されてない以上、 Local か Shared かに関らずどんな Cache Storage もそれをキャッシュすることができる。 `public` など必要ない。
+そもそも、キャッシュしても良いか? は `max-age` が明示されている時点で Yes であり、 `private` で制限されてない以上、 Local か Shared かに関らずどんな Cache Storage もそれをキャッシュすることができる。 
 
 では、 `public` はそもそもなんだったのか? 仕様では以下に定義がある。
 
@@ -86,44 +83,42 @@ Date: ${今}
 
 ### Authorization とキャッシュ
 
-`Authorization` ヘッダは OAuth などで触れる機会があるかもしれないが、この仕様はもっと前の Basic 認証を暗黙的に指している。
+`Authorization` ヘッダは OAuth などで触れる機会があるかもしれないが、それ以前に Basic/Digest 認証などによってブラウザでサポートされている。
 
 Basic 認証は、もはやあまり使われる機会がないかもしれないが、 Web が標準で持つ認証方式により、ざっくり言えばヘッダを付与するだけで URL に対して認証が可能になる。 Cookie すら不要だ。
 
 例えば、制限を掛けたメンバーにのみアカウントを配布し、そのアカウントでしか閲覧できないようにする用途で使われ、例えば W3C のサイトではいまだにその用途で使われたりしている。(これもまた触れる機会が少ないとは思うが)
 
-制限されたメンバーにしかアクセスできないのであれば、それが共有キャッシュに保存されると困るだろう。そこで `Authorization` ヘッダがある場合は Heuristic Cache がされないよう、特別扱いされるように定義されている。
+制限されたメンバーにしかアクセスできないのであれば、それが共有キャッシュに保存されると困るだろう。そこで `Authorization` ヘッダがある場合はキャッシュがされないよう、特別扱いされるように定義されている。
 
 - https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-18.html#section-3.5
 
-これによって `Cache-Control` がなくても `Authorization` ヘッダがあるレスポンスは誰かにキャッシュされることがないのだ。
+しかし、 `Authorization` が付与されていたとしても共有キャッシュされてよいものもあるだろう。例えば一部のパス以下だけ Basic 認証をかけているが Favicon は全ページで共通等の場合だ。
+
+その場合に、 `Authorization` がついててもキャッシュ可能にする能力は `max-age` にはなく、現行の仕様では以下の 3 つがその制限を解除できる。
+
+- public
+- s-maxage
+- must-revalidate
 
 
 ## つまり `public` とは
 
-`public` は、  *Basic 認証で保護された Authorization ヘッダ付きレスポンスであるが Heuristic Cache してもよい* という用途で効果を発揮する。
+`public` は、 *Basic 認証で保護された Authorization ヘッダ付きレスポンスであるが Cache してもよい* という用途で効果を発揮する。
 
-仕様にもあるように、元々の用途がほぼこれだったが、今はアルゴリズムになっているため、もちろん他のルートも見つかるかもしれない。
+逆を言うと Authorization ヘッダを使わないサイトにとっては、 `public` をつける必要はない。
 
-しかし、逆に `Authorization` ヘッダがついているものをキャッシュしたいのであれば、明示的に `max-age` や `private` をつければ良いだけであり、あえて Heuristic Cache を積極的に狙う必要もなり。
+サイト全体に逆に一括でつけるといったことをすると、どこかで `Authorization` を使わないといけない場面が出たときに、意図しないキャッシュが誘発される可能性もあるため、確実にそうであることを確信できる Public CDN のようなところ以外で、積極的につける理由も無いだろう。
 
-だからこそ、もはや Basic 認証の対象であろうとも、 `public` を積極的に付ける必要もない。
+まして `s-maxage`, `must-revalidate` などが付与されている場合に `public` を付与するのは完全にバイト数の無駄遣いでしかない。
 
-ましてや、 Public CDN にデプロイした JS のライブラリやら、 font セットなどに対して、 `public` をつける必要など本来は皆無だ。
-
-同一サイト内でも、 `private` の逆の意図で `public` を付けるのは、単にバイト数の無駄でしかない。
-
-`max-age` は何よりも明示的な指定だ。キャッシュを制御する場合、これがついていれば適切にキャッシュが行われる。それで必要十分だ。
-
-
-```http
-Cache-Control: max-age=31536000
 ```
-
+Cache-Control: public, must-revalidate, max-age=3600
+```
 
 ## Real World public
 
-バイト数の無駄でしかないのに、 IETF で HTTP working group の Chair をしている Fastly の mnot の調査によれば、「`public` がついているレスポンスの 93% に `max-age` か `s-maxage` がついている」という報告がある。
+IETF で HTTP working group の Chair をしている Fastly の mnot の調査によれば、「`public` がついているレスポンスの 93% に `max-age` か `s-maxage` がついている」という報告がある。
 
 > The popularity of public isn't surprising either, but it does illustrate how prevalent misconceptions about this directive are. 97.3% of responses containing it have max-age or s-maxage too, making it redundant (unless HTTP authentication is in use, or in cases where the status code doesn't allow heuristic freshness). As a result, almost all instances of Cache-Control: public are just wasting response bytes; caches don't need it to store them.
 > public の人気は驚くべきものではありませんが、このディレクティブに関する誤解がいかに広まっているかを示しています。このディレクティブを含むレスポンスの 97.3% は max-age または s-maxage を含んでおり(HTTP 認証が使用されている場合や、ステータスコードが Heuristic Cache を許可していない場合を除き)このディレクティブは冗長です。結果として、 Cache-Control: public のほとんどすべてのインスタンスは、レスポンスのバイト数を無駄にしているだけであり、キャッシュがそれを保存する必要はありません。
@@ -131,23 +126,23 @@ Cache-Control: max-age=31536000
 
 レスポンスのステータスコードによって Heuristic Cache ができない場合も `public` で上書きできることも確かにあるが、大抵の場合そこまで意図してヘッダを使い分けられる開発者が明示的に `max-age` などを使わない理由もないので無視して良いだろう。
 
-皮肉なのは、そんな Fastly のドキュメントでも `public` が以下のように書かれていることだ。
+そんな Fastly のドキュメントでも `public` が以下のように書かれている。
 
 > Cache-Control: public - どのキャッシュもコンテンツのコピーを保存できます。
 > Cache-Control: public, max-age=[seconds] - キャッシュはこのコンテンツを n 秒間保存することができます。
 --- https://docs.fastly.com/ja/guides/how-caching-and-cdns-work
 
-英語版も見たが同じなので、翻訳のせいというわけでもなさそうだ。そして、その下に Cache Control のチュートリアルとしてリンクされているのが mnot のサイトで、そこには正しい解説が書かれている。
+大抵の場合は不要だが、うっかり `Authorization` が混ざってる細かいところを、詳細な説明なしにカバーするとこうなるのだろう。
+
+そして、その下に Cache Control のチュートリアルとしてリンクされているのが mnot のサイトで、そこには正しい解説が書かれている。
 
 > public - marks authenticated responses as cacheable; normally, if HTTP authentication is required, responses are automatically private.
 --- https://www.mnot.net/cache_docs/#CACHE-CONTROL
 
-mnot もあきらめているのかもしれない。
-
 
 ## QPACK
 
-これを踏まえ、キャッシュヘッダを正しく理解して `public` を消すべきかというと、まあどっちでも良いというのが本音でもある。`max-age` が一緒についているなら、どちらにせよそちらが強いため、バイト数の無駄だが、それ以上に困る副作用はあまりないのが実際だからだ。(無いかどうかは実装とコンテンツの内容次第なので保証はない)
+これを踏まえ、キャッシュヘッダを正しく理解して `public` を消すべきかというと、まあどっちでも良いというのが本音でもある。 Basic 認証や OAuth を使ってないなら、バイト数の無駄だが、それ以上に困る副作用はあまりないのが実際だからだ。(無いかどうかは実装とコンテンツの内容次第なので保証はない)
 
 そして、もう 1 つ、残念というか妥当というか困ったことというか、 QPACK の Static Header の静的ヘッダのエントリが以下のように提案されている。
 
