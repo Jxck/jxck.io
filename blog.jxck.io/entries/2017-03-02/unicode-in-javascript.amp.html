@@ -49,7 +49,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2017-03-02T08:00:00+08:00",
-    "dateModified": "2020-08-18T08:00:00+08:00",
+    "dateModified": "2021-09-26T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -782,7 +782,7 @@
 <main>
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2017-03-02>2017-03-02</time></dd></div>
-    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-08-18>2020-08-18</time></dd></div>
+    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-09-26>2021-09-26</time></dd></div>
     <div>
         <dt>tags</dt>
         <dd>
@@ -1037,7 +1037,7 @@ for (const i in str) console.log(str[i])
 // 食</code></pre>
       <p><code translate="no">for (i = 0; i &lt; str.length; i ++)</code> と書いても同じだ。
       <p>しかし String は <em>Iterator</em> に対応した Iterable Object であり、その処理は Code Point をベースとしている。
-      <p>(正確に言うと、 String はネイティブに実装している Symbol.Iterator の処理が Code Poin ベースで反復処理するようになっている)
+      <p>(正確に言うと、 String はネイティブに実装している Symbol.Iterator の処理が Code Point ベースで反復処理するようになっている)
       <p>つまり Iterator を扱う API を用いれば、自然と Code Point を意識した処理が可能だ。
       <section>
         <h3 id="for-of"><a href="#for-of">for of</a></h3>
@@ -1162,7 +1162,7 @@ Array.from(&#39;ǖ&#39;)
       <section>
         <h3 id="unicode-text-segmentation"><a href="#unicode-text-segmentation">Unicode Text Segmentation</a></h3>
         <p>1 文字を <em>カーソルが 1 つ移動する分</em> と捉えているとなると、 Code Point の数を数えるだけではなく、合字も 1 文字と捉える必要が出てくる。
-        <p>この <em>カーソルが 1 つ移動する分</em> を書記素と言い、 Code Point の列の中から、書記素の区切りを判別する方法は Unicode の中に定義されている。
+        <p>この <em>カーソルが 1 つ移動する分</em> を書記素クラスタと言い、 Code Point の列の中から、書記素クラスタの区切りを判別する方法は Unicode の中に定義されている。
         <p><a href="http://unicode.org/reports/tr29/">UAX #29: Unicode Text Segmentation</a>
         <p>この処理はそれなりに難しいものであるため、取り入れる際はライブラリを利用する方が良いだろう。
         <p>(どのライブラリが枯れているかは知らないため、ここでは紹介しないが、実装自体は探せばいくつかある。)
