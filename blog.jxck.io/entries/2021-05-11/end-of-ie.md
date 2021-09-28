@@ -240,3 +240,5 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - <https://blog.nicovideo.jp/niconews/155803.html>
 - 2021/08: Internet Explorerサポート終了のご案内 - 少年ジャンプ＋α
   - <https://shonenjumpplus.com/article/information_0818>
+- 2021/09/07: Yahoo! JAPANの推奨ブラウザー
+  - <https://support.yahoo-net.jp/PccYjcommon/s/article/H000011350>
