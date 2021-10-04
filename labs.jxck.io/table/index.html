@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Test DEMO</title>
+
+<meta http-equiv="origin-trial" content="">
+
+<style>
+table,
+td,
+th {
+  border: solid 1px #ccc;
+}
+
+table {
+  width: 30vw;
+}
+</style>
+
+<h1>Test DEMO</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th align=center>center</th>
+      <th align=left  >left</th>
+      <th align=right >right</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td >aaa</td>
+      <td >bbb</td>
+      <td >ccc</td>
+    </tr>
+    <tr>
+      <td >aaa</td>
+      <td >bbb</td>
+      <td >ccc</td>
+    </tr>
+    <tr>
+      <td >aaa</td>
+      <td >bbb</td>
+      <td >ccc</td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+
+  document.on('DOMContentLoaded', async (e) => {
+    console.log(e)
+
+
+
+  })
+</script>
+
