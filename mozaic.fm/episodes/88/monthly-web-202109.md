@@ -332,21 +332,21 @@ guest
     - <https://blog.chromium.org/2021/09/user-agent-reduction-origin-trial-and-dates.html>
     - Reduction Preparation
       - Phase 1: Since Chrome 92 (July 20, 2021)
-            * devtools で navigator.userAgent, navigator.appVersion, and navigator.platform の利用に warning が出る
+        - devtools で navigator.userAgent, navigator.appVersion, and navigator.platform の利用に warning が出る
       - Phase 2: Chrome 95 to Chrome 100
-            * reduced UA に opt-in するための OT が始まる(最低 6 ヶ月)
+        - reduced UA に opt-in するための OT が始まる(最低 6 ヶ月)
     - Reduction Rollout
       - Phase 3: Chrome 100
-            * deprecation trial (reverse OT) 開始
+        - deprecation trial (reverse OT) 開始
       - Phase 4: Chrome 101
-            * MINOR.BUILD.PATCH が "0.0.0" な UA がロールアウト
+        - MINOR.BUILD.PATCH が "0.0.0" な UA がロールアウト
       - Phase 5: Chrome 107
-            * Desktop 向けに reduced UA と JS API がロールアウト
+        - Desktop 向けに reduced UA と JS API がロールアウト
       - Phase 6: Chrome 110
-            * Android 向けに reduced UA と JS API がロールアウト
+        - Android 向けに reduced UA と JS API がロールアウト
     - Reduction Completion
       - Phase 7: Chrome 113
-            * Deprecation trial が終了
+        - Deprecation trial が終了
 - canary
   - <https://www.chromium.org/getting-involved/dev-channel>
 - search central
@@ -467,7 +467,7 @@ guest
     - *Added support for lab(), lch(), hwb() color syntaxes*
     - Added support for predefined color spaces using the color() syntax: srgb, display-p3, a98-rgb, prophoto-rgb, rec2020, xyz.
     - *Adjusted environment variable calculations where appropriate to adjust for the safe area of the new iOS design*
-    -    * HTML
+  - HTML
     - Redesigned form controls in iOS.
     - *Added support for the theme-color meta tag to change the tab bar background and over-scroll area in macOS and iPadOS, and the status bar in iOS*
     - Added support for the media attribute to specify theme-color meta tags for Dark Mode and light appearance.
@@ -489,12 +489,12 @@ guest
     - Updated attribution reporting to also send reports to the click destination.
     - Added click fraud prevention with un-linkable tokens.
     - Added IP address protection for attribution reports.
-  - ​​ Payments
+  - Payments
     - Added support for creating deferred or recurring payments.
     - Added support for indicating an estimated arrival date for shipping methods.
     - Added support for the user to enter a coupon code.
     - Added support for marking the shipping method as in-store pickup.
-  -    * WebAssembly
+  - WebAssembly
     - Added support for streaming compilation.
     - Added support for bulk memory operations.
     - Added support for reference types.
@@ -530,7 +530,7 @@ guest
     - Added console logging to encourage the use of authenticated encryption (r280790)
   - Accessibility
     - Added support for aria-selected value changes in table cells (r280633)
-  - * Release Notes for Safari Technology Preview 132
+- Release Notes for Safari Technology Preview 132
   - <https://webkit.org/blog/11971/release-notes-for-safari-technology-preview-132/>
   - JavaScript
     - Added Intl Enumeration APIs (r281513)
@@ -678,7 +678,7 @@ guest
   - BigInt Math
   - Get Intrinsic
   - Fixed Shape Objects
-  - * 1->2
+- 1->2
   - Change Array By Copy
   - Pipeline Operator
 - 2->3
@@ -821,8 +821,8 @@ guest
     - <https://storage.googleapis.com/pub-tools-public-publication-data/pdf/9c56e856f0ea76454f01cabec9959f7c5b31b285.pdf>
   - JSONPS: Secure an inherently insecure practice with this one weird trick!
     - <https://secweb.work/papers/lekies2021jsonps.pdf>
-    - * Determining OS Platform Version – text/plain
-  - <https://textslashplain.com/2021/09/21/determining-os-platform-version/>
+  - Determining OS Platform Version – text/plain
+    - <https://textslashplain.com/2021/09/21/determining-os-platform-version/>
 - HTTPS Is Actually Everywhere \| Electronic Frontier Foundation
   - <https://www.eff.org/deeplinks/2021/09/https-actually-everywhere>
 
