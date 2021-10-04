@@ -858,14 +858,16 @@
                         Reduction Preparation
                         <ul>
                           <li>
-                            Phase 1: Since Chrome 92 (July 20, 2021)<br>
-
-                                * devtools で navigator.userAgent, navigator.appVersion, and navigator.platform の利用に warning が出る
+                            Phase 1: Since Chrome 92 (July 20, 2021)
+                            <ul>
+                              <li>devtools で navigator.userAgent, navigator.appVersion, and navigator.platform の利用に warning が出る
+                            </ul>
                           </li>
                           <li>
-                            Phase 2: Chrome 95 to Chrome 100<br>
-
-                                * reduced UA に opt-in するための OT が始まる(最低 6 ヶ月)
+                            Phase 2: Chrome 95 to Chrome 100
+                            <ul>
+                              <li>reduced UA に opt-in するための OT が始まる(最低 6 ヶ月)
+                            </ul>
                           </li>
                         </ul>
                       </li>
@@ -873,24 +875,30 @@
                         Reduction Rollout
                         <ul>
                           <li>
-                            Phase 3: Chrome 100<br>
-
-                                * deprecation trial (reverse OT) 開始
+                            Phase 3: Chrome 100
+                            <ul>
+                              <li>deprecation trial (reverse OT) 開始
+                            </ul>
                           </li>
                           <li>
-                            Phase 4: Chrome 101<br>
-
-                                * MINOR.BUILD.PATCH が &ldquo;0.0.0&rdquo; な UA がロールアウト
+                            Phase 4: Chrome 101
+                            <ul>
+                              <li>
+                                MINOR.BUILD.PATCH が &ldquo;0.0.0&rdquo; な UA がロールアウト
+                              </li>
+                            </ul>
                           </li>
                           <li>
-                            Phase 5: Chrome 107<br>
-
-                                * Desktop 向けに reduced UA と JS API がロールアウト
+                            Phase 5: Chrome 107
+                            <ul>
+                              <li>Desktop 向けに reduced UA と JS API がロールアウト
+                            </ul>
                           </li>
                           <li>
-                            Phase 6: Chrome 110<br>
-
-                                * Android 向けに reduced UA と JS API がロールアウト
+                            Phase 6: Chrome 110
+                            <ul>
+                              <li>Android 向けに reduced UA と JS API がロールアウト
+                            </ul>
                           </li>
                         </ul>
                       </li>
@@ -898,9 +906,10 @@
                         Reduction Completion
                         <ul>
                           <li>
-                            Phase 7: Chrome 113<br>
-
-                                * Deprecation trial が終了
+                            Phase 7: Chrome 113
+                            <ul>
+                              <li>Deprecation trial が終了
+                            </ul>
                           </li>
                         </ul>
                       </li>
@@ -1172,11 +1181,11 @@
                       <li><em>Added support for lab(), lch(), hwb() color syntaxes</em>
                       <li>Added support for predefined color spaces using the color() syntax: srgb, display-p3, a98-rgb, prophoto-rgb, rec2020, xyz.
                       <li><em>Adjusted environment variable calculations where appropriate to adjust for the safe area of the new iOS design</em>
-                      <li>
-                        <ul>
-                          <li>HTML
-                        </ul>
-                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    HTML
+                    <ul>
                       <li>Redesigned form controls in iOS.
                       <li><em>Added support for the theme-color meta tag to change the tab bar background and over-scroll area in macOS and iPadOS, and the status bar in iOS</em>
                       <li>Added support for the media attribute to specify theme-color meta tags for Dark Mode and light appearance.
@@ -1213,7 +1222,7 @@
                     </ul>
                   </li>
                   <li>
-                    ​​ Payments
+                    Payments
                     <ul>
                       <li>Added support for creating deferred or recurring payments.
                       <li>Added support for indicating an estimated arrival date for shipping methods.
@@ -1222,14 +1231,14 @@
                     </ul>
                   </li>
                   <li>
+                    WebAssembly
                     <ul>
-                      <li>WebAssembly
+                      <li>Added support for streaming compilation.
+                      <li>Added support for bulk memory operations.
+                      <li>Added support for reference types.
+                      <li>Added support for non-trapping conversions from float to int.
                     </ul>
                   </li>
-                  <li>Added support for streaming compilation.
-                  <li>Added support for bulk memory operations.
-                  <li>Added support for reference types.
-                  <li>Added support for non-trapping conversions from float to int.
                   <li>
                     Web APIs
                     <ul>
@@ -1305,11 +1314,11 @@
                       <li>Added support for aria-selected value changes in table cells (r280633)
                     </ul>
                   </li>
-                  <li>
-                    <ul>
-                      <li>Release Notes for Safari Technology Preview 132
-                    </ul>
-                  </li>
+                </ul>
+              </li>
+              <li>
+                Release Notes for Safari Technology Preview 132
+                <ul>
                   <li><a href="https://webkit.org/blog/11971/release-notes-for-safari-technology-preview-132/">https://webkit.org/blog/11971/release-notes-for-safari-technology-preview-132/</a>
                   <li>
                     JavaScript
@@ -1627,11 +1636,11 @@
                   <li>BigInt Math
                   <li>Get Intrinsic
                   <li>Fixed Shape Objects
-                  <li>
-                    <ul>
-                      <li>1-&gt;2
-                    </ul>
-                  </li>
+                </ul>
+              </li>
+              <li>
+                1-&gt;2
+                <ul>
                   <li>Change Array By Copy
                   <li>Pipeline Operator
                 </ul>
@@ -1954,14 +1963,14 @@
                   JSONPS: Secure an inherently insecure practice with this one weird trick!
                   <ul>
                     <li><a href="https://secweb.work/papers/lekies2021jsonps.pdf">https://secweb.work/papers/lekies2021jsonps.pdf</a>
-                    <li>
-                      <ul>
-                        <li>Determining OS Platform Version – text/plain
-                      </ul>
-                    </li>
                   </ul>
                 </li>
-                <li><a href="https://textslashplain.com/2021/09/21/determining-os-platform-version/">https://textslashplain.com/2021/09/21/determining-os-platform-version/</a>
+                <li>
+                  Determining OS Platform Version – text/plain
+                  <ul>
+                    <li><a href="https://textslashplain.com/2021/09/21/determining-os-platform-version/">https://textslashplain.com/2021/09/21/determining-os-platform-version/</a>
+                  </ul>
+                </li>
               </ul>
             </li>
             <li>
