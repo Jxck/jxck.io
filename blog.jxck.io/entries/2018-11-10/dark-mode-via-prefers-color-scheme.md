@@ -217,6 +217,6 @@ pre > code {
 
 動作は Safari TP69 で確認している。
 
-![dark mode support demo](./dark-mode.gif#1346x783)
+![dark mode support demo](dark-mode.gif#1346x783)
 
 今後、新しくプロパティが実装された際には対応していく予定であり、それを見据えた CSS のリファクタリングをし、備えておきたいと考えている。

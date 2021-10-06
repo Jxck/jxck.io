@@ -65,7 +65,7 @@ self.addEventListener('periodicsync', (e) => {
 
 一度 SW が登録されたら、ユーザがアプリを開いてないところでも、ユーザが認識できない形でトラッキングが可能ということになってしまう。
 
-![定期的に IP を取得することで、国をまたいだ移動などをトラッキング可能](./ip-tracking.png#2032x1084 "IP Tracking by Periodic Background Sync")
+![定期的に IP を取得することで、国をまたいだ移動などをトラッキング可能](ip-tracking.png#2032x1084 "IP Tracking by Periodic Background Sync")
 
 また、 PBS 内での fetch 先を特定の攻撃対象に設定すれば、発生タイミングをある程度指定して DDOS を行う、 Bot Net の構築に応用可能であることも指摘されている。
 
