@@ -30,6 +30,7 @@ module Format
 
     def img(node)
       src   = node[:attr]["src"]
+      pp src
       alt   = node[:attr]["alt"]
       title = node[:attr]["title"]
       dir   = node[:dir]

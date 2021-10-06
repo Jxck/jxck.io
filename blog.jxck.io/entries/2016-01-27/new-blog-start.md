@@ -104,7 +104,7 @@
 
 画像は `<picture>` タグを用いて表現する。
 
-![jxck](https://logo.jxck.io/jxck.256x256.png#256x256 'jxck logo')
+![jxck](jxck.png#256x256 'jxck logo')
 
 必ず `.webp` も提供する必要がある。
 
