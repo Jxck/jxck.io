@@ -180,7 +180,7 @@
         <h2 id="update"><a href="#update">Update</a></h2>
         <ul>
           <li>
-            2018/3/30: Let&rsquo;s Encrypt が SCT 埋め込みに対応したため、 <a href="#本サイトへの適用">本サイトへの適用</a> を更新した。
+            2018/3/30: Let&apos;s Encrypt が SCT 埋め込みに対応したため、 <a href="#本サイトへの適用">本サイトへの適用</a> を更新した。
           </li>
         </ul>
       </section>
@@ -300,13 +300,13 @@
           <p>証明書自体に SCT を埋め込む方式。
           <p>CA は一旦証明書(プレ証明書)を生成し、 SCT を取得し、それを埋め込んだ新たな証明書を生成し、それを発行することになる。
           <p>このため、 CA 内部の運用への影響が多少あるが、もし対応されれば、コンテンツプロバイダからすると運用が一番楽だろう。
-          <p>Let&rsquo;s Encrypt は、対応を予定している。
-          <p><a href="https://letsencrypt.org/upcoming-features/">Upcoming Features - Let&rsquo;s Encrypt</a>
+          <p>Let&apos;s Encrypt は、対応を予定している。
+          <p><a href="https://letsencrypt.org/upcoming-features/">Upcoming Features - Let&apos;s Encrypt</a>
         </section>
         <section>
           <h3 id="ocsp"><a href="#ocsp">OCSP</a></h3>
           <p>OCSP の情報に SCT を含む方式。これも CA 側の対応が必要。
-          <p>Let&rsquo;s Encrypt は、証明書の方で対応する予定なので、こちらのプライオリティは低くなった。
+          <p>Let&apos;s Encrypt は、証明書の方で対応する予定なので、こちらのプライオリティは低くなった。
           <p><a href="https://github.com/letsencrypt/boulder/issues/592#issuecomment-262036049">Include SCT receipts in OCSP responses #592</a>
         </section>
         <section>
@@ -619,7 +619,7 @@ d0  d1  d2 [d3] d4  d5  d6  d7</code></pre>
           <h3 id="証明書の登録add-chain"><a href="#証明書の登録add-chain">証明書の登録(add-chain)</a></h3>
           <p>証明書チェインを登録し、 SCT の値を取得する。
           <p>今回は、 CT Log Server として <a href="https://ct.googleapis.com/pilot">https://ct.googleapis.com/pilot</a> を対象とする。
-          <p>本サイトの証明書は Let&rsquo;s Encrypt で発行しており、 fullchain.pem の証明書チェインは 2 つから成り立っている。
+          <p>本サイトの証明書は Let&apos;s Encrypt で発行しており、 fullchain.pem の証明書チェインは 2 つから成り立っている。
           <pre class=bash><code translate="no">$ cat /etc/letsencrypt/live/jxck.io/fullchain.pem
 -----BEGIN CERTIFICATE-----
 MIIFvTCCBKWgAwIBAgISA6/EsoaosazyV8VTiLTZMzBzMA0GCSqGSIb3DQEBCwUA
@@ -764,8 +764,8 @@ KOqkqm57TH2H3eDJAkSnh6/DNFu0Qg==
       </section>
       <section>
         <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
-        <p>Let&rsquo;s Encrypt の SCT 埋め込みがサポートされた。
-        <p><a href="https://community.letsencrypt.org/t/signed-certificate-timestamps-embedded-in-certificates/57187/2">Signed Certificate Timestamps embedded in certificates - API Announcements - Let&rsquo;s Encrypt Community Support</a>
+        <p>Let&apos;s Encrypt の SCT 埋め込みがサポートされた。
+        <p><a href="https://community.letsencrypt.org/t/signed-certificate-timestamps-embedded-in-certificates/57187/2">Signed Certificate Timestamps embedded in certificates - API Announcements - Let&apos;s Encrypt Community Support</a>
         <p>本サイトでは証明書を再発行し SCT が埋め込まれた証明書を取得した。
         <p>
           <picture>

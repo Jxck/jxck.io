@@ -862,9 +862,9 @@
     <section>
       <h2 id="speculative-polyfill"><a href="#speculative-polyfill">Speculative Polyfill</a></h2>
       <p>問題を起こしやすいのは、 1 から 4 の段階、つまり仕様がきっちりと固まってない段階で、早まった API を実装した Polyfill を提供してしまうパターンだ。
-      <p>これは俗に Ponyfill/Prolyfill/Nottifill などと呼ばれて<a href="https://github.com/jonathantneal/document-promises/issues/4#issuecomment-256235909">分類</a> されることもあるが、いずれも問題をはらむ可能性があるということから TAG のドキュメントではこれらを総じて <em>Speculative Polyfill</em> としている。文意としては &ldquo;先走った Polyfill&rdquo; といったところか。
+      <p>これは俗に Ponyfill/Prolyfill/Nottifill などと呼ばれて<a href="https://github.com/jonathantneal/document-promises/issues/4#issuecomment-256235909">分類</a> されることもあるが、いずれも問題をはらむ可能性があるということから TAG のドキュメントではこれらを総じて <em>Speculative Polyfill</em> としている。文意としては &quot;先走った Polyfill&quot; といったところか。
       <p>策定中の API は、クラス/メソッド名などが確定しておらず、議論や試験実装を経てそれらを変更する可能性がある。
-      <p>しかし、 &ldquo;先走った Polyfill&rdquo; の実装が、仕様が固まる前に広まってしまい、固まる前のクラス/メッソド名が多くのコンテンツで使われてしまうと、仕様側でそれを変更するのが難しくなってしまう場合がある。
+      <p>しかし、 &quot;先走った Polyfill&quot; の実装が、仕様が固まる前に広まってしまい、固まる前のクラス/メッソド名が多くのコンテンツで使われてしまうと、仕様側でそれを変更するのが難しくなってしまう場合がある。
       <p>実際にこれが問題になった事例もいくつかある。
       <section>
         <h3 id="mootools-の-arrayprototypecontains"><a href="#mootools-の-arrayprototypecontains">Mootools の Array.prototype.contains</a></h3>
@@ -901,7 +901,7 @@ document.createElement(&#39;div&#39;).attachShadow({ mode: &#39;open&#39; });</c
     <section>
       <h2 id="fantasy-override"><a href="#fantasy-override">fantasy override</a></h2>
       <p>Polyfill が、ネイティブの実装と別の名前で提供されているなら、これらの問題を避けることができる。
-      <p>しかし、多くのコンテンツは、まだ仕様策定/実装が途中の機能を、将来使われるか、一部のブラウザだけが提供している仮の(&ldquo;fantasy&rdquo;)実装に寄せて使ってしまうため、依然問題となる。
+      <p>しかし、多くのコンテンツは、まだ仕様策定/実装が途中の機能を、将来使われるか、一部のブラウザだけが提供している仮の(&quot;fantasy&quot;)実装に寄せて使ってしまうため、依然問題となる。
       <p>例えば、以下のような記述はよく見られる。
       <pre class=js><code translate="no">requestAnimationFrame = requestAnimationFrame || webkitRequestAnimationFrame || polyfillRequestAnimationFrame;</code></pre>
       <p>もしこのコードを書いた時、最初の二つがなかった時は <code translate="no">polyfillRequestAnimationFrame</code> が使われるため、その挙動に依存した実装がされるだろう。
@@ -926,7 +926,7 @@ document.createElement(&#39;div&#39;).attachShadow({ mode: &#39;open&#39; });</c
           <a href="https://github.com/w3c/web-platform-tests">Test Suite</a> が存在するか
         </li>
         <li>
-          メジャーなブラウザベンダから &ldquo;Intent To Implement&rdquo; がアナウンスされているか
+          メジャーなブラウザベンダから &quot;Intent To Implement&quot; がアナウンスされているか
         </li>
       </ul>
     </section>

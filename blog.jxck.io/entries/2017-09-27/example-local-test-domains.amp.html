@@ -897,10 +897,10 @@
 ##
 127.0.0.1 localhost
 ::1             localhost</code></pre>
-      <p>もしこの設定がなければ、他のアドレス同様 DNS に問い合わせを行い、もし DNS が別のアドレスを返せば <code translate="no">localhost</code> は &ldquo;localhost&rdquo; ではなくなってしまう。
+      <p>もしこの設定がなければ、他のアドレス同様 DNS に問い合わせを行い、もし DNS が別のアドレスを返せば <code translate="no">localhost</code> は &quot;localhost&quot; ではなくなってしまう。
       <p>しかし、最近では HTTPS 必須のブラウザ機能が、 localhost だけは特別扱いするなどといった挙動になっている。
       <p>そこで、 <code translate="no">localhost</code> がループバックアドレスであることを保証するべきというドラフトが上がっている。
-      <p><a href="https://tools.ietf.org/html/draft-west-let-localhost-be-localhost-06">Let &lsquo;localhost&rsquo; be localhost. draft-west-let-localhost-be-localhost-06</a>
+      <p><a href="https://tools.ietf.org/html/draft-west-let-localhost-be-localhost-06">Let &apos;localhost&apos; be localhost. draft-west-let-localhost-be-localhost-06</a>
       <p>これが RFC になれば、 <code translate="no">.localhost</code> は明確にループバックアドレスとして使われることになるだろう。
       <p>先ほどの <code translate="no">.dev</code> 同様に <code translate="no">.localhost</code> を別のアドレスで解決する環境を作っていたりする場合は、やはり問題が出るかもしれない。
     </section>

@@ -860,7 +860,7 @@
         <p>つまり localhost とは、単に多くの OS がデフォルトで hosts に書いているエントリというだけなので、 sudo が必要とはいえ、厳密には localhost の解決先が 127.0.0.1 である保証は実はない。そしてやったことは無いが、 hosts のエントリを消し DNS に localhost を解決させることも可能なはずだ。
         <p>そこで、様々な例外が認められた結果 Powerful Features が使い放題になった localhost が、必ず 127.0.0.1 を向くようにしようという提案もある。
         <ul>
-          <li><a href="https://tools.ietf.org/html/draft-ietf-dnsop-let-localhost-be-localhost-02">draft-ietf-dnsop-let-localhost-be-localhost-02 - Let &lsquo;localhost&rsquo; be localhost</a>
+          <li><a href="https://tools.ietf.org/html/draft-ietf-dnsop-let-localhost-be-localhost-02">draft-ietf-dnsop-let-localhost-be-localhost-02 - Let &apos;localhost&apos; be localhost</a>
         </ul>
         <p>とはいえ、開発上必要で /etc/hosts を書き換え、戻し忘れた経験が有る人も多いのではないだろうか。そもそも sudo が必要なところからも、 hosts は頻繁に書き換えるような用途で使うものとはいえず、特に初心者がよくわからずにいじるようなファイルではない。
       </section>
@@ -884,7 +884,7 @@
         <p>例として、筆者が普段から個人的な開発や検証に使っている手元の https サーバの構成を紹介する。
         <p>まず、自分が所有する jxck.io のサブドメインとして localhost.jxck.io を登録している。これは「<em>本物のドメイン</em>」だ。
         <p>そして、このドメインの A レコードを 127.0.0.1 にし、変えない。 (dig してもらえればわかる)
-        <p>ここに対して Let&rsquo;s Encrypt で証明書を発行する。 127.0.0.1 ではサーバ(.well-known url)での認証はできないので、 DNS 認証で証明書を取る。すると、「<em>本物の https の証明書</em>」(すでに証明書ストアに入った証明書で検証できる証明書)が手に入る。
+        <p>ここに対して Let&apos;s Encrypt で証明書を発行する。 127.0.0.1 ではサーバ(.well-known url)での認証はできないので、 DNS 認証で証明書を取る。すると、「<em>本物の https の証明書</em>」(すでに証明書ストアに入った証明書で検証できる証明書)が手に入る。
         <p>この証明書と鍵を、<a href="https://github.com/Jxck/dotfiles/blob/master/bin/http">ローカルで立てるサーバ</a>が読むようにし、ブラウザに https://localhost.jxck.io:3000 と入れれば、ブラウザには本物の https 環境がローカルで手に入る。
         <p>
           <amp-img layout=responsive src=localhost.jxck.io.png#1600x1407 alt="https://localhost.jxck.io:3000" title="certificate detail view on https://localhost.jxck.io:3000 demo" width=1600 height=1407>
@@ -908,17 +908,17 @@
       </section>
       <section>
         <h3 id="現場用開発環境"><a href="#現場用開発環境">現場用開発環境</a></h3>
-        <p>組織で CA やイントラドメインを管理してない場合や、あっても申請が面倒で誰も活用してない場合でも、本物のドメインを用意すれば、前述の Let&rsquo;s Encrypt を用いた方法を適用することはできる。
+        <p>組織で CA やイントラドメインを管理してない場合や、あっても申請が面倒で誰も活用してない場合でも、本物のドメインを用意すれば、前述の Let&apos;s Encrypt を用いた方法を適用することはできる。
         <p>例えば、 example.com というドメインにデプロイする予定であれば、そのステージング環境用としてそのサブドメインや、似たちょっと違うドメインを用意することが多いだろう。ここでは仮に <code translate="no">dev.example.com</code> とする。
-        <p>その場合は <code translate="no">dev.example.com</code> の証明書を Let&rsquo;s Encrypt で取得し、それをチームに安全に配布する方法を用意する。(Private Repo であれば、入れてしまってもいいのかもしれない)
+        <p>その場合は <code translate="no">dev.example.com</code> の証明書を Let&apos;s Encrypt で取得し、それをチームに安全に配布する方法を用意する。(Private Repo であれば、入れてしまってもいいのかもしれない)
         <p>そして、開発で使う webpack-dev-server 的な何かにこの証明書を設定をしておく。最後に <code translate="no">dev.example.com</code> を 127.0.0.1 にしておけば、チームの誰もが本物の <code translate="no">https://dev.example.com:3000</code> 環境をすぐに再現できる。
         <p>新人が Wiki を見ながら手元で OpenSSL を叩いたり、 KeyChain を雑にいじって証明書を入れたりするような運用よりは安全かと思い、筆者は実際にこうした運用を行ったこともある。
-        <p>現場で使う上での注意点があるとすれば、 Let&rsquo;s Encrypt は CT-Log に発行履歴が残るために、完全極秘なプロジェクトである場合は、ステージング用のドメインは関係ないものを選んだ方が良いだろう。
+        <p>現場で使う上での注意点があるとすれば、 Let&apos;s Encrypt は CT-Log に発行履歴が残るために、完全極秘なプロジェクトである場合は、ステージング用のドメインは関係ないものを選んだ方が良いだろう。
       </section>
     </section>
     <section>
       <h2 id="開発ツールにはどこまでが許されるか"><a href="#開発ツールにはどこまでが許されるか">開発ツールにはどこまでが許されるか?</a></h2>
-      <p>今回は、ドメインも証明書もすべて本物を使うという振り切った運用だったが、それも Let&rsquo;s Encrypt のコストが低すぎるから成り立っているだけである。本来、開発用には開発用の環境がもっと手軽に用意できればそれにこしたことはない。
+      <p>今回は、ドメインも証明書もすべて本物を使うという振り切った運用だったが、それも Let&apos;s Encrypt のコストが低すぎるから成り立っているだけである。本来、開発用には開発用の環境がもっと手軽に用意できればそれにこしたことはない。
       <p>本来 hosts や証明書ストアなどは、管理者が重要な変更をたまに行う程度のもので、普段から頻繁にいじるようなものでは無かった。しかし、 HTTPS が必須な世界となった今、そこをいじらないと成り立たない業務が出始めているという実態と、 OS のモデルに乖離を感じたりもする。
       <p>そういう文脈を踏まえた上で、例えばブラウザの開発者ツールの中で、 hosts に相当する名前解決や、許可リストベースでの証明書検証の無視などを、設定できたらどうかと思うこともある。
       <p>開発者ツールには、実質「<em>閉じたら全てが無効になる</em>」を権限の起点としており、かつ開発者が使い慣れているという点でも、 sudo で永続的にいじる hosts や証明書よりよっぽど安全に運用できるだろう。

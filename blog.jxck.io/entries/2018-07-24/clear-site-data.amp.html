@@ -925,7 +925,7 @@ Clear-Site-Data: &quot;*&quot;</code></pre>
       <pre class=js><code translate="no">navigator.storage.clear(&quot;cache&quot;)</code></pre>
       <p>しかし、 <code translate="no">navigator.storage.clear(&quot;executionContexts&quot;)</code> を実行した場合、開いている全てのタブにおいて <code translate="no">location.reload()</code> 相当が実行されるという API の設計に疑問が出た。
       <ul>
-        <li><a href="https://github.com/w3c/webappsec-clear-site-data/issues/21">storage.clear(&ldquo;executionContexts&rdquo;) ends up doing a reload across tabs - Issue #21 - w3c/webappsec-clear-site-data</a>
+        <li><a href="https://github.com/w3c/webappsec-clear-site-data/issues/21">storage.clear(&quot;executionContexts&quot;) ends up doing a reload across tabs - Issue #21 - w3c/webappsec-clear-site-data</a>
       </ul>
       <p>結果、一旦これは Drop され、ニーズがあれば再度議論することとなった。
     </section>

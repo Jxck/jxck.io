@@ -827,7 +827,7 @@
       <p>実装が進み <code translate="no">SdpFormat</code> は <code translate="no">sdpSemantics</code> に変わったため、記事を修正。
       <ul>
         <li><a href="https://groups.google.com/forum/#!topic/discuss-webrtc/x8lcqHRlWmA">PSA: Unified Plan SDP testing flag is now available on Canary</a>
-        <li><a href="https://groups.google.com/forum/#!msg/discuss-webrtc/zMB1aL6eZ1Q/gVVQ_4rSBAAJ">PSA: RTCRtpTransceiver shipping in M69 behind sdpSemantics:&rsquo;unified-plan&rsquo;</a>
+        <li><a href="https://groups.google.com/forum/#!msg/discuss-webrtc/zMB1aL6eZ1Q/gVVQ_4rSBAAJ">PSA: RTCRtpTransceiver shipping in M69 behind sdpSemantics:&apos;unified-plan&apos;</a>
       </ul>
       <p>なお、以下のフラグを付けて起動するとデフォルトで有効にできる。
       <p><code translate="no">--enable-blink-features=RTCUnifiedPlanByDefault</code>
@@ -846,11 +846,11 @@
     <section>
       <h2 id="plan-b"><a href="#plan-b">Plan B</a></h2>
       <p><a href="https://tools.ietf.org/html/draft-uberti-rtcweb-plan-00">Plan B: a proposal for signaling multiple media sources in WebRTC</a>
-      <p>例えば、複数のマイクからの音声を送る場合、 &ldquo;m=&rdquo; line をマイクごとに記述にする。
-      <p>しかし、各 &ldquo;m=&rdquo; line 対して別トランスポートを割り当てたいとは限らない。
+      <p>例えば、複数のマイクからの音声を送る場合、 &quot;m=&quot; line をマイクごとに記述にする。
+      <p>しかし、各 &quot;m=&quot; line 対して別トランスポートを割り当てたいとは限らない。
       <p>多重化する場合は、トランスポートは 1 つで良い。
-      <p>そこで、トランスポートに対して &ldquo;m=&rdquo; line は 1 つにし、それを &ldquo;envelope&rdquo; とする。
-      <p>その中に、マイクごとの定義を、 &ldquo;a=ssrc&rdquo; で記述する。
+      <p>そこで、トランスポートに対して &quot;m=&quot; line は 1 つにし、それを &quot;envelope&quot; とする。
+      <p>その中に、マイクごとの定義を、 &quot;a=ssrc&quot; で記述する。
       <pre class=sdp><code translate="no">m=audio 49170 RTP/AVP 101
 a=ssrc:1 msid:left-mic
 a=ssrc:2 msid:center-mic
@@ -859,8 +859,8 @@ a=ssrc:3 msid:right-mic</code></pre>
     <section>
       <h2 id="plan-a---unified-plan"><a href="#plan-a---unified-plan">Plan A - Unified Plan</a></h2>
       <p><a href="https://tools.ietf.org/html/draft-roach-mmusic-unified-plan-00">A Unified Plan for Using SDP with Large Numbers of Media Flows</a>
-      <p>Plan A は、 &ldquo;m=&rdquo; line をメディアごとに書くというシンプルな方法である。
-      <p>もし多重化したい場合は、対象の &ldquo;m=&rdquo; line に対して BUNDLE を指定する。
+      <p>Plan A は、 &quot;m=&quot; line をメディアごとに書くというシンプルな方法である。
+      <p>もし多重化したい場合は、対象の &quot;m=&quot; line に対して BUNDLE を指定する。
       <p>この方式が WebRTC の標準として合意され、現在は Unified Plan として策定が進んでいる。
       <pre class=sdp><code translate="no">...
 a=group:BUNDLE m1 m2 m3
@@ -883,7 +883,7 @@ a=mid:m3
       <p>Chrome は、まず WebRTCUnifiedPlan というフラグを用意するとしている。
       <p>このフラグを有効にすると、 RTCConfiguration に <code translate="no">&quot;sdpSemantics&quot;</code> という独自プロパティを定義される。
       <p>デフォルトは <code translate="no">&quot;plan-b&quot;</code> であり、明示的に <code translate="no">&quot;unified-plan&quot;</code> を指定すれば切り替えられる。
-      <p>後にデフォルトを &ldquo;unified-plan&rdquo; に変更し、 <code translate="no">&quot;plan-b&quot;</code> が十分に減れば値自体が削除される。
+      <p>後にデフォルトを &quot;unified-plan&quot; に変更し、 <code translate="no">&quot;plan-b&quot;</code> が十分に減れば値自体が削除される。
       <pre class=js><code translate="no">new RTCPeerConnection({sdpSemantics: &quot;unified-plan&quot;})</code></pre>
     </section>
     <section>

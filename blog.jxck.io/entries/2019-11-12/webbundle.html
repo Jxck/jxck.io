@@ -275,19 +275,19 @@ whatwg-url = tstr</code></pre>
           <p>CBOR のメインとなるデータが section であり、 section にはいくつかの種類がある。
           <ul>
             <li>
-              &ldquo;index&rdquo;
+              &quot;index&quot;
             </li>
             <li>
-              &ldquo;manifest&rdquo;
+              &quot;manifest&quot;
             </li>
             <li>
-              &ldquo;signatures&rdquo;
+              &quot;signatures&quot;
             </li>
             <li>
-              &ldquo;critical&rdquo;
+              &quot;critical&quot;
             </li>
             <li>
-              &ldquo;responses&rdquo;
+              &quot;responses&quot;
             </li>
           </ul>
           <p>つまり、単にレスポンスをまとめるだけではなく、他の情報も入れられる。
@@ -297,7 +297,7 @@ whatwg-url = tstr</code></pre>
         <section>
           <h3 id="section-length"><a href="#section-length">section-length</a></h3>
           <p>section-length には、それぞれの section 長さが書かれているため、特定の section にアクセスしたい場合、そこまでジャンプすることができるようになっている。
-          <p>今回は、 &ldquo;index&rdquo; と &ldquo;response&rdquo; しか使わないため、以下のようになる。
+          <p>今回は、 &quot;index&quot; と &quot;response&quot; しか使わないため、以下のようになる。
           <pre class=json><code translate="no">[&quot;index&quot;,188,&quot;responses&quot;,1268]</code></pre>
           <p>ページ全体をまとめる場合、ファイル全体が大きくなることが容易に想像できるため、先頭からのシーケンシャルアクセスではなく、必要な部分へのインデックスアクセスを可能にしている。
         </section>
@@ -313,8 +313,8 @@ whatwg-url = tstr</code></pre>
 }</code></pre>
           <p>各 URL に対応する Response が、 responses セクションのどこ(offset)からどこ(length)までに入っているかを示している。
           <p>また、最初の <code translate="no">[]</code> にはヘッダで示されるバリエーションが含まれる。
-          <p>例えば、多言語対応しており Content-Language が &ldquo;en&rdquo; と &ldquo;ja&rdquo; で、中身が変わる HTML がある場合、それらを区別でき、クライアントは展開時に必要なものを選ぶことができる。
-          <p>さらに Content-Encoding が &ldquo;gz&rdquo; &ldquo;br&rdquo; とあった場合には、そこで 4 通りの組み合わせがあるため、ここにその組み合わせが入ることになる。
+          <p>例えば、多言語対応しており Content-Language が &quot;en&quot; と &quot;ja&quot; で、中身が変わる HTML がある場合、それらを区別でき、クライアントは展開時に必要なものを選ぶことができる。
+          <p>さらに Content-Encoding が &quot;gz&quot; &quot;br&quot; とあった場合には、そこで 4 通りの組み合わせがあるため、ここにその組み合わせが入ることになる。
           <p>(仕様には、それを見る側のクライアントの挙動は書かれているが、サーバでどう生成するかといった部分は特に書かれてないため、雰囲気で入れる。)
           <pre class=json><code translate="no">{
   &quot;http://localhost.jxck.io:3000/&quot;: [[&quot;ja;gz&quot;],   1, 100],

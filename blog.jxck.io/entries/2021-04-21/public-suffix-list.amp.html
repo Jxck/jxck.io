@@ -899,7 +899,7 @@
       <section>
         <h3 id="psl-のその他の用途"><a href="#psl-のその他の用途">PSL のその他の用途</a></h3>
         <p>PSL の説明によれば、 Cookie 以外にもブラウザが「履歴をドメインごとに並べる」「URL バーで重要なドメインを表示する」など、 UI がドメインを扱う上で活用されている。
-        <p>しかし、近年これが一番ハイライトされた例に Same Site Cookie がある。 &ldquo;Same Site&rdquo; という概念は、 <em>eTLD+1 が同じ</em> であると新しく定義されたのだ。
+        <p>しかし、近年これが一番ハイライトされた例に Same Site Cookie がある。 &quot;Same Site&quot; という概念は、 <em>eTLD+1 が同じ</em> であると新しく定義されたのだ。
         <p>これは、先の例で言えば <code translate="no">github.io</code> が eTLD で <code translate="no">jxck.github.io</code> が eTLD+1 にあたる。したがって <code translate="no">jxck.github.io</code> と <code translate="no">cdn.jxck.github.io</code> はドメインが違えど eTLD+1 が同じなので Same Site となる。
         <p>対して <code translate="no">jxck.github.io</code> と <code translate="no">www.github.io</code> は同じ <code translate="no">github.io</code> のサブドメインであるように見えながら eTLD+1 が違うので Cross Site となる。
         <p>すると「<code translate="no">github.io</code> 自体の Cookie はどうなるのか?」というと、 PSL に登録したドメインは TLD と同じように扱われるため、 <code translate="no">Domain=com</code> な Cookie が付与できないのと同じく <code translate="no">Domain=github.io</code> な Cookie は付与できない。(したがって <a href="https://github.io/">https://github.io/</a> や <a href="https://glitch.me/">https://glitch.me/</a> には何もデプロイされてない)

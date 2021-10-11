@@ -193,7 +193,7 @@
         <p>そこで時期焦燥かと思い寝かしたが、進捗を見てるとあと数年は寝かすことになりそうだった(特に JFV-&gt;SH)。
         <p>そんななか、最後のバグについて報告した issue が、 1 年がかりくらいでやっと修正された。
         <ul>
-          <li><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=917945">917945 - Reports from ReportingObserver aren&rsquo;t JSON Serializable</a>
+          <li><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=917945">917945 - Reports from ReportingObserver aren&apos;t JSON Serializable</a>
         </ul>
         <p>先日 Chrome80 でやっと挙動を確認したため、これを期にこの記事を公開することにした。
         <p>多くの問題がまだ解決しているとは言えず、実装もまだまだであるため、 Reporting 全般の途中経過だと思ってほしい。
@@ -288,7 +288,7 @@ observer.observe();</code></pre>
           <p>1 つのグループは以下のメンバーを持つ
           <ul>
             <li>
-              group(optional): グループの識別子で、他のヘッダの report-to ディレクティブで指定される。デフォルトは &ldquo;default&rdquo;
+              group(optional): グループの識別子で、他のヘッダの report-to ディレクティブで指定される。デフォルトは &quot;default&quot;
             </li>
             <li>include_subdomains(optional): サブドメインまで伝搬させる。
             <li>max_age(required): グループの有効期間。 0 にするとブラウザからグループが消える。
@@ -412,8 +412,8 @@ observer.observe();</code></pre>
         <p>(この JSON.stringify ができなかったために、修正前は自分で Serialize するロジックを <a href="https://github.com/Jxck/jxck.io/commit/4a0cdc168a73e40fcb88a1fe74f6ae62b40750fa">ワークアラウンド</a> として入れて収集していた)
         <p>JS で取得するため、 JS が動いていることが前提だ。
         <p>つまり、 CSP や Crash ではなく deprecation/intervention など軽微な Report を取得する。
-        <p>仕様どおり &ldquo;default&rdquo; group に自動で送られるため、 UI でフィードバックを表示でもしない限り JS で取得する必要はあまりなさそうに思う。
-        <p>本サイトでは、自動で &ldquo;default&rdquo; group に送られるようになるまでの間、 JS で収集する。
+        <p>仕様どおり &quot;default&quot; group に自動で送られるため、 UI でフィードバックを表示でもしない限り JS で取得する必要はあまりなさそうに思う。
+        <p>本サイトでは、自動で &quot;default&quot; group に送られるようになるまでの間、 JS で収集する。
       </section>
       <section>
         <h2 id="report"><a href="#report">Report</a></h2>

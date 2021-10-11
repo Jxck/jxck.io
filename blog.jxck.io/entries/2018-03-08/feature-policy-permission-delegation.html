@@ -142,8 +142,8 @@
                 <li><a href=#iframe-sandbox>## iframe sandbox</a>
                 <li><a href=#csp>## CSP</a>
                 <li><a href=#feature-policy>## Feature Policy</a>
-                <li><a href=#none>### &lsquo;none&rsquo;</a>
-                <li><a href=#self>### &lsquo;self&rsquo;</a>
+                <li><a href=#none>### &apos;none&apos;</a>
+                <li><a href=#self>### &apos;self&apos;</a>
                 <li><a href=#allowlist>### allowlist</a>
                 <li><a href=#権限移譲>### 権限移譲</a>
                 <li><a href=#with-iframe-sandbox>### with iframe sandbox</a>
@@ -281,12 +281,12 @@
         <p>Feature Policy はレスポンスヘッダに付与し、対象機能の制限/許可をオリジン単位で設定することができる。
         <p>ここでは、 Chrome に実装されている <code translate="no">sync-xhr</code> で、同期 XHR の制限/許可を例に解説する。
         <section>
-          <h3 id="none"><a href="#none">&lsquo;none&rsquo;</a></h3>
+          <h3 id="none"><a href="#none">&apos;none&apos;</a></h3>
           <p><code translate="no">none</code> は、全てのオリジンに対して制限を適用する。つまりこれでページ上全ての同期 XHR が制限される。
           <pre class=http><code translate="no">Feature-Policy: sync-xhr &#39;none&#39;</code></pre>
         </section>
         <section>
-          <h3 id="self"><a href="#self">&lsquo;self&rsquo;</a></h3>
+          <h3 id="self"><a href="#self">&apos;self&apos;</a></h3>
           <p><code translate="no">self</code> は、同一オリジン上は許可し、それ以外のオリジンでは制限する。
           <p>iframe があった場合も、同一オリジンなら許可されるが、クロスオリジンでは制限される。
           <pre class=http><code translate="no">Feature-Policy: sync-xhr &#39;self&#39;</code></pre>

@@ -890,7 +890,7 @@ body {
     <section>
       <h2 id="調査"><a href="#調査">調査</a></h2>
       <p>この挙動だけを見ると、「Chromium の実装にバグが有るのでは」や、「Devtools の Emulation がおかしいのでは」といった点が浮かびがちだが、まずは仕様がどうなっているのかを見てみる。
-      <p>対象の仕様は HTML であるため、 <a href="https://html.spec.whatwg.org">https://html.spec.whatwg.org</a> のどこかにあり、探すとまさしく &ldquo;4.8.4.3.6 Selecting an image source&rdquo; に該当の記述がある。
+      <p>対象の仕様は HTML であるため、 <a href="https://html.spec.whatwg.org">https://html.spec.whatwg.org</a> のどこかにあり、探すとまさしく &quot;4.8.4.3.6 Selecting an image source&quot; に該当の記述がある。
       <ul>
         <li><a href="https://html.spec.whatwg.org/multipage/images.html#selecting-an-image-source">HTML Standard - 4.8.4.3.6 Selecting an image source</a>
       </ul>
@@ -898,8 +898,8 @@ body {
       <blockquote>
         <p>When asked to select an image source for a given img or link element el, user agents must do the following:
         <p>1. Update the source set for el.
-        <p>2. If el&rsquo;s source set is empty, return null as the URL and undefined as the pixel density.
-        <p>3. Otherwise, take el&rsquo;s source set and let it be source set.
+        <p>2. If el&apos;s source set is empty, return null as the URL and undefined as the pixel density.
+        <p>3. Otherwise, take el&apos;s source set and let it be source set.
         <p>4. If an entry b in source set has the same associated pixel density descriptor as an earlier entry a in source set, then remove entry b. Repeat this step until none of the entries in source set have the same associated pixel density descriptor as an earlier entry.
         <p>5. In a user agent-specific manner, choose one image source from source set. Let this be selected source.
         <p>6. Return selected source and its associated pixel density.
@@ -1099,7 +1099,7 @@ static unsigned SelectionLogic(Vector&lt;ImageCandidate*&gt;&amp; image_candidat
       <p>A と B の密度の幾何平均を、デバイスの密度と比較しそこを基準に選択することで、完全にピクセル密度が足りるわけではないが、妥協的なサイズの画像が選べているということだと考えられる。
       <p>などと考えながらログを探したら、該当部分の issue に理由がずばり書かれていた。
       <blockquote>
-        <p>Currently the srcset resource selection simply picks the first candidate with a density that&rsquo;s equal or larger than DPR.
+        <p>Currently the srcset resource selection simply picks the first candidate with a density that&apos;s equal or larger than DPR.
         <p>That results in cases where slight zooming causes a DPR of 1.1 and the download of a 2x resource,
         <p>even though the 1x resource would have been enough.
         <p>&mdash; <cite><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=425511">425511 - Avoid loading srcset resources that are marginally larger/smaller than DPR - chromium</a></cite>
