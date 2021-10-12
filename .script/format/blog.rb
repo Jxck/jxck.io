@@ -18,7 +18,8 @@ module Format
         # h1 の中身はタイトル
         @title = node[:value]
         # h1 だけは self url にリンク
-        return %(<h#{level}><a href=#{@url}>#{@title}</a></h#{level}>\n)
+        # return %(<h#{level}><a href=#{@url}>#{@title}</a></h#{level}>\n)
+        return %(<h#{level}><a href="">#{@title}</a></h#{level}>\n)
       else
         # h2 以降は id を振る
         id = node[:attr]["id"]
