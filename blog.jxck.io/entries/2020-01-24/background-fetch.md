@@ -89,7 +89,7 @@ self.addEventListener('fetch', (e) => {
 結論から言うとこうだ。
 
 > They're standardised in HTTP, but not by HTML. We know what the headers look like, and when they should appear, but there's nothing to say what a browser should actually do with them.
-> --- <cite><https://jakearchibald.com/2018/i-discovered-a-browser-bug/#range-requests-were-never-standardised></cite>
+> --- https://jakearchibald.com/2018/i-discovered-a-browser-bug/#range-requests-were-never-standardised
 
 - Range/Partial の仕様はあくまで HTTP の仕様
 - WHATWG において、それらがブラウザでどう扱われるかは、標準化されてない

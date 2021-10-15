@@ -186,7 +186,7 @@ API が使われれば使われるほど、ブラウザの最適化も進み、�
 まず、 ping の仕様には以下が記述されている。
 
 > User agents should allow the user to adjust this behavior, for example in conjunction with a setting that disables the sending of HTTP `Referer` (sic) headers. Based on the user's preferences, UAs may either ignore the ping attribute altogether, or selectively ignore URLs in the list (e.g. ignoring any third-party URLs); this is explicitly accounted for in the steps above.
-> --- <cite>[HTML Standard](https://html.spec.whatwg.org/multipage/links.html#hyperlink-auditing)</cite>
+> --- [HTML Standard](https://html.spec.whatwg.org/multipage/links.html#hyperlink-auditing)
 
 つまり、この機能はブラウザの設定による無効化や、送られる情報の制限といった、ユーザコントロールの余地を盛り込むことが可能なのだ。
 
@@ -199,7 +199,7 @@ JS による収集は、究極的には JS を無効にしなければ Opt-Out �
 また、こうも書かれている。
 
 > When the ping attribute is present, user agents should clearly indicate to the user that following the hyperlink will also cause secondary requests to be sent in the background, possibly including listing the actual target URLs.
-> --- <cite>[HTML Standard](https://html.spec.whatwg.org/multipage/links.html#hyperlink-auditing)</cite>
+> --- [HTML Standard](https://html.spec.whatwg.org/multipage/links.html#hyperlink-auditing)
 
 各サービスが情報収集を行なっている場合、規約などに書かれているかもしれないが、実際に何がいつ送られたかまではユーザは知らされない。
 

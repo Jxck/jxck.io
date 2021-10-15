@@ -221,7 +221,7 @@ A と B の密度の幾何平均を、デバイスの密度と比較しそこを
 > Currently the srcset resource selection simply picks the first candidate with a density that's equal or larger than DPR.
 > That results in cases where slight zooming causes a DPR of 1.1 and the download of a 2x resource,
 > even though the 1x resource would have been enough.
-> --- <cite>[425511 - Avoid loading srcset resources that are marginally larger/smaller than DPR - chromium](https://bugs.chromium.org/p/chromium/issues/detail?id=425511)</cite>
+> --- [425511 - Avoid loading srcset resources that are marginally larger/smaller than DPR - chromium](https://bugs.chromium.org/p/chromium/issues/detail?id=425511)
 
 もともともモチベーションは、ズームで DPR が 1 -> 1.1 のようにずれることに起因するらしい。これも考察した理由と根底では同じと言えるだろう。
 

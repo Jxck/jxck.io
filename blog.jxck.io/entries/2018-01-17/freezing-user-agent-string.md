@@ -23,7 +23,7 @@
 Service Worker のアナウンスに目がそちらに盗まれている一方、しれっと以下の一文がある。
 
 > Froze the user-agent string to reduce web compatibility risk and to prevent its use for fingerprinting
-> --- <cite>[Release Notes for Safari Technology Preview 46](https://webkit.org/blog/8042/release-notes-for-safari-technology-preview-46/)</cite>
+> --- [Release Notes for Safari Technology Preview 46](https://webkit.org/blog/8042/release-notes-for-safari-technology-preview-46/)
 
 すぐには無理だろうと思ったが、 TP47 でもこれを打ち消すアナウンスはなかったため、これを取り上げることにした。
 
@@ -39,7 +39,7 @@ TP はあくまで Preview であり、これが *このままリリースされ
 Safari 開発者の Tweet で、モチベーションが補足されている。
 
 > STP 46 freezes Safari's user agent string. It will not change in the future. This fixes two issues:: Updating the string breaking websites sniffing for particular versions of Safari, It being used for fingerprinting. Don't UA sniff; detect features directly.
-> --- <cite><https://twitter.com/rmondello/status/943545865204989953></cite>
+> --- https://twitter.com/rmondello/status/943545865204989953
 
 ちなみに MacOS High Sierra の Safari TP46 と Safari 11.0.2 の UA は以下のようになっている(Update: Safari 11.0.3, 11.1 を追加)
 

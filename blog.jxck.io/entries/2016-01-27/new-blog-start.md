@@ -73,7 +73,7 @@
 > 他のサイトなどから引用する場合は `<blockquote>` を用いて表現する。
 > 複数行あると `<p>` に展開される
 > 引用元の URL は `<cite>` を用いてマークアップする
-> --- <cite>[example.com](https://example.com)</cite>
+> --- [example.com](https://example.com)
 
 
 ## テーブル
