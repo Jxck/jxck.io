@@ -207,7 +207,7 @@ AMP として正しい HTML かどうかは、 Chrome Developer Tools で調べ�
 
 <https://blog.jxck.io/entries/2016-02-01/amp-html.amp.html#development=1>
 
-分かりやすいように通常の HTML の右上に AMP のイメージもとである &#x26a1; を模したアイコンを追加し、そこに AMP 版へのリンクを追加した。
+分かりやすいように通常の HTML の右上に AMP のイメージもとである ⚡️ を模したアイコンを追加し、そこに AMP 版へのリンクを追加した。
 
 
 ## Outro
