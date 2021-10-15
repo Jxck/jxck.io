@@ -880,22 +880,22 @@ go build .</code></pre>
   Port = 11000
 
 [Server]
-  DocPath = &#39;/priv/doc&#39;
+  DocPath = &apos;/priv/doc&apos;
 
 [SXG.Cert]
-  PEMFile = &#39;/keys/sxg/blog_jxck_io_full.crt&#39;
-  KeyFile = &#39;/keys/sxg/blog_jxck_io.key&#39;
-  CacheDir = &#39;/tmp/webpkg&#39;
+  PEMFile = &apos;/keys/sxg/blog_jxck_io_full.crt&apos;
+  KeyFile = &apos;/keys/sxg/blog_jxck_io.key&apos;
+  CacheDir = &apos;/tmp/webpkg&apos;
 
 [SXG.ACME]
   Enable = false
 
 [[Sign]]
-  Domain = &#39;blog.jxck.io&#39;</code></pre>
+  Domain = &apos;blog.jxck.io&apos;</code></pre>
         <p>これを引数にするだけでサーバは起動する。
         <p>ローカルで起動した時点で、動作の確認は以下のように行うことができる。
         <pre class=shell><code translate="no">export URL=&quot;https://blog.jxck.io/&quot;
-curl -s --output - -H &#39;accept: application/signed-exchange;v=b3,*/*;q=0.1&#39; http://127.0.0.1:11000/priv/doc/$URL &gt; dump.sxg
+curl -s --output - -H &apos;accept: application/signed-exchange;v=b3,*/*;q=0.1&apos; http://127.0.0.1:11000/priv/doc/$URL &gt; dump.sxg
 dump-signedexchange -i dump.sxg</code></pre>
       </section>
     </section>
@@ -936,7 +936,7 @@ else
 end</code></pre>
       <p>ここまでが成功しているかは、以下のようにテストをすることができる。
       <pre class=shell><code translate="no">export URL=&quot;https://blog.jxck.io/&quot;
-curl -s --output - -H &#39;accept: application/signed-exchange;v=b3,*/*;q=0.1&#39; $URL &gt; dump.sxg
+curl -s --output - -H &apos;accept: application/signed-exchange;v=b3,*/*;q=0.1&apos; $URL &gt; dump.sxg
 dump-signedexchange -i dump.sxg -signature</code></pre>
       <section>
         <h3 id="webpkg"><a href="#webpkg"><code translate="no">/webpkg</code></a></h3>

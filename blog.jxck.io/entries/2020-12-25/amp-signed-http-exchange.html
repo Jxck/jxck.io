@@ -195,7 +195,7 @@
         <p>openssl を使うと以下のように確認できる。
         <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
         <pre class=sh-session><code translate="no"># key type が EC prim256v1
-$ openssl x509 -in blog_jxck_io.crt -text | grep &#39;ASN1 OID: prime256v1&#39;
+$ openssl x509 -in blog_jxck_io.crt -text | grep &apos;ASN1 OID: prime256v1&apos;
 # CanSignHttpExchanges 拡張がある
 $ openssl x509 -in blog_jxck_io.crt -text | grep 1.3.6.1.4.1.11129.2.1.22:</code></pre>
         <p>(おそらく将来的にはこの拡張がついた証明書で HTTPS がサーブされている場合、ブラウザはそれを拒否するようになったりするのかもしれない。)
@@ -360,7 +360,7 @@ end</code></pre>
 The exchage has a valid signature</code></pre>
           <p>これは cert-url から証明書チェインを取得してくれているらしいので、これが通れば一通り通ってると思われる。
           <p>個々のステップを細かく見たい場合は curl で取得してから順番に解くなどすると良いかもしれない。
-          <pre class=sh-session><code translate="no">$ curl -s --output - -H &#39;amp-cache-transform: google;v=&quot;3&quot;&#39; -H &#39;accept: application/signed-exchange;v=b3,*/*;q=0.1&#39; https://blog.jxck.io/entries/2020-12-03/masonry-layout.amp.html &gt; dump.sxg
+          <pre class=sh-session><code translate="no">$ curl -s --output - -H &apos;amp-cache-transform: google;v=&quot;3&quot;&apos; -H &apos;accept: application/signed-exchange;v=b3,*/*;q=0.1&apos; https://blog.jxck.io/entries/2020-12-03/masonry-layout.amp.html &gt; dump.sxg
 $ dump-signedexchange -i dump.sxg
 format version: 1b3
 ...

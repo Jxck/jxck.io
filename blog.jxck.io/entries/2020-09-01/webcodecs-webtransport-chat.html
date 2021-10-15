@@ -231,7 +231,7 @@ const videoEncoder = new VideoEncoder({
   }
 })
 await videoEncoder.configure({
-  codec:     &#39;vp8&#39;
+  codec:     &apos;vp8&apos;
   width:     640
   height:    480
   framerate: 30
@@ -246,7 +246,7 @@ videoReader.start((videoFrame) =&gt; {
           <p>デコードもほぼ同じ、まずは初期化し <code translate="no">configure()</code> を呼ぶ。
           <p><code translate="no">encode()</code> に vp8 の chunk を渡せばデコードしたフレームが取り出せる。
           <p><code translate="no">createImageBitmap()</code> でビットマップに変換すれば Canvas に描画できる。
-          <pre class=js><code translate="no">const ctx = $canvas.getContext(&#39;2d&#39;)
+          <pre class=js><code translate="no">const ctx = $canvas.getContext(&apos;2d&apos;)
 
 // Decoder
 const videoDecoder = new VideoDecoder({
@@ -259,7 +259,7 @@ const videoDecoder = new VideoDecoder({
     console.error(arguments)
   }
 })
-videoDecoder.configure({ codec: &#39;vp8&#39; })
+videoDecoder.configure({ codec: &apos;vp8&apos; })
 
 
 // encoder で作った vp8 の chunk

@@ -859,7 +859,7 @@
       <p>CSP は全て Report-Only で HTTP ヘッダから適応しており、 CSP レポートを収集している。
       <p>現状は以下である。(まだ改善点はある)
       <pre class=http><code translate="no">content-security-policy-report-only:
-  default-src &#39;self&#39;
+  default-src &apos;self&apos;
               https://jxck.io
               https://*.jxck.io
               https://www.google-analytics.com;
@@ -867,7 +867,7 @@
               https://www.youtube.com;
   connect-src wss://ws.jxck.io;
   report-uri https://jxck.report-uri.io/r/default/csp/reportOnly</code></pre>
-      <p>ポリシーは <code translate="no">default-src &#39;self&#39;</code> の設定を基本として、レポートを集めながら try &amp; error で更新した。
+      <p>ポリシーは <code translate="no">default-src &apos;self&apos;</code> の設定を基本として、レポートを集めながら try &amp; error で更新した。
       <p>レポート送信のエンドポイントは <code translate="no">report-uri.io</code> を使っていたが、後述するように今は自前で立てたサーバに移行している。
     </section>
     <section>
@@ -893,7 +893,7 @@
     &quot;referrer&quot;:            &quot;https://blog.jxck.io/&quot;,
     &quot;violated-directive&quot;:  &quot;script-src&quot;,
     &quot;effective-directive&quot;: &quot;script-src&quot;,
-    &quot;original-policy&quot;:     &quot;default-src &#39;self&#39; https://jxck.io...&quot;,
+    &quot;original-policy&quot;:     &quot;default-src &apos;self&apos; https://jxck.io...&quot;,
     &quot;disposition&quot;:         &quot;report&quot;,
     &quot;blocked-uri&quot;:         &quot;https://code.jquery.com/jquery-3.0.0.min.js&quot;,
     &quot;line-number&quot;:         1,
@@ -910,9 +910,9 @@
         <pre class=js><code translate="no">{
   &quot;csp-report&quot;: {
     &quot;document-uri&quot;:        &quot;https://blog.jxck.io/entries/...&quot;,
-    &quot;violated-directive&quot;:  &quot;default-src &#39;self&#39; https://jxck.io ...&quot;,
+    &quot;violated-directive&quot;:  &quot;default-src &apos;self&apos; https://jxck.io ...&quot;,
     &quot;effective-directive&quot;: &quot;img-src&quot;,
-    &quot;original-policy&quot;:     &quot;default-src &#39;self&#39; https://jxck.io ...&quot;,
+    &quot;original-policy&quot;:     &quot;default-src &apos;self&apos; https://jxck.io ...&quot;,
     &quot;blocked-uri&quot;:         &quot;ms-browser-extension&quot;,
     &quot;status-code&quot;:         0
   }
@@ -940,7 +940,7 @@
   &quot;referrer&quot;:            &quot;&quot;,
   &quot;violated-directive&quot;:  &quot;style-src&quot;,
   &quot;effective-directive&quot;: &quot;style-src&quot;,
-  &quot;original-policy&quot;:     &quot;default-src &#39;self&#39; https://*.jxck.io...&quot;,
+  &quot;original-policy&quot;:     &quot;default-src &apos;self&apos; https://*.jxck.io...&quot;,
   &quot;disposition&quot;:         &quot;report&quot;,
   &quot;blocked-uri&quot;:         &quot;inline&quot;,
   &quot;line-number&quot;:         1,
@@ -965,9 +965,9 @@
         <pre class=js><code translate="no">{
   &quot;csp-report&quot;: {
     &quot;document-uri&quot;:        &quot;about://blank&quot;,
-    &quot;violated-directive&quot;:  &quot;default-src &#39;self&#39; https://jxck.io...&quot;,
+    &quot;violated-directive&quot;:  &quot;default-src &apos;self&apos; https://jxck.io...&quot;,
     &quot;effective-directive&quot;: &quot;img-src&quot;,
-    &quot;original-policy&quot;:     &quot;default-src &#39;self&#39; https://jxck.io...&quot;,
+    &quot;original-policy&quot;:     &quot;default-src &apos;self&apos; https://jxck.io...&quot;,
     &quot;blocked-uri&quot;:         &quot;data&quot;,
     &quot;status-code&quot;:         0
   }

@@ -213,9 +213,9 @@
         <h2 id="url-オブジェクト"><a href="#url-オブジェクト">URL オブジェクト</a></h2>
         <p>Node v7.0.0 で実装された API は以下のように使うことができる。
         <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
-        <pre class=js><code translate="no">const URL = require(&#39;url&#39;).URL;
+        <pre class=js><code translate="no">const URL = require(&apos;url&apos;).URL;
 
-const u = new URL(&#39;https://jxck:password@blog.jxck.io/path/to/entry?log=true&amp;lang=ja#main&#39;);
+const u = new URL(&apos;https://jxck:password@blog.jxck.io/path/to/entry?log=true&amp;lang=ja#main&apos;);
 console.log(u);
 // URL {
 //   href: https://jxck:password@blog.jxck.io/path/to/entry?log=true&amp;lang=ja#main
@@ -229,10 +229,10 @@ console.log(u);
 // }</code></pre>
         <p>この API を経由すれば、日本語ドメインの Punycode 化、 IPv6 アドレスの対応、 escape などもやってくれる。
         <p>(ここら辺が、正規表現での処理時に問題になりやすいあたりだ。)
-        <pre class=js><code translate="no">const URL = require(&#39;url&#39;).URL;
+        <pre class=js><code translate="no">const URL = require(&apos;url&apos;).URL;
 
 // 日本語ドメイン
-const jp = new URL(&#39;https://じゃっく.jp&#39;);
+const jp = new URL(&apos;https://じゃっく.jp&apos;);
 console.log(jp);
 // URL {
 //   href: https://xn--y8jr7a5i.jp/
@@ -242,7 +242,7 @@ console.log(jp);
 // }
 
 // IPv6
-const ipv6 = new URL(&#39;https://[::1]/&#39;);
+const ipv6 = new URL(&apos;https://[::1]/&apos;);
 console.log(ipv6);
 // URL {
 //   href: https://[::1]/
@@ -252,7 +252,7 @@ console.log(ipv6);
 // }
 
 // 日本語
-const ja = new URL(&#39;https://example.com/ぱす?きー=ばりゅー&#39;);
+const ja = new URL(&apos;https://example.com/ぱす?きー=ばりゅー&apos;);
 console.log(ja);
 // URL {
 //   href: https://example.com/%E3%81%B1%E3%81%99?%E3%81%8D%E3%83%BC=%E3%81%B0%E3%82%8A%E3%82%85%E3%83%BC
@@ -268,15 +268,15 @@ console.log(ja);
         <h2 id="urlsearchparams-オブジェクト"><a href="#urlsearchparams-オブジェクト">URLSearchParams オブジェクト</a></h2>
         <p>また、 query parameter を表現する URLSearchParams は別オブジェクトであるため、 query parameter の取得や生成もこのオブジェクトを利用できる。
         <p>一応 Node v7.0.0 にもコードはあるようだが、正しく動いてないようなので、完成予定の Chrome の結果を代わりに貼っておく。
-        <pre class=js><code translate="no">const URL = require(&#39;url&#39;).URL;
+        <pre class=js><code translate="no">const URL = require(&apos;url&apos;).URL;
 
-const u = new URL(&#39;https://jxck.io?log=warn&amp;lang=ja&#39;);
+const u = new URL(&apos;https://jxck.io?log=warn&amp;lang=ja&apos;);
 const searchParams = u.searchParams;
-searchParams.get(&#39;log&#39;) // &quot;warn&quot;
-searchParams.getAll(&#39;log&#39;) // [&quot;warn&quot;]
-searchParams.delete(&#39;log&#39;) // undefined
-searchParams.has(&#39;log&#39;) // false
-searchParams.append(&#39;debug&#39;, true) // undefined
+searchParams.get(&apos;log&apos;) // &quot;warn&quot;
+searchParams.getAll(&apos;log&apos;) // [&quot;warn&quot;]
+searchParams.delete(&apos;log&apos;) // undefined
+searchParams.has(&apos;log&apos;) // false
+searchParams.append(&apos;debug&apos;, true) // undefined
 searchParams.toString() // &quot;lang=ja&amp;debug=true&quot;
 
 for ([k, v] of searchParams) {

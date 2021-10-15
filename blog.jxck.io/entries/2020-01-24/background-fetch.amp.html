@@ -863,7 +863,7 @@ Content-Length: 47763456</code></pre>
     <section>
       <h2 id="service-worker-での-range-request"><a href="#service-worker-での-range-request">Service Worker での Range Request</a></h2>
       <p>ところが onfetch で Range になるはずのリクエストを見てみると、レスポンスが必ず 200 で返ってきていることに気付く。
-      <pre class=js><code translate="no">self.addEventListener(&#39;fetch&#39;, (e) =&gt; {
+      <pre class=js><code translate="no">self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
   e.respondWith((async () =&gt; {
     const req = e.request
     const res = await fetch(req)
@@ -916,13 +916,13 @@ Content-Length: 47763456</code></pre>
         <p>取得したい URL とオプションを登録する。
         <p>ID はそのタスク自体を識別するために登録し、もし同じ ID のタスクがある状態で再登録しようとすると例外が出る。
         <p>また、ダウンロード対象を複数登録して同時にダウンロードさせることができる。
-        <pre class=js><code translate="no">const id   = &#39;ep01&#39;
-const mp3  = &#39;https://files.example.com/ep01.mp3&#39;
-const html = &#39;https://files.example.com/ep01.html&#39;
+        <pre class=js><code translate="no">const id   = &apos;ep01&apos;
+const mp3  = &apos;https://files.example.com/ep01.mp3&apos;
+const html = &apos;https://files.example.com/ep01.html&apos;
 const option = {
-  title: &#39;title of download&#39;,
+  title: &apos;title of download&apos;,
   downloadTotal: 65535, // size
-  icons: [{src: &#39;logo.png&#39;, sizes: &#39;256x256&#39;, type: &#39;image/webp&#39;}]
+  icons: [{src: &apos;logo.png&apos;, sizes: &apos;256x256&apos;, type: &apos;image/webp&apos;}]
 }
 const registration = await navigator.serviceWorker.ready
 const task = await registration.backgroundFetch.fetch(id, [html, mp3], option)</code></pre>
@@ -930,7 +930,7 @@ const task = await registration.backgroundFetch.fetch(id, [html, mp3], option)</
       <section>
         <h3 id="foreground-event"><a href="#foreground-event">foreground event</a></h3>
         <p>ダウンロードの進捗は window 側で progress イベントで上がる
-        <pre class=js><code translate="no">task.addEventListener(&#39;progress&#39;, (e) =&gt; console.log(e.downloaded))</code></pre>
+        <pre class=js><code translate="no">task.addEventListener(&apos;progress&apos;, (e) =&gt; console.log(e.downloaded))</code></pre>
       </section>
       <section>
         <h3 id="abort"><a href="#abort">abort()</a></h3>
@@ -949,7 +949,7 @@ const task = await registration.backgroundFetch.fetch(id, [html, mp3], option)</
         <li>backgroundfetchclick
       </ul>
       <pre class=js><code translate="no">// ダウンロード完了
-self.addEventListener(&#39;backgroundfetchsuccess&#39;, (e) =&gt; {
+self.addEventListener(&apos;backgroundfetchsuccess&apos;, (e) =&gt; {
   e.waitUntil(async function() {
     try {
       // 結果を取り出す
@@ -965,7 +965,7 @@ self.addEventListener(&#39;backgroundfetchsuccess&#39;, (e) =&gt; {
       await cache.put(request.url, response)
 
       // 通知
-      await e.updateUI({ title: &#39;download finished&#39; })
+      await e.updateUI({ title: &apos;download finished&apos; })
     } catch (err) {
       console.error(err)
       e.updateUI({ title: `download failed ${e.registration.id}` })
@@ -974,7 +974,7 @@ self.addEventListener(&#39;backgroundfetchsuccess&#39;, (e) =&gt; {
 })
 
 // download タスクをクリック
-self.addEventListener(&#39;backgroundfetchclick&#39;, (e) =&gt; {
+self.addEventListener(&apos;backgroundfetchclick&apos;, (e) =&gt; {
   e.waitUntil(async function() {
     const id = e.registration.id
     // 該当ページを開く
@@ -982,12 +982,12 @@ self.addEventListener(&#39;backgroundfetchclick&#39;, (e) =&gt; {
   }())
 })
 
-self.addEventListener(&#39;backgroundfetchfail&#39;, (e) =&gt; {
+self.addEventListener(&apos;backgroundfetchfail&apos;, (e) =&gt; {
   // 特に何もする必要ないっぽい
   console.error(e)
 })
 
-self.addEventListener(&#39;backgroundfetchabort&#39;, (e) =&gt; {
+self.addEventListener(&apos;backgroundfetchabort&apos;, (e) =&gt; {
   // 特に何もする必要ないっぽい
   console.error(e)
 })</code></pre>
@@ -998,7 +998,7 @@ self.addEventListener(&#39;backgroundfetchabort&#39;, (e) =&gt; {
       <p>キャッシュは Range などを気にする必要もなく普通に返せば良い。
       <p>実際に <code translate="no">&lt;audio&gt;</code> タグは途中からでも普通に再生できた。
       <pre class=js><code translate="no">// ダウンロードしたものを返す
-self.addEventListener(&#39;fetch&#39;, (e) =&gt; {
+self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
   e.respondWith(async function() {
     const cachedResponse = await caches.match(e.request.url)
     if (cachedResponse) {

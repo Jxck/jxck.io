@@ -293,17 +293,17 @@ connected -&gt; failed</code></pre>
     this.writer = this.transport.sendDatagrams().getWriter()
     this.reader = this.transport.receiveDatagrams().getReader()
     this.transport.ready.then(async (e) =&gt; {
-      this.dispatchEvent(new CustomEvent(&#39;open&#39;))
+      this.dispatchEvent(new CustomEvent(&apos;open&apos;))
 
       while(true) {
         const {done, value} = await this.reader.read()
         if (done) break
-        this.dispatchEvent(new CustomEvent(&#39;data&#39;, {detail: value}))
+        this.dispatchEvent(new CustomEvent(&apos;data&apos;, {detail: value}))
       }
     })
 
     this.transport.closed.then(async (e) =&gt; {
-      this.dispatchEvent(new CustomEvent(&#39;close&#39;))
+      this.dispatchEvent(new CustomEvent(&apos;close&apos;))
     })
   }
 

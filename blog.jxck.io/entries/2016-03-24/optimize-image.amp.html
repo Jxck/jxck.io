@@ -910,10 +910,10 @@
       <h2 id="gulp-image"><a href="#gulp-image">gulp-image</a></h2>
       <p>画像フォーマットや、最適化対象によって、様々なツールがあるが、それらを一つにまとめた <code translate="no">gulp-image</code> というツールがあるため、これを採用することにした。
       <p>リサイズは別途行い、その結果に対して以下のような gulp タスクを作成した。
-      <pre class=js><code translate="no">&#39;use strict&#39;;
+      <pre class=js><code translate="no">&apos;use strict&apos;;
 
-let gulp = require(&#39;gulp&#39;);
-let image = require(&#39;gulp-image&#39;);
+let gulp = require(&apos;gulp&apos;);
+let image = require(&apos;gulp-image&apos;);
 
 const imageOption = {
   pngquant:       true,
@@ -927,13 +927,13 @@ const imageOption = {
   svgo:           true,
 }
 
-gulp.task(&#39;image&#39;, () =&gt; {
-  gulp.src(&#39;blog.jxck.io/entries/**/*.+(png|jpeg|svg|webp)&#39;)
+gulp.task(&apos;image&apos;, () =&gt; {
+  gulp.src(&apos;blog.jxck.io/entries/**/*.+(png|jpeg|svg|webp)&apos;)
     .pipe(image(imageOption))
-    .pipe(gulp.dest(&#39;blog.jxck.io/entries/&#39;));
+    .pipe(gulp.dest(&apos;blog.jxck.io/entries/&apos;));
 });
 
-gulp.task(&#39;default&#39;, [&#39;image&#39;]);</code></pre>
+gulp.task(&apos;default&apos;, [&apos;image&apos;]);</code></pre>
     </section>
     <section>
       <h2 id="結果"><a href="#結果">結果</a></h2>

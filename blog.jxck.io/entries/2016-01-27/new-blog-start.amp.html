@@ -1025,7 +1025,7 @@ Accept-Language: ja-JP</code></pre>
   }
 }
 
-const test = new Test(&#39;hello&#39;)
+const test = new Test(&apos;hello&apos;)
 test.print() // hello</code></pre>
         <p>ファイルからコードを読むこともできる。以下ハイライトテスト用。
         <pre><code translate="no">no tag</code></pre>
@@ -1039,7 +1039,7 @@ test.print() // hello</code></pre>
   }
 }
 
-const test = new Test(&#39;hello&#39;)
+const test = new Test(&apos;hello&apos;)
 test.print() // hello</code></pre>
         <pre class=rb><code translate="no">#!/usr/bin/env ruby
 `rm *.gz`
@@ -1048,15 +1048,15 @@ test.print() // hello</code></pre>
 (1..10)
   .map { |i| i * 10 }
   .each { |i| `time -v -a -o result zopfli --i#{i} -c loading-css-over-http2.html &gt; loading-css-over-http2.html.#{i}.gz` }</code></pre>
-        <pre class=js><code translate="no">const URL = require(&#39;url&#39;).URL;
+        <pre class=js><code translate="no">const URL = require(&apos;url&apos;).URL;
 
-const u = new URL(&#39;https://jxck.io?log=warn&amp;lang=ja&#39;);
+const u = new URL(&apos;https://jxck.io?log=warn&amp;lang=ja&apos;);
 const searchParams = u.searchParams;
-searchParams.get(&#39;log&#39;) // &quot;warn&quot;
-searchParams.getAll(&#39;log&#39;) // [&quot;warn&quot;]
-searchParams.delete(&#39;log&#39;) // undefined
-searchParams.has(&#39;log&#39;) // false
-searchParams.append(&#39;debug&#39;, true) // undefined
+searchParams.get(&apos;log&apos;) // &quot;warn&quot;
+searchParams.getAll(&apos;log&apos;) // [&quot;warn&quot;]
+searchParams.delete(&apos;log&apos;) // undefined
+searchParams.has(&apos;log&apos;) // false
+searchParams.append(&apos;debug&apos;, true) // undefined
 searchParams.toString() // &quot;lang=ja&amp;debug=true&quot;
 
 for ([k, v] of searchParams) {
@@ -1064,10 +1064,10 @@ for ([k, v] of searchParams) {
   // lang ja
   // debug true
 }</code></pre>
-        <pre class=js><code translate="no">const URL = require(&#39;url&#39;).URL;
+        <pre class=js><code translate="no">const URL = require(&apos;url&apos;).URL;
 
 // 日本語ドメイン
-const jp = new URL(&#39;https://じゃっく.jp&#39;);
+const jp = new URL(&apos;https://じゃっく.jp&apos;);
 console.log(jp);
 // URL {
 //   href: https://xn--y8jr7a5i.jp/
@@ -1077,7 +1077,7 @@ console.log(jp);
 // }
 
 // IPv6
-const ipv6 = new URL(&#39;https://[::1]/&#39;);
+const ipv6 = new URL(&apos;https://[::1]/&apos;);
 console.log(ipv6);
 // URL {
 //   href: https://[::1]/
@@ -1087,7 +1087,7 @@ console.log(ipv6);
 // }
 
 // 日本語
-const ja = new URL(&#39;https://example.com/ぱす?きー=ばりゅー&#39;);
+const ja = new URL(&apos;https://example.com/ぱす?きー=ばりゅー&apos;);
 console.log(ja);
 // URL {
 //   href: https://example.com/%E3%81%B1%E3%81%99?%E3%81%8D%E3%83%BC=%E3%81%B0%E3%82%8A%E3%82%85%E3%83%BC
@@ -1096,9 +1096,9 @@ console.log(ja);
 //   pathname: /%E3%81%B1%E3%81%99
 //   search: ?%E3%81%8D%E3%83%BC=%E3%81%B0%E3%82%8A%E3%82%85%E3%83%BC
 // }</code></pre>
-        <pre class=js><code translate="no">const URL = require(&#39;url&#39;).URL;
+        <pre class=js><code translate="no">const URL = require(&apos;url&apos;).URL;
 
-const u = new URL(&#39;https://jxck:password@blog.jxck.io/path/to/entry?log=true&amp;lang=ja#main&#39;);
+const u = new URL(&apos;https://jxck:password@blog.jxck.io/path/to/entry?log=true&amp;lang=ja#main&apos;);
 console.log(u);
 // URL {
 //   href: https://jxck:password@blog.jxck.io/path/to/entry?log=true&amp;lang=ja#main
@@ -1110,35 +1110,35 @@ console.log(u);
 //   search: ?log=true&amp;lang=ja
 //   hash: #main
 // }</code></pre>
-        <pre class=js><code translate="no">self.addEventListener(&#39;install&#39;, (e) =&gt; {
-  console.log(&#39;install&#39;);
+        <pre class=js><code translate="no">self.addEventListener(&apos;install&apos;, (e) =&gt; {
+  console.log(&apos;install&apos;);
   e.registerForeignFetch({
-    scopes: [&#39;/random/number&#39;], // or self.registration.scope to handle everything
-    origins: [&#39;*&#39;] // or [&#39;https://client1.com&#39;] to limit the remote origins
+    scopes: [&apos;/random/number&apos;], // or self.registration.scope to handle everything
+    origins: [&apos;*&apos;] // or [&apos;https://client1.com&apos;] to limit the remote origins
   });
 });
 
-self.addEventListener(&#39;activate&#39;, (e) =&gt; {
-  console.log(&#39;activate&#39;);
+self.addEventListener(&apos;activate&apos;, (e) =&gt; {
+  console.log(&apos;activate&apos;);
 });
 
-self.addEventListener(&#39;fetch&#39;, (e) =&gt; {
-  console.log(&#39;fetch&#39;);
+self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
+  console.log(&apos;fetch&apos;);
 });
 
-self.addEventListener(&#39;foreignfetch&#39;, (e) =&gt; {
-  console.log(&#39;foreignfetch&#39;);
+self.addEventListener(&apos;foreignfetch&apos;, (e) =&gt; {
+  console.log(&apos;foreignfetch&apos;);
   e.respondWith(
     fetch(e.request)
       .then((response) =&gt; {
-        console.log(&#39;online response&#39;);
+        console.log(&apos;online response&apos;);
         return {
           response,
           origin: e.origin // Make this a CORS response
         };
       })
       .catch(() =&gt; {
-        console.log(&#39;offline response&#39;);
+        console.log(&apos;offline response&apos;);
         return {
           response: new Response(Math.floor(Math.random()*100)),
           origin: e.origin // Make this a CORS response
@@ -1147,72 +1147,72 @@ self.addEventListener(&#39;foreignfetch&#39;, (e) =&gt; {
   );
 });</code></pre>
         <pre class=js><code translate="no">const CACHE = &quot;foreign-fetch&quot;;
-self.addEventListener(&#39;install&#39;, (e) =&gt; {
-  console.info(&#39;install&#39;, e);
+self.addEventListener(&apos;install&apos;, (e) =&gt; {
+  console.info(&apos;install&apos;, e);
 
   e.waitUntil(
     caches.open(CACHE).then((cache) =&gt; {
       return cache.addAll([
-        &#39;.&#39;,
-        &#39;./index.html&#39;,
-        &#39;./worker.js&#39;
+        &apos;.&apos;,
+        &apos;./index.html&apos;,
+        &apos;./worker.js&apos;
       ])
     })
   );
 });
 
-self.addEventListener(&#39;activate&#39;, (e) =&gt; {
-  console.info(&#39;activate&#39;, e);
+self.addEventListener(&apos;activate&apos;, (e) =&gt; {
+  console.info(&apos;activate&apos;, e);
 
   e.waitUntil(self.clients.claim());
 });
 
-self.addEventListener(&#39;fetch&#39;, (e) =&gt; {
-  console.info(&#39;fetch&#39;, e.request);
+self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
+  console.info(&apos;fetch&apos;, e.request);
 
   e.respondWith(
     caches.open(CACHE).then((cache) =&gt; {
       return cache.match(e.request).then((cached) =&gt; {
-        console.log(&#39;cached&#39;, cached);
+        console.log(&apos;cached&apos;, cached);
         return cached || fetch(e.request);
       }).catch(console.error.bind(console))
     })
   );
 });</code></pre>
         <pre class=js><code translate="no">callback = console.log.bind(console)
-process.on(&#39;foo&#39;, callback)
-process.emit(&#39;foo&#39;, &#39;bar&#39;)
+process.on(&apos;foo&apos;, callback)
+process.emit(&apos;foo&apos;, &apos;bar&apos;)
 // bar
-process.removeListener(&#39;foo&#39;, callback)</code></pre>
+process.removeListener(&apos;foo&apos;, callback)</code></pre>
         <pre class=js><code translate="no">callback = console.log.bind(console)
-$div = document.createElement(&#39;div&#39;)
-$div.addEventListener(&#39;foo&#39;, callback)
-$div.dispatchEvent(new CustomEvent(&#39;foo&#39;, {detail:&#39;bar&#39;}))
-// CustomEvent {type: &quot;foo&quot;, detail: &#39;bar&#39;...
-$div.removeEventListener(&#39;foo&#39;, callback)</code></pre>
-        <pre class=js><code translate="no">EventEmitter = require(&#39;events&#39;)
+$div = document.createElement(&apos;div&apos;)
+$div.addEventListener(&apos;foo&apos;, callback)
+$div.dispatchEvent(new CustomEvent(&apos;foo&apos;, {detail:&apos;bar&apos;}))
+// CustomEvent {type: &quot;foo&quot;, detail: &apos;bar&apos;...
+$div.removeEventListener(&apos;foo&apos;, callback)</code></pre>
+        <pre class=js><code translate="no">EventEmitter = require(&apos;events&apos;)
 class Timer extends EventEmitter {
   constructor(interval) {
     super()
     setInterval(() =&gt; {
-      this.emit(&#39;tick&#39;, &#39;tick&#39;)
+      this.emit(&apos;tick&apos;, &apos;tick&apos;)
     }, interval)
   }
 }
 
 timer = new Timer(100)
-timer.on(&#39;tick&#39;, console.log.bind(console))</code></pre>
+timer.on(&apos;tick&apos;, console.log.bind(console))</code></pre>
         <pre class=js><code translate="no">class Timer extends EventTarget {
   constructor(interval) {
     super()
     setInterval(() =&gt; {
-      this.dispatchEvent(new CustomEvent(&#39;tick&#39;))
+      this.dispatchEvent(new CustomEvent(&apos;tick&apos;))
     }, interval)
   }
 }
 
 timer = new Timer(100)
-timer.addEventListener(&#39;tick&#39;, console.log.bind(console))</code></pre>
+timer.addEventListener(&apos;tick&apos;, console.log.bind(console))</code></pre>
         <pre class=js><code translate="no">function main() {
   // AbortController class が追加される
   const controller = new AbortController()
@@ -1228,7 +1228,7 @@ timer.addEventListener(&#39;tick&#39;, console.log.bind(console))</code></pre>
       // レスポンスの処理
     })
     .catch((err) =&gt; {
-      if (err.name == &#39;AbortError&#39;) {
+      if (err.name == &apos;AbortError&apos;) {
         // 中断の場合の処理
         return
       }
@@ -1259,14 +1259,14 @@ function longTaskPromise({signal}) {
   return new Promise((resolve, reject) =&gt; {
     // 処理の Promise 化
     let longTask = new LongTask()
-    longTask.addEventListener(&#39;data&#39;, resolve)
-    longTask.addEventListener(&#39;error&#39;, reject)
+    longTask.addEventListener(&apos;data&apos;, resolve)
+    longTask.addEventListener(&apos;error&apos;, reject)
     longTask.start()
 
     // abort signal のハンドリング
-    signal.addEventListener(&#39;abort&#39;, () =&gt; {
+    signal.addEventListener(&apos;abort&apos;, () =&gt; {
       longTask.stop()
-      reject(new DOMException(&#39;Aborted&#39;, &#39;AbortError&#39;))
+      reject(new DOMException(&apos;Aborted&apos;, &apos;AbortError&apos;))
     })
   })
 }
@@ -1287,7 +1287,7 @@ function main() {
       // 結果の正常処理
     })
     .catch((err) =&gt; {
-      if (err.name == &#39;AbortError&#39;) {
+      if (err.name == &apos;AbortError&apos;) {
         // 中断の場合の処理
         return
       }
@@ -1322,7 +1322,7 @@ Promise.race([
   // それらを止める。
   controller.abort()
 }).catch((err) =&gt; {
-  if (err.name == &#39;AbortError&#39;) {
+  if (err.name == &apos;AbortError&apos;) {
     // ここに来るのは race が終わる前に Abort した場合
     // race が終わった後の abort はここに来ない
     return
@@ -1393,7 +1393,7 @@ def get_proof_by_hash(host, cert, tree_size, timestamp)
     http.request(request)
   end
 
-  puts &quot;\e[0;31m$ curl &#39;#{uri}&#39; | jq .\e[0m&quot;
+  puts &quot;\e[0;31m$ curl &apos;#{uri}&apos; | jq .\e[0m&quot;
   pp JSON.parse(response.body)
 end
 
@@ -1402,7 +1402,7 @@ def get_sth(host)
   json   = Net::HTTP.get(uri)
   result = JSON.parse(json)
 
-  puts &quot;\e[0;31m$ curl &#39;#{uri}&#39; | jq .\e[0m&quot;
+  puts &quot;\e[0;31m$ curl &apos;#{uri}&apos; | jq .\e[0m&quot;
   pp result
 end
 
@@ -1428,8 +1428,8 @@ def add_chain(host, chain)
   end
 
   puts &lt;&lt;-EOS
-\e[0;31m$ curl -H &#39;Content-Type:application/json&#39; \\
-       -d &#39;{ &quot;chain&quot;: #{str} }&#39; \\
+\e[0;31m$ curl -H &apos;Content-Type:application/json&apos; \\
+       -d &apos;{ &quot;chain&quot;: #{str} }&apos; \\
        #{uri} | jq . \e[0m
 EOS
 
@@ -1450,13 +1450,13 @@ def main(host = &quot;ct.googleapis.com/pilot&quot;, pemfile)
   puts &quot;&quot;
   get_proof_by_hash(host, chain[0], tree_size, timestamp)
 end</code></pre>
-        <pre class=shell><code translate="no">curl -H &#39;Content-Type:application/json&#39; \
-     -d &#39;{ &quot;chain&quot;: [&quot;MIIFvTCCBKWgAwIBAgISA6/EsoaosazyV8VTiLTZMzBzMA0GCSqGSIb3DQEBCwUAMEoxCzAJBgNVBAYTAlVTMRYwFAYDVQQKEw1MZXQncyBFbmNyeXB0MSMwIQYDVQQDExpMZXQncyBFbmNyeXB0IEF1dGhvcml0eSBYMzAeFw0xODAzMDYwNjA5MDZaFw0xODA2MDQwNjA5MDZaMBIxEDAOBgNVBAMTB2p4Y2suaW8wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC7UnbgMfyQOVAqOp9oNjcoHZ2p0H0sUkFERYzZ2VXXJRkg7QzFrZTAP7jdxw/HEhkMJTMNlX59cvEyxiEbgNqTLYQjwSP1Ibgtkjzq2EPlm2SsFkq6vwbuydZA31HQa2vEYqZzo9RUG69T4URUotmtZBTWqW5w8m9l9xwCuInzOxS8990rVW27FiWtSF+4HI/mBTzHAX/w1dJRaT9ESrWJnmKYcYCBayCswEfp9b6uOgNWASZBd67lKE2AfE0FDdgKclElttBbvK8Kl2TNpCzwRwwzt54Bt9AFt8MZr4p4SKUjuj5GkcFrlnvyESbXJuyZwnnUCNkbxxYP0LfsgfmnAgMBAAGjggLTMIICzzAOBgNVHQ8BAf8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMAwGA1UdEwEB/wQCMAAwHQYDVR0OBBYEFMnlleIsgD60xDmW8Pz/yWKKPjk4MB8GA1UdIwQYMBaAFKhKamMEfd265tE5t6ZFZe/zqOyhMG8GCCsGAQUFBwEBBGMwYTAuBggrBgEFBQcwAYYiaHR0cDovL29jc3AuaW50LXgzLmxldHNlbmNyeXB0Lm9yZzAvBggrBgEFBQcwAoYjaHR0cDovL2NlcnQuaW50LXgzLmxldHNlbmNyeXB0Lm9yZy8wgd0GA1UdEQSB1TCB0oINYWRtaW4uanhjay5pb4ILYXBpLmp4Y2suaW+CDGJsb2cuanhjay5pb4INZmlsZXMuanhjay5pb4IHanhjay5pb4IMbGFiMi5qeGNrLmlvggxsYWJzLmp4Y2suaW+CDGxvZ28uanhjay5pb4INcmFpbHMuanhjay5pb4IScmVwb3J0LXVyaS5qeGNrLmlvggtzZnUuanhjay5pb4INc2xpZGUuanhjay5pb4IMc3BlYy5qeGNrLmlvggp3cy5qeGNrLmlvggt3d3cuanhjay5pbzCB/gYDVR0gBIH2MIHzMAgGBmeBDAECATCB5gYLKwYBBAGC3xMBAQEwgdYwJgYIKwYBBQUHAgEWGmh0dHA6Ly9jcHMubGV0c2VuY3J5cHQub3JnMIGrBggrBgEFBQcCAjCBngyBm1RoaXMgQ2VydGlmaWNhdGUgbWF5IG9ubHkgYmUgcmVsaWVkIHVwb24gYnkgUmVseWluZyBQYXJ0aWVzIGFuZCBvbmx5IGluIGFjY29yZGFuY2Ugd2l0aCB0aGUgQ2VydGlmaWNhdGUgUG9saWN5IGZvdW5kIGF0IGh0dHBzOi8vbGV0c2VuY3J5cHQub3JnL3JlcG9zaXRvcnkvMA0GCSqGSIb3DQEBCwUAA4IBAQA6Tnb6wxUgQE7mnf8N+5PgIzC5ebxjGps/I2ppEqnvuAECdrkWySdqPDG8e7lyuyxzzav6FTFUb3y8EwDrdT+UDquewpv6TxoP1NcnuMRhpjV41Y/otxRW53+Fz+g+Ub4XTnrJmK98aq8vzyMpvkWhHPMfs2xRsIkNH6L/T0h+8AL7MpKLiuqiy9SA4COVjNLX5Z2ZyK/xPaNhfJ1jv7vs/fvIGNLtJ7sCwVa54r8OycNVd1nj9zVFmtJ554S3fRBNFI5vZNJJw4npN1/q1bQ1B7oo8U1pLunDxqhvNHO247WDRVBeCvJLuZGZJc4g35W97iUTVVbwPLVfK4o82MOD&quot;, &quot;MIIEkjCCA3qgAwIBAgIQCgFBQgAAAVOFc2oLheynCDANBgkqhkiG9w0BAQsFADA/MSQwIgYDVQQKExtEaWdpdGFsIFNpZ25hdHVyZSBUcnVzdCBDby4xFzAVBgNVBAMTDkRTVCBSb290IENBIFgzMB4XDTE2MDMxNzE2NDA0NloXDTIxMDMxNzE2NDA0NlowSjELMAkGA1UEBhMCVVMxFjAUBgNVBAoTDUxldCdzIEVuY3J5cHQxIzAhBgNVBAMTGkxldCdzIEVuY3J5cHQgQXV0aG9yaXR5IFgzMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnNMM8FrlLke3cl03g7NoYzDq1zUmGSXhvb418XCSL7e4S0EFq6meNQhY7LEqxGiHC6PjdeTm86dicbp5gWAf15Gan/PQeGdxyGkOlZHP/uaZ6WA8SMx+yk13EiSdRxta67nsHjcAHJyse6cF6s5K671B5TaYucv9bTyWaN8jKkKQDIZ0Z8h/pZq4UmEUEz9l6YKHy9v6Dlb2honzhT+Xhq+w3Brvaw2VFn3EK6BlspkENnWAa6xK8xuQSXgvopZPKiAlKQTGdMDQMc2PMTiVFrqoM7hD8bEfwzB/onkxEz0tNvjj/PIzark5McWvxI0NHWQWM6r6hCm21AvA2H3DkwIDAQABo4IBfTCCAXkwEgYDVR0TAQH/BAgwBgEB/wIBADAOBgNVHQ8BAf8EBAMCAYYwfwYIKwYBBQUHAQEEczBxMDIGCCsGAQUFBzABhiZodHRwOi8vaXNyZy50cnVzdGlkLm9jc3AuaWRlbnRydXN0LmNvbTA7BggrBgEFBQcwAoYvaHR0cDovL2FwcHMuaWRlbnRydXN0LmNvbS9yb290cy9kc3Ryb290Y2F4My5wN2MwHwYDVR0jBBgwFoAUxKexpHsscfrb4UuQdf/EFWCFiRAwVAYDVR0gBE0wSzAIBgZngQwBAgEwPwYLKwYBBAGC3xMBAQEwMDAuBggrBgEFBQcCARYiaHR0cDovL2Nwcy5yb290LXgxLmxldHNlbmNyeXB0Lm9yZzA8BgNVHR8ENTAzMDGgL6AthitodHRwOi8vY3JsLmlkZW50cnVzdC5jb20vRFNUUk9PVENBWDNDUkwuY3JsMB0GA1UdDgQWBBSoSmpjBH3duubRObemRWXv86jsoTANBgkqhkiG9w0BAQsFAAOCAQEA3TPXEfNjWDjdGBX7CVW+dla5cEilaUcne8IkCJLxWh9KEik3JHRRHGJouM2VcGfl96S8TihRzZvoroed6ti6WqEBmtzw3Wodatg+VyOeph4EYpr/1wXKtx8/wApIvJSwtmVi4MFU5aMqrSDE6ea73Mj2tcMyo5jMd6jmeWUHK8so/joWUoHOUgwuX4Po1QYz+3dszkDqMp4fklxBwXRsW10KXzPMTZ+sOPAveyxindmjkW8lGy+QsRlGPfZ+G6Z6h7mjem0Y+iWlkYcV4PIWL1iwBi8saCbGS5jN2p8M+X+Q7UNKEkROb3N6KOqkqm57TH2H3eDJAkSnh6/DNFu0Qg==&quot;] }&#39; \
+        <pre class=shell><code translate="no">curl -H &apos;Content-Type:application/json&apos; \
+     -d &apos;{ &quot;chain&quot;: [&quot;MIIFvTCCBKWgAwIBAgISA6/EsoaosazyV8VTiLTZMzBzMA0GCSqGSIb3DQEBCwUAMEoxCzAJBgNVBAYTAlVTMRYwFAYDVQQKEw1MZXQncyBFbmNyeXB0MSMwIQYDVQQDExpMZXQncyBFbmNyeXB0IEF1dGhvcml0eSBYMzAeFw0xODAzMDYwNjA5MDZaFw0xODA2MDQwNjA5MDZaMBIxEDAOBgNVBAMTB2p4Y2suaW8wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC7UnbgMfyQOVAqOp9oNjcoHZ2p0H0sUkFERYzZ2VXXJRkg7QzFrZTAP7jdxw/HEhkMJTMNlX59cvEyxiEbgNqTLYQjwSP1Ibgtkjzq2EPlm2SsFkq6vwbuydZA31HQa2vEYqZzo9RUG69T4URUotmtZBTWqW5w8m9l9xwCuInzOxS8990rVW27FiWtSF+4HI/mBTzHAX/w1dJRaT9ESrWJnmKYcYCBayCswEfp9b6uOgNWASZBd67lKE2AfE0FDdgKclElttBbvK8Kl2TNpCzwRwwzt54Bt9AFt8MZr4p4SKUjuj5GkcFrlnvyESbXJuyZwnnUCNkbxxYP0LfsgfmnAgMBAAGjggLTMIICzzAOBgNVHQ8BAf8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMAwGA1UdEwEB/wQCMAAwHQYDVR0OBBYEFMnlleIsgD60xDmW8Pz/yWKKPjk4MB8GA1UdIwQYMBaAFKhKamMEfd265tE5t6ZFZe/zqOyhMG8GCCsGAQUFBwEBBGMwYTAuBggrBgEFBQcwAYYiaHR0cDovL29jc3AuaW50LXgzLmxldHNlbmNyeXB0Lm9yZzAvBggrBgEFBQcwAoYjaHR0cDovL2NlcnQuaW50LXgzLmxldHNlbmNyeXB0Lm9yZy8wgd0GA1UdEQSB1TCB0oINYWRtaW4uanhjay5pb4ILYXBpLmp4Y2suaW+CDGJsb2cuanhjay5pb4INZmlsZXMuanhjay5pb4IHanhjay5pb4IMbGFiMi5qeGNrLmlvggxsYWJzLmp4Y2suaW+CDGxvZ28uanhjay5pb4INcmFpbHMuanhjay5pb4IScmVwb3J0LXVyaS5qeGNrLmlvggtzZnUuanhjay5pb4INc2xpZGUuanhjay5pb4IMc3BlYy5qeGNrLmlvggp3cy5qeGNrLmlvggt3d3cuanhjay5pbzCB/gYDVR0gBIH2MIHzMAgGBmeBDAECATCB5gYLKwYBBAGC3xMBAQEwgdYwJgYIKwYBBQUHAgEWGmh0dHA6Ly9jcHMubGV0c2VuY3J5cHQub3JnMIGrBggrBgEFBQcCAjCBngyBm1RoaXMgQ2VydGlmaWNhdGUgbWF5IG9ubHkgYmUgcmVsaWVkIHVwb24gYnkgUmVseWluZyBQYXJ0aWVzIGFuZCBvbmx5IGluIGFjY29yZGFuY2Ugd2l0aCB0aGUgQ2VydGlmaWNhdGUgUG9saWN5IGZvdW5kIGF0IGh0dHBzOi8vbGV0c2VuY3J5cHQub3JnL3JlcG9zaXRvcnkvMA0GCSqGSIb3DQEBCwUAA4IBAQA6Tnb6wxUgQE7mnf8N+5PgIzC5ebxjGps/I2ppEqnvuAECdrkWySdqPDG8e7lyuyxzzav6FTFUb3y8EwDrdT+UDquewpv6TxoP1NcnuMRhpjV41Y/otxRW53+Fz+g+Ub4XTnrJmK98aq8vzyMpvkWhHPMfs2xRsIkNH6L/T0h+8AL7MpKLiuqiy9SA4COVjNLX5Z2ZyK/xPaNhfJ1jv7vs/fvIGNLtJ7sCwVa54r8OycNVd1nj9zVFmtJ554S3fRBNFI5vZNJJw4npN1/q1bQ1B7oo8U1pLunDxqhvNHO247WDRVBeCvJLuZGZJc4g35W97iUTVVbwPLVfK4o82MOD&quot;, &quot;MIIEkjCCA3qgAwIBAgIQCgFBQgAAAVOFc2oLheynCDANBgkqhkiG9w0BAQsFADA/MSQwIgYDVQQKExtEaWdpdGFsIFNpZ25hdHVyZSBUcnVzdCBDby4xFzAVBgNVBAMTDkRTVCBSb290IENBIFgzMB4XDTE2MDMxNzE2NDA0NloXDTIxMDMxNzE2NDA0NlowSjELMAkGA1UEBhMCVVMxFjAUBgNVBAoTDUxldCdzIEVuY3J5cHQxIzAhBgNVBAMTGkxldCdzIEVuY3J5cHQgQXV0aG9yaXR5IFgzMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnNMM8FrlLke3cl03g7NoYzDq1zUmGSXhvb418XCSL7e4S0EFq6meNQhY7LEqxGiHC6PjdeTm86dicbp5gWAf15Gan/PQeGdxyGkOlZHP/uaZ6WA8SMx+yk13EiSdRxta67nsHjcAHJyse6cF6s5K671B5TaYucv9bTyWaN8jKkKQDIZ0Z8h/pZq4UmEUEz9l6YKHy9v6Dlb2honzhT+Xhq+w3Brvaw2VFn3EK6BlspkENnWAa6xK8xuQSXgvopZPKiAlKQTGdMDQMc2PMTiVFrqoM7hD8bEfwzB/onkxEz0tNvjj/PIzark5McWvxI0NHWQWM6r6hCm21AvA2H3DkwIDAQABo4IBfTCCAXkwEgYDVR0TAQH/BAgwBgEB/wIBADAOBgNVHQ8BAf8EBAMCAYYwfwYIKwYBBQUHAQEEczBxMDIGCCsGAQUFBzABhiZodHRwOi8vaXNyZy50cnVzdGlkLm9jc3AuaWRlbnRydXN0LmNvbTA7BggrBgEFBQcwAoYvaHR0cDovL2FwcHMuaWRlbnRydXN0LmNvbS9yb290cy9kc3Ryb290Y2F4My5wN2MwHwYDVR0jBBgwFoAUxKexpHsscfrb4UuQdf/EFWCFiRAwVAYDVR0gBE0wSzAIBgZngQwBAgEwPwYLKwYBBAGC3xMBAQEwMDAuBggrBgEFBQcCARYiaHR0cDovL2Nwcy5yb290LXgxLmxldHNlbmNyeXB0Lm9yZzA8BgNVHR8ENTAzMDGgL6AthitodHRwOi8vY3JsLmlkZW50cnVzdC5jb20vRFNUUk9PVENBWDNDUkwuY3JsMB0GA1UdDgQWBBSoSmpjBH3duubRObemRWXv86jsoTANBgkqhkiG9w0BAQsFAAOCAQEA3TPXEfNjWDjdGBX7CVW+dla5cEilaUcne8IkCJLxWh9KEik3JHRRHGJouM2VcGfl96S8TihRzZvoroed6ti6WqEBmtzw3Wodatg+VyOeph4EYpr/1wXKtx8/wApIvJSwtmVi4MFU5aMqrSDE6ea73Mj2tcMyo5jMd6jmeWUHK8so/joWUoHOUgwuX4Po1QYz+3dszkDqMp4fklxBwXRsW10KXzPMTZ+sOPAveyxindmjkW8lGy+QsRlGPfZ+G6Z6h7mjem0Y+iWlkYcV4PIWL1iwBi8saCbGS5jN2p8M+X+Q7UNKEkROb3N6KOqkqm57TH2H3eDJAkSnh6/DNFu0Qg==&quot;] }&apos; \
      https://ct.googleapis.com/pilot/ct/v1/add-chain | jq .
 
-curl &#39;https://ct.googleapis.com/pilot/ct/v1/get-sth&#39; | jq .
+curl &apos;https://ct.googleapis.com/pilot/ct/v1/get-sth&apos; | jq .
 
-curl &#39;https://ct.googleapis.com/pilot/ct/v1/get-proof-by-hash?hash=odRjuexWzJ36zh8XavhDEZaUhoAv9yxRF4zEyKZiVVg%3D&amp;tree_size=237363285&#39; | jq .</code></pre>
+curl &apos;https://ct.googleapis.com/pilot/ct/v1/get-proof-by-hash?hash=odRjuexWzJ36zh8XavhDEZaUhoAv9yxRF4zEyKZiVVg%3D&amp;tree_size=237363285&apos; | jq .</code></pre>
         <pre class=go><code translate="no">package main
 
 import (
@@ -1543,11 +1543,11 @@ func main() {
 	p(base64.URLEncoding.EncodeToString(hash[:]))
 
 	// この hash をつけてリクエスト
-	p(&quot;curl &#39;https://ct.googleapis.com/rocketter/ct/v1/get-proof-by-hash?hash=xxx&amp;tree_size=yyy&#39;&quot;)
+	p(&quot;curl &apos;https://ct.googleapis.com/rocketter/ct/v1/get-proof-by-hash?hash=xxx&amp;tree_size=yyy&apos;&quot;)
 }</code></pre>
-        <pre class=http><code translate="no">Content-Security-Policy: default-src &#39;self&#39; report-uri https://report-uri.example.com</code></pre>
-        <pre class=http><code translate="no">Content-Security-Policy: default-src &#39;self&#39; report-to=default-endpoint
-Feature-Policy: syncxhr &#39;none&#39; report-to=default-endpoint
+        <pre class=http><code translate="no">Content-Security-Policy: default-src &apos;self&apos; report-uri https://report-uri.example.com</code></pre>
+        <pre class=http><code translate="no">Content-Security-Policy: default-src &apos;self&apos; report-to=default-endpoint
+Feature-Policy: syncxhr &apos;none&apos; report-to=default-endpoint
 NEL: {&quot;report-to&quot;: &quot;default-endpoint&quot;, &quot;max-age&quot;: 2592000}
 Report-To: {
              &quot;group&quot;: &quot;default-endpoint&quot;,
@@ -1592,8 +1592,8 @@ observer.observe();</code></pre>
                }
              ]
            }</code></pre>
-        <pre class=http><code translate="no">Content-Security-Policy: default-src &#39;self&#39; report-to=csp-endpoint
-Feature-Policy: syncxhr &#39;none&#39; report-to=default
+        <pre class=http><code translate="no">Content-Security-Policy: default-src &apos;self&apos; report-to=csp-endpoint
+Feature-Policy: syncxhr &apos;none&apos; report-to=default
 NEL: {&quot;report-to&quot;: &quot;default&quot;, &quot;max-age&quot;: 2592000}
 Report-To: {
              &quot;group&quot;: &quot;default&quot;,
@@ -1762,63 +1762,63 @@ static unsigned SelectionLogic(Vector&lt;ImageCandidate*&gt;&amp; image_candidat
 
 &lt;h1&gt;Push DEMO&lt;/h1&gt;</code></pre>
         <pre class=js><code translate="no">// master.js
-navigator.serviceWorker.register(&#39;worker.js&#39;).then((registration) =&gt; {
+navigator.serviceWorker.register(&apos;worker.js&apos;).then((registration) =&gt; {
   return navigator.serviceWorker.ready;
 }).then((registration) =&gt; {
   // register sync
-  document.getElementById(&#39;button&#39;).addEventListener(&#39;click&#39;, () =&gt; {
-    registration.sync.register(&#39;sync-data&#39;).then(() =&gt; {
-      console.log(&#39;sync registered&#39;);
+  document.getElementById(&apos;button&apos;).addEventListener(&apos;click&apos;, () =&gt; {
+    registration.sync.register(&apos;sync-data&apos;).then(() =&gt; {
+      console.log(&apos;sync registered&apos;);
     }).catch(console.error.bind(console));
   });
 }).catch(console.error.bind(console));</code></pre>
         <pre class=js><code translate="no">// worker.js
-self.addEventListener(&#39;install&#39;, (e) =&gt; {
-  console.info(&#39;install&#39;, e);
+self.addEventListener(&apos;install&apos;, (e) =&gt; {
+  console.info(&apos;install&apos;, e);
   e.waitUntil(skipWaiting());
 });
 
-self.addEventListener(&#39;activate&#39;, (e) =&gt; {
-  console.info(&#39;activate&#39;, e);
+self.addEventListener(&apos;activate&apos;, (e) =&gt; {
+  console.info(&apos;activate&apos;, e);
   e.waitUntil(self.clients.claim());
 });
 
-self.addEventListener(&#39;sync&#39;, (e) =&gt; {
-  console.log(&#39;sync&#39;, e);
+self.addEventListener(&apos;sync&apos;, (e) =&gt; {
+  console.log(&apos;sync&apos;, e);
 });</code></pre>
-        <pre class=js><code translate="no">console.log(&#39;master&#39;);
+        <pre class=js><code translate="no">console.log(&apos;master&apos;);
 
-document.getElementById(&#39;button&#39;).addEventListener(&#39;click&#39;, () =&gt; {
-  fetch(&#39;/test&#39;);
+document.getElementById(&apos;button&apos;).addEventListener(&apos;click&apos;, () =&gt; {
+  fetch(&apos;/test&apos;);
 });
 
-navigator.serviceWorker.register(&#39;worker.js&#39;).then((registration) =&gt; {
+navigator.serviceWorker.register(&apos;worker.js&apos;).then((registration) =&gt; {
   console.log(registration);
 });</code></pre>
-        <pre class=js><code translate="no">console.info(&#39;worker&#39;);
+        <pre class=js><code translate="no">console.info(&apos;worker&apos;);
 
-self.addEventListener(&#39;activate&#39;, (e) =&gt; {
-  console.info(&#39;activate&#39;, e);
+self.addEventListener(&apos;activate&apos;, (e) =&gt; {
+  console.info(&apos;activate&apos;, e);
   e.waitUntil(self.clients.claim());
 });
 
-self.addEventListener(&#39;fetch&#39;, (e) =&gt; {
+self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
   let path = new URL(e.request.url).pathname;
   console.log(path);
-  if (path === &#39;/test&#39;) {
-    e.respondWith(new Response(&#39;test&#39;));
+  if (path === &apos;/test&apos;) {
+    e.respondWith(new Response(&apos;test&apos;));
   }
   return;
 });</code></pre>
-        <pre class=js><code translate="no">console.log(&#39;master&#39;);
+        <pre class=js><code translate="no">console.log(&apos;master&apos;);
 
 let controllerChange = new Promise((resolve, reject) =&gt; {
-  navigator.serviceWorker.addEventListener(&#39;controllerchange&#39;, () =&gt; {
+  navigator.serviceWorker.addEventListener(&apos;controllerchange&apos;, () =&gt; {
     resolve(navigator.serviceWorker.controller);
   });
 });
 
-navigator.serviceWorker.register(&#39;worker.js&#39;).then((registration) =&gt; {
+navigator.serviceWorker.register(&apos;worker.js&apos;).then((registration) =&gt; {
   return navigator.serviceWorker.ready;
 }).then(() =&gt; {
   if (navigator.serviceWorker.controller) {
@@ -1827,27 +1827,27 @@ navigator.serviceWorker.register(&#39;worker.js&#39;).then((registration) =&gt; 
   return controllerChange;
 }).then((controller) =&gt; {
   console.log(controller);
-  fetch(&#39;/test&#39;);
+  fetch(&apos;/test&apos;);
 });</code></pre>
-        <pre class=js><code translate="no">console.info(&#39;worker&#39;);
+        <pre class=js><code translate="no">console.info(&apos;worker&apos;);
 
-self.addEventListener(&#39;activate&#39;, (e) =&gt; {
-  console.info(&#39;activate&#39;, e);
+self.addEventListener(&apos;activate&apos;, (e) =&gt; {
+  console.info(&apos;activate&apos;, e);
   e.waitUntil(self.clients.claim());
 });
 
-self.addEventListener(&#39;fetch&#39;, (e) =&gt; {
+self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
   let path = new URL(e.request.url).pathname;
   console.info(path);
-  if (path === &#39;/test&#39;) {
-    e.respondWith(new Response(&#39;test&#39;));
+  if (path === &apos;/test&apos;) {
+    e.respondWith(new Response(&apos;test&apos;));
   }
   return;
 });</code></pre>
-        <pre class=js><code translate="no">&#39;use strict&#39;;
+        <pre class=js><code translate="no">&apos;use strict&apos;;
 let p = console.log.bind(console);
 
-navigator.serviceWorker.register(&#39;worker.js&#39;).then((registration) =&gt; {
+navigator.serviceWorker.register(&apos;worker.js&apos;).then((registration) =&gt; {
   return navigator.serviceWorker.ready;
 }).then((registration) =&gt; {
   return registration.pushManager.subscribe({ userVisibleOnly: true });
@@ -1855,8 +1855,8 @@ navigator.serviceWorker.register(&#39;worker.js&#39;).then((registration) =&gt; 
   console.log(subscription);
 
   const endpoint = subscription.endpoint;
-  const auth = subscription.getKey(&#39;auth&#39;);
-  const p256dh = subscription.getKey(&#39;p256dh&#39;);
+  const auth = subscription.getKey(&apos;auth&apos;);
+  const p256dh = subscription.getKey(&apos;p256dh&apos;);
 
   const userAuth = btoa(String.fromCharCode(...new Uint8Array(auth)));
   const userPublicKey = btoa(String.fromCharCode(...new Uint8Array(p256dh)));
@@ -1867,33 +1867,33 @@ navigator.serviceWorker.register(&#39;worker.js&#39;).then((registration) =&gt; 
   console.log(body);
 
 }).catch(console.error.bind(console));</code></pre>
-        <pre class=js><code translate="no">self.addEventListener(&#39;install&#39;, (e) =&gt; {
-  console.info(&#39;install&#39;, e);
+        <pre class=js><code translate="no">self.addEventListener(&apos;install&apos;, (e) =&gt; {
+  console.info(&apos;install&apos;, e);
   e.waitUntil(self.skipWaiting());
 });
 
-self.addEventListener(&#39;activate&#39;, (e) =&gt; {
-  console.info(&#39;activate&#39;, e);
+self.addEventListener(&apos;activate&apos;, (e) =&gt; {
+  console.info(&apos;activate&apos;, e);
   e.waitUntil(self.clients.claim());
 });
 
-self.addEventListener(&#39;push&#39;, (e) =&gt; {
-  console.info(&#39;push&#39;, e);
+self.addEventListener(&apos;push&apos;, (e) =&gt; {
+  console.info(&apos;push&apos;, e);
   const message = e.data.text();
 
-  e.waitUntil(self.registration.showNotification(&#39;title&#39;, {
+  e.waitUntil(self.registration.showNotification(&apos;title&apos;, {
     body: message,
-    icon: &#39;/service-worker/push/jxck.png&#39;,
-    tag:  &#39;push-demo&#39;,
+    icon: &apos;/service-worker/push/jxck.png&apos;,
+    tag:  &apos;push-demo&apos;,
   }));
 });
 
-self.addEventListener(&#39;notificationclick&#39;, (e) =&gt; {
-  console.info(&#39;notificationclick&#39;, e.notification.tag);
+self.addEventListener(&apos;notificationclick&apos;, (e) =&gt; {
+  console.info(&apos;notificationclick&apos;, e.notification.tag);
   e.notification.close();
-  const URL = &#39;https://labs.jxck.io/service-worker/push/&#39;;
+  const URL = &apos;https://labs.jxck.io/service-worker/push/&apos;;
   e.waitUntil(clients.matchAll({
-      type: &#39;window&#39;
+      type: &apos;window&apos;
     }).then((windowClients) =&gt; {
       let target = windowClients.filter((client) =&gt; {
         return client.url === URL;
@@ -1907,11 +1907,11 @@ self.addEventListener(&#39;notificationclick&#39;, (e) =&gt; {
       return clients.openWindow(URL);
   }));
 });</code></pre>
-        <pre class=js><code translate="no">&#39;use strict&#39;;
+        <pre class=js><code translate="no">&apos;use strict&apos;;
 
-let push = require(&#39;web-push&#39;);
+let push = require(&apos;web-push&apos;);
 
-const GCM_API_KEY = &#39;*******&#39;;
+const GCM_API_KEY = &apos;*******&apos;;
 push.setGCMAPIKey(GCM_API_KEY);
 
 const data = {
@@ -1921,7 +1921,7 @@ const data = {
 }
 
 push.sendNotification(data.endpoint, {
-  payload:       &#39;push test for service worker&#39;,
+  payload:       &apos;push test for service worker&apos;,
   userAuth:      data.userAuth,
   userPublicKey: data.userPublicKey,
 })
@@ -1929,75 +1929,75 @@ push.sendNotification(data.endpoint, {
   console.log(result);
 })
 .catch((err) =&gt; {
-  console.error(&#39;fail&#39;, err);
+  console.error(&apos;fail&apos;, err);
 });</code></pre>
-        <pre class=js><code translate="no">console.log(&#39;master&#39;);
+        <pre class=js><code translate="no">console.log(&apos;master&apos;);
 
-navigator.serviceWorker.register(&#39;worker.js&#39;).then((registration) =&gt; {
-  registration.addEventListener(&#39;updatefound&#39;, (e) =&gt; {
-    console.info(&#39;update&#39;, e);
+navigator.serviceWorker.register(&apos;worker.js&apos;).then((registration) =&gt; {
+  registration.addEventListener(&apos;updatefound&apos;, (e) =&gt; {
+    console.info(&apos;update&apos;, e);
   });
 
   return navigator.serviceWorker.ready;
 }).then((registration) =&gt; {
   setInterval(() =&gt; {
-    console.log(&#39;update()&#39;);
+    console.log(&apos;update()&apos;);
     registration.update();
   }, 1000);
 });</code></pre>
-        <pre class=js><code translate="no">console.info(&#39;worker&#39;);
+        <pre class=js><code translate="no">console.info(&apos;worker&apos;);
 
 const ver = 1;
 
-self.addEventListener(&#39;install&#39;, (e) =&gt; {
+self.addEventListener(&apos;install&apos;, (e) =&gt; {
   console.info(` install${ver}`, e);
   e.waitUntil(skipWaiting());
 });
 
-self.addEventListener(&#39;activate&#39;, (e) =&gt; {
+self.addEventListener(&apos;activate&apos;, (e) =&gt; {
   console.info(` activate${ver}`, e);
   e.waitUntil(self.clients.claim());
 });
 
-self.addEventListener(&#39;fetch&#39;, (e) =&gt; {
+self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
   let path = new URL(e.request.url).pathname;
   console.info(path);
-  if (path.indexOf(&#39;test&#39;) &gt; -1) {
-    e.respondWith(new Response(&#39;test&#39;));
+  if (path.indexOf(&apos;test&apos;) &gt; -1) {
+    e.respondWith(new Response(&apos;test&apos;));
   }
   return;
 });
 
-self.addEventListener(&#39;push&#39;, () =&gt; {
+self.addEventListener(&apos;push&apos;, () =&gt; {
   self.registration.update();
 });</code></pre>
-        <pre class=js><code translate="no">console.log(&#39;master&#39;);
+        <pre class=js><code translate="no">console.log(&apos;master&apos;);
 
-navigator.serviceWorker.register(&#39;worker.js&#39;).then((registration) =&gt; {
-  registration.addEventListener(&#39;updatefound&#39;, (e) =&gt; {
-    console.info(&#39;update&#39;, e);
+navigator.serviceWorker.register(&apos;worker.js&apos;).then((registration) =&gt; {
+  registration.addEventListener(&apos;updatefound&apos;, (e) =&gt; {
+    console.info(&apos;update&apos;, e);
   });
   return navigator.serviceWorker.ready;
 });</code></pre>
-        <pre class=js><code translate="no">console.info(&#39;worker&#39;);
+        <pre class=js><code translate="no">console.info(&apos;worker&apos;);
 
 const ver = 1;
 
-self.addEventListener(&#39;install&#39;, (e) =&gt; {
+self.addEventListener(&apos;install&apos;, (e) =&gt; {
   console.info(` install${ver}`, e);
   e.waitUntil(skipWaiting());
 });
 
-self.addEventListener(&#39;activate&#39;, (e) =&gt; {
+self.addEventListener(&apos;activate&apos;, (e) =&gt; {
   console.info(` activate${ver}`, e);
   e.waitUntil(self.clients.claim());
 });
 
-self.addEventListener(&#39;fetch&#39;, (e) =&gt; {
+self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
   let path = new URL(e.request.url).pathname;
   console.info(path);
-  if (path === &#39;/service-worker/updatefound/test&#39;) {
-    e.respondWith(new Response(&#39;test&#39;));
+  if (path === &apos;/service-worker/updatefound/test&apos;) {
+    e.respondWith(new Response(&apos;test&apos;));
   }
   return;
 });</code></pre>

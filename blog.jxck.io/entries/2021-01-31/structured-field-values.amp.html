@@ -861,8 +861,8 @@
         <p>HTTP のヘッダは以下のようになっている。
         <pre class=http><code translate="no">Host: example.com
 Set-Cookie: session_id=deadbeef; SameSite=Strict; Path=/; Secure; HttpOnly
-Content-Security-Policy:content-security-policy: default-src &#39;self&#39; https://jxck.io; child-src https://blog.jxck.io; connect-src wss://ws.jxck.io;
-Permission-Policy: syncxhr &#39;none&#39; report-to=default-endpoint</code></pre>
+Content-Security-Policy:content-security-policy: default-src &apos;self&apos; https://jxck.io; child-src https://blog.jxck.io; connect-src wss://ws.jxck.io;
+Permission-Policy: syncxhr &apos;none&apos; report-to=default-endpoint</code></pre>
         <p>HTTP の仕様では、この Header Name と Header Value をパースする部分が標準化されている。
         <p>しかし、 Header Value の中身をどうパースするかは、それぞれのヘッダの仕様、ここでいう Cookie, CSP, Permission-Policy によって決められており、そのフォーマットはバラバラだ。
         <p>それぞれのヘッダごとに仕様を定義するのも、それぞれパーサを書くのもあまりヘルシーではない。特にブラウザは新しいパーサを実装するとセキュリティ的なリスクがあるため、積極的には入れにくい。

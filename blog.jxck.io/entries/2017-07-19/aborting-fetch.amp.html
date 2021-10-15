@@ -917,14 +917,14 @@ function longTaskPromise({signal}) {
   return new Promise((resolve, reject) =&gt; {
     // 処理の Promise 化
     let longTask = new LongTask()
-    longTask.addEventListener(&#39;data&#39;, resolve)
-    longTask.addEventListener(&#39;error&#39;, reject)
+    longTask.addEventListener(&apos;data&apos;, resolve)
+    longTask.addEventListener(&apos;error&apos;, reject)
     longTask.start()
 
     // abort signal のハンドリング
-    signal.addEventListener(&#39;abort&#39;, () =&gt; {
+    signal.addEventListener(&apos;abort&apos;, () =&gt; {
       longTask.stop()
-      reject(new DOMException(&#39;Aborted&#39;, &#39;AbortError&#39;))
+      reject(new DOMException(&apos;Aborted&apos;, &apos;AbortError&apos;))
     })
   })
 }
@@ -945,7 +945,7 @@ function main() {
       // 結果の正常処理
     })
     .catch((err) =&gt; {
-      if (err.name == &#39;AbortError&#39;) {
+      if (err.name == &apos;AbortError&apos;) {
         // 中断の場合の処理
         return
       }
@@ -983,7 +983,7 @@ function main() {
       // レスポンスの処理
     })
     .catch((err) =&gt; {
-      if (err.name == &#39;AbortError&#39;) {
+      if (err.name == &apos;AbortError&apos;) {
         // 中断の場合の処理
         return
       }
@@ -1022,7 +1022,7 @@ Promise.race([
   // それらを止める。
   controller.abort()
 }).catch((err) =&gt; {
-  if (err.name == &#39;AbortError&#39;) {
+  if (err.name == &apos;AbortError&apos;) {
     // ここに来るのは race が終わる前に Abort した場合
     // race が終わった後の abort はここに来ない
     return
