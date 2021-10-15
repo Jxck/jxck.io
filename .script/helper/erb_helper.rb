@@ -17,7 +17,7 @@ module ERBHelper
       .gsub(/</, "&lt;")
       .gsub(/>/, "&gt;")
       .gsub(/"/, "&quot;")
-      .gsub(/'/, "&#039;")
+      .gsub(/'/, "&apos;")
   end
 
   def jsonescape(str)
