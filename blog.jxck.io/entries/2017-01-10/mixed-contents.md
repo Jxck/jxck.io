@@ -62,7 +62,7 @@ mixed contents が無ければ本来は以下のようになる。
 
 ### Mixed Active(Script) Contents
 
-以下のタグ、及びスクリプト等は、  *Mixed Active Contents* と呼ばれる。
+以下のタグ、及びスクリプト等は、 *Mixed Active Contents* と呼ばれる。
 
 
 ```html

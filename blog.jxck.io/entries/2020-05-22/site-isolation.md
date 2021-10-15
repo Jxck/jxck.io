@@ -151,7 +151,7 @@ CORB はこうしたコードで意図しないリソースがメモリに展開
 
 具体的には以下のような request destination について
 
-- "image" (`<img>`, `<image>`,  `background-image`, favicon.ico etc)
+- "image" (`<img>`, `<image>`, `background-image`, favicon.ico etc)
 - "script" (`<script>`, `importScripts()`, `navigator.serviceWorker.register()`, `audioWorklet.addModule()`) etc.
 - "audio", "video", "track"
 - "font"
@@ -374,7 +374,7 @@ Origin Isolation は、基本的には Site Isolation が Same Site なのに対
 
 こうしたコンセプトを用意し、今後新しい Powerful Feature API が提供される際の指針にするという内容のようだ。
 
- - <https://github.com/mikewest/securer-contexts/>
+- <https://github.com/mikewest/securer-contexts/>
 
 
 ## Outro
@@ -574,12 +574,12 @@ Origin-Isolation などの関連仕様の動向も気になるため、引き続
 動作するデモを以下に用意した。
 
 - [Site Isolation](https://labs.jxck.io/site-isolation/)
-  - [Cross-Origin-Read-Blocking DEMO](  https://labs.jxck.io/site-isolation/cross-origin-read-blocking/index.html)
+  - [Cross-Origin-Read-Blocking DEMO](https://labs.jxck.io/site-isolation/cross-origin-read-blocking/index.html)
   - [Cross-Origin-Resource-Policy DEMO](https://labs.jxck.io/site-isolation/cross-origin-resource-policy/index.html)
   - [Cross-Origin-Embedder-Policy DEMO](https://labs.jxck.io/site-isolation/cross-origin-embedder-policy/index.html)
-  - [Cross-Origin-Opener-Policy DEMO](  https://labs.jxck.io/site-isolation/cross-origin-opener-policy/index.html)
-  - [crossOriginIsolated DEMO](         https://labs.jxck.io/site-isolation/crossOriginIsolated/index.html)
-  - [Origin-Isolation DEMO](            https://labs.jxck.io/site-isolation/origin-isolation/index.html)
+  - [Cross-Origin-Opener-Policy DEMO](https://labs.jxck.io/site-isolation/cross-origin-opener-policy/index.html)
+  - [crossOriginIsolated DEMO](https://labs.jxck.io/site-isolation/crossOriginIsolated/index.html)
+  - [Origin-Isolation DEMO](https://labs.jxck.io/site-isolation/origin-isolation/index.html)
 
 
 ## Special Thanks

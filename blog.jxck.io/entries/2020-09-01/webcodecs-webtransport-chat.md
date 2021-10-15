@@ -202,8 +202,8 @@ interface EncodedVideoChunk {
 
 QUIC はパケットサイズに上限があるため、 QuicTransport でも大きいバイナリが送れず、分割される。
 
- - IPv6 = 1280(v6 MTU) - 40 (v6 header) - 8 (udp header) = 1232byte
- - IPv4 = 1280(v4 MTU) - 20 (v4 header) - 8 (udp header) = 1252byt
+- IPv6 = 1280(v6 MTU) - 40 (v6 header) - 8 (udp header) = 1232byte
+- IPv4 = 1280(v4 MTU) - 20 (v4 header) - 8 (udp header) = 1252byt
 
 なので v4 だと PMTUD でサイズを確認しない限り 1252 以上は送れない
 

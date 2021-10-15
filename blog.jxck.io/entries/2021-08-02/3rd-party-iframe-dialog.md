@@ -82,7 +82,7 @@ Intents には Use Counter も載っているので引用する。
 実際にロールアウトしたのが Chrome/Edge であったため、いつものように「また Google が勝手にやっている」と思う人もいるようだが、実際には他のブラウザも Positive を表明している。
 
 - Firefox: <https://github.com/whatwg/html/issues/5407#issuecomment-606417807>
-- Safari:  <https://github.com/whatwg/html/issues/5407#issuecomment-760574422>
+- Safari: <https://github.com/whatwg/html/issues/5407#issuecomment-760574422>
 
 また、この合意が取れているため、既に仕様にもマージされている。
 

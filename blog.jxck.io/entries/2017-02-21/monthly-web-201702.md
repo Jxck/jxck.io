@@ -66,7 +66,7 @@
   - Native async functions as fast as promises
   - Continued ES2015 improvements
   - RegExp 15 % faster
-  - padStart/End, Intl.DateTimeFormat.prototype.formatToParts 
+  - padStart/End, Intl.DateTimeFormat.prototype.formatToParts
   - WASM enabled
   - etc
 
@@ -349,7 +349,7 @@ Finding っていう資料が二つ出た。
   - あとで
 
 - 2/12: [Stats in Chrome](https://docs.google.com/presentation/d/1Lq2DD28CGa7bxawVH_2OcmyiTiBn74dvC6vn2essroY/edit)
-  -  chrome://tracing の使い方
+  - chrome://tracing の使い方
 
 - 2/13: [アメブロの SSL 化](http://ameblo.jp/staff/entry-12247397187.html)
   - プラグイン系の仕様変更
@@ -390,7 +390,7 @@ Finding っていう資料が二つ出た。
 - 2/17: [FRESH!における PC ブラウザの Flash 脱却](https://developers.cyberagent.co.jp/blog/archives/4283/)
   - HLS をどうするか
 
-- 2/19: [Firefox でレガシーなアドオンが使えるのは 2017 年 11 月半ばまで ](https://rockridge.hatenablog.com/entry/2017/02/19/231302)
+- 2/19: [Firefox でレガシーなアドオンが使えるのは 2017 年 11 月半ばまで](https://rockridge.hatenablog.com/entry/2017/02/19/231302)
   - e10s と WebExtensions
 
 - 2/19: [サイトの「HTTPS 化」が世界的に進んで大きなターニングポイントを迎える](https://gigazine.net/news/20170218-https-adoption-tipping-point/)

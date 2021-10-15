@@ -87,7 +87,7 @@ Cache-Control: max-age=3600, must-understand, no-store
 > the request method is understood by the cache;
 > the response status code is final (see Section 15 of [Semantics]);
 > if the response status code is 206 or 304, or the "must-understand" cache directive (see Section 5.2.2.2) is present: the cache understands the response status code;
->   ...
+> ...
 > --- <cite><https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html#section-3></cite>
 
 ステータスコードに `final` という概念が入ったのはまた別の話として解説したいが、問題は 3 つ目の条件だ。

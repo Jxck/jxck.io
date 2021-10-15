@@ -87,10 +87,10 @@ WebCodecs の場合は、 Intent to Experiment まで出ているので、実装
 
 また、その中で以下のような情報が入っている。
 
-- Explainer:   <https://github.com/WICG/web-codecs/blob/master/explainer.md>
+- Explainer: <https://github.com/WICG/web-codecs/blob/master/explainer.md>
 - Design docs: <https://docs.google.com/document/d/1fw3_aMB0-q9hOMuz_lxE8kEd-Z7vjA0wtklpx77m4yw/edit>
-- TAG review:  <https://github.com/w3ctag/design-reviews/issues/433>
-- Draft Spec:  <https://wicg.github.io/web-codecs/>
+- TAG review: <https://github.com/w3ctag/design-reviews/issues/433>
+- Draft Spec: <https://wicg.github.io/web-codecs/>
 
 これが調べていく起点となり、 Intents が見つからなかった場合は、仕様のリポジトリなどを探すことになる。
 

@@ -36,7 +36,7 @@
 
 本サイトでは、このメリットを活かし、 UI コンポーネントは基本的にベクタフォーマットである SVG および Font を用いて構築することとした。
 
-なお、現時点でほとんどのブラウザが  [SVG に対応](https://caniuse.com/#search=svg) している。
+なお、現時点でほとんどのブラウザが [SVG に対応](https://caniuse.com/#search=svg) している。
 
 
 ## SVG
@@ -147,7 +147,7 @@ before
 : 3860byte
 
 after
-:  638byte
+: 638byte
 
 
 ## 手書き

@@ -24,10 +24,10 @@ TODO になっている動画は、そのうち撮って追加します。
 4. [#update()](#update())
 5. [#backgroundsync](#backgroundsync)
 6. [#push](#push)
-    1. [#1. Google Developer Console](#1.+Google+Developer+Console)
-    2. [#2.master.js](#2.master.js)
-    3. [#3.worker.js](#3.worker.js)
-    4. [#4.push.js](#4.push.js)
+  1. [#1. Google Developer Console](#1.+Google+Developer+Console)
+  2. [#2.master.js](#2.master.js)
+  3. [#3.worker.js](#3.worker.js)
+  4. [#4.push.js](#4.push.js)
 
 
 ## claim

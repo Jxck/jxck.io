@@ -106,7 +106,7 @@ HTML には閉じタグの省略が許されているものがいくつかあり
 > The attribute value can remain unquoted if it doesn't contain space characters or any of " ' ` = < or >. Otherwise, it has to be quoted using either single or double quotes.
 > --- <cite><https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html></cite>
 
-つまり、スペースや ``" ' ` = < >`` が無ければ引用符はいらない。
+つまり、スペースや `"`, `'`, `\``, `=`, `<`, `>` が無ければ引用符はいらない。
 
 
 ```html

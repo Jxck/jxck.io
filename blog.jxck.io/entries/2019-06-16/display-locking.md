@@ -81,17 +81,17 @@ React は Virtual DOM による差分更新、 lit-html は Tagged Template Lite
 それを踏まえて簡単にそれぞれを解説する。
 
 - [asyncAppend](https://github.com/WICG/async-append)
-    - 非同期版 Append を生やす
-    - 単体 Append だけではなく、 DOM 処理の Batch 化もする
+  - 非同期版 Append を生やす
+  - 単体 Append だけではなく、 DOM 処理の Batch 化もする
 - [WokerNode](https://github.com/drufball/worker-node/)
-    - Worker と行き来できる DOM 更新命令をまとめたオブジェクトの提案
-    - そのオブジェクトの適用には asyncAppend を使う
+  - Worker と行き来できる DOM 更新命令をまとめたオブジェクトの提案
+  - そのオブジェクトの適用には asyncAppend を使う
 - [DOM ChangeList](https://github.com/whatwg/dom/issues/270)
-    - DOM の更新命令をまとめるオブジェクトを提案
-    - それを適用すると一気に処理が走る、 VirtualDOM に似てる
-    - エンジンが最適化できるため
+  - DOM の更新命令をまとめるオブジェクトを提案
+  - それを適用すると一気に処理が走る、 VirtualDOM に似てる
+  - エンジンが最適化できるため
 - [Display Locking](https://github.com/WICG/display-locking)
-    - 今回の本題なので後述
+  - 今回の本題なので後述
 
 Display Locking 以外は、特に作業がされていない。
 
@@ -100,11 +100,11 @@ Display Locking 以外は、特に作業がされていない。
 
 Async DOM の実装の中で、もっとも作業が進み、 Chrome で実装され始めたのがこの仕様だ。
 
-- Proposal:                  [Proposal: Display Locking - APIs - WICG](https://discourse.wicg.io/t/proposal-display-locking/2905)
-- Draft:                     [WICG/display-locking: A repository for the Display Locking spec](https://github.com/WICG/display-locking)
-- Intents:                   [Intent to Implement: Display Locking - Google グループ](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2Yo590-USNo/7Da9scWwBwAJ)
-- Chromium Bug:              [882663 - Implement display locking (meta bug) - chromium - Monorail](https://bugs.chromium.org/p/chromium/issues/detail?id=882663)
-- TAG Review:                [Display Locking - Issue #306 - w3ctag/design-reviews](https://github.com/w3ctag/design-reviews/issues/306)
+- Proposal: [Proposal: Display Locking - APIs - WICG](https://discourse.wicg.io/t/proposal-display-locking/2905)
+- Draft: [WICG/display-locking: A repository for the Display Locking spec](https://github.com/WICG/display-locking)
+- Intents: [Intent to Implement: Display Locking - Google グループ](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2Yo590-USNo/7Da9scWwBwAJ)
+- Chromium Bug: [882663 - Implement display locking (meta bug) - chromium - Monorail](https://bugs.chromium.org/p/chromium/issues/detail?id=882663)
+- TAG Review: [Display Locking - Issue #306 - w3ctag/design-reviews](https://github.com/w3ctag/design-reviews/issues/306)
 - Mozilla Standard Position: [Display Locking API - Issue #135 - mozilla/standards-positions](https://github.com/mozilla/standards-positions/issues/135)
 
 この仕様の状況としては、まず Intetns で [positive feedback from ReactJS and Polymer](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2Yo590-USNo/7Da9scWwBwAJ) と書かれているため、なんらかのやり取りはあったようだ。

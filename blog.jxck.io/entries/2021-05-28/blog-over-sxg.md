@@ -218,7 +218,7 @@ SXG が Google の Cache に乗ったかは、以下のような規則で生成�
 
 しかし、本サイトは既に [AMP](https://blog.jxck.io/entries/2016-02-01/amp-html.html) と [AMP SXG](https://blog.jxck.io/entries/2020-12-25/amp-signed-http-exchange.html) に対応しているため、モバイルの検索結果では AMP がヒットし、 AMP SXG がリンクされている。
 
-![AMP SXG と Non AMP SXG を両方デプロイした場合、 Google Search Result では AMP が優先される](gsrp-amp.jpg#2322x684)
+![AMP SXG と Non AMP SXG を両方デプロイした場合、 Google Search Result では AMP が優先される](gsrp-amp.jpeg#2322x684)
 
 どうやら Non AMP SXG がクロールされても、同時に AMP および AMP SXG に対応している場合は、現状 AMP 側が優先されるようだ。
 
@@ -253,7 +253,7 @@ AMP をやめる方法は基本は以下だ。
 
 また、ページの DOM 中に `<link rel=prefetch>` が挿入されていることが確認できる。
 
-![Non AMP SXG が Prefetch されている](gsrp-sxg.jpg#2406x774)
+![Non AMP SXG が Prefetch されている](gsrp-sxg.jpeg#2406x774)
 
 これにより、検索結果を表示した時点で HTML は Google の SXG Cache から取得されている。
 

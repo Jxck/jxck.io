@@ -411,8 +411,7 @@ WebTransport や WebCodecs が、 Stadia を展開するために必要な穴を
   - W3C Web Games Workshop
     - <https://www.w3.org/2018/12/games-workshop/report.html#webtransport>
     - <https://docs.google.com/presentation/d/13hX5p8opMD8SrmCHwcdqn_mNkHjQBjI32jvq_gIDubM/edit>
-    - Minutes から
-       - Sony/BBC などが強い賛同を示している
+    - Minutes から Sony/BBC などが強い賛同を示している
 - Mailing List
   - webtransport
     - <https://mailarchive.ietf.org/arch/browse/webtransport/>
