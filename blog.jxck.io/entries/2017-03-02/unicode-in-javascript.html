@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2017-03-02T08:00:00+08:00",
-    "dateModified": "2021-09-26T08:00:00+08:00",
+    "dateModified": "2021-10-16T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -91,10 +91,10 @@
   </script>
 
   <title>JavaScript における文字コードと「文字数」の数え方 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?210923_180132>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?210923_180158>
 </head>
 <body>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210501_230901>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
   <header>
     <nav>
       <ul>
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2017-03-02>2017-03-02</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-09-26>2021-09-26</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-10-16>2021-10-16</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -163,7 +163,7 @@
       </div>
     </dl>
 
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?210426_200525>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?210427_184241>
     <article>
       <h1><a href="">JavaScript における文字コードと「文字数」の数え方</a></h1>
       <section>
@@ -426,7 +426,7 @@ c // &quot;食&quot;</code></pre>
           <p><code translate="no">葛</code> の異体字として <code translate="no">葛󠄀</code> があり、カツシカ区は前者を、カサイ市は後者を使うらしい。
           <p>ところがこの二つは <code translate="no">𠮟</code> と <code translate="no">𠮟</code> のように別の文字コードを振るわけではなく、どちらも同じ文字であり、書き方のバリエーションが違うという扱いになっている。
           <p>そこで、基本となる文字コードを定義し、そこに対してバリエーションがあるものはその番号を組み合わせるという考え方が <em>異体字セレクタ</em> だ。
-          <p><code translate="no">葛</code> の文字コードは 0x845B であり、異体字の 1 番目である  <code translate="no">葛󠄀</code> には、後ろに 0xE0101 をつける。
+          <p><code translate="no">葛</code> の文字コードは 0x845B であり、異体字の 1 番目である <code translate="no">葛󠄀</code> には、後ろに 0xE0101 をつける。
           <pre><code translate="no">str = &quot;葛飾区&quot;
 [
   0x845B // 葛

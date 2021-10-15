@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-03-14T08:00:00+08:00",
-    "dateModified": "2021-10-08T08:00:00+08:00",
+    "dateModified": "2021-10-16T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -91,10 +91,10 @@
   </script>
 
   <title>Private Class Field の導入に伴う JS の構文拡張 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?210923_180132>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?210923_180158>
 </head>
 <body>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210501_230901>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
   <header>
     <nav>
       <ul>
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-03-14>2019-03-14</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-10-08>2021-10-08</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-10-16>2021-10-16</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -156,7 +156,7 @@
       </div>
     </dl>
 
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?210426_200525>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?210427_184241>
     <article>
       <h1><a href="">Private Class Field の導入に伴う JS の構文拡張</a></h1>
       <section>
@@ -332,29 +332,17 @@ console.log(c.count) // undefined</code></pre>
         <p>結果としては、 WeakMap で実現したような挙動を、構文レベルでサポートすることにより、より手軽に Hard Private を実現することがこの仕様のゴールとなった。
         <p>具体的に求められる挙動は <a href="https://github.com/tc39/proposal-class-fields/blob/master/PRIVATE_SYNTAX_FAQ.md#what-do-you-mean-by-encapsulation--hard-private">以下</a> のようになる。
         <ol>
-          <li>
-            Private フィールドにアクセスする方法が一切ない
-            <ol>
-              <li>Reflection など、迂回する方法も提供しない
-              <li>それがテストであっても例外は無し
-            </ol>
-          </li>
-          <li>
-            Private フィールドがあることが外からわからない
-            <ol>
-              <li>getOwnPropertyNames などで取得する方法も提供しない
-              <li>Private フィールドと同じ Public フィールドが定義できる、これをエラーにすると存在がわかる
-              <li>継承した子クラスや親クラスからもアクセスできない
-              <li>ただし同じクラスの別のインスタンスではアクセスが可能
-            </ol>
-          </li>
-          <li>
-            以上を一定のパフォーマンスで実装できる
-            <ol>
-              <li>Private へのアクセスが遅くない
-              <li>Public なアクセスや Obejct の生成など既存の挙動に影響が極力無い
-            </ol>
-          </li>
+          <li>Private フィールドにアクセスする方法が一切ない
+          <li>Reflection など、迂回する方法も提供しない
+          <li>それがテストであっても例外は無し
+          <li>Private フィールドがあることが外からわからない
+          <li>getOwnPropertyNames などで取得する方法も提供しない
+          <li>Private フィールドと同じ Public フィールドが定義できる、これをエラーにすると存在がわかる
+          <li>継承した子クラスや親クラスからもアクセスできない
+          <li>ただし同じクラスの別のインスタンスではアクセスが可能
+          <li>以上を一定のパフォーマンスで実装できる
+          <li>Private へのアクセスが遅くない
+          <li>Public なアクセスや Obejct の生成など既存の挙動に影響が極力無い
         </ol>
         <p>これを満たす構文を定義することになる。
       </section>

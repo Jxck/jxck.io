@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-05-20T08:00:00+08:00",
-    "dateModified": "2020-09-06T08:00:00+08:00",
+    "dateModified": "2021-10-16T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -91,10 +91,10 @@
   </script>
 
   <title>画像最適化戦略 Lazy Loading 編 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?210923_180132>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?210923_180158>
 </head>
 <body>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210501_230901>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
   <header>
     <nav>
       <ul>
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-05-20>2019-05-20</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-10-16>2021-10-16</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -158,7 +158,7 @@
       </div>
     </dl>
 
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?210426_200525>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?210427_184241>
     <article>
       <h1><a href="">画像最適化戦略 Lazy Loading 編</a></h1>
       <section>
@@ -259,14 +259,14 @@
           <li><a href="http://labs.jxck.io/lazyload/">http://labs.jxck.io/lazyload/</a>
         </ul>
         <p>今回は、画像の Lazyload の挙動を、 Chrome 75 + Flag の実装を用いて確認してみる。
-        <p>デモとして、画像を 10 個並べたページを用意し  <code translate="no">loading=lazy</code> の有無による挙動を比較する。
+        <p>デモとして、画像を 10 個並べたページを用意し <code translate="no">loading=lazy</code> の有無による挙動を比較する。
         <section>
           <h3 id="eagerload"><a href="#eagerload">eagerload</a></h3>
           <p><code translate="no">loading=eager</code> の場合は、全ての画像が取得され、そこで onload が発火する。
           <p>
             <picture>
-              <source type=image/webp srcset=eagerload.webp?210518_022044#1366x768>
-              <img loading=lazy decoding=async src=eagerload.png?210518_022044#1366x768 alt="Eager Load で複数画像を読み込んだ場合の挙動を Dev Tools の Network タブで見たところ" title="eager loading images" width=1366 height=768>
+              <source type=image/webp srcset=eagerload.webp?200901_002432#1366x768>
+              <img loading=lazy decoding=async src=eagerload.png?200901_002432#1366x768 alt="Eager Load で複数画像を読み込んだ場合の挙動を Dev Tools の Network タブで見たところ" title="eager loading images" width=1366 height=768>
             </picture>
           </p>
         </section>
@@ -279,15 +279,15 @@
           <p>この 6 つの画像が取得された段階で <code translate="no">window.onload</code> が発火しているため、発火までの時間も早くなっている。
           <p>
             <picture>
-              <source type=image/webp srcset=lazyload-above.webp?210518_022057#1366x768>
-              <img loading=lazy decoding=async src=lazyload-above.png?210518_022057#1366x768 alt="Lazy Load で複数画像を読み込んだ場合の挙動を Above the Fold に注目して Dev Tools の Network タブで見たところ" title="lazyloading images focusing above the fold" width=1366 height=768>
+              <source type=image/webp srcset=lazyload-above.webp?200901_002432#1366x768>
+              <img loading=lazy decoding=async src=lazyload-above.png?200901_002432#1366x768 alt="Lazy Load で複数画像を読み込んだ場合の挙動を Above the Fold に注目して Dev Tools の Network タブで見たところ" title="lazyloading images focusing above the fold" width=1366 height=768>
             </picture>
           </p>
           <p>あとは、スクロールに従って残りの <code translate="no">&lt;img&gt;</code> が Viewport に近づくと、その画像の全体を再度取得する。
           <p>
             <picture>
-              <source type=image/webp srcset=lazyload-below.webp?210518_022109#1366x768>
-              <img loading=lazy decoding=async src=lazyload-below.png?210518_022109#1366x768 alt="Lazy Load で複数画像を読み込んだ場合の挙動をスクロール後の Below the Fold に注目して Dev Tools の Network タブで見たところ" title="lazyloading images focusing below the fold" width=1366 height=768>
+              <source type=image/webp srcset=lazyload-below.webp?191119_151451#1366x768>
+              <img loading=lazy decoding=async src=lazyload-below.png?191119_151451#1366x768 alt="Lazy Load で複数画像を読み込んだ場合の挙動をスクロール後の Below the Fold に注目して Dev Tools の Network タブで見たところ" title="lazyloading images focusing below the fold" width=1366 height=768>
             </picture>
           </p>
           <p>同じ検証の動画を以下に付記しておく。

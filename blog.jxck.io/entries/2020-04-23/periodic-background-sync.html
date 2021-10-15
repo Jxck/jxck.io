@@ -91,10 +91,10 @@
   </script>
 
   <title>Periodic Background Sync 及び Web を Install するということ | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?210923_180132>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?210923_180158>
 </head>
 <body>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210501_230901>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
   <header>
     <nav>
       <ul>
@@ -152,7 +152,7 @@
       </div>
     </dl>
 
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?210426_200525>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?210427_184241>
     <article>
       <h1><a href="">Periodic Background Sync 及び Web を Install するということ</a></h1>
       <section>
@@ -197,8 +197,8 @@ await registration.periodicSync.register(&apos;update-feed&apos;, {
         <p>一度 SW が登録されたら、ユーザがアプリを開いてないところでも、ユーザが認識できない形でトラッキングが可能ということになってしまう。
         <p>
           <picture>
-            <source type=image/webp srcset=ip-tracking.webp?210518_022321#2032x1084>
-            <img loading=lazy decoding=async src=ip-tracking.png?210518_022321#2032x1084 alt="定期的に IP を取得することで、国をまたいだ移動などをトラッキング可能" title="IP Tracking by Periodic Background Sync" width=2032 height=1084>
+            <source type=image/webp srcset=ip-tracking.webp?200901_002432#2032x1084>
+            <img loading=lazy decoding=async src=ip-tracking.png?200901_002432#2032x1084 alt="定期的に IP を取得することで、国をまたいだ移動などをトラッキング可能" title="IP Tracking by Periodic Background Sync" width=2032 height=1084>
           </picture>
         </p>
         <p>また、 PBS 内での fetch 先を特定の攻撃対象に設定すれば、発生タイミングをある程度指定して DDOS を行う、 Bot Net の構築に応用可能であることも指摘されている。
@@ -208,8 +208,8 @@ await registration.periodicSync.register(&apos;update-feed&apos;, {
         <p>これらは、 Periodic ではない従来の Background Sync でも同様であるため、現在 Mozilla は従来の PBS に加え、従来の Background Sync も Considered Harmful と表明した。
         <p>
           <picture>
-            <source type=image/webp srcset=mozilla-standard-position-for-sync.webp?210518_022339#2416x974>
-            <img loading=lazy decoding=async src=mozilla-standard-position-for-sync.png?210518_022339#2416x974 alt="Mozilla は PBS/BS 双方に Harmful という Position を表明している" title="Mozilla Standard Position for Periodic Background Sync & Background Sync" width=2416 height=974>
+            <source type=image/webp srcset=mozilla-standard-position-for-sync.webp?200901_002432#2416x974>
+            <img loading=lazy decoding=async src=mozilla-standard-position-for-sync.png?200901_002432#2416x974 alt="Mozilla は PBS/BS 双方に Harmful という Position を表明している" title="Mozilla Standard Position for Periodic Background Sync & Background Sync" width=2416 height=974>
           </picture>
         </p>
         <ul>
@@ -261,8 +261,8 @@ await registration.periodicSync.register(&apos;update-feed&apos;, {
           </ul>
           <p>
             <picture>
-              <source type=image/webp srcset=site-engagement.webp?210518_022355#2414x1108>
-              <img loading=lazy decoding=async src=site-engagement.png?210518_022355#2414x1108 alt="Chrome の site-engagement ページで、サイトの利用頻度を表示できる" title="Site Engagement Page" width=2414 height=1108>
+              <source type=image/webp srcset=site-engagement.webp?200901_002432#2414x1108>
+              <img loading=lazy decoding=async src=site-engagement.png?200901_002432#2414x1108 alt="Chrome の site-engagement ページで、サイトの利用頻度を表示できる" title="Site Engagement Page" width=2414 height=1108>
             </picture>
           </p>
           <p>この値が高ければ PBS は minInterval に近い値で発火し、そうでなければほとんど発火しない。

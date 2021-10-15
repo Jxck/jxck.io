@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-08-02T08:00:00+08:00",
-    "dateModified": "2021-08-12T08:00:00+08:00",
+    "dateModified": "2021-10-16T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -91,10 +91,10 @@
   </script>
 
   <title>Cross Origin iframe からの alert/confirm/prompt 呼び出しの無効化 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?210923_180132>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?210923_180158>
 </head>
 <body>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210501_230901>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
   <header>
     <nav>
       <ul>
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-08-02>2021-08-02</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-08-12>2021-08-12</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-10-16>2021-10-16</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -151,7 +151,7 @@
       </div>
     </dl>
 
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?210426_200525>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?210427_184241>
     <article>
       <h1><a href="">Cross Origin iframe からの alert/confirm/prompt 呼び出しの無効化</a></h1>
       <section>
@@ -200,15 +200,15 @@
         <p>以下は labs.jxck.io のトップレベルで呼び出した場合の挙動だ。
         <p>
           <picture>
-            <source type=image/webp srcset=1st-prompt.webp?210803_013007#1260x700>
-            <img loading=lazy decoding=async src=1st-prompt.png?210803_013007#1260x700 alt="トップレベルで prompt() を呼んだ場合 "labs.jxck.io says" と表示される" title="" width=1260 height=700>
+            <source type=image/webp srcset=1st-prompt.webp?210803_024823#1260x700>
+            <img loading=lazy decoding=async src=1st-prompt.png?210803_024823#1260x700 alt="トップレベルで prompt() を呼んだ場合 "labs.jxck.io says" と表示される" title="" width=1260 height=700>
           </picture>
         </p>
         <p>以下は Cross Origin iframe として埋め込んだ lab2.jxck.io で呼び出した場合の挙動だ。
         <p>
           <picture>
-            <source type=image/webp srcset=3rd-prompt.webp?210803_013009#1260x700>
-            <img loading=lazy decoding=async src=3rd-prompt.png?210803_013009#1260x700 alt="Cross Origin iframe で prompt() を呼んだ場合 "An embedded page at lab2.jxck.io sayz" と表示される" title="" width=1260 height=700>
+            <source type=image/webp srcset=3rd-prompt.webp?210803_024823#1260x700>
+            <img loading=lazy decoding=async src=3rd-prompt.png?210803_024823#1260x700 alt="Cross Origin iframe で prompt() を呼んだ場合 "An embedded page at lab2.jxck.io sayz" と表示される" title="" width=1260 height=700>
           </picture>
         </p>
         <p>ユーザにとってこの表示の意味を理解するのは必ずしも容易ではない。 ただの <code translate="no">alert()</code> であれば得られる情報はないが、 <code translate="no">prompt()</code> の場合はユーザに入力を求め、それを JS で取得することができてしまう。
@@ -260,7 +260,7 @@
             Firefox: <a href="https://github.com/whatwg/html/issues/5407#issuecomment-606417807">https://github.com/whatwg/html/issues/5407#issuecomment-606417807</a>
           </li>
           <li>
-            Safari:  <a href="https://github.com/whatwg/html/issues/5407#issuecomment-760574422">https://github.com/whatwg/html/issues/5407#issuecomment-760574422</a>
+            Safari: <a href="https://github.com/whatwg/html/issues/5407#issuecomment-760574422">https://github.com/whatwg/html/issues/5407#issuecomment-760574422</a>
           </li>
         </ul>
         <p>また、この合意が取れているため、既に仕様にもマージされている。

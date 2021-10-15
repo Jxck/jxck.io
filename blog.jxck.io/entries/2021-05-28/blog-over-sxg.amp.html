@@ -49,7 +49,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-05-28T08:00:00+08:00",
-    "dateModified": "2021-06-30T08:00:00+08:00",
+    "dateModified": "2021-10-16T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -782,7 +782,7 @@
 <main>
   <dl class=info>
     <div><dt>created_at</dt><dd><time class=created_at datetime=2021-05-28>2021-05-28</time></dd></div>
-    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-06-30>2021-06-30</time></dd></div>
+    <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-10-16>2021-10-16</time></dd></div>
     <div>
         <dt>tags</dt>
         <dd>
@@ -984,7 +984,7 @@ dump-certurl -i cert.cbor</code></pre>
         <p>本来はこれで Google Search Result に反映されて、 Prefetch が埋め込まれるはずだった。
         <p>しかし、本サイトは既に <a href="https://blog.jxck.io/entries/2016-02-01/amp-html.html">AMP</a> と <a href="https://blog.jxck.io/entries/2020-12-25/amp-signed-http-exchange.html">AMP SXG</a> に対応しているため、モバイルの検索結果では AMP がヒットし、 AMP SXG がリンクされている。
         <p>
-          <amp-img layout=responsive src=gsrp-amp.jpg#2322x684 alt="AMP SXG と Non AMP SXG を両方デプロイした場合、 Google Search Result では AMP が優先される" title="" width=2322 height=684>
+          <amp-img layout=responsive src=gsrp-amp.jpeg#2322x684 alt="AMP SXG と Non AMP SXG を両方デプロイした場合、 Google Search Result では AMP が優先される" title="" width=2322 height=684>
         </p>
         <p>どうやら Non AMP SXG がクロールされても、同時に AMP および AMP SXG に対応している場合は、現状 AMP 側が優先されるようだ。
         <p>おそらく両方に対応しているサイト自体が他に無いため、ここをコントロールする情報は無く、今後 Non AMP SXG の方が優先されたりする可能性も無くはないが、まったく未定な状態となりいつまでたっても動作検証ができない。
@@ -1013,7 +1013,7 @@ dump-certurl -i cert.cbor</code></pre>
         <p>検索結果から AMP が消え、モバイルでも通常の HTML が表示されるようになった。
         <p>また、ページの DOM 中に <code translate="no">&lt;link rel=prefetch&gt;</code> が挿入されていることが確認できる。
         <p>
-          <amp-img layout=responsive src=gsrp-sxg.jpg#2406x774 alt="Non AMP SXG が Prefetch されている" title="" width=2406 height=774>
+          <amp-img layout=responsive src=gsrp-sxg.jpeg#2406x774 alt="Non AMP SXG が Prefetch されている" title="" width=2406 height=774>
         </p>
         <p>これにより、検索結果を表示した時点で HTML は Google の SXG Cache から取得されている。
         <p>

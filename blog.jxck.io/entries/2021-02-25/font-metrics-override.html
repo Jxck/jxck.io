@@ -91,10 +91,10 @@
   </script>
 
   <title>Web Font のメトリクス上書きによる CLS の改善 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?210923_180132>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?210923_180158>
 </head>
 <body>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210501_230901>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
   <header>
     <nav>
       <ul>
@@ -149,7 +149,7 @@
       </div>
     </dl>
 
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?210426_200525>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?210427_184241>
     <article>
       <h1><a href="">Web Font のメトリクス上書きによる CLS の改善</a></h1>
       <section>
@@ -196,8 +196,8 @@
         <p>本サイトは Noto Sans を Webfont として提供している。この Webfont ファイルが読み込まれる前にフォールバックとして表示されるローカルフォントを Osaka だとした場合、重ね合わせると以下のように差異が出る。
         <p>
           <picture>
-            <source type=image/webp srcset=before.webp?210518_022730#1610x1134>
-            <img loading=lazy decoding=async src=before.png?210518_022730#1610x1134 alt="Osaka と Noso Sans をデフォルトで表示した場合、高さに差がでてしまう" title="before" width=1610 height=1134>
+            <source type=image/webp srcset=before.webp?210518_024051#1610x1134>
+            <img loading=lazy decoding=async src=before.png?210518_024051#1610x1134 alt="Osaka と Noso Sans をデフォルトで表示した場合、高さに差がでてしまう" title="before" width=1610 height=1134>
           </picture>
         </p>
         <p>ここで、 Webfont 側に以下のようなスタイルを当てると、ある程度レイアウトの差分を減らすことができるとわかった。
@@ -217,8 +217,8 @@
 }</code></pre>
         <p>
           <picture>
-            <source type=image/webp srcset=after.webp?210518_022722#1586x1094>
-            <img loading=lazy decoding=async src=after.png?210518_022722#1586x1094 alt="font-metrics や line-height などの調整によって、表示のズレを多少解消できる" title="after" width=1586 height=1094>
+            <source type=image/webp srcset=after.webp?210518_024051#1586x1094>
+            <img loading=lazy decoding=async src=after.png?210518_024051#1586x1094 alt="font-metrics や line-height などの調整によって、表示のズレを多少解消できる" title="after" width=1586 height=1094>
           </picture>
         </p>
         <p>英数字についてはあるていどすり合わせができたが、日本語についてはなかなかぴったり合わせることはできなかった。
