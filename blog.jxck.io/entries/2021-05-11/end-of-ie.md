@@ -242,3 +242,5 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - <https://shonenjumpplus.com/article/information_0818>
 - 2021/09/07: Yahoo! JAPANの推奨ブラウザー
   - <https://support.yahoo-net.jp/PccYjcommon/s/article/H000011350>
+- 2021/10/02: Google の検索結果
+  - <https://twitter.com/cramforce/status/1443962459723755533>
