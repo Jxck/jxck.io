@@ -367,7 +367,7 @@ eyeD3 --title "ep22 AMP" \
 
 eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep23.mp3
 
-eyeD3 --title "ep23 Let&#039;s Encrypt" \
+eyeD3 --title "ep23 Let&apos;s Encrypt" \
       --track 29 \
       --artist 'Jxck' \
       --album 'mozaic.fm' \
@@ -1233,6 +1233,32 @@ eyeD3 --title "ep87 Monthly Web 202108" \
       --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
       --to-v2.3 \
       ../files.mozaic.fm/mozaic-ep87.mp3
+
+
+
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep88.mp3
+
+eyeD3 --title "ep88 Monthly Web 202109" \
+      --track 96 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep88.mp3
+
+
+
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep89.mp3
+
+eyeD3 --title "ep89 Monthly Web 202110" \
+      --track 97 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep89.mp3
 
 
 
