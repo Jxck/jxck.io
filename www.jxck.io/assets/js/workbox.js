@@ -32,7 +32,7 @@ const precache =
   "https://www.jxck.io/assets/img/jxck.svg?190123_200004",
   "https://www.jxck.io/assets/img/amp.svg?181110_002524",
   "https://www.jxck.io/assets/img/up.svg?160831_002319",
-  "https://www.jxck.io/assets/img/jxck.png?210331_115006",
+  "https://www.jxck.io/assets/img/jxck.png?211006_145713",
 ]
 /*precache-build.rb*/
 
