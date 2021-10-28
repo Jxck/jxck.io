@@ -44,6 +44,8 @@ module Format
         uri.query = cache_busting(path)
       end
 
+      uri.fragment = nil
+
       # SVG should specify width-height
       if File.extname(uri.path) == ".svg"
         return %(<img loading=lazy decoding=async src=#{uri} alt="#{alt}" title="#{title}" width=#{width} height=#{height}>)
